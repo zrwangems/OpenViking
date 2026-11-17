@@ -15,10 +15,27 @@ chinese_source: worker-translation
 # Divider
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Select component
+  summary: 功分器类型 T power divider（默认）| Resistive power divider | Wilkinson power divider | Tee H-plane (S33=0) | Tee E-plane
+  group: ''
+- name: Number of divider outports
+  summary: Wilkinson 功分器输出端口数 2（默认）| 范围 (1, 65] 内的非负整数
+  group: ''
+- name: Reference impedances (Ohm)
+  summary: 功分器参考阻抗 50（默认）| 正标量 | 三元组向量
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏负端子 on（默认）| off
+  group: ''
+```
 
 ### **Select component** — 功分器类型 `T power divider`（默认）| `Resistive power divider` | `Wilkinson power divider` | `Tee H-plane (S33=0)` | `Tee E-plane`
 
@@ -107,7 +124,6 @@ Wilkinson 功分器输出端口数，指定为范围 (`1`, `65`] 内的非负整
 选择此参数以接地并隐藏负端子。要暴露负端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其它部分。
 
 默认情况下，此选项处于选中状态。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Junctions

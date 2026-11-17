@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Fractional N PLL with Delta Sigma Modulator
 
 ## 端口
+```yaml
+ports:
+- name: clk in
+  summary: 输入时钟信号 标量
+  direction: input
+  data_types: double
+- name: clk out
+  summary: 输出时钟信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,257 @@ chinese_source: worker-translation
 输出时钟信号，指定为标量。**clk out** 端口处的信号是 PLL 系统中 VCO 模块的输出。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Edit System
+  summary: 断开库模块链接并将内部变量替换为适当的值 按钮
+  group: ''
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 按钮
+  group: ''
+- name: Buffer size for loop filter
+  summary: 环路滤波器的缓冲区大小 1000（默认）| 正整数标量
+  group: ''
+- name: Buffer size for PFD, charge pump, VCO, prescaler
+  summary: PFD、电荷泵、VCO 和预分频器的缓冲区大小 10（默认）| 正整数标量
+  group: ''
+- name: Deadband compensation (s)
+  summary: 为零相位偏移附近的有效输出添加的延迟 40e-12（默认）| 正实数标量
+  group: PFD
+- name: Enable impairments
+  summary: 向仿真添加电路损伤 关闭（默认）| 开启
+  group: PFD
+- name: Output step size calculation
+  summary: 确定如何计算输出步长 Default（默认）| Advanced
+  group: PFD
+- name: Maximum frequency of interest (Hz)
+  summary: 输出端的最大关注频率 10e9（默认）| 正实数标量
+  group: PFD
+- name: Rise/fall time (s)
+  summary: PFD 的 up 输出端口的 20% – 80% 上升/下降时间 3e-11（默认）| 正实数标量
+  group: PFD
+- name: Propagation Delay (s)
+  summary: 从 PFD 的输入端口到输出端口的延迟 50e-12（默认）| 正实数标量
+  group: PFD
+- name: Output current (A)
+  summary: 设计输出电流 1e-3（默认）| 正实数标量
+  group: Charge pump
+  block_parameter: OutputCurrent
+  type: character vector
+  values: positive real scalar
+  default: 1e-3
+- name: Input threshold (V)
+  summary: 输入端口的逻辑切换阈值 0.5（默认）| 实数标量
+  group: Charge pump
+- name: Enable current impairments
+  summary: 向仿真添加电流损伤 关闭（默认）| 开启
+  group: Charge pump
+- name: Current imbalance (A)
+  summary: 满量程正电流与负电流之差 1e-7（默认）| 正实数标量
+  group: Charge pump
+- name: Leakage current (A)
+  summary: 无任何输入时的输出电流 1e-8（默认）| 非负实数标量
+  group: Charge pump
+- name: Enable timing impairments
+  summary: 向仿真添加时序损伤 off（默认）| on
+  group: Charge pump
+- name: Output step size calculation
+  summary: 确定如何计算输出步长 Default（默认）| Advanced
+  group: Charge pump
+- name: Maximum frequency of interest (Hz)
+  summary: 输出端的感兴趣最高频率 10e9（默认）| 正实数标量
+  group: Charge pump
+- name: Rise/fall time (s)
+  summary: up 输入端口 20% – 80% 上升/下降时间 5e-9（默认）| 正实数标量
+  group: Charge pump
+- name: Propagation delay (s)
+  summary: 从 up 输入端口到电荷泵输出端口的总传播延迟 6e-9（默认）| 正实数标量
+  group: Charge pump
+- name: Rise/fall time
+  summary: 下降输入端口 20% – 80% 上升/下降时间 2e-9（默认）| 标量
+  group: Charge pump
+- name: Propagation delay (s)
+  summary: 从电荷泵上升输入端口到输出端口的总传播延迟 4e-9（默认）| 正实数标量
+  group: Charge pump
+- name: Specify using
+  summary: 定义 VCO 输出频率的指定方式 Voltage sensitivity（默认）| Output frequency vs. control voltage
+  group: VCO
+  block_parameter: SpecifyUsing
+  type: 字符向量
+  values: Voltage sensitivity | Output frequency vs. control voltage
+- name: Voltage sensitivity (Hz/V)
+  summary: VCO 输出频率变化的度量 100e6（默认）| 正实数标量
+  group: VCO
+  block_parameter: Kvco
+  type: 字符向量
+  values: 正实数标量
+- name: Free running frequency (Hz)
+  summary: 无控制电压时的 VCO 输出频率 1.8e9（默认）| 正实数标量
+  group: VCO
+  block_parameter: Fo
+  type: 字符向量
+  values: 正实数标量
+- name: Control voltage (V)
+  summary: 控制电压值 [-5 0 5]（默认）| 实值向量
+  group: VCO
+  block_parameter: ControlVoltage
+  type: 字符向量
+  values: 实值向量
+- name: Output frequency (Hz)
+  summary: VCO 输出频率值 [2e9 2.5e9 3e9]（默认）| 实值向量
+  group: VCO
+  block_parameter: OutputFrequency
+  type: 字符向量
+  values: 实值向量
+  default: '[2e9 2.5e9 3e9]'
+- name: Output amplitude
+  summary: VCO 输出电压的最大幅度 1（默认值）| 正实数标量
+  group: VCO
+  block_parameter: Amplitude
+  type: 字符向量
+  values: 正实数标量
+  default: '1'
+- name: Add phase noise
+  summary: 将相位噪声作为频率的函数添加 off（默认值）| on
+  group: VCO
+- name: Phase noise frequency offset (Hz)
+  summary: 相位噪声相对于载波频率的频率偏移 [10e3 100e3 1e6 3e6 10e6]（默认值）| 实值向量
+  group: VCO
+  block_parameter: Foffset
+  type: 字符向量
+  values: 实值向量
+  default: '[10e3 100e3 1e6 3e6 10e6]'
+- name: Phase noise level (dBc/Hz)
+  summary: 在指定频率偏移处相对于载波的相位噪声功率 [-77 -108 -134 -145 -154]（默认值）| 实值向量
+  group: VCO
+  block_parameter: PhaseNoise
+  type: 字符向量
+  values: 实值向量
+  default: '[-77 -108 -134 -145 -154]'
+- name: Estimate phase noise parameters
+  summary: 自动估计相位噪声参数 on（默认值）| off
+  group: VCO
+- name: Period jitter (S)
+  summary: 周期抖动的标准差 2.6794e-15（默认值）| 正实数标量
+  group: VCO
+  block_parameter: PeriodJitter
+  type: 字符向量
+  values: 正实数标量
+  default: '2.6794e-15'
+- name: Flicker corner frequency (Hz)
+  summary: 闪烁噪声的拐角频率 517103.8168（默认值）| 标量
+  group: VCO
+  block_parameter: CornerFrequency
+  type: 字符向量
+  values: 标量
+  default: '517103.8168'
+- name: Plot fit
+  summary: 绘制指定的和预期的 VCO 输出相位噪声密度按钮
+  group: VCO
+- name: Fractional clock divider value
+  summary: 时钟分频器对输入频率进行分频的值 70.20（默认）| 正实数标量
+  group: Prescaler
+- name: Delta Sigma Modulator order
+  summary: Delta Sigma 调制器的阶数 3rd order（默认）| 1st order | 2nd order | 4th order
+  group: Prescaler
+- name: Min clock divider value
+  summary: 时钟分频器对输入频率进行分频的最小值 70（默认）| 正实数标量
+  group: Prescaler
+- name: Filter component values
+  summary: 确定滤波器元件的计算方式 Automatic（默认）| Manual
+  group: Loop Filter
+- name: Loop bandwidth (Hz)
+  summary: 开环传递函数幅值变为 1 时的频率 0.5e6（默认）| 正实数标量
+  group: Loop Filter
+- name: Phase margin (degrees)
+  summary: 环路带宽处开环传递函数的相位与 180° 之差 45（默认）| 正实数标量
+  group: Loop Filter
+- name: 环路滤波器类型
+  summary: 环路滤波器的阶数 3rd Order Passive（默认）| 2nd Order Passive | 4th Order Passive
+  group: Loop Filter
+- name: C1 (F)
+  summary: 电容 1 3e-11（默认）| 正实数标量
+  group: Loop Filter
+- name: C2 (F)
+  summary: 电容 2 3.3e-10（默认）| 正实数标量
+  group: Loop Filter
+- name: C3 (F)
+  summary: 电容 3 2.15e-12（默认）| 正实数标量
+  group: Loop Filter
+- name: C4 (F)
+  summary: 电容 4 1e-12（默认）| 正实数标量
+  group: Loop Filter
+- name: R2 (ohms)
+  summary: 电阻 2 2.33e+03（默认）| 正实数标量
+  group: Loop Filter
+- name: R3 (ohms)
+  summary: 电阻 3 2.98e+04（默认）| 正实数标量
+  group: Loop Filter
+- name: R4 (ohms)
+  summary: 电阻 4 12e3（默认）| 正实数标量
+  group: Loop Filter
+- name: Enable impairments
+  summary: 将电路损伤添加到仿真 off (default) | on
+  group: Loop Filter
+- name: Operating temperature (℃)
+  summary: 用于确定热噪声水平的温度 30 (default) | real scalar
+  group: Loop Filter
+- name: Export Loop Filter Component Values
+  summary: 导出环路滤波器元件值 button
+  group: Loop Filter
+- name: PFD up and PFD down (pfd_up and pfd_down)
+  summary: 选择以探测 PFD 输出 off (default) | on
+  group: 探测
+- name: Charge pump output (cp_out)
+  summary: 选择以探测电荷泵输出 off (default) | on
+  group: 探测
+- name: Loop filter output (lf_out)
+  summary: 选择以探测环路滤波器输出 off (default) | on
+  group: 探测
+- name: Prescaler output (ps_out)
+  summary: 选择以探测预分频器输出 off (default) | on
+  group: 探测
+- name: Open Loop Analysis
+  summary: 绘制仿真前开环分析 on (default) | off
+  group: 分析
+- name: Closed Loop Analysis
+  summary: 绘制仿真前闭环分析 off (default) | on
+  group: 分析
+- name: Plot Loop Dynamics
+  summary: 绘制 PLL 系统的环路动态 button
+  group: 分析
+- name: Estimate phase noise
+  summary: 根据输入时钟估计相位噪声 off (default) | on
+  group: 分析
+- name: Reference frequency (Hz)
+  summary: 输入时钟的参考频率 10e6 (default) | positive real scalar
+  group: 分析
+  block_parameter: RefFreq
+  type: character vector
+  values: positive real scalar
+- name: 分辨率带宽 (Hz)
+  summary: 可分辨的最小正频率 10e3（默认）| 正实数标量
+  group: 分析
+  block_parameter: Rbw
+  type: 字符向量
+  values: 正实数标量
+- name: 频率偏移向量 (Hz)
+  summary: 相对于基频计算相位噪声的频率点 [10e3 100e3 1e6 3e6 10e6]（默认）| 实值向量
+  group: 分析
+  block_parameter: FrOffset
+  type: 字符向量
+  values: 实值向量
+- name: 目标相位噪声水平 (dBc/Hz)
+  summary: 给定频率偏移向量的目标相位噪声曲线 -inf（默认）| 向量 | 标量
+  group: 分析
+  block_parameter: TargetPn
+  type: 字符向量
+  values: 向量 | 标量
+- name: 绘制估计的相位噪声
+  summary: 绘制估计的输入时钟相位噪声按钮
+  group: 分析
+```
 
 ### **Edit System** — 断开库模块链接并将内部变量替换为适当的值 按钮
 
@@ -826,7 +1086,6 @@ Delta Sigma 调制器的阶数。有关详细信息，请参阅 Fractional Clock
 ### **绘制估计的相位噪声** — 绘制估计的输入时钟相位噪声按钮
 
 点击以绘制估计的输入时钟相位噪声。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Architectures

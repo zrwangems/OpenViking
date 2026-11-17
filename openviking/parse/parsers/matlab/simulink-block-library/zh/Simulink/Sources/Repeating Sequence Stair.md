@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Repeating Sequence Stair
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 重复离散输出信号 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### 输出
 
@@ -23,8 +31,51 @@ chinese_source: worker-translation
 基于 **Vector of time values** 和 **Sample time** 参数中的值生成的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Vector of output values
+  summary: 输出值向量 [3 1 4 2 1].'（默认）| 向量
+  group: 主要
+  block_parameter: OutValues
+  type: 字符向量
+  values: 向量
+  default: '''[3 1 4 2 1].'''''
+- name: Sample time
+  summary: 采样之间的时间间隔 -1（默认）| 标量
+  group: 主要
+  block_parameter: tsamp
+  type: 字符向量
+  values: 标量
+  default: '''-1'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '指定输出数据类型 double（默认）| Inherit: Inherit via back propagation | single | int8 | int32 | uint32 | int64 | uint64 |
+    fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | int16 | ''uint16''
+    | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | fixdt(1,16,2^0,0) | fixdt(1,16,2^0,0) | ''<data type
+    expression>'''
+  default: '''double'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -131,7 +182,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Sources

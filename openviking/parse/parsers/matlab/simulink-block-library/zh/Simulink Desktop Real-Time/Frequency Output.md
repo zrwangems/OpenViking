@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Frequency Output
 
 ## 端口
+```yaml
+ports:
+- name: Frequency
+  summary: 输出波形的频率（可选）向量
+  direction: input
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Duty Cycle
+  summary: 输出波形的占空比（可选）向量
+  direction: input
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Missed Ticks
+  summary: 错过的节拍计数（可选）double
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -48,8 +63,74 @@ chinese_source: worker-translation
 当您选中 **Show “Missed Ticks” port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Install new board
+  summary: 注册板卡 < no board selected >（默认）
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: 删除当前板卡（按钮）
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: 设置板卡（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认）| double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器节拍数 10（默认）| 整数
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: 在内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Output channels
+  summary: 选择频率输出通道向量
+  group: ''
+  block_parameter: Channels
+- name: Output signal frequency source
+  summary: 指定输出频率（Hz）的来源 external（默认）| internal
+  group: ''
+  block_parameter: FrequencySource
+- name: Frequency
+  summary: 指定输出频率（Hz）标量
+  group: ''
+  block_parameter: Frequency
+- name: Frequency initial value
+  summary: 指定板在执行开始前生成的频率 标量
+  group: ''
+  block_parameter: Frequency
+- name: Frequency final value
+  summary: 指定执行结束后板卡生成的频率 标量
+  group: ''
+  block_parameter: FrequencyFinalValue
+- name: Output signal duty source
+  summary: 指定输出信号占空比的来源 internal（默认）| external
+  group: ''
+  block_parameter: DutySource
+- name: Duty
+  summary: 指定输出信号为高电平的时间 0.5（默认）| 0–1
+  group: ''
+  block_parameter: Duty
+- name: Duty initial value
+  summary: 指定执行开始前板卡的占空比 0–1
+  group: ''
+  block_parameter: Duty
+- name: Duty final value
+  summary: 指定执行结束后板卡的占空比 0–1
+  group: ''
+  block_parameter: DutyFinalValue
+```
 
 ### **Install new board** — 注册板卡 `< no board selected >`（默认）
 
@@ -301,7 +382,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `DutyFinalValue` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

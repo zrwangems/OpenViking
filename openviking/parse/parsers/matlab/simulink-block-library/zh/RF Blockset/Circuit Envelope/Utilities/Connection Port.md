@@ -15,10 +15,21 @@ chinese_source: worker-translation
 # Connection Port
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Port number
+  summary: 连接器端口编号 1（默认）| 标量
+  group: ''
+- name: Port location on parent subsystem
+  summary: 父子系统上的端口位置。可选值：left（默认）| Right
+  group: ''
+```
 
 PMC Port mask
 
@@ -31,7 +42,6 @@ PMC Port mask
 ### **Port location on parent subsystem** — 父子系统上的端口位置。可选值：`left`（默认）| `Right`
 
 使用此参数选择端口放置在父子系统边界的哪一侧。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Input RF Blockset / Circuit Envelope / Utilities

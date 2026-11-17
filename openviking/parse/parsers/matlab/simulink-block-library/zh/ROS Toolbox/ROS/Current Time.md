@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Current Time
 
 ## 端口
+```yaml
+ports:
+- name: Time
+  summary: ROS 时间总线 | 标量
+  direction: output
+  data_types: bus | double
+```
 
 ### 输出
 
@@ -23,8 +30,16 @@ chinese_source: worker-translation
 ROS 时间，以总线信号或标量形式返回。总线表示一个 `rosgraph_msgs/Clock` ROS 消息，包含 `Sec` 和 `NSec` 元素。标量是以秒为单位的 ROS 时间。如果未在 `/clock` 主题上接收到时间，该模块输出 `0`。
 
 **数据类型：** `bus` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Output format
+  summary: ROS 时间的格式 bus（默认）| double
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 -1（默认）| 数值标量
+  group: ''
+```
 
 ### **Output format** — ROS 时间的格式 `bus`（默认）| `double`
 
@@ -35,7 +50,6 @@ ROS `Time` 输出的格式，指定为 `bus` 或 `double`。
 输出之间的间隔，指定为数值标量。
 
 有关详细信息，请参阅 Specify Sample Time (Simulink)。
-
 ## 所属库
 
 ROS Toolbox / ROS

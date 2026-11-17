@@ -14,6 +14,25 @@ language: en
 # QR Factorization
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input vector | matrix
+  direction: input
+  data_types: single | double
+- name: Q
+  summary: Orthonormal component *Q* of QR factorization vector | matrix
+  direction: output
+  data_types: single | double
+- name: R
+  summary: Upper triangular component *R* of QR factorization vector | matrix
+  direction: output
+  data_types: single | double
+- name: E
+  summary: Column permutation vector vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -102,8 +121,16 @@ of decreasing magnitude.
 For more details on how the block uses this vector, see Algorithms.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output size
+  summary: Output size Economy (default) | Full
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Output size** — Output size `Economy` (default) | `Full`
 
@@ -134,7 +161,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Factorizations

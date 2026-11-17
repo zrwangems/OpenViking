@@ -14,6 +14,15 @@ language: en
 # F2837xD/F2838x/F2838x-M4 IPC Receive
 
 ## Ports
+```yaml
+ports:
+- name: Out
+  summary: IPC receive vector | scalar
+  direction: output
+- name: Status
+  summary: IPC receive status 0 | 1 | 2 | 3 | 4 | 6
+  direction: output
+```
 
 ### Output
 
@@ -35,8 +44,28 @@ The status port outputs one of these values:
 
 When no data is transmitted, the IPC receive block receives 0 of uint16 data
 type and data type mismatch status is displayed
-
 ## Parameters
+```yaml
+parameters:
+- name: Source
+  summary: Source selected to receive data C28x (CPU1/CPU2)/CPU1 (default) | ARM Cortex-M4 (CM)/CPU2
+  group: ''
+- name: Channel
+  summary: Channel selected to receive data 0 (default) | 0–31
+  group: ''
+- name: Data type
+  summary: Type of data to be received uint16 (default) | single | int8 | uint8 | int16 | int32 | uint32 | boolean
+  group: ''
+- name: Data length
+  summary: Size of data to be received 1 (default) | positive integer
+  group: ''
+- name: Enable blocking
+  summary: Specify if Core must wait to read data off (default) | on
+  group: ''
+- name: Sample time
+  summary: Interval at which block reads data 0.001 (default) | –1 | positive scalar
+  group: ''
+```
 
 ### **Source** — Source selected to receive data `C28x (CPU1/CPU2)/CPU1` (default) | `ARM Cortex-M4 (CM)/CPU2`
 
@@ -91,7 +120,6 @@ When enabled, the Core waits until data is available from the other Core.
 The time between data samples, measured in seconds. When you set this parameter to
 `-1`, Simulink® determines the best sample time for the block based on the block context
 within the model.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28p65x

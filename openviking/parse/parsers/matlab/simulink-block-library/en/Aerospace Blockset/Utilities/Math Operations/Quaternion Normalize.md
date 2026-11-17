@@ -14,6 +14,17 @@ language: en
 # Quaternion Normalize
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Quaternion quaternion | vector of quaternions
+  direction: input
+  data_types: double
+- name: normal(q)
+  summary: Normalized quaternion normalized quaternion | vector of normalized quaternions
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -38,11 +49,12 @@ quaternions.
 Normalized quaternion or vector of normalized quaternions.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

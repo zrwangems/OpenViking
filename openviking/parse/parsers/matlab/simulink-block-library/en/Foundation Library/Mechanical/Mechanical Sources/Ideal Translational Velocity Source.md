@@ -14,6 +14,18 @@ language: en
 # Ideal Translational Velocity Source
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Control signal, m/s physical signal
+  direction: input
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -32,11 +44,12 @@ moving part (rod).
 
 Mechanical translational conserving port associated with the source
 reference point (case).
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanical Sources

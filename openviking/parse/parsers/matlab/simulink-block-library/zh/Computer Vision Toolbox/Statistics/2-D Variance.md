@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # 2-D Variance
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数组 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rst
+  summary: 复位端口 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: ROI
+  summary: 感兴趣区域 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Label
+  summary: 标签矩阵 矩阵
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Label Numbers
+  summary: ROI 的标签值 向量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Out
+  summary: 计算的输出方差 标量 | 向量 | 矩阵 | *N-D* 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Flag
+  summary: ROI 验证 0 | 1
+  direction: output
+```
 
 ### 输入
 
@@ -122,8 +152,41 @@ ROI 验证，返回为 0 或 1。输出值表示输入处指定的所有 ROI 是
 #### 依赖关系
 
 要启用此端口，请选中 **Output flag indicating if ROI is within image bounds** 参数，并将 **ROI type** 参数的值设置为 `Rectangle`、`Lines` 或 `Label Matrix`。
-
 ## 参数
+```yaml
+parameters:
+- name: Running variance
+  summary: 跟踪运行方差 off（默认）| on
+  group: 主
+- name: Reset port
+  summary: 复位事件 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: 主
+- name: Find the variance value over
+  summary: 计算方差的维度 Entire input（默认）| Each row | Each column | Specified dimension
+  group: 主
+- name: Dimension
+  summary: 自定义维度 1（默认）| 标量
+  group: 主
+- name: Enable ROI processing
+  summary: 计算特定区域内的方差 off（默认）| on
+  group: 主
+- name: ROI type
+  summary: ROI 类型 Rectangles（默认）| Lines | Label matrix | Binary mask
+  group: 主
+  block_parameter: '| 描述'
+- name: ROI portion to process
+  summary: 计算方差的 ROI 部分 Entire ROI（默认）| ROI perimeter
+  group: 主
+- name: Output
+  summary: 计算单个或整个 ROI 的方差 Individual statistics for each ROI（默认）| Single statistic for all ROIs
+  group: 主
+- name: Output flag indicating if ROI is within image bounds
+  summary: 启用 Flag 端口 off（默认）| on
+  group: 主
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主
 
@@ -247,7 +310,6 @@ ROI 验证，返回为 0 或 1。输出值表示输入处指定的所有 ROI 是
 ### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数以防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

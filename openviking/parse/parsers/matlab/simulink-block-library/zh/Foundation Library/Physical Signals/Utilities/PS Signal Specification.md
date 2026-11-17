@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Signal Specification
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，类型由模块参数值 physical signal 指定
+  direction: input
+- name: O
+  summary: 输出物理信号，类型由模块参数值 physical signal 指定
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +39,13 @@ chinese_source: worker-translation
 输出物理信号。信号类型（大小和单位）由 **Signal size and unit** 参数值决定。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框 **Description** 选项卡中的 **Source code** 链接，在底层源文件中查看此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Signal size and unit
+  summary: 输入和输出物理信号的大小和单位 zeros(1, 1) 1（默认）
+  group: ''
+```
 
 ### **Signal size and unit** — 输入和输出物理信号的大小和单位 `zeros(1, 1) 1`（默认）
 
@@ -40,7 +54,6 @@ chinese_source: worker-translation
 第一个编辑框表示信号大小。将其指定为 `zeros(m, n)`。默认大小 `zeros(1, 1)` 为标量。
 
 第二个组合框表示信号单位。默认情况下，单位为 `1`（无单位）。您可以从下拉列表中选择一个单位，或键入所需的单位名称（如 `rpm`），或有效的表达式（如 `rad/s`）。有关更多信息以及单位缩写列表，请参阅 How to Specify Units in Block Dialogs 和 Unit Definitions。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Utilities

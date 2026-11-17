@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Ball Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 阀门位置，rad 物理信号
+  direction: input
+- name: A
+  summary: 阀门端口 A 等温液体
+  direction: input
+- name: B
+  summary: 阀门端口 B 等温液体
+  direction: input
+```
 
 ### 输入
 
@@ -31,8 +43,49 @@ chinese_source: worker-translation
 ### **B** — 阀门端口 B 等温液体
 
 与阀门端口 B 相关联的等温液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: 用于参数化给定流量系数的选项 Orifice area based on geometry（默认）| Cv flow coefficient | Kv flow coefficient
+  group: ''
+- name: Opening characteristic
+  summary: 球阀参数化方法 Area of overlapping circles（默认）| Tabulated
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 最大阀门流量系数 32 gpm（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 最大阀门流量因子 49 m^3/hr（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 阀门端口横截面积 pi * (25 ^ 2) / 4 mm^2（默认）| 正标量
+  group: ''
+- name: Ball bore area
+  summary: 球体孔径面积 pi * (20 ^ 2) / 4 mm^2（默认）| 正标量
+  group: ''
+- name: Cv flow coefficient vector
+  summary: 给定球体旋转角度下的流量系数 [1e-06, .58, 1.15, 1.9, 2.8, 4.3, 7, 10.5, 17, 26, 32] gpm（默认）| 向量
+  group: ''
+- name: Kv flow coefficient vector
+  summary: 给定球体旋转角度下的流量因子 [1e-06, .34, .76, 1.6, 2.45, 4.1, 5.75, 9.4, 13, 28, 50] m^3/hr（默认）| 向量
+  group: ''
+- name: Area vector
+  summary: 给定球旋转角度下的面积 [1e-10, 62.5, 125, 187.5, 250, 312.5, 375, 437.5, 500, 562.5, 625] mm^2（默认）| 向量
+  group: ''
+- name: Ball rotation vector
+  summary: 球旋转角度 pi / 2 .* [0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1] rad（默认）| 向量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的阀门间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Valve parameterization** — 用于参数化给定流量系数的选项 `Orifice area based on geometry`（默认）| `Cv flow coefficient` | `Kv flow coefficient`
 
@@ -129,7 +182,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过阀门的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

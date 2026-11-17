@@ -14,6 +14,27 @@ language: en
 # AC Cable (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: ~S1
+  summary: Sheath electrical
+  direction: conserving
+- name: ~N1
+  summary: Phase electrical
+  direction: conserving
+- name: g1
+  summary: Ground electrical
+  direction: conserving
+- name: ~S2
+  summary: Sheath electrical
+  direction: conserving
+- name: ~N2
+  summary: Phase electrical
+  direction: conserving
+- name: g2
+  summary: Ground electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -48,8 +69,59 @@ phases 2.
 ### **g2** — Ground electrical
 
 Electrical conserving port associated with ground 2.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Cable length
+  summary: Length 120 km (default)
+  group: ''
+- name: Geometric mean radius of conductor
+  summary: Radius 5 mm (default)
+  group: ''
+- name: Sheath radius
+  summary: Radius 10 mm (default)
+  group: ''
+- name: Outer cable radius
+  summary: Outer radius 20 mm (default)
+  group: ''
+- name: Line-line spacing (center-to-center)
+  summary: Distance 25 mm (default)
+  group: ''
+- name: Line formation
+  summary: Line configuration Trefoil (default) | Flat
+  group: ''
+- name: Conductor resistance per length
+  summary: Resistance 1 Ohm/km (default)
+  group: ''
+- name: Sheath resistance per length
+  summary: Resistance 10 Ohm/km (default)
+  group: ''
+- name: Insulation relative permittivity
+  summary: Permittivity 2.4 (default)
+  group: ''
+- name: Relative permittivity between lines and return path
+  summary: Relative permittivity 1 (default)
+  group: ''
+- name: Return parameterization
+  summary: Model Use frequency and Earth resistivity (default) | Use distance and resistance
+  group: ''
+- name: Frequency for Earth-return impedance
+  summary: Frequency 60 Hz (default)
+  group: ''
+- name: Earth resistivity
+  summary: Resistance 100 m*Ohm (default)
+  group: ''
+- name: Effective distance to return path
+  summary: Return path distance 1 km (default)
+  group: ''
+- name: Return path resistance per length
+  summary: Return path unit resistance 0.1 Ohm/km (default)
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -155,7 +227,6 @@ Resistance per length of the return path.
 Selecting `Use distance and resistance` for
 the **Return parameterization** parameter enables this
 parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Lines

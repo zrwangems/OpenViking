@@ -14,10 +14,33 @@ language: en
 # XCP CAN FD Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Config name
+  summary: Specify XCP CAN FD session name 'CAN FD_Config1' (default)
+  group: ''
+- name: A2L File
+  summary: Select an A2L file file name
+  group: ''
+- name: Enable seed/key security
+  summary: Select that key required to establish connection off (default) | on
+  group: ''
+- name: File (\*.DLL)
+  summary: Select file for seed and key security file name
+  group: ''
+- name: User-defined connect mode
+  summary: Allow special connect mode off (default) | on
+  group: ''
+- name: Output connection status
+  summary: Display connection status off (default) | on
+  group: ''
+```
 
 ### **Config name** — Specify XCP CAN FD session name `'CAN FD_Config1'` (default)
 
@@ -62,7 +85,6 @@ supported.
 
 Select this option to display the status of the connection to the server
 module. Selecting this option adds a new output port.
-
 ## Libraries
 
 Vehicle Network Toolbox / XCP Communication / CAN FD Simulink Real-Time / XCP / CAN FD

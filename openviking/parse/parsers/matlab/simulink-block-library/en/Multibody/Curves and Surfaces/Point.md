@@ -14,6 +14,15 @@ language: en
 # Point
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Local reference frame frame
+  direction: unspecified
+- name: G
+  summary: Geometry frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -28,8 +37,43 @@ point.
 Geometry frame that represents the point defined by this block. Connect this port
 to the Spatial Contact
 Force block to model contacts on the point.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Graphic to use in visualization of point Marker (default) | None
+  group: Graphic
+- name: Shape
+  summary: Shape of point marker Sphere (default) | Cube | Frame
+  group: Graphic
+- name: Size
+  summary: Width of the marker in pixels 10 pixels (default) | scalar
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: Graphic color [0.5 0.5 0.5] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: Graphic
+```
 
 ### Graphic
 
@@ -171,7 +215,6 @@ To enable this parameter, set:
    `Marker`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Curves and Surfaces

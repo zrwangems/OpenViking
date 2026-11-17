@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Take DDS Sample
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入 DDS 样本 标量 | 向量 | 矩阵
+  direction: input
+  data_types: bus
+- name: Port_S
+  summary: 显示是否接收到 DDS 样本 标量
+  direction: output
+  data_types: double
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -40,8 +55,24 @@ chinese_source: worker-translation
 可在 Simulink 环境中使用的转换后信号。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Show receive status
+  summary: 显示是否接收到 DDS 样本 off（默认）| on
+  group: ''
+  block_parameter: ShowQueueStatus
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Connect to live network
+  summary: 在仿真期间将 DDS 仿真连接到实时网络 off（默认）| on
+  group: ''
+  block_parameter: ConnectToLive
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Show receive status** — 显示是否接收到 DDS 样本 `off`（默认）| `on`
 
@@ -75,7 +106,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on' | 'off'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 DDS Blockset

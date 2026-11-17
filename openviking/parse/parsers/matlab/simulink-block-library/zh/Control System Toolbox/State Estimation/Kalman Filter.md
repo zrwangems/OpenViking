@@ -15,6 +15,66 @@ chinese_source: worker-translation
 # Kalman Filter
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 已知输入 标量 | 向量
+  direction: input
+- name: y
+  summary: 测量输出 标量 | 向量
+  direction: input
+- name: A
+  summary: 状态矩阵 实矩阵
+  direction: input
+- name: B
+  summary: 输入矩阵 实矩阵
+  direction: input
+- name: C
+  summary: 输出矩阵 实矩阵
+  direction: input
+- name: D
+  summary: 直通矩阵 实矩阵
+  direction: input
+- name: G
+  summary: 测量输出 实矩阵
+  direction: input
+- name: H
+  summary: 测量输出 实矩阵
+  direction: input
+- name: Q
+  summary: 过程噪声协方差矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: R
+  summary: 测量噪声协方差矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: N
+  summary: 过程噪声与测量噪声互协方差矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: P0
+  summary: 初始状态估计误差协方差 标量 | 向量 | 矩阵
+  direction: input
+- name: X0
+  summary: 初始状态估计 标量 | 向量
+  direction: input
+- name: Enable
+  summary: 用于启用测量更新的控制信号 标量
+  direction: input
+- name: Reset
+  summary: 用于重置状态估计的控制信号 标量
+  direction: input
+- name: xhat
+  summary: 估计状态 标量 | 向量
+  direction: output
+- name: yhat
+  summary: 估计输出 标量 | 向量
+  direction: output
+- name: Z
+  summary: 状态估计误差协方差矩阵
+  direction: output
+- name: P
+  summary: 状态估计误差协方差矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -179,8 +239,241 @@ chinese_source: worker-translation
 
 - 除 **Enable** 和 **Reset** 之外的所有输入端口必须具有相同的数据类型（single 或 double）。
 - **Enable** 和 **Reset** 端口支持 `single`、`double`、`int8`、`uint8`、`int16`、`uint16`、`int32`、`uint32` 和布尔数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Time domain
+  summary: 指定估计连续时间状态还是离散时间状态 Discrete-Time（默认）| Continuous-Time
+  group: 滤波器设置
+  block_parameter: TimeDomain
+  type: string, character vector
+  values: '"Discrete-Time" | "Continuous-Time"'
+  default: '"Discrete-Time"'
+- name: Use the current measurement y[n] to improve xhat[n]
+  summary: 使用测量输出更新输出状态估计 on（默认）| off
+  group: 滤波器设置
+  block_parameter: UseCurrentEstimator
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Sample Time
+  summary: 模块采样时间 -1（默认）| non-negative scalar
+  group: 滤波器设置
+  block_parameter: Ts
+  type: string, character vector
+  values: '"-1" | scalar'
+  default: '"-1"'
+- name: Model source
+  summary: 指定如何向模块提供 A、B、C、D 矩阵 LTI State-Space Variable（默认）| Individual A, B, C, D matrices | Input port
+  group: 模型参数
+  block_parameter: ModelSource
+  type: string, character vector
+  values: '"LTI State-Space Variable" | "Individual A, B, C, D matrices" | "Input port"'
+  default: '"LTI State-Space Variable"'
+- name: A
+  summary: 状态矩阵 0.95（默认）
+  group: 模型参数
+  block_parameter: A
+  type: string, character vector
+  values: '"real matrix"'
+  default: '"0.95"'
+- name: B
+  summary: 输入矩阵 1（默认）
+  group: 模型参数
+  block_parameter: B
+  type: string, character vector
+  values: '"real matrix"'
+  default: '"1"'
+- name: C
+  summary: 输出矩阵 1（默认）
+  group: 模型参数
+  block_parameter: C
+  type: string, character vector
+  values: '"real matrix"'
+  default: '"1"'
+- name: D
+  summary: 直通矩阵 0（默认）
+  group: 模型参数
+  block_parameter: D
+  type: string, character vector
+  values: '"real matrix"'
+  default: '"0"'
+- name: Number of states
+  summary: 要估计的状态数 1（默认）| non-negative scalar
+  group: 模型参数
+  block_parameter: NumberOfStates
+  type: string, character vector
+  values: '"1" | scalar'
+  default: '"1"'
+- name: Number of inputs
+  summary: 已知输入的数量 1（默认）| non-negative scalar
+  group: 模型参数
+  block_parameter: NumberOfInputs
+  type: string, character vector
+  values: '"1" | scalar'
+  default: '"1"'
+- name: Number of outputs
+  summary: 测量输出的数量 1（默认）| non-negative scalar
+  group: 模型参数
+  block_parameter: NumberOfOutputs
+  type: string, character vector
+  values: '"1" | scalar'
+  default: '"1"'
+- name: Source
+  summary: 指定如何输入初始状态估计和初始状态估计误差协方差 Dialog（默认）| Input port
+  group: 模型参数
+  block_parameter: InitialEstimateSource
+  type: string, character vector
+  values: '"Dialog" | "Input port"'
+  default: '"Dialog"'
+- name: Initial states x[0]
+  summary: 指定初始状态估计 0（默认）| scalar | vector
+  group: 模型参数
+  block_parameter: X0
+  type: string, character vector
+  values: '"0" | scalar | vector'
+  default: '"0"'
+- name: State estimation error covariance P[0]
+  summary: 指定初始状态估计误差协方差 10（默认）| scalar | vector | matrix
+  group: 模型参数
+  block_parameter: P0
+  type: string, character vector
+  values: '"10" | scalar | vector | matrix'
+  default: '"10"'
+- name: Use the Kalman Gain K from the model variable
+  summary: 指定是否使用状态空间被控对象模型中包含的预辨识卡尔曼增益 off（默认）| on
+  group: 模型参数
+  block_parameter: UseK
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Use G and H matrices (default G=I and H=0)
+  summary: 指定是否对 G 和 H 矩阵使用非默认值 off（默认）| on
+  group: 模型参数
+  block_parameter: UseGH
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: G
+  summary: 指定 G 矩阵 1（默认）| non-negative scalar | vector | matrix
+  group: 模型参数
+  block_parameter: G
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"1"'
+- name: Time-invariant G
+  summary: 指定 G 矩阵为时不变 on（默认）| off
+  group: 模型参数
+  block_parameter: TimeInvariantG
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: H
+  summary: 指定 H 矩阵 0（默认）| non-negative scalar | vector | matrix
+  group: 模型参数
+  block_parameter: H
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"0"'
+- name: Time-invariant H
+  summary: 指定 H 矩阵为时不变 on（默认）| off
+  group: 模型参数
+  block_parameter: TimeInvariantH
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Number of process noise inputs
+  summary: 过程噪声输入的数量 1（默认）| non-negative scalar
+  group: 模型参数
+  block_parameter: NumberOfProcessNoiseInputs
+  type: string, character vector
+  values: scalar
+  default: '"1"'
+- name: Q
+  summary: 过程噪声协方差矩阵 0.05（默认）| non-negative scalar | vector | matrix
+  group: 模型参数
+  block_parameter: Q
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"0.05"'
+- name: Time-invariant Q
+  summary: 指定 Q 矩阵是否为时不变 on（默认）| off
+  group: 模型参数
+  block_parameter: TimeInvariantQ
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: R
+  summary: 测量噪声协方差矩阵 1（默认）| non-negative scalar | vector | matrix
+  group: 模型参数
+  block_parameter: R
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"1"'
+- name: Time-invariant R
+  summary: 指定 R 矩阵是否为时不变 on（默认）| off
+  group: 模型参数
+  block_parameter: TimeInvariantR
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: N
+  summary: 过程噪声和测量噪声的互协方差矩阵 0（默认）| non-negative scalar | vector | matrix
+  group: 模型参数
+  block_parameter: N
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"0"'
+- name: Time-invariant N
+  summary: 指定 N 矩阵是否为时不变 on（默认）| off
+  group: 模型参数
+  block_parameter: TimeInvariantN
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Add input port u
+  summary: 指定模型是否包含已知输入 on（默认）| off
+  group: Options
+  block_parameter: AddInputPort
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Add input port Enable to control measurement updates
+  summary: 控制测量更新 off（默认）| on
+  group: Options
+  block_parameter: AddEnablePort
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: External Reset
+  summary: 使用指定初始值重置估计状态和参数协方差矩阵的选项 None（默认）| Rising | Falling | Either | Level | Level hold
+  group: Options
+  block_parameter: ExternalReset
+  type: string, character vector
+  values: '"None" | "Rising" | "Falling" | "Either" | "Level" | "Level hold"'
+  default: '"None"'
+- name: Output estimated model output y
+  summary: 包含估计的模型输出 off（默认）| on
+  group: Options
+  block_parameter: OutputEstimatedY
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Output state estimation error covariance Z
+  summary: 向模块添加 Z 输出端口 off（默认）| on
+  group: Options
+  block_parameter: OutputZ
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Output state estimation error covariance P
+  summary: 向模块添加 P 输出端口 off（默认）| on
+  group: Options
+  block_parameter: OutputP
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+```
 
 ### 滤波器设置
 
@@ -746,7 +1039,6 @@ chinese_source: worker-translation
 | **类型**：string, character vector |
 | **值**：`"off"` | `"on"` |
 | **默认值**：`"off"` |
-
 ## 所属库
 
 Control System Toolbox / State Estimation System Identification Toolbox / Estimators

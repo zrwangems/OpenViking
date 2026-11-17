@@ -14,6 +14,24 @@ language: en
 # Data Type Conversion Inherited
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Reference signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: u
+  summary: Input signal to convert scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: y
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+```
 
 ### Input
 
@@ -38,8 +56,32 @@ Output is the input signal **u**, converted to the reference data
 type.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input and Output to have equal
+  summary: Constraint for converting fixed-point data types Real World Value (default) | Stored Integer
+  group: ''
+  block_parameter: ConvertRealWorld
+  type: character vector
+  values: '''Real World Value'' | ''Stored Integer'''
+  default: '''Real World Value'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate to max or min when overflows occur
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Input and Output to have equal** — Constraint for converting fixed-point data types `Real World Value` (default) | `Stored Integer`
 
@@ -96,7 +138,6 @@ saturation code.
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Signal Attributes

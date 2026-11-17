@@ -14,6 +14,17 @@ language: en
 # Lock Time Measurement
 
 ## Ports
+```yaml
+ports:
+- name: pll out
+  summary: Input clock signal scalar
+  direction: input
+  data_types: double
+- name: lock time
+  summary: Time required to achieve lock in PLL real positive scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -32,8 +43,16 @@ Time at which locking takes place in a PLL system, returned as a real positive
 scalar in seconds.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Target frequency (Hz)
+  summary: Target operating frequency of PLL to measure lock time 2.1e9 (default) | real positive scalar
+  group: ''
+- name: Error tolerance (Hz)
+  summary: Error tolerance for lock time measurement 1e5 (default) | real positive scalar
+  group: ''
+```
 
 ### **Target frequency (Hz)** — Target operating frequency of PLL to measure lock time `2.1e9` (default) | real positive scalar
 
@@ -58,7 +77,6 @@ Hz.
   value of **Error tolerance**.
 - Use `set_param(gcb,'FreqErrorTol',value)` to set
   **Error tolerance** to a specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

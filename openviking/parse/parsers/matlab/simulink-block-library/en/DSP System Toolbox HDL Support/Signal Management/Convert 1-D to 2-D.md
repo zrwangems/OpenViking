@@ -14,6 +14,17 @@ language: en
 # Convert 1-D to 2-D
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -29,8 +40,19 @@ Input signal, specified as a 1-D vector or 2-D matrix.
 Output signal, returned as a 2-D matrix.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of output rows
+  summary: Number of rows in output matrix 1 (default) | positive integer
+  group: ''
+- name: Number of output columns
+  summary: Number of columns in output matrix 1 (default) | positive integer
+  group: ''
+- name: Frame-based output
+  summary: Option to enable frame-based output off (default) | on
+  group: ''
+```
 
 ### **Number of output rows** — Number of rows in output matrix `1` (default) | positive integer
 
@@ -45,7 +67,6 @@ specified as a positive integer.
 ### **Frame-based output** — Option to enable frame-based output `off` (default) | `on`
 
 Select this parameter to create a frame-based output.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Signal Attributes DSP System Toolbox HDL Support / Signal Management

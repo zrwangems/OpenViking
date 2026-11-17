@@ -14,6 +14,17 @@ language: en
 # Word to Bits
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: Output signal binary-valued scalar | binary-valued vector
+  direction: output
+  data_types: ufix1
+```
 
 ### Input
 
@@ -37,8 +48,24 @@ treats the first element of the output vector as the LSB and treats subsequent b
 the next significant bits in ascending order.
 
 **Data Types:** `ufix1`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum Word Length
+  summary: Maximum output word length 64 (default) | integer in the range [1, 65535]
+  group: ''
+  block_parameter: maxWordLength
+  type: character vector
+  values: Integer in the range [1, 65535]
+  default: '''64'''
+- name: Output bit order
+  summary: Output bit order LSB first (default) | MSB first
+  group: ''
+  block_parameter: bitOrder
+  type: character vector
+  values: '''LSB first'' | ''MSB first'''
+  default: '''LSB first'''
+```
 
 ### **Maximum Word Length** — Maximum output word length `64` (default) | integer in the range [1, 65535]
 
@@ -67,7 +94,6 @@ or the least significant bit (LSB).
 | **Type**: character vector |
 | **Values**: `'LSB first'` | `'MSB first'` |
 | **Default**: `'LSB first'` |
-
 ## Libraries
 
 HDL Coder / Logic and Bit Operations

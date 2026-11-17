@@ -14,6 +14,13 @@ language: en
 # Counter
 
 ## Ports
+```yaml
+ports:
+- name: T
+  summary: Counter value scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Output
 
@@ -22,8 +29,25 @@ language: en
 Counter value.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Counter type
+  summary: Counter strategy Up (default) | Down | Up-Down
+  group: ''
+- name: Output range
+  summary: Range [0 1] (default) | [-1 1]
+  group: ''
+- name: Timer period (s)
+  summary: Period 0.001 (default) | positive scalar
+  group: ''
+- name: Phase delay (s)
+  summary: Delay 0 (default) | 0 or positive scalar
+  group: ''
+- name: Sample time
+  summary: Block sample time 0.0001 (default) | 0 or positive scalar
+  group: ''
+```
 
 ### **Counter type** — Counter strategy `Up` (default) | `Down` | `Up-Down`
 
@@ -52,7 +76,6 @@ Specify Sample Time.
 For discrete-time simulation, set the sample time to a positive scalar.
 For continuous-time simulation, set the sample time to
 `0`.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

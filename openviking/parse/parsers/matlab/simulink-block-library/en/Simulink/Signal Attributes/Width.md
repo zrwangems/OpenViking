@@ -14,6 +14,18 @@ language: en
 # Width
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: Port_1
+  summary: Width of input signal scalar
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -30,8 +42,31 @@ array.
 Output is the width of the input signal, specified as a scalar.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output data type mode
+  summary: Output data type mode Choose intrinsic data type (default) | Inherit via back propagation | All ports same datatype
+  group: ''
+  block_parameter: OutputDataTypeScalingMode
+  type: character vector
+  values: '''Choose intrinsic data type'' | ''Inherit via back propagation'' | ''All ports same datatype'''
+  default: '''Choose intrinsic data type'''
+- name: Output data type
+  summary: Output data type double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataType
+  type: character vector
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'''
+  default: '''double'''
+- name: Always use constant sample time
+  summary: Always use constant sample time off (default) | on
+  group: ''
+  block_parameter: AlwaysUseConstantSampleTime
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Output data type mode** — Output data type mode `Choose intrinsic data type` (default) | `Inherit via back propagation` | `All ports same datatype`
 
@@ -77,7 +112,6 @@ the sample time, clear this check box.
 | **Type:** character vector |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Signal Attributes

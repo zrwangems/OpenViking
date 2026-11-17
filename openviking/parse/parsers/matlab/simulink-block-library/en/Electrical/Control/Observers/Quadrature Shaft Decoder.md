@@ -14,6 +14,29 @@ language: en
 # Quadrature Shaft Decoder
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Digital signal *A* scalar
+  direction: input
+  data_types: single | double
+- name: B
+  summary: Digital signal *B* scalar
+  direction: input
+  data_types: single | double
+- name: Z
+  summary: Index pulse scalar
+  direction: input
+  data_types: single | double
+- name: Velocity
+  summary: Shaft rotational velocity scalar
+  direction: output
+  data_types: single | double
+- name: Position
+  summary: Shaft angle of rotation scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -52,8 +75,16 @@ Simulink signal, specified as a scalar, associated with the shaft angle of
 rotation.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Pulses per revolution
+  summary: Pulses per revolution 4 (default) | integer > 0
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Pulses per revolution** — Pulses per revolution 4 (default) | integer > 0
 
@@ -70,7 +101,6 @@ If this block is inside a triggered subsystem, you can set
 this block to inherit the sample time by setting this parameter to
 `-1`. If this block is in a continuous variable-step
 model, specify the sample time explicitly by using a positive scalar.
-
 ## Libraries
 
 Simscape / Electrical / Control / Observers

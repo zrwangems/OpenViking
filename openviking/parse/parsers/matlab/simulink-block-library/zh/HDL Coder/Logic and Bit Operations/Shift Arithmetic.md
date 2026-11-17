@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Shift Arithmetic
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 要进行运算的数 标量 | 向量 | 数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: s
+  summary: 要移位的位数 标量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 运算结果 标量 | 向量 | 数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -36,8 +51,52 @@ chinese_source: worker-translation
 运算结果，以标量、向量或数组形式返回。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 'Bits to shift: Source'
+  summary: 要移位的位数的来源 Dialog（默认）| Input port
+  group: ''
+  block_parameter: BitShiftNumberSource
+  type: 字符向量、字符串
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: 'Bits to shift: Direction'
+  summary: 移位方向 Bidirectional（默认）| Left | Right
+  group: ''
+  block_parameter: BitShiftDirection
+  type: 字符向量、字符串
+  values: '''Left'' | ''Right'' | ''Bidirectional'''
+  default: '''Bidirectional'''
+- name: 'Bits to shift: Number'
+  summary: 要移位的位数 8（默认）| 标量 | 向量 | 数组
+  group: ''
+  block_parameter: BitShiftNumber
+  type: 字符向量、字符串
+  values: 标量 | 向量 | 数组
+  default: '''8'''
+- name: 'Binary points to shift: Number'
+  summary: 要移动二进制点的位数 0（默认）| 标量
+  group: ''
+  block_parameter: BinPtShiftNumber
+  type: 字符向量、字符串
+  values: 标量
+  default: '''0'''
+- name: Diagnostic for out of range shift value
+  summary: 诊断操作 None（默认）| Warning | Error
+  group: ''
+  block_parameter: DiagnosticForOORShift
+  type: 字符向量、字符串
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Check for out-of-range 'Bits to shift' in generated code
+  summary: 检查生成代码中超出范围的移位位数 off（默认）| on
+  group: ''
+  block_parameter: CheckOORBitShift
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Bits to shift: Source** — 要移位的位数的来源 `Dialog`（默认）| `Input port`
 
@@ -142,7 +201,6 @@ Source** 设置为 `Dialog`。
 | **类型**：字符向量、字符串 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

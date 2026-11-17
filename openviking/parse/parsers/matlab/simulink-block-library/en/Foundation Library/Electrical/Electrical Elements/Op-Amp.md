@@ -14,6 +14,18 @@ language: en
 # Op-Amp
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: out
+  summary: Output terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -32,11 +44,12 @@ Electrical conserving port associated with the output node of the op-amp.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

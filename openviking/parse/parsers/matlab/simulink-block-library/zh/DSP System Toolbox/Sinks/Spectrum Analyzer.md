@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Spectrum Analyzer
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 要可视化的信号 标量 | 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: F
+  summary: 以 Hz 表示的频率 列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: RBW
+  summary: RBW 值 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: VBW
+  summary: VBW 值 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -78,8 +97,442 @@ Spectrum Analyzer 模块接受定点输入，但会将其转换为 `double` 进�
 - **Estimation** 选项卡上的 **VBW (Hz)** 参数为 `Input port`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Spectrum
+  summary: 要显示的频谱类型 Power（默认）| Power Density | RMS
+  group: Scope 选项卡
+  block_parameter: SpectrumType
+  type: character vector or string scalar
+- name: Spectrogram
+  summary: 要显示的频谱图类型 Power（默认）| Power Density | RMS
+  group: Scope 选项卡
+  block_parameter: SpectrumType
+  type: character vector or string scalar
+- name: Sample Rate (Hz)
+  summary: 示波器使用的采样率（以 Hz 为单位） Inherited（默认）| 正标量
+  group: Scope 选项卡
+  block_parameter: SampleRate, SampleRateSource
+  type: double
+- name: Offset (Hz)
+  summary: 应用于频率轴的偏移量 0（默认）| 标量 | 向量
+  group: Scope 选项卡
+  block_parameter: FrequencyOffset
+  type: double
+- name: Num Inputs
+  summary: 输入端口数量 1（默认）| 1 到 96 之间的整数
+  group: Scope 选项卡
+  block_parameter: NumInputPorts
+  type: character vector or string scalar
+  values: scalar between 1 and 96
+- name: Open at Simulation Start
+  summary: 仿真开始时自动打开示波器 on（默认）| off
+  group: Scope 选项卡
+  block_parameter: OpenAtSimulationStart
+  type: logical
+- name: Display Precision
+  summary: 示波器显示中数据的精度 4（默认）| ≤ 15 的正整数
+  group: Scope 选项卡
+- name: Y-Label
+  summary: '*y* 轴标签 字符向量 | 字符串标量'
+  group: Scope 选项卡
+  block_parameter: YLabel
+  type: character vector or string scalar
+- name: Y-Limits
+  summary: '*y* 轴范围 [−80 20] | [ymin ymax]'
+  group: Scope 选项卡
+  block_parameter: YLimits
+  type: double
+- name: Title
+  summary: 显示标题 字符向量 | 字符串
+  group: Scope 选项卡
+  block_parameter: Title
+  type: character vector or string
+- name: Show Grid
+  summary: 显示内部网格线 on（默认）| off
+  group: Scope 选项卡
+  block_parameter: ShowGrid
+  type: logical
+- name: Color Map
+  summary: 频谱图颜色图 jet（默认）| hot | bone | cool | copper | gray | parula | 三列矩阵
+  group: Scope 选项卡
+  block_parameter: Colormap
+  type: character vector or string scalar
+- name: Color Limits
+  summary: 频谱图的颜色范围 [-80 20]（默认）| [colorMin colorMax]
+  group: Scope 选项卡
+  block_parameter: ColorLimits
+  type: double
+- name: Plot Type
+  summary: 绘图类型 Line（默认）| Stem
+  group: Scope 选项卡
+  block_parameter: PlotType
+  type: character vector or string scalar
+- name: Font Size
+  summary: 标签的字体大小 8.5（默认）| 正标量
+  group: Scope 选项卡
+  block_parameter: '-'
+  type: double
+- name: Background
+  summary: 窗口背景 black（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: Axes
+  summary: 坐标轴背景颜色 black（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: Labels
+  summary: 标签颜色 gray（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: Line
+  summary: 用于线属性设置的通道 通道名称
+  group: Scope 选项卡
+- name: Visible
+  summary: 通道可见性 on（默认）| off
+  group: Scope 选项卡
+- name: Style
+  summary: '线样式 -（默认）| : | -. | -- | None'
+  group: Scope 选项卡
+- name: Width
+  summary: 线宽 1.5（默认）| 0.5 | 1 | 2 | ...
+  group: Scope 选项卡
+- name: Marker
+  summary: 数据点标记 None（默认）| + | x | ...
+  group: Scope 选项卡
+- name: Color
+  summary: 线颜色 yellow（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: Legend
+  summary: 显示或隐藏信号图例 按钮
+  group: Scope 选项卡
+  block_parameter: ShowLegend
+  type: logical
+- name: Colorbar
+  summary: 显示或隐藏颜色条 按钮
+  group: Scope 选项卡
+  block_parameter: ShowColorbar
+  type: logical
+- name: Layout
+  summary: 垂直或水平堆叠坐标轴 垂直布局（默认）| 水平布局
+  group: Scope 选项卡
+  block_parameter: AxesLayout
+  type: character vector or string scalar
+- name: Copy to Clipboard
+  summary: 将显示内容发送到剪贴板 按钮
+  group: Scope 选项卡
+- name: Preserve Colors
+  summary: 复制到剪贴板时保留颜色 off（默认）| on
+  group: Scope 选项卡
+- name: Print
+  summary: 打印显示内容 按钮
+  group: Scope 选项卡
+- name: 输入域
+  summary: 输入信号 Time 的域（默认）| Frequency
+  group: 估计选项卡
+  block_parameter: InputDomain
+  type: 字符向量或字符串标量
+- name: 频率 (Hz)
+  summary: 频率向量 Auto（默认）| Input port | 单调递增向量
+  group: 估计选项卡
+  block_parameter: FrequencyVectorSource、FrequencyVector
+  type: 字符向量、字符串标量、double
+- name: 输入单位
+  summary: 频率输入的单位 dBm（默认）| dBuV *（自 R2023b 起）* | dBV | dBW | Vrms | Watts | None
+  group: 估计选项卡
+  block_parameter: InputUnits
+  type: 字符向量或字符串标量
+- name: 估计方法
+  summary: 频谱估计方法 Filter Bank（默认）| Welch
+  group: 估计选项卡
+  block_parameter: Method
+  type: 字符向量或字符串标量
+- name: 分辨率方法
+  summary: 频率分辨率方法 RBW（默认）| Number of frequency bands | Window length
+  group: 估计选项卡
+  block_parameter: FrequencyResolutionMethod
+  type: 字符向量或字符串标量
+- name: 滤波器锐度
+  summary: 低通滤波器的锐度 0.5（默认）| [0,1] 范围内的非负标量
+  group: 估计选项卡
+  block_parameter: FilterSharpness
+  type: double
+- name: RBW (Hz)
+  summary: 以 Hz 为单位的分辨率带宽 Auto（默认）| Input port | 正标量
+  group: 估计选项卡
+  block_parameter: RBWSource、RBW
+  type: 字符向量、字符串标量、double
+- name: 窗长度
+  summary: 窗长度 1024（默认）| 大于 2 的整数
+  group: 估计选项卡
+  block_parameter: WindowLength
+  type: double
+- name: FFT 长度
+  summary: FFT 的长度 Auto（默认）| 1024 | 正整数
+  group: 估计选项卡
+  block_parameter: FFTLengthSource、FFTLength
+  type: 字符向量或字符串标量、double
+- name: 平均方法
+  summary: 平滑方法 VBW（默认）| Exponential | Running
+  group: 估计选项卡
+  block_parameter: AveragingMethod
+  type: 字符向量或字符串标量
+- name: VBW (Hz)
+  summary: 视频带宽 Auto（默认）| Input port | 正标量
+  group: 估计选项卡
+  block_parameter: VBWSource、VBW
+  type: double
+- name: 遗忘因子
+  summary: 加权平均方法的遗忘因子 0.9（默认）| [0,1] 范围内的标量
+  group: 估计选项卡
+  block_parameter: ForgettingFactor
+  type: double
+- name: 频谱平均数
+  summary: 频谱平均的数量 1（默认）| 正整数
+  group: 估计选项卡
+  block_parameter: SpectralAverages
+  type: double
+- name: 频率跨度
+  summary: 频率跨度模式 Full（默认）| Span and Center Frequency | Start and Stop Frequencies
+  group: 估计选项卡
+  block_parameter: FrequencySpan
+  type: 字符向量或字符串标量
+- name: 跨度 (Hz)
+  summary: 以 Hz 为单位计算频谱的频率跨度 10e3（默认）| 实正标量
+  group: 估计选项卡
+  block_parameter: Span
+  type: double
+- name: 中心频率 (Hz)
+  summary: 以 Hz 为单位的频率跨度中心 0（默认）| 实标量
+  group: 估计选项卡
+  block_parameter: CenterFrequency
+  type: double
+- name: 起始频率 (Hz)
+  summary: 以 Hz 为单位的起始频率 -5e3（默认）| 标量
+  group: 估计选项卡
+  block_parameter: StartFrequency
+  type: double
+- name: 停止频率 (Hz)
+  summary: 以 Hz 为单位的停止频率 5e3（默认）| 标量
+  group: 估计选项卡
+  block_parameter: StopFrequency
+  type: double
+- name: 窗
+  summary: 加窗方法 Hann（默认）| Blackman-Harris | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular | 自定义窗函数名称
+  group: 估计选项卡
+  block_parameter: Window、CustomWindow
+  type: 字符向量或字符串标量
+- name: 衰减 (dB)
+  summary: 以 dB 为单位的旁瓣衰减 60（默认）| 大于或等于 45 的标量
+  group: 估计选项卡
+  block_parameter: SidelobeAttenuation
+  type: double
+- name: 重叠 (%)
+  summary: 重叠百分比 0（默认）| [0 100) 范围内的标量
+  group: 估计选项卡
+  block_parameter: OverlapPercent
+  type: double
+- name: 通道
+  summary: 要获取测量的通道 1（默认）| 正整数
+  group: 测量选项卡
+- name: 数据光标
+  summary: 启用光标测量按钮
+  group: 测量选项卡
+- name: 对齐到数据
+  summary: 将光标对齐到数据 off（默认）| on
+  group: 测量选项卡
+- name: 锁定光标间距
+  summary: 锁定光标间距 off（默认）| on
+  group: 测量选项卡
+- name: 峰值查找器
+  summary: 启用峰值查找器测量按钮
+  group: 测量选项卡
+- name: 峰值数量
+  summary: 要显示的最大峰值数 3（默认）| 小于 100 的正整数
+  group: 测量选项卡
+- name: 最小高度
+  summary: 示波器检测峰值的电平阈值 -Inf（默认）| 实数标量值
+  group: 测量选项卡
+- name: 最小距离
+  summary: 相邻峰值之间的最小采样数 1（默认）| 正整数
+  group: 测量选项卡
+- name: 阈值
+  summary: 峰值高度与其相邻采样之间的最小差值 0（默认）| 非负标量
+  group: 测量选项卡
+- name: 标记峰值
+  summary: 标记峰值按钮
+  group: 测量选项卡
+- name: 失真
+  summary: 启用失真测量按钮
+  group: 测量选项卡
+- name: 失真类型
+  summary: 要显示的测量类型 Harmonic（默认）| Intermodulation
+  group: 测量选项卡
+- name: 谐波数量
+  summary: 要测量的谐波数 6（默认）| 正整数
+  group: 测量选项卡
+- name: 标记谐波
+  summary: 标记谐波 off（默认）| on
+  group: 测量选项卡
+- name: 标记频率
+  summary: 标记频率 off（默认）| on
+  group: 测量选项卡
+- name: 相位噪声
+  summary: 启用相位噪声测量按钮
+  group: 测量选项卡
+- name: 频率偏移 (Hz)
+  summary: 以 Hz 为单位的频率偏移 [10 100 1000]（默认）| 单调递增值的向量
+  group: 测量选项卡
+- name: 绘制目标相位噪声
+  summary: 绘制目标相位噪声曲线的选项 off（默认）| on
+  group: 测量选项卡
+- name: 目标相位噪声 (dBc/Hz)
+  summary: 以 dBc/Hz 为单位的目标相位噪声曲线 [-300 -300 -300]（默认）| 向量
+  group: 测量选项卡
+- name: 标记相位噪声
+  summary: 在图上标记测得的相位噪声的选项 off（默认）| on
+  group: 测量选项卡
+- name: 双边频谱
+  summary: 启用双边频谱视图 on（默认）| off
+  group: 频谱选项卡
+  block_parameter: PlotAsTwoSidedSpectrum
+  type: logical
+- name: 正常迹线
+  summary: 正常迹线视图 on（默认）| off
+  group: 频谱选项卡
+  block_parameter: PlotNormalTrace
+  type: logical
+- name: 最大保持迹线
+  summary: 最大保持迹线视图 off（默认）| on
+  group: 频谱选项卡
+  block_parameter: PlotMaxHoldTrace
+  type: logical
+- name: 最小保持迹线
+  summary: 最小保持迹线视图 off（默认）| on
+  group: 频谱选项卡
+  block_parameter: PlotMinHoldTrace
+  type: logical
+- name: 频率刻度
+  summary: 频率轴刻度 Linear（默认）| Log
+  group: 频谱选项卡
+  block_parameter: FrequencyScale
+  type: 字符向量或字符串标量
+- name: 参考负载 (Ω)
+  summary: 以 Ω 为单位的参考负载 1（默认）| 正实数标量
+  group: 频谱选项卡
+  block_parameter: ReferenceLoad
+  type: double
+- name: 频谱单位
+  summary: 频谱的单位 dBm（默认）| dBFS | dBV | dBuV *（自 R2023b 起）* | dBW | Vrms | Watts | dBm/Hz | dBW/Hz | dBFS/Hz | Watts/Hz | Auto
+  group: 频谱选项卡
+  block_parameter: SpectrumUnits
+  type: 字符向量或字符串标量
+- name: 满量程
+  summary: dBFS 单位的满量程 Auto（默认）| 正实数标量
+  group: 频谱选项卡
+  block_parameter: FullScale
+  type: double
+- name: 通道
+  summary: 绘制频谱图的通道 1（默认）| 正整数的字符向量 | 正整数的字符串标量
+  group: 频谱图选项卡
+  block_parameter: SpectrogramChannel
+  type: 字符向量、字符串标量、double
+- name: 时间分辨率 (s)
+  summary: 以秒为单位的时间分辨率 Auto（默认）| 正标量
+  group: 频谱图选项卡
+  block_parameter: TimeResolutionSource、TimeResolution
+  type: 字符向量、字符串标量、double
+- name: 时间跨度 (s)
+  summary: 以秒为单位的时间跨度 Auto（默认）| 正标量
+  group: 频谱图选项卡
+  block_parameter: TimeSpanSource、TimeSpan
+  type: 字符向量、字符串标量、double
+- name: Upper Mask
+  summary: 启用上频谱掩码按钮
+  group: 频谱模板选项卡
+- name: Lower Mask
+  summary: 启用下频谱掩码按钮
+  group: 频谱模板选项卡
+- name: Upper Limits
+  summary: 上频谱掩码的限制 Inf（默认）| 标量 | 两列矩阵
+  group: 频谱模板选项卡
+- name: Lower Limits
+  summary: 下频谱掩码的限制 -Inf（默认）| 标量 | 两列矩阵
+  group: 频谱模板选项卡
+- name: Reference Level (dBr)
+  summary: 掩码功率值的参考电平 0（默认）| 实数标量 | Spectrum peak
+  group: 频谱模板选项卡
+- name: Channel
+  summary: 具有峰值频谱的输入通道 1（默认）| 整数
+  group: 频谱模板选项卡
+- name: Frequency Offset (Hz)
+  summary: 以 Hz 为单位的频率偏移 0（默认）| 有限数值标量
+  group: 频谱模板选项卡
+- name: Channel
+  summary: 用于计算占用带宽和相邻通道功率比的通道 1（默认）| 正整数
+  group: 通道测量选项卡
+- name: Channel Measurements
+  summary: 启用通道测量按钮
+  group: 通道测量选项卡
+- name: Type
+  summary: 要显示的测量数据类型 Occupied BW（默认）| ACPR
+  group: 通道测量选项卡
+- name: Occupied BW (%)
+  summary: 计算占用带宽的功率百分比 99（默认）| 正标量
+  group: 通道测量选项卡
+- name: Frequency Span
+  summary: 频率跨度模式 Span and Center Frequency（默认）| Start and Stop Frequencies
+  group: 通道测量选项卡
+- name: Span (Hz)
+  summary: 以 Hz 为单位的频率跨度 2000（默认）| 正标量
+  group: 通道测量选项卡
+- name: Center Frequency (Hz)
+  summary: 以 Hz 为单位的跨度中心频率 0（默认）| 实数标量
+  group: 通道测量选项卡
+- name: Start Frequency (Hz)
+  summary: 以 Hz 为单位的起始频率 -1000（默认）| 实数标量
+  group: 通道测量选项卡
+- name: Stop Frequency (Hz)
+  summary: 以 Hz 为单位的停止频率 1000（默认）| 实数标量
+  group: 通道测量选项卡
+- name: Num Pairs
+  summary: 相邻通道对的数量 2（默认）| 范围 [1，12] 中的正整数
+  group: 通道测量选项卡
+- name: Offsets (Hz)
+  summary: 以 Hz 为单位的 ACPR 偏移 [2000 3500]（默认）| 向量
+  group: 通道测量选项卡
+- name: Adjacent BW (Hz)
+  summary: 以 Hz 为单位的相邻通道带宽 1000（默认）| 正标量
+  group: 通道测量选项卡
+- name: Filter Shape
+  summary: 滤波器形状 None（默认）| RRC | Gaussian
+  group: 通道测量选项卡
+- name: Roll-off Factor
+  summary: 滚降因子 0.5（默认）| 范围 [0，1] 中的实数标量
+  group: 通道测量选项卡
+- name: BT Product
+  summary: BT 乘积 0.5（默认）| 范围 [0，1] 中的实数标量
+  group: 通道测量选项卡
+- name: Channel Names
+  summary: 输入通道名称 []（默认）| 字符向量 | 字符串 | 字符串或字符向量数组。
+  group: 仅属性检查器
+  block_parameter: ChannelNames
+  type: 字符向量元胞数组或字符串数组
+- name: Maximize Axes
+  summary: 最大化绘图大小 Auto（默认）| Off | On
+  group: 仅属性检查器
+  block_parameter: MaximizeAxes
+  type: 字符向量或字符串标量
+- name: Axes Scaling
+  summary: Y 轴缩放模式 OnceAtStop（默认）| Manual | Auto | Updates
+  group: 仅属性检查器
+  block_parameter: AxesScaling
+  type: 字符向量或字符串标量
+- name: Number of Updates
+  summary: 缩放前的更新次数 100（默认）| 整数
+  group: 仅属性检查器
+  block_parameter: AxesScalingNumUpdates
+  type: 字符向量或字符串标量
+  values: 标量
+```
 
 ### Scope 选项卡
 
@@ -1786,7 +2239,6 @@ spanRBW>2
 | **模块参数：** `AxesScalingNumUpdates` |
 | **类型：** 字符向量或字符串标量 |
 | **值：** 标量 |
-
 ## 所属库
 
 DSP System Toolbox / Sinks Audio Toolbox / Sinks DSP System Toolbox HDL Support / Sinks

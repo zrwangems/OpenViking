@@ -14,6 +14,25 @@ language: en
 # Estimate Center of Gravity
 
 ## Ports
+```yaml
+ports:
+- name: mass
+  summary: Mass scalar
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: Rate of change scalar | 3-element vector
+  direction: input
+  data_types: '| double'
+- name: CG
+  summary: Center of gravity location 3-element vector
+  direction: output
+  data_types: double
+- name: dCG/dt
+  summary: Rate of change 3-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -42,8 +61,38 @@ Rate of the change of center of gravity location, returned as a three-element
 vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Full mass
+  summary: Mass 2 (default) | scalar
+  group: ''
+  block_parameter: fmass
+  type: character vector
+  values: double scalar
+  default: '''2'''
+- name: Empty mass
+  summary: Empty mass 1 (default) | scalar
+  group: ''
+  block_parameter: emass
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Full center of gravity
+  summary: Full center of gravity [1 1 1]' (default) | 3-element vector
+  group: ''
+  block_parameter: fcg
+  type: character vector
+  values: 3-element vector
+  default: '[1 1 1]'''
+- name: Empty center of gravity
+  summary: Empty center of gravity [0.5 0.5 0.5]' (default) | 3-element vector
+  group: ''
+  block_parameter: ecg
+  type: character vector
+  values: 3-element vector
+  default: '[0.5 0.5 0.5]'''
+```
 
 ### **Full mass** — Mass `2` (default) | scalar
 
@@ -98,7 +147,6 @@ vector.
 | **Type**: character vector |
 | **Values**: 3-element vector |
 | **Default**: `[0.5 0.5 0.5]'` |
-
 ## Libraries
 
 Aerospace Blockset / Mass Properties

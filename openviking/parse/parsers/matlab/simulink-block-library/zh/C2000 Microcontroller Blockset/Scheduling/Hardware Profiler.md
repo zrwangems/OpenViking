@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Hardware Profiler
 
 ## 端口
+```yaml
+ports:
+- name: f()
+  summary: 函数调用端口 标量
+  direction: output
+- name: cnt
+  summary: 计数端口 标量
+  direction: output
+  data_types: uint32
+```
 
 ### 输出
 
@@ -31,8 +41,22 @@ chinese_source: worker-translation
 要启用此端口，请将 **Measurement mode** 参数设置为 `Embedded Real-time Analysis & Diagnostic (ERAD)` 或 `Timer`。
 
 **数据类型：** `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement mode
+  summary: 选择硬件性能分析技术 Embedded Real-time Analysis & Diagnostic (ERAD)（默认）| General Purpose Input Output (GPIO) | Timer
+  group: ''
+- name: ERAD module
+  summary: 指定 ERAD 模块 1（默认）| 2 | 3 | 4
+  group: ''
+- name: GPIO number
+  summary: 指定 GPIO 编号 0（默认）
+  group: ''
+- name: Sample time
+  summary: 模块从硬件性能分析器读取数据的采样时间 -1（默认）
+  group: ''
+```
 
 ### **Measurement mode** — 选择硬件性能分析技术 `Embedded Real-time Analysis & Diagnostic (ERAD)`（默认）| `General Purpose Input Output (GPIO)` | `Timer`
 
@@ -72,7 +96,6 @@ ERAD 模块仅在选定的 TI 处理器中可用。
 Hardware Profiler 模块触发下游函数调用子系统的采样时间。
 
 使用此参数指定 2 次函数调用触发之间的时间间隔。计数数据也会在所述的采样时间更新。要继承采样时间，请将此参数设置为 -1。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Scheduling

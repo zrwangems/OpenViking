@@ -14,6 +14,39 @@ language: en
 # Vehicle Body
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Headwind speed, m/s physical signal
+  direction: input
+- name: beta
+  summary: Road incline angle, rad physical signal
+  direction: input
+- name: CG
+  summary: Center of gravity, m physical signal
+  direction: input
+- name: M
+  summary: Mass, kg physical signal
+  direction: input
+- name: J
+  summary: External moment of inertia, kg\*m^2 physical signal
+  direction: input
+- name: CD
+  summary: Drag coefficient, unitless physical signal
+  direction: input
+- name: V
+  summary: Longitudinal velocity, m/s physical signal
+  direction: output
+- name: NF
+  summary: Front axle normal force, N physical signal
+  direction: output
+- name: NR
+  summary: Rear axle normal force, N physical signal
+  direction: output
+- name: H
+  summary: Horizontal motion mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -88,8 +121,130 @@ Wheel forces are considered positive if acting downwards.
 Mechanical translational conserving port associated with the
 horizontal motion of the vehicle body. Connect tire traction motion to
 this port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass
+  summary: Vehicle mass 1200 kg (default) | positive scalar
+  group: Main
+- name: Number of wheels per axle
+  summary: Wheel count 2 (default) | positive integer or two-element vector
+  group: Main
+- name: Horizontal distance from CG to front axle
+  summary: CG-to-front axle distance 1.4 m (default) | positive scalar
+  group: Main
+- name: Horizontal distance from CG to rear axle
+  summary: CG-to-rear axle distance 1.6 m (default) | positive scalar
+  group: Main
+- name: CG height above ground
+  summary: CG-to-ground distance 0.5 m (default) | positive scalar
+  group: Main
+- name: Gravitational acceleration
+  summary: Gravitational acceleration 9.81 m/s^2 (default) | nonnegative scalar
+  group: Main
+- name: Externally-defined additional mass
+  summary: Variable mass option off (default) | on
+  group: Main
+- name: Negative normal force warning
+  summary: Normal force warning off (default) | on
+  group: Main
+- name: Frontal area
+  summary: Effective cross-sectional area 3 m^2 (default) | positive scalar
+  group: Drag
+- name: Variable drag coefficient
+  summary: Variable drag option off (default) | on
+  group: Drag
+- name: Drag coefficient
+  summary: Aerodynamic drag coefficient 0.4 (default) | nonnegative scalar
+  group: Drag
+- name: Air density
+  summary: Ambient air density 1.18 kg/m^3 (default) | nonnegative scalar
+  group: Drag
+- name: Pitch dynamics
+  summary: Pitch dynamics option off (default) | on
+  group: Pitch
+- name: Pitch moment of inertia
+  summary: Pitch moment of inertia 4000 kg/m^2 (default) | positive scalar
+  group: Pitch
+- name: Suspension model
+  summary: Suspension parameterization method Linear (default) | By table lookup
+  group: Pitch
+- name: Front suspension stiffness
+  summary: Front suspension stiffness 1e4 N/m (default) | positive scalar
+  group: Pitch
+- name: Front suspension damping
+  summary: Front suspension damping 1e4N/(m/s) (default) | positive scalar
+  group: Pitch
+- name: Rear suspension stiffness
+  summary: Rear suspension stiffness 1e4 N/m (default) | positive scalar
+  group: Pitch
+- name: Rear suspension damping
+  summary: Rear suspension damping 1e4 N/(m/s) (default) | positive scalar
+  group: Pitch
+- name: Front suspension stiffness force vector
+  summary: Front suspension stiffness force [-2000, -1000, 0, 1000, 2000] N (default) | increasing vector
+  group: Pitch
+- name: Front suspension deformation vector
+  summary: Front suspension deformation [-.4, -.2, 0, .2, .4] m (default) | increasing vector
+  group: Pitch
+- name: Front suspension damping force vector
+  summary: Front suspension damping force [-200, -100, 0, 100, 200] N (default) | increasing vector
+  group: Pitch
+- name: Front suspension velocity vector
+  summary: Front suspension velocity [-4, -2, 0, 2, 4] m/s (default) | increasing vector
+  group: Pitch
+- name: Rear suspension stiffness force vector
+  summary: Rear suspension stiffness force [-2000, -1000, 0, 1000, 2000] N (default) | increasing vector
+  group: Pitch
+- name: Rear suspension deformation vector
+  summary: Rear suspension deformation [-.4, -.2, 0, .2, .4] m (default) | increasing vector
+  group: Pitch
+- name: Rear suspension damping force vector
+  summary: Rear suspension damping force [-200, -100, 0, 100, 200] N (default) | increasing vector
+  group: Pitch
+- name: Rear suspension velocity vector
+  summary: Rear suspension velocity [-4, -2, 0, 2, 4] m/s (default) | increasing vector
+  group: Pitch
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Pitch
+- name: Extrapolation method
+  summary: Extrapolation method Linear (default) | Nearest | Error
+  group: Pitch
+- name: Hard stop
+  summary: Hard stop modeling option off (default) | on
+  group: Pitch
+- name: Front upper bound
+  summary: Hard stop front suspension upper bound .25 (default) | positive scalar
+  group: Pitch
+- name: Front lower bound
+  summary: Vehicle front lower bound -.25 (default) | negative scalar
+  group: Pitch
+- name: Front contact stiffness
+  summary: Vehicle front contact stiffness 1e6 (default) | positive scalar
+  group: Pitch
+- name: Front contact damping
+  summary: Vehicle front contact damping 150 (default) | positive scalar
+  group: Pitch
+- name: Rear upper bound
+  summary: Vehicle rear upper bound .25 (default) | positive scalar
+  group: Pitch
+- name: Rear lower bound
+  summary: Vehicle rear lower bound -.25 (default) | negative scalar
+  group: Pitch
+- name: Rear contact stiffness
+  summary: Vehicle rear contact stiffness 1e6 (default) | positive scalar
+  group: Pitch
+- name: Rear contact damping
+  summary: Vehicle rear contact damping 150 (default) | positive scalar
+  group: Pitch
+- name: Initial pitch
+  summary: Pitch at the beginning of the simulation 0 rad (default) | nonnegative scalar
+  group: Pitch
+- name: Initial pitch rate
+  summary: Pitch rate at the beginning of the simulation 0 rad/s (default) | nonnegative scalar
+  group: Pitch
+```
 
 ### Main
 
@@ -477,7 +632,6 @@ Pitch rate at the beginning of the simulation.
 
 To enable this parameter, select **Pitch
 dynamics**.
-
 ## Libraries
 
 Simscape / Driveline / Tires & Vehicles

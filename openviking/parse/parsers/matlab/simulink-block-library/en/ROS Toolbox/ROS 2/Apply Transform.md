@@ -14,6 +14,18 @@ language: en
 # Apply Transform
 
 ## Ports
+```yaml
+ports:
+- name: TFMsg
+  summary: ROS or ROS 2 geometry_msgs/TransformStamped message non-virtual bus
+  direction: input
+- name: Entity
+  summary: ROS or ROS 2 entity message non-virtual bus
+  direction: input
+- name: TFEntity
+  summary: Transformed ROS or ROS 2 entity message non-virtual bus
+  direction: output
+```
 
 ### Input
 
@@ -32,8 +44,14 @@ ROS or ROS 2 entity message, specified as a non-virtual bus.
 Transformed ROS or ROS 2 entity message, returned as a non-virtual bus. The output
 `TFEntity` message has the same message type as input
 `Entity` message.
-
 ## Parameters
+```yaml
+parameters:
+- name: Entity message type
+  summary: Type of input entity message geometry_msgs/QuaternionStamped (default) | geometry_msgs/Vector3Stamped | geometry_msgs/PointStamped
+    | geometry_msgs/PoseStamped
+  group: ''
+```
 
 ### **Entity message type** — Type of input entity message `geometry_msgs/QuaternionStamped` (default) | `geometry_msgs/Vector3Stamped` | `geometry_msgs/PointStamped` | `geometry_msgs/PoseStamped`
 
@@ -43,7 +61,6 @@ Type of input entity message specified as one of these options:
 - `geometry_msgs/PoseStamped`
 - `geometry_msgs/QuaternionStamped`
 - `geometry_msgs/Vector3Stamped`
-
 ## Libraries
 
 ROS Toolbox / ROS ROS Toolbox / ROS 2

@@ -14,6 +14,20 @@ language: en
 # Complex Phase Shift
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector | matrix
+  direction: input
+  data_types: double | single
+- name: Ph
+  summary: Phase shift scalar | column vector | matrix
+  direction: input
+  data_types: double
+- name: Out1
+  summary: Phase-shifted signal scalar | column vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -44,11 +58,12 @@ as the signal at port **In**.
 Phase-shifted signal, returned as a complex-valued scalar, column
 vector, or matrix. This output is the same dimension and data type as
 the input signal.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Communications Toolbox / Utility Blocks

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Segmented DAC
 
 ## 端口
+```yaml
+ports:
+- name: digital
+  summary: 数字输入信号 整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: start
+  summary: 用于启动转换的外部时钟 标量
+  direction: input
+  data_types: double
+- name: analog
+  summary: 转换后的模拟输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -45,8 +60,86 @@ DAC 的数字输入信号，指定为整数。
 转换后的模拟输出信号，以标量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input polarity
+  summary: 定义 DAC 输入数据极性 Unipolar（默认）| Bipolar
+  group: ''
+  block_parameter: Polarity
+  type: 字符向量
+  values: Unipolar | Bipolar
+- name: Use external start clock
+  summary: 连接到外部启动转换时钟 on（默认）| off
+  group: ''
+- name: Conversion start frequency (Hz)
+  summary: 内部启动转换时钟的频率 1e6（默认）| 实数标量
+  group: ''
+  block_parameter: StartFreq
+  type: 字符向量
+  values: 实数标量
+- name: Reference (V)
+  summary: DAC 输出参考幅度 0.5（默认）| 实数标量
+  group: ''
+  block_parameter: Ref
+  type: 字符向量
+  values: 实数标量
+- name: Bias (V)
+  summary: 代码零的模拟输出与模拟零之间的差值 0（默认）| 实数标量
+  group: ''
+  block_parameter: Bias
+  type: 字符向量
+  values: 实数标量
+- name: Settling time (s)
+  summary: 输出稳定所需的时间 2e-7（默认）| 非负实数标量
+  group: ''
+  block_parameter: SettlingTime
+  type: 字符向量
+  values: 实数标量
+- name: Settling time tolerance (LSB)
+  summary: 计算稳定时间的容差 0.5（默认）| 正实数标量
+  group: ''
+  block_parameter: SettlingTimeTolerance
+  type: 字符向量
+  values: 正实数标量
+  default: '0.5'
+- name: 位宽
+  summary: DAC 段的物理输入位数，大于或等于 2 的整数标量
+  group: ''
+- name: 位
+  summary: 每个段的位范围，向量
+  group: ''
+- name: 拓扑
+  summary: 基础 DAC 段的拓扑，Binary Weighted（默认）
+  group: ''
+- name: 偏移误差
+  summary: 平移量化步长，0（默认）| 实数标量
+  group: ''
+- name: 偏移误差单位
+  summary: 偏移误差的单位，LSB（默认）| FS | %FS
+  group: ''
+- name: 增益误差
+  summary: DAC 传输曲线斜率的误差，0（默认）| 实数标量
+  group: ''
+- name: 增益误差单位
+  summary: 增益误差的单位，LSB（默认）| FS | %FS
+  group: ''
+- name: 上移所选段
+  summary: 将所选段上移一行，按钮
+  group: ''
+- name: 下移所选段
+  summary: 将所选段下移一行，按钮
+  group: ''
+- name: 新建段
+  summary: 添加新 DAC 段，按钮
+  group: ''
+- name: 复制所选
+  summary: 复制所选段，按钮
+  group: ''
+- name: 删除所选
+  summary: 删除所选段，按钮
+  group: ''
+```
 
 ### **Input polarity** — 定义 DAC 输入数据极性 `Unipolar`（默认）| `Bipolar`
 
@@ -202,7 +295,6 @@ LSB 由以下公式计算：LSB = 转换器的满量程范围2N位。
 ### **删除所选** — 删除所选段，按钮
 
 点击从 Segmented DAC 模块中删除所选 DAC 段。
-
 ## 所属库
 
 Mixed-Signal Blockset / DAC / Architectures

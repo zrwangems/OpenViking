@@ -14,6 +14,25 @@ language: en
 # LPC/RC to Autocorrelation
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: LPC coefficients vector | matrix
+  direction: input
+  data_types: single | double
+- name: K
+  summary: RC coefficients vector | matrix
+  direction: input
+  data_types: single | double
+- name: P
+  summary: Prediction error power scalar | vector
+  direction: input
+  data_types: single | double
+- name: AC
+  summary: Autocorrelation coefficients vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -62,8 +81,19 @@ To enable this port, set **Specify P** to
 Autocorrelation coefficients, returned as a vector or a matrix.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of conversion
+  summary: Type of conversion LPC to autocorrelation (default) | RC to autocorrelation
+  group: ''
+- name: Specify P
+  summary: Method of specifying prediction error power *P* Assume P = 1 (default) | Via input port
+  group: ''
+- name: If first input value is not 1
+  summary: Action to take if first input value is not 1 Replace it with 1 (default) | Normalize | Normalize and warn | Error
+  group: ''
+```
 
 ### **Type of conversion** — Type of conversion `LPC to autocorrelation` (default) | `RC to autocorrelation`
 
@@ -109,7 +139,6 @@ vector is not 1. You can set this parameter to one of these options:
 
 To enable this parameter, set **Type of conversion**
 to `LPC to autocorrelation`.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Linear Prediction

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Zero-Order Hold
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,15 @@ chinese_source: worker-translation
 输出信号为输入保持一个采样周期后的信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (-1 for inherited)
+  summary: 采样时间命中之间的离散间隔 -1（默认）| scalar
+  group: ''
+  block_parameter: SampleTime
+  values: -1 (default) | positive scalar number
+```
 
 ### **Sample time (-1 for inherited)** — 采样时间命中之间的离散间隔 `-1`（默认）| `scalar`
 
@@ -56,7 +76,6 @@ Hold","SampleTime","0.1")` specifies a discrete sample
 `0.1` 的时间用于零阶
 Hold block named `Zero-Order Hold` in
 名为 `mdl` 的模型。
-
 ## 所属库
 
 Simulink / Discrete HDL Coder / Discrete

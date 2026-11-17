@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Barometer
 
 ## 端口
+```yaml
+ports:
+- name: True pressure
+  summary: 真实气压 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Measured pressure
+  summary: 测量气压 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,28 @@ chinese_source: worker-translation
 测量气压，单位为 Pa，返回为非负标量或 *N* 元素向量。Measured pressure 的长度与 True pressure 的长度一致。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Constant bias
+  summary: 恒定测量偏置 0（默认）| 有限标量
+  group: ''
+- name: Noise density
+  summary: 白噪声标准方差 1（默认）| 非负有限标量
+  group: ''
+- name: Bias instability
+  summary: 相关噪声标准方差 1（默认）| 非负有限标量
+  group: ''
+- name: Decay factor
+  summary: 相关噪声衰减因子 0.99（默认）| (0,1) 范围内的正标量
+  group: ''
+- name: Seed
+  summary: 随机数初始种子 67（默认）| 非负整数标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Constant bias** — 恒定测量偏置 0（默认）| 有限标量
 
@@ -61,7 +92,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。
-
 ## 所属库
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

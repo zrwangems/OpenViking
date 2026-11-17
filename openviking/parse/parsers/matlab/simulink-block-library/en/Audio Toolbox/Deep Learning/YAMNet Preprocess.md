@@ -14,6 +14,17 @@ language: en
 # YAMNet Preprocess
 
 ## Ports
+```yaml
+ports:
+- name: audioIn
+  summary: Sound data column vector
+  direction: input
+  data_types: single | double
+- name: features
+  summary: Mel spectrograms that can be fed to YAMNet pretrained network 96-by-64 matrix
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -47,8 +58,16 @@ Each 96-by-64 matrix represents a single mel spectrogram. For more details on ho
 this block generates mel spectrograms, see Algorithms.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: Sample rate of input signal in Hz 16e3 (default) | positive scalar
+  group: ''
+- name: Overlap percentage (%)
+  summary: Overlap percentage between consecutive mel spectrograms 50 (default) | [0 100)
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — Sample rate of input signal in Hz `16e3` (default) | positive scalar
 
@@ -62,7 +81,6 @@ Specify the overlap percentage between consecutive mel spectrograms as a scalar 
 the range [0 100).
 
 **Data Types:** `single` | `double`
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

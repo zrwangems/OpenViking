@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # SPI Controller Transfer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 向 SPI 外设写入数据的输入端口 [Nx1] 或 [1xN] 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 从 SPI 外设设备读取数据的输出端口 [Nx1] 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -30,8 +41,20 @@ chinese_source: worker-translation
 该输出端口用于接收模块从 SPI 外设设备读取的数据。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Board
+  summary: 用于 SPI 通信的特定开发板 Pi 2 Model B（默认）| Model B Rev1 | Model B Rev2 | Model B+ | Pi 3 Model B | Pi 3 Model B+ | Pi Zero
+    W | Pi 4 Model B | Pi Zero 2 W | Compute Module 4 | Pi 5 Model
+  group: ''
+- name: Chip select pin
+  summary: SPI 外设设备所连接的片选引脚 SPI0_CE0（默认）| SPI0_CE1 | SPI1_CE0 | SPI1_CE1 | SPI1_CE2
+  group: ''
+- name: Mode (Clock polarity and phase)
+  summary: SPI 通信模式 0（默认）| 1 | 2 | 3
+  group: ''
+```
 
 ### **Board** — 用于 SPI 通信的特定开发板 `Pi 2 Model B`（默认）| `Model B Rev1` | `Model B Rev2` | `Model B+` | `Pi 3 Model B` | `Pi 3 Model B+` | `Pi Zero W` | `Pi 4 Model B` | `Pi Zero 2 W` | `Compute Module 4` | `Pi 5 Model`
 
@@ -48,7 +71,6 @@ chinese_source: worker-translation
 选择 SPI 通信的模式。
 
 有关模式的更多信息，请参阅 SPI 传输模式
-
 ## 所属库
 
 Simulink Support Package for Raspberry Pi Hardware / Communication

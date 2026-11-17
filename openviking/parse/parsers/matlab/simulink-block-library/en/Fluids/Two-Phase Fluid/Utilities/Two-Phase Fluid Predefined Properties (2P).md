@@ -14,6 +14,12 @@ language: en
 # Two-Phase Fluid Predefined Properties (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Connection port two-phase fluid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +30,24 @@ network. This port connects to any point on a two-phase connection line
 within a block diagram. When you connect the Two-Phase
 Fluid Predefined Properties (2P) block to a network
 line, the fluid properties are propagated to all blocks in the circuit.
-
 ## Parameters
+```yaml
+parameters:
+- name: Two-phase fluid
+  summary: Working fluid Water (R-718) (default) | Ammonia (R-717) | Carbon dioxide (R-744) | Isobutane (R-600a) | Propane
+    (R-290) | R-1233zd(E) | R-1234yf | R-134a | R-22 | R-32 | R-404A | R-407C | R-410A
+  group: ''
+- name: Atmospheric pressure
+  summary: Environmental pressure 0.101325 MPa (default) | positive scalar
+  group: ''
+- name: Pressure and specific internal energy outside valid range
+  summary: Whether to notify when pressure or specific internal energy are outside valid range Error (default) | Warning |
+    None
+  group: ''
+- name: Dynamic pressure threshold for flow reversal
+  summary: Sets region in which numerical smoothing is applied 0.01 Pa (default) | positive scalar
+  group: ''
+```
 
 ### **Two-phase fluid** — Working fluid `Water (R-718)` (default) | `Ammonia (R-717)` | `Carbon dioxide (R-744)` | `Isobutane (R-600a)` | `Propane (R-290)` | `R-1233zd(E)` | `R-1234yf` | `R-134a` | `R-22` | `R-32` | `R-404A` | `R-407C` | `R-410A`
 
@@ -54,7 +76,6 @@ is defined around 0 MPa between the positive and negative values of the
 **Dynamic pressure threshold for flow reversal**.
 Within this transition region, the calculated properties are adjusted to
 ensure a smooth transition.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Utilities

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # PRBS Signal Generator
 
 ## 端口
+```yaml
+ports:
+- name: start/stop
+  summary: 启动和停止估计实验 标量
+  direction: input
+  data_types: single | double
+- name: w
+  summary: 估计实验的频率 向量
+  direction: input
+  data_types: single | double
+- name: amp
+  summary: 扰动幅值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: prbs
+  summary: PRBS 扰动信号 标量
+  direction: output
+```
 
 ### 输入
 
@@ -69,8 +87,37 @@ Ts(2n−1)Np，
 ### **prbs** — PRBS 扰动信号 标量
 
 模块在此端口生成 PRBS 扰动信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: 采样时间 0.1（默认）| 正标量 | –1
+  group: ''
+- name: 数据类型
+  summary: 浮点精度 double（默认）| single
+  group: ''
+- name: 激励信号源
+  summary: 激励信号源 模块参数（默认）| 外部端口
+  group: ''
+- name: 频率
+  summary: 用于估计的频率 [0.5 1 2]（默认）| 向量
+  group: ''
+- name: 幅值
+  summary: 注入扰动的幅值 1（默认）| 标量 | 向量
+  group: ''
+- name: 频率数
+  summary: 外部提供的频率数 3（默认）| 正整数
+  group: ''
+- name: 周期数
+  summary: PRBS 信号中的周期数 1（默认）| 正整数
+  group: ''
+- name: Signal order
+  summary: PRBS 信号阶数 12（默认）| 小于等于 24 的正整数
+  group: ''
+- name: Use Auto-Generated Value
+  summary: 自动设置 PRBS 信号参数 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -158,7 +205,6 @@ PRBS 信号中的周期数，指定为正整数。
 ### **Use Auto-Generated Value** — 自动设置 PRBS 信号参数 `off`（默认）| `on`
 
 该模块根据指定的频率和采样时间，计算 **Number of periods** 和 **Signal order** 参数的推荐值。启用此选项可对 PRBS 信号参数中的一个或两个使用自动生成的值。当您在频率范围或采样时间变化的情况下运行多个实验时，这非常有用。
-
 ## 所属库
 
 Simulink Control Design / Signal Generation

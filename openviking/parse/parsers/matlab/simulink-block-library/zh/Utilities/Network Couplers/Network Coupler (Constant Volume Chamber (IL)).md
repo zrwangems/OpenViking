@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Network Coupler (Constant Volume Chamber (IL))
 
 ## 端口
+```yaml
+ports:
+- name: '1'
+  summary: 将此端口连接到变步长网络，或连接到具有较小采样时间的定步长等温液体网络
+  direction: conserving
+- name: '2'
+  summary: 将此端口连接到具有较大采样时间的定步长等温液体网络
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -27,8 +36,53 @@ chinese_source: worker-translation
 
 如果其中一个耦合网络以变步长运行，请将 Network Coupler (Constant Volume Chamber
 (IL)) 模块的端口 **2** 连接到定步长网络。如果两个网络都以定步长运行，请将此端口连接到具有较大采样时间的网络。
-
 ## 参数
+```yaml
+parameters:
+- name: Volume (m^3)
+  summary: 指定腔室的总容积 0.001（默认）| 正标量
+  group: 主要
+- name: Sampling type
+  summary: 选择耦合网络的采样类型场景 Variable step at ports 1 and 2（默认）| 端口 1 使用可变步长，端口处使用固定步长 2 | Fixed step both ports with common sample
+    time | 固定步长，两个端口，端口处采样更快 1
+  group: 主要
+- name: Port 1 network discrete sample time (s)
+  summary: 指定网络 1 的采样时间 0.02（默认）| 正标量
+  group: 主要
+- name: Port 2 network discrete sample time (s)
+  summary: 指定网络 2 的采样时间 0.1（默认）| 正标量
+  group: 主要
+- name: Use prediction when connecting fixed step to variable step
+  summary: 允许您启用预测（离散->连续）算法 off（默认）| on
+  group: 主要
+- name: Use smoothing when connecting variable step to fixed step
+  summary: 允许您启用平滑（连续->离散）算法 off（默认）| on
+  group: 主要
+- name: Smoothing time constant (s)
+  summary: 指定一阶滤波器的时间常数 0.01（默认）| 正标量
+  group: 主要
+- name: Use prediction when connecting slow to fast sample times
+  summary: 允许启用预测（慢速->快速）算法 关闭（默认）| 开启
+  group: 主要
+- name: Use smoothing when connecting fast to slow sample times
+  summary: 允许启用平滑（快速->慢速）算法 关闭（默认）| 开启
+  group: 主要
+- name: Number of samples over which to smooth
+  summary: 指定用于平均的样本数 1（默认）| 正标量
+  group: 主要
+- name: Approximate connected network flow conductance (kg/s/Pa)
+  summary: 指定近似连接网络流量导纳 1e-6（默认）| 正标量
+  group: 分析
+- name: Approximate fluid density (kg/m^3)
+  summary: 指定连接网络中的近似流体密度 1000（默认）| 正标量
+  group: 分析
+- name: Approximate fluid bulk modulus (Pa)
+  summary: 指定连接网络中的近似流体体积模量 2e9（默认）| 正标量
+  group: 分析
+- name: Initial pressure (MPa)
+  summary: 指定初始压力 0.101325（默认）| 正标量
+  group: 初始条件
+```
 
 ### 主要
 
@@ -173,7 +227,6 @@ fast to slow sample times** 复选框。
 ### **Initial pressure (MPa)** — 指定初始压力 `0.101325`（默认）| 正标量
 
 指定腔室压力的初始条件，单位为 MPa。
-
 ## 所属库
 
 Simscape / Utilities / Network Couplers

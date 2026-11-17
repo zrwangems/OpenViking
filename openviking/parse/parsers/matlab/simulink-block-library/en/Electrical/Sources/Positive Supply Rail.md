@@ -14,6 +14,12 @@ language: en
 # Positive Supply Rail
 
 ## Ports
+```yaml
+ports:
+- name: '-'
+  summary: Positive voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,14 +27,18 @@ language: en
 
 Electrical conserving port associated to the positive supply rail
 positive voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant voltage
+  summary: Constant output voltage 1 V (default)
+  group: ''
+```
 
 ### **Constant voltage** — Constant output voltage `1` `V` (default)
 
 The voltage at the output port relative to the Electrical
 Reference block ground port.
-
 ## Libraries
 
 Simscape / Electrical / Sources

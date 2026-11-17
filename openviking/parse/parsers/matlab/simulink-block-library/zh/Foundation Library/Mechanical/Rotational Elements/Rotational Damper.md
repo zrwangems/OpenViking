@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Rotational Damper
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 杆机械旋转
+  direction: conserving
+- name: C
+  summary: 壳体机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **C** — 壳体机械旋转
 
 与壳体（即静止体）关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Damping coefficient
+  summary: 阻尼系数 0.001 N*m/(rad/s)（默认）| 标量
+  group: ''
+```
 
 ### **Damping coefficient** — 阻尼系数 `0.001 N*m/(rad/s)`（默认）| 标量
 
 阻尼系数，由粘性摩擦定义。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

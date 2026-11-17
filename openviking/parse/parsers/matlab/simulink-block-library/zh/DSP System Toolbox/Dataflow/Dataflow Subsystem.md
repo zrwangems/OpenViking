@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Dataflow Subsystem
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据流子系统的信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Out
+  summary: 数据流子系统的信号输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,24 @@ chinese_source: worker-translation
 在子系统中放置 Outport 模块会为该模块添加一个输出端口。子系统模块上的端口标签即为 Outport 模块的名称。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Latency
+  summary: 数据流子系统的延迟 0（默认）| 标量整数
+  group: ''
+  block_parameter: Latency
+  type: 字符向量
+  values: 标量整数
+  default: '''0'''
+- name: Automatic frame size calculation
+  summary: 自动计算帧大小并插入缓冲区 0（默认）| 1
+  group: ''
+  block_parameter: AutoFrameSizeCalculation
+  type: 字符向量
+  values: '''off''|''on'''
+  default: '''off'''
+```
 
 Dataflow Subsystem 模块使用与 Subsystem 模块相同的参数。有关参数说明和程序化使用信息，请参阅 Subsystem, Atomic Subsystem, Nonvirtual Subsystem, CodeReuse Subsystem (Simulink)。
 
@@ -66,7 +95,6 @@ Dataflow Subsystem 模块使用与 Subsystem 模块相同的参数。有关参�
 | **值**：`'off'`|`'on'` |
 |  |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 DSP System Toolbox / Dataflow

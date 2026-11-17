@@ -14,6 +14,41 @@ language: en
 # Boost Converter
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Switching device gate control physical signal | scalar
+  direction: input
+  data_types: double
+- name: G
+  summary: Switching device gate control electrical | vector
+  direction: conserving
+  data_types: double
+- name: G+
+  summary: Switching device gate control positive terminal electrical | scalar
+  direction: conserving
+  data_types: double
+- name: G-
+  summary: Switching device gate control negative terminal electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: Positive DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: Negative DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: Positive DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: Negative DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+```
 
 ### Input
 
@@ -99,8 +134,104 @@ Electrical conserving port associated with the negative terminal of
 the second DC voltage.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model nonsynchronous or synchronous converter Nonsynchronous converter (default) | Synchronous converter
+  group: ''
+- name: Gate-control port
+  summary: Whether to specify physical or electrical control port for the switching gate PS (default) | Electrical
+  group: Switching Devices
+- name: Switching device
+  summary: Switch type Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: Switching Devices
+- name: Forward voltage
+  summary: Voltage 0.8 V (default) | scalar
+  group: Switching Devices
+- name: On-state resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Drain-source on resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Off-state conductance
+  summary: Conductance 1e-5 1/Ohm (default) | scalar
+  group: Switching Devices
+- name: Threshold voltage
+  summary: Voltage threshold 6 V (default) | scalar
+  group: Switching Devices
+- name: Gate trigger voltage, Vgt
+  summary: Voltage threshold 1 V (default) | scalar
+  group: Switching Devices
+- name: Gate turn-off voltage, Vgt_off
+  summary: Voltage threshold -1 V (default) | scalar
+  group: Switching Devices
+- name: Holding current
+  summary: Current threshold 1 A (default) | scalar
+  group: Switching Devices
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: Integer mode for FPGA deployment 0 (default) | nonnegative scalar
+  group: Switching Devices
+- name: Model dynamics
+  summary: Diode model Diode with no dynamics (default) | Diode with charge dynamics | None
+  group: Diode
+- name: Forward voltage
+  summary: Voltage 0.8 V (default) | scalar
+  group: Diode
+- name: On resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Diode
+- name: Off conductance
+  summary: Conductance 1e-5 1/Ohm (default) | scalar
+  group: Diode
+- name: Junction capacitance
+  summary: Capacitance 50 nF (default) | scalar
+  group: Diode
+- name: Peak reverse current, iRM
+  summary: Current -235 A (default) | scalar less than 0
+  group: Diode
+- name: Initial forward current when measuring iRM
+  summary: Current 300 A (default) | scalar greater than 0
+  group: Diode
+- name: Rate of change of current when measuring iRM
+  summary: Current change rate -50 A/us (default) | scalar
+  group: Diode
+- name: Reverse recovery time parameterization
+  summary: Recovery-time model Specify stretch factor (default) | Specify reverse recovery time directly | Specify reverse
+    recovery charge
+  group: Diode
+- name: Reverse recovery time stretch factor
+  summary: Stretch factor 3 (default) | scalar greater than 1
+  group: Diode
+- name: Reverse recovery time, trr
+  summary: Time 15 us (default) | scalar
+  group: Diode
+- name: Reverse recovery charge, Qrr
+  summary: Charge 1500 s*uA (default) | scalar
+  group: Diode
+- name: Inductance
+  summary: Inductance 1e-6 H (default) | positive scalar
+  group: LC Parameters
+- name: Inductor series resistance
+  summary: Inductor series resistance 0 Ohm (default) | zero or positive scalar
+  group: LC Parameters
+- name: Capacitance
+  summary: Capacitance 1e-7 F (default) | positive scalar
+  group: LC Parameters
+- name: Capacitor effective series resistance
+  summary: Capacitor resistance 1e-6 Ohm (default) | zero or positive scalar
+  group: LC Parameters
+- name: Snubber
+  summary: Snubber model None (default) | RC snubber
+  group: Snubbers
+- name: Snubber resistance
+  summary: Resistance 0.1 (default) | Ohm | scalar
+  group: Snubbers
+- name: Snubber capacitance
+  summary: Capacitance 1e-7 (default) | F | scalar
+  group: Snubbers
+```
 
 ### **Modeling option** — Whether to model nonsynchronous or synchronous converter `Nonsynchronous converter` (default) | `Synchronous converter`
 
@@ -495,7 +626,6 @@ Capacitance of the switching device snubber.
 #### Dependencies
 
 See the Snubbers Parameter Dependencies table.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

@@ -14,6 +14,15 @@ language: en
 # Elbow (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet or outlet gas
+  direction: conserving
+- name: B
+  summary: Inlet or outlet gas
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,22 @@ This block has no intrinsic directionality.
 
 Gas conserving port associated with the inlet or outlet of the pipe.
 This block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Elbow type
+  summary: Bend geometry Smoothly curved (default) | Sharp-edged (Miter)
+  group: ''
+- name: Elbow internal diameter
+  summary: Pipe internal diameter 0.01 m (default) | positive scalar
+  group: ''
+- name: Elbow angle
+  summary: Pipe curve angle 90 deg (default) | positive scalar
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: ''
+```
 
 ### **Elbow type** — Bend geometry `Smoothly curved` (default) | `Sharp-edged (Miter)`
 
@@ -49,7 +72,6 @@ Angle of the swept pipe curve.
 
 Pressure ratio at which the gas flow transitions between the laminar and
 turbulent regimes.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Pipes & Fittings

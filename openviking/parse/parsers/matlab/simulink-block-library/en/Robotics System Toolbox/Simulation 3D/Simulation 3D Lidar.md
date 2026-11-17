@@ -14,6 +14,33 @@ language: en
 # Simulation 3D Lidar
 
 ## Ports
+```yaml
+ports:
+- name: Point cloud
+  summary: Point cloud data *m*-by-*n*-by-3 array of positive real-valued [*x*, *y*, *z*] points
+  direction: output
+  data_types: single
+- name: Distance
+  summary: Distance to object points *m*-by-*n* positive real-valued matrix
+  direction: output
+  data_types: single
+- name: Reflectivity
+  summary: Reflectivity of surface materials *m*-by-*n* matrix of intensity values in range [0, 1]
+  direction: output
+  data_types: single
+- name: Labels
+  summary: Label identifiers *m*-by-*n* array of label identifiers
+  direction: output
+  data_types: uint8
+- name: Translation
+  summary: Sensor location real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: Sensor orientation real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -188,8 +215,61 @@ select **Output
 location (m) and orientation (rad)**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Mounting
+- name: Parent name
+  summary: Name of parent vehicle Scene Origin (default) | vehicle name
+  group: Mounting
+- name: Mounting location
+  summary: Sensor mounting location Origin (default) | ...
+  group: Mounting
+- name: Specify offset
+  summary: Specify offset from mounting location off (default) | on
+  group: Mounting
+- name: Relative translation [X, Y, Z] (m)
+  summary: Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Relative rotation [Roll, Pitch, Yaw] (deg)
+  summary: Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Mounting
+- name: Detection range (m)
+  summary: Maximum distance measured by lidar sensor 120 (default) | positive scalar
+  group: Parameters
+- name: Range resolution (m)
+  summary: Resolution of lidar sensor range 0.002 (default) | positive real scalar
+  group: Parameters
+- name: Vertical field of view (deg)
+  summary: Vertical field of view 40 (default) | positive scalar
+  group: Parameters
+- name: Vertical resolution (deg)
+  summary: Vertical angular resolution 1.25 (default) | positive scalar
+  group: Parameters
+- name: Horizontal field of view (deg)
+  summary: Horizontal field of view 360 (default) | positive scalar
+  group: Parameters
+- name: Horizontal resolution (deg)
+  summary: Horizontal angular (azimuth) resolution 0.16 (default) | positive scalar
+  group: Parameters
+- name: Distance outport
+  summary: Output distance to measured object points off (default) | on
+  group: Parameters
+- name: Reflectivity outport
+  summary: Output reflectivity of surface materials off (default) | on
+  group: Parameters
+- name: Output semantic segmentation
+  summary: Output semantic segmentation map of label IDs off (default) | on
+  group: Ground Truth
+- name: Output location (m) and orientation (rad)
+  summary: Output location and orientation of sensor off (default) | on
+  group: Ground Truth
+```
 
 ### Mounting
 
@@ -397,7 +477,6 @@ Select this parameter to output the translation and rotation of the
 sensor at the **Translation** and
 **Rotation** ports,
 respectively.
-
 ## Libraries
 
 Offroad Autonomy Library / Simulation 3D Automated Driving Toolbox / Simulation 3D Robotics System Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors UAV Toolbox / Simulation 3D

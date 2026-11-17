@@ -15,10 +15,39 @@ chinese_source: worker-translation
 # Bit Unpacking
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Bit Patterns
+  summary: 选择位模式 {[0:31]}（默认）
+  group: ''
+  block_parameter: BitPatterns
+- name: Input port (packed) data types
+  summary: 打包数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: ''
+  block_parameter: PackDataType
+- name: Input port (packed) dimension
+  summary: 打包数据维度 [1]（默认）
+  group: ''
+  block_parameter: PackDataSize
+- name: Output port (unpacked) data types (cell array)
+  summary: 解包数据类型 {'uint32'}（默认）
+  group: ''
+  block_parameter: UnpackDataTypes
+- name: Output port (unpacked) dimension (cell array)
+  summary: 解包数据维度 {[1]}（默认）
+  group: ''
+  block_parameter: UnpackDataSizes
+- name: Sign extend
+  summary: 启用符号扩展 on（默认）| off
+  group: ''
+  block_parameter: SignExtend
+```
 
 ### **Bit Patterns** — 选择位模式 {[0:31]}（默认）
 
@@ -89,7 +118,6 @@ R2025b 中未记录。
 |  |
 | --- |
 | **模块参数**：`SignExtend` |
-
 ## 所属库
 
 Simulink Real-Time / Utilities

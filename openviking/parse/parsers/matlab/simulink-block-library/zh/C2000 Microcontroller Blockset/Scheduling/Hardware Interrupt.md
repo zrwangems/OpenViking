@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Hardware Interrupt
 
 ## 端口
+```yaml
+ports:
+- name: '*name* Event Task'
+  summary: 函数调用事件输入仿真标量
+  direction: input
+- name: '*name* Event'
+  summary: 生成中断请求 Scalar
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +40,22 @@ chinese_source: worker-translation
 ### ***`name`* Event** — 生成中断请求 `Scalar`
 
 该模块的输出是函数调用。函数调用输出的数量将与选择在 ISR 中服务的事件数量相同。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of events to serve
+  summary: 指定要服务的事件数量 1（默认）| 2 | 3 | <32
+  group: ''
+- name: Simulink task priority
+  summary: 设置所选 ISR 的优先级 50（默认）| 正整数或非负整数
+  group: ''
+- name: Disable interrupt pre-emption
+  summary: 选择以禁用中断抢占 off（默认）| on
+  group: ''
+- name: Enable simulation port
+  summary: 启用仿真端口以进行阻塞 off（默认）| on
+  group: ''
+```
 
 ### **Number of events to serve** — 指定要服务的事件数量 `1`（默认）| `2` | `3` | `<32`
 
@@ -53,7 +76,6 @@ chinese_source: worker-translation
 ### **Enable simulation port** — 启用仿真端口以进行阻塞 `off`（默认）| `on`
 
 选择此参数以添加兼容的仿真输入端口。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28M35x / M3 C2000 Microcontroller Blockset / F28M36x / M3 C2000 Microcontroller Blockset / Scheduling

@@ -14,6 +14,19 @@ language: en
 # Detect Decrease
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: Output signal 0 | 1
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### Input
 
@@ -31,8 +44,32 @@ its previous value; false (equal to 0) when the input signal is greater
 than or equal to its previous value.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition
+  summary: Initial condition for the previous input 0 (default) | scalar | vector
+  group: ''
+  block_parameter: vinit
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Input processing
+  summary: Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame
+    based)
+  group: ''
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Output data type
+  summary: Data type of the output boolean (default) | uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+```
 
 ### **Initial condition** — Initial condition for the previous input 0 (default) | scalar | vector
 
@@ -89,7 +126,6 @@ Set the output data type to `boolean` or
 | **Type**: character vector |
 | **Values**: `'boolean'` | `'uint8'` |
 | **Default**: `'boolean'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

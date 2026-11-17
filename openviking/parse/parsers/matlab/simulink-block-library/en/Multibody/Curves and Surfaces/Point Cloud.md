@@ -14,6 +14,15 @@ language: en
 # Point Cloud
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Local reference frame frame
+  direction: unspecified
+- name: G
+  summary: Geometry frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -29,8 +38,40 @@ Geometry frame that represents the points defined by this block. To model contac
 the points, connect this port to a Spatial
 Contact Force or a Planar Contact
 Force block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Coordinates Matrix
+  summary: Coordinates of points [0 0 0 ] m (default) | *N*-by-2 matrix | *N*-by-3 matrix
+  group: ''
+- name: Type
+  summary: Graphic to use in visualization of point cloud Marker Cloud (default) | None
+  group: Graphic
+- name: Sphere Radius
+  summary: Marker radius 1e-2 m (default) | positive scalar
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: Graphic color [0.5 0.5 0.5] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Highlight color [0.5 0.5 0.5 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Ambient Color
+  summary: Shadow color [0.15 0.15 0.15 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar in the range of 0 to 128
+  group: Graphic
+```
 
 ### **Coordinates Matrix** — Coordinates of points [0 0 0 ] `m` (default) | *N*-by-2 matrix | *N*-by-3 matrix
 
@@ -175,7 +216,6 @@ To enable this parameter, set:
    Cloud`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Curves and Surfaces

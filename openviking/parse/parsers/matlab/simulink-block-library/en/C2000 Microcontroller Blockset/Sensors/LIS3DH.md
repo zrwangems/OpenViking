@@ -14,6 +14,65 @@ language: en
 # LIS3DH Accelerometer Sensor
 
 ## Ports
+```yaml
+ports:
+- name: Acceleration
+  summary: Acceleration along each axis as measured by accelerometer vector
+  direction: output
+  data_types: single | double | int16
+- name: ADC1 Voltage
+  summary: Voltage on external pin ADC1 vector
+  direction: output
+  data_types: single | double | int16
+- name: ADC2 Voltage
+  summary: Voltage on external pin ADC2 vector
+  direction: output
+  data_types: single | double | int16
+- name: ADC3 Voltage
+  summary: Voltage on external pin ADC3 vector
+  direction: output
+  data_types: single | double | int16
+- name: Temperature
+  summary: Temperature measured by LIS3DH sensor scalar
+  direction: output
+  data_types: single | double | int16
+- name: Accelration Status
+  summary: Status of acceleration measurement 2 | 0 | 1
+  direction: output
+  data_types: uint8
+- name: Samples pending
+  summary: Number of pending samples scalar
+  direction: output
+  data_types: uint8
+- name: Click status [X,Y,Z]
+  summary: Click detection status 0 | 1
+  direction: output
+  data_types: uint8
+- name: Inertial wake-up status [X,Y,Z]
+  summary: Status of inertial wake-up interrupt 0 | 1
+  direction: output
+  data_types: uint8
+- name: Free-fall status
+  summary: Status of free-fall 0 | 1
+  direction: output
+  data_types: uint8
+- name: 6D position status [X, -X, Y, -Y, Z, -Z]
+  summary: Status of 6D position 0 | 1
+  direction: output
+  data_types: uint8
+- name: 6D movement status [X, -X, Y, -Y, Z, -Z]
+  summary: Status of 6D movement 0 | 1
+  direction: output
+  data_types: uint8
+- name: 4D position status [X, -X, Y, -Y]
+  summary: Status of 4D position 0 | 1
+  direction: output
+  data_types: uint8
+- name: 4D movement status [X, -X, Y, -Y]
+  summary: Status of 4D movement 0 | 1
+  direction: output
+  data_types: uint8
+```
 
 ### Output
 
@@ -216,8 +275,137 @@ from **Detect** parameter and select **Detection
 status** parameter.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: I2C Module
+  summary: Specific module used for I2C communication I2C_A (default)
+  group: Main
+- name: I2C address
+  summary: I2C addresses to communicate with sensor peripherals 0x18 (default) | 0x19
+  group: Main
+- name: Acceleration (m/s2)
+  summary: Set output port for reading acceleration on (default) | off
+  group: Main
+- name: ADC3 input
+  summary: Select output port for reading temperature or voltage None (default) | Temperature | Voltage (external input)
+  group: Main
+- name: Voltage (external input at ADC1)
+  summary: Select output port for reading voltage off (default) | on
+  group: Main
+- name: Voltage (external input at ADC2)
+  summary: Select output port for reading voltage off (default) | on
+  group: Main
+- name: Acceleration data ready status
+  summary: Set output port for obtaining acceleration status on (default) | off
+  group: Main
+- name: Accelerometer resolution
+  summary: Data register bit resolution 12bit (default) | 10bit | 8bit
+  group: Main
+- name: Accelerometer output data rate (Hz)
+  summary: Rate at which accelerometer data is sampled 400 Hz (default) | 1 Hz | 10 Hz | 25 Hz | 50 Hz | 100 Hz | 200 Hz |
+    1344 Hz
+  group: Main
+- name: Accelerometer range
+  summary: Full scale for measuring linear acceleration ±2g (default) | ±4g | ±8g | ±16g
+  group: Main
+- name: Enable FIFO
+  summary: Enable number of samples to read off (default) | on
+  group: Main
+- name: Number of samples to read from FIFO (1-32)
+  summary: Number of samples to read 2 (default)
+  group: Main
+- name: Generate FIFO overrun interrupt on INT1 pin
+  summary: Generate interrupt when FIFO buffer is full off (default) | on
+  group: Main
+- name: Enable high pass filter
+  summary: Enable high pass filter for accelerometer data off (default) | on
+  group: Main
+- name: HPF cutoff frequency (Hz)
+  summary: Bandwidth of high pass filter 100 Hz (default) | 12 Hz | 25 Hz | 50 Hz
+  group: Main
+- name: Generate data ready interrupt on INT1 pin
+  summary: Generate interrupt when data is ready off (default) | on
+  group: Main
+- name: Data type
+  summary: Output data type for values from lis3dh sensor single (default) | double | int16
+  group: Main
+- name: Sample time
+  summary: Time interval to read data -1 (default) | positive integer
+  group: Main
+- name: Enable click detection
+  summary: Option for enabling click detection off (default) | on
+  group: Click detection
+- name: Type
+  summary: Select type of click to be detected Single click (default) | Double click
+  group: Click detection
+- name: Threshold (m/s2)
+  summary: Threshold for detecting single or double click 1.5 (default)
+  group: Click detection
+- name: Time limit (s)
+  summary: Time limit duration 0.3 (default) | positive integer
+  group: Click detection
+- name: Time latency (s)
+  summary: Time latency duration 0.3 (default) | positive integer
+  group: Click detection
+- name: Time window (s)
+  summary: Time window duration 0.3 (default) | positive integer
+  group: Click detection
+- name: X axis
+  summary: Click detection in X axis on (default) | off
+  group: Click detection
+- name: Y axis
+  summary: Click detection in Y axis on (default) | off
+  group: Click detection
+- name: Z axis
+  summary: Click detection in Z axis off (default) | on
+  group: Click detection
+- name: Generate click interrupt
+  summary: Generate interrupt when click is detected off (default) | on
+  group: Click detection
+- name: Interrupt pin
+  summary: Pin to generate click interrupt INT1 (default) | INT2
+  group: Click detection
+- name: Click status
+  summary: Set output port for obtaining click detection status off (default) | on
+  group: Click detection
+- name: Configurable detections
+  summary: Set number of configurable detections 0 (default) | 1 | 2
+  group: Configurable detections
+- name: Detect
+  summary: Select interrupt Inertial wake-up (default) | Free-fall | 6D position | 6D movement | 4D position | 4D movement
+  group: Configurable detections
+- name: X axis
+  summary: Interrupt detection in X axis on (default) | off
+  group: Configurable detections
+- name: Y axis
+  summary: Interrupt detection in Y axis on (default) | off
+  group: Configurable detections
+- name: Z axis
+  summary: Interrupt detection in Z axis on (default) | off
+  group: Configurable detections
+- name: -X axis
+  summary: Interrupt detection in -X axis off (default) | on
+  group: Configurable detections
+- name: -Y axis
+  summary: Interrupt detection in -Y axis off (default) | on
+  group: Configurable detections
+- name: -Z axis
+  summary: Interrupt detection in -Z axis off (default) | on
+  group: Configurable detections
+- name: Threshold (m/s2
+  summary: Acceleration threshold for detecting the selected configurable detection 1.5 (default)
+  group: Configurable detections
+- name: Duration (s)
+  summary: Time limit duration 0.3 (default) | positive integer
+  group: Configurable detections
+- name: Generate interrupt
+  summary: Generate interrupt off (default) | on
+  group: Configurable detections
+- name: Interrupt pin
+  summary: Pin to generate interrupt INT1 (default) | INT2
+  group: Configurable detections
+```
 
 ### Main
 
@@ -618,7 +806,6 @@ interrupt** parameter.
 Parameters for **Configuration detections 2** are similar
 to **Configuration detections 1**. For information to configure these
 parameters, see Configurable detections 1.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Sensors

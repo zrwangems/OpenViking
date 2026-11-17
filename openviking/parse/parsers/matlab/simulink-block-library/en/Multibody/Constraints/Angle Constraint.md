@@ -14,6 +14,9 @@ language: en
 # Angle Constraint
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block provides two frame ports:
 
@@ -24,8 +27,10 @@ In addition, the block provides two physical signal output ports:
 
 - t — Angle constraint torque vector
 - tm — Signed magnitude of the angle constraint torque
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Type**
 :   Angle constraint type. The default setting is
@@ -84,7 +89,6 @@ frames.
 **Signed Torque Magnitude**
 :   Compute and output the magnitude of the angle constraint torque,
     including its sign.
-
 ## Libraries
 
 Not documented in R2025b.

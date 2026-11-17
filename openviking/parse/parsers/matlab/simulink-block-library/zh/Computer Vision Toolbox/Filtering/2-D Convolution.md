@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 2-D Convolution
 
 ## 端口
+```yaml
+ports:
+- name: I1
+  summary: 输入矩阵 matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I2
+  summary: 输入矩阵 matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Output
+  summary: 卷积矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -42,8 +57,16 @@ chinese_source: worker-translation
 - 如果 `all(size(I1)<size(I2))`，模块将返回错误。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output size
+  summary: 输出大小 matrix
+  group: ''
+- name: Normalized output
+  summary: 归一化输出 matrix
+  group: ''
+```
 
 **主选项卡**
 
@@ -76,7 +99,6 @@ chinese_source: worker-translation
 **数据类型选项卡**
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Filtering

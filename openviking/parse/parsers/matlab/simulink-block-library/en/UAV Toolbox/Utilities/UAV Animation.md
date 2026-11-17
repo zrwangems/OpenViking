@@ -14,6 +14,24 @@ language: en
 # UAV Animation
 
 ## Ports
+```yaml
+ports:
+- name: Translation
+  summary: '*xyz*-positions of UAVs matrix'
+  direction: input
+- name: Rotation
+  summary: Rotations of UAV body frames matrix | *m*-by-4 matrix
+  direction: input
+- name: UAV Type
+  summary: UAV mesh type vector
+  direction: input
+- name: UAV Mesh Configuration
+  summary: UAV mesh configuration vector | matrix
+  direction: input
+- name: Marker
+  summary: UAV Marker configuration matrix
+  direction: input
+```
 
 ### Input
 
@@ -120,8 +138,40 @@ parameters that you want to configure for the markers:
 
 To enable this port, select the **Draw marker**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of UAVs
+  summary: Number of UAV to display 1 (default) | positive integer
+  group: ''
+- name: Enable dynamic UAV mesh configuration
+  summary: Dynamic UAV mesh configuration off (default) | on
+  group: ''
+- name: UAV Type
+  summary: Type of UAV mesh to display Multirotor (default) | FixedWing
+  group: ''
+- name: UAV size
+  summary: Size of frames and attached meshes 1 (default) | positive numeric scalar
+  group: ''
+- name: UAV mesh color
+  summary: Color of UAV meshes [1 0 0] (default) | RGB triplet
+  group: ''
+- name: UAV mesh and trajectory alpha
+  summary: Transparency of UAV mesh and trajectory 1 (default) | positive numeric scalar
+  group: ''
+- name: Inertial frame z-axis direction
+  summary: Direction of positive *z*-axis of inertial frame Down (default) | Up
+  group: ''
+- name: Rotation format
+  summary: Format of rotation input Quaternion (default) | Euler ZYX
+  group: ''
+- name: Draw marker
+  summary: Enable markers off (default) | on
+  group: ''
+- name: Sample time
+  summary: Interval between outputs –1 (default) | scalar
+  group: ''
+```
 
 ### **Number of UAVs** — Number of UAV to display `1` (default) | positive integer
 
@@ -209,7 +259,6 @@ The default value indicates that the block sample time is
 *inherited*.
 
 For more information about the inherited sample time type, see Specify Sample Time (Simulink).
-
 ## Libraries
 
 UAV Toolbox / Utilities

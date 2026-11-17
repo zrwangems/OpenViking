@@ -14,6 +14,18 @@ language: en
 # Charger
 
 ## Ports
+```yaml
+ports:
+- name: t
+  summary: Trigger, unitless physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -32,8 +44,22 @@ the charger.
 
 Electrical conserving port associated with the negative terminal of
 the charger.
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant charging current
+  summary: Constant charging current 5 A (default) | positive scalar
+  group: ''
+- name: Voltage threshold
+  summary: Voltage threshold for constant current charging 12 V (default) | positive scalar
+  group: ''
+- name: Constant charging voltage
+  summary: Constant charging voltage 12 V (default) | positive scalar
+  group: ''
+- name: Current threshold
+  summary: Current threshold for constant voltage charging 0.5 A (default) | positive scalar
+  group: ''
+```
 
 ### **Constant charging current** — Constant charging current `5` `A` (default) | positive scalar
 
@@ -54,7 +80,6 @@ battery.
 
 Threshold at which the block stops performing a constant voltage charging
 on the battery.
-
 ## Libraries
 
 Simscape / Battery / Cyclers

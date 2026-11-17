@@ -14,6 +14,29 @@ language: en
 # LPC to LSF/LSP Conversion
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Linear prediction coefficients column vector | unoriented vector | matrix
+  direction: input
+  data_types: single | double
+- name: LSP
+  summary: Line spectral pairs column vector | unoriented vector | matrix
+  direction: output
+  data_types: single | double
+- name: LSFn
+  summary: Line spectral frequencies normalized in range (0 0.5) column vector | unoriented vector | matrix
+  direction: output
+  data_types: single | double
+- name: LSFr
+  summary: Line spectral frequencies in range (0 π) column vector | unoriented vector | matrix
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: Validity status of output scalar | row vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -70,8 +93,34 @@ To enable this port, select the **Show output validity
 status** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Conversion output LSP in range (-1 1) (default) | LSF normalized in range (0 0.5) | LSF in range (0 pi)
+  group: ''
+- name: Root finding coarse grid points
+  summary: Number of search steps 64 (default) | positive integer greater than 1
+  group: ''
+- name: Root finding bisection refinement
+  summary: Number of bisections 4 (default) | nonnegative integer
+  group: ''
+- name: Show output validity status
+  summary: Show status of output validity off (default) | on
+  group: ''
+- name: If current output is invalid, overwrite with previous output
+  summary: Overwrite invalid outputs with previous output off (default) | on
+  group: ''
+- name: When first output is invalid, overwrite with user-defined values
+  summary: Overwrite invalid first output with user-defined values off (default) | on
+  group: ''
+- name: User-defined LSP/LSF values for overwriting invalid first output
+  summary: User-defined LSP/LSF values vector (default) | matrix
+  group: ''
+- name: If first input value is not 1
+  summary: Action to take if first input value is not 1 Ignore (default) | Normalize | Normalize and warn | Error
+  group: ''
+```
 
 ### **Output** — Conversion output `LSP in range (-1 1)` (default) | `LSF normalized in range (0 0.5)` | `LSF in range (0 pi)`
 
@@ -185,7 +234,6 @@ Specify the action to take if the first coefficient of an input is not
   simulation and displays an error message at the MATLAB® command line.
 
 For more information, see Parameters for Handling Invalid Inputs and Outputs.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Linear Prediction

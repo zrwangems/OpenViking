@@ -14,6 +14,13 @@ language: en
 # Trigger-Based Linearization
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -24,8 +31,24 @@ generation of a linear model using the **Trigger type**
 parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trigger type
+  summary: Signal type that triggers generation of a linear model rising | falling | either | function-call
+  group: ''
+  block_parameter: TriggerType
+  type: character vector
+  values: '''rising'' | ''falling'' | ''either'' | ''function-call'''
+  default: '''rising'''
+- name: Sample time (of linearized model)
+  summary: Sample time 0 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+```
 
 ### **Trigger type** — Signal type that triggers generation of a linear model `rising` | `falling` | `either` | `function-call`
 
@@ -74,7 +97,6 @@ positive sample time.
 | **Type:** character vector |
 | **Values:** scalar | vector |
 | **Default:** `'0'` |
-
 ## Libraries
 
 Simulink / Model-Wide Utilities

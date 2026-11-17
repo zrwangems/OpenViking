@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # OSTBC Encoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据列向量 | 矩阵
+  direction: input
+  data_types: single | double | fixed point
+- name: Out
+  summary: 输出数据矩阵 | 三维数组
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -37,8 +48,19 @@ chinese_source: worker-translation
 此端口在模块图标上未命名。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of transmit antennas
+  summary: 发射天线数量 2（默认）| 3 | 4
+  group: ''
+- name: Rate
+  summary: 符号速率 3/4（默认）| 1/2
+  group: ''
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和的选项 关（默认）| 开
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -68,7 +90,6 @@ chinese_source: worker-translation
 有关详细信息，请参阅精度和范围。
 
 **数据类型：** `Boolean`
-
 ## 所属库
 
 Communications Toolbox / MIMO

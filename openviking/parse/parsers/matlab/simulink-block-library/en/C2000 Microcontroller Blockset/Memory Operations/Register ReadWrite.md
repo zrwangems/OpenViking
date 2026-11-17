@@ -14,6 +14,17 @@ language: en
 # Register Read/Write
 
 ## Ports
+```yaml
+ports:
+- name: All
+  summary: Bit fields selected scalar
+  direction: output
+  data_types: uint16 | uint32
+- name: All
+  summary: Number bit field selected scalar
+  direction: input
+  data_types: uint16 | uint32
+```
 
 ### Output
 
@@ -73,8 +84,39 @@ To enable this port, set the **Operation**
 parameter to `Write`.
 
 **Data Types:** `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device family
+  summary: Select TI C2000 device family None (default) | F2804x | F280x | F281x | F2833x | F2844x | F280013x | F280015x |
+    F28002x | F28003x | F28004x | F2802x | F2803x | F2805x | F2806x | F2807x | F2837xS | F2837xD_CPU1 | F2837xD_CPU2 | F2838x_CPU1
+    | F2838x_CPU2 | F2838x_CORTEXM4 | F28M35x | F28M35x | F28M35x | F28p65x_CPU1 | F28p65x_CPU2
+  group: ''
+- name: Register group
+  summary: Select required register groups Unspecified (default)
+  group: ''
+- name: Register name
+  summary: Select register name Unspecified (default)
+  group: ''
+- name: Register field
+  summary: Select register filed Unspecified (default)
+  group: ''
+- name: Access register using
+  summary: Select register access Specified bits (default) | Custom bits
+  group: ''
+- name: Operation
+  summary: Select read or write operation Read (default) | Write
+  group: ''
+- name: Insert code before/after
+  summary: Insert code before or after None (default) | EALLOW/EDIS
+  group: ''
+- name: Bit to process
+  summary: Specify custom bits {[15,0]}| (default)
+  group: ''
+- name: Register bit fields
+  summary: Select bit field to access All (default)
+  group: ''
+```
 
 ### **Device family** — Select TI C2000 device family `None` (default) | `F2804x` | `F280x` | `F281x` | `F2833x` | `F2844x` | `F280013x` | `F280015x` | `F28002x` | `F28003x` | `F28004x` | `F2802x` | `F2803x` | `F2805x` | `F2806x` | `F2807x` | `F2837xS` | `F2837xD_CPU1` | `F2837xD_CPU2` | `F2838x_CPU1` | `F2838x_CPU2` | `F2838x_CORTEXM4` | `F28M35x` | `F28M35x` | `F28M35x` | `F28p65x_CPU1` | `F28p65x_CPU2`
 
@@ -190,7 +232,6 @@ name.
 
 To enable this parameter, set the **Access register
 using** parameter to `Specified bits`.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Memory Operations

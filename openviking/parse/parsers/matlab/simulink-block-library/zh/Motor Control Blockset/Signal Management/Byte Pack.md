@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Byte Pack
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要转换的信号，类型为 double（默认）| 信号数据数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: 转换后的信号数据向量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -30,8 +42,16 @@ chinese_source: worker-translation
 转换后的模块输入，以 `uint8` 数据向量形式返回。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Input port data types (cell array)
+  summary: 模块输入信号的数据类型 {'double'}（默认）| Simulink® 数据类型的元胞数组
+  group: ''
+- name: Byte alignment
+  summary: 数据类型对齐的字节边界 1（默认）| 2 | 4 | 8
+  group: ''
+```
 
 ### **Input port data types (cell array)** — 模块输入信号的数据类型 {'double'}（默认）| Simulink® 数据类型的元胞数组
 
@@ -83,7 +103,6 @@ data types (cell array)** 指定以下元胞数组：
 
 打包算法在 `uint8`
 数据值与 double 值之间留下 1 字节间隙。
-
 ## 所属库
 
 Motor Control Blockset / Signal Management C2000 Microcontroller Blockset / Target Communication

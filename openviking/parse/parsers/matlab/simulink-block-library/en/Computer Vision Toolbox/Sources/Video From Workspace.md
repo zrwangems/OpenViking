@@ -14,6 +14,25 @@ language: en
 # Video From Workspace
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Output image or video *M*-by-*N*-by-*T* array | *M*-by-*N*-by-*C*-by-*T* array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: Red color component of input video 3-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: Green color component of input video 3-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: Blue color component of input video 3-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Output
 
@@ -85,8 +104,26 @@ To enable this port, set the **Image signal**  parameter to
 `Separate color signals`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal
+  summary: Video to read rand(32,32,3,5) (default) | *M*-by-*N*-by-*T* array | *M*-by-*N*-by-*C*-by-*T* array | MATLAB workspace
+    variable
+  group: ''
+- name: Sample time
+  summary: Sample period of the output video 1 (default) | -1 | positive scalar
+  group: ''
+- name: Form output after final value by
+  summary: Form of block output after final video frame Setting to zero (default) | Holding final value | Cyclic repetition
+  group: ''
+- name: Image signal
+  summary: Output mode of video signal One multidimensional signal (default) | Separate color signals
+  group: ''
+- name: Output port labels
+  summary: Output port names R|G|B (default) | text labels separated by vertical bars
+  group: ''
+```
 
 ### **Signal** — Video to read `rand(32,32,3,5)` (default) | *M*-by-*N*-by-*T* array | *M*-by-*N*-by-*C*-by-*T* array | MATLAB workspace variable
 
@@ -148,7 +185,6 @@ Name the output ports. Use the vertical bar character, |, as a delimiter.
 
 To enable this parameter, set the **Image signal**  parameter to
 `Separate color signals`.
-
 ## Libraries
 
 Computer Vision Toolbox / Sources

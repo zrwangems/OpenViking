@@ -14,6 +14,18 @@ language: en
 # Mass With Length & Friction (PB)
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: External normal force control signal, N physical signal
+  direction: input
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -42,8 +54,40 @@ connection.
 Position-based mechanical translational conserving port that represents the
 follower connection. For nonzero length, port **F** has a more
 positive position than port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass
+  summary: Constant mass 1 kg (default) | positive scalar
+  group: ''
+- name: Length
+  summary: Length of mass 0 m (default) | nonnegative scalar
+  group: ''
+- name: Log the position of an intermediate point
+  summary: Whether to log position of intermediate point off (default) | on
+  group: ''
+- name: Intermediate point fractional length from B
+  summary: Fractional length of logged point from port B 0.5 (default) | unitless scalar between 0 and 1
+  group: ''
+- name: External normal force specification
+  summary: Whether external normal force is constant or variable Constant (default) | Variable
+  group: ''
+- name: Constant external normal force
+  summary: Force normal to motion 0 N (default) | nonnegative scalar
+  group: ''
+- name: Breakaway friction coefficient
+  summary: Proportionality coefficient between normal force and breakaway friction force 2.5 (default) | nonnegative scalar
+  group: ''
+- name: Breakaway friction velocity
+  summary: Peak velocity for Stribeck friction 0.1 m/s (default) | positive scalar
+  group: ''
+- name: Coulomb friction coefficient
+  summary: Proportionality coefficient between normal force and friction that opposes motion 2 (default) | nonnegative scalar
+  group: ''
+- name: Viscous friction coefficient
+  summary: Viscous losses proportionality coefficient 0 N/(m/s) (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Mass** — Constant mass `1 kg` (default) | positive scalar
 
@@ -116,7 +160,6 @@ opposes motion, based on the normal force.
 
 Proportionality coefficient between the friction force and the relative velocity.
 Viscous losses do not depend on the normal force.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

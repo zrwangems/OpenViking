@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Inverse Park Transform
 
 ## 端口
+```yaml
+ports:
+- name: dq0
+  summary: '*d*-*q* 轴和零分量向量'
+  direction: input
+  data_types: single | double
+- name: θelec
+  summary: 旋转角度，弧度标量
+  direction: input
+  data_types: single | double
+- name: abc
+  summary: '*a* 相、*b* 相和 *c* 相分量向量'
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +51,16 @@ chinese_source: worker-translation
 *abc* 参考系中三相系统的分量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Power Invariant
+  summary: 功率不变变换 关（默认） | 开
+  group: ''
+- name: Phase-a axis alignment
+  summary: '*dq0* 参考系对齐 Q-axis（默认） | D-axis'
+  group: ''
+```
 
 ### **Power Invariant** — 功率不变变换 关（默认） | 开
 
@@ -46,7 +69,6 @@ chinese_source: worker-translation
 ### **Phase-a axis alignment** — *dq0* 参考系对齐 `Q-axis`（默认） | `D-axis`
 
 将 *abc* 参考系的 *a* 相向量对齐到旋转参考系的 *d* 轴或 *q* 轴。
-
 ## 所属库
 
 Simscape / Electrical / Control / Mathematical Transforms

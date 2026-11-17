@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Pilot Joystick
 
 ## 端口
+```yaml
+ports:
+- name: roll
+  summary: 滚转范围 [-1, 1]
+  direction: output
+  data_types: double
+- name: pitch
+  summary: 俯仰范围 [-1, 1]
+  direction: output
+  data_types: double
+- name: yaw
+  summary: 偏航范围 [-1, 1]
+  direction: output
+  data_types: double
+- name: throttle
+  summary: 油门范围 [0, 1]
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -62,8 +81,33 @@ configuration** 参数设置为
 `FourAxis`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Joystick ID
+  summary: 操纵杆 ID Joystick1（默认）| Joystick2 | Joystick3 | Joystick4 | Joystick5 | Joystick6 | Joystick7 | Joystick8 | Joystick9
+    | Joystick10 | Joystick11 | Joystick12 | Joystick13 | Joystick14 | Joystick15 | Joystick16 | None
+  group: ''
+  block_parameter: JoystickID
+  type: 字符向量
+  values: Joystick1 | Joystick2 | Joystick3 | Joystick4 | Joystick5 | Joystick6 | Joystick7 | Joystick8 | Joystick9 | Joystick10
+    | Joystick11 | Joystick12 | Joystick13 | Joystick14 | Joystick15 | Joystick16 | None
+  default: '''Joystick1'''
+- name: Output configuration
+  summary: 操纵杆输出配置 FourAxis（默认）| AllOutputs
+  group: ''
+  block_parameter: OutputConfiguration
+  type: 字符向量
+  values: FourAxis | AllOutputs
+  default: '''FourAxis'''
+- name: Sample time
+  summary: 采样时间 1/30（默认）| -1 | 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''1/30'''
+```
 
 ### **Joystick ID** — 操纵杆 ID `Joystick1`（默认）| `Joystick2` | `Joystick3` | `Joystick4` | `Joystick5` | `Joystick6` | `Joystick7` | `Joystick8` | `Joystick9` | `Joystick10` | `Joystick11` | `Joystick12` | `Joystick13` | `Joystick14` | `Joystick15` | `Joystick16` | `None`
 
@@ -124,7 +168,6 @@ configuration** 参数设置为
 | **类型**：字符向量 |
 | **值**：标量 |
 | **默认值**：`'1/30'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Animation Support Utilities

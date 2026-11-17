@@ -14,6 +14,33 @@ language: en
 # Upsampler
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar | column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: Valid input data indicator 0 | 1
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Option to clear internal states 0 | 1
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Upsampled data scalar | column vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: Valid output data indicator 0 | 1
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Block ready indicator 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -87,8 +114,26 @@ To enable this port, on the **Control Ports** tab, select the
 **Enable ready output port** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Upsample factor (L)
+  summary: Upsampling factor 3 (default) | integer in the range [1, 2.^16]
+  group: Main
+- name: Sample offset (0 to L-1)
+  summary: Sample offset 0 (default) | integer in the range [0, 2.^16 – 1]
+  group: Main
+- name: Minimum number of cycles between valid input samples
+  summary: Minimum number of cycles between valid input samples 1 (default) | factor or multiple of Upsample factor (L) |
+    integer in the range [1, Inf]
+  group: Main
+- name: Enable reset input port
+  summary: Option to enable reset input port off (default) | on
+  group: Control Ports
+- name: Enable ready output port
+  summary: Option to enable ready output port off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -127,7 +172,6 @@ For more reset considerations, see Tips.
 
 Select this parameter to enable the **ready** output port. This
 port indicates whether the block is ready for new input data.
-
 ## Libraries
 
 DSP HDL Toolbox / Signal Operations

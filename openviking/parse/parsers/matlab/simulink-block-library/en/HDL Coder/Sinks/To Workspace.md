@@ -14,6 +14,14 @@ language: en
 # To Workspace
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data to log to workspace scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string
+    | fixed point | enumerated | bus | image | datetime
+```
 
 ### Input
 
@@ -30,8 +38,46 @@ Logging fixed-point data requires a license for Fixed-Point Designer™.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumerated` | `bus` | `image` | `datetime`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Variable name
+  summary: Name of variable for saved data simout (default) | string | character vector
+  group: ''
+  block_parameter: VariableName
+  values: '"simout" (default) | valid MATLAB variable name'
+- name: Limit data points to last
+  summary: Number of samples to log inf (default) | scalar | vector
+  group: ''
+  block_parameter: MaxDataPoints
+  values: '"inf" (default) | positive integer'
+- name: Decimation
+  summary: Decimation factor 1 (default) | positive integer
+  group: ''
+  block_parameter: Decimation
+  values: '"1" (default) | positive integer'
+- name: Save format
+  summary: Format for data logged to workspace Timeseries (default) | Structure With Time | Structure | Array
+  group: ''
+  block_parameter: SaveFormat
+  values: '"Timeseries" (default) | "Structure with Time" | "Structure" | "Array"'
+- name: Save 2-D signals as
+  summary: Arrangement of 2-D sample values in logged data 3-D array (concatenate along third dimension) (default) | 2-D array
+    (concatenate along first dimension)
+  group: ''
+  block_parameter: Save2DSignal
+  values: '"3-D array (concatenate along third dimension)" (default) | "2-D array (concatenate along first dimension)"'
+- name: Log fixed-point data as a fi object
+  summary: Data type for logged fixed-point data on (default) | off
+  group: ''
+  block_parameter: FixptAsFi
+  values: '"on" (default) | "off"'
+- name: Sample time
+  summary: Sampling interval and optional time offset -1 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -264,7 +310,6 @@ the `set_param` function.
 | **Data Types:** | `character vector` | `string` |
 
 **Example:** `set_param(gcb,"SampleTime","0")`
-
 ## Libraries
 
 Simulink / Sinks DSP System Toolbox / Sinks HDL Coder / Sinks

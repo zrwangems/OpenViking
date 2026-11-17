@@ -14,6 +14,33 @@ language: en
 # Doppler Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Resp
+  summary: Doppler-processed response data cube complex-valued *P*-by-1 column vector | complex-valued *M*-by-*P* matrix |
+    complex-valued *M*-by-*N*-by-*P* array
+  direction: input
+  data_types: double
+- name: Doppler
+  summary: Doppler grid values along Doppler dimension real-valued *P*-by-1 column vector
+  direction: input
+  data_types: double
+- name: DetIdx
+  summary: Detection indices real-valued *Nd*-by-*Q* matrix
+  direction: input
+- name: NoisePower
+  summary: Noise power at detection locations positive scalar | real-valued 1-by-*Q* row vector of positive values
+  direction: input
+- name: Clusters
+  summary: Cluster IDs real-valued 1-by-*Q* row vector of positive values
+  direction: input
+- name: Est
+  summary: Doppler estimate real-valued *K*-by-1 column vector
+  direction: output
+- name: Var
+  summary: Doppler estimation variance positive, real-valued *K*-by-1 column vector
+  direction: output
+```
 
 ### Input
 
@@ -106,8 +133,35 @@ the Ziv-Zakai bound.
 
 To enable this port, select the **Output variance for
 parameter estimates** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum number of estimates
+  summary: Maximum number of estimates to report 1 (default) | positive integer
+  group: ''
+- name: Enable cluster ID input
+  summary: Enable cluster ID input off (default) | on
+  group: ''
+- name: Output variance for parameter estimates
+  summary: Enable output variance port off (default) | on
+  group: ''
+- name: Number of pulses in Doppler processed waveform
+  summary: Number of pulses 2 (default) | positive integer
+  group: ''
+- name: Source of noise power
+  summary: Source of noise power values Property (default) | Input port
+  group: ''
+- name: Noise power
+  summary: Noise power values 1.0 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Maximum number of estimates** — Maximum number of estimates to report `1` (default) | positive integer
 
@@ -209,7 +263,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

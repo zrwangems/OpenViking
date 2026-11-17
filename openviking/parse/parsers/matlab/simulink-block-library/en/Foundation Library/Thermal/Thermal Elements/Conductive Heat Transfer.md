@@ -14,6 +14,18 @@ language: en
 # Conductive Heat Transfer
 
 ## Ports
+```yaml
+ports:
+- name: K
+  summary: Thermal conductivity control signal, W/(K\*m) physical signal
+  direction: input
+- name: A
+  summary: Layer A thermal
+  direction: conserving
+- name: B
+  summary: Layer B thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +49,45 @@ Thermal conserving port associated with layer A.
 
 Thermal conserving port associated with layer B. For cylindrical wall geometry,
 layer B is the inside layer.
-
 ## Parameters
+```yaml
+parameters:
+- name: Conductivity type
+  summary: How to specify thermal conductivity Constant (default) | Variable input | Tabulated data
+  group: ''
+- name: Wall geometry
+  summary: Wall shape for heat conduction Planar (default) | Cylindrical
+  group: ''
+- name: Area
+  summary: Area of heat transfer 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Thickness
+  summary: Thickness of material 0.1 m (default) | positive scalar
+  group: ''
+- name: Inner diameter
+  summary: Inner diameter of pipe 0.05 m (default) | positive scalar
+  group: ''
+- name: Outer diameter
+  summary: Outer diameter of pipe 0.1 m (default) | positive scalar
+  group: ''
+- name: Length
+  summary: Pipe length 1 m (default) | positive scalar
+  group: ''
+- name: Thermal conductivity
+  summary: Thermal conductivity of the material 401 W/(K*m) (default) | positive scalar
+  group: ''
+- name: Minimum thermal conductivity
+  summary: Lower bound for thermal conductivity 10 W/(K*m) (default) | positive scalar
+  group: ''
+- name: Thermal conductivity vector
+  summary: Vector of thermal conductivity values for use in table lookup [413, 401, 392, 383, 371, 357, 342] W/(K*m) (default)
+    | vector of positive values
+  group: ''
+- name: Temperature vector
+  summary: Vector of temperature values for use in table lookup [200, 273, 400, 600, 800, 1000, 1200] K (default) | strictly
+    increasing vector
+  group: ''
+```
 
 ### **Conductivity type** — How to specify thermal conductivity `Constant` (default) | `Variable input` | `Tabulated data`
 
@@ -155,7 +204,6 @@ can be nonuniformly spaced. The vector must contain at least two values.
 
 To enable this parameter, set **Conductivity type** to
 `Tabulated data`.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Elements

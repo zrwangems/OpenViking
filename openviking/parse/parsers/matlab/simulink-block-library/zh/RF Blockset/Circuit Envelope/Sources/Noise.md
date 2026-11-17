@@ -15,10 +15,36 @@ chinese_source: worker-translation
 # Noise
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 噪声类型 Ideal voltage（默认）| Ideal current
+  group: ''
+- name: Noise distribution
+  summary: 噪声分布类型 White（默认）| Piece-wise linear | Colored
+  group: ''
+- name: Noise power spectral density
+  summary: 单边噪声功率谱分布 0（默认）| 标量 | 向量
+  group: ''
+- name: Frequencies
+  summary: 分段线性噪声分布的频率 0 Hz（默认）| 非负频率向量 | Hz | kHz | MHz | GHz
+  group: ''
+- name: Automatically estimate impulse response duration
+  summary: 估计冲激响应持续时间 on（默认）| off
+  group: ''
+- name: Impulse response duration
+  summary: 用于模拟有色噪声的冲激响应持续时间 1e-10 s（默认）| 标量 | s | ms | us | ns
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏 RF 电路端子 on（默认）| off
+  group: ''
+```
 
 ### **Source type** — 噪声类型 `Ideal voltage`（默认）| `Ideal current`
 
@@ -72,7 +98,6 @@ R2025b 中未记录。
 选择此选项可在内部接地并隐藏负端子。要暴露负端子，请清除该选项。通过暴露这些端子，您可以将它们连接到模型的其他部分。
 
 默认情况下，此选项处于选中状态。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Sources

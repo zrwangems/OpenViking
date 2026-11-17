@@ -14,10 +14,15 @@ language: en
 # Convolutional Deinterleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Rows of shift registers**
 :   The number of shift registers that the block uses internally.
@@ -41,7 +46,6 @@ Not documented in R2025b.
     The value of the first element of the **Initial
     conditions** parameter is unimportant, since the last shift
     register has zero delay.
-
 ## Libraries
 
 Not documented in R2025b.

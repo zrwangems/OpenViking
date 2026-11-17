@@ -14,6 +14,42 @@ language: en
 # Controlled Reservoir (2P)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Pressure control signal, MPa physical signal
+  direction: input
+- name: Tc
+  summary: Reservoir condensing temperature control signal, K physical signal
+  direction: input
+- name: Te
+  summary: Reservoir evaporating temperature control signal, K physical signal
+  direction: input
+- name: T
+  summary: Temperature control signal, K physical signal
+  direction: input
+- name: X
+  summary: Mass fraction of vapor control signal, unitless physical signal
+  direction: input
+- name: a
+  summary: Volume fraction of vapor control signal, unitless physical signal
+  direction: input
+- name: H
+  summary: Specific enthalpy of the fluid control signal, kJ/kg physical signal
+  direction: input
+- name: U
+  summary: Specific internal energy of the fluid control signal, kJ/kg physical signal
+  direction: input
+- name: SC
+  summary: Degree of subcooling of the fluid control signal, deltaK physical signal
+  direction: input
+- name: SH
+  summary: Degree of superheating of the fluid control signal, deltaK physical signal
+  direction: input
+- name: A
+  summary: Reservoir inlet two-phase fluid
+  direction: conserving
+```
 
 ### Input
 
@@ -136,8 +172,26 @@ To enable this port, set **Reservoir energy specification** to
 ### **A** — Reservoir inlet two-phase fluid
 
 Two-phase fluid conserving port associated with the reservoir inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Reservoir pressure specification
+  summary: Specification method for reservoir pressure Specified pressure (default) | Saturation pressure at specified condensing
+    temperature | Saturation pressure at specified evaporating temperature
+  group: ''
+- name: Reservoir energy specification
+  summary: Thermodynamic variable to use to define reservoir conditions Subcooled liquid temperature (default) | Superheated
+    vapor temperature | Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy | Degree of subcooling
+    | Degree of superheating
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at reservoir inlet 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Reservoir pressure above critical
+  summary: Define action for when reservoir pressure exceeds critical pressure Warn and limit to critical pressure (default)
+    | Limit to critical pressure | Error
+  group: ''
+```
 
 ### **Reservoir pressure specification** — Specification method for reservoir pressure `Specified pressure` (default) | `Saturation pressure at specified condensing temperature` | `Saturation pressure at specified evaporating temperature`
 
@@ -227,7 +281,6 @@ Define action for when reservoir pressure exceeds critical pressure:
 This parameter is automatically exposed when you select a combination of pressure
 specification and energy specification options that requires the pressure inside the
 reservoir to be less than the critical pressure.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

@@ -14,6 +14,21 @@ language: en
 # Rotating Cylinder Force (IL)
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Liquid density port isothermal liquid
+  direction: conserving
+- name: C
+  summary: Cylinder casing mechanical translational
+  direction: conserving
+- name: R
+  summary: Piston mechanical translational
+  direction: conserving
+- name: W
+  summary: Angular velocity, rad/s physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -39,8 +54,23 @@ velocity and force induced by the pressure differential.
 ### **W** — Angular velocity, rad/s physical signal
 
 Angular velocity in rad/s, specified as a physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Piston outer radius
+  summary: Piston outer radius 0.1 m (default) | positive scalar
+  group: ''
+- name: Piston inner radius
+  summary: Piston inner radius 0.05 m (default) | positive scalar
+  group: ''
+- name: Fluid entry radius
+  summary: Fluid channel radius 0.06 m (default) | positive scalar
+  group: ''
+- name: Actuator mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: ''
+```
 
 ### **Piston outer radius** — Piston outer radius `0.1` m (default) | positive scalar
 
@@ -67,7 +97,6 @@ corresponds to positive displacement, or actuator shaft extension, when
 C` corresponds to negative displacement, or actuator shaft
 retraction, when **R** – **C** is
 positive.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Actuators / Auxiliary Components

@@ -14,6 +14,12 @@ language: en
 # Solver Configuration
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Connection port untyped conserving port
+  direction: conserving
+```
 
 ### Conserving
 
@@ -23,8 +29,99 @@ Conserving connection port. This port is untyped. You can connect it anywhere on
 physical network circuit by creating a branching point on a connection line between
 conserving ports of any type. The block provides solver setting to the whole physical
 network, regardless of the connection type.
-
 ## Parameters
+```yaml
+parameters:
+- name: Equation formulation
+  summary: Specify how the solver treats sinusoidal variables Time (default) | Frequency and time
+  group: ''
+- name: Index reduction method
+  summary: Choose index reduction method for solving nonlinear high-index DAEs Derivative replacement (default) | Projection
+    | None
+  group: ''
+- name: Start simulation from steady state
+  summary: Select whether to start simulation from the initial state or from steady state off (default) | on
+  group: ''
+- name: Consistency tolerance
+  summary: State-based tolerance schema used for initial conditions and transient initialization computation Model AbsTol
+    and RelTol (default) | Local tolerance settings
+  group: ''
+- name: Absolute tolerance
+  summary: Local absolute tolerance 0.001 (default) | positive scalar
+  group: ''
+- name: Relative tolerance
+  summary: Local relative tolerance 0.001 (default) | positive scalar
+  group: ''
+- name: Tolerance factor
+  summary: Scaling factor used for absolute and relative tolerances 0.001 (default) | scalar in the range (0,1]
+  group: ''
+- name: Use local solver
+  summary: Use sample-based local solver for physical network in the model off (default) | on
+  group: ''
+- name: Solver type
+  summary: Solver type used by local solver for updating the states Backward Euler (default) | Trapezoidal Rule | Partitioning
+  group: ''
+- name: Sample time
+  summary: Sample time for the local solver 0.001 (default) | positive scalar
+  group: ''
+- name: Partition method
+  summary: Select whether to prioritize speed or robustness when using Partitioning local solver Robust simulation (default)
+    | Fast simulation
+  group: ''
+- name: Partition storage method
+  summary: Select method used for storing partitioning data when using Partitioning local solver As needed (default) | Exhaustive
+  group: ''
+- name: Partition memory budget [kB]
+  summary: Memory budget for exhaustive method of storing partition data 1024 (default) | positive scalar
+  group: ''
+- name: Resolve indeterminate equations during runtime
+  summary: Applies runtime regularization to solve statically indeterminate systems on (default) | off
+  group: ''
+- name: Use fixed-cost runtime consistency iterations
+  summary: Fixed-cost simulation option off (default) | on
+  group: ''
+- name: Nonlinear iterations
+  summary: Number of Newton iterations for transient initialization 3 (default) | positive integer
+  group: ''
+- name: Mode iterations
+  summary: Number of mode iterations for transient initialization 2 (default) | positive integer
+  group: ''
+- name: Compute impulses
+  summary: Lets you manage computational cost of impulse detection during transient initialization off (default) | on
+  group: ''
+- name: Impulse iterations
+  summary: Number of impulse iterations for transient initialization 2 (default) | positive integer
+  group: ''
+- name: Maximum threads for function evaluation
+  summary: Use multithreading to speed up Newton iterations for Backward Euler solver 1 (default) | positive integer
+  group: ''
+- name: Linear Algebra
+  summary: Specify how the solver treats matrices auto (default) | Sparse | Full
+  group: ''
+- name: Number of threads (specify n for 2^n)
+  summary: Use multithread linear algebra to speed up desktop simulation on a multicore machine 0 (default) | positive integer
+  group: ''
+- name: Delay memory budget [kB]
+  summary: Memory budget for processing delays 1024 (default) | positive scalar
+  group: ''
+- name: Apply filtering at 1-D/3-D connections when needed
+  summary: Automatically provides additional derivative needed by Simscape Multibody™ blocks on (default) | off
+  group: ''
+- name: Filtering time constant
+  summary: Time constant for the delay, in seconds 0.001 (default) | positive scalar
+  group: ''
+- name: Use local solver
+  summary: Use sample-based local solver for Simscape Multibody network off (default) | on
+  group: ''
+- name: Solver type
+  summary: Solver type used by local solver for updating the states in Simscape Multibody network First-order explicit formula
+    (default) | Second-order explicit formula | Third-order explicit formula | Fourth-order explicit formula | Fifth-order
+    explicit formula | Eight-order explicit formula
+  group: ''
+- name: Sample time
+  summary: Sample time for the Multibody local solver 0.001 (default) | positive scalar
+  group: ''
+```
 
 ### **Equation formulation** — Specify how the solver treats sinusoidal variables `Time` (default) | `Frequency and time`
 
@@ -461,7 +558,6 @@ Multibody network once per time step.
 
 To enable this parameter, in the **Multibody** section, select
 the **Use local solver** check box.
-
 ## Libraries
 
 Simscape / Utilities

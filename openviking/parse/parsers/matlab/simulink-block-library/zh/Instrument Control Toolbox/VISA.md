@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # VISA
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 要发送的数据 vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Data
+  summary: 接收到的数据 vector | matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Status
+  summary: 仪器状态 1 | 0
+  direction: output
+  data_types: double
+- name: Instrument error
+  summary: 来自仪器的错误消息 string
+  direction: output
+  data_types: string
+```
 
 ### 输入
 
@@ -58,8 +77,223 @@ chinese_source: worker-translation
 - 要启用此端口，请在 **Handle Error** 选项卡中将 **Action when error occurs** 设置为 `Continue simulation`，并选中 **Check instrument error** 参数。
 
 **数据类型：** `string`
-
 ## 参数
+```yaml
+parameters:
+- name: Block sample time
+  summary: 采样之间的时间间隔 -1（默认）| 数值
+  group: 模块参数
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的数值'
+- name: Resource name
+  summary: VISA 资源名称 可用的 VISA 资源
+  group: 硬件配置
+  block_parameter: ResourceName
+  values: 资源名称
+- name: Vendor
+  summary: 仪器制造商 只读：仪器制造商名称
+  group: 硬件配置
+  block_parameter: VendorName
+  values: 只读：供应商名称
+- name: Model
+  summary: 仪器型号 只读：仪器型号名称
+  group: 硬件配置
+  block_parameter: ModelName
+  values: 只读：型号名称
+- name: Serial Number
+  summary: 与仪器关联的唯一序列号 只读：仪器序列号
+  group: 硬件配置
+  block_parameter: SlNumber
+  values: 只读：序列号
+- name: VISA resource type
+  summary: 要配置的 VISA 资源类型 TCP/IP Socket（默认）| TCP/IP HiSLIP | TCP/IP VXI-11
+  group: 硬件配置
+  block_parameter: Interface
+  values: '"TCP/IP Socket"（默认）| "TCP/IP HiSLIP" | "TCP/IP VXI-11"'
+- name: Board index
+  summary: 要连接的板卡索引 正整数
+  group: 硬件配置
+  block_parameter: BoardNumber
+  values: 带引号的正数
+- name: IP address
+  summary: 要连接的 IP 地址 IP 地址
+  group: 硬件配置
+  block_parameter: IPAddress
+  values: 带引号的点分十进制表示法的 IP 地址
+- name: Port number
+  summary: 用于连接的端口号 4880（默认）| 正整数
+  group: 硬件配置
+  block_parameter: Port
+  values: '"4880"（默认）| 带引号的正数'
+- name: Device ID
+  summary: 要连接的设备 ID 正整数
+  group: 硬件配置
+  block_parameter: DeviceID
+  values: 带引号的正数
+- name: Resource name
+  summary: VISA 资源名称 VISA 资源名称
+  group: 硬件配置
+  block_parameter: ResourceString
+  values: 带引号的资源名称
+- name: EOI Mode
+  summary: EOI 模式 on（默认）| off
+  group: 硬件配置
+  block_parameter: EOIMode
+  values: '"on"（默认）| "off"'
+- name: Byte order
+  summary: 字节的顺序 little-endian（默认）| big-endian
+  group: 硬件配置
+  block_parameter: ByteOrder
+  values: '"little-endian"（默认）| "big-endian"'
+- name: Read terminator
+  summary: 读取数据的终止符字符 off（默认）| LF | CR | CR/LF | 0 到 255
+  group: 硬件配置
+  block_parameter: ReadTerminator
+  values: '"off"（默认） | "LF" | "CR" | "CR/LF" | 0 到 255（带引号）'
+- name: 写入终止符
+  summary: 用于写入数据的终止符字符 LF（默认） | CR | CR/LF | 0 到 255
+  group: 硬件配置
+  block_parameter: WriteTerminator
+  values: '"LF"（默认） | "CR" | "CR/LF" | 0 到 255（带引号）'
+- name: 数据位
+  summary: 表示一个数据字符的位数 8（默认） | 5 | 6 | 7
+  group: 硬件配置
+  block_parameter: DataBits
+  values: '"8"（默认） | "5" | "6" | "7"'
+- name: 奇偶校验
+  summary: 奇偶校验位类型 none（默认） | even | odd
+  group: 硬件配置
+  block_parameter: Parity
+  values: '"none"（默认） | "even" | "odd"'
+- name: 停止位
+  summary: 指示字符结束的位模式 1（默认） | 正标量
+  group: 硬件配置
+  block_parameter: StopBits
+  values: '"1"（默认） | 正标量'
+- name: Flow control
+  summary: 管理数据传输速率的模式 none（默认）| hardware | software
+  group: 硬件配置
+  block_parameter: FlowControl
+  values: '"none"（默认）| "hardware" | "software"'
+- name: Baud rate
+  summary: 通信速度 9600（默认）| 正整数
+  group: 硬件配置
+  block_parameter: BaudRate
+  values: '"9600"（默认）| 正整数'
+- name: Timeout
+  summary: 完成操作所允许的时间 10（默认）| 数值
+  group: 硬件配置
+  block_parameter: TimeOut
+  values: 10（默认）| 数值
+- name: Instrument identification command
+  summary: 发送到仪器的 SCPI 命令 *IDN?（默认）| SCPI 命令
+  group: 硬件配置
+  block_parameter: TestCommand
+  values: '"*IDN?"（默认）| 带引号的 SCPI 命令'
+- name: Validate and test connection
+  summary: VISA 资源连接验证按钮
+  group: 硬件配置
+- name: Response
+  summary: 仪器查询响应 只读：字符串标量
+  group: 硬件配置
+  block_parameter: Response
+  values: 只读：带引号的仪器响应
+- name: Initialization commands
+  summary: 要发送到仪器的 SCPI 命令 *RST;*CLS（默认）| SCPI 命令
+  group: Instrument Initialization
+  block_parameter: SendString
+  values: '"*RST;*CLS"（默认）| 引号中的 SCPI 命令'
+- name: MATLAB Code
+  summary: 要发送到仪器的 MATLAB® 代码 MATLAB 代码
+  group: Instrument Initialization
+  block_parameter: ExecuteFunction
+  values: 引号中的 MATLAB 代码
+- name: Instrument error check command
+  summary: 要发送到仪器的 SCPI 命令 SYSTem:ERRor?（默认）| SCPI 命令
+  group: Instrument Initialization
+  block_parameter: InitTestCommand
+  values: '"SYSTem:ERRor?"（默认）| 引号中的 SCPI 命令'
+- name: Upload initialization commands and check instrument error status
+  summary: 初始化和错误检查命令上传按钮
+  group: Instrument Initialization
+- name: Instrument status
+  summary: 仪器初始化响应 只读：字符串标量
+  group: Instrument Initialization
+  block_parameter: initStatus
+  values: 只读：带引号的仪器响应
+- name: SCPI Command
+  summary: 要发送到仪器的 SCPI 命令 SCPI command
+  group: 发送或查询
+  block_parameter: StaticCommand
+  values: 带引号的 SCPI 命令
+- name: Binary command
+  summary: 要发送到仪器的二进制命令 binary values
+  group: 发送或查询
+  block_parameter: StaticBinary
+  values: 带引号的二进制值
+- name: Binblock data
+  summary: 要发送到仪器的 Binblock 命令 binblock values
+  group: 发送或查询
+  block_parameter: BinBlockCommand
+  values: 带引号的 binblock 值
+- name: Data type
+  summary: 每个值的大小和格式 uint8 (default) | single | double | int8 | int16 | uint16 | int32 | uint32 | uint64 | int64
+  group: 发送或查询
+  block_parameter: DataType
+  values: '"uint8" (default) | "single" | "double" | "int8" | "int16" | "uint16" | "int32" | "uint32" | "int64" | "uint64"'
+- name: Command header
+  summary: 随输入端口数据一起发送的 SCPI 命令头 SCPI command
+  group: 发送或查询
+  block_parameter: Header
+  values: 带引号的 SCPI 命令
+- name: Numeric format
+  summary: 数值数据的格式 Integer, signed (%d)（默认）| Integer, unsigned (%u) | Floating-point (%f) | Characters (%c) | Enter numeric
+    format
+  group: 发送或查询
+  block_parameter: NumFormat
+  values: '"Integer, signed (%d)"（默认）| "Integer, unsigned (%u)" | "Floating-point (%f)" | "Characters (%c)" | "Enter numeric
+    format"'
+- name: Enter numeric format
+  summary: 数值数据的自定义格式 %2f（默认）| numeric formats
+  group: 发送或查询
+  block_parameter: CustomNumericFormat
+  values: '"%2f"（默认）| numeric format in quotes'
+- name: delimiter
+  summary: 分隔字符 ,（默认）
+  group: 发送或查询
+  block_parameter: delimiter
+  values: '","（默认）| delimiting character in quotes'
+- name: Data type
+  summary: 每个值的大小和格式 uint8（默认）| single | double | int8 | int16 | uint16 | int32 | uint32 | uint64 | int64
+  group: 发送或查询
+  block_parameter: ReceiveDatatype
+  values: '"uint8"（默认）| "single" | "double" | "int8" | "int16" | "uint16" | "int32" | "uint32" | "int64" | "uint64"'
+- name: Determine data size automatically
+  summary: 允许模块自动检测数据大小 on（默认）| off
+  group: 发送或查询
+  block_parameter: AutoSize
+  values: '"on"（默认） | "off"'
+- name: 数据大小
+  summary: 读取的值的数量 [1,1]（默认） | [10000,1]（默认） | 数值数组
+  group: 发送或查询
+  block_parameter: OutputSize
+  values: '"[10000,1]"（默认）'
+- name: 发生错误时的操作
+  summary: 仪器出错时要执行的操作 Stop simulation（默认） | Continue simulation
+  group: 处理错误
+  block_parameter: ActionWhenerror
+  values: '"Stop simulation"（默认） | "Continue simulation"'
+- name: 检查仪器错误
+  summary: 输出错误消息 off（默认） | on
+  group: 处理错误
+  block_parameter: Checkerror
+  values: '"off"（默认） | "on"'
+- name: 错误检查命令
+  summary: 发送到仪器的 SCPI 命令 SYSTem:ERRor?（默认） | SCPI 命令
+  group: 处理错误
+  block_parameter: CheckCommand
+  values: '"SYSTem:ERRor?"（默认） | 带引号的 SCPI 命令'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -1019,7 +1253,6 @@ simulation")`
 | **值：** | `"SYSTem:ERRor?"`（默认） | 带引号的 SCPI 命令 |
 
 **示例：** `set_param(gcb,"InitTestCommand","SYSTem:ERRor?")`
-
 ## 所属库
 
 Instrument Control Toolbox

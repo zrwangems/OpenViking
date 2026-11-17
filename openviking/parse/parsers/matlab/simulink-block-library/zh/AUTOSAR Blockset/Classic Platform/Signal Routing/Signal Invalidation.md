@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Signal Invalidation
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据值 数值
+  direction: input
+  data_types: single | double | base integer | Boolean | fixed point | enumerated | bus
+- name: Port_2
+  summary: 失效控制标志 true | false
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: 输出数据值 数值
+  direction: output
+  data_types: single | double | base integer | Boolean | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -41,8 +56,24 @@ chinese_source: worker-translation
 由输入数据值和失效控制标志组合产生的输出数据值。
 
 **数据类型：** `single` | `double` | `base integer` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal invalidation policy
+  summary: 失效策略 Keep（默认）| Replace | DontInvalidate
+  group: ''
+  block_parameter: InvalidationPolicy
+  type: character vector
+  values: '''Keep'' | ''Replace'' | ''DontInvalidate'''
+  default: '''Keep'''
+- name: Initial value
+  summary: 数据元素初始值 0（默认）| double
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector
+  values: real finite values
+  default: '''0'''
+```
 
 ### **Signal invalidation policy** — 失效策略 `Keep`（默认）| `Replace` | `DontInvalidate`
 
@@ -69,7 +100,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：real finite values |
 | **默认值**：`'0'` |
-
 ## 所属库
 
 AUTOSAR Blockset / Classic Platform / Signal Routing

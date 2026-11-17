@@ -14,6 +14,17 @@ language: en
 # Amplifier
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input baseband signal real scalar | real column | complex scalar | complex column
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: Output baseband signal real scalar | real column | complex scalar | complex column
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -33,8 +44,94 @@ input baseband signal is specified as a real scalar with a data type double, the
 baseband signal is also specified as a real signal with the data type double.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Model
+  summary: Amplifier nonlinearity model cubic (default) | ampm | modified-rapp | saleh
+  group: Main Tab
+- name: Linear power gain (dB)
+  summary: Linear gain of amplifier 0 (default) | real scalar
+  group: Main Tab
+- name: Type of Non-Linearity
+  summary: Third - order nonlinearity type OIP3 (default) | IIP3 | IP1dB | OP1dB | IPsat | OPsat
+  group: Main Tab
+- name: IIP3 (dBm)
+  summary: Input third-order intercept point Inf (default) | real positive number
+  group: Main Tab
+- name: OIP3 (dBm)
+  summary: Output third-order intercept point Inf (default) | real positive number
+  group: Main Tab
+- name: IP1dB (dBm)
+  summary: Input 1 dB compression point Inf (default) | real positive number
+  group: Main Tab
+- name: OP1dB (dBm)
+  summary: Output 1 dB compression point Inf (default) | real positive number
+  group: Main Tab
+- name: IPsat (dBm)
+  summary: Input saturation point Inf (default) | real positive number
+  group: Main Tab
+- name: OPsat (dBm)
+  summary: Output saturation point Inf (default) | real positive number
+  group: Main Tab
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: Main Tab
+- name: Plot power characteristics
+  summary: Plot power characteristics button (default)
+  group: Main Tab
+- name: Lookup table (Pin(dBm), Pout(dBm), deg)
+  summary: Lookup table [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ] (default) | *M*-by-3 real matrix
+  group: Main Tab
+- name: Output saturation level (V)
+  summary: Output saturation level 1 (default) | real positive number
+  group: Main Tab
+- name: Magnitude smoothness factor
+  summary: Magnitude smoothness factor 2 (default) | real positive number
+  group: Main Tab
+- name: Phase gain (rad)
+  summary: Phase gain -0.45 (default) | real scalar
+  group: Main Tab
+- name: Phase saturation
+  summary: Phase saturation 0.88 (default) | real positive number
+  group: Main Tab
+- name: Phase smoothness factor
+  summary: Phase smoothness factor [3.43, 3.43] (default) | real positive number | two-tuple vector
+  group: Main Tab
+- name: Input scaling (dB)
+  summary: Scaling factor for input signal level 0 (default) | nonnegative real number
+  group: Main Tab
+- name: AM / AM parameters [alpha beta]
+  summary: AM/AM conversion parameters [ 2.1587, 1.1517 ] (default) | two-element vector
+  group: Main Tab
+- name: AM / PM parameters [alpha beta]
+  summary: AM/PM conversion parameters [ 4.0033, 9.1040 ] (default) | two-element vector
+  group: Main Tab
+- name: Output scaling (dB)
+  summary: Scaling factor for output signal level 0 (default) | nonnegative real number
+  group: Main Tab
+- name: Include Noise
+  summary: Add noise to system off (default) | on
+  group: Noise Tab
+- name: Specify noise type
+  summary: Noise representation NF (default) | noise-temperature | noise-factor
+  group: Noise Tab
+- name: Noise temperature (K)
+  summary: Noise temperature to model noises in amplifier 290 (default) | nonnegative real number
+  group: Noise Tab
+- name: Noise figure (dB)
+  summary: Noise figure to model noise in amplifier 10 * log10( 2 ) (default) | nonnegative real number
+  group: Noise Tab
+- name: Noise factor
+  summary: Noise factor to model noise in amplifier 2 (default) | positive integer scalar greater than or equal to 1
+  group: Noise Tab
+- name: Seed source
+  summary: Source of initial seed auto (default) | user
+  group: Noise Tab
+- name: Seed
+  summary: Seed for random number generator 67987 (default) | nonnegative integer
+  group: Noise Tab
+```
 
 ### Main Tab
 
@@ -331,7 +428,6 @@ generator.
 To enable this parameter, click **Include Noise** check box
 and choose `user` in the **Seed source**
 parameter.
-
 ## Libraries
 
 RF Blockset / Idealized Baseband

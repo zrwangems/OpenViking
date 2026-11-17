@@ -14,6 +14,24 @@ language: en
 # Datasheet Battery
 
 ## Ports
+```yaml
+ports:
+- name: CapInit
+  summary: Battery capacity scalar
+  direction: input
+- name: BattCurr
+  summary: Battery load current scalar
+  direction: input
+- name: BattTemp
+  summary: Battery temperature scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: BattVolt
+  summary: Battery output voltage scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -58,8 +76,75 @@ Bus signal containing these block calculations.
 
 Combined voltage of the battery network,
 *Vout*, in V.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial battery capacity
+  summary: Input or parameter Parameter (default) | External Input
+  group: ''
+  block_parameter: CapacityCtrl
+  values: Parameter (default) | External Input
+- name: Output battery voltage
+  summary: Unfiltered or Filter Unfiltered (default) | Filtered
+  group: ''
+  block_parameter: OutputVlt
+  values: Unfiltered (default) | Filtered
+- name: Rated capacity at nominal temperature, BattChargeMax
+  summary: Constant 100 (default) | scalar
+  group: ''
+  block_parameter: BattChargeMax
+  values: 100 (default) | scalar
+- name: Open circuit voltage table data, Em
+  summary: 1-D lookup table 1-by-P matrix
+  group: ''
+  block_parameter: Em
+  values: 1-by-P matrix
+- name: State of charge breakpoints for open circuit voltage, SOCEmBp
+  summary: Breakpoints 1-by-P matrix
+  group: ''
+  block_parameter: SOCEmBp
+  values: 1-by-P matrix
+- name: Internal resistance table data, RInt
+  summary: 2-D lookup table N-by-M matrix
+  group: ''
+  block_parameter: RInt
+  values: N-by-M matrix
+- name: Battery temperature breakpoints, BattTempBp
+  summary: Breakpoints [243.1 253.1 263.1 273.1 283.1 298.1 313.1] (default) | 1-by-N matrix
+  group: ''
+  block_parameter: BattTempBp
+  values: '[243.1 253.1 263.1 273.1 283.1 298.1 313.1] (default) | 1-by-N matrix'
+- name: State of charge breakpoints for internal resistance, SOCRintBp
+  summary: Breakpoints [0 0.2 0.4 0.6 0.8 1] (default) | 1-by-M matrix
+  group: ''
+  block_parameter: SOCRintBp
+  values: '[0 0.2 0.4 0.6 0.8 1] (default) | 1-by-M matrix'
+- name: Number of cells in series, Ns
+  summary: Integer 1 (default) | scalar
+  group: ''
+  block_parameter: Ns
+  values: 1 (default) | scalar
+- name: Number of cells in parallel, Np
+  summary: Integer 1 (default) | scalar
+  group: ''
+  block_parameter: Np
+  values: 1 (default) | scalar
+- name: Initial battery capacity, BattCapInit
+  summary: Capacity 100 (default) | scalar
+  group: ''
+  block_parameter: BattCapInit
+  values: 100 (default) | scalar
+- name: Output battery voltage time constant, Tc
+  summary: Filter time constant 1/1000 (default) | scalar
+  group: ''
+  block_parameter: Tc
+  values: -1 (default) | scalar
+- name: Output battery voltage initial value, Vinit
+  summary: Filter initial voltage 4.221 (default) | scalar
+  group: ''
+  block_parameter: Vinit
+  values: -1 (default) | scalar
+```
 
 #### Block Options
 
@@ -358,7 +443,6 @@ Setting **Output battery voltage** parameter to
 
 - **Output battery voltage time constant, Tc**
 - **Output battery voltage initial value, Vinit**
-
 ## Libraries
 
 Powertrain Blockset / Energy Storage and Auxiliary Drive / Datasheet Battery

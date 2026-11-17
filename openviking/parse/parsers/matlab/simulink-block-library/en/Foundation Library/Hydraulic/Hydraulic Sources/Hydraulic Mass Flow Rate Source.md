@@ -14,6 +14,9 @@ language: en
 # Hydraulic Mass Flow Rate Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -25,11 +28,12 @@ The block has the following ports:
 
 `M`
 :   Control signal port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

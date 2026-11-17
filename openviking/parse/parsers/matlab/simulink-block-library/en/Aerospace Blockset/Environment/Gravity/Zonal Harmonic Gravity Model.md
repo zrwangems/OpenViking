@@ -14,6 +14,17 @@ language: en
 # Zonal Harmonic Gravity Model
 
 ## Ports
+```yaml
+ports:
+- name: Xecef
+  summary: Planet-centered planet-fixed coordinates m-by-3 matrix
+  direction: input
+  data_types: double
+- name: gecef
+  summary: Gravity values m-by-3 array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -36,8 +47,60 @@ Gravity values, returned as an *m*-by-3 array, in the
 coordinates, in the selected length units per second squared.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Degree
+  summary: Degree of harmonic model 4 (default) | 2 | 3
+  group: ''
+  block_parameter: degree
+  type: character vector
+  values: '''2'' | ''3'' | ''4'''
+  default: '''4'''
+- name: Action for out-of-range input
+  summary: Out-of-range input behavior Warning (default) | ErrorNone
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Planet model
+  summary: Planetary model Mercury (default) | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Custom
+  group: ''
+  block_parameter: ptype
+  type: character vector
+  values: '''Mercury'' | ''Venus'' | ''Earth'' | ''Moon'' | ''Mars'' | ''Jupiter'' | ''Saturn'' | ''Uranus'' | ''Neptune''
+    | ''Custom'''
+  default: '''Earth'''
+- name: Equatorial radius
+  summary: Planetary equatorial radius 6378136.3 (default) | scalar
+  group: ''
+  block_parameter: R
+  type: character vector
+  values: scalar
+  default: '''6378136.3'''
+- name: Gravitational parameter
+  summary: Planetary gravitational parameter 398600441500000 (default) | scalar
+  group: ''
+  block_parameter: GM
+  type: character vector
+  values: scalar
+  default: '''398600441500000'''
+- name: J values
+  summary: Zonal harmonic coefficients [1.0826269e-03 -2.5323000e-06 -1.6204000e-06] (default) | 3-element array
+  group: ''
+  block_parameter: jvalue
+  type: character vector
+  values: scalar
+  default: '''[1.0826269e-03 -2.5323000e-06 -1.6204000e-06]'''
+```
 
 ### **Units** — Input units `Metric (MKS)` (default) | `English`
 
@@ -186,7 +249,6 @@ To enable this parameter, set **Planet model** to
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'[1.0826269e-03 -2.5323000e-06 -1.6204000e-06]'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Gravity

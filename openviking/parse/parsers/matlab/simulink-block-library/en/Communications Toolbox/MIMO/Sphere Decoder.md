@@ -14,10 +14,15 @@ language: en
 # Sphere Decoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Signal constellation**
 :   Specify the number of points in the signal constellation to which the bits are mapped.
@@ -56,7 +61,6 @@ Not documented in R2025b.
 :   Specify if the block simulates using `Code generation` or
     `Interpreted execution`. The default is `Interpreted
     execution`.
-
 ## Libraries
 
 Not documented in R2025b.

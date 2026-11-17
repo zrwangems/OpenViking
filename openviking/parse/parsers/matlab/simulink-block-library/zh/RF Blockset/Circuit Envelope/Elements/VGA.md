@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # VGA
 
 ## 端口
+```yaml
+ports:
+- name: Gain
+  summary: 功率增益信号标量
+  direction: input
+  data_types: double
+- name: IP2
+  summary: 二阶截点信号标量
+  direction: input
+  data_types: double
+- name: IP3
+  summary: 三阶截点信号标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -35,8 +50,22 @@ chinese_source: worker-translation
 三阶截点信号，指定为以 dBm 为单位的标量。三阶截点信号是 Simulink 信号。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input impedance (Ohm)
+  summary: VGA 的输入阻抗 50（默认）| 标量
+  group: ''
+- name: Output impedance (Ohm)
+  summary: VGA 的输出阻抗 50（默认）| 正标量
+  group: ''
+- name: Intercept points convention
+  summary: 输入参考或输出参考约定 Output（默认）| Input
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏负端子 on（默认）| off
+  group: ''
+```
 
 ### **Input impedance (Ohm)** — VGA 的输入阻抗 `50`（默认）| 标量
 
@@ -53,7 +82,6 @@ IP2 或 IP3 截点的输入参考或输出参考约定，指定为 `Input` 或 `
 ### **Ground and hide negative terminals** — 接地并隐藏负端子 `on`（默认）| `off`
 
 接地并隐藏负端子，指定为 `on` 或 `off`。选择此参数可在内部将负端子接地并隐藏。清除该选项可暴露负端子。通过暴露这些端子，您可以将它们连接到模型的其他部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

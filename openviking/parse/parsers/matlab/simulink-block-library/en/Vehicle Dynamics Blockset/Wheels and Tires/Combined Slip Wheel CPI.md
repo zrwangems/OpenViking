@@ -14,6 +14,57 @@ language: en
 # Combined Slip Wheel CPI
 
 ## Ports
+```yaml
+ports:
+- name: Omega
+  summary: Rotational velocity scalar | N-by-1 vector
+  direction: input
+- name: Vx
+  summary: Longitudinal velocity scalar | *N*-by-1 vector
+  direction: input
+- name: Vy
+  summary: Lateral velocity scalar | *N*-by-1 vector
+  direction: input
+- name: Camber
+  summary: Inclination angle scalar | *N*-by-1 vector
+  direction: input
+- name: YawRate
+  summary: Tire angular velocity scalar | *N*-by-1 vector
+  direction: input
+- name: Fext
+  summary: Axle force applied to tire scalar | *N*-by-1 vector
+  direction: input
+- name: RadialDeflct
+  summary: Tire radial deflection scalar | *N*-by-1 vector
+  direction: input
+- name: ScaleFctrs
+  summary: Scale factors 27-by-N array
+  direction: input
+- name: Prs
+  summary: Tire inflation pressure scalar | N-by-1 vector
+  direction: input
+- name: Info
+  summary: Block data bus
+  direction: output
+- name: Fx
+  summary: Longitudinal axle force scalar | *N*-by-1 vector
+  direction: output
+- name: Fy
+  summary: Lateral axle force scalar | *N*-by-1 vector
+  direction: output
+- name: Fz
+  summary: Vertical axle force scalar | *N*-by-1 vector
+  direction: output
+- name: Mx
+  summary: Overturning moment scalar | *N*-by-1 vector
+  direction: output
+- name: My
+  summary: Rolling resistive moment scalar | *N*-by-1 vector
+  direction: output
+- name: Mz
+  summary: Aligning moment scalar | *N*-by-1 vector
+  direction: output
+```
 
 ### Input
 
@@ -222,8 +273,1063 @@ tire-fixed *z*-axis, in N·m.
 Vector is the number of wheels, *N*,
 by `1`. If you provide a scalar value, the block assumes that number of
 wheels is one.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tire type
+  summary: Type External file | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car 235/45R18
+    | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5
+  group: Tire Options
+  block_parameter: tireType
+  values: External file (default) | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car
+    235/45R18 | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5
+- name: Tire file or object, tireParamSet
+  summary: Tire file .mat | .tir | .txt
+  group: Tire Options
+  block_parameter: tireParamSet
+  values: vdynPassCar.mat (default) | .tir | .txt
+- name: Vertical Motion
+  summary: Vertical motion model None (default) | External deflection
+  group: Tire Options
+  block_parameter: vertType
+  values: None (default) | External deflection
+- name: Tire side
+  summary: Select tire side Right (default) | Left | Symmetric
+  group: Tire Options
+  block_parameter: TireSide
+  values: Right (default) | Left | Symmetric
+- name: Tire pressure
+  summary: Pressure scalar
+  group: Tire Options
+  block_parameter: TirePrs
+  values: scalar
+- name: Ply steer
+  summary: Include ply steer on (default) | off
+  group: Tire Options
+  block_parameter: plySteer
+  values: on (default) | off
+- name: Turn slip
+  summary: Include turn slip on (default) | off
+  group: Tire Options
+  block_parameter: turnslip
+  values: on (default) | off
+- name: Install Extended Tire Features
+  summary: Option to install Extended Tire Features for Vehicle Dynamics Blockset™ support package button
+  group: Plotting
+- name: Plot steady state force, moment response
+  summary: Option to plot steady-state force and moment tire responses button
+  group: Plotting
+- name: Nominal pressure, NOMPRES
+  summary: Pressure scalar
+  group: Simulation
+  block_parameter: NOMPRES
+  values: scalar
+- name: Maximum pressure, PRESMAX
+  summary: Maximum pressure scalar
+  group: Simulation
+  block_parameter: PRESMAX
+  values: scalar
+- name: Minimum pressure, PRESMIN
+  summary: Minimum pressure scalar
+  group: Simulation
+  block_parameter: PRESMIN
+  values: scalar
+- name: Nominal normal force, FNOMIN
+  summary: Force scalar
+  group: Simulation
+  block_parameter: FNOMIN
+  values: scalar
+- name: Maximum normal force, FZMAX
+  summary: Force scalar
+  group: Simulation
+  block_parameter: FZMAX
+  values: scalar
+- name: Minimum normal force, FZMIN
+  summary: Force scalar
+  group: Simulation
+  block_parameter: FZMIN
+  values: scalar
+- name: Velocity tolerance used to handle low velocity situations, VXLOW
+  summary: Tolerance scalar
+  group: Simulation
+  block_parameter: VXLOW
+  values: scalar
+- name: Max allowable slip ratio (absolute), KPUMAX
+  summary: Max allowable slip ratio scalar
+  group: Simulation
+  block_parameter: KPUMAX
+  values: scalar
+- name: Minimum allowable slip ratio (absolute), KPUMIN
+  summary: Minimum allowable slip ratio scalar
+  group: Simulation
+  block_parameter: KPUMIN
+  values: scalar
+- name: Max allowable slip angle (absolute), ALPMAX
+  summary: Max allowable slip angle scalar
+  group: Simulation
+  block_parameter: ALPMAX
+  values: scalar
+- name: Minimum allowable slip angle (absolute), ALPMIN
+  summary: Minimum allowable slip angle scalar
+  group: Simulation
+  block_parameter: ALPMIN
+  values: scalar
+- name: Maximum allowable camber angle, CAMMAX
+  summary: Maximum allowable camber angle scalar
+  group: Simulation
+  block_parameter: CAMMAX
+  values: scalar
+- name: Minimum allowable camber angle, CAMMIN
+  summary: Minimum allowable camber angle scalar
+  group: Simulation
+  block_parameter: CAMMIN
+  values: scalar
+- name: Nominal longitudinal speed, LONGVL
+  summary: Speed scalar
+  group: Simulation
+  block_parameter: LONGVL
+  values: scalar
+- name: Default tyre side, tyreside
+  summary: Side 'Right' (default) | char
+  group: Simulation
+  block_parameter: tyreside
+  values: '''Right'' (default) | char'
+- name: Initial wheel rotational velocity, omegao
+  summary: Velocity scalar
+  group: Simulation
+  block_parameter: omegao
+  values: scalar
+- name: Tire unloaded radius, UNLOADED_RADIUS
+  summary: Radius scalar
+  group: Dimension
+  block_parameter: UNLOADED_RADIUS
+  values: scalar
+- name: Tire nominal section width, WIDTH
+  summary: Width scalar
+  group: Dimension
+  block_parameter: WIDTH
+  values: scalar
+- name: Rim radius, RIM_RADIUS
+  summary: Radius scalar
+  group: Dimension
+  block_parameter: RIM_RADIUS
+  values: scalar
+- name: Nominal aspect ratio, ASPECT_RATIO
+  summary: Ratio scalar
+  group: Dimension
+  block_parameter: ASPECT_RATIO
+  values: scalar
+- name: Initial tire displacement, zo
+  summary: Displacement scalar
+  group: Vertical
+  block_parameter: zo
+  values: scalar
+- name: Initial wheel vertical velocity (wheel fixed frame), zdoto
+  summary: Velocity scalar
+  group: Vertical
+  block_parameter: zdoto
+  values: scalar
+- name: Effective rolling radius at low load stiffness, BREFF
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: BREFF
+  values: scalar
+- name: Effective rolling radius peak value, DREFF
+  summary: Radius scalar
+  group: Vertical
+  block_parameter: DREFF
+  values: scalar
+- name: Effective rolling radius at high load stiffness, FREFF
+  summary: Radius scalar
+  group: Vertical
+  block_parameter: FREFF
+  values: scalar
+- name: Unloaded to nominal rolling radius ratio, Q_RE0
+  summary: Ratio scalar
+  group: Vertical
+  block_parameter: Q_RE0
+  values: scalar
+- name: Radius rotational speed dependence, Q_V1
+  summary: Speed scalar
+  group: Vertical
+  block_parameter: Q_V1
+  values: scalar
+- name: Stiffness rotational speed dependence, Q_V2
+  summary: Speed scalar
+  group: Vertical
+  block_parameter: Q_V2
+  values: scalar
+- name: Linear load change with deflection, Q_FZ1
+  summary: Load change scalar
+  group: Vertical
+  block_parameter: Q_FZ1
+  values: scalar
+- name: Quadratic load change with deflection, Q_FZ2
+  summary: Load change scalar
+  group: Vertical
+  block_parameter: Q_FZ2
+  values: scalar
+- name: Linear load change with deflection and quadratic camber, Q_FZ3
+  summary: Load change scalar
+  group: Vertical
+  block_parameter: Q_FZ3
+  values: scalar
+- name: Load response to longitudinal force, Q_FCX
+  summary: Force scalar
+  group: Vertical
+  block_parameter: Q_FCX
+  values: scalar
+- name: Load response to lateral force, Q_FCY
+  summary: Force scalar
+  group: Vertical
+  block_parameter: Q_FCY
+  values: scalar
+- name: Vertical stiffness change due to lateral load dependency on lateral stiffness, Q_FCY2
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: Q_FCY2
+  values: scalar
+- name: Stiffness response to pressure, PFZ1
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: PFZ1
+  values: scalar
+- name: Vertical tire stiffness, VERTICAL_STIFFNESS
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: VERTICAL_STIFFNESS
+  values: scalar
+- name: Vertical tire damping, VERTICAL_DAMPING
+  summary: Damping scalar
+  group: Vertical
+  block_parameter: VERTICAL_DAMPING
+  values: scalar
+- name: Rim bottoming out offset, BOTTOM_OFFST
+  summary: Offset scalar
+  group: Vertical
+  block_parameter: BOTTOM_OFFST
+  values: scalar
+- name: Bottoming out stiffness, BOTTOM_STIFF
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: BOTTOM_STIFF
+  values: scalar
+- name: Linear load dependent camber angle effect on vertical stiffness, Q_CAM1
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: Q_CAM1
+  values: scalar
+- name: Quadratic load dependent camber angle effect on vertical stiffness, Q_CAM2
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: Q_CAM2
+  values: scalar
+- name: Linear reduction of stiffness with load and camber angle, Q_CAM3
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: Q_CAM3
+  values: scalar
+- name: Constant camber and slip angle effect on vertical stiffness, Q_FYS1
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: Q_FYS1
+  values: scalar
+- name: Linear camber and slip angle effect on vertical stiffness, Q_FYS2
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: Q_FYS2
+  values: scalar
+- name: Quadratic camber and slip angle effect on vertical stiffness, Q_FYS3
+  summary: Stiffness scalar
+  group: Vertical
+  block_parameter: Q_FYS3
+  values: scalar
+- name: Longitudinal stiffness, LONGITUDINAL_STIFFNESS
+  summary: Stiffness scalar
+  group: Structural
+  block_parameter: LONGITUDINAL_STIFFNESS
+  values: scalar
+- name: Lateral stiffness, LATERAL_STIFFNESS
+  summary: Stiffness scalar
+  group: Structural
+  block_parameter: LATERAL_STIFFNESS
+  values: scalar
+- name: Linear vertical deflection influence on longitudinal stiffness, PCFX1
+  summary: Deflection influence scalar
+  group: Structural
+  block_parameter: PCFX1
+  values: scalar
+- name: Quadratic vertical deflection influence on longitudinal stiffness, PCFX2
+  summary: Deflection influence scalar
+  group: Structural
+  block_parameter: PCFX2
+  values: scalar
+- name: Pressure dependency on longitudinal stiffness, PCFX3
+  summary: Pressure dependency scalar
+  group: Structural
+  block_parameter: PCFX3
+  values: scalar
+- name: Linear vertical deflection influence on lateral stiffness, PCFY1
+  summary: Deflection influence scalar
+  group: Structural
+  block_parameter: PCFY1
+  values: scalar
+- name: Quadratic vertical deflection influence on lateral stiffness, PCFY2
+  summary: Deflection influence scalar
+  group: Structural
+  block_parameter: PCFY2
+  values: scalar
+- name: Pressure dependency on longitudinal stiffness, PCFY3
+  summary: Pressure dependency scalar
+  group: Structural
+  block_parameter: PCFY3
+  values: scalar
+- name: Contact length square root term, Q_RA1
+  summary: Length term scalar
+  group: Contact Patch
+  block_parameter: Q_RA1
+  values: scalar
+- name: Contact length linear term, Q_RA2
+  summary: Length term scalar
+  group: Contact Patch
+  block_parameter: Q_RA2
+  values: scalar
+- name: Contact width root term, Q_RB1
+  summary: Width term scalar
+  group: Contact Patch
+  block_parameter: Q_RB1
+  values: scalar
+- name: Contact width linear term, Q_RB2
+  summary: Width term scalar
+  group: Contact Patch
+  block_parameter: Q_RB2
+  values: scalar
+- name: Cfx shape factor, PCX1
+  summary: Shape factor scalar
+  group: Longitudinal
+  block_parameter: PCX1
+  values: scalar
+- name: Longitudinal friction at nominal normal load, PDX1
+  summary: Friction scalar
+  group: Longitudinal
+  block_parameter: PDX1
+  values: scalar
+- name: Frictional variation with load, PDX2
+  summary: Friction variation scalar
+  group: Longitudinal
+  block_parameter: PDX2
+  values: scalar
+- name: Frictional variation with camber, PDX3
+  summary: Friction variation scalar
+  group: Longitudinal
+  block_parameter: PDX3
+  values: scalar
+- name: Longitudinal curvature at nominal normal load, PEX1
+  summary: Curvature scalar
+  group: Longitudinal
+  block_parameter: PEX1
+  values: scalar
+- name: Variation of curvature factor with load, PEX2
+  summary: Curvature variation scalar
+  group: Longitudinal
+  block_parameter: PEX2
+  values: scalar
+- name: Variation of curvature factor with square of load, PEX3
+  summary: Curvature variation scalar
+  group: Longitudinal
+  block_parameter: PEX3
+  values: scalar
+- name: Longitudinal curvature factor with slip, PEX4
+  summary: Curvature scalar
+  group: Longitudinal
+  block_parameter: PEX4
+  values: scalar
+- name: Longitudinal slip stiffness at nominal normal load, PKX1
+  summary: Stiffness scalar
+  group: Longitudinal
+  block_parameter: PKX1
+  values: scalar
+- name: Variation of slip stiffness with load, PKX2
+  summary: Stiffness variation scalar
+  group: Longitudinal
+  block_parameter: PKX2
+  values: scalar
+- name: Slip stiffness exponent factor, PKX3
+  summary: Slip stiffness scalar
+  group: Longitudinal
+  block_parameter: PKX3
+  values: scalar
+- name: Horizontal shift in slip ratio at nominal normal load, PHX1
+  summary: Slip ratio shift scalar
+  group: Longitudinal
+  block_parameter: PHX1
+  values: scalar
+- name: Variation of horizontal slip ratio with load, PHX2
+  summary: Slip variation scalar
+  group: Longitudinal
+  block_parameter: PHX2
+  values: scalar
+- name: Vertical shift in load at nominal normal load, PVX1
+  summary: Load shift scalar
+  group: Longitudinal
+  block_parameter: PVX1
+  values: scalar
+- name: Variation of vertical shift with load, PVX2
+  summary: Load variation scalar
+  group: Longitudinal
+  block_parameter: PVX2
+  values: scalar
+- name: Linear variation of longitudinal slip stiffness with tire pressure, PPX1
+  summary: Stiffness variation scalar
+  group: Longitudinal
+  block_parameter: PPX1
+  values: scalar
+- name: Quadratic variation of longitudinal slip stiffness with tire pressure, PPX2
+  summary: Stiffness variation scalar
+  group: Longitudinal
+  block_parameter: PPX2
+  values: scalar
+- name: Linear variation of peak longitudinal friction with tire pressure, PPX3
+  summary: Friction variation scalar
+  group: Longitudinal
+  block_parameter: PPX3
+  values: scalar
+- name: Quadratic variation of peak longitudinal friction with tire pressure, PPX4
+  summary: Friction variation scalar
+  group: Longitudinal
+  block_parameter: PPX4
+  values: scalar
+- name: Combined slip Fx slope factor reduction, RBX1
+  summary: Combined slip longitudinal force slope factor reduction scalar
+  group: Longitudinal
+  block_parameter: RBX1
+  values: scalar
+- name: Slip ratio Fx slope reduction variation, RBX2
+  summary: Slip ratio longitudinal force slope reduction variation scalar
+  group: Longitudinal
+  block_parameter: RBX2
+  values: scalar
+- name: Camber influence on combined slip Fx stiffness, RBX3
+  summary: Camber influence on combined slip longitudinal force stiffness scalar
+  group: Longitudinal
+  block_parameter: RBX3
+  values: scalar
+- name: Shape factor for combined slip Fx reduction, RCX1
+  summary: Shape factor for combined slip longitudinal force reduction scalar
+  group: Longitudinal
+  block_parameter: RCX1
+  values: scalar
+- name: Combined Fx curvature factor, REX1
+  summary: Combined longitudinal force curvature factor scalar
+  group: Longitudinal
+  block_parameter: REX1
+  values: scalar
+- name: Combined Fx curvature factor with load, REX2
+  summary: Combined longitudinal force curvature factor scalar
+  group: Longitudinal
+  block_parameter: REX2
+  values: scalar
+- name: Combined slip Fx shift factor reduction, RHX1
+  summary: Combined slip longitudinal force slip factor scalar
+  group: Longitudinal
+  block_parameter: RHX1
+  values: scalar
+- name: Vertical shift of overturning moment, QSX1
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX1
+  values: scalar
+- name: Overturning moment due to camber, QSX2
+  summary: Overturning moment due to camber scalar
+  group: Overturning
+  block_parameter: QSX2
+  values: scalar
+- name: Overturning moment due to Fy, QSX3
+  summary: Overturning moment due to lateral force scalar
+  group: Overturning
+  block_parameter: QSX3
+  values: scalar
+- name: Mx combined lateral force load and camber, QSX4
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX4
+  values: scalar
+- name: Mx load effect due to lateral force and camber, QSX5
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX5
+  values: scalar
+- name: Mx load effect due to B-factor, QSX6
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX6
+  values: scalar
+- name: Mx due to camber and load, QSX7
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX7
+  values: scalar
+- name: Mx due to lateral force and load, QSX8
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX8
+  values: scalar
+- name: Mx due to B-factor of lateral force and load, QSX9
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX9
+  values: scalar
+- name: Mx due to vertical force and camber, QSX10
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX10
+  values: scalar
+- name: Mx due to B-factor of vertical force and camber, QSX11
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX11
+  values: scalar
+- name: Mx due to squared camber, QSX12
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX12
+  values: scalar
+- name: Mx due to lateral force, QSX13
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX13
+  values: scalar
+- name: Mx due to lateral force with camber, QSX14
+  summary: Overturning moment scalar
+  group: Overturning
+  block_parameter: QSX14
+  values: scalar
+- name: Mx due to inflation pressure, PPMX1
+  summary: Overturning moment due to pressure scalar
+  group: Overturning
+  block_parameter: PPMX1
+  values: scalar
+- name: Cfy shape factor for lateral force, PCY1
+  summary: Lateral force shape factor scalar
+  group: Lateral
+  block_parameter: PCY1
+  values: scalar
+- name: Lateral friction muy, PDY1
+  summary: Lateral friction scalar
+  group: Lateral
+  block_parameter: PDY1
+  values: scalar
+- name: Lateral friction variation of muy with load, PDY2
+  summary: Lateral friction variation scalar
+  group: Lateral
+  block_parameter: PDY2
+  values: scalar
+- name: Lateral friction variation of muy with squared camber, PDY3
+  summary: Lateral friction variation scalar
+  group: Lateral
+  block_parameter: PDY3
+  values: scalar
+- name: Efy lateral curvature at nominal force FZNOM, PEY1
+  summary: Lateral curvature at nominal force scalar
+  group: Lateral
+  block_parameter: PEY1
+  values: scalar
+- name: Efy curvature variation with load, PEY2
+  summary: Lateral curvature variation scalar
+  group: Lateral
+  block_parameter: PEY2
+  values: scalar
+- name: Efy curvature constant camber dependency, PEY3
+  summary: Lateral curvature constant scalar
+  group: Lateral
+  block_parameter: PEY3
+  values: scalar
+- name: Efy curvature variation with camber, PEY4
+  summary: Lateral curvature variation scalar
+  group: Lateral
+  block_parameter: PEY4
+  values: scalar
+- name: Efy curvature variation with camber squared, PEY5
+  summary: Lateral curvature variation scalar
+  group: Lateral
+  block_parameter: PEY5
+  values: scalar
+- name: Maximum KFy/FZNOM stiffness, PKY1
+  summary: Maximum stiffness scalar
+  group: Lateral
+  block_parameter: PKY1
+  values: scalar
+- name: Load at maximum KFy/FZNOM stiffness, PKY2
+  summary: Load scalar
+  group: Lateral
+  block_parameter: PKY2
+  values: scalar
+- name: KFy/FZNOM stiffness variation with camber, PKY3
+  summary: Stiffness variation scalar
+  group: Lateral
+  block_parameter: PKY3
+  values: scalar
+- name: KFy curvature, PKY4
+  summary: Lateral force stiffness curvature scalar
+  group: Lateral
+  block_parameter: PKY4
+  values: scalar
+- name: Variation of peak stiffness with squared camber, PKY5
+  summary: Stiffness variation scalar
+  group: Lateral
+  block_parameter: PKY5
+  values: scalar
+- name: Fy camber stiffness factor, PKY6
+  summary: Lateral force camber stiffness factor scalar
+  group: Lateral
+  block_parameter: PKY6
+  values: scalar
+- name: Camber stiffness vertical load dependency, PKY7
+  summary: Stiffness scalar
+  group: Lateral
+  block_parameter: PKY7
+  values: scalar
+- name: SHY horizontal shift at FZNOM, PHY1
+  summary: Horizontal shift at nominal force scalar
+  group: Lateral
+  block_parameter: PHY1
+  values: scalar
+- name: SHY variation with load, PHY2
+  summary: Horizontal shift variation scalar
+  group: Lateral
+  block_parameter: PHY2
+  values: scalar
+- name: Svy/Fz vertical shift at FZNOM, PVY1
+  summary: Vertical shift at nominal force scalar
+  group: Lateral
+  block_parameter: PVY1
+  values: scalar
+- name: Svy/Fz variation with load, PVY2
+  summary: Vertical shift variation with load scalar
+  group: Lateral
+  block_parameter: PVY2
+  values: scalar
+- name: Svy/Fz variation with camber, PVY3
+  summary: Vertical shift variation with camber scalar
+  group: Lateral
+  block_parameter: PVY3
+  values: scalar
+- name: Svy/Fz variation with load and camber, PVY4
+  summary: Vertical shift variation with load and camber scalar
+  group: Lateral
+  block_parameter: PVY4
+  values: scalar
+- name: Cornering stiffness variation with inflation pressure, PPY1
+  summary: Stiffness variation with pressure scalar
+  group: Lateral
+  block_parameter: PPY1
+  values: scalar
+- name: Cornering stiffness variation with inflation pressure induced nominal load dependency, PPY2
+  summary: Stiffness variation with pressure scalar
+  group: Lateral
+  block_parameter: PPY2
+  values: scalar
+- name: Linear inflation pressure on peak lateral friction, PPY3
+  summary: Pressure scalar
+  group: Lateral
+  block_parameter: PPY3
+  values: scalar
+- name: Quadratic inflation pressure on peak lateral friction, PPY4
+  summary: Pressure scalar
+  group: Lateral
+  block_parameter: PPY4
+  values: scalar
+- name: Inflation pressure effect on camber stiffness, PPY5
+  summary: Pressure scalar
+  group: Lateral
+  block_parameter: PPY5
+  values: scalar
+- name: Combined Fy reduction slope factor, RBY1
+  summary: Combined lateral force reduction slope factor scalar
+  group: Lateral
+  block_parameter: RBY1
+  values: scalar
+- name: Fy slope reduction with slip angle, RBY2
+  summary: Lateral force slope reduction with slip angle scalar
+  group: Lateral
+  block_parameter: RBY2
+  values: scalar
+- name: Fy shift reduction with slip angle, RBY3
+  summary: Lateral force shift reduction with slip angle scalar
+  group: Lateral
+  block_parameter: RBY3
+  values: scalar
+- name: Fy combined stiffness variation from camber, RBY4
+  summary: Lateral force combined stiffness variation from camber scalar
+  group: Lateral
+  block_parameter: RBY4
+  values: scalar
+- name: Fy combined reduction shape factor, RCY1
+  summary: Lateral force combined reduction shape factor scalar
+  group: Lateral
+  block_parameter: RCY1
+  values: scalar
+- name: Fy combined curvature factor, REY1
+  summary: Lateral force combined curvature factor scalar
+  group: Lateral
+  block_parameter: REY1
+  values: scalar
+- name: Fy combined curvature factor with load, REY2
+  summary: Lateral force combined curvature factor with load scalar
+  group: Lateral
+  block_parameter: REY2
+  values: scalar
+- name: Fy combined reduction shift factor, RHY1
+  summary: Lateral force combined reduction shift factor scalar
+  group: Lateral
+  block_parameter: RHY1
+  values: scalar
+- name: Fy combined reduction shift factor with load, RHY2
+  summary: Lateral force combined reduction shift factor with load scalar
+  group: Lateral
+  block_parameter: RHY2
+  values: scalar
+- name: Slip ratio side force Svyk/Muy\*Fz at FZNOM, RVY1
+  summary: Slip ratio slide force at nominal force scalar
+  group: Lateral
+  block_parameter: RVY1
+  values: scalar
+- name: Side force Svyk/Muy\*Fz variation with load, RVY2
+  summary: Side force variation with load scalar
+  group: Lateral
+  block_parameter: RVY2
+  values: scalar
+- name: Side force Svyk/Muy\*Fz variation with camber, RVY3
+  summary: Side force variation with camber scalar
+  group: Lateral
+  block_parameter: RVY3
+  values: scalar
+- name: Side force Svyk/Muy\*Fz variation with slip angle, RVY4
+  summary: Side force variation with slip angle scalar
+  group: Lateral
+  block_parameter: RVY4
+  values: scalar
+- name: Side force Svyk/Muy\*Fz variation with slip ratio, RVY5
+  summary: Side force variation with slip ratio scalar
+  group: Lateral
+  block_parameter: RVY5
+  values: scalar
+- name: Side force Svyk/Muy\*Fz variation with slip ratio arctangent, RVY6
+  summary: Side force variation with slip ratio arctangent scalar
+  group: Lateral
+  block_parameter: RVY6
+  values: scalar
+- name: Torque resistance coefficient, QSY1
+  summary: Torque resistance scalar
+  group: Rolling
+  block_parameter: QSY1
+  values: scalar
+- name: Torque resistance due to Fx, QSY2
+  summary: Torque resistance due to longitudinal force scalar
+  group: Rolling
+  block_parameter: QSY2
+  values: scalar
+- name: Torque resistance due to speed, QSY3
+  summary: Torque resistance due to speed scalar
+  group: Rolling
+  block_parameter: QSY3
+  values: scalar
+- name: Torque resistance due to speed^4, QSY4
+  summary: Torque resistance due to speed scalar
+  group: Rolling
+  block_parameter: QSY4
+  values: scalar
+- name: Torque resistance due to square of camber, QSY5
+  summary: Torque resistance due to camber scalar
+  group: Rolling
+  block_parameter: QSY5
+  values: scalar
+- name: Torque resistance due to square of camber and load, QSY6
+  summary: Torque resistance due to camber and load scalar
+  group: Rolling
+  block_parameter: QSY6
+  values: scalar
+- name: Torque resistance due to load, QSY7
+  summary: Torque resistance due to load scalar
+  group: Rolling
+  block_parameter: QSY7
+  values: scalar
+- name: Torque resistance due to pressure, QSY8
+  summary: Torque resistance due to pressure scalar
+  group: Rolling
+  block_parameter: QSY8
+  values: scalar
+- name: Trail slope factor for trail Bpt at FZNOM, QBZ1
+  summary: Trail slope factor at nominal force scalar
+  group: Aligning
+  block_parameter: QBZ1
+  values: scalar
+- name: Bpt slope variation with load, QBZ2
+  summary: Slope variation with load scalar
+  group: Aligning
+  block_parameter: QBZ2
+  values: scalar
+- name: Bpt slope variation with square of load, QBZ3
+  summary: Slope variation with load 0 (default) | scalar
+  group: Aligning
+  block_parameter: QBZ3
+  values: scalar
+- name: Bpt slope variation with camber, QBZ4
+  summary: Slope variation with camber scalar
+  group: Aligning
+  block_parameter: QBZ4
+  values: scalar
+- name: Bpt slope variation with absolute value of camber, QBZ5
+  summary: Slope variation with camber scalar
+  group: Aligning
+  block_parameter: QBZ5
+  values: scalar
+- name: Bpt slope variation with square of camber, QBZ6
+  summary: Slope variation with camber scalar
+  group: Aligning
+  block_parameter: QBZ6
+  values: scalar
+- name: Br of Mzr slope scaling factor, QBZ9
+  summary: Slope scaling factor scalar
+  group: Aligning
+  block_parameter: QBZ9
+  values: scalar
+- name: Br of Mzr cornering stiffness factor, QBZ10
+  summary: Cornering stiffness factor scalar
+  group: Aligning
+  block_parameter: QBZ10
+  values: scalar
+- name: Cpt pneumatic trail shape factor, QCZ1
+  summary: Pneumatic trail shape factor scalar
+  group: Aligning
+  block_parameter: QCZ1
+  values: scalar
+- name: Dpt peak trail, QDZ1
+  summary: Peak trail scalar
+  group: Aligning
+  block_parameter: QDZ1
+  values: scalar
+- name: Dpt peak trail variation with load, QDZ2
+  summary: Peak trail variation with load scalar
+  group: Aligning
+  block_parameter: QDZ2
+  values: scalar
+- name: Dpt peak trail variation with camber, QDZ3
+  summary: Peak trail variation with camber scalar
+  group: Aligning
+  block_parameter: QDZ3
+  values: scalar
+- name: Dpt peak trail variation with square of camber, QDZ4
+  summary: Peak trail variation with camber scalar
+  group: Aligning
+  block_parameter: QDZ4
+  values: scalar
+- name: Dmr peak residual torque, QDZ6
+  summary: Peak residual torque scalar
+  group: Aligning
+  block_parameter: QDZ6
+  values: scalar
+- name: Dmr peak residual torque variation with load, QDZ7
+  summary: Peak residual torque variation with load scalar
+  group: Aligning
+  block_parameter: QDZ7
+  values: scalar
+- name: Dmr peak residual torque variation with camber, QDZ8
+  summary: Peak residual torque variation with camber scalar
+  group: Aligning
+  block_parameter: QDZ8
+  values: scalar
+- name: Dmr peak residual torque variation with camber and load, QDZ9
+  summary: Peak residual torque variation with camber and load scalar
+  group: Aligning
+  block_parameter: QDZ9
+  values: scalar
+- name: Dmr peak residual torque variation with square of camber, QDZ10
+  summary: Peak residual torque variation with camber scalar
+  group: Aligning
+  block_parameter: QDZ10
+  values: scalar
+- name: Dmr peak residual torque variation with square of load, QDZ11
+  summary: Peak residual torque variation with load scalar
+  group: Aligning
+  block_parameter: QDZ11
+  values: scalar
+- name: Ept trail curvature at FZNOM, QEZ1
+  summary: Trail curvature at nominal force scalar
+  group: Aligning
+  block_parameter: QEZ1
+  values: scalar
+- name: Ept variation with load, QEZ2
+  summary: Trail curvature variation with load scalar
+  group: Aligning
+  block_parameter: QEZ2
+  values: scalar
+- name: Ept variation with square of load, QEZ3
+  summary: Trail curvature variation with load scalar
+  group: Aligning
+  block_parameter: QEZ3
+  values: scalar
+- name: Ept variation with sign of alpha-t, QEZ4
+  summary: Trail curvature variation scalar
+  group: Aligning
+  block_parameter: QEZ4
+  values: scalar
+- name: Ept variation with sign of alpha-t and camber, QEZ5
+  summary: Variation scalar
+  group: Aligning
+  block_parameter: QEZ5
+  values: scalar
+- name: Sht horizontal trail shift at FZNOM, QHZ1
+  summary: Horizontal trail shift at nominal load scalar
+  group: Aligning
+  block_parameter: QHZ1
+  values: scalar
+- name: Sht variation with load, QHZ2
+  summary: Horizontal trail shift variation with load scalar
+  group: Aligning
+  block_parameter: QHZ2
+  values: scalar
+- name: Sht variation with camber, QHZ3
+  summary: Horizontal trail shift variation with camber scalar
+  group: Aligning
+  block_parameter: QHZ3
+  values: scalar
+- name: Sht variation with load and camber, QHZ4
+  summary: Horizontal trail shift variation with load and camber scalar
+  group: Aligning
+  block_parameter: QHZ4
+  values: scalar
+- name: Inflation pressure influence on trail length, PPZ1
+  summary: Pressure influence on trail length scalar
+  group: Aligning
+  block_parameter: PPZ1
+  values: scalar
+- name: Inflation pressure influence on residual aligning torque, PPZ2
+  summary: Pressure influence on aligning torque scalar
+  group: Aligning
+  block_parameter: PPZ2
+  values: scalar
+- name: 'Nominal value of s/R0: effect of Fx on Mz, SSZ1'
+  summary: Effect of longitudinal force on aligning torque scalar
+  group: Aligning
+  block_parameter: SSZ1
+  values: scalar
+- name: s/R0 variation with lateral to nominal force ratio, SSZ2
+  summary: Variation with lateral to nominal force ratio scalar
+  group: Aligning
+  block_parameter: SSZ2
+  values: scalar
+- name: s/R0 variation with camber, SSZ3
+  summary: Variation with camber scalar
+  group: Aligning
+  block_parameter: SSZ3
+  values: scalar
+- name: s/R0 variation with camber and load, SSZ4
+  summary: Variation with camber and load scalar
+  group: Aligning
+  block_parameter: SSZ4
+  values: scalar
+- name: Fx peak reduction due to spin, PDXP1
+  summary: Longitudinal force peak reduction due to spin scalar
+  group: Turnslip
+  block_parameter: PDXP1
+  values: scalar
+- name: Fx peak reduction due to spin with varying load, PDXP2
+  summary: Longitudinal force peak reduction due to spin scalar
+  group: Turnslip
+  block_parameter: PDXP2
+  values: scalar
+- name: Fx peak reduction due to spin with slip ratio, PDXP3
+  summary: Longitudinal force peak reduction due to spin scalar
+  group: Turnslip
+  block_parameter: PDXP3
+  values: scalar
+- name: Cornering stiffness reduction due to spin, PKYP1
+  summary: Stiffness reduction due to spin scalar
+  group: Turnslip
+  block_parameter: PKYP1
+  values: scalar
+- name: Fy peak reduction due to spin, PDYP1
+  summary: Lateral force peak reduction due to spin scalar
+  group: Turnslip
+  block_parameter: PDYP1
+  values: scalar
+- name: Fy peak reduction due to spin with varying load, PDYP2
+  summary: Lateral force peak reduction due to spin scalar
+  group: Turnslip
+  block_parameter: PDYP2
+  values: scalar
+- name: Fy peak reduction due to spin with slip angle, PDYP3
+  summary: Lateral force peak reduction due to spin scalar
+  group: Turnslip
+  block_parameter: PDYP3
+  values: scalar
+- name: Fy peak reduction due to square root of spin, PDYP4
+  summary: Lateral force peak reduction due to spin scalar
+  group: Turnslip
+  block_parameter: PDYP4
+  values: scalar
+- name: Fy vs. slip angle response lateral shift limit, PHYP1
+  summary: Lateral force versus slip angle response scalar
+  group: Turnslip
+  block_parameter: PHYP1
+  values: scalar
+- name: Fy vs. slip angle response max lateral shift limit, PHYP2
+  summary: Lateral force versus slip angle response scalar
+  group: Turnslip
+  block_parameter: PHYP2
+  values: scalar
+- name: Fy vs. slip angle response max lateral shift limit with load, PHYP3
+  summary: Lateral force versus slip angle response scalar
+  group: Turnslip
+  block_parameter: PHYP3
+  values: scalar
+- name: Fy vs. slip angle response lateral shift curvature factor, PHYP4
+  summary: Lateral force versus slip angle response scalar
+  group: Turnslip
+  block_parameter: PHYP4
+  values: scalar
+- name: Camber stiffness reduction due to spin, PECP1
+  summary: Camber stiffness reduction scalar
+  group: Turnslip
+  block_parameter: PECP1
+  values: scalar
+- name: Camber stiffness reduction due to spin with load, PECP2
+  summary: Camber stiffness reduction scalar
+  group: Turnslip
+  block_parameter: PECP2
+  values: scalar
+- name: Turn slip pneumatic trail reduction factor, QDTP1
+  summary: Turn slip pneumatic trail reduction factor scalar
+  group: Turnslip
+  block_parameter: QDTP1
+  values: scalar
+- name: Turn moment for constant turning and zero longitudinal speed, QCRP1
+  summary: Turn moment for constant turning scalar
+  group: Turnslip
+  block_parameter: QCRP1
+  values: scalar
+- name: Turn slip moment increase with spin at 90deg slip angle, QCRP2
+  summary: Turn slip moment scalar
+  group: Turnslip
+  block_parameter: QCRP2
+  values: scalar
+- name: Residual spin torque reduction from side slip, QBRP1
+  summary: Residual spin torque reduction scalar
+  group: Turnslip
+  block_parameter: QBRP1
+  values: scalar
+- name: Turn slip moment peak magnitude, QDRP1
+  summary: Turn slip moment peak magnitude scalar
+  group: Turnslip
+  block_parameter: QDRP1
+  values: scalar
+- name: Turn slip moment curvature, QDRP2
+  summary: Turn slip moment curvature scalar
+  group: Turnslip
+  block_parameter: QDRP2
+  values: scalar
+```
 
 ### Tire Options
 
@@ -4610,7 +5716,6 @@ value programmatically, use the `get_param` function.
 | **Parameter:** | `QDRP2` |
 | **Values:** | scalar |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Wheels and Tires

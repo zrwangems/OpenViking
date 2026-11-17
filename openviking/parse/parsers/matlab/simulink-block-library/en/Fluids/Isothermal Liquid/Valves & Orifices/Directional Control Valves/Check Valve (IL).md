@@ -14,6 +14,15 @@ language: en
 # Check Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,73 @@ Entry point to the valve.
 ### **B** — Liquid port isothermal liquid
 
 Exit point to the valve.
-
 ## Parameters
+```yaml
+parameters:
+- name: Opening parameterization
+  summary: Method of calculating valve opening Linear - Area vs. pressure (default) | Tabulated data - Area vs. pressure |
+    Tabulated data - Volumetric flow rate vs. pressure
+  group: Parameters
+- name: Opening pressure specification
+  summary: Pressure differential used for valve control Pressure differential (default) | Pressure at port A
+  group: Parameters
+- name: Cracking pressure differential
+  summary: Threshold pressure 0.01 MPa (default) | positive scalar
+  group: Parameters
+- name: Cracking pressure (gauge)
+  summary: Threshold pressure 0.1 MPa (default) | positive scalar
+  group: Parameters
+- name: Maximum opening pressure differential
+  summary: Valve differential pressure maximum 0.1 MPa (default) | positive scalar
+  group: Parameters
+- name: Maximum opening pressure (gauge)
+  summary: Valve pressure maximum 0.2 MPa (default) | positive scalar
+  group: Parameters
+- name: Maximum opening area
+  summary: Area of fully opened valve 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Leakage area
+  summary: Valve gap area when in fully closed position 1e-12 m^2 (default) | positive scalar
+  group: Parameters
+- name: Pressure differential vector
+  summary: 'Differential pressure values for tabular parameterization [0.01 : 0.01 : 0.1] MPa (default) | 1-by-*n* vector'
+  group: Parameters
+- name: Opening area vector
+  summary: Valve opening areas for tabular parameterization [1e-10, 1e-05, 2e-05, 3e-05, 4e-05, 5e-05, 6e-05, 7.5e-05, 8.5e-05,
+    .0001] m^2 (default) | 1-by-*n* vector
+  group: Parameters
+- name: Cross-sectional area at ports A and B
+  summary: Area at valve entry or exit inf m^2 (default) | positive scalar
+  group: Parameters
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Parameters
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Parameters
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar
+  group: Parameters
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: Parameters
+- name: Opening dynamics
+  summary: Whether to account for flow response to valve opening off (default) | on
+  group: Parameters
+- name: Opening time constant
+  summary: Valve opening time constant 0.1 s (default) | positive scalar
+  group: Parameters
+- name: Volumetric flow rate vector
+  summary: Vector of volumetric flow rate for tabulated data parameterization [.000358, .045, .11, .191, .284, .39, .505,
+    .63, .764, .905] .* 1e-3 m^3/s (default) | 1-by-*n* vector
+  group: Parameters
+- name: Check Valve Area fault
+  summary: Option to model valve area fault Add fault
+  group: Faults
+- name: Opening area when faulted
+  summary: Faulted valve characteristics Closed (default) | Open | Maintain at last value
+  group: Faults
+```
 
 ### Parameters
 
@@ -291,7 +365,6 @@ data`.
 #### Dependencies
 
 To enable this parameter, click the **Add fault** hyperlink.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

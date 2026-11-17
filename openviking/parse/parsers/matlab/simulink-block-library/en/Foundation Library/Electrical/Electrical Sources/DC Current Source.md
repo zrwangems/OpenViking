@@ -14,6 +14,15 @@ language: en
 # DC Current Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,13 +33,17 @@ Electrical conserving port associated with the source positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the source negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant current
+  summary: Output current 1 A (default) | scalar
+  group: ''
+```
 
 ### **Constant current** — Output current `1 A` (default) | scalar
 
 Current through the source. You can specify positive or negative values.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Sources

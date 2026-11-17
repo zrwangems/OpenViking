@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Bus to Vector
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要转换为向量的总线 标量 | 向量 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: Port_1
+  summary: 输出向量 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+```
 
 ### 输入
 
@@ -32,11 +45,12 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

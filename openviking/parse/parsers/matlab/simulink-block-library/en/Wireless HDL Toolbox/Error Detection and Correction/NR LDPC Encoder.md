@@ -14,6 +14,41 @@ language: en
 # NR LDPC Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data bits scalar | vector
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: bgn
+  summary: Base graph number scalar
+  direction: input
+  data_types: Boolean
+- name: liftingSize
+  summary: Input lifting size scalar
+  direction: input
+  data_types: uint16
+- name: data
+  summary: Encoded output data bits scalar | vector
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: liftingSize
+  summary: Output lifting size scalar
+  direction: output
+  data_types: uint16
+- name: nextFrame
+  summary: Ready for new inputs scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -106,11 +141,12 @@ frame in progress and begins processing the new data.
 For more information, see Using the nextFrame Output Signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

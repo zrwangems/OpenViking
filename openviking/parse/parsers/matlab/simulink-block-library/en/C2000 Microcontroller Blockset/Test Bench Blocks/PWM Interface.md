@@ -14,6 +14,37 @@ language: en
 # PWM Interface
 
 ## Ports
+```yaml
+ports:
+- name: msg
+  summary: SoC message data numeric vector
+  direction: input
+  data_types: SoCData
+- name: PWM
+  summary: Pulse-width-modulated signal scalar
+  direction: output
+  data_types: double
+- name: ~PWM
+  summary: Complimentary pulse-width-modulated signal scalar
+  direction: output
+  data_types: double
+- name: dCycle
+  summary: Analog approximation of pulse-width-modulated signal scalar
+  direction: output
+  data_types: double
+- name: event
+  summary: Event emitted on each PWM cycle scalar
+  direction: output
+  data_types: rteEvent
+- name: event*n*
+  summary: Replicate event emitted on each PWM cycle scalar
+  direction: output
+  data_types: rteEvent
+- name: interrupt
+  summary: Interrupt event emitted on each PWM cycle scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Input
 
@@ -102,8 +133,61 @@ To enable this parameter, set the **Type** parameter to
 interrupt`.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters:
+- name: PWM waveform period (s)
+  summary: Period of PWM waveform 50e-6 (default) | positive scalar
+  group: Main
+- name: Output mode
+  summary: Output mode Switching (default) | Average
+  group: Main
+- name: Counter mode
+  summary: Counter waveform Up-Down (default) | Up | Down
+  group: Main
+- name: Sampling mode
+  summary: Sampling mode End of PWM period (default) | Mid or End of PWM period | Immediate (at compare matches)
+  group: Main
+- name: Dead time (s)
+  summary: Dead band switching delay 1e-6 (default) | positive scalar
+  group: Main
+- name: At *position* of period
+  summary: Signal change at position in period High | Low | Change | NoChange
+  group: PWM Output
+- name: At compare *n*
+  summary: Signal change at comparator n trigger High | Low | Change | NoChange
+  group: PWM Output
+- name: At compare *n* *direction* count
+  summary: Signal change at comparator n trigger High | Low | Change | NoChange
+  group: PWM Output
+- name: Phase offset in degree (0-360)
+  summary: PWM waveform offset scalar from 0 to 360
+  group: Phase
+- name: Type
+  summary: Type of events to generate ADC start (default) | PWM interrupt | ADC start and PWM interrupt
+  group: Event
+  type: 'value is set to:'
+- name: ADC start condition
+  summary: Trigger mode relative to PWM waveform End of PWM period (default) | Mid of PWM period | Mid or End of PWM period
+    | Compare 1 up count | Compare 1 down count | Compare 2 up count | Compare 2 down count
+  group: Event
+- name: Generate on
+  summary: Generate event on multiple of PWM update 1st event (default) | nth event | 16th event
+  group: Event
+- name: Number of replicas
+  summary: Generate replica event ports 1 (default) | integer from 1 to 16
+  group: Event
+- name: PWM interrupt condition
+  summary: Trigger mode relative to PWM waveform End of PWM period (default) | Mid of PWM period | Mid or End of PWM period
+    | Compare 1 up count | Compare 1 down count | Compare 2 up count | Compare 2 down count
+  group: Event
+- name: Interrupt latency (s)
+  summary: Interrupt generation latency 0 (default) | positive number
+  group: Event
+- name: Generate on
+  summary: Generate event on multiple of PWM update 1st event (default) | nth event | 16th event
+  group: Event
+```
 
 ### Main
 
@@ -327,7 +411,6 @@ event message.
 To enable this parameter, the **Type** parameter must be set to
 `PWM interrupt` or `ADC start and PWM
 interrupt`.
-
 ## Libraries
 
 SoC Blockset / Peripherals C2000 Microcontroller Blockset / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

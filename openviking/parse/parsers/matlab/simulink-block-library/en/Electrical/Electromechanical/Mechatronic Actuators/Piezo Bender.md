@@ -14,6 +14,27 @@ language: en
 # Piezo Bender
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: Ctr
+  summary: Translational case mechanical
+  direction: conserving
+- name: Cro
+  summary: Rotational case mechanical
+  direction: conserving
+- name: Rtr
+  summary: Translational rotor mechanical
+  direction: conserving
+- name: Rro
+  summary: Rotational rotor mechanical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -45,8 +66,66 @@ rotor.
 
 Mechanical rotational conserving port associated with the
 rotor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of elements
+  summary: Number of elements 1 (default) | positive integer greater than or equal to 1
+  group: Dimensions
+- name: Total beam length
+  summary: Total beam length 3.175E-2 m (default) | positive scalar
+  group: Dimensions
+- name: Beam width
+  summary: Beam width 1.27E-2 m (default) | positive scalar
+  group: Dimensions
+- name: Beam thickness
+  summary: Beam thickness 5.08E-4 m (default) | positive scalar
+  group: Dimensions
+- name: Parameterization
+  summary: Steady-state parameterization Specify from a datasheet for clamped-free configuration (default) | Specify from
+    material properties
+  group: Steady-State
+- name: Capacitance
+  summary: Piezo bender capacitance 15 nF (default) | positive scalar
+  group: Steady-State
+- name: Rated drive voltage, Vrated
+  summary: Rated drive voltage 180 V (default) | positive scalar
+  group: Steady-State
+- name: Free deflection at Vrated
+  summary: Free deflection at Vrated +0.233 mm (default) | nonzero value
+  group: Steady-State
+- name: Blocking force at Vrated
+  summary: Blocking force at Vrated -0.414 N (default) | scalar
+  group: Steady-State
+- name: Young modulus, E
+  summary: Young modulus 1.36628e11 N/m^2 (default) | positive scalar
+  group: Steady-State
+- name: Piezoelectric stress coefficient, e31
+  summary: Piezoelectric stress coefficient 7.5459 C/m^2 (default) | nonzero scalar
+  group: Steady-State
+- name: Dielectric constant
+  summary: Dielectric constant 1.38965e-08 F/m (default) | positive scalar
+  group: Steady-State
+- name: Inertial effects
+  summary: Inertial effects modeling option On (default) | Off
+  group: Dynamics
+- name: Parameterization
+  summary: Inertia parameterization Specify from a datasheet for clamped-free configuration (default) | Specify from material
+    properties
+  group: Dynamics
+- name: Beam mass
+  summary: Beam mass 1.6 g (default) | positive scalar
+  group: Dynamics
+- name: First natural frequency
+  summary: First natural frequency 391 Hz (default) | positive scalar
+  group: Dynamics
+- name: Rayleigh damping constant proportional to stiffness
+  summary: Rayleigh damping constant proportional to stiffness 1e-5 s (default) | nonnegative scalar
+  group: Dynamics
+- name: Rayleigh damping constant proportional to mass
+  summary: Rayleigh damping constant proportional to mass 0 1/s (default) | nonnegative scalar
+  group: Dynamics
+```
 
 ### Dimensions
 
@@ -206,7 +285,6 @@ Damping coefficient proportional to mass, for Rayleigh damping.
 
 To enable this parameter, set **Inertial
 effects** to `On`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

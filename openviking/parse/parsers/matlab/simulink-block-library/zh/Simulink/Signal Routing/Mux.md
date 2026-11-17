@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Mux
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要包含在 mux 信号中的输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+- name: Port_1
+  summary: 输出 mux 信号 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+```
 
 ### 输入
 
@@ -35,8 +48,20 @@ Mux 模块的输入信号可以是标量和向量的任意组合，但它们必�
 输出 mux 信号的元素顺序取决于输入信号的端口顺序。有关各种模块方向的端口顺序说明，请参阅 Identify Port Location on Rotated or Flipped Block。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inputs
+  summary: 输入信号的数量 2（默认）| 标量 | 向量 | 元胞数组 | 以逗号分隔的信号名称列表
+  group: ''
+  block_parameter: Inputs
+  values: '''2''（默认）| 带引号的标量 | 带引号的向量 | 带引号的元胞数组 | 带引号的以逗号分隔的信号名称列表'
+- name: Display option
+  summary: 模块图标外观 bar（默认）| signals | none
+  group: ''
+  block_parameter: DisplayOption
+  values: '''bar''（默认）| ''signals'' | ''none'''
+```
 
 ### **Number of inputs** — 输入信号的数量 2（默认）| 标量 | 向量 | 元胞数组 | 以逗号分隔的信号名称列表
 
@@ -93,7 +118,6 @@ Mux 模块的输入信号可以是标量和向量的任意组合，但它们必�
 | **值：** | `'bar'`（默认）| `'signals'` | `'none'` |
 
 **示例：** `set_param(gcb,'DisplayOption','signals')`
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing

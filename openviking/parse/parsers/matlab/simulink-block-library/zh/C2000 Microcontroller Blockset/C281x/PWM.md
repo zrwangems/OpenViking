@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # PWM
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 占空比标量
+  direction: input
+  data_types: double
+- name: 端口 1
+  summary: 输出脉冲标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,45 @@ chinese_source: worker-translation
 与输入占空比对应的 PWM 信号。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Period (s)
+  summary: 脉冲宽度 1（默认）| 实数标量
+  group: ''
+  block_parameter: Period
+  type: 字符串 | 字符向量
+  values: 实数标量
+  default: '''1'''
+- name: Initial Delay
+  summary: 初始延迟 0（默认）| 实数标量
+  group: ''
+  block_parameter: InitialDelay
+  type: 字符串 | 字符向量
+  values: 数值标量
+  default: '0'
+- name: Disallow zero duty cycle
+  summary: 避免代数环 off | on
+  group: ''
+  block_parameter: DisallowZeroDutyCycle
+  type: 字符串 | 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Run at fixed time intervals
+  summary: 选择离散时间行为 on（默认）| off
+  group: ''
+  block_parameter: RunAtFixedTimeIntervals
+  type: 字符串 | 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sample Time
+  summary: 设置脉冲分辨率 0.1（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符串 | 字符向量
+  values: 数值标量
+  default: '0.1'
+```
 
 ### **Period (s)** — 脉冲宽度 1（默认）| 实数标量
 
@@ -115,7 +163,6 @@ chinese_source: worker-translation
 | **类型：** 字符串 | 字符向量 |
 | **值：** 数值标量 |
 | **默认值：** `0.1` |
-
 ## 所属库
 
 Simulink / Discontinuities

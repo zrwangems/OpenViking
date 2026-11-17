@@ -14,6 +14,17 @@ language: en
 # Binary File Reader
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Binary file data column vector | row vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: EOF
+  summary: End-of-file indicator boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -44,8 +55,41 @@ This port is unnamed until you select the **Output end-of-file
 indicator** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Name of the file 'Untitled.bin' (default) | character vector
+  group: ''
+- name: File header
+  summary: Size of the header struct([]) (default) | structure
+  group: ''
+- name: Export header to base workspace
+  summary: Retrieve the header button
+  group: ''
+- name: Storage data type
+  summary: Storage class of data in file 'double' (default) | 'single' | 'int8' | 'int16' | 'int32' | 'int64' | 'uint8' |
+    'uint16' | 'uint32' | 'uint64'
+  group: ''
+- name: Samples per frame
+  summary: Number of samples per output frame 1024 (default) | positive integer
+  group: ''
+- name: Data is complex
+  summary: Specify data complexity off (default) | on
+  group: ''
+- name: Number of channels
+  summary: Number of channels 1 (default) | positive integer
+  group: ''
+- name: Output end-of-file indicator
+  summary: End-of-file indicator off (default) | on
+  group: ''
+- name: Sample time (s)
+  summary: Sample time 1 (default) | nonnegative scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **File name** — Name of the file `'Untitled.bin'` (default) | character vector
 
@@ -127,7 +171,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Sources

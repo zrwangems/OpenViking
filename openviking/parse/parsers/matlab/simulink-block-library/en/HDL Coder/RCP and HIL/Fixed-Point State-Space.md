@@ -14,6 +14,17 @@ language: en
 # Fixed-Point State-Space
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -34,8 +45,88 @@ Output signal, with width equal to the number of rows in the
 information, see Description.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: State Matrix A
+  summary: Matrix of states [2.6020 -2.2793 0.6708; 1 0 0; 0 1 0] (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: A
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''[2.6020 -2.2793 0.6708; 1 0 0; 0 1 0]'''
+- name: Input Matrix B
+  summary: Column vector of inputs [ 1; 0; 0] (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: B
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''[ 1; 0; 0]'''
+- name: Output Matrix C
+  summary: Column vector of outputs [0.0184 0.0024 0.0055] (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: C
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''[0.0184 0.0024 0.0055]'''
+- name: Direct Feedthrough Matrix D
+  summary: Matrix for direct feedthrough [0.0033] (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: D
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''[0.0033]'''
+- name: Initial condition for state
+  summary: Initial state vector 0.0 (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: InitialCondition
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''0.0'''
+- name: Data type for internal calculations
+  summary: Data type for internal calculations fixdt('double') (default) | data type string
+  group: Signal Attributes
+  block_parameter: InternalDataType
+  type: character vector
+  values: data type string
+  default: '''fixdt(''double'')'''
+- name: Scaling for State Equation AX+BU
+  summary: Scaling for state equations 2^0 (default) | scalar
+  group: Signal Attributes
+  block_parameter: StateEqScaling
+  type: character vector
+  values: scalar
+  default: '''2^0'''
+- name: Scaling for Output Equation CX+DU
+  summary: Scaling for output equations 2^0 (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutputEqScaling
+  type: character vector
+  values: scalar
+  default: '''2^0'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate to max or min when overflows occur
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -216,7 +307,6 @@ saturation code.
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Additional Math & Discrete / Additional Discrete

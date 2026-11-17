@@ -15,10 +15,27 @@ chinese_source: worker-translation
 # Potentiometer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum resistance
+  summary: 电位器的最小输入电阻 10 Ohm（默认值）| 正标量
+  group: ''
+- name: Maximum resistance
+  summary: 电位器的最大输入电阻 1e6 Ohm（默认值）| 正标量
+  group: ''
+- name: Potentiometer type
+  summary: 电位器的曲线类型 Linear（默认值）| Logarithmic | Antilog
+  group: ''
+- name: Percentage of resistance at half wiper
+  summary: 电位器的最大输入电阻 正标量
+  group: ''
+```
 
 ### **Minimum resistance** — 电位器的最小输入电阻 `10 Ohm`（默认值）| 正标量
 
@@ -58,7 +75,6 @@ type** 中选择
 `Antilog`。
 
 **数据类型：** `double`
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Junctions

@@ -14,6 +14,17 @@ language: en
 # Header Assignment
 
 ## Ports
+```yaml
+ports:
+- name: InputMsg
+  summary: ROS message to update nonvirtual bus
+  direction: input
+  data_types: bus
+- name: OutputMsg
+  summary: ROS message with an updated header nonvirtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -30,8 +41,19 @@ nonvirtual bus.
 ROS message with an updated header, returned as a nonvirtual bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Set Frame ID
+  summary: Specify frame associated with message data off (default) | on
+  group: ''
+- name: Set Timestamp
+  summary: Set timestamp in header off (default) | on
+  group: ''
+- name: Header field name
+  summary: Specify Header field name Use the default Header field name (default) | Specify your own
+  group: ''
+```
 
 ### **Set Frame ID** — Specify frame associated with message data `off` (default) | `on`
 
@@ -60,7 +82,6 @@ Specify the name of the Header field as one of the following:
   which you can specify a custom name for the header field in the ROS message.
 
 **Example:** `my_custom_header`
-
 ## Libraries
 
 ROS Toolbox / ROS

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # To VCD File
 
 ## 端口
+```yaml
+ports:
+- name: Port_1, Port_2, ..., Port_N
+  summary: 要记录到 VCD 文件的信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | Fixed-point
+```
 
 ### 输入
 
@@ -23,8 +30,19 @@ chinese_source: worker-translation
 多维信号在 VCD 文件中会被展平为一维向量。
 
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `Fixed-point`
-
 ## 参数
+```yaml
+parameters:
+- name: VCD file name
+  summary: 生成的 VCD 文件的名称 字符串
+  group: ''
+- name: Number of input ports
+  summary: 要记录的输入信号数量 整数
+  group: ''
+- name: Timescale
+  summary: Simulink 与 HDL 仿真器之间的时间关系 整数和时间单位
+  group: ''
+```
 
 ### **VCD file name** — 生成的 VCD 文件的名称 字符串
 
@@ -50,7 +68,6 @@ chinese_source: worker-translation
 - 以*绝对*单位表示，例如毫秒或纳秒。在这种情况下，协同仿真以*绝对时间模式*运行。
 
   要使用绝对模式，请在 **1 second in Simulink corresponds to {value} {unit} in the HDL simulator** 参数中，设置分辨率单位的数量和单位类型（`fs`、`ps`、`ns`、`us`、`ms`、`s`）。然后，在 **1 HDL Tick is defined as** 参数中，将 HDL 仿真器 tick 的值设置为 `1`、`10` 或 `100`，并选择分辨率单位。
-
 ## 所属库
 
 HDL Verifier / For Use with AMD Vivado Simulator HDL Verifier / For Use with Cadence Xcelium HDL Verifier / For Use with Siemens ModelSim/Questa HDL Verifier / For Use with Synopsys VCS

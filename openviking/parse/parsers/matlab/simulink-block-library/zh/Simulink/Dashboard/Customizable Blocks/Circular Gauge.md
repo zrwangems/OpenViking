@@ -15,10 +15,180 @@ chinese_source: worker-translation
 # Circular Gauge
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的信号及显示信号连接选项
+  group: 参数
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Minimum
+  summary: 最小刻度值 0（默认）| 标量
+  group: 参数
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: Maximum
+  summary: 最大刻度值 100（默认）| 标量
+  group: 参数
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: Tick Interval
+  summary: 主刻度线之间的间隔 auto（默认）| 标量
+  group: 参数
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: Direction
+  summary: 刻度值递增方向 Clockwise（默认）| Counterclockwise
+  group: 参数
+  block_parameter: ScaleDirection
+  type: 字符向量
+  values: '''Clockwise'' | ''Counterclockwise'''
+  default: '''Clockwise'''
+- name: Label
+  summary: 显示所连接元素名称的标签位置 Hide（默认）| Bottom | Top
+  group: 参数
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 参数
+- name: Scale Colors
+  summary: 刻度范围在仪表刻度上的颜色指示 刻度上值范围的颜色规格
+  group: 参数
+  block_parameter: ScaleColors
+  type: 结构体数组
+  default: 0x1 结构体数组
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 设计
+- name: Minimum
+  summary: 最小刻度值 0（默认）| 标量
+  group: 设计
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: Maximum
+  summary: 最大刻度值 100（默认）| 标量
+  group: 设计
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: Tick Interval
+  summary: 主刻度线之间的间隔 auto（默认）| 标量
+  group: 设计
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: Origin
+  summary: 指针移动和值条增长的刻度值 auto（默认）| 标量
+  group: 设计
+- name: Direction
+  summary: 刻度值递增方向 Clockwise（默认）| Counterclockwise
+  group: 设计
+  block_parameter: ScaleDirection
+  type: 字符向量
+  values: '''Clockwise'' | ''Counterclockwise'''
+  default: '''Clockwise'''
+- name: Arc
+  summary: 刻度的弧长 270（默认）| 标量
+  group: 设计
+- name: Start Angle
+  summary: 刻度最小值的角度位置 135（默认）| 标量
+  group: 设计
+- name: Inner Radius
+  summary: 刻度刻度线自由端的半径 标量
+  group: 设计
+- name: Outer Radius
+  summary: 跨度线半径 标量
+  group: 设计
+- name: X Offset
+  summary: 刻度边界框左边缘相对于模块左边缘的水平偏移 标量
+  group: 设计
+- name: Y Offset
+  summary: 刻度边界框上边缘相对于模块上边缘的垂直偏移 标量
+  group: 设计
+- name: Width
+  summary: 刻度宽度 标量
+  group: 设计
+- name: Height
+  summary: 刻度高度 标量
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持刻度宽高比的选项 on（默认）| off
+  group: 设计
+- name: Tick Color
+  summary: 刻度刻度线、跨度线和模块名称的颜色 [r g b] 向量
+  group: 设计
+  block_parameter: ForegroundColor
+  type: 字符向量 | 字符串
+  values: '[r g b] 向量'
+- name: Minor Tick Height
+  summary: 刻度上副刻度线的高度 1（默认）| 标量
+  group: 设计
+- name: Label Color
+  summary: 刻度标签字体颜色 [r g b] 向量
+  group: 设计
+- name: Label Radius
+  summary: 刻度标签到刻度中心的距离 标量
+  group: 设计
+- name: Width
+  summary: 指针图像宽度 标量
+  group: 设计
+- name: Height
+  summary: 指针图像高度 标量
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持图像宽高比的选项 on（默认）| off
+  group: 设计
+- name: Rotate Image
+  summary: 指针图像的旋转 180（默认）| 标量
+  group: 设计
+- name: Offset from Center
+  summary: 指针图像中心相对于刻度中心的偏移 0（默认）| 标量
+  group: 设计
+- name: Use Background Color
+  summary: 指定纯色模块背景色的选项 off（默认）| on
+  group: 设计
+- name: Color
+  summary: 模块背景色 [r g b] 向量
+  group: 设计
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| 标量
+  group: 设计
+- name: Corner radius
+  summary: 模块背景色区域外边缘与刻度线的偏移量 标量
+  group: 设计
+- name: X Offset
+  summary: 前景图像左边缘与模块左边缘的水平偏移量 标量
+  group: 设计
+- name: Y Offset
+  summary: 前景图像上边缘与模块上边缘的垂直偏移量 标量
+  group: 设计
+- name: Width
+  summary: 前景图像宽度 标量
+  group: 设计
+- name: Height
+  summary: 前景图像高度 标量
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持前景图像宽高比的选项 on（默认）| off
+  group: 设计
+```
 
 使用属性检查器和模块参数对话框指定模块参数的值。要设置仪表板模块的核心参数，请使用模块参数对话框或属性检查器中的 **Parameters** 选项卡。要自定义模块，请使用属性检查器中的 **Design** 选项卡。要打开模块的模块参数对话框，请双击该模块。要打开属性检查器，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
 
@@ -438,7 +608,6 @@ scaleRanges = [range1 range2];
 ### **Lock Aspect Ratio** — 保持前景图像宽高比的选项 `on`（默认）| `off`
 
 选择此参数可在使用 Property Inspector 调整图像大小时保持宽高比。
-
 ## 所属库
 
 Simulink / Dashboard / Customizable Blocks

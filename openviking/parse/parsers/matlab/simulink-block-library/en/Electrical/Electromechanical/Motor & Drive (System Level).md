@@ -14,6 +14,33 @@ language: en
 # Motor & Drive (System Level)
 
 ## Ports
+```yaml
+ports:
+- name: Tr
+  summary: Reference torque demand physical
+  direction: input
+- name: 'OFF'
+  summary: Supply switch physical
+  direction: input
+- name: W
+  summary: Mechanical speed output physical
+  direction: output
+- name: +
+  summary: Positive electrical DC supply electrical
+  direction: conserving
+- name: '-'
+  summary: Negative electrical DC supply electrical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -68,8 +95,156 @@ Thermal port.
 
 To enable this port, set the **Modeling option**
 parameter to `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Parameterize by
+  summary: Torque Parameterization Method Tabulate torque envelope with speed (default) | Maximum torque and power | Tabulate
+    torque envelope with speed and supply voltage
+  group: Electrical Torque
+- name: Allow intermittent over-torque
+  summary: Intermittent over-torque option No (default) | Yes
+  group: Electrical Torque
+- name: Continuous operation maximum torque envelope, T_c(w)
+  summary: Vector of maximum torque values for continuous operation [.09, .08, .07, 0] N*m (default)
+  group: Electrical Torque
+- name: Continuous operation maximum torque envelope, T_c(w, Vdc)
+  summary: Vector of maximum torque values for continuous operation tabulated with speeds and voltages [.09, .09, .09; .08,
+    .08, .08; .07, .07, .07; 0, 0, 0] N*m (default) | 2-D vector of positive values
+  group: Electrical Torque
+- name: Intermittent operation maximum torque envelope, T_i(w)
+  summary: Vector of maximum torque values for intermittent operation [.36, .32, .28, 0] N*m (default)
+  group: Electrical Torque
+- name: Intermittent operation maximum torque envelope, T_i(w,Vdc)
+  summary: Vector of maximum torque values for intermittent operation tabulated with speeds and voltages [.36, .36, .36; .32,
+    .32, .32; .28, .28, .28; 0, 0, 0] N*m (default) | 2-D vector of positive values
+  group: Electrical Torque
+- name: Corresponding rotational speeds, w
+  summary: Vector of rotational speeds [0, 3750, 7500, 8000] rpm (default)
+  group: Electrical Torque
+- name: Corresponding DC supply voltage, Vdc
+  summary: Vector of DC supply voltages [6, 12, 24] V (default) | vector of positive scalars
+  group: Electrical Torque
+- name: Continuous operation maximum torque
+  summary: Maximum torque for continuous operation 0.1 N*m (default) | positive scalar
+  group: Electrical Torque
+- name: Continuous operation maximum power
+  summary: Maximum power for continuous operation 30 W (default) | positive scalar
+  group: Electrical Torque
+- name: Intermittent operation maximum torque
+  summary: Maximum torque for intermittent operation 0.4 N*m (default) | positive scalar
+  group: Electrical Torque
+- name: Intermittent operation maximum power
+  summary: Maximum power for intermittent operation 120 W (default) | positive scalar
+  group: Electrical Torque
+- name: Over-torque time limit
+  summary: Over-torque time limit 30 s (default) | positive scalar
+  group: Electrical Torque
+- name: Recovery time
+  summary: Recovery time 60 s (default) | positive scalar
+  group: Electrical Torque
+- name: Torque control time constant, Tc
+  summary: Torque control time constant 0.02 s (default) | nonnegative scalar
+  group: Electrical Torque
+- name: Enable supply switch
+  summary: Option to enable supply switching off (default) | on
+  group: Electrical Torque
+- name: Parameterize losses by
+  summary: Electrical loss parameterization Single efficiency measurement (default) | Tabulated loss data as a function of
+    speed and torque | Tabulated efficiency data as a function of speed and torque | Tabulated loss data as a function of
+    speed, torque, and DC supply voltage | Tabulated efficiency data as a function of speed, torque, and DC supply voltage
+  group: Electrical Losses
+- name: Motor and driver overall efficiency (percent)
+  summary: Motor and driver overall efficiency 100 (default)
+  group: Electrical Losses
+- name: Speed at which efficiency is measured
+  summary: Speed at which efficiency is measured 3750 rpm (default)
+  group: Electrical Losses
+- name: Torque at which efficiency is measured
+  summary: Torque at which efficiency is measured 0.08 N*m (default)
+  group: Electrical Losses
+- name: Iron losses at measurement speed
+  summary: Iron losses at measurement speed 0 W (default)
+  group: Electrical Losses
+- name: Fixed losses independent of torque and speed
+  summary: Fixed losses independent of torque and speed 0 W (default)
+  group: Electrical Losses
+- name: Vector of speeds (w) for tabulated losses
+  summary: Vector of speeds for tabulated losses [-8000, -4000, 0, 4000, 8000] rpm (default)
+  group: Electrical Losses
+- name: Vector of torques (T) for tabulated losses
+  summary: Vector of torques for tabulated losses [0, .03, .06, .09] Nm (default)
+  group: Electrical Losses
+- name: Vector of DC supply voltages (v) for tabulated losses
+  summary: Vector of DC supply voltages for tabulated losses [100, 250, 400] V (default)
+  group: Electrical Losses
+- name: Corresponding losses, P(w,T)
+  summary: Electrical losses corresponding to speed and torque [1.49, 1.67, 2.21, 3.1; .42, .69, 1.14, 2.03; .06, .24, .78,
+    1.68; .42, .69, 1.14, 2.03; 1.49, 1.67, 2.21, 3.1] W (default)
+  group: Electrical Losses
+- name: Corresponding efficiency (percent), E(w,T)
+  summary: Efficiency corresponding to speed and torque [95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95; 95,
+    95, 95, 95] (default)
+  group: Electrical Losses
+- name: Corresponding losses, P(w,T,v)
+  summary: Electrical losses corresponding to speed, torque and supply voltage ones(5, 4, 3) W (default)
+  group: Electrical Losses
+- name: Corresponding efficiency (percent), E(w,T,v)
+  summary: Efficiency corresponding to speed, torque and supply voltage 95 * ones(5, 4, 3) (default)
+  group: Electrical Losses
+- name: External supply series resistance
+  summary: External supply series resistance 0 Ohm (default) | nonnegative scalar
+  group: Electrical Losses
+- name: Rotor inertia
+  summary: Rotor inertia 5e-6 kg*m^2 (default) | nonnegative scalar
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 1e-5 N*m*s/rad (default) | nonnegative scalar
+  group: Mechanical
+- name: Initial rotor speed
+  summary: Initial rotor speed 0 rpm (default)
+  group: Mechanical
+- name: Open circuit fault
+  summary: Option to add open circuit fault Add fault (default)
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: Second measurement temperature 125 degC (default)
+  group: Temperature Dependence
+- name: Corresponding losses, P(w,T), at second measurement temperature
+  summary: Electrical losses corresponding to speed and torque at second measurement temperature [1.49, 1.74, 2.49, 3.74;
+    .42, .67, 1.42, 2.67; .06, .31, 1.06, 2.31; .42, .67, 1.42, 2.67; 1.49, 1.74, 2.49, 3.74] W (default)
+  group: Temperature Dependence
+- name: Corresponding efficiency (percent), E(w,T), at second measurement temperature
+  summary: Efficiency corresponding to speed and torque at second measurement temperature [95, 95, 95, 95; 95, 95, 95, 95;
+    95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95] (default)
+  group: Temperature Dependence
+- name: Corresponding losses, P(w,T,v), at second measurement temperature
+  summary: Electrical losses corresponding to speed, torque and supply voltage at second measurement temperature ones(5, 4,
+    3) W (default)
+  group: Temperature Dependence
+- name: Corresponding efficiency (percent), E(w,T,v), at second measurement temperature
+  summary: Efficiency corresponding to speed, torque and supply voltage at second measurement temperature 95 * ones(5, 4,
+    3) (default)
+  group: Temperature Dependence
+- name: Thermal mass
+  summary: Thermal mass 100 J/K (default)
+  group: Thermal Port
+- name: Initial Temperature
+  summary: Initial temperature 25 degC (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -695,7 +870,6 @@ to raise the temperature by one degree.
 ### **Initial Temperature** — Initial temperature `25` `degC` (default)
 
 Temperature of the thermal port at the start of simulation.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / System-Level Modeling

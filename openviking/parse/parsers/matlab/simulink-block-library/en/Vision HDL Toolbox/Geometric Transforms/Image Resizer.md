@@ -14,6 +14,33 @@ language: en
 # Image Resizer
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar
+  direction: input
+  data_types: uint8 | uint16 | fixdt(0,WL,0), WL between 8 and 16 | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: inputSize
+  summary: Dimensions of active frame in input stream [ActiveVideoLines,ActivePixelsPerLine]
+  direction: input
+  data_types: single | double | uint8 | uint16 | fixdt(0,WL,0), WL up to 16
+- name: outputSize
+  summary: Dimensions of active frame in output stream [ActiveVideoLines,ActivePixelsPerLine]
+  direction: input
+  data_types: single | double | uint8 | uint16 | fixdt(0,WL,0), WL up to 16
+- name: pixel
+  summary: Output pixel stream scalar
+  direction: output
+  data_types: uint8 | uint16 | fixdt(0,WL,0), WL between 8 and 16 | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -95,8 +122,53 @@ The signals describe the validity of the pixel and its location in the frame. Fo
 information, see Pixel Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input height and width
+  summary: Dimensions of active frame in input stream [1080,1920] (default) | [ActiveVideoLines,ActivePixelsPerLine]
+  group: Main
+- name: Input size source
+  summary: Source of input active frame size Property (default) | Input port
+  group: Main
+- name: Maximum input height and width
+  summary: Active frame size that accommodates the largest anticipated input size [1080,1920] (default) | [ActiveVideoLines,ActivePixelsPerLine]
+  group: Main
+- name: Output height and width
+  summary: Dimensions of active frame in output stream [720,1280] (default) | [ActiveVideoLines,ActivePixelsPerLine]
+  group: Main
+- name: Output size source
+  summary: Source of input active frame size Property (default) | Input port
+  group: Main
+- name: Maximum output height and width
+  summary: Active frame size that accommodates the largest anticipated output size [720, 1280] (default) | [ActiveVideoLines,ActivePixelsPerLine]
+  group: Main
+- name: Insert horizontal blanking
+  summary: Add invalid cycles between active lines off (default) | on
+  group: Main
+- name: Minimum output horizontal blanking
+  summary: Number of inactive cycles to insert between output lines 370 (default)
+  group: Main
+- name: Interpolation method
+  summary: Method of interpolating pixel values Bilinear (default) | Nearest Neighbor
+  group: Main
+- name: Perform antialiasing on downscale
+  summary: Apply antialiasing filter before resizing on (default) | off
+  group: Main
+- name: Rounding mode
+  summary: Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round
+    | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow action for internal fixed-point calculations off (default) | on
+  group: Data Types
+- name: Coefficients
+  summary: Interpolation filter coefficients data type fixdt(0,16) (default) | <data type expression>
+  group: Data Types
+- name: Output
+  summary: 'Output data type Inherit: Same as first input (default) | fixdt(0,16,0) | <data type expression>'
+  group: Data Types
+```
 
 ### Main
 
@@ -268,7 +340,6 @@ input` or as a data type expression in the form
 When converting the pixel values to the specified data type, the block uses the
 settings of the **Rounding method** and **Overflow
 action** parameters.
-
 ## Libraries
 
 Vision HDL Toolbox / Geometric Transforms

@@ -15,6 +15,43 @@ chinese_source: worker-translation
 # Dual Rate Dual Port RAM
 
 ## 端口
+```yaml
+ports:
+- name: din_A
+  summary: 端口 A 写数据输入 Scalar（默认）
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: addr_A
+  summary: 端口 A 写地址 Scalar（默认）
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+- name: we_A
+  summary: 端口 A 写使能 Scalar（默认）
+  direction: input
+  data_types: Boolean
+- name: din_B
+  summary: 端口 B 写数据 Scalar（默认）
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | fixed point
+- name: addr_B
+  summary: 端口 B 写地址 Scalar（默认）
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | fixed point
+- name: we_B
+  summary: 端口 B 写使能 Scalar（默认）
+  direction: input
+  data_types: Boolean
+- name: dout_A
+  summary: 端口 A 输出数据 Scalar（默认）
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: dout_B
+  summary: 端口 B 输出数据 Scalar（默认）
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -84,8 +121,16 @@ RAM 端口 B 的写使能。将 `we_B` 设置为
 来自 RAM 端口 B 地址 `addr_B` 的输出数据。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Address port width
+  summary: 地址位宽 8（默认）
+  group: ''
+  block_parameter: ram_size
+  type: 字符串标量 | 字符向量
+  values: 最小值为 2，最大值为 28
+```
 
 ### **Address port width** — 地址位宽 8（默认）
 
@@ -99,7 +144,6 @@ RAM 端口 B 的写使能。将 `we_B` 设置为
 | **类型：** 字符串标量 | 字符向量 |
 | **值：** 最小值为 `2`，最大值为 `28` |
 | **默认：** `'8'` |
-
 ## 所属库
 
 HDL Coder / HDL RAMs

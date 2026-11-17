@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Pad
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 数据输入 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: Output 1
+  summary: 填充或截断后的输出 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+```
 
 ### 输入
 
@@ -32,8 +45,55 @@ Pad 模块的输出。输出的大小和维度取决于模块是沿指定维度�
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Pad over
+  summary: 进行填充或截断的维度 Columns（默认） | Rows | Columns and rows | None | Specified dimensions
+  group: ''
+- name: Dimensions to pad
+  summary: 指定进行填充或截断的维度 1（默认） | 标量 | 向量
+  group: ''
+- name: Pad value source
+  summary: 填充值的来源 Specify via dialog（默认） | Input port
+  group: ''
+- name: Pad value
+  summary: 填充值 0（默认） | 标量
+  group: ''
+- name: Output column mode
+  summary: 指定列长度的模式 User-specified | Next power of two
+  group: ''
+- name: Column size
+  summary: 输出的列长度 1 | 标量
+  group: ''
+- name: Output row mode
+  summary: 指定行长度的模式 User-specified（默认） | Next power of two
+  group: ''
+- name: Row size
+  summary: 输出的行长度 1 | 标量
+  group: ''
+- name: Specify
+  summary: 指定输出大小或填充大小 Output size（默认） | Pad size
+  group: ''
+- name: Output size mode
+  summary: 指定输出长度的模式 User-specified | Next power of two
+  group: ''
+- name: Output size
+  summary: 沿指定维度的输出长度 1 | 标量 | 向量
+  group: ''
+- name: Pad size at beginning
+  summary: 指定要添加到输入信号开头的值的数量 0 | 标量 | 向量
+  group: ''
+- name: Pad size at end
+  summary: 指定要添加到输入信号末尾的值的数量 0 | 标量 | 向量
+  group: ''
+- name: Pad signal at
+  summary: 指定在何处填充或截断信号 End（默认） | Beginning | Beginning and end
+  group: ''
+- name: Action when truncation occurs
+  summary: 发生截断时采取的操作 None | Warning | Error
+  group: ''
+```
 
 ### **Pad over** — 进行填充或截断的维度 `Columns`（默认） | `Rows` | `Columns and rows` | `None` | `Specified dimensions`
 
@@ -170,7 +230,6 @@ Pad 模块的输出。输出的大小和维度取决于模块是沿指定维度�
 #### 依赖关系
 
 此参数仅在将 **Pad over** 设置为 `Columns`、`Rows` 和 `Columns and rows` 时显示。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

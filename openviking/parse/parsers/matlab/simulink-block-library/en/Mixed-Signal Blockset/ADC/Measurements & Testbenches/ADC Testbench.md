@@ -14,6 +14,25 @@ language: en
 # ADC Testbench
 
 ## Ports
+```yaml
+ports:
+- name: from adc digital
+  summary: Digital signal from ADC output scalar
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: from adc ready
+  summary: Conversion ready signal from ADC output scalar
+  direction: input
+  data_types: double
+- name: to adc analog
+  summary: Analog stimulus signal for ADC input scalar
+  direction: output
+  data_types: double
+- name: to adc start
+  summary: External start conversion clock for ADC scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -43,8 +62,136 @@ External start conversion clock for ADC, returned as a scalar. The rising edge o
 this signal starts the conversion process in ADC block.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement
+  summary: Select whether to measure DC or AC performance metrics DC (default) | AC
+  group: ''
+- name: Recommended min. simulation stop time (s)
+  summary: Minimum time simulation must run for meaningful result 2.048e-02 (default) | positive real scalar
+  group: ''
+- name: Set as model stop time
+  summary: Automatically set recommended min. simulation stop time as model stop time button
+  group: ''
+- name: Endpoint
+  summary: Measure DNL, INL using endpoint method on (default) | off
+  group: ''
+- name: Best fit
+  summary: Measure DNL, INL using best fit method on (default) | off
+  group: ''
+- name: Plot DC analysis result
+  summary: Plot DC analysis results button
+  group: ''
+- name: Export measurement result
+  summary: Store detailed test results to base workspace button
+  group: ''
+- name: Sample interval (s)
+  summary: Rate at which ADC Testbench polls input 1e-6 (default) | positive real scalar
+  group: Stimulus
+  block_parameter: SampleInterval
+  type: character vector
+  values: positive real scalar
+  default: 1e-6
+- name: Distortion measurement type
+  summary: Type of distortion to measure Harmonic (default) | Intermodulation
+  group: Stimulus
+  block_parameter: DistortionMeasurement
+  type: character vector
+  values: Harmonic | Intermodulation
+  default: Harmonic
+- name: Analog stimulus frequency (Hz)
+  summary: Frequency of the analog input signal to ADC positive real scalar | positive real valued vector
+  group: Stimulus
+  block_parameter: InputFrequency
+  type: character vector
+  values: positive real scalar | positive real valued vector
+  default: '98632.8125'
+- name: Resolution bandwidth (Hz)
+  summary: Resolution bandwidth positive real scalar
+  group: Stimulus
+  block_parameter: RBW
+  type: character vector
+  values: positive real scalar
+  default: '976.5625'
+- name: Start conversion frequency (Hz)
+  summary: Frequency of the start conversion clock of the ADC 1e6 (default) | positive real scalar
+  group: Stimulus
+  block_parameter: StartFreq
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: RMS aperture jitter (s)
+  summary: RMS aperture jitter to be added by the start conversion clock 40e-12 (default) | positive real scalar
+  group: Stimulus
+  block_parameter: RMSJitt
+  type: character vector
+  values: positive real scalar
+  default: 40e-12
+- name: Error tolerance (LSB)
+  summary: Maximum difference between successive samples of analog signal 0.1 (default) | positive scalar in the range (0,
+    1]
+  group: Stimulus
+- name: Automatically determine sweep range
+  summary: Automatically determine sweep range on (default) | off
+  group: Stimulus
+- name: Sweep range
+  summary: Custom sweep range [-1 1] (default) | 2-element vector
+  group: Stimulus
+- name: Stop simulation on completion
+  summary: Stop simulation on completion on (default) | off
+  group: Stimulus
+- name: Autofill setup parameter
+  summary: Automatically propagate setup parameters from ADC button
+  group: Setup
+- name: Number of bits
+  summary: Number of physical output bits 10 (default) | positive real integer in the range [1, 26]
+  group: Setup
+- name: Input range (V)
+  summary: ADC dynamic range [-1 1] (default) | 2-element row vector
+  group: Setup
+  block_parameter: InputRange
+  type: character vector
+  values: 2-element row vector
+  default: '[-1 1]'
+- name: Hold off time (s)
+  summary: Delay before measurement analysis 0 (default) | nonnegative real scalar
+  group: Setup
+  block_parameter: HoldOffTime
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Show spectrum analyzer during simulation
+  summary: Displays spectrum analyzer during simulation off (default) | on
+  group: Setup
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: Setup
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 5 (default) | positive integer scalar
+  group: Setup
+  block_parameter: NBuffer
+  type: character vector
+  values: positive integer scalar
+  default: '5'
+- name: Autofill target metric
+  summary: Automatically propagate target metrics from ADC button
+  group: Target Metric
+- name: Offset error
+  summary: Shifts quantization steps by specific value 1.5 LSB (default) | real scalar
+  group: Target Metric
+  block_parameter: TargetOffsetError
+  type: character vector
+  values: real scalar
+  default: 1.5 LSB
+- name: Gain error
+  summary: Error on the slope of ADC transfer curve 1 LSB (default) | real scalar
+  group: Target Metric
+  block_parameter: TargetGainError
+  type: character vector
+  values: real scalar
+  default: 1 LSB
+```
 
 ### **Measurement** — Select whether to measure DC or AC performance metrics `DC` (default) | `AC`
 
@@ -518,7 +665,6 @@ To enable this parameter, set **Measurement** option to
 | **Default:** `1 LSB` |
 
 **Data Types:** `double`
-
 ## Libraries
 
 Mixed-Signal Blockset / ADC / Measurements & Testbenches

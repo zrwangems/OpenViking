@@ -14,6 +14,21 @@ language: en
 # Current Limiter
 
 ## Ports
+```yaml
+ports:
+- name: Lim
+  summary: Variable current limit, A physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -47,8 +62,31 @@ Thermal conserving port associated with the thermal mass.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Limiter type
+  summary: Limiter type Constant symmetric limits (default) | Constant asymmetric limits | Variable limit
+  group: Parameters
+- name: Current limit
+  summary: Positive current limit 1 A (default) | positive scalar
+  group: Parameters
+- name: Reverse direction current limit
+  summary: Negative current limit 1 A (default) | positive scalar
+  group: Parameters
+- name: Voltage drop when current starts to limit
+  summary: Voltage drop when current starts to limit 0.1 V (default) | positive scalar
+  group: Parameters
+- name: Limit-state conductance
+  summary: Limit-state conductance 1e-3 1/Ohm (default) | positive scalar
+  group: Parameters
+- name: Thermal mass
+  summary: Thermal mass 100 J/K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -119,7 +157,6 @@ Heat energy required to raise the temperature by one K.
 
 To enable this parameter, set **Modeling option**
 to `Show thermal port`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

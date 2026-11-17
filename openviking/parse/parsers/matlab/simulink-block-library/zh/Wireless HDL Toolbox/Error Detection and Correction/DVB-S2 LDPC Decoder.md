@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # DVB-S2 LDPC Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: LLR 值 标量 | 列向量 *(自 R2025a 起)*
+  direction: input
+  data_types: int8 | int16 | signed fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: frameType
+  summary: FEC 帧类型 标量
+  direction: input
+  data_types: Boolean
+- name: codeRateIdx
+  summary: 码率索引 整数
+  direction: input
+  data_types: fixdt(0,4,0)
+- name: iter
+  summary: 迭代次数 标量
+  direction: input
+  data_types: uint8
+- name: scalingFactorIdx
+  summary: 缩放因子索引 标量
+  direction: input
+  data_types: uint8
+- name: data
+  summary: 解码比特 标量 | 列向量 *(自 R2025a 起)*
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 模块就绪指示标量
+  direction: output
+  data_types: Boolean
+- name: parityCheck
+  summary: 奇偶校验状态指示标量
+  direction: output
+  data_types: Boolean
+- name: actIter
+  summary: 实际迭代次数标量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -167,8 +214,49 @@ FEC 帧类型，指定为布尔标量。
 要启用此端口，请将 **Decoding termination criteria** 参数设置为 `Early`。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: FEC frame source
+  summary: FEC 帧来源 Input port（默认）| Property
+  group: ''
+- name: FEC frame type
+  summary: FEC 帧类型 Normal（默认）| Short
+  group: ''
+- name: Parallelism level
+  summary: 并行度 45（默认）| 180
+  group: ''
+- name: Code rate source
+  summary: 码率来源 Property（默认）| Input port
+  group: ''
+- name: Code rate
+  summary: 码率 1/4（默认）| 1/3 | 2/5 | 1/2 | 3/5 | 2/3 | 3/4 | 4/5 | 5/6 | 8/9 | 9/10
+  group: ''
+- name: Algorithm
+  summary: LDPC 解码算法 Min-sum（默认）| Normalized min-sum
+  group: ''
+- name: Source for scaling factor
+  summary: 缩放因子来源 Property（默认）| Input port
+  group: ''
+- name: Scaling factor
+  summary: 归一化最小和解码的缩放因子 0.75（默认）| 范围 0.5 到 1 的标量，以 0.0625 递增
+  group: ''
+- name: Decoding termination criteria
+  summary: 终止条件 Max（默认）| Early
+  group: ''
+- name: Source for number of iterations
+  summary: 迭代次数的来源选择 Property（默认）| Input port
+  group: ''
+- name: Number of iterations
+  summary: 解码迭代次数 8（默认）| 范围从 1 到 63 的整数
+  group: ''
+- name: Maximum number of iterations
+  summary: 最大解码迭代次数 8（默认）| 范围从 1 到 63 的整数
+  group: ''
+- name: Enable parity check output port
+  summary: 奇偶校验状态 off（默认）| on
+  group: ''
+```
 
 ### **FEC frame source** — FEC 帧来源 `Input port`（默认）| `Property`
 
@@ -292,7 +380,6 @@ criteria** 参数设置为 `Early`，并将
 
 选择此参数以启用 **parityCheck** 输出端口，以
 查看奇偶校验的状态。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

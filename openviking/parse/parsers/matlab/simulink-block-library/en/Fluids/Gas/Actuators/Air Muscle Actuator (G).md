@@ -14,6 +14,21 @@ language: en
 # Air Muscle Actuator (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Actuator inlet gas
+  direction: conserving
+- name: R
+  summary: Actuator end cap mechanical translational
+  direction: conserving
+- name: C
+  summary: Actuator end cap mechanical translational
+  direction: conserving
+- name: H
+  summary: Actuator wall thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +56,52 @@ Thermal boundary condition between the gas volume of the actuator and
 its surroundings. Connect this port to blocks in the Thermal domain to
 capture heat transfer by conduction, convection, or radiation, for
 example, or to insulate the actuator from the environment.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial actuator length
+  summary: Distance between end caps when unloaded and unpressurized 0.575 m (default) | positive scalar in units of length
+  group: ''
+- name: Unstretched braid length
+  summary: Length of straightened braid when unloaded 0.65 m (default) | positive scalar in units of length
+  group: ''
+- name: Number of turns per braid
+  summary: Number of turns in a braid about the actuator length axis 4.7 (default) | positive unitless scalar
+  group: ''
+- name: Braid stretching
+  summary: Choice of whether to model the stretching of a braid Inelastic braids (default) | Elastic braids
+  group: ''
+- name: Thickness of braided shell and bladder
+  summary: Combined thickness of shell and bladder 0.075 m (default) | positive scalar in units of length
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow at the gas port 0.01 m (default) | positive scalar in units of length
+  group: ''
+- name: Total number of braids
+  summary: Number of braids in the braided shell 80 (default) | positive unitless scalar
+  group: ''
+- name: Number of strands per braid
+  summary: Number of individual strands in a braid 3 (default) | positive unitless scalar
+  group: ''
+- name: Strand diameter
+  summary: Diameter of a strand 0.25 m (default) | positive scalar in units of length
+  group: ''
+- name: Young's modulus of strands
+  summary: Degree to which the strands extend under pressure 3e9 GPA (default)
+  group: ''
+- name: Environment pressure specification
+  summary: Pressure condition outside of the actuator Atmospheric pressure (default) | Specified pressure
+  group: ''
+- name: Environment pressure
+  summary: Absolute pressure outside of the actuator 0.101325 (default) | scalar in units of pressure
+  group: ''
+- name: Contact stiffness of braids at full muscle contraction or extension
+  summary: Stiffness coefficient for contact force at actuator motion limits 1e6 N/m (default)
+  group: ''
+- name: Contact damping of braids at full muscle contraction or extension
+  summary: Damping coefficient for contact force at actuator motion limits 1e4 N/(m/s) (default)
+  group: ''
+```
 
 ### **Initial actuator length** — Distance between end caps when unloaded and unpressurized `0.575 m` (default) | positive scalar in units of length
 
@@ -179,7 +238,6 @@ they reach a limit of motion, causing them to slow to a stop.
 
 For more information on the force model, see the Translational Hard
 Stop.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Actuators

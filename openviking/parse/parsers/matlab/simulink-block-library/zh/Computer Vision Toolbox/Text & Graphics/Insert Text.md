@@ -15,6 +15,61 @@ chinese_source: worker-translation
 # Insert Text
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: 输入图像矩阵的红色分量 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: 输入图像矩阵的绿色分量 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: 输入图像矩阵的蓝色分量 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Select
+  summary: 选择显示文本 正整数
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Color
+  summary: 文本颜色值 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Location
+  summary: 位置索引 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Opacity
+  summary: 不透明度因子 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Variables
+  summary: 文本变量值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 输出图像矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: 输出图像矩阵的红色分量 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: 输出图像矩阵的绿色分量 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: 输出图像矩阵的蓝色分量 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -192,8 +247,47 @@ chinese_source: worker-translation
 要启用此端口，请将 **Image signal** 参数设置为 `Separate color signals`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Text
+  summary: 要插入的文本 'Text'（默认）| 字符向量 | 字符向量元胞数组
+  group: 主
+- name: Color value source
+  summary: 文本颜色来源 Specify via dialog（默认）| Input port
+  group: 主
+- name: Color value
+  summary: 文本颜色值 [0 0 0]（默认）| 标量 | 向量 | 矩阵
+  group: 主
+- name: Location source
+  summary: 位置索引来源 Specify via dialog（默认）| Input port
+  group: 主
+- name: Location [x y]
+  summary: 文本位置索引 [1,1]（默认）| 向量 | 矩阵
+  group: 主
+- name: Opacity source
+  summary: 不透明度因子来源 Specify via dialog（默认）| Input port
+  group: 主
+- name: Opacity
+  summary: 不透明度因子 1（默认）| 标量 | 向量
+  group: 主
+- name: Image signal
+  summary: 输入和输出信号格式 One multidimensional signal（默认）| Separate color signals
+  group: 主
+- name: Input image is transposed (data order is row major)
+  summary: 镜像文本和文本位置 off（默认）| on
+  group: 主
+- name: Font face
+  summary: 文本字体 LucidaSansRegular（默认）| Agency FB | Agency FB Bold | Algerian | Ariel | Arial Black | Arial Bold | Arial Bold
+    Italic | ...
+  group: 字体
+- name: Font size (points)
+  summary: 字体大小 12（默认）| 正标量
+  group: 字体
+- name: Anti-aliased
+  summary: 平滑文本边缘 on（默认）| off
+  group: 字体
+```
 
 ### 主
 
@@ -290,7 +384,6 @@ chinese_source: worker-translation
 ### **Anti-aliased** — 平滑文本边缘 `on`（默认）| `off`
 
 启用此参数以平滑插入文本的边缘。平滑处理的计算成本较高。
-
 ## 所属库
 
 Computer Vision Toolbox / Text & Graphics

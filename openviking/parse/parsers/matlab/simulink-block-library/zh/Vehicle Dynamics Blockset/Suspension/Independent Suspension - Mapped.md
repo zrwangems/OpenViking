@@ -15,6 +15,54 @@ chinese_source: worker-translation
 # Independent Suspension - Mapped
 
 ## 端口
+```yaml
+ports:
+- name: WhlPz
+  summary: 车轮 z 轴位移数组
+  direction: input
+- name: WhlRe
+  summary: 车轮有效半径数组
+  direction: input
+- name: WhlVz
+  summary: 车轮 z 轴速度数组
+  direction: input
+- name: WhlFx
+  summary: 作用于车辆上的车轮纵向力数组
+  direction: input
+- name: WhlFy
+  summary: 作用于车辆上的车轮侧向力数组
+  direction: input
+- name: WhlM
+  summary: 车轮阵列上的悬架力矩
+  direction: input
+- name: VehP
+  summary: 车辆位移阵列
+  direction: input
+- name: VehV
+  summary: 车辆速度数组
+  direction: input
+- name: StrgAng
+  summary: 转向角，可选数组
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: VehF
+  summary: 作用在车辆上的悬架力 array
+  direction: output
+- name: VehM
+  summary: 作用在车辆上的悬架力矩 array
+  direction: output
+- name: WhlF
+  summary: 车轮上的悬架力 array
+  direction: output
+- name: WhlV
+  summary: 车轮速度 array
+  direction: output
+- name: WhlAng
+  summary: 车轮外倾角、主销后倾角、前束角 array
+  direction: output
+```
 
 ### 输入
 
@@ -416,8 +464,75 @@ enable by axle, StrgEnByAxl** 向量的一个元素设置为 `1`。
   | 右前 | `WhlF(3,2)` | `1` | `2` |
   | 左后 | `WhlF(3,3)` | `2` | `1` |
   | 右后 | `WhlF(3,4)` | `2` | `2` |
-
 ## 参数
+```yaml
+parameters:
+- name: 车轴数量，NumAxl
+  summary: 车轴数量 2（默认）| 标量
+  group: 车轴
+  block_parameter: NumAxl
+  values: 2（默认）| 标量
+- name: 按车轴的车轮数量，NumWhlsByAxl
+  summary: 每轴车轮数量 [2 2]（默认）| 向量
+  group: 车轴
+  block_parameter: NumWhlsByAxl
+  values: '[2 2]（默认）| 向量'
+- name: 按车轴的转向轴启用，StrgEnByAxl
+  summary: 用于启用车轴转向的布尔向量 [1 0]（默认）| 向量
+  group: 车轴
+  block_parameter: StrgEnByAxl
+  values: '[1 0]（默认）| 向量'
+- name: Anti-sway axle enable by axle, AntiSwayEnByAxl
+  summary: 用于启用车轴防侧倾的布尔向量 [0 0]（默认）| 向量
+  group: 车轴
+  block_parameter: AntiSwayEnByAxl
+  values: '[0 0]（默认）| 向量'
+- name: Axle breakpoints, f_susp_axl_bp
+  summary: 断点 [1 2]（默认）| 1×P 数组
+  group: Suspension
+  block_parameter: f_susp_axl_bp
+  values: '[1 2]（默认）| 1×P 数组'
+- name: Vertical axis suspension height breakpoints, f_susp_dz_bp
+  summary: 断点 1×M 数组
+  group: Suspension
+  block_parameter: f_susp_dz_bp
+  values: 1×M 数组
+- name: Vertical axis suspension height velocity breakpoints, f_susp_dzdot_bp
+  summary: 断点 1×N 数组
+  group: Suspension
+  block_parameter: f_susp_dzdot_bp
+  values: 1×N 数组
+- name: Vertical axis suspension force and moment responses, f_susp_fmz
+  summary: 输出数组 zeros(31,31,61,2,4)（默认）| M×N×O×P×4 数组
+  group: Suspension
+  block_parameter: f_susp_fmz
+  values: zeros(31,31,61,2,4)（默认）| M×N×O×P×4 数组
+- name: Suspension geometry responses, f_susp_geom
+  summary: 悬架几何响应 zeros(31,61,2,3)（默认）| M×O×P×3 数组
+  group: Suspension
+  block_parameter: f_susp_geom
+  values: zeros(31,61,2,3)（默认）| M×O×P×3 数组
+- name: 转向角断点，f_susp_strgdelta_bp
+  summary: 转向角断点 1×O 数组
+  group: Suspension
+  block_parameter: f_susp_strgdelta_bp
+  values: 1×O 数组
+- name: 防侧倾臂半径，AntiSwayR
+  summary: 防侧倾臂半径 0.2（默认）| 标量 | 向量
+  group: 防侧倾
+  block_parameter: AntiSwayR
+  values: 0.2（默认）| 标量 | 向量
+- name: 防侧倾臂中性角，AntiSwayNtrlAng
+  summary: 防侧倾臂中性角 0.5236（默认）| 标量 | 向量
+  group: 防侧倾
+  block_parameter: AntiSwayNtrlAng
+  values: 0.5236（默认）| 标量 | 向量
+- name: 防侧倾扭簧常数，AntiSwayTrsK
+  summary: 防侧倾扭簧常数 5.7296e+03（默认）| 标量 | 向量
+  group: 防侧倾
+  block_parameter: AntiSwayTrsK
+  values: 5.7296e+03（默认）| 标量 | 向量
+```
 
 ### 车轴
 
@@ -723,7 +838,6 @@ enable by axle, StrgEnByAxl** 向量的一个元素设置为 `1`。
 | **参数：** | `AntiSwayTrsK` |
 | **值：** | `5.7296e+03`（默认）| `标量` | `向量` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Suspension

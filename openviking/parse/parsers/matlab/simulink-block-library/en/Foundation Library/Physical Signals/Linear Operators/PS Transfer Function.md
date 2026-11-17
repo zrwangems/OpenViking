@@ -14,6 +14,21 @@ language: en
 # PS Transfer Function
 
 ## Ports
+```yaml
+ports:
+- name: U
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: R
+  summary: Reset physical signal, *R*, untyped physical signal
+  direction: input
+- name: Y0
+  summary: Initial output physical signal, *YO*, untyped physical signal
+  direction: input
+- name: Y
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -55,8 +70,33 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Transfer function type
+  summary: Specify type of low-pass filter Lag (default) | Lead-lag
+  group: ''
+- name: Lag time constant, T
+  summary: Lag time constant for first-order low-pass filter 1 s (default) | positive scalar
+  group: ''
+- name: Lead time constant, T1
+  summary: Lead time constant for lead-lag filter 2 s (default) | positive scalar
+  group: ''
+- name: Lag time constant, T2
+  summary: Lag time constant for lead-lag filter 1 s (default) | positive scalar
+  group: ''
+- name: External reset
+  summary: Specify whether block resets its state to initial output based on external reset signal None (default) | Rising
+    | Falling | Either
+  group: ''
+- name: Initial output source
+  summary: Select whether to specify the initial output value as a block parameter or an additional input signal Internal
+    (default) | External
+  group: ''
+- name: Initial output
+  summary: Output signal value and unit at the start of simulation and after reset 0 1 (default) | scalar, vector, or matrix
+  group: ''
+```
 
 ### **Transfer function type** — Specify type of low-pass filter `Lag` (default) | `Lead-lag`
 
@@ -129,7 +169,6 @@ and Unit Definitions.
 
 To enable this parameter, set **Initial output source** to
 `Internal`.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Linear Operators

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Gazebo Apply Command
 
 ## 端口
+```yaml
+ports:
+- name: Cmd
+  summary: Gazebo Command bus
+  direction: input
+  data_types: bus
+```
 
 ### 输入
 
@@ -146,8 +153,17 @@ Gazebo 命令消息，指定为总线。该命令是针对指定模型连杆或�
 - 如果 `duration` 为 `1.005` 秒，则作为 Bus 将是 `1` 秒和 `5000000` 纳秒。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Command type
+  summary: — 命令类型 ApplyLinkWrench（默认）| ApplyJointTorque | SetLinkWorldPose | SetLinkLinearVelocity | SetLinkAngularVelocity
+    | SetJointPosition | SetJointVelocity
+  group: ''
+- name: Sample time
+  summary: — 输入的采样时间 0.001（默认）| 正值
+  group: ''
+```
 
 ### **Command type** —— 命令类型 `ApplyLinkWrench`（默认）| `ApplyJointTorque` | `SetLinkWorldPose` | `SetLinkLinearVelocity` | `SetLinkAngularVelocity` | `SetJointPosition` | `SetJointVelocity`
 
@@ -156,7 +172,6 @@ Gazebo 命令消息，指定为总线。该命令是针对指定模型连杆或�
 ### **Sample time** —— 输入的采样时间 `0.001`（默认）| 正值
 
 采样时间表示命令发送到 Gazebo 模拟器的时间间隔。
-
 ## 所属库
 
 Robotics System Toolbox / Gazebo Co-Simulation

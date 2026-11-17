@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PMOS Capacitor
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 栅极端子电气端口
+  direction: conserving
+- name: B
+  summary: 体端子电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,53 @@ chinese_source: worker-translation
 ### **B** — 体端子电气端口
 
 与 NMOS 电容器体端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Capacitor model
+  summary: 电容器的参数化选项 Fundamental nonlinear equations（默认）| Lookup table (2-D, temperature dependent)
+  group: 主要
+- name: Gate-bulk capacitance lookup table, Cgb(T,Vgb)
+  summary: 栅极-体电容查找表 [3.4574, 3.4541, 3.4407, 3.4274, 3.404, 3.374, 3.3339, 3.2938, 3.227, 3.1402, 3.0467, 2.9332, 2.8063,
+    2.6828, 2.5426, 2.3255, 2.0985, 1.7679, 1.5576, 1.2671, .9466, .6895, .4691, .2688, .182, .1386, .1152, .1085, .0952,
+    .0851, .08, .0785, .0751, .0751, .0751] nF（默认）| 正元素向量或矩阵
+  group: 主要
+- name: Temperature, T
+  summary: 栅极-体电容查找表的温度 25 degC（默认）| 标量 | 向量
+  group: 主要
+- name: Gate-bulk voltage, Vgb
+  summary: 栅极-体电压 [.9897, .7165, .3995, .201, .0851, -.0309, -.134, -.2216, -.3015, -.4021, -.5, -.6082, -.6804, -.7268, -.7706,
+    -.8093, -.8428, -.8686, -.9149, -.9536, -1.0077, -1.0567, -1.1031, -1.1624, -1.2526, -1.3608, -1.4948, -1.6701, -1.8402,
+    -2.0464, -2.2887, -2.5052, -2.7216, -2.8711, -2.9897] V（默认）| 向量
+  group: 主要
+- name: Oxide capacitance, Cox
+  summary: 电容器的总氧化层电容 345.31 nF（默认）| 正标量
+  group: 半导体材料参数
+- name: Band-gap energy, EG
+  summary: 带隙能量 1.12 eV（默认）| 标量
+  group: 半导体材料参数
+- name: Threshold voltage, Vth
+  summary: 反型模式的阈值栅极电压 -1.0222 V（默认）| 标量
+  group: 半导体材料参数
+- name: Surface potential, phib
+  summary: 表面势 0.9115 V（默认）| 正标量
+  group: 半导体材料参数
+- name: Body factor, gamma
+  summary: 体效应参数 1.1798 V^(1/2)（默认）| 正标量
+  group: 半导体材料参数
+- name: Model high-frequency C-V behavior for strong inversion
+  summary: 为强反型模式建模高频 C-V 特性的选项 off（默认）| on
+  group: 半导体材料参数
+- name: Measurement temperature
+  summary: 模块引用参数时的温度 25 degC（默认）| 正标量
+  group: 半导体材料参数
+- name: Parameterization
+  summary: 指定器件仿真温度的选项 None - Simulate at parameter measurement temperature（默认）| Model temperature dependence
+  group: 温度依赖性
+- name: Device simulation temperature
+  summary: 仿真器件的温度 25 degC（默认）| 正标量
+  group: 温度依赖性
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -136,7 +190,6 @@ chinese_source: worker-translation
 
 - 将 **Capacitor model** 设置为 `Fundamental nonlinear equations`，并将 **Parameterization** 设置为 `Model temperature dependence`。
 - 将 **Capacitor model** 设置为 `Lookup table (2-D, temperature dependent)`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

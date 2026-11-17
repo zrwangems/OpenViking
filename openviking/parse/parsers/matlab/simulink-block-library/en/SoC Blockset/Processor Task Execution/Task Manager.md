@@ -14,6 +14,20 @@ language: en
 # Task Manager
 
 ## Ports
+```yaml
+ports:
+- name: '*Task1*'
+  summary: Function-call from Task1 scalar
+  direction: output
+- name: '*Task1*Event'
+  summary: Message event notification scalar
+  direction: input
+  data_types: rteEvent
+- name: '*Task1*Dur'
+  summary: Task duration positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Output
 
@@ -75,8 +89,73 @@ via** parameter to `Input
 port`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable task simulation
+  summary: Enable simulation of task duration on (default) | off
+  group: ''
+- name: List of tasks
+  summary: List of tasks Task1 (default)
+  group: ''
+- name: Add
+  summary: Add task button
+  group: ''
+- name: Delete
+  summary: Delete existing task button
+  group: ''
+- name: Use Schedule Editor ordering
+  summary: Specify task priority using Schedule Editor tool off (default) | on
+  group: ''
+- name: Name
+  summary: Name of task Task1 (default) | character vector
+  group: Main
+- name: Type
+  summary: Trigger type of task Timer-driven (default) | Event-driven
+  group: Main
+- name: Period
+  summary: Timer period 0.1 (default) | positive scalar
+  group: Main
+- name: Core
+  summary: Processor core to execute task 0 (default) | non-negative integer | -1
+  group: Main
+- name: Priority
+  summary: Priority of task in scheduler 10 (default) | positive integer
+  group: Main
+- name: Drop tasks that overrun
+  summary: Drop tasks that overrun off (default) | on
+  group: Main
+- name: Play recorded task execution sequence
+  summary: Enable playback from file off (default) | on
+  group: Simulation
+- name: Specify task duration via
+  summary: Source of task execution time Dialog (default) | Input port | Record task execution statistics
+  group: Simulation
+- name: Add
+  summary: Adds distribution button
+  group: Simulation
+- name: Delete
+  summary: Remove distribution button
+  group: Simulation
+- name: Percent
+  summary: Likelihood of distribution 100 (default) | positive scalar
+  group: Simulation
+- name: Mean
+  summary: Mean task duration in simulation 1e-06 (default) | positive scalar
+  group: Simulation
+- name: SD
+  summary: Standard deviation of task duration in simulation 0 (default) | positive scalar
+  group: Simulation
+- name: Min
+  summary: Lower limit of task duration 1e-06 (default) | positive scalar
+  group: Simulation
+- name: Max
+  summary: Upper limit of task duration 1e-06 (default) | positive scalar
+  group: Simulation
+- name: File name
+  summary: File containing diagnostic scheduling data filepath
+  group: Simulation
+```
 
 ### **Enable task simulation** — Enable simulation of task duration `on` (default) | `off`
 
@@ -265,7 +344,6 @@ scheduler previously recorded from the hardware board.
 To enable this parameter, set the **Specify task duration
 via** parameter to `Recorded task execution
 statistics`.
-
 ## Libraries
 
 SoC Blockset / Processor Task Execution C2000 Microcontroller Blockset / Scheduling Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Scheduling Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Scheduling

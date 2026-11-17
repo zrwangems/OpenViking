@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Puncturer
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据样本 标量 | 大小为 2 到 7 的列向量
+  direction: input
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: 指示有效输入数据样本 标量
+  direction: input
+  data_types: Boolean
+- name: puncVector
+  summary: 打孔向量 二进制值的列向量
+  direction: input
+  data_types: Boolean
+- name: syncPunc
+  summary: 打孔同步信号 标量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 打孔输出数据 n×1 列向量
+  direction: output
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: 输出数据样本的有效性 标量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -112,8 +147,22 @@ chinese_source: worker-translation
 要启用此端口，请将 **Operation mode** 参数设置为 `Frame`。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation mode
+  summary: 操作模式 Continuous（默认）| Frame
+  group: ''
+- name: Encoder rate
+  summary: 编码器速率 1/2（默认）| 范围从 1/2 到 1/7
+  group: ''
+- name: Puncture vector source
+  summary: 打孔向量的来源 Input port（默认）| Property
+  group: ''
+- name: Puncture vector
+  summary: 要打孔的数据位置 [1;1;1;0;0;1]（默认）| 二进制值的列向量
+  group: ''
+```
 
 ### **Operation mode** — 操作模式 `Continuous`（默认）| `Frame`
 
@@ -140,7 +189,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Puncture vector source** 参数设置为 `Property`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

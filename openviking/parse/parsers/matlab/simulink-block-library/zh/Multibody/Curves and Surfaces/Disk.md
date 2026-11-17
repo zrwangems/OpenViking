@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Disk
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+- name: G
+  summary: 几何体 geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -26,8 +35,37 @@ chinese_source: worker-translation
 ### **G** — 几何体 geometry
 
 表示圆盘的几何体。将此端口连接到 Spatial Contact Force 模块以对圆盘上的接触进行建模。
-
 ## 参数
+```yaml
+parameters:
+- name: Radius
+  summary: 圆盘半径 1 m（默认）| 正整数
+  group: ''
+- name: Type
+  summary: 圆盘的视觉表示 From Geometry（默认）| None
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化方式 Simple（默认）| Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: 漫反射光的颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Opacity
+  summary: 渲染对象的不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: Graphic
+- name: Specular Color
+  summary: 镜面反射光的颜色 [0.5 0.5 0.5 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Ambient Color
+  summary: 环境光的颜色 [0.15 0.15 0.15 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0 0 0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Shininess
+  summary: 渲染对象的光泽度 75（默认）| 取值范围为 0 到 128 的标量
+  group: Graphic
+```
 
 ### **Radius** — 圆盘半径 1 `m`（默认）| 正整数
 
@@ -138,7 +176,6 @@ Geometry`。
 
 1. **Type** 为 `From Geometry`
 2. **Visual Properties** 为 `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Curves and Surfaces

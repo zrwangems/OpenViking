@@ -14,6 +14,17 @@ language: en
 # Discrete Zero-Pole
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Model of discrete system scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -32,8 +43,52 @@ columns in the **Zeros** matrix, or one if
 **Zeros** is a vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Zeros
+  summary: Matrix of zeros [1] (default) | vector | matrix
+  group: Main
+  block_parameter: Zeros
+  type: character vector
+  values: vector
+  default: '''[1]'''
+- name: Poles
+  summary: Vector of poles [0 0.5] (default) | vector
+  group: Main
+  block_parameter: Poles
+  type: character vector
+  values: vector
+  default: '''[0 0.5]'''
+- name: Gain
+  summary: Gain value 1 (default) | scalar | vector
+  group: Main
+  block_parameter: Gain
+  type: character vector
+  values: scalar | vector
+  default: '''1'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: State name
+  summary: Unique name for block state '' (default) | alphanumeric string
+  group: State Attributes
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: Require state name resolve to a signal object off (default) | on
+  group: State Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -149,7 +204,6 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discrete

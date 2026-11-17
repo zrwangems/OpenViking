@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Wind Angular Rates
 
 ## 端口
+```yaml
+ports:
+- name: ɑ β
+  summary: 迎角和侧滑角 2×1 向量
+  direction: input
+  data_types: double
+- name: dɑ/dt dβ/dt
+  summary: 变化率 2×1 向量
+  direction: input
+  data_types: double
+- name: ω
+  summary: 机体角速率 三元素向量
+  direction: input
+  data_types: double
+- name: ωw
+  summary: 风角速率 三元素向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,11 +61,12 @@ chinese_source: worker-translation
 风角速率，返回为三元素向量，单位为弧度每秒。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Flight Parameters

@@ -14,6 +14,41 @@ language: en
 # Entity Selector
 
 ## Ports
+```yaml
+ports:
+- name: Key
+  summary: Incoming reference entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: Incoming entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: Exiting reference entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_2
+  summary: Exiting matched entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: Number of entities that have departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: Number of entities that have not yet departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: Number of entities extracted scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -73,8 +108,73 @@ and select the box labeled **Number of entities extracted,
 ex**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of matching streams
+  summary: Determine how many input entity streams the block accepts 1 (default) | numerical
+  group: ''
+  block_parameter: mNumberOfStreams
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Key entity attribute Name
+  summary: Specify name of reference attribute {'ID'} (default) | character vector
+  group: ''
+  block_parameter: mKeyEntityAttributeName
+  type: character vector
+  values: '''{''ID''}'' | character vector'
+  default: '''{''ID''}'''
+- name: Matching entity attribute name(s)
+  summary: Specify name of selected attribute names {'Type'} (default) | character vector
+  group: ''
+  block_parameter: mEntityAttributeName
+  type: character vector
+  values: '''{''Type''}'' | character vector'
+  default: '''{''Type''}'''
+- name: Number of entities source
+  summary: Source to determine the number of entities to be matched Dialog (default) | Attribute
+  group: ''
+  block_parameter: mMatchingNumberSource
+  type: character vector
+  values: '''Dialog'' | ''Attribute'''
+  default: '''Dialog'''
+- name: Number of entities to select
+  summary: Number of entities to select from each of the incoming entity streams 1 (default) | scalar
+  group: ''
+  block_parameter: mNumberOfMatches
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Key attribute for number of entities
+  summary: Key attribute name that determines the number of entities to be matched Name (default) | character vector
+  group: ''
+  block_parameter: mNumberOfMatchesAttribute
+  type: character vector
+  values: '''Name'' | character vector'
+  default: '''Name'''
+- name: Number of entities departed, d
+  summary: Outputs the number of entities that have departed the block off (default) | on
+  group: ''
+  block_parameter: mNumEntitiesDepOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: Outputs the number of entities present in the block, which have yet to depart off (default) | on
+  group: ''
+  block_parameter: mNumEntitiesInBlockOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: Outputs the number of entities extracted from the block off (default) | on
+  group: ''
+  block_parameter: mNumEntitiesExtractedOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Number of matching streams** — Determine how many input entity streams the block accepts `1` (default) | numerical
 
@@ -223,7 +323,6 @@ updated accordingly.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

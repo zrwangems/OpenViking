@@ -14,6 +14,15 @@ language: en
 # Execution Time
 
 ## Ports
+```yaml
+ports:
+- name: Total Exec Time
+  summary: Total execution time for the previous base rate tick double
+  direction: output
+- name: Task Exec Time
+  summary: Task execution times for individual sample rates (optional) vector of double
+  direction: output
+```
 
 ### Output
 
@@ -31,8 +40,14 @@ in a multitasking model as of the previous sample time.
 
 When you select **Measure task execution times**,
 this port is visible.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measure task execution times
+  summary: Show task execution times for individual tasks ‘off’ (default) | ‘on’
+  group: ''
+  block_parameter: ShowTaskTimes
+```
 
 ### **Measure task execution times** — Show task execution times for individual tasks `‘off’` (default) | `‘on’`
 
@@ -45,7 +60,6 @@ multitasking model as of the previous sample time.
 |  |
 | --- |
 | **Block Parameter:** `ShowTaskTimes` |
-
 ## Libraries
 
 Simulink Desktop Real-Time / Target Profiling

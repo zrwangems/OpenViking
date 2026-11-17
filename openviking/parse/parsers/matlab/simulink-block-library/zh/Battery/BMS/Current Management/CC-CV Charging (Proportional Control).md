@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # CC-CV Charging (Proportional Control)
 
 ## 端口
+```yaml
+ports:
+- name: ChargingEnabled
+  summary: 是否启用电池充电 boolean
+  direction: input
+- name: CellVoltage
+  summary: 电芯电压，V scalar | vector
+  direction: input
+- name: ChargeCurrentLimit
+  summary: 充电电流限值，A scalar
+  direction: input
+- name: CellVoltageThreshold
+  summary: 放电电流，V scalar
+  direction: input
+- name: ChargeCurrentRequest
+  summary: 充电电流 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -40,8 +58,19 @@ chinese_source: worker-translation
 ### **ChargeCurrentRequest** — 充电电流 scalar
 
 充电电流指令，以标量形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify CellVoltage input as [Min,Max]
+  summary: 将 CellVoltage 输入指定为最小值和最大值的选项 off（默认）| on
+  group: ''
+- name: Controller proportional gain
+  summary: 控制器的比例增益 0.02（默认）| scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 1（默认）| -1 | 正整数
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -58,7 +87,6 @@ chinese_source: worker-translation
 连续模块执行之间的时间。在执行期间，模块产生输出，并在适当情况下更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 对于继承的离散时间操作，请将此参数指定为 `-1`。对于离散时间操作，请将此参数指定为正整数。
-
 ## 所属库
 
 Simscape / Battery / BMS / Current Management

@@ -15,6 +15,26 @@ chinese_source: worker-translation
 # Transfer Fcn Direct Form II Time Varying
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Num
+  summary: 分子系数 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Den No Lead
+  summary: 分母系数 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: y
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -56,8 +76,28 @@ chinese_source: worker-translation
 该模块自动选择输出及任何临时变量的数据类型和定标。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial condition
+  summary: 初始条件 0.0（默认）| 标量
+  group: ''
+  block_parameter: vinit
+  type: 字符向量
+  values: 标量
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: 溢出操作方法 off（默认）| on
+  group: ''
+  block_parameter: DoSatur
+  type: 字符向量
+  values: '''off'' | ''on'''
+```
 
 ### **Initial condition** — 初始条件 `0.0`（默认）| 标量
 
@@ -100,7 +140,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
 | **默认：** `'off'` |
-
 ## 所属库
 
 Simulink / Additional Math & Discrete / Additional Discrete

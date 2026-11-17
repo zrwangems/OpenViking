@@ -14,6 +14,21 @@ language: en
 # Signal Sample and Hold
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double
+- name: S
+  summary: Control signal 0 | 1
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -36,8 +51,16 @@ Sample pulse of `0` for `false` or
 Output signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition
+  summary: Initial output value scalar | vector
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Initial condition** — Initial output value scalar | vector
 
@@ -58,7 +81,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

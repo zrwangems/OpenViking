@@ -14,10 +14,36 @@ language: en
 # Diagnostic Service Component
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: ID (RTE tab)
+  summary: ID that identifies service event, operation cycle, or function with inhibition condition 1 (default) | scalar
+  group: ''
+- name: Increment step size
+  summary: Fixed-step value to increment event ID counter when PREFAIL events arrive 1 (default) | scalar (1 to 32767)
+  group: ''
+- name: Decrement step size
+  summary: Fixed-step value to decrement the event ID counter when PREPASS events arrive 1 (default) | scalar (1 to 32767)
+  group: ''
+- name: Failed threshold
+  summary: Dem event ID counter threshold that represents a failed status 2 (default) | scalar (1 to 32767)
+  group: ''
+- name: Passed threshold
+  summary: Dem event ID counter threshold that represents passed status -1 (default) | scalar (-32768 to -1)
+  group: ''
+- name: ID (FiM tab)
+  summary: Inhibition condition ID 1 (default) | scalar
+  group: ''
+- name: Mask
+  summary: Inhibition condition mask LAST_FAILED | NOT_TESTED | TESTED | TESTED_AND_FAILED
+  group: ''
+```
 
 ### **ID (RTE tab)** — ID that identifies service event, operation cycle, or function with inhibition condition 1 (default) | scalar
 
@@ -62,7 +88,6 @@ inhibition condition with an ID, one or more component client ports
 associated with the ID, and a mask. For each inhibition condition, you can
 modify the mask value. For examples of inhibition condition configuration,
 see Configure and Simulate AUTOSAR Function Inhibition Service Calls.
-
 ## Libraries
 
 AUTOSAR Blockset / Classic Platform / Basic Software / Diagnostic Event Manager (Dem)

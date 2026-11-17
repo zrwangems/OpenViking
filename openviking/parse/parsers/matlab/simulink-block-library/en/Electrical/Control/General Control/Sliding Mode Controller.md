@@ -14,6 +14,21 @@ language: en
 # Sliding Mode Controller
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Plant reference scalar
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Plant output scalar
+  direction: input
+  data_types: single | double
+- name: u
+  summary: Controller output scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -35,8 +50,26 @@ Plant system output signal.
 Control system output signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sliding factor
+  summary: Sliding factor 1 (default) | nonnegative scalar
+  group: ''
+- name: Hysteresis band
+  summary: Total hysteresis bandwidth 0.2 (default)
+  group: ''
+- name: Control action upper limit
+  summary: Control signal upper limit, *umax* 10 (default) | scalar greater than the value of the Control action lower limit
+    parameter
+  group: ''
+- name: Control action lower limit
+  summary: Control signal lower limit, *umin* -10 (default) | scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Sliding factor** — Sliding factor `1` (default) | nonnegative scalar
 
@@ -68,7 +101,6 @@ If this block is inside a triggered subsystem, inherit the
 sample time by setting this parameter to `-1`. If this block is in a
 continuous variable-step model, specify the sample time explicitly using a positive
 scalar.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

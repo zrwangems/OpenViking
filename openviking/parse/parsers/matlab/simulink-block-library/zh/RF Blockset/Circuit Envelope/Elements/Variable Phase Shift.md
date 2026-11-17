@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Variable Phase Shift
 
 ## 端口
+```yaml
+ports:
+- name: Phase
+  summary: Simulink 控制信号标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,19 @@ chinese_source: worker-translation
 Simulink 控制信号，指定为标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase shift unit
+  summary: 用于控制电路相位的角度单位 rad（默认）| deg
+  group: ''
+- name: Reference impedances (Ohm)
+  summary: 移相器的参考阻抗 50（默认）| 实正标量向量 | 实标量
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 将 RF 电路端子接地 on（默认）| off
+  group: ''
+```
 
 ### **Phase shift unit** — 用于控制电路相位的角度单位 `rad`（默认）| `deg`
 
@@ -41,7 +59,6 @@ Simulink 控制信号，指定为标量。
 ### **Ground and hide negative terminals** — 将 RF 电路端子接地 on（默认）| off
 
 选择此参数可将负极端子接地并隐藏。要暴露负极端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其它部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

@@ -14,6 +14,24 @@ language: en
 # Manual Switch
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_2
+  summary: Second input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -39,8 +57,22 @@ switch by double-clicking the block.
 Output signal propagated from either the first or second input signal.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Allow the two inputs to differ in size (Results in variable-size output signal)
+  summary: Allow inputs of different sizes off (default) | on
+  group: ''
+  block_parameter: varsize
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 To view the block parameters, right-click the block and select `Block Parameters
 (ManualSwitch)`.
@@ -80,7 +112,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Signal Routing

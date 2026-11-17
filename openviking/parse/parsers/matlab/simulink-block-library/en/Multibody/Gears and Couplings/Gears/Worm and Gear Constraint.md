@@ -14,6 +14,15 @@ language: en
 # Worm and Gear Constraint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: unspecified
+- name: F
+  summary: Follower frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -24,8 +33,32 @@ Connection frame on the worm body.
 ### **F** — Follower frame frame
 
 Connection frame on the gear body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Worm Direction
+  summary: Winding direction of the worm thread Right-Hand (default) | Left-Hand
+  group: ''
+- name: Worm Lead Angle
+  summary: Angle between the worm thread and rotation plane 10 deg (default) | positive scalar between 0 and 180 in units
+    of angle
+  group: ''
+- name: Specification Method
+  summary: Gear geometry parameterization Center Distance and Ratio (default) | Pitch Circle Radii
+  group: ''
+- name: Center Distance
+  summary: Distance between the worm and gear centers 20 cm (default) | positive scalar in units of length
+  group: ''
+- name: Ratio (Ng/Nw)
+  summary: Ratio of gear teeth to worm threads 1 (default) | positive unitless scalar
+  group: ''
+- name: Worm Radius
+  summary: Radius of the worm pitch circle 10 cm (default) | positive scalar in units of length
+  group: ''
+- name: Gear Radius
+  summary: Radius of the gear pitch circle 10 cm (default) | positive scalar in units of length
+  group: ''
+```
 
 ### **Worm Direction** — Winding direction of the worm thread `Right-Hand` (default) | `Left-Hand`
 
@@ -93,7 +126,6 @@ torque transmitted between the worm and gear.
 This parameter is enabled when the **Specification
 Method** parameter is set to `Pitch Circle
 Radius`.
-
 ## Libraries
 
 Simscape / Multibody / Gears and Couplings / Gears

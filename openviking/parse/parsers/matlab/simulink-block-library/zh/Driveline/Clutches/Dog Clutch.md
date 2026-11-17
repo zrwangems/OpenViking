@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Dog Clutch
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 逻辑换挡连杆，无量纲物理信号
+  direction: input
+- name: X
+  summary: 离合器位置，m 或无量纲物理信号
+  direction: output
+- name: H
+  summary: 离合器轮毂机械旋转
+  direction: output
+- name: R
+  summary: 离合器齿圈机械旋转
+  direction: output
+- name: S
+  summary: 换挡连杆机械平移
+  direction: output
+- name: T
+  summary: 热流热
+  direction: output
+```
 
 ### 输入
 
@@ -63,8 +84,119 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Torque transmission model** 设置为 `Friction clutch approximation - Suitable for HIL and linearization`，并将 **Thermal port** 设置为 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Torque transmission model
+  summary: 扭矩传递模型 Two-mode（默认）| Friction clutch approximation - Suitable for HIL and linearization | Dynamic with backlash
+    | Dynamic modal
+  group: 离合器
+- name: Engagement speed threshold
+  summary: 接合速度阈值 5 rpm（默认）| 正标量
+  group: 离合器
+- name: Thermal port
+  summary: 启用热端口的选项 Omit（默认）| Model
+  group: 离合器
+- name: Clutch teeth mean radius
+  summary: 离合器齿平均半径 50 mm（默认）| 正标量
+  group: 离合器
+- name: Maximum transmitted torque
+  summary: 最大传递扭矩 1000 N*m（默认）| 正标量
+  group: 离合器
+- name: Temperature vector
+  summary: 温度 [280, 300, 320] K（默认）| 向量
+  group: 离合器
+- name: Maximum transmitted torque vector
+  summary: 最大传递扭矩 [1000, 1050, 1000] N*m（默认）| 向量
+  group: 离合器
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 离合器
+- name: Extrapolation method
+  summary: 外插方法 Linear（默认）| Nearest | Error
+  group: 离合器
+- name: Number of teeth
+  summary: 齿圈或轮毂齿数 6（默认）| 正非零标量整数
+  group: 离合器
+- name: Rotational backlash
+  summary: 旋转齿隙 10 deg（默认）| 正标量
+  group: 离合器
+- name: Torsional stiffness
+  summary: 扭转刚度 10e6 N*m/rad（默认）| 正标量
+  group: 离合器
+- name: Torsional damping
+  summary: 扭转阻尼 100 N*m*s/rad（默认）| 正标量
+  group: 离合器
+- name: Abstract shift linkage control
+  summary: 双模式连杆控制选项 Logic-controlled（默认）| Physical signal
+  group: 换挡连杆
+- name: Shift linkage control
+  summary: 换挡连杆控制端口 Physical signal（默认）| Conserving port
+  group: 换挡连杆
+- name: Tooth height
+  summary: 齿高 10 mm（默认）| 正标量
+  group: 换挡连杆
+- name: Ring-hub clearance when disengaged
+  summary: 分离时齿圈-轮毂间隙 3 mm（默认）| 正标量
+  group: 换挡连杆
+- name: Hard stop at back of shift linkage
+  summary: 硬限位支撑选项 on（默认）| off
+  group: 换挡连杆
+- name: Ring stop stiffness
+  summary: 齿圈限位刚度 10e5 N/m（默认）| 正标量
+  group: 换挡连杆
+- name: Ring stop damping
+  summary: 齿圈限位阻尼 1e3 N*s/m（默认）| 非负标量
+  group: 换挡连杆
+- name: Shift linkage viscous friction coefficient
+  summary: 换挡连杆粘性摩擦系数 100 N*s/m（默认）| 正标量
+  group: 换挡连杆
+- name: Tooth-tooth friction coefficient
+  summary: 齿对齿接触动摩擦系数 0.05（默认）| 正标量
+  group: 换挡连杆
+- name: Shift linkage engaged friction coefficient
+  summary: 接合摩擦系数 100 N*s/m（默认）| 正标量
+  group: 换挡连杆
+- name: Shift linkage disengaged friction coefficient
+  summary: 分离摩擦系数 50 N*s/m（默认）| 正标量
+  group: 换挡连杆
+- name: Static contact speed threshold
+  summary: 静态接触速度阈值 0.1 m/s（默认）| 正标量
+  group: 换挡连杆
+- name: Static contact release force threshold
+  summary: 释放力阈值 0.001 N（默认）| 正标量
+  group: 换挡连杆
+- name: Linkage travel direction
+  summary: 接合条件行程方向 Positive shift linkage displacement engages clutch（默认）| Negative shift linkage displacement engages clutch
+  group: 接合条件
+- name: Maximum engagement speed
+  summary: 接合速度上限速度阈值 inf（默认）| 正标量
+  group: 接合条件
+- name: Tooth overlap to engage
+  summary: 齿重叠接合阈值 3 mm（默认）| 正标量
+  group: 接合条件
+- name: Engagement block stiffness
+  summary: 接合阻挡刚度系数 10e6 N/m（默认）| 正标量
+  group: 接合条件
+- name: Engagement block damping
+  summary: 接合阻挡阻尼系数 300 N*s/m（默认）| 正标量
+  group: 接合条件
+- name: Clutch locked
+  summary: 初始离合器状态 off（默认）| on
+  group: 初始条件
+- name: Initial shift linkage position
+  summary: 初始换挡连杆位置 0 mm（默认）| 标量
+  group: 初始条件
+- name: Initial ring-hub offset angle
+  summary: 初始齿圈-轮毂偏移角 0 deg（默认）| 标量
+  group: 初始条件
+- name: Thermal mass
+  summary: 温度变化阻力 50 kJ/K（默认）| 标量
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 标量
+  group: 热端口
+```
 
 ### 离合器
 
@@ -422,7 +554,6 @@ t
 #### 依赖关系
 
 要启用此参数，请将 **Torque transmission model** 设置为 `Friction clutch approximation - Suitable for HIL and linearization`，并将 **Thermal port** 设置为 `Model`。
-
 ## 所属库
 
 Simscape / Driveline / Clutches

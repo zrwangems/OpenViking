@@ -14,10 +14,15 @@ language: en
 # CPFSK Modulator Baseband
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **M-ary number**
 :   The size of the alphabet.
@@ -67,7 +72,6 @@ Not documented in R2025b.
 **Output data type**
 :   Select the data type of the output signal. The output data type can be
     `single` or `double`.
-
 ## Libraries
 
 Not documented in R2025b.

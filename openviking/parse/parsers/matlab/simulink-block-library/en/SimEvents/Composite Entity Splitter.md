@@ -14,6 +14,23 @@ language: en
 # Composite Entity Splitter
 
 ## Ports
+```yaml
+ports:
+- name: port_1
+  summary: Input composite entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_1
+  summary: Output entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_2
+  summary: Output entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | enumerated | bus | fixed point
+```
 
 ### Input
 
@@ -35,8 +52,17 @@ Output port for entities exiting the block.
 Output port for entities exiting the block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of output ports
+  summary: Specify the number of output ports 2 (default) | scalar
+  group: ''
+  block_parameter: NumberOutputPorts
+  type: character vector
+  values: '''2'' | scalar'
+  default: '''2'''
+```
 
 ### **Number of output ports** — Specify the number of output ports `2` (default) | scalar
 
@@ -50,7 +76,6 @@ Specify the number of output ports to output entities.
 | **Type**: character vector |
 | **Values**: `'2'` | scalar |
 | **Default**: `'2'` |
-
 ## Libraries
 
 SimEvents

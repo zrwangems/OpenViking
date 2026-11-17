@@ -14,6 +14,33 @@ language: en
 # Corner Detector
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar
+  direction: input
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: minC
+  summary: Threshold that indicates corner for FAST algorithm nonnegative integer
+  direction: input
+  data_types: single | double | uint | fixed point
+- name: thresh
+  summary: Threshold that indicates corner for Harris algorithm nonnegative integer
+  direction: input
+  data_types: single | double | uint | fixed point
+- name: corner
+  summary: Metric that indicates whether pixel is a corner scalar
+  direction: output
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -108,8 +135,42 @@ The signals describe the validity of the pixel and its location in the frame. Fo
 information, see Pixel Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Detection method FAST 5 of 8 (default) | FAST 7 of 12 | FAST 9 of 16 | Harris
+  group: Main
+- name: Source of minimum contrast value
+  summary: Source for threshold that indicates corner for FAST algorithm Property (default) | Input port
+  group: Main
+- name: MinContrast value
+  summary: Threshold that indicates corner for FAST algorithm 20 (default) | nonnegative integer
+  group: Main
+- name: Source of threshold value
+  summary: Source for threshold that indicates corner for Harris algorithm Property (default) | Input port
+  group: Main
+- name: Threshold value
+  summary: Threshold that indicates corner for Harris algorithm 2000 (default) | nonnegative integer
+  group: Main
+- name: Line buffer size
+  summary: Size of line buffer 2048 (default) | integer
+  group: Main
+- name: Padding method
+  summary: Method for padding Symmetric (default) | Replicate | Reflection | None
+  group: Main
+- name: Rounding mode
+  summary: Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round
+    | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow action for internal fixed-point calculations off (default) | on
+  group: Data Types
+- name: Output
+  summary: Data type for corner output port Inherit same as first input (default) | data type expression | Inherit via internal
+    rule
+  group: Data Types
+```
 
 ### Main
 
@@ -251,7 +312,6 @@ parameter, the value saturates at the maximum representable value.
 Specify a data type for the output **corner** port.
 By default, the block returns the corner metric using the same data type
 as the input **pixel** port.
-
 ## Libraries
 
 Vision HDL Toolbox / Analysis & Enhancement

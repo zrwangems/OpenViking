@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # LU Factorization
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入矩阵 *M*×*M* 方阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: LU
+  summary: 下三角和上三角因子 *M*×*M* 方阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: P
+  summary: 置换向量 向量
+  direction: output
+  data_types: single | double | uint32
+- name: S
+  summary: 输入矩阵的奇异性 逻辑标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -85,8 +104,37 @@ Ap=[4061−232−13]
 `0`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Show singularity status
+  summary: 显示奇异性状态 off（默认）| on
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入操作的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Same as input（默认）| fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 模块可以输出的最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 模块可以输出的最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -210,7 +258,6 @@ Factorization 模块输出的数据类型。有关输出数据
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数以防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Factorizations

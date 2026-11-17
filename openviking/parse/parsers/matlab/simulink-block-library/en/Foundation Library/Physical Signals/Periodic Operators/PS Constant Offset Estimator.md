@@ -14,6 +14,15 @@ language: en
 # PS Constant Offset Estimator
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -33,13 +42,17 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Base frequency
+  summary: Periodic signal frequency 60 Hz (default)
+  group: ''
+```
 
 ### **Base frequency** — Periodic signal frequency `60 Hz` (default)
 
 Base frequency of the periodic signal.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Periodic Operators

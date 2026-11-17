@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Ball Valve (MA)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 阀门位置，rad 物理信号
+  direction: input
+- name: A
+  summary: 阀门入口或出口湿空气
+  direction: input
+- name: B
+  summary: 阀门入口或出口湿空气
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,73 @@ rad。值为 0 表示阀门完全关闭，值为 π/2
 
 与阀门入口或
 出口相关联的湿空气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: 指定阀门流量特性的参数化方法 Orifice area based on geometry（默认）| Cv flow coefficient | Kv flow coefficient | Sonic conductance
+  group: ''
+- name: Opening characteristic
+  summary: 球阀参数化方法 Area of overlapping circles（默认）| Tabulated
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Area vector
+  summary: 表格参数化的流通面积 [1e-10, 45, 90, 135, 180, 225, 270, 315, 360, 405, 450] mm^2（默认）| 正数向量
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 最大开启组件对应的 *Cv* 系数 4（默认）| 正标量
+  group: ''
+- name: Cv flow coefficient vector
+  summary: 球体旋转向量中各值对应的 *Cv* 系数 [1e-06, .0725, .1437, .2375, .35, .5375, .875, 1.3125, 2.125, 3.25, 4] 1（默认）| 正数向量
+  group: ''
+- name: Ball rotation vector
+  summary: '指定表格参数数据时的取值 pi / 2 .* (0 : 0.1 : 1) rad（默认）| 正数向量'
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 最大开启组件对应的 *Kv* 系数 3.6（默认）| 正标量
+  group: ''
+- name: Kv flow coefficient vector
+  summary: 球体旋转向量中各值对应的 *Kv* 系数 [1e-06, .0653, .1293, .2137, .315, .4838, .7875, 1.1813, 1.8381, 2.8112, 3.6]（默认）| 正数向量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 最大开启组件对应的声速导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: ''
+- name: Sonic conductance vector
+  summary: 球体旋转向量中各值对应的声速导 [1e-05, .2175, .4312, .7125, 1.05, 1.6125, 2.625, 3.9375, 6.375, 9.75, 12] l/(bar*s)（默认）| 正数向量
+  group: ''
+- name: Critical pressure ratio vector
+  summary: 球体旋转向量中各值对应的临界压力比 0.3 * ones(1, 11)（默认）| 正数向量
+  group: ''
+- name: Subsonic index
+  summary: 用于计算亚声速流态下质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 湿空气端口处的流通面积 pi * (0.025 ^ 2) / 4 m^2（默认）| 正标量
+  group: ''
+- name: Ball bore area
+  summary: 球孔面积 pi * (0.02 ^ 2) / 4 m^2（默认）| 正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流与湍流流态之间过渡时的压力比 0.999（默认）| 正标量
+  group: ''
+```
 
 ### **Valve parameterization** — 指定阀门流量特性的参数化方法 `Orifice area based on geometry`（默认）| `Cv flow coefficient` | `Kv flow coefficient` | `Sonic conductance`
 
@@ -285,7 +362,6 @@ circles`。
 
 流动在层流与湍流流态之间过渡时的压力比。压力比为出口压力除以入口压力。典型值范围为 `0.995` 到
 `0.999`。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Flow Control Valves

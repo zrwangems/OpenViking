@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Variable Inertia
 
 ## 端口
+```yaml
+ports:
+- name: LConn 1
+  summary: 惯量，kg/m2 物理信号
+  direction: input
+- name: LConn 2
+  summary: 旋转连接 机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -27,13 +36,17 @@ kg/m2。
 ### **LConn 2** — 旋转连接 机械旋转
 
 机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum inertia
+  summary: 最小惯量 0.1 kg*m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Minimum inertia** — 最小惯量 `0.1` `kg*m^2`（默认）| 正标量
 
 可变惯量在仿真期间可以取的最小值。物理信号输入在该值处饱和。如果输入低于最小惯量，则将其设置为等于最小惯量值。
-
 ## 所属库
 
 Simscape / Driveline / Inertias & Loads

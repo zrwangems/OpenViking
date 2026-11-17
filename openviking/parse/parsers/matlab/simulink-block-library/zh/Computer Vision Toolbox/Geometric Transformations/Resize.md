@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Resize
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像或视频矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ROI
+  summary: 感兴趣区域向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Out
+  summary: 调整大小后的输出图像或视频矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Flag
+  summary: ROI 是否在图像区域之外 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -64,8 +83,38 @@ ROI 是否在图像区域之外，返回为 `0` 或 `1`。
 - **Output flag indicating if ROI is within image bounds**
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Specify
+  summary: 要调整大小的图像方面 Output size as a percentage of input size（默认）| Number of output columns and preserve aspect ratio |
+    Number of output rows and preserve aspect ratio | Number of output rows and columns
+  group: ''
+- name: Resize factor in percentage
+  summary: 输入图像变换的百分比因子 [200 150]（默认）| 标量 | 二元素向量
+  group: ''
+- name: Number of output columns
+  summary: 输出图像中的列数 25（默认）| 标量
+  group: ''
+- name: Number of output rows
+  summary: 输出图像中的行数 25（默认）| 标量
+  group: ''
+- name: Number of output rows and columns
+  summary: 输出图像中的行数和列数 [25 35]（默认）| 二元素向量
+  group: ''
+- name: Interpolation method
+  summary: 插值方法 Bilinear（默认）| Nearest neighbor | Bicubic | Lanczos2 | Lanczos3
+  group: ''
+- name: Perform antialiasing when resize factor is between 0 and 100
+  summary: 在缩小图像时防止混叠 off（默认）| on
+  group: ''
+- name: Enable ROI processing
+  summary: 启用 ROI 输入 off（默认）| on
+  group: ''
+- name: Output flag indicating if ROI is within image bounds
+  summary: 启用指示指定 ROI 是否在输入图像区域之外的标志 off（默认）| on
+  group: ''
+```
 
 ### **Specify** — 要调整大小的图像方面 `Output size as a percentage of input size`（默认）| `Number of output columns and preserve aspect ratio` | `Number of output rows and preserve aspect ratio` | `Number of output rows and columns`
 
@@ -168,7 +217,6 @@ ROI 是否在图像区域之外，返回为 `0` 或 `1`。
 #### 依赖
 
 要启用此参数，请选择 **Enable ROI processing** 参数。
-
 ## 所属库
 
 Computer Vision Toolbox / Geometric Transformations

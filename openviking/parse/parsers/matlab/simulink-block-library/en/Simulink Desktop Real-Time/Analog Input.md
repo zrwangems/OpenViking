@@ -14,6 +14,17 @@ language: en
 # Analog Input
 
 ## Ports
+```yaml
+ports:
+- name: Analog Data
+  summary: Analog-to-digital converter data read from input channels vector
+  direction: output
+  data_types: double | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Missed Ticks
+  summary: Missed tick count (optional) double
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -36,8 +47,54 @@ When you select **Show “Missed Ticks”
 port**, this port is visible.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Install new board
+  summary: Register a board < no board selected > (default)
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: Delete the current board (button)
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: Set up the board (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Input channels
+  summary: Select analog input channels 1 (default) | vector
+  group: ''
+  block_parameter: Channels
+- name: Input range
+  summary: Input range of analog inputs board dependent
+  group: ''
+  block_parameter: VoltRange
+- name: Block output signal
+  summary: Value type returned from block Volts (default) | Normalized bipolar | Normalized unipolar | Raw
+  group: ''
+  block_parameter: RangeMode
+- name: Output data type
+  summary: Data type of block output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataType
+```
 
 ### **Install new board** — Register a board `< no board selected >` (default)
 
@@ -251,7 +308,6 @@ depend on the capabilities of the board.
 |  |
 | --- |
 | **Block Parameter:** `DataType` |
-
 ## Libraries
 
 Simulink Desktop Real-Time

@@ -14,6 +14,18 @@ language: en
 # Shuttle Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: A1
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +40,43 @@ Entry port to the valve.
 ### **B** — Liquid port isothermal liquid
 
 Exit port from the valve.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pressure at which A-B is fully closed and A1-B is fully open
+  summary: Threshold pressure for fully open inlet A1 -0.01 MPa (default) | scalar
+  group: ''
+- name: Pressure at which A-B is fully open and A1-B is fully closed
+  summary: Threshold pressure for fully open inlet A 0.01 MPa (default) | scalar
+  group: ''
+- name: Maximum opening area
+  summary: Maximum valve area 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area at conserving ports inf m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions Off (default) | On
+  group: ''
+- name: Opening dynamics
+  summary: Whether to introduce flow lag due to valve opening Off (default) | On
+  group: ''
+- name: Opening time constant
+  summary: Valve opening time constant 0.1 s (default) | positive scalar
+  group: ''
+```
 
 ### **Pressure at which A-B is fully closed and A1-B is fully open** — Threshold pressure for fully open inlet A1 `-0.01 MPa` (default) | scalar
 
@@ -107,7 +154,6 @@ to another. This parameter impacts the modeled opening dynamics.
 
 To enable this parameter, set **Opening dynamics** to
 `On`.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

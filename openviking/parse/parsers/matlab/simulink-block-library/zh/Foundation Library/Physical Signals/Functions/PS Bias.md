@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Bias
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +39,13 @@ chinese_source: worker-translation
 输出物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Bias
+  summary: 添加到输入信号的恒定偏置 1 1（默认值）
+  group: ''
+```
 
 ### **Bias** — 添加到输入信号的恒定偏置 `1 1`（默认值）
 
@@ -39,7 +53,6 @@ chinese_source: worker-translation
 
 第二个组合框表示偏置的单位。该单位必须与输入信号的单位一致。默认情况下，单位为 `1`（无单位）。您可以从下拉列表中选择单位，或键入所需的单位名称，例如 `rpm`，或有效的表达式，例如 `rad/s`。
 有关更多信息以及单位缩写列表，请参阅如何在模块对话框中指定单位以及单位定义。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Functions

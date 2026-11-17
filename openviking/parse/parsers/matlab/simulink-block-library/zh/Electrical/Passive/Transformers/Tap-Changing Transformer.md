@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Tap-Changing Transformer
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 线路 1 正极端子电气
+  direction: conserving
+- name: 1-
+  summary: 线路 1 负极端子电气
+  direction: conserving
+- name: 2+
+  summary: 线路 2 正极端子电气
+  direction: conserving
+- name: 2-
+  summary: 线路 2 负极端子电气
+  direction: conserving
+- name: c
+  summary: 控制输入物理
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -37,8 +55,52 @@ chinese_source: worker-translation
 ### **c** — 控制输入物理
 
 指定输入控制值的输入物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Turns ratio (primary/secondary)
+  summary: 匝数比 1（默认）| 正数
+  group: 标称
+- name: Primary leakage inductance
+  summary: 线路 1 漏电感 1e-6 H（默认）| 正数
+  group: 标称
+- name: Secondary leakage inductance
+  summary: 线路 2 漏电感 1e-6 H（默认）| 正数
+  group: 标称
+- name: Core-loss resistance
+  summary: 互感电阻 1e6 Ohm（默认）| 零或正数
+  group: 标称
+- name: Magnetization inductance
+  summary: 磁化电感 100e-6 H（默认）| 正数
+  group: 标称
+- name: Primary series resistance
+  summary: 线路 1 串联电阻 0 Ohm（默认）| 零或正数
+  group: 标称
+- name: Secondary series resistance
+  summary: 线路 2 串联电阻 0 Ohm（默认）| 零或正数
+  group: 标称
+- name: Primary leakage conductance
+  summary: 线路 1 漏电导 0 1/Ohm（默认）| 零或正数
+  group: 标称
+- name: Secondary leakage conductance
+  summary: 线路 2 漏电导 0 1/Ohm（默认）| 零或正数
+  group: 标称
+- name: Tap-changer location
+  summary: 分接头绕组 Primary（默认）| Secondary
+  group: 分接头
+- name: Minimum tap index (nominal=0)
+  summary: 最小分接头位置 -5（默认）| 零或负整数
+  group: 分接头
+- name: Maximum tap index (nominal=0)
+  summary: 最大分接头位置 5（默认）| 零或正整数
+  group: 分接头
+- name: Change per tap (%)
+  summary: 分接头变化步长 1 %（默认）| 正数
+  group: 分接头
+- name: Control threshold
+  summary: 偏移阈值 0.5（默认）
+  group: 分接头
+```
 
 ### 标称
 
@@ -99,7 +161,6 @@ chinese_source: worker-translation
 ### **Control threshold** — 偏移阈值 `0.5`（默认）
 
 分接头改变位置时的控制值。要降低分接头位置，施加小于此值负值的控制信号 **c**。要增加分接头位置，施加大于此值的控制信号 **c**。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Transformers

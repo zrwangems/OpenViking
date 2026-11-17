@@ -14,6 +14,15 @@ language: en
 # S-Parameter Rational Fit
 
 ## Ports
+```yaml
+ports:
+- name: pk
+  summary: '*k*th positive terminal electrical'
+  direction: conserving
+- name: nk
+  summary: '*k*th negative terminal electrical'
+  direction: conserving
+```
 
 ### Conserving
 
@@ -37,8 +46,22 @@ ports** parameter.
 
 To enable this port, clear the **Ground and hide negative
 terminals** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of ports
+  summary: Number of electrical connection pairs 2 (default) | positive integer
+  group: ''
+- name: Reference impedance (Ohm)
+  summary: Reference line impedance 50 (default) | real scalar
+  group: ''
+- name: Rational fit object
+  summary: Rational fit object [] (default) | square matrix | rational object | rfmodel.rational object
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Option to ground and hide negative terminals Off (default) | On
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -85,7 +108,6 @@ negative terminals of the block.
 Select this parameter to ground all the electrical connection pair negative
 terminals. The block models the connections to the ground inside the
 S-Parameter Rational Fit block using Electrical Reference blocks.
-
 ## Libraries
 
 Simscape / Electrical / Passive

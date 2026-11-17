@@ -15,6 +15,255 @@ chinese_source: worker-translation
 # Simulation 3D Air Transport Pack
 
 ## 端口
+```yaml
+ports:
+- name: Body_T
+  summary: 机体平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Engine1_T
+  summary: 发动机 1 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Engine2_T
+  summary: 发动机 2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Engine3_T
+  summary: 发动机 3 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Engine4_T
+  summary: 发动机 4 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rudder_T
+  summary: 方向舵平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Elevator_T
+  summary: 升降舵平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Horizontal_Stab_T
+  summary: 水平安定面平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Aileron_T
+  summary: 左副翼平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Aileron_T
+  summary: 右副翼平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Flaps1_T
+  summary: 襟翼组 1 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Flaps2_T
+  summary: 襟翼组 2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Spoiler_T
+  summary: 左扰流板平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Spoiler_T
+  summary: 右扰流板平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_T
+  summary: 前起落架平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_T
+  summary: 前轮平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door1_T
+  summary: 前起落架舱门 1 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door2_T
+  summary: 前起落架舱门 2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_T
+  summary: 左起落架平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Wheel_T
+  summary: 左轮平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Link_T
+  summary: 左起落架连杆平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door1_T
+  summary: 左起落架舱门 1 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door2_T
+  summary: 左起落架舱门 2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door2_2_T
+  summary: 左起落架舱门 2.2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_T
+  summary: 右起落架平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Wheel_T
+  summary: 右轮平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Link_T
+  summary: 右起落架连杆平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door1_T
+  summary: 右起落架舱门 1 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door2_T
+  summary: 右起落架舱门 2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door2_2_T
+  summary: 右起落架舱门 2.2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: 机体旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Engine1_R
+  summary: 发动机 1 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Engine2_R
+  summary: 发动机 2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Engine3_R
+  summary: 发动机 3 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Engine4_R
+  summary: 发动机 4 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rudder_R
+  summary: 方向舵旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Elevator_R
+  summary: 升降舵旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Horizontal_Stab_R
+  summary: 水平安定面旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Aileron_R
+  summary: 左副翼旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Aileron_R
+  summary: 右副翼旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Flaps1_R
+  summary: 襟翼组 1 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Flaps2_R
+  summary: 襟翼组 2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Spoiler_R
+  summary: 左扰流板旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Spoiler_R
+  summary: 右扰流板旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_R
+  summary: 前起落架旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_R
+  summary: 前轮旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door1_R
+  summary: 前起落架舱门 1 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door2_R
+  summary: 前起落架舱门 2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_R
+  summary: 左起落架旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Wheel_R
+  summary: 左轮旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Link_R
+  summary: 左起落架连杆旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door1_R
+  summary: 左起落架舱门 1 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door2_R
+  summary: 左起落架舱门 2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door2_2_R
+  summary: 左起落架舱门 2.2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_R
+  summary: 右起落架旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Wheel_R
+  summary: 右轮旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Link_R
+  summary: 右起落架连杆旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door1_R
+  summary: 右起落架舱门 1 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door2_R
+  summary: 右起落架舱门 2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door2_2_R
+  summary: 右起落架舱门 2.2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: 飞机平移 30×3 数组
+  direction: output
+- name: Rotation
+  summary: Aircraft rotation 30×3 数组
+  direction: output
+```
 
 ### 输入
 
@@ -659,8 +908,421 @@ chinese_source: worker-translation
 
 该信号包含 rotation [roll, pitch, yaw]，单位为弧度，数组的每一行
 对应 aircraft 的一个 bone。
-
 ## 参数
+```yaml
+parameters:
+- name: Engine 1 translation
+  summary: 用于启用 Engine1_T 输入端口的选项 off（默认）| on
+  group: Propulsion
+  block_parameter: Engine1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 2 translation
+  summary: 用于启用 Engine2_T 输入端口的选项 off（默认）| on
+  group: Propulsion
+  block_parameter: Engine2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 3 translation
+  summary: 用于启用 Engine3_T 输入端口的选项 off（默认）| on
+  group: Propulsion
+  block_parameter: Engine3_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 4 translation
+  summary: 用于启用 Engine4_T 输入端口的选项 off（默认）| on
+  group: Propulsion
+  block_parameter: Engine4_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 1 rotation
+  summary: 用于启用 Engine1_R 输入端口的选项 off（默认）| on
+  group: Propulsion
+  block_parameter: Engine1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 2 rotation
+  summary: 用于启用 Engine2_R 输入端口的选项 off（默认）| on
+  group: Propulsion
+  block_parameter: Engine2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 3 rotation
+  summary: 用于启用 Engine3_R 输入端口的选项 off（默认）| on
+  group: Propulsion
+  block_parameter: Engine3_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 4 rotation
+  summary: 用于启用 Engine4_R 输入端口的选项 off（默认）| on
+  group: Propulsion
+  block_parameter: Engine4_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rudder translation
+  summary: 用于启用 Rudder_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Rudder_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Elevator translation
+  summary: 用于启用 Elevator_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Elevator_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Horizontal stab translation
+  summary: 用于启用 Horizontal_Stab_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Horizontal_Stab_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left aileron translation
+  summary: 用于启用 Left_Aileron_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Left_Aileron_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right aileron translation
+  summary: 用于启用 Right_Aileron_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Right_Aileron_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps set 1 translation
+  summary: 用于启用 Flaps1_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Flaps1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps set 2 translation
+  summary: 用于启用 Flaps2_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Flaps2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left spoiler translation
+  summary: 用于启用 Left_Spoiler_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Left_Spoiler_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right spoiler translation
+  summary: 用于启用 Right_Spoiler_T 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Right_Spoiler_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rudder rotation
+  summary: 用于启用 Rudder_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Rudder_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Elevator rotation
+  summary: 用于启用 Elevator_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Elevator_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Horizontal stab rotation
+  summary: 用于启用 Horizontal_Stab_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Horizontal_Stab_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left aileron rotation
+  summary: 用于启用 Left_Aileron_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Left_Aileron_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right aileron rotation
+  summary: 用于启用 Right_Aileron_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Right_Aileron_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps set 1 rotation
+  summary: 用于启用 Flaps1_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Flaps1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps set 2 rotation
+  summary: 用于启用 Flaps2_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Flaps2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left spoiler rotation
+  summary: 用于启用 Left_Spoiler_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Left_Spoiler_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right spoiler rotation
+  summary: 用于启用 Right_Spoiler_R 输入端口的选项 off（默认）| on
+  group: Controls
+  block_parameter: Right_Spoiler_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear translation
+  summary: 用于启用 Nose_Gear_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Nose_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel translation
+  summary: 用于启用 Nose_Wheel_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Nose_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door 1 translation
+  summary: 用于启用 Nose_Gear_Door1_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Nose_Gear_Door1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door 2 translation
+  summary: 用于启用 Nose_Gear_Door2_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Nose_Gear_Door2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear translation
+  summary: 用于启用 Left_Gear_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left wheel translation
+  summary: 用于启用 Left_Wheel_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear link translation
+  summary: 用于启用 Left_Gear_Link_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_Link_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 1 translation
+  summary: 用于启用 Left_Gear_Door1_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_Door1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 2 translation
+  summary: 用于启用 Left_Gear_Door2_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_Door2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 2.2 translation
+  summary: 用于启用 Left_Gear_Door2_2_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_Door2_2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear translation
+  summary: 用于启用 Right_Gear_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right wheel translation
+  summary: 用于启用 Right_Wheel_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear link translation
+  summary: 用于启用 Right_Gear_Link_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_Link_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 1 translation
+  summary: 用于启用 Right_Gear_Door1_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_Door1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 2 translation
+  summary: 用于启用 Right_Gear_Door2_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_Door2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 2.2 translation
+  summary: 用于启用 Right_Gear_Door2_2_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_Door2_2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear rotation
+  summary: 用于启用 Nose_Gear_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Nose_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel rotation
+  summary: 用于启用 Nose_Wheel_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Nose_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door 1 rotation
+  summary: 用于启用 Nose_Gear_Door1_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Nose_Gear_Door1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door 2 rotation
+  summary: 用于启用 Nose_Gear_Door2_T 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Nose_Gear_Door2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear rotation
+  summary: 启用 Left_Gear_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left wheel rotation
+  summary: 启用 Left_Wheel_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear link rotation
+  summary: 启用 Left_Gear_Link_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_Link_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 1 rotation
+  summary: 启用 Left_Gear_Door1_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_Door1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 2 rotation
+  summary: 启用 Left_Gear_Door2_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_Door2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 2.2 rotation
+  summary: 启用 Left_Gear_Door2_2_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Left_Gear_Door2_2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear rotation
+  summary: 启用 Right_Gear_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right wheel rotation
+  summary: 启用 Right_Wheel_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear link rotation
+  summary: 启用 Right_Gear_Link_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_Link_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 1 rotation
+  summary: 启用 Right_Gear_Door1_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_Door1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 2 rotation
+  summary: 启用 Right_Gear_Door2_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_Door2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 2.2 rotation
+  summary: 启用 Right_Gear_Door2_2_R 输入端口的选项 off（默认）| on
+  group: Gear
+  block_parameter: Right_Gear_Door2_2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Select input coordinate frame
+  summary: 输入坐标系 NED（默认）| Fixed-frame | ICRF
+  group: 输入
+  block_parameter: GeoRadioButton
+  values: '''NED''（默认）| ''Fixed-frame'' | ''ICRF'''
+```
 
 ### Propulsion
 
@@ -1452,7 +2114,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **Parameter：** | `GeoRadioButton` |
 | **值**：| `'NED'`（默认）| `'Fixed-frame'` | `'ICRF'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Simulation 3D

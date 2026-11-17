@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # IsHermitian
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入矩阵 matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Hermitian 或斜 Hermitian 矩阵 real scalar Boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,16 @@ chinese_source: worker-translation
 Hermitian 或斜 Hermitian 矩阵，以实数标量布尔值形式返回。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 矩阵是 Hermitian 还是斜 Hermitian Hermitian (默认) | Skew-Hermitian
+  group: ''
+  block_parameter: Mode
+  type: 字符向量
+  values: '''Hermitian'' | ''Skew-Hermitian'''
+```
 
 ### **Mode** — 矩阵是 Hermitian 还是斜 Hermitian `Hermitian` (默认) | `Skew-Hermitian`
 
@@ -46,7 +65,6 @@ Hermitian 或斜 Hermitian 矩阵，以实数标量布尔值形式返回。
 | **类型：** 字符向量 |
 | **值：** `'Hermitian'` | `'Skew-Hermitian'` |
 | **默认：** `'Hermitian'` |
-
 ## 所属库
 
 Simulink / Matrix Operations

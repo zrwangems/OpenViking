@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pressure Relief Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: Ps
+  summary: 设定压力信号，Pa 物理信号
+  direction: input
+- name: A
+  summary: 液体端口 热液体
+  direction: input
+- name: B
+  summary: 液体端口 热液体
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,74 @@ chinese_source: worker-translation
 ### **B** — 液体端口 热液体
 
 与阀入口 B 关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Set pressure control
+  summary: 阀操作方法 Constant（默认）| Controlled
+  group: 参数
+- name: Opening parameterization
+  summary: 恒定阀开启或关闭的建模方法 Linear - Area vs. pressure（默认）| Tabulated data - Area vs. pressure | Tabulated data - Volumetric
+    flow rate vs. pressure
+  group: 参数
+- name: Pressure control specification
+  summary: 评估压力的方法 Pressure at port A（默认）| Pressure differential
+  group: 参数
+- name: Set pressure (gauge)
+  summary: 开启机构触发时的表压 0.1 MPa（默认）| 正标量
+  group: 参数
+- name: Set pressure differential
+  summary: 最小开启压差 0 MPa（默认）| 非负标量
+  group: 参数
+- name: Pressure regulation range
+  summary: 阀压力范围 0.15 MPa（默认）| 正标量
+  group: 参数
+- name: Maximum opening area
+  summary: 完全开启位置的开口面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Leakage area
+  summary: 完全关闭位置的间隙面积 1e-10 m^2（默认）| 正标量
+  group: 参数
+- name: Pressure differential vector
+  summary: '表格化参数化的压差值 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Opening pressure (gauge) vector
+  summary: '表格化面积参数化的压差值 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Opening area vector
+  summary: 表格化面积参数化的阀开口面积 [1e-10, 2e-06, 4e-06, 6e-06, 8e-06, 1e-05]m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Volumetric flow rate vector
+  summary: 用于表格数据参数化的体积流量向量 [1e-09, 3.6e-05, 8.9e-05, .00015, .00023, .00031]m^3/s（默认）| 1×*n* 向量
+  group: 参数
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 参数
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Pressure recovery
+  summary: 是否考虑面积扩张中的压力增加 off（默认）| on
+  group: 参数
+- name: Opening dynamics
+  summary: 是否考虑阀门开启的流量响应 off（默认）| on
+  group: 参数
+- name: Opening time constant
+  summary: 阀门开启时间常数 0.1 s（默认）| 正标量
+  group: 参数
+- name: Pressure Relief Valve Area fault
+  summary: 用于对开启面积故障建模的选项 Add fault
+  group: 故障
+- name: Opening area when faulted
+  summary: 故障时的阀门特性 Closed（默认）| Open | Maintain last value
+  group: 故障
+```
 
 ### 参数
 
@@ -231,7 +309,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请点击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Pressure Control Valves

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Matrix Exponential
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 数据输入矩阵
+  direction: input
+  data_types: single | double
+- name: Output 1
+  summary: 矩阵指数输出矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -32,11 +43,12 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

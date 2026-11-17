@@ -14,6 +14,17 @@ language: en
 # PassThrough
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input baseband signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Unchanged output voltage scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -31,11 +42,12 @@ Unchanged output voltage. The PassThrough block does not modify the
 input voltage in any way and returns the same output as the input.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 SerDes Toolbox / Datapath Blocks

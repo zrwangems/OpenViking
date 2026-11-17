@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Crossover Pilot Model
 
 ## 端口
+```yaml
+ports:
+- name: x com
+  summary: 信号指令 标量
+  direction: input
+  data_types: double
+- name: x
+  summary: 信号 标量
+  direction: input
+  data_types: double
+- name: u
+  summary: 飞机指令 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,68 @@ chinese_source: worker-translation
 飞机指令，以标量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Type of control
+  summary: 动力学控制 Proportional（默认）| Rate or velocity | Spiral divergence | Second order - Short period | Acceleration(*) |
+    Roll attitude(*) | Unstable short period(*) | Second order - Phugoid(*)
+  group: ''
+  block_parameter: sw_popup
+  type: 字符向量
+  values: '''Proportion'' | ''Rate or velocity'' |''Spiral divergence'' | ''Second order - Short period'' | ''Acceleration(*)''
+    | ''Roll attitude(*)'' | ''Unstable short period(*)'' | ''Second order - Phugoid(*)'''
+  default: '''Proportion'''
+- name: Calculated value
+  summary: 穿越频率或飞行员增益 Crossover frequency（默认）| Pilot gain
+  group: ''
+  block_parameter: freq_gain_popup
+  type: 字符向量
+  values: '''Crossover frequency'' | ''Pilot gain'''
+  default: '''Crossover frequency'''
+- name: Controlled element gain
+  summary: 被控对象增益 1（默认）| 标量
+  group: ''
+  block_parameter: Kc
+  type: 字符向量
+  values: 双精度标量
+  default: '''1'''
+- name: Pilot gain
+  summary: 飞行员增益 3（默认）| 标量
+  group: ''
+  block_parameter: Kp
+  type: 字符向量
+  values: 双精度标量
+  default: '''3'''
+- name: Crossover frequency (rad/s)
+  summary: 穿越频率 3（默认）| 1 到 10 范围内的标量
+  group: ''
+  block_parameter: omega_c
+  type: 字符向量
+  values: 双精度标量
+  default: '''3'''
+- name: Pilot time delay(s)
+  summary: 飞行员时间延迟 0.1（默认）| 标量
+  group: ''
+  block_parameter: time_delay
+  type: 字符向量
+  values: 双精度标量
+  default: '''0.1'''
+- name: Pilot lead constant
+  summary: 飞行员超前常数 1（默认）| 标量
+  group: ''
+  block_parameter: T
+  type: 字符向量
+  values: 双精度标量
+  default: '''1'''
+- name: Pilot lag constant
+  summary: 飞行员滞后常数 5（默认）| 标量
+  group: ''
+  block_parameter: Ti
+  type: 字符向量
+  values: 双精度标量
+  default: '''5'''
+```
 
 ### **Type of control** — 动力学控制 `Proportional`（默认）| `Rate or velocity` | `Spiral divergence` | `Second order - Short period` | `Acceleration(*)` | `Roll attitude(*)` | `Unstable short period(*)` | `Second order - Phugoid(*)`
 
@@ -194,7 +269,6 @@ Crossover Pilot Model 参数根据 **Type of control** 选项启用和禁用。*
 | **类型**：字符向量 |
 | **值**：双精度标量 |
 | **默认值**：`'5'` |
-
 ## 所属库
 
 Aerospace Blockset / Pilot Models

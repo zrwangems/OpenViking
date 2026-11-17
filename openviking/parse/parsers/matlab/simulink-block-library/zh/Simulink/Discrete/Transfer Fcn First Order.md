@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Transfer Fcn First Order
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 传递函数输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,36 @@ chinese_source: worker-translation
 输出信号，为输入的离散时间一阶传递函数，具有单位直流增益。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Pole (in Z plane)
+  summary: 极点 0.95（默认）| 标量
+  group: ''
+  block_parameter: PoleZ
+  type: 字符向量
+  values: 实标量
+  default: '''0.95'''
+- name: Initial condition for previous output
+  summary: 前一输出的初始条件 0.0（默认）| 标量
+  group: ''
+  block_parameter: ICPrevOutput
+  type: 字符向量
+  values: 实标量
+  default: '''0.0'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: 溢出操作的方法 off（默认）| on
+  group: ''
+  block_parameter: DoSatur
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Pole (in Z plane)** — 极点 `0.95`（默认）| 标量
 
@@ -88,7 +127,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Discrete

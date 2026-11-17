@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # F2837xD/F2838x/F2838x-M4 IPC Receive
 
 ## 端口
+```yaml
+ports:
+- name: Out
+  summary: IPC 接收向量 | 标量
+  direction: output
+- name: Status
+  summary: IPC 接收状态 0 | 1 | 2 | 3 | 4 | 6
+  direction: output
+```
 
 ### 输出
 
@@ -35,8 +44,28 @@ chinese_source: worker-translation
 **注意**
 
 当没有数据传输时，IPC Receive 模块接收到 uint16 数据类型的 0，并显示数据类型不匹配状态
-
 ## 参数
+```yaml
+parameters:
+- name: Source
+  summary: 选择用于接收数据的源 C28x (CPU1/CPU2)/CPU1（默认）| ARM Cortex-M4 (CM)/CPU2
+  group: ''
+- name: Channel
+  summary: 选择用于接收数据的通道 0（默认）| 0–31
+  group: ''
+- name: Data type
+  summary: 要接收的数据类型 uint16（默认）| single | int8 | uint8 | int16 | int32 | uint32 | boolean
+  group: ''
+- name: Data length
+  summary: 要接收的数据大小 1（默认）| 正整数
+  group: ''
+- name: Enable blocking
+  summary: 指定核是否必须等待读取数据 off（默认）| on
+  group: ''
+- name: Sample time
+  summary: 模块读取数据的间隔 0.001（默认）| –1 | 正标量
+  group: ''
+```
 
 ### **Source** — 选择用于接收数据的源 `C28x (CPU1/CPU2)/CPU1`（默认）| `ARM Cortex-M4 (CM)/CPU2`
 
@@ -73,7 +102,6 @@ IPC Receive 模块掩码显示当前源和所选择的通道。例如，如果�
 ### **Sample time** — 模块读取数据的间隔 `0.001`（默认）| `–1` | 正标量
 
 数据采样之间的时间，以秒为单位。当您将此参数设置为 `-1` 时，Simulink® 根据模型中的模块上下文确定模块的最佳采样时间。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28p65x

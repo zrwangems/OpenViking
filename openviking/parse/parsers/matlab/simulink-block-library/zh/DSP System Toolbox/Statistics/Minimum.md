@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Minimum
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Rst
+  summary: 复位端口 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Val
+  summary: 沿指定维度的最小值 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Idx
+  summary: 沿指定维度的最小值的索引 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: double | uint32
+```
 
 ### 输入
 
@@ -76,8 +95,43 @@ chinese_source: worker-translation
 要启用此端口，请将 **Mode** 参数设置为 `Value and Index` 或 `Index`。
 
 **数据类型：** `double` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 模块运行的模式 Value and Index（默认）| Value | Index | Running
+  group: 主选项卡
+- name: Index base
+  summary: 最小值索引的基数 One（默认）| Zero
+  group: 主选项卡
+- name: Find the minimum value over
+  summary: 模块计算最小值的维度 Each column（默认）| Each row | Entire input | Specified dimension
+  group: 主选项卡
+- name: Dimension
+  summary: 自定义维度 1（默认）| 标量
+  group: 主选项卡
+- name: Input processing
+  summary: 在运行模式下处理输入的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: 主选项卡
+- name: Reset port
+  summary: 复位事件 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入操作的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Same as input（默认）| fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Same as product output（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -244,7 +298,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Statistics DSP System Toolbox HDL Support / Statistics

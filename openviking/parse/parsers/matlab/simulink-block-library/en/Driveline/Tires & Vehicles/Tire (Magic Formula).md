@@ -14,6 +14,24 @@ language: en
 # Tire (Magic Formula)
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Normal force, N physical signal
+  direction: input
+- name: M
+  summary: Magic formula coefficients, unitless physical signal | vector
+  direction: input
+- name: S
+  summary: Slip physical signal
+  direction: output
+- name: A
+  summary: Axle mechanical rotational
+  direction: conserving
+- name: H
+  summary: Hub mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -51,8 +69,186 @@ on.
 ### **H** — Hub mechanical rotational
 
 Mechanical rotational port associated with the wheel hub.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterize by
+  summary: Parameterization method Peak longitudinal force and corresponding slip (default) | Constant Magic Formula coefficients
+    | Load-dependent Magic Formula coefficients | Physical signal Magic Formula coefficients
+  group: Main
+- name: Rated vertical load
+  summary: Rated load force 3000 N (default) | positive scalar
+  group: Main
+- name: Peak longitudinal force at rated load
+  summary: Maximum longitudinal force at rated load 3500 N (default) | positive scalar
+  group: Main
+- name: Slip at peak force at rated load (percent)
+  summary: Percent slip at maximum longitudinal force and rated load 10 (default) | positive scalar
+  group: Main
+- name: Magic Formula B coefficient
+  summary: Constant Magic Formula *B* coefficient 10 (default) | positive scalar
+  group: Main
+- name: Magic Formula C coefficient
+  summary: Constant Magic Formula *C* coefficient 1.9 (default) | positive scalar
+  group: Main
+- name: Magic Formula D coefficient
+  summary: Constant Magic Formula *D* coefficient 1 (default) | positive scalar
+  group: Main
+- name: Magic Formula E coefficient
+  summary: Constant Magic Formula *E* coefficient 0.97 (default) | positive scalar
+  group: Main
+- name: Tire nominal vertical load, FNOMIN
+  summary: Normal force 4000 N (default) | positive scalar
+  group: Main
+- name: Magic Formula C-coefficient parameter, p_Cx1
+  summary: Variable Magic Formula *C* coefficient 1.685 (default) | scalar
+  group: Main
+- name: Magic Formula D-coefficient parameters, [p_Dx1 p_Dx2]
+  summary: Variable Magic Formula *D* coefficient [1.21, -.037] (default) | vector
+  group: Main
+- name: Magic Formula E-coefficient parameters, [p_Ex1 p_Ex2 p_Ex3 p_Ex4]
+  summary: Variable Magic Formula *E* coefficient [.344, .095, -.02, 0] (default) | vector
+  group: Main
+- name: Magic Formula BCD-coefficient parameters, [p_Kx1 p_Kx2 p_Kx3]
+  summary: Variable Magic Formula *K* coefficient [21.51, -.163, .245] (default) | vector
+  group: Main
+- name: Magic Formula H-coefficient parameters, [p_Hx1 p_Hx2]
+  summary: Variable Magic Formula *H* coefficient [-.002, .002] (default) | vector
+  group: Main
+- name: Magic Formula V-coefficient parameters, [p_Vx1 p_Vx2]
+  summary: Variable Magic Formula *V* coefficient [0, 0] (default) | vector
+  group: Main
+- name: Effective rolling radius model
+  summary: Rolling radius model option Constant radius (default) | Load and velocity dependent (Magic Formula)
+  group: Geometry
+- name: Rolling radius
+  summary: Loaded tire radius 0.3 m (default) | positive scalar
+  group: Geometry
+- name: Non-rolling free tire radius, R0
+  summary: Non-rolling free tire radius 0.3 m (default) | positive scalar
+  group: Geometry
+- name: Low load stiffness effective rolling radius, BREFF
+  summary: '*Breff* variable 8.39 (default) | positive scalar'
+  group: Geometry
+- name: Peak value of effective rolling radius, DREFF
+  summary: '*Dreff* variable 0.26 (default) | positive scalar'
+  group: Geometry
+- name: High load stiffness effective rolling radius, FREFF
+  summary: '*Freff* variable 0.074 (default) | positive scalar'
+  group: Geometry
+- name: Ratio of nominal tire radius with non-rolling free tire radius, Q_RE0
+  summary: '*qre0* variable 0.99 (default) | positive scalar'
+  group: Geometry
+- name: Tire radius increase with speed, Q_V1
+  summary: '*qv1* variable 0.008 (default) | positive scalar'
+  group: Geometry
+- name: Nominal hub longitudinal speed, LONGVL
+  summary: Nominal hub longitudinal speed 17 m/s (default) | positive scalar
+  group: Geometry
+- name: Vertical stiffness
+  summary: Vertical stiffness 5e5 N/m (default) | positive scalar
+  group: Geometry
+- name: Model rolling resistance
+  summary: Rolling resistance option off (default) | on
+  group: Rolling Resistance
+- name: Resistance model
+  summary: Rolling resistance option Constant coefficient (default) | Pressure and velocity dependent SAE J2452 | Pressure
+    and velocity dependent (Magic Formula)
+  group: Rolling Resistance
+- name: Constant coefficient
+  summary: Proportionality constant 0.015 (default) | positive scalar
+  group: Rolling Resistance
+- name: Tire pressure
+  summary: Tire pressure 250e3 Pa (default) | positive scalar
+  group: Rolling Resistance
+- name: Alpha
+  summary: Tire pressure equation exponent -0.003 (default) | scalar
+  group: Rolling Resistance
+- name: Beta
+  summary: Normal force equation exponent 0.97 (default) | scalar
+  group: Rolling Resistance
+- name: Coefficient A
+  summary: Velocity-independent force component *A* 84e-4 (default)
+  group: Rolling Resistance
+- name: Coefficient B
+  summary: Velocity-dependent force component *B* 6.2e-4 s/m (default) | positive scalar
+  group: Rolling Resistance
+- name: Coefficient C
+  summary: Velocity-dependent force component *C* 1.6e-4 s^2/m^2 (default) | positive scalar
+  group: Rolling Resistance
+- name: Tire nominal pressure, NOMPRES
+  summary: Nominal tire pressure 240e3 Pa (default) | positive scalar
+  group: Rolling Resistance
+- name: Tire nominal vertical load, FNOMIN
+  summary: Normal force 4000 N (default) | positive scalar
+  group: Rolling Resistance
+- name: Nominal hub longitudinal speed, LONGVL
+  summary: Nominal hub longitudinal speed 16 m/s (default) | positive scalar
+  group: Rolling Resistance
+- name: Q-coefficient parameters [qsy1 qsy2 qsy3 qsy4 qsy5 qsy6 qsy7 qsy8]
+  summary: Magic Formula Q-coefficients [.0082, 0, .0014, .001, 0, 0, 1.08, -.5] 1 (default) | vector of length 8
+  group: Rolling Resistance
+- name: Velocity threshold for rolling resistance
+  summary: Threshold for rolling resistance 0.001 m/s (default) | positive scalar
+  group: Rolling Resistance
+- name: Enable scaling coefficients
+  summary: Scaling option off (default) | on
+  group: Scaling
+- name: Scale factor of Fx nominal vertical load, LFZO
+  summary: '*Fx* nominal vertical load 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx shape factor, LCX
+  summary: '*Fx* shape factor 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx peak friction coefficient, LMUX
+  summary: '*Fx* peak friction coefficient 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx curvature factor, LEX
+  summary: '*Fx* curvature factor 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx slip stiffness, LKX
+  summary: '*Fx* slip stiffness 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx horizontal shift, LHX
+  summary: '*Fx* horizontal shift 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx vertical shift, LVX
+  summary: '*Fx* vertical shift 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of rolling resistance, LMY
+  summary: Rolling resistance 1 (default) | positive scalar
+  group: Scaling
+- name: Compliance
+  summary: Dynamical compliance option No compliance - Suitable for HIL simulation (default) | Specify stiffness and damping
+  group: Dynamics
+- name: Longitudinal stiffness
+  summary: Longitudinal stiffness 1e6 N/m (default) | positive scalar
+  group: Dynamics
+- name: Longitudinal damping
+  summary: Longitudinal damping 1000 N/(m/s) (default) | positive scalar
+  group: Dynamics
+- name: Inertia
+  summary: Inertia model No inertia (default) | Specify inertia and initial velocity
+  group: Dynamics
+- name: Tire inertia
+  summary: Rotational inertia 1 kg*m^2 (default) | positive scalar
+  group: Dynamics
+- name: Initial velocity
+  summary: Initial rotational velocity 0 rad/s (default) | scalar
+  group: Dynamics
+- name: Lower boundary of slip denominator, VXLOW
+  summary: Lower boundary of slip denominator 1 m/s (default) | positive scalar
+  group: Advanced
+- name: Velocity threshold
+  summary: Tire slip regime threshold 0.1 m/s (default) | positive scalar
+  group: Advanced
+- name: Minimum valid wheel slip, KPUMIN
+  summary: Minimum wheel slip threshold -1.5 (default) | scalar
+  group: Advanced
+- name: Maximum valid wheel slip, KPUMAX
+  summary: Maximum wheel slip threshold 1.5 (default) | scalar
+  group: Advanced
+```
 
 ### Main
 
@@ -753,7 +949,6 @@ direction.
 ### **Maximum valid wheel slip, KPUMAX** — Maximum wheel slip threshold `1.5` (default) | scalar
 
 Maximum valid wheel slip.
-
 ## Libraries
 
 Simscape / Driveline / Tires & Vehicles

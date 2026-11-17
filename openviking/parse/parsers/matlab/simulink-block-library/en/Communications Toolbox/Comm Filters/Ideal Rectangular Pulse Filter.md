@@ -14,6 +14,17 @@ language: en
 # Ideal Rectangular Pulse Filter
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector | matrix
+  direction: input
+  data_types: double | single | fixed point
+- name: Out
+  summary: Output signal column vector | matrix
+  direction: output
+  data_types: double | single | fixed point
+```
 
 ### Input
 
@@ -47,8 +58,55 @@ output matrix. The output signal is the same data type as the input signal.
   parameter.
 
 **Data Types:** `double` | `single` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Pulse length (number of samples)
+  summary: Pulse length 8 (default) | positive integer
+  group: ''
+- name: Pulse delay (number of samples)
+  summary: Pulse delay 0 (default) | nonnegative integer
+  group: ''
+- name: Input processing
+  summary: Input processing control Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: Block processing rate Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Normalize output signal
+  summary: Option to normalize output signal off (default) | on
+  group: ''
+- name: Normalization method
+  summary: Normalization method Sum of samples (default) | Energy per pulse
+  group: ''
+- name: Linear amplitude gain
+  summary: Linear gain 1 (default) | positive scalar
+  group: ''
+- name: Rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: Overflow mode for fixed-point operations off (default) | on
+  group: ''
+- name: Coefficients
+  summary: 'Coefficient data type Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)'
+  group: ''
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: ''
+- name: Accumulator
+  summary: 'Accumulator data type Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product
+    output | fixdt(1,16,0)'
+  group: ''
+- name: Output
+  summary: 'Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output
+    | fixdt(1,16,0)'
+  group: ''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -217,7 +275,6 @@ For information about specifying data types, see Data Type Assistant.
 Select this parameter to prevent the fixed-point tools from overriding the
 data types that you specify in the block dialog box. For more information,
 see the Fixed-Point Tool (Fixed-Point Designer).
-
 ## Libraries
 
 Communications Toolbox / Comm Filters

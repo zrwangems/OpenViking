@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Transmission Line
 
 ## 端口
+```yaml
+ports:
+- name: p1
+  summary: 内导体 1 电气
+  direction: conserving
+- name: n1
+  summary: 外部屏蔽导体 1 电气
+  direction: conserving
+- name: p2
+  summary: 内导体 2 电气
+  direction: conserving
+- name: n2
+  summary: 外部屏蔽导体 2 电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,44 @@ chinese_source: worker-translation
 ### **n2** — 外部屏蔽导体 2 电气
 
 与传输线外部屏蔽导体一端相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Model Type
+  summary: 传输线模型 Delay-based and lossless（默认）| Delay-based and lossy | Lumped parameter L-section | Lumped parameter pi-section
+    | Distributed parameter line
+  group: ''
+- name: Transmission delay
+  summary: 总传输延迟 5 ns（默认）| 正标量
+  group: ''
+- name: Parameterization
+  summary: 模型参数化 By characteristic impedance and capacitance（默认）| By inductance and capacitance
+  group: ''
+- name: Characteristic impedance
+  summary: 特性阻抗 50 Ohm（默认）| 正标量
+  group: ''
+- name: Frequency used for rlcg specification
+  summary: 用于 rlcg 规格的频率 60 Hz（默认）| 正标量
+  group: ''
+- name: Inductance per unit length
+  summary: 单位长度电感 220 μH/m（默认）| 正标量
+  group: ''
+- name: Capacitance per unit length
+  summary: 单位长度电容 90 pF/m（默认）
+  group: ''
+- name: Resistance per unit length
+  summary: 单位长度电阻 0.3 Ohm/m（默认）
+  group: ''
+- name: Insulation conductance per unit length
+  summary: 单位长度绝缘电导 5e-6 S/m（默认）| 非负标量
+  group: ''
+- name: Line length
+  summary: 传输线总长度 1 m（默认）| 正标量
+  group: ''
+- name: Number of segments
+  summary: 模型段数 1（默认）
+  group: ''
+```
 
 ### **Model Type** — 传输线模型 `Delay-based and lossless`（默认）| `Delay-based and lossy` | `Lumped parameter L-section` | `Lumped parameter pi-section` | `Distributed parameter line`
 
@@ -184,7 +235,6 @@ line` 时，此参数才可见。
 `Delay-based and lossy`、
 `Lumped parameter L-section` 或
 `Lumped parameter pi-section` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Lines

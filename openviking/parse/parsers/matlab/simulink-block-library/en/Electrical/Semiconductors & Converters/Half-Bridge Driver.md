@@ -14,6 +14,30 @@ language: en
 # Half-Bridge Driver
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Control signal, unitless physical signal
+  direction: input
+- name: PWM
+  summary: Pulse-width modulated signal electrical
+  direction: conserving
+- name: REF
+  summary: Floating zero volt reference electrical
+  direction: conserving
+- name: HO
+  summary: High-side gate connection electrical
+  direction: conserving
+- name: HS
+  summary: High-side source or emitter connection electrical
+  direction: conserving
+- name: LO
+  summary: Low-side gate connection electrical
+  direction: conserving
+- name: LS
+  summary: Low-side source or emitter connection electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -70,8 +94,72 @@ block.
 Electrical conserving port associated with the source or emitter on
 the low side of the half bridge. Connect this port to the source of a
 MOSFET block or the emitter of an IGBT block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model electrical or physical signal input ports PS input (default) | Electrical input ports
+  group: ''
+- name: Logic 1 input value
+  summary: Signal value for logic 1 0.7 (default)
+  group: Input Logic
+- name: Logic 0 input value
+  summary: Signal value for logic 0 0.3 (default)
+  group: Input Logic
+- name: Logic 1 input voltage
+  summary: Voltage value for logic 1 2.0 V (default)
+  group: Input Logic
+- name: Logic 0 input voltage
+  summary: Voltage value for logic 0 0.8 V (default)
+  group: Input Logic
+- name: On-state gate-source voltage
+  summary: Demanded output voltage for on state 15 V (default)
+  group: Outputs
+- name: Off-state gate-source voltage
+  summary: Demanded output voltage for off state 0 V (default)
+  group: Outputs
+- name: Low-side propagation delay (logic 0->logic 1)
+  summary: '*t*pLH in timing diagram 50 ns (default)'
+  group: Timing
+- name: High-side dead time (logic 0->logic 1)
+  summary: '*t*dLH in timing diagram 100 ns (default)'
+  group: Timing
+- name: High-side propagation delay (logic 1->logic 0)
+  summary: '*t*pHL in timing diagram 50 ns (default)'
+  group: Timing
+- name: Low-side dead time (logic 1->logic 0)
+  summary: '*t*dHL in timing diagram 100 ns (default)'
+  group: Timing
+- name: Parameterization
+  summary: Select driver parameterization Output impedance (default) | Rise and fall times
+  group: Dynamics
+- name: On-state gate drive resistance
+  summary: Demanded output voltage for on state 2 Ω (default)
+  group: Dynamics
+- name: Off-state gate drive resistance
+  summary: Demanded output voltage for off state 2 Ω (default)
+  group: Dynamics
+- name: Rise time
+  summary: Driver rise time 20 ns (default)
+  group: Dynamics
+- name: Fall time
+  summary: Driver fall time 20 ns (default)
+  group: Dynamics
+- name: Load capacitance for rise and fall times
+  summary: Driver load capacitance 10 nF (default)
+  group: Dynamics
+- name: State fault
+  summary: Option to model faulty state in half-bridge driver Add fault (default)
+  group: Faults
+- name: Failure mode
+  summary: State of driver after failure Fail input fixed at logic 0 (default) | Fail input fixed at logic 1 | Fail high side
+    off | Fail high side on | Fail low side off | Fail low side on | Fail high and low sides off | Fail high and low sides
+    on
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+```
 
 ### **Modeling option** — Whether to model electrical or physical signal input ports `PS input` (default) | `Electrical input ports`
 
@@ -233,7 +321,6 @@ Simulation time at which the block enters the faulted state.
 
 To enable this parameter, set **Trigger Type** to
 `Timed`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

@@ -14,6 +14,15 @@ language: en
 # External Force Source (PB)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Control signal, N physical signal
+  direction: input
+- name: R
+  summary: Port that applies external force to the network position-based mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -28,11 +37,12 @@ positive signal at this port applies a positive force on the network at port
 
 Position-based mechanical translational conserving port that connects the block to
 the circuit and applies the external force to the physical network.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Sources

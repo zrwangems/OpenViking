@@ -14,6 +14,17 @@ language: en
 # DC Blocker
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output
+  summary: Output signal with no DC component scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -39,8 +50,28 @@ input signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Algorithm for estimating DC offset
+  summary: Algorithm for estimating DC offset IIR (default) | FIR | CIC | Subtract mean
+  group: ''
+- name: Normalized bandwidth of lowpass IIR or CIC filter
+  summary: Normalized bandwidth 0.001 (default) | real scalar in the range (0 1)
+  group: ''
+- name: Order of lowpass IIR elliptic filter
+  summary: Order of lowpass IIR elliptic filter 6 (default) | integer greater than 3
+  group: ''
+- name: Number of past input samples for FIR algorithm
+  summary: Number of past input samples for FIR algorithm 50 (default) | positive integer
+  group: ''
+- name: View Filter Response
+  summary: Visualize frequency response button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Algorithm for estimating DC offset** — Algorithm for estimating DC offset `IIR` (default) | `FIR` | `CIC` | `Subtract mean`
 
@@ -124,7 +155,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations Communications Toolbox / Comm Filters Communications Toolbox / RF Impairments Correction DSP System Toolbox HDL Support / Signal Operations

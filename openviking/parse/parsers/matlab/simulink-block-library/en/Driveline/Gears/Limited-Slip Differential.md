@@ -14,6 +14,21 @@ language: en
 # Limited-Slip Differential
 
 ## Ports
+```yaml
+ports:
+- name: D
+  summary: Driving shaft rotational mechanical
+  direction: conserving
+- name: S1
+  summary: Sun gear 1 rotational mechanical
+  direction: conserving
+- name: S2
+  summary: Sun gear 2 rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -42,8 +57,99 @@ To enable this port, in the **Differential** tab,
 set **Friction model** to
 `Temperature-dependent
 efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Crown gear located
+  summary: Crown gear location To the right of centerline (default) | To the left of centerline
+  group: Differential
+- name: Carrier (C) to driveshaft (D) teeth ratio (NC/ND)
+  summary: Crown gear to driveshaft pinion gear teeth ratio 4 (default) | positive scalar
+  group: Differential
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Differential
+- name: Sun-sun and carrier-driveshaft ordinary efficiencies
+  summary: Differential torque constant transfer efficiencies [.85, .92] (default) | vector
+  group: Differential
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Differential
+- name: Sun-sun efficiency
+  summary: Torque transfer efficiency from the driving sun gear to the driven sun gear [.95, .9, .85] (default) | vector
+  group: Differential
+- name: Carrier-driveshaft efficiency
+  summary: Torque transfer efficiency from the crown gear to the driveshaft pinon gear [.95, .9, .85] (default) | vector
+  group: Differential
+- name: Sun-carrier and driveshaft-casing power thresholds
+  summary: Minimum efficiency power thresholds for the sun gear to the crown gear and driveshaft-casing gear couplings [.001,
+    .001] W (default) | vector
+  group: Differential
+- name: Sun-carrier and driveshaft-casing viscous friction coefficients
+  summary: Viscous friction coefficients [0, 0] N*m/(rad/s) (default) | vector
+  group: Differential
+- name: Inertia
+  summary: Inertia option off (default) | on
+  group: Differential
+- name: Sun gear inertia
+  summary: Sun gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Differential
+- name: Sun gear radius
+  summary: Sun gear radius 0.01 m (default) | positive scalar
+  group: Differential
+- name: Carrier inertia
+  summary: Carrier inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Differential
+- name: Planet gear spin inertia
+  summary: Planet gear spin inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Differential
+- name: Planet gear mass
+  summary: Planet gear mass 0.001 kg*m^2 (default) | positive scalar
+  group: Differential
+- name: Number of friction surfaces
+  summary: Number of contact surfaces 4 (default) | positive scalar
+  group: Clutch
+- name: Effective torque radius
+  summary: Friction force application radius 130 mm (default) | positive scalar
+  group: Clutch
+- name: Preload force
+  summary: Clutch plate engagement pressure 300 N (default) | nonegative scalar
+  group: Clutch
+- name: Static friction coefficient
+  summary: Static friction coefficient 0.35 (default) | positive scalar
+  group: Clutch
+- name: Static friction coefficient vector
+  summary: Static friction coefficient [.4, .38, .36] (default) | vector
+  group: Clutch
+- name: Kinetic friction coefficient relative velocity vector
+  summary: Absolute surface velocity [0, 100, 1000] rad/s (default) | vector
+  group: Clutch
+- name: Kinetic friction coefficient vector
+  summary: Coulomb coefficient of friction, *k*K [.3, .22, .19] (default) | vector
+  group: Clutch
+- name: Kinetic friction coefficient matrix
+  summary: Coulomb coefficient of friction, *k*K [.34, .32, .3; .3, .28, .25; .25, .2, .15] (default) | matrix
+  group: Clutch
+- name: Friction coefficient interpolation method
+  summary: Output value filling method Linear (default) | Smooth
+  group: Clutch
+- name: Friction coefficient extrapolation method
+  summary: Output value extending method Linear (default) | Nearest
+  group: Clutch
+- name: Velocity tolerance
+  summary: Slip velocity locking boundary 0.001 rad/s (default)
+  group: Clutch
+- name: Initial state
+  summary: Initial clutch state Unlocked (default) | Locked
+  group: Clutch
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Differential
 
@@ -372,7 +478,6 @@ component efficiencies according to their respective efficiency vectors.
 
 To enable this parameter, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears

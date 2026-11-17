@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Quantizing Encoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Quantization partition**
 :   分区区间端点的向量。
@@ -28,7 +33,6 @@ R2025b 中未记录。
 
 **索引输出数据类型**
 :   选择输出数据类型。
-
 ## 所属库
 
 R2025b 中未记录。

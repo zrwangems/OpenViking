@@ -14,6 +14,18 @@ language: en
 # Battery Discharging Current Limit
 
 ## Ports
+```yaml
+ports:
+- name: CellVoltage
+  summary: Cell voltages, V scalar | vector
+  direction: input
+- name: CellTemperature
+  summary: Temperature of cells, K scalar | vector
+  direction: input
+- name: CurrentLimit
+  summary: Charging current limit for battery pack scalar
+  direction: output
+```
 
 ### Input
 
@@ -43,8 +55,31 @@ specify a minimum and a maximum value for this port, for example
 
 Discharging current limit for the battery pack, returned as a
 scalar.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify inputs as [Min,Max]
+  summary: Option to specify inputs as minimum and maximum values off (default) | on
+  group: ''
+- name: Cell undervoltage limit (V)
+  summary: Undervoltage limit for cell 2.5 (default) | positive scalar
+  group: ''
+- name: Terminal resistance (ohm)
+  summary: Terminal resistance 0.0025 (default) | positive scalar
+  group: ''
+- name: Vector of temperatures, T
+  summary: Cell temperatures [243.15, 258.15, 273.15, 288.15, 303.15, 318.15, 333.15] (default) | vector of scalars
+  group: ''
+- name: Current limit for coolest cell, iCool(T), (A)
+  summary: Current limit for coolest cell [ 0, 0, 0, 0, 100, 100, 100] (default) | vector of positive scalars
+  group: ''
+- name: Current limit for hottest cell, iHot(T), (A)
+  summary: Current limit for hottest cell [100, 100, 100, 100, 0, 0, 0] (default) | vector of positive scalars
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 ### **Specify inputs as [Min,Max]** — Option to specify inputs as minimum and maximum values `off` (default) | `on`
 
@@ -103,7 +138,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Current Management

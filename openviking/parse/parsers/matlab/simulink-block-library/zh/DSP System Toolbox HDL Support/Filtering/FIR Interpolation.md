@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # FIR Interpolation
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Num
+  summary: 分子系数 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Out
+  summary: 插值器输出 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -68,8 +83,67 @@ FIR Interpolator 模块的输出，以向量或矩阵形式返回。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Coefficient source
+  summary: FIR 滤波器系数来源 Auto（默认）| Dialog parameters | Input port | Filter object
+  group: ''
+- name: FIR filter coefficients
+  summary: 低通 FIR 滤波器系数 designMultirateFIR(3,1)（默认）| 向量
+  group: ''
+- name: Interpolation factor
+  summary: 插值因子 3（默认）| 正标量
+  group: ''
+- name: Filter object
+  summary: 滤波器对象 dsp.FIRInterpolator
+  group: ''
+- name: Input processing
+  summary: 处理输入信号的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: 模块对输入进行插值的方法 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Output buffer initial conditions
+  summary: 初始条件 0（默认）| 标量 | 矩阵
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: ''
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认）| on
+  group: ''
+- name: Coefficients Data Type
+  summary: '系数的数据类型 Inherit: Same word length as input（默认）| fixdt(1,16) | fixdt(1,16,0)'
+  group: ''
+- name: Coefficients Minimum
+  summary: 滤波器系数的最小值 []（默认）| 标量
+  group: ''
+- name: Coefficients Maximum
+  summary: 滤波器系数的最大值 []（默认）| 标量
+  group: ''
+- name: Product output Data Type
+  summary: '乘积输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: ''
+- name: Accumulator Data Type
+  summary: '累加器的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: ''
+- name: Output Data Type
+  summary: '输出的数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: ''
+- name: Output Minimum
+  summary: 模块输出的最小值 []（默认）| 标量
+  group: ''
+- name: Output Maximum
+  summary: 模块输出的最大值 []（默认）| 标量
+  group: ''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: ''
+```
 
 #### Coefficient source
 
@@ -316,7 +390,6 @@ H(z)=b0+b1z−1+...+bNz−N，
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters DSP System Toolbox HDL Support / Filtering

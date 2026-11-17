@@ -14,6 +14,21 @@ language: en
 # Carrier Synchronizer
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Phase corrected output signal scalar | column vector
+  direction: output
+  data_types: double | single
+- name: PhEst
+  summary: Phase estimate in radians scalar | column vector
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -52,8 +67,34 @@ To enable this port, select the **Estimated phase
 error output port** parameter.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation
+  summary: Modulation type QAM (default) | 8PSK | BPSK | OQPSK | PAM | QPSK
+  group: ''
+- name: Modulation phase offset
+  summary: Modulation phase offset method Auto (default) | Custom
+  group: ''
+- name: Custom phase offset (radians)
+  summary: Custom phase offset in radians 0 (default) | scalar
+  group: ''
+- name: Samples per symbol
+  summary: Number of samples per symbol 2 (default) | positive integer
+  group: ''
+- name: Damping factor
+  summary: Damping factor of loop 0.707 (default) | positive scalar
+  group: ''
+- name: Normalized loop bandwidth
+  summary: Normalized bandwidth of loop 0.01 (default) | scalar
+  group: ''
+- name: Estimated phase error output port
+  summary: Enable estimated phase error output port on (default) | off
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -142,7 +183,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Synchronization

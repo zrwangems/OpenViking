@@ -14,6 +14,17 @@ language: en
 # Derepeat
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -33,8 +44,22 @@ Output signal, returned as a scalar or column vector.
 **Complex Number Support:** Yes
 
 For more information on the processing rates, see Single-Rate Processing, and Multirate Processing.
-
 ## Parameters
+```yaml
+parameters:
+- name: Derepeat factor, N
+  summary: Derepeat factor 5 (default) | integer
+  group: ''
+- name: Input processing
+  summary: Input processing control Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: Block processing rate Allow multirate processing (default) | Enforce single-rate processing
+  group: ''
+- name: Initial condition
+  summary: Initial condition 0 (default) | scalar | vector | matrix
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -81,7 +106,6 @@ dimensions, then the parameter represents the initial output value. If
 **Initial condition** is a scalar, then it represents
 the initial value of each element in the output. The block does not support
 empty matrices for initial conditions.
-
 ## Libraries
 
 Communications Toolbox / Sequence Operations

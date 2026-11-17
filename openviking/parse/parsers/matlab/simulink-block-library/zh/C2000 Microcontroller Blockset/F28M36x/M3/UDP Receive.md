@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # UDP Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 从发送 UDP 主机接收的 UDP 消息输出 [Nx1] 数组
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: Size
+  summary: 接收到的 UDP 消息中的数据字节数 标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输出
 
@@ -29,8 +40,22 @@ chinese_source: worker-translation
 在每个采样时间，该端口输出接收到的消息中的数据字节数。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Local IP port
+  summary: 接收 UDP 主机上的 IP 端口 25000（默认）| [1, 65535]
+  group: ''
+- name: Data type
+  summary: UDP 消息中数据字节的数据类型 uint8（默认）| double | single | int8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+- name: Data size (N)
+  summary: 每条 UDP 消息中的数据字节数 4（默认）
+  group: ''
+- name: Sample time
+  summary: 从发送 UDP 主机读取消息的间隔 0.005（默认）| 任何为 0.005（5 ms）倍数的非负值 | -1
+  group: ''
+```
 
 ### **Local IP port** — 接收 UDP 主机上的 IP 端口 `25000`（默认）| `[1, 65535]`
 
@@ -53,7 +78,6 @@ chinese_source: worker-translation
 输入接收数据的时间间隔。
 
 当您将此参数设置为 `-1` 时，Simulink® 会根据模型中的模块上下文确定该模块的最佳采样时间。
-
 ## 所属库
 
 Simulink Support Package for Parrot Minidrones

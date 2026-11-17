@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Single-Acting Rotary Actuator (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: R
+  summary: 执行器机械平移
+  direction: conserving
+- name: C
+  summary: 壳体机械平移
+  direction: conserving
+- name: q
+  summary: 轴角度物理信号
+  direction: input
+- name: q
+  summary: 轴角度物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -47,8 +65,68 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要显示此端口，请将 **Shaft rotation from chamber A** 设置为 `Calculate from angular velocity of port R relative to port C`。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 执行器
+- name: Volume displacement
+  summary: 体积排量 1e-4 m^3/rad（默认）| 正标量
+  group: 执行器
+- name: Stroke
+  summary: 角度 5.0 rad（默认）| 正标量
+  group: 执行器
+- name: Dead volume
+  summary: 流体体积 1e-5 m^3（默认）| 正标量
+  group: 执行器
+- name: Environment pressure specification
+  summary: 压力参考源 Atmospheric pressure（默认）| Specified pressure
+  group: 执行器
+- name: Environment pressure
+  summary: 用户定义的压力参考 0.101325 MPa（默认）
+  group: 执行器
+- name: Hard stop model
+  summary: 选择硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 硬限位
+- name: Hard stop stiffness coefficient
+  summary: 刚度系数 1e6 N\*m/rad（默认）| 正标量
+  group: 硬限位
+- name: Hard stop damping coefficient
+  summary: 阻尼系数 150 N\*m(rad/s)（默认）| 正标量
+  group: 硬限位
+- name: Transition region
+  summary: 过渡区域 0.001 rad（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位之间最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位之间的阈值相对速度 0.1 rad/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release torque threshold
+  summary: 从接触模式过渡到自由模式所需的阈值扭矩 0.001 N*m（默认）| 正标量
+  group: 硬限位
+- name: Shaft rotation from chamber A
+  summary: 确定轴角度的方法 Calculate from angular velocity of port R relative to port C（默认）| Provide input signal from Multibody
+    joint
+  group: 初始条件
+- name: Initial shaft rotation
+  summary: 初始旋转 0 rad（默认）| 标量
+  group: 初始条件
+- name: Enable dynamic compressibility
+  summary: 流体可压缩性 On（默认）| Off
+  group: 初始条件
+- name: 初始液体压力
+  summary: 液体压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: 标称液体压力
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 初始条件
+```
 
 ### 执行器
 
@@ -188,7 +266,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请清除 **启用动态可压缩性** 复选框。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Actuators

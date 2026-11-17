@@ -14,6 +14,41 @@ language: en
 # LTE OFDM Modulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: NDLRB
+  summary: Number of downlink resource blocks 6 | 15 | 25 | 50 | 75 | 100
+  direction: input
+  data_types: uint8 | uint16 | uint32 | fixdt(0,K,0), K >= 7 | single | double
+- name: cyclicPrefixType
+  summary: Type of CP scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Output data scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -115,8 +150,41 @@ the block accepts input data in the next time step. When this value is
 input data in the next time step.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: NDLRB source
+  summary: Source of NDLRB Property (default) | Input port
+  group: Main
+- name: NDLRB
+  summary: Number of downlink resource blocks 6 (default) | 15 | 25 | 50 | 75 | 100
+  group: Main
+- name: Cyclic prefix source
+  summary: Source of cyclic prefix Property (default) | Input port
+  group: Main
+- name: Cyclic prefix type
+  summary: Type of cyclic prefix Normal (default) | Extended
+  group: Main
+- name: Windowing
+  summary: Spectral growth reduction off (default) | on
+  group: Main
+- name: Window length per NDLRB
+  summary: NDRLB window length [4, 6, 4, 6, 8, 8] (default) | row vector of NDLRB window lengths
+  group: Main
+- name: Enable reset input port
+  summary: Reset signal off (default) | on
+  group: Main
+- name: Output data sample rate
+  summary: Output sample rate Use maximum output data sample rate (default) | Match output data sample rate to NDLRB
+  group: Main
+- name: Divide butterfly outputs by two
+  summary: Bit-width control on (default) | off
+  group: IFFT Block Parameters
+- name: Rounding Method
+  summary: Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Zero
+  group: IFFT Block Parameters
+```
 
 ### Main
 
@@ -243,7 +311,6 @@ When the input is any integer or fixed-point data type, the IFFT
 algorithm uses fixed-point arithmetic for internal calculations. This
 parameter does not apply when the input data is of data type
 `single` or `double`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

@@ -14,6 +14,21 @@ language: en
 # Cycloidal Drive
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base shaft mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower shaft mechanical rotational
+  direction: conserving
+- name: R
+  summary: Ring gear mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,8 +61,40 @@ Thermal conserving port associated with heat flow.
 To expose this port, set **Friction model** to
 `Temperature-dependent
 efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ring gear rotation
+  summary: Option to simulate ring gear motion off (default) | on
+  group: Main
+- name: Number of teeth on cycloid disc
+  summary: Number of cycloid disc teeth 20 (default) | positive scalar integer
+  group: Main
+- name: Number of teeth on ring gear
+  summary: Number of ring gear teeth 24 (default) | positive scalar integer
+  group: Main
+- name: Friction model
+  summary: Model for meshing losses No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Efficiency from base shaft to follower shaft
+  summary: Base-to-follower efficiency 0.90 or [0.95, 0.85, 0.80] (default) | scalar or vector of elements in the interval
+    (0,1]
+  group: Meshing Losses
+- name: Efficiency from follower shaft to base shaft
+  summary: Follower-to-base efficiency 0.05 or [0.10, 0.05, 0.03] (default) | scalar or vector of elements in the interval
+    (0,1]
+  group: Meshing Losses
+- name: Power threshold
+  summary: Minimum efficiency power threshold 0.001 W (default) | scalar
+  group: Meshing Losses
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -198,7 +245,6 @@ resistant the component is to temperature change.
 To enable this parameter, set **Friction model**
 to `Temperature-dependent
 efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears

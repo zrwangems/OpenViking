@@ -14,10 +14,15 @@ language: en
 # General Multiplexed Deinterleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Interleaver delay (samples)**
 :   A vector that lists the number of symbols that fit in each shift register
@@ -27,7 +32,6 @@ Not documented in R2025b.
 **Initial conditions**
 :   The values that fill each shift register when the simulation
     begins.
-
 ## Libraries
 
 Not documented in R2025b.

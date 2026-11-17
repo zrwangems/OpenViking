@@ -14,6 +14,33 @@ language: en
 # Gearbox
 
 ## Ports
+```yaml
+ports:
+- name: BTrq
+  summary: Base gear input torque scalar
+  direction: input
+- name: FTrq
+  summary: Follower gear output torque scalar
+  direction: input
+- name: B
+  summary: Base gear angular velocity and torque two-way connector port
+  direction: input
+- name: AirTemp
+  summary: Ambient air temperature scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: BSpd
+  summary: Input gear angular velocity scalar
+  direction: output
+- name: FSpd
+  summary: Output gear angular velocity scalar
+  direction: output
+- name: F
+  summary: Output gear angular velocity and torque two-way connector port
+  direction: output
+```
 
 ### Input
 
@@ -108,8 +135,95 @@ N·m.
 
 To create this port, for **Port Configuration**,
 select `Two-way connection`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port Configuration
+  summary: Specify configuration Simulink (default) | Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink (default) | Two-way connection
+- name: Efficiency factors
+  summary: Specify configuration Constant (default) | Driveshaft torque, speed and temperature
+  group: ''
+  block_parameter: input_config
+  values: Constant (default) | Driveshaft torque, speed and temperature
+- name: Interpolation method
+  summary: Method Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline
+  group: ''
+  block_parameter: InterpMethod
+  values: Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline
+- name: Output shaft rotates in same direction as input
+  summary: Rotation off (default) | on
+  group: ''
+  block_parameter: dirSwitch
+  values: off (default) | on
+- name: Input ambient temperature
+  summary: Create input port off (default) | on
+  group: ''
+  block_parameter: extTamb
+  values: off (default) | on
+- name: Input to output gear ratio, N
+  summary: Ratio 2 (default) | positive scalar
+  group: ''
+  block_parameter: N
+  values: 2 (default) | positive scalar
+- name: Input shaft inertia, J1
+  summary: Inertia .01 (default) | positive scalar
+  group: ''
+  block_parameter: J1
+  values: .01 (default) | positive scalar
+- name: Output shaft inertia, J2
+  summary: Inertia .01 (default) | positive scalar
+  group: ''
+  block_parameter: J2
+  values: .01 (default) | positive scalar
+- name: Input shaft damping, b1
+  summary: Damping .001 (default) | positive scalar
+  group: ''
+  block_parameter: b1
+  values: .001 (default) | positive scalar
+- name: Output shaft damping, b2
+  summary: Damping .001 (default) | positive scalar
+  group: ''
+  block_parameter: b2
+  values: .001 (default) | positive scalar
+- name: Input shaft initial velocity, w1_o
+  summary: Initial velocity 0 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: w1_o
+  values: 0 (default) | scalar greater than or equal to 0
+- name: Constant efficiency factor, eta
+  summary: Efficiency 1 (default) | positive scalar
+  group: ''
+  block_parameter: eta
+  values: 1 (default) | positive scalar
+- name: Efficiency lookup table, eta_tbl
+  summary: Lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: eta_tbl
+  values: M-by-N-by-L array
+- name: Efficiency torque breakpoints, Trq_bpts
+  summary: Torque breakpoints [25, 50, 75, 100, 150, 200, 250] (default) | 1-by-M vector
+  group: ''
+  block_parameter: Trq_bpts
+  values: '[25, 50, 75, 100, 150, 200, 250] (default) | 1-by-M vector'
+- name: Efficiency speed breakpoints, omega_bpts
+  summary: Speed breakpoints [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | 1-by-N vector
+  group: ''
+  block_parameter: omega_bpts
+  values: '[52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | 1-by-N vector'
+- name: Efficiency temperature breakpoints, Temp_bpts
+  summary: Temperature breakpoints [290 358] (default) | 1-by-L vector
+  group: ''
+  block_parameter: Temp_bpts
+  values: '[290 358] (default) | 1-by-L vector'
+- name: Air temperature, Tair
+  summary: Ambient air temperature 297.15 (default) | scalar greater than 0
+  group: ''
+  block_parameter: Tair
+  values: 297.15 (default) | scalar greater than 0
+```
 
 #### Block Options
 
@@ -492,7 +606,6 @@ To enable this parameter:
 - Set **Efficiency factors** to `Driveshaft
   torque, speed and temperature`.
 - Clear **Input ambient temperature**.
-
 ## Libraries
 
 Powertrain Blockset / Drivetrain / Couplings

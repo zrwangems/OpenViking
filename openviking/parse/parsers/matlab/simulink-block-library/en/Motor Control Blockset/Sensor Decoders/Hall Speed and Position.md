@@ -14,6 +14,45 @@ language: en
 # Hall Speed and Position
 
 ## Ports
+```yaml
+ports:
+- name: HallVal
+  summary: Current Hall sensor output state scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Cnt
+  summary: External counter value scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: SpdCnt
+  summary: Count at Hall state change scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Dir
+  summary: Rotor spin direction during current Hall state scalar
+  direction: input
+  data_types: int8 | int16 | int32
+- name: SpdVal
+  summary: Validity of current and previous Hall states and speed calculation scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: HallChng
+  summary: Value of Hall state change flag scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: θe
+  summary: Electrical position of rotor scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: Mechanical speed of rotor scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: HallChngRst
+  summary: Resets Hall state change flag to zero scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -111,8 +150,52 @@ indicating that the block has successfully executed speed and position computati
 for the last Hall state change.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Block output
+  summary: Select output ports Speed and position (default) | Speed | Position
+  group: General
+- name: Counter size
+  summary: Size of external counter register 32 bits (default) | 8 bits | 16 bits
+  group: General
+- name: Counter clock frequency (Hz)
+  summary: Clock frequency of external counter 90e6 (default) | scalar
+  group: General
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: General
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 8 (default) | scalar
+  group: General
+- name: Minimum detectable speed (RPM)
+  summary: Minimum speed that block can detect 20 (default) | scalar
+  group: General
+- name: Speed measurement interval
+  summary: Interval over which block measures speed Every 180 Degrees (default) | Every 60 Degrees
+  group: General
+- name: Speed unit
+  summary: Unit of rotor angular speed output Radians/sec (default) | Degrees/sec | RPM | Per unit
+  group: General
+- name: Speed datatype
+  summary: Data type of rotor angular speed output single (default) | double | fixed point
+  group: General
+- name: Expected hall sequence in positive direction
+  summary: Sequence indicating positive direction ABC (default) | CBA | Custom sequence
+  group: Position
+- name: Sequence
+  summary: Custom sequence indicating positive direction [5,4,6,2,3,1] (default) | scalar
+  group: Position
+- name: Order of extrapolation of position
+  summary: Indicates precision in position computation 1st Order (default) | 2nd Order
+  group: Position
+- name: Position unit
+  summary: Unit of angular position output Radians (default) | Degrees | Per unit
+  group: Position
+- name: Position datatype
+  summary: Data type of angular position output single (default) | double | fixed point
+  group: Position
+```
 
 ### General
 
@@ -247,7 +330,6 @@ The data type for the angular position output.
 To enable this parameter, set **Block output** to either
 `Position` or `Speed and
 position`.
-
 ## Libraries
 
 Motor Control Blockset / Sensor Decoders

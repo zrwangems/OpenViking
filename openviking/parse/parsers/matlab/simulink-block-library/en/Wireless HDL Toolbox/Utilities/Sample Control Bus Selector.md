@@ -14,6 +14,25 @@ language: en
 # Sample Control Bus Selector
 
 ## Ports
+```yaml
+ports:
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: start
+  summary: Start of frame scalar
+  direction: output
+  data_types: Boolean
+- name: end
+  summary: End of frame scalar
+  direction: output
+  data_types: Boolean
+- name: valid
+  summary: Validity of samples scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -57,11 +76,12 @@ This signal is 1 (true) on time steps that correspond to valid
 samples.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Wireless HDL Toolbox / Utilities

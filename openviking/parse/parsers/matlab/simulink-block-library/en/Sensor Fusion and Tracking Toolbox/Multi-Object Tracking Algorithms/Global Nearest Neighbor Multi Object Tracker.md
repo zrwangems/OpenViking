@@ -14,6 +14,36 @@ language: en
 # Global Nearest Neighbor Multi Object Tracker
 
 ## Ports
+```yaml
+ports:
+- name: Detections
+  summary: Detection list Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Prediction Time
+  summary: Track update time real scalar
+  direction: input
+- name: Cost Matrix
+  summary: Cost matrix real-valued *N*t-by-*N*d matrix
+  direction: input
+- name: Detectable TrackIDs
+  summary: Detectable track IDs real-valued *M*-by-1 vector | real-valued *M*-by-2 matrix
+  direction: input
+- name: State Parameters
+  summary: Track state parameters Simulink bus containing MATLAB structure
+  direction: input
+- name: Confirmed Tracks
+  summary: Confirmed tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Tentative Tracks
+  summary: Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: All Tracks
+  summary: Confirmed and Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Info
+  summary: Additional information for analyzing track updates Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -225,8 +255,116 @@ The `OOSMHandling` structure contains these fields:
 
 To enable this port, in the **Port Setting** tab, select
 **Enable information output**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: Unique tracker identifier 0 (default) | nonnegative integer
+  group: ''
+- name: Filter initialization function
+  summary: Filter initialization function initcvekf (default) | function name
+  group: ''
+- name: Maximum number of tracks
+  summary: Maximum number of tracks 200 (default) | positive integer
+  group: ''
+- name: Maximum number of sensors
+  summary: Maximum number of sensors 20 (default) | positive integer
+  group: ''
+- name: Out-of-sequence measurements handling
+  summary: Out-of-sequence measurements handling Terminate (default) | Neglect | Retrodiction
+  group: ''
+- name: Maximum number of OOSM steps
+  summary: Maximum number of OOSM steps 3 (default) | positive integer
+  group: ''
+- name: Track state parameters
+  summary: Parameters of track state reference frame structure | structure array
+  group: ''
+- name: Update track state parameters with time
+  summary: Update track state parameters with time off (default) | on
+  group: ''
+- name: Enable memory management
+  summary: Enable memory management off (default) | on
+  group: ''
+- name: Assignment algorithm name
+  summary: Assignment algorithm name 'MatchPairs' (default) | 'Munkres' | 'Jonker-Volgenant' | 'Auction' | 'Custom'
+  group: ''
+- name: Name of 'Custom' assignment function
+  summary: Custom assignment function name character vector
+  group: ''
+- name: Threshold for assigning detections to tracks
+  summary: Threshold for assigning detections to tracks 30*[1 Inf] (default) | positive scalar | 1-by-2 vector of positive
+    values
+  group: ''
+- name: Cluster tracks and detections for assignment
+  summary: Cluster tracks and detections for assignment off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted Execution (default) | Code Generation
+  group: ''
+- name: Type of track confirmation and deletion logic
+  summary: Confirmation and deletion logic type History (default) | Score
+  group: ''
+- name: Confirmation threshold [M N]
+  summary: Track confirmation threshold for history logic [2 3] (default) | real-valued 1-by-2 vector of positive integers
+  group: ''
+- name: Deletion threshold [P Q]
+  summary: Track deletion threshold for history logic [5 5] (default) | real-valued 1-by-2 vector of positive integers
+  group: ''
+- name: Confirmation threshold [positive scalar]
+  summary: Track confirmation threshold for score logic 20 (default) | positive scalar
+  group: ''
+- name: Deletion threshold [negative scalar]
+  summary: Track deletion threshold for score logic -7 (default) | scalar | negative scalar
+  group: ''
+- name: Probability of detection used for track score
+  summary: Probability of detection used for track score 0.9 (default) | scalar in (0,1)
+  group: ''
+- name: Rate of false positives used for track score
+  summary: Probability of false alarm used for track score 1e-6 (default) | scalar in (0,1)
+  group: ''
+- name: Volume of the sensor's detection bin
+  summary: Volume of sensor detection bin 1 (default) | positive scalar
+  group: ''
+- name: Rate of new tracks per unit volume
+  summary: Rate of new tracks per unit volume 1 (default) | positive scalar
+  group: ''
+- name: Prediction time source
+  summary: Source of prediction time Auto (default) | Input port
+  group: ''
+- name: Enable cost matrix input
+  summary: Enable input port for cost matrix off (default) | on
+  group: ''
+- name: Enable detectable track IDs input
+  summary: Enable detectable track IDs input off (default) | on
+  group: ''
+- name: Enable tentative tracks output
+  summary: Enable output port for tentative tracks off (default) | on
+  group: ''
+- name: Enable all tracks output
+  summary: Enable output port for all tracks off (default) | on
+  group: ''
+- name: Enable information output
+  summary: Enable output port for analysis information off (default) | on
+  group: ''
+- name: Source of output bus name
+  summary: Source of output track bus name Auto (default) | Property
+  group: ''
+- name: Source of output info bus name
+  summary: Source of output info bus name Auto (default) | Property
+  group: ''
+- name: Maximum number of detections per sensor
+  summary: Maximum number of detections per sensor 100 (default) | positive integer
+  group: ''
+- name: Maximum number of detections per cluster
+  summary: Maximum number of detections per cluster 5 (default) | positive integer
+  group: ''
+- name: Maximum number of tracks per cluster
+  summary: Maximum number of tracks per cluster 5 (default) | positive integer
+  group: ''
+- name: Handle run-time violation of cluster size
+  summary: Handle run-time violation of cluster size Auto (default) | Property
+  group: ''
+```
 
 #### Tracker Management
 
@@ -781,7 +919,6 @@ To enable this parameter, specify the **Cluster tracks and detections for
 assignment** as `on` and select **Enable
 Memory Management** in the **Tracker Management**
 tab.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

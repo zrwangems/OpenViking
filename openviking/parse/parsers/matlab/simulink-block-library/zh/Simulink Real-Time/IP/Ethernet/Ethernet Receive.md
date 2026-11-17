@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Ethernet Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: Ethernet packet Simulink message
+  direction: output
+  data_types: uint8 | Ethernet_Packet
+- name: Length
+  summary: Number of bytes received double
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -32,8 +43,34 @@ chinese_source: worker-translation
 当禁用 **Enable Simulink messages** 参数时，此端口可用。Length 是接收到的新数据包中的字节数，否则为 `0`。
 
 **Data Types:** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Interface Name
+  summary: Target computer Ethernet interface name wm0 | wm1 | character vector
+  group: ''
+  block_parameter: InterfaceName
+- name: Data Width
+  summary: 数据端口宽度，以字节为单位 64（默认）| 整数
+  group: ''
+  block_parameter: DataWidth
+- name: Enable Simulink messages
+  summary: 以消息形式传输数据 off（默认）| on
+  group: ''
+  block_parameter: MessageOut
+- name: Maximum messages in a time step
+  summary: Limit packets per time step 1 (default) | integer
+  group: ''
+  block_parameter: MaxMessagesPerStep
+- name: Capture filter
+  summary: Filter on received packets character vector
+  group: ''
+  block_parameter: FilterString
+- name: Sample Time
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: ''
+  block_parameter: SampleTime
+```
 
 ### **Interface Name** — Target computer Ethernet interface name `wm0` | `wm1` | character vector
 
@@ -98,7 +135,6 @@ dst port 9001
 |  |
 | --- |
 | **模块参数**：`SampleTime` |
-
 ## 所属库
 
 Simulink Real-Time / IP / Ethernet

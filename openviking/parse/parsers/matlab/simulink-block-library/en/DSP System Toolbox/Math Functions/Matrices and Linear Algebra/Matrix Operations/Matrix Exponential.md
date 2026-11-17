@@ -14,6 +14,17 @@ language: en
 # Matrix Exponential
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Data input matrix
+  direction: input
+  data_types: single | double
+- name: Output 1
+  summary: Matrix exponential output matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -31,11 +42,12 @@ Matrix exponential output of the input square matrix.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

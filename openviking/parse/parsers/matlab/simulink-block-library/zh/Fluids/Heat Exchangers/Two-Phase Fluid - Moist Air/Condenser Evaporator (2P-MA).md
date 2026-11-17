@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Condenser Evaporator (2P-MA)
 
 ## 端口
+```yaml
+ports:
+- name: A1
+  summary: 两相流体端口 两相流体
+  direction: conserving
+- name: B1
+  summary: 两相流体端口 两相流体
+  direction: conserving
+- name: A2
+  summary: 湿空气端口 湿空气
+  direction: conserving
+- name: B2
+  summary: 湿空气端口 湿空气
+  direction: conserving
+- name: Z
+  summary: 两相流体区长度分数 物理信号
+  direction: output
+- name: W
+  summary: 湿空气冷凝速率 物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -43,8 +64,309 @@ chinese_source: worker-translation
 ### **W** — 湿空气冷凝速率 物理信号
 
 离开湿空气流的水冷凝速率，以物理信号形式返回。该端口的值不包括以水滴形式夹带的冷凝部分。冷凝物不会积聚在传热表面上。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: 流路排列 Cross flow（默认）| Parallel flow | Counter flow
+  group: 配置
+- name: Cross flow arrangement
+  summary: 热混合条件 Two-Phase Fluid 1 unmixed & Moist Air 2 mixed（默认）| Both fluids unmixed | Two-phase fluid 1 mixed & Moist
+    Air 2 unmixed | Both fluids mixed
+  group: 配置
+- name: Wall thermal resistance
+  summary: 壁面通过热传导对热流的阻力 0 K/W（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A1
+  summary: 端口 A1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B1
+  summary: 端口 B1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A2
+  summary: 端口 A2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B2
+  summary: 端口 B2 处垂直于流动的面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Enable wall thermal mass
+  summary: 用于建模壁面热质量的选项 off（默认）| on
+  group: 配置
+- name: Wall mass
+  summary: 换热器壁面质量 1 kg（默认）| 正标量
+  group: 配置
+- name: Wall specific heat
+  summary: 换热器壁面比热 490 J/(K*kg)（默认）| 正标量
+  group: 配置
+- name: Number of tubes
+  summary: 两相流体管数量 25（默认）| 正标量
+  group: 两相流体 1
+- name: Total length of each tube
+  summary: 每根两相流体管的总长度 1 m（默认）| 正标量
+  group: 两相流体 1
+- name: Tube cross section
+  summary: 管的横截面形状 Circular（默认）| Rectangular | Annular | Generic
+  group: 两相流体 1
+- name: Tube inner diameter
+  summary: 单根管的内径 0.05 m（默认）| 正标量
+  group: 两相流体 1
+- name: Tube width
+  summary: 单根管的内部宽度 0.05 m（默认）| 正标量
+  group: 两相流体 1
+- name: Tube height
+  summary: 单根管的内部高度 0.05 m（默认）| 正标量
+  group: 两相流体 1
+- name: Annulus inner diameter (heat transfer surface)
+  summary: 环形横截面的较小直径 0.05 m（默认）| 正标量
+  group: 两相流体 1
+- name: Annulus outer diameter
+  summary: 环形横截面的较大直径 0.1 m（默认）| 正标量
+  group: 两相流体 1
+- name: Cross-sectional area per tube
+  summary: 单根管中垂直于流动的内部面积 0.002 m^2（默认）| 正标量
+  group: 两相流体 1
+- name: Wetted perimeter of tube cross-section for pressure loss
+  summary: 流体接触的管横截面周长 0.15 m（默认）| 正标量
+  group: 两相流体 1
+- name: Perimeter of tube cross-section for heat transfer
+  summary: 用于传热计算的单根管周长 0.15 m（默认）| 正标量
+  group: 两相流体 1
+- name: Pressure loss model
+  summary: 由粘性摩擦引起的压力损失计算方法 Correlation for flow inside tubes（默认）| Pressure loss coefficient
+  group: 两相流体 1
+- name: Pressure loss coefficient, delta_p/(0.5\*rho\*v^2)
+  summary: 通道中所有压力损失的经验损失系数 10（默认）
+  group: 两相流体 1
+- name: Local resistance specification
+  summary: 量化压力损失的方法 Aggregate equivalent length（默认）| Local loss coefficient
+  group: 两相流体 1
+- name: Total local loss coefficient
+  summary: 压力损失系数 0.1（默认）| 正标量
+  group: 两相流体 1
+- name: Aggregate equivalent length of local resistances
+  summary: 每根管所有局部阻力的合计长度 0.1 m（默认）| 正标量
+  group: 两相流体 1
+- name: Internal surface absolute roughness
+  summary: 平均表面粗糙度高度 15e-6 m（默认）| 正标量
+  group: 两相流体 1
+- name: Laminar flow upper Reynolds number limit
+  summary: 指示层流的最大雷诺数 2000（默认）| 正标量
+  group: 两相流体 1
+- name: Turbulent flow lower Reynolds number limit
+  summary: 指示湍流的最小雷诺数 4000（默认）| 正标量
+  group: 两相流体 1
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流中由粘性摩擦引起的压力损失系数 64（默认）| 正标量
+  group: 两相流体 1
+- name: Heat transfer coefficient model
+  summary: 计算流体与壁面之间传热系数的方法 Correlation for flow inside tubes（默认）| Colburn equation
+  group: 两相流体 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in liquid zone
+  summary: 液相区中 Colburn 方程系数 [.023, .8, .33]（默认）| 正标量的三元素向量
+  group: 两相流体 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in mixture zone
+  summary: 混合物区中 Cavallini-Zecchin 方程系数 [.05, .8, .33]（默认）| 正标量的三元素向量
+  group: 两相流体 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in vapor zone
+  summary: 蒸汽区中 Colburn 方程系数 [.023, .8, .33]（默认）| 正标量的三元素向量
+  group: 两相流体 1
+- name: Laminar flow Nusselt number
+  summary: 层流状态下对流传热与导热传热之比 3.66（默认）| 正标量
+  group: 两相流体 1
+- name: Fouling factor
+  summary: 由污垢沉积物引起的附加热阻 0.1 m^2*K/kW（默认）| 正标量
+  group: 两相流体 1
+- name: Total fin surface area
+  summary: 所有翅片的总传热表面积 0 m^2（默认）| 正标量
+  group: 两相流体 1
+- name: Fin efficiency
+  summary: 翅片实际传热速率与理想传热速率之比 0.5（默认）| 范围 [0,1] 内的正标量
+  group: 两相流体 1
+- name: Initial fluid energy specification
+  summary: 两相流体的初始状态 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: 两相流体 1
+- name: Initial two-phase fluid pressure
+  summary: 仿真开始时的流体压力 0.101325 MPa（默认）| 正标量
+  group: 两相流体 1
+- name: Initial two-phase fluid temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid vapor quality
+  summary: 仿真开始时的蒸汽质量分数 0.5（默认）| 范围 [0,1] 内的正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid vapor void fraction
+  summary: 仿真开始时的蒸汽体积分数 0.5（默认）| 范围 [0,1] 内的正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid specific enthalpy
+  summary: 仿真开始时的单位质量焓 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid specific internal energy
+  summary: 仿真开始时的单位质量内能 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Flow geometry
+  summary: 湿空气流动配置 Flow perpendicular to bank of circular tubes（默认）| Flow inside one or more tubes | Generic
+  group: Moist Air 2
+- name: Number of tubes
+  summary: 湿空气管数量 25（默认）| 正标量
+  group: Moist Air 2
+- name: Total length of each tube
+  summary: 每根湿空气管的总长度 1 m（默认）| 正标量
+  group: Moist Air 2
+- name: Tube cross section
+  summary: 管的横截面形状 Circular（默认）| Rectangular | Annular | Generic
+  group: Moist Air 2
+- name: Tube inner diameter
+  summary: 单根管的内径 0.05 m（默认）| 正标量
+  group: Moist Air 2
+- name: Tube width
+  summary: 单根管的内部宽度 0.05 m（默认）| 正标量
+  group: Moist Air 2
+- name: Tube height
+  summary: 单根管的内部高度 0.05 m（默认）| 正标量
+  group: Moist Air 2
+- name: Annulus inner diameter (heat transfer surface)
+  summary: 环形横截面的较小直径 0.05 m（默认）| 正标量
+  group: Moist Air 2
+- name: Annulus outer diameter
+  summary: 环形横截面的较大直径 0.1 m（默认）| 正标量
+  group: Moist Air 2
+- name: Cross-sectional area per tube
+  summary: 每根管的内部流通面积 0.002 m^2（默认）| 正标量
+  group: Moist Air 2
+- name: Wetted perimeter of tube cross-section for pressure loss
+  summary: 流体接触的管横截面周长 0.15 m（默认）| 正标量
+  group: Moist Air 2
+- name: Perimeter of tube cross-section for heat transfer
+  summary: 用于传热计算的单根管周长 0.15 m（默认）| 正标量
+  group: Moist Air 2
+- name: Pressure loss model
+  summary: 粘性摩擦引起的压力损失计算方法 Correlation for flow inside tubes（默认）| Euler number per tube row | Pressure loss coefficient |
+    Correlation for flow over tube bank
+  group: Moist Air 2
+- name: Pressure loss coefficient, delta_p/(0.5\*rho\*v^2)
+  summary: 通道中所有压力损失的经验损失系数 10（默认）| 正标量
+  group: Moist Air 2
+- name: Local resistance specification
+  summary: 量化压力损失的方法 Aggregate equivalent length（默认）| Local loss coefficient
+  group: Moist Air 2
+- name: Total local loss coefficient
+  summary: 压力损失系数 0.1（默认）| 正标量
+  group: Moist Air 2
+- name: Aggregate equivalent length of local resistances
+  summary: 每根管所有局部阻力的合计长度 0.1 m（默认）| 正标量
+  group: Moist Air 2
+- name: Internal surface absolute roughness
+  summary: 平均表面粗糙度高度 15e-6 m（默认）| 正标量
+  group: Moist Air 2
+- name: Laminar flow upper Reynolds number limit
+  summary: 指示层流的最大 Reynolds 数 2000（默认）| 正标量
+  group: Moist Air 2
+- name: Turbulent flow lower Reynolds number limit
+  summary: 指示湍流的最小雷诺数 4000（默认）| 正标量
+  group: Moist Air 2
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流中粘性摩擦导致压力损失的系数 64（默认）| 正标量
+  group: Moist Air 2
+- name: Heat transfer coefficient model
+  summary: 计算流体与壁面之间传热系数的方法 Correlation for flow over tube bank（默认）| Colburn equation | Correlation for flow inside tubes
+  group: Moist Air 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c
+  summary: Colburn 方程系数 [0.023, 0.8, 0.33]（默认）| 三元素向量
+  group: Moist Air 2
+- name: Laminar flow Nusselt number
+  summary: 层流流态中对流与导热传热之比 3.66（默认）| 正标量
+  group: Moist Air 2
+- name: Tube bank grid arrangement
+  summary: 管束中管排的几何布置 Inline（默认）| Staggered
+  group: Moist Air 2
+- name: Number of tube rows along flow direction
+  summary: 管束中的管排数 5（默认）| 正标量
+  group: Moist Air 2
+- name: Number of tube segments in each tube row
+  summary: 管束每一排中两相流体管子的数量 5（默认）| 正标量
+  group: Moist Air 2
+- name: Length of each tube segment in a tube row
+  summary: 每根两相流体管子的长度 1 m（默认）| 正标量
+  group: Moist Air 2
+- name: Tube outer diameter
+  summary: 单根两相流体管子的外径 0.05 m（默认）| 正标量
+  group: Moist Air 2
+- name: Longitudinal tube pitch (along flow direction)
+  summary: 两相流体管排之间的中心到中心距离 0.15 m（默认）| 正标量
+  group: Moist Air 2
+- name: Transverse tube pitch (perpendicular to flow direction)
+  summary: 一排中两相流体管子之间的中心到中心距离 0.15 m（默认）| 正标量
+  group: Moist Air 2
+- name: Euler number per tube row, delta_p/(N\*0.5\*rho\*v^2)
+  summary: 管束每一排的 Euler 数 10（默认）| 正标量
+  group: Moist Air 2
+- name: Minimum free-flow area
+  summary: 入口与出口之间的最小总流通面积 0.01 m^2（默认）| 正标量
+  group: Moist Air 2
+- name: Heat transfer surface area without fins
+  summary: 不包括翅片的传热表面总面积 2 m^2（默认）| 正标量
+  group: Moist Air 2
+- name: Moist air volume inside heat exchanger
+  summary: 换热器内湿空气的总体积 0.05 m^3（默认）| 正标量
+  group: Moist Air 2
+- name: Fouling factor
+  summary: 由于污垢沉积物导致的附加热阻 0.1 m^2*K/kW（默认）| 正标量
+  group: Moist Air 2
+- name: Total fin surface area
+  summary: 所有翅片的传热表面总面积 0 m^2（默认）| 正标量
+  group: Moist Air 2
+- name: Fin efficiency
+  summary: 翅片实际传热速率与理想传热速率之比 0.5（默认）| 范围 [0,1] 内的正标量
+  group: Moist Air 2
+- name: Initial moist air pressure
+  summary: 仿真开始时的湿空气压力 0.101325 MPa（默认）| 正标量
+  group: Moist Air 2
+- name: Initial moist air temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial humidity specification
+  summary: 湿度规格 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Moist Air 2
+- name: Initial moist air relative humidity
+  summary: 仿真开始时的相对湿度 0.5（默认）| 范围 [0,1] 内的正标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial moist air specific humidity
+  summary: 仿真开始时的比湿度 0.01（默认）| 范围 [0,1] 内的正标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial moist air water vapor mole fraction
+  summary: 仿真开始时的水蒸气摩尔分数 0.01（默认）| 范围 [0,1] 内的正标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial moist air humidity ratio
+  summary: 仿真开始时的湿度比 0.01（默认）| 范围 [0,1] 内的正标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial moist air wet-bulb temperature
+  summary: 仿真开始时的湿球温度 287 K（默认）| 范围 [0,1] 内的正标量
+  group: Moist Air 2
+- name: Initial trace gas specification
+  summary: 示踪气体的测量类型 Mass fraction（默认）| Mole fraction
+  group: Moist Air 2
+- name: Initial moist air trace gas mass fraction
+  summary: 湿空气通道中痕量气体的量 0.001（默认值）| [0,1] 范围内的正标量 | 双元素向量
+  group: Moist Air 2
+- name: Initial moist air trace gas mole fraction
+  summary: 仿真开始时痕量气体的摩尔分数 0.001（默认值）| [0,1] 范围内的正标量 | 双元素向量
+  group: Moist Air 2
+- name: Initial mass ratio of water droplets to moist air
+  summary: 水滴与湿空气的质量比 0（默认值）| 正标量
+  group: Moist Air 2
+- name: Relative humidity at saturation
+  summary: 凝结的相对湿度点 1（默认值）| [0,1] 范围内的正标量
+  group: Moist Air 2
+- name: Water vapor condensation time constant
+  summary: 凝结的时间尺度 1e-3 s（默认值）| 正标量
+  group: Moist Air 2
+- name: Water droplets evaporation time constant
+  summary: 蒸发的时间尺度 1e-3 s（默认值）| 正标量
+  group: Moist Air 2
+- name: Fraction of condensate entrained as water droplets
+  summary: 水滴中凝结物的比例 1（默认值）| [0,1] 范围内的标量
+  group: Moist Air 2
+```
 
 ### 配置
 
@@ -839,7 +1161,6 @@ Eu=ΔpN12ρv2，
 ### **Fraction of condensate entrained as water droplets** — 水滴中凝结物的比例 `1`（默认值）| [0,1] 范围内的标量
 
 湿空气中被夹带为水滴的凝结物比例。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Two-Phase Fluid - Moist Air

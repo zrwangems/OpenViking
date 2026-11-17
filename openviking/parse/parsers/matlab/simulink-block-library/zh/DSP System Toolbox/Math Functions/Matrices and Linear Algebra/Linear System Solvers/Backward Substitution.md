@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Backward Substitution
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 输入上三角矩阵 *M*×*M* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: B
+  summary: '*B* 矩阵 *M*×*N* 矩阵 | *M*×1 向量'
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: X
+  summary: 方程组的解 *M*×*N* 矩阵 | *M*×1 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -47,8 +62,41 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Input U is unit-upper triangular
+  summary: 输入矩阵的对角元素值为 1 off（默认）| on
+  group: 主选项卡
+- name: Diagonal of complex input U is real
+  summary: 复数输入的对角元素为实数 off（默认）| on
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入运算的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as product output | Inherit: Same as first input
+    | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Same as first input（默认）| fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 模块可以输出的最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 模块可以输出的最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -147,7 +195,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

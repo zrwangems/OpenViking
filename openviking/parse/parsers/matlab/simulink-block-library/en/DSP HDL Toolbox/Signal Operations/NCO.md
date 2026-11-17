@@ -14,6 +14,40 @@ language: en
 # NCO
 
 ## Ports
+```yaml
+ports:
+- name: inc
+  summary: Phase increment scalar integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: offset
+  summary: Phase offset scalar integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: dither
+  summary: Dither integer | column vector of integers
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: valid
+  summary: Control signal that enables NCO operation scalar
+  direction: input
+  data_types: Boolean
+- name: reset accum
+  summary: Resets the accumulator scalar
+  direction: input
+  data_types: Boolean
+- name: sin, cos, exp
+  summary: Generated waveform scalar | column vector
+  direction: output
+- name: phase
+  summary: Current phase of NCO scalar | column vector
+  direction: output
+  data_types: single | double | fixdt(1,N,0)
+- name: valid
+  summary: Indicates validity of output data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -159,8 +193,79 @@ than `1`, this signal indicates the validity of all
 elements in the output vector.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase increment source
+  summary: Source of phase increment Input port (default) | Property
+  group: Main
+- name: Phase increment
+  summary: Phase increment for generated waveform 100 (default) | integer
+  group: Main
+- name: Phase offset source
+  summary: Source of phase offset Input port (default) | Property
+  group: Main
+- name: Phase offset
+  summary: Phase offset for generated waveform 0 (default) | integer
+  group: Main
+- name: Dither source
+  summary: Source of number of dither bits Property (default) | Input port | None
+  group: Main
+- name: Number of dither bits
+  summary: Bits used to express dither 4 (default) | positive integer
+  group: Main
+- name: Samples per frame
+  summary: Vector size for frame-based input and output 1 (default) | positive integer
+  group: Main
+- name: Enable look up table compression method
+  summary: Compress the lookup table off (default) | on
+  group: Main
+- name: Enable accumulator reset input port
+  summary: Enable reset control signal off (default) | on
+  group: Main
+- name: Type of output signal
+  summary: Format of output waveform Sine (default) | Cosine | Complex exponential | Sine and cosine
+  group: Main
+- name: Enable phase port
+  summary: Output current phase off (default) | on
+  group: Main
+- name: Rounding Mode
+  summary: Rounding mode for fixed-point operations Floor (default)
+  group: Data Types
+- name: Overflow mode
+  summary: Overflow mode for fixed-point operations Wrap (default)
+  group: Data Types
+- name: Accumulator Data Type
+  summary: Accumulator data type Binary point scaling (default)
+  group: Data Types
+- name: Accumulator Signed
+  summary: Signed or unsigned accumulator data format Signed (default)
+  group: Data Types
+- name: Accumulator Word length
+  summary: Accumulator word length 16 (default) | integer
+  group: Data Types
+- name: Accumulator Fraction length
+  summary: Accumulator fraction length 0 (default) | integer
+  group: Data Types
+- name: Quantize phase
+  summary: Quantize accumulated phase off (default) | on
+  group: Data Types
+- name: Number of quantizer accumulator bits
+  summary: Number of quantizer accumulator bits 12 (default) | integer
+  group: Data Types
+- name: Output Data Type
+  summary: Output data type Binary point scaling (default) | double | single
+  group: Data Types
+- name: Output Signed
+  summary: Signed or unsigned output data format Signed (default)
+  group: Data Types
+- name: Output Word length
+  summary: Output word length 16 (default) | integer
+  group: Data Types
+- name: Output Fraction length
+  summary: Output fraction length 14 (default) | integer
+  group: Data Types
+```
 
 ### Main
 
@@ -401,7 +506,6 @@ Units are in bits. This value must include the sign bit.
 ### **Output Fraction length** — Output fraction length `14` (default) | integer
 
 Units are in bits.
-
 ## Libraries
 
 DSP HDL Toolbox / Signal Operations DSP HDL Toolbox / Sources

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Cuboid To 3D Simulation
 
 ## 端口
+```yaml
+ports:
+- name: Actor
+  summary: 世界坐标系中的长方体 actor 位姿 包含 MATLAB® 结构的 Simulink® 总线
+  direction: input
+- name: X
+  summary: 3D 仿真坐标中 actor 的纵向位置 数值标量
+  direction: output
+- name: Y
+  summary: 3D 仿真坐标中 actor 的横向位置 数值标量
+  direction: output
+- name: Yaw
+  summary: 3D 仿真坐标中 actor 的偏航方向角 数值标量
+  direction: output
+```
 
 ### 输入
 
@@ -90,8 +105,19 @@ chinese_source: worker-translation
 在此坐标系中，当沿 *Z* 轴正方向观察时，偏航为顺时针正方向。但是，如果从 2D 俯视视角查看仿真，则偏航为逆时针正方向，因为您是沿 *Z* 轴负方向观察场景的。
 
 要在 3D 仿真环境中指定车辆的偏航方向角，请将此端口连接到 Simulation 3D Vehicle with Ground Following 模块的 **Yaw** 输入端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify Actor ID
+  summary: 启用长方体 actor 的 ID 指定 off（默认）| on
+  group: ''
+- name: ActorID used for conversion
+  summary: 长方体 actor 的 ActorID 值 1（默认）| 正整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Specify Actor ID** — 启用长方体 actor 的 ID 指定 `off`（默认）| `on`
 
@@ -111,7 +137,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C/C++ 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C/C++ 代码。只要模型不更改，C 代码就会在后续仿真中重复使用。此选项需要额外的启动时间。
-
 ## 所属库
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

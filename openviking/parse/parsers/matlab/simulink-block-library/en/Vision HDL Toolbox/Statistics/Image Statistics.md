@@ -14,6 +14,33 @@ language: en
 # Image Statistics
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixdt(0,W,0) | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: mean
+  summary: Mean of most recent input frame completed scalar
+  direction: output
+  data_types: uint8 | uint16 | fixdt(0,W,0) | double | single
+- name: var
+  summary: Variance of most recent input frame completed scalar
+  direction: output
+  data_types: uint8 | uint16 | fixdt(0,W,0) | double | single
+- name: stdDev
+  summary: Standard deviation of most recent input frame completed scalar
+  direction: output
+  data_types: uint8 | uint16 | fixdt(0,W,0) | double | single
+- name: validOut
+  summary: Computations completed boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -87,8 +114,19 @@ The block sets this output to `true` when the statistic outputs
 for a frame are ready.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable mean output
+  summary: Calculate the mean of each input frame on (default) | off
+  group: ''
+- name: Enable variance output
+  summary: Calculate the variance of each input frame on (default) | off
+  group: ''
+- name: Enable std. deviation
+  summary: Calculate the standard deviation of each input frame on (default) | off
+  group: ''
+```
 
 ### **Enable mean output** — Calculate the mean of each input frame on (default) | off
 
@@ -104,7 +142,6 @@ variance of each input frame.
 
 Select this parameter to enable the **stdDev** port and calculate
 the standard deviation of each input frame.
-
 ## Libraries
 
 Vision HDL Toolbox / Statistics

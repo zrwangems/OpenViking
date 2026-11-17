@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # I/Q Imbalance
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 复信号 标量 | 向量
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: 输出信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +39,22 @@ chinese_source: worker-translation
 ### **Out1** — 输出信号 标量 | 向量
 
 输出信号，以标量或向量形式返回。该输出的维度和数据类型与输入信号相同。
-
 ## 参数
+```yaml
+parameters:
+- name: I/Q amplitude imbalance (dB)
+  summary: I/Q 幅度不平衡 0（默认）| 标量
+  group: ''
+- name: I/Q phase imbalance (deg)
+  summary: I/Q 相位不平衡 0（默认）| 标量
+  group: ''
+- name: I dc offset
+  summary: 同相分量直流偏移 0（默认）| 标量
+  group: ''
+- name: Q dc offset
+  summary: 正交分量直流偏移 0（默认）| 标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -49,7 +73,6 @@ I/Q 幅度不平衡，以度为单位，指定为标量。
 ### **Q dc offset** — 正交分量直流偏移 `0`（默认）| 标量
 
 正交分量直流偏移，指定为标量。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments and Components

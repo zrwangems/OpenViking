@@ -14,6 +14,17 @@ language: en
 # Extract Triangular Matrix
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: U
+  summary: Lower or upper triangle output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -48,8 +59,16 @@ Extract the lower triangle or the upper triangle of the input matrix. When you s
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Extract
+  summary: Component of matrix to extract Upper (default) | Lower
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Extract** — Component of matrix to extract `Upper` (default) | `Lower`
 
@@ -78,7 +97,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

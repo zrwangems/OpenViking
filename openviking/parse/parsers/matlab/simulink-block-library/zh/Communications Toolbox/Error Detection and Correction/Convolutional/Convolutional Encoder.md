@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Convolutional Encoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入消息 二进制列向量
+  direction: input
+  data_types: double | single | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32 | ufix1
+- name: ISt
+  summary: 编码器寄存器的初始状态 非负整数
+  direction: input
+  data_types: double | uint32
+- name: Rst
+  summary: 编码器寄存器的复位状态 scalar
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: 卷积编码后的码字 二进制列向量
+  direction: output
+  data_types: double | single | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32 | ufix1
+- name: FSt
+  summary: 编码器寄存器的最终状态 非负整数
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -62,8 +85,47 @@ chinese_source: worker-translation
 此参数仅在将 **Operation mode** 参数设置为 `Continuous`、`Truncated (reset every frame)` 或 `Reset on nonzero input via port`，并且选择 **Output final state** 参数时出现。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Trellis structure
+  summary: 卷积码的网格描述 poly2trellis(7, [171 133])（默认值）
+  group: ''
+- name: numInputSymbols
+  summary: 编码器输入的符号数 2*K*
+  group: ''
+- name: numOutputSymbols
+  summary: 编码器输出的符号数 2*N*
+  group: ''
+- name: numStates
+  summary: 编码器中的状态数 2 的幂
+  group: ''
+- name: nextStates
+  summary: 下一状态 整数矩阵
+  group: ''
+- name: outputs
+  summary: 输出 八进制数矩阵
+  group: ''
+- name: Operation mode
+  summary: 编码帧的终止方法 Continuous（默认值） | Truncated (reset every frame) | Terminate trellis by appending bits | Reset on nonzero
+    input via port
+  group: ''
+- name: Delay reset action to next time step
+  summary: 将复位操作延迟到下一时间步的选项 off（默认值） | on
+  group: ''
+- name: Specify initial state via input port
+  summary: 通过输入端口指定初始状态的选项 off（默认值） | on
+  group: ''
+- name: Output final state
+  summary: 输出最终寄存器状态的选项 off（默认值） | on
+  group: ''
+- name: Puncture code
+  summary: 启用代码打孔的选项 off（默认值） | on
+  group: ''
+- name: Puncture vector
+  summary: 打孔模式 [1; 1; 0; 1; 0; 1]（默认值） | 向量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -149,7 +211,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数仅在您选择 **Puncture code** 参数时出现。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Convolutional Communications Toolbox HDL Support / Error Detection and Correction / Convolutional

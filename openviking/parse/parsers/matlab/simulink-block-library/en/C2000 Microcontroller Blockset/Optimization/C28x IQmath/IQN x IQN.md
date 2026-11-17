@@ -14,10 +14,15 @@ language: en
 # C2000 IQN x IQN
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Multiply option**
 :   Type of multiplication to perform:
@@ -38,7 +43,6 @@ Not documented in R2025b.
     - `Multiply with Rounding and Saturation` —
       Multiply the numbers and round and saturate the result to the maximum
       value.
-
 ## Libraries
 
 Not documented in R2025b.

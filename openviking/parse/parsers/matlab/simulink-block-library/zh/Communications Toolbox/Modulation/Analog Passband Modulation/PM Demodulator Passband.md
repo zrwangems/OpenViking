@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # PM Demodulator Passband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 解调输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +45,22 @@ chinese_source: worker-translation
 该端口在模块上未命名。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: 载波频率，单位为 Hz 300（默认）| 正标量
+  group: ''
+- name: Initial phase (rad)
+  summary: 初始相位偏移，单位为弧度 0（默认）| 标量
+  group: ''
+- name: Phase deviation (rad)
+  summary: 载波频率的相位偏差，单位为弧度 pi/2（默认）| 标量
+  group: ''
+- name: Hilbert transform filter order (must be even)
+  summary: 希尔伯特变换滤波器阶数 100（默认）| 正标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -58,7 +83,6 @@ chinese_source: worker-translation
 ### **Hilbert transform filter order (must be even)** — 希尔伯特变换滤波器阶数 `100`（默认）| 正标量
 
 希尔伯特变换滤波器阶数，指定为大于 `2` 的偶数正标量。该参数值定义了用于计算希尔伯特变换的 FIR 滤波器的长度。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Analog Passband Modulation

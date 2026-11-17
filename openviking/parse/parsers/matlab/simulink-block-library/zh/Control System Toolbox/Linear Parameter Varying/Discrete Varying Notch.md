@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Discrete Varying Notch
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 滤波器输入 标量
+  direction: input
+- name: freq
+  summary: 陷波频率 标量
+  direction: input
+- name: gmin
+  summary: 陷波频率处的增益 标量
+  direction: input
+- name: damp
+  summary: 滤波器极点阻尼比 标量
+  direction: input
+- name: y
+  summary: 滤波器输出 标量
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +57,16 @@ chinese_source: worker-translation
 ### **y** — 滤波器输出 标量
 
 陷波滤波器输出信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Pre-warping frequency w0 (rad/s)
+  summary: 预畸变频率 0（默认）| 正标量
+  group: ''
+- name: Sample time Ts
+  summary: 采样时间 1（默认）| 正标量
+  group: ''
+```
 
 ### **Pre-warping frequency w0 (rad/s)** — 预畸变频率 0（默认）| 正标量
 
@@ -53,7 +79,6 @@ s=2Ts(z−1z+1),
 ### **Sample time Ts** — 采样时间 1（默认）| 正标量
 
 模块采样时间，指定为正标量。此模块不支持继承采样时间，因为它需要指定的采样时间来计算陷波滤波器的离散化。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

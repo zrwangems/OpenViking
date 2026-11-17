@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Fractional Clock Divider with DSM
 
 ## 端口
+```yaml
+ports:
+- name: clk in
+  summary: 输入时钟频率标量
+  direction: input
+  data_types: double
+- name: div-by
+  summary: 输出与输入时钟频率之比分数标量
+  direction: input
+  data_types: double
+- name: clk out
+  summary: 输出时钟频率标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +57,19 @@ chinese_source: worker-translation
 输出时钟频率，指定为标量。在 PLL 系统中，**clk out** 端口连接到 PFD 模块的反馈输入端口。**clk out** 端口的输出是幅度为 1 V 的方波脉冲串。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Delta Sigma Modulator order
+  summary: Delta Sigma 调制器的阶数 3rd order（默认）| 1st order | 2nd order | 4th order
+  group: ''
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: ''
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 1（默认）| 正整数标量
+  group: ''
+```
 
 ### **Delta Sigma Modulator order** — Delta Sigma 调制器的阶数 `3rd order`（默认）| `1st order` | `2nd order` | `4th order`
 
@@ -74,7 +100,6 @@ Delta Sigma 调制器的阶数。
 
 - 使用 `get_param(gcb,'NBuffer')` 查看 **Buffer size** 的当前值。
 - 使用 `set_param(gcb,'NBuffer',value)` 将 **Buffer size** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Building Blocks

@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Field-Oriented Current Controller
 
 ## 端口
+```yaml
+ports:
+- name: IdqRef
+  summary: 参考 *d* 轴和 *q* 轴电流向量
+  direction: input
+  data_types: single | double | fixed point
+- name: IabMeas
+  summary: 测量的 *a* 相和 *b* 相电流向量
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: 电机电角度位置标量
+  direction: input
+  data_types: single | double | fixed point
+- name: VSatLim
+  summary: '*d-q* 电压饱和限值标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Kp,Ki\*Ts
+  summary: '*d* 轴和 *q* 轴 PI 控制器增益向量'
+  direction: input
+  data_types: single | double | fixed point
+- name: PIConfig
+  summary: PI 控制器输出的初始值和限值向量
+  direction: input
+  data_types: single | double | fixed point
+- name: Enable
+  summary: 复位模块标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vabc
+  summary: 电机相电压向量
+  direction: output
+  data_types: single | double | fixed point
+- name: Debug
+  summary: 调试信号向量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -94,8 +133,25 @@ PIConfig = [PI 控制器积分器饱和上限，PI 控制器积分器饱和下�
 - *Iαβ* — 模块内部使用 **IabMeas** 输入的 Clarke 变换计算的 *α* 轴和 *β* 轴电流。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input electrical position unit
+  summary: 电角度位置输入的单位 Radians（默认）| Degrees | Per-unit
+  group: ''
+- name: Number of data points for sine-cosine lookup table
+  summary: 查找表数组的大小 1024（默认）| [125, 4095] 范围内的标量
+  group: ''
+- name: Alpha (phase-a) axis alignment
+  summary: '*dq* 参考坐标系对齐 D-axis（默认）| Q-axis'
+  group: ''
+- name: Saturation method
+  summary: 模块使用的饱和方法 D-Q equivalence（默认）| Prioritize D axis | Prioritize Q axis
+  group: ''
+- name: PWM 方法
+  summary: '调制技术 SVM: space vector modulation（默认）| SPWM: sinusoidal PWM'
+  group: ''
+```
 
 ### **Input electrical position unit** — 电角度位置输入的单位 `Radians`（默认）| `Degrees` | `Per-unit`
 
@@ -123,7 +179,6 @@ PIConfig = [PI 控制器积分器饱和上限，PI 控制器积分器饱和下�
 
 - `SVM: space vector modulation`
 - `SPWM: sinusoidal PWM`
-
 ## 所属库
 
 Motor Control Blockset / Controls / Controllers

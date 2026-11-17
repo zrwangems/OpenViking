@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Varistor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,43 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与 varistor 负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: Varistor 工作模式 Linear（默认）| Power-law
+  group: ''
+- name: Clamping voltage
+  summary: 阈值电压 260（默认）| 正数
+  group: ''
+- name: Off resistance
+  summary: 低压电阻 3e8（默认）| 正数
+  group: ''
+- name: On resistance
+  summary: 高压电阻 1（默认）| 正数
+  group: ''
+- name: Leakage to normal voltage transition
+  summary: 第一阈值电压 130（默认）| 正数
+  group: ''
+- name: Normal to upturn voltage transition
+  summary: 第二阈值电压 300（默认）| 正数
+  group: ''
+- name: Leakage-mode resistance
+  summary: 低压电阻 3e8（默认）| 正数
+  group: ''
+- name: Normal-mode power-law exponent
+  summary: 中压电阻 45（默认）| 正数
+  group: ''
+- name: Upturn-mode resistance
+  summary: 高压电阻 0.07（默认）| 正数
+  group: ''
+- name: Terminal resistance
+  summary: 端子电阻 100e-6（默认）| 非负数
+  group: ''
+- name: Capacitance
+  summary: 并联电容 4.4（默认）| 非负数
+  group: ''
+```
 
 ### **Parameterization** — Varistor 工作模式 `Linear`（默认）| `Power-law`
 
@@ -106,7 +150,6 @@ varistor 在上翘区域中的高压电阻 *RU*。
 ### **Capacitance** — 并联电容 `4.4`（默认）| 非负数
 
 与 varistor 并联的电容器。将此值设置为零以从等效电路中移除该电容器。
-
 ## 所属库
 
 Simscape / Electrical / Passive

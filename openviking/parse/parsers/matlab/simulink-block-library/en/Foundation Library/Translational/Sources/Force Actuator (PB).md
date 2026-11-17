@@ -14,6 +14,18 @@ language: en
 # Force Actuator (PB)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Control signal, N physical signal
+  direction: input
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -35,11 +47,12 @@ connection.
 Position-based mechanical translational conserving port that represents the
 follower connection. For positive length, port **F** has a more
 positive position than port **B**.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Sources

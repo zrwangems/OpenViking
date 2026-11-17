@@ -15,6 +15,54 @@ chinese_source: worker-translation
 # Revolute Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基坐标系 坐标系
+  direction: input
+- name: F
+  summary: 从坐标系 坐标系
+  direction: input
+- name: t
+  summary: 驱动力矩 物理信号
+  direction: input
+- name: q
+  summary: 运动轮廓 物理信号
+  direction: input
+- name: mode
+  summary: 关节模式控制 物理信号
+  direction: input
+- name: q
+  summary: 关节基元的位置 物理信号
+  direction: output
+- name: w
+  summary: 关节基元位置的一阶导数物理信号
+  direction: output
+- name: b
+  summary: 关节基元位置的二阶导数物理信号
+  direction: output
+- name: t
+  summary: 作用于关节基元的执行器力矩物理信号
+  direction: output
+- name: tll
+  summary: 下限力矩物理信号
+  direction: output
+- name: tul
+  summary: 上限力矩物理信号
+  direction: output
+- name: fc
+  summary: 约束力，N 物理信号
+  direction: output
+- name: tc
+  summary: 约束力矩，N\*m 物理信号
+  direction: output
+- name: ft
+  summary: 总力，N 物理信号
+  direction: output
+- name: tt
+  summary: 总力矩，N\*m 物理信号
+  direction: output
+```
 
 ### 坐标系
 
@@ -152,8 +200,97 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **复合力/力矩传感** 下，选择 **总力矩**。
-
 ## 参数
+```yaml
+parameters:
+- name: 状态目标 > 指定位置目标
+  summary: 是否指定位置目标 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: 状态目标 > 指定位置目标 > 优先级
+  summary: 位置目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Z 转动基元 (Rz)
+- name: 状态目标 > 指定位置目标 > 值
+  summary: 位置目标的角度 0 deg（默认）| 具有角度单位的标量
+  group: Z 转动基元 (Rz)
+- name: 状态目标 > 指定速度目标
+  summary: 是否指定速度目标 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: 状态目标 > 指定速度目标 > 优先级
+  summary: 速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Z 转动基元 (Rz)
+- name: 状态目标 > 指定速度目标 > 值
+  summary: 关节基元的速度目标 0 deg/s（默认）| 具有角速度单位的标量
+  group: Z 转动基元 (Rz)
+- name: 内部力学 > 平衡位置
+  summary: 内部力矩为零的位置 0 deg（默认）| 具有角度单位的标量
+  group: Z 转动基元 (Rz)
+- name: 内部力学 > 弹簧刚度
+  summary: 力律的刚度 0 N*m/deg（默认）| 具有刚度单位的标量
+  group: Z 转动基元 (Rz)
+- name: 内部力学 > 阻尼系数
+  summary: 力律的阻尼系数 0 N*m/(deg/s)（默认）| 具有阻尼系数单位的标量
+  group: Z 转动基元 (Rz)
+- name: 限位 > 指定下限
+  summary: 是否指定下限位置 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: 限位 > 指定下限 > 边界
+  summary: 自由区域的下界 -90 deg（默认）| 具有角度单位的标量
+  group: Z 转动基元 (Rz)
+- name: Limits > Specify Lower Limit > Spring Stiffness
+  summary: 下界处弹簧的刚度 1e4 N*m/deg（默认）| 具有刚度单位的标量
+  group: Z 转动基元 (Rz)
+- name: Limits > Specify Lower Limit > Damping Coefficient
+  summary: 下界处的阻尼系数 10 N*m/(deg/s)（默认）| 具有阻尼系数单位的标量
+  group: Z 转动基元 (Rz)
+- name: Limits > Specify Lower Limit > Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 0.1 deg（默认）| 具有角度单位的标量
+  group: Z 转动基元 (Rz)
+- name: Limits > Specify Upper Limit
+  summary: 是否指定上位置限 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: Limits > Specify Upper Limit > Bound
+  summary: 自由区域的上界 90 deg（默认）| 具有角度单位的标量
+  group: Z 转动基元 (Rz)
+- name: Limits > Specify Upper Limit > Spring Stiffness
+  summary: 上界处弹簧的刚度 1e4 N*m/deg（默认）| 具有刚度单位的标量
+  group: Z 转动基元 (Rz)
+- name: Limits > Specify Upper Limit > Damping Coefficient
+  summary: 上界处的阻尼系数 10 N*m/(deg/s)（默认）| 具有阻尼系数单位的标量
+  group: Z 转动基元 (Rz)
+- name: Limits > Specify Upper Limit > Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 0.1 deg（默认）| 具有角度单位的标量
+  group: Z 转动基元 (Rz)
+- name: Actuation > Torque
+  summary: 提供驱动力矩的选项 None（默认）| Provided by Input | Automatically Computed
+  group: Z 转动基元 (Rz)
+- name: Actuation > Motion
+  summary: 提供驱动运动的选项 Automatically Computed（默认）| Provided by Input
+  group: Z 转动基元 (Rz)
+- name: Sensing > Position
+  summary: 是否检测关节基元位置 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: Sensing > Velocity
+  summary: 是否检测关节基元速度 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: Sensing > Acceleration
+  summary: 是否检测关节基元加速度 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: Sensing > Lower-Limit Torque
+  summary: 是否检测下限力矩 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: Sensing > Upper-Limit Torque
+  summary: 是否检测上限力矩 off（默认）| on
+  group: Z 转动基元 (Rz)
+- name: Mode
+  summary: 关节模式 Normal（默认）| Locked | Disengaged | Provided by Input
+  group: 模式配置
+- name: Direction
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: 复合力/力矩检测
+- name: Resolution Frame
+  summary: 用于解析测量的坐标系 Base（默认）| Follower
+  group: 复合力/力矩检测
+```
 
 ### Z 转动基元 (Rz)
 
@@ -356,7 +493,6 @@ chinese_source: worker-translation
 - `Follower` — 该模块在从动坐标系的坐标中解析测量值。
 
 此参数仅影响 **Composite Force/Torque Sensing** 部分下的输出信号。
-
 ## 所属库
 
 Simscape / Multibody / Joints

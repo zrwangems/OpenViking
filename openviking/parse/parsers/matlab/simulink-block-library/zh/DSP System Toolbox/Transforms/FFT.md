@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # FFT
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输入的 FFT 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -43,8 +54,55 @@ y(k,L)=∑p=1Pu(p,L)e−j2π(p−1)(k−1)/M        k=1,…,M
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: FFT implementation
+  summary: FFT 实现 Auto（默认）| Radix-2 | FFTW
+  group: 主
+- name: Output in bit-reversed order
+  summary: 以位反转顺序输出 off（默认）| on
+  group: 主
+- name: Divide output by FFT length
+  summary: 将输出除以 FFT 长度 off（默认）| on
+  group: 主
+- name: Inherit FFT length from input dimensions
+  summary: 从输入维度继承 FFT 长度 on（默认）| off
+  group: 主
+- name: FFT length
+  summary: FFT 长度 64（默认）| 整数
+  group: 主
+- name: Wrap input data when FFT length is shorter than input length
+  summary: 环绕或截断输入 on（默认）| off
+  group: 主
+- name: Rounding mode
+  summary: 舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认）| on
+  group: 数据类型
+- name: Sine table
+  summary: '正弦表值的数据类型 Inherit: Same word length as input（默认）| fixdt(1,16)'
+  group: 数据类型
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: 数据类型
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: 数据类型
+- name: Output
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: 数据类型
+- name: Output Minimum
+  summary: 模块应输出的最小值 []（默认）| 标量
+  group: 数据类型
+- name: Output Maximum
+  summary: 模块应输出的最大值 []（默认）| 标量
+  group: 数据类型
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主
 
@@ -206,7 +264,6 @@ FFT 模块以位反转顺序计算其输出。对 FFT 模块输出进行线性�
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数以防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Transforms

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # LPC to/from RC
 
 ## 端口
+```yaml
+ports:
+- name: K
+  summary: RC 系数向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: A
+  summary: LPC 系数向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: K
+  summary: RC 系数向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: A
+  summary: LPC 系数向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: P
+  summary: 归一化预测误差功率向量
+  direction: output
+  data_types: single | double
+- name: S
+  summary: 滤波器稳定性输出向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -80,8 +107,22 @@ LPC 系数，以向量或矩阵形式返回。输入的每个通道必须至少�
 要启用此端口，请选中 **Output LPC filter stability** 复选框。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Type of conversion
+  summary: 转换类型 RC to LPC（默认）| LPC to RC
+  group: ''
+- name: Output normalized prediction error power
+  summary: 输出归一化预测误差功率 on（默认）| off
+  group: ''
+- name: Output LPC filter stability
+  summary: 输出 LPC 滤波器稳定性 off（默认）| on
+  group: ''
+- name: If first input value is not 1
+  summary: 当第一个输入值不为 1 时采取的操作 Replace it with 1（默认）| Normalize | Normalize and warn | Error
+  group: ''
+```
 
 ### **Type of conversion** — 转换类型 `RC to LPC`（默认）| `LPC to RC`
 
@@ -109,7 +150,6 @@ LPC 系数，以向量或矩阵形式返回。输入的每个通道必须至少�
 #### 依赖关系
 
 要启用此参数，请将 **Type of conversion** 设置为 `LPC to RC`。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Linear Prediction

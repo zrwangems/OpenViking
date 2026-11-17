@@ -14,6 +14,29 @@ language: en
 # Fractional Clock Divider with Accumulator
 
 ## Ports
+```yaml
+ports:
+- name: clk in
+  summary: Input clock frequency scalar
+  direction: input
+  data_types: double
+- name: div-by
+  summary: Ratio of output to input clock frequency fractional scalar
+  direction: input
+  data_types: double
+- name: clk out
+  summary: Output clock frequency scalar
+  direction: output
+  data_types: double
+- name: state
+  summary: Missing fractional pulse storage scalar
+  direction: output
+  data_types: double
+- name: carry
+  summary: Activates the pulse swallow function when state port overflows 0 (default) | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -66,8 +89,16 @@ analogous to dividing the input frequency by *N*+1
 instead of *N*.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: ''
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 1 (default) | positive integer scalar
+  group: ''
+```
 
 ### **Enable increased buffer size** — Enable increased buffer size off (default) | on
 
@@ -101,7 +132,6 @@ dialog box.
   current value of **Buffer size**.
 - Use `set_param(gcb,'NBuffer',value)` to set
   **Buffer size** to a specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Building Blocks

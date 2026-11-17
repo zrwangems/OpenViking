@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pipe (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口或出口两相流体
+  direction: conserving
+- name: B
+  summary: 入口或出口两相流体
+  direction: conserving
+- name: H
+  summary: 管壁温度热端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -31,8 +43,64 @@ chinese_source: worker-translation
 ### **H** — 管壁温度热端口
 
 表示管壁温度的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Pipe length
+  summary: 管道长度 5 m（默认）| 正标量
+  group: 几何
+- name: Cross-sectional area
+  summary: 管道内部面积 0.01 m^2（默认）| 正标量
+  group: 几何
+- name: Hydraulic diameter
+  summary: 具有相同横截面积的等效圆柱形管道直径 0.1 m（默认）| 正标量
+  group: 几何
+- name: Aggregate equivalent length of local resistances
+  summary: 管道中所有局部阻力的合计长度 0.1 m（默认）| 正标量
+  group: 摩擦与传热
+- name: Internal surface absolute roughness
+  summary: 管道内表面所有表面缺陷的平均深度 15e-6 m（默认）| 正标量
+  group: 摩擦与传热
+- name: Laminar flow upper Reynolds number limit
+  summary: 流动开始从层流过渡到湍流时的雷诺数上限 2000（默认）| 正标量
+  group: 摩擦与传热
+- name: Turbulent flow lower Reynolds number limit
+  summary: 流动开始从湍流过渡到层流时的雷诺数下限 4000（默认）| 正标量
+  group: 摩擦与传热
+- name: Shape factor for laminar flow viscous friction
+  summary: 管道几何形状对粘性摩擦损失的影响 64（默认）| 正标量
+  group: 摩擦与传热
+- name: Nusselt number for laminar flow heat transfer
+  summary: 对流传热与导热传热之比 3.66（默认）| 正标量
+  group: 摩擦与传热
+- name: Enable fluid inertia
+  summary: 是否对流体惯性建模 off（默认）| on
+  group: 效应与初始条件
+- name: 初始流体能量设定
+  summary: 用于定义初始条件的热力学变量 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: 效应与初始条件
+- name: 初始压力
+  summary: 仿真开始时的绝对压力 0.101325 MPa（默认）| 正标量
+  group: 效应与初始条件
+- name: 初始温度
+  summary: 仿真开始时的绝对温度 293.15 K（默认）| 正标量
+  group: 效应与初始条件
+- name: 初始蒸汽干度
+  summary: 仿真开始时蒸汽的质量分数 0.5（默认）| 0 到 1 之间的无量纲标量
+  group: 效应与初始条件
+- name: 初始蒸汽空隙率
+  summary: 仿真开始时蒸汽的体积分数 0.5（默认）| 0 到 1 之间的无量纲标量
+  group: 效应与初始条件
+- name: 初始比焓
+  summary: 仿真开始时的比焓 1500 kJ/kg（默认）| 正标量
+  group: 效应与初始条件
+- name: 初始比内能
+  summary: 仿真开始时的比内能 1500 kJ/kg（默认）| 正标量
+  group: 效应与初始条件
+- name: 相变时间常数
+  summary: 相变事件的特征持续时间 0.1 s（默认）| 正标量
+  group: 效应与初始条件
+```
 
 ### 几何
 
@@ -139,7 +207,6 @@ chinese_source: worker-translation
 ### **相变时间常数** — 相变事件的特征持续时间 `0.1 s`（默认）| 正标量
 
 管道中发生的相变事件达到平衡的特征时间。该常数在相之间的过渡中引入时间滞后。增大此参数值可减慢相变速率，减小此参数值可加快相变速率。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

@@ -14,6 +14,221 @@ language: en
 # Unpack net_ctrl Packet from FlightGear
 
 ## Ports
+```yaml
+ports:
+- name: net_ctrl
+  summary: FlightGear packet to be unpacked array
+  direction: input
+  data_types: uint8
+- name: wind_speed_kt
+  summary: Wind speed scalar
+  direction: output
+  data_types: double
+- name: wind_dir_deg
+  summary: Wind direction scalar
+  direction: output
+  data_types: double
+- name: turbulence_norm
+  summary: Turbulence norm scalar
+  direction: output
+  data_types: double
+- name: temp_c
+  summary: Ambient temperature scalar
+  direction: output
+  data_types: double
+- name: press_inhg
+  summary: Ambient pressure scalar
+  direction: output
+  data_types: double
+- name: hground
+  summary: Ground elevation scalar
+  direction: output
+  data_types: double
+- name: magvar
+  summary: Local magnetic variation scalar
+  direction: output
+  data_types: double
+- name: icing
+  summary: Icing status scalar
+  direction: output
+  data_types: uint32
+- name: aileron
+  summary: Normalized aileron position 1 | scalar
+  direction: output
+  data_types: double
+- name: elevator
+  summary: Normalized elevator position 1 | scalar
+  direction: output
+  data_types: double
+- name: rudder
+  summary: Normalized rudder position 1 | scalar
+  direction: output
+  data_types: double
+- name: aileron_trim
+  summary: Normalized aileron trim position scalar
+  direction: output
+  data_types: double
+- name: elevator_trim
+  summary: Normalized elevator trim position 1 | scalar
+  direction: output
+  data_types: double
+- name: rudder_trim
+  summary: Normalized rudder trim position 1 | scalar
+  direction: output
+  data_types: double
+- name: flaps
+  summary: Normalized flaps position 1 | scalar
+  direction: output
+  data_types: double
+- name: spoilers
+  summary: Normalized spoilers position 1 | scalar
+  direction: output
+  data_types: single
+- name: speedbrake
+  summary: Normalized speedbrake position 1 | scalar
+  direction: output
+  data_types: single
+- name: flaps_power
+  summary: Power for flaps 1 | scalar
+  direction: output
+  data_types: uint32
+- name: flap_motor_ok
+  summary: Flap motor powered scalar
+  direction: output
+  data_types: uint32
+- name: num_engines
+  summary: Number of valid engines scalar
+  direction: output
+  data_types: uint32
+- name: master_bat
+  summary: Master battery switch vector
+  direction: output
+  data_types: uint32
+- name: master_alt
+  summary: Master alternator switch vector
+  direction: output
+  data_types: uint32
+- name: magnetos
+  summary: Magnetos switch scalar
+  direction: output
+  data_types: uint32
+- name: starter_power
+  summary: Power to start motor 1 | vector
+  direction: output
+  data_types: uint32
+- name: throttle
+  summary: Normalized throttle position 1 | vector
+  direction: output
+  data_types: double
+- name: mixture
+  summary: Normalized mixture lever position 1 | vector
+  direction: output
+  data_types: double
+- name: condition
+  summary: Normalized condition 1 | vector
+  direction: output
+  data_types: uint32
+- name: fuel_pump_power
+  summary: Normalized speedbrake position 1 | scalar
+  direction: output
+  data_types: uint32
+- name: prop_advance
+  summary: Propeller advance 1 | vector
+  direction: output
+  data_types: double
+- name: feed_tank_to
+  summary: Feed tank to switch vector
+  direction: output
+  data_types: uint32
+- name: reverse
+  summary: Reverse switch vector
+  direction: output
+  data_types: uint32
+- name: engine_ok
+  summary: Engine status indicator vector
+  direction: output
+  data_types: uint32
+- name: mag_left_ok
+  summary: Left magneto status indicator vector
+  direction: output
+  data_types: uint32
+- name: mag_right_ok
+  summary: Right magneto status indicator vector
+  direction: output
+  data_types: uint32
+- name: spark_plugs_ok
+  summary: Normalized speedbrake position vector
+  direction: output
+  data_types: uint32
+- name: oil_press_status
+  summary: Oil pressure status indicator 0 | 1 | 2 | scalar
+  direction: output
+  data_types: uint32
+- name: fuel_pump_ok
+  summary: Fuel management status indicator vector
+  direction: output
+  data_types: uint32
+- name: num_tanks
+  summary: Number of valid tanks scalar
+  direction: output
+  data_types: uint32
+- name: fuel_selector
+  summary: Fuel selector scalar
+  direction: output
+  data_types: single
+- name: xfer_pump
+  summary: Specify transfer vector
+  direction: output
+  data_types: uint32
+- name: cross_feed
+  summary: Cross feed valve scalar
+  direction: output
+  data_types: single
+- name: brake_left
+  summary: Left brake pedal position pilot scalar
+  direction: output
+  data_types: double
+- name: brake_right
+  summary: Right brake pedal position pilot scalar
+  direction: output
+  data_types: double
+- name: copilot_brake_left
+  summary: Left brake pedal position pilot scalar
+  direction: output
+  data_types: double
+- name: copilot_brake_right
+  summary: Right brake pedal position pilot scalar
+  direction: output
+  data_types: double
+- name: brake_parking
+  summary: Brake parking position scalar
+  direction: output
+  data_types: double
+- name: gear_handle
+  summary: Gear handle position scalar
+  direction: output
+  data_types: uint32
+- name: master_avionics
+  summary: Master avionics switch scalar
+  direction: output
+  data_types: uint32
+- name: comm_1
+  summary: Comm 1 frequency scalar
+  direction: output
+  data_types: double
+- name: comm_2
+  summary: Comm 2 frequency scalar
+  direction: output
+  data_types: double
+- name: nav_1
+  summary: Nav 1 frequency scalar
+  direction: output
+  data_types: double
+- name: nav_2
+  summary: Nav 2 frequency scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -627,8 +842,52 @@ To enable this port, select the **Show avionic
 outputs** check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show control surface position outputs
+  summary: Control surface position outputs off (default) | on
+  group: ''
+  block_parameter: ShowControlSurfacePositionOutputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show engine/fuel outputs
+  summary: Engine/fuel outputs off (default) | on
+  group: ''
+  block_parameter: ShowEngineFuelOutputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show landing gear outputs
+  summary: Landing gear outputs off (default) | on
+  group: ''
+  block_parameter: ShowLandingGearOutputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show avionic outputs
+  summary: Avionic outputs off (default) | on
+  group: ''
+  block_parameter: ShowAvionicOutputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show environment outputs
+  summary: Environment outputs on (default) | off
+  group: ''
+  block_parameter: ShowEnvironmentOutputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time
+  summary: Sample time 1/30 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''1/30'''
+```
 
 ### **Show control surface position outputs** — Control surface position outputs `off` (default) | `on`
 
@@ -809,7 +1068,6 @@ Specify the sample time (-1 for inherited), as a scalar.
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'1/30'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

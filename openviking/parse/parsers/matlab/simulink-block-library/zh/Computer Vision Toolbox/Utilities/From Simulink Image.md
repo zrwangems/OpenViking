@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # From Simulink Image
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 Simulink.ImageType
+  direction: input
+  data_types: Simulink.ImageType
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: integer | single | double | Boolean
+```
 
 ### 输入
 
@@ -33,8 +44,17 @@ From Simulink Image 模块的输出信号。输出为矩阵或数组，具体取
 - *M*×*N*×*C* 矩阵 — 输入为 `RGB` 或 `BGR` 图像。*M* 和 *N* 分别为图像的高度和宽度，以像素为单位。*C* 为颜色通道数。
 
 **数据类型：** `integer` | `single` | `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Output dimensions
+  summary: 模块输出信号的维度 [480 640 3]（默认）
+  group: ''
+  block_parameter: ImageSize
+  type: character vector
+  values: character vector
+  default: '[480 640 3]'
+```
 
 ### **Output dimensions** — 模块输出信号的维度 `[480 640 3]`（默认）
 
@@ -48,7 +68,6 @@ From Simulink Image 模块的输出信号。输出为矩阵或数组，具体取
 | **类型**：character vector |
 | **Value:** character vector |
 | **默认值**：`[480 640 3]` |
-
 ## 所属库
 
 Computer Vision Toolbox / Utilities

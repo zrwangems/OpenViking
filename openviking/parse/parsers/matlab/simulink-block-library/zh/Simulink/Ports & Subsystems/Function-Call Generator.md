@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Function-Call Generator
 
 ## 端口
+```yaml
+ports:
+- name: Enable
+  summary: 控制信号输入 标量
+  direction: input
+- name: Function Call
+  summary: 函数调用事件输出 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +39,38 @@ chinese_source: worker-translation
 ### **Function Call** — 函数调用事件输出 标量 | 向量
 
 向函数调用子系统或函数调用模型的函数调用输入端口发送函数调用事件。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 指定时间间隔 1（默认）| 标量 | 向量 | -1
+  group: ''
+  block_parameter: sample_time
+  type: 字符向量
+  values: '''1'' | 标量表达式 | 向量表达式 | ''-1'''
+  default: '''1'''
+- name: Number of iterations
+  summary: 指定每个时间步提供函数调用的次数 1（默认）| 整数
+  group: ''
+  block_parameter: numberOfIterations
+  type: 字符向量
+  values: '''1'' | 带引号的整数 | 带引号的整数向量'
+  default: '''1'''
+- name: Disallow wide output
+  summary: 防止输出信号的隐式扩展 off（默认）| on
+  group: ''
+  block_parameter: DisallowWideOutput
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show enable port
+  summary: 添加控制信号输入端口 off（默认）| on
+  group: ''
+  block_parameter: ShowEnablePort
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Sample time** — 指定时间间隔 `1`（默认）| 标量 | 向量 | `-1`
 
@@ -108,7 +147,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Ports & Subsystems

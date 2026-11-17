@@ -14,6 +14,18 @@ language: en
 # Discharger
 
 ## Ports
+```yaml
+ports:
+- name: t
+  summary: Trigger, unitless physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -32,8 +44,16 @@ the discharger.
 
 Electrical conserving port associated with the negative terminal of
 the discharger.
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant discharging current
+  summary: Constant discharging current 5 A (default) | positive scalar
+  group: ''
+- name: Voltage threshold
+  summary: Voltage threshold for constant discharging current 10 V (default) | positive scalar
+  group: ''
+```
 
 ### **Constant discharging current** — Constant discharging current `5` `A` (default) | positive scalar
 
@@ -44,7 +64,6 @@ battery.
 
 Threshold at which the block stops performing constant current discharging
 on the battery.
-
 ## Libraries
 
 Simscape / Battery / Cyclers

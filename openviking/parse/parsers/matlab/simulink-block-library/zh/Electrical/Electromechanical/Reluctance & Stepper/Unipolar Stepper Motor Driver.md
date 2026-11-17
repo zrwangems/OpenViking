@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Unipolar Stepper Motor Driver
 
 ## 端口
+```yaml
+ports:
+- name: A+
+  summary: A 相上端电气连接 electrical
+  direction: conserving
+- name: A0
+  summary: A 相中心抽头连接 electrical
+  direction: conserving
+- name: A-
+  summary: A 相下端电气连接 electrical
+  direction: conserving
+- name: B+
+  summary: B 相上端电气连接 electrical
+  direction: conserving
+- name: B0
+  summary: B 相中心抽头连接 electrical
+  direction: conserving
+- name: B-
+  summary: B 相下端电气连接 electrical
+  direction: conserving
+- name: ENA
+  summary: 触发输入阶跃电压 electrical
+  direction: conserving
+- name: REF
+  summary: 转子 electrical
+  direction: conserving
+- name: REV
+  summary: 电机方向控制电压 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -53,8 +83,28 @@ chinese_source: worker-translation
 ### **REV** — 电机方向控制电压 electrical
 
 与控制电机方向的电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Simulation mode
+  summary: 仿真模式 Stepping（默认）| Averaged
+  group: ''
+- name: Step rate sensitivity
+  summary: 步进速率灵敏度 10 Hz/V（默认）
+  group: ''
+- name: Enable threshold voltage
+  summary: 使能阈值电压 2.5 V（默认）
+  group: ''
+- name: Reverse threshold voltage
+  summary: 反向阈值电压 2.5 V（默认）
+  group: ''
+- name: Output voltage amplitude
+  summary: 输出电压幅值 10 V（默认）
+  group: ''
+- name: Stepping mode
+  summary: 步进模式 Full stepping（默认）| Half stepping
+  group: ''
+```
 
 ### **Simulation mode** — 仿真模式 `Stepping`（默认）| `Averaged`
 
@@ -87,7 +137,6 @@ chinese_source: worker-translation
 ### **Stepping mode** — 步进模式 `Full stepping`（默认）| `Half stepping`
 
 选择 `Full stepping` 或 `Half stepping`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

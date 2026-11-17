@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # General Variable Mass
 
 ## 端口
+```yaml
+ports:
+- name: m
+  summary: 以质量单位标量形式指定的质量物理信号
+  direction: input
+- name: com
+  summary: 以长度单位 3×1 或 1×3 向量形式指定的质心物理信号
+  direction: input
+- name: I
+  summary: 以质量 × 长度^2 单位的 3×3 矩阵形式指定的惯性物理信号
+  direction: input
+- name: R
+  summary: 参考坐标系坐标系
+  direction: input
+```
 
 ### 输入
 
@@ -47,8 +62,64 @@ chinese_source: worker-translation
 ### **R** — 参考坐标系坐标系
 
 变质量元素的局部参考坐标系。将端口连接到坐标系线或另一个坐标系端口，以定义变质量元素的相对位置和方向。
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 点质量或分布质量的选择 Custom（默认）| Point Mass
+  group: 惯性
+- name: Mass
+  summary: 质量参数化 Time-Varying（默认）| Constant
+  group: 惯性
+- name: 'Mass: Value'
+  summary: 质量元素的总质量 1 kg（默认）| 以质量单位为单位的标量
+  group: 惯性
+- name: Center of Mass
+  summary: 质心参数化 Time-Varying（默认）| Constant
+  group: 惯性
+- name: 'Center of Mass: Value'
+  summary: 质心坐标 [0 0 0] m（默认）| 以长度单位为单位的三元素向量
+  group: 惯性
+- name: Inertia Matrix
+  summary: 惯性矩阵参数化 Time-Varying（默认）| Constant
+  group: 惯性
+- name: 惯性矩阵：惯性矩
+  summary: 惯性矩阵的对角元素 [1 1 1] kg * m^2（默认）| 单位为质量\*长度^2 的三元素向量
+  group: 惯性
+- name: 惯性矩阵：惯性积
+  summary: 惯性矩阵的非对角元素 [0 0 0] kg * m^2（默认）| 单位为质量 \* 长度^2 的 3 元素数组
+  group: 惯性
+- name: Type
+  summary: 模型可视化中使用的几何类型 Equivalent Inertia Ellipsoid（默认）| Marker | None
+  group: 图形
+- name: Shape
+  summary: 用于表示可变质量的标记形状 Sphere（默认）| Cube | Frame
+  group: 图形
+- name: Size
+  summary: 标记的宽度（以像素为单位）10 pixels（默认）| 标量
+  group: 图形
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: 图形
+- name: Diffuse Color
+  summary: 漫反射产生的光颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: 图形
+- name: Specular Color
+  summary: 镜面反射光颜色 [0.5 0.5 0.5 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量
+  group: 图形
+- name: Shininess
+  summary: 高光锐度 75（默认）| 值约束在 0–128 范围内的标量
+  group: 图形
+```
 
 ### 惯性
 
@@ -273,7 +344,6 @@ Color** 和 **Shininess**。
    `Marker`
 2. **Visual Properties** 为
    `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Body Elements / Variable Mass

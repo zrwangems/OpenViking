@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Matrix Interpolation
 
 ## 端口
+```yaml
+ports:
+- name: k1
+  summary: 表的第一个维度的索引 k1 标量
+  direction: input
+  data_types: single | double
+- name: f1
+  summary: 表的第一个维度的小数 f1 标量
+  direction: input
+  data_types: single | double
+- name: kn
+  summary: 表的第 n 个维度的索引 kn 标量
+  direction: input
+  data_types: single | double
+- name: fn
+  summary: 表的第 n 个维度的小数 fn 标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: N 维函数的近似值 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -48,8 +71,45 @@ chinese_source: worker-translation
 N 维函数的近似值，通过使用输入索引 `k` 和小数 `f` 的值对表数据进行插值（或外插）计算得出。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Nearest | Flat
+  group: ''
+  block_parameter: InterpMethod
+  type: character vector
+  values: '''Flat'' | ''Nearest'' | ''Linear'''
+  default: '''Linear'''
+- name: Extrapolation method
+  summary: 外插方法 Clip（默认）| Linear
+  group: ''
+  block_parameter: ExtrapMethod
+  type: character vector
+  values: '''Clip'' | ''Linear'''
+  default: '''Clip'''
+- name: Interpolate Dimension
+  summary: 查找表的维度数 1（默认）| 2 | 3
+  group: ''
+  block_parameter: InterpolateDimension
+  type: character vector
+  values: '''1'' | ''2'' | ''3'''
+  default: '''1'''
+- name: Table data
+  summary: 输出值表 1:1:10（默认）| 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: TableData
+  type: character vector
+  values: vector | matrix | N-D array
+  default: '''1:1:10'''
+- name: Simulate using
+  summary: 仿真模式 Code generation | Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: character vector
+  values: '''Code generation'' | ''Interpreted execution'''
+  default: '''Code generation'''
+```
 
 ### **Interpolation method** — 插值方法 `Linear`（默认）| `Nearest` | `Flat`
 
@@ -125,7 +185,6 @@ N 维函数的近似值，通过使用输入索引 `k` 和小数 `f` 的值对�
 | **类型**：character vector |
 | **值**：`'Code generation' | 'Interpreted execution'` |
 | **默认值**：`'Code generation'` |
-
 ## 所属库
 
 Simulink Extras / Additional Lookup Tables

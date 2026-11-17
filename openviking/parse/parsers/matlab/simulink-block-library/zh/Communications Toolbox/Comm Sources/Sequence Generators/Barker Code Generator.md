@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # Barker Code Generator
 
 ## 端口
+```yaml
+ports:
+- name: output
+  summary: Barker 码帧列向量
+  direction: output
+```
 
 ### 输出
 
@@ -25,8 +31,25 @@ Barker 码帧，以列向量形式返回。如果帧长度超过 Barker 码长�
 #### 依赖关系
 
 使用 **Output data type** 参数设置输出的数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Code length
+  summary: 生成码的长度 7（默认）| 1 | 2 | 3 | 4 | 5 | 11 | 13
+  group: ''
+- name: Sample time
+  summary: 输出采样时间 1（默认）| -1 | 正标量
+  group: ''
+- name: Samples per frame
+  summary: 每个输出帧的采样数 1（默认）| 正整数
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| int8
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -58,7 +81,6 @@ Barker 码帧，以列向量形式返回。如果帧长度超过 Barker 码长�
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短了启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox Communications Toolbox / Comm Sources / Sequence Generators

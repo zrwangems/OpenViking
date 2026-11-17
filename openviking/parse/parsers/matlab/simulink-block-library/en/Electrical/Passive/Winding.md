@@ -14,6 +14,21 @@ language: en
 # Winding
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: N
+  summary: North terminal magnetic
+  direction: conserving
+- name: S
+  summary: South terminal magnetic
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,79 @@ block.
 
 Magnetic conserving port associated with the south terminal of the
 block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of winding turns
+  summary: Winding turn count 10 (default) | positive number
+  group: Main
+- name: Winding resistance
+  summary: Series resistance 1e-3 Ohm (default) | positive number
+  group: Main
+- name: Leakage reluctance
+  summary: Parallel reluctance 1e5 1/H (default) | positive number
+  group: Main
+- name: Parallel conductance
+  summary: Parallel conductance 0 1/Ohm (default) | positive number
+  group: Main
+- name: Thermal port
+  summary: Whether to model thermal port Omit (default) | Model
+  group: Thermal Port
+- name: Measurement temperature
+  summary: Measurement temperature 25 K (default)
+  group: Thermal Port
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Thermal Port
+- name: Winding Thermal mass
+  summary: Thermal mass for winding 100 J/K (default)
+  group: Thermal Port
+- name: Winding fault
+  summary: Option to model fault in winding Add fault (default)
+  group: Faults
+- name: Location of fault node (% of total turns from - terminal)
+  summary: Percentage of turns in the subinductor that is in contact with the – port of the faulted winding 50 (default) |
+    scalar in the range (0,100)
+  group: Faults
+- name: Short-circuit turns
+  summary: Select whether fault results in one of the segments being short-circuited No (default) | To negative terminal |
+    To positive terminal
+  group: Faults
+- name: Open-circuit at fault node
+  summary: Select whether to apply an open-circuit fault between the segments No (default) | Yes
+  group: Faults
+- name: Ground fault
+  summary: Select whether fault results in one of the segments being short-circuited No (default) | Negative terminal side
+    of fault node | Positive terminal side of fault node
+  group: Faults
+- name: Conductance of faulted ground path
+  summary: Mutual coupling between the two subinductors 0 1/Ohm (default) | nonnegative scalar
+  group: Faults
+- name: Fault transition time constant
+  summary: Time constant for the transition to faulted state 1e-3 s (default) | positive scalar
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible voltage
+  summary: Voltage threshold to fault transition 100 V (default) | positive scalar
+  group: Faults
+- name: Number of events to fail when exceeding voltage
+  summary: Maximum number of times the voltage can exceed the threshold 1 (default) | positive scalar
+  group: Faults
+- name: Maximum permissible current
+  summary: Current threshold for fault transition 1 A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding current
+  summary: Maximum length of time the current exceeds the threshold 1 s (default) | nonnegative scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+```
 
 ### Main
 
@@ -326,7 +412,6 @@ hyperlink and set the **Trigger type** in the Property Inspector.
 To enable this parameter, click the **Add fault** hyperlink in the
 **Winding fault** parameter and set **Trigger type** to `Additional
 triggers`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

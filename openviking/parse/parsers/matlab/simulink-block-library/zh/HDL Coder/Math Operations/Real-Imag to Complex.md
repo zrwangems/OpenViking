@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Real-Imag to Complex
 
 ## 端口
+```yaml
+ports:
+- name: Re
+  summary: 复输出的实部 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Im
+  summary: 复输出的虚部 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Port_1
+  summary: 复输出的实部或虚部 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Port_1
+  summary: 复信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -42,8 +61,36 @@ chinese_source: worker-translation
 由实部和虚部值构成的复信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input
+  summary: 实部、虚部或两者 Real（默认） | Imag | Real and imag
+  group: ''
+  block_parameter: Input
+  type: 字符向量
+  values: '''Real and imag'' | ''Real'' | ''Imag'''
+  default: '''Real and imag'''
+- name: Imag part
+  summary: 复输出的虚部 0（默认） | 有限标量、向量或矩阵
+  group: ''
+  block_parameter: ConstantPart
+  type: 字符向量
+  values: 虚数值
+  default: '''0'''
+- name: Real part
+  summary: 复输出的实部 0（默认） | 有限标量、向量或矩阵
+  group: ''
+  block_parameter: ConstantPart
+  type: 字符向量
+  values: 有限实值标量、向量或矩阵
+  default: '''0'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认） | 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认） | 带引号的标量或向量'
+```
 
 ### **Input** — 实部、虚部或两者 `Real`（默认） | `Imag` | `Real and imag`
 
@@ -110,7 +157,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `SampleTime` |
 | **值：** | `"-1"`（默认） | 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / Math Operations

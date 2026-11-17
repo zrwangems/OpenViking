@@ -14,6 +14,25 @@ language: en
 # Substring
 
 ## Ports
+```yaml
+ports:
+- name: str
+  summary: Input string signal scalar
+  direction: input
+  data_types: string
+- name: idx
+  summary: Start of string to extract scalar
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: len
+  summary: Length of string to extract scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: sub
+  summary: Extracted string scalar
+  direction: output
+  data_types: string
+```
 
 ### Input
 
@@ -44,8 +63,31 @@ contains few than **len** characters.
 Extracted string, specified as a scalar.
 
 **Data Types:** `string`
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit maximum length from input
+  summary: Use same maximum length as input string on (default) | off
+  group: ''
+  block_parameter: InheritMaximumLength
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output data type
+  summary: Output data type string (default) | <data type expression>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''string'' | *<data type expression>*'
+  default: '''string'''
+- name: Output string from 'idx' to end
+  summary: Extract string from idx to end off (default) | on
+  group: ''
+  block_parameter: StringFromIdxToEnd
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Inherit maximum length from input** — Use same maximum length as input string `on` (default) | `off`
 
@@ -125,7 +167,6 @@ Selecting this parameter removes the third input port.
 | **Type:** character vector |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / String

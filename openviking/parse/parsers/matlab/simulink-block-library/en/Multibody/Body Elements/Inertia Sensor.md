@@ -14,6 +14,33 @@ language: en
 # Inertia Sensor
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Sensor port frame
+  direction: input
+- name: M
+  summary: Custom measurement frame port frame
+  direction: input
+- name: m
+  summary: Mass scalar
+  direction: output
+- name: com
+  summary: Center of Mass vector
+  direction: output
+- name: I
+  summary: Inertia Matrix matrix
+  direction: output
+- name: Ic
+  summary: Centered Inertia Matrix matrix
+  direction: output
+- name: Ip
+  summary: Principal Inertia Matrix matrix
+  direction: output
+- name: R
+  summary: Rotation Matrix matrix
+  direction: output
+```
 
 ### Input
 
@@ -87,8 +114,71 @@ measurement frame.
 
 To enable this port, select the **Rotation Matrix** check
 box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor Extent
+  summary: Determine the extent that the Inertia Sensor block measures Body Group (default) | Mechanism
+  group: Sensor Extent
+- name: 'Sensor Extent: Span Weld Joints'
+  summary: Include bodies connected by weld joints in a body group cleared (default) | checked
+  group: Sensor Extent
+- name: 'Sensor Extent: Exclude Grounded Bodies'
+  summary: Do not measure inertial properties of grounded bodies cleared (default) | checked
+  group: Sensor Extent
+- name: Measurement Frame
+  summary: Determine the frame that the Inertia Sensor block uses for measurements Attached (default) | World | Custom
+  group: Sensor Extent
+- name: Mass
+  summary: Total mass of measured bodies cleared (default) | checked
+  group: Sensor Extent
+- name: Center of Mass
+  summary: Center of mass coordinates cleared (default) | checked
+  group: Sensor Extent
+- name: Inertia Matrix
+  summary: Measurement of the inertia tensor cleared (default) | checked
+  group: Sensor Extent
+- name: Centered Inertia Matrix
+  summary: Measurement of the inertia tensor relative to the centered frame cleared (default) | checked
+  group: Sensor Extent
+- name: Principal Inertia Matrix
+  summary: Measurement of the inertia tensor with respect to the principal inertia frame cleared (default) | checked
+  group: Sensor Extent
+- name: Rotation Matrix
+  summary: Orientation of the principal inertia frame cleared (default) | checked
+  group: Sensor Extent
+- name: Type
+  summary: Sensor visualization setting Principal Inertia Frame (default) | Equivalent Inertia Ellipsoid | None
+  group: Graphic
+- name: Size
+  summary: Display size for the principal inertia frame 20 pixels (default) | positive scalar
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: Graphic
+```
 
 ### Sensor Extent
 
@@ -357,7 +447,6 @@ To enable this parameter, set:
    Ellipsoid`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Body Elements

@@ -14,10 +14,24 @@ language: en
 # System Derivatives
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: System Derivatives Function Declaration Code
+  summary: Code to add to the declaration section of the generated function no default
+  group: ''
+- name: System Derivatives Function Execution Code
+  summary: Code to add to the execution section of the generated function no default
+  group: ''
+- name: System Derivatives Function Exit Code
+  summary: Code to add to the exit section of the generated function no default
+  group: ''
+```
 
 ### **System Derivatives Function Declaration Code** — Code to add to the declaration section of the generated function no default
 
@@ -33,7 +47,6 @@ Specify code that you want the code generator to add to the execution section of
 
 Specify code that you want the code generator to add to the exit section of the
 `SystemDerivatives` function for the model or subsystem.
-
 ## Libraries
 
 Simulink Coder / Custom Code

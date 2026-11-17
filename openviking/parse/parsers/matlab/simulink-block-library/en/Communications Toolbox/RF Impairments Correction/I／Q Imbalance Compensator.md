@@ -14,10 +14,15 @@ language: en
 # I/Q Imbalance Compensator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Source of compensator coefficient**
 :   Specify the source of the compensator coefficients as `Estimated
@@ -56,7 +61,6 @@ Not documented in R2025b.
 **Estimated coefficient output port**
 :   Select this check box to provide the estimated compensation
     coefficients to an output port. By default, the check box is not selected.
-
 ## Libraries
 
 Not documented in R2025b.

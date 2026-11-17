@@ -14,6 +14,18 @@ language: en
 # Lidar Point Cloud Generator
 
 ## Ports
+```yaml
+ports:
+- name: Actors
+  summary: Scenario actor poses Simulink bus containing MATLAB® structure
+  direction: input
+- name: Ego Vehicle
+  summary: Ego vehicle pose Simulink bus containing MATLAB structure
+  direction: input
+- name: Point Cloud
+  summary: Point cloud data *m*-by-*n*-by-3 array of positive real-valued [*x*, *y*, *z*] points
+  direction: output
+```
 
 ### Input
 
@@ -117,8 +129,70 @@ detection range (m)** parameter of the Lidar Point Cloud
 Generator block determines the extent of the road mesh. To exclude road data
 from the point cloud, clear the **Include roads in generated point
 cloud** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Parameters
+- name: Required interval between sensor updates (s)
+  summary: Required time interval between sensor updates 0.1 (default) | positive scalar
+  group: Parameters
+- name: Sensor's (x,y) position (m)
+  summary: Location of center of lidar sensor [1.5 0] (default) | real-valued 1-by-2 vector
+  group: Parameters
+- name: Sensor's height (m)
+  summary: Height of lidar sensor 1.6 (default) | positive scalar
+  group: Parameters
+- name: Yaw angle of sensor mounted on ego vehicle (deg)
+  summary: Yaw angle of lidar sensor 0 (default) | real-valued scalar
+  group: Parameters
+- name: Pitch angle of sensor mounted on ego vehicle (deg)
+  summary: Pitch angle of lidar sensor 0 (default) | real-valued scalar
+  group: Parameters
+- name: Roll angle of sensor mounted on ego vehicle (deg)
+  summary: Roll angle of lidar sensor 0 (default) | real-valued scalar
+  group: Parameters
+- name: Coordinate system used to report point cloud
+  summary: Coordinate system of reported detections Ego Cartesian (default) | Sensor Cartesian
+  group: Parameters
+- name: Include ego vehicle in generated point cloud
+  summary: Include ego vehicle in point cloud on (default) | off
+  group: Parameters
+- name: ActorID of ego vehicle
+  summary: ActorID value of ego vehicle 1 (default) | positive integer
+  group: Parameters
+- name: Include roads in generated point cloud
+  summary: Include roads in point cloud on (default) | off
+  group: Parameters
+- name: Source of actor profiles
+  summary: Source of actor profiles From Scenario Reader block (default) | From workspace
+  group: Parameters
+- name: MATLAB or model workspace variable name
+  summary: Variable name of actor profiles actor_profiles (default) | valid variable name
+  group: Parameters
+- name: Maximum detection range (m)
+  summary: Maximum detection range 120 (default) | positive scalar
+  group: Measurements
+- name: Range accuracy (m)
+  summary: Accuracy of range measurements 0.002 (default) | positive scalar
+  group: Measurements
+- name: Azimuthal resolution of lidar (deg)
+  summary: Azimuthal resolution of lidar sensor 0.16 (default) | positive scalar
+  group: Measurements
+- name: Elevation resolution of lidar (deg)
+  summary: Elevation resolution of lidar sensor 1.25 (default) | positive scalar
+  group: Measurements
+- name: Azimuthal limits of lidar (deg)
+  summary: Azimuthal limits of lidar sensor [-180 180] (default) | 1-by-2 real-valued vector of form [*min*, *max*]
+  group: Measurements
+- name: Elevation limits of lidar (deg)
+  summary: Elevation limits of lidar sensor [-20 20] (default) | 1-by-2 real-valued vector of form [*min*, *max*]
+  group: Measurements
+- name: Add noise to measurements
+  summary: Add noise to measurements on (default) | off
+  group: Measurements
+```
 
 ### Parameters
 
@@ -308,7 +382,6 @@ degrees.
 
 Select this parameter to add noise to lidar sensor measurements. When you clear
 this parameter, the measurements have no noise.
-
 ## Libraries
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

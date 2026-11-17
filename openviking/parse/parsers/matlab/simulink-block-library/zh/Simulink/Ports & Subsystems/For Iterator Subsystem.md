@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # For Iterator Subsystem
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 子系统的信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Out
+  summary: 子系统的信号输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -34,8 +47,95 @@ chinese_source: worker-translation
 使用 Outport 模块将信号发送到局部环境。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: 显示端口标签
+  summary: 端口标签的显示选项 FromPortIcon（默认）| FromPortBlockName | SignalName | none
+  group: 主要
+  block_parameter: ShowPortLabels
+  values: '''FromPortIcon''（默认）| ''FromPortBlockName'' | ''SignalName'' | ''none'''
+- name: 读/写权限
+  summary: 对子系统内容的访问级别 ReadWrite（默认）| ReadOnly | NoReadOrWrite
+  group: 主要
+  block_parameter: Permissions
+  values: '''ReadWrite''（默认）| ''ReadOnly'' | ''NoReadOrWrite'''
+- name: 错误回调函数名称
+  summary: 发生错误时要调用的函数名称 无默认值
+  group: 主要
+  block_parameter: ErrorFcn
+  values: '''''（默认）| 带引号的函数名称'
+- name: 允许层次化解析
+  summary: 工作区变量名称的解析方式 All（默认）| ExplicitOnly | None
+  group: 主要
+  block_parameter: PermitHierarchicalResolution
+  values: '''All''（默认）| ''ExplicitOnly'' | ''None'''
+- name: 显示子系统重新初始化端口
+  summary: 显示重新初始化事件端口的选项 off（默认）| on
+  group: 主要
+  block_parameter: ShowSubsystemReinitializePorts
+  values: '''off''（默认）| ''on'''
+- name: 函数打包
+  summary: 代码格式 Auto | Inline | Nonreusable function | Reusable function
+  group: 代码生成
+  block_parameter: RTWSystemCode
+  values: '''Auto'' | ''Inline'' | ''Nonreusable function'' | ''Reusable function'''
+- name: 函数名称选项
+  summary: 如何命名生成的函数 Auto | Use subsystem name | User specified
+  group: 代码生成
+  block_parameter: RTWFcnNameOpts
+  values: '''Auto'' | ''Use subsystem name'' | ''User specified'''
+- name: 函数名称
+  summary: 子系统代码的函数名称 无默认值
+  group: 代码生成
+  block_parameter: RTWFcnName
+  values: '''''（默认）| 带引号的函数名称'
+- name: 文件名选项
+  summary: 如何命名生成的文件 Auto | Use subsystem name | Use function name | User specified
+  group: 代码生成
+  block_parameter: RTWFileNameOpts
+  values: '''Auto'' | ''Use subsystem name'' | ''Use function name'' | ''User specified'''
+- name: File name (no extension)
+  summary: 生成文件的名称，无默认值
+  group: 代码生成
+  block_parameter: RTWFileName
+  values: '''''（默认） | 带引号的文件名'
+- name: Function interface
+  summary: 如何使用生成函数的参数 void_void（默认） | Allow arguments (Optimized) | Allow arguments (Match graphical interface)
+  group: 代码生成
+  block_parameter: FunctionInterfaceSpec
+  values: '''void_void''（默认） | ''Allow arguments (Optimized)'' | ''Allow arguments (Match graphical interface)'''
+- name: Function with separate data
+  summary: 控制子系统代码生成 off（默认） | on
+  group: 代码生成
+  block_parameter: FunctionWithSeparateData
+  values: '''off''（默认） | ''on'''
+- name: Memory section for initialize/terminate functions
+  summary: 如何应用内存段 Inherit from model（默认） | Default | 模型内存段
+  group: 代码生成
+  block_parameter: RTWMemSecFuncInitTerm
+  values: '''Inherit from model''（默认） | ''Default'' | 带引号的模型内存段'
+- name: Memory section for execution functions
+  summary: 如何应用内存段 Inherit from model（默认） | Default | 模型内存段
+  group: 代码生成
+  block_parameter: RTWMemSecFuncExecute
+  values: '''Inherit from model''（默认） | ''Default'' | 带引号的模型内存段'
+- name: Memory section for constants
+  summary: 如何应用内存段 Inherit from model（默认） | Default | 模型内存段
+  group: 代码生成
+  block_parameter: RTWMemSecDataConstants
+  values: '''Inherit from model''（默认） | ''Default'' | 带引号的模型内存段'
+- name: Memory section for internal data
+  summary: 如何应用内存段 Inherit from model（默认） | Default | 模型内存段
+  group: 代码生成
+  block_parameter: RTWMemSecDataInternal
+  values: '''Inherit from model''（默认） | ''Default'' | 带引号的模型内存段'
+- name: Memory section for parameters
+  summary: 如何应用内存段 Inherit from model（默认） | Default | 模型内存段
+  group: 代码生成
+  block_parameter: RTWMemSecDataParameters
+  values: '''Inherit from model''（默认） | ''Default'' | 带引号的模型内存段'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的**仿真**选项卡上，在**准备**库中，选择**属性检查器**。
 
@@ -524,7 +624,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `RTWMemSecDataParameters` |
 | **值：** | `'Inherit from model'`（默认） | `'Default'` | 带引号的模型内存段 |
-
 ## 所属库
 
 Simulink / Ports & Subsystems

@@ -14,6 +14,24 @@ language: en
 # Kinematic Steering
 
 ## Ports
+```yaml
+ports:
+- name: AngIn
+  summary: Steering angle scalar
+  direction: input
+- name: PctAckIn
+  summary: Ackerman percentage scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: AngLft
+  summary: Left wheel angle scalar
+  direction: output
+- name: AngRght
+  summary: Right wheel angle scalar
+  direction: output
+```
 
 ### Input
 
@@ -60,8 +78,110 @@ rad.
 
 Right wheel angle, *δR*, in
 rad.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Select steering type Ackerman (default) | Rack and pinion | Parallel
+  group: ''
+  block_parameter: StrgType
+  values: Ackerman (default) | Rack and pinion | Parallel
+- name: Parametrized by
+  summary: Select parameterization Constant (default) | Lookup table
+  group: ''
+  block_parameter: StrgRatioType
+  values: Constant (default) | Lookup table
+- name: Location
+  summary: Select location Front (default) | Rear
+  group: ''
+  block_parameter: Loc
+  values: Front (default) | Rear
+- name: Normalization factor, NrmlFctr
+  summary: Adjust the steering angle scalar
+  group: ''
+  block_parameter: NrmlFctr
+  values: scalar
+- name: Track width, TrckWdth
+  summary: Width 1 (default) | scalar
+  group: ''
+  block_parameter: TrckWdth
+  values: 1 (default) | scalar
+- name: Wheel base, WhlBase
+  summary: Base 1.524 (default) | scalar
+  group: ''
+  block_parameter: WhlBase
+  values: 1.524 (default) | scalar
+- name: Deadband, Db
+  summary: Deadband 0 (default) | scalar
+  group: ''
+  block_parameter: Db
+  values: 0 (default) | scalar
+- name: Steering range, StrgRng
+  summary: Steering wheel angle input range 1.25*pi (default) | scalar
+  group: ''
+  block_parameter: StrgRng
+  values: 1.25*pi (default) | scalar
+- name: Steering ratio, StrgRatio
+  summary: Ratio 100 (default) | scalar
+  group: ''
+  block_parameter: StrgRatio
+  values: 100 (default) | scalar
+- name: Steering angle breakpoints, StrgAngBpts
+  summary: Breakpoints [-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832] (default) | vector
+  group: ''
+  block_parameter: StrgAngBpts
+  values: '[-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832] (default) | vector'
+- name: Steering ratio table, StrgRatioTbl
+  summary: Table [13.5000 13.3750 13.2500 13.1250 13.0000 13.0000 13.0000 13.1250 13.2500 13.3750 13.5000] (default) | vector
+  group: ''
+  block_parameter: StrgRatioTbl
+  values: '[13.5000 13.3750 13.2500 13.1250 13.0000 13.0000 13.0000 13.1250 13.2500 13.3750 13.5000] (default) | vector'
+- name: Steering arm length, StrgArmLngth
+  summary: Length 0.1 (default) | scalar
+  group: ''
+  block_parameter: StrgArmLngth
+  values: 0.1 (default) | scalar
+- name: Rack casing length, RckCsLngth
+  summary: Length 0.5 (default) | scalar
+  group: ''
+  block_parameter: RckCsLngth
+  values: 0.5 (default) | scalar
+- name: Tie rod length, TieRodLngth
+  summary: Length 0.248 (default) | scalar
+  group: ''
+  block_parameter: TieRodLngth
+  values: 0.248 (default) | scalar
+- name: Distance between axis and rack, D
+  summary: Distance 0.2 (default) | scalar
+  group: ''
+  block_parameter: D
+  values: 0.2 (default) | scalar
+- name: Pinion radius, PnnRadius
+  summary: Radius 0.0057 (default) | scalar
+  group: ''
+  block_parameter: PnnRadius
+  values: 0.0057 (default) | scalar
+- name: Pinion radius table, PnnRadiusTbl
+  summary: Table [0.0055 0.0055 0.0056 0.0057 0.0057 0.0057 0.0058 0.0057 0.0056 0.0055 0.0055] (default) | vector
+  group: ''
+  block_parameter: PnnRadiusTbl
+  values: '[0.0055 0.0055 0.0056 0.0057 0.0057 0.0057 0.0058 0.0057 0.0056 0.0055 0.0055] (default) | vector'
+- name: Input Percent Ackerman
+  summary: Create PctAckIn input port off (default) | on
+  group: ''
+  block_parameter: PctAckIn
+  values: off (default) | on
+- name: Percent Ackerman, PctAck
+  summary: Percent Ackerman constant 100 (default) | scalar
+  group: ''
+  block_parameter: PctAck
+  values: 100 (default) | scalar
+- name: Percent Ackerman table, PctAckTbl
+  summary: Percent Ackerman table ones(1,11)*100 (default) | vector
+  group: ''
+  block_parameter: PctAckTbl
+  values: ones(1,11)*100 (default) | vector
+```
 
 ### **Type** — Select steering type `Ackerman` (default) | `Rack and pinion` | `Parallel`
 
@@ -565,7 +685,6 @@ function.
 | **Parameter:** | `PctAckTbl` |
 | **Values:** | `ones(1,11)*100` (default) | `vector` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Steering

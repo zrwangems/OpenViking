@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # HV Counter
 
 ## 端口
+```yaml
+ports:
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: hCount
+  summary: 行内像素位置 正整数
+  direction: output
+  data_types: fixdt(0,ceil(log2(ActiveVideoLines)),0)
+- name: vCount
+  summary: 帧内行位置 正整数
+  direction: output
+  data_types: fixdt(0,ceil(log2(ActiveVideoLines)),0)
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -44,8 +63,16 @@ chinese_source: worker-translation
 这些信号描述像素的有效性及其在帧中的位置。有关更多信息，请参阅 Pixel Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Active pixels per line
+  summary: 每行最大像素数 320（默认）| 正整数
+  group: ''
+- name: Active video lines
+  summary: 每帧最大行数 240（默认）| 正整数
+  group: ''
+```
 
 ### **Active pixels per line** — 每行最大像素数 `320`（默认）| 正整数
 
@@ -56,7 +83,6 @@ chinese_source: worker-translation
 
 每帧最大行数，指定为正整数。该模块实现一个行计数器，其位数为
 `ceil(log2(ActiveVideoLines))`。例如，对于每行 240 像素的帧，计数器有 8 位。对于每行 1080 像素的帧，计数器有 11 位。
-
 ## 所属库
 
 Vision HDL Toolbox / Utilities

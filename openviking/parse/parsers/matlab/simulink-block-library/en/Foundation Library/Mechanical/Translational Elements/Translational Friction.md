@@ -14,6 +14,15 @@ language: en
 # Translational Friction
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,22 @@ moving body.
 
 Mechanical translational conserving port associated with the case, that is, the
 stationary body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Breakaway friction force
+  summary: Sum of Coulomb and the static frictions 25 N (default) | scalar
+  group: ''
+- name: Breakaway friction velocity
+  summary: Peak velocity for Stribeck friction 0.1 m/s (default) | positive scalar
+  group: ''
+- name: Coulomb friction force
+  summary: Friction that opposes motion 20 N (default) | scalar
+  group: ''
+- name: Viscous friction coefficient
+  summary: Proportionality coefficient 100 N/(m/s) (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Breakaway friction force** — Sum of Coulomb and the static frictions `25 N` (default) | scalar
 
@@ -51,7 +74,6 @@ constant force at any velocity.
 
 Proportionality coefficient between the friction force and the relative velocity.
 The parameter value must be greater than or equal to zero.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Translational Elements

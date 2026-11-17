@@ -14,6 +14,17 @@ language: en
 # Fcn
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input to a Fcn block scalar | vector
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: Output from a Fcn block scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -35,8 +46,20 @@ The Fcn block accepts and outputs signals of type
 For more information, see Data Types Supported by Simulink in the Simulink documentation.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Expression
+  summary: Specify the mathematical expression mathematical expression
+  group: ''
+  block_parameter: Expr
+  type: character vector
+  values: mathematical expression
+  default: '''sin(u(1)*exp(2.3*(-u(2))))'''
+- name: Sample time
+  summary: Specify sample time in the block scalar
+  group: ''
+```
 
 ### **Expression** — Specify the mathematical expression mathematical expression
 
@@ -60,7 +83,6 @@ and so on). The expression has restrictions on tunability (see Limitations).
 
 This parameter is not visible in the block dialog box unless it is explicitly set
 to a value other than `-1`. To learn more, see Blocks for Which Sample Time Is Not Recommended.
-
 ## Libraries
 
 Simulink / User-Defined Functions

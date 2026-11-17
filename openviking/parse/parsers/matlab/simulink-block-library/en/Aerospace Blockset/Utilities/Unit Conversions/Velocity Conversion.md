@@ -14,6 +14,17 @@ language: en
 # Velocity Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Velocity scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Velocity scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -41,8 +52,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units ft/s (default) | m/s | km/s | in/s | km/h | mph | kts | ft/min
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''m/s'' | ''ft/s'' | ''km/s'' | ''in/s'' | ''km/h'' | ''mph'' | ''kts'' | ''ft/min'''
+  default: '''ft/s'''
+- name: Final unit
+  summary: Output units m/s (default) | ft/s | km/s | in/s | km/h | mph | kts | ft/min
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''m/s'' | ''ft/s'' | ''km/s'' | ''in/s'' | ''km/h'' | ''mph'' | ''kts'' | ''ft/min'''
+  default: '''m/s'''
+```
 
 ### **Initial unit** — Input units `ft/s` (default) | `m/s` | `km/s` | `in/s` | `km/h` | `mph` | `kts` | `ft/min`
 
@@ -101,7 +128,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `'m/s'` | `'ft/s'` | `'km/s'` | `'in/s'` | `'km/h'` | `'mph'` | `'kts'` | `'ft/min'` |
 | **Default**: `'m/s'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

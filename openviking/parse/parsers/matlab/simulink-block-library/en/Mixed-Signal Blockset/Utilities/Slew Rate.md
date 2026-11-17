@@ -14,6 +14,17 @@ language: en
 # Slew Rate
 
 ## Ports
+```yaml
+ports:
+- name: events
+  summary: Input signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: wave
+  summary: Output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -34,8 +45,40 @@ the finite slew rate and propagation delay for the signal at the
 **wave** port.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output step size calculation
+  summary: Defines how to calculate output step size Default (default) | Advanced
+  group: ''
+- name: Maximum frequency of interest (Hz)
+  summary: Maximum frequency of interest at output 11e9 (default) | scalar
+  group: ''
+- name: Output sample interval
+  summary: Output sample interval 23ps (default) | scalar
+  group: ''
+- name: Minimum 20%-80% rise/fall time
+  summary: Minimum rise/fall time required at the output for meaningful simulation 23ps (default) | scalar
+  group: ''
+- name: Rise/fall time (s)
+  summary: 20%-80% rise time at the output 30e-12 (default) | scalar
+  group: ''
+- name: Slew rate for 20%-80% edge of unit amplitude signal
+  summary: Slew rate for the 20%-80% edge at the output 56GHz (default) | scalar
+  group: ''
+- name: Minimum propagation delay
+  summary: Minimum propagation delay for meaningful simulation 48ps (default) | scalar
+  group: ''
+- name: Propagation delay (s)
+  summary: Propagation delay of a rising edge 48e-12 (default) | scalar
+  group: ''
+- name: Enable increased buffer size
+  summary: Enable increased buffer size button
+  group: ''
+- name: Buffer size
+  summary: Buffer size of the blocks 10 (default) | positive integer scaler
+  group: ''
+```
 
 ### **Output step size calculation** — Defines how to calculate output step size `Default` (default) | `Advanced`
 
@@ -188,7 +231,6 @@ size** option is selected.
   **Buffer size**.
 - Use `set_param(gcb,'NBuffer',value)` to set
   **Buffer size** to a specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

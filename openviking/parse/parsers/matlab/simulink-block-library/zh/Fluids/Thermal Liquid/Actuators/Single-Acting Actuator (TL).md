@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Single-Acting Actuator (TL)
 
 ## 端口
+```yaml
+ports:
+- name: p
+  summary: 多体活塞位置输入，m 物理信号
+  direction: input
+- name: p
+  summary: 活塞位置，m 物理信号
+  direction: output
+- name: A
+  summary: 液体端口 热液体
+  direction: conserving
+- name: C
+  summary: 执行器壳体 平移机械
+  direction: conserving
+- name: R
+  summary: 执行器活塞 平移机械
+  direction: conserving
+- name: H
+  summary: 热传递 热
+  direction: conserving
+```
 
 ### 输入
 
@@ -57,8 +78,121 @@ C`。
 ### **H** — 热传递 热
 
 与液体体积的热质量相关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 执行器
+- name: Piston cross-sectional area
+  summary: 活塞杆横截面积 0.01 m^2（默认）| 正标量
+  group: 执行器
+- name: Piston stroke
+  summary: 最大活塞行程距离 0.1 m（默认）| 正标量
+  group: 执行器
+- name: Dead volume
+  summary: 活塞完全缩回时的流体体积 1e-5 m^3（默认）| 正标量
+  group: 执行器
+- name: Environment pressure specification
+  summary: 参考环境压力 Atmospheric pressure（默认）| Specified pressure
+  group: 执行器
+- name: Environment pressure
+  summary: 用户定义的环境压力 0.101325 MPa（默认）| 正标量
+  group: 执行器
+- name: Hard stop model
+  summary: 硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 硬限位
+- name: Hard-stop stiffness coefficient
+  summary: 刚度系数 1e10 N/m（默认）| 正标量
+  group: 硬限位
+- name: Hard-stop damping coefficient
+  summary: 阻尼系数 150 N*s/m（默认）| 正标量
+  group: 硬限位
+- name: Transition region
+  summary: 硬限位力模型的应用范围 0.1 mm（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位器之间最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位器之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的力 0.001 N（默认）| 正标量
+  group: 硬限位
+- name: Cylinder end cushioning
+  summary: 是否对活塞在最大伸出时进行减速建模 off（默认）| on
+  group: 缓冲
+- name: Cushion plunger cross-sectional area
+  summary: 缸体缓冲柱塞面积 1e-4 m^2（默认）| 正标量
+  group: 缓冲
+- name: Cushion plunger length
+  summary: 缓冲柱塞长度 1e-3 m（默认）| 正标量
+  group: 缓冲
+- name: Cushion orifice area
+  summary: 缓冲腔之间的节流孔面积 1e-6 m^2（默认）| 正标量
+  group: 缓冲
+- name: Leakage area between plunger and cushion sleeve
+  summary: 缓冲柱塞与套筒之间的间隙 1e-7 m^2（默认）| 正标量
+  group: 缓冲
+- name: Check valve cracking pressure differential
+  summary: 缓冲阈值压力 0.01 MPa（默认）| 正标量
+  group: 缓冲
+- name: Check valve maximum pressure differential
+  summary: 缓冲阀最大压差 0.1 MPa（默认）| 正标量
+  group: 缓冲
+- name: Check valve maximum area
+  summary: 完全打开的缓冲阀面积 1e-4 m^2（默认）| 正标量
+  group: 缓冲
+- name: Check valve leakage area
+  summary: 完全关闭位置时的缓冲阀间隙面积 1e-10 m^2（默认）| 正标量
+  group: 缓冲
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 正标量
+  group: 缓冲
+- name: Cylinder friction
+  summary: 是否对活塞运动建模摩擦力 off（默认）| on
+  group: Friction
+- name: Breakaway to Coulomb friction force ratio
+  summary: 启动力与库仑摩擦力之比 1.2（默认）| 正标量
+  group: Friction
+- name: Breakaway friction velocity
+  summary: 运动阈值 0.1 m/s（默认）| 正标量
+  group: Friction
+- name: Preload force
+  summary: 由密封组件引起的缸内初始力 20 N（默认）| 标量
+  group: Friction
+- name: Coulomb friction force coefficient
+  summary: 库仑摩擦力系数 1e-6 N/Pa（默认）| 正标量
+  group: Friction
+- name: Viscous friction coefficient
+  summary: 粘性摩擦系数 100 N*s/m（默认）| 正标量
+  group: Friction
+- name: Piston displacement
+  summary: 确定活塞位置的方法 根据端口 R 相对于端口的速度计算 C（默认）| Provide input signal from Multibody joint
+  group: 初始条件
+- name: Initial piston displacement
+  summary: 仿真开始时的活塞位置 0 m（默认）| 标量
+  group: 初始条件
+- name: Enable dynamic compressibility
+  summary: 是否对流体可压缩性建模 on（默认）| off
+  group: 初始条件
+- name: Initial liquid temperature
+  summary: 起始液体温度 293.15 K（默认）| 标量
+  group: 初始条件
+- name: Initial liquid pressure
+  summary: 可压缩流体的起始液体压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: Nominal liquid temperature
+  summary: 标称工况下的温度 293.15 K（默认）| 标量
+  group: 初始条件
+- name: Nominal liquid pressure
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 初始条件
+```
 
 ### 执行器
 
@@ -348,7 +482,6 @@ cushioning**。
 #### 依赖关系
 
 要启用此参数，请清除 **Enable dynamic compressibility** 复选框。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Actuators

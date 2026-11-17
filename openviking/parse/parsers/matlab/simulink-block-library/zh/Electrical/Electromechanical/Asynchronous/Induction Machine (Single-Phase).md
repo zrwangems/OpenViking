@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Induction Machine (Single-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: pu
+  summary: 电机标幺值测量物理信号 | 向量
+  direction: output
+- name: a1
+  summary: 主绕组正极端子 电气 | 标量
+  direction: output
+- name: a2
+  summary: 主绕组负极端子 电气 | 标量
+  direction: output
+- name: b1
+  summary: 辅助绕组正极端子 电气 | 标量
+  direction: output
+- name: b2
+  summary: 辅助绕组负极端子 电气 | 标量
+  direction: output
+- name: R
+  summary: 电机转子机械旋转
+  direction: output
+- name: C
+  summary: 电机机壳机械旋转
+  direction: output
+- name: HA
+  summary: 主绕组热端口 热
+  direction: output
+- name: HB
+  summary: 辅助绕组热端口 热
+  direction: output
+- name: HR
+  summary: 转子热端口 热
+  direction: output
+```
 
 ### 输出
 
@@ -92,8 +125,127 @@ thermal port`。
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Type
+  summary: 感应电机类型 Split-phase（默认）| Capacitor-start | Capacitor-start-capacitor-run | Main and auxiliary windings
+  group: 主要
+- name: Rated apparent power
+  summary: 额定视在功率 180 V*A（默认）| 正标量
+  group: 主要
+- name: Rated voltage
+  summary: 额定电压 220 V（默认）| 正标量
+  group: 主要
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz（默认）| 正标量
+  group: 主要
+- name: Number of pole pairs
+  summary: 极对数 2（默认）| 正整数
+  group: 主要
+- name: Parameterization unit
+  summary: SI 或标幺值参数化选项 SI（默认）| Per unit
+  group: 主要
+- name: Main winding stator resistance, Ras
+  summary: 主绕组定子电阻 1.8180 Ohm（默认）| 正标量
+  group: 电气
+- name: Main winding stator leakage inductance, Llas
+  summary: 主绕组定子漏电感 0.0067 H（默认）| 正标量
+  group: 电气
+- name: Main winding rotor resistance, Rar'
+  summary: 主绕组转子电阻 3.7080 Ohm（默认）| 正标量
+  group: 电气
+- name: Main winding rotor leakage inductance, Llar'
+  summary: 主绕组转子漏电感 0.0050 H（默认）| 正标量
+  group: 电气
+- name: Main winding mutual inductance, Lms
+  summary: 主绕组互感 0.1595 H（默认）| 正标量
+  group: 电气
+- name: Auxiliary winding stator resistance, Rbs
+  summary: 辅助绕组定子电阻 6.4260 Ohm（默认）| 正标量
+  group: 电气
+- name: Auxiliary winding stator leakage inductance, Llbs
+  summary: 辅助绕组定子漏电感 0.0077 H（默认）| 正标量
+  group: 电气
+- name: Auxiliary/main windings turn ratio
+  summary: 匝比 1.1（默认）| 正标量
+  group: 电气
+- name: Main winding stator resistance, Ras (pu)
+  summary: 主绕组定子电阻 0.0135（默认）| 正标量
+  group: 电气
+- name: Main winding stator leakage inductance, Llas (pu)
+  summary: 主绕组定子漏电感 0.0188（默认）| 正标量
+  group: 电气
+- name: Main winding rotor resistance, Rar' (pu)
+  summary: 主绕组转子电阻 0.0276（默认）| 正标量
+  group: 电气
+- name: Main winding rotor leakage inductance, Llar' (pu)
+  summary: 主绕组转子漏电感 0.0140（默认）| 正标量
+  group: 电气
+- name: Main winding mutual inductance, Lms (pu)
+  summary: 主绕组互感 0.4472（默认）| 正标量
+  group: 电气
+- name: Auxiliary winding stator resistance, Rbs (pu)
+  summary: 辅助绕组定子电阻 0.0478（默认）| 正标量
+  group: 电气
+- name: Auxiliary winding stator leakage inductance, Llbs (pu)
+  summary: 辅助绕组定子漏电感 0.0216（默认）| 正标量
+  group: 电气
+- name: Auxiliary/main windings turn ratio
+  summary: 匝比 1.1（默认）| 正标量
+  group: 电气
+- name: Capacitor-start resistance, Rs
+  summary: 启动电容电阻 3 Ohm（默认）| 正标量
+  group: 电气
+- name: Capacitor-start capacitance, Cs
+  summary: 启动电容电容值 0.00018 F（默认）| 正标量
+  group: 电气
+- name: Capacitor-run resistance, Rr
+  summary: 运行电容电阻 9 Ohm（默认）| 正标量
+  group: 电气
+- name: Capacitor-run capacitance, Cr
+  summary: 运行电容电容值 0.000015 F（默认）| 正标量
+  group: 电气
+- name: Capacitor-start resistance, Rs (pu)
+  summary: 启动电容电阻 0.0223（默认）| 正标量
+  group: 电气
+- name: Capacitor-start capacitance, Cs (pu)
+  summary: 启动电容电容值 9.1232（默认）| 正标量
+  group: 电气
+- name: Capacitor-run resistance, Rr (pu)
+  summary: 运行电容电阻 0.0669（默认）| 正标量
+  group: 电气
+- name: Capacitor-run resistance, Cr (pu)
+  summary: 运行电容电容值 0.000015（默认）| 正标量
+  group: 电气
+- name: Disconnection speed (% of rated speed)
+  summary: 断开速度 80（默认）| 范围 [0,100] 内的标量
+  group: 电气
+- name: Rotor inertia
+  summary: 转子惯量 0.01 kg*m^2（默认）| 正标量
+  group: 机械
+- name: Rotor damping
+  summary: 转子阻尼 0 N*m/(rad/s)（默认）| 标量
+  group: 机械
+- name: Measurement temperature
+  summary: 额定温度 298.15 K（默认）| 实标量
+  group: 热
+- name: Resistance temperature coefficient
+  summary: 温度系数 3.93e-3 1/K（默认）| 正标量
+  group: 热
+- name: Cage resistance temperature coefficient
+  summary: 转子温度系数 4.4e-3（默认）| 1/K | 标量
+  group: 热
+- name: Thermal mass for each stator winding
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）| 正标量
+  group: 热
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -440,7 +592,6 @@ unit`。
 ### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认）| 正标量
 
 转子的热质量。热质量是将转子温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Asynchronous

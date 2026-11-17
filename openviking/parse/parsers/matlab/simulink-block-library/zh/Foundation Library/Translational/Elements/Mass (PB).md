@@ -15,19 +15,29 @@ chinese_source: worker-translation
 # Mass (PB)
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 将质量块连接到基于位置的机械平移电路的端口
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **R** — 将质量块连接到基于位置的机械平移电路的端口
 
 基于位置的机械平移守恒端口，用于将质量块连接到物理网络。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass
+  summary: 恒定质量 1 kg（默认）| 正标量
+  group: ''
+```
 
 ### **Mass** — 恒定质量 `1 kg`（默认）| 正标量
 
 质量值。质量在仿真期间保持恒定。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Elements

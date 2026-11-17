@@ -14,6 +14,15 @@ language: en
 # Gas-Charged Accumulator (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: H
+  summary: Heat port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,31 @@ The flow rate is positive if liquid flows into the accumulator.
 
 Thermal conserving port associated with the thermal mass of the liquid
 volume.
-
 ## Parameters
+```yaml
+parameters:
+- name: Total accumulator volume
+  summary: Accumulator volume 8e-3 m^3 (default) | positive scalar
+  group: ''
+- name: Minimum gas volume
+  summary: Gas chamber dead volume 4e-5 m^3 (default) | positive scalar
+  group: ''
+- name: Precharge pressure (gauge)
+  summary: Gas chamber pressure 0 MPa (default) | nonnegative scalar
+  group: ''
+- name: Specific heat ratio
+  summary: Specific heat ratio 1.4 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Inlet cross-sectional area 0.01 m^2positive scalar (default)
+  group: ''
+- name: Hard stop stiffness coefficient
+  summary: Stiffness coefficient 1e4 MPa/m^3 (default) | positive scalar
+  group: ''
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 1e4 MPa*s/m^6 (default) | positive scalar
+  group: ''
+```
 
 ### **Total accumulator volume** — Accumulator volume `8e-3` `m^3` (default) | positive scalar
 
@@ -68,7 +100,6 @@ Damping coefficients of the top and bottom accumulator hard stops. The
 hard stops restrict diaphragm motion between zero and the maximum liquid
 chamber level. The damping coefficients account for the dissipative portion
 of the hard-stop contact forces.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Tanks & Accumulators

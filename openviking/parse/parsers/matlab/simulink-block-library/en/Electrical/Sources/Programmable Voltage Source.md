@@ -14,6 +14,27 @@ language: en
 # Programmable Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: DC
+  summary: DC component physical signal
+  direction: input
+- name: F
+  summary: Frequency physical signal
+  direction: input
+- name: M
+  summary: Magnitude physical signal
+  direction: input
+- name: Phi
+  summary: Phase shift physical signal
+  direction: input
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -44,8 +65,142 @@ voltage.
 
 Electrical conserving port associated with the negative
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: AC magnitude configuration
+  summary: AC voltage magnitude configuration Constant (default) | RampStepModulationExternal
+  group: AC Magnitude
+- name: AC voltage peak magnitude
+  summary: AC voltage peak magnitude 100 V (default)
+  group: AC Magnitude
+- name: Rate of change
+  summary: AC voltage rate of change 1 V/s (default)
+  group: AC Magnitude
+- name: Step amplitude
+  summary: AC voltage step amplitude 1 V (default)
+  group: AC Magnitude
+- name: Modulation magnitude
+  summary: AC voltage modulation magnitude 1 V (default)
+  group: AC Magnitude
+- name: Modulation frequency
+  summary: AC voltage modulation frequency 1 Hz (default)
+  group: AC Magnitude
+- name: Start time
+  summary: AC voltage start time 1s (default)
+  group: AC Magnitude
+- name: Stop time
+  summary: AC voltage stop time 2s (default)
+  group: AC Magnitude
+- name: AC frequency configuration
+  summary: AC frequency configuration Constant (default) | RampStepModulationExternal
+  group: Frequency
+- name: AC voltage frequency
+  summary: AC voltage frequency 60 Hz (default)
+  group: Frequency
+- name: Rate of change
+  summary: AC frequency rate of change 1 Hz/s (default)
+  group: Frequency
+- name: Step amplitude
+  summary: AC frequency step amplitude 1 Hz (default)
+  group: Frequency
+- name: Modulation magnitude
+  summary: AC frequency modulation magnitude 1 Hz (default)
+  group: Frequency
+- name: Modulation frequency
+  summary: AC frequency modulation frequency 1 Hz (default)
+  group: Frequency
+- name: Start time
+  summary: AC frequency start time 1s (default)
+  group: Frequency
+- name: Stop time
+  summary: AC frequency start time 2s (default)
+  group: Frequency
+- name: AC phase shift configuration
+  summary: AC phase shift configuration Constant (default) | RampStepModulationExternal
+  group: Phase
+- name: AC voltage phase shift
+  summary: AC voltage phase shift 0 deg (default)
+  group: Phase
+- name: Rate of change
+  summary: AC phase shift rate of change 1 deg/s (default)
+  group: Phase
+- name: Step amplitude
+  summary: AC phase shift step amplitude 1 deg (default)
+  group: Phase
+- name: Modulation magnitude
+  summary: AC phase shift modulation magnitude 1 deg (default)
+  group: Phase
+- name: Modulation frequency
+  summary: AC phase shift modulation frequency 1 Hz (default)
+  group: Phase
+- name: Start time
+  summary: AC phase shift start time 1s (default)
+  group: Phase
+- name: Stop time
+  summary: AC phase shift start time 2s (default)
+  group: Phase
+- name: DC voltage configuration
+  summary: DC voltage configuration Constant (default) | RampStepModulationExternal
+  group: DC Voltage
+- name: DC voltage
+  summary: DC voltage magnitude 0 V (default)
+  group: DC Voltage
+- name: Rate of change
+  summary: DC voltage rate of change 1 V/s (default)
+  group: DC Voltage
+- name: Step amplitude
+  summary: DC voltage step amplitude 1 V (default)
+  group: DC Voltage
+- name: Modulation magnitude
+  summary: DC voltage modulation magnitude 1 V (default)
+  group: DC Voltage
+- name: Modulation frequency
+  summary: DC voltage modulation frequency 1 Hz (default)
+  group: DC Voltage
+- name: Start time
+  summary: DC voltage start time 1s (default)
+  group: DC Voltage
+- name: Stop time
+  summary: DC voltage stop time 2s (default)
+  group: DC Voltage
+- name: Source harmonics
+  summary: Source harmonics configuration None (default) | Generate harmonics
+  group: Harmonics
+- name: Harmonic orders
+  summary: Harmonic orders [5, 7, 11, 13] (default)
+  group: Harmonics
+- name: Harmonic to base magnitude ratios
+  summary: Harmonic to base magnitude ratios [.1, .1, .1, .1] (default)
+  group: Harmonics
+- name: Harmonic phase shifts
+  summary: Harmonic phase shifts [0, 0, 0, 0] deg (default)
+  group: Harmonics
+- name: Start time
+  summary: Source harmonics start time -infs (default)
+  group: Harmonics
+- name: Stop time
+  summary: Source harmonics stop time infs (default)
+  group: Harmonics
+- name: Noise mode
+  summary: Option to include noise Disabled (default) | Enabled
+  group: Noise
+- name: Power spectral density
+  summary: Power spectral density 0 V^2/Hz (default)
+  group: Noise
+- name: Repeatability
+  summary: Random number seed control Not repeatable (default) | Repeatable | Specify seed
+  group: Noise
+- name: Auto-generated seed used for repeatable option
+  summary: Auto-generate seed 0 (default)
+  group: Noise
+- name: Seed
+  summary: Random number generation seed value 0 (default)
+  group: Noise
+- name: Sample time
+  summary: Time step period and offset 1e-3 s (default) | [step, offset] s
+  group: Noise
+```
 
 ### AC Magnitude
 
@@ -602,7 +757,6 @@ zero.
 Selecting `Enabled` for the
 **Noise mode** parameter exposes related
 parameters.
-
 ## Libraries
 
 Simscape / Electrical / Sources

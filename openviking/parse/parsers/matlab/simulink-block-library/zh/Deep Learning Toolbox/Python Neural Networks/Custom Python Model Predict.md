@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Custom Python Model Predict
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 输入数据数值数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Out1
+  summary: 预测响应数值数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,40 @@ chinese_source: worker-translation
 预测响应，以数值数组形式返回。您可以通过在“模块参数”对话框的 **Outputs** 选项卡上指定置换向量，重新排列 Python 模型返回的输出数据的维度（请参阅 Outputs）。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Path to Python file defining load_model() and predict()
+  summary: 自定义 Python 模型文件的名称或路径 untitled（默认）| 字符向量
+  group: 指定模型文件
+  block_parameter: PythonModulePath
+  type: 字符向量
+  values: Python 文件 | Python 文件路径
+  default: '"untitled"'
+- name: Arguments to load_model()
+  summary: Python load_model() 函数的参数 字符串或数值数组的列表
+  group: 指定模型文件
+  block_parameter: LoadModelArgs
+  type: 逗号分隔列表
+  values: 字符串 | 数值数组
+- name: Sample time (–1 for inherited)
+  summary: 用于指定采样时间的选项 –1（默认）| 标量
+  group: 指定模型文件
+  block_parameter: SampleTime
+  type: 字符串标量或字符向量
+  values: 标量
+  default: '"–1"'
+- name: Inputs
+  summary: 输入端口属性表
+  group: 输入
+  block_parameter: InputTable
+  type: 元胞数组
+- name: Outputs
+  summary: 输出端口属性表
+  group: 输出
+  block_parameter: OutputTable
+  type: 元胞数组
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，从 **Prepare** 库中选择 **Property Inspector**。
 
@@ -137,7 +180,6 @@ chinese_source: worker-translation
 | --- |
 | **模块参数：** `OutputTable` |
 | **类型：** 元胞数组 |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Deep Learning Toolbox / Python Models / Python Neural Networks

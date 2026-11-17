@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Turbofan Engine System
 
 ## 端口
+```yaml
+ports:
+- name: Throttle position
+  summary: 油门位置 标量 | 向量
+  direction: input
+  data_types: double
+- name: Mach
+  summary: 马赫数 标量
+  direction: input
+  data_types: double
+- name: Altitude
+  summary: 海拔高度 标量 | 向量
+  direction: input
+  data_types: double
+- name: Initial thrust
+  summary: 初始推力 标量 | 向量
+  direction: input
+  data_types: double
+- name: Thrust
+  summary: 推力 标量 | 向量
+  direction: output
+  data_types: double
+- name: Fuel flow
+  summary: 燃油流量 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -58,8 +85,59 @@ chinese_source: worker-translation
 燃油流量，返回为标量或向量，单位由 **Units** 参数指定的单位每秒。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Initial thrust source
+  summary: 初始推力来源 Internal（默认）| External
+  group: ''
+  block_parameter: ic_source
+  type: 字符向量
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Initial thrust
+  summary: 初始值 0（默认）| 标量
+  group: ''
+  block_parameter: IC
+  type: 字符向量
+  values: 双精度标量
+  default: '''0'''
+- name: Maximum sea-level static thrust
+  summary: 海平面最大推力 45000（默认）| 标量
+  group: ''
+  block_parameter: Fmax
+  type: 字符向量
+  values: 双精度标量
+  default: '''45000'''
+- name: Fastest engine time constant at sea-level static (sec)
+  summary: 海平面最快发动机时间 1（默认）| 标量
+  group: ''
+  block_parameter: tau
+  type: 字符向量
+  values: 双精度标量
+  default: '''1'''
+- name: Sea-level static thrust specific fuel consumption
+  summary: 海平面推力比燃油消耗率 0.35（默认）| 标量
+  group: ''
+  block_parameter: SFC
+  type: 字符向量
+  values: 双精度标量
+  default: '''0.35'''
+- name: Ratio of installed thrust to uninstalled thrust
+  summary: 表示损失的系数 0.9（默认）| 标量
+  group: ''
+  block_parameter: Nt
+  type: 字符向量
+  values: 双精度标量
+  default: '''0.9'''
+```
 
 ### **Units** — 输入和输出单位 `Metric (MKS)`（默认）| `English`
 
@@ -164,7 +242,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：双精度标量 |
 | **默认值**：`'0.9'` |
-
 ## 所属库
 
 Aerospace Blockset / Propulsion

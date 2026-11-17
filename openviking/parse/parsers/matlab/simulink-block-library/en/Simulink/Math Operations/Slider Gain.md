@@ -14,6 +14,17 @@ language: en
 # Slider Gain
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Input multiplied by gain scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -32,8 +43,31 @@ value. When the input to the block is real and gain is complex, the
 output is complex.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Slider gain
+  summary: Gain value 0 (default) | real value
+  group: ''
+  block_parameter: gain
+  type: character vector
+  values: real scalar
+  default: '''1'''
+- name: Low
+  summary: Lower limit of slider range 0 (default) | real value
+  group: ''
+  block_parameter: low
+  type: character vector
+  values: real scalar
+  default: '''0'''
+- name: High
+  summary: Upper limit of slider range 2 (default) | real value
+  group: ''
+  block_parameter: high
+  type: character vector
+  values: real scalar
+  default: '''2'''
+```
 
 ### **Slider gain** — Gain value `0` (default) | real value
 
@@ -73,7 +107,6 @@ Specify the upper limit of the slider range.
 | **Type**: character vector |
 | **Values**: real scalar |
 | **Default**: `'2'` |
-
 ## Libraries
 
 Simulink / Math Operations

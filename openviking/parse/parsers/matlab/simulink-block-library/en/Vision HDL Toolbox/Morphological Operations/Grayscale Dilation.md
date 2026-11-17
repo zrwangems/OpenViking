@@ -14,6 +14,24 @@ language: en
 # Grayscale Dilation
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | fi(0,N,0) | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream scalar | vector
+  direction: output
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -71,8 +89,16 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Neighborhood
+  summary: Pixel neighborhood ones(3,3) (default) | vector or matrix of 1s and 0s
+  group: ''
+- name: Line buffer size
+  summary: Size of line memory buffer 2048 (default) | positive integer
+  group: ''
+```
 
 ### **Neighborhood** — Pixel neighborhood `ones(3,3)` (default) | vector or matrix of `1`s and `0`s
 
@@ -100,7 +126,6 @@ The block allocates (*n* –
 1)-by-**Line buffer size** memory locations to store the pixels,
 where *n* is the number of lines in the
 **Neighborhood** parameter value.
-
 ## Libraries
 
 Vision HDL Toolbox / Morphological Operations

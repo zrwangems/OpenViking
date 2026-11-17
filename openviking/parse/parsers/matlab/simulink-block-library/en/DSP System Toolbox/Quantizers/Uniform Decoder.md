@@ -14,6 +14,17 @@ language: en
 # Uniform Decoder
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Output
+  summary: Decoded output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -38,8 +49,22 @@ For more information on how the block computes the output, see Algorithms.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Peak
+  summary: Largest amplitude in encoded input 1 (default) | nonnegative scalar
+  group: ''
+- name: Bits
+  summary: Number of bits 3 (default) | integer in the range [2, 32]
+  group: ''
+- name: Overflow mode
+  summary: Overflow mode Saturate (default) | Wrap
+  group: ''
+- name: Output type
+  summary: Output data type Double (default) | Single
+  group: ''
+```
 
 ### **Peak** — Largest amplitude in encoded input `1` (default) | nonnegative scalar
 
@@ -99,7 +124,6 @@ Specify the precision of the decoded floating-point output as
 `single` or `double`.
 You can use either level of output precision with any of the six integer
 input data types.
-
 ## Libraries
 
 DSP System Toolbox / Quantizers

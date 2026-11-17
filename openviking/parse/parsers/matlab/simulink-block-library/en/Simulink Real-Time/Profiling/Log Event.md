@@ -14,6 +14,12 @@ language: en
 # Log Event
 
 ## Ports
+```yaml
+ports:
+- name: T
+  summary: Trigger for log event 1..0
+  direction: input
+```
 
 ### Input
 
@@ -25,8 +31,22 @@ the block inserts a user-defined simple event defined by the parameters
 **Value** into the execution profiling event stream.
 
 **Example:**  1
-
 ## Parameters
+```yaml
+parameters:
+- name: Channel
+  summary: Event channel ID 0 (default) | int
+  group: ''
+- name: Code
+  summary: Event code number 0 (default) | uint32
+  group: ''
+- name: Value
+  summary: Event value number 0 (default) | uint32
+  group: ''
+- name: Trigger type
+  summary: Selects trigger signal edge Rising (default) | Falling | Either
+  group: ''
+```
 
 ### **Channel** — Event channel ID `0` (default) | int
 
@@ -71,7 +91,6 @@ event stream.
 ```
 trigger
 ```
-
 ## Libraries
 
 Simulink Real-Time / Profiling

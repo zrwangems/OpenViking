@@ -15,6 +15,60 @@ chinese_source: worker-translation
 # Independent Suspension - K and C
 
 ## 端口
+```yaml
+ports:
+- name: WhlPz
+  summary: 车轮 z 轴位移数组
+  direction: input
+- name: WhlRe
+  summary: 车轮有效半径数组
+  direction: input
+- name: WhlVz
+  summary: 车轮 z 轴速度数组
+  direction: input
+- name: WhlFx
+  summary: 车辆上的纵向车轮力数组
+  direction: input
+- name: WhlFy
+  summary: 车辆上的侧向车轮力数组
+  direction: input
+- name: WhlM
+  summary: 车轮阵列上的悬架力矩
+  direction: input
+- name: VehP
+  summary: 车辆位移阵列
+  direction: input
+- name: VehV
+  summary: 车辆速度数组
+  direction: input
+- name: StrgAng
+  summary: 转向角，可选数组
+  direction: input
+- name: Phi
+  summary: 车辆俯仰角 scalar
+  direction: input
+- name: TrckWdth
+  summary: 轮距 array
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: VehF
+  summary: 作用在车辆上的悬架力 array
+  direction: output
+- name: VehM
+  summary: 作用在车辆上的悬架力矩 array
+  direction: output
+- name: WhlF
+  summary: 车轮上的悬架力 array
+  direction: output
+- name: WhlV
+  summary: 车轮速度 array
+  direction: output
+- name: WhlAng
+  summary: 车轮外倾角、主销后倾角、前束角 array
+  direction: output
+```
 
 ### 输入
 
@@ -431,8 +485,235 @@ enable by axle, StrgEnByAxl** 向量的一个元素设置为 `1`。
   | 右前 | `WhlF(3,2)` | `1` | `2` |
   | 左后 | `WhlF(3,3)` | `2` | `1` |
   | 右后 | `WhlF(3,4)` | `2` | `2` |
-
 ## 参数
+```yaml
+parameters:
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: 用于启用车轴转向的布尔向量 [1 0]（默认）| vector
+  group: ''
+  block_parameter: StrgEnByAxl
+  values: '[1 0]（默认）| vector'
+- name: Anti-sway axle enable by axle, AntiSwayEnByAxl
+  summary: 用于启用车轴防侧倾的布尔向量 [0 0]（默认）| vector
+  group: ''
+  block_parameter: AntiSwayEnByAxl
+  values: '[0 0]（默认）| vector'
+- name: Suspension type
+  summary: 悬架类型 Independent front and rear（默认）| Independent front and twist beam rear
+  group: 悬架参数
+  block_parameter: SuspType
+  values: Independent front and rear（默认）| Independent front and twist beam rear
+- name: Drivetrain type
+  summary: 传动系统类型 FWD（默认）| RWD | AWD
+  group: 悬架参数
+  block_parameter: DrivetrainType
+  values: FWD（默认） | RWD | AWD
+- name: + Steer angle
+  summary: 正转向角 Right（默认） | Left
+  group: 悬架参数
+  block_parameter: StrPlusDirection
+  values: Right（默认） | Left
+- name: + Fx used in compliance tests
+  summary: 正纵向力 Front（默认） | Rear
+  group: 悬架参数
+  block_parameter: XPlusDirection
+  values: Front（默认） | Rear
+- name: + Fy used in compliance tests
+  summary: 正侧向力 Right（默认） | Left
+  group: 悬架参数
+  block_parameter: YPlusDirection
+  values: Right（默认） | Left
+- name: + Suspension Jounce
+  summary: 正悬架跳动 Up（默认） | Down
+  group: 悬架参数
+  block_parameter: ZPlusDirection
+  values: Up（默认） | Down
+- name: + WhlMz used in compliance tests
+  summary: 正横摆力矩 Counter-clockwise（默认） | Clockwise
+  group: 悬架参数
+  block_parameter: WhlMzDirection
+  values: Counter-clockwise（默认） | Clockwise
+- name: Shock type
+  summary: 减振器力类型 Table-based（默认） | Table-based individual | Constant
+  group: 悬架参数
+  block_parameter: ShockType
+  values: Table-based（默认） | Table-based individual | Constant
+- name: Shock force vs shock compression rate, ShckFrcVsCompRate
+  summary: 表 struct('FL',[-100. -5000;0 0;100. 5000],'FR',[-100. -5000;0 0;100. 5000],'RL',[-100. -5000;0 0;100. 5000],'RR',[-100.
+    -5000;0 0;100. 5000])（默认）
+  group: 悬架参数
+  block_parameter: ShckFrcVsCompRate
+  values: struct('FL',[-100. -5000;0 0;100. 5000],'FR',[-100. -5000;0 0;100. 5000],'RL',[-100. -5000;0 0;100. 5000],'RR',[-100.
+    -5000;0 0;100. 5000])（默认）
+- name: Motion ratios by axle, MotRatios
+  summary: 表 struct('FL',[-0.1 -0.1;0 0;0.1 0.1],'FR',[-0.1 -0.1;0 0;0.1 0.1],'RL',[-0.1 -0.1;0 0;0.1 0.1],'RR',[-0.1 -0.1;0
+    0;0.1 0.1])（默认）
+  group: 悬架参数
+  block_parameter: MotRatios
+  values: struct('FL',[-0.1 -0.1;0 0;0.1 0.1],'FR',[-0.1 -0.1;0 0;0.1 0.1],'RL',[-0.1 -0.1;0 0;0.1 0.1],'RR',[-0.1 -0.1;0
+    0;0.1 0.1])（默认）
+- name: Bump steer, BumpSteer
+  summary: 表 struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.])（默认）
+  group: 悬架参数
+  block_parameter: BumpSteer
+  values: struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.])（默认）
+- name: Bump camber, BumpCamber
+  summary: 表 struct('FL',[-0.1 1.7189;0 0;0.1 -1.7189],'FR',[-0.1 1.7189;0 0;0.1 -1.7189],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.])（默认）
+  group: 悬架参数
+  block_parameter: BumpCamber
+  values: struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.])（默认）
+- name: Bump caster, BumpCaster
+  summary: 表 struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 -11.4592;0 0;0.1 11.4592],'RR',[-0.1
+    -11.4592;0 0;0.1 11.4592])（默认）
+  group: 悬架参数
+  block_parameter: BumpCaster
+  values: struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 -11.4592;0 0;0.1 11.4592],'RR',[-0.1
+    -11.4592;0 0;0.1 11.4592])（默认）
+- name: Lateral wheel center displacement, LatWhlCtrDisp
+  summary: 表 struct('FL',[-0.1 0.02;0 0;0.1 -0.02],'FR',[-0.1 0.02;0 0;0.1 -0.02],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1 0.;0
+    0;0.1 0.])（默认）
+  group: 悬架参数
+  block_parameter: LatWhlCtrDisp
+  values: struct('FL',[-0.1 0.02;0 0;0.1 -0.02],'FR',[-0.1 0.02;0 0;0.1 -0.02],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1 0.;0 0;0.1
+    0.])（默认）
+- name: 纵向车轮中心位移，LngWhlCtrDisp
+  summary: 表 struct('FL',[-0.1 -0.002;0 0;0.1 0.002],'FR',[-0.1 -0.002;0 0;0.1 0.002],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.02;0 0;0.1 0.01])（默认）
+  group: 悬架参数
+  block_parameter: LngWhlCtrDisp
+  values: struct('FL',[-0.1 -0.002;0 0;0.1 0.002],'FR',[-0.1 -0.002;0 0;0.1 0.002],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1 0.02;0
+    0;0.1 0.01])（默认）
+- name: 法向车轮刚度，NrmlWhlRates
+  summary: 表 struct('FL',[-100. -5000;0 0;100. 5000],'FR',[-100. -5000;0 0;100. 5000],'RL',[-100. -5000;0 0;100. 5000],'RR',[-100.
+    -5000;0 0;100. 5000])（默认） | 向量
+  group: 悬架参数
+  block_parameter: NrmlWhlRates
+  values: struct('FL',[-100. -5000;0 0;100. 5000],'FR',[-100. -5000;0 0;100. 5000],'RL',[-100. -5000;0 0;100. 5000],'RR',[-100.
+    -5000;0 0;100. 5000])（默认） | 向量
+- name: 法向车轮力偏移，NrmlWhlFrcOff
+  summary: 力偏移 [0 0 0 0]（默认）
+  group: 悬架参数
+  block_parameter: NrmlWhlFrcOff
+  values: '[0 0 0 0]（默认）'
+- name: 带防倾杆的悬架侧倾刚度，RollStiffArb
+  summary: 防倾杆已启用 [800 700]（默认） | 1×2 向量
+  group: 悬架参数
+  block_parameter: RollStiffArb
+  values: '[800 700]（默认） | 1×2 向量'
+- name: 无防倾杆时的悬架侧倾刚度，RollStiffNoArb
+  summary: 未启用防倾杆 [0 0]（默认）| 1×2 向量
+  group: 悬架参数
+  block_parameter: RollStiffNoArb
+  values: '[0 0]（默认）| 1×2 向量'
+- name: 外倾角与转向角的关系，CambVsSteerAng
+  summary: 表格 struct('FL',[-10. -1.;0 0;10. 1.],'FR',[-10. 1.;0 0;10. -1.],'RL',[-10. -1.;0 0;10. 1.],'RR',[-10. 1.;0 0;10.
+    -1.])（默认）
+  group: 悬架参数
+  block_parameter: CambVsSteerAng
+  values: struct('FL',[-10. -1.;0 0;10. 1.],'FR',[-10. 1.;0 0;10. -1.],'RL',[-10. -1.;0 0;10. 1.],'RR',[-10. 1.;0 0;10. -1.])（默认）
+- name: 主销后倾角与转向角的关系，CastVsSteerAng
+  summary: 表格 struct('FL',[-10. -1.;0 0;10. 1.],'FR',[-10. 1.;0 0;10. -1.],'RL',[-10. -1.;0 0;10. 1.],'RR',[-10. 1.;0 0;10.
+    -1.])（默认）
+  group: 悬架参数
+  block_parameter: CastVsSteerAng
+  values: struct('FL',[-10. -1.;0 0;10. 1.],'FR',[-10. 1.;0 0;10. -1.],'RL',[-10. -1.;0 0;10. 1.],'RR',[-10. 1.;0 0;10. -1.])（默认）
+- name: 纵向转向柔度，LngSteerCompl
+  summary: 表格 struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.]))（默认）
+  group: 悬架参数
+  block_parameter: LngSteerCompl
+  values: struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.]))（默认）
+- name: 纵向外倾柔度，LngCambCompl
+  summary: 表格 struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.]))（默认）
+  group: 悬架参数
+  block_parameter: LngCambCompl
+  values: struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.]))（默认值）
+- name: Longitudinal caster compliance, LngCastCompl
+  summary: 表 struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.]))（默认值）
+  group: 悬架参数
+  block_parameter: LngCastCompl
+  values: struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.]))（默认值）
+- name: Longitudinal wheel center compliance, LngWhlCtrCompl
+  summary: 表 struct('NegFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]),'PosFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]))（默认值）
+  group: 悬架参数
+  block_parameter: LngWhlCtrCompl
+  values: struct('NegFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]),'PosFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]))（默认值）
+- name: Lateral wheel center compliance, LatWhlCtrComplLng
+  summary: 表 struct('NegFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]),'PosFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]))（默认值）
+  group: 悬架参数
+  block_parameter: LatWhlCtrComplLng
+  values: struct('NegFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]),'PosFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]))（默认值）
+- name: Lateral steer compliance, LatSteerCompl
+  summary: 表 struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2. -1.])（默认值）
+  group: 悬架参数
+  block_parameter: LatSteerCompl
+  values: struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2. -1.])（默认值）
+- name: 横向外倾柔度，LatCambCompl
+  summary: 表 struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2. -1.])（默认值）
+  group: 悬架参数
+  block_parameter: LatCambCompl
+  values: struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2. -1.])（默认值）
+- name: 来自横向源的横向车轮中心柔度，LatWhlCtrComplLat
+  summary: 表 struct('FL',[-2. -5.;0 0;2. 5.],'FR',[-2. 5.;0 0;2. -5.],'RL',[-2. -5.;0 0;2. 5.],'RR',[-2. 5.;0 0;2. -5.])（默认值）
+  group: 悬架参数
+  block_parameter: LatWhlCtrComplLat
+  values: struct('FL',[-2. -5.;0 0;2. 5.],'FR',[-2. 5.;0 0;2. -5.],'RL',[-2. -5.;0 0;2. 5.],'RR',[-2. 5.;0 0;2. -5.])（默认值）
+- name: 回正力矩转向柔度，AlgnTrqSteerCompl
+  summary: 表 struct('FL',[-0.2 -1.;0 0;0.2 1.],'FR',[-0.2 1.;0 0;0.2 -1.],'RL',[-0.2 -1.;0 0;0.2 1.],'RR',[-0.2 1.;0 0;0.2
+    -1.])（默认值）
+  group: 悬架参数
+  block_parameter: AlgnTrqSteerCompl
+  values: struct('FL',[-0.2 -1.;0 0;0.2 1.],'FR',[-0.2 1.;0 0;0.2 -1.],'RL',[-0.2 -1.;0 0;0.2 1.],'RR',[-0.2 1.;0 0;0.2 -1.])（默认值）
+- name: 回正力矩外倾柔度，AlgnTrqCambCompl
+  summary: 表 struct('FL',[-0.2 -1.;0 0;0.2 1.],'FR',[-0.2 1.;0 0;0.2 -1.],'RL',[-0.2 -1.;0 0;0.2 1.],'RR',[-0.2 1.;0 0;0.2
+    -1.])（默认值）
+  group: 悬架参数
+  block_parameter: AlgnTrqCambCompl
+  values: struct('FL',[-0.2 -1.;0 0;0.2 1.],'FR',[-0.2 1.;0 0;0.2 -1.],'RL',[-0.2 -1.;0 0;0.2 1.],'RR',[-0.2 1.;0 0;0.2 -1.])（默认值）
+- name: 前束，StatToe
+  summary: 车轮前束角 [0 0 0 0]（默认值） | 1×4 向量
+  group: 悬架参数
+  block_parameter: StatToe
+  values: '[0 0 0 0]（默认值） | 1×4 向量'
+- name: Camber, StatCamber
+  summary: 车轮外倾角 [0 0 0 0]（默认）| 1×4 向量
+  group: 悬架参数
+  block_parameter: StatCamber
+  values: '[0 0 0 0]（默认）| 1×4 向量'
+- name: Caster, StatCaster
+  summary: 车轮主销后倾角 [0 0 0 0]（默认）| 1×4 向量
+  group: 悬架参数
+  block_parameter: StatCaster
+  values: '[0 0 0 0]（默认）| 1×4 向量'
+- name: Static loaded radius of wheels, StatLdWhlR
+  summary: 车轮半径 [0.3 0.3 0.3 0.3]（默认）| 1×4 向量
+  group: 悬架参数
+  block_parameter: StatLdWhlR
+  values: '[0.3 0.3 0.3 0.3]（默认）| 1×4 向量'
+```
 
 ### **Steered axle enable by axle, StrgEnByAxl** — 用于启用车轴转向的布尔向量 `[1 0]`（默认）| `vector`
 
@@ -1126,7 +1407,6 @@ Bump caster，指定为结构体，单位为 deg/m。
 | **Parameter:** | `StatLdWhlR` |
 | **值**：| `[0.3 0.3 0.3 0.3]`（默认）| `1`×`4` 向量 |
 | **Data Types:** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Suspension

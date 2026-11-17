@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Magnitude FFT
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output
+  summary: 幅度 FFT 输出向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -61,8 +72,25 @@ y(:,k) = abs(fft(u,nfft)) 	% 1 ≤ k ≤ N
 ```
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 输出类型 Magnitude squared（默认）| Magnitude
+  group: ''
+- name: FFT implementation
+  summary: FFT 实现 Auto（默认）| Radix-2 | FFTW
+  group: ''
+- name: Inherit FFT length from input dimensions
+  summary: 从输入帧大小继承 FFT 长度 off（默认）| on
+  group: ''
+- name: FFT length
+  summary: FFT 长度 256（默认）| 正整数
+  group: ''
+- name: Wrap input data when FFT length is shorter than input length
+  summary: 选择环绕或截断输入 on（默认）| off
+  group: ''
+```
 
 ### **Output** — 输出类型 `Magnitude squared`（默认）| `Magnitude`
 
@@ -95,7 +123,6 @@ y(:,k) = abs(fft(u,nfft)) 	% 1 ≤ k ≤ N
 根据 **FFT length** 选择环绕或截断输入。
 
 当您选择此参数且 **FFT length** 短于输入长度时，在 FFT 操作之前会进行模长数据环绕。当您清除此参数时，该模块在 FFT 操作之前将输入数据截断为 FFT 长度。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation DSP System Toolbox / Transforms / Power Spectrum Estimation

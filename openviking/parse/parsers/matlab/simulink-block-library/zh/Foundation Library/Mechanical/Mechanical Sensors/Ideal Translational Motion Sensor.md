@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Ideal Translational Motion Sensor
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 加速度，m/s^2 物理信号
+  direction: output
+- name: V
+  summary: 速度，m/s 物理信号
+  direction: output
+- name: P
+  summary: 位置，m 物理信号
+  direction: output
+- name: R
+  summary: 杆（正探头）机械平移
+  direction: output
+- name: C
+  summary: 壳体（参考探头）机械平移
+  direction: output
+```
 
 ### 输出
 
@@ -54,8 +72,25 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请将 **Measurement reference** 参数设置为 `Difference`。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement reference
+  summary: 选择执行绝对测量还是相对测量 Difference（默认）| Absolute
+  group: ''
+- name: Acceleration
+  summary: 控制输出端口可见性以测量加速度 关（默认）| 开
+  group: ''
+- name: Velocity
+  summary: 控制输出端口可见性以测量速度 开（默认）| 关
+  group: ''
+- name: Position
+  summary: 控制输出端口可见性以测量位置 开（默认）| 关
+  group: ''
+- name: Initial position
+  summary: 传感器初始偏移 0 m（默认）
+  group: ''
+```
 
 ### **Measurement reference** — 选择执行绝对测量还是相对测量 `Difference`（默认）| `Absolute`
 
@@ -83,7 +118,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请选中 **Position** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Mechanical Sensors

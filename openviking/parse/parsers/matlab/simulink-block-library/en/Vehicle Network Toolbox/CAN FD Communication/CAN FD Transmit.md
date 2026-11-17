@@ -14,6 +14,13 @@ language: en
 # CAN FD Transmit
 
 ## Ports
+```yaml
+ports:
+- name: CAN Msg
+  summary: CAN FD messages to transmit CAN_FD_MESSAGE_BUS
+  direction: input
+  data_types: CAN_FD_MESSAGE_BUS
+```
 
 ### Input
 
@@ -24,8 +31,36 @@ block, input as a Simulink signal bus of type
 `CAN_FD_MESSAGE_BUS`.
 
 **Data Types:** `CAN_FD_MESSAGE_BUS`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: CAN FD device and channel list option
+  group: ''
+  block_parameter: Device
+  type: character vector, string
+- name: On data change
+  summary: Enable event-based transmission when data changes off (default) | on
+  group: ''
+  block_parameter: EnableEventTransmit
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Periodic
+  summary: Enable periodic transmission off (default) | on
+  group: ''
+  block_parameter: EnablePerioicTransmit
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 'Transmit Options: Message period (in seconds)'
+  summary: Period of message transmission rate 1.000 (default) | positive numeric scalar
+  group: ''
+  block_parameter: MessagePeriod
+  type: character vector, string
+  values: double
+  default: '''1.000'''
+```
 
 **Tip**
 
@@ -109,7 +144,6 @@ seconds.
 | **Type:** character vector, string |
 | **Values:** double |
 | **Default:** `'1.000'` |
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN FD Communication

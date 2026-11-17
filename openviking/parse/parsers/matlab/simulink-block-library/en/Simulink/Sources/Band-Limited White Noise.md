@@ -14,6 +14,13 @@ language: en
 # Band-Limited White Noise
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Normally distributed random numbers scalar | vector | matrix | N-D array
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -23,8 +30,38 @@ Normally distributed random numbers specified as a scalar, vector,
 matrix, or N-D array.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Noise power
+  summary: Height of PSD of white noise [0.1] (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: Cov
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''[0.1]'''
+- name: Sample time
+  summary: Correlation time of noise 0.1 (default) | scalar | vector
+  group: ''
+  block_parameter: Ts
+  type: character vector
+  values: scalar | vector
+  default: '''0.1'''
+- name: Seed
+  summary: Starting seed [23341] (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: seed
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''[23341]'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vector parameters as 1-D on (default) | off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Noise power** — Height of PSD of white noise `[0.1]` (default) | scalar | vector | matrix | N-D array
 
@@ -82,7 +119,6 @@ Otherwise, output a 2-D array one of whose dimensions is
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Sources

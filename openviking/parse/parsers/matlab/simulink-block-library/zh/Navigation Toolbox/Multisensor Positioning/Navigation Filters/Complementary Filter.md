@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Complementary Filter
 
 ## 端口
+```yaml
+ports:
+- name: Accel
+  summary: 传感器机体坐标系下的加速度计读数 (m/s2) 矩阵
+  direction: input
+  data_types: single | double
+- name: Gyro
+  summary: 传感器机体坐标系下的陀螺仪读数 (rad/s) 矩阵
+  direction: input
+  data_types: single | double
+- name: Mag
+  summary: 传感器机体坐标系下的磁力计读数 (µT) 矩阵
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: 传感器机体坐标系相对于导航坐标系的姿态 矩阵 | 数组
+  direction: output
+  data_types: single | double
+- name: Angular Velocity
+  summary: 传感器机体坐标系下的角速度 (rad/s) 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -58,8 +81,28 @@ chinese_source: worker-translation
 输入样本数 *N* 决定输出大小 *M*。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Reference frame
+  summary: 导航参考坐标系 NED（默认）| ENU
+  group: ''
+- name: Orientation format
+  summary: 姿态输出格式 quaternion（默认）| Rotation matrix
+  group: ''
+- name: Accelerometer gain
+  summary: 加速度计增益 0.01（默认）| 范围 [0, 1] 内的实标量
+  group: ''
+- name: Enable Magnetometer input
+  summary: 接受磁力计读数输入 on（默认）| off
+  group: ''
+- name: Magnetometer gain
+  summary: 磁力计增益 0.01（默认）| 范围 [0, 1] 内的实标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted Execution（默认）| Code Generation
+  group: ''
+```
 
 ### **Reference frame** — 导航参考坐标系 `NED`（默认）| `ENU`
 
@@ -100,7 +143,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次在此模式下运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，Simulink 会在后续仿真中复用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Navigation Filters Navigation Toolbox / Multisensor Positioning / Navigation Filters

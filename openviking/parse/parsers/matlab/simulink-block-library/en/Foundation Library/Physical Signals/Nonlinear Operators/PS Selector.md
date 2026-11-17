@@ -14,6 +14,15 @@ language: en
 # PS Selector
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -33,8 +42,13 @@ Output physical signal containing the selected elements of the input signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Indices
+  summary: Indices of selected signal elements 1 (default) | scalar or vector of integers greater than 1
+  group: ''
+```
 
 ### **Indices** — Indices of selected signal elements `1` (default) | scalar or vector of integers greater than 1
 
@@ -42,7 +56,6 @@ Select elements of the input signal by specifying their indices. The parameter v
 can be a scalar or vector of integers ranging from 1 to the number of elements in the
 input signal. The indices can be in any order, to enable construction of permutations
 and repeats.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Nonlinear Operators

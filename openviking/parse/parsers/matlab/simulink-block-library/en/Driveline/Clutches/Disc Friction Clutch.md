@@ -14,6 +14,21 @@ language: en
 # Disc Friction Clutch
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Pressure physical signal
+  direction: input
+- name: B
+  summary: Base mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -48,8 +63,89 @@ coefficients` or `Temperature and
 velocity-dependent friction coefficients`. For more
 information, see Friction Parameter Dependencies
 and Friction model.
-
 ## Parameters
+```yaml
+parameters:
+- name: Geometry model
+  summary: Geometry parameterization method Define effective radius (default) | Define annular region
+  group: Geometry
+- name: Effective torque radius
+  summary: Moment arm radius 130mm (default) | positive scalar
+  group: Geometry
+- name: Friction surface outside diameter
+  summary: Friction surface outer diameter 150 mm (default) | positive scalar
+  group: Geometry
+- name: Friction surface inside diameter
+  summary: Friction surface inner diameter 100 mm (default) | nonnegative scalar
+  group: Geometry
+- name: Number of friction surfaces
+  summary: number of friction surfaces 4 (default) | positive scalar integer
+  group: Geometry
+- name: Engagement piston area
+  summary: Pressure application area 0.001 m^2 (default) | positive scalar
+  group: Geometry
+- name: Directionality
+  summary: Allowable slip directions Bidirectional (default) | Unidirectional
+  group: Geometry
+- name: Friction model
+  summary: Friction model Fixed kinetic friction coefficient (default) | Velocity-dependent kinetic friction coefficient |
+    Temperature-dependent friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: Friction
+- name: Relative velocity vector
+  summary: Relative velocity [0, 100, 1000] rad/s (default) | vector
+  group: Friction
+- name: Temperature vector
+  summary: Temperature [280, 300, 320] K (default) | increasing vector
+  group: Friction
+- name: Static friction coefficient
+  summary: Static friction coefficient 0.35 (default) | positive scalar
+  group: Friction
+- name: Static friction coefficient vector
+  summary: Static friction coefficient [.4, .38, .36] (default) | vector
+  group: Friction
+- name: Kinetic friction coefficient
+  summary: Kinetic friction coefficient 0.3 (default) | positive scalar
+  group: Friction
+- name: Kinetic friction coefficient vector
+  summary: Kinetic friction coefficient [.3, .22, .19] (default) | [.3, .28, .25] | positive vector
+  group: Friction
+- name: Kinetic friction coefficient matrix
+  summary: Kinetic friction coefficient [.34, .32, .3; .3, .28, .25; .25, .2, .15] (default) | positive matrix
+  group: Friction
+- name: Friction coefficient interpolation method
+  summary: Extrapolation method Linear (default) | Smooth
+  group: Friction
+- name: Friction coefficient extrapolation method
+  summary: Interpolation method Linear (default) | Nearest | Error
+  group: Friction
+- name: De-rating factor
+  summary: De-rating factod 1 (default) | positive scalar
+  group: Friction
+- name: Clutch velocity tolerance
+  summary: Relative velocity locking threshold 0.001 rad/s (default) | nonnegative scalar
+  group: Friction
+- name: Engagement threshold pressure
+  summary: Normal contact force threshold 100 Pa (default) | nonnegative scalar
+  group: Friction
+- name: Viscous friction coefficient
+  summary: Viscous friction 0 N*m/(rad/s) (default) | nonnegative scalar
+  group: Viscous Losses
+- name: Initial state
+  summary: Initial clutch state Unlocked (default) | Locked
+  group: Initial Conditions
+- name: Friction fault
+  summary: Option to model clutch failure Add fault
+  group: Faults
+- name: Behavior when faulted
+  summary: Clutch fault response Cannot transmit power (default) | Cannot unlock
+  group: Faults
+- name: Thermal mass
+  summary: Thermal mass 50 kJ/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Geometry
 
@@ -444,7 +540,6 @@ This parameter is only visible when, in the **Friction** settings, the **Frictio
 friction coefficients` or `Temperature
 and velocity-dependent friction coefficients`. For
 more information, see Friction Parameter Dependencies.
-
 ## Libraries
 
 Simscape / Driveline / Clutches

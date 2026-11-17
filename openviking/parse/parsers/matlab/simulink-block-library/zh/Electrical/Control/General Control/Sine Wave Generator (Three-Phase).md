@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Sine Wave Generator (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: mag
+  summary: 生成的三相正弦波幅值 标量
+  direction: input
+- name: ang
+  summary: 生成的三相正弦波的相移，deg 标量
+  direction: input
+- name: freq
+  summary: 生成的三相正弦波的频率，Hz 标量
+  direction: input
+- name: abc
+  summary: 三相正弦波 向量
+  direction: output
+- name: wt
+  summary: 所有三相正弦波的角度，rad 向量
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +57,13 @@ chinese_source: worker-translation
 ### **wt** — 所有三相正弦波的角度，rad 向量
 
 正弦波所有三相的角度，以 rad 为单位的 Simulink 信号向量形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| `0` | 正标量
 
@@ -49,7 +72,6 @@ chinese_source: worker-translation
 对于继承的离散时间操作，将此参数设置为 `-1`。对于离散时间操作，将此参数设置为正整数。对于连续时间操作，将此参数设置为 `0`。
 
 如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

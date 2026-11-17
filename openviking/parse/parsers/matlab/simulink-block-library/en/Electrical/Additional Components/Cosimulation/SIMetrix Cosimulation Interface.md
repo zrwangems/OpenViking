@@ -14,6 +14,33 @@ language: en
 # SIMetrix Cosimulation Interface
 
 ## Ports
+```yaml
+ports:
+- name: Uk
+  summary: Input voltage or current scalar | vector
+  direction: input
+- name: Uk
+  summary: Output voltage or current scalar | vector
+  direction: output
+- name: UkI
+  summary: Single-ended terminal for receiving current values electrical | electrical array-of-nodes
+  direction: conserving
+- name: UkI+
+  summary: Positive terminal for receiving current values electrical | electrical array-of-nodes
+  direction: conserving
+- name: UkI-
+  summary: Negative terminal for receiving current values electrical | electrical array-of-nodes
+  direction: conserving
+- name: UkV
+  summary: Single-ended terminal for receiving voltage values electrical | electrical array-of-nodes
+  direction: conserving
+- name: UkV+
+  summary: Positive terminal for receiving voltage values electrical | electrical array-of-nodes
+  direction: conserving
+- name: UkV-
+  summary: Negative terminal for receiving voltage values electrical | electrical array-of-nodes
+  direction: conserving
+```
 
 ### Input
 
@@ -174,8 +201,22 @@ To enable this port, in the Cosimulation Interface in SIMetrix, set the
 **Configuration** parameter to `Combined Input Output
 V/I or I/V` and set **Output Connections** to
 `Differential voltage`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Netlist file path
+  summary: File path of SPICE netlist net.net (default) | text
+  group: ''
+- name: Browse
+  summary: Select netlist using system browser button
+  group: ''
+- name: Build I/O
+  summary: Build input/output device button
+  group: ''
+- name: Sample time (s)
+  summary: Sample time 2e-5 (default) | positive scalar
+  group: ''
+```
 
 ### **Netlist file path** — File path of SPICE netlist `net.net` (default) | text
 
@@ -196,7 +237,6 @@ connections between the SIMetrix Cosimulation Interface block and your SIMetrix 
 Sample time, in seconds. This value describes the fixed rate at which SIMetrix
 provides output to Simulink. You must set this parameter to a value that it small enough
 for Simulink to capture the important dynamics from the SIMetrix simulation.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / Cosimulation

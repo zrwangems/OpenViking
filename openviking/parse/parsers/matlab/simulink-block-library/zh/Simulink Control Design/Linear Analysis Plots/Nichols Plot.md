@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Nichols Plot
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 下表汇总了 Nichols Plot 模块参数，可通过模块参数对话框访问。
 
@@ -1326,7 +1331,6 @@ Design Optimization™ 软件时，此选项才可用。
 
 - Design Optimization to Meet Step Response Requirements (GUI) (Simulink Design Optimization)
 - Design Optimization to Meet Time-Domain and Frequency-Domain Requirements (GUI) (Simulink Design Optimization)
-
 ## 所属库
 
 R2025b 中未记录。

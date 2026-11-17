@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # PS Harmonic Estimator (Real, Imaginary)
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 周期信号，无类型物理信号
+  direction: input
+- name: Re
+  summary: 谐波信号的实部，无类型物理信号
+  direction: output
+- name: Im
+  summary: 谐波信号的虚部，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -33,8 +45,16 @@ chinese_source: worker-translation
 ### **Im** — 谐波信号的虚部，无类型物理信号
 
 对应于所选谐波虚部的输出物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: 基频
+  summary: 周期信号频率 60 Hz（默认值）
+  group: ''
+- name: 谐波次数
+  summary: 谐波次数 1（默认值）
+  group: ''
+```
 
 ### **基频** — 周期信号频率 `60 Hz`（默认值）
 
@@ -43,7 +63,6 @@ chinese_source: worker-translation
 ### **谐波次数** — 谐波次数 `1`（默认值）
 
 周期信号中的谐波次数。该值必须为正整数。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Periodic Operators

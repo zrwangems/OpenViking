@@ -14,6 +14,15 @@ language: en
 # EtherCAT Get Scanbus Error Data
 
 ## Ports
+```yaml
+ports:
+- name: Values
+  summary: Input from EtherCAT Get Notifications block [Length 20 * Notification]
+  direction: input
+- name: Error
+  summary: Indicates scanbus error false (default) | true
+  direction: output
+```
 
 ### Input
 
@@ -27,11 +36,12 @@ block.
 
 One boolean output that is true for one cycle following a notification for a
 scanbus error.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

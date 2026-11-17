@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Perfect Insulator
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 零热流热端口
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 零热流热端口
 
 零热流的热守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Elements

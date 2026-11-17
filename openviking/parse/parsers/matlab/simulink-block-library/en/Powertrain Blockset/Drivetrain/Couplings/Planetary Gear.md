@@ -14,6 +14,39 @@ language: en
 # Planetary Gear
 
 ## Ports
+```yaml
+ports:
+- name: SunTrq
+  summary: Sun gear applied torque scalar
+  direction: input
+- name: CarrTrq
+  summary: Carrier gear applied torque scalar
+  direction: input
+- name: RingTrq
+  summary: Ring gear applied torque scalar
+  direction: input
+- name: C
+  summary: Carrier gear angular speed and torque two-way connector port
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: SunSpd
+  summary: Sun gear angular speed scalar
+  direction: output
+- name: CarrSpd
+  summary: Carrier gear angular speed scalar
+  direction: output
+- name: RingSpd
+  summary: Ring gear angular speed scalar
+  direction: output
+- name: S
+  summary: Sun gear angular speed and torque two-way connector port
+  direction: output
+- name: R
+  summary: Ring gear angular speed and torque two-way connector port
+  direction: output
+```
 
 ### Input
 
@@ -127,8 +160,75 @@ in rad/s. Ring gear applied torque,
 
 To create this port, for **Port Configuration**,
 select `Two-way connection`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port Configuration
+  summary: Specify configuration Simulink (default) | Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink (default) | Two-way connection
+- name: Sun to planet ratio, Nsp
+  summary: Ratio 30/23 (default) | positive scalar
+  group: ''
+  block_parameter: Nsp
+  values: 30/23 (default) | positive scalar
+- name: Sun to ring ratio, Nsr
+  summary: Ratio 30/78 (default) | positive scalar
+  group: ''
+  block_parameter: Nsr
+  values: 30/78 (default) | positive scalar
+- name: Sun inertia, Js
+  summary: Inertia .003 (default) | positive scalar
+  group: ''
+  block_parameter: Js
+  values: .003 (default) | positive scalar
+- name: Planet inertia, Jp
+  summary: Inertia .001 (default) | positive scalar
+  group: ''
+  block_parameter: Jp
+  values: .001 (default) | positive scalar
+- name: Ring inertia, Jr
+  summary: Inertia .01 (default) | positive scalar
+  group: ''
+  block_parameter: Jr
+  values: .01 (default) | positive scalar
+- name: Carrier inertia, Jc
+  summary: Inertia .002 (default) | positive scalar
+  group: ''
+  block_parameter: Jc
+  values: .002 (default) | positive scalar
+- name: Sun viscous damping, bs
+  summary: Damping .001 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: bs
+  values: .001 (default) | scalar greater than or equal to 0
+- name: Ring viscous damping, br
+  summary: Damping .001 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: br
+  values: .001 (default) | scalar greater than or equal to 0
+- name: Planet viscous damping, bp
+  summary: Damping .001 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: bp
+  values: .001 (default) | scalar greater than or equal to 0
+- name: Carrier viscous damping, bc
+  summary: Damping .001 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: bc
+  values: .001 (default) | scalar greater than or equal to 0
+- name: Initial sun velocity, ws_o
+  summary: Angular speed 0 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: ws_o
+  values: 0 (default) | scalar greater than or equal to 0
+- name: Initial carrier velocity, wc_o
+  summary: Angular speed 0 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: wc_o
+  values: 0 (default) | scalar greater than or equal to 0
+```
 
 #### Block Options
 
@@ -390,7 +490,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `wc_o` |
 | **Values:** | `0` (default) | scalar greater than or equal to 0 |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Drivetrain / Couplings

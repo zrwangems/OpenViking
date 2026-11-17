@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Continuous Time Delta Sigma Modulator
 
 ## 端口
+```yaml
+ports:
+- name: input
+  summary: 模拟输入信号 标量
+  direction: input
+  data_types: double
+- name: reset
+  summary: 复位 delta-sigma 调制器 标量
+  direction: input
+  data_types: double
+- name: feedback
+  summary: 来自下一级的输出 标量
+  direction: input
+  data_types: double
+- name: dsmOut
+  summary: 数字输出信号 标量
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: filterOut
+  summary: 环路滤波器输出 标量
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: quantOut
+  summary: 量化器输出 标量
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -60,8 +87,140 @@ delta-sigma 调制器内部量化器的输出，以标量形式返回。如果�
 使用此端口可构建级联 DSM 结构，例如 MASH 和 S-MASH。
 
 **数据类型：** `fixed point` | `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Delta Sigma Modulator architecture
+  summary: delta-sigma 调制器的架构 CIFB（默认）| CIFF
+  group: ''
+  block_parameter: dsmArchitecture
+  type: 字符向量
+  values: CIFB | CIFF
+- name: Delta Sigma Modulator order
+  summary: delta-sigma 调制器的阶数 2nd order（默认）| 1st order | 3rd order | 4th order
+  group: ''
+  block_parameter: dsmOrder
+  type: 字符向量
+  values: 1st order | 2nd order | 3rd order | 4th order
+- name: System bandwidth (Hz)
+  summary: delta-sigma 调制器系统的带宽 1000（默认）| 非负实数标量
+  group: 输入参数
+  block_parameter: BandWidth
+  type: 字符向量
+  values: 非负实数标量
+- name: OSR
+  summary: delta-sigma 调制器采样率与奈奎斯特速率之比 64（默认）| 非负实数标量
+  group: 输入参数
+  block_parameter: OSR
+  type: 字符向量
+  values: 非负实数标量
+- name: Sampling frequency (Hz)
+  summary: delta-sigma 调制器的采样频率 128e3（默认）| 正实数标量
+  group: 输入参数
+  block_parameter: SamplingFrequency
+  type: 字符向量
+  values: 正实数标量
+- name: Quantizer levels
+  summary: delta-sigma 调制器中的量化器级数 2（默认）| 正实数整数
+  group: 输入参数
+  block_parameter: NumberLevels
+  type: 字符向量
+  values: 正实数标量
+- name: Quantizer output
+  summary: 量化器输出范围 [-1,1]（默认）| 实值向量
+  group: 输入参数
+  block_parameter: QuantizerOutput
+  type: 字符向量
+  values: 实值向量
+- name: Use custom coefficient values
+  summary: 使用系数 'a'、'g'、'b' 和 'c' 的自定义值的选项 off（默认）| on
+  group: 输入参数
+- name: Coefficient 'a'
+  summary: 来自/去往量化器的反馈/前馈系数 [0.5714 0.1601]（默认）| 实值向量
+  group: 输入参数
+  block_parameter: a
+  type: 字符向量
+  values: 实值向量
+- name: Coefficient 'g'
+  summary: 谐振器系数 [0.0000]（默认）| 实值向量
+  group: 输入参数
+  block_parameter: g
+  type: 字符向量
+  values: 实值向量
+- name: Coefficient 'b'
+  summary: 从调制器输入到每个积分器的馈入系数 [1.000 0.5714 0.1601]（默认）| 实值向量
+  group: 输入参数
+  block_parameter: b
+  type: 字符向量
+  values: 实值向量
+- name: Coefficient 'c'
+  summary: 积分器级间系数 [1.0000 1.0000]（默认）| 实值向量
+  group: 输入参数
+  block_parameter: c
+  type: 字符向量
+  values: 实值向量
+- name: Integrator opamp gain
+  summary: 运算放大器的开环增益 Inf（默认）| 正实数标量
+  group: Impairment
+  block_parameter: OLgain
+  type: 字符向量
+  values: 正实数标量
+- name: Enable Noise Impairment
+  summary: 启用 delta-sigma 调制器 ADC 中的噪声计算 off（默认）| on
+  group: Impairment
+- name: Thermal noise value
+  summary: 热噪声密度 200e-6（默认）| 实数标量
+  group: Impairment
+  block_parameter: thermalNoiseValue
+  type: 字符向量
+  values: 实数标量
+  default: '0.125'
+- name: 参考电阻 (ohm)
+  summary: 用于功率计算的参考电阻 50（默认）| 正实数标量
+  group: Impairment
+  block_parameter: refResistance
+  type: 字符向量
+  values: 正实数标量
+  default: '50'
+- name: 1/f 转角频率 (Hz)
+  summary: 闪烁噪声的转角频率 1000（默认）| 正实数标量
+  group: Impairment
+  block_parameter: fcorner
+  type: 字符向量
+  values: 正实数标量
+  default: '1000'
+- name: NTF 零点优化标志
+  summary: 优化 NTF 中零点的方法 2（默认）| 0 | 1
+  group: 高级
+  block_parameter: ntfOptim
+  type: 字符向量
+  values: 0 | 1 | 2
+  default: '2'
+- name: 调制器通带
+  summary: 调制器通带的类型 Lowpass（默认）| Bandpass
+  group: 高级
+  block_parameter: passbandType
+  type: 字符向量
+  values: Lowpass | Bandpass
+  default: Lowpass
+- name: 中心频率
+  summary: 调制器的中心频率 0（默认）| 范围 [0 0.5] 内的标量
+  group: 高级
+  block_parameter: centerFrequency
+  type: 字符向量
+  values: 范围 [0 0.5] 内的标量
+  default: '0'
+- name: 使用自定义 H_inf 值
+  summary: 使用自定义 H_inf 值的选项 off（默认）| on
+  group: 高级
+- name: 最大带外 H_inf
+  summary: NTF 的最大带外增益 1.4（默认）| 正实数标量
+  group: 高级
+  block_parameter: Hinf
+  type: 字符向量
+  values: 正实数标量
+  default: '1.4'
+```
 
 ### **Delta Sigma Modulator architecture** — delta-sigma 调制器的架构 `CIFB`（默认）| `CIFF`
 
@@ -378,7 +537,6 @@ Lee 法则指出，*H\_inf* < 2 时可得到使用二值量化器的稳定调制
 **注意**
 
 您需要 Control System Toolbox™ 许可证才能使用 **Advanced** 选项卡中的参数。
-
 ## 所属库
 
 Mixed-Signal Blockset / ADC / Building Blocks

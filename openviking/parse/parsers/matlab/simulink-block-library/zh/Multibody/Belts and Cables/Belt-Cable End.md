@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Belt-Cable End
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 局部参考坐标系 frame
+  direction: unspecified
+- name: E
+  summary: 绳索连接点 belt-cable
+  direction: unspecified
+```
 
 ### 坐标系
 
@@ -26,11 +35,12 @@ chinese_source: worker-translation
 ### **E** — 绳索连接点 belt-cable
 
 滑轮系统绳索的终止点。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Multibody / Belts and Cables

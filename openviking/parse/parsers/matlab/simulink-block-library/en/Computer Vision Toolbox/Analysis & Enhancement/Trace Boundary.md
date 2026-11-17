@@ -14,6 +14,21 @@ language: en
 # Trace Boundary
 
 ## Ports
+```yaml
+ports:
+- name: BW
+  summary: Input binary image matrix
+  direction: input
+  data_types: Boolean
+- name: Start Pt
+  summary: Coordinate of boundary starting point two-element vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Pts
+  summary: Coordinates of boundary points *M*-by-2 matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -44,8 +59,22 @@ value specified by **Maximum number of boundary pixels**
 parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Connectivity
+  summary: Type of pixel connectivity 8 (default) | 4
+  group: ''
+- name: Initial search direction
+  summary: Type of initial search direction North (default) | East | South | West | Northeast | ...
+  group: ''
+- name: Trace direction
+  summary: Boundary trace direction Clockwise (default) | Counterclockwise
+  group: ''
+- name: Maximum number of boundary pixels
+  summary: Maximum number of boundary pixels 500 (default) | scalar
+  group: ''
+```
 
 ### **Connectivity** — Type of pixel connectivity `8` (default) | `4`
 
@@ -91,7 +120,6 @@ or `Counterclockwise`.
 Specify the maximum number of boundary pixels for the starting point as a scalar.
 The number of rows at **Pts** output port must be less than or equal to
 this value.
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

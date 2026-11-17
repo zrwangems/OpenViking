@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # UDP Send
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: UDP 数据包 标量（默认）| 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -23,8 +30,25 @@ chinese_source: worker-translation
 UDP 数据包，指定为数据向量，传输到 IP 网络端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Remote IP address ('255.255.255.255' for broadcast)
+  summary: 接受 UDP 数据包的 IP 地址 '255.255.255.255'（默认）| IP 地址 | 字符串
+  group: ''
+- name: Remote IP port
+  summary: 远程 IP 端口号 25000（默认）| 范围 [1, 65535] 内的标量
+  group: ''
+- name: Local IP port source
+  summary: 本地 IP 端口的来源 Automatically determine（默认）| Specify via dialog
+  group: ''
+- name: Local IP port
+  summary: 本地 IP 端口号 -1（默认）| 范围 [1, 65535] 内的标量
+  group: ''
+- name: Send buffer size (bytes)
+  summary: 发送 UDP 数据包的缓冲区大小 8192（默认）| 范围 [1, 67108864] 内的标量
+  group: ''
+```
 
 ### **Remote IP address ('255.255.255.255' for broadcast)** — 接受 UDP 数据包的 IP 地址 '255.255.255.255'（默认）| IP 地址 | 字符串
 
@@ -59,7 +83,6 @@ sudo matlab
 ### **Send buffer size (bytes)** — 发送 UDP 数据包的缓冲区大小 8192（默认）| 范围 [1, 67108864] 内的标量
 
 指定发送 UDP 数据包的缓冲区大小（以字节为单位）。使缓冲区足够大，以避免缓冲区溢出导致的数据丢失。
-
 ## 所属库
 
 Embedded Coder / Embedded Targets / Host Communication

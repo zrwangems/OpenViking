@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Modular Multilevel Converter Leg
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 物理信号子模块门极控制向量
+  direction: input
+- name: ref
+  summary: 物理信号子模块参考波形向量
+  direction: input
+- name: vc
+  summary: 物理信号电容电压向量
+  direction: output
+- name: +
+  summary: 正极端子电气
+  direction: output
+- name: '-'
+  summary: 负极端子电气
+  direction: output
+- name: a
+  summary: 相 *a* 端子电气
+  direction: output
+```
 
 ### 输入
 
@@ -59,8 +80,112 @@ chinese_source: worker-translation
 ### **a** — 相 *a* 端子电气
 
 与模块化多电平换流器桥臂单相端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Converter topology
+  summary: 换流器拓扑 Half-bridge（默认）| Full-bridge
+  group: 主
+- name: Fidelity level
+  summary: 模型保真度 Detailed model - switching devices（默认）| Equivalent model - PWM-controlled | Equivalent model - waveform-controlled
+  group: 主
+- name: Capacitor voltages
+  summary: 电容电压测量 Instrumented（默认）| Uninstrumented
+  group: 主
+- name: Number of power submodules
+  summary: 子模块数量 1（默认）| 正标量
+  group: 主
+- name: Capacitance
+  summary: 子模块电容 1e-7 F（默认）| 标量 | 向量
+  group: 主
+- name: Capacitor effective series resistance
+  summary: 电容等效串联电阻 1e-6 Ohm（默认）| 标量 | 向量
+  group: 主
+- name: Arm inductance
+  summary: 桥臂电感 1e-6 H（默认）| 标量
+  group: 主
+- name: Arm inductance series resistance
+  summary: 桥臂电感串联电阻 0 Ohm（默认）| 标量
+  group: 主
+- name: Capacitor initial voltage
+  summary: 电容初始电压 500 V（默认）| 标量 | 向量
+  group: 主
+- name: Switching device
+  summary: 开关类型 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 开关器件
+- name: Forward voltage
+  summary: 电压 0.8 V（默认）| 标量
+  group: 开关器件
+- name: On-state resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: 开关器件
+- name: Drain-source on resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: 开关器件
+- name: Off-state conductance
+  summary: 器件关断时的电导 1e-5 1/Ohm（默认）| 标量
+  group: 开关器件
+- name: Threshold voltage
+  summary: 电压阈值 6 V（默认）| 标量
+  group: 开关器件
+- name: Gate trigger voltage, Vgt
+  summary: 栅极-阴极激活电压阈值 1 V（默认）| 标量
+  group: 开关器件
+- name: Gate turn-off voltage, Vgt_off
+  summary: 门极关断电压，Vgt_off -1 V（默认）| 标量
+  group: 开关器件
+- name: Holding current
+  summary: 维持电流 1 A（默认）| 标量
+  group: 开关器件
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: 用于门极输入分段常数近似的整数（0 表示禁用） 0（默认）| 非负标量
+  group: 开关器件
+- name: Model dynamics
+  summary: 二极管模型 Diode with no dynamics（默认）| Diode with charge dynamics | None
+  group: Protection Diodes — 保护二极管
+- name: Forward voltage
+  summary: 正向电压 0.8 V（默认）| 标量
+  group: Protection Diodes — 保护二极管
+- name: On resistance
+  summary: 导通电阻 0.001 Ohm（默认）| 标量
+  group: Protection Diodes — 保护二极管
+- name: Off conductance
+  summary: 关断电导 1e-5 1/Ohm（默认）| 标量
+  group: Protection Diodes — 保护二极管
+- name: Junction capacitance
+  summary: 结电容 50 nF（默认）| 标量
+  group: Protection Diodes — 保护二极管
+- name: Peak reverse current, iRM
+  summary: 峰值反向电流，iRM -235 A（默认）| 负标量
+  group: Protection Diodes — 保护二极管
+- name: Initial forward current when measuring iRM
+  summary: 测量 iRM 时的初始正向电流 300 A（默认）| 正标量
+  group: Protection Diodes — 保护二极管
+- name: Rate of change of current when measuring iRM
+  summary: 测量 iRM 时的电流变化率 -50 A/μs（默认）| 负标量
+  group: Protection Diodes — 保护二极管
+- name: Reverse recovery time parameterization
+  summary: 反向恢复时间参数化选项 Specify stretch factor（默认）| Specify reverse recovery time directly | Specify reverse recovery charge
+  group: Protection Diodes — 保护二极管
+- name: Reverse recovery time, trr
+  summary: 反向恢复时间 15 μs（默认）| 标量
+  group: Protection Diodes — 保护二极管
+- name: Reverse recovery time stretch factor
+  summary: 反向恢复时间拉伸因子 3（默认）| 标量
+  group: Protection Diodes — 保护二极管
+- name: Reverse recovery charge, Qrr
+  summary: 反向恢复电荷 1500 s*μA（默认）| 标量
+  group: Protection Diodes — 保护二极管
+- name: Snubber
+  summary: 缓冲电路 None（默认）| RC snubber
+  group: Snubbers — 缓冲电路
+- name: Snubber resistance
+  summary: 缓冲电阻 0.1 Ohm（默认）| 标量
+  group: Snubbers — 缓冲电路
+- name: Snubber capacitance
+  summary: 缓冲电容 1e-7 F（默认）| 标量
+  group: Snubbers — 缓冲电路
+```
 
 ### 主
 
@@ -364,7 +489,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Snubber** 设置为 `RC snubber`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

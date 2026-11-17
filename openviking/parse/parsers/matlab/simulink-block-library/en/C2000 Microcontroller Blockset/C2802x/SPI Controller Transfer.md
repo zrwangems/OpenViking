@@ -14,6 +14,17 @@ language: en
 # SPI Controller Transfer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input port to write data to SPI peripheral [Nx1] or [1xN] array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output port to read data from an SPI peripheral device [Nx1] array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -32,8 +43,21 @@ Output port from which the block receives data
 from SPI peripheral device.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Board
+  summary: Specific board used for SPI communication Pi 2 Model B (default) | Model B Rev1 | Model B Rev2 | Model B+ | Pi
+    3 Model B | Pi 3 Model B+ | Pi Zero W | Pi 4 Model B | Pi Zero 2 W | Compute Module 4 | Pi 5 Model
+  group: ''
+- name: Chip select pin
+  summary: Chip select pin to which the SPI peripheral device is connected SPI0_CE0 (default) | SPI0_CE1 | SPI1_CE0 | SPI1_CE1
+    | SPI1_CE2
+  group: ''
+- name: Mode (Clock polarity and phase)
+  summary: Mode of SPI communication 0 (default) | 1 | 2 | 3
+  group: ''
+```
 
 ### **Board** — Specific board used for SPI communication `Pi 2 Model B` (default) | `Model B Rev1` | `Model B Rev2` | `Model B+` | `Pi 3 Model B` | `Pi 3 Model B+` | `Pi Zero W` | `Pi 4 Model B` | `Pi Zero 2 W` | `Compute Module 4` | `Pi 5 Model`
 
@@ -53,7 +77,6 @@ mentioned in Enable Secondary SPI Bus of Raspberry Pi Hardware.
 Select the mode for SPI communication.
 
 For more information on mode, refer to SPI Transfer Modes
-
 ## Libraries
 
 Simulink Support Package for Raspberry Pi Hardware / Communication

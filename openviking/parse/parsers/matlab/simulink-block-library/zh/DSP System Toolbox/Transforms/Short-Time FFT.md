@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Short-Time FFT
 
 ## 端口
+```yaml
+ports:
+- name: x[n]
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: w[n]
+  summary: 分析窗向量 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: X[nL,k]
+  summary: 短时 FFT 输出 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -42,8 +57,19 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Analysis window length
+  summary: 分析窗长度 512（默认）| 大于 1 的正整数
+  group: ''
+- name: Overlap between consecutive windows (in samples)
+  summary: 重叠长度 384（默认）| 非负整数
+  group: ''
+- name: FFT length
+  summary: FFT 长度 1024（默认）| 大于或等于 2 的正整数
+  group: ''
+```
 
 ### **Analysis window length** — 分析窗长度 `512`（默认）| 大于 1 的正整数
 
@@ -56,7 +82,6 @@ chinese_source: worker-translation
 ### **FFT length** — FFT 长度 `1024`（默认）| 大于或等于 2 的正整数
 
 输入模块对输入信号进行填充的长度，为大于或等于 2 的正整数。在模块对信号进行缓冲和加窗后，它在计算 FFT 之前对信号进行零填充。此参数决定短时快速傅里叶变换输出的长度（行数）。FFT 长度必须大于或等于窗长度。
-
 ## 所属库
 
 DSP System Toolbox / Transforms

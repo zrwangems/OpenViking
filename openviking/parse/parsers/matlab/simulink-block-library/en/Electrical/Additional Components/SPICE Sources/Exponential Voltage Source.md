@@ -14,6 +14,15 @@ language: en
 # Exponential Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,28 @@ positive voltage
 
 Electrical conserving port associated with the DC current source
 negative voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial value, V1
+  summary: Output voltage initial value 0 V (default)
+  group: ''
+- name: Pulse value, V2
+  summary: Output voltage asymptotic value 0 V (default)
+  group: ''
+- name: Rise delay time, TDR
+  summary: Rise delay time 0 s (default)
+  group: ''
+- name: Rise time, TR
+  summary: Rise time 1e-9 s (default) | positive scalar
+  group: ''
+- name: Fall delay time, TDF
+  summary: Fall delay time 0 s (default)
+  group: ''
+- name: Fall time, TF
+  summary: Fall time 1e-9 s (default) | positive scalar
+  group: ''
+```
 
 ### **Initial value, V1** — Output voltage initial value `0` `V` (default)
 
@@ -57,7 +86,6 @@ Fall time delay.
 Time it takes the output current to fall from the **Pulse value,
 V2** value to the **Initial value, V1**
 value.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

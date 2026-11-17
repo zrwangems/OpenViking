@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Stream Data Source
 
 ## 端口
+```yaml
+ports:
+- name: wrCtrlIn
+  summary: 输入控制总线 bus
+  direction: input
+  data_types: StreamS2MBusObj
+- name: wrData
+  summary: 输出流数据 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wrCtrlOut
+  summary: 输出控制总线 bus
+  direction: output
+  data_types: StreamM2SBusObj
+```
 
 ### 输入
 
@@ -41,8 +56,37 @@ chinese_source: worker-translation
 - `tlast` — 指示数据事务结束
 
 **数据类型：** `StreamM2SBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Data type
+  summary: 输出数据类型 uint8（默认）| double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | fixdt(1,16,0)
+  group: ''
+- name: Dimensions
+  summary: 输出数据维度 10（默认）| 正整数 | 数组
+  group: ''
+- name: Burst length
+  summary: 单次 burst 的长度 20（默认）| 正整数
+  group: ''
+- name: Total bursts
+  summary: burst 总数 4（默认）| 正整数
+  group: ''
+- name: Data generation
+  summary: 输出生成类型 counter（默认）| random | ones | workspace
+  group: ''
+- name: Counter init value
+  summary: 计数器初始值 0（默认）| 标量
+  group: ''
+- name: Variable name
+  summary: 工作区变量名称 simOut（默认）| 任何 MATLAB 支持的变量名
+  group: ''
+- name: Sample time
+  summary: 采样时间间隔 1（默认）| 正标量 | 向量
+  group: ''
+- name: 传输延迟（以采样数为单位）
+  summary: 突发之间的延迟 0（默认）| 非负整数
+  group: ''
+```
 
 ### **Data type** — 输出数据类型 `uint8`（默认）| `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint16` | `uint32` | `uint64` | `fixdt(1,16,0)`
 
@@ -106,7 +150,6 @@ chinese_source: worker-translation
 ### **传输延迟（以采样数为单位）** — 突发之间的延迟 `0`（默认）| 非负整数
 
 下一次突发发生之后的时间。此值必须为非负整数。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Testbench

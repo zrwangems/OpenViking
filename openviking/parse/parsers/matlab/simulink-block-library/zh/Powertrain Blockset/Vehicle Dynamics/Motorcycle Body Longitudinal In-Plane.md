@@ -15,6 +15,75 @@ chinese_source: worker-translation
 # Motorcycle Body Longitudinal In-Plane
 
 ## 端口
+```yaml
+ports:
+- name: FCpF
+  summary: 前轮接地点纵向力和垂向力 vector
+  direction: input
+- name: FCpR
+  summary: 后轮接地点纵向力和垂向力 vector
+  direction: input
+- name: MDrvArmR
+  summary: 后摇臂上的传动链力矩 scalar
+  direction: input
+- name: MDrvFrm
+  summary: 车架上的传动链力矩 scalar
+  direction: input
+- name: FExt
+  summary: 车架上的外部纵向力和垂向力 vector
+  direction: input
+- name: MExt
+  summary: 绕车架的外部力矩 scalar
+  direction: input
+- name: MBrkF
+  summary: 前轮制动力矩 scalar
+  direction: input
+- name: MBrkR
+  summary: 后轮制动力矩 scalar
+  direction: input
+- name: MWhlF
+  summary: 前轮外部力矩 scalar
+  direction: input
+- name: MWhlR
+  summary: 后轮外部力矩 scalar
+  direction: input
+- name: FSuspF
+  summary: 上叉上的外部悬架力 scalar
+  direction: input
+- name: MSuspR
+  summary: 后摇臂上的外部悬架力矩 scalar
+  direction: input
+- name: Grade
+  summary: 道路坡度角 scalar
+  direction: input
+- name: WindXYZ
+  summary: 风速 array
+  direction: input
+- name: Temp
+  summary: 环境空气温度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: VCpF
+  summary: 前轮接地点处的纵向、侧向和垂向速度 vector
+  direction: output
+- name: PCpF
+  summary: 前轮接地点处的纵向、侧向和垂向位置 vector
+  direction: output
+- name: VCpR
+  summary: 后轮接地点处的纵向、侧向和垂向速度 vector
+  direction: output
+- name: PCpR
+  summary: 后轮接地点处的纵向、侧向和垂向位置 vector
+  direction: output
+- name: ThetaFrm
+  summary: 主车架俯仰角 scalar
+  direction: output
+- name: ThetaArmR
+  summary: 后摇臂俯仰角 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -238,8 +307,190 @@ chinese_source: worker-translation
 ### **ThetaArmR** — 后摇臂俯仰角 `scalar`
 
 后摇臂俯仰角，*ϴra*，单位为 rad。
-
 ## 参数
+```yaml
+parameters:
+- name: Suspension type
+  summary: 悬架类型 Simple（默认）| User-defined
+  group: 选项
+- name: External forces
+  summary: FExt 输入端口 off（默认）| on
+  group: 选项
+- name: External moments
+  summary: MExt 输入端口 off（默认）| on
+  group: 选项
+- name: External front wheel moment
+  summary: MWhlF 输入端口 off（默认）| on
+  group: 选项
+- name: External rear wheel moment
+  summary: MWhlR 输入端口 off（默认）| on
+  group: 选项
+- name: Grade angle
+  summary: Grade 输入端口 on（默认）| off
+  group: 选项
+- name: Wind velocity
+  summary: WindXYZ 输入端口 on（默认）| off
+  group: 选项
+- name: Ambient temperature
+  summary: Temp 输入端口 off（默认）| on
+  group: 选项
+- name: 质心位置，FrmCmPxz
+  summary: 车架位置 [0.255, -0.02]（默认）| vector
+  group: Layout
+- name: 质量，FrmMass
+  summary: 车架质量 223（默认）| scalar
+  group: Layout
+- name: 质量转动惯量，FrmIyy
+  summary: 车架转动惯量 26.2（默认）| scalar
+  group: Layout
+- name: 长度，FrmLen
+  summary: 车架长度 0.730（默认）| scalar
+  group: Layout
+- name: 质心位置，RdrCmPxz
+  summary: 骑手位置 [0.275, -0.61]（默认）| vector
+  group: Layout
+- name: 质量，RdrMass
+  summary: 骑手质量 78（默认）| scalar
+  group: Layout
+- name: 质量转动惯量，RdrIyy
+  summary: 骑手转动惯量 26.2（默认）| scalar
+  group: Layout
+- name: 位置，FrkUpCmPxz
+  summary: 上部前叉位置 [0.023, -0.098]（默认）| vector
+  group: Layout
+- name: 质量，FrkUpMass
+  summary: 上部前叉质量 8.8（默认）| scalar
+  group: Layout
+- name: 质量转动惯量，FrkUpIyy
+  summary: 上部前叉转动惯量 0.14（默认）| scalar
+  group: Layout
+- name: 偏移量，FrkOfs
+  summary: 上部前叉偏移量 0.034（默认）| scalar
+  group: Layout
+- name: 位置，FrkLwCmPxz
+  summary: 下部前叉位置 [-0.029, -0.189]（默认）| vector
+  group: Layout
+- name: 质量，FrkLwMass
+  summary: 下部前叉质量 7.0（默认）| scalar
+  group: Layout
+- name: 质量转动惯量，FrkLwIyy
+  summary: 下部前叉转动惯量 0.18（默认）| scalar
+  group: Layout
+- name: Position, ArmRrCmPxz
+  summary: 后臂位置 [0.275, -0.052]（默认）| vector
+  group: Layout
+- name: Mass, ArmRrMass
+  summary: 后臂质量 10（默认）| scalar
+  group: Layout
+- name: Mass moment of inertia, ArmRrIyy
+  summary: 后臂转动惯量 0.8（默认）| scalar
+  group: Layout
+- name: Length, ArmRrLen
+  summary: 后臂长度 0.535（默认）| scalar
+  group: Layout
+- name: Mass, WhlFrMass
+  summary: 前轮质量 12（默认）| scalar
+  group: Layout
+- name: Radius, WhlFrR
+  summary: 前轮半径 0.3（默认）| scalar
+  group: Layout
+- name: Mass, WhlRrMass
+  summary: 后轮质量 16.2（默认）| scalar
+  group: Layout
+- name: Radius, WhlRrR
+  summary: 后轮半径 0.33（默认）| scalar
+  group: Layout
+- name: Stiffness, SuspFrK
+  summary: 前悬架刚度 25e3（默认）| scalar
+  group: Layout
+- name: Damping, SuspFrC
+  summary: 前悬架阻尼 1250（默认）| scalar
+  group: Layout
+- name: Equilibrium length, FrkLwL0
+  summary: 前悬架平衡长度 0.473（默认）| scalar
+  group: Layout
+- name: Stiffness, SuspRrK
+  summary: 后臂悬架刚度 1500（默认）| scalar
+  group: Layout
+- name: Damping, SuspRrC
+  summary: 后臂悬架阻尼 150（默认）| scalar
+  group: Layout
+- name: Equilibrium angle, ShkRrAng0
+  summary: 后悬架平衡角 0（默认）| scalar
+  group: Layout
+- name: Longitudinal drag area, Af
+  summary: 面积 2（默认）| scalar
+  group: Aerodynamic
+- name: Longitudinal drag coefficient, Cd
+  summary: 阻力 .2（默认）| scalar
+  group: Aerodynamic
+- name: Longitudinal lift coefficient, Cl
+  summary: 升力 .1（默认）| scalar
+  group: Aerodynamic
+- name: Longitudinal drag pitch moment, Cpm
+  summary: 俯仰阻力 .1（默认）| scalar
+  group: Aerodynamic
+- name: Pitch moment length, Lcpm
+  summary: 俯仰阻力 2（默认）| scalar
+  group: Aerodynamic
+- name: Gravitational acceleration, g
+  summary: 重力 9.80665（默认）| scalar
+  group: Environment
+- name: Absolute air pressure, Pabs
+  summary: 压力 101325（默认）| scalar
+  group: Environment
+- name: Air temperature, Tair
+  summary: 环境空气温度 273（默认）| scalar
+  group: Environment
+- name: Rear contact patch longitudinal coordinate, CpRrX0
+  summary: 纵向坐标 0（默认）| scalar
+  group: Initial conditions
+- name: Rear contact patch vertical coordinate, CpRrZ0
+  summary: 垂直坐标 0（默认）| scalar
+  group: Initial conditions
+- name: Pitch angle of rear arm, ArmRrAng0
+  summary: 后臂角度 0.0590379（默认）| scalar
+  group: Initial conditions
+- name: Pitch angle of main frame, FrmAng0
+  summary: 角度长度 0.377024（默认）| scalar
+  group: Initial conditions
+- name: Fork length, FrkFrL0
+  summary: 前叉长度 0.4262193（默认）| scalar
+  group: Initial conditions
+- name: 后接触斑点的纵向速度
+  summary: 纵向速度 0（默认）| scalar
+  group: Initial conditions
+- name: 后接触斑点的垂直速度, CpRrVz0
+  summary: 垂直速度 0（默认）| scalar
+  group: Initial conditions
+- name: 后摇臂的俯仰角速度, ArmRrAngV0
+  summary: 俯仰角速度 0（默认）| scalar
+  group: Initial conditions
+- name: 主车架的俯仰角速度, FrmAngV0
+  summary: 俯仰角速度 0（默认）| scalar
+  group: Initial conditions
+- name: 下前叉变形速度, FrkLwV0
+  summary: 变形速度 0（默认）| scalar
+  group: Initial conditions
+- name: 纵向偏移, longOff
+  summary: 纵向偏移 0（默认）| scalar
+  group: 坐标偏移
+- name: 横向偏移, latOff
+  summary: 横向偏移 0（默认）| scalar
+  group: 坐标偏移
+- name: 垂直偏移, vertOff
+  summary: 垂直偏移 0（默认）| scalar
+  group: 坐标偏移
+- name: 横滚偏移, pitchOff
+  summary: 横滚偏移 0（默认）| scalar
+  group: 坐标偏移
+- name: 俯仰偏移, pitchOff
+  summary: 俯仰偏移 0（默认）| scalar
+  group: 坐标偏移
+- name: 横摆偏移, pitchOff
+  summary: 横摆偏移 0（默认）| scalar
+  group: 坐标偏移
+```
 
 ### 选项
 
@@ -580,7 +831,6 @@ temperature**。
 ### **横摆偏移, pitchOff** — 横摆偏移 `0`（默认）| `scalar`
 
 车辆主车架绕地球固定 *Z* 轴的偏移，单位为 rad。
-
 ## 所属库
 
 Powertrain Blockset / Vehicle Dynamics Vehicle Dynamics Blockset / Vehicle Body

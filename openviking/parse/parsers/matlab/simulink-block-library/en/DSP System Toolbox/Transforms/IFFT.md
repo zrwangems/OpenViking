@@ -14,6 +14,17 @@ language: en
 # IFFT
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: IFFT of input vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -51,8 +62,59 @@ signed fixed-point data type. The block computes scaled and unscaled
 versions of the IFFT.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: FFT implementation
+  summary: FFT implementation Auto (default) | Radix-2 | FFTW
+  group: Main
+- name: Input is in bit-reversed order
+  summary: Input is in bit-reversed order off (default) | on
+  group: Main
+- name: Input is conjugate symmetric
+  summary: Input is conjugate symmetric off (default) | on
+  group: Main
+- name: Divide output by FFT length
+  summary: Divide output by FFT length on (default) | off
+  group: Main
+- name: Inherit FFT length from input dimensions
+  summary: Inherit FFT length from input dimensions on (default) | off
+  group: Main
+- name: FFT length
+  summary: FFT length 64 (default) | integer
+  group: Main
+- name: Wrap input data when FFT length is shorter than input length
+  summary: Wrap or truncate the input on (default) | off
+  group: Main
+- name: Rounding mode
+  summary: Rounding method Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types
+- name: Sine table
+  summary: 'Data type of sine table values Inherit: Same word length as input (default) | fixdt(1,16)'
+  group: Data Types
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: Data Types
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as
+    product output | fixdt(1,16,0)'
+  group: Data Types
+- name: Output
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: Data Types
+- name: Output Minimum
+  summary: Minimum value block should output [] (default) | scalar
+  group: Data Types
+- name: Output Maximum
+  summary: Maximum value block should output [] (default) | scalar
+  group: Data Types
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -348,7 +410,6 @@ value is `[]` (unspecified). Simulink software uses this value to perform:
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Transforms

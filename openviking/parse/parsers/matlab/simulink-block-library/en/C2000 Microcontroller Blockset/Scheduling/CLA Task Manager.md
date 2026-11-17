@@ -14,6 +14,20 @@ language: en
 # CLA Task Manager
 
 ## Ports
+```yaml
+ports:
+- name: '*Task1*'
+  summary: Function-call from Task1 scalar
+  direction: output
+- name: '*Task1*Event'
+  summary: Message event notification scalar
+  direction: input
+  data_types: rteEvent
+- name: '*Task1*Dur'
+  summary: Task duration positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Output
 
@@ -69,8 +83,52 @@ To enable this port, set the **Specify task duration via**
 parameter to `Input port`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable task simulation
+  summary: Option to enable simulation of task duration on (default) | off
+  group: ''
+- name: List of tasks
+  summary: List of tasks Task1 (default)
+  group: ''
+- name: Add
+  summary: Option to add task button
+  group: ''
+- name: Delete
+  summary: Option to delete existing task button
+  group: ''
+- name: Name
+  summary: Name of task Task1 (default) | character vector
+  group: Main
+- name: Priority
+  summary: Priority of task in scheduler 10 (default) | integer in the range [1, 99]
+  group: Main
+- name: Specify task duration via
+  summary: Source of task execution time Dialog (default) | Input port | Record task execution statistics
+  group: Simulation
+- name: Add
+  summary: Option to add distribution button
+  group: Simulation
+- name: Delete
+  summary: Option to remove distribution button
+  group: Simulation
+- name: Percent
+  summary: Likelihood of distribution 100 (default) | positive scalar
+  group: Simulation
+- name: Mean
+  summary: Mean task duration in simulation 1e-06 (default) | positive scalar
+  group: Simulation
+- name: SD
+  summary: Standard deviation of task duration in simulation 0 (default) | positive scalar
+  group: Simulation
+- name: Min
+  summary: Lower limit of task duration 1e-06 (default) | positive scalar
+  group: Simulation
+- name: Max
+  summary: Upper limit of task duration 1e-06 (default) | positive scalar
+  group: Simulation
+```
 
 ### **Enable task simulation** — Option to enable simulation of task duration `on` (default) | `off`
 
@@ -188,7 +246,6 @@ task duration, see Task Duration (SoC Blockset).
 
 Upper limit of a task duration distribution. For more information on configuring
 task duration, see Task Duration (SoC Blockset).
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Scheduling

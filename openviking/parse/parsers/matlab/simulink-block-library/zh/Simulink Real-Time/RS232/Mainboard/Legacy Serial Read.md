@@ -15,14 +15,36 @@ chinese_source: worker-translation
 # Legacy Serial Read
 
 ## 端口
+```yaml
+ports:
+- name: Output
+  summary: 从串口读取的数据 串行数据
+  direction: output
+```
 
 ### 输出
 
 ### **Output** — 从串口读取的数据 串行数据
 
 Output 端口提供从串口读取的数据。
-
 ## 参数
+```yaml
+parameters:
+- name: Serial port
+  summary: 正在访问的端口 Legacy Serial Port 1（默认）| .. | Legacy Serial Port 8 | USB Serial Port 1 | .. | USB Serial Port 8
+  group: ''
+  block_parameter: port
+- name: Max Read Count
+  summary: 选择最大字读取计数 51（默认）| int
+  group: ''
+- name: Output Datatype
+  summary: 选择输出数据类型 8 bit uint null terminated（默认）| 8 bit int null terminated | count+16 bit uint | count+16 bit int | count+32
+    bit uint | count+32 bit int
+  group: ''
+- name: SampleTime
+  summary: 选择采样时间（以秒为单位） .01（默认）| double
+  group: ''
+```
 
 ### **Serial port** — 正在访问的端口 `Legacy Serial Port 1`（默认）| .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
@@ -67,7 +89,6 @@ dtype
 ```
 sampletime
 ```
-
 ## 所属库
 
 Simulink Real-Time / RS232 / Mainboard

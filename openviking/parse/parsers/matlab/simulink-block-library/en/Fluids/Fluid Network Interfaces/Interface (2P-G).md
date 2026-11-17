@@ -14,6 +14,15 @@ language: en
 # Interface (2P-G)
 
 ## Ports
+```yaml
+ports:
+- name: 2P
+  summary: Two-phase port two-phase fluid
+  direction: conserving
+- name: G
+  summary: Fluid port gas
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,8 +34,16 @@ interface.
 ### **G** — Fluid port gas
 
 Gas conserving port associated with the gas at the interface.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cross-sectional area at ports 2P and G
+  summary: Port area 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Two-phase fluid superheated vapor check
+  summary: Two-phase fluid superheated conditions check None (default) | Warning | Error
+  group: ''
+```
 
 ### **Cross-sectional area at ports 2P and G** — Port area `0.01` `m^2` (default) | positive scalar
 
@@ -36,7 +53,6 @@ Cross-sectional area of the two-phase fluid and gas ports.
 
 Action to perform when the fluid at port **2P** does not
 meet superheated conditions.
-
 ## Libraries
 
 Simscape / Fluids / Fluid Network Interfaces

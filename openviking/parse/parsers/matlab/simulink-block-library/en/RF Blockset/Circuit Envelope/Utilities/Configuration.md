@@ -14,10 +14,84 @@ language: en
 # Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Automatically select fundamental tones and harmonic order
+  summary: Automatically select fundamental tones and harmonic order on (default) | off
+  group: ''
+- name: Fundamental tones
+  summary: Fundamental tones of set of simulation frequency vector of positive integers in Hz
+  group: ''
+- name: Harmonic order
+  summary: Harmonic order for each fundamental tone vector of positive integers
+  group: ''
+- name: 'Total simulation frequencies: Computed at simulation time'
+  summary: Displays number for simulation frequencies button
+  group: ''
+- name: Step size
+  summary: Time step for fixed step solver configuration 1e-6 (default) | scalar in seconds
+  group: ''
+- name: Envelope bandwidth
+  summary: Maximum simulated envelope bandwidth 1 MHz (default) | scalar in Hz
+  group: ''
+- name: Simulate noise
+  summary: Globally enable or disable noise modeling on (default) | off
+  group: ''
+- name: Use default random number generator
+  summary: Default pseudorandom noise stream for RF Blockset sources on (default) | off
+  group: ''
+- name: Noise seed
+  summary: Seed of the independent pseudo random number stream 0 (default) | scalar positive integer
+  group: ''
+- name: Temperature
+  summary: Global noise temperature 290.0K | scalar integer in kelvin
+  group: ''
+- name: Samples per frame
+  summary: Number of samples in each channel of input signal to Inport block 1 | positive scalar integer
+  group: ''
+- name: Normalize Carrier Power
+  summary: Normalize power of carrier signal on (default) | off
+  group: ''
+- name: Enable input interpolation filter
+  summary: Automatic interpolation of lower rate baseband signal to higher rate RF signal on (default) | off
+  group: ''
+- name: Transient analysis
+  summary: Fixed-step solver of RF Blockset environment Auto (default) | NDF2 | Trapezoidal Rule | Backward Euler
+  group: ''
+- name: Approximate transient as small signal
+  summary: Choose small subset of frequencies for transient small signal analysis off (default) | on
+  group: ''
+- name: Use all steady-state simulation frequencies for small signal analysis
+  summary: Choose all steady-state simulation frequencies on (default) | off
+  group: ''
+- name: Small signal frequencies
+  summary: Frequencies for small signal transient simulation scalar | vector
+  group: ''
+- name: Populate Frequencies
+  summary: Tool to choose small signal transient frequencies button
+  group: ''
+- name: Relative tolerance
+  summary: Relative newton tolerance for system variables 1e-3 (default) | real positive finite scalar
+  group: ''
+- name: Absolute tolerance
+  summary: Absolute newton tolerance for system variables 1e-6 (default) | real positive finite scalar
+  group: ''
+- name: Maximum iterations
+  summary: Number iterations required for convergence 10 (default) | real positive integer scalar
+  group: ''
+- name: Error estimation
+  summary: Check for error of convergence in system variables 2-norm over all variables (default) | Each variable separately
+  group: ''
+- name: Restore Default Settings
+  summary: Restore newton solver to default values button
+  group: ''
+```
 
 #### Main
 
@@ -352,7 +426,6 @@ as:
 ### **Restore Default Settings** — Restore newton solver to default values button
 
 Restore newton solver to default values, specified as a button.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Utilities

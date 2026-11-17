@@ -14,10 +14,180 @@ language: en
 # Quarter Gauge
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Signal to connect and display signal connection options
+  group: Parameters
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Minimum
+  summary: Minimum tick mark value 0 (default) | scalar
+  group: Parameters
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Maximum
+  summary: Maximum tick mark value 100 (default) | scalar
+  group: Parameters
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Tick Interval
+  summary: Interval between major tick marks auto (default) | scalar
+  group: Parameters
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Direction
+  summary: Direction of increasing scale values Clockwise (default) | Counterclockwise
+  group: Parameters
+  block_parameter: ScaleDirection
+  type: character vector
+  values: '''Clockwise'' | ''Counterclockwise'''
+  default: '''Clockwise'''
+- name: Label
+  summary: Position of label displaying name of connected element Hide (default) | Bottom | Top
+  group: Parameters
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Parameters
+- name: Scale Colors
+  summary: Color indications on gauge scale colors for scale ranges
+  group: Parameters
+  block_parameter: ScaleColors
+  type: structure array
+  default: 0x1 struct array
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Design
+- name: Minimum
+  summary: Minimum tick mark value 0 (default) | scalar
+  group: Design
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Maximum
+  summary: Maximum tick mark value 100 (default) | scalar
+  group: Design
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Tick Interval
+  summary: Interval between major tick marks auto (default) | scalar
+  group: Design
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Origin
+  summary: Value on scale from which needle moves and value bar grows auto (default) | scalar
+  group: Design
+- name: Direction
+  summary: Direction of increasing scale values Clockwise (default) | Counterclockwise
+  group: Design
+  block_parameter: ScaleDirection
+  type: character vector
+  values: '''Clockwise'' | ''Counterclockwise'''
+  default: '''Clockwise'''
+- name: Arc
+  summary: Arc length of scale 90 (default) | scalar
+  group: Design
+- name: Start Angle
+  summary: Angular location of scale minimum 180 (default) | scalar
+  group: Design
+- name: Inner Radius
+  summary: Radius of free end of scale tick marks scalar
+  group: Design
+- name: Outer Radius
+  summary: Span line radius scalar
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of left edge of scale bounding box from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of scale bounding box from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Scale width scalar
+  group: Design
+- name: Height
+  summary: Scale height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain scale aspect ratio on (default) | off
+  group: Design
+- name: Tick Color
+  summary: Color of scale tick marks, span line, and block name [r g b] vector
+  group: Design
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Minor Tick Height
+  summary: Height of minor tick marks on scale 1 (default) | scalar
+  group: Design
+- name: Label Color
+  summary: Scale label font color [r g b] vector
+  group: Design
+- name: Label Radius
+  summary: Distance of scale labels from scale center scalar
+  group: Design
+- name: Width
+  summary: Needle image width scalar
+  group: Design
+- name: Height
+  summary: Needle image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain image aspect ratio on (default) | off
+  group: Design
+- name: Rotate Image
+  summary: Rotation of needle image 180 (default) | scalar
+  group: Design
+- name: Offset from Center
+  summary: Offset of needle image center from scale center 0 (default) | scalar
+  group: Design
+- name: Use Background Color
+  summary: Option to specify solid block background color off (default) | on
+  group: Design
+- name: Color
+  summary: Block background color [r g b] vector
+  group: Design
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Design
+- name: Corner radius
+  summary: Offset of outer edge of area with block background color from tick marks scalar
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of left edge of foreground image from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of foreground image from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Foreground image width scalar
+  group: Design
+- name: Height
+  summary: Foreground image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain foreground image aspect ratio on (default) | off
+  group: Design
+```
 
 Use the Property Inspector and the Block Parameters dialog box
 to specify the values of the block parameters. To set the core parameters of the dashboard
@@ -591,7 +761,6 @@ Specify the height of the foreground image as a ratio of the block height.
 
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
-
 ## Libraries
 
 Simulink / Dashboard / Customizable Blocks

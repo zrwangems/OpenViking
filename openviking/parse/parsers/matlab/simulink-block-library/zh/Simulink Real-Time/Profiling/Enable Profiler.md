@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Enable Profiler
 
 ## 端口
+```yaml
+ports:
+- name: Start
+  summary: 启动性能分析器 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Stop
+  summary: 停止性能分析器 0 | 1
+  direction: input
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -35,11 +46,12 @@ chinese_source: worker-translation
 收集的数据量限制为 `1`GB。当达到此限制时，性能分析器会自行停止。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Real-Time / Profiling

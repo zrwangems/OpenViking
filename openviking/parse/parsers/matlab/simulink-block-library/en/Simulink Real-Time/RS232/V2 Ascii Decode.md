@@ -14,6 +14,20 @@ language: en
 # ASCII Decode V2
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Input vector to parse character vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16
+- name: cnt
+  summary: Number of format specifiers satisfied by input integer
+  direction: output
+- name: Value
+  summary: Inlined ports that send Simulink values numeric
+  direction: output
+  data_types: single | double | int8 | uint8 | uint16 | int16 | int32 | uint32
+```
 
 ### Input
 
@@ -40,8 +54,14 @@ This block generates inline code for the target computer. You cannot
 use it for Simulink simulation.
 
 **Data Types:** `single` | `double` | `int8` | `uint8` | `uint16` | `int16` | `int32` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Format
+  summary: Format specifier for parsing input vector '%f\n' (default) | %c | %d | %i | %o | %u | %x | %e | %g
+  group: ''
+  block_parameter: format
+```
 
 ### **Format** — Format specifier for parsing input vector `'%f\n'` (default) | `%c` | `%d` | `%i` | `%o` | `%u` | `%x` | `%e` | `%g`
 
@@ -70,7 +90,6 @@ time both were found in a character vector. If the model expects
 |  |
 | --- |
 | **Block Parameter:** `format` |
-
 ## Libraries
 
 Simulink Real-Time / RS232

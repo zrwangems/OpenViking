@@ -14,6 +14,17 @@ language: en
 # Celsius to Fahrenheit
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Celsius degree input scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Fahrenheit degree output scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -29,11 +40,12 @@ Input signal specifying the Celsius degrees.
 Output signal specifying the Fahrenheit degrees.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Extras / Transformations

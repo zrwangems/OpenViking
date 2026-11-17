@@ -14,6 +14,36 @@ language: en
 # Joint Probabilistic Data Association Multi Object Tracker
 
 ## Ports
+```yaml
+ports:
+- name: Detections
+  summary: Detection list Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Prediction Time
+  summary: Track update time real scalar
+  direction: input
+- name: Cost Matrix
+  summary: Cost matrix real-valued *N*t-by-*N*d matrix
+  direction: input
+- name: Detectable TrackIDs
+  summary: Detectable track IDs real-valued *M*-by-1 vector | real-valued *M*-by-2 matrix
+  direction: input
+- name: State Parameters
+  summary: Track state parameters Simulink bus containing MATLAB structure
+  direction: input
+- name: Confirmed Tracks
+  summary: Confirmed tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Tentative Tracks
+  summary: Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: All Tracks
+  summary: Confirmed and tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Info
+  summary: Additional information for analyzing track updates Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -234,8 +264,122 @@ The `OOSMHandling` structure contains these fields:
 
 To enable this port, on the **Port Setting** tab, select
 **Enable information output**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: Unique tracker identifier 0 (default) | nonnegative integer
+  group: ''
+- name: Filter initialization function
+  summary: Filter initialization function initcvekf (default) | function name
+  group: ''
+- name: Value of k for k-best JPDA
+  summary: Value of k for k-best JPDA inf (default) | positive integer
+  group: ''
+- name: Feasible joint events generation function name
+  summary: Feasible joint events generation function name jpdaEvents (default) | function name
+  group: ''
+- name: Maximum number of tracks
+  summary: Maximum number of tracks 100 (default) | positive integer
+  group: ''
+- name: Maximum number of sensors
+  summary: Maximum number of sensors 20 (default) | positive integer
+  group: ''
+- name: Absolute tolerance between time stamps of detections
+  summary: Absolute tolerance between time stamps of detections 20 (default) | positive integer
+  group: ''
+- name: Out-of-sequence measurements handling
+  summary: Out-of-sequence measurements handling Terminate (default) | Neglect | Retrodiction
+  group: ''
+- name: Maximum number of OOSM steps
+  summary: Maximum number of OOSM steps 3 (default) | positive integer
+  group: ''
+- name: Track state parameters
+  summary: Parameters of track state reference frame structure | structure array
+  group: ''
+- name: Update track state parameters with time
+  summary: Update track state parameters with time off (default) | on
+  group: ''
+- name: Enable memory management
+  summary: Enable memory management off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted Execution (default) | Code Generation
+  group: ''
+- name: Threshold for assigning detections to tracks
+  summary: Threshold for assigning detections to tracks 30*[1 Inf] (default) | positive scalar | 1-by-2 vector of positive
+    values
+  group: ''
+- name: Threshold to initialize a track
+  summary: Threshold to initialize a track 0 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Probability of detection
+  summary: Probability of detection 0.9 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Spatial density of clutter measurements
+  summary: Spatial density of clutter measurements 1e-5 (default) | positive scalar
+  group: ''
+- name: Type of track confirmation and deletion logic
+  summary: Confirmation and deletion logic type History (default) | Integrated
+  group: ''
+- name: Confirmation threshold [M N]
+  summary: Track confirmation threshold for history logic [2, 3] (default) | real-valued 1-by-2 vector of positive integers
+  group: ''
+- name: Deletion threshold [P Q]
+  summary: Track deletion threshold for history logic [5, 5] (default) | real-valued 1-by-2 vector of positive integers
+  group: ''
+- name: Threshold for registering 'hit' or 'miss'
+  summary: Threshold for registering a 'Hit' or a 'Miss' 0.2 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Confirmation threshold [Probability]
+  summary: Track confirmation threshold for integrated logic 0.95 (default) | positive scalar
+  group: ''
+- name: Deletion threshold [Probability]
+  summary: Track deletion threshold for integrated logic 0.1 (default) | positive scalar
+  group: ''
+- name: Spatial density of new targets
+  summary: Spatial density of new targets 1e-5 (default) | positive scalar
+  group: ''
+- name: Time rate of true target deaths
+  summary: Time rate of true target deaths 0.01 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Prediction time source
+  summary: Source of prediction time Auto (default) | Input port
+  group: ''
+- name: Enable cost matrix input
+  summary: Enable input port for cost matrix off (default) | on
+  group: ''
+- name: Enable detectable track IDs input
+  summary: Enable detectable track IDs input off (default) | on
+  group: ''
+- name: Enable tentative tracks output
+  summary: Enable output port for tentative tracks off (default) | on
+  group: ''
+- name: Enable all tracks output
+  summary: Enable output port for all tracks off (default) | on
+  group: ''
+- name: Enable information output
+  summary: Enable output port for analysis information off (default) | on
+  group: ''
+- name: Source of output bus name
+  summary: Source of output track bus name Auto (default) | Property
+  group: ''
+- name: Source of output info bus name
+  summary: Source of output info bus name Auto (default) | Property
+  group: ''
+- name: Maximum number of detections per sensor
+  summary: Maximum number of detections per sensor 100 (default) | positive integer
+  group: ''
+- name: Maximum number of detections per cluster
+  summary: Maximum number of detections per cluster 5 (default) | positive integer
+  group: ''
+- name: Maximum number of tracks per cluster
+  summary: Maximum number of tracks per cluster 5 (default) | positive integer
+  group: ''
+- name: Handle run-time violation of cluster size
+  summary: Handle run-time violation of cluster size Auto (default) | Property
+  group: ''
+```
 
 #### Tracker Management
 
@@ -790,7 +934,6 @@ many new clusters depends on their association likelihoods with each other and t
 
 To enable this parameter, select **Enable Memory Management** in
 the **Tracker Management** tab.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

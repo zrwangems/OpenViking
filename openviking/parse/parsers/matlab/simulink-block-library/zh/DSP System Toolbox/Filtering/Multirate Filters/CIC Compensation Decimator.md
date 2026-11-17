@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CIC Compensation Decimator
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Output
+  summary: 滤波并降采样后的信号 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### 输入
 
@@ -48,8 +59,61 @@ chinese_source: worker-translation
 | 可变 | *P*×*Q* | `ceil`(*P*/*M*)×*Q*  **Allow arbitrary frame length for fixed-size input signals** 参数会出现在模块对话框中，但对输入帧长度没有任何影响。即使您未选中 **Allow arbitrary frame length for fixed-size input signals** 参数，您也可以输入任意帧长度的可变大小信号。 |
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Rate change factor
+  summary: CIC 滤波器的速率变化因子 2（默认）| 正整数
+  group: 主选项卡
+- name: Number of sections
+  summary: CIC 滤波器中的节数 2（默认）| 正整数
+  group: 主选项卡
+- name: Differential delay
+  summary: CIC 滤波器的差分延迟 1（默认）| 正整数
+  group: 主选项卡
+- name: Decimation factor
+  summary: 补偿滤波器的抽取因子 2（默认）| 正整数标量
+  group: 主选项卡
+- name: Minimum order filter design
+  summary: 设计最小阶数或指定阶数的补偿滤波器 on（默认）| off
+  group: 主选项卡
+- name: Filter order
+  summary: 补偿滤波器的阶数 12（默认）| 正整数
+  group: 主选项卡
+- name: Passband edge frequency (Hz)
+  summary: 补偿滤波器的通带边缘频率 100000（默认）| 正标量
+  group: 主选项卡
+- name: Stopband edge frequency (Hz)
+  summary: 补偿滤波器的阻带边缘频率 400000（默认）| 正标量
+  group: 主选项卡
+- name: Passband ripple (dB)
+  summary: 补偿滤波器的通带波纹 0.1（默认）| 正实数标量
+  group: 主选项卡
+- name: Stopband attenuation (dB)
+  summary: 补偿滤波器的阻带衰减 60（默认）| 正实数标量
+  group: 主选项卡
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: 主选项卡
+- name: Input sample rate (Hz)
+  summary: 输入信号的采样率 1200000（默认）| 正实数标量
+  group: 主选项卡
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号具有任意帧长度 off（默认）| on
+  group: 主选项卡
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮（默认）
+  group: 主选项卡
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 主选项卡
+- name: Rounding mode
+  summary: 输出定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Coefficients
+  summary: 系数的字长和小数长度 fixdt(1,16)（默认）| fixdt(1,16,0)
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -179,7 +243,6 @@ chinese_source: worker-translation
 点击 **Show data type assistant** 按钮以显示数据类型助手，它可帮助您设置系数数据类型。
 
 有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

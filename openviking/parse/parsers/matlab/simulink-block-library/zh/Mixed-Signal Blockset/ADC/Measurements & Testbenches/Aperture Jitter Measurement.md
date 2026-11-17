@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Aperture Jitter Measurement
 
 ## 端口
+```yaml
+ports:
+- name: clk
+  summary: 时钟信号输入 标量
+  direction: input
+  data_types: double
+- name: jitter
+  summary: 抖动输出 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,25 @@ chinese_source: worker-translation
 孔径抖动输出，以秒为单位返回标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Frequency
+  summary: 输入时钟频率 1e6（默认）| 正实数标量
+  group: ''
+- name: Recommended min. simulation stop time
+  summary: 仿真必须运行以获得有意义结果的最短时间 9.901e-05（默认）| 标量
+  group: ''
+- name: Min
+  summary: 时钟信号的最小值 0（默认）| 实数标量
+  group: ''
+- name: Max
+  summary: 时钟信号的最大值 1（默认）| 实数标量
+  group: ''
+- name: Hold off time (s)
+  summary: 测量分析前的延迟 0（默认）| 非负实数标量
+  group: ''
+```
 
 ### **Frequency** — 输入时钟频率 `1e6`（默认）| 正实数标量
 
@@ -76,7 +104,6 @@ chinese_source: worker-translation
 - 使用 `set_param(gcb,'HoldOffTime',value)` 将 **Hold off time (s)** 设置为特定值。
 
 **数据类型：** `double`
-
 ## 所属库
 
 Mixed-Signal Blockset / ADC / Measurements & Testbenches

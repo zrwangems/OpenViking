@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Channelizer
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 宽带信号 *L*×1 列向量 | *L*×*N* 矩阵
+  direction: input
+  data_types: single | double
+- name: coeffs
+  summary: 原型低通滤波器系数 行向量
+  direction: input
+  data_types: single | double
+- name: Output(s)
+  summary: 多个窄带信号 向量 | 矩阵 | 三维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -78,8 +93,40 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Number of frequency bands
+  summary: 频带数 8（默认）| 大于 1 的正整数
+  group: ''
+- name: DecimationFactor
+  summary: 抽取因子 Number of frequency bands（默认）| 正整数
+  group: ''
+- name: Polyphase filter specification
+  summary: 滤波器设计参数或系数 Number of taps per band and stopband attenuation（默认）| Coefficients
+  group: ''
+- name: Number of filter taps per frequency band
+  summary: 每个频带的滤波器系数数量 12（默认）| 正整数
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: 阻带衰减 80（默认）| 正实数标量
+  group: ''
+- name: Specify coefficients from input port
+  summary: 指定低通滤波器系数来源的标志 off（默认）| on
+  group: ''
+- name: Prototype lowpass filter coefficients
+  summary: 原型低通滤波器系数 rcosdesign(0.25,6,8,'sqrt')（默认）| 行向量
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号的任意帧长度 off（默认）| on
+  group: ''
+- name: Bands as separate output ports (Max. of 16 bands)
+  summary: 在单独的输出端口输出频带 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 如果参数被列为可调，则您可以在仿真期间更改其值。
 
@@ -168,7 +215,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 为模块生成 C 代码。只要模型不变，C 代码将复用于后续仿真。此选项需要额外的启动时间，但提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

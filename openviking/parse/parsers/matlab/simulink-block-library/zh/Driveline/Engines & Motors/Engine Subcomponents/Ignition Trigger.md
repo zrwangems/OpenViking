@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Ignition Trigger
 
 ## 端口
+```yaml
+ports:
+- name: Cam
+  summary: 曲轴位置，deg 物理信号
+  direction: input
+- name: Sw
+  summary: 点火器开关输入信号，二值物理信号
+  direction: input
+- name: SA
+  summary: 点火提前角输入，deg 物理信号
+  direction: input
+- name: Trig
+  summary: 异步触发报告，二值物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -35,13 +50,17 @@ chinese_source: worker-translation
 ### **Trig** — 异步触发报告，二值物理信号
 
 与该模块生成的异步火花触发事件相关联的物理信号输出，其中 `0` 关闭触发，`1` 打开触发。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of cylinders
+  summary: 总气缸数 Single Cylinder（默认）| Two Cylinders | Three Cylinders | Four Cylinders
+  group: ''
+```
 
 ### **Number of cylinders** — 总气缸数 `Single Cylinder`（默认）| `Two Cylinders` | `Three Cylinders` | `Four Cylinders`
 
 火花点火气缸的数量。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

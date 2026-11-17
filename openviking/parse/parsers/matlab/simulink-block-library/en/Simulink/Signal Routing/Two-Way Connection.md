@@ -14,13 +14,17 @@ language: en
 # Two-Way Connection
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has a Simulink input port, a Simulink output port, and a two-way connector port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -14,6 +14,17 @@ language: en
 # Unary Minus
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal to negate scalar | vector | matrix | N-D array
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Port_1
+  summary: Negation of input signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,23 @@ Negation of the input signal. The output has the same data type and
 dimensions as the input.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  default: '"-1"'
+```
 
 ### **Saturate on integer overflow** — Method of overflow action `off` (default) | `on`
 
@@ -80,7 +106,6 @@ This parameter is visible only if you set it to a value other than
 | **Block Parameter:** `SampleTime` |
 | **Type:** string scalar or character vector |
 | **Default:** `"-1"` |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

@@ -14,6 +14,17 @@ language: en
 # Iddata Source
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input data stored in iddata object scalar | vector
+  direction: output
+  data_types: double
+- name: Output
+  summary: Output data stored in iddata object scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -46,8 +57,16 @@ at time *t*. If *t* is greater than
 `0` for each output channel.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: IDDATA object
+  summary: Time-domain data to be imported iddata(1,1) (default) | iddata object
+  group: ''
+- name: Start time
+  summary: Start time for signals in iddata object -1 (default) | non-negative real scalar
+  group: ''
+```
 
 ### **IDDATA object** — Time-domain data to be imported `iddata(1,1)` (default) | `iddata` object
 
@@ -68,7 +87,6 @@ Simulink model. To specify the start time of the signals to be the same as
 that of the `iddata` object, set the **Start
 time** to `data.Tstart`, where
 `data` is the `iddata` object.
-
 ## Libraries
 
 System Identification Toolbox

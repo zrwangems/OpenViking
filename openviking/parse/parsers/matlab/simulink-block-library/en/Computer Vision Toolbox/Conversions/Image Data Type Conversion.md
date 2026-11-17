@@ -14,6 +14,17 @@ language: en
 # Image Data Type Conversion
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: Port_1
+  summary: Output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+```
 
 ### Input
 
@@ -33,8 +44,23 @@ or an *M*-by-*N*-by-*C* array,
 where *C* is the number of color channels in the output image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `uint8` | `uint16` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output data type
+  summary: Output data type double (default) | single | int8 | uint8 | int16 | uint16 | boolean | Fixed-point | Inherit via
+    back propagation
+  group: ''
+- name: Signed
+  summary: Signed output on (default) | off
+  group: ''
+- name: Word length
+  summary: Word length 16 (default) | scalar
+  group: ''
+- name: Fraction length
+  summary: Fraction length 0 (default) | scalar
+  group: ''
+```
 
 ### **Output data type** — Output data type `double` (default) | `single` | `int8` | `uint8` | `int16` | `uint16` | `boolean` | `Fixed-point` | `Inherit via back propagation`
 
@@ -66,7 +92,6 @@ Specifies the fraction length of your fixed-point output.
 
 To enable this parameter, set the **Output data type** parameter
 to `Fixed-point`.
-
 ## Libraries
 
 Computer Vision Toolbox / Conversions

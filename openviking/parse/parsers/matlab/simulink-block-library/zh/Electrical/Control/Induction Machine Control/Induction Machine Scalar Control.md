@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Induction Machine Scalar Control
 
 ## 端口
+```yaml
+ports:
+- name: fRef
+  summary: 频率标量
+  direction: input
+  data_types: single | double
+- name: Vabc
+  summary: 电压矢量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -34,8 +45,22 @@ chinese_source: worker-translation
 **示例：** Example
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Rated electrical frequency (Hz)
+  summary: 频率 60（默认）| 正标量
+  group: ''
+- name: Rated voltage (V)
+  summary: 电压 550（默认）| 正值且大于 Minimum voltage (V) 参数的值
+  group: ''
+- name: Minimum voltage (V)
+  summary: 电压 10（默认）| 零或正值
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 ### **Rated electrical frequency (Hz)** — 频率 `60`（默认）| 正标量
 
@@ -54,7 +79,6 @@ chinese_source: worker-translation
 连续模块执行之间的时间，以 s 为单位。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于连续变步长模型中，请使用正标量显式指定采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / Induction Machine Control

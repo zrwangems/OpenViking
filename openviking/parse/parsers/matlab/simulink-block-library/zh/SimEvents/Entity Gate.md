@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Entity Gate
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: control
+  summary: 传入控制实体 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 离开实体 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+```
 
 ### 输入
 
@@ -36,8 +53,38 @@ chinese_source: worker-translation
 离开门控的实体的输出端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Operating mode
+  summary: 选择操作模式 Enable gate（默认）| Release gate | Selection gate
+  group: ''
+  block_parameter: OperatingMode
+  type: character vector
+  values: '''Enable gate'' | ''Release gate'' ''Selection gate'''
+  default: '''Enable gate'''
+- name: Matching attribute
+  summary: 指定与控制端口的值进行匹配的属性名称 Attribute1（默认）| 字符向量
+  group: ''
+  block_parameter: MatchingAttributeName
+  type: character vector
+  values: '''Attribute1'' | character vector'
+  default: '''Attribute1'''
+- name: Initial value from the control port
+  summary: 指定来自控制端口的初始值以匹配匹配属性 NaN（默认）| 标量
+  group: ''
+  block_parameter: InitialValueOfMatchingAttribute
+  type: character vector
+  values: '''NaN'' | scalar'
+  default: '''NaN'''
+- name: Open gate at simulation start
+  summary: 在仿真开始时打开门控 off（默认）| on
+  group: ''
+  block_parameter: OpenGateAtSimulationStar
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Operating mode** — 选择操作模式 `Enable gate`（默认）| `Release gate` | `Selection gate`
 
@@ -108,7 +155,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

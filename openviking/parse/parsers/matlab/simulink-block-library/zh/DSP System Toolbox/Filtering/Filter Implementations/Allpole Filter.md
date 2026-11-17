@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Allpole Filter
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Den
+  summary: 滤波器分母系数 标量 | 行向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Out
+  summary: 滤波后的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -51,8 +66,66 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Coefficient source
+  summary: 系数来源 Dialog parameters（默认）| Input port
+  group: 主选项卡
+- name: Filter structure
+  summary: 指定滤波器结构 Direct form（默认）| Direct form transposed | Lattice AR
+  group: 主选项卡
+- name: Coefficients
+  summary: 滤波器分母系数 [1 0.1]（默认）| 标量 | 行向量
+  group: 主选项卡
+- name: Input processing
+  summary: 输入处理 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: 主选项卡
+- name: Initial states
+  summary: 滤波器状态的初始条件 0（默认）| 标量 | 向量 | 矩阵
+  group: 主选项卡
+- name: Coefficients
+  summary: '系数数据类型 Inherit: Same word length as input（默认）| int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | fixdt(1,16) | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Coefficients Minimum
+  summary: 滤波器系数的最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Coefficients Maximum
+  summary: 滤波器系数的最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | int8
+    | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: State
+  summary: '状态数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Same as input（默认）| Inherit: Same as accumulator | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 输出最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 输出最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+- name: Integer rounding mode
+  summary: 整数舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -219,7 +292,6 @@ Allpole Filter 模块默认将内部滤波器状态初始化为零，这与假�
 | --- | --- | --- | --- |
 | 选中此复选框。 | 您的模型可能发生溢出，并且您希望在生成的代码中提供显式饱和保护。 | 溢出饱和到数据类型可以表示的最小值或最大值。 | 与有符号 8 位整数相关的溢出可以饱和到 -128 或 127。 |
 | 不选中此复选框。 | 您希望优化生成代码的效率。您希望避免过度指定模块如何处理超出范围的信号。有关详细信息，请参阅 Troubleshoot Signal Range Errors (Simulink)。 | 溢出回绕到数据类型可表示的相应值。 | 数字 130 无法放入有符号 8 位整数，会回绕到 -126。 |
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Implementations

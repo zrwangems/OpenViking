@@ -14,6 +14,17 @@ language: en
 # Dyadic Synthesis Filter Bank
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Data input column vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output 1
+  summary: Reconstructed signal column vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -125,8 +136,36 @@ For general information about the filter banks, see Dyadic Synthesis Filter Bank
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter
+  summary: Type of filter used in filter bank User-defined (default) | Haar | Daubechies | Symlets | Coiflets | Biorthogonal
+    | Reverse Biorthogonal | Discrete Meyer
+  group: ''
+- name: Filter order [synthesis / analysis]
+  summary: Wavelet order for synthesis filter stage [1 / 1] (default) | [1 / 3] | [1 / 5] | [2 / 2] | [2 / 4] | [2 / 6] |
+    [2 / 8] | [3 / 1] | [3 / 3] | [3 / 5] | [3 / 7] | [3 / 9] | [4 / 4] | [5 / 5] | [6 / 8]
+  group: ''
+- name: Wavelet order
+  summary: Wavelet order 2 (default) | positive integer
+  group: ''
+- name: Lowpass FIR filter coefficients
+  summary: Lowpass FIR filter coefficients [0.3327 0.8069 0.4599 -0.1350 -0.0854 0.0352] (default)
+  group: ''
+- name: Highpass FIR filter coefficients
+  summary: Highpass FIR filter coefficients [0.0352 0.0854 -0.1350 -0.4599 0.8069 -0.3327] (default)
+  group: ''
+- name: Number of levels
+  summary: Number of filter bank levels 2 (default) | positive integer
+  group: ''
+- name: Tree structure
+  summary: Structure of filter bank Asymmetric (default) | Symmetric
+  group: ''
+- name: Input
+  summary: Input Multiple ports (default) | Single port
+  group: ''
+```
 
 The parameters displayed in the block dialog box vary depending on the setting of the
 **Filter** parameter. Only some of the parameters described below
@@ -311,7 +350,6 @@ should input the highest frequency band through the topmost port. When you
 set the **Input** parameter to `Single
 port`, the block input must be a vector or matrix of
 concatenated subbands.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

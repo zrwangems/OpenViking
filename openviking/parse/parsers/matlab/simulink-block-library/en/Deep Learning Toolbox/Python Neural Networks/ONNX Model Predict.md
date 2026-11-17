@@ -14,6 +14,17 @@ language: en
 # ONNX Model Predict
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Input data numeric array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Out1
+  summary: Predicted responses numeric array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -34,8 +45,53 @@ of the output data returned by the Python model by specifying a permutation vect
 the **Outputs** tab of the Block Parameters dialog box (see Outputs).
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Path to ONNX model file
+  summary: Name or path of Python ONNX model untitled (default) | character vector
+  group: Specify model file
+  block_parameter: ModelFile
+  type: character vector
+  values: path to Python ONNX model file
+  default: '"untitled"'
+- name: Execution Providers
+  summary: Prioritized list of ONNX runtime execution providers CPUExecutionProvider (default) | character vector
+  group: Specify model file
+  block_parameter: ExecutionProviders
+  type: character vector
+  values: ONNX runtime execution provider name
+  default: '"CUDAExecutionProvider, CPUExecutionProvider"'
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: Specify model file
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Inputs
+  summary: Input port properties table
+  group: Inputs
+  block_parameter: InputTable
+  type: cell array
+- name: Outputs
+  summary: Output port properties table
+  group: Outputs
+  block_parameter: OutputTable
+  type: cell array
+- name: Path to Python file defining preprocess()
+  summary: Name or path of Python preprocessing function file character vector
+  group: Pre/Post-processing
+  block_parameter: PreprocessingFilePath
+  type: character vector
+  values: Python file | path to Python file
+- name: Path to Python file defining postprocess()
+  summary: Name or path of Python postprocessing function file character vector
+  group: Pre/Post-processing
+  block_parameter: PostprocessingFilePath
+  type: character vector
+  values: Python file | path to Python file
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -255,7 +311,6 @@ defining functions.
 | **Block Parameter:** `PostprocessingFilePath` |
 | **Type:** character vector |
 | **Values:** Python file | path to Python file |
-
 ## Libraries
 
 Deep Learning Toolbox / Python Neural Networks

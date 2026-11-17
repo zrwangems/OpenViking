@@ -14,6 +14,36 @@ language: en
 # H-Bridge
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive load connection port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative load connection port electrical
+  direction: conserving
+- name: V+
+  summary: Positive supply connection electrical
+  direction: conserving
+- name: V-
+  summary: Negative supply connection electrical
+  direction: conserving
+- name: PWM
+  summary: Pulse-width modulated signal electrical
+  direction: conserving
+- name: REF
+  summary: Reference electrical
+  direction: conserving
+- name: REV
+  summary: REV electrical
+  direction: conserving
+- name: BRK
+  summary: BRK electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -82,8 +112,80 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Power supply
+  summary: Visibility of power supply ports Internal (default) | External
+  group: Simulation Mode & Load Assumptions
+- name: Simulation mode
+  summary: Simulation mode PWM (default) | Averaged
+  group: Simulation Mode & Load Assumptions
+- name: Freewheeling mode
+  summary: Freewheeling mode Via one semiconductor switch and one freewheeling diode (default) | Via two freewheeling diodes
+    | Via two semiconductor switches and one freewheeling diode
+  group: Simulation Mode & Load Assumptions
+- name: Regenerative braking
+  summary: Regenerative braking Depends on REV flag and current sign (default) | Always enabled (suitable for linearization)
+  group: Simulation Mode & Load Assumptions
+- name: Load current characteristics
+  summary: Load current characteristics Smoothed (default) | Unsmoothed or discontinuous
+  group: Simulation Mode & Load Assumptions
+- name: Load total series resistance
+  summary: Load total series resistance 10Ohm (default)
+  group: Simulation Mode & Load Assumptions
+- name: Load total series inductance
+  summary: Load total series inductance 1e-5H (default)
+  group: Simulation Mode & Load Assumptions
+- name: PWM frequency
+  summary: PWM Frequency 10kHz (default)
+  group: Simulation Mode & Load Assumptions
+- name: Freewheeling diode off-state conductance
+  summary: Freewheeling diode off-state conductance 1e-6S (default)
+  group: Simulation Mode & Load Assumptions
+- name: Enable threshold voltage
+  summary: Enable threshold voltage 2.5V (default)
+  group: Input Thresholds
+- name: PWM signal amplitude
+  summary: PWM signal amplitude 5.0V (default)
+  group: Input Thresholds
+- name: Reverse threshold voltage
+  summary: Reverse threshold voltage 2.5V (default)
+  group: Input Thresholds
+- name: Braking threshold voltage
+  summary: Braking threshold voltage 2.5V (default)
+  group: Input Thresholds
+- name: Output voltage amplitude
+  summary: Output voltage amplitude 12V (default)
+  group: Bridge Parameters
+- name: Total bridge on resistance
+  summary: Total bridge on resistance 0.1Ohm (default)
+  group: Bridge Parameters
+- name: Freewheeling diode on resistance
+  summary: Freewheeling diode on resistance 0.05Ohm (default)
+  group: Bridge Parameters
+- name: Measurement temperature
+  summary: Measurement temperature 298.15K (default)
+  group: Bridge Parameters
+- name: Total bridge on resistance at second measurement temperature
+  summary: Total bridge on resistance at second measurement temperature 0.1Ohm (default)
+  group: Temperature Dependence
+- name: Freewheeling diode on resistance at second measurement temperature
+  summary: Freewheeling diode on resistance at second measurement temperature 0.05Ohm (default)
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: Second measurement temperature 398.15K (default)
+  group: Temperature Dependence
+- name: Thermal mass
+  summary: Thermal mass 100J/K (default)
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 298.15K (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -377,7 +479,6 @@ J/K.
 ### **Initial temperature** — Initial temperature `298.15``K` (default)
 
 The temperature of the thermal port at the start of simulation.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

@@ -14,6 +14,33 @@ language: en
 # Coupled Lines (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Lines positive terminals electrical
+  direction: conserving
+- name: ~2
+  summary: Lines negative terminals electrical
+  direction: conserving
+- name: a1
+  summary: Line *a* positive terminal electrical
+  direction: conserving
+- name: a2
+  summary: Line *a* negative terminal electrical
+  direction: conserving
+- name: b1
+  summary: Line *b* positive terminal electrical
+  direction: conserving
+- name: b2
+  summary: Line *b* negative terminal electrical
+  direction: conserving
+- name: c1
+  summary: Line *c* positive terminal electrical
+  direction: conserving
+- name: c2
+  summary: Line *c* negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -108,8 +135,129 @@ line *c*.
 To enable this port, set **Electrical
 connection** to `Expanded three-phase
 ports`
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: Main
+- name: Parameterization
+  summary: Line impedance parameterization Balanced impedance (default) | General impedance
+  group: Main
+- name: Line a inductance
+  summary: Line *a* self-inductance 1e-3 H (default) | positive scalar
+  group: Main
+- name: Line b inductance
+  summary: Line *b* self-inductance 1e-3 H (default) | positive scalar
+  group: Main
+- name: Line c inductance
+  summary: Line *c* self-inductance 1e-3 H (default) | positive scalar
+  group: Main
+- name: Line inductance
+  summary: Self-inductance 1e-3 H (default) | positive scalar
+  group: Main
+- name: Line a-b mutual inductance
+  summary: Mutual inductance between *a*-*b* 3e-4 H (default) | positive scalar
+  group: Main
+- name: Line b-c mutual inductance
+  summary: Mutual inductance between *b*-*c* 3e-4 H (default) | positive scalar
+  group: Main
+- name: Line a-c mutual inductance
+  summary: Mutual inductance between *a*-*c* 3e-4 H (default) | positive scalar
+  group: Main
+- name: Mutual inductance
+  summary: Mutual inductance 3e-4 H (default) | positive scalar
+  group: Main
+- name: Line a resistance
+  summary: Line *a* series resistance 0.001 Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line b resistance
+  summary: Line *b* series resistance 0.001 Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line c resistance
+  summary: Line *c* series resistance 0.001 Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line a-b mutual resistance
+  summary: Mutual resistance between *a*-*b* 0 Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line a-c mutual resistance
+  summary: Mutual resistance between *a*-*c* 0 Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line b-c mutual resistance
+  summary: Mutual resistance between *b*-*c* 0 Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line resistance
+  summary: Series resistance 0.001 Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Mutual resistance
+  summary: Mutual resistance 0 Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line a leakage conductance
+  summary: Line *a* parallel leakage conductance 1e-9 1/Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line b leakage conductance
+  summary: Line *b* parallel leakage conductance 1e-9 1/Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line c leakage conductance
+  summary: Line *c* parallel leakage conductance 1e-9 1/Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Line leakage conductance
+  summary: Parallel leakage conductance 1e-9 1/Ohm (default) | nonnegative scalar
+  group: Resistance
+- name: Port 1 connection fault
+  summary: Option to add fault to port 1 Add fault
+  group: Faults
+- name: Fault type
+  summary: Type of fault Single-phase to ground (a-g) (default) | Single-phase to ground (b-g) | Single-phase to ground (c-g)
+    | Two-phase (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase
+    to ground (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: Faults
+- name: Faulted phase-neutral resistance
+  summary: Faulted resistance between phase connection and neutral point 1e-3 Ohm (default) | positive scalar
+  group: Faults
+- name: Faulted neutral-ground resistance
+  summary: Faulted resistance between neutral point and electrical reference 1e-3 Ohm (default) | positive scalar
+  group: Faults
+- name: Unfaulted phase-neutral conductance
+  summary: Unfaulted conductance between phase connection and neutral point 1e-6 1/Ohm (default) | positive scalar
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+- name: Port 2 connection fault
+  summary: Option to add fault to port 2 Add fault
+  group: Faults
+- name: Fault type
+  summary: Type of fault Single-phase to ground (a-g) (default) | Single-phase to ground (b-g) | Single-phase to ground (c-g)
+    | Two-phase (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase
+    to ground (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: Faults
+- name: Faulted phase-neutral resistance
+  summary: Faulted resistance between phase connection and neutral point 1e-3 Ohm (default) | positive scalar
+  group: Faults
+- name: Faulted neutral-ground resistance
+  summary: Faulted resistance between neutral point and electrical reference 1e-3 Ohm (default) | positive scalar
+  group: Faults
+- name: Unfaulted phase-neutral conductance
+  summary: Unfaulted conductance between phase connection and neutral point 1e-6 1/Ohm (default) | positive scalar
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+```
 
 ### Main
 
@@ -708,7 +856,6 @@ To enable this parameter, click the **Add fault** hyperlink for the
 **Port 2 connection fault** parameter and set
 **Trigger type** to
 `Additional triggers`.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Lines

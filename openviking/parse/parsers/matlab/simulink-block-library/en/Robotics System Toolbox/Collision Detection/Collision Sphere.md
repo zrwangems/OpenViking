@@ -14,6 +14,22 @@ language: en
 # Collision Sphere
 
 ## Ports
+```yaml
+ports:
+- name: Radius
+  summary: Radius of sphere scalar
+  direction: input
+- name: Pose
+  summary: Pose of collision geometry matrix
+  direction: input
+- name: CollGeom
+  summary: Collision geometry bus
+  direction: output
+- name: ExitFlag
+  summary: Validity of collision sphere radius scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Input
 
@@ -46,8 +62,16 @@ To validate the radius at runtime instead, select the **Enable Runtime
 Input Dimensions Error** parameter.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable Runtime Input Dimensions Error
+  summary: Validation of collision sphere dimensions on (default) | off
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -69,7 +93,6 @@ uses the **ExitFlag** port to identify if the radius is invalid.
   subsequent simulations, as long as the model does not change.
 - `Interpreted execution` — Simulate model using
   the MATLAB® interpreter. For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Robotics System Toolbox / Collision Detection

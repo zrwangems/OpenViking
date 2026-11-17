@@ -14,6 +14,21 @@ language: en
 # DAC AC Measurement
 
 ## Ports
+```yaml
+ports:
+- name: digital
+  summary: Digital input signal from DAC scalar
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: analog
+  summary: Converted analog signal from DAC scalar
+  direction: input
+  data_types: double
+- name: start
+  summary: External clock to start conversion scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +50,54 @@ External clock to start conversion, specified as a scalar. This port determines
 when digital-to-analog conversion process starts.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Digital signal frequency (Hz)
+  summary: Frequency of digital input signal to DAC 1e3 (default) | positive real scalar
+  group: ''
+  block_parameter: InputFrequency
+  type: character vector
+  values: positive real scalar
+  default: 1e3
+- name: Start conversion frequency (Hz)
+  summary: Frequency of internal start conversion clock 1e6 (default) | positive real scalar
+  group: ''
+  block_parameter: StartFreq
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Settling time tolerance (LSB)
+  summary: Tolerance for calculating settling time 0.5 (default) | positive real scalar
+  group: ''
+  block_parameter: SettlingTimeTolerance
+  type: character vector
+  values: positive real scalar
+  default: '0.5'
+- name: Hold off time (s)
+  summary: Delay before measurement analysis to avoid corruption by transients 0 (default) | nonnegative real scalar
+  group: ''
+  block_parameter: HoldOffTime
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Recommended simulation stop time (s)
+  summary: Minimum time simulation must run for meaningful result 0.09 (default) | positive real scalar
+  group: ''
+- name: Output result to base workspace
+  summary: Store detailed test results to base workspace off (default) | on
+  group: ''
+- name: Workspace variable name
+  summary: Name of the variable that stores detailed test results dac_ac_out (default) | character string
+  group: ''
+  block_parameter: VariableName
+  type: character vector
+  values: character string
+  default: dac_ac_out
+- name: Show spectrum analyzer during simulation
+  summary: Displays Spectrum Analyzer during simulation on (default) | off
+  group: ''
+```
 
 ### **Digital signal frequency (Hz)** — Frequency of digital input signal to DAC `1e3` (default) | positive real scalar
 
@@ -158,7 +219,6 @@ workspace** parameter.
 
 Select this parameter to display the Spectrum Analyzer window during simulation. By
 default, this parameter is selected.
-
 ## Libraries
 
 Mixed-Signal Blockset / DAC / Measurements & Testbenches

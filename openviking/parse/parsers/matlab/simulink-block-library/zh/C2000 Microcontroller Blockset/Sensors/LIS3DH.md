@@ -15,6 +15,65 @@ chinese_source: worker-translation
 # LIS3DH Accelerometer Sensor
 
 ## 端口
+```yaml
+ports:
+- name: Acceleration
+  summary: 由加速度计矢量测量的沿各轴的加速度
+  direction: output
+  data_types: single | double | int16
+- name: ADC1 Voltage
+  summary: 外部引脚 ADC1 上的电压向量
+  direction: output
+  data_types: single | double | int16
+- name: ADC2 Voltage
+  summary: 外部引脚 ADC2 上的电压向量
+  direction: output
+  data_types: single | double | int16
+- name: ADC3 Voltage
+  summary: 外部引脚 ADC3 上的电压向量
+  direction: output
+  data_types: single | double | int16
+- name: Temperature
+  summary: 由 LIS3DH 传感器测量的温度标量
+  direction: output
+  data_types: single | double | int16
+- name: Accelration Status
+  summary: 加速度测量状态 2 | 0 | 1
+  direction: output
+  data_types: uint8
+- name: Samples pending
+  summary: 待处理采样数标量
+  direction: output
+  data_types: uint8
+- name: Click status [X,Y,Z]
+  summary: 点击检测状态 0 | 1
+  direction: output
+  data_types: uint8
+- name: Inertial wake-up status [X,Y,Z]
+  summary: 惯性唤醒中断状态 0 | 1
+  direction: output
+  data_types: uint8
+- name: Free-fall status
+  summary: 自由落体状态 0 | 1
+  direction: output
+  data_types: uint8
+- name: 6D position status [X, -X, Y, -Y, Z, -Z]
+  summary: 6D 位置状态 0 | 1
+  direction: output
+  data_types: uint8
+- name: 6D movement status [X, -X, Y, -Y, Z, -Z]
+  summary: 6D 运动状态 0 | 1
+  direction: output
+  data_types: uint8
+- name: 4D position status [X, -X, Y, -Y]
+  summary: 4D 位置状态 0 | 1
+  direction: output
+  data_types: uint8
+- name: 4D movement status [X, -X, Y, -Y]
+  summary: 4D 运动状态 0 | 1
+  direction: output
+  data_types: uint8
+```
 
 ### 输出
 
@@ -159,8 +218,136 @@ chinese_source: worker-translation
 此参数仅在您从 **Detect** 参数中选择 `4D movement` 并选择 **Detection status** 参数时出现。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: I2C Module
+  summary: 用于 I2C 通信的特定模块 I2C_A（默认）
+  group: 主要
+- name: I2C address
+  summary: 用于与传感器外设通信的 I2C 地址 0x18（默认） | 0x19
+  group: 主要
+- name: Acceleration (m/s2)
+  summary: 设置用于读取加速度的输出端口 on（默认） | off
+  group: 主要
+- name: ADC3 input
+  summary: 选择用于读取温度或电压的输出端口 None（默认） | Temperature | Voltage (external input)
+  group: 主要
+- name: Voltage (external input at ADC1)
+  summary: 选择用于读取电压的输出端口 off（默认） | on
+  group: 主要
+- name: Voltage (external input at ADC2)
+  summary: 选择用于读取电压的输出端口 off（默认） | on
+  group: 主要
+- name: Acceleration data ready status
+  summary: 设置用于获取加速度状态的输出端口 on（默认） | off
+  group: 主要
+- name: Accelerometer resolution
+  summary: 数据寄存器位分辨率 12bit（默认） | 10bit | 8bit
+  group: 主要
+- name: Accelerometer output data rate (Hz)
+  summary: 加速度计数据采样速率 400 Hz（默认） | 1 Hz | 10 Hz | 25 Hz | 50 Hz | 100 Hz | 200 Hz | 1344 Hz
+  group: 主要
+- name: Accelerometer range
+  summary: 测量线性加速度的满量程 ±2g（默认） | ±4g | ±8g | ±16g
+  group: 主要
+- name: Enable FIFO
+  summary: 启用要读取的采样数 off（默认） | on
+  group: 主要
+- name: Number of samples to read from FIFO (1-32)
+  summary: 要读取的采样数 2（默认）
+  group: 主要
+- name: Generate FIFO overrun interrupt on INT1 pin
+  summary: 当 FIFO 缓冲区满时生成中断 off（默认） | on
+  group: 主要
+- name: Enable high pass filter
+  summary: 为加速度计数据启用高通滤波器 off（默认） | on
+  group: 主要
+- name: HPF cutoff frequency (Hz)
+  summary: 高通滤波器的带宽 100 Hz（默认） | 12 Hz | 25 Hz | 50 Hz
+  group: 主要
+- name: Generate data ready interrupt on INT1 pin
+  summary: 当数据就绪时生成中断 off（默认） | on
+  group: 主要
+- name: Data type
+  summary: 来自 lis3dh 传感器的值的输出数据类型 single（默认） | double | int16
+  group: 主要
+- name: Sample time
+  summary: 读取数据的时间间隔 -1（默认） | 正整数
+  group: 主要
+- name: Enable click detection
+  summary: 启用点击检测的选项 off（默认） | on
+  group: 点击检测
+- name: Type
+  summary: 选择要检测的点击类型 Single click（默认） | Double click
+  group: 点击检测
+- name: Threshold (m/s2)
+  summary: 检测单击或双击的阈值 1.5（默认）
+  group: 点击检测
+- name: Time limit (s)
+  summary: 时间限制持续时间 0.3（默认） | 正整数
+  group: 点击检测
+- name: Time latency (s)
+  summary: 时间延迟持续时间 0.3（默认） | 正整数
+  group: 点击检测
+- name: Time window (s)
+  summary: 时间窗口持续时间 0.3（默认） | 正整数
+  group: 点击检测
+- name: X axis
+  summary: X 轴上的点击检测 on（默认） | off
+  group: 点击检测
+- name: Y axis
+  summary: Y 轴上的点击检测 on（默认） | off
+  group: 点击检测
+- name: Z axis
+  summary: Z 轴上的点击检测 off（默认） | on
+  group: 点击检测
+- name: Generate click interrupt
+  summary: 当检测到点击时生成中断 off（默认） | on
+  group: 点击检测
+- name: Interrupt pin
+  summary: 用于生成点击中断的引脚 INT1（默认） | INT2
+  group: 点击检测
+- name: Click status
+  summary: 设置用于获取点击检测状态的输出端口 off（默认） | on
+  group: 点击检测
+- name: Configurable detections
+  summary: 设置可配置检测的数量 0（默认） | 1 | 2
+  group: 可配置检测
+- name: Detect
+  summary: 选择中断 Inertial wake-up（默认） | Free-fall | 6D position | 6D movement | 4D position | 4D movement
+  group: 可配置检测
+- name: X axis
+  summary: X 轴中断检测 on（默认）| off
+  group: 可配置检测
+- name: Y axis
+  summary: Y 轴中断检测 on（默认）| off
+  group: 可配置检测
+- name: Z axis
+  summary: Z 轴中断检测 on（默认）| off
+  group: 可配置检测
+- name: -X axis
+  summary: -X 轴中断检测 off（默认）| on
+  group: 可配置检测
+- name: -Y axis
+  summary: -Y 轴中断检测 off（默认）| on
+  group: 可配置检测
+- name: -Z axis
+  summary: -Z 轴中断检测 off（默认）| on
+  group: 可配置检测
+- name: Threshold (m/s2
+  summary: 用于检测所选可配置检测的加速度阈值 1.5（默认）
+  group: 可配置检测
+- name: Duration (s)
+  summary: 时间限制持续时间 0.3（默认）| positive integer
+  group: 可配置检测
+- name: Generate interrupt
+  summary: 生成中断 off（默认）| on
+  group: 可配置检测
+- name: Interrupt pin
+  summary: 用于生成中断的引脚 INT1（默认）| INT2
+  group: 可配置检测
+```
 
 ### 主要
 
@@ -477,7 +664,6 @@ movement` 时，此参数才会出现。
 **注意**
 
 **Configuration detections 2** 的参数与 **Configuration detections 1** 类似。有关配置这些参数的信息，请参阅 Configurable detections 1。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Sensors

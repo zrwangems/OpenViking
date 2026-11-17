@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # AXI4 Random Access Memory
 
 ## 端口
+```yaml
+ports:
+- name: wrData
+  summary: 写入方数据总线信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: rdCtrlIn
+  summary: 读取方输入控制信号总线
+  direction: input
+  data_types: ReadControlM2SBusObj
+- name: wrCtrlIn
+  summary: 写入方输入控制信号总线
+  direction: input
+  data_types: WriteControlM2SBusObj
+- name: rdData
+  summary: 输出到数据消费者的数据信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: rdCtrlOut
+  summary: 从存储器通道到数据消费者的读取方控制信号 总线
+  direction: output
+  data_types: ReadControlS2MBusObj
+- name: wrCtrlOut
+  summary: 从存储器通道到数据生产者的写入方控制信号 总线
+  direction: output
+  data_types: WriteControlS2MBusObj
+```
 
 ### 输入
 
@@ -54,8 +81,62 @@ chinese_source: worker-translation
 此总线表示从存储器通道到数据生产者的协议总线。要从总线中分离信号，请使用 SoC Bus Selector 模块。
 
 **数据类型：** `WriteControlS2MBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Memory simulation
+  summary: 设置仿真时序精度 Burst accurate（默认）| Protocol accurate
+  group: ''
+- name: Memory selection
+  summary: 在存储器区域之间选择 PS memory（默认）| PL memory
+  group: 主要
+- name: Region size (bytes)
+  summary: 缓冲区大小，以字节为单位 4096（默认）| 标量
+  group: 主要
+- name: Initialize memory content
+  summary: 为仿真初始化存储器 off（默认）| on
+  group: 主要
+- name: Initial value
+  summary: 初始存储器值 0（默认）| 标量 | 向量
+  group: 主要
+- name: Log memory content
+  summary: 记录存储器内容 off（默认）| on
+  group: 主要
+- name: Log variable name
+  summary: 内存日志字符串的变量名称 | 字符向量
+  group: 主要
+- name: Dimensions
+  summary: 输入数据信号的维度 标量 | 数组
+  group: 信号属性
+- name: Data type
+  summary: 写入器数据的数据类型 uint32（默认）| double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint64 | boolean | 定点
+  group: 信号属性
+- name: Sample time
+  summary: 采样时间间隔 1（默认）| 正标量 | 向量
+  group: 信号属性
+- name: Enable sample packing (last signal dimension as channel)
+  summary: 在信号的最后一个维度上打包数据 off（默认）| on
+  group: 信号属性
+- name: Output data signal matches input
+  summary: 读取器和写入器使用相同的值 on（默认）| off
+  group: 信号属性
+- name: Dimensions
+  summary: 输出数据信号的维度 标量 | 数组
+  group: 信号属性
+- name: Data type
+  summary: 读取器数据的数据类型 uint32 (默认) | double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint64 | boolean | fixed
+    point
+  group: 信号属性
+- name: Sample time
+  summary: 采样时间间隔 1 (默认) | 正标量 | 向量
+  group: 信号属性
+- name: Enable sample packing (last signal dimension as channel)
+  summary: 在信号的最后一个维度上打包数据 off (默认) | on
+  group: 信号属性
+- name: View performance plots
+  summary: 显示性能指标 按钮
+  group: 性能
+```
 
 ### **Memory simulation** — 设置仿真时序精度 `Burst accurate`（默认）| `Protocol accurate`
 
@@ -213,7 +294,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请在 **Memory simulation** 下选择 **Burst accurate**。
-
 ## 所属库
 
 SoC Blockset / Memory

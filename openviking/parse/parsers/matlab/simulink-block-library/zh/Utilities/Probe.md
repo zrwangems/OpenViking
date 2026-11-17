@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Probe
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 仿真期间所选变量的值 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### 输出
 
@@ -25,11 +32,12 @@ chinese_source: worker-translation
 如果选择多个变量，该模块将获取额外的输出端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Utilities

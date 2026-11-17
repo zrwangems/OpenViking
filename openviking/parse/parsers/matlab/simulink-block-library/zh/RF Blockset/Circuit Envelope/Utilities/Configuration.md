@@ -15,10 +15,84 @@ chinese_source: worker-translation
 # Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Automatically select fundamental tones and harmonic order
+  summary: 自动选择基频音和谐波阶数 on（默认）| off
+  group: ''
+- name: Fundamental tones
+  summary: 仿真频率集的基频音，以 Hz 为单位的正整数向量
+  group: ''
+- name: Harmonic order
+  summary: 每个基频音的谐波阶数，正整数向量
+  group: ''
+- name: 'Total simulation frequencies: Computed at simulation time'
+  summary: 显示仿真频率数量的按钮
+  group: ''
+- name: Step size
+  summary: 固定步长求解器配置的时间步长 1e-6（默认）| 以秒为单位的标量
+  group: ''
+- name: Envelope bandwidth
+  summary: 最大仿真包络带宽 1 MHz（默认）| 以 Hz 为单位的标量
+  group: ''
+- name: Simulate noise
+  summary: 全局启用或禁用噪声建模 on（默认）| off
+  group: ''
+- name: Use default random number generator
+  summary: RF Blockset 源的默认伪随机噪声流 on（默认）| off
+  group: ''
+- name: Noise seed
+  summary: 独立伪随机数流的种子 0（默认）| 标量正整数
+  group: ''
+- name: Temperature
+  summary: 全局噪声温度 290.0K | 以开尔文为单位的标量整数
+  group: ''
+- name: Samples per frame
+  summary: Inport 模块输入信号每个通道中的样本数 1 | 正标量整数
+  group: ''
+- name: Normalize Carrier Power
+  summary: 归一化载波信号功率 on（默认）| off
+  group: ''
+- name: Enable input interpolation filter
+  summary: 自动将较低速率基带信号插值到较高速率 RF 信号 on（默认）| off
+  group: ''
+- name: Transient analysis
+  summary: RF Blockset 环境的固定步长求解器 Auto（默认）| NDF2 | Trapezoidal Rule | Backward Euler
+  group: ''
+- name: Approximate transient as small signal
+  summary: 为瞬态小信号分析选择一小部分频率 off（默认）| on
+  group: ''
+- name: Use all steady-state simulation frequencies for small signal analysis
+  summary: 选择所有稳态仿真频率 on（默认）| off
+  group: ''
+- name: Small signal frequencies
+  summary: 小信号瞬态仿真的频率 标量 | 向量
+  group: ''
+- name: Populate Frequencies
+  summary: 用于选择小信号瞬态频率的按钮
+  group: ''
+- name: Relative tolerance
+  summary: 系统变量的相对牛顿容差 1e-3（默认）| 实正有限标量
+  group: ''
+- name: Absolute tolerance
+  summary: 系统变量的绝对牛顿容差 1e-6（默认）| 实正有限标量
+  group: ''
+- name: Maximum iterations
+  summary: 收敛所需的迭代次数 10（默认）| 实正整数标量
+  group: ''
+- name: Error estimation
+  summary: 检查系统变量中的收敛误差 2-norm over all variables（默认）| Each variable separately
+  group: ''
+- name: Restore Default Settings
+  summary: 将牛顿求解器恢复为默认值 按钮
+  group: ''
+```
 
 #### 主
 
@@ -230,7 +304,6 @@ RF Blockset 求解器是 Simscape™ 局部求解器的扩展。有关 Simscape 
 ### **Restore Default Settings** — 将牛顿求解器恢复为默认值 按钮
 
 将牛顿求解器恢复为默认值，指定为按钮。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Utilities

@@ -14,6 +14,21 @@ language: en
 # Shift Arithmetic
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Number to be operated on scalar | vector | array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: s
+  summary: Number of bits to shift scalar
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Result of operation scalar | vector | array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -36,8 +51,52 @@ Number of bits to shift, specified as a scalar.
 Result of operation, returned as a scalar, vector, or array.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: 'Bits to shift: Source'
+  summary: Source of bits to shift Dialog (default) | Input port
+  group: ''
+  block_parameter: BitShiftNumberSource
+  type: character vector, string
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: 'Bits to shift: Direction'
+  summary: Direction in which to shift bits Bidirectional (default) | Left | Right
+  group: ''
+  block_parameter: BitShiftDirection
+  type: character vector, string
+  values: '''Left'' | ''Right'' | ''Bidirectional'''
+  default: '''Bidirectional'''
+- name: 'Bits to shift: Number'
+  summary: Bits to shift 8 (default) | scalar | vector | array
+  group: ''
+  block_parameter: BitShiftNumber
+  type: character vector, string
+  values: scalar | vector | array
+  default: '''8'''
+- name: 'Binary points to shift: Number'
+  summary: Number of places to shift binary point 0 (default) | scalar
+  group: ''
+  block_parameter: BinPtShiftNumber
+  type: character vector, string
+  values: scalar
+  default: '''0'''
+- name: Diagnostic for out of range shift value
+  summary: Diagnostic action None (default) | Warning | Error
+  group: ''
+  block_parameter: DiagnosticForOORShift
+  type: character vector, string
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Check for out-of-range 'Bits to shift' in generated code
+  summary: Check for out-of-range bits to shift in generated code off (default) | on
+  group: ''
+  block_parameter: CheckOORBitShift
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Bits to shift: Source** — Source of bits to shift `Dialog` (default) | `Input port`
 
@@ -153,7 +212,6 @@ For more information, see Code Generation for Out-of-Range Bit Shift Values.
 | **Type**: character vector, string |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

@@ -14,6 +14,24 @@ language: en
 # Thermodynamic Properties Sensor (MA)
 
 ## Ports
+```yaml
+ports:
+- name: h
+  summary: Specific enthalpy measurement, J/kg physical signal
+  direction: output
+- name: ρ
+  summary: Density measurement, kg/m^3 physical signal
+  direction: output
+- name: cp
+  summary: Specific heat at constant pressure measurement, J/(kg\*K) physical signal
+  direction: output
+- name: s
+  summary: Specific entropy measurement, J/(kg\*K) physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet moist air
+  direction: conserving
+```
 
 ### Output
 
@@ -62,8 +80,30 @@ box.
 
 Moist air conserving port. Connect this port to the node in the moist
 air network where you want to measure the thermodynamic properties.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurements based on
+  summary: Select measurement convention for sensor output Unit mass of moist air mixture (default) | Unit mass of dry air
+    and trace gas
+  group: ''
+- name: Enthalpy
+  summary: Control output port visibility for measuring specific enthalpy Off (default) | On
+  group: ''
+- name: Enthalpy reference state
+  summary: Select reference state for specific enthalpy output As provided in Moist Air Properties (MA) block (default) |
+    0 degC with water as vapor | 0 degC with water as liquid
+  group: ''
+- name: Density
+  summary: Control output port visibility for measuring density On (default) | Off
+  group: ''
+- name: Specific heat
+  summary: Control output port visibility for measuring specific heat Off (default) | On
+  group: ''
+- name: Entropy
+  summary: Control output port visibility for measuring specific entropy Off (default) | On
+  group: ''
+```
 
 ### **Measurements based on** — Select measurement convention for sensor output `Unit mass of moist air mixture` (default) | `Unit mass of dry air and trace gas`
 
@@ -126,7 +166,6 @@ which lets you measure the specific heat of the air mixture.
 
 Selecting this check box exposes the output port **s**,
 which lets you measure the specific entropy of the air mixture.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Sensors

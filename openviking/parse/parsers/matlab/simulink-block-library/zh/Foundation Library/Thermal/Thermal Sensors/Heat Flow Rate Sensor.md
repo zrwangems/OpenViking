@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Heat Flow Rate Sensor
 
 ## 端口
+```yaml
+ports:
+- name: H
+  summary: 热流率测量，W 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口热端口
+  direction: output
+- name: B
+  summary: 传感器出口热端口
+  direction: output
+```
 
 ### 输出
 
@@ -30,11 +42,12 @@ chinese_source: worker-translation
 ### **B** — 传感器出口热端口
 
 热守恒端口。当端口 **A** 处的值大于端口 **B** 处的值时，测量值为正。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Sensors

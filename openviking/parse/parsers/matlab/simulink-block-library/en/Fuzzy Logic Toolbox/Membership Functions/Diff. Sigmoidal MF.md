@@ -14,6 +14,15 @@ language: en
 # Diff. Sigmoidal MF
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input value scalar | vector
+  direction: input
+- name: MF
+  summary: Membership value scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +38,34 @@ Membership value, returned as a scalar or a vector. The dimensions of
 **MF** match the dimensions of **x**. Each element
 of **MF** is the membership value computed for the corresponding
 element of **x**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Left curve a1
+  summary: Transition area shape parameter for left curve 3 (default) | scalar
+  group: ''
+  block_parameter: a1
+  type: string, character vector
+  default: '"3"'
+- name: Left curve c1
+  summary: Transition area center for left curve -5 (default) | scalar
+  group: ''
+  block_parameter: c1
+  type: string, character vector
+  default: '"-5"'
+- name: Right curve a2
+  summary: Transition area shape parameter for right curve 1 (default) | scalar
+  group: ''
+  block_parameter: a2
+  type: string, character vector
+  default: '"1"'
+- name: Right curve c2
+  summary: Transition area center for right curve 5 (default) | scalar
+  group: ''
+  block_parameter: c2
+  type: string, character vector
+  default: '"5"'
+```
 
 ### **Left curve a1** — Transition area shape parameter for left curve `3` (default) | scalar
 
@@ -97,7 +132,6 @@ curve.
 | **Block Parameter:** `c2` |
 | **Type:** string, character vector |
 | **Default:** `"5"` |
-
 ## Libraries
 
 Fuzzy Logic Toolbox / Membership Functions

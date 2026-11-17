@@ -14,6 +14,14 @@ language: en
 # Out Bus Element
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Full or partial output for external port scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -33,8 +41,97 @@ it in a bus, delete the text from the second text field in the block label.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Port name
+  summary: Name of output port OutBus (default) | port name
+  group: Block Label
+  block_parameter: PortName
+  values: '"OutBus" (default) | port name in quotes'
+- name: Element
+  summary: Optional bus element specification signal1 (default) | element path
+  group: Block Label
+  block_parameter: Element
+  values: '"signal1" (default) | element path in quotes'
+- name: Port number
+  summary: Position of port on parent block 1 (default) | real integer
+  group: Port Tab
+  block_parameter: Port
+  values: '"1" (default) | real integer in quotes'
+- name: Output name
+  summary: Name of output bus, signal, or message in parent subsystem or model no default
+  group: Port Tab
+  block_parameter: OutputName
+  values: '"" (default) | output name in quotes'
+- name: Initial output
+  summary: Initial output for parent conditionally executed subsystem [] (default) | scalar | structure
+  group: Port Tab
+  block_parameter: InitialOutput
+  values: '''[]'' (default) | scalar in quotes | structure in quotes'
+- name: Output when disabled
+  summary: Output when parent conditionally executed subsystem is disabled held (default) | reset
+  group: Port Tab
+  block_parameter: OutputWhenDisabled
+  values: '"held" (default) | "reset"'
+- name: Data type
+  summary: 'Data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: Signal Tab
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto" (default) | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32"
+    | "int64" | "uint64" | "boolean" | "fixdt(1,16)" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "string" | "Enum: <class name>"
+    | "Bus: <object name>" | "ValueType: <object name>" | data type expression in quotes'
+- name: Data mode
+  summary: Data mode of output element inherit (default) | signal | message
+  group: Signal Tab
+  block_parameter: DataMode
+  values: '"inherit" (default) | "signal" | "message"'
+- name: Bus virtuality
+  summary: Virtual or nonvirtual bus inherit (default) | virtual | nonvirtual
+  group: Signal Tab
+  block_parameter: BusVirtuality
+  values: '"inherit" (default) | "virtual" | "nonvirtual"'
+- name: Dimensions
+  summary: Signal dimensions -1 (default) | integer | 1-by-2 vector of integers
+  group: Signal Tab
+  block_parameter: PortDimensions
+  values: '"-1" (default) | integer in quotes | 1-by-2 vector of integers in quotes'
+- name: Dimensions mode
+  summary: Option to allow only variable-size or fixed-size signals Inherit (default) | Fixed | Variable
+  group: Signal Tab
+  block_parameter: VarSizeSig
+  values: '"Inherit" (default) | "No" | "Yes"'
+- name: Unit
+  summary: Physical unit inherit (default) | unit supported by Simulink software
+  group: Signal Tab
+  block_parameter: Unit
+  values: '"inherit" (default) | unit supported by Simulink software in quotes'
+- name: Complexity
+  summary: Numeric type auto (default) | real | complex
+  group: Signal Tab
+  block_parameter: SignalType
+  values: '"auto" (default) | "real" | "complex"'
+- name: Minimum
+  summary: Minimum value [] (default) | scalar
+  group: Signal Tab
+  block_parameter: OutMin
+  values: '"[]" (default) | scalar in quotes'
+- name: Maximum
+  summary: Maximum value [] (default) | scalar
+  group: Signal Tab
+  block_parameter: OutMax
+  values: '"[]" (default) | scalar in quotes'
+- name: Description
+  summary: Description of bus, signal, or message no default
+  group: Signal Tab
+  block_parameter: Description
+  values: '"" (default) | description in quotes'
+- name: Sample time
+  summary: Sample time -1 (default) | scalar
+  group: Execution Tab
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar in quotes'
+```
 
 To edit the element associated with an
 Out Bus Element
@@ -727,7 +824,6 @@ separating each name in the hierarchy with a dot.
 | **Data Types:** | `char` | `string` |
 
 **Example:** `set_param("mymodel/Subsystem1/myBus.signal1",SampleTime="0.01")`
-
 ## Libraries
 
 Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Ports & Subsystems HDL Coder / Sinks

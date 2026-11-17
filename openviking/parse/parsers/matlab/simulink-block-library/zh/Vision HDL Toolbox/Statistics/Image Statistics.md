@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Image Statistics
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint8 | uint16 | fixdt(0,W,0) | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: mean
+  summary: 最近完成的输入帧的均值 标量
+  direction: output
+  data_types: uint8 | uint16 | fixdt(0,W,0) | double | single
+- name: var
+  summary: 最近完成的输入帧的方差 标量
+  direction: output
+  data_types: uint8 | uint16 | fixdt(0,W,0) | double | single
+- name: stdDev
+  summary: 最近完成的输入帧的标准差 标量
+  direction: output
+  data_types: uint8 | uint16 | fixdt(0,W,0) | double | single
+- name: validOut
+  summary: 计算完成 布尔值
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -64,8 +91,19 @@ chinese_source: worker-translation
 当某一帧的统计输出准备就绪时，该模块将此输出设置为 `true`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable mean output
+  summary: 计算每个输入帧的均值 on（默认）| off
+  group: ''
+- name: Enable variance output
+  summary: 计算每个输入帧的方差 on（默认）| off
+  group: ''
+- name: Enable std. deviation
+  summary: 计算每个输入帧的标准差 on（默认）| off
+  group: ''
+```
 
 ### **Enable mean output** — 计算每个输入帧的均值 on（默认）| off
 
@@ -78,7 +116,6 @@ chinese_source: worker-translation
 ### **Enable std. deviation** — 计算每个输入帧的标准差 on（默认）| off
 
 选择此参数以启用 **stdDev** 端口并计算每个输入帧的标准差。
-
 ## 所属库
 
 Vision HDL Toolbox / Statistics

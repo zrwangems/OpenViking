@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # UDP Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 接收到的数据向量
+  direction: output
+  data_types: uint8 | UDP_Packet
+- name: Length
+  summary: 接收到的字节数 double
+  direction: output
+```
 
 ### 输出
 
@@ -38,8 +48,46 @@ chinese_source: worker-translation
 当禁用 **Enable Simulink
 messages** 参数时，此端口可用。Length 是接收到的新数据包中的字节数，否则为 `0`。如果接收到的字节数超过通过 **Data**
 端口以 **Receive width** 定义的宽度输出的字节数，则多余的字节将被丢弃。
-
 ## 参数
+```yaml
+parameters:
+- name: Use host-target connection
+  summary: 使用开发计算机和目标计算机之间的以太网连接 'off'（默认）| 'on'
+  group: 常规参数
+  block_parameter: useHostTargetConn
+- name: Local IP address
+  summary: 用于接收数据的目标 IP 地址 Use host-target connection（默认）
+  group: 常规参数
+  block_parameter: ipAddress
+- name: Local port
+  summary: 用于接收数据的目标 UDP 端口 1–65535
+  group: 常规参数
+  block_parameter: localPort
+- name: Receive width
+  summary: Data 输出向量的宽度 1–65504
+  group: 常规参数
+  block_parameter: rcvWidth
+- name: Receive from any source
+  summary: 使接收方接受来自任何 IP 地址的数据 on（默认）| off
+  group: 常规参数
+  block_parameter: rcvFmAny
+- name: From IP address
+  summary: 接收数据的来源 x.x.x.x
+  group: 常规参数
+  block_parameter: fmAddress
+- name: Sample time (-1 for inherited)
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: 常规参数
+  block_parameter: sampleTime
+- name: Enable Simulink messages
+  summary: 将数据作为消息处理 off（默认）| on
+  group: 常规参数
+  block_parameter: MessageOut
+- name: 每个时间步的最大消息数
+  summary: 限制消息数 1（默认）| int
+  group: 常规参数
+  block_parameter: maxPacket
+```
 
 ### 常规参数
 
@@ -151,7 +199,6 @@ Enable Simulink messages 指示模块将数据作为消息处理。启用后，L
 |  |
 | --- |
 | **模块参数：** `maxPacket` |
-
 ## 所属库
 
 Simulink Real-Time / IP

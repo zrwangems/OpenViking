@@ -14,6 +14,37 @@ language: en
 # Vector plot
 
 ## Ports
+```yaml
+ports:
+- name: Vabc
+  summary: Three-phase voltages vector
+  direction: input
+  data_types: single | double
+- name: Iabc
+  summary: Three-phase currents vector
+  direction: input
+  data_types: single | double
+- name: Theta
+  summary: Angle of transformation scalar
+  direction: input
+  data_types: single | double
+- name: Vdq
+  summary: Voltages in *dq* reference frame vector
+  direction: input
+  data_types: single | double
+- name: Idq
+  summary: Currents in *dq* reference frame vector
+  direction: input
+  data_types: single | double
+- name: Magnitude
+  summary: Vector magnitudes vector
+  direction: input
+  data_types: single | double
+- name: Angle
+  summary: Vector angle vector
+  direction: input
+  data_types: single | double
+```
 
 ### Input
 
@@ -139,8 +170,28 @@ To enable this port, set **Select input types** to
 `Mag Angle`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select input types
+  summary: Input port types Vabc Iabc Theta (default) | Vdq Idq | Mag Angle
+  group: ''
+- name: Select reference frame
+  summary: Reference frame for vectors Rotating Reference Frame (default) | Stationary Reference Frame
+  group: ''
+- name: Alpha (phase-a) axis alignment
+  summary: '*dq* reference frame alignment D-axis (default) | Q-axis'
+  group: ''
+- name: Theta units
+  summary: Unit of Theta input Radians (default) | Degrees | Per-unit
+  group: ''
+- name: Angle units
+  summary: Unit of Angle input Radians (default) | Degrees | Per-unit
+  group: ''
+- name: Open plot at simulation start
+  summary: Open vector plot at simulation start on (default) | off
+  group: ''
+```
 
 ### **Select input types** — Input port types `Vabc Iabc Theta` (default) | `Vdq Idq` | `Mag Angle`
 
@@ -237,7 +288,6 @@ You can use these buttons on the Vector Plot window:
   describing the vectors. You can manually change the default legend description.
 - (Auto Scale) — Click to turn on or turn off the
   auto-scale function.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management

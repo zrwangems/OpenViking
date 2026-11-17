@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Zero Crossing
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Cnt
+  summary: 过零次数 标量 | 行向量
+  direction: output
+  data_types: uint32
+```
 
 ### 输入
 
@@ -33,8 +44,13 @@ chinese_source: worker-translation
 - 行向量 –– 当数据输入为矩阵时，该模块输出一个行向量，行向量中的每个元素表示数据输入对应列中的过零次数。
 
 **数据类型：** `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Input processing
+  summary: 处理输入信号的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+```
 
 ### **Input processing** — 处理输入信号的方法 `Columns as channels (frame based)`（默认）| `Elements as channels (sample based)`
 
@@ -44,7 +60,6 @@ chinese_source: worker-translation
   — 当您选择此选项时，该模块将输入的每一列视为一个单独的通道。
 - `Elements as channels (sample based)`
   — 当您选择此选项时，该模块将输入的每一个元素视为一个单独的通道。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

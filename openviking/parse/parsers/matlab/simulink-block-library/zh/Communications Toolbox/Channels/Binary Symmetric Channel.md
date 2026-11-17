@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Binary Symmetric Channel
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 列向量 | 矩阵
+  direction: input
+- name: Output
+  summary: 二进制输出信号 列向量 | 矩阵
+  direction: output
+- name: Err
+  summary: 错误位置 列向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -41,8 +53,25 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 Output error vector。
-
 ## 参数
+```yaml
+parameters:
+- name: Error probability
+  summary: 错误发生概率 0.05（默认）| 标量
+  group: ''
+- name: Output error vector
+  summary: 输出错误位置的选项 on（默认）| off
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single | boolean
+  group: ''
+- name: Initial seed
+  summary: 初始种子 71（默认）| 整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -68,7 +97,6 @@ chinese_source: worker-translation
 
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。只要模型不更改，C 代码将复用于后续仿真。此选项需要额外的启动时间。
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
-
 ## 所属库
 
 Communications Toolbox / Channels

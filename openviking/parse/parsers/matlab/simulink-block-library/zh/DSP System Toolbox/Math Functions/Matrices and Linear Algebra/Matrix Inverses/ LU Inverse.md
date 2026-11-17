@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # LU Inverse
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入方阵 方阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 矩阵逆 方阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -32,11 +43,12 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Inverses

@@ -15,10 +15,33 @@ chinese_source: worker-translation
 # Power Amplifier
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Model
+  summary: 模型类型 Memory polynomial（默认）| Generalized Hammerstein | Cross-Term Memory | Cross-Term Hammerstein
+  group: ''
+- name: Coefficient Matrix
+  summary: 系数矩阵 1（默认）| 复矩阵 | 实矩阵
+  group: ''
+- name: Measured interval of PA data (s)
+  summary: 输入输出数据的采样间隔 1e-6（默认）| 实正标量
+  group: ''
+- name: Rin (ohm)
+  summary: 输入电阻 50（默认）| 实正标量
+  group: ''
+- name: Rout (ohm)
+  summary: 输出电阻 50（默认）| 实正标量
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 将 RF 电路端子接地 on（默认）| off
+  group: ''
+```
 
 ### **Model** — 模型类型 `Memory polynomial`（默认）| `Generalized Hammerstein` | `Cross-Term Memory` | `Cross-Term Hammerstein`
 
@@ -116,7 +139,6 @@ Hammerstein`。下表总结了不同模型的特征：
 ### **Ground and hide negative terminals** — 将 RF 电路端子接地 on（默认）| off
 
 选择此参数可将负端子接地并隐藏。清除此参数可暴露负端子。通过暴露这些端子，您可以将它们连接到模型的其它部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

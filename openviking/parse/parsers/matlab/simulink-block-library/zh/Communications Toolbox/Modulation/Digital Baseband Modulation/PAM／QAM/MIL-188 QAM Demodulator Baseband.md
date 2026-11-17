@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # MIL-188 QAM Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: MIL-STD-188 标准特定的 QAM 调制信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: 噪声方差 正标量 | 正值向量
+  direction: input
+- name: Out
+  summary: 解调信号 标量 | 向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -47,8 +60,34 @@ MIL-STD-188 标准特定的 QAM 调制信号，指定为标量、向量或矩阵
 | *M* 是 **Modulation order** 的值。 | | | |
 
 使用 **Output data type** 指定输出数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation order
+  summary: 调制阶数 16（默认）| 32 | 64 | 256
+  group: ''
+- name: Constellation scaling
+  summary: 星座图缩放 As specified in standard（默认）| Unit average power
+  group: ''
+- name: Output type
+  summary: 输入类型 Integer（默认）| Bit
+  group: ''
+- name: Decision type
+  summary: 解调判决类型 Hard decision（默认）| Log-likelihood ratio | Approximate log-likelihood ratio
+  group: ''
+- name: Noise variance source
+  summary: 噪声方差源 Property（默认）| Input port
+  group: ''
+- name: Noise variance
+  summary: 噪声方差 1（默认）| 正标量 | 正值向量
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| ...
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -121,7 +160,6 @@ MIL-STD-188 标准特定的 QAM 调制信号，指定为标量、向量或矩阵
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM Communications Toolbox / Modulation / Digital Baseband Modulation / Standard-Compliant

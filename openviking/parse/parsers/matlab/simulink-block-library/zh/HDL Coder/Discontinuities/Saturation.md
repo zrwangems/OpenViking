@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Saturation
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,75 @@ chinese_source: worker-translation
 输出信号，其值为输入信号、饱和上限或饱和下限。
 
 **数据类型：** `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Upper limit
+  summary: 输入信号的饱和上限 0.5（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: UpperLimit
+  type: 字符向量
+  values: 实数标量或向量
+  default: '''0.5'''
+- name: Lower limit
+  summary: 输入信号的饱和下限 -0.5（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: LowerLimit
+  type: 字符向量
+  values: 实数标量或向量
+  default: '''-0.5'''
+- name: Treat as gain when linearizing
+  summary: 指定增益值 on（默认）| off
+  group: 主要
+  block_parameter: LinearizeAsGain
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: 启用零穿越检测 on（默认）| off
+  group: 主要
+  block_parameter: ZeroCross
+  type: 字符向量 | 字符串
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '指定输出数据类型 Inherit: Same as input（默认）| Inherit: Inherit via back propagation | double | single | int8 | int32 |
+    uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Same as input'' | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8'' | ''uint8''
+    | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | fixdt(1,16,2^0,0) | fixdt(1,16,2^0,0)
+    | ''<data type expression>'''
+  default: '''Inherit: Same as input'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Integer rounding mode
+  summary: 指定定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+```
 
 ### 主要
 
@@ -219,7 +297,6 @@ chinese_source: worker-translation
 #### 另请参阅
 
 有关详细信息，请参阅 Rounding Modes (Fixed-Point Designer)。
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Discontinuities HDL Coder / Discontinuities

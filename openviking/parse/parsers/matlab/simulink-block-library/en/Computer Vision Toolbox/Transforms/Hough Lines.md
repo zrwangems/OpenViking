@@ -14,6 +14,25 @@ language: en
 # Hough Lines
 
 ## Ports
+```yaml
+ports:
+- name: Theta
+  summary: Theta value scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rho
+  summary: Rho value scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Ref I
+  summary: Reference image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Pts
+  summary: Intersection points matrix
+  direction: output
+  data_types: int32
+```
 
 ### Input
 
@@ -70,8 +89,16 @@ y21 x22
 y22`].
 
 **Data Types:** `int32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sine value computation method
+  summary: Sine value computation method Table lookup (default) | Trigonometric function
+  group: ''
+- name: Theta resolution (radians)
+  summary: Theta resolution pi/180 (default) | positive scalar
+  group: ''
+```
 
 ### **Sine value computation method** — Sine value computation method `Table lookup` (default) | `Trigonometric function`
 
@@ -94,7 +121,6 @@ Specify the spacing of the theta-axis. Value must be greater than 0 and less tha
 
 To enable this parameter, set the **Sine value computation
 method** parameter to `Table lookup`.
-
 ## Libraries
 
 Computer Vision Toolbox / Transforms

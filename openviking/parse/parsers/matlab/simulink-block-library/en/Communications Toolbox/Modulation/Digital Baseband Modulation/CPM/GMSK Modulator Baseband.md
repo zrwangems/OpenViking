@@ -14,10 +14,15 @@ language: en
 # GMSK Modulator Baseband
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Input type**
 :   Indicates whether the input consists of bipolar or binary values.
@@ -73,7 +78,6 @@ Not documented in R2025b.
 :   The output type of the block can be specified as a
     `single` or `double`. By default, the
     block sets this to `double`.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Farrow Rate Converter
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 实数或复数标量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: rate
+  summary: 速率变化因子 标量
+  direction: input
+  data_types: fixed point
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 滤波后的输出数据 实数或复数标量
+  direction: output
+  data_types: fixed point | single | double
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已准备好接收新的输入数据 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -78,8 +109,49 @@ chinese_source: worker-translation
 控制信号，指示模块已准备好在下一个周期接收新的输入数据样本。当 **ready** 为 `1`（`true`）时，您可以为下一个时间步指定 **data** 和 **valid** 输入。当 **ready** 为 `0`（`false`）时，模块在下一个时间步忽略任何输入数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Rate change source
+  summary: 速率变化的来源 Property（默认）| Input port
+  group: 主要
+- name: Rate change (fsin/fsout)
+  summary: 速率变化因子 147/160（默认）| 正实数标量
+  group: 主要
+- name: Coefficients matrix
+  summary: FIR 滤波器系数 [-1/6 1/2 -1/3 0;1/2 -1 -1/2 1;-1/2 1/2 1 0;1/6 0 -1/6 0]（默认）| 实数值矩阵
+  group: 主要
+- name: Filter structure
+  summary: HDL 滤波器架构 Direct form systolic（默认）| Direct form transposed
+  group: 主要
+- name: Minimum number of cycles between valid input samples
+  summary: 输入时序的串行化要求 1（默认）| 正整数
+  group: 主要
+- name: Rounding mode
+  summary: 输出类型转换的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 输出类型转换的溢出处理 off（默认）| on
+  group: 数据类型
+- name: Coefficients
+  summary: '滤波器系数的数据类型 Inherit: Same word length as input（默认）| <data type expression>'
+  group: 数据类型
+- name: RateChange
+  summary: 速率变化因子的数据类型 fixdt(0,16)（默认）| <data type expression>
+  group: 数据类型
+- name: Multiplicand
+  summary: '被乘数的数据类型 Inherit: Inherit via internal rule（默认）| <data type expression>'
+  group: 数据类型
+- name: Output
+  summary: '滤波器输出的数据类型 Inherit: Same as first input（默认）| <data type expression>'
+  group: 数据类型
+- name: Enable reset input port
+  summary: 启用复位输入端口的选项 off（默认）| on
+  group: 控制端口
+- name: Use HDL global reset
+  summary: 将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off（默认）| on
+  group: 控制端口
+```
 
 ### 主要
 
@@ -167,7 +239,6 @@ chinese_source: worker-translation
 选中此复选框以将生成的 HDL 全局复位信号连接到数据路径寄存器。此参数不会更改模块的外观，也不会修改 Simulink 中的仿真行为。当您清除此复选框时，生成的 HDL 全局复位仅清除控制路径寄存器。生成的 HDL 全局复位可以是同步或异步的，具体取决于模型配置参数中的 **HDL Code Generation** > **Global Settings** > **Reset type** 参数。
 
 有关更多复位注意事项，请参阅 Hardware Control Signals 页面上的 Reset Signal 部分。
-
 ## 所属库
 
 DSP HDL Toolbox / Signal Operations

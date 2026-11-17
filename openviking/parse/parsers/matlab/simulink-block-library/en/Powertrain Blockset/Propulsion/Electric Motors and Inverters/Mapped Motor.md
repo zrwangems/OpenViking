@@ -14,6 +14,33 @@ language: en
 # Mapped Motor
 
 ## Ports
+```yaml
+ports:
+- name: BattVolt
+  summary: Battery voltage scalar
+  direction: input
+- name: TrqCmd
+  summary: Commanded motor torque scalar
+  direction: input
+- name: LdTrq
+  summary: Motor load torque scalar
+  direction: input
+- name: MtrSpd
+  summary: Motor output shaft speed scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: BattCurr
+  summary: Battery current scalar
+  direction: output
+- name: MtrTrq
+  summary: Motor torque scalar
+  direction: output
+- name: MtrSpd
+  summary: Motor shaft speed scalar
+  direction: output
+```
 
 ### Input
 
@@ -86,8 +113,188 @@ in rad/s.
 
 To enable this port, set **Port configuration**
 to `Torque`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port configuration
+  summary: Port configuration Torque (default) | Speed
+  group: ''
+  block_parameter: port_config
+  values: Torque (default) | Speed
+- name: Import Torque Limits Calibration
+  summary: Method to directly import torque limits calibration tables selection
+  group: ''
+- name: Calibrate Maps
+  summary: Method to calibrate loss table with measured data selection
+  group: ''
+- name: Import Loss Calibration
+  summary: Method to directly import loss calibration table selection
+  group: ''
+- name: Import Efficiency Calibration
+  summary: Method to directly import efficiency calibration table selection
+  group: ''
+- name: Parameterized by
+  summary: Parameterization method for torque envelope Tabulated torque-speed envelope (default) | Maximum torque and power
+    | Tabulated torque-speed-voltage envelope
+  group: ''
+  block_parameter: param_by
+  values: Tabulated torque-speed envelope (default) | Maximum torque and power | Tabulated torque-speed-voltage envelope
+- name: Speed breakpoints for maximum torque, w_t
+  summary: Rotational speeds [0 375 750 800] (default) | vector
+  group: ''
+  block_parameter: w_t
+  values: '[0 375 750 800] (default) | vector'
+- name: Maximum torque values, T_t
+  summary: Torque [0.09 0.08 0.07 0] (default) | vector
+  group: ''
+  block_parameter: T_t
+  values: '[0.09 0.08 0.07 0] (default) | vector'
+- name: Maximum torque, torque_max
+  summary: Torque 0.1 (default) | scalar
+  group: ''
+  block_parameter: torque_max
+  values: 0.1 (default) | scalar
+- name: Maximum power, power_max
+  summary: Power 30 (default) | scalar
+  group: ''
+  block_parameter: power_max
+  values: 30 (default) | scalar
+- name: Torque control time constant, Tc
+  summary: Time constant 0.02 (default) | scalar
+  group: ''
+  block_parameter: Tc
+  values: 0.02 (default) | scalar
+- name: Maximum torque as a function of speed and voltage, Tmax_w_V
+  summary: Torque [0.09 0.09 0.09;0.08 0.08 0.08;0.07 0.07 0.07;0 0 0] (default) | vector
+  group: ''
+  block_parameter: Tmax_w_V
+  values: '[0.09 0.09 0.09;0.08 0.08 0.08;0.07 0.07 0.07;0 0 0] (default) | vector'
+- name: Speed breakpoints for maximum torque, w_Tmax_bp
+  summary: Rotational speeds [ 0 375 750 800 ] (default) | vector
+  group: ''
+  block_parameter: w_Tmax_bp
+  values: '[ 0 375 750 800 ] (default) | vector'
+- name: Voltage breakpoints for maximum torque, V_Tmax_bp
+  summary: Voltage [ 500 750 900 ] (default) | vector
+  group: ''
+  block_parameter: V_Tmax_bp
+  values: '[ 500 750 900 ] (default) | vector'
+- name: Minimum torque as a function of speed and voltage, Tmin_w_V
+  summary: Torque [-0.09 -0.09 -0.09;-0.08 -0.08 -0.08;-0.07 -0.07 -0.07;0 0 0] (default) | vector
+  group: ''
+  block_parameter: Tmin_w_V
+  values: '[-0.09 -0.09 -0.09;-0.08 -0.08 -0.08;-0.07 -0.07 -0.07;0 0 0] (default) | vector'
+- name: Speed breakpoints for minimum torque, w_Tmin_bp
+  summary: Rotational speeds [ 0 375 750 800 ] (default) | vector
+  group: ''
+  block_parameter: w_Tmin_bp
+  values: '[ 0 375 750 800 ] (default) | vector'
+- name: Voltage breakpoints for minimum torque, V_Tmin_bp
+  summary: Voltage [ 500 750 900 ] (default) | vector
+  group: ''
+  block_parameter: V_Tmin_bp
+  values: '[ 500 750 900 ] (default) | vector'
+- name: Parameterize losses by
+  summary: Parameterization method for electrical losses Single efficiency measurement (default) | Tabulated loss data | Tabulated
+    loss data with temperature | Tabulated loss data with temperature and voltage | Tabulated efficiency data | Tabulated
+    efficiency data with temperature | Tabulated efficiency data with temperature and voltage
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement (default) | Tabulated loss data | Tabulated loss data with temperature | Tabulated
+    loss data with temperature and voltage | Tabulated efficiency data | Tabulated efficiency data with temperature | Tabulated
+    efficiency data with temperature and voltage
+- name: Motor and drive overall efficiency, eff
+  summary: Combined efficiency *η*0 of the motor and motor drive, measured at the efficiency setpoint, in percent 100 (default)
+    | scalar
+  group: ''
+  block_parameter: eff
+  values: 100 (default) | scalar
+- name: Speed at which efficiency is measured, w_eff
+  summary: Speed 375 (default) | scalar
+  group: ''
+  block_parameter: w_eff
+  values: 375 (default) | scalar
+- name: Torque at which efficiency is measured, T_eff
+  summary: Torque 0.08 (default) | scalar
+  group: ''
+  block_parameter: T_eff
+  values: 0.08 (default) | scalar
+- name: Iron losses, Piron
+  summary: Power 0 (default) | scalar
+  group: ''
+  block_parameter: Piron
+  values: 0 (default) | scalar
+- name: Fixed losses independent of torque and speed, Pbase
+  summary: Power 0 (default) | scalar
+  group: ''
+  block_parameter: Pbase
+  values: 0 (default) | scalar
+- name: Speed breakpoints for losses, w_eff_bp
+  summary: Breakpoints [-800 -400 0 400 800] (default) | 1-by-M vector
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[-800 -400 0 400 800] (default) | 1-by-M vector'
+- name: Torque breakpoints for losses, T_eff_bp
+  summary: Breakpoints [0 0.03 0.06 0.09] (default) | 1-by-N vector
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[0 0.03 0.06 0.09] (default) | 1-by-N vector'
+- name: Temperature breakpoints for losses, Temp_eff_bp
+  summary: Breakpoints [233.15 293.15 373.15] (default) | 1-by-L vector
+  group: ''
+  block_parameter: Temp_eff_bp
+  values: '[233.15 293.15 373.15] (default) | 1-by-L vector'
+- name: Voltage breakpoints for losses, V_eff_bp
+  summary: Breakpoints [500 700 900] (default) | 1-by-K vector
+  group: ''
+  block_parameter: V_eff_bp
+  values: '[500 700 900] (default) | 1-by-K vector'
+- name: Loss table, losses_table
+  summary: 2-D lookup table M-by-N matrix
+  group: ''
+  block_parameter: losses_table
+  values: M-by-N matrix
+- name: Loss table, losses_table_3d
+  summary: 3-D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: losses_table_3d
+  values: M-by-N-by-L array
+- name: Loss table, losses_table_4d
+  summary: 4-D lookup table N-by-M-by-K-by-L array
+  group: ''
+  block_parameter: losses_table_4d
+  values: N-by-M-by-K-by-L array
+- name: Efficiency table, efficiency_table
+  summary: 2-D lookup table M-by-N matrix
+  group: ''
+  block_parameter: efficiency_table
+  values: M-by-N matrix
+- name: Efficiency table, efficiency_table_3d
+  summary: 3-D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: efficiency_table_3d
+  values: M-by-N-by-L array
+- name: Efficiency table, efficiency_table_4d
+  summary: 4-D lookup table N-by-M-by-K-by-L array
+  group: ''
+  block_parameter: efficiency_table_4d
+  values: N-by-M-by-K-by-L array
+- name: Rotor inertia, J
+  summary: Inertia 5e-6 (default) | scalar
+  group: ''
+  block_parameter: J
+  values: 5e-6 (default) | scalar
+- name: Rotor damping, b
+  summary: Damping 1e-5 (default) | scalar
+  group: ''
+  block_parameter: b
+  values: 1e-5 (default) | scalar
+- name: Initial rotor speed, omega_o
+  summary: Speed 0 (default) | scalar
+  group: ''
+  block_parameter: omega_o
+  values: 0 (default) | scalar
+```
 
 #### Block Options
 
@@ -1062,7 +1269,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `omega_o` |
 | **Values:** | `0` (default) | scalar |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters Vehicle Dynamics Blockset / Powertrain / Propulsion

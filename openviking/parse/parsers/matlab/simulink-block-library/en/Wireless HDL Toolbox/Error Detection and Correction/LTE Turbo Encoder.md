@@ -14,6 +14,33 @@ language: en
 # LTE Turbo Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input sample scalar
+  direction: input
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: blockSize
+  summary: Turbo code block size integer
+  direction: input
+  data_types: single | double | uint16 | fixdt(0,13,0)
+- name: data
+  summary: Encoded sample stream 3-by-1 column vector
+  direction: output
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: tail1, tail2
+  summary: Indicate trellis termination cycles scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -104,8 +131,19 @@ Enable these ports by selecting **Enable trellis
 termination valid ports**.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Block size source
+  summary: How to specify the block size Input port (default) | Property
+  group: ''
+- name: Block size
+  summary: Turbo code block size 6144 (default)
+  group: ''
+- name: Enable trellis termination valid ports
+  summary: Enable ports that indicate the tail bit output samples off (default) | on
+  group: ''
+```
 
 ### **Block size source** — How to specify the block size `Input port` (default) | `Property`
 
@@ -135,7 +173,6 @@ When you select this parameter, the **tail1** and
 **tail2** ports appear on the block. These ports return
 control signals that indicate the cycles when the output samples are the
 tail bits for each encoder.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

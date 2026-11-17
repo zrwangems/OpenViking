@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Weighted Sample Time
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -41,8 +52,78 @@ chinese_source: worker-translation
 | 非周期或触发 | 自上次执行以来经过的时间 | - 数据类型为无符号。 - 字长足够大，以考虑模型配置参数 **Application lifespan** 的设置。 - 缩放是模型配置参数 **Clock resolution** 设置的最佳精度缩放。 |
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation
+  summary: 数学运算 Ts Only（默认） | + | - | * | / | 1/Ts Only
+  group: 主要
+  block_parameter: TsampMathOp
+  type: character vector
+  values: '''+'' | ''-'' | ''*'' | ''/'' | ''Ts Only'' | ''1/Ts Only'''
+  default: '''Ts Only'''
+- name: Weight value
+  summary: 采样时间的权重 1.0（默认） | 实值标量
+  group: 主要
+  block_parameter: weightValue
+  type: character vector
+  values: real-valued scalar
+  default: '1.0'
+- name: Implement using
+  summary: 调整采样时间的方法 Online Calculations（默认） | Offline Scaling Adjustment
+  group: 主要
+  block_parameter: TsampMathImp
+  type: character vector
+  values: '''Online Calculations'' | ''Offline Scaling Adjustment'''
+  default: '''Online Calculations'''
+- name: Output data type
+  summary: '输出信号的数据类型 Inherit: Inherit via internal rule（默认） | Inherit: Inherit via back propagation | double | single | int8
+    | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,20,0) | <data type expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | double | single | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,20,0) | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认） | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认） | on
+  group: 信号属性
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Mode
+  summary: 数据类型模式 Inherit（默认） | Built in | Fixed point | Expression
+  group: 信号属性
+- name: Signedness
+  summary: 定点数据的有符号性 Signed（默认） | Unsigned
+  group: 信号属性
+- name: Scaling
+  summary: 定点数据的缩放方法 Best precision（默认） | Binary point
+  group: 信号属性
+- name: Word length
+  summary: 保存量化整数的字的位大小 16（默认） | 从 2 到 128 的整数
+  group: 信号属性
+- name: Fraction length
+  summary: 定点数据类型的小数长度 0（默认） | 整数标量
+  group: 信号属性
+- name: Slope
+  summary: 指定定点数据类型的斜率 2^0（默认） | 正实值标量
+  group: 信号属性
+- name: Bias
+  summary: 指定定点数据类型的偏置 0（默认） | 实值标量
+  group: 信号属性
+- name: Data type override
+  summary: 数据类型覆盖模式 Inherit（默认） | Off
+  group: 信号属性
+```
 
 ### 主要
 
@@ -221,7 +302,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Mode** 设置为 `Built in` 或 `Fixed point`。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant。
-
 ## 所属库
 
 Simulink / Signal Attributes

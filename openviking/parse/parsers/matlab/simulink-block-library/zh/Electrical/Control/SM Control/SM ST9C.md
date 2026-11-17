@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM ST9C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 接管定子电流限制（OEL）标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 接管定子电流限制（UEL）标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -135,8 +182,95 @@ chinese_source: worker-translation
 要施加到同步电机励磁绕组的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数标量
+  group: 常规
+- name: Initial terminal voltage, Vt0 (pu)
+  summary: 初始机端电压 1（默认）| 实数标量
+  group: 常规
+- name: Initial terminal current, It0 (pu)
+  summary: 初始机端电流 1（默认）| 实数标量
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认）| 正标量
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认）| 正标量
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0（默认）| 正标量
+  group: 预控制
+- name: Time constant of differential part of AVR, T_CD (s)
+  summary: AVR 微分部分时间常数 0.06（默认）| 正标量
+  group: 控制
+- name: RegFilter time constant of differential part of AVR, T_BD (s)
+  summary: AVR 微分部分滤波时间常数 0.03（默认）| 正标量
+  group: 控制
+- name: Dead-band for differential part influence on AVR, Z_A (1)
+  summary: AVR 微分部分影响死区 0.036（默认）| 正标量
+  group: 控制
+- name: AVR gain, K_A (1)
+  summary: AVR 增益 12（默认）| 实数标量
+  group: 控制
+- name: Gain associated with activation of takeover UEL, K_U (1)
+  summary: 与接管 UEL 激活相关的增益 10000（默认）| 实数标量
+  group: 控制
+- name: Time constant of AVR, T_A (s)
+  summary: AVR 时间常数 2（默认）| 正标量
+  group: 控制
+- name: Time constant of underexcitation limiter, T_AUEL (s)
+  summary: 欠励限制器时间常数 2（默认）| 正标量
+  group: 控制
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: 调节器最大输出 1（默认）| 实数标量
+  group: 控制
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: 调节器最小输出 -0.866（默认）| 实数标量
+  group: 控制
+- name: Power converter gain (proportional to supply voltage), K_AS (pu)
+  summary: 功率变换器增益 6.1（默认）| 实数标量
+  group: 控制
+- name: Equivalent time constant of power converter firing control, T_AS (s)
+  summary: 功率变换器触发控制时间常数 0.0018（默认）| 正标量
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: 整流器负载系数 0（默认）| 正标量
+  group: 励磁机
+- name: Potential circuit (voltage) gain coefficient, K_P (pu)
+  summary: 电势电路电压增益系数 1（默认）| 正标量
+  group: 励磁机
+- name: Potential circuit (current) gain coefficient, K_I (pu)
+  summary: 电势电路电流增益系数 0（默认）| 正标量
+  group: 励磁机
+- name: Reactance associated with the compound source, X_L (pu)
+  summary: 复励电源电抗 0（默认）| 正标量
+  group: 励磁机
+- name: Potential circuit phase angle (degrees)
+  summary: 电势电路相位角 0（默认）| 正标量
+  group: 励磁机
+- name: Maximum limit on exciter voltage based on supply condition, V_Bmax (pu)
+  summary: 励磁机电压上限 11.63（默认）| 正标量
+  group: 励磁机
+- name: Switch to select exciter supply configuration
+  summary: '电源选择器 Position A: power source derived from generator terminal voltage（默认）| Position B: power source independent
+    of generator terminal conditions'
+  group: 励磁机
+```
 
 ### 常规
 
@@ -335,7 +469,6 @@ voltage`。
 terminal voltage` 或 `Position B: power
 source independent of generator terminal
 conditions`。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

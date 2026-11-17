@@ -14,6 +14,29 @@ language: en
 # Induction Machine Field-Oriented Control (Single-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: Reference
+  summary: Torque or angular velocity reference scalar
+  direction: input
+  data_types: single | double
+- name: iab
+  summary: Stator currents scalar
+  direction: input
+  data_types: single | double
+- name: wr
+  summary: Rotor angular speed scalar
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Inverter gate pulses 0 | 1
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: Internal signals for visualization Reference | Rotor velocity | θ | iab | iabRef | TqRef | FluxRef
+  direction: output
+  data_types: single | double | bus
+```
 
 ### Input
 
@@ -57,8 +80,79 @@ Bus containing internal signals for visualization. The signals are:
 - Flux Reference (*FluxRef*), in Wb
 
 **Data Types:** `single` | `double` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Control mode
+  summary: Specify control mode Speed control (default) | Torque control
+  group: General
+- name: Rated electrical frequency (Hz)
+  summary: Specify rated electrical frequency 60 (default) | positive scalar
+  group: General
+- name: Number of pole pairs
+  summary: Specify pole pairs 2 (default) | positive scalar
+  group: General
+- name: Main winding rotor resistance, Rar' (Ohm)
+  summary: Specify main winding rotor resistance 3.7080 (default) | positive scalar
+  group: General
+- name: Main winding rotor leakage inductance, Llar' (H)
+  summary: Specify main winding rotor leakage inductance 0.0050 (default) | positive scalar
+  group: General
+- name: Main winding mutual inductance, Lms (H)
+  summary: Specify main winding mutual inductance 0.1595 (default) | positive scalar
+  group: General
+- name: Auxiliary/main windings turn ratio
+  summary: Specify the auxiliary-to-main windings turn ratio 1.1 (default) | positive scalar
+  group: General
+- name: Fundamental sample time (s)
+  summary: Specify the block sample time 5e-6 (default) | positive scalar
+  group: General
+- name: Control sample time (s)
+  summary: Specify the control sample time 5e-5 (default) | positive scalar
+  group: General
+- name: Speed controller proportional gain
+  summary: Specify the speed controller proportional gain 1 (default) | positive scalar
+  group: Outer Loop
+- name: Speed controller integral gain
+  summary: Specify the speed controller integral gain 10 (default) | positive scalar
+  group: Outer Loop
+- name: Speed controller integral anti-windup gain
+  summary: Specify the speed controller integral anti-windup gain 1000 (default) | positive scalar
+  group: Outer Loop
+- name: Maximum torque (Nm)
+  summary: Specify the maximum torque 5 (default) | positive scalar
+  group: Outer Loop
+- name: Minimum torque (Nm)
+  summary: Specify the minimum torque -5 (default) | scalar
+  group: Outer Loop
+- name: Rated flux (Wb)
+  summary: Specify the rated flux 0.5 (default) | positive scalar
+  group: Outer Loop
+- name: Control type
+  summary: Specify the control type Hysteresis control (default) | PI control
+  group: Inner Loop
+- name: Current hysteresis band (A)
+  summary: Specify the current hysteresis band 0.5 (default) | positive scalar
+  group: Inner Loop
+- name: A-phase current proportional gain
+  summary: Main winding current proportional gain 1 (default) | positive scalar
+  group: Inner Loop
+- name: A-phase current integral gain
+  summary: Main winding current integral gain 500 (default)
+  group: Inner Loop
+- name: A-phase current anti-windup gain
+  summary: Main winding current anti-windup gain 1000 (default)
+  group: Inner Loop
+- name: B-phase current proportional gain
+  summary: Auxiliary winding current proportional gain 1 (default)
+  group: Inner Loop
+- name: B-phase current integral gain
+  summary: Auxiliary winding current integral gain 500 (default)
+  group: Inner Loop
+- name: B-phase current anti-windup gain
+  summary: Auxiliary winding current anti-windup gain 1000 (default)
+  group: Inner Loop
+```
 
 ### General
 
@@ -193,7 +287,6 @@ current.
 
 Anti-windup gain for the B-phase (auxiliary winding) controller
 current.
-
 ## Libraries
 
 Simscape / Electrical / Control / Induction Machine Control

@@ -14,6 +14,29 @@ language: en
 # Deep Signal Anomaly Detector
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Threshold
+  summary: Detection threshold value nonnegative scalar
+  direction: input
+  data_types: single | double
+- name: Anomaly flag
+  summary: Anomaly flag logical scalar
+  direction: output
+  data_types: Boolean
+- name: Window loss
+  summary: Aggregate window loss scalar
+  direction: output
+  data_types: single
+- name: Delay
+  summary: Delay estimate scalar
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -100,8 +123,37 @@ To enable this port, select the **Enable delay port** check box
 in the block dialog box.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Detector MAT-file path
+  summary: Path to detector MAT-file untitled.mat (default) | MAT-file name
+  group: ''
+- name: Parameters for post-processing
+  summary: Source for post-processing parameters Read from MAT-file (default) | Specify on dialog
+  group: ''
+- name: Window length
+  summary: Window length 1 (default) | positive integer
+  group: ''
+- name: Overlap length
+  summary: Overlap length between adjoining windows 0 (default) | nonnegative integer
+  group: ''
+- name: Threshold source
+  summary: Source of detection threshold value Dialog (default) | Input port
+  group: ''
+- name: Threshold
+  summary: Detection threshold value 0.01 (default) | nonnegative scalar
+  group: ''
+- name: Window loss aggregation
+  summary: Statistic method to aggregate window loss Mean (default) | Max | Min | Median
+  group: ''
+- name: Parameter values from MAT-file
+  summary: 'Display post-processing parameter values from MAT-file Read-only: text box'
+  group: ''
+- name: Enable delay port
+  summary: Output estimated delay off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -232,7 +284,6 @@ to `Read from MAT-file`.
 Select this check box to enable the **Delay** output port. The
 block outputs the estimated delay in samples between the input and the reconstructed
 signals through this port.
-
 ## Libraries
 
 DSP System Toolbox / AI

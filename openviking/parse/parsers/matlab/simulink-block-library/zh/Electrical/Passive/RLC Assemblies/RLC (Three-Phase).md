@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # RLC (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 三相端口电气
+  direction: conserving
+- name: ~2
+  summary: 三相端口电气
+  direction: conserving
+- name: a1
+  summary: '*a* 相电气'
+  direction: conserving
+- name: b1
+  summary: '*b* 相电气'
+  direction: conserving
+- name: c1
+  summary: '*c* 相电气'
+  direction: conserving
+- name: a2
+  summary: '*a* 相电气'
+  direction: conserving
+- name: b2
+  summary: '*b* 相电气'
+  direction: conserving
+- name: c2
+  summary: '*c* 相电气'
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -85,8 +112,41 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 建模为复合还是展开三相端口 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主要
+- name: Component structure
+  summary: 所需的元件组合 R（默认）| L | C | Series RL | Series RC | Series LC | Series RLC | Parallel RL | Parallel RC | Parallel LC
+    | Parallel RLC
+  group: 主要
+- name: Resistance
+  summary: 电阻 1 Ohm（默认）| 正标量
+  group: 主要
+- name: Inductance
+  summary: 电感 1e-3 H（默认）| 正标量
+  group: 主要
+- name: Capacitance
+  summary: 电容 1e-6 F（默认）| 正标量
+  group: 主要
+- name: Parasitic series resistance
+  summary: 寄生串联电阻 0 Ohm（默认）| 非负标量
+  group: 寄生效应
+- name: Parasitic parallel conductance
+  summary: 寄生并联电导 0 1/Ohm（默认）| 非负标量
+  group: 寄生效应
+- name: Branch fault
+  summary: 添加支路故障的选项 Add fault
+  group: 故障
+- name: Faulted phase
+  summary: 指定故障相的选项 Phase a（默认）| Phase b | Phase c | Phase a and b | Phase b and c | Phase c and a | Phase a, b and c
+  group: 故障
+- name: Faulted resistance
+  summary: 故障阻抗元件的电阻 0.01 Ohm（默认）| 正标量
+  group: 故障
+```
 
 ### 主要
 
@@ -179,7 +239,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请通过点击 **Branch fault** 参数中的 **Add fault** 超链接向 RLC (Three-Phase) 模块添加故障。
-
 ## 所属库
 
 Simscape / Electrical / Passive / RLC Assemblies

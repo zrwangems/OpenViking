@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Band Brake
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 皮带张紧力物理信号
+  direction: input
+- name: S
+  summary: 鼓轴旋转旋转机械
+  direction: input
+- name: H
+  summary: 热流，单位为 W 热
+  direction: input
+```
 
 ### 输入
 
@@ -37,8 +49,43 @@ chinese_source: worker-translation
 `Model` 时，此端口才可见。
 
 暴露此端口会使相关设置可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Drum radius
+  summary: 接触表面半径 150 mm（默认）| 正标量
+  group: 几何
+- name: Wrap angle
+  summary: 接触角 270 deg（默认）| 正标量
+  group: 几何
+- name: Viscous friction coefficient
+  summary: 粘性摩擦 .01 n*m/(rad/s)（默认）| 非负标量
+  group: 摩擦
+- name: Thermal port
+  summary: 热模型 Omit（默认）| Model
+  group: 摩擦
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: 摩擦
+- name: Contact friction coefficient
+  summary: 库仑摩擦 0.3（默认）| 正标量
+  group: 摩擦
+- name: Contact friction coefficient vector
+  summary: 库仑摩擦 [.1, .05, .03]（默认）| 正值的递增向量
+  group: 摩擦
+- name: Angular velocity threshold
+  summary: 接近稳态接触摩擦所需的旋转速度 0.01 rad/s（默认）| 正标量
+  group: 摩擦
+- name: Belt tension fault
+  summary: 对皮带张力故障建模的选项 Add fault
+  group: 故障
+- name: Belt tension when faulted
+  summary: 故障时的皮带张力 0 N（默认）| 正标量
+  group: 故障
+- name: Thermal mass
+  summary: 对温度变化的阻力 50 kJ/K（默认）| 标量
+  group: 热端口
+```
 
 ### 几何
 
@@ -131,7 +178,6 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Thermal Port** 设置为
 `Model`。
-
 ## 所属库
 
 Simscape / Driveline / Brakes & Detents / Rotational

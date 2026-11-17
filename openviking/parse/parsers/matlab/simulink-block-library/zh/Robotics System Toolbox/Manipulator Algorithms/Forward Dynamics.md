@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Forward Dynamics
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 机器人配置向量
+  direction: input
+- name: JointVel
+  summary: 关节速度向量
+  direction: input
+- name: JointTorq
+  summary: 关节力矩向量
+  direction: input
+- name: FExt
+  summary: 外部力矩阵 6×*n* 矩阵
+  direction: input
+- name: JointAccel
+  summary: 关节加速度向量
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +57,16 @@ chinese_source: worker-translation
 ### **JointAccel** — 关节加速度向量
 
 关节加速度，以向量形式返回。关节加速度的数量等于机器人的自由度。
-
 ## 参数
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: 机器人模型 twoJointRigidBodyTree（默认）| RigidBodyTree 对象
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — 机器人模型 `twoJointRigidBodyTree`（默认）| `RigidBodyTree` 对象
 
@@ -54,7 +80,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 Robotics System Toolbox / Manipulator Algorithms

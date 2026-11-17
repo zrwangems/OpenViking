@@ -15,6 +15,35 @@ chinese_source: worker-translation
 # Entity Generator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 在事件到达时触发实体生成的输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_2
+  summary: 用于确定下一次实体生成的代际时间值的信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出的已生成实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: 已离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_pe
+  summary: 模块中的待处理实体 关（默认） | 开
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: 平均代际时间 关（默认） | 开
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -70,8 +99,115 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Statistics** > **Average intergeneration time, w**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Generation method
+  summary: 选择实体生成的方法 Time-based（默认） | Event-based
+  group: ''
+  block_parameter: GenerationMethod
+  type: 字符向量
+  values: '''Time-based'' | ''Event-based'''
+  default: '''Time-based'''
+- name: Time source
+  summary: 选择代际时间的来源 Dialog（默认） | Signal port | MATLAB action
+  group: ''
+  block_parameter: TimeSource
+  type: 字符向量
+  values: '''Dialog'' | ''Signal port'' | ''MATLAB action'''
+  default: '''Dialog'''
+- name: Period
+  summary: 定义实体生成之间的周期 1（默认） | 标量
+  group: ''
+  block_parameter: Period
+  type: 字符向量
+  values: '''1'' | 标量'
+  default: '''1'''
+- name: Intergeneration time action
+  summary: 指定实体生成之间的时间 dt = rand(1,1)（默认）| MATLAB 代码
+  group: ''
+  block_parameter: IntergenerationTimeAction
+  type: 字符向量
+  values: MATLAB 代码
+  default: '''dt = rand(1,1);'''
+- name: Generate entity at simulation start
+  summary: 在仿真开始时生成实体 on（默认）| off
+  group: ''
+  block_parameter: GenerateEntityAtSimulationStart
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Entity type
+  summary: 选择要生成的实体类型 Structured（默认）| Anonymous | Bus object
+  group: ''
+  block_parameter: EntityType
+  type: 字符向量
+  values: '''Structured'' | ''Anonymous'' | ''Bus object'''
+  default: '''Structured'''
+- name: Entity priority
+  summary: 指定所生成实体的优先级 300（默认）| 标量
+  group: ''
+  block_parameter: EntityPriority
+  type: 字符向量
+  values: '''300'' | 标量'
+  default: '''300'''
+- name: Entity type name
+  summary: 指定所生成实体的名称 Entity（默认）| 字符向量
+  group: ''
+  block_parameter: EntityTypeName
+  type: 字符向量
+  values: '''Entity'' | 字符向量'
+  default: '''Entity'''
+- name: Data initial value
+  summary: 指定匿名实体数据的初始值 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: DataInitialValue
+  type: 字符向量
+  values: '''0'' | 标量 | 向量 | 矩阵'
+  default: '''0'''
+- name: Attribute Name
+  summary: 定义所生成实体属性的名称 Attribute1（默认）| 字符向量
+  group: ''
+  block_parameter: AttributeName
+  type: 字符向量
+  values: '''Attribute1'' | 字符向量'
+  default: '''Attribute1'''
+- name: Attribute Initial Value
+  summary: 定义所生成实体属性的初始值 1（默认）| 标量
+  group: ''
+  block_parameter: AttributeInitialValue
+  type: 字符向量
+  values: 1 | 标量
+  default: '''1'''
+- name: Event actions
+  summary: 指定实体在特定事件下的行为 Generate（默认）| Exit
+  group: ''
+  block_parameter: GenerateAction, ExitAction
+  type: 字符向量
+  values: MATLAB 代码
+  default: ''''''
+- name: Number of entities departed, d
+  summary: 输出已离开模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Pending entity present in block, pe
+  summary: 待处理实体 off（默认）| on
+  group: ''
+  block_parameter: PendingEntityInBlock
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average intergeneration time, w
+  summary: 实体生成之间的平均时间 off（默认）| on
+  group: ''
+  block_parameter: AverageIntergenerationTime
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Generation method** — 选择实体生成的方法 `Time-based`（默认） | `Event-based`
 
@@ -320,7 +456,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

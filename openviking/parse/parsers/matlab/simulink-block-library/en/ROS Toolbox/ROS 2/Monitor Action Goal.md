@@ -14,6 +14,29 @@ language: en
 # Monitor Action Goal
 
 ## Ports
+```yaml
+ports:
+- name: UUID
+  summary: Unique ID dedicated to any goal message non-virtual bus
+  direction: input
+  data_types: bus
+- name: StatusCode
+  summary: Execution status of action goal corresponding to UUID input scalar
+  direction: output
+  data_types: int8
+- name: Result
+  summary: Result message associated with a particular action goal non-virtual bus
+  direction: output
+  data_types: bus
+- name: Feedback
+  summary: Feedback message associated with a particular action goal non-virtual bus
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: Error conditions while monitoring action goal integer
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -84,8 +107,25 @@ This output is enabled when the **Show ErrorCode output
 port** is checked.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Name
+  summary: Action name inherited from paired Send Action Goal block character vector
+  group: ''
+- name: Type
+  summary: Action type inherited from paired Send Action Goal block character vector
+  group: ''
+- name: Paired Send Action Goal Block
+  summary: Path to paired Send Action Goal block block path
+  group: ''
+- name: Show Feedback output port
+  summary: Enable feedback output port off (default) | on
+  group: ''
+- name: Show ErrorCode output port
+  summary: Enable error code output port off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -128,7 +168,6 @@ Check this box to enable the **Feedback** output.
 
 Check this box to enable the **ErrorCode** output. If an error condition
 occurs, the **Result** port outputs a blank message.
-
 ## Libraries
 
 ROS Toolbox / ROS 2

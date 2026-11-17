@@ -15,6 +15,38 @@ chinese_source: worker-translation
 # Decision Feedback Equalizer
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入信号列向量
+  direction: input
+  data_types: double
+- name: Desired
+  summary: 训练符号列向量
+  direction: input
+  data_types: double
+- name: Train
+  summary: 训练均衡器标志布尔标量
+  direction: input
+  data_types: Boolean
+- name: Update
+  summary: 更新抽头权重标志 1 | 0
+  direction: input
+  data_types: Boolean
+- name: Reset
+  summary: 复位均衡器标志 1 | 0
+  direction: input
+  data_types: Boolean
+- name: Out
+  summary: 均衡后的符号列向量
+  direction: output
+- name: Err
+  summary: 误差信号列向量
+  direction: output
+- name: w
+  summary: 抽头权重列向量
+  direction: output
+```
 
 ### 输入
 
@@ -88,8 +120,76 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Output taps weights** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of forward taps
+  summary: 前馈均衡器抽头数 5（默认）| 正整数
+  group: ''
+- name: Number of feedback taps
+  summary: 反馈均衡器抽头数 3（默认）| 正整数
+  group: ''
+- name: Signal constellation
+  summary: 信号星座 pskmod(0:3,4,pi/4)（默认）| 向量
+  group: ''
+- name: Number of input samples per symbol
+  summary: 每个符号的输入采样数 1（默认）| 正整数
+  group: ''
+- name: Adaptive algorithm
+  summary: 自适应算法 LMS（默认）| RLS | CMA
+  group: ''
+- name: Step size
+  summary: 步长 0.01（默认）| 正标量
+  group: ''
+- name: Forgetting factor
+  summary: 遗忘因子 0.99（默认）| (0, 1] 范围内的标量
+  group: ''
+- name: Initial inverse correlation matrix
+  summary: 初始逆相关矩阵 0.1（默认）| 标量 | 矩阵
+  group: ''
+- name: Reference tap
+  summary: 参考抽头 3（默认）| 正整数
+  group: ''
+- name: Input signal delay (samples)
+  summary: 输入信号延迟 0（默认）| 非负整数
+  group: ''
+- name: Source of adapt weights flag
+  summary: 自适应抽头权重请求的来源 Property（默认）| Input port
+  group: ''
+- name: Adapt tap weights
+  summary: 自适应抽头权重 on（默认）| off
+  group: ''
+- name: Initial tap weights source
+  summary: 初始抽头权重的来源 Auto（默认）| Property
+  group: ''
+- name: Initial weights
+  summary: 初始抽头权重 0 或 [0;0;1;0;0]（默认）| 标量 | 列向量
+  group: ''
+- name: Tap weight update period (symbols)
+  summary: 抽头权重更新周期 1（默认）| 正整数
+  group: ''
+- name: Enable training control input
+  summary: 启用训练控制输入 off（默认）| on
+  group: ''
+- name: Update tap weights when not training
+  summary: 非训练时更新抽头权重 on（默认）| off
+  group: ''
+- name: Enable reset input
+  summary: 启用复位输入 off（默认）| on
+  group: ''
+- name: Info
+  summary: 判决反馈均衡器信息按钮
+  group: ''
+- name: Output error signal
+  summary: 启用误差信号输出 off（默认）| on
+  group: ''
+- name: Output taps weights
+  summary: 启用抽头权重输出 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -245,7 +345,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Equalizers

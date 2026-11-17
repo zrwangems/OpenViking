@@ -14,6 +14,14 @@ language: en
 # Repeating Sequence Stair
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Repeating discrete output signal scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### Output
 
@@ -24,8 +32,51 @@ time values** and **Sample time**
 parameters.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Vector of output values
+  summary: Vector of output values [3 1 4 2 1].' (default) | vector
+  group: Main
+  block_parameter: OutValues
+  type: character vector
+  values: vector
+  default: '''[3 1 4 2 1].'''''
+- name: Sample time
+  summary: Time interval between samples -1 (default) | scalar
+  group: Main
+  block_parameter: tsamp
+  type: character vector
+  values: scalar
+  default: '''-1'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Specify the output data type double (default) | Inherit: Inherit via back propagation | single | int8 | int32
+    | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | int16 | ''uint16''
+    | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | fixdt(1,16,2^0,0) | fixdt(1,16,2^0,0) | ''<data type
+    expression>'''
+  default: '''double'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -154,7 +205,6 @@ information, see Use Lock Output Data Type Setting (Fixed-Point Designer).
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Sources

@@ -14,6 +14,29 @@ language: en
 # Convolutional Encoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input message binary column vector
+  direction: input
+  data_types: double | single | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32 | ufix1
+- name: ISt
+  summary: Initial state of encoder registers nonnegative integer
+  direction: input
+  data_types: double | uint32
+- name: Rst
+  summary: Reset state of encoder registers scalar
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: Convolutionally encoded codeword binary column vector
+  direction: output
+  data_types: double | single | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32 | ufix1
+- name: FSt
+  summary: Final state of encoder registers nonnegative integer
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -84,8 +107,47 @@ nonzero input via port` and you select the
 parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trellis structure
+  summary: Trellis description of convolutional code poly2trellis(7, [171 133]) (default)
+  group: ''
+- name: numInputSymbols
+  summary: Number of symbols input to encoder 2*K*
+  group: ''
+- name: numOutputSymbols
+  summary: Number of symbols output from encoder 2*N*
+  group: ''
+- name: numStates
+  summary: Number of states in encoder power of 2
+  group: ''
+- name: nextStates
+  summary: Next states matrix of integers
+  group: ''
+- name: outputs
+  summary: Outputs matrix of octal numbers
+  group: ''
+- name: Operation mode
+  summary: Termination method of encoded frame Continuous (default) | Truncated (reset every frame) | Terminate trellis by
+    appending bits | Reset on nonzero input via port
+  group: ''
+- name: Delay reset action to next time step
+  summary: Option to delay reset action until next time step off (default) | on
+  group: ''
+- name: Specify initial state via input port
+  summary: Option to specify initial state via input port off (default) | on
+  group: ''
+- name: Output final state
+  summary: Option to output final register state off (default) | on
+  group: ''
+- name: Puncture code
+  summary: Option to enable the code puncturing off (default) | on
+  group: ''
+- name: Puncture vector
+  summary: Puncture pattern [1; 1; 0; 1; 0; 1] (default) | vector
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -229,7 +291,6 @@ polynomials, see the Yasuda [3], Haccoun [4], and Begin [5] references.
 #### Dependencies
 
 This parameter appears only when you select the **Puncture code** parameter.
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Convolutional Communications Toolbox HDL Support / Error Detection and Correction / Convolutional

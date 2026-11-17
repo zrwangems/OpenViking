@@ -14,6 +14,29 @@ language: en
 # ROI Selector
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector | matrix
+  direction: input
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: region1,...,regionR
+  summary: Region of interest four-element row vector
+  direction: input
+  data_types: int | uint
+- name: pixel1,...,pixelR
+  summary: Output pixel stream scalar | vector | matrix
+  direction: output
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl1,...,ctrlR
+  summary: Control signals pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -112,8 +135,22 @@ regions**, the block has one output **ctrl** port for each
 column of aligned regions.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reuse output ports for vertically aligned regions
+  summary: Option to return one pixel stream for each column of regions off (default) | on
+  group: ''
+- name: Regions source
+  summary: Location of output region definitions Property (default) | Input port
+  group: ''
+- name: Regions
+  summary: Rectangular ROIs to select from input frame *R*-by-4 matrix
+  group: ''
+- name: Number of regions
+  summary: Number of region input ports integer in the range [1, 16]
+  group: ''
+```
 
 ### **Reuse output ports for vertically aligned regions** — Option to return one pixel stream for each column of regions `off` (default) | `on`
 
@@ -197,7 +234,6 @@ Specify the number of region input ports as an integer in the range [1, 16].
 
 To enable this parameter, set the **Regions source** parameter to
 `Input port`.
-
 ## Libraries
 
 Vision HDL Toolbox / Utilities

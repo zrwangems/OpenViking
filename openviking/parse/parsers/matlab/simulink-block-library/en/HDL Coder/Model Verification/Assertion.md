@@ -14,6 +14,14 @@ language: en
 # Assertion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+```
 
 ### Input
 
@@ -22,8 +30,35 @@ language: en
 Input signal to the assertion check.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable assertion
+  summary: Enable or disable check on (default) | off
+  group: ''
+  block_parameter: enabled
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Simulation callback when assertion fails
+  summary: Expression to evaluate when assertion fails "" (default) | MATLAB expression
+  group: ''
+  block_parameter: AssertionFailFcn
+  type: string scalar or character vector
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: Whether to stop simulation when check fails on (default) | off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Enable assertion** — Enable or disable check `on` (default) | `off`
 
@@ -94,7 +129,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Model Verification HDL Coder / Model Verification

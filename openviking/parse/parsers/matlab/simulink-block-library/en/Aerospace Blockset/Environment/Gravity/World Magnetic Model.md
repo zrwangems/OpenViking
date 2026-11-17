@@ -14,6 +14,45 @@ language: en
 # World Magnetic Model
 
 ## Ports
+```yaml
+ports:
+- name: h
+  summary: Ellipsoidal height scalar
+  direction: input
+  data_types: double
+- name: μ (deg)
+  summary: Latitude scalar
+  direction: input
+  data_types: double
+- name: l (deg)
+  summary: Longitude scalar
+  direction: input
+  data_types: double
+- name: Decimal Year
+  summary: Desired year scalar
+  direction: input
+  data_types: double
+- name: Magnetic Field (nT)
+  summary: Magnetic field vector
+  direction: output
+  data_types: double
+- name: Horizontal Intensity (nT)
+  summary: Horizontal intensity scalar
+  direction: output
+  data_types: double
+- name: Declination (deg)
+  summary: Declination scalar
+  direction: output
+  data_types: double
+- name: Inclination (deg)
+  summary: Inclination scalar
+  direction: output
+  data_types: double
+- name: Total Intensity (nT)
+  summary: Total intensity scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -95,8 +134,98 @@ Inclination, returned as a scalar, in degrees.
 Total intensity, returned as a scalar, in selected units.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: WMM coefficients
+  summary: World Magnetic Model coefficient file WMM2025 (2025-2030) (default) | WMM2020 (2020-2025) | WMM2015 V2 (2015-2020)
+    | WMM2000 (2000-2005) | WMM2005 (2005-2010) | WMM2010 (2010-2015) | WMM2015 V1 (2015-2020) | Custom
+  group: ''
+  block_parameter: model
+  type: character vector
+  values: '''WMM2025 (2025-2030)'' ''WMM2020 (2020-2025)'' | ''WMM2015 V2 (2015-2020)'' | ''WMM2000 (2000-2005)'' | ''WMM2005
+    (2005-2010)'' | ''WMM2010 (2010-2015)'' | ''WMM2015 V1 (2015-2020)'' | ''Custom'''
+  default: '''WMM2025 (2025-2030)'''
+- name: Custom .COF file
+  summary: Custom World Magnetic Model coefficient file 'WMM2025COF' (default) | any coefficient file name
+  group: ''
+  block_parameter: customFile
+  type: character vector
+  values: '''WMM2025.COF'' | any coefficient file name'
+  default: '''WMM2025.COF'''
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Input decimal year
+  summary: Input decimal year on (default) | off
+  group: ''
+  block_parameter: time_in
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Month
+  summary: Input month January (default) | February | March | April | May | June | July | August | September | October | November
+    | December
+  group: ''
+  block_parameter: month
+  type: character vector
+  values: '''January'' | ''February'' | ''March'' | ''April'' | ''May'' | ''June'' | ''July'' | ''August'' | ''September''
+    | ''October'' | ''November'' | ''December'''
+  default: '''January'''
+- name: Day
+  summary: Input day 1 (default) | 1 to 31
+  group: ''
+  block_parameter: day
+  type: character vector
+  values: '''1'' to ''31'''
+  default: '''1'''
+- name: Year
+  summary: Input year 2025 (default) | any year
+  group: ''
+  block_parameter: year
+  type: character vector
+  values: any year
+  default: '''2025'''
+- name: Action for out-of-range input
+  summary: Out-of-range action Error (default) | Warning | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''Error'' | ''Warning'' | ''None'''
+  default: '''Error'''
+- name: Output horizontal intensity
+  summary: Output horizontal intensity on (default) | off
+  group: ''
+  block_parameter: h_out
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output declination
+  summary: Output declination on (default) | off
+  group: ''
+  block_parameter: dec_out
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output inclination
+  summary: Output inclination on (default) | off
+  group: ''
+  block_parameter: inc_out
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output total intensity
+  summary: Output total intensity on (default) | off
+  group: ''
+  block_parameter: ti_out
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **WMM coefficients** — World Magnetic Model coefficient file `WMM2025 (2025-2030)` (default) | `WMM2020 (2020-2025)` | `WMM2015 V2 (2015-2020)` | `WMM2000 (2000-2005)` | `WMM2005 (2005-2010)` | `WMM2010 (2010-2015)` | `WMM2015 V1 (2015-2020)` | `Custom`
 
@@ -350,7 +479,6 @@ box.
 | **Type:** character vector |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Gravity

@@ -14,6 +14,35 @@ language: en
 # Entity Batch Creator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: Output batch entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_a
+  summary: Number of entities arrived scalar
+  direction: output
+  data_types: double
+- name: Port_d
+  summary: Number of entities that have departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_rem
+  summary: Number of entities remaining for the next batch scalar
+  direction: output
+  data_types: double
+- name: Port_pe
+  summary: Pending entity in block off (default) | on
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -76,8 +105,73 @@ entity in the block, and `0` otherwise.
 To enable this port, select the **Statistics** > **Pending entity in block, pe**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of entities in batch
+  summary: Number of entities in one batch 4 (default) | scalar
+  group: ''
+  block_parameter: NumberOfEntitiesInBatch
+  type: character vector
+  values: '''4'' | scalar'
+  default: '''4'''
+- name: Entity type name
+  summary: Name of the batched entity that is created after combining incoming entities Batch (default) | character vector
+  group: ''
+  block_parameter: EntityTypeName
+  type: character vector
+  values: '''Batch'' | character vector'
+  default: '''Batch'''
+- name: Bus object
+  summary: Specify whether to output the batched entity as a bus object off (default) | on
+  group: ''
+  block_parameter: BusObject
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Input entity name
+  summary: Specify names to be attached to the input entities batch (default) | character vector
+  group: ''
+  block_parameter: InputEntityName
+  type: character vector
+  values: '''batch'' | character vector'
+  default: '''batch'''
+- name: Event actions
+  summary: Specify the event action Entry (default) | Batch generate | Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, BatchGenerateAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities arrived, a
+  summary: Outputs the number of entities that have arrived at the block off (default) | on
+  group: ''
+  block_parameter: NumberOfEntitiesArrived
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities departed, d
+  summary: Outputs the number of entities departed the block off (default) | on
+  group: ''
+  block_parameter: NumberOfEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities remaining for next batch, rem
+  summary: Outputs the number of entities remaining for the next batch off (default) | on
+  group: ''
+  block_parameter: NumberOfEntitiesRequiredForNextBatch
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Pending entity in block, pe
+  summary: Pending entities off (default) | on
+  group: ''
+  block_parameter: PendingEntity
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Number of entities in batch** — Number of entities in one batch `4` (default) | scalar
 
@@ -207,7 +301,6 @@ The value is `1` for a pending entity, and
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

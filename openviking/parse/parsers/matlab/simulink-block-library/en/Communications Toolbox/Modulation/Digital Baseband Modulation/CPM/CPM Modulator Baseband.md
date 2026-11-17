@@ -14,6 +14,17 @@ language: en
 # CPM Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: double | Boolean | int8 | int16 | int32
+- name: Out
+  summary: Output signal scalar | column vector
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -68,8 +79,52 @@ the **Samples per symbol** parameter value.
 **Data Types:** `double` | `single`
 
 For more information on the processing rates, see Single-Rate Processing, and Multirate Processing.
-
 ## Parameters
+```yaml
+parameters:
+- name: M-ary number
+  summary: Modulation order 4 (default) | power of two scalar
+  group: ''
+- name: Input type
+  summary: Integer or group of bits input indicator Integer (default) | Bit
+  group: ''
+- name: Symbol set ordering
+  summary: Symbol mapping Binary (default) | Gray
+  group: ''
+- name: Modulation index
+  summary: Modulation index {*h*i} 0.5 (default) | nonnegative scalar | column vector
+  group: ''
+- name: Frequency pulse shape
+  summary: Type of pulse shaping Rectangular (default) | Raised Cosine | Spectral Raised Cosine | Gaussian | Tamed FM
+  group: ''
+- name: Main lobe pulse duration (symbol intervals)
+  summary: Main lobe duration 1 (default) | positive integer
+  group: ''
+- name: Rolloff
+  summary: Rolloff factor of spectral raised cosine pulse shape 0.2 (default) | nonnegative scalar
+  group: ''
+- name: BT product
+  summary: Product of bandwidth and symbol time of Gaussian pulse shape 0.3 (default) | positive scalar
+  group: ''
+- name: Pulse length (symbol intervals)
+  summary: Length of frequency pulse shape 1 (default) | positive integer
+  group: ''
+- name: Symbol prehistory
+  summary: Data symbols used before the start of simulation 1 (default) | scalar | vector
+  group: ''
+- name: Phase offset (rad)
+  summary: Initial phase offset 0 (default) | scalar
+  group: ''
+- name: Samples per symbol
+  summary: Symbol sampling rate 8 (default) | positive scalar
+  group: ''
+- name: Rate options
+  summary: Block processing rate Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -211,7 +266,6 @@ Block processing rate, specified as one of these options:
 
 Output data type, specified as `double` or
 `single`.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / CPM

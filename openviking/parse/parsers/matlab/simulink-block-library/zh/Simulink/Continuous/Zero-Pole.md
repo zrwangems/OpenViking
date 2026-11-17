@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Zero-Pole
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -33,8 +44,44 @@ chinese_source: worker-translation
 - 当建模多输出系统时，该模块产生向量，其中向量的每个元素是系统的一个输出。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Zeros
+  summary: 零点矩阵 [1]（默认）| 向量 | 矩阵
+  group: ''
+  block_parameter: Zeros
+  type: 字符串 | 字符向量
+  values: 向量 | 矩阵
+- name: Poles
+  summary: 极点向量 [0 -1]（默认）| 向量
+  group: ''
+  block_parameter: Poles
+  type: 字符串 | 字符向量
+  values: 向量
+- name: Gain
+  summary: 增益向量 [1]（默认）| 向量
+  group: ''
+  block_parameter: Gain
+  type: 字符串 | 字符向量
+  values: 向量
+- name: Parameter tunability
+  summary: 代码中模块参数的可调表示 Auto（默认）| Optimized | Unconstrained
+  group: ''
+  block_parameter: ParameterTunability
+  type: 字符串 | 字符向量
+  values: '''Auto'' | ''Optimized'' | ''Unconstrained'''
+- name: Absolute tolerance
+  summary: 计算模块状态的绝对容差 auto（默认）| 标量 | 向量
+  group: ''
+  block_parameter: AbsoluteTolerance
+  values: '''auto''（默认）| ''-1'' | 正实标量数值 | 正实标量数值向量'
+- name: State Name (e.g., 'position')
+  summary: 为状态分配唯一名称的选项 ''（默认）| 字符向量 | 字符向量元胞数组 | MATLAB® 变量 | ...
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  values: '''''（默认）| 有效的 MATLAB 变量名'
+```
 
 ### **Zeros** — 零点矩阵 `[1]`（默认）| 向量 | 矩阵
 
@@ -153,7 +200,6 @@ State-Space",AbsoluteTolerance="-1")`
 
 **示例：** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
-
 ## 所属库
 
 Simulink / Continuous

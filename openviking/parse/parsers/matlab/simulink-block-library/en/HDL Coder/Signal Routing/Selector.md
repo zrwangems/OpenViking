@@ -14,6 +14,23 @@ language: en
 # Selector
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | multidimensional
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: IndxN
+  summary: Nth index signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output signal scalar | vector | matrix | multidimensional
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -55,8 +72,67 @@ Output signal generated from selected or reordered elements of input
 signal.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input dimensions
+  summary: Number of dimensions of input signal 1 (default) | integer
+  group: ''
+  block_parameter: NumberOfDimensions
+  type: character vector
+  values: integer
+  default: '''1'''
+- name: Index mode
+  summary: Index mode One-based (default) | Zero-based
+  group: ''
+  block_parameter: IndexMode
+  type: character vector
+  values: '''One-based'' | ''Zero-based'''
+  default: '''One-based'''
+- name: Index Option
+  summary: Index method for elements Index vector (dialog) (default) | Select all | Index vector (port) | Starting index (dialog)
+    | Starting index (port) | Starting and ending indices (port)
+  group: ''
+  block_parameter: IndexOptionArray
+  type: cell array of character vectors
+  values: '{''Select all''} | {''Index vector (dialog)''} | {''Index vector (port)''} | {''Starting index (dialog)''} | {''Starting
+    index (port)''} | {''Starting and ending indices (port)''}'
+  default: '{''Index vector (dialog)''}'
+- name: Index
+  summary: Index of elements [1 3] (default) | integer
+  group: ''
+  block_parameter: IndexParamArray
+  type: cell array of character vectors
+  values: integers
+  default: '{''[1 3]''}'
+- name: Output Size
+  summary: Width of block output signal 1 (default) | integer
+  group: ''
+  block_parameter: OutputSizeArray
+  type: cell array of character vectors
+  values: integers
+  default: '{''1''}'
+- name: Input port size
+  summary: Width of input signal 3 (default) | integer
+  group: ''
+  block_parameter: InputPortWidth
+  type: character vector
+  values: integer
+  default: '''3'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Check for out-of-range index in accelerated simulation
+  summary: Option to check for out-of-range index values in accelerator and rapid accelerator simulation modes off (default)
+    | on
+  group: ''
+  block_parameter: RuntimeRangeChecks
+  type: character vector
+  values: '''Off'' | ''On'''
+  default: '''Off'''
+```
 
 ### **Number of input dimensions** — Number of dimensions of input signal `1` (default) | integer
 
@@ -240,7 +316,6 @@ of whether you select this check box.
 | **Type:** character vector |
 | **Values:** `'Off'` | `'On'` |
 | **Default:** `'Off'` |
-
 ## Libraries
 
 Simulink / Signal Routing HDL Coder / Signal Routing

@@ -14,10 +14,82 @@ language: en
 # Quarter Gauge
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Signal to connect and display signal connection options
+  group: Signal
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Minimum
+  summary: Minimum tick mark value 0 (default) | scalar
+  group: Main
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Maximum
+  summary: Maximum tick mark value 100 (default) | scalar
+  group: Main
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Tick Interval
+  summary: Interval between major tick marks auto (default) | scalar
+  group: Main
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Scale Colors
+  summary: Color indications on gauge scale colors for scale ranges
+  group: Main
+  block_parameter: ScaleColors
+  type: structure array
+  default: 0x1 struct array
+- name: Label
+  summary: Block label position Top (default) | Bottom | Hide
+  group: Main
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+- name: Scale Direction
+  summary: Gauge scale direction Clockwise (default) | Counterclockwise
+  group: Main
+  block_parameter: ScaleDirection
+  type: character vector
+  values: '''Clockwise'' | ''Counterclockwise'''
+  default: '''Clockwise'''
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Format
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+- name: Foreground Color
+  summary: Block foreground color [r g b] vector
+  group: Format
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Background Color
+  summary: Block background color [r g b] vector
+  group: Format
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Font Color
+  summary: Block font color [r g b] vector
+  group: Format
+  block_parameter: FontColor
+  type: '[r g b] vector'
+```
 
 ### Signal
 
@@ -251,7 +323,6 @@ Specify the `FontColor` parameter for the block as a `1`-by-`3` `[r g b]` vector
 | --- |
 | **Block Parameter:** `FontColor` |
 | **Type:** `[r g b]` vector |
-
 ## Libraries
 
 Simulink / Dashboard

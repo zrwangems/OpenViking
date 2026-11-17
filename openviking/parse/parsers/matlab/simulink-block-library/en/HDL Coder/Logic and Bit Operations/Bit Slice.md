@@ -14,6 +14,17 @@ language: en
 # Bit Slice
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input Signal scalar | vector
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output Signal scalar | vector
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -33,8 +44,24 @@ Position** and **LSB Position** are block
 parameters.
 
 **Data Types:** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: MSB Position
+  summary: Most significant bit position 7 (default)
+  group: ''
+  block_parameter: lidk
+  type: string scalar | character vector
+  values: positive integer value such that satisfies the constraints mentioned previously
+  default: '''7'''
+- name: LSB Position
+  summary: Least significant bit position 0 (default)
+  group: ''
+  block_parameter: ridk
+  type: string scalar | character vector
+  values: positive integer value such that satisfies the constraints mentioned previously
+  default: '''0'''
+```
 
 ### **MSB Position** — Most significant bit position 7 (default)
 
@@ -73,7 +100,6 @@ satisfy these constraints:
 | **Type:** string scalar | character vector |
 | **Value:** positive integer value such that satisfies the constraints mentioned previously |
 | **Default:** `'0'` |
-
 ## Libraries
 
 HDL Coder / Logic and Bit Operations

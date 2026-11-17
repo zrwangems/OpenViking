@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Video From Workspace
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输出图像或视频 *M*-by-*N*-by-*T* 数组 | *M*-by-*N*-by-*C*-by-*T* 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: 输入视频的红色分量 3 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: 输入视频的绿色分量 3 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: 输入视频的蓝色分量 3 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输出
 
@@ -69,8 +88,25 @@ chinese_source: worker-translation
 要启用此端口，请将 **Image signal** 参数设置为 `Separate color signals`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal
+  summary: 要读取的视频 rand(32,32,3,5)（默认）| *M*-by-*N*-by-*T* 数组 | *M*-by-*N*-by-*C*-by-*T* 数组 | MATLAB 工作区变量
+  group: ''
+- name: Sample time
+  summary: 输出视频的采样周期 1（默认）| -1 | 正标量
+  group: ''
+- name: Form output after final value by
+  summary: 最终视频帧之后模块输出的形式 Setting to zero（默认）| Holding final value | Cyclic repetition
+  group: ''
+- name: Image signal
+  summary: 视频信号的输出模式 One multidimensional signal（默认）| Separate color signals
+  group: ''
+- name: Output port labels
+  summary: 输出端口名称 R|G|B（默认）| 以竖线分隔的文本标签
+  group: ''
+```
 
 ### **Signal** — 要读取的视频 `rand(32,32,3,5)`（默认）| *M*-by-*N*-by-*T* 数组 | *M*-by-*N*-by-*C*-by-*T* 数组 | MATLAB 工作区变量
 
@@ -117,7 +153,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Image signal** 参数设置为 `Separate color signals`。
-
 ## 所属库
 
 Computer Vision Toolbox / Sources

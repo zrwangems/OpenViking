@@ -14,6 +14,25 @@ language: en
 # Gamma Corrector
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | int8 | int16 | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream scalar | vector
+  direction: output
+  data_types: uint8 | uint16 | int8 | int16 | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -72,8 +91,22 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation
+  summary: Direction of pixel value adjustment Gamma (default) | De-gamma
+  group: ''
+- name: Gamma
+  summary: Target gamma value 2.2 (default) | scalar greater than or equal to 1
+  group: ''
+- name: Linear segment
+  summary: Include a linear segment in the gamma curve on (default) | off
+  group: ''
+- name: Break point
+  summary: Point where gamma curve and linear segment meet 0.018 (default) | scalar between 0 and 1
+  group: ''
+```
 
 ### **Operation** — Direction of pixel value adjustment `Gamma` (default) | `De-gamma`
 
@@ -110,7 +143,6 @@ segment meet, specified as a scalar value between 0 and 1, exclusive.
 
 This parameter applies only when you select the **Linear
 segment** check box.
-
 ## Libraries
 
 Vision HDL Toolbox / Conversions

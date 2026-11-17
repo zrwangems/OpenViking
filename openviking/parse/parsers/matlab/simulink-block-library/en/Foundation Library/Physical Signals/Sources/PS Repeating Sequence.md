@@ -14,14 +14,40 @@ language: en
 # PS Repeating Sequence
 
 ## Ports
+```yaml
+ports:
+- name: Y
+  summary: Output physical signal, unitless physical signal
+  direction: output
+```
 
 ### Output
 
 ### **Y** — Output physical signal, unitless physical signal
 
 Output physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial output
+  summary: Output at time zero 0 (default)
+  group: ''
+- name: Time offset
+  summary: Initial time offset 0 s (default)
+  group: ''
+- name: Signal type
+  summary: Type of generated signal Discontinuous (default) | Continuous | Discrete
+  group: ''
+- name: Durations
+  summary: Linear segment durations [ 1, 1 ] s (default)
+  group: ''
+- name: Start output values
+  summary: Start values for each linear segment [ 0, 2 ] (default)
+  group: ''
+- name: End output values
+  summary: End values for each linear segment [ 1, 1 ] (default)
+  group: ''
+```
 
 ### **Initial output** — Output at time zero `0` (default)
 
@@ -79,7 +105,6 @@ Enabled only when the **Signal type** parameter is set to
 segment is defined either by the start value of the next segment
 (`Continuous`) or the start value of the same segment
 (`Discrete`).
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Sources

@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # FIR Interpolator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 实数或复数标量或向量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: coeff
+  summary: 滤波器系数 实数或复数行向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 插值输出数据 实数或复数标量或向量
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已准备好接收新输入数据 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -84,8 +115,49 @@ chinese_source: worker-translation
 控制信号，指示模块已准备好在下一个周期接收新的输入数据样本。当 **ready** 为 `1`（`true`）时，您可以为下一个时间步指定 **data** 和 **valid** 输入。当 **ready** 为 `0`（`false`）时，模块在下一个时间步忽略任何输入数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: 系数来源
+  summary: 滤波器系数来源 Property（默认）| Input port (Parallel interface)
+  group: 主要
+- name: 系数
+  summary: FIR 滤波器系数 fir1(35,0.4)（默认）| 实值或复值向量
+  group: 主要
+- name: 系数原型
+  summary: 原型滤波器系数 []（默认）| 实数或复数向量
+  group: 主要
+- name: 滤波器结构
+  summary: HDL 滤波器架构 Direct form systolic（默认）| Direct form transposed
+  group: 主要
+- name: 插值因子
+  summary: 插值因子 2（默认）| 大于二的整数
+  group: 主要
+- name: 有效输入样本之间的最小周期数
+  summary: 输入时序的串行化要求 1（默认）| 正整数
+  group: 主要
+- name: 优化对称系数
+  summary: 共享对称系数的乘法器 开（默认）| 关
+  group: 主要
+- name: 舍入模式
+  summary: 输出类型转换的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: 整数溢出时饱和
+  summary: 输出类型转换的溢出处理 off（默认）| on
+  group: 数据类型
+- name: 系数
+  summary: '滤波器系数的数据类型 Inherit: Same word length as input（默认）| <data type expression>'
+  group: 数据类型
+- name: 输出
+  summary: '滤波器输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same word length as input | <data type expression>'
+  group: 数据类型
+- name: 启用复位输入端口
+  summary: 启用复位输入端口的选项 off（默认）| on
+  group: 控制端口
+- name: 使用 HDL 全局复位
+  summary: 将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off（默认）| on
+  group: 控制端口
+```
 
 ### 主要
 
@@ -204,7 +276,6 @@ FIR 滤波器系数，指定为实值或复值向量。您可以将向量指定�
 选中此复选框以将生成的 HDL 全局复位信号连接到数据路径寄存器。此参数不会更改模块的外观或修改 Simulink 中的仿真行为。当您清除此复选框时，生成的 HDL 全局复位仅清除控制路径寄存器。生成的 HDL 全局复位可以是同步或异步的，取决于模型配置参数中的 **HDL Code Generation** > **Global Settings** > **Reset type** 参数。
 
 有关更多复位注意事项，请参阅硬件控制信号页面中的复位信号部分。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

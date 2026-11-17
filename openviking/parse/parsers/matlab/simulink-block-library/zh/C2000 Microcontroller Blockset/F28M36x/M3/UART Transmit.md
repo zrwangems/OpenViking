@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # F28M35x/F28M36x UART Transmit
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: UART 发送数据向量 | 标量
+  direction: input
+```
 
 ### 输入
 
@@ -23,8 +29,22 @@ chinese_source: worker-translation
 该端口将数据发送到 UART 端口。
 
 DMA 将在内部用于将数据复制到 FIFO 中。
-
 ## 参数
+```yaml
+parameters:
+- name: UART Port
+  summary: 选择用于数据传输的 UART 端口 UART0（默认）| UART1 | UART2 | UART3 | UART4
+  group: ''
+- name: Additional package header
+  summary: 前缀头 S（默认）
+  group: ''
+- name: Additional package terminator
+  summary: 后缀终止符 E（默认）
+  group: ''
+- name: Enable blocking mode
+  summary: 启用数据传输的阻塞模式 off（默认）| on
+  group: ''
+```
 
 ### **UART Port** — 选择用于数据传输的 UART 端口 `UART0`（默认）| `UART1` | `UART2` | `UART3` | `UART4`
 
@@ -43,7 +63,6 @@ UART Port 选择允许访问处理器上存在的不同 UART 模块。
 ### **Enable blocking mode** — 启用数据传输的阻塞模式 `off`（默认）| on
 
 启用此选项可确保在发送数据之前检查 FIFO 缓冲区是否有可用数据。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28M35x / M3 C2000 Microcontroller Blockset / F28M36x / M3

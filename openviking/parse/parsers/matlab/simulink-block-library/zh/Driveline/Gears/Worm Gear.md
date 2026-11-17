@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Worm Gear
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 蜗杆机械旋转
+  direction: conserving
+- name: G
+  summary: 齿轮机械旋转
+  direction: conserving
+- name: H
+  summary: 可选热传递端口机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -40,8 +52,58 @@ chinese_source: worker-translation
   efficiency`
 
 。
-
 ## 参数
+```yaml
+parameters:
+- name: Gear ratio
+  summary: 角速度之比 25（默认）| 大于 1 的正标量
+  group: 主要
+- name: Worm thread type
+  summary: 旋转方向 Right-hand（默认）| Left-hand
+  group: 主要
+- name: Friction model
+  summary: 齿轮摩擦模型 No meshing losses — Suitable for HIL simulation（默认）| Constant efficiency | Temperature-dependent efficiency
+  group: 啮合损耗
+- name: Friction parametrization
+  summary: 齿轮螺纹非理想啮合引起的摩擦损耗 Friction coefficient and geometrical parameters（默认）| Efficiencies
+  group: 啮合损耗
+- name: Normal pressure angle
+  summary: 螺纹压力角 17.5 deg（默认）| 正标量
+  group: 啮合损耗
+- name: Lead angle
+  summary: 螺纹螺旋角 20 deg（默认）| 正标量
+  group: 啮合损耗
+- name: Friction coefficient
+  summary: 螺纹摩擦系数 0.08（默认）| 正标量
+  group: 啮合损耗
+- name: Worm-gear efficiency
+  summary: 从蜗杆到齿轮的效率 0.74（默认）| 范围 (0,1] 内的正标量
+  group: 啮合损耗
+- name: Gear-worm efficiency
+  summary: 从齿轮到蜗杆的效率 0.65（默认）| 范围 (0,1] 内的正标量
+  group: 啮合损耗
+- name: Temperature
+  summary: 用于效率表格化参数化的数组 [280 300 320] K（默认）| 向量
+  group: 啮合损耗
+- name: Worm-gear efficiency
+  summary: 蜗杆到齿轮效率数组 [0.75 0.7 0.65]（默认）| 向量
+  group: 啮合损耗
+- name: Gear-worm efficiency
+  summary: 齿轮到蜗杆效率数组 [0.5 0.45 0.4]（默认）| 向量
+  group: 啮合损耗
+- name: Power threshold
+  summary: 低于此功率时应用数值平滑 0.001 W（默认）| 正标量
+  group: 啮合损耗
+- name: Viscous friction coefficients at worm (W) and gear (G)
+  summary: 流体动力摩擦系数 [0 0] N\*m/(rad/s)（默认）| 正二元向量
+  group: 粘性损耗
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 正标量
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 正标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -206,7 +268,6 @@ efficiency`。
 ### **Initial temperature** — 初始温度 `300` `K`（默认）| 正标量
 
 仿真开始时组件的温度。初始温度根据您指定的效率向量改变组件效率，从而影响起始啮合或摩擦损耗。
-
 ## 所属库
 
 Simscape / Driveline / Gears

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Limited-Slip Differential
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 驱动轴旋转机械
+  direction: unspecified
+- name: S1
+  summary: 太阳轮 1 旋转机械
+  direction: unspecified
+- name: S2
+  summary: 太阳轮 2 旋转机械
+  direction: unspecified
+- name: H
+  summary: 热流热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -37,8 +52,97 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请在 **Differential** 选项卡中，将 **Friction model** 设置为 `Temperature-dependent efficiency`。
-
 ## 参数
+```yaml
+parameters:
+- name: Crown gear located
+  summary: 冠齿轮位置 To the right of centerline（默认）| To the left of centerline
+  group: Differential
+- name: Carrier (C) to driveshaft (D) teeth ratio (NC/ND)
+  summary: 冠齿轮与驱动轴小齿轮的齿数比 4（默认）| 正标量
+  group: Differential
+- name: Friction model
+  summary: 摩擦模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Temperature-dependent efficiency
+  group: Differential
+- name: Sun-sun and carrier-driveshaft ordinary efficiencies
+  summary: 差速器扭矩恒定传递效率 [.85, .92]（默认）| 向量
+  group: Differential
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 向量
+  group: Differential
+- name: Sun-sun efficiency
+  summary: 从驱动太阳轮到从动太阳轮的扭矩传递效率 [.95, .9, .85]（默认）| 向量
+  group: Differential
+- name: Carrier-driveshaft efficiency
+  summary: 从冠齿轮到驱动轴小齿轮的扭矩传递效率 [.95, .9, .85]（默认）| 向量
+  group: Differential
+- name: Sun-carrier and driveshaft-casing power thresholds
+  summary: 太阳轮-行星架和驱动轴-壳体齿轮联轴器的最小效率功率阈值 [.001, .001] W（默认）| 向量
+  group: Differential
+- name: Sun-carrier and driveshaft-casing viscous friction coefficients
+  summary: 粘性摩擦系数 [0, 0] N*m/(rad/s)（默认）| 向量
+  group: Differential
+- name: Inertia
+  summary: 惯性选项 off（默认）| on
+  group: Differential
+- name: Sun gear inertia
+  summary: 太阳轮惯性 0.001 kg*m^2（默认）| 正标量
+  group: Differential
+- name: Sun gear radius
+  summary: 太阳轮半径 0.01 m（默认）| 正标量
+  group: Differential
+- name: Carrier inertia
+  summary: 行星架惯性 0.001 kg*m^2（默认）| 正标量
+  group: Differential
+- name: Planet gear spin inertia
+  summary: 行星齿轮自转惯性 0.001 kg*m^2（默认）| 正标量
+  group: Differential
+- name: Planet gear mass
+  summary: 行星齿轮质量 0.001 kg*m^2（默认）| 正标量
+  group: Differential
+- name: Number of friction surfaces
+  summary: 接触面数量 4（默认）| 正标量
+  group: Clutch
+- name: Effective torque radius
+  summary: 摩擦力作用半径 130 mm（默认）| 正标量
+  group: Clutch
+- name: Preload force
+  summary: 离合器片接合压力 300 N（默认）| 非负标量
+  group: Clutch
+- name: Static friction coefficient
+  summary: 静摩擦系数 0.35（默认）| 正标量
+  group: Clutch
+- name: Static friction coefficient vector
+  summary: 静摩擦系数 [.4, .38, .36]（默认）| 向量
+  group: Clutch
+- name: Kinetic friction coefficient relative velocity vector
+  summary: 绝对表面速度 [0, 100, 1000] rad/s（默认）| 向量
+  group: Clutch
+- name: Kinetic friction coefficient vector
+  summary: 库仑摩擦系数 *k*K [.3, .22, .19]（默认）| 向量
+  group: Clutch
+- name: Kinetic friction coefficient matrix
+  summary: 库仑摩擦系数 *k*K [.34, .32, .3; .3, .28, .25; .25, .2, .15]（默认）| 矩阵
+  group: Clutch
+- name: Friction coefficient interpolation method
+  summary: 输出值填充方法 Linear（默认）| Smooth
+  group: Clutch
+- name: Friction coefficient extrapolation method
+  summary: 输出值外推方法 Linear（默认）| Nearest
+  group: Clutch
+- name: Velocity tolerance
+  summary: 滑移速度锁定边界 0.001 rad/s（默认）
+  group: Clutch
+- name: Initial state
+  summary: 初始离合器状态 Unlocked（默认）| Locked
+  group: Clutch
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 标量
+  group: Thermal Port
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 标量
+  group: Thermal Port
+```
 
 ### Differential
 
@@ -246,7 +350,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
-
 ## 所属库
 
 Simscape / Driveline / Gears

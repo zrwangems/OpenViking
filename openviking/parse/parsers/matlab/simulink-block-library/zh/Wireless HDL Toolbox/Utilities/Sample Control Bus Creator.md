@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Sample Control Bus Creator
 
 ## 端口
+```yaml
+ports:
+- name: start
+  summary: 帧起始标量
+  direction: input
+  data_types: Boolean
+- name: end
+  summary: 帧结束标量
+  direction: input
+  data_types: Boolean
+- name: valid
+  summary: 样本有效性标量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -48,11 +67,12 @@ chinese_source: worker-translation
 有关更多详细信息，请参阅 Sample Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Wireless HDL Toolbox / Utilities

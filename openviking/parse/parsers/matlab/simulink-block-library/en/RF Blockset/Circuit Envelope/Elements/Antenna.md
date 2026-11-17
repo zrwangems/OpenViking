@@ -14,6 +14,17 @@ language: en
 # Antenna
 
 ## Ports
+```yaml
+ports:
+- name: RX
+  summary: Received signal scalar | vector | matrix | *m*-by-*n*-by-*k* array
+  direction: input
+  data_types: double
+- name: TX
+  summary: Transmitted signal scalar | vector | matrix | *m*-by-*n*-by-*k* array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -43,8 +54,64 @@ array:
   value of the *k* must be 2.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of antenna model
+  summary: Antenna model Isotropic radiator (default) | Antenna Designer | Antenna object
+  group: Main
+- name: Create Antenna
+  summary: Open Antenna Toolbox Antenna Designer app button
+  group: Main
+- name: Antenna object
+  summary: Antenna or array element input from workspace antenna catalog object | antenna array catalog object | measuredAntenna
+    object | pcbstack object
+  group: Main
+- name: Antenna Gain
+  summary: Antenna gain 0 dBi (default) | real scalar or vector | positive scalar or vector
+  group: Main
+- name: Impedance (Ohm)
+  summary: Input impedance 50 (default) | complex-valued scalar or vector
+  group: Main
+- name: Input incident wave
+  summary: Input incident wave for simulating receiving antenna 'off' (default) | 'on'
+  group: Main
+- name: Output radiated wave
+  summary: Output radiated wave for transmitting antenna 'on' (default) | 'off'
+  group: Main
+- name: Incident carrier frequencies
+  summary: Carrier frequencies for receiving signal 2.1 GHz (default) | nonnegative scalar or row vector
+  group: Main
+- name: Radiated carrier frequencies
+  summary: Carrier frequencies for transmitting signal 2.1 GHz (default) | nonnegative scalar or row vector
+  group: Main
+- name: Direction of departure
+  summary: Azimuth and elevation angles towards which output signal power wave radiates [0 0] deg (default) | finite real
+    row vector of length 1-by-2 | finite real matrix of length *m*-by-2
+  group: Main
+- name: Direction of arrival
+  summary: Azimuth and elevation angles from which input signal power wave arrives [180 0] deg (default) | finite real row
+    vector of length 1-by-2 | finite real matrix of length *m*-by-2
+  group: Main
+- name: Simulate noise
+  summary: Simulate thermal noise 'on' (default) | 'off'
+  group: Main
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals 'on' (default) | 'off'
+  group: Main
+- name: Modeling options
+  summary: Model frequency-dependent antenna parameters Time domain (default) | Frequency domain
+  group: Modeling
+- name: Relative error desired (dB)
+  summary: Relative error acceptable for the rational fit -40 (default) | scalar
+  group: Modeling
+- name: Automatically estimate impulse response duration
+  summary: Automatically calculate impulse response 'on' | 'off'
+  group: Modeling
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10s (default) | scalar
+  group: Modeling
+```
 
 ### Main
 
@@ -273,7 +340,6 @@ modeling of both antenna impedance and normalized vector effective length.
 To set this parameter, first select `Frequency domain`
 in **Modeling options**. Then, clear **Automatically
 estimate impulse response duration**.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

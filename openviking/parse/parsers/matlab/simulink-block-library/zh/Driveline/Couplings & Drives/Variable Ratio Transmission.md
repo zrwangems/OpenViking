@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Variable Ratio Transmission
 
 ## 端口
+```yaml
+ports:
+- name: r
+  summary: 输入轴与输出轴转速比，无量纲物理信号
+  direction: input
+- name: B
+  summary: 基座驱动轴机械旋转
+  direction: input
+- name: F
+  summary: 从动驱动轴机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -30,8 +42,37 @@ chinese_source: worker-translation
 ### **F** — 从动驱动轴机械旋转
 
 与从动驱动轴相关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Output shaft rotates
+  summary: 输出轴方向与输入轴方向的关系 In same direction as input shaft（默认）| In opposite direction to input shaft
+  group: 主要
+- name: Transmission stiffness at base (B)
+  summary: 基座弹簧刚度系数 5e5 N*m/rad（默认）| 正标量
+  group: 柔量
+- name: Transmission damping at base (B)
+  summary: 基座阻尼系数 5e3 N*m/(rad/s)（默认）| 正标量
+  group: 柔量
+- name: Initial input torque at base (B)
+  summary: 基座处起始扭矩 0 N*m（默认）| 标量
+  group: 柔量
+- name: Ratio threshold
+  summary: 零过渡平滑 0.01（默认）| 标量
+  group: 柔量
+- name: Losses model
+  summary: 可选损耗建模 No losses — Suitable for HIL simulation（默认）| Constant efficiency
+  group: 传动损耗
+- name: Efficiency
+  summary: 基座到从动扭矩传递效率 0.8（默认）| 正标量
+  group: 传动损耗
+- name: Follower power threshold
+  summary: 模块施加满效率损耗的功率点 0.001 W（默认）| 正标量
+  group: 传动损耗
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: 基座和从动粘性摩擦向量 [0, 0] N*m/(rad/s)（默认）| 非负元素向量
+  group: 粘性损耗
+```
 
 ### 主要
 
@@ -97,7 +138,6 @@ chinese_source: worker-translation
 分别施加在基座和从动驱动轴上的粘性阻尼系数向量
 [*μB*,
 *μF*]。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

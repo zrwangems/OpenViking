@@ -14,6 +14,20 @@ language: en
 # Phase/Frequency Offset
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Complex signal scalar | vector | matrix
+  direction: input
+  data_types: double | single
+- name: Frq
+  summary: Frequency offset scalar | vector | matrix
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output signal scalar | vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -47,8 +61,19 @@ Output signal, returned as a scalar, vector, or matrix. This output is the same
 dimension and data type as the input signal.
 
 This port is unnamed on the block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase offset (deg)
+  summary: Phase offset 0 (default) | scalar | vector | matrix
+  group: ''
+- name: Frequency offset from port
+  summary: Option to add port to set frequency offset off (default) | on
+  group: ''
+- name: Frequency offset (Hz)
+  summary: Frequency offset 0 (default) | scalar | vector | matrix
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -88,7 +113,6 @@ are both nonscalar, they must be the same size.
 
 To enable this port, clear the **Frequency offset from port**
 parameter.
-
 ## Libraries
 
 Communications Toolbox / RF Impairments Correction Communications Toolbox / RF Impairments and Components

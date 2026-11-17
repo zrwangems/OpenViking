@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Check Valve (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 阀门入口气体
+  direction: conserving
+- name: B
+  summary: 阀门入口气体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,70 @@ chinese_source: worker-translation
 ### **B** — 阀门入口气体
 
 与流体必须离开阀门的开口相关联的气体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Opening pressure specification
+  summary: 用作阀门控制信号的压力测量选择 Pressure difference of port A relative to port B（默认）| Gauge pressure at port A
+  group: ''
+- name: Cracking pressure differential
+  summary: 打开阀门所需的压降 0.01 MPa（默认）| 正标量
+  group: ''
+- name: Maximum opening pressure differential
+  summary: 阀门完全打开时的压降 0.02 MPa（默认）| 正标量
+  group: ''
+- name: Cracking pressure (gauge)
+  summary: 打开阀门所需的入口最小压力 0.01 MPa（默认）| 正标量
+  group: ''
+- name: Maximum opening pressure (gauge)
+  summary: 入口最大压力 0.02 MPa（默认）| 正标量
+  group: ''
+- name: Valve parameterization
+  summary: 用于指定孔口流量特性的参数化方法 Cv flow coefficient（默认）| Kv flow coefficient | Sonic conductance | Orifice area
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应于最大打开状态的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应于最大打开状态的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 对应于最大打开状态的声速导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Maximum orifice area
+  summary: 对应于最大打开状态的流动面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流流态之间过渡时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 气体端口处的流动面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Opening pressure specification** — 用作阀门控制信号的压力测量选择 `Pressure difference of port A relative to port B`（默认）| `Gauge pressure at port A`
 
@@ -172,7 +243,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at ports A and B** — 气体端口处的流动面积 `0.01 m^2`（默认）| 正标量
 
 每个端口处垂直于流动路径的面积。端口尺寸相等。此参数的值应与阻性元件所连接组件的入口面积相匹配。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Valves & Orifices / Directional Control Valves

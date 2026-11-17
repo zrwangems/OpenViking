@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # Matrix Deinterleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Number of rows**
 :   模块用于计算的矩阵的行数。
 
 **Number of columns**
 :   模块用于计算的矩阵的列数。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # UDP Send
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入数据向量 vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -24,8 +31,25 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Remote IP address ('255.255.255.255' for broadcast)
+  summary: 从中接受 UDP 数据包的 IP 地址 '127.0.0.1'（默认）| IP 地址 | 字符串
+  group: ''
+- name: Remote IP port
+  summary: 远程 IP 端口号 25000（默认）| 范围 [1, 65535] 内的标量
+  group: ''
+- name: Local IP port source
+  summary: 本地 IP 端口的来源 Automatically determine（默认）| Specify via dialog
+  group: ''
+- name: Local IP port
+  summary: 本地 IP 端口号 -1（默认）| 范围 [1, 65535] 内的标量
+  group: ''
+- name: Send buffer size (bytes)
+  summary: 发送 UDP 数据包的缓冲区大小 8192（默认）| 范围 [1, 67108864] 内的标量
+  group: ''
+```
 
 ### **Remote IP address ('255.255.255.255' for broadcast)** — 从中接受 UDP 数据包的 IP 地址 `'127.0.0.1'`（默认）| IP 地址 | 字符串
 
@@ -61,7 +85,6 @@ chinese_source: worker-translation
 
 指定发送 UDP 数据包的缓冲区大小（以字节为单位）。使
 缓冲区足够大，以避免缓冲区溢出导致的数据丢失。
-
 ## 所属库
 
 DSP System Toolbox / Sinks

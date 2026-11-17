@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Elbow (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口或出口气体
+  direction: unspecified
+- name: B
+  summary: 入口或出口气体
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -27,8 +36,22 @@ chinese_source: worker-translation
 
 与管道入口或出口关联的气体守恒端口。
 该模块没有固有方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: Elbow type
+  summary: 弯头几何形状 Smoothly curved（默认）| Sharp-edged (Miter)
+  group: ''
+- name: Elbow internal diameter
+  summary: 管道内径 0.01 m（默认）| 正标量
+  group: ''
+- name: Elbow angle
+  summary: 管道弯曲角度 90 deg（默认）| 正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流状态之间转换时的压力比 0.999（默认）| 正标量
+  group: ''
+```
 
 ### **Elbow type** — 弯头几何形状 `Smoothly curved`（默认）| `Sharp-edged (Miter)`
 
@@ -48,7 +71,6 @@ chinese_source: worker-translation
 ### **Laminar flow pressure ratio** — 流动在层流和湍流状态之间转换时的压力比 `0.999`（默认）| 正标量
 
 气体流动在层流和湍流状态之间转换时的压力比。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Pipes & Fittings

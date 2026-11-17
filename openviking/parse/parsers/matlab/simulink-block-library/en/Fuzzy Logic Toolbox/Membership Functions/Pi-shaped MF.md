@@ -14,6 +14,15 @@ language: en
 # Pi-shaped MF
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input value scalar | vector
+  direction: input
+- name: Pi MF
+  summary: Membership value scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +38,34 @@ Membership value, returned as a scalar or a vector. The dimensions of **Pi
 MF** match the dimensions of **x**. Each element of
 **Pi MF** is the membership value computed for the corresponding
 element of **x**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Left base point a
+  summary: Foot of left transition area -9 (default) | scalar
+  group: ''
+  block_parameter: a
+  type: string, character vector
+  default: '"-9"'
+- name: Left top point b
+  summary: Shoulder of left transition area -7 (default) | scalar
+  group: ''
+  block_parameter: b
+  type: string, character vector
+  default: '"-7"'
+- name: Right top point c
+  summary: Shoulder of right transition area -9 (default) | scalar
+  group: ''
+  block_parameter: c
+  type: string, character vector
+  default: '"2"'
+- name: Right base point d
+  summary: Foot of right transition area -7 (default) | scalar
+  group: ''
+  block_parameter: d
+  type: string, character vector
+  default: '"8"'
+```
 
 ### **Left base point a** — Foot of left transition area `-9` (default) | scalar
 
@@ -79,7 +114,6 @@ Foot *d* of the right transition area.
 | **Block Parameter:** `d` |
 | **Type:** string, character vector |
 | **Default:** `"8"` |
-
 ## Libraries
 
 Fuzzy Logic Toolbox / Membership Functions

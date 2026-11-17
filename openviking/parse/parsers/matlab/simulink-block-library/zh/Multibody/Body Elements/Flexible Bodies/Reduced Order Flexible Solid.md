@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Reduced Order Flexible Solid
 
 ## 端口
+```yaml
+ports:
+- name: F1, F2, ..., F*n*
+  summary: Frames frame
+  direction: unspecified
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -27,8 +36,109 @@ chinese_source: worker-translation
 虚拟未变形体的参考坐标系，表示柔性体的整体刚体运动。**R** 坐标系在物理上不附着于柔性体。
 
 **R** 端口不得与施加力和力矩或具有惯性的任何模块刚性连接。
-
 ## 参数
+```yaml
+parameters:
+- name: 单位制
+  summary: 长度、质量和时间的标准或自定义单位 SI (m, kg, s)（默认）| CGS (cm, g, s) | English (ft, slug, s) | Custom
+  group: Unit System
+- name: 长度单位
+  summary: 长度的度量单位 m（默认）| cm | mm | km | in | ft | yd | mi
+  group: Unit System
+- name: 质量单位
+  summary: 质量的度量单位 kg（默认）| g | t | lbm | slug
+  group: Unit System
+- name: 时间单位
+  summary: 时间的度量单位 s（默认）| ms | min | hr
+  group: Unit System
+- name: 帧数
+  summary: 帧端口数量 1（默认）| 正整数
+  group: Interface Frames
+- name: Origins
+  summary: Cartesian coordinates of interface frame origins [0 0 0] (default) | *n*-by-*3* matrix
+  group: Interface Frames
+- name: Orientations
+  summary: Orientations of interface frames [1 0 0 0] (default) | *n*-by-*4* matrix of unit quaternions
+  group: Interface Frames
+- name: Stiffness Matrix
+  summary: 降阶模型的刚度矩阵 []（默认）| *r*×*r* 矩阵
+  group: Reduced Order Matrices
+- name: Mass Matrix
+  summary: 降阶模型的质量矩阵 []（默认）| *r*×*r* 矩阵
+  group: Reduced Order Matrices
+- name: Type
+  summary: 阻尼方法类型 Proportional（默认）| Uniform Modal | Damping Matrix | None
+  group: Damping
+- name: Mass Coefficient
+  summary: 质量矩阵系数 0 1/s（默认）| 非负标量
+  group: Damping
+- name: Stiffness Coefficient
+  summary: 刚度矩阵系数 0.001 s（默认）| 非负标量
+  group: Damping
+- name: Damping Ratio
+  summary: 均匀模态阻尼方法的阻尼比 0.01（默认）| 无量纲非负标量
+  group: Damping
+- name: Damping Matrix
+  summary: 降阶阻尼矩阵 []（默认）| *r*×*r* 矩阵
+  group: Damping
+- name: Type
+  summary: 参考条件类型 Linearized Mean Axes（默认）| Body-Fixed
+  group: Reference Conditions
+- name: Frame
+  summary: 用于体固定参考条件的连接坐标系 坐标系名称
+  group: Reference Conditions
+- name: Show Port R
+  summary: 显示参考坐标系端口 off（默认）| on
+  group: Reference Conditions
+- name: Type
+  summary: 柔性体建模方法 None（默认）| Modally Reduced
+  group: Fidelity
+- name: Number of Retained Modes
+  summary: 保留的法向模态 1（默认）| 非负整数
+  group: Fidelity
+- name: Type
+  summary: 柔性体的可视化表示 None（默认）| Partitioned Geometry | Deformed Geometry
+  group: Graphic
+- name: File Name
+  summary: CAD 文件名或 CAD 文件的路径字符向量
+  group: Graphic
+- name: Unit Type
+  summary: 几何体长度单位的来源 From File (默认) | From Unit System
+  group: Graphic
+- name: Vertex Coordinates
+  summary: 三角剖分表示中顶点的坐标 [] (默认) | *nv*×*3* 矩阵
+  group: Graphic
+- name: Facet Vertex Indices
+  summary: 定义三角剖分表示中各面的顶点索引 [] (默认) | *nf*×*3* 矩阵
+  group: Graphic
+- name: Reconstruction Matrix
+  summary: 用于可视化变形体的恢复数据 [] (默认) | *3nv*×*r* 矩阵
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化设置 From File（默认）| Advanced | Simple
+  group: Graphic
+- name: Color
+  summary: 漫反射产生的光线颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: Graphic
+- name: Diffuse Color
+  summary: 漫反射产生的光线颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Specular Color
+  summary: 镜面反射产生的光线颜色 [0.5 0.5 0.5 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: Graphic
+- name: Shininess
+  summary: 所渲染实体的光泽度 75（默认）| 取值范围为 1 到 128 的标量
+  group: Graphic
+```
 
 ### Unit System
 
@@ -352,7 +462,6 @@ Reduced Order Flexible Solid 模块使用重构矩阵来计算三角剖分表示
    Geometry`。
 2. **Visual Properties** 为
    `Advanced`。
-
 ## 所属库
 
 Simscape / Multibody / Body Elements / Flexible Bodies

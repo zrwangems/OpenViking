@@ -15,19 +15,29 @@ chinese_source: worker-translation
 # Constant Volume Chamber (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 腔室入口等温液体
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **A** — 腔室入口等温液体
 
 与腔室入口关联的等温液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Chamber volume
+  summary: 腔室内流体体积 0.001 m^3（默认）| 正标量
+  group: ''
+```
 
 ### **Chamber volume** — 腔室内流体体积 `0.001 m^3`（默认）| 正标量
 
 腔室内的流体体积。该体积在仿真过程中保持恒定。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

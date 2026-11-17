@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # UDP Multicast Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 接收到的数据向量
+  direction: output
+  data_types: uint8
+- name: Length
+  summary: 接收到的字节数 double
+  direction: output
+```
 
 ### 输出
 
@@ -27,8 +37,34 @@ chinese_source: worker-translation
 ### **Length** — 接收到的字节数 double
 
 新接收到的数据包中的字节数，否则为 `0`。如果接收到的字节数超过通过接收端口输出的字节数（宽度由 **Receive width** 定义），则多余的字节将被丢弃。
-
 ## 参数
+```yaml
+parameters:
+- name: Bind address
+  summary: 用于接收多播数据的绑定 IP 地址 0.0.0.0（默认值）
+  group: 常规参数
+  block_parameter: bindAddress
+- name: Local port
+  summary: 用于接收数据的目标 UDP 端口 1–65535
+  group: 常规参数
+  block_parameter: localPort
+- name: Receive width
+  summary: Data 输出向量的宽度 16（默认值） | 1–65504
+  group: 常规参数
+  block_parameter: rcvWidth
+- name: Group address
+  summary: 要加入的多播组 {}（默认值） | {'x.x.x.x'} | 点分十进制字符向量
+  group: 常规参数
+  block_parameter: multicastAddress
+- name: Group interface
+  summary: 用于接收数据的本地 IP 接口 {}（默认值） | {'x.x.x.x'} | 点分十进制字符向量
+  group: 常规参数
+  block_parameter: multicastInterface
+- name: Sample time (-1 for inherited)
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: 常规参数
+  block_parameter: sampleTime
+```
 
 ### 常规参数
 
@@ -105,7 +141,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `sampleTime` |
-
 ## 所属库
 
 Simulink Real-Time / IP

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Piezo Stack
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 壳体机械
+  direction: conserving
+- name: R
+  summary: 转子机械
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,61 @@ chinese_source: worker-translation
 ### **R** — 转子机械
 
 与转子关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 静态力参数化 Specify from a datasheet（默认）| Specify material properties
+  group: 静态力
+- name: Stack area
+  summary: 堆叠横截面积 100 mm^2（默认）| 正标量
+  group: 静态力
+- name: Stack length
+  summary: 堆叠长度 36 mm（默认）| 正标量
+  group: 静态力
+- name: No-load displacement at V0 volts
+  summary: 空载无约束位移 0.038 mm（默认）| 正标量
+  group: 静态力
+- name: Blocking force at V0 volts
+  summary: 阻挡力 3800 N（默认）| 正标量
+  group: 静态力
+- name: Test voltage V0
+  summary: 测试电压 120 V（默认）| 正标量
+  group: 静态力
+- name: Capacitance
+  summary: 电容 13 uF（默认）| 正标量
+  group: 静态力
+- name: Piezo layer thickness
+  summary: 压电层厚度 0.3 mm（默认）| 正标量
+  group: 静态力
+- name: Number of layers
+  summary: 层数 50（默认）| 大于或等于 1 的标量
+  group: 静态力
+- name: Piezoelectric charge constant
+  summary: 压电电荷常数 500e-12 m/V（默认）| 正标量
+  group: 静态力
+- name: Dielectric constant
+  summary: 介电常数 2.1240e-08 F/m（默认）| 正标量
+  group: 静态力
+- name: Elastic compliance
+  summary: 弹性柔量 19e-12 m^2/N（默认）| 正标量
+  group: 静态力
+- name: Parameterization
+  summary: 动态力参数化 Specify from a datasheet（默认）| Specify material properties
+  group: 动态力
+- name: Resonant frequency at constant field
+  summary: 恒定电场下的谐振频率 inf kHz（默认）| 正标量
+  group: 动态力
+- name: Mechanical quality factor
+  summary: 机械品质因数 inf（默认）| 正标量
+  group: 动态力
+- name: Damping
+  summary: 平移阻尼 0 N/(m/s)（默认）| 非负标量
+  group: 动态力
+- name: Effective mass
+  summary: 有效质量 0 g（默认）| 非负标量
+  group: 动态力
+```
 
 ### 静态力
 
@@ -202,7 +270,6 @@ from a datasheet`。
 要启用此参数，请将
 **Parameterization** 设置为 `Specify
 from a datasheet`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

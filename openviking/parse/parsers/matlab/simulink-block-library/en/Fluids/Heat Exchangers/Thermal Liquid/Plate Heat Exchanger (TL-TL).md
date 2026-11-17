@@ -14,6 +14,21 @@ language: en
 # Plate Heat Exchanger (TL-TL)
 
 ## Ports
+```yaml
+ports:
+- name: A1
+  summary: Thermal liquid 1 inlet or outlet thermal liquid
+  direction: conserving
+- name: B1
+  summary: Thermal liquid 1 inlet or outlet thermal liquid
+  direction: conserving
+- name: A2
+  summary: Thermal liquid 2 inlet or outlet thermal liquid
+  direction: conserving
+- name: B2
+  summary: Thermal liquid 2 inlet or outlet thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -32,8 +47,125 @@ Inlet or outlet port associated with thermal liquid 2.
 ### **B2** — Thermal liquid 2 inlet or outlet thermal liquid
 
 Inlet or outlet port associated with thermal liquid 2.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: Flow path alignment Counter flow (default) | Parallel flow
+  group: Configuration
+- name: Number of plates
+  summary: Number of plates in heat exchanger 25 (default) | positive scalar
+  group: Configuration
+- name: Plate length
+  summary: Length of plates 1 m (default) | positive scalar
+  group: Configuration
+- name: Plate width
+  summary: Width of plates 0.5 m (default) | positive scalar
+  group: Configuration
+- name: Spacing between plates
+  summary: Space between plates 5e-3 m (default) | positive scalar
+  group: Configuration
+- name: Corrugation pattern specification
+  summary: Option for specifying corrugation pattern Surface area enlargement factor (default) | Chevron geometry
+  group: Configuration
+- name: Surface area enlargement factor
+  summary: Multiplier that accounts for increased plate area 1.17 (default) | positive scalar
+  group: Configuration
+- name: Corrugation chevron angle
+  summary: Angle of chevron on plate 60 deg (default) | positive scalar
+  group: Configuration
+- name: Corrugation depth to pitch ratio
+  summary: Ratio of chevron depth to pitch 0.28 (default) | positive scalar
+  group: Configuration
+- name: Enable plate thermal resistance
+  summary: Option to model plate thermal resistance off (default) | on
+  group: Configuration
+- name: Enable plate thermal mass
+  summary: Option to model plate thermal mass off (default) | on
+  group: Configuration
+- name: Plate thickness
+  summary: Thickness of plates 5e-4 m (default) | positive scalar
+  group: Configuration
+- name: Plate density
+  summary: Density of plate 7800 kg/m^3 (default) | positive scalar
+  group: Configuration
+- name: Plate specific heat
+  summary: Specific heat of plate 490 J/(K*kg) (default) | positive scalar
+  group: Configuration
+- name: Plate thermal conductivity
+  summary: Thermal conductivity through plate 15 W/(K*m) (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port A1
+  summary: Flow area at port A1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B1
+  summary: Flow area at port B1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port A2
+  summary: Flow area at port A2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B2
+  summary: Flow area at port B2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Pressure loss model
+  summary: Method of pressure loss calculation from viscous friction Correlation for flow between corrugated plates (default)
+    | Friction factor
+  group: Thermal Liquid 1
+- name: Darcy friction factor for flow between corrugated plates
+  summary: Constant Darcy friction factor 1.7 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Loss coefficient for inlet and outlet manifolds and ports
+  summary: Pressure loss coefficient for inlet and outlet manifolds and ports 1.5 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Heat transfer coefficient model
+  summary: Method of calculating heat transfer coefficient Correlation for flow between corrugated plates (default) | Colburn
+    equation
+  group: Thermal Liquid 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c
+  summary: Colburn equation coefficients [.141, .748, .333] (default) | three-element vector
+  group: Thermal Liquid 1
+- name: Coefficients for Martin correlation
+  summary: Martin correlation coefficients [.122, .374, .333] (default) | three-element vector
+  group: Thermal Liquid 1
+- name: Fouling factor
+  summary: Thermal resistance from fouling deposits 0.1 K*m^2/kW (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initial thermal liquid 1 pressure
+  summary: Thermal liquid pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initial thermal liquid 1 temperature
+  summary: Thermal liquid temperature at start of simulation 293.15 K (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Pressure loss model
+  summary: Method of pressure loss calculation from viscous friction Correlation for flow between corrugated plates (default)
+    | Friction factor
+  group: Thermal Liquid 2
+- name: Darcy friction factor for flow between corrugated plates
+  summary: Constant Darcy friction factor 1.7 (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Loss coefficient for inlet and outlet manifolds and ports
+  summary: Pressure loss coefficient for inlet and outlet manifolds and ports 1.5 (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Heat transfer coefficient model
+  summary: Method of calculating heat transfer coefficient Correlation for flow between corrugated plates (default) | Colburn
+    equation
+  group: Thermal Liquid 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c
+  summary: Colburn equation coefficients [.141, .748, .333] (default) | three-element vector
+  group: Thermal Liquid 2
+- name: Coefficients for Martin correlation
+  summary: Martin correlation coefficients [.122, .374, .333] (default) | three-element vector
+  group: Thermal Liquid 2
+- name: Fouling factor
+  summary: Thermal resistance from fouling deposits 0.1 K*m^2/kW (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Initial thermal liquid 2 pressure
+  summary: Thermal liquid pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Initial thermal liquid 2 temperature
+  summary: Thermal liquid temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Thermal Liquid 2
+```
 
 ### Configuration
 
@@ -432,7 +564,6 @@ initial temperature at the inlet and outlet in the form
 [`inlet`, `outlet`]. The block
 calculates a linear gradient between the two ports. The initial flow
 direction determines the inlet and outlet ports.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid

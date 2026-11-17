@@ -14,6 +14,19 @@ language: en
 # Byte Reversal
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data to convert scalar, vector, matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: Converted data scalar, vector, matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -34,8 +47,13 @@ parameter. Each input port maps to the matching output port. Data received on in
 port 1 is sent through output port 1, and so on.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Number of block inputs 1 (default) | integer
+  group: ''
+```
 
 ### **Number of inputs** — Number of block inputs 1 (default) | integer
 
@@ -46,7 +64,6 @@ on.
 
 Reversing the byte ordering does not change the data type. Input and output retain
 matching data types.
-
 ## Libraries
 
 Embedded Coder / Embedded Targets / Host Communication

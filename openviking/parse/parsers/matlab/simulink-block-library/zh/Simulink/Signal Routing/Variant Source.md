@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Variant Source
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 与第一个 variant control 关联的输入端口 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_N
+  summary: 与第 *N* 个 variant control 关联的输入端口 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: 活动 variant 的输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -40,8 +58,77 @@ chinese_source: worker-translation
 您可以通过将鼠标悬停在模块侧边或将信号拖到模块边界附近，在 Variant Source 模块上自动插入 outport。您可以通过按键盘上的 delete 键或鼠标单击来删除端口。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Variant control mode
+  summary: Variant control 模式 expression（默认）| label | sim codegen switching
+  group: ''
+  block_parameter: VariantControlMode
+  type: character vector
+  values: '''expression'' | ''label'' | ''sim codegen switching'''
+  default: '''expression'''
+- name: Variant activation time
+  summary: 软件选择活动 variant 选择的时间 update diagram（默认）| update diagram analyze all choices | code compile | startup | inherit
+    from Simulink.VariantControl
+  group: ''
+  block_parameter: VariantActivationTime
+  type: character vector
+  values: '''update diagram'' | ''update diagram analyze all choices'' | ''code compile'' | ''startup'''
+  default: '''update diagram'''
+- name: Port and associated conditions
+  summary: variant 选择、variant control 和条件的表 空表（默认）
+  group: ''
+- name: Port
+  summary: 已连接输入端口的编号 无默认值
+  group: ''
+- name: Variant control label
+  summary: label 模式下选择的名称 true 或 false（默认）| 字符串
+  group: ''
+  block_parameter: VariantControls
+  values: 与 variant 选择关联的 variant control
+- name: Variant control switch
+  summary: 用于仿真和代码生成工作流的 variant 选择 (sim) | (codegen)
+  group: ''
+  block_parameter: VariantControls
+  values: 与 variant 选择关联的 variant control
+- name: Variant control expression
+  summary: 决定活动选择的条件表达式 true 或 false（默认）| 布尔条件表达式 | 表示布尔条件表达式的 Simulink.VariantExpression 对象 | (default)
+  group: ''
+  block_parameter: VariantControls
+  values: 与 variant 选择关联的 variant control
+- name: Condition (read-only)
+  summary: Simulink.VariantExpression 对象中的条件表达式 只读：N/A（默认）
+  group: ''
+- name: Label mode active choice
+  summary: label 模式下活动选择的名称 true (Subsystem)（默认）| false (Subsystem1)
+  group: ''
+  block_parameter: LabelModeActiveChoice
+  type: character vector
+  values: 如果未指定 label 模式活动选择，则该值为空。如果指定了 label 模式活动选择，则该值为活动选择的 variant control 标签。
+  default: ''''''
+- name: Allow zero active variant controls
+  summary: 在没有活动变体选择的情况下仿真模型 off（默认）| on
+  group: ''
+  block_parameter: AllowZeroVariantControls
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output function call
+  summary: 接收并输出函数调用信号 off（默认）| on
+  group: ''
+  block_parameter: OutputFunctionCall
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show variant condition on block
+  summary: 标注模块端口 off（默认）| on
+  group: ''
+  block_parameter: ShowConditionOnBlock
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Variant control mode** — Variant control 模式 `expression`（默认）| `label` | `sim codegen switching`
 
@@ -295,7 +382,6 @@ Variant Source 和 Variant Sink 模块：
 | **类型：** 字符向量 |
 | **值：** `'off'` | `'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Signal Routing

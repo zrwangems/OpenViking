@@ -14,6 +14,18 @@ language: en
 # Compare To Constant
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: Output signal 0 | 1 | vector | matrix
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### Input
 
@@ -33,8 +45,38 @@ The output is `0` if the comparison is false, and
 `1` if it is true.
 
 **Data Types:** `uint8` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operator
+  summary: Logical operator <= (default) | == | ~= | < | >= | >
+  group: ''
+  block_parameter: relop
+  type: character vector
+  values: '''=='' | ''~=''| ''<'' |''<=''| ''>=''| ''>'''
+  default: '''<='''
+- name: Constant value
+  summary: Constant to compare with constant
+  group: ''
+  block_parameter: const
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''3.0'''
+- name: Output data type
+  summary: Data type of the output boolean (default) | uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+- name: Enable zero-crossing detection
+  summary: Select to enable zero-crossing detection 'on' (default) | 'off'
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Operator** — Logical operator <= (default) | == | ~= | < | >= | >
 
@@ -101,7 +143,6 @@ Select to enable zero-crossing detection. For more information, see Zero-Crossin
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Trace Boundary
 
 ## 端口
+```yaml
+ports:
+- name: BW
+  summary: 输入二值图像矩阵
+  direction: input
+  data_types: Boolean
+- name: Start Pt
+  summary: 边界起始点坐标 二元素向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Pts
+  summary: 边界点坐标 *M*×2 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -40,8 +55,22 @@ chinese_source: worker-translation
 **Maximum number of boundary pixels** 参数指定的值。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Connectivity
+  summary: 像素连通类型 8（默认）| 4
+  group: ''
+- name: Initial search direction
+  summary: 初始搜索方向类型 North（默认）| East | South | West | Northeast | ...
+  group: ''
+- name: Trace direction
+  summary: 边界追踪方向 Clockwise（默认）| Counterclockwise
+  group: ''
+- name: Maximum number of boundary pixels
+  summary: 最大边界像素数 500（默认）| 标量
+  group: ''
+```
 
 ### **Connectivity** — 像素连通类型 `8`（默认）| `4`
 
@@ -73,7 +102,6 @@ Connectivity 设置为 8 时的搜索方向
 ### **Maximum number of boundary pixels** — 最大边界像素数 500（默认）| 标量
 
 将起始点的最大边界像素数指定为标量。**Pts** 输出端口的行数必须小于或等于此值。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

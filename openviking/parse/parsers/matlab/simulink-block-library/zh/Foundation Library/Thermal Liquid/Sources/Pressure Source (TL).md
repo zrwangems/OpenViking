@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pressure Source (TL)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 压差控制信号，Pa 物理信号
+  direction: input
+- name: A
+  summary: 源入口热液体
+  direction: input
+- name: B
+  summary: 源出口热液体
+  direction: input
+```
 
 ### 输入
 
@@ -37,8 +49,22 @@ chinese_source: worker-translation
 
 热液体守恒端口。正压差使端口 **B** 处的压力大于端口
 **A** 处的压力。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 选择压差是否可以在仿真期间变化 Controlled（默认）| Constant
+  group: ''
+- name: Pressure differential
+  summary: 源两端的恒定压差 0 Pa（默认）| 标量
+  group: ''
+- name: Power added
+  summary: 选择源是否做功 Isentropic（默认）| None
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 入口和出口处垂直于流动路径的面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Source type** — 选择压差是否可以在仿真期间变化 `Controlled`（默认）| `Constant`
 
@@ -77,7 +103,6 @@ chinese_source: worker-translation
 
 源入口和出口处垂直于流动方向的
 面积。假设两个横截面积相同。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Sources

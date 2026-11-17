@@ -14,6 +14,18 @@ language: en
 # Double-Shoe Brake
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: Actuating force physical signal
+  direction: input
+- name: S
+  summary: Drum shaft rotation rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -40,8 +52,52 @@ Port** parameter is set to
 `Model`.
 
 Exposing this port makes related settings visible.
-
 ## Parameters
+```yaml
+parameters:
+- name: Drum radius
+  summary: Contact surface radius 150 mm (default) | positive scalar
+  group: Geometry
+- name: Actuator location radius
+  summary: Center-to-center distance between drum and force line of action 100mm (default) | positive scalar
+  group: Geometry
+- name: Pin location radius
+  summary: Center-to-center distance between hinge pin and drum 125mm (default) | positive scalar
+  group: Geometry
+- name: Pin location angle
+  summary: Angular distance from hinge pin to brake symmetry axis 15deg (default) | nonnegative scalar
+  group: Geometry
+- name: Shoe beginning angle
+  summary: Angle between hings pin and friction material 5deg (default) | positive scalar
+  group: Geometry
+- name: Shoe span angle
+  summary: Friction material angle 120deg (default) | positive scalar
+  group: Geometry
+- name: Viscous friction coefficient
+  summary: Viscous friction .01 n*m/(rad/s) (default) | nonnegatvie scalar
+  group: Friction
+- name: Thermal port
+  summary: Thermal model Omit (default) | Model
+  group: Friction
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | increasing vector
+  group: Friction
+- name: Contact friction coefficient
+  summary: Coulomb friction 0.3 (default) | [0.1, 0.05, 0.03] (thermal model default) | positive scalar or vector
+  group: Friction
+- name: Angular velocity threshold
+  summary: Rotational velocity required for near steady-state contact friction 0.01 rad/s (default) | positive scalar
+  group: Friction
+- name: Belt tension fault
+  summary: Option to model belt tension fault Add fault
+  group: Faults
+- name: Belt force when faulted
+  summary: Faulted belt force 0 N (default) | nonnegative scalar
+  group: Faults
+- name: Thermal mass
+  summary: Resistance to temperature change 50 kJ/K (default) | scalar
+  group: Thermal Port
+```
 
 ### Geometry
 
@@ -174,7 +230,6 @@ component is to temperature change.
 
 To enable this parameter, set **Thermal Port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Driveline / Brakes & Detents / Rotational

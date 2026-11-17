@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Register Channel
 
 ## 端口
+```yaml
+ports:
+- name: '*regN*'
+  summary: 寄存器输入标量
+  direction: input
+- name: '*regN*'
+  summary: 寄存器输出标量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +43,16 @@ chinese_source: worker-translation
 #### 依赖关系
 
 输出端口数量取决于寄存器表中的寄存器数量。
-
 ## 参数
+```yaml
+parameters:
+- name: Registers
+  summary: 编辑寄存器名称、方向、数据类型、维度和初始值表
+  group: ''
+- name: Register write sample time
+  summary: 寄存器访问的采样时间 -1（默认）| 二元向量
+  group: ''
+```
 
 ### **Registers** — 编辑寄存器名称、方向、数据类型、维度和初始值表
 
@@ -72,7 +89,6 @@ chinese_source: worker-translation
 **注意**
 
 当寄存器的 **Direction** 设置为 `Write` 时，意味着软件是写入方，硬件是读取方，但 **Register write sample time** 决定硬件侧信号的采样时间。
-
 ## 所属库
 
 SoC Blockset / Memory

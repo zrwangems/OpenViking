@@ -14,6 +14,17 @@ language: en
 # Ethernet Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Ethernet packet Simulink message
+  direction: output
+  data_types: uint8 | Ethernet_Packet
+- name: Length
+  summary: Number of bytes received double
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -37,8 +48,34 @@ messages** parameter. The Length is the number of bytes in the new packet
 received, otherwise it is `0`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Interface Name
+  summary: Target computer Ethernet interface name wm0 | wm1 | character vector
+  group: ''
+  block_parameter: InterfaceName
+- name: Data Width
+  summary: Data port width in bytes 64 (default) | integer
+  group: ''
+  block_parameter: DataWidth
+- name: Enable Simulink messages
+  summary: Data as messages off (default) | on
+  group: ''
+  block_parameter: MessageOut
+- name: Maximum messages in a time step
+  summary: Limit packets per time step 1 (default) | integer
+  group: ''
+  block_parameter: MaxMessagesPerStep
+- name: Capture filter
+  summary: Filter on received packets character vector
+  group: ''
+  block_parameter: FilterString
+- name: Sample Time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: SampleTime
+```
 
 ### **Interface Name** — Target computer Ethernet interface name `wm0` | `wm1` | character vector
 
@@ -112,7 +149,6 @@ Enter the base sample time or a multiple of the base sample time.
 |  |
 | --- |
 | **Block Parameter:** `SampleTime` |
-
 ## Libraries
 
 Simulink Real-Time / IP / Ethernet

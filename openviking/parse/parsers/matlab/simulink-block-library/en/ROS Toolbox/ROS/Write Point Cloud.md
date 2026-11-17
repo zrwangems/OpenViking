@@ -14,6 +14,29 @@ language: en
 # ROS Write Point Cloud, ROS 2 Write Point Cloud
 
 ## Ports
+```yaml
+ports:
+- name: XYZ
+  summary: XYZ coordinates matrix | array
+  direction: input
+  data_types: single
+- name: RGB
+  summary: RGB values for each point matrix | array
+  direction: input
+  data_types: double
+- name: Alpha
+  summary: Alpha channel for input image *N*-by-1 vector | *h*-by-*w* matrix
+  direction: input
+  data_types: double
+- name: Intensity
+  summary: Intensity values for each point matrix | array
+  direction: input
+  data_types: single | double
+- name: Msg
+  summary: ROS or ROS 2 point cloud message nonvirtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -79,8 +102,16 @@ ROS Publish or ROS 2 Publish block
 to publish the message to an active ROS or ROS 2 network respectively.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select color field
+  summary: Color field for the point cloud image none (default) | rgb | rgba
+  group: ''
+- name: Write to Intensity field
+  summary: Write intensity values off (default) | on
+  group: ''
+```
 
 ### **Select color field** — Color field for the point cloud image `none` (default) | `rgb` | `rgba`
 
@@ -91,7 +122,6 @@ point cloud image.
 ### **Write to Intensity field** — Write intensity values off (default) | on
 
 Select whether to write intensity values to the output message.
-
 ## Libraries
 
 ROS Toolbox / ROS ROS Toolbox / ROS 2

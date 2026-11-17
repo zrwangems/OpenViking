@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Interlacer
 
 ## 端口
+```yaml
+ports:
+- name: O
+  summary: 奇数编号元素向量
+  direction: input
+  data_types: double | single
+- name: E
+  summary: 偶数编号元素向量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出信号列向量
+  direction: output
+```
 
 ### 输入
 
@@ -36,11 +50,12 @@ chinese_source: worker-translation
 ### **Out** — 输出信号列向量
 
 输出信号，以偶数长度列向量形式返回。输出向量中的奇数编号元素包含来自输入 `O` 的元素，输出向量中的偶数编号元素包含来自输入 `E` 的元素。输出向量具有与输入相同的数据类型和采样时间。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Communications Toolbox / Sequence Operations

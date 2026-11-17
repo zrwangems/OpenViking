@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # ROS Write Point Cloud, ROS 2 Write Point Cloud
 
 ## 端口
+```yaml
+ports:
+- name: XYZ
+  summary: XYZ 坐标矩阵 | 数组
+  direction: input
+  data_types: single
+- name: RGB
+  summary: 每个点的 RGB 值 矩阵 | 数组
+  direction: input
+  data_types: double
+- name: Alpha
+  summary: 输入图像的 Alpha 通道 *N*×1 向量 | *h*×*w* 矩阵
+  direction: input
+  data_types: double
+- name: Intensity
+  summary: 每个点的强度值 矩阵 | 数组
+  direction: input
+  data_types: single | double
+- name: Msg
+  summary: ROS 或 ROS 2 点云消息 非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -60,8 +83,16 @@ chinese_source: worker-translation
 ROS 或 ROS 2 点云消息，以非虚拟总线形式返回。您可以使用 ROS Publish 或 ROS 2 Publish 模块将消息分别发布到活动的 ROS 或 ROS 2 网络。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Select color field
+  summary: 点云图像的颜色字段 none（默认）| rgb | rgba
+  group: ''
+- name: Write to Intensity field
+  summary: 写入强度值 off（默认）| on
+  group: ''
+```
 
 ### **Select color field** — 点云图像的颜色字段 `none`（默认）| `rgb` | `rgba`
 
@@ -70,7 +101,6 @@ ROS 或 ROS 2 点云消息，以非虚拟总线形式返回。您可以使用 RO
 ### **Write to Intensity field** — 写入强度值 off（默认）| on
 
 选择是否将强度值写入输出消息。
-
 ## 所属库
 
 ROS Toolbox / ROS ROS Toolbox / ROS 2

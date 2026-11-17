@@ -15,10 +15,111 @@ chinese_source: worker-translation
 # Z-Parameters Mixer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Z-Parameters
+  summary: 非线性混频器的 Z 参数 [0.0200,0;-0.0400, 0.0200]（默认）| 2×2×*M* 数组
+  group: 主
+- name: Frequency (Hz)
+  summary: Z 参数的频率 2.0e9（默认）| *M* 元素向量
+  group: 主
+- name: Interpolation method
+  summary: 插值网络参数的方法 Linear（默认）| Spline | Cubic
+  group: 主
+- name: Mixer Type
+  summary: 混频器类型 Downconverter（默认）| Upconverter
+  group: 主
+- name: LO frequency (Hz)
+  summary: 本振频率 0.9e9（默认）| *M* 元素向量
+  group: 主
+- name: Phase noise frequency offset (Hz)
+  summary: 相位噪声频率偏移 [0.1 1 10 100]*1e3（默认）| 数值向量
+  group: 噪声数据
+- name: Phase noise level (dBc/Hz)
+  summary: 相位噪声电平 [-70 -120 -140 -150]（默认）| 数值向量
+  group: 噪声数据
+- name: Noise type
+  summary: 噪声数据类型 Noise figure（默认）| Spot noise data | Noise factor | Noise temperature
+  group: 噪声数据
+- name: Noise figure (dB)
+  summary: 输入端的可用信噪比与输出端的可用信噪比之比 0（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Minimum noise figure
+  summary: 输入端的可用信噪比与输出端的可用信噪比之比的最小值 0（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Optimal reflection coefficient
+  summary: 最佳源阻抗 1+0i（默认）| 复标量 | 复向量
+  group: 噪声数据
+- name: Equivalent normalized noise resistance
+  summary: 用于进行噪声测量的归一化电阻值 1（默认）| 正标量 | 正向量
+  group: 噪声数据
+- name: 噪声因子
+  summary: 输入端的可用信噪功率与输出端的可用信噪功率之比 1（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: 噪声温度 (K)
+  summary: 产生与混频器相同噪声量的等效温度 0（默认）| 非负标量 | 非负向量
+  group: 噪声数据
+- name: IP3 类型
+  summary: 三阶截点的类型 OIP3（默认）| IIP3
+  group: 非线性数据
+- name: IP3 (dBm)
+  summary: IP3 值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: 1dB 增益压缩功率 (dBm)
+  summary: 增益下降 1 dB 时的输出功率值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: 输出饱和功率 (dBm)
+  summary: 混频器完全饱和时产生的输出功率值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: 饱和时的增益压缩 (dB)
+  summary: 增益值的下降量 3（默认）| 标量 | 向量
+  group: 非线性数据
+- name: 频率数据源
+  summary: 频率数据来源 Same as the Z-Parameters（默认）| User-specified
+  group: 可视化
+- name: 频率数据 (Hz)
+  summary: 频率数据范围 [1e9:1e8:2.9e9]（默认）| 向量
+  group: 可视化
+- name: 参考阻抗 (ohms)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | NF | NFactor | NTemp | PhaseNoise | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11 | S12 | S21 | S22 | GroupDelay | OIP3 | NF | NFactor | NTemp | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Magnitude (linear) | Angle(degrees) | Angle(radians) | Real | Imaginary
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Magnitude (linear) | Angle(degrees) | Angle(radians) | Real | Imaginary
+  group: 可视化
+- name: X parameter
+  summary: 频率图 Freq（默认）
+  group: 可视化
+- name: X format
+  summary: 频率图格式 Hz（默认）| Auto | kHz | MHz | GHz | THz
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主
 
@@ -271,7 +372,6 @@ X 轴刻度，指定为 `Linear` 或 `Log`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘图按钮绘制指定数据。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Mixers

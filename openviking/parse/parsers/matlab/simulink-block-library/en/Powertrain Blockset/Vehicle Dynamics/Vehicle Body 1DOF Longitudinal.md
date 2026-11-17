@@ -14,6 +14,45 @@ language: en
 # Vehicle Body 1DOF Longitudinal
 
 ## Ports
+```yaml
+ports:
+- name: FExt
+  summary: External force on vehicle CG array
+  direction: input
+- name: MExt
+  summary: External moment about vehicle CG array
+  direction: input
+- name: FwF
+  summary: Total longitudinal force on front axle scalar
+  direction: input
+- name: FwR
+  summary: Total longitudinal force on rear axle scalar
+  direction: input
+- name: Grade
+  summary: Road grade angle scalar
+  direction: input
+- name: WindX
+  summary: Longitudinal wind speed scalar
+  direction: input
+- name: WindXYZ
+  summary: Wind speed array
+  direction: input
+- name: AirTemp
+  summary: Ambient air temperature scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: xdot
+  summary: Vehicle body longitudinal velocity scalar
+  direction: output
+- name: FzF
+  summary: Normal force on front wheels scalar
+  direction: output
+- name: FzR
+  summary: Normal force on rear wheels scalar
+  direction: output
+```
 
 ### Input
 
@@ -213,8 +252,67 @@ vehicle-fixed `z`-axis, in N.
 Normal force on single wheel of rear wheels,
 *Fzr*, along the
 vehicle-fixed `z`-axis, in N.
-
 ## Parameters
+```yaml
+parameters:
+- name: External forces
+  summary: FExt input port off (default) | on
+  group: ''
+- name: External moments
+  summary: MExt input port off (default) | on
+  group: ''
+- name: Air temperature
+  summary: AirTemp input port off (default) | on
+  group: ''
+- name: Wind X,Y,Z components
+  summary: WindXYZ input port off (default) | on
+  group: ''
+- name: Number of wheels on front axle, NF
+  summary: Front wheel count 2 (default) | scalar
+  group: ''
+- name: Number of wheels on rear axle, NR
+  summary: Rear wheel count 2 (default) | scalar
+  group: ''
+- name: Mass, m
+  summary: Vehicle mass 1500 (default) | scalar
+  group: ''
+- name: Horizontal distance from CG to front axle, a
+  summary: Front axle distance 1.4 (default) | scalar
+  group: ''
+- name: Horizontal distance from CG to rear axle, b
+  summary: Rear axle distance 1.8 (default) | scalar
+  group: ''
+- name: CG height above axles, h
+  summary: Height .35 (default) | scalar
+  group: ''
+- name: Longitudinal drag coefficient, Cd
+  summary: Drag .3 (default) | scalar
+  group: ''
+- name: Longitudinal lift coefficient, Cl
+  summary: Lift 0 (default) | scalar
+  group: ''
+- name: Longitudinal drag pitch moment, Cpm
+  summary: Pitch drag 0 (default) | scalar
+  group: ''
+- name: Frontal area, Af
+  summary: Area 4 (default) | scalar
+  group: ''
+- name: Initial position, x_o
+  summary: Position 0 (default) | scalar
+  group: ''
+- name: Initial velocity, xdot_o
+  summary: Velocity 0 (default) | scalar
+  group: ''
+- name: Absolute air pressure, Pabs
+  summary: Pressure 101325 (default) | scalar
+  group: ''
+- name: Air temperature, T
+  summary: Ambient air temperature 273 (default) | scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: Gravity 9.81 (default) | scalar
+  group: ''
+```
 
 #### Options
 
@@ -320,7 +418,6 @@ temperature**.
 
 Gravitational acceleration, *g*, in
 m/s2.
-
 ## Libraries
 
 Powertrain Blockset / Vehicle Dynamics Vehicle Dynamics Blockset / Vehicle Body

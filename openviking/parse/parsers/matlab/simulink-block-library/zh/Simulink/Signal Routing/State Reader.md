@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # State Reader
 
 ## 端口
+```yaml
+ports:
+- name: Out
+  summary: 状态值 标量 | 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输出
 
@@ -26,8 +33,17 @@ chinese_source: worker-translation
 有关具体模块，请参阅 **Initial conditions** 参数。例如，对于 **Delay length** 为 `N` 的 Delay 模块，State Reader 模块返回长度为 `[1xN]` 的状态向量。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: State owner block
+  summary: 状态所有者模块的名称 none（默认）
+  group: ''
+  block_parameter: StateOwnerBlock
+  type: character vector
+  values: ''''' | ''<model path/block name>'''
+  default: ''''''
+```
 
 ### **State owner block** — 状态所有者模块的名称 none（默认）
 
@@ -45,7 +61,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **Value:** `''` | `'<model path/block name>'` |
 | **默认值**：`''` |
-
 ## 所属库
 
 Simulink / Signal Routing

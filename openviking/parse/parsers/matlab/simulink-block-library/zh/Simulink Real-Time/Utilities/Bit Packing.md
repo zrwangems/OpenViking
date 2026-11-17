@@ -15,10 +15,27 @@ chinese_source: worker-translation
 # Bit Packing
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Bit Patterns
+  summary: 打包数据位模式 {[0:31]}（默认）
+  group: ''
+  block_parameter: BitPatterns
+- name: Output port (packed) data type
+  summary: 打包数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: ''
+  block_parameter: PackDataType
+- name: Output port (packed) dimensions
+  summary: 打包数据维度 [1]（默认）
+  group: ''
+  block_parameter: PackDataSize
+```
 
 ### **Bit Patterns** — 打包数据位模式 {[0:31]}（默认）
 
@@ -49,7 +66,6 @@ R2025b 中未记录。
 |  |
 | --- |
 | **模块参数：** `PackDataSize` |
-
 ## 所属库
 
 Simulink Real-Time / Utilities

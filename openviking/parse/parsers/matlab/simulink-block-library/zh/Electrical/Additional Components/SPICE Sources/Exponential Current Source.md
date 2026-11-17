@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Exponential Current Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电气端口
+  direction: conserving
+- name: '-'
+  summary: 负电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,31 @@ chinese_source: worker-translation
 ### **-** — 负电压电气端口
 
 与直流电流源负电压相关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Initial value, I1
+  summary: 输出电流初始值 0 A（默认值）
+  group: ''
+- name: Pulse value, I2
+  summary: 输出电流渐近值 0 A（默认值）
+  group: ''
+- name: Rise delay time, TDR
+  summary: 上升延迟时间 0 s（默认值）
+  group: ''
+- name: Rise time, TR
+  summary: 上升时间 1e-9 s（默认值）| 正标量
+  group: ''
+- name: Fall delay time, TDF
+  summary: 下降延迟时间 0 s（默认值）
+  group: ''
+- name: Fall time, TF
+  summary: 下降时间 1e-9 s（默认值）| 正标量
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: 是否包含并联电导 Yes（默认值）| No
+  group: ''
+```
 
 ### **Initial value, I1** — 输出电流初始值 `0` `A`（默认值）
 
@@ -65,7 +97,6 @@ chinese_source: worker-translation
 | *`Yes`* | | *`No`* | | |
 | **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且其不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

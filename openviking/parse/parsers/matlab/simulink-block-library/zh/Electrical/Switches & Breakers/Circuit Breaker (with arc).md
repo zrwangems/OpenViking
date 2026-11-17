@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Circuit Breaker (with arc)
 
 ## 端口
+```yaml
+ports:
+- name: vT
+  summary: 标量控制端口物理信号
+  direction: input
+- name: '1'
+  summary: 端口 1 电气
+  direction: input
+- name: '2'
+  summary: 端口 2 电气
+  direction: input
+- name: +
+  summary: 正端口电气
+  direction: input
+- name: '-'
+  summary: 负端口电气
+  direction: input
+```
 
 ### 输入
 
@@ -53,8 +71,25 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Electrical control port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 指定物理控制端口还是电气控制端口 PS control port（默认）| Electrical control port
+  group: ''
+- name: Arc time constant, tau
+  summary: 电弧时间常数 0.3e-6 s（默认）
+  group: ''
+- name: Cooling power, P
+  summary: 冷却功率 30900 W（默认）
+  group: ''
+- name: Initial arc conductance, g0
+  summary: 初始电弧电导 1e4 s（默认）
+  group: ''
+- name: Threshold
+  summary: 阈值电压 0.5 V（默认）
+  group: ''
+```
 
 ### **Modeling option** — 指定物理控制端口还是电气控制端口 `PS control port`（默认）| `Electrical control port`
 
@@ -77,7 +112,6 @@ Mayr 电弧的时间常数。
 
 控制端口 *vT* 的阈值电压。该模块使用阈值电压和仿真开始时 *vT* 的值来确定断路器初始是断开还是闭合。当电压升至阈值以上时，断路器断开。
 当控制端口电压降至阈值以下时，断路器闭合。
-
 ## 所属库
 
 Simscape / Electrical / Switches & Breakers

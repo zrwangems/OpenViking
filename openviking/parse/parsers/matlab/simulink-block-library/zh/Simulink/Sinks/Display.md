@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Display
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated
+```
 
 ### 输入
 
@@ -23,8 +31,33 @@ chinese_source: worker-translation
 要显示的输入数据。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Numeric display format
+  summary: 用于显示数值输入数据的格式 short（默认） | long | short_e | long_e | bank | hex (Stored Integer) | binary (Stored Integer) | decimal
+    (Stored Integer) | octal (Stored Integer)
+  group: ''
+  block_parameter: Format
+  type: character vector
+  values: '''short'' | ''long'' | ''short_e'' | ''long_e'' | ''bank'' | ''hex (Stored Integer)'' | ''binary (Stored Integer)''
+    | ''decimal (Stored Integer)'' | ''octal (Stored Integer)'''
+  default: '''short'''
+- name: Decimation
+  summary: 显示速率 1（默认） | integer
+  group: ''
+  block_parameter: Decimation
+  type: character vector
+  values: '''1'' | integer'
+  default: '''1'''
+- name: Floating display
+  summary: 浮动显示 off（默认） | on
+  group: ''
+  block_parameter: Floating
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Numeric display format** — 用于显示数值输入数据的格式 `short`（默认） | `long` | `short_e` | `long_e` | `bank` | `hex (Stored Integer)` | `binary (Stored Integer)` | `decimal (Stored Integer)` | `octal (Stored Integer)`
 
@@ -103,7 +136,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Sinks HDL Coder / Sinks

@@ -14,6 +14,14 @@ language: en
 # Goto
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -23,8 +31,37 @@ Input signal to be passed to the corresponding From
 block, specified as a scalar, vector, matrix, or N-D array.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Goto tag
+  summary: Block identifier A (default) | ...
+  group: ''
+  block_parameter: GotoTag
+  type: character vector
+  values: '''A'' | ...'
+  default: '''A'''
+- name: Tag visibility
+  summary: Scope of the Goto block tag local (default) | scoped | global
+  group: ''
+  block_parameter: TagVisibility
+  type: character vector
+  values: '''local'' | ''scoped'' | ''global'''
+  default: '''local'''
+- name: Icon display
+  summary: Text to display on block icon Tag (default) | Signal name | Tag and signal name
+  group: ''
+  block_parameter: IconDisplay
+  type: character vector
+  values: '''Signal name'' | ''Tag'' | ''Tag and signal name'''
+  default: '''Tag'''
+- name: Rename All
+  summary: Propagate name throughout model button
+  group: ''
+- name: Corresponding blocks
+  summary: Blocks connected to this Goto block block path | ...
+  group: ''
+```
 
 ### **Goto tag** — Block identifier `A` (default) | ...
 
@@ -153,7 +190,6 @@ correspond to the selected block, a list of related blocks opens. You can
 filter the list of related blocks by entering a search term in the text box.
 After you select a related block from the list, window focus goes to the
 open diagram or new tab that shows the related block.
-
 ## Libraries
 
 Simulink / Signal Routing HDL Coder / Signal Routing

@@ -15,6 +15,40 @@ chinese_source: worker-translation
 # 2-D Minimum
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数组 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rst
+  summary: 重置运行最小值 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: ROI
+  summary: 感兴趣区域 四元素向量 | *m*×4 矩阵 | *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Label
+  summary: 标签矩阵 非负整数矩阵
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Label Numbers
+  summary: ROI 的标签值 *M* 元素向量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Val
+  summary: 输入的最小值 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Idx
+  summary: 输入中最小值的索引 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Flag
+  summary: ROI 验证 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -153,8 +187,43 @@ ROI 验证，以逻辑 `1` (`true`) 或 `0` (`false`) 的标量或向量形式�
 #### 依赖
 
 要启用此端口，请选择 **Output flag indicating if ROI is within image bounds** 参数，并将 **ROI type** 参数的值设置为 `Rectangle` 或 `Lines`，或者选择 **Output flag indicating if input label numbers are valid** 参数，并将 **ROI type** 参数的值设置为 `Label matrix`。
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 输出模式 Value and Index（默认）| Value | Index | Running
+  group: ''
+- name: Index Base
+  summary: 第一个元素的索引 One（默认）| Zero
+  group: ''
+- name: Find the minimum value over
+  summary: 计算最小值的维度 Entire input（默认）| Each row | Each column | Specified dimension
+  group: ''
+- name: Dimension
+  summary: 自定义维度 1（默认）| 正标量
+  group: ''
+- name: Reset port
+  summary: 重置事件 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Enable ROI processing
+  summary: 计算 ROI 内的最小值 off（默认）| on
+  group: ''
+- name: ROI type
+  summary: ROI 的格式 Rectangles（默认）| Lines | Label matrix | Binary mask
+  group: ''
+- name: ROI portion to process
+  summary: 计算最小值的 ROI 部分 Entire ROI（默认）| ROI perimeter
+  group: ''
+- name: Output
+  summary: 为 ROI 计算单个或统一的最小值 Individual statistics for each ROI（默认）| Single statistic for all ROIs
+  group: ''
+- name: Output flag indicating if ROI is within image bounds
+  summary: 启用 Flag 端口 off（默认）| on
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: ''
+```
 
 **主**
 
@@ -294,7 +363,6 @@ ROI 验证，以逻辑 `1` (`true`) 或 `0` (`false`) 的标量或向量形式�
 ### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

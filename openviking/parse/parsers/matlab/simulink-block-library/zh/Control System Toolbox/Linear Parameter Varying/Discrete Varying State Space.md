@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Discrete Varying State Space
 
 ## 端口
+```yaml
+ports:
+- name: uk
+  summary: 系统输入 标量 | 向量
+  direction: input
+- name: A
+  summary: 状态矩阵 矩阵
+  direction: input
+- name: B
+  summary: 输入矩阵 矩阵
+  direction: input
+- name: C
+  summary: 输出矩阵 矩阵
+  direction: input
+- name: D
+  summary: 前馈矩阵 矩阵
+  direction: input
+- name: dx0
+  summary: 状态导数偏移 矩阵
+  direction: input
+- name: x0
+  summary: 状态偏移 矩阵
+  direction: input
+- name: u0
+  summary: 输入偏移 矩阵
+  direction: input
+- name: y0
+  summary: 输出偏移 矩阵
+  direction: input
+- name: IC
+  summary: 初始条件 向量
+  direction: input
+- name: yk
+  summary: 系统输出 标量 | 向量
+  direction: output
+- name: xk
+  summary: 当前状态向量 向量
+  direction: output
+- name: xk+1
+  summary: 下一状态向量 向量
+  direction: output
+```
 
 ### 输入
 
@@ -110,8 +152,52 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Output state updates** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial condition source
+  summary: 使用外部信号设置初始条件的选项 internal（默认）| external
+  group: 主选项卡
+  block_parameter: InitialConditionSource
+  values: internal（默认）| external
+- name: Initial conditions
+  summary: 系统初始条件 0（默认）| 标量 | 向量
+  group: 主选项卡
+  block_parameter: InitialCondition
+  values: '"0"（默认）| 带引号的初始状态值'
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 –1（默认）| 正标量
+  group: 主选项卡
+- name: Output states
+  summary: 提供状态输出 on（默认）| off
+  group: 主选项卡
+- name: Output state derivatives
+  summary: 提供状态更新 on（默认）| off
+  group: 主选项卡
+- name: Enable feedthrough
+  summary: 为直通矩阵添加输入端口 on（默认）| off
+  group: 主选项卡
+- name: Enable state offsets x0
+  summary: 为状态偏移添加输入端口 off（默认）| on
+  group: 偏移选项卡
+  block_parameter: InputX0
+  values: '"off"（默认）| "on"'
+- name: Enable state derivative offsets dx0
+  summary: 为状态导数偏移添加输入端口 off（默认）| on
+  group: 偏移选项卡
+  block_parameter: InputDX0
+  values: '"off"（默认）| "on"'
+- name: Enable input offsets u0
+  summary: 为输入偏移添加输入端口 off（默认）| on
+  group: 偏移选项卡
+  block_parameter: InputU0
+  values: '"off"（默认）| "on"'
+- name: Enable output offsets y0
+  summary: 为输出偏移添加输入端口 off（默认）| on
+  group: 偏移选项卡
+  block_parameter: InputY0
+  values: '"off"（默认）| "on"'
+```
 
 ### 主选项卡
 
@@ -224,7 +310,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **Parameter:** | `InputY0` |
 | **值**：| `"off"`（默认）| `"on"` |
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

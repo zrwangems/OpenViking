@@ -14,6 +14,17 @@ language: en
 # Check Discrete Gradient
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal checked against gradient scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Assertion output signal scalar
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -43,8 +54,51 @@ To enable this output port, select the **Output assertion signal**
 parameter check box.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum gradient
+  summary: Maximum value of allowed differences 1 (default) | scalar
+  group: ''
+  block_parameter: gradient
+  type: string scalar or character vector
+  values: real scalar
+  default: '"1"'
+- name: Enable assertion
+  summary: Enable or disable check on (default) | off
+  group: ''
+  block_parameter: enabled
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Simulation callback when assertion fails (optional)
+  summary: Expression to evaluate when assertion fails "" (default) | MATLAB expression
+  group: ''
+  block_parameter: callback
+  type: string scalar or character vector
+  default: '""'
+- name: Stop simulation when assertion fails
+  summary: Whether to stop simulation when check fails on (default) | off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Output assertion signal
+  summary: Create output signal off (default) | on
+  group: ''
+  block_parameter: export
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"off"'
+- name: Select icon type
+  summary: Select icon type graphic (default) | text
+  group: ''
+  block_parameter: icon
+  type: string scalar or character vector
+  values: '"graphic" | "text"'
+  default: '"graphic"'
+```
 
 ### **Maximum gradient** — Maximum value of allowed differences `1` (default) | scalar
 
@@ -136,7 +190,6 @@ the assertion condition.
 | **Type:** string scalar or character vector |
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
-
 ## Libraries
 
 Simulink / Model Verification HDL Coder / Model Verification

@@ -15,6 +15,89 @@ chinese_source: worker-translation
 # Timed Elastic Band
 
 ## 端口
+```yaml
+ports:
+- name: Pose
+  summary: 机器人当前位姿，形式为 [*x* *y* *theta*] 的三元素向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Vel
+  summary: 机器人当前速度，形式为 [*v* *w*] 的二元素向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MapInfo
+  summary: 局部地图信息总线
+  direction: input
+  data_types: bus
+- name: RefPath
+  summary: 要跟随的参考路径，*N*×3 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MaxVel
+  summary: 线速度和角速度的最大限制 [0.8, 1.6]（默认）| 二元素正向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MaxRevVel
+  summary: 反向运动的最大速度 NaN（默认）| 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MaxAccel
+  summary: 线加速度和角加速度的最大限制 [2.4, 4.8]（默认）| 二元素正向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MinTurnRad
+  summary: 车辆在优化路径上的最小转弯半径 0（默认）| 非负标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: TimeWeight
+  summary: 时间权重 10（默认）| 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: SmoothWeight
+  summary: 平滑运动权重 1000（默认）| 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: ObstWeight
+  summary: 与障碍物保持安全距离的权重 50（默认）| 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: ObstMargin
+  summary: 机器人与障碍物之间的安全距离 0.5（默认）| 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: NumIter
+  summary: 优化轨迹的迭代次数 2（默认）| 正整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: LookAheadTime
+  summary: 前视时间 5（默认）| 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: GoalTol
+  summary: 目标位姿周围的容差 [0.1,0.1,0.1]（默认）| 三元素列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: RefDelTime
+  summary: 参考增量时间 0.3（默认）| 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: VelCmds
+  summary: 速度命令 *N*×2 矩阵
+  direction: output
+  data_types: double
+- name: Timestamps
+  summary: 与速度命令对应的时间戳 *N* 元列向量
+  direction: output
+  data_types: double
+- name: OptPath
+  summary: 优化路径 *N*×3 矩阵
+  direction: output
+  data_types: double
+- name: SolnInfo
+  summary: 额外信息总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -232,8 +315,94 @@ input port** 复选框。
 | `ExitFlag` | 标量值，指示 `Timed Elastic Band` 函数的退出条件。  - 0 — 指示 `Timed Elastic Band` 函数返回了可行的速度命令和轨迹。 - 1 — 指示 `Timed Elastic Band` 函数返回的轨迹输出仅在 `LastFeasibleIdx` 指定的索引值之前是无碰撞的。 - 2 — 指示 `LastFeasibleIdx` 之后索引对应的位姿违反 TEB 控制器的障碍物安全裕度约束超过 10%。 - 3 — 指示车辆从 `LastFeasibleIdx` 处的位姿移动到后续位姿时的转弯半径违反最小转弯半径约束超过 10%。 - 4 — 指示 `Timed Elastic Band` 函数返回的一个或多个时间戳早于前一个时间戳。 - 5 — 指示即使机器人以最大线速度从其当前位置行驶，也无法在指定的前瞻时间内到达参考路径。 |
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (s)
+  summary: 控制器采样时间 1（默认）| 正标量
+  group: ''
+- name: Specify lookahead time using input port
+  summary: 添加用于指定前瞻时间的输入端口 off（默认）| on
+  group: ''
+- name: Lookahead time (s)
+  summary: 前瞻时间 5（默认）| 正标量
+  group: ''
+- name: Specify goal tolerance using input port
+  summary: 添加用于指定目标容差的输入端口 off（默认）| on
+  group: ''
+- name: Goal tolerance ([m m rad])
+  summary: 目标位姿周围的容差 [0.1, 0.1, 0.1]（默认）| 三元素列向量
+  group: ''
+- name: Shape
+  summary: 机器人形状 Rectangle（默认）| Point
+  group: ''
+- name: Dimension ([m m])
+  summary: 机器人尺寸 [1, 0.67]（默认）| 二元素正向量
+  group: ''
+- name: Fixed transform ([m m rad])
+  summary: 变换矩阵 se2（默认）| 形式为 [*x*, *y*, *theta*] 的三元素行向量
+  group: ''
+- name: Specify obstacle safety margin using input port
+  summary: 添加用于指定障碍物安全裕度的输入端口 off（默认）| on
+  group: ''
+- name: Obstacle safety margin (m)
+  summary: 机器人与障碍物之间的安全距离 0.5（默认）| 正标量
+  group: ''
+- name: Specify max velocity using input port
+  summary: 添加用于指定最大速度的输入端口 off（默认）| on
+  group: ''
+- name: Maximum velocity ([m/s rad/s])
+  summary: 线速度和角速度的最大限值 [0.8, 1.6]（默认）| 二元素正向量
+  group: ''
+- name: Specify max reverse velocity using input port
+  summary: 为最大倒车速度添加输入端口 off（默认）| on
+  group: ''
+- name: Maximum reverse velocity (m/s)
+  summary: 倒车运动的最大速度 NaN（默认）| 正标量
+  group: ''
+- name: Specify max acceleration using input port
+  summary: 为最大加速度添加输入端口 off（默认）| on
+  group: ''
+- name: Maximum acceleration ([m/s^2 rad/s^2])
+  summary: 线加速度和角加速度的最大限制 [2.4,4.8]（默认）| 二元素正向量
+  group: ''
+- name: Specify min turning radius using input port
+  summary: 为最小转弯半径添加输入端口 off（默认）| on
+  group: ''
+- name: Minimum turning radius (m)
+  summary: 车辆在优化路径上的最小转弯半径 0（默认）| 非负标量
+  group: ''
+- name: Specify reference delta time using input port
+  summary: 为参考时间增量添加输入端口 off（默认）| on
+  group: ''
+- name: Reference delta time (s)
+  summary: 参考时间增量 0.3（默认）| 正标量
+  group: ''
+- name: Specify number of iterations using input port
+  summary: 为迭代次数添加输入端口 off（默认）| on
+  group: ''
+- name: Number of iterations
+  summary: 优化轨迹的迭代次数 2（默认）| 正整数
+  group: ''
+- name: Specify time weight using input port
+  summary: 为时间权重添加输入端口 off（默认）| on
+  group: ''
+- name: Time weight
+  summary: 时间的代价函数权重 10（默认）| 正整数
+  group: ''
+- name: Specify smoothness weight using input port
+  summary: 为平滑度权重添加输入端口 off（默认）| on
+  group: ''
+- name: Smoothness weight
+  summary: 平滑运动的权重 1000（默认）| 正标量
+  group: ''
+- name: Specify obstacle weight using input port
+  summary: 为障碍物权重添加输入端口 off（默认）| on
+  group: ''
+- name: Obstacle weight
+  summary: 与障碍物保持安全距离的权重 50（默认）| 正标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -413,7 +582,6 @@ input port** 复选框。
 #### 依赖关系
 
 要启用此参数，请清除 **Specify obstacle weight using input port** 复选框。
-
 ## 所属库
 
 Navigation Toolbox / Control Algorithms

@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Motor & Drive
 
 ## 端口
+```yaml
+ports:
+- name: Tr
+  summary: 参考转矩需求，N\*m 物理信号
+  direction: input
+- name: W
+  summary: 机械转速，rad/s 物理信号
+  direction: output
+- name: +
+  summary: 正直流电源电气
+  direction: output
+- name: '-'
+  summary: 负直流电源电气
+  direction: output
+- name: C
+  summary: 电机壳体机械旋转
+  direction: output
+- name: R
+  summary: 电机转子机械旋转
+  direction: output
+- name: H
+  summary: 热流热
+  direction: output
+```
 
 ### 输入
 
@@ -52,8 +76,34 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Thermal port** 设置为
 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum torque
+  summary: 用于定义转矩-转速包络边界的转矩 400 N*m（默认）| 正标量
+  group: ''
+- name: Maximum power
+  summary: 用于定义转矩-转速包络边界的功率 200 kW（默认）| 正标量
+  group: ''
+- name: Torque control time constant, Tc
+  summary: 输出转矩时间步长 0.02 s（默认）| 正标量
+  group: ''
+- name: Motor and driver overall efficiency (percent)
+  summary: 给定转速和转矩下的能效 100（默认）| 范围 (0,100] 内的标量
+  group: ''
+- name: Speed at which efficiency is measured
+  summary: 用于效率测量的给定转速 3750 rpm（默认）| 正标量
+  group: ''
+- name: Torque at which efficiency is measured
+  summary: 用于效率测量的给定转矩 100 N*m（默认）| 正标量
+  group: ''
+- name: Thermal port
+  summary: 在电气布线质量中模拟热损耗 Omit（默认）| Model
+  group: ''
+- name: Thermal mass
+  summary: 布线保持热量的倾向 100 J/K（默认）| 正标量
+  group: ''
+```
 
 ### **Maximum torque** — 用于定义转矩-转速包络边界的转矩 `400` `N*m`（默认）| 正标量
 
@@ -95,7 +145,6 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Thermal port** 设置为
 `Model`。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors

@@ -14,6 +14,15 @@ language: en
 # Hardware Interrupt
 
 ## Ports
+```yaml
+ports:
+- name: event1 Task
+  summary: Simulate interrupt trigger scalar
+  direction: input
+- name: event1
+  summary: Interrupt request scalar
+  direction: output
+```
 
 ### Input
 
@@ -32,8 +41,22 @@ parameter.
 
 This port ties the interrupt trigger to a software task. The output is a function
 call.
-
 ## Parameters
+```yaml
+parameters:
+- name: Task priority
+  summary: Priority of selected interrupt 50 (default) | positive integer
+  group: ''
+- name: Processor core
+  summary: core number 0 (default) | integer | -1
+  group: ''
+- name: Enable simulation port
+  summary: Enable simulation port in block off (default) | on
+  group: ''
+- name: Hardware Mapping
+  summary: Open Hardware Mapping tool button
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -64,7 +87,6 @@ an input port for simulation.
 
 Click this parameter to open the Hardware Mapping
 tool.
-
 ## Libraries
 
 SoC Blockset / Processor Task Execution

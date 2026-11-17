@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Inverse Coordinate Transform (Five-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: dqxy0
+  summary: 直轴、交轴、*x*、*y* 和零分量向量
+  direction: input
+  data_types: single | double
+- name: θelec
+  summary: 旋转角度标量
+  direction: input
+  data_types: single | double
+- name: abcde
+  summary: '*a*、*b*、*c*、*d* 和 *e* 相分量向量'
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,13 +51,17 @@ chinese_source: worker-translation
 *abcde* 参考坐标系中五相系统的分量，以向量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase-a axis alignment
+  summary: '*dqxy0* 参考坐标系对齐方式 Q-axis（默认）| D-axis'
+  group: ''
+```
 
 ### **Phase-a axis alignment** — *dqxy0* 参考坐标系对齐方式 `Q-axis`（默认）| `D-axis`
 
 是否将 *abcde* 参考坐标系的 *a* 相向量对齐到旋转参考坐标系的 *d* 轴或 *q* 轴。
-
 ## 所属库
 
 Simscape / Electrical / Control / Mathematical Transforms

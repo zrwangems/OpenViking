@@ -14,6 +14,13 @@ language: en
 # CAN FD Log
 
 ## Ports
+```yaml
+ports:
+- name: CAN Msg
+  summary: CAN FD messages to log CAN_FD_MESSAGE_BUS
+  direction: input
+  data_types: CAN_FD_MESSAGE_BUS
+```
 
 ### Input
 
@@ -24,8 +31,28 @@ messages from** parameter is set to `Input port`. Provide
 an input from another block as a Simulink signal bus of type `CAN_FD_MESSAGE_BUS`.
 
 **Data Types:** `CAN_FD_MESSAGE_BUS`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Log file location and name untitled.mat (default) | file name
+  group: ''
+- name: Variable name
+  summary: Variable name for CAN FD messages in log file ans (default) | variable name
+  group: ''
+- name: Maximum number of messages to log
+  summary: Limit quantity of messages 10000 (default) | numeric
+  group: ''
+- name: Log messages from
+  summary: Source of messages CAN FD Bus (default) | Input port
+  group: ''
+- name: Device
+  summary: CAN device and channel list option
+  group: ''
+- name: Sample time
+  summary: Block sampling time in simulation 0.01 (default) | numeric
+  group: ''
+```
 
 **Tip**
 
@@ -74,7 +101,6 @@ frequency at which the CAN FD Log block runs during simulation. If the
 block is inside a triggered subsystem or to inherit sample time, you can specify
 `–1` as the sample time. You can also specify a MATLAB variable for sample time. The default value is `0.01`
 simulation seconds. For more information, see Timing in Hardware Interface Models.
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN FD Communication

@@ -14,6 +14,41 @@ language: en
 # Queue
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input to FIFO register scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Push
+  summary: Trigger signal to push queue scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Pop
+  summary: Trigger signal to pop queue scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Rst
+  summary: Trigger signal to empty queue scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: Output of FIFO register scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Empty
+  summary: Indicates if queue is empty 1 | 0
+  direction: output
+  data_types: double | Boolean
+- name: Full
+  summary: Indicates if queue is full 1 | 0
+  direction: output
+  data_types: double | Boolean
+- name: Num
+  summary: Track number of elements in queue scalar
+  direction: output
+  data_types: double | uint32
+```
 
 ### Input
 
@@ -111,8 +146,42 @@ To enable this port, select **Show number of register
 entries port (Num)**.
 
 **Data Types:** `double` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Register size
+  summary: Number of entries FIFO register can hold 8 (default) | positive integer
+  group: ''
+- name: Trigger type
+  summary: Type of trigger event for Push, Pop, and Rst ports Rising edge (default) | Falling edge | Either edge | Non-zero
+    sample
+  group: ''
+- name: Push onto full register
+  summary: Specify block behavior to push request when register is full Dynamic reallocation (default) | Ignore | Warning
+    | Error
+  group: ''
+- name: Pop empty register
+  summary: Specify block behavior to pop request when register is empty Warning (default) | Ignore | Error
+  group: ''
+- name: Show empty register indicator port (Empty)
+  summary: Enable Empty output port off (default) | on
+  group: ''
+- name: Show full register indicator port (Full)
+  summary: Enable Full output port off (default) | on
+  group: ''
+- name: Show number of register entries port (Num)
+  summary: Enable Num output port off (default) | on
+  group: ''
+- name: Show reset port (Rst) to clear internal stack buffer
+  summary: Enable Rst input port off (default) | on
+  group: ''
+- name: Clear output port on reset
+  summary: Set Out port to 0 when clearing queue off (default) | on
+  group: ''
+- name: Allow direct feedthrough
+  summary: Allow input data to be readily available at Out port on (default) | off
+  group: ''
+```
 
 ### **Register size** — Number of entries FIFO register can hold 8 (default) | positive integer
 
@@ -252,7 +321,6 @@ the block executes the operations in the following order:
 
 The rate of the trigger signal must be the same as the rate of the data
 signal input.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Buffers

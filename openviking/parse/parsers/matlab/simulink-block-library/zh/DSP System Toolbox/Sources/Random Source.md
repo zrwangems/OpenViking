@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Random Source
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 随机分布值的信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输出
 
@@ -26,8 +33,49 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Distribution
+  summary: 均匀或高斯 Uniform（默认）| Gaussian
+  group: ''
+- name: Minimum
+  summary: 均匀分布的最小值 0（默认）| 标量 | 行向量
+  group: ''
+- name: Maximum
+  summary: 均匀分布的最大值 1（默认）| 标量 | 行向量
+  group: ''
+- name: Mean
+  summary: 高斯分布的均值 0（默认）| 标量 | 行向量
+  group: ''
+- name: Variance
+  summary: 高斯分布的方差 1（默认）| 标量 | 行向量
+  group: ''
+- name: Repeatability
+  summary: 重复模块输出的选项 Specify seed（默认）| Not repeatable
+  group: ''
+- name: Initial seed
+  summary: 随机数生成器的初始种子 1（默认）| 标量
+  group: ''
+- name: Inherit via output port
+  summary: 从下游模块继承输出端口参数 off（默认）| on
+  group: ''
+- name: Sample time
+  summary: 输出采样周期 1（默认）| −1 | 实正标量
+  group: ''
+- name: Samples per frame
+  summary: 每个输出帧的样本数 1（默认）| 正整数
+  group: ''
+- name: Signal complexity
+  summary: 输出的复杂度 Real（默认）| Complex
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 #### 分布设置
 
@@ -191,7 +239,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 为模块生成 C 代码。只要模型不更改，C 代码将复用于后续仿真。此选项需要额外的启动时间，但提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Sources

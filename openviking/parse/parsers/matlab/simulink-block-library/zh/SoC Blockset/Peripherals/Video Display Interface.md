@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Video Display Interface
 
 ## 端口
+```yaml
+ports:
+- name: msg
+  summary: SoC 消息数据向量
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: 图像数据 3\height*\width* 元素向量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -34,8 +45,25 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output** 参数设置为 `To output port`。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 输出类型 To terminator（默认）| To output port
+  group: ''
+- name: Image size
+  summary: 图像大小 160x120（默认）| 320x240 | 640x480 | 800x600 | custom
+  group: ''
+- name: Image size ([width, height])
+  summary: 图像大小 [320, 240]（默认）| 正整数的二元素向量
+  group: ''
+- name: Pixel format
+  summary: 像素数据格式 RGB（默认）| YCbCr 4:2:2
+  group: ''
+- name: Sample time
+  summary: 采样时间（以秒为单位）-1（默认）| 正标量
+  group: ''
+```
 
 ### **Output** — 输出类型 `To terminator`（默认）| `To output port`
 
@@ -64,7 +92,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样时间（以秒为单位）`-1`（默认）| 正标量
 
 输入采样时间，定义接收包含视频数据的消息的速率。
-
 ## 所属库
 
 SoC Blockset / Peripherals

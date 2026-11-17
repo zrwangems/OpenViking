@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Synchronous Machine GENTPJ
 
 ## 端口
+```yaml
+ports:
+- name: Efd
+  summary: 标幺励磁电压物理信号
+  direction: input
+- name: pu
+  summary: 电机标幺测量物理信号
+  direction: output
+- name: R
+  summary: 电机转子机械
+  direction: output
+- name: C
+  summary: 电机机壳机械
+  direction: output
+- name: '~'
+  summary: 定子绕组电气
+  direction: output
+- name: a
+  summary: '*a* 相电气'
+  direction: output
+- name: b
+  summary: '*b* 相电气'
+  direction: output
+- name: c
+  summary: '*c* 相电气'
+  direction: output
+```
 
 ### 输入
 
@@ -81,8 +108,111 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主
+- name: Rated apparent power
+  summary: 额定视在功率 555e6 A*V（默认）
+  group: 主
+- name: Rated voltage
+  summary: 额定线电压均方根值 24e3 V（默认）
+  group: 主
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz（默认）
+  group: 主
+- name: Number of pole pairs
+  summary: 电机极对数 1（默认）
+  group: 主
+- name: Rotor angle definition
+  summary: 转子角度测量的参考点 Angle between the a-phase magnetic axis and the d-axis（默认）| Angle between the a-phase magnetic axis
+    and the q-axis
+  group: 主
+- name: Stator resistance, Ra
+  summary: 定子电阻 0.003（默认）| 正标量
+  group: 阻抗
+- name: Stator leakage reactance, Xl
+  summary: 定子漏电抗 0.15（默认）| 正标量
+  group: 阻抗
+- name: d-axis synchronous reactance, Xd
+  summary: '*d* 轴同步电抗 1.81（默认）| 正标量'
+  group: 阻抗
+- name: q-axis synchronous reactance, Xq
+  summary: '*q* 轴同步电抗 1.76（默认）| 正标量'
+  group: 阻抗
+- name: d-axis transient reactance, Xd'
+  summary: '*d* 轴瞬态电抗 0.3（默认）| 正标量'
+  group: 阻抗
+- name: q-axis transient reactance, Xq'
+  summary: '*q* 轴瞬态电抗 0.65（默认）| 正标量'
+  group: 阻抗
+- name: d-axis subtransient reactance, Xd''
+  summary: '*d* 轴次瞬态电抗 0.23（默认）| 正标量'
+  group: 阻抗
+- name: q-axis subtransient reactance, Xq''
+  summary: '*q* 轴次瞬态电抗 0.25（默认）| 正标量'
+  group: 阻抗
+- name: d-axis transient open-circuit, Td0'
+  summary: '*d* 轴瞬态开路 8 s（默认）| 正标量'
+  group: 时间常数
+- name: d-axis subtransient open-circuit, Td0''
+  summary: '*d* 轴次瞬态开路 0.03 s（默认）| 正标量'
+  group: 时间常数
+- name: q-axis transient open-circuit, Tq0'
+  summary: '*q* 轴瞬态开路 1 s（默认）| 正标量'
+  group: 时间常数
+- name: q-axis subtransient open-circuit, Tq0''
+  summary: '*q* 轴次瞬态开路 0.07 s（默认）| 正标量'
+  group: 时间常数
+- name: Magnetic saturation representation
+  summary: 磁饱和表示 None（默认）| Quadratic | Scaled quadratic | Exponential | Open-circuit lookup table
+  group: 饱和
+- name: Saturation factor, S10
+  summary: 饱和系数，S10 0.005（默认）| 正标量
+  group: 饱和
+- name: Saturation factor, S12
+  summary: 饱和系数，S12 0.08（默认）| 正标量
+  group: 饱和
+- name: Non-reciprocal per-unit field current saturation data, ifd
+  summary: 标幺励磁电流饱和数据 [0, .8, 1.26, 2.29, 2.97]（默认）| 非负值矢量
+  group: 饱和
+- name: Per-unit air-gap voltage saturation data, Vag
+  summary: 标幺气隙电压饱和数据 [0, .8, 1.08, 1.31, 1.4]（默认）| 非负值矢量
+  group: 饱和
+- name: Kis
+  summary: 定子电流对饱和的影响 0.05（默认）| 非负标量
+  group: 饱和
+- name: Initialization option
+  summary: 用于指定仿真开始时值的选项 Set real power, reactive power, terminal voltage, and terminal phase（默认）| Set targets for rotor angle
+    and Park's transform variables | Set targets for load flow variables
+  group: 初始条件
+- name: Source type
+  summary: 电压源模型 Swing bus（默认）| PV bus | PQ bus
+  group: 初始条件
+- name: Terminal voltage magnitude
+  summary: 端电压幅值 24e3 V（默认）| 正标量
+  group: 初始条件
+- name: Terminal voltage angle
+  summary: 端电压角度 0 deg（默认）| 标量
+  group: 初始条件
+- name: Active power generated
+  summary: 发出的有功功率 500e6 V*A（默认）| 标量
+  group: 初始条件
+- name: Reactive power generated
+  summary: 发出的无功功率 0 V*A（默认）| 标量
+  group: 初始条件
+- name: Minimum terminal voltage magnitude (pu)
+  summary: 最小端电压幅值 0.95（默认）| 正标量
+  group: 初始条件
+- name: Phase search range at terminals
+  summary: 端子处的相位搜索范围 [-inf, inf] deg（默认）| 两个元素的矢量
+  group: 初始条件
+- name: Parasitic conductance to electrical reference
+  summary: 到电气参考的寄生电导 1e-6 S（默认）| 正标量
+  group: 初始条件
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -295,7 +425,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Initialization option** 设置为 `Set targets for load flow variables`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Synchronous

@@ -14,6 +14,17 @@ language: en
 # UDP Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Output UDP message received from sending UDP host [Nx1] array
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: Size
+  summary: Number of data bytes in UDP message received scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Output
 
@@ -31,8 +42,24 @@ At each sample time, the port outputs the number of data bytes in the
 received message.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Local IP port
+  summary: IP port on the receiving UDP host 25000 (default) | [1, 65535]
+  group: ''
+- name: Data type
+  summary: Data type of the data bytes in UDP message uint8 (default) | double | single | int8 | int16 | uint16 | int32 |
+    uint32 | boolean
+  group: ''
+- name: Data size (N)
+  summary: Number of data bytes in each UDP message 4 (default)
+  group: ''
+- name: Sample time
+  summary: Interval to read messages from sending UDP host 0.005 (default) | any non-negative value that is a multiple of
+    0.005 (5 ms) | -1
+  group: ''
+```
 
 ### **Local IP port** — IP port on the receiving UDP host `25000` (default) | `[1, 65535]`
 
@@ -62,7 +89,6 @@ Enter the time interval at which to receive data.
 
 When you set this parameter to `-1`, Simulink® determines the best sample time for the block based on the
 block context within the model.
-
 ## Libraries
 
 Simulink Support Package for Parrot Minidrones

@@ -14,6 +14,21 @@ language: en
 # SinCos Embedded Optimized
 
 ## Ports
+```yaml
+ports:
+- name: θe
+  summary: Reference voltage position scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: sin
+  summary: Sine voltage waveform scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: cos
+  summary: Cosine voltage waveform scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -38,8 +53,33 @@ Cosine waveform output with a frequency that is identical to the position or pha
 signal (`θe`) frequency.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Optimize for selected embedded target hardware
+  summary: Optimize block for selected hardware off (default) | on
+  group: ''
+- name: Approximation method
+  summary: Approximation method for computing sine and cosine signals Lookup (default) | None | CORDIC | TI IQMATH
+  group: ''
+- name: Theta units
+  summary: Unit of θe Per-unit (default) | Radians | Degrees
+  group: ''
+- name: Number of data points for lookup table
+  summary: Size of lookup table array 1024 (default) | scalar
+  group: ''
+- name: Table data type
+  summary: 'Data type of lookup table array Inherit: Inherit via input (default) | double | single | fixdt(1,16,0) | <data
+    type expression>'
+  group: ''
+- name: Number of iterations
+  summary: Number of iterations for CORDIC algorithm 11 (default) | positive integer, less than or equal to word length of
+    fixed-point input
+  group: ''
+- name: Theta data type
+  summary: Data type of lookup table array fixdt([],16,0) (default) | double | single | <data type expression>
+  group: ''
+```
 
 ### **Optimize for selected embedded target hardware** — Optimize block for selected hardware `off` (default) | on
 
@@ -162,7 +202,6 @@ IQMATH` approximation method by:
   Configuration Parameters dialog box for the Simulink model containing this block.
 - Selecting the **Optimize for selected embedded target
   hardware** parameter.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Math Transforms

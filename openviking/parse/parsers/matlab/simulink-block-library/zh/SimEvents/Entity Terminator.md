@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Entity Terminator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_a
+  summary: 到达的实体数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +46,24 @@ chinese_source: worker-translation
 要启用此端口，请点击 **Statistics** 选项卡，然后选中标记为 **Number of entities arrived, a** 的框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Event action
+  summary: 指定实体在特定事件中的行为 Entry
+  group: ''
+  block_parameter: EntryAction
+  type: 字符向量
+  values: MATLAB 代码
+  default: ''''''
+- name: Number of entities arrived, a
+  summary: 输出已到达该模块的实体数量 off（默认） | on
+  group: ''
+  block_parameter: NumberEntitiesArrived
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Event action** — 指定实体在特定事件中的行为 `Entry`
 
@@ -62,7 +90,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

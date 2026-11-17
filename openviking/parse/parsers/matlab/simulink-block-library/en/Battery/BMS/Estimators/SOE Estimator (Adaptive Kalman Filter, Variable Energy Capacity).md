@@ -14,6 +14,30 @@ language: en
 # SOE Estimator (Adaptive Kalman Filter, Variable Energy Capacity)
 
 ## Ports
+```yaml
+ports:
+- name: Current
+  summary: Battery current, ampere scalar | vector
+  direction: input
+- name: CellVoltage
+  summary: Cell voltage, volt scalar | vector
+  direction: input
+- name: CellTemperature
+  summary: Cell temperature, celsius or kelvin scalar | vector
+  direction: input
+- name: EnergyCapacity
+  summary: Cell energy capacity, W\*Hr scalar | vector
+  direction: input
+- name: InitialSOE
+  summary: Initial state of energy, unitless scalar | vector
+  direction: input
+- name: InitialR0
+  summary: Initial terminal resistance, ohm scalar | vector
+  direction: input
+- name: SOE
+  summary: State of energy, unitless scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -82,8 +106,70 @@ size of this output port is equal to the size of the
 **EnergyCapacity**,
 **InitialSOE**, and **InitialR0**
 input ports.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify Current input as cell current(s)
+  summary: Option to specify current input port as vector off (default) | on
+  group: Main
+- name: Filter type
+  summary: Kalman filter type Extended Kalman filter (default) | Extended Kalman-Bucy filter | Unscented Kalman filter | Unscented
+    Kalman-Bucy filter
+  group: Main
+- name: Alpha
+  summary: Alpha coefficient 1 (default) | scalar in the range [0, 1]
+  group: Main
+- name: Beta
+  summary: Beta coefficient 2 (default) | nonnegative scalar
+  group: Main
+- name: Kappa
+  summary: Kappa coefficient 0 (default) | scalar in the range [0, 3]
+  group: Main
+- name: Covariance of the process noise, Q
+  summary: Covariance of the process noise [1e-6 0 0; 0 1e-6 0;0 0 1e-6] (default) | matrix of scalars
+  group: Main
+- name: Covariance of the measurement noise, R
+  summary: Covariance of the measurement noise 0.1 (default) | scalar
+  group: Main
+- name: Initial state error covariance, P0
+  summary: Initial state error covariance [1e-5 0 0; 0 1 0; 0 0 1e-5] (default) | matrix of scalars
+  group: Main
+- name: Sample time (-1 for inherited)
+  summary: Block sample time 1 (default) | 0 | -1 | integer
+  group: Main
+- name: Charge dynamics
+  summary: Option to model battery charge dynamics One time-constant dynamics (default) | Two time-constant dynamics
+  group: System Model
+- name: Vector of state-of-energy values, SOE (-)
+  summary: SOE breakpoints [0, .1, .25, .5, .75, .9, 1] (default) | vector of scalars in the range [0, 1]
+  group: System Model
+- name: Vector of temperatures, T
+  summary: Temperature breakpoints [278, 293, 313] (default) | vector of positive scalars
+  group: System Model
+- name: First polarization resistance, R1(SOE,T), (ohm)
+  summary: First RC resistance at temperature breakpoints [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013;
+    .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] (default) | matrix of positive entries
+  group: System Model
+- name: First time constant, tau1(SOE,T), (s)
+  summary: First RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] (default) | matrix of positive entries
+  group: System Model
+- name: Second polarization resistance, R2(SOE,T), (ohm)
+  summary: Second RC resistance at temperature breakpoints [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013;
+    .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] (default) | matrix of positive entries
+  group: System Model
+- name: Second time constant, tau2(SOE,T), (s)
+  summary: Second RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] (default) | matrix of positive scalars
+  group: System Model
+- name: No-load voltage, V0(SOE,T), (V)
+  summary: '*V*0 lookup table [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07,
+    4.08, 4.08; 4.19, 4.19, 4.19] (default) | matrix of nonnegative entries'
+  group: System Model
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: Signal Attributes
+```
 
 ### Main
 
@@ -291,7 +377,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Estimators

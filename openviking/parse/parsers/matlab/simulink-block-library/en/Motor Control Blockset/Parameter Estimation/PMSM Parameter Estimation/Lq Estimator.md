@@ -14,6 +14,37 @@ language: en
 # Lq Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Iabc
+  summary: Three-phase current response vector
+  direction: input
+  data_types: single
+- name: Rs
+  summary: Estimated stator resistance scalar
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: Control signal for *Lq* estimation logical
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: Bus signal input bus
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*, *b*, and *c*-axis stator reference voltage components vector'
+  direction: output
+  data_types: single
+- name: Lq
+  summary: Estimated *q*-axis stator inductance scalar
+  direction: output
+  data_types: single
+- name: Log
+  summary: Debug signals bus
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -120,8 +151,22 @@ debug signals.
 | *PhaseDiff\_rad* | | | Phase difference between the injected voltage and current response | radians |
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum current limit (A)
+  summary: Maximum allowed current during test 15 (default) | scalar
+  group: ''
+- name: Step size during injected voltage ramp up (per-unit)
+  summary: Step size during injected voltage ramp up 0.0001 (default) | scalar
+  group: ''
+- name: Number of sinusoidal voltage injections per frequency sweep step
+  summary: Number of sinusoidal voltage injections per frequency during frequency sweep 5 (default) | scalar
+  group: ''
+- name: Number of sinusoidal voltage injections per frequency during Lq estimation
+  summary: Number of sinusoidal voltage injections per frequency during Lq estimation 5 (default) | scalar
+  group: ''
+```
 
 ### **Maximum current limit (A)** — Maximum allowed current during test `15` (default) | `scalar`
 
@@ -140,7 +185,6 @@ step.
 
 Number of sinusoidal voltage injections per frequency for each Lq estimation
 step.
-
 ## Libraries
 
 Motor Control Blockset / Parameter Estimation / PMSM Parameter Estimation

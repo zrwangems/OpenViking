@@ -14,6 +14,24 @@ language: en
 # Entity Replicator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_1
+  summary: Output replica entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_2
+  summary: Output the entity that is replicated scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+```
 
 ### Input
 
@@ -35,8 +53,45 @@ Output entity port for replica entities exiting the block.
 Output entity port for original entities exiting the block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Replicas depart from
+  summary: Choose how replicas depart Separate output ports (default) | Single output port
+  group: ''
+  block_parameter: ReplicasDepartFrom
+  type: character vector
+  values: '''Separate output ports'' | ''Single output port'''
+  default: '''Separate output ports'''
+- name: Replication amount source
+  summary: Specify source of replica number Dialog (default) | Attribute
+  group: ''
+  block_parameter: ReplicationAmountSource
+  type: character vector
+  values: '''Dialog'' | ''Attribute'''
+  default: '''Dialog'''
+- name: Number of replicas
+  summary: Specify the number of replicas 1 (default) | scalar
+  group: ''
+  block_parameter: NumberReplicas
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Replicate attribute name
+  summary: Specify the attribute that determines the number of replicas ReplicateAttribute (default) | character vector
+  group: ''
+  block_parameter: ReplicateAttributeName
+  type: character vector
+  values: '''ReplicateAttribute'' | character vector'
+  default: '''ReplicateAttribute'''
+- name: Hold original entity until all replicas depart
+  summary: Choose how replicas depart off (default) | on
+  group: ''
+  block_parameter: HoldOriginalEntityUntilAllReplicasDepart
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Replicas depart from** — Choose how replicas depart `Separate output ports` (default) | `Single output port`
 
@@ -140,7 +195,6 @@ entity.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

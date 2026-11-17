@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # CPFSK Demodulator Baseband
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **M-ary number**
 :   字母表的大小。
@@ -55,7 +60,6 @@ R2025b 中未记录。
 
 **Output datatype**
 :   输出数据类型可以为 `boolean`、`int8`、`int16`、`int32` 或 `double`。
-
 ## 所属库
 
 R2025b 中未记录。

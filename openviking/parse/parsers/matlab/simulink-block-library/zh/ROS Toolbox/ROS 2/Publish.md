@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Publish
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: ROS 消息非虚拟总线
+  direction: input
+  data_types: bus
+```
 
 ### 输入
 
@@ -23,8 +30,43 @@ chinese_source: worker-translation
 ROS 消息，指定为非虚拟总线。要指定 ROS 消息的类型，请使用 **Message type** 参数。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Topic source
+  summary: 用于指定话题名称的来源 Select from ROS network | Specify your own
+  group: ''
+- name: Topic
+  summary: 要发布到的话题名称 string
+  group: ''
+- name: Message type
+  summary: ROS 消息类型 string
+  group: ''
+- name: History
+  summary: 队列中存储消息的模式 Keep last（默认） | Keep all
+  group: ''
+- name: Depth
+  summary: 消息队列的大小 1（默认） | 正标量
+  group: ''
+- name: Reliability
+  summary: 消息的传递保证 Reliable（默认） | Best effort
+  group: ''
+- name: Durability
+  summary: 消息的持久性 Volatile（默认） | Transient local
+  group: ''
+- name: Deadline
+  summary: 发布连续消息之间的预期间隔 Inf（默认） | 正标量
+  group: ''
+- name: Lifespan
+  summary: 发布与接收之间的消息有效窗口 Inf（默认） | 正标量
+  group: ''
+- name: Liveliness
+  summary: 发布者活跃性断言协议 "automatic"（默认值）
+  group: ''
+- name: Lease Duration
+  summary: 活跃性断言之间的最大时间窗口 Inf（默认值）| 正标量
+  group: ''
+```
 
 #### 主要
 
@@ -86,7 +128,6 @@ ROS 消息类型，指定为字符串。使用 **Select** 从支持的 ROS 消�
 定义允许发布者证明其活跃性的最大持续时间，超过该时间后系统将认为其已失去活跃性，指定为正标量。失去活跃性可作为故障的指示。
 
 默认值为 `Inf`，意味着发布者可以在无限长的时间内断言其活跃性。如果 `Lease Duration` 设置为 5，则意味着发布者最多有 5 秒的时间来证明其活跃性。如果发布者在该时间范围内未发送任何消息或未显式断言其活跃性，则被视为已失去活跃性。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

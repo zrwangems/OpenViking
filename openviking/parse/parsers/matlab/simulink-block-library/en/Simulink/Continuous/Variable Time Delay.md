@@ -14,6 +14,25 @@ language: en
 # Variable Time Delay
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: t0
+  summary: Time delay input scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: ti
+  summary: Instantaneous time delay input scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Delayed signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -61,8 +80,79 @@ To enable this port, set **Select delay type** to `Variable transport delay`.
 Output signal specified as a scalar, vector, or matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select delay type
+  summary: Type of delay Variable time delay | Variable transport delay
+  group: ''
+  block_parameter: VariableDelayType
+  type: character vector, string
+  values: '''Variable transport delay'' | ''Variable time delay'''
+- name: Maximum delay
+  summary: Maximum value of time delay input 10 (default) | scalar | vector
+  group: ''
+  block_parameter: MaximumDelay
+  type: character vector, string
+  values: scalar | vector
+  default: '''10'''
+- name: Initial output
+  summary: Initial output 0 (default) | scalar | vector
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector, string
+  values: scalar | vector
+  default: '''0'''
+- name: Initial buffer size
+  summary: Initial memory allocation 1024 (default) | scalar
+  group: ''
+  block_parameter: MaximumPoints
+  type: character vector, string
+  values: scalar | vector
+  default: '''1024'''
+- name: Use fixed buffer size
+  summary: Use fixed-size buffer off (default) | on
+  group: ''
+  block_parameter: FixedBuffer
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Handle zero delay
+  summary: Option to allow zero delay off (default) | on
+  group: ''
+  block_parameter: ZeroDelay
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Direct feedthrough of input during linearization
+  summary: Option to use zero delay during linearization and trimming operations off (default) | on
+  group: ''
+  block_parameter: TransDelayFeedthrough
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Pade order (for linearization)
+  summary: Order of Pade approximation 0 (default) | scalar
+  group: ''
+  block_parameter: PadeOrder
+  type: character vector, string
+  values: scalar
+  default: '''0'''
+- name: Absolute tolerance
+  summary: Absolute tolerance for computing block state auto (default) | positive, real, scalar or vector
+  group: ''
+  block_parameter: AbsoluteTolerance
+  type: character vector, string
+  values: '''auto'' | ''-1'' | any positive real scalar or vector'
+  default: '''auto'''
+- name: State Name (e.g., 'position')
+  summary: Unique name for each state ' ' (default) | character vector, string
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  type: character vector, string
+  values: ''' '' | user-defined character vector, user-defined string'
+  default: ''' '''
+```
 
 ### **Select delay type** — Type of delay `Variable time delay` | `Variable transport delay`
 
@@ -290,7 +380,6 @@ To enable this parameter, set **Select delay type** to `Variable transport delay
 | **Type:** character vector, string |
 | **Values:** `' '` | user-defined character vector, user-defined string |
 | **Default:** `' '` |
-
 ## Libraries
 
 Simulink / Continuous

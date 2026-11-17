@@ -14,6 +14,17 @@ language: en
 # Iddata Sink
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input of iddata object scalar | vector
+  direction: input
+  data_types: double
+- name: Output
+  summary: Output of iddata object scalar | vector
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -34,8 +45,16 @@ outputs, specify `Output` as a vector of length
 *Ny*.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: IDDATA Name
+  summary: Name of iddata object data (default) | variable name
+  group: ''
+- name: Sample Time
+  summary: Sample time in seconds 0.1 (default) | finite positive number
+  group: ''
+```
 
 ### **IDDATA Name** — Name of `iddata` object `data` (default) | variable name
 
@@ -47,7 +66,6 @@ MATLAB workspace.
 Sample time in seconds, specified as a finite positive number. The
 `iddata` object stores the input and output signals,
 sampled at the sample time that you specify.
-
 ## Libraries
 
 System Identification Toolbox

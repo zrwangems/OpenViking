@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Hammerstein-Wiener Model
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: 仿真输入数据 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1(Out1)
+  summary: 仿真输出 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -39,8 +50,16 @@ Hammerstein-Wiener 模型的仿真输出，对于单输出模型返回为标量�
 对于具有 *Ny* 个输出的模型返回为 *Ny* 元素向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Model
+  summary: 要仿真的 Hammerstein-Wiener 模型 idnlhw 对象
+  group: ''
+- name: Initial conditions
+  summary: 仿真的初始条件指定 Zero（默认）| State values
+  group: ''
+```
 
 ### **Model** — 要仿真的 Hammerstein-Wiener 模型 `idnlhw` 对象
 
@@ -86,7 +105,6 @@ Hammerstein-Wiener 模型的状态对应于嵌入的线性 `idpoly` 或 `idss`
     ```
     X0 = findstates(M,z)
     ```
-
 ## 所属库
 
 System Identification Toolbox / Models

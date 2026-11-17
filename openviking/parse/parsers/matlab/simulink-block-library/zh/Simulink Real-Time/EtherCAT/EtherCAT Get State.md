@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # EtherCAT Get State
 
 ## 端口
+```yaml
+ports:
+- name: State
+  summary: 从 EtherCAT 网络接收的状态 1 | 2 | 4 | 8
+  direction: output
+```
 
 ### 输出
 
@@ -26,8 +32,18 @@ chinese_source: worker-translation
 | `PREOP` | 2 | 预运行 — 系统使用通信控制器交换系统特定的初始化数据。在此状态下，网络无法发送或接收信号数据。 |
 | `SAFEOP` | 4 | 安全运行 — 网络正在运行并准备好进行完整操作。主站向终端设备发送输入数据。终端设备输出保持安全状态。 |
 | `OP` | 8 | 运行 — 网络处于完整运行状态。主站向终端设备发送输入数据。终端设备以输出数据响应。 |
-
 ## 参数
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT 网络标识符 0（默认）| 0-11
+  group: ''
+  block_parameter: device_id
+- name: Sample time
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT 网络标识符 `0`（默认）| `0-11`
 
@@ -48,7 +64,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `sample_time` |
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

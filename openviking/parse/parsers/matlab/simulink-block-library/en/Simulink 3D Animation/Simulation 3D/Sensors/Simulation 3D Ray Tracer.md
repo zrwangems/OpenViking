@@ -14,6 +14,29 @@ language: en
 # Simulation 3D Ray Tracer
 
 ## Ports
+```yaml
+ports:
+- name: HitLocations
+  summary: Hit locations real-valued *N(B+1)*-by-3 array
+  direction: output
+  data_types: double
+- name: HitNormals
+  summary: Ray normal to hit location real-valued *N(B+1)*-by-3 array
+  direction: output
+  data_types: double
+- name: HitDistances
+  summary: Ray distance to hit location real-valued *N(B+1)*-by-1 array
+  direction: output
+  data_types: double
+- name: SurfaceIds
+  summary: Object IDs of hit surfaces integer-valued *N(B+1)*-by-1 vector | 0
+  direction: output
+  data_types: uint8
+- name: IsValidHit
+  summary: Hit flag *N*-by-1 vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -63,8 +86,53 @@ Hit flag, returned as a *N*-by-1 Boolean vector.
 surface.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: ''
+- name: Parent name
+  summary: Name of parent Scene Origin (default)
+  group: ''
+- name: Coordinate system
+  summary: Coordinate system for actor transformation Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE
+  group: ''
+- name: Mounting location
+  summary: Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview
+    mirror | Hood center | Roof center | ...
+  group: ''
+- name: Specify offset
+  summary: Specify offset from mounting location off (default) | on
+  group: ''
+- name: Relative translation [X, Y, Z]
+  summary: Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: ''
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: ''
+- name: Ray origins
+  summary: Ray origin zeros(10,3) (default) | real-valued *N*-by-3 array
+  group: ''
+- name: Ray directions
+  summary: Normalized ray direction ones(10,3) (default) | real-valued *N*-by-3 array
+  group: ''
+- name: Max ray lengths
+  summary: Maximum total ray length ones(10,1)*10 (default) | real-valued *N*-by-1 vector
+  group: ''
+- name: Number of bounces
+  summary: Number of bounces per ray 2 (default) | positive integer
+  group: ''
+- name: Visualize trace line
+  summary: Visualize ray traces on (default) | off
+  group: ''
+- name: Enable optimization
+  summary: Enable optimization on (default) | off
+  group: ''
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: ''
+```
 
 #### Mounting
 
@@ -244,7 +312,6 @@ environment frame rate is the inverse of the sample time.
 
 If you set the sample time to `-1`, the block inherits its sample time from
 the Simulation 3D Scene Configuration block.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Vehicle / Components Simulink 3D Animation / Simulation 3D / Sensors

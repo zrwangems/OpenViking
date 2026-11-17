@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # PS-Simulink Converter
 
 ## 端口
+```yaml
+ports:
+- name: PS
+  summary: 输入物理信号 physical signal
+  direction: input
+- name: Port_1
+  summary: 输出 Simulink 信号 scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -28,8 +38,20 @@ chinese_source: worker-translation
 该模块在转换输入物理信号后输出的 Simulink 信号。信号大小与输入物理信号的大小相匹配。**Output signal unit** 参数和 **Apply affine conversion** 复选框允许您对输入信号值应用缩放和线性偏移，以计算输出信号的正确值。
 
 **Data Types:** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Vector format
+  summary: 指定如何输出向量物理信号 inherit (default) | 1-D array
+  group: ''
+- name: Output signal unit
+  summary: 指定信号值转换的缩放因子 inherit (default) | 1 | V | A | m^3/s | Pa | N | m | m/s | N*m | rad/s | rad | K | kg/s | J/s | kg
+    | Wb | <unit expression>
+  group: ''
+- name: Apply affine conversion
+  summary: 为仿射温度单位选择转换方法 off (default) | on
+  group: ''
+```
 
 ### **Vector format** — 指定如何输出向量物理信号 `inherit` (default) | `1-D array`
 
@@ -45,7 +67,6 @@ chinese_source: worker-translation
 ### **Apply affine conversion** — 为仿射温度单位选择转换方法 off (default) | on
 
 此复选框仅适用于可以使用或不使用仿射偏移进行转换的单位，例如 `degC` 或 `degF`。如果输出信号表示以摄氏度或华氏度为单位的绝对温度，请选中此复选框。有关更多信息，请参阅 Thermal Unit Conversions。
-
 ## 所属库
 
 Simscape / Utilities

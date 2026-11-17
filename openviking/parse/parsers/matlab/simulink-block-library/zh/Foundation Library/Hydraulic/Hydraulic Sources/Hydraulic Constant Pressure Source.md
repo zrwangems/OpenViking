@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Hydraulic Constant Pressure Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,12 +26,13 @@ chinese_source: worker-translation
 
 `P`
 :   与源出口关联的液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Pressure**
 :   指定源入口与出口之间的压力差。默认值为 `1e6` Pa。
-
 ## 所属库
 
 R2025b 中未记录。

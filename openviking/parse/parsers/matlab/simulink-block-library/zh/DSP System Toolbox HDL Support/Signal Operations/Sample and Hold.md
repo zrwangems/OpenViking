@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Sample and Hold
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 信号端口 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Trigger
+  summary: 触发端口 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 采样和保持值 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -40,8 +55,19 @@ chinese_source: worker-translation
 采样和保持输出，以标量、向量或矩阵形式返回。当模块在触发端口接收到触发事件时，模块会在信号端口获取输入。然后模块保持所获取的数据，直到下一个触发事件发生。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Trigger type
+  summary: 触发类型 Rising edge（默认）| Falling edge | Either edge
+  group: ''
+- name: Initial condition
+  summary: 首次触发事件之前的模块输出 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Latch (buffer) input
+  summary: 锁存缓冲输入 off（默认）| on
+  group: ''
+```
 
 ### **Trigger type** — 触发类型 `Rising edge`（默认）| `Falling edge` | `Either edge`
 
@@ -58,7 +84,6 @@ chinese_source: worker-translation
 ### **Latch (buffer) input** — 锁存缓冲输入 `off`（默认）| `on`
 
 如果您选中 **Latch (buffer) input** 复选框，模块会输出上一时间步的输入值，直到下一个触发事件发生。要在循环中使用此模块，请选中此复选框。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations DSP System Toolbox HDL Support / Signal Operations

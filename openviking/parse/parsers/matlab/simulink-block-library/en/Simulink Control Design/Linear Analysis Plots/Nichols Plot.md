@@ -14,10 +14,15 @@ language: en
 # Nichols Plot
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 The following table summarizes the Nichols Plot block
 parameters, accessible via the block parameter dialog box.
@@ -1617,7 +1622,6 @@ Design Optimization software installed.
 
 - Design Optimization to Meet Step Response Requirements (GUI) (Simulink Design Optimization)
 - Design Optimization to Meet Time-Domain and Frequency-Domain Requirements (GUI) (Simulink Design Optimization)
-
 ## Libraries
 
 Not documented in R2025b.

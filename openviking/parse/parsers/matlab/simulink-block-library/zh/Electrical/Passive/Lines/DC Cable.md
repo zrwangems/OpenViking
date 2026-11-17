@@ -15,6 +15,63 @@ chinese_source: worker-translation
 # DC Cable
 
 ## 端口
+```yaml
+ports:
+- name: c+
+  summary: 缆芯导体正极端子 电气
+  direction: conserving
+- name: c-
+  summary: 缆芯导体负极端子 电气
+  direction: conserving
+- name: s+
+  summary: 护套正极端子 电气
+  direction: conserving
+- name: s-
+  summary: 护套负极端子 电气
+  direction: conserving
+- name: a+
+  summary: 铠装正极端子 电气
+  direction: conserving
+- name: a-
+  summary: 铠装负极端子 电气
+  direction: conserving
+- name: c1+
+  summary: 第一根电缆缆芯导体正极端子 电气
+  direction: conserving
+- name: c1-
+  summary: 第一根电缆缆芯导体负极端子 电气
+  direction: conserving
+- name: s1+
+  summary: 第一根电缆护套正极端子 电气
+  direction: conserving
+- name: s1-
+  summary: 第一根电缆护套负极端子 电气
+  direction: conserving
+- name: a1+
+  summary: 第一根电缆铠装正极端子 电气
+  direction: conserving
+- name: a1-
+  summary: 第一根电缆铠装负极端子 电气
+  direction: conserving
+- name: c2+
+  summary: 第二根电缆缆芯导体正极端子 电气
+  direction: conserving
+- name: c2-
+  summary: 第二根电缆缆芯导体负极端子 电气
+  direction: conserving
+- name: s2+
+  summary: 第二根电缆护套正极端子 电气
+  direction: conserving
+- name: s2-
+  summary: 第二根电缆护套负极端子 电气
+  direction: conserving
+- name: a2+
+  summary: 第二根电缆铠装正极端子 电气
+  direction: conserving
+- name: a2-
+  summary: 第二根电缆铠装负极端子 电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -179,8 +236,79 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Configuration** 参数设置为
 `Double cable`。
-
 ## 参数
+```yaml
+parameters:
+- name: Configuration
+  summary: 用于对单根或双根电缆建模的选项 Single cable（默认）| Double cable
+  group: 主要
+- name: Environmental resistivity
+  summary: 大地回路电阻 100 Ohm*m（默认）| 正标量
+  group: 主要
+- name: Cable length
+  summary: 电缆长度 100 km（默认）| 大于 1 m 的标量
+  group: 主要
+- name: Core conductor resistivity
+  summary: 缆芯导体电阻率 2.1e-8 Ohm*m（默认）| 正标量
+  group: 电气参数
+- name: Core conductor relative permeability
+  summary: 缆芯导体相对磁导率 1（默认）| 正标量
+  group: 电气参数
+- name: Insulation relative permeability
+  summary: 绝缘层相对磁导率 1（默认）| 正标量
+  group: 电气参数
+- name: Insulation relative permittivity
+  summary: 绝缘层相对介电常数 2.5（默认）| 正标量
+  group: 电气参数
+- name: Sheath resistivity
+  summary: 护套电阻率 2.2e-7 Ohm*m（默认）| 正标量
+  group: 电气参数
+- name: Sheath relative permeability
+  summary: 护套相对磁导率 1（默认）| 正标量
+  group: 电气参数
+- name: Inner jacket relative permeability
+  summary: 内护套相对磁导率 1（默认）| 正标量
+  group: 电气参数
+- name: Inner jacket relative permittivity
+  summary: 内护套相对介电常数 2.4（默认）| 正标量
+  group: 电气参数
+- name: Armor resistivity
+  summary: 铠装电阻率 1.8e-7 Ohm*m（默认）| 正标量
+  group: 电气参数
+- name: Armor relative permeability
+  summary: 铠装相对磁导率 10（默认）| 正标量
+  group: 电气参数
+- name: Serving relative permeability
+  summary: 外被层相对磁导率 1（默认）| 正标量
+  group: 电气参数
+- name: Serving relative permittivity
+  summary: 外被层相对介电常数 2.4（默认）| 正标量
+  group: 电气参数
+- name: Core conductor radial thickness
+  summary: 缆芯导体径向厚度 25 mm（默认）| 正标量
+  group: 几何尺寸
+- name: Insulation radial thickness
+  summary: 绝缘层径向厚度 20 mm（默认）| 正标量
+  group: 几何尺寸
+- name: Sheath radial thickness
+  summary: 护套径向厚度 3 mm（默认）| 正标量
+  group: 几何尺寸
+- name: Inner jacket radial thickness
+  summary: 内护套径向厚度 5 mm（默认）| 正标量
+  group: 几何尺寸
+- name: Armor radial thickness
+  summary: 铠装径向厚度 6 mm（默认）| 正标量
+  group: 几何尺寸
+- name: Serving radial thickness
+  summary: 外被层径向厚度 5 mm（默认）| 正标量
+  group: 几何尺寸
+- name: Vertical depth of the cable
+  summary: 电缆垂直位置 1 m（默认）| [1, 1] | 正标量或由两个正元素组成的向量
+  group: 几何尺寸
+- name: Horizontal position of the cable
+  summary: 电缆水平位置 [0, 1] m（默认）| 由两个元素组成的向量
+  group: 几何尺寸
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -306,7 +434,6 @@ cable`，则此参数值为由两个正元素组成的向量，
 
 要启用此参数，请将 **Configuration** 设置为
 `Double cable`。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Lines

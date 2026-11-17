@@ -14,6 +14,21 @@ language: en
 # Receiver
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Received signal complex-valued vector | complex-valued matrix
+  direction: input
+  data_types: single | double
+- name: EN
+  summary: Enabling signal real-valued vector (default) | real-valued matrix | logical-valued vector | logical-valued matrix
+  direction: input
+  data_types: double | single | Boolean
+- name: Y
+  summary: Amplified signal complex-valued vector | complex-valued matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -86,8 +101,66 @@ signal voltage assuming a reference impedance of 1 Ohm.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable signal enabling input
+  summary: Enablng signal input false0 (default) | true1
+  group: ''
+- name: Add noise to input signal
+  summary: Add noise to input signal off (default) | on
+  group: ''
+- name: Input noise temperature (K)
+  summary: Input noise temperature 290 (default) | positive scalar | length-*N* vector of positive values
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate 1e6 (default) | positive scalar
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Noise method
+  summary: Noise method None | Noise figure | Noise factor | Noise temperature
+  group: ''
+- name: Noise figure (dB)
+  summary: Noise figure 3 (default) | real scalar | length-*N* vector or real values
+  group: ''
+- name: Noise factor
+  summary: Noise factor 2 (default) | positive scalar | length-*N* vector of positive values
+  group: ''
+- name: Reference temperature (K)
+  summary: Reference temperature 290 (default) | positive scalar | length-*N* vector of positive values
+  group: ''
+- name: Gain method
+  summary: Gain method Linear (default) | Cubic polynomial | Lookup table
+  group: ''
+- name: Gain (dB)
+  summary: Linear receiver gain 20 (default) | real scalar | length-*N* vector of real values
+  group: ''
+- name: Output IP3 (dBm)
+  summary: Output IP3 Inf (default) | scalar | length-*N* vector of real values
+  group: ''
+- name: Lookup table
+  summary: Lookup table [-25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12] (default) | *M*-by-*N* real-valued matrix | *M*-by-*N*
+    real-valued matrix
+  group: ''
+- name: Phased offset (degrees)
+  summary: Phase offset 0 (default) | scalar | length-*N* vector of real values
+  group: ''
+- name: Source of seed for random number generator
+  summary: Source of seed for random number generator Auto (default) | Property
+  group: ''
+- name: Seed for random number generator
+  summary: Seed for random number generator 0 (default) | positive integer
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -362,7 +435,6 @@ number generator** parameter.
 Seed for random generator, specified as a positive integer.
 
 **Data Types:** `single` | `double`
-
 ## Libraries
 
 Phased Array System Toolbox / Transmitters and Receivers

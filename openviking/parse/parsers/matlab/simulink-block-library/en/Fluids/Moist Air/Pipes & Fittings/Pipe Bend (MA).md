@@ -14,6 +14,15 @@ language: en
 # Pipe Bend (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port moist air
+  direction: conserving
+- name: B
+  summary: Liquid port moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,101 @@ Moist air conserving port associated with the liquid entry or exit port.
 ### **B** — Liquid port moist air
 
 Moist air conserving port associated with the liquid entry or exit port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe diameter
+  summary: Pipe diameter 0.01 m (default) | positive scalar
+  group: Main
+- name: Bend radius
+  summary: Bend circle radius 0.04 m (default) | positive scalar
+  group: Main
+- name: Bend angle
+  summary: Bend angle 90 deg (default) | positive scalar
+  group: Main
+- name: Internal surface absolute roughness
+  summary: Pipe wall roughness 15e-6 m (default) | positive scalar
+  group: Main
+- name: Initial pressure
+  summary: Moist air pressure at the start of simulation 0.101325 MPa (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial pressure priority
+  summary: Pressure parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial temperature
+  summary: Temperature at the start of simulation 293.15 K (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial temperature priority
+  summary: Temperature parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial humidity specification
+  summary: Humidity specification Relative humidity (default) | Specific humidity | Mole fraction | Humidity ratio | Wet-bulb
+    temperature
+  group: Effects and Initial Conditions
+- name: Initial relative humidity
+  summary: Relative humidity at the start of simulation 0.5 (default) | scalar in the range of [0,1]
+  group: Effects and Initial Conditions
+- name: Initial relative humidity priority
+  summary: Relative humidity parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial specific humidity
+  summary: Specific humidity at the start of simulation 0.01 (default) | scalar in the range of [0,1]
+  group: Effects and Initial Conditions
+- name: Initial specific humidity priority
+  summary: Specific humidity parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial water vapor mole fraction
+  summary: Mole fraction of water vapor at the start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Effects and Initial Conditions
+- name: Initial water vapor mole fraction priority
+  summary: Water vapor mole fraction humidity parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial humidity ratio
+  summary: Humidity ratio at the start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Effects and Initial Conditions
+- name: Initial humidity ratio priority
+  summary: Humidity ratio parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial wet-bulb temperature
+  summary: Wet-bulb temperature at the start of simulation 287 K (default) | scalar in the range [0,1]
+  group: Effects and Initial Conditions
+- name: Initial wet-bulb temperature priority
+  summary: Wet-bulb temperature parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial trace gas specification
+  summary: Measurement type of trace gas Mass fraction (default) | Mole fraction
+  group: Effects and Initial Conditions
+- name: Initial trace gas mass fraction
+  summary: Amount of trace gas in the moist air channel 0.001 (default) | scalar in the range [0,1]
+  group: Effects and Initial Conditions
+- name: Initial trace gas mass fraction priority
+  summary: Trace gas mass fraction parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial trace gas mole fraction
+  summary: Mole fraction of trace gas at the start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Effects and Initial Conditions
+- name: Initial trace gas mole fraction priority
+  summary: Trace gas mole fraction parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial mass ratio of water droplets to moist air priority
+  summary: Mass ratio of water droplets to moist air parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Relative humidity at saturation
+  summary: Relative humidity point of condensation 1 (default) | scalar in the range [0,1]
+  group: Effects and Initial Conditions
+- name: Water vapor condensation time constant
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Water droplets evaporation time constant
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Fraction of condensate entrained as water droplets
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Effects and Initial Conditions
+```
 
 ### Main
 
@@ -308,7 +410,6 @@ Characteristic time scale at which water droplets evaporate to vapor.
 
 Fraction of the condensate in the moist air that is entrained as water
 droplets.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

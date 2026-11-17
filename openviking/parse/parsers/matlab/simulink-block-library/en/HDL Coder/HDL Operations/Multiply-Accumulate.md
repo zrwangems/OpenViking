@@ -14,6 +14,53 @@ language: en
 # Multiply-Accumulate
 
 ## Ports
+```yaml
+ports:
+- name: a
+  summary: Input signal vector | matrix | array | bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: b
+  summary: Input signal scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: c
+  summary: Bias signal scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: startIn
+  summary: Start of accumulation control signal scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: validIn
+  summary: Valid input control signal scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: endIn
+  summary: End of accumulation control signal scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: dataOut
+  summary: Output signal scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: startOut
+  summary: Start of accumulation output control signal scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: validOut
+  summary: Valid output control signal scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: endOut
+  summary: End of accumulation output control signal scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: countOut
+  summary: Count output control signal scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -182,8 +229,73 @@ To enable this port, set **Operation Mode** to
 and then select **Count output port**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation Mode
+  summary: Mode of accumulation of inputs 'Vector' (default) | 'Streaming - using Start and End Ports' | 'Streaming - using
+    Number of Samples'
+  group: ''
+  block_parameter: opMode
+  type: character vector
+  values: '''Vector'' | ''Streaming - using Start and End Ports'' | ''Streaming - using Number of Samples'''
+  default: '''Vector'''
+- name: Bias
+  summary: Offset to add to the input dot product {'0.0'} (default)
+  group: ''
+  block_parameter: initValue2
+  type: character vector
+  values: An integer greater than or equal to zero
+  default: '''0.0'''
+- name: Number of Samples
+  summary: Number of samples of valid accumulated output signal {'2'} (default)
+  group: ''
+  block_parameter: num_samples
+  type: character vector
+  values: An integer greater than or equal to zero
+  default: '''2'''
+- name: Output data type
+  summary: 'Data type of the block output Inherit: Inherit via back propagation (default)'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  default: '{''Inherit: Inherit via internal rule''}'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  default: '{''Floor''}'
+- name: Valid output port
+  summary: Control generation of validOut output port off (default) | on
+  group: ''
+  block_parameter: validOut
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: End input and output ports
+  summary: Control generation of endIn input port and endOut output port off (default) | on
+  group: ''
+  block_parameter: endInandOut
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Start output port
+  summary: Control generation of startOut output port off (default) | on
+  group: ''
+  block_parameter: startOut
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Count output port
+  summary: Control generation of countOut output port off (default) | on
+  group: ''
+  block_parameter: countOut
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Operation Mode** — Mode of accumulation of inputs `'Vector'` (default) | `'Streaming - using Start and End Ports'` | `'Streaming - using Number of Samples'`
 
@@ -463,7 +575,6 @@ Samples`.
 | **Type:** character vector |
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 HDL Coder / HDL Operations

@@ -14,6 +14,18 @@ language: en
 # Resistor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Resistor thermal mass thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -35,8 +47,98 @@ Thermal conserving port that represents the resistor thermal mass.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Resistance
+  summary: Nominal resistance value 1 Ohm (default)
+  group: Main
+- name: Tolerance (%)
+  summary: Resistor tolerance, in percent 5 (default)
+  group: Main
+- name: Tolerance application
+  summary: Select how to apply tolerance during simulation None — use nominal value (default) | Random tolerance | Apply maximum
+    tolerance value | Apply minimum tolerance value
+  group: Main
+- name: Tolerance distribution
+  summary: Select the distribution type Uniform (default) | Gaussian
+  group: Main
+- name: Number of standard deviations for quoted tolerance
+  summary: Used for calculating the Gaussian random number 4 (default)
+  group: Main
+- name: Enable operating limits
+  summary: Select Yes to enable reporting when the operational limits are exceeded No (default) | Yes
+  group: Operating Limits
+- name: Reporting when operating limits exceeded
+  summary: Select the reporting method Warn (default) | Error
+  group: Operating Limits
+- name: Maximum working voltage
+  summary: Maximum voltage allowed for normal block operation 100 V (default)
+  group: Operating Limits
+- name: Power rating
+  summary: Maximum power allowed for normal block operation 1 W (default)
+  group: Operating Limits
+- name: Temperature below which full power rating is available
+  summary: Maximum temperature where full power rating still applies 70 degC (default)
+  group: Operating Limits
+- name: Temperature above which power rating is reduced to zero
+  summary: Temperature where power rating becomes 0 155 degC (default)
+  group: Operating Limits
+- name: Operating temperature range, [Tmin Tmax]
+  summary: Minimum and maximum temperature values allowed for normal block operation [-50 150] degC (default)
+  group: Operating Limits
+- name: Noise mode
+  summary: Select whether to model thermal noise current Disabled (default) | Enabled
+  group: Noise
+- name: Sample time
+  summary: Rate at which the noise source is sampled 1e-3 s (default)
+  group: Noise
+- name: Repeatability
+  summary: Select the noise control option Not repeatable (default) | Repeatable | Specify seed
+  group: Noise
+- name: Auto-generated seed used for repeatable option
+  summary: Auto-generated random number seed random real number
+  group: Noise
+- name: Seed
+  summary: Random number seed 0 (default)
+  group: Noise
+- name: Device simulation temperature
+  summary: Temperature of resistor at the start of the simulation 25 degC (default)
+  group: Noise
+- name: Resistance temperature coefficient
+  summary: Specifies how the resistance value changes with temperature 0.00393 1/K (default)
+  group: Thermal
+- name: Measurement temperature
+  summary: Temperature corresponding to nominal resistance 25 degC (default)
+  group: Thermal
+- name: Thermal mass
+  summary: Thermal mass associated with port H 100 J/K (default)
+  group: Thermal
+- name: Resistance fault
+  summary: Option to add resistance fault Add fault (default)
+  group: Faults
+- name: Faulted resistance
+  summary: Resistance when block is in faulted state inf Ohm (default) | positive scalar
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible current
+  summary: Current threshold for fault transition 1 A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding maximum permissible current
+  summary: Maximum length of time the current exceeds the threshold 1 s (default) | nonnegative scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -399,7 +501,6 @@ To enable this parameter, click the **Add fault**
 hyperlink for the **Resistance fault** parameter
 and set **Trigger type** to
 `Additional triggers`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

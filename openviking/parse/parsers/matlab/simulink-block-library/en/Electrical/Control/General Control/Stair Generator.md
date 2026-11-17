@@ -14,6 +14,13 @@ language: en
 # Stair Generator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Stair signal Simulink® signal
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### Output
 
@@ -22,8 +29,32 @@ language: en
 Stair signal, returned as a Simulink output signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## Parameters
+```yaml
+parameters:
+- name: Time (s)
+  summary: Transition times [0.5 1 3 3.5] (default) | row vector of nonnegative values
+  group: Main
+- name: Amplitude
+  summary: Amplitudes of stair signal values [1 -1 2.5 0] (default) | row vector
+  group: Main
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: Main
+- name: Repeat stair pattern indefinitely
+  summary: Stair pattern repetition off (default) | on
+  group: Main
+- name: Output data type
+  summary: 'Specify the output data type double (default) | Inherit: auto | Inherit: Inherit via internal rule | Inherit:
+    Inherit via back propagation | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | <data type expression>'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''Inherit: Inherit via internal rule''| ''Inherit: Inherit via back propagation'' | ''single''
+    | ''double'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''|''int64''|''uint64''| ''<data type
+    expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+```
 
 ### Main
 
@@ -104,7 +135,6 @@ For more information, see Control Data Types of Signals.
 | **Type**: character vector |
 | **Values**: `'Inherit: auto'` | `'Inherit: Inherit via internal rule'`| `'Inherit: Inherit via back propagation'` | `'single'` | `'double'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'`|`'int64'`|`'uint64'`| `'<data type expression>'` |
 | **Default**: `'Inherit: Inherit via internal rule'` |
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

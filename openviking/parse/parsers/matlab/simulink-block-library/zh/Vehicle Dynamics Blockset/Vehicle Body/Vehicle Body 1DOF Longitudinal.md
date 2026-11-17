@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Vehicle Body 1DOF Longitudinal
 
 ## 端口
+```yaml
+ports:
+- name: FExt
+  summary: 车辆质心处的外部力 array
+  direction: input
+- name: MExt
+  summary: 绕车辆质心的外部力矩 array
+  direction: input
+- name: FwF
+  summary: 前轴上的总纵向力 scalar
+  direction: input
+- name: FwR
+  summary: 后轴上的总纵向力 scalar
+  direction: input
+- name: Grade
+  summary: 道路坡度角 scalar
+  direction: input
+- name: WindX
+  summary: 纵向风速 scalar
+  direction: input
+- name: WindXYZ
+  summary: 风速 array
+  direction: input
+- name: AirTemp
+  summary: 环境空气温度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: xdot
+  summary: 车身纵向速度 scalar
+  direction: output
+- name: FzF
+  summary: 前轮法向力 scalar
+  direction: output
+- name: FzR
+  summary: 后轮法向力 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -208,8 +247,67 @@ temperature**。
 ### **FzR** — 后轮法向力 `scalar`
 
 后轮单个车轮沿车辆固定 `z` 轴的法向力 *Fzr*，单位为 N。
-
 ## 参数
+```yaml
+parameters:
+- name: External forces
+  summary: FExt 输入端口 off（默认）| on
+  group: ''
+- name: External moments
+  summary: MExt 输入端口 off（默认）| on
+  group: ''
+- name: Air temperature
+  summary: AirTemp 输入端口 off（默认）| on
+  group: ''
+- name: Wind X,Y,Z components
+  summary: WindXYZ 输入端口 off（默认）| on
+  group: ''
+- name: Number of wheels on front axle, NF
+  summary: 前轮数量 2（默认）| scalar
+  group: ''
+- name: Number of wheels on rear axle, NR
+  summary: 后轮数量 2（默认）| scalar
+  group: ''
+- name: Mass, m
+  summary: 车辆质量 1500（默认）| scalar
+  group: ''
+- name: Horizontal distance from CG to front axle, a
+  summary: 前轴距离 1.4（默认）| scalar
+  group: ''
+- name: Horizontal distance from CG to rear axle, b
+  summary: 后轴距离 1.8（默认）| scalar
+  group: ''
+- name: CG height above axles, h
+  summary: 高度 .35（默认）| scalar
+  group: ''
+- name: Longitudinal drag coefficient, Cd
+  summary: 阻力 .3（默认）| scalar
+  group: ''
+- name: Longitudinal lift coefficient, Cl
+  summary: 升力 0（默认）| scalar
+  group: ''
+- name: Longitudinal drag pitch moment, Cpm
+  summary: 俯仰阻力矩 0（默认）| scalar
+  group: ''
+- name: Frontal area, Af
+  summary: 面积 4（默认）| scalar
+  group: ''
+- name: Initial position, x_o
+  summary: 位置 0（默认）| scalar
+  group: ''
+- name: Initial velocity, xdot_o
+  summary: 速度 0（默认）| scalar
+  group: ''
+- name: Absolute air pressure, Pabs
+  summary: 压力 101325（默认）| scalar
+  group: ''
+- name: Air temperature, T
+  summary: 环境空气温度 273（默认）| scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: 重力 9.81（默认）| scalar
+  group: ''
+```
 
 #### 选项
 
@@ -296,7 +394,6 @@ temperature**。
 ### **Gravitational acceleration, g** — 重力 `9.81`（默认）| `scalar`
 
 重力加速度 *g*，单位为 m/s2。
-
 ## 所属库
 
 Powertrain Blockset / Vehicle Dynamics Vehicle Dynamics Blockset / Vehicle Body

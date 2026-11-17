@@ -14,6 +14,21 @@ language: en
 # Array-Vector Divide
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input array scalar | vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: V
+  summary: Vector to divide vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output
+  summary: Output scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -55,8 +70,40 @@ For more information on how the block computes the output, see Algorithms.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Divide along dimension
+  summary: Dimension along which to divide 1 (default) | positive integer
+  group: Main Tab
+- name: Vector (V) source
+  summary: Source of vector *V* Input port (default) | Dialog parameter
+  group: Main Tab
+- name: Vector (V)
+  summary: Vector to divide [0.5 0.25] (default) | vector
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+- name: Vector (V)
+  summary: 'Vector data type Inherit: Same word length as input (default) | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as first input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Output minimum [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Output maximum [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -193,7 +240,6 @@ value is `[]` (unspecified). Simulink uses this value to perform:
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

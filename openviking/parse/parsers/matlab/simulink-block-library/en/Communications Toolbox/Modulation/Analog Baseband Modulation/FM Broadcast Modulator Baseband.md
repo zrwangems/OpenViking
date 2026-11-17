@@ -14,6 +14,20 @@ language: en
 # FM Broadcast Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Audio signal *N*-element column vector | 2-by-*N* matrix
+  direction: input
+  data_types: double | single
+- name: In2
+  summary: RDS (or RBDS) signal *N*-element column vector | 2-by-*N* matrix
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: FM-modulated baseband signal column vector
+  direction: output
+```
 
 ### Input
 
@@ -69,8 +83,34 @@ data type as the input signal. The length of this output is
 `length`(`Input 1` × **Sample rate
 (Hz)** / **Sample rate of audio
 input signal (Hz)**).
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: Output signal sample rate 240e3 | positive scalar
+  group: ''
+- name: Frequency deviation (Hz)
+  summary: Peak deviation of modulator output signal frequency 75e3 | positive scalar
+  group: ''
+- name: Pre-emphasis filter time constant (s)
+  summary: Pre-emphasis highpass filter time constant 7.5e-05 (default) | positive scalar
+  group: ''
+- name: Sample rate of audio input signal (Hz)
+  summary: Sample rate of input audio signal 48000 (default) | positive scalar
+  group: ''
+- name: Stereo audio
+  summary: Option to enable stereo modulation off (default) | on
+  group: ''
+- name: RDS/RBDS modulation
+  summary: Option to enable RDS (or RBDS) waveform modulation off (default) | on
+  group: ''
+- name: Oversampling factor of RDS/RBDS input
+  summary: Oversampling factor of RDS (or RBDS) input signal 10 (default) | positive integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -149,7 +189,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Modulation / Analog Baseband Modulation

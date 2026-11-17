@@ -14,6 +14,13 @@ language: en
 # Variable Capacitor
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Simulink control signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -22,11 +29,12 @@ language: en
 Simulink control signal, specified as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 The Variable Capacitor block has no parameters.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

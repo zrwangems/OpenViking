@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # General Block Deinterleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Permutation vector source**
 :   一个选择项，用于指定置换向量的来源。来源可以是 `Dialog` 或 `Input
@@ -28,7 +33,6 @@ R2025b 中未记录。
 **Permutation vector**
 :   一个长度为 N 的向量，按顺序列出输出元素中来自输入向量的索引。仅当 **Permutation vector source** 设置为
     `Dialog` 时，此参数可用。
-
 ## 所属库
 
 R2025b 中未记录。

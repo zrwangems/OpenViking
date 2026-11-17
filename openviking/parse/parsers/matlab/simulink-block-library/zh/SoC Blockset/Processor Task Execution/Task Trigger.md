@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Task Trigger
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输出触发标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输出
 
@@ -23,11 +30,12 @@ chinese_source: worker-translation
 此端口发送任务信号，触发 Task Manager 模块执行关联的任务。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 SoC Blockset / Processor Task Execution

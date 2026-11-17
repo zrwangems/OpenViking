@@ -14,6 +14,12 @@ language: en
 # Mechanical Translational Properties (PB)
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Port that connects block to the circuit position-based mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,16 @@ language: en
 
 Position-based mechanical translational conserving port that connects the block to
 the physical network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Downward gravitational acceleration, g
+  summary: Gravitational acceleration acting on network 9.81 m/s^2 (default) | nonnegative scalar
+  group: ''
+- name: Positive direction incline angle, θ
+  summary: Incline angle of the rail 0 deg (default) | scalar
+  group: ''
+```
 
 ### **Downward gravitational acceleration, g** — Gravitational acceleration acting on network `9.81 m/s^2` (default) | nonnegative scalar
 
@@ -31,7 +45,6 @@ Gravitational acceleration acting on all the blocks in the connected circuit.
 ### **Positive direction incline angle, θ** — Incline angle of the rail `0 deg` (default) | scalar
 
 Angle between the rail positive direction and the positive horizontal.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Utilities

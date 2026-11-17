@@ -14,10 +14,33 @@ language: en
 # Slider Switch
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Block parameter value to connect parameter value connection options
+  group: ''
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: States
+  summary: Pair values and labels scalar and character vector
+  group: ''
+  block_parameter: States
+  type: two element array of structures
+- name: Label
+  summary: Block label position Top (default) | Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — Block parameter value to connect parameter value connection options
 
@@ -122,7 +145,6 @@ model, the label is the name of the connected element.
 | **Type:** character vector |
 | **Values:** `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default:** `'Top'` |
-
 ## Libraries
 
 Simulink / Dashboard

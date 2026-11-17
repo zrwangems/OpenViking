@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Hit Scheduler
 
 ## 端口
+```yaml
+ports:
+- name: En
+  summary: 调度时间步的使能信号 标量 | 向量
+  direction: input
+  data_types: Boolean
+- name: Δt
+  summary: 当前仿真时间与要调度的时间步之间的间隔 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 已调度时间步的指示 标量 | 向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -50,8 +65,31 @@ chinese_source: worker-translation
 由于 Hit Scheduler 模块显式调度影响模块执行时机的求解器时间命中，因此对于两种输出类型，输出都具有可变采样时间。有关可变采样时间的详细信息，请参阅 Types of Sample Time。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Output type
+  summary: 模块输出类型 Signal（默认）| Function Call
+  group: ''
+  block_parameter: HitSchedulerOutputType
+  type: string | character vector
+  values: '''Signal'' | ''Function-Call'''
+  default: '''Signal'''
+- name: Initial buffer size
+  summary: 已调度时间步缓冲区的初始大小 256（默认）| 整数
+  group: ''
+  block_parameter: InitialBufferSize
+  type: string | character vector
+  values: positive, whole, numeric scalar
+  default: '''256'''
+- name: Use fixed buffer size
+  summary: 使用固定大小缓冲区的选项 off（默认）| on
+  group: ''
+  block_parameter: FixedBuffer
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Output type** — 模块输出类型 `Signal`（默认）| `Function Call`
 
@@ -96,7 +134,6 @@ chinese_source: worker-translation
 | **类型**：string | character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Messages & Events

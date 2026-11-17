@@ -14,10 +14,15 @@ language: en
 # C281x QEP
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Module**
 :   Specify which QEP pins to use:
@@ -140,7 +145,6 @@ Not documented in R2025b.
     `uint8`, `int16`,
     `uint16`, `int32`,
     `uint32` or `boolean`.
-
 ## Libraries
 
 Not documented in R2025b.

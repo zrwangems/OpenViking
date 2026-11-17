@@ -14,10 +14,30 @@ language: en
 # Simulation 3D Video Writer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Filename
+  summary: Name of video file output.avi (default) | character vector | string
+  group: ''
+  block_parameter: Filename
+  values: '''output.avi'' (default) | character vector | string'
+- name: File action
+  summary: How to manage video file Preserve (default) | Overwrite | character vector | string
+  group: ''
+  block_parameter: FileAction
+  values: '''Preserve'' (default) | ''Overwrite'' | character vector | string'
+- name: Recording interval (s)
+  summary: Recording time interval [0 inf] (default) | real positive 1-by-2 vector
+  group: ''
+  block_parameter: Interval
+  values: '[0 inf] (default) | real positive 1-by-2 vector'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -100,7 +120,6 @@ programmatically, use the `get_param` (Simulink) function.
 | **Data Types:** | `double` |
 
 **Example:** `set_param(gcb,"Interval","[0 inf]")`
-
 ## Libraries
 
 Simulink 3D Animation / Simulation 3D / Utilities

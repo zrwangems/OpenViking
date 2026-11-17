@@ -14,6 +14,12 @@ language: en
 # PS Constant
 
 ## Ports
+```yaml
+ports:
+- name: O
+  summary: Output physical signal, typed by the block parameter value physical signal
+  direction: output
+```
 
 ### Output
 
@@ -25,8 +31,13 @@ unit of the **Constant** parameter.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant
+  summary: Signal value and unit 1 1 (default)
+  group: ''
+```
 
 ### **Constant** — Signal value and unit `1 1` (default)
 
@@ -40,7 +51,6 @@ type the desired unit name, such as `rpm`, or a valid expression, such
 as `rad/s`. For more information and a list of unit abbreviations, see
 How to Specify Units in Block Dialogs
 and Unit Definitions.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Sources

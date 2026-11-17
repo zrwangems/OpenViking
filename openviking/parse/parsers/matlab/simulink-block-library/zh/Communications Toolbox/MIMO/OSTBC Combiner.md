@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # OSTBC Combiner
 
 ## 端口
+```yaml
+ports:
+- name: Rx
+  summary: 接收信号列向量 | 矩阵 | 三维数组
+  direction: input
+  data_types: single | double | fixed point
+- name: cEst
+  summary: 信道估计矩阵 | 三维数组 | 四维数组
+  direction: input
+  data_types: single | double | fixed point
+- name: Out
+  summary: 输出数据矩阵 | 三维数组
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -42,8 +57,44 @@ chinese_source: worker-translation
 此端口在模块图标上未命名。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of transmit antennas
+  summary: 发射天线数量 2（默认）| 3 | 4
+  group: ''
+- name: Rate
+  summary: 符号速率 3/4（默认）| 1/2
+  group: ''
+- name: Number of receive antennas
+  summary: 接收天线数量 1（默认）| [1,8] 范围内的整数
+  group: ''
+- name: Rounding mode
+  summary: 定点计算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和的选项 关（默认）| 开
+  group: ''
+- name: Product Output
+  summary: '用于分集合并的分子中的复数乘积 Inherit: Inherit via internal rule（默认）| Inherit: Same as product output | fixdt(1,16,0) | <data
+    type expression>'
+  group: ''
+- name: Accumulator
+  summary: '用于分集合并的分子中的求和 Inherit: Inherit via internal rule（默认）| Inherit: Same as product output | fixdt(1,16,0) | <data
+    type expression>'
+  group: ''
+- name: Energy product output
+  summary: '分母中的复数乘积 Inherit: Inherit via internal rule（默认）| Inherit: Same as product output | fixdt(1,16,0) | <data type
+    expression>'
+  group: ''
+- name: Energy accumulator
+  summary: '用于计算 MIMO 信道中总能量的分母中的求和 Inherit: Inherit via internal rule（默认）| Inherit: Same as accumulator | Inherit: Same as
+    energy product output | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Division output
+  summary: '按 MIMO 信道中总能量进行的归一化分集合并 Inherit: Same as accumulator | fixdt(1,16,0) | <data type expression>'
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -111,7 +162,6 @@ chinese_source: worker-translation
 ### **Division output** — 按 MIMO 信道中总能量进行的归一化分集合并 `Inherit: Same as accumulator` | `fixdt(1,16,0)` | `<data type expression>`
 
 按 MIMO 信道中总能量进行的归一化分集合并，指定为 `Inherit: Same as accumulator`、`fixdt(1,16,0)` 或自定义 `<data type expression>`。
-
 ## 所属库
 
 Communications Toolbox / MIMO

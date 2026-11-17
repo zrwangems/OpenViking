@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Two-Quadrant Chopper
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 开关器件栅极控制 electrical | vector
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: 直流电压 1 正极 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: 直流电压 1 负极 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: 直流电压 2 正极 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: 直流电压 2 负极 electrical | scalar
+  direction: conserving
+  data_types: double
+```
 
 ### 守恒端口
 
@@ -47,8 +70,85 @@ chinese_source: worker-translation
 与第二个直流电压负极端子相关联的电气守恒端口。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 斩波器工作象限 First and second quadrant（默认）| First and fourth quadrant
+  group: ''
+- name: Switching device
+  summary: 开关类型 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 开关器件
+- name: Forward voltage
+  summary: 电压 0.8 Ohm（默认）| scalar
+  group: 开关器件
+- name: On-state resistance
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 开关器件
+- name: Drain-source on resistance
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 开关器件
+- name: Off-state conductance
+  summary: 电导 1e-5 1/Ohm（默认）| scalar
+  group: 开关器件
+- name: Threshold voltage
+  summary: 电压阈值 6 V（默认）| scalar
+  group: 开关器件
+- name: Gate trigger voltage, Vgt
+  summary: 电压阈值 1 V（默认）| scalar
+  group: 开关器件
+- name: Gate turn-off voltage, Vgt_off
+  summary: 电压阈值 -1 V（默认）| scalar
+  group: 开关器件
+- name: Holding current
+  summary: 电流阈值 1 A（默认）| scalar
+  group: 开关器件
+- name: Model dynamics
+  summary: 二极管模型 Diode with no dynamics（默认）| Diode with charge dynamics
+  group: 保护二极管
+- name: Forward voltage
+  summary: 电压 0.8 V（默认）| scalar
+  group: 保护二极管
+- name: On resistance
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 保护二极管
+- name: Off conductance
+  summary: 电导 1e-5 1/Ohm（默认）| scalar
+  group: 保护二极管
+- name: Junction capacitance
+  summary: 电容 50 nF（默认）| scalar
+  group: 保护二极管
+- name: Peak reverse current, iRM
+  summary: 电流 -235 A（默认）| scalar less than 0
+  group: 保护二极管
+- name: Initial forward current when measuring iRM
+  summary: 电流 300 A（默认）| scalar greater than 0
+  group: 保护二极管
+- name: Rate of change of current when measuring iRM
+  summary: 电流变化率 -50 A/us（默认）| scalar
+  group: 保护二极管
+- name: Reverse recovery time parameterization
+  summary: 恢复时间模型 Specify stretch factor（默认）| Specify reverse recovery time directly | Specify reverse recovery charge
+  group: 保护二极管
+- name: Reverse recovery time stretch factor
+  summary: 拉伸因子 3（默认）| scalar greater than 1
+  group: 保护二极管
+- name: Reverse recovery time, trr
+  summary: 时间 15 us（默认）| scalar
+  group: 保护二极管
+- name: Reverse recovery charge, Qrr
+  summary: 电荷 1500 s*uA（默认）| scalar
+  group: 保护二极管
+- name: Snubber
+  summary: 缓冲器模型 None（默认）| RC snubber
+  group: 缓冲器
+- name: Snubber resistance
+  summary: 电阻 0.1 Ohm（默认）| scalar
+  group: 缓冲器
+- name: Snubber capacitance
+  summary: 电容 1e-7（默认）| F | scalar
+  group: 缓冲器
+```
 
 ### **Modeling option** — 斩波器工作象限 `First and second quadrant`（默认）| `First and fourth quadrant`
 
@@ -325,7 +425,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 请参阅缓冲器参数依赖关系表。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

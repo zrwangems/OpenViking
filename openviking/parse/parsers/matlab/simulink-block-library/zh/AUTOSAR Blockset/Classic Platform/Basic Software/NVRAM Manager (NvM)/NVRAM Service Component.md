@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # NVRAM Service Component
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Block ID
+  summary: 标识服务模块的 ID 1（默认）| 标量
+  group: ''
+- name: Maximum number of memory blocks
+  summary: NvM 服务操作中使用的最大内存块数 10（默认）| 标量
+  group: ''
+- name: Initial Value
+  summary: NvM 客户端端口的初始值 0（默认）| 实数有限标量或向量
+  group: ''
+```
 
 ### **Block ID** — 标识服务模块的 ID 1（默认）| 标量
 
@@ -31,7 +45,6 @@ RTE 选项卡表格列出了组件客户端端口及其到 NvM 服务模块 ID �
 ### **Initial Value** — NvM 客户端端口的初始值 0（默认）| 实数有限标量或向量
 
 将 NvM 客户端端口的初始值指定为有限实值标量或向量。这些值必须是标量，或与输入信号具有相同的维度。
-
 ## 所属库
 
 AUTOSAR Blockset / Classic Platform / Basic Software / NVRAM Manager (NvM)

@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # 6th Order Point Mass Forces (Coordinated Flight)
 
 ## 端口
+```yaml
+ports:
+- name: Lift
+  summary: 升力 标量 | 数组
+  direction: input
+  data_types: double
+- name: Drag
+  summary: 阻力 标量 | 数组
+  direction: input
+  data_types: double
+- name: Weight
+  summary: 重力 标量 | 数组
+  direction: input
+  data_types: double
+- name: Thrust
+  summary: 推力 标量 | 数组
+  direction: input
+  data_types: double
+- name: ɣ
+  summary: 航迹角 标量 | 数组
+  direction: input
+  data_types: double
+- name: μ
+  summary: 滚转角 标量 | 数组
+  direction: input
+  data_types: double
+- name: ɑ
+  summary: 迎角 标量 | 数组
+  direction: input
+  data_types: double
+- name: Fx
+  summary: '*x* 轴方向的力 标量 | 数组'
+  direction: output
+  data_types: double
+- name: Fy
+  summary: '*y* 轴方向的力 标量 | 数组'
+  direction: output
+  data_types: double
+- name: Fz
+  summary: '*z* 轴方向的力 标量 | 数组'
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -78,11 +121,12 @@ chinese_source: worker-translation
 *z* 轴方向的力，指定为标量或数组，单位为力。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Equations of Motion / Point Mass

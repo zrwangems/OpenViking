@@ -14,10 +14,24 @@ language: en
 # Model Info
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Enter text and tokens to display on Model Info block
+  summary: Content and format of the text to display Model Info (default) | text
+  group: ''
+- name: Horizontal text alignment
+  summary: Horizontal text alignment on block mask Center (default) | Left | Right
+  group: ''
+- name: Show block frame
+  summary: Frame for block mask on (default) | off
+  group: ''
+```
 
 ### **Enter text and tokens to display on Model Info block** — Content and format of the text to display `Model Info` (default) | text
 
@@ -59,7 +73,6 @@ Specify where to align the text on the block mask horizontally.
 
 Specify whether to display the block frame, which is a border around the
 block mask.
-
 ## Libraries
 
 Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities

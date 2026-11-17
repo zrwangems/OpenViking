@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Second-Order Section Filter
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: 分子系数 *P*×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Den
+  summary: 分母系数 *P*×3 矩阵 | *P*×2 矩阵
+  direction: input
+  data_types: single | double
+- name: g
+  summary: 每个二阶节的缩放值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: 滤波后的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -82,8 +105,34 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter structure
+  summary: 滤波器结构 Direct form II transposed（默认）| Direct form I | Direct form I transposed | Direct form II
+  group: ''
+- name: Coefficient source
+  summary: 滤波器系数来源 Dialog parameters（默认）| Input ports
+  group: ''
+- name: Numerator
+  summary: 滤波器的分子系数 [0.0975 0.195 0.0975]（默认）| *P*×3 矩阵
+  group: ''
+- name: Denominator
+  summary: 滤波器的分母系数 [1 -0.9428 0.3333]（默认）| *P*×3 矩阵 | *P*×2 矩阵
+  group: ''
+- name: Specify scale values
+  summary: 指定滤波器是否为每个节具有缩放值 off（默认）| on
+  group: ''
+- name: Scale Values
+  summary: 每个二阶节的缩放值 [1 1]（默认）| 标量 | 向量
+  group: ''
+- name: Input processing
+  summary: 处理输入的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -189,7 +238,6 @@ H(z)=∏k=1PHk(z)=∏k=1Pb0k+b1kz−1+b2kz−2a0k+a1kz−1+a2kz−2,
 ### **View Filter Response** — 查看滤波器响应 按钮
 
 打开 Filter Visualization 工具并显示 SOS 滤波器的幅值响应。响应基于您在模块对话框中选择的参数。要更新幅值响应，请修改对话框中的参数并点击 **Apply**。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Implementations

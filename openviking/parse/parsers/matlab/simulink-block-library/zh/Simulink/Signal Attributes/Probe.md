@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Probe
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: Port_1 (W)
+  summary: 信号宽度 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2 (Ts)
+  summary: 采样时间 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_3 (C)
+  summary: 信号复/实性 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_4 (D)
+  summary: 信号维度 标量 | 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -71,8 +95,66 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Probe signal dimensions**。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Probe width
+  summary: 输入信号的输出宽度 on（默认）| off
+  group: 主要
+  block_parameter: ProbeWidth
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Probe sample time
+  summary: 输入信号的输出采样时间 on（默认）| off
+  group: 主要
+  block_parameter: ProbeSampleTime
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Detect complex signal
+  summary: 指示输入信号的复/实性 on（默认）| off
+  group: 主要
+  block_parameter: ProbeComplexSignal
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Probe signal dimensions
+  summary: 输入信号的输出维度 on（默认）| off
+  group: 主要
+  block_parameter: ProbeSignalDimensions
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Data type for width
+  summary: 信号宽度输出的数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input
+  group: 信号属性
+  block_parameter: ProbeWidthDataType
+  type: 字符向量
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''Same as input'''
+  default: '''double'''
+- name: Data type for sample time
+  summary: 采样时间输出的数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input
+  group: 信号属性
+  block_parameter: ProbeSampleTimeDataType
+  type: 字符向量
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''Same as input'''
+  default: '''double'''
+- name: Data type for signal complexity
+  summary: 复/实性输出的数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean | Same as input
+  group: 信号属性
+  block_parameter: ProbeComplexityDataType
+  type: 字符向量
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''Same as input'''
+  default: '''double'''
+- name: Data type for signal dimensions
+  summary: 信号维度输出的数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same as input
+  group: 信号属性
+  block_parameter: ProbeDimensionsDataType
+  type: 字符向量
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''Same as input'''
+  default: '''double'''
+```
 
 ### 主要
 
@@ -181,7 +263,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'Same as input'` |
 | **默认值：** `'double'` |
-
 ## 所属库
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

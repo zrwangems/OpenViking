@@ -14,6 +14,9 @@ language: en
 # Fundamental Reluctance
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,14 +25,15 @@ The block has the following ports:
 
 `S`
 :   Magnetic conserving port associated with the block South terminal.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Reluctance**
 :   The ratio of the magnetomotive force (mmf) across the component
     to the resulting flux that flows through the component. The default
     value is `8e4` 1/H.
-
 ## Libraries
 
 Not documented in R2025b.

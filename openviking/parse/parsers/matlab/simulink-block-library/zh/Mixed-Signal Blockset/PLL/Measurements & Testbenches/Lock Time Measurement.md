@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Lock Time Measurement
 
 ## 端口
+```yaml
+ports:
+- name: pll out
+  summary: 输入时钟信号 标量
+  direction: input
+  data_types: double
+- name: lock time
+  summary: PLL 实现锁定所需的时间 实正标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,16 @@ chinese_source: worker-translation
 PLL 系统中实现锁定所需的时间，以秒为单位返回为实正标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Target frequency (Hz)
+  summary: 用于测量锁定时间的 PLL 目标工作频率 2.1e9（默认值）| 实正标量
+  group: ''
+- name: Error tolerance (Hz)
+  summary: 锁定时间测量的误差容限 1e5（默认值）| 实正标量
+  group: ''
+```
 
 ### **Target frequency (Hz)** — 用于测量锁定时间的 PLL 目标工作频率 `2.1e9`（默认值）| 实正标量
 
@@ -50,7 +69,6 @@ PLL 系统中实现锁定所需的时间，以秒为单位返回为实正标量�
 
 - 使用 `get_param(gcb,'FreqErrorTol')` 查看 **Error tolerance** 的当前值。
 - 使用 `set_param(gcb,'FreqErrorTol',value)` 将 **Error tolerance** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

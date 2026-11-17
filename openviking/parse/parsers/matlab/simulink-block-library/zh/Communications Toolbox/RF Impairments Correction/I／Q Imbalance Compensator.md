@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # I/Q Imbalance Compensator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Source of compensator coefficient**
 :   将补偿器系数的来源指定为 `Estimated
@@ -56,7 +61,6 @@ R2025b 中未记录。
 **估计系数输出端口**
 :   选中此复选框可将估计的补偿
     系数提供给输出端口。默认情况下，该复选框未选中。
-
 ## 所属库
 
 R2025b 中未记录。

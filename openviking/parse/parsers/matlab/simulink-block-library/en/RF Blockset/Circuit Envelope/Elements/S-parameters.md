@@ -14,6 +14,17 @@ language: en
 # S-parameters
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Time-dependent input signal real scalar | real column | complex scalar | complex column
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: Time-dependent output signal complex scalar | complex column
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -32,8 +43,74 @@ output time-dependent signal is equal in size to the input time-dependent
 signal.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Data source
+  summary: Data source to model RF complex baseband S-parameters file (default) | sparameters | rational
+  group: Main
+- name: File
+  summary: Two-port Touchstone data file unitygain.s2p (default) | character vector
+  group: Main
+- name: Sparameter object
+  summary: Use sparameters object as data source sparameters('unitygain.s2p') (default)
+  group: Main
+- name: Rational object
+  summary: Use rational object as data source rational('unitygain.s2p','TendsToZero',false) (default)
+  group: Main
+- name: Carrier frequency (Hz)
+  summary: Carrier frequency at which S-parameters are modeled 1000000000 (default) | positive real scalar
+  group: Main
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Main
+- name: Modeling domain
+  summary: Modeling domain Time (Fixed step) (default) | Time (Continuous) | Frequency (Digital filter)
+  group: Modeling
+- name: Solver
+  summary: Time-domain solvers NDF2 (default) | Trapezoidal | Backward Euler | ode15s | ode23s | ode23t (trap) | ode23tb (trap+BE)
+  group: Modeling
+- name: Pole fitting options
+  summary: Rational fit fitting options Share all poles (default) | Fit individually | Share poles by columns
+  group: Modeling
+- name: Rational arguments
+  summary: Rational fit arguments to control the fit { 'Tolerance',-40,'TendsToZero',false,'MaxPoles',48,'Qlimit',inf } (default)
+    | cell array
+  group: Modeling
+- name: FIR filter length
+  summary: Filter length of 1-D digital filter 128 (default) | real positive integer
+  group: Modeling
+- name: First plot type
+  summary: Plot type S21 (default) | Phase delay | Group delay | Impulse response | Step response
+  group: Visualization
+- name: Impulse response arguments
+  summary: Input arguments to plot impulse response [ 1e-11, 1e4] (default) | two-element vector
+  group: Visualization
+- name: Step response arguments
+  summary: Input arguments to plot step response [ 1e-11, 1e4, 1e-10 ] (default) | three-element vector
+  group: Visualization
+- name: First plot y-axis units
+  summary: Y-axis units of first plot Magnitude (dB) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary
+  group: Visualization
+- name: Second Plot type
+  summary: Plot type of second plot None (default) | S21 | Phase delay | Group delay | Impulse response | Step response
+  group: Visualization
+- name: Second plot y-axis units
+  summary: Y-axis units of second plot Magnitude (dB) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary
+  group: Visualization
+- name: X-axis frequency points (Hz)
+  summary: Frequency points to plot S-parameter data logspace(8,10,2001) (default) | positive real vector
+  group: Visualization
+- name: X-axis scale
+  summary: Linear or logarithmic X-axis scale Linear (default) | Logarithmic
+  group: Visualization
+- name: Y-axis scale
+  summary: Linear or logarithmic Y-axis scale Linear (default) | Logarithmic
+  group: Visualization
+- name: Plot Sparameter characteristics
+  summary: Plot S-parameters data button
+  group: Visualization
+```
 
 ### Main
 
@@ -282,7 +359,6 @@ Specify `Linear` or
 ### **Plot Sparameter characteristics** — Plot S-parameters data button
 
 Select this button to plot the characteristics of the S-parameters data.
-
 ## Libraries
 
 RF Blockset / Idealized Baseband

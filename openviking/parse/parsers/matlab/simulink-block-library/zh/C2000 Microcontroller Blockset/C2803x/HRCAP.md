@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # HRCAP
 
 ## 端口
+```yaml
+ports:
+- name: Rise[0,1]
+  summary: 输出捕获值向量
+  direction: output
+  data_types: uint16
+- name: Fall[0,1]
+  summary: 输出捕获值向量
+  direction: output
+  data_types: uint16
+- name: CounterOverflow
+  summary: 溢出状态标量
+  direction: output
+  data_types: uint16
+- name: Period
+  summary: 输出捕获数据标量
+  direction: output
+  data_types: Fixed point[0,16,16] | uint32
+- name: 'On'
+  summary: 输出捕获数据标量
+  direction: output
+  data_types: Fixed point[0,16,16] | uint32
+- name: 'Off'
+  summary: 输出捕获数据标量
+  direction: output
+  data_types: Fixed point[0,16,16] | uint32
+```
 
 ### 输出
 
@@ -77,8 +104,41 @@ chinese_source: worker-translation
 要启用此端口，请将 **HRCAP mode** 参数设置为 `High resolution`，并将 HRCAP output 设置为 `Off time only` 或 `All above(Period, On, Off)`。
 
 **数据类型：** `Fixed point[0,16,16]` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: HRCAP module
+  summary: 选择 HRCAP 模块 HRCAP1（默认）| HRCAP2 | HRCAP3 | HRCAP4
+  group: ''
+- name: HRCAP mode
+  summary: 选择 HRCAP 模式 Normal（默认）| High resolution
+  group: ''
+- name: HRCAP clock
+  summary: 选择 HRCAP 时钟 SYSCLKOUT（默认）| PLL clock
+  group: ''
+- name: Enable rising edge interrupt
+  summary: 检测到上升沿时使能中断 on（默认）| off
+  group: ''
+- name: Enable falling edge interrupt
+  summary: 检测到下降沿时使能中断 on（默认）| off
+  group: ''
+- name: Enable counter overflow interrupt
+  summary: 检测到计数器溢出时使能中断 off（默认）| on
+  group: ''
+- name: Output type
+  summary: 选择输出数据类型 HRCAPCLK cycles（默认）| Microseconds | uint32 | fixdt(0,16,16)
+  group: ''
+- name: Enable counter overflow output
+  summary: 选择以捕获 HCCOUNTER 溢出 off（默认）| on
+  group: ''
+- name: HRCAP output
+  summary: 高分辨率 HRCAP 输出 Period only（默认）| ON time only | Off time only | On and Off time | All above(Period, On time, Off
+    time )
+  group: ''
+- name: Sample time
+  summary: 模块从 HRCAP 读取数据的频率 0.1（默认）
+  group: ''
+```
 
 ### **HRCAP module** — 选择 HRCAP 模块 `HRCAP1`（默认）| `HRCAP2` | `HRCAP3` | `HRCAP4`
 
@@ -139,7 +199,6 @@ PLL clock 是高分辨率模式下唯一支持的时钟，并根据处理器使�
 ### **Sample time** — 模块从 HRCAP 读取数据的频率 `0.1`（默认）
 
 使用此参数指定采样之间的时间间隔。要从上游模块继承采样时间，请将此参数设置为 -1。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2806x

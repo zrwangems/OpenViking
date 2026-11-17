@@ -14,10 +14,35 @@ language: en
 # Legacy Serial Setup
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Serial port
+  summary: Select serial port Legacy Serial Port 1 (default) | .. | Legacy Serial Port 8 | USB Serial Port 1 | .. | USB Serial
+    Port 8
+  group: ''
+- name: Baud rate
+  summary: Select serial port baud rate 115200 (default) | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1200 | 600 | 300 |
+    110
+  group: ''
+- name: Number of data bits
+  summary: Select serial port data bits 8 (default) | 7 | 6 | 5
+  group: ''
+- name: Number of stop bits
+  summary: Select serial port stop bits 1 (default) | 2
+  group: ''
+- name: Parity
+  summary: Select serial port parity None (default) | Even | Odd | Mark | Space
+  group: ''
+- name: Enable auto RTX/CTS
+  summary: Select serial port RTX/CTS mode off (default) | on
+  group: ''
+```
 
 ### **Serial port** — Select serial port `Legacy Serial Port 1` (default) | .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
@@ -83,7 +108,6 @@ Use this value to select the serial port RTX/CTS mode.
 ```
 ctsmode
 ```
-
 ## Libraries
 
 Simulink Real-Time / RS232 / Mainboard

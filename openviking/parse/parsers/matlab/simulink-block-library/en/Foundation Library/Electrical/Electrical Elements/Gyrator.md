@@ -14,17 +14,21 @@ language: en
 # Gyrator
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has four electrical conserving ports. Polarity is indicated by the + and – signs.
 Ports labeled 1+ and 1– are connected to the primary winding. Ports labeled 2+ and 2– are
 connected to the secondary winding.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Gyration conductance**
 :   The gyration conductance constant *G*. The
     default value is `1`.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -14,6 +14,17 @@ language: en
 # LDPC Encoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input message binary column vector
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: LDPC codeword column vector
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -37,8 +48,13 @@ codeword output, and the parity check comprises the remaining
 (*N* – *K*) bits.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Parity-check matrix (sparse binary (N-K)-by-N matrix)
+  summary: Parity-check matrix ldpcEncoderConfig().ParityCheckMatrix (default) | sparse binary matrix | nonsparse index matrix
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -80,7 +96,6 @@ a sparse binary matrix, this parameter also accepts the
 
 **Example:** `ldpcEncoderConfig().ParityCheckMatrix` configures the binary
 matrix as a 108-by-648 sparse logical matrix.
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Block

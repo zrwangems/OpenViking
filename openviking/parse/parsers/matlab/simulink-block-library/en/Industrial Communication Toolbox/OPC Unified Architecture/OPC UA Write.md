@@ -14,6 +14,14 @@ language: en
 # OPC UA Write
 
 ## Ports
+```yaml
+ports:
+- name: Value
+  summary: Vector of node values vector
+  direction: input
+  data_types: Boolean | single | double | datetime | duration | int8 | int16 | int32 | int64 | uint8 | uint8 vector | uint16
+    | uint32 | uint64 | struct | char vector
+```
 
 ### Input
 
@@ -32,8 +40,27 @@ To enable this port, specify one or more nodes in
 the **Nodes** parameter.
 
 **Data Types:** `Boolean` | `single` | `double` | `datetime` | `duration` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint8 vector` | `uint16` | `uint32` | `uint64` | `struct` | `char vector`
-
 ## Parameters
+```yaml
+parameters:
+- name: Server
+  summary: Define OPC UA server for block drop-down list
+  group: ''
+  block_parameter: ServerList
+  type: string | character vector
+- name: Nodes
+  summary: List of OPC UA server nodes table
+  group: ''
+  block_parameter: NodeList
+  type: string | character vector
+- name: Sample time
+  summary: Sample time for write operation -1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: nonnegative scalar
+  default: '''-1'''
+```
 
 ### **Server** — Define OPC UA server for block drop-down list
 
@@ -97,7 +124,6 @@ For more information, see Specify Sample Time (Simulink).
 | **Type:** `string` | `character vector` |
 | **Values:** nonnegative scalar |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 Industrial Communication Toolbox / OPC Unified Architecture

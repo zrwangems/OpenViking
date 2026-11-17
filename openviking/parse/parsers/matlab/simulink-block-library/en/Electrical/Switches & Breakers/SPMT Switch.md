@@ -14,6 +14,39 @@ language: en
 # SPMT Switch
 
 ## Ports
+```yaml
+ports:
+- name: vT
+  summary: Switch control port physical signal
+  direction: input
+- name: p
+  summary: Common port electrical
+  direction: conserving
+- name: n1
+  summary: Throw port 1 electrical
+  direction: conserving
+- name: n2
+  summary: Throw port 2 electrical
+  direction: conserving
+- name: n3
+  summary: Throw port 3 electrical
+  direction: conserving
+- name: n4
+  summary: Throw port 4 electrical
+  direction: conserving
+- name: n5
+  summary: Throw port 5 electrical
+  direction: conserving
+- name: n6
+  summary: Throw port 6 electrical
+  direction: conserving
+- name: n7
+  summary: Throw port 7 electrical
+  direction: conserving
+- name: n8
+  summary: Throw port 8 electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -89,8 +122,31 @@ Electrical conserving port associated with the eighth throw.
 
 To enable this port, set **Number of throw
 ports** to `8`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of throw ports
+  summary: Number of throw ports 4 (default) | 3 | 5 | 6 | 7 | 8
+  group: Main
+- name: Closed resistance
+  summary: Closed resistance 0.01 Ohm (default) | positive scalar
+  group: Main
+- name: Open conductance
+  summary: Open conductance 1e-6 S (default) | positive scalar
+  group: Main
+- name: Stuck throw fault
+  summary: Option to add stuck throw fault Add fault (default)
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible common port current
+  summary: Maximum permissible common port current inf A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding current
+  summary: Time to fail when exceeding current 1 s (default) | positive scalar
+  group: Faults
+```
 
 ### Main
 
@@ -144,7 +200,6 @@ triggered.
 
 To enable this parameter, set **Trigger Type** to
 `Behavioral`.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers

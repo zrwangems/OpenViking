@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # ASCII Encode
 
 ## 端口
+```yaml
+ports:
+- name: '1'
+  summary: 接收用于编码为数值的带编号端口
+  direction: input
+  data_types: double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: D
+  summary: 以 NULL 结尾的字符向量 字符向量
+  direction: output
+```
 
 ### 输入
 
@@ -28,8 +38,26 @@ chinese_source: worker-translation
 ### **D** — 以 NULL 结尾的字符向量 `字符向量`
 
 生成的 `uint8` 输出向量，包含以 NULL 结尾的字符向量。
-
 ## 参数
+```yaml
+parameters:
+- name: Format string
+  summary: 用于将值转换为 ASCII 的格式说明符 %d\r（默认）| %c | %i | %o | %u | %x | %e | %f | %g
+  group: ''
+  block_parameter: format
+- name: Number of variables
+  summary: 模块输入的数量 1（默认）| 整数
+  group: ''
+  block_parameter: nvars
+- name: Max output string length
+  summary: 转换后字符向量的最大长度，以字节为单位 128（默认）| 整数
+  group: ''
+  block_parameter: maxlength
+- name: Variable types
+  summary: 输入端口允许的 Simulink® 数据类型 {'double'}（默认）| {'int8'} | {'uint8'} | {'int16} | {'uint16'} | {'int32'} | {'uint32'}
+  group: ''
+  block_parameter: vartypes
+```
 
 ### **Format string** — 用于将值转换为 ASCII 的格式说明符 `%d\r`（默认）| `%c` | `%i` | `%o` | `%u` | `%x` | `%e` | `%f` | `%g`
 
@@ -82,7 +110,6 @@ nvars=3
 |  |
 | --- |
 | **模块参数**：`vartypes` |
-
 ## 所属库
 
 Simulink Real-Time / RS232

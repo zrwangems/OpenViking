@@ -14,6 +14,17 @@ language: en
 # Encoder
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: External signal to reset encoder reading scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Tick
+  summary: Incremental position of rotating motor scalar
+  direction: output
+  data_types: int32
+```
 
 ### Input
 
@@ -43,8 +54,19 @@ The block outputs the relative change in the position of the rotating motor in
 ticks.
 
 **Data Types:** `int32`
-
 ## Parameters
+```yaml
+parameters:
+- name: EV3 brick output port
+  summary: Output port number of EV3 brick A (default) | B | C | D
+  group: ''
+- name: Reset mode
+  summary: Reset block output Reset at external signal (default) | Reset at each sample time | No reset
+  group: ''
+- name: Sample time
+  summary: Time interval at which block reads data from encoder 0.1 (default) | positive integer
+  group: ''
+```
 
 ### **EV3 brick output port** — Output port number of EV3 brick `A` (default) | `B` | `C` | `D`
 
@@ -121,7 +143,6 @@ measurements.
 
 Smaller sample times require the processor to complete the same number of
 instructions in less time, which can cause task overruns.
-
 ## Libraries
 
 Simulink Support Package for LEGO MINDSTORMS EV3 Hardware

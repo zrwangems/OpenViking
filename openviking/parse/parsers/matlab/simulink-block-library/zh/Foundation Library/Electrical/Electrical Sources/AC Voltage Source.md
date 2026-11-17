@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # AC Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,19 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与电源负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Peak amplitude
+  summary: 峰值电压幅值 1 V（默认）| 标量
+  group: ''
+- name: Phase shift
+  summary: 以角度单位表示的相移 0 deg（默认）| 标量
+  group: ''
+- name: Frequency
+  summary: 电压频率 60 Hz（默认）| 正标量
+  group: ''
+```
 
 ### **Peak amplitude** — 峰值电压幅值 `1 V`（默认）| 标量
 
@@ -39,7 +59,6 @@ chinese_source: worker-translation
 ### **Frequency** — 电压频率 `60 Hz`（默认）| 正标量
 
 电压频率，以 Hz 或可直接转换为 Hz 的单位指定（其中 Hz 定义为 1/s）。例如，kHz 和 MHz 是有效单位，但 rad/s 不是。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Sources

@@ -14,10 +14,15 @@ language: en
 # Matrix Deinterleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Number of rows**
 :   The number of rows in the matrix that the block uses for its
@@ -26,7 +31,6 @@ Not documented in R2025b.
 **Number of columns**
 :   The number of columns in the matrix that the block uses for its
     computations.
-
 ## Libraries
 
 Not documented in R2025b.

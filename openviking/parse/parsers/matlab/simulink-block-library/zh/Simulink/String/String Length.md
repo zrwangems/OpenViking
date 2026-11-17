@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # String Length
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入字符串标量
+  direction: input
+  data_types: string
+- name: Port_1
+  summary: 字符数标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 输入字符串中的字符数，指定为标量。
 
 **数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Inherit via back propagation | int8 | uint8 | int16 |
+    uint16 | int32 | uint32 | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | *<data type expression>*'
+  default: '''Inherit: Inherit via internal rule'''
+- name: Mode
+  summary: 数据类型类别 Inherit（默认）| Built in | Expression
+  group: ''
+```
 
 ### **Output data type** — 输出数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Inherit via back propagation` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `<data type expression>`
 
@@ -68,7 +93,6 @@ Assistant**，它可帮助您设置数据类型属性。有关更多信息，请
 
 点击 **Show data type assistant** 按钮
 可启用此参数。
-
 ## 所属库
 
 Simulink / String

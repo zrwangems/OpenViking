@@ -14,10 +14,15 @@ language: en
 # C2803x LIN Receive
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Data type**
 :   Select the data type the LIN block outputs to the model. Available options are
@@ -300,7 +305,6 @@ Not documented in R2025b.
     `Ts`.
 
     The default value is `0.1` seconds.
-
 ## Libraries
 
 Not documented in R2025b.

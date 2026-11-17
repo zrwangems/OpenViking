@@ -14,6 +14,102 @@ language: en
 # Gimbal Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: tx
+  summary: Actuation torque physical signal
+  direction: input
+- name: qx
+  summary: Motion profile physical signal
+  direction: input
+- name: ty
+  summary: Actuation torque physical signal
+  direction: input
+- name: qy
+  summary: Motion profile physical signal
+  direction: input
+- name: tz
+  summary: Actuation torque physical signal
+  direction: input
+- name: qz
+  summary: Motion profile physical signal
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: qx
+  summary: Position of joint primitive physical signal
+  direction: output
+- name: wx
+  summary: Angular velocity of joint primitive physical signal
+  direction: output
+- name: bx
+  summary: Angular acceleration of joint primitive physical signal
+  direction: output
+- name: tx
+  summary: Actuator torque acting on joint primitive physical signal
+  direction: output
+- name: tllx
+  summary: Lower-limit torque acting on joint primitive physical signal
+  direction: output
+- name: tulx
+  summary: Upper-limit torque acting on joint primitive physical signal
+  direction: output
+- name: qy
+  summary: Position of joint primitive physical signal
+  direction: output
+- name: wy
+  summary: Angular velocity of joint primitive physical signal
+  direction: output
+- name: by
+  summary: Angular acceleration of joint primitive physical signal
+  direction: output
+- name: ty
+  summary: Actuator torque acting on joint primitive physical signal
+  direction: output
+- name: tlly
+  summary: Lower-limit torque acting on joint primitive physical signal
+  direction: output
+- name: tuly
+  summary: Upper-limit torque acting on joint primitive physical signal
+  direction: output
+- name: qz
+  summary: Position of joint primitive physical signal
+  direction: output
+- name: wz
+  summary: Angular velocity of joint primitive physical signal
+  direction: output
+- name: bz
+  summary: Angular acceleration of joint primitive physical signal
+  direction: output
+- name: tz
+  summary: Actuator torque acting on joint primitive physical signal
+  direction: output
+- name: tllz
+  summary: Lower-limit torque acting on joint primitive physical signal
+  direction: output
+- name: tulz
+  summary: Upper-limit torque acting on joint primitive physical signal
+  direction: output
+- name: fc
+  summary: Constraint force, N physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total force, N physical signal
+  direction: output
+- name: tt
+  summary: Total torque, N\*m physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -363,8 +459,208 @@ Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque
 Sensing**, select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: X Revolute Primitive (Rx)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: X Revolute Primitive (Rx)
+- name: Value
+  summary: Position target 0 deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Specify Velocity Target
+  summary: Whether to specify angular velocity target off (default) | on
+  group: X Revolute Primitive (Rx)
+- name: Priority
+  summary: Priority level of velocity target High (desired) (default) | Low (approximate)
+  group: X Revolute Primitive (Rx)
+- name: Value
+  summary: Velocity target 0 deg/s (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Equilibrium Position
+  summary: Position where internal torque is zero 0 deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N*m/deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N*m/(deg/s) (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: X Revolute Primitive (Rx)
+- name: Bound
+  summary: Lower bound of free region -90 deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e4 N*m/deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 10 N*m/(deg/s) (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: X Revolute Primitive (Rx)
+- name: Bound
+  summary: Upper bound of free region 90 deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e4 N*m/deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 10 N*m/(deg/s) (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: X Revolute Primitive (Rx)
+- name: Torque
+  summary: Option to provide actuator torque None (default) | Provided by Input | Automatically Computed
+  group: X Revolute Primitive (Rx)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: X Revolute Primitive (Rx)
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Y Revolute Primitive (Ry)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Y Revolute Primitive (Ry)
+- name: Value
+  summary: Position target 0 deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Specify Velocity Target
+  summary: Whether to specify angular velocity target off (default) | on
+  group: Y Revolute Primitive (Ry)
+- name: Priority
+  summary: Priority level of velocity target High (desired) (default) | Low (approximate)
+  group: Y Revolute Primitive (Ry)
+- name: Value
+  summary: Velocity target 0 deg/s (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Equilibrium Position
+  summary: Position where internal torque is zero 0 deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N*m/deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N*m/(deg/s) (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Y Revolute Primitive (Ry)
+- name: Bound
+  summary: Lower bound of free region -90 deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e4 N*m/deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 10 N*m/(deg/s) (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Y Revolute Primitive (Ry)
+- name: Bound
+  summary: Upper bound of free region 90 deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e4 N*m/deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 10 N*m/(deg/s) (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: Y Revolute Primitive (Ry)
+- name: Torque
+  summary: Option to provide actuator torque None (default) | Provided by Input | Automatically Computed
+  group: Y Revolute Primitive (Ry)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: Y Revolute Primitive (Ry)
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Z Revolute Primitive (Rz)
+- name: Value
+  summary: Position target 0 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Specify Velocity Target
+  summary: Whether to specify angular velocity target off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Priority
+  summary: Priority level of velocity target High (desired) (default) | Low (approximate)
+  group: Z Revolute Primitive (Rz)
+- name: Value
+  summary: Velocity target 0 deg/s (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Equilibrium Position
+  summary: Position where internal torque is zero 0 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N*m/deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N*m/(deg/s) (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Bound
+  summary: Lower bound of free region -90 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e4 N*m/deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 10 N*m/(deg/s) (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Bound
+  summary: Upper bound of free region 90 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e4 N*m/deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 10 N*m/(deg/s) (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Torque
+  summary: Option to provide actuator torque None (default) | Provided by Input | Automatically Computed
+  group: Z Revolute Primitive (Rz)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: Z Revolute Primitive (Rz)
+- name: Mode
+  summary: Joint mode Normal (default) | Locked | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -952,7 +1248,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

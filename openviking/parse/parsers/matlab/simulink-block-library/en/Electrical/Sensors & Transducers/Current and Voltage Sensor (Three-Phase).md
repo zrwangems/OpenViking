@@ -14,6 +14,21 @@ language: en
 # Current and Voltage Sensor (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Voltage physical signal
+  direction: output
+- name: I
+  summary: Current physical signal
+  direction: output
+- name: ~1
+  summary: Three-phase voltage and current electrical
+  direction: conserving
+- name: ~2
+  summary: Three-phase voltage and current electrical
+  direction: conserving
+```
 
 ### Output
 
@@ -41,8 +56,26 @@ voltage and current.
 Expandable three-phase
 electrical conserving port 2 associated with three-phase
 voltage and current.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Voltage measurement type
+  summary: Voltage measurement type phase-to-phase voltage (default) | phase-to-ground voltage
+  group: ''
+- name: Measurement output unit
+  summary: Measurement system Per unit (default) | SI
+  group: ''
+- name: Nominal power
+  summary: Nominal power 100e6 V*A (default)
+  group: ''
+- name: Nominal voltage (phase-to-phase RMS)
+  summary: Nominal voltage 24e3 V (default)
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -80,7 +113,6 @@ Nominal phase-to-phase root-mean-square (RMS) voltage.
 
 To enable this parameter, set **Measurement output
 unit** to `Per unit`.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

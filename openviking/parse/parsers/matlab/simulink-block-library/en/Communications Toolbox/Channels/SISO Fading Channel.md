@@ -14,6 +14,22 @@ language: en
 # SISO Fading Channel
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input data signal vector
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: Output data signal for fading channel vector
+  direction: output
+- name: Gain
+  summary: Discrete path gains matrix
+  direction: output
+- name: Delay
+  summary: Channel filter delay scalar
+  direction: output
+```
 
 ### Input
 
@@ -56,8 +72,67 @@ Channel filter delay, returned as a scalar.
 
 To enable this port, on the **Main** tab, select **Output channel filter
 delay**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit sample rate from input
+  summary: Option to inherit the sample rate from input on (default) | off
+  group: Main Tab
+- name: Sample rate (Hz)
+  summary: Input signal sample rate 1 (default) | positive scalar
+  group: Main Tab
+- name: Discrete path delays (s)
+  summary: Delays for each discrete path 0 (default) | nonnegative scalar | row vector
+  group: Main Tab
+- name: Average path gains (dB)
+  summary: Average gain for each discrete path 0 (default) | scalar | row vector
+  group: Main Tab
+- name: Normalize average path gains to 0 dB
+  summary: Option to normalize average path gains to 0 dB on (default) | off
+  group: Main Tab
+- name: Fading distribution
+  summary: Fading distribution of channel Rayleigh (default) | Rician
+  group: Main Tab
+- name: K-factors
+  summary: K-factor of Rician fading channel 3 (default) | positive scalar | row vector of nonnegative values
+  group: Main Tab
+- name: LOS path Doppler shifts (Hz)
+  summary: Doppler shifts for line-of-sight components 0 (default) | scalar | row vector
+  group: Main Tab
+- name: LOS path initial phases (rad)
+  summary: Initial phases for line-of-sight components 0 (default) | scalar | row vector
+  group: Main Tab
+- name: Maximum Doppler shift (Hz)
+  summary: Maximum Doppler shift for all channel paths 0.001 (default) | nonnegative scalar
+  group: Main Tab
+- name: Doppler spectrum
+  summary: Doppler spectrum shape for all channel paths doppler('Jakes') (default) | doppler('Flat') | doppler('Rounded',
+    ...) | doppler('Bell', ...) | doppler('Asymmetric Jakes', ...) | doppler('Restricted Jakes', ...) | doppler('Gaussian',
+    ...) | doppler('BiGaussian', ...)
+  group: Main Tab
+- name: Initial seed
+  summary: Random number generator initial seed 73 (default) | nonnegative integer
+  group: Main Tab
+- name: Output channel path gains
+  summary: Option to output channel path gains off (default) | on
+  group: Main Tab
+- name: Output channel filter delay
+  summary: Option to output channel filter delay off (default) | on
+  group: Main Tab
+- name: Simulate using
+  summary: Compilation type Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: Channel visualization
+  summary: Select the channel visualization Off (default) | Impulse response | Frequency response | Doppler spectrum | Impulse
+    and frequency responses
+  group: Visualization Tab
+- name: Percentage of samples to display
+  summary: Percentage of samples to display 25% (default) | 10% | 50% | 100%
+  group: Visualization Tab
+- name: Path for Doppler spectrum display
+  summary: Path for which Doppler spectrum is displayed 1 (default) | positive integer
+  group: Visualization Tab
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -274,7 +349,6 @@ to *N*P, where
 
 This parameter appears when you set **Channel
 visualization** to `Doppler spectrum`.
-
 ## Libraries
 
 Communications Toolbox / Channels

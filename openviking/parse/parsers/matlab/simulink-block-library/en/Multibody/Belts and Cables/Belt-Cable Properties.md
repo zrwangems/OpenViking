@@ -14,6 +14,12 @@ language: en
 # Belt-Cable Properties
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Belt-cable network attachment point belt-cable
+  direction: unspecified
+```
 
 ### Belt-Cable
 
@@ -21,8 +27,45 @@ language: en
 
 Attachment point for the belt-cable network whose properties this
 block aims to specify.
-
 ## Parameters
+```yaml
+parameters:
+- name: Drum Belt-Cable Alignment
+  summary: Type of alignment allowed between the cord and the center plane of a drum Unrestricted (default) | Monitored Planar
+  group: ''
+- name: Type
+  summary: Means by which to visualize the cord Pitch Line (default) | None
+  group: ''
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: ''
+- name: Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: ''
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: ''
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: ''
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: ''
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: ''
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: ''
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: ''
+```
 
 ### **Drum Belt-Cable Alignment** — Type of alignment allowed between the cord and the center plane of a drum `Unrestricted` (default) | `Monitored Planar`
 
@@ -183,7 +226,6 @@ To enable this parameter, set:
    `Marker`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Belts and Cables

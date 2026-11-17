@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Two-Ray Channel
 
 ## 端口
+```yaml
+ports: []
+```
 
 **注意**
 
@@ -28,8 +31,10 @@ chinese_source: worker-translation
 | `Vel1` | 信号源速度。 | 双精度浮点 |
 | `Vel2` | 信号目的地速度。 | 双精度浮点 |
 | `Out` | 传播后的信号。 | 双精度浮点 |
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Signal Propagation speed (m/s)**
 :   将信号的传播速度指定为正标量，单位为米每秒。您可以使用函数 `physconst` 来指定光速。
@@ -89,7 +94,6 @@ chinese_source: worker-translation
     | `Code Generation` | 模块被编译。 | 模型中的所有模块被编译。 |
 
     有关更多信息，请参阅 Choosing a Simulation Mode (Simulink)。
-
 ## 所属库
 
 R2025b 中未记录。

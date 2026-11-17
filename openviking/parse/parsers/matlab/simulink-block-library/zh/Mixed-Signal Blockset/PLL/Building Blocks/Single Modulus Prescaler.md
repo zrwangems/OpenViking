@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Single Modulus Prescaler
 
 ## 端口
+```yaml
+ports:
+- name: clk in
+  summary: 输入时钟频率标量
+  direction: input
+  data_types: double
+- name: div-by
+  summary: 输出与输入时钟频率之比标量整数
+  direction: input
+  data_types: double
+- name: clk out
+  summary: 输出时钟频率标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,16 @@ chinese_source: worker-translation
 输出时钟频率，以标量表示。在 PLL 系统中，**clk out** 端口连接到 PFD 模块的反馈输入端口。**clk out** 端口的输出是幅度为 1 V 的方波脉冲序列。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: ''
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 1（默认）| 正整数标量
+  group: ''
+```
 
 ### **Enable increased buffer size** — 启用增大的缓冲区大小 off（默认）| on
 
@@ -57,7 +80,6 @@ chinese_source: worker-translation
 
 - 使用 `get_param(gcb,'NBuffer')` 查看 **Buffer size** 的当前值。
 - 使用 `set_param(gcb,'NBuffer',value)` 将 **Buffer size** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Building Blocks

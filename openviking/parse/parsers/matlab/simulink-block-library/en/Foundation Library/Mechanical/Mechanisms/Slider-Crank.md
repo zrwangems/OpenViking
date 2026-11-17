@@ -14,6 +14,15 @@ language: en
 # Slider-Crank
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Crank mechanical rotational
+  direction: conserving
+- name: S
+  summary: Slider mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,25 @@ crank.
 
 Mechanical translational conserving port associated with the
 slider.
-
 ## Parameters
+```yaml
+parameters:
+- name: Crank radius
+  summary: Radius of the crank 0.1 m (default)
+  group: ''
+- name: Rod length
+  summary: Length of the rod 0.2 m (default)
+  group: ''
+- name: Crank inertia
+  summary: Inertia of the crank 0.01 kg*m^2 (default)
+  group: ''
+- name: Slider stiffness
+  summary: Stiffness applied to the slider position 1e6 N/m (default)
+  group: ''
+- name: Slider damping
+  summary: Damping applied to the slider position 1e3 N/(m/s) (default)
+  group: ''
+```
 
 ### **Crank radius** — Radius of the crank `0.1 m` (default)
 
@@ -57,7 +83,6 @@ Together with **Slider stiffness**, introduces a
 compliance that helps reduce inertia coupling between the ports. Higher
 damping values smooth the ringing that can be caused by the stiffness. The
 parameter value must be greater than zero.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanisms

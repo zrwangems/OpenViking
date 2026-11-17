@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Variable-Displacement Pump (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: R
+  summary: 机械端口，机械旋转
+  direction: conserving
+- name: C
+  summary: 机械端口，机械旋转
+  direction: conserving
+- name: D
+  summary: 容积排量，cm^3/rad，物理信号
+  direction: input
+- name: EV
+  summary: 容积效率，物理信号
+  direction: input
+- name: EM
+  summary: 机械效率，物理信号
+  direction: input
+- name: LV
+  summary: 泄漏流量，m^3/s，物理信号
+  direction: input
+- name: LM
+  summary: 摩擦力矩，N\*m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -70,8 +100,91 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Leakage and friction parameterization** 设置为 `Input signal - volumetric and mechanical losses`。
-
 ## 参数
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: 泄漏流量和摩擦力矩的计算方法 Analytical（默认）| Tabulated data - volumetric and mechanical efficiencies | Tabulated data - volumetric
+    and mechanical losses | Input signal - volumetric and mechanical efficiencies | Input signal - volumetric and mechanical
+    losses
+  group: ''
+- name: Nominal displacement
+  summary: 额定流体排量 30 cm^3/rev（默认）| 标量
+  group: ''
+- name: Nominal shaft angular velocity
+  summary: 轴角速度 1800 rpm（默认）| 标量
+  group: ''
+- name: Nominal pressure gain
+  summary: 流体入口与出口之间的压降 10 MPa（默认）| 标量
+  group: ''
+- name: Volumetric efficiency at nominal conditions
+  summary: 额定工况下实际流量与理想流量之比 0.92（默认）| (0,1] 范围内的正标量
+  group: ''
+- name: No-load torque
+  summary: 基线扭矩 0 N*m（默认）| 标量
+  group: ''
+- name: Mechanical efficiency at nominal conditions
+  summary: 实际机械功率与理想机械功率之比 0.88（默认）| 正标量
+  group: ''
+- name: Pressure gain vector, dp
+  summary: 表格数据参数化的压力数据向量 [.1, 1, 2] MPa（默认）| 1×*n* 向量
+  group: ''
+- name: Shaft angular velocity vector, w
+  summary: 表格数据参数化的角速度数据向量 [250, 500, 1000, 2000, 3000, 4000] rpm（默认）| 1×*n* 向量
+  group: ''
+- name: Displacement vector, D
+  summary: 表格数据参数化的排量体积向量 [-30, -19, 19, 30] cm^3/s（默认）| 1×*n* 向量
+  group: ''
+- name: Volumetric efficiency table, e_v(dp,w,D)
+  summary: 用于表格数据参数化的容积效率 repmat([.816, .908, .954, .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568, .78,
+    .892, .893, .91], 1, 1, 4)（默认）| *M*×*N*×*P* 矩阵
+  group: ''
+- name: Mechanical efficiency table, e_m(dp,w,D)
+  summary: 用于表格数据参数化的机械效率 repmat([.996, .996, .996, .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981, .982,
+    .982, .983, .984], 1, 1, 4)（默认）| *M*×*N*×*P* 矩阵
+  group: ''
+- name: Volumetric loss table, q_loss(dp,w,D)
+  summary: 用于表格数据参数化的容积损失 repmat([.023, .023, .023, .023, .0285, .032; .0844, .0842, .0845, .084, .1125, .108; .1079, .108,
+    .11, .108, .1605, .18] * 1e-3, 1, 1, 4)m^3/s（默认）| 数值数组
+  group: ''
+- name: Mechanical loss table, torque_loss(dp,w,D)
+  summary: 用于表格数据参数化的机械损失 repmat([.002, .002, .002, .002, .002, .002; .0607, .0556, .0556, .0556, .0556, .0505; .1937, .1937,
+    .1833, .1833, .1729, .1626], 1, 1, 4) N*m（默认）| 数值数组
+  group: ''
+- name: Minimum volumetric efficiency
+  summary: 容积效率的最小值 1e-3（默认）| (0,1] 范围内的正标量
+  group: ''
+- name: Maximum volumetric efficiency
+  summary: 容积效率的最大值 1（默认）| (0,1] 范围内的正标量
+  group: ''
+- name: Minimum mechanical efficiency
+  summary: 机械效率的最小值 1e-3（默认）| (0,1] 范围内的正标量
+  group: ''
+- name: Maximum mechanical efficiency
+  summary: 机械效率的最大值 1（默认）| (0,1] 范围内的正标量
+  group: ''
+- name: Pressure gain threshold for pump-motor transition
+  summary: 模式切换的压力阈值 1e-3 MPa（默认）| 正标量
+  group: ''
+- name: Angular velocity threshold for pump-motor transition
+  summary: 模式切换的角速度阈值 100 rpm（默认）| 正标量
+  group: ''
+- name: Displacement threshold for pump-motor transition
+  summary: 模式切换的排量阈值 0.1 cm^3/s（默认）| 正标量
+  group: ''
+- name: 检查是否超出所提供的表格数据范围
+  summary: 是否在超出所提供数据范围时发出通知 None（默认）| Warning | Error
+  group: ''
+- name: 检查是否超出泵模式运行
+  summary: 是否在模块超出泵模式功能运行时发出通知 None（默认）| Warning | Error
+  group: ''
+- name: 检查压力是否低于泵最低压力
+  summary: 是否在流体出口压力过低时发出通知 None（默认）| Warning | Error
+  group: ''
+- name: 泵最低压力
+  summary: 泵出口可接受压力的下限阈值 0.101325 MPa（默认）| 正标量
+  group: ''
+```
 
 ### **Leakage and friction parameterization** — 泄漏流量和摩擦力矩的计算方法 `Analytical`（默认）| `Tabulated data - volumetric and mechanical efficiencies` | `Tabulated data - volumetric and mechanical losses` | `Input signal - volumetric and mechanical efficiencies` | `Input signal - volumetric and mechanical losses`
 
@@ -323,7 +436,6 @@ than pump minimum pressure** 设置为以下任一值：
 
 - `Warning`
 - `Error`
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors

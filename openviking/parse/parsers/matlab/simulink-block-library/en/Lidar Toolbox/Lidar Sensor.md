@@ -14,6 +14,25 @@ language: en
 # Lidar Sensor
 
 ## Ports
+```yaml
+ports:
+- name: ActorPoses
+  summary: Actor poses Simulink bus containing MATLAB® structure
+  direction: input
+- name: IsValid
+  summary: Valid simulation time 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Location
+  summary: Location values of points *M*-by-*N*-by-3 matrix
+  direction: output
+- name: Intensity
+  summary: Intensity values of points *M*-by-*N* matrix
+  direction: output
+- name: Clusters
+  summary: Classification data of actors *M*-by-*N*-by-3 array
+  direction: output
+```
 
 ### Input
 
@@ -79,8 +98,87 @@ cloud, respectively. The first dimension of the array contains the
 `ClassID`s of the target actors, and third dimension contains the
 material IDs representing indices of **Material attribute
 information in JSON format**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Parameters
+- name: Required interval between sensor updates (s)
+  summary: Required time interval between sensor updates 0.1 (default) | positive scalar
+  group: Parameters
+- name: Sensor model to choose typical values
+  summary: Name of sensor model Custom (default) | HDL64E | HDL32E | VLP16 | VLP32C | VLS128 | PuckLITE | PuckHiRes | OS0-32
+    | OS0-64 | OS0-128 | OS1Gen1-32 | OS1Gen1-64 | OS1Gen1-128 | OS1Gen2-32 | OS1Gen2-64 | OS1Gen2-128 | OS2-32 | OS2-64 |
+    OS2-128
+  group: Parameters
+- name: Position [X Y Height] (m)
+  summary: Sensor center position [1.5 0 1.6] (default) | three-element vector of form [*X* *Y* *Height*]
+  group: Parameters
+- name: Orientation [Roll Pitch Yaw] (deg)
+  summary: Sensor orientation [0 0 0] (default) | three-element vector
+  group: Parameters
+- name: MATLAB or Model workspace Actor profiles variable name
+  summary: Variable name for actor profiles actor_profiles (default) | valid variable name
+  group: Parameters
+- name: ActorID of the host vehicle
+  summary: Actor ID of ego vehicle 1 (default) | positive integer
+  group: Parameters
+- name: Coordinate system to report point cloud data
+  summary: Coordinate system of reported detections World (default) | Sensor | Host
+  group: Parameters
+- name: Maximum detection range of sensor (m)
+  summary: Maximum detection range 120 (default) | positive scalar
+  group: Sensor FOV
+- name: Azimuth limits (deg)
+  summary: Azimuth limits of lidar sensor [-180 180] (default) | two-element vector
+  group: Sensor FOV
+- name: Azimuth resolution (deg)
+  summary: Azimuthal resolution of lidar sensor 0.16 (default) | positive scalar
+  group: Sensor FOV
+- name: Use elevation angles
+  summary: Use custom elevation angles off (default) | on
+  group: Sensor FOV
+- name: Elevation angles (deg)
+  summary: Elevation angles of lidar sensor *N*-element real-valued vector
+  group: Sensor FOV
+- name: Elevation limits (deg)
+  summary: Elevation limits of lidar sensor [-20 20] (default) | two element vector of form [*min*, *max*]
+  group: Sensor FOV
+- name: Elevation resolution (deg)
+  summary: Elevation resolution of lidar sensor 1.25 (default) | positive scalar
+  group: Sensor FOV
+- name: Add noise to measurements
+  summary: Add noise to measurements on (default) | off
+  group: Advance Settings
+- name: Range accuracy (m)
+  summary: Accuracy of sensor range measurement 0.002 (default) | positive scalar
+  group: Advance Settings
+- name: Fog visibility in meters
+  summary: Visible distance in fog 1000 (default) | positive scalar
+  group: Advance Settings
+- name: Rainrate in mm/hour
+  summary: Rate of rainfall 0 (default) | positive scalar
+  group: Advance Settings
+- name: Simulate Motion Distortion
+  summary: Simulate motion distortion off (default) | on
+  group: Advance Settings
+- name: Laser firing time (s)
+  summary: Firing times of lasers in lidar sensor [] (default) | positive scalar | positive numeric vector
+  group: Advance Settings
+- name: Material attribute information in JSON format
+  summary: Material attribute information in JSON format string scalar | character vector
+  group: Scene Material Attributes
+- name: Edit JSON text to add, remove, or modify material attributes
+  summary: Edit JSON text to add, remove, or modify material attributes off (default) | on
+  group: Scene Material Attributes
+- name: Output intensity port
+  summary: Output intensity values of points on (default) | off
+  group: Output Port Settings
+- name: Output clusters port
+  summary: Output segmentation values of points on (default) | off
+  group: Output Port Settings
+```
 
 ### Parameters
 
@@ -427,7 +525,6 @@ Select this parameter to enable the **Intensity** output port.
 ### **Output clusters port** — Output segmentation values of points `on` (default) | `off`
 
 Select this parameter to enable the **Clusters** output port.
-
 ## Libraries
 
 Lidar Toolbox

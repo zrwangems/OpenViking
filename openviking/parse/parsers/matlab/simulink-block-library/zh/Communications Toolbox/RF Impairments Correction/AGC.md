@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # AGC
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号列向量
+  direction: input
+  data_types: single | double | int | uint
+- name: y
+  summary: 输出信号 *N*S 元素列向量
+  direction: output
+- name: Px
+  summary: 功率电平估计 *N*S 元素列向量
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +52,28 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Enable output of estimated input power** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Step size for gain updates
+  summary: 增益更新的步长 0.01 | 正标量
+  group: ''
+- name: Target output power level
+  summary: 目标输出功率电平 (W) 1 | 正标量
+  group: ''
+- name: Length of averaging window
+  summary: 平均窗口长度（样本） 100 | 正整数
+  group: ''
+- name: Maximum power gain
+  summary: 最大功率增益 (dB) 60（默认）| 正标量
+  group: ''
+- name: Enable output of estimated input power
+  summary: 输出估计输入功率的选项 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -72,7 +105,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度比使用 `Interpreted execution` 选项时更快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments Correction

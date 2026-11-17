@@ -14,6 +14,15 @@ language: en
 # P-H Diagram (2P)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Pressure, MPa vector
+  direction: input
+- name: h
+  summary: Specific enthalpy, kJ/kg vector
+  direction: input
+```
 
 ### Input
 
@@ -26,11 +35,12 @@ the enthalpy signal at port **h**
 
 Vector of specific enthalpies. The vector must have same number of
 elements as the pressure signal at port **p**.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Utilities

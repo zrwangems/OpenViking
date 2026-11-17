@@ -15,15 +15,22 @@ chinese_source: worker-translation
 # SimEvents Debugger
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Enable debugger
+  summary: 启用调试器 on（默认）| off
+  group: ''
+```
 
 ### **Enable debugger** — 启用调试器 `on`（默认）| `off`
 
 选中此复选框可为您的模型启用调试器。
-
 ## 所属库
 
 SimEvents

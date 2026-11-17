@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Vector Concatenate
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要串联的第一个输入 标量 | 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_N
+  summary: 要串联的第 *N* 个输入 标量 | 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: 输入信号的串联 标量 | 向量 | 矩阵 | 数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -50,8 +68,25 @@ chinese_source: worker-translation
 沿指定维度对输入信号进行串联。输出与输入具有相同的数据类型。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inputs
+  summary: 输入端口数量 2（默认）| 正整数
+  group: ''
+  block_parameter: NumInputs
+  values: '''2''（默认）| 带引号的正整数'
+- name: Mode
+  summary: 串联类型 Vector | Multidimensional array
+  group: ''
+  block_parameter: Mode
+  values: '''Vector'' | ''Multidimensional array'''
+- name: Concatenate dimension
+  summary: 沿其串联输入数组的输出维度 标量整数
+  group: ''
+  block_parameter: ConcatenateDimension
+  values: 带引号的标量整数
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property
 Inspector**。
@@ -120,7 +155,6 @@ Inspector**。
 | **数据类型：** | `char` | `string` |
 
 **示例：** `set_param(gcb,'ConcatenateDimension','3')`
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Math Operations Simulink / Signal Routing HDL Coder / Math Operations HDL Coder / Signal Routing

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Double-Acting Actuator (G)
 
 ## 端口
+```yaml
+ports:
+- name: p
+  summary: 活塞位置输入，m 物理信号
+  direction: input
+- name: p
+  summary: 活塞位置，m 物理信号
+  direction: output
+- name: A
+  summary: 液体端口 气体
+  direction: output
+- name: B
+  summary: 液体端口 气体
+  direction: output
+- name: R
+  summary: 执行器活塞机械平移
+  direction: output
+- name: C
+  summary: 执行器壳体机械平移
+  direction: output
+- name: HA
+  summary: 传热 热
+  direction: output
+- name: HB
+  summary: 传热 热
+  direction: output
+```
 
 ### 输入
 
@@ -66,8 +93,85 @@ of port R relative to port C`。
 ### **HB** — 传热 热
 
 与腔室 B 关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Same fluid on both sides
+  summary: 在两个腔室中建模相同流体的选项 on（默认）| off
+  group: 执行器
+- name: Mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 执行器
+- name: Piston cross-sectional area in chamber A
+  summary: 腔室 A 活塞面积 0.01 m^2（默认）| 正标量
+  group: 执行器
+- name: Piston cross-sectional area in chamber B
+  summary: 腔室 B 活塞面积 0.01 m^2（默认）| 正标量
+  group: 执行器
+- name: Piston stroke
+  summary: 最大活塞行程距离 0.1 m（默认）| 正标量
+  group: 执行器
+- name: Dead volume in chamber A
+  summary: 活塞完全缩回时腔室 A 的流体体积 1e-5 m^3（默认）| 正标量
+  group: 执行器
+- name: Dead volume in chamber B
+  summary: 活塞完全缩回时腔室 B 的流体体积 1e-5 m^3（默认）| 正标量
+  group: 执行器
+- name: Cross-sectional area at port A
+  summary: 端口 A 处的面积 0.01 m^2（默认）| 正标量
+  group: 执行器
+- name: Cross-sectional area at port B
+  summary: 端口 B 处的面积 0.01 m^2（默认）| 正标量
+  group: 执行器
+- name: Environment pressure specification
+  summary: 参考环境压力 Atmospheric pressure（默认）| Specified pressure
+  group: 执行器
+- name: Environment pressure
+  summary: 用户定义的环境压力 0.101325 MPa（默认）| 正标量
+  group: 执行器
+- name: Hard stop model
+  summary: 硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 硬限位
+- name: Hard-stop stiffness coefficient
+  summary: 刚度系数 1e10 N/m（默认）| 正标量
+  group: 硬限位
+- name: Hard-stop damping coefficient
+  summary: 阻尼系数 150 N*s/m（默认）| 正标量
+  group: 硬限位
+- name: Transition region
+  summary: 硬限位力模型的应用范围 0.1 mm（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位器之间最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位器之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的力 0.001 N（默认）| 正标量
+  group: 硬限位
+- name: Piston displacement from chamber A cap
+  summary: 确定活塞位置的方法 Calculate from velocity of port R relative to port C（默认）| Provide input signal from Multibody joint
+  group: 初始条件
+- name: Initial piston displacement from chamber A cap
+  summary: 仿真开始时的活塞位移 0 m（默认）| 标量
+  group: 初始条件
+- name: Initial gas pressure in chamber A
+  summary: 腔室 A 中的起始气体压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: Initial gas pressure in chamber B
+  summary: 腔室 B 中的起始气体压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: Initial gas temperature in chamber A
+  summary: 腔室 A 中的起始气体温度 293.15 K（默认）| 标量
+  group: 初始条件
+- name: Initial gas temperature in chamber B
+  summary: 腔室 B 中的起始气体温度 293.15 K（默认）| 标量
+  group: 初始条件
+```
 
 ### 执行器
 
@@ -248,7 +352,6 @@ of port R relative to port C`。
 ### **Initial gas temperature in chamber B** — 腔室 B 中的起始气体温度 `293.15` `K`（默认）| 标量
 
 执行器中气体体积的初始温度。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Actuators

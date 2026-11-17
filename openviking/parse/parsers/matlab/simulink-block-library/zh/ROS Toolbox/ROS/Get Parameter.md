@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Get Parameter
 
 ## 端口
+```yaml
+ports:
+- name: Value
+  summary: 参数值 标量 | 逻辑值 | uint8 数组
+  direction: output
+- name: ErrorCode
+  summary: ROS 参数的状态 0 | 1 | 2 | 3
+  direction: output
+- name: Length
+  summary: 字符串参数的长度 整数
+  direction: output
+```
 
 ### 输出
 
@@ -42,8 +54,31 @@ ROS 参数的状态，指定为以下之一：
 #### 依赖关系
 
 要启用此端口，请将 **Data type** 设置为 `uint8[] (string)`。
-
 ## 参数
+```yaml
+parameters:
+- name: Source
+  summary: 用于指定参数名称的来源 Select from ROS network | Specify your own
+  group: ''
+- name: Name
+  summary: 参数名称 字符串
+  group: ''
+- name: Data type
+  summary: 参数的数据类型 double | int32 | boolean | uint8[] (string)
+  group: ''
+- name: Maximum length
+  summary: uint8 数组的最大长度 标量
+  group: ''
+- name: Initial value
+  summary: 默认参数值输出 double | int32 | boolean | uint8
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 inf（默认）| 标量
+  group: ''
+- name: Show ErrorCode output port
+  summary: 显示错误代码输出 on | off
+  group: ''
+```
 
 ### **Source** — 用于指定参数名称的来源 `Select from ROS network` | `Specify your own`
 
@@ -99,7 +134,6 @@ ROS 参数的状态，指定为以下之一：
 - **1 —** 未找到具有指定名称的 ROS 参数。如果没有已知值，**Value** 将设置为最后接收的值或 **Initial value**。
 - **2 —** ROS 参数已检索，但其类型与指定的 **Data type** 不同。如果没有已知值，Value 将设置为最后接收的值或 **Initial value**。
 - **3 —** 对于字符串参数，传入字符串已根据指定长度被截断。
-
 ## 所属库
 
 ROS Toolbox / ROS

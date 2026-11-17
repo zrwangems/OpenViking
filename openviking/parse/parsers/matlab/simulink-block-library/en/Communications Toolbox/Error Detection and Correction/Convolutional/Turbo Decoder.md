@@ -14,6 +14,24 @@ language: en
 # Turbo Decoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Parallel concatenated codeword column vector
+  direction: input
+  data_types: double | single
+- name: IntrInd
+  summary: Interleaver indices column vector of integers
+  direction: input
+  data_types: double
+- name: InInd
+  summary: Input indices column vector of integers
+  direction: input
+  data_types: double
+- name: Out
+  summary: Decoded message binary column vector
+  direction: output
+```
 
 ### Input
 
@@ -66,8 +84,52 @@ Decoded message, returned as a binary column vector of length
 *L*, where *L* is the length of
 the decoded binary output message. This output inherits its data type
 from the `In` input.
-
 ## Parameters
+```yaml
+parameters:
+- name: Trellis structure
+  summary: Trellis description of constituent convolutional code poly2trellis(4,[13 15],13) (default) | structure
+  group: ''
+- name: numInputSymbols
+  summary: Number of symbols input to encoder 2*K*
+  group: ''
+- name: numOutputSymbols
+  summary: Number of symbols output from encoder 2*N*
+  group: ''
+- name: numStates
+  summary: Number of states in encoder power of 2
+  group: ''
+- name: nextStates
+  summary: Next states matrix of integers
+  group: ''
+- name: outputs
+  summary: Outputs matrix of octal numbers
+  group: ''
+- name: Source of interleaver indices
+  summary: Source of interleaver indices Property (default) | Input port
+  group: ''
+- name: Interleaver indices
+  summary: Interleaver indices (64:-1:1).' (default) | column vector of integers
+  group: ''
+- name: Source of input indices
+  summary: Source of input indices Auto | Property | Input port
+  group: ''
+- name: Input indices
+  summary: Input indices getTurboIOIndices(64,2,3) (default) | column vector of integers
+  group: ''
+- name: Decoding algorithm
+  summary: Decoding algorithm True APP (default) | Max* | Max
+  group: ''
+- name: Number of scaling bits
+  summary: Number of scaling bits 3 (default) | integer in the range [0, 8]
+  group: ''
+- name: Number of decoding iterations
+  summary: Number of decoding iterations 6 (default) | positive integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -234,7 +296,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Convolutional

@@ -14,6 +14,17 @@ language: en
 # Detect Rise Positive
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### Input
 
@@ -38,8 +49,32 @@ can be a scalar, vector, or matrix.
   the previous value was also positive.
 
 **Data Types:** `uint8` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition
+  summary: Initial condition of Boolean expression U/z > 0 0 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: vinit
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''0'''
+- name: Input processing
+  summary: Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame
+    based)
+  group: ''
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Output data type
+  summary: Output data type boolean (default) | uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+```
 
 ### **Initial condition** — Initial condition of Boolean expression `U/z > 0` `0` (default) | scalar | vector | matrix
 
@@ -97,7 +132,6 @@ Specify the output data type as `boolean` or
 | **Type:** character vector |
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations

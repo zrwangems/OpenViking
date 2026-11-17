@@ -14,6 +14,17 @@ language: en
 # Spherical Harmonic Gravity Model
 
 ## Ports
+```yaml
+ports:
+- name: Xff
+  summary: Fixed-frame coordinates N-by-3 matrix
+  direction: input
+  data_types: double
+- name: gff
+  summary: Gravity values N-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -46,8 +57,45 @@ the calculated gravity vector for the corresponding row in the input
 matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Action for out-of-range input
+  summary: Out-of-range input behavior Warning (default) | Error | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Central body model
+  summary: Planetary model EGM2008 (default) | EGM96 | LP100K | LP165P | GMM2B | Custom | EIGENGL04C
+  group: ''
+  block_parameter: ptype
+  type: character vector
+  values: '''EGM2008'' | ''EGM96'' | ''LP100K'' | ''LP165P'' | ''GMM2B'' | ''Custom'' | ''EIGENGL04C'''
+  default: '''EGM2008'''
+- name: Degree
+  summary: Degree of harmonic model 120 (default) | scalar
+  group: ''
+  block_parameter: degree
+  type: character vector
+  values: scalar
+  default: '''120'''
+- name: Central body MAT-file
+  summary: Central body MAT-file 'aerogmm2b.mat' (default)
+  group: ''
+  block_parameter: datafile
+  type: character vector
+  values: '''aerogmm2b.mat'' | MAT-file'
+  default: '''aerogmm2b.mat'''
+```
 
 ### **Units** — Input and output units `Metric (MKS)` (default) | `English`
 
@@ -184,7 +232,6 @@ to `Custom`.
 | **Type**: character vector |
 | **Values**: `'aerogmm2b.mat'` | MAT-file |
 | **Default**: `'aerogmm2b.mat'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Gravity

@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Entity Output Switch
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: control
+  summary: 传入控制实体 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_2
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+```
 
 ### 输入
 
@@ -42,8 +64,45 @@ chinese_source: worker-translation
 离开模块的实体的输出实体端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of output ports
+  summary: 指定输出端口数量 2（默认）| 标量
+  group: ''
+  block_parameter: NumberOutputPorts
+  type: character vector
+  values: '''2'' | scalar'
+  default: '''2'''
+- name: Switching criterion
+  summary: 选择切换准则 First port that is not blocked（默认）| Round robin | From control port | From attribute | Equiprobable
+  group: ''
+  block_parameter: SwitchingCriterion
+  type: character vector
+  values: '''First port that is not blocked'' | ''Round robin'' | ''From control port'' | ''From attribute'' | ''Equiprobable'''
+  default: '''First port that is not blocked'''
+- name: Initial port selection
+  summary: 指定仿真开始时的输出端口 1（默认）| 标量
+  group: ''
+  block_parameter: InitialPortSelection
+  type: 字符向量
+  values: '''1'' | 标量'
+  default: '''1'''
+- name: Switch Attribute name
+  summary: 指定确定输出端口的属性 Attribute1（默认）| 字符向量
+  group: ''
+  block_parameter: SwitchAttributeName
+  type: 字符向量
+  values: '''Attribute1'' | 字符向量'
+  default: '''Attribute1'''
+- name: Seed
+  summary: 指定种子 34567（默认）| 标量
+  group: ''
+  block_parameter: Seed
+  type: 字符向量
+  values: '''34567'' | 标量'
+  default: '''34567'''
+```
 
 ### **Number of output ports** — 指定输出端口数量 2（默认）| 标量
 
@@ -142,7 +201,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'34567'` | 标量 |
 | **默认值**：`'34567'` |
-
 ## 所属库
 
 SimEvents

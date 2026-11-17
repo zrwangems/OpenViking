@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Translational Multibody Interface
 
 ## 端口
+```yaml
+ports:
+- name: v
+  summary: 相对速度，m/s 物理信号
+  direction: input
+- name: f
+  summary: 力，N 物理信号
+  direction: output
+- name: R
+  summary: 杆机械平移
+  direction: output
+- name: C
+  summary: 壳体机械平移
+  direction: output
+```
 
 ### 输入
 
@@ -37,11 +52,12 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 机械平移守恒端口，具有与关节原语相同的力和相对速度。将此端口连接到机械平移网络中其他模块的端口 **C**。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Multibody Interfaces

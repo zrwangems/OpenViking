@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Root WSF DOA
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 *M*×*N* 复值矩阵
+  direction: input
+  data_types: single | double
+- name: Ang
+  summary: 估计的宽边 DOA 角度 *P* 长度行向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -39,8 +50,107 @@ chinese_source: worker-translation
 *P* 长度行向量形式返回。单位为度。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: 主选项卡
+- name: Operating frequency (Hz)
+  summary: 系统工作频率 3e8（默认）| 正实标量
+  group: 主选项卡
+- name: Number of signals
+  summary: 信号数量 1（默认）| 正整数标量
+  group: 主选项卡
+- name: Iterative method
+  summary: 迭代方法 IMODE（默认）| IQML
+  group: 主选项卡
+- name: Maximum number of iterations
+  summary: 最大迭代次数 Inf（默认）
+  group: 主选项卡
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: 主选项卡
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+- name: Specify sensor array as
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| MATLAB expression
+  group: 传感器阵列选项卡
+- name: Element type
+  summary: 阵列单元类型 Isotropic Antenna（默认）| Cardioid Antenna | Cosine Antenna | Custom Antenna | Gaussian Antenna | Sinc Antenna
+    | Omni Microphone | Custom Microphone
+  group: 传感器阵列选项卡
+- name: Operating frequency range (Hz)
+  summary: 天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值 1×2 行向量
+  group: 传感器阵列选项卡
+- name: Baffle the back of the element
+  summary: 将 Isotropic Antenna 单元或 Omni Microphone 单元的后向响应设置为零 off（默认）| on
+  group: 传感器阵列选项卡
+- name: Null axis direction
+  summary: 零轴方向 -x（默认）| +x | +y | -y | +z | -z
+  group: 传感器阵列选项卡
+- name: Exponent of cosine pattern
+  summary: 方位角和仰角余弦方向图的指数 [1.5 1.5]（默认）| 非负标量 | 非负实值 1×2 矩阵
+  group: 传感器阵列选项卡
+- name: Operating frequency vector (Hz)
+  summary: 自定义天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值行向量
+  group: 传感器阵列选项卡
+- name: Frequency responses (dB)
+  summary: 天线和麦克风频率响应 [0,0]（默认）| 实值行向量
+  group: 传感器阵列选项卡
+- name: Input Pattern Coordinate System
+  summary: 自定义天线方向图的坐标系 az-el（默认）| phi-theta
+  group: 传感器阵列选项卡
+- name: Azimuth angles (deg)
+  summary: 天线辐射方向图的方位角 [-180:180]（默认）| 实值行向量
+  group: 传感器阵列选项卡
+- name: Elevation angles (deg)
+  summary: 天线辐射方向图的仰角 [-90:90]（默认）| 实值行向量
+  group: 传感器阵列选项卡
+- name: Phi Angles (deg)
+  summary: 自定义天线辐射方向图的 Phi 角坐标 0:360 | 实值 1×*P* 行向量
+  group: 传感器阵列选项卡
+- name: Theta Angles (deg)
+  summary: 自定义天线辐射方向图的 Theta 角坐标 0:180 | 实值 1×*Q* 行向量
+  group: 传感器阵列选项卡
+- name: Magnitude pattern (dB)
+  summary: 组合天线辐射方向图的幅度 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: 传感器阵列选项卡
+- name: Phase pattern (deg)
+  summary: 自定义天线辐射相位方向图 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: 传感器阵列选项卡
+- name: Align element normal with array normal
+  summary: 将阵元法线与阵列法线对齐 on（默认）| off
+  group: 传感器阵列选项卡
+- name: Radiation pattern beamwidth (deg)
+  summary: 辐射方向图波束宽度 [10,10]（默认）
+  group: 传感器阵列选项卡
+- name: Polar pattern frequencies (Hz)
+  summary: 极坐标方向图麦克风响应频率 1e3（默认）| 实标量 | 实值 1×*L* 行向量
+  group: 传感器阵列选项卡
+- name: Polar pattern angles (deg)
+  summary: 极坐标方向图响应角度 [-180:180]（默认）| 实值 1×*P* 行向量
+  group: 传感器阵列选项卡
+- name: Polar pattern (dB)
+  summary: 自定义麦克风极性响应 zeros(1,361)（默认）| 实值 *L*×*P* 矩阵
+  group: 传感器阵列选项卡
+- name: Number of elements
+  summary: U 中阵列阵元数量 2（默认）| 大于或等于 2 的正整数
+  group: 传感器阵列选项卡
+- name: Element spacing
+  summary: ULA 阵元之间的距离 0.5（默认）| 正标量
+  group: 传感器阵列选项卡
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认）| x | z
+  group: 传感器阵列选项卡
+- name: Taper
+  summary: ULA 阵列锥削 1（默认）| 复值向量
+  group: 传感器阵列选项卡
+- name: Expression
+  summary: 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
+  group: 传感器阵列选项卡
+```
 
 ### 主选项卡
 
@@ -342,7 +452,6 @@ ULA 的线性轴方向，指定为 `y`、`x` 或 `z`。所有 ULA 阵列阵元�
 #### 依赖关系
 
 要启用此参数，请将 **Specify sensor array as** 设置为 `MATLAB expression`。
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Varying Delay
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_2
+  summary: 瞬时时间延迟输入 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 延迟信号 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +57,34 @@ chinese_source: worker-translation
 输出信号，指定为标量或向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal delay
+  summary: 延迟的标称值 1 （默认） | 正标量 | 正数值向量
+  group: ''
+- name: Maximum delay
+  summary: 时间延迟输入的最大值 10 （默认） | 非负标量 | 非负数值向量
+  group: ''
+- name: Minimum delay
+  summary: 时间延迟输入的最小值 0 （默认） | 非负标量 | 非负数值向量
+  group: ''
+- name: Fixed delays (indices)
+  summary: 具有固定延迟的信号索引 [] （默认） | 正标量 | 正数值向量
+  group: ''
+- name: Initial output
+  summary: 初始输出 0 （默认） | 标量 | 向量
+  group: ''
+- name: Initial buffer size
+  summary: 初始内存分配 1024 （默认） | 标量
+  group: ''
+- name: Use fixed buffer size
+  summary: 使用固定大小缓冲区 off （默认） | on
+  group: ''
+- name: Pade order (for linearization)
+  summary: Pade 近似的阶数 0 （默认） | 正整数 | 向量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -104,7 +145,6 @@ ERT 或 GRT 代码生成使用固定大小缓冲区，即使您未选中此复�
 - 将阶数设置为正整数 `n` 会向您的模型添加 `n` 个状态，但会得到更准确的延迟线性模型。
 
 使用正整数向量为每个输入通道指定不同的阶数。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

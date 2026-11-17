@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Cancel Action Goal
 
 ## 端口
+```yaml
+ports:
+- name: UUID
+  summary: 专用于任何目标消息的唯一 ID 非虚拟总线
+  direction: input
+  data_types: bus
+- name: Enable
+  summary: 用于发送取消活动操作目标请求的布尔值 true 或 1 | false 或 0
+  direction: input
+  data_types: Boolean
+- name: Response
+  summary: 取消目标请求的响应消息 非虚拟总线
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: 取消操作目标时的错误条件 整数
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -53,15 +72,19 @@ chinese_source: worker-translation
 当选中 **Show ErrorCode output port** 时，此输出启用。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Show ErrorCode output port
+  summary: 启用错误代码输出端口 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
 ### **Show ErrorCode output port** — 启用错误代码输出端口 `off`（默认）| `on`
 
 选中此复选框以启用 **ErrorCode** 输出。如果发生错误条件，**Response** 端口会输出指定为 `action_msgs/CancelGoalResponse` 消息类型的非虚拟总线的空白消息。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

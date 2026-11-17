@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Single Port RAM
 
 ## 端口
+```yaml
+ports:
+- name: din
+  summary: 写入数据输入 Scalar（默认）
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | fixed point
+- name: addr
+  summary: 写入地址 Scalar（默认）
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: we
+  summary: 写入使能 Scalar（默认）
+  direction: input
+  data_types: Boolean
+- name: dout
+  summary: 输出数据 Scalar（默认）
+  direction: output
+```
 
 ### 输入
 
@@ -40,8 +58,22 @@ chinese_source: worker-translation
 ### **dout** — 输出数据 `Scalar`（默认）
 
 来自地址 `addr` 的输出数据。
-
 ## 参数
+```yaml
+parameters:
+- name: Address port width
+  summary: 地址位宽 8（默认）
+  group: ''
+  block_parameter: ram_size
+  type: string scalar | character vector
+  values: 最小值为 2，最大值为 29
+- name: Output data during write
+  summary: 控制输出数据 New data（默认） | Old data
+  group: ''
+  block_parameter: dout_type
+  type: string scalar | character vector
+  values: '"New data" | "Old data"'
+```
 
 ### **Address port width** — 地址位宽 `8`（默认）
 
@@ -71,7 +103,6 @@ chinese_source: worker-translation
 | **类型：** string scalar | character vector |
 | **值：** `"New data"` | `"Old data"` |
 | **默认：** `'New data'` |
-
 ## 所属库
 
 HDL Coder / HDL RAMs

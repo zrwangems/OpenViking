@@ -14,6 +14,15 @@ language: en
 # Gravity Torque
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Robot configuration vector
+  direction: input
+- name: JointTorq
+  summary: Joint torques vector
+  direction: output
+```
 
 ### Input
 
@@ -34,8 +43,16 @@ Joint torques, specified as a vector. Each element corresponds to a
 torque applied to a specific joint. The number of joint torques is equal
 to the degrees of freedom (number of nonfixed joints) of the
 robot.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: Robot model twoJointRigidBodyTree (default) | RigidBodyTree object
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — Robot model `twoJointRigidBodyTree` (default) | `RigidBodyTree` object
 
@@ -62,7 +79,6 @@ robot with revolute joints and two degrees of freedom.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Manipulator Algorithms

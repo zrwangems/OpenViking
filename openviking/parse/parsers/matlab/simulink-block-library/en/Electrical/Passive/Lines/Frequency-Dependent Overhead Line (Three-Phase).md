@@ -14,6 +14,15 @@ language: en
 # Frequency-Dependent Overhead Line (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Three-phase AC voltage 1 electrical
+  direction: conserving
+- name: ~2
+  summary: Three-phase AC voltage 2 electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,35 @@ Expandable electrical conserving three-phase port associated with AC voltage
 
 Expandable electrical conserving three-phase port associated with AC voltage
 2.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: X position of the line
+  summary: Horizontal line position [-6, 0, 6] m (default) | vector of three elements
+  group: ''
+- name: Y position of the line
+  summary: Vertical line position [16, 26, 16] m (default) | vector of three positive elements
+  group: ''
+- name: Resistivity of the conductor
+  summary: Conductor resistivity 2.7e-8 m*Ohm (default) | positive scalar
+  group: ''
+- name: Resistivity of the earth
+  summary: Earth return resistivity 100 m*Ohm (default) | positive scalar
+  group: ''
+- name: Radius of the conductor
+  summary: Conductor radius 0.017 m (default) | positive scalar
+  group: ''
+- name: Length of the line
+  summary: Line length 150e3 m (default) | scalar in the range [1, 300000]
+  group: ''
+- name: Ground configuration
+  summary: Ground node accessibility Internally grounded (default) | Accessible ground nodes
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -70,7 +106,6 @@ Length of the frequency-dependent overhead line.
 ### **Ground configuration** — Ground node accessibility `Internally grounded` (default) | `Accessible ground nodes`
 
 Configuration of the ground nodes.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Lines

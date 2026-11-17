@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # SM DC4C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_OELscl
+  summary: 接管定子电流限制 (OEL) 标量
+  direction: input
+  data_types: single | double
+- name: V_UELscl
+  summary: 接管定子电流限制 (UEL) 标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -131,8 +174,113 @@ chinese_source: worker-translation
 要施加到同步电机励磁绕组的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: 初始励磁电压，Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数
+  group: 常规
+- name: 初始机端电压，Vt0 (pu)
+  summary: 初始机端电压 1（默认）| 实数
+  group: 常规
+- name: 初始机端电流，It0 (pu)
+  summary: 初始机端电流 1（默认）| 实数
+  group: 常规
+- name: 采样时间（-1 表示继承）
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: 负载补偿电阻分量，R_C (pu)
+  summary: 补偿电阻 0（默认）| 正数
+  group: 预控制
+- name: 负载补偿电抗分量，X_C (pu)
+  summary: 补偿电抗 0（默认）| 正数
+  group: 预控制
+- name: 调节器输入滤波器时间常数，T_R (s)
+  summary: 调节器时间常数 0（默认）| 正数
+  group: 预控制
+- name: 调节器比例增益，K_PR (pu)
+  summary: 调节器的比例增益 80（默认）| 标量
+  group: 控制
+- name: 调节器积分增益，K_IR (pu/s)
+  summary: 调节器的积分增益 20（默认）| 标量
+  group: 控制
+- name: 调节器微分增益，K_DR (pu.s)
+  summary: 调节器的微分增益 20（默认）| 标量
+  group: 控制
+- name: 调节器微分滤波器时间常数，T_DR (s)
+  summary: PID 微分通道的滤波器时间常数 0.01（默认）| 正数
+  group: 控制
+- name: 调节器输出增益，K_A (pu)
+  summary: 调节器增益 1（默认）| 正数
+  group: 控制
+- name: 调节器时间常数，T_A (s)
+  summary: 调节器时间常数 0.02（默认）| 正数
+  group: 控制
+- name: 速率反馈增益，K_F (pu)
+  summary: 速率反馈增益 0（默认）| 正数
+  group: 控制
+- name: 速率反馈时间常数，T_F (s)
+  summary: 速率反馈时间常数 1（默认）| 正数
+  group: 控制
+- name: 控制器最大输出，V_Rmax (pu)
+  summary: 控制器输出上限 2.7（默认）| 实数
+  group: 控制
+- name: 控制器最小输出，V_Rmin (pu)
+  summary: 控制器输出下限 -2.7（默认）| 实数
+  group: 控制
+- name: 备用 OEL 输入位置 (V_OEL)
+  summary: 过励限制器输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: 备用 UEL 输入位置 (V_UEL)
+  summary: 欠励限制器输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: 备用 SCL 输入位置 (V_SCL)
+  summary: 定子电流限制器输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: 励磁机励磁绕组比例常数，K_E (pu)
+  summary: 励磁机励磁增益 1（默认）| 正数
+  group: 励磁机
+- name: 励磁机励磁绕组时间常数，T_E (s)
+  summary: 励磁机励磁绕组时间常数 0.8（默认）| 正数
+  group: 励磁机
+- name: 下限，E_FDmin (pu)
+  summary: 励磁电压下限 -99（默认）| 正数
+  group: 励磁机
+- name: 饱和因子 S_E(E_1) 对应的励磁机输出电压，E_1 (pu)
+  summary: 第一饱和输出电压 4.8（默认）| 正数
+  group: 励磁机
+- name: 励磁机输出电压 E_1 处的励磁机饱和因子，S_E(E_1) (1)
+  summary: 第一饱和查找电压 1.54（默认）| 正数
+  group: 励磁机
+- name: 饱和因子 S_E(E_2) 对应的励磁机输出电压，E_2 (pu)
+  summary: 第二饱和输出电压 3.6（默认）| 正数
+  group: 励磁机
+- name: 励磁机输出电压 E_2 处的励磁机饱和因子，S_E(E_2) (1)
+  summary: 第二饱和查找电压 1.26（默认）| 正数
+  group: 励磁机
+- name: 电势回路增益系数，K_P (pu)
+  summary: 电势回路增益系数 1（默认）| 实数
+  group: 励磁机
+- name: 电势回路相位角（度）
+  summary: 电势回路相位角 0（默认）| 实数
+  group: 励磁机
+- name: 电势回路（电流）增益系数，K_I (pu)
+  summary: 电势回路电流增益系数 0（默认）| 实数
+  group: 励磁机
+- name: 与电势源相关的电抗，X_L (pu)
+  summary: 与电势源相关的电抗 0（默认）| 实数
+  group: 励磁机
+- name: 与换相电抗成比例的整流器负载因子，K_C1 (pu)
+  summary: 与换相电抗成比例的整流器负载因子 0（默认）| 实数
+  group: 励磁机
+- name: 逻辑开关 1
+  summary: '逻辑开关位置 Position A: power source derived from terminal voltage（默认）| Position B: power source independent of the
+    terminal conditions'
+  group: 励磁机
+- name: 最大可用励磁机励磁电压，V_Bmax (pu)
+  summary: 最大可用励磁机励磁电压 1.5（默认）| 实数
+  group: 励磁机
+```
 
 ### 常规
 
@@ -326,7 +474,6 @@ PID 控制器微分通道的等效滤波器时间常数，以
 ### **最大可用励磁机励磁电压，V\_Bmax (pu)** — 最大可用励磁机励磁电压 `1.5`（默认）| 实数
 
 励磁机的最大可用标幺励磁电压。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

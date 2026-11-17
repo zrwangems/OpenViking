@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Positive-Displacement Compressor (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 压缩机入口两相流体
+  direction: unspecified
+- name: B
+  summary: 压缩机出口两相流体
+  direction: unspecified
+- name: C
+  summary: 压缩机壳体机械旋转
+  direction: unspecified
+- name: R
+  summary: 压缩机轴机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +48,84 @@ chinese_source: worker-translation
 ### **R** — 压缩机轴机械旋转
 
 与压缩机轴关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Displacement specification
+  summary: 按体积或标称条件指定排量的选项 Volumetric displacement（默认）| Nominal mass flow rate and shaft speed
+  group: 排量
+- name: Displacement volume
+  summary: 排量体积 130 cm^3/rev（默认）| 正标量
+  group: 排量
+- name: Nominal mass flow rate
+  summary: 标称质量流量 0.01 kg/s（默认）| 正标量
+  group: 排量
+- name: Nominal shaft speed
+  summary: 标称轴转速 1000 rpm（默认）| 正标量
+  group: 排量
+- name: Efficiency specification
+  summary: 使用解析式或表格参数化容积效率的选项 Analytical（默认）| Tabulated
+  group: 效率
+- name: Thermodynamic model
+  summary: 热力学模型参数化选项 Polytropic（默认）| Isentropic
+  group: 效率
+- name: Polytropic exponent
+  summary: 多方指数 1.2（默认）| 正标量
+  group: 效率
+- name: Isentropic efficiency
+  summary: 等熵效率 0.65（默认）| 正标量
+  group: 效率
+- name: Isentropic efficiency table, eta_isen(pr,w)
+  summary: 等熵效率表 [.95, .9, .85, .8, .75; .925, .875, .825, .775, .725; .875, .825, .775, .725, .675; .75, .7, .65, .6, .55]（默认）|
+    矩阵
+  group: 效率
+- name: Nominal volumetric efficiency
+  summary: 标称容积效率 0.95（默认）| 正标量
+  group: 效率
+- name: Pressure ratio vector, pr
+  summary: 压力比向量 [2, 4, 6, 8]（默认）| 向量
+  group: 效率
+- name: Shaft speed vector, w
+  summary: 轴转速向量 [800, 1500, 2800, 3300, 4000] rpm（默认）| 向量
+  group: 效率
+- name: Volumetric efficiency table, eta_vol(pr,w)
+  summary: 容积效率 [.95, .9, .85, .8, .75; .925, .875, .825, .775, .725; .875, .825, .775, .725, .675; .75, .7, .65, .6, .55]（默认）|
+    矩阵
+  group: 效率
+- name: Nominal pressure ratio
+  summary: 标称压力比 5（默认）| 正标量
+  group: 标称工况
+- name: Nominal conditions specification
+  summary: 用于指定压力比或制冷循环饱和温度 Nominal pressure（默认）| Nominal saturation temperatures
+  group: 标称工况
+- name: Nominal inlet pressure
+  summary: 标称入口压力 0.101325 MPa（默认）| 正标量
+  group: 标称工况
+- name: Nominal inlet temperature
+  summary: 标称入口温度 373.15 K（默认）| 正标量
+  group: 标称工况
+- name: Nominal evaporating temperature
+  summary: 标称蒸发温度 373.15 K（默认）| 正标量
+  group: 标称工况
+- name: Nominal condensing temperature
+  summary: 标称冷凝温度 398.15 K（默认）| 正标量
+  group: 标称工况
+- name: Nominal evaporator superheat
+  summary: 标称饱和过热度 10 deltaK（默认）| 标量
+  group: 标称工况
+- name: Mechanical efficiency
+  summary: 压缩机机械效率 0.9（默认）| 正标量
+  group: 参数
+- name: Inlet area at port A
+  summary: 入口面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: Outlet area at port B
+  summary: 出口面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: Report when fluid is not fully vapor
+  summary: 两相流体工况检查 Warning（默认）| None | Error
+  group: 参数
+```
 
 ### 排量
 
@@ -262,7 +353,6 @@ chinese_source: worker-translation
 ### **Report when fluid is not fully vapor** — 两相流体工况检查 `Warning`（默认）| `None` | `Error`
 
 当端口 **A** 处的流体不满足蒸汽条件时要执行的操作。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Fluid Machines

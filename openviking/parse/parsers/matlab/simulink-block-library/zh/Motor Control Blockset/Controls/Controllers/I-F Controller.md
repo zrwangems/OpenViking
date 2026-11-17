@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # I-F Controller
 
 ## 端口
+```yaml
+ports:
+- name: Enable
+  summary: 启用模块算法的选项 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: 电机电气位置 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm ref
+  summary: 参考电机机械转速 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm
+  summary: 电机机械转速 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Iq
+  summary: '*Q* 轴定子电流 标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vq
+  summary: '*Q* 轴定子电压 标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: I-F 控制器的计算参数 总线
+  direction: input
+  data_types: single | double
+- name: Idref
+  summary: 参考 *d* 轴电流 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Iqref
+  summary: 参考 *q* 轴电流 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: θeref
+  summary: 生成的电机参考电气位置 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Status
+  summary: I-F 控制状态 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -105,8 +152,67 @@ I-F 控制算法的状态。
 - `0` — 表示 I-F 控制已激活。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable speed damping
+  summary: 启用模块以应用速度振荡阻尼补偿的选项 off（默认）| on
+  group: ''
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: 启用输入端口以接受计算参数的选项 off（默认）| on
+  group: ''
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 4（默认）| 标量
+  group: ''
+- name: 位置单位
+  summary: 电位置单位 Degrees（默认）| Radians | Per-unit
+  group: ''
+- name: 速度单位
+  summary: 速度输入的单位 Degrees/Sec（默认）| Radians/Sec | RPM | Per-unit
+  group: ''
+- name: 标幺速度（RPM）
+  summary: 一个标幺值对应的速度 6000（默认）| 标量
+  group: ''
+- name: 电流单位
+  summary: 电机电流的单位 SI unit（默认）| Per-unit
+  group: ''
+- name: 基准电流（A）
+  summary: 一个标幺值对应的额定电流 21.4286（默认）| 标量
+  group: ''
+- name: 离散步长（s）
+  summary: 连续模块执行之间的间隔 50e-6（默认）| 标量
+  group: ''
+- name: 退出 I-F 控制器的速度（RPM），ω1
+  summary: I-F 控制停止时的速度（电机启动后） 410.7（默认）| 标量
+  group: 控制器参数
+- name: 重新进入 I-F 控制器的速度（RPM），ω2
+  summary: 重新进入 I-F 控制所需的速度 287.49（默认）| 标量
+  group: 控制器参数
+- name: 最大电流（A），Imax
+  summary: I-F 控制期间的最大电机电流 6.39（默认）| 标量
+  group: 控制器参数
+- name: 最大速度变化率（RPM/s）
+  summary: I-F 控制期间的最大速度变化率 960（默认）| 标量
+  group: 控制器参数
+- name: Maximum current decay rate (A/s)
+  summary: I-F 控制期间的最大电流衰减率 111.8250（默认）| 标量
+  group: 控制器参数
+- name: Idle time (s)
+  summary: 恒定速度和电流的时间 1（默认）| 标量
+  group: 控制器参数
+- name: Minimum allowed position error for transition (rad)
+  summary: 闭环切换的阈值误差 0.1745（默认）| 标量
+  group: 控制器参数
+- name: Voltage unit
+  summary: 定子电压的单位 SI unit（默认）| Per-unit
+  group: Advanced Parameters
+- name: Base voltage (V)
+  summary: 对应一个标幺值的标称电压 13.8564（默认）| 标量
+  group: Advanced Parameters
+- name: Damping coefficient, ζ
+  summary: 速度振荡阻尼系数值 2.6172（默认）| 标量
+  group: Advanced Parameters
+```
 
 ### **Enable speed damping** — 启用模块以应用速度振荡阻尼补偿的选项 `off`（默认）| on
 
@@ -277,7 +383,6 @@ I-F 控制激活时电机速度可以变化的最大速率（以 RPM/s 为单位
 
 - 选择 **Enable speed damping** 参数。
 - 清除 **Advanced Options** 部分中提供的 **Use input port for computed parameters (run-time motor swap)** 参数。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Controllers

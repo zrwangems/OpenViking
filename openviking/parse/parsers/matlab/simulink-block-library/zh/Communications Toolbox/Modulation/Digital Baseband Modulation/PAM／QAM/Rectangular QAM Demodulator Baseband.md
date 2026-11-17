@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Rectangular QAM Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: QAM 调制信号 标量 | 向量
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Var
+  summary: 噪声方差 正标量 | 正值向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 解调信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +53,68 @@ QAM 调制信号，指定为标量或列向量。在启用 `Var` 端口之前，
 ### **Out** — 解调信号 标量 | 向量
 
 解调信号，以标量或向量形式返回。解调信号的维度取决于指定的 **Output type** 和 **Decision type**。此端口在模块上未命名。
-
 ## 参数
+```yaml
+parameters:
+- name: M-ary number
+  summary: 调制阶数 16（默认）| 正整数
+  group: 主要
+- name: Output type
+  summary: 输出类型 Integer（默认）| Bit
+  group: 主要
+- name: Decision type
+  summary: 解调判决类型 Hard decision（默认）| Log-likelihood ratio | Approximate log-likelihood ratio
+  group: 主要
+- name: Noise variance source
+  summary: 噪声方差来源 Dialog（默认）| Port
+  group: 主要
+- name: Noise variance
+  summary: 噪声方差 1（默认）| 正标量 | 正值向量
+  group: 主要
+- name: Constellation ordering
+  summary: 符号映射顺序 Binary（默认）| Gray | User-defined
+  group: 主要
+- name: Constellation mapping
+  summary: 用户定义星座图映射 [0:15]（默认）| 向量
+  group: 主要
+- name: Normalization method
+  summary: 星座图缩放方法 Min. distance between symbols（默认）| Average Power | Peak Power
+  group: 主要
+- name: Minimum distance
+  summary: 两个最近星座点之间的距离 2（默认）| 正标量
+  group: 主要
+- name: Average power, referenced to 1 ohm (watts)
+  summary: 平均功率 1（默认）| 正标量
+  group: 主要
+- name: Peak power, referenced to 1 ohm (watts)
+  summary: 最大功率 1（默认）| 正标量
+  group: 主要
+- name: Phase offset (rad)
+  summary: 信号星座图的旋转 0（默认）| 数值标量
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型 Inherit via internal rule（默认）| Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | boolean
+  group: 数据类型
+- name: Derotate factor
+  summary: '去旋转因子数据类型 Inherit: Same word length as input（默认）| fixdt(1,16) | <data type expression>'
+  group: 数据类型
+- name: Denormalization factor
+  summary: '反归一化因子数据类型 Inherit: Same word length as input（默认）| fixdt(1,16) | <data type expression>'
+  group: 数据类型
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| fixdt(1,16) | <data type expression>'
+  group: 数据类型
+- name: Rounding mode
+  summary: 定点运算的舍入模式 Wrap（默认）| Saturate
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和选项 off（默认）| on
+  group: 数据类型
+- name: Sum
+  summary: '和数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as product output | fixdt(1,16) | <data type expression>'
+  group: 数据类型
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -217,7 +291,6 @@ QAM 调制信号，指定为标量或列向量。在启用 `Var` 端口之前，
 #### 依赖关系
 
 此参数仅当输入为定点信号时适用。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM Communications Toolbox HDL Support / Modulation / AM

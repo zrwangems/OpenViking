@@ -14,6 +14,55 @@ language: en
 # Entity Server
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_2
+  summary: Input signal port for service time source scalar
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_d
+  summary: Number of entities that have departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: Number of entities that have not yet departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_pe
+  summary: Pending entity in block off (default) | on
+  direction: output
+  data_types: double
+- name: Port_np
+  summary: Number of pending entities off (default) | on
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: Average wait time for entities in the block scalar
+  direction: output
+  data_types: double
+- name: Port_util
+  summary: Outputs the average time the server is occupied scalar
+  direction: output
+  data_types: double
+- name: Port_p
+  summary: Outputs the number of preempted entities scalar
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: Number of entities extracted scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -136,8 +185,144 @@ and select the box labeled **Number of entities extracted,
 ex**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacity
+  summary: Specify the capacity of the server 1 (default) | scalar
+  group: ''
+  block_parameter: Capacity
+  type: character vector
+  values: '''1''| scalar'
+  default: '''1'''
+- name: Service time source
+  summary: Choose the source to specify the service time Dialog (default) | Signal port | Attribute | MATLAB action
+  group: ''
+  block_parameter: ServiceTimeSource
+  type: character vector
+  values: '''Dialog'' | ''Signal port'' | ''Attribute''| ''MATLAB action'''
+  default: '''Dialog'''
+- name: Service time attribute name
+  summary: Specify service time source attribute name ServiceTime (default) | character vector
+  group: ''
+  block_parameter: ServiceTimeAttributeName
+  type: character vector
+  values: '''ServiceTime'' | character vector'
+  default: '''ServiceTime'''
+- name: Service time value
+  summary: Specify the value of the service time 1 (default) | scalar
+  group: ''
+  block_parameter: ServiceTimeValue
+  type: character vector
+  values: '''1.0'' | scalar'
+  default: '''1.0'''
+- name: Service time action
+  summary: Specify service time dt = rand(1,1) (default) | MATLAB code
+  group: ''
+  block_parameter: ServiceTimeAction
+  type: character vector
+  values: MATLAB code
+  default: '''dt = rand(1,1);'''
+- name: Event action
+  summary: Specify the behavior of the entity in certain events Entry (default) | Service complete | Exit | Blocked | Preempt
+  group: ''
+  block_parameter: EntryAction, ServiceCompleteAction, ExitAction, BlockedAction, PreemptAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Permit preemption based on attribute
+  summary: Enable preemption of entities off (default) | on
+  group: ''
+  block_parameter: PermitPreemptionBasedOnAttribute
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sorting attribute name
+  summary: Specify the name of the attribute used to determine the priority entity | entitySys.priority | character vector
+  group: ''
+  block_parameter: SortingAttributeName
+  type: character vector
+  values: '''entity'' | ''entitySys.priority'' | character vector'
+  default: '''entity'''
+- name: Sorting direction
+  summary: Choose the direction of sorting the entities Ascending (default) | Descending
+  group: ''
+  block_parameter: SortingDirection
+  type: character vector
+  values: '''Ascending'' | ''Descending'''
+  default: '''Ascending'''
+- name: Write residual time to attribute
+  summary: Save the residual service time from a preempted entity to an attribute off (default) | on
+  group: ''
+  block_parameter: WriteResidualTimeToAttribute
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Residual time attribute name
+  summary: Specify the name of the attribute to contain the residual service time of a preempted entity ResidualTime (default)
+    | character vector
+  group: ''
+  block_parameter: ResidualTimeAttributeName
+  type: character vector
+  values: '''ResidualTime'' | character vector'
+  default: '''ResidualTime'''
+- name: Number of entities departed, d
+  summary: Outputs the number of entities that have departed the block off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: Outputs the number of entities present in the block, that are yet to depart off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Pending entity in block, pe
+  summary: Pending entities off (default) | on
+  group: ''
+  block_parameter: PendingEntityPresentInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of pending entities, np
+  summary: Number of Pending entities off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesPending
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average wait, w
+  summary: Outputs the average wait time off (default) | on
+  group: ''
+  block_parameter: AverageWait
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Utilization, util
+  summary: Outputs the average time the server is occupied off (default) | on
+  group: ''
+  block_parameter: Utilization
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities preempted, p
+  summary: Outputs the number of preempted entities off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesPreempted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: Number of entities extracted from this block off (default) | on
+  group: ''
+  block_parameter: NumEntitiesExtracted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Capacity** — Specify the capacity of the server `1` (default) | scalar
 
@@ -504,7 +689,6 @@ extracting entities, see Find and Extract Entities in SimEvents Models.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

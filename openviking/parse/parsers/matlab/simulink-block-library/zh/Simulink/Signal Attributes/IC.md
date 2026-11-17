@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # IC
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,22 @@ chinese_source: worker-translation
 输出信号，由您指定的**初始值**提供，随后是输入信号的实际值。有关详细信息，请参阅非零采样时间偏移时的行为。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: 初始值
+  summary: 初始值 1 （默认） | 实数、有限标量、向量、矩阵或 N 维数组
+  group: ''
+  block_parameter: Value
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵 | N 维数组
+  default: '''1'''
+- name: 采样时间（-1 表示继承）
+  summary: 采样之间的间隔 -1 （默认） | 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" （默认） | 带引号的标量或向量'
+```
 
 ### **初始值** — 初始值 `1` （默认） | 实数、有限标量、向量、矩阵或 N 维数组
 
@@ -62,7 +89,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `SampleTime` |
 | **值：** | `"-1"` （默认） | 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Signal Attributes

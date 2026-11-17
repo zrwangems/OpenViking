@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Simplified Synchronous Machine Measurement
 
 ## 端口
+```yaml
+ports:
+- name: pu
+  summary: 来自所连接同步电机的标幺值测量值，物理信号向量
+  direction: input
+- name: o
+  summary: 标幺值测量输出端口，物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -38,13 +47,20 @@ chinese_source: worker-translation
 ### **o** — 标幺值测量输出端口，物理信号
 
 与标幺值测量值相关联的物理信号输出端口，以物理信号形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 来自同步电机的标幺值测量值 EMF phase A（默认）| EMF phase B | EMF phase C | Electrical torque | Rotor velocity | Stator d-axis voltage
+    | Stator q-axis voltage | Stator zero-sequence voltage | Stator d-axis current | Stator q-axis current | Stator zero-sequence
+    current | Apparent power | Real power | Reactive power | Terminal voltage | Terminal current | Power factor angle | Power
+    factor | Load angle | Rotor electrical angle
+  group: ''
+```
 
 ### **Output** — 来自同步电机的标幺值测量值 `EMF phase A`（默认）| `EMF phase B` | `EMF phase C` | `Electrical torque` | `Rotor velocity` | `Stator d-axis voltage` | `Stator q-axis voltage` | `Stator zero-sequence voltage` | `Stator d-axis current` | `Stator q-axis current` | `Stator zero-sequence current` | `Apparent power` | `Real power` | `Reactive power` | `Terminal voltage` | `Terminal current` | `Power factor angle` | `Power factor` | `Load angle` | `Rotor electrical angle`
 
 来自简化同步电机的标幺值测量值。默认值为 `EMF phase A`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Synchronous

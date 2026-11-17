@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # DBSCAN Clusterer
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据 *N*×*P* 实值矩阵
+  direction: input
+  data_types: double
+- name: Update
+  summary: 启用 epsilon 自动更新 false（默认）| true
+  direction: input
+  data_types: Boolean
+- name: AmbLims
+  summary: 模糊度限制 1×2 实值向量（默认）| 2×2 实值矩阵
+  direction: input
+  data_types: double
+- name: Idx
+  summary: 聚类索引 *N*×1 整值列向量
+  direction: output
+  data_types: double
+- name: Clusters
+  summary: 替代聚类 ID 1×*N* 整值行向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -69,8 +92,37 @@ chinese_source: worker-translation
 要启用此端口，请将 **Define outputs for Simulink block** 参数设置为 `Cluster ID` 或 `Index and ID`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Define outputs for Simulink block
+  summary: 聚类数据输出的类型 Index and ID（默认）| Cluster ID | Index
+  group: ''
+- name: Source of cluster threshold epsilon
+  summary: Epsilon 来源 Property（默认）| Auto
+  group: ''
+- name: Cluster threshold epsilon
+  summary: 聚类邻域大小 10.0（默认）| 正标量 | 正实值 1×*P* 行向量
+  group: ''
+- name: Minimum number of points in a cluster
+  summary: 聚类所需的最小点数 3（默认）| 正整数
+  group: ''
+- name: Maximum number of points for 'Auto' epsilon
+  summary: 聚类所需的最大点数 10（默认）| 正整数
+  group: ''
+- name: Length of cluster threshold epsilon history
+  summary: 聚类阈值 epsilon 历史长度 10（默认）| 正整数
+  group: ''
+- name: Enable disambiguation of dimensions
+  summary: 打开维度解模糊 off（默认）| on
+  group: ''
+- name: 模糊维度索引
+  summary: 模糊维度的索引 1（默认）| 正整数 | 正整数的 1×2 向量
+  group: ''
+- name: 仿真方式
+  summary: 模块仿真方法 解释执行（默认）| 代码生成
+  group: ''
+```
 
 ### **Define outputs for Simulink block** — 聚类数据输出的类型 `Index and ID`（默认）| `Cluster ID` | `Index`
 
@@ -176,7 +228,6 @@ epsilon 值会在指定的历史长度上进行平均。
 | `代码生成` | 模块被编译。 | 模型中的所有模块被编译。 |
 
 有关详细信息，请参阅选择仿真模式 (Simulink)。
-
 ## 所属库
 
 Radar Toolbox

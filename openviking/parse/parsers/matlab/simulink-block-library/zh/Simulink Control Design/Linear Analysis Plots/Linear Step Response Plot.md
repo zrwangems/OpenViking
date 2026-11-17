@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Linear Step Response Plot
 
 ## 端口
+```yaml
+ports:
+- name: Trigger
+  summary: 外部触发信号 标量
+  direction: input
+- name: z–1
+  summary: 断言信号 1 | 0
+  direction: output
+```
 
 ### 输入
 
@@ -38,8 +47,204 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Output assertion signal** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Show Plot
+  summary: 打开绘图按钮
+  group: ''
+- name: Show plot on block open
+  summary: 打开模块时打开绘图 off（默认）| on
+  group: ''
+  block_parameter: LaunchViewOnOpen
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Response Optimization
+  summary: 打开 Response Optimizer 按钮
+  group: ''
+- name: Linearization inputs/outputs
+  summary: 指定要线性化的模型部分线性分析点
+  group: Linearizations
+- name: Enable regular expression
+  summary: 启用使用正则表达式搜索信号 on（默认）| off
+  group: Linearizations
+- name: Show filtered results as a flat list
+  summary: 使用平面列表显示过滤后的总线信号层级 off（默认）| on
+  group: Linearizations
+- name: Linearize on
+  summary: 何时计算线性模型 Simulation snapshots（默认）| External trigger
+  group: Linearizations
+  block_parameter: LinearizeAt
+  type: character vector
+  values: '''SnapshotTimes'' | ''ExternalTrigger'''
+  default: '''SnapshotTimes'''
+- name: Snapshot times
+  summary: 计算线性模型的仿真时间 0（默认）| 正实数值 | 正实数值向量
+  group: Linearizations
+  block_parameter: SnapshotTimes
+  type: character vector
+  values: '''0'' | 正实数值 | 正实数值向量'
+  default: '''0'''
+- name: Trigger type
+  summary: 要检测的外部触发类型 Rising edge（默认）| Falling edge
+  group: Linearizations
+  block_parameter: TriggerType
+  type: character vector
+  values: '''rising'' | ''falling'''
+  default: '''rising'''
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: Linearizations
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Use exact delays
+  summary: 在线性模型中使用精确延迟 off（默认）| on
+  group: Linearizations
+  block_parameter: UseExactDelayModel
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Linear system sample time
+  summary: 线性系统的采样时间 'auto'（默认）| 正有限值 | 0
+  group: Linearizations
+  block_parameter: SampleTime
+  type: character vector
+  values: '''auto'' | positive finite value | ''0'''
+  default: '''auto'''
+- name: Sample time rate conversion method
+  summary: 速率转换方法 Zero-Order Hold（默认）| Tustin (bilinear) | Tustin with Prewarping | ...
+  group: Linearizations
+  block_parameter: RateConversionMethod
+  type: 字符向量
+  values: '''zoh'' | ''tustin'' | ''prewarp''| ''upsampling_zoh''| ''upsampling_tustin''| ''upsampling_prewarp'''
+- name: Prewarp frequency
+  summary: Tustin 速率转换的预畸变频率 '10'（默认）| 正标量
+  group: Linearizations
+  block_parameter: PreWarpFreq
+  type: 字符向量
+  values: 正标量
+- name: Use full block names
+  summary: 在状态、输入和输出名称中使用完整模块路径 off（默认）| on
+  group: Linearizations
+  block_parameter: UseFullBlockNameLabels
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use bus signal names
+  summary: 在线性系统中使用总线信号名称 off（默认）| on
+  group: Linearizations
+  block_parameter: UseBusSignalLabels
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Include step response bound in assertion
+  summary: 检查阶跃响应是否违反特性边界 on | off
+  group: Bounds
+  block_parameter: EnableStepResponseBound
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'' for Linear Step Response Plot block, ''on'' for Check Linear Step Response Characteristics block'
+- name: Final value
+  summary: 响应阶跃输入的输出信号最终值 有限实数标量
+  group: Bounds
+  block_parameter: FinalValue
+  type: 字符向量
+  values: 有限实数标量
+  default: 线性阶跃响应绘图模块为 '[]'，检查线性阶跃响应特性模块为 '1'
+- name: 上升时间
+  summary: 上升时间上界 有限正标量
+  group: Bounds
+  block_parameter: RiseTime
+  type: 字符向量
+  values: 有限正标量
+  default: 线性阶跃响应绘图模块为 '[]'，检查线性阶跃响应特性模块为 '5'
+- name: '% 上升'
+  summary: 用于计算上升时间的最终值百分比 小于 (100 - % 稳定) 的正标量
+  group: Bounds
+  block_parameter: PercentRise
+  type: 字符向量
+  values: 小于 (100 - % 稳定) 的正标量
+  default: 线性阶跃响应绘图模块为 '[]'，检查线性阶跃响应特性模块为 '80'
+- name: 稳定时间
+  summary: 稳定时间上界 大于上升时间的有限标量
+  group: Bounds
+  block_parameter: SettlingTime
+  type: 字符向量
+  values: 大于上升时间的有限标量
+  default: 线性阶跃响应绘图模块为 '[]'，检查线性阶跃响应特性模块为 '7'
+- name: '% 稳定'
+  summary: 用于计算稳定范围的最终值百分比 小于 (100 - % 上升) 的正标量
+  group: Bounds
+  block_parameter: PercentSettling
+  type: 字符向量
+  values: 小于 (100 - % 稳定) 的正标量
+  default: 线性阶跃响应绘图模块为 '[]'，检查线性阶跃响应特性模块为 '1'
+- name: '% 超调'
+  summary: 超调上界 介于 0 和 100 之间的标量
+  group: Bounds
+  block_parameter: PercentOvershoot
+  type: 字符向量
+  values: 0 到 100 之间的标量
+  default: Linear Step Response Plot 模块为 '[]'，Check Linear Step Response Characteristics 模块为 '10'
+- name: '% Undershoot'
+  summary: 下冲的上界，0 到 100 之间的标量
+  group: Bounds
+  block_parameter: PercentUndershoot
+  type: 字符向量
+  values: 0 到 100 之间的标量
+  default: Linear Step Response Plot 模块为 '[]'，Check Linear Step Response Characteristics 模块为 '1'
+- name: Save data to workspace
+  summary: 保存线性系统以供进一步分析 off（默认）| on
+  group: 记录
+  block_parameter: SaveToWorkspace
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Variable name
+  summary: 用于保存线性系统的数据结构名称 sys（默认）| 字符向量
+  group: 记录
+  block_parameter: SaveName
+  type: 字符向量
+  default: '''sys'''
+- name: Save operating points for each linearization
+  summary: 保存每次线性化的工作点 off（默认）| on
+  group: 记录
+  block_parameter: SaveOperatingPoints
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Enable assertion
+  summary: 启用边界检查 on（默认）| off
+  group: 断言
+  block_parameter: enabled
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Simulation callback when assertion fails
+  summary: 当违反边界时要求值的表达式 ''（默认）| MATLAB 表达式
+  group: 断言
+  block_parameter: callback
+  type: 字符向量
+  values: MATLAB 表达式
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: 当违反边界时停止仿真 off（默认）| on
+  group: 断言
+  block_parameter: stopWhenAssertionFail
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output assertion signal
+  summary: 添加断言输出端口 off（默认）| on
+  group: 断言
+  block_parameter: export
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Show Plot** — 打开绘图按钮
 
@@ -705,7 +910,6 @@ Tustin 速率转换的预畸变频率，以弧度/秒为单位，指定为小于
 | **类型：** 字符向量 |
 | **值：** `'off'` | `'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink Control Design / Linear Analysis Plots Simulink Control Design / Model Verification

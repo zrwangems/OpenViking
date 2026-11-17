@@ -14,10 +14,15 @@ language: en
 # Query Instrument
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Block sample time**
 :   The Block sample time parameter is the only setting outside of the
@@ -205,7 +210,6 @@ block does after the initial instrument response.
 Hardware information shown in the dialog box is determined and cached when
 you first open the dialog box. To refresh the display with new values,
 restart MATLAB.
-
 ## Libraries
 
 Not documented in R2025b.

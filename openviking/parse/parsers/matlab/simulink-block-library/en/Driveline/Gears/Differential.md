@@ -14,6 +14,21 @@ language: en
 # Differential
 
 ## Ports
+```yaml
+ports:
+- name: D
+  summary: Driveshaft rotational mechanical
+  direction: conserving
+- name: S1
+  summary: Sun gear 1 rotational mechanical
+  direction: conserving
+- name: S2
+  summary: Sun gear 2 rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -39,8 +54,63 @@ transmission efficiency by altering the gear temperatures.
 
 To enable this port, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Crown gear located
+  summary: Crown gear location To the right of centerline (default) | To the left of centerline
+  group: Main
+- name: Carrier (C) to driveshaft (D) teeth ratio (NC/ND)
+  summary: Carrier to driveshaft gear rotation ratio 4 (default) | positive scalar
+  group: Main
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Sun-sun and carrier-driveshaft ordinary efficiencies
+  summary: Torque transfer efficiencies [.85, .92] (default) | vector
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Sun-sun efficiency
+  summary: Driving sun gear to driven sun gear torque transfer efficiency [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Carrier-driveshaft efficiency
+  summary: Carrier to driveshaft gear torque transfer efficiency [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Sun-carrier and driveshaft-casing power thresholds
+  summary: Minimum efficiency power threshold for the sun-carrier and driveshaft-casing gear couplings [0.001, 0.001] W (default)
+    | vector
+  group: Meshing Losses
+- name: Sun-carrier and driveshaft-casing viscous friction coefficients
+  summary: Viscous friction coefficients [0, 0] N*m/(rad/s) (default) | vector
+  group: Viscous Losses
+- name: Inertia
+  summary: Inertia option off (default) | on
+  group: Inertia
+- name: Sun gear inertia
+  summary: Sun gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Sun gear radius
+  summary: Sun gear radius 0.01 m (default) | positive scalar
+  group: Inertia
+- name: Carrier inertia
+  summary: Carrier gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Planet gear spin inertia
+  summary: Planet gear spin inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Planet gear mass
+  summary: Planet gear mass 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -247,7 +317,6 @@ component efficiencies according to their respective efficiency vectors.
 
 To enable this parameter, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears

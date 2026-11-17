@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Disc Brake
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 缸压物理信号
+  direction: input
+- name: S
+  summary: 轴旋转机械
+  direction: input
+- name: H
+  summary: 热
+  direction: input
+```
 
 ### 输入
 
@@ -41,8 +53,52 @@ Port** 参数设置为
 
 暴露此端口会使相关参数和变量
 可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Mean pad radius
+  summary: 摩擦片半径 150 mm（默认）| 正标量
+  group: 几何
+- name: Cylinder bore
+  summary: 缸径 10 mm（默认）| 正标量
+  group: 几何
+- name: Number of brake pads
+  summary: 摩擦片数量 2（默认）| 正整数标量
+  group: 几何
+- name: Thermal port
+  summary: 热模型 Omit（默认）| Model
+  group: 摩擦
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: 摩擦
+- name: Static friction coefficient
+  summary: 静摩擦 0.9（默认）| 标量
+  group: 摩擦
+- name: Static friction coefficient vector
+  summary: 静摩擦 [.9, .8, .7] | 向量
+  group: 摩擦
+- name: Coulomb friction coefficient
+  summary: 接触摩擦 0.7（默认）| 正标量
+  group: 摩擦
+- name: Coulomb friction coefficient vector
+  summary: 接触摩擦 [.8, .7, .6]（默认）| 正值的递增向量
+  group: 摩擦
+- name: Breakaway friction velocity
+  summary: 摩擦阈值 0.1 rad/s（默认）| 标量
+  group: 摩擦
+- name: Viscous friction coefficient
+  summary: 粘性摩擦 0 N*m/(rad/s)（默认）| 非负标量
+  group: 摩擦
+- name: Brake pressure fault
+  summary: 对制动压力故障建模的选项 Add fault
+  group: 故障
+- name: Brake pressure when faulted
+  summary: 设置故障时的制动压力 0 bar（默认）| 正标量
+  group: 故障
+- name: Thermal mass
+  summary: 对温度变化的阻力 50 kJ/K（默认）| 标量
+  group: 热端口
+```
 
 ### 几何
 
@@ -179,7 +235,6 @@ faulted** 参数的值，而不是端口
 **Friction** 设置中，**Thermal
 Port** 参数设置为
 `Model` 时可见。
-
 ## 所属库
 
 Simscape / Driveline / Brakes & Detents / Rotational

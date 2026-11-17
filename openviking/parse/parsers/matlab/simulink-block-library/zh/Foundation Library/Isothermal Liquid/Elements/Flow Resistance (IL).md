@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Flow Resistance (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口或出口等温液体
+  direction: unspecified
+- name: B
+  summary: 入口或出口等温液体
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,19 @@ chinese_source: worker-translation
 ### **B** — 入口或出口等温液体
 
 与流动阻力入口或出口相关联的等温液体守恒端口。该模块没有固有方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal pressure drop
+  summary: 已知工况下的压降 0.001 MPa（默认）| 正标量
+  group: ''
+- name: Nominal mass flow rate
+  summary: 已知工况下的质量流量 0.1 kg/s（默认）| 正标量
+  group: ''
+- name: Fraction of nominal mass flow rate for laminar flow
+  summary: 阈值与标称质量流量之比 1e-3（默认）| [0,1] 范围内的标量
+  group: ''
+```
 
 ### **Nominal pressure drop** — 已知工况下的压降 0.001 MPa（默认）| 正标量
 
@@ -39,7 +59,6 @@ chinese_source: worker-translation
 ### **Fraction of nominal mass flow rate for laminar flow** — 阈值与标称质量流量之比 1e-3（默认）| [0,1] 范围内的标量
 
 阈值质量流量与标称质量流量之比。该模块使用此参数计算阈值质量流量——并最终确定压降的线性化限值。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

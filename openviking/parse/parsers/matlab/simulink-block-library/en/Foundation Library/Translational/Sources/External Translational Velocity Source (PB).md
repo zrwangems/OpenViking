@@ -14,6 +14,15 @@ language: en
 # External Translational Velocity Source (PB)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Control signal, m/s physical signal
+  direction: input
+- name: R
+  summary: Port that applies external velocity to the network position-based mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -28,11 +37,12 @@ positive signal at this port applies a positive velocity to the network at port
 
 Position-based mechanical translational conserving port that connects the block to
 the circuit and applies the external velocity to the physical network.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Sources

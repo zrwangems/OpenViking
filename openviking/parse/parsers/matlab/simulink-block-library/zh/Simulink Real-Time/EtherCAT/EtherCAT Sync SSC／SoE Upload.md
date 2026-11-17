@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # EtherCAT Sync SSC/SoE Upload
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 从从站设备接收的数据 numeric
+  direction: output
+- name: Error
+  summary: 报告 EtherCAT 网络错误 0 | integer
+  direction: output
+```
 
 ### 输出
 
@@ -25,8 +34,42 @@ chinese_source: worker-translation
 ### **Error** — 报告 EtherCAT 网络错误 `0` | integer
 
 如果未发生错误，此端口发送 `0`。否则，它发送一个非零值。有关错误代码列表，请参阅 EtherCAT Error Codes。
-
 ## 参数
+```yaml
+parameters:
+- name: IDN
+  summary: 标识号 character vector
+  group: ''
+  block_parameter: idn
+- name: Drive Number
+  summary: 驱动器的索引号 integer
+  group: ''
+  block_parameter: drive
+- name: Data Type
+  summary: IDN 的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+  block_parameter: sig_type
+- name: Dimension
+  summary: 此 IDN 的数据维度 1 (default)
+  group: ''
+  block_parameter: sig_dim
+- name: Network Device Index
+  summary: EtherCAT 网络标识符 0 (default) | 0-11
+  group: ''
+  block_parameter: device_id
+- name: SubDevice Name
+  summary: 包含 IDN 的设备名称 character vector
+  group: ''
+  block_parameter: subdevice_name
+- name: Sample time
+  summary: 模块的采样时间 -1 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+- name: Timeout
+  summary: 等待从站设备响应的时长，数值
+  group: ''
+  block_parameter: timeout
+```
 
 ### **IDN** — 标识号 character vector
 
@@ -121,7 +164,6 @@ SoE 模块仅适用于电机控制器。单个从站设备可以支持一个或�
 |  |
 | --- |
 | **模块参数：** `timeout` |
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

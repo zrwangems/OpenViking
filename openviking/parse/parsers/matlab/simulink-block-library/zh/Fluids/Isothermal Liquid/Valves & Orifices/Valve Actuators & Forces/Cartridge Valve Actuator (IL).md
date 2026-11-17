@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Cartridge Valve Actuator (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 压力端口，等温液体
+  direction: conserving
+- name: B
+  summary: 压力端口，等温液体
+  direction: conserving
+- name: X
+  summary: 压力端口，等温液体
+  direction: conserving
+- name: Y
+  summary: 压力端口，等温液体
+  direction: conserving
+- name: S
+  summary: 阀芯位置，m，物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -39,8 +57,43 @@ chinese_source: worker-translation
 ### **S** — 阀芯位置，m，物理信号
 
 阀芯位置，单位为 m，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pressure ports
+  summary: 先导压力端口数量 3（默认）| 4
+  group: ''
+- name: Port A poppet area
+  summary: 端口 A 的横截面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Port A poppet to port X pilot area ratio
+  summary: 入口与先导端口面积之比 0.5（默认）| 正标量
+  group: ''
+- name: Port Y pilot area
+  summary: 端口 Y 的横截面积 1.5e-4 m^2（默认）| 正标量
+  group: ''
+- name: Spring preload force
+  summary: 初始弹簧力 25 N（默认）| 正标量
+  group: ''
+- name: Spring stiffness
+  summary: 刚度常数 15e3 N/m（默认）| 正标量
+  group: ''
+- name: Poppet stroke
+  summary: 最大阀芯伸出量 5e-3 m（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Connected valve opening orientation
+  summary: 阀芯位移方向 Positive displacement opens valve（默认）| Negative displacement opens valve
+  group: ''
+- name: Actuator dynamics
+  summary: 是否考虑驱动过程中的瞬态效应 Off（默认）| On
+  group: ''
+- name: Actuator time constant
+  summary: 活塞位移时间常数 0.1 s（默认）| 正标量
+  group: ''
+```
 
 ### **Number of pressure ports** — 先导压力端口数量 `3`（默认）| `4`
 
@@ -93,7 +146,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Actuator dynamics** 设置为 `On`。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces

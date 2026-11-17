@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # SPICE NIGBT
 
 ## 端口
+```yaml
+ports:
+- name: gx
+  summary: 栅极端子电气
+  direction: unspecified
+- name: cx
+  summary: 集电极端子电气
+  direction: unspecified
+- name: ex
+  summary: 发射极端子电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -29,8 +41,85 @@ chinese_source: worker-translation
 ### **ex** — 发射极端子电气
 
 与 IGBT 发射极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Gate-drain overlap area, AGD
+  summary: 栅漏重叠面积 5.0e-6 m^2（默认）| 正标量
+  group: 尺寸
+- name: Area of the device, AREA
+  summary: 器件面积 1.0e-5 m^2（默认）| 正标量
+  group: 尺寸
+- name: Number of parallel devices, SCALE
+  summary: 并联器件数 1（默认）| 正整数
+  group: 尺寸
+- name: Electron mobility, MUN
+  summary: 电子迁移率 1.5e3 cm^2/s/V（默认）| 标量
+  group: 通用
+- name: Hole mobility, MUP
+  summary: 空穴迁移率 4.5e2 cm^2/s/V（默认）| 标量
+  group: 通用
+- name: Base doping, NB
+  summary: 基区掺杂 2e14 1/cm^3（默认）| 标量
+  group: 通用
+- name: Triode region factor, KF
+  summary: 三极管区因子 1（默认）
+  group: MOSFET
+- name: MOS transconductance, KP
+  summary: MOS 跨导 0.38 A/V^2（默认）| 标量
+  group: MOSFET
+- name: Threshold voltage, VT
+  summary: 阈值电压 4.7 V（默认）| 标量
+  group: MOSFET
+- name: Transverse field factor, THETA
+  summary: 横向场因子 0.02 1/V（默认）| 标量
+  group: MOSFET
+- name: Ambipolar recombination lifetime, TAU
+  summary: 双极复合寿命 7.1e-6 s（默认）| 标量
+  group: BJT
+- name: Metallurgical base width, WB
+  summary: 冶金基区宽度 9.0e-5 m（默认）| 标量
+  group: BJT
+- name: Emitter saturation current density, JSNE
+  summary: 发射极饱和电流密度 6.5e-13 A/cm^2（默认）| 标量
+  group: BJT
+- name: Avalanche uniformity factor, BVF
+  summary: 雪崩均匀性因子 1（默认）| 标量
+  group: BJT
+- name: Avalanche multiplication exponent, BVN
+  summary: 雪崩倍增指数 4（默认）| 标量
+  group: BJT
+- name: Gate-source capacitance per unit area, CGS
+  summary: 单位面积栅源电容 1.24e-8 F/cm^2（默认）| 标量
+  group: 电容
+- name: Gate-drain oxide capacitance per unit area, COXD
+  summary: 单位面积栅漏氧化层电容 3.5e-8 F/cm^2（默认）| 标量
+  group: 电容
+- name: Gate-drain overlap depletion threshold, VTD
+  summary: 栅漏重叠耗尽阈值 1e-3 V（默认）| 标量
+  group: 电容
+- name: Specify initial condition
+  summary: 是否指定初始条件 No（默认）| Yes
+  group: 电容
+- name: Initial condition voltage ICVGE
+  summary: 初始条件电压 ICVGE 0 V（默认）| 标量
+  group: 电容
+- name: Initial condition voltage ICVCE
+  summary: 初始条件电压 ICVCE 0 V（默认）| 标量
+  group: 电容
+- name: Model temperature dependence using
+  summary: 温度依赖模型 Device temperature（默认）| Fixed temperature
+  group: 温度
+- name: Fixed circuit temperature, TFIXED
+  summary: 固定电路温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Parameter extraction temperature, TMEAS
+  summary: 参数提取温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Offset local circuit temperature, TOFFSET
+  summary: 局部电路温度偏移 0 K（默认）| 标量
+  group: 温度
+```
 
 ### 尺寸
 
@@ -164,7 +253,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请将 **Model temperature dependence using** 设置为 `Device temperature`。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

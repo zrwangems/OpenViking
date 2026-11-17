@@ -14,6 +14,21 @@ language: en
 # Solar Cell
 
 ## Ports
+```yaml
+ports:
+- name: Ir
+  summary: Incident irradiance physical signal
+  direction: input
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -41,8 +56,86 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Selected part
+  summary: Predefined parameterization option <click to select> (default)
+  group: ''
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Parameterize by
+  summary: Block parameterization By s/c current and o/c voltage, 5 parameter (default) | By equivalent circuit parameters,
+    5 parameter | By equivalent circuit parameters, 8 parameter
+  group: Cell Characteristics
+- name: Short-circuit current, Isc
+  summary: Short-circuit current 7.34 A (default)
+  group: Cell Characteristics
+- name: Open-circuit voltage, Voc
+  summary: Open-circuit voltage 0.6 V (default)
+  group: Cell Characteristics
+- name: Diode saturation current, Is
+  summary: First diode saturation current 1e-6 A (default)
+  group: Cell Characteristics
+- name: Diode saturation current, Is2
+  summary: Second diode saturation current 0 A (default)
+  group: Cell Characteristics
+- name: Solar-generated current for measurements, Iph0
+  summary: Solar-generated current for measurements 7.34 A (default)
+  group: Cell Characteristics
+- name: Irradiance used for measurements, Ir0
+  summary: Irradiance used for measurements 1000 W/m2 (default)
+  group: Cell Characteristics
+- name: Quality factor, N
+  summary: First diode emission coefficient 1.5 (default)
+  group: Cell Characteristics
+- name: Quality factor, N2
+  summary: Second diode emission coefficient 2 (default)
+  group: Cell Characteristics
+- name: Series resistance, Rs
+  summary: Series resistance 0 Ohm (default)
+  group: Cell Characteristics
+- name: Parallel resistance, Rp
+  summary: Parallel resistance inf Ohm (default)
+  group: Cell Characteristics
+- name: Number of series-connected cells per string
+  summary: Series-connected solar cells per string 1 (default) | positive scalar
+  group: Panel Configuration
+- name: Number of parallel-connected strings
+  summary: Number of parallel-connected strings 1 (default) | positive scalar
+  group: Panel Configuration
+- name: First order temperature coefficient for Iph, TIPH1
+  summary: First order temperature coefficient for Iph 0 1/K (default) | nonnegative scalar
+  group: Temperature Dependence
+- name: Energy gap, EG
+  summary: Energy gap 1.11 eV (default)
+  group: Temperature Dependence
+- name: Temperature exponent for Is, TXIS1
+  summary: Temperature exponent for Is 3 (default) | positive scalar
+  group: Temperature Dependence
+- name: Temperature exponent for Is2, TXIS2
+  summary: Temperature exponent for Is2 3 (default) | nonnegative scalar
+  group: Temperature Dependence
+- name: Temperature exponent for Rs, TRS1
+  summary: Temperature exponent for Rs 0 (default)
+  group: Temperature Dependence
+- name: Temperature exponent for Rp, TRP1
+  summary: Temperature exponent for Rp 0 (default) | nonnegative scalar
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default) | positive scalar
+  group: Temperature Dependence
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 degC (default) | positive scalar
+  group: Temperature Dependence
+- name: Thermal mass per cell
+  summary: Thermal mass per cell 100 J/K (default)
+  group: Thermal port
+- name: Initial temperature
+  summary: Initial temperature 25 degC (default)
+  group: Thermal port
+```
 
 ### **Selected part** — Predefined parameterization option `<click to select>` (default)
 
@@ -259,7 +352,6 @@ the number of cells to determine the total thermal mass.
 ### **Initial temperature** — Initial temperature `25` `degC` (default)
 
 The temperature of the solar cell at the start of simulation.
-
 ## Libraries
 
 Simscape / Electrical / Sources

@@ -14,6 +14,15 @@ language: en
 # Sudden Area Change (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Section inlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Section inlet thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,40 @@ Fluid entry or exit point to the area change section.
 ### **B** — Section inlet thermal liquid
 
 Fluid entry or exit point to the area change section.
-
 ## Parameters
+```yaml
+parameters:
+- name: Local loss parameterization
+  summary: Method of flow loss calculating Semi-empirical (default) | Tabulated data - loss coefficient vs. Reynolds number
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Inlet area at A 0.02 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port B
+  summary: Inlet area at B 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Transitional Reynolds number associated with smallest area in section 150 (default) | positive scalar
+  group: ''
+- name: Contraction correction factor
+  summary: Loss coefficient scaling factor 1 (default) | positive scalar
+  group: ''
+- name: Expansion correction factor
+  summary: Loss coefficient scaling factor 1 (default) | positive scalar
+  group: ''
+- name: Reynolds number vector
+  summary: Vector of Reynolds numbers for tabular parameterization [10, 20, 30, 40, 50, 100, 200, 500, 1000, 2000] (default)
+    | vector
+  group: ''
+- name: Contraction loss coefficient vector
+  summary: Vector of loss coefficients for tabular parameterization [4, 2.7, 1.8, 1.46, 1.3, .9, .65, .42, .3, .2] (default)
+    | 1-by-*n* vector
+  group: ''
+- name: Expansion loss coefficient vector
+  summary: Vector of loss coefficients for tabular parameterization [4, 2.3, 1.65, 1.35, 1.15, .9, .75, .65, .9, .65] (default)
+    | 1-by-*n* vector
+  group: ''
+```
 
 ### **Local loss parameterization** — Method of flow loss calculating `Semi-empirical` (default) | `Tabulated data - loss coefficient vs. Reynolds number`
 
@@ -109,7 +150,6 @@ table.
 This parameter is visible only when the **Loss coefficient
 specification** parameter is set to `Tabulated data
 — Loss coefficient vs. Reynolds number`.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Pipes & Fittings

@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Surface Mount PM Controller
 
 ## 端口
+```yaml
+ports:
+- name: SpdReq
+  summary: 转子速度指令 scalar
+  direction: input
+- name: TrqCmd
+  summary: 转矩指令 scalar
+  direction: input
+- name: BusVolt
+  summary: 直流母线电压 scalar
+  direction: input
+- name: PhaseCurrA
+  summary: 电流 scalar
+  direction: input
+- name: PhaseCurrB
+  summary: 电流 scalar
+  direction: input
+- name: SpdFdbk
+  summary: 转子速度 scalar
+  direction: input
+- name: PosFdbk
+  summary: 转子电角度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: BusCurr
+  summary: 母线电流 scalar
+  direction: output
+- name: PhaseVolt
+  summary: 定子端电压 array
+  direction: output
+```
 
 ### 输入
 
@@ -74,8 +107,162 @@ chinese_source: worker-translation
 ### **PhaseVolt** — 定子端电压 `array`
 
 定子端电压，*Va*、*Vb* 和 *Vc*，单位为 V。
-
 ## 参数
+```yaml
+parameters:
+- name: Control Type
+  summary: 选择控制方式 Speed Control（默认）| Torque Control
+  group: ''
+  block_parameter: control_type
+  values: Speed Control（默认）| Torque Control
+- name: Stator resistance, Rs
+  summary: 电阻 0.02（默认）| scalar
+  group: ''
+  block_parameter: Rs
+  values: 0.02（默认）| scalar
+- name: DQ axis inductance, Ldq
+  summary: 电感 1.7e-3（默认）| scalar
+  group: ''
+  block_parameter: Ldq
+  values: 1.7e-3（默认）| scalar
+- name: Permanent magnet flux, lambda_pm
+  summary: 磁链 0.2205（默认）| scalar
+  group: ''
+  block_parameter: lambda_pm
+  values: 0.2205（默认）| scalar
+- name: Number of pole pairs, PolePairs
+  summary: 极对数 4（默认）| scalar
+  group: ''
+  block_parameter: PolePairs
+  values: 4（默认） | scalar
+- name: Physical inertia, viscous damping, static friction, Mechanical
+  summary: 惯性、阻尼、摩擦 [0.0027, 4.924e-4, 0]（默认） | vector
+  group: ''
+  block_parameter: Mechanical
+  values: '[0.0027, 4.924e-4, 0]（默认） | vector'
+- name: Maximum torque, T_max
+  summary: 转矩 60（默认） | scalar
+  group: ''
+  block_parameter: T_max
+  values: 60（默认） | scalar
+- name: Bandwidth of the current regulator, EV_current
+  summary: 带宽 200（默认） | scalar
+  group: ''
+  block_parameter: EV_current
+  values: 200（默认） | scalar
+- name: Sample time for the torque control, Tst
+  summary: 时间 5e-5（默认） | scalar
+  group: ''
+  block_parameter: Tst
+  values: 5e-5（默认） | scalar
+- name: Calculate Current Regulator Gains
+  summary: 推导参数按钮
+  group: ''
+- name: D-axis proportional gain, Kp_d
+  summary: 派生 0.47149（默认）| scalar
+  group: ''
+  block_parameter: Kp_d
+  values: 0.47149（默认）| scalar
+- name: Q-axis proportional gain, Kp_q
+  summary: 派生 0.52125（默认）| scalar
+  group: ''
+  block_parameter: Kp_q
+  values: 0.52125（默认）| scalar
+- name: D and Q axis integral gain, Ki
+  summary: 派生 251.3274（默认）| scalar
+  group: ''
+  block_parameter: Ki
+  values: 251.3274（默认）| scalar
+- name: Bandwidth of the motion controller, EV_motion
+  summary: 带宽 [20, 4, 0.8]（默认）| vector
+  group: ''
+  block_parameter: EV_motion
+  values: '[20, 4, 0.8]（默认）| vector'
+- name: Bandwidth of the state filter, EV_sf
+  summary: 带宽 200（默认）| scalar
+  group: ''
+  block_parameter: EV_sf
+  values: 200（默认）| scalar
+- name: Calculate Speed Regulator Gains
+  summary: 推导参数按钮
+  group: ''
+- name: Proportional gain, ba
+  summary: 推导值 3.7477（默认）| scalar
+  group: ''
+  block_parameter: ba
+  values: 3.7477（默认）| scalar
+- name: Angular gain, Ksa
+  summary: 推导值 94.0877（默认）| scalar
+  group: ''
+  block_parameter: Ksa
+  values: 94.0877（默认）| scalar
+- name: Rotational gain, Kisa
+  summary: 派生值 381.7822（默认）| scalar
+  group: ''
+  block_parameter: Kisa
+  values: 381.7822（默认）| scalar
+- name: Speed regulation time constant, Ksf
+  summary: 派生值 1217.9727（默认）| scalar
+  group: ''
+  block_parameter: Ksf
+  values: 1217.9727（默认）| scalar
+- name: Inertia compensation, Jcomp
+  summary: 派生值 0.025（默认）| scalar
+  group: ''
+  block_parameter: Jcomp
+  values: 0.025（默认）| scalar
+- name: Viscous damping compensation, Fv
+  summary: 派生值 0（默认）| scalar
+  group: ''
+  block_parameter: Fv
+  values: 0（默认）| scalar
+- name: Static friction, Fs
+  summary: 派生值 0（默认）| scalar
+  group: ''
+  block_parameter: Fs
+  values: 0（默认）| scalar
+- name: Parameterize losses by
+  summary: 选择类型 Single efficiency measurement（默认）| Tabulated loss data | Tabulated efficiency data
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement（默认）| Tabulated loss data | Tabulated efficiency data
+- name: Overall inverter efficiency, eff
+  summary: 常量 98（默认）| scalar
+  group: ''
+  block_parameter: eff
+  values: 98（默认）| scalar
+- name: Vector of speeds (w) for tabulated loss, w_loss_bp
+  summary: 断点 [0 200 400 600 800 1000]（默认）| 1×M 向量
+  group: ''
+  block_parameter: w_loss_bp
+  values: '[0 200 400 600 800 1000]（默认）| 1×M 向量'
+- name: Vector of torques (T) for tabulated loss, T_loss_bp
+  summary: 断点 [0 25 50 75 100]（默认）| 1×N 向量
+  group: ''
+  block_parameter: T_loss_bp
+  values: '[0 25 50 75 100]（默认）| 1×N 向量'
+- name: Corresponding losses, losses_table
+  summary: 表 [100 100 100 100 100;100 150 200 250 300;100 200 300 400 500;100 250 400 550 700;100 300 500 700 900;100 350
+    600 850 1100]（默认）| M×N 数组
+  group: ''
+  block_parameter: losses_table
+  values: M×N 数组
+- name: Vector of speeds (w) for tabulated efficiency, w_eff_bp
+  summary: 断点 [200 400 600 800 1000]（默认）| 1×M 向量
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[200 400 600 800 1000]（默认）| 1×M 向量'
+- name: Vector of torques (T) for tabulated efficiency, T_eff_bp
+  summary: 断点 [25 50 75 100]（默认）| 1×N 向量
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[25 50 75 100]（默认）| 1×N 向量'
+- name: Corresponding efficiency, efficiency_table
+  summary: 表 [96.2 98.1 98.7 99;98.1 99 99.4 99.5;98.7 99.4 99.6 99.7;99 99.5 99.7 99.8;99.2 99.6 99.7 99.8]（默认）| M×N 数组
+  group: ''
+  block_parameter: efficiency_table
+  values: M×N 数组
+```
 
 #### 配置
 
@@ -841,7 +1028,6 @@ friction** 参数值中的惯性。
 #### 依赖关系
 
 要启用此参数，对于 **Parameterize losses by**，选择 `Tabulated efficiency data`。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters Motor Control Blockset / Electrical Systems / Motors

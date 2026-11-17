@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Lever
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 杠杆机械平移的节点 A
+  direction: unspecified
+- name: B
+  summary: 杠杆机械平移的节点 B
+  direction: unspecified
+- name: C
+  summary: 杠杆机械平移的节点 C
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -29,8 +41,16 @@ chinese_source: worker-translation
 ### **C** — 杠杆机械平移的节点 C
 
 与杠杆节点 C 关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: AC arm length
+  summary: 节点 A 和 C 之间的臂长 0.1 m（默认值）
+  group: ''
+- name: BC arm length
+  summary: 节点 B 和 C 之间的臂长 0.1 m（默认值）
+  group: ''
+```
 
 ### **AC arm length** — 节点 A 和 C 之间的臂长 `0.1 m`（默认值）
 
@@ -39,7 +59,6 @@ chinese_source: worker-translation
 ### **BC arm length** — 节点 B 和 C 之间的臂长 `0.1 m`（默认值）
 
 节点 B 和 C 之间的臂长。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Mechanisms

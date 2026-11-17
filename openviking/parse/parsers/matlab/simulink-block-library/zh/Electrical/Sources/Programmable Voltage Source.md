@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Programmable Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: DC
+  summary: 直流分量物理信号
+  direction: input
+- name: F
+  summary: 频率物理信号
+  direction: input
+- name: M
+  summary: 幅值物理信号
+  direction: input
+- name: Phi
+  summary: 相移物理信号
+  direction: input
+- name: +
+  summary: 正电压电气
+  direction: input
+- name: '-'
+  summary: 负电压电气
+  direction: input
+```
 
 ### 输入
 
@@ -42,8 +63,142 @@ chinese_source: worker-translation
 ### **-** — 负电压电气
 
 与负电压关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: AC magnitude configuration
+  summary: AC 电压幅值配置 Constant（默认）| Ramp Step Modulation External
+  group: AC 幅值
+- name: AC voltage peak magnitude
+  summary: AC 电压峰值幅值 100 V（默认）
+  group: AC 幅值
+- name: Rate of change
+  summary: AC 电压变化率 1 V/s（默认）
+  group: AC 幅值
+- name: Step amplitude
+  summary: AC 电压阶跃幅值 1 V（默认）
+  group: AC 幅值
+- name: Modulation magnitude
+  summary: AC 电压调制幅值 1 V（默认）
+  group: AC 幅值
+- name: Modulation frequency
+  summary: AC 电压调制频率 1 Hz（默认）
+  group: AC 幅值
+- name: Start time
+  summary: AC 电压起始时间 1 s（默认）
+  group: AC 幅值
+- name: Stop time
+  summary: AC 电压停止时间 2 s（默认）
+  group: AC 幅值
+- name: AC frequency configuration
+  summary: AC 频率配置 Constant（默认）| Ramp Step Modulation External
+  group: 频率
+- name: AC voltage frequency
+  summary: AC 电压频率 60 Hz（默认）
+  group: 频率
+- name: Rate of change
+  summary: AC 频率变化率 1 Hz/s（默认）
+  group: 频率
+- name: Step amplitude
+  summary: AC 频率阶跃幅值 1 Hz（默认）
+  group: 频率
+- name: Modulation magnitude
+  summary: AC 频率调制幅值 1 Hz（默认）
+  group: 频率
+- name: Modulation frequency
+  summary: AC 频率调制频率 1 Hz（默认）
+  group: 频率
+- name: Start time
+  summary: AC 频率起始时间 1 s（默认）
+  group: 频率
+- name: Stop time
+  summary: AC 频率起始时间 2 s（默认）
+  group: 频率
+- name: AC phase shift configuration
+  summary: AC 相移配置 Constant（默认）| Ramp Step Modulation External
+  group: 相位
+- name: AC voltage phase shift
+  summary: AC 电压相移 0 deg（默认）
+  group: 相位
+- name: Rate of change
+  summary: AC 相移变化率 1 deg/s（默认）
+  group: 相位
+- name: Step amplitude
+  summary: AC 相移阶跃幅值 1 deg（默认）
+  group: 相位
+- name: Modulation magnitude
+  summary: AC 相移调制幅值 1 deg（默认）
+  group: 相位
+- name: Modulation frequency
+  summary: AC 相移调制频率 1 Hz（默认）
+  group: 相位
+- name: Start time
+  summary: AC 相移起始时间 1 s（默认）
+  group: 相位
+- name: Stop time
+  summary: AC 相移起始时间 2 s（默认）
+  group: 相位
+- name: DC voltage configuration
+  summary: DC 电压配置 Constant（默认）| Ramp Step Modulation External
+  group: DC 电压
+- name: DC voltage
+  summary: DC 电压幅值 0 V（默认）
+  group: DC 电压
+- name: Rate of change
+  summary: DC 电压变化率 1 V/s（默认）
+  group: DC 电压
+- name: Step amplitude
+  summary: DC 电压阶跃幅值 1 V（默认）
+  group: DC 电压
+- name: Modulation magnitude
+  summary: DC 电压调制幅值 1 V（默认）
+  group: DC 电压
+- name: Modulation frequency
+  summary: DC 电压调制频率 1 Hz（默认）
+  group: DC 电压
+- name: Start time
+  summary: DC 电压起始时间 1 s（默认）
+  group: DC 电压
+- name: Stop time
+  summary: DC 电压停止时间 2 s（默认）
+  group: DC 电压
+- name: Source harmonics
+  summary: 源谐波配置 None（默认）| Generate harmonics
+  group: 谐波
+- name: Harmonic orders
+  summary: 谐波次数 [5, 7, 11, 13]（默认）
+  group: 谐波
+- name: Harmonic to base magnitude ratios
+  summary: 谐波与基波幅值比 [.1, .1, .1, .1]（默认）
+  group: 谐波
+- name: Harmonic phase shifts
+  summary: 谐波相移 [0, 0, 0, 0] deg（默认）
+  group: 谐波
+- name: Start time
+  summary: 源谐波起始时间 -inf s（默认）
+  group: 谐波
+- name: Stop time
+  summary: 源谐波停止时间 inf s（默认）
+  group: 谐波
+- name: Noise mode
+  summary: 包含噪声的选项 Disabled（默认）| Enabled
+  group: 噪声
+- name: Power spectral density
+  summary: 功率谱密度 0 V^2/Hz（默认）
+  group: 噪声
+- name: Repeatability
+  summary: 随机数种子控制 Not repeatable（默认）| Repeatable | Specify seed
+  group: 噪声
+- name: Auto-generated seed used for repeatable option
+  summary: 自动生成种子 0（默认）
+  group: 噪声
+- name: Seed
+  summary: 随机数生成种子值 0（默认）
+  group: 噪声
+- name: Sample time
+  summary: 时间步长周期和偏移量 1e-3 s（默认）| [step, offset] s
+  group: 噪声
+```
 
 ### AC 幅值
 
@@ -498,7 +653,6 @@ DC 电压停止的仿真时间。
 #### 依赖关系
 
 为 **Noise mode** 参数选择 `Enabled` 会显示相关参数。
-
 ## 所属库
 
 Simscape / Electrical / Sources

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # On-Off Delay
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 0 | 1
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: 输出信号 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 带延迟的输出信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: ON delay time (s)
+  summary: 输入导通延迟时间 0.01（默认）| 0 | 正标量
+  group: ''
+- name: OFF delay time (s)
+  summary: 输入关断延迟时间 0（默认）| 正标量
+  group: ''
+- name: Initial state
+  summary: 信号初始状态 0（默认）| 1
+  group: ''
+- name: Sample time
+  summary: 模块采样时间 0.001（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **ON delay time (s)** — 输入导通延迟时间 `0.01`（默认）| `0` | 正标量
 
@@ -54,7 +79,6 @@ chinese_source: worker-translation
 `0`。
 
 如果此模块位于掩码子系统或其他允许连续和离散操作的变体子系统中，请提升采样时间参数。提升采样时间参数可确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

@@ -15,6 +15,57 @@ chinese_source: worker-translation
 # CI Controller
 
 ## 端口
+```yaml
+ports:
+- name: TrqCmd
+  summary: 指令发动机扭矩 scalar
+  direction: input
+- name: EngSpd
+  summary: 测量的发动机转速 scalar
+  direction: input
+- name: Map
+  summary: 测量的进气歧管绝对压力 scalar
+  direction: input
+- name: Mat
+  summary: 测量的进气歧管绝对温度 scalar
+  direction: input
+- name: AmbPrs
+  summary: 环境压力 scalar
+  direction: input
+- name: EgrVlvAreaPct
+  summary: EGR 阀面积百分比 scalar
+  direction: input
+- name: VgtPos
+  summary: VGT 转速 scalar
+  direction: input
+- name: VgtSpd
+  summary: VGT 转速 scalar
+  direction: input
+- name: Ect
+  summary: 发动机冷却温度 scalar
+  direction: input
+- name: IgSw
+  summary: 点火开关 Boolean
+  direction: input
+- name: ESSEnable
+  summary: 发动机起停使能 Boolean
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: InjPw
+  summary: 燃油喷射器脉冲宽度 scalar
+  direction: output
+- name: FuelMainSoi
+  summary: 燃油主喷射正时 scalar
+  direction: output
+- name: TurbRackPosCmd
+  summary: 齿条位置 scalar
+  direction: output
+- name: EgrVlvAreaPctCmd
+  summary: 进气凸轮相位器角度指令 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -107,8 +158,453 @@ VGT 齿条位置指令，*RPcmd*。
 ### **EgrVlvAreaPctCmd** — 进气凸轮相位器角度指令 `scalar`
 
 EGR 阀面积百分比指令，*EGRcmd*。
-
 ## 参数
+```yaml
+parameters:
+- name: EGR 阀面积百分比，f_egrcmd
+  summary: 查找表 array
+  group: 控制
+  block_parameter: f_egrcmd
+  values: array
+- name: 指令扭矩断点，f_egr_tq_bpt
+  summary: 断点 [10 26.43 42.86 59.29 75.71 92.14 108.6 125 141.4 157.9 174.3 190.7 207.1 223.6 240]（默认）| vector
+  group: 控制
+  block_parameter: f_egr_tq_bpt
+  values: vector
+- name: 转速断点，f_egr_n_bpt
+  summary: 断点 [1000 1411 1821 2232 2643 3054 3464 3875 4286 4696 5107 5518 5929 6339 6750]（默认）| vector
+  group: 控制
+  block_parameter: f_egr_n_bpt
+  values: vector
+- name: VGT 齿条位置表，f_rpcmd
+  summary: 查找表 array
+  group: 控制
+  block_parameter: f_rpcmd
+  values: array
+- name: 命令扭矩断点，f_rp_tq_bpt
+  summary: 断点 [10 26.43 42.86 59.29 75.71 92.14 108.6 125 141.4 157.9 174.3 190.7 207.1 223.6 240]（默认）| vector
+  group: 控制
+  block_parameter: f_rp_tq_bpt
+  values: vector
+- name: 转速断点，f_rp_n_bpt
+  summary: 断点 [1000 1411 1821 2232 2643 3054 3464 3875 4286 4696 5107 5518 5929 6339 6750]（默认）| vector
+  group: 控制
+  block_parameter: f_rp_n_bpt
+  values: vector
+- name: 喷油器斜率，Sinj
+  summary: 斜率 6.452（默认）| scalar
+  group: 控制
+  block_parameter: Sinj
+  values: 6.452（默认）| scalar
+- name: 化学计量空燃比，afr_stoich
+  summary: 比值 14.6（默认）| scalar
+  group: 控制
+  block_parameter: afr_stoich
+  values: 14.6（默认）| scalar
+- name: 燃油低热值，fuel_lhv
+  summary: 热量 42e6（默认）| scalar
+  group: 控制
+  block_parameter: fuel_lhv
+  values: 42e6（默认）| scalar
+- name: Fuel mass per injection table, f_fcmd_tot
+  summary: 查找表 array
+  group: 控制
+  block_parameter: f_fcmd_tot
+  values: array
+- name: Fuel main injection timing table, f_main_soi
+  summary: 查找表 array
+  group: 控制
+  block_parameter: f_main_soi
+  values: array
+- name: Fuel main injection timing fuel breakpoints, f_main_soi_f_bpt
+  summary: 断点 vector
+  group: 控制
+  block_parameter: f_main_soi_f_bpt
+  values: vector
+- name: Fuel main injection timing speed breakpoints, f_main_soi_n_bpt
+  summary: 断点 [1000,1410.71428571429,1821.42857142857,2232.14285714286,2642.85714285714,3053.57142857143,3464.28571428571,3875,4285.71428571429,4696.42857142857,5107.14285714286,5517.85714285714,5928.57142857143,6339.28571428572,6750]（默认）
+    | vector
+  group: 控制
+  block_parameter: f_main_soi_n_bpt
+  values: vector
+- name: Commanded torque breakpoints, f_f_tot_tq_bpt
+  summary: 断点 [0 10 26.43 42.86 59.29 75.71 92.14 108.6 125 141.4 157.9 174.3 190.7 207.1 223.6 240]（默认） | vector
+  group: 控制
+  block_parameter: f_f_tot_tq_bpt
+  values: vector
+- name: Speed breakpoints, f_f_tot_n_bpt
+  summary: 断点 [1000 1411 1821 2232 2643 3054 3464 3875 4286 4696 5107 5518 5929 6339 6750]（默认） | vector
+  group: 控制
+  block_parameter: f_f_tot_n_bpt
+  values: vector
+- name: Base idle speed, N_idle
+  summary: 转速 750（默认） | scalar
+  group: 控制
+  block_parameter: N_idle
+  values: 750（默认） | scalar
+- name: Enable torque command limit, Trq_idlecmd_enable
+  summary: Torque 1（默认） | scalar
+  group: 控制
+  block_parameter: Trq_idlecmd_enable
+  values: 1（默认） | scalar
+- name: Maximum torque command, Trq_idlecmd_max
+  summary: Torque 50（默认） | scalar
+  group: 控制
+  block_parameter: Trq_idlecmd_max
+  values: 50（默认） | scalar
+- name: Proportional gain, Kp_idle
+  summary: PI Controller 0.05（默认） | scalar
+  group: 控制
+  block_parameter: Kp_idle
+  values: 0.05（默认） | scalar
+- name: Integral gain, Ki_idle
+  summary: PI Controller 0.2（默认） | scalar
+  group: 控制
+  block_parameter: Ki_idle
+  values: 0.2（默认） | scalar
+- name: Rev-limiter speed threshold, EngRevLim
+  summary: Engine speed limit 6000（默认） | scalar
+  group: 控制
+  block_parameter: EngRevLim
+  values: 6000（默认） | scalar
+- name: Enable Engine Stop-Start
+  summary: Select to enable the engine stop-start logic off（默认） | on
+  group: 控制
+  block_parameter: ESSEnable
+  values: off（默认） | on
+- name: External Enable Port
+  summary: Create input port off（默认） | on
+  group: 控制
+  block_parameter: ESSExternalPortEnable
+  values: off（默认） | on
+- name: Engine stop time, EngStopTime
+  summary: 发动机停止时间 5（默认） | scalar
+  group: 控制
+  block_parameter: EngStopTime
+  values: 5（默认） | scalar
+- name: Catalyst light off time, CatLightOffTime
+  summary: 催化器起燃时间 0（默认） | scalar
+  group: 控制
+  block_parameter: CatLightOffTime
+  values: 0（默认） | scalar
+- name: Sample time, Ts
+  summary: 采样时间 0.01（默认） | scalar
+  group: 控制
+  block_parameter: Ts
+  values: 0.01（默认） | scalar
+- name: Number of cylinders, NCyl
+  summary: 发动机气缸数 4（默认） | scalar
+  group: 估计
+  block_parameter: NCyl
+  values: 4（默认） | scalar
+- name: Crank revolutions per power stroke, Cps
+  summary: 每做功冲程的转数 2（默认） | scalar
+  group: 估计
+  block_parameter: Cps
+  values: 2（默认） | scalar
+- name: Total displaced volume, Vd
+  summary: 体积 0.0015（默认） | scalar
+  group: 估计
+  block_parameter: Vd
+  values: 0.0015（默认） | scalar
+- name: Ideal gas constant air, Rair
+  summary: 常数 287（默认） | scalar
+  group: 估计
+  block_parameter: Rair
+  values: 287（默认） | scalar
+- name: Air standard pressure, Pstd
+  summary: 压力 101325（默认）| scalar
+  group: 估计
+  block_parameter: Pstd
+  values: 101325（默认）| scalar
+- name: Air standard temperature, Tstd
+  summary: 温度 293.15（默认）| scalar
+  group: 估计
+  block_parameter: Tstd
+  values: 293.15（默认）| scalar
+- name: Speed density volumetric efficiency, f_nv
+  summary: 查找表 array
+  group: 估计
+  block_parameter: f_nv
+  values: array
+- name: Speed density intake manifold pressure breakpoints, f_nv_prs_bpt
+  summary: 断点 [95 100.3 105.7 111 116.4 121.7 127.1 132.4 137.8 143.1 148.4 153.8 159.1 164.5 169.8 175.2 180.5 185.9 191.2
+    196.6 201.9 207.2 212.6 217.9 223.3 228.6 234 239.3 244.7 250]（默认）| vector
+  group: 估计
+  block_parameter: f_nv_prs_bpt
+  values: vector
+- name: Speed density engine speed breakpoints, f_nv_n_bpt
+  summary: 断点 [750 956.9 1164 1371 1578 1784 1991 2198 2405 2612 2819 3026 3233 3440 3647 3853 4060 4267 4474 4681 4888 5095
+    5302 5509 5716 5922 6129 6336 6543 6750]（默认）| vector
+  group: 估计
+  block_parameter: f_nv_n_bpt
+  values: vector
+- name: EGR valve standard flow calibration, f_egr_stdflow
+  summary: 查找表 array
+  group: 估计
+  block_parameter: f_egr_stdflow
+  values: vector
+- name: EGR valve standard flow pressure ratio breakpoints, f_egr_stdflow_pr_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_egr_stdflow_pr_bpt
+  values: vector
+- name: EGR valve standard flow area percent breakpoints, f_egr_stdflow_egrap_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_egr_stdflow_egrap_bpt
+  values: vector
+- name: Turbocharger pressure ratio, f_turbo_pr
+  summary: 查找表 array
+  group: 估计
+  block_parameter: f_turbo_pr
+  values: array
+- name: Turbocharger pressure ratio standard flow breakpoints, f_turbo_pr_stdflow_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_turbo_pr_stdflow_bpt
+  values: vector
+- name: Turbocharger pressure ratio corrected speed breakpoints, f_turbo_pr_corrspd_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_turbo_pr_corrspd_bpt
+  values: vector
+- name: Turbocharger pressure ratio VGT position correction, f_turbo_pr_vgtposcorr
+  summary: 查找表 array
+  group: 估计
+  block_parameter: f_turbo_pr_vgtposcorr
+  values: array
+- name: Turbocharger pressure ratio VGT position correction breakpoints, f_turbo_pr_vgtposcorr_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_nv_n_bpt
+  values: vector
+- name: 扭矩表，f_tq_nf
+  summary: 查找表 array
+  group: 估计
+  block_parameter: f_tq_nf
+  values: array
+- name: 扭矩表每次喷射燃油质量断点，f_tq_nf_f_bpt
+  summary: 断点 [0 3.5714 7.1429 10.7143 14.2857 17.8571 21.4286 25 28.5714 32.1429 35.7143 39.2857 42.8571 46.4286 50]（默认）|
+    vector
+  group: 估计
+  block_parameter: f_tq_nf_f_bpt
+  values: array
+- name: 扭矩表转速断点，f_tq_nf_n_bpt
+  summary: 断点 [1000 1410.7143 1821.4286 2232.1429 2642.8571 3053.5714 3464.2857 3875 4285.7143 4696.4286 5107.1429 5517.8571
+    5928.5714 6339.2857 6750]（默认）| vector
+  group: 估计
+  block_parameter: f_tq_nf_n_bpt
+  values: vector
+- name: 每次喷射燃油质量断点，f_tqs_f_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_tqs_f_bpt
+  values: vector
+- name: 发动机转速断点，f_tqs_n_bpt
+  summary: 断点 [500 750 1000 1250 1500 1750 2000 2250 2500 2750 3000 3250 3500 3750 4000]（默认）| vector
+  group: 估计
+  block_parameter: f_tqs_n_bpt
+  values: vector
+- name: Optimal main start of injection timing, f_tqs_mainsoi
+  summary: 最优 MAINSOI array
+  group: 估计
+  block_parameter: f_tqs_mainsoi
+  values: array
+- name: Optimal intake manifold gas pressure, f_tqs_map
+  summary: 最优 intake MAP array
+  group: 估计
+  block_parameter: f_tqs_map
+  values: array
+- name: Optimal exhaust manifold gas pressure, f_tqs_emap
+  summary: 最优 exhaust MAP array
+  group: 估计
+  block_parameter: f_tqs_emap
+  values: array
+- name: Optimal intake manifold gas temperature, f_tqs_mat
+  summary: 最优 intake MAT array
+  group: 估计
+  block_parameter: f_tqs_mat
+  values: array
+- name: Optimal intake gas oxygen percent, f_tqs_o2pct
+  summary: Optimal intake gas oxygen array
+  group: 估计
+  block_parameter: f_tqs_o2pct
+  values: array
+- name: Optimal fuel rail pressure, f_tqs_fuelpress
+  summary: Optimal fuel rail pressure array
+  group: 估计
+  block_parameter: f_tqs_fuelpress
+  values: array
+- name: Optimal gross indicated mean effective pressure, f_tqs_imepg
+  summary: Optimal mean effective pressure array
+  group: 估计
+  block_parameter: f_tqs_imepg
+  values: array
+- name: Optimal friction mean effective pressure, f_tqs_fmep
+  summary: Optimal friction mean effective pressure array
+  group: 估计
+  block_parameter: f_tqs_fmep
+  values: array
+- name: Optimal pumping mean effective pressure, f_tqs_pmep
+  summary: 最佳泵气平均有效压力 array
+  group: 估计
+  block_parameter: f_tqs_pmep
+  values: array
+- name: Friction multiplier as a function of temperature, f_tqs_fric_temp_mod
+  summary: 摩擦乘数 array
+  group: 估计
+  block_parameter: f_tqs_fric_temp_mod
+  values: array
+- name: Friction multiplier temperature breakpoints, f_tqs_fric_temp_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_tqs_fric_temp_bpt
+  values: vector
+- name: Main start of injection timing efficiency multiplier, f_tqs_mainsoi_eff
+  summary: MAINSOI 效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_mainsoi_eff
+  values: array
+- name: Main start of injection timing relative to optimal timing breakpoints, f_tqs_mainsoi_delta_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_tqs_mainsoi_delta_bpt
+  values: vector
+- name: 进气歧管气体压力效率乘数，f_tqs_map_eff
+  summary: 进气压力效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_map_eff
+  values: array
+- name: 进气歧管气体压力比相对于最优压力比断点，f_tqs_map_ratio_bpt
+  summary: 断点 [0.8;0.85;0.9;0.95;1;1.05;1.1;1.15;1.2;1.25;1.3;1.35;1.4;1.45;1.5]（默认） | vector
+  group: 估计
+  block_parameter: f_tqs_map_ratio_bpt
+  values: vector
+- name: 进气歧管气体 lambda 断点，f_tqs_lambda_bpt
+  summary: 断点 [1.5 1.678571428571429 1.857142857142857 2.035714285714286 2.214285714285714 2.392857142857143 2.571428571428571
+    2.75 2.928571428571429 3.107142857142857 3.285714285714286 3.464285714285714 3.642857142857143 3.821428571428572 4]（默认）
+    | vector
+  group: 估计
+  block_parameter: f_tqs_lambda_bpt
+  values: vector
+- name: 进气歧管气体温度效率乘数，f_tqs_mat_eff
+  summary: 进气温度效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_mat_eff
+  values: array
+- name: 进气歧管气体温度相对于最佳气体温度的断点，f_tqs_mat_delta_bpt
+  summary: 断点 [-55;-50;-45;-40;-35;-30;-25;-20;-15;-10;-5;0;5;10;15]（默认）| vector
+  group: 估计
+  block_parameter: f_tqs_mat_delta_bpt
+  values: vector
+- name: 进气歧管气体氧气效率乘数，f_tqs_o2pct_eff
+  summary: 进气氧气效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_o2pct_eff
+  values: array
+- name: 进气气体氧气百分比相对于最佳的断点，f_tqs_o2pct_delta_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_tqs_o2pct_delta_bpt
+  values: vector
+- name: 燃油轨压力效率乘数，f_tqs_fuelpress_eff
+  summary: 效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_fuelpress_eff
+  values: array
+- name: 燃油轨压力相对于最佳的断点，f_tqs_fuelpress_delta_bpt
+  summary: 断点 vector
+  group: 估计
+  block_parameter: f_tqs_fuelpress_delta_bpt
+  values: vector
+- name: 燃油质量喷射类型标识符，f_tqs_f_inj_type
+  summary: 类型标识符 0（默认）| scalar
+  group: 估计
+  block_parameter: f_tqs_f_inj_type
+  values: 0 (default) | scalar
+- name: 指示平均有效压力后喷射修正，f_tqs_imep_post_corr
+  summary: 后喷射修正 array
+  group: 估计
+  block_parameter: f_tqs_imep_post_corr
+  values: array
+- name: 指示平均有效压力后喷射质量总和断点，f_tqs_f_post_sum_bpt
+  summary: 断点 [0 3.571428571428572 7.142857142857143 10.71428571428571 14.28571428571429 17.85714285714286 21.42857142857143
+    25 28.57142857142857 32.14285714285715 35.71428571428572 39.28571428571428 42.85714285714285 46.42857142857143 50]（默认）|
+    vector
+  group: 估计
+  block_parameter: f_tqs_f_post_sum_bpt
+  values: vector
+- name: 指示平均有效压力后喷射开始正时质心断点，f_tqs_soi_post_cent_bpt
+  summary: 断点 [150 160.7142857142857 171.4285714285714 182.1428571428571 192.8571428571429 203.5714285714286 214.2857142857143
+    225 235.7142857142857 246.4285714285714 257.1428571428571 267.8571428571429 278.5714285714286 289.2857142857143 300]（默认）|
+    vector
+  group: 估计
+  block_parameter: f_tqs_soi_post_cent_bpt
+  values: vector
+- name: 已燃烧燃料的最大喷射开始角，f_tqs_f_burned_soi_limit
+  summary: 已燃烧燃料的最大 SOI 角 500（默认）| scalar
+  group: 估计
+  block_parameter: f_tqs_f_bpt
+  values: 500（默认）| scalar
+- name: 排气定压比热，cp_exh
+  summary: 比热 1005（默认）| scalar
+  group: 估计
+  block_parameter: cp_exh
+  values: 1005（默认）| scalar
+- name: 排气温度表，f_t_exh
+  summary: 查找表 array
+  group: 估计
+  block_parameter: f_t_exh
+  values: array
+- name: 每次喷射燃料质量断点，f_t_exh_f_bpt
+  summary: 断点 [0 3.5714 7.1429 10.7143 14.2857 17.8571 21.4286 25 28.5714 32.1429 35.7143 39.2857 42.8571 46.4286 50]（默认）|
+    vector
+  group: 估计
+  block_parameter: f_t_exh_f_bpt
+  values: vector
+- name: 转速断点，f_t_exh_n_bpt
+  summary: 断点 [1000 1410.7143 1821.4286 2232.1429 2642.8571 3053.5714 3464.2857 3875 4285.7143 4696.4286 5107.1429 5517.8571
+    5928.5714 6339.2857 6750]（默认）| vector
+  group: 估计
+  block_parameter: f_t_exh_n_bpt
+  values: vector
+- name: Optimal exhaust manifold gas temperature, f_tqs_exht
+  summary: 最优排气歧管气体温度 array
+  group: 估计
+  block_parameter: f_tqs_exht
+  values: array
+- name: Main start of injection timing exhaust temperature efficiency multiplier, f_tqs_exht_mainsoi_eff
+  summary: 主 SOI 正时效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_exht_mainsoi_eff
+  values: array
+- name: Intake manifold gas pressure exhaust temperature efficiency multiplier, f_tqs_exht_map_eff
+  summary: 进气歧管效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_exht_map_eff
+  values: array
+- name: 进气歧管气体温度排气温度效率乘数，f_tqs_exht_mat_eff
+  summary: 进气歧管效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_exht_mat_eff
+  values: array
+- name: 进气歧管气体氧气排气温度效率乘数，f_tqs_exht_o2pct_eff
+  summary: 进气歧管效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_exht_o2pct_eff
+  values: array
+- name: 燃油轨压力排气温度效率乘数，f_tqs_exht_fuelpress_eff
+  summary: 燃油轨压力排气温度效率乘数 array
+  group: 估计
+  block_parameter: f_tqs_exht_fuelpress_eff
+  values: array
+- name: 后喷气缸壁热损失传递系数，f_tqs_exht_post_inj_wall_htc
+  summary: 后喷偏移 0（默认） | scalar
+  group: 估计
+  block_parameter: f_tqs_exht_post_inj_wall_htc
+  values: 0（默认） | scalar
+```
 
 ### 控制
 
@@ -1994,7 +2490,6 @@ SOI 排气温度效率乘数与主 SOI 正时相对于最优正时和发动机�
 
 要启用此参数，对于 **Torque model**，选择
 `Torque Structure`。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engine Controllers

@@ -14,6 +14,37 @@ language: en
 # Lane Change
 
 ## Ports
+```yaml
+ports:
+- name: xdot
+  summary: Vehicle longitudinal velocity scalar
+  direction: input
+  data_types: double
+- name: X
+  summary: Longitudinal position vehicle center of mass scalar
+  direction: input
+  data_types: double
+- name: Y
+  summary: Lateral position vehicle center of mass scalar
+  direction: input
+  data_types: double
+- name: psi
+  summary: Vehicle yaw angle scalar
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: Driver reference data bus
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: Driver command data bus
+  direction: output
+  data_types: bus
+- name: Info
+  summary: Information data bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -114,8 +145,85 @@ Information data, returned as a bus containing these block values.
 To enable this parameter, select **Output info bus**.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Lane change type, changeType
+  summary: Type of lane change to conduct Double lane change (ISO 3888-1) (default) | Obstacle avoidance (ISO 3888-2) | Obstacle
+    avoidance truck-trailer (SAE J2179)
+  group: ''
+  block_parameter: changeType
+  values: Double lane change (ISO 3888-1) (default) | Obstacle avoidance (ISO 3888-2) | Obstacle avoidance truck-trailer (SAE
+    J2179)
+- name: Maneuver start time, tStart [s]
+  summary: Start time 3 (default) | positive scalar
+  group: ''
+  block_parameter: tStart
+  values: 3 (default) | positive scalar
+- name: Inertial longitudinal position of gate extrance, XGate [m]
+  summary: Global longitudinal position of start of gate entry 176 (default) | scalar
+  group: ''
+  block_parameter: XGate
+  values: 176 (default) | scalar
+- name: Longitudinal entrance velocity setpoint, velRef
+  summary: Target velocity 35 (default) | positive scalar
+  group: ''
+  block_parameter: velRef
+  values: 35 (default) | positive scalar
+- name: Longitudinal entrance velocity setpoint units, velRefUnit []
+  summary: Units mph (default)
+  group: ''
+  block_parameter: velRefUnit
+  values: mph (default) | character vector
+- name: Distance after target speed to begin reference, xStart [m]
+  summary: Longitudinal offset 2 (default) | scalar
+  group: ''
+  block_parameter: xStart
+  values: 2 (default) | scalar
+- name: Vehicle width, vehWidth [m]
+  summary: Nominal vehicle width 2 (default) | positive scalar
+  group: ''
+  block_parameter: vehWidth
+  values: 2 (default) | positive scalar
+- name: Lateral offset, nomLatOffset [m]
+  summary: Nominal lateral offset 0 (default) | scalar
+  group: ''
+  block_parameter: nomLatOffset
+  values: 0 (default) | scalar
+- name: Lateral reference position breakpoints, latRefbp [m]
+  summary: Longitudinal path breakpoints 1-by-*n* vector (default)
+  group: ''
+  block_parameter: latRefbp
+  values: 1-by-7 vector (default)
+- name: Lateral reference data, latRef [m]
+  summary: Lateral path reference points 1-by-7 vector (default)
+  group: ''
+  block_parameter: latRef
+  values: 1-by-7 vector (default)
+- name: Use reference data
+  summary: Option to use reference data on (default) | off
+  group: ''
+  block_parameter: centerSwitch
+  values: on (default) | off
+- name: Stop simulation on course exit
+  summary: Option to stop simulation on course exit off (default) | on
+  group: ''
+  block_parameter: xSimStop
+  values: off (default) | on
+- name: Output info bus
+  summary: Option to output info bus off (default) | on
+  group: ''
+  block_parameter: extInfo
+  values: off (default) | on
+- name: Instantiate 3D cones (Simulation 3D Scene Configuration required)
+  summary: Option to instantiate 3D cones off (default) | on
+  group: ''
+  block_parameter: use3DCones
+  values: off (default) | on
+- name: Show Maneuver Plot
+  summary: Option to visualize maneuver button
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -418,7 +526,6 @@ programmatically, use the `get_param` function.
 
 Click **Show Maneuver Plot** to visualize the maneuver specified by
 **Lane change type, changeType**.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

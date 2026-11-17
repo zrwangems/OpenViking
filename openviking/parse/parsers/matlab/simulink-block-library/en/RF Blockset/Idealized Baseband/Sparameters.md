@@ -14,10 +14,105 @@ language: en
 # S-Parameters
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data source
+  summary: Data source Data file (default) | Network-parameters | Rational model
+  group: ''
+- name: Data file
+  summary: Name of network parameter data file simrfV2_unitygain.s2p (default) | character vector
+  group: ''
+- name: Network-parameter object
+  summary: Network parameter objects as data source off (default) | on
+  group: ''
+- name: Network parameter type
+  summary: Network parameter type S-parameters (default) | Y-parameters | Z-parameters
+  group: ''
+- name: Network-parameters
+  summary: Network parameter values [0 0;1 0] (default) | multidimensional array | scalar
+  group: ''
+- name: Frequency (dB)
+  summary: Frequency of network parameters 1e9 Hz (default) | scalar | vector | Hz | kHz | MHz | GHz
+  group: ''
+- name: Reference Impedance(Ohm)
+  summary: Reference impedance of network parameters 50 (default) | positive scalar | vector of positive scalars
+  group: ''
+- name: Use rational object
+  summary: Rational object as data source off (default) | on
+  group: ''
+- name: Residues
+  summary: Residues in order of rational model 0 (default) | vector
+  group: ''
+- name: Poles
+  summary: Residues in order of rational model 0 (default) | vector
+  group: ''
+- name: Direct feedthrough
+  summary: Direct feedthrough {0 0:1 0} (default) | array of vectors
+  group: ''
+- name: Simulate noise
+  summary: Simulate thermal noise waves off (default) | on
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+- name: Modeling options
+  summary: Model S-parameters Time domain (default) | Frequency domain
+  group: ''
+- name: Fitting options
+  summary: Rational fit fitting options Fit individually (default) | Share poles by column | Share all poles
+  group: ''
+- name: Relative error desired (dB)
+  summary: Relative error acceptable for the rational fit -40 (default) | scalar
+  group: ''
+- name: Maximum number of poles
+  summary: Maximum number of poles 48 (default) | positive scalar
+  group: ''
+- name: Automatically estimate impulse response duration
+  summary: Automatically calculate impulse response on | off
+  group: ''
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10 (default) | scalar
+  group: ''
+- name: Use only S-parameter magnitude with appropriate delay
+  summary: Use only S-parameter magnitude with appropriate delay off (default) | on
+  group: ''
+- name: Source of frequency data
+  summary: Frequency data source Extracted from data source (default) | User-defined
+  group: ''
+- name: Frequency data
+  summary: Frequency data range [1e9:1e6:3e9] Hz (default) | vector | scalar
+  group: ''
+- name: Plot type
+  summary: Type of data plot X-Y plane (default) | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: ''
+- name: Parameter 1
+  summary: Type of S-Parameters to plot S11 (default) | SNN
+  group: ''
+- name: Parameter 2
+  summary: Type of S-Parameters to plot None (default) | SNN
+  group: ''
+- name: Format1
+  summary: Plot format Magnitude (decibels) (default) | Angle(degrees) | Real | Imaginary
+  group: ''
+- name: Format2
+  summary: Plot format Magnitude (decibels) (default) | Angle(degrees) | Real | Imaginary
+  group: ''
+- name: Y-axis scale
+  summary: Y-axis scale Linear (default) | Logarithmic
+  group: ''
+- name: X-axis scale
+  summary: X-axis scale Linear (default) | Logarithmic
+  group: ''
+- name: Plot
+  summary: Plot specified data button
+  group: ''
+```
 
 #### Main
 
@@ -395,7 +490,6 @@ X-axis scale, specified as `Linear` or `Logarithmic`.
 ### **Plot** — Plot specified data button
 
 Plot specified data using plot button.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

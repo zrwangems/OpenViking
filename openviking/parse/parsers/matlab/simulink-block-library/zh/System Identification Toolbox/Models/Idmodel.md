@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Idmodel
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: 仿真输入数据 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1(Out1)
+  summary: 仿真输出 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +53,22 @@ Mux (Simulink) 模块来生成
 对于具有 *Ny* 个输出的模型返回为 *Ny* 元素向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Identified model
+  summary: 要仿真的线性模型 idss(-1,1,1,0,'Ts',1)（默认）| idss 对象 | idgrey 对象 | idpoly 对象 | idtf 对象 | idproc 对象
+  group: ''
+- name: Initial conditions
+  summary: 初始条件 0（默认）| 数值向量 | initialCondition 对象
+  group: ''
+- name: Add noise
+  summary: 向仿真输出添加噪声 on（默认）| off
+  group: ''
+- name: Noise seed(s)
+  summary: 为多次仿真向输出添加相同的噪声 []（默认）| 非负整数 | 向量
+  group: ''
+```
 
 ### **Identified model** — 要仿真的线性模型 `idss(-1,1,1,0,'Ts',1)`（默认）| `idss` 对象 | `idgrey` 对象 | `idpoly` 对象 | `idtf` 对象 | `idproc` 对象
 
@@ -127,7 +152,6 @@ Simulink® 模型时添加相同的噪声，请指定 **Noise seed(s)**
 #### 依赖
 
 要启用此参数，请选择 `Add noise`。
-
 ## 所属库
 
 System Identification Toolbox / Models

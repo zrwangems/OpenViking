@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Variable Pulse Generator
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 占空比标量
+  direction: input
+  data_types: double
+- name: P
+  summary: 周期标量
+  direction: input
+  data_types: double
+- name: Port 1
+  summary: 调制脉冲信号标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -37,8 +52,19 @@ chinese_source: worker-translation
 与输入占空比对应的调制输出脉冲信号。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Allow zero pulse width
+  summary: 允许输出信号幅度为零 off（默认）| on
+  group: ''
+- name: Run at fixed time intervals
+  summary: 选择连续或离散时间行为 continuous（默认）| discrete
+  group: ''
+- name: Sampling rate
+  summary: 设置脉冲分辨率 0.1（默认）| 标量
+  group: ''
+```
 
 ### **Allow zero pulse width** — 允许输出信号幅度为零 off（默认）| on
 
@@ -68,7 +94,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数要求 **Sampling mode** 设置为 `discrete`
-
 ## 所属库
 
 Simulink / Discontinuities

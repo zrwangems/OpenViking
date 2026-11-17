@@ -14,6 +14,37 @@ language: en
 # APP Decoder
 
 ## Ports
+```yaml
+ports:
+- name: LLRc
+  summary: Coded LLR values real-valued column vector
+  direction: input
+  data_types: single | double | int8 | int16 | signed fixed point
+- name: LLRu
+  summary: Uncoded LLR values real-valued scalar
+  direction: input
+  data_types: single | double | int8 | int16 | signed fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: LLRu
+  summary: Uncoded LLR values real-valued scalar
+  direction: output
+  data_types: single | double | int8 | int16 | fixed point
+- name: LLRc
+  summary: Coded LLR values real-valued column vector
+  direction: output
+  data_types: single | double | int8 | int16 | fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: Block ready indicator Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -118,8 +149,28 @@ input **ctrl.start** signal while **nextFrame** is
 progress and begins processing the new data.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Code generator
+  summary: Code generator polynomial [171,133] (default) | row vector of 2 to 7 elements
+  group: ''
+- name: Feedback connection
+  summary: Code generator polynomial 171 (default) | octal value
+  group: ''
+- name: Termination method
+  summary: End of frame behavior Truncated (default) | Terminated
+  group: ''
+- name: Algorithm
+  summary: Decoding algorithm type Max Log MAP (max) (default) | Log MAP (max*)
+  group: ''
+- name: Window length
+  summary: Window on which MAP algorithm is to be performed 64 (default) | integer in the range 3 to 128
+  group: ''
+- name: Disable LLRc output port
+  summary: Option to disable LLRc output port off (default) | on
+  group: ''
+```
 
 ### **Code generator** — Code generator polynomial `[171,133]` (default) | row vector of 2 to 7 elements
 
@@ -179,7 +230,6 @@ times the constraint length.
 Select this parameter to disable the output port **LLRc** from the
 block. Clear this parameter to enable the output port **LLRc** on the
 block.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

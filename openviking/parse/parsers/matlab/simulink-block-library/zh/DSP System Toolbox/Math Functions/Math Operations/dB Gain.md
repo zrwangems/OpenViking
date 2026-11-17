@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # dB Gain
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Output
+  summary: 应用分贝增益后的输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -34,8 +45,16 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Gain, dB
+  summary: 增益 -40（默认）| 标量 | 矩阵
+  group: ''
+- name: Input signal
+  summary: 输入信号 Amplitude（默认）| Power
+  group: ''
+```
 
 **注意**
 
@@ -55,7 +74,6 @@ chinese_source: worker-translation
 - `Amplitude` –– 该模块将信号视为电压信号。
 
 **可调：** 是
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Math Operations

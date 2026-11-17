@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Swash Plate
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 与执行器机械平移相关联的机械端口
+  direction: conserving
+- name: P
+  summary: 与活塞机械平移相关联的机械端口
+  direction: conserving
+- name: S
+  summary: 与轴机械旋转相关联的机械端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,22 @@ chinese_source: worker-translation
 ### **S** — 与轴机械旋转相关联的机械端口
 
 驱动轴角速度和扭矩。旋转相对于环境。
-
 ## 参数
+```yaml
+parameters:
+- name: Swash plate actuator arm
+  summary: 执行器延伸长度 0.065 m（默认）| 正标量
+  group: ''
+- name: Cylinder block pitch radius
+  summary: 缸体节圆半径 0.05 m（默认）| 正标量
+  group: ''
+- name: Piston offset from the plate
+  summary: 静止活塞偏移 0 m（默认）| 标量
+  group: ''
+- name: Viscous friction coefficient
+  summary: 扭矩粘性摩擦系数 50 N/(m/s)（默认）| 正标量
+  group: ''
+```
 
 ### **Swash plate actuator arm** — 执行器延伸长度 `0.065 m`（默认）| 正标量
 
@@ -47,7 +73,6 @@ chinese_source: worker-translation
 ### **Viscous friction coefficient** — 扭矩粘性摩擦系数 `50 N/(m/s)`（默认）| 正标量
 
 用于计算粘性摩擦扭矩方程中的系数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors / Auxiliary Components

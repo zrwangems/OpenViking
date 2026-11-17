@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Cumulative Product
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rst
+  summary: 复位端口 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: 累积乘积 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -47,8 +62,46 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Multiply input along
+  summary: 沿哪个维度计算输入的乘积 Channels (running product)（默认）| Columns | Rows
+  group: 主选项卡
+- name: Input processing
+  summary: 输入处理 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: 主选项卡
+- name: Reset port
+  summary: 复位类型 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认）| on
+  group: 数据类型选项卡
+- name: Intermediate product
+  summary: '中间乘积 Inherit: Same as input（默认）| fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出 Inherit: Same as input（默认）| fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器 Inherit: Same as input（默认）| Inherit: Same as product output | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出 Inherit: Same as input（默认）| Inherit: Same as product output | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 最小值 []（默认）
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 最大值 []（默认）
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -186,7 +239,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Math Operations

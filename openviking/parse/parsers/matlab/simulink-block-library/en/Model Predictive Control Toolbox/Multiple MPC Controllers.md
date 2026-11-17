@@ -14,6 +14,72 @@ language: en
 # Multiple MPC Controllers
 
 ## Ports
+```yaml
+ports:
+- name: ref
+  summary: Model output reference values row vector | matrix
+  direction: input
+- name: switch
+  summary: Controller selection integer
+  direction: input
+- name: mo
+  summary: Measured output vector
+  direction: input
+- name: x[k|k]
+  summary: Custom state estimate vector
+  direction: input
+- name: md
+  summary: input row vector | matrix
+  direction: input
+- name: ext.mv
+  summary: Control signals used in plant at previous control interval vector
+  direction: input
+- name: ymin
+  summary: Minimum output variable constraints vector | matrix
+  direction: input
+- name: ymax
+  summary: Maximum output variable constraints vector | matrix
+  direction: input
+- name: umin
+  summary: Minimum manipulated variable constraints vector | matrix
+  direction: input
+- name: umax
+  summary: Maximum manipulated variable constraints vector | matrix
+  direction: input
+- name: y.wt
+  summary: Output variable tuning weights row vector | matrix
+  direction: input
+- name: u.wt
+  summary: Manipulated variable tuning weights row vector | matrix
+  direction: input
+- name: du.wt
+  summary: Manipulated variable rate tuning weights row vector | matrix
+  direction: input
+- name: ecr.wt
+  summary: Slack variable tuning weight scalar
+  direction: input
+- name: mv
+  summary: Optimal manipulated variable control action column vector
+  direction: output
+- name: cost
+  summary: Objective function cost nonnegative scalar
+  direction: output
+- name: qp.status
+  summary: Optimization status integer
+  direction: output
+- name: est.state
+  summary: Estimated controller states vector
+  direction: output
+- name: mv.seq
+  summary: Optimal manipulated variable sequence matrix
+  direction: output
+- name: x.seq
+  summary: Optimal prediction model state sequence matrix
+  direction: output
+- name: y.seq
+  summary: Optimal output variable sequence matrix
+  direction: output
+```
 
 ### Input
 
@@ -577,8 +643,169 @@ identical.
 #### Dependencies
 
 To enable this port, select the **Optimal output sequence** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cell Array of MPC Controllers
+  summary: Candidate controllers cell array of mpc objects | cell array of strings | cell array of character vectors
+  group: ''
+  block_parameter: mpcobjs
+  type: string, character vector, cell array of strings, cell array of character vectors
+  default: '""'
+- name: Cell Array of Initial Controller States
+  summary: Initial state cell array of mpcstate objects | cell array of strings | cell array of character vectors
+  group: ''
+  block_parameter: x0s
+  type: string, character vector, cell array of strings, cell array of character vectors
+  default: '""'
+- name: Measured disturbances
+  summary: Add measured disturbance input port on (default) | off
+  group: ''
+  block_parameter: md_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: External manipulated variable
+  summary: Add external manipulated variable input port off (default) | on
+  group: ''
+  block_parameter: mv_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Targets for manipulated variables
+  summary: Add manipulated variable target input port off (default) | on
+  group: ''
+  block_parameter: uref_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal cost
+  summary: Add optimal cost output port off (default) | on
+  group: ''
+  block_parameter: return_cost_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimization status
+  summary: Add optimization status output port off (default) | on
+  group: ''
+  block_parameter: return_qpstatus_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Estimated controller states
+  summary: Add estimated states output port off (default) | on
+  group: ''
+  block_parameter: return_state_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal control sequence
+  summary: Add optimal control sequence output port off (default) | on
+  group: ''
+  block_parameter: return_mvseq_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal state sequence
+  summary: Add optimal state sequence output port off (default) | on
+  group: ''
+  block_parameter: return_xseq_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal output sequence
+  summary: Add optimal output sequence output port off (default) | on
+  group: ''
+  block_parameter: return_ovseq_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Use custom state estimation instead of using the built-in Kalman filter
+  summary: Use custom state estimate input port off (default) | on
+  group: ''
+  block_parameter: state_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower OV limits
+  summary: Add minimum OV constraint input port off (default) | on
+  group: ''
+  block_parameter: ymin_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper OV limits
+  summary: Add maximum OV constraint input port off (default) | on
+  group: ''
+  block_parameter: ymax_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MV limits
+  summary: Add minimum MV constraint input port off (default) | on
+  group: ''
+  block_parameter: umin_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper MV limits
+  summary: Add maximum MV constraint input port off (default) | on
+  group: ''
+  block_parameter: umax_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Custom constraints
+  summary: Add custom constraints input ports off (default) | on
+  group: ''
+  block_parameter: cc_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV weights
+  summary: Add OV tuning weights input port off (default) | on
+  group: ''
+  block_parameter: ywt_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV weights
+  summary: Add MV tuning weights input port off (default) | on
+  group: ''
+  block_parameter: uwt_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MVRate weights
+  summary: Add MV rate tuning weights input port off (default) | on
+  group: ''
+  block_parameter: duwt_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Slack variable weight
+  summary: Add ECR tuning weight input port off (default) | on
+  group: ''
+  block_parameter: rhoeps_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Block data type
+  summary: Specify data type of manipulated variables double (default) | single | data type expression
+  group: ''
+  block_parameter: BlockDataType_multiple
+  type: string, character vector
+  values: '"double", "single", data type expression'
+  default: '"double"'
+- name: Inherit sample time
+  summary: Inherit block sample time from parent subsystem off (default) | on
+  group: ''
+  block_parameter: SampleTimeInherited_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Cell Array of MPC Controllers** — Candidate controllers cell array of `mpc` objects | cell array of strings | cell array of character vectors
 
@@ -956,7 +1183,6 @@ information, see View Sample Time Information (Simulink).
 | **Type:** string, character vector |
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Model Predictive Control Toolbox

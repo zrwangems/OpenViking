@@ -14,6 +14,17 @@ language: en
 # DSB AM Modulator Passband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -34,8 +45,19 @@ modulated signal.
 This port is unnamed on the block.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input signal offset
+  summary: Input signal offset factor 1 (default) | scalar
+  group: ''
+- name: Carrier frequency (Hz)
+  summary: Carrier frequency in Hz 300 (default) | positive scalar
+  group: ''
+- name: Initial phase (rad)
+  summary: Initial phase offset in radians 0 (default) | scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -59,7 +81,6 @@ of the input signal. For more information, see Baseband vs. Passband Simulation.
 ### **Initial phase (rad)** — Initial phase offset in radians `0` (default) | scalar
 
 Initial phase offset of the carrier in radians, specified as a scalar.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Analog Passband Modulation

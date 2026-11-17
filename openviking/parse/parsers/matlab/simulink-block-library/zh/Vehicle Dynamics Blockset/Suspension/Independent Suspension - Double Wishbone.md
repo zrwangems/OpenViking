@@ -15,6 +15,54 @@ chinese_source: worker-translation
 # Independent Suspension - Double Wishbone
 
 ## 端口
+```yaml
+ports:
+- name: WhlPz
+  summary: 车轮 z 轴位移数组
+  direction: input
+- name: WhlRe
+  summary: 车轮有效半径数组
+  direction: input
+- name: WhlVz
+  summary: 车轮 z 轴速度数组
+  direction: input
+- name: WhlFx
+  summary: 车辆上的纵向车轮力数组
+  direction: input
+- name: WhlFy
+  summary: 车辆上的横向车轮力数组
+  direction: input
+- name: WhlM
+  summary: 车轮上的悬架力矩数组
+  direction: input
+- name: VehP
+  summary: 车辆位移数组
+  direction: input
+- name: VehV
+  summary: 车辆速度数组
+  direction: input
+- name: StrgAng
+  summary: 转向角，可选数组
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: VehF
+  summary: 作用在车辆上的悬架力 array
+  direction: output
+- name: VehM
+  summary: 作用在车辆上的悬架力矩 array
+  direction: output
+- name: WhlF
+  summary: 车轮上的悬架力 array
+  direction: output
+- name: WhlV
+  summary: 车轮速度 array
+  direction: output
+- name: WhlAng
+  summary: 车轮外倾角、主销后倾角、前束角 array
+  direction: output
+```
 
 ### 输入
 
@@ -416,8 +464,135 @@ enable by axle, StrgEnByAxl** 向量的一个元素设置为 `1`。
   | 右前 | `WhlF(3,2)` | `1` | `2` |
   | 左后 | `WhlF(3,3)` | `2` | `1` |
   | 右后 | `WhlF(3,4)` | `2` | `2` |
-
 ## 参数
+```yaml
+parameters:
+- name: Enable active damping
+  summary: 包含阻尼 off (default) | on
+  group: ''
+  block_parameter: ActiveDampEn
+  values: off (default) | on
+- name: Number of axles, NumAxl
+  summary: 车轴数量 2 (default) | scalar
+  group: ''
+  block_parameter: NumAxl
+  values: 2 (default) | scalar
+- name: Number of wheels by axle, NumWhlsByAxl
+  summary: 每轴车轮数量 [2 2] (default) | vector
+  group: ''
+  block_parameter: NumWhlsByAxl
+  values: '[2 2] (default) | vector'
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: 用于启用车轴转向的布尔向量 [1 0] (default) | vector
+  group: ''
+  block_parameter: StrgEnByAxl
+  values: '[1 0]（默认）| 向量'
+- name: Anti-sway axle enable by axle, AntiSwayEnByAxl
+  summary: 用于启用车轴防倾杆的布尔向量 [0 0]（默认）| 向量
+  group: ''
+  block_parameter: AntiSwayEnByAxl
+  values: '[0 0]（默认）| 向量'
+- name: Suspension spring constant, Kz
+  summary: 悬架弹簧刚度 64370（默认）| scalar | vector
+  group: 悬架
+  block_parameter: Kz
+  values: 64370（默认）| scalar | vector
+- name: Suspension spring preload, F0z
+  summary: 悬架弹簧预紧力 9810（默认）| scalar | vector
+  group: 悬架
+  block_parameter: F0z
+  values: 9810（默认）| scalar | vector
+- name: 悬架减振器阻尼常数，Cz
+  summary: 悬架减振器阻尼常数 10000（默认）| scalar | vector
+  group: 悬架
+  block_parameter: Cz
+  values: 10000（默认）| scalar | vector
+- name: 悬架最大高度，Hmax
+  summary: 高度 0.5（默认）| scalar | vector
+  group: 悬架
+  block_parameter: Hmax
+  values: 0.5（默认）| scalar | vector
+- name: 阻尼系数映射，f_act_susp_cz
+  summary: 查找表 [10000 10000;10000 10000]（默认）| M×N 数组
+  group: 悬架
+  block_parameter: f_act_susp_cz
+  values: '[10000 10000;10000 10000]（默认）| M×N 数组'
+- name: 阻尼执行器占空比断点，f_act_susp_duty_bpt
+  summary: 占空比断点 [0 1]（默认）| 1×M 向量
+  group: 悬架
+  block_parameter: f_act_susp_duty_bpt
+  values: '[0 1]（默认）| 1×M 向量'
+- name: 阻尼执行器速度断点，f_act_susp_zdot_bpt
+  summary: 速度断点 [-1 1]（默认）| 1×N 向量
+  group: 悬架
+  block_parameter: f_act_susp_zdot_bpt
+  values: '[-1 1]（默认）| 1×N 向量'
+- name: 转向中心处的前束角，Toe
+  summary: 前束角 0.0349（默认）| scalar
+  group: 悬架
+  block_parameter: Toe
+  values: 0.0349（默认） | scalar
+- name: 侧倾转向与悬架高度斜率，RollStrgSlp
+  summary: 转向角悬架斜率 -0.2269（默认） | scalar | vector
+  group: 悬架
+  block_parameter: RollStrgSlp
+  values: -0.2269（默认） | scalar | vector
+- name: 前束角与转向角斜率，ToeStrgSlp
+  summary: 前束角转向斜率 0.01（默认） | scalar | vector
+  group: 悬架
+  block_parameter: ToeStrgSlp
+  values: 0.01（默认） | scalar | vector
+- name: 转向中心处的主销后倾角，Caster
+  summary: 转向中心处的主销后倾角 0.0698（默认） | scalar
+  group: 悬架
+  block_parameter: Caster
+  values: 0.0698（默认） | scalar
+- name: 主销后倾角与悬架高度斜率，CasterHslp
+  summary: 主销后倾角与悬架高度斜率 -0.2269（默认） | scalar | vector
+  group: 悬架
+  block_parameter: CasterHslp
+  values: -0.2269（默认） | scalar | vector
+- name: 主销后倾角与转向角斜率，CasterStrgSlp
+  summary: 主销后倾角与转向角斜率 0.01（默认） | scalar | vector
+  group: 悬架
+  block_parameter: CasterStrgSlp
+  values: 0.01（默认） | scalar | vector
+- name: 转向中心处的车轮外倾角，Camber
+  summary: 转向中心处的车轮外倾角 0.0698（默认） | scalar
+  group: 悬架
+  block_parameter: Camber
+  values: 0.0698（默认） | scalar
+- name: 外倾角与悬架高度斜率，CamberHslp
+  summary: 外倾角与悬架高度斜率 -0.2269（默认） | scalar | vector
+  group: 悬架
+  block_parameter: CamberHslp
+  values: -0.2269（默认） | scalar | vector
+- name: 外倾角与转向角斜率，CamberStrgSlp
+  summary: 外倾角与转向角斜率 0.01（默认） | scalar | vector
+  group: 悬架
+  block_parameter: CamberStrgSlp
+  values: 0.01（默认） | scalar | vector
+- name: 悬架高度与转向角斜率，StrgHgtSlp
+  summary: 悬架高度与转向角斜率 0.1432（默认） | scalar | vector
+  group: 悬架
+  block_parameter: StrgHgtSlp
+  values: 0.1432（默认） | scalar | vector
+- name: 防倾杆臂半径，AntiSwayR
+  summary: 防倾杆臂半径 0.2（默认） | scalar | vector
+  group: 防倾杆
+  block_parameter: AntiSwayR
+  values: 0.2（默认） | scalar | vector
+- name: 防倾杆臂中性角，AntiSwayNtrlAng
+  summary: 防倾杆臂中性角 0.5236（默认） | scalar | vector
+  group: 防倾杆
+  block_parameter: AntiSwayNtrlAng
+  values: 0.5236（默认） | scalar | vector
+- name: 防倾杆扭转弹簧常数，AntiSwayTrsK
+  summary: 防倾杆扭转弹簧常数 5.7296e+03（默认） | scalar | vector
+  group: 防倾杆
+  block_parameter: AntiSwayTrsK
+  values: 5.7296e+03（默认） | scalar | vector
+```
 
 ### **Enable active damping** — 包含阻尼 `off` (default) | `on`
 
@@ -1019,7 +1194,6 @@ AntiSwayEnByAxl** 向量的某个元素设置为 1 会创建以下防倾杆参�
 | **参数：** | `AntiSwayTrsK` |
 | **值：** | `5.7296e+03`（默认） | `scalar` | `vector` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Suspension

@@ -14,6 +14,33 @@ language: en
 # Flow Rate Sensor (MA)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mixture mass flow rate, kg/s physical signal
+  direction: output
+- name: V
+  summary: Mixture volumetric flow rate, m^3/s physical signal
+  direction: output
+- name: φ
+  summary: Mixture energy flow rate, W physical signal
+  direction: output
+- name: Mw
+  summary: Water vapor mass flow rate, kg/s physical signal
+  direction: output
+- name: Mg
+  summary: Trace gas mass flow rate, kg/s physical signal
+  direction: output
+- name: Md
+  summary: Water droplet mass flow rate, kg/s physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet moist air
+  direction: conserving
+- name: B
+  summary: Sensor outlet moist air
+  direction: conserving
+```
 
 ### Output
 
@@ -76,8 +103,40 @@ Moist air conserving port. Flow rates are positive if air flows from port
 
 Moist air conserving port. Flow rates are positive if air flows from port
 **A** to port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass flow rate
+  summary: Control output port visibility for measuring mass flow rate On (default) | Off
+  group: ''
+- name: Volumetric flow rate
+  summary: Control output port visibility for measuring volumetric flow rate Off (default) | On
+  group: ''
+- name: Volumetric flow measurement conditions
+  summary: Specify conditions for measuring volumetric flow rate Actual conditions (default) | Standard conditions
+  group: ''
+- name: Standard pressure
+  summary: Moist air pressure at standard conditions 0.10132 MPa (default)
+  group: ''
+- name: Standard temperature
+  summary: Moist air temperature at standard conditions 20 degC (default)
+  group: ''
+- name: Standard relative humidity
+  summary: Moist air relative humidity at standard conditions 0.65 (default)
+  group: ''
+- name: Energy flow rate
+  summary: Control output port visibility for measuring energy flow rate On (default) | Off
+  group: ''
+- name: Water vapor mass flow rate
+  summary: Control output port visibility for measuring water vapor mass flow rate On (default) | Off
+  group: ''
+- name: Trace gas mass flow rate
+  summary: Control output port visibility for measuring trace gas mass flow rate On (default) | Off
+  group: ''
+- name: Water droplets mass flow rate
+  summary: Control output port visibility for measuring water droplets mass flow rate Off (default) | On
+  group: ''
+```
 
 ### **Mass flow rate** — Control output port visibility for measuring mass flow rate `On` (default) | `Off`
 
@@ -153,7 +212,6 @@ you measure trace gas mass flow rate.
 
 Selecting this check box exposes the output port **Md**, which lets
 you measure the water droplets mass flow rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Sensors

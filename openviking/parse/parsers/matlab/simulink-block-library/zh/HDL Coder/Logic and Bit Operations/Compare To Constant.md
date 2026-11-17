@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Compare To Constant
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: 输出信号 0 | 1 | 向量 | 矩阵
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### 输入
 
@@ -30,8 +42,38 @@ chinese_source: worker-translation
 如果比较结果为假，则输出为 `0`；如果为真，则输出为 `1`。
 
 **数据类型：** `uint8` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Operator
+  summary: 逻辑运算符 <= （默认） | == | ~= | < | >= | >
+  group: ''
+  block_parameter: relop
+  type: character vector
+  values: '''=='' | ''~=''| ''<'' |''<=''| ''>=''| ''>'''
+  default: '''<='''
+- name: Constant value
+  summary: 用于比较的常量 常量
+  group: ''
+  block_parameter: const
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''3.0'''
+- name: Output data type
+  summary: 输出的数据类型 boolean （默认） | uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+- name: Enable zero-crossing detection
+  summary: 选择以启用零交叉检测 'on' （默认） | 'off'
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Operator** — 逻辑运算符 <= （默认） | == | ~= | < | >= | >
 
@@ -91,7 +133,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Radar Target
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 入射信号 复值 *N*×*1* 列向量 | 复值 *N*×*M* 矩阵
+  direction: input
+  data_types: double
+- name: RCS
+  summary: 平均雷达横截面 非负标量 | 非负值的 1×*M* 行向量
+  direction: input
+  data_types: double
+- name: Update
+  summary: 更新雷达横截面的指示符 0 | 1
+  direction: input
+  data_types: double
+- name: Out
+  summary: 反射信号 复值 *N*×*1* 列向量 | 复值 *N*×*M* 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -50,8 +68,32 @@ chinese_source: worker-translation
 ### **Out** — 反射信号 复值 *N*×*1* 列向量 | 复值 *N*×*M* 矩阵
 
 反射信号，返回为复值 *N*×*1* 列向量或复值 *N*×*M* 矩阵。值 *M* 是信号数量。每个信号对应不同的目标。值 *N* 是每个信号中的样本数。
-
 ## 参数
+```yaml
+parameters:
+- name: Source of mean radar cross section
+  summary: 平均雷达横截面的来源 Property（默认）| Input port
+  group: ''
+- name: Mean radar cross section (m^2)
+  summary: 平均雷达横截面 1
+  group: ''
+- name: Fluctuation model
+  summary: 起伏模型 Nonfluctuating（默认）| Swerling1 | Swerling2 | Swerling3 | Swerling4
+  group: ''
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: ''
+- name: Operating frequency (Hz)
+  summary: 工作频率 3e8（默认）| 正实标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Source of mean radar cross section** — 平均雷达横截面的来源 `Property`（默认）| `Input port`
 
@@ -121,7 +163,6 @@ Generation` 运行模块。长时间仿真使用生成代码比在
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Environment and Target

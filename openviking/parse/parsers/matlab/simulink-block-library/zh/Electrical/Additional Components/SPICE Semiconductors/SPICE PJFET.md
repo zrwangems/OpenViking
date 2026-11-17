@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # SPICE PJFET
 
 ## 端口
+```yaml
+ports:
+- name: gx
+  summary: 栅极端子电气端口
+  direction: conserving
+- name: dx
+  summary: 漏极端子电气端口
+  direction: conserving
+- name: sx
+  summary: 源极端子电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,82 @@ chinese_source: worker-translation
 ### **sx** — 源极端子电气端口
 
 与晶体管源极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Device area, AREA
+  summary: 器件面积 1.0 m^2（默认）| 正标量
+  group: 主要
+- name: Number of parallel devices, SCALE
+  summary: 并联器件数 1（默认）| 正整数
+  group: 主要
+- name: Threshold voltage, VTO
+  summary: 阈值电压 -2 V（默认）| 标量
+  group: 主要
+- name: Transconductance, BETA
+  summary: 沟道调制 1e-4 A/m^2/V^2（默认）| 非负标量
+  group: 主要
+- name: Channel modulation, LAMBDA
+  summary: 沟道调制 0 1/V（默认）| 标量
+  group: 主要
+- name: Saturation current, IS
+  summary: 饱和电流 1e-14 A/m^2（默认）| 非负标量
+  group: 主要
+- name: Drain resistance, RD
+  summary: 串联电阻 0.01 m^2*Ohm（默认）| 非负标量
+  group: 主要
+- name: Source resistance, RS
+  summary: 串联电阻 0.0001 m^2*Ohm（默认）| 非负标量
+  group: 主要
+- name: Emission coefficient, N
+  summary: 发射系数 1（默认）| 正标量
+  group: 主要
+- name: Model junction capacitance
+  summary: 结电容模型 No（默认）| Yes
+  group: 结电容
+- name: Zero-bias GS capacitance, CGS
+  summary: 零偏结电容 0 F/m^2（默认）| 非负标量
+  group: 结电容
+- name: Zero-bias GD capacitance, CGD
+  summary: 零偏结电容 0 F/m^2（默认）| 非负标量
+  group: 结电容
+- name: Junction potential, VJ
+  summary: 结电势 1 V（默认）| *VJ* > 0.01 | 标量
+  group: 结电容
+- name: Grading coefficient, M
+  summary: 梯度系数 0.5（默认）| 0 < *M* < 0.9 | 标量
+  group: 结电容
+- name: Capacitance coefficient, FC
+  summary: 电容系数 0.5（默认）| 0 ≤ *FC* < 0.95 | 标量
+  group: 结电容
+- name: Specify initial condition
+  summary: 初始条件模型 No（默认）| Yes
+  group: 结电容
+- name: Initial condition voltage, ICVDS
+  summary: 初始电压 0 V（默认）| 标量
+  group: 结电容
+- name: Initial condition voltage, ICVGS
+  summary: 初始电压 0 V（默认）| 标量
+  group: 结电容
+- name: Model temperature dependence using
+  summary: 温度依赖模型 Device temperature（默认）| Fixed temperature
+  group: 温度
+- name: Saturation current temperature exponent, XTI
+  summary: 饱和电流温度指数 0（默认）| 正标量
+  group: 温度
+- name: Activation energy, EG
+  summary: 激活能 1.11 eV（默认）| *EG* *≥* 0.1 | 标量
+  group: 温度
+- name: Fixed circuit temperature, TFIXED
+  summary: 固定电路温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Parameter extraction temperature, TMEAS
+  summary: 参数提取温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Offset local circuit temperature, TOFFSET
+  summary: 局部电路温度偏移 0 K（默认）| 标量
+  group: 温度
+```
 
 ### 主要
 
@@ -198,7 +284,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当为 **Model temperature dependence using** 参数选择 `Device temperature` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

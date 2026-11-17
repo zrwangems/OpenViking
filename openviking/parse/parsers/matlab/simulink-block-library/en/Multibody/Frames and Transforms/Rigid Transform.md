@@ -14,6 +14,15 @@ language: en
 # Rigid Transform
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: unspecified
+- name: F
+  summary: Follower frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -24,8 +33,57 @@ Frame with respect to which you specify the transforms.
 ### **F** — Follower frame frame
 
 Frame to which you apply the transforms.
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Method to specify relative rotation None (default) | Aligned Axes | Standard Axis | Arbitrary Axis | Rotation Sequence
+    | Rotation Matrix | Quaternion
+  group: Rotation
+- name: 'Pair 1: Follower'
+  summary: Follower frame axis used to align with specified base frame axis +X (default) | -X | +Y | -Y | +Z | -Z
+  group: Rotation
+- name: 'Pair 1: Base'
+  summary: Base frame axis +Y (default) | +X | -X | -Y | +Z | -Z
+  group: Rotation
+- name: 'Pair 2: Follower'
+  summary: Follower frame axis used to align with specified base frame axis +Y | +X | -X | -Y | +Z | -Z
+  group: Rotation
+- name: 'Pair2: Base'
+  summary: Base frame axis +Z (default) | +X | -X | +Y | -Y | -Z
+  group: Rotation
+- name: Axis
+  summary: Standard axis of relative rotation +Z (default) | +X | -X | +Y | -Y | -Z
+  group: Rotation
+- name: Angle
+  summary: Angle of relative rotation 0.0 deg (default) | scalar
+  group: Rotation
+- name: Axis
+  summary: Axis of relative rotation [0 0 1] (default) | 3-by1 vector
+  group: Rotation
+- name: Angle
+  summary: Angle of relative rotation 0.0 deg (default) | scalar
+  group: Rotation
+- name: Rotation About
+  summary: Frame whose axes to rotate follower frame about Follower Axes (default) | Base Axes
+  group: Rotation
+- name: Sequence
+  summary: Sequence of rotation axis X-Y-X (default) | X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z
+    | Z-Y-X | Z-Y-Z
+  group: Rotation
+- name: Angles
+  summary: Angles for elementary rotations [0 0 0] deg (default) | 3-by-1 vector
+  group: Rotation
+- name: Matrix
+  summary: Rotation matrix [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix
+  group: Rotation
+- name: Quaternion
+  summary: Relative rotation using quaternion [1 0 0 0] (default) | unit quaternion vector
+  group: Rotation
+- name: Method
+  summary: Method for specifying the translation None (default) | Cartesian | Standard Axis | Cylindrical
+  group: Translation
+```
 
 ### Rotation
 
@@ -245,7 +303,6 @@ options.
     | **Radius** | Distance between the origin of the follower frame and the *z* axis of the base frame. This is the cylindrical radius coordinate. |
     | **Theta** | Rotation angle of the line connecting base and follower frame origins with respect to the base frame *x* axis. This is the cylindrical azimuth coordinate. |
     | **Z Offset** | Distance between base and follower frame origins along the base frame *z* axis. This is the cylindrical length coordinate. |
-
 ## Libraries
 
 Simscape / Multibody / Frames and Transforms

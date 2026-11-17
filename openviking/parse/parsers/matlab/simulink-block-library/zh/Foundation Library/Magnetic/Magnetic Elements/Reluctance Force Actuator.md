@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Reluctance Force Actuator
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -29,8 +32,10 @@ chinese_source: worker-translation
 
 `C`
 :   与壳体关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Initial air gap**
 :   仿真开始时的气隙厚度或长度。默认值为 `2` mm。
@@ -49,7 +54,6 @@ chinese_source: worker-translation
 
 **Contact damping**
 :   用于模拟最小气隙位置处硬限位的阻尼。默认值为 500 N/(m/s)。
-
 ## 所属库
 
 R2025b 中未记录。

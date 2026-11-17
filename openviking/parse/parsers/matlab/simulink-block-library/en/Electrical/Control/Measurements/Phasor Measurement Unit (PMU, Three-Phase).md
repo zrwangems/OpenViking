@@ -14,6 +14,25 @@ language: en
 # Phasor Measurement Unit (PMU, Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: abc
+  summary: Three-phase signal vector
+  direction: input
+  data_types: single | double
+- name: freq
+  summary: Frequency of positive sequence component scalar
+  direction: output
+  data_types: single | double
+- name: angle
+  summary: Phase angle of positive sequence component scalar
+  direction: output
+  data_types: single | double
+- name: mag
+  summary: Magnitude of positive sequence component scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -44,8 +63,19 @@ Measured magnitude of the positive sequence component, returned as a
 scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rated frequency (Hz)
+  summary: Rated frequency 60 (default) | 50
+  group: ''
+- name: Sampling points per cycle
+  summary: Sampling points per cycle 64 (default) | 24 | 48
+  group: ''
+- name: Reporting rate factor
+  summary: Reporting rate factor 1 (default) | scalar
+  group: ''
+```
 
 ### **Rated frequency (Hz)** — Rated frequency `60` (default) | `50`
 
@@ -58,7 +88,6 @@ Number of sampling points per cycle.
 ### **Reporting rate factor** — Reporting rate factor `1` (default) | scalar
 
 Ratio between the reporting rate and the sampling rate of the block.
-
 ## Libraries
 
 Simscape / Electrical / Control / Measurements

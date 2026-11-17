@@ -14,6 +14,67 @@ language: en
 # Memory Channel
 
 ## Ports
+```yaml
+ports:
+- name: wrData
+  summary: Writer data bus signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    SoCData
+- name: wrCtrlIn
+  summary: Writer input control signal bus
+  direction: input
+  data_types: StreamM2SBusObj | pixelcontrol | WritecontrolM2SBusObj
+- name: rdCtrlIn
+  summary: Reader input control signal bus
+  direction: input
+  data_types: StreamS2MBusObj | StreamVideoS2MBusObj | StreamVideoFSyncS2MBusObj | ReadControlM2SBusObj
+- name: rdDone
+  summary: Notification message of completed read scalar
+  direction: input
+  data_types: Boolean
+- name: wrBurstDone
+  summary: Writer control input from memory controller scalar
+  direction: input
+  data_types: BurstRequest2BusObj
+- name: rdBurstDone
+  summary: Reader control input from memory controller scalar
+  direction: input
+  data_types: BurstRequest2BusObj
+- name: rdData
+  summary: Output data signal to data consumer scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    SoCData
+- name: rdEvent
+  summary: Task read event signal scalar
+  direction: output
+  data_types: rteEvent
+- name: wrEvent
+  summary: Task write event signal scalar
+  direction: output
+  data_types: rteEvent
+- name: wrDone
+  summary: Notification of freed buffer in memory scalar
+  direction: output
+  data_types: Boolean
+- name: rdCtrlOut
+  summary: Reader control signal from memory channel to data consumer bus
+  direction: output
+  data_types: StreamM2SBusObj | ReadControlS2MBusObj | pixelcontrol
+- name: wrCtrlOut
+  summary: Writer control signal from memory channel to data producer bus
+  direction: output
+  data_types: StreamS2MBusObj | WriteControlS2MBusObj | StreamVideoS2MBusObj
+- name: wrBurstReq
+  summary: Write burst request scalar
+  direction: output
+  data_types: BurstRequestBusObj
+- name: rdBurstReq
+  summary: Read burst request scalar
+  direction: output
+  data_types: BurstRequestBusObj
+```
 
 ### Input
 
@@ -241,8 +302,94 @@ Controller block. For more information on messages, see
 Messages.
 
 **Data Types:** `BurstRequestBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Hardware board
+  summary: 'View or modify current hardware settings Read-only: name of selected hardware board'
+  group: ''
+- name: Show implementation info
+  summary: 'View channel information Read-only: text window'
+  group: ''
+- name: Enable memory simulation
+  summary: Control memory simulation accuracy on (default) | off
+  group: ''
+- name: Channel type
+  summary: Choose channel protocol AXI4-Stream FIFO (default) | AXI4-Stream to Software via DMA | Software to AXI4-Stream
+    via DMA | AXI4-Stream Video FIFO | AXI4-Stream Video Frame Buffer | AXI4 Random Access
+  group: Main
+- name: Region size (bytes)
+  summary: 'Size of memory allocated for region, in bytes Read-only: calculated'
+  group: Main
+- name: Buffer size (bytes)
+  summary: Size of buffer, in bytes 1024 (default) | scalar
+  group: Main
+- name: Number of buffers
+  summary: Number of buffers in region 8 (default) | integer
+  group: Main
+- name: Burst length
+  summary: Burst length for memory transactions 1 (default) | scalar
+  group: Main
+- name: Use hardware board settings
+  summary: Use the Hardware Implementation settings from the configuration parameters on (default) | off
+  group: Main
+- name: Reader/Writer use same values
+  summary: Reader and writer use the same values on (default) | off
+  group: Main
+- name: FIFO depth (number of bursts)
+  summary: Depth of FIFO for data 12 (default) | scalar
+  group: Main
+- name: Almost full depth
+  summary: Depth of FIFO when backpressure is asserted 8 (default) | scalar
+  group: Main
+- name: Clock frequency (MHz)
+  summary: Interconnect frequency of master datapath 100 (default)
+  group: Main
+- name: Data width (bits)
+  summary: Data width of master datapath 64 (default) | scalar
+  group: Main
+- name: Dimensions
+  summary: Dimensions of input data signal scalar | array
+  group: Signal Attributes
+- name: Data type
+  summary: Data type of writer data double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean
+    | fixed point
+  group: Signal Attributes
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: Signal Attributes
+- name: Enable sample packing (last signal dimension as channel)
+  summary: Pack data on the last dimension of the signal off (default) | on
+  group: Signal Attributes
+- name: Output data signal matches input
+  summary: Reader and writer use the same values on (default) | off
+  group: Signal Attributes
+- name: Dimensions
+  summary: Dimensions of output data signal scalar | array
+  group: Signal Attributes
+- name: Data type
+  summary: Data type of reader data double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean
+    | fixed point
+  group: Signal Attributes
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: Signal Attributes
+- name: Enable sample packing (last signal dimension as channel)
+  summary: Pack data on the last dimension of the signal off (default) | on
+  group: Signal Attributes
+- name: Inherit sample time offset
+  summary: Make reader inherit sample time from writer on (default) | off
+  group: Signal Attributes
+- name: Use pixel clock sample times
+  summary: Use the pixel clock sample time on (default) | off
+  group: Signal Attributes
+- name: Frame size
+  summary: Frame dimensions 480p SDTV (720x480p) (default) | ...
+  group: Signal Attributes
+- name: Launch performance plots
+  summary: Display performance metrics button
+  group: Performance
+```
 
 ### **Hardware board** — View or modify current hardware settings Read-only: name of selected hardware board
 
@@ -893,7 +1040,6 @@ a new window. For more information about performance graphs, see Simulation Diag
 
 To enable this parameter, select **Enable memory
 simulation**.
-
 ## Libraries
 
 SoC Blockset / Memory

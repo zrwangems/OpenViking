@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Flow Resistance (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流动阻力两相流体端口
+  direction: conserving
+- name: B
+  summary: 流动阻力两相流体端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,28 @@ chinese_source: worker-translation
 ### **B** — 流动阻力两相流体端口
 
 两相流体进入或离开流动阻力的端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal pressure drop
+  summary: 已知工况下的压降 0.001 MPa（默认）| 带压力单位的标量
+  group: ''
+- name: Nominal mass flow rate
+  summary: 已知工况下的质量流量 0.1 kg/s（默认）| 带质量/时间单位的标量
+  group: ''
+- name: Nominal specific volume
+  summary: 已知工况下的比体积 0 m^3/kg（默认）| 带体积/质量单位的标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 流动阻力端口处的流通面积 0.01 m^2（默认）| 带面积单位的标量
+  group: ''
+- name: Fraction of nominal mass flow rate for laminar flow
+  summary: 阈值质量流量与标称质量流量之比 1e-3（默认）| 无量纲标量
+  group: ''
+- name: Mass flow rate into port A
+  summary: 通过端口 A 进入阻力的质量流量 293.15 K（默认）| 带温度单位的正标量
+  group: 变量
+```
 
 ### **Nominal pressure drop** — 已知工况下的压降 0.001 MPa（默认）| 带压力单位的标量
 
@@ -53,7 +82,6 @@ chinese_source: worker-translation
 ### **Mass flow rate into port A** — 通过端口 A 进入阻力的质量流量 293.15 K（默认）| 带温度单位的正标量
 
 仿真开始时通过端口 **A** 进入阻力的质量流量。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

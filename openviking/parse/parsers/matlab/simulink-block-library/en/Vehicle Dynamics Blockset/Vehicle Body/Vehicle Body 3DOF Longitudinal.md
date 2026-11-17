@@ -14,6 +14,54 @@ language: en
 # Vehicle Body 3DOF Longitudinal
 
 ## Ports
+```yaml
+ports:
+- name: FExt
+  summary: External force on vehicle CG array
+  direction: input
+- name: MExt
+  summary: External moment about vehicle CG array
+  direction: input
+- name: FwF
+  summary: Total longitudinal force on the front axle scalar
+  direction: input
+- name: FwR
+  summary: Total longitudinal force on the rear axle scalar
+  direction: input
+- name: Grade
+  summary: Road grade angle scalar
+  direction: input
+- name: FsF
+  summary: Suspension force on front axle per wheel vector
+  direction: input
+- name: FsR
+  summary: Suspension force on rear axle per wheel vector
+  direction: input
+- name: WindXYZ
+  summary: Wind speed array
+  direction: input
+- name: AirTemp
+  summary: Ambient air temperature scalar
+  direction: input
+- name: zF,R
+  summary: Forward and rear axle positions vector
+  direction: input
+- name: zdotF,R
+  summary: Forward and rear axle velocities vector
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: xdot
+  summary: Vehicle longitudinal velocity scalar
+  direction: output
+- name: FzF
+  summary: Normal force on front wheels scalar
+  direction: output
+- name: FzR
+  summary: Normal force on rear wheels scalar
+  direction: output
+```
 
 ### Input
 
@@ -252,8 +300,106 @@ vehicle-fixed *z*-axis, in N.
 Normal force on single wheel of rear wheels,
 *FzR*, along the
 vehicle-fixed *z*-axis, in N.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ground interaction type
+  summary: Axle attachment to the vehicle Grade angle (default) | Axle displacement, velocity | External suspension
+  group: ''
+- name: External forces
+  summary: FExt input port off (default) | on
+  group: ''
+- name: External moments
+  summary: MExt input port off (default) | on
+  group: ''
+- name: Air temperature
+  summary: AirTemp input port off (default) | on
+  group: ''
+- name: Number of wheels on front axle, NF
+  summary: Front wheel count 2 (default) | scalar
+  group: ''
+- name: Number of wheels on rear axle, NR
+  summary: Rear wheel count 2 (default) | scalar
+  group: ''
+- name: Mass, m
+  summary: Vehicle mass 1200 (default) | scalar
+  group: ''
+- name: Horizontal distance from CG to front axle, a
+  summary: Front axle distance 1.4 (default) | scalar
+  group: ''
+- name: Horizontal distance from CG to rear axle, b
+  summary: Rear axle distance 1.8 (default) | scalar
+  group: ''
+- name: CG height above axles, h
+  summary: Height 0.35 (default) | scalar
+  group: ''
+- name: Longitudinal drag coefficient, Cd
+  summary: Drag .3 (default) | scalar
+  group: ''
+- name: Frontal area, Af
+  summary: Area 2 (default) | scalar
+  group: ''
+- name: Initial position, x_o
+  summary: Position 0 (default) | scalar
+  group: ''
+- name: Initial velocity, xdot_o
+  summary: Velocity 0 (default) | scalar
+  group: ''
+- name: Longitudinal lift coefficient, Cl
+  summary: Lift .1 (default) | scalar
+  group: ''
+- name: Initial vertical position, z_o
+  summary: Position -.35 (default) | scalar
+  group: ''
+- name: Initial vertical velocity, zdot_o
+  summary: Velocity 0 (default) | scalar
+  group: ''
+- name: Inertia, Iyy
+  summary: About body y-axis 3500 (default) | scalar
+  group: ''
+- name: Longitudinal drag pitch moment, Cpm
+  summary: Drag coefficient .1 (default) | scalar
+  group: ''
+- name: Initial pitch angle, theta_o
+  summary: Pitch 0 (default) | scalar
+  group: ''
+- name: Initial angular velocity, q_o
+  summary: Pitch velocity 0 (default) | scalar
+  group: ''
+- name: Front axle stiffness force data, FskF
+  summary: Force [-50, -1, 0, 2, 3, 52].*1.5e4 (default) | vector
+  group: ''
+- name: Front axle displacement data, dzsF
+  summary: Displacement [-5e-3, -1e-4, 0, .2, .2001, .2051] (default) | vector
+  group: ''
+- name: Front axle damping force data, FsbF
+  summary: Damping force [-10000 -100 -10 0 10 100 10000] (default) | vector
+  group: ''
+- name: Front axle velocity data, dzdotsF
+  summary: Velocity [-10 -1 -.1 0 .1 1 10] (default) | vector
+  group: ''
+- name: Rear axle stiffness force data, FskR
+  summary: Force [-50, -1, 0, 2, 3, 52].*1e4 (default) | vector
+  group: ''
+- name: Rear axle displacement data, dzsR
+  summary: Displacement [-5e-3, -1e-4, 0, .2, .2001, .2051] (default) | vector
+  group: ''
+- name: Rear axle damping force data, FsbR
+  summary: Damping force [-10000 -100 -10 0 10 100 10000] (default) | vector
+  group: ''
+- name: Rear axle velocity data, dzdotsR
+  summary: Velocity [-10 -1 -.1 0 .1 1 10] (default) | vector
+  group: ''
+- name: Absolute air pressure, Pabs
+  summary: Pressure 101325 (default) | scalar
+  group: ''
+- name: Air temperature, Tair
+  summary: Ambient air temperature 273 (default) | scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: Gravity 9.81 (default)
+  group: ''
+```
 
 #### Options
 
@@ -490,7 +636,6 @@ To enable this parameter, clear **Air temperature**.
 
 Gravitational acceleration, *g*, in
 m/s2.
-
 ## Libraries
 
 Powertrain Blockset / Vehicle Dynamics Vehicle Dynamics Blockset / Vehicle Body

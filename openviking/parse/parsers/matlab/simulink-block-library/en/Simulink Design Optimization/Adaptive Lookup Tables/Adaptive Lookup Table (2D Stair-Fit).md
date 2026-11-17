@@ -14,10 +14,15 @@ language: en
 # Adaptive Lookup Table (2D Stair-Fit)
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **First input (row) breakpoint set**
 :   The vector of values containing possible block input values
@@ -79,7 +84,6 @@ Not documented in R2025b.
 **Action for out-of-range input**
 :   `Ignore` or `Adapt` by extrapolating
     beyond the extreme breakpoints.
-
 ## Libraries
 
 Not documented in R2025b.

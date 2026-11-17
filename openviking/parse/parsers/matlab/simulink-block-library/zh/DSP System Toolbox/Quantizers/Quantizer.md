@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Quantizer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要量化的输入信号 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 量化后的输出信号 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -37,8 +48,29 @@ y = q * round(u/q)
 其中 `y` 是输出，`u` 是输入，`q` 是**量化间隔**。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Quantization interval
+  summary: 定义输出信号量化级别的间隔 0.5（默认）| 标量 | 向量
+  group: ''
+  block_parameter: QuantizationInterval
+  type: character vector
+  values: Any real or complex value
+  default: '''0.5'''
+- name: Treat as gain when linearizing
+  summary: 指定增益值 on（默认）| off
+  group: ''
+  block_parameter: LinearizeAsGain
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Quantization interval** — 定义输出信号量化级别的间隔 `0.5`（默认）| 标量 | 向量
 
@@ -82,7 +114,6 @@ Simulink® 软件中的线性化命令将此模块视为状态空间中的增益
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **值**：| `"-1"` (default) | scalar or vector in quotes |
-
 ## 所属库
 
 Simulink / Discontinuities

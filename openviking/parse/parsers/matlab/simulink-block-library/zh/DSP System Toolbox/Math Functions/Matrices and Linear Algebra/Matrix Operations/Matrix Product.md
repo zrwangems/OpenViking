@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Matrix Product
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Output
+  summary: 矩阵乘积输出向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,40 @@ Matrix Product 模块的输出，以向量或矩阵形式返回。有关该模�
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Multiply over
+  summary: 进行乘法运算的维度 Columns（默认） | Rows | Entire input
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认） | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认） | on
+  group: 数据类型选项卡
+- name: Intermediate product
+  summary: '中间乘积数据类型 Inherit: Same as input（默认） | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Same as product output（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 输出最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 输出最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -140,7 +183,6 @@ Matrix Product 模块的输出，以向量或矩阵形式返回。有关该模�
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

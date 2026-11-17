@@ -14,6 +14,21 @@ language: en
 # Geoid Height
 
 ## Ports
+```yaml
+ports:
+- name: μ (deg)
+  summary: Geodetic latitude scalar
+  direction: input
+  data_types: double | single
+- name: l (deg)
+  summary: Longitude scalar
+  direction: input
+  data_types: double | single
+- name: N
+  summary: geoid height scalar
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -47,8 +62,45 @@ Geoid height, returned as a scalar, in selected length units. The data
 type is the same as the latitude in the first input.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Parameter and output units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Geopotential model
+  summary: Geopotential model EGM96 (default) | EGM2008 | Custom
+  group: ''
+  block_parameter: gtype
+  type: character vector
+  values: '''EGM96'' | ''EGM2008'' | ''Custom'''
+  default: '''Earth'''
+- name: Geopotential mat-file
+  summary: Geopotential MAT-file 'geoidegm96grid' (default) | MAT-file
+  group: ''
+  block_parameter: datafile
+  type: character vector
+  values: '''geoidegm96grid'' | MAT-file'
+  default: '''geoidegm96grid'''
+- name: Data type
+  summary: Data type of input and output signals double (default) | single
+  group: ''
+  block_parameter: dtype
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: Action for out-of-range input
+  summary: Out-of-range input behavior Warning (default) | Error | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Units** — Parameter and output units `Metric (MKS)` (default) | `English`
 
@@ -139,7 +191,6 @@ Out-of-range input behavior (latitude outside –90 to 90 degrees, longitude out
 | **Type**: character vector |
 | **Values**: `'None'` | `'Warning'` | `'Error'` |
 | **Default**: `'Warning'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Gravity

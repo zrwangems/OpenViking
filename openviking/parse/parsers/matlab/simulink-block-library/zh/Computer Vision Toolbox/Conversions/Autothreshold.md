@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Autothreshold
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: BW
+  summary: 输出二值图像矩阵
+  direction: output
+  data_types: Boolean
+- name: Th
+  summary: 阈值标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: EMetric
+  summary: 有效性度量值标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -54,8 +73,40 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output effectiveness metric** 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Thresholding operator
+  summary: 指定阈值操作符 >（默认）| <=
+  group: 主
+- name: Output threshold
+  summary: 输出阈值 off（默认）| on
+  group: 主
+- name: Output effectiveness metric
+  summary: 输出有效性度量 off（默认）| on
+  group: 主
+- name: Specify data range
+  summary: 指定输入像素值范围 off（默认）| on
+  group: 主
+- name: Minimum value of input
+  summary: 最小输入像素值 0（默认）| 标量
+  group: 主
+- name: Maximum value of input
+  summary: 最大输入像素值 255（默认）| 标量
+  group: 主
+- name: When data range is exceeded
+  summary: 超出数据范围时执行的操作 Ignore（默认）| Saturate | Warn and saturate | Error
+  group: 主
+- name: Scale threshold
+  summary: 指定缩放阈值 off（默认）| on
+  group: 主
+- name: Threshold scaling factor
+  summary: 阈值操作的缩放因子 1（默认）| 标量
+  group: 主
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 数据类型覆盖 off（默认）| on
+  group: 数据类型
+```
 
 **主**
 
@@ -114,7 +165,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against change by the fixed-point tools** — 数据类型覆盖 `off`（默认）| `on`
 
 选择此参数以防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Conversions

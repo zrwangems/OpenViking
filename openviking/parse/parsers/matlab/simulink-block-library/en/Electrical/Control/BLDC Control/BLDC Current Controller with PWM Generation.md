@@ -14,6 +14,33 @@ language: en
 # BLDC Current Controller with PWM Generation
 
 ## Ports
+```yaml
+ports:
+- name: IsRef
+  summary: Reference current scalar
+  direction: input
+  data_types: single | double
+- name: Is
+  summary: Measured current scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: External reset scalar
+  direction: input
+  data_types: single | double
+- name: Hall
+  summary: Hall sensor vector
+  direction: input
+  data_types: single | double
+- name: Direction
+  summary: Motor direction scalar
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Gate pulses vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -54,8 +81,37 @@ Pulse waveforms that determine switching behavior in the attached
 block.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain
+  summary: Controller proportional gain, *Kp* 1 (default) | positive scalar
+  group: Control Parameters
+- name: Integral gain
+  summary: Integral gain, *Ki* 5 (default) | positive scalar
+  group: Control Parameters
+- name: Anti-windup gain
+  summary: Anti-windup gain, *Kaw* 1 (default) | positive scalar
+  group: Control Parameters
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: Control Parameters
+- name: Discretization sample time
+  summary: Sample time for discretization 0.001 (default) | positive scalar
+  group: Control Parameters
+- name: Enable zero cancellation
+  summary: Feedforward zero cancellation off (default) | on
+  group: Control Parameters
+- name: Carrier counter
+  summary: Carrier counter model Up (default) | Down | Up-Down
+  group: PWM Generator
+- name: Timer period (s)
+  summary: PWM timer period 0.001 (default) | positive scalar
+  group: PWM Generator
+- name: Fundamental sample time (s)
+  summary: Sample time for PWM generation 0.0001 (default) | positive scalar
+  group: PWM Generator
+```
 
 ### Control Parameters
 
@@ -143,7 +199,6 @@ set the fundamental sample time so that 0<Ts\_pwm≤10Tper, where:
   **Fundamental sample time (s)**.
 - *Tper* is the **Timer
   period (s)**.
-
 ## Libraries
 
 Simscape / Electrical / Control / BLDC Control

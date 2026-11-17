@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Square Jacobi SVD HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 方阵 *A* 实数或复数方阵
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 标量
+  direction: input
+  data_types: Boolean
+- name: readyIn
+  summary: 下游模块是否就绪 标量
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: 是否清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: s
+  summary: 奇异值 列向量
+  direction: output
+  data_types: single | double | fixed point
+- name: U
+  summary: 左奇异向量 酉 n×n 矩阵
+  direction: output
+  data_types: single | double | fixed point
+- name: V
+  summary: 右奇异向量 酉 n×n 矩阵
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 模块是否就绪 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -86,8 +125,38 @@ chinese_source: worker-translation
 在发送 `true` 的 `validIn` 信号后，`ready` 信号变为 `false` 之前可能会有一些延迟。为确保所有数据都被处理，您必须等待 `ready` 信号变为 `false` 后再发送另一个 `true` 的 `validIn` 信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Dimension of matrix A
+  summary: 方阵 *A* 的维度 n（默认）| 正整数值标量
+  group: ''
+  block_parameter: n
+  type: string
+  values: positive integer-valued scalar
+  default: n
+- name: Number of Jacobi iterations
+  summary: Jacobi 算法的迭代次数 10（默认）| 正整数
+  group: ''
+  block_parameter: nIterations
+  type: string
+  values: positive integer-valued scalar
+  default: '10'
+- name: Select outputs
+  summary: 模块输出 UsV（默认）| Us | sV | s
+  group: ''
+  block_parameter: outputOption
+  type: string
+  values: UsV | Us | sV | s
+  default: UsV
+- name: Signal type
+  summary: 输入矩阵 *A* 的复杂度 real（默认）| complex
+  group: ''
+  block_parameter: complexity
+  type: string
+  values: real | complex
+  default: real
+```
 
 ### **Dimension of matrix A** — 方阵 *A* 的维度 `n`（默认）| 正整数值标量
 
@@ -142,7 +211,6 @@ Jacobi 算法的迭代次数，指定为正整数。大多数文献表明 10 次
 | **类型**：`string` |
 | **值**：`real` | `complex` |
 | **默认值**：`real` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations

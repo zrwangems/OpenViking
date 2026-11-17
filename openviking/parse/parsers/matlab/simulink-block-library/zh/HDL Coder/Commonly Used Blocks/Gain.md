@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Gain
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输入乘以增益 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,103 @@ Gain 模块输出输入乘以常量增益值的结果。当 Gain 模块的输入
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Gain
+  summary: 用于乘以输入的值 1（默认）| 实数或复数值的标量、向量或矩阵
+  group: 主要
+  block_parameter: Gain
+  values: '''1''（默认）| 带引号的实数或复数值的标量、向量或矩阵'
+- name: Multiplication
+  summary: 指定乘法模式 Element-wise(K.*u)（默认）| Matrix(K*u) | Matrix(u*K) | Matrix(K*u) (u vector)
+  group: 主要
+  block_parameter: Multiplication
+  values: '''Element-wise(K.*u)''（默认）| ''Matrix(K*u)'' | ''Matrix(u*K)'' | ''Matrix(K*u) (u vector)'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '指定输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit
+    via back propagation | Inherit: Same as input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | int64
+    | uint64 | uint32 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as input'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 信号属性
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Mode
+  summary: 选择数据类型模式 Inherit（默认）| Built in | Fixed Point
+  group: 信号属性
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 信号属性
+- name: Signedness
+  summary: 指定有符号或无符号 Signed（默认）| Unsigned
+  group: 信号属性
+- name: Word length
+  summary: 保存量化整数的字的位大小 16（默认）| 从 0 到 32 的整数
+  group: 信号属性
+- name: Scaling
+  summary: 定点数据的定标方法 Best precision（默认）| Binary point | Slope and bias
+  group: 信号属性
+- name: Slope
+  summary: 指定定点数据类型的斜率 2^0（默认）| 正实值标量
+  group: 信号属性
+- name: Bias
+  summary: 指定定点数据类型的偏置 0（默认）| 实值标量
+  group: 信号属性
+- name: Fraction length
+  summary: 指定定点数据类型的小数长度 0（默认）| 标量整数
+  group: 信号属性
+- name: Parameter minimum
+  summary: 指定增益的最小值 []（默认）| 标量
+  group: 参数属性
+  block_parameter: ParamMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Parameter maximum
+  summary: 指定增益的最大值 []（默认）| 标量
+  group: 参数属性
+  block_parameter: ParamMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Parameter data type
+  summary: '指定 Gain 参数的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Inherit from ''Gain''
+    | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0)
+    | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 参数属性
+  block_parameter: ParamDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Same as input'' | ''Inherit: Inherit from ''Gain'''' | ''double''
+    | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''
+    | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -395,7 +501,6 @@ Minimum** 和 **Parameter Maximum**
 | --- | --- |
 | **参数：** | `ParamDataTypeStr` |
 | **值：** | `'Inherit: Inherit via internal rule'`（默认）| `'Inherit: Same as input'` | `'Inherit: Inherit from 'Gain''` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

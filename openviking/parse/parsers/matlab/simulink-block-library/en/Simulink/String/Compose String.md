@@ -14,6 +14,25 @@ language: en
 # Compose String
 
 ## Ports
+```yaml
+ports:
+- name: d
+  summary: Data for first part of string scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: f
+  summary: Data for second part of string scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: Port_N
+  summary: Data for N parts of string scalar (default)
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: str
+  summary: Output string scalar
+  direction: output
+  data_types: string
+```
 
 ### Input
 
@@ -65,8 +84,27 @@ information, see the **Format** parameter.
 Output string composed of inputs, specified as a scalar.
 
 **Data Types:** `string`
-
 ## Parameters
+```yaml
+parameters:
+- name: Format
+  summary: Format input data "%d %f" (default) | format string | character vector
+  group: ''
+  block_parameter: Format
+  type: character vector
+  values: '''<filename>'''
+  default: '''"%d %f"'''
+- name: Output data type
+  summary: Output data type string (default) | <data type expression>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''string'' | *<data type expression>*'
+  default: '''string'''
+- name: Mode
+  summary: Category of data string (default) | scalar
+  group: ''
+```
 
 ### **Format** — Format input data "%d %f" (default) | format string | character vector
 
@@ -116,7 +154,6 @@ Use the `stringtype` function, for example,
 
 Clicking the **Show data type assistant** button
 enables this parameter.
-
 ## Libraries
 
 Simulink / String

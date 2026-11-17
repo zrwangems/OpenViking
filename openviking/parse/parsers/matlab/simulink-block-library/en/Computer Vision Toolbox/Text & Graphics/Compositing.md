@@ -14,6 +14,33 @@ language: en
 # Compositing
 
 ## Ports
+```yaml
+ports:
+- name: Image1
+  summary: Input image one matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Image2
+  summary: Input image two matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Mask
+  summary: Binary mask scalar | matrix
+  direction: input
+  data_types: single | double | Boolean
+- name: Factor
+  summary: Opacity factor scalar | matrix
+  direction: input
+  data_types: single | double
+- name: Location
+  summary: Location index vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -119,8 +146,31 @@ output is an *M*-by-*N*-by-*P*
 array, *P* is the number of color channels in the image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation
+  summary: Specify operation Blend (default) | Binary mask | Highlight selected pixels
+  group: Main
+- name: Opacity factor(s) source
+  summary: Source of opacity factor Specify via dialog (default) | Input port
+  group: Main
+- name: Opacity factor(s)
+  summary: Opacity factor 0.75 (default) | scalar | matrix
+  group: Main
+- name: Location source
+  summary: Source of overlay location Specify via dialog (default) | Input port
+  group: Main
+- name: Location [x y]
+  summary: Overlay location index [1 1] (default) | two-element vector
+  group: Main
+- name: Mask source
+  summary: Source of mask Specify via dialog (default) | Input port
+  group: Main
+- name: Mask
+  summary: Binary mask 0 (default) | 1 | matrix
+  group: Main
+```
 
 ### Main
 
@@ -217,7 +267,6 @@ parameter to `Specify via dialog`.
 ### Data Types
 
 For details on the fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Text & Graphics

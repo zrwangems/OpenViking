@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Bus Selector
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入虚拟或非虚拟总线 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: Port_1
+  summary: 输入总线的选定元素 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -36,8 +49,25 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Elements in the bus
+  summary: 输入总线层次结构 只读：元素名称列表
+  group: ''
+  block_parameter: InputSignals
+  values: 只读：元素名称的元胞数组
+- name: Output elements
+  summary: 选定的输出元素 元素名称列表
+  group: ''
+  block_parameter: OutputSignals
+  values: '''signal1,signal2''（默认）| 用引号括起来的逗号分隔的元素名称列表'
+- name: Output as virtual bus
+  summary: 将选定元素输出为虚拟总线的选项 off（默认）| on
+  group: ''
+  block_parameter: OutputAsBus
+  values: '''off''（默认）| ''on'''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -133,7 +163,6 @@ chinese_source: worker-translation
 | **值：** | `'off'`（默认）| `'on'` |
 
 **示例：** `set_param(gcb,'OutputAsBus','on')`
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing

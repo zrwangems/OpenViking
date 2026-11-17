@@ -14,6 +14,17 @@ language: en
 # CAN Replay
 
 ## Ports
+```yaml
+ports:
+- name: CAN Msg
+  summary: Replayed CAN messages CAN_MESSAGE | CAN_MESSAGE_BUS
+  direction: output
+  data_types: CAN_MESSAGE | CAN_MESSAGE_BUS
+- name: f()
+  summary: Function-call event output function-call event
+  direction: output
+  data_types: function-call event
+```
 
 ### Output
 
@@ -31,8 +42,31 @@ This port provides a trigger to a Function-Call subsystem when the block receive
 a new message. You can connect it to a Function-Call Subsystem (Simulink) to unpack and process the message.
 
 **Data Types:** `function-call event`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Path and name of MAT-file with messages untitled.mat (default) | file name
+  group: ''
+- name: Variable name
+  summary: Variable in MAT-file holding messages ans (default) | variable
+  group: ''
+- name: Number of times to replay messages
+  summary: Repeat value Inf (default) | integer
+  group: ''
+- name: Replay messages to
+  summary: Specify output location CAN Bus (default) | Output port
+  group: ''
+- name: Device
+  summary: CAN device and channel device list option
+  group: ''
+- name: Sample time
+  summary: Block execution rate 0.01 (default) | numeric
+  group: ''
+- name: Output as bus
+  summary: Enable signal bus output off (default) | on
+  group: ''
+```
 
 **Tip**
 
@@ -79,7 +113,6 @@ simulation seconds. For more information, see Timing in Hardware Interface Model
 ### **Output as bus** — Enable signal bus output off (default) | on
 
 Select this option for the block to output CAN messages as a Simulink bus signal. For more information on Simulink bus objects, see Composite Interfaces (Simulink).
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN Communication

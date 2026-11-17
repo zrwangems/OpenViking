@@ -14,6 +14,25 @@ language: en
 # Start-Stop Generator
 
 ## Ports
+```yaml
+ports:
+- name: enable
+  summary: Enable and disable start-stop signal generation scalar
+  direction: input
+  data_types: single | double
+- name: start times
+  summary: Start times scalar | vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Steady-state value scalar | vector
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: Start-stop signal scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -58,8 +77,34 @@ signal generation, or autotuning processes. When the **enable** port
 is set to 0, the block does not generate a start-stop signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: Sample time 0.1 (default) | positive scalar
+  group: ''
+- name: Data Type
+  summary: Floating point precision double (default) | single
+  group: ''
+- name: Source of start time points
+  summary: Source of start time points External time vector (default) | Time after reaching steady-state
+  group: ''
+- name: Duration (sec)
+  summary: Start-stop signal duration 10 (default) | scalar
+  group: ''
+- name: Number of samples after reaching steady-state to generate start-stop signal
+  summary: Delay for starting signal generation 2 (default) | nonnegative integer
+  group: ''
+- name: Settling time upper bounds
+  summary: Upper bound for settling time [1.1 2.1 3.1] (default) | vector
+  group: ''
+- name: Settling time lower bounds
+  summary: Lower bound for settling time [0.9 1.9 2.9] (default) | vector
+  group: ''
+- name: Settling time interval
+  summary: Settling time interval 5 (default) | scalar | vector
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -117,7 +162,6 @@ state.
 
 Use a vector to specify different time intervals for different operating
 points.
-
 ## Libraries
 
 Simulink Control Design / Signal Generation

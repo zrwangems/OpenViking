@@ -14,6 +14,33 @@ language: en
 # Busbar
 
 ## Ports
+```yaml
+ports:
+- name: Vt
+  summary: Voltage physical signal
+  direction: output
+- name: ph
+  summary: Phase physical signal
+  direction: output
+- name: P
+  summary: Active power physical signal
+  direction: output
+- name: Q
+  summary: Reactive power physical signal
+  direction: output
+- name: ~1
+  summary: Three-phase connection 1 electrical
+  direction: conserving
+- name: ~2
+  summary: Three-phase connection 2 electrical
+  direction: conserving
+- name: ~3
+  summary: Three-phase connection 3 electrical
+  direction: conserving
+- name: ~4
+  summary: Three-phase connection 4 electrical
+  direction: conserving
+```
 
 ### Output
 
@@ -106,8 +133,22 @@ fourth three-phase connection.
 This port is visible only when, in the **Parameters** settings, the
 **Number of connections** parameter is set to
 `4`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of connections
+  summary: Number of port connections 2 (default) | 1 | 3 | 4
+  group: ''
+- name: Rated busbar voltage (phase-to-phase RMS)
+  summary: Busbar rated voltage sqrt(3) * 100 / sqrt(2) V (default)
+  group: ''
+- name: Network frequency
+  summary: Network frequency 60 Hz (default)
+  group: ''
+- name: Measurement ports
+  summary: Measurement port exposure No (default) | Yes
+  group: ''
+```
 
 ### **Number of connections** — Number of port connections `2` (default) | `1` | `3` | `4`
 
@@ -140,7 +181,6 @@ parameter is set to `Yes` and, in the
 connections** parameter is set to
 `2`, `3`, or
 `4`.
-
 ## Libraries
 
 Simscape / Electrical / Connectors & References

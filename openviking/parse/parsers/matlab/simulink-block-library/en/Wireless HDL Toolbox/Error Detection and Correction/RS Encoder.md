@@ -14,6 +14,29 @@ language: en
 # RS Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input message data scalar
+  direction: input
+  data_types: double | single | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Encoded codeword data scalar
+  direction: output
+  data_types: double | single | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: Block ready indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -84,8 +107,34 @@ input **ctrl.start** signal while **nextFrame** is
 progress and begins processing the new data.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Codeword length (N)
+  summary: Length of codeword 7 (default) | integer in the range from 7 to 65,535
+  group: ''
+- name: Message length (K)
+  summary: Length of message 3 (default) | integer in the range from 3 to (Codeword length (N) – 2)
+  group: ''
+- name: Source of primitive polynomial
+  summary: Primitive polynomial source Auto (default) | Property
+  group: ''
+- name: Primitive polynomial
+  summary: Primitive polynomial [1 0 1 1] (default) | binary row vector
+  group: ''
+- name: Source of B, the starting power for roots of the primitive polynomial
+  summary: Source of starting power for roots of primitive polynomial Auto (default) | Property
+  group: ''
+- name: B value
+  summary: Starting power for roots of primitive polynomial 1 (default) | positive integer
+  group: ''
+- name: Enable puncturing
+  summary: Puncture pattern source off (default) | on
+  group: ''
+- name: Puncture pattern vector
+  summary: Puncture vector [1; 1; 0; 0] (default) | binary column vector
+  group: ''
+```
 
 ### **Codeword length (N)** — Length of codeword `7` (default) | integer in the range from 7 to 65,535
 
@@ -163,7 +212,6 @@ removed, from the data stream.
 
 To enable this parameter, select the **Enable puncturing**
 parameter.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

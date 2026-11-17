@@ -14,6 +14,15 @@ language: en
 # Thermal Resistor
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Surface A thermal
+  direction: conserving
+- name: B
+  summary: Surface B thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,14 +35,18 @@ the heat flows through.
 
 Thermal conserving port associated with surface B of the material that
 the heat flows through.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermal resistance
+  summary: Thermal resistance 1e-3 K/W (default)
+  group: ''
+```
 
 ### **Thermal resistance** — Thermal resistance `1e-3` `K/W` (default)
 
 Thermal resistance,
 *Rthermal*.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Thermal

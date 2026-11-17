@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Induction Machine Measurement
 
 ## 端口
+```yaml
+ports:
+- name: pu
+  summary: 输入端口物理量
+  direction: input
+- name: o
+  summary: 标幺值测量输出物理量
+  direction: output
+```
 
 ### 输入
 
@@ -35,8 +44,15 @@ chinese_source: worker-translation
 ### **o** — 标幺值测量输出物理量
 
 与标幺值测量输出相关联的物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 来自感应电机的标幺值测量值 Electrical torque（默认）| Rotor velocity | Stator d-axis voltage | Stator q-axis voltage | Stator zero-sequence
+    voltage | Stator d-axis current | Stator q-axis current | Stator zero-sequence current | Slip | Apparent power | Real
+    power | Reactive power | Terminal voltage | Power factor angle | Power factor angle
+  group: ''
+```
 
 ### **Output** — 来自感应电机的标幺值测量值 `Electrical torque`（默认）| `Rotor velocity` | `Stator d-axis voltage` | `Stator q-axis voltage` | `Stator zero-sequence voltage` | `Stator d-axis current` | `Stator q-axis current` | `Stator zero-sequence current` | `Slip` | `Apparent power` | `Real power` | `Reactive power` | `Terminal voltage` | `Power factor angle` | `Power factor angle`
 
@@ -57,7 +73,6 @@ chinese_source: worker-translation
 - `Terminal voltage`
 - `Power factor angle`
 - `Power factor angle`
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Asynchronous

@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # UDP Send
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要传输的数据向量
+  direction: input
+  data_types: uint8 | UDP_Packet
+- name: Length
+  summary: 要传输的数据字节数 double
+  direction: input
+```
 
 ### 输入
 
@@ -32,8 +42,38 @@ chinese_source: worker-translation
 ### **Length** — 要传输的数据字节数 double
 
 当您禁用 **Enable Simulink messages** 参数时，此端口可用。Length 决定要传输的数据字节数。将 `Data` 向量的宽度指定为您预期传输的最大字节数。
-
 ## 参数
+```yaml
+parameters:
+- name: Use host-target connection
+  summary: 使用开发计算机与目标计算机之间的以太网连接 'off'（默认）| 'on'
+  group: ''
+  block_parameter: useHostTargetConn
+- name: To IP address
+  summary: 目标设备的 IP 地址 10.10.10.10（默认）| x.x.x.x
+  group: ''
+  block_parameter: toAddress
+- name: To port
+  summary: 目标设备的 UDP 端口 34（默认）| 1–65535
+  group: ''
+  block_parameter: toPort
+- name: Sample time (-1 for inherited)
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: ''
+  block_parameter: sampleTime
+- name: Enable Simulink messages
+  summary: 将数据作为消息处理 off（默认）| on
+  group: ''
+  block_parameter: MessageIn
+- name: Local IP address
+  summary: 用于发送数据的源 IP 地址 无值（默认）| x.x.x.x
+  group: 高级参数
+  block_parameter: ipAddress
+- name: Local port
+  summary: 用于传输数据的源 UDP 端口 无值（默认）| 0–65535 | -1
+  group: 高级参数
+  block_parameter: localPort
+```
 
 ### **Use host-target connection** — 使用开发计算机与目标计算机之间的以太网连接 `'off'`（默认）| `'on'`
 
@@ -112,7 +152,6 @@ Enable Simulink messages 指示模块将数据作为消息处理。启用后，L
 |  |
 | --- |
 | **模块参数**：`localPort` |
-
 ## 所属库
 
 Simulink Real-Time / IP

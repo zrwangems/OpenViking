@@ -14,10 +14,24 @@ language: en
 # Mutual Inductor
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inductance L1
+  summary: Inductance of first inductor 1e-6 H (default) | positive scalar
+  group: ''
+- name: Inductance L2
+  summary: Inductance of second inductor 1e-6 H (default) | positive scalar
+  group: ''
+- name: Coefficient of coupling
+  summary: Coefficient of coupling for mutual inductance 0.9 (default) | scalar
+  group: ''
+```
 
 ### **Inductance L1** — Inductance of first inductor `1e-6 H` (default) | positive scalar
 
@@ -35,7 +49,6 @@ Inductance of the second inductor, specified as a positive scalar in
 
 Coefficient of coupling for the mutual inductance of the two inductors,
 specified as a scalar value from 0 through 1.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # State Writer
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 状态值 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -25,8 +32,17 @@ chinese_source: worker-translation
 当使用输入标量写入状态拥有者模块时，标量值会扩展以匹配状态的维度。状态的所有元素都被设置为相同的值。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: State owner block
+  summary: 状态拥有者模块的名称 none（默认）
+  group: ''
+  block_parameter: StateOwnerBlock
+  type: character vector
+  values: ''''' | ''<model path/block name>'''
+  default: ''''''
+```
 
 ### **State owner block** — 状态拥有者模块的名称 none（默认）
 
@@ -44,7 +60,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **Value:** `''` | `'<model path/block name>'` |
 | **默认值**：`''` |
-
 ## 所属库
 
 Simulink / Signal Routing

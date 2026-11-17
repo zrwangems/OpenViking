@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 3-Way Directional Valve (G)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 阀控制信号，unitless 物理信号
+  direction: input
+- name: A
+  summary: 阀开口气体
+  direction: input
+- name: P
+  summary: 阀开口气体
+  direction: input
+- name: T
+  summary: 阀开口气体
+  direction: input
+```
 
 ### 输入
 
@@ -42,8 +57,82 @@ chinese_source: worker-translation
 
 与开口关联的气体守恒端口，流体通过该开口
 进入或离开阀。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: 用于指定节流口流量特性的参数化方法 Cv flow coefficient（默认）| Kv flow coefficient | Sonic conductance | Orifice area
+  group: ''
+- name: Opening characteristic
+  summary: 计算阀开口特性的方法 Linear（默认）| Tabulated
+  group: ''
+- name: Opening fraction vector
+  summary: '用于指定表格参数数据的控制信号值 0 : 0.2 : 1（默认）| 正数向量'
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应于最大开启组件的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流率比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Cv flow coefficient vector
+  summary: 对应于开口分数向量中值的 Cv 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 正数向量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应于最大开启组件的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: Kv flow coefficient vector
+  summary: 对应于开口分数向量中值的 Kv 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 正数向量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 对应于最大开启组件的声速 conductance 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Sonic conductance vector
+  summary: 与开口分数向量中的值对应的声速导纳 [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)（默认）| 正值向量
+  group: ''
+- name: Critical pressure ratio vector
+  summary: 与开口分数向量中的值对应的临界压力比 0.3 * ones(1,6)（默认）| 正数向量
+  group: ''
+- name: Maximum orifice area
+  summary: 最大开启状态组件对应的流通面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 范围在 [0,1] 内的正标量
+  group: ''
+- name: Orifice area vector
+  summary: 节流孔开口面积值向量 [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2（默认）| 向量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流状态之间转换时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A, P, and T
+  summary: 阀端口处垂直于流动路径的面积 0.01 m^2（默认）| 以面积为单位的正标量
+  group: ''
+- name: Between Ports P and A
+  summary: P–A 节流孔的开口分数偏移 0（默认）| 无量纲标量
+  group: ''
+- name: Between Ports A and T
+  summary: A–T 节流孔的开口分数偏移 0（默认）| 无量纲标量
+  group: ''
+```
 
 ### **Valve parameterization** — 用于指定节流口流量特性的参数化方法 `Cv flow coefficient`（默认）| `Kv flow coefficient` | `Sonic conductance` | `Orifice area`
 
@@ -302,7 +391,6 @@ characteristic** 设置为 `Linear`。
 ### **Between Ports A and T** — A–T 节流孔的开口分数偏移 `0`（默认）| 无量纲标量
 
 当输入信号 **S** 的值为零时 **A**–**T** 节流孔的开口分数。此时阀处于正常位置。开口分数衡量滑阀台肩到其指定节流孔（此处为 **A**–**T**）的距离，并以该最大距离进行归一化。它是无量纲的，通常在 `0` 到 `1` 之间。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Valves & Orifices / Directional Control Valves

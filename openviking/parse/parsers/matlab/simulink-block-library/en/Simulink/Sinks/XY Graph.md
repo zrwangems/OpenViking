@@ -14,6 +14,14 @@ language: en
 # Record, XY Graph
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal to record scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -42,8 +50,75 @@ and the second input port provides the *y* data.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input ports
+  summary: Number of input ports 1 (default) | integer in the range [1,100]
+  group: Main
+  block_parameter: '''NumPorts'''
+  type: integer | character vector
+  values: integer in the range [1,100]
+  default: '1'
+- name: Port
+  summary: Port for which to specify input processing mode 1 (default) | integer
+  group: Main
+  block_parameter: '''FrameSettings'''
+  type: logical array
+  values: 1-by-n row vector, where n is equal to the number of ports
+  default: '0'
+- name: Input Processing
+  summary: Input processing mode for selected port Elements as channels (sample-based) (default) | Columns as channels (frame-based)
+  group: Main
+  block_parameter: '''FrameSettings'''
+  type: logical array
+  values: 1-by-n row vector, where n is equal to the number of ports
+  default: '0'
+- name: Record to Workspace
+  summary: Workspace logging option off (default) | on
+  group: Record
+  block_parameter: '''RecordToWorkspace'''
+  type: character vector | boolean | numeric
+  values: '''on'' | ''off'' | true or 1 | false or 0'
+  default: '''off'''
+- name: Workspace Variable Name
+  summary: Name for workspace variable that contains logged block data recordout (default) | character vector | string
+  group: Record
+  block_parameter: '''VariableName'''
+  type: character vector | string
+  default: '''recordout'''
+- name: Record to File
+  summary: Log to file option off (default) | on
+  group: Record
+  block_parameter: '''RecordToFile'''
+  type: character vector | boolean | numeric
+  values: '''on'' | ''off'' | true or 1 | false or 0'
+  default: '''off'''
+- name: File Name
+  summary: Name of file with logged data recording.mldatx (default) | character vector | string
+  group: Record
+  block_parameter: '''FileName'''
+  type: character vector | string
+  default: '''recording.mldatx'''
+- name: File Type
+  summary: Type of file for logged data *.mldatx (default) | *.mat | *.xslx
+  group: Record
+  block_parameter: '''FileName'''
+  type: character vector | string
+  default: '''recording.mldatx'''
+- name: File Location
+  summary: Path to file with logged data working directory (default) | character vector | string
+  group: Record
+  block_parameter: '''FileName'''
+  type: character vector | string
+  default: '''recording.mldatx'''
+- name: Time
+  summary: Options for exporting time data to Excel file Shared Time Columns (default) | Individual Time Columns
+  group: Record
+- name: Attributes
+  summary: Signal attributes to export to Excel file Data Type | Units | Port Index | Block Path | Interpolation
+  group: Record
+```
 
 To modify Record block parameters, use the Property Inspector.
 
@@ -339,7 +414,6 @@ first data point according to the format described in Microsoft Excel Import, Ex
 
 To enable this parameter, select **Record to File** and specify
 **File Type** as `*.xlsx`.
-
 ## Libraries
 
 Simulink / Sinks

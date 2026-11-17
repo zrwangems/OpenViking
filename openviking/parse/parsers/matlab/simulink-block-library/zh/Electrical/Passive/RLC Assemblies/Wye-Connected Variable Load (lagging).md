@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Wye-Connected Variable Load (lagging)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 有功功率物理信号
+  direction: input
+- name: Q
+  summary: 无功功率物理信号
+  direction: input
+- name: '~'
+  summary: 三相电气端口
+  direction: input
+- name: n
+  summary: 中性相电气端口
+  direction: input
+```
 
 ### 输入
 
@@ -35,8 +50,28 @@ chinese_source: worker-translation
 ### **n** — 中性相电气端口
 
 与中性相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Rated voltage
+  summary: 额定线电压 24e3 V（默认）
+  group: 主
+- name: Rated electrical frequency
+  summary: 标称交流电频率 60 Hz（默认）
+  group: 主
+- name: Minimum real power
+  summary: 最小有功功率 1e3 W（默认）| 正标量
+  group: 主
+- name: Minimum reactive power
+  summary: 最小无功功率 1e3 V*A（默认）| 正标量
+  group: 主
+- name: Parasitic parallel conductance
+  summary: 寄生并联电导 1e-6 1/Ohm（默认）
+  group: 寄生参数
+```
 
 ### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -69,7 +104,6 @@ chinese_source: worker-translation
 ### **Parasitic parallel conductance** — 寄生并联电导 `1e-6` `1/Ohm`（默认）
 
 模块并联添加到串联 RL 的电导。
-
 ## 所属库
 
 Simscape / Electrical / Passive / RLC Assemblies

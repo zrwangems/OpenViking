@@ -14,6 +14,36 @@ language: en
 # Passive Interface
 
 ## Ports
+```yaml
+ports:
+- name: Icsc_discharge
+  summary: Discharge current from cell supervisory circuit, A physical signal | scalar
+  direction: input
+- name: SOC
+  summary: Battery state-of-charge, unitless physical signal | scalar
+  direction: input
+- name: Vbat
+  summary: Battery voltage, V physical signal
+  direction: output
+- name: Icsc
+  summary: Cell supervisory circuit current, A physical signal
+  direction: output
+- name: SOC
+  summary: Battery state-of-charge, unitless physical signal
+  direction: output
+- name: T
+  summary: Temperature measurement, K physical signal
+  direction: output
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -91,8 +121,25 @@ Thermal conserving port.
 
 To enable this port, set the **Thermal port**
 parameter to `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Expose cell supervisory circuit current measurement port
+  summary: Measurement port visibility for cell supervisory circuit current Yes (default) | No
+  group: ''
+- name: Expose SOC input port
+  summary: SOC input port visibility No (default) | Yes
+  group: ''
+- name: Expose SOC output port
+  summary: SOC output port visibility Yes (default) | No
+  group: ''
+- name: Thermal port
+  summary: Thermal port visibility Omit (default) | Model
+  group: ''
+- name: Expose temperature measurement port
+  summary: Temperature measurement port visibility Yes (default) | No
+  group: ''
+```
 
 ### **Expose cell supervisory circuit current measurement port** — Measurement port visibility for cell supervisory circuit current `Yes` (default) | `No`
 
@@ -125,7 +172,6 @@ battery.
 
 To enable this parameter, set **Thermal port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Battery / HIL

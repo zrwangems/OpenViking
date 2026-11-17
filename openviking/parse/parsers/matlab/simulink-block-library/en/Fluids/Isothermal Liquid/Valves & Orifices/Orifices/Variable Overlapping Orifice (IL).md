@@ -14,6 +14,18 @@ language: en
 # Variable Overlapping Orifice (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Sleeve displacement, m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -29,8 +41,40 @@ Entry or exit point to the orifice.
 ### **S** — Sleeve displacement, m physical signal
 
 Sleeve position with respect to the case, in m.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sleeve hole diameter
+  summary: Sleeve hole diameter 5e-3 m (default) | positive scalar
+  group: ''
+- name: Case hole diameter
+  summary: Case hole diameter 5.5e-3 m (default) | positive scalar
+  group: ''
+- name: Sleeve position when holes are concentric
+  summary: Moving element position when hole centers are aligned 0 m (default) | scalar
+  group: ''
+- name: Number of interacting pairs
+  summary: Number of overlapping orifices, in pairs 1 (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Orifice area at conserving ports inf m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions Off (default) | On
+  group: ''
+```
 
 ### **Sleeve hole diameter** — Sleeve hole diameter `5e-3 m` (default) | positive scalar
 
@@ -86,7 +130,6 @@ these regimes.
 Whether to account for pressure increase when fluid flows from a region of
 smaller cross-sectional area to a region of larger cross-sectional
 area.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Orifices

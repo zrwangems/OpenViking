@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Moisture Source (MA)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量控制信号，kg/s 物理信号
+  direction: input
+- name: T
+  summary: 添加水分的温度，K 物理信号
+  direction: input
+- name: S
+  summary: 注入或提取湿度或水滴 湿空气源
+  direction: input
+```
 
 ### 输入
 
@@ -38,8 +50,28 @@ chinese_source: worker-translation
 ### **S** — 注入或提取湿度或水滴 湿空气源
 
 将此端口连接到具有有限湿空气容积的模块的端口 **S**，以通过该模块添加或去除湿度或水滴。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 选择水分质量流量和温度是否可以在仿真期间变化 Controlled（默认）| Constant
+  group: ''
+- name: Moisture added or removed
+  summary: 选择模块是以水蒸气还是水滴的形式添加或去除水分 Water vapor（默认）| Water droplets
+  group: ''
+- name: Water vapor evaporated from liquid or condensed to liquid
+  summary: 模块如何添加或去除水蒸气 off（默认）| on
+  group: ''
+- name: Rate of moisture added
+  summary: 通过模块的恒定质量流量 0 kg/s（默认）
+  group: ''
+- name: Added moisture temperature specification
+  summary: 选择添加水分温度的指定方法 Atmospheric temperature（默认）| Specified temperature
+  group: ''
+- name: Temperature of added moisture
+  summary: 水分温度 293.15 K（默认）
+  group: ''
+```
 
 ### **Source type** — 选择水分质量流量和温度是否可以在仿真期间变化 `Controlled`（默认）| `Constant`
 
@@ -88,7 +120,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Source type** 设置为 `Constant`，并将 **Added moisture temperature specification** 设置为 `Specified temperature`。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Sources / Moisture & Trace Gas Sources

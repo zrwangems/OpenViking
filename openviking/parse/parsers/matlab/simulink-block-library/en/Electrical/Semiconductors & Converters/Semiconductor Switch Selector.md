@@ -14,6 +14,27 @@ language: en
 # Semiconductor Switch Selector
 
 ## Ports
+```yaml
+ports:
+- name: Control
+  summary: Gate terminal physical signal
+  direction: input
+- name: Control
+  summary: Gate terminal electrical
+  direction: conserving
+- name: A
+  summary: Anode terminal electrical
+  direction: conserving
+- name: K
+  summary: Cathode terminal electrical
+  direction: conserving
+- name: B
+  summary: Body terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal mass thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -130,8 +151,32 @@ To enable this port, choose one of these options:
   `Full I-V and capacitance characteristics | Show thermal
   port` or `Simplified I-V characteristics and
   event-based timing | Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Switching device
+  summary: Type of semiconductor switching device MOSFET (default) | IGBT | Thyristor | GTO
+  group: ''
+- name: Library block
+  summary: Underlying library block Ideal Semiconductor Switch (default) | MOSFET (Ideal, Switching) | N-Channel MOSFET |
+    P-Channel MOSFET | ...
+  group: ''
+- name: Gate-control port
+  summary: Option to specify physical or electrical control port PS (default) | Electrical
+  group: ''
+- name: Modeling option
+  summary: Modeling option No thermal port (default) | Show thermal port | Threshold-based | Surface-potential based | ...
+  group: ''
+- name: Number of terminals
+  summary: Number of terminals Three (default) | Four
+  group: ''
+- name: Edit parameters
+  summary: Option to edit library block parameters button
+  group: ''
+- name: Remove Semiconductor Switch Selector block mask
+  summary: Option to remove Semiconductor Switch Selector block mask button
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -233,7 +278,6 @@ underlying library block now opens and the port names on the block icon match th
 underling library block. This action also enables parameters in the underlying block
 that were only enabled in the Semiconductor Switch Selector block dialog box. This action is
 irreversible.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

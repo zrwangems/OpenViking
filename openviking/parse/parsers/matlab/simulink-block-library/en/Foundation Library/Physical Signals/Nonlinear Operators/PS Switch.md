@@ -14,6 +14,21 @@ language: en
 # PS Switch
 
 ## Ports
+```yaml
+ports:
+- name: I1
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: I2
+  summary: Control physical signal, untyped physical signal
+  direction: input
+- name: I3
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -53,8 +68,16 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Threshold
+  summary: Threshold value for opening and closing the switch 0.5 1 (default)
+  group: ''
+- name: Enable zero-crossing detection
+  summary: Whether to enable zero-crossing detection on (default) | off
+  group: ''
+```
 
 ### **Threshold** — Threshold value for opening and closing the switch `0.5 1` (default)
 
@@ -73,7 +96,6 @@ and Unit Definitions.
 
 Clear to disable zero-crossing detection and increase simulation speed. For more
 information, see Managing Zero Crossings in Simscape Models.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Nonlinear Operators

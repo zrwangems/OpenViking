@@ -14,6 +14,21 @@ language: en
 # Coupled Lines (Pair)
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Line 1 positive terminal electrical
+  direction: conserving
+- name: 1-
+  summary: Line 1 negative terminal electrical
+  direction: conserving
+- name: 2+
+  summary: Line 2 positive terminal electrical
+  direction: conserving
+- name: 2-
+  summary: Line 2 negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,46 @@ line 2.
 
 Electrical conserving port associated with the negative terminal of
 line 2.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Line impedance parameterization Balanced impedance (default) | General impedance
+  group: ''
+- name: Line 1 inductance
+  summary: Line 1 self-inductance 1e-3 H (default)
+  group: ''
+- name: Line 2 inductance
+  summary: Line 2 self-inductance 1e-3 H (default)
+  group: ''
+- name: Line inductance
+  summary: Self-inductance 1e-3 H (default)
+  group: ''
+- name: Mutual inductance
+  summary: Mutual inductance between lines 3e-4 H (default)
+  group: ''
+- name: Line 1 resistance
+  summary: Line 1 series resistance 0.001 Ohm (default)
+  group: ''
+- name: Line 2 resistance
+  summary: Line 2 series resistance 0.001 Ohm (default)
+  group: ''
+- name: Line resistance
+  summary: Series resistance 0.001 Ohm (default)
+  group: ''
+- name: Mutual resistance
+  summary: Mutual resistance between lines 0 Ohm (default)
+  group: ''
+- name: Line 1 leakage conductance
+  summary: Line 1 parallel leakage conductance 1e-9 1/Ohm (default)
+  group: ''
+- name: Line 2 leakage conductance
+  summary: Line 2 parallel leakage conductance 1e-9 1/Ohm (default)
+  group: ''
+- name: Line leakage conductance
+  summary: Parallel leakage conductance 1e-9 1/Ohm (default)
+  group: ''
+```
 
 #### Parameters
 
@@ -155,7 +208,6 @@ greater than or equal to zero.
 
 To enable this parameter, set **Parameterization** to
 `Balanced impedance`.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Lines

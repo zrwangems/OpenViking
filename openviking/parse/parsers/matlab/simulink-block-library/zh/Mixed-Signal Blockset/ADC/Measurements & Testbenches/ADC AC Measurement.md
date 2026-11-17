@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # ADC AC Measurement
 
 ## 端口
+```yaml
+ports:
+- name: digital
+  summary: 来自 ADC 的转换后数字信号 标量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ready
+  summary: 指示模数转换是否完成 标量
+  direction: input
+  data_types: double
+- name: start
+  summary: 外部转换启动时钟 标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -35,8 +50,67 @@ chinese_source: worker-translation
 外部转换启动时钟，指定为标量。模数转换过程在 **start** 端口信号的上升沿启动。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Distortion measurement type
+  summary: 要测量的失真类型 Harmonic（默认）| Intermodulation
+  group: ''
+  block_parameter: DistortionMeasurement
+  type: 字符向量
+  values: Harmonic | Intermodulation
+- name: Analog stimulus frequency (Hz)
+  summary: ADC 模拟输入信号的频率 正实数标量 | 正实数值向量
+  group: ''
+  block_parameter: InputFrequency
+  type: 字符向量
+  values: 正实数标量 | 正实数值向量
+- name: Spectrum estimation method
+  summary: 频谱估计方法 Welch（默认）| Filter bank
+  group: ''
+  block_parameter: Method
+  type: 字符向量
+  values: Filter bank | Welch
+- name: Resolution bandwidth (Hz)
+  summary: 分辨率带宽 正实数标量
+  group: ''
+  block_parameter: RBW
+  type: 字符向量
+  values: 正实数标量
+- name: Start conversion frequency (Hz)
+  summary: ADC 启动转换时钟频率 1e6（默认）| 正实数标量
+  group: ''
+  block_parameter: Frequency
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Hold off time (s)
+  summary: 延迟测量分析以避免瞬态干扰 0（默认）| 非负实数标量
+  group: ''
+  block_parameter: HoldOffTime
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Recommended min. simulation stop time (s)
+  summary: 仿真获得有意义结果所需的最短运行时间 正实数标量
+  group: ''
+- name: Set as model stop time
+  summary: 自动将推荐的最小仿真停止时间设置为模型停止时间 按钮
+  group: ''
+- name: Output result to base workspace
+  summary: 将详细测试结果存储到基础工作区 off（默认）| on
+  group: ''
+- name: Workspace variable name
+  summary: 存储详细测试结果的变量名称 adc_ac_out（默认）| 字符串
+  group: ''
+  block_parameter: VariableName
+  type: character vector
+  values: character string
+  default: adc_ac_out
+- name: Show spectrum analyzer during simulation
+  summary: 在仿真期间显示频谱分析仪 off（默认）| on
+  group: ''
+```
 
 ### **Distortion measurement type** — 要测量的失真类型 `Harmonic`（默认）| `Intermodulation`
 
@@ -182,7 +256,6 @@ t=1.5·SamplingFrequencyRBW
 ### **Show spectrum analyzer during simulation** — 在仿真期间显示频谱分析仪 off（默认）| on
 
 在仿真期间显示频谱分析仪。默认情况下，此选项未选中。
-
 ## 所属库
 
 Mixed-Signal Blockset / ADC / Measurements & Testbenches

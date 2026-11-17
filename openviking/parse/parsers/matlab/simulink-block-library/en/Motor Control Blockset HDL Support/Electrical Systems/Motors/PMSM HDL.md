@@ -14,6 +14,41 @@ language: en
 # PMSM HDL
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Block configuration signal vector
+  direction: input
+  data_types: single
+- name: PhaseVolt
+  summary: Stator terminal voltages 1-by-3 array
+  direction: input
+  data_types: single
+- name: LdTrq/Spd
+  summary: Load torque on motor or speed of motor shaft scalar
+  direction: input
+  data_types: single
+- name: Reset
+  summary: Reset bus signal scalar
+  direction: input
+  data_types: Boolean
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: PhaseCurr
+  summary: Current for phase *a*, *b*, and *c* 1-by-3 array
+  direction: output
+- name: Torque
+  summary: Motor torque scalar
+  direction: output
+- name: Speed
+  summary: Motor speed scalar
+  direction: output
+- name: MtrElecAngle
+  summary: Motor electrical angle scalar
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -98,14 +133,18 @@ Electrical position of the motor, *θe*, in
 rad.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (s)
+  summary: Sample time after which block executes again 1e-6 (default) | scalar
+  group: ''
+```
 
 ### **Sample time (s)** — Sample time after which block executes again `1e-6` (default) | scalar
 
 The fixed time interval (in seconds) between consecutive instances of block
 execution.
-
 ## Libraries
 
 Motor Control Blockset HDL Support / Electrical Systems / Motors

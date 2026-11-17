@@ -15,10 +15,280 @@ chinese_source: worker-translation
 # ePWM Type 1-4
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Allow use of 16 HRPWMs (for C28044) instead of 6 PWMs
+  summary: 当 PWM 分辨率过低时启用 HRPWM off（默认）| on
+  group: 常规
+- name: Module
+  summary: 指示要使用的 ePWM 模块 ePWM1（默认）| ePWM2 | ePWM3 | …
+  group: 常规
+- name: ePWMLink TBPRD
+  summary: 指示 ePWM 模块的 TBPRD 链接 Not Linked（默认）| ePWM2 | ePWM3 | …
+  group: 常规
+- name: Timer period units
+  summary: 指示时间周期单位 Clock cycles（默认）| Seconds
+  group: 常规
+- name: Specify timer period via
+  summary: 配置定时器周期值的来源 Specify via dialog（默认）| Input port
+  group: 常规
+- name: Timer period
+  summary: 指示 ePWM 计数器的周期 64000（默认）
+  group: 常规
+- name: Timer initial period
+  summary: 指示波形的初始 ePWM 周期 64000（默认）| 0 | ...
+  group: 常规
+- name: Active period register load option (PRDLD)
+  summary: 计数器周期寄存器重新加载的事件 Counter equals to zero（默认）| Counter equals to zero or SYNC event | SYNC event | Immediate without
+    using shadow
+  group: 常规
+- name: Counting mode
+  summary: 指示 ePWM 计数器的计数模式 Up-Down（默认）| Up | Down
+  group: 常规
+- name: Synchronization action
+  summary: 指定相位偏移的来源 Disable（默认）| Set counter to phase value specified via dialog | Set counter to phase value specified via
+    input port
+  group: 常规
+- name: Counting direction after phase synchronization
+  summary: 相位同步后的计数器方向 Count down after sync（默认）| Count up after sync
+  group: 常规
+- name: Phase offset value (TBPHS)
+  summary: 指定相位偏移值（TBPHS） 0（默认）
+  group: 常规
+- name: Specify software synchronization via input port (SWFSYNC)
+  summary: 指示相位偏移值 off（默认）| on
+  group: 常规
+- name: Enable digital compare A event1 synchronization (DCAEVT1)
+  summary: 基于 DCAEVT1 数字比较事件同步 ePWM 时基 off（默认）| on
+  group: 常规
+- name: Enable digital compare B event1 synchronization (DCBEVT1)
+  summary: 基于 DCBEVT1 数字比较事件同步 ePWM 时基 off（默认）| on
+  group: 常规
+- name: Synchronization output (SYNCO)
+  summary: 生成时基同步输出信号的事件 Disable（默认）| Pass through (EPWMxSYNCI or SWFSYNC) | Counter equals to zero (CTR=Zero) | Counter equals
+    to compare B (CTR=CMPB) | Counter equals to compare C (CTR=CMPC) | Counter equals to compare D (CTR=CMPD) | Enable DCBEVT1
+    sync event to SYNCO signal | Enable DCAEVT1 sync event to SYNCO signal | Enable counter equals to compare D (CTR=CMPD)
+    event to set SYNCO signal | Enable counter equals to compare C (CTR=CMPC) event to set SYNCO signal | Enable counter equals
+    to compare B (CTR=CMPB) event to set SYNCO signal | Enable counter equals to zero (CTR=ZERO) event to set SYNCO signal
+    | Enable SWFSYNC event to set SYNCO signal
+  group: 常规
+- name: Peripheral synchronization event (PWMSYNCSEL)
+  summary: 时基计数器外设同步 Counter equals to period (CTR=PRD)（默认）| Counter equals to zero (CTR=Zero) | Counter is incrementing and
+    equals to compare C register (CTRU=CMPC) | Counter is decrementing and equals to compare C register (CTRD=CMPC) | Counter
+    is incrementing and equals to compare D register (CTRU=CMPD) | Counter is decrementing and equals to compare D register
+    (CTRD=CMPD)
+  group: 常规
+- name: Time base clock (TBCLK) prescaler divider
+  summary: 对应于 CLKDIV 的时基时钟（TBCLK）预分频器 1（默认）| 2 | 4 | …
+  group: 常规
+- name: High speed time base clock (HSPCLKDIV) prescaler divider
+  summary: 高速时基时钟（HSPCLKDIV）预分频器 1（默认）| 2 | 4 | ...
+  group: 常规
+- name: Enable swap module A and B
+  summary: 交换模块 A 和 B 的输出信号 off（默认）| on
+  group: 常规
+- name: Enable ePWM#x
+  summary: 使能 ePWMx 输出信号 off（默认）| on
+  group: ePWMA 和 ePWMB
+- name: Action when counter=ZERO, Action when counter=period (PRD), Action when counter=CMPA on up-count (CAU), Action when
+    counter=CMPA on down-count (CAD), Action when counter=CMPB on up-count (CBU), Action when counter=CMPB on down-count (CBD)
+  summary: 确定动作限定器（AQ）子模块的行为 Set（默认）
+  group: ePWMA 和 ePWMB
+- name: Add continuous software force input port, Continuous software force logic, Reload condition for software force
+  summary: 确定动作限定器（AQ）子模块如何处理软件强制事件 Load on counter equals to zero (CTR=Zero)（默认）
+  group: ePWMA 和 ePWMB
+- name: Inverted version of ePWM#A
+  summary: 反转 ePWM#A 信号 off（默认）| on
+  group: ePWMA 和 ePWMB
+- name: Enable high resolution PWM (HRPWM)
+  summary: 使能高分辨率 PWM 设置 off（默认）| on
+  group: ePWMA 和 ePWMB
+- name: ePWMLink CMPx
+  summary: ePWM 模块的链接 Not Linked（默认）| ePWM1 | ePWM2 | ...
+  group: Counter Compare
+- name: CMPx Units
+  summary: 比较寄存器使用的单位 Clock cycles（默认）| Percentages
+  group: Counter Compare
+- name: Specify CMPx Via
+  summary: 脉冲宽度来源 Specify via dialog（默认）| Input port
+  group: Counter Compare
+- name: CMPx Value/CMPx Initial Value
+  summary: 脉冲宽度值 32000（默认）
+  group: Counter Compare
+- name: Reload for compare x Register (SHDWxMODE)
+  summary: 计数器周期复位的时间 Counter equals to zero (CTR=Zero)（默认）| Counter equals to period (CTR=PRD) | Counter equals to Zero or
+    period (CTR=Zero or CTR=PRD) | ...
+  group: Counter Compare
+- name: Use deadband for ePWM#A, Use deadband for ePWM#B
+  summary: 使能死区区域 off（默认）| on
+  group: Deadband Unit
+- name: Enable half-cycle clocking
+  summary: 死区分辨率加倍 off（默认）| on
+  group: Deadband Unit
+- name: Deadband Polarity
+  summary: 死区时间时的 ePWM 输出状态 Active high (AH)（默认）| Active low (AL) | Active high complementary (AHC) | Active low complementary
+    (ALC)
+  group: Deadband Unit
+- name: Signal source for rising edge (RED)
+  summary: 上升沿源 ePWMxA（默认）| ePWMxB
+  group: Deadband Unit
+- name: Signal source for falling edge (FED)
+  summary: 下降沿源 ePWMxA（默认）| ePWMxB
+  group: Deadband Unit
+- name: Deadband period units
+  summary: 指示死区周期单位 Clock cycles（默认）| Seconds
+  group: Deadband Unit
+- name: Deadband period source
+  summary: 控制逻辑源 Specify via dialog（默认）| Input port
+  group: Deadband Unit
+- name: Deadband Rising edge (RED) period (0-16383)
+  summary: RED 延迟时间值 0（默认）
+  group: Deadband Unit
+- name: Deadband Falling edge (FED) period
+  summary: FED 延迟时间值 0（默认）
+  group: Deadband Unit
+- name: Reload for DBRED register (SHDWDBRED), Reload for DBFED register (SHDWDBFED)
+  summary: 影子寄存器传送到活动寄存器的事件 Immediate without using shadow（默认）| Freeze | Counter equals to zero (CTR=Zero) | Counter equals
+    to period (CTR=PRD) | Counter equals to either zero or period (CTR=Zero or CTR=PRD) | ...
+  group: Deadband Unit
+- name: Enable ADC start of conversion for module A
+  summary: ADC 转换启动事件 off（默认）| on
+  group: Event Trigger
+- name: Number of event for start of conversion for Module A (SOCA) to be generated
+  summary: 事件启动编号 First event（默认）| Second event | Third event | ...
+  group: Event Trigger
+- name: Start of conversion for module A event selection
+  summary: 指示触发 ADC 转换启动事件的计数器匹配条件 Counter equals to zero (CTR=Zero)（默认）| Digital Compare Module A Event 1 start of conversion
+    (DCAEVT1.soc) | ...
+  group: Event Trigger
+- name: Enable ADC start of conversion for module B
+  summary: ADC 转换启动事件 off（默认）| on
+  group: Event Trigger
+- name: Number of event for start of conversion for Module B (SOCB) to be generated
+  summary: 事件启动编号 First event（默认）| Second event | Third event | ...
+  group: Event Trigger
+- name: Start of conversion for module B event selection
+  summary: 指示触发 ADC 转换启动事件的计数器匹配条件 Counter equals to zero (CTR=Zero)（默认）|
+  group: Event Trigger
+- name: Enable ePWM interrupt
+  summary: 生成 ePWM 中断 Disabled（默认）| Enabled
+  group: Event Trigger
+- name: Number of event for interrupt to be generated
+  summary: 指定触发 ePWM 中断的事件编号 First event（默认）| Second event to fifteenth event
+  group: Event Trigger
+- name: Interrupt counter match event condition
+  summary: 指示触发 ePWM 中断的计数器匹配条件 Counter equals to zero (CTR=Zero)（默认）
+  group: Event Trigger
+- name: Enable High Resolution Period on ePWM#A (HRPWM - period), Enable High Resolution Period on ePWM#B (HRPWM - period)
+  summary: 指示常规生成 PWM 的有效分辨率 off（默认）| on
+  group: HRPWM Tab
+- name: Enable HRPWM Duty on ePWM#A(HRPWM - duty)
+  summary: 指示比较值的小数部分 off（默认）| on
+  group: HRPWM Tab
+- name: High resolution PWM (HRPWM) Load mode on ePWM#A
+  summary: 确定何时将 CMPAHR 影子值传输到活动寄存器 Counter equals to period (CTR=PRD)（默认）| Counter equals to zero (CTR=ZERO) | Counter equals
+    to either zero or period (CTR=ZERO or CTR=PRD)
+  group: HRPWM Tab
+- name: High resolution PWM (HRPWM) control mode on ePWM#A
+  summary: 指示控制模式 Duty control mode（默认）| Phase control mode
+  group: HRPWM Tab
+- name: High resolution PWM (HRPWM) edge control mode
+  summary: 指示边沿控制模式 Both Edge（默认）| Rising Edge | Falling Edge
+  group: HRPWM Tab
+- name: Enable high resolution deadband rising edge (RED), Enable high resolution deadband falling edge (FED)
+  summary: 在死区上升沿延迟和下降沿延迟上启用 HRPWM 功能 off（默认）| on
+  group: HRPWM Tab
+- name: Use scale factor optimizer (SFO) software
+  summary: 指示比例因子 off（默认）| on
+  group: HRPWM Tab
+- name: Enable auto convert
+  summary: 指示自动转换 off（默认）| on
+  group: HRPWM Tab
+- name: Chopper module enable
+  summary: 启用斩波器模块 off（默认）| on
+  group: PWM Chopper Control Tab
+- name: Chopper frequency divider
+  summary: 确定斩波器时钟频率 1（默认）| 2 | ...
+  group: PWM Chopper Control Tab
+- name: Chopper clock cycles width of first pulse
+  summary: 用于快速开启硬开关功率开关的高能量第一脉冲 1（默认）| 2 | ...
+  group: PWM Chopper Control Tab
+- name: Chopper pulse duty cycle
+  summary: 确定第二及后续脉冲的占空比 12.5%（默认）| 25% | ...
+  group: PWM Chopper Control Tab
+- name: Trip zone source
+  summary: 确定跳闸区信号控制逻辑的来源 Specify via dialog（默认）| Input port
+  group: Trip Zone Unit
+- name: Enable one-shot Trip-zone# (TZ#)
+  summary: 以单次模式启用相应的跳闸区信号 off（默认）| on
+  group: Trip Zone Unit
+- name: Enable one-shot digital compare A event 1 (DCAEVT1), Enable one-shot digital compare B event 1 (DCBEVT1)
+  summary: 启用相应事件信号作为事件 1 的 OST 跳闸源 off（默认）| on
+  group: Trip Zone Unit
+- name: Enable cyclic Trip-zone# (TZ#)
+  summary: 以逐周期模式启用相应的跳闸区信号 off（默认）| on
+  group: Trip Zone Unit
+- name: Enable cyclic digital compare A event 2 (DCAEVT2), Enable cyclic digital compare B event 2 (DCBEVT2)
+  summary: 启用相应事件信号作为事件 2 的循环跳闸源 off（默认）| on
+  group: Trip Zone Unit
+- name: Enable trip-zone one-shot interrupt (OST)
+  summary: 启用跳闸区单次中断 off（默认）| on
+  group: Trip Zone Unit
+- name: Enable trip-zone cycle-by-cycle interrupt (CBC)
+  summary: 启用跳闸区逐周期中断 off（默认）| on
+  group: Trip Zone Unit
+- name: Digital comparator output A event 1 interrupt enable (DCAEVT1), Digital comparator output A event 2 interrupt enable
+    (DCAEVT2), Digital comparator output B event 1 interrupt enable (DCBEVT1), Digital comparator output B event 2 interrupt
+    enable (DCBEVT2)
+  summary: 启用数字比较器输出 off（默认）| on
+  group: Trip Zone Unit
+- name: Clear cycle-by-cycle trip latch at
+  summary: 选择清除逐周期跳闸锁存器 Counter equals to zero (CTR=Zero)（默认）| Counter equals to period (CTR=Prd) | Counter equals to zero
+    or period (CTR=Zero or CTR=Prd) | Latch not cleared
+  group: Trip Zone Unit
+- name: ePWM#A forced (TZ) to, ePWM#B forced (TZ) to, ePWM#A forced (DCAEVT#) to, ePWM#B forced (DCBEVT#) to
+  summary: 确定在 ePWM 输出上要考虑的动作 No action（默认）| High | Low | Hi-Z (High Impedance)
+  group: Trip Zone Unit
+- name: Source for digital compare A high signal (DCAH), Source for digital compare B high signal (DCBH)
+  summary: 数字比较高信号源 GPTRIP1SEL/(TZ1) for DCAH/GPTRIP1SEL/(TZ1) for DCBH（默认）| GPTRIP3SEL/(TZ3) for DCAH/GPTRIP7SEL for DCBH
+    | ...
+  group: Digital Compare
+- name: Source for digital compare A low signal (DCAL), Source for digital compare B low signal (DCBL)
+  summary: 数字比较低信号源 GPTRIP1SEL/(TZ1) for DCAL/GPTRIP1SEL/(TZ1) for DCBL（默认）| TRIPIN1(ECCDBLERR) for DCAL/Select From DCBLTRIPSEL
+    for DCBL | ...
+  group: Digital Compare
+- name: 'Digital compare output A event # selection (DCAEVT#), Digital Compare output B event # selection (DCBEVT#)'
+  summary: 限定生成 DC 事件的信号 Event disabled（默认）| DCAH=low and DCAL=don’t care/DCBH=low and DCBL=don’t care | ...
+  group: Digital Compare
+- name: DCAEVT# source select, DCBEVT# source select
+  summary: 数字比较事件源 Event disabled（默认）| DCAH=low and DCAL=don’t care/DCBH=low and DCBL=don’t care | ...
+  group: Digital Compare
+- name: Pulse select
+  summary: 指示消隐窗口，用于滤除事件发生 Counter equals to zero (CTR=Zero)（默认）| Counter equals to period (CTR=PRD)
+  group: Digital Compare
+- name: Blanking window inverted
+  summary: 指示反转消隐窗口 off（默认）| on
+  group: Digital Compare
+- name: Blanking window offset
+  summary: 指示偏移消隐窗口 0（默认）
+  group: Digital Compare
+- name: Blanking window width
+  summary: 指示消隐窗口持续时间 0（默认）
+  group: Digital Compare
+- name: Filter output DCEVTFILT
+  summary: 指示滤波器的源选择 Filtered version of DCAEVT1 (DCAEVT1FILT)（默认）| Filtered version of DCAEVT2 (DCAEVT2FILT) | Filtered version
+    of DCBEVT1 (DCBEVT1FILT) | Filtered version of DCBEVT2 (DCBEVT2FILT)
+  group: Digital Compare
+- name: Enable counter capture
+  summary: 指示计数器捕获 off（默认）| on
+  group: Digital Compare
+```
 
 ### 常规
 
@@ -931,7 +1201,6 @@ DCEVTFILT 信号。
 
 启用此选项允许捕获触发
 事件的 TBCTR 值。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F29H85x

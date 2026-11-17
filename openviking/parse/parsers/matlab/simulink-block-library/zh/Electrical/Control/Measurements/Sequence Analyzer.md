@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Sequence Analyzer
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 周期性输入信号向量
+  direction: input
+- name: mag
+  summary: 幅值标量 | 向量
+  direction: output
+- name: angle
+  summary: 相移标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +42,22 @@ chinese_source: worker-translation
 ### **angle** — 相移标量 | 向量
 
 正序、负序或零序的相移，以度为单位。根据谐波次数，此输出为标量或向量。
-
 ## 参数
+```yaml
+parameters:
+- name: Base frequency (Hz)
+  summary: 基频 60（默认值）
+  group: ''
+- name: Harmonic numbers
+  summary: 谐波次数 [1 2]（默认值）| 标量或向量
+  group: ''
+- name: Sequence
+  summary: 序分量选择 Positive（默认值）| Negative | Zero
+  group: ''
+- name: Sample Time (s)
+  summary: 模块采样时间 0（默认值）
+  group: ''
+```
 
 ### **Base frequency (Hz)** — 基频 `60`（默认值）
 
@@ -52,7 +78,6 @@ chinese_source: worker-translation
 对于继承的离散时间操作，指定 `-1`。对于离散时间操作，指定正整数。对于连续时间操作，指定 `0`。
 
 如果此模块位于掩码子系统或其他允许在连续操作和离散操作之间切换的变体子系统中，请提升采样时间参数。提升采样时间参数可确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / Measurements

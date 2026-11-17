@@ -14,10 +14,15 @@ language: en
 # Check Singular Value Characteristics
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 The following table summarizes the Singular Value Plot block
 parameters, accessible via the block parameter dialog box. For more information, see
@@ -35,7 +40,6 @@ page.
 | Save linear system to MATLAB workspace. | | **Save data to workspace** in **Logging** tab. |
 | View bounds violations graphically in a plot window. | | **Show Plot** |
 | Display plot window instead of block parameters dialog box on double-clicking the block. | | **Show plot on block open** |
-
 ## Libraries
 
 Not documented in R2025b.

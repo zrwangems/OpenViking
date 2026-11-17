@@ -14,6 +14,17 @@ language: en
 # Quaternion Inverse
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Quaternion quaternion | vector of quaternions
+  direction: input
+  data_types: double
+- name: Inv(q)
+  summary: Quaternion inverse quaternion inverse | vector of quaternion inverses
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -38,11 +49,12 @@ quaternions.
 Quaternion inverse or vector of quaternion inverses.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

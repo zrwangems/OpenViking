@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # Delta Reference (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 可扩展三相端口 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -23,8 +29,13 @@ chinese_source: worker-translation
 可扩展复合（**a**、**b**、
 **c**）三相
 端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+```
 
 ### **Modeling option** — 对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -33,7 +44,6 @@ chinese_source: worker-translation
 复合三相端口用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口来构建对应于三相电气系统单线图的模型。
 
 扩展三相端口使用三个独立的电气守恒端口来表示三相系统的各相。
-
 ## 所属库
 
 Simscape / Electrical / Connectors & References

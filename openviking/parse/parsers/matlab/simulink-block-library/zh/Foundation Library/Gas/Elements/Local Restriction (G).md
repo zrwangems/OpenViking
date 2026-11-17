@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Local Restriction (G)
 
 ## 端口
+```yaml
+ports:
+- name: AR
+  summary: 节流面积控制信号，m^2 物理信号
+  direction: input
+- name: A
+  summary: 入口或出口气体
+  direction: input
+- name: B
+  summary: 入口或出口气体
+  direction: input
+```
 
 ### 输入
 
@@ -35,8 +47,31 @@ chinese_source: worker-translation
 ### **B** — 入口或出口气体
 
 与局部节流入口或出口关联的气体守恒端口。此模块没有固有方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: Restriction type
+  summary: 指定节流面积是否可以在仿真期间变化 Variable（默认）| Fixed
+  group: ''
+- name: Minimum restriction area
+  summary: 节流横截面积的下限 1e-10 m^2（默认）
+  group: ''
+- name: Maximum restriction area
+  summary: 节流横截面积的上限 0.005 m^2（默认）
+  group: ''
+- name: Restriction area
+  summary: 节流处垂直于流路的面积 1e-3 m^2（默认）
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 端口处垂直于流路的面积 0.01 m^2（默认）
+  group: ''
+- name: Discharge coefficient
+  summary: 通过节流的实际质量流量与理论质量流量之比 0.64（默认）
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 气体流动在层流和湍流状态之间转换时的压力比 0.999（默认）
+  group: ''
+```
 
 ### **Restriction type** — 指定节流面积是否可以在仿真期间变化 `Variable`（默认）| `Fixed`
 
@@ -80,7 +115,6 @@ chinese_source: worker-translation
 ### **Laminar flow pressure ratio** — 气体流动在层流和湍流状态之间转换时的压力比 `0.999`（默认）
 
 气体流动在层流和湍流状态之间转换时的压力比。在层流状态下，压力损失与质量流量成线性关系；在湍流状态下，压力损失与质量流量成二次关系。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

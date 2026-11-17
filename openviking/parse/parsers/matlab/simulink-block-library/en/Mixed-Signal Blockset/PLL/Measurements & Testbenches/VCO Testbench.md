@@ -14,6 +14,17 @@ language: en
 # VCO Testbench
 
 ## Ports
+```yaml
+ports:
+- name: from vco
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: to vco
+  summary: Output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -34,8 +45,49 @@ Output signal, which provides control voltage stimulus to the input of
 VCO DUT.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement
+  summary: Target metric to be measured Phase noise (default) | Kvco and Fo
+  group: ''
+- name: Set stop time
+  summary: Set recommended minimum simulation stop time as model stop time button
+  group: ''
+- name: Plot measurement
+  summary: Plot measurements button
+  group: ''
+- name: Export measurement results
+  summary: Export measurement results button
+  group: ''
+- name: Control voltage (V)
+  summary: VCO control voltage 2 (default) | scalar
+  group: Stimulus
+- name: Range of control voltage (V)
+  summary: Range of VCO control voltages [2 7] (default) | two-element row vector
+  group: Stimulus
+- name: Autofill setup parameters
+  summary: Automatically calculate setup parameters for phase noise measurement button
+  group: Setup
+- name: Resolution bandwidth (Hz)
+  summary: Smallest positive frequency that can be resolved 30e3 (default) | real positive scalar
+  group: Setup
+- name: No. of spectral averages
+  summary: Number of spectral averages 8 (default) | positive integer scalar
+  group: Setup
+- name: Hold-off time (s)
+  summary: Delays measurement analysis to avoid transients 0 (default)
+  group: Setup
+- name: Autofill target metric
+  summary: Automatically populate target phase noise metric button
+  group: Target Metric
+- name: Phase noise frequency offset vector (Hz)
+  summary: Phase noise frequency offset vector [30e3 100e3 1e6 3e6 10e6] (default) | real valued vector
+  group: Target Metric
+- name: Phase noise vector (dBc/Hz)
+  summary: Phase noise vector [-45 -55 -65 -75 -100] (default) | real valued vector
+  group: Target Metric
+```
 
 ### **Measurement** — Target metric to be measured `Phase noise` (default) | `Kvco and Fo`
 
@@ -327,7 +379,6 @@ option.
   `set_param(gcb,'PhaseNoiseVector',value)`
   to set **Phase noise vector (dBc/Hz)** to a
   specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

@@ -14,6 +14,12 @@ language: en
 # Moist Air Properties (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Connection port moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,8 +31,89 @@ diagram. When you connect the Moist Air Properties
 (MA) block to a connection line, the software
 automatically identifies the moist air blocks connected to the
 particular circuit and propagates the properties to all these blocks.
-
 ## Parameters
+```yaml
+parameters:
+- name: Dry air specific gas constant
+  summary: Universal gas constant divided by molar mass of dry air 287.047 J/kg/K (default)
+  group: Dry Air
+- name: Temperature vector
+  summary: Vector of temperature values for table lookup vector
+  group: Dry Air
+- name: Dry air specific enthalpy vector
+  summary: Vector of specific enthalpy values for table lookup vector
+  group: Dry Air
+- name: Dry air dynamic viscosity vector
+  summary: Vector of dynamic viscosity values for table lookup vector
+  group: Dry Air
+- name: Dry air thermal conductivity vector
+  summary: Vector of thermal conductivity values for table lookup vector
+  group: Dry Air
+- name: Minimum valid pressure
+  summary: Lowest pressure allowed 1 kPa (default)
+  group: Dry Air
+- name: Maximum valid pressure
+  summary: Highest pressure allowed inf MPa (default)
+  group: Dry Air
+- name: Minimum valid temperature
+  summary: Lowest temperature allowed -56.55 degC (default)
+  group: Dry Air
+- name: Maximum valid temperature
+  summary: Highest temperature allowed 350 degC (default)
+  group: Dry Air
+- name: Pressure and temperature outside valid range
+  summary: Whether to notify when pressure or temperature are outside valid range Error (default) | Warning | None
+  group: Dry Air
+- name: Atmospheric pressure
+  summary: Absolute pressure of the environment 0.101325 MPa (default)
+  group: Dry Air
+- name: Atmospheric temperature
+  summary: Absolute temperature of the environment 20 degC (default)
+  group: Dry Air
+- name: Enable entrained water droplets
+  summary: Option to model water droplets Off (default) | On
+  group: Water Vapor
+- name: Water vapor specific gas constant
+  summary: Universal gas constant divided by molar mass of water vapor 461.523 J/kg/K (default)
+  group: Water Vapor
+- name: Water vapor saturation pressure vector
+  summary: Vector of vapor saturation values for table lookup vector
+  group: Water Vapor
+- name: Water specific enthalpy of vaporization vector
+  summary: Vector of specific enthalpy of vaporization values for table lookup vector
+  group: Water Vapor
+- name: Water vapor specific enthalpy vector
+  summary: Vector of specific enthalpy values for table lookup vector
+  group: Water Vapor
+- name: Water vapor dynamic viscosity vector
+  summary: Vector of dynamic viscosity values for table lookup vector
+  group: Water Vapor
+- name: Water vapor thermal conductivity vector
+  summary: Vector of thermal conductivity values for table lookup vector
+  group: Water Vapor
+- name: Water vapor diffusivity in air
+  summary: Smoothing coefficient for flow reversals 25 mm^2/s (default)
+  group: Water Vapor
+- name: Trace gas model
+  summary: Select how to model trace gas in the air mixture None (default) | Track mass fraction only | Track mass fraction
+    and gas properties
+  group: Trace Gas
+- name: Trace gas specific gas constant
+  summary: Universal gas constant divided by molar mass of trace gas 188.923 J/kg/K (default)
+  group: Trace Gas
+- name: Trace gas specific enthalpy vector
+  summary: Vector of specific enthalpy values for table lookup vector
+  group: Trace Gas
+- name: Trace gas dynamic viscosity vector
+  summary: Vector of dynamic viscosity values for table lookup vector
+  group: Trace Gas
+- name: Trace gas thermal conductivity vector
+  summary: Vector of thermal conductivity values for table lookup vector
+  group: Trace Gas
+- name: Trace gas diffusivity in air
+  summary: Smoothing coefficient for flow reversals 16 mm^2/s (default)
+  group: Trace Gas
+```
 
 ### Dry Air
 
@@ -472,7 +559,6 @@ Enabled when the **Trace gas model** parameter is
 set to `Track mass fraction only` or
 `Track mass fraction and gas
 properties`.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Utilities

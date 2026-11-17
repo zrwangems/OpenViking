@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Monopulse Feed
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入信号，复值 *M*×*N* 矩阵
+  direction: input
+  data_types: double
+- name: STEER
+  summary: 阵列导向方向，标量 | 实值 2×1 列向量
+  direction: input
+  data_types: double
+- name: SIGMA
+  summary: 和通道信号，复值 *M*×1 列向量
+  direction: output
+  data_types: double
+- name: DeltaAz
+  summary: 方位差通道信号，复值 *M*×1 列向量
+  direction: output
+  data_types: double
+- name: DeltaEl
+  summary: 俯仰差通道信号，复值 *M*×1 向量
+  direction: output
+  data_types: double
+- name: ANG
+  summary: 目标估计方向，实值 2×1 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -75,8 +102,152 @@ chinese_source: worker-translation
 要启用此输出端口，请选中 **Output angle estimate** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: ''
+- name: Operating frequency (Hz)
+  summary: 系统工作频率 3e8（默认）| 正实标量
+  group: ''
+- name: Monopulse coverage
+  summary: 单脉冲覆盖方向 3D（默认）| Azimuth
+  group: ''
+- name: Squint angle (degrees)
+  summary: 斜视角度 10（默认）| 标量 | 实值 2×1 向量
+  group: ''
+- name: Output angle estimate
+  summary: 启用角度估计输出 off（默认）| on
+  group: ''
+- name: Generate Monopulse Tracker
+  summary: 创建 Monopulse 估计器模块按钮
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| Partitioned array | Replicated subarray | MATLAB expression
+  group: ''
+- name: Expression
+  summary: 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
+  group: ''
+- name: Element type
+  summary: 阵列单元类型 Isotropic Antenna（默认）| Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone
+  group: ''
+- name: Operating frequency range (Hz)
+  summary: 天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值 1×2 行向量
+  group: ''
+- name: Operating frequency vector (Hz)
+  summary: 自定义天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值行向量
+  group: ''
+- name: Baffle the back of the element
+  summary: 将 Isotropic Antenna 单元或 Omni Microphone 单元的后向响应设置为零 关（默认）| 开
+  group: ''
+- name: Exponent of cosine pattern
+  summary: 方位角和仰角余弦方向图的指数 [1.5 1.5]（默认）| 非负标量 | 非负实值 1×2 矩阵
+  group: ''
+- name: Frequency responses (dB)
+  summary: 天线和麦克风频率响应 [0,0]（默认）| 实值行向量
+  group: ''
+- name: Input Pattern Coordinate System
+  summary: 自定义天线方向图的坐标系 az-el（默认）| phi-theta
+  group: ''
+- name: Azimuth angles (deg)
+  summary: 天线辐射方向图的方位角 [-180:180]（默认）| 实值行向量
+  group: ''
+- name: Elevation angles (deg)
+  summary: 天线辐射方向图的俯仰角 [-90:90]（默认）| 实值行向量
+  group: ''
+- name: Phi Angles (deg)
+  summary: 自定义天线辐射方向图的 Phi 角坐标 0:360 | 实值 1×*P* 行向量
+  group: ''
+- name: Theta Angles (deg)
+  summary: 自定义天线辐射方向图的 Theta 角坐标 0:180 | 实值 1×*Q* 行向量
+  group: ''
+- name: Magnitude pattern (dB)
+  summary: 组合天线辐射方向图的幅度 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: ''
+- name: Phase pattern (deg)
+  summary: 自定义天线辐射相位方向图 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: ''
+- name: MatchArrayNormal
+  summary: 将天线阵子旋转至阵列法线方向 on（默认）| off
+  group: ''
+- name: Polar pattern frequencies (Hz)
+  summary: 极坐标方向图麦克风响应频率 1e3（默认）| 实标量 | 实值 1×*L* 行向量
+  group: ''
+- name: Polar pattern angles (deg)
+  summary: 极坐标方向图响应角度 [-180:180]（默认）| 实值 1×*P* 行向量
+  group: ''
+- name: Polar pattern (dB)
+  summary: 自定义麦克风极性响应 zeros(1,361)（默认）| 实值 *L*×*P* 矩阵
+  group: ''
+- name: Geometry
+  summary: 阵列几何结构 ULA（默认）| URA | UCA | Conformal Array
+  group: ''
+- name: Number of elements
+  summary: 阵列阵元数量 ULA 阵列为 2，UCA 阵列为 5（默认）| 大于或等于 2 的整数
+  group: ''
+- name: Element spacing (m)
+  summary: 阵列阵元之间的间距 ULA 阵列为 0.5，URA 阵列为 [0.5,0.5]（默认）| ULA 或 URA 阵列的正标量 | URA 阵列的 2 元素正值向量
+  group: ''
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认）| x | z
+  group: ''
+- name: Array size
+  summary: URA 阵列的维度 [2,2]（默认）| 正整数 | 1×2 正整数向量
+  group: ''
+- name: Element lattice
+  summary: URA 阵元位置的晶格 Rectangular（默认）| Triangular
+  group: ''
+- name: Array normal
+  summary: 阵列法线方向 URA 阵列为 x 或 UCA 阵列为 z（默认）| y
+  group: ''
+- name: Radius of UCA (m)
+  summary: UCA 阵列半径 0.5（默认）| 正标量
+  group: ''
+- name: Element positions (m)
+  summary: 共形阵列阵元位置 [0;0;0]（默认）| 3×*N* 实数值矩阵
+  group: ''
+- name: Element normals (deg)
+  summary: 共形阵列阵元法向量的方向 [0;0] | 2×1 列向量 | 2×*N* 矩阵
+  group: ''
+- name: Taper
+  summary: 阵元锥削 1（默认）| 复值标量 | 复值行向量
+  group: ''
+- name: Subarray definition matrix
+  summary: 定义属于子阵的阵元 逻辑矩阵
+  group: ''
+- name: Subarray steering method
+  summary: 指定子阵导向方法 None（默认）| Phase | Time
+  group: ''
+- name: Phase shifter frequency (Hz)
+  summary: 子阵移相频率 3.0e8（默认）| 正实值标量
+  group: ''
+- name: Number of bits in phase shifters
+  summary: 子阵导向移相量化位数 0（默认）| 非负整数
+  group: ''
+- name: Subarrays layout
+  summary: 子阵位置指定 Rectangular（默认）| Custom
+  group: ''
+- name: Grid size
+  summary: 矩形子阵网格的维度 [1,2]（默认值）
+  group: ''
+- name: Grid spacing (m)
+  summary: 矩形网格上子阵之间的间距 Auto（默认值） | 正实值标量 | 正实值组成的 1×2 向量
+  group: ''
+- name: Subarray positions (m)
+  summary: 子阵的位置 [0,0;0.5,0.5;0,0]（默认值） | 3×*N* 实值矩阵
+  group: ''
+- name: Subarray normals
+  summary: 子阵法向量的方向 [0,0;0,0]（默认值） | 2×*N* 实矩阵
+  group: ''
+```
 
 #### 主选项卡
 
@@ -624,7 +795,6 @@ UCA 阵列的半径，指定为正标量。
 #### 依赖关系
 
 要启用此参数，请将 **Sensor array** 参数设置为 `Replicated subarray`，并将 **Subarrays layout** 设置为 `Custom`。
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

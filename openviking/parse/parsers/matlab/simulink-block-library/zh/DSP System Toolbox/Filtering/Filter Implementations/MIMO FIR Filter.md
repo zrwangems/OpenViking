@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # MIMO FIR Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 数据输入向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: 时域 FIR 滤波器系数行向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 滤波后的输出向量 | 矩阵 | 三维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -56,8 +71,28 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: 分子来源
+  summary: FIR 滤波器系数的来源 Property（默认）| Input port
+  group: ''
+- name: 分子
+  summary: 时域 FIR 滤波器系数 [0.5 0.5;0.75 0.25]（默认）| 行向量 | 矩阵
+  group: ''
+- name: 传播路径数
+  summary: 每对输入和输出通道之间的传播路径数 1（默认）| 正整数
+  group: ''
+- name: 对所有输入通道的滤波输出贡献求和
+  summary: 对所有输入通道的滤波输出贡献求和的选项 on（默认）| off
+  group: ''
+- name: 查看滤波器响应
+  summary: 查看滤波器响应按钮
+  group: ''
+- name: 仿真方式
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -129,7 +164,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。只要模型不更改，C 代码将复用于后续仿真。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Implementations

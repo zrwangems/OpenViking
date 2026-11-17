@@ -14,6 +14,25 @@ language: en
 # Saturation Dynamic
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: up
+  summary: Signal that provides the upper saturation limit scalar | vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: lo
+  summary: Signal that provides the lower saturation limit scalar | vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: y
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -46,8 +65,50 @@ Output signal that is the value of the input signal, upper saturation
 limit, or lower saturation limit.
 
 **Data Types:** `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Specify the output data type Inherit: Same as second input (default) | Inherit: Inherit via back propagation |
+    double | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as second input'' | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | ''<data type expression>'''
+  default: '''Inherit: Same as input'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: ''
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 To edit the parameters for the Saturation Dynamic block, double-click
 the block icon.
@@ -254,7 +315,6 @@ greater than this maximum value causes overflow of the 8-bit integer.
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discontinuities HDL Coder / Discontinuities

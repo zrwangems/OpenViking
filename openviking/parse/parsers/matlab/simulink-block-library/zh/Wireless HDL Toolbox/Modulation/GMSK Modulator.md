@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # GMSK Modulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 数据位 标量
+  direction: input
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 调制后的复数输出数据符号 复数标量 | 复数列向量
+  direction: output
+  data_types: signed fixed point
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已就绪 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -74,8 +101,37 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output type** 参数设置为 `Scalar`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Bandwidth time product
+  summary: 高斯脉冲形状的带宽与符号时间的乘积 0.3（默认值） | 正标量值
+  group: 主要
+- name: Pulse length
+  summary: 脉冲长度 8（默认值） | 范围从 1 到 16 的正整数
+  group: 主要
+- name: Symbol prehistory
+  summary: 符号先验历史 1（默认值） | -1 | 长度为 *L* – 1 的由 –1 或 1 组成的向量
+  group: 主要
+- name: Phase offset (rad)
+  summary: 调制波形的相位偏移 0（默认值） | 范围从 -2\*π 到 2\*π 的数值标量。
+  group: 主要
+- name: Number of samples per symbol
+  summary: 每个符号的采样数 4（默认）| 范围 1 到 64
+  group: 主要
+- name: Number of data points
+  summary: 数据点数 1024（默认）| 范围 65,536 内的正整数且为 2 的幂
+  group: 主要
+- name: Output type
+  summary: 输出类型 Vector（默认）| Scalar
+  group: 主要
+- name: Output word length
+  summary: 输出字长 16（默认）| 字长小于 16 的正标量值
+  group: 数据类型
+- name: Enable reset input port
+  summary: 复位信号 off（默认）| on
+  group: Control Port
+```
 
 ### 主要
 
@@ -125,7 +181,6 @@ chinese_source: worker-translation
 ### **Enable reset input port** — 复位信号 `off`（默认）| `on`
 
 选择此参数以启用 **reset** 输入端口。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

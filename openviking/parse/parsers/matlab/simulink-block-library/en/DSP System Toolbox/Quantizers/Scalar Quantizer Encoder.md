@@ -14,6 +14,37 @@ language: en
 # Scalar Quantizer Encoder
 
 ## Ports
+```yaml
+ports:
+- name: U
+  summary: Input data values vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: B
+  summary: Boundary points vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: C
+  summary: Codebook values vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: I
+  summary: Index values vector | matrix
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Q(U)
+  summary: Quantized output values vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Err
+  summary: Quantization error vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: S
+  summary: Clipping status vector | matrix
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -127,8 +158,49 @@ To enable this port, select the **Output clipping
 status** check box.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of quantizer parameters
+  summary: Source of quantizer parameters Specify via dialog (default) | Input port
+  group: Main Tab
+- name: Partitioning
+  summary: Partitioning method Bounded (default) | Unbounded
+  group: Main Tab
+- name: Boundary points
+  summary: Boundary points [1:10] (default) | vector
+  group: Main Tab
+- name: Searching method
+  summary: Searching method Linear (default) | Binary
+  group: Main Tab
+- name: Tie-breaking rule
+  summary: Action when input value is same as boundary point Choose the lower index (default) | Choose the higher index
+  group: Main Tab
+- name: Output codeword
+  summary: Output codeword off (default) | on
+  group: Main Tab
+- name: Output quantization error
+  summary: Output quantization error off (default) | on
+  group: Main Tab
+- name: Codebook
+  summary: Quantized output values [1.5:9.5] (default) | vector
+  group: Main Tab
+- name: Output clipping status
+  summary: Output clipping status off (default) | on
+  group: Main Tab
+- name: Action for out of range input
+  summary: Action for out of range input Clip | Clip and warn | Error
+  group: Main Tab
+- name: Index output data type
+  summary: Index output data type int32 (default) | int8 | uint8 | int16 | uint16 | int32 | uint32 | Inherit via back propagation
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -371,7 +443,6 @@ fixed-point operation. When you clear this parameter, the block wraps
 the result of its fixed-point operation. For details on
 `saturate` and `wrap`, see overflow
 mode for fixed-point operations.
-
 ## Libraries
 
 DSP System Toolbox / Quantizers

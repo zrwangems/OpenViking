@@ -14,6 +14,17 @@ language: en
 # Backlash
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -34,8 +45,39 @@ unchanged. If the input is engaged with the output, then the output
 changes an equal amount as the input.
 
 **Data Types:** `double` | `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Deadband width
+  summary: Specify the width of the deadband 1 (default) | scalar | vector
+  group: ''
+  block_parameter: BacklashWidth
+  type: character vector
+  values: real scalar or vector
+  default: '''1'''
+- name: Initial output
+  summary: Specify the initial output value 0 (default) | scalar | vector
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector
+  values: real scalar or vector
+  default: '''0'''
+- name: Input processing
+  summary: Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame
+    based)
+  group: ''
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Deadband width** — Specify the width of the deadband `1` (default) | scalar | vector
 
@@ -115,7 +157,6 @@ does not detect or locate zero crossings for this block.
 | **Type**: character vector | string |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Simulink / Discontinuities HDL Coder / Discontinuities

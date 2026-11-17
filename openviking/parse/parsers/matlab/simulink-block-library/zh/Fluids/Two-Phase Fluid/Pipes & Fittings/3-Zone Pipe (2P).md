@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 3-Zone Pipe (2P)
 
 ## 端口
+```yaml
+ports:
+- name: Z
+  summary: 区域长度分数物理信号
+  direction: output
+- name: A
+  summary: 管道开口两相流体
+  direction: output
+- name: B
+  summary: 管道开口两相流体
+  direction: output
+- name: H
+  summary: 管壁热
+  direction: output
+```
 
 ### 输出
 
@@ -34,8 +49,103 @@ chinese_source: worker-translation
 ### **H** — 管壁热
 
 管壁外表面的热边界条件。使用此端口可捕获管壁与环境之间的各种热交换——例如传导、对流或辐射。管壁内表面与流体之间的热交换直接在模块中捕获。
-
 ## 参数
+```yaml
+parameters:
+- name: Pipe length
+  summary: 管道端口之间的距离 5 m（默认）| 带长度单位的正标量
+  group: 几何
+- name: Cross-sectional area
+  summary: 垂直于流动方向的内部面积 0.01 m^2（默认）| 带面积单位的正标量
+  group: 几何
+- name: Hydraulic diameter
+  summary: 具有给定横截面积的圆柱形管道的直径 0.1 m（默认）| 带长度单位的正标量
+  group: 几何
+- name: Elevation gain from port A to port B
+  summary: 恒定管道高程差 0 m（默认）| 标量
+  group: 几何
+- name: Gravitational acceleration
+  summary: 重力加速度 9.81 m/s^2（默认）| 标量
+  group: 几何
+- name: Aggregate equivalent length of local resistances
+  summary: 以长度表示的管道局部压力损失 1 m（默认）| 带长度单位的正标量
+  group: 粘性摩擦
+- name: Internal surface absolute roughness
+  summary: 管道内表面缺陷的平均深度 15e-6 m（默认）| 带长度单位的正标量
+  group: 粘性摩擦
+- name: Laminar flow upper Reynolds number limit
+  summary: 低于此雷诺数时流动为层流 2e+3（默认）| 正无量纲标量
+  group: 粘性摩擦
+- name: Turbulent flow lower Reynolds number limit
+  summary: 高于此雷诺数时流动为湍流 4e+3（默认）| 正无量纲标量
+  group: 粘性摩擦
+- name: Shape factor for laminar flow viscous friction
+  summary: 用于捕获几何形状对粘性摩擦损失影响的无量纲因子 64（默认）| 正无量纲标量
+  group: 粘性摩擦
+- name: External environment heat transfer coefficient
+  summary: 环境与管壁之间的传热系数 100 W/(m^2*K)（默认）| 带功率/(面积\*温度)单位的正标量
+  group: 传热
+- name: Wall thickness
+  summary: 管壁材料的平均厚度 0 m（默认）| 带长度单位的正标量
+  group: 传热
+- name: Wall thermal conductivity
+  summary: 管壁材料的导热系数 390 W/(m*K)（默认）| 带功率/(长度\*温度)单位的正标量
+  group: 传热
+- name: Wall specific heat
+  summary: 管壁材料单位质量的热容量 390 J/kg/K（默认）| 带能量/(质量\*温度)单位的正标量
+  group: 传热
+- name: Wall density
+  summary: 管壁材料的质量密度 9e3 kg/m^3（默认）| 带质量/体积单位的正标量
+  group: 传热
+- name: Ratio of external fins surface area to no-fin surface area
+  summary: 带外部翅片的传热表面积与无翅片传热表面积之比 0（默认）| 正无量纲标量
+  group: 传热
+- name: External fin efficiency
+  summary: 带外部翅片的实际换热率与理想换热率之比 0.5（默认）| 正无量纲标量
+  group: 传热
+- name: Ratio of internal fins surface area to no-fin surface area
+  summary: 带内部翅片的传热表面积与无翅片传热表面积之比 0（默认）| 正无量纲标量
+  group: 传热
+- name: Internal fin efficiency
+  summary: 内部翅片实际与理想换热率之比 0.5（默认）| 正的无量纲标量
+  group: 传热
+- name: Heat transfer coefficient model
+  summary: 流体与壁面之间换热系数的计算方法 Correlation for flow inside tubes（默认）| Colburn equation
+  group: 传热
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in liquid zone
+  summary: 液相区 Colburn 方程系数 [.023, .8, .33]（默认）| 由正标量组成的三元素向量
+  group: 传热
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in mixture zone
+  summary: 混合物区 Cavallini-Zecchin 方程系数 [.05, .8, .33]（默认）| 由正标量组成的三元素向量
+  group: 传热
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in vapor zone
+  summary: 气相区 Colburn 方程系数 [.023, .8, .33]（默认）| 由正标量组成的三元素向量
+  group: 传热
+- name: Nusselt number for laminar flow heat transfer
+  summary: 层流流态下对流传热与导热换热率之比 3.66（默认）
+  group: 传热
+- name: Initial fluid energy specification
+  summary: 要设置其初始值的热力学变量 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: Effects and Initial Conditions Tab
+- name: Initial pressure
+  summary: 仿真开始时的绝对压力 0.101325 MPa（默认）| 带压力单位的标量
+  group: Effects and Initial Conditions Tab
+- name: Initial temperature
+  summary: 仿真开始时的绝对温度 293.15 K（默认）| 带温度单位的标量或二元素向量
+  group: Effects and Initial Conditions Tab
+- name: Initial vapor quality
+  summary: 仿真开始时的蒸汽质量分数 0.5（默认）| 介于 0 和 1 之间的无量纲标量
+  group: Effects and Initial Conditions Tab
+- name: Initial vapor void fraction
+  summary: 仿真开始时的蒸汽体积分数 0.5（默认）| 介于 0 和 1 之间的无量纲标量
+  group: Effects and Initial Conditions Tab
+- name: 初始比焓
+  summary: 仿真开始时的比焓 1500 kJ/kg（默认）| 单位为能量/质量的标量
+  group: Effects and Initial Conditions Tab
+- name: 初始比内能
+  summary: 仿真开始时的比内能 1500 kJ/kg（默认）| 单位为能量/质量的标量
+  group: Effects and Initial Conditions Tab
+```
 
 ### 几何
 
@@ -227,7 +337,6 @@ Nu=aRebPrc。
 #### 依赖关系
 
 当 **初始流体能量指定** 选项设置为 `比内能` 时，此参数处于激活状态。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Pipes & Fittings

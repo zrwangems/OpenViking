@@ -14,6 +14,21 @@ language: en
 # Charge Pump
 
 ## Ports
+```yaml
+ports:
+- name: up
+  summary: Input port scalar
+  direction: input
+  data_types: double
+- name: down
+  summary: Input port scalar
+  direction: input
+  data_types: double
+- name: out
+  summary: Output port scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -41,8 +56,52 @@ delivers current proportional to the difference in duty cycles between
 ports.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output current (A)
+  summary: Design output current 1e-3 (default) | positive real scalar
+  group: Configuration
+- name: Input threshold (V)
+  summary: Logic switching threshold at input ports 0.5 (default) | real scalar
+  group: Configuration
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: Configuration
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 10 (default) | positive integer scalar
+  group: Configuration
+- name: Enable current impairments
+  summary: Add current impairments to simulation on (default) | off
+  group: Impairments
+- name: Current imbalance (A)
+  summary: Difference between full scale positive and negative current 1e-7 (default) | positive real scalar
+  group: Impairments
+- name: Leakage current (A)
+  summary: Output current without any input 1e-8 (default) | nonnegative real scalar
+  group: Impairments
+- name: Enable timing impairments
+  summary: Add timing impairments to simulation on (default) | off
+  group: Impairments
+- name: Output step size calculation
+  summary: Determine how output step size is calculated Default (default) | Advanced
+  group: Impairments
+- name: Maximum frequency of interest (Hz)
+  summary: Maximum frequency of interest at output 10e9 (default) | positive real scalar
+  group: Impairments
+- name: Rise/fall time (s)
+  summary: 20%-80% rise/fall time for up input port 5e-9 (default) | positive real scalar
+  group: Impairments
+- name: Up propagation delay
+  summary: Total propagation delay for up input port 6e-9 (default) | positive real scalar
+  group: Impairments
+- name: Rise/fall time
+  summary: 20%-80% rise/fall time for down input port 2e-9 (default) | positive real scalar
+  group: Impairments
+- name: Down propagation delay
+  summary: Total propagation delay for down input port 4e-9 (default) | positive real scalar
+  group: Impairments
+```
 
 ### Configuration
 
@@ -296,7 +355,6 @@ tab.
   `set_param(gcb,'PropDelayDown',value)` to
   set **Down propagation delay** to a
   specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Building Blocks

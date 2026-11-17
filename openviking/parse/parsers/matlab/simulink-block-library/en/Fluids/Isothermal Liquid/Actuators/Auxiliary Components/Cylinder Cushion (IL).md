@@ -14,6 +14,21 @@ language: en
 # Cylinder Cushion (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid entry port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid exit port isothermal liquid
+  direction: conserving
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,45 @@ plunger velocity and force.
 
 Mechanical translational conserving port associated with the cylinder reference
 structure.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cushion plunger cross-sectional area
+  summary: Cross-sectional area of cushion plunger 1e-4 m^2 (default) | positive scalar
+  group: Cushion Plunger
+- name: Cushion plunger length
+  summary: Length of cushion plunger 1e-3 m (default) | positive scalar
+  group: Cushion Plunger
+- name: Initial actuator piston displacement
+  summary: Initial displacement of attached piston 0 m (default) | scalar
+  group: Cushion Plunger
+- name: Actuator mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Cushion Plunger
+- name: Cushion orifice area
+  summary: Orifice area of cushioning valve 1e-6 m^2 (default) | positive scalar
+  group: Valves
+- name: Leakage area between plunger and cushion sleeve
+  summary: Total leakage area when the plunger is inside the cap opening 1e-7 m^2 (default) | positive scalar
+  group: Valves
+- name: Check valve cracking pressure differential
+  summary: Pressure differential at which the check valve starts to open 0.01 MPa (default) | positive scalar
+  group: Valves
+- name: Check valve maximum pressure differential
+  summary: Pressure differential needed to fully open the check valve 0.1 MPa (default) | positive scalar
+  group: Valves
+- name: Check valve maximum area
+  summary: Opening area when check valve is fully open 1e-4 m^2 (default) | positive scalar
+  group: Valves
+- name: Check valve leakage area
+  summary: Total leakage area when check valve is fully closed 1e-10 m^2 (default) | positive scalar
+  group: Valves
+- name: Smoothing factor
+  summary: Amount of smoothing to apply to check valve and variable orifice opening area functions 0.01 (default) | positive
+    scalar
+  group: Valves
+```
 
 ### Cushion Plunger
 
@@ -126,7 +178,6 @@ Continuous smoothing factor that introduces a layer of gradual change
 to the flow response when the valve is in near-open or near-closed
 positions. Set this value to a nonzero value less than one to increase
 the stability of your simulation in these regimes.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Actuators / Auxiliary Components

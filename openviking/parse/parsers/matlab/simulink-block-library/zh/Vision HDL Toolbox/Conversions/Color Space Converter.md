@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Color Space Converter
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 向量 | 矩阵
+  direction: input
+  data_types: uint8 | uint16 | fi(0,N,0), where N = 8,9,...,16 | single | double
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 新颜色空间中的输出像素流 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -52,8 +71,19 @@ chinese_source: worker-translation
 对于多像素流，每个像素值向量有一组控制信号。由于该向量只有一个 `valid` 信号，向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Conversion
+  summary: 颜色空间转换类型 RGB to YCbCr（默认）| YCbCr to RGB | RGB to intensity
+  group: ''
+- name: Use conversion specified by
+  summary: 转换方程 Rec. 601 (SDTV)（默认）| Rec. 709 (HDTV)
+  group: ''
+- name: Scanning standard
+  summary: HDTV 扫描标准 1250/50/2:1（默认）| 1125/60/2:1
+  group: ''
+```
 
 ### **Conversion** — 颜色空间转换类型 `RGB to YCbCr`（默认）| `YCbCr to RGB` | `RGB to intensity`
 
@@ -74,7 +104,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数在将 **Use conversion specified by** 设置为 `Rec. 709 (HDTV)` 时适用。
-
 ## 所属库
 
 Vision HDL Toolbox / Conversions

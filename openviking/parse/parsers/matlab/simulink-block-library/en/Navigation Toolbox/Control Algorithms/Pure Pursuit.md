@@ -14,6 +14,32 @@ language: en
 # Pure Pursuit
 
 ## Ports
+```yaml
+ports:
+- name: Pose
+  summary: Current vehicle pose [x y theta] vector
+  direction: input
+- name: Waypoints
+  summary: Waypoints [ ] (default) | *n*-by-2 array
+  direction: input
+- name: Desired Linear Velocity
+  summary: Linear velocity scalar in meters per second
+  direction: input
+- name: Lookahead Distance
+  summary: Look-ahead distance scalar in meters per second
+  direction: input
+- name: Linear Velocity
+  summary: Linear velocity scalar in meters per second
+  direction: output
+  data_types: double
+- name: Angular Velocity
+  summary: Angular velocity scalar in radians per second
+  direction: output
+  data_types: double
+- name: Target Direction
+  summary: Target direction for vehicle scalar in radians
+  direction: output
+```
 
 ### Input
 
@@ -84,8 +110,31 @@ block.
 
 To enable this port, select the **Show Target Direction
 output port** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify desired linear velocity from input port
+  summary: Enable input port for desired linear velocities off (default) | on
+  group: ''
+- name: Desired linear velocity (m/s)
+  summary: Linear velocity 0.1 (default) | scalar
+  group: ''
+- name: Maximum angular velocity (rad/s)
+  summary: Angular velocity 1.0 (default) | scalar
+  group: ''
+- name: Specify lookahead distance from input port
+  summary: Enable input port for look-ahead distances off (default) | on
+  group: ''
+- name: Lookahead distance (m)
+  summary: Look-ahead distance 1.0 (default) | scalar
+  group: ''
+- name: Show Target Direction output port
+  summary: Target direction indicator off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 ### **Specify desired linear velocity from input port** — Enable input port for desired linear velocities `off` (default) | `on`
 
@@ -160,7 +209,6 @@ forward position, with positive angles measured counterclockwise.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Mobile Robot Algorithms Navigation Toolbox / Control Algorithms

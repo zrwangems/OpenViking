@@ -14,10 +14,72 @@ language: en
 # CAN FD Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: CAN device and channel list option
+  group: ''
+  block_parameter: Device
+  type: character vector, string
+- name: Arbitration Bus speed
+  summary: Arbitration bit rate numeric
+  group: ''
+  block_parameter: ArbitrationBusSpeed
+  type: character vector, string
+  values: integer
+- name: Data Bus speed
+  summary: Data bit rate numeric
+  group: ''
+  block_parameter: DataBusSpeed
+  type: character vector, string
+  values: integer
+- name: Bus frequency
+  summary: PEAK-System bus rate numeric
+  group: ''
+  block_parameter: BusFrequency
+  type: character vector, string
+  values: numeric
+- name: Arbitration/Data bit rate prescaler
+  summary: Bit rate prescaler integer
+  group: ''
+  block_parameter: ArbitrationPrescaler, DataPrescaler
+  type: character vector, string
+  values: integer
+- name: Synchronization jump width
+  summary: Maximum allowed time adjustment integer
+  group: ''
+  block_parameter: ArbitrationSJW, DataSJW
+  type: character vector, string
+  values: integer
+- name: Time segment 1
+  summary: Number of time quanta before sample integer
+  group: ''
+  block_parameter: ArbitrationTSEG1, DataTSEG1
+  type: character vector, string
+  values: integer
+- name: Time segment 2
+  summary: Number of time quanta after sample integer
+  group: ''
+  block_parameter: ArbitrationTSEG2, DataTSEG2
+  type: character vector, string
+  values: integer
+- name: Verify bit parameter settings validity
+  summary: Check validity of settings
+  group: ''
+- name: Acknowledge mode
+  summary: Control channel activity on CAN bus Normal (default) | Silent
+  group: ''
+  block_parameter: AckMode
+  type: character vector, string
+  values: '''Normal'' | ''Silent'''
+  default: '''Normal'''
+```
 
 ### **Device** — CAN device and channel list option
 
@@ -168,7 +230,6 @@ and not transmit.
 | **Type:** character vector, string |
 | **Values:** `'Normal'` | `'Silent'` |
 | **Default:** `'Normal'` |
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN FD Communication

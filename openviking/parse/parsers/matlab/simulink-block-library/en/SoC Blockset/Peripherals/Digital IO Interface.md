@@ -14,6 +14,29 @@ language: en
 # Digital IO Interface
 
 ## Ports
+```yaml
+ports:
+- name: msg
+  summary: SoC message data scalar
+  direction: input
+  data_types: SoCData
+- name: in
+  summary: Input digital signal scalar
+  direction: input
+  data_types: single | double
+- name: out
+  summary: Output digital signal scalar
+  direction: output
+  data_types: single | double
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+- name: message
+  summary: SoC message data scalar
+  direction: output
+  data_types: SoCData
+```
 
 ### Input
 
@@ -79,8 +102,28 @@ To enable this port, set the  **IO direction** parameter
 to `Input`.
 
 **Data Types:** `SoCData`
-
 ## Parameters
+```yaml
+parameters:
+- name: IO direction
+  summary: Configure block as digital input or output Input (default) | Output
+  group: ''
+- name: Low input voltage
+  summary: Low input voltage threshold 0.2 (default) | nonnegative scalar
+  group: ''
+- name: High input voltage
+  summary: High input voltage threshold 2.5 (default) | nonnegative scalar
+  group: ''
+- name: Enable event
+  summary: Option to enable event generation on (default) | off
+  group: ''
+- name: Condition
+  summary: Condition on when to trigger event Rising edge (default) | Falling edge | Both
+  group: ''
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **IO direction** — Configure block as digital input or output `Input` (default) | `Output`
 
@@ -132,7 +175,6 @@ Select the condition for when to generate the digital input event.
 
 Specify the sample time (in seconds) to define the rate at which to output the
 message containing the digital input data.
-
 ## Libraries
 
 SoC Blockset / Peripherals Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

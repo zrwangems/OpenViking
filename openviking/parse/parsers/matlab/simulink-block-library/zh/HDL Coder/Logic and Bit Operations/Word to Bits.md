@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Word to Bits
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: 输出信号 二值标量 | 二值向量
+  direction: output
+  data_types: ufix1
+```
 
 ### 输入
 
@@ -34,8 +45,22 @@ chinese_source: worker-translation
 输出信号，以二值标量或向量的形式返回。在 **Maximum Word Length** 参数中设置此向量的长度。该模块将输出向量的第一个元素视为 LSB，并将后续位按升序视为下一个有效位。
 
 **数据类型:** `ufix1`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum Word Length
+  summary: 最大输出字长 64（默认）| [1, 65535] 范围内的整数
+  group: ''
+  block_parameter: maxWordLength
+  type: 字符向量
+  values: '[1, 65535] 范围内的整数'
+- name: Output bit order
+  summary: 输出位顺序 LSB first（默认）| MSB first
+  group: ''
+  block_parameter: bitOrder
+  type: 字符向量
+  values: '''LSB first'' | ''MSB first'''
+```
 
 ### **Maximum Word Length** — 最大输出字长 `64`（默认）| [1, 65535] 范围内的整数
 
@@ -62,7 +87,6 @@ chinese_source: worker-translation
 | **类型**: 字符向量 |
 | **值**: `'LSB first'` | `'MSB first'` |
 | **默认**: `'LSB first'` |
-
 ## 所属库
 
 HDL Coder / Logic and Bit Operations

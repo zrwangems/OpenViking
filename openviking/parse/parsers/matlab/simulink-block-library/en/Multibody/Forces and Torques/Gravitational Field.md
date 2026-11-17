@@ -14,18 +14,22 @@ language: en
 # Gravitational Field
 
 ## Ports
+```yaml
+ports: []
+```
 
 Frame port B represents a frame with origin at the point mass
 responsible for the gravitational field.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Mass**
 :   Total mass generating the gravitational field. The resulting
     gravitational forces are directly proportional to this mass. This
     mass adds no inertia to the model. The default value for the mass
     parameter is `1.0` kg.
-
 ## Libraries
 
 Not documented in R2025b.

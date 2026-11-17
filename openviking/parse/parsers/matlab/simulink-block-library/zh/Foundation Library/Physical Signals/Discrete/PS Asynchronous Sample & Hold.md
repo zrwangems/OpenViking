@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # PS Asynchronous Sample & Hold
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: T
+  summary: 触发物理信号，无量纲物理信号
+  direction: input
+- name: Y
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -36,15 +48,19 @@ chinese_source: worker-translation
 输出物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial output
+  summary: 零时刻的输出 0 1（默认）
+  group: ''
+```
 
 ### **Initial output** — 零时刻的输出 `0 1`（默认）
 
 零时刻输出信号的值和单位。第一个编辑框表示信号值。模块的输出保持此值，直到模块被变为正值的上升触发信号触发。
 
 第二个组合框表示信号单位。默认情况下，单位为 `1`（无量纲）。指定与输入端口 **U** 处信号单位一致的单位。您可以从下拉列表中选择单位，或键入所需的单位名称（如 `rpm`），或有效的表达式（如 `rad/s`）。有关更多信息以及单位缩写列表，请参阅如何在模块对话框中指定单位和单位定义。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Discrete

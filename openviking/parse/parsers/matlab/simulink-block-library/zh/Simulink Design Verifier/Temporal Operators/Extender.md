@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Extender
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号，指定为 boolean boolean
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: 输出信号，返回为 boolean boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,19 @@ Extender 模块的输入为 boolean 类型。
 Extender 模块的输出为 boolean 类型。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: External reset
+  summary: 指定模块是否可以被复位 off（默认）| on
+  group: ''
+- name: Extension Period
+  summary: 指定扩展的固定时间步数 Finite（默认）| Infinite
+  group: ''
+- name: Time steps for extension
+  summary: 指定用于延长 true 持续时间的时间步数 3（默认）| boolean
+  group: ''
+```
 
 ### **External reset** — 指定模块是否可以被复位 off（默认）| on
 
@@ -44,7 +66,6 @@ Extender 模块的输出为 boolean 类型。
 ### **Time steps for extension** — 指定用于延长 true 持续时间的时间步数 3（默认）| boolean
 
 对于有限扩展，指定用于延长 true 持续时间的时间步数（最小值为 `1`）。
-
 ## 所属库
 
 Simulink Design Verifier / Temporal Operators

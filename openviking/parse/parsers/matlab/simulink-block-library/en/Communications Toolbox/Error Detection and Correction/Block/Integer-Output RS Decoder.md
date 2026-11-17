@@ -14,6 +14,24 @@ language: en
 # Integer-Output RS Decoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Reed-Solomon codeword integer column vector
+  direction: input
+  data_types: single | double | integer
+- name: Era
+  summary: Erasure vector binary column vector
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: Decoded message integer column vector
+  direction: output
+- name: Err
+  summary: Decoding errors integer vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -100,8 +118,35 @@ symbol errors**.
 **Data Types:** `double`
 
 For more information, see Supported Data Types.
-
 ## Parameters
+```yaml
+parameters:
+- name: Codeword length N
+  summary: Codeword length 7 (default) | integer
+  group: ''
+- name: Message length K
+  summary: Message word length 3 (default) | integer
+  group: ''
+- name: Shortened message length S
+  summary: Shortened message word length 3 (default) | integer
+  group: ''
+- name: Generator polynomial
+  summary: Generator polynomial rsgenpoly(7, 3, [], [], 'double') (default) | polynomial character vector | binary row vector
+    | binary Galois row vector
+  group: ''
+- name: Primitive polynomial
+  summary: Primitive polynomial 'X^3 + X + 1' (default) | polynomial character vector | binary row vector
+  group: ''
+- name: Puncture vector
+  summary: Puncture vector [ones(2,1); zeros(2,1)] (default) | binary column vector
+  group: ''
+- name: Enable erasures input port
+  summary: Enable erasures input port off (default) | on
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: Enable port to output number of corrected symbol errors off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -213,7 +258,6 @@ Selecting this check box enables the erasures port,
 Selecting this check box enables an additional output port,
 **Err**, which indicates the number of symbol errors
 the block corrected in the input codeword.
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Block

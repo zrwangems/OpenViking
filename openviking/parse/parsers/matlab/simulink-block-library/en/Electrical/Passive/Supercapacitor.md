@@ -14,6 +14,15 @@ language: en
 # Supercapacitor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive electrical terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative electrical terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,31 @@ terminal.
 
 Electrical conserving port associated with the negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Fixed resistances, [R1 R2 R3]
+  summary: Fixed resistance values for each branch [0.2, 90.0, 1000.0] Ohm (default)
+  group: ''
+- name: Fixed capacitances, [C1 C2 C3]
+  summary: Fixed capacitance values for each branch [2.5, 1.5, 4.0] F (default)
+  group: ''
+- name: Voltage-dependent capacitor gain
+  summary: Variable capacitance coefficient for the first branch 0.95 F/V (default)
+  group: ''
+- name: Self-discharge resistance
+  summary: Resistance to self-discharge inf (default)
+  group: ''
+- name: Number of series cells
+  summary: Number of supercapacitor cells in series 1 (default)
+  group: ''
+- name: Number of parallel cells
+  summary: Number of supercapacitor cells in parallel 1 (default)
+  group: ''
+- name: Beginning Value
+  summary: Initial target value 0 (default)
+  group: ''
+```
 
 #### Cell Characteristics
 
@@ -72,7 +104,6 @@ configuration.
 Use the **Variables** tab to set the priority and initial
 target values for the block variables before simulation. For more
 information, see Set Priority and Initial Target for Block Variables.
-
 ## Libraries
 
 Simscape / Electrical / Passive

@@ -14,6 +14,24 @@ language: en
 # Bicycle Kinematic Model
 
 ## Ports
+```yaml
+ports:
+- name: v
+  summary: Vehicle speed numeric scalar
+  direction: input
+- name: psi
+  summary: Steering angle numeric scalar
+  direction: input
+- name: omega
+  summary: Steering angular velocity numeric scalar
+  direction: input
+- name: state
+  summary: Pose of vehicle three-element vector
+  direction: output
+- name: stateDot
+  summary: Derivatives of state output three-element vector
+  direction: output
+```
 
 ### Input
 
@@ -54,8 +72,29 @@ The linear and angular velocities of the vehicle, specified as a *[xDot
 yDot thetaDot]* vector in meters per second and radians per second. The
 linear and angular velocities are calculated by taking the derivative of the `state`
 output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Vehicle inputs
+  summary: Type of speed and directional inputs for vehicle Vehicle Speed & Steering Angle (default) | Vehicle Speed & Heading
+    Angular Velocity
+  group: ''
+- name: Wheel base
+  summary: Distance between front and rear axles 1 (default) | positive numeric scalar
+  group: ''
+- name: Vehicle speed range
+  summary: Minimum and maximum vehicle speeds [-Inf Inf] (default) | two-element vector
+  group: ''
+- name: Maximum steering angle
+  summary: Max turning radius pi/4 (default) | numeric scalar
+  group: ''
+- name: Initial state
+  summary: Initial pose of vehicle [0;0;0] (default) | three-element vector
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Vehicle inputs** — Type of speed and directional inputs for vehicle `Vehicle Speed & Steering Angle` (default) | `Vehicle Speed & Heading Angular Velocity`
 
@@ -101,7 +140,6 @@ and orientation, *theta*, of the vehicle.
   simulations, as long as the model does not change.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Mobile Robot Algorithms

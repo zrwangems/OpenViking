@@ -14,6 +14,14 @@ language: en
 # Floating Scope and Scope Viewer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal or signals to visualize scalar | vector | matrix | array | bus | nonvirtual bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -59,11 +67,12 @@ signals.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / Sinks HDL Coder / Sinks

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Permute Dimensions
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: 输入信号的置换 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,17 @@ chinese_source: worker-translation
 该模块根据 **Order** 参数的值输出输入信号的置换。输出的数据类型与输入相同。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Order
+  summary: 置换向量 [2,1]（默认）| N 元素向量，其中 N 是输入信号的维度数
+  group: ''
+  block_parameter: Order
+  type: 字符向量
+  values: N 元素向量
+  default: '''[2 1]'''
+```
 
 ### **Order** — 置换向量 `[2,1]`（默认）| `N` 元素向量，其中 `N` 是输入信号的维度数
 
@@ -47,7 +69,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：N 元素向量 |
 | **默认值**：`'[2 1]'` |
-
 ## 所属库
 
 Simulink / Math Operations

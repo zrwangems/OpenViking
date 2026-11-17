@@ -14,6 +14,17 @@ language: en
 # SM PSS1A
 
 ## Ports
+```yaml
+ports:
+- name: V_SI
+  summary: Speed, frequency, or power scalar
+  direction: input
+  data_types: single | double
+- name: V_ST
+  summary: Stabilization speed, frequency, or power scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -33,8 +44,46 @@ Automatic voltage regulator input stabilization signal, as limited by
 scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Power system stabilizer (PSS) gain, K_S (pu)
+  summary: Power system stabilizer gain 3.15 (default) | scalar
+  group: ''
+- name: PSS denominator constant for second-order block, A_1
+  summary: Filter constant 1 0 (default) | scalar
+  group: ''
+- name: PSS denominator constant for second-order block, A_2
+  summary: Filter constant 2 0 (default) | scalar
+  group: ''
+- name: PSS numerator (lead) compensating time constant, T_1 (s)
+  summary: Lead time constant 1 0.76 (default) | scalar
+  group: ''
+- name: PSS denominator (lag) compensating time constant, T_2 (s)
+  summary: Lag time constant 2 0.01 (default) | scalar
+  group: ''
+- name: PSS numerator (lead) compensating time constant, T_3 (s)
+  summary: Lead time constant 3 0.76 (default) | scalar
+  group: ''
+- name: PSS denominator (lag) compensating time constant, T_4 (s)
+  summary: Lag time constant 4 0.01 (default) | scalar
+  group: ''
+- name: PSS washout time constant, T_5 (s)
+  summary: Washout time constant 10 (default) | scalar
+  group: ''
+- name: PSS transducer time constant, T_6 (s)
+  summary: Transducer time constant 0 (default) | scalar
+  group: ''
+- name: Maximum PSS output, V_STmax (pu)
+  summary: Maximum stabilization 0.09 (default) | scalar
+  group: ''
+- name: Minimum PSS output, V_STmin (pu)
+  summary: Minimum stabilization -0.09 (default) | scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Power system stabilizer (PSS) gain, K\_S (pu)** — Power system stabilizer gain 3.15 (default) | scalar
 
@@ -90,7 +139,6 @@ For more information, see What Is Sample Time? and Specify Sample Time.
 For inherited discrete-time operation, set the sample time to `-1`.
 For discrete-time operation, set the sample time to a positive scalar. For
 continuous-time operation, set the sample time to `0`.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

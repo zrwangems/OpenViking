@@ -14,6 +14,17 @@ language: en
 # CREPE Postprocess
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: CREPE network activations matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Estimated fundamental frequency column vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -33,8 +44,13 @@ Estimated fundamental frequency in Hz, returned as an
 number of frames in the input.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Confidence threshold
+  summary: Pitch confidence threshold 0.5 (default) | scalar in the range [0, 1)
+  group: ''
+```
 
 ### **Confidence threshold** — Pitch confidence threshold `0.5` (default) | scalar in the range [0, 1)
 
@@ -49,7 +65,6 @@ confidence threshold, the block returns
 `NaN`.
 
 **Tunable:** Yes
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

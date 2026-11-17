@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Divide by Constant and Round
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 被除数 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Y
+  summary: 除法与舍入运算的结果 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -33,8 +44,22 @@ Divide by Constant and Round 不支持字长大于 65,535 的数据类型。定�
 除法与舍入运算的结果，以标量、向量、矩阵或 N 维数组形式返回。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Denominator
+  summary: 除数 10 （默认） | 标量
+  group: ''
+  block_parameter: Denominator
+  type: 字符向量
+  values: 求值为正的、实值、有限定点或数值的 MATLAB® 表达式
+- name: Rounding Method
+  summary: 要使用的舍入方法 Floor （默认） | Ceiling | Nearest | Zero | Convergent
+  group: ''
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Floor'' | ''Ceiling'' | ''Nearest'' | ''Zero'' | ''Convergent'''
+```
 
 ### **Denominator** — 除数 10 （默认） | 标量
 
@@ -68,7 +93,6 @@ Divide by Constant and Round 不支持字长大于 65,535 的数据类型。定�
 | **类型：** 字符向量 |
 | **值：** `'Floor'` | `'Ceiling'` | `'Nearest'` | `'Zero'` | `'Convergent'` |
 | **默认：** `'Floor'` |
-
 ## 所属库
 
 Fixed-Point Designer

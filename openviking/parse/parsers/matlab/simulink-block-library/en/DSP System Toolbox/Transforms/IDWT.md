@@ -14,13 +14,17 @@ language: en
 # IDWT
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 DSP System Toolbox / Transforms

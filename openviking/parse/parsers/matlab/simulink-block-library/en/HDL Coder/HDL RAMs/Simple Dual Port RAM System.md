@@ -14,6 +14,28 @@ language: en
 # Simple Dual Port RAM System
 
 ## Ports
+```yaml
+ports:
+- name: din
+  summary: Data to write scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: wr_addr
+  summary: Address to write scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: we
+  summary: Write enable scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: rd_addr
+  summary: Address to read scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: dout
+  summary: Read output data scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -83,8 +105,45 @@ parameter to `Simple dual port` or
 Read output data, returned as a scalar or vector. The RAM reads the
 old output data from the memory location specified by
 **rd\_addr** port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of RAM
+  summary: RAM type Simple dual port (default) | Dual port | Single port | True dual port | Simple tri port
+  group: Main
+  block_parameter: RAMType
+  type: character vector, string
+  values: Dual port | Simple dual port | Single port | True dual port | Simple tri port
+  default: Simple dual port
+- name: Use asynchronous read feature in target hardware
+  summary: Option to enable asynchronous read feature in target hardware off (default) | on
+  group: Main
+  block_parameter: AsyncRead
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Initial output of RAM
+  summary: Initial simulation output of RAM '0.0' (default) | Scalar | Vector
+  group: Main
+  block_parameter: RAMInitialValue
+  type: integer, floating point
+  values: 0.0 | Scalar | Vector
+  default: '0.0'
+- name: Model RAM with one cycle of delay
+  summary: Model RAM with one cycle of delay on (default) | off
+  group: Advanced
+  block_parameter: ModelRAMDelay
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Specify vector input access
+  summary: Specify vector input access as serial or parallel serial (default) | parallel
+  group: Advanced
+  block_parameter: VectorAccess
+  type: character vector, string
+  values: '''serial'' | ''parallel'''
+  default: '''serial'''
+```
 
 ### Main
 
@@ -227,7 +286,6 @@ feature in target hardware** parameter.
 | **Type:**  character vector, string |
 | **Values:**  `'serial'` | `'parallel'` |
 | **Default:**  `'serial'` |
-
 ## Libraries
 
 HDL Coder / HDL RAMs

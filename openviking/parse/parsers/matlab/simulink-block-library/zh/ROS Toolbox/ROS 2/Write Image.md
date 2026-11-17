@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Write Image
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像信号 *M*×*N*×3 矩阵 | *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16
+- name: AlphaChannel
+  summary: 输入图像的 Alpha 通道 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16
+- name: Msg
+  summary: ROS 或 ROS 2 图像消息 非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -40,13 +55,17 @@ chinese_source: worker-translation
 ROS 或 ROS 2 图像消息，以非虚拟总线形式返回。您可以使用 ROS Publish 或 ROS 2 Publish 模块将消息分别发布到活动的 ROS 或 ROS 2 网络。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Image Encoding
+  summary: 图像编码 rgb8（默认）| rgba8 | ...
+  group: ''
+```
 
 ### **Image Encoding** — 图像编码 `rgb8`（默认）| `rgba8` | ...
 
 输入 **Image** 的图像编码，指定为支持的选项之一。有关编码类型的详细信息，请参阅 `rosReadImage`。
-
 ## 所属库
 
 ROS Toolbox / ROS ROS Toolbox / ROS 2

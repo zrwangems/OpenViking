@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # True Dual Port RAM System
 
 ## 端口
+```yaml
+ports:
+- name: din_a
+  summary: 写入数据 scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: addr_a
+  summary: 写入地址 scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: we_a
+  summary: 写使能 scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: din_b
+  summary: 写入数据 scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | fixed point
+- name: addr_b
+  summary: 写入地址 scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: we_b
+  summary: 写使能 scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: dout_a
+  summary: 写入数据输出 scalar | vector
+  direction: output
+- name: dout_b
+  summary: 写入数据输出 scalar | vector
+  direction: output
+```
 
 ### 输入
 
@@ -78,8 +111,41 @@ chinese_source: worker-translation
 ### **dout\_b** — 写入数据输出 `scalar` | `vector`
 
 写入数据输出，以标量或向量形式返回。模块从 **addr\_b** 端口指定的存储位置读取新的或旧的数据。
-
 ## 参数
+```yaml
+parameters:
+- name: RAM 类型
+  summary: RAM 类型 True dual port（默认）| Simple dual port | Single port | Dual port | Simple tri port
+  group: 主要
+  block_parameter: RAMType
+  type: 字符向量、字符串
+  values: Dual port | Simple dual port | Single port | True dual port | Simple tri port
+- name: 写输出行为
+  summary: 写输出行为 New data（默认）| Old data
+  group: 主要
+  block_parameter: WriteOutputValue
+  type: 字符向量、字符串
+  values: New data | Old data
+- name: RAM 初始输出
+  summary: RAM 的初始仿真输出 '0.0'（默认）| Scalar | Vector
+  group: 主要
+  block_parameter: RAMInitialValue
+  type: 整数、浮点数
+  values: 0.0 | Scalar | Vector
+- name: RAM 建模带一个周期延迟
+  summary: RAM 建模带一个周期延迟 on（默认）| off
+  group: 高级
+  block_parameter: ModelRAMDelay
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+- name: Specify vector input access
+  summary: 将向量输入访问指定为串行或并行 serial（默认）| parallel
+  group: 高级
+  block_parameter: VectorAccess
+  type: character vector, string
+  values: '''serial'' | ''parallel'''
+  default: '''serial'''
+```
 
 ### 主要
 
@@ -183,7 +249,6 @@ RAM 类型，指定为以下之一：
 | **类型**：character vector, string |
 | **值**：`'serial'` | `'parallel'` |
 | **默认值**：`'serial'` |
-
 ## 所属库
 
 HDL Coder / HDL RAMs

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Comparator
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 同相输入电气端口
+  direction: conserving
+- name: '-'
+  summary: 反相输入电气端口
+  direction: conserving
+- name: OUT
+  summary: 输出端口电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,28 @@ chinese_source: worker-translation
 ### **OUT** — 输出端口电气端口
 
 与比较器输出关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Input offset voltage
+  summary: 输入失调电压 5 mV（默认值）
+  group: 输入
+- name: Average input capacitance
+  summary: 平均输入电容 0 pF（默认值）
+  group: 输入
+- name: Low level output voltage
+  summary: 低电平输出电压 0 V（默认值）
+  group: 输出
+- name: High level output voltage
+  summary: 高电平输出电压 5 V（默认值）
+  group: 输出
+- name: Output resistance
+  summary: 输出电阻 50 Ohm（默认值）
+  group: 输出
+- name: Propagation delay
+  summary: 传播延迟 0 s（默认值）
+  group: 输出
+```
 
 ### 输入
 
@@ -59,7 +91,6 @@ chinese_source: worker-translation
 ### **Propagation delay** — 传播延迟 `0` `s`（默认值）
 
 根据高到低和低到高的传播延迟设置此值。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

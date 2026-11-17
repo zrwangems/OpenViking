@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Quaternion Rotation
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 四元数 quaternion | vector
+  direction: input
+  data_types: double
+- name: vec
+  summary: 初始向量 vector | vector of vectors
+  direction: input
+  data_types: double
+- name: vec_rot
+  summary: 最终四元数 rotated quaternion | vector of rotated quaternions
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -50,11 +65,12 @@ chinese_source: worker-translation
 最终向量或旋转后的向量数组。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

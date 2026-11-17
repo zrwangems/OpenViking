@@ -14,6 +14,18 @@ language: en
 # Diffusion Resistor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Resistor thermal mass thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -35,8 +47,116 @@ Thermal conserving port that represents the resistor thermal mass.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Resistance
+  summary: Nominal zero-bias resistance 1 Ohm (default)
+  group: Main
+- name: Tolerance (%)
+  summary: Resistor tolerance, in percent 5 (default)
+  group: Main
+- name: Tolerance application
+  summary: Select how to apply tolerance during simulation None — use nominal value (default) | Random tolerance | Apply maximum
+    tolerance value | Apply minimum tolerance value
+  group: Main
+- name: Tolerance distribution
+  summary: Select the distribution type Uniform (default) | Gaussian
+  group: Main
+- name: Number of standard deviations for quoted tolerance
+  summary: Used for calculating the Gaussian random number 4 (default)
+  group: Main
+- name: Parameterization
+  summary: Select parameterization method Simplified (default) | Advanced
+  group: Main
+- name: Critical voltage
+  summary: Critical voltage for saturation 4 V (default)
+  group: Main
+- name: Corner voltage
+  summary: Voltage at which the resistance increase starts to occur 2 V (default)
+  group: Main
+- name: Quadratic voltage coefficient
+  summary: Coefficient *p*2 0.25 (default)
+  group: Main
+- name: Inverse voltage for quadratic voltage activation
+  summary: Coefficient *θ*2 0.25 1/V (default)
+  group: Main
+- name: Linear voltage coefficient
+  summary: Coefficient *p*3 0.25 (default)
+  group: Main
+- name: Inverse voltage for linear voltage activation
+  summary: Coefficient *θ*3 0.25 1/V (default)
+  group: Main
+- name: Enable operating limits
+  summary: Select Yes to enable reporting when the operational limits are exceeded No (default) | Yes
+  group: Operating Limits
+- name: Reporting when operating limits exceeded
+  summary: Select the reporting method Warn (default) | Error
+  group: Operating Limits
+- name: Maximum working voltage
+  summary: Maximum voltage allowed for normal block operation 100 V (default)
+  group: Operating Limits
+- name: Power rating
+  summary: Maximum power allowed for normal block operation 1 W (default)
+  group: Operating Limits
+- name: Temperature below which full power rating is available
+  summary: Maximum temperature where full power rating still applies 70 degC (default)
+  group: Operating Limits
+- name: Temperature above which power rating is reduced to zero
+  summary: Temperature where power rating becomes 0 155 degC (default)
+  group: Operating Limits
+- name: Operating temperature range, [Tmin Tmax]
+  summary: Minimum and maximum temperature values allowed for normal block operation [-50 150] degC (default)
+  group: Operating Limits
+- name: Resistance fault
+  summary: Option to add resistance fault Add fault (default)
+  group: Faults
+- name: Faulted zero-voltage resistance
+  summary: Resistance when block is in faulted state inf Ohm (default) | positive scalar
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible current
+  summary: Current threshold to fault transition 1 A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding maximum permissible current
+  summary: Maximum length of time the current exceeds the threshold 1 s (default) | nonnegative scalar
+  group: Faults
+- name: Noise mode
+  summary: Select whether to model thermal noise current Disabled (default) | Enabled
+  group: Noise
+- name: Sample time
+  summary: Rate at which the noise source is sampled 1e-3 s (default)
+  group: Noise
+- name: Repeatability
+  summary: Select the noise control option Not repeatable (default) | Repeatable | Specify seed
+  group: Noise
+- name: Auto-generated seed used for repeatable option
+  summary: Auto-generated random number seed random real number
+  group: Noise
+- name: Seed
+  summary: Random number seed 0 (default)
+  group: Noise
+- name: Device simulation temperature
+  summary: Temperature of resistor at the start of the simulation 25 degC (default)
+  group: Noise
+- name: Resistance linear temperature coefficient
+  summary: Specifies how the resistance value changes with temperature 0 1/K (default)
+  group: Thermal
+- name: Resistance quadratic temperature coefficient
+  summary: Specifies how the resistance value changes with temperature 0 1/K^2 (default)
+  group: Thermal
+- name: Measurement temperature
+  summary: Temperature corresponding to nominal resistance 25 degC (default)
+  group: Thermal
+- name: Thermal mass
+  summary: Thermal mass associated with port H 100 J/K (default)
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -433,7 +553,6 @@ for which the nominal resistance *R* is specified.
 Thermal mass associated with the thermal port H. It represents
 the energy required to raise the temperature of the thermal port by
 one degree.
-
 ## Libraries
 
 Simscape / Electrical / Passive

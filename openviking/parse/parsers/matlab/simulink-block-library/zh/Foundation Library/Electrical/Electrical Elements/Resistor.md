@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Resistor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与电阻负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Resistance
+  summary: 电阻的阻值 1 Ohm（默认）| 正标量
+  group: ''
+```
 
 ### **Resistance** — 电阻的阻值 `1 Ohm`（默认）| 正标量
 
 电阻值。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

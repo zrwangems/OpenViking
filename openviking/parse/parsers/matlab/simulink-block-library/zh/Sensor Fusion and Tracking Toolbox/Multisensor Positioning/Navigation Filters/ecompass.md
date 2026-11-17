@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # ecompass
 
 ## 端口
+```yaml
+ports:
+- name: Accel
+  summary: 加速度计读数 *N*×3 的实数标量矩阵
+  direction: input
+  data_types: single | double
+- name: Mag
+  summary: 磁力计读数 *N*×3 的实数标量矩阵
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: 将量从全局坐标系旋转到传感器机体坐标系的姿态 *N*×4 的四元数矩阵（默认）| 3×3×*N* 的数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -39,8 +54,19 @@ chinese_source: worker-translation
 - 如果 **Orientation format** 指定为 `Rotation matrix`，模块返回姿态为 3×3×*N* 的旋转矩阵数组。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Reference frame
+  summary: 导航参考坐标系 NED（默认）| ENU
+  group: ''
+- name: Orientation format
+  summary: 用于描述姿态的格式 quaternion（默认）| Rotation matrix
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -56,7 +82,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。如果模型未更改，则 C 代码会在后续仿真中重用。此选项需要额外的启动时间。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Navigation Filters Navigation Toolbox / Multisensor Positioning / Navigation Filters

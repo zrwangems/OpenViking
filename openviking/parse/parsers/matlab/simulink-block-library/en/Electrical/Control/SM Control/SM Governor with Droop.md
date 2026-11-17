@@ -14,6 +14,25 @@ language: en
 # SM Governor with Droop
 
 ## Ports
+```yaml
+ports:
+- name: P_ref
+  summary: Desired per-unit generator load scalar
+  direction: input
+  data_types: single | double
+- name: speed_ref
+  summary: Desired per-unit generator speed scalar
+  direction: input
+  data_types: single | double
+- name: speed
+  summary: Actual per-unit generator speed scalar
+  direction: input
+  data_types: single | double
+- name: throttle
+  summary: Throttle position scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -43,8 +62,19 @@ Measured generator speed expressed as a per-unit quantity.
 Throttle position of the governor, expressed as a per-unit quantity.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Percentage droop, (%)
+  summary: Droop 5 % (default)
+  group: ''
+- name: Time constant of governor, (s)
+  summary: First-order lag time constant 0.2 (default)
+  group: ''
+- name: Initial throttle position, (pu)
+  summary: Initial throttle output 0.5 (default)
+  group: ''
+```
 
 ### **Percentage droop, (%)** — Droop `5` `%` (default)
 
@@ -61,7 +91,6 @@ inertia dynamics.
 ### **Initial throttle position, (pu)** — Initial throttle output `0.5` (default)
 
 Initial state of the throttle.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

@@ -14,6 +14,16 @@ language: en
 # M-APSK Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: APSK modulated signal scalar | vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -50,8 +60,37 @@ block.
 | `Bit` | The number of rows in the output signal equals the number of rows in the input signal divided by log2(*M*), where *M* is the Modulation Order for M-APSK. |
 
 Use Output data type to specify the output data type.
-
 ## Parameters
+```yaml
+parameters:
+- name: Constellation points per circle
+  summary: Constellation points per PSK ring [4,12] (default) | vector
+  group: ''
+- name: Radius of each circle
+  summary: Radius per PSK ring [0.5,1] (default) | vector
+  group: ''
+- name: Phase offset of each circle (rad)
+  summary: Phase offset per PSK ring [pi/4,pi/12] (default) | scalar | vector
+  group: ''
+- name: Symbol mapping
+  summary: Symbol mapping Auto (default) | Contourwise-gray | Gray | User-defined
+  group: ''
+- name: Custom symbol mapping
+  summary: Custom symbol mapping [0,4,12,8,1,3,2,6,7,5,13,15,14,10,11,9] (default) | integer vector
+  group: ''
+- name: Input type
+  summary: Input type Integer (default) | Bit
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: ''
+- name: View Constellation
+  summary: Plot reference constellation button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -190,7 +229,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / APM

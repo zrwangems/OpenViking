@@ -14,6 +14,15 @@ language: en
 # SFFM Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,25 @@ positive voltage
 
 Electrical conserving port associated with the SFFM voltage source
 negative voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Voltage offset, VO
+  summary: Voltage offset 0 V (default)
+  group: ''
+- name: Voltage amplitude, VA
+  summary: Voltage amplitude 0 V (default)
+  group: ''
+- name: Carrier frequency, FC
+  summary: Carrier frequency 0 Hz (default) | nonnegative scalar
+  group: ''
+- name: Modulation index, MI
+  summary: Modulation index 0 (default) | nonnegative scalar
+  group: ''
+- name: Signal frequency, FS
+  summary: Signal frequency 0 Hz (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Voltage offset, VO** — Voltage offset `0` `V` (default)
 
@@ -51,7 +77,6 @@ The value must be greater than or equal to `0`.
 
 Frequency of the modulated signal. The value must be greater than or equal
 to `0`.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

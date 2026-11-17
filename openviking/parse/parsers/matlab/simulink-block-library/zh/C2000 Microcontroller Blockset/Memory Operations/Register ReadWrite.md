@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Register Read/Write
 
 ## 端口
+```yaml
+ports:
+- name: All
+  summary: 所选位域标量
+  direction: output
+  data_types: uint16 | uint32
+- name: All
+  summary: 所选位域数量标量
+  direction: input
+  data_types: uint16 | uint32
+```
 
 ### 输出
 
@@ -56,8 +67,39 @@ chinese_source: worker-translation
 要启用此端口，请将 **Operation** 参数设置为 `Write`。
 
 **数据类型：** `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Device family
+  summary: 选择 TI C2000 器件系列 None（默认）| F2804x | F280x | F281x | F2833x | F2844x | F280013x | F280015x | F28002x | F28003x |
+    F28004x | F2802x | F2803x | F2805x | F2806x | F2807x | F2837xS | F2837xD_CPU1 | F2837xD_CPU2 | F2838x_CPU1 | F2838x_CPU2
+    | F2838x_CORTEXM4 | F28M35x | F28M35x | F28M35x | F28p65x_CPU1 | F28p65x_CPU2
+  group: ''
+- name: Register group
+  summary: 选择所需的寄存器组 Unspecified（默认）
+  group: ''
+- name: Register name
+  summary: 选择寄存器名称 Unspecified（默认）
+  group: ''
+- name: Register field
+  summary: 选择寄存器字段 Unspecified（默认）
+  group: ''
+- name: Access register using
+  summary: 选择寄存器访问方式 Specified bits（默认）| Custom bits
+  group: ''
+- name: Operation
+  summary: 选择读或写操作 Read（默认）| Write
+  group: ''
+- name: Insert code before/after
+  summary: 在之前或之后插入代码 None（默认）| EALLOW/EDIS
+  group: ''
+- name: Bit to process
+  summary: 指定自定义位 {[15,0]}|（默认）
+  group: ''
+- name: Register bit fields
+  summary: 选择要访问的位域 All（默认）
+  group: ''
+```
 
 ### **Device family** — 选择 TI C2000 器件系列 `None`（默认）| `F2804x` | `F280x` | `F281x` | `F2833x` | `F2844x` | `F280013x` | `F280015x` | `F28002x` | `F28003x` | `F28004x` | `F2802x` | `F2803x` | `F2805x` | `F2806x` | `F2807x` | `F2837xS` | `F2837xD_CPU1` | `F2837xD_CPU2` | `F2838x_CPU1` | `F2838x_CPU2` | `F2838x_CORTEXM4` | `F28M35x` | `F28M35x` | `F28M35x` | `F28p65x_CPU1` | `F28p65x_CPU2`
 
@@ -128,7 +170,6 @@ Bit to process 参数接受元胞数组，其中每个元素是一个 `1x2` 数�
 #### 依赖关系
 
 要启用此参数，请将 **Access register using** 参数设置为 `Specified bits`。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Memory Operations

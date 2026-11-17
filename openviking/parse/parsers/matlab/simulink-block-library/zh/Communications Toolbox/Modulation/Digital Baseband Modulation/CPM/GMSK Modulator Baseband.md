@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # GMSK Modulator Baseband
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **输入类型**
 :   指示输入由双极性值还是二进制值组成。
@@ -53,7 +58,6 @@ R2025b 中未记录。
 
 **输出数据类型**
 :   模块的输出类型可以指定为 `single` 或 `double`。默认情况下，模块将此设置为 `double`。
-
 ## 所属库
 
 R2025b 中未记录。

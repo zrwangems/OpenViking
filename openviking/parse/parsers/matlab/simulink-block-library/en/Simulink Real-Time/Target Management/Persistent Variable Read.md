@@ -14,6 +14,13 @@ language: en
 # Persistent Variable Read
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Persistent variable output data variable data
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Output
 
@@ -31,8 +38,19 @@ variable stored on the target computer, an error occurs during real-time applica
 load.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Variable name
+  summary: Name of persistent variable Variable1 (default) | character vector | string
+  group: ''
+  block_parameter: varName
+- name: Default value
+  summary: Starting value of persistent variable when variable does not exist on target computer 0 (default) | supports same
+    data types as Data port
+  group: ''
+  block_parameter: defaultValue
+```
 
 ### **Variable name** — Name of persistent variable `Variable1` (default) | character vector | string
 
@@ -58,7 +76,6 @@ Read block output port.
 |  |
 | --- |
 | **Block Parameter:** `defaultValue` |
-
 ## Libraries
 
 Simulink Real-Time / Target Management

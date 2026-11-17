@@ -14,6 +14,21 @@ language: en
 # String Concatenate
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input string scalar
+  direction: input
+  data_types: string
+- name: Port_2
+  summary: Second input string scalar
+  direction: input
+  data_types: string
+- name: Port_1
+  summary: Concatenated string scalar
+  direction: output
+  data_types: string
+```
 
 ### Input
 
@@ -35,8 +50,27 @@ Second input string, specified as a scalar.
 Concatenated string, specified as a scalar.
 
 **Data Types:** `string`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of Inputs
+  summary: Number of input strings scalar
+  group: ''
+  block_parameter: Inputs
+  type: character vector
+  values: scalar from 2 to 512
+  default: '''2'''
+- name: Output data type
+  summary: Output data type string (default) | <data type expression> | scalar
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''string'' | *<data type expression>*'
+  default: '''string'''
+- name: Mode
+  summary: Category of data stringtype(128) (default) | scalar
+  group: ''
+```
 
 ### **Number of Inputs** — Number of input strings scalar
 
@@ -85,7 +119,6 @@ Use the `stringtype` function, for example,
 
 Clicking the **Show data type assistant** button
 enables this parameter.
-
 ## Libraries
 
 Simulink / String

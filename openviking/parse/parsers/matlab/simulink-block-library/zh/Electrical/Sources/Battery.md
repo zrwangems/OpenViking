@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Battery
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 电池电荷水平，C 物理信号
+  direction: output
+- name: +
+  summary: 正极端子电气
+  direction: output
+- name: '-'
+  summary: 负极端子电气
+  direction: output
+- name: H
+  summary: 电池热质量热
+  direction: output
+```
 
 ### 输出
 
@@ -44,8 +59,185 @@ chinese_source: worker-translation
 
 要启用此端口，请在 **Thermal Port** 部分中，将 **Thermal
 port** 设置为 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal voltage, Vnom
+  summary: 电池完全充电时的输出电压 12 V（默认）| 正数
+  group: 主要
+- name: Current directionality
+  summary: 启用电流方向性 Disabled（默认）| Enabled
+  group: 主要
+- name: Internal resistance
+  summary: 电池内阻 2 Ohm（默认）| 正数
+  group: 主要
+- name: Internal resistance during charging
+  summary: 充电期间的电池内阻 2 Ohm（默认）| 正数
+  group: 主要
+- name: Internal resistance during discharging
+  summary: 放电期间的电池内阻 2 Ohm（默认）| 正数
+  group: 主要
+- name: Battery charge capacity
+  summary: 选择电池模型 Infinite（默认）| Finite
+  group: 主要
+- name: Cell capacity (Ah rating)
+  summary: 完全充电时的标称电池容量 50 hr*A（默认）| 正数
+  group: 主要
+- name: Voltage V1 when charge is AH1
+  summary: 电荷水平为 AH1 时的输出电压 11.5 V（默认）| 正数
+  group: 主要
+- name: Charge AH1 when no-load voltage is V1
+  summary: 空载输出电压为 V1 时的电荷水平 25 hr*A（默认）| 正数
+  group: 主要
+- name: Self-discharge
+  summary: 选择是否对电池的自放电电阻建模 Disabled（默认）| Enabled
+  group: 主要
+- name: Self-discharge resistance
+  summary: 表示电池自放电的电阻 2000 Ohm（默认）| 正数
+  group: 主要
+- name: Measurement temperature
+  summary: 测量模块参数时的温度 298.15 K（默认）| 正数
+  group: 主要
+- name: Expose charge measurement port
+  summary: 是否暴露电荷测量端口 No（默认）| Yes
+  group: 主要
+- name: Charge dynamics
+  summary: 电池电荷动态模型 No dynamics（默认）| One time-constant dynamics | Two time-constant dynamics | Three time-constant dynamics
+    | Four time-constant dynamics | Five time-constant dynamics
+  group: 动态
+- name: First polarization resistance
+  summary: 第一个 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 动态
+- name: First time constant
+  summary: 第一个 RC 时间常数 30 s（默认）| 正数
+  group: 动态
+- name: Second polarization resistance
+  summary: 第二个 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 动态
+- name: Second time constant
+  summary: 第二个 RC 时间常数 30 s（默认）| 正数
+  group: 动态
+- name: Third polarization resistance
+  summary: 第三个 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 动态
+- name: Third time constant
+  summary: 第三个 RC 时间常数 30 s（默认）| 正数
+  group: 动态
+- name: Fourth polarization resistance
+  summary: 第四个 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 动态
+- name: Fourth time constant
+  summary: 第四个 RC 时间常数 30 s（默认）| 正数
+  group: 动态
+- name: Fifth polarization resistance
+  summary: 第五个 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 动态
+- name: Fifth time constant
+  summary: 第五个 RC 时间常数 30 s（默认）| 正数
+  group: 动态
+- name: Battery fade
+  summary: 选择是否对电池性能随老化的退化建模 Disabled（默认）| Enabled
+  group: 衰减
+- name: Number of discharge cycles, N
+  summary: 定义第二组数据点的循环次数 100（默认）| 正数
+  group: 衰减
+- name: Cell capacity after N discharge cycles
+  summary: N 次放电循环后的最大电池容量 45 hr*A（默认）| 正数
+  group: 衰减
+- name: Internal resistance after N discharge cycles
+  summary: N 次放电循环后的电池内阻 2.02 Ohm（默认）| 正数
+  group: 衰减
+- name: Average internal resistance after N discharge cycles
+  summary: N 次放电循环后的电池平均内阻 2.02 Ohm（默认）| 正数
+  group: 衰减
+- name: Voltage V1 at charge AH1 after N discharge cycles
+  summary: N 次放电循环后电荷水平为 AH1 时的输出电压 10.35 V（默认）| 正数
+  group: 衰减
+- name: Calendar aging
+  summary: 日历老化选项 Disabled（默认）| Enabled
+  group: 日历老化
+- name: Storage condition
+  summary: 存储条件 Fixed open-circuit voltage（默认）| Fixed state of charge
+  group: 日历老化
+- name: Normalized open-circuit voltage during storage, V/Vnom
+  summary: 存储期间的归一化开路电压 0.9（默认）| 标量
+  group: 日历老化
+- name: Open-circuit measurement temperature
+  summary: 开路测量温度 298.15 K（默认）| 正数
+  group: 日历老化
+- name: State of charge during storage (%)
+  summary: 存储期间的荷电状态百分比 60（默认）| 正数
+  group: 日历老化
+- name: Vector of time intervals
+  summary: 时间间隔 [0] d（默认）| 标量
+  group: 日历老化
+- name: Vector of temperatures
+  summary: 存储温度 [273] K（默认）| 标量
+  group: 日历老化
+- name: Linear scaling for voltage, b
+  summary: 电压线性缩放 2.2134e6（默认）| 标量
+  group: 日历老化
+- name: Constant offset for voltage, c
+  summary: 电压恒定偏移 1.632e6（默认）| 标量
+  group: 日历老化
+- name: Temperature-dependent exponential increase, d
+  summary: 温度相关指数增长 0.515833569 V（默认）| 标量
+  group: 日历老化
+- name: Time exponent, a
+  summary: 时间指数 0.75（默认）| 标量
+  group: 日历老化
+- name: Nominal voltage at second measurement temperature
+  summary: 电池完全充电时的输出电压 12 V（默认）| 正数
+  group: 温度依赖性
+- name: Internal resistance at second measurement temperature
+  summary: 电池内阻 2.2 Ohm（默认）| 正数
+  group: 温度依赖性
+- name: Voltage V1 at second measurement temperature
+  summary: 充电水平 AH1 时的输出电压 11.4 V（默认）| 正数
+  group: 温度依赖性
+- name: Self-discharge resistance at second measurement temperature
+  summary: 表示电池自放电的电阻 2200 Ohm（默认）| 正数
+  group: 温度依赖性
+- name: First polarization resistance at second measurement temperature
+  summary: 第二测量温度下的第一 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 温度依赖性
+- name: First time constant at second measurement temperature
+  summary: 第二测量温度下的第一 RC 时间常数 30 s（默认）| 正数
+  group: 温度依赖性
+- name: Second polarization resistance at second measurement temperature
+  summary: 第二测量温度下的第二 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 温度依赖性
+- name: Second time constant at second measurement temperature
+  summary: 第二测量温度下的第二 RC 时间常数 30 s（默认）| 正数
+  group: 温度依赖性
+- name: Third polarization resistance at second measurement temperature
+  summary: 第二测量温度下的第三 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 温度依赖性
+- name: Third time constant at second measurement temperature
+  summary: 第二测量温度下的第三 RC 时间常数 30 s（默认）| 正数
+  group: 温度依赖性
+- name: Fourth polarization resistance at second measurement temperature
+  summary: 第二测量温度下的第四 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 温度依赖性
+- name: Fourth time constant at second measurement temperature
+  summary: 第二测量温度下的第四 RC 时间常数 30 s（默认）| 正数
+  group: 温度依赖性
+- name: Fifth polarization resistance at second measurement temperature
+  summary: 第二测量温度下的第五 RC 电阻 0.005 Ohm（默认）| 正数
+  group: 温度依赖性
+- name: Fifth time constant at second measurement temperature
+  summary: 第二测量温度下的第五 RC 时间常数 30 s（默认）| 正数
+  group: 温度依赖性
+- name: Second measurement temperature
+  summary: 测量本节中模块参数时的温度 273.15 K（默认）| 正数
+  group: 温度依赖性
+- name: Thermal port
+  summary: 是否暴露热端口 Omit（默认）| Model
+  group: 热端口
+- name: Thermal mass
+  summary: 与热端口关联的热质量 30000 J/K（默认）| 正数
+  group: 热端口
+```
 
 ### 主要
 
@@ -537,7 +729,6 @@ Directionality** 设置为
 #### 依赖关系
 
 要启用此参数，请将 **Thermal port** 设置为 `Model`。
-
 ## 所属库
 
 Simscape / Electrical / Sources Simscape / Battery / Cells

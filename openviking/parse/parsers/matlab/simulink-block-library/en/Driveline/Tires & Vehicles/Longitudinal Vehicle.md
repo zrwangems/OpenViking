@@ -14,6 +14,33 @@ language: en
 # Longitudinal Vehicle
 
 ## Ports
+```yaml
+ports:
+- name: Brake
+  summary: Longitudinal braking force, N physical signal
+  direction: input
+- name: Angle
+  summary: Road incline, rad physical signal
+  direction: input
+- name: NG
+  summary: Normalized road grade, unitless physical signal
+  direction: input
+- name: PG
+  summary: Percent road grade, unitless physical signal
+  direction: input
+- name: Wind
+  summary: Longitudinal wind speed, m/s physical signal
+  direction: input
+- name: VehSpd
+  summary: Vehicle speed, m/s physical signal
+  direction: output
+- name: G
+  summary: Longitudinal G force, unitless physical signal
+  direction: output
+- name: Axle
+  summary: Wheel rotation mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -107,8 +134,62 @@ To enable this port, set **Show G outport** to
 Mechanical rotational conserving port associated with the axle
 connection to the wheel hub. Connect this port to a gear system such as
 a reduction gear.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization type
+  summary: Vehicle parameterization selection Regular parameter set (default) | Road-load | Typical small car | Typical medium-sized
+    car | Typical large sports utility vehicle
+  group: Vehicle
+- name: Vehicle mass
+  summary: Inertial mass 1200 kg (default) | positive scalar
+  group: Vehicle
+- name: Tire rolling radius
+  summary: Rolling radius of tire 0.3 m (default) | positive scalar
+  group: Vehicle
+- name: Tire rolling coefficient
+  summary: Rolling coefficient of tire 0.0136 (default) | nonnegative scalar
+  group: Vehicle
+- name: Air drag coefficient
+  summary: Vehicular drag coefficient 0.31 (default) | nonnegative scalar
+  group: Vehicle
+- name: Vehicle frontal area
+  summary: Forward-facing surface area 2.3 m^2 (default) | positive scalar
+  group: Vehicle
+- name: Road-load coefficient A
+  summary: ARL coefficient 120 N (default) | positive scalar
+  group: Vehicle
+- name: Road-load coefficient B
+  summary: BRL coefficient 1.8 N/(m/s) (default) | positive scalar
+  group: Vehicle
+- name: Road-load coefficient C
+  summary: CRL coefficient 0.389 N*s^2/m^2 (default) | positive scalar
+  group: Vehicle
+- name: Gravitational acceleration
+  summary: Acceleration due to gravity 9.81 m/s^2 (default) | positive scalar
+  group: Vehicle
+- name: Vehicle speed threshold
+  summary: Tolerance for vehicle motion 0.3 m/s (default) | scalar
+  group: Simulation
+- name: Axle speed threshold
+  summary: Tolerance for axle rotation 0.01 rad/s (default) | scalar
+  group: Simulation
+- name: Show brake force inport
+  summary: Ideal brakes port On (default) | Off
+  group: Simulation
+- name: Show road slope inport
+  summary: Road slope port On (default) | Off
+  group: Simulation
+- name: Slope input type
+  summary: Type of slope measurement Percent grade (default) | Normalized grade | Incline angle
+  group: Simulation
+- name: Show wind speed inport
+  summary: Wind port On (default) | Off
+  group: Simulation
+- name: Show G outport
+  summary: G-force outport Off (default) | On
+  group: Simulation
+```
 
 ### Vehicle
 
@@ -273,7 +354,6 @@ Option to display the **Wind** port.
 
 Option to display the **G** port. record G-force as a multiple of the
 **Gravitational acceleration** parameter.
-
 ## Libraries
 
 Simscape / Driveline / Tires & Vehicles

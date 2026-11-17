@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # PMSM Configuration
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 模块配置信号向量
+  direction: output
+  data_types: single
+```
 
 ### 输出
 
@@ -35,8 +42,40 @@ PMSM 的配置信号，包含以下参数，这些参数通过此模块进行配
 | 机械输入配置（Torque 或 Speed） | | | - |
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical input configuration
+  summary: 选择端口配置 Torque（默认）| Speed
+  group: 模块选项
+- name: Sample Time (Ts)
+  summary: 模块再次执行前的采样时间 1e-6（默认）| 标量
+  group: 模块选项
+- name: Number of pole pairs
+  summary: 极对数 4（默认）| 标量
+  group: 参数
+- name: Stator resistance per phase (Ohm)
+  summary: 定子电阻 0.02（默认）| 标量
+  group: 参数
+- name: Stator d-axis inductance (H)
+  summary: '*d* 轴电感 1.7e-3（默认）| 标量'
+  group: 参数
+- name: Stator q-axis inductance (H)
+  summary: '*q* 轴电感 3.2e-3（默认）| 标量'
+  group: 参数
+- name: Permanent flux linkage constant (Wb)
+  summary: 磁链常数 0.2205（默认）| 标量
+  group: 参数
+- name: Inertia (kgm^2)
+  summary: 物理惯量 0.0027（默认）| 标量
+  group: 参数
+- name: Viscous damping (Nm/rad/s)
+  summary: 粘性阻尼 4.924e-4（默认）| 标量
+  group: 参数
+- name: Static friction (Nm)
+  summary: 静摩擦 0（默认）| 标量
+  group: 参数
+```
 
 ### 模块选项
 
@@ -86,7 +125,6 @@ PMSM 的配置信号，包含以下参数，这些参数通过此模块进行配
 ### **Static friction (Nm)** — 静摩擦 `0`（默认）| 标量
 
 电机中的静摩擦，*Tf*，单位为 N·m。
-
 ## 所属库
 
 Motor Control Blockset HDL Support / Electrical Systems / Motors

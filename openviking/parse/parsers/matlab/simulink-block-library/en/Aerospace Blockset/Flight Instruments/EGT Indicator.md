@@ -14,10 +14,45 @@ language: en
 # Exhaust Gas Temperature (EGT) Indicator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Connect to signal signal name
+  group: ''
+- name: Minimum
+  summary: Minimum tick mark value 0 (default) | finite | double | scalar
+  group: ''
+  block_parameter: Limits
+  type: double
+  values: double scalar
+  default: '[0 1000], where 0 is the minimum value'
+- name: Maximum
+  summary: Maximum tick mark value 1000 (default) | finite | double | scalar
+  group: ''
+  block_parameter: Limits
+  type: double
+  values: double scalar
+  default: '[0 1000], where 1000 is the maximum value'
+- name: Scale Colors
+  summary: Ranges of color bands 0 (default) | double | scalar
+  group: ''
+  block_parameter: ScaleColors
+  type: '*n*-by-1 struct array'
+  values: struct array with elements Min, Max, and Color
+- name: Label
+  summary: Block label location Top (default) | Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — Connect to signal signal name
 
@@ -110,7 +145,6 @@ hidden.
 | **Type**: character vector |
 | **Values**: `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default**: `'Top'` |
-
 ## Libraries
 
 Aerospace Blockset / Flight Instruments

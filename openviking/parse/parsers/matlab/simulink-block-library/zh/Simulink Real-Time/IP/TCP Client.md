@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # TCP Client
 
 ## 端口
+```yaml
+ports:
+- name: Enable
+  summary: 将模块连接到远程以太网设备 integer
+  direction: input
+- name: Status
+  summary: 设备返回未连接或已连接的状态 0 | 1
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +40,34 @@ chinese_source: worker-translation
 - `1` — 已连接
 
 作为最佳实践，将 TCP 配置模块的 `Status` 输出连接到关联的 TCP Send 和 TCP Receive 模块的 `Enable` 输入。
-
 ## 参数
+```yaml
+parameters:
+- name: Use host-target connection
+  summary: 使用开发计算机和目标计算机之间的以太网连接 'off'（默认）| 'on'
+  group: ''
+  block_parameter: useHostTargetConn
+- name: Remote server IP address
+  summary: 服务器设备的 IP 地址 x.x.x.x
+  group: ''
+  block_parameter: remoteAddress
+- name: Remote server port
+  summary: 服务器设备的端口号 1–65535
+  group: ''
+  block_parameter: remotePort
+- name: Use Nagle's algorithm
+  summary: 启用 Nagle 算法以合并数据包 on（默认）| off
+  group: ''
+  block_parameter: useNaglesAlgorithm
+- name: Client IP address
+  summary: 正在配置的客户端设备的 IP 地址 无值（默认）| x.x.x.x
+  group: 高级参数
+  block_parameter: clientAddress
+- name: Client local port
+  summary: 正在配置的客户端设备的 IP 端口 无值（默认）| 0–65535
+  group: 高级参数
+  block_parameter: clientPort
+```
 
 ### **Use host-target connection** — 使用开发计算机和目标计算机之间的以太网连接 `'off'`（默认）| `'on'`
 
@@ -101,7 +136,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `clientPort` |
-
 ## 所属库
 
 Simulink Real-Time / IP

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Serial Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 接收的数据 向量 | 矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Status
+  summary: 新数据可用 false 或 0（默认）| true 或 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -33,8 +44,84 @@ chinese_source: worker-translation
 要启用此端口，请取消选择该参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Port
+  summary: 可用的串行通信端口 可用的通信端口
+  group: ''
+  block_parameter: Port
+  type: 字符向量、字符串
+- name: Data type
+  summary: 输出数据类型 uint8（默认）| single | double | int8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataType
+  type: 字符向量、字符串
+  values: '''uint8'' | ''single'' | ''double'' | ''int8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'''
+  default: '''uint8'''
+- name: Header
+  summary: 标头 数值数组 | 从 0 到 255（含）的整数
+  group: ''
+  block_parameter: Header
+  type: 字符向量、字符串
+  values: 整数数组
+  default: '''off'''
+- name: End token
+  summary: 终止符 <none>（默认）| CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+  block_parameter: Terminator
+  type: 字符向量、字符串
+  values: '''<none>'' | ''CR (''\r'')'' | ''LF (''\n'')'' | ''CR/LF (''\r\n'')'' | ''NULL (''\0'')'' | ''Custom Terminator'''
+  default: '''<none>'''
+- name: Custom terminator
+  summary: 自定义终止符 数值数组 | 从 0 到 255（含）的整数
+  group: ''
+  block_parameter: CustomTerminator
+  type: 字符向量、字符串
+  values: 整数数组
+- name: Input Format
+  summary: 读取数据的格式 Column major（默认）| Row major
+  group: ''
+  block_parameter: InputFormat
+  type: 字符向量、字符串
+  values: '''Row major'' | ''Column major'''
+  default: '''Column major'''
+- name: Data size
+  summary: 读取的值的数量 [1 1]（默认）| 数值数组
+  group: ''
+  block_parameter: DataSize
+  type: 字符向量、字符串
+  values: 整数数组
+  default: '''[1 1]'''
+- name: Enable blocking mode
+  summary: 仿真在接收数据时等待 on（默认）| off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Action when data is not available
+  summary: 数据不可用时采取的操作 Output last received value（默认）| Output custom value | Error
+  group: ''
+  block_parameter: ActionDataUnavailable
+  type: 字符向量、字符串
+  values: '''Output last received value'' | ''Output custom value'' | ''Error'''
+  default: '''Output last received value'''
+- name: Custom value
+  summary: 数据不可用时的自定义输出值 0（默认）| 数值
+  group: ''
+  block_parameter: CustomValue
+  type: 字符向量、字符串
+  values: 数值
+  default: '''0'''
+- name: Block sample time
+  summary: 采样时间 0.01（默认）| 正数值
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量、字符串
+  values: 正数值
+  default: '''0.01'''
+```
 
 ### **Port** — 可用的串行通信端口 可用的通信端口
 
@@ -222,7 +309,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量、字符串 |
 | **值：** 正数值 |
 | **默认值：** `'0.01'` |
-
 ## 所属库
 
 Instrument Control Toolbox Motor Control Blockset / Protection and Diagnostics

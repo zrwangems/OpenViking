@@ -14,10 +14,18 @@ language: en
 # Capacitor
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacitance
+  summary: Capacitance value 1e-12 F (default) | real number
+  group: ''
+```
 
 ### **Capacitance** — Capacitance value `1e-12 F` (default) | real number
 
@@ -27,7 +35,6 @@ of the capacitance from the corresponding drop-down menu.
 If you set this parameter value between `0` and `1e-18` `F`, the block uses a value equal
 to `1e-18` `F` during simulation. By default,
 the value is `1e-12` `F`.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

@@ -14,6 +14,15 @@ language: en
 # Local Resistance (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port moist air
+  direction: conserving
+- name: B
+  summary: Liquid port moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +37,33 @@ segment. Flow is positive from port **A** to port
 Moist air conserving port associated with the entry or exit port to the pipe
 segment. Flow is positive from port **A** to port
 **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Local loss parametrization
+  summary: Loss factor calculation method Constant (default) | Tabulated data - loss coefficient vs. Reynolds number
+  group: ''
+- name: Forward flow loss coefficient (from A to B)
+  summary: Loss coefficient for flow from port A to B 1 (default) | positive scalar
+  group: ''
+- name: Reverse flow loss coefficient (from B to A)
+  summary: Loss coefficient for flow from port B to A 1 (default) | positive scalar
+  group: ''
+- name: Reynolds number vector
+  summary: Reynolds numbers for tabular parameterization [-500, -200, -100, -50, -40, -30, -20, -10, 10, 20, 30, 40, 50, 100,
+    200, 500, 1000, 2000] (default) | 1-by-*n* vector
+  group: ''
+- name: Loss coefficient vector
+  summary: Loss coefficients for tabular parameterization [.65, .75, .9, 1.15, 1.35, 1.65, 2.3, 3.1, 4, 2.7, 1.8, 1.46, 1.3,
+    .9, .65, .42, .3, .2] (default) | 1-by-*n* vector
+  group: ''
+- name: Flow area
+  summary: Segment cross-sectional area 1e-3 m^2 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+```
 
 ### **Local loss parametrization** — Loss factor calculation method `Constant` (default) | `Tabulated data - loss coefficient vs. Reynolds number`
 
@@ -89,7 +123,6 @@ Cross-sectional area of the pipe segment.
 ### **Critical Reynolds number** — Upper Reynolds number limit for laminar flow `150` (default) | positive scalar
 
 Upper Reynolds number limit for laminar flow through the valve.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

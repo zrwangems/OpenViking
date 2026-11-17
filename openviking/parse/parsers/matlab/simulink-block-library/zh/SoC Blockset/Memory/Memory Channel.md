@@ -15,6 +15,67 @@ chinese_source: worker-translation
 # Memory Channel
 
 ## 端口
+```yaml
+ports:
+- name: wrData
+  summary: 写入器数据总线信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    SoCData
+- name: wrCtrlIn
+  summary: 写入器输入控制信号总线
+  direction: input
+  data_types: StreamM2SBusObj | pixelcontrol | WritecontrolM2SBusObj
+- name: rdCtrlIn
+  summary: 读取器输入控制信号总线
+  direction: input
+  data_types: StreamS2MBusObj | StreamVideoS2MBusObj | StreamVideoFSyncS2MBusObj | ReadControlM2SBusObj
+- name: rdDone
+  summary: 读取完成通知消息 标量
+  direction: input
+  data_types: Boolean
+- name: wrBurstDone
+  summary: 来自存储器控制器的写入器控制输入 标量
+  direction: input
+  data_types: BurstRequest2BusObj
+- name: rdBurstDone
+  summary: 来自存储器控制器的读取器控制输入 标量
+  direction: input
+  data_types: BurstRequest2BusObj
+- name: rdData
+  summary: 输出到数据使用者的数据信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    SoCData
+- name: rdEvent
+  summary: 任务读取事件信号 标量
+  direction: output
+  data_types: rteEvent
+- name: wrEvent
+  summary: 任务写入事件信号 标量
+  direction: output
+  data_types: rteEvent
+- name: wrDone
+  summary: 内存中缓冲区已释放的通知 标量
+  direction: output
+  data_types: Boolean
+- name: rdCtrlOut
+  summary: 从内存通道到数据使用者的读取器控制信号 总线
+  direction: output
+  data_types: StreamM2SBusObj | ReadControlS2MBusObj | pixelcontrol
+- name: wrCtrlOut
+  summary: 从内存通道到数据生产者的写入器控制信号 总线
+  direction: output
+  data_types: StreamS2MBusObj | WriteControlS2MBusObj | StreamVideoS2MBusObj
+- name: wrBurstReq
+  summary: 写入突发请求 标量
+  direction: output
+  data_types: BurstRequestBusObj
+- name: rdBurstReq
+  summary: 读取突发请求 标量
+  direction: output
+  data_types: BurstRequestBusObj
+```
 
 ### 输入
 
@@ -233,8 +294,94 @@ Controller 模块的 **burstReq** 输入。有关消息的更多信息，请参�
 Messages。
 
 **数据类型：** `BurstRequestBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Hardware board
+  summary: 查看或修改当前硬件设置 只读：所选硬件板的名称
+  group: ''
+- name: Show implementation info
+  summary: 查看通道信息 只读：文本窗口
+  group: ''
+- name: Enable memory simulation
+  summary: 控制内存仿真精度 on（默认）| off
+  group: ''
+- name: Channel type
+  summary: 选择通道协议 AXI4-Stream FIFO（默认）| AXI4-Stream to Software via DMA | Software to AXI4-Stream via DMA | AXI4-Stream Video
+    FIFO | AXI4-Stream Video Frame Buffer | AXI4 Random Access
+  group: 主要参数
+- name: Region size (bytes)
+  summary: 为区域分配的内存大小，以字节为单位 只读：计算得出
+  group: 主要参数
+- name: Buffer size (bytes)
+  summary: 缓冲区大小，以字节为单位 1024（默认）| 标量
+  group: 主要参数
+- name: Number of buffers
+  summary: 区域中的缓冲区数量 8（默认）| 整数
+  group: 主要参数
+- name: Burst length
+  summary: 内存事务的突发长度 1（默认）| 标量
+  group: 主要参数
+- name: Use hardware board settings
+  summary: 使用配置参数中的 Hardware Implementation 设置 on（默认）| off
+  group: 主要参数
+- name: Reader/Writer use same values
+  summary: 读取器和写入器使用相同的值 on（默认）| off
+  group: 主要参数
+- name: FIFO depth (number of bursts)
+  summary: 数据 FIFO 的深度 12（默认）| 标量
+  group: 主要参数
+- name: Almost full depth
+  summary: 断言反压时的 FIFO 深度 8（默认）| 标量
+  group: 主要参数
+- name: Clock frequency (MHz)
+  summary: 主数据通路的互连频率 100（默认）
+  group: 主要参数
+- name: Data width (bits)
+  summary: 主数据通路的数据宽度 64（默认）| 标量
+  group: 主要参数
+- name: 维度
+  summary: 输入数据信号的维度 标量 | 数组
+  group: 信号属性
+- name: 数据类型
+  summary: 写入器数据的数据类型 double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean | fixed
+    point
+  group: 信号属性
+- name: 采样时间
+  summary: 采样时间间隔 1（默认）| 正标量 | 向量
+  group: 信号属性
+- name: Enable sample packing (last signal dimension as channel)
+  summary: 在信号的最后一个维度上打包数据 off（默认）| on
+  group: 信号属性
+- name: Output data signal matches input
+  summary: 读取器和写入器使用相同的值 on（默认）| off
+  group: 信号属性
+- name: Dimensions
+  summary: 输出数据信号的维度 scalar | array
+  group: 信号属性
+- name: Data type
+  summary: 读取器数据的数据类型 double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean | fixed
+    point
+  group: 信号属性
+- name: Sample time
+  summary: 采样时间间隔 1（默认）| 正标量 | 向量
+  group: 信号属性
+- name: Enable sample packing (last signal dimension as channel)
+  summary: 在信号的最后一个维度上打包数据 off（默认）| on
+  group: 信号属性
+- name: Inherit sample time offset
+  summary: 使读取器从写入器继承采样时间 on（默认）| off
+  group: 信号属性
+- name: Use pixel clock sample times
+  summary: 使用像素时钟采样时间 on（默认）| off
+  group: 信号属性
+- name: Frame size
+  summary: 帧尺寸 480p SDTV (720x480p)（默认）| ...
+  group: 信号属性
+- name: Launch performance plots
+  summary: 显示性能指标按钮
+  group: 性能
+```
 
 ### **Hardware board** — 查看或修改当前硬件设置 只读：所选硬件板的名称
 
@@ -634,7 +781,6 @@ Buffer`。
 
 要启用此参数，请选择 **Enable memory
 simulation**。
-
 ## 所属库
 
 SoC Blockset / Memory

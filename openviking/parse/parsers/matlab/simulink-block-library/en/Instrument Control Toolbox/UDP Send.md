@@ -14,6 +14,13 @@ language: en
 # UDP Send
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data values to send vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### Input
 
@@ -23,8 +30,63 @@ Data values to send from the block to your remote host, specified as a vector,
 matrix, or array. Set the parameters for this block before you send data.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## Parameters
+```yaml
+parameters:
+- name: Remote address
+  summary: Remote host name or address remote host name or IP address
+  group: ''
+  block_parameter: Host
+  type: character vector, string
+- name: Remote port
+  summary: Remote host port 9090 (default) | remote host port
+  group: ''
+  block_parameter: Port
+  type: character vector, string
+  values: 1 to 65,535
+  default: '''80'''
+- name: Local address
+  summary: Local host name or IP address 0.0.0.0 (default) | local host name or IP address
+  group: ''
+  block_parameter: LocalAddress
+  type: character vector, string
+- name: Local port
+  summary: Port of local host for binding -1 (default) | local host port
+  group: ''
+  block_parameter: LocalPort
+  type: character vector, string
+- name: Enable local port sharing
+  summary: Allow other UDP sockets to bind to same local port off (default) | on
+  group: ''
+  block_parameter: EnablePortSharing
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Verify address and port connectivity
+  summary: Remote machine connection verification button
+  group: ''
+- name: UDP packet size
+  summary: Maximum number of bytes written in datagram packet 512 (default) | numeric
+  group: ''
+  block_parameter: OutputDatagramPacketSize
+  type: character vector, string
+  values: 1 to 65,535
+  default: '''512'''
+- name: Byte order
+  summary: Sequential order of bytes big-endian (default) | little-endian
+  group: ''
+  block_parameter: ByteOrder
+  type: character vector, string
+  values: '''little-endian'' | ''big-endian'''
+  default: '''big-endian'''
+- name: Enable blocking mode
+  summary: Simulation waits while sending data on (default) | off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Remote address** — Remote host name or address remote host name or IP address
 
@@ -162,7 +224,6 @@ For more information, see Enable Blocking Mode in Receive and Send Blocks.
 | **Type:** character vector, string |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Instrument Control Toolbox

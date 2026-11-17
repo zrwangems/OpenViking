@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Hall Validity
 
 ## 端口
+```yaml
+ports:
+- name: HallVal
+  summary: 当前霍尔传感器输出状态标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: PrevHallVal
+  summary: 前一霍尔传感器输出状态标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Cnt
+  summary: 外部计数器值标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: PrevDir
+  summary: 前一霍尔状态期间的转子旋转方向标量
+  direction: input
+  data_types: int8 | int16 | int32
+- name: Invalid
+  summary: 霍尔状态有效性指示标量
+  direction: output
+  data_types: single | double | fixed point
+- name: SpdCnt
+  summary: 霍尔状态变化时的计数值标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Dir
+  summary: 当前霍尔状态期间的转子旋转方向标量
+  direction: output
+  data_types: single | double | fixed point
+- name: SpdVal
+  summary: 当前和前一霍尔状态的有效性及速度计算标量
+  direction: output
+  data_types: single | double | fixed point
+- name: HallChng
+  summary: 标志置为 1，表示霍尔状态变化标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -99,8 +138,19 @@ chinese_source: worker-translation
 在霍尔状态发生变化且模块完成执行后，该端口输出值 1（并将霍尔状态变化标志置为 1）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Expected hall sequence in positive direction
+  summary: 表示正方向的序列 ABC（默认）| CBA | Custom sequence
+  group: ''
+- name: Sequence
+  summary: 表示正方向的自定义序列 [5,4,6,2,3,1]（默认）| 标量
+  group: ''
+- name: Counter size
+  summary: 外部计数器寄存器的尺寸 16 bits（默认）| 8 bits | 32 bits
+  group: ''
+```
 
 ### **Expected hall sequence in positive direction** — 表示正方向的序列 `ABC`（默认）| `CBA` | `Custom sequence`
 
@@ -117,7 +167,6 @@ chinese_source: worker-translation
 ### **Counter size** — 外部计数器寄存器的尺寸 `16 bits`（默认）| `8 bits` | `32 bits`
 
 外部计数器的寄存器尺寸。最大计数值为 2n-1，其中 n = 计数器尺寸。
-
 ## 所属库
 
 Motor Control Blockset / Sensor Decoders

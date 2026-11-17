@@ -14,6 +14,48 @@ language: en
 # Mapped Core Engine
 
 ## Ports
+```yaml
+ports:
+- name: '*<TrqCmd>*'
+  summary: Engine load TrqCmd (default)
+  direction: input
+- name: '*<EngSpd>*'
+  summary: Engine speed EngSpd (default)
+  direction: input
+- name: '*<EngTemp>*'
+  summary: Engine temperature EngTemp (default)
+  direction: input
+- name: '*<EngTrq>*'
+  summary: Power EngTrq (default)
+  direction: output
+- name: '*<IntkAirMassFlw>*'
+  summary: Air mass flow IntkAirMassFlw (default)
+  direction: output
+- name: '*<FuelMassFlw>*'
+  summary: Fuel flow FuelMassFlw (default)
+  direction: output
+- name: '*<ExhManGasTemp>*'
+  summary: Exhaust temperature ExhManGasTemp (default)
+  direction: output
+- name: '*<Bsfc>*'
+  summary: Efficiency Bsfc (default)
+  direction: output
+- name: '*<EoHC>*'
+  summary: Hydrocarbon emissions EoHC (default)
+  direction: output
+- name: '*<EoCO>*'
+  summary: Carbon monoxide emissions EoCO (default)
+  direction: output
+- name: '*<EoNOx>*'
+  summary: Nitric oxide and nitrogen dioxide emissions EoNOx (default)
+  direction: output
+- name: '*<EoCO2>*'
+  summary: Carbon dioxide emissions EoCO2 (default)
+  direction: output
+- name: '*<EoPm>*'
+  summary: Particulate matter emissions EoPm (default)
+  direction: output
+```
 
 ### Input
 
@@ -204,8 +246,148 @@ Particulate matter emissions, *PM*.
   **PM** tab, enter a name in the
   **PM output port name** parameter
   field.
-
 ## Parameters
+```yaml
+parameters:
+- name: Engine Type
+  summary: Type of engine image Compression-ignition (CI) (default) | Spark-ignition (SI)
+  group: ''
+  block_parameter: EngineType
+  values: Compression-ignition (CI) (default) | Spark-ignition (SI)
+- name: Load input port name
+  summary: Name TrqCmd (default)
+  group: ''
+  block_parameter: rowVarName
+  values: TrqCmd (default)
+- name: Breakpoints for load input
+  summary: Breakpoints vector
+  group: ''
+  block_parameter: rowbreakpoints
+  values: vector
+- name: Speed input port name
+  summary: Name EngSpd (default)
+  group: ''
+  block_parameter: colVarName
+  values: EngSpd (default)
+- name: Breakpoints for speed input
+  summary: Breakpoints vector
+  group: ''
+  block_parameter: colbreakpoints
+  values: vector
+- name: Temperature input port name
+  summary: Name EngTemp (default)
+  group: ''
+  block_parameter: TmpVarName
+  values: EngTemp (default)
+- name: Breakpoints for temperature input
+  summary: Breakpoints [233.15 273.15 373.15] (default) | vector
+  group: ''
+  block_parameter: Tmpbreakpoints
+  values: '[233.15 273.15 373.15] (default) | vector'
+- name: Output Configuration
+  summary: Create output ports on (default) | off
+  group: ''
+- name: Power output port name
+  summary: Power EngTrq (default)
+  group: ''
+  block_parameter: Name1
+  values: EngTrq (default)
+- name: Power table
+  summary: Power array
+  group: ''
+  block_parameter: Name1_z
+  values: array
+- name: Air output port name
+  summary: Air IntkAirMassFlw (default)
+  group: ''
+  block_parameter: Name2
+  values: IntkAirMassFlw (default)
+- name: Air table
+  summary: Air array
+  group: ''
+  block_parameter: Name2_z
+  values: array
+- name: Fuel output port name
+  summary: Fuel FuelMassFlw (default)
+  group: ''
+  block_parameter: Name3
+  values: FuelMassFlw (default)
+- name: Fuel table
+  summary: Fuel array
+  group: ''
+  block_parameter: Name3_z
+  values: array
+- name: Temperature output port name
+  summary: Temperature ExhManGasTemp (default)
+  group: ''
+  block_parameter: Name4
+  values: ExhManGasTemp (default)
+- name: Temperature table
+  summary: Temperature array
+  group: ''
+  block_parameter: Name4_z
+  values: array
+- name: Efficiency output port name
+  summary: Efficiency Bsfc (default)
+  group: ''
+  block_parameter: Name5
+  values: Bsfc (default)
+- name: Efficiency table
+  summary: Efficiency array
+  group: ''
+  block_parameter: Name5_z
+  values: array
+- name: HC output port name
+  summary: Hydrocarbon EoHC (default)
+  group: ''
+  block_parameter: Name6
+  values: EoHC (default)
+- name: HC table
+  summary: Hydrocarbon array
+  group: ''
+  block_parameter: Name6_z
+  values: array
+- name: CO output port name
+  summary: Carbon dioxide EoCO (default)
+  group: ''
+  block_parameter: Name7
+  values: EoCO (default)
+- name: CO table
+  summary: Carbon dioxide array
+  group: ''
+  block_parameter: Name7_z
+  values: array
+- name: NOx output port name
+  summary: Nitric oxide *NO* and nitrogen dioxide *NO2* EoNOx (default)
+  group: ''
+  block_parameter: Name8
+  values: EoNOx (default)
+- name: NOx table
+  summary: Nitric oxide *NO* and nitrogen dioxide *NO2* array
+  group: ''
+  block_parameter: Name8_z
+  values: array
+- name: CO2 output port name
+  summary: Carbon dioxide EoCO2 (default)
+  group: ''
+  block_parameter: Name9
+  values: EoCO2 (default)
+- name: CO2 table
+  summary: Carbon dioxide array
+  group: ''
+  block_parameter: Name9_z
+  values: array
+- name: PM output port name
+  summary: Particulate matter EoPm (default)
+  group: ''
+  block_parameter: Name10
+  values: EoPm (default)
+- name: PM table
+  summary: Particulate matter array
+  group: ''
+  block_parameter: Name10_z
+  values: array
+```
 
 #### Configuration
 
@@ -897,7 +1079,6 @@ function.
 
 To create this parameter, on the **Configuration**
 tab, select **PM**.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Core Engine

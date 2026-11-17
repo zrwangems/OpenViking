@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Inverse Clarke Transform
 
 ## 端口
+```yaml
+ports:
+- name: αβ0
+  summary: '*α*-*β* 轴和零分量向量'
+  direction: input
+  data_types: single | double
+- name: α
+  summary: α 轴分量标量
+  direction: input
+  data_types: single | double
+- name: β
+  summary: β 轴分量标量
+  direction: input
+  data_types: single | double
+- name: abc
+  summary: '*a*、*b* 和 *c* 相分量向量'
+  direction: output
+  data_types: single | double
+- name: a
+  summary: '*a* 相分量标量'
+  direction: output
+  data_types: single | double
+- name: b
+  summary: '*b* 相分量标量'
+  direction: output
+  data_types: single | double
+- name: c
+  summary: '*c* 相分量标量'
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -98,8 +129,19 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Use block for embedded implementation (requires Motor Control Blockset™)** 参数并将 **Number of inputs** 设置为 `Two inputs`。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Power Invariant
+  summary: 启用功率不变性 off（默认）| on
+  group: ''
+- name: Use block for embedded implementation (requires Motor Control Blockset™)
+  summary: 使用模块进行嵌入式实现的选项 off（默认）| on
+  group: ''
+- name: Number of inputs
+  summary: 模块输入数量 Two inputs（默认）| Three inputs
+  group: ''
+```
 
 ### **Power Invariant** — 启用功率不变性 `off`（默认）| `on`
 
@@ -123,7 +165,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Use block for embedded implementation (requires Motor Control Blockset™)** 参数。
-
 ## 所属库
 
 Simscape / Electrical / Control / Mathematical Transforms

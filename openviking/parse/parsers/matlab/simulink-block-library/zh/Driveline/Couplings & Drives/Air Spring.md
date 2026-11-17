@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Air Spring
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 从动端口 机械平移
+  direction: conserving
+- name: R
+  summary: 基座端口 机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,70 @@ chinese_source: worker-translation
 ### **R** — 基座端口 机械平移
 
 与空气弹簧基座端关联的机械平移守恒端口。正物理信号从 **R** 流向 **C**。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 有效力参数化方式 Load as a function of height（默认）| Stiffness as a function of height
+  group: 弹簧
+- name: Height vector
+  summary: 与载荷或刚度数据对应的高度断点 [5, 7, 11, 14, 17, 20] cm（默认）| 非负向量
+  group: 弹簧
+- name: Load vector
+  summary: 给定高度断点处的载荷 [3000, 2000, 1500, 1200, 800, 100] N（默认）| 正向量
+  group: 弹簧
+- name: Stiffness vector
+  summary: 给定高度断点处的刚度 [600, 300, 100, 80, 40, 5] N/cm（默认）| 正向量
+  group: 弹簧
+- name: Damping vector
+  summary: 给定高度断点处的弹簧阻尼 [100, 60, 30, 15, 10, 10] s*N/cm（默认）| 非负向量
+  group: 弹簧
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Smooth（默认）| Linear
+  group: 弹簧
+- name: Extrapolation method
+  summary: 处理超出断点数据集范围的输入值的方法 Linear（默认）| Nearest | Error
+  group: 弹簧
+- name: Hard stop at full extension
+  summary: 模拟最大弹簧高度处的硬限位 off（默认）| on
+  group: 硬限位
+- name: Maximum height
+  summary: 完全伸展硬限位的位置 25 cm（默认）| 正标量
+  group: 硬限位
+- name: Stiffness at full extension
+  summary: 完全伸展硬限位刚度 1e8 N/cm（默认）| 正标量
+  group: 硬限位
+- name: Damping at full extension
+  summary: 完全伸展硬限位阻尼 1e8 s*N/cm（默认）| 正标量
+  group: 硬限位
+- name: Hard stop at full compression
+  summary: 模拟最小弹簧高度处的硬限位 off（默认）| on
+  group: 硬限位
+- name: Minimum height
+  summary: 完全压缩硬限位的位置 5 cm（默认）| 正标量
+  group: 硬限位
+- name: Stiffness at full compression
+  summary: 完全压缩硬限位刚度 1e8 N/cm（默认）| 正标量
+  group: 硬限位
+- name: Damping at full compression
+  summary: 完全压缩硬限位阻尼 1e8 s*N/cm（默认）| 正标量
+  group: 硬限位
+- name: Hard stop model
+  summary: 硬限位过渡行为 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| ...
+  group: 硬限位
+- name: Transition region
+  summary: 部分硬限位效应区域 0.1 mm（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位之间的最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N（默认）
+  group: 硬限位
+```
 
 ### 弹簧
 
@@ -179,7 +250,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Hard stop at full extension** 或 **Hard stop at full compression**，并将 **Hard stop model** 设置为 `Based on coefficient of restitution`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # RoadRunner Scenario Reader
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 参与者 ID 标量
+  direction: input
+  data_types: uint64
+- name: Message
+  summary: 来自场景的状态信息 Simulink 消息
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +44,45 @@ chinese_source: worker-translation
 ### **Message** — 来自场景的状态信息 Simulink 消息
 
 来自场景的状态信息，以 Simulink 消息形式返回。要从 Simulink 消息中提取数据，请将 RoadRunner Scenario Reader 模块连接到 Receive (Simulink) 模块。
-
 ## 参数
+```yaml
+parameters:
+- name: Topic Category
+  summary: 主题类别 Actor（默认）| Action | Sensor | Event
+  group: ''
+- name: Actor Type
+  summary: 场景中的参与者类型 All Types（默认）| Vehicle | Traffic Signal | Traffic Signal Controller
+  group: ''
+- name: Action Type
+  summary: 动作类型 Path Following（默认）| Change Parameter | Lane Change | Lateral Offset | Longitudinal Distance | Speed Change
+    | User Defined
+  group: ''
+- name: Sensor View
+  summary: 从场景真值导出的传感器数据 Target Poses（默认）| Target Poses For Host | Lane Boundaries | Target Poses And Lane Boundaries
+  group: ''
+- name: Event Type
+  summary: 事件类型 User-Defined
+  group: ''
+- name: Topic
+  summary: 参与者数据，或通过传感器视图捕获的车道边界数据 Actor Specifications | Actor Pose | Actor Pose (Driving Scenario compatible) | Actor Lane
+    Location | Vehicle Specifications | ...
+  group: ''
+- name: Filter
+  summary: 筛选条件 Self（默认）| None | Actor ID (provided by input)
+  group: ''
+- name: Additional Relationship
+  summary: 与筛选实体的关系 None（默认）| Parent | Children
+  group: ''
+- name: Sensor ID
+  summary: 传感器的唯一索引 1（默认）| 正整数
+  group: ''
+- name: Sample Time
+  summary: 仿真的采样时间 正实数标量
+  group: ''
+- name: Event Name
+  summary: 事件名称 字符串
+  group: ''
+```
 
 ### **Topic Category** — 主题类别 `Actor`（默认）| `Action` | `Sensor` | `Event`
 
@@ -211,7 +258,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Topic Category** 设置为 `Event`，并将 **Event Type** 设置为 `User-Defined`。
-
 ## 所属库
 
 Automated Driving Toolbox / RoadRunner Scenario

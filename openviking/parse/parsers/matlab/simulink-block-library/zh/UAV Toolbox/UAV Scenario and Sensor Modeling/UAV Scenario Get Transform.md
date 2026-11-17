@@ -15,14 +15,28 @@ chinese_source: worker-translation
 # UAV Scenario Get Transform
 
 ## 端口
+```yaml
+ports:
+- name: transform
+  summary: 变换矩阵 4×4 矩阵
+  direction: output
+```
 
 ### 输出
 
 ### **transform** — 变换矩阵 4×4 矩阵
 
 输出变换，指定为 4×4 变换矩阵。
-
 ## 参数
+```yaml
+parameters:
+- name: Source Frame
+  summary: 源坐标系 'ENU'（默认）| 'NED' | 来自 UAV Scenario 的字符串
+  group: ''
+- name: Target Frame
+  summary: 目标坐标系 'NED'（默认）| 'ENU' | 来自 UAV Scenario 的字符串
+  group: ''
+```
 
 ### **Source Frame** — 源坐标系 `'ENU'`（默认）| `'NED'` | 来自 UAV Scenario 的字符串
 
@@ -31,7 +45,6 @@ chinese_source: worker-translation
 ### **Target Frame** — 目标坐标系 `'NED'`（默认）| `'ENU'` | 来自 UAV Scenario 的字符串
 
 使用 **Select** 从模型中加载的 UAV Scenario 中选择全局坐标源坐标系。选择 North-East-Down（`'NED'`）或 East-North-Up（`'ENU'`）。
-
 ## 所属库
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

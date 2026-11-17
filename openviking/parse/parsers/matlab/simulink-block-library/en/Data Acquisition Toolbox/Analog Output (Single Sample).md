@@ -14,6 +14,13 @@ language: en
 # Analog Output (Single Sample)
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Analog output to generate double
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -26,8 +33,22 @@ If using a port for each channel, provide a double value to each port. Multiple
 ports are named by channel names or device specified channel IDs.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: Device through which you want to output data select available device
+  group: ''
+- name: Channels
+  summary: Device channel selection and configuration options depend on device
+  group: ''
+- name: Number of ports
+  summary: Number of input data ports 1 for all channels | 1 per channel
+  group: ''
+- name: Sample time
+  summary: Block sample time numeric value
+  group: ''
+```
 
 ### **Device** — Device through which you want to output data select available device
 
@@ -84,7 +105,6 @@ channel ID, for example, `ao1`.
 Block sample time, specifies the sample time of the block during the simulation.
 This is the rate at which the block is executed during simulation. The default value is
 1 (simulation seconds). For more information, see Timing in Hardware Interface Models and What Is Sample Time? (Simulink).
-
 ## Libraries
 
 Data Acquisition Toolbox

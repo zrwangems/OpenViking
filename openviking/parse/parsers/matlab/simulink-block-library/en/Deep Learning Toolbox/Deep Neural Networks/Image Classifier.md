@@ -14,6 +14,21 @@ language: en
 # Image Classifier
 
 ## Ports
+```yaml
+ports:
+- name: image
+  summary: Image or feature data numeric array
+  direction: input
+- name: ypred
+  summary: Predicted class labels enumerated
+  direction: output
+- name: scores
+  summary: Predicted class scores matrix
+  direction: output
+- name: labels
+  summary: Class labels for predicted scores matrix
+  direction: output
+```
 
 ### Input
 
@@ -50,8 +65,68 @@ is the number of observations.
 Labels associated with the predicted scores, returned as a
 *N*-by-*K* matrix, where *N* is
 the number of observations, and *K* is the number of classes.
-
 ## Parameters
+```yaml
+parameters:
+- name: Network
+  summary: Source for trained network Network from MAT file (default) | Network from MATLAB function
+  group: ''
+  block_parameter: Network
+  type: character vector, string
+  values: '''Network from MAT file'' | ''Network from MATLAB function'''
+  default: '''Network from MAT file'''
+- name: File path
+  summary: MAT file containing trained network untitled.mat (default) | MAT file path or name
+  group: ''
+  block_parameter: NetworkFilePath
+  type: character vector, string
+  values: MAT file path or name
+  default: '''untitled.mat'''
+- name: MATLAB function
+  summary: MATLAB function name squeezenet (default) | MATLAB function name
+  group: ''
+  block_parameter: NetworkFunction
+  type: character vector, string
+  values: MATLAB function name
+  default: '''squeezenet'''
+- name: Mini-batch size
+  summary: Size of mini-batches 128 (default) | positive integer
+  group: ''
+  block_parameter: MiniBatchSize
+  type: character vector, string
+  values: positive integer
+  default: '''128'''
+- name: Resize input
+  summary: Resize input dimensions on (default) | off
+  group: ''
+  block_parameter: ResizeInput
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Classification
+  summary: Output predicted label with highest score on (default) | off
+  group: ''
+  block_parameter: Classification
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Predictions
+  summary: Output all scores and associated labels off (default) | on
+  group: ''
+  block_parameter: Predictions
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Class names workspace variable
+  summary: Workspace variable containing class names of the network output classNames (default) | categorical vector variable
+    | string array variable | cell array of character vectors variable name
+  group: ''
+  block_parameter: classNames
+  type: variable name of a categorical vector, a string array, or a cell array of character vectors.
+  values: Name of a variable containing class names, specified as a categorical vector, a string array, or a cell array of
+    character vectors.
+  default: The workspace variable classNames.
+```
 
 ### **Network** — Source for trained network `Network from MAT file` (default) | `Network from MATLAB function`
 
@@ -207,7 +282,6 @@ from a MAT file.
 |  |
 | --- |
 | **Default:** The workspace variable `classNames`. |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Neural Networks

@@ -14,6 +14,29 @@ language: en
 # CORDIC Square Root HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Value to take square root of non-negative real-valued scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: Whether input is valid Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: Whether to clear internal registers Boolean
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: CORDIC-based approximation of square root of input real-valued scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: Whether output data is valid Boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -67,8 +90,25 @@ value is `0` (`false`), the output data is not
 valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Automatically select CORDIC maximum shift value based on input word length
+  summary: Automatically select CORDIC maximum shift value based on input word length on (default) | off
+  group: ''
+  block_parameter: autoMaximumShiftVal
+  values: on (default) | off
+- name: CORDIC maximum shift value
+  summary: Maximum shift value of hyperbolic vectoring CORDIC 10 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: maximumShiftValue
+  values: 10 (default) | positive integer-valued scalar
+- name: Number of iterations per pipeline register
+  summary: Number of CORDIC iterations to perform in pipeline stage 1 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: nIterPerReg
+  values: 1 (default) | positive integer-valued scalar
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -144,7 +184,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `nIterPerReg` |
 | **Values:** | `1` (default) | positive integer-valued scalar |
 | **Data Types:** | `char` | `string` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Math Operations

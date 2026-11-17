@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Rotating Air Gap
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 定子磁连接 magnetic
+  direction: unspecified
+- name: S
+  summary: 转子磁连接 magnetic
+  direction: unspecified
+- name: C
+  summary: 电机外壳 mechanical
+  direction: unspecified
+- name: R
+  summary: 电机转子 mechanical
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +48,49 @@ chinese_source: worker-translation
 ### **R** — 电机转子 mechanical
 
 与电机转子关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of rotor pole pairs
+  summary: 转子极对数 5（默认）| 正标量
+  group: 主
+- name: Number of stator teeth
+  summary: 定子齿数 9（默认）| 正标量
+  group: 主
+- name: Stator tooth reference index
+  summary: 定子齿参考索引 1（默认）| 正标量
+  group: 主
+- name: Peak magnet flux density
+  summary: 磁体转子的峰值磁通密度 0.4 T（默认）| 正标量
+  group: 主
+- name: Permanent magnet length (in direction of flux)
+  summary: 沿电机径向的磁体长度 5 mm（默认）| 正标量
+  group: 主
+- name: Permanent magnet relative permeability
+  summary: 永磁体相对磁导率 1.05（默认）| 标量
+  group: 主
+- name: Air gap
+  summary: 径向气隙 1 mm（默认）| 正标量
+  group: 主
+- name: Rotor radius
+  summary: 转子半径 65 mm（默认）| 正标量
+  group: 主
+- name: Tooth depth (in direction of shaft)
+  summary: 定子齿深度 50 mm（默认）| 正标量
+  group: 主
+- name: Enable faults
+  summary: 故障选项 off（默认）| on
+  group: 故障
+- name: Flux multipliers for faulted rotor poles
+  summary: 用于降低转子极磁通的乘数 ones(1,10)（默认）| 向量
+  group: 故障
+- name: Duration of transition to faulted
+  summary: 模块完全故障所需的时间 100 s（默认）| 正标量
+  group: 故障
+- name: Simulation time for fault event
+  summary: 模块发生故障的仿真时间 1 s（默认）| 正标量
+  group: 故障
+```
 
 ### 主
 
@@ -107,7 +163,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Enable faults** 参数。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical

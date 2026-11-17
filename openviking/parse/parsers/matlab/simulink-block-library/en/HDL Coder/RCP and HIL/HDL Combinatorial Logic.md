@@ -14,6 +14,17 @@ language: en
 # HDL Combinatorial Logic
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal vector
+  direction: input
+  data_types: double | Boolean
+- name: v
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -39,8 +50,24 @@ output is the same as that of the input except that the block outputs
 table contains non-Boolean values.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input table
+  summary: Matrix of input permutations matrix
+  group: ''
+  block_parameter: inputTable
+  type: character vector
+  values: matrix
+  default: logical([0 1; 1 0; 1 1])
+- name: Output table
+  summary: Matrix of outputs matrix
+  group: ''
+  block_parameter: outputTable
+  type: character vector
+  values: matrix
+  default: logical([1 0; 1 0; 1 1])
+```
 
 ### **Input table** — Matrix of input permutations matrix
 
@@ -86,7 +113,6 @@ values, the data type of the table must be `double`.
 | **Type**: character vector |
 | **Values**: matrix |
 | **Default**: `logical([1 0; 1 0; 1 1])` |
-
 ## Libraries
 
 HDL Coder / RCP and HIL

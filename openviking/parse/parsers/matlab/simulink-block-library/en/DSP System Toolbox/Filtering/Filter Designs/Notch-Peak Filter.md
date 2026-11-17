@@ -14,6 +14,21 @@ language: en
 # Notch-Peak Filter
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: notch
+  summary: Notch filter output vector | matrix
+  direction: output
+  data_types: single | double
+- name: peak
+  summary: Peak filter output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -48,8 +63,60 @@ Peak filter output, returned as a vector or a matrix.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter specification
+  summary: Filter design specifications Bandwidth and center frequency (default) | Coefficients | Quality factor and center
+    frequency
+  group: ''
+- name: Specify bandwidth from input port
+  summary: Option to specify 3 dB bandwidth from input port off (default) | on
+  group: ''
+- name: 3 dB bandwidth
+  summary: 3-dB bandwidth 2205 (default) | positive scalar
+  group: ''
+- name: Specify center frequency from input port
+  summary: Option to specify center frequency from input port off (default) | on
+  group: ''
+- name: Center frequency of notch or peak
+  summary: Notch or peak center frequency 11025 (default) | positive scalar
+  group: ''
+- name: Specify bandwidth coefficient from input port
+  summary: Option to specify bandwidth coefficient from input port off (default) | on
+  group: ''
+- name: Bandwidth coefficient
+  summary: Bandwidth coefficient 0.72654 (default) | real scalar in the range [−1 1]
+  group: ''
+- name: Specify center frequency coefficient from input port
+  summary: Option to specify center frequency coefficient from input port off (default) | on
+  group: ''
+- name: Center frequency coefficient
+  summary: Center frequency coefficient 0 (default) | real scalar in the range [−1 1]
+  group: ''
+- name: Specify quality factor from input port
+  summary: Option to specify quality factor from input port off (default) | on
+  group: ''
+- name: Quality factor
+  summary: Quality factor for notch or peak filter 5 (default) | positive scalar
+  group: ''
+- name: Filter output
+  summary: Filter response to output Notch and Peak (default) | Notch | Peak
+  group: ''
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | positive scalar
+  group: ''
+- name: View Filter Response
+  summary: View filter response button (default)
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Filter specification** — Filter design specifications `Bandwidth and center frequency` (default) | `Coefficients` | `Quality factor and center frequency`
 
@@ -336,7 +403,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Designs

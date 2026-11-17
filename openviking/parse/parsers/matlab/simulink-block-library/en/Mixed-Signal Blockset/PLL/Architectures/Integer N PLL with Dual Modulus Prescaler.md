@@ -14,6 +14,17 @@ language: en
 # Integer N PLL with Dual Modulus Prescaler
 
 ## Ports
+```yaml
+ports:
+- name: clk in
+  summary: Input clock signal scalar
+  direction: input
+  data_types: double
+- name: clk out
+  summary: Output clock signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -33,8 +44,270 @@ out** port is the output of the VCO block in
 a PLL system.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Edit System
+  summary: Break library block links and replace internal variables by appropriate values button
+  group: ''
+- name: Enable increased buffer size
+  summary: Enable increased buffer size button
+  group: ''
+- name: Buffer size for loop filter
+  summary: Buffer size for loop filter 1000 (default) | positive integer scalar
+  group: ''
+- name: Buffer size for PFD, charge pump, VCO, prescaler
+  summary: Buffer size for PFD, charge pump, VCO, and prescaler 10 (default) | positive integer scalar
+  group: ''
+- name: Deadband compensation (s)
+  summary: Delay added for active output near zero phase offset 40e-12 (default) | positive real scalar
+  group: PFD
+- name: Enable impairments
+  summary: Add circuit impairments to simulation off (default) | on
+  group: PFD
+- name: Output step size calculation
+  summary: Determine how output step size is calculated Default (default) | Advanced
+  group: PFD
+- name: Maximum frequency of interest (Hz)
+  summary: Maximum frequency of interest at output 10e9 (default) | positive real scalar
+  group: PFD
+- name: Rise/fall time (s)
+  summary: 20% – 80% rise/fall time for up output port of PFD 3e-11 (default) | positive real scalar
+  group: PFD
+- name: Propagation Delay (s)
+  summary: Delay from input port to output port of PFD 50e-12 (default) | positive real scalar
+  group: PFD
+- name: Output current (A)
+  summary: Design output current 1e-3 (default) | positive real scalar
+  group: Charge pump
+  block_parameter: OutputCurrent
+  type: character vector
+  values: positive real scalar
+  default: 1e-3
+- name: Input threshold (V)
+  summary: Logic switching threshold at input ports 0.5 (default) | real scalar
+  group: Charge pump
+- name: Enable current impairments
+  summary: Add current impairments to simulation off (default) | on
+  group: Charge pump
+- name: Current imbalance (A)
+  summary: Difference between full scale positive and negative current 1e-7 (default) | positive real scalar
+  group: Charge pump
+- name: Leakage current (A)
+  summary: Output current without any input 1e-8 (default) | nonnegative real scalar
+  group: Charge pump
+- name: Enable timing impairments
+  summary: Add timing impairments to simulation off (default) | on
+  group: Charge pump
+- name: Output step size calculation
+  summary: Determine how output step size is calculated Default (default) | Advanced
+  group: Charge pump
+- name: Maximum frequency of interest (Hz)
+  summary: Maximum frequency of interest at output 10e9 (default) | positive real scalar
+  group: Charge pump
+- name: Rise/fall time (s)
+  summary: 20% – 80% rise/fall time for up input port 5e-9 (default) | positive real scalar
+  group: Charge pump
+- name: Propagation delay (s)
+  summary: Total propagation delay from up input port to output port of charge pump 6e-9 (default) | positive real scalar
+  group: Charge pump
+- name: Rise/fall time
+  summary: 20% – 80% rise/fall time for down input port 2e-9 (default) | scalar
+  group: Charge pump
+- name: Propagation delay (s)
+  summary: Total propagation delay from up input port to output port of charge pump 4e-9 (default) | positive real scalar
+  group: Charge pump
+- name: Specify using
+  summary: Define how VCO output frequency is specified Voltage sensitivity (default) | Output frequency vs. control voltage
+  group: VCO
+  block_parameter: SpecifyUsing
+  type: character vector
+  values: Voltage sensitivity | Output frequency vs. control voltage
+  default: Voltage sensitivity
+- name: Voltage sensitivity (Hz/V)
+  summary: Measure of change in output frequency of VCO 100e6 (default) | positive real scalar
+  group: VCO
+  block_parameter: Kvco
+  type: character vector
+  values: positive real scalar
+  default: 100e6
+- name: Free running frequency (Hz)
+  summary: VCO output frequency without control voltage 1.8e9 (default) | positive real scalar
+  group: VCO
+  block_parameter: Fo
+  type: character vector
+  values: positive real scalar
+  default: 1.8e9
+- name: Control voltage (V)
+  summary: Control voltage values [-5 0 5] (default) | real valued vector
+  group: VCO
+  block_parameter: ControlVoltage
+  type: character vector
+  values: real valued vector
+  default: '[-5 0 5]'
+- name: Output frequency (Hz)
+  summary: VCO output frequency values [2e9 2.5e9 3e9] (default) | real valued vector
+  group: VCO
+  block_parameter: OutputFrequency
+  type: character vector
+  values: real valued vector
+  default: '[2e9 2.5e9 3e9]'
+- name: Output amplitude
+  summary: Maximum amplitude of VCO output voltage 1 (default) | positive real scalar
+  group: VCO
+  block_parameter: Amplitude
+  type: character vector
+  values: positive real scalar
+  default: '1'
+- name: Add phase noise
+  summary: Add phase noise as function of frequency off (default) | on
+  group: VCO
+- name: Phase noise frequency offset (Hz)
+  summary: Frequency offsets of phase noise from carrier frequency [10e3 100e3 1e6 3e6 10e6] (default) | real valued vector
+  group: VCO
+  block_parameter: Foffset
+  type: character vector
+  values: real valued vector
+  default: '[10e3 100e3 1e6 3e6 10e6]'
+- name: Phase noise level (dBc/Hz)
+  summary: Phase noise power at specified frequency offsets relative to the carrier [-77 -108 -134 -145 -154] (default) |
+    real valued vector
+  group: VCO
+  block_parameter: PhaseNoise
+  type: character vector
+  values: real valued vector
+  default: '[-77 -108 -134 -145 -154]'
+- name: Estimate phase noise parameters
+  summary: Automatically estimate phase noise parameters on (default) | off
+  group: VCO
+- name: Period jitter (S)
+  summary: Standard deviation of period jitter 2.6794e-15 (default) | positive real scalar
+  group: VCO
+  block_parameter: PeriodJitter
+  type: character vector
+  values: positive real scalar
+  default: '2.6794e-15'
+- name: Flicker corner frequency (Hz)
+  summary: Corner frequency of flicker noise 517103.8168 (default) | scalar
+  group: VCO
+  block_parameter: CornerFrequency
+  type: character vector
+  values: scalar
+  default: '517103.8168'
+- name: Plot fit
+  summary: Plot specified and expected VCO output phase noise density button
+  group: VCO
+- name: Program counter value, P
+  summary: Value of the program counter inside dual modulus prescaler 18 (default) | positive real scalar
+  group: Prescaler
+- name: Prescaler divider value, N
+  summary: Value of the prescaler divider inside dual modulus prescaler 5 (default) | positive real scalar
+  group: Prescaler
+- name: Swallow counter value, S
+  summary: Value of the swallow counter inside dual modulus prescaler 10 (default) | positive real scalar
+  group: Prescaler
+- name: Min clock divider value
+  summary: Minimum value by which clock divider can divide input frequency 100 (default) | positive real scalar
+  group: Prescaler
+- name: Filter component values
+  summary: Determines how filter components are computed Automatic (default) | Manual
+  group: Loop Filter
+- name: Loop bandwidth (Hz)
+  summary: Frequency at which magnitude of open loop transfer function becomes 1 1e6 (default) | positive real scalar
+  group: Loop Filter
+- name: Phase margin (degrees)
+  summary: Phase of open loop transfer function at loop bandwidth subtracted from 180° 45 (default) | positive real scalar
+  group: Loop Filter
+- name: Loop filter type
+  summary: Order of the loop filter 3rd Order Passive (default) | 2nd Order Passive | 4th Order Passive
+  group: Loop Filter
+- name: C1 (F)
+  summary: Capacitance 1 5.24e-12 (default) | positive real scalar
+  group: Loop Filter
+- name: C2 (F)
+  summary: Capacitance 2 5.77e-11 (default) | positive real scalar
+  group: Loop Filter
+- name: C3 (F)
+  summary: Capacitance 3 3.76e-13 (default) | positive real scalar
+  group: Loop Filter
+- name: C4 (F)
+  summary: Capacitance 4 1e-12 (default) | positive real scalar
+  group: Loop Filter
+- name: R2 (ohms)
+  summary: Resistance 2 6.66e+03 (default) | positive real scalar
+  group: Loop Filter
+- name: R3 (ohms)
+  summary: Resistance 3 8.51e+04 (default) | positive real scalar
+  group: Loop Filter
+- name: R4 (ohms)
+  summary: Resistance 4 12e3 (default) | positive real scalar
+  group: Loop Filter
+- name: Enable impairments
+  summary: Add circuit impairments to simulation off (default) | on
+  group: Loop Filter
+- name: Operating temperature (℃)
+  summary: Temperature to determine the level of thermal noise 30 (default) | real scalar
+  group: Loop Filter
+- name: Export Loop Filter Component Values
+  summary: Export loop filter component values button
+  group: Loop Filter
+- name: PFD up and PFD down (pfd_up and pfd_down)
+  summary: Select to probe PFD outputs off (default) | on
+  group: Probe
+- name: Charge pump output (cp_out)
+  summary: Select to probe charge pump output off (default) | on
+  group: Probe
+- name: Loop filter output (lf_out)
+  summary: Select to probe loop filter output off (default) | on
+  group: Probe
+- name: Prescaler output (ps_out)
+  summary: Select to probe prescaler output off (default) | on
+  group: Probe
+- name: Open Loop Analysis
+  summary: Plot the presimulation open loop analysis on (default) | off
+  group: Analysis
+- name: Closed Loop Analysis
+  summary: Plot the presimulation closed loop analysis off (default) | on
+  group: Analysis
+- name: Plot Loop Dynamics
+  summary: Plot loop dynamics of PLL system button
+  group: Analysis
+- name: Estimate phase noise
+  summary: Estimate phase noise from input clock off (default) | on
+  group: Analysis
+- name: Reference frequency (Hz)
+  summary: Reference frequency of input clock 10e6 (default) | positive real scalar
+  group: Analysis
+  block_parameter: RefFreq
+  type: character vector
+  values: positive real scalar
+  default: 10e6
+- name: Resolution bandwidth (Hz)
+  summary: Smallest positive frequency that can be resolved 10e3 (default) | positive real scalar
+  group: Analysis
+  block_parameter: Rbw
+  type: character vector
+  values: positive real scalar
+  default: 10e3
+- name: Frequency offset vector (Hz)
+  summary: Frequency points relative to fundamental frequency where phase noise is calculated [10e3 100e3 1e6 3e6 10e6] (default)
+    | real valued vector
+  group: Analysis
+  block_parameter: FrOffset
+  type: character vector
+  values: real valued vector
+  default: '[10e3 100e3 1e6 3e6 10e6]'
+- name: Target phase-noise levels (dBc/Hz)
+  summary: Target phase noise profile for given frequency offset vector -inf (default) | vector | scalar
+  group: Analysis
+  block_parameter: TargetPn
+  type: character vector
+  values: vector | scalar
+  default: -inf
+- name: Plot estimated phase noise
+  summary: Plot estimated input clock phase noise button
+  group: Analysis
+```
 
 ### **Edit System** — Break library block links and replace internal variables by appropriate values button
 
@@ -1084,7 +1357,6 @@ To enable this parameter, select **Estimate Phase Noise** in the
 ### **Plot estimated phase noise** — Plot estimated input clock phase noise button
 
 Click to plot the estimated input clock phase noise.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Architectures

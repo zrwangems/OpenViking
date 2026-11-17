@@ -14,6 +14,18 @@ language: en
 # Temperature Control Valve (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Valve entrance or exit moist air
+  direction: conserving
+- name: B
+  summary: Valve entrance or exit moist air
+  direction: conserving
+- name: T
+  summary: Sensing port moist air | thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,8 +58,72 @@ air sensing port. When **Temperature sensing** is
 To enable this port, set **Temperature sensing**
 to `Moist air sensing port` or
 `Thermal sensing port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve operation
+  summary: Sign of change in opening area Opens above activation temperature (default) | Closes above activation temperature
+  group: ''
+- name: Temperature sensing
+  summary: Method to control valve temperature sensing Valve inlet temperature (default) | Moist air sensing port | Thermal
+    sensing port
+  group: ''
+- name: Activation temperature
+  summary: Temperature at which opening mechanism is triggered 330 K (default) | scalar
+  group: ''
+- name: Temperature regulation range
+  summary: Span of temperature interval over which opening area is variable 8 K (default) | positive scalar
+  group: ''
+- name: Sensor time constant
+  summary: Time for temperature change to register at inlet sensor 1.5 s (default) | positive scalar in units of time
+  group: ''
+- name: Valve parameterization
+  summary: Parameterization used to specify flow characteristics of orifice Cv flow coefficient (default) | Kv flow coefficient
+    | Sonic conductance | Orifice area
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: Cv coefficient that corresponds to maximally open component 4 (default) | positive scalar
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: Kv coefficient that corresponds to maximally open component 3.6 (default) | positive scalar
+  group: ''
+- name: Maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open component 12 l/(bar*s) (default) | positive scalar
+  group: ''
+- name: Critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: ''
+- name: Subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Maximum orifice area
+  summary: Flow area corresponding to maximally open component 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar in the range of [0,1]
+  group: ''
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at moist air ports 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve operation** — Sign of change in opening area `Opens above activation temperature` (default) | `Closes above activation temperature`
 
@@ -273,7 +349,6 @@ pressure. Typical values range from `0.995` to
 Area normal to the flow path at each port. The ports are equal in size.
 The value of this parameter should match the inlet area of the components to
 which the resistive element connects.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Flow Control Valves

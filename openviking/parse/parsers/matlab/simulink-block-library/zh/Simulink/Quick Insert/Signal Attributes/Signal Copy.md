@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Signal Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要转换的输入信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+- name: Port_1
+  summary: 转换后的信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -30,8 +43,25 @@ chinese_source: worker-translation
 输出信号是转换为指定类型的输入信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 转换类型 Signal copy | Virtual bus | Nonvirtual bus
+  group: ''
+  block_parameter: ConversionOutput
+  values: '''Signal copy''（默认） | ''Virtual bus'' | ''Nonvirtual bus'''
+- name: Data type
+  summary: '非虚拟总线数据类型 Inherit: auto（默认） | Bus: <object name> | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: auto''（默认） | ''Bus: <object name>'' | ''<data type expression>'''
+- name: Exclude this block from 'Block reduction' optimization
+  summary: 将模块从模块缩减优化中排除的选项 off（默认） | on
+  group: ''
+  block_parameter: OverrideOpt
+  values: '''off''（默认） | ''on'''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中选择**属性检查器**。
 
@@ -118,7 +148,6 @@ myBusObj')`
 | **值：** | `'off'`（默认） | `'on'` |
 
 **示例：** `set_param(gcb,'OverrideOpt','on')`
-
 ## 所属库
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

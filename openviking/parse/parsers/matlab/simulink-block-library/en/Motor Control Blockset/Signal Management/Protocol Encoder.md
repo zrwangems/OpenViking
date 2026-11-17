@@ -14,6 +14,16 @@ language: en
 # Protocol Encoder
 
 ## Ports
+```yaml
+ports:
+- name: Field1
+  summary: First field to be encoded by the block scalar
+  direction: input
+- name: Packet
+  summary: uint8 byte stream packet vector
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -35,8 +45,41 @@ The uint8 byte stream packet that contains the encoded data from multiple signal
 as specified in the packet structure.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Header
+  summary: Header of the packet character array | array of numeric values less than 255
+  group: ''
+- name: Field name
+  summary: Name of the field in the packet structure Field1 (default) | string
+  group: ''
+- name: Input field length
+  summary: Length of the input field as per the data type 1 (default) | numeric scalar
+  group: ''
+- name: Input field data type
+  summary: Data type of the field uint8 (default) | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | single | double
+  group: ''
+- name: Byte order
+  summary: Endianess of the field in the packet Little endian (default) | Big endian
+  group: ''
+- name: Specify logic to generate checksum for validation
+  summary: Enable the logic for checksum validation and select the logic XOR of bytes | 2's complement of sum of bytes | Custom
+    algorithm
+  group: ''
+- name: Checksum size
+  summary: Size of checksum bytes specified in the function used for custom algorithm numeric scalar
+  group: ''
+- name: File path
+  summary: Path of the function (.m) used for custom checksum logic MATLAB® path
+  group: ''
+- name: Terminator
+  summary: Terminator of the packet <none> (default) | CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+- name: Custom terminator
+  summary: Custom terminator of the packet character array | array of numeric values less than 255
+  group: ''
+```
 
 ### **Header** — Header of the packet character array | array of numeric values less than 255
 
@@ -153,7 +196,6 @@ integer representation of the corresponding ASCII characters.
 Few examples of custom terminator values are: ‘END’, '#’.
 
 **Data Types:** `uint8`
-
 ## Libraries
 
 Motor Control Blockset / Signal Management C2000 Microcontroller Blockset / Target Communication

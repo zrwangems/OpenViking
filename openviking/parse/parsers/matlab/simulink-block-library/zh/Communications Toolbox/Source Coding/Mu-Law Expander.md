@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # Mu-Law Expander
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **mu value**
 :   压缩器的 µ-law 参数。
 
 **Peak signal magnitude**
 :   输入信号的峰值。这也是输出的峰值。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # HDL Combinatorial Logic
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号向量
+  direction: input
+  data_types: double | Boolean
+- name: v
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,24 @@ chinese_source: worker-translation
 输出信号，如果由 **Input table** 和 **Output table** 表示的真值表包含 `double` 类型的非布尔值，则返回为 `double` 标量或向量；否则返回为 `Boolean` 标量或向量。输出类型与输入类型相同，除非输入为 `Boolean` 且真值表包含非布尔值，此时模块输出 `double`。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Input table
+  summary: 输入排列矩阵 矩阵
+  group: ''
+  block_parameter: inputTable
+  type: 字符向量
+  values: 矩阵
+  default: logical([0 1; 1 0; 1 1])
+- name: Output table
+  summary: 输出矩阵 矩阵
+  group: ''
+  block_parameter: outputTable
+  type: 字符向量
+  values: 矩阵
+  default: logical([1 0; 1 0; 1 1])
+```
 
 ### **Input table** — 输入排列矩阵 矩阵
 
@@ -69,7 +96,6 @@ Simulink® 通过基于输入向量元素计算编号，返回由 **Output table
 | **类型**：字符向量 |
 | **值**：矩阵 |
 | **默认值**：`logical([1 0; 1 0; 1 1])` |
-
 ## 所属库
 
 HDL Coder / RCP and HIL

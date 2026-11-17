@@ -14,6 +14,21 @@ language: en
 # Variance
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: Variance along the specified dimension scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -144,8 +159,47 @@ processing** to:
 The data type of the output matches the data type of the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Running variance
+  summary: Option to select running variance off (default) | on
+  group: Main Tab
+- name: Find the variance value over
+  summary: Dimension over which variance is computed Each column (default) | Entire input | Each row | Specified dimension
+  group: Main Tab
+- name: Dimension
+  summary: Custom dimension 1 (default) | scalar
+  group: Main Tab
+- name: Input processing
+  summary: Method to process the input in running mode Columns as channels (frame based) (default) | Elements as channels
+    (sample based)
+  group: Main Tab
+- name: Reset port
+  summary: Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Input-squared product output
+  summary: Data type of the input-squared term Same as input (default) | Binary point scaling
+  group: Data Types Tab
+- name: Input-sum-squared product
+  summary: Data type of the input-sum-squared term Same as input-squared product (default) | Binary point scaling
+  group: Data Types Tab
+- name: Accumulator
+  summary: Accumulator data type Same as input-squared product (default) | Same as input | Binary point scaling
+  group: Data Types Tab
+- name: Output
+  summary: Output data type Same as input-squared product (default) | Same as accumulator | Same as input | Binary point scaling
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -419,7 +473,6 @@ set it to:
 
 Select this parameter to prevent the fixed-point tools from overriding
 the data types you specify on the block.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

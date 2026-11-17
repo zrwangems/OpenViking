@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # General CRC Generator
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 二进制列向量
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: 输出码字帧 二进制列向量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +44,31 @@ chinese_source: worker-translation
 *m* 是输入帧的大小，
 *k* 是每帧的校验和数量，
 *r* 是生成多项式的阶数。
-
 ## 参数
+```yaml
+parameters:
+- name: Generator polynomial
+  summary: 生成多项式 'z^16 + z^12 + z^5 + 1'（默认）| 多项式字符向量 | 二进制行向量 | 整数行向量
+  group: ''
+- name: Initial states
+  summary: 内部移位寄存器的初始状态 0（默认）| 1 | 二进制行向量
+  group: ''
+- name: Direct method
+  summary: 使用直接算法进行 CRC 校验和计算 off（默认）| on
+  group: ''
+- name: Reflect input bytes
+  summary: 反射输入字节 off（默认）| on
+  group: ''
+- name: Reflect checksums before final XOR
+  summary: 在最终 XOR 之前反射校验和 off（默认）| on
+  group: ''
+- name: Final XOR
+  summary: 最终 XOR 0（默认）| 1 | 二进制行向量
+  group: ''
+- name: Checksums per frame
+  summary: 每帧计算的校验和数量 1（默认）| 正整数
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -103,7 +136,6 @@ before final XOR** 时，模块不翻转 CRC 校验和。
 ### **Checksums per frame** — 每帧计算的校验和数量 `1`（默认）| 正整数
 
 每帧计算的校验和数量，指定为正整数。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / CRC

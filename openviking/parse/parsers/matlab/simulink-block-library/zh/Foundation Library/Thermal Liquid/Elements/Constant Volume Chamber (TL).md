@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Constant Volume Chamber (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 腔室入口热液体
+  direction: conserving
+- name: B
+  summary: 腔室入口热液体
+  direction: conserving
+- name: C
+  summary: 腔室入口热液体
+  direction: conserving
+- name: D
+  summary: 腔室入口热液体
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -49,8 +67,28 @@ chinese_source: worker-translation
 ### **H** — 热端口热
 
 热守恒端口，腔室中的流体通过该端口与热网络进行热交换。
-
 ## 参数
+```yaml
+parameters:
+- name: Chamber volume
+  summary: 腔室内流体体积 0.001 m^3（默认值）
+  group: ''
+- name: Number of ports
+  summary: 腔室中入口端口的数量 1（默认值）| 2 | 3 | 4
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 垂直于流动方向的入口面积 0.01 m^2（默认值）
+  group: ''
+- name: Cross-sectional area at port B
+  summary: 垂直于流动方向的入口面积 0.01 m^2（默认值）
+  group: ''
+- name: Cross-sectional area at port C
+  summary: 垂直于流动方向的入口面积 0.01 m^2（默认值）
+  group: ''
+- name: Cross-sectional area at port D
+  summary: 垂直于流动方向的入口面积 0.01 m^2（默认值）
+  group: ''
+```
 
 ### **Chamber volume** — 腔室内流体体积 `0.001 m^3`（默认值）
 
@@ -87,7 +125,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当端口 **D** 可见时启用，即当 **Number of ports** 参数设置为 `4` 时。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Elements

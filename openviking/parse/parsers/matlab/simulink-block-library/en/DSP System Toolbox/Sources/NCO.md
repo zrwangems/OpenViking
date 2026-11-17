@@ -14,6 +14,33 @@ language: en
 # NCO
 
 ## Ports
+```yaml
+ports:
+- name: inc
+  summary: Phase increment scalar | vector
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: offset
+  summary: Phase offset scalar | vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: sin
+  summary: Sine output scalar | vector | matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: cos
+  summary: Cosine output scalar | vector | matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: exp
+  summary: Complex exponential scalar | vector | matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: Qerr
+  summary: Phase quantization error scalar | vector | matrix
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -118,8 +145,76 @@ To enable this port, select the **Show phase quantization
 error port** check box.
 
 **Data Types:** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase increment source
+  summary: Source of phase increment value Specify via dialog | Input port
+  group: Main
+- name: Phase increment
+  summary: Phase increment value 100 (default) | scalar | vector
+  group: Main
+- name: Phase offset source
+  summary: Source of phase offset Specify via dialog (default) | Input port
+  group: Main
+- name: Phase offset
+  summary: Phase offset value 0 (default) | scalar | vector
+  group: Main
+- name: Add internal dither
+  summary: Add internal dithering on (default) | off
+  group: Main
+- name: Number of dither bits
+  summary: Number of dither bits 4 (default) | positive integer
+  group: Main
+- name: Quantize phase
+  summary: Enable quantization of accumulated phase on (default) | off
+  group: Main
+- name: Number of quantized accumulator bits
+  summary: Number of quantized accumulator bits 12 (default) | integer scalar
+  group: Main
+- name: Show phase quantization error port
+  summary: Output quantization error off (default) | on
+  group: Main
+- name: Output signal
+  summary: Output signal Sine (default) | Cosine | Complex exponential | Sine and cosine
+  group: Main
+- name: Sample time
+  summary: Output sample period 1 (default) | positive scalar
+  group: Main
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: Main
+- name: Rounding mode
+  summary: 'Rounding method Read-only: Floor (default)'
+  group: Data Types
+- name: Overflow mode
+  summary: 'Overflow method Read-only: Wrap (default)'
+  group: Data Types
+- name: Accumulator Word Length
+  summary: Accumulator word length 16 (default) | integer from 2 to 128
+  group: Data Types
+- name: Output Data Type
+  summary: Output data type double (default) | single | Binary point scaling
+  group: Data Types
+- name: Output Word Length
+  summary: Output word length 16 (default) | integer from 2 to 128
+  group: Data Types
+- name: Output Fraction Length
+  summary: Output fraction length 14 (default) | integer
+  group: Data Types
+- name: Number of data points for lookup table
+  summary: Number of points in lookup table no default
+  group: NCO Characterization
+- name: Quarter wave sine lookup table size
+  summary: Size of quarter wave sine lookup table no default
+  group: NCO Characterization
+- name: Theoretical spurious free dynamic range
+  summary: Spurious free dynamic range no default
+  group: NCO Characterization
+- name: Frequency resolution
+  summary: Frequency resolution no default
+  group: NCO Characterization
+```
 
 ### Main
 
@@ -400,7 +495,6 @@ The frequency resolution only appears when you set **Phase
 increment source** and **Phase offset
 source** to `Specify via
 dialog`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations DSP System Toolbox / Sources

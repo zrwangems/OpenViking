@@ -14,6 +14,21 @@ language: en
 # Battery
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Battery charge level, C physical signal
+  direction: output
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Battery thermal mass thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -43,8 +58,185 @@ Thermal conserving port that represents the battery thermal mass. When you expos
 
 To enable this port, in the **Thermal Port** section, set **Thermal
 port** to `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal voltage, Vnom
+  summary: Output voltage when battery is fully charged 12 V (default) | positive number
+  group: Main
+- name: Current directionality
+  summary: Enable direction of current Disabled (default) | Enabled
+  group: Main
+- name: Internal resistance
+  summary: Battery internal resistance 2 Ohm (default) | positive number
+  group: Main
+- name: Internal resistance during charging
+  summary: Battery internal resistance during charge 2 Ohm (default) | positive number
+  group: Main
+- name: Internal resistance during discharging
+  summary: Battery internal resistance during discharge 2 Ohm (default) | positive number
+  group: Main
+- name: Battery charge capacity
+  summary: Select battery model Infinite (default) | Finite
+  group: Main
+- name: Cell capacity (Ah rating)
+  summary: Nominal battery capacity when fully charged 50 hr*A (default) | positive number
+  group: Main
+- name: Voltage V1 when charge is AH1
+  summary: Output voltage at charge level AH1 11.5 V (default) | positive number
+  group: Main
+- name: Charge AH1 when no-load voltage is V1
+  summary: Charge level when the no-load output voltage is V1 25 hr*A (default) | positive number
+  group: Main
+- name: Self-discharge
+  summary: Select whether to model the self-discharge resistance of the battery Disabled (default) | Enabled
+  group: Main
+- name: Self-discharge resistance
+  summary: Resistance that represents battery self-discharge 2000 Ohm (default) | positive number
+  group: Main
+- name: Measurement temperature
+  summary: Temperature at which the block parameters are measured 298.15 K (default) | positive number
+  group: Main
+- name: Expose charge measurement port
+  summary: Whether to expose charge measurement port No (default) | Yes
+  group: Main
+- name: Charge dynamics
+  summary: Battery charge dynamics model No dynamics (default) | One time-constant dynamics | Two time-constant dynamics |
+    Three time-constant dynamics | Four time-constant dynamics | Five time-constant dynamics
+  group: Dynamics
+- name: First polarization resistance
+  summary: First RC resistance 0.005 Ohm (default) | positive number
+  group: Dynamics
+- name: First time constant
+  summary: First RC time constant 30 s (default) | positive number
+  group: Dynamics
+- name: Second polarization resistance
+  summary: Second RC resistance 0.005 Ohm (default) | positive number
+  group: Dynamics
+- name: Second time constant
+  summary: Second RC time constant 30 s (default) | positive number
+  group: Dynamics
+- name: Third polarization resistance
+  summary: Third RC resistance 0.005 Ohm (default) | positive number
+  group: Dynamics
+- name: Third time constant
+  summary: Third RC time constant 30 s (default) | positive number
+  group: Dynamics
+- name: Fourth polarization resistance
+  summary: Fourth RC resistance 0.005 Ohm (default) | positive number
+  group: Dynamics
+- name: Fourth time constant
+  summary: Fourth RC time constant 30 s (default) | positive number
+  group: Dynamics
+- name: Fifth polarization resistance
+  summary: Fifth RC resistance 0.005 Ohm (default) | positive number
+  group: Dynamics
+- name: Fifth time constant
+  summary: Fifth RC time constant 30 s (default) | positive number
+  group: Dynamics
+- name: Battery fade
+  summary: Select whether to model battery performance deterioration with aging Disabled (default) | Enabled
+  group: Fade
+- name: Number of discharge cycles, N
+  summary: Number of cycles that defines a second set of data points 100 (default) | positive number
+  group: Fade
+- name: Cell capacity after N discharge cycles
+  summary: Maximum battery capacity after N discharge cycles 45 hr*A (default) | positive number
+  group: Fade
+- name: Internal resistance after N discharge cycles
+  summary: Battery internal resistance after N discharge cycles 2.02 Ohm (default) | positive number
+  group: Fade
+- name: Average internal resistance after N discharge cycles
+  summary: Battery average internal resistance after N discharge cycles 2.02 Ohm (default) | positive number
+  group: Fade
+- name: Voltage V1 at charge AH1 after N discharge cycles
+  summary: Output voltage at charge level AH1 after N discharge cycles 10.35 V (default) | positive number
+  group: Fade
+- name: Calendar aging
+  summary: Calendar aging option Disabled (default) | Enabled
+  group: Calendar Aging
+- name: Storage condition
+  summary: Storage condition Fixed open-circuit voltage (default) | Fixed state of charge
+  group: Calendar Aging
+- name: Normalized open-circuit voltage during storage, V/Vnom
+  summary: Normalized open-circuit voltage during storage 0.9 (default) | scalar
+  group: Calendar Aging
+- name: Open-circuit measurement temperature
+  summary: Open-circuit temperature 298.15 K (default) | positive number
+  group: Calendar Aging
+- name: State of charge during storage (%)
+  summary: Percentage state of charge during storage 60 (default) | positive number
+  group: Calendar Aging
+- name: Vector of time intervals
+  summary: Time intervals [0] d (default) | scalar
+  group: Calendar Aging
+- name: Vector of temperatures
+  summary: Storage temperatures [273] K (default) | scalar
+  group: Calendar Aging
+- name: Linear scaling for voltage, b
+  summary: Voltage linear scaling 2.2134e6 (default) | scalar
+  group: Calendar Aging
+- name: Constant offset for voltage, c
+  summary: Voltage constant offset 1.632e6 (default) | scalar
+  group: Calendar Aging
+- name: Temperature-dependent exponential increase, d
+  summary: Temperature-dependent exponential increase 0.515833569 V (default) | scalar
+  group: Calendar Aging
+- name: Time exponent, a
+  summary: Time exponent 0.75 (default) | scalar
+  group: Calendar Aging
+- name: Nominal voltage at second measurement temperature
+  summary: Output voltage when battery is fully charged 12 V (default) | positive number
+  group: Temperature Dependence
+- name: Internal resistance at second measurement temperature
+  summary: Battery internal resistance 2.2 Ohm (default) | positive number
+  group: Temperature Dependence
+- name: Voltage V1 at second measurement temperature
+  summary: Output voltage at charge level AH1 11.4 V (default) | positive number
+  group: Temperature Dependence
+- name: Self-discharge resistance at second measurement temperature
+  summary: Resistance that represents battery self-discharge 2200 Ohm (default) | positive number
+  group: Temperature Dependence
+- name: First polarization resistance at second measurement temperature
+  summary: First RC resistance at second measurement temperature 0.005 Ohm (default) | positive number
+  group: Temperature Dependence
+- name: First time constant at second measurement temperature
+  summary: First RC time constant at second measurement temperature 30 s (default) | positive number
+  group: Temperature Dependence
+- name: Second polarization resistance at second measurement temperature
+  summary: Second RC resistance at second measurement temperature 0.005 Ohm (default) | positive number
+  group: Temperature Dependence
+- name: Second time constant at second measurement temperature
+  summary: Second RC time constant at second measurement temperature 30 s (default) | positive number
+  group: Temperature Dependence
+- name: Third polarization resistance at second measurement temperature
+  summary: Third RC resistance at second measurement temperature 0.005 Ohm (default) | positive number
+  group: Temperature Dependence
+- name: Third time constant at second measurement temperature
+  summary: Third RC time constant at second measurement temperature 30 s (default) | positive number
+  group: Temperature Dependence
+- name: Fourth polarization resistance at second measurement temperature
+  summary: Fourth RC resistance at second measurement temperature 0.005 Ohm (default) | positive number
+  group: Temperature Dependence
+- name: Fourth time constant at second measurement temperature
+  summary: Fourth RC time constant at second measurement temperature 30 s (default) | positive number
+  group: Temperature Dependence
+- name: Fifth polarization resistance at second measurement temperature
+  summary: Fifth RC resistance at second measurement temperature 0.005 Ohm (default) | positive number
+  group: Temperature Dependence
+- name: Fifth time constant at second measurement temperature
+  summary: Fifth RC time constant at second measurement temperature 30 s (default) | positive number
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: Temperature at which the block parameters in this section are measured 273.15 K (default) | positive number
+  group: Temperature Dependence
+- name: Thermal port
+  summary: Whether to expose thermal port Omit (default) | Model
+  group: Thermal Port
+- name: Thermal mass
+  summary: Thermal mass associated with the thermal port 30000 J/K (default) | positive number
+  group: Thermal Port
+```
 
 ### Main
 
@@ -583,7 +775,6 @@ the temperature of the thermal port by one degree.
 
 To enable this parameter, set **Thermal port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Electrical / Sources Simscape / Battery / Cells

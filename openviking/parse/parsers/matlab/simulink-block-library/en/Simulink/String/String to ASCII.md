@@ -14,6 +14,17 @@ language: en
 # String to ASCII
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input string signal scalar
+  direction: input
+  data_types: string
+- name: Port_1
+  summary: Converted uint8 vector signal vector | 1D vector of *N* elements
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -35,8 +46,17 @@ code generation, the block fills the remaining space with null
 characters.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output vector size
+  summary: Size of output vector 31 (default) | scalar
+  group: ''
+  block_parameter: OutputVectorSize
+  type: character vector
+  values: scalar
+  default: '''31'''
+```
 
 ### **Output vector size** — Size of output vector 31 (default) | scalar
 
@@ -50,7 +70,6 @@ Size of output string vector, specified as a scalar.
 | **Type:** character vector |
 | **Values:** scalar |
 | **Default:** `'31'` |
-
 ## Libraries
 
 Simulink / String

@@ -15,14 +15,100 @@ chinese_source: worker-translation
 # Moist Air Properties (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 湿空气连接端口
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 湿空气连接端口
 
 守恒端口，用于将模块连接到湿空气网络。您可以将其连接到框图中湿空气连接线上的任意点。当您将 Moist Air Properties (MA) 模块连接到连接线时，软件会自动识别连接到特定回路的湿空气模块，并将属性传播到所有这些模块。
-
 ## 参数
+```yaml
+parameters:
+- name: Dry air specific gas constant
+  summary: 通用气体常数除以干空气摩尔质量 287.047 J/kg/K（默认值）
+  group: 干空气
+- name: Temperature vector
+  summary: 用于查表的温度值向量 向量
+  group: 干空气
+- name: Dry air specific enthalpy vector
+  summary: 用于查表的比焓值向量 向量
+  group: 干空气
+- name: Dry air dynamic viscosity vector
+  summary: 用于查表的动力粘度值向量 向量
+  group: 干空气
+- name: Dry air thermal conductivity vector
+  summary: 干空气热导率值的查找表向量
+  group: 干空气
+- name: Minimum valid pressure
+  summary: 允许的最低压力 1 kPa（默认值）
+  group: 干空气
+- name: Maximum valid pressure
+  summary: 允许的最高压力 inf MPa（默认值）
+  group: 干空气
+- name: Minimum valid temperature
+  summary: 允许的最低温度 -56.55 degC（默认值）
+  group: 干空气
+- name: Maximum valid temperature
+  summary: 允许的最高温度 350 degC（默认值）
+  group: 干空气
+- name: Pressure and temperature outside valid range
+  summary: 当压力或温度超出有效范围时是否通知 Error（默认值）| Warning | None
+  group: 干空气
+- name: Atmospheric pressure
+  summary: 环境的绝对压力 0.101325 MPa（默认值）
+  group: 干空气
+- name: Atmospheric temperature
+  summary: 环境的绝对温度 20 degC（默认值）
+  group: 干空气
+- name: Enable entrained water droplets
+  summary: 用于对水滴建模的选项 Off（默认值）| On
+  group: Water Vapor
+- name: Water vapor specific gas constant
+  summary: 通用气体常数除以水蒸气的摩尔质量 461.523 J/kg/K（默认值）
+  group: Water Vapor
+- name: Water vapor saturation pressure vector
+  summary: 用于查表向量的水蒸气饱和值向量
+  group: Water Vapor
+- name: Water specific enthalpy of vaporization vector
+  summary: 用于查表向量的汽化比焓值向量
+  group: Water Vapor
+- name: Water vapor specific enthalpy vector
+  summary: 水蒸气比焓值查表向量
+  group: Water Vapor
+- name: Water vapor dynamic viscosity vector
+  summary: 水蒸气动力黏度值查表向量
+  group: Water Vapor
+- name: Water vapor thermal conductivity vector
+  summary: 用于查表向量的热导率值向量
+  group: Water Vapor
+- name: Water vapor diffusivity in air
+  summary: 流动反向的平滑系数 25 mm^2/s（默认）
+  group: Water Vapor
+- name: Trace gas model
+  summary: 选择如何对空气混合物中的微量气体建模 None（默认） | Track mass fraction only | Track mass fraction and gas properties
+  group: Trace Gas
+- name: Trace gas specific gas constant
+  summary: 通用气体常数除以微量气体的摩尔质量 188.923 J/kg/K（默认）
+  group: Trace Gas
+- name: Trace gas specific enthalpy vector
+  summary: 用于查表向量的比焓值向量
+  group: Trace Gas
+- name: Trace gas dynamic viscosity vector
+  summary: 用于查表向量的动力黏度值向量
+  group: Trace Gas
+- name: Trace gas thermal conductivity vector
+  summary: 用于查表向量的热导率值向量
+  group: Trace Gas
+- name: Trace gas diffusivity in air
+  summary: 流动反向的平滑系数 16 mm^2/s（默认值）
+  group: Trace Gas
+```
 
 ### 干空气
 
@@ -377,7 +463,6 @@ properties` 时启用。
 当 **Trace gas model** 参数设置为 `Track mass fraction only` 或
 `Track mass fraction and gas
 properties` 时启用。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Utilities

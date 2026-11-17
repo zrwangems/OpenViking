@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Unicycle Kinematic Model
 
 ## 端口
+```yaml
+ports:
+- name: dϕ/dt
+  summary: 车轮角速度 数值标量
+  direction: input
+- name: v
+  summary: 车辆速度 数值标量
+  direction: input
+- name: ω
+  summary: 转向角速度 数值标量
+  direction: input
+- name: state
+  summary: 车辆位姿 三元素向量
+  direction: output
+- name: stateDot
+  summary: state 输出的导数 三元素向量
+  direction: output
+```
 
 ### 输入
 
@@ -52,8 +70,25 @@ Velocity`。
 车辆的线速度和角速度，以 *[xDot
 yDot thetaDot]* 向量形式指定，单位为米每秒和弧度每秒。线速度和角速度通过对 `state`
 输出求导计算得出。
-
 ## 参数
+```yaml
+parameters:
+- name: Vehicle inputs
+  summary: 车辆的速度和方向输入类型 Vehicle Speed & Heading Angular Velocity（默认）| Wheel Speed & Heading Angular Velocity
+  group: ''
+- name: Wheel radius
+  summary: 车辆的车轮半径 0.1（默认）| 正数值标量
+  group: ''
+- name: Wheel speed range
+  summary: 车辆速度的最小值和最大值 [-Inf Inf]（默认）| 二元素向量
+  group: ''
+- name: Initial state
+  summary: 前后轴之间的距离 [0;0;0]（默认）| 三元素向量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Vehicle inputs** — 车辆的速度和方向输入类型 `Vehicle Speed & Heading Angular Velocity`（默认）| `Wheel Speed & Heading Angular Velocity`
 
@@ -85,7 +120,6 @@ yDot thetaDot]* 向量形式指定，单位为米每秒和弧度每秒。线速�
   仿真中重复使用。
 
 **Tunable:** No
-
 ## 所属库
 
 Robotics System Toolbox / Mobile Robot Algorithms

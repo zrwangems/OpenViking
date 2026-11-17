@@ -14,6 +14,21 @@ language: en
 # Sum
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input operand signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_n
+  summary: '*n*th input operand signal scalar | vector | matrix'
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Inputs
 
@@ -53,8 +68,99 @@ Output signal resulting from addition and/or subtraction operations.
 The output signal has the same dimension as the input signals.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Icon shape
+  summary: Block icon shape rectangular | round
+  group: Main
+  block_parameter: IconShape
+  type: character vector
+  values: '''rectangular'' | ''round'''
+- name: List of signs
+  summary: Operations performed on inputs + | - | | | integer
+  group: Main
+  block_parameter: Inputs
+  type: character vector
+  values: '''+'' | ''-'' | | | integer'
+- name: Apply over
+  summary: How to apply function along specified dimensions All dimensions (default) | Specified dimension
+  group: Main
+  block_parameter: CollapseMode
+  type: character vector
+  values: '''All dimensions'' | ''Specified dimension'''
+  default: '''All dimensions'''
+- name: Dimension
+  summary: Dimension along which to apply summation 1 (default) | positive integer
+  group: Main
+  block_parameter: CollapseDim
+  type: character vector
+  values: integer
+  default: '''1'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep
+    LSB | Inherit: Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator | double | single
+    | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit via back
+    propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | ''double'' | ''single'' | ''half''
+    | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''|''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Accumulator data type
+  summary: 'Data type of the accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input | double
+    | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: Signal Attributes
+  block_parameter: AccumDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as first input'' | ''double'' | ''single'' | ''half''
+    | ''int8'' | ''uint8'' | ''int16'' | ''uint16'', ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Require all inputs to have the same data type
+  summary: Require that all inputs have the same data type off (default) | on
+  group: Signal Attributes
+  block_parameter: InputSameDT
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+```
 
 ### Main
 
@@ -499,7 +605,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / Math Operations

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # SVD Solver
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入 *A* 矩阵 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double
+- name: B
+  summary: '*B* 矩阵 *M*×*L* 矩阵 | *M*×1 向量'
+  direction: input
+  data_types: single | double
+- name: X
+  summary: 方程组的解 *N*×*L* 矩阵
+  direction: output
+  data_types: single | double
+- name: E
+  summary: 显示错误状态报告 逻辑标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -81,8 +100,13 @@ Solver 模块应用于欠定系统时，该模块
 标量值 `1`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Show error status port (E)
+  summary: 选择以报告收敛失败 off（默认）| on
+  group: ''
+```
 
 ### **Show error status port (E)** — 选择以报告收敛失败 `off`（默认）| `on`
 
@@ -96,7 +120,6 @@ Solver 模块应用于欠定系统时，该模块
 
 如果奇异值分解计算不收敛，端口
 **X** 处的输出是预期大小的未定义矩阵。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

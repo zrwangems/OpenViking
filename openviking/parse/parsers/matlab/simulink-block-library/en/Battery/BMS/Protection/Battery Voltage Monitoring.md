@@ -14,6 +14,24 @@ language: en
 # Battery Voltage Monitoring
 
 ## Ports
+```yaml
+ports:
+- name: CellVoltage
+  summary: Cell voltage, V scalar | vector
+  direction: input
+- name: PackVoltage
+  summary: Battery pack voltage, V scalar
+  direction: input
+- name: UndervoltageError
+  summary: Indication of undervoltage error 0 | 1
+  direction: output
+- name: OvervoltageError
+  summary: Indication of overvoltage error 0 | 1
+  direction: output
+- name: SensoryFaultyError
+  summary: Indication of sensor faulty error 0 | 1
+  direction: output
+```
 
 ### Input
 
@@ -42,8 +60,43 @@ Indication of an overvoltage error. If this output is equal to
 
 Indication of a sensor faulty error. If this output is equal to
 `1`, the sensor is faulty.
-
 ## Parameters
+```yaml
+parameters:
+- name: Undervoltage limit (V)
+  summary: Undervoltage limit 2.5 (default) | positive scalar
+  group: ''
+- name: Overvoltage limit (V)
+  summary: Overvoltage limit 4.5 (default) | positive scalar
+  group: ''
+- name: Voltage sensor fault threshold (V)
+  summary: Threshold for voltage sensor fault 0.25 (default) | positive scalar
+  group: ''
+- name: Qualification time undervoltage (s)
+  summary: Undervoltage qualification time 2 (default) | positive scalar
+  group: ''
+- name: Disqualification time undervoltage (s)
+  summary: Undervoltage disqualification time 0 (default) | nonnegative scalar
+  group: ''
+- name: Qualification time overvoltage (s)
+  summary: Overvoltage qualification time 2 (default) | positive scalar
+  group: ''
+- name: Disqualification time overvoltage (s)
+  summary: Overvoltage disqualification time 0 (default) | nonnegative scalar
+  group: ''
+- name: Qualification time faulty sensor (s)
+  summary: Faulty sensor qualification time 2 (default) | positive scalar
+  group: ''
+- name: Disqualification time faulty sensor (s)
+  summary: Faulty sensor disqualification time 0 (default) | nonnegative scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive integer
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 ### **Undervoltage limit (V)** — Undervoltage limit `2.5` (default) | positive scalar
 
@@ -127,7 +180,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Protection

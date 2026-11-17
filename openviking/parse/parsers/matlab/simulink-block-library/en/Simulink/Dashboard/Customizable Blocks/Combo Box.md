@@ -14,10 +14,107 @@ language: en
 # Combo Box
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Block parameter value to connect parameter value connection options
+  group: Parameters
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Label
+  summary: Position of label displaying name of connected element Hide (default) | Bottom | Top
+  group: Parameters
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Parameters
+- name: Enumerated Data Type
+  summary: Option to specify state values and labels using enumerated data type off (default) | on
+  group: Parameters
+- name: States
+  summary: Management and configuration of states scalar and character vector
+  group: Parameters
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Design
+- name: Dropdown Background Color
+  summary: Background color of drop-down list [r g b] vector
+  group: Design
+- name: Dropdown Border Color
+  summary: Color of border around drop-down list [r g b] vector
+  group: Design
+- name: Visible Entries
+  summary: Maximum number of options visible in drop-down list scalar
+  group: Design
+- name: Highlight Background Color
+  summary: Background color of highlighted option in drop-down list [r g b] vector
+  group: Design
+- name: Highlight Border Color
+  summary: Color of border around highlighted option in drop-down list [r g b] vector
+  group: Design
+- name: Highlight Font Color
+  summary: Font color of highlighted option in drop-down list [r g b] vector
+  group: Design
+- name: Width
+  summary: Chevron width scalar
+  group: Design
+- name: Height
+  summary: Chevron height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain chevron aspect ratio on (default) | off
+  group: Design
+- name: Select State
+  summary: State label and value scalar and character vector
+  group: Design
+  values: and Text boxes.
+- name: Value
+  summary: State value scalar
+  group: Design
+- name: Text
+  summary: State label text string | character array
+  group: Design
+- name: Use Background Color
+  summary: Option to specify solid block background color off (default) | on
+  group: Design
+- name: Color
+  summary: Block background color [r g b] vector
+  group: Design
+  block_parameter: BackgroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Design
+- name: Corner Radius
+  summary: Corner radius of area with block background color scalar
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of left edge of foreground image from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of foreground image from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Foreground image width scalar
+  group: Design
+- name: Height
+  summary: Foreground image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain foreground image aspect ratio on (default) | off
+  group: Design
+```
 
 Use the Property Inspector and the Block Parameters dialog box
 to specify the values of the block parameters. To set the core parameters of the dashboard
@@ -425,7 +522,6 @@ Specify the height of the foreground image as a ratio of the block height.
 
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
-
 ## Libraries
 
 Simulink / Dashboard / Customizable Blocks

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Flow Rate Sensor (2P)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量测量，kg/s 物理信号
+  direction: output
+- name: V
+  summary: 体积流量，m^3/s 物理信号
+  direction: output
+- name: φ
+  summary: 能量流量测量，W 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口两相流体
+  direction: conserving
+- name: B
+  summary: 传感器出口两相流体
+  direction: conserving
+```
 
 ### 输出
 
@@ -51,8 +69,19 @@ chinese_source: worker-translation
 ### **B** — 传感器出口两相流体
 
 两相流体守恒端口。如果流体从端口 **A** 流向端口 **B**，则流量为正值。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass flow rate
+  summary: 控制用于测量质量流量的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Volumetric flow rate
+  summary: 控制用于测量体积流量的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Energy flow rate
+  summary: 控制用于测量能量流量的输出端口可见性 On（默认）| Off
+  group: ''
+```
 
 ### **Mass flow rate** — 控制用于测量质量流量的输出端口可见性 `On`（默认）| `Off`
 
@@ -65,7 +94,6 @@ chinese_source: worker-translation
 ### **Energy flow rate** — 控制用于测量能量流量的输出端口可见性 `On`（默认）| `Off`
 
 选中此复选框将显示输出端口 **φ**，可用于测量能量流量。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Sensors

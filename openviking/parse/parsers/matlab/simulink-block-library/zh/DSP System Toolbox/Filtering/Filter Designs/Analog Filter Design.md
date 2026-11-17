@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Analog Filter Design
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,43 @@ chinese_source: worker-translation
 滤波后的信号，以实数双精度标量值返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Design method
+  summary: 滤波器设计 Butterworth（默认）| Chebyshev I | Chebyshev II | Elliptic | Bessel
+  group: ''
+- name: Filter type
+  summary: 滤波器类型 Lowpass（默认）| Highpass | Bandpass | Bandstop
+  group: ''
+- name: Filter order
+  summary: 滤波器阶数 8（默认）| 标量值
+  group: ''
+- name: Passband edge frequency (rad/s)
+  summary: 通带边缘频率 30（默认）| 标量值
+  group: ''
+- name: Lower passband edge frequency (rad/s)
+  summary: 通带下边缘频率 30（默认）| 标量值
+  group: ''
+- name: Upper passband edge frequency (rad/s)
+  summary: 通带上边缘频率 80（默认）| 标量值
+  group: ''
+- name: Stopband edge frequency (rad/s)
+  summary: 阻带边缘频率 30（默认）| 标量值
+  group: ''
+- name: Lower stopband edge frequency (rad/s)
+  summary: 阻带下边缘频率 30（默认）| 标量值
+  group: ''
+- name: Upper stopband edge frequency (rad/s)
+  summary: 阻带上边缘频率 80（默认）| 标量值
+  group: ''
+- name: Passband ripple in dB
+  summary: 通带波纹 2（默认）| 标量值
+  group: ''
+- name: Stopband attenuation in dB
+  summary: 阻带衰减 40（默认）| 标量值
+  group: ''
+```
 
 ### **Design method** — 滤波器设计 `Butterworth`（默认）| `Chebyshev I` | `Chebyshev II` | `Elliptic` | `Bessel`
 
@@ -206,7 +252,6 @@ chinese_source: worker-translation
 
 - `Chebyshev II`
 - `Elliptic`
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs

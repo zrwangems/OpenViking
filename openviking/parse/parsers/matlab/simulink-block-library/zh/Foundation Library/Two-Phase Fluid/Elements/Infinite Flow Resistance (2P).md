@@ -15,13 +15,17 @@ chinese_source: worker-translation
 # Infinite Flow Resistance (2P)
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有一对两相流体守恒端口 A 和 B，表示相邻两相流体网络的分支。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 R2025b 中未记录。

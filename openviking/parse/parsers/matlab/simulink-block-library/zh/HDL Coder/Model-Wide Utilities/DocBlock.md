@@ -15,10 +15,29 @@ chinese_source: worker-translation
 # DocBlock
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Code generation template symbol
+  summary: 生成代码的模板符号 '' | Abstract | Description | History | Modified History | Notes
+  group: ''
+  block_parameter: ECoderFlag
+  type: 字符向量
+  values: '''Abstract'' | ''Description'' | ''History'' | ''Modified History'' | ''Notes'''
+  default: ''''''
+- name: Document type
+  summary: 文档类型 Text（默认）| RTF | HTML
+  group: ''
+  block_parameter: DocumentType
+  type: 字符向量
+  values: '''Text'' | ''RTF'' | ''HTML'''
+  default: '''Text'''
+```
 
 ### **Code generation template symbol** — 生成代码的模板符号 `''` | `Abstract` | `Description` | `History` | `Modified History` | `Notes`
 
@@ -57,7 +76,6 @@ R2025b 中未记录。
 | **类型：** 字符向量 |
 | **值：** `'Text'` | `'RTF'` | `'HTML'` |
 | **默认值：** `'Text'` |
-
 ## 所属库
 
 Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities

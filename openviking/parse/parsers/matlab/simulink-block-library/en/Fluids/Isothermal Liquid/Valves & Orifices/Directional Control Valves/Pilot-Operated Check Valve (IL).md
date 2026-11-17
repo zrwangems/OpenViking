@@ -14,6 +14,18 @@ language: en
 # Pilot-Operated Check Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: X
+  summary: Pressure port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -34,8 +46,75 @@ this port.
 Isothermal liquid conserving port associated with the pressure port that contributes to
 the flow control through the valve. There is no mass flow through this
 port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pilot pressure direction
+  summary: Whether pilot pressure assists with valve opening or valve closing Pilot-to-open (default) | Pilot-to-close
+  group: ''
+- name: Spool configuration
+  summary: Valve geometry Rigidly connected pilot spool and poppet (default) | Disconnected pilot spool and poppet
+  group: ''
+- name: Opening pilot pressure specification
+  summary: Reference pressure differential for valve control Pressure difference of port X relative to port A (default) |
+    Gauge pressure at port X
+  group: ''
+- name: Opening parameterization
+  summary: Method of calculating valve opening Linear - Area vs. pressure (default) | Tabulated data - Area vs. pressure |
+    Tabulated data - Volumetric flow rate vs. pressure
+  group: ''
+- name: Cracking pressure differential
+  summary: Pressure threshold 0.01 MPa (default) | positive scalar
+  group: ''
+- name: Maximum opening pressure differential
+  summary: Maximum pressure differential in opened valve 0.02 MPa (default) | positive scalar
+  group: ''
+- name: Pilot ratio
+  summary: Pilot port area ratio 1 (default) | positive scalar in the range of (0,1]
+  group: ''
+- name: Maximum opening area
+  summary: Maximum valve area 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Control pressure vector
+  summary: 'Control pressure values for tabular parameterization [0.01 : 0.01 : 0.1] MPa (default) | 1-by-*n* vector'
+  group: ''
+- name: Opening area vector
+  summary: Valve opening areas for tabular parameterization [1e-10, 1e-05, 2e-05, 3e-05, 4e-05, 5e-05, 6e-05, 7.5e-05, 8.5e-05,
+    .0001] m^2 (default) | 1-by-*n* vector
+  group: ''
+- name: Reference pressure differential vector
+  summary: 'Pressure differential vector for tabular volumetric flow rate parameterization [0.01 : 0.01 : 0.1] MPa (default)
+    | 1-by-*n* vector'
+  group: ''
+- name: Reference volumetric flow rate vector
+  summary: Vector of volumetric flow rate for tabulated data parameterization [.000358, .045, .11, .191, .284, .39, .505,
+    .63, .764, .905] .* 1e-3 m^3/s (default) | 1-by-*n* vector
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area at conserving ports inf m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: ''
+- name: Opening dynamics
+  summary: Whether to introduce flow lag due to valve opening off (default) | on
+  group: ''
+- name: Opening time constant
+  summary: Valve opening time constant 0.1 s (default) | positive scalar
+  group: ''
+```
 
 ### **Pilot pressure direction** — Whether pilot pressure assists with valve opening or valve closing `Pilot-to-open` (default) | `Pilot-to-close`
 
@@ -266,7 +345,6 @@ to another. This parameter impacts the modeled opening dynamics.
 #### Dependencies
 
 To enable this parameter, select **Opening dynamics**.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

@@ -14,6 +14,24 @@ language: en
 # Varying Notch Filter
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Filter input scalar
+  direction: input
+- name: freq
+  summary: Notch frequency scalar
+  direction: input
+- name: gmin
+  summary: Gain at notch frequency scalar
+  direction: input
+- name: damp
+  summary: Damping ratio of the filter poles scalar
+  direction: input
+- name: y
+  summary: Filter output scalar
+  direction: output
+```
 
 ### Input
 
@@ -42,11 +60,12 @@ notch.
 ### **y** — Filter output scalar
 
 Notch filter output signal.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

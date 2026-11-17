@@ -14,6 +14,15 @@ language: en
 # AC Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,19 @@ Electrical conserving port associated with the source positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the source negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Peak amplitude
+  summary: Peak voltage amplitude 1 V (default) | scalar
+  group: ''
+- name: Phase shift
+  summary: Phase shift in angular units 0 deg (default) | scalar
+  group: ''
+- name: Frequency
+  summary: Voltage frequency 60 Hz (default) | positive scalar
+  group: ''
+```
 
 ### **Peak amplitude** — Peak voltage amplitude `1 V` (default) | scalar
 
@@ -39,7 +59,6 @@ Phase shift in angular units.
 
 Voltage frequency, specified in Hz or units directly convertible to Hz (where Hz is
 defined as 1/s). For example, kHz and MHz are valid units, but rad/s is not.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Sources

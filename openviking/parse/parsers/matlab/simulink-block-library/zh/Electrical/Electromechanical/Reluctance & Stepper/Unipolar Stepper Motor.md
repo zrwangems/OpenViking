@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Unipolar Stepper Motor
 
 ## 端口
+```yaml
+ports:
+- name: A+
+  summary: A 相顶部电气连接 electrical
+  direction: conserving
+- name: A0
+  summary: A 相中心抽头连接 electrical
+  direction: conserving
+- name: A-
+  summary: A 相下部电气连接 electrical
+  direction: conserving
+- name: B+
+  summary: B 相顶部电气连接 electrical
+  direction: conserving
+- name: B0
+  summary: B 相中心抽头连接 electrical
+  direction: conserving
+- name: B-
+  summary: B 相下部电气连接 electrical
+  direction: conserving
+- name: C
+  summary: 外壳 mechanical
+  direction: conserving
+- name: R
+  summary: 转子 mechanical
+  direction: conserving
+- name: HA+
+  summary: A+ 与 A0 之间绕组的热端口 thermal
+  direction: conserving
+- name: HA-
+  summary: A- 与 A0 之间绕组的热端口 thermal
+  direction: conserving
+- name: HB+
+  summary: B+ 与 B0 之间绕组的热端口 thermal
+  direction: conserving
+- name: HB-
+  summary: B- 与 B0 之间绕组的热端口 thermal
+  direction: conserving
+- name: HR
+  summary: 转子热端口 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -85,8 +127,94 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Simulation mode
+  summary: 仿真模式 Stepping（默认）| Averaged
+  group: Electrical Torque
+- name: Vector of rotational speeds
+  summary: 转速向量 [0, 1000, 3000] rpm（默认）
+  group: Electrical Torque
+- name: Vector of maximum torque values
+  summary: 最大转矩值向量 [2, 2, 1] N*m（默认）
+  group: Electrical Torque
+- name: Action on slipping
+  summary: 检测到失步时的操作 none（默认）| warn | error
+  group: Electrical Torque
+- name: Approximate total load inertia
+  summary: 近似总负载惯量 1e-4 kg*m^2（默认）
+  group: Electrical Torque
+- name: Maximum step rate command
+  summary: 最大步进速率命令 10 Hz（默认）
+  group: Electrical Torque
+- name: Half-winding resistance
+  summary: 半绕组电阻 0.55 Ohm（默认）
+  group: Electrical Torque
+- name: Half-winding inductance
+  summary: 半绕组电感 1.5e-3 H（默认）
+  group: Electrical Torque
+- name: Motor torque constant
+  summary: 电机转矩常数 0.19 N*m/A（默认）
+  group: Electrical Torque
+- name: Detent torque
+  summary: 定位转矩 0 N*m（默认）
+  group: Electrical Torque
+- name: Magnetizing resistance
+  summary: 磁化电阻 inf Ohm（默认）| 正标量
+  group: Electrical Torque
+- name: Full step size
+  summary: 整步步长 1.8 deg（默认）
+  group: Electrical Torque
+- name: Coefficient of coupling
+  summary: 互感耦合系数 0（默认）
+  group: Electrical Torque
+- name: Rotor inertia
+  summary: 转子惯量 4.5e-5 kg*m^2（默认）
+  group: Mechanical
+- name: Rotor damping
+  summary: 转子阻尼 8.0e-4 N*m/(rad/s)（默认）
+  group: Mechanical
+- name: Initial rotor speed
+  summary: 初始转子速度 0 rpm（默认）
+  group: Mechanical
+- name: Initial rotor angle
+  summary: 初始转子角度 0 deg（默认）
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: Temperature Dependence
+- name: Vector of maximum torque values at second measurement temperature
+  summary: 第二测量温度下的最大转矩值向量 [1.7, 1.7, .85] N*m（默认）
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: 第二测量温度 125 degC（默认）
+  group: Temperature Dependence
+- name: Stepping mode
+  summary: 步进模式 Full stepping（默认）| Half stepping
+  group: Temperature Dependence
+- name: Half-winding thermal mass
+  summary: 半绕组热质量 100 J/K（默认）
+  group: Thermal Port
+- name: Half-winding initial temperatures, [T_A+ T_A- T_B+ T_B-]
+  summary: 半绕组初始温度 [25, 25, 25, 25] degC（默认）
+  group: Thermal Port
+- name: Rotor thermal mass
+  summary: 转子热质量 50 J/K（默认）
+  group: Thermal Port
+- name: Rotor initial temperature
+  summary: 转子初始温度 25 degC（默认）
+  group: Thermal Port
+- name: Percentage of magnetizing resistance associated with the rotor
+  summary: 与转子相关联的磁化电阻百分比 90（默认）
+  group: Thermal Port
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -275,7 +403,6 @@ A 绕组或 B 绕组一半的热质量。热质量是将温度升高一度所需
 ### **Percentage of magnetizing resistance associated with the rotor** — 与转子相关联的磁化电阻百分比 `90`（默认）
 
 与通过转子的磁路相关联的磁化电阻百分比。它决定了铁损发热中有多少归因于转子热端口 HR，以及多少归因于四个绕组热端口。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

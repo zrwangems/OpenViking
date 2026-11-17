@@ -14,6 +14,24 @@ language: en
 # Radar Target
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Incident signal complex-valued *N*-by-*1* column vector | complex-valued *N*-by-*M* matrix
+  direction: input
+  data_types: double
+- name: RCS
+  summary: Mean radar cross-section nonnegative scalar | 1-by-*M* row vector of nonnegative values
+  direction: input
+  data_types: double
+- name: Update
+  summary: Indicator to update radar cross-section 0 | 1
+  direction: input
+  data_types: double
+- name: Out
+  summary: Reflected signal complex-valued *N*-by-*1* column vector | complex-valued *N*-by-*M* matrix
+  direction: output
+```
 
 ### Input
 
@@ -74,8 +92,32 @@ complex-valued *N*-by-*M* matrix. The
 value *M* is the number of signals. Each signal
 corresponds to a different target. The value *N* is the
 number of samples in each signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of mean radar cross section
+  summary: Source of mean radar cross section Property (default) | Input port
+  group: ''
+- name: Mean radar cross section (m^2)
+  summary: Mean radar cross section 1
+  group: ''
+- name: Fluctuation model
+  summary: Fluctuation model Nonfluctuating (default) | Swerling1 | Swerling2 | Swerling3 | Swerling4
+  group: ''
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: Operating frequency (Hz)
+  summary: Operating frequency 3e8 (default) | positive real scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Source of mean radar cross section** — Source of mean radar cross section `Property` (default) | `Input port`
 
@@ -162,7 +204,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

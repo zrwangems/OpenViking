@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # ADC Interface
 
 ## 端口
+```yaml
+ports:
+- name: start
+  summary: 启动模数转换 启动一个模数转换事件
+  direction: input
+  data_types: rteEvent
+- name: analog
+  summary: 模拟电压信号 标量
+  direction: input
+  data_types: double | single
+- name: digital
+  summary: SoC 消息数据 标量
+  direction: output
+  data_types: SoCData
+- name: wd event
+  summary: 模拟看门狗任务事件信号 标量
+  direction: output
+  data_types: rteEvent
+- name: event
+  summary: 任务事件信号 标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输入
 
@@ -56,8 +79,49 @@ chinese_source: worker-translation
 要启用此端口，请启用 **Enable interrupt** 参数。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters:
+- name: Resolution (bits)
+  summary: 数字测量分辨率 12（默认）| 16
+  group: 单通道
+- name: Voltage reference (V)
+  summary: ADC 中的参考电压 3（默认）| 3.3
+  group: 单通道
+- name: Acquisition time (s)
+  summary: ADC 捕获输入电压所需的时间 320e-9（默认）| 正标量
+  group: 单通道
+- name: Conversion time (s)
+  summary: 将物理电压样本转换为数字值的时间 240e-9（默认）| 正标量
+  group: 单通道
+- name: Charge/dischard time constant (s)
+  summary: ADC 采集电路的充电或放电时间常数 0（默认）| 非负标量
+  group: 单通道
+- name: Number of channel
+  summary: 多通道采样中使用的通道数 1（默认）| 范围 1 到 16 的整数
+  group: 多通道
+- name: Conversion type
+  summary: 多通道转换类型 Sequential（默认）| Simultaneous | Oversampling
+  group: 多通道
+- name: Enable interrupt
+  summary: 启用中断事件生成的选项 enable（默认）| disable
+  group: 事件
+- name: Condition
+  summary: 触发中断的条件 Acquisition time（默认）| Acquisition + Conversion time
+  group: 事件
+- name: Enable analog watchdog
+  summary: 启用模拟看门狗中断事件生成的选项 off（默认）| on
+  group: 事件
+- name: Lower threshold
+  summary: 看门狗触发的下限阈值 0.1（默认）| 实值标量
+  group: 事件
+- name: Upper threshold
+  summary: 看门狗触发的上限阈值 2.9（默认）| 实值标量
+  group: 事件
+- name: Interrupt latency (s)
+  summary: 中断生成延迟 0（默认）| 正标量
+  group: 事件
+```
 
 ### 单通道
 
@@ -136,7 +200,6 @@ chinese_source: worker-translation
 指定 ADC 硬件模块从转换完成到在软件中生成中断所需的时间。
 
 **示例：** `0.00001`
-
 ## 所属库
 
 SoC Blockset / Peripherals C2000 Microcontroller Blockset / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

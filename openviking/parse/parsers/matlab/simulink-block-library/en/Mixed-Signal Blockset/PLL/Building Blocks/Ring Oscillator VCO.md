@@ -14,6 +14,17 @@ language: en
 # Ring Oscillator VCO
 
 ## Ports
+```yaml
+ports:
+- name: vctrl
+  summary: Voltage used to control VCO output frequency scalar | vector
+  direction: input
+  data_types: double
+- name: vco out
+  summary: Output signal determined by vctrl port scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +46,114 @@ PFD block
 through a clock divider to complete the control loop.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify using
+  summary: Define how VCO output frequency is specified Voltage sensitivity (default) | Output frequency vs. control voltage
+  group: Parameters
+  block_parameter: SpecifyUsing
+  type: character vector
+  values: Voltage sensitivity | Output frequency vs. control voltage
+  default: Voltage sensitivity
+- name: Voltage sensitivity (Hz/V)
+  summary: Measure of change in output frequency of VCO 100e6 (default) | positive real scalar
+  group: Parameters
+  block_parameter: Kvco
+  type: character vector
+  values: positive real scalar
+  default: 100e6
+- name: Free running frequency (Hz)
+  summary: VCO output frequency without control voltage 2.5e9 (default) | positive real scalar
+  group: Parameters
+  block_parameter: Fo
+  type: character vector
+  values: positive real scalar
+  default: 2.5e9
+- name: Control voltage (V)
+  summary: Control voltage values [-5 0 5] (default) | real valued vector
+  group: Parameters
+  block_parameter: ControlVoltage
+  type: character vector
+  values: real valued vector
+  default: '[-5 0 5]'
+- name: Output frequency (Hz)
+  summary: VCO output frequency values [2e9 2.5e9 3e9] (default) | positive real valued vector
+  group: Parameters
+  block_parameter: OutputFrequency
+  type: character vector
+  values: positive real valued vector
+  default: '[2e9 2.5e9 3e9]'
+- name: Output amplitude (V)
+  summary: Maximum amplitude of VCO output voltage 1 (default) | positive real scalar
+  group: Parameters
+  block_parameter: Amplitude
+  type: character vector
+  values: positive real scalar
+  default: '1'
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: Parameters
+- name: Buffer size
+  summary: Number of samples of input buffering available during simulation 10 (default) | positive integer scalar
+  group: Parameters
+  block_parameter: NBuffer
+  type: character vector
+  values: positive integer scalar
+  default: '10'
+- name: Add phase noise
+  summary: Add phase noise as a function of frequency on (default) | off
+  group: Impairments
+- name: Model double sided phase noise instead of single sided
+  summary: Model double-sided phase noise instead of single-sided off (default) | on
+  group: Impairments
+- name: Phase noise frequency offset (Hz)
+  summary: Frequency offsets of specified phase noise from carrier frequency [30e3 100e3 1e6 3e6 10e6] (default) | positive
+    real valued vector
+  group: Impairments
+  block_parameter: Foffset
+  type: character vector
+  values: positive real valued vector
+  default: '[30e3 100e3 1e6 3e6 10e6]'
+- name: Phase noise level (dBc/Hz)
+  summary: Specified phase noise power at phase noise frequency offsets relative to the carrier [-56 -106 -132 -143 -152]
+    (default) | negative real valued vector
+  group: Impairments
+  block_parameter: PhaseNoise
+  type: character vector
+  values: negative real valued vector
+  default: '[-56 -106 -132 -143 -152]'
+- name: Estimate phase noise parameters
+  summary: Set noise parameters intended to match specified noise spectrum button
+  group: Impairments
+- name: Period jitter (S)
+  summary: Standard deviation of period jitter 1.7e-15 (default) | positive real scalar
+  group: Impairments
+  block_parameter: PeriodJitter
+  type: character vector
+  values: positive real scalar
+  default: '1.7e-15'
+- name: Flicker corner frequency (Hz)
+  summary: Corner frequency of flicker noise 5e5 (default) | scalar
+  group: Impairments
+  block_parameter: CornerFrequency
+  type: character vector
+  values: scalar
+  default: 5e5
+- name: Customize flicker exponent (Advanced feature)
+  summary: Customize flicker noise power spectral distribution off (default) | on
+  group: Impairments
+- name: Flicker exponent
+  summary: Flicker noise power exponent 1.0 (default) | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5
+  group: Impairments
+  block_parameter: FlickerExponent
+  type: character vector
+  values: 1.0 | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5
+  default: '1.0'
+- name: Plot fit
+  summary: Plot specified and expected output phase noise density button
+  group: Impairments
+```
 
 ### Parameters
 
@@ -317,7 +434,6 @@ Flicker noise power exponent, specified between `0.8` to
 
 Click to plot the specified phase noise density and realizable expected output
 phase noise density.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Building Blocks

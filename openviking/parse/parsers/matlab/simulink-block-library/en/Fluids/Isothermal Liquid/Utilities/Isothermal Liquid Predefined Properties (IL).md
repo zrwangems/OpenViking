@@ -14,6 +14,12 @@ language: en
 # Isothermal Liquid Predefined Properties (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Connection port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +30,71 @@ port to any point on an isothermal liquid connection line in a block
 diagram. When you connect the Isothermal Liquid
 Predefined Properties (IL) block to a network line,
 the liquid properties propagate to all blocks in the circuit.
-
 ## Parameters
+```yaml
+parameters:
+- name: Isothermal liquid
+  summary: Fluid choice Water (default) | Seawater (MIT model) | Ethylene glycol and water mixture | Propylene glycol and
+    water mixture | Glycerol and water mixture | Aviation fuel Jet-A | Diesel fuel | SAE 5W-30 | SAE 30 Oil | SAE 50 Oil |
+    10W Oil | 30W Oil | 50W Oil | Skydrol LD-4 | Skydrol 500B-4 | Skydrol 5 | HyJet-IVA | Fluid MIL-F-83282 | Fluid MIL-F-5606
+    | Fluid MIL-F-87257 | ATF (Dexron III) | ISO VG 22 (ESSO UNIVIS N 22) | ISO VG 32 (ESSO UNIVIS N 32) | ISO VG 46 (ESSO
+    UNIVIS N 46) | ISO VG 68 | Brake fluid DOT 3 | Brake fluid DOT 4 | Brake fluid DOT 5 | Gasoline
+  group: Liquid
+- name: Dissolved salt mass fraction (salinity)
+  summary: Salt concentration 3.5e-3 (default) | positive scalar between (0, 0.12]
+  group: Liquid
+- name: Concentration type
+  summary: Concentration by mass or volume Volume fraction (default) | Mass fraction
+  group: Liquid
+- name: Ethylene glycol volume fraction
+  summary: Ethylene glycol concentration by volume 0.1 (default) | positive scalar between (0, 1.0]
+  group: Liquid
+- name: Ethylene glycol mass fraction
+  summary: Ethylene glycol concentration by mass 0.1 (default) | positive scalar between (0, 0.6]
+  group: Liquid
+- name: Isothermal bulk modulus at atmospheric pressure (no entrained air)
+  summary: Bulk modulus 2.1791 GPa (default) | positive scalar
+  group: Liquid
+- name: Minimum valid pressure
+  summary: Lower pressure limit 0.01 (default) | positive scalar
+  group: Liquid
+- name: Propylene glycol volume fraction
+  summary: Propylene glycol concentration by volume 0.1 (default) | positive scalar between [0.1, 0.6]
+  group: Liquid
+- name: Propylene glycol mass fraction
+  summary: Propylene glycol concentration by mass 0.1 (default) | positive scalar between (0, 0.6]
+  group: Liquid
+- name: Glycerol mass fraction
+  summary: Glycerol concentration by mass 0.1 (default) | positive scalar between (0, 0.6]
+  group: Liquid
+- name: System temperature
+  summary: Network temperature 300 K (default) | positive scalar
+  group: Liquid
+- name: Viscosity derating factor
+  summary: Viscosity correction factor 1 (default) | positive scalar
+  group: Liquid
+- name: Atmospheric pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Liquid
+- name: Pressure below minimum valid value
+  summary: Whether to notify when pressure is below the minimum valid value Error (default) | Warning | None
+  group: Liquid
+- name: Volumetric fraction of air that is entrained at atmospheric pressure
+  summary: System air entrainment at atmospheric pressure 0.005 (default) | positive scalar
+  group: Entrained Air
+- name: Air polytropic index
+  summary: Polytropic process exponent 1.0 (default) | positive scalar between [0, 1]
+  group: Entrained Air
+- name: Air density at atmospheric condition
+  summary: Air density 1.225 kg/m^3 (default) | positive scalar
+  group: Entrained Air
+- name: Model air dissolution
+  summary: Whether to model air entrainment off (default) | on
+  group: Entrained Air
+- name: Pressure at which all entrained air is dissolved
+  summary: Upper pressure limit for air entrainment 3 MPa (default) | positive scalar
+  group: Entrained Air
+```
 
 ### Liquid
 
@@ -228,7 +297,6 @@ Upper pressure limit for air entrainment into the fluid.
 #### Dependencies
 
 To enable this parameter, select **Model air dissolution**.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Utilities

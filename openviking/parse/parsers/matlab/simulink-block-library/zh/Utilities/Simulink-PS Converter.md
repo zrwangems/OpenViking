@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Simulink-PS Converter
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入 Simulink 信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Port_2
+  summary: 输入 Simulink 信号的一阶导数，作为单独的 Simulink 信号提供 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Port_3
+  summary: 输入 Simulink 信号的二阶导数，作为单独的 Simulink 信号提供 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: PS
+  summary: 输出物理信号，其类型由输入信号、目标端口和模块参数值决定 物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -48,8 +66,28 @@ chinese_source: worker-translation
 ### **PS** — 输出物理信号，其类型由输入信号、目标端口和模块参数值决定 物理信号
 
 输出物理信号。信号大小与 **Port\_1** 处输入信号的大小相匹配。信号单位由目标模块决定。**Input signal unit** 参数和 **Apply affine conversion** 复选框允许您对输入信号值应用缩放和线性偏移，以计算输出信号的正确值。
-
 ## 参数
+```yaml
+parameters:
+- name: Input signal unit
+  summary: 指定信号值转换的缩放因子 1（默认）| V | A | m^3/s | Pa | N | m | m/s | N*m | rad/s | rad | K | kg/s | J/s | kg | Wb | <unit expression>
+  group: 单位
+- name: Apply affine conversion
+  summary: 选择仿射温度单位的转换方法 off（默认）| on
+  group: 单位
+- name: Filtering and derivatives
+  summary: 指定如何提供输入信号的时间导数 Provide signals（默认）| Filter input, derivatives calculated | Zero derivatives (piecewise constant)
+  group: 输入处理
+- name: Provided signals
+  summary: 启用附加输入端口以提供输入信号的时间导数 Input only（默认）| Input and first derivative | Input and first two derivatives
+  group: 输入处理
+- name: Input filtering order
+  summary: 指定通过滤波提供的输入信号时间导数的数量 First-order filtering（默认）| Second-order filtering
+  group: 输入处理
+- name: Input filtering time constant (in seconds)
+  summary: 控制输入信号滤波的时间常数 0.001（默认）| 正标量
+  group: 输入处理
+```
 
 ### 单位
 
@@ -101,7 +139,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Filtering and derivatives** 设置为 `Filter input, derivatives calculated`。
-
 ## 所属库
 
 Simscape / Utilities

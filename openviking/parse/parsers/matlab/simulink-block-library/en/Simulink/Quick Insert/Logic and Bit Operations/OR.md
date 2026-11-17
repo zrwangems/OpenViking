@@ -14,6 +14,27 @@ language: en
 # OR
 
 ## Ports
+```yaml
+ports:
+- name: EnableIn
+  summary: Enable Input off (default) | on
+  direction: input
+- name: srcA
+  summary: First input signal scalar
+  direction: input
+  data_types: int8 | int16 | int32 | single
+- name: srcB
+  summary: Second input signal scalar
+  direction: input
+  data_types: int8 | int16 | int32 | single
+- name: EnableOut
+  summary: Enable Output off (default) | on
+  direction: output
+- name: dest
+  summary: Output signal scalar
+  direction: output
+  data_types: int8 | int16 | int32 | single
+```
 
 ### Input
 
@@ -65,11 +86,12 @@ is converted to `REAL` (`single` – ladder logic
 equivalent).
 
 **Data Types:** `int8` | `int16` | `int32` | `single`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

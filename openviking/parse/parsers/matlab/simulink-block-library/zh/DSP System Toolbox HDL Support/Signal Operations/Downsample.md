@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Downsample
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 数据输入 列向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: M
+  summary: 下采样因子 正整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 下采样输出 列向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -69,8 +84,31 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Downsample factor source
+  summary: 下采样因子的来源 Dialog parameter（默认）| Input port
+  group: ''
+- name: Downsample factor, M
+  summary: 下采样因子 2（默认）| 正整数
+  group: ''
+- name: Sample offset (0 to M−1)
+  summary: 采样偏移 0（默认）| 整数
+  group: ''
+- name: Input processing
+  summary: 处理输入的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: 强制单速率或允许多速率处理 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号的任意帧长度 开（默认）| 关
+  group: ''
+- name: Initial conditions
+  summary: 初始值 0（默认）| 实数标量 | 数组
+  group: ''
+```
 
 ### **Downsample factor source** — 下采样因子的来源 `Dialog parameter`（默认）| `Input port`
 
@@ -180,7 +218,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Input processing** 设置为 `Columns as channels (frame based)` 且 **Rate options** 设置为 `Enforce single-rate processing` 时，此参数不显示。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations DSP System Toolbox HDL Support / Signal Operations

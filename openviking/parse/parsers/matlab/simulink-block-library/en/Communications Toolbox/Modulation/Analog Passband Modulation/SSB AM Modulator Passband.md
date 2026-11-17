@@ -14,6 +14,17 @@ language: en
 # SSB AM Modulator Passband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -34,8 +45,22 @@ representation of the modulated signal.
 This port is unnamed on the block.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: Carrier frequency in Hz 300 (default) | positive scalar
+  group: ''
+- name: Initial phase (rad)
+  summary: Initial phase offset in radians 0 (default) | scalar
+  group: ''
+- name: Sideband to modulate
+  summary: Sideband to modulate Upper (default) | Lower
+  group: ''
+- name: Hilbert Transform filter order (must be even)
+  summary: Hilbert transform filter order 100 (default) | positive scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -71,7 +96,6 @@ Sideband to modulate, specified as `Upper` or
 Hilbert transform filter order, specified as an even, positive scalar with
 a value greater than `2`. This parameter value defines the
 length of the FIR filter used to compute the Hilbert transform.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Analog Passband Modulation

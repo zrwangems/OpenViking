@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Interval Test Dynamic
 
 ## 端口
+```yaml
+ports:
+- name: up
+  summary: 区间上限 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: u
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: lo
+  summary: 区间下限 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: y
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### 输入
 
@@ -54,8 +76,31 @@ chinese_source: worker-translation
 输出信号，指示输入值是否落在指定区间内。您可以将 **Output data type** 指定为 `boolean` 或 `uint8`。
 
 **数据类型：** `uint8` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Interval closed on right
+  summary: 包含上限值 on（默认）| off
+  group: ''
+  block_parameter: IntervalClosedRight
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Interval closed on left
+  summary: 包含下限值 on（默认）| off
+  group: ''
+  block_parameter: IntervalClosedLeft
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output data type
+  summary: 输出数据类型 boolean（默认）| uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+```
 
 ### **Interval closed on right** — 包含上限值 `on`（默认）| `off`
 
@@ -95,7 +140,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'boolean' | 'uint8'` |
 | **默认值：** `'boolean'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations

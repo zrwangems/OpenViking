@@ -14,6 +14,18 @@ language: en
 # MATLAB System
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Signal input to a MATLAB System block scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: Signal output of a MATLAB System block scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -36,8 +48,39 @@ Signal output of a MATLAB System
 block that the System object returns.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: System Object Name
+  summary: Name of the System object cell array (default)
+  group: ''
+  block_parameter: System
+  type: character vector
+  values: name of the System object
+  default: ''' '''
+- name: New
+  summary: Create a System object from a template Basic (default) | Advanced | Simulink Extension
+  group: ''
+- name: Simulate using
+  summary: Select the simulation mode Code generation (default) | Interpreted Execution
+  group: ''
+- name: Dependency
+  summary: Dependency parameter for MATLAB System block auto (default)
+  group: ''
+- name: Saturate on integer overflow
+  summary: Specify whether overflows saturate Off (default) | On
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Treat these inherited Simulink signal types as fi objects
+  summary: Specify fi data types Fixed-point (default) | Fixed-point & Integer
+  group: ''
+- name: MATLAB System fimath
+  summary: Specify fixed-point settings to use Same as MATLAB (default) | Specify Other
+  group: ''
+```
 
 ### **System Object Name** — Name of the System object cell array (default)
 
@@ -194,7 +237,6 @@ Select which fixed-point math settings to use.
 
 This check box appears when you use the `showFiSettingsImpl`
 method in the System object.
-
 ## Libraries
 
 Simulink / User-Defined Functions HDL Coder / User-Defined Functions

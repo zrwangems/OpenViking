@@ -14,6 +14,39 @@ language: en
 # Transfer Case
 
 ## Ports
+```yaml
+ports:
+- name: DriveshftTrq
+  summary: Torque scalar
+  direction: input
+- name: Axl1Trq
+  summary: Torque scalar
+  direction: input
+- name: Axl2Trq
+  summary: Torque scalar
+  direction: input
+- name: Temp
+  summary: Temperature scalar
+  direction: input
+- name: TrqSplitRatioConstant
+  summary: Front axle torque split ratio scalar
+  direction: input
+- name: SpdLockConstant
+  summary: Axle speed lock scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: DriveshftSpd
+  summary: Angular speed scalar
+  direction: output
+- name: Axl1Spd
+  summary: Angular speed scalar
+  direction: output
+- name: Axl2Spd
+  summary: Angular speed scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -93,8 +126,125 @@ rad/s.
 
 Axle 2 angular speed, *ω2*, in
 rad/s.
-
 ## Parameters
+```yaml
+parameters:
+- name: Efficiency factors
+  summary: Specify configuration Constant (default) | Driveshaft torque, speed and temperature
+  group: ''
+  block_parameter: DiffEffModelPopup
+  values: Constant (default) | Driveshaft torque, speed and temperature
+- name: Interpolation method
+  summary: Method Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline
+  group: ''
+  block_parameter: InterpMethod
+  values: Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline
+- name: Input ambient temperature
+  summary: Create input port off (default) | on
+  group: ''
+  block_parameter: extTamb
+  values: off (default) | on
+- name: Input front axle torque split ratio, TrqSplitRatio
+  summary: Create input port off (default) | on
+  group: ''
+  block_parameter: TrqSplitRatio
+  values: off (default) | on
+- name: Input axle speed lock, SpdLock
+  summary: Create input port off (default) | on
+  group: ''
+  block_parameter: SpdLock
+  values: off (default) | on
+- name: Crown wheel (ring gear) located
+  summary: Specify crown wheel connection To the left of center-line (default) | To the right of center-line
+  group: ''
+  block_parameter: shaftSwitchMask
+  values: To the left of center-line (default) | To the right of center-line
+- name: Carrier to drive shaft ratio, Ndiff
+  summary: Ratio 4 (default) | scalar
+  group: ''
+  block_parameter: Ndiff
+  values: 4 (default) | scalar
+- name: Carrier inertia, Jd
+  summary: Inertia .1 (default) | scalar
+  group: ''
+  block_parameter: Jd
+  values: .1 (default) | scalar
+- name: Carrier damping, bd
+  summary: Damping 1e-3 (default) | scalar
+  group: ''
+  block_parameter: bd
+  values: 1e-3 (default) | scalar
+- name: Axle 1 inertia, Jw1
+  summary: Inertia .1 (default) | scalar
+  group: ''
+  block_parameter: Jw1
+  values: .1 (default) | scalar
+- name: Axle 1 damping, bw1
+  summary: Damping 1e-3 (default) | scalar
+  group: ''
+  block_parameter: bw1
+  values: 1e-3 (default) | scalar
+- name: Axle 2 inertia, Jw2
+  summary: Inertia .1 (default) | scalar
+  group: ''
+  block_parameter: Jw2
+  values: .1 (default) | scalar
+- name: Axle 2 damping, bw2
+  summary: Damping 1e-3 (default) | scalar
+  group: ''
+  block_parameter: bw2
+  values: 1e-3 (default) | scalar
+- name: Axle 1 initial velocity, omegaw1o
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+  block_parameter: omegaw1o
+  values: 0 (default) | scalar
+- name: Axle 2 initial velocity, omegaw2o
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+  block_parameter: omegaw2o
+  values: 0 (default) | scalar
+- name: Constant efficiency factor, eta
+  summary: Efficiency 1 (default) | positive scalar
+  group: ''
+  block_parameter: eta
+  values: 1 (default) | positive scalar
+- name: Efficiency lookup table, eta_tbl
+  summary: Lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: eta_tbl
+  values: M-by-N-by-L array
+- name: Efficiency torque breakpoints, Trq_bpts
+  summary: Torque breakpoints [25, 50, 75, 100, 150, 200, 250] (default) | 1-by-M vector
+  group: ''
+  block_parameter: Trq_bpts
+  values: '[25, 50, 75, 100, 150, 200, 250] (default) | 1-by-M vector'
+- name: Efficiency speed breakpoints, omega_bpts
+  summary: Speed breakpoints [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | 1-by-N vector
+  group: ''
+  block_parameter: omega_bpts
+  values: '[52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | 1-by-N vector'
+- name: Efficiency temperature breakpoints, Temp_bpts
+  summary: Temperature breakpoints [290 358] (default) | 1-by-L vector
+  group: ''
+  block_parameter: Temp_bpts
+  values: '[290 358] (default) | 1-by-L vector'
+- name: Ambient temperature, Tamb
+  summary: Ambient temperature 297.15 (default) | scalar
+  group: ''
+  block_parameter: Tamb
+  values: 297.15 (default) | scalar
+- name: Front axle torque split ratio, TrqSplitRatio
+  summary: Front axle torque split ratio 0.5 (default) | scalar
+  group: ''
+  block_parameter: TrqSplitRatio
+  values: 0.5 (default) | scalar
+- name: Axle speed lock, SpdLock
+  summary: Axle speed lock 0 (default) | scalar
+  group: ''
+  block_parameter: SpdLock
+  values: 0 (default) | scalar
+```
 
 #### Block Options
 
@@ -592,7 +742,6 @@ programmatically, use the `get_param` function.
 
 To enable this parameter, clear **Input axle speed lock,
 SpdLock**.
-
 ## Libraries
 
 Powertrain Blockset / Drivetrain / Final Drive Unit Vehicle Dynamics Blockset / Powertrain / Drivetrain / Final Drive Unit

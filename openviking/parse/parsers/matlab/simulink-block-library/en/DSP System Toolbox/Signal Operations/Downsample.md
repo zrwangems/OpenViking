@@ -14,6 +14,21 @@ language: en
 # Downsample
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Data input column vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: M
+  summary: Downsample factor positive integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Downsampled output column vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -104,8 +119,31 @@ phase across consecutive frames of data. For more details, see Phase Continuity.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Downsample factor source
+  summary: Source of downsample factor Dialog parameter (default) | Input port
+  group: ''
+- name: Downsample factor, M
+  summary: Downsampling factor 2 (default) | positive integer
+  group: ''
+- name: Sample offset (0 to M−1)
+  summary: Sample offset 0 (default) | integer
+  group: ''
+- name: Input processing
+  summary: Method to process input Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: Enforce single-rate or allow multirate processing Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals on (default) | off
+  group: ''
+- name: Initial conditions
+  summary: Initial value 0 (default) | real scalar | array
+  group: ''
+```
 
 ### **Downsample factor source** — Source of downsample factor `Dialog parameter` (default) | `Input port`
 
@@ -332,7 +370,6 @@ This parameter does not appear when **Input
 processing** is set to `Columns as channels
 (frame based)` and **Rate options** is
 set to `Enforce single-rate processing`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations DSP System Toolbox HDL Support / Signal Operations

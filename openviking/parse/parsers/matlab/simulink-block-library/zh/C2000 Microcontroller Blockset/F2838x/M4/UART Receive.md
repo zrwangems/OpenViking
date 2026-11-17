@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # F2838x-M4 UART Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: UART 接收数据向量 | 标量
+  direction: output
+- name: Status
+  summary: UART 接收状态 0 | 1 | 2 | 3 | 4 | 8
+  direction: output
+```
 
 ### 输出
 
@@ -32,8 +41,28 @@ chinese_source: worker-translation
 - 3 — 表示数据同步错误
 - 4 — 表示数据接收中断
 - 8 — 表示溢出错误。
-
 ## 参数
+```yaml
+parameters:
+- name: Additional package header
+  summary: 前缀头 S（默认）
+  group: ''
+- name: Additional package terminator
+  summary: 后缀终止符 E（默认）
+  group: ''
+- name: Data type
+  summary: 要接收的数据类型 uint8（默认）| double | single | int8 | int8 | int16 | int32 | uint32 | boolean
+  group: ''
+- name: Data length
+  summary: 要接收的数据大小 1（默认）| 正整数
+  group: ''
+- name: Enable blocking mode
+  summary: 启用数据发送的阻塞模式 off（默认）| on
+  group: ''
+- name: Sample time
+  summary: 模块读取数据的间隔 0.1（默认）
+  group: ''
+```
 
 ### **Additional package header** — 前缀头 `S`（默认）
 
@@ -58,7 +87,6 @@ chinese_source: worker-translation
 ### **Sample time** — 模块读取数据的间隔 `0.1`（默认）
 
 指定接收数据的采样时间。要将此模块作为异步执行，请将 Sample Time 设置为 -1。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28M35x / M3 C2000 Microcontroller Blockset / F28M36x / M3

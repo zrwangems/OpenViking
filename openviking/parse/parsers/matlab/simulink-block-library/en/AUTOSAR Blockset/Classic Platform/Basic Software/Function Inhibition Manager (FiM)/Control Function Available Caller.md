@@ -14,10 +14,37 @@ language: en
 # Control Function Available Caller
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Client port name
+  summary: Name of client port AUTOSAR component uses to call FiM service interface ControlFunctionAvailable ControlFunctionAvailable
+    (default) | character vector
+  group: ''
+  block_parameter: PortName
+  type: character vector
+  values: '''ControlFunctionAvailable'' | unique name'
+  default: '''ControlFunctionAvailable'''
+- name: Operation
+  summary: Specify operation defined in FiM service interface ControlFunctionAvailable SetFunctionAvailable (default)
+  group: ''
+  block_parameter: Operation
+  type: character vector
+  values: '''SetFunctionAvailable'''
+  default: '''SetFunctionAvailable'''
+- name: Sample time
+  summary: Block sample time -1 (default) | scalar
+  group: ''
+  block_parameter: st
+  type: scalar
+  values: -1 | scalar
+  default: '-1'
+```
 
 ### **Client port name** — Name of client port AUTOSAR component uses to call FiM service interface `ControlFunctionAvailable` `ControlFunctionAvailable` (default) | character vector
 
@@ -64,7 +91,6 @@ model.
 | **Type:** scalar |
 | **Values:** `-1 |` scalar |
 | **Default:** `-1` |
-
 ## Libraries
 
 AUTOSAR Blockset / Classic Platform / Basic Software / Function Inhibition Manager (FiM)

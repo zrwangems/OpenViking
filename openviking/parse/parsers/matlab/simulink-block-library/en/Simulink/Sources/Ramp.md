@@ -14,6 +14,13 @@ language: en
 # Ramp
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -24,8 +31,38 @@ Generated output ramp signal characterized by the **Slope**,
 output** parameters.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Slope
+  summary: Slope of signal 1 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: slope
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Start time
+  summary: Time output begins 0 (default) | scalar
+  group: ''
+  block_parameter: start
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Initial output
+  summary: Initial value of output signal 0 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vectors as 1-D on (default) | off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Slope** — Slope of signal 1 (default) | scalar | vector | matrix
 
@@ -94,7 +131,6 @@ the **Slope**, **Start time**, or
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Sources

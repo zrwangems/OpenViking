@@ -14,6 +14,33 @@ language: en
 # Constant Radius
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Longitudinal position vehicle center of mass scalar
+  direction: input
+  data_types: double
+- name: Y
+  summary: Lateral position vehicle center of mass scalar
+  direction: input
+  data_types: double
+- name: psi
+  summary: Vehicle yaw angle scalar
+  direction: input
+  data_types: double
+- name: ay
+  summary: Vehicle lateral acceleration scalar
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: Driver reference data bus
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: Driver command data bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -101,8 +128,70 @@ Bus Assignment block to override the
 Block diagram where the Bus Assignment block overrides the TransCmd output from the Constant Radius block.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: Start time 2 (default) | positive scalar
+  group: ''
+  block_parameter: tStart
+  values: 2 (default) | positive scalar
+- name: Longitudinal velocity setpoint, velRef
+  summary: Target velocity 35 (default) | positive scalar
+  group: ''
+  block_parameter: velRef
+  values: 35 (default) | positive scalar
+- name: Longitudinal velocity setpoint units, velRefUnit []
+  summary: Units mph (default)
+  group: ''
+  block_parameter: velRefUnit
+  values: mph (default) | character vector
+- name: R
+  summary: Radius to be tracked 100 (default) | positive scalar
+  group: ''
+  block_parameter: R
+  values: 100 (default) | positive scalar
+- name: Initial longitudinal position, X_o [m]
+  summary: Initial longitudinal start point 0 (default) | scalar
+  group: ''
+  block_parameter: X_o
+  values: 0 (default) | scalar
+- name: Initial lateral position, Y_o [m]
+  summary: Initial lateral start point 0 (default) | scalar
+  group: ''
+  block_parameter: Y_o
+  values: 0 (default) | scalar
+- name: Initial yaw angle, psi_o [rad]
+  summary: Starting heading angle 0 (default) | scalar
+  group: ''
+  block_parameter: psi_o
+  values: 0 (default) | scalar
+- name: Distance between inside and outside cone boundaries, radialConeDist [m]
+  summary: Radial distance between cones 6 (default) | positive scalar
+  group: ''
+  block_parameter: radialConeDist
+  values: 6 (default) | positive scalar
+- name: Lateral acceleration absolute threshold, ayMax [g]
+  summary: Maximum allowable lateral acceleration before simulation is stopped 0.5 (default) | positive scalar
+  group: ''
+  block_parameter: ayMax
+  values: 0.5 (default) | positive scalar
+- name: Maneuver direction, steerDir
+  summary: Maneuver direction Right (default) | Left
+  group: ''
+  block_parameter: steerDir
+  values: Right (default) | Left
+- name: Stop simulation at lateral acceleration threshold
+  summary: Option to stop simulation at lateral acceleration threshold off (default) | on
+  group: ''
+  block_parameter: ayStop
+  values: off (default) | on
+- name: Instantiate 3D cones (Simulation 3D Scene Configuration required)
+  summary: Option to instantiate 3D cones off (default) | on
+  group: ''
+  block_parameter: use3DCones
+  values: off (default) | on
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -341,7 +430,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `use3DCones` |
 | **Values:** | `off` (default) | `on` |
 | **Data Types:** | `character vector` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

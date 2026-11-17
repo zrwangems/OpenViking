@@ -15,6 +15,54 @@ chinese_source: worker-translation
 # Prismatic Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础坐标系 frame
+  direction: input
+- name: F
+  summary: 随动坐标系 frame
+  direction: input
+- name: f
+  summary: 驱动力 physical signal
+  direction: input
+- name: p
+  summary: 运动轮廓 physical signal
+  direction: input
+- name: mode
+  summary: 关节模式控制 physical signal
+  direction: input
+- name: p
+  summary: 原语位置 physical signal
+  direction: output
+- name: v
+  summary: 原语速度 physical signal
+  direction: output
+- name: a
+  summary: 基元物理信号的加速度
+  direction: output
+- name: f
+  summary: 作用在关节基元上的致动力物理信号
+  direction: output
+- name: fll
+  summary: 下限力物理信号
+  direction: output
+- name: ful
+  summary: 上限力物理信号
+  direction: output
+- name: fc
+  summary: 约束力，N 物理信号
+  direction: output
+- name: tc
+  summary: 约束力矩，N\*m 物理信号
+  direction: output
+- name: ft
+  summary: 总力，N 物理信号
+  direction: output
+- name: tt
+  summary: 总力矩，N\*m 物理信号
+  direction: output
+```
 
 ### 坐标系
 
@@ -152,8 +200,100 @@ chinese_source: worker-translation
 #### 依赖项
 
 要启用此端口，请在 **Composite Force/Torque Sensing** 下，选择 **Total Torque**。
-
 ## 参数
+```yaml
+parameters:
+- name: State Targets > Specify Position Target
+  summary: 是否指定位置目标 off（默认）| on
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Position Target > Priority
+  summary: 位置目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Position Target > Value
+  summary: 位置目标 0 m（默认）| 以长度单位为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Velocity Target
+  summary: 是否指定速度目标 off（默认）| on
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Velocity Target > Priority
+  summary: 速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Velocity Target > Value
+  summary: 关节基元的速度目标 0 m/s（默认）| 以线速度单位为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Internal Mechanics > Equilibrium Position
+  summary: 内力为零时的位置 0 m（默认）| 以长度单位为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Internal Mechanics > Spring Stiffness
+  summary: 力律的刚度 0 N/m（默认）| 以线性刚度为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Internal Mechanics > Damping Coefficient
+  summary: 力律的阻尼系数 0 N(m/s)（默认）| 以线性阻尼系数为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit
+  summary: 是否指定下限位置 off（默认）| on
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit > Bound
+  summary: 自由区域的下界 -1 m（默认）| 以长度单位为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit > Spring Stiffness
+  summary: 下界处的弹簧刚度 1e6 N/m（默认）| 以线性刚度为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit > Damping Coefficient
+  summary: 下界处的阻尼系数 1e3 N/(m/s)（默认）| 以线性阻尼系数为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit > Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 1e-4 m（默认）| 以长度单位为标量
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit
+  summary: 是否指定上限位置 off（默认）| on
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit > Bound
+  summary: 自由区域的上界 1 m（默认）| 以长度单位为标量
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit > Spring Stiffness
+  summary: 上界处弹簧的刚度 1e6 N/m（默认）| 以线性刚度为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit > Damping Coefficient
+  summary: 上界处的阻尼系数 1e3 N/(m/s)（默认）| 以线性阻尼系数为单位的标量
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit > Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 1e-4 m（默认）| 以长度单位为标量
+  group: Z Prismatic Primitive (Pz)
+- name: Actuation > Force
+  summary: 提供致动力的选项 None（默认）| Provided by Input | Automatically Computed
+  group: Z Prismatic Primitive (Pz)
+- name: Actuation > Motion
+  summary: 提供驱动运动的选项 Automatically Computed（默认）| Provided by Input
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Position
+  summary: 是否检测关节基元位置 关（默认）| 开
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Velocity
+  summary: 是否检测关节基元速度 关（默认）| 开
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Acceleration
+  summary: 是否检测关节基元加速度 关（默认）| 开
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Actuator Force
+  summary: 是否检测关节执行器力 关（默认）| 开
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Lower-Limit force
+  summary: 是否检测下限力 关（默认）| 开
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Upper-Limit force
+  summary: 是否检测上限力 关（默认）| 开
+  group: Z Prismatic Primitive (Pz)
+- name: Mode
+  summary: 关节模式 Normal（默认）| Locked | Disengaged | Provided by Input
+  group: 模式配置
+- name: Direction
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: 复合力/力矩检测
+- name: Resolution Frame
+  summary: 用于解析测量值的坐标系 Base（默认）| Follower
+  group: 复合力/力矩检测
+```
 
 ### Z Prismatic Primitive (Pz)
 
@@ -360,7 +500,6 @@ chinese_source: worker-translation
 - `Follower` — 模块在从动坐标系的坐标中解析测量值。
 
 此参数仅影响 **Composite Force/Torque Sensing** 部分下的输出信号。
-
 ## 所属库
 
 Simscape / Multibody / Joints

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # LDL Solver
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 系统矩阵 方阵
+  direction: input
+  data_types: single | double
+- name: B
+  summary: 系统方程右侧矩阵 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: X
+  summary: 方程组的解 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -43,8 +58,13 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Non-positive definite input
+  summary: 非正定输入 Ignore（默认）| Warning | Error
+  group: ''
+```
 
 ### **Non-positive definite input** — 非正定输入 `Ignore`（默认）| `Warning` | `Error`
 
@@ -59,7 +79,6 @@ chinese_source: worker-translation
 **注意**
 
 **Non-positive definite input** 参数是一个诊断参数。与 Configuration Parameters 对话框中的所有诊断参数一样，在 Simulink® Coder™ 代码生成软件为此模块生成的代码中，该参数被设置为 `Ignore`。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

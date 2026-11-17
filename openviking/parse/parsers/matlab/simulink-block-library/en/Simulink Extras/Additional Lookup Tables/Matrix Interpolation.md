@@ -14,6 +14,29 @@ language: en
 # Matrix Interpolation
 
 ## Ports
+```yaml
+ports:
+- name: k1
+  summary: Index, k1, for the first dimension of the table scalar
+  direction: input
+  data_types: single | double
+- name: f1
+  summary: Fraction, f1, for the first dimension of the table scalar
+  direction: input
+  data_types: single | double
+- name: kn
+  summary: Index, kn, for the n-th dimension of the table scalar
+  direction: input
+  data_types: single | double
+- name: fn
+  summary: Fraction, fn, for the n-th dimension of the table scalar
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Approximation of N-dimensional function scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -53,8 +76,45 @@ extrapolating) table data using values from the input index,
 `k`, and the fraction, `f`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Nearest | Flat
+  group: ''
+  block_parameter: InterpMethod
+  type: character vector
+  values: '''Flat'' | ''Nearest'' | ''Linear'''
+  default: '''Linear'''
+- name: Extrapolation method
+  summary: Extrapolation method Clip (default) | Linear
+  group: ''
+  block_parameter: ExtrapMethod
+  type: character vector
+  values: '''Clip'' | ''Linear'''
+  default: '''Clip'''
+- name: Interpolate Dimension
+  summary: Number of lookup table dimensions 1 (default) | 2 | 3
+  group: ''
+  block_parameter: InterpolateDimension
+  type: character vector
+  values: '''1'' | ''2'' | ''3'''
+  default: '''1'''
+- name: Table data
+  summary: Table of output values 1:1:10 (default) | vector | matrix | N-D array
+  group: ''
+  block_parameter: TableData
+  type: character vector
+  values: vector | matrix | N-D array
+  default: '''1:1:10'''
+- name: Simulate using
+  summary: Simulation mode Code generation | Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: character vector
+  values: '''Code generation'' | ''Interpreted execution'''
+  default: '''Code generation'''
+```
 
 ### **Interpolation method** — Interpolation method `Linear` (default) | `Nearest` | `Flat`
 
@@ -150,7 +210,6 @@ Select the simulation mode.
 | **Type:** character vector |
 | **Values:** `'Code generation' | 'Interpreted execution'` |
 | **Default:** `'Code generation'` |
-
 ## Libraries
 
 Simulink Extras / Additional Lookup Tables

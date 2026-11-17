@@ -14,6 +14,29 @@ language: en
 # Demosaic
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Image to demosaic matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: R
+  summary: Red color channel of processed image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: G
+  summary: Green color channel of processed image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: B
+  summary: Blue color channel of processed image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Image
+  summary: Multidimensional processed image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -84,8 +107,22 @@ To enable this port, specify the **Output image signal**
 parameter as `One multidimensional signal`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Interpolation algorithm
+  summary: Interpolation algorithm Bilinear (default) | Gradient-corrected linear
+  group: Main
+- name: Sensor alignment
+  summary: R,G,B pixel alignment RGGB (default) | GRBG | GBRG | BGGR
+  group: Main
+- name: Output image signal
+  summary: Dimensions of output image One multidimensional signal (default) | Separate color signals
+  group: Main
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -132,7 +169,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Conversions

@@ -14,6 +14,54 @@ language: en
 # Revolute Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: t
+  summary: Actuation torque physical signal
+  direction: input
+- name: q
+  summary: Motion profile physical signal
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: q
+  summary: Position of joint primitive physical signal
+  direction: output
+- name: w
+  summary: First derivative of position of joint primitive physical signal
+  direction: output
+- name: b
+  summary: Second derivative of position of joint primitive physical signal
+  direction: output
+- name: t
+  summary: Actuator torque acting on joint primitive physical signal
+  direction: output
+- name: tll
+  summary: Lower-limit torque physical signal
+  direction: output
+- name: tul
+  summary: Upper-limit torque physical signal
+  direction: output
+- name: fc
+  summary: Constraint force, N physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total force, N physical signal
+  direction: output
+- name: tt
+  summary: Total torque, N\*m physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -199,8 +247,97 @@ Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque
 Sensing**, select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: State Targets > Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: State Targets > Specify Position Target > Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Z Revolute Primitive (Rz)
+- name: State Targets > Specify Position Target > Value
+  summary: Angle of position target 0 deg (default) | scalar with a unit of angle
+  group: Z Revolute Primitive (Rz)
+- name: State Targets > Specify Velocity Target
+  summary: Whether to specify velocity target off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: State Targets > Specify Velocity Target > Priority
+  summary: Priority level of velocity target High (desired) (default) | Low (approximate)
+  group: Z Revolute Primitive (Rz)
+- name: State Targets > Specify Velocity Target > Value
+  summary: Velocity target of joint primitive 0 deg/s (default) | scalar with unit of angular velocity
+  group: Z Revolute Primitive (Rz)
+- name: Internal Mechanics > Equilibrium Position
+  summary: Position where internal torque is zero 0 deg (default) | scalar with unit of angle
+  group: Z Revolute Primitive (Rz)
+- name: Internal Mechanics > Spring Stiffness
+  summary: Stiffness of force law 0 N*m/deg (default) | scalar with unit of stiffness
+  group: Z Revolute Primitive (Rz)
+- name: Internal Mechanics > Damping Coefficient
+  summary: Damping coefficient of force law 0 N*m/(deg/s) (default) | scalar with unit of damping coefficient
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Lower Limit > Bound
+  summary: Lower bound of free region -90 deg (default) | scalar with unit of angle
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Lower Limit > Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e4 N*m/deg (default) | scalar with unit of stiffness
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Lower Limit > Damping Coefficient
+  summary: Damping coefficient at lower bound 10 N*m/(deg/s) (default) | scalar with unit of damping coefficient
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Lower Limit > Transition Region Width
+  summary: Region to smooth spring and damper forces 0.1 deg (default) | scalar with unit of angle
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Upper Limit > Bound
+  summary: Upper bound of free region 90 deg (default) | scalar with unit of angle
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Upper Limit > Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e4 N*m/deg (default) | scalar with unit of stiffness
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Upper Limit > Damping Coefficient
+  summary: Damping coefficient at upper bound 10 N*m/(deg/s) (default) | scalar with unit of damping coefficient
+  group: Z Revolute Primitive (Rz)
+- name: Limits > Specify Upper Limit > Transition Region Width
+  summary: Region to smooth spring and damper forces 0.1 deg (default) | scalar with unit of angle
+  group: Z Revolute Primitive (Rz)
+- name: Actuation > Torque
+  summary: Option to provide actuation torque None (default) | Provided by Input | Automatically Computed
+  group: Z Revolute Primitive (Rz)
+- name: Actuation > Motion
+  summary: Option to provide actuation motion Automatically Computed (default) | Provided by Input
+  group: Z Revolute Primitive (Rz)
+- name: Sensing > Position
+  summary: Whether to sense joint primitive position off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Sensing > Velocity
+  summary: Whether to sense joint primitive velocity off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Sensing > Acceleration
+  summary: Whether to sense joint primitive acceleration off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Sensing > Lower-Limit Torque
+  summary: Whether sense to lower-limit torque off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Sensing > Upper-Limit Torque
+  summary: Whether sense to upper-limit torque off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Mode
+  summary: Joint mode Normal (default) | Locked | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 ### Z Revolute Primitive (Rz)
 
@@ -444,7 +581,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

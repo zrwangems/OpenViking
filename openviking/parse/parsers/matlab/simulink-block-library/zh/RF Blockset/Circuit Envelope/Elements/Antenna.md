@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Antenna
 
 ## 端口
+```yaml
+ports:
+- name: RX
+  summary: 接收信号 标量 | 向量 | 矩阵 | *m*-by-*n*-by-*k* 数组
+  direction: input
+  data_types: double
+- name: TX
+  summary: 发射信号 标量 | 向量 | 矩阵 | *m*-by-*n*-by-*k* 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -38,8 +49,61 @@ chinese_source: worker-translation
 - *k* — 表示水平或垂直极化。*k* 的值必须为 2。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Source of antenna model
+  summary: 天线模型 Isotropic radiator（默认）| Antenna Designer | Antenna object
+  group: 主要
+- name: Create Antenna
+  summary: 打开 Antenna Toolbox Antenna Designer 应用 按钮
+  group: 主要
+- name: Antenna object
+  summary: 来自工作空间的天线或阵列元素输入 天线目录对象 | 天线阵列目录对象 | measuredAntenna 对象 | pcbstack 对象
+  group: 主要
+- name: Antenna Gain
+  summary: 天线增益 0 dBi（默认）| 实数标量或向量 | 正标量或向量
+  group: 主要
+- name: Impedance (Ohm)
+  summary: 输入阻抗 50（默认）| 复数值标量或向量
+  group: 主要
+- name: 输入入射波
+  summary: 用于模拟接收天线的输入入射波 'off'（默认）| 'on'
+  group: 主要
+- name: 输出辐射波
+  summary: 用于发射天线的输出辐射波 'on'（默认）| 'off'
+  group: 主要
+- name: 入射载波频率
+  summary: 接收信号的载波频率 2.1 GHz（默认）| 非负标量或行向量
+  group: 主要
+- name: 辐射载波频率
+  summary: 发射信号的载波频率 2.1 GHz（默认）| 非负标量或行向量
+  group: 主要
+- name: 离开方向
+  summary: 输出信号功率波辐射所朝向的方位角和仰角 [0 0] deg（默认）| 长度为 1×2 的有限实值行向量 | 长度为 *m*×2 的有限实值矩阵
+  group: 主要
+- name: 到达方向
+  summary: 输入信号功率波到达所来自的方位角和仰角 [180 0] deg（默认）| 长度为 1×2 的有限实值行向量 | 长度为 *m*×2 的有限实值矩阵
+  group: 主要
+- name: 模拟噪声
+  summary: 模拟热噪声 'on'（默认）| 'off'
+  group: 主要
+- name: 接地并隐藏负端子
+  summary: 将 RF 电路端子接地 'on'（默认）| 'off'
+  group: 主要
+- name: 建模选项
+  summary: 对频率相关天线参数进行建模 时域（默认）| 频域
+  group: 建模
+- name: 期望相对误差 (dB)
+  summary: 有理拟合可接受的相对误差 -40（默认）| 标量
+  group: 建模
+- name: 自动估计冲激响应持续时间
+  summary: 自动计算冲激响应 'on' | 'off'
+  group: 建模
+- name: 冲激响应持续时间
+  summary: 冲激响应持续时间 1e-10 s（默认）| 标量
+  group: 建模
+```
 
 ### 主要
 
@@ -217,7 +281,6 @@ object`，并选择 **输入入射波**。
 #### 依赖关系
 
 要设置此参数，请先在 **Modeling options** 中选择 `Frequency domain`。然后，清除 **Automatically estimate impulse response duration**。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Variable Capacitor
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 电容物理信号
+  direction: input
+- name: +
+  summary: 正极端子电气
+  direction: input
+- name: '-'
+  summary: 负极端子电气
+  direction: input
+```
 
 ### 输入
 
@@ -30,8 +42,25 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与电容器负电压关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Equation
+  summary: 模块电容方程 I = C*dV/dt（默认）| I = C*dV/dt + dC/dt*V
+  group: ''
+- name: Minimum capacitance C>0
+  summary: 最小电容 1e-9 F（默认）
+  group: ''
+- name: Series resistance
+  summary: 串联电阻 1e-6 Ohm（默认）
+  group: ''
+- name: Initial voltage
+  summary: 初始输出电压 0 V（默认）
+  group: ''
+- name: Initial charge
+  summary: 初始电荷 0 C（默认）
+  group: ''
+```
 
 ### **Equation** — 模块电容方程 `I = C*dV/dt`（默认）| `I = C*dV/dt + dC/dt*V`
 
@@ -65,7 +94,6 @@ C*dV/dt` 时，此参数才可见。
 
 仅当为 **Equation** 参数选择 `I =
 C*dV/dt + dC/dt*V` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Passive

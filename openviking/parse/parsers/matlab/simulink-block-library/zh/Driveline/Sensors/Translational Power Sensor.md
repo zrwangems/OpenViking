@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Translational Power Sensor
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 平移功率，W 物理信号
+  direction: input
+- name: S
+  summary: 驱动源机械平移
+  direction: input
+- name: R
+  summary: 杆机械平移
+  direction: input
+- name: C
+  summary: 壳体机械平移
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +49,19 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 与壳体相关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement type
+  summary: 测量功率的选项 Instantaneous power（默认）| Average power over a specified period | Average power over a vibration
+  group: ''
+- name: Averaging period
+  summary: 功率平均周期 1 s（默认）| 正标量
+  group: ''
+- name: Maximum vibration frequency
+  summary: 最大振动频率 1000 Hz（默认）| 正标量
+  group: ''
+```
 
 ### **Measurement type** — 测量功率的选项 `Instantaneous power`（默认）| `Average power over a specified period` | `Average power over a vibration`
 
@@ -52,7 +78,6 @@ chinese_source: worker-translation
 ### **Maximum vibration frequency** — 最大振动频率 `1000` `Hz`（默认）| 正标量
 
 对功率进行平均的最大振动频率。非常高的值往往会降低仿真速度。非常低的值往往会导致较低的功率测量值。
-
 ## 所属库
 
 Simscape / Driveline / Sensors

@@ -14,6 +14,24 @@ language: en
 # Center-Tapped Transformer
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Positive polarity of primary winding electrical
+  direction: conserving
+- name: 1-
+  summary: Negative polarity of primary winding electrical
+  direction: conserving
+- name: 2+
+  summary: Positive polarity of secondary winding electrical
+  direction: conserving
+- name: 2-
+  summary: Negative polarity of secondary winding electrical
+  direction: conserving
+- name: c
+  summary: Center tap of secondary winding electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +59,37 @@ the secondary winding.
 
 Electrical conserving port associated with the center tap of the
 secondary winding.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Option to model ideal or non-ideal center-tapped transformer Ideal (default) | Non-Ideal
+  group: ''
+- name: Winding ratio
+  summary: Winding ratio of transformer 1 (default) | positive scalar
+  group: ''
+- name: Center tap position (0~1)
+  summary: Location of center tap on secondary winding 0.5 (default) | scalar in the range (0, 1)
+  group: ''
+- name: Primary winding resistance
+  summary: Series resistance of primary winding 0.01 Ohm (default) | positive scalar
+  group: ''
+- name: Primary leakage inductance
+  summary: Leakage inductance of primary winding 0.0001 H (default) | positive scalar
+  group: ''
+- name: Secondary winding resistance
+  summary: Series resistance of secondary winding 0.01 Ohm (default) | positive scalar
+  group: ''
+- name: Secondary leakage inductance
+  summary: Leakage inductance of secondary winding 0.0001 H (default) | positive scalar
+  group: ''
+- name: Magnetization resistance
+  summary: Magnetization resistance of transformer 100 Ohm (default) | positive scalar
+  group: ''
+- name: Magnetization inductance
+  summary: Magnetization inductance of transformer 0.04 H (default) | positive scalar
+  group: ''
+```
 
 ### **Modeling option** — Option to model ideal or non-ideal center-tapped transformer `Ideal` (default) | `Non-Ideal`
 
@@ -112,7 +159,6 @@ Magnetization inductance of the transformer.
 
 To enable this parameter, set **Modeling option** to
 `Non-Ideal`.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

@@ -14,6 +14,27 @@ language: en
 # Double-Acting Actuator (G-IL)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Piston position, m physical signal
+  direction: output
+- name: A
+  summary: Inlet to chamber A isothermal liquid
+  direction: conserving
+- name: B
+  summary: Inlet to chamber B gas
+  direction: conserving
+- name: C
+  summary: Actuator casing mechanical translational
+  direction: conserving
+- name: R
+  summary: Actuator piston rod mechanical translational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -44,8 +65,86 @@ rod.
 
 Thermal conserving port associated with heat transfer to or from the
 gas chamber.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Configuration
+- name: Piston stroke
+  summary: Maximum piston travel distance 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Initial piston displacement from chamber A cap
+  summary: Piston position at start of simulation 0 m (default) | scalar
+  group: Configuration
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: Configuration
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Configuration
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Configuration
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Configuration
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Configuration
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Configuration
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Configuration
+- name: Piston cross-sectional area in chamber A
+  summary: Cross-sectional area of piston rod 0.01 m^2 (default) | positive scalar
+  group: Isothermal Liquid Side
+- name: Dead volume in chamber A
+  summary: Chamber volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Isothermal Liquid Side
+- name: Enable dynamic compressibility
+  summary: Whether to model fluid compressibility On (default) | Off
+  group: Isothermal Liquid Side
+- name: Initial liquid pressure in chamber A
+  summary: Initial liquid pressure for compressible fluids 0.101325 MPa (default) | positive scalar
+  group: Isothermal Liquid Side
+- name: Nominal liquid pressure in chamber A
+  summary: Pressure at nominal operating conditions in chamber A 0.101325 MPa (default) | scalar
+  group: Isothermal Liquid Side
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Isothermal Liquid Side
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Isothermal Liquid Side
+- name: Piston cross-sectional area in chamber B
+  summary: Cross-sectional area of piston rod 0.01 m^2 (default) | positive scalar
+  group: Gas Side
+- name: Cross-sectional area at port B
+  summary: Port cross-sectional area 1e-3 m^2 (default) | positive scalar
+  group: Gas Side
+- name: Dead volume in chamber B
+  summary: Chamber volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Gas Side
+- name: Initial gas pressure in chamber B
+  summary: Starting gas chamber pressure 0.101325 MPa (default) | positive scalar
+  group: Gas Side
+- name: Initial gas temperature in chamber B
+  summary: Starting gas chamber temperature 293.15 K (default) | positive scalar
+  group: Gas Side
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Gas Side
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Gas Side
+```
 
 ### Configuration
 
@@ -250,7 +349,6 @@ User-defined environmental pressure.
 To enable this parameter, set **Environment pressure
 specification** to `Specified
 pressure`.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Actuators

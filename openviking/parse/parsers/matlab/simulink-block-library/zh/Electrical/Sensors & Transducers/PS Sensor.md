@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # PS Sensor
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 物理输入信号 physical signal
+  direction: input
+- name: +
+  summary: 正电压 electrical
+  direction: input
+- name: '-'
+  summary: 负电压 electrical
+  direction: input
+```
 
 ### 输入
 
@@ -30,8 +42,25 @@ chinese_source: worker-translation
 ### **-** — 负电压 electrical
 
 与 PS sensor 负电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Output type
+  summary: 传感器输出类型 Variable voltage（默认）| Variable current | Variable resistor
+  group: ''
+- name: Sensor gain, A
+  summary: 输出灵敏度 1（默认）
+  group: ''
+- name: Sensor offset, B
+  summary: 传感器偏移 0（默认）
+  group: ''
+- name: Maximum output, Ymax
+  summary: 最大输出 5（默认）
+  group: ''
+- name: Minimum output, Ymin
+  summary: 最小输出 0.01（默认）
+  group: ''
+```
 
 ### **Output type** — 传感器输出类型 `Variable voltage`（默认）| `Variable current` | `Variable resistor`
 
@@ -66,7 +95,6 @@ chinese_source: worker-translation
 | `Variable resistor` | Ω |
 
 如果为 **Output type** 参数选择 `Variable resistance`，则最小电阻 *Y*min 必须大于零。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

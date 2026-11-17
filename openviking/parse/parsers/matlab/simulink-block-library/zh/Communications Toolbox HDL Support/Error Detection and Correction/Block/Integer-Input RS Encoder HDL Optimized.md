@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Integer-Input RS Encoder HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: dataIn
+  summary: 输入数据标量
+  direction: input
+  data_types: double | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: startIn
+  summary: 输入帧起始指示标量
+  direction: input
+  data_types: Boolean
+- name: endIn
+  summary: 输入帧结束指示标量
+  direction: input
+  data_types: Boolean
+- name: validIn
+  summary: 有效输入数据指示标量
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: 输出数据标量
+  direction: output
+  data_types: double | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: startOut
+  summary: 输出帧起始指示标量
+  direction: output
+  data_types: Boolean
+- name: endOut
+  summary: 输出帧结束指示标量
+  direction: output
+  data_types: Boolean
+- name: validOut
+  summary: 有效输出数据指示标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -70,8 +105,34 @@ chinese_source: worker-translation
 这是一个控制信号，用于指示 **dataOut** 端口上的数据是否有效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length
+  summary: 码字长度 7（默认）| 范围从 7 到 65, 535
+  group: ''
+- name: Message length
+  summary: 消息长度 3（默认）| 正整数
+  group: ''
+- name: Source of primitive polynomial
+  summary: 本原多项式来源 Auto（默认）| Property
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式提供者 [ 1 0 1 1 ]（默认）| 二进制行向量
+  group: ''
+- name: Source of puncture pattern
+  summary: 打孔图案来源 None（默认）| Property
+  group: ''
+- name: Puncture pattern vector
+  summary: 打孔向量 [ones(2,1); zeros(2,1)]（默认）| 二进制列向量
+  group: ''
+- name: Source of B, the starting power for roots of the primitive polynomial
+  summary: 本原多项式根的起始幂 Auto（默认）| Property
+  group: ''
+- name: B value
+  summary: 根的起始指数 1（默认）| 正整数
+  group: ''
+```
 
 ### **Codeword length** — 码字长度 `7`（默认）| 范围从 7 到 65, 535
 
@@ -130,7 +191,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Source of B, the starting power for roots of the primitive polynomial** 参数设置为 `Property`。
-
 ## 所属库
 
 Communications Toolbox HDL Support / Error Detection and Correction / Block

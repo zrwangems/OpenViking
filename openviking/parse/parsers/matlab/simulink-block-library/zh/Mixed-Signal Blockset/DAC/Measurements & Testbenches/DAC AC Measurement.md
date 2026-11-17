@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # DAC AC Measurement
 
 ## 端口
+```yaml
+ports:
+- name: digital
+  summary: 来自 DAC 的数字输入信号 标量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: analog
+  summary: 来自 DAC 的转换后模拟信号 标量
+  direction: input
+  data_types: double
+- name: start
+  summary: 用于启动转换的外部时钟 标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -35,8 +50,50 @@ chinese_source: worker-translation
 用于启动转换的外部时钟，指定为标量。此端口决定数模转换过程何时开始。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Digital signal frequency (Hz)
+  summary: DAC 数字输入信号的频率 1e3（默认）| 正实数标量
+  group: ''
+  block_parameter: InputFrequency
+  type: 字符向量
+  values: 正实数标量
+- name: Start conversion frequency (Hz)
+  summary: 内部启动转换时钟的频率 1e6（默认）| 正实数标量
+  group: ''
+  block_parameter: StartFreq
+  type: 字符向量
+  values: 正实数标量
+- name: Settling time tolerance (LSB)
+  summary: 用于计算建立时间的容差 0.5（默认）| 正实数标量
+  group: ''
+  block_parameter: SettlingTimeTolerance
+  type: 字符向量
+  values: 正实数标量
+- name: Hold off time (s)
+  summary: 测量分析前的延迟，以避免瞬态干扰 0（默认）| 非负实数标量
+  group: ''
+  block_parameter: HoldOffTime
+  type: 字符向量
+  values: 非负实数标量
+- name: Recommended simulation stop time (s)
+  summary: 仿真必须运行以获得有意义结果的最短时间 0.09（默认）| 正实数标量
+  group: ''
+- name: Output result to base workspace
+  summary: 将详细测试结果存储到基础工作区 off（默认）| on
+  group: ''
+- name: Workspace variable name
+  summary: 存储详细测试结果的变量名称 dac_ac_out（默认）| 字符字符串
+  group: ''
+  block_parameter: VariableName
+  type: character vector
+  values: character string
+  default: dac_ac_out
+- name: Show spectrum analyzer during simulation
+  summary: 在仿真期间显示频谱分析仪 on（默认）| off
+  group: ''
+```
 
 ### **Digital signal frequency (Hz)** — DAC 数字输入信号的频率 `1e3`（默认）| 正实数标量
 
@@ -139,7 +196,6 @@ T=6(1.5RBW+Hold off time)，
 ### **Show spectrum analyzer during simulation** — 在仿真期间显示频谱分析仪 on（默认）| off
 
 选择此参数以在仿真期间显示频谱分析仪窗口。默认情况下，此参数处于选中状态。
-
 ## 所属库
 
 Mixed-Signal Blockset / DAC / Measurements & Testbenches

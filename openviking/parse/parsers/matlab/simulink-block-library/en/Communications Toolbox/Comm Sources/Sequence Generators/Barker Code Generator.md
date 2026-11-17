@@ -14,6 +14,12 @@ language: en
 # Barker Code Generator
 
 ## Ports
+```yaml
+ports:
+- name: output
+  summary: Barker code frame column vector
+  direction: output
+```
 
 ### Output
 
@@ -27,8 +33,25 @@ the Barker code.
 
 Set the data type of the output with the **Output data
 type** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Code length
+  summary: Length of generated code 7 (default) | 1 | 2 | 3 | 4 | 5 | 11 | 13
+  group: ''
+- name: Sample time
+  summary: Output sample time 1 (default) | -1 | positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Samples per output frame 1 (default) | positive integer
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | int8
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -91,7 +114,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox Communications Toolbox / Comm Sources / Sequence Generators

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Trigger
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 描述控制信号或消息负载的值 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double | int8
+```
 
 ### 输出
 
@@ -41,8 +48,190 @@ chinese_source: worker-translation
 `message`。
 
 **数据类型：** `double` | `int8`
-
 ## 参数
+```yaml
+parameters:
+- name: Trigger type
+  summary: 选择控制信号类型 rising（默认）| falling | either | function-call | message
+  group: 主要
+  block_parameter: TriggerType
+  type: character vector
+  values: '''rising'' | ''falling'' | ''either'' | ''function-call'' | ''message'''
+  default: '''rising'''
+- name: Treat as Simulink function
+  summary: 创建 Simulink Function 模块 off（默认）| on
+  group: 主要
+  block_parameter: IsSimulinkFunction
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Execute function call asynchronously
+  summary: 调用方请求调用函数是否可以等待服务执行 off（默认）| on
+  group: 主要
+  block_parameter: AsynchronousFunction
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Function name
+  summary: 为 Simulink Function 模块指定函数名称 f（默认）| 函数名称
+  group: 主要
+  block_parameter: FunctionName
+  type: character vector
+  values: '''f'' | 带引号的函数名称'
+  default: '''f'''
+- name: Function visibility
+  summary: 选择函数的范围可见性 scoped（默认）| global | port
+  group: 主要
+  block_parameter: FunctionVisibility
+  type: character vector
+  values: '''scoped'' | ''global'' | ''port'''
+  default: '''scoped'''
+- name: Scope to port
+  summary: 指定导出函数端口的名称 ''（默认）| 字符向量
+  group: 主要
+  block_parameter: ScopeName
+  type: character vector
+  values: 带引号的端口名称
+  default: ''''''
+- name: Enable variant condition
+  summary: 控制激活变体控制（条件）off（默认）| on
+  group: 主要
+  block_parameter: Variant
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Variant control
+  summary: 指定变体控制（条件）表达式 (inherit)（默认）| 逻辑表达式
+  group: 主要
+  block_parameter: VariantControl
+  type: character vector
+  values: '''(inherit)'' | 逻辑表达式 | Simulink.VariantExpression 对象'
+  default: '''(inherit)'''
+- name: Generate preprocessor conditionals
+  summary: 控制将变体选择包含在 C 预处理器条件语句中 off（默认）| on
+  group: 主要
+  block_parameter: GeneratePreprocessorConditionals
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: States when enabling
+  summary: 选择如何设置模块状态值 held（默认）| reset | inherit
+  group: 主要
+  block_parameter: StatesWhenEnabling
+  type: character vector
+  values: '''held'' | ''reset''| ''inherit'''
+  default: '''held'''
+- name: Propagate sizes of variable-size signals
+  summary: 选择何时传播可变大小信号 During execution（默认）| Only when enabling
+  group: 主要
+  block_parameter: PropagateVarSize
+  type: character vector
+  values: '''During execution'' | ''Only when enabling'''
+  default: '''During execution'''
+- name: Show output port
+  summary: 控制输出端口的显示 off（默认）| on
+  group: 主要
+  block_parameter: ShowOutputPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output data type
+  summary: 选择输出端口数据类型 auto（默认）| double | int8
+  group: 主要
+  block_parameter: OutputDataType
+  type: character vector
+  values: '''auto'' | ''double'' | ''int8'''
+  default: '''auto'''
+- name: Sample time type
+  summary: 选择调用速率 triggered（默认）| periodic
+  group: 主要
+  block_parameter: SampleTimeType
+  type: character vector
+  values: '''triggered'' | ''periodic'''
+  default: '''triggered'''
+- name: Sample time
+  summary: 指定时间间隔 1（默认）| Ts | [Ts, To] | -1
+  group: 主要
+  block_parameter: SampleTime
+  type: character vector
+  values: '''1'' | ''Ts''| ''[Ts, To]'' | ''-1'''
+  default: '''1'''
+- name: Enable zero-crossing detection
+  summary: 控制零交叉检测 on（默认）| off
+  group: 主要
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Initial trigger signal state
+  summary: 选择触发信号 compatibility (no trigger on first evaluation)（默认）| zero | positive | negative 的初始状态
+  group: 主要
+  block_parameter: InitialTriggerSignalState
+  type: 字符向量
+  values: '''compatibility (no trigger on first evaluation)'' | ''zero'' | ''positive'' | ''negative'''
+  default: '''compatibility (no trigger on first evaluation)'''
+- name: Trigger time
+  summary: 指定消息输入何时触发子系统执行 on message available（默认）| on sample time hit
+  group: 主要
+  block_parameter: TriggerTime
+  type: 字符向量
+  values: '''on message available'' | ''on sample time hit'''
+  default: '''on message available'''
+- name: Schedule as aperiodic partition
+  summary: 指定执行的立即模式或调度模式 on（默认）| off
+  group: 主要
+  block_parameter: ScheduleAsAperiodic
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Port dimensions
+  summary: 指定触发信号的维度 1（默认）| [n] | [m n] | -1
+  group: 信号属性
+  block_parameter: PortDimensions
+  type: 字符向量
+  values: '''1'' | ''[n]'' | ''[m n]'' | -1'
+  default: '''1'''
+- name: Trigger signal sample time
+  summary: 指定时间间隔 -1（默认）| Ts | [Ts, To]
+  group: 信号属性
+  block_parameter: TriggerSignalSampleTime
+  type: 字符向量
+  values: '''-1'' | ''Ts''| ''[Ts, To]'''
+  default: '''-1'''
+- name: Minimum
+  summary: 指定触发信号的最小输出值 []（默认）| 实数标量
+  group: 信号属性
+  block_parameter: OutMin
+  type: 字符向量
+  values: '''[]'' | 带引号的实数标量'
+  default: '''[]'''
+- name: Maximum
+  summary: 指定触发信号的最大输出值 []（默认）| 实数标量
+  group: 信号属性
+  block_parameter: OutMax
+  type: 字符向量
+  values: '''[]'' | 带引号的实数标量'
+  default: '''[]'''
+- name: Data type
+  summary: '选择触发信号的输出数据类型 Inherit: auto（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^,0) | <data type expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''
+    | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Mode
+  summary: 选择数据类型类别 Built in（默认）| Fixed point | Expression
+  group: 信号属性
+- name: Interpolate data
+  summary: 控制如何估计缺失的工作区数据 on（默认）| off
+  group: 信号属性
+  block_parameter: Interpolate
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### 主要
 
@@ -653,7 +842,6 @@ type** 设置为 `rising`、
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

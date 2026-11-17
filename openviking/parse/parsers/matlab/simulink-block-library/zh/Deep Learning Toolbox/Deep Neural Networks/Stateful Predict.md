@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Stateful Predict
 
 ## 端口
+```yaml
+ports:
+- name: input
+  summary: 序列或时间序列数据 数值数组
+  direction: input
+- name: output
+  summary: 预测分数或响应 数值数组
+  direction: output
+```
 
 ### 输入
 
@@ -37,8 +46,41 @@ Stateful Predict 模块的输出端口采用所加载网络的输出层名称。
 对于序列到标签分类，输出是 *K*×*N* 矩阵，其中 *K* 是类别数，*N* 是观测数。
 
 对于序列到序列分类问题，输出是 *K*×*S* 的分数矩阵，其中 *K* 是类别数，*S* 是相应输入序列中的总时间步数。
-
 ## 参数
+```yaml
+parameters:
+- name: Network
+  summary: 训练好的循环神经网络的来源 Network from MAT-file（默认）| Network from MATLAB function
+  group: ''
+  block_parameter: Network
+  type: 字符向量、字符串
+  values: '''Network from MAT-file'' | ''Network from MATLAB function'''
+- name: File path
+  summary: 包含训练好的循环神经网络的 MAT 文件 untitled.mat（默认）| MAT 文件名
+  group: ''
+  block_parameter: NetworkFilePath
+  type: 字符向量、字符串
+  values: MAT 文件路径或名称
+- name: MATLAB function
+  summary: MATLAB 函数名称 untitled（默认）| MATLAB 函数名称
+  group: ''
+  block_parameter: NetworkFunction
+  type: 字符向量、字符串
+  values: MATLAB 函数名称
+- name: Sample time
+  summary: 输出采样周期和可选时间偏移 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量 | 向量
+- name: Input data formats
+  summary: dlnetwork 的输入数据格式 字符向量 | 字符串
+  group: ''
+  block_parameter: InputDataFormats
+  type: 字符向量、字符串
+  values: 对于具有一个或多个输入的网络，使用以下形式的字符向量：{'inputlayerName1', 'SSC'; 'inputlayerName2', 'SSCB'; ...}'。对于没有输入层且具有多个输入端口的网络，使用以下形式的字符向量：'{'inputportName1/inport1,
+    'SSC'; 'inputportName2/inport2, 'SSCB'; ...}'。
+```
 
 ### **Network** — 训练好的循环神经网络的来源 `Network from MAT-file`（默认）| `Network from MATLAB function`
 
@@ -139,7 +181,6 @@ Stateful Predict 模块的输出端口采用所加载网络的输出层名称。
 | **类型：** 字符向量、字符串 |
 | **值：** 对于具有一个或多个输入的网络，使用以下形式的字符向量：`{'inputlayerName1', 'SSC'; 'inputlayerName2', 'SSCB'; ...}'`。对于没有输入层且具有多个输入端口的网络，使用以下形式的字符向量：`'{'inputportName1/inport1, 'SSC'; 'inputportName2/inport2, 'SSCB'; ...}'`。 |
 | **默认：** 网络所期望的数据格式。有关详细信息，请参阅 Deep Learning Data Formats。 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Neural Networks

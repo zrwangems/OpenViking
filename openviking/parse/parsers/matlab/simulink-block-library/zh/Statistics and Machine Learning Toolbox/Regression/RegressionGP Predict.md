@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # RegressionGP Predict
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 预测变量数据 行向量 | 列向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yfit
+  summary: 预测响应 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: ysd
+  summary: 响应的标准差 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yint
+  summary: 响应的预测区间 1×2 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -45,8 +64,191 @@ chinese_source: worker-translation
 **yint** 包含预测响应 **yfit** 针对预测变量数据 **x** 的 `100(1 – Alpha)%` 预测区间。`Alpha` 值是预测区间不包含 **x** 的真实响应值的概率。**yint** 的第一列包含预测区间的下限，第二列包含上限。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Select trained machine learning model
+  summary: 高斯过程回归模型 gpMdl（默认）| RegressionGP | CompactRegressionGP
+  group: 主要
+  block_parameter: TrainedLearner
+  type: 工作区变量
+  values: RegressionGP 对象 | CompactRegressionGP 对象
+- name: Add output port for estimated standard deviation
+  summary: 标准差的可选输出端口 off（默认）| on
+  group: 主要
+  block_parameter: ShowOutputSD
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Add output port for prediction intervals
+  summary: 预测区间的可选输出端口 off（默认）| on
+  group: 主要
+  block_parameter: ShowOutputIntervals
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Alpha
+  summary: 显著性水平 0.05（默认）| [0 1] 中的标量
+  group: 主要
+  block_parameter: Alpha
+  type: 字符向量
+  values: '[0 1] 中的标量'
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '"off" | "on"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '"off" | "on"'
+- name: Output data type
+  summary: 'yfit 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: 输出数据类型最小值
+  summary: 用于范围检查的 yfit 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: 输出数据类型最大值
+  summary: 用于范围检查的 yfit 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: 输出标准差数据类型
+  summary: 'ysd 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: SDDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Output standard deviation data type Minimum
+  summary: 用于范围检查的 ysd 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: SDOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Output standard deviation data type Maximum
+  summary: 用于范围检查的 ysd 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: SDOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Output prediction intervals data type
+  summary: 'yint 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: IntervalsDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Output prediction intervals data type Minimum
+  summary: yint 输出用于范围检查的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: IntervalsOutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Output prediction intervals data type Maximum
+  summary: yint 输出用于范围检查的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: IntervalsOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Kernel data type
+  summary: '核函数的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: KernelDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Kernel data type Minimum
+  summary: 核函数的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: KernelOutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Kernel data type Maximum
+  summary: 核函数的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: KernelOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Distance data type
+  summary: '用于计算核距离的方法的数据类型 Inherit: Inherit via internal rule（默认）| double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: DistanceDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Distance data type Minimum
+  summary: 核距离的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: DistanceOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Distance data type Maximum
+  summary: 核距离的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: DistanceOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: 基函数数据类型
+  summary: '基函数的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: BasisDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: 基函数数据类型最小值
+  summary: 基函数的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: BasisOutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: 基函数数据类型最大值
+  summary: 基函数的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: BasisOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+```
 
 ### 主要
 
@@ -576,7 +778,6 @@ Simulink 使用最大值来执行：
 | **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
 | **默认值**：`'[]'` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Regression

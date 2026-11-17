@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Combined Slip Wheel STI
 
 ## 端口
+```yaml
+ports:
+- name: Xe
+  summary: 惯性参考系中的车轮位置，N×3 向量
+  direction: input
+- name: DCM
+  summary: 方向余弦矩阵，3×3 向量
+  direction: input
+- name: Ang
+  summary: 轮辋旋转角度，3×3 向量
+  direction: input
+- name: Ve
+  summary: 惯性参考系中的车轮速度，N×3 向量
+  direction: input
+- name: Omega
+  summary: 旋转速度，N×3 向量
+  direction: input
+- name: OmegaWc
+  summary: 轮辋旋转速度，scalar
+  direction: input
+- name: Road
+  summary: 车轮位置、旋转矩阵、速度，1×18 向量
+  direction: input
+- name: ScaleFctrs
+  summary: 比例因子 27×N 数组
+  direction: input
+- name: Prs
+  summary: 轮胎充气压力 scalar | N×1 向量
+  direction: input
+- name: Info
+  summary: 模块数据总线
+  direction: output
+- name: Fwc
+  summary: 车轮中心处的力 1-by-3 向量
+  direction: output
+- name: Mwc
+  summary: 车轮中心处的力矩 1-by-3 向量
+  direction: output
+```
 
 ### 输入
 
@@ -146,8 +185,1078 @@ Magic Formula 6.2 方程使用比例因子来考虑静态或仿真运行时变�
 ### **Mwc** — 车轮中心处的力矩 `1`-by-`3` 向量
 
 轮胎在车轮中心处分别绕车轮固定 *x*、*y*、*z* 轴施加的力矩，单位为 N·m。
-
 ## 参数
+```yaml
+parameters:
+- name: Tire type
+  summary: 选择类型 External file | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car 235/45R18
+    | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5
+  group: 轮胎选项
+  block_parameter: tireType
+  values: External file（默认） | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car 235/45R18
+    | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5
+- name: 轮胎文件或对象，tireParamSet
+  summary: 轮胎文件 .mat | .tir | .txt
+  group: 轮胎选项
+  block_parameter: tireParamSet
+  values: vdynPassCar.mat（默认） | .tir | .txt
+- name: 轮胎侧
+  summary: 选择轮胎侧 Right（默认） | Left | Symmetric
+  group: 轮胎选项
+  block_parameter: TireSide
+  values: Right（默认） | Left | Symmetric
+- name: 轮胎压力
+  summary: 选择轮胎侧 标量
+  group: 轮胎选项
+  block_parameter: TirePrs
+  values: 标量
+- name: 帘布层转向
+  summary: 包含帘布层转向 on（默认） | off
+  group: 轮胎选项
+  block_parameter: plySteer
+  values: on（默认） | off
+- name: Turn slip
+  summary: 包含 turn slip on（默认） | off
+  group: 轮胎选项
+  block_parameter: turnslip
+  values: on（默认） | off
+- name: Install Extended Tire Features
+  summary: 用于安装 Extended Tire Features for Vehicle Dynamics Blockset™ 支持包的选项 按钮
+  group: 绘图
+- name: Plot steady state force, moment response
+  summary: 用于绘制稳态力和力矩轮胎响应的选项 按钮
+  group: 绘图
+- name: Nominal pressure, NOMPRES
+  summary: 压力标量
+  group: 仿真
+  block_parameter: NOMPRES
+  values: scalar
+- name: Maximum pressure, PRESMAX
+  summary: 最大压力标量
+  group: 仿真
+  block_parameter: PRESMAX
+  values: scalar
+- name: Minimum pressure, PRESMIN
+  summary: 最小压力标量
+  group: 仿真
+  block_parameter: PRESMIN
+  values: scalar
+- name: Nominal normal force, FNOMIN
+  summary: 力标量
+  group: 仿真
+  block_parameter: FNOMIN
+  values: scalar
+- name: Maximum normal force, FZMAX
+  summary: 力标量
+  group: 仿真
+  block_parameter: FZMAX
+  values: 标量
+- name: Minimum normal force, FZMIN
+  summary: 力标量
+  group: 仿真
+  block_parameter: FZMIN
+  values: 标量
+- name: Velocity tolerance used to handle low velocity situations, VXLOW
+  summary: 容差标量
+  group: 仿真
+  block_parameter: VXLOW
+  values: 标量
+- name: Max allowable slip ratio (absolute), KPUMAX
+  summary: 最大允许滑移率标量
+  group: 仿真
+  block_parameter: KPUMAX
+  values: 标量
+- name: Minimum allowable slip ratio (absolute), KPUMIN
+  summary: 最小允许滑移率标量
+  group: 仿真
+  block_parameter: KPUMIN
+  values: 标量
+- name: Max allowable slip angle (absolute), ALPMAX
+  summary: 最大允许侧偏角标量
+  group: 仿真
+  block_parameter: ALPMAX
+  values: 标量
+- name: Minimum allowable slip angle (absolute), ALPMIN
+  summary: 最小允许侧偏角标量
+  group: 仿真
+  block_parameter: ALPMIN
+  values: 标量
+- name: Maximum allowable camber angle, CAMMAX
+  summary: 最大允许外倾角标量
+  group: 仿真
+  block_parameter: CAMMAX
+  values: 标量
+- name: Minimum allowable camber angle, CAMMIN
+  summary: 最小允许外倾角标量
+  group: 仿真
+  block_parameter: CAMMIN
+  values: 标量
+- name: Nominal longitudinal speed, LONGVL
+  summary: Speed scalar
+  group: 仿真
+  block_parameter: LONGVL
+  values: scalar
+- name: Default tyre side, tyreside
+  summary: Side 'Right' (default) | char
+  group: 仿真
+  block_parameter: tyreside
+  values: '''Right'' (default) | char'
+- name: Initial wheel rotational velocity, omegao
+  summary: Velocity scalar
+  group: 仿真
+  block_parameter: omegao
+  values: scalar
+- name: Tire unloaded radius, UNLOADED_RADIUS
+  summary: Radius scalar
+  group: Dimension
+  block_parameter: UNLOADED_RADIUS
+  values: scalar
+- name: Tire nominal section width, WIDTH
+  summary: Width scalar
+  group: Dimension
+  block_parameter: WIDTH
+  values: scalar
+- name: Rim radius, RIM_RADIUS
+  summary: Radius scalar
+  group: Dimension
+  block_parameter: RIM_RADIUS
+  values: scalar
+- name: Nominal aspect ratio, ASPECT_RATIO
+  summary: Ratio scalar
+  group: Dimension
+  block_parameter: ASPECT_RATIO
+  values: scalar
+- name: Tire mass, MASS
+  summary: Mass scalar
+  group: Inertial and Damping
+  block_parameter: MASS
+  values: scalar
+- name: Tire rotational inertia (rolling axis), IYY
+  summary: Inertia scalar
+  group: Inertial and Damping
+  block_parameter: IYY
+  values: scalar
+- name: Rotational damping, br
+  summary: Damping scalar
+  group: Inertial and Damping
+  block_parameter: br
+  values: 标量
+- name: Gravity, GRAVITY
+  summary: 重力标量
+  group: Inertial and Damping
+  block_parameter: GRAVITY
+  values: 标量
+- name: Initial tire displacement, zo
+  summary: 位移标量
+  group: Vertical
+  block_parameter: zo
+  values: 标量
+- name: Initial wheel vertical velocity (wheel fixed frame), zdoto
+  summary: 速度标量
+  group: Vertical
+  block_parameter: zdoto
+  values: 标量
+- name: Effective rolling radius at low load stiffness, BREFF
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: BREFF
+  values: 标量
+- name: Effective rolling radius peak value, DREFF
+  summary: 半径标量
+  group: Vertical
+  block_parameter: DREFF
+  values: 标量
+- name: Effective rolling radius at high load stiffness, FREFF
+  summary: 半径标量
+  group: Vertical
+  block_parameter: FREFF
+  values: 标量
+- name: Unloaded to nominal rolling radius ratio, Q_RE0
+  summary: 比值标量
+  group: Vertical
+  block_parameter: Q_RE0
+  values: 标量
+- name: Radius rotational speed dependence, Q_V1
+  summary: 速度标量
+  group: Vertical
+  block_parameter: Q_V1
+  values: 标量
+- name: Stiffness rotational speed dependence, Q_V2
+  summary: 速度标量
+  group: Vertical
+  block_parameter: Q_V2
+  values: 标量
+- name: 带挠度的线性载荷变化，Q_FZ1
+  summary: 载荷变化标量
+  group: Vertical
+  block_parameter: Q_FZ1
+  values: 标量
+- name: 带挠度的二次载荷变化，Q_FZ2
+  summary: 载荷变化标量
+  group: Vertical
+  block_parameter: Q_FZ2
+  values: 标量
+- name: 带挠度和二次外倾的线性载荷变化，Q_FZ3
+  summary: 载荷变化标量
+  group: Vertical
+  block_parameter: Q_FZ3
+  values: 标量
+- name: 载荷对纵向力的响应，Q_FCX
+  summary: 力标量
+  group: Vertical
+  block_parameter: Q_FCX
+  values: 标量
+- name: 载荷对侧向力的响应，Q_FCY
+  summary: 力标量
+  group: Vertical
+  block_parameter: Q_FCY
+  values: 标量
+- name: 由于侧向载荷对侧向刚度的依赖性引起的垂直刚度变化，Q_FCY2
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: Q_FCY2
+  values: 标量
+- name: 刚度对压力的响应，PFZ1
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: PFZ1
+  values: 标量
+- name: 垂直轮胎刚度，VERTICAL_STIFFNESS
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: VERTICAL_STIFFNESS
+  values: 标量
+- name: 垂直轮胎阻尼，VERTICAL_DAMPING
+  summary: 阻尼标量
+  group: Vertical
+  block_parameter: VERTICAL_DAMPING
+  values: 标量
+- name: 轮辋触底偏移，BOTTOM_OFFST
+  summary: 偏移标量
+  group: Vertical
+  block_parameter: BOTTOM_OFFST
+  values: 标量
+- name: 触底刚度，BOTTOM_STIFF
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: BOTTOM_STIFF
+  values: 标量
+- name: 线性载荷相关外倾角对垂直刚度的影响，Q_CAM1
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: Q_CAM1
+  values: 标量
+- name: 二次载荷相关外倾角对垂直刚度的影响，Q_CAM2
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: Q_CAM2
+  values: 标量
+- name: 刚度和载荷及外倾角的线性缩减，Q_CAM3
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: Q_CAM3
+  values: 标量
+- name: 恒定外倾角和侧偏角对垂直刚度的影响，Q_FYS1
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: Q_FYS1
+  values: 标量
+- name: 线性外倾角和侧偏角对垂直刚度的影响，Q_FYS2
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: Q_FYS2
+  values: 标量
+- name: 二次外倾角和侧偏角对垂直刚度的影响，Q_FYS3
+  summary: 刚度标量
+  group: Vertical
+  block_parameter: Q_FYS3
+  values: 标量
+- name: 纵向刚度，LONGITUDINAL_STIFFNESS
+  summary: 刚度标量
+  group: 结构
+  block_parameter: LONGITUDINAL_STIFFNESS
+  values: 标量
+- name: 侧向刚度，LATERAL_STIFFNESS
+  summary: 刚度标量
+  group: 结构
+  block_parameter: LATERAL_STIFFNESS
+  values: 标量
+- name: 垂向挠度对纵向刚度的线性影响，PCFX1
+  summary: 挠度影响标量
+  group: 结构
+  block_parameter: PCFX1
+  values: 标量
+- name: 垂向挠度对纵向刚度的二次影响，PCFX2
+  summary: 挠度影响标量
+  group: 结构
+  block_parameter: PCFX2
+  values: 标量
+- name: 纵向刚度的压力依赖性，PCFX3
+  summary: 压力依赖性标量
+  group: 结构
+  block_parameter: PCFX3
+  values: 标量
+- name: 垂向挠度对侧向刚度的线性影响，PCFY1
+  summary: 挠度影响标量
+  group: 结构
+  block_parameter: PCFY1
+  values: 标量
+- name: 垂向挠度对侧向刚度的二次影响，PCFY2
+  summary: 挠度影响标量
+  group: 结构
+  block_parameter: PCFY2
+  values: 标量
+- name: 纵向刚度的压力依赖性，PCFY3
+  summary: 压力依赖性标量
+  group: 结构
+  block_parameter: PCFY3
+  values: 标量
+- name: Contact length square root term, Q_RA1
+  summary: 长度项标量
+  group: Contact Patch
+  block_parameter: Q_RA1
+  values: 标量
+- name: Contact length linear term, Q_RA2
+  summary: 长度项标量
+  group: Contact Patch
+  block_parameter: Q_RA2
+  values: 标量
+- name: Contact width root term, Q_RB1
+  summary: 宽度项标量
+  group: Contact Patch
+  block_parameter: Q_RB1
+  values: 标量
+- name: Contact width linear term, Q_RB2
+  summary: 宽度项标量
+  group: Contact Patch
+  block_parameter: Q_RB2
+  values: 标量
+- name: Cfx shape factor, PCX1
+  summary: 形状因子标量
+  group: Longitudinal
+  block_parameter: PCX1
+  values: 标量
+- name: Longitudinal friction at nominal normal load, PDX1
+  summary: 摩擦标量
+  group: Longitudinal
+  block_parameter: PDX1
+  values: 标量
+- name: Frictional variation with load, PDX2
+  summary: 摩擦变化标量
+  group: Longitudinal
+  block_parameter: PDX2
+  values: 标量
+- name: Frictional variation with camber, PDX3
+  summary: 摩擦变化标量
+  group: Longitudinal
+  block_parameter: PDX3
+  values: 标量
+- name: Longitudinal curvature at nominal normal load, PEX1
+  summary: 曲率标量
+  group: Longitudinal
+  block_parameter: PEX1
+  values: 标量
+- name: 曲率因子随载荷的变化，PEX2
+  summary: 曲率变化标量
+  group: Longitudinal
+  block_parameter: PEX2
+  values: 标量
+- name: 曲率因子随载荷平方的变化，PEX3
+  summary: 曲率变化标量
+  group: Longitudinal
+  block_parameter: PEX3
+  values: 标量
+- name: 纵向曲率因子随滑移的变化，PEX4
+  summary: 曲率标量
+  group: Longitudinal
+  block_parameter: PEX4
+  values: 标量
+- name: 额定法向载荷下的纵向滑移刚度，PKX1
+  summary: 刚度标量
+  group: Longitudinal
+  block_parameter: PKX1
+  values: 标量
+- name: 滑移刚度随载荷的变化，PKX2
+  summary: 刚度变化标量
+  group: Longitudinal
+  block_parameter: PKX2
+  values: 标量
+- name: 滑移刚度指数因子，PKX3
+  summary: 滑移刚度标量
+  group: Longitudinal
+  block_parameter: PKX3
+  values: 标量
+- name: 额定法向载荷下滑移率的水平偏移，PHX1
+  summary: 滑移率偏移标量
+  group: Longitudinal
+  block_parameter: PHX1
+  values: 标量
+- name: 水平滑移率随载荷的变化，PHX2
+  summary: 滑移变化标量
+  group: Longitudinal
+  block_parameter: PHX2
+  values: 标量
+- name: Vertical shift in load at nominal normal load, PVX1
+  summary: 载荷偏移标量
+  group: Longitudinal
+  block_parameter: PVX1
+  values: 标量
+- name: Variation of vertical shift with load, PVX2
+  summary: 载荷变化标量
+  group: Longitudinal
+  block_parameter: PVX2
+  values: 标量
+- name: Linear variation of longitudinal slip stiffness with tire pressure, PPX1
+  summary: 刚度变化标量
+  group: Longitudinal
+  block_parameter: PPX1
+  values: 标量
+- name: Quadratic variation of longitudinal slip stiffness with tire pressure, PPX2
+  summary: 刚度变化标量
+  group: Longitudinal
+  block_parameter: PPX2
+  values: 标量
+- name: Linear variation of peak longitudinal friction with tire pressure, PPX3
+  summary: 摩擦变化标量
+  group: Longitudinal
+  block_parameter: PPX3
+  values: 标量
+- name: Quadratic variation of peak longitudinal friction with tire pressure, PPX4
+  summary: 摩擦变化标量
+  group: Longitudinal
+  block_parameter: PPX4
+  values: 标量
+- name: Combined slip Fx slope factor reduction, RBX1
+  summary: 联合滑移纵向力斜率因子缩减标量
+  group: Longitudinal
+  block_parameter: RBX1
+  values: 标量
+- name: Slip ratio Fx slope reduction variation, RBX2
+  summary: 滑移率纵向力斜率缩减变化标量
+  group: Longitudinal
+  block_parameter: RBX2
+  values: 标量
+- name: Camber influence on combined slip Fx stiffness, RBX3
+  summary: 外倾对联合滑移纵向力刚度的影响标量
+  group: Longitudinal
+  block_parameter: RBX3
+  values: 标量
+- name: Shape factor for combined slip Fx reduction, RCX1
+  summary: 联合滑移纵向力缩减形状因子标量
+  group: Longitudinal
+  block_parameter: RCX1
+  values: 标量
+- name: Combined Fx curvature factor, REX1
+  summary: 联合纵向力曲率因子标量
+  group: Longitudinal
+  block_parameter: REX1
+  values: 标量
+- name: Combined Fx curvature factor with load, REX2
+  summary: 联合纵向力曲率因子标量
+  group: Longitudinal
+  block_parameter: REX2
+  values: 标量
+- name: Combined slip Fx shift factor reduction, RHX1
+  summary: 联合滑移纵向力滑移因子标量
+  group: Longitudinal
+  block_parameter: RHX1
+  values: 标量
+- name: Vertical shift of overturning moment, QSX1
+  summary: 侧翻力矩标量
+  group: Overturning
+  block_parameter: QSX1
+  values: 标量
+- name: Overturning moment due to camber, QSX2
+  summary: 由外倾引起的侧翻力矩标量
+  group: Overturning
+  block_parameter: QSX2
+  values: 标量
+- name: Overturning moment due to Fy, QSX3
+  summary: 由侧向力引起的侧翻力矩标量
+  group: Overturning
+  block_parameter: QSX3
+  values: 标量
+- name: Mx combined lateral force load and camber, QSX4
+  summary: 倾覆力矩标量
+  group: Overturning
+  block_parameter: QSX4
+  values: 标量
+- name: Mx load effect due to lateral force and camber, QSX5
+  summary: 倾覆力矩标量
+  group: Overturning
+  block_parameter: QSX5
+  values: 标量
+- name: Mx load effect due to B-factor, QSX6
+  summary: 倾覆力矩标量
+  group: Overturning
+  block_parameter: QSX6
+  values: 标量
+- name: Mx due to camber and load, QSX7
+  summary: 倾覆力矩标量
+  group: Overturning
+  block_parameter: QSX7
+  values: 标量
+- name: Mx due to lateral force and load, QSX8
+  summary: 倾覆力矩标量
+  group: Overturning
+  block_parameter: QSX8
+  values: 标量
+- name: Mx due to B-factor of lateral force and load, QSX9
+  summary: 倾覆力矩标量
+  group: Overturning
+  block_parameter: QSX9
+  values: 标量
+- name: Mx due to vertical force and camber, QSX10
+  summary: 倾覆力矩标量
+  group: Overturning
+  block_parameter: QSX10
+  values: 标量
+- name: Mx due to B-factor of vertical force and camber, QSX11
+  summary: 倾覆力矩标量
+  group: Overturning
+  block_parameter: QSX11
+  values: 标量
+- name: Mx due to squared camber, QSX12
+  summary: 侧倾力矩标量
+  group: Overturning
+  block_parameter: QSX12
+  values: scalar
+- name: Mx due to lateral force, QSX13
+  summary: 侧倾力矩标量
+  group: Overturning
+  block_parameter: QSX13
+  values: scalar
+- name: Mx due to lateral force with camber, QSX14
+  summary: 侧倾力矩标量
+  group: Overturning
+  block_parameter: QSX14
+  values: scalar
+- name: Mx due to inflation pressure, PPMX1
+  summary: 由于压力引起的侧倾力矩标量
+  group: Overturning
+  block_parameter: PPMX1
+  values: scalar
+- name: Cfy shape factor for lateral force, PCY1
+  summary: 侧向力形状因子标量
+  group: Lateral
+  block_parameter: PCY1
+  values: scalar
+- name: Lateral friction muy, PDY1
+  summary: 侧向摩擦标量
+  group: Lateral
+  block_parameter: PDY1
+  values: scalar
+- name: Lateral friction variation of muy with load, PDY2
+  summary: 侧向摩擦变化标量
+  group: Lateral
+  block_parameter: PDY2
+  values: scalar
+- name: Lateral friction variation of muy with squared camber, PDY3
+  summary: 侧向摩擦变化标量
+  group: Lateral
+  block_parameter: PDY3
+  values: scalar
+- name: Efy lateral curvature at nominal force FZNOM, PEY1
+  summary: 额定力下的侧向曲率标量
+  group: Lateral
+  block_parameter: PEY1
+  values: 标量
+- name: Efy curvature variation with load, PEY2
+  summary: 侧向曲率变化标量
+  group: Lateral
+  block_parameter: PEY2
+  values: 标量
+- name: Efy curvature constant camber dependency, PEY3
+  summary: 侧向曲率常数标量
+  group: Lateral
+  block_parameter: PEY3
+  values: 标量
+- name: Efy curvature variation with camber, PEY4
+  summary: 侧向曲率变化标量
+  group: Lateral
+  block_parameter: PEY4
+  values: 标量
+- name: Efy curvature variation with camber squared, PEY5
+  summary: 侧向曲率变化标量
+  group: Lateral
+  block_parameter: PEY5
+  values: 标量
+- name: Maximum KFy/FZNOM stiffness, PKY1
+  summary: 最大刚度标量
+  group: Lateral
+  block_parameter: PKY1
+  values: 标量
+- name: Load at maximum KFy/FZNOM stiffness, PKY2
+  summary: 载荷标量
+  group: Lateral
+  block_parameter: PKY2
+  values: 标量
+- name: KFy/FZNOM stiffness variation with camber, PKY3
+  summary: 刚度变化标量
+  group: Lateral
+  block_parameter: PKY3
+  values: 标量
+- name: KFy curvature, PKY4
+  summary: 侧向力刚度曲率标量
+  group: Lateral
+  block_parameter: PKY4
+  values: 标量
+- name: 峰值刚度随外倾角平方的变化，PKY5
+  summary: 刚度变化标量
+  group: Lateral
+  block_parameter: PKY5
+  values: 标量
+- name: Fy 外倾刚度因子，PKY6
+  summary: 侧向力外倾刚度因子标量
+  group: Lateral
+  block_parameter: PKY6
+  values: 标量
+- name: 外倾刚度垂直载荷依赖性，PKY7
+  summary: 刚度标量
+  group: Lateral
+  block_parameter: PKY7
+  values: 标量
+- name: FZNOM 处的 SHY 水平偏移，PHY1
+  summary: 额定力处的水平偏移标量
+  group: Lateral
+  block_parameter: PHY1
+  values: 标量
+- name: SHY 随载荷的变化，PHY2
+  summary: 水平偏移变化标量
+  group: Lateral
+  block_parameter: PHY2
+  values: 标量
+- name: Svy/Fz 在 FZNOM 处的垂直偏移，PVY1
+  summary: 额定力处的垂直偏移标量
+  group: Lateral
+  block_parameter: PVY1
+  values: 标量
+- name: Svy/Fz 随载荷的变化，PVY2
+  summary: 垂直偏移随载荷变化标量
+  group: Lateral
+  block_parameter: PVY2
+  values: 标量
+- name: Svy/Fz variation with camber, PVY3
+  summary: 随外倾角变化的垂直偏移标量
+  group: Lateral
+  block_parameter: PVY3
+  values: scalar
+- name: Svy/Fz variation with load and camber, PVY4
+  summary: 随载荷和外倾角变化的垂直偏移标量
+  group: Lateral
+  block_parameter: PVY4
+  values: scalar
+- name: Cornering stiffness variation with inflation pressure, PPY1
+  summary: 随压力变化的刚度标量
+  group: Lateral
+  block_parameter: PPY1
+  values: scalar
+- name: Cornering stiffness variation with inflation pressure induced nominal load dependency, PPY2
+  summary: 随压力变化的刚度标量
+  group: Lateral
+  block_parameter: PPY2
+  values: scalar
+- name: Linear inflation pressure on peak lateral friction, PPY3
+  summary: 压力标量
+  group: Lateral
+  block_parameter: PPY3
+  values: scalar
+- name: Quadratic inflation pressure on peak lateral friction, PPY4
+  summary: 压力标量
+  group: Lateral
+  block_parameter: PPY4
+  values: scalar
+- name: Inflation pressure effect on camber stiffness, PPY5
+  summary: 压力标量
+  group: Lateral
+  block_parameter: PPY5
+  values: scalar
+- name: Combined Fy reduction slope factor, RBY1
+  summary: 组合侧向力缩减斜率因子标量
+  group: Lateral
+  block_parameter: RBY1
+  values: scalar
+- name: Fy slope reduction with slip angle, RBY2
+  summary: 侧向力斜率随侧偏角缩减标量
+  group: Lateral
+  block_parameter: RBY2
+  values: scalar
+- name: Fy shift reduction with slip angle, RBY3
+  summary: 侧向力随侧偏角的平移缩减标量
+  group: Lateral
+  block_parameter: RBY3
+  values: scalar
+- name: Fy combined stiffness variation from camber, RBY4
+  summary: 侧向力组合刚度随外倾角变化标量
+  group: Lateral
+  block_parameter: RBY4
+  values: scalar
+- name: Fy combined reduction shape factor, RCY1
+  summary: 侧向力组合缩减形状因子标量
+  group: Lateral
+  block_parameter: RCY1
+  values: scalar
+- name: Fy combined curvature factor, REY1
+  summary: 侧向力组合曲率因子标量
+  group: Lateral
+  block_parameter: REY1
+  values: scalar
+- name: Fy combined curvature factor with load, REY2
+  summary: 侧向力组合曲率因子随载荷标量
+  group: Lateral
+  block_parameter: REY2
+  values: scalar
+- name: Fy combined reduction shift factor, RHY1
+  summary: 侧向力组合缩减平移因子标量
+  group: Lateral
+  block_parameter: RHY1
+  values: scalar
+- name: Fy combined reduction shift factor with load, RHY2
+  summary: 侧向力组合缩减平移因子随载荷标量
+  group: Lateral
+  block_parameter: RHY2
+  values: scalar
+- name: Slip ratio side force Svyk/Muy\*Fz at FZNOM, RVY1
+  summary: 在额定力下的滑移率侧向力标量
+  group: Lateral
+  block_parameter: RVY1
+  values: 标量
+- name: 侧向力 Svyk/Muy\*Fz 随载荷变化，RVY2
+  summary: 侧向力随载荷变化标量
+  group: Lateral
+  block_parameter: RVY2
+  values: 标量
+- name: 侧向力 Svyk/Muy\*Fz 随外倾角变化，RVY3
+  summary: 侧向力随外倾角变化标量
+  group: Lateral
+  block_parameter: RVY3
+  values: 标量
+- name: 侧向力 Svyk/Muy\*Fz 随侧偏角变化，RVY4
+  summary: 侧向力随侧偏角变化标量
+  group: Lateral
+  block_parameter: RVY4
+  values: 标量
+- name: 侧向力 Svyk/Muy\*Fz 随滑移率变化，RVY5
+  summary: 侧向力随滑移率变化标量
+  group: Lateral
+  block_parameter: RVY5
+  values: 标量
+- name: 侧向力 Svyk/Muy\*Fz 随滑移率反正切变化，RVY6
+  summary: 侧向力随滑移率反正切变化标量
+  group: Lateral
+  block_parameter: RVY6
+  values: 标量
+- name: 阻力矩系数，QSY1
+  summary: 阻力矩标量
+  group: 滚动
+  block_parameter: QSY1
+  values: 标量
+- name: 由 Fx 引起的阻力矩，QSY2
+  summary: 由纵向力引起的阻力矩标量
+  group: 滚动
+  block_parameter: QSY2
+  values: 标量
+- name: 由速度引起的阻力矩，QSY3
+  summary: 由速度引起的阻力矩标量
+  group: 滚动
+  block_parameter: QSY3
+  values: 标量
+- name: Torque resistance due to speed^4, QSY4
+  summary: 速度四次方引起的力矩阻力标量
+  group: 滚动
+  block_parameter: QSY4
+  values: 标量
+- name: Torque resistance due to square of camber, QSY5
+  summary: 外倾角平方引起的力矩阻力标量
+  group: 滚动
+  block_parameter: QSY5
+  values: 标量
+- name: Torque resistance due to square of camber and load, QSY6
+  summary: 外倾角平方与载荷引起的力矩阻力标量
+  group: 滚动
+  block_parameter: QSY6
+  values: 标量
+- name: Torque resistance due to load, QSY7
+  summary: 载荷引起的力矩阻力标量
+  group: 滚动
+  block_parameter: QSY7
+  values: 标量
+- name: Torque resistance due to pressure, QSY8
+  summary: 压力引起的力矩阻力标量
+  group: 滚动
+  block_parameter: QSY8
+  values: 标量
+- name: Trail slope factor for trail Bpt at FZNOM, QBZ1
+  summary: 额定力下的拖距斜率因子标量
+  group: 对齐
+  block_parameter: QBZ1
+  values: 标量
+- name: Bpt slope variation with load, QBZ2
+  summary: 斜率随载荷变化标量
+  group: 对齐
+  block_parameter: QBZ2
+  values: 标量
+- name: Bpt slope variation with square of load, QBZ3
+  summary: 斜率随载荷平方变化 0（默认）| 标量
+  group: 对齐
+  block_parameter: QBZ3
+  values: 标量
+- name: Bpt slope variation with camber, QBZ4
+  summary: 随外倾角的斜率变化标量
+  group: 对齐
+  block_parameter: QBZ4
+  values: 标量
+- name: Bpt slope variation with absolute value of camber, QBZ5
+  summary: 随外倾角的斜率变化标量
+  group: 对齐
+  block_parameter: QBZ5
+  values: 标量
+- name: Bpt slope variation with square of camber, QBZ6
+  summary: 随外倾角的斜率变化标量
+  group: 对齐
+  block_parameter: QBZ6
+  values: 标量
+- name: Br of Mzr slope scaling factor, QBZ9
+  summary: 斜率缩放因子标量
+  group: 对齐
+  block_parameter: QBZ9
+  values: 标量
+- name: Br of Mzr cornering stiffness factor, QBZ10
+  summary: 侧偏刚度因子标量
+  group: 对齐
+  block_parameter: QBZ10
+  values: 标量
+- name: Cpt pneumatic trail shape factor, QCZ1
+  summary: 气胎拖距形状因子标量
+  group: 对齐
+  block_parameter: QCZ1
+  values: 标量
+- name: Dpt peak trail, QDZ1
+  summary: 峰值拖距标量
+  group: 对齐
+  block_parameter: QDZ1
+  values: 标量
+- name: Dpt peak trail variation with load, QDZ2
+  summary: 随载荷的峰值拖距变化标量
+  group: 对齐
+  block_parameter: QDZ2
+  values: 标量
+- name: Dpt peak trail variation with camber, QDZ3
+  summary: 随外倾角的峰值拖距变化标量
+  group: 对齐
+  block_parameter: QDZ3
+  values: 标量
+- name: Dpt peak trail variation with square of camber, QDZ4
+  summary: 峰值拖距随外倾角平方的变化标量
+  group: 对齐
+  block_parameter: QDZ4
+  values: 标量
+- name: Dmr peak residual torque, QDZ6
+  summary: 峰值残余力矩标量
+  group: 对齐
+  block_parameter: QDZ6
+  values: 标量
+- name: Dmr peak residual torque variation with load, QDZ7
+  summary: 峰值残余力矩随载荷的变化标量
+  group: 对齐
+  block_parameter: QDZ7
+  values: 标量
+- name: Dmr peak residual torque variation with camber, QDZ8
+  summary: 峰值残余力矩随外倾角的变化标量
+  group: 对齐
+  block_parameter: QDZ8
+  values: 标量
+- name: Dmr peak residual torque variation with camber and load, QDZ9
+  summary: 峰值残余力矩随外倾角和载荷的变化标量
+  group: 对齐
+  block_parameter: QDZ9
+  values: 标量
+- name: Dmr peak residual torque variation with square of camber, QDZ10
+  summary: 峰值残余力矩随外倾角的变化标量
+  group: 对齐
+  block_parameter: QDZ10
+  values: 标量
+- name: Dmr peak residual torque variation with square of load, QDZ11
+  summary: 峰值残余力矩随载荷的变化标量
+  group: 对齐
+  block_parameter: QDZ11
+  values: 标量
+- name: Ept trail curvature at FZNOM, QEZ1
+  summary: 名义力下的拖距曲率标量
+  group: 对齐
+  block_parameter: QEZ1
+  values: 标量
+- name: Ept variation with load, QEZ2
+  summary: 拖距曲率随载荷变化标量
+  group: 对齐
+  block_parameter: QEZ2
+  values: 标量
+- name: Ept variation with square of load, QEZ3
+  summary: 拖距曲率随载荷平方变化标量
+  group: 对齐
+  block_parameter: QEZ3
+  values: 标量
+- name: Ept variation with sign of alpha-t, QEZ4
+  summary: 拖距曲率变化标量
+  group: 对齐
+  block_parameter: QEZ4
+  values: 标量
+- name: Ept variation with sign of alpha-t and camber, QEZ5
+  summary: 变化标量
+  group: 对齐
+  block_parameter: QEZ5
+  values: 标量
+- name: Sht horizontal trail shift at FZNOM, QHZ1
+  summary: 名义载荷下的水平拖距偏移标量
+  group: 对齐
+  block_parameter: QHZ1
+  values: 标量
+- name: Sht variation with load, QHZ2
+  summary: 水平拖距偏移随载荷变化标量
+  group: 对齐
+  block_parameter: QHZ2
+  values: 标量
+- name: Sht variation with camber, QHZ3
+  summary: 水平拖距偏移随外倾角变化标量
+  group: 对齐
+  block_parameter: QHZ3
+  values: 标量
+- name: 随载荷和外倾变化的 Sht 变化量，QHZ4
+  summary: 随载荷和外倾变化的水平拖距偏移变化量标量
+  group: 对齐
+  block_parameter: QHZ4
+  values: 标量
+- name: 充气压力对拖距长度的影响，PPZ1
+  summary: 压力对拖距长度影响标量
+  group: 对齐
+  block_parameter: PPZ1
+  values: 标量
+- name: 充气压力对残余回正力矩的影响，PPZ2
+  summary: 压力对回正力矩影响标量
+  group: 对齐
+  block_parameter: PPZ2
+  values: 标量
+- name: s/R0 的标称值：Fx 对 Mz 的影响，SSZ1
+  summary: 纵向力对回正力矩影响标量
+  group: 对齐
+  block_parameter: SSZ1
+  values: 标量
+- name: s/R0 随侧向力与标称力之比的变化，SSZ2
+  summary: 随侧向力与标称力之比变化标量
+  group: 对齐
+  block_parameter: SSZ2
+  values: 标量
+- name: s/R0 随外倾的变化，SSZ3
+  summary: 随外倾变化标量
+  group: 对齐
+  block_parameter: SSZ3
+  values: 标量
+- name: s/R0 随外倾和载荷的变化，SSZ4
+  summary: 随外倾和载荷变化标量
+  group: 对齐
+  block_parameter: SSZ4
+  values: 标量
+- name: 由于旋转导致的 Fx 峰值降低，PDXP1
+  summary: 由于旋转导致的纵向力峰值降低标量
+  group: Turnslip
+  block_parameter: PDXP1
+  values: 标量
+- name: Fx peak reduction due to spin with varying load, PDXP2
+  summary: 由于旋转导致的纵向力峰值降低标量
+  group: Turnslip
+  block_parameter: PDXP2
+  values: 标量
+- name: Fx peak reduction due to spin with slip ratio, PDXP3
+  summary: 由于旋转导致的纵向力峰值降低标量
+  group: Turnslip
+  block_parameter: PDXP3
+  values: 标量
+- name: Cornering stiffness reduction due to spin, PKYP1
+  summary: 由于旋转导致的刚度降低标量
+  group: Turnslip
+  block_parameter: PKYP1
+  values: 标量
+- name: Fy peak reduction due to spin, PDYP1
+  summary: 由于旋转导致的侧向力峰值降低标量
+  group: Turnslip
+  block_parameter: PDYP1
+  values: 标量
+- name: Fy peak reduction due to spin with varying load, PDYP2
+  summary: 由于旋转导致的侧向力峰值降低标量
+  group: Turnslip
+  block_parameter: PDYP2
+  values: 标量
+- name: Fy peak reduction due to spin with slip angle, PDYP3
+  summary: 由于旋转导致的侧向力峰值降低标量
+  group: Turnslip
+  block_parameter: PDYP3
+  values: 标量
+- name: Fy peak reduction due to square root of spin, PDYP4
+  summary: 由于旋转导致的侧向力峰值降低标量
+  group: Turnslip
+  block_parameter: PDYP4
+  values: 标量
+- name: Fy vs. slip angle response lateral shift limit, PHYP1
+  summary: 侧向力与侧偏角响应标量
+  group: Turnslip
+  block_parameter: PHYP1
+  values: 标量
+- name: Fy vs. slip angle response max lateral shift limit, PHYP2
+  summary: 侧向力与侧偏角响应标量
+  group: Turnslip
+  block_parameter: PHYP2
+  values: 标量
+- name: Fy vs. slip angle response max lateral shift limit with load, PHYP3
+  summary: 侧向力与侧偏角响应标量
+  group: Turnslip
+  block_parameter: PHYP3
+  values: 标量
+- name: Fy vs. slip angle response lateral shift curvature factor, PHYP4
+  summary: 侧向力与侧偏角响应标量
+  group: Turnslip
+  block_parameter: PHYP4
+  values: 标量
+- name: Camber stiffness reduction due to spin, PECP1
+  summary: 外倾刚度折减标量
+  group: Turnslip
+  block_parameter: PECP1
+  values: 标量
+- name: Camber stiffness reduction due to spin with load, PECP2
+  summary: 外倾刚度折减标量
+  group: Turnslip
+  block_parameter: PECP2
+  values: 标量
+- name: Turn slip pneumatic trail reduction factor, QDTP1
+  summary: 转向滑移回正力臂折减因子标量
+  group: Turnslip
+  block_parameter: QDTP1
+  values: 标量
+- name: Turn moment for constant turning and zero longitudinal speed, QCRP1
+  summary: 恒定转向力矩标量
+  group: Turnslip
+  block_parameter: QCRP1
+  values: 标量
+- name: Turn slip moment increase with spin at 90deg slip angle, QCRP2
+  summary: 转向滑移力矩标量
+  group: Turnslip
+  block_parameter: QCRP2
+  values: 标量
+- name: 侧滑引起的残余回正力矩减小量，QBRP1
+  summary: 侧滑引起的残余回正力矩减小量标量
+  group: Turnslip
+  block_parameter: QBRP1
+  values: 标量
+- name: 转弯滑移力矩峰值大小，QDRP1
+  summary: 转弯滑移力矩峰值大小标量
+  group: Turnslip
+  block_parameter: QDRP1
+  values: 标量
+- name: 转弯滑移力矩曲率，QDRP2
+  summary: 转弯滑移力矩曲率标量
+  group: Turnslip
+  block_parameter: QDRP2
+  values: 标量
+```
 
 ### 轮胎选项
 
@@ -3745,7 +4854,6 @@ s/R0 的标称值：纵向力，*Fx*，对回正力矩，*Mz* 的影响，*SSZ1*
 | **参数：** | `QDRP2` |
 | **值：** | 标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Wheels and Tires

@@ -14,6 +14,9 @@ language: en
 # Variable Hydraulic Chamber
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,8 +25,10 @@ The block has the following ports:
 
 `V`
 :   Physical signal port that provides the chamber volume variation.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Chamber dead volume**
 :   Minimal volume of fluid in the chamber. The default value is
@@ -41,7 +46,6 @@ parameter:
 - **Chamber orientation**
 
 All other block parameters are available for modification.
-
 ## Libraries
 
 Not documented in R2025b.

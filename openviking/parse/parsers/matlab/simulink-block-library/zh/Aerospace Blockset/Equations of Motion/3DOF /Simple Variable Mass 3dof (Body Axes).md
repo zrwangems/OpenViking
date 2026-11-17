@@ -15,6 +15,65 @@ chinese_source: worker-translation
 # Simple Variable Mass 3DOF (Body Axes)
 
 ## 端口
+```yaml
+ports:
+- name: Fx
+  summary: 沿 *x* 轴施加的力 标量
+  direction: input
+  data_types: double
+- name: Fz
+  summary: 沿 *z* 轴施加的力 标量
+  direction: input
+  data_types: double
+- name: M
+  summary: 施加的俯仰力矩 标量
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: 质量变化率 标量
+  direction: input
+  data_types: double
+- name: g
+  summary: 重力 标量
+  direction: input
+  data_types: double
+- name: Vre
+  summary: 相对速度 二元向量
+  direction: input
+  data_types: double
+- name: θ
+  summary: 俯仰姿态 标量
+  direction: output
+  data_types: double
+- name: q
+  summary: 俯仰角速率 标量
+  direction: output
+  data_types: double
+- name: dq/dt
+  summary: 俯仰角加速度 标量
+  direction: output
+  data_types: double
+- name: XeZe
+  summary: 机体位置 二元向量
+  direction: output
+  data_types: double
+- name: U w
+  summary: 机体速度 二元向量
+  direction: output
+  data_types: double
+- name: AxbAzb
+  summary: 机体加速度 二元向量
+  direction: output
+  data_types: double
+- name: Fuel
+  summary: 燃料箱状态 标量
+  direction: output
+  data_types: double
+- name: AxeAze
+  summary: 机体加速度 二元向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -126,8 +185,171 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Include inertial acceleration** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: 主
+  block_parameter: units
+  type: character vector
+  values: Metric (MKS) | English (Velocity in ft/s) | English (Velocity in kts)
+  default: Metric (MKS)
+- name: Axes
+  summary: 机体轴或风轴 Body（默认）| Wind
+  group: 主
+  block_parameter: axes
+  type: character vector
+  values: Wind | Body
+  default: Body
+- name: Mass type
+  summary: 质量类型 Simple Variable（默认）| Fixed | Custom Variable
+  group: 主
+  block_parameter: mtype
+  type: character vector
+  values: Fixed | Simple Variable | Custom Variable
+  default: '''Simple Variable'''
+- name: Initial velocity
+  summary: 机体初始速度 100（默认）| 标量
+  group: 主
+  block_parameter: v_ini
+  type: character vector
+  values: '''100'' | scalar'
+  default: '''100'''
+- name: Initial body attitude
+  summary: 初始俯仰姿态 0（默认）| 标量
+  group: 主
+  block_parameter: theta_ini
+  type: character vector
+  values: '''0'' | scalar'
+  default: '''0'''
+- name: Initial body rotation rate
+  summary: 初始俯仰旋转速率 0（默认）| 标量
+  group: 主
+  block_parameter: q_ini
+  type: character vector
+  values: '''0'' | scalar'
+  default: '''0'''
+- name: Initial incidence
+  summary: 初始角度 0（默认）| 标量
+  group: 主
+  block_parameter: alpha_ini
+  type: character vector
+  values: '''0'' | scalar'
+  default: '''0'''
+- name: Initial position (x,z)
+  summary: 初始位置 [0 0]（默认）| 二元向量
+  group: 主
+  block_parameter: pos_ini
+  type: character vector
+  values: '''[0 0]'' | two-element vector'
+  default: '''[0 0]'''
+- name: Initial mass
+  summary: 初始质量 1.0（默认）| 标量
+  group: 主
+  block_parameter: mass
+  type: character vector
+  values: '''1.0'' | scalar'
+  default: '''1.0'''
+- name: Empty mass
+  summary: 燃料箱为空时机体质量 0.5（默认）| 标量
+  group: 主
+  block_parameter: mass_e
+  type: character vector
+  values: '''0.5'' | scalar'
+  default: '''0.5'''
+- name: Full mass
+  summary: 燃料箱为满时机体质量 3.0（默认）| 标量
+  group: 主
+  block_parameter: mass_f
+  type: character vector
+  values: '''3.0'' | scalar'
+  default: '''3.0'''
+- name: Empty inertia
+  summary: 燃料箱为满时机体惯量 0.5（默认）| 标量
+  group: 主
+  block_parameter: Iyy_e
+  type: character vector
+  values: '''0.5'' | scalar'
+  default: '''0.5'''
+- name: Full inertia
+  summary: 满惯量 3.0（默认）| 标量
+  group: 主
+  block_parameter: Iyy_f
+  type: character vector
+  values: '''3.0'' | scalar'
+  default: '''3.0'''
+- name: Gravity Source
+  summary: 重力源 Internal（默认）| External
+  group: 主
+  block_parameter: g_in
+  type: character vector
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Acceleration due to gravity
+  summary: 重力源 9.81（默认）| 标量
+  group: 主
+  block_parameter: g
+  type: character vector
+  values: '''9.81'' | scalar'
+  default: '''9.81'''
+- name: Include mass flow relative velocity
+  summary: 质量流相对速度端口 off（默认）| on
+  group: 主
+  block_parameter: vre_flag
+  type: character vector
+  values: off | on
+  default: '''off'''
+- name: Limit mass flow when mass is empty or full
+  summary: 限制质量流 on（默认）| off
+  group: 主
+  block_parameter: mdot_flag
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Include inertial acceleration
+  summary: 包含惯性加速度端口 off（默认）| on
+  group: 主
+  block_parameter: abi_flag
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 'Velocity: e.g., {''u, ''w''}'
+  summary: 速度状态名称 ''（默认）| 用花括号括起来的逗号分隔列表
+  group: 状态属性
+  block_parameter: vel_statename
+  type: character vector
+  values: ''''' | comma-separated list surrounded by braces'
+  default: ''''''
+- name: 'Pitch attitude: e.g., ''theta'''
+  summary: 俯仰姿态状态名称 ''（默认）
+  group: 状态属性
+  block_parameter: theta_statename
+  type: character vector | string
+  values: ''''''
+  default: ''''''
+- name: 'Position: e.g., {''Xe'', ''Ze''}'
+  summary: 位置状态名称 ''（默认）| 用花括号括起来的逗号分隔列表
+  group: 状态属性
+  block_parameter: pos_statename
+  type: character vector
+  values: ''''' | comma-separated list surrounded by braces'
+  default: ''''''
+- name: Pitch angular rate e.g., 'q'
+  summary: 俯仰角速率状态名称 ''（默认）
+  group: 状态属性
+  block_parameter: q_statename
+  type: character vector | string
+  values: ''''' | scalar'
+  default: ''''''
+- name: 'Mass: e.g., ''mass'''
+  summary: 质量状态名称 ''（默认）| 标量
+  group: 状态属性
+  block_parameter: mass_statename
+  type: character vector | string
+  values: ''''' | scalar'
+  default: ''''''
+```
 
 ### 主
 
@@ -479,7 +701,6 @@ chinese_source: worker-translation
 | **类型**：character vector | string |
 | **值**：`''` | scalar |
 | **默认值**：`''` |
-
 ## 所属库
 
 Aerospace Blockset / Equations of Motion / 3DOF

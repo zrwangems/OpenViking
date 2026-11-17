@@ -14,17 +14,24 @@ language: en
 # Hydraulic Cap
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Zero flow rate hydraulic
+  direction: conserving
+```
 
 ### Conserving
 
 ### **P** — Zero flow rate hydraulic
 
 Hydraulic conserving port with zero flow rate.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Hydraulic / Hydraulic Elements

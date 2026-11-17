@@ -14,6 +14,17 @@ language: en
 # SPI Controller Transfer
 
 ## Ports
+```yaml
+ports:
+- name: SDO
+  summary: Data to write to registers of an SPI peripheral devices vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: SDI
+  summary: Data read from registers of an SPI peripheral devices vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -32,8 +43,25 @@ The port outputs the data read from the registers of a
 peripheral devices over the SPI interface.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: SPI module
+  summary: SPI module to write and read data 0 (default)
+  group: Main
+- name: Chip select pin
+  summary: Pin connected to the SPI peripheral devices
+  group: Main
+- name: First bit to transfer
+  summary: First bit to transfer for SPI communication Most significant bit (MSB) (default) | Least significant bit (LSB)
+  group: Main
+- name: Mode (Clock polarity and phase)
+  summary: Mode of SPI communication 0 (default) | 1 | 2 | 3
+  group: Main
+- name: Chip select pin polarity
+  summary: Logic level to establish SPI communication Active low (default) | Active high
+  group: Advanced
+```
 
 ### Main
 
@@ -95,7 +123,6 @@ the SPI peripheral devices.
 - Active high — The device is enabled on
   logic high. The SPI peripheral devices gets
   enabled when its SS pin is set to high.
-
 ## Libraries
 
 Embedded Coder Support Package for STMicroelectronics Discovery Boards / STM32F769I-Discovery Embedded Coder Support Package for STMicroelectronics Discovery Boards / STM32F746G-Discovery

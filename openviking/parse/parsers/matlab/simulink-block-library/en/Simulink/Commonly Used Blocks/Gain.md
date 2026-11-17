@@ -14,6 +14,17 @@ language: en
 # Gain
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Input multiplied by gain scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -36,8 +47,104 @@ complex, the output is complex.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain
+  summary: Value by which to multiply the input 1 (default) | real or complex-valued scalar, vector, or matrix
+  group: Main
+  block_parameter: Gain
+  values: '''1'' (default) | real or complex-valued scalar, vector, or matrix in quotes'
+- name: Multiplication
+  summary: Specify the multiplication mode Element-wise(K.*u) (default) | Matrix(K*u) | Matrix(u*K) | Matrix(K*u) (u vector)
+  group: Main
+  block_parameter: Multiplication
+  values: '''Element-wise(K.*u)'' (default) | ''Matrix(K*u)'' | ''Matrix(u*K)'' | ''Matrix(K*u) (u vector)'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match
+    scaling | Inherit: Inherit via back propagation | Inherit: Same as input | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | int64 | uint64 | uint32 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as input'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Mode
+  summary: Select data type mode Inherit (default) | Built in | Fixed Point
+  group: Signal Attributes
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: Signal Attributes
+- name: Signedness
+  summary: Specify signed or unsigned Signed (default) | Unsigned
+  group: Signal Attributes
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: Signal Attributes
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias
+  group: Signal Attributes
+- name: Slope
+  summary: Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar
+  group: Signal Attributes
+- name: Bias
+  summary: Specify bias for the fixed-point data type 0 (default) | real-valued scalar
+  group: Signal Attributes
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: Signal Attributes
+- name: Parameter minimum
+  summary: Specify the minimum value of gain [] (default) | scalar
+  group: Parameter Attributes
+  block_parameter: ParamMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Parameter maximum
+  summary: Specify the maximum value of gain [] (default) | scalar
+  group: Parameter Attributes
+  block_parameter: ParamMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Parameter data type
+  summary: 'Specify the data type of the Gain parameter Inherit: Inherit via internal rule (default) | Inherit: Same as input
+    | Inherit: Inherit from ''Gain'' | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Parameter Attributes
+  block_parameter: ParamDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Same as input'' | ''Inherit: Inherit from ''Gain''''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -551,7 +658,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `ParamDataTypeStr` |
 | **Values:** | `'Inherit: Inherit via internal rule'` (default) | `'Inherit: Same as input'` | `'Inherit: Inherit from 'Gain''` | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'<data type expression>'` |
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

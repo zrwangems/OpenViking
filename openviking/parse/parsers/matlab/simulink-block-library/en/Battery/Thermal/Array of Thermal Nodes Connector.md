@@ -14,6 +14,15 @@ language: en
 # Array of Thermal Nodes Connector
 
 ## Ports
+```yaml
+ports:
+- name: inConnk
+  summary: Array of thermal nodes *k* to concatenate thermal array-of-nodes
+  direction: conserving
+- name: outConn
+  summary: Concatenated array of thermal nodes thermal array-of-nodes
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +37,22 @@ ports of this type is equal to the value to which you set the
 ### **outConn** — Concatenated array of thermal nodes thermal array-of-nodes
 
 Concatenated array of thermal nodes.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of Input Connections
+  summary: Number of array of thermal nodes to concatenate one (default) | two | three | four | ...
+  group: ''
+- name: Concatenate dimension
+  summary: Output dimension along which to concatenate input arrays 2 (default) | positive scalar
+  group: ''
+- name: Size of complementary dimensions
+  summary: Size of dimensions of all input arrays except concatenate dimension 2 (default) | positive scalar
+  group: ''
+- name: Size of concatenate dimension for Node k
+  summary: Number of elements in connection node *k* 1 (default)
+  group: ''
+```
 
 ### **Number of Input Connections** — Number of array of thermal nodes to concatenate `one` (default) | `two` | `three` | `four` | ...
 
@@ -79,7 +102,6 @@ Number of elements in connection node *k*, where
 Input Connections**]. The number of parameters of this type is
 equal to the value to which you set the **Number of Input
 Connections** parameter.
-
 ## Libraries
 
 Simscape / Battery / Thermal

@@ -14,6 +14,18 @@ language: en
 # Finite-Gain Op-Amp
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive electrical voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative electrical voltage electrical
+  direction: conserving
+- name: out
+  summary: Output voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,68 @@ Electrical conserving port associated with the op-amp inverting input.
 Electrical conserving port associated with the op-amp output. The port
 name is hidden on the block icon, but you can see it in simulation data
 logs.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain, A
+  summary: Open-loop gain 1000 (default)
+  group: Main
+- name: Input resistance, Rin
+  summary: Resistance at block input 1e6 Ohm (default)
+  group: Main
+- name: Output resistance, Rout
+  summary: Resistance at block output 100 Ohm (default)
+  group: Main
+- name: Minimum output, Vmin
+  summary: Output voltage lower limit -15 V (default)
+  group: Main
+- name: Maximum output, Vmax
+  summary: Output voltage upper limit 15 V (default)
+  group: Main
+- name: Noise mode
+  summary: Select whether op-amp generates thermal noise Disabled (default) | Enabled
+  group: Noise
+- name: Input noise voltage density
+  summary: Density of voltage noise 30e-9 V/Hz^0.5 (default)
+  group: Noise
+- name: Noise current parameterization
+  summary: Select whether noise current density is different or the same for both inputs Apply same density function to both
+    inputs (default) | Apply different density function to each input
+  group: Noise
+- name: Input noise current density
+  summary: Current noise at both inputs 0.5e-12 A/Hz^0.5 (default)
+  group: Noise
+- name: Noninverting input noise current density
+  summary: Current noise at noninverting input 0.5e-12 A/Hz^0.5 (default)
+  group: Noise
+- name: Inverting input noise current density
+  summary: Current noise at inverting input 0.5e-12 A/Hz^0.5 (default)
+  group: Noise
+- name: Sample time
+  summary: Rate at which the noise source is sampled 1e-3 s (default)
+  group: Noise
+- name: Repeatability
+  summary: Select the noise control option Not repeatable (default) | Repeatable | Specify seed
+  group: Noise
+- name: Input noise voltage auto-generated seed used for repeatable option
+  summary: Auto-generated random number seed for voltage noise random real number
+  group: Noise
+- name: Noninverting input noise current auto-generated seed used for repeatable option
+  summary: Auto-generated random number seed for current noise at noninverting input random real number
+  group: Noise
+- name: Inverting input noise current auto-generated seed used for repeatable option
+  summary: Auto-generated random number seed for current noise at inverting input random real number
+  group: Noise
+- name: Input noise voltage seed
+  summary: Random number seed for voltage noise 0 (default)
+  group: Noise
+- name: Noninverting input noise current seed
+  summary: Random number seed for current noise at noninverting input 0 (default)
+  group: Noise
+- name: Inverting input noise current seed
+  summary: Random number seed for current noise at inverting input 0 (default)
+  group: Noise
+```
 
 ### Main
 
@@ -241,7 +313,6 @@ Seed used by the noise random number generator.
 
 Enabled when the **Repeatability** parameter is
 set to `Specify seed`.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

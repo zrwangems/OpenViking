@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Bits to Word
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 二值标量 | 二值向量
+  direction: input
+  data_types: fixdt(0,1,0)
+- name: Out
+  summary: 输出信号 标量
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -33,8 +44,24 @@ chinese_source: worker-translation
 *N* 位整数，其中 *N* 是输入向量的大小，以非负标量形式返回。例如，当您指定 1×8 的输入信号时，输出信号是数据类型为 `ufix8` 的无符号整数。
 
 **数据类型：** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input bit order
+  summary: 输入位顺序 LSB first（默认）| MSB first
+  group: ''
+  block_parameter: bitOrder
+  type: 字符向量
+  values: '''LSB first'' | ''MSB first'''
+  default: '''LSB first'''
+- name: After bit packing, treat resulting integer values as
+  summary: 位打包后所得整数值的标志 Unsigned（默认）| Signed
+  group: ''
+  block_parameter: signedOutputValues
+  type: 字符向量
+  values: '''Unsigned'' | ''Signed'''
+  default: '''Unsigned'''
+```
 
 ### **Input bit order** — 输入位顺序 `LSB first`（默认）| `MSB first`
 
@@ -64,7 +91,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'Unsigned'` | `'Signed'` |
 | **默认值**：`'Unsigned'` |
-
 ## 所属库
 
 HDL Coder / Logic and Bit Operations

@@ -14,6 +14,27 @@ language: en
 # Cone Clutch
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Normal force physical signal
+  direction: input
+- name: X
+  summary: Shift linkage position physical signal
+  direction: output
+- name: B
+  summary: Base mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+- name: S
+  summary: Shift linkage mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -95,8 +116,96 @@ This port is visible only when, in the
 parameter is set to `Conserving
 port`. For more information, see
 Shift linkage control and Geometry Parameter Dependencies.
-
 ## Parameters
+```yaml
+parameters:
+- name: Contact surface maximum diameter
+  summary: Outer diameter 150 mm (default) | positive scalar
+  group: Geometry
+- name: Contact surface minimum diameter
+  summary: Inner diameter 100 mm (default) | positive scalar
+  group: Geometry
+- name: Cone half angle
+  summary: Cone half angle 12 deg (default) | positive scalar
+  group: Geometry
+- name: Shift linkage control
+  summary: Shift linkage model Physical signal (default) | Conserving port
+  group: Geometry
+- name: Hard stop at back of shift linkage
+  summary: Hard stop option on (default) | off
+  group: Shift Linkage
+- name: Ring-hub clearance when disengaged
+  summary: Ring-hub clearance 3 mm (default) | nonnegative scalar
+  group: Shift Linkage
+- name: Ring stop stiffness
+  summary: Ring stop stiffness 10e5 N/m (default) | nonnegative scalar
+  group: Shift Linkage
+- name: Ring stop damping
+  summary: Ring stop damping 1e3 N/(m/s) (default) | nonnegative scalar
+  group: Shift Linkage
+- name: Shift linkage viscous friction coefficient
+  summary: Shift linkage viscous friction 100 N/(m/s) (default) | positive scalar
+  group: Shift Linkage
+- name: Linkage travel direction
+  summary: Disengagement travel direction Positive shift linkage displacement engages clutch (default) | Negative shift linkage
+    displacement engages clutch
+  group: Shift Linkage
+- name: Friction model
+  summary: Friction model Fixed kinetic friction coefficient (default) | Velocity-dependent kinetic friction coefficient |
+    Temperature-dependent friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: Friction
+- name: Relative velocity vector
+  summary: Relative velocity [0, 100, 1000] rad/s (default) | vector
+  group: Friction
+- name: Temperature vector
+  summary: Temperature [280, 300, 320] K (default) | increasing vector
+  group: Friction
+- name: Static friction coefficient
+  summary: Static friction coefficient 0.35 (default) | scalar
+  group: Friction
+- name: Static friction coefficient vector
+  summary: Static friction coefficient [.4, .38, .36] (default) | vector
+  group: Friction
+- name: Kinetic friction coefficient
+  summary: Kinetic friction coefficient 0.3 (default) | positive scalar
+  group: Friction
+- name: Kinetic friction coefficient vector
+  summary: Kinetic friction coefficient [.3, .22, .19] (default) | [.3, .28, .25] | vector
+  group: Friction
+- name: Kinetic friction coefficient matrix
+  summary: Kinetic friction coefficient [.34, .32, .3; .3, .28, .25; .25, .2, .15] (default) | matrix
+  group: Friction
+- name: Friction coefficient interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Friction
+- name: Friction coefficient extrapolation method
+  summary: Extrapolation method Linear (default) | Nearest | Error
+  group: Friction
+- name: Velocity tolerance
+  summary: Relative velocity locking threshold 0.001 rad/s (default) | scalar
+  group: Friction
+- name: Threshold force
+  summary: Normal contact force threshold 1 N (default) | scalar
+  group: Friction
+- name: Viscous friction coefficient
+  summary: Viscous friction 0 (default) | nonnegative scalar
+  group: Friction
+- name: Initial state
+  summary: Initial clutch state Unlocked (default) | Locked
+  group: Initial Conditions
+- name: Clutch fault
+  summary: Option to model friction fault Add fault
+  group: Faults
+- name: Behavior when faulted
+  summary: Clutch friction fault response Cannot transmit power (default) | Cannot unlock
+  group: Faults
+- name: Thermal mass
+  summary: Thermal mass 50 kJ/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Geometry
 
@@ -557,7 +666,6 @@ coefficients` or
 `Temperature and velocity-dependent
 friction coefficients`. For more
 information, see Friction Parameter Dependencies.
-
 ## Libraries
 
 Simscape / Driveline / Clutches

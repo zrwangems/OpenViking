@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # SM Current Controller
 
 ## 端口
+```yaml
+ports:
+- name: idqfRef
+  summary: 参考电流，A 向量
+  direction: input
+  data_types: single | double
+- name: idqf
+  summary: 测量电流，A 向量
+  direction: input
+  data_types: single | double
+- name: vdqFF
+  summary: 用途，V 向量
+  direction: input
+  data_types: single | double
+- name: VphMax
+  summary: 最大相电压，V 标量
+  direction: input
+  data_types: single | double
+- name: VfMax
+  summary: 最大励磁电压，V 标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 外部复位 标量
+  direction: input
+  data_types: single | double
+- name: vdqfRef
+  summary: 参考电压，V 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -60,8 +91,52 @@ chinese_source: worker-translation
 用于控制同步电机的参考 d-q 轴和励磁电压。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: 采样时间（-1 表示继承）
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+- name: 离散化采样时间
+  summary: 模块离散化采样时间 0.001（默认）| -1 或正数
+  group: ''
+- name: 轴优先级
+  summary: 电压限制器的轴优先级 q-axis（默认）| d-axis | d-q equivalence
+  group: ''
+- name: 启用零极点对消
+  summary: 前馈零极点对消 off（默认）| on
+  group: ''
+- name: 启用预控制电压
+  summary: 预控制电压 on（默认）| off
+  group: ''
+- name: D 轴电流比例增益
+  summary: D 轴比例增益 1（默认）| 正数
+  group: ''
+- name: D 轴电流积分增益
+  summary: D 轴积分增益 100（默认）| 正数
+  group: ''
+- name: D 轴电流抗饱和增益
+  summary: D 轴抗饱和增益 1（默认）| 正数
+  group: ''
+- name: Q 轴电流比例增益
+  summary: Q 轴比例增益 1（默认）| 正数
+  group: ''
+- name: Q 轴电流积分增益
+  summary: Q 轴积分增益 100（默认）| 正数
+  group: ''
+- name: Q 轴电流抗饱和增益
+  summary: Q 轴抗饱和增益 1（默认）| 正数
+  group: ''
+- name: 励磁电流比例增益
+  summary: 励磁电流比例增益 9（默认）| 正数
+  group: ''
+- name: 励磁电流积分增益
+  summary: 励磁电流积分增益 350（默认）| 正数
+  group: ''
+- name: 励磁电流抗饱和增益
+  summary: 励磁电流抗饱和增益 1（默认）| 正数
+  group: ''
+```
 
 #### 通用
 
@@ -126,7 +201,6 @@ chinese_source: worker-translation
 ### **励磁电流抗饱和增益** — 励磁电流抗饱和增益 `1`（默认）| 正数
 
 用于励磁电流控制的 PI 控制器的抗饱和增益。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

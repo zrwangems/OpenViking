@@ -14,6 +14,45 @@ language: en
 # Complex Partial-Systolic Matrix Solve Using Q-less QR Decomposition with Forgetting Factor
 
 ## Ports
+```yaml
+ports:
+- name: A(i,:)
+  summary: Rows of matrix *A* vector
+  direction: input
+  data_types: single | double | fixed point
+- name: B
+  summary: Matrix *B* matrix | vector
+  direction: input
+  data_types: single | double | fixed point
+- name: validInA
+  summary: Whether A input is valid Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: validInB
+  summary: Whether input B is valid Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: Whether to clear internal states Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: X
+  summary: Matrix *X* matrix | vector
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: Whether output data is valid Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: readyA
+  summary: Whether block is ready for input A Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: readyB
+  summary: Whether block is ready for input B Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -142,8 +181,45 @@ is processed, you must wait until `readyB` is set to
 `validInB` signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of columns in matrix A and rows in matrix B
+  summary: Number of columns in matrix *A* and rows in matrix *B* 4 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: n
+  type: character vector
+  values: positive integer-valued scalar
+  default: '4'
+- name: Number of columns in matrix B
+  summary: Number of columns in matrix *B* 1 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: p
+  type: character vector
+  values: positive integer-valued scalar
+  default: '1'
+- name: Forgetting factor
+  summary: Forgetting factor applied after each row of the matrix is factored 0.99 (default) | real positive scalar
+  group: ''
+  block_parameter: forgettingFactor
+  type: character vector
+  values: positive integer-valued scalar
+  default: '0.99'
+- name: Regularization parameter
+  summary: Regularization parameter 0 (default) | real nonnegative scalar
+  group: ''
+  block_parameter: regularizationParameter
+  type: character vector
+  values: real nonnegative scalar
+  default: '0'
+- name: Output datatype
+  summary: Data type of output matrix *X* fixdt(1,18,14) (default) | double | single | fixdt(1,16,0) | <data type expression>
+  group: ''
+  block_parameter: OutputType
+  type: character vector
+  values: '''fixdt(1,18,14)'' | ''double'' | ''single'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''fixdt(1,18,14)'''
+```
 
 ### **Number of columns in matrix A and rows in matrix B** — Number of columns in matrix *A* and rows in matrix *B* `4` (default) | positive integer-valued scalar
 
@@ -220,7 +296,6 @@ object such as `Simulink.NumericType`.
 | **Type:** character vector |
 | **Values:** `'fixdt(1,18,14)'` | `'double'` | `'single'` | `'fixdt(1,16,0)'` | `'<data type expression>'` |
 | **Default:** `'fixdt(1,18,14)'` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Linear System Solvers

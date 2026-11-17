@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Other Output
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要写入输出通道的数据向量
+  direction: input
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Missed Ticks
+  summary: 错过的节拍计数（可选）double
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +45,54 @@ chinese_source: worker-translation
 当您选中 **Show “Missed Ticks” port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Install new board
+  summary: 注册板卡 < no board selected >（默认）
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: 删除当前板卡（按钮）
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: 设置板卡（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认） | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器节拍数 10（默认） | 整数
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认） | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: 等待时让出 CPU
+  summary: 内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: 输出通道
+  summary: 选择其他输出通道的通道向量 1（默认）| 向量
+  group: ''
+  block_parameter: Channels
+- name: 可选参数
+  summary: 指定驱动程序所需的自定义参数 0（默认）| 向量
+  group: ''
+  block_parameter: OptParam
+- name: 初始值
+  summary: 指定通道在执行开始前生成的值 向量
+  group: ''
+  block_parameter: InitialValue
+- name: 最终值
+  summary: 指定通道在执行结束后生成的值 向量
+  group: ''
+  block_parameter: FinalValue
+```
 
 ### **Install new board** — 注册板卡 `< no board selected >`（默认）
 
@@ -187,7 +244,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `FinalValue` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

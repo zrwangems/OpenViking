@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # IDCT
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 输入信号 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point | bus
+- name: Output 1
+  summary: IDCT 输出 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point | bus
+```
 
 ### 输入
 
@@ -46,8 +57,40 @@ w(k)={1M2M,,k=12≤k≤M
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Sine and cosine computation
+  summary: 正弦和余弦计算 Table lookup（默认）| Trigonometric fcn
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认）| on
+  group: 数据类型选项卡
+- name: Sine table
+  summary: '正弦表 Inherit: Same word length as input（默认）| fixdt(1,16)'
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 输出最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 输出最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -150,7 +193,6 @@ w(k)={1M2M,,k=12≤k≤M
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Transforms

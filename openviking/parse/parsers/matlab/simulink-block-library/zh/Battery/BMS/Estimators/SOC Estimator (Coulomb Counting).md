@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # SOC Estimator (Coulomb Counting)
 
 ## 端口
+```yaml
+ports:
+- name: Current
+  summary: 电池电流，A 标量 | 向量
+  direction: input
+- name: InitialSOC
+  summary: 初始荷电状态，无量纲 标量 | 向量
+  direction: input
+- name: SOC
+  summary: 电池荷电状态 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +42,22 @@ chinese_source: worker-translation
 ### **SOC** — 电池荷电状态 标量 | 向量
 
 电池的荷电状态，返回为标量或向量。此输出端口的尺寸等于 **Current** 和 **InitialSOC** 输入端口的尺寸。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify Current input as cell current(s)
+  summary: 将电流输入端口指定为向量的选项 on（默认）| off
+  group: ''
+- name: Cell capacity, AH (A\*Hr)
+  summary: 电池完全充电时的容量 27（默认）| 非负标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 1（默认）| 0 | -1 | 整数
+  group: ''
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: ''
+```
 
 ### **Specify Current input as cell current(s)** — 将电流输入端口指定为向量的选项 `on`（默认）| `off`
 
@@ -64,7 +90,6 @@ chinese_source: worker-translation
 - `<data type expression>` — 模块算法将所有输入和参数转换为您指定的数据类型对象。
 
 单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Estimators

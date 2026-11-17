@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Azimuth Broadside Converter
 
 ## 端口
+```yaml
+ports:
+- name: az
+  summary: 方位角 标量 | 实数值向量
+  direction: input
+  data_types: double
+- name: bsd
+  summary: 侧射角 标量 | 实数值向量
+  direction: input
+  data_types: double
+- name: el
+  summary: 仰角 标量 | 实数值向量
+  direction: input
+  data_types: double
+- name: az
+  summary: 方位角 标量 | 实数值向量
+  direction: output
+  data_types: double
+- name: bsd
+  summary: 侧射角 标量 | 实数值向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -64,8 +87,13 @@ chinese_source: worker-translation
 要启用此端口，请将 **Conversion Mode** 设置为 **azimuth -> broadside**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Conversion mode
+  summary: 角度转换类型 broadside -> azimuth（默认）| azimuth -> broadside
+  group: ''
+```
 
 ### **Conversion mode** — 角度转换类型 **broadside -> azimuth**（默认）| **azimuth -> broadside**
 
@@ -75,7 +103,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **broadside -> azimuth** | 将以侧射角和仰角表示的方向转换为方位角和仰角。 |
 | **azimuth -> broadside** | 将以方位角和仰角表示的方向转换为侧射角和仰角。 |
-
 ## 所属库
 
 Phased Array System Toolbox / Environment and Target

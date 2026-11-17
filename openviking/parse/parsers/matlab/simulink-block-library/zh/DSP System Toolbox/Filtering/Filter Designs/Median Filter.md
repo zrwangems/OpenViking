@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Median Filter
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 数据输入 列向量 | 行向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 滑动中位数输出 列向量 | 行向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -39,8 +50,16 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Window length
+  summary: 滑动窗口的长度 5 （默认） | 正整数标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution （默认） | Code generation
+  group: ''
+```
 
 ### **Window length** — 滑动窗口的长度 5 （默认） | 正整数标量
 
@@ -58,7 +77,6 @@ chinese_source: worker-translation
   后续仿真中重用。此选项
   需要额外的启动时间，但可提供更快的后续
   仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs DSP System Toolbox / Statistics

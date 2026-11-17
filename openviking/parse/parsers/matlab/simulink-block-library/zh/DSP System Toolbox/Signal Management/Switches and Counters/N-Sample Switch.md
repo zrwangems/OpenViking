@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # N-Sample Switch
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 第一个输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Input 2
+  summary: 第二个输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Rst
+  summary: 复位信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Output
+  summary: 开关的输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -61,8 +80,22 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Switch count, N
+  summary: 切换计数 8（默认）| 非负整数
+  group: ''
+- name: Reset input
+  summary: 复位输入 off（默认）| on
+  group: ''
+- name: Trigger type
+  summary: 触发类型 Rising edge（默认）| Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Sample time
+  summary: 采样时间 0.1（默认）| 正标量
+  group: ''
+```
 
 ### **Switch count, N** — 切换计数 `8`（默认）| 非负整数
 
@@ -106,7 +139,6 @@ chinese_source: worker-translation
 您在 **Sample time** 参数中指定输出的采样周期，也就是说，输出采样周期不会从任一输入的采样周期继承。
 
 模块在输入端口应用零阶保持，因此模块在输入采样时间之间从给定端口读取的值是该端口最近一次输入的值。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Switches and Counters

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Transfer Fcn Real Zero
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,43 @@ chinese_source: worker-translation
 输出信号，即具有实零点且对输入信号实际上无极点作用的离散时间传递函数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Zero (in Z plane)
+  summary: 零点 0.75（默认）| 标量
+  group: ''
+  block_parameter: ZeroZ
+  type: 字符向量
+  values: 实标量
+  default: '''0.75'''
+- name: Initial condition for previous input
+  summary: 前一输入的初始条件 0.0（默认）| 标量
+  group: ''
+  block_parameter: ICPrevInput
+  type: 字符向量
+  values: 实标量
+  default: '''0.0'''
+- name: Input processing
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: ''
+  block_parameter: InputProcessing
+  type: 字符向量
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: 溢出操作的方法 off（默认）| on
+  group: ''
+  block_parameter: DoSatur
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Zero (in Z plane)** — 零点 `0.75`（默认）| 标量
 
@@ -112,7 +158,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Discrete

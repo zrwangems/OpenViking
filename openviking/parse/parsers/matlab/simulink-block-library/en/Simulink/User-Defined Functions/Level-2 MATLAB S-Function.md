@@ -14,6 +14,18 @@ language: en
 # Level-2 MATLAB S-Function
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Signal input to a Level-2 MATLAB S-function block scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: Signal output of a Level-2 MATLAB S-function block scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -39,8 +51,24 @@ input ports, dimension of input signals and sample time of each
 port.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: S-Function Name
+  summary: Specify S-Function name matlabfile (default) | S-Function name
+  group: ''
+  block_parameter: FunctionName
+  type: character vector
+  values: '''matlabfile'' | S-Function name'
+  default: '''matlabfile'''
+- name: Parameters
+  summary: Specify values of parameters for this block no default (default)
+  group: ''
+  block_parameter: Parameters
+  type: character vector
+  values: values of block parameters
+  default: ''' '''
+```
 
 ### **S-Function Name** — Specify S-Function name `matlabfile` (default) | S-Function name
 
@@ -70,7 +98,6 @@ Specify values of parameters for this block.
 | **Type:** character vector |
 | **Values:** values of block parameters |
 | **Default:** `' '` |
-
 ## Libraries
 
 Simulink / User-Defined Functions

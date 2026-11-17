@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Reshape
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,25 @@ chinese_source: worker-translation
 输出信号，其维度由 **Output dimensionality** 参数指定。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Output dimensionality
+  summary: 输出信号的维度 1-D array（默认） | Column vector (2-D) | Row vector (2-D) | Customize | Derive from reference input port
+  group: ''
+  block_parameter: OutputDimensionality
+  type: 字符向量
+  values: '''1-D array'' | ''Column vector (2-D)'' | ''Row vector (2-D)'' | ''Customize'' | ''Derive from reference input
+    port'''
+  default: '''1-D array'''
+- name: Output dimensions
+  summary: 输出信号的自定义维度 [1,1]（默认） | [integer] | [integer,integer]
+  group: ''
+  block_parameter: OutputDimensions
+  type: 字符向量
+  values: '''[1,1]'' | ''integer'' | ''[integer,integer]'''
+  default: '''[1,1]'''
+```
 
 ### **Output dimensionality** — 输出信号的维度 `1-D array`（默认） | `Column vector (2-D)` | `Row vector (2-D)` | `Customize` | `Derive from reference input port`
 
@@ -70,7 +100,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'[1,1]'` | `'integer'` | `'[integer,integer]'` |
 | **默认值**：`'[1,1]'` |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / Math Operations

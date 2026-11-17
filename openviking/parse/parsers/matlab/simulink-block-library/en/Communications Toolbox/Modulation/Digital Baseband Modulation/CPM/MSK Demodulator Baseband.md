@@ -14,10 +14,15 @@ language: en
 # MSK Demodulator Baseband
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Output type**
 :   Determines whether the output consists of bipolar or binary values.
@@ -56,7 +61,6 @@ Not documented in R2025b.
 :   The output data type can be `boolean`,
     `int8`, `int16`,
     `int32`, or `double`.
-
 ## Libraries
 
 Not documented in R2025b.

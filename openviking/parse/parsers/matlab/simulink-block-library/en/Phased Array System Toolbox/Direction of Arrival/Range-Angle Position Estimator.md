@@ -14,6 +14,39 @@ language: en
 # Range-Angle Position Estimator
 
 ## Ports
+```yaml
+ports:
+- name: RngEst
+  summary: range measurement (meters) real-valued 1-by-*K* vector | real-valued *J*-by-*L* matrix
+  direction: input
+  data_types: single | double
+- name: AngEst
+  summary: angle-of-arrival estimate (degrees) real-valued 1-by-*L* row vector | real-valued 2-by-*L* matrix
+  direction: input
+  data_types: single | double
+- name: RngVar
+  summary: range variance (meters-squared) [] (default) | positive real-valued *J*-by-*L* matrix | positive real-valued length-*K*
+    row vector
+  direction: input
+  data_types: single | double
+- name: AngVar
+  summary: angle variance (degrees-squared) [] | real-valued 1-by-*L* row vector | real-valued 2-by-*L* matrix
+  direction: input
+  data_types: single | double
+- name: AnchorPos
+  summary: Anchor positions (meters) real-valued *Q*-by-*J* matrix
+  direction: input
+  data_types: single | double
+- name: TgtPosEst
+  summary: Target position estimate (meters) real-valued *Q*-by-1 vector
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: Estimated target position covariance (meters-squared) real-valued *Q*-by-*Q* matrix | real-valued *Q*-by-*Q*-by-*K*
+    array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -146,8 +179,23 @@ To enable this port, select the **Output covariances of position
 estimates** check box.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable known variance input
+  summary: Enable known variance input on (default) | off
+  group: ''
+- name: Output covariances of position estimates
+  summary: Output covariances of position estimates off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -210,7 +258,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

@@ -14,6 +14,23 @@ language: en
 # Entity Gate
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: control
+  summary: Incoming control entity scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Exiting entity scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+```
 
 ### Input
 
@@ -37,8 +54,38 @@ the gate.
 Output entity port for entities leaving the gate.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operating mode
+  summary: Select the mode of operation Enable gate (default) | Release gate | Selection gate
+  group: ''
+  block_parameter: OperatingMode
+  type: character vector
+  values: '''Enable gate'' | ''Release gate'' ''Selection gate'''
+  default: '''Enable gate'''
+- name: Matching attribute
+  summary: Specify name of the attribute that matches the value from the control port Attribute1 (default) | character vector
+  group: ''
+  block_parameter: MatchingAttributeName
+  type: character vector
+  values: '''Attribute1'' | character vector'
+  default: '''Attribute1'''
+- name: Initial value from the control port
+  summary: Specify initial value from the control port to match the matching attribute NaN (default) | scalar
+  group: ''
+  block_parameter: InitialValueOfMatchingAttribute
+  type: character vector
+  values: '''NaN'' | scalar'
+  default: '''NaN'''
+- name: Open gate at simulation start
+  summary: Opening the gate at the start off (default) | on
+  group: ''
+  block_parameter: OpenGateAtSimulationStar
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Operating mode** — Select the mode of operation `Enable gate` (default) | `Release gate` | `Selection gate`
 
@@ -134,7 +181,6 @@ Selected check boxon
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

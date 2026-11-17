@@ -15,10 +15,21 @@ chinese_source: worker-translation
 # Model Header
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Top of Model Header
+  summary: 在生成的头文件顶部附近添加的代码 无默认值
+  group: ''
+- name: Bottom of Model Header
+  summary: 在生成的头文件底部添加的代码 无默认值
+  group: ''
+```
 
 ### **Top of Model Header** — 在生成的头文件顶部附近添加的代码 无默认值
 
@@ -29,7 +40,6 @@ code (top of header file)` 的节中。
 
 指定希望代码生成器添加到模型头文件底部的代码。代码生成器将该代码放置在标记为
 `user code (bottom of header file)` 的节中。
-
 ## 所属库
 
 Simulink Coder / Custom Code

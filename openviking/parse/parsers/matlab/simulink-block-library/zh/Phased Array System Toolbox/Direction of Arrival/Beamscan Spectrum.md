@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Beamscan Spectrum
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 接收信号 *M*×*N* 复值矩阵
+  direction: input
+  data_types: double
+- name: Y
+  summary: Beamscan 二维空间谱 非负实值 *P*×*Q* 矩阵
+  direction: output
+  data_types: double
+- name: Ang
+  summary: 到达方向 非负实值 2×*L* 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +57,79 @@ chinese_source: worker-translation
 要启用此输出端口，请选中 **Enable DOA output** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: ''
+- name: Operating frequency (Hz)
+  summary: 系统工作频率 3e8（默认）| 正实标量
+  group: ''
+- name: Number of bits in phase shifters
+  summary: 移相器相位量化位数 0（默认）| 非负整数
+  group: ''
+- name: Forward-backward averaging
+  summary: 启用前向-后向平均 off（默认）| on
+  group: ''
+- name: Azimuth scan angles (deg)
+  summary: 方位方向的扫描角度 -180:180（默认）| 实值向量
+  group: ''
+- name: Elevation scan angles (deg)
+  summary: 仰角方向的扫描角度 -90:90（默认）| 实值向量
+  group: ''
+- name: Enable DOA output
+  summary: 通过输出端口输出到达方向 off（默认）| on
+  group: ''
+- name: Number of signals
+  summary: 预期到达信号数 1（默认）| 正整数
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+- name: Specify sensor array as
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| MATLAB expression
+  group: ''
+- name: Expression
+  summary: 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
+  group: ''
+- name: Geometry
+  summary: 阵列几何结构 ULA（默认）| URA | UCA | Conformal Array
+  group: ''
+- name: Number of elements
+  summary: 阵列阵元数 ULA 阵列为 2，UCA 阵列为 5（默认）| 大于或等于 2 的整数
+  group: ''
+- name: Element spacing (m)
+  summary: 阵列元素间距，ULA 阵列为 0.5，URA 阵列为 [0.5,0.5]（默认）| ULA 或 URA 阵列的正标量 | URA 阵列的 2 元正数值向量
+  group: ''
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认）| x | z
+  group: ''
+- name: Array size
+  summary: URA 阵列的维度 [2,2]（默认）| 正整数 | 1×2 正整数向量
+  group: ''
+- name: Element lattice
+  summary: URA 元素位置的晶格 Rectangular（默认）| Triangular
+  group: ''
+- name: Array normal
+  summary: 阵列法线方向，URA 阵列为 x，UCA 阵列为 z（默认）| y
+  group: ''
+- name: Radius of UCA (m)
+  summary: UCA 阵列半径 0.5（默认）| 正标量
+  group: ''
+- name: Element positions (m)
+  summary: 共形阵列元素的位置 [0;0;0]（默认）| 3×*N* 实数值矩阵
+  group: ''
+- name: Element normals (deg)
+  summary: 共形阵列单元法向量方向 [0;0] | 2×1 列向量 | 2×*N* 矩阵
+  group: ''
+- name: Taper
+  summary: 阵列单元锥削 1（默认）| 复标量 | 复值行向量
+  group: ''
+```
 
 ### **Signal propagation speed (m/s)** — 信号传播速度 `physconst('LightSpeed')`（默认）| 实值正标量
 
@@ -273,7 +359,6 @@ Array`。
 如果 **Taper** 为标量，则对每个单元施加相同的权重。如果 **Taper** 为向量，则将向量中的一个权重施加到对应的传感器单元。权重的数量必须与阵列的单元数量匹配。
 
 **数据类型：** `double`
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

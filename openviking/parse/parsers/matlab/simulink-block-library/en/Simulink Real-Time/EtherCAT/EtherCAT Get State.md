@@ -14,6 +14,12 @@ language: en
 # EtherCAT Get State
 
 ## Ports
+```yaml
+ports:
+- name: State
+  summary: State received from the EtherCAT network 1 | 2 | 4 | 8
+  direction: output
+```
 
 ### Output
 
@@ -25,8 +31,18 @@ language: en
 | `PREOP` | 2 | Preoperational — The system uses the communication controller to exchange system-specific initialization data. In this state, the network cannot transmit or receive signal data. |
 | `SAFEOP` | 4 | Safe operational — The network is running and ready for full operation. The supervisor sends input data to the terminal device. The terminal device output remains in a safe state. |
 | `OP` | 8 | Operational — The network is in full operation. The supervisor sends input data to the terminal device. The terminal device responds with output data. |
-
 ## Parameters
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT network identifier 0 (default) | 0-11
+  group: ''
+  block_parameter: device_id
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT network identifier `0` (default) | `0-11`
 
@@ -50,7 +66,6 @@ that the sample time is inherited.
 |  |
 | --- |
 | **Block Parameter:** `sample_time` |
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

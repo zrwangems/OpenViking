@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Unit Delay Enabled Resettable Synchronous
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 Scalar | Vector | Matrix | Array | Bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: E
+  summary: 使能信号 Scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: 复位信号 Scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: y
+  summary: 输出信号 Scalar | Vector | Matrix | Array | Bus
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -42,8 +61,22 @@ Unit Delay Resettable Synchronous 模块接受下列数据类型的复位信号�
 输出数据类型与输入匹配。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial condition
+  summary: 仿真的初始输出 0.0（默认）| Scalar | Vector | Matrix | Array | Bus
+  group: ''
+  block_parameter: InitialCondition
+  type: 字符向量
+  values: '''0'' | ''[n]'' | ''[m n]'''
+- name: Sample time
+  summary: 采样之间的时间间隔 -1（默认）| Scalar | Vector
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: '''-1'' | ''[n]'' | ''[m n]'''
+```
 
 ### **Initial condition** — 仿真的初始输出 0.0（默认）| `Scalar` | `Vector` | `Matrix` | `Array` | `Bus`
 
@@ -70,7 +103,6 @@ Unit Delay Resettable Synchronous 模块接受下列数据类型的复位信号�
 | **类型：** 字符向量 |
 | **值：** `'-1'` | `'[n]'` | `'[m n]'` |
 | **默认：** `'-1'` |
-
 ## 所属库
 
 HDL Coder / Discrete

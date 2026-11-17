@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Ultra Local Model
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 被控对象输入标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 被控对象输出标量
+  direction: input
+  data_types: single | double
+- name: Fhat
+  summary: 估计的扰动和未建模动态标量
+  direction: output
+  data_types: single | double
+- name: yhat
+  summary: 估计的输出标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -46,8 +65,45 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output estimated yhat**。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input gain (α)
+  summary: 输入增益 1（默认）| 非零有限标量
+  group: ''
+  block_parameter: alpha
+  values: '"1"（默认）| 带引号的非零有限标量'
+- name: Model Order
+  summary: 超局部模型阶数 1（默认）| 2
+  group: ''
+  block_parameter: modelOrder
+  values: '"1"（默认）| "2"'
+- name: Estimator sample time
+  summary: 估计器采样时间 0.01（默认）
+  group: ''
+  block_parameter: Ts
+  values: '"0.01"（默认）| 带引号的正标量'
+- name: Integration window (steps)
+  summary: 积分窗口 3（默认）| 大于 3 的正整数
+  group: ''
+  block_parameter: numIntegrationSteps
+  values: '"3"（默认）| 带引号的、大于 3 的正整数'
+- name: Include current time inputs for F estimation
+  summary: 包含当前时刻输入用于估计 off（默认）| on
+  group: ''
+  block_parameter: useCurrentdata
+  values: '"off"（默认）| "on"'
+- name: Output estimated yhat
+  summary: 输出输出的一步估计 off（默认）| on
+  group: ''
+  block_parameter: enableYhatport
+  values: '"off"（默认）| "on"'
+- name: Observer gain (L)
+  summary: 观测器增益 0（默认）| 非负标量
+  group: ''
+  block_parameter: ObsvGain
+  values: '"0"（默认）| 带引号的非负标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -170,7 +226,6 @@ chinese_source: worker-translation
 | **值**：| `"0"`（默认）| 带引号的非负标量 |
 
 **Example:** `set_param(gcb,"ObsvGain","2");`
-
 ## 所属库
 
 Simulink Control Design / Disturbance Observer

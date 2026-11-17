@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Carrier Synchronizer
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 相位校正后的输出信号 标量 | 列向量
+  direction: output
+  data_types: double | single
+- name: PhEst
+  summary: 相位估计（弧度） 标量 | 列向量
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -46,8 +61,34 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Estimated phase error output port** 参数。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation
+  summary: 调制类型 QAM（默认）| 8PSK | BPSK | OQPSK | PAM | QPSK
+  group: ''
+- name: Modulation phase offset
+  summary: 调制相位偏移方法 Auto（默认）| Custom
+  group: ''
+- name: Custom phase offset (radians)
+  summary: 自定义相位偏移（弧度） 0（默认）| 标量
+  group: ''
+- name: Samples per symbol
+  summary: 每个符号的采样数 2（默认）| 正整数
+  group: ''
+- name: Damping factor
+  summary: 环路阻尼因子 0.707（默认）| 正标量
+  group: ''
+- name: Normalized loop bandwidth
+  summary: 归一化环路带宽 0.01（默认）| 标量
+  group: ''
+- name: Estimated phase error output port
+  summary: 启用估计相位误差输出端口 on（默认）| off
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -110,7 +151,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Synchronization

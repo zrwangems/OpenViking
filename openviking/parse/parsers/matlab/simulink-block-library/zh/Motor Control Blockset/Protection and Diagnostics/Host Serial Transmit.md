@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Host Serial Transmit
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 用于接收待发送数据的端口 标量
+  direction: input
+  data_types: single | int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### 输入
 
@@ -23,8 +30,22 @@ chinese_source: worker-translation
 此端口接受一维和矩阵数据，用于向目标硬件发送。
 
 **数据类型：** `single` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Serial Connection
+  summary: 用于发送数据的串口 Serial 1（默认）| Serial 2 | Serial 3 | Serial 4
+  group: ''
+- name: Additional package header
+  summary: 包头部数据 'S'（默认）| 标量
+  group: ''
+- name: Additional package terminator
+  summary: 包终止符数据 'E'（默认）| 标量
+  group: ''
+- name: Enable blocking mode
+  summary: 在发送数据时阻塞仿真 off（默认）| on
+  group: ''
+```
 
 ### **Serial Connection** — 用于发送数据的串口 `Serial 1`（默认）| `Serial 2` | `Serial 3` | `Serial 4`
 
@@ -41,7 +62,6 @@ chinese_source: worker-translation
 ### **Enable blocking mode** — 在发送数据时阻塞仿真 `off`（默认）| `on`
 
 选择此参数可在发送数据时阻塞仿真。如果您不希望写操作阻塞仿真，请清除此参数。
-
 ## 所属库
 
 Motor Control Blockset / Protection and Diagnostics

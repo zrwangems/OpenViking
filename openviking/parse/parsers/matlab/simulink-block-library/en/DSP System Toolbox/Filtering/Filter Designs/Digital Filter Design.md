@@ -14,6 +14,17 @@ language: en
 # Digital Filter Design
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -38,13 +49,14 @@ Filtered signal, returned as a vector or a matrix of real
 values.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 ### Dialog Box
 
 For more information about the parameters in this dialog box, see Using Filter Designer.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Designs

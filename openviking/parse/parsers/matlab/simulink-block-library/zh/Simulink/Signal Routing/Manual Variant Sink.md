@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Manual Variant Sink
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: 第一个变体输出 标量 | 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_n
+  summary: 第 *n* 个变体输出 标量 | 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -36,8 +54,17 @@ chinese_source: worker-translation
 第 *n* 个变体输出信号。当您将切换开关连接到此端口时，该模块将输入信号传递到此输出端口。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of choices
+  summary: 输出选择的数量 2（默认）| 标量
+  group: ''
+  block_parameter: NumChoices
+  type: character vector
+  values: integer
+  default: '''2'''
+```
 
 要访问模块参数，请右键单击该模块并选择 **Mask** > **Mask Parameters**。
 
@@ -53,7 +80,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **Value:** `integer` |
 | **默认值**：`'2'` |
-
 ## 所属库
 
 Simulink / Signal Routing

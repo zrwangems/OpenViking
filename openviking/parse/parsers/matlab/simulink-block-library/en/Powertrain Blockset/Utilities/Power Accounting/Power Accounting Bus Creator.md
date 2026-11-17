@@ -14,6 +14,21 @@ language: en
 # Power Accounting Bus Creator
 
 ## Ports
+```yaml
+ports:
+- name: PwrTrnsfrd
+  summary: Power transferred between blocks bus
+  direction: input
+- name: PwrNotTrnsfrd
+  summary: Power crossing block boundary, not transferred bus
+  direction: input
+- name: PwrStored
+  summary: Stored energy rate of change bus
+  direction: input
+- name: PwrInfo
+  summary: Power information bus bus
+  direction: output
+```
 
 ### Input
 
@@ -55,8 +70,56 @@ To create this input port, select **Stored power**.
 ### **PwrInfo** — Power information bus `bus`
 
 Power information bus
-
 ## Parameters
+```yaml
+parameters:
+- name: Associated block
+  summary: Associated block Parent (default) | Parent reference block
+  group: ''
+  block_parameter: ParameterGroupVar
+  values: Parent (default) | Parent reference block
+- name: Library block name
+  summary: Block name Block name
+  group: ''
+  block_parameter: RefBlckName
+  values: Block name
+- name: Transferred power
+  summary: Power transferred between blocks on (default) | off
+  group: ''
+  block_parameter: PwrTrnsfrdCheckBox
+  values: on (default) | off
+- name: Not transferred power
+  summary: Power crossing block boundary on (default) | off
+  group: ''
+  block_parameter: PwrNotTrnsfrdCheckBox
+  values: on (default) | off
+- name: Stored power
+  summary: Stored energy rate of change on (default) | off
+  group: ''
+  block_parameter: PwrStoredCheckBox
+  values: on (default) | off
+- name: Signal name
+  summary: Name of signal char
+  group: ''
+- name: Associated Port
+  summary: Name of ports that transfer power {'PortA','PortB','PortC'}
+  group: ''
+- name: Description
+  summary: Signal description char
+  group: ''
+- name: Signal name
+  summary: Name of signal char
+  group: ''
+- name: Description
+  summary: Signal description char
+  group: ''
+- name: Signal name
+  summary: Name of signal char
+  group: ''
+- name: Description
+  summary: Signal description char
+  group: ''
+```
 
 #### Block Options
 
@@ -310,7 +373,6 @@ blocks.
 | Ideal Fixed Gear Transmission | `PwrStored.PwrStoredTrans` | `Rotational` |
 | Control Volume System | `PwrStored.PwrHeatStored` | `Stored heat` |
 | Datasheet Battery | `PwrStored.PwrStoredBatt` | `Battery stored` |
-
 ## Libraries
 
 Powertrain Blockset / Utilities / Power Accounting

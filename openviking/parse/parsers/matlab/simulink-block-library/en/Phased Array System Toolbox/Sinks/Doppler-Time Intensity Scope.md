@@ -14,6 +14,13 @@ language: en
 # Doppler-Time Intensity Scope
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data real-valued length-*M* vector
+  direction: input
+  data_types: double | single
+```
 
 ### Input
 
@@ -25,8 +32,94 @@ precision data type input, but converts the data to double precision for
 display.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Doppler Output
+  summary: Doppler output domain 'Frequency' (default) | 'Speed'
+  group: ''
+  block_parameter: DopplerOutput
+  type: character vector
+  values: '''Frequency'' | ''Speed'''
+  default: '''Frequency'''
+- name: Propagation Speed (m/s)
+  summary: Signal propagation speed physconst("LightSpeed") (default) | positive scalar
+  group: ''
+  block_parameter: PropagationSpeed
+  type: double
+  values: positive scalar
+  default: physconst("LightSpeed")
+- name: Doppler Offset (Hz)
+  summary: Doppler axis offset 0.0 (default) | scalar
+  group: ''
+  block_parameter: DopplerOffset
+  type: double
+  values: scalar
+  default: '0'
+- name: Time Span (s)
+  summary: Time span of display 0.100 (default) | positive scalar
+  group: ''
+  block_parameter: TimeSpan
+  type: double
+  values: scalar
+  default: '0.1'
+- name: Operating Frequency (Hz)
+  summary: Operating frequency 300e6 (default) | positive scalar
+  group: ''
+  block_parameter: OperatingFrequency
+  type: double
+  values: scalar
+  default: '300000000'
+- name: Doppler Resolution (Hz)
+  summary: Doppler interval between samples 1.0 (default) | positive scalar
+  group: ''
+  block_parameter: DopplerResolution
+  type: double
+  values: positive scalar
+  default: '1'
+- name: Time Resolution (s)
+  summary: Time difference between rows 0.001 (default) | positive scalar
+  group: ''
+  block_parameter: TimeResolution
+  type: double
+  values: positive scalar
+  default: '0.001'
+- name: Show Grid
+  summary: Show Cartesian grid overlay on (default) | off
+  group: ''
+  block_parameter: ShowGrid
+  type: logical
+  values: 1 | 0
+  default: '1'
+- name: Show Ticks
+  summary: Show tick value labels on (default) | off
+  group: ''
+  block_parameter: ShowTicks
+  type: logical
+  values: 1 | 0
+  default: '1'
+- name: Time Label
+  summary: Time axis label 'Time (s)' (default) | string
+  group: ''
+  block_parameter: TimeLabel
+  type: string
+  values: string
+  default: '''Time History (s)'''
+- name: Colorbar Label
+  summary: Color bar label 'dB' (default) | string
+  group: ''
+  block_parameter: ColorBarLabel
+  type: string
+  values: string
+  default: '''dB'''
+- name: Title
+  summary: Window title 'Doppler vs. Time' (default) | string
+  group: ''
+  block_parameter: Title
+  type: string
+  values: string
+  default: '''Doppler vs. Time'''
+```
 
 ### **Doppler Output** — Doppler output domain `'Frequency'` (default) | `'Speed'`
 
@@ -225,7 +318,6 @@ Window title, specified as a string.
 | **Default:**`'Doppler vs. Time'` |
 
 **Data Types:** `char`
-
 ## Libraries
 
 Phased Array System Toolbox / Sinks

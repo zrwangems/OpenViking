@@ -14,6 +14,21 @@ language: en
 # Interpolation
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double
+- name: Pts
+  summary: Interpolation points scalar | vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: Output signal scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -55,8 +70,31 @@ of interpolation points` is set to `Input
 port`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of interpolation points
+  summary: Interpolation point input method Specify via dialog (default) | Input port
+  group: ''
+- name: Interpolation points
+  summary: Interpolation points [1.1 4.8 2.67 1.6 3.2]' (default) | scalar | vector | matrix | *N*-D array
+  group: ''
+- name: Interpolation mode
+  summary: Interpolation mode Linear (default) | FIR
+  group: ''
+- name: Interpolation filter half-length
+  summary: Half length of FIR interpolation filter 3 (default) | positive integer
+  group: ''
+- name: Interpolation points per input sample
+  summary: Interpolation points per sample 3 (default)
+  group: ''
+- name: Normalized input bandwidth
+  summary: Normalized input bandwidth 0.5 (default) | scalar in (0 1]
+  group: ''
+- name: Out of range interpolation points
+  summary: Error handling for out-of-range points Clip (default) | Clip and warn | Error
+  group: ''
+```
 
 ### **Source of interpolation points** — Interpolation point input method `Specify via dialog` (default) | `Input port`
 
@@ -193,7 +231,6 @@ range from 1 to 4. The block clips the interpolation point 10 to 4 and the
 point -3 to 1, resulting in the clipped interpolation vector
 `IPtsClipped = [4 2.6
 1]'`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

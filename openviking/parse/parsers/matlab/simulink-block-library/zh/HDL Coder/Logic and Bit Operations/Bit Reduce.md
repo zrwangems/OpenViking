@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Bit Reduce
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: ufix1
+```
 
 ### 输入
 
@@ -33,8 +44,17 @@ chinese_source: worker-translation
 经过位缩减后的输出信号。
 
 **数据类型：** `ufix1`
-
 ## 参数
+```yaml
+parameters:
+- name: Reduction Mode
+  summary: 对输入执行的缩减操作 AND（默认）| OR | XOR
+  group: ''
+  block_parameter: mode
+  type: string scalar | character vector
+  values: '"AND" | "OR" | "XOR"'
+  default: '''AND'''
+```
 
 ### **Reduction Mode** — 对输入执行的缩减操作 `AND`（默认）| `OR` | `XOR`
 
@@ -52,7 +72,6 @@ chinese_source: worker-translation
 | **类型**：string scalar | character vector |
 | **Value:** `"AND"` | `"OR"` | `"XOR"` |
 | **默认值**：`'AND'` |
-
 ## 所属库
 
 HDL Coder / Logic and Bit Operations

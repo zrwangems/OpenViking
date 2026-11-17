@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Mel Spectrogram
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 音频输入列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: spec
+  summary: 梅尔频谱图矩阵 | 三维数组
+  direction: output
+  data_types: single | double
+- name: fvec
+  summary: 中心频率行向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -53,8 +68,67 @@ frequencies** 参数之前，此端口没有名称。
 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of bands
+  summary: 带通滤波器数量 32（默认）| 正整数
+  group: ''
+- name: Auto-determine frequency range
+  summary: 自动确定频率范围 on（默认）| off
+  group: ''
+- name: Frequency range (Hz)
+  summary: 设计听觉滤波器组的频率范围 [0,22050]（默认）| 二元素行向量
+  group: ''
+- name: Filter bank design domain
+  summary: 设计滤波器组的域 linear（默认）| warped
+  group: ''
+- name: Filter bank normalization
+  summary: 滤波器组的归一化技术 bandwidth（默认）| area | none
+  group: ''
+- name: Mel style
+  summary: 梅尔刻度风格 oshaughnessy（默认）| slaney
+  group: ''
+- name: Visualize filter bank
+  summary: 打开绘图以可视化滤波器组 按钮
+  group: ''
+- name: Output frequency vector
+  summary: 为中心频率指定附加输出端口 off（默认）| on
+  group: ''
+- name: Window
+  summary: 分析窗 hamming(1024,'periodic')（默认）| 实数向量
+  group: ''
+- name: Normalize window
+  summary: 归一化分析窗 on（默认）| off
+  group: ''
+- name: Overlap length
+  summary: 相邻分析窗的重叠长度 512（默认）| 范围 [0, windowLength) 内的整数
+  group: ''
+- name: Auto-determine FFT length
+  summary: 自动确定 FFT 长度 on（默认）| off
+  group: ''
+- name: FFT length
+  summary: DFT 点数 1024（默认）| 正整数
+  group: ''
+- name: Spectrum type
+  summary: 频谱类型 magnitude（默认）| power
+  group: ''
+- name: Number of spectra
+  summary: 频谱数量 1（默认）| 正整数
+  group: ''
+- name: Number of spectra overlap
+  summary: 重叠频谱数量 0（默认）| 范围 [0, Number of spectra) 内的整数。
+  group: ''
+- name: Apply logarithm
+  summary: 应用对数 off（默认）| on
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入的采样率 44.1e3（默认）| 正标量
+  group: ''
+```
 
 #### 滤波器组参数
 
@@ -183,7 +257,6 @@ length** 参数。
 
 要启用此参数，请清除 **Inherit sample rate from
 input** 参数。
-
 ## 所属库
 
 Audio Toolbox / Features

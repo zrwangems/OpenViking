@@ -14,6 +14,21 @@ language: en
 # N-Channel IGBT
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Collector terminal electrical
+  direction: conserving
+- name: G
+  summary: Gate terminal electrical
+  direction: conserving
+- name: E
+  summary: Emitter terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -43,8 +58,240 @@ To enable this port, set **Modeling option** to
 thermal port` or `Simplified I-V
 characteristics and event-based timing | Show thermal
 port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling Option
+  summary: IGBT representation Full I-V and capacitance characteristics | No thermal port (default) | Full I-V and capacitance
+    characteristics | Show thermal port | Simplified I-V characteristics and event-based timing | No thermal port | Simplified
+    I-V characteristics and event-based timing | Show thermal port
+  group: ''
+- name: I-V characteristics defined by
+  summary: IGBT representation Fundamental nonlinear equations (default) | Lookup table (2D, temperature independent) | Lookup
+    table (3D, temperature dependent)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Zero gate voltage collector current, Ices
+  summary: Zero gate voltage collector current 2 mA (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Voltage at which Ices is defined
+  summary: Voltage at which Ices is defined 600 V (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Gate-emitter threshold voltage, Vge(th)
+  summary: Gate-emitter threshold voltage 6 V (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Collector-emitter saturation voltage, Vce(sat)
+  summary: Collector-emitter saturation voltage 2.6 V (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Collector current at which Vce(sat) is defined
+  summary: Collector current at which Vce(sat) is defined 400 A (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Gate-emitter voltage at which Vce(sat) is defined
+  summary: Gate-emitter voltage at which Vce(sat) is defined 10 V (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Vector of gate-emitter voltages, Vge
+  summary: Vector of gate-emitter voltages [-1 0 0.5 1 1.5 2 2.5 3 3.5 4] V (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Vector of collector-emitter voltages, Vce
+  summary: Vector of collector-emitter voltages [-2 6 7 8 10 12 15 20] V (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Tabulated collector currents, Ic(Vge,Vce)
+  summary: Tabulated collector currents temperature independent [-1.015e-05, 1.35e-08, .00047135, .0005092, .0005105, .00051175,
+    .00051299, .00051423, .00051548, .00051672; -9.9869e-06, 1.35e-08, .00047135, .0005092, .0005105, .00051175, .00051299,
+    .00051423, .00051548, .00051672; -9.955e-06, 1.35e-08, .0065225, 3.3324, 48.154, 93.661, 105.52, 105.72, 105.93, 106.14;
+    -9.955e-06, 1.35e-08, .0065235, 3.5783, 70.264, 166.33, 252.4, 317.67, 353.38, 357.39; -9.955e-06, 1.35e-08, .006524,
+    3.7206, 89.171, 228.09, 371.63, 511.02, 642.69, 764.04; -9.9549e-06, 1.35e-08, .0065242, 3.7716, 97.793, 256.21, 424.27,
+    592.92, 759.2, 921.52; -9.9549e-06, 1.35e-08, .0065243, 3.8067, 104.52, 278.11, 464.6, 654.37, 844.57, 1033.9; -9.9549e-06,
+    1.35e-08, .0065244, 3.8324, 109.92, 295.67, 496.54, 702.28, 909.96, 1118.3] A (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Vector of temperatures, T
+  summary: Vector of temperatures [25 125] degC (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Tabulated collector currents, Ic(Vge,Vce,T)
+  summary: Tabulated collector currents temperature dependent zeros(8, 10, 2) A (default)
+  group: Main (Full I-V and Capacitance Characteristics)
+- name: Parameterization
+  summary: Junction capacitance parameterization Specify fixed input, reverse transfer, and output capacitance (default) |
+    Specify fixed gate-emitter, gate-collector, and collector-emitter capacitance | Specify tabulated input, reverse transfer,
+    and output capacitance | Specify tabulated gate-emitter, gate-collector, and collector-emitter capacitance
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Input capacitance, Cies
+  summary: Input capacitance 26.4 nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Input capacitance, Cies (Vce)
+  summary: Input capacitance with tabulated input [80 40 32 28 27.5 27 26.5 26.5 26.5] nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Reverse transfer capacitance, Cres
+  summary: Reverse transfer capacitance 2.7 nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Reverse transfer capacitance, Cres (Vce)
+  summary: Reverse transfer capacitance with tabulated input [55 9 5.5 3.1 2.5 2.1 1.9 1.8 1.7] nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Output capacitance, Coes
+  summary: Output capacitance 0 nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Output capacitance, Coes (Vce)
+  summary: Output capacitance with tabulated input [60 20 12 8 6 4.8 4 3.5 3.1] nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Gate-emitter capacitance
+  summary: Gate-emitter capacitance 23.7 nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Gate-emitter capacitance, Cge(Vge,Vce)
+  summary: Gate-emitter capacitance with tabulated values [25 31 26.5 24.9 25 24.9 24.6 24.7 24.8] nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Gate-collector capacitance
+  summary: Gate-collector capacitance 2.7 nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Gate-collector capacitance, Cgc(Vge,Vce)
+  summary: Gate-collector capacitance with tabulated values [55 9 5.5 3.1 2.5 2.1 1.9 1.8 1.7] nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Corresponding gate-emitter voltages for tabulated gate capacitance, Vge
+  summary: Corresponding collector-emitter voltages 0 V (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Collector-emitter capacitance
+  summary: Collector-emitter capacitance 0 nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Collector-emitter capacitance, Cce(Vce)
+  summary: Collector-emitter capacitance with tabulated values [5 11 6.5 4.9 3.5 2.7 2.1 1.7 1.4] nF (default) | nF
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Corresponding collector-emitter voltages
+  summary: Corresponding collector-emitter voltages [0 1 2 5 10 15 20 25 30] V (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Charge-voltage linearity
+  summary: Charge-voltage linearity Gate-collector capacitance is constant (default) | Gate-collector charge function is nonlinear
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Gate-collector oxide capacitance
+  summary: Gate-collector oxide capacitance 20 nF (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Collector-gate voltage below which oxide capacitance becomes active
+  summary: Collector-gate voltage below which oxide capacitance becomes active -5 V (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Total forward transit time
+  summary: Total forward transit time 0 us (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Turn-off tail current transit time
+  summary: Total forward transit time 0 us (default)
+  group: Junction Capacitance (Full I-V and Capacitance Characteristics)
+- name: Collector lead resistance
+  summary: Collector lead resistance of transistor 0 Ohm (default) | nonnegative scalar
+  group: Packaging (Full I-V and Capacitance Characteristics)
+- name: Emitter lead resistance
+  summary: Emitter lead resistance of transistor 0 Ohm (default) | nonnegative scalar
+  group: Packaging (Full I-V and Capacitance Characteristics)
+- name: Gate lead resistance
+  summary: Gate lead resistance of transistor 0 Ohm (default) | nonnegative scalar
+  group: Packaging (Full I-V and Capacitance Characteristics)
+- name: Collector lead inductance
+  summary: Collector lead inductance of transistor 0 nH (default) | nonnegative scalar
+  group: Packaging (Full I-V and Capacitance Characteristics)
+- name: Emitter lead inductance
+  summary: Emitter lead inductance of transistor 0 nH (default) | nonnegative scalar
+  group: Packaging (Full I-V and Capacitance Characteristics)
+- name: Gate lead inductance
+  summary: Gate lead inductance of transistor 0 nH (default) | nonnegative scalar
+  group: Packaging (Full I-V and Capacitance Characteristics)
+- name: Emission coefficient, N
+  summary: Emission coefficient 1 (default)
+  group: Advanced (Full I-V and Capacitance Characteristics)
+- name: Forward Early voltage, VAF
+  summary: Forward Early voltage 200 V (default)
+  group: Advanced (Full I-V and Capacitance Characteristics)
+- name: Collector resistance, RC
+  summary: Collector resistance 0.001 Ohm (default)
+  group: Advanced (Full I-V and Capacitance Characteristics)
+- name: Emitter resistance, RE
+  summary: Emitter resistance 0.001Ohm (default)
+  group: Advanced (Full I-V and Capacitance Characteristics)
+- name: Internal gate resistance, RG
+  summary: Internal gate resistance 0.001Ohm (default)
+  group: Advanced (Full I-V and Capacitance Characteristics)
+- name: Forward current transfer ratio, BF
+  summary: Forward current transfer ratio 50 (default)
+  group: Advanced (Full I-V and Capacitance Characteristics)
+- name: Parameterization
+  summary: Temperature dependence parameterization None — Simulate at parameter measurement temperature (default) | Specify
+    Ices and Vce(sat) at second measurement temperature | Specify Vce(sat) at second measurement temperature plus the energy
+    gap, EG
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Energy gap, EG
+  summary: Energy gap 1.11 eV (default)
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Zero gate voltage collector current, Ices, at second measurement temperature
+  summary: Zero gate voltage collector current, Ices, at second measurement temperature 100 mA (default)
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Collector-emitter saturation voltage, Vce(sat), at second measurement temperature
+  summary: Collector-emitter saturation voltage, Vce(sat), at second measurement temperature 3 V (default)
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Second measurement temperature
+  summary: Second measurement temperature 125 degC (default)
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Saturation current temperature exponent, XTI
+  summary: Saturation current temperature exponent 3 (default)
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Mobility temperature exponent, BEX
+  summary: Mobility temperature exponent -1.5 (default)
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Internal gate resistance temperature coefficient
+  summary: Internal gate resistance temperature coefficient 0 1/K (default)
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 degC (default)
+  group: Temperature Dependence (Full I-V and Capacitance Characteristics)
+- name: Vector of collector currents, Ic
+  summary: Vector of collector currents [0, 10, 50, 100, 200, 400, 600] A (default)
+  group: Main (Simplified I-V Characteristics and Event-Based Timing)
+- name: Vector of temperatures, Tj
+  summary: Vector of temperatures [298.15, 398.15] K (default)
+  group: Main (Simplified I-V Characteristics and Event-Based Timing)
+- name: Corresponding on-state collector-emitter voltages
+  summary: Corresponding on-state collector-emitter voltages [0, 1.1, 1.3, 1.45, 1.75, 2.25, 2.7] V (default)
+  group: Main (Simplified I-V Characteristics and Event-Based Timing)
+- name: Collector-emitter on-state voltages, Vce=fcn(Tj,Ic)
+  summary: Collector-emitter on-state voltages [0, 1.1, 1.3, 1.45, 1.75, 2.25, 2.7; 0, 1.0, 1.15, 1.35, 1.7, 2.35, 3.0] V
+    (default)
+  group: Main (Simplified I-V Characteristics and Event-Based Timing)
+- name: Miller resistance
+  summary: Miller resistance 0.1 Ohm (default)
+  group: Main (Simplified I-V Characteristics and Event-Based Timing)
+- name: Off-state conductance
+  summary: Off-state conductance 1e-5 Ohm (default)
+  group: Main (Simplified I-V Characteristics and Event-Based Timing)
+- name: Gate-emitter threshold voltage, Vge(th)
+  summary: Threshold voltage 6 V (default)
+  group: Main (Simplified I-V Characteristics and Event-Based Timing)
+- name: Vector of temperatures for switching losses, Tj
+  summary: Switching losses temperatures [298.15, 398.15] K (default)
+  group: Switching Losses (Simplified I-V Characteristics and Event-Based Timing)
+- name: Vector of collector currents for switching losses, Ic
+  summary: Switching losses collector currents [0, 10, 50, 100, 200, 400, 600] A (default)
+  group: Switching Losses (Simplified I-V Characteristics and Event-Based Timing)
+- name: Turn-on switching losses, Eon=fcn(Tj,Ic)
+  summary: Turn-on switching losses [0, 0.2, 1, 2, 4, 8, 15; 0, 0.3, 1.3, 2.5, 5, 11, 18]*1e-3 J (default)
+  group: Switching Losses (Simplified I-V Characteristics and Event-Based Timing)
+- name: Turn-off switching losses, Eoff=fcn(Tj,Ic)
+  summary: Turn-off switching losses [0, 0.3, 1.5, 3, 6, 15, 25; 0, 0.7, 3.3, 6.5, 13, 25, 35]*1e-3 J (default)
+  group: Switching Losses (Simplified I-V Characteristics and Event-Based Timing)
+- name: Turn-on delay
+  summary: Turn-on delay 0.07 us (default)
+  group: Dynamics (Simplified I-V Characteristics and Event-Based Timing)
+- name: Current rise time
+  summary: Current rise time 0.7 us (default)
+  group: Dynamics (Simplified I-V Characteristics and Event-Based Timing)
+- name: Turn-off delay
+  summary: Turn-off delay 0.2 us (default)
+  group: Dynamics (Simplified I-V Characteristics and Event-Based Timing)
+- name: Current fall time
+  summary: Current fall time 0.5 us (default)
+  group: Dynamics (Simplified I-V Characteristics and Event-Based Timing)
+- name: Off-state voltage for rise and fall times
+  summary: Off-state voltage for rise and fall times 300 V (default)
+  group: Dynamics (Simplified I-V Characteristics and Event-Based Timing)
+- name: Off-state voltage for rise and fall times
+  summary: Off-state voltage for rise and fall times 300 V (default)
+  group: Dynamics (Simplified I-V Characteristics and Event-Based Timing)
+```
 
 ### **Modeling Option** — IGBT representation `Full I-V and capacitance characteristics | No thermal port` (default) | `Full I-V and capacitance characteristics | Show thermal port` | `Simplified I-V characteristics and event-based timing | No thermal port` | `Simplified I-V characteristics and event-based timing | Show thermal port`
 
@@ -928,7 +1175,6 @@ To enable this parameter, expose the thermal port by setting
 **Modeling option** to `Simplified
 I-V characteristics and event-based timing | Show thermal
 port`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # OFDM Channel Response
 
 ## 端口
+```yaml
+ports:
+- name: Path gains
+  summary: 信道路径增益数组
+  direction: input
+  data_types: single | double
+- name: Path filters
+  summary: 信道路径滤波器系数矩阵
+  direction: input
+  data_types: single | double
+- name: Offset
+  summary: 定时偏移标量
+  direction: input
+  data_types: double | single
+- name: hEst
+  summary: 频率响应数组
+  direction: output
+```
 
 ### 输入
 
@@ -74,8 +92,25 @@ chinese_source: worker-translation
 
   - 当选择 **Enable timing offset input port** 时，由 **Offset** 端口提供
   - 当未选择 **Enable timing offset input port** 时，由 `channelDelay` 函数以 **Path gains** 和 **Path filters** 作为输入计算得出的 OFDM 发射机与 OFDM 接收机之间的定时偏移
-
 ## 参数
+```yaml
+parameters:
+- name: FFT length
+  summary: FFT 长度 512（默认）| 正整数
+  group: ''
+- name: Cyclic prefix length
+  summary: 一个 OFDM 符号的循环前缀长度 16（默认）| 非负整数
+  group: ''
+- name: Active subcarrier indices
+  summary: 活跃子载波数 1:512（默认）| 正整数 | 列向量
+  group: ''
+- name: Enable timing offset input port
+  summary: 添加定时偏移输入端口的选项 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -106,7 +141,6 @@ FFT 长度，指定为正整数标量。FFT 长度必须与 OFDM 调制信号的
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参见 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Channels

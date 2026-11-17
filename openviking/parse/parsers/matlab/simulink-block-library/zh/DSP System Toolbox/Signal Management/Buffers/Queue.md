@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Queue
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: FIFO 寄存器的输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Push
+  summary: 将队列推入的触发信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Pop
+  summary: 将队列弹出的触发信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Rst
+  summary: 清空队列的触发信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: FIFO 寄存器的输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Empty
+  summary: 指示队列是否为空 1 | 0
+  direction: output
+  data_types: double | Boolean
+- name: Full
+  summary: 指示队列是否已满 1 | 0
+  direction: output
+  data_types: double | Boolean
+- name: Num
+  summary: 跟踪队列中的元素数量 标量
+  direction: output
+  data_types: double | uint32
+```
 
 ### 输入
 
@@ -92,8 +127,40 @@ FIFO 寄存器的输出，以标量、向量或矩阵形式返回。
 要启用此端口，请选择 **Show number of register entries port (Num)**。
 
 **数据类型：** `double` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Register size
+  summary: FIFO 寄存器可容纳的条目数 8（默认）| 正整数
+  group: ''
+- name: Trigger type
+  summary: Push、Pop 和 Rst 端口的触发事件类型 Rising edge（默认）| Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Push onto full register
+  summary: 指定寄存器已满时推入请求的模块行为 Dynamic reallocation（默认）| Ignore | Warning | Error
+  group: ''
+- name: Pop empty register
+  summary: 指定寄存器为空时弹出请求的模块行为 Warning（默认）| Ignore | Error
+  group: ''
+- name: Show empty register indicator port (Empty)
+  summary: 启用 Empty 输出端口 off（默认）| on
+  group: ''
+- name: Show full register indicator port (Full)
+  summary: 启用 Full 输出端口 off（默认）| on
+  group: ''
+- name: Show number of register entries port (Num)
+  summary: 启用 Num 输出端口 off（默认）| on
+  group: ''
+- name: Show reset port (Rst) to clear internal stack buffer
+  summary: 启用 Rst 输入端口 off（默认）| on
+  group: ''
+- name: Clear output port on reset
+  summary: 清空队列时将 Out 端口设置为 0 off（默认）| on
+  group: ''
+- name: Allow direct feedthrough
+  summary: 允许输入数据在 Out 端口立即可用 on（默认）| off
+  group: ''
+```
 
 ### **Register size** — FIFO 寄存器可容纳的条目数 8（默认）| 正整数
 
@@ -184,7 +251,6 @@ FIFO 寄存器可容纳的条目数，指定为正整数。
 3. Push
 
 触发信号的速率必须与数据信号输入的速率相同。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Buffers

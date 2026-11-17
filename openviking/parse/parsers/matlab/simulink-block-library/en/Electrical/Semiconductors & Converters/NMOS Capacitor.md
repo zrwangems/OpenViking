@@ -14,6 +14,15 @@ language: en
 # NMOS Capacitor
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate terminal electrical
+  direction: conserving
+- name: B
+  summary: Bulk terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,55 @@ capacitor.
 
 Electrical conserving port associated with the bulk terminal of the NMOS
 capacitor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacitor model
+  summary: Parameterization option for capacitor Fundamental nonlinear equations (default) | Lookup table (2-D, temperature
+    dependent)
+  group: Main
+- name: Gate-bulk capacitance lookup table, Cgb(T,Vgb)
+  summary: Lookup table for gate-bulk capacitance [3.4574, 3.4541, 3.4407, 3.4274, 3.404, 3.374, 3.3339, 3.2938, 3.227, 3.1402,
+    3.0467, 2.9332, 2.8063, 2.6828, 2.5426, 2.3255, 2.0985, 1.7679, 1.5576, 1.2671, .9466, .6895, .4691, .2688, .182, .1386,
+    .1152, .1085, .0952, .0851, .0851, .0785, .0751, .0751, .0751] nF (default) | vector or matrix of positive entries
+  group: Main
+- name: Temperature, T
+  summary: Temperature for gate-bulk capacitance lookup table 25 degC (default) | scalar | vector
+  group: Main
+- name: Gate-bulk voltage, Vgb
+  summary: Gate-bulk voltage [-2.9897, -2.8711, -2.7216, -2.5052, -2.2887, -2.0464, -1.8402, -1.6701, -1.4948, -1.3608, -1.2526,
+    -1.1624, -1.1031, -1.0567, -1.0077, -.9536, -.9149, -.8686, -.8428, -.8093, -.7706, -.7268, -.6804, -.6082, -.5, -.4021,
+    -.3015, -.2216, -.134, -.0309, .0851, .201, .3995, .7165, .9897] V (default) | vector
+  group: Main
+- name: Oxide capacitance, Cox
+  summary: Total oxide capacitance of capacitor 345.31 nF (default) | positive scalar
+  group: Semiconductor Material Parameters
+- name: Band-gap energy, EG
+  summary: Energy of band gap 1.12 eV (default) | scalar
+  group: Semiconductor Material Parameters
+- name: Threshold voltage, Vth
+  summary: Threshold gate voltage for inversion mode 1.1471 V (default) | scalar
+  group: Semiconductor Material Parameters
+- name: Surface potential, phib
+  summary: Surface potential 0.9338 V (default) | positive scalar
+  group: Semiconductor Material Parameters
+- name: Body factor, gamma
+  summary: Body effect parameter 1.1798 V^(1/2) (default) | positive scalar
+  group: Semiconductor Material Parameters
+- name: Model high-frequency C-V behavior for strong inversion
+  summary: Option to model high-frequency C-V behavior for strong inversion mode off (default) | on
+  group: Semiconductor Material Parameters
+- name: Measurement temperature
+  summary: Temperature at which block quotes parameters 25 degC (default) | positive scalar
+  group: Semiconductor Material Parameters
+- name: Parameterization
+  summary: Option to specify simulation temperature of device None - Simulate at parameter measurement temperature (default)
+    | Model temperature dependence
+  group: Temperature Dependence
+- name: Device simulation temperature
+  summary: Temperature at which to simulate device 25 degC (default) | positive scalar
+  group: Temperature Dependence
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -175,7 +231,6 @@ To enable this parameter, set one of these options:
   `Model temperature dependence`.
 - **Capacitor model** to `Lookup table (2-D,
   temperature dependent)`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

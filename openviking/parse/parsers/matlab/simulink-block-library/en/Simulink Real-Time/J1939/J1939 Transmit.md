@@ -14,6 +14,15 @@ language: en
 # J1939 Transmit
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Input data signal
+  direction: input
+- name: Trigger
+  summary: Enables the transmission of message 0 | 1
+  direction: input
+```
 
 ### Input
 
@@ -27,8 +36,31 @@ database file, the block can have multiple data input ports.
 Enables the transmission of the message for that sample. A value of
 `1` specifies to send, a value of `0`
 specifies not to send.
-
 ## Parameters
+```yaml
+parameters:
+- name: Config name
+  summary: Name of the J1939 network configuration to associate ConfigX (default) | character vector
+  group: ''
+- name: Node name
+  summary: Name of the J1939 node NodeX (default) | character vector
+  group: ''
+- name: Parameter Group
+  summary: Group number (PGN) and name int8
+  group: ''
+- name: Signals
+  summary: Signals defined in parameter group array of character vectors
+  group: ''
+- name: PG Priority
+  summary: Priority of the parameter group int8
+  group: ''
+- name: Destination Address
+  summary: Name of the destination node int8
+  group: ''
+- name: Sample time
+  summary: Simulation transmit rate -1 (default) | double
+  group: ''
+```
 
 ### **Config name** — Name of the J1939 network configuration to associate `ConfigX` (default) | character vector
 
@@ -87,7 +119,6 @@ Transmit block transmits messages. The default value of
 `-1` is used when the block is inside a triggered subsystem or
 inherits a sample time. You can also specify a MATLAB® variable for sample time. For information about simulation sample
 timing, see What Is Sample Time?.
-
 ## Libraries
 
 Simulink Real-Time / J1939 Communication Vehicle Network Toolbox / J1939 Communication

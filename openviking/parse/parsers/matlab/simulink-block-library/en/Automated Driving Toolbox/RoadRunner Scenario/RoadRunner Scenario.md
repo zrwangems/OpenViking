@@ -14,10 +14,30 @@ language: en
 # RoadRunner Scenario
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Action name
+  summary: Name of user-defined action string
+  group: Actions
+- name: Bus object name
+  summary: Name of bus object string
+  group: Actions
+- name: Event name
+  summary: Name of user-defined event string
+  group: Events
+- name: Bus object name
+  summary: Name of bus object string
+  group: Events
+- name: Maximum Points on Path
+  summary: Maximum number of points on path 500 (default) | positive scalar
+  group: Configuration
+```
 
 ### Actions
 
@@ -93,7 +113,6 @@ Reader block stops reading points on a path after its number reaches the
 maximum value.
 
 **Data Types:** `uint64`
-
 ## Libraries
 
 Automated Driving Toolbox / RoadRunner Scenario

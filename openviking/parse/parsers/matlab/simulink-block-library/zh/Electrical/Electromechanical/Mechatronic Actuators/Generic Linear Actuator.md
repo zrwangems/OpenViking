@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Generic Linear Actuator
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 壳体机械
+  direction: conserving
+- name: R
+  summary: 柱塞机械
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -42,8 +60,49 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Speed values
+  summary: 速度值 [-15, -10, -5, 0, 5, 10, 15, 20, 25, 30] m/s（默认）
+  group: 电气力
+- name: Force values
+  summary: 力值 [4, 3.5, 3, 2.5, 2, 1.5, 1, .5, 0, -.5] N（默认）
+  group: 电气力
+- name: Rated voltage
+  summary: 额定电压 12 V（默认）
+  group: 电气力
+- name: Motor efficiency (percent)
+  summary: 电机效率 70（默认）
+  group: 电气力
+- name: Speed at which efficiency is measured
+  summary: 测量效率时的速度 20 m/s（默认）
+  group: 电气力
+- name: Force-independent electrical losses
+  summary: 与力无关的电气损耗 2 W（默认）
+  group: 电气力
+- name: Simulation mode
+  summary: 仿真模式 PWM（默认）| Averaged
+  group: 电气力
+- name: Plunger mass
+  summary: 柱塞质量 0.1 kg（默认）
+  group: 机械
+- name: Linear damping
+  summary: 线性阻尼 1e-5 N/(m/s)（默认）
+  group: 机械
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 温度依赖性
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: 温度依赖性
+- name: Thermal mass
+  summary: 热质量 100 J/K（默认）
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -118,7 +177,6 @@ VavVrated×F(v)
 ### **Thermal mass** — 热质量 `100` `J/K`（默认）
 
 热质量是将温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # IBIS-AMI clock_times
 
 ## 端口
+```yaml
+ports:
+- name: clockValid
+  summary: 在 clockTime 端口更新输入 标量 | 向量
+  direction: input
+  data_types: double | int8
+- name: clockTime
+  summary: 时钟时间数据数组
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -33,13 +44,17 @@ chinese_source: worker-translation
 **clockTime** 端口的时间值必须比实际数据采样时间提前半个 UI。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable IBIS-AMI Offset
+  summary: 将时钟时间值偏移半个 UI on（默认）| off
+  group: ''
+```
 
 ### **Enable IBIS-AMI Offset** — 将时钟时间值偏移半个 UI on（默认）| off
 
 根据 IBIS-AMI 规范，将时钟时间值偏移半个 UI。
-
 ## 所属库
 
 SerDes Toolbox / Utilities

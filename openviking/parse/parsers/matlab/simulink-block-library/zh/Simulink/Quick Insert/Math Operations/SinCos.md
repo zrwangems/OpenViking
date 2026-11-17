@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # SinCos
 
 ## 端口
+```yaml
+ports:
+- name: dataIn
+  summary: 输入数据信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validIn
+  summary: 输入控制信号是否有效 标量
+  direction: input
+  data_types: Boolean
+- name: sinOut
+  summary: 正弦输出数据信号 标量 | 向量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: cosOut
+  summary: 余弦输出数据信号 标量 | 向量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validOut
+  summary: 输出控制信号是否有效 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -48,8 +71,38 @@ chinese_source: worker-translation
 指示输出信号是否有效的输出控制信号，以标量形式返回。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of iterations
+  summary: CORDIC 算法的迭代次数 11（默认）| 正整数
+  group: ''
+  block_parameter: iter
+  type: 字符向量
+  values: 整数值
+  default: '''11'''
+- name: Latency strategy
+  summary: 延迟策略 Max（默认）| Min | Custom | Custom(PerIteration) | Zero
+  group: ''
+  block_parameter: latencyMode
+  type: 字符向量
+  values: '''Max'' | ''Min'' | ''Custom'' | ''Custom(PerIteration)'' | ''Zero'''
+  default: '''Max'''
+- name: Custom latency
+  summary: 自定义延迟 0（默认）| 正整数
+  group: ''
+  block_parameter: customLatencyValue
+  type: 整数
+  values: 0 到最大延迟
+  default: '0'
+- name: IterationsPerPipeline
+  summary: 每流水线迭代次数 1（默认）| 正整数
+  group: ''
+  block_parameter: iterationsPerPipelineValue
+  type: 整数
+  values: 正整数
+  default: '1'
+```
 
 ### **Number of iterations** — CORDIC 算法的迭代次数 `11`（默认）| `正整数`
 
@@ -116,7 +169,6 @@ chinese_source: worker-translation
 | **类型**：整数 |
 | **值**：`正整数` |
 | **默认值**：`1` |
-
 ## 所属库
 
 HDL Coder

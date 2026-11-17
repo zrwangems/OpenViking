@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Transfer Fcn Lead or Lag
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,50 @@ chinese_source: worker-translation
 对输入信号进行离散时间超前或滞后补偿后的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Pole of compensator (in Z plane)
+  summary: 补偿器极点 0.95（默认）| 标量
+  group: ''
+  block_parameter: PoleZ
+  type: 字符向量
+  values: 实标量
+  default: '''0.95'''
+- name: Zero of compensator (in Z plane)
+  summary: 补偿器零点 0.75（默认）| 标量
+  group: ''
+  block_parameter: ZeroZ
+  type: 字符向量
+  values: 实标量
+  default: '''0.75'''
+- name: Initial condition for previous input
+  summary: 前一输入的初始条件 0.0（默认）| 标量
+  group: ''
+  block_parameter: ICPrevInput
+  type: 字符向量
+  values: 实标量
+  default: '''0.0'''
+- name: Initial condition for previous output
+  summary: 前一输出的初始条件 0.0（默认）| 标量
+  group: ''
+  block_parameter: ICPrevOutput
+  type: 字符向量
+  values: 实标量
+  default: '''0.0'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: 溢出操作方式 off（默认）| on
+  group: ''
+  block_parameter: DoSatur
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Pole of compensator (in Z plane)** — 补偿器极点 `0.95`（默认）| 标量
 
@@ -114,7 +167,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Discrete

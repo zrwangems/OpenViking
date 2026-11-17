@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # Video Stream Connector
 
 ## 端口
+```yaml
+ports:
+- name: wrData
+  summary: 输入视频数据 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wrCtrlIn
+  summary: 伴随像素流的输入控制信号 pixelControl 总线
+  direction: input
+  data_types: pixelcontrol
+- name: rdCtrlIn
+  summary: 来自下游接口的准备好信号 布尔标量
+  direction: input
+- name: rdData
+  summary: 输出视频数据 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rdCtrlOut
+  summary: 伴随输出像素流的输出控制信号 pixelcontrol 总线
+  direction: output
+  data_types: pixelcontrol
+- name: wrCtrlOut
+  summary: 到上游接口的准备好信号 布尔标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -52,11 +78,12 @@ chinese_source: worker-translation
 控制信号，指示该模块可以从上游接口接收流数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Connectivity

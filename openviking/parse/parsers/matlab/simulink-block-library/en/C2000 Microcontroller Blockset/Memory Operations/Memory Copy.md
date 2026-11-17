@@ -14,6 +14,33 @@ language: en
 # Memory Copy
 
 ## Ports
+```yaml
+ports:
+- name: src
+  summary: Input data for copy operation scalar | vector
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: '&src'
+  summary: Address of input data for copy operation scalar | vector
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: src ofs
+  summary: Offset for data read during copy operation scalar | vector
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: '&dst'
+  summary: Address of output data for copy operation scalar | vector
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: dst ofs
+  summary: Offset for data written during copy operation scalar | vector
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: dst
+  summary: Output data for copy operation scalar | vector
+  direction: output
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### Input
 
@@ -96,8 +123,111 @@ To use this port as the destination for the memory copy operation, set parameter
 **Copy to** to `Output port`.
 
 **Data Types:** `single` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## Parameters
+```yaml
+parameters:
+- name: Copy from
+  summary: Input source for copy operation Input port (default) | Specified address | Specified source code symbol
+  group: Source
+- name: Specify address source
+  summary: Source of memory address for input data Specify via dialog (default) | Input port
+  group: Source
+- name: Address
+  summary: Memory address of source data hex2dec('00001000') (default) | memory address in decimal or hexadecimal form with
+    a conversion to decimal
+  group: Source
+- name: Source code symbol
+  summary: Symbol in source code symbol table myVariableSrc (default) | string | character vector
+  group: Source
+- name: Data type
+  summary: Data type of data being copied uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | Inherit from input port
+  group: Source
+- name: Data length
+  summary: Number of data elements to copy 1 (default) | positive integer
+  group: Source
+- name: Use offset when reading
+  summary: Use offset when reading input off (default) | on
+  group: Source
+- name: Specify offset source
+  summary: Source of input offset Specify via dialog (default) | Input port
+  group: Source
+- name: Offset
+  summary: Number of values to skip before copying first value to destination 0 (default) | positive integer
+  group: Source
+- name: Stride
+  summary: Spacing for reading input 1 (default) | positive integer
+  group: Source
+- name: Copy to
+  summary: Type of output destination for copy operation Output port (default) | Specified address | Specified destination
+    code symbol
+  group: Destination
+- name: Specify address source
+  summary: Source of memory address for output destination Specify via dialog (default) | Input port |
+  group: Destination
+- name: Address
+  summary: Memory address of destination variable hex2dec('00002000') (default) | memory address in decimal or hexadecimal
+    form with a conversion to decimal
+  group: Destination
+- name: Source code symbol
+  summary: Symbol in source code symbol table myVariableDst (default) | string | character vector
+  group: Destination
+- name: Data type
+  summary: Data type of variable uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | uint32 | int64 | uint64
+    | boolean | Inherit from source
+  group: Destination
+- name: Use offset when writing
+  summary: Use offset when writing output off (default) | on
+  group: Destination
+- name: Specify offset source
+  summary: Source of offset for output destination Specify constant value (default) | Specify source code symbol
+  group: Destination
+- name: Offset
+  summary: Number of values to skip before writing first value to destination 0 (default) | positive integer
+  group: Destination
+- name: Stride
+  summary: Spacing for writing output 1 (default) | positive integer
+  group: Destination
+- name: Sample time
+  summary: Rate of memory copy inf (default) | scalar
+  group: Destination
+- name: Set memory value at initialization
+  summary: Set memory address during initialization off (default) | on
+  group: Options
+- name: Specify initialization value source
+  summary: Source of initialization value Specify constant value (default) | Specify source code symbol
+  group: Options
+- name: Initialization value (constant)
+  summary: Constant initialization value 1 (default) | scalar
+  group: Options
+- name: Initialization value (source code symbol)
+  summary: Symbol in source code symbol table myInitValueVariable (default) | string | character vector
+  group: Options
+- name: Apply initialization value as mask
+  summary: Apply initialization value as mask off (default) | on
+  group: Options
+- name: Bitwise operator
+  summary: Type of bitwise operation bitwise AND (default) | bitwise OR | bitwise exclusive OR | left shift | right shift
+  group: Options
+- name: Set memory value at termination
+  summary: Copy memory during program termination off (default) | on
+  group: Options
+- name: Termination value
+  summary: Termination value 1 (default) | scalar | vector | matrix
+  group: Options
+- name: Set memory value only at initialization/termination
+  summary: Copy memory value during program initialization and termination only off (default) | on
+  group: Options
+- name: Insert custom code before memory write
+  summary: Insert custom code before memory write off (default) | on
+  group: Options
+- name: Insert custom code after memory write
+  summary: Custom code after memory write flag off (default) | on
+  group: Options
+- name: Custom code
+  summary: /\* Custom Code Before Write\*/ or /\* Custom Code After Write\*/ (default) | string | character vector
+  group: Options
+```
 
 ### Source
 
@@ -571,7 +701,6 @@ exactly as you enter it.
 To enable this parameter, select **Insert custom code before memory
 write** or **Insert custom code after memory
 write**.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Memory Operations

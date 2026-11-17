@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Variable Attenuator
 
 ## 端口
+```yaml
+ports:
+- name: Att
+  summary: Simulink 控制信号标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,28 @@ chinese_source: worker-translation
 Simulink 控制信号，指定为标量。此控制信号是以 dB 为单位的*插入损耗*。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum attenuation (dB)
+  summary: 插入损耗或衰减的最低值 0.001（默认值）| 标量
+  group: ''
+- name: Maximum attenuation (dB)
+  summary: 插入损耗或衰减的最高值 1000（默认值）| 标量
+  group: ''
+- name: Input impedance (Ohm)
+  summary: 输入阻抗 50（默认值）| 标量
+  group: ''
+- name: Output impedance (Ohm)
+  summary: 输出阻抗 50（默认值）| 标量
+  group: ''
+- name: Simulate noise
+  summary: 仿真热噪声 on（默认值）| off
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏 RF 电路端子 on（默认值）| off
+  group: ''
+```
 
 ### **Minimum attenuation (dB)** — 插入损耗或衰减的最低值 `0.001`（默认值）| 标量
 
@@ -54,7 +81,6 @@ Simulink 控制信号，指定为标量。此控制信号是以 dB 为单位的*
 ### **Ground and hide negative terminals** — 接地并隐藏 RF 电路端子 on（默认值）| off
 
 选择此参数以接地并隐藏负端子。要暴露负端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其它部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

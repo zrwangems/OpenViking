@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Digital Input
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Pin**
 :   选择数字引脚。
@@ -30,7 +35,6 @@ R2025b 中未记录。
 
 **View pin map**
 :   点击此按钮可打开开发板快照，其中包含 GPIO 引脚的参考信息。
-
 ## 所属库
 
 R2025b 中未记录。

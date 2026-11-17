@@ -15,6 +15,26 @@ chinese_source: worker-translation
 # Rate Limiter Dynamic
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: lo
+  summary: 输入递减时的导数限值 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: up
+  summary: 输入递增时的导数限值 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Y
+  summary: 输出信号 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+```
 
 ### 输入
 
@@ -42,11 +62,12 @@ chinese_source: worker-translation
 速率限幅算法的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Discontinuities

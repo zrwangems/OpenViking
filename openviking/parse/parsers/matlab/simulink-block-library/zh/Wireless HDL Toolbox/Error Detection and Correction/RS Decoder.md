@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # RS Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入码字数据 标量
+  direction: input
+  data_types: double | single | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: erasure
+  summary: 擦除位置 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 解码后的消息数据 标量
+  direction: output
+  data_types: double | single | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: err
+  summary: 接收数据损坏指示 标量
+  direction: output
+  data_types: Boolean
+- name: nextFrame
+  summary: 模块就绪指示 标量
+  direction: output
+  data_types: Boolean
+- name: numErrors
+  summary: 已纠正错误数量 非负标量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -104,8 +139,34 @@ RS 码可以纠正的最大错误数量等于 (**Codeword length (N)** – **Mes
 要启用此端口，请选择 **Output number of corrected symbol errors** 参数。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length (N)
+  summary: 码字长度 7（默认）| 范围从 7 到 65,535
+  group: ''
+- name: Message length (K)
+  summary: 消息长度 3（默认）| 范围从 3 到（Codeword length (N) – 2）的整数
+  group: ''
+- name: Source of primitive polynomial
+  summary: 本原多项式来源 Auto（默认）| Property
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 [1 0 1 1]（默认）| 二进制行向量
+  group: ''
+- name: Source of B, the starting power for roots of the primitive polynomial
+  summary: 本原多项式根的起始幂次来源 Auto（默认）| Property
+  group: ''
+- name: B value
+  summary: 根的起始幂次 1（默认）| 正整数
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: 已纠正符号错误数 off（默认）| on
+  group: ''
+- name: Enable erasure input port
+  summary: 启用擦除输入端口 off（默认）| on
+  group: ''
+```
 
 ### **Codeword length (N)** — 码字长度 `7`（默认）| 范围从 7 到 65,535
 
@@ -160,7 +221,6 @@ RS 码可以纠正的最大错误数量等于 (**Codeword length (N)** – **Mes
 *自 R2024b 起*
 
 选择此参数以启用 **erasure** 输入端口。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

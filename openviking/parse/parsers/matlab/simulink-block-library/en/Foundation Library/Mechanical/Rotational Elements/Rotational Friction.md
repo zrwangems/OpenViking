@@ -14,6 +14,15 @@ language: en
 # Rotational Friction
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,22 @@ body.
 
 Mechanical rotational conserving port associated with the case, that is, the
 stationary body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Breakaway friction torque
+  summary: Sum of Coulomb and the static frictions 25 N*m (default) | scalar
+  group: ''
+- name: Breakaway friction velocity
+  summary: Peak angular velocity for Stribeck friction 0.1 rad/s (default) | positive scalar
+  group: ''
+- name: Coulomb friction torque
+  summary: Friction that opposes rotation 20 N*m (default) | scalar
+  group: ''
+- name: Viscous friction coefficient
+  summary: Proportionality coefficient 0.001 N*m/(rad/s) (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Breakaway friction torque** — Sum of Coulomb and the static frictions `25 N*m` (default) | scalar
 
@@ -51,7 +74,6 @@ constant torque at any velocity.
 
 Proportionality coefficient between the friction torque and the relative angular
 velocity. The parameter value must be greater than or equal to zero.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

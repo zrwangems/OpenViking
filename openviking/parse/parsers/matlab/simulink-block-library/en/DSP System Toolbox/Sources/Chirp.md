@@ -14,6 +14,13 @@ language: en
 # Chirp
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Swept-frequency cosine (chirp) signal scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Output
 
@@ -34,8 +41,40 @@ For more information about how the block computes the output, see
 Algorithms.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Frequency sweep
+  summary: Type of frequency sweep Linear (default) | Swept cosine | Logarithmic | Quadratic
+  group: ''
+- name: Sweep mode
+  summary: Sweep mode Unidirectional (default) | Bidirectional
+  group: ''
+- name: Initial frequency (Hz)
+  summary: Initial frequency 1000 (default) | scalar
+  group: ''
+- name: Target frequency (Hz)
+  summary: Target frequency 4000 (default) | scalar
+  group: ''
+- name: Target time (s)
+  summary: Target time of sweep 1 (default) | scalar
+  group: ''
+- name: Sweep time (s)
+  summary: Sweep time 1 (default) | scalar
+  group: ''
+- name: Initial phase (rad)
+  summary: Initial phase of cosine output 0 (default) | scalar
+  group: ''
+- name: Sample time
+  summary: Output sample period 1/8000 (default) | positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: ''
+- name: Output data type
+  summary: Output data type Double (default) | Single
+  group: ''
+```
 
 ### **Frequency sweep** — Type of frequency sweep `Linear` (default) | `Swept cosine` | `Logarithmic` | `Quadratic`
 
@@ -186,7 +225,6 @@ scalar.
 
 The data type of the output, specified as single precision or double
 precision.
-
 ## Libraries
 
 DSP System Toolbox / Sources

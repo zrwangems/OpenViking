@@ -14,6 +14,30 @@ language: en
 # Probe
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: Port_1 (W)
+  summary: Signal width scalar
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2 (Ts)
+  summary: Sample time vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_3 (C)
+  summary: Signal complexity scalar
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_4 (D)
+  summary: Signal dimensions scalar | vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -88,8 +112,70 @@ To enable this port, select **Probe signal
 dimensions**.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Probe width
+  summary: Output width of the input signal on (default) | off
+  group: Main
+  block_parameter: ProbeWidth
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Probe sample time
+  summary: Output sample time of input signal on (default) | off
+  group: Main
+  block_parameter: ProbeSampleTime
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Detect complex signal
+  summary: Indicate the complexity of input signal on (default) | off
+  group: Main
+  block_parameter: ProbeComplexSignal
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Probe signal dimensions
+  summary: Output dimensions of input signal on (default) | off
+  group: Main
+  block_parameter: ProbeSignalDimensions
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Data type for width
+  summary: Data type of signal width output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same
+    as input
+  group: Signal Attributes
+  block_parameter: ProbeWidthDataType
+  type: character vector
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''Same as input'''
+  default: '''double'''
+- name: Data type for sample time
+  summary: Data type of sample time output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | Same
+    as input
+  group: Signal Attributes
+  block_parameter: ProbeSampleTimeDataType
+  type: character vector
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''Same as input'''
+  default: '''double'''
+- name: Data type for signal complexity
+  summary: Data type of complexity output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean
+    | Same as input
+  group: Signal Attributes
+  block_parameter: ProbeComplexityDataType
+  type: character vector
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''Same as input'''
+  default: '''double'''
+- name: Data type for signal dimensions
+  summary: Data type for signal dimension output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | Same as input
+  group: Signal Attributes
+  block_parameter: ProbeDimensionsDataType
+  type: character vector
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''Same as input'''
+  default: '''double'''
+```
 
 ### Main
 
@@ -203,7 +289,6 @@ Select the output data type for the signal dimension output.
 | **Type:** character vector |
 | **Values:** `'double' | 'single' | 'int8' | 'uint8' | 'int16' | 'uint16' | 'int32' | 'uint32' | 'Same as input'` |
 | **Default:** `'double'` |
-
 ## Libraries
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

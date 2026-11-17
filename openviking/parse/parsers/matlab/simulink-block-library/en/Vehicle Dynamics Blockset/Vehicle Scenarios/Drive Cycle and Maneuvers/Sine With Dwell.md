@@ -14,6 +14,21 @@ language: en
 # Sine With Dwell
 
 ## Ports
+```yaml
+ports:
+- name: xdot
+  summary: Vehicle longitudinal velocity scalar
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: Driver reference data bus
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: Driver command data bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -75,8 +90,45 @@ Bus Assignment block to override the
 Block diagram where the Bus Assignment block overrides the TransModeCmd output from the Sine With Dwell block.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: Start time 2 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: tStart
+  values: 2 (default) | positive scalar
+- name: Longitudinal velocity setpoint, velRef
+  summary: Target velocity 50 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: velRef
+  values: 50 (default) | positive scalar
+- name: Longitudinal velocity setpoint units, velRefUnit []
+  summary: Units mph (default)
+  group: Maneuver Parameters
+  block_parameter: velRefUnit
+  values: mph (default) | character vector
+- name: Steer frequency, steerFreq [Hz]
+  summary: Handwheel frequency 0.7 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: steerFreq
+  values: 0.7 (default) | positive scalar
+- name: Steer amplitude, steerAmp [deg]
+  summary: Handwheel steer amplitude 90 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: steerAmp
+  values: 90 (default) | positive scalar
+- name: Countersteer dwell time, tDwellCntrSteer [s]
+  summary: Countersteer dwell time 0.5 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: tDwellCntrSteer
+  values: 0.5 (default) | positive scalar
+- name: Initial steer direction
+  summary: Initial steer direction Right (default) | Left
+  group: Maneuver Parameters
+  block_parameter: steerDir
+  values: Right (default) | Left
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -211,7 +263,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `steerDir` |
 | **Values:** | `Right` (default) | `Left` |
 | **Data Types:** | `character vector` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

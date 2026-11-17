@@ -14,6 +14,17 @@ language: en
 # CLA Math
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input data vector
+  direction: input
+  data_types: single
+- name: y
+  summary: Output data scalar
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -30,14 +41,19 @@ The blocks outputs data of single as *N*-by-1
 array. The block outputs the value of the selected function parameter.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: Select CLA Math function CLAsin (default) | CLAcos | CLAasin | CLAacos | CLAatan | CLAatan2 | CLAsinPU | CLAcosPU
+    | CLAatan2PU | CLAexp | CLAexp2 | CLAexp10 | CLAexpN | CLALn | CLALog10 | CLALogN | CLAdiv | CLAsqrt | CLAisqrt
+  group: ''
+```
 
 ### **Function** — Select CLA Math function `CLAsin` (default) | `CLAcos` | `CLAasin` | `CLAacos` | `CLAatan` | `CLAatan2` | `CLAsinPU` | `CLAcosPU` | `CLAatan2PU` | `CLAexp` | `CLAexp2` | `CLAexp10` | `CLAexpN` | `CLALn` | `CLALog10` | `CLALogN` | `CLAdiv` | `CLAsqrt` | `CLAisqrt`
 
 Select the CLA Math functions which includes trigonometric, logarithmic,
 exponential and power functions.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

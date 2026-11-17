@@ -14,6 +14,21 @@ language: en
 # Rotating Air Gap
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Magnetic stator connection magnetic
+  direction: conserving
+- name: S
+  summary: Magnetic rotor connection magnetic
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -32,8 +47,49 @@ Mechanical rotational conserving port associated with the motor case.
 ### **R** — Motor rotor mechanical
 
 Mechanical rotational conserving port associated with the motor rotor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of rotor pole pairs
+  summary: Rotor pole pairs 5 (default) | positive scalar
+  group: Main
+- name: Number of stator teeth
+  summary: Number of stator teeth 9 (default) | positive scalar
+  group: Main
+- name: Stator tooth reference index
+  summary: Stator tooth reference index 1 (default) | positive scalar
+  group: Main
+- name: Peak magnet flux density
+  summary: Peak flux density of magnet rotor 0.4 T (default) | positive scalar
+  group: Main
+- name: Permanent magnet length (in direction of flux)
+  summary: Magnet length in radial machine direction 5 mm (default) | positive scalar
+  group: Main
+- name: Permanent magnet relative permeability
+  summary: Permanent magnet relative permeability 1.05 (default) | scalar
+  group: Main
+- name: Air gap
+  summary: Air gap in radial direction 1 mm (default) | positive scalar
+  group: Main
+- name: Rotor radius
+  summary: Rotor radius 65 mm (default) | positive scalar
+  group: Main
+- name: Tooth depth (in direction of shaft)
+  summary: Stator tooth depth 50 mm (default) | positive scalar
+  group: Main
+- name: Enable faults
+  summary: Fault option off (default) | on
+  group: Faults
+- name: Flux multipliers for faulted rotor poles
+  summary: Multipliers to reduce rotor pole flux ones(1,10) (default) | vector
+  group: Faults
+- name: Duration of transition to faulted
+  summary: Amount of time after which block fully faults 100 s (default) | positive scalar
+  group: Faults
+- name: Simulation time for fault event
+  summary: Simulation time at which block faults 1 s (default) | positive scalar
+  group: Faults
+```
 
 ### Main
 
@@ -138,7 +194,6 @@ multipliers for the peak magnet flux density on each rotor pole.
 
 To enable this parameter, select the **Enable
 faults** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical

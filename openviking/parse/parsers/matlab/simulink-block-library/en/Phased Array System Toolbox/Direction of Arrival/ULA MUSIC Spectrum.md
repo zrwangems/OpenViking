@@ -14,6 +14,21 @@ language: en
 # ULA MUSIC Spectrum
 
 ## Ports
+```yaml
+ports:
+- name: Port 1
+  summary: Received signal *M*-by-*N* complex-valued matrix
+  direction: input
+  data_types: double
+- name: Y
+  summary: MUSIC spatial spectrum non-negative, real-valued column vector
+  direction: output
+  data_types: double
+- name: Ang
+  summary: Directions of arrival non-negative, real-valued column vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -56,8 +71,113 @@ Select the **Enable DOA output** parameter
 to enable this output port.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: Operating frequency (Hz)
+  summary: System operating frequency 3e8 (default) | positive real scalar
+  group: ''
+- name: Forward-backward averaging
+  summary: Enable forward-backward averaging off (default) | on
+  group: ''
+- name: Spatial smoothing
+  summary: Enable spatial smoothing 0 (default) | non-negative integer
+  group: ''
+- name: Scan angles (deg)
+  summary: Search angles for spectrum peaks -90:90 (default) | real-valued row vector
+  group: ''
+- name: Enable DOA output
+  summary: Output directions of arrival through output port off (default) | on
+  group: ''
+- name: Number of signals
+  summary: Expected number of arriving signals 1 (default) | positive integer
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: Method to specify array Array (no subarrays) (default) | MATLAB expression
+  group: ''
+- name: Expression
+  summary: MATLAB expression used to create an array Phased Array System Toolbox™ array System object
+  group: ''
+- name: Element type
+  summary: Array element types Isotropic Antenna (default) | Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone
+  group: ''
+- name: Operating frequency range (Hz)
+  summary: Operating frequency range of the antenna or microphone element [0,1e20] (default) | real-valued 1-by-2 row vector
+  group: ''
+- name: Operating frequency vector (Hz)
+  summary: Operating frequency range of custom antenna or microphone elements [0,1e20] (default) | real-valued row vector
+  group: ''
+- name: Baffle the back of the element
+  summary: Set back response of an Isotropic Antenna element or an Omni Microphone element to zero off (default) | on
+  group: ''
+- name: Exponent of cosine pattern
+  summary: Exponents of azimuth and elevation cosine patterns [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2
+    matrix of nonnegative values
+  group: ''
+- name: Frequency responses (dB)
+  summary: Antenna and microphone frequency response [0,0] (default) | real-valued row vector
+  group: ''
+- name: Input Pattern Coordinate System
+  summary: Coordinate system of custom antenna pattern az-el (default) | phi-theta
+  group: ''
+- name: Azimuth angles (deg)
+  summary: Azimuth angles of antenna radiation pattern [-180:180] (default) | real-valued row vector
+  group: ''
+- name: Elevation angles (deg)
+  summary: Elevation angles of antenna radiation pattern [-90:90] (default) | real-valued row vector
+  group: ''
+- name: Phi Angles (deg)
+  summary: Phi angle coordinates of custom antenna radiation pattern 0:360 | real-valued 1-by-*P* row vector
+  group: ''
+- name: Theta Angles (deg)
+  summary: Theta angle coordinates of custom antenna radiation pattern 0:180 | real-valued 1-by-*Q* row vector
+  group: ''
+- name: Radiation pattern (dB)
+  summary: Custom antenna radiation pattern zeros(181,361) | complex-valued matrix | complex-valued MATLAB array
+  group: ''
+- name: Magnitude pattern (dB)
+  summary: Magnitude of combined antenna radiation pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued
+    *Q*-by-*P*-by-*L* array
+  group: ''
+- name: Phase pattern (deg)
+  summary: Custom antenna radiation phase pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued *Q*-by-*P*-by-*L*
+    array
+  group: ''
+- name: MatchArrayNormal
+  summary: Rotate antenna element to array normal on (default) | off
+  group: ''
+- name: Polar pattern frequencies (Hz)
+  summary: Polar pattern microphone response frequencies 1e3 (default) | real scalar | real-valued 1-by-*L* row vector
+  group: ''
+- name: Polar pattern angles (deg)
+  summary: Polar pattern response angles [-180:180] (default) | real-valued -by-*P* row vector
+  group: ''
+- name: Polar pattern (dB)
+  summary: Custom microphone polar response zeros(1,361) (default) | real-valued *L*-by-*P* matrix
+  group: ''
+- name: Number of elements
+  summary: Number of array elements in U 2 (default) | positive integer greater than or equal to two
+  group: ''
+- name: Element spacing
+  summary: Distance between ULA elements 0.5 (default) | positive scalar
+  group: ''
+- name: Array axis
+  summary: Linear axis direction of ULA y (default) | x | z
+  group: ''
+- name: Taper
+  summary: Array element tapers 1 (default) | complex scalar | complex-valued row vector
+  group: ''
+```
 
 #### Main Tab
 
@@ -523,7 +643,6 @@ element. The number of weights must match the number of elements
 of the array.
 
 **Data Types:** `double`
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Thyristor 12-Pulse Generator
 
 ## 端口
+```yaml
+ports:
+- name: theta
+  summary: 同步角度，rad 标量
+  direction: input
+  data_types: single | double
+- name: alpha
+  summary: 触发角，rad 标量
+  direction: input
+  data_types: single | double
+- name: Pdelta
+  summary: Delta 脉冲向量 向量
+  direction: output
+  data_types: single | double
+- name: Pwye
+  summary: Wye 脉冲向量 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,22 @@ chinese_source: worker-translation
 用于 wye 连接的晶闸管脉冲向量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Pulse ordering
+  summary: 脉冲排序策略 Sequential device order（默认）| Natural order of commutation
+  group: ''
+- name: Delta connection
+  summary: Delta 正弦相位偏差模型 Leading (Delta11)（默认）| Lagging (Delta1)
+  group: ''
+- name: Pulse width (rad)
+  summary: 脉冲宽度 5*pi/6 rad（默认）| 范围为 [0, pi] 的正标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 1e-5（默认）| 正标量
+  group: ''
+```
 
 ### **Pulse ordering** — 脉冲排序策略 `Sequential device order`（默认）| `Natural order of commutation`
 
@@ -66,7 +99,6 @@ pi]`。
 有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于连续变步长模型中，请使用正标量显式指定采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / Pulse Width Modulation

@@ -15,10 +15,116 @@ chinese_source: worker-translation
 # Rocker Switch
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 用于连接参数值的模块参数值连接选项
+  group: 参数
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Label
+  summary: 显示所连接元素名称的标签位置 Hide（默认）| Bottom | Top
+  group: 参数
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: 用于保持模块宽高比的选项 on（默认）| off
+  group: 参数
+- name: States
+  summary: 值与标签的配对 标量和字符向量
+  group: 参数
+  block_parameter: States
+  type: 双元素结构体数组
+- name: Lock Aspect Ratio
+  summary: 用于保持模块宽高比的选项 on（默认）| off
+  group: 设计
+- name: Select State
+  summary: 状态的管理和配置 标量和字符向量
+  group: 设计
+  block_parameter: States
+  type: 双元素结构体数组
+- name: Value
+  summary: 状态值 标量
+  group: 设计
+- name: Text
+  summary: 状态标签文本 字符串 | 字符数组
+  group: 设计
+- name: Color
+  summary: 标签字体颜色 [r g b] 向量
+  group: 设计
+- name: Label X Offset
+  summary: 文本中心距模块左边缘的水平偏移 scalar
+  group: 设计
+- name: Label Y Offset
+  summary: 文本中心距模块上边缘的垂直偏移 scalar
+  group: 设计
+- name: Image X Offset
+  summary: 图像左边缘距模块左边缘的水平偏移 scalar
+  group: 设计
+- name: Image Y Offset
+  summary: 图像上边缘距模块上边缘的垂直偏移 scalar
+  group: 设计
+- name: Image Width
+  summary: 图像宽度 scalar
+  group: 设计
+- name: Image Height
+  summary: 图像高度 scalar
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 用于保持图像宽高比的选项 on（默认）| off
+  group: 设计
+- name: Click Area X Offset
+  summary: 点击区域左边缘距模块左边缘的水平偏移 scalar
+  group: 设计
+- name: Click Area Y Offset
+  summary: 点击区域上边缘距模块上边缘的垂直偏移 scalar
+  group: 设计
+- name: Click Area Width
+  summary: 点击区域宽度 scalar
+  group: 设计
+- name: Click Area Height
+  summary: 点击区域高度 scalar
+  group: 设计
+- name: Use Background Color
+  summary: 用于指定纯色模块背景的选项 off（默认）| on
+  group: 设计
+- name: Color
+  summary: 模块背景颜色 [r g b] 向量
+  group: 设计
+  block_parameter: BackgroundColor
+  type: 字符串 | 字符向量
+  values: '[r g b] 向量'
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| scalar
+  group: 设计
+- name: Corner Radius
+  summary: 模块背景颜色区域的圆角半径 scalar
+  group: 设计
+- name: X Offset
+  summary: 前景图像左边缘相对于模块左边缘的水平偏移量 标量
+  group: 设计
+- name: Y Offset
+  summary: 前景图像上边缘相对于模块上边缘的垂直偏移量 标量
+  group: 设计
+- name: Width
+  summary: 前景图像宽度 标量
+  group: 设计
+- name: Height
+  summary: 前景图像高度 标量
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 用于保持前景图像宽高比的选项 on（默认）| off
+  group: 设计
+```
 
 使用属性检查器和模块参数对话框指定模块参数的值。要设置仪表板模块的核心参数，请使用模块参数对话框或属性检查器中的**参数**选项卡。要自定义模块，请使用属性检查器中的**设计**选项卡。要打开模块的模块参数对话框，请双击该模块。要打开属性检查器，请在**建模**选项卡的**设计**下，选择**属性检查器**。
 
@@ -326,7 +432,6 @@ switchStates = [leftState rightState];
 ### **Lock Aspect Ratio** — 用于保持前景图像宽高比的选项 `on`（默认）| `off`
 
 选择此参数可在使用属性检查器调整图像大小时保持宽高比。
-
 ## 所属库
 
 Simulink / Dashboard / Customizable Blocks

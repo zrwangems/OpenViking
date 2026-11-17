@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # System-Level Refrigeration Cycle (2P)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 用于操作压缩机的信号，无量纲物理信号
+  direction: input
+- name: F
+  summary: 制冷剂属性两相流体
+  direction: input
+- name: Ac
+  summary: 冷凝器外部流体入口 气体 | 湿空气 | 热液体 | 两相流体
+  direction: input
+- name: Bc
+  summary: 冷凝器外部流体出口 气体 | 湿空气 | 热液体 | 两相流体
+  direction: input
+- name: Ae
+  summary: 蒸发器外部流体入口 气体 | 湿空气 | 热液体 | 两相流体
+  direction: input
+- name: Be
+  summary: 蒸发器外部流体出口 气体 | 湿空气 | 热液体 | 两相流体
+  direction: input
+- name: Qc
+  summary: 冷凝器中排出的热量，W 物理信号
+  direction: output
+- name: Qe
+  summary: 蒸发器中吸收的热量，W 物理信号
+  direction: output
+- name: Pwr
+  summary: 压缩机消耗的机械功率，W 物理信号
+  direction: output
+- name: W
+  summary: 蒸发器中的冷凝速率，kg/s 物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -89,8 +122,467 @@ air`。如果 **蒸发器传热的外部流体**
 参数不是湿空气，此端口
 输出 `0`。此端口的值不包括
 作为水滴夹带的冷凝部分。
-
 ## 参数
+```yaml
+parameters:
+- name: 容量规格
+  summary: 指定系统大小的方法 Cooling load（默认）| Heating load | Refrigerant mass flow rate
+  group: 制冷循环
+- name: 额定冷凝器传热
+  summary: 冷凝器中的传热速率 15 kW（默认）| 正标量
+  group: 制冷循环
+- name: 额定蒸发器传热
+  summary: 蒸发器中的传热速率 15 kW（默认）| 正标量
+  group: 制冷循环
+- name: 额定质量流量
+  summary: 制冷剂质量流量 0.005 kg/s（默认）| 正标量
+  group: 制冷循环
+- name: 压力规格
+  summary: 指定冷凝器和蒸发器压力的方法 Specified pressure（默认）| Pressure at specified saturation temperature
+  group: 制冷循环
+- name: 额定冷凝器压力
+  summary: 冷凝器中的制冷剂压力 1 MPa（默认）| 正标量
+  group: 制冷循环
+- name: 额定蒸发器压力
+  summary: 蒸发器中的制冷剂压力 0.1 MPa（默认）| 正标量
+  group: 制冷循环
+- name: 额定冷凝（饱和）温度
+  summary: 冷凝器制冷剂饱和温度 333.15 K（默认）| 正标量
+  group: 制冷循环
+- name: 额定蒸发（饱和）温度
+  summary: 蒸发器制冷剂饱和温度 273.15 K（默认）| 正标量
+  group: 制冷循环
+- name: 额定冷凝器过冷度
+  summary: 运行冷凝器出口温度差 5 deltaK（默认）| 正标量
+  group: 制冷循环
+- name: 额定（静态 + 开启）蒸发器过热度
+  summary: 运行蒸发器出口温度差 10 deltaK（默认）| 正标量
+  group: 制冷循环
+- name: 静态（最小）蒸发器过热度
+  summary: 蒸发器出口处的最小允许温度差 5 deltaK（默认）| 正标量
+  group: 制冷循环
+- name: 性能规格
+  summary: 指定制冷循环效率的方法 Coefficient of performance for cooling（默认）| Coefficient of performance for heating | Compressor isentropic
+    efficiency
+  group: 制冷循环
+- name: 额定工况下的性能系数
+  summary: 制冷或制热与压缩机消耗功率的比值 3（默认）| 正标量
+  group: 制冷循环
+- name: 压缩机等熵效率
+  summary: 压缩机理想比焓变化与实际比焓变化的比值 0.8（默认）| 正标量
+  group: 制冷循环
+- name: Compressor volumetric efficiency at nominal conditions
+  summary: 实际体积流量与排量之比 0.95（默认）| 正标量
+  group: 制冷循环
+- name: Compressor mechanical efficiency
+  summary: 转换为扭矩的效率 0.95（默认）| 正标量
+  group: 制冷循环
+- name: Ratio of maximum to nominal expansion valve opening
+  summary: 维持过热度所需开阀面积之比 1.5（默认）| 正标量
+  group: 制冷循环
+- name: Ratio of leakage to nominal expansion valve opening
+  summary: 维持过热度所需闭阀面积之比 1e-6（默认）| 正标量
+  group: 制冷循环
+- name: Expansion valve smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 正标量
+  group: 制冷循环
+- name: Condenser refrigerant volume
+  summary: 冷凝器制冷剂体积 0.001 m^3（默认）| 正标量
+  group: 制冷循环
+- name: Evaporator refrigerant volume
+  summary: 蒸发器制冷剂体积 0.001 m^3（默认）| 正标量
+  group: 制冷循环
+- name: Liquid receiver tank volume
+  summary: 储液罐中液相和气相的体积 0.01 m^3（默认）| 正标量
+  group: 制冷循环
+- name: Initial receiver liquid level
+  summary: 罐中初始液体体积分数 0.5（默认）| 正标量
+  group: 制冷循环
+- name: Initialize refrigerant to nominal operating conditions
+  summary: 是否指定制冷剂初始条件 on（默认）| off
+  group: 制冷循环
+- name: Initial condenser pressure
+  summary: 冷凝器中制冷剂初始压力 1 MPa（默认）| 正标量
+  group: 制冷循环
+- name: Initial evaporator pressure
+  summary: 蒸发器中制冷剂初始压力 0.1 MPa（默认）| 正标量
+  group: 制冷循环
+- name: Initial condenser specific enthalpy [inlet, outlet]
+  summary: 冷凝器中制冷剂初始比能 [450, 250] kJ/kg（默认）| 正标量 | 二元素向量
+  group: 制冷循环
+- name: Initial evaporator specific enthalpy [inlet, outlet]
+  summary: 蒸发器中制冷剂初始比能 [250, 400] kJ/kg（默认）| 正标量 | 二元素向量
+  group: 制冷循环
+- name: Initial receiver liquid and vapor fully saturated
+  summary: 是否指定储液罐初始条件 on（默认）| off
+  group: 制冷循环
+- name: Initial receiver liquid specific enthalpy
+  summary: 储液罐初始液体比焓 500 kJ/kg（默认）| 正标量
+  group: 制冷循环
+- name: Initial receiver vapor specific enthalpy
+  summary: 储液罐初始气体比焓 3500 kJ/kg（默认）| 正标量
+  group: 制冷循环
+- name: External fluid for condenser heat transfer
+  summary: 冷凝器中用于传热的外部流体 Moist air（默认）| Gas | Thermal liquid | Two-phase fluid
+  group: Condenser External Fluid
+- name: Nominal mass flow rate
+  summary: 冷凝器端口之间的质量流量 0.5 kg/s（默认）| 正标量
+  group: Condenser External Fluid
+- name: Nominal pressure drop
+  summary: 冷凝器端口之间的压降 0.001 MPa（默认）| 正标量
+  group: Condenser External Fluid
+- name: Pressure specification
+  summary: 压力指定方法 Specified pressure（默认）| Pressure at specified saturation temperature
+  group: Condenser External Fluid
+- name: Nominal inlet pressure
+  summary: 冷凝器外部流体侧入口处的压力 0.101325 MPa（默认）| 正标量
+  group: Condenser External Fluid
+- name: Nominal saturation temperature
+  summary: 用于指定压力的标称饱和温度 400 K（默认）| 正标量
+  group: Condenser External Fluid
+- name: 入口条件设定
+  summary: 描述流体入口条件的方法 比焓（默认）| 温度 | 蒸气干度
+  group: Condenser External Fluid
+- name: 额定入口温度
+  summary: 冷凝器外部流体侧入口处的温度 400 K（默认）| 正标量
+  group: Condenser External Fluid
+- name: 额定入口比焓
+  summary: 冷凝器外部流体侧入口处的比焓 500 kJ/kg（默认）| 正标量
+  group: Condenser External Fluid
+- name: 额定入口蒸气干度
+  summary: 冷凝器外部流体侧入口处的蒸气干度 1（默认）| 正标量
+  group: Condenser External Fluid
+- name: 入口湿度设定
+  summary: 描述冷凝器外部流体侧入口处湿度水平的方法 相对湿度（默认）| 比湿度 | 摩尔分数 | 湿度比 | 湿球温度
+  group: Condenser External Fluid
+- name: 额定入口相对湿度
+  summary: 入口处的相对湿度 0.1（默认）| 范围 [0,1] 内的标量
+  group: Condenser External Fluid
+- name: 额定入口比湿度
+  summary: 入口处的比湿度 0.01（默认）| 范围 [0,1] 内的标量
+  group: Condenser External Fluid
+- name: 额定入口水蒸气摩尔分数
+  summary: 入口处水蒸气的摩尔分数 0.01（默认）| 范围 [0,1] 内的标量
+  group: Condenser External Fluid
+- name: 额定入口湿度比
+  summary: 入口处的湿度比 0.01（默认）| 范围 [0,1] 内的标量
+  group: Condenser External Fluid
+- name: 额定入口湿球温度
+  summary: 仿真开始时的湿球温度 287 K（默认）| 范围 [0,1] 内的正标量
+  group: Condenser External Fluid
+- name: 入口微量气体设定
+  summary: 描述入口处微量气体水平的方法 质量分数（默认）| 摩尔分数
+  group: Condenser External Fluid
+- name: 额定入口微量气体质量分数
+  summary: 入口处微量气体的质量分数 0.001（默认）| 范围 [0,1] 内的标量
+  group: Condenser External Fluid
+- name: 额定入口微量气体摩尔分数
+  summary: 入口处微量气体的摩尔分数 0.001（默认）| 范围 [0,1] 内的标量
+  group: Condenser External Fluid
+- name: 外部流体体积
+  summary: 冷凝器中流体的体积 0.1 m^3（默认）| 正标量
+  group: Condenser External Fluid
+- name: 端口 Ac 处的横截面积
+  summary: 端口 Ac 处的流通面积 0.01 m^2（默认）| 正标量
+  group: Condenser External Fluid
+- name: 端口 Bc 处的横截面积
+  summary: 端口 Bc 处的流通面积 0.01 m^2（默认）| 正标量
+  group: Condenser External Fluid
+- name: 启用冷凝器壁热质量
+  summary: 建模冷凝器壁传热的选项 Off（默认）| On
+  group: Condenser External Fluid
+- name: 冷凝器壁质量
+  summary: 冷凝器换热质量 1 kg（默认）| 正标量
+  group: Condenser External Fluid
+- name: 冷凝器壁比热
+  summary: 冷凝器换热表面的比热 490 J/(K*kg)（默认）| 正标量
+  group: Condenser External Fluid
+- name: 初始化到额定工况
+  summary: 是否指定冷凝器初始条件 On（默认）| Off
+  group: Condenser External Fluid
+- name: 初始压力
+  summary: 仿真开始时的流体压力 0.101325 MPa（默认）| 正标量
+  group: Condenser External Fluid
+- name: Initial fluid energy specification
+  summary: 冷凝器外部流体的初始状态 Specific enthalpy（默认）| Temperature | Vapor quality | Vapor void fraction | Specific internal energy
+  group: Condenser External Fluid
+- name: Initial temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial vapor quality
+  summary: 仿真开始时的蒸汽质量分数 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial vapor void fraction
+  summary: 仿真开始时的蒸汽空隙率 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial specific enthalpy
+  summary: 仿真开始时的单位质量焓 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial specific internal energy
+  summary: 仿真开始时的单位质量内能 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial humidity specification
+  summary: 用于描述初始湿度水平的方法 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Condenser External Fluid
+- name: Initial relative humidity
+  summary: 仿真开始时的相对湿度 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial specific humidity
+  summary: 仿真开始时的比湿 0.01（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial water vapor mole fraction
+  summary: 仿真开始时的水蒸气摩尔分数 0.01（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial humidity ratio
+  summary: 仿真开始时的湿度比 0.01（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial moist air wet-bulb temperature
+  summary: 仿真开始时的湿球温度 287 K（默认）| [0,1] 范围内的正标量
+  group: Condenser External Fluid
+- name: Initial trace gas specification
+  summary: 描述初始微量气体水平的方法 Mass fraction（默认）| Mole fraction
+  group: Condenser External Fluid
+- name: Initial trace gas mass fraction
+  summary: 仿真开始时微量气体的质量分数 0.001（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial trace gas mole fraction
+  summary: 仿真开始时微量气体的摩尔分数 0.001（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Initial mass ratio of water droplets to moist air
+  summary: 水滴与湿空气的比值 0（默认）| 正标量
+  group: Condenser External Fluid
+- name: Initial condenser wall temperature
+  summary: 仿真开始时的冷凝器表面温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Condenser External Fluid
+- name: Relative humidity at saturation
+  summary: 冷凝的相对湿度点 1（默认）| 非负标量
+  group: Condenser External Fluid
+- name: Water vapor condensation time constant
+  summary: 冷凝的时间尺度 1e-3 s（默认）| 正标量
+  group: Condenser External Fluid
+- name: Water droplets evaporation time constant
+  summary: 蒸发的时间尺度 1e-3 s（默认）| 正标量
+  group: Condenser External Fluid
+- name: Fraction of condensate entrained as water droplets
+  summary: 水滴中冷凝物的分数 1（默认）| [0,1] 范围内的标量
+  group: Condenser External Fluid
+- name: External fluid for evaporator heat transfer
+  summary: 蒸发器中用于传热的外部流体 Moist air（默认）| Gas | Thermal liquid | Two-phase fluid
+  group: Evaporator External Fluid
+- name: Nominal mass flow rate
+  summary: 蒸发器端口之间的质量流量 0.5 kg/s（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Nominal pressure drop
+  summary: 蒸发器端口之间的压降 0.001 MPa（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Pressure specification
+  summary: 压力指定方法 Specified pressure（默认）| Pressure at specified saturation temperature
+  group: Evaporator External Fluid
+- name: Nominal inlet pressure
+  summary: 蒸发器外部流体侧入口处的压力 0.101325 MPa（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Nominal saturation temperature
+  summary: 用于指定压力的标称饱和温度 400 K（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Inlet condition specification
+  summary: 描述流体入口条件的方法 Specific enthalpy（默认）| Temperature | Vapor quality
+  group: Evaporator External Fluid
+- name: Nominal inlet temperature
+  summary: 蒸发器外部流体侧入口处的温度 400 K（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Nominal inlet specific enthalpy
+  summary: 蒸发器外部流体侧入口处的比焓 500 kJ/kg（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Nominal inlet vapor quality
+  summary: 蒸发器外部流体侧入口处的蒸汽干度 1（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Inlet humidity specification
+  summary: 描述蒸发器外部流体侧入口处湿度水平的方法 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Evaporator External Fluid
+- name: Nominal inlet relative humidity
+  summary: 入口处的相对湿度 0.1（默认）| 范围 [0,1] 内的标量
+  group: Evaporator External Fluid
+- name: Nominal inlet specific humidity
+  summary: 入口处的比湿度 0.01（默认）| 范围 [0,1] 内的标量
+  group: Evaporator External Fluid
+- name: Nominal inlet water vapor mole fraction
+  summary: 入口处水蒸气的摩尔分数 0.01（默认）| 范围 [0,1] 内的标量
+  group: Evaporator External Fluid
+- name: Nominal inlet humidity ratio
+  summary: 入口处的湿度比 0.01（默认）| 范围 [0,1] 内的标量
+  group: Evaporator External Fluid
+- name: Nominal inlet wet-bulb temperature
+  summary: 仿真开始时的湿球温度 287 K（默认）| 范围 [0,1] 内的正标量
+  group: Evaporator External Fluid
+- name: Inlet trace gas specification
+  summary: 描述入口处微量气体水平的方法 Mass fraction（默认）| Mole fraction
+  group: Evaporator External Fluid
+- name: Nominal inlet trace gas mass fraction
+  summary: 入口处微量气体的质量分数 0.001（默认）| 范围 [0,1] 内的标量
+  group: Evaporator External Fluid
+- name: Nominal inlet trace gas mole fraction
+  summary: 入口处微量气体的摩尔分数 0.001（默认）| 范围 [0,1] 内的标量
+  group: Evaporator External Fluid
+- name: External fluid volume
+  summary: 蒸发器中流体的体积 0.1 m^3（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Cross-sectional area at port Ae
+  summary: 端口 Ae 处的流通面积 0.01 m^2（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Cross-sectional area at port Be
+  summary: 端口 Be 处的流通面积 0.01 m^2（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Enable evaporator wall thermal mass
+  summary: 用于建模蒸发器壁面传热的选项 Off（默认）| On
+  group: Evaporator External Fluid
+- name: Evaporator wall mass
+  summary: 蒸发器传热质量 1 kg（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Evaporator wall specific heat
+  summary: 蒸发器传热表面的比热容 490 J/(K*kg)（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Initialize to nominal operating conditions
+  summary: 是否指定蒸发器初始条件 On（默认）| Off
+  group: Evaporator External Fluid
+- name: Initial pressure
+  summary: 仿真开始时的流体压力 0.101325 MPa（默认）| 正标量
+  group: Evaporator External Fluid
+- name: Initial fluid energy specification
+  summary: 蒸发器外部流体的初始状态 Specific enthalpy（默认）| Temperature | Vapor quality | Vapor void fraction | Specific internal energy
+  group: Evaporator External Fluid
+- name: Initial temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: Initial vapor quality
+  summary: 仿真开始时的蒸气质量分数 0.5（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: Initial vapor void fraction
+  summary: 仿真开始时的蒸气空泡份额 0.5（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: Initial specific enthalpy
+  summary: 仿真开始时的单位质量焓 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: Initial specific internal energy
+  summary: 仿真开始时的单位质量内能 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: Initial humidity specification
+  summary: 用于描述初始湿度水平的方法 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Evaporator External Fluid
+- name: Initial relative humidity
+  summary: 仿真开始时的相对湿度 0.5（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: Initial specific humidity
+  summary: 仿真开始时的比湿 0.01（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: 初始水蒸气摩尔分数
+  summary: 仿真开始时的水蒸气摩尔分数 0.01（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: 初始湿度比
+  summary: 仿真开始时的湿度比 0.01（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: 初始湿空气湿球温度
+  summary: 仿真开始时的湿球温度 287 K（默认）| [0,1] 范围内的正标量
+  group: Evaporator External Fluid
+- name: 初始微量气体规格
+  summary: 描述初始微量气体水平的方法 Mass fraction（默认）| Mole fraction
+  group: Evaporator External Fluid
+- name: 初始微量气体质量分数
+  summary: 仿真开始时微量气体的质量分数 0.001（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: 初始微量气体摩尔分数
+  summary: 仿真开始时微量气体的摩尔分数 0.001（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: 水滴与湿空气的初始质量比
+  summary: 水滴与湿空气的比值 0（默认）| 正标量
+  group: Evaporator External Fluid
+- name: 初始蒸发器壁温
+  summary: 仿真开始时的蒸发器表面温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Evaporator External Fluid
+- name: 饱和时的相对湿度
+  summary: 冷凝的相对湿度点 1（默认）| 非负标量
+  group: Evaporator External Fluid
+- name: 水蒸气冷凝时间常数
+  summary: 冷凝的时间尺度 1e-3 s（默认）| 正标量
+  group: Evaporator External Fluid
+- name: 水滴蒸发时间常数
+  summary: 蒸发的时间尺度 1e-3 s（默认）| 正标量
+  group: Evaporator External Fluid
+- name: 作为水滴夹带的冷凝物比例
+  summary: 水滴中冷凝物的比例 1（默认）| [0,1] 范围内的标量
+  group: Evaporator External Fluid
+- name: 修改冷凝器努塞尔数相关系数
+  summary: 是否修改冷凝器努塞尔数相关系数 Off（默认）| On
+  group: 相关系数
+- name: 制冷剂、液体区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 制冷剂过冷液体的关联式系数 0.023（默认值）| 正标量
+  group: 相关系数
+- name: 制冷剂、混合物区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 制冷剂液-汽混合物的关联式系数 0.005（默认值）| 正标量
+  group: 相关系数
+- name: 制冷剂、蒸汽区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 制冷剂过热蒸汽的关联式系数 0.023（默认值）| 正标量
+  group: 相关系数
+- name: 制冷剂中 Nu = a\*Re^b\*Pr^c 中的 b
+  summary: 制冷剂关联式中的雷诺数指数 0.8（默认值）| 正标量
+  group: 相关系数
+- name: 制冷剂中 Nu = a\*Re^b\*Pr^c 中的 c
+  summary: 制冷剂关联式中的普朗特数指数 0.33（默认值）| 正标量
+  group: 相关系数
+- name: 外部流体、液体区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中过冷液体的关联式系数 0.023（默认值）| 正标量
+  group: 相关系数
+- name: 外部流体、混合物区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中液-汽混合物的关联式系数 0.005（默认值）| 正标量
+  group: 相关系数
+- name: 外部流体、蒸汽区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中过热蒸汽的关联式系数 0.023（默认值）| 正标量
+  group: 相关系数
+- name: 外部流体中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 冷凝器外部流体的关联式系数 0.023（默认值）| 正标量
+  group: 相关系数
+- name: 外部流体中 Nu = a\*Re^b\*Pr^c 中的 b
+  summary: 冷凝器外部流体关联式中的雷诺数指数 0.8（默认值）| 正标量
+  group: 相关系数
+- name: 外部流体中 Nu = a\*Re^b\*Pr^c 中的 c
+  summary: 冷凝器外部流体关联式中的普朗特数指数 0.33（默认值）| 正标量
+  group: 相关系数
+- name: Modify evaporator Nusselt number correlation coefficients
+  summary: 是否修改蒸发器努塞尔数关联式系数 Off（默认值）| On
+  group: 相关系数
+- name: 制冷剂、液体区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 制冷剂过冷液体的关联式系数 0.023（默认值）| 正标量
+  group: 相关系数
+- name: 制冷剂、混合物区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 制冷剂液-汽混合物的关联式系数 0.005（默认值）| 正标量
+  group: 相关系数
+- name: 制冷剂、蒸汽区中 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 制冷剂过热蒸汽的关联式系数 0.023（默认值）| 正标量
+  group: 相关系数
+- name: 制冷剂 Nu = a\*Re^b\*Pr^c 中的 b
+  summary: 制冷剂关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: 相关系数
+- name: 制冷剂 Nu = a\*Re^b\*Pr^c 中的 c
+  summary: 制冷剂关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: 相关系数
+- name: 外部流体液相区 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中过冷液体的关联式系数 0.023（默认）| 正标量
+  group: 相关系数
+- name: 外部流体混合物区 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中气液混合物的关联式系数 0.005（默认）| 正标量
+  group: 相关系数
+- name: 外部流体蒸气区 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中过热蒸气的关联式系数 0.023（默认）| 正标量
+  group: 相关系数
+- name: 外部流体 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 蒸发器外部流体的关联式系数 0.023（默认）| 正标量
+  group: 相关系数
+- name: 外部流体 Nu = a\*Re^b\*Pr^c 中的 b
+  summary: 蒸发器外部流体关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: 相关系数
+- name: 外部流体 Nu = a\*Re^b\*Pr^c 中的 c
+  summary: 蒸发器外部流体关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: 相关系数
+```
 
 ### 制冷循环
 
@@ -1298,7 +1790,6 @@ Nusselt number correlation coefficients**。
 #### 依赖关系
 
 要启用此参数，请选中 **Modify evaporator Nusselt number correlation coefficients**。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Thermodynamic Cycles

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Signal Generator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 生成的输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -28,8 +35,52 @@ chinese_source: worker-translation
 - random
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Wave form
+  summary: 要生成的波形 sine（默认）| square | sawtooth | random
+  group: ''
+  block_parameter: WaveForm
+  type: 字符向量
+  values: '''sine'' | ''square'' | ''sawtooth'' | ''random'''
+  default: '''sine'''
+- name: Time (t)
+  summary: 时间变量来源 Use simulation time（默认）| Use external signal
+  group: ''
+  block_parameter: TimeSource
+  type: 字符向量
+  values: '''Use simulation time'' | ''Use external signal'''
+  default: '''Use simulation time'''
+- name: Amplitude
+  summary: 信号幅值 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: Amplitude
+  type: 字符向量
+  values: 实标量
+  default: '''1'''
+- name: Frequency
+  summary: 信号频率 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: Frequency
+  type: 字符向量
+  values: 实标量
+  default: '''1'''
+- name: Units
+  summary: 信号单位 rad/sec（默认）| Hertz
+  group: ''
+  block_parameter: Units
+  type: 字符向量
+  values: '''rad/sec'' | ''Hertz'''
+  default: '''rad/sec'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量视为一维 on（默认）| off
+  group: ''
+  block_parameter: VectorParams1D
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Wave form** — 要生成的波形 `sine`（默认）| `square` | `sawtooth` | `random`
 
@@ -111,7 +162,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on' | 'off'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Sources

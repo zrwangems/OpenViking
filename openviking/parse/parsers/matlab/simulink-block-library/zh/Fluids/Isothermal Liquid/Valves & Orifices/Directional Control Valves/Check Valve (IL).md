@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Check Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口 等温液体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,71 @@ chinese_source: worker-translation
 ### **B** — 液体端口 等温液体
 
 阀的出口点。
-
 ## 参数
+```yaml
+parameters:
+- name: Opening parameterization
+  summary: 计算阀开度的方法 Linear - Area vs. pressure（默认）| Tabulated data - Area vs. pressure | Tabulated data - Volumetric flow
+    rate vs. pressure
+  group: 参数
+- name: Opening pressure specification
+  summary: 用于阀控制的压差 Pressure differential（默认）| Pressure at port A
+  group: 参数
+- name: Cracking pressure differential
+  summary: 阈值压力 0.01 MPa（默认）| 正标量
+  group: 参数
+- name: Cracking pressure (gauge)
+  summary: 阈值压力 0.1 MPa（默认）| 正标量
+  group: 参数
+- name: Maximum opening pressure differential
+  summary: 阀压差最大值 0.1 MPa（默认）| 正标量
+  group: 参数
+- name: Maximum opening pressure (gauge)
+  summary: 阀压力最大值 0.2 MPa（默认）| 正标量
+  group: 参数
+- name: Maximum opening area
+  summary: 阀完全打开时的面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Leakage area
+  summary: 完全关闭位置时的阀间隙面积 1e-12 m^2（默认）| 正标量
+  group: 参数
+- name: Pressure differential vector
+  summary: '表格参数化的压差值 [0.01 : 0.01 : 0.1] MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Opening area vector
+  summary: 表格参数化的阀开度面积 [1e-10, 1e-05, 2e-05, 3e-05, 4e-05, 5e-05, 6e-05, 7.5e-05, 8.5e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Cross-sectional area at ports A and B
+  summary: 阀入口或出口处的面积 inf m^2（默认）| 正标量
+  group: 参数
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 参数
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 正标量
+  group: 参数
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 off（默认）| on
+  group: 参数
+- name: Opening dynamics
+  summary: 是否考虑阀打开时的流动响应 off（默认）| on
+  group: 参数
+- name: Opening time constant
+  summary: 阀打开时间常数 0.1 s（默认）| 正标量
+  group: 参数
+- name: Volumetric flow rate vector
+  summary: 表格数据参数化的体积流量向量 [.000358, .045, .11, .191, .284, .39, .505, .63, .764, .905] .* 1e-3 m^3/s（默认）| 1×*n* 向量
+  group: 参数
+- name: Check Valve Area fault
+  summary: 建模阀面积故障的选项 Add fault
+  group: 故障
+- name: Opening area when faulted
+  summary: 故障时的阀特性 Closed（默认）| Open | Maintain at last value
+  group: 故障
+```
 
 ### 参数
 
@@ -191,7 +263,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请单击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

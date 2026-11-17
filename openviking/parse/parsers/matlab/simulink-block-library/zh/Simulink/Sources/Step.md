@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Step
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输出阶跃信号 标量 | 向量
+  direction: output
+  data_types: double | single
+```
 
 ### 输出
 
@@ -23,8 +30,65 @@ chinese_source: worker-translation
 由参数 **Step time**、**Initial value** 和 **Final value** 定义的输出阶跃函数信号。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Step time
+  summary: 阶跃发生的时间 1（默认）| 标量
+  group: ''
+  block_parameter: Time
+  type: 字符向量
+  values: '''1'' | 实值或复值标量、向量或矩阵'
+  default: '''1'''
+- name: Initial value
+  summary: 阶跃前的输出值 0（默认）| 标量
+  group: ''
+  block_parameter: Before
+  type: 字符向量
+  values: '''1'' | 实值或复值标量、向量或矩阵'
+  default: '''0'''
+- name: Final value
+  summary: 阶跃后的输出值 1（默认）| 标量
+  group: ''
+  block_parameter: After
+  type: 字符向量
+  values: '''1'' | 实值或复值标量、向量或矩阵'
+  default: '''1'''
+- name: Sample time
+  summary: 采样率 0（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量视为一维 on（默认）| off
+  group: ''
+  block_parameter: VectorParams1D
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量 | 字符串
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Output data type
+  summary: '输出数据类型 double（默认）| Inherit: Inherit via back propagation | single | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | <data type expression>'
+  default: '''double'''
+- name: Mode
+  summary: 数据类型类别 Inherit（默认）| Built in | Expression
+  group: ''
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: ''
+```
 
 ### **Step time** — 阶跃发生的时间 `1`（默认）| 标量
 
@@ -148,7 +212,6 @@ chinese_source: worker-translation
 #### 提示
 
 为单个数据类型关闭数据类型覆盖的能力，可在您应用数据类型覆盖时对模型中的数据类型提供更强的控制。例如，您可以使用此选项确保数据类型满足下游模块的要求，而不受数据类型覆盖设置的影响。
-
 ## 所属库
 
 Simulink / Sources

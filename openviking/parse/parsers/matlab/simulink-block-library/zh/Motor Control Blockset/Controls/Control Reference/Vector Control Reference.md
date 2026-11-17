@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Vector Control Reference
 
 ## 端口
+```yaml
+ports:
+- name: magref
+  summary: 参考矢量幅值 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: 参考矢量电角度位置 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: dref
+  summary: 参考矢量的 *d* 轴分量 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: qref
+  summary: 参考矢量的 *q* 轴分量 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -42,8 +61,19 @@ chinese_source: worker-translation
 参考电压、电流或磁链矢量沿旋转 *dq* 参考坐标系交轴的分量。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Alpha (phase-a) axis alignment
+  summary: '*dq* 参考坐标系对齐方式 D-axis（默认） | Q-axis'
+  group: ''
+- name: Theta units
+  summary: 输入位置值的单位 Per-unit（默认） | Radians | Degrees
+  group: ''
+- name: Number of data points for trigonometric lookup table
+  summary: 查找表数组大小 1024（默认） | 标量
+  group: ''
+```
 
 ### **Alpha (phase-a) axis alignment** — *dq* 参考坐标系对齐方式 `D-axis`（默认） | `Q-axis`
 
@@ -56,7 +86,6 @@ chinese_source: worker-translation
 ### **Number of data points for trigonometric lookup table** — 查找表数组大小 `1024`（默认） | 标量
 
 查找表数组的大小。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference

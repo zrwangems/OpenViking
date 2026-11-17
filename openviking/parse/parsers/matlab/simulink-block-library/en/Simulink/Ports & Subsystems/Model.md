@@ -14,6 +14,45 @@ language: en
 # Model
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input that corresponds to root-level blocks of referenced model scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | image
+- name: Port_1
+  summary: Output that corresponds to root-level blocks of referenced model scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | image
+- name: Enable
+  summary: Control signal that enables referenced model scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Trigger
+  summary: Control signal that triggers referenced model scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Function Call
+  summary: Control signal for function-call event scalar
+  direction: output
+- name: initialize
+  summary: Control signal for model initialize event scalar
+  direction: output
+- name: reset
+  summary: Control signal for model reset event scalar
+  direction: output
+- name: reinit
+  summary: Control signal for model reinitialize event scalar
+  direction: output
+- name: terminate
+  summary: Control signal for model terminate event scalar
+  direction: output
+- name: D
+  summary: Control signal for scheduling periodic events scalar
+  direction: output
+```
 
 ### Input
 
@@ -201,8 +240,86 @@ A Model block has ports labeled D1[0.01] and D2[0.1].
 
 To enable this type of port, set **Schedule rates with** to
 `Ports`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model name
+  summary: File name of referenced model no default
+  group: Main
+  block_parameter: ModelNameDialog
+  values: ''''' (default) | filename in quotes'
+- name: Simulation mode
+  summary: Simulation mode for model reference Normal (default) | Accelerator | Software-in-the-loop (SIL) | Processor-in-the-loop
+    (PIL)
+  group: Main
+  block_parameter: SimulationMode
+  values: '"Normal" (default) | "Accelerator" | "Software-in-the-loop (SIL)" | "Processor-in-the-loop (PIL)"'
+- name: Code interface
+  summary: Option to generate code from top model or referenced model Model reference (default) | Top model
+  group: Main
+  block_parameter: CodeInterface
+  values: '"Model reference" (default) | "Top model"'
+- name: Show model initialize port
+  summary: Option to display initialize event port off (default) | on
+  group: Model Events Simulation
+  block_parameter: ShowModelInitializePort
+  values: '"off" (default) | "on"'
+- name: Show model reinitialize ports
+  summary: Option to display reinitialize event ports off (default) | on
+  group: Model Events Simulation
+  block_parameter: ShowModelReinitializePorts
+  values: '"off" (default) | "on"'
+- name: Show model reset ports
+  summary: Option to display reset event ports off (default) | on
+  group: Model Events Simulation
+  block_parameter: ShowModelResetPorts
+  values: '"off" (default) | "on"'
+- name: Show model terminate port
+  summary: Option to display terminate event port off (default) | on
+  group: Model Events Simulation
+  block_parameter: ShowModelTerminatePort
+  values: '"off" (default) | "on"'
+- name: Schedule rates
+  summary: Option to schedule periodic events off (default) | on
+  group: Model Events Simulation
+  block_parameter: ScheduleRates
+  values: '"off" (default) | "on"'
+- name: Schedule rates with
+  summary: Option to create partitions or periodic event ports Ports (default) | Schedule Editor
+  group: Model Events Simulation
+  block_parameter: ScheduleRatesWith
+  values: '"Ports" (default) | "Schedule Editor"'
+- name: Instance parameters
+  summary: Display instance parameters and specify values for referenced model number | workspace variable | mathematical
+    expression | structure or structure field
+  group: Instance Parameters
+  values: structure with fields Name, Value, Path, and Argument
+  block_parameter: InstanceParameters
+- name: Use local solver
+  summary: Option to use local solver to solve referenced model link to referenced model configuration parameter
+  group: Solver
+- name: Solver
+  summary: Option to select local solver link to referenced model configuration parameter
+  group: Solver
+- name: Fixed step
+  summary: Option to specify step size for fixed-step local solver link to referenced model configuration parameter
+  group: Solver
+- name: Communication step size
+  summary: Discrete interval of communication between local solver and parent solver positive scalar double
+  group: Solver
+  block_parameter: CommunicationStepSize
+  values: -1 (default) | positive scalar double
+- name: Input signal handling
+  summary: Extrapolation method for local solver inputs Auto (default) | Zero-order hold
+  group: Solver
+  block_parameter: InputSignalHandling
+  values: '"Auto" (default) | "Zero-order hold"'
+- name: Output signal handling
+  summary: Interpolation method for outputs from local solver Auto (default) | Use solver interpolant | Zero-order hold
+  group: Solver
+  block_parameter: OutputSignalHandling
+  values: '"Auto" (default) | "Use solver interpolant" | "Zero-order Hold"'
+```
 
 To interactively modify Model block parameters, select the
 Model block. Then, in the Simulink Toolstrip, on the **Model Block** tab, click
@@ -943,7 +1060,6 @@ the `set_param` function.
 
 **Example:** `set_param(gcb,OutputSignalHandling="Zero-order
 Hold")`
-
 ## Libraries
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

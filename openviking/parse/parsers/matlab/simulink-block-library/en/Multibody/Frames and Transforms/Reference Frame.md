@@ -14,6 +14,12 @@ language: en
 # Reference Frame
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -22,11 +28,12 @@ language: en
 Local reference frame represented by the block. Connect to a frame
 line or frame port to define the relative position and orientation of
 the reference frame.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Multibody / Frames and Transforms

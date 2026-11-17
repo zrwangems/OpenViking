@@ -14,6 +14,21 @@ language: en
 # Voltage-Controlled Oscillator
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Positive input voltage electrical
+  direction: conserving
+- name: 1-
+  summary: Negative input voltage electrical
+  direction: conserving
+- name: 2+
+  summary: Positive output voltage electrical
+  direction: conserving
+- name: 2-
+  summary: Negative output voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,52 @@ output voltage.
 
 Electrical conserving port associated with the oscillator negative
 output voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Frequency dependence on input voltage
+  summary: Block parameterization Linear (default) | Tabulated
+  group: Frequency
+- name: Nominal frequency
+  summary: Nominal frequency 1000 Hz (default)
+  group: Frequency
+- name: Input voltage corresponding to nominal frequency
+  summary: Input voltage corresponding to nominal frequency 0.5 V (default)
+  group: Frequency
+- name: Rate of change of frequency with input voltage
+  summary: Rate of change of frequency with input voltage 1 Hz/V (default)
+  group: Frequency
+- name: Minimum input voltage
+  summary: Minimum input voltage 0 V (default)
+  group: Frequency
+- name: Maximum input voltage
+  summary: Maximum input voltage 1 V (default)
+  group: Frequency
+- name: Input voltage vector
+  summary: Input voltage vector [0, .2, .4, .6, .8, 1] V (default)
+  group: Frequency
+- name: Frequency deviation from nominal
+  summary: Frequency deviation from nominal [-1000, -329, -51, 162, 342, 500] Hz (default)
+  group: Frequency
+- name: Output voltage peak amplitude
+  summary: Output voltage peak amplitude 1 V (default)
+  group: Electrical Characteristics
+- name: Input resistance
+  summary: Input resistance inf Ohm (default)
+  group: Electrical Characteristics
+- name: Output resistance
+  summary: Output resistance 0 Ohm (default)
+  group: Electrical Characteristics
+- name: Dynamics
+  summary: Dynamics specification No dynamics (default) | Model frequency tracking dynamics
+  group: Dynamics
+- name: Frequency tracking time constant
+  summary: Frequency tracking time constant 1e-3 s (default)
+  group: Dynamics
+- name: Initial frequency
+  summary: Initial frequency 1000 Hz (default)
+  group: Dynamics
+```
 
 ### Frequency
 
@@ -166,7 +225,6 @@ frequency tracking dynamics` for the
 ### **Initial frequency** — Initial frequency `1000` `Hz` (default)
 
 The initial VCO output frequency.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

@@ -14,6 +14,30 @@ language: en
 # SPDT Relay
 
 ## Ports
+```yaml
+ports:
+- name: PS
+  summary: Physical signal control physical signal
+  direction: input
+- name: x
+  summary: Relay state physical signal
+  direction: output
+- name: S1
+  summary: Normally closed contact electrical
+  direction: conserving
+- name: C
+  summary: Common contact electrical
+  direction: conserving
+- name: S2
+  summary: Normally open contact electrical
+  direction: conserving
+- name: +
+  summary: Winding positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Winding negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -79,8 +103,116 @@ current through the winding controls the relay state.
 To enable this port, in the **Main** settings, set the
 **Control port** parameter to
 `Electrical`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Control port
+  summary: Input port choice PS (default) | Electrical
+  group: Main
+- name: Closed resistance
+  summary: Connected contact resistance 0.01 Ohm (default) | positive scalar
+  group: Main
+- name: Open conductance
+  summary: Open-circuit conductance 1e-8 1/Ohm (default) | positive scalar
+  group: Main
+- name: Threshold
+  summary: Relay threshold 0 (default) | nonnegative scalar
+  group: Main
+- name: State port
+  summary: Relay state output port visibility Hidden (default) | Visible
+  group: Main
+- name: Common port
+  summary: Common port location Adjacent to switch ports (default) | Across from switch ports
+  group: Main
+- name: Rated voltage
+  summary: Rated voltage 5 V (default) | positive scalar
+  group: Winding
+- name: Percent rated voltage to energize
+  summary: Percent rated voltage to energize 75 (default) | positive scalar
+  group: Winding
+- name: Percent rated voltage to de-energize
+  summary: Percent rated voltage to de-energize 25 (default) | positive scalar
+  group: Winding
+- name: Winding inductance
+  summary: Winding inductance 0.08 H (default) | positive scalar
+  group: Winding
+- name: Winding series resistance
+  summary: Winding series resistance 12.5 Ohm (default) | positive scalar
+  group: Winding
+- name: Winding parallel conductance
+  summary: Winding parallel conductance 1e-9 1/Ohm (default) | positive scalar
+  group: Winding
+- name: Time-to-break C-S1 connection
+  summary: Delay time for breaking connection C–S1 0 s (default) | nonnegative scalar
+  group: Mechanical
+- name: Time-to-make C-S1 connection
+  summary: Delay time for making connection C–S1 0 s (default) | nonnegative scalar
+  group: Mechanical
+- name: Time-to-break C-S2 connection
+  summary: Delay time for breaking connection C–S2 0 s (default) | nonnegative scalar
+  group: Mechanical
+- name: Time-to-make C-S2 connection
+  summary: Delay time for making connection C–S2 0 s (default) | nonnegative scalar
+  group: Mechanical
+- name: Switch fault
+  summary: Option to add switch fault Add fault
+  group: Faults
+- name: Switch fault
+  summary: Switch fault model C-S1 stuck closed (default) | C-S2 stuck closed | C open circuit (no path to S1 or S2) | Degraded
+    contact resistance
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible load current
+  summary: Maximum permissible load current inf A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding current
+  summary: Time to fail when exceeding current 1 s (default) | positive scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+- name: Degraded contact resistance C-S1
+  summary: Degraded contact resistance C–S1 1e-9 Ohm (default) | positive scalar
+  group: Faults
+- name: Degraded contact resistance C-S2
+  summary: Degraded contact resistance C–S2 1e-9 Ohm (default) | positive scalar
+  group: Faults
+- name: Time constant for degraded contact resistance
+  summary: Time constant for degraded contact resistance 1e-3 (default) | positive scalar
+  group: Faults
+- name: Winding fault
+  summary: Option to add winding fault Add fault
+  group: Faults
+- name: Time constant for winding open circuit transition
+  summary: Time constant for winding to fail 1e-3 s (default) | positive scalar
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible winding voltage
+  summary: Maximum permissible winding voltage inf V (default) | positive scalar
+  group: Faults
+- name: Number of events to fail when exceeding voltage
+  summary: Number of events to fail when exceeding voltage 1 (default) | positive scalar integer
+  group: Faults
+- name: Maximum permissible winding current
+  summary: Maximum permissible winding current inf A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding winding current
+  summary: Time to fail when exceeding winding current 1 s (default) | positive scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+```
 
 ### Main
 
@@ -518,7 +650,6 @@ To enable this parameter:
 - Set **Trigger type** to
   `Additional
   triggers`.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers / Relays

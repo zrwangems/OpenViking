@@ -14,6 +14,69 @@ language: en
 # Planar Contact Force
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base geometry geometry
+  direction: input
+- name: F
+  summary: Follower geometry geometry
+  direction: input
+- name: fny
+  summary: Normal contact force magnitude, N physical signal
+  direction: input
+- name: ffrx
+  summary: Friction force, N physical signal
+  direction: input
+- name: con
+  summary: Contact signal, unitless physical signal
+  direction: output
+- name: pen
+  summary: Penetration depth, m physical signal
+  direction: output
+- name: vn
+  summary: Relative normal velocity, m/s physical signal
+  direction: output
+- name: vt
+  summary: Relative tangential velocity, m/s physical signal
+  direction: output
+- name: fn
+  summary: Normal force, N physical signal
+  direction: output
+- name: fnm
+  summary: Normal force magnitude, N physical signal
+  direction: output
+- name: tn
+  summary: Torque resulting from normal force, N\*m physical signal
+  direction: output
+- name: ffr
+  summary: Frictional force, N physical signal
+  direction: output
+- name: ffrm
+  summary: Frictional force magnitude, N physical signal
+  direction: output
+- name: tfr
+  summary: Torque resulting from frictional force, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total contact force, N physical signal
+  direction: output
+- name: tt
+  summary: Torque resulting from total contact force, N\*m physical signal
+  direction: output
+- name: Rb
+  summary: Base rotation, unitless physical signal
+  direction: output
+- name: pb
+  summary: Base translation, *m* physical signal
+  direction: output
+- name: Rf
+  summary: Follower rotation, unitless physical signal
+  direction: output
+- name: pf
+  summary: Follower translation, *m* physical signal
+  direction: output
+```
 
 ### Geometry
 
@@ -328,8 +391,45 @@ geometry.
 
 To enable this port, in the **Sensing > Contact Frame**
 section, select **Follower Translation**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Method to specify normal contact force Smooth Spring-Damper (default) | Provided by Input
+  group: Normal Force
+- name: Stiffness
+  summary: Resistance of contact spring to geometric penetration 1e6 N/m (default) | scalar
+  group: Normal Force
+- name: Damping
+  summary: Resistance of contact damper to motion while geometries are penetrating 1e3 N/(m/s) (default) | scalar
+  group: Normal Force
+- name: Transition Region Width
+  summary: Region over which spring-damper force raises to its full value 1e-4 m (default) | scalar
+  group: Normal Force
+- name: Method
+  summary: Method to specify frictional force Smooth Stick-Slip (default) | None | Provided by Input
+  group: Frictional Force
+- name: Coefficient of Static Friction
+  summary: Ratio of magnitude of frictional force to the magnitude of normal force when tangential velocity is close to zero
+    0.5 (default) | nonnegative scalar
+  group: Frictional Force
+- name: Coefficient of Dynamic Friction
+  summary: Ratio of magnitude of frictional force to magnitude of normal force when tangential velocity is large 0.3 (default)
+    | nonnegative scalar
+  group: Frictional Force
+- name: Critical Velocity
+  summary: Velocity that determines blending between static and dynamic coefficients of friction 1e-3 m/s (default) | scalar
+  group: Frictional Force
+- name: Direction
+  summary: Measurement direction Base on Follower (default) | Follower on Base
+  group: Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Contact (default) | Base | Follower
+  group: Sensing
+- name: Detect Contact Start and End
+  summary: Detect start and end of contacts as zero-crossing events off (default) | on
+  group: Zero-Crossings
+```
 
 ### Normal Force
 
@@ -478,7 +578,6 @@ This parameter affects only the vector outputs under the **Force/Torque** sectio
 Select to detect the start and end of each contact as zero-crossing events. The
 zero-crossing events occur when the separation distance changes from positive or zero
 to negative and vice versa.
-
 ## Libraries
 
 Simscape / Multibody / Forces and Torques

@@ -14,6 +14,9 @@ language: en
 # Reluctance Force Actuator
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -30,8 +33,10 @@ The block has the following ports:
 `C`
 :   Mechanical translational conserving port associated with the
     case.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Initial air gap**
 :   Thickness or length of air gap at the beginning of simulation.
@@ -56,7 +61,6 @@ The block has the following ports:
 **Contact damping**
 :   Damping that models the hard stop at the minimum air gap position.
     The default value is 500 N/(m/s).
-
 ## Libraries
 
 Not documented in R2025b.

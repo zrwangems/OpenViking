@@ -14,6 +14,21 @@ language: en
 # Label
 
 ## Ports
+```yaml
+ports:
+- name: BW
+  summary: Input binary image vector | matrix
+  direction: input
+  data_types: Boolean
+- name: Label
+  summary: Labeled objects vector | matrix
+  direction: output
+  data_types: uint8 | uint16 | uint32
+- name: Count
+  summary: Number of labeled objects scalar
+  direction: output
+  data_types: uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -55,8 +70,22 @@ To enable this port, set the **Output** parameter to either
 number of labels`.
 
 **Data Types:** `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Connectivity
+  summary: Type of pixel connectivity 8 (default) | 4
+  group: ''
+- name: Output
+  summary: Block output Label matrix and number of labels (default) | Label matrix | Number of labels
+  group: ''
+- name: Output data type
+  summary: Data type of output Automatic (default) | uint8 | uint16 | uint32
+  group: ''
+- name: If label exceeds data type size, mark remaining regions using
+  summary: Overflow mode of output labels maximum value of the output data type (default) | zero
+  group: ''
+```
 
 ### **Connectivity** — Type of pixel connectivity `8` (default) | `4`
 
@@ -111,7 +140,6 @@ labels the remaining objects with the value determined by one of these options:
 To enable this parameter, set the **Output data type** parameter
 to either `uint8` or
 `uint16`.
-
 ## Libraries
 
 Computer Vision Toolbox / Morphological Operations

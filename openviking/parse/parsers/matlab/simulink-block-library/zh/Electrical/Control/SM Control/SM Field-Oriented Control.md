@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # SM Field-Oriented Control
 
 ## 端口
+```yaml
+ports:
+- name: Reference
+  summary: 系统参考值标量
+  direction: input
+  data_types: single | double
+- name: iabcSens
+  summary: 测量的相电流向量
+  direction: input
+  data_types: single | double
+- name: ifSens
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: wSens
+  summary: 转子速度标量
+  direction: input
+  data_types: single | double
+- name: thSens
+  summary: 转子角度标量
+  direction: input
+  data_types: single | double
+- name: vdcSens
+  summary: 直流母线电压标量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 定子变换器门极脉冲向量
+  direction: output
+  data_types: single | double
+- name: Gr
+  summary: 励磁斩波器门极脉冲向量
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: 可视化信号总线
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -90,8 +129,154 @@ chinese_source: worker-translation
 - `DCexcit`
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Control mode
+  summary: 控制模式策略 Velocity control（默认）| Torque control
+  group: 通用
+- name: Nominal dc-link voltage (V)
+  summary: 额定直流电压 300 V（默认）| 正数
+  group: 通用
+- name: Maximum power (W)
+  summary: 最大功率 60000 W（默认）| 正数
+  group: 通用
+- name: Maximum torque (N\*m)
+  summary: 最大转矩 250 N*m（默认）| 正数
+  group: 通用
+- name: Maximum field current (A)
+  summary: 最大励磁电流 25 A（默认）| 正数
+  group: 通用
+- name: Inverter dc-link voltage threshold (V)
+  summary: 直流母线电压阈值 100 V（默认）| 正数
+  group: 通用
+- name: Number of rotor pole pairs
+  summary: 极对数 4（默认）| 正整数
+  group: 通用
+- name: Fundamental sample time (s)
+  summary: 模块采样时间 5e-6（默认）| 正数
+  group: 通用
+- name: Control Type
+  summary: 控制类型策略 PI control（默认）| P control | P-PI control
+  group: 外环
+- name: Controller proportional gain
+  summary: PI 控制器比例增益 1（默认）| 正数
+  group: 外环
+- name: Controller integral gain
+  summary: PI 控制器积分增益 1（默认）| 正数
+  group: 外环
+- name: P controller proportional gain
+  summary: P 控制器比例增益 1（默认）| 正数
+  group: 外环
+- name: Integral anti-windup gain
+  summary: 抗积分饱和增益 1（默认）| 正数
+  group: 外环
+- name: Current references
+  summary: 电流参考策略 Zero d-axis control（默认）| Lookup-table based
+  group: 外环
+- name: Mechanical speed vector, wMechanical (rpm)
+  summary: 转子速度查找向量 [0, 3000] rpm（默认）| 正单调递增向量
+  group: 外环
+- name: Torque reference vector, TqRef (N\*m)
+  summary: 转矩参考查找向量 [-100, 0, 100] N*m（默认）| 正单调递增向量
+  group: 外环
+- name: DC-link voltage vector, Vdc (V)
+  summary: 直流母线电压查找向量 [300, 350] V（默认）| 正单调递增向量
+  group: 外环
+- name: D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)
+  summary: 参考 d 轴电流值 zeros(2,3,2) A（默认）| 实数矩阵
+  group: 外环
+- name: Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)
+  summary: 参考 q 轴电流值 zeros(2,3,2) A（默认）| 实数矩阵
+  group: 外环
+- name: Field current reference matrix, if(wMechanical,TqRef,Vdc), (A)
+  summary: 参考励磁电流值 zeros(2,3,2) A（默认）| 实数矩阵
+  group: 外环
+- name: Torque constant
+  summary: 电机转矩常数 0.04 N*m/A（默认）| 正标量
+  group: 外环
+- name: D-axis current proportional gain
+  summary: D 轴比例增益 1（默认）| 正数
+  group: 内环
+- name: D-axis current integral gain
+  summary: D 轴积分增益 100（默认）| 正数
+  group: 内环
+- name: D-axis current anti-windup gain
+  summary: D 轴抗积分饱和增益 1（默认）| 正数
+  group: 内环
+- name: Q-axis current proportional gain
+  summary: Q 轴比例增益 1（默认）| 正数
+  group: 内环
+- name: Q-axis current integral gain
+  summary: Q 轴积分增益 100（默认）| 正数
+  group: 内环
+- name: Q-axis current anti-windup gain
+  summary: Q 轴抗积分饱和增益 1（默认）| 正数
+  group: 内环
+- name: Field current proportional gain
+  summary: 励磁绕组比例增益 10（默认）| 正数
+  group: 内环
+- name: Field current integral gain
+  summary: 励磁绕组积分增益 1000（默认）| 正数
+  group: 内环
+- name: Field current anti-windup gain
+  summary: 励磁绕组抗积分饱和增益 1（默认）| 正数
+  group: 内环
+- name: Axis prioritization
+  summary: 电压限制器的轴优先级 q-axis（默认）| d-axis | d-q equivalence
+  group: 内环
+- name: Enable zero cancellation
+  summary: 前馈零点对消 off（默认）| on
+  group: 内环
+- name: Enable pre-control voltage
+  summary: 预控制电压 on（默认）| off
+  group: 内环
+- name: Machine parameters
+  summary: 电机参数化 Constant parameters（默认）| Lookup table based parameters
+  group: 内环
+- name: D-axis inductance (H)
+  summary: 前馈 d 轴电感 0.00024（默认）| 正标量
+  group: 内环
+- name: Q-axis inductance (H)
+  summary: 前馈 q 轴电感 0.00029（默认）| 正标量
+  group: 内环
+- name: Mutual field armature inductance (H)
+  summary: 励磁绕组与电枢之间的互感 0.007（默认）
+  group: 内环
+- name: D-axis current vector, id (A)
+  summary: D 轴电流断点向量 [-200,0,200] A（默认）| 单调递增向量
+  group: 内环
+- name: Q-axis current vector, iq (A)
+  summary: Q 轴电流断点向量 [-200,0,200] A（默认）| 单调递增向量
+  group: 内环
+- name: Field current vector, if (A)
+  summary: 励磁绕组电流向量 [0,20] A（默认）| 单调递增向量
+  group: 内环
+- name: Ld matrix, Ld(id,iq) (H)
+  summary: D 轴电感查找数据 0.0002 * ones(3, 3) H（默认）| 正矩阵
+  group: 内环
+- name: Lq matrix, Lq(id,iq) (H)
+  summary: Q 轴电感查找数据 0.0002 * ones(3, 3) H（默认）| 正矩阵
+  group: 内环
+- name: Lmf matrix, Lmf(id,iq,if), (H)
+  summary: 励磁-电枢互感查找 0.007 * ones(2,2,2) H（默认）| 正矩阵
+  group: 内环
+- name: PWM method
+  summary: '脉宽调制方法 SVM: space vector modulation（默认）| SPWM: sinusoidal PWM'
+  group: PWM
+- name: Sampling mode
+  summary: 波形采样方法 Natural（默认）| Asymmetric | Symmetric
+  group: PWM
+- name: Switching frequency (Hz)
+  summary: 开关频率 1000 Hz（默认）| 正整数
+  group: PWM
+- name: Chopper type
+  summary: DC-DC 斩波器类型 First and fourth quadrant chopper（默认）| Four-quadrant chopper
+  group: PWM
+- name: Switching frequency excitation (Hz)
+  summary: 励磁系统开关频率 1000 Hz（默认）| 正整数
+  group: PWM
+```
 
 ### 通用
 
@@ -341,7 +526,6 @@ parameters` 时启用。
 ### **Switching frequency excitation (Hz)** — 励磁系统开关频率 `1000` `Hz`（默认）| 正整数
 
 指定励磁系统的 PWM 开关频率。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

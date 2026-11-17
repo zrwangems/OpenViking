@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Video Test Source
 
 ## 端口
+```yaml
+ports:
+- name: wrCtrlIn
+  summary: 输入控制总线 bus
+  direction: input
+  data_types: StreamVideoS2MBusObj
+- name: wrData
+  summary: 输出视频流数据向量
+  direction: output
+  data_types: uint8
+- name: wrCtrlOut
+  summary: 输出控制总线 bus
+  direction: output
+  data_types: pixelcontrol
+```
 
 ### 输入
 
@@ -42,8 +57,28 @@ chinese_source: worker-translation
 - `valid` — 指示 **wrData** 输出端口上的输出像素数据是否有效
 
 **数据类型：** `pixelcontrol`
-
 ## 参数
+```yaml
+parameters:
+- name: Frame size
+  summary: 帧尺寸 160x120p（默认）| ...
+  group: ''
+- name: Video source
+  summary: 选择视频源类型 Video file（默认）| Color bar | Ramp
+  group: ''
+- name: Input file name
+  summary: 选择输入视频文件 handshake_left.avi（默认）| 任何支持的视频文件格式
+  group: ''
+- name: Color space
+  summary: 色彩空间 YCbCr422（默认）| RGB | YOnly
+  group: ''
+- name: Reorder output frame
+  summary: 输出帧重排序 off（默认）| on
+  group: ''
+- name: Frame sample time
+  summary: 帧采样时间 1/60（默认）| 正标量
+  group: ''
+```
 
 ### **Frame size** — 帧尺寸 `160x120p`（默认）| ...
 
@@ -90,7 +125,6 @@ chinese_source: worker-translation
 ### **Frame sample time** — 帧采样时间 `1/60`（默认）| 正标量
 
 将帧采样时间指定为正标量。默认值 `1/60` 中的分母表示每秒帧数。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Testbench

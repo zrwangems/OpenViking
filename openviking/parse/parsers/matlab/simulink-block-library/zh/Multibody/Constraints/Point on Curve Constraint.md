@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Point on Curve Constraint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础坐标系 frame
+  direction: output
+- name: F
+  summary: 从动坐标系 frame
+  direction: output
+- name: f
+  summary: 约束力向量
+  direction: output
+- name: t
+  summary: 约束力矩向量
+  direction: output
+```
 
 ### 几何
 
@@ -43,8 +58,22 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Constraint Force/Torque Sensing** 下选择 **Torque Vector**。
-
 ## 参数
+```yaml
+parameters:
+- name: Direction
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: ''
+- name: Resolution Frame
+  summary: 解析测量值的坐标系 Base（默认）| Follower
+  group: ''
+- name: Force Vector
+  summary: 是否检测约束力 off（默认）| on
+  group: ''
+- name: Torque Vector
+  summary: 是否检测约束力矩 off（默认）| on
+  group: ''
+```
 
 ### **Direction** — 测量方向 `Follower on Base`（默认）| `Base on Follower`
 
@@ -61,7 +90,6 @@ chinese_source: worker-translation
 ### **Torque Vector** — 是否检测约束力矩 `off`（默认）| `on`
 
 选择此参数以显示端口 **t**，该端口输出 **B** 和 **F** 坐标系之间的约束力矩向量。
-
 ## 所属库
 
 Simscape / Multibody / Constraints

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # UDP Send
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要发送的数据值 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### 输入
 
@@ -23,8 +30,60 @@ chinese_source: worker-translation
 从模块发送到远程主机的数据值，指定为向量、矩阵或数组。在发送数据之前，请设置此模块的参数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## 参数
+```yaml
+parameters:
+- name: Remote address
+  summary: 远程主机名或地址 远程主机名或 IP 地址
+  group: ''
+  block_parameter: Host
+  type: 字符向量、字符串
+- name: Remote port
+  summary: 远程主机端口 9090（默认）| 远程主机端口
+  group: ''
+  block_parameter: Port
+  type: 字符向量、字符串
+  values: 1 到 65,535
+- name: Local address
+  summary: 本地主机名或 IP 地址 0.0.0.0（默认）| 本地主机名或 IP 地址
+  group: ''
+  block_parameter: LocalAddress
+  type: 字符向量、字符串
+- name: Local port
+  summary: 用于绑定的本地主机端口 -1（默认）| 本地主机端口
+  group: ''
+  block_parameter: LocalPort
+  type: 字符向量、字符串
+- name: Enable local port sharing
+  summary: 允许其他 UDP 套接字绑定到同一本地端口 off（默认）| on
+  group: ''
+  block_parameter: EnablePortSharing
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+- name: Verify address and port connectivity
+  summary: 远程机器连接验证按钮
+  group: ''
+- name: UDP packet size
+  summary: 数据报包中写入的最大字节数 512（默认）| 数值
+  group: ''
+  block_parameter: OutputDatagramPacketSize
+  type: 字符向量、字符串
+  values: 1 到 65,535
+- name: Byte order
+  summary: 字节的顺序 big-endian（默认）| little-endian
+  group: ''
+  block_parameter: ByteOrder
+  type: 字符向量、字符串
+  values: '''little-endian'' | ''big-endian'''
+  default: '''big-endian'''
+- name: 启用阻塞模式
+  summary: 仿真在发送数据时等待 on（默认）| off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Remote address** — 远程主机名或地址 远程主机名或 IP 地址
 
@@ -141,7 +200,6 @@ UDP 端口可由其他应用程序共享，以允许多个应用程序监听该�
 | **类型：** 字符向量、字符串 |
 | **值：** `'on'` | `'off'` |
 | **默认值：** `'on'` |
-
 ## 所属库
 
 Instrument Control Toolbox

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Pressure-Reducing 3-Way Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: P
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: T
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: Ps
+  summary: 受控压差物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -38,8 +53,77 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Set pressure control** 设置为 `Controlled`。
-
 ## 参数
+```yaml
+parameters:
+- name: Set pressure control
+  summary: 阀操作方式 Constant（默认）| Controlled
+  group: 参数
+- name: Opening parameterization
+  summary: 开口参数化类型 Linear（默认）| Tabulated
+  group: 参数
+- name: Set pressure differential for reducing valve
+  summary: 端口 P 处阀关闭的设定压力 0.6 MPa（默认）| 标量
+  group: 参数
+- name: Pressure regulation range
+  summary: 阀工作压力范围 3e-2 MPa（默认）| 标量
+  group: 参数
+- name: Pressure transition range
+  summary: 端口 P 和 T 均关闭时阀的压力范围 2e-2 MPa（默认）| 标量
+  group: 参数
+- name: Maximum opening area
+  summary: 端口最大开口面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Leakage area
+  summary: 全关位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: 参数
+- name: Pressure differential vector for reducing valve
+  summary: '减压阀表格化参数化的压差值 0.6 : 0.02 : 0.7 MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Opening area vector reducing valve
+  summary: 减压阀表格化参数化的阀开口面积向量 [1e-05, 8e-06, 6e-06, 4e-06, 2e-06, 1e-10]m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Pressure differential vector for relief valve
+  summary: '泄压阀表格化参数化的压差值 0.68 : 0.02 : 0.78 MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Opening area vector for relief valve
+  summary: 泄压阀表格化参数化的阀开口面积 [1e-10, 2e-06, 4e-06, 6e-06, 8e-06, 1e-05]m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Cross-sectional area at ports A, P & T.
+  summary: 守恒端口处的孔口面积 inf m^2（默认）| 正标量
+  group: 参数
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 参数
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: 参数
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力升高 off（默认）| on
+  group: 参数
+- name: Opening dynamics
+  summary: 是否引入由孔口开启引起的流动滞后 off（默认）| on
+  group: 参数
+- name: Reducing valve initial opening area
+  summary: 仿真开始时端口 P 处的开口面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Relief valve initial opening area
+  summary: 仿真开始时端口 T 处的开口面积 1e-10 m^2（默认）| 正标量
+  group: 参数
+- name: Opening time constant
+  summary: 阀开启时间常数 0.1 s（默认）| 正标量
+  group: 参数
+- name: Pressure-Reducing 3-Way Valve Area fault
+  summary: 对阀面积故障建模的选项 Add fault
+  group: 故障
+- name: Valve areas when faulted
+  summary: 故障时的阀特性 Reducing valve closed and relief valve open（默认）| Reducing valve open and relief valve closed | Maintain
+    last value
+  group: 故障
+```
 
 ### 参数
 
@@ -200,7 +284,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请点击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Pressure Control Valves

@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Pressure-Compensated Pump (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: X
+  summary: 压力参考 *P*x，MPa，等温液体
+  direction: conserving
+- name: Y
+  summary: 压力参考 *P*y，MPa，等温液体
+  direction: conserving
+- name: R
+  summary: 机械端口，机械旋转
+  direction: conserving
+- name: C
+  summary: 机械端口，机械旋转
+  direction: conserving
+- name: EV
+  summary: 容积效率，物理信号
+  direction: conserving
+- name: EM
+  summary: 机械效率，物理信号
+  direction: conserving
+- name: LV
+  summary: 泄漏流量，m^3/s，物理信号
+  direction: conserving
+- name: LM
+  summary: 摩擦力矩，N*m，物理信号
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -94,8 +127,106 @@ volumetric and mechanical losses`。
 要启用此端口，请将 **Leakage and friction
 parameterization** 设置为 `Input signal -
 volumetric and mechanical losses`。
-
 ## 参数
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: 泄漏流量和摩擦力矩的计算方法 Analytical（默认）| Tabulated data - volumetric and mechanical efficiencies | Tabulated data - volumetric
+    and mechanical losses | Input signal - volumetric and mechanical efficiencies | Input signal - volumetric and mechanical
+    losses
+  group: 泵
+- name: Nominal displacement
+  summary: 固定容积流体排量 30 cm^3/rev（默认）| 标量
+  group: 泵
+- name: Nominal shaft angular velocity
+  summary: 轴角速度 1800 rpm（默认）| 标量
+  group: 泵
+- name: Nominal pressure gain
+  summary: 流体入口和出口之间的压力增益 10 MPa（默认）| 标量
+  group: 泵
+- name: Volumetric efficiency at nominal conditions
+  summary: 实际流量与理想流量之比 0.92（默认）| (0,1] 范围内的正标量
+  group: 泵
+- name: No-load torque
+  summary: 基线扭矩 0 N*m（默认）| 标量
+  group: 泵
+- name: Mechanical efficiency at nominal conditions
+  summary: 实际机械功率与理想机械功率之比 0.88（默认）| 正标量
+  group: 泵
+- name: Pressure gain vector, dp
+  summary: 表格数据参数化的压力数据向量 [.1, 1, 2] MPa（默认）| 1×*n* 向量
+  group: 泵
+- name: Shaft angular velocity vector, w
+  summary: 表格数据参数化的角速度数据向量 [250, 500, 1000, 2000, 3000, 4000] rpm（默认）| 1×*n* 向量
+  group: 泵
+- name: Displacement vector, D
+  summary: 表格数据参数化的排量体积向量 [-30, -19, 19, 30] cm^3/s（默认）| 1×*n* 向量
+  group: 泵
+- name: Volumetric efficiency table, e_v(dp,w,D)
+  summary: 表格数据参数化的容积效率 repmat([.816, .908, .954, .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568, .78, .892,
+    .893, .91], 1, 1, 4)（默认）| *M*×*N*×*P* 矩阵
+  group: 泵
+- name: Mechanical efficiency table, e_m(dp,w,D)
+  summary: 表格数据参数化的机械效率 repmat([.996, .996, .996, .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981, .982, .982,
+    .983, .984], 1, 1, 4)（默认）| *M*×*N*×*P* 矩阵
+  group: 泵
+- name: Volumetric loss table, q_loss(dp,w,D)
+  summary: 表格数据参数化的容积损失 repmat([.023, .023, .023, .023, .0285, .032; .0844, .0842, .0845, .084, .1125, .108; .1079, .108,
+    .11, .108, .1605, .18] * 1e-3, 1, 1, 4)m^3/s（默认）| 数值数组
+  group: 泵
+- name: Mechanical loss table, torque_loss(dp,w,D)
+  summary: 表格数据参数化的机械损失 repmat([.002, .002, .002, .002, .002, .002; .0607, .0556, .0556, .0556, .0556, .0505; .1937, .1937,
+    .1833, .1833, .1729, .1626], 1, 1, 4) N*m（默认）| 数值数组
+  group: 泵
+- name: Minimum volumetric efficiency
+  summary: 容积效率的最小值 1e-3（默认）| (0,1] 范围内的正标量
+  group: 泵
+- name: Maximum volumetric efficiency
+  summary: 容积效率的最大值 1（默认）| (0,1] 范围内的正标量
+  group: 泵
+- name: Minimum mechanical efficiency
+  summary: 机械效率的最小值 1e-3（默认）| (0,1] 范围内的正标量
+  group: 泵
+- name: Maximum mechanical efficiency
+  summary: 机械效率的最大值 1（默认）| (0,1] 范围内的正标量
+  group: 泵
+- name: Pressure gain threshold for pump-motor transition
+  summary: 模式转换的压力阈值 1e-3 MPa（默认）| 正标量
+  group: 泵
+- name: Angular velocity threshold for pump-motor transition
+  summary: 模式转换的角速度阈值 100 rpm（默认）| 正标量
+  group: 泵
+- name: Check if operating beyond the range of supplied tabulated data
+  summary: 是否在超出所提供数据范围时发出通知 None（默认）| Warning | Error
+  group: 泵
+- name: 检查是否超出泵模式运行
+  summary: 是否在模块超出泵模式功能范围运行时发出通知 None（默认）| Warning | Error
+  group: 泵
+- name: 检查压力是否低于泵最低压力
+  summary: 是否在流体出口压力过低时发出通知 None（默认）| Warning | Error
+  group: 泵
+- name: 泵最低压力
+  summary: 泵出口可接受压力的下限阈值 0.101325 MPa（默认）| 正标量
+  group: 泵
+- name: 最大排量
+  summary: 泵排量的上限 30 cm^3/rev（默认）| 标量
+  group: 压力补偿
+- name: 最小排量
+  summary: 泵排量的下限 0.1 cm^3/rev（默认）| 标量
+  group: 压力补偿
+- name: 设定压差
+  summary: 可变排量功能的阈值 10 MPa（默认）| 正标量
+  group: 压力补偿
+- name: 压力调节范围
+  summary: 可变排量工作范围 0.6 MPa（默认）| 正标量
+  group: 压力补偿
+- name: 排量动态特性
+  summary: 是否考虑流量对排量变化的响应 off（默认）| on
+  group: 压力补偿
+- name: 时间常数
+  summary: 流量响应时间常数 0.1 s（默认）| 正标量
+  group: 压力补偿
+```
 
 ### 泵
 
@@ -498,7 +629,6 @@ parameterization** 设置为：
 #### 依赖关系
 
 要启用此参数，请选择**排量动态特性**。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors

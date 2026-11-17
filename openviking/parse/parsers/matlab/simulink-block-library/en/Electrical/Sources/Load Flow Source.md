@@ -14,6 +14,15 @@ language: en
 # Load Flow Source
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase voltage electrical
+  direction: conserving
+- name: n
+  summary: Wye center electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,61 @@ voltage phases *a*, *b*, and
 ### **n** — Wye center electrical
 
 Electrical conserving port associated with the center of the wye.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Voltage source model Swing bus (default) | Voltage source with series impedance | PV bus | PQ bus
+  group: Main
+- name: Source voltage (pu)
+  summary: Source voltage 1 (default) | scalar
+  group: Main
+- name: Terminal voltage (pu)
+  summary: Terminal voltage 1 (default) | scalar
+  group: Main
+- name: Active power generated
+  summary: Active power generated 0 W (default) | scalar
+  group: Main
+- name: Active power consumed
+  summary: Active power consumed 0 W (default)
+  group: Main
+- name: Reactive power consumed
+  summary: Reactive power consumed 0 V*A (default)
+  group: Main
+- name: Rated voltage (phase-to-phase RMS)
+  summary: Rated phase-to-phase RMS voltage sqrt(3) * 100 / sqrt(2) V (default) | scalar
+  group: Main
+- name: Rated frequency
+  summary: Rated frequency 60 Hz (default) | scalar
+  group: Main
+- name: Source phase
+  summary: Source phase 0 deg (default) | scalar
+  group: Main
+- name: Source impedance
+  summary: Source impedance method None (default) | X/R Ratio | Series R | Series L | Series RL
+  group: Impedance
+- name: Short-circuit power level
+  summary: Short-circuit power level 1e6 V*A (default) | scalar
+  group: Impedance
+- name: Source X/R ratio
+  summary: Reactance-to-resistance ratio 15 (default) | scalar
+  group: Impedance
+- name: Source impedance parasitic parallel conductance
+  summary: Source impedance parasitic parallel conductance 0 1/Ohm (default) | scalar
+  group: Impedance
+- name: Source resistance
+  summary: Source resistance 0.01 Ohm (default) | scalar
+  group: Impedance
+- name: Source inductance
+  summary: Source inductance 3.97e-4 H (default) | scalar
+  group: Impedance
+- name: Minimum voltage (pu)
+  summary: Minimum voltage 0.95 (default) | scalar
+  group: Expected Ranges
+- name: Internal source phase search range
+  summary: Phase search range [-inf, inf] deg (default) | vector
+  group: Expected Ranges
+```
 
 ### Main
 
@@ -211,7 +273,6 @@ solution.
 This parameter is visible only if, in the **Main** setting, you set
 the **Source type** parameter to `PV
 bus` or `PQ bus`.
-
 ## Libraries
 
 Simscape / Electrical / Sources

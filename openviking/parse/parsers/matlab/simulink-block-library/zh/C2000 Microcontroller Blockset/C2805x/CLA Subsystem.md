@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CLA Subsystem
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 子系统的信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: 子系统的信号输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -34,8 +45,124 @@ chinese_source: worker-translation
 使用 Outport 模块将信号发送到局部环境。
 
 **数据类型：** `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Show port labels
+  summary: 端口标签的显示选项 FromPortIcon（默认）| FromPortBlockName | SignalName
+  group: 主要
+  block_parameter: ShowPortLabels
+  type: 字符向量
+  values: '''FromPortIcon'' | ''FromPortBlockName'' | ''SignalName'''
+  default: '''FromPortIcon'''
+- name: Read/Write permissions
+  summary: 对子系统内容的访问级别 ReadWrite（默认）| ReadOnly | NoReadOrWrite
+  group: 主要
+  block_parameter: Permissions
+  type: 字符向量
+  values: '''ReadWrite'' | ''ReadOnly'' | ''NoReadOrWrite'''
+  default: '''ReadWrite'''
+- name: Name of error callback function
+  summary: 发生错误时要调用的函数名称 ''（默认）| 函数名称
+  group: 主要
+  block_parameter: ErrorFcn
+  type: 字符向量
+  values: ''''' | ''<function name>'''
+  default: ''''''
+- name: Permit hierarchical resolution
+  summary: 工作区变量名称的解析 All（默认）| ExplicitOnly | None
+  group: 主要
+  block_parameter: PermitHierarchicalResolution
+  type: 字符向量
+  values: '''All'' | ''ExplicitOnly'' | ''None'''
+  default: '''All'''
+- name: Function packaging
+  summary: 代码格式 Nonreusable function（默认）| Inline
+  group: 代码生成
+  block_parameter: RTWSystemCode
+  type: 字符向量
+  values: '''Inline'' | ''Nonreusable function'' |'
+  default: '''Nonreusable function'''
+- name: Function name options
+  summary: 如何命名生成的函数 Auto（默认）| Use subsystem name | User specified
+  group: 代码生成
+  block_parameter: RTWFcnNameOpts
+  type: 字符向量
+  values: '''Auto'' | ''Use subsystem name'' | ''User specified'''
+  default: '''Auto'''
+- name: Function name
+  summary: 子系统代码的函数名称 ''（默认）| 函数名称
+  group: 代码生成
+  block_parameter: RTWFcnName
+  type: 字符向量
+  values: ''''' | ''<function name>'''
+  default: ''''''
+- name: File name options
+  summary: 如何命名生成的文件 User specified（默认）
+  group: 代码生成
+  block_parameter: RTWFileNameOpts
+  type: 字符向量
+  values: '''User specified'''
+  default: '''User specified'''
+- name: File name (no extension)
+  summary: 生成文件的名称 sample_cla（默认）| 文件名
+  group: 代码生成
+  block_parameter: RTWFileName
+  type: 字符向量
+  values: ''''' | ''<file name>'''
+  default: ''''''
+- name: Function interface
+  summary: 选择是否对生成的函数使用参数 void_void（默认）
+  group: 代码生成
+  block_parameter: FunctionInterfaceSpec
+  type: 字符向量
+  values: '''void_void'''
+  default: '''void_void'''
+- name: Function with separate data
+  summary: 控制子系统的代码生成 on（默认）| off
+  group: 代码生成
+  block_parameter: FunctionWithSeparateData
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Memory section for initialize/terminate functions
+  summary: 选择如何应用内存段 C28xFunction（默认）
+  group: 代码生成
+  block_parameter: RTWMemSecFuncInitTerm
+  type: 字符向量
+  values: C28xFunction
+  default: C28xFunction
+- name: Memory section for execution functions
+  summary: 选择如何应用内存段 ClaFunction（默认）
+  group: 代码生成
+  block_parameter: RTWMemSecFuncExecute
+  type: 字符向量
+  values: ClaFunction
+  default: ClaFunction
+- name: Memory section for constants
+  summary: 选择如何应用内存段 ClaDataRAM（默认）
+  group: 代码生成
+  block_parameter: RTWMemSecDataConstants
+  type: 字符向量
+  values: ClaDataRAM
+  default: ClaDataRAM
+- name: Memory section for internal data
+  summary: 选择如何应用内存段 ClaDataRAM（默认）
+  group: 代码生成
+  block_parameter: RTWMemSecDataInternal
+  type: 字符向量
+  values: ClaDataRAM
+  default: ClaDataRAM
+- name: 参数的存储器段
+  summary: 选择如何应用存储器段 ClaDataRAM（默认）
+  group: 代码生成
+  block_parameter: RTWMemSecDataParameters
+  type: 字符向量
+  values: ClaDataRAM
+- name: 子系统文件名
+  summary: 被引用子系统的文件名 字符串 | 字符向量
+  group: 子系统引用
+```
 
 代码生成选项卡上的参数需要 Simulink® Coder™ 或 Embedded Coder® 许可证。
 
@@ -440,7 +567,6 @@ void subsystem()
 要访问此参数，请点击 **Convert** 按钮。
 
 有关如何将子系统转换为被引用子系统的详细信息，请参阅 Convert Subsystem to a Referenced Subsystem。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

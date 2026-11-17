@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Busbar (DC)
 
 ## 端口
+```yaml
+ports:
+- name: Vt
+  summary: 电压，V 物理信号
+  direction: output
+- name: P
+  summary: 功率，W 物理信号
+  direction: output
+- name: 1+
+  summary: 正极连接 1 电气
+  direction: output
+- name: 2+
+  summary: 正极连接 2 电气
+  direction: output
+- name: 3+
+  summary: 正极连接 3 电气
+  direction: output
+- name: 4+
+  summary: 正极连接 4 电气
+  direction: output
+- name: 1-
+  summary: 负极连接 1 电气
+  direction: output
+- name: 2-
+  summary: 负极连接 2 电气
+  direction: output
+- name: 3-
+  summary: 负极连接 3 电气
+  direction: output
+- name: 4-
+  summary: 负极连接 4 电气
+  direction: output
+```
 
 ### 输出
 
@@ -91,8 +124,25 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在**参数**设置中将**连接数**参数设置为 `4`。
-
 ## 参数
+```yaml
+parameters:
+- name: 连接数
+  summary: 端口连接数 2（默认）| 1 | 3 | 4
+  group: ''
+- name: 额定直流电压
+  summary: 母线额定直流电压 1e3 V（默认）| 正标量
+  group: ''
+- name: 测量类型
+  summary: 测量类型 Instantaneous（默认）| Average over a specified period
+  group: ''
+- name: 平均周期
+  summary: 测量平均周期 1e-2 s（默认）| 正标量
+  group: ''
+- name: 测量端口
+  summary: 测量端口暴露 No（默认）| Yes
+  group: ''
+```
 
 ### **连接数** — 端口连接数 `2`（默认）| `1` | `3` | `4`
 
@@ -117,7 +167,6 @@ chinese_source: worker-translation
 ### **测量端口** — 测量端口暴露 `No`（默认）| `Yes`
 
 是否暴露 **Vt** 和 **P** 物理信号输出测量端口。
-
 ## 所属库
 
 Simscape / Electrical / Connectors & References

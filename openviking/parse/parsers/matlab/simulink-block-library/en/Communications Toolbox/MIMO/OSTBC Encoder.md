@@ -14,6 +14,17 @@ language: en
 # OSTBC Encoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input data column vector | matrix
+  direction: input
+  data_types: single | double | fixed point
+- name: Out
+  summary: Output data matrix | 3-D array
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -40,8 +51,19 @@ the block handles integer overflows due to complex conjugation.
 This port is unnamed on the block icon.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of transmit antennas
+  summary: Number of transmit antennas 2 (default) | 3 | 4
+  group: ''
+- name: Rate
+  summary: Symbol rate 3/4 (default) | 1/2
+  group: ''
+- name: Saturate on integer overflow
+  summary: Option to saturate on integer overflow off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -83,7 +105,6 @@ into the range of the data type and scaling that stores the result.
 For more information, see Precision and Range.
 
 **Data Types:** `Boolean`
-
 ## Libraries
 
 Communications Toolbox / MIMO

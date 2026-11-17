@@ -14,6 +14,25 @@ language: en
 # Variable FIR Decimation
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double
+- name: M
+  summary: Decimation factor input port positive integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: coeffs
+  summary: Prototype filter coefficients vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Decimated output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -138,8 +157,37 @@ and the complexity of the filter coefficients. See this table for more details.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Specification
+  summary: Specify mode to control decimation factor Decimation factor (default) | Output frame length
+  group: ''
+- name: Maximum decimation factor
+  summary: Maximum decimation factor 24 (default) | positive integer
+  group: ''
+- name: Specify decimation factor from input port
+  summary: Specify decimation factor from input port on (default) | off
+  group: ''
+- name: Decimation factor
+  summary: Decimation factor 24 (default) | positive integer
+  group: ''
+- name: Output frame length
+  summary: Output frame length 48 (default) | positive integer
+  group: ''
+- name: Numerator source
+  summary: FIR filter coefficient source Auto (default) | Dialog parameter | Input port
+  group: ''
+- name: Prototype filter numerator coefficients
+  summary: Prototype lowpass FIR filter coefficients designMultirateFIR(1,24) (default) | vector
+  group: ''
+- name: View Filter Response
+  summary: View Filter Response button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Specification** — Specify mode to control decimation factor `Decimation factor` (default) | `Output frame length`
 
@@ -338,7 +386,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

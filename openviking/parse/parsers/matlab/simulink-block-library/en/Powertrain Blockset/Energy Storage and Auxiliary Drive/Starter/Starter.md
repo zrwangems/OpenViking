@@ -14,6 +14,24 @@ language: en
 # Starter
 
 ## Ports
+```yaml
+ports:
+- name: MtrSpd
+  summary: Angular speed scalar
+  direction: input
+- name: StartVolt
+  summary: Armature and field voltage scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: LdCurr
+  summary: Starter motor load current scalar
+  direction: output
+- name: MtrTrq
+  summary: Starter motor shaft torque scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -53,8 +71,86 @@ Starter motor load current, in A.
 ### **MtrTrq** — Starter motor shaft torque `scalar`
 
 Starter motor shaft torque, in N·m.
-
 ## Parameters
+```yaml
+parameters:
+- name: Motor Type
+  summary: Select motor type Separately Excited DC Motor (default) | Permanent Magnet Excited DC Motor | Series Connection
+    DC Motor
+  group: ''
+  block_parameter: machine_type
+  values: Separately Excited DC Motor (default) | Permanent Magnet Excited DC Motor | Series Connection DC Motor
+- name: Armature winding resistance, Ra
+  summary: Resistance 1 (default) | scalar
+  group: ''
+  block_parameter: Ra
+  values: 1 (default) | scalar
+- name: Armature winding inductance, La
+  summary: Inductance .1 (default) | scalar
+  group: ''
+  block_parameter: La
+  values: .1 (default) | scalar
+- name: Field winding resistance, Rf
+  summary: Resistance .3 (default) | scalar
+  group: ''
+  block_parameter: Rf
+  values: .3 (default) | scalar
+- name: Field winding inductance, Lf
+  summary: Inductance .2 (default) | scalar
+  group: ''
+  block_parameter: Lf
+  values: .2 (default) | scalar
+- name: Mutual inductance, Laf
+  summary: Inductance .3 (default) | scalar
+  group: ''
+  block_parameter: Laf
+  values: .3 (default) | scalar
+- name: Initial armature current and field current, Iaf
+  summary: Current [0 0] (default) | vector
+  group: ''
+  block_parameter: Iaf
+  values: '[0 0] (default) | vector'
+- name: Armature winding resistance, Rapm
+  summary: Resistance .5 (default) | scalar
+  group: ''
+  block_parameter: Rapm
+  values: .5 (default) | scalar
+- name: Armature winding inductance, Lapm
+  summary: Inductance .1 (default) | scalar
+  group: ''
+  block_parameter: Lapm
+  values: .1 (default) | scalar
+- name: Torque constant, Kt
+  summary: Motor torque constant .1 (default) | scalar
+  group: ''
+  block_parameter: Kt
+  values: .1 (default) | scalar
+- name: Initial armature current, Ia
+  summary: Current .1 (default) | scalar
+  group: ''
+  block_parameter: Ia
+  values: .1 (default) | scalar
+- name: Total resistance, Rser
+  summary: Resistance .1 (default) | scalar
+  group: ''
+  block_parameter: Rser
+  values: .1 (default) | scalar
+- name: Total inductance, Lser
+  summary: Inductance .1 (default) | scalar
+  group: ''
+  block_parameter: Lser
+  values: .1 (default) | scalar
+- name: Initial current, Iafser
+  summary: Current 0 (default) | scalar
+  group: ''
+  block_parameter: Iafser
+  values: 0 (default) | scalar
+- name: Mutual inductance, Lafser
+  summary: Inductance .3 (default) | scalar
+  group: ''
+  block_parameter: Lafser
+  values: .3 (default) | scalar
+```
 
 #### Configuration
 
@@ -438,7 +534,6 @@ programmatically, use the `get_param` function.
 To enable this parameter, select `Series Excited DC
 Motor` for the **Motor Type**
 parameter.
-
 ## Libraries
 
 Powertrain Blockset / Energy Storage and Auxiliary Drive / Starter

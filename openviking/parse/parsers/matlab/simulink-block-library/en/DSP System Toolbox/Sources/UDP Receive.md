@@ -14,6 +14,17 @@ language: en
 # UDP Receive
 
 ## Ports
+```yaml
+ports:
+- name: Message
+  summary: Data received vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Length
+  summary: Length of data packet scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Output
 
@@ -44,8 +55,34 @@ This port appears only when you clear the **Output variable-size
 signal** parameter.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Local IP port
+  summary: Number of IP port 25000 (default) | scalar in the range [1, 65535]
+  group: ''
+- name: Remote IP address ('0.0.0.0' to accept all)
+  summary: IP address from which to accept packets '0.0.0.0' (default) | IP address
+  group: ''
+- name: Receive buffer size (bytes)
+  summary: Size of buffer that receives UDP packets 8192 (default) | scalar in the range [1, 67108864]
+  group: ''
+- name: Maximum length for Message
+  summary: Maximum length of output data 255 (default) | scalar
+  group: ''
+- name: Data type for Message
+  summary: Data type of message uint8 (default) | single | double | int8 | int16 | int32 | uint16 | uint32 | boolean
+  group: ''
+- name: Message is complex
+  summary: Message data complexity off (default) | on
+  group: ''
+- name: Output variable-size signal
+  summary: Message output that varies in length on (default) | off
+  group: ''
+- name: Sample time (seconds)
+  summary: Frequency of calls to block 1 (default) | scalar
+  group: ''
+```
 
 ### **Local IP port** — Number of IP port 25000 (default) | scalar in the range [1, 65535]
 
@@ -114,7 +151,6 @@ by **Maximum length for Message**.
 Specify the frequency at which the scheduler calls the UDP Receive block, in
 seconds. Enter a value greater than zero. In real-time operation, setting this parameter
 to a smaller value reduces the likelihood of dropped UDP messages.
-
 ## Libraries
 
 DSP System Toolbox / Sources

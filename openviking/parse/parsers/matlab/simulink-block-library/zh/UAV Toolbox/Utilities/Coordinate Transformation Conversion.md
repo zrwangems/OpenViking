@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Coordinate Transformation Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Input transformation
+  summary: 坐标变换 列向量 | 3×3 矩阵 | 4×4 矩阵
+  direction: input
+- name: TrVec
+  summary: 平移向量 三元素列向量
+  direction: input
+- name: Output transformation
+  summary: 坐标变换 列向量 | 3×3 矩阵 | 4×4 矩阵
+  direction: input
+- name: TrVec
+  summary: 平移向量 三元素列向量
+  direction: input
+```
 
 ### 输入
 
@@ -67,8 +82,31 @@ chinese_source: worker-translation
 #### 依赖关系
 
 您必须为输入 **Representation** 参数选择 `Homogeneous Transformation`，才能获得显示附加 **TrVec** 输出端的选项。通过点击 **Show TrVec output port** 启用该端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Representation
+  summary: 输入表示形式 Axis-Angle | Euler Angles | Homogeneous Transformation | Quaternion | Rotation Matrix | Translation Vector
+  group: ''
+- name: Axis rotation sequence
+  summary: 欧拉角轴旋转顺序 ZYX（默认）| ZYZ | XYZ
+  group: ''
+- name: Show TrVec input port
+  summary: 切换 TrVec 端口 关闭（默认）| 开启
+  group: ''
+- name: Representation
+  summary: 输出表示 Axis-Angle | Euler Angles | Homogeneous Transformation | Quaternion | Rotation Matrix | Translation Vector
+  group: ''
+- name: Axis rotation sequence
+  summary: 欧拉角轴旋转顺序 ZYX（默认）| ZYZ | XYZ
+  group: ''
+- name: Show TrVec output port
+  summary: 切换 TrVec 端口 关闭（默认）| 开启
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 #### 输入
 
@@ -150,7 +188,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **Tunable:** No
-
 ## 所属库
 
 Robotics System Toolbox / Utilities Navigation Toolbox / Utilities ROS Toolbox / Utilities UAV Toolbox / Utilities

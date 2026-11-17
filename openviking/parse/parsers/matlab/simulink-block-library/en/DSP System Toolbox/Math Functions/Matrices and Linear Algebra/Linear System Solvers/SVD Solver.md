@@ -14,6 +14,25 @@ language: en
 # SVD Solver
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input *A* matrix *M*-by-*N* matrix
+  direction: input
+  data_types: single | double
+- name: B
+  summary: '*B* matrix *M*-by-*L* matrix | *M*-by-1 vector'
+  direction: input
+  data_types: single | double
+- name: X
+  summary: Solution to system of equations *N*-by-*L* matrix
+  direction: output
+  data_types: single | double
+- name: E
+  summary: Show error status report logical scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -84,8 +103,13 @@ scalar value of `1` if the singular value decomposition
 calculation does not converge.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show error status port (E)
+  summary: Select to report failure to converge off (default) | on
+  group: ''
+```
 
 ### **Show error status port (E)** — Select to report failure to converge `off` (default) | `on`
 
@@ -100,7 +124,6 @@ converge as one of the following:
 If the singular value decomposition calculation fails to converge, the output at port
 **X** is an undefined matrix of the expected
 size.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

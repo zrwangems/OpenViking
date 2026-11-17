@@ -14,6 +14,15 @@ language: en
 # Smoothing (continuous->discrete)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Signal with high-frequency activity real scalar
+  direction: input
+- name: y
+  summary: Smoothed signal for the fixed-step network real scalar
+  direction: output
+```
 
 ### Input
 
@@ -25,8 +34,16 @@ Connect this port to the variable-step network, Network 1, to capture its output
 ### **y** — Smoothed signal for the fixed-step network real scalar
 
 Connect this port to the input of the fixed-step network, Network 2.
-
 ## Parameters
+```yaml
+parameters:
+- name: Smoothing time constant (s)
+  summary: Specify time constant for the first-order filter 0.001 (default) | positive scalar
+  group: ''
+- name: Initial output
+  summary: Specify initial output value 0 (default) | scalar
+  group: ''
+```
 
 ### **Smoothing time constant (s)** — Specify time constant for the first-order filter `0.001` (default) | positive scalar
 
@@ -37,7 +54,6 @@ network, Network 2.
 ### **Initial output** — Specify initial output value `0` (default) | scalar
 
 Specify initial output value for the variable-step network, Network 1.
-
 ## Libraries
 
 Simscape / Utilities / Network Couplers / Fundamental Components

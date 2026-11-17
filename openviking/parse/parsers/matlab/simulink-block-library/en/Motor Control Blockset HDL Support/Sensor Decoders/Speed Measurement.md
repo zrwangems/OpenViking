@@ -14,6 +14,21 @@ language: en
 # Speed Measurement
 
 ## Ports
+```yaml
+ports:
+- name: θ
+  summary: Angular position of rotor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Ts
+  summary: Sample time after which block executes again scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵
+  summary: Angular speed of rotor scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -42,8 +57,50 @@ To enable this port, select the **Advanced Options** >
 Angular speed that the block computes based on the angular position input.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Position unit
+  summary: Unit of angular position Radians (default) | Degrees | Per unit
+  group: ''
+- name: Position scaling datatype
+  summary: Range for mapping input position uint32 (default) | uint16 | uint64
+  group: ''
+- name: Speed calculation criteria
+  summary: Method of speed calculation Maximum application speed (default) | Speed resolution | Time interval for speed calculation
+  group: ''
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 100e-6 (default) | scalar
+  group: ''
+- name: Maximum application speed (RPM)
+  summary: Maximum measurable rotor speed 1000 (default) | scalar
+  group: ''
+- name: Speed Resolution (RPM)
+  summary: Minimum detectable speed 5e-6 (default) | scalar
+  group: ''
+- name: Delays for speed calculation (number of samples)
+  summary: Number of angular position samples measured 299 or 28 (default) | scalar
+  group: ''
+- name: Maximum measurable speed (RPM)
+  summary: Maximum measurable speed 1000 or 10344.8276 or 10713.2857 (default) | scalar
+  group: ''
+- name: Measurable speed resolution (RPM)
+  summary: Minimum speed resolution used for speed computation 4.6566e-07 or 4.9892e-06 (default) | scalar
+  group: ''
+- name: Speed unit
+  summary: Unit of angular speed output RPM (default) | Degrees/Sec | Radians/Sec | Per unit based on maximum measurable speed
+    | Per unit based on dialog
+  group: ''
+- name: Per unit speed (RPM)
+  summary: Speed (in RPM) for per-unit calculation 1000 (default)
+  group: ''
+- name: Speed data type
+  summary: Data type of angular speed output single (default) | double | fixed point
+  group: ''
+- name: Use input port for Discrete step size
+  summary: Specify sample step size with input port off (default) | on
+  group: ''
+```
 
 ### **Position unit** — Unit of angular position `Radians` (default) | `Degrees` | `Per unit`
 
@@ -185,7 +242,6 @@ The Speed Measurement block may occasionally display the warning message
 
 Select this parameter if you want to specify the sample step size using an input
 port.
-
 ## Libraries
 
 Motor Control Blockset / Sensor Decoders Motor Control Blockset HDL Support / Sensor Decoders

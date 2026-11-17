@@ -14,6 +14,19 @@ language: en
 # Data Type Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: Port_1
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+```
 
 ### Input
 
@@ -41,8 +54,85 @@ Output signal, converted to the data type you specify, with the same
 dimensions as the input signal.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via back propagation (default) | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class
+    name> | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''Enum: <class name>'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via back propagation'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: ''
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Input and output to have equal
+  summary: Constraint for converting fixed-point data types Real World Value (RWV) (default) | Stored Integer (SI)
+  group: ''
+  block_parameter: ConvertRealWorld
+  type: character vector
+  values: '''Real World Value (RWV)'' | ''Stored Integer (SI)'''
+  default: '''Real World Value (RWV)'''
+- name: Integer rounding mode
+  summary: Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Mode
+  summary: Select data type mode Inherit (default) | Built in | Fixed Point
+  group: ''
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: ''
+- name: Signedness
+  summary: Specify signed or unsigned Signed (default) | Unsigned
+  group: ''
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias
+  group: ''
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: ''
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: ''
+- name: Slope
+  summary: Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar
+  group: ''
+- name: Bias
+  summary: Specify bias for the fixed-point data type 0 (default) | real-valued scalar
+  group: ''
+```
 
 ### **Output minimum** — Minimum output value for range checking `[]` (default) | scalar
 
@@ -400,7 +490,6 @@ information, see Specifying a Fixed-Point Data Type.
 
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Signal Attributes HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Signal Attributes

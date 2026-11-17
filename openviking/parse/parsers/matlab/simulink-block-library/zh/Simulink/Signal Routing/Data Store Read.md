@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Data Store Read
 
 ## 端口
+```yaml
+ports:
+- name: IdxN
+  summary: 第 *N* 个索引信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16
+- name: Port_1
+  summary: 来自指定数据存储的值 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -36,8 +48,94 @@ chinese_source: worker-translation
 您可以将总线数组与 Data Store Read 模块一起使用。有关定义和使用总线数组的详细信息，请参阅 Group Nonvirtual Buses in Arrays of Buses。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Data store name
+  summary: 模块读取的数据存储名称 A（默认）| 数据存储名称
+  group: 参数
+  block_parameter: DataStoreName
+  type: string | character vector
+  values: 数据存储名称
+  default: '''A'''
+- name: Data store memory block
+  summary: Data Store Memory 模块名称 只读：模块路径
+  group: 参数
+- name: Corresponding Data Store Write blocks
+  summary: 对应的 Data Store Write 模块列表 只读：模块路径
+  group: 参数
+- name: Sample time
+  summary: 采样时间 -1（默认）| 标量 | 向量
+  group: 参数
+  block_parameter: SampleTime
+  type: string | character vector
+  values: 标量 | 向量
+  default: '''-1'''
+- name: Elements in the array (Signals in the bus)
+  summary: 关联数据存储中的元素 character vector
+  group: 元素选择
+  block_parameter: DataStoreElements
+  type: string | character vector
+  values: 以井号分隔的元素列表（参见 Specification using the command line。）
+  default: ''''''
+- name: Specify element(s) to select
+  summary: 定义要选择的元素的 MATLAB 表达式 character vector
+  group: 元素选择
+  block_parameter: DataStoreElements
+  type: string | character vector
+  values: 以井号分隔的元素列表（参见 Specification using the command line。）
+  default: ''''''
+- name: Selected element(s)
+  summary: 选定元素列表 character vector
+  group: 元素选择
+  block_parameter: DataStoreElements
+  type: string | character vector
+  values: 以井号分隔的元素列表（参见 Specification using the command line。）
+  default: ''''''
+- name: Enable indexing
+  summary: 启用索引以指定要读取的数据存储元素的子元素 off（默认）| on
+  group: 元素选择
+  block_parameter: EnableIndexing
+  type: string | character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Number of dimensions
+  summary: 数据存储元素的维度数 1（默认）| 正整数
+  group: 元素选择
+  block_parameter: NumberOfDimensions
+  type: string | character vector
+  values: 正整数
+  default: '''1'''
+- name: Index mode
+  summary: 索引模式 One-based（默认）| Zero-based
+  group: 元素选择
+  block_parameter: IndexMode
+  type: string | character vector
+  values: '"Zero-based" | "One-based"'
+  default: '''One-based'''
+- name: Index Option
+  summary: 子元素的索引方法 Index vector (dialog)（默认）| Select all | Index vector (port) | Starting index (dialog) | Starting index
+    (port)
+  group: 元素选择
+  block_parameter: IndexOptionArray
+  type: string | character vector
+  values: '"Select all" | "Index vector (dialog)" | "Index vector (port)" | "Starting index (dialog)" | "Starting index (port)"'
+  default: '''Index vector (dialog)'''
+- name: Index
+  summary: 子元素的索引或起始索引 1（默认）| 整数 | 整数向量
+  group: 元素选择
+  block_parameter: IndexParamArray
+  type: character vector
+  values: cell array
+  default: '''{ }'''
+- name: Output Size
+  summary: 要读取的子元素范围的大小 1（默认）| 整数
+  group: 元素选择
+  block_parameter: OutputSizeArray
+  type: character vector
+  values: cell array
+  default: '''{ }'''
+```
 
 ### 参数
 
@@ -268,7 +366,6 @@ chinese_source: worker-translation
 | **类型：** character vector |
 | **值：** cell array |
 | **默认值：** `'{ }'` |
-
 ## 所属库
 
 Simulink / Signal Routing

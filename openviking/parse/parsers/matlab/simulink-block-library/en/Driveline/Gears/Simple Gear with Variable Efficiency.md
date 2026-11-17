@@ -14,6 +14,21 @@ language: en
 # Simple Gear with Variable Efficiency
 
 ## Ports
+```yaml
+ports:
+- name: E
+  summary: Meshing efficiency physical signal
+  direction: input
+- name: B
+  summary: Base rotational mechanical
+  direction: conserving
+- name: F
+  summary: Follower mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -45,8 +60,34 @@ therefore, power transmission efficiency.
 To enable this port, set **Thermal
 port** to
 `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Follower (F) to base (B) teeth ratio (NF/NB)
+  summary: Gear ratio 2 (default) | positive scalar
+  group: Main
+- name: Output shaft rotates
+  summary: Shaft rotation orientation In opposite direction to input shaft (default) | In same direction as input shaft
+  group: Main
+- name: Minimum efficiency
+  summary: Minimum efficiency 0.01 (default) | positive scalar in the range (0,1]
+  group: Meshing Losses
+- name: Follower power threshold
+  summary: Power below which numerical smoothing is applied 0.001 W (default) | positive scalar
+  group: Meshing Losses
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: Fluid dynamic friction coefficients [0 0] N*m/(rad/s) (default) | positive two-element vector
+  group: Viscous Losses
+- name: Thermal port
+  summary: Whether to model thermal effects Omit (default) | Model
+  group: Thermal Port
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -124,7 +165,6 @@ meshing or friction losses.
 To enable this parameter, set
 **Thermal port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Driveline / Gears

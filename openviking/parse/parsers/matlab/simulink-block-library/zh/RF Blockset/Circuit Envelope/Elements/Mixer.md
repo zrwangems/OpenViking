@@ -15,10 +15,63 @@ chinese_source: worker-translation
 # Mixer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Source of conversion gain
+  summary: 转换增益的来源参数 Available power gain（默认）| Open circuit voltage gain | Polynomial coefficients
+  group: ''
+- name: Available power gain
+  summary: 混频器的线性增益 0 dB（默认）| 标量
+  group: ''
+- name: Open circuit voltage gain
+  summary: 开路电压增益 0 dB（默认）| 标量
+  group: ''
+- name: Polynomial coefficients
+  summary: 多项式阶数 [0 1]（默认）| 向量
+  group: ''
+- name: Input impedance (Ohm)
+  summary: 混频器的输入阻抗 50（默认）| 标量
+  group: ''
+- name: Output impedance (Ohm)
+  summary: 混频器的输出阻抗 50（默认）| 标量
+  group: ''
+- name: LO impedance (Ohm)
+  summary: 混频器 LO 端口的阻抗 inf（默认）| 标量
+  group: ''
+- name: Noise figure (dB)
+  summary: 混频器的单边带 IEEE 噪声系数 dB（默认）| 标量
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏 RF 电路端子 on（默认）| off
+  group: ''
+- name: Nonlinear polynomial type
+  summary: 多项式非线性 Even and odd order（默认）| Odd order
+  group: ''
+- name: Intercept points convention
+  summary: 截点约定 Output（默认）| Input
+  group: ''
+- name: IP2
+  summary: 二阶截点 infdBm（默认）| 标量
+  group: ''
+- name: IP3
+  summary: 三阶截点 inf dBm（默认）| 标量
+  group: ''
+- name: 1-dB gain compression power
+  summary: 1-dB 增益压缩功率 infdBm（默认）| 标量
+  group: ''
+- name: Output saturation power
+  summary: 输出饱和功率 infdBm（默认）| 标量
+  group: ''
+- name: Gain compression at saturation
+  summary: 饱和时的增益压缩 infdBm（默认）| 标量
+  group: ''
+```
 
 #### 主
 
@@ -224,7 +277,6 @@ Noise Figure Testbench 模块测量 SSB 噪声系数，使您能够验证仿真�
 #### 依赖关系
 
 要启用此参数，请在 **Nonlinear polynomial type** 选项卡中选择 `Odd order` 并设置 **Output saturation power**。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

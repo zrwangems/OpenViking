@@ -14,6 +14,36 @@ language: en
 # Active Differential
 
 ## Ports
+```yaml
+ports:
+- name: Prs1
+  summary: Clutch 1 pressure scalar
+  direction: input
+- name: Prs2
+  summary: Clutch 2 pressure scalar
+  direction: input
+- name: DriveshftTrq
+  summary: Driveshaft torque scalar
+  direction: input
+- name: Axl1Trq
+  summary: Torque scalar
+  direction: input
+- name: Axl2Trq
+  summary: Torque scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: DriveshftSpd
+  summary: Angular velocity scalar
+  direction: output
+- name: Axl1Spd
+  summary: Angular velocity scalar
+  direction: output
+- name: Axl2Spd
+  summary: Angular velocity scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -76,8 +106,176 @@ in rad/s.
 
 Axle 2 angular velocity, *ω2*,
 in rad/s.
-
 ## Parameters
+```yaml
+parameters:
+- name: Active differential type
+  summary: Differential Spur gears, superposition clutches (default) | Double planetary gears, stationary clutches
+  group: ''
+  block_parameter: diffType
+  values: Spur gears, superposition clutches (default) | Double planetary gears, stationary clutches
+- name: Clutch 1 to differential case gear ratio, Ns1
+  summary: Clutch 1-spur gear ratio .875 (default) | scalar
+  group: ''
+  block_parameter: Ns1
+  values: .875 (default) | scalar
+- name: Clutch 2 to differential case gear ratio, Ns2
+  summary: Clutch 2-spur gear ratio 1.125 (default) | scalar
+  group: ''
+  block_parameter: Ns2
+  values: 1.125 (default) | scalar
+- name: Three-gang gear inertia, Jgc
+  summary: Rotational inertia .003 (default) | scalar
+  group: ''
+  block_parameter: Jgc
+  values: .003 (default) | scalar
+- name: Axle 1 planetary carrier to axle gear ratio, Np1
+  summary: Planetary 1 carrier gear ratio 1.125 (default) | scalar
+  group: ''
+  block_parameter: Np1
+  values: 1.125 (default) | scalar
+- name: Axle 1 sun gear inertia, Js1
+  summary: Planetary 1 sun gear inertia .001 (default) | scalar
+  group: ''
+  block_parameter: Js1
+  values: .001 (default) | scalar
+- name: Axle 1 carrier inertia, Jc1
+  summary: Planetary 1 carrier inertia .001 (default) | scalar
+  group: ''
+  block_parameter: Jc1
+  values: .001 (default) | scalar
+- name: Axle 1 ring inertia, Jr1
+  summary: Planetary 1 ring gear inertia .002 (default) | scalar
+  group: ''
+  block_parameter: Jr1
+  values: .002 (default) | scalar
+- name: Axle 2 planetary carrier to axle gear ratio, Np2
+  summary: Planetary 2 carrier gear ratio 1.125 (default) | scalar
+  group: ''
+  block_parameter: Np2
+  values: 1.125 (default) | scalar
+- name: Axle 2 sun gear inertia, Js2
+  summary: Planetary 2 sun gear inertia .001 (default) | scalar
+  group: ''
+  block_parameter: Js2
+  values: .001 (default) | scalar
+- name: Axle 2 carrier inertia, Jc2
+  summary: Planetary 2 carrier inertia .001 (default) | scalar
+  group: ''
+  block_parameter: Jc2
+  values: .001 (default) | scalar
+- name: Axle 2 ring inertia, Jr2
+  summary: Planetary 2 ring gear inertia .002 (default) | scalar
+  group: ''
+  block_parameter: Jr2
+  values: .002 (default) | scalar
+- name: Crown wheel (ring gear) located
+  summary: Specify crown wheel connection To the left of center-line (default) | To the right of center-line
+  group: ''
+  block_parameter: shaftSwitchMask
+  values: To the left of center-line (default) | To the right of center-line
+- name: Carrier to drive shaft ratio, NC/ND
+  summary: Ratio 4 (default) | scalar
+  group: ''
+  block_parameter: Ndiff
+  values: 4 (default) | scalar
+- name: Carrier inertia, Jd
+  summary: Inertia .1 (default) | scalar
+  group: ''
+  block_parameter: Jd
+  values: .1 (default) | scalar
+- name: Carrier damping, bd
+  summary: Damping 1e-3 (default) | scalar
+  group: ''
+  block_parameter: bd
+  values: 1e-3 (default) | scalar
+- name: Axle 1 inertia, Jw1
+  summary: Inertia .1 (default) | scalar
+  group: ''
+  block_parameter: Jw1
+  values: .1 (default) | scalar
+- name: Axle 1 damping, bw1
+  summary: Damping 1e-3 (default) | scalar
+  group: ''
+  block_parameter: bw1
+  values: 1e-3 (default) | scalar
+- name: Axle 2 inertia, Jw2
+  summary: Inertia .1 (default) | scalar
+  group: ''
+  block_parameter: Jw2
+  values: .1 (default) | scalar
+- name: Axle 2 damping, bw2
+  summary: Damping 1e-3 (default) | scalar
+  group: ''
+  block_parameter: bw2
+  values: 1e-3 (default) | scalar
+- name: Axle 1 initial velocity, omegaw1o
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+  block_parameter: omegaw1o
+  values: 0 (default) | scalar
+- name: Axle 2 initial velocity, omegaw2o
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+  block_parameter: omegaw2o
+  values: 0 (default) | scalar
+- name: Coupling type
+  summary: Torque coupling Ideal pre-loaded clutch (default) | Slip speed dependent torque data | Input torque dependent torque
+    data
+  group: ''
+  block_parameter: couplingType
+  values: Ideal pre-loaded clutch (default) | Slip speed dependent torque data | Input torque dependent torque data
+- name: Effective applied pressure area
+  summary: Pressure area 0.01 (default) | scalar
+  group: ''
+  block_parameter: Aeff
+  values: 0.01 (default) | scalar
+- name: Number of disks, Ndisks
+  summary: Torque coupling 4 (default) | scalar
+  group: ''
+  block_parameter: Ndisks
+  values: 4 (default) | scalar
+- name: Effective radius, Reff
+  summary: Radius .20 (default) | scalar
+  group: ''
+  block_parameter: Reff
+  values: .20 (default) | scalar
+- name: Nominal preload force, Fc
+  summary: Force 500 (default) | scalar
+  group: ''
+  block_parameter: Fc
+  values: 500 (default) | scalar
+- name: Friction coefficient vector, mu
+  summary: Friction [.16 0.13 0.115 0.11 0.105 0.1025 0.10125 .10125] (default) | vector
+  group: ''
+  block_parameter: mu
+  values: '[.16 0.13 0.115 0.11 0.105 0.1025 0.10125 .10125] (default) | vector'
+- name: Slip speed vector, dw
+  summary: Angular velocity [0 10 20 40 60 80 100 500] (default) | vector
+  group: ''
+  block_parameter: dw
+  values: '[0 10 20 40 60 80 100 500] (default) | vector'
+- name: Torque - slip speed matrix, TdPdw
+  summary: Clutch torque [-1000,-500,-90,-50,-5,0,5,50,90,500,1000].*ones(11) (default) | matrix
+  group: ''
+  block_parameter: TdPdw
+  values: '[-1000,-500,-90,-50,-5,0,5,50,90,500,1000].*ones(11) (default) | matrix'
+- name: Clutch pressure vector, pT
+  summary: Clutch pressure breakpoints [0 1e3 5e3 7e3 1e4 2e4 5e4 1e5 5e5 1e6 5e6] (default) | vector
+  group: ''
+  block_parameter: pT
+  values: '[0 1e3 5e3 7e3 1e4 2e4 5e4 1e5 5e5 1e6 5e6] (default) | vector'
+- name: Slip speed vector, dwT
+  summary: Slip speed breakpoints [-500 -200, -175, -100, - 50, 0, 50, 100, 175, 200, 500] (default) | vector
+  group: ''
+  block_parameter: dwT
+  values: '[-500 -200, -175, -100, - 50, 0, 50, 100, 175, 200, 500] (default) | vector'
+- name: Coupling time constant, tauC
+  summary: Constant .01 (default) | scalar
+  group: ''
+  block_parameter: tauC
+  values: .01 (default) | scalar
+```
 
 #### Active Differential
 
@@ -822,7 +1020,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `tauC` |
 | **Values:** | `.01` (default) | `scalar` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Powertrain / Drivetrain / Final Drive Unit

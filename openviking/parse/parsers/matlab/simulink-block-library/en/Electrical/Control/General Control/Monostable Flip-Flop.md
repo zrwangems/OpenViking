@@ -14,6 +14,17 @@ language: en
 # Monostable Flip-Flop
 
 ## Ports
+```yaml
+ports:
+- name: Trigger
+  summary: Flip-flop trigger 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Q
+  summary: Flip-flop output 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -29,8 +40,22 @@ Input trigger signal to the flip-flop.
 Flip-flop output signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Change detection
+  summary: Change in trigger signal Rising edge (default) | Falling edge | Either edge
+  group: ''
+- name: Initial output
+  summary: Flip-flop initial output 0 (default) | scalar
+  group: ''
+- name: Pulse duration (s)
+  summary: Output pulse duration 0.01 (default) | positive scalar
+  group: ''
+- name: Sample time
+  summary: Block sample time 0.001 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Change detection** — Change in trigger signal `Rising edge` (default) | `Falling edge` | `Either edge`
 
@@ -59,7 +84,6 @@ allows either continuous and discrete operation, promote the sample time
 parameter. Promoting the sample time parameter ensures correct switching
 between the continuous and discrete implementations of the block. For more
 information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

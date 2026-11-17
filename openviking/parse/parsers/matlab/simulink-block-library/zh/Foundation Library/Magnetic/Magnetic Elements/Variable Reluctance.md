@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Variable Reluctance
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -25,8 +28,10 @@ chinese_source: worker-translation
 :   与模块 South 端子关联的磁守恒端口。
 
 该模块还具有一个物理信号输入端口，用于提供气隙长度或截面厚度的值。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Minimum length or thickness X>=0**
 :   气隙长度或截面厚度的最小值。
@@ -39,7 +44,6 @@ chinese_source: worker-translation
 
 **Relative permeability of material**
 :   截面材料的相对磁导率。默认值为 `1`。
-
 ## 所属库
 
 R2025b 中未记录。

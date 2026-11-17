@@ -14,6 +14,31 @@ language: en
 # Video Input
 
 ## Ports
+```yaml
+ports:
+- name: ROI Input Data
+  summary: Region-of-interest origin coordinates ROI input data
+  direction: input
+- name: Data
+  summary: Video data output RGB data | Luminance data
+  direction: output
+- name: Frame Ready
+  summary: Indicates video frame ready boolean
+  direction: output
+  data_types: Boolean
+- name: Frame Error
+  summary: Indicates data acquisition frame error boolean
+  direction: output
+  data_types: Boolean
+- name: Timestamp
+  summary: Provides video frame timestamp double
+  direction: output
+  data_types: double
+- name: Missed Ticks
+  summary: Missed tick count (optional) double
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -88,8 +113,55 @@ When you select **Show “Missed Ticks”
 port**, this port is visible.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: ROI origin source
+  summary: Select region-of-interest origin source Internal (default) | External
+  group: ''
+  block_parameter: ROIOriginSource
+- name: ROI origin
+  summary: Select region-of-interest origin [X Y] values [1 1] (default) | 2-element vector
+  group: ''
+  block_parameter: RoiOrigin
+- name: ROI Dimensions
+  summary: Select region-of-interest dimensions [W H] values full frame width and height dimensions (default) | [640 480]
+    (default if no device configured) | 2-element vector
+  group: ''
+  block_parameter: RoiDimensions
+- name: Frame format
+  summary: Select video data format RGB (default) | Luminance
+  group: ''
+  block_parameter: Channels
+- name: Show "Frame Ready" port
+  summary: Enable "Frame Ready" output port off (default) | on
+  group: ''
+  block_parameter: ShowReady
+- name: Show "Frame Error" port
+  summary: Enable "Frame Error" output port off (default) | on
+  group: ''
+  block_parameter: ShowError
+- name: Show frame timestamp port
+  summary: Enable timestamp output port off (default) | on
+  group: ''
+  block_parameter: ShowTimestamp
+```
 
 ### **Sample time** — Sample time of block `0.1` (default) | double
 
@@ -234,7 +306,6 @@ When set to `on`, the block includes a Timestamp output port.
 |  |
 | --- |
 | **Block Parameter:** `ShowTimestamp` |
-
 ## Libraries
 
 Simulink Desktop Real-Time

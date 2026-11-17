@@ -14,6 +14,18 @@ language: en
 # Voltage Sensor
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Voltage, V physical signal
+  direction: output
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Output
 
@@ -29,11 +41,12 @@ Electrical conserving port associated with the sensor positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the sensor negative terminal.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Sensors Simscape / Electrical / Sensors & Transducers

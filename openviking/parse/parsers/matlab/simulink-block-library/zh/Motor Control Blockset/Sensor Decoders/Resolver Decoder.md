@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Resolver Decoder
 
 ## 端口
+```yaml
+ports:
+- name: V Sin
+  summary: 采样的次级正弦信号向量
+  direction: input
+  data_types: single | double | fixed point
+- name: V Cos
+  summary: 采样的次级余弦信号向量
+  direction: input
+  data_types: single | double | fixed point
+- name: Reset
+  summary: 复位 PLL 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θm
+  summary: 电机机械位置标量
+  direction: output
+  data_types: single | double | fixed point
+- name: sinθe
+  summary: 电机电角度位置的正弦标量
+  direction: output
+  data_types: single | double | fixed point
+- name: cosθe
+  summary: 电机电角度位置的余弦标量
+  direction: output
+  data_types: single | double | fixed point
+- name: ωm
+  summary: 电机机械速度标量
+  direction: output
+  data_types: single | double | fixed point
+- name: PLLEn
+  summary: PLL 状态标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -77,8 +112,79 @@ chinese_source: worker-translation
 要启用此端口，请将 **Computation method** 参数设置为 `PLL`。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Computation method
+  summary: 模块使用的计算方法 Arithmetic（默认）| PLL
+  group: ''
+- name: Block Output
+  summary: 模块输出 Mechanical position（默认）| Sine and Cosine electrical position | Mechanical speed
+  group: ''
+- name: Number of pole-pairs for resolver
+  summary: 旋转变压器极对数 1（默认）| 标量
+  group: 输入参数
+- name: Type of excitation method
+  summary: 旋转变压器激励方法 Sinusoidal Excitation（默认）| Square Pulse Excitation
+  group: 输入参数
+- name: Enable input normalization
+  summary: 启用模块对输入进行归一化 off（默认）| on
+  group: 输入参数
+- name: Discrete step size (s)
+  summary: 模块再次执行前的采样时间 50e-6（默认）| 标量
+  group: 输入参数
+- name: Number of pole-pairs for motor
+  summary: 电机极对数 3（默认）| 标量
+  group: 正弦和余弦电角位置的输入
+- name: Position offset (mechanical radians)
+  summary: 旋转变压器机械位置偏移（以弧度为单位） 0（默认）| 标量
+  group: 正弦和余弦电角位置的输入
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Zero（默认）| Simplest
+  group: 正弦和余弦电角位置的输入
+- name: Phase delay (electrical radians)
+  summary: 输入信号的相位延迟 0.1746（默认）| 标量
+  group: Inputs for sinusoidal excitation method
+- name: Number of samples per excitation cycle
+  summary: 输入信号每周期采样数 16（默认）| 大于零的偶数标量
+  group: Inputs for sinusoidal excitation method
+- name: Maximum application frequency (Hz)
+  summary: 最大可应用输入频率 7500（默认）| 标量
+  group: PLL Parameters
+- name: Speed filter cutoff frequency (Hz)
+  summary: 低通滤波器的截止频率 10（默认）| 标量
+  group: PLL Parameters
+- name: Number of data points for lookup table
+  summary: 查找表数组的大小 1024（默认）| 标量
+  group: PLL Parameters
+- name: Proportional (P)
+  summary: 比例控制器增益 942.4778（默认）| 标量
+  group: PLL Parameters
+- name: Integral (I)
+  summary: 积分控制器增益 222066.099（默认）| 标量
+  group: PLL Parameters
+- name: Error threshold (Hz)
+  summary: PLL 误差阈值 2e-2（默认）| 标量
+  group: PLL Parameters
+- name: Position unit
+  summary: 位置输出的单位 Radians（默认）| Degrees | Per-unit
+  group: 输出参数
+- name: Position data type
+  summary: 角位置输出的数据类型 single（默认）| double | fixed point
+  group: 输出参数
+- name: Table data type
+  summary: 正弦-余弦查找表的数据类型 single（默认）| double | fixed point
+  group: 输出参数
+- name: Speed unit
+  summary: 速度输出的单位 Degrees/Sec（默认）| Radians/Sec | RPM | Per-unit
+  group: 输出参数
+- name: Speed data type
+  summary: 角速度输出的数据类型 single（默认）| double | fixed point
+  group: 输出参数
+- name: Base speed (RPM)
+  summary: 电机基准速度（RPM） 2000（默认）| 标量
+  group: 输出参数
+```
 
 ### **Computation method** — 模块使用的计算方法 `Arithmetic`（默认）| `PLL`
 
@@ -290,7 +396,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 对于算术和 PLL 两种计算方法，仅当您选中 **Block Output** 部分中可用的 **Mechanical speed** 参数，然后将 **Speed unit** 设置为 `Per-Unit` 时，模块才会启用此参数。
-
 ## 所属库
 
 Motor Control Blockset / Sensor Decoders

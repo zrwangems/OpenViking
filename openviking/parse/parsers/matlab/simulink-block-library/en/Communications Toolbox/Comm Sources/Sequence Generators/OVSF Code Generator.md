@@ -14,6 +14,13 @@ language: en
 # OVSF Code Generator
 
 ## Ports
+```yaml
+ports:
+- name: Out
+  summary: Output data column vector
+  direction: output
+  data_types: double | int8
+```
 
 ### Output
 
@@ -23,8 +30,28 @@ Output data, returned as a binary-valued column vector containing the OVSF code
 generated from a set of orthogonal codes.
 
 **Data Types:** `double` | `int8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Code length
+  summary: Code length 64 (default) | positive integer
+  group: ''
+- name: Code index
+  summary: Row index of OVSF code matrix 60 (default) | integer
+  group: ''
+- name: Sample time
+  summary: Sample time, in seconds 1 (default) | positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Number of OVSF chips output 1 (default) | positive integer
+  group: ''
+- name: Output data type
+  summary: Output type double (default) | int8
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -100,7 +127,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Comm Sources / Sequence Generators

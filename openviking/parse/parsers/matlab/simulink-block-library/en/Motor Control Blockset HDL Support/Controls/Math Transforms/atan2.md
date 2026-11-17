@@ -14,6 +14,21 @@ language: en
 # atan2
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: y-coordinate value (real number) scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: B
+  summary: x-coordinate value (real number) scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θ
+  summary: Angle represented by arctangent scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -39,8 +54,16 @@ origin to a specified point (x,y) with the positive x-axis.
 
 The following figure shows the representation of input values A, B, and arctangent on
 the x-y coordinate plane.
-
 ## Parameters
+```yaml
+parameters:
+- name: Approximation method
+  summary: Type of approximation used for atan2 computation None (default) | CORDIC | Lookup
+  group: ''
+- name: Output unit
+  summary: Unit of output values Radians (default) | PerUnit
+  group: ''
+```
 
 ### **Approximation method** — Type of approximation used for atan2 computation `None` (default) | `CORDIC` | `Lookup`
 
@@ -67,7 +90,6 @@ When you use the block for code generation:
 ### **Output unit** — Unit of output values `Radians` (default) | `PerUnit`
 
 Unit of the output values.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

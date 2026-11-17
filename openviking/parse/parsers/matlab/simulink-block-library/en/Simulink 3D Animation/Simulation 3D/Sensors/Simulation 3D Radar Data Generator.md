@@ -14,6 +14,18 @@ language: en
 # Simulation 3D Radar Data Generator
 
 ## Ports
+```yaml
+ports:
+- name: Clustered detections
+  summary: Clustered object detections Simulink® bus containing MATLAB® structure
+  direction: output
+- name: Tracks
+  summary: Object tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Detections
+  summary: Unclustered object detections Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Output
 
@@ -220,8 +232,112 @@ spherical`, the parent frame is the sensor.
 To enable this port, on the **Parameters** tab, set
 **Format of generated target reports** to
 `Detections`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Mounting
+- name: Parent name
+  summary: Name of parent vehicle Scene Origin (default) | vehicle name
+  group: Mounting
+- name: Coordinate system
+  summary: Coordinate system for actor transformation Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE
+  group: Mounting
+- name: Mounting location
+  summary: Sensor mounting location Origin (default)
+  group: Mounting
+- name: Specify offset
+  summary: Specify offset from mounting location off (default) | on
+  group: Mounting
+- name: Relative translation [X, Y, Z]
+  summary: Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Mounting
+- name: Enable elevation angle measurements
+  summary: Enable radar to measure target elevation angles on (default) | off
+  group: Parameters
+- name: Enable range rate measurements
+  summary: Enable radar to measure target range rates on (default) | off
+  group: Parameters
+- name: Add measurement noise to observations
+  summary: Enable addition of noise to radar sensor measurements on (default) | off
+  group: Parameters
+- name: Enable generation of reports from false observations
+  summary: Enable creating false alarm radar detections on (default) | off
+  group: Parameters
+- name: Maximum number of target reports
+  summary: Maximum number of detections or tracks 50 (default) | positive integer
+  group: Parameters
+- name: Format of generated target reports
+  summary: Format of generated target reports Clustered detections (default) | Tracks | Detections
+  group: Parameters
+- name: Coordinate frame used to report detections
+  summary: Coordinate system of reported detections Body (default) | Sensor rectangular | Sensor spherical
+  group: Parameters
+- name: Azimuthal resolution (deg)
+  summary: Azimuth resolution of radar 4 (default) | positive real scalar
+  group: Measurements
+- name: Elevation resolution (deg)
+  summary: Elevation resolution of radar 5 (default) | positive real scalar
+  group: Measurements
+- name: Range resolution (m)
+  summary: Range resolution of radar 2.5 (default) | positive real scalar
+  group: Measurements
+- name: Range rate resolution (m/s)
+  summary: Range rate resolution of radar 0.5 (default) | positive real scalar
+  group: Measurements
+- name: Azimuth bias fraction
+  summary: Azimuth bias fraction of radar 0.1 (default) | nonnegative scalar
+  group: Measurements
+- name: Elevation bias fraction
+  summary: Elevation bias fraction of radar 0.1 (default) | nonnegative scalar
+  group: Measurements
+- name: Range bias fraction
+  summary: Range bias fraction 0.05 (default) | nonnegative scalar
+  group: Measurements
+- name: Range rate bias fraction
+  summary: Range rate bias fraction 0.05 (default) | nonnegative scalar
+  group: Measurements
+- name: Total angular field of view [AZ, EL] (deg)
+  summary: Angular field of view of radar [20 5] (default) | 1-by-2 positive real-valued vector of form [azfov,elfov]
+  group: Measurements
+- name: Range limits [MIN, MAX] (m)
+  summary: Minimum and maximum range of radar [0 150] (default) | 1-by-2 nonnegative real-valued vector of form [min max]
+  group: Measurements
+- name: Range rate limits [MIN, MAX] (m/s)
+  summary: Minimum and maximum range rate of radar (m/s) [-100 100] (default) | 1-by-2 real-valued vector of form [min max]
+  group: Measurements
+- name: Detection probability
+  summary: Probability of detecting a target 0.9 (default) | scalar in range (0, 1]
+  group: Measurements
+- name: False alarm rate
+  summary: False alarm report rate 1e-06 (default) | positive real scalar in range [10–7, 10–3]
+  group: Measurements
+- name: Reference target range (m)
+  summary: Reference range for given probability of detection 100 (default) | positive real scalar
+  group: Measurements
+- name: Reference target RCS (dBsm)
+  summary: Reference radar cross-section for given probability of detection 0 (default) | real scalar
+  group: Measurements
+- name: Center frequency (Hz)
+  summary: Center frequency of radar band 77e9 (default) | positive real scalar
+  group: Measurements
+- name: Select method to specify initial seed
+  summary: Method to specify random number generator seed Repeatable (default) | Specify seed | Not repeatable
+  group: Measurements
+- name: Initial seed
+  summary: Random number generator seed 0 (default) | nonnegative integer less than 232
+  group: Measurements
+- name: Actor types to oversample
+  summary: Actor type for improved target detection Simulation 3D Vehicles (default) | None | Simulation 3D Actors | All Actors
+  group: Measurements
+```
 
 ### Mounting
 
@@ -611,7 +727,6 @@ For more information on target detection, see Target Detection.
 
 - Oversampling rays toward actors in the 3D environment increases detection
   accuracy around the actor and requires more computational resources.
-
 ## Libraries
 
 Simulink 3D Animation / Simulation 3D / Sensors

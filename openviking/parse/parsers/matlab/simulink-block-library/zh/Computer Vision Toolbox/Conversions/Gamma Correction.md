@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Gamma Correction
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: I'
+  summary: 伽马校正后的输入图像矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: I'
+  summary: 伽马校正后的输出图像矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: I
+  summary: 去除伽马后的输出图像矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -58,8 +77,22 @@ chinese_source: worker-translation
 要启用此端口，请将 **Operation** 参数设置为 `De-gamma`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `uint8` | `uint16` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation
+  summary: 模块操作 Gamma（默认）| De-gamma
+  group: ''
+- name: Gamma
+  summary: 伽马值 2.2（默认）| 标量
+  group: ''
+- name: Linear segment
+  summary: 线性段 on（默认）| off
+  group: ''
+- name: Break point
+  summary: 断点值 0.018（默认）| 标量
+  group: ''
+```
 
 ### **Operation** — 模块操作 `Gamma`（默认）| `De-gamma`
 
@@ -83,7 +116,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Linear segment** 参数。
-
 ## 所属库
 
 Computer Vision Toolbox / Conversions

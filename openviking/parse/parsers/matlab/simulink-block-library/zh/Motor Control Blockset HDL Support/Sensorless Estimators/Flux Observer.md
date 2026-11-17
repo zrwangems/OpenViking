@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Flux Observer
 
 ## 端口
+```yaml
+ports:
+- name: Vα
+  summary: '*α* 轴电压标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vβ
+  summary: '*β* 轴电压标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iα
+  summary: '*α* 轴电流标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iβ
+  summary: '*β* 轴电流标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Rst
+  summary: 复位模块标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: 磁链观测器总线的计算参数
+  direction: input
+  data_types: single | double
+- name: θe
+  summary: 电机电角度位置标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Ψ
+  summary: 电机转子磁链标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Te
+  summary: 电机电磁转矩标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -98,8 +137,79 @@ Flux Observer 模块的计算参数。该输入端口接受以下参数：
 要启用此端口，请在 **Block output** 参数中选择 **Torque** 选项。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Motor selection
+  summary: 电机类型 PMSM（默认）| ACIM
+  group: 参数
+- name: Support 16-bit fixedpoint datatype
+  summary: 支持 16 位定点数据类型 off（默认）| on
+  group: 参数
+- name: Input unit
+  summary: 电压和电流输入的单位 SI unit（默认）| Per-unit
+  group: 参数
+- name: Base voltage (V)
+  summary: 对应一个标幺值的标称电压 13.86（默认）| 标量
+  group: 参数
+- name: Base current (A)
+  summary: 对应一个标幺值的标称电流 19.3（默认）| 标量
+  group: 参数
+- name: 模块输出
+  summary: 模块输出选项 位置 | 磁通 | 转矩
+  group: 参数
+- name: 极对数
+  summary: 电机中可用的极对数 4（默认）| 标量
+  group: 参数
+- name: 定子电阻 (ohm)
+  summary: 定子绕组电阻 0.36（默认）| 标量
+  group: 参数
+- name: 定子 d 轴电感 (H)
+  summary: 沿 *d* 轴的定子绕组电感 0.2e-3（默认）| 标量
+  group: 参数
+- name: 定子漏电感 (H)
+  summary: 定子绕组的漏电感 0.0068（默认）| 标量
+  group: 参数
+- name: 转子漏电感 (H)
+  summary: 转子绕组的漏电感 0.0068（默认）| 标量
+  group: 参数
+- name: 励磁电感 (H)
+  summary: 感应电机的励磁电感 0.0300（默认）| 标量
+  group: 参数
+- name: 截止频率 (Hz)
+  summary: 内部高通滤波器的截止频率 3.1863（默认）| 标量
+  group: 参数
+- name: 离散步长 (s)
+  summary: 连续模块执行之间的间隔 50e-6（默认）| 标量
+  group: 参数
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: 用于启用输入端口以接受计算参数的选项 off（默认）| on
+  group: 参数
+- name: Position unit
+  summary: 电位置输出的单位 Radians（默认）| Degrees | Per-unit
+  group: Datatypes
+- name: Position datatype
+  summary: 电位置输出的数据类型 single（默认）| double | fixed point
+  group: Datatypes
+- name: Flux unit
+  summary: 磁通量输出的单位 Weber（默认）| Per-unit
+  group: Datatypes
+- name: Per unit flux (Wb)
+  summary: 对应一个 per-unit 的磁通量 0.1（默认）| scalar
+  group: Datatypes
+- name: Flux datatype
+  summary: 磁通量输出的数据类型 single（默认）| double | fixed point
+  group: Datatypes
+- name: Torque unit
+  summary: 电磁转矩输出的单位 Nm（默认）| Per-unit
+  group: Datatypes
+- name: Per unit torque (Nm)
+  summary: 对应一个 per-unit 的转矩 100（默认）| scalar
+  group: Datatypes
+- name: Torque datatype
+  summary: 电磁转矩输出的数据类型 single（默认）| double | fixed point
+  group: Datatypes
+```
 
 ### 参数
 
@@ -306,7 +416,6 @@ Flux Observer 模块使用内部一阶 IIR 高通滤波器。将此滤波器的 
 #### 依赖关系
 
 要启用此参数，请在 **Block output** 参数中选择 **Torque** 选项。
-
 ## 所属库
 
 Motor Control Blockset HDL Support / Sensorless Estimators Motor Control Blockset / Sensorless Estimators

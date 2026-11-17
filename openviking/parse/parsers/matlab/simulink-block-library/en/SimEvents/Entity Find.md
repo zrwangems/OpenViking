@@ -14,6 +14,43 @@ language: en
 # Entity Find
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entities to trigger finding entities scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: Output found entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_f
+  summary: Number of entities found scalar
+  direction: output
+  data_types: double
+- name: Port_d
+  summary: Number of entities that have departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: Number of found entities that have not yet departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: Average wait time for found entities in the block scalar
+  direction: output
+  data_types: double
+- name: Port_l
+  summary: Average length of the found entity queue scalar
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: Number of entities extracted scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -101,8 +138,87 @@ To enable this port, click the **Statistics** tab and select
 the box labeled **Number of entities extracted, ex**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Resource
+  summary: Specify the name of the reference resource the entities use Resource1 (default) | character vector
+  group: Main
+  block_parameter: ResourceName
+  type: character vector
+  values: resource name
+  default: '''Resource1'''
+- name: Extract found entities
+  summary: Extract and reroute found entities off (default) | on
+  group: Main
+  block_parameter: EnableOutput
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Additional filtering condition
+  summary: Add optional filtering condition off (default) | on
+  group: Main
+  block_parameter: EntityFilter
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Matching condition
+  summary: Define the matching condition match = true; (default)
+  group: Main
+  block_parameter: MatchingCondition
+  type: character vector
+  values: MATLAB code
+  default: '''% match = isequal(trigger.Attribute1, entity.Attribute1);match = true;'''
+- name: Event actions
+  summary: Specify the event action OnFound (default) | Entry | Exit | Blocked
+  group: Event Actions
+  block_parameter: EntryAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities found, f
+  summary: Outputs the number of entities that are found off (default) | on
+  group: Statistics
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities departed, d
+  summary: Outputs the number of entities that have departed the block off (default) | on
+  group: Statistics
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of found entities in block, n
+  summary: Outputs the number of found entities that are yet to depart off (default) | on
+  group: Statistics
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average wait, w
+  summary: Outputs the average wait time off (default) | on
+  group: Statistics
+  block_parameter: AverageWait
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average queue length, l
+  summary: Outputs the average length of the entity queue off (default) | on
+  group: Statistics
+  block_parameter: AverageStoreSize
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: Number of entities extracted from this block off (default) | on
+  group: Statistics
+  block_parameter: NumEntitiesExtracted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -333,7 +449,6 @@ box in the **Main** tab is selected.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

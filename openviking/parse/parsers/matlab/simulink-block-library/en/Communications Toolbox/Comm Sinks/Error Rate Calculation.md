@@ -14,6 +14,29 @@ language: en
 # Error Rate Calculation
 
 ## Ports
+```yaml
+ports:
+- name: Tx
+  summary: Transmitted data scalar | column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Rx
+  summary: Received data scalar | column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Sel
+  summary: Sample indices positive integer | column vector of positive integers
+  direction: input
+  data_types: double
+- name: Rst
+  summary: Reset error count scalar
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: Difference between transmitted and received data column vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -80,8 +103,40 @@ To enable this port, set the **Output data**
 parameter to `Port`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Receive delay
+  summary: Received signal delay 0 (default) | nonnegative integer
+  group: ''
+- name: Computation delay
+  summary: Computation delay 0 (default) | nonnegative scalar
+  group: ''
+- name: Computation mode
+  summary: Samples to consider Entire frame (default) | Select samples from mask | Select samples from port
+  group: ''
+- name: Selected samples from frame
+  summary: Sample indices [] (default) | positive integer | column vector of positive integers
+  group: ''
+- name: Output data
+  summary: Output data location Workspace (default) | Port
+  group: ''
+- name: Variable name
+  summary: Output data variable name ErrorVec (default) | character vector | string scalar
+  group: ''
+- name: Reset port
+  summary: Option to add Rst input port off (default) | on
+  group: ''
+- name: Stop simulation
+  summary: Option to stop simulation after specified number of errors or comparisons off (default) | on
+  group: ''
+- name: Target number of errors
+  summary: Option to stop simulation after specified number of errors 100 (default) | positive integer
+  group: ''
+- name: Maximum number of symbols
+  summary: Option to stop simulation after comparing specified number of symbols 1e6 (default) | positive integer
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -189,7 +244,6 @@ noise.
 
 To enable this parameter, set the **Stop
 simulation** parameter to `on`.
-
 ## Libraries
 
 Communications Toolbox / Comm Sinks Communications Toolbox HDL Support / Comm Sinks

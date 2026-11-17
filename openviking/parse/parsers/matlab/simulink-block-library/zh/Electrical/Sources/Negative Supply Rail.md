@@ -15,19 +15,29 @@ chinese_source: worker-translation
 # Negative Supply Rail
 
 ## 端口
+```yaml
+ports:
+- name: '-'
+  summary: 负电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **-** — 负电压电气端口
 
 与负电源轨负电压关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Constant voltage
+  summary: 恒定输出电压 -1 V（默认值）
+  group: ''
+```
 
 ### **Constant voltage** — 恒定输出电压 `-1` `V`（默认值）
 
 输出端口相对于 Electrical Reference 模块接地端口的电压。
-
 ## 所属库
 
 Simscape / Electrical / Sources

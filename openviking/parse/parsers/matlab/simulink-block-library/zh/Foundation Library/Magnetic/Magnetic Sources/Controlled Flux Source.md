@@ -15,13 +15,17 @@ chinese_source: worker-translation
 # Controlled Flux Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有一个物理信号输入端口和两个与其磁端子关联的磁守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 R2025b 中未记录。

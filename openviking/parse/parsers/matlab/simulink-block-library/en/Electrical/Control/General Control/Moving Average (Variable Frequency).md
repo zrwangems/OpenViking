@@ -14,6 +14,21 @@ language: en
 # Moving Average (Variable Frequency)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Moving average input scalar | vector
+  direction: input
+  data_types: single | double
+- name: f
+  summary: Frequency, Hz scalar | vector
+  direction: input
+  data_types: single | double
+- name: Mean
+  summary: Moving average output scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -35,8 +50,25 @@ Frequency, specified as a scalar or vector in Hz.
 Moving average of the input signal, returned as a scalar or vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial frequency (Hz)
+  summary: Initial signal frequency 60 (default) | positive scalar | vector with positive values
+  group: ''
+- name: Minimum frequency (Hz)
+  summary: Minimum signal frequency 30 (default) | positive scalar | vector with positive values
+  group: ''
+- name: Initial value
+  summary: Initial input signal value 0 (default) | scalar
+  group: ''
+- name: Buffer size
+  summary: Buffer size 8192 (default) | scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Initial frequency (Hz)** — Initial signal frequency `60` (default) | positive scalar | vector with positive values
 
@@ -77,7 +109,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

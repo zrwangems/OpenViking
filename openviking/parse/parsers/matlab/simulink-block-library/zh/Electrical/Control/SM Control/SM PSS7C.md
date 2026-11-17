@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # SM PSS7C
 
 ## 端口
+```yaml
+ports:
+- name: V_SI1
+  summary: 转速、频率或功率标量
+  direction: input
+  data_types: single | double
+- name: V_SI2
+  summary: 电功率标量
+  direction: input
+  data_types: single | double
+- name: V_ST
+  summary: 稳定转速、频率或功率标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -38,8 +53,109 @@ chinese_source: worker-translation
 *VST\_max* 限制，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Power system stabilizer main gain, K_S1 (pu)
+  summary: 电力系统稳定器前向通道增益 50（默认）| 标量
+  group: ''
+- name: Power system stabilizer gain, K_S2 (pu)
+  summary: 电力系统稳定器换能器增益 0.7052（默认）| 标量
+  group: ''
+- name: Power system stabilizer gain, K_S3 (pu)
+  summary: 电力系统稳定器增益 1（默认）| 标量
+  group: ''
+- name: PSS transducer time constant, T_6 (s)
+  summary: 换能器时间常数 6 0（默认）| 标量
+  group: ''
+- name: PSS transducer time constant, T_7 (s)
+  summary: 换能器时间常数 7 10（默认）| 标量
+  group: ''
+- name: PSS washout time constant, T_w1 (s)
+  summary: 洗出时间常数 1 10（默认）| 标量
+  group: ''
+- name: PSS washout time constant, T_w2 (s)
+  summary: 洗出时间常数 2 10（默认）| 标量
+  group: ''
+- name: PSS washout time constant, T_w3 (s)
+  summary: 洗出时间常数 3 10（默认）| 标量
+  group: ''
+- name: PSS washout time constant, T_w4 (s)
+  summary: 洗出时间常数 4 0（默认）| 标量
+  group: ''
+- name: PSS transducer time constant, T_8 (s)
+  summary: 换能器时间常数 8 0.5（默认）| 标量
+  group: ''
+- name: PSS washout time constant, T_9 (s)
+  summary: 洗出时间常数 9 0.1（默认）| 标量
+  group: ''
+- name: Denominator exponent for ramp-track filter, M
+  summary: 斜坡跟踪滤波器分母的指数 5（默认）| 标量
+  group: ''
+- name: Overall exponent for ramp-track filter, N
+  summary: 斜坡跟踪滤波器的整体指数 1（默认）| 标量
+  group: ''
+- name: PSS canonical gain 0, K_0 (pu)
+  summary: 电力系统稳定器规范增益 0 0.399（默认）| 标量
+  group: ''
+- name: PSS canonical gain 1, K_1 (pu)
+  summary: 电力系统稳定器规范增益 1 1.8462（默认）| 标量
+  group: ''
+- name: PSS canonical gain 2, K_2 (pu)
+  summary: 电力系统稳定器规范增益 2 0.4231（默认）| 标量
+  group: ''
+- name: PSS canonical gain 3, K_3 (pu)
+  summary: 电力系统稳定器规范增益 3 0.2104（默认）| 标量
+  group: ''
+- name: PSS canonical gain 4, K_4 (pu)
+  summary: 电力系统稳定器规范增益 4 0（默认）| 标量
+  group: ''
+- name: PSS third block gain, K_i3 (pu)
+  summary: 电力系统稳定器第三模块增益 1（默认）| 标量
+  group: ''
+- name: PSS fourth block gain, K_i4 (pu)
+  summary: 电力系统稳定器第四模块增益 0（默认）| 标量
+  group: ''
+- name: PSS time constant (first block), T_i1 (s)
+  summary: 电力系统稳定器第一模块时间常数 0.03（默认）| 标量
+  group: ''
+- name: PSS time constant (second block), T_i2 (s)
+  summary: 电力系统稳定器第二模块时间常数 0.0293（默认）| 标量
+  group: ''
+- name: PSS time constant (third block), T_i3 (s)
+  summary: 电力系统稳定器第三模块时间常数 0.2804（默认）| 标量
+  group: ''
+- name: PSS time constant (fourth block), T_i4 (s)
+  summary: 电力系统稳定器第四模块时间常数 1（默认）| 标量
+  group: ''
+- name: Maximum PSS output, V_STmax (pu)
+  summary: 最大稳定 0.05（默认）| 标量
+  group: ''
+- name: Minimum PSS output, V_STmin (pu)
+  summary: 最小稳定 -0.05（默认）| 标量
+  group: ''
+- name: 'Input signal #1 maximum limit, V_S1max (pu)'
+  summary: 第一个输入的最大限值 2（默认）| 标量
+  group: ''
+- name: 'Input signal #1 minimum limit, V_S1min (pu)'
+  summary: 第一个输入的最小限值 -2（默认）| 标量
+  group: ''
+- name: 'Input signal #2 maximum limit, V_S2max (pu)'
+  summary: 第二个输入的最大限值 2（默认）| 标量
+  group: ''
+- name: 'Input signal #2 minimum limit, V_S2min (pu)'
+  summary: 第二个输入的最小限值 -2（默认）| 标量
+  group: ''
+- name: Generator MW threshold for PSS activation, P_PSSon (pu)
+  summary: 电力系统稳定器激活的发电机阈值 0（默认）| 标量
+  group: ''
+- name: Generator MW threshold for PSS de-activation, P_PSSoff (pu)
+  summary: 电力系统稳定器去激活的发电机阈值 0（默认）| 标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Power system stabilizer main gain, K\_S1 (pu)** — 电力系统稳定器前向通道增益 50（默认）| 标量
 
@@ -177,7 +293,6 @@ Multi-band 子系统内部第四模块的电力系统稳定器时间常数。
 对于继承的离散时间操作，将采样时间设置为 `-1`。
 对于离散时间操作，将采样时间设置为正标量。对于
 连续时间操作，将采样时间设置为 `0`。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Variable Area Hydraulic Orifice
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -26,8 +29,10 @@ chinese_source: worker-translation
 
 `AR`
 :   提供节流口面积值的物理信号端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Flow discharge coefficient**
 :   用于表征节流口流通能力的半经验参数。其值取决于节流口的几何特性，通常由教科书或制造商数据手册提供。默认值为 `0.7`。
@@ -46,7 +51,6 @@ chinese_source: worker-translation
 
 **Critical Reynolds number**
 :   层流的最大雷诺数。该参数的值取决于节流口的几何轮廓。您可以在液压教科书中找到有关该参数值的建议。默认值为 `12`，对应于薄材料中带锐边的圆形节流口。仅当 **Laminar transition specification** 参数设置为 `Reynolds number` 时，此参数才可见。
-
 ## 所属库
 
 R2025b 中未记录。

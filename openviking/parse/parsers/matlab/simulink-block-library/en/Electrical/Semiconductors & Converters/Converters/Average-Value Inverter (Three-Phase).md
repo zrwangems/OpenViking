@@ -14,6 +14,27 @@ language: en
 # Average-Value Inverter (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+```
 
 ### Conserving
 
@@ -70,8 +91,31 @@ Electrical conserving port associated with
 To enable this port, set **Electrical
 connection** to `Expanded three-phase
 ports`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: ''
+- name: Rated AC frequency
+  summary: AC frequency in Hz 60Hz (default)
+  group: ''
+- name: Phase shift
+  summary: Phase shift 0deg (default)
+  group: ''
+- name: Ratio of rated AC voltage to rated DC voltage
+  summary: Ratio of rated AC voltage to rated DC voltage sqrt(6) / pi (default)
+  group: ''
+- name: Fixed power loss
+  summary: Fixed power loss 1e3W (default)
+  group: ''
+- name: DC voltage for turn on
+  summary: DC voltage for turn on 100V (default)
+  group: ''
+- name: DC voltage for turn off
+  summary: DC voltage for turn off 75V (default)
+  group: ''
+```
 
 ### **Electrical connection** — Electrical connection `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -123,7 +167,6 @@ an AC output voltage.
 
 When the DC supply voltage falls below this value, the inverter turns off
 and the block sets the output AC currents to zero.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

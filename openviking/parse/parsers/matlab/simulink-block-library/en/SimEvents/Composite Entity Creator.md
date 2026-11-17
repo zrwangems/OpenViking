@@ -14,6 +14,23 @@ language: en
 # Composite Entity Creator
 
 ## Ports
+```yaml
+ports:
+- name: port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | enumerated | bus | fixed point
+- name: port_2
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_1
+  summary: Output composite entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+```
 
 ### Input
 
@@ -35,8 +52,38 @@ Input entity port for entities entering the block.
 Output entity port for composite entities exiting the clock.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input ports
+  summary: Specify the number of input ports 2 (default) | scalar
+  group: ''
+  block_parameter: NumberInputPorts
+  type: character vector
+  values: '''2'' | scalar'
+  default: '''2'''
+- name: Entity type name
+  summary: Specify the type name of the composite entity Combined (default) | character vector
+  group: ''
+  block_parameter: EntityTypeName
+  type: character vector
+  values: '''Combined'' | character vector'
+  default: '''Combined'''
+- name: Bus object
+  summary: Specify the output off (default) | on
+  group: ''
+  block_parameter: BusObject
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Define input entity names
+  summary: Specify the names of the input entities used to generate the composite entity {E1, E2} (default) | character vector
+  group: ''
+  block_parameter: InputEntityName
+  type: character vector
+  values: '''E1|E2'' | character vector'
+  default: '''E1|E2'''
+```
 
 ### **Number of input ports** — Specify the number of input ports `2` (default) | scalar
 
@@ -90,7 +137,6 @@ Names of the entities in the composite entity.
 | **Type**: character vector |
 | **Values**: `'E1|E2'` | character vector |
 | **Default**: `'E1|E2'` |
-
 ## Libraries
 
 SimEvents

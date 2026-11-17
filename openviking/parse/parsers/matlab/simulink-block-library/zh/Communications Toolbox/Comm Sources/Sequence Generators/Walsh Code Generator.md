@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Walsh Code Generator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Code length**
 :   整数标量，为 2 的幂，用于指定输出码的长度。
@@ -35,7 +40,6 @@ R2025b 中未记录。
 
 **输出数据类型**
 :   模块的输出类型可指定为 `int8` 或 `double`。默认情况下，模块将其设置为 `double`。
-
 ## 所属库
 
 R2025b 中未记录。

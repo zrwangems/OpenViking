@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Stair Generator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 阶梯信号 Simulink® 信号
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### 输出
 
@@ -23,8 +30,31 @@ chinese_source: worker-translation
 阶梯信号，作为 Simulink 输出信号返回。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## 参数
+```yaml
+parameters:
+- name: Time (s)
+  summary: 过渡时间 [0.5 1 3 3.5]（默认）| 非负值行向量
+  group: 主
+- name: Amplitude
+  summary: 阶梯信号值的幅值 [1 -1 2.5 0]（默认）| 行向量
+  group: 主
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 主
+- name: Repeat stair pattern indefinitely
+  summary: 阶梯模式重复 off（默认）| on
+  group: 主
+- name: Output data type
+  summary: '指定输出数据类型 double（默认）| Inherit: auto | Inherit: Inherit via internal rule | Inherit: Inherit via back propagation
+    | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | <data type expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''Inherit: Inherit via internal rule''| ''Inherit: Inherit via back propagation'' | ''single''
+    | ''double'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''|''int64''|''uint64''| ''<data type
+    expression>'''
+```
 
 ### 主
 
@@ -72,7 +102,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'Inherit: auto'` | `'Inherit: Inherit via internal rule'`| `'Inherit: Inherit via back propagation'` | `'single'` | `'double'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'`|`'int64'`|`'uint64'`| `'<data type expression>'` |
 | **默认**：`'Inherit: Inherit via internal rule'` |
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

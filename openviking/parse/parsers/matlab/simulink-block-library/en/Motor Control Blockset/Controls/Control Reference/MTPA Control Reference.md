@@ -14,6 +14,29 @@ language: en
 # MTPA Control Reference
 
 ## Ports
+```yaml
+ports:
+- name: Tref
+  summary: Reference torque value scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: Mechanical speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vdc
+  summary: DC bus voltage scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Idref
+  summary: Reference *d*-axis current scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Iqref
+  summary: Reference *q*-axis current scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -71,8 +94,55 @@ The unit of this port depends on the block input units defined by the
 `SI Units`, the port outputs signal in amperes.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of motor
+  summary: Type of PMSM Interior PMSM (default) | Surface PMSM
+  group: Motor Parameters
+- name: Number of pole pairs
+  summary: Number of available pole pairs 4 (default) | scalar
+  group: Motor Parameters
+- name: Stator resistance per phase (Ohm)
+  summary: Resistance of stator phase winding (ohms) 0.36 (default) | scalar
+  group: Motor Parameters
+- name: Stator d-axis inductance (H)
+  summary: '*d*-axis stator winding inductance 0.2e-3 (default) | scalar'
+  group: Motor Parameters
+- name: Stator q-axis inductance (H)
+  summary: '*q*-axis stator winding inductance 0.4e-3 (default) | scalar'
+  group: Motor Parameters
+- name: Permanent magnet flux linkage (Wb)
+  summary: Magnetic flux linkage of permanent magnets 6.4e-3 (default) | scalar
+  group: Motor Parameters
+- name: Max current (A)
+  summary: Maximum phase current limit for motor (amperes) 7.1 (default) | scalar
+  group: Motor Parameters
+- name: Vdc input method
+  summary: Input method for Vdc Specify via dialog (default) | Input port
+  group: Motor Parameters
+- name: DC voltage (V)
+  summary: DC bus voltage (volts) 24 (default) | scalar
+  group: Motor Parameters
+- name: Input signal units
+  summary: Unit of block input values Per-Unit (PU) (default) | SI Units
+  group: Input Units
+- name: Base speed (rpm)
+  summary: Base speed of motor (rpm) 4107 (default) | scalar
+  group: Input Units
+- name: Base current (A)
+  summary: Base current for per-unit conversion (amperes) 19.3 (default) | scalar
+  group: Input Units
+- name: Base torque (Nm)
+  summary: Base torque for per-unit conversion (Nm) 0.74112 (default) | scalar
+  group: Input Units
+- name: Base voltage (V)
+  summary: Base voltage for per-unit conversion (volts) 24/sqrt(3) (default) | scalar
+  group: Input Units
+- name: Prioritise execution time
+  summary: Scale down computations to reduce algorithm execution time on (default) | off
+  group: Implementation
+```
 
 ### Motor Parameters
 
@@ -208,7 +278,6 @@ To display this parameter, set **Input signal units** to
 If you select this parameter, the block follows computational approximations to
 prioritize and reduce the algorithm execution time. Clear this field to run the block
 algorithms iteratively without using approximations.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference

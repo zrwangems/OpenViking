@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # Simulation 3D Aircraft
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: 飞行器平移 11×3 数组 | 12×3 数组 | 15×3 数组 | 30×3 数组 | 57×3 数组
+  direction: input
+  data_types: single | double
+- name: Rotation
+  summary: 飞行器和机轮旋转 11×3 数组 | 12×3 数组 | 15×3 数组 | 30×3 数组 | 57×3 数组
+  direction: input
+  data_types: single | double
+- name: LightStates
+  summary: 飞行器灯光控制 1×7 双精度值向量
+  direction: input
+  data_types: single | double
+- name: Scale
+  summary: 网格缩放 [1 1 1]（默认）| 1×3 数组
+  direction: input
+- name: Altitude
+  summary: 飞行器姿态 1×4 向量
+  direction: output
+  data_types: double
+- name: WoW
+  summary: 机轮承重 1 | 0
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -259,8 +285,306 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Enable altitude and Wow sensors** 复选框。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 采样时间 -1（默认）| 实标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 实标量
+  default: '''-1'''
+- name: Type
+  summary: 飞行器类型 Sky Hogg（默认）| Airliner | General Aviation | Air Transport | Custom
+  group: Aircraft
+  block_parameter: Mesh
+  type: 字符向量
+  values: '''Sky Hogg'' | ''Airliner'' | ''General Aviation'' | ''Air Transport'' | ''Custom'''
+  default: '''Sky Hogg'''
+- name: Path to general aviation mesh
+  summary: 通用航空网格路径 /MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation'（默认）|
+    字符向量
+  group: Aircraft
+  block_parameter: MeshPathGA
+  type: 字符向量
+  values: '''/MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation'''
+- name: Path to air transport mesh
+  summary: 航空运输网格路径 /MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport（默认）| 字符向量
+  group: Aircraft
+  block_parameter: MeshPathAT
+  type: 字符向量
+  values: '''/MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport'''
+- name: Path to custom mesh
+  summary: 自定义网格路径 /MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20（默认）| /MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_Aircraft.SK_Aircraft
+    | 字符向量
+  group: Aircraft
+  block_parameter: MeshPath
+  type: 字符向量
+  values: '''/MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20'' | ''/MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_Aircraft.SK_Aircraft'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20'''
+- name: Color
+  summary: 飞行器颜色 Red（默认）| Orange | Yellow | Green | Cyan | Blue | Black | White | Silver | Metal
+  group: Aircraft
+  block_parameter: AircraftColor
+  type: 字符向量
+  values: '''Red'' | ''Orange'' | ''Yellow'' | ''Green'' | ''Cyan'' | ''Blue'' | ''Black'' | ''White'' | ''Silver'' | ''Metal'''
+  default: '''Red'''
+- name: Name
+  summary: 飞行器名称 SimulinkVehicle1（默认）| 字符向量
+  group: Aircraft
+  block_parameter: ActorName
+  type: 字符向量
+  values: 标量
+  default: '''SimulinkVehicle1'''
+- name: Initial translation (m)
+  summary: 飞行器初始平移 zeros(11,3)（默认）| 11×3 数组 | 12×3 数组 | 15×3 数组 | 30×3 数组 | 57×3 数组
+  group: Aircraft
+  block_parameter: Translation
+  type: 字符向量
+  values: 11×3 数组 | 12×3 数组 | 15×3 数组 | 30×3 数组 | 57×3 数组
+  default: '''zeros(11,3)'''
+- name: Initial rotation (rad)
+  summary: 飞行器旋转 zeros(11,3)（默认）| 11×3 数组 | 12×3 数组 | 15×3 数组 | 30×3 数组 | 57×3 数组
+  group: Aircraft
+  block_parameter: Rotation
+  type: 字符向量
+  values: 11×3 数组 | 12×3 数组 | 15×3 数组 | 30×3 数组 | 57×3 数组
+  default: '''zeros(11,3)'''
+- name: Scale source
+  summary: 缩放来源 Dialog（默认）| Port
+  group: Aircraft
+  block_parameter: ScaleInputPort
+  type: 字符向量
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Initial scale
+  summary: 初始网格缩放 [1 1 1]（默认）| 1×3 数组
+  group: Aircraft
+  block_parameter: InitialScale
+  type: 字符向量
+  values: 1×3 数组
+  default: '''[1 1 1]'''
+- name: Scale
+  summary: 网格缩放 [1 1 1]（默认）| 1×3 数组
+  group: Aircraft
+  block_parameter: Scale
+  type: 字符向量
+  values: 1×3 数组
+  default: '''[1 1 1]'''
+- name: Enable altitude and WoW sensors
+  summary: 高度和 WoW 传感器开启（默认）| 关闭
+  group: Altitude Sensor
+  block_parameter: IsGHSensorEnabled
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show sensor rays in viewer
+  summary: 在查看器中显示传感器射线的选项 关闭（默认）| 开启
+  group: Altitude Sensor
+  block_parameter: AreGHRaysVisible
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Interpret vector outputs as 1-D
+  summary: 控制传感器输出端口上的重塑 关闭（默认）| 开启
+  group: Altitude Sensor
+  block_parameter: IsOutputReshapeEnabled
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Length of rays (m)
+  summary: 射线长度 1524（默认）| 实标量
+  group: Altitude Sensor
+  block_parameter: GHRayLength
+  type: 字符向量
+  values: 实标量
+  default: '''1524'''
+- name: Body Z offset (m)
+  summary: 飞行器机体 *Z* 偏移量 0.90（默认）| 实标量
+  group: Altitude Sensor
+  block_parameter: GHBodyOffset
+  type: 字符向量
+  values: 实标量
+  default: '''0.90'''
+- name: Front tire radius (m)
+  summary: 前起落架轮胎半径 0.21（默认）| 实标量
+  group: Altitude Sensor
+  block_parameter: GHFrontTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.21'''
+- name: Left tire radius (m)
+  summary: Left gear tire radius 0.21 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHLeftTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.21'''
+- name: Right tire radius (m)
+  summary: Right gear tire radius 0.21 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHRightTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.21'''
+- name: WoW sensor tolerance (m)
+  summary: Wow sensor tolerance 0.05 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: WoWSensorTolerance
+  type: character vector
+  values: real scalar
+  default: '''0.05'''
+- name: Light configuration
+  summary: Light configurations options Automatic lights (default) | Configurable lights | Lights off
+  group: Light Configuration
+  block_parameter: LightsConfig
+  type: character vector
+  values: '''Automatic lights'' | ''Configurable lights'' | ''Lights off'''
+  default: '''Automatic lights'''
+- name: Landing lights intensity (cd)
+  summary: Landing lights intensity 30000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: LandingLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''30000'''
+- name: Landing lights cone half angle (deg)
+  summary: Landing lights cone half angle 15 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: LandingLightConeAngle
+  type: character vector
+  values: positive scalar
+  default: '''15'''
+- name: Left landing light location
+  summary: Left landing light location [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomLeftLandingLightLocation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Left landing light orientation (deg)
+  summary: Left landing light orientation [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomLeftLandingLightOrientation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Right landing light location
+  summary: Right landing light location [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomRightLandingLightLocation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Right landing light orientation (deg)
+  summary: Right landing light orientation [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomRightLandingLightOrientation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Taxi lights intensity (cd)
+  summary: Taxi lights intensity 150000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: TaxiLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''150000'''
+- name: Taxi lights cone half angle (deg)
+  summary: Taxi lights cone half angle 36 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: TaxiLightConeAngle
+  type: character vector
+  values: positive scalar
+  default: '''36'''
+- name: Taxi lights location
+  summary: Taxi lights location [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomTaxiLightLocation
+  type: character vector
+  values: positive scalar
+  default: '''[0 0 0]'''
+- name: Taxi lights orientation (deg)
+  summary: Taxi lights orientation [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomTaxiLightOrientation
+  type: character vector
+  values: positive scalar
+  default: '''[0 0 0]'''
+- name: Navigation lights intensity
+  summary: Navigation lights intensity 500 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: NavLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''500'''
+- name: Position light intensity
+  summary: Position light intensity 500 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: PositionLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''500'''
+- name: Strobe lights intensity
+  summary: Strobe lights intensity 5000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: StrobeLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''5000'''
+- name: Wingtip strobe period (s)
+  summary: Wingtip strobe period 1.5 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: WingtipStrobePeriod
+  type: character vector
+  values: positive scalar
+  default: '''1.5'''
+- name: Wingtip strobe pulse width (% of period)
+  summary: Wingtip strobe pulse width 6 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: WingtipStrobePulseWidth
+  type: character vector
+  values: positive scalar
+  default: '''6'''
+- name: Tail strobe period (s)
+  summary: Tail strobe period 1.5 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: TailStrobePeriod
+  type: character vector
+  values: positive scalar
+  default: '''1.5'''
+- name: Tail strobe pulse width (% of period)
+  summary: Tail strobe pulse width 6 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: TailStrobePulseWidth
+  type: character vector
+  values: positive scalar
+  default: '''6'''
+- name: Beacon lights intensity
+  summary: Beacon lights intensity 4000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''4000'''
+- name: Beacon period (s)
+  summary: Beacon period 1.5 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconPeriod
+  type: character vector
+  values: positive scalar
+  default: '''1.5'''
+- name: Beacon pulse width (% of period)
+  summary: Beacon pulse width 10 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconPulseWidth
+  type: character vector
+  values: positive scalar
+  default: '''10'''
+```
 
 ### **Sample time** — 采样时间 `-1`（默认）| 实标量
 
@@ -1057,7 +1381,6 @@ Beacon pulse width, specified as a positive scalar.
 | **类型**：character vector |
 | **值**：positive scalar |
 | **默认值**：`'10'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Simulation 3D

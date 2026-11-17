@@ -14,6 +14,37 @@ language: en
 # Aerodynamic Forces and Moments
 
 ## Ports
+```yaml
+ports:
+- name: Coef
+  summary: Aerodynamic coefficients six-element vector
+  direction: input
+  data_types: double
+- name: qbar
+  summary: Dynamic pressure scalar | three-element vector
+  direction: input
+  data_types: double
+- name: CG
+  summary: Center of gravity three-element vector
+  direction: input
+  data_types: double
+- name: CP
+  summary: Center of pressure three-element vector
+  direction: input
+  data_types: double
+- name: Vb
+  summary: Velocity in the body axes three-element vector
+  direction: input
+  data_types: double
+- name: F
+  summary: Aerodynamic forces three-element vector
+  direction: output
+  data_types: double
+- name: M
+  summary: Aerodynamic moments three-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -79,8 +110,52 @@ three-element vector, at the center of gravity in *x*-,
 *y*-, and *z*-axes.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input axes
+  summary: Coordinate system for input coefficients Body (default) | Stability | Wind
+  group: ''
+  block_parameter: inputAxes
+  type: character vector
+  values: '''Body'' | ''Stability'' | ''Wind'''
+  default: '''Body'''
+- name: Force axes
+  summary: Coordinate system for aerodynamic force Body (default) | Stability | Wind
+  group: ''
+  block_parameter: outputForcesAxes
+  type: character vector
+  values: '''Body'' | ''Stability'' | ''Wind'''
+  default: '''Body'''
+- name: Moment axes
+  summary: Coordinate system for aerodynamic moment Body (default) | Stability | Wind
+  group: ''
+  block_parameter: outputMomentAxes
+  type: character vector
+  values: '''Body'' | ''Stability'' | ''Wind'''
+  default: '''Body'''
+- name: Reference area
+  summary: Reference area 1 (default) | any double value
+  group: ''
+  block_parameter: S
+  type: character vector
+  values: any double value
+  default: '''1'''
+- name: Reference span
+  summary: Reference span 1 (default) | any double value
+  group: ''
+  block_parameter: b
+  type: character vector
+  values: any double value
+  default: '''1'''
+- name: Reference length
+  summary: Reference length 1 (default) | any double value
+  group: ''
+  block_parameter: cbar
+  type: character vector
+  values: any double value
+  default: '''1'''
+```
 
 ### **Input axes** — Coordinate system for input coefficients `Body` (default) | `Stability` | `Wind`
 
@@ -184,7 +259,6 @@ Reference length for calculating aerodynamic moment in the
 | **Type**: character vector |
 | **Values**: any double value |
 | **Default**: `'1'` |
-
 ## Libraries
 
 Aerospace Blockset / Aerodynamics

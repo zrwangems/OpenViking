@@ -15,14 +15,107 @@ chinese_source: worker-translation
 # Solver Configuration
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 连接端口，无类型 conserving port
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **Port\_1** — 连接端口，无类型 conserving port
 
 Conserving 连接端口。此端口为无类型。你可以通过在任何类型的 conserving 端口之间的连接线上创建分支点，将其连接到物理网络电路中的任意位置。无论连接类型如何，该模块都会为整个物理网络提供求解器设置。
-
 ## 参数
+```yaml
+parameters:
+- name: Equation formulation
+  summary: 指定求解器如何处理正弦变量 Time（默认）| Frequency and time
+  group: ''
+- name: Index reduction method
+  summary: 选择用于求解非线性高指数 DAE 的降指数方法 Derivative replacement（默认）| Projection | None
+  group: ''
+- name: Start simulation from steady state
+  summary: 选择是从初始状态开始仿真，还是从稳态开始仿真 off（默认）| on
+  group: ''
+- name: Consistency tolerance
+  summary: 用于初始条件和瞬态初始化计算的基于状态的容差模式 Model AbsTol and RelTol（默认）| Local tolerance settings
+  group: ''
+- name: Absolute tolerance
+  summary: 局部绝对容差 0.001（默认）| 正标量
+  group: ''
+- name: Relative tolerance
+  summary: 局部相对容差 0.001（默认）| 正标量
+  group: ''
+- name: Tolerance factor
+  summary: 用于绝对容差和相对容差的缩放因子 0.001（默认）| 范围 (0,1] 内的标量
+  group: ''
+- name: Use local solver
+  summary: 对模型中的物理网络使用基于采样的局部求解器 off（默认）| on
+  group: ''
+- name: Solver type
+  summary: 局部求解器用于更新状态的求解器类型 Backward Euler（默认）| Trapezoidal Rule | Partitioning
+  group: ''
+- name: Sample time
+  summary: 局部求解器的采样时间 0.001（默认）| 正标量
+  group: ''
+- name: Partition method
+  summary: 选择使用 Partitioning 局部求解器时优先考虑速度还是稳健性 Robust simulation（默认）| Fast simulation
+  group: ''
+- name: Partition storage method
+  summary: 选择使用 Partitioning 局部求解器时用于存储划分数据的方法 As needed（默认）| Exhaustive
+  group: ''
+- name: Partition memory budget [kB]
+  summary: 用于存储划分数据的 exhaustive 方法的内存预算 1024（默认）| 正标量
+  group: ''
+- name: Resolve indeterminate equations during runtime
+  summary: 应用运行时正则化以求解静不定系统，on（默认）| off
+  group: ''
+- name: Use fixed-cost runtime consistency iterations
+  summary: 固定成本仿真选项，off（默认）| on
+  group: ''
+- name: Nonlinear iterations
+  summary: 瞬态初始化的牛顿迭代次数，3（默认）| 正整数
+  group: ''
+- name: Mode iterations
+  summary: 瞬态初始化的模式迭代次数，2（默认）| 正整数
+  group: ''
+- name: Compute impulses
+  summary: 允许您管理瞬态初始化期间脉冲检测的计算成本，off（默认）| on
+  group: ''
+- name: Impulse iterations
+  summary: 瞬态初始化的脉冲迭代次数 2（默认）| 正整数
+  group: ''
+- name: Maximum threads for function evaluation
+  summary: 使用多线程加速 Backward Euler 求解器的 Newton 迭代 1（默认）| 正整数
+  group: ''
+- name: Linear Algebra
+  summary: 指定求解器如何处理矩阵 auto（默认）| Sparse | Full
+  group: ''
+- name: Number of threads (specify n for 2^n)
+  summary: 使用多线程线性代数加速多核机器上的桌面仿真 0（默认）| 正整数
+  group: ''
+- name: Delay memory budget [kB]
+  summary: 处理延迟的内存预算 1024（默认）| 正标量
+  group: ''
+- name: Apply filtering at 1-D/3-D connections when needed
+  summary: 在需要时对 1-D/3-D 连接应用滤波 — 自动提供 Simscape Multibody™ 模块所需的附加导数 on（默认）| off
+  group: ''
+- name: Filtering time constant
+  summary: 延迟的时间常数，以秒为单位 0.001（默认）| 正标量
+  group: ''
+- name: Use local solver
+  summary: 对 Simscape Multibody 网络使用基于样本的局部求解器 off（默认）| on
+  group: ''
+- name: Solver type
+  summary: 局部求解器用于更新 Simscape Multibody 网络中状态的求解器类型 First-order explicit formula（默认）| Second-order explicit formula | Third-order
+    explicit formula | Fourth-order explicit formula | Fifth-order explicit formula | Eight-order explicit formula
+  group: ''
+- name: Sample time
+  summary: Multibody 局部求解器的采样时间 0.001（默认）| 正标量
+  group: ''
+```
 
 ### **Equation formulation** — 指定求解器如何处理正弦变量 `Time`（默认）| `Frequency and time`
 
@@ -282,7 +375,6 @@ Conserving 连接端口。此端口为无类型。你可以通过在任何类型
 #### 依赖关系
 
 要启用此参数，请在 **Multibody** 部分中选中 **Use local solver** 复选框。
-
 ## 所属库
 
 Simscape / Utilities

@@ -14,6 +14,15 @@ language: en
 # Constant Current Load
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,49 @@ positive terminal.
 
 Electrical conserving port associated with the constant current load
 negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Load type
+  summary: Load type DC (default) | AC
+  group: Main
+- name: Consumed current
+  summary: Current consumed 1 A (default) | scalar
+  group: Main
+- name: Minimum supply voltage
+  summary: Minimum DC supply voltage 5 V (default) | scalar
+  group: Main
+- name: Reverse conductance
+  summary: Reverse conductance 1e-6 S (default) | scalar
+  group: Main
+- name: Transition voltage width
+  summary: Transition voltage width 1e-3 V (default) | scalar
+  group: Main
+- name: Consumed current (RMS)
+  summary: Root mean square consumed current 100 A (default) | scalar
+  group: Main
+- name: Rated frequency
+  summary: Rated frequency 60 Hz (default) | scalar
+  group: Main
+- name: Minimum supply voltage (RMS)
+  summary: Minimum AC supply voltage 200 V (default) | scalar
+  group: Main
+- name: Open circuit fault
+  summary: Option to add open circuit fault Add fault (default)
+  group: Faults
+- name: Open-circuit conductance
+  summary: Open-circuit conductance 1e-4 S (default) | scalar
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible power
+  summary: Power threshold to fault transition inf W (default)
+  group: Faults
+- name: Time to fail when exceeding power
+  summary: Maximum length of time the power exceeds the threshold 1 s (default)
+  group: Faults
+```
 
 ### Main
 
@@ -160,7 +210,6 @@ triggering the fault.
 
 To enable this parameter, set **Trigger Type** to
 `Behavioral`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

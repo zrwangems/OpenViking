@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Convolutional Deinterleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Rows of shift registers**
 :   模块内部使用的移位寄存器数量。
@@ -33,7 +38,6 @@ R2025b 中未记录。
     - 当选择长度等于 **Rows of shift registers** 参数的列向量时，每个条目填充对应的移位寄存器。
 
     **Initial conditions** 参数第一个元素的值不重要，因为最后一个移位寄存器的延迟为零。
-
 ## 所属库
 
 R2025b 中未记录。

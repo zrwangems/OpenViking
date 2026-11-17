@@ -15,6 +15,66 @@ chinese_source: worker-translation
 # Multistage Nonlinear MPC Controller
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入向量
+  direction: input
+- name: last_mv
+  summary: 上一控制区间在被控对象中使用的控制信号向量
+  direction: input
+- name: md
+  summary: 输入行向量 | 矩阵
+  direction: input
+- name: state.param
+  summary: 可选参数向量
+  direction: input
+- name: stage.param
+  summary: 可选参数向量
+  direction: input
+- name: mv.min
+  summary: 最小操纵变量约束 向量 | 矩阵
+  direction: input
+- name: mv.max
+  summary: 最大操纵变量约束 向量 | 矩阵
+  direction: input
+- name: dmv.min
+  summary: 最小操纵变量速率约束 向量 | 矩阵
+  direction: input
+- name: dmv.max
+  summary: 最大操纵变量速率约束向量 | 矩阵
+  direction: input
+- name: x.min
+  summary: 最小状态约束向量 | 矩阵
+  direction: input
+- name: x.max
+  summary: 最大状态约束向量 | 矩阵
+  direction: input
+- name: x.terminal
+  summary: 终端状态向量
+  direction: input
+- name: z0
+  summary: 决策变量向量向量的初始猜测
+  direction: input
+- name: mv
+  summary: 最优操纵变量控制动作列向量
+  direction: output
+- name: cost
+  summary: 目标函数代价非负标量
+  direction: output
+- name: slack
+  summary: 堆叠松弛变量向量非负向量
+  direction: output
+- name: nlp.status
+  summary: 优化状态标量
+  direction: output
+- name: mv.seq
+  summary: 最优操作变量序列矩阵
+  direction: output
+- name: x.seq
+  summary: 最优预测模型状态序列矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -266,8 +326,146 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Optimal state sequence** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Multistage Nonlinear MPC Controller
+  summary: 控制器对象 nlmpcMultistage 对象名称
+  group: ''
+  block_parameter: nlmpcobj
+  type: string, character vector
+  default: '""'
+- name: Use prediction model sample time
+  summary: 使用预测模型采样时间的标志 on（默认）| off
+  group: ''
+  block_parameter: UseObjectTs
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Make block run at a different sample time
+  summary: 控制器采样时间 正有限标量 | -1
+  group: ''
+  block_parameter: TsControl
+  type: string, character vector
+  default: '""'
+- name: Use MEX to speed up simulation
+  summary: 用于加速仿真的 MEX 标志 off（默认）| on
+  group: ''
+  block_parameter: UseMEX
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Specify MEX function name
+  summary: 控制器 MEX 函数名称 string
+  group: ''
+  block_parameter: mexname
+  type: string, character vector
+  default: '""'
+- name: Measured disturbances
+  summary: 添加可测扰动输入端口 off（默认）| on
+  group: 常规选项卡
+  block_parameter: md_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: StateFcn parameter
+  summary: 添加状态函数参数输入端口 off（默认）| on
+  group: 常规选项卡
+  block_parameter: stateparam_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Stacked stage parameters
+  summary: 添加阶段函数参数输入端口 off（默认）| on
+  group: 常规选项卡
+  block_parameter: stageparam_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal cost
+  summary: 添加最优代价输出端口 off（默认）| on
+  group: 常规选项卡
+  block_parameter: cost_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal control sequence
+  summary: 添加最优控制序列输出端口 off（默认）| on
+  group: 常规选项卡
+  block_parameter: mvseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal state sequence
+  summary: 添加最优状态序列输出端口 off（默认）| on
+  group: 常规选项卡
+  block_parameter: stateseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Slack variable
+  summary: 添加松弛变量输出端口 off（默认）| on
+  group: 常规选项卡
+  block_parameter: slack_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimization status
+  summary: 添加优化状态输出端口 off（默认）| on
+  group: 常规选项卡
+  block_parameter: status_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MV limits
+  summary: 添加最小 MV 约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: mv_min
+  type: string, character vector
+  values: '"off", "on"'
+- name: Upper MV limits
+  summary: 添加最大 MV 约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: mv_max
+  type: string, character vector
+  values: '"off", "on"'
+- name: Lower MVRate limits
+  summary: 添加最小 MV 速率约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: mvrate_min
+  type: string, character vector
+  values: '"off", "on"'
+- name: Upper MVRate limits
+  summary: 添加最大 MV 速率约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: mvrate_max
+  type: string, character vector
+  values: '"off", "on"'
+- name: Lower state limits
+  summary: 添加最小状态约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: state_min
+  type: string, character vector
+  values: '"off", "on"'
+- name: Upper state limits
+  summary: 添加最大状态约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: state_max
+  type: string, character vector
+  values: '"off", "on"'
+- name: Terminal state
+  summary: 终端状态 off（默认）| on
+  group: Online Features Tab
+  block_parameter: terminal_state
+  type: string, character vector
+  values: '"off", "on"'
+- name: Initial guess
+  summary: 添加初始猜测输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: nlp_initialize
+  type: string, character vector
+  values: '"off", "on"'
+```
 
 ### **Multistage Nonlinear MPC Controller** — 控制器对象 `nlmpcMultistage` 对象名称
 
@@ -562,7 +760,6 @@ MV 速率向量的第一个元素（即操作变量当前值与上一个值之�
 | **类型：** string, character vector |
 | **值：** `"off"`, `"on"` |
 | **默认：** `"off"` |
-
 ## 所属库
 
 Model Predictive Control Toolbox

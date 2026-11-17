@@ -15,14 +15,40 @@ chinese_source: worker-translation
 # Gas-Charged Accumulator (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **A** — 液体端口，等温液体
 
 与蓄能器入口关联的等温液体端口。如果液体流入蓄能器，则流量为正。
-
 ## 参数
+```yaml
+parameters:
+- name: Total accumulator volume
+  summary: 蓄能器容积 8e-3 m^3（默认）| 正标量
+  group: ''
+- name: Minimum gas volume
+  summary: 气体腔死容积 4e-5 m^3（默认）| 正标量
+  group: ''
+- name: Precharge pressure
+  summary: 气体腔压力 1.101325 MPa（默认）| 正标量
+  group: ''
+- name: Specific heat ratio
+  summary: 比热比 1.4（默认）| 正标量
+  group: ''
+- name: Hard stop stiffness coefficient
+  summary: 比例常数 1e4 MPa/m^3（默认）| 正标量
+  group: ''
+- name: Enable dynamic compressibility
+  summary: 流体可压缩性 on（默认）| off
+  group: ''
+```
 
 ### **Total accumulator volume** — 蓄能器容积 `8e-3` `m^3`（默认）| 正标量
 
@@ -47,7 +73,6 @@ chinese_source: worker-translation
 ### **Enable dynamic compressibility** — 流体可压缩性 `on`（默认）| `off`
 
 是否对由流体可压缩性引起的流体密度变化进行建模。当您选择 **Enable dynamic compressibility** 时，除了由于压力变化引起的密度变化外，还会计算由于流入模块的质量流量引起的变化。在等温液体库中，所有模块都将密度计算为压力的函数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Tanks & Accumulators

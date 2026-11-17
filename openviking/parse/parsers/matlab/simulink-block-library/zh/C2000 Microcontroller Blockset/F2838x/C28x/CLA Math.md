@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CLA Math
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入数据向量
+  direction: input
+  data_types: single
+- name: y
+  summary: 输出数据标量
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -30,13 +41,18 @@ chinese_source: worker-translation
 该模块输出 single 类型的 *N*×1 数组数据。该模块输出所选函数参数的值。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Function
+  summary: 选择 CLA Math 函数 CLAsin（默认）| CLAcos | CLAasin | CLAacos | CLAatan | CLAatan2 | CLAsinPU | CLAcosPU | CLAatan2PU |
+    CLAexp | CLAexp2 | CLAexp10 | CLAexpN | CLALn | CLALog10 | CLALogN | CLAdiv | CLAsqrt | CLAisqrt
+  group: ''
+```
 
 ### **Function** — 选择 CLA Math 函数 `CLAsin`（默认）| `CLAcos` | `CLAasin` | `CLAacos` | `CLAatan` | `CLAatan2` | `CLAsinPU` | `CLAcosPU` | `CLAatan2PU` | `CLAexp` | `CLAexp2` | `CLAexp10` | `CLAexpN` | `CLALn` | `CLALog10` | `CLALogN` | `CLAdiv` | `CLAsqrt` | `CLAisqrt`
 
 选择 CLA Math 函数，其中包括三角函数、对数函数、指数函数和幂函数。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

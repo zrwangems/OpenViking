@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # S-Function Builder
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: S-function 输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: Out
+  summary: S-function 输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+```
 
 ### 输入
 
@@ -34,8 +47,25 @@ S-Function Builder 可以生成实数和复数、一维或二维信号以及非�
 有关详细信息，请参阅 Simulink 文档中的 Simulink 支持的数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: S-function name
+  summary: S-function 的名称 system（默认）| S-function 名称
+  group: ''
+  block_parameter: FunctionName
+  values: '''system''（默认）| 带引号的 S-function 名称'
+- name: S-function parameters
+  summary: 附加 S-function 参数 MATLAB® 表达式 | 逗号分隔的变量
+  group: ''
+  block_parameter: Parameters
+  values: '''''（默认）| 带引号的 S-function 参数'
+- name: S-function modules
+  summary: 用于代码生成的附加文件 ''（默认）| 文件名
+  group: ''
+  block_parameter: SFunctionModules
+  values: '''''（默认）| 带引号的文件名'
+```
 
 使用 S-Function Builder 编辑器创建用户定义的参数。有关从编辑器创建用户定义参数的详细信息，请参阅 Specify Ports and Parameters for the S-Function。
 
@@ -87,7 +117,6 @@ A, B, C, D, [eye(2,2);zeros(2,2)]
 | --- | --- |
 | **参数：** | `SFunctionModules` |
 | **值：** | `''`（默认）| 带引号的文件名 |
-
 ## 所属库
 
 Simulink / User-Defined Functions

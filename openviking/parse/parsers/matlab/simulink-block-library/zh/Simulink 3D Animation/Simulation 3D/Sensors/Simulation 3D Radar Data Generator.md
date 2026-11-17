@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Simulation 3D Radar Data Generator
 
 ## 端口
+```yaml
+ports:
+- name: Clustered detections
+  summary: 包含 MATLAB® 结构的 Simulink® 总线，用于表示聚类后的目标检测
+  direction: output
+- name: Tracks
+  summary: 目标航迹 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+- name: Detections
+  summary: 包含 MATLAB 结构的 Simulink 总线，用于未聚类目标检测
+  direction: output
+```
 
 ### 输出
 
@@ -182,8 +194,112 @@ chinese_source: worker-translation
 
 要启用此端口，请在**参数**选项卡上，将**生成目标报告的格式**设置为
 `Detections`。
-
 ## 参数
+```yaml
+parameters:
+- name: 传感器标识符
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 安装
+- name: 父级名称
+  summary: 父级载具名称 Scene Origin（默认）| 载具名称
+  group: 安装
+- name: 坐标系
+  summary: 用于对象变换的坐标系 Default（默认）| MATLAB | ISO8855 | AERO | VRML | SAE
+  group: 安装
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）
+  group: 安装
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移 off（默认） | on
+  group: 安装
+- name: Relative translation [X, Y, Z]
+  summary: 相对于安装位置的平移偏移 [0, 0, 0]（默认） | 实值 1×3 向量
+  group: 安装
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: 相对于安装位置 [0, 0, 0]（默认）| 实值 1×3 向量 的旋转偏移
+  group: 安装
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 安装
+- name: Enable elevation angle measurements
+  summary: 使雷达能够测量目标仰角 on（默认）| off
+  group: 参数
+- name: Enable range rate measurements
+  summary: 使雷达能够测量目标距离变化率 on（默认）| off
+  group: 参数
+- name: Add measurement noise to observations
+  summary: 启用向雷达传感器测量添加噪声 on（默认）| off
+  group: 参数
+- name: Enable generation of reports from false observations
+  summary: 启用从虚假观测生成报告 on（默认）| off
+  group: 参数
+- name: Maximum number of target reports
+  summary: 检测或航迹的最大数量 50（默认）| 正整数
+  group: 参数
+- name: Format of generated target reports
+  summary: 生成的目标报告格式 Clustered detections（默认）| Tracks | Detections
+  group: 参数
+- name: 用于报告检测的坐标系
+  summary: 所报告检测的坐标系 Body（默认）| Sensor rectangular | Sensor spherical
+  group: 参数
+- name: 方位角分辨率 (deg)
+  summary: 雷达的方位角分辨率 4（默认）| 正实数标量
+  group: 测量
+- name: 俯仰角分辨率 (deg)
+  summary: 雷达的俯仰角分辨率 5（默认）| 正实数标量
+  group: 测量
+- name: 距离分辨率 (m)
+  summary: 雷达的距离分辨率 2.5（默认）| 正实数标量
+  group: 测量
+- name: 距离变化率分辨率 (m/s)
+  summary: 雷达的距离变化率分辨率 0.5（默认）| 正实数标量
+  group: 测量
+- name: 方位角偏置系数
+  summary: 雷达的方位角偏置系数 0.1（默认）| 非负标量
+  group: 测量
+- name: 俯仰角偏置系数
+  summary: 雷达的俯仰角偏置系数 0.1（默认）| 非负标量
+  group: 测量
+- name: 距离偏置系数
+  summary: 距离偏置系数 0.05（默认）| 非负标量
+  group: 测量
+- name: Range rate bias fraction
+  summary: 距离变化率偏差系数 0.05（默认）| 非负标量
+  group: 测量
+- name: Total angular field of view [AZ, EL] (deg)
+  summary: 雷达的角视场 [20 5]（默认）| 形式为 [azfov,elfov] 的 1×2 正实值向量
+  group: 测量
+- name: Range limits [MIN, MAX] (m)
+  summary: 雷达的最小和最大距离 [0 150]（默认）| 形式为 [min max] 的 1×2 非负实值向量
+  group: 测量
+- name: Range rate limits [MIN, MAX] (m/s)
+  summary: 雷达的最小和最大距离变化率 (m/s) [-100 100]（默认）| 形式为 [min max] 的 1×2 实值向量
+  group: 测量
+- name: Detection probability
+  summary: 检测目标的概率 0.9（默认）| 范围 (0, 1] 内的标量
+  group: 测量
+- name: False alarm rate
+  summary: 虚警报告率 1e-06（默认）| 范围 [10–7, 10–3] 内的正实标量
+  group: 测量
+- name: Reference target range (m)
+  summary: 给定检测概率的参考距离 100（默认）| 正实标量
+  group: 测量
+- name: Reference target RCS (dBsm)
+  summary: 给定检测概率下的参考雷达截面积 0（默认）| 实数标量
+  group: 测量
+- name: Center frequency (Hz)
+  summary: 雷达频段的中心频率 77e9（默认）| 正实数标量
+  group: 测量
+- name: Select method to specify initial seed
+  summary: 指定随机数生成器种子的方法 Repeatable（默认）| Specify seed | Not repeatable
+  group: 测量
+- name: Initial seed
+  summary: 随机数生成器种子 0（默认）| 小于 232 的非负整数
+  group: 测量
+- name: Actor types to oversample
+  summary: 用于改进目标检测的 Actor 类型 Simulation 3D Vehicles（默认）| None | Simulation 3D Actors | All Actors
+  group: 测量
+```
 
 ### 安装
 
@@ -486,7 +602,6 @@ Origin`，该模块会将传感器放置在场景原点。
 #### 提示
 
 - 向 3D 环境中的 actor 过采样射线可提高 actor 周围的检测精度，但需要更多计算资源。
-
 ## 所属库
 
 Simulink 3D Animation / Simulation 3D / Sensors

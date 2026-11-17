@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Discrete Derivative
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 缩放后的离散时间导数 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,68 @@ chinese_source: worker-translation
 可选的缩放离散时间导数，指定为标量、向量或矩阵。有关该模块如何计算离散时间导数的详细信息，请参阅描述。您可以通过 **Output data type** 参数指定输出信号的数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Gain value
+  summary: 缩放因子 1.0 （默认） | 标量
+  group: 主要
+  block_parameter: gainval
+  type: character vector
+  values: scalar
+  default: '''1.0'''
+- name: Initial condition for previous weighted input K\*u/Ts
+  summary: 初始条件 0.0 （默认） | 标量
+  group: 主要
+  block_parameter: ICPrevScaledInput
+  type: character vector
+  values: scalar
+  default: '''0.0'''
+- name: Input processing
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based) （默认） | Columns as channels (frame based)
+  group: 主要
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 [] （默认） | 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]'' （默认） | 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 [] （默认） | 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]'' （默认） | 带引号的标量'
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via internal rule （默认） | Inherit: Inherit via back propagation | double | single | int8
+    | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0)'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' |
+    ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' |
+    ''fixdt(1,16,2^0,0)'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off （默认） | on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off'' （默认） | ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor （默认） | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  values: '''Floor'' （默认） | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: 溢出操作的方法 off （默认） | on
+  group: 信号属性
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -197,7 +268,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Discrete

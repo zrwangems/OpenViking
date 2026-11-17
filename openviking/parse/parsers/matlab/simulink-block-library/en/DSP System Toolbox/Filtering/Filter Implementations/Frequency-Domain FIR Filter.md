@@ -14,6 +14,29 @@ language: en
 # Frequency-Domain FIR Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Data Input vector | matrix
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: Time-domain FIR filter coefficients row vector | matrix *(since R2024a)*
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: NumFFT
+  summary: Frequency-domain FIR filter coefficients row vector | matrix | 3-D array *(since R2024a)*
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: output
+  summary: Filtered output vector | matrix | 3D array *(since R2024a)*
+  direction: input
+  data_types: single | double
+- name: latency
+  summary: Filter latency positive integer
+  direction: input
+  data_types: uint32
+```
 
 ### Input
 
@@ -153,8 +176,61 @@ latency** check box and click
 **Apply**.
 
 **Data Types:** `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Frequency-domain filter method
+  summary: Filtering method in frequency domain Overlap-save (default) | Overlap-add
+  group: ''
+- name: Numerator domain
+  summary: Numerator domain Time (default) | Frequency
+  group: ''
+- name: Specify coefficients from input port
+  summary: Flag to specify time-domain FIR filter coefficients off (default) | on
+  group: ''
+- name: Filter coefficients
+  summary: Time-domain FIR filter coefficients fir1(100,0.3) (default) | row vector | matrix *(since R2024a)*
+  group: ''
+- name: Specify frequency response from input port
+  summary: Flag to specify frequency-domain filter coefficients off (default) | on
+  group: ''
+- name: Frequency response
+  summary: Frequency response of filter fft(fir1(100,0.3),202) (default) | row vector | matrix | 3-D array *(since R2024a)*
+  group: ''
+- name: Number of propagation paths
+  summary: Number of propagation paths between each input channel and output channel pair 1 (default) | positive integer
+  group: ''
+- name: Sum filtered output contributions from all input channels
+  summary: Option to sum filtered output contributions from all input channels true (default) | false
+  group: ''
+- name: Partition numerator to reduce latency
+  summary: Option to partition the numerator to reduce latency off (default) | on
+  group: ''
+- name: Numerator partition length
+  summary: Partition length of numerator 32 (default) | positive integer
+  group: ''
+- name: Time-domain numerator length
+  summary: Time-domain numerator length 101 (default) | positive integer
+  group: ''
+- name: Inherit FFT length from numerator length
+  summary: Flag to inherit FFT length from the numerator length on (default) | off
+  group: ''
+- name: FFT length
+  summary: FFT length 1024 (default) | positive integer
+  group: ''
+- name: Filter is real
+  summary: Flag to specify if filter is real true (default) | false
+  group: ''
+- name: Output filter latency
+  summary: Flag to output filter latency 'off' (default) | 'on'
+  group: ''
+- name: View Filter Response
+  summary: Visualize frequency response button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Frequency-domain filter method** — Filtering method in frequency domain `Overlap-save` (default) | `Overlap-add`
 
@@ -449,7 +525,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Implementations

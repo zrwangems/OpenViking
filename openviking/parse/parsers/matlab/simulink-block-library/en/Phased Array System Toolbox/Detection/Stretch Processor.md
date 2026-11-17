@@ -14,6 +14,21 @@ language: en
 # Stretch Processor
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input signal *M*-by-*P* complex-valued matrix
+  direction: input
+  data_types: double
+- name: PRF
+  summary: Pulse repetition frequency positive scalar
+  direction: input
+  data_types: double
+- name: Y
+  summary: Stretch processed signal *M*-by-*P* complex-valued matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -53,8 +68,41 @@ Stretch processed signal, returned as an
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Pulse width (s)
+  summary: Time duration of pulse 50e-6 (default) | positive scalar
+  group: ''
+- name: Specify PRF as
+  summary: Source of PRF value Property (default) | Auto | Input port
+  group: ''
+- name: Pulse repetition frequency (Hz)
+  summary: Pulse repetition frequency 1e4 (default) | positive scalar
+  group: ''
+- name: FM sweep slope (Hz/s)
+  summary: Slope of linear FM sweep 2e9 (default) | scalar
+  group: ''
+- name: FM sweep interval
+  summary: Direction of FM sweep Positive (default) | Symmetric
+  group: ''
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: Reference range (m)
+  summary: Center of ranges of interest 5000 (default) | positive scalar
+  group: ''
+- name: Reference span (m)
+  summary: Span of ranges of interest 500 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Pulse width (s)** — Time duration of pulse `50e-6` (default) | positive scalar
 
@@ -176,7 +224,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

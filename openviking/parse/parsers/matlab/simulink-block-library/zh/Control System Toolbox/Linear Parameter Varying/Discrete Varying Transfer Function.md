@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Discrete Varying Transfer Function
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 传递函数输入 标量
+  direction: input
+- name: b0, b1, ...
+  summary: 分子系数 标量
+  direction: input
+- name: a1, a2, ...
+  summary: 分母系数 标量
+  direction: input
+- name: y
+  summary: 传递函数输出 标量
+  direction: output
+```
 
 ### 输入
 
@@ -36,8 +51,19 @@ chinese_source: worker-translation
 ### **y** — 传递函数输出 标量
 
 传递函数输出信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Transfer function order
+  summary: 极点数量 1（默认）| 正整数
+  group: ''
+- name: Enable feedthrough
+  summary: 为直通项添加输入端口 on（默认）| off
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 –1（默认）| 正标量
+  group: ''
+```
 
 ### **Transfer function order** — 极点数量 1（默认）| 正整数
 
@@ -52,7 +78,6 @@ chinese_source: worker-translation
 ### **Sample time (-1 for inherited)** — 模块采样时间 –1（默认）| 正标量
 
 模块采样时间，指定为 –1（继承采样时间）或正标量值。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # IncrementalClassificationNaiveBayes Predict
 
 ## 端口
+```yaml
+ports:
+- name: mdl
+  summary: 增量学习模型总线信号
+  direction: input
+- name: x
+  summary: 预测变量数据块 数值矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: label
+  summary: 预测类别标签块 列向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: score
+  summary: 预测类别分数或后验概率 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: cost
+  summary: 预期误分类代价 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: CanPredict
+  summary: 模型状态 0 (false) | 1(true)
+  direction: output
+```
 
 ### 输入
 
@@ -72,8 +98,206 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 Block Parameters 对话框的 **Main** 选项卡上选中 **Add output port for status of trained machine learning model** 复选框。
-
 ## 参数
+```yaml
+parameters:
+- name: Select initial machine learning model
+  summary: 初始增量朴素贝叶斯分类模型 nbMdl（默认）| incrementalClassificationNaiveBayes 模型对象
+  group: 主要参数
+  block_parameter: InitialLearner
+  type: character vector or string
+  values: incrementalClassificationNaiveBayes object name
+  default: '"nbMdl"'
+- name: Add output port for predicted class scores
+  summary: 添加预测类分数的输出端口 off（默认）| on
+  group: 主要参数
+  block_parameter: ShowOutputScore
+  type: character vector or string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Add output port for expected classification cost
+  summary: 添加预期分类成本的可选输出端口 off（默认）| on
+  group: 主要参数
+  block_parameter: ShowOutputCost
+  type: character vector or string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Add output port for status of trained machine learning model
+  summary: 添加模型状态的第二个输出端口 off（默认）| on
+  group: 主要参数
+  block_parameter: ShowOutputCanPredict
+  type: character vector or string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Sample time (–1 for inherited)
+  summary: 指定采样时间的选项 –1（默认）| 标量
+  group: 主要参数
+  block_parameter: SystemSampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: 对整数溢出进行饱和处理
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Label data type
+  summary: '标签输出数据类型 Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data
+    type expression>'
+  group: 数据类型
+  block_parameter: LabelDataTypeStr
+  type: character vector or string
+  values: '"Inherit: Inherit via back propagation" | "Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16"
+    | "uint16" | "int32" | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "Enum: <class
+    name>" | "<data type expression>"'
+  default: '"Inherit: Inherit via back propagation" (for numeric and logical labels) | "Inherit: auto" (for nonnumeric labels)'
+- name: Label data type Minimum
+  summary: 用于范围检查的标签输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LabelOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Label data type Maximum
+  summary: 用于范围检查的 label 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LabelOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Score data type
+  summary: 'score 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: ScoreDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Score data type Minimum
+  summary: 用于范围检查的 score 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: ScoreOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Score data type Maximum
+  summary: 用于范围检查的 score 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: ScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Raw score data type
+  summary: '未变换的 score 数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: RawScoreDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Raw score data type Minimum
+  summary: 用于范围检查的未变换 score 最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: RawScoreOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: 原始分数数据类型最大值
+  summary: 用于范围检查的未变换分数最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: RawScoreOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: 估计代价数据类型
+  summary: '代价输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: CostDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: 估计代价数据类型最小值
+  summary: 用于范围检查的代价输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: CostOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Estimated cost data type Maximum
+  summary: 用于范围检查的 cost 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: CostOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Likelihood data type
+  summary: 'likelihood 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: LikelihoodDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Likelihood data type Minimum
+  summary: 用于范围检查的 likelihood 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LikelihoodOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Likelihood data type Maximum
+  summary: 用于范围检查的 likelihood 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LikelihoodOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Posterior data type
+  summary: '后验概率输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: PosteriorDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Posterior data type Minimum
+  summary: 用于范围检查的后验概率输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: PosteriorOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: 后验数据类型最大值
+  summary: 用于范围检查的后验概率输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: PosteriorOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -596,7 +820,6 @@ Simulink 使用该最大值来执行：
 | **类型**：字符向量 |
 | **值**：`"[]"` | 标量 |
 | **默认值**：`"[]"` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Classification / NaiveBayes

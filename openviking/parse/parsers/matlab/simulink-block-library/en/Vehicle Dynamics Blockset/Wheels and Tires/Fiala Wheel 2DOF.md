@@ -14,6 +14,66 @@ language: en
 # Fiala Wheel 2DOF
 
 ## Ports
+```yaml
+ports:
+- name: BrkPrs
+  summary: Brake pressure scalar | *N*-by-1 vector
+  direction: input
+- name: AxlTrq
+  summary: Axle torque scalar | *N*-by-1 vector
+  direction: input
+- name: Vx
+  summary: Longitudinal velocity scalar | *N*-by-1 vector
+  direction: input
+- name: Vy
+  summary: Lateral velocity scalar | *N*-by-1 vector
+  direction: input
+- name: Camber
+  summary: Inclination angle scalar | *N*-by-1 vector
+  direction: input
+- name: YawRate
+  summary: Tire angular velocity scalar | *N*-by-1 vector
+  direction: input
+- name: Prs
+  summary: Tire inflation pressure scalar | *N*-by-1 vector
+  direction: input
+- name: Gnd
+  summary: Ground displacement scalar | *N*-by-1 vector
+  direction: input
+- name: Fext
+  summary: Axle force applied to tire scalar | *N*-by-1 vector
+  direction: input
+- name: RadialDeflct
+  summary: Tire radial deflection scalar | *N*-by-1 vector
+  direction: input
+- name: ScaleFctrs
+  summary: Scale factor scalar | *N*-by-1 vector
+  direction: input
+- name: Info
+  summary: Block data bus
+  direction: output
+- name: Omega
+  summary: Wheel angular velocity scalar | *N*-by-1 vector
+  direction: output
+- name: Fx
+  summary: Longitudinal axle force scalar | *N*-by-1 vector
+  direction: output
+- name: Fy
+  summary: Lateral axle force scalar | *N*-by-1 vector
+  direction: output
+- name: Fz
+  summary: Vertical axle force scalar | *N*-by-1 vector
+  direction: output
+- name: Mx
+  summary: Overturning moment scalar | *N*-by-1 vector
+  direction: output
+- name: My
+  summary: Rolling resistive moment scalar | *N*-by-1 vector
+  direction: output
+- name: Mz
+  summary: Aligning moment scalar | *N*-by-1 vector
+  direction: output
+```
 
 ### Input
 
@@ -232,8 +292,393 @@ tire-fixed *z*-axis, in N·m.
 Vector is the number of wheels, *N*,
 by `1`. If you provide a scalar value, the block assumes that number of
 wheels is one.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tire type
+  summary: Select type User defined (default) | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger
+    car 235/45R18 | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5
+  group: Block Options
+  block_parameter: tireType
+  values: External file (default) | Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car
+    235/45R18 | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5
+- name: Brake type
+  summary: Brake type None | Disc | Drum | Mapped
+  group: Block Options
+  block_parameter: BrakeType
+  values: None | Disc | Drum | Mapped
+- name: Rolling Resistance
+  summary: Rolling resistance torque None (default) | Pressure and velocity | ISO 28580 | Magic Formula | Mapped torque
+  group: Block Options
+  block_parameter: rollingType
+  values: None (default) | Pressure and velocity | ISO 28580 | Magic Formula | Mapped torque
+- name: Vertical Motion
+  summary: Vertical Motion None (default) | Mapped stiffness and damping | External deflection
+  group: Block Options
+  block_parameter: vertType
+  values: None (default) | Mapped stiffness and damping | External deflection
+- name: Longitudinal stiffness, Ckappa
+  summary: Longitudinal stiffness 1e7 (default) | scalar | *N*-by-1 vector
+  group: Longitudinal and Lateral
+  block_parameter: Ckappa
+  values: 1e7 (default) | scalar | *N*-by-1 vector
+- name: Lateral stiffness per slip angle, Calpha
+  summary: Lateral stiffness 4.5e4 (default) | scalar | *N*-by-1 vector
+  group: Longitudinal and Lateral
+  block_parameter: Calpha
+  values: 4.5e4 (default) | scalar | *N*-by-1 vector
+- name: Camber stiffness, Cgamma
+  summary: Camber stiffness 1e3 (default) | scalar | *N*-by-1 vector
+  group: Longitudinal and Lateral
+  block_parameter: Cgamma
+  values: 1e3 (default) | scalar | *N*-by-1 vector
+- name: Kinematic friction, muMin
+  summary: Kinematic friction 0.8 (default) | scalar | *N*-by-1 vector
+  group: Longitudinal and Lateral
+  block_parameter: muMin
+  values: 0.8 (default) | scalar | *N*-by-1 vector
+- name: Static friction, muMax
+  summary: Static friction 1 (default) | scalar | *N*-by-1 vector
+  group: Longitudinal and Lateral
+  block_parameter: muMax
+  values: 1 (default) | scalar | *N*-by-1 vector
+- name: Longitudinal relaxation length, Lrelx
+  summary: Longitudinal relaxation length 0.05 (default) | scalar | *N*-by-1 vector
+  group: Longitudinal and Lateral
+  block_parameter: Lrelx
+  values: 0.05 (default) | scalar | *N*-by-1 vector
+- name: Lateral relaxation length, Lrely
+  summary: Lateral relaxation length 0.15 (default) | scalar | *N*-by-1 vector
+  group: Longitudinal and Lateral
+  block_parameter: Lrely
+  values: 0.15 (default) | scalar | *N*-by-1 vector
+- name: Velocity independent force coefficient, aMy
+  summary: Velocity-independent force coefficient 84e-4 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: aMy
+  values: 84e-4 (default) | scalar
+- name: Linear velocity force component, bMy
+  summary: Linear velocity force component 6.2e-4 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: bMy
+  values: 6.2e-4 (default) | scalar
+- name: Quadratic velocity force component, cMy
+  summary: Quadratic velocity force component 1.6e-4 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: cMy
+  values: 1.6e-4 (default) | scalar
+- name: Tire pressure exponent, alphaMy
+  summary: Tire pressure exponent -0.003 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: alphaMy
+  values: -0.003 (default) | scalar
+- name: Normal force exponent, betaMy
+  summary: Normal force exponent 0.97 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: betaMy
+  values: 0.97 (default) | scalar
+- name: Parasitic losses force, Fpl
+  summary: Parasitic force loss 10 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: Fpl
+  values: 10 (default) | scalar
+- name: Rolling resistance constant, Cr
+  summary: Rolling resistance constant 1e-3 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: Cr
+  values: 1e-3 (default) | scalar
+- name: Thermal correction factor, Kt
+  summary: Thermal correction factor 0.008 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: Kt
+  values: 0.008 (default) | scalar
+- name: Measured temperature, Tmeas
+  summary: Temperature during testing 298.15 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: Tmeas
+  values: 298.15 (default) | scalar
+- name: Ambient temperature, Tamb
+  summary: Temperature in application environment 298.15 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: Tamb
+  values: 298.15 (default) | scalar
+- name: Input ambient temperature
+  summary: Option to input ambient temperature off (default) | on
+  group: Rolling Resistance
+  block_parameter: Tamb
+  values: off (default) | on
+- name: Rolling resistance torque coefficient, QSY1
+  summary: Torque coefficient 0.007 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: QSY1
+  values: 0.007 (default) | scalar
+- name: Longitudinal force rolling resistance coefficient, QSY2
+  summary: Force resistance coefficient 0 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: QSY2
+  values: 0 (default) | scalar
+- name: Linear rotational speed rolling resistance coefficient, QSY3
+  summary: Linear speed coefficient 0.0015 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: QSY3
+  values: 0.0015 (default) | scalar
+- name: Quartic rotational speed rolling resistance coefficient, QSY4
+  summary: Quartic speed coefficient 8.5e-05 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: QSY4
+  values: 8.5e-05 (default) | scalar
+- name: Camber squared rolling resistance torque, QSY5
+  summary: Camber resistance torque 0 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: QSY5
+  values: 0 (default) | scalar
+- name: Load based camber squared rolling resistance torque, QSY6
+  summary: Load resistance torque 0 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: QSY6
+  values: 0 (default) | scalar
+- name: Normal load rolling resistance coefficient, QSY8
+  summary: Normal resistance coefficient 0.9 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: QSY8
+  values: 0.9 (default) | scalar
+- name: Pressure load rolling resistance coefficient, QSY8
+  summary: Pressure resistance coefficient -0.4 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: QSY8
+  values: -0.4 (default) | scalar
+- name: Rolling resistance scaling factor, lam_My
+  summary: Scaling factor 1 (default) | scalar
+  group: Rolling Resistance
+  block_parameter: lam_My
+  values: 1 (default) | scalar
+- name: Spin axis velocity breakpoints, VxMy
+  summary: Spin axis velocity breakpoints -20:1:20 (default) | vector
+  group: Rolling Resistance
+  block_parameter: VxMy
+  values: -20:1:20 (default) | vector
+- name: Normal force breakpoints, FzMy
+  summary: Normal force breakpoints 0:200:1e4 (default) | vector
+  group: Rolling Resistance
+  block_parameter: FzMy
+  values: 0:200:1e4 (default) | vector
+- name: Rolling resistance torque map, MyMap
+  summary: Rolling resistance torque map array
+  group: Rolling Resistance
+  block_parameter: MyMap
+  values: array
+- name: Tire nominal section width, WIDTH
+  summary: Tire nominal section width scalar
+  group: Aligning
+  block_parameter: WIDTH
+  values: scalar
+- name: Linear yaw rate resistance, bMz
+  summary: Linear yaw rate resistance 0 | scalar
+  group: Aligning
+  block_parameter: bMz
+  values: 0 | scalar
+- name: Static friction coefficient, mu_static
+  summary: Static friction coefficient 0.3 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: mu_static
+  values: 0.3 (default) | scalar | *N*-by-1 vector
+- name: Kinetic friction coefficient, mu_kinetic
+  summary: Kinetic friction 0.2 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: mu_kinetic
+  values: 0.2 (default) | scalar | *N*-by-1 vector
+- name: Disc brake actuator bore, disc_abore
+  summary: Bore distance 0.05 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: disc_abore
+  values: 0.05 (default) | scalar | *N*-by-1 vector
+- name: Brake pad mean radius, Rm
+  summary: Radius 0.177 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: Rm
+  values: 0.177 (default) | scalar | *N*-by-1 vector
+- name: Number of brake pads, num_pads
+  summary: Number of brake pads 2 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: num_pads
+  values: 2 (default) | scalar | *N*-by-1 vector
+- name: Drum brake actuator bore, drum_abore
+  summary: Bore distance 0.0508 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: drum_abore
+  values: 0.0508 (default) | scalar | *N*-by-1 vector
+- name: Shoe pin to drum center distance, drum_a
+  summary: Shoe pin to drum center distance 0.123 (default) | scalar
+  group: Brake
+  block_parameter: drum_a
+  values: 0.123 (default) | scalar
+- name: Shoe pin center to force application point distance, drum_c
+  summary: Shoe pin center to force application point distance 0.212 (default) | scalar
+  group: Brake
+  block_parameter: drum_c
+  values: 0.212 (default) | scalar
+- name: Drum internal radius, drum_r
+  summary: Drum internal radius 0.15 (default) | scalar
+  group: Brake
+  block_parameter: drum_r
+  values: 0.15 (default) | scalar
+- name: Shoe pin to pad start angle, drum_theta1
+  summary: Shoe pin to pad start angle 0 (default) | scalar
+  group: Brake
+  block_parameter: drum_theta1
+  values: 0 (default) | scalar
+- name: Shoe pin to pad end angle, drum_theta2
+  summary: Shoe pin to pad end angle 126 (default) | scalar
+  group: Brake
+  block_parameter: drum_theta2
+  values: 126 (default) | scalar
+- name: Brake actuator pressure breakpoints, brake_p_bpt
+  summary: Brake actuator pressure breakpoints vector
+  group: Brake
+  block_parameter: brake_p_bpt
+  values: vector
+- name: Wheel speed breakpoints, brake_n_bpt
+  summary: Wheel speed breakpoints vector
+  group: Brake
+  block_parameter: brake_n_bpt
+  values: vector
+- name: Brake torque map, f_brake_t
+  summary: Lookup table for brake torque array
+  group: Brake
+  block_parameter: f_brake_t
+  values: vector
+- name: Rotational damping, br
+  summary: Rotational damping scalar | *N*-by-1 vector
+  group: Wheel
+  block_parameter: br
+  values: scalar | *N*-by-1 vector
+- name: Tire rotational inertia (rolling axis), IYY
+  summary: Tire rotational inertia scalar | *N*-by-1 vector
+  group: Wheel
+  block_parameter: IYY
+  values: scalar | *N*-by-1 vector
+- name: Initial wheel rotational velocity, omegao
+  summary: Initial wheel rotational velocity scalar | *N*-by-1 vector
+  group: Wheel
+  block_parameter: omegao
+  values: scalar | *N*-by-1 vector
+- name: Tire unloaded radius, UNLOADED_RADIUS
+  summary: Tire unloaded radius 0.309384029954441 (default) | scalar
+  group: Wheel
+  block_parameter: UNLOADED_RADIUS
+  values: 0.309384029954441 (default) | scalar
+- name: Tire mass, m
+  summary: Tire mass 9.46491996974568 (default) | scalar | *N*-by-1 vector
+  group: Vertical
+  block_parameter: MASS
+  values: 9.46491996974568 (default) | scalar | *N*-by-1 vector
+- name: Initial tire displacement, zo
+  summary: Initial tire displacement 0 (default) | scalar | *N*-by-1 vector
+  group: Vertical
+  block_parameter: zo
+  values: 0 (default) | scalar | *N*-by-1 vector
+- name: Initial wheel vertical velocity (wheel fixed frame), zdoto
+  summary: Initial wheel velocity 0 (default) | scalar | *N*-by-1 vector
+  group: Vertical
+  block_parameter: zdoto
+  values: 0 (default) | scalar | *N*-by-1 vector
+- name: Gravitational acceleration, GRAVITY
+  summary: Gravitational acceleration -9.81 (default) | scalar
+  group: Vertical
+  block_parameter: GRAVITY
+  values: -9.81 (default) | scalar
+- name: Vertical deflection breakpoints, zFz
+  summary: Vertical deflection breakpoints [0 .01 .1] (default) | vector
+  group: Vertical
+  block_parameter: zFz
+  values: '[0 .01 .1] (default) | vector'
+- name: Pressure breakpoints, pFz
+  summary: Pressure breakpoints [10000 1000000] (default) | vector
+  group: Vertical
+  block_parameter: pFz
+  values: '[10000 1000000] (default) | vector'
+- name: Force due to deflection, Fzz
+  summary: Force due to deflection [0 1e3 1e4; 0 1e4 1e5] (default) | vector
+  group: Vertical
+  block_parameter: Fzz
+  values: '[0 1e3 1e4; 0 1e4 1e5] (default) | vector'
+- name: Vertical velocity breakpoints, zdotFz
+  summary: Vertical velocity breakpoints [-20 0 20] (default) | vector
+  group: Vertical
+  block_parameter: zdotFz
+  values: '[-20 0 20] (default) | vector'
+- name: Force due to velocity, Fzzdot
+  summary: Force due to velocity [500 0 -500;250 0 -250] (default) | array
+  group: Vertical
+  block_parameter: Fzzdot
+  values: '[500 0 -500;250 0 -250] (default) | array'
+- name: Maximum normal force, FZMAX
+  summary: Maximum normal force 10000 (default) | scalar
+  group: Simulation Setup
+  block_parameter: FZMAX
+  values: 10000 (default) | scalar
+- name: Minimum normal force, FZMIN
+  summary: Minimum normal force 0 (default) | scalar
+  group: Simulation Setup
+  block_parameter: FZMIN
+  values: 0 (default) | scalar
+- name: Maximum pressure, PRESMAX
+  summary: Maximum pressure 1003118 (default) | scalar
+  group: Simulation Setup
+  block_parameter: PRESMAX
+  values: 1003118 (default) | scalar
+- name: Minimum pressure, PRESMIN
+  summary: Minimum pressure 9982 (default) | scalar
+  group: Simulation Setup
+  block_parameter: PRESMIN
+  values: 9982 (default) | scalar
+- name: Max allowable slip ratio (absolute), KPUMAX
+  summary: Max allowable slip ratio 0.999 (default) | scalar
+  group: Simulation Setup
+  block_parameter: KPUMAX
+  values: 0.999 (default) | scalar
+- name: Minimum allowable slip ratio (absolute), KPUMIN
+  summary: Minimum allowable slip ratio -0.999 (default) | scalar
+  group: Simulation Setup
+  block_parameter: KPUMIN
+  values: -0.999 (default) | scalar
+- name: Max allowable slip angle (absolute), ALPMAX
+  summary: Max allowable slip angle 1.5708 (default) | scalar
+  group: Simulation Setup
+  block_parameter: ALPMAX
+  values: 1.5708 (default) | scalar
+- name: Minimum allowable slip angle (absolute), ALPMIN
+  summary: Minimum allowable slip angle -1.5708 (default) | scalar
+  group: Simulation Setup
+  block_parameter: ALPMIN
+  values: -1.5708 (default) | scalar
+- name: Maximum allowable camber angle, CAMMAX
+  summary: Maximum allowable camber angle 0.173 | scalar
+  group: Simulation Setup
+  block_parameter: CAMMAX
+  values: 0.173 | scalar
+- name: Minimum allowable camber angle, CAMMIN
+  summary: Minimum allowable camber angle -0.173 | scalar
+  group: Simulation Setup
+  block_parameter: CAMMIN
+  values: -0.173 | scalar
+- name: Minimum ambient temperature, TMIN
+  summary: Minimum ambient temperature 0 (default) | scalar
+  group: Simulation Setup
+  block_parameter: TMIN
+  values: 0 (default) | scalar
+- name: Maximum ambient temperature, TMAX
+  summary: Maximum ambient temperature 400 (default) | scalar
+  group: Simulation Setup
+  block_parameter: TMAX
+  values: 400 (default) | scalar
+- name: Install Extended Tire Features
+  summary: Option to install Extended Tire Features for Vehicle Dynamics Blockset™ support package button
+  group: Plotting
+- name: Plot steady state force, moment response
+  summary: Option to plot steady-state force and moment tire responses button
+  group: Plotting
+```
 
 ### Block Options
 
@@ -2137,7 +2582,6 @@ generate these plots:
 
 To enable this parameter, click **Install Extended Tire
 Features**.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Wheels and Tires

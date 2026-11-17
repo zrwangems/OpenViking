@@ -14,6 +14,53 @@ language: en
 # OFDM Demodulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar | column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: FFTLen
+  summary: Length of FFT scalar
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: CPLen
+  summary: Length of cyclic prefix scalar
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: numLgSc
+  summary: Number of left guard carriers of OFDM symbol scalar
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: numRgSc
+  summary: Number of right guard carriers of OFDM symbol scalar
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: CPFraction
+  summary: CP Fraction real positive scalar
+  direction: input
+  data_types: single | double | unsigned fixed point
+- name: reset
+  summary: Clear internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Demodulated output data scalar | column vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -183,8 +230,52 @@ To enable this port, set the **OFDM parameters source**
 parameter to `Input port`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: OFDM parameters source
+  summary: Source of OFDM parameters Property (default) | Input port
+  group: Main
+- name: Maximum FFT length
+  summary: Maximum length of FFT length 64 (default) | power of 2 in range from 8 to 65,536
+  group: Main
+- name: FFT length
+  summary: Length of FFT 64 (default) | power of 2 in range from 8 to 65,536
+  group: Main
+- name: Cyclic prefix length
+  summary: Length of cyclic prefix 16 (default) | integer in range from 0 to *FFTLength*
+  group: Main
+- name: Number of left guard subcarriers
+  summary: Number of guard band subcarriers in left extreme of OFDM symbol 6 (default) | integer in range from 0 to (*FFTLength*/2)
+    – 1
+  group: Main
+- name: Number of right guard subcarriers
+  summary: Number of guard band subcarriers in right extreme of OFDM symbol 5 (default) | integer in range from 0 to (*FFTLength*/2)
+    – 1
+  group: Main
+- name: Enable CP fraction
+  summary: CP fraction enabler off (default) | on
+  group: Main
+- name: CP fraction source
+  summary: CP fraction source type Property (default) | Input port
+  group: Main
+- name: CP fraction
+  summary: Percent of cyclic prefix to remove 0.55 (default) | range from 0 to 1
+  group: Main
+- name: Remove DC subcarrier
+  summary: Exclude or include DC subcarrier on (default) | off
+  group: Main
+- name: Enable reset input port
+  summary: Reset signal off (default) | on
+  group: Main
+- name: Divide butterfly outputs by two
+  summary: Divide FFT butterfly outputs by two off (default) | on
+  group: FFT Parameters
+- name: Rounding Method
+  summary: Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Zero
+  group: FFT Parameters
+```
 
 ### Main
 
@@ -323,7 +414,6 @@ type or fixed-point data type, the FFT algorithm uses fixed-point arithmetic for
 internal calculations. This parameter does not apply when the input is of data type
 `single` or `double`. Rounding applies to
 twiddle-factor multiplication and scaling operations.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

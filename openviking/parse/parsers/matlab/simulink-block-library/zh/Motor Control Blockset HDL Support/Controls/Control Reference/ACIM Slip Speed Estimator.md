@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # ACIM Slip Speed Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Isdref
+  summary: 参考 *d* 轴定子电流标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Isqref
+  summary: 参考 *q* 轴定子电流标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵mslip
+  summary: 感应电机转差速度标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -36,8 +51,31 @@ chinese_source: worker-translation
 该模块计算的转子机械转差速度。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 2（默认）| 标量
+  group: ''
+- name: Rotor resistance (Ohm)
+  summary: 电机转子电阻 1.05（默认）| 标量
+  group: ''
+- name: Rotor leakage inductance (H)
+  summary: 转子绕组漏电感 6.81e-3（默认）| 标量
+  group: ''
+- name: Magnetizing inductance (H)
+  summary: 感应电机励磁电感 30e-3（默认）| 标量
+  group: ''
+- name: Output saturation (rpm)
+  summary: 模块输出的饱和值 150（默认）| 标量
+  group: ''
+- name: Input units
+  summary: 输入值的单位 Per-Unit (PU)（默认）| SI Units
+  group: ''
+- name: Base speed (rpm)
+  summary: 标幺制系统的基速 1500（默认）| 标量
+  group: ''
+```
 
 ### **Number of pole pairs** — 电机中可用的极对数 `2`（默认）| 标量
 
@@ -71,7 +109,6 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Input units** 设置为
 `Per-Unit (PU)`。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

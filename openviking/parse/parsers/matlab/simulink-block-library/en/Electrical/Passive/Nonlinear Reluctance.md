@@ -14,6 +14,15 @@ language: en
 # Nonlinear Reluctance
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: North terminal magnetic
+  direction: conserving
+- name: S
+  summary: South terminal magnetic
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,59 @@ Magnetic conserving port associated with the north terminal.
 ### **S** — South terminal magnetic
 
 Magnetic conserving port associated with the south terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Effective length
+  summary: Effective core length 0.032 m (default) | positive finite scalar
+  group: Main
+- name: Effective cross-sectional area
+  summary: Effective core cross-sectional area 1.6e-5 m^2 (default) | positive finite scalar
+  group: Main
+- name: Averaging period for power logging
+  summary: Excitation period used for averaging 0 s (default) | scalar
+  group: Main
+- name: Parameterized by
+  summary: Parameterization method Reluctance (B-H curve) (default) | Linear reluctance | Reluctance with single saturation
+    point | Nonlinear reluctance with hysteresis (JA model)
+  group: B-H Curve
+- name: Relative magnetic permeability
+  summary: Relative magnetic permeability 5000 (default) | positive finite scalar
+  group: B-H Curve
+- name: Unsaturated relative magnetic permeability
+  summary: Relative magnetic permeability 5000 (default) | scalar
+  group: B-H Curve
+- name: Magnetic flux density at saturation
+  summary: Magnetic flux density at saturation 1.5 T (default) | positive finite scalar
+  group: B-H Curve
+- name: Magnetic field strength vector, H
+  summary: Magnetic field strength [0, 200, 400, 600, 800, 1000] A/m (default) | vector
+  group: B-H Curve
+- name: Magnetic flux density vector, B
+  summary: Magnetic flux density [0, 1.25, 1.35, 1.44, 1.48, 1.49] T (default) | vector
+  group: B-H Curve
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: B-H Curve
+- name: Anhysteretic B-H gradient when H is zero
+  summary: Gradient of anhysteretic B-H curve around zero field strength 0.0063 m*T/A (default) | scalar
+  group: B-H Curve
+- name: Flux density point on anhysteretic B-H curve
+  summary: Flux density of the point for field strength measurement 1.49 T (default) | scalar
+  group: B-H Curve
+- name: Corresponding field strength
+  summary: Field strength at measurement point 1000 A/m (default) | scalar
+  group: B-H Curve
+- name: Coefficient for reversible magnetization, c
+  summary: Coefficient for reversible magnetization 0.1 (default) | scalar in the range [0,1]
+  group: B-H Curve
+- name: Bulk coupling coefficient, K
+  summary: Jiles-Atherton equations parameter 200 A/m (default) | finite positive scalar
+  group: B-H Curve
+- name: Inter-domain coupling factor, alpha
+  summary: Jiles-Atherton equations parameter 0.0001 (default) | scalar
+  group: B-H Curve
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -250,7 +310,6 @@ zero field strength line. Typical values are in the range of
 To enable this parameter, set **Parameterized
 by** to `Nonlinear reluctance with
 hysteresis (JA model)`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

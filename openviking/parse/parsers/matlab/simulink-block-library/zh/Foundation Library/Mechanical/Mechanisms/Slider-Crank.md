@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Slider-Crank
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 曲柄机械旋转
+  direction: conserving
+- name: S
+  summary: 滑块机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,25 @@ chinese_source: worker-translation
 ### **S** — 滑块机械平移
 
 与滑块关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Crank radius
+  summary: 曲柄半径 0.1 m（默认值）
+  group: ''
+- name: Rod length
+  summary: 连杆长度 0.2 m（默认值）
+  group: ''
+- name: Crank inertia
+  summary: 曲柄惯量 0.01 kg*m^2（默认值）
+  group: ''
+- name: Slider stiffness
+  summary: 施加到滑块位置的刚度 1e6 N/m（默认值）
+  group: ''
+- name: Slider damping
+  summary: 施加到滑块位置的阻尼 1e3 N/(m/s)（默认值）
+  group: ''
+```
 
 ### **Crank radius** — 曲柄半径 `0.1 m`（默认值）
 
@@ -47,7 +73,6 @@ chinese_source: worker-translation
 ### **Slider damping** — 施加到滑块位置的阻尼 `1e3 N/(m/s)`（默认值）
 
 与 **Slider stiffness** 一起引入柔度，有助于减少端口之间的惯量耦合。较高的阻尼值可以平滑由刚度引起的振铃。参数值必须大于零。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Mechanisms

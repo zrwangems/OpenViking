@@ -14,6 +14,25 @@ language: en
 # PFD
 
 ## Ports
+```yaml
+ports:
+- name: reference
+  summary: Reference frequency scalar
+  direction: input
+  data_types: double
+- name: feedback
+  summary: Feedback frequency scalar
+  direction: input
+  data_types: double
+- name: up
+  summary: Transmits reference frequency scalar
+  direction: output
+  data_types: double
+- name: down
+  summary: Transmits feedback frequency scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -52,8 +71,34 @@ difference between the signals in **reference** and
 **feedback** ports.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Deadband compensation (s)
+  summary: Delay added for active output near zero phase offset 30e-12 (default) | positive real scalar
+  group: Configuration
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: Configuration
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 10 (default) | positive integer scalar
+  group: Configuration
+- name: Enable impairments
+  summary: Add circuit impairments to simulation on (default) | off
+  group: Impairments
+- name: Output step size calculation
+  summary: Determine how output step size is calculated Default (default) | Advanced
+  group: Impairments
+- name: Maximum frequency of interest (Hz)
+  summary: Maximum frequency of interest at output 10e9 (default) | positive real scalar
+  group: Impairments
+- name: Rise/fall time (s)
+  summary: 20% – 80% rise/fall time for up output port of PFD 3e-11 (default) | positive real scalar
+  group: Impairments
+- name: Propagation Delay (s)
+  summary: Delay from input port to output port of PFD 50e-12 (default) | positive real scalar
+  group: Impairments
+```
 
 ### Configuration
 
@@ -204,7 +249,6 @@ tab.
   specific value.
 
 **Data Types:** `double`
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Building Blocks

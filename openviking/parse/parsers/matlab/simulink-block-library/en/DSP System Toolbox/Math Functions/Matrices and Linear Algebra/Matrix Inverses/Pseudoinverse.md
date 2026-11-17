@@ -14,6 +14,21 @@ language: en
 # Pseudoinverse
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input vector | matrix
+  direction: input
+  data_types: single | double
+- name: X
+  summary: Pseudoinverse output vector | matrix
+  direction: output
+  data_types: single | double
+- name: E
+  summary: Error status 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -49,8 +64,16 @@ If the pseudoinverse calculation fails to converge, the output at port
 size.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show error status port (E)
+  summary: Show error status port off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Show error status port (E)** — Show error status port `off` (default) | `on`
 
@@ -72,7 +95,6 @@ Specify the type of simulation to run. You can set this parameter to:
   reused for subsequent simulations, as long as the model does not
   change. This option requires additional startup time but the
   simulation speed increases with subsequent simulations.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Inverses

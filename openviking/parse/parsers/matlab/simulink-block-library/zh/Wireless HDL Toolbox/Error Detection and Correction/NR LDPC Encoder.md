@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # NR LDPC Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据位 标量 | 向量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: bgn
+  summary: 基图编号 标量
+  direction: input
+  data_types: Boolean
+- name: liftingSize
+  summary: 输入提升大小 标量
+  direction: input
+  data_types: uint16
+- name: data
+  summary: 编码输出数据位 标量 | 向量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: liftingSize
+  summary: 输出提升大小 标量
+  direction: output
+  data_types: uint16
+- name: nextFrame
+  summary: 准备好接收新输入 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -89,11 +124,12 @@ chinese_source: worker-translation
 有关更多信息，请参阅 Using the nextFrame Output Signal。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

@@ -14,6 +14,13 @@ language: en
 # Gazebo Blank Message
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: Blank message bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -161,8 +168,17 @@ There are seven different message types with specific fields:
   as a bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Message type
+  summary: Type of message ApplyLinkWrench (default) | ApplyJointTorque | SetLinkWorldPose | SetLinkLinearVelocity | SetLinkAngularVelocity
+    | SetJointPosition | SetJointVelocity
+  group: ''
+- name: Sample time
+  summary: Sampling time of input 0.001 (default) | positive
+  group: ''
+```
 
 ### **Message type** — Type of message `ApplyLinkWrench` (default) | `ApplyJointTorque` | `SetLinkWorldPose` | `SetLinkLinearVelocity` | `SetLinkAngularVelocity` | `SetJointPosition` | `SetJointVelocity`
 
@@ -173,7 +189,6 @@ Gazebo.
 
 Sample time indicates when, during simulation, the block produces outputs and if
 appropriate, updates its internal state.
-
 ## Libraries
 
 Robotics System Toolbox / Gazebo Co-Simulation

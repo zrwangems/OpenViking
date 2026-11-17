@@ -14,6 +14,17 @@ language: en
 # Extract Bits
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Extracted bits scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -40,8 +51,40 @@ matrix, or N-D array. Floating-point inputs are passed through the block
 unchanged.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Bits to extract
+  summary: Method for extracting bits Upper half (default) | Lower half | Range starting with most significant bit | Range
+    ending with least significant big | Range of bits
+  group: ''
+  block_parameter: bitsToExtract
+  type: character vector
+  values: '''Upper half'' | ''Lower half'' | ''Range starting with most significant bit'' | ''Range ending with least significant
+    bit'' | ''Range of bits'''
+  default: '''Upper half'''
+- name: Number of bits
+  summary: Number of bits to output 8 (default) | scalar positive integer
+  group: ''
+  block_parameter: numBits
+  type: character vector
+  values: scalar positive integer
+  default: '''8'''
+- name: Bit indices
+  summary: Contiguous range of bits to output [0 7] (default) | two-element vector | scalar positive integer
+  group: ''
+  block_parameter: bitIdxRange
+  type: character vector
+  values: two-element vector | scalar positive integer
+  default: '''[0 7]'''
+- name: Output scaling mode
+  summary: Output scaling mode Preserve fixed-point scaling (default) | Treat bit field as an integer
+  group: ''
+  block_parameter: outScalingMode
+  type: character vector
+  values: '''Preserve fixed-point scaling'' | ''Treat bit field as an integer'''
+  default: '''Preserve fixed-point scaling'''
+```
 
 ### **Bits to extract** — Method for extracting bits `Upper half` (default) | `Lower half` | `Range starting with most significant bit` | `Range ending with least significant big` | `Range of bits`
 
@@ -141,7 +184,6 @@ Select the scaling mode to use on the output bit selection:
 | **Type:** character vector |
 | **Values:** `'Preserve fixed-point scaling' | 'Treat bit field as an integer'` |
 | **Default:** `'Preserve fixed-point scaling'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

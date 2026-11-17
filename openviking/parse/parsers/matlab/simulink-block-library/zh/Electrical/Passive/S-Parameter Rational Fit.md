@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # S-Parameter Rational Fit
 
 ## 端口
+```yaml
+ports:
+- name: pk
+  summary: 第 *k* 个正极端子电气
+  direction: conserving
+- name: nk
+  summary: 第 *k* 个负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +42,22 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请清除 **Ground and hide negative terminals** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of ports
+  summary: 电气连接对的数量 2（默认）| 正整数
+  group: ''
+- name: Reference impedance (Ohm)
+  summary: 参考线阻抗 50（默认）| 实数标量
+  group: ''
+- name: Rational fit object
+  summary: 有理拟合对象 []（默认）| 方阵 | rational 对象 | rfmodel.rational 对象
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏负极端子的选项 Off（默认）| On
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -63,7 +86,6 @@ chinese_source: worker-translation
 清除此参数以启用与模块负极端子关联的 **nk** 端口。
 
 选中此参数以将所有电气连接对的负极端子接地。模块使用 Electrical Reference 模块在 S-Parameter Rational Fit 模块内部对到地的连接进行建模。
-
 ## 所属库
 
 Simscape / Electrical / Passive

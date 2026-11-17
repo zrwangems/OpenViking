@@ -14,6 +14,29 @@ language: en
 # DBSCAN Clusterer
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data *N*-by-*P* real-valued matrix
+  direction: input
+  data_types: double
+- name: Update
+  summary: Enable automatic update of epsilon false (default) | true
+  direction: input
+  data_types: Boolean
+- name: AmbLims
+  summary: Ambiguity limits 1-by-2 real-valued vector (default) | 2-by-2 real-valued matrix
+  direction: input
+  data_types: double
+- name: Idx
+  summary: Cluster indices *N*-by-1 integer-valued column vector
+  direction: output
+  data_types: double
+- name: Clusters
+  summary: Alternative cluster IDs 1-by-*N* integer-valued row vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -109,8 +132,37 @@ block** parameter to `Cluster ID` or
 `Index and ID`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Define outputs for Simulink block
+  summary: Type of cluster data output Index and ID (default) | Cluster ID | Index
+  group: ''
+- name: Source of cluster threshold epsilon
+  summary: Epsilon source Property (default) | Auto
+  group: ''
+- name: Cluster threshold epsilon
+  summary: Cluster neighborhood size 10.0 (default) | positive scalar | positive real-valued 1-by-*P* row vector
+  group: ''
+- name: Minimum number of points in a cluster
+  summary: Minimum number of points required for cluster 3 (default) | positive integer
+  group: ''
+- name: Maximum number of points for 'Auto' epsilon
+  summary: Maximum number of points required for cluster 10 (default) | positive integer
+  group: ''
+- name: Length of cluster threshold epsilon history
+  summary: Length of cluster threshold epsilon history 10 (default) | positive integer
+  group: ''
+- name: Enable disambiguation of dimensions
+  summary: Turn on disambiguation off (default) | on
+  group: ''
+- name: Indices of ambiguous dimensions
+  summary: Indices of ambiguous dimensions 1 (default) | positive integer | 1-by-2 vector of positive integers
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+```
 
 ### **Define outputs for Simulink block** — Type of cluster data output `Index and ID` (default) | `Cluster ID` | `Index`
 
@@ -243,7 +295,6 @@ using **Simulate using** overrides the simulation mode.
 | `Code Generation` | The block is compiled. | All blocks in the model are compiled. |
 
 For more information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Radar Toolbox

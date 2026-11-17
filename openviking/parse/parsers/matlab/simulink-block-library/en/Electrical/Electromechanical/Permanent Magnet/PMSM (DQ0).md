@@ -14,6 +14,30 @@ language: en
 # PMSM (DQ0)
 
 ## Ports
+```yaml
+ports:
+- name: d
+  summary: '*d*-axis component electrical'
+  direction: conserving
+- name: q
+  summary: '*q*-axis component electrical'
+  direction: conserving
+- name: '0'
+  summary: Zero-sequence component electrical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+- name: HS
+  summary: Stator windings thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -61,8 +85,124 @@ Thermal conserving port associated with the stator windings.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Modeling fidelity
+  summary: Modeling fidelity Constant Ld, Lq and PM (default) | Tabulated Ld, Lq and PM
+  group: Main
+- name: Number of pole pairs
+  summary: Number of permanent magnet pole pairs on rotor 6 (default) | positive scalar
+  group: Main
+- name: Permanent magnet flux linkage parameterization
+  summary: Parameterization option for permanent magnet flux linkage Specify flux linkage (default) | Specify torque constant
+    | Specify back EMF constant
+  group: Main
+- name: Permanent magnet flux linkage
+  summary: Permanent magnet flux linkage 0.03 Wb (default)
+  group: Main
+- name: Torque constant
+  summary: Torque constant 0.18 N*m/A (default)
+  group: Main
+- name: Back EMF constant
+  summary: Back EMF constant 0.18 V*s/rad (default)
+  group: Main
+- name: Stator parameterization
+  summary: Parameterization option for stator Specify Ld, Lq, and L0 (default) | Specify Ls, Lm, and Ms
+  group: Main
+- name: Stator d-axis inductance, Ld
+  summary: Stator *d*-axis inductance 0.00022 H (default)
+  group: Main
+- name: Stator q-axis inductance, Lq
+  summary: Stator *q*-axis inductance 0.00022 H (default)
+  group: Main
+- name: Direct-axis current vector, iD
+  summary: Direct-axis current vector [-200, 0, 200] A (default) | vector of two or more values
+  group: Main
+- name: Quadrature-axis current vector, iQ
+  summary: Quadrature-axis current vector [-200, 0, 200] A (default) | vector of two or more values
+  group: Main
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld matrix 0.0002 * ones(3, 3) H (default) | matrix of scalars
+  group: Main
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq matrix 0.0002 * ones(3, 3) H (default) | matrix of scalars
+  group: Main
+- name: Permanent magnet flux linkage, PM(id,iq)
+  summary: Flux linkage of permanent magnet 0.1 * ones(3, 3) Wb (default) | matrix of scalars
+  group: Main
+- name: Torque constant matrix, kt(id,iq)
+  summary: Torque constant matrix 0.18 * ones(3, 3) N*m/A (default) | matrix of scalars
+  group: Main
+- name: Back EMF constant matrix, ke(id,iq)
+  summary: Permanent magnet flux linkage 0.18 * ones(3, 3) V/(rad/s) (default) | matrix of scalars
+  group: Main
+- name: Stator zero-sequence inductance, L0
+  summary: Stator zero-sequence inductance 0.00016 H (default) | positive scalar
+  group: Main
+- name: Stator self-inductance per phase, Ls
+  summary: Stator self-inductance per phase 0.0002 H (default) | positive scalar
+  group: Main
+- name: Stator inductance fluctuation, Lm
+  summary: Stator inductance fluctuation -0.0002 H (default) | scalar
+  group: Main
+- name: Stator mutual inductance, Ms
+  summary: Average mutual inductance between stator windings 0.00002 H (default) | scalar
+  group: Main
+- name: Stator resistance per phase, Rs
+  summary: Resistance of each of stator windings 0.013 Ohm (default) | positive scalar
+  group: Main
+- name: Zero sequence
+  summary: Option to include or exclude zero-sequence terms Include (default) | Exclude
+  group: Main
+- name: Model
+  summary: Option to enable iron losses computation None (default) | Empirical
+  group: Iron Losses
+- name: Open-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: Open-circuit iron losses due to hysteresis, eddy, and excess losses [0, 0, 0] W (default) | row vector of three
+    nonnegative elements
+  group: Iron Losses
+- name: Short-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: Short-circuit iron losses [0, 0, 0] W (default) | row vector of three nonnegative elements
+  group: Iron Losses
+- name: Electrical frequency at which losses determined
+  summary: Electrical frequency at which losses are determined 60 Hz (default) | positive scalar
+  group: Iron Losses
+- name: Short-circuit RMS current for short-circuit iron losses
+  summary: Short-circuit RMS current for short-circuit iron losses 95 A (default) | positive scalar
+  group: Iron Losses
+- name: Rotor inertia
+  summary: Rotor inertia 0.01 kg*m^2 (default) | nonnegative scalar
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotary damping 0 N*m/(rad/s) (default) | nonnegative scalar
+  group: Mechanical
+- name: Measurement temperature
+  summary: Temperature at which block quotes motor parameters 298.15 K (default) | positive scalar
+  group: Temperature Dependence
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default) | nonnegative scalar
+  group: Temperature Dependence
+- name: Permanent magnet flux temperature coefficient
+  summary: Fractional rate at which permanent magnet flux density changes with temperature -0.001 1/K (default) | nonpositive
+    scalar
+  group: Temperature Dependence
+- name: Thermal mass for each stator winding
+  summary: Thermal mass for each stator winding 100 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Rotor thermal mass
+  summary: Thermal mass of rotor 200 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Percentage of main flux path iron losses associated with the rotor
+  summary: Percentage of iron losses on main flux path associated with rotor 90 (default) | positive scalar
+  group: Thermal Port
+- name: Percentage of cross-tooth flux path iron losses associated with the rotor
+  summary: Percentage of iron losses on cross-tooth flux path associated with rotor 30 (default) | positive scalar
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -460,7 +600,6 @@ To enable this parameter, set **Modeling option** to
 `Show thermal port` and, in the **Iron
 Losses** tab, set **Model** to
 `Empirical`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

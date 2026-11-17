@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Partially Filled Pipe (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: B
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: AL
+  summary: 所连接模块的相对液位，m（物理信号）
+  direction: input
+- name: L
+  summary: 管道液位，m（物理信号）
+  direction: output
+```
 
 ### 守恒端口
 
@@ -37,8 +52,49 @@ chinese_source: worker-translation
 ### **L** — 管道液位，m（物理信号）
 
 管道中的液位，单位为 m，以物理信号形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Pipe length
+  summary: 管道长度 5 m（默认）| 正标量
+  group: 几何
+- name: Cross-sectional area
+  summary: 管道横截面积 0.01 m^2（默认）| 正标量
+  group: 几何
+- name: Hydraulic diameter
+  summary: 水力直径 0.1128 m（默认）| 正标量
+  group: 几何
+- name: Elevation drop from port A to port B
+  summary: A 与 B 之间的垂直距离 5 m（默认）| 正标量
+  group: 几何
+- name: Initial liquid level
+  summary: 初始液位 5 m（默认）| 正标量
+  group: 几何
+- name: Liquid level below zero
+  summary: 管道中无液体时是否通知 Error（默认）| None | Warning
+  group: 几何
+- name: Gravitational acceleration
+  summary: 重力加速度 9.81 m/s^2（默认）| 正标量
+  group: 几何
+- name: Aggregate equivalent length of local resistances
+  summary: 管道几何形状对液压损失的贡献 1 m（默认）| 正标量
+  group: 摩擦
+- name: Internal surface absolute roughness
+  summary: 管壁粗糙度 15e-6 m（默认）| 正标量
+  group: 摩擦
+- name: Laminar flow upper Reynolds number limit
+  summary: 层流上限阈值 2000（默认）| 正标量
+  group: 摩擦
+- name: Turbulent flow lower Reynolds number limit
+  summary: 湍流下限阈值 4000（默认）| 正标量
+  group: 摩擦
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流的管道摩擦常数 64（默认）| 正标量
+  group: 摩擦
+- name: 初始液体温度
+  summary: 仿真开始时的液体温度 293.15 K（默认）
+  group: 初始条件
+```
 
 ### 几何
 
@@ -97,7 +153,6 @@ chinese_source: worker-translation
 ### **初始液体温度** — 仿真开始时的液体温度 `293.15` `K`（默认）
 
 仿真开始时的液体温度。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

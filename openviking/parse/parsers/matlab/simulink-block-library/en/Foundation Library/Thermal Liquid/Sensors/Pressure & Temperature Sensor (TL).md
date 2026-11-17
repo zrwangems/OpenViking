@@ -14,6 +14,27 @@ language: en
 # Pressure & Temperature Sensor (TL)
 
 ## Ports
+```yaml
+ports:
+- name: Pa
+  summary: Absolute pressure measurement, in Pascal (Pa) physical signal
+  direction: output
+- name: Pg
+  summary: Gauge pressure measurement, Pa physical signal
+  direction: output
+- name: P
+  summary: Pressure difference measurement, Pa physical signal
+  direction: output
+- name: T
+  summary: Temperature measurement, K physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Sensor outlet thermal liquid
+  direction: conserving
+```
 
 ### Output
 
@@ -77,8 +98,22 @@ in the model. The measurements are positive when the values at port
 
 To enable this port, set the **Measurement reference**
 parameter to `Difference`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement reference
+  summary: Select between absolute and relative measurements Absolute (default) | Difference
+  group: ''
+- name: Pressure
+  summary: Control output port visibility for measuring pressure On (default) | Off
+  group: ''
+- name: Pressure type
+  summary: Select between absolute and gauge pressure Absolute pressure (default) | Gauge pressure
+  group: ''
+- name: Temperature
+  summary: Control output port visibility for measuring temperature Off (default) | On
+  group: ''
+```
 
 ### **Measurement reference** — Select between absolute and relative measurements `Absolute` (default) | `Difference`
 
@@ -119,7 +154,6 @@ check box.
 
 Selecting this check box exposes the output port **T**, which lets
 you measure temperature.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Sensors

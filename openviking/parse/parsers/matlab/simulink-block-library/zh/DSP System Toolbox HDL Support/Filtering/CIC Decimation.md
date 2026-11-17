@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CIC Decimation
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | fixed point
+- name: Port_1
+  summary: CIC 抽取输出 向量 | 矩阵
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | fixed point
+```
 
 ### 输入
 
@@ -35,8 +46,46 @@ CIC 抽取输出，以向量或矩阵形式返回。输出的数据类型由模�
 
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Coefficient source
+  summary: 滤波器信息来源 Dialog parameters（默认）| Filter object
+  group: ''
+- name: Decimation factor (R)
+  summary: 抽取因子 2（默认）| 整数
+  group: ''
+- name: Differential Delay (M)
+  summary: 差分延迟 1（默认）| 正整数
+  group: ''
+- name: Number of sections (N)
+  summary: 滤波器节数 2（默认）| 正整数
+  group: ''
+- name: Data type specification mode
+  summary: 指定滤波器节和输出的字长与小数长度 Full precision（默认）| Minimum section word lengths | Specify word lengths | Binary point scaling
+  group: ''
+- name: Section word lengths
+  summary: 滤波器节的字长 [16 16 16 16]（默认）| 标量 | 行向量
+  group: ''
+- name: Section fraction lengths
+  summary: 滤波器节的小数长度 0（默认）| 整数
+  group: ''
+- name: Output word length
+  summary: 滤波器输出的字长 32（默认）| 整数
+  group: ''
+- name: Output fraction length
+  summary: 滤波器输出的小数长度 0（默认）| 整数
+  group: ''
+- name: Rate options
+  summary: 速率处理规则 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Filter object
+  summary: 多速率滤波器对象 dsp.CICDecimator
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应 gui button
+  group: ''
+```
 
 ### **Coefficient source** — 滤波器信息来源 `Dialog parameters`（默认）| `Filter object`
 
@@ -153,7 +202,6 @@ CIC 抽取输出，以向量或矩阵形式返回。输出的数据类型由模�
 **注意**
 
 如果在 **Filter object** 参数中指定了滤波器，则必须先单击 **Apply** 按钮应用滤波器，然后才能使用 **View Filter Response** 按钮。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters DSP System Toolbox HDL Support / Filtering

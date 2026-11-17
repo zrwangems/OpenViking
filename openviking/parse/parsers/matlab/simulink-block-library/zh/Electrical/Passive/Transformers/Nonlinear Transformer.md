@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Nonlinear Transformer
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 一次绕组正极性电气
+  direction: conserving
+- name: 1-
+  summary: 一次绕组负极性电气
+  direction: conserving
+- name: 2+
+  summary: 二次绕组正极性电气
+  direction: conserving
+- name: 2-
+  summary: 二次绕组负极性电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,129 @@ chinese_source: worker-translation
 ### **2-** — 二次绕组负极性电气
 
 与二次绕组负极性关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Primary number of turns
+  summary: 一次绕组匝数 100（默认）
+  group: 主回路
+- name: Secondary number of turns
+  summary: 二次绕组匝数 200（默认）
+  group: 主回路
+- name: Winding parameterized by
+  summary: 绕组漏感参数化方式 Combined primary and secondary values（默认）| Separate primary and secondary values
+  group: 主回路
+- name: Combined winding resistance
+  summary: 合并绕组电阻 0.01 Ohm（默认）
+  group: 主回路
+- name: Combined leakage inductance
+  summary: 合并漏感 0.0001 H（默认）
+  group: 主回路
+- name: Primary winding resistance
+  summary: 一次绕组电阻 0.01 Ohm（默认）
+  group: 主回路
+- name: Primary leakage inductance
+  summary: 一次漏感 0.0001 H（默认）
+  group: 主回路
+- name: Secondary winding resistance
+  summary: 二次绕组电阻 0.01 Ohm（默认）
+  group: 主回路
+- name: Secondary leakage inductance
+  summary: 二次漏感 0.0001 H（默认）
+  group: 主回路
+- name: Averaging period for power logging
+  summary: 功率记录平均周期 0 s（默认）
+  group: 主回路
+- name: Magnetization resistance
+  summary: 磁化电阻 100 Ohm（默认）
+  group: 磁化
+- name: Magnetization inductance parameterized by
+  summary: 非线性磁化电感参数化方式 Single saturation point（默认）| Single inductance (linear) | Magnetic flux versus current characteristic
+    | Magnetic flux density versus field strength characteristic | Magnetic flux density versus field strength characteristic
+    with hysteresis
+  group: 磁化
+- name: Unsaturated inductance
+  summary: 未饱和电感 4e-2 H（默认）
+  group: 磁化
+- name: Saturated inductance
+  summary: 饱和电感 1e-2 H（默认）
+  group: 磁化
+- name: Saturation magnetic flux
+  summary: 饱和磁通 1.6e-04 Wb（默认）
+  group: 磁化
+- name: Current vector, i
+  summary: 电流数据 [0, .4, .8, 1.2, 1.6, 2] A（默认）
+  group: 磁化
+- name: Magnetic flux vector, phi
+  summary: 磁通向量 [0, .161, .25, .284, .295, .299] .* 1e-3 Wb（默认）
+  group: 磁化
+- name: Magnetic field strength vector, H
+  summary: 磁场强度 [0, 200, 400, 600, 800, 1000] A/m（默认）| 向量
+  group: 磁化
+- name: Magnetic flux density vector, B
+  summary: 磁通密度 [0, .81, 1.25, 1.42, 1.48, 1.49] T（默认）| 向量
+  group: 磁化
+- name: Effective length
+  summary: 有效铁芯长度 0.2 m（默认）| 正有限标量
+  group: 磁化
+- name: Effective cross-sectional area
+  summary: 有效铁芯横截面积 2e-4 m^2（默认）| 正有限标量
+  group: 磁化
+- name: Anhysteretic B-H gradient when H is zero
+  summary: 零磁场强度附近无磁滞 B-H 曲线梯度 0.005 m*T/A（默认）| 标量
+  group: 磁化
+- name: Flux density point on anhysteretic B-H curve
+  summary: 无磁滞 B-H 曲线上的磁通密度点 1.49 T（默认）| 标量
+  group: 磁化
+- name: Corresponding field strength
+  summary: 测量点处的磁场强度 1000 A/m（默认）| 标量
+  group: 磁化
+- name: Coefficient for reversible magnetization, c
+  summary: 可逆磁化系数 0.1（默认）| [0,1] 范围内的标量
+  group: 磁化
+- name: Bulk coupling coefficient, K
+  summary: 体耦合系数 200 A/m（默认）| 有限正标量
+  group: 磁化
+- name: Inter-domain coupling factor, alpha
+  summary: 域间耦合因子 1e-4（默认）| 标量
+  group: 磁化
+- name: Interpolation option
+  summary: 插值选项 Linear（默认）| Smooth
+  group: 磁化
+- name: Combined leakage inductance initial current
+  summary: 合并漏感初始电流 0 A（默认）
+  group: 初始条件
+- name: Primary leakage inductance initial current
+  summary: 一次漏感初始电流 0 A（默认）
+  group: 初始条件
+- name: Secondary leakage inductance initial current
+  summary: 二次漏感初始电流 0 A（默认）
+  group: 初始条件
+- name: Specify magnetization inductance initial state by
+  summary: 初始状态指定选项 Current（默认）| Magnetic flux
+  group: 初始条件
+- name: Magnetization inductance initial current
+  summary: 磁化电感初始电流 0 A（默认）
+  group: 初始条件
+- name: Magnetization inductance initial magnetic flux
+  summary: 磁化电感初始磁通 0 Wb（默认）
+  group: 初始条件
+- name: Magnetization inductance initial magnetic flux density
+  summary: 磁化电感初始磁通密度 0 T（默认）
+  group: 初始条件
+- name: Magnetization inductance initial field strength
+  summary: 磁化电感初始磁场强度 0 A/m（默认）
+  group: 初始条件
+- name: Combined leakage inductance parasitic parallel conductance
+  summary: Combined leakage inductance parasitic parallel conductance 1e-9 1/Ohm（默认值）
+  group: 寄生参数
+- name: Primary leakage inductance parasitic parallel conductance
+  summary: Primary leakage inductance parasitic parallel conductance 1e-9 1/Ohm（默认值）
+  group: 寄生参数
+- name: Secondary leakage inductance parasitic parallel conductance
+  summary: Secondary leakage inductance parasitic parallel conductance 1e-9（默认值）
+  group: 寄生参数
+```
 
 ### 主回路
 
@@ -431,7 +567,6 @@ hysteresis`。
 #### 依赖关系
 
 要启用此参数，请在 **Main** 设置中将 **Winding parameterized by** 设置为 `Separate 主值和次值`。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Transformers

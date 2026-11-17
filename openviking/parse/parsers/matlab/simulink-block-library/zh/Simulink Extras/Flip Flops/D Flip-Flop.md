@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # D Flip-Flop
 
 ## 端口
+```yaml
+ports:
+- name: Invalid
+  summary: 输出有效性，无单位物理信号
+  direction: output
+- name: D
+  summary: 数据引脚电气
+  direction: output
+- name: Clk
+  summary: 时钟引脚电气
+  direction: output
+- name: Q
+  summary: 输出引脚电气
+  direction: output
+- name: '!Q'
+  summary: 反相输出引脚电气
+  direction: output
+```
 
 ### 输出
 
@@ -42,8 +60,70 @@ chinese_source: worker-translation
 ### **!Q** — 反相输出引脚电气
 
 与反相输出引脚关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Low level input voltage
+  summary: 低于该输入电压时逻辑为 0 2 V（默认）| 非负标量
+  group: 输入
+- name: High level input voltage
+  summary: 高于该输入电压时逻辑为 1 3 V（默认）| 正标量
+  group: 输入
+- name: Average input capacitance
+  summary: MOSFET 栅极的输入电容 5 pF（默认）| 非负标量
+  group: 输入
+- name: Edge Trigger
+  summary: 时钟触发的有效边沿 Falling（默认）| Rising
+  group: 输入
+- name: Output current-voltage relationship
+  summary: 输出电流-电压关系的模型 Linear（默认）| Quadratic
+  group: 输出
+- name: Low level output voltage
+  summary: 逻辑为 0 时的输出电压 0 V（默认）| 非负标量
+  group: 输出
+- name: High level output voltage
+  summary: 逻辑为 1 时的输出电压 5 V（默认）| 正标量
+  group: 输出
+- name: Output resistance
+  summary: 输出电阻 25 Ohm（默认）| 非负标量
+  group: 输出
+- name: Supply voltage
+  summary: 电源电压 5 V（默认）| 正标量
+  group: 输出
+- name: Measurement voltage
+  summary: 测量电源电压 5 V（默认）| 正标量
+  group: 输出
+- name: Logic HIGH output resistance at zero current and at I_OH
+  summary: 输出逻辑为 1 时的电阻 [25, 250] Ohm | 正标量的二维向量
+  group: 输出
+- name: Logic HIGH output current I_OH when shorted to ground
+  summary: 逻辑为 1 时的输出电流 63 mA（默认）| 正标量
+  group: 输出
+- name: Logic LOW output resistance at zero current and at I_OL
+  summary: 输出逻辑为 0 时的电阻 [30, 800] Ohm（默认）| 正标量的二维向量
+  group: 输出
+- name: Logic LOW output current I_OL when shorted to Vcc
+  summary: 逻辑为 0 时的输出电流 -45 mA（默认）| 负标量
+  group: 输出
+- name: Propagation delay
+  summary: 输出电压改变状态的时间 25 ns（默认）| 非负标量
+  group: 输出
+- name: Setup time
+  summary: 转换前输入必须保持稳定的时间 20 ns（默认）| 非负标量
+  group: 输出
+- name: Hold time
+  summary: 转换后输入必须保持稳定的时间 5 ns（默认）| 非负标量
+  group: 输出
+- name: Protection diode on resistance
+  summary: 保护二极管导通电阻 5 Ohm（默认）| 正标量
+  group: 输出
+- name: Protection diode forward voltage
+  summary: 保护二极管正向电压 0.6 V（默认）| 正标量
+  group: 输出
+- name: Expose output validity port
+  summary: 用于暴露输出有效性端口的选项 Off（默认）| On
+  group: 输出
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -178,7 +258,6 @@ chinese_source: worker-translation
 ### **Expose output validity port** — 用于暴露输出有效性端口的选项 `Off`（默认）| `On`
 
 用于暴露 **Invalid** 端口的选项。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits / Logic

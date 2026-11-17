@@ -14,6 +14,17 @@ language: en
 # CIC Compensation Interpolator
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Output
+  summary: Upsampled and filtered signal vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### Input
 
@@ -39,8 +50,60 @@ factor.
 When the output is fixed-point, it is signed only.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rate change factor
+  summary: Rate-change factor of the CIC filter 2 (default) | positive integer
+  group: Main Tab
+- name: Number of sections
+  summary: Number of sections in the CIC filter being compensated 2 (default) | positive integer
+  group: Main Tab
+- name: Differential delay
+  summary: Differential delay of the CIC filter 1 (default) | positive integer
+  group: Main Tab
+- name: Interpolation factor
+  summary: Interpolation factor of compensation filter 2 (default) | positive integer
+  group: Main Tab
+- name: Minimum order filter design
+  summary: Design compensation filter of minimum order or of specified order on (default) | off
+  group: Main Tab
+- name: Filter order
+  summary: Order of compensation filter 12 (default) | positive integer
+  group: Main Tab
+- name: Passband edge frequency (Hz)
+  summary: Passband edge frequency of compensation filter 100000 (default) | positive scalar
+  group: Main Tab
+- name: Stopband edge frequency (Hz)
+  summary: Stopband edge frequency of compensation filter 400000 (default) | positive scalar
+  group: Main Tab
+- name: Passband ripple (dB)
+  summary: Passband ripple of compensation filter 0.1 (default) | positive scalar
+  group: Main Tab
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation of compensation filter 60 (default) | positive scalar
+  group: Main Tab
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: Main Tab
+- name: Input sample rate (Hz)
+  summary: Sample rate of input signal 600000 (default) | positive scalar
+  group: Main Tab
+- name: View Filter Response
+  summary: View Filter Response button
+  group: Main Tab
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode for output fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest
+    | Zero
+  group: Data Types Tab
+- name: Coefficients
+  summary: Word and fraction lengths of coefficients fixdt(1,16) (default) | fixdt(1,16,0)
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -252,7 +315,6 @@ following:
 Click the **Show data type assistant**
 button  to display the data type assistant,
 which helps you set the coefficients data type.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

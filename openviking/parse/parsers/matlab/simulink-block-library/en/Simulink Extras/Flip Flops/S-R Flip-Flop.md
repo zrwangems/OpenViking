@@ -14,6 +14,25 @@ language: en
 # S-R Flip-Flop
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Set input scalar
+  direction: input
+  data_types: double | Boolean
+- name: R
+  summary: Reset input scalar
+  direction: input
+  data_types: double | Boolean
+- name: Q
+  summary: Output signal Q scalar
+  direction: output
+  data_types: double | Boolean
+- name: '!Q'
+  summary: Output signal !Q scalar
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -75,8 +94,17 @@ Output signal **!Q**, with the same dimensions and
 data type as the input.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition (state of Q)
+  summary: Initial value of output Q 0 (default) | scalar
+  group: ''
+  block_parameter: initial_condition
+  type: character vector
+  values: scalar
+  default: '''0'''
+```
 
 ### **Initial condition (state of Q)** — Initial value of output Q `0` (default) | scalar
 
@@ -91,7 +119,6 @@ value is treated as true (`1`).
 | **Type:** character vector |
 | **Values:** scalar |
 | **Default:** `'0'` |
-
 ## Libraries
 
 Simulink Extras / Flip Flops

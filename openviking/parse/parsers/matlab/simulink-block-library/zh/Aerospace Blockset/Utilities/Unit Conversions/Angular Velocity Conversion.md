@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Angular Velocity Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 角加速度 标量 | 数组
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 角加速度 标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -38,8 +49,24 @@ chinese_source: worker-translation
 输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial unit
+  summary: 输入单位 deg/s（默认）| rad/s | rpm
+  group: ''
+  block_parameter: IU
+  type: 字符向量
+  values: '''deg/s'' | ''rad/s'' | ''rpm/s'''
+  default: '''deg/s'''
+- name: Final unit
+  summary: 输出单位 rad/s（默认）| deg/s | rpm
+  group: ''
+  block_parameter: OU
+  type: 字符向量
+  values: '''deg/s'' | ''rad/s'' | ''rpm/s'''
+  default: '''deg/s'''
+```
 
 ### **Initial unit** — 输入单位 `deg/s`（默认）| `rad/s` | `rpm`
 
@@ -86,7 +113,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'deg/s'` | `'rad/s'` | `'rpm/s'` |
 | **默认值**：`'deg/s'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Unit Conversions

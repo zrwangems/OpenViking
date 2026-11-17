@@ -14,6 +14,27 @@ language: en
 # Transmission Line (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Three-phase port electrical
+  direction: conserving
+- name: ~2
+  summary: Three-phase port electrical
+  direction: conserving
+- name: g1
+  summary: Ground connection at end ~1 electrical
+  direction: conserving
+- name: g2
+  summary: Ground connection at end ~2 electrical
+  direction: conserving
+- name: g1'
+  summary: Ground connection at fault position 1 electrical
+  direction: conserving
+- name: g2'
+  summary: Ground connection at fault position 2 electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -58,8 +79,79 @@ position 2.
 To enable this port, set **Accessible ground connections
 at section interface** to
 `Yes`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Line length
+  summary: Length of the transmission line 1 km (default)
+  group: Main
+- name: Frequency used for rlcg specification
+  summary: Frequency used for rlcg specification 60 Hz (default) | positive scalar
+  group: Main
+- name: Resistance
+  summary: Resistance of the transmission line 0.02 Ohm/km (default)
+  group: Main
+- name: Inductance
+  summary: Self-inductance of the transmission line 0.5 mH/km (default)
+  group: Main
+- name: Mutual inductance
+  summary: Line-line mutual inductance 0.1 mH/km (default)
+  group: Main
+- name: Line-line capacitance
+  summary: Line-line capacitance 0.3 μF/km (default)
+  group: Main
+- name: Line-ground capacitance
+  summary: Line-ground capacitance 0.1 μF/km (default)
+  group: Main
+- name: Mutual resistance
+  summary: Line-line mutual resistance 0 Ohm/km (default)
+  group: Main
+- name: Model two line sections
+  summary: Line-line mutual resistance No (default) | Yes
+  group: Main
+- name: Number of segments
+  summary: Number of segments 1 (default)
+  group: Main
+- name: Position of section interface
+  summary: Position of section interface 0.5 Km (default)
+  group: Main
+- name: Number of segments in first section
+  summary: Number of segments in first section 1 (default)
+  group: Main
+- name: Number of segments in second section
+  summary: Number of segments in second section 1 (default)
+  group: Main
+- name: Accessible ground connections at section interface
+  summary: Option to access ground connections at fault position No (default) | Yes
+  group: Main
+- name: Parasitic series resistance
+  summary: Parasitic series resistance 1e-6 Ohm (default)
+  group: Parasitics
+- name: Parasitic parallel conductance
+  summary: Parasitic parallel conductance 1e-6 1/Ohm (default)
+  group: Parasitics
+- name: Section interface fault
+  summary: Option to add fault to section interface Add fault
+  group: Faults
+- name: Fault type
+  summary: Type of fault Single-phase to ground (a-g) (default) | Single-phase to ground (b-g) | Single-phase to ground (c-g)
+    | Two-phase (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase
+    to ground (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: Faults
+- name: Faulted phase-neutral resistance
+  summary: Faulted phase-neutral resistance 1e-3 Ohm (default)
+  group: Faults
+- name: Faulted neutral-ground resistance
+  summary: Faulted neutral-ground resistance 1e-3 Ohm (default)
+  group: Faults
+- name: Unfaulted phase-neutral conductance
+  summary: Unfaulted phase-neutral conductance 1e-6 1/Ohm (default)
+  group: Faults
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -326,7 +418,6 @@ set the **Fault type** parameter to:
 - `Three-phase (a-b-c)`
 - `Three-phase to ground
   (a-b-c-g)`
-
 ## Libraries
 
 Simscape / Electrical / Passive / Lines

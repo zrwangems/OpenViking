@@ -28,6 +28,12 @@ from openviking.parse.parsers.matlab.scripts import parse_m_file, parse_mlx
 from openviking.parse.parsers.matlab.sldd import parse_sldd
 from openviking.parse.parsers.matlab.slx import parse_slx, system_documents
 from openviking.parse.parsers.matlab.stateflow import parse_stateflow, render_stateflow
+from openviking.parse.parsers.matlab.structure import (
+    structure_block_document,
+    structured_data,
+    validate_structured_document,
+    without_structured_data,
+)
 from openviking.parse.parsers.matlab.templates import render_block_template
 from openviking.parse.registry import ParserRegistry
 
@@ -593,6 +599,8 @@ def test_scraped_block_knowledge_is_local_and_complete():
         assert "## 中文" not in text
         assert "language: zh-CN" in chinese_text
         assert re.search(r"[\u4e00-\u9fff]", chinese_text)
+        validate_structured_document(text)
+        validate_structured_document(chinese_text)
     logical = (english / "Simulink/Logic and Bit Operations/Logical Operator.md").read_text(
         encoding="utf-8"
     )
@@ -601,6 +609,18 @@ def test_scraped_block_knowledge_is_local_and_complete():
     assert "## Parameters" in logical
     assert "**Operator**" in logical
     assert "## Block Characteristics" in logical
+    assert structured_data(logical, "ports")
+    assert structured_data(logical, "parameters")
+
+    absolute = (english / "Simulink/Math Operations/Abs.md").read_text(encoding="utf-8")
+    ports = structured_data(absolute, "ports")
+    parameters = structured_data(absolute, "parameters")
+    assert [port["direction"] for port in ports[:2]] == ["input", "output"]
+    assert ports[0]["name"] == "Port_1"
+    assert "double" in ports[0]["data_types"]
+    zero_crossing = next(item for item in parameters if item["block_parameter"] == "ZeroCross")
+    assert zero_crossing["default"] == "'on'"
+    assert zero_crossing["type"] == "character vector | string"
 
     # Alternative configurations point to the real Sum documentation, not a guessed page.
     total = (english / "Simulink/Math Operations/Add.md").read_text(encoding="utf-8")
@@ -659,6 +679,64 @@ def test_resource_add_structures_block_pages_without_rewriting_source_files():
     document = read_block_document("simulink/messages-events", "Receive", language="zh-CN")
     assert "## 描述" in document
     assert "## 说明" not in document
+
+
+def test_block_document_structuring_preserves_body_and_is_idempotent():
+    document = """---
+type: simulink-block
+---
+# Example
+
+## 端口
+
+### 输入
+
+### **u** — 输入信号 scalar
+
+信号说明。
+
+**数据类型：** `double` | `single`
+
+## 参数
+
+### 主要参数
+
+### **增益** — 增益值 `1` (default)
+
+参数说明与依赖。
+
+#### 编程使用
+
+|  |  |
+| --- | --- |
+| **模块参数：** | `Gain` |
+| **类型：** | character vector |
+| **值：** | `'1'` | `'2'` |
+| **默认值：** | `'1'` |
+
+## 描述
+
+完整知识正文。
+"""
+    structured = structure_block_document(document)
+    assert [line for line in without_structured_data(structured).splitlines() if line.strip()] == [
+        line for line in document.splitlines() if line.strip()
+    ]
+    assert structured_data(structured, "ports") == [
+        {
+            "name": "u",
+            "summary": "输入信号 scalar",
+            "direction": "input",
+            "data_types": "double | single",
+        }
+    ]
+    parameter = structured_data(structured, "parameters")[0]
+    assert parameter["group"] == "主要参数"
+    assert parameter["block_parameter"] == "Gain"
+    assert parameter["values"] == "'1' | '2'"
+    assert parameter["default"] == "'1'"
+    validate_structured_document(structured)
+    assert structure_block_document(structured) == structured
 
 
 def test_block_document_normalization_preserves_body_and_is_idempotent():

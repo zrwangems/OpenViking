@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # C28x Watchdog
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 复位看门狗计数器 标量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### 输入
 
@@ -27,8 +34,16 @@ chinese_source: worker-translation
 此参数仅在 **Watchdog counter reset source** 设置为 `Input port` 时出现。
 
 **数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Watchdog counter reset source
+  summary: 看门狗计数器复位源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Sample time
+  summary: 处理器复位看门狗定时器的频率 –1（默认）| 标量
+  group: ''
+```
 
 ### **Watchdog counter reset source** — 看门狗计数器复位源 `Specify via dialog`（默认）| `Input port`
 
@@ -44,7 +59,6 @@ chinese_source: worker-translation
 #### 依赖
 
 此参数仅在 **Watchdog counter reset source** 设置为 `Specify via dialog` 时出现。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C281x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F29H85x

@@ -14,6 +14,37 @@ language: en
 # Average-Value DC-DC Converter
 
 ## Ports
+```yaml
+ports:
+- name: DutyCycle
+  summary: Duty cycle physical | scalar
+  direction: conserving
+  data_types: double
+- name: Iref
+  summary: Current reference physical
+  direction: conserving
+  data_types: double
+- name: Vref
+  summary: Voltage reference physical
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: Positive DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: Negative DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: Positive DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: Negative DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+```
 
 ### Conserving
 
@@ -79,8 +110,43 @@ Electrical conserving port associated with the negative terminal of
 the second DC voltage.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Implementation mode
+  summary: Converter implementation mode Behavioral (default) | Average value
+  group: ''
+- name: Converter type
+  summary: Converter type Buck converter (default) | Buck-boost converter | Boost converter
+  group: ''
+- name: Control input
+  summary: Control input Duty cycle (default) | Current reference | Voltage reference
+  group: ''
+- name: Converter efficiency
+  summary: Converter efficiency parameterization Constant (default) | Tabulated
+  group: ''
+- name: Efficiency (%)
+  summary: Converter efficiency 100 (default) | positive scalar
+  group: ''
+- name: Output current vector
+  summary: Vector of output current [0, 2, 5] A (default) | row vector of at least two elements
+  group: ''
+- name: Efficiency vector (%)
+  summary: Vector of efficiencies [90, 95, 98] (default) | row vector of at least two elements
+  group: ''
+- name: Inductance
+  summary: Inductance 1e-6 H (default) | positive scalar
+  group: ''
+- name: Inductor series resistance
+  summary: Series resistance of inductor 0 Ohm (default) | nonnegative scalar
+  group: ''
+- name: Capacitance
+  summary: Capacitance 1e-7 F (default) | positive scalar
+  group: ''
+- name: Capacitor effective series resistance
+  summary: Series resistance of capacitor 1e-6 Ohm (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Implementation mode** — Converter implementation mode `Behavioral` (default) | `Average value`
 
@@ -207,7 +273,6 @@ Series resistance of the capacitor.
 
 To enable this parameter, set **Implementation mode**
 to `Average value`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

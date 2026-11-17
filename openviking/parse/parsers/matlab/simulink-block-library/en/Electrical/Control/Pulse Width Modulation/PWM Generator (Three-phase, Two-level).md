@@ -14,6 +14,21 @@ language: en
 # PWM Generator (Three-phase, Two-level)
 
 ## Ports
+```yaml
+ports:
+- name: Vabc
+  summary: Three-phase sinusoidal reference signal vector
+  direction: input
+- name: vdc
+  summary: DC-link voltage signal scalar
+  direction: input
+- name: g
+  summary: Gate control vector
+  direction: output
+- name: ModWave
+  summary: Modulation wave vector
+  direction: output
+```
 
 ### Input
 
@@ -38,8 +53,28 @@ power converter.
 If you are generating code for a platform that has hardware with PWM
 capability, you can deploy the modulation wave to the hardware.
 Otherwise, this data is only for your reference.
-
 ## Parameters
+```yaml
+parameters:
+- name: PWM mode
+  summary: Pulse width modulation method Continuous PWM (CPWM) (default) | Discontinuous PWM (DPWM)
+  group: ''
+- name: Continuous PWM
+  summary: 'Continuous pulse width modulation method SPWM: sinusoidal PWM (default) | SVM: space vector modulation'
+  group: ''
+- name: Sampling mode
+  summary: Wave-sampling method Natural (default) | Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: Switching rate 1e3 (default) | positive number
+  group: ''
+- name: Sample time (s)
+  summary: Block sample time 5e-5 (default) | positive number
+  group: ''
+- name: Discontinuous PWM (DPWM)
+  summary: 'Clamping method 60 DPWM: 60 degree discontinuous PWM (default)'
+  group: ''
+```
 
 ### **PWM mode** — Pulse width modulation method `Continuous PWM (CPWM)` (default) | `Discontinuous PWM (DPWM)`
 
@@ -98,7 +133,6 @@ When the wave is clamped, modulation discontinues.
 The **Discontinuous PWM** parameter is only available
 when you set the **PWM mode** parameter to
 `Discontinuous PWM (DPWM)`.
-
 ## Libraries
 
 Simscape / Electrical / Control / Pulse Width Modulation

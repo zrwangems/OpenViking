@@ -15,6 +15,61 @@ chinese_source: worker-translation
 # Minimum Jerk Polynomial Trajectory
 
 ## 端口
+```yaml
+ports:
+- name: Time
+  summary: 沿轨迹的时间点 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: 沿轨迹的路径点位置 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: TimePoints
+  summary: 轨迹路径点的时间点 *p* 元素行向量
+  direction: input
+  data_types: single | double
+- name: VelBC
+  summary: 路径点的速度边界条件 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: AccelBC
+  summary: 路径点的加速度边界条件 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: JerkBC
+  summary: 路径点的加加速度边界条件 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: q
+  summary: 轨迹的位置 *n* 元素向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: qd
+  summary: 轨迹的速度 *n* 元素向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: qdd
+  summary: 轨迹的加速度 *n* 元素向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: qddd
+  summary: 轨迹的加加速度 *n* 元向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: TimeOfArrival
+  summary: 到达每个路点的时间 *p* 元向量
+  direction: output
+  data_types: single | double
+- name: PolynomialCoefs
+  summary: 多项式系数 *n*(*p*–1)×8 矩阵
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: 轨迹生成状态，形式为 [SingularityStatus MaxIterStatus MaxTimeStatus] 的三元向量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -145,8 +200,40 @@ MaxTimeStatus]` 的三元向量。
 要启用此输出端口，请选择 `Show status output port`。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Show boundary conditions input ports
+  summary: 接受边界条件输入 off（默认）| on
+  group: ''
+- name: Show polynomial coefficients output port
+  summary: 输出多项式系数 off（默认）| on
+  group: ''
+- name: Show status output port
+  summary: 输出状态 off（默认）| on
+  group: ''
+- name: Time allocation
+  summary: 启用时间分配 off（默认）| on
+  group: ''
+- name: Time weight
+  summary: 时间分配权重 100（默认）| 正标量
+  group: ''
+- name: Minimum segment time
+  summary: 最小时间段长度 0.1（默认）| 正标量 | (*p*–1) 元正行向量
+  group: ''
+- name: Maximum segment time
+  summary: 最大时间段长度 1（默认）| 正标量 | (*p*–1) 元正行向量
+  group: ''
+- name: Maximum iterations
+  summary: 求解器的最大迭代次数 1500（默认）| 正整数标量
+  group: ''
+- name: Maximum time
+  summary: 求解器的最大时间 10（默认值）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认值）| Code generation
+  group: ''
+```
 
 ### **Show boundary conditions input ports** — 接受边界条件输入 `off`（默认）| `on`
 
@@ -236,7 +323,6 @@ allocation`。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 UAV Toolbox / Algorithms Robotics System Toolbox / Utilities

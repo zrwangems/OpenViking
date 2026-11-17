@@ -14,6 +14,18 @@ language: en
 # Flexible T Beam
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Connection frame frame
+  direction: unspecified
+- name: B
+  summary: Connection frame frame
+  direction: unspecified
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -38,8 +50,155 @@ attached to the flexible body.
 
 The **R** port must not be rigidly connected to any
 blocks that exert forces and torques or possess inertia.
-
 ## Parameters
+```yaml
+parameters:
+- name: End-to-End Height
+  summary: Distance from top face of flange to bottom end of web 1 m (default) | positive scalar
+  group: Geometry
+- name: Web Thickness
+  summary: Distance between faces of web 0.1 m (default) | positive scalar
+  group: Geometry
+- name: Flange Width
+  summary: Distance between ends of flange 0.5 m (default) | positive scalar
+  group: Geometry
+- name: Flange Thickness
+  summary: Distance between faces of flange 0.1 m (default) | positive scalar
+  group: Geometry
+- name: Length
+  summary: Extrusion length of beam 10 m (default) | positive scalar
+  group: Geometry
+- name: Type
+  summary: Method to use to specify stiffness and inertia properties Calculate from Geometry (default) | Custom
+  group: Stiffness and Inertia
+- name: Density
+  summary: Mass per unit volume of material 2700 kg/m^3 (default) | positive scalar
+  group: Stiffness and Inertia
+- name: Specify
+  summary: Elastic properties in terms of which to parameterize the beam Young's Modulus and Poisson's Ratio (default) | Young's
+    and Shear Modulus
+  group: Stiffness and Inertia
+- name: Young's Modulus
+  summary: Ratio of axial stress to axial strain 70 GPa (default) | positive scalar
+  group: Stiffness and Inertia
+- name: Poisson's Ratio
+  summary: Ratio of transverse to longitudinal strains 0.33 (default) | scalar in the range [0, 0.5)
+  group: Stiffness and Inertia
+- name: Shear Modulus
+  summary: Ratio of shear stress to engineering shear strain 26 GPa (default) | positive scalar
+  group: Stiffness and Inertia
+- name: Derived Values
+  summary: Calculated values of mass and stiffness sectional properties button
+  group: Stiffness and Inertia
+- name: Geometric Centroid
+  summary: Centroid of beam cross section [0 0] m (default) | 2-by-1 array
+  group: Stiffness and Inertia
+- name: Bending Centroid
+  summary: Intersection of neutral axis and cross section [0 0] m (default) | 2-by-1 array
+  group: Stiffness and Inertia
+- name: Shear Center
+  summary: Beam shear center [0 0] m (default) | 2-by-1 array
+  group: Stiffness and Inertia
+- name: Axial Rigidity
+  summary: Resistance against axial deformation 1 Pa*m^2 (default) | scalar
+  group: Stiffness and Inertia
+- name: Flexural Rigidity
+  summary: Resistance against bending deformations [1 1] Pa*m^4 (default) | 2-by-1 array
+  group: Stiffness and Inertia
+- name: Cross Flexural Rigidity
+  summary: Resistance against bending deformation about x-axis in response to bending moment about the y-axis 0 Pa*m^4 (default)
+    | scalar
+  group: Stiffness and Inertia
+- name: Torsional Rigidity
+  summary: Resistance against twisting 1 Pa*m^4 (default) | scalar
+  group: Stiffness and Inertia
+- name: Center of Mass
+  summary: Center of Mass [0 0] m (default) | 2-by-1 array
+  group: Stiffness and Inertia
+- name: Mass Per Unit Length
+  summary: Mass per unit length 1 kg/m (default) | scalar
+  group: Stiffness and Inertia
+- name: Mass Moment of Inertia Density
+  summary: Resistance against rotation about x and y axes [1 1] kg*m (default) | 2-by-1 array
+  group: Stiffness and Inertia
+- name: Mass Product of Inertia Density
+  summary: Resistance against rotation about x-axis due to moment about y-axis 0 kg*m (default) | scalar
+  group: Stiffness and Inertia
+- name: Type
+  summary: Type of damping method Proportional (default) | Uniform Modal | None
+  group: Damping
+- name: Mass Coefficient
+  summary: Coefficient of mass matrix 0 1/s (default) | nonnegative scalar
+  group: Damping
+- name: Stiffness Coefficient
+  summary: Coefficient of stiffness matrix 0.001 s (default) | nonnegative scalar
+  group: Damping
+- name: Damping Ratio
+  summary: Damping ratio for uniform modal damping method 0.01 (default) | unitless nonnegative scalar
+  group: Damping
+- name: Number of Elements
+  summary: Number of beam finite elements 1 (default) | positive integer
+  group: Discretization
+- name: Type
+  summary: Type of reference conditions Linearized Mean Axes (default) | Body-Fixed
+  group: Reference Conditions
+- name: Frame
+  summary: Connection frame used for body-fixed reference conditions frame name
+  group: Reference Conditions
+- name: Show Port R
+  summary: Show reference frame port off (default) | on
+  group: Reference Conditions
+- name: Reduction
+  summary: Method to model flexible bodies None (default) | Modally Reduced
+  group: Fidelity
+- name: Number of Retained Modes
+  summary: Retained modes 1 (default) | nonnegative integer
+  group: Fidelity
+- name: Type
+  summary: Graphic to use in the visualization of beam From Geometry (default) | None
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: Graphic
+- name: Show Port A
+  summary: Show port A for connection to other blocks on (default) | off
+  group: Frames
+- name: Show Port B
+  summary: Show port B for connection to other blocks on (default) | off
+  group: Frames
+- name: New Frame
+  summary: Create custom frame for connection to other blocks button
+  group: Frames
+- name: FrameN
+  summary: Edit or delete existing custom frame frame name
+  group: Frames
+```
 
 ### Geometry
 
@@ -627,7 +786,6 @@ number for each custom frame.
 
 To enable this parameter, create a frame by clicking **New
 Frame**.
-
 ## Libraries
 
 Simscape / Multibody / Body Elements / Flexible Bodies / Beams

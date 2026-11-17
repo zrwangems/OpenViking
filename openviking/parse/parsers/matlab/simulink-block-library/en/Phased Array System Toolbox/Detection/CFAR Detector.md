@@ -14,6 +14,33 @@ language: en
 # CFAR Detector
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Cell matrix real-valued *M*-by-1 column vector | real-valued *M*-by-*N* matrix
+  direction: input
+  data_types: single | double
+- name: Idx
+  summary: Index of cells under test real-valued length-*D* vector
+  direction: input
+  data_types: double
+- name: K
+  summary: Threshold factor positive scalar
+  direction: input
+  data_types: double
+- name: Y
+  summary: Detection results *D*-by-1 vector | *D*-by-*N* matrix | *1*-by-*L* | 2-by-*L* matrix
+  direction: output
+  data_types: double
+- name: Th
+  summary: Detection threshold scalar
+  direction: output
+  data_types: double
+- name: N
+  summary: Estimated noise power positive scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -162,8 +189,53 @@ To enable this port, select the **Output estimated noise
 power** check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: CFAR algorithm
+  summary: CFAR algorithm CA (default) | GOCA | SOCA | OS
+  group: ''
+- name: Number of guard cells
+  summary: Number of guard cells 2 (default)
+  group: ''
+- name: Number of training cells
+  summary: Number of training cells 2 (default)
+  group: ''
+- name: Rank of order statistic
+  summary: Rank of order statistic 1 (default)
+  group: ''
+- name: Threshold factor method
+  summary: Methods of obtaining threshold factor Auto (default) | Input port | Custom
+  group: ''
+- name: Probability of false alarm
+  summary: Desired probability of false alarm 0.1 (default)
+  group: ''
+- name: Custom threshold factor
+  summary: Custom threshold factor 1 (default)
+  group: ''
+- name: Output format
+  summary: Format of detection results CUT result (default) | Detection index
+  group: ''
+- name: Output detection threshold
+  summary: Output detection threshold off (default) | on
+  group: ''
+- name: Output estimated noise power
+  summary: Output estimated noise power off (default) | on
+  group: ''
+- name: Source of the number of detections
+  summary: Source of the number of detections Auto (default) | Property
+  group: ''
+- name: Maximum number of detections
+  summary: Maximum number of detections to report 1 (default)
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **CFAR algorithm** — CFAR algorithm `CA` (default) | `GOCA` | `SOCA` | `OS`
 
@@ -324,7 +396,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

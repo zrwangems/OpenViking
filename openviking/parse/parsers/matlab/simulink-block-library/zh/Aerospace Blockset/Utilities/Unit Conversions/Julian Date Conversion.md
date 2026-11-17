@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Julian Date Conversion
 
 ## 端口
+```yaml
+ports:
+- name: day
+  summary: 时钟源 标量 | 数组
+  direction: input
+  data_types: double
+- name: JD
+  summary: 儒略日 标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -44,8 +55,77 @@ chinese_source: worker-translation
 #### 依赖关系
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Year
+  summary: 年份 2013（默认）| double，整数，大于 1
+  group: ''
+  block_parameter: year
+  type: 字符向量
+  values: double，大于 1
+  default: '''2013'''
+- name: Month
+  summary: 月份 January（默认）| February | March | April | May | June | July | August | September | October | November | December
+  group: ''
+  block_parameter: month
+  type: 字符向量
+  values: '''January'' | ''February'' | ''March'' | ''April'' | ''May'' | ''June'' | ''July'' | ''August'' | ''September''
+    | ''October'' | ''November'' | ''December'''
+  default: '''January'''
+- name: Day
+  summary: 日期 1（默认）| 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 |
+    24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+  group: ''
+  block_parameter: day
+  type: 字符向量
+  values: '''1'' | ''2'' | ''3'' | ''4'' | ''5'' | ''5'' | ''6'' | ''7'' | ''8'' | ''9'' | ''10'' | ''11'' | ''12'' | ''13''
+    | ''14'' | ''15'' | ''16'' | ''17'' | ''18'' | ''19'' | ''20'' | ''21'' | ''22'' | ''23'' | ''24'' | ''25'' | ''26'' |
+    ''27'' | ''28'' | ''29'' | ''30'' | ''31'''
+  default: '''1'''
+- name: Hour
+  summary: 小时 0（默认）| double，整数，0 到 24
+  group: ''
+  block_parameter: hour
+  type: 字符向量
+  values: double，整数，0 到 24
+  default: '''0'''
+- name: Minutes
+  summary: 分钟 0（默认）| double，整数，0 到 60
+  group: ''
+  block_parameter: min
+  type: 字符向量
+  values: double，整数，0 到 60
+  default: '''0'''
+- name: Seconds
+  summary: 秒 0（默认）| double，整数，0 到 60
+  group: ''
+  block_parameter: sec
+  type: 字符向量
+  values: double，整数，0 到 60
+  default: '''0'''
+- name: Calculate modified Julian date
+  summary: 简化儒略日 off（默认）| on
+  group: ''
+  block_parameter: modflag
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Time increment
+  summary: 时间增量 Day（默认）| Hour | Min | Sec | None
+  group: ''
+  block_parameter: deltaT
+  type: 字符向量
+  values: '''Day'' | ''Hour'' | ''Min'' | ''Sec'' | ''None'''
+  default: '''Day'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: errorflag
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+```
 
 ### **Year** — 年份 `2013`（默认）| double，整数，大于 1
 
@@ -188,7 +268,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'Error'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Unit Conversions

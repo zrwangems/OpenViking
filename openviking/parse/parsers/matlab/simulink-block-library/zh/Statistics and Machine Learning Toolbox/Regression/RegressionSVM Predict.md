@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # RegressionSVM Predict
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 预测变量数据 行向量 | 列向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yfit
+  summary: 预测响应 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -34,8 +45,82 @@ chinese_source: worker-translation
 预测响应，以标量形式返回。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Select trained machine learning model
+  summary: SVM 回归模型 svmMdl（默认）| RegressionSVM 对象 | CompactRegressionSVM 对象
+  group: 主
+  block_parameter: TrainedLearner
+  type: 工作区变量
+  values: RegressionSVM 对象 | CompactRegressionSVM 对象
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Output data type
+  summary: 'yfit 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Output data type Minimum
+  summary: 用于范围检查的 yfit 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Output data type Maximum
+  summary: 用于范围检查的 yfit 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Kernel data type
+  summary: 核计算数据类型 double（默认）| single | half | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | uint32 | boolean |
+    fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>
+  group: 数据类型
+  block_parameter: KernelDataTypeStr
+  type: 字符向量
+  values: '''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''uint64''
+    | ''int64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''double'''
+- name: Kernel data type Minimum
+  summary: 用于范围检查的最小核计算值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: KernelOutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Kernel data type Maximum
+  summary: 用于范围检查的最大核计算值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: KernelOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+```
 
 ### 主
 
@@ -245,7 +330,6 @@ Simulink 使用该最大值来执行：
 | **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
 | **默认值**：`'[]'` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Regression

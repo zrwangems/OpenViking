@@ -14,14 +14,34 @@ language: en
 # PS Random Number
 
 ## Ports
+```yaml
+ports:
+- name: Y
+  summary: Output physical signal, unitless physical signal
+  direction: output
+```
 
 ### Output
 
 ### **Y** — Output physical signal, unitless physical signal
 
 Output physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mean
+  summary: Mean of the random numbers 0 (default)
+  group: ''
+- name: Variance
+  summary: Variance of the random numbers 1 (default)
+  group: ''
+- name: Seed
+  summary: Starting seed 0 (default)
+  group: ''
+- name: Sample time
+  summary: Sample time interval 1 s (default)
+  group: ''
+```
 
 ### **Mean** — Mean of the random numbers `0` (default)
 
@@ -44,7 +64,6 @@ time offset, enter the parameter value as `[step,
 offset]`, otherwise the
 *`offset`* value is assumed to be `0`. The
 offset must be less than the step size.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Sources

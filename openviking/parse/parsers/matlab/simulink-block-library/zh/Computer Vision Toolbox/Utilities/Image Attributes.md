@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Image Attributes
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 Simulink.ImageType
+  direction: input
+  data_types: Simulink.ImageType
+- name: rows
+  summary: 图像数据中的行数 标量
+  direction: output
+  data_types: uint32
+- name: columns
+  summary: 图像数据中的列数 标量
+  direction: output
+  data_types: uint32
+- name: channels
+  summary: 数组中每个像素的颜色通道数或采样数 标量
+  direction: output
+  data_types: uint32
+- name: class
+  summary: 底层图像数据的数据类型 字符串
+  direction: output
+  data_types: string
+- name: color
+  summary: 底层图像数据的色彩格式 字符串
+  direction: output
+  data_types: string
+- name: layout
+  summary: 图像数据的数组布局 字符串
+  direction: output
+  data_types: string
+```
 
 ### 输入
 
@@ -81,11 +112,12 @@ Image Attributes 模块的输入信号。输入为 Simulink 图像数据类型�
 `'ColumnMajor'` 或 `'RowMajor'`。
 
 **数据类型：** `string`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Computer Vision Toolbox / Utilities

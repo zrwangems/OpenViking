@@ -14,6 +14,29 @@ language: en
 # Simulink Function
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Signal input to a subsystem block scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | struct
+- name: ArgIn
+  summary: Argument input to a subsystem block scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | struct
+- name: Out
+  summary: Signal output from a subsystem scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | struct
+- name: ArgOut
+  summary: Argument output from a subsystem block scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | struct
+```
 
 ### Input
 
@@ -55,8 +78,30 @@ an output port corresponding to an output argument. A port is not
 displayed on the subsystem block.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image` | `struct`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show port labels
+  summary: Display options for port labels FromPortIcon (default) | FromPortBlockName | SignalName | none
+  group: Main
+  block_parameter: ShowPortLabels
+  values: '''FromPortIcon'' (default) | ''FromPortBlockName'' | ''SignalName'' | ''none'''
+- name: Read/Write permissions
+  summary: Levels of access to contents of subsystem ReadWrite (default) | ReadOnly | NoReadOrWrite
+  group: Main
+  block_parameter: Permissions
+  values: '''ReadWrite'' (default) | ''ReadOnly'' | ''NoReadOrWrite'''
+- name: Name of error callback function
+  summary: Name of function to be called if error occurs no default
+  group: Main
+  block_parameter: ErrorFcn
+  values: ''''' (default) | function name in quotes'
+- name: Permit hierarchical resolution
+  summary: Resolution for workspace variable names All (default) | ExplicitOnly | None
+  group: Main
+  block_parameter: PermitHierarchicalResolution
+  values: '''All'' (default) | ''ExplicitOnly'' | ''None'''
+```
 
 ### Main
 
@@ -146,7 +191,6 @@ the `set_param` function.
 To configure the scope visibility and synchronicity of a Simulink
 Function block, open the block parameters of the Trigger block located inside of
 the Simulink Function block.
-
 ## Libraries
 
 Simulink / User-Defined Functions

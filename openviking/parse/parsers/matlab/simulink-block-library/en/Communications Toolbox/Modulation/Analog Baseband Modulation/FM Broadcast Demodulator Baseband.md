@@ -14,6 +14,16 @@ language: en
 # FM Broadcast Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: FM-modulated baseband audio signal column vector
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: RDS (or RBDS) signal *N*-element column vector | 2-by-*N* matrix
+  direction: output
+```
 
 ### Input
 
@@ -40,8 +50,43 @@ type as the input signal.
   audio signal per channel. If you select **Stereo
   audio**, the output has two channels and the
   block performs stereo decoding after de-emphasis filtering.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: Output signal sample rate 240e3 | positive scalar
+  group: ''
+- name: Frequency deviation (Hz)
+  summary: Peak deviation of the output signal frequency 75e3 | positive scalar
+  group: ''
+- name: De-emphasis filter time constant (s)
+  summary: De-emphasis lowpass filter time constant 7.5e-05 (default) | positive scalar
+  group: ''
+- name: Output audio sample rate (Hz)
+  summary: Output audio sample rate 48000 (default) | positive scalar
+  group: ''
+- name: Play audio device
+  summary: Play sound using default audio device on (default) | off
+  group: ''
+- name: Buffer size (samples)
+  summary: Buffer size 4096 (default) | positive scalar
+  group: ''
+- name: Stereo audio
+  summary: Option to enable stereo demodulation off (default) | on
+  group: ''
+- name: RDS/RBDS demodulation
+  summary: Option to enable RDS (or RBDS) waveform demodulation off (default) | on
+  group: ''
+- name: Number of samples per RDS/RBDS symbol
+  summary: Number of samples output per RDS/RBDS symbol 10 (default) | positive integer
+  group: ''
+- name: RDS/RBDS Costas loop
+  summary: Option to enable Costas Loop off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -150,7 +195,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Modulation / Analog Baseband Modulation

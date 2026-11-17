@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Discharger
 
 ## 端口
+```yaml
+ports:
+- name: t
+  summary: 触发，无量纲物理信号
+  direction: input
+- name: +
+  summary: 正极端子电气
+  direction: input
+- name: '-'
+  summary: 负极端子电气
+  direction: input
+```
 
 ### 输入
 
@@ -31,8 +43,16 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与放电器负极端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Constant discharging current
+  summary: 恒定放电电流 5 A（默认）| 正标量
+  group: ''
+- name: Voltage threshold
+  summary: 恒定放电电流的电压阈值 10 V（默认）| 正标量
+  group: ''
+```
 
 ### **Constant discharging current** — 恒定放电电流 `5` `A`（默认）| 正标量
 
@@ -41,7 +61,6 @@ chinese_source: worker-translation
 ### **Voltage threshold** — 恒定放电电流的电压阈值 `10` `V`（默认）| 正标量
 
 模块停止对电池执行恒流放电的阈值。
-
 ## 所属库
 
 Simscape / Battery / Cyclers

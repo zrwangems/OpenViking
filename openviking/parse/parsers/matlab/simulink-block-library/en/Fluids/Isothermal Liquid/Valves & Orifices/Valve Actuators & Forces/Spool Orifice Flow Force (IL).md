@@ -14,6 +14,21 @@ language: en
 # Spool Orifice Flow Force (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Control member displacement, m physical signal
+  direction: input
+- name: F
+  summary: Flow force, N physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -34,8 +49,38 @@ Spool displacement in m, specified as a physical signal.
 ### **F** — Flow force, N physical signal
 
 Axial flow force in N, specified as a physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Orifice geometry
+  summary: Type of orifice Round holes (default) | Rectangular slot
+  group: ''
+- name: Diameter of round holes
+  summary: Diameter of round holes 5e-3 m (default) | positive scalar
+  group: ''
+- name: Number of round holes
+  summary: Number of round holes 6 (default) | positive integer
+  group: ''
+- name: Orifice width
+  summary: Rectangular slot width 0.01 m (default) | positive scalar
+  group: ''
+- name: Spool travel between closed and open orifice
+  summary: Maximum spool stroke 1 m (default) | positive scalar
+  group: ''
+- name: Radial clearance
+  summary: Spool-sleeve clearance 1e-5 m (default) | positive scalar
+  group: ''
+- name: Spool position at closed orifice
+  summary: Initial spool offset 0 m (default) | scalar
+  group: ''
+- name: Opening orientation
+  summary: Direction of changing orifice area Positive spool displacement opens orifice (default) | Negative spool displacement
+    closes orifice
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+```
 
 ### **Orifice geometry** — Type of orifice `Round holes` (default) | `Rectangular slot`
 
@@ -102,7 +147,6 @@ Continuous smoothing factor that introduces a layer of gradual change to
 the flow response when the valve is in near-open or near-closed positions.
 Set this value to a nonzero value less than one to increase the stability of
 your simulation in these regimes.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces

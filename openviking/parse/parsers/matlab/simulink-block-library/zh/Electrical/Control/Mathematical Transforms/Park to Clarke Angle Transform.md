@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Park to Clarke Angle Transform
 
 ## 端口
+```yaml
+ports:
+- name: dq0
+  summary: '*d*-*q* 轴和零分量向量'
+  direction: input
+  data_types: single | double
+- name: d
+  summary: 直轴分量标量
+  direction: input
+  data_types: single | double
+- name: q
+  summary: 交轴分量标量
+  direction: input
+  data_types: single | double
+- name: θe
+  summary: 旋转角度标量 | 以弧度为单位
+  direction: input
+  data_types: single | double
+- name: sinθe
+  summary: 旋转角度正弦值标量
+  direction: input
+  data_types: single | double
+- name: cosθe
+  summary: 旋转角度余弦值标量
+  direction: input
+  data_types: single | double
+- name: αβ0
+  summary: '*α*-*β* 轴和零分量向量'
+  direction: output
+  data_types: single | double
+- name: α
+  summary: α 轴分量标量
+  direction: output
+  data_types: single | double
+- name: β
+  summary: β 轴分量标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -120,8 +159,28 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Use block for embedded implementation (requires Motor Control Blockset™)** 参数并将 **Number of inputs** 设置为 `Two inputs`。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Alpha-axis alignment
+  summary: '*dq0* 参考坐标系对齐 Q-axis（默认）| D-axis'
+  group: ''
+- name: Use block for embedded implementation (requires Motor Control Blockset™)
+  summary: 使用模块进行嵌入式实现的选项 off（默认）| on
+  group: ''
+- name: Number of inputs
+  summary: 模块输入数量 Two inputs（默认）| Three inputs
+  group: ''
+- name: Theta input
+  summary: 位置输入类型 Sine and Cosine electrical position（默认）| Electrical position
+  group: ''
+- name: Theta units
+  summary: 电位置输入的单位 Per-unit（默认）| Radians | Degrees
+  group: ''
+- name: Number of data points for lookup table
+  summary: 查找表数组大小 1024（默认）| 标量
+  group: ''
+```
 
 ### **Alpha-axis alignment** — *dq0* 参考坐标系对齐 `Q-axis`（默认）| `D-axis`
 
@@ -178,7 +237,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请选中 **Use block for embedded implementation (requires Motor Control Blockset™)** 参数并将 **Theta input** 设置为 `Electrical position`。
-
 ## 所属库
 
 Simscape / Electrical / Control / Mathematical Transforms

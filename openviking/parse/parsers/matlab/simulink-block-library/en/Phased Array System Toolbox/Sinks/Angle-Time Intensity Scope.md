@@ -14,6 +14,13 @@ language: en
 # Angle-Time Intensity Scope
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data real-valued length-*M* vector
+  direction: input
+  data_types: double | single
+```
 
 ### Input
 
@@ -25,8 +32,80 @@ precision data type input, but converts the data to double precision for
 display.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Angle offset (degree)
+  summary: Angle offset 0.0 (default) | scalar
+  group: ''
+  block_parameter: AngleOffset
+  type: double
+  values: scalar |
+  default: '0.0'
+- name: Angle resolution (degree)
+  summary: Angle difference between samples 1.0 (default) | positive scalar
+  group: ''
+  block_parameter: AngleResolution
+  type: double
+  values: positive scalar |
+  default: '0.0'
+- name: Time span (s)
+  summary: Time span of display Auto (default)
+  group: ''
+  block_parameter: TimeSpan
+  type: double
+  values: scalar
+  default: '0.1'
+- name: Time resolution (s)
+  summary: Time difference between rows Auto (default)
+  group: ''
+  block_parameter: TimeResolution
+  type: double
+  values: positive scalar
+  default: '0.001'
+- name: Grid
+  summary: Show Cartesian grid overlay on (default) | off
+  group: ''
+  block_parameter: ShowGrid
+  type: logical
+  values: 1 | 0
+  default: '1'
+- name: Ticks
+  summary: Show tick value labels on (default) | off
+  group: ''
+  block_parameter: ShowTicks
+  type: logical
+  values: 1 | 0
+  default: '1'
+- name: Angle label
+  summary: Angle-axis label 'Angle (degree)' (default) | character vector | string
+  group: ''
+  block_parameter: AngleLabel
+  type: string
+  values: string
+  default: '''Angle (degree)'''
+- name: Time label
+  summary: Time axis label 'Time History (s)' (default) | string
+  group: ''
+  block_parameter: TimeLabel
+  type: string
+  values: string
+  default: '''Time History (s)'''
+- name: Title
+  summary: Window title Angle vs. Time' (default) | string
+  group: ''
+  block_parameter: Title
+  type: string
+  values: string
+  default: '''Doppler vs. Time'''
+- name: Colorbar label
+  summary: Color bar label 'dB' (default) | string
+  group: ''
+  block_parameter: ColorBarLabel
+  type: string
+  values: string
+  default: '''dB'''
+```
 
 ### **Angle offset (degree)** — Angle offset `0.0` (default) | scalar
 
@@ -194,7 +273,6 @@ Color bar label, specified as a string.
 | **Default:**`'dB'` |
 
 **Data Types:** `string`
-
 ## Libraries
 
 Phased Array System Toolbox / Sinks

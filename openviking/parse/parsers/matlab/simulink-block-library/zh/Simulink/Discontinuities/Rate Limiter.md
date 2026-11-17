@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Rate Limiter
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,45 @@ chinese_source: worker-translation
 速率限幅算法的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Rising slew rate
+  summary: 输入增大时的导数限值 1（默认）| 实数
+  group: ''
+  block_parameter: RisingSlewLimit
+  type: 字符向量
+  values: 实数
+  default: '''1'''
+- name: Falling slew rate
+  summary: 输入减小时的导数限值 -1（默认）| 实数
+  group: ''
+  block_parameter: FallingSlewLimit
+  type: 字符向量
+  values: 实数
+  default: '''-1'''
+- name: Sample time mode
+  summary: 采样时间模式 inherited（默认）| continuous
+  group: ''
+  block_parameter: SampleTimeMode
+  type: 字符向量
+  values: '''inherited'' | ''continuous'''
+  default: '''inherited'''
+- name: Initial condition
+  summary: 初始输出 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: InitialCondition
+  type: 字符向量
+  values: scalar
+  default: '''0'''
+- name: Treat as gain when linearizing
+  summary: 指定增益值 on（默认）| off
+  group: ''
+  block_parameter: LinearizeAsGain
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Rising slew rate** — 输入增大时的导数限值 `1`（默认）| 实数
 
@@ -97,7 +145,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Discontinuities

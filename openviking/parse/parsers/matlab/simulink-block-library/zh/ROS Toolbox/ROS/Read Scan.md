@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Read Scan
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: ROS 或 ROS 2 激光扫描消息非虚拟总线
+  direction: input
+  data_types: bus
+- name: Ranges
+  summary: 每个点的距离值数组
+  direction: output
+  data_types: single
+- name: Angles
+  summary: 每个点的角度值数组
+  direction: output
+  data_types: single
+- name: Intensities
+  summary: 每个点的强度值数组
+  direction: output
+  data_types: single
+- name: ErrorCode
+  summary: 消息解析错误代码标量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -68,8 +91,25 @@ Subscribe 或 ROS 2 Subscribe
 启用 `Show ErrorCode output port` 参数。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum array length
+  summary: 激光扫描数组的最大长度 100（默认）| 正标量
+  group: ''
+- name: Show Angles output port
+  summary: RGB 端口切换 off（默认）| on
+  group: ''
+- name: Show Intensity output port
+  summary: Intensity 端口切换 off（默认）| on
+  group: ''
+- name: Show ErrorCode output port
+  summary: ErrorCode 端口切换 on（默认）| off
+  group: ''
+- name: Output variable-size signals
+  summary: 可变大小信号输出切换 off（默认）| on
+  group: ''
+```
 
 ### **Maximum array length** — 激光扫描数组的最大长度 `100`（默认）| 正标量
 
@@ -95,7 +135,6 @@ Subscribe 或 ROS 2 Subscribe
 ### **Output variable-size signals** — 可变大小信号输出切换 `off`（默认）| `on`
 
 切换是否输出可变大小信号。仅当您预期图像大小随时间变化时才使用可变大小信号。有关可变大小信号的详细信息，请参阅 Variable-Size Signal Basics (Simulink)。
-
 ## 所属库
 
 ROS Toolbox / ROS ROS Toolbox / ROS 2

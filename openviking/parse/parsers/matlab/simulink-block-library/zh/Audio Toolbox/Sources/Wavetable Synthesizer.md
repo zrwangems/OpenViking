@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Wavetable Synthesizer
 
 ## 端口
+```yaml
+ports:
+- name: WT
+  summary: 实数值的单周期波形向量
+  direction: input
+  data_types: single | double
+- name: F
+  summary: 输出波频率 (Hz) 非负标量 | 非负值向量
+  direction: input
+  data_types: single | double
+- name: A
+  summary: 输出波幅度 非负标量
+  direction: input
+  data_types: single | double
+- name: DC
+  summary: 输出波直流偏移 标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -56,8 +79,37 @@ chinese_source: worker-translation
 Wavetable Synthesizer 模块输出由模块参数定义的周期信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Single-cycle waveform
+  summary: 波表 sin(2*pi*(0:511)/512)（默认）| 实数值向量
+  group: ''
+- name: Output wave frequency (Hz)
+  summary: 生成信号的频率 100（默认）| 非负标量
+  group: ''
+- name: Output wave amplitude
+  summary: 生成信号的幅度 1（默认）| 非负标量
+  group: ''
+- name: Output wave phase offset
+  summary: 生成信号的归一化相位偏移 0（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Output wave DC offset
+  summary: 添加到生成信号每个元素的值 0（默认）| 标量
+  group: ''
+- name: Samples per frame
+  summary: 模块输出的每帧采样数 512（默认）| 正整数标量
+  group: ''
+- name: Sample rate (Hz)
+  summary: 生成信号的采样率 44100（默认）| 正标量
+  group: ''
+- name: Output data type
+  summary: 生成信号的数据类型 double（默认）| single
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 如果某个参数被列为可调，则可以在仿真期间更改其值。
 
@@ -117,7 +169,6 @@ Wavetable Synthesizer 模块对单周期波形进行索引，以合成周期波�
 
 - `Code generation` – 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 - `Interpreted execution` – 使用 MATLAB® 解释器仿真模型。此选项可减少启动时间，仿真速度与 `Code generation` 相当。在此模式下，您可以调试模块的源代码。
-
 ## 所属库
 
 Audio Toolbox / Sources

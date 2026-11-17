@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Check Signal Attributes
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Output
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### 输入
 
@@ -30,8 +41,42 @@ chinese_source: worker-translation
 输出信号，以标量、向量、矩阵或 N 维数组形式返回，其值与输入信号相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Error when input
+  summary: 当输入时生成错误 Does not match attributes exactly（默认）| Matches attributes exactly
+  group: ''
+- name: Complexity
+  summary: 指定复/实性 Ignore（默认）| Real | Complex
+  group: ''
+- name: Dimensionality
+  summary: 维度检查 Ignore（默认）| Is... | Is not...
+  group: ''
+- name: Dimensions
+  summary: 指定维度 1-D（默认）| 2-D | Scalar (1-D or 2-D) | Vector (1-D or 2-D) | Vector (1-D or 2-D) or scalar | Row vector (2-D)
+    | Row vector (2-D) or scalar | Column vector (2-D) | Column vector (2-D) or scalar | Full matrix (2-D) | Square matrix
+    (2-D)
+  group: ''
+- name: Data type
+  summary: 数据类型检查 Ignore（默认）| Is... | Is not...
+  group: ''
+- name: General data type
+  summary: 常规数据类型检查 Boolean（默认）| Enumerated | Floating-point | Floating-point or boolean | Fixed-point | Integer
+  group: ''
+- name: Specific floating-point
+  summary: 特定浮点检查 Any floating-point（默认）| Double precision | Single precision
+  group: ''
+- name: Specific fixed-point
+  summary: 特定定点检查 Any fixed-point（默认）| Signed fixed-point | Unsigned fixed-point
+  group: ''
+- name: Specific integer
+  summary: 特定整数检查 Any integer（默认）| Signed integer | Unsigned integer | int8 | int16 | int32 | uint8 | uint16 | uint32
+  group: ''
+- name: Sample time
+  summary: 采样时间检查 Ignore（默认）| Discrete | Continuous
+  group: ''
+```
 
 ### **Error when input** — 当输入时生成错误 `Does not match attributes exactly`（默认）| `Matches attributes exactly`
 
@@ -132,7 +177,6 @@ chinese_source: worker-translation
 当您将启用了 **Probe sample time** 的 Probe 模块附加到连续时间信号时，模块图标显示 `Ts:[0 To]`，其中 `To` 是采样时间偏移。连续时间信号的 `To` 有效值为 `0` 和 `1`。当 `To` 为 `0` 时，在每个主时间步和次时间步都会发生更新。当 `To` 为 `1` 时，仅在主时间步发生更新，并且采样时间*在次时间步中固定*。
 
 当您将启用了 **Probe sample time** 的 Probe 模块附加到离散时间信号时，对于基于采样的信号，模块图标显示 `Ts:[Ts To]`；对于基于帧的信号，显示 `Tf:[Tf To]`。`Ts` 和 `Tf` 分别是正采样周期和帧周期。`To` 是偏移，满足 0 ≤ *`offset`* < *`period`*。基于帧的信号几乎总是离散时间。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Signal Attributes

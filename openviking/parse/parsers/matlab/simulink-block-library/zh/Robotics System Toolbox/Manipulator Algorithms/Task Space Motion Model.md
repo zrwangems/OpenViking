@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Task Space Motion Model
 
 ## 端口
+```yaml
+ports:
+- name: refPose
+  summary: 期望的末端执行器位姿 4×4 矩阵
+  direction: input
+- name: refVel
+  summary: 期望的末端执行器速度 6 元素向量
+  direction: input
+- name: FExt
+  summary: 外部力 6×*m* 矩阵
+  direction: input
+- name: q
+  summary: 关节位置 *n* 元素向量
+  direction: output
+- name: qd
+  summary: 关节速度 *n* 元素
+  direction: output
+- name: qdd
+  summary: 关节加速度 *n* 元素
+  direction: output
+```
 
 ### 输入
 
@@ -48,8 +69,37 @@ chinese_source: worker-translation
 ### **qdd** — 关节加速度 *n* 元素
 
 关节加速度输出为 *n* 元素，以弧度每平方秒或米每平方秒为单位，其中 *n* 是 **Rigid body tree** 参数中 `rigidBodyTree` 对象中非固定关节的数量。
-
 ## 参数
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: 刚体树 twoJointRigidBodyTree 对象（默认）| RigidBodyTree 对象
+  group: ''
+- name: End effector
+  summary: 末端执行器刚体 tool（默认）
+  group: ''
+- name: Proportional gain
+  summary: PD 控制的比例增益 500*eye(6)（默认）| 6×6 矩阵
+  group: ''
+- name: Derivative gain
+  summary: PD 控制的微分增益 100*eye(6)（默认）| 6×6 矩阵
+  group: ''
+- name: Joint damping
+  summary: 阻尼比 [1 1]（默认）| *n* 元素向量 | 标量
+  group: ''
+- name: Show external force input
+  summary: 显示 FExt 端口 off（默认）| on
+  group: ''
+- name: Initial joint configuration
+  summary: 初始关节位置 0（默认）| *n* 元素向量 | 标量
+  group: ''
+- name: Initial joint velocities
+  summary: 初始关节速度 0（默认）| *n* 元向量 | 标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — 刚体树 `twoJointRigidBodyTree` 对象（默认）| `RigidBodyTree` 对象
 
@@ -92,7 +142,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码就会在后续仿真中重复使用。
 
 **Tunable:** No
-
 ## 所属库
 
 Robotics System Toolbox / Manipulator Algorithms

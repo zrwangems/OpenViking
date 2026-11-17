@@ -14,6 +14,45 @@ language: en
 # Square Jacobi SVD HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Square matrix *A* real or complex square matrix
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: Whether input is valid scalar
+  direction: input
+  data_types: Boolean
+- name: readyIn
+  summary: Whether downstream block is ready scalar
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: Whether to clear internal states scalar
+  direction: input
+  data_types: Boolean
+- name: s
+  summary: Singular values column vector
+  direction: output
+  data_types: single | double | fixed point
+- name: U
+  summary: Left singular vectors unitary n-by-n matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: V
+  summary: Right singular vectors unitary n-by-n matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: Whether output data is valid Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Whether block is ready Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -145,8 +184,38 @@ processed, you must wait until the `ready` signal is
 `validIn` signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Dimension of matrix A
+  summary: Dimension of square matrix *A* n (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: n
+  type: string
+  values: positive integer-valued scalar
+  default: n
+- name: Number of Jacobi iterations
+  summary: Number of iterations of Jacobi algorithm 10 (default) | positive integer
+  group: ''
+  block_parameter: nIterations
+  type: string
+  values: positive integer-valued scalar
+  default: '10'
+- name: Select outputs
+  summary: Block outputs UsV (default) | Us | sV | s
+  group: ''
+  block_parameter: outputOption
+  type: string
+  values: UsV | Us | sV | s
+  default: UsV
+- name: Signal type
+  summary: Complexity of input matrix *A* real (default) | complex
+  group: ''
+  block_parameter: complexity
+  type: string
+  values: real | complex
+  default: real
+```
 
 ### **Dimension of matrix A** — Dimension of square matrix *A* `n` (default) | positive integer-valued scalar
 
@@ -210,7 +279,6 @@ Complexity of the input matrix *A*, specified as
 | **Type:** `string` |
 | **Values:** `real` | `complex` |
 | **Default:** `real` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations

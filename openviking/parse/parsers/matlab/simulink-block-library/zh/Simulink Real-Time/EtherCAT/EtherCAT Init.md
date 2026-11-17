@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # EtherCAT Init
 
 ## 端口
+```yaml
+ports:
+- name: Status
+  summary: 关于 EtherCAT 网络的状态信息向量
+  direction: output
+  data_types: int32
+```
 
 ### 输出
 
@@ -80,8 +87,34 @@ chinese_source: worker-translation
   `0`。
 
 **数据类型：** `int32`
-
 ## 参数
+```yaml
+parameters:
+- name: Config file (ENI)
+  summary: 来自 EtherCAT 配置器的 ENI 文件 字符向量
+  group: ''
+  block_parameter: config_file
+- name: Network Device Index
+  summary: EtherCAT 网络标识符 0-15
+  group: ''
+  block_parameter: device_id
+- name: Ethernet Port Number
+  summary: 目标计算机中的端口号 int
+  group: ''
+  block_parameter: portnum
+- name: Initialization End State
+  summary: 创建主站后的结束状态 Op（默认）| PreOp | SafeOp
+  group: ''
+  block_parameter: initstate
+- name: DC Tuning
+  summary: 分布式时钟初始化参数 Large model（默认）| Medium model | Small model
+  group: ''
+  block_parameter: dctuning
+- name: Enable EtherCAT Log for Debugging
+  summary: 访问调试和日志记录模块参数 Off（默认）| Warning | Info | Verbose | All
+  group: ''
+  block_parameter: enaDebug
+```
 
 ### **Config file (ENI)** — 来自 EtherCAT 配置器的 ENI 文件 字符向量
 
@@ -178,7 +211,6 @@ MATLAB 将显示一个消息框，指示需要更明确的文件
 |  |
 | --- |
 | **模块参数**：`enaDebug` |
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

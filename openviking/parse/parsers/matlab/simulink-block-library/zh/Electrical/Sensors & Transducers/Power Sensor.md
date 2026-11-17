@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Power Sensor
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 测得的功率物理信号
+  direction: output
+- name: S
+  summary: 正电源供电轨电气
+  direction: output
+- name: +
+  summary: 负载正极端子电气
+  direction: output
+- name: '-'
+  summary: 负载负极端子电气
+  direction: output
+```
 
 ### 输出
 
@@ -35,8 +50,16 @@ chinese_source: worker-translation
 ### **-** — 负载负极端子电气
 
 连接到负载负极端子的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement type
+  summary: 测量类型 Instantaneous power（默认）| Instantaneous power
+  group: ''
+- name: Averaging period
+  summary: 平均周期 1e-4 s（默认）
+  group: ''
+```
 
 ### **Measurement type** — 测量类型 `Instantaneous power`（默认）| `Instantaneous power`
 
@@ -49,7 +72,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当为 **Measurement type** 参数选择 `Average power over a specified period` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

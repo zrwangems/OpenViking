@@ -14,10 +14,27 @@ language: en
 # Byte Reversal/Change Endianess
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input ports
+  summary: Number of ports 1 (default)
+  group: Block Parameters for Change Endianess
+  block_parameter: numInp
+- name: Machine word length
+  summary: Word length for conversion Byte (default) | Word | Double Word
+  group: Block Parameters for Change Endianess
+  block_parameter: />
+- name: Number of inputs
+  summary: Number of ports 1 (default)
+  group: Byte Reversal Block Parameters
+  block_parameter: numInp
+```
 
 ### Block Parameters for Change Endianess
 
@@ -54,7 +71,6 @@ outputs is equal to the number of inputs.
 |  |
 | --- |
 | **Block Parameter:** `numInp` |
-
 ## Libraries
 
 Simulink Real-Time / Utilities

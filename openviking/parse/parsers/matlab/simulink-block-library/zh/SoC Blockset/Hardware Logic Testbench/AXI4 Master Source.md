@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # AXI4 Master Source
 
 ## 端口
+```yaml
+ports:
+- name: wrCtrlIn
+  summary: 输入控制总线 bus
+  direction: input
+  data_types: WriteControlS2MBusObj
+- name: wrData
+  summary: 输出 AXI 数据 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wrCtrlOut
+  summary: 输出控制总线 bus
+  direction: output
+  data_types: WriteControlM2SBusObj
+```
 
 ### 输入
 
@@ -46,8 +61,40 @@ chinese_source: worker-translation
 - `wr_valid` — 指示在 **wrData** 输出端口采样的数据有效
 
 **数据类型：** `WriteControlM2SBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Data type
+  summary: 输出数据类型 uint8（默认）| double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | fixed point
+  group: ''
+- name: Dimensions
+  summary: 输出数据维度 1 | 正标量 | 数组
+  group: ''
+- name: Enable sample packing (last signal dimension as channel)
+  summary: 沿信号最后一个维度打包数据 off（默认）| on
+  group: ''
+- name: Number of transfers
+  summary: 要发送的写请求数量 1（默认）| 正整数
+  group: ''
+- name: Initial address
+  summary: 起始地址 0（默认）| 非负整数
+  group: ''
+- name: Initial delay
+  summary: 初始延迟 0（默认）| 非负标量
+  group: ''
+- name: Data generation
+  summary: 输出生成类型 counter（默认）| random | ones | workspace
+  group: ''
+- name: Counter init value
+  summary: 计数器初始值 0（默认）| 标量
+  group: ''
+- name: Variable name
+  summary: 工作区变量名称 simOut（默认）| 任何 MATLAB 支持的变量名称
+  group: ''
+- name: Sample time
+  summary: 采样时间间隔 1（默认）| 正标量 | 向量
+  group: ''
+```
 
 ### **Data type** — 输出数据类型 `uint8`（默认）| `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint16` | `uint32` | `uint64` | `fixed point`
 
@@ -125,7 +172,6 @@ chinese_source: worker-translation
 以秒为单位指定时间间隔，以定义模块的更新频率。
 
 当您不希望输出具有时间偏移时，请将 **Sample time** 参数指定为标量。要为输出添加时间偏移，请将 **Sample time** 参数指定为 `1`×`2` 向量，其中第一个元素为采样周期，第二个元素为偏移量。有关 Simulink® 中采样时间的详细信息，请参阅 Specify Sample Time。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Testbench

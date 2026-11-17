@@ -14,6 +14,13 @@ language: en
 # Signal Generator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Generated output signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -27,8 +34,52 @@ Output signal specified as one of these waveforms.
 - random
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Wave form
+  summary: Wave form to generate sine (default) | square | sawtooth | random
+  group: ''
+  block_parameter: WaveForm
+  type: character vector
+  values: '''sine'' | ''square'' | ''sawtooth'' | ''random'''
+  default: '''sine'''
+- name: Time (t)
+  summary: Source of time variable Use simulation time (default) | Use external signal
+  group: ''
+  block_parameter: TimeSource
+  type: character vector
+  values: '''Use simulation time'' | ''Use external signal'''
+  default: '''Use simulation time'''
+- name: Amplitude
+  summary: Signal amplitude 1 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: Amplitude
+  type: character vector
+  values: real scalar
+  default: '''1'''
+- name: Frequency
+  summary: Signal frequency 1 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: Frequency
+  type: character vector
+  values: real scalar
+  default: '''1'''
+- name: Units
+  summary: Signal units rad/sec (default) | Hertz
+  group: ''
+  block_parameter: Units
+  type: character vector
+  values: '''rad/sec'' | ''Hertz'''
+  default: '''rad/sec'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vectors as 1-D on (default) | off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Wave form** — Wave form to generate `sine` (default) | `square` | `sawtooth` | `random`
 
@@ -121,7 +172,6 @@ Select this check box to output a vector of length `N` if the
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Sources

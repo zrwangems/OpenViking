@@ -14,10 +14,39 @@ language: en
 # Bit Unpacking
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Bit Patterns
+  summary: Select bit pattern {[0:31]} (default)
+  group: ''
+  block_parameter: BitPatterns
+- name: Input port (packed) data types
+  summary: Packed data type uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: ''
+  block_parameter: PackDataType
+- name: Input port (packed) dimension
+  summary: Packed data dimension [1] (default)
+  group: ''
+  block_parameter: PackDataSize
+- name: Output port (unpacked) data types (cell array)
+  summary: Unpacked data type {'uint32'} (default)
+  group: ''
+  block_parameter: UnpackDataTypes
+- name: Output port (unpacked) dimension (cell array)
+  summary: Unpacked data dimension {[1]} (default)
+  group: ''
+  block_parameter: UnpackDataSizes
+- name: Sign extend
+  summary: Enable sign extension on (default) | off
+  group: ''
+  block_parameter: SignExtend
+```
 
 ### **Bit Patterns** — Select bit pattern {[0:31]} (default)
 
@@ -105,7 +134,6 @@ precision.
 |  |
 | --- |
 | **Block Parameter:** `SignExtend` |
-
 ## Libraries
 
 Simulink Real-Time / Utilities

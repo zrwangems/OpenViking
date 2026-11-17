@@ -14,6 +14,20 @@ language: en
 # Multi-Instance Guidance Model
 
 ## Ports
+```yaml
+ports:
+- name: Control
+  summary: Control input bus
+  direction: input
+- name: Environment
+  summary: Environment inputs bus
+  direction: input
+  data_types: bus
+- name: State
+  summary: Simulated UAV state bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -129,8 +143,31 @@ Specify the name of the state output bus by using the **State Bus
 Name** property.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Model Type
+  summary: UAV guidance model type MultirotorGuidance (default) | FixedWingGuidance
+  group: ''
+- name: Number of Instances
+  summary: Number of UAVs to simulate 5 (default) | positive integer
+  group: ''
+- name: Data Type
+  summary: Input and output numeric data types double (default) | single
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+- name: Initial State
+  summary: Initial UAV state tab multiple table entries
+  group: ''
+- name: Configuration
+  summary: UAV controller configuration tab multiple table entries
+  group: ''
+- name: Input/Output Bus Names
+  summary: Simulink bus signal names tab bus names
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -285,7 +322,6 @@ input type.
 
 To use multiple guidance models in the same Simulink model, specify bus names for each Multi-Instance Guidance Model block that
 do not intersect with one another.
-
 ## Libraries
 
 UAV Toolbox / Algorithms

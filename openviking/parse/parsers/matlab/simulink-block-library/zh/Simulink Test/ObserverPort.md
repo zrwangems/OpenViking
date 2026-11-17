@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Observer Port
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 映射信号 标量 | 向量
+  direction: output
+  data_types: double | single | Boolean | base integer | fixed point | enumerated | non-virtual bus
+```
 
 ### 输出
 
@@ -23,11 +30,12 @@ chinese_source: worker-translation
 通过 Observer Port 流入 Observer 模型的映射信号。
 
 **数据类型：** `double` | `single` | `Boolean` | `base integer` | `fixed point` | `enumerated` | `non-virtual bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Test

@@ -14,10 +14,45 @@ language: en
 # Input Port
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Treat input Simulink signal as
+  summary: Options for interpreting the input Source voltage (default) | Incident power wave | scalar
+  group: ''
+- name: Source impedance (ohms)
+  summary: Source impedance of the RF network 50 (default) | scalar
+  group: ''
+- name: Finite impulse response filter length
+  summary: Desired length of the baseband-equivalent impulse response 128 (default) | scalar
+  group: ''
+- name: Fractional bandwidth of guard bands
+  summary: Fraction of modeling bandwidth 0 (default) | scalar
+  group: ''
+- name: Modeling delay (samples)
+  summary: Number of time samples by which to delay the impulse response of baseband-equivalent model 0 (default) | scalar
+  group: ''
+- name: Center frequency (Hz)
+  summary: Center of modeling frequencies 2e9 (default) | scalar
+  group: ''
+- name: Sample time (s)
+  summary: Time interval between consecutive samples 1e-7 (default) | scalar
+  group: ''
+- name: Input Processing
+  summary: Specify type of processing mode Elements as channels (sample based) (default) | Columns as channels (frame based)
+  group: ''
+- name: Add noise
+  summary: Add noise data to block on (default) | off
+  group: ''
+- name: Initial seed
+  summary: Initial seed for random number generator block 67987 (default) | nonnegative integer
+  group: ''
+```
 
 ### **Treat input Simulink signal as** — Options for interpreting the input `Source voltage` (default) | `Incident power wave` | scalar
 
@@ -125,7 +160,6 @@ variable, the initial seed changes each successive time you run a model.
 #### Dependencies
 
 To enable this parameter, select **Add noise** parameter.
-
 ## Libraries
 
 RF Blockset / Equivalent Baseband / Input / Output Ports

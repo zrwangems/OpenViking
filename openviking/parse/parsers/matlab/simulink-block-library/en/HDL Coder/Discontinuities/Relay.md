@@ -14,6 +14,17 @@ language: en
 # Relay
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,85 @@ parameters **Output when on** and **Output when
 off**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Switch on point
+  summary: Input value which switches the relay on 'eps' (default) | scalar
+  group: ''
+  block_parameter: OnSwitchValue
+  type: character vector
+  values: scalar
+  default: '''eps'''
+- name: Switch off point
+  summary: Input value which switches the relay off 'eps' (default) | scalar
+  group: ''
+  block_parameter: OffSwitchValue
+  type: character vector
+  values: scalar
+  default: '''eps'''
+- name: Output when on
+  summary: Output value when the relay is on 1 (default) | scalar
+  group: ''
+  block_parameter: OnOutputValue
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Output when off
+  summary: Output value when the relay is off 0 (default) | scalar
+  group: ''
+  block_parameter: OffOutputValue
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Input processing
+  summary: Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame
+    based)
+  group: ''
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Data type of output signal Inherit: All ports same datatype (default) | Inherit: Inherit via back propagation
+    | double | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: All ports same datatype'' | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | fixdt(1,16) | fixdt(1,16,0)
+    | fixdt(1,16,2^0,0) | ''Enum: <class name>'' | ''<data type expression>'''
+  default: '''Inherit: All ports same datatype'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Switch on point** — Input value which switches the relay on `'eps'` (default) | scalar
 
@@ -264,7 +352,6 @@ Select this parameter to prevent the fixed-point tools from overriding the data 
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discontinuities HDL Coder / Discontinuities

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Discrete-Time Integrator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: External reset
+  summary: 外部复位信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: IC
+  summary: 状态的初始条件 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输入的离散时间积分或累加 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: 饱和输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8
+- name: Port_3
+  summary: 状态输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -93,8 +120,179 @@ port** 复选框。
 port** 复选框。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Integrator method
+  summary: '累加方法 Integration: Forward Euler（默认）| Integration: Backward Euler | Integration: Trapezoidal | Accumulation: Forward
+    Euler | Accumulation: Backward Euler | Accumulation: Trapezoidal'
+  group: 主要
+  block_parameter: IntegratorMethod
+  type: 字符向量
+  values: '''Integration: Forward Euler'' | ''Integration: Backward Euler'' | ''Integration: Trapezoidal'' | ''Accumulation:
+    Forward Euler'' | ''Accumulation: Backward Euler'' | ''Accumulation: Trapezoidal'''
+  default: '''Integration: Forward Euler'''
+- name: Gain value
+  summary: 与积分器输入相乘的值 1.0（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: gainval
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''1.0'''
+- name: External reset
+  summary: 选择何时将状态重置为初始条件 none（默认）| rising | falling | either | level | sampled level
+  group: 主要
+  block_parameter: ExternalReset
+  type: 字符向量
+  values: '''none'' | ''rising'' | ''falling'' | ''either'' | ''level'' | ''sampled level'''
+  default: '''none'''
+- name: Initial condition source
+  summary: 使用外部信号设置初始条件的选项 internal（默认）| external
+  group: 主要
+  block_parameter: InitialConditionSource
+  type: 字符向量、字符串
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial condition
+  summary: 状态的初始条件 0（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: InitialCondition
+  type: 字符向量、字符串
+  values: 标量 | 向量 | 矩阵
+  default: '''0'''
+- name: Initial condition setting
+  summary: 选择在何处应用初始条件 Auto（默认）| Output | Compatibility
+  group: 主要
+  block_parameter: InitialConditionSetting
+  type: 字符向量
+  values: '''Auto'' | ''Output'' | ''Compatibility'''
+  default: '''Auto'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''-1'''
+- name: Limit output
+  summary: 将模块输出值限制在指定范围内 off（默认）| on
+  group: 主要
+  block_parameter: LimitOutput
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Upper saturation limit
+  summary: 积分上限 inf（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: UpperSaturationLimit
+  type: 字符向量、字符串
+  values: 标量 | 向量 | 矩阵
+  default: '''inf'''
+- name: Lower saturation limit
+  summary: 积分下限 -inf（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: LowerSaturationLimit
+  type: 字符向量、字符串
+  values: 标量 | 向量 | 矩阵
+  default: '''-inf'''
+- name: Show saturation port
+  summary: 启用饱和输出端口 off（默认）| on
+  group: 主要
+  block_parameter: ShowSaturationPort
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show state port
+  summary: 启用状态输出端口 off（默认）| on
+  group: 主要
+  block_parameter: ShowStatePort
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Ignore limit and reset when linearizing
+  summary: 将模块视为不可复位 off（默认）| on
+  group: 主要
+  block_parameter: IgnoreLimit
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: 数据类型
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Inherit via back propagation | double | single | int8
+    | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type
+    expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 用于防止定点工具覆盖输出数据类型的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: 整数舍入模式
+  summary: 指定定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: 整数溢出时饱和
+  summary: 溢出操作的方法 off（默认）| on
+  group: 信号属性
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: 模式
+  summary: 选择数据类型模式 Inherit（默认）| Built in | Fixed Point
+  group: 信号属性
+- name: 数据类型覆盖
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 信号属性
+- name: 符号性
+  summary: 定点数据的符号性 Signed（默认）| Unsigned
+  group: 信号属性
+- name: 字长
+  summary: 保存量化整数的字的位大小 16（默认）| 0 到 32 的整数
+  group: 信号属性
+- name: 定标
+  summary: 定点数据的定标方法 Best precision（默认）| Binary point | Slope and bias
+  group: 信号属性
+- name: 小数长度
+  summary: 指定定点数据类型的小数长度 0（默认）| 标量整数
+  group: 信号属性
+- name: 斜率
+  summary: 指定定点数据类型的斜率 2^0（默认）| 正实值标量
+  group: 信号属性
+- name: 偏置
+  summary: 指定定点数据类型的偏置 0（默认）| 实值标量
+  group: 信号属性
+- name: 状态名称
+  summary: 模块状态的唯一名称 ''（默认）| 字母数字字符串
+  group: 状态属性
+  block_parameter: StateName
+  type: 字符向量
+  values: 唯一名称
+  default: ''''''
+- name: 状态名称必须解析为 Simulink 信号对象
+  summary: 要求状态名称解析为信号对象的选项 off（默认）| on
+  group: 状态属性
+  block_parameter: StateMustResolveToSignalObject
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -720,7 +918,6 @@ class** 参数。
 | **类型**：字符向量 |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations

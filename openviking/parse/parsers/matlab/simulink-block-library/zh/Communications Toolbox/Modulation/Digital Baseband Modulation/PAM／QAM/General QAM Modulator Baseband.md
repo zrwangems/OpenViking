@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # General QAM Modulator Baseband
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Signal constellation**
 :   列出星座点的实数或复数向量。
@@ -44,7 +49,6 @@ R2025b 中未记录。
       输出数据类型和定标设置为与后续模块匹配。
 
     有关指定数据类型的信息，请参阅 Data Type Assistant。
-
 ## 所属库
 
 R2025b 中未记录。

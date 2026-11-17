@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Check Discrete Gradient
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 检查梯度的输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 断言输出信号 标量
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -34,8 +45,45 @@ chinese_source: worker-translation
 要启用此输出端口，请选中 **Output assertion signal** 参数复选框。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum gradient
+  summary: 允许差值的最大值 1 （默认） | 标量
+  group: ''
+  block_parameter: gradient
+  type: 字符串标量或字符向量
+  values: 实数标量
+- name: Enable assertion
+  summary: 启用或禁用检查 on （默认） | off
+  group: ''
+  block_parameter: enabled
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+- name: Simulation callback when assertion fails (optional)
+  summary: 断言失败时求值的表达式 "" （默认） | MATLAB 表达式
+  group: ''
+  block_parameter: callback
+  type: 字符串标量或字符向量
+- name: Stop simulation when assertion fails
+  summary: 检查失败时是否停止仿真 on （默认） | off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+- name: Output assertion signal
+  summary: 创建输出信号 off （默认） | on
+  group: ''
+  block_parameter: export
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+- name: Select icon type
+  summary: 选择图标类型 graphic （默认） | text
+  group: ''
+  block_parameter: icon
+  type: 字符串标量或字符向量
+  values: '"graphic" | "text"'
+```
 
 ### **Maximum gradient** — 允许差值的最大值 `1` （默认） | 标量
 
@@ -117,7 +165,6 @@ chinese_source: worker-translation
 | **类型：** 字符串标量或字符向量 |
 | **值：** `"graphic"` | `"text"` |
 | **默认：** `"graphic"` |
-
 ## 所属库
 
 Simulink / Model Verification HDL Coder / Model Verification

@@ -14,6 +14,21 @@ language: en
 # LDL Solver
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: System matrix square matrix
+  direction: input
+  data_types: single | double
+- name: B
+  summary: Right-side matrix of system equation vector | matrix
+  direction: input
+  data_types: single | double
+- name: X
+  summary: Solution to system of equations vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -55,8 +70,13 @@ Algorithms.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Non-positive definite input
+  summary: Non-positive definite input Ignore (default) | Warning | Error
+  group: ''
+```
 
 ### **Non-positive definite input** — Non-positive definite input `Ignore` (default) | `Warning` | `Error`
 
@@ -87,7 +107,6 @@ Configuration Parameters dialog, it is set to
 `Ignore` in the code generated for this
 block by Simulink®
 Coder™ code generation software.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

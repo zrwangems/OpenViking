@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Least Squares Polynomial Fit
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入数据向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 多项式系数列向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -34,8 +45,16 @@ chinese_source: worker-translation
 有关该模块如何计算多项式系数的更多信息，请参阅算法。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Control points (X)
+  summary: 控制点 (0:31)/31（默认）| 向量
+  group: ''
+- name: Polynomial order (N)
+  summary: 多项式阶数 3（默认）| 正整数
+  group: ''
+```
 
 ### **Control points (X)** — 控制点 `(0:31)/31`（默认）| 向量
 
@@ -46,7 +65,6 @@ chinese_source: worker-translation
 ### **Polynomial order (N)** — 多项式阶数 `3`（默认）| 正整数
 
 指定模块用于构造最佳拟合的多项式阶数 *n*。系数个数为 *n*+1。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Polynomial Functions

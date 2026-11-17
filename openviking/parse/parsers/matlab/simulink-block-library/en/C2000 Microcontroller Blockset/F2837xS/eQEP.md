@@ -14,6 +14,69 @@ language: en
 # C28x eQEP
 
 ## Ports
+```yaml
+ports:
+- name: swi
+  summary: Dynamically update initialization value for position counter scalar
+  direction: input
+  data_types: Boolean
+- name: cmp
+  summary: Value for comparing position scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: iel
+  summary: Software index marker scalar
+  direction: input
+  data_types: Boolean
+- name: qposcnt
+  summary: Position counter signal scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: pcef
+  summary: Position counter error flag on error scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qdf
+  summary: Direction flag of quadrature module scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qctmr
+  summary: Capture timer signal scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qcprd
+  summary: Capture period signal scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: coef
+  summary: eQEP overflow error flag scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: cdef
+  summary: Direction change error flag scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qctmrlat
+  summary: Capture timer latched value scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qcprdlat
+  summary: Capture timer period latched value scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qposlat
+  summary: Position counter latched value scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qposilat
+  summary: Latches position counter on index event scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qposslat
+  summary: Latches position counter on strobe event scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### Input
 
@@ -275,8 +338,180 @@ counter** tab:
   on strobe event**.
 
 **Data Types:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Module
+  summary: eQEP module to obtain position, direction, and speed eQEP1 (default) | eQEP2 | eQEP3
+  group: General
+- name: Position counter mode
+  summary: Mode that matches how input to eQEP peripheral is encoded Quadrature-count (default) | Direction-count | Up-count
+    | Down-count
+  group: General
+- name: Positive rotation
+  summary: Direction of rotation Clockwise (default) | Counterclockwise
+  group: General
+- name: External clock rate
+  summary: 'Measurement resolution 2x resolution: Count the rising/falling edge (default) | 1x resolution: Count the rising
+    edge only'
+  group: General
+- name: Quadrature direction flag output port
+  summary: Creates port for direction flag off (default) | on
+  group: General
+- name: Invert input QEPxX polarity
+  summary: Inverts polarity of eQEP input off (default) | on
+  group: General
+- name: Index pulse gating option
+  summary: Enables gating of index pulse with strobe input off (default) | on
+  group: General
+- name: Sample time
+  summary: Frequency at which block reads position counter 0.0001 (default) | -1 | scalar
+  group: General
+- name: Output position counter
+  summary: Outputs position counter signal on (default) | off
+  group: Position counter
+- name: Maximum position counter value (0~4294967295)
+  summary: Specifies maximum position counter value 4294967295 (default) | integer in [0, 4,294,967,295]
+  group: Position counter
+- name: Enable set to init value on index event
+  summary: Enables option to set initialization value for position counter off (default) | on
+  group: Position counter
+- name: Set to init value on index event
+  summary: Initialization value for position counter Rising edge (default) | Falling edge
+  group: Position counter
+- name: Enable set to init value on strobe event
+  summary: Enables option to set initialization value for position counter off (default) | on
+  group: Position counter
+- name: Set to init value on strobe event
+  summary: Sets initialization value for position counter Rising edge (default) | Depending on direction
+  group: Position counter
+- name: Enable software initialization
+  summary: Enables option to set initialization value for position counter off (default) | on
+  group: Position counter
+- name: Software initialization source
+  summary: Specifies initialization source of position counter Input port (default) | Set to init value at start up
+  group: Position counter
+- name: Initialization value (0~4294967295)
+  summary: Initialization value for position counter 2147483648 | integer in [0, 4,294,967,295]
+  group: Position counter
+- name: Position counter reset mode
+  summary: Resets position counter Reset on an index event (default) | Reset on the maximum position | Reset on the first
+    index event | Reset on a time unit event
+  group: Position counter
+- name: Output position counter error flag
+  summary: Outputs position counter error flag on error off (default) | on
+  group: Position counter
+- name: Output latch position counter on index event
+  summary: Latches position counter on index event off (default) | on
+  group: Position counter
+- name: Index event latch of position counter
+  summary: Configures position counter to latch on an event Rising edge (default) | Falling edge | Software index marker via
+    input port
+  group: Position counter
+- name: Output latch position counter on strobe event
+  summary: Latches position counter on strobe event off (default) | on
+  group: Position counter
+- name: Strobe event of latched position counter
+  summary: Configures position counter to latch on strobe Rising edge (default) | Depending on direction
+  group: Position counter
+- name: Enable QEP capture
+  summary: Enables edge capture unit off (default) | on
+  group: Speed calculation
+- name: Output capture timer
+  summary: Outputs capture timer off (default) | on
+  group: Speed calculation
+- name: Output capture period timer
+  summary: Outputs capture period off (default) | on
+  group: Speed calculation
+- name: eQEP capture timer prescaler
+  summary: Prescales capture timer clock frequency 128 (default) | 1 | 2 | 4 | 8 | 16 | 32 | 64
+  group: Speed calculation
+- name: Unit position event prescaler
+  summary: Prescales quadrature clock 128 (default) | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+  group: Speed calculation
+- name: Enable and output overflow error flag
+  summary: Outputs overflow error flag when capture timer overflows off (default) | on
+  group: Speed calculation
+- name: Enable and output direction change error flag
+  summary: Outputs direction change error flag off (default) | on
+  group: Speed calculation
+- name: Capture timer and position
+  summary: QEP capture latch mode On position counter read (default) | On unit time-out event
+  group: Speed calculation
+- name: Unit timer period (0~4294967295)
+  summary: Sets unit timer period 100000000 (default) | value in the range [0, 4,294,967,295]
+  group: Speed calculation
+- name: Output capture timer latched value
+  summary: Outputs capture timer latched value off (default) | on
+  group: Speed calculation
+- name: Output capture timer period latched value
+  summary: Outputs capture timer period latched value off (default) | on
+  group: Speed calculation
+- name: Output position counter latched value
+  summary: Outputs position counter latched value off (default) | on
+  group: Speed calculation
+- name: Enable position-compare sync signal output
+  summary: Enables position compare sync signal output off (default) | on
+  group: Compare output
+- name: Sync output pin selection
+  summary: GPIO pin used for sync signal Index pin is used for sync output (default) | Strobe pin is used for sync output
+  group: Compare output
+- name: Compare value source
+  summary: Source of value for position comparison Specify via dialog (default) | Input port
+  group: Compare output
+- name: Position compare shadow load mode
+  summary: Shadow mode for generating position compare sync signal Load on QPOSCNT=0 (default) | Shadow disabled(load immediate)
+    | Load on QPOSCNT=QPOSCMP
+  group: Compare output
+- name: Position compare value (0~4294967295)
+  summary: Value for comparing postiton 4294967295 (default) | value in the range [0, 4,294,967,295]
+  group: Compare output
+- name: Sync output pulse width (1~4096)
+  summary: Pulse width of position compare sync output signal 1 (default) | value in the range [0, 4,096]
+  group: Compare output
+- name: Polarity of sync output
+  summary: Polarity of sync output Active high (default) | Active low
+  group: Compare output
+- name: Watchdog timer enable
+  summary: Enables watchdog time-out flag off (default) | on
+  group: Watchdog unit
+- name: Watchdog timer
+  summary: Time-out value for watchdog timer 65535 (default) | value in the range [0, 65,535]
+  group: Watchdog unit
+- name: Position counter error interrupt enable
+  summary: Enables position counter error interrupts off (default) | on
+  group: Interrupt
+- name: Quadrature phase error interrupt enable
+  summary: Enables quadrature phase error interrupts off (default) | on
+  group: Interrupt
+- name: Quadrature direction change interrupt enable
+  summary: Enables quadrature direction change interrupt off (default) | on
+  group: Interrupt
+- name: Watchdog timeout interrupt enable
+  summary: Enables watchdog timeout interrupts off (default) | on
+  group: Interrupt
+- name: Position counter underflow interrupt enable
+  summary: Enables position counter underflow interrupts off (default) | on
+  group: Interrupt
+- name: Position counter overflow interrupt enable
+  summary: Enables position counter overflow interrupts off (default) | on
+  group: Interrupt
+- name: Position-compare ready interrupt enable
+  summary: Enables position compare ready interrupts off (default) | on
+  group: Interrupt
+- name: Position-compare match interrupt enable
+  summary: Enables position compare match interrupts off (default) | on
+  group: Interrupt
+- name: Strobe event latch interrupt enable
+  summary: Enables strobe event latch interrupts off (default) | on
+  group: Interrupt
+- name: Index event latch interrupt enable
+  summary: Enables index event latch interrupts off (default) | on
+  group: Interrupt
+- name: Unit timeout interrupt enable
+  summary: Enables unit timeout interrupts off (default) | on
+  group: Interrupt
+```
 
 ### General
 
@@ -859,7 +1094,6 @@ register during an index event latch.
 
 Enables unit timeout interrupts. The unit time-out interrupt is
 generated when the unit timer matches the unit period.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

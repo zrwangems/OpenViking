@@ -14,6 +14,9 @@ language: en
 # Rotational Electromechanical Converter
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -30,13 +33,14 @@ The block has the following ports:
 
 `R`
 :   Mechanical rotational conserving port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Constant of proportionality K**
 :   Constant of proportionality for electromechanical conversions.
     The default value is `0.1` V/(rad/s).
-
 ## Libraries
 
 Not documented in R2025b.

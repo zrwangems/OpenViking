@@ -14,6 +14,21 @@ language: en
 # Propagation Delay
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Signal to delay scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: dt
+  summary: Delay signal scalar
+  direction: input
+  data_types: double
+- name: y
+  summary: Delayed signal scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -61,8 +76,31 @@ fixed time intervals**, the output signal has the discrete sample time you
 specify for the **Sample time** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial output
+  summary: Initial value for output signal 0 (default) | scalar
+  group: ''
+  block_parameter: InitialOutput
+  type: string | character vector
+  values: numeric scalar
+  default: '0'
+- name: Run at fixed time intervals
+  summary: Option to execute block at fixed rate off (default) | on
+  group: ''
+  block_parameter: RunAtFixedTimeIntervals
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sample time
+  summary: Output sample time 0.1 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: numeric scalar
+  default: '0.1'
+```
 
 ### **Initial output** — Initial value for output signal `0` (default) | scalar
 
@@ -138,7 +176,6 @@ intervals**.
 | **Type:** string | character vector |
 | **Values:** numeric scalar |
 | **Default:** `0.1` |
-
 ## Libraries
 
 Simulink / Discrete

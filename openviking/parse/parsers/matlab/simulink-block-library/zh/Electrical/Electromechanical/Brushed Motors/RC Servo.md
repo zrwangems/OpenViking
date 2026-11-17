@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # RC Servo
 
 ## 端口
+```yaml
+ports:
+- name: s
+  summary: 轴控制电气端口
+  direction: conserving
+- name: +
+  summary: 正极端子电气端口
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气端口
+  direction: conserving
+- name: R
+  summary: 转子机械旋转端口
+  direction: conserving
+- name: C
+  summary: 壳体机械旋转端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -37,8 +55,70 @@ chinese_source: worker-translation
 ### **C** — 壳体机械旋转端口
 
 与定子（壳体）关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Stall torque
+  summary: 最大负载转矩 2.4 kg*cm（默认值）
+  group: 电气转矩
+- name: Time to travel 60 degrees (no load)
+  summary: 输出轴 60 度转动时间 0.28 s（默认值）
+  group: 电气转矩
+- name: Corresponding nominal voltage
+  summary: 直流电源电压 4.8 V（默认值）
+  group: 电气转矩
+- name: Rotational range
+  summary: 输出轴角度范围 [0 180] deg（默认值）
+  group: 电气转矩
+- name: Corresponding pulse widths
+  summary: 输入脉冲宽度范围 [550 2330] us（默认值）
+  group: 电气转矩
+- name: Pulse threshold
+  summary: 脉冲控制的阈值电压 3 V（默认值）
+  group: 控制
+- name: Signal input resistance
+  summary: 阻抗 18 kOhm（默认值）
+  group: 控制
+- name: Angle resolution
+  summary: 需求输出轴角度与测量输出轴角度之间允许的最小误差 0.1 deg（默认值）
+  group: 控制
+- name: Angle measurement error
+  summary: 角度测量中的模型误差 0 deg（默认值）
+  group: 控制
+- name: Backdrive torque (unpowered)
+  summary: 反向驱动未通电电机所需的负载转矩 0.5 kg*cm（默认值）
+  group: 机械
+- name: Gear reduction ratio
+  summary: 从电机轴到 RC 伺服输出轴的近似减速比 320（默认值）
+  group: 机械
+- name: Rotor inertia
+  summary: 直流电机和转子齿轮的惯量 10 g*cm^2（默认值）
+  group: 机械
+- name: End-stop angles
+  summary: 机械角度范围 [-5 185] deg（默认值）
+  group: 机械
+- name: End-stop stiffness
+  summary: 机械限位的刚度 1e6 N*m/rad（默认值）
+  group: 机械
+- name: End-stop damping
+  summary: 机械限位的阻尼 0.01 N*m/(rad/s)（默认值）
+  group: 机械
+- name: Servo fault
+  summary: 向 RC 伺服添加故障的选项 Add fault（默认值）
+  group: 故障
+- name: Failure mode
+  summary: 选择故障类型 Fail off（默认值） | Fail forward | Fail reverse | Failed winding
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认值） | 非负标量
+  group: 故障
+- name: Maximum permissible current
+  summary: 故障转换的电流阈值 1 A（默认值） | 正标量
+  group: 故障
+- name: Time to fail when exceeding maximum permissible current
+  summary: 电流超过阈值的最大持续时间 1 s（默认值） | 非负标量
+  group: 故障
+```
 
 ### 电气转矩
 
@@ -152,7 +232,6 @@ RC 伺服的输出轴角度范围。
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Behavioral`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Brushed Motors

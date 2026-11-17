@@ -14,6 +14,21 @@ language: en
 # Harmonic Drive
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base shaft mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower shaft mechanical rotational
+  direction: conserving
+- name: C
+  summary: Circular spline mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat transfer thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -58,8 +73,101 @@ To enable this port, set **Friction model** to
 either `Temperature-dependent efficiency`
 or `Temperature and load-dependent
 efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ring gear rotation
+  summary: Option to simulate ring gear motion off (default) | on
+  group: Main
+- name: Number of teeth on elliptical gear
+  summary: Elliptical gear teeth 100 (default) | positive scalar
+  group: Main
+- name: Number of teeth on circular gear
+  summary: Circular gear teeth 102 (default) | positive scalar
+  group: Main
+- name: Friction model
+  summary: Gear friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Load-dependent
+    efficiency | Temperature-dependent efficiency | Temperature and load-dependent efficiency
+  group: Meshing Losses
+- name: Efficiency
+  summary: Torque transfer efficiency 0.95 (default) | positive scalar in the range of (0, 1]
+  group: Meshing Losses
+- name: Follower power threshold
+  summary: Value above which the full efficiency factor is applied 0.001 W (default) | positive scalar
+  group: Meshing Losses
+- name: Input shaft torque at no load
+  summary: Net torque on idle shaft 0.1 N*m (default) | positive scalar
+  group: Meshing Losses
+- name: Nominal output torque
+  summary: Value of torque at which efficiency is normalized 5 N*m (default) | positive scalar
+  group: Meshing Losses
+- name: Efficiency at nominal output torque
+  summary: Transfer efficiency 0.95 (default) | positive scalar in the range of (0,1]
+  group: Meshing Losses
+- name: Follower angular velocity threshold
+  summary: Value above which the full efficiency factor is applied 0.01 rad/s (default) | positive scalar
+  group: Meshing Losses
+- name: Temperature
+  summary: Array for tabular parameterization of efficiency [280 300 320] K (default) | vector
+  group: Meshing Losses
+- name: Efficiency
+  summary: Array of gear efficiencies [0.95 0.9 0.85] (default) | vector
+  group: Meshing Losses
+- name: Follower power threshold
+  summary: Power below which numerical smoothing is applied 0.001 W (default) | positive scalar
+  group: Meshing Losses
+- name: Load at elliptical gear
+  summary: Elliptical-gear loads for tabular parameterization of efficiency [1 5 10] N*m (default) | numerical array
+  group: Meshing Losses
+- name: Efficiency matrix
+  summary: Efficiency array for tabular parameterization of efficiency [ 0.85 0.8 0.75; 0.95 0.9 0.85; 0.85 0.8 0.7 ] (default)
+    | numerical array
+  group: Meshing Losses
+- name: Follower angular velocity threshold
+  summary: Angular velocity below which numerical smoothing is applied 0.01 rad/s (default) | positive scalar
+  group: Meshing Losses
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Sun-planet and ring-planet ordinary efficiencies
+  summary: Torque transfer efficiency vector [.96, .98] (default) | vector
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Sun-planet efficiency
+  summary: Sun gear to planet gear torque transfer efficiency [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Ring-planet efficiency
+  summary: Torque transfer efficiency from the ring gear to the planet gear [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Sun-carrier and planet-carrier power thresholds
+  summary: Minimum efficiency power threshold for the sun-carrier and planet-carrier gear couplings [.001, .001] W (default)
+    | vector
+  group: Meshing Losses
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: Fluid dynamic friction coefficients [0 0] N*m/(rad/s) (default) | positive two-element vector
+  group: Viscous Losses
+- name: Inertia
+  summary: Option to include inertia off (default) | on
+  group: Inertia
+- name: Wave generator gear inertia
+  summary: Inertia of the wave generator gear 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Flexspline gear inertia
+  summary: Inertia of the flexspline gear 0.0005 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Ring gear inertia
+  summary: Ring gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -468,7 +576,6 @@ temperature change.
 Component temperature at the start of simulation. The initial temperature
 alters the component efficiency according to an efficiency vector that you
 specify, affecting the starting meshing or friction losses.
-
 ## Libraries
 
 Simscape / Driveline / Gears

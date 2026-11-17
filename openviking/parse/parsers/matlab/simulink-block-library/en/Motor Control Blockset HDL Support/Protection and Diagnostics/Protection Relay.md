@@ -14,6 +14,45 @@ language: en
 # Protection Relay
 
 ## Ports
+```yaml
+ports:
+- name: Imax
+  summary: Upper limit for current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Ifb
+  summary: Actual current in feedback loop scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m max
+  summary: Rotor speed limit for overspeed protection scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m fb
+  summary: Actual rotor speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vmax
+  summary: Upper voltage limit for overvoltage protection scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vmin
+  summary: Lower voltage limit for undervoltage protection scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vfb
+  summary: Actual voltage across feedback loop scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Reset
+  summary: External reset pulse scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: y
+  summary: Latched fault signal scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -117,8 +156,22 @@ Latched fault signal that the block generates during the overcurrent, overspeed,
 overvoltage, and undervoltage conditions to protect the hardware and the motor.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select Protection
+  summary: Type of protection relay Overcurrent (default) | Overspeed | Overvoltage | Undervoltage
+  group: ''
+- name: Maximum count input type
+  summary: Input method for maximum count Specify via dialog (default) | Input port
+  group: ''
+- name: Maximum count
+  summary: Counter limit 100 (default) | scalar
+  group: ''
+- name: Samples for debounce filter
+  summary: Number of debounce samples 3 (default) | scalar
+  group: ''
+```
 
 ### **Select Protection** — Type of protection relay `Overcurrent` (default) | `Overspeed` | `Overvoltage` | `Undervoltage`
 
@@ -143,7 +196,6 @@ threshold violation by the feedback signal.
 
 The number of block samples used by the debounce algorithm to test each threshold
 violation cease. This value determines the debounce period.
-
 ## Libraries
 
 Motor Control Blockset HDL Support / Protection and Diagnostics Motor Control Blockset / Protection and Diagnostics

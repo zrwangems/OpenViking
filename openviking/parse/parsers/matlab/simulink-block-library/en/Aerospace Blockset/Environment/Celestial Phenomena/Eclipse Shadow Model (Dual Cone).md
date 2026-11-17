@@ -14,6 +14,41 @@ language: en
 # Eclipse Shadow Model (Dual Cone)
 
 ## Ports
+```yaml
+ports:
+- name: Xicrf
+  summary: Position of spacecraft 3-element vector | *M*-by-3 array
+  direction: input
+  data_types: double
+- name: TJD
+  summary: Julian date scalar
+  direction: input
+  data_types: double
+- name: T0JD
+  summary: Julian date epoch scalar
+  direction: input
+  data_types: double
+- name: ΔTJD
+  summary: Elapsed Julian time with respect to T0JD scalar
+  direction: input
+  data_types: double
+- name: Rssbary,cb
+  summary: Custom central body position 3-by-1 array
+  direction: input
+  data_types: double
+- name: Fraction
+  summary: Fraction of visible Sun scalar | *M*-element vector
+  direction: output
+  data_types: double
+- name: Region
+  summary: Region scalar | *M*-element vector | integer
+  direction: output
+  data_types: int32
+- name: Secondary Region
+  summary: Secondary region scalar | *M*-element vector | integer
+  direction: output
+  data_types: int32
+```
 
 ### Input
 
@@ -144,8 +179,117 @@ or:
   - Select **Include Earth**.
 
 **Data Types:** `int32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Position port units Metric (m) (default) | Metric (km) | English (ft) | English (M)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (m)'' | ''Metric (km)'' | ''English (ft)'' | ''English (M)'''
+  default: '''Metric (m)'''
+- name: Shadow model
+  summary: Shadow model Dual cone (default) | Cylindrical
+  group: ''
+  block_parameter: shadowModel
+  type: character vector
+  values: '''Dual cone'' | ''Cylindrical'''
+  default: '''Dual cone'''
+- name: Output index of shadow region
+  summary: Output index of shadow region on (default) | off
+  group: ''
+  block_parameter: outputShadowRegion
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Time source
+  summary: Time source method Dialog (default) | Port (Julian date) | Port (T0 and elapsed Julian time)
+  group: ''
+  block_parameter: timeSource
+  type: character vector
+  values: '''Dialog'' | ''Port (Julian date)'' | ''Port (T0 and elapsed Julian time)'''
+  default: '''Dialog'''
+- name: Start date/time (JD)
+  summary: Initial start date and time for simulation juliandate(2020, 1, 1) (default) | valid scalar Julian date
+  group: ''
+  block_parameter: startDate
+  type: character vector
+  values: '''juliandate(2020, 1, 1)'' | valid scalar Julian date'
+  default: '''juliandate(2020, 1, 1)'''
+- name: Central body
+  summary: Occulting celestial body for eclipse calculations Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn
+    | Uranus | Neptune | Custom
+  group: ''
+  block_parameter: centralBody
+  type: character vector
+  values: '''Earth'' | ''Moon'' |''Mercury'' | ''Venus'' | ''Mars'' | ''Jupiter'' | ''Saturn'' | ''Uranus'' | ''Neptune''
+    | ''Custom'' |'
+  default: '''Earth'''
+- name: Equatorial radius
+  summary: Custom central body radius 3396200 (default) | double scalar
+  group: ''
+  block_parameter: customR
+  type: character vector
+  values: '''3396200'' | double scalar'
+  default: '''3396200'''
+- name: Include Moon
+  summary: Option to include Moon on (default) | off
+  group: ''
+  block_parameter: includeMoon
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Include Earth
+  summary: Option to include Earth on (default) | off
+  group: ''
+  block_parameter: includeEarth
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Ephemeris model
+  summary: Ephemeris model DE405 (default) | DE421 | DE423 | DE430 | DE432t
+  group: ''
+  block_parameter: ephemerisModel
+  type: character vector
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Limit ephemerides date range
+  summary: Open to enable start and end of range of ephemeris data on (default) | off
+  group: ''
+  block_parameter: useDateRange
+  type: character vector
+  values: '''off'' | ''on'' |'
+  default: '''on'''
+- name: Start date (JD)
+  summary: Start date of ephemerides date range juliandate(2020, 1, 1) (default) | Julian date
+  group: ''
+  block_parameter: startDate
+  type: character vector
+  values: '''juliandate(2020, 1, 1)'' | Julian date'
+  default: '''juliandate(2020, 1, 1)'''
+- name: End date (JD)
+  summary: End date of ephemerides date range juliandate(2050, 1, 1) (default) | Julian date
+  group: ''
+  block_parameter: endDate
+  type: character vector
+  values: '''juliandate(2050, 1, 1)'' | Julian format date'
+  default: '''juliandate(2050, 1, 1)'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior Error (default) | Warning | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection off (default) | on
+  group: ''
+  block_parameter: zeroCrossing
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Units** — Position port units `Metric (m)` (default) | `Metric (km)` | `English (ft)` | `English (M)`
 
@@ -446,7 +590,6 @@ Select to enable zero-crossing detection, allowing Eclipse Shadow Model (Dual Co
 | **Type:** character vector, string |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Celestial Phenomena

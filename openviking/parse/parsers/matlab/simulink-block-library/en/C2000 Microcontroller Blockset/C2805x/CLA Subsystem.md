@@ -14,6 +14,17 @@ language: en
 # CLA Subsystem
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Signal input to a subsystem scalar | vector | matrix
+  direction: input
+  data_types: single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: Signal output from a subsystem scalar | vector | matrix
+  direction: output
+  data_types: single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -40,8 +51,125 @@ Use Outport  blocks to send signals to the local
 environment.
 
 **Data Types:** `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show port labels
+  summary: Display options for port labels FromPortIcon (default) | FromPortBlockName | SignalName
+  group: Main
+  block_parameter: ShowPortLabels
+  type: character vector
+  values: '''FromPortIcon'' | ''FromPortBlockName'' | ''SignalName'''
+  default: '''FromPortIcon'''
+- name: Read/Write permissions
+  summary: Levels of access to contents of subsystem ReadWrite (default) | ReadOnly | NoReadOrWrite
+  group: Main
+  block_parameter: Permissions
+  type: character vector
+  values: '''ReadWrite'' | ''ReadOnly'' | ''NoReadOrWrite'''
+  default: '''ReadWrite'''
+- name: Name of error callback function
+  summary: Name of function to be called if error occurs '' (default) | function name
+  group: Main
+  block_parameter: ErrorFcn
+  type: character vector
+  values: ''''' | ''<function name>'''
+  default: ''''''
+- name: Permit hierarchical resolution
+  summary: Resolution for workspace variable names All (default) | ExplicitOnly | None
+  group: Main
+  block_parameter: PermitHierarchicalResolution
+  type: character vector
+  values: '''All'' | ''ExplicitOnly'' | ''None'''
+  default: '''All'''
+- name: Function packaging
+  summary: Code format Nonreusable function (default) | Inline
+  group: Code Generation
+  block_parameter: RTWSystemCode
+  type: character vector
+  values: '''Inline'' | ''Nonreusable function'' |'
+  default: '''Nonreusable function'''
+- name: Function name options
+  summary: How to name generated function Auto (default) | Use subsystem name | User specified
+  group: Code Generation
+  block_parameter: RTWFcnNameOpts
+  type: character vector
+  values: '''Auto'' | ''Use subsystem name'' | ''User specified'''
+  default: '''Auto'''
+- name: Function name
+  summary: Name of function for subsystem code '' (default) | function name
+  group: Code Generation
+  block_parameter: RTWFcnName
+  type: character vector
+  values: ''''' | ''<function name>'''
+  default: ''''''
+- name: File name options
+  summary: How to name generated file User specified (default)
+  group: Code Generation
+  block_parameter: RTWFileNameOpts
+  type: character vector
+  values: '''User specified'''
+  default: '''User specified'''
+- name: File name (no extension)
+  summary: Name of generated file sample_cla (default) | file name
+  group: Code Generation
+  block_parameter: RTWFileName
+  type: character vector
+  values: ''''' | ''<file name>'''
+  default: ''''''
+- name: Function interface
+  summary: Select to use arguments with generate function void_void (default)
+  group: Code Generation
+  block_parameter: FunctionInterfaceSpec
+  type: character vector
+  values: '''void_void'''
+  default: '''void_void'''
+- name: Function with separate data
+  summary: Control code generation for subsystem on (default) | off
+  group: Code Generation
+  block_parameter: FunctionWithSeparateData
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Memory section for initialize/terminate functions
+  summary: Select how to apply memory sections C28xFunction (default)
+  group: Code Generation
+  block_parameter: RTWMemSecFuncInitTerm
+  type: character vector
+  values: C28xFunction
+  default: C28xFunction
+- name: Memory section for execution functions
+  summary: Select how to apply memory sections ClaFunction (default)
+  group: Code Generation
+  block_parameter: RTWMemSecFuncExecute
+  type: character vector
+  values: ClaFunction
+  default: ClaFunction
+- name: Memory section for constants
+  summary: Select how to apply memory sections ClaDataRAM (default)
+  group: Code Generation
+  block_parameter: RTWMemSecDataConstants
+  type: character vector
+  values: ClaDataRAM
+  default: ClaDataRAM
+- name: Memory section for internal data
+  summary: Select how to apply memory sections ClaDataRAM (default)
+  group: Code Generation
+  block_parameter: RTWMemSecDataInternal
+  type: character vector
+  values: ClaDataRAM
+  default: ClaDataRAM
+- name: Memory section for parameters
+  summary: Select how to apply memory sections ClaDataRAM (default)
+  group: Code Generation
+  block_parameter: RTWMemSecDataParameters
+  type: character vector
+  values: ClaDataRAM
+  default: ClaDataRAM
+- name: Subsystem file name
+  summary: File name for referenced subsystem string | character vector
+  group: Subsystem Reference
+```
 
 Parameters on the Code Generation tab require a Simulink®
 Coder™ or Embedded Coder® license.
@@ -613,7 +741,6 @@ button.
 
 For more information on how to convert a subsystem to a referenced
 subsystem, see Convert Subsystem to a Referenced Subsystem.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

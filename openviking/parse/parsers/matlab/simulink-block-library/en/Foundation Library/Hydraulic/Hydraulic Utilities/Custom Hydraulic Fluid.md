@@ -14,10 +14,15 @@ language: en
 # Custom Hydraulic Fluid
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has one hydraulic conserving port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Fluid density**
 :   Density of the working fluid. The default value is 850 kg/m^3.
@@ -51,7 +56,6 @@ The block has one hydraulic conserving port.
       below absolute zero, you get a warning but the simulation continues.
       Use this option when modeling systems where cavitation can occur in
       extreme cases.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Matrix Helical Scan Interleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Number of rows**
 :   模块用于计算的矩阵的行数。
@@ -28,7 +33,6 @@ R2025b 中未记录。
 
 **Array step size**
 :   模块读取的对角线的斜率。
-
 ## 所属库
 
 R2025b 中未记录。

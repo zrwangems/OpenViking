@@ -14,6 +14,24 @@ language: en
 # Zigzag-Delta-Wye Transformer
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Primary winding voltage electrical
+  direction: conserving
+- name: ~2
+  summary: Delta secondary winding voltage electrical
+  direction: conserving
+- name: ~3
+  summary: Wye secondary winding voltage electrical
+  direction: conserving
+- name: n3
+  summary: Second secondary winding neutral point electrical
+  direction: conserving
+- name: ~1i
+  summary: Zigzag winding interconnection port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -65,8 +83,83 @@ zigzag winding.
 To enable this port, set **Zigzag configuration** to
 `Accessible winding
 interconnects`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Rated apparent power
+  summary: Apparent power at rated capacity 100e6 V*A (default) | positive scalar
+  group: Main
+- name: Rated electrical frequency
+  summary: Connected network electrical frequency 60 Hz (default) | positive scalar
+  group: Main
+- name: Primary rated voltage
+  summary: Root mean square line voltage applied to the primary winding 24e3 V (default) | positive scalar
+  group: Main
+- name: Zigzag configuration
+  summary: Zigzag configuration type Internal floating neutral (default) | Accessible winding interconnects
+  group: Main
+- name: Secondary connection
+  summary: Zigzag configuration type Delta (default) | Wye | Wye and Delta
+  group: Main
+- name: Delta connection type
+  summary: Delta connection type Delta 1 o'clock (default) | Delta 11 o'clock
+  group: Main
+- name: Delta secondary rated voltage
+  summary: Root mean square line voltage applied to the delta secondary winding 4160 V (default) | positive scalar
+  group: Main
+- name: Wye secondary rated voltage
+  summary: Root mean square line voltage applied to the wye secondary winding 4160 V (default) | positive scalar
+  group: Main
+- name: Secondary phase shift
+  summary: Phase offset for secondary winding -7.5 deg (default)
+  group: Main
+- name: Primary winding resistance (pu)
+  summary: Primary winding power loss 0.01 (default) | positive scalar
+  group: Impedances
+- name: Delta secondary winding resistance (pu)
+  summary: Delta secondary winding power loss 0.01 (default) | positive scalar
+  group: Impedances
+- name: Wye secondary winding resistance (pu)
+  summary: Wye secondary winding power loss 0.01 (default) | positive scalar
+  group: Impedances
+- name: Leakage reactance
+  summary: Leakage reactance modeling Exclude (default) | Include
+  group: Impedances
+- name: Primary leakage reactance (pu)
+  summary: Primary winding magnetic flux loss 0.001 (default) | positive scalar
+  group: Impedances
+- name: Delta secondary leakage reactance (pu)
+  summary: Delta secondary winding flux loss 0.001 (default) | positive scalar
+  group: Impedances
+- name: Wye secondary leakage reactance (pu)
+  summary: Wye secondary winding flux loss 0.001 (default) | positive scalar
+  group: Impedances
+- name: Magnetizing resistance
+  summary: Magnetizing resistance modeling Exclude (default) | Include
+  group: Impedances
+- name: Shunt magnetizing resistance (pu)
+  summary: Transformer core losses 500 (default) | positive scalar
+  group: Impedances
+- name: Magnetizing reactance
+  summary: Magnetizing reactance modeling Exclude (default) | Include
+  group: Impedances
+- name: Magnetic saturation representation
+  summary: Representation of the magnetic saturation None (default) | Lookup table (phi versus i)
+  group: Impedances
+- name: Current vector (pu), i
+  summary: Per unit vector of currents [0, .002, 1, 2] (default)
+  group: Impedances
+- name: Magnetic flux vector (pu), phi
+  summary: Per unit vector of magnetic flux [0, 1.2, 1.5, 1.51] (default)
+  group: Impedances
+- name: Shunt magnetizing reactance (pu)
+  summary: Transformer core magnetic effects 500 (default) | positive scalar
+  group: Impedances
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -279,7 +372,6 @@ To enable this parameter, set **Magnetizing reactance** to
 `Include` and **Magnetic
 saturation representation** to
 `None`.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

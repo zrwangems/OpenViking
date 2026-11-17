@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Rod
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座平移机械
+  direction: unspecified
+- name: F
+  summary: 从动平移机械
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,52 @@ chinese_source: worker-translation
 ### **F** — 从动平移机械
 
 与杆从动件或输出关联的平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 参数化方法 By stiffness and inertia（默认）| By material and geometry
+  group: Rod
+- name: Stiffness
+  summary: 材料刚度 5e8 N/m（默认）| 非负标量
+  group: Rod
+- name: Mass
+  summary: 杆质量 20 kg（默认）| 正标量
+  group: Rod
+- name: Geometry
+  summary: 杆横截面 Solid（默认）| Annular
+  group: Rod
+- name: Length
+  summary: 杆长度 1 m（默认）| 正标量
+  group: Rod
+- name: Outer diameter
+  summary: 杆外径 0.075 m（默认）| 正标量
+  group: Rod
+- name: Inner diameter
+  summary: 杆内径 0.050 m（默认）| 正标量
+  group: Rod
+- name: Density
+  summary: 材料密度 7.8e3 kg/m^3（默认）| 正标量
+  group: Rod
+- name: Young's modulus
+  summary: 杨氏模量 200e9 Pa（默认）| 正标量
+  group: Rod
+- name: Damping ratio
+  summary: 材料阻尼比 0.01（默认）| 非负标量
+  group: Rod
+- name: Number of flexible elements
+  summary: '*N* 1（默认）| 正整数标量'
+  group: Rod
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: 粘性摩擦系数 [0, 0] N/(m/s)（默认）| 非负向量
+  group: 粘性损耗
+- name: Initial deflection
+  summary: 初始挠度 0 m（默认）| 非负标量
+  group: 初始条件
+- name: Initial velocity
+  summary: 初始速度 0 m/s（默认）| 非负标量
+  group: 初始条件
+```
 
 ### Rod
 
@@ -145,7 +198,6 @@ chinese_source: worker-translation
 ### **Initial velocity** — 初始速度 `0` `m/s`（默认）| 非负标量
 
 仿真开始时杆的基座 **B** 端相对于杆的从动件 **F** 端的纵向速度。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

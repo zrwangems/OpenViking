@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Active Differential
 
 ## 端口
+```yaml
+ports:
+- name: Prs1
+  summary: 离合器 1 压力 scalar
+  direction: input
+- name: Prs2
+  summary: 离合器 2 压力 scalar
+  direction: input
+- name: DriveshftTrq
+  summary: 驱动轴扭矩 scalar
+  direction: input
+- name: Axl1Trq
+  summary: 扭矩 scalar
+  direction: input
+- name: Axl2Trq
+  summary: 扭矩 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: DriveshftSpd
+  summary: 角速度 scalar
+  direction: output
+- name: Axl1Spd
+  summary: 角速度 scalar
+  direction: output
+- name: Axl2Spd
+  summary: 角速度 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -77,8 +107,175 @@ N·m。
 
 车轴 2 角速度，*ω2*，
 单位为 rad/s。
-
 ## 参数
+```yaml
+parameters:
+- name: Active differential type
+  summary: 差速器 Spur gears, superposition clutches（默认）| Double planetary gears, stationary clutches
+  group: ''
+  block_parameter: diffType
+  values: Spur gears, superposition clutches（默认）| Double planetary gears, stationary clutches
+- name: Clutch 1 to differential case gear ratio, Ns1
+  summary: 离合器 1 直齿轮传动比 .875（默认）| scalar
+  group: ''
+  block_parameter: Ns1
+  values: .875（默认）| scalar
+- name: Clutch 2 to differential case gear ratio, Ns2
+  summary: 离合器 2 直齿轮传动比 1.125（默认）| scalar
+  group: ''
+  block_parameter: Ns2
+  values: 1.125（默认）| scalar
+- name: Three-gang gear inertia, Jgc
+  summary: 转动惯量 .003（默认）| scalar
+  group: ''
+  block_parameter: Jgc
+  values: .003（默认） | scalar
+- name: Axle 1 planetary carrier to axle gear ratio, Np1
+  summary: Planetary 1 carrier gear ratio 1.125（默认） | scalar
+  group: ''
+  block_parameter: Np1
+  values: 1.125（默认） | scalar
+- name: Axle 1 sun gear inertia, Js1
+  summary: Planetary 1 sun gear inertia .001（默认） | scalar
+  group: ''
+  block_parameter: Js1
+  values: .001（默认） | scalar
+- name: Axle 1 carrier inertia, Jc1
+  summary: Planetary 1 carrier inertia .001（默认） | scalar
+  group: ''
+  block_parameter: Jc1
+  values: .001（默认） | scalar
+- name: Axle 1 ring inertia, Jr1
+  summary: Planetary 1 ring gear inertia .002（默认） | scalar
+  group: ''
+  block_parameter: Jr1
+  values: .002（默认） | scalar
+- name: Axle 2 planetary carrier to axle gear ratio, Np2
+  summary: Planetary 2 carrier gear ratio 1.125（默认） | scalar
+  group: ''
+  block_parameter: Np2
+  values: 1.125（默认） | scalar
+- name: Axle 2 sun gear inertia, Js2
+  summary: Planetary 2 sun gear inertia .001（默认） | scalar
+  group: ''
+  block_parameter: Js2
+  values: .001（默认） | scalar
+- name: Axle 2 carrier inertia, Jc2
+  summary: Planetary 2 carrier inertia .001（默认） | scalar
+  group: ''
+  block_parameter: Jc2
+  values: .001（默认） | scalar
+- name: Axle 2 ring inertia, Jr2
+  summary: Planetary 2 ring gear inertia .002（默认） | scalar
+  group: ''
+  block_parameter: Jr2
+  values: .002（默认） | scalar
+- name: Crown wheel (ring gear) located
+  summary: Specify crown wheel connection To the left of center-line（默认） | To the right of center-line
+  group: ''
+  block_parameter: shaftSwitchMask
+  values: To the left of center-line（默认） | To the right of center-line
+- name: Carrier to drive shaft ratio, NC/ND
+  summary: Ratio 4（默认） | scalar
+  group: ''
+  block_parameter: Ndiff
+  values: 4（默认） | scalar
+- name: Carrier inertia, Jd
+  summary: Inertia .1（默认） | scalar
+  group: ''
+  block_parameter: Jd
+  values: .1（默认） | scalar
+- name: Carrier damping, bd
+  summary: Damping 1e-3（默认） | scalar
+  group: ''
+  block_parameter: bd
+  values: 1e-3（默认） | scalar
+- name: Axle 1 inertia, Jw1
+  summary: Inertia .1（默认） | scalar
+  group: ''
+  block_parameter: Jw1
+  values: .1（默认） | scalar
+- name: Axle 1 damping, bw1
+  summary: 阻尼 1e-3（默认）| scalar
+  group: ''
+  block_parameter: bw1
+  values: 1e-3（默认）| scalar
+- name: Axle 2 inertia, Jw2
+  summary: 惯量 .1（默认）| scalar
+  group: ''
+  block_parameter: Jw2
+  values: .1（默认）| scalar
+- name: Axle 2 damping, bw2
+  summary: 阻尼 1e-3（默认）| scalar
+  group: ''
+  block_parameter: bw2
+  values: 1e-3（默认）| scalar
+- name: Axle 1 initial velocity, omegaw1o
+  summary: 角速度 0（默认）| scalar
+  group: ''
+  block_parameter: omegaw1o
+  values: 0（默认）| scalar
+- name: Axle 2 initial velocity, omegaw2o
+  summary: 角速度 0（默认）| scalar
+  group: ''
+  block_parameter: omegaw2o
+  values: 0（默认）| scalar
+- name: Coupling type
+  summary: 扭矩耦合 Ideal pre-loaded clutch（默认）| Slip speed dependent torque data | Input torque dependent torque data
+  group: ''
+  block_parameter: couplingType
+  values: Ideal pre-loaded clutch（默认）| Slip speed dependent torque data | Input torque dependent torque data
+- name: Effective applied pressure area
+  summary: 压力面积 0.01（默认）| scalar
+  group: ''
+  block_parameter: Aeff
+  values: 0.01（默认）| scalar
+- name: Number of disks, Ndisks
+  summary: 扭矩耦合 4（默认）| scalar
+  group: ''
+  block_parameter: Ndisks
+  values: 4（默认） | scalar
+- name: 有效半径，Reff
+  summary: 半径 .20（默认） | scalar
+  group: ''
+  block_parameter: Reff
+  values: .20（默认） | scalar
+- name: 标称预紧力，Fc
+  summary: 力 500（默认） | scalar
+  group: ''
+  block_parameter: Fc
+  values: 500（默认） | scalar
+- name: 摩擦系数向量，mu
+  summary: 摩擦 [.16 0.13 0.115 0.11 0.105 0.1025 0.10125 .10125]（默认） | vector
+  group: ''
+  block_parameter: mu
+  values: '[.16 0.13 0.115 0.11 0.105 0.1025 0.10125 .10125]（默认） | vector'
+- name: 滑移速度向量，dw
+  summary: 角速度 [0 10 20 40 60 80 100 500]（默认） | vector
+  group: ''
+  block_parameter: dw
+  values: '[0 10 20 40 60 80 100 500]（默认） | vector'
+- name: 扭矩 - 滑移速度矩阵，TdPdw
+  summary: 离合器扭矩 [-1000,-500,-90,-50,-5,0,5,50,90,500,1000].*ones(11)（默认） | matrix
+  group: ''
+  block_parameter: TdPdw
+  values: '[-1000,-500,-90,-50,-5,0,5,50,90,500,1000].*ones(11)（默认） | matrix'
+- name: 离合器压力向量，pT
+  summary: 离合器压力断点 [0 1e3 5e3 7e3 1e4 2e4 5e4 1e5 5e5 1e6 5e6]（默认） | vector
+  group: ''
+  block_parameter: pT
+  values: '[0 1e3 5e3 7e3 1e4 2e4 5e4 1e5 5e5 1e6 5e6]（默认） | vector'
+- name: 转差速度向量，dwT
+  summary: 转差速度断点 [-500 -200, -175, -100, - 50, 0, 50, 100, 175, 200, 500]（默认） | vector
+  group: ''
+  block_parameter: dwT
+  values: '[-500 -200, -175, -100, - 50, 0, 50, 100, 175, 200, 500]（默认） | vector'
+- name: 耦合时间常数，tauC
+  summary: 常数 .01（默认） | scalar
+  group: ''
+  block_parameter: tauC
+  values: .01（默认） | scalar
+```
 
 #### Active Differential
 
@@ -808,7 +1005,6 @@ Reff=2(Ro3-Ri3)3(Ro2-Ri2)
 | **参数：** | `tauC` |
 | **值：** | `.01`（默认） | `scalar` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Powertrain / Drivetrain / Final Drive Unit

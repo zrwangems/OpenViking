@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Variable Rotational Damper
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 可变阻尼系数物理信号
+  direction: input
+- name: C
+  summary: 基座端口旋转机械
+  direction: input
+- name: R
+  summary: 从动端口旋转机械
+  direction: input
+```
 
 ### 输入
 
@@ -30,13 +42,17 @@ chinese_source: worker-translation
 ### **R** — 从动端口旋转机械
 
 与从动端关联的旋转机械守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum damping coefficient
+  summary: 阻尼限值 0 N*m/(rad/s)（默认）| 非负标量
+  group: ''
+```
 
 ### **Minimum damping coefficient** — 阻尼限值 `0` `N*m/(rad/s)`（默认）| 非负标量
 
 阻尼系数允许的最小值。物理信号输入在该值以下饱和。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

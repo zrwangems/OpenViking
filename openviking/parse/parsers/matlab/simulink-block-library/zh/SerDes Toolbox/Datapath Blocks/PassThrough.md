@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # PassThrough
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入基带信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 未更改的输出电压 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 未更改的输出电压。PassThrough 模块不以任何方式修改输入电压，并返回与输入相同的输出。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 SerDes Toolbox / Datapath Blocks

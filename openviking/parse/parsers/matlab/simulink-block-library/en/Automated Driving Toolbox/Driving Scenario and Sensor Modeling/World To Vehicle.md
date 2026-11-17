@@ -14,6 +14,18 @@ language: en
 # World To Vehicle
 
 ## Ports
+```yaml
+ports:
+- name: Actors
+  summary: Actor poses in world coordinates Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Ego Vehicle
+  summary: Ego vehicle pose Simulink bus containing MATLAB structure
+  direction: input
+- name: Actors
+  summary: Actor poses in vehicle coordinates Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -85,8 +97,19 @@ Each actor pose structure in `Actors` has these fields.
 | `Pitch` | Pitch angle of actor, specified as a real-valued scalar. Units are in degrees. |
 | `Yaw` | Yaw angle of actor, specified as a real-valued scalar. Units are in degrees. |
 | `AngularVelocity` | Angular velocity (*ω*) of actor in the *x*-, *y*-, and *z*-directions, specified as a real-valued vector of the form [*ω**x* *ω**y* *ω**z*]. Units are in degrees per second. |
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of actors bus name
+  summary: Source of name for actor poses bus Auto (default) | Property
+  group: ''
+- name: Actors bus name
+  summary: Name of actor poses bus valid bus name
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Source of actors bus name** — Source of name for actor poses bus `Auto` (default) | `Property`
 
@@ -112,7 +135,6 @@ To enable this parameter, set **Source of actors bus name** to `Property`.
   code. The first time you run a simulation, Simulink generates C/C++ code for the block. The C code is reused for subsequent
   simulations as long as the model does not change. This option requires additional startup
   time.
-
 ## Libraries
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

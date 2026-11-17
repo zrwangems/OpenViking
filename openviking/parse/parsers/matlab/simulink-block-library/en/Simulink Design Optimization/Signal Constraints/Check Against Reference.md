@@ -14,6 +14,18 @@ language: en
 # Check Against Reference
 
 ## Ports
+```yaml
+ports:
+- name: Port_1 (u)
+  summary: Signal to check against specified reference signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+- name: Port_1 (out)
+  summary: Output assertion signal 1 | 0
+  direction: output
+  data_types: Boolean | double
+```
 
 ### Input
 
@@ -48,8 +60,86 @@ To enable this port, on the **Assertion** tab, select the
 **Output assertion signal** parameter.
 
 **Data Types:** `Boolean` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show Plot
+  summary: Open plot window button
+  group: ''
+- name: Show plot on block open
+  summary: Double-click block to open plot off (default) | on
+  group: ''
+  block_parameter: LaunchViewOnOpen
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Response Optimization
+  summary: Open Response Optimizer button
+  group: ''
+- name: Include reference signal tracking in assertion
+  summary: Check that signal tracks reference signal on (default) | off
+  group: Bounds Tab
+  block_parameter: EnableReferenceBound
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Times
+  summary: Time vector linspace(0,10) (default) | vector of positive values | MATLAB expression
+  group: Bounds Tab
+  block_parameter: ReferenceTimes
+  type: vector
+  values: vector of positive values | MATLAB expression
+  default: linspace(0,10)
+- name: Amplitudes
+  summary: Reference signal amplitude 1-exp(-linspace(0,10)/2) (default) | vector | MATLAB expression
+  group: Bounds Tab
+  block_parameter: ReferenceAmplitudes
+  type: vector
+  values: vector | MATLAB expression
+  default: 1-exp(-linspace(0,10)/2)
+- name: Absolute tolerance
+  summary: Absolute tolerance for signal eps^(1/3) (default) | positive real scalar
+  group: Bounds Tab
+  block_parameter: AbsTolerance
+  type: scalar
+  values: positive real scalar
+  default: eps^(1/3)
+- name: Relative tolerance
+  summary: Relative tolerance for signal 0.01 (default) | positive real scalar
+  group: Bounds Tab
+  block_parameter: RelTolerance
+  type: scalar
+  values: positive real scalar
+  default: '0.01'
+- name: Enable assertion
+  summary: Enable or disable check on (default) | off
+  group: Assertion Tab
+  block_parameter: enabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Simulation callback when assertion fails (optional)
+  summary: Expression to evaluate when assertion fails '' (default) | MATLAB expression
+  group: Assertion Tab
+  block_parameter: callback
+  type: character vector
+  values: MATLAB expression
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: Halt simulation when assertion fails off (default) | on
+  group: Assertion Tab
+  block_parameter: stopWhenAssertionFail
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Output assertion signal
+  summary: Create output signal off (default) | on
+  group: Assertion Tab
+  block_parameter: export
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Show Plot** — Open plot window `button`
 
@@ -389,7 +479,6 @@ see Verify Model Using Simulink Control Design and Simulink Verification Blocks 
 | **Type:** character vector |
 | **Value:** `'on'` | `'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink Design Optimization / Model Verification Simulink Design Optimization / Signal Constraints

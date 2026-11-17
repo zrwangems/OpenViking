@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Array-Vector Multiply
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 数组输入 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: V
+  summary: 向量输入 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 相乘后的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -45,8 +60,54 @@ Array-Vector Multiply 模块的输出，以向量或矩阵形式返回。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Multiply along dimension
+  summary: 沿其乘以输入数组的维度 2（默认）| 正整数
+  group: 主选项卡
+- name: Vector (V) source
+  summary: 向量来源 Input port（默认）| Dialog parameter
+  group: 主选项卡
+- name: Vector (V)
+  summary: 向量参数 [0.5 0.25]（默认）| 向量
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入运算的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型选项卡
+- name: Vector (V)
+  summary: '向量元素的字长和小数长度 Inherit: Same word length as input（默认）| fixdt(1,16,0) | <data type expression>'
+  group: 数据类型选项卡
+- name: Vector (V) Minimum
+  summary: 向量元素的最小值 []（未指定）（默认）| 标量
+  group: 数据类型选项卡
+- name: Vector (V) Maximum
+  summary: 向量元素的最大值 []（未指定）（默认）| 标量
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | fixdt([],16,0) | <data type expression>'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | Inherit: Same as product output
+    | fixdt([],16,0) | <data type expression>'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Same as product output（默认）| Inherit: Same as first input | Inherit: Same as first input | fixdt([],16,0)
+    | <data type expression>'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 模块输出的最小值 []（未指定）（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 模块输出的最大值 []（未指定）（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -199,7 +260,6 @@ Array-Vector Multiply 模块的输出，以向量或矩阵形式返回。
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

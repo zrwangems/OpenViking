@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Variable Resistor
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: Simulink 控制信号标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,13 @@ chinese_source: worker-translation
 Simulink 控制信号，指定为标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Simulate noise
+  summary: 模拟热噪声 on（默认）| off
+  group: ''
+```
 
 ### **Simulate noise** — 模拟热噪声 `on`（默认）| `off`
 
@@ -42,7 +54,6 @@ A2/Hz，其中：
 - T 是 **Temperature** 参数的值，
   以开尔文为单位。（同样位于 Configuration
   模块中。）
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

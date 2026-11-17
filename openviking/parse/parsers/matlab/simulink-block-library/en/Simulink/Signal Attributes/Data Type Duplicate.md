@@ -14,6 +14,17 @@ language: en
 # Data Type Duplicate
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | uint8 | uint16 | uint32 | string | Boolean | fixed point | enumerated
+- name: Port_N
+  summary: Nth input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | uint8 | uint16 | uint32 | string | Boolean | fixed point | enumerated
+```
 
 ### Input
 
@@ -31,8 +42,17 @@ Nth input signal, specified as a scalar, vector, matrix, or N-D array. If all si
 not have the same data type, the block returns an error message.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `string` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input ports
+  summary: Number of block inputs 2 (default) | real-valued positive integer
+  group: ''
+  block_parameter: NumInputPorts
+  type: character vector
+  values: real-valued positive integer
+  default: '''2'''
+```
 
 ### **Number of input ports** — Number of block inputs `2` (default) | real-valued positive integer
 
@@ -47,7 +67,6 @@ integer.
 | **Type:** character vector |
 | **Values:** real-valued positive integer |
 | **Default:** `'2'` |
-
 ## Libraries
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

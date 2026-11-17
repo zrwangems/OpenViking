@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Rotational Free End
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 零扭矩机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **W** — 零扭矩机械旋转
 
 机械旋转守恒端口，可自由旋转，无扭矩。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

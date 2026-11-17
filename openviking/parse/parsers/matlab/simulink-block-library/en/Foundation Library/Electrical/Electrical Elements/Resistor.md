@@ -14,6 +14,15 @@ language: en
 # Resistor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,13 +33,17 @@ Electrical conserving port associated with the resistor positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the resistor negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Resistance
+  summary: Resistance of the resistor 1 Ohm (default) | positive scalar
+  group: ''
+```
 
 ### **Resistance** — Resistance of the resistor `1 Ohm` (default) | positive scalar
 
 Resistance value.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

@@ -14,6 +14,21 @@ language: en
 # Take DDS Sample
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input DDS sample scalar | vector | matrix
+  direction: input
+  data_types: bus
+- name: Port_S
+  summary: Show whether a DDS sample was received scalar
+  direction: output
+  data_types: double
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -43,8 +58,24 @@ status**.
 Converted signal that can be used in the Simulink environment.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show receive status
+  summary: Show whether a DDS sample was received off (default) | on
+  group: ''
+  block_parameter: ShowQueueStatus
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Connect to live network
+  summary: Connect DDS simulation to live network off (default) | on
+  group: ''
+  block_parameter: ConnectToLive
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Show receive status** — Show whether a DDS sample was received `off` (default) | `on`
 
@@ -82,7 +113,6 @@ Select this parameter to connect to a live DDS network during simulation. When
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 DDS Blockset

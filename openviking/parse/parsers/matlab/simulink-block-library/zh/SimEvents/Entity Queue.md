@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Entity Queue
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体或消息 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 输出实体或消息 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: 已离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: 尚未离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: 模块中实体的平均等待时间 标量
+  direction: output
+  data_types: double
+- name: Port_l
+  summary: 实体队列的平均长度 标量
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: 已提取的实体数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -80,8 +113,100 @@ chinese_source: worker-translation
 要启用此端口，请在**统计**选项卡中，选中**已提取的实体数量，ex**复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Overwrite the oldest element if queue is full
+  summary: 指定队列溢出策略 on（Simulink® 的默认值） | off（SimEvents® 的默认值）
+  group: ''
+  block_parameter: QueueOverwriting
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on''（对于 Simulink）和 ''off''（对于 SimEvents）'
+- name: Capacity
+  summary: 指定队列的容量 25（默认值） | 标量
+  group: ''
+  block_parameter: Capacity
+  type: 字符向量
+  values: '''25'' | 标量'
+  default: '''25'''
+- name: Queue type
+  summary: 选择队列类型 FIFO（默认）| LIFO | Priority
+  group: ''
+  block_parameter: QueueType
+  type: character vector
+  values: '''FIFO'' | ''LIFO'' | ''Priority'''
+  default: '''FIFO'''
+- name: Multicast tag
+  summary: 指定在接受通过多播源广播的实体时使用的标签 A（默认）| character vector
+  group: ''
+  block_parameter: MulticastTag
+  type: character vector
+  values: '''A'' | character vector'
+  default: '''A'''
+- name: Priority source
+  summary: 指定实体的哪个属性决定其优先级 character vector | entitySys.priority
+  group: ''
+  block_parameter: PrioritySource
+  type: character vector
+  values: '''entity'' | ''entitySys.priority'' | character vector'
+- name: Sorting direction
+  summary: 选择基于优先级的排序方向 Ascending（默认）| Descending
+  group: ''
+  block_parameter: SortingDirection
+  type: character vector
+  values: '''Ascending'' | ''Descending'''
+  default: '''Ascending'''
+- name: Entity arrival source
+  summary: 选择实体的到达源 Input port（默认）| Multicast
+  group: ''
+  block_parameter: EntityArrivalSource
+  type: character vector
+  values: '''Input port'' | ''Multicast'''
+  default: '''Input port'''
+- name: Event action
+  summary: 指定实体在某些事件中的行为 Entry（默认）| Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities departed, d
+  summary: 输出已离开该模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: 输出该模块中当前存在但尚未离开的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average wait, w
+  summary: 输出平均等待时间 off（默认）| on
+  group: ''
+  block_parameter: AverageWait
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average queue length, l
+  summary: 输出实体队列的平均长度 off（默认）| on
+  group: ''
+  block_parameter: AverageQueueLength
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: 从此模块提取的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumEntitiesExtracted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Overwrite the oldest element if queue is full** — 指定队列溢出策略 on（Simulink® 的默认值） | off（SimEvents® 的默认值）
 
@@ -335,7 +460,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Messages & Events SimEvents

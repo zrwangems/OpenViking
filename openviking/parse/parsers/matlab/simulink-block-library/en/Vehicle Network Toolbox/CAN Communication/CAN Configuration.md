@@ -14,10 +14,67 @@ language: en
 # CAN Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: CAN device and channel list option
+  group: ''
+  block_parameter: Device
+  type: character vector, string
+- name: Bus speed
+  summary: CAN bus bit rate integer
+  group: ''
+  block_parameter: BusSpeed
+  type: character vector, string
+  values: integer
+- name: Manually configure bit parameters
+  summary: Allow specifying individual bit parameters off (default) | on
+  group: ''
+  block_parameter: EnableBitParameters
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Synchronization jump width
+  summary: Maximum allowed time adjustment integer
+  group: ''
+  block_parameter: SJW
+  type: character vector, string
+  values: integer
+- name: Time segment 1
+  summary: Number of time quanta before sample integer
+  group: ''
+  block_parameter: TSEG1
+  type: character vector, string
+  values: integer
+- name: Time segment 2
+  summary: Number of time quanta after sample integer
+  group: ''
+  block_parameter: TSEG2
+  type: character vector, string
+  values: integer
+- name: Number of samples
+  summary: Samples per bit integer
+  group: ''
+  block_parameter: NSamples
+  type: character vector, string
+  values: integer
+- name: Verify bit parameter settings validity
+  summary: Check validity of settings
+  group: ''
+- name: Acknowledge mode
+  summary: Control channel activity on CAN bus Normal (default) | Silent
+  group: ''
+  block_parameter: AckMode
+  type: character vector, string
+  values: '''Normal'' | ''Silent'''
+  default: '''Normal'''
+```
 
 ### **Device** — CAN device and channel list option
 
@@ -171,7 +228,6 @@ receive messages and not transmit.
 | **Type:** character vector, string |
 | **Values:** `'Normal'` | `'Silent'` |
 | **Default:** `'Normal'` |
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN Communication

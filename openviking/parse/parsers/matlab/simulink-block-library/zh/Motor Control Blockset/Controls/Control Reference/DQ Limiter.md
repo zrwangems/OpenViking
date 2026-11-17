@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # DQ Limiter
 
 ## 端口
+```yaml
+ports:
+- name: dref
+  summary: 参考 *d* 轴电压（或电流）标量
+  direction: input
+  data_types: single | double | fixed point
+- name: qref
+  summary: 参考 *q* 轴电压（或电流）标量
+  direction: input
+  data_types: single | double | fixed point
+- name: satMethod
+  summary: 饱和技术标量
+  direction: input
+  data_types: uint16
+- name: satLim
+  summary: 饱和限值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: dsat
+  summary: 饱和 *d* 轴电压（或电流）标量
+  direction: output
+  data_types: single | double | fixed point
+- name: qsat
+  summary: 饱和 *q* 轴电压（或电流）标量
+  direction: output
+  data_types: single | double | fixed point
+- name: magref
+  summary: 模块输入的非饱和峰值标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -72,8 +103,22 @@ chinese_source: worker-translation
 输入电压（或电流）的非饱和峰值。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Saturation method
+  summary: 饱和方法选择技术 Specify via dialog（默认）| Input port
+  group: ''
+- name: Saturation method selected
+  summary: 模块使用的饱和方法 D-Q equivalence（默认）| Prioritize D axis | Prioritize Q axis
+  group: ''
+- name: Saturation limit
+  summary: 饱和限值选择技术 Specify via dialog（默认）| Input port
+  group: ''
+- name: Saturation limit value
+  summary: 相电压（或电流）峰值限值 1（默认）| 标量
+  group: ''
+```
 
 ### **Saturation method** — 饱和方法选择技术 `Specify via dialog`（默认）| `Input port`
 
@@ -130,7 +175,6 @@ D−Q 饱和限值（电压）通常是逆变器提供的最大相电压。通�
 ```
 Vmax
 ```
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

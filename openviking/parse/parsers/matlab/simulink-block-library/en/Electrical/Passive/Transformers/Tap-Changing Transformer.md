@@ -14,6 +14,24 @@ language: en
 # Tap-Changing Transformer
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Line 1 positive terminal electrical
+  direction: conserving
+- name: 1-
+  summary: Line 1 negative terminal electrical
+  direction: conserving
+- name: 2+
+  summary: Line 2 positive terminal electrical
+  direction: conserving
+- name: 2-
+  summary: Line 2 negative terminal electrical
+  direction: conserving
+- name: c
+  summary: Control input physical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -40,8 +58,52 @@ line 2.
 ### **c** — Control input physical
 
 Input physical signal that specifies the input control value.
-
 ## Parameters
+```yaml
+parameters:
+- name: Turns ratio (primary/secondary)
+  summary: Turns ratio 1 (default) | positive number
+  group: Nominal
+- name: Primary leakage inductance
+  summary: Line 1 leakage inductance 1e-6 H (default) | positive number
+  group: Nominal
+- name: Secondary leakage inductance
+  summary: Line 2 leakage inductance 1e-6 H (default) | positive number
+  group: Nominal
+- name: Core-loss resistance
+  summary: Mutual resistance 1e6 Ohm (default) | zero or positive number
+  group: Nominal
+- name: Magnetization inductance
+  summary: Magnetization inductance 100e-6 H (default) | positive number
+  group: Nominal
+- name: Primary series resistance
+  summary: Line 1 series resistance 0 Ohm (default) | zero or positive number
+  group: Nominal
+- name: Secondary series resistance
+  summary: Line 2 series resistance 0 Ohm (default) | zero or positive number
+  group: Nominal
+- name: Primary leakage conductance
+  summary: Line 1 leakage conductance 0 1/Ohm (default) | zero or positive number
+  group: Nominal
+- name: Secondary leakage conductance
+  summary: Line 2 leakage conductance 0 1/Ohm (default) | zero or positive number
+  group: Nominal
+- name: Tap-changer location
+  summary: Tap-changer winding Primary (default) | Secondary
+  group: Tap
+- name: Minimum tap index (nominal=0)
+  summary: Minimum tap position -5 (default) | zero or negative integer
+  group: Tap
+- name: Maximum tap index (nominal=0)
+  summary: Maximum tap position 5 (default) | zero or positive integer
+  group: Tap
+- name: Change per tap (%)
+  summary: Tap change step 1 % (default) | positive number
+  group: Tap
+- name: Control threshold
+  summary: Shift threshold 0.5 (default)
+  group: Tap
+```
 
 ### Nominal
 
@@ -115,7 +177,6 @@ Control value at which the tap changes position. To lower the tap
 position, apply a control signal **c** smaller than the
 negative of this value. To increase the tap position, apply a control
 signal **c** greater than this value.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

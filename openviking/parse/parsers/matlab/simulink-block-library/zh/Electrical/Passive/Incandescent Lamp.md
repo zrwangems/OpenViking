@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Incandescent Lamp
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,46 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与灯负电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 模块参数化 Specify resistance values directly（默认）| Specify currents
+  group: 电阻
+- name: Initial resistance at turn-on
+  summary: 开启时的初始电阻 0.15 Ohm（默认）
+  group: 电阻
+- name: Steady-state resistance when on
+  summary: 导通时的稳态电阻 1 Ohm（默认）
+  group: 电阻
+- name: Inrush current at turn-on
+  summary: 开启时的浪涌电流 70 A（默认）
+  group: 电阻
+- name: Steady-state current when on
+  summary: 导通时的稳态电流 10 A（默认）
+  group: 电阻
+- name: Rated voltage
+  summary: 灯额定电压 12 V（默认）
+  group: 电阻
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 0.004 1/K（默认）
+  group: 电阻
+- name: Thermal time constant
+  summary: 热时间常数 25 ms（默认）
+  group: 动态特性
+- name: Initial lamp state
+  summary: 初始灯状态 Off（默认）| On
+  group: 动态特性
+- name: Open circuit fault
+  summary: 添加开路故障的选项 Add fault（默认）
+  group: 故障
+- name: Open-circuit resistance
+  summary: 开路电阻 1e6 Ohm（默认）
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+```
 
 ### 电阻
 
@@ -114,7 +161,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Timed`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Delay Line
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: En_Out
+  summary: 线性化模块输出 true | false
+  direction: input
+  data_types: Boolean
+- name: Out
+  summary: 重新缓冲的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -56,8 +71,25 @@ chinese_source: worker-translation
 在您选择 **Show En\_Out port for selectively enabling output** 参数之前，此端口是未命名的。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Delay line size
+  summary: 延迟线大小 64（默认）| 正整数
+  group: ''
+- name: Initial conditions
+  summary: 初始条件 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Allow directfeedthrough
+  summary: 允许直接馈通 off（默认）| on
+  group: ''
+- name: Show En_Out port for selectively enabling output
+  summary: 显示用于选择性启用输出的 En_Out 端口 off（默认）| on
+  group: ''
+- name: Hold previous value when the output is disabled
+  summary: 输出禁用时保持先前值 off（默认）| on
+  group: ''
+```
 
 ### **Delay line size** — 延迟线大小 `64`（默认）| 正整数
 
@@ -88,7 +120,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Show En\_Out port for selectively enabling output**。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Buffers

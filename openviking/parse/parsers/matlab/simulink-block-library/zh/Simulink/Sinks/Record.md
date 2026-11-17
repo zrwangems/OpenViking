@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Record, XY Graph
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要记录的信号 scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | datetime
+```
 
 ### 输入
 
@@ -33,8 +41,94 @@ XY Graph 模块是 Record 模块的一种替代配置，可在 XY 图上可视�
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image` | `datetime`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input ports
+  summary: 输入端口数量 1（默认）| [1,100] 范围内的整数
+  group: 主要
+  block_parameter: NumPorts
+  values: 1（默认）| [1, 100] 范围内的整数
+- name: Decimation
+  summary: 抽取因子 1（默认）| 正整数
+  group: 主要
+  block_parameter: Decimation
+  values: '"1"（默认）| 带引号的正整数'
+- name: Limit data points to last
+  summary: 要记录的样本数 inf（默认）| scalar | vector
+  group: 主要
+  block_parameter: MaxDataPoints
+  values: '"inf"（默认）| 带引号的正整数'
+- name: Select port
+  summary: 要为其指定输入处理模式的端口 1（默认）| 整数
+  group: 主要
+  block_parameter: FrameSettings
+  values: false（默认）| 1×n 逻辑值行向量，其中 n 等于端口数量
+- name: Input processing
+  summary: 所选端口的输入处理模式 Elements as channels (sample-based)（默认）| Columns as channels (frame-based)
+  group: 主要
+  block_parameter: FrameSettings
+  values: false（默认）| 1×n 逻辑值行向量，其中 n 等于端口数量
+- name: Record to workspace
+  summary: 工作区记录选项 off（默认）| on
+  group: 记录
+  block_parameter: RecordToWorkspace
+  values: '"off"（默认）| "on" | false 或 0 | true 或 1'
+- name: Workspace variable name
+  summary: 包含记录的模块数据的工作区变量名称 recordout（默认）| character vector | string
+  group: 记录
+  block_parameter: VariableName
+  values: '"recordout"（默认）| 有效的 MATLAB 变量名'
+- name: Record to file
+  summary: 记录到文件选项 off（默认）| on
+  group: 记录
+  block_parameter: RecordToFile
+  values: '"off"（默认）| "on" | false 或 0 | true 或 1'
+- name: File name
+  summary: 包含记录数据的文件名 recording.mldatx（默认）| character vector | string
+  group: 记录
+  block_parameter: FileName
+  values: '"recording.mldatx"（默认）| 有效文件名'
+- name: File type
+  summary: 记录数据的文件类型 *.mldatx（默认）| *.mat | *.xslx | *.parquet
+  group: 记录
+  block_parameter: FileName
+  values: '"recording.mldatx"（默认）| 有效文件名'
+- name: File location
+  summary: 包含记录数据的文件路径 工作目录（默认）| character vector | string
+  group: 记录
+  block_parameter: FileName
+  values: '"recording.mldatx"（默认）| 有效文件名'
+- name: Time
+  summary: 将时间数据导出到 Excel 或 Parquet 文件的选项 Shared Time Columns（默认）| Individual Time Columns
+  group: 记录
+  block_parameter: SharedTimeColumn
+  values: '"on"（默认）| "off"'
+- name: Signal Attributes
+  summary: 要导出到 Excel 文件的信号属性 Data Type | Units | Port Index | Block Path | Interpolation
+  group: 记录
+- name: Compression Type
+  summary: 压缩选项 Fastest (snappy)（默认）| Balanced for Size and Speed (gzip) | Compact (brotli) | None (uncompressed)
+  group: 记录
+  block_parameter: ParquetCompression
+  values: '"fastest"（默认）| "balanced" | "compact" | "none"'
+- name: Generate Sidecar
+  summary: 生成 JSON sidecar 的选项 on（默认）| off
+  group: 记录
+  block_parameter: ParquetMetaData
+  values: '"on"（默认）| "off"'
+- name: Row Group Policy
+  summary: 在 Parquet 文件中分组行的选项 Row Group Height（默认）| Row Group Size (MB)
+  group: 记录
+  block_parameter: ParquetRowGroupPolicy
+  values: '"height"（默认）| "sizeinmb"'
+- name: Row Group Policy Value
+  summary: 行组的高度或大小 auto（当 Row Group Policy 为 Row Group Height 时的默认值）| 512（当 Row Group Policy 为 Row Group Size (MB) 时的默认值）|
+    行数 | 行组大小
+  group: 记录
+  block_parameter: ParquetRowGroupSize
+  values: '"512"（默认）| 带引号的 (0, 1000] 范围内的正数'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -438,7 +532,6 @@ XY Graph 模块是 Record 模块的一种替代配置，可在 XY 图上可视�
 | **数据类型：** | `character vector` | `string` |
 
 **示例：** `set_param("myModel/Record","ParquetRowGroupPolicy","sizeinmb","ParquetRowGroupsize","450")`
-
 ## 所属库
 
 Simulink / Sinks

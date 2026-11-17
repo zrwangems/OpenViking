@@ -14,6 +14,15 @@ language: en
 # Air Spring
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Follower port mechanical translational
+  direction: conserving
+- name: R
+  summary: Base port mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +37,73 @@ of the air spring. Positive physical signals travel from
 Mechanical translational conserving port associated with the base end
 of the air spring. Positive physical signals travels from
 **R** to **C**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Effective force parameterization Load as a function of height (default) | Stiffness as a function of height
+  group: Spring
+- name: Height vector
+  summary: Height breakpoints that correspond to load or stiffness data [5, 7, 11, 14, 17, 20] cm (default) | nonnegative
+    vector
+  group: Spring
+- name: Load vector
+  summary: Load for a given height breakpoint [3000, 2000, 1500, 1200, 800, 100] N (default) | positive vector
+  group: Spring
+- name: Stiffness vector
+  summary: Stiffness for a given height breakpoint [600, 300, 100, 80, 40, 5] N/cm (default) | positive vector
+  group: Spring
+- name: Damping vector
+  summary: Spring damping for given height breakpoint [100, 60, 30, 15, 10, 10] s*N/cm (default) | nonnegative vector
+  group: Spring
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Smooth (default) | Linear
+  group: Spring
+- name: Extrapolation method
+  summary: Method of handling input values that fall outside range of breakpoint data set Linear (default) | Nearest | Error
+  group: Spring
+- name: Hard stop at full extension
+  summary: Simulate hard stop at maximum spring height off (default) | on
+  group: Hard Stops
+- name: Maximum height
+  summary: Location of full-extension hard stop 25 cm (default) | positive scalar
+  group: Hard Stops
+- name: Stiffness at full extension
+  summary: Full-extension hard stop stiffness 1e8 N/cm (default) | positive scalar
+  group: Hard Stops
+- name: Damping at full extension
+  summary: Full-extension hard stop damping 1e8 s*N/cm (default) | positive scalar
+  group: Hard Stops
+- name: Hard stop at full compression
+  summary: Simulate hard stop at minimum spring height off (default) | on
+  group: Hard Stops
+- name: Minimum height
+  summary: Location of full-compression hard stop 5 cm (default) | positive scalar
+  group: Hard Stops
+- name: Stiffness at full compression
+  summary: Full-compression hard stop stiffness 1e8 N/cm (default) | positive scalar
+  group: Hard Stops
+- name: Damping at full compression
+  summary: Full-compression hard stop damping 1e8 s*N/cm (default) | positive scalar
+  group: Hard Stops
+- name: Hard stop model
+  summary: Hard stop transition behavior Stiffness and damping applied smoothly through transition region, damped rebound
+    (default) | ...
+  group: Hard Stops
+- name: Transition region
+  summary: Region of partial hard stop effects 0.1 mm (default) | positive scalar
+  group: Hard Stops
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stops
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stops
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default)
+  group: Hard Stops
+```
 
 ### Spring
 
@@ -256,7 +330,6 @@ To enable this parameter, select **Hard stop at full extension** or
 **Hard stop at full compression**, and set
 **Hard stop model** to `Based on
 coefficient of restitution`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

@@ -14,6 +14,15 @@ language: en
 # J1939 Node Configuration
 
 ## Ports
+```yaml
+ports:
+- name: Address
+  summary: Returns the effective address of the node int8
+  direction: output
+- name: AC Status
+  summary: Indicates the success (1) or failure (0) of the node’s address claim 0 | 1
+  direction: output
+```
 
 ### Output
 
@@ -26,8 +35,28 @@ address** check box in the dialog box.
 
 This optional output port exists when you select the **Output address claim
 status** check box in the dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Config name
+  summary: ID of the J1939 network configuration to associate with this node ConfigX (default) | character vector
+  group: ''
+- name: Node name
+  summary: name of this J1939 node NodeX (default) | character vector
+  group: ''
+- name: Message
+  summary: Nine network attributes as defined by the database file consistent with the J1939 protocol vector array
+  group: ''
+- name: Sample time
+  summary: Simulation refresh rate 0.01 (default) | double
+  group: ''
+- name: Output current node address
+  summary: Enable or disable the Address port display off (default) | on
+  group: ''
+- name: Output address claim status
+  summary: Enable or disable the address claim AC Status display off (default) | on
+  group: ''
+```
 
 ### **Config name** — ID of the J1939 network configuration to associate with this node `ConfigX` (default) | character vector
 
@@ -88,7 +117,6 @@ This port is disabled by default.
 Enable or disable the address claim **AC Status** output port to
 show the success of an address claim. The output value is binary, 1 for success or 0 for
 failure. This port is disabled by default.
-
 ## Libraries
 
 Simulink Real-Time / J1939 Communication Vehicle Network Toolbox / J1939 Communication

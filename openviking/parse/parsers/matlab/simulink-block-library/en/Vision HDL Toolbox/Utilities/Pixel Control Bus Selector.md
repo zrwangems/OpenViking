@@ -14,6 +14,33 @@ language: en
 # Pixel Control Bus Selector
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Control signals accompanying pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: Port_1
+  summary: First pixel in a horizontal line of a frame scalar
+  direction: output
+  data_types: Boolean
+- name: Port_2
+  summary: Last pixel in a horizontal line of a frame scalar
+  direction: output
+  data_types: Boolean
+- name: Port_3
+  summary: First pixel in the first (top) line of a frame scalar
+  direction: output
+  data_types: Boolean
+- name: Port_4
+  summary: Last pixel in the last (bottom) line of a frame scalar
+  direction: output
+  data_types: Boolean
+- name: Port_5
+  summary: Valid pixel indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -65,11 +92,12 @@ scalar. This port returns the `valid` signal from the
 input bus.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Vision HDL Toolbox / Utilities

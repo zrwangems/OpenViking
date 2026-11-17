@@ -15,14 +15,31 @@ chinese_source: worker-translation
 # IEEE 1588 Read Parameter
 
 ## 端口
+```yaml
+ports:
+- name: Output
+  summary: 由 Parameter to read 参数选择输出的参数 double | [uint32]
+  direction: output
+```
 
 ### 输出
 
 ### **Output** — 由 Parameter to read 参数选择输出的参数 `double` | `[uint32]`
 
 要读取的当前参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameter to read
+  summary: 在输出端显示的参数 System time (nanosecond)（默认）| Calendar time (time_t) | Offset from Client | Client to Server Delay |
+    One Way Delay
+  group: ''
+  block_parameter: param
+- name: Sample time (-1 for inherited)
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Parameter to read** — 在输出端显示的参数 `System time (nanosecond)`（默认）| `Calendar time (time_t)` | `Offset from Client` | `Client to Server Delay` | `One Way Delay`
 
@@ -67,7 +84,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`sample_time` |
-
 ## 所属库
 
 Simulink Real-Time / PTP

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Blank Message
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: 空白 ROS 消息非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输出
 
@@ -23,8 +30,19 @@ chinese_source: worker-translation
 空白 ROS 消息，以非虚拟总线形式返回。要指定 ROS 消息的类型，请使用 **Type** 参数。总线中的所有元素均初始化为 0。可变长度数组的长度也初始化为 0。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Class
+  summary: ROS 消息的类 Message（默认）| Service Request | Service Response
+  group: ''
+- name: Type
+  summary: ROS 消息类型 'geometry_msgs/Point'（默认）| 字符向量 | 对话框选择
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 Inf（默认）| 数值标量
+  group: ''
+```
 
 ### **Class** — ROS 消息的类 `Message`（默认）| `Service Request` | `Service Response`
 
@@ -39,7 +57,6 @@ ROS 消息类型，指定为字符向量或对话框选择。使用 **Select** �
 输出之间的间隔，指定为数值标量。默认值表示模块输出永不改变。使用此值可通过消除重新计算模块输出的需要来加速仿真。否则，模块在 **Sample time** 的每个间隔输出一条新的空白消息。
 
 有关详细信息，请参阅 Specify Sample Time (Simulink)。
-
 ## 所属库
 
 ROS Toolbox / ROS

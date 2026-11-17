@@ -14,6 +14,14 @@ language: en
 # Fault Outport
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output fault behavior scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumeration | bus
+```
 
 ### Input
 
@@ -23,11 +31,12 @@ Output from behavior to model, specified as a scalar, vector, or matrix. Connect
 to this block to represent the introduced behavior in another model.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumeration` | `bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Fault Analyzer / Fault Port Blocks

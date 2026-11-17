@@ -14,6 +14,39 @@ language: en
 # Varying Observer Form
 
 ## Ports
+```yaml
+ports:
+- name: y
+  summary: Measurement signal scalar | vector
+  direction: input
+- name: A
+  summary: Plant state matrix matrix
+  direction: input
+- name: B
+  summary: Plant input matrix matrix
+  direction: input
+- name: C
+  summary: Plant output matrix matrix
+  direction: input
+- name: D
+  summary: Plant feedforward matrix matrix
+  direction: input
+- name: K
+  summary: State-feedback matrix matrix
+  direction: input
+- name: L
+  summary: State-observer matrix matrix
+  direction: input
+- name: u
+  summary: Control signal scalar | vector
+  direction: output
+- name: xe
+  summary: Estimated plant state vector vector
+  direction: output
+- name: dxe
+  summary: Estimated state derivatives vector
+  direction: output
+```
 
 ### Input
 
@@ -71,8 +104,22 @@ Derivatives of the corresponding estimated states in
 
 To enable this port, select the **Output state
 updates** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial conditions
+  summary: System initial conditions 0 (default) | scalar | vector
+  group: ''
+- name: State names (e.g., 'position')
+  summary: Plant state names '' (default) | character vector | cell array
+  group: ''
+- name: Output states
+  summary: Provide state output on (default) | off
+  group: ''
+- name: Output state derivatives
+  summary: Provide state derivatives on (default) | off
+  group: ''
+```
 
 ### **Initial conditions** — System initial conditions 0 (default) | scalar | vector
 
@@ -96,7 +143,6 @@ Select to enable the estimated states output port,
 
 Select to enable the estimated state derivatives output port,
 **dxe**.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

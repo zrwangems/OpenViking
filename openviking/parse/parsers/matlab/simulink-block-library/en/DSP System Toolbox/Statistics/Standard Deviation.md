@@ -14,6 +14,21 @@ language: en
 # Standard Deviation
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: Standard deviation along the specified dimension scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -145,8 +160,27 @@ of inputs. In this mode, you must also specify a value for the
   input sample.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Running standard deviation
+  summary: Option to select running standard deviation off (default) | on
+  group: Main Tab
+- name: Find the standard deviation value over
+  summary: Dimension over which the block computes the standard deviation Each column (default) | Entire input | Each row
+    | Specified dimension
+  group: Main Tab
+- name: Dimension
+  summary: Custom dimension 1 (default) | scalar
+  group: Main Tab
+- name: Input processing
+  summary: Method to process the input in running mode Columns as channels (frame based) (default) | Elements as channels
+    (sample based)
+  group: Main Tab
+- name: Reset port
+  summary: Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: Main Tab
+```
 
 ### Main Tab
 
@@ -310,7 +344,6 @@ reset. For more information on latency and the Simulink tasking modes, see Exces
 
 To enable this parameter, select the **Running standard
 deviation** parameter.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

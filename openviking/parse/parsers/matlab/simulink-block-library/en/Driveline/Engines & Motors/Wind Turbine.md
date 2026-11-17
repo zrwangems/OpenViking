@@ -14,6 +14,21 @@ language: en
 # Wind Turbine
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Incident wind velocity, m/s physical signal
+  direction: input
+- name: β
+  summary: Pitch angle, deg physical signal
+  direction: input
+- name: T
+  summary: Thrust, N physical signal
+  direction: output
+- name: R
+  summary: Turbine shaft mechanical rotational
+  direction: conserving
+```
 
 ### Inputs
 
@@ -42,8 +57,74 @@ To enable this port, select **Output thrust**.
 
 Mechanical rotational conserving port associated with the wind turbine
 shaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Wind turbine parameterization option Tabulated data for power and thrust coefficients (default) | Tabulated data
+    for airfoil lift and drag coefficients
+  group: Wind Turbine
+- name: Turbine radius
+  summary: Blade tip radius 80 m (default) | positive scalar
+  group: Wind Turbine
+- name: Pitch angle vector, β
+  summary: Reference pitch angle [0, 3, 5, 10, 20, 90] deg (default) | vector of length *M*
+  group: Wind Turbine
+- name: Tip speed ratio vector, λ
+  summary: Reference tip speed ratio [0, 2, 4, 6, 8, 10, 12, 14, 15] (default) | vector of length *N*
+  group: Wind Turbine
+- name: Power coefficient table, Cp(β,λ)
+  summary: Power coefficient table *M*-by-*N* matrix
+  group: Wind Turbine
+- name: Thrust coefficient table, Ct(β,λ)
+  summary: Thrust coefficient table *M*-by-*N* matrix
+  group: Wind Turbine
+- name: Number of blades
+  summary: Number of blades 3 (default) | positive integer
+  group: Wind Turbine
+- name: Nondimensional radial location vector, r
+  summary: Radial location [.1, .17, .23, .36, .5, .63, 1] (default) | vector
+  group: Wind Turbine
+- name: Blade twist vector, θ_tw(r)
+  summary: Blade element twist [13.31, 13.31, 11.48, 9.01, 6.54, 4.19, .11] deg (default) | vector
+  group: Wind Turbine
+- name: Normalized chord length vector, c(r)/R
+  summary: Blade element chord length [.068, .074, .076, .069, .061, .053, .023] (default) | vector
+  group: Wind Turbine
+- name: Airfoil angle of attack vector, α
+  summary: 'Angle of attack [-180 : 10 : 180] deg (default) | vector of length *M*'
+  group: Wind Turbine
+- name: Airfoil lift coefficient table, Cl(α,r)
+  summary: Airfoil lift coefficients *M* x *N* matrix
+  group: Wind Turbine
+- name: Airfoil drag coefficient table, Cd(α,r)
+  summary: Airfoil drag coefficients *M* x *N* matrix
+  group: Wind Turbine
+- name: Number of blade elements
+  summary: Number of blade elements 20 (default) | positive integer
+  group: Wind Turbine
+- name: Output thrust
+  summary: Option to model turbine thrust output off (default) | on
+  group: Environment and Dynamics
+- name: Model inertia
+  summary: Inertia option off (default) | on
+  group: Environment and Dynamics
+- name: Rotor inertia
+  summary: Windmill rotor inertia 3.5e7 kg*m^2 (default)
+  group: Environment and Dynamics
+- name: Initial rotor rotational velocity
+  summary: Rotor initial angular velocity 0 rad/s (default)
+  group: Environment and Dynamics
+- name: Air density
+  summary: Air density 1.225 kg/m^3 (default) | positive scalar
+  group: Environment and Dynamics
+- name: Wind velocity threshold
+  summary: Wind velocity smoothing threshold 0.01 m/s (default) | positive scalar
+  group: Advanced
+- name: Rotational velocity threshold
+  summary: Angular velocity smoothing threshold 0.01 rad/s (default) | positive scalar
+  group: Advanced
+```
 
 ### Wind Turbine
 
@@ -344,7 +425,6 @@ Rotational velocity at which the block applies smoothing. This
 parameter smooths the torque and power when the rotational speed
 approaches or crosses 0. The block applies more smoothing over greater
 velocity ranges as you increase the value of this parameter.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors

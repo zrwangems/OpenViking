@@ -14,10 +14,15 @@ language: en
 # CPFSK Demodulator Baseband
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **M-ary number**
 :   The size of the alphabet.
@@ -75,7 +80,6 @@ Not documented in R2025b.
 :   The output data type can be `boolean`,
     `int8`, `int16`,
     `int32`, or `double`.
-
 ## Libraries
 
 Not documented in R2025b.

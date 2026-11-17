@@ -14,6 +14,17 @@ language: en
 # dB Gain
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Output
+  summary: Output after applying the decibel gain scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -37,8 +48,16 @@ Algorithms.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain, dB
+  summary: Gain -40 (default) | scalar | matrix
+  group: ''
+- name: Input signal
+  summary: Input signal Amplitude (default) | Power
+  group: ''
+```
 
 **Note**
 
@@ -61,7 +80,6 @@ Specify the type of input signal as one of these:
   signal as the voltage signal.
 
 **Tunable:** Yes
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Math Operations

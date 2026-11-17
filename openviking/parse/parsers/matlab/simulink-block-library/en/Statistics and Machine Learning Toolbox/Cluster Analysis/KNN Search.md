@@ -14,6 +14,21 @@ language: en
 # KNN Search
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Query point row vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Idx
+  summary: Indices of nearest neighbors numeric row vector | 1-by-1 cell array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: D
+  summary: Distances of nearest neighbors numeric row vector | 1-by-1 cell array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -70,8 +85,137 @@ nearest neighbor distances** in the KNN Search
 block.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select nearest neighbor searcher
+  summary: Nearest neighbor search method searcher (default) | ExhaustiveSearcher object | KDTreeSearcher object
+  group: Main
+  block_parameter: NeighborhoodSearcher
+  type: workspace variable
+  values: ExhaustiveSearcher object | KDTreeSearcher object
+  default: '"searcher"'
+- name: Add output port for nearest neighbor distances
+  summary: Add second output port for nearest neighbor distances off (default) | on
+  group: Main
+  block_parameter: ShowOutputDistances
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Number of nearest neighbors
+  summary: Number of nearest neighbors 1 (default) | positive integer
+  group: Main
+  block_parameter: NumNeighbors
+  type: positive integer
+  values: single | double
+  default: '1'
+- name: Include ties
+  summary: Flag to include all nearest neighbors off (default) | on
+  group: Main
+  block_parameter: IncludeTies
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Distance metric
+  summary: Distance metric euclidean (default) | chebychev | cityblock | minkowski | correlation | cosine | hamming | jaccard
+    | mahalanobis | seuclidean | spearman
+  group: Main
+  block_parameter: DistanceMetric
+  type: character vector
+  values: '"euclidean" | "chebychev" | "cityblock" | "minkowski" | "correlation" | "cosine" | "hamming" | "jaccard" | "mahalanobis"
+    | "seuclidean" | "spearman"'
+  default: '"euclidean"'
+- name: Covariance matrix
+  summary: Covariance matrix for Mahalanobis distance metric Computed using data in searcher (default) | Customized
+  group: Main
+  block_parameter: CovarianceMatrix
+  type: positive definite matrix
+  values: '"Computed using data in searcher" | "Customized"'
+  default: '"Computed using data in searcher"'
+- name: Scale
+  summary: Scale parameter value for standardized Euclidean distance metric Standard deviation of data in searcher (default)
+    | Customized
+  group: Main
+  block_parameter: Scale
+  type: nonnegative numeric row vector
+  values: '"Standard deviation of data in searcher" | "Customized"'
+  default: '"Standard deviation of data in searcher"'
+- name: P
+  summary: Exponent for Minkowski distance metric 2 (default) | positive integer
+  group: Main
+  block_parameter: MinkExp
+  type: positive integer
+  values: positive integer
+  default: '2'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Index data type
+  summary: 'Data type of index output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: IndicesDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Index data type Minimum
+  summary: Minimum of index output [] (default) | scalar
+  group: Data Types
+  block_parameter: IndicesOutMin
+  type: scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Index data type Maximum
+  summary: Maximum of index output [] (default) | scalar
+  group: Data Types
+  block_parameter: IndicesOutMax
+  type: scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Distance data type
+  summary: 'Data type of distance output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: DistanceDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Distance data type Minimum
+  summary: Minimum of distance output [] (default) | scalar
+  group: Data Types
+  block_parameter: DistanceOutMin
+  type: scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Distance data type Maximum
+  summary: Maximum of distance output [] (default) | scalar
+  group: Data Types
+  block_parameter: DistanceOutMax
+  type: scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 ### Main
 
@@ -505,7 +649,6 @@ the Saturation (Simulink) block instead.
 To enable this parameter, select **Add output
 port for nearest neighbor distances** on the **Main**
 tab of the Block Parameters dialog box.
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Neighborhood Searcher

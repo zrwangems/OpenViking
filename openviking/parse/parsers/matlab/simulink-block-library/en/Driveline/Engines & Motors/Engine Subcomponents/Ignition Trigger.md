@@ -14,6 +14,21 @@ language: en
 # Ignition Trigger
 
 ## Ports
+```yaml
+ports:
+- name: Cam
+  summary: Crank position, deg physical signal
+  direction: input
+- name: Sw
+  summary: Ignitor switch input signal, binary physical signal
+  direction: input
+- name: SA
+  summary: Spark angle input, deg physical signal
+  direction: input
+- name: Trig
+  summary: Asynchronous trigger report, binary physical signal
+  direction: output
+```
 
 ### Inputs
 
@@ -39,13 +54,17 @@ degrees.
 Physical signal output associated with the asynchronous spark trigger
 events that the block generates, where `0` turns off
 the trigger and `1` turns on the trigger.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of cylinders
+  summary: Total cylinder count Single Cylinder (default) | Two Cylinders | Three Cylinders | Four Cylinders
+  group: ''
+```
 
 ### **Number of cylinders** — Total cylinder count `Single Cylinder` (default) | `Two Cylinders` | `Three Cylinders` | `Four Cylinders`
 
 Number of spark ignition cylinders.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

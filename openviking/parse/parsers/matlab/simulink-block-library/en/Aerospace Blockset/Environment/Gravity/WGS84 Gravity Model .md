@@ -14,6 +14,21 @@ language: en
 # WGS84 Gravity Model
 
 ## Ports
+```yaml
+ports:
+- name: μ l h
+  summary: Position in geodetic latitude, longitude, and altitude three-element vector | *M*-by-3 array
+  direction: input
+  data_types: double
+- name: JD
+  summary: Julian date scalar | value greater than 2451545
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: Gravity three-element vector | *M*-by-3 array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -53,8 +68,82 @@ Gravity in the north-east-down (NED) coordinate system.
 | Exact | Both normal and tangent gravity (down and north in the NED coordinate system). |
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of gravity model
+  summary: Gravity model method WGS84 Taylor Series (default) | WGS84 Close Approximation | WGS84 Exact
+  group: ''
+  block_parameter: model
+  type: character vector
+  values: '''WGS84 Taylor Series'' | ''WGS84 Close Approximation'' | ''WGS84 Exact'''
+  default: '''WGS84 Taylor Series'''
+- name: Units
+  summary: Units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Exclude Earth's atmosphere
+  summary: Earth atmosphere on (default) | off
+  group: ''
+  block_parameter: no_atmos
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Precessing reference frame
+  summary: Precessing reference frame on (default) | off
+  group: ''
+  block_parameter: precessing
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Input Julian date
+  summary: Julian date off (default) | on
+  group: ''
+  block_parameter: jd_loc
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Month
+  summary: Month January (default) | February | March | April | May | June | July | August | September | October | November
+    | December
+  group: ''
+  block_parameter: month
+  type: character vector
+  values: '''January'' | ''February'' | ''March'' | ''April'' | ''May'' | ''June'' | ''July'' | ''August'' | ''September''
+    | ''October'' | ''November'' | ''December'''
+  default: '''January'''
+- name: Day
+  summary: Day 10 (default) | 1 to 31
+  group: ''
+  block_parameter: day
+  type: character vector
+  values: '''1'' to ''31'''
+  default: '''10'''
+- name: Year
+  summary: Year 2004 (default) | any year
+  group: ''
+  block_parameter: year
+  type: character vector
+  values: any year
+  default: '''2004'''
+- name: No centrifugal effects
+  summary: Centrifugal effects on (default) | off
+  group: ''
+  block_parameter: no_centrifugal
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior Warning (default) | Error | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Type of gravity model** — Gravity model method `WGS84 Taylor Series` (default) | `WGS84 Close Approximation` | `WGS84 Exact`
 
@@ -286,7 +375,6 @@ limits.
 | **Type**: character vector |
 | **Values**: `'None'` | `'Warning'` | `'Error'` |
 | **Default**: `'Warning'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Gravity

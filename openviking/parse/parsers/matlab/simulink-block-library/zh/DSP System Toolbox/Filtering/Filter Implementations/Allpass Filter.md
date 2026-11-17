@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Allpass Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入数据 列向量 | 行向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: coeffs
+  summary: 全通滤波器系数 列向量 | 行向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 全通滤波器的输出 列向量 | 行向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -65,8 +80,34 @@ port** 参数时，此端口出现。
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Internal allpass structure
+  summary: 滤波器结构 Minimum multiplier（默认） | Wave Digital Filter | Lattice
+  group: ''
+- name: 从输入端口指定系数
+  summary: 用于指定全通多项式系数的标志 关（默认） | 开
+  group: ''
+- name: Allpass polynomial coefficients
+  summary: 最小乘法器形式的系数 [-2^(-1/2), 1/2]（默认） | *N*×1 矩阵 | *N*×2 矩阵 | *N*×4 矩阵
+  group: ''
+- name: Wave Digital Filter allpass coefficients
+  summary: 波数字滤波器形式的系数 [1/2, -2^(1/2)/3]（默认） | *N*×1 矩阵 | *N*×2 矩阵
+  group: ''
+- name: Indicate if last section is first order
+  summary: 最后一节是否为一阶 off（默认） | on
+  group: ''
+- name: Lattice allpass coefficients
+  summary: 格型形式的系数 [-2^(1/2)/3, 1/2]（默认） | *N*×1 列向量 | 1×*N* 行向量
+  group: ''
+- name: View Filter Response
+  summary: 可视化滤波器响应 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认） | Code generation
+  group: ''
+```
 
 如果某个参数被列为可调，则您可以在仿真期间更改其值。
 
@@ -225,7 +266,6 @@ structure** 设置为 `Lattice` 并清除
   后续仿真中重用。此选项
   需要额外的启动时间，但可提供更快的后续
   仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Implementations

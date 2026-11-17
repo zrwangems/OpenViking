@@ -14,6 +14,17 @@ language: en
 # Flatten Layer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Flattened output data array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -30,8 +41,22 @@ Flattened output data. The output data collapses the spatial dimensions of the
 input data into the channel dimension.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Flattened output size
+  summary: Size of flattened output matrix [1 1 1] (default) | array of positive scalars
+  group: Main
+  block_parameter: FlattenedOutputSize
+  type: array
+  values: '[1 1 1] | ''<array>'''
+  default: '''[1 1 1]'''
+- name: Sample time
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -77,7 +102,6 @@ programmatically, use the `set_param` (Simulink) function.
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **Values:** `'-1'` (default) | scalar |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Learning Layers / Sequence Layers

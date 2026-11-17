@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Array Connection
 
 ## 端口
+```yaml
+ports:
+- name: elementNodek
+  summary: 要连接至连接端口的元素连接节点 *k*
+  direction: conserving
+- name: arrayNode
+  summary: 连接后的节点数组 AON 端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,28 @@ chinese_source: worker-translation
 ### **arrayNode** — 连接后的节点数组 AON 端口
 
 由 **Domain** 参数定义类型的连接后 AON 端口，位于模块图标上与元素端口相对的一侧。此端口没有标签。
-
 ## 参数
+```yaml
+parameters:
+- name: Domain
+  summary: 指定模块连接的域 Electrical Domain（默认）| Foundation 域和已注册自定义域的列表 | <specify domain path>
+  group: ''
+- name: Concatenate dimension
+  summary: 沿其连接元素节点的数组维度 2（默认）| 正标量
+  group: ''
+- name: Mode
+  summary: 指定元素节点是标量还是数组 Scalar Elements（默认）| Sized Elements
+  group: ''
+- name: Number of scalar elements
+  summary: 要连接的标量元素节点数量 2（默认）| 正整数
+  group: ''
+- name: Number of elements
+  summary: 要连接的非标量元素节点数量 2（默认）| 正标量
+  group: ''
+- name: Element size k
+  summary: 连接节点 *k* 中的数组大小 [1,1]（默认）| 数组
+  group: ''
+```
 
 ### **Domain** — 指定模块连接的域 `Electrical Domain`（默认）| Foundation 域和已注册自定义域的列表 | `<specify domain path>`
 
@@ -77,7 +106,6 @@ elements** 参数设置为的值。
 
 要启用这组参数，请将 **Mode** 参数设置为
 `Sized Elements`。
-
 ## 所属库
 
 Simscape / Utilities

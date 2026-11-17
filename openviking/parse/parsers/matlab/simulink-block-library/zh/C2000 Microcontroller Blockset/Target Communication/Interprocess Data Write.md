@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Interprocess Data Write
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 数据输入向量
+  direction: input
+  data_types: single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: msg
+  summary: 输出数据消息标量
+  direction: output
+  data_types: SoCData
+```
 
 ### 输入
 
@@ -34,8 +45,25 @@ chinese_source: worker-translation
 此端口仅在启用 **Enable simulation port** 参数时出现。
 
 **数据类型：** `SoCData`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable simulation port
+  summary: 启用外设仿真端口以进行阻塞 on（默认）| off
+  group: ''
+- name: Channels number
+  summary: 选择通道编号 0（默认）| 1 | 2 | ...
+  group: ''
+- name: Circular FIFO depth
+  summary: 存储缓冲区数量 1（默认）| 正整数
+  group: ''
+- name: Trigger interrupt on receiving core
+  summary: 选择以触发中断 off（默认）| on
+  group: ''
+- name: Participating cores
+  summary: 选择处理器的参与核心 选项因您选择的硬件板而异
+  group: ''
+```
 
 ### **Enable simulation port** — 启用外设仿真端口以进行阻塞 `on`（默认）| `off`
 
@@ -78,7 +106,6 @@ chinese_source: worker-translation
 **注意**
 
 确保模型中对应的 Interprocess Data Read 和 Interprocess Data Write 模块的 **Channel number**、**Number of buffers** 和 **Participating cores** 参数匹配。
-
 ## 所属库
 
 SoC Blockset / Processor Interconnect C2000 Microcontroller Blockset / Target Communication Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Target Communication Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Target Communication

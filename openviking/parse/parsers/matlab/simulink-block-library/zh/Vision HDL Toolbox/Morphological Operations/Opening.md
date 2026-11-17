@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Opening
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 布尔输入像素或多像素向量 标量 | 向量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 布尔输出像素或多像素向量 标量 | 向量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -46,8 +65,19 @@ chinese_source: worker-translation
 对于多像素流式传输，每个像素值向量都有一组控制信号。由于该向量只有一个 `valid` 信号，因此该向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于该向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于该向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Neighborhood
+  summary: 像素邻域 [0,1,0; 1,1,1; 0,1,0]（默认）| 由 1 和 0 组成的向量或矩阵
+  group: ''
+- name: Line buffer size
+  summary: 行内存缓冲区大小 2048（默认）| 正整数
+  group: ''
+- name: Padding method
+  summary: 填充边界的方法 Constant（默认）| None
+  group: ''
+```
 
 ### **Neighborhood** — 像素邻域 `[0,1,0; 1,1,1; 0,1,0]`（默认）| 由 `1` 和 `0` 组成的向量或矩阵
 
@@ -72,7 +102,6 @@ chinese_source: worker-translation
 
 - `Constant` — 该模块在膨胀操作时用零填充图像，在腐蚀操作时用一填充图像。这些值可防止在活动帧的边界处发生开运算。
 - `None` — 排除填充逻辑。该模块不会将图像帧之外的像素设置为任何特定值。此选项可减少模块使用的硬件资源以及帧之间所需的消隐时间，但会影响帧边缘处输出像素的准确性。为保持像素流时序，输出帧与输入帧大小相同。但是，为避免使用由未定义填充值计算出的像素，请在下游操作中屏蔽掉帧边缘周围 *KernelSize*/2 个像素。有关详细信息，请参阅 Increase Throughput by Omitting Padding。
-
 ## 所属库
 
 Vision HDL Toolbox / Morphological Operations

@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # C2000 IQN1 to IQN2
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Q value**
 :   从 1 到 30 的 Q 值，用于指定输出的精度
 
 **Q value**
 :   从 1 到 30 的 Q 值，用于指定输出的精度
-
 ## 所属库
 
 R2025b 中未记录。

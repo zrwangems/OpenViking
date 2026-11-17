@@ -14,6 +14,13 @@ language: en
 # Repeating Sequence
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Periodic output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -24,8 +31,24 @@ Output signal specified by the **Time values** and
 scalar signal.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Time values
+  summary: Vector of output times [0 2] (default) | vector
+  group: ''
+  block_parameter: rep_seq_t
+  type: character vector
+  values: vector
+  default: '[0 2]'
+- name: Output values
+  summary: Vector of output values [0 2] (default) | vector
+  group: ''
+  block_parameter: rep_seq_y
+  type: character vector
+  values: vector
+  default: '[0 2]'
+```
 
 ### **Time values** — Vector of output times `[0 2]` (default) | vector
 
@@ -54,7 +77,6 @@ time value in the **Time values**parameter.
 | **Type**: character vector |
 | **Values**: vector |
 | **Default**: `[0 2]` |
-
 ## Libraries
 
 Simulink / Sources

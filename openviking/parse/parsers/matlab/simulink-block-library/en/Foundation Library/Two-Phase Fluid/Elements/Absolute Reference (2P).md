@@ -14,14 +14,18 @@ language: en
 # Absolute Reference (2P)
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has a two-phase fluid conserving port. This port identifies the two-phase
 fluid node set to zero pressure and specific internal energy.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

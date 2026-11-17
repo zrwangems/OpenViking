@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Bernoulli Binary Generator
 
 ## 端口
+```yaml
+ports:
+- name: Out
+  summary: 输出数据信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,31 @@ chinese_source: worker-translation
 输出数据信号，以标量、向量或矩阵形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Probability of zero
+  summary: 输出端生成零的概率 0.5（默认）| [0, 1] 范围内的标量 | [0, 1] 范围内的标量向量
+  group: ''
+- name: Source of initial seed
+  summary: 随机数生成器的初始种子来源 Auto（默认）| Parameter
+  group: ''
+- name: Initial seed
+  summary: 随机数生成器的初始种子 非负整数
+  group: ''
+- name: Sample time
+  summary: 输出信号的采样时间 1（默认）| -1 | 正标量
+  group: ''
+- name: Samples per frame
+  summary: 输出信号的每帧采样数 1（默认）| 正标量
+  group: ''
+- name: Output data type
+  summary: 输出信号的数据类型 double（默认）| single | uint8 | uint16 | uint32 | boolean
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -71,7 +101,6 @@ Probability of zero 必须在 [0, 1] 范围内。**Probability of zero** 参数�
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Comm Sources / Random Data Sources

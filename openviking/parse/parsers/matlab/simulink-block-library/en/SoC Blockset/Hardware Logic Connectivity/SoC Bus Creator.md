@@ -14,6 +14,74 @@ language: en
 # SoC Bus Creator
 
 ## Ports
+```yaml
+ports:
+- name: valid
+  summary: Valid control signal boolean scalar
+  direction: input
+  data_types: Boolean
+- name: tlast
+  summary: Indication of end of data packet boolean scalar
+  direction: input
+  data_types: Boolean
+- name: ready
+  summary: Ready control signal boolean scalar
+  direction: input
+  data_types: Boolean
+- name: hStart
+  summary: First pixel in horizontal line of frame boolean scalar
+  direction: input
+  data_types: Boolean
+- name: hEnd
+  summary: Last pixel in horizontal line of frame boolean scalar
+  direction: input
+  data_types: Boolean
+- name: vStart
+  summary: First pixel in first (top) line of frame boolean scalar
+  direction: input
+  data_types: Boolean
+- name: vEnd
+  summary: Last pixel in last (bottom) line of frame boolean scalar
+  direction: input
+  data_types: Boolean
+- name: fsync
+  summary: Frame synchronization boolean scalar
+  direction: input
+  data_types: Boolean
+- name: rd_addr
+  summary: Reader address scalar
+  direction: input
+  data_types: uint32
+- name: rd_len
+  summary: Reader data length scalar
+  direction: input
+  data_types: uint32
+- name: rd_avalid
+  summary: Reader valid status boolean scalar
+  direction: input
+  data_types: Boolean
+- name: rd_dready
+  summary: Reader ready status boolean scalar
+  direction: input
+  data_types: Boolean
+- name: wr_addr
+  summary: Writer address scalar
+  direction: input
+  data_types: uint32
+- name: wr_len
+  summary: Writer data length scalar
+  direction: input
+  data_types: uint32
+- name: wr_valid
+  summary: Writer valid data boolean scalar
+  direction: input
+  data_types: Boolean
+- name: ctrlBus
+  summary: Output control bus bus
+  direction: output
+  data_types: StreamS2MBusObj | StreamM2SBusObj | StreamVideoS2MBusObj | pixelcontrol | StreamvideoFsyncS2MBusObj | ReadControlM2SBusObj
+    | WriteControlM2SBusObj
+```
 
 ### Input
 
@@ -223,8 +291,16 @@ parameters.
 | Set **Control protocol** to `Random access write` and **Control type** to `Valid`. | `WriteControlM2SBusObj` |
 
 **Data Types:** `StreamS2MBusObj` | `StreamM2SBusObj` | `StreamVideoS2MBusObj` | `pixelcontrol` | `StreamvideoFsyncS2MBusObj` | `ReadControlM2SBusObj` | `WriteControlM2SBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Control protocol
+  summary: Protocol interface selection Data stream (default) | Pixel stream | Random access read | Random access write
+  group: ''
+- name: Control type
+  summary: Control type selection Valid (default) | Ready | Ready with frame sync
+  group: ''
+```
 
 ### **Control protocol** — Protocol interface selection `Data stream` (default) | `Pixel stream` | `Random access read` | `Random access write`
 
@@ -254,7 +330,6 @@ stream`.
 The input ports of the block vary based on the type of **Control
 protocol** and **Control type** that you select. For more
 details, see Description.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Connectivity

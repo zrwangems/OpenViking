@@ -14,6 +14,36 @@ language: en
 # Variable-Displacement Pump (TL)
 
 ## Ports
+```yaml
+ports:
+- name: D
+  summary: Displacement volume, cm^3/rev physical signal
+  direction: input
+- name: EV
+  summary: Volumetric efficiency, unitless physical signal
+  direction: input
+- name: EM
+  summary: Mechanical efficiency, unitless physical signal
+  direction: input
+- name: LV
+  summary: Volumetric loss, m^3/s physical signal
+  direction: input
+- name: LM
+  summary: Mechanical loss, N\*m physical signal
+  direction: input
+- name: A
+  summary: Pump inlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Pump outlet thermal liquid
+  direction: conserving
+- name: C
+  summary: Pump case mechanical rotational
+  direction: conserving
+- name: R
+  summary: Pump shaft mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -91,8 +121,91 @@ case.
 
 Mechanical rotational conserving port associated with the rotational
 pump shaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: Parameterization of leakage flow rate and friction torque Analytical (default) | Tabulated data - volumetric and
+    mechanical efficiencies | Tabulated data - volumetric and mechanical losses | Input signal - volumetric and mechanical
+    efficiencies | Input signal - volumetric and mechanical losses
+  group: ''
+- name: Nominal displacement
+  summary: Displacement at which to specify volumetric efficiency 30 cm^3/rev (default) | positive scalar
+  group: ''
+- name: Nominal shaft angular velocity
+  summary: Shaft angular velocity for given volumetric efficiency 1800 rpm (default) | scalar
+  group: ''
+- name: Nominal pressure gain
+  summary: Pressure gain for corresponding volumetric efficiency 10 MPa (default) | scalar
+  group: ''
+- name: Nominal dynamic viscosity
+  summary: Dynamic viscosity at which to specify the volumetric efficiency 0.9 cP (default) | scalar
+  group: ''
+- name: Volumetric efficiency at nominal conditions
+  summary: Volumetric efficiency at specified nominal conditions 0.92 (default) | scalar in the range (0,1)
+  group: ''
+- name: Mechanical efficiency at nominal conditions
+  summary: Ratio of ideal-to-actual mechanical power 0.88 (default) | positive scalar
+  group: ''
+- name: No-load torque
+  summary: Minimum torque required to induce shaft rotation 0 N*m (default) | scalar
+  group: ''
+- name: Pressure gain vector, dp
+  summary: Pressure gains for given volumetric and mechanical efficiencies or losses [.1, 1, 2] MPa (default) | vector
+  group: ''
+- name: Shaft angular velocity vector, w
+  summary: Angular velocities at which to specify volumetric and mechanical efficiencies or losses [250, 500, 1000, 2000,
+    3000, 4000] rpm (default) | vector
+  group: ''
+- name: Displacement vector, D
+  summary: Displacements at which to specify volumetric and mechanical efficiencies or losses [-30, -19, 19, 30] cm^3/rev
+    (default)
+  group: ''
+- name: Volumetric efficiency table, e_v(dp,w,D)
+  summary: Volumetric efficiencies for given pressure gains, angular velocities, and displacements repmat([.816, .908, .954,
+    .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568, .78, .892, .893, .91], 1, 1, 4) (default) | matrix
+  group: ''
+- name: Mechanical efficiency table, e_m(dp,w,D)
+  summary: Mechanical efficiencies for given pressure gains, angular velocities, and displacements repmat([.996, .996, .996,
+    .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981, .982, .982, .983, .984], 1, 1, 4) (default) | matrix
+  group: ''
+- name: Volumetric loss table, q_loss(dp,w,D)
+  summary: Internal leakage flow rates for corresponding pressure gains, angular velocities, and displacements repmat([.0282,
+    .0253, .0241, .0235, .0291, .0325; .2596, .1271, .1017, .0917, .1216, .1142; .7874, .1901, .141, .1211, .1797, .1978]
+    * 1e-3, 1, 1, 4) m^3/s (default) | matrix
+  group: ''
+- name: Mechanical loss table, torque_loss(dp,w,D)
+  summary: Friction torques for corresponding pressure gains, angular velocities, and displacements repmat([.002, .002, .002,
+    .002, .002, .002; .06, .055, .055, .055, .055, .05; .19, .19, .18, .18, .17, .16], 1, 1, 4) N*m (default) | matrix
+  group: ''
+- name: Minimum volumetric efficiency
+  summary: Lower saturation bound on volumetric efficiency input signal 1e-3 (default) | scalar in the range (0,1)
+  group: ''
+- name: Maximum volumetric efficiency
+  summary: Upper saturation bound on volumetric efficiency input signal 1 (default) | scalar in the range (0,1)
+  group: ''
+- name: Minimum mechanical efficiency
+  summary: Lower saturation bound on volumetric efficiency input signal 1e-3 (default) | scalar in the range (0,1)
+  group: ''
+- name: Maximum mechanical efficiency
+  summary: Upper saturation bound on volumetric efficiency input signal 1 (default) | scalar in the range (0,1)
+  group: ''
+- name: Pressure gain threshold for motor-pump transition
+  summary: Pressure gain at which to initiate smooth transition between motor and pump modes 1e-3 MPa (default) | scalar
+  group: ''
+- name: Angular velocity threshold for motor-pump transition
+  summary: Angular velocity at which to initiate smooth transition between pump and motor modes 100 rpm (default) | scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at component inlet and outlet 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Check if operating beyond the range of supplied tabulated data
+  summary: Simulation warning mode for operating conditions outside range of tabulated data None (default) | Warning | Error
+  group: ''
+- name: Check if operating outside of pump mode
+  summary: Simulation warning mode for operating conditions outside pump mode None (default) | Warning | Error
+  group: ''
+```
 
 ### **Leakage and friction parameterization** — Parameterization of leakage flow rate and friction torque `Analytical` (default) | `Tabulated data - volumetric and mechanical efficiencies` | `Tabulated data - volumetric and mechanical losses` | `Input signal - volumetric and mechanical efficiencies` | `Input signal - volumetric and mechanical losses`
 
@@ -492,7 +605,6 @@ conditions outside the pump mode.
 To enable this parameter, set **Leakage and friction
 parameterization** to `Input signal -
 volumetric and mechanical losses`.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Pumps & Motors

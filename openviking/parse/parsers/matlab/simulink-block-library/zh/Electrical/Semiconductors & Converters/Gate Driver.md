@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Gate Driver
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 控制信号，无量纲物理信号
+  direction: input
+- name: PWM
+  summary: 脉宽调制信号电气
+  direction: input
+- name: REF
+  summary: 浮地零伏参考电气
+  direction: input
+- name: G
+  summary: 栅极连接电气
+  direction: input
+- name: S
+  summary: 源极或发射极连接电气
+  direction: input
+```
 
 ### 输入
 
@@ -53,8 +71,64 @@ chinese_source: worker-translation
 ### **S** — 源极或发射极连接电气
 
 与源极或发射极关联的电气守恒端口。将此端口连接到 MOSFET 模块的源极或 IGBT 模块的发射极。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对电气或物理信号输入端口建模 PS input（默认）| Electrical input ports
+  group: ''
+- name: Logic 1 input value
+  summary: 逻辑 1 的信号值 0.7（默认）
+  group: 输入逻辑
+- name: Logic 0 input value
+  summary: 逻辑 0 的信号值 0.3（默认）
+  group: 输入逻辑
+- name: Logic 1 input voltage
+  summary: 逻辑 1 的电压值 2.0 V（默认）
+  group: 输入逻辑
+- name: Logic 0 input voltage
+  summary: 逻辑 0 的电压值 0.8 V（默认）
+  group: 输入逻辑
+- name: On-state gate-source voltage
+  summary: 导通状态所需输出电压 15 V（默认）
+  group: 输出
+- name: Off-state gate-source voltage
+  summary: 关断状态所需输出电压 0 V（默认）
+  group: 输出
+- name: Propagation delay (logic 0->logic 1)
+  summary: 开通传播延迟 50 ns（默认）
+  group: 时序
+- name: Propagation delay (logic 1->logic 0)
+  summary: 关断传播延迟 50 ns（默认）
+  group: 时序
+- name: Parameterization
+  summary: 选择驱动器参数化方式 Output impedance（默认）| Rise and fall times
+  group: 动态特性
+- name: On-state gate drive resistance
+  summary: 导通状态的栅极驱动电阻 2 Ω（默认）
+  group: 动态特性
+- name: Off-state gate drive resistance
+  summary: 关断状态的栅极驱动电阻 2 Ω（默认）
+  group: 动态特性
+- name: Rise time
+  summary: 驱动器上升时间 20 ns（默认）
+  group: 动态特性
+- name: Fall time
+  summary: 驱动器下降时间 20 ns（默认）
+  group: 动态特性
+- name: Load capacitance for rise and fall times
+  summary: 驱动器负载电容 10 nF（默认）
+  group: 动态特性
+- name: State fault
+  summary: 在栅极驱动器中建模故障状态的选项 Add fault（默认）
+  group: 故障
+- name: Failure mode
+  summary: 故障后驱动器的状态 Fail off（默认）| Fail on
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+```
 
 ### **Modeling option** — 是否对电气或物理信号输入端口建模 `PS input`（默认）| `Electrical input ports`
 
@@ -193,7 +267,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Timed`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

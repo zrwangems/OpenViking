@@ -14,17 +14,21 @@ language: en
 # Random Interleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Number of elements**
 :   The number of elements in the input vector.
 
 **Initial seed**
 :   The initial seed value for the random number generator.
-
 ## Libraries
 
 Not documented in R2025b.

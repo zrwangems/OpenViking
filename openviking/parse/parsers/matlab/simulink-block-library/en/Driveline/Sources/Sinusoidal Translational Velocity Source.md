@@ -14,6 +14,15 @@ language: en
 # Sinusoidal Translational Velocity Source
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base interface mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower interface mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,22 @@ base interface.
 
 Mechanical translational conserving port associated with the
 follower interface.
-
 ## Parameters
+```yaml
+parameters:
+- name: Offset
+  summary: Output average value 0 m/s (default)
+  group: ''
+- name: Sinusoid peak amplitude
+  summary: Output peak amplitude 1 m/s (default)
+  group: ''
+- name: Phase shift
+  summary: Output phase shift 0 deg (default)
+  group: ''
+- name: Frequency
+  summary: Output frequency 1 Hz (default)
+  group: ''
+```
 
 ### **Offset** — Output average value `0` `m/s` (default)
 
@@ -46,7 +69,6 @@ Phase shift of the output sinusoidal translational velocity
 
 Frequency of the output sinusoidal translational velocity. The frequency
 must be greater than or equal to 0.
-
 ## Libraries
 
 Simscape / Driveline / Sources

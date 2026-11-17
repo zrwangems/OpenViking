@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Uncertain State Space
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: 输入信号 标量 | 向量
+  direction: input
+- name: Port_1(Out1)
+  summary: 输出信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -33,8 +42,34 @@ chinese_source: worker-translation
 
 - Demux (Simulink)
 - Bus Selector (Simulink)
-
 ## 参数
+```yaml
+parameters:
+- name: Uncertain system variable (uss)
+  summary: 不确定系统 ss(ureal('a',-5),5,1,1)（默认）| uss 模型 | 可转换为 uss 的模型或元素
+  group: ''
+  block_parameter: USystem
+  type: uss model, model that can be converted to uss
+  default: ss(ureal('a',-5),5,1,1)
+- name: Uncertainty value (struct or [] to use nominal value)
+  summary: 用于替换不确定变量的值 []（默认）| 结构体
+  group: ''
+  block_parameter: UValue
+  type: structure
+  default: '[]'
+- name: Initial states (nominal dynamics)
+  summary: 标称系统的初始状态值 []（默认）| 向量
+  group: ''
+  block_parameter: X0
+  type: 标量、向量
+  default: '[]'
+- name: 初始状态（不确定动态）
+  summary: 不确定动态的初始状态值 [] | 向量
+  group: ''
+  block_parameter: uX0
+  type: 标量、向量
+  default: '[]'
+```
 
 ### **Uncertain system variable (uss)** — 不确定系统 `ss(ureal('a',-5),5,1,1)`（默认）| `uss` 模型 | 可转换为 `uss` 的模型或元素
 
@@ -110,7 +145,6 @@ chinese_source: worker-translation
 | **模块参数：** `uX0` |
 | **类型：** 标量、向量 |
 | **默认值：** `[]` |
-
 ## 所属库
 
 Robust Control Toolbox

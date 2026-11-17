@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # LPC to/from Cepstral Coefficients
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: LPC 系数向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: CC
+  summary: 倒谱系数向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: P
+  summary: 预测误差功率标量 | 向量
+  direction: input
+  data_types: single | double
+- name: CC
+  summary: 倒谱系数向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: P
+  summary: 预测误差功率标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -70,8 +93,28 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output P**。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Type of conversion
+  summary: 转换类型 LPCs to cepstral coefficients（默认）| Cepstral coefficients to LPCs
+  group: ''
+- name: Specify P
+  summary: 指定预测误差功率 *P* 的方法 assume P equals 1（默认）| via input port
+  group: ''
+- name: Output P
+  summary: 输出预测误差功率 *P* off（默认）| on
+  group: ''
+- name: Output size same as input size
+  summary: 输出大小与输入大小相同 off（默认）| on
+  group: ''
+- name: Length of output cepstral coefficients vector
+  summary: 输出倒谱系数向量的长度 10（默认）| 正整数
+  group: ''
+- name: If first input value is not 1
+  summary: 当第一个输入值不为 1 时采取的操作 Replace it with 1（默认）| Normalize | Normalize and warn | Error
+  group: ''
+```
 
 ### **Type of conversion** — 转换类型 `LPCs to cepstral coefficients`（默认）| `Cepstral coefficients to LPCs`
 
@@ -129,7 +172,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Type of conversion** 设置为 `LPCs to cepstral coefficients`。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Linear Prediction

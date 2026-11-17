@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Modbus Client Write
 
 ## 端口
+```yaml
+ports:
+- name: Reg_*x*
+  summary: 寄存器值向量 double | double 数组
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -27,8 +34,30 @@ chinese_source: worker-translation
 要启用此端口，请在 **Registers** 参数中指定一个或多个寄存器。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Client
+  summary: 选择 Modbus 客户端 下拉列表
+  group: ''
+  block_parameter: ClientList
+  values: Modbus 客户端名称
+- name: Server ID
+  summary: 服务器地址 1（默认）| [0, 255] 范围内的非负整数
+  group: ''
+  block_parameter: ServerId
+  values: 1（默认）| [0, 255] 范围内的非负整数
+- name: Registers
+  summary: Modbus 寄存器列表表格
+  group: ''
+  block_parameter: RegisterTable
+  values: 寄存器名称和信息
+- name: Block sample time
+  summary: 写操作的采样时间 -1（默认）| 非负标量
+  group: ''
+  block_parameter: SampleTime
+  values: -1（默认）| 非负标量
+```
 
 ### **Client** — 选择 Modbus 客户端 下拉列表
 
@@ -114,7 +143,6 @@ chinese_source: worker-translation
 | **参数：** | `SampleTime` |
 | **值：** | -1（默认）| 非负标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Industrial Communication Toolbox / Modbus

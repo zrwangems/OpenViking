@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Ideal Force Source
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 控制信号，N 物理信号
+  direction: input
+- name: R
+  summary: 杆机械平移
+  direction: input
+- name: C
+  summary: 壳体机械平移
+  direction: input
+```
 
 ### 输入
 
@@ -30,11 +42,12 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 与源参考点（壳体）关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Mechanical Sources

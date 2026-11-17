@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Resistor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: H
+  summary: 电阻热质量热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +45,98 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Resistance
+  summary: 标称电阻值 1 Ohm（默认）
+  group: 主要
+- name: Tolerance (%)
+  summary: 电阻容差，以百分比表示 5（默认）
+  group: 主要
+- name: Tolerance application
+  summary: 选择仿真期间如何应用容差 None — use nominal value（默认）| Random tolerance | Apply maximum tolerance value | Apply minimum tolerance
+    value
+  group: 主要
+- name: Tolerance distribution
+  summary: 选择分布类型 Uniform（默认）| Gaussian
+  group: 主要
+- name: Number of standard deviations for quoted tolerance
+  summary: 用于计算高斯随机数 4（默认）
+  group: 主要
+- name: Enable operating limits
+  summary: 选择 Yes 以在超出工作限值时启用报告 No（默认）| Yes
+  group: 工作限值
+- name: Reporting when operating limits exceeded
+  summary: 选择报告方法 Warn（默认）| Error
+  group: 工作限值
+- name: Maximum working voltage
+  summary: 模块正常工作所允许的最大电压 100 V（默认）
+  group: 工作限值
+- name: Power rating
+  summary: 模块正常工作所允许的最大功率 1 W（默认）
+  group: 工作限值
+- name: Temperature below which full power rating is available
+  summary: 仍适用满功率额定值的最高温度 70 degC（默认）
+  group: 工作限值
+- name: Temperature above which power rating is reduced to zero
+  summary: 功率额定值变为 0 的温度 155 degC（默认）
+  group: 工作限值
+- name: Operating temperature range, [Tmin Tmax]
+  summary: 模块正常工作所允许的最低和最高温度值 [-50 150] degC（默认）
+  group: 工作限值
+- name: Noise mode
+  summary: 选择是否对热噪声电流建模 Disabled（默认）| Enabled
+  group: 噪声
+- name: Sample time
+  summary: 噪声源的采样速率 1e-3 s（默认）
+  group: 噪声
+- name: Repeatability
+  summary: 选择噪声控制选项 Not repeatable（默认）| Repeatable | Specify seed
+  group: 噪声
+- name: Auto-generated seed used for repeatable option
+  summary: 自动生成的随机数种子 随机实数
+  group: 噪声
+- name: Seed
+  summary: 随机数种子 0（默认）
+  group: 噪声
+- name: Device simulation temperature
+  summary: 仿真开始时电阻的温度 25 degC（默认）
+  group: 噪声
+- name: Resistance temperature coefficient
+  summary: 指定电阻值如何随温度变化 0.00393 1/K（默认）
+  group: 热
+- name: Measurement temperature
+  summary: 对应于标称电阻的温度 25 degC（默认）
+  group: 热
+- name: Thermal mass
+  summary: 与端口 H 关联的热质量 100 J/K（默认）
+  group: 热
+- name: Resistance fault
+  summary: 添加电阻故障的选项 Add fault（默认）
+  group: 故障
+- name: Faulted resistance
+  summary: 模块处于故障状态时的电阻 inf Ohm（默认）| 正标量
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible current
+  summary: 故障转换的电流阈值 1 A（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding maximum permissible current
+  summary: 电流超过阈值的最长时间 1 s（默认）| 非负标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -288,7 +390,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请单击 **Resistance fault** 参数的 **Add fault** 超链接，并将 **Trigger type** 设置为 `Additional triggers`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Binary-Input RS Encoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 消息二进制列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | ufix(1)
+- name: Out
+  summary: Reed-Solomon 码字二进制列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | ufix(1)
+```
 
 ### 输入
 
@@ -59,8 +70,31 @@ length K (symbols)**，*S* 是
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `ufix(1)`
 
 有关更多信息，请参阅 Supported Data Types。
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length N (symbols)
+  summary: 码字长度 7（默认）| 整数
+  group: ''
+- name: Message length K (symbols)
+  summary: 消息字长度 3（默认）| 整数
+  group: ''
+- name: Shortened message length S (symbols)
+  summary: 缩短的消息字长度 3（默认）| 整数
+  group: ''
+- name: Generator polynomial
+  summary: 生成多项式 rsgenpoly(7, 3, [], [], 'double')（默认）| 多项式字符向量 | 二进制行向量 | 二进制 Galois 行向量
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 'X^3 + X + 1'（默认）| 多项式字符向量 | 二进制行向量
+  group: ''
+- name: Puncture vector
+  summary: 删余向量 [ones(2,1); zeros(2,1)]（默认）| 二进制列向量
+  group: ''
+- name: Output data type
+  summary: 模块的输出类型 Same as input（默认）| boolean | double
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® Toolstrip 中，在 **Simulation** 选项卡上，在
@@ -155,7 +189,6 @@ code**。
 模块的输出类型，指定为 `Same as
 input`、`boolean` 或
 `double`。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

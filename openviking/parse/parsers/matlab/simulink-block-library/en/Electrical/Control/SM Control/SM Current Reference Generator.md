@@ -14,6 +14,33 @@ language: en
 # SM Current Reference Generator
 
 ## Ports
+```yaml
+ports:
+- name: TqRef
+  summary: Reference torque, N\*m scalar
+  direction: input
+  data_types: single | double
+- name: wMechanical
+  summary: Rotor mechanical speed, rad/s scalar
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: DC-link voltage, V scalar
+  direction: input
+  data_types: single | double
+- name: idqfRef
+  summary: Reference currents, A vector
+  direction: output
+  data_types: single | double
+- name: TqRefSat
+  summary: Reference torque, N\*m scalar
+  direction: output
+  data_types: single | double
+- name: TqLim
+  summary: Torque limit, N\*m scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -60,8 +87,49 @@ Torque limit imposed by both the electrical and mechanical constraints
 of the system.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal dc-link voltage (V)
+  summary: Rated DC voltage 300V (default) | positive number
+  group: ''
+- name: Maximum power (W)
+  summary: Maximum power 30000W (default) | positive number
+  group: ''
+- name: Maximum torque (N\*m)
+  summary: Maximum torque 250N*m (default) | positive number
+  group: ''
+- name: Maximum field current (A)
+  summary: Maximum field current 25A (default) | positive number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | -1 or positive number
+  group: ''
+- name: Current references
+  summary: Current reference strategy Zero d-axis control (default) | Lookup-table based
+  group: ''
+- name: Torque constant (N\*m/A)
+  summary: Torque constant 0.0375 (default) | positive number
+  group: ''
+- name: Mechanical speed vector, wMechanical (rpm)
+  summary: Rotor speed lookup vector [0, 3000] (default) | positive monotonically increasing vector
+  group: ''
+- name: Torque reference vector, TqRef (N\*m)
+  summary: Torque reference lookup vector [-100, 0, 100] (default) | positive monotonically increasing vector
+  group: ''
+- name: DC-link voltage vector, Vdc (V)
+  summary: DC-link voltage lookup vector [300, 350] (default) | positive monotonically increasing vector
+  group: ''
+- name: D-axis current reference matrix, id(wMechanical,TqRef,Vdc), (A)
+  summary: Reference d-axis current values zeros(2,3,2) (default) | real matrix
+  group: ''
+- name: Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc), (A)
+  summary: Reference q-axis current values zeros(2,3,2) (default) | real matrix
+  group: ''
+- name: Field current reference matrix, iq(wMechanical,TqRef,Vdc), (A)
+  summary: Reference field current values zeros(2,3,2) (default) | real matrix
+  group: ''
+```
 
 #### General Parameters
 
@@ -124,7 +192,6 @@ Quadrature-axis current reference lookup data.
 ### **Field current reference matrix, iq(wMechanical,TqRef,Vdc), (A)** — Reference field current values `zeros(2,3,2)` (default) | real matrix
 
 Field current reference lookup data.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

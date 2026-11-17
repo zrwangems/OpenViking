@@ -14,6 +14,27 @@ language: en
 # Battery Capacity Estimator (Least Squares, Variable Weights)
 
 ## Ports
+```yaml
+ports:
+- name: Current
+  summary: Battery current, A scalar | vector
+  direction: input
+- name: CellSOC
+  summary: Cell state of charge, unitless scalar | vector
+  direction: input
+- name: VarianceSOC
+  summary: Variance of SOC, unitless positive scalar | vector of positive values
+  direction: input
+- name: VarianceCurrent
+  summary: Variance of current measurement, unitless positive scalar | vector of positive values
+  direction: input
+- name: InitialCellAH
+  summary: Initial cell capacity, A\*Hr scalar | vector
+  direction: input
+- name: CellAH
+  summary: Estimated cell capacity, A\*Hr scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -59,8 +80,32 @@ to the size of the **CellSOC**, **VarianceSOC**, and
 Estimated cell capacity of the battery, in ampere-hours, returned as a scalar or a
 vector. The size of this output port is equal to the size of the
 **InitialCellAH** input port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify Current input as cell current(s)
+  summary: Option to specify current input port as vector off (default) | on
+  group: ''
+- name: Least square algorithm
+  summary: Least-square algorithm Ordinary least squares (default) | Recursive total least squares | Approximate total least
+    squares
+  group: ''
+- name: SOC change detection threshold
+  summary: Threshold to detect change in SOC 0.03 (default) | scalar in the range (0,1)
+  group: ''
+- name: Forgetting factor, gamma
+  summary: Forgetting factor 0.9 (default) | scalar in the range (0,1]
+  group: ''
+- name: Scaling factor k in VarianceX=k^2\*VarianceY
+  summary: Scaling factor *k* 10 (default) | positive scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time 1 (default) | 0 | -1 | positive integer
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -134,7 +179,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Estimators

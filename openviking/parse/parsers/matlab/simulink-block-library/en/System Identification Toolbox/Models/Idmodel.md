@@ -14,6 +14,17 @@ language: en
 # Idmodel
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: Simulation input data scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1(Out1)
+  summary: Simulated output scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -42,8 +53,23 @@ single-output model and an *Ny*-element vector for a
 model with *Ny* outputs.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Identified model
+  summary: Linear model to be simulated idss(-1,1,1,0,'Ts',1) (default) | idss object | idgrey object | idpoly object | idtf
+    object | idproc object
+  group: ''
+- name: Initial conditions
+  summary: Initial conditions 0 (default) | numeric vector | initialCondition object
+  group: ''
+- name: Add noise
+  summary: Add noise to simulated output on (default) | off
+  group: ''
+- name: Noise seed(s)
+  summary: Add same noise to output for multiple simulations [] (default) | nonnegative integer | vector
+  group: ''
+```
 
 ### **Identified model** — Linear model to be simulated `idss(-1,1,1,0,'Ts',1)` (default) | `idss` object | `idgrey` object | `idpoly` object | `idtf` object | `idproc` object
 
@@ -137,7 +163,6 @@ For random restarts that vary from one simulation to another, specify
 
 To enable this parameter, select `Add
 noise`.
-
 ## Libraries
 
 System Identification Toolbox / Models

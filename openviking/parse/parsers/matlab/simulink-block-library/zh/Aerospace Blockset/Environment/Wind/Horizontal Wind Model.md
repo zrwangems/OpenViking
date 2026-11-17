@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Horizontal Wind Model
 
 ## 端口
+```yaml
+ports:
+- name: DCM
+  summary: 方向余弦矩阵 3×3 矩阵
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: 风速 1×3 向量
+  direction: input
+  data_types: double
+- name: θwind
+  summary: 风向 标量
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: 风速 3×3 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -50,8 +69,45 @@ chinese_source: worker-translation
 风速，返回为与 **DCM** 输入相同的机体坐标系参考下的三元素信号，采用指定单位。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (Velocity in kts)'' | ''English (Velocity in ft/s)'''
+  default: '''Metric (MKS)'''
+- name: Wind speed source
+  summary: 风速源 Internal（默认）| External
+  group: ''
+  block_parameter: Vw_source
+  type: 字符向量
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Wind speed at altitude (m/s)
+  summary: 风速 15（默认）| 标量
+  group: ''
+  block_parameter: Vwind
+  type: 字符向量
+  values: 标量
+  default: '''15'''
+- name: Wind direction source
+  summary: 风向源 Internal（默认）| External
+  group: ''
+  block_parameter: W_source
+  type: 字符向量
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Wind direction at altitude (degrees clockwise from north)
+  summary: 风向 0（默认）
+  group: ''
+  block_parameter: Wdeg
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+```
 
 ### **Units** — 输入和输出单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -151,7 +207,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 |
 | **默认值**：`'0'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Wind

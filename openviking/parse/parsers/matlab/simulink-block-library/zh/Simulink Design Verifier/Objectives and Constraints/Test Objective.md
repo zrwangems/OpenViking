@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Test Objective
 
 ## 端口
+```yaml
+ports:
+- name: Values
+  summary: 输入信号 标量 | 元胞数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -23,8 +31,23 @@ chinese_source: worker-translation
 Test Objective 模块接受 Simulink 软件支持的所有内置数据类型的信号。有关 Simulink 软件支持的数据类型的讨论，请参阅 Data Types Supported by Simulink。该模块不支持复数输入信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable
+  summary: 指定模块是否启用 on（默认）| off
+  group: ''
+- name: Values
+  summary: 指定测试目标 标量 | 元胞数组
+  group: ''
+  values: 参数
+- name: Display values
+  summary: 显示 values 参数的内容 on（默认）| off
+  group: ''
+- name: Pass through style
+  summary: 指定模块是否在 Simulink 编辑器中显示输出端口 on（默认）| off
+  group: ''
+```
 
 ### **Enable** — 指定模块是否启用 `on`（默认）| `off`
 
@@ -114,7 +137,6 @@ Sldv.Interval([-5 -5],[5 2],'()')
 **Pass through style (show Outport)：选中**
 
 **Pass through style (show Outport)：未选中**
-
 ## 所属库
 
 Simulink Design Verifier / Objectives and Constraints

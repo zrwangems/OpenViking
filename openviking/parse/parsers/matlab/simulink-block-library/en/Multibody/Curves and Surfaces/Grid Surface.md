@@ -14,6 +14,15 @@ language: en
 # Grid Surface
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Local reference frame frame
+  direction: unspecified
+- name: G
+  summary: Geometry geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -29,8 +38,43 @@ Geometry that represents the grid surface defined by this block. Connect this po
 Spatial
 Contact Force block to model contacts with supported
 geometries.
-
 ## Parameters
+```yaml
+parameters:
+- name: X Grid Vector
+  summary: Coordinates in *x*-direction [0 1 2 3] m (default) | *1-by-m* vector
+  group: ''
+- name: Y Grid Vector
+  summary: Coordinates in *y*-direction [0 1 2 3] m (default) | *1-by-n* vector
+  group: ''
+- name: Z Heights
+  summary: Elevations of grid points [0 0 .5 .5; 0 0 .5 .5; 0 0 0 0; 0 0 0 0] m (default) | *m-by-n* matrix
+  group: ''
+- name: Type
+  summary: Visual representation of grid surface From Geometry (default) | None
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: Graphic color [0.5 0.5 0.5] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Highlight color [0.5 0.5 0.5 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Ambient Color
+  summary: Shadow color [0.15 0.15 0.15 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar in the range of 1 to 128
+  group: Graphic
+```
 
 ### **X Grid Vector** — Coordinates in *x*-direction [0 1 2 3] `m` (default) | *1-by-m* vector
 
@@ -171,7 +215,6 @@ To enable this parameter, set:
    Geometry`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Curves and Surfaces

@@ -14,10 +14,15 @@ language: en
 # C2000 Saturate IQN
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Upper Limit**
 :   Maximum real-world value to which to saturate
@@ -30,7 +35,6 @@ Not documented in R2025b.
 
 **Lower Limit**
 :   Minimum real-world value to which to saturate
-
 ## Libraries
 
 Not documented in R2025b.

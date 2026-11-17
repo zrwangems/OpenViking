@@ -14,6 +14,17 @@ language: en
 # Sample-Rate Converter
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Resampled signal scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -101,8 +112,37 @@ box.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: Sample rate of input signal in Hz 48e3 (default) | positive scalar
+  group: ''
+- name: Sample rate of output signal (Hz)
+  summary: Sample rate of output signal in Hz 96e3 (default) | positive scalar
+  group: ''
+- name: Tolerance for output sample rate
+  summary: Maximum tolerance for output sample rate 0 (default) | positive scalar in the range [0,0.5]
+  group: ''
+- name: Two-sided bandwidth of interest (Hz)
+  summary: Two-sided bandwidth of interest in Hz 40e3 (default) | positive scalar
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: Minimum attenuation for aliased components in dB 80 (default) | positive scalar
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: ''
+- name: View Filter Response
+  summary: View Filter Response button
+  group: ''
+- name: View Info
+  summary: Display information about filter button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — Sample rate of input signal in Hz `48e3` (default) | positive scalar
 
@@ -202,7 +242,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations DSP System Toolbox / Filtering / Multirate Filters

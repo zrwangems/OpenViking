@@ -14,6 +14,21 @@ language: en
 # Ring-Planet
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Planet gear carrier rotational mechanical
+  direction: conserving
+- name: R
+  summary: Ring gear rotational mechanical
+  direction: conserving
+- name: P
+  summary: Planet gear rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +56,35 @@ transmission efficiency by altering the gear temperatures.
 
 To enable this port, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ring (R) to planet (P) teeth ratio (NR/NP)
+  summary: Ring to planet gear rotation ratio 2 (default) | scalar greater than 1
+  group: Main
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Ordinary efficiency
+  summary: Torque transfer efficiency 0.98 (default) | scalar
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Efficiency
+  summary: Gear efficiency [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Planet-carrier power threshold
+  summary: Minimum efficiency power threshold for the planet-carrier gear coupling 0.001 W (default) | scalar
+  group: Meshing Losses
+- name: Planet-carrier viscous friction coefficient
+  summary: Gear viscous friction 0 N*m/(rad/s) (default) | scalar
+  group: Viscous Losses
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -155,7 +197,6 @@ change.
 To enable this parameter, set **Friction model** to
 `Temperature-dependent
 efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears / Planetary Subcomponents

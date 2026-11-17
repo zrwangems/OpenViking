@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Binary File Writer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要写入的数据 列向量 | 行向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### 输入
 
@@ -26,8 +33,19 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 文件名 'Untitled.bin'（默认）| 字符向量
+  group: ''
+- name: File header
+  summary: 文件头大小 struct([])（默认）| 结构体
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **File name** — 文件名 `'Untitled.bin'`（默认）| 字符向量
 
@@ -43,7 +61,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Sinks

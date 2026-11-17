@@ -14,6 +14,15 @@ language: en
 # Crystal
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,43 @@ voltage.
 
 Electrical conserving port associated with the crystal negative
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Block parameterization Series resonance data (default) | Parallel resonance data | Equivalent circuit parameters
+  group: ''
+- name: Series resonance, fs
+  summary: Crystal series resonant frequency 32.764 kHz (default)
+  group: ''
+- name: Parallel resonance, fa
+  summary: Crystal parallel resonant frequency 32.768 kHz (default)
+  group: ''
+- name: Motional inductance, L1
+  summary: Motional inductance 6742 H (default)
+  group: ''
+- name: R1 parameterization
+  summary: Series resistance parameterization Equivalent series resistance R1 (default) | Quality factor Q
+  group: ''
+- name: Quality factor, Q
+  summary: Crystal quality factor 90000 (default)
+  group: ''
+- name: Equivalent series resistance, R1
+  summary: Motional damping 15 kOhm (default)
+  group: ''
+- name: Motional capacitance, C1
+  summary: Motional capacitance 0.0035 pF (default)
+  group: ''
+- name: Load capacitance, CL
+  summary: Load capacitance 12.5 pF (default)
+  group: ''
+- name: Shunt capacitance, C0
+  summary: Shunt capacitance 1.6 pF (default) | positive scalar
+  group: ''
+- name: Initial voltage
+  summary: Initial output voltage 0 V (default)
+  group: ''
+```
 
 ### **Parameterization** — Block parameterization `Series resonance data` (default) | `Parallel resonance data` | `Equivalent circuit parameters`
 
@@ -183,7 +227,6 @@ connections.
 
 The output voltage at the start of the simulation when the output current
 is zero.
-
 ## Libraries
 
 Simscape / Electrical / Passive

@@ -14,6 +14,17 @@ language: en
 # Integrator with Wrapped State (Discrete or Continuous)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Integrator input vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Integrator output vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -29,8 +40,22 @@ Integrator input.
 Integrator output.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Wrapped state upper limit
+  summary: State upper limit 2*pi (default) | real number
+  group: ''
+- name: Wrapped state lower limit
+  summary: State lower limit 0 (default) | real number
+  group: ''
+- name: Initial condition
+  summary: State initial value 0 (default) | real number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Wrapped state upper limit** — State upper limit `2*pi` (default) | real number
 
@@ -58,7 +83,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

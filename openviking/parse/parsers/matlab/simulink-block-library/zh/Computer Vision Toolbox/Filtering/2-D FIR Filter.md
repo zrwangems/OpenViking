@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # 2-D FIR Filter
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: H
+  summary: 滤波器系数矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: HV
+  summary: 垂直滤波器系数向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: HH
+  summary: 水平滤波器系数向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: PVal
+  summary: 填充值标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Output
+  summary: 滤波后的输出图像矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -85,8 +112,43 @@ chinese_source: worker-translation
 滤波后的输出图像，返回为与输入图像具有相同数据类型的数值矩阵。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Separable filter coefficients
+  summary: 滤波器系数是否可分离 off（默认）| on
+  group: 主要
+- name: Coefficient source
+  summary: 滤波器系数的来源 Specify via dialog（默认）| Input port
+  group: 主要
+- name: Coefficients
+  summary: 滤波器系数 [1 0; 0 -1]（默认）| 数值矩阵
+  group: 主要
+- name: Vertical coefficients (across height)
+  summary: 垂直滤波器系数 [4 0]（默认）| 数值向量
+  group: 主要
+- name: Horizontal coefficients (across height)
+  summary: 水平滤波器系数 [4 0]（默认）| 数值向量
+  group: 主要
+- name: Output size
+  summary: 滤波后图像的大小 Full（默认）| Same as input port I | Valid
+  group: 主要
+- name: Padding options
+  summary: 填充方法 Constant（默认）| Replicate | Symmetric | Circular
+  group: 主要
+- name: Pad value source
+  summary: 填充值的来源 Specify via dialog（默认）| Input port
+  group: 主要
+- name: Pad value
+  summary: 填充值 0（默认）| 数值标量
+  group: 主要
+- name: Filtering based on
+  summary: 滤波方法 Convolution（默认）| Correlation
+  group: 主要
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主要
 
@@ -192,7 +254,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Filtering

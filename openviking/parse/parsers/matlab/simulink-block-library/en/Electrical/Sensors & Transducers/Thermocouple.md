@@ -14,6 +14,18 @@ language: en
 # Thermocouple
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Thermal port thermal
+  direction: conserving
+- name: +
+  summary: Positive port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -30,8 +42,31 @@ port.
 
 Electrical conserving port associated with the thermocouple negative
 port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermocouple type
+  summary: Thermocouple type Type B, E, J, K (t<=0 degC), N, R, S or T (default) | Type K (t>=0 degC)
+  group: Electrical
+- name: Coefficients [c0 c1 ... cn]
+  summary: Coefficients [c0 c1 ... cn] [0, 0, 0, 0, 0, 0, 0, 0, 0] (default)
+  group: Electrical
+- name: Coefficients [a0 a1 a2]
+  summary: Coefficients [a0 a1 a2] [0, 0, 0] (default)
+  group: Electrical
+- name: Reference temperature
+  summary: Reference temperature 0 degC (default)
+  group: Thermal
+- name: Thermal time constant
+  summary: Thermal time constant 1 s (default)
+  group: Thermal
+- name: Dissipation factor
+  summary: Dissipation factor 1e-3 W/K (default)
+  group: Thermal
+- name: Initial temperature
+  summary: Initial temperature 25 degC (default)
+  group: Thermal
+```
 
 ### Electrical
 
@@ -94,7 +129,6 @@ K.
 ### **Initial temperature** — Initial temperature `25` `degC` (default)
 
 Temperature of the thermocouple at the start of the simulation.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

@@ -14,6 +14,30 @@ language: en
 # DPDT Switch
 
 ## Ports
+```yaml
+ports:
+- name: vT
+  summary: Switch control port physical signal
+  direction: input
+- name: p1
+  summary: Electrical port electrical
+  direction: conserving
+- name: p2
+  summary: Electrical port electrical
+  direction: conserving
+- name: n11
+  summary: Electrical port electrical
+  direction: conserving
+- name: n12
+  summary: Electrical port electrical
+  direction: conserving
+- name: n21
+  summary: Electrical port electrical
+  direction: conserving
+- name: n22
+  summary: Electrical port electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -46,8 +70,34 @@ Electrical conserving port.
 ### **n22** — Electrical port electrical
 
 Electrical conserving port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Closed resistance
+  summary: Closed resistance 0.01 Ohm (default)
+  group: Main
+- name: Open conductance
+  summary: Open conductance 1e-6 S (default)
+  group: Main
+- name: Threshold
+  summary: Threshold voltage 0.5 V (default)
+  group: Main
+- name: Threshold width
+  summary: Threshold width 0 V (default)
+  group: Main
+- name: Model dynamics
+  summary: Model dynamics No dynamics (default) | Model turn-on and turn-off times
+  group: Dynamics
+- name: Turn-on delay
+  summary: Turn-on delay 1e-3 (default) | positive scalar
+  group: Dynamics
+- name: Turn-off delay
+  summary: Turn-off delay 1e-3 (default) | positive scalar
+  group: Dynamics
+- name: Initial input value, vT
+  summary: Initial input value, *vT* 0 (default)
+  group: Dynamics
+```
 
 ### Main
 
@@ -132,7 +182,6 @@ This parameter is visible only when you
 select `Model turn-on and turn-off
 times` for the **Model
 dynamics** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers

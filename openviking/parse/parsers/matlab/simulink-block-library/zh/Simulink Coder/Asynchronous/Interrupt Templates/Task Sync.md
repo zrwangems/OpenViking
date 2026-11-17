@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Task Sync
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 来自中断模块调用的调用
+  direction: input
+- name: Output
+  summary: 对函数调用子系统的调用
+  direction: input
+```
 
 ### 输入
 
@@ -26,8 +35,28 @@ chinese_source: worker-translation
 ### **Output** — 对函数调用子系统的调用
 
 对函数调用子系统的调用。
-
 ## 参数
+```yaml
+parameters:
+- name: Task name (10 characters or less)
+  summary: 任务函数名称 Task0（默认）| 字符向量
+  group: ''
+- name: Simulink task priority (0–255)
+  summary: RTOS 任务优先级 50（默认）| 整数
+  group: ''
+- name: Stack size (bytes)
+  summary: 任务堆栈的最大大小 1024（默认）| 整数
+  group: ''
+- name: Synchronize the data transfer of this task with the caller task
+  summary: 选择同步 off（默认）| on
+  group: ''
+- name: Timer resolution (seconds)
+  summary: 模块定时器的分辨率 1/60（默认）
+  group: ''
+- name: Timer size
+  summary: 存储时钟节拍的位数 32bits（默认）| 16bits | 8bits | auto
+  group: ''
+```
 
 ### **Task name (10 characters or less)** — 任务函数名称 `Task0`（默认）| 字符向量
 
@@ -69,7 +98,6 @@ Simulink® 软件不模拟异步任务行为。异步任务的任务优先级仅
 默认情况下，定时器值存储为 32 位整数。当 **Timer size** 为 `auto` 时，您可以通过设置 **Application lifespan (days)** 参数来间接控制计数器的字长。如果将 **Application lifespan (days)** 设置为对于代码生成器而言过大而无法作为指定分辨率的 32 位整数处理的值，它将使用第二个 32 位整数来处理溢出。
 
 有关详细信息，请参见 Optimize Memory Usage and Prevent Overflows for Time Counters。另请参见 Timers in Asynchronous Tasks。
-
 ## 所属库
 
 Simulink Coder / Asynchronous / Interrupt Templates

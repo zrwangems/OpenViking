@@ -14,6 +14,25 @@ language: en
 # ACIM Control Reference
 
 ## Ports
+```yaml
+ports:
+- name: Tref
+  summary: Reference torque value scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: Mechanical speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Isdref
+  summary: Reference *d*-axis stator current scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Isqref
+  summary: Reference *q*-axis stator current scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -43,8 +62,40 @@ Reference *d*-axis stator current value.
 Reference *q*-axis stator current value.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 2 (default) | scalar
+  group: ''
+- name: Rotor leakage inductance (H)
+  summary: Leakage inductance of rotor winding 6.81e-3 (default) | scalar
+  group: ''
+- name: Magnetizing Inductance (H)
+  summary: Magnetizing inductance of induction motor 30e-3 (default) | scalar
+  group: ''
+- name: Rated Flux (Wb)
+  summary: Rated flux of motor 38.2e-3 (default) | scalar
+  group: ''
+- name: Rated Speed (rpm)
+  summary: Rated speed of motor 1150 (default) | scalar
+  group: ''
+- name: Synchronous Speed (rpm)
+  summary: Synchronous speed of motor 1500 (default) | scalar
+  group: ''
+- name: Max current (A)
+  summary: Maximum phase current limit for motor (amperes) 3 (default) | scalar
+  group: ''
+- name: Input units
+  summary: Unit of input values Per-Unit (PU) (default) | SI Units
+  group: ''
+- name: Base Current (A)
+  summary: Base current for per-unit system 5.3611 (default) | scalar
+  group: ''
+- name: Base torque (Nm)
+  summary: Base torque for per-unit system 0.50072 (default) | scalar
+  group: ''
+```
 
 ### **Number of pole pairs** — Number of pole pairs available in motor `2` (default) | scalar
 
@@ -99,7 +150,6 @@ using other parameters.
 
 To display this parameter, set **Input units** to
 `Per-Unit (PU)`.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # Binary Cyclic Decoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Codeword length N**
 :   码字长度 *N*，同时也是输入向量长度。
 
 **Message length K, or generator polynomial**
 :   消息长度（同时也是输入向量长度）、多项式字符向量，或表示该码生成多项式的二进制向量。
-
 ## 所属库
 
 R2025b 中未记录。

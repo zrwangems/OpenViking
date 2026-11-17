@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Custom Hydraulic Fluid
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有一个液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Fluid density**
 :   工作流体的密度。默认值为 850 kg/m^3。
@@ -39,7 +44,6 @@ chinese_source: worker-translation
 
     - `Error` — 如果压力降至绝对零以下，仿真停止并收到错误消息。这是默认值。
     - `Warning` — 如果压力降至绝对零以下，会收到警告但仿真继续。在建模极端情况下可能发生气蚀的系统时使用此选项。
-
 ## 所属库
 
 R2025b 中未记录。

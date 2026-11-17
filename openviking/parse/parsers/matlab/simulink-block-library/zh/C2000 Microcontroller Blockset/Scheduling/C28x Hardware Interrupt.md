@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # C28x Hardware Interrupt
 
 ## 端口
+```yaml
+ports:
+- name: SimIRQ
+  summary: 仿真中断输入端口 标量
+  direction: input
+  data_types: Boolean
+- name: IRQ
+  summary: 生成中断请求 Scalar
+  direction: output
+```
 
 ### 输入
 
@@ -32,8 +42,25 @@ chinese_source: worker-translation
 ### **IRQ** — 生成中断请求 `Scalar`
 
 该模块的输出是一个函数调用。函数调用线的大小等于该模块设置为处理的中断数量。
-
 ## 参数
+```yaml
+parameters:
+- name: CPU interrupt number
+  summary: 指定 CPU 中断向量 [1 1]（默认）| [1, 8] 范围内的整数
+  group: ''
+- name: PIE interrupt number
+  summary: 指定 PIE 中断向量 [1 2]（默认）
+  group: ''
+- name: Simulink task priorities
+  summary: 提供与异步中断关联的任务的相对重要性 [30 26]（默认）
+  group: ''
+- name: 'Preemption flags: preemptable-1, non-preemptable-0'
+  summary: 指定中断的抢占标志向量 0 0（默认）
+  group: ''
+- name: Enable simulation input
+  summary: 启用仿真端口以阻止 off（默认）| on
+  group: ''
+```
 
 ### **CPU interrupt number** — 指定 CPU 中断向量 `[1 1]`（默认）| [1, 8] 范围内的整数
 
@@ -254,7 +281,6 @@ c281x 处理器的 PIE 和 CPU 中断编号为：
 | 10 | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved |
 | 11 | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved |
 | 12 | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved |
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Scheduling

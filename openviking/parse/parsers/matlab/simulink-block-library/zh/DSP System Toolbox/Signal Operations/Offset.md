@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Offset
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 第一个输入数据 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: O1
+  summary: 第一个偏移值 整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: In2
+  summary: 第二个输入数据 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: O2
+  summary: 第二个偏移值 整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Out1
+  summary: 第一个截断数据 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Out2
+  summary: 第二个截断数据 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -74,8 +101,25 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 指定丢弃哪些值以及保留哪些值 Remove beginning samples（默认）| Remove ending samples | Keep beginning samples | Keep ending samples
+  group: ''
+- name: Number of input data-offset pairs
+  summary: 输入数据-偏移对的数量 2（默认）| 正整数
+  group: ''
+- name: Output port length
+  summary: 指定输出端口长度的模式 Same as input（默认）| User-defined
+  group: ''
+- name: Output length
+  summary: 输出向量的所需长度 9（默认）| 正整数
+  group: ''
+- name: Action for out of range offset value
+  summary: 偏移值超出范围时的操作 Clip（默认）| Clip and warn | Error
+  group: ''
+```
 
 ### **Mode** — 指定丢弃哪些值以及保留哪些值 `Remove beginning samples`（默认）| `Remove ending samples` | `Keep beginning samples` | `Keep ending samples`
 
@@ -111,7 +155,6 @@ chinese_source: worker-translation
 - `Clip` —— 小于 0 的偏移值设置为 0，大于 *N* 的偏移值设置为 *N*。
 - `Clip and warn` —— 小于 0 的偏移值设置为 0，大于 *N* 的偏移值设置为 *N*。此外，模块会显示警告消息。
 - `Error` —— 当偏移值超出范围时，仿真停止并且模块显示错误。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

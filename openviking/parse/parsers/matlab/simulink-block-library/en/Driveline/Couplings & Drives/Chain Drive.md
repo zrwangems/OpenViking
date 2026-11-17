@@ -14,6 +14,15 @@ language: en
 # Chain Drive
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Sprocket A mechanical rotational
+  direction: conserving
+- name: B
+  summary: Sprocket B mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,41 @@ sprocket A.
 
 Conserving rotational port associated with
 sprocket B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Chain model
+  summary: Chain compliance and backlash model Ideal - no chain compliance or backlash (default) | Model chain compliance
+    and backlash
+  group: Geometry
+- name: Sprocket A pitch radius
+  summary: Sprocket *A* pitch radius 80 mm (default) | scalar
+  group: Geometry
+- name: Sprocket B pitch radius
+  summary: Sprocket *B* pitch radius 40 mm (default) | scalar
+  group: Geometry
+- name: Chain slack length
+  summary: Maximum slack length 50 mm (default) | scalar
+  group: Geometry
+- name: Chain stiffness
+  summary: Linear spring constant 1e5 N/m (default) | scalar
+  group: Dynamics
+- name: Chain damping
+  summary: Linear damping coefficient 5 N/(m/s) (default) | scalar
+  group: Dynamics
+- name: Viscous friction coefficient of sprocket A
+  summary: Sprocket *A* friction 0.001 N*m/(rad/s) (default)
+  group: Dynamics
+- name: Viscous friction coefficient of sprocket B
+  summary: Sprocket *B* friction 0.001 N*m/(rad/s) (default)
+  group: Dynamics
+- name: Maximum tension
+  summary: Tension limit model No maximum tension (default) | Specify maximum tension
+  group: Maximum Tension
+- name: Chain maximum tension
+  summary: Upper tension limit 1e6 N (default)
+  group: Maximum Tension
+```
 
 ### Geometry
 
@@ -180,7 +222,6 @@ conditions are met:
   settings, the **Maximum tension**
   parameter is set to `Specify maximum
   tension`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Rack and Pinion Constraint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座坐标系 frame
+  direction: unspecified
+- name: F
+  summary: 随动坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **F** — 随动坐标系 frame
 
 齿条本体上的连接坐标系。
-
 ## 参数
+```yaml
+parameters:
+- name: Pinion Radius
+  summary: 小齿轮本体节圆的半径 10 cm（默认）| 以长度单位为单位的正标量
+  group: ''
+```
 
 ### **Pinion Radius** — 小齿轮本体节圆的半径 `10` `cm`（默认）| 以长度单位为单位的正标量
 
 小齿轮本体节圆的半径。节圆是一个与小齿轮本体同心的假想圆，并与齿接触点相切。
-
 ## 所属库
 
 Simscape / Multibody / Gears and Couplings / Gears

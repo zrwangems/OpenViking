@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Worm and Gear Constraint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座坐标系 frame
+  direction: unspecified
+- name: F
+  summary: 从动坐标系 frame
+  direction: unspecified
+```
 
 ### 坐标系
 
@@ -25,8 +34,31 @@ chinese_source: worker-translation
 ### **F** — 从动坐标系 frame
 
 蜗轮本体上的连接坐标系。
-
 ## 参数
+```yaml
+parameters:
+- name: Worm Direction
+  summary: 蜗杆螺纹的旋绕方向 Right-Hand（默认）| Left-Hand
+  group: ''
+- name: Worm Lead Angle
+  summary: 蜗杆螺纹与旋转平面之间的夹角 10 deg（默认）| 0 到 180 之间的正标量，单位为角度
+  group: ''
+- name: Specification Method
+  summary: 蜗轮几何参数化方式 Center Distance and Ratio（默认）| Pitch Circle Radii
+  group: ''
+- name: Center Distance
+  summary: 蜗杆与蜗轮中心之间的距离 20 cm（默认）| 单位为长度的正标量
+  group: ''
+- name: Ratio (Ng/Nw)
+  summary: 蜗轮齿数与蜗杆螺纹数之比 1（默认）| 正的无量纲标量
+  group: ''
+- name: Worm Radius
+  summary: 蜗杆分度圆半径 10 cm（默认）| 单位为长度的正标量
+  group: ''
+- name: Gear Radius
+  summary: 蜗轮分度圆半径 10 cm（默认）| 单位为长度的正标量
+  group: ''
+```
 
 ### **Worm Direction** — 蜗杆螺纹的旋绕方向 `Right-Hand`（默认）| `Left-Hand`
 
@@ -71,7 +103,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Specification Method** 参数设置为 `Pitch Circle Radius` 时，此参数启用。
-
 ## 所属库
 
 Simscape / Multibody / Gears and Couplings / Gears

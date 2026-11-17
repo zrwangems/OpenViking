@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Check Nichols Characteristics
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 下表总结了 Nichols Plot 模块参数，可通过模块参数对话框访问。有关详细信息，请参阅 Nichols Plot 模块参考页面中的 Parameters。
 
@@ -33,7 +38,6 @@ R2025b 中未记录。
 | 将线性系统保存到 MATLAB 工作区。 | | **Logging** 选项卡中的 **Save data to workspace**。 |
 | 在绘图窗口中图形化查看边界违规。 | | **Show Plot** |
 | 双击模块时显示绘图窗口而不是模块参数对话框。 | | **Show plot on block open** |
-
 ## 所属库
 
 R2025b 中未记录。

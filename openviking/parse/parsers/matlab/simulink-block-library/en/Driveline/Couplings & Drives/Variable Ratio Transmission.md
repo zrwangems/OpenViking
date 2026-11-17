@@ -14,6 +14,18 @@ language: en
 # Variable Ratio Transmission
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Input-to-output shaft velocity ratio, unitless physical signal
+  direction: input
+- name: B
+  summary: Base driveshaft mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower driveshaft mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -32,8 +44,38 @@ driveshaft.
 
 Mechanical rotational conserving port associated with the follower
 driveshaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Output shaft rotates
+  summary: Output shaft direction versus input shaft direction In same direction as input shaft (default) | In opposite direction
+    to input shaft
+  group: Main
+- name: Transmission stiffness at base (B)
+  summary: Base spring rate coefficient 5e5 N*m/rad (default) | positive scalar
+  group: Compliance
+- name: Transmission damping at base (B)
+  summary: Base damping coefficient 5e3 N*m/(rad/s) (default) | positive scalar
+  group: Compliance
+- name: Initial input torque at base (B)
+  summary: Starting torque at base 0 N*m (default) | scalar
+  group: Compliance
+- name: Ratio threshold
+  summary: Zero transition smoothing 0.01 (default) | scalar
+  group: Compliance
+- name: Losses model
+  summary: Optional loss modeling No losses — Suitable for HIL simulation (default) | Constant efficiency
+  group: Transmission Losses
+- name: Efficiency
+  summary: Base-to-follower torque transfer efficiency 0.8 (default) | positive scalar
+  group: Transmission Losses
+- name: Follower power threshold
+  summary: Point at which block applies full efficiency losses 0.001 W (default) | positive scalar
+  group: Transmission Losses
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: Base and follower viscous friction vector [0, 0] N*m/(rad/s) (default) | vector of nonnegative elements
+  group: Viscous Losses
+```
 
 ### Main
 
@@ -112,7 +154,6 @@ Vector of viscous damping coefficients
 [*μB*,
 *μF*] applied at the
 base and follower driveshafts, respectively.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

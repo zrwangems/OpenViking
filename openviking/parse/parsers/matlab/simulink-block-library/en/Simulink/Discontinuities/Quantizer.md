@@ -14,6 +14,17 @@ language: en
 # Quantizer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal to quantize scalar | vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Quantized output signal scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -40,8 +51,29 @@ input, and `q` is the **Quantization
 interval**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Quantization interval
+  summary: Interval that defines quantization levels for the output signal 0.5 (default) | scalar | vector
+  group: ''
+  block_parameter: QuantizationInterval
+  type: character vector
+  values: Any real or complex value
+  default: '''0.5'''
+- name: Treat as gain when linearizing
+  summary: Specify the gain value on (default) | off
+  group: ''
+  block_parameter: LinearizeAsGain
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Quantization interval** — Interval that defines quantization levels for the output signal `0.5` (default) | scalar | vector
 
@@ -92,7 +124,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Discontinuities

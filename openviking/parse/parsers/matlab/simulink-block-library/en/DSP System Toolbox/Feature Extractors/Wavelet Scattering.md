@@ -14,6 +14,17 @@ language: en
 # Wavelet Scattering
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Output signal matrix | 3-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -51,8 +62,50 @@ For matrix inputs, the output dimensions are
 where *Nchann* is the number of columns in the input.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal length (samples)
+  summary: Signal length in samples 1024 (default) | positive integer ≥ 16
+  group: ''
+- name: Overlap length (Samples)
+  summary: Overlap length in samples 0 (default) | positive integer
+  group: ''
+- name: Specify sample rate
+  summary: Specify sample rate off (default) | on
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate 16e3 (default) | positive scalar
+  group: ''
+- name: Invariance scale (samples)
+  summary: Scattering transform invariance scale in samples 512 (default) | positive integer
+  group: ''
+- name: Invariance scale (s)
+  summary: Scattering transform invariance scale in seconds 0.032 (default) | positive scalar
+  group: ''
+- name: Quality factors
+  summary: Quality factors for scattering filter banks [8,1] (default) | positive integer | vector of monotonically decreasing
+    positive integers
+  group: ''
+- name: Reduce the number of scattering paths
+  summary: Optimize scattering transform off (default) | on
+  group: ''
+- name: Oversampling factor
+  summary: Oversampling factor 0 (default) | nonnegative integer | Inf
+  group: ''
+- name: Boundary signal extension
+  summary: Signal extension method periodic (default) | reflection
+  group: ''
+- name: Include zeroth-order coefficients
+  summary: Include zeroth-order coefficients off (default) | on
+  group: Scattering coefficients
+- name: Normalization
+  summary: Coefficient normalization none (default) | parent
+  group: Scattering coefficients
+- name: Transform
+  summary: Transformation on coefficients none (default) | log
+  group: Scattering coefficients
+```
 
 ### **Signal length (samples)** — Signal length in samples `1024` (default) | positive integer ≥ 16
 
@@ -223,7 +276,6 @@ are normalized by their parents along the scattering path.
 
 Specify the type of transformation to apply to the scattering coefficients as
 `none` or `log`.
-
 ## Libraries
 
 DSP System Toolbox / Feature Extractors

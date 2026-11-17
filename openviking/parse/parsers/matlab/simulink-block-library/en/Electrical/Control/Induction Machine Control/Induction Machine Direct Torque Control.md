@@ -14,6 +14,29 @@ language: en
 # Induction Machine Direct Torque Control
 
 ## Ports
+```yaml
+ports:
+- name: FluxRef
+  summary: Flux scalar
+  direction: input
+  data_types: single | double
+- name: TqRef
+  summary: Torque scalar
+  direction: input
+  data_types: single | double
+- name: vabc
+  summary: Voltage vector
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: Current vector
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Gate pulses vector | 0 or 1
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -48,8 +71,25 @@ Inverter gate pulses. The block does not consider any dead
 time.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Stator resistance (Ohm)
+  summary: Resistance 0.25 (default) | positive scalar
+  group: ''
+- name: Number of pole pairs
+  summary: Pole number 1 (default) | positive integer
+  group: ''
+- name: Flux hysteresis bandwidth (Wb)
+  summary: Flux 0.02 (default) | positive scalar
+  group: ''
+- name: Torque hysteresis bandwidth (N\*m)
+  summary: Torque 10 (default) | positive scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Stator resistance (Ohm)** — Resistance `0.25` (default) | positive scalar
 
@@ -78,7 +118,6 @@ If this block is inside a triggered subsystem, inherit the
 sample time by setting this parameter to `-1`. If this block is in a
 continuous variable-step model, specify the sample time explicitly using a positive
 scalar.
-
 ## Libraries
 
 Simscape / Electrical / Control / Induction Machine Control

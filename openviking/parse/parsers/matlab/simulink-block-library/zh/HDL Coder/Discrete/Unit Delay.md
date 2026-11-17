@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Unit Delay
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+```
 
 ### 输入
 
@@ -30,8 +43,45 @@ chinese_source: worker-translation
 延迟一个采样周期的输入信号作为输出信号。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: 初始条件
+  summary: 第一个采样周期的输出 0（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: InitialCondition
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+- name: 输入处理
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: 主要
+  block_parameter: InputProcessing
+  type: 字符向量
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: 采样时间（-1 表示继承）
+  summary: 采样时间命中之间的离散间隔 -1（默认）| 1×2 向量
+  group: 主要
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 实数标量 | 1×2 向量
+  default: '''-1'''
+- name: 状态名称
+  summary: 模块状态的唯一名称 ''（默认）| 字母数字字符串
+  group: 状态属性
+  block_parameter: StateName
+  type: 字符向量
+  values: 唯一名称
+  default: ''''''
+- name: 状态名称必须解析为 Simulink 信号对象
+  summary: 要求状态名称解析为信号对象的选项 off（默认）| on
+  group: 状态属性
+  block_parameter: StateMustResolveToSignalObject
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -127,7 +177,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Discrete HDL Coder / Discrete

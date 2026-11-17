@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Specific Dissipation Heat Transfer
 
 ## 端口
+```yaml
+ports:
+- name: CP1
+  summary: 受控流体 1 的等压比热物理信号
+  direction: input
+- name: CP2
+  summary: 受控流体 2 的等压比热物理信号
+  direction: input
+- name: M1
+  summary: 受控流体 1 的入口质量流量物理信号
+  direction: input
+- name: M2
+  summary: 受控流体 2 的入口质量流量物理信号
+  direction: input
+- name: H1
+  summary: 受控流体 1 的入口温度热
+  direction: input
+- name: H2
+  summary: 受控流体 2 的入口温度热
+  direction: input
+```
 
 ### 输入
 
@@ -42,8 +63,25 @@ chinese_source: worker-translation
 ### **H2** — 受控流体 2 的入口温度热
 
 受控流体 2 的入口温度。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermal Liquid mass flow rate vector, mdot1
+  summary: 用于指定比耗散数据的入口质量流量 [.3, .5, .6, .7, 1, 1.4, 1.9, 2.3] kg/s（默认）| 单位为质量/时间的 *M* 元素数组
+  group: ''
+- name: Controlled fluid mass flow rate vector, mdot2
+  summary: 用于指定比耗散数据的入口质量流量 [.3, .5, 1, 1.3, 1.7, 2, 2.6, 3.3] kg/s（默认）| 单位为质量/时间的 *N* 元素数组
+  group: ''
+- name: Specific dissipation table, SD(mdot1, mdot2)
+  summary: 与指定质量流量对应的比耗散值 单位为 kW/K 的 8×8 矩阵（默认）| 单位为功率/温度的 *M*×*N* 矩阵
+  group: ''
+- name: Mass flow rate threshold for flow reversal
+  summary: 用于平滑数值数据的质量流量下限 1e-3 kg/s（默认）| 单位为质量/时间的标量
+  group: ''
+- name: Check if violating maximum specific dissipation
+  summary: 用于在比耗散超过最大允许值时发出警告的选项 Warning（默认）| None | Error
+  group: ''
+```
 
 ### **Thermal Liquid mass flow rate vector, mdot1** — 用于指定比耗散数据的入口质量流量 `[.3, .5, .6, .7, 1, 1.4, 1.9, 2.3] kg/s`（默认）| 单位为质量/时间的 *M* 元素数组
 
@@ -66,7 +104,6 @@ chinese_source: worker-translation
 ### **Check if violating maximum specific dissipation** — 用于在比耗散超过最大允许值时发出警告的选项 `Warning`（默认）| `None` | `Error`
 
 用于在比耗散超过模块描述中所述最大值时发出警告的选项。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

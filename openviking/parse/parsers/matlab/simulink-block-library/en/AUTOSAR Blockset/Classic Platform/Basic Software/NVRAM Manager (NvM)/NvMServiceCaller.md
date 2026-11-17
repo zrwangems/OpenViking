@@ -14,10 +14,46 @@ language: en
 # NvMServiceCaller
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Client port name
+  summary: Name of client port AUTOSAR component uses to call NvM service interface NvMService NvMService (default) | character
+    vector
+  group: ''
+  block_parameter: PortName
+  type: character vector
+  values: '''NvMService'' | unique name'
+  default: '''NvMService'''
+- name: Operation
+  summary: Specify operation defined in NvM service interface NvMService GetDataIndex (default) | GetErrorStatus | EraseNvBlock
+    | InvalidateNvBlock | ReadBlock | RestoreBlockDefaults | SetDataIndex | SetRamBlockStatus | WriteBlock
+  group: ''
+  block_parameter: Operation
+  type: character vector
+  values: '''GetDataIndex'' | ''GetErrorStatus'' | ''EraseNvBlock'' | ''InvalidateNvBlock'' | ''ReadBlock'' | ''RestoreBlockDefaults''
+    | ''SetDataIndex'' | ''SetRamBlockStatus'' | ''WriteBlock'''
+  default: '''GetDataIndex'''
+- name: Argument specification
+  summary: Specify data type and dimensions for operation read or write access uint8(1) (default) | character vector
+  group: ''
+  block_parameter: ArgumentSpecification
+  type: character vector
+  values: '''uint8(1)'' | character vector'
+  default: '''uint8(1)'''
+- name: Sample time
+  summary: Block sample time -1 (default) | scalar
+  group: ''
+  block_parameter: st
+  type: scalar
+  values: '''-1'' | scalar'
+  default: '''-1'''
+```
 
 ### **Client port name** — Name of client port AUTOSAR component uses to call NvM service interface `NvMService` `NvMService` (default) | character vector
 
@@ -99,7 +135,6 @@ inherit its sample time from the model.
 | **Type:** scalar |
 | **Values:** `'-1' |` scalar |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 AUTOSAR Blockset / Classic Platform / Basic Software / NVRAM Manager (NvM)

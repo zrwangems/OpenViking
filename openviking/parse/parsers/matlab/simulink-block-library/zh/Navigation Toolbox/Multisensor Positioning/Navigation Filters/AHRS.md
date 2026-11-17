@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # AHRS
 
 ## 端口
+```yaml
+ports:
+- name: Accel
+  summary: 传感器机体坐标系下的加速度计读数 (m/s2) *N*×3 的实数标量矩阵
+  direction: input
+  data_types: single | double
+- name: Gyro
+  summary: 传感器机体坐标系下的陀螺仪读数 (rad/s) *N*×3 的实数标量矩阵
+  direction: input
+  data_types: single | double
+- name: Mag
+  summary: 传感器机体坐标系下的磁力计读数 (µT) *N*×3 的实数标量矩阵
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: 传感器机体坐标系相对于导航坐标系的姿态 *M*×4 的标量数组 | 3×3×*M* 元素的旋转矩阵
+  direction: output
+  data_types: single | double
+- name: Angular Velocity
+  summary: 传感器机体坐标系下的角速度 (rad/s) *M*×3 的实数标量数组（默认）
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -48,8 +71,52 @@ chinese_source: worker-translation
 去除陀螺仪偏置后的传感器机体坐标系下的角速度，单位为 rad/s，返回为 *M*×3 的实数标量数组。输入采样数 *N* 和 **Decimation Factor** 参数决定输出大小 *M*。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Reference frame
+  summary: 导航参考坐标系 NED（默认）| ENU
+  group: ''
+- name: Decimation factor
+  summary: 抽取因子 1（默认）| 正整数
+  group: ''
+- name: Initial process noise
+  summary: 初始过程噪声 ahrsfilter.defaultProcessNoise（默认）| 12×12 实数标量矩阵
+  group: ''
+- name: Orientation format
+  summary: 方向输出格式 'quaternion'（默认）| 'Rotation matrix'
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted Execution（默认）| Code Generation
+  group: ''
+- name: Accelerometer noise ((m/s2)2)
+  summary: 加速度计信号噪声的方差 ((m/s2)2) 0.0001924722（默认）| 正实数标量
+  group: ''
+- name: Gyroscope noise ((rad/s)2)
+  summary: 陀螺仪信号噪声的方差 ((rad/s)2) 9.1385e-5（默认）| 正实数标量
+  group: ''
+- name: Magnetometer noise (μT2)
+  summary: 磁力计信号噪声的方差 (μT2) 0.1（默认）| 正实数标量
+  group: ''
+- name: Gyroscope drift noise (rad/s)
+  summary: 陀螺仪偏移漂移的方差 ((rad/s)2) 3.0462e-13（默认）| 正实数标量
+  group: ''
+- name: Linear acceleration noise ((m/s2)2)
+  summary: 线性加速度噪声的方差 (m/s2)2 0.0096236100000000012（默认）| 正实数标量
+  group: ''
+- name: Magnetic disturbance noise (μT2)
+  summary: 磁干扰噪声的方差 ((μT)2) 0.5（默认）| 实有限正标量
+  group: ''
+- name: Linear acceleration decay factor
+  summary: 线性加速度漂移的衰减因子 0.5（默认）| 范围 [0,1) 内的标量
+  group: ''
+- name: Magnetic disturbance decay factor
+  summary: 磁干扰的衰减因子 0.5（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Magnetic field strength (μT)
+  summary: 磁场强度 (μT) 50（默认）| 实正标量
+  group: ''
+```
 
 #### 主
 
@@ -176,7 +243,6 @@ chinese_source: worker-translation
 磁场强度，单位为 μT，指定为实正标量。磁场强度是当前位置处地球磁场强度的估计值。
 
 **数据类型：** `single` | `double`
-
 ## 所属库
 
 Navigation Toolbox / Multisensor Positioning / Navigation Filters Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Navigation Filters

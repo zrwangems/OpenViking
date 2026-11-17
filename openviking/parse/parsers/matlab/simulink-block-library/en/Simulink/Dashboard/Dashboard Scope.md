@@ -14,10 +14,139 @@ language: en
 # Dashboard Scope
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Signals to connect and display signal connection options
+  group: Connection Table
+  block_parameter: Binding
+  type: cell array of Simulink.HMI.SignalSpecification objects
+  default: '[]'
+- name: Line Style
+  summary: Line style and color for connected signals line style and color options
+  group: Connection Table
+  block_parameter: Colors
+  type: array of structures
+- name: Time Span
+  summary: Time axis span auto (default) | scalar
+  group: Main
+  block_parameter: TimeSpan
+  type: string | character array
+  values: '''auto'' or numeric value'
+  default: '''auto'''
+- name: Update Mode
+  summary: Display update behavior Wrap (default) | Scroll
+  group: Main
+  block_parameter: UpdateMode
+  type: string | character array
+  values: '''Wrap'' | ''Scroll'''
+  default: '''Wrap'''
+- name: Min
+  summary: Vertical axis minimum -3 (default) | scalar
+  group: Main
+  block_parameter: YLimits
+  type: 1x2 vector
+  default: '[-3 3]'
+- name: Max
+  summary: Vertical axis maximum 3 (default) | scalar
+  group: Main
+  block_parameter: YLimits
+  type: 1x2 vector
+  default: '[-3 3]'
+- name: Normalize y-axis limits
+  summary: Option to normalize *y*-axis off (default) | on
+  group: Main
+  block_parameter: NormalizeYAxis
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Scale axes limits at stop
+  summary: Option to perform fit-to-view upon simulation stop on (default) | off
+  group: Main
+  block_parameter: ScaleAtStop
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show "Double-click to connect" message
+  summary: Connection instructions visibility on (default) | off
+  group: Main
+  block_parameter: ShowInitialText
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Ticks
+  summary: Axes tick positions Outside (default) | Inside | None
+  group: Display
+  block_parameter: TicksPosition
+  type: string | character vector
+  values: '''Outside'' | ''Inside'' | ''None'''
+  default: '''Outside'''
+- name: Tick Labels
+  summary: Tick label visibility All (default) | T-Axis | Y-Axis | None
+  group: Display
+  block_parameter: TickLabels
+  type: string | character vector
+  values: '''All'' | ''T-Axis'' | ''Y-Axis'' | ''None'''
+  default: '''All'''
+- name: Legend
+  summary: Legend position Top (default) | Right | Inside top | Inside right | Hide
+  group: Display
+  block_parameter: LegendPosition
+  type: string | character vector
+  values: '''Top'' | ''Right'' | ''InsideTop'' | ''InsideRight | ''Hide'''
+  default: '''Top'''
+- name: Horizontal
+  summary: Horizontal grid line visibility on (default) | off
+  group: Display
+  block_parameter: Grid
+  type: string | character vector
+  values: '''All'' | ''Horizontal'' | ''Vertical'' | ''None'''
+  default: '''All'''
+- name: Vertical
+  summary: Vertical grid line visibility on (default) | off
+  group: Display
+  block_parameter: Grid
+  type: string | character vector
+  values: '''All'' | ''Horizontal'' | ''Vertical'' | ''None'''
+  default: '''All'''
+- name: Border
+  summary: Plot border visibility on (default) | off
+  group: Display
+  block_parameter: Border
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Markers
+  summary: Option to show signal data markers off (default) | on
+  group: Display
+  block_parameter: Markers
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Foreground Color
+  summary: Grid lines color [r g b] vector
+  group: Style
+  block_parameter: ForegroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Background Color
+  summary: Plot area color [r g b] vector
+  group: Style
+  block_parameter: BackgroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Font Color
+  summary: Ticks and tick labels color [r g b] vector
+  group: Style
+  block_parameter: FontColor
+  type: '[r g b] vector'
+```
 
 ### Connection Table
 
@@ -450,7 +579,6 @@ as a `1`-by-`3`
 | --- |
 | **Block Parameter:** `FontColor` |
 | **Type:** `[r g b]` vector |
-
 ## Libraries
 
 Simulink / Dashboard

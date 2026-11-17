@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Sinusoidal Current Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端口 electrical
+  direction: conserving
+- name: '-'
+  summary: 负极端口 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,28 @@ chinese_source: worker-translation
 ### **-** — 负极端口 electrical
 
 与正弦电流源负极端口关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Current offset, IO
+  summary: 电流偏移 0 A（默认）
+  group: ''
+- name: Sinusoidal amplitude, IA
+  summary: 正弦幅值 0 A（默认）
+  group: ''
+- name: Sinusoidal frequency, FREQ
+  summary: 正弦频率 1e6 Hz（默认）
+  group: ''
+- name: Time delay, TD
+  summary: 时间延迟 0 s（默认）
+  group: ''
+- name: Damping factor, DF
+  summary: 阻尼因子 0 1/s（默认）| 非负标量
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: 是否包含并联电导 Yes（默认）| No
+  group: ''
+```
 
 ### **Current offset, IO** — 电流偏移 `0` `A`（默认）
 
@@ -61,7 +90,6 @@ chinese_source: worker-translation
 | *`Yes`* | | *`No`* | | |
 | **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且它不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # S-R Flip-Flop
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 置位输入标量
+  direction: input
+  data_types: double | Boolean
+- name: R
+  summary: 复位输入标量
+  direction: input
+  data_types: double | Boolean
+- name: Q
+  summary: 输出信号 Q 标量
+  direction: output
+  data_types: double | Boolean
+- name: '!Q'
+  summary: 输出信号 !Q 标量
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -56,8 +75,16 @@ S-R Flip-Flop 模块接受的数据类型取决于 **Implement logic signals as 
 输出信号 **!Q**，具有与输入相同的维度和数据类型。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial condition (state of Q)
+  summary: 输出 Q 的初始值 0（默认）| 标量
+  group: ''
+  block_parameter: initial_condition
+  type: 字符向量
+  values: 标量
+```
 
 ### **Initial condition (state of Q)** — 输出 Q 的初始值 `0`（默认）| 标量
 
@@ -71,7 +98,6 @@ S-R Flip-Flop 模块接受的数据类型取决于 **Implement logic signals as 
 | **类型：** 字符向量 |
 | **值：** 标量 |
 | **默认：** `'0'` |
-
 ## 所属库
 
 Simulink Extras / Flip Flops

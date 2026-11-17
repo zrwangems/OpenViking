@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # CLA Task Manager
 
 ## 端口
+```yaml
+ports:
+- name: '*Task1*'
+  summary: 来自 Task1 的函数调用 标量
+  direction: output
+- name: '*Task1*Event'
+  summary: 消息事件通知 标量
+  direction: input
+  data_types: rteEvent
+- name: '*Task1*Dur'
+  summary: 任务持续时间 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输出
 
@@ -52,8 +66,52 @@ chinese_source: worker-translation
 要启用此端口，请将 **Specify task duration via** 参数设置为 `Input port`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable task simulation
+  summary: 启用任务持续时间仿真的选项 on（默认）| off
+  group: ''
+- name: List of tasks
+  summary: 任务列表 Task1（默认）
+  group: ''
+- name: Add
+  summary: 添加任务选项 按钮
+  group: ''
+- name: Delete
+  summary: 删除现有任务选项 按钮
+  group: ''
+- name: Name
+  summary: 任务名称 Task1（默认）| 字符向量
+  group: 主要参数
+- name: Priority
+  summary: 任务在调度器中的优先级 10（默认）| [1, 99] 范围内的整数
+  group: 主要参数
+- name: Specify task duration via
+  summary: 任务执行时间的来源 Dialog（默认）| Input port | Record task execution statistics
+  group: 仿真
+- name: Add
+  summary: 添加分布选项 按钮
+  group: 仿真
+- name: Delete
+  summary: 移除分布选项 按钮
+  group: 仿真
+- name: Percent
+  summary: 分布的可能性 100（默认）| 正标量
+  group: 仿真
+- name: Mean
+  summary: 仿真中的平均任务持续时间 1e-06（默认）| 正标量
+  group: 仿真
+- name: SD
+  summary: 仿真中任务持续时间的标准差 0（默认）| 正标量
+  group: 仿真
+- name: Min
+  summary: 任务持续时间下限 1e-06（默认）| 正标量
+  group: 仿真
+- name: Max
+  summary: 任务持续时间上限 1e-06（默认）| 正标量
+  group: 仿真
+```
 
 ### **Enable task simulation** — 启用任务持续时间仿真的选项 `on`（默认）| `off`
 
@@ -138,7 +196,6 @@ CLA Task Manager 模块生成的任务列表。每个任务都有一组参数，
 ### **Max** — 任务持续时间上限 `1e-06`（默认）| 正标量
 
 任务持续时间分布的上限。有关配置任务持续时间的详细信息，请参阅 Task Duration (SoC Blockset)。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Scheduling

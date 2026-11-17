@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Band-Limited Op-Amp
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 同相输入电气端口
+  direction: conserving
+- name: '-'
+  summary: 反相输入电气端口
+  direction: conserving
+- name: OUT
+  summary: 输出电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,34 @@ chinese_source: worker-translation
 ### **OUT** — 输出电压电气端口
 
 与运放输出电压关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Gain, A
+  summary: 开环增益 1000（默认值）
+  group: ''
+- name: Input resistance, Rin
+  summary: 输入电阻 1e6 Ohm（默认值）
+  group: ''
+- name: Output resistance, Rout
+  summary: 输出电阻 100 Ohm（默认值）
+  group: ''
+- name: Minimum output, Vmin
+  summary: 最小输出电压 -15 V（默认值）
+  group: ''
+- name: Maximum output, Vmax
+  summary: 最大输出电压 15 V（默认值）
+  group: ''
+- name: Maximum slew rate, Vdot
+  summary: 最大压摆率 1000 V/s（默认值）
+  group: ''
+- name: Bandwidth, f
+  summary: 开环带宽 1e5 Hz（默认值）
+  group: ''
+- name: Initial output voltage, V0
+  summary: 初始输出电压 0 V（默认值）
+  group: ''
+```
 
 ### **Gain, A** — 开环增益 `1000`（默认值）
 
@@ -67,7 +105,6 @@ chinese_source: worker-translation
 **注意**
 
 此参数值未考虑输出电阻上的电压降。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

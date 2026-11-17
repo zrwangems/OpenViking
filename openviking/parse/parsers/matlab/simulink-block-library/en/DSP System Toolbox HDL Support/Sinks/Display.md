@@ -14,6 +14,14 @@ language: en
 # Display
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated
+```
 
 ### Input
 
@@ -22,8 +30,33 @@ language: en
 Input data to display.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Numeric display format
+  summary: Format to display numeric input data short (default) | long | short_e | long_e | bank | hex (Stored Integer) |
+    binary (Stored Integer) | decimal (Stored Integer) | octal (Stored Integer)
+  group: ''
+  block_parameter: Format
+  type: character vector
+  values: '''short'' | ''long'' | ''short_e'' | ''long_e'' | ''bank'' | ''hex (Stored Integer)'' | ''binary (Stored Integer)''
+    | ''decimal (Stored Integer)'' | ''octal (Stored Integer)'''
+  default: '''short'''
+- name: Decimation
+  summary: Display rate 1 (default) | integer
+  group: ''
+  block_parameter: Decimation
+  type: character vector
+  values: '''1'' | integer'
+  default: '''1'''
+- name: Floating display
+  summary: Floating display off (default) | on
+  group: ''
+  block_parameter: Floating
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Numeric display format** — Format to display numeric input data `short` (default) | `long` | `short_e` | `long_e` | `bank` | `hex (Stored Integer)` | `binary (Stored Integer)` | `decimal (Stored Integer)` | `octal (Stored Integer)`
 
@@ -131,7 +164,6 @@ If you select **Floating display**:
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Sinks HDL Coder / Sinks

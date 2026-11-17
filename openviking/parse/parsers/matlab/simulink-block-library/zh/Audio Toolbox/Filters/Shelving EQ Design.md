@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Shelving Equalizer Design
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 峰值增益 (dB) 实数标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: S
+  summary: 斜率系数 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Fc
+  summary: 归一化截止频率 [0,1] 范围内的标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: T
+  summary: 滤波器类型 0（低架）| 1（高架）
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated
+- name: Num
+  summary: 分子滤波器系数 三元素行向量
+  direction: output
+  data_types: single | double
+- name: Den
+  summary: 分母滤波器系数 三元素行向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -78,8 +105,49 @@ chinese_source: worker-translation
 输出的数据类型取决于 **Output data type** 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Smooth tuned filter parameters
+  summary: 调谐时平滑滤波器参数 off（默认）| on
+  group: ''
+- name: Smoothing factor
+  summary: 调谐参数的平滑因子 0.6（默认）| [0,1) 范围内的标量
+  group: ''
+- name: Specify peak gain from input port
+  summary: 使用附加输入端口指定增益 off（默认）| on
+  group: ''
+- name: Peak gain (dB)
+  summary: 峰值增益 (dB) 0（默认）| 实数标量
+  group: ''
+- name: Specify slope coefficient from input port
+  summary: 使用附加输入端口指定斜率系数 off（默认）| on
+  group: ''
+- name: Slope coefficient
+  summary: 斜率系数 1.5（默认）| 正标量
+  group: ''
+- name: Specify normalized cutoff frequency from input port
+  summary: 使用附加输入端口指定归一化截止频率 off（默认）| on
+  group: ''
+- name: Normalized cutoff frequency
+  summary: 归一化截止频率 0.1（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Specify filter type from input port
+  summary: 使用附加输入端口指定滤波器类型 off（默认）| on
+  group: ''
+- name: Filter type
+  summary: 架式均衡器的类型 low（默认）| high
+  group: ''
+- name: Output data type
+  summary: 输出系数的数据类型 double（默认）| single
+  group: ''
+- name: Sample time
+  summary: 模块的采样时间 -1（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -164,7 +232,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Audio Toolbox / Filters

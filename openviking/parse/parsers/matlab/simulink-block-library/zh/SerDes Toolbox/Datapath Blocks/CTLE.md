@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CTLE
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入基带信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 估计的信道输出 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,52 @@ chinese_source: worker-translation
 估计的信道输出。如果输入信号是按样本逐个指定的标量信号，则输出也是标量。如果输入信号是冲激响应向量信号，则输出也是向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: CTLE 工作模式 Adapt（默认）| Off | Fixed
+  group: ''
+- name: Slice select
+  summary: 选择使用 3D GPZ 矩阵的哪个角 0（默认）| 非负标量整数
+  group: ''
+- name: Configuration select
+  summary: 选择在固定模式下应用哪个传递函数成员 0（默认）| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+  group: ''
+- name: Specification
+  summary: CTLE 响应的输入规格 'DC Gain and Peaking Gain'（默认）| 'DC Gain and AC Gain' | 'AC Gain and Peaking Gain' | 'GPZ Matrix'
+  group: ''
+- name: DC gain (dB)
+  summary: 零频率处的增益 [0:-1:-8]（默认）| 标量 | 向量
+  group: ''
+- name: Peaking gain (dB)
+  summary: AC 增益与 DC 增益之差 [0:8]（默认）| 标量 | 向量
+  group: ''
+- name: AC gain (dB)
+  summary: 峰值频率处的增益 0（默认）| 标量 | 向量
+  group: ''
+- name: Peaking frequency (Hz)
+  summary: CTLE 传递函数达到峰值的近似频率 5e9（默认）| 标量 | 向量
+  group: ''
+- name: Gain pole zero matrix
+  summary: 增益极点零点矩阵
+  group: ''
+- name: Visualize Response
+  summary: 绘制 CTLE 响应按钮
+  group: ''
+- name: Launch CTLE Fitter App
+  summary: 启动 CTLE Fitter 应用按钮
+  group: ''
+- name: Mode
+  summary: 在 IBIS-AMI 模型中包含 Mode 参数 on（默认）| off
+  group: ''
+- name: Slice select
+  summary: 在 IBIS-AMI 模型中包含 Slice select 参数 on（默认）| off
+  group: ''
+- name: Configuration select
+  summary: 在 IBIS-AMI 模型中包含 Configuration select 参数 on（默认）| off
+  group: ''
+```
 
 ### **Mode** — CTLE 工作模式 `Adapt`（默认）| `Off` | `Fixed`
 
@@ -201,7 +256,6 @@ CTLE 传递函数在幅度上达到峰值的近似频率，指定为以 GHz 为�
 ### **Configuration select** — 在 IBIS-AMI 模型中包含 Configuration select 参数 on（默认）| off
 
 选择以在 IBIS-AMI 文件中将 **Configuration select** 包含为参数。如果取消选择 **Configuration select**，则会将其从 AMI 文件中移除，从而有效地将 **Configuration select** 硬编码为其当前值。
-
 ## 所属库
 
 SerDes Toolbox / Datapath Blocks

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Tustin Pilot Model
 
 ## 端口
+```yaml
+ports:
+- name: x com
+  summary: 信号指令 标量
+  direction: input
+  data_types: double
+- name: x
+  summary: 由飞行员控制的信号 标量
+  direction: input
+  data_types: double
+- name: u
+  summary: 飞机指令 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,31 @@ chinese_source: worker-translation
 飞机指令，以标量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Pilot gain
+  summary: 飞行员增益 1（默认）| 标量
+  group: ''
+  block_parameter: Kp
+  type: 字符向量
+  values: 双精度标量
+  default: '''1'''
+- name: Pilot time delay(s)
+  summary: 飞行员时间延迟 0.1（默认）| 标量
+  group: ''
+  block_parameter: time_delay
+  type: 字符向量
+  values: 双精度标量
+  default: '''0.1'''
+- name: Pilot lead constant
+  summary: 飞行员超前常数 5（默认）| 标量
+  group: ''
+  block_parameter: T
+  type: 字符向量
+  values: 双精度标量
+  default: '''5'''
+```
 
 ### **Pilot gain** — 飞行员增益 `1`（默认）| 标量
 
@@ -77,7 +115,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：双精度标量 |
 | **默认值**：`'5'` |
-
 ## 所属库
 
 Aerospace Blockset / Pilot Models

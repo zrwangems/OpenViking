@@ -15,14 +15,19 @@ chinese_source: worker-translation
 # Nonlinear Rotational Spring
 
 ## 端口
+```yaml
+ports: []
+```
 
 `C`
 :   旋转守恒端口
 
 `R`
 :   旋转守恒端口
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Parameterization**
 :   选择弹簧参数化方式。选项为 `By
@@ -79,7 +84,6 @@ chinese_source: worker-translation
 
         有关外推算法的更多信息，请参阅 PS Lookup Table
         (1D) 模块参考页。
-
 ## 所属库
 
 R2025b 中未记录。

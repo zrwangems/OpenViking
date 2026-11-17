@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Integer-Input RS Encoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 消息整数列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Out
+  summary: Reed-Solomon 码字整数列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -54,8 +65,28 @@ message length S**，*P* 是每个码字的删余数。
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
 
 有关详细信息，请参阅支持的数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length N
+  summary: 码字长度 7（默认）| 整数
+  group: ''
+- name: Message length K
+  summary: 消息字长度 3（默认）| 整数
+  group: ''
+- name: Shortened message length S
+  summary: 缩短的消息字长度 3（默认）| 整数
+  group: ''
+- name: Generator polynomial
+  summary: 生成多项式 rsgenpoly(7, 3, [], [], 'double')（默认）| 多项式字符向量 | 二进制行向量 | 二进制 Galois 行向量
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 'X^3 + X + 1'（默认）| 多项式字符向量 | 二进制行向量
+  group: ''
+- name: Puncture vector
+  summary: 删余向量 [ones(2,1); zeros(2,1)]（默认）| 二进制列向量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -129,7 +160,6 @@ message length S**，*P* 是每个码字的删余数。
 
 要启用此参数，请选择 **Puncture
 code**。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

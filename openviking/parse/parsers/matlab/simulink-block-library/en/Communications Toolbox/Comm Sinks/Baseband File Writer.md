@@ -14,6 +14,13 @@ language: en
 # Baseband File Writer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Baseband signal scalar | vector | matrix
+  direction: input
+  data_types: single | double
+```
 
 ### Input
 
@@ -25,8 +32,25 @@ saved signal is always complex.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Baseband file name
+  summary: Name of baseband file to write untitled.bb (default) | character vector
+  group: ''
+- name: Center frequency (Hz)
+  summary: Center frequency of baseband signal 1e8 (default) | nonnegative scalar
+  group: ''
+- name: Metadata (structure or object)
+  summary: Data describing baseband signal empty structure (struct()) (default) | structure | object
+  group: ''
+- name: Number of latest samples to write
+  summary: Number of samples to write inf (default) | positive integer
+  group: ''
+- name: Simulate using
+  summary: Select simulation mode Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -77,7 +101,6 @@ Number of samples to save, specified as a positive integer or
 `Interpreted execution`
 :   Simulate model using all supported MATLAB functions. Choosing this option can slow
     simulation performance.
-
 ## Libraries
 
 Communications Toolbox / Comm Sinks

@@ -14,6 +14,18 @@ language: en
 # Switch
 
 ## Ports
+```yaml
+ports:
+- name: PS
+  summary: Control signal, unitless physical signal
+  direction: input
+- name: p
+  summary: Electric terminal electrical
+  direction: conserving
+- name: n
+  summary: Electric terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -38,8 +50,19 @@ Electrical conserving port associated with the other switch terminal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Closed resistance R_closed
+  summary: Resistance of closed switch 0.01 Ohm (default) | positive scalar
+  group: ''
+- name: Open conductance G_open
+  summary: Conductance of open switch 1e-8 1/Ohm (default) | positive scalar
+  group: ''
+- name: Threshold
+  summary: Threshold value for opening and closing switch 0.5 (default) | unitless scalar
+  group: ''
+```
 
 ### **Closed resistance R\_closed** — Resistance of closed switch `0.01 Ohm` (default) | positive scalar
 
@@ -56,7 +79,6 @@ than zero.
 The threshold value for opening and closing the switch. If the external physical
 signal at port **PS** is greater than this value, then the switch is
 closed, otherwise the switch is open.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

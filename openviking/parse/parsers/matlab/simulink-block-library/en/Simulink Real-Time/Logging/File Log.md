@@ -14,14 +14,29 @@ language: en
 # File Log
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Signal data for file log scalar | vector | matrix | array | bus | nonvirtual bus
+  direction: input
+```
 
 ### Input
 
 ### **S** — Signal data for file log scalar | vector | matrix | array | bus | nonvirtual bus
 
 Provides the signal data input for the file log.
-
 ## Parameters
+```yaml
+parameters:
+- name: Decimation
+  summary: Applies decimation to file log data 1 (default) | integer
+  group: ''
+- name: Input Processing
+  summary: Selects processing mode for file log data Elements as channels (sample based) (default) | Columns as channels (frame
+    based)
+  group: ''
+```
 
 ### **Decimation** — Applies decimation to file log data `1` (default) | integer
 
@@ -56,7 +71,6 @@ Inspector, see View Simulation Data in Simulation Data Inspector.
 ```
 inputProcessing
 ```
-
 ## Libraries
 
 Simulink Real-Time / Logging

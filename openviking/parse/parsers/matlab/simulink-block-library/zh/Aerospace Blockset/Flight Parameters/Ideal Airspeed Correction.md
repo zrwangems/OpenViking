@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Ideal Airspeed Correction
 
 ## 端口
+```yaml
+ports:
+- name: TAS
+  summary: 真实输入空速标量
+  direction: input
+  data_types: double
+- name: EAS
+  summary: 等效输入空速标量
+  direction: input
+  data_types: double
+- name: CAS
+  summary: 校准输入空速标量
+  direction: input
+  data_types: double
+- name: a
+  summary: 声速标量
+  direction: input
+  data_types: double
+- name: P0
+  summary: 静压标量
+  direction: input
+  data_types: double
+- name: EAS
+  summary: 等效输出空速标量
+  direction: output
+  data_types: double
+- name: CAS
+  summary: 校准输出空速标量
+  direction: output
+  data_types: double
+- name: TAS
+  summary: 真实输出空速标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -90,8 +125,52 @@ chinese_source: worker-translation
 要启用此端口，请将 **Airspeed input** 设置为 `CAS` 或 `EAS`，并将 **Airspeed output** 设置为 `TAS`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Airspeed input
+  summary: 空速输入类型 TAS（默认）| EAS | CAS
+  group: ''
+  block_parameter: vel_in
+  type: 字符向量
+  values: '''TAS'' | ''EAS'' | ''CAS'''
+  default: '''TAS'''
+- name: Airspeed output
+  summary: 空速输出类型 EAS（默认）| CAS | TAS
+  group: ''
+  block_parameter: vel_out_tas、vel_out_cas、vel_out_eas，取决于输入速度类型 vel_in。有关详细信息，请参阅空速输出类型表。
+  type: 字符向量
+  values: '''EAS'' | ''CAS''''TAS'''
+  default: '''EAS'''
+- name: Method
+  summary: 计算转换因子的方法 Table Lookup（默认）| Equation
+  group: ''
+  block_parameter: method
+  type: 字符向量
+  values: '''Table Lookup'' | ''Equation'''
+  default: '''Table Lookup'''
+- name: Subsonic airspeeds only
+  summary: 用于亚音速空速 off（默认）| on
+  group: ''
+  block_parameter: SubOnly
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Action for out-of-range input
+  summary: 超出范围输入时的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+```
 
 ### **Units** — 单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -219,7 +298,6 @@ Ideal Airspeed Correction 模块在以下任一情况下自动使用 `Equation` 
 | **类型**：字符向量 |
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'None'` |
-
 ## 所属库
 
 Aerospace Blockset / Flight Parameters

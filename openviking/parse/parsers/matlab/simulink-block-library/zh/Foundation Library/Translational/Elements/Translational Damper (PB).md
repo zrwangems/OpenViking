@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Translational Damper (PB)
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座端口，基于位置的机械平移
+  direction: conserving
+- name: F
+  summary: 从动端口，基于位置的机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **F** — 从动端口，基于位置的机械平移
 
 基于位置的机械平移守恒端口，表示从动连接。对于正长度，端口 **F** 的位置比端口 **B** 更正。
-
 ## 参数
+```yaml
+parameters:
+- name: Damping coefficient
+  summary: 阻尼系数，由粘性摩擦定义 1e5 N/(m/s)（默认）| 标量
+  group: ''
+```
 
 ### **Damping coefficient** — 阻尼系数，由粘性摩擦定义 `1e5 N/(m/s)`（默认）| 标量
 
 阻尼系数，由粘性摩擦定义。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Elements

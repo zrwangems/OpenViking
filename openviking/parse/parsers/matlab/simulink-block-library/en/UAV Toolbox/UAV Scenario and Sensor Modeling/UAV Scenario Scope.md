@@ -14,6 +14,12 @@ language: en
 # UAV Scenario Scope
 
 ## Ports
+```yaml
+ports:
+- name: In_1, In_2, ..., In_N
+  summary: Point cloud data inputs for lidar sensors *N*-by-*M*-by-3 double matrix | *N*-by-3 double matrix
+  direction: input
+```
 
 ### Input
 
@@ -35,8 +41,16 @@ the number of horizontal scans. If the `Organized point cloud
 locations` of the lidar sensor is set to `'off'`, the
 input port expects an *N*-by-3 double matrix, where
 *N* is the number of points in the point cloud.
-
 ## Parameters
+```yaml
+parameters:
+- name: Lidar Sensors
+  summary: List of lidar sensors and their visualization table
+  group: ''
+- name: Sample time
+  summary: Sample time 0.1 (default)
+  group: ''
+```
 
 ### **Lidar Sensors** — List of lidar sensors and their visualization table
 
@@ -64,7 +78,6 @@ the UAV scenario.
 Specify sample time of the visualization. If `Sample time` is set
 to `-1`, this block uses the sample time specified in the UAV Scenario
 Configuration block.
-
 ## Libraries
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

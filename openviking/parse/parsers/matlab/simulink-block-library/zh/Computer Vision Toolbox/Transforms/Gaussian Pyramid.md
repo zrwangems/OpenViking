@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Gaussian Pyramid
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像 标量 | 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 输出图像 标量 | 向量 | 矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,25 @@ chinese_source: worker-translation
 输出图像，返回为标量、向量、矩阵或数组。输出图像的维度由 **Operation** 和 **Pyramid level** 参数值决定。要使此端口返回标量或向量，必须将 **Operation** 参数设置为 `Reduce`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation
+  summary: 选择操作 Reduce（默认） | Expand
+  group: ''
+- name: Pyramid level
+  summary: 图像缩放因子 1（默认） | 正整数
+  group: ''
+- name: Coefficient source
+  summary: 低通滤波器系数来源 Default separable filter [1/4-a/2 1/4 a 1/4 1/4-a/2]（默认） | Specify via dialog
+  group: ''
+- name: Coefficients for separable filter
+  summary: 可分离滤波器系数 [0.0625 0.25 0.375 0.25 0.0625]（默认） | 向量
+  group: ''
+- name: Hidden coefficients
+  summary: 隐藏的可分离滤波器系数 [1/4-0.375/2 1/4 0.375 1/4 1/4-0.375/2]（默认） | 向量
+  group: ''
+```
 
 ### **Operation** — 选择操作 `Reduce`（默认） | `Expand`
 
@@ -59,7 +87,6 @@ chinese_source: worker-translation
 ### **Hidden coefficients** — 隐藏的可分离滤波器系数 `[1/4-0.375/2 1/4 0.375 1/4 1/4-0.375/2]`（默认） | 向量
 
 将隐藏的可分离滤波器系数指定为向量。
-
 ## 所属库
 
 Computer Vision Toolbox / Transforms

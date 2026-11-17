@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Interpolate Matrix(x)
 
 ## 端口
+```yaml
+ports:
+- name: x_k
+  summary: 插值索引 *i* 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: x_f
+  summary: 插值分数 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: Matrix(x)
+  summary: 插值矩阵 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -36,8 +51,17 @@ chinese_source: worker-translation
 插值矩阵，指定为矩阵。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Matrix to interpolate
+  summary: 矩阵 matrix（默认值）
+  group: ''
+  block_parameter: matrix
+  type: character vector
+  values: matrix
+  default: '''matrix'''
+```
 
 ### **Matrix to interpolate** — 矩阵 `matrix`（默认值）
 
@@ -51,7 +75,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：matrix |
 | **默认值**：`'matrix'` |
-
 ## 所属库
 
 Aerospace Blockset / GNC / Control

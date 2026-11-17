@@ -14,6 +14,19 @@ language: en
 # Bus Selector
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input virtual or nonvirtual bus bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: Port_1
+  summary: Selected elements of input bus scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -39,8 +52,25 @@ in a virtual bus.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Elements in the bus
+  summary: 'Input bus hierarchy Read-only: list of element names'
+  group: ''
+  block_parameter: InputSignals
+  values: 'Read-only: cell array of element names'
+- name: Output elements
+  summary: Selected output elements list of element names
+  group: ''
+  block_parameter: OutputSignals
+  values: '''signal1,signal2'' (default) | comma-separated list of element names in quotes'
+- name: Output as virtual bus
+  summary: Option to output selected elements as virtual bus off (default) | on
+  group: ''
+  block_parameter: OutputAsBus
+  values: '''off'' (default) | ''on'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -203,7 +233,6 @@ the `set_param` function.
 | **Values:** | `'off'` (default) | `'on'` |
 
 **Example:** `set_param(gcb,'OutputAsBus','on')`
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing

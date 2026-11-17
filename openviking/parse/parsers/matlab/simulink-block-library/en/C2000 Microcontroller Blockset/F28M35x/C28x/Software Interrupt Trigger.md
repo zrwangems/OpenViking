@@ -14,6 +14,13 @@ language: en
 # C28x Software Interrupt Trigger
 
 ## Ports
+```yaml
+ports:
+- name: PIEIFRx.INTy
+  summary: Triggers software interrupt scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### Input
 
@@ -27,8 +34,19 @@ the value in the **Trigger software interrupt when input
 value is greater than** parameter.
 
 **Data Types:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: CPU interrupt number
+  summary: CPU interrupt number corresponding to hardware interrupt 7 (default) | scalar
+  group: ''
+- name: PIE interrupt number
+  summary: PIE interrupt number corresponding to hardware interrupt 8 (default) | scalar
+  group: ''
+- name: Trigger software interrupt when input value is greater than
+  summary: Sets value above which block posts an interrupt 0 (default) | scalar
+  group: ''
+```
 
 ### **CPU interrupt number** — CPU interrupt number corresponding to hardware interrupt `7` (default) | scalar
 
@@ -45,7 +63,6 @@ interrupt. For information about PIE numbers of C2000 processors, see C28x Hardw
 
 Enter the value for the level that indicates that the interrupt is
 asserted by a requesting routine.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C281x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

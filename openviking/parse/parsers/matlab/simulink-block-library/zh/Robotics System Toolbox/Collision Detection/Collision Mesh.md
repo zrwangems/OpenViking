@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # Collision Mesh
 
 ## 端口
+```yaml
+ports:
+- name: Vertices
+  summary: 网格顶点矩阵
+  direction: input
+- name: Pose
+  summary: 碰撞几何体的位姿矩阵
+  direction: input
+- name: CollGeom
+  summary: 碰撞几何体总线
+  direction: output
+- name: ExitFlag
+  summary: 碰撞网格顶点有效性标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输入
 
@@ -50,8 +66,16 @@ chinese_source: worker-translation
 Runtime Input Dimensions Error** 参数。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable Runtime Input Dimensions Error
+  summary: 碰撞网格顶点验证 on（默认）| off
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -68,7 +92,6 @@ Inspector**。
 
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，该模块会在后续仿真中重用该 C 代码。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Robotics System Toolbox / Collision Detection

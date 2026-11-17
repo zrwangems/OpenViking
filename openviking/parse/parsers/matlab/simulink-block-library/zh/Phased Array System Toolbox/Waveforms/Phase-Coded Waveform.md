@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Phase Coded Waveform
 
 ## 端口
+```yaml
+ports:
+- name: PRFIdx
+  summary: PRF 索引 正整数
+  direction: input
+  data_types: double
+- name: FreqOffset
+  summary: 频率偏移 标量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 脉冲波形 复值向量
+  direction: output
+  data_types: double
+- name: PRF
+  summary: 脉冲重复频率 正标量
+  direction: output
+  data_types: double
+- name: Coeff
+  summary: 匹配滤波器系数 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -71,8 +94,105 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: 输出波形的采样率 1e6（默认）| 正标量
+  group: ''
+- name: Phase code
+  summary: 用于相位调制的码类型 Frank（默认）
+  group: ''
+- name: Custom phase code
+  summary: 自定义相位码 [1,-1]（默认）| 长度为 *M* 的复值向量
+  group: ''
+- name: Chip width (s)
+  summary: 码片持续时间 1e-5（默认）| 正标量
+  group: ''
+- name: Number of chips
+  summary: 波形中的码片数 4（默认）| 正整数
+  group: ''
+- name: Zadoff-Chu sequence index
+  summary: Zadoff-Chu 码型的序列索引 1（默认）| 正整数
+  group: ''
+- name: Pulse repetition frequency (Hz)
+  summary: 脉冲重复频率 1e4（默认）| 正标量
+  group: ''
+  block_parameter: PRF
+  type: double
+  values: 正标量
+  default: 1e6
+- name: Enable PRF selection input
+  summary: 选择预定义 PRF off（默认）| on
+  group: ''
+  block_parameter: PRFSelectionInputPort
+  type: logical
+  values: positive scalar
+  default: 'off'
+- name: Source of Frequency Offset
+  summary: 频率偏移源 Property（默认）| Input port
+  group: ''
+  block_parameter: FrequencyOffsetSource
+  type: enum
+  values: Property, Input Port
+  default: Property
+- name: Frequency Offset (Hz)
+  summary: 频率偏移 0（默认）| 标量
+  group: ''
+  block_parameter: FrequencyOffset
+  type: double
+  values: scalar
+  default: '0'
+- name: Source of simulation sample time
+  summary: 仿真采样时间源 Derive from waveform parameters（默认）| Inherit from Simulink engine
+  group: ''
+  block_parameter: SimulationTimeSource
+  type: enum
+  values: Derive from waveform parameters, Inherit from Simulink engine
+  default: Derive from waveform parameters
+- name: Output signal format
+  summary: 输出信号的格式 Pulses（默认）| Samples
+  group: ''
+  block_parameter: OutputFormat
+  type: enum
+  values: Pulses Samples
+  default: Pulses
+- name: Number of samples in output
+  summary: 输出中的采样数 100（默认）| 正整数
+  group: ''
+  block_parameter: NumSamples
+  type: double
+  values: positive scalar
+  default: '100'
+- name: Number of pulses in output
+  summary: 输出中的脉冲数 1（默认）| 正整数
+  group: ''
+  block_parameter: NumPulses
+  type: double
+  values: positive scalar
+  default: '1'
+- name: Enable PRF Output
+  summary: 启用 PRF 输出 off（默认）| on
+  group: ''
+  block_parameter: PRFOutputPort
+  type: enum
+  values: off on
+  default: 'off'
+- name: Enable Matched Filter Coefficients Output
+  summary: 启用匹配滤波器系数输出 off（默认）| on
+  group: ''
+  block_parameter: CoefficientOutputPort
+  type: enum
+  values: off on
+  default: 'off'
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+  default: Interpreted Execution
+```
 
 ### **Sample rate (Hz)** — 输出波形的采样率 `1e6`（默认）| 正标量
 
@@ -400,7 +520,6 @@ Generation` 运行模块。长时间仿真使用生成的代码比
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认值：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Waveforms

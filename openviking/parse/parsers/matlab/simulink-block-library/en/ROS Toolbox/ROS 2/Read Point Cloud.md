@@ -14,6 +14,29 @@ language: en
 # Read Point Cloud
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: ROS sensor_msgs/PointCloud2 message nonvirtual bus
+  direction: input
+  data_types: bus
+- name: XYZ
+  summary: XYZ coordinates matrix | array
+  direction: output
+  data_types: single
+- name: RGB
+  summary: RGB values for each point matrix | array
+  direction: output
+  data_types: double
+- name: Intensity
+  summary: Intensity values for each point array | matrix
+  direction: output
+  data_types: single
+- name: ErrorCode
+  summary: Error code for image conversion scalar
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -94,8 +117,28 @@ For certain error codes, the block truncates the data or populates
 with `NaN` values where appropriate.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum point cloud size
+  summary: Maximum point cloud image size [480 640] (default) | two-element vector
+  group: ''
+- name: Preserve point cloud structure
+  summary: Point cloud data output shape preservation off (default) | on
+  group: ''
+- name: Show RGB output port
+  summary: RGB port toggle off (default) | on
+  group: ''
+- name: Show Intensity output port
+  summary: Intensity port toggle off (default) | on
+  group: ''
+- name: Show ErrorCode output port
+  summary: ErrorCode port toggle on (default) | off
+  group: ''
+- name: Output variable-size signals
+  summary: Variable-size signal output toggle off (default) | on
+  group: ''
+```
 
 ### **Maximum point cloud size** — Maximum point cloud image size `[480 640]` (default) | two-element vector
 
@@ -134,7 +177,6 @@ Select this parameter to enable the **ErrorCode** port and monitor errors.
 Toggle whether to output a variable-size signal. Use variable-sized
 signals only if you expect the image size to change over time. For more
 information about variable-size signals, see Variable-Size Signal Basics (Simulink).
-
 ## Libraries
 
 ROS Toolbox / ROS

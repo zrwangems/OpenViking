@@ -14,6 +14,18 @@ language: en
 # Ejector (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Primary inlet gas
+  direction: conserving
+- name: B
+  summary: Outlet gas
+  direction: conserving
+- name: S
+  summary: Secondary inlet gas
+  direction: conserving
+```
 
 ### Conserving
 
@@ -29,8 +41,46 @@ Gas conserving port associated with the diffuser outlet.
 ### **S** — Secondary inlet gas
 
 Gas conserving port associated with the secondary inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Primary nozzle throat area
+  summary: Area of primary nozzle throat 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Area ratio of nozzle exit to throat
+  summary: Ratio of areas of nozzle exit to nozzle throat 3 (default) | positive scalar
+  group: ''
+- name: Area ratio of mixing chamber to throat
+  summary: Ratio of areas of mixing chamber to throat 8 (default) | positive scalar
+  group: ''
+- name: Minimum area ratio of secondary throat to primary throat
+  summary: Limit on ratio of aerodynamic areas of secondary throat to primary throat 0.1 (default) | positive scalar
+  group: ''
+- name: Report when secondary throat area falls below minimum
+  summary: Notification when secondary throat area is below minimum Warning (default) | None | Error
+  group: ''
+- name: Efficiency for primary flow through nozzle
+  summary: Efficiency factor of primary flow through nozzle 0.95 (default) | positive scalar
+  group: ''
+- name: Efficiency for secondary suction flow
+  summary: Efficiency factor of secondary suction flow 0.85 (default) | positive scalar
+  group: ''
+- name: Efficiency for primary flow expansion
+  summary: Efficiency factor of primary flow expansion 0.88 (default) | positive scalar
+  group: ''
+- name: Efficiency for mixing
+  summary: Efficiency factor for mixed flow velocity due to mixing 0.84 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Cross-sectional area of port A 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port B
+  summary: Cross-sectional area of port B 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port S
+  summary: Cross-sectional area of port S 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Primary nozzle throat area** — Area of primary nozzle throat `1e-4` `m^2` (default) | positive scalar
 
@@ -94,7 +144,6 @@ Cross-sectional area of port **B**.
 ### **Cross-sectional area at port S** — Cross-sectional area of port S `0.01` `m^2` (default) | positive scalar
 
 Cross-sectional area of port **S**.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Turbomachinery

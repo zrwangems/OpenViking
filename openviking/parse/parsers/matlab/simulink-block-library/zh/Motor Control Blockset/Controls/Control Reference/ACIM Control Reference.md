@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # ACIM Control Reference
 
 ## 端口
+```yaml
+ports:
+- name: Tref
+  summary: 参考转矩值 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: 机械转速 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Isdref
+  summary: 参考 *d* 轴定子电流 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Isqref
+  summary: 参考 *q* 轴定子电流 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -42,8 +61,40 @@ chinese_source: worker-translation
 参考 *q* 轴定子电流值。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 2（默认）| 标量
+  group: ''
+- name: Rotor leakage inductance (H)
+  summary: 转子绕组的漏电感 6.81e-3（默认）| 标量
+  group: ''
+- name: Magnetizing Inductance (H)
+  summary: 感应电机的励磁电感 30e-3（默认）| 标量
+  group: ''
+- name: Rated Flux (Wb)
+  summary: 电机额定磁通 38.2e-3（默认）| 标量
+  group: ''
+- name: Rated Speed (rpm)
+  summary: 电机额定转速 1150（默认）| 标量
+  group: ''
+- name: Synchronous Speed (rpm)
+  summary: 电机同步转速 1500（默认）| 标量
+  group: ''
+- name: Max current (A)
+  summary: 电机最大相电流限值（安培） 3（默认）| 标量
+  group: ''
+- name: Input units
+  summary: 输入值的单位 Per-Unit (PU)（默认）| SI Units
+  group: ''
+- name: Base Current (A)
+  summary: 标幺系统的基准电流 5.3611（默认）| 标量
+  group: ''
+- name: Base torque (Nm)
+  summary: 标幺系统的基准转矩 0.50072（默认）| 标量
+  group: ''
+```
 
 ### **Number of pole pairs** — 电机中可用的极对数 `2`（默认）| 标量
 
@@ -96,7 +147,6 @@ chinese_source: worker-translation
 
 要显示此参数，请将 **Input units** 设置为
 `Per-Unit (PU)`。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

@@ -14,6 +14,9 @@ language: en
 # Hydraulic Piston Chamber
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,8 +25,10 @@ The block has the following ports:
 
 `P`
 :   Physical signal port that controls piston displacement.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Piston area**
 :   Effective piston area. The default value is `5e-4` m^2.
@@ -55,7 +60,6 @@ parameter:
 - **Chamber orientation**
 
 All other block parameters are available for modification.
-
 ## Libraries
 
 Not documented in R2025b.

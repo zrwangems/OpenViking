@@ -15,6 +15,72 @@ chinese_source: worker-translation
 # Spark Ignition Engine
 
 ## 端口
+```yaml
+ports:
+- name: IgSw
+  summary: 点火器开关，二值物理信号
+  direction: input
+- name: Pim
+  summary: 进气歧管压力输入，kPa 物理信号
+  direction: input
+- name: Thr
+  summary: 节气门命令输入，无量纲物理信号
+  direction: input
+- name: InVT
+  summary: 进气可变气门正时输入，deg 物理信号
+  direction: input
+- name: ExVT
+  summary: 排气可变气门正时输入，deg 物理信号
+  direction: input
+- name: AfrCmd
+  summary: 空燃比命令输入，无量纲物理信号
+  direction: input
+- name: InjPw
+  summary: 喷油器脉冲宽度输入，ms 物理信号
+  direction: input
+- name: SA
+  summary: 点火角输入，deg 物理信号
+  direction: input
+- name: IgTrig
+  summary: 点火触发输入，无量纲物理信号
+  direction: input
+- name: Pback
+  summary: 排气背压输入，kPa 物理信号
+  direction: input
+- name: AvrTrq
+  summary: 循环平均净指示扭矩输出，N\*m 物理信号
+  direction: output
+- name: AvrSpd
+  summary: 循环平均转速输出，rad/s 物理信号
+  direction: output
+- name: Pim
+  summary: 进气歧管压力输出，kPa 物理信号
+  direction: output
+- name: crkpos
+  summary: 曲轴位置输出，deg 物理信号
+  direction: output
+- name: AirMassFlow
+  summary: 气缸空气质量流量输出，g/s 物理信号
+  direction: output
+- name: FuelMassFlow
+  summary: 气缸燃油质量流量输出，g/s 物理信号
+  direction: output
+- name: AFR
+  summary: 空燃比输出，无量纲物理信号
+  direction: output
+- name: Vcyl
+  summary: 气缸容积输出，cm^3 物理信号
+  direction: output
+- name: Pcyl
+  summary: 气缸压力输出，MPa 物理信号
+  direction: output
+- name: Tcyl
+  summary: 气缸温度输出，K 物理信号
+  direction: output
+- name: F
+  summary: 曲轴传动系连接机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -183,8 +249,181 @@ chinese_source: worker-translation
 ### **F** — 曲轴传动系连接机械旋转
 
 与曲轴到传动系连接关联的机械旋转守恒端口。在此处包含摩擦和惯性以模拟发动机负载，或直接连接其他传动系元件。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of cylinders
+  summary: 气缸总数 Single Cylinder（默认）| Two Cylinders | Three Cylinders | Four Cylinders
+  group: 机械
+- name: Spark angle difference
+  summary: 双缸发动机点火角相位 270 deg（默认）| 正标量
+  group: 机械
+- name: Firing order
+  summary: 四缸发动机的点火顺序 1-3-4-2（默认）| 1-3-2-4
+  group: 机械
+- name: Bore
+  summary: 气缸直径 72.5 mm（默认）| 正标量
+  group: 机械
+- name: Stroke
+  summary: 活塞行程距离 80.5 mm（默认）| 正标量
+  group: 机械
+- name: Connecting-rod length
+  summary: 连杆长度 141 mm（默认）| 正标量
+  group: 机械
+- name: Compression ratio
+  summary: 静态压缩比 11.0（默认）| 正标量
+  group: 机械
+- name: Ambient pressure
+  summary: 参考空气压力 101.325 kPa（默认）| 正标量
+  group: 环境
+- name: Ambient temperature
+  summary: 参考温度 298.15 K（默认）| 正标量
+  group: 环境
+- name: Ambient air density
+  summary: 参考密度 1.225 mg/cm^3（默认）| 正标量
+  group: 环境
+- name: Specific gas constant of dry air
+  summary: 干空气比气体常数 288.1965 J/(K*kg)（默认）| 正标量
+  group: 环境
+- name: Compute air intake dynamics
+  summary: 计算进气动态的选项 on（默认）| off
+  group: 进气
+- name: Throttle response time constant
+  summary: 节气门响应时间常数 0.1 s（默认）| 正标量
+  group: 进气
+- name: Throttle rest angle
+  summary: 释放的节气门位置 3 deg（默认）| 正标量
+  group: 进气
+- name: Throttle plate diameter
+  summary: 节气门板直径 5 cm（默认）| 正标量
+  group: 进气
+- name: Throttle leakage area
+  summary: 节气门泄漏面积 1 cm^2（默认）| 非负标量
+  group: 进气
+- name: Intake manifold volume
+  summary: 进气歧管容积 1000 cm^3（默认）| 正标量
+  group: 进气
+- name: Discharge coefficient for intake valve
+  summary: 进气门流量系数 0.9（默认）| 正标量
+  group: 气门
+- name: Intake valve open before TDC
+  summary: IVO 曲轴位置 15 deg（默认）| [-360,360] 范围内的标量
+  group: 气门
+- name: Intake valve close after BDC
+  summary: IVC 曲轴位置 50 deg（默认）| [-360,360] 范围内的标量
+  group: 气门
+- name: Exhaust valve open before BDC
+  summary: EVO 曲轴位置 55 deg（默认）| [-360,360] 范围内的标量
+  group: 气门
+- name: Exhaust valve close after TDC
+  summary: EVC 曲轴位置 10 deg（默认）| [-360,360] 范围内的标量
+  group: 气门
+- name: Intake Variable Valve Timing
+  summary: 进气可变气门正时选项 on（默认）| off
+  group: 气门
+- name: Exhaust Variable Valve Timing
+  summary: 排气可变气门正时选项 on（默认）| off
+  group: 气门
+- name: Lower heating value for gasoline
+  summary: 燃油净热值 44.3 MJ/kg（默认）| 正标量
+  group: 燃油
+- name: Input air-fuel ratio
+  summary: 空燃比参数选项 on（默认）| off
+  group: 燃油
+- name: Air-fuel ratio
+  summary: 空燃比 14.6（默认）| 正标量
+  group: 燃油
+- name: Input injector pulse width
+  summary: 脉冲宽度参数化 on（默认）| off
+  group: 燃油
+- name: Injector slope
+  summary: 喷油器斜率 6.5 mg/ms（默认）| 正标量
+  group: 燃油
+- name: Spark input type
+  summary: 点火输入类型 Fixed（默认）| Spark angle | Spark trigger event
+  group: 燃烧
+- name: Spark advance BTDC
+  summary: 上止点前点火提前角 20 deg（默认）| 正标量
+  group: 燃烧
+- name: Combustion duration
+  summary: 燃烧持续时间 50 deg（默认）| 正标量
+  group: 燃烧
+- name: Cylinder pressure slow decay time constant
+  summary: 气缸压力缓慢衰减速率 60 s（默认）| 正标量
+  group: 燃烧
+- name: Cylinder temperature slow decay time constant
+  summary: 气缸温度缓慢衰减速率 600 s（默认）| 正标量
+  group: 燃烧
+- name: Exhaust gas temperature decay time constant
+  summary: 排气温度衰减速率 5 ms（默认）| 正标量
+  group: 排气
+- name: Input back pressure
+  summary: 背压输入选项 on（默认）| off
+  group: 排气
+- name: Back-pressure pressure constant
+  summary: 背压的压力常数 50 kPa（默认）| 正标量
+  group: 排气
+- name: Back-pressure speed constant
+  summary: 背压的转速常数 6000 rpm（默认）| 正标量
+  group: 排气
+- name: Compute exhaust manifold temperature
+  summary: 计算排气歧管温度的选项 on（默认）| off
+  group: 排气
+- name: Surface area of exhaust wall
+  summary: 排气壁表面积 1 m^2（默认）| 正标量
+  group: 排气
+- name: Mass of exhaust wall
+  summary: 排气壁总质量 5 kg（默认）
+  group: 排气
+- name: Heat capacity of exhaust wall
+  summary: 排气壁热容量 100 J/(K*kg)（默认）| 正标量
+  group: 排气
+- name: Time constant of exhaust heat flow
+  summary: 排气热流时间常数 10 s（默认）| 正标量
+  group: 排气
+- name: Convective heat transfer coefficient for the outer side of exhaust
+  summary: 排气外侧对流换热系数 100 W/(K*m^2)（默认）| 正标量
+  group: 排气
+- name: Radiation constant
+  summary: 排气辐射常数 0.3（默认）| 正标量
+  group: 排气
+- name: Stefan-Boltzmann constant
+  summary: 排气 Stefan-Boltzmann 常数 5.7e-8 W/(K^4*m^2)（默认）| 正标量
+  group: 排气
+- name: Initial intake manifold pressure
+  summary: 进气歧管内的初始压力 101.325 kPa（默认）| 正标量
+  group: 仿真
+- name: Initial crank position (0-720 CAdeg)
+  summary: 初始曲轴位置 0 deg（默认）| 范围 [0,720] 内的标量
+  group: 仿真
+- name: Initial engine speed
+  summary: 初始发动机转速 0 rpm（默认）| 非负标量
+  group: 仿真
+- name: Engine speed simulation limit
+  summary: 最大发动机转速 8500 rpm（默认）| 正标量
+  group: 仿真
+- name: Engine outlet gas energy flow
+  summary: 输出发动机出口气体能量流的选项 off（默认）| on
+  group: 输出
+- name: Cylinder volume
+  summary: 输出气缸容积的选项 on（默认）| off
+  group: 输出
+- name: Cylinder pressure
+  summary: 输出气缸压力的选项 on（默认）| off
+  group: 输出
+- name: Cylinder temperature
+  summary: 输出气缸温度的选项 on（默认）| off
+  group: 输出
+- name: Input air/fuel ratio
+  summary: 输出空燃比的选项 on（默认）| off
+  group: 输出
+- name: Air mass flow
+  summary: 输出气缸空气质量流量的选项 on（默认）| off
+  group: 输出
+- name: Fuel mass flow
+  summary: 输出燃料质量流量的选项 on（默认）| off
+  group: 输出
+```
 
 ### 机械
 
@@ -523,7 +762,6 @@ manifold temperature**。
 ### **Fuel mass flow** — 输出燃料质量流量的选项 `on`（默认）| `off`
 
 是否从物理信号端口 **FuelMassFlow** 输出燃料质量流量。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors

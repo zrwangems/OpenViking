@@ -14,6 +14,25 @@ language: en
 # VISA
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data to send vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Data
+  summary: Data received vector | matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Status
+  summary: Instrument status 1 | 0
+  direction: output
+  data_types: double
+- name: Instrument error
+  summary: Error message from instrument string
+  direction: output
+  data_types: string
+```
 
 ### Input
 
@@ -71,8 +90,225 @@ Error message from instrument, returned as a string.
   Error** tab.
 
 **Data Types:** `string`
-
 ## Parameters
+```yaml
+parameters:
+- name: Block sample time
+  summary: Time interval between samples -1 (default) | numeric
+  group: Block parameters
+  block_parameter: SampleTime
+  values: '"-1" (default) | number in quotes'
+- name: Resource name
+  summary: VISA resource name available VISA resources
+  group: Hardware Configuration
+  block_parameter: ResourceName
+  values: resource name
+- name: Vendor
+  summary: 'Instrument manufacturer Read-only: instrument manufacturer name'
+  group: Hardware Configuration
+  block_parameter: VendorName
+  values: 'Read-only: vendor name'
+- name: Model
+  summary: 'Instrument model Read-only: instrument model name'
+  group: Hardware Configuration
+  block_parameter: ModelName
+  values: 'Read-only: model name'
+- name: Serial Number
+  summary: 'Unique serial number associated with instrument Read-only: instrument serial number'
+  group: Hardware Configuration
+  block_parameter: SlNumber
+  values: 'Read-only: serial number'
+- name: VISA resource type
+  summary: Type of VISA resource to configure TCP/IP Socket (default) | TCP/IP HiSLIP | TCP/IP VXI-11
+  group: Hardware Configuration
+  block_parameter: Interface
+  values: '"TCP/IP Socket" (default) | "TCP/IP HiSLIP" | "TCP/IP VXI-11"'
+- name: Board index
+  summary: Board index to connect to positive integer
+  group: Hardware Configuration
+  block_parameter: BoardNumber
+  values: positive number in quotes
+- name: IP address
+  summary: IP address to connect to IP address
+  group: Hardware Configuration
+  block_parameter: IPAddress
+  values: IP address in dot-decimal notation in quotes
+- name: Port number
+  summary: Port number to use for connection 4880 (default) | positive integer
+  group: Hardware Configuration
+  block_parameter: Port
+  values: '"4880" (default) | positive number in quotes'
+- name: Device ID
+  summary: ID of device to connect to positive integer
+  group: Hardware Configuration
+  block_parameter: DeviceID
+  values: positive number in quotes
+- name: Resource name
+  summary: VISA resource name VISA resource name
+  group: Hardware Configuration
+  block_parameter: ResourceString
+  values: resource name in quotes
+- name: EOI Mode
+  summary: EOI mode on (default) | off
+  group: Hardware Configuration
+  block_parameter: EOIMode
+  values: '"on" (default) | "off"'
+- name: Byte order
+  summary: Sequential order of bytes little-endian (default) | big-endian
+  group: Hardware Configuration
+  block_parameter: ByteOrder
+  values: '"little-endian" (default) | "big-endian"'
+- name: Read terminator
+  summary: Terminator character for reading data off (default) | LF | CR | CR/LF | 0 to 255
+  group: Hardware Configuration
+  block_parameter: ReadTerminator
+  values: '"off" (default) | "LF" | "CR" | "CR/LF" | 0 to 255 in quotes'
+- name: Write terminator
+  summary: Terminator character for writing data LF (default) | CR | CR/LF | 0 to 255
+  group: Hardware Configuration
+  block_parameter: WriteTerminator
+  values: '"LF" (default) | "CR" | "CR/LF" | 0 to 255 in quotes'
+- name: Data bits
+  summary: Number of bits to represent one character of data 8 (default) | 5 | 6 | 7
+  group: Hardware Configuration
+  block_parameter: DataBits
+  values: '"8" (default) | "5" | "6" | "7"'
+- name: Parity
+  summary: Parity bit type none (default) | even | odd
+  group: Hardware Configuration
+  block_parameter: Parity
+  values: '"none" (default) | "even" | "odd"'
+- name: Stop bits
+  summary: Pattern of bits that indicates the end of a character 1 (default) | positive scalar
+  group: Hardware Configuration
+  block_parameter: StopBits
+  values: '"1" (default) | positive scalar'
+- name: Flow control
+  summary: Mode for managing data transmission rate none (default) | hardware | software
+  group: Hardware Configuration
+  block_parameter: FlowControl
+  values: '"none" (default) | "hardware" | "software"'
+- name: Baud rate
+  summary: Communication speed 9600 (default) | positive integer
+  group: Hardware Configuration
+  block_parameter: BaudRate
+  values: '"9600" (default) | positive integer'
+- name: Timeout
+  summary: Allowed time to complete operations 10 (default) | numeric
+  group: Hardware Configuration
+  block_parameter: TimeOut
+  values: 10 (default) | numeric
+- name: Instrument identification command
+  summary: SCPI command to send to your instrument *IDN? (default) | SCPI command
+  group: Hardware Configuration
+  block_parameter: TestCommand
+  values: '"*IDN?" (default) | SCPI command in quotes'
+- name: Validate and test connection
+  summary: VISA resource connection verification button
+  group: Hardware Configuration
+- name: Response
+  summary: 'Instrument query response Read-only: string scalar'
+  group: Hardware Configuration
+  block_parameter: Response
+  values: 'Read-only: instrument response in quotes'
+- name: Initialization commands
+  summary: SCPI command to send to your instrument *RST;*CLS (default) | SCPI command
+  group: Instrument Initialization
+  block_parameter: SendString
+  values: '"*RST;*CLS" (default) | SCPI command in quotes'
+- name: MATLAB Code
+  summary: MATLAB® code to send to your instrument MATLAB code
+  group: Instrument Initialization
+  block_parameter: ExecuteFunction
+  values: MATLAB code in quotes
+- name: Instrument error check command
+  summary: SCPI command to send to your instrument SYSTem:ERRor? (default) | SCPI command
+  group: Instrument Initialization
+  block_parameter: InitTestCommand
+  values: '"SYSTem:ERRor?" (default) | SCPI command in quotes'
+- name: Upload initialization commands and check instrument error status
+  summary: Initialization and error check commands upload button
+  group: Instrument Initialization
+- name: Instrument status
+  summary: 'Instrument initialization response Read-only: string scalar'
+  group: Instrument Initialization
+  block_parameter: initStatus
+  values: 'Read-only: instrument response in quotes'
+- name: SCPI Command
+  summary: SCPI command to send to your instrument SCPI command
+  group: Send or Query
+  block_parameter: StaticCommand
+  values: SCPI command in quotes
+- name: Binary command
+  summary: Binary command to send to your instrument binary values
+  group: Send or Query
+  block_parameter: StaticBinary
+  values: binary values in quotes
+- name: Binblock data
+  summary: Binblock command to send to your instrument binblock values
+  group: Send or Query
+  block_parameter: BinBlockCommand
+  values: binblock values in quotes
+- name: Data type
+  summary: Size and format of each value uint8 (default) | single | double | int8 | int16 | uint16 | int32 | uint32 | uint64
+    | int64
+  group: Send or Query
+  block_parameter: DataType
+  values: '"uint8" (default) | "single" | "double" | "int8" | "int16" | "uint16" | "int32" | "uint32" | "int64" | "uint64"'
+- name: Command header
+  summary: SCPI command header to send with input port data SCPI command
+  group: Send or Query
+  block_parameter: Header
+  values: SCPI command in quotes
+- name: Numeric format
+  summary: Format of numeric data Integer, signed (%d) (default) | Integer, unsigned (%u) | Floating-point (%f) | Characters
+    (%c) | Enter numeric format
+  group: Send or Query
+  block_parameter: NumFormat
+  values: '"Integer, signed (%d)" (default) | "Integer, unsigned (%u)" | "Floating-point (%f)" | "Characters (%c)" | "Enter
+    numeric format"'
+- name: Enter numeric format
+  summary: Custom format of numeric data %2f (default) | numeric formats
+  group: Send or Query
+  block_parameter: CustomNumericFormat
+  values: '"%2f" (default) | numeric format in quotes'
+- name: delimiter
+  summary: Delimiting character , (default)
+  group: Send or Query
+  block_parameter: delimiter
+  values: '"," (default) | delimiting character in quotes'
+- name: Data type
+  summary: Size and format of each value uint8 (default) | single | double | int8 | int16 | uint16 | int32 | uint32 | uint64
+    | int64
+  group: Send or Query
+  block_parameter: ReceiveDatatype
+  values: '"uint8" (default) | "single" | "double" | "int8" | "int16" | "uint16" | "int32" | "uint32" | "int64" | "uint64"'
+- name: Determine data size automatically
+  summary: Allow block to automatically detect data size on (default) | off
+  group: Send or Query
+  block_parameter: AutoSize
+  values: '"on" (default) | "off"'
+- name: Data size
+  summary: Number of values read [1,1] (default) | [10000,1] (default) | numeric array
+  group: Send or Query
+  block_parameter: OutputSize
+  values: '"[10000,1]" (default)'
+- name: Action when error occurs
+  summary: Action to take when instrument errors Stop simulation (default) | Continue simulation
+  group: Handle Error
+  block_parameter: ActionWhenerror
+  values: '"Stop simulation" (default) | "Continue simulation"'
+- name: Check instrument error
+  summary: Output error message off (default) | on
+  group: Handle Error
+  block_parameter: Checkerror
+  values: '"off" (default) | "on"'
+- name: Error check command
+  summary: SCPI command to send to your instrument SYSTem:ERRor? (default) | SCPI command
+  group: Handle Error
+  block_parameter: CheckCommand
+  values: '"SYSTem:ERRor?" (default) | SCPI command in quotes'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -1201,7 +1437,6 @@ programmatically, use the `get_param` (Simulink) function.
 | **Values:** | `"SYSTem:ERRor?"` (default) | SCPI command in quotes |
 
 **Example:** `set_param(gcb,"InitTestCommand","SYSTem:ERRor?")`
-
 ## Libraries
 
 Instrument Control Toolbox

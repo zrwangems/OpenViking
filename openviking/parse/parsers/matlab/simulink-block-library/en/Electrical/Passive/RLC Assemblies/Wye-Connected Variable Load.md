@@ -14,6 +14,18 @@ language: en
 # Wye-Connected Variable Load
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Real power physical signal
+  direction: input
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -30,8 +42,20 @@ port.
 ### **n** — Neutral phase electrical
 
 Electrical conserving port associated with the neutral phase.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Rated voltage
+  summary: Rated line-line voltage 24e3 V (default)
+  group: ''
+- name: Minimum real power
+  summary: Minimum real power 1e3 W (default) | positive scalar
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -52,7 +76,6 @@ RMS, rated line-line voltage for the resistance equation.
 
 Minimum real power that the three-phase load dissipates when supplied at
 the rated voltage. The value must be greater than 0.
-
 ## Libraries
 
 Simscape / Electrical / Passive / RLC Assemblies

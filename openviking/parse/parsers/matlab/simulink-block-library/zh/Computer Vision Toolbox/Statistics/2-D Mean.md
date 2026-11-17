@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # 2-D Mean
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入数组 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rst
+  summary: 重置运行均值 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: ROI
+  summary: 感兴趣区域 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Label
+  summary: 标签矩阵 矩阵
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Label Numbers
+  summary: ROI 的标签值 向量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Out
+  summary: 输入的均值 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Flag
+  summary: ROI 验证 标量 | 向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -119,8 +150,43 @@ ROI 验证，以逻辑值的标量或向量形式返回。如果 **ROI type** �
 要启用此端口，请将 **ROI type** 参数设置为 `Rectangles`、`Lines` 或 `Label matrix`。对于 `Rectangles` 或 `Lines`，请选中 **Output flag indicating if ROI is within image bounds** 参数。对于 Label matrix，请选中 **Output flag indicating if input label numbers are valid** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Running mean
+  summary: 运行均值 off（默认）| on
+  group: ''
+- name: Reset port
+  summary: 重置事件 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Find the mean value over
+  summary: 计算均值所沿的维度 Entire input（默认）| Each row | Each column | Specified dimension
+  group: ''
+- name: Dimension
+  summary: 自定义维度 1（默认）| 正标量
+  group: ''
+- name: Enable ROI processing
+  summary: 在 ROI 内计算均值 off（默认）| on
+  group: ''
+- name: ROI type
+  summary: ROI 类型 Rectangles（默认）| Lines | Label matrix | Binary mask
+  group: ''
+- name: ROI portion to process
+  summary: 要计算均值的 ROI 部分 Entire ROI（默认）| ROI perimeter
+  group: ''
+- name: Output
+  summary: 计算 ROI 的单独均值或通用均值 Individual statistics for each ROI（默认）| Single statistic for all ROIs
+  group: ''
+- name: Output flag indicating if ROI is within image bounds
+  summary: 启用标志输出端口 off（默认）| on
+  group: ''
+- name: Output flag indicating if input label numbers are valid
+  summary: 启用标志输出端口 off（默认）| on
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: ''
+```
 
 **主**
 
@@ -256,7 +322,6 @@ ROI 验证，以逻辑值的标量或向量形式返回。如果 **ROI type** �
 **注意**
 
 浮点继承优先于此窗格上定义的数据类型设置。当输入为浮点时，模块忽略这些设置，所有内部数据类型均为浮点。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Controlled Temperature Source
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 温度控制信号，K 物理信号
+  direction: input
+- name: A
+  summary: 源入口热端口
+  direction: input
+- name: B
+  summary: 源出口热端口
+  direction: input
+```
 
 ### 输入
 
@@ -31,11 +43,12 @@ chinese_source: worker-translation
 ### **B** — 源出口热端口
 
 与源出口关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Sources

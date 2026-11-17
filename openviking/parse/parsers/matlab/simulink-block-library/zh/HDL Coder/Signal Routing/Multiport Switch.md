@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Multiport Switch
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 控制信号 标量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+- name: '1'
+  summary: 第一个数据输入 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | string | image
+- name: '2'
+  summary: 第二个数据输入 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | string | image
+- name: N
+  summary: 第 N 个数据输入 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | string | image
+- name: \*
+  summary: 超出范围输入的数据端口 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: 基于控制信号值选择的数据输入 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | string | image
+```
 
 ### 输入
 
@@ -92,8 +125,125 @@ chinese_source: worker-translation
 模块根据控制信号值选择并输出其中一个数据输入。输出具有与对应数据输入相同的维度。输出数据类型是需要最大内存空间的输入端口的类型。当您选中 **Allow different data input sizes** 复选框时，模块的输出为可变大小信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `string` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Data port order
+  summary: 数据输入端口的排序类型 One-based contiguous | Zero-based contiguous | Specify indices
+  group: 主要
+  block_parameter: DataPortOrder
+  type: 字符向量
+  values: '''Zero-based contiguous'' | ''One-based contiguous'' | ''Specify indices'''
+  default: '''One-based contiguous'' (Multiport Switch) | ''Zero-based contiguous'' (Index Vector)'
+- name: Number of data ports
+  summary: 数据输入端口数量 1 | 3 | 1 到 65535 之间的整数
+  group: 主要
+  block_parameter: Inputs
+  type: 字符向量
+  values: 1 到 65536 之间的整数
+  default: '''3'' (Multiport Switch) | ''1'' (Index Vector)'
+- name: Data port indices
+  summary: 数据端口的索引数组 {1,2,3}（默认）| 索引数组
+  group: 主要
+  block_parameter: DataPortIndices
+  type: 字符向量
+  values: 索引数组
+  default: '''{1,2,3}'''
+- name: Data port for default case
+  summary: 用于超出范围输入的端口 Last data port（默认）| Additional data port
+  group: 主要
+  block_parameter: DataPortForDefault
+  type: 字符向量
+  values: '''Last data port'' | ''Additional data port'''
+  default: '''Last data port'''
+- name: Diagnostic for default case
+  summary: 控制端口值与数据端口索引不匹配时的诊断操作 Error（默认）| Warning | None
+  group: 主要
+  block_parameter: DiagnosticForDefault
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Require all data port inputs to have the same data type
+  summary: 要求所有输入具有相同的数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: InputSameDT
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: 输出数据类型
+  summary: '指定输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Inherit via back propagation | Inherit: Same as first
+    data input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) |
+    fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Simulink.ImageType(480,640,3) | <data type expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string'' | Simulink.ImageType(480,640,3)
+    | ''<data type expression>'''
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 整数舍入模式
+  summary: 指定定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: 整数溢出时饱和
+  summary: 溢出操作的方法 off（默认）| on
+  group: 信号属性
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: 允许不同的数据输入大小（导致可变大小输出信号）
+  summary: 允许不同大小的输入信号 off（默认）| on
+  group: 信号属性
+  block_parameter: AllowDiffInputSizes
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: 模式
+  summary: 选择数据类型模式 Inherit（默认）| Built in | Fixed Point
+  group: 信号属性
+- name: 数据类型覆盖
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 信号属性
+- name: 符号性
+  summary: 指定有符号或无符号 Signed（默认）| Unsigned
+  group: 信号属性
+- name: 定标
+  summary: 定点数据的定标方法 Best precision（默认）| Binary point | Slope and bias
+  group: 信号属性
+- name: 字长
+  summary: 保存量化整数的字的位大小 16（默认）| 从 0 到 32 的整数
+  group: 信号属性
+- name: 小数长度
+  summary: 指定定点数据类型的小数长度 0（默认）| 标量整数
+  group: 信号属性
+- name: 斜率
+  summary: 指定定点数据类型的斜率 2^0（默认）| 正实值标量
+  group: 信号属性
+- name: 偏置
+  summary: 指定定点数据类型的偏置 0（默认）| 实值标量
+  group: 信号属性
+```
 
 ### 主要
 
@@ -580,7 +730,6 @@ point`。
 
 要启用此参数，请将 **定标** 设置为
 `Slope and bias`。
-
 ## 所属库
 
 Simulink / Signal Routing HDL Coder / Signal Routing

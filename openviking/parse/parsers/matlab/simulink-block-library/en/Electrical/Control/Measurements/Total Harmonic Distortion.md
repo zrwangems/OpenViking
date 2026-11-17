@@ -14,6 +14,17 @@ language: en
 # Total Harmonic Distortion
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Harmonic magnitude scalar | vector
+  direction: input
+  data_types: single | double
+- name: THD (%)
+  summary: Total harmonic distortion scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -29,8 +40,16 @@ Harmonic magnitude.
 Total harmonic distortion as a percentage.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Fundamental frequency
+  summary: Fundamental frequency in Hz 60 Hz (default)
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Fundamental frequency** — Fundamental frequency in Hz `60` `Hz` (default)
 
@@ -56,7 +75,6 @@ If this block is in a masked subsystem, or another variant subsystem
 that allows either continuous or discrete operation, promote the sample
 time parameter to ensure correct switching between the continuous and
 discrete implementations of the block. For more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / Measurements

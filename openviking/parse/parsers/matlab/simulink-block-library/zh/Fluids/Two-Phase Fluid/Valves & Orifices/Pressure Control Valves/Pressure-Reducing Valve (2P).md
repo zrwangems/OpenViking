@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pressure-Reducing Valve (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流体入口或出口两相流体
+  direction: input
+- name: B
+  summary: 流体入口或出口两相流体
+  direction: input
+- name: Ps
+  summary: 设定压力，Pa 物理信号
+  direction: input
+```
 
 ### 守恒
 
@@ -34,8 +46,107 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请将 **Set pressure control** 设置为 `Controlled`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 流体相的建模选项 Liquid operating condition（默认）| Vapor operating condition
+  group: ''
+- name: Valve parameterization
+  summary: 阀门参数化模型 Linear - Area vs. pressure（默认）| Linear - Nominal mass flow rate vs. pressure | Tabulated data - Area vs.
+    pressure | Cv flow coefficient | Kv flow coefficient | Orifice area
+  group: 参数
+- name: Set pressure control
+  summary: 可变或恒定设定压力 Constant（默认）| Controlled
+  group: 参数
+- name: Set pressure (gauge)
+  summary: 设定压力 0.1 MPa（默认）| 正标量
+  group: 参数
+- name: Pressure regulation range
+  summary: 阀门工作范围 0.1 MPa（默认）| 正标量
+  group: 参数
+- name: Nominal mass flow rate at maximum valve opening
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: 参数
+- name: Nominal pressure drop at maximum valve opening
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: 参数
+- name: Nominal inlet condition specification
+  summary: 确定入口流体状态的方法 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: 参数
+- name: Nominal inlet pressure
+  summary: 入口流体压力 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: Nominal inlet temperature
+  summary: 流体温度 293.15 K（默认）| 正标量
+  group: 参数
+- name: Nominal inlet vapor quality
+  summary: 入口蒸汽干度质量分数 0（默认）| [0,1] 范围内的正标量
+  group: 参数
+- name: Nominal inlet vapor void fraction
+  summary: 入口体积分数 0（默认）| [0,1] 范围内的正标量
+  group: 参数
+- name: Nominal inlet specific enthalpy
+  summary: 入口流体比焓 400 kJ/kg（默认）| 正标量
+  group: 参数
+- name: Nominal inlet specific internal energy
+  summary: 入口比内能 400 kJ/kg（默认）| 正标量
+  group: 参数
+- name: Maximum valve area
+  summary: 最大阀门开口面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: 端口 B 处的压力（表压）向量
+  summary: '表压向量 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: 阀门面积向量
+  summary: 阀门开度面积值向量 [1e-10, 2e-06, 4e-06, 6e-06, 8e-06, 1e-05] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: 流量系数
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: 压力恢复
+  summary: 是否考虑面积扩大时的压力升高 off（默认）| on
+  group: 参数
+- name: 开度特性
+  summary: 用于参数化流量能力度量的方法 Linear（默认）| Tabulated
+  group: 参数
+- name: 最大 Cv 流量系数
+  summary: 对应于组件最大开度的 *Cv* 系数 4（默认）| 正标量
+  group: 参数
+- name: Cv 流量系数向量
+  summary: 对应于构件位置向量中值的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: 参数
+- name: 最大 Kv 流量系数
+  summary: 对应于组件最大开度的 *Kv* 系数 3.6（默认）| 正标量
+  group: 参数
+- name: Kv 流量系数向量
+  summary: 对应于构件位置向量中值的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量
+  group: 参数
+- name: 阻塞流时的 xT 压差比系数
+  summary: 压差比 0.7（默认）| 正标量
+  group: 参数
+- name: 最大孔口面积
+  summary: 最大阀门开度面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: 孔口面积向量
+  summary: 阀门开度面积值向量 [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: 泄漏流量分数
+  summary: 流量比 1e-6（默认）| 正标量
+  group: 参数
+- name: 平滑因子
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: 入口相变时间常数
+  summary: 液体比容的滞后 0.1 s（默认）| 正标量
+  group: 参数
+- name: Laminar flow pressure ratio
+  summary: 层流-湍流过渡压力比 0.999（默认值） | 正标量
+  group: 参数
+- name: Cross-sectional area at ports A and B
+  summary: 阀端口面积 0.01 m^2（默认值） | 正标量
+  group: 参数
+```
 
 ### **Modeling option** — 流体相的建模选项 `Liquid operating condition`（默认）| `Vapor operating condition`
 
@@ -304,7 +415,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at ports A and B** — 阀端口面积 `0.01` m^2（默认值） | 正标量
 
 端口 **A** 和 **B** 的面积。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Valves & Orifices / Pressure Control Valves

@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # FM Broadcast Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 音频信号 *N* 元素列向量 | 2×*N* 矩阵
+  direction: input
+  data_types: double | single
+- name: In2
+  summary: RDS（或 RBDS）信号 *N* 元素列向量 | 2×*N* 矩阵
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: FM 调制基带信号 列向量
+  direction: output
+```
 
 ### 输入
 
@@ -47,8 +61,34 @@ RDS（或 RBDS）信号，指定为以下选项之一。
 
 FM 调制基带信号，返回为与输入信号具有相同数据类型的复数值列向量。此输出的长度为
 `length`(`Input 1` × **采样率 (Hz)** / **音频输入信号的采样率 (Hz)**)。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: 输出信号采样率 240e3 | 正标量
+  group: ''
+- name: Frequency deviation (Hz)
+  summary: 调制器输出信号频率的峰值偏差 75e3 | 正标量
+  group: ''
+- name: Pre-emphasis filter time constant (s)
+  summary: 预加重高通滤波器时间常数 7.5e-05（默认）| 正标量
+  group: ''
+- name: Sample rate of audio input signal (Hz)
+  summary: 输入音频信号的采样率 48000（默认）| 正标量
+  group: ''
+- name: Stereo audio
+  summary: 启用立体声调制的选项 off（默认）| on
+  group: ''
+- name: RDS/RBDS modulation
+  summary: 启用 RDS（或 RBDS）波形调制的选项 off（默认）| on
+  group: ''
+- name: Oversampling factor of RDS/RBDS input
+  summary: RDS（或 RBDS）输入信号的过采样因子 10（默认）| 正整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -94,7 +134,6 @@ RDS（或 RBDS）输入信号的过采样因子，指定为正整数。RDS（或
 - `Interpreted execution` — 通过使用 MATLAB® 解释器来仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Analog Baseband Modulation

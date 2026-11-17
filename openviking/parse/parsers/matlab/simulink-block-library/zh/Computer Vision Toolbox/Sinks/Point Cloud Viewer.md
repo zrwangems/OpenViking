@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Point Cloud Viewer
 
 ## 端口
+```yaml
+ports:
+- name: Location
+  summary: 三维坐标空间中点的位置 矩阵 | 数组
+  direction: input
+  data_types: single | double | uint8 | uint16
+- name: Color
+  summary: 点云颜色 []（默认）| 矩阵 | 数组
+  direction: input
+  data_types: single | double | uint8 | uint16
+- name: Intensity
+  summary: 灰度强度 []（默认）| 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | uint8 | uint16
+```
 
 ### 输入
 
@@ -104,8 +119,49 @@ chinese_source: worker-translation
 要启用此端口，请选择 **File** > **Location and Intensity Port** 参数。
 
 **数据类型：** `single` | `double` | `uint8` | `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Open at Start of Simulation
+  summary: 在仿真开始时打开 Point Cloud Viewer 窗口 on（默认）| off
+  group: File
+- name: Location Port
+  summary: 启用点位置作为输入 on（默认）| off
+  group: File
+- name: Location and Color Port
+  summary: 启用点位置和颜色作为输入 off（默认）| on
+  group: File
+- name: Location and Intensity Port
+  summary: 启用点位置和强度作为输入 off（默认）| on
+  group: File
+- name: Display the full path
+  summary: 在标题栏中显示源数据的完整路径 off（默认）| on
+  group: File > Configuration > Edit > Core
+- name: Bring All Point Cloud Viewer Windows Forward
+  summary: 将所有 Point Cloud Viewer 窗口置于显示前端 off（默认）| on
+  group: View
+- name: Simulation Toolbar
+  summary: 显示仿真工具栏 on（默认）| off
+  group: View
+- name: Status Bar
+  summary: 显示状态栏 on（默认）| off
+  group: View
+- name: Highlight Simulink Block
+  summary: 高亮显示 Point Cloud Viewer 模块 off（默认）| on
+  group: View
+- name: Run
+  summary: 查看整个点云序列 off（默认）| on
+  group: 仿真
+- name: Continue
+  summary: 继续查看点云序列 off（默认）| on
+  group: 仿真
+- name: Stop
+  summary: 停止查看点云序列 off（默认）| on
+  group: 仿真
+- name: Drop Frames to Improve Performance
+  summary: 降低输入点云序列的帧率 on（默认）| off
+  group: 仿真
+```
 
 ### File
 
@@ -226,7 +282,6 @@ Cloud Viewer 窗口中选择 **Simulation** 菜单。
 
 选择此参数可降低输入流式点云序列的帧率，以提高仿真的性能。如果清除此参数，
 模块将在仿真期间显示输入点云序列信号中的每一帧。
-
 ## 所属库
 
 Computer Vision Toolbox / Sinks

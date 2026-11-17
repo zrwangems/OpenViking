@@ -14,6 +14,24 @@ language: en
 # FEM-Parameterized Linear Actuator
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Plunger mechanical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,8 +64,91 @@ Thermal port.
 To enable this port, set **Modeling
 option** to `Show thermal
 port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical model
+  summary: Electrical model parameterization Define in terms of dPhi(i,x)/dx and dPhi(i,x)/di (default) | Define in terms
+    of Phi(i,x)
+  group: Magnetic Force
+- name: Current vector, i
+  summary: Current vector [0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1] A (default)
+  group: Magnetic Force
+- name: Displacement vector, x
+  summary: Displacement vector [0, .05, .1, .15, .2] mm (default)
+  group: Magnetic Force
+- name: Flux partial derivative wrt current, dPhi(i,x)/di
+  summary: Flux partial derivative with respect to current [.104, .098, .091, .085, .078; .095, .089, .084, .079, .073; .085,
+    .081, .077, .073, .069; .076, .073, .07, .067, .064; .067, .065, .063, .061, .06; .057, .057, .056, .056, .055; .048,
+    .049, .049, .05, .05; .038, .04, .042, .044, .046; .029, .032, .035, .038, .041; .02, .024, .028, .033, .037; .01, .016,
+    .021, .027, .032] Wb/A (default)
+  group: Magnetic Force
+- name: Flux partial derivative wrt displacement, dPhi(i,x)/dx
+  summary: Flux partial derivative with respect to displacement [0, 0, 0, 0, 0; -11.94, -10.57, -9.19, -7.81, -6.43; -21.17,
+    -19.92, -18.67, -17.42, -16.16; -27.99, -26.87, -25.75, -24.62, -23.5; -32.42, -31.43, -30.43, -29.43, -28.44; -34.46,
+    -33.59, -32.72, -31.85, -30.98; -34.09, -33.35, -32.61, -31.87, -31.12; -31.33, -30.72, -30.1, -29.49, -28.87; -26.17,
+    -25.68, -25.2, -24.71, -24.22; -18.62, -18.26, -17.9, -17.54, -17.18; -8.66, -8.43, -8.2, -7.97, -7.73] Wb/m (default)
+  group: Magnetic Force
+- name: Flux linkage matrix, Phi(i,x)
+  summary: Flux linkage matrix [0, 0, 0, 0, 0; .0085, .0079, .0075, .0071, .0067; .0171, .016, .0151, .0143, .0137; .0254,
+    .0239, .0226, .0215, .0206; .033, .0312, .0297, .0283, .0271; .0396, .0377, .036, .0345, .0331; .0452, .0433, .0415, .0399,
+    .0384; .0495, .0478, .0461, .0446, .0431; .0526, .0512, .0498, .0485, .0472; .0545, .0537, .0528, .0519, .0508; .0554,
+    .0553, .0551, .0548, .0542] Wb (default)
+  group: Magnetic Force
+- name: Calculate force matrix?
+  summary: Electromagnetic force data specification No (default) | Yes
+  group: Magnetic Force
+- name: Force matrix, F(i,x)
+  summary: Force matrix [0, 0, 0, 0, 0; -.6, -.5, -.4, -.3, -.3; -2.3, -2, -1.7, -1.4, -1.2; -4.9, -4.3, -3.7, -3.2, -2.7;
+    -8.3, -7.3, -6.4, -5.5, -4.7; -12.2, -10.7, -9.4, -8.2, -7.2; -16.2, -14.4, -12.7, -11.3, -10; -20, -17.9, -15.9, -14.3,
+    -12.9; -23.3, -20.9, -18.8, -17.1, -15.7; -25.7, -23.1, -21.1, -19.4, -18.2; -26.5, -24.1, -22.2, -20.9, -20.1] N (default)
+  group: Magnetic Force
+- name: Flux dependence on displacement
+  summary: Flux pattern Unique (default) | Cyclic
+  group: Magnetic Force
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Magnetic Force
+- name: Extrapolation method
+  summary: Extrapolation method Linear (default) | Nearest | Error
+  group: Magnetic Force
+- name: Winding resistance
+  summary: Electrical winding total resistance 14 Ohm (default)
+  group: Magnetic Force
+- name: Magnetizing resistance
+  summary: Magnetizing resistance for iron losses inf Ohm (default)
+  group: Magnetic Force
+- name: Damping
+  summary: Damping 1 N/(m/s) (default)
+  group: Mechanical
+- name: Plunger mass
+  summary: Mass of the moving part 0.05 kg (default)
+  group: Mechanical
+- name: Minimum stroke
+  summary: Minimum stroke 0 mm (default)
+  group: Mechanical
+- name: Maximum stroke
+  summary: Maximum stroke 0.2 mm (default)
+  group: Mechanical
+- name: Contact stiffness
+  summary: Contact stiffness 1e8 N/m (default)
+  group: Mechanical
+- name: Contact damping
+  summary: Contact damping 1e4 N/(m/s) (default)
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Temperature Dependence
+- name: Thermal mass
+  summary: Thermal mass 100 J/K (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -333,7 +434,6 @@ This tab appears only for blocks with exposed thermal port.
 
 Thermal mass is the energy required to raise
 the temperature by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # ACIM Torque Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Isd
+  summary: '*d* 轴定子电流标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Isq
+  summary: '*q* 轴定子电流标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm
+  summary: 转子机械速度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Te
+  summary: 机电转矩标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Pe
+  summary: 机电功率标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -48,8 +71,58 @@ chinese_source: worker-translation
 转子的机电功率。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 2（默认）| 标量
+  group: ''
+- name: Motor parameter input method
+  summary: 电机参数类型 Linear model with lumped parameters（默认）| Non-linear model with D,Q-flux linkage LUTs
+  group: ''
+- name: Stator leakage inductance (H)
+  summary: 定子绕组的漏电感 6.81e-3（默认）| 标量
+  group: ''
+- name: Rotor leakage inductance (H)
+  summary: 转子绕组的漏电感 6.81e-3（默认）| 标量
+  group: ''
+- name: Magnetizing Inductance (H)
+  summary: 感应电机的励磁电感 30e-3（默认）| 标量
+  group: ''
+- name: Rated Flux (Wb)
+  summary: 电机额定磁通 38.2e-3（默认）| 标量
+  group: ''
+- name: D-axis current breakpoint vector, id (A)
+  summary: '*d* 轴电流查找向量 [0, 150, 350, 500]（默认）| 向量'
+  group: ''
+- name: Q-axis current breakpoint vector, id (A)
+  summary: '*q* 轴电流查找向量 [0, 250, 500]（默认）| 向量'
+  group: ''
+- name: D-axis flux linkage LUT, FluxD (id,iq) (Wb)
+  summary: 参考 *d* 轴磁链查找数据 4.4e-2 * repmat([0, 150, 350, 500]', 1, 3)（默认）| 向量
+  group: ''
+- name: Q-axis flux linkage LUT, FluxD (id,iq) (Wb)
+  summary: 参考 *q* 轴磁链查找数据 2.1e-3 * repmat([0, 250, 500], 4, 1)（默认）| 向量
+  group: ''
+- name: Input units
+  summary: 输入值的单位 Per-Unit (PU)（默认）| SI Units
+  group: ''
+- name: Base Voltage (V)
+  summary: 标幺制系统的基准电压 24/sqrt(3)（默认）| 标量
+  group: ''
+- name: Base Current (A)
+  summary: 标幺制系统的基准电流 5.3611（默认）| 标量
+  group: ''
+- name: Base Speed (rpm)
+  summary: 标幺制系统的基准转速 1500（默认）| 标量
+  group: ''
+- name: Base torque (Nm)
+  summary: 标幺制系统的基准转矩 0.50072（默认）| 标量
+  group: ''
+- name: Base power (W)
+  summary: 标幺制系统的基准功率 111.4284（默认）| 标量
+  group: ''
+```
 
 ### **Number of pole pairs** — 电机中可用的极对数 `2`（默认）| 标量
 
@@ -199,7 +272,6 @@ LUTs`。
 #### 依赖关系
 
 要显示此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

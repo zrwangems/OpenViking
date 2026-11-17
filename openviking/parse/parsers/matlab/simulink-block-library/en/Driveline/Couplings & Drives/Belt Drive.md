@@ -14,6 +14,15 @@ language: en
 # Belt Drive
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Pulley A shaft mechanical rotational
+  direction: conserving
+- name: B
+  summary: Pulley B shaft mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,113 @@ pulley A.
 
 Mechanical rotational conserving port associated with the shaft of
 pulley B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Drive type
+  summary: Belt drive configuration Open belt (default) | Crossed belt
+  group: Belt
+- name: Belt type
+  summary: Belt parameterization Ideal - No slip (default) | Flat belt | V-belt
+  group: Belt
+- name: Compliance
+  summary: Compliance option No compliance - Suitable for HIL simulation (default) | Specify stiffness and damping
+  group: Belt
+- name: V-belt sheave angle
+  summary: Sheave angle 30 deg (default) | nonnegative scalar
+  group: Belt
+- name: Number of V-belts
+  summary: Number of belts 1 (default) | positive scalar integer
+  group: Belt
+- name: Centrifugal force
+  summary: Centrifugal force option Do not model centrifugal force - Suitable for HIL simulation (default) | Model centrifugal
+    force
+  group: Belt
+- name: Belt mass per unit length
+  summary: Mass per unit length 0.6 kg/m (default) | positive scalar
+  group: Belt
+- name: Longitudinal stiffness
+  summary: Belt effective stiffness 1e4 N/m (default) | nonnegative scalar
+  group: Belt
+- name: Longitudinal damping
+  summary: Belt effective damping 1e3 N/(m/s) (default) | nonnegative scalar
+  group: Belt
+- name: Pre-tension
+  summary: Resting belt tension 100 N (default) | positive scalar
+  group: Belt
+- name: Maximum tension
+  summary: Tension threshold option No maximum tension (default) | Specify maximum tension
+  group: Belt
+- name: Belt maximum tension
+  summary: Maximal tension threshold 1e5 N (default) | positive scalar
+  group: Belt
+- name: Pulley radius
+  summary: Pulley radius .15 m (default) | positive scalar
+  group: Pulley A
+- name: Bearing viscous friction coefficient
+  summary: Bearing viscous friction 0 N*m/(rad/s) (default) | scalar
+  group: Pulley A
+- name: Inertia
+  summary: Rotational inertia No inertia (default) | Specify inertia and initial velocity
+  group: Pulley A
+- name: Pulley inertia
+  summary: Pulley inertia 0.01 kg*m^2 (default) | positive scalar
+  group: Pulley A
+- name: Pulley initial velocity
+  summary: Initial pulley rotational velocity 0 rad/s (default) | scalar
+  group: Pulley A
+- name: Pulley radius
+  summary: Pulley radius .30 m (default) | positive scalar
+  group: Pulley B
+- name: Bearing viscous friction coefficient
+  summary: Bearing viscous friction 0.001 N*m/(rad/s) (default) | scalar
+  group: Pulley B
+- name: Inertia
+  summary: Rotational inertia No inertia (default) | Specify inertia and initial velocity
+  group: Pulley B
+- name: Pulley inertia
+  summary: Pulley inertia 0.03 kg*m^2 (default) | positive scalar
+  group: Pulley B
+- name: Pulley initial velocity
+  summary: Initial pulley rotational velocity 0 rad/s (default) | scalar
+  group: Pulley B
+- name: Friction model
+  summary: Friction method selection Modal (default) | Continuous
+  group: Contact
+- name: Pulley A initial state
+  summary: Initial state of pulley A Unlocked (default) | Locked
+  group: Contact
+- name: Pulley B initial state
+  summary: Initial state of pulley B Unlocked (default) | Locked
+  group: Contact
+- name: Static friction coefficient
+  summary: Static friction coefficient 0.5 (default) | positive scalar
+  group: Contact
+- name: Kinetic friction coefficient
+  summary: Kinetic friction coefficient 0.42 (default) | positive scalar
+  group: Contact
+- name: Contact friction coefficient
+  summary: Contact friction coefficient 0.5 (default) | positive scalar
+  group: Contact
+- name: Wrap angle calculation
+  summary: Angle calculation type Specify pulley center separation (default) | Specify wrap angles
+  group: Contact
+- name: Pulley center separation
+  summary: Pulley center separation distance 0.5 m (default) | positive scalar
+  group: Contact
+- name: Pulley A wrap angle
+  summary: Pulley wrap angle 145 deg (default) | scalar
+  group: Contact
+- name: Pulley B wrap angle
+  summary: Pulley wrap angle 215 deg (default) | scalar
+  group: Contact
+- name: Velocity threshold
+  summary: Contact threshold 0.001 m/s (default) | positive scalar
+  group: Contact
+- name: Force threshold
+  summary: Force threshold 0.01 N (default) | positive scalar
+  group: Contact
+```
 
 ### Belt
 
@@ -385,7 +499,6 @@ contact.
 To enable this parameter, set **Belt type** to
 `Flat belt` or
 `V-belt`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

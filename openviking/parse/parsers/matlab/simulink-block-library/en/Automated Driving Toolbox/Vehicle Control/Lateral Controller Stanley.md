@@ -14,6 +14,36 @@ language: en
 # Lateral Controller Stanley
 
 ## Ports
+```yaml
+ports:
+- name: RefPose
+  summary: Reference pose [*x*, *y*, *Θ*] vector
+  direction: input
+  data_types: single | double
+- name: CurrPose
+  summary: Current pose [*x*, *y*, *Θ*] vector
+  direction: input
+  data_types: single | double
+- name: CurrVelocity
+  summary: Current longitudinal velocity real scalar
+  direction: input
+  data_types: single | double
+- name: Direction
+  summary: Driving direction of vehicle 1 (forward motion) | -1 (reverse motion)
+  direction: input
+- name: Curvature
+  summary: Curvature of path real scalar
+  direction: input
+- name: CurrYawRate
+  summary: Current yaw rate real scalar
+  direction: input
+- name: CurrSteer
+  summary: Current steering angle real scalar
+  direction: input
+- name: SteerCmd
+  summary: Steering angle command real scalar
+  direction: output
+```
 
 ### Input
 
@@ -128,8 +158,43 @@ positive in the counterclockwise direction.
 Vehicle with front wheels turned and steering angle marked
 
 For more details, see Coordinate Systems in Automated Driving Toolbox.
-
 ## Parameters
+```yaml
+parameters:
+- name: Vehicle model
+  summary: Vehicle model Kinematic bicycle model (default) | Dynamic bicycle model
+  group: ''
+- name: Position gain of forward motion
+  summary: Position gain of vehicle in forward motion 2.5 (default) | positive real scalar
+  group: ''
+- name: Position gain of reverse motion
+  summary: Position gain of vehicle in reverse motion 2.5 (default) | positive real scalar
+  group: ''
+- name: Yaw rate feedback gain
+  summary: Yaw rate feedback gain 2.5 (default) | nonnegative real scalar
+  group: ''
+- name: Steering angle feedback gain
+  summary: Steering angle feedback gain 2.5 (default) | nonnegative real scalar
+  group: ''
+- name: Wheelbase of vehicle (m)
+  summary: Distance between front and rear axle 2.8 (default) | real scalar
+  group: ''
+- name: Vehicle mass (kg)
+  summary: Vehicle mass 1575 (default) | positive real scalar
+  group: ''
+- name: Longitudinal distance from center of mass to front axle (m)
+  summary: Distance to front axle 1.2 (default) | positive real scalar
+  group: ''
+- name: Longitudinal distance from center of mass to rear axle (m)
+  summary: Distance to rear axle 1.6 (default) | positive real scalar
+  group: ''
+- name: Front tire corner stiffness (N/rad)
+  summary: Cornering stiffness of front tires 19000 (default) | positive real scalar
+  group: ''
+- name: Maximum steering angle (deg)
+  summary: Maximum allowed steering angle 35 (default) | real scalar in the range (0, 180)
+  group: ''
+```
 
 ### **Vehicle model** — Vehicle model `Kinematic bicycle model` (default) | `Dynamic bicycle model`
 
@@ -241,7 +306,6 @@ of the **Maximum steering angle (deg)** parameter.
 
 - Values below –*M* are set to –*M*.
 - Values above *M* are set to *M*.
-
 ## Libraries
 
 Automated Driving Toolbox / Vehicle Control

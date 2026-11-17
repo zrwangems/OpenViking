@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Peak Finder
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 数据输入 至少三行的列向量 | 至少三行的矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Cnt
+  summary: 峰值数量 标量 | 行向量
+  direction: output
+  data_types: uint32
+- name: Idx
+  summary: 峰值索引 列向量 | 矩阵
+  direction: output
+  data_types: uint32
+- name: Val
+  summary: 峰值 列向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Pol
+  summary: 峰值极性 列向量 | 矩阵
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -79,8 +102,34 @@ indices** 或 **Output peak values**，并将 **Peak type(s)** 参数设置为
 `Maxima and Minima`。
 
 **数据类型:** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Peak type(s)
+  summary: 要识别的峰值类型 Maxima and Minima (默认) | Maxima | Minima
+  group: ''
+- name: Index base
+  summary: 索引基准 Zero (默认) | One
+  group: ''
+- name: Output peak indices
+  summary: 启用峰值索引输出 off (默认) | on
+  group: ''
+- name: Output peak values
+  summary: 启用峰值输出 off (默认) | on
+  group: ''
+- name: Maximum number of peaks to find
+  summary: 要识别的最大峰值数量 10 (默认) | 大于或等于 1 的整数
+  group: ''
+- name: Ignore peaks within threshold of neighboring values
+  summary: 忽略低于阈值的峰值 off (默认) | on
+  group: ''
+- name: Threshold
+  summary: 忽略峰值的阈值 0 (默认) | 正实数标量 | 向量
+  group: ''
+- name: Saturate on integer overflow
+  summary: 溢出操作方式 off (默认) | on
+  group: ''
+```
 
 ### **Peak type(s)** — 要识别的峰值类型 `Maxima and Minima` (默认) | `Maxima` | `Minima`
 
@@ -155,7 +204,6 @@ neighboring values** 参数。
 
 要启用此参数，请选择 **Ignore peaks within threshold of
 neighboring values** 参数。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

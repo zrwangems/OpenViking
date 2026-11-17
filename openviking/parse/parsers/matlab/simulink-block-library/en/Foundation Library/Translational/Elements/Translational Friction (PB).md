@@ -14,6 +14,18 @@ language: en
 # Translational Friction (PB)
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Normal force control signal, N physical signal
+  direction: input
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -38,8 +50,28 @@ connection.
 Position-based mechanical translational conserving port that represents the
 follower connection. For positive length, port **F** has a more
 positive position than port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Normal force specification
+  summary: Whether normal force is constant or variable Constant (default) | Variable
+  group: ''
+- name: Normal force
+  summary: Force normal to motion 10 N (default) | nonnegative scalar
+  group: ''
+- name: Breakaway friction coefficient
+  summary: Proportionality coefficient between normal force and breakaway friction force 2.5 (default) | positive scalar
+  group: ''
+- name: Breakaway friction velocity
+  summary: Peak velocity for Stribeck friction 0.1 m/s (default) | positive scalar
+  group: ''
+- name: Coulomb friction coefficient
+  summary: Proportionality coefficient between normal force and friction that opposes motion 2 (default) | nonnegative scalar
+  group: ''
+- name: Viscous friction coefficient
+  summary: Viscous losses proportionality coefficient 0 N/(m/s) (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Normal force specification** — Whether normal force is constant or variable `Constant` (default) | `Variable`
 
@@ -84,7 +116,6 @@ opposes motion, based on the normal force.
 
 Proportionality coefficient between the friction force and the relative velocity.
 Viscous losses do not depend on the normal force.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

@@ -14,14 +14,37 @@ language: en
 # Legacy Serial Read
 
 ## Ports
+```yaml
+ports:
+- name: Output
+  summary: Data from serial port read serial data
+  direction: output
+```
 
 ### Output
 
 ### **Output** — Data from serial port read serial data
 
 The Output port provides the data from the serial port read.
-
 ## Parameters
+```yaml
+parameters:
+- name: Serial port
+  summary: Port that is being accessed Legacy Serial Port 1 (default) | .. | Legacy Serial Port 8 | USB Serial Port 1 | ..
+    | USB Serial Port 8
+  group: ''
+  block_parameter: port
+- name: Max Read Count
+  summary: Select maximum word read count 51 (default) | int
+  group: ''
+- name: Output Datatype
+  summary: Select output data type 8 bit uint null terminated (default) | 8 bit int null terminated | count+16 bit uint |
+    count+16 bit int | count+32 bit uint | count+32 bit int
+  group: ''
+- name: SampleTime
+  summary: Select sample time in seconds .01 (default) | double
+  group: ''
+```
 
 ### **Serial port** — Port that is being accessed `Legacy Serial Port 1` (default) | .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
@@ -69,7 +92,6 @@ Use this value to select the sample time in seconds.
 ```
 sampletime
 ```
-
 ## Libraries
 
 Simulink Real-Time / RS232 / Mainboard

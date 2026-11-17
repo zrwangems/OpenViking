@@ -14,10 +14,145 @@ language: en
 # Transmission Line
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model type
+  summary: Transmission line model Delay-based and lossless (default) | Delay-based and lossy | Lumped parameter L-section
+    | Lumped parameter Pi-section | Coaxial | Coplanar waveguide | Microstrip | Stripline | Two-wire | Parallel-plate | Equation-based
+    | RLCG | ...
+  group: Main
+- name: Transmission delay
+  summary: Delay in transmission line 4.7e-9 s (default) | real scalar | s | ms | us | ns
+  group: Main
+- name: Characteristic impedance
+  summary: Impedance of transmission line 50 ohm (default) | real scalar | Ohm | kOhm | MOhm | GOhm
+  group: Main
+- name: Resistance per unit length
+  summary: Resistance per unit length of transmission line 0.3 Ohm/m (default) | positive scalar | Ohm/m | kOhm/m | MOhm/m
+    | GOhm/m
+  group: Main
+- name: Number of segments
+  summary: Number of segments in transmission line 10 (default) | positive scalar
+  group: Main
+- name: Parameterization
+  summary: Type of parameters to model segments in transmission line By characterisitc impedance and capacitance (default)
+    | By inductance and capacitance
+  group: Main
+- name: Capacitance per unit length
+  summary: Capacitance per unit length of transmission line 94e-12 F/m (default) | positive scalar
+  group: Main
+- name: Conductance per unit length
+  summary: Conductance per unit length of transmission line 5e-6 S/m (default) | positive scalar | S/m | mS/m | uS/m | nS/m
+  group: Main
+- name: Inductance per unit length
+  summary: Inductance per unit length of transmission line 235e-9 H/m (default) | positive scalar | H/m | mH/m | uH/m | nH/m
+  group: Main
+- name: Outer radius
+  summary: Outer radius of coaxial transmission line 2.57 mm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Inner radius
+  summary: Inner radius of coaxial transmission line 2.57 mm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Conductor width
+  summary: Physical width of conductor 0.6 mm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Slot width
+  summary: Physical width of slot 0.2 mm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Conductor backed
+  summary: Infinite bottom conductor off (default) | on
+  group: Main
+- name: Structure
+  summary: Type of microstrip transmission line Standard (default) | Embedded | Inverted | Suspended
+  group: Main
+- name: Strip Width
+  summary: Width of microstrip transmission line 0.6 mm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Strip thickness
+  summary: Physical thickness of conductor 5 um (default) | nonnegative scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Strip Height
+  summary: Strip height of microstrip transmission line 0.635 mm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Wire radius
+  summary: Radius of conducting wires of two-wire transmission line 0.67 mm (default) | positive scalar | m | cm | mm | um
+    | in | ft
+  group: Main
+- name: Wire separation
+  summary: Physical distance between conducting wires of two-wire transmission line 1.62 mm (default) | positive scalar |
+    m | cm | mm | um | in | ft
+  group: Main
+- name: Plate width
+  summary: Width of parallel-plate transmission line 5 mm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Plate separation
+  summary: Thickness of dielectric separating plates 1 mm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Phase velocity (m/s)
+  summary: Propagation velocity of a uniform plane wave on transmission line 299792458 (default) | positive scalar
+  group: Main
+- name: Loss (dB/m)
+  summary: Reduction in strength of signal as it travels over transmission line 0 (default) | positive scalar
+  group: Main
+- name: Frequency
+  summary: Modeling frequencies 1e9 Hz (default) | positive scalar | Hz | kHz | MHz | GHz
+  group: Main
+- name: Interpolation method
+  summary: Interpolation method used to calculate values at the modeling frequencies Linear (default) | Spline | Cubic
+  group: Main
+- name: Conductivity of conductor
+  summary: Conductivity of conductor inf (default) | scalar | S/m | mS/m | uS/m | nS/m
+  group: Main
+- name: Dielectric Thickness
+  summary: Thickness of dielectric on which conductor resides 0.635 mm (default) | positive scalar | m | cm | mm | um | in
+    | ft
+  group: Main
+- name: Relative permeability of dielectric
+  summary: Relative permeability of dielectric 1 (default) | scalar
+  group: Main
+- name: Relative permittivity of dielectric
+  summary: Relative permittivity of dielectric 2.2 (default) | scalar
+  group: Main
+- name: Loss tangent of dielectric
+  summary: Loss tangent of dielectric 0 (default) | scalar
+  group: Main
+- name: Line length
+  summary: Physical length of transmission line 1 cm (default) | positive scalar | m | cm | mm | um | in | ft
+  group: Main
+- name: Stub mode
+  summary: Type of stub Not a stub (default) | Shunt | Series
+  group: Main
+- name: Termination of stub
+  summary: Type of termination for stub Open (default) | Short
+  group: Main
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: Main
+- name: Modeling Options
+  summary: Options to model S-parameters Frequency domain (default) | Time domain
+  group: Modeling
+- name: Automatically estimate impulse response duration
+  summary: Calculate impulse response duration automatically off (default) | on
+  group: Modeling
+- name: Impulse response duration
+  summary: Manually specify impulse response duration 0 s (default) | positive scalar | s | ms | us | ns
+  group: Modeling
+- name: Fitting options
+  summary: Fitting options for rationalfit Share all poles (default) | Share poles by columns | Fit individually
+  group: Modeling
+- name: Relative error desired (dB)
+  summary: Relative error acceptable in rational fit output -40 (default) | real scalar
+  group: Modeling
+- name: Rational fitting results
+  summary: Values of rationalfit calculations read-only (default)
+  group: Modeling
+```
 
 ### Main
 
@@ -641,7 +776,6 @@ Modeling tab is enabled for all transmission line types except
 `Delay-based and lossy`, `Lumped
 parameter L-section`, and `Lumped parameter
 pi-section`.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

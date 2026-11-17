@@ -14,10 +14,15 @@ language: en
 # C2000 Square Root IQN
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Function**
 :   Whether to calculate the square root or inverse square root
@@ -34,7 +39,6 @@ Not documented in R2025b.
       root.
     - `Inverse square root (_isqrt)` — Compute the
       inverse square root.
-
 ## Libraries
 
 Not documented in R2025b.

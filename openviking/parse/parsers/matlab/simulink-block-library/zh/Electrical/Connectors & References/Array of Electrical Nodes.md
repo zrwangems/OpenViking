@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Array of Electrical Nodes
 
 ## 端口
+```yaml
+ports:
+- name: inConnk
+  summary: 要连接为电气节点数组的电气节点数组 *k*
+  direction: conserving
+- name: outConn
+  summary: 连接后的电气节点数组 电气节点数组
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,16 @@ chinese_source: worker-translation
 ### **outConn** — 连接后的电气节点数组 电气节点数组
 
 连接后的电气节点数组。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of Input Connections
+  summary: 要连接的电气节点数组的数量 one（默认）| two | three | four | ...
+  group: ''
+- name: Number of Elements in Node k
+  summary: 连接节点 *k* 中的元素数量 1（默认）
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -37,7 +54,6 @@ chinese_source: worker-translation
 ### **Number of Elements in Node k** — 连接节点 *k* 中的元素数量 `1`（默认）
 
 连接节点 *k* 中的元素数量，其中 *k* 是范围在 [1, **Number of Input Connections**] 内的整数。此类型参数的数量等于 **Number of Input Connections** 参数设置的值。
-
 ## 所属库
 
 Simscape / Electrical / Connectors & References

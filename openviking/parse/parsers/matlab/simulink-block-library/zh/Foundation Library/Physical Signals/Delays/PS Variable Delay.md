@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PS Variable Delay
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: T
+  summary: 延迟时间，s 物理信号
+  direction: input
+- name: H
+  summary: 初始时间区间内的输出，无类型物理信号
+  direction: input
+- name: Y
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -34,13 +49,17 @@ chinese_source: worker-translation
 ### **Y** — 输出物理信号，无类型物理信号
 
 输出物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum delay time
+  summary: 信号的延迟时间 10 s（默认值）
+  group: ''
+```
 
 ### **Maximum delay time** — 信号的延迟时间 `10 s`（默认值）
 
 延迟时间的上限。在仿真期间超过最大延迟时间会导致运行时错误。该参数值必须为正。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Delays

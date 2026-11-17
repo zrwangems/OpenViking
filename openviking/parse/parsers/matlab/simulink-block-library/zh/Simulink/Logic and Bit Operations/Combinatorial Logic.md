@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Combinatorial Logic
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号向量
+  direction: input
+  data_types: double | Boolean
+- name: Port_2
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,17 @@ chinese_source: worker-translation
 输出信号，如果真值表包含类型为 `double` 的非布尔值，则为 `double`；否则为 `Boolean`。输出的类型与输入的类型相同，除非输入为 `Boolean` 且真值表包含非布尔值，此时模块输出 `double`。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Truth table
+  summary: 输出矩阵 矩阵
+  group: ''
+  block_parameter: TruthTable
+  type: character vector
+  values: matrix
+  default: '''[0 0;0 1;0 1;1 0;0 1;1 0;1 0;1 1]'''
+```
 
 ### **Truth table** — 输出矩阵 矩阵
 
@@ -55,7 +75,6 @@ Simulink® 通过根据输入向量元素计算行的索引来返回矩阵的某
 | **类型**：character vector |
 | **值**：matrix |
 | **默认值**：`'[0 0;0 1;0 1;1 0;0 1;1 0;1 0;1 1]'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations

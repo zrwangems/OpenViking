@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Receive Service Request
 
 ## 端口
+```yaml
+ports:
+- name: IsNew
+  summary: 新服务请求指示符 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Req
+  summary: 服务请求消息非虚拟总线
+  direction: output
+  data_types: bus
+- name: DefaultResp
+  summary: 默认响应消息非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输出
 
@@ -39,8 +54,49 @@ chinese_source: worker-translation
 - 要启用此输出端口，请选择 **Show Default Response output port** 参数。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Name
+  summary: 服务名称 字符向量
+  group: ''
+- name: Type
+  summary: 服务类型 字符向量
+  group: ''
+- name: Paired Send Response Block
+  summary: 配对的 Send Service Response 模块的路径 模块路径
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 –1（默认）| 标量
+  group: ''
+- name: Show Default Response output port
+  summary: 启用默认响应输出端口 on（默认）| off
+  group: ''
+- name: History
+  summary: 在队列中存储请求的模式 Keep last（默认）| Keep all
+  group: ''
+- name: Depth
+  summary: 请求队列的大小 1（默认）| non-negative scalar integer
+  group: ''
+- name: Reliability
+  summary: 请求的投递保证 Reliable（默认）| Best effort
+  group: ''
+- name: Durability
+  summary: 请求的持久性 Volatile（默认）| Transient local
+  group: ''
+- name: Deadline
+  summary: 接收服务请求与发送响应之间允许的最大时间量 Inf（默认）| 正标量
+  group: ''
+- name: Lifespan
+  summary: 服务请求被视为有效的时间长度 Inf（默认）| 正标量
+  group: ''
+- name: Liveliness
+  summary: 该模块提供的以及期望从服务客户端获得的活跃性报告级别 automatic（默认）
+  group: ''
+- name: Lease Duration
+  summary: 所连接的服务客户端必须在此之前声明活跃性的最大时间量 Inf（默认）| 正标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -143,7 +199,6 @@ Liveliness 设置为 `automatic` 意味着，在该模块从所连接的客户�
 **注意**
 
 服务质量设置必须在服务服务端和客户端之间兼容，才能建立连接。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

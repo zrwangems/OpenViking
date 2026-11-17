@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Tire (Simple)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 车轴机械旋转
+  direction: unspecified
+- name: H
+  summary: 轮毂机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,31 @@ chinese_source: worker-translation
 ### **H** — 轮毂机械旋转
 
 与轮毂关联的机械旋转端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Rolling radius
+  summary: 半径 0.3 m（默认）| 正标量
+  group: ''
+- name: Compliance
+  summary: 柔度模型 No compliance - Suitable for HIL simulation（默认）| Specify stiffness and damping
+  group: ''
+- name: Longitudinal stiffness
+  summary: 纵向刚度 1e6 N/m（默认）| 正标量
+  group: ''
+- name: Longitudinal damping
+  summary: 纵向阻尼 1000 N/(m/s)（默认）| 正标量
+  group: ''
+- name: Inertia
+  summary: 惯量模型 No inertia（默认）| Specify inertia and initial velocity
+  group: ''
+- name: Tire inertia
+  summary: 轮胎惯量 1 kg*/m^2（默认）| 正标量
+  group: ''
+- name: Initial velocity
+  summary: 初始速度 0 rad/s（默认）
+  group: ''
+```
 
 下表显示了某些 Tire (Simple) 参数的可见性如何取决于您为其他参数选择的选项。
 
@@ -95,7 +127,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当 **Inertia** 参数设置为 `Specify inertia and initial velocity` 时，此参数才会显示。有关更多信息，请参阅参数依赖关系。
-
 ## 所属库
 
 Simscape / Driveline / Tires & Vehicles

@@ -15,6 +15,137 @@ chinese_source: worker-translation
 # Compute Parameter
 
 ## 端口
+```yaml
+ports:
+- name: Npp
+  summary: 电机中可用的极对数 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: R
+  summary: 定子绕组电阻 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Rs
+  summary: 定子绕组电阻 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Ld
+  summary: 沿 *d* 轴的定子绕组电感 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Lq
+  summary: 沿 *q* 轴的定子绕组电感 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Lls
+  summary: 感应电机的定子漏电感 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Llr
+  summary: 感应电机的转子漏电感 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Lm
+  summary: 感应电机的励磁电感 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: fcutoff
+  summary: 内部高通滤波器的截止频率 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: NumSlits
+  summary: 每相狭缝数 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: CountsPerSlit
+  summary: 每个狭缝生成的计数数 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ω1 (RPM)
+  summary: I-F 控制停止时的速度（电机启动后） 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ω2 (RPM)
+  summary: 重新进入 I-F 控制所需的速度 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ωmax
+  summary: 支持的最大机械速度 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Imax (A)
+  summary: I-F 控制期间的最大电机电流 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Max(Δω/Δt) (RPM/s)
+  summary: I-F 控制期间的最大速度变化率 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: IDecayRate (A/s)
+  summary: I-F 控制期间的最大电流衰减率 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ζ
+  summary: 速度振荡阻尼系数值 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: TIdle (s)
+  summary: 恒定速度和电流的时间 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: KEEMF
+  summary: 扩展 EMF 观测器增益 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: fEEMFcutoff
+  summary: EEMF 滤波器截止频率 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: fSpdcutoff
+  summary: 速度滤波器截止频率 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: fcutoff
+  summary: 低通滤波器截止频率 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: KSpdp
+  summary: 速度观测器的比例增益 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: KSpdi
+  summary: 速度观测器的积分增益 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Kp
+  summary: 比例控制器增益 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Ki
+  summary: 控制器的积分增益 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: UseInternalKpKi
+  summary: 使用控制器内部增益 0 | 1
+  direction: input
+  data_types: Boolean
+- name: fmax
+  summary: 最大适用输入频率 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: 兼容模块的计算参数 总线
+  direction: output
+  data_types: single
+- name: CountsPerRev
+  summary: 每转计数数 标量
+  direction: output
+  data_types: single
+- name: 1/CountsPerRev
+  summary: 每转计数数的倒数 标量
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -360,8 +491,19 @@ I-F 控制激活时电机速度和电流均保持恒定的时间（以秒为单�
 要启用此端口，请将**需要功能扩展的兼容模块的相对路径**参数设置为指示当前模型中正交解码器模块的相对路径。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: 需要功能扩展的兼容模块的相对路径
+  summary: 兼容模块的相对路径 空白（默认）| 字符串
+  group: ''
+- name: 获取模型中支持的模块路径列表
+  summary: 获取兼容模块路径列表 按钮
+  group: ''
+- name: 支持的模块路径
+  summary: 兼容模块路径列表 显示单元格
+  group: ''
+```
 
 ### **需要功能扩展的兼容模块的相对路径** — 兼容模块的相对路径 空白（默认）| 字符串
 
@@ -376,7 +518,6 @@ I-F 控制激活时电机速度和电流均保持恒定的时间（以秒为单�
 ### **支持的模块路径** — 兼容模块路径列表 显示单元格
 
 此部分显示当前模型中兼容模块的相对路径列表。
-
 ## 所属库
 
 Motor Control Blockset / Signal Management

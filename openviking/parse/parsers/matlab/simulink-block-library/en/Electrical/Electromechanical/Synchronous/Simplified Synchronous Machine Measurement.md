@@ -14,6 +14,15 @@ language: en
 # Simplified Synchronous Machine Measurement
 
 ## Ports
+```yaml
+ports:
+- name: pu
+  summary: Per-unit measurements from a connected synchronous machine vector of physical signal
+  direction: input
+- name: o
+  summary: Per-unit measurement output port physical signal
+  direction: output
+```
 
 ### Input
 
@@ -39,14 +48,21 @@ Synchronous Machine, specified as:
 
 Physical signal output port associated with the per-unit measurement, returned as a
 physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Per-unit measurement from synchronous machine EMF phase A (default) | EMF phase B | EMF phase C | Electrical torque
+    | Rotor velocity | Stator d-axis voltage | Stator q-axis voltage | Stator zero-sequence voltage | Stator d-axis current
+    | Stator q-axis current | Stator zero-sequence current | Apparent power | Real power | Reactive power | Terminal voltage
+    | Terminal current | Power factor angle | Power factor | Load angle | Rotor electrical angle
+  group: ''
+```
 
 ### **Output** — Per-unit measurement from synchronous machine `EMF phase A` (default) | `EMF phase B` | `EMF phase C` | `Electrical torque` | `Rotor velocity` | `Stator d-axis voltage` | `Stator q-axis voltage` | `Stator zero-sequence voltage` | `Stator d-axis current` | `Stator q-axis current` | `Stator zero-sequence current` | `Apparent power` | `Real power` | `Reactive power` | `Terminal voltage` | `Terminal current` | `Power factor angle` | `Power factor` | `Load angle` | `Rotor electrical angle`
 
 Per-unit measurement from simplified synchronous machine. The default
 value is `EMF phase A`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Synchronous

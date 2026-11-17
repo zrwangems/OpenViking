@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2802x/C2803x/C2806x/F28M3x COMP
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Comparator module**
 :   选择要配置的比较器模块。每个模块仅使用一个模块。
@@ -63,7 +68,6 @@ R2025b 中未记录。
 
 **Sample time**
 :   指定采样之间的时间间隔。要从上游模块继承采样时间，请将此参数设置为 -1。
-
 ## 所属库
 
 R2025b 中未记录。

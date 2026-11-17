@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Deep Pitch Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 音频输入向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 估计的基频列向量
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -30,8 +41,25 @@ chinese_source: worker-translation
 以 Hz 为单位的估计基频，返回为 *N*×1 向量，其中 *N* 是由 **Number of buffered pitch estimations** 指定的音高估计数量。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 16e3（默认）| 正标量
+  group: ''
+- name: Overlap percentage (%)
+  summary: 连续帧之间的重叠百分比 85（默认）| [0, 100)
+  group: ''
+- name: Number of buffered pitch estimations
+  summary: 输出中的音高估计数量 1（默认）| 正整数
+  group: ''
+- name: Confidence threshold
+  summary: 音高置信度阈值 0.5（默认）| 范围 [0, 1) 内的标量
+  group: ''
+- name: Model capacity
+  summary: 训练神经网络的大小 Full（默认）| Large | Medium | Small | Tiny
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（Hz） `16e3`（默认）| 正标量
 
@@ -58,7 +86,6 @@ chinese_source: worker-translation
 ### **Model capacity** — 训练神经网络的大小 `Full`（默认）| `Large` | `Medium` | `Small` | `Tiny`
 
 模型容量，指定为 `Full`、`Large`、`Medium`、`Small` 或 `Tiny`。较小的尺寸对应于模型中较少的参数，从而导致计算更快但精度更低。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

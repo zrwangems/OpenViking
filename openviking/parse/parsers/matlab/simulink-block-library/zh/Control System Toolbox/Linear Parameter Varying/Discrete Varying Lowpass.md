@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Discrete Varying Lowpass
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 滤波器输入标量
+  direction: input
+- name: freq
+  summary: 截止频率标量
+  direction: input
+- name: y
+  summary: 滤波器输出标量
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +43,19 @@ chinese_source: worker-translation
 ### **y** — 滤波器输出标量
 
 低通滤波器输出信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Filter order
+  summary: 低通滤波器阶数 1（默认）| 正整数
+  group: ''
+- name: Pre-warping frequency w0 (rad/s)
+  summary: 预畸变频率 0（默认）| 正标量
+  group: ''
+- name: Sample time Ts
+  summary: 采样时间 1（默认）| 正标量
+  group: ''
+```
 
 ### **Filter order** — 低通滤波器阶数 1（默认）| 正整数
 
@@ -49,7 +72,6 @@ s=2Ts(z−1z+1),
 ### **Sample time Ts** — 采样时间 1（默认）| 正标量
 
 模块采样时间，指定为正标量。此模块不支持继承采样时间，因为它需要指定的采样时间来计算巴特沃斯滤波器的离散化。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

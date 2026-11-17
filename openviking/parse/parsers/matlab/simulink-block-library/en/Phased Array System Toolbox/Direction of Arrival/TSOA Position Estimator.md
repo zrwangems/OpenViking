@@ -14,6 +14,33 @@ language: en
 # TSOA Position Estimator
 
 ## Ports
+```yaml
+ports:
+- name: TSOAEst
+  summary: Time-sum of arrival estimates (sec) real-valued *J*-by-*L*-by-*K* array
+  direction: input
+  data_types: single | double
+- name: TSOAVar
+  summary: TSOA estimation variance (seconds-squared) real-valued *J*-by-*L* matrix | real-valued *J*-by-*L*-by-*K* array
+  direction: input
+  data_types: single | double
+- name: TxPos
+  summary: Transmitting anchor positions (meters) real-valued *Q*-by-*J* matrix
+  direction: input
+  data_types: single | double
+- name: RxPos
+  summary: Receiving anchor positions (meters) real-valued *Q*-by-*L* matrix
+  direction: input
+  data_types: single | double
+- name: TgtPosEst
+  summary: Target position estimate real-valued *Q*-by-1 vector
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: Target position covariance matrix real-valued positive semi-definite *Q*-by-*Q* matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -110,8 +137,23 @@ To enable this output port, select the **Output covariance of TSOA
 position estimate** check box.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst("LightSpeed") (default) | positive real scalar
+  group: ''
+- name: Output covariances of TSOA position estimates (meters-squared)
+  summary: Output covariance of TSOA position estimates false (0) (default) | true (1)
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -177,7 +219,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

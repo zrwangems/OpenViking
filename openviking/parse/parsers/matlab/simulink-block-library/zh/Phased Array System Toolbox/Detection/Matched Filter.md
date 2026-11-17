@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Matched Filter
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入信号 *M*×*N* 复值矩阵
+  direction: input
+  data_types: double
+- name: Coeff
+  summary: 匹配滤波器系数 *M* 长度复值列向量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 匹配滤波器输出 *M*×*N* 复值矩阵
+  direction: output
+  data_types: double
+- name: G
+  summary: 匹配滤波器增益 *N* 长度实值
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -52,8 +71,50 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Enable SNR gain output** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Source of coefficients
+  summary: 匹配滤波器系数来源 Property（默认）| Input port
+  group: ''
+- name: Coefficients
+  summary: 匹配滤波器系数 [1;1]（默认）
+  group: ''
+- name: Spectrum window
+  summary: 频谱加权窗 None（默认）| Hamming | Chebyshev | Hann | Kaiser | Taylor
+  group: ''
+- name: Spectrum window range (Hz)
+  summary: 频谱窗覆盖区域 [0, 1e5]（默认）
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 输出波形的采样率 1e6（默认）| 正标量
+  group: ''
+  block_parameter: SampleRate
+  type: double
+  values: 正标量
+- name: Sidelobe attenuation level
+  summary: 窗旁瓣衰减电平 30（默认值）
+  group: ''
+- name: Kaiser shape parameter
+  summary: Kaiser 形状参数 0.5（默认值）
+  group: ''
+- name: Number of constant level sidelobes
+  summary: Taylor 窗中近似恒定旁瓣的数量 4（默认值）
+  group: ''
+- name: Enable SNR gain output
+  summary: 启用 SNR 增益输出 off（默认值）| on
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认值）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+  default: Interpreted Execution
+```
 
 ### **Source of coefficients** — 匹配滤波器系数来源 `Property`（默认）| `Input port`
 
@@ -169,7 +230,6 @@ chinese_source: worker-translation
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认值：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

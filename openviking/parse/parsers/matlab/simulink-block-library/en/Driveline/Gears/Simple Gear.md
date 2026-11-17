@@ -14,6 +14,18 @@ language: en
 # Simple Gear
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base rotational mechanical
+  direction: conserving
+- name: F
+  summary: Follower mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -38,8 +50,106 @@ To enable this port, set **Friction model** to either:
   efficiency`
 - `Temperature and load-dependent
   efficiency`
-
 ## Parameters
+```yaml
+parameters:
+- name: Follower (F) to base (B) teeth ratio (NF/NB)
+  summary: Gear ratio 2 (default) | positive scalar
+  group: Main
+- name: Output shaft rotates
+  summary: Shaft rotation direction In opposite direction to input shaft (default) | In same direction as input shaft
+  group: Main
+- name: Friction model
+  summary: Default friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Load-dependent
+    efficiency | Temperature-dependent efficiency | Temperature and load-dependent efficiency
+  group: Meshing Losses
+- name: Efficiency
+  summary: Torque transfer efficiency, *η* 0.8 (default) | 0≤ *η* < 1
+  group: Meshing Losses
+- name: Follower power threshold
+  summary: Efficiency factor power basis 0.001 W (default) | positive scalar
+  group: Meshing Losses
+- name: Input shaft torque at no load
+  summary: No-load torque 0.1 N*m (default) | positive scalar
+  group: Meshing Losses
+- name: Nominal output torque
+  summary: Nominal torque 5 N*m (default) | positive scalar
+  group: Meshing Losses
+- name: Efficiency at nominal output torque
+  summary: Nominal efficiency, *η* 0.8 (default) | 0 ≤ *η* < 1 | scalar
+  group: Meshing Losses
+- name: Follower angular velocity threshold
+  summary: Efficiency factor angular velocity basis 0.01 rad/s (default) | positive scalar
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | positive array
+  group: Meshing Losses
+- name: Efficiency
+  summary: Efficiency, *η* [.95, .9, .85] (default) | 0 ≤ *η* < 1 | array
+  group: Meshing Losses
+- name: Follower power threshold
+  summary: Efficiency factor power basis 0.001 W (default) | positive array
+  group: Meshing Losses
+- name: Load at base gear
+  summary: Base gear load [1, 5, 10] N*m (default) | positive array
+  group: Meshing Losses
+- name: Efficiency matrix
+  summary: Efficiency [.85, .8, .75; .95, .9, .85; .85, .8, .7] (default) | numerical array with positive elements in the
+    range of [0,1)
+  group: Meshing Losses
+- name: Follower angular velocity threshold
+  summary: Efficiency factor angular velocity basis 0.01 rad/s (default) | positive scalar
+  group: Meshing Losses
+- name: Enable backlash
+  summary: Backlash option off (default) | on
+  group: Backlash
+- name: Hard stop model
+  summary: Hard stop transition behavior Stiffness and damping applied smoothly through transition region, damped rebound
+    (default) | ...
+  group: Backlash
+- name: Linear backlash
+  summary: Translational backlash distance 1e-3 mm (default) | positive scalar
+  group: Backlash
+- name: Base (B) gear radius
+  summary: Base gear pitch radius 0.1 m (default) | positive scalar
+  group: Backlash
+- name: Transition region
+  summary: Region of gradual hard stop effects 1e-4 mm (default) | positive scalar
+  group: Backlash
+- name: Linear stiffness
+  summary: Resistance to translational deformation 1e6 N/m (default) | positive scalar
+  group: Backlash
+- name: Linear damping
+  summary: Tendency to dissipate translational energy 1e3 N/(m/s) (default) | positive scalar
+  group: Backlash
+- name: Coefficient of restitution
+  summary: Collision energy loss coefficient 0.7 (default) | positive scalar
+  group: Backlash
+- name: Static contact speed threshold
+  summary: Threshold relative speed between gear teeth before collision 0.001 m/s (default) | nonnegative scalar
+  group: Backlash
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Backlash
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: Coefficients of viscous friction [0, 0] N*m/(rad/s) (default) | positive array
+  group: Viscous Losses
+- name: Gear fault
+  summary: Option to model gear fault Add fault
+  group: Faults
+- name: Faulted efficiency
+  summary: Faulted efficiency 0.05 (default) | scalar in the range [0,1]
+  group: Faults
+- name: Faulted angle range
+  summary: Fault angle range pi / 12 rad (default) | nonnegative scalar
+  group: Faults
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Temperature 300 K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Parameter Dependencies Table
 
@@ -552,7 +662,6 @@ to either:
   efficiency`
 - `Temperature and load-dependent
   efficiency`
-
 ## Libraries
 
 Simscape / Driveline / Gears

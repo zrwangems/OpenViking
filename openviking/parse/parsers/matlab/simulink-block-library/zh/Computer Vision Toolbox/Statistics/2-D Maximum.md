@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # 2-D Maximum
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数组 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Rst
+  summary: 复位端口 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: ROI
+  summary: 感兴趣区域 四元素向量 | *m*×4 矩阵 | *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Label
+  summary: 标签矩阵 非负整数矩阵
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Label Numbers
+  summary: ROI 的标签值 *M* 元素向量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Val
+  summary: 输出最大值 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Idx
+  summary: 输入数组中最大值的索引 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Flag
+  summary: ROI 验证 0 | 1
+  direction: output
+```
 
 ### 输入
 
@@ -143,8 +178,43 @@ ROI 验证，以 0 或 1 返回。输出值表示输入处指定的所有 ROI �
 #### 依赖关系
 
 要启用此端口，请选中 **Output flag indicating if ROI is within image bounds** 参数，并将 **ROI type** 参数的值设置为 `Rectangle`、`Lines` 或 `Label Matrix`。
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 输出模式 Value and Index（默认）| Value | Index | Running
+  group: ''
+- name: Index Base
+  summary: 索引原点 One（默认）| Zero
+  group: ''
+- name: Find the maximum value over
+  summary: 计算最大值的维度 Entire input（默认）| Each row | Each column | Specified dimension
+  group: ''
+- name: Dimension
+  summary: 自定义维度 1（默认）| 标量
+  group: ''
+- name: Reset port
+  summary: 复位事件 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Enable ROI processing
+  summary: 计算特定区域内的最大值 off（默认）| on
+  group: ''
+- name: ROI type
+  summary: ROI 类型 Rectangles（默认）| Lines | Label matrix | Binary mask
+  group: ''
+- name: ROI portion to process
+  summary: 计算最大值的 ROI 部分 Entire ROI（默认）| ROI perimeter
+  group: ''
+- name: Output
+  summary: 计算单个或整个 ROI 的最大值 Individual statistics for each ROI（默认）| Single statistic for all ROIs
+  group: ''
+- name: 输出标志，指示 ROI 是否在图像边界内
+  summary: 启用 Flag 端口 关闭（默认）| 开启
+  group: ''
+- name: 锁定数据类型设置以防止被定点工具更改
+  summary: 防止定点工具覆盖数据类型 关闭（默认）| 开启
+  group: ''
+```
 
 **主选项卡**
 
@@ -280,7 +350,6 @@ ROI 验证，以 0 或 1 返回。输出值表示输入处指定的所有 ROI �
 ### **锁定数据类型设置以防止被定点工具更改** — 防止定点工具覆盖数据类型 关闭（默认）| 开启
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

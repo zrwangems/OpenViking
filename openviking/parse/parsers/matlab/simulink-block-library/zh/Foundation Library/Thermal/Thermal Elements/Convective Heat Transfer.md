@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Convective Heat Transfer
 
 ## 端口
+```yaml
+ports:
+- name: K
+  summary: 传热系数控制信号，W/(K\*m^2) 物理信号
+  direction: input
+- name: A
+  summary: 物体 A 热
+  direction: input
+- name: B
+  summary: 物体 B 热
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,22 @@ chinese_source: worker-translation
 ### **B** — 物体 B 热
 
 与物体 B 关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Convection type
+  summary: 如何指定传热系数 Constant（默认）| Variable
+  group: ''
+- name: Area
+  summary: 传热面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Heat transfer coefficient
+  summary: 对流换热系数 20 W/(K*m^2)（默认）| 正标量
+  group: ''
+- name: Minimum heat transfer coefficient
+  summary: 传热系数下界 1e-3 W/(K*m^2)（默认）| 正标量
+  group: ''
+```
 
 ### **Convection type** — 如何指定传热系数 `Constant`（默认）| `Variable`
 
@@ -63,7 +89,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Convection type** 设置为 `Variable`。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Elements

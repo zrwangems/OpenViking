@@ -14,6 +14,39 @@ language: en
 # Discrete Varying Observer Form
 
 ## Ports
+```yaml
+ports:
+- name: yk
+  summary: Measurement signal scalar | vector
+  direction: input
+- name: A
+  summary: Plant state matrix matrix
+  direction: input
+- name: B
+  summary: Plant input matrix matrix
+  direction: input
+- name: C
+  summary: Plant output matrix matrix
+  direction: input
+- name: D
+  summary: Plant feedforward matrix matrix
+  direction: input
+- name: K
+  summary: State-feedback matrix matrix
+  direction: input
+- name: L
+  summary: State-observer matrix matrix
+  direction: input
+- name: uk
+  summary: Control signal scalar | vector
+  direction: output
+- name: xk
+  summary: Estimated plant state vector vector
+  direction: output
+- name: xk+1
+  summary: Estimated next state vector vector
+  direction: output
+```
 
 ### Input
 
@@ -70,8 +103,22 @@ Estimated state values at next time step.
 
 To enable this port, select the **Output state
 updates** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial conditions
+  summary: System initial conditions 0 (default) | scalar | vector
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time –1 (default) | positive scalar
+  group: ''
+- name: Output states
+  summary: Provide state output on (default) | off
+  group: ''
+- name: Output state derivatives
+  summary: Provide state updates on (default) | off
+  group: ''
+```
 
 ### **Initial conditions** — System initial conditions 0 (default) | scalar | vector
 
@@ -92,7 +139,6 @@ Select to enable the estimated states output port,
 
 Select to enable the estimated state updates output port,
 **xk+1**.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

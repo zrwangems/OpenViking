@@ -14,6 +14,37 @@ language: en
 # Inverse Clarke Transform
 
 ## Ports
+```yaml
+ports:
+- name: α
+  summary: Axis component scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: β
+  summary: Axis component scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: αβ0
+  summary: Axis components scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: a
+  summary: Phase component scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: b
+  summary: Phase component scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: c
+  summary: Phase component scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: abc
+  summary: Phase components scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -103,8 +134,16 @@ To enable this port, set the **Number of inputs** parameter to
 `Three inputs`.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Number of block inputs Two inputs (default) | Three inputs
+  group: ''
+- name: Power invariant
+  summary: Enable power invariance off (default) | on
+  group: ''
+```
 
 ### **Number of inputs** — Number of block inputs `Two inputs` (default) | `Three inputs`
 
@@ -125,7 +164,6 @@ Select the number of inputs that you can specify:
 To enable the power invariance property in the block output, select this parameter.
 To disable power invariance (enable amplitude invariance) in the block output, clear
 this parameter.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

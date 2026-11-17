@@ -14,6 +14,12 @@ language: en
 # PS Sine Wave
 
 ## Ports
+```yaml
+ports:
+- name: O
+  summary: Output physical signal, typed by the block parameter values and units physical signal
+  direction: output
+```
 
 ### Output
 
@@ -27,8 +33,28 @@ signal unit is determined by the **Amplitude** and
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Amplitude
+  summary: Sine wave amplitude 1 1 (default) | scalar | vector | matrix
+  group: ''
+- name: Bias
+  summary: Constant added to sine wave 0 1 (default) | scalar | vector | matrix
+  group: ''
+- name: Frequency specification
+  summary: Select whether to specify frequency in SI or angular units Frequency (SI) (default) | Angular
+  group: ''
+- name: Frequency (SI)
+  summary: Frequency of sine wave 1 Hz (default) | scalar
+  group: ''
+- name: Angular frequency
+  summary: Angular frequency of sine wave 1 rad/s (default) | scalar
+  group: ''
+- name: Phase
+  summary: Phase shift of sine wave 0 rad (default) | scalar
+  group: ''
+```
 
 ### **Amplitude** — Sine wave amplitude `1 1` (default) | scalar | vector | matrix
 
@@ -92,7 +118,6 @@ To enable this parameter, set **Frequency specification** to
 ### **Phase** — Phase shift of sine wave `0 rad` (default) | scalar
 
 Phase shift of the sine wave.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Sources

@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # To File
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -23,8 +31,45 @@ chinese_source: worker-translation
 要存储在文件中的信号。每个样本由一个时间戳和一个关联的数据值组成。数据可以是数组格式或 MATLAB `timeseries` 格式。To File 模块接受 Simulink® 软件支持的任何数据类型的实数或复数信号数据，但字长大于 32 位的定点数据除外。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 路径或文件名 untitled.mat（默认）| MAT 文件路径或名称
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: MAT file path or name
+  default: '''untitled.mat'''
+- name: Variable name
+  summary: 矩阵名称 ans（默认）| 字符向量
+  group: ''
+  block_parameter: MatrixName
+  type: character vector
+  values: character vector
+  default: '''ans'''
+- name: Save format
+  summary: 数据格式 Timeseries（默认）| Array
+  group: ''
+  block_parameter: SaveFormat
+  type: character vector
+  values: '''Timeseries'' | ''Array'''
+  default: '''Timeseries'''
+- name: Decimation
+  summary: 决定何时写入数据的抽取因子 1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: Decimation
+  type: character vector
+  values: scalar | vector
+  default: '''1'''
+- name: Sample time
+  summary: 采样周期和偏移量 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+```
 
 ### **File name** — 路径或文件名 `untitled.mat`（默认）| MAT 文件路径或名称
 
@@ -124,7 +169,6 @@ From Workspace 模块可以读取 `Array` 格式的数据，该数据是 To File
 | **类型**：character vector |
 | **值**：scalar | vector |
 | **默认值**：`'-1'` |
-
 ## 所属库
 
 Simulink / Sinks HDL Coder / Sinks

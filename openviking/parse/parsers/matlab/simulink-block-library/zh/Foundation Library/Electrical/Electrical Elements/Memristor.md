@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Memristor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: unspecified
+- name: '-'
+  summary: 负极端子电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,25 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与忆阻器负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Resistance of state A
+  summary: 整个忆阻器处于状态 A 时的电阻 1 Ohm（默认）| 正标量
+  group: ''
+- name: Resistance of state B
+  summary: 整个忆阻器处于状态 B 时的电阻 100 Ohm（默认）| 正标量
+  group: ''
+- name: Total charge required for full state transition
+  summary: 状态之间完全转换所需的电荷 10 mC（默认）| 正标量
+  group: ''
+- name: State A fraction at t=0
+  summary: 仿真开始时忆阻器处于状态 A 的比例 0（默认）| 最小值/最大值：(0,1)
+  group: ''
+- name: Exponent of the window function
+  summary: 边界处的漂移控制 2（默认）| 正整标量
+  group: ''
+```
 
 ### **Resistance of state A** — 整个忆阻器处于状态 A 时的电阻 `1 Ohm`（默认）| 正标量
 
@@ -47,7 +73,6 @@ chinese_source: worker-translation
 ### **Exponent of the window function** — 边界处的漂移控制 `2`（默认）| 正整标量
 
 窗函数的指数 *p*，用于将 *ξ* 的值保持在 0 和 1 之间。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

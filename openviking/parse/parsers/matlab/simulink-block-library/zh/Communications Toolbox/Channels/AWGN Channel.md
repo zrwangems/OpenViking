@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # AWGN Channel
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据信号 向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: 加性高斯白噪声的方差 正标量 | 向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出数据信号 向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -43,8 +57,52 @@ chinese_source: worker-translation
 ### **Out** — 输出数据信号 向量 | 矩阵
 
 AWGN 信道的输出数据信号，以向量或矩阵形式返回。**Out** 的数据类型和维度与输入信号 **In** 匹配。该端口在模块上未命名。
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 方差模式 Signal to noise ratio (SNR)（默认）| Signal to noise ratio (Eb/No) | Signal to noise ratio (Es/No) | Variance
+  group: ''
+- name: SNR (dB)
+  summary: 信号功率与噪声功率之比 10（默认）| 标量 | 向量
+  group: ''
+- name: Eb/No (dB)
+  summary: 每符号信息比特能量与噪声功率谱密度之比 10（默认）| 标量 | 向量
+  group: ''
+- name: Es/No (dB)
+  summary: 每符号信息符号能量与噪声功率谱密度之比 10（默认）| 标量 | 向量
+  group: ''
+- name: Number of bits per symbol
+  summary: 每个输入符号中的比特数 1（默认）| 标量 | 向量
+  group: ''
+- name: Input signal power, referenced to 1 ohm (watts)
+  summary: 输入的均方功率 1（默认）| 标量 | 向量
+  group: ''
+- name: Specify symbol duration in seconds
+  summary: 以秒为单位指定符号持续时间 off（默认）| on
+  group: ''
+- name: Samples per symbol
+  summary: 每符号样本数 1（默认）| 正整数 | 正整数向量
+  group: ''
+- name: Symbol period (s)
+  summary: 符号周期，以秒为单位 [1 2 4]（默认）| 正标量 | 向量
+  group: ''
+- name: Noise variance source
+  summary: 噪声方差来源 Parameter（默认）| Input port
+  group: ''
+- name: Noise variance
+  summary: 白高斯噪声的方差 1（默认）| 标量 | 向量
+  group: ''
+- name: Random number source
+  summary: 随机数来源 Global stream（默认）| mt19937ar with seed
+  group: ''
+- name: Initial seed
+  summary: 噪声发生器初始种子 67（默认）| 非负整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -178,7 +236,6 @@ mt19937ar 算法的噪声发生器初始种子，指定为非负整数。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短了启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Channels

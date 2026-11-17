@@ -14,6 +14,17 @@ language: en
 # Host Serial Receive
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Port to output received data scalar
+  direction: output
+  data_types: single | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: status
+  summary: Transaction status scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Output
 
@@ -43,8 +54,44 @@ To enable this port, select the **Output receiving status**
 parameter.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Serial Connection
+  summary: Serial port used for receiving data Serial 1 (default) | Serial 2 | Serial 3 | Serial 4
+  group: ''
+- name: Additional package header
+  summary: Package header data 'S' (default) | scalar
+  group: ''
+- name: Additional package terminator
+  summary: Package terminator data 'E' (default) | scalar
+  group: ''
+- name: Data type
+  summary: Output data type single (default) | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+- name: Data size
+  summary: Output data size 1 (default) | scalar | matrix
+  group: ''
+- name: Initial output
+  summary: Default block output value 0 (default) | scalar
+  group: ''
+- name: Action taken when connection times out
+  summary: Action taken by block when connection times out Output the last received value (default) | Output custom value
+    | Error
+  group: ''
+- name: Output value when connection times out
+  summary: Output custom value when the connection times out 0 (default) | scalar
+  group: ''
+- name: Sample time
+  summary: Sample time for block execution -1 (default) | scalar
+  group: ''
+- name: Output receiving status
+  summary: Enable status output port off (default) | on
+  group: ''
+- name: Enable blocking mode
+  summary: Block simulation while receiving data on (default) | off
+  group: ''
+```
 
 ### **Serial Connection** — Serial port used for receiving data `Serial 1` (default) | `Serial 2` | `Serial 3` | `Serial 4`
 
@@ -133,7 +180,6 @@ parameter if you do not want the read operation to block the simulation.
 If you enable the blocking mode, the model blocks the simulation while it is waiting
 to receive the requested data. When you do not enable the blocking mode, the simulation
 runs continuously.
-
 ## Libraries
 
 Motor Control Blockset / Protection and Diagnostics

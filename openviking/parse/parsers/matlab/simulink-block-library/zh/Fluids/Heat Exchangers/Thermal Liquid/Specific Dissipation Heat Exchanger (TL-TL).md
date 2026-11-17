@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Specific Dissipation Heat Exchanger (TL-TL)
 
 ## 端口
+```yaml
+ports:
+- name: A1
+  summary: 热液体 1 端口 thermal liquid
+  direction: conserving
+- name: B1
+  summary: 热液体 1 端口 thermal liquid
+  direction: conserving
+- name: A2
+  summary: 热液体 2 端口 thermal liquid
+  direction: conserving
+- name: B2
+  summary: 热液体 2 端口 thermal liquid
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,73 @@ chinese_source: worker-translation
 ### **B2** — 热液体 2 端口 thermal liquid
 
 热液体 2 进入和离开其换热器侧的开口。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermal Liquid 1 mass flow rate vector, mdot1
+  summary: 比散热查找表中每个断点处热液体 1 的质量流量，数值数组，单位为质量/时间
+  group: 传热
+- name: Thermal Liquid 2 mass flow rate vector, mdot2
+  summary: 比散热查找表中每个断点处热液体 2 的质量流量，数值数组，单位为质量/时间
+  group: 传热
+- name: Specific heat dissipation table, SD(mdot1,mdot2)
+  summary: 查找表中热液体 1 和热液体 2 质量流量各断点处的比散热，数值数组，单位为功率/温度
+  group: 传热
+- name: Check if violating maximum specific dissipation
+  summary: 比散热超过最小热容率时的警告条件 Warning（默认）| None | Error
+  group: 传热
+- name: Mass flow rate vector
+  summary: 压降查找表中每个断点处的质量流量，数值数组，单位为质量/时间
+  group: Thermal Liquid 1|2 选项卡
+- name: Pressure drop vector
+  summary: 质量流量查找表中每个断点处的压降，数值数组，单位为压力
+  group: Thermal Liquid 1|2 选项卡
+- name: Reference inflow temperature
+  summary: 表格数据中假设的绝对入口温度 293.15 K（默认）| 标量，单位为温度
+  group: Thermal Liquid 1|2 选项卡
+- name: Reference inflow pressure
+  summary: 表格数据中假设的绝对入口压力 0.101325 MPa（默认）| 标量，单位为压力
+  group: Thermal Liquid 1|2 选项卡
+- name: Threshold mass flow rate for flow reversal
+  summary: 质量流量数值平滑区域的上限 1e-3 kg/s（默认）| 标量，单位为质量/时间
+  group: Thermal Liquid 1|2 选项卡
+- name: Thermal liquid volume
+  summary: 热液体 1 或热液体 2 流道中的流体体积 0.01 m^3（默认）| 标量，单位为长度立方
+  group: Thermal Liquid 1|2 选项卡
+- name: Cross-sectional area at ports A and B
+  summary: 流道入口和出口处的流通面积 0.01 m^2（默认）| 标量，单位为长度平方
+  group: Thermal Liquid 1|2 选项卡
+- name: Enable Thermal Liquid 1 dynamic compressibility
+  summary: 换热器中液体可压缩性的设置 On（默认）| Off | 标量
+  group: 效应和初始条件
+- name: Thermal Liquid 1 nominal temperature
+  summary: 标称工况下的温度 293.15 K（默认）| 标量
+  group: 效应和初始条件
+- name: Thermal Liquid 1 nominal pressure
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 效应和初始条件
+- name: Thermal Liquid 1 initial temperature
+  summary: 仿真开始时热液体 1 中的温度 293.15 K（默认）| 标量，单位为温度
+  group: 效应和初始条件
+- name: Thermal Liquid 1 initial pressure
+  summary: 仿真开始时热液体 1 通道中的压力 0.101325 MPa（默认）| 标量，单位为压力
+  group: 效应和初始条件
+- name: Enable Thermal Liquid 2 dynamic compressibility
+  summary: 对热液体 2 通道中压力动态进行建模的选项 On（默认）| Off
+  group: 效应和初始条件
+- name: Thermal Liquid 2 nominal temperature
+  summary: 标称工况下的温度 293.15 K（默认）| 标量
+  group: 效应和初始条件
+- name: Thermal Liquid 2 nominal pressure
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 效应和初始条件
+- name: Thermal Liquid 2 initial temperature
+  summary: 仿真开始时热液体 1 中的温度 293.15 K（默认）| 标量，单位为温度
+  group: 效应和初始条件
+- name: Thermal Liquid 2 initial pressure
+  summary: 仿真开始时热液体 1 通道中的压力 0.101325 MPa（默认）| 标量，单位为压力
+  group: 效应和初始条件
+```
 
 ### 传热
 
@@ -161,7 +241,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Enable Thermal Liquid 2 dynamic compressibility**。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid

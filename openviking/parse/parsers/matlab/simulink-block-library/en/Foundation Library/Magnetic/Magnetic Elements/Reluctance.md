@@ -14,6 +14,9 @@ language: en
 # Reluctance
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,8 +25,10 @@ The block has the following ports:
 
 `S`
 :   Magnetic conserving port associated with the block South terminal.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Thickness or length of section or gap**
 :   Thickness of the section being modeled, or length of air gap.
@@ -35,7 +40,6 @@ The block has the following ports:
 **Relative permeability of material**
 :   Relative permeability of the section material. The default value
     is `1`.
-
 ## Libraries
 
 Not documented in R2025b.

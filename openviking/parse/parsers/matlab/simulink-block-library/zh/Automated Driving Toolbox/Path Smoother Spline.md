@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Path Smoother Spline
 
 ## 端口
+```yaml
+ports:
+- name: RefPoses
+  summary: 参考位姿 *M*×3 的 [*x*, *y*, *Θ*] 向量矩阵
+  direction: input
+  data_types: single | double
+- name: RefDirections
+  summary: 参考方向 *M*×1 的列向量，由 1（前进运动）和 –1（倒车运动）组成
+  direction: input
+  data_types: single | double
+- name: Poses
+  summary: 平滑路径的离散位姿 *N*×3 的 [*x*, *y*, *Θ*] 向量矩阵
+  direction: output
+- name: Directions
+  summary: 每个输出位姿处的行驶方向 *N*×1 的列向量，由 1（前进运动）和 –1（倒车运动）组成
+  direction: output
+- name: CumLengths
+  summary: 累积路径长度 *N*×1 的实值列向量
+  direction: output
+- name: Curvatures
+  summary: 带符号的路径曲率 *N*×1 的实值列向量
+  direction: output
+```
 
 ### 输入
 
@@ -68,8 +91,25 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Show CumLengths and Curvatures output ports** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of output poses
+  summary: 要返回的平滑位姿数量 100（默认）| 正整数
+  group: ''
+- name: Minimum separation of input poses
+  summary: 位姿之间的最小间隔 1e-3（默认）| 正实数标量
+  group: ''
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正实数标量
+  group: ''
+- name: Show CumLengths and Curvatures output ports
+  summary: 输出累积路径长度和曲率 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code Generation（默认）| Interpreted Execution
+  group: ''
+```
 
 ### **Number of output poses** — 要返回的平滑位姿数量 `100`（默认）| 正整数
 
@@ -91,7 +131,6 @@ chinese_source: worker-translation
 
 - `Code generation` — 使用生成的 C/C++ 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C/C++ 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
-
 ## 所属库
 
 Automated Driving Toolbox

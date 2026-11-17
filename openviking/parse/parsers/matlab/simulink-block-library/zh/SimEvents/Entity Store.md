@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Entity Store
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: 已离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: 尚未离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: 模块中实体的平均等待时间 标量
+  direction: output
+  data_types: double
+- name: Port_l
+  summary: 平均存储大小 标量
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: 提取的实体数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -80,8 +113,48 @@ chinese_source: worker-translation
 要启用此端口，请点击 **Statistics** 选项卡，然后选中标记为 **Number of entities extracted, ex** 的复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Capacity
+  summary: 指定存储的容量 25（默认）| 标量
+  group: ''
+  block_parameter: Capacity
+  type: 字符向量
+  values: '''25'' | 标量'
+- name: Number of entities departed, d
+  summary: 输出已离开模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Number of entities in block, n
+  summary: 输出模块中存在的、尚未离开的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesInBlock
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Average wait, w
+  summary: 输出平均等待时间 off（默认）| on
+  group: ''
+  block_parameter: AverageWait
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Average store size, l
+  summary: 输出平均存储大小 off（默认）| on
+  group: ''
+  block_parameter: AverageStoreSize
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: 从该模块提取的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumEntitiesExtracted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Capacity** — 指定存储的容量 `25`（默认）| 标量
 
@@ -165,7 +238,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

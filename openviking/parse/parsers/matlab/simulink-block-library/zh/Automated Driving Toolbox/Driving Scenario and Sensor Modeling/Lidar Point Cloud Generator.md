@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Lidar Point Cloud Generator
 
 ## 端口
+```yaml
+ports:
+- name: Actors
+  summary: 场景参与者位姿 包含 MATLAB® 结构的 Simulink 总线
+  direction: input
+- name: Ego Vehicle
+  summary: 自车位姿 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Point Cloud
+  summary: 点云数据 *m*×*n*×3 的正实值 [*x*, *y*, *z*] 点数组
+  direction: output
+```
 
 ### 输入
 
@@ -85,8 +97,70 @@ m×n=VFOVVRES×HFOVHRES
 数组中的每个 *m*×*n* 条目指定自车坐标系中检测到的点的 *x*、*y* 和 *z* 坐标。如果激光雷达在给定坐标处未检测到点，则 *x*、*y* 和 *z* 返回为 `NaN`。
 
 默认情况下，Lidar Point Cloud Generator 模块在生成的点云中包含道路数据。该模块从与 Lidar Point Cloud Generator 模块位于同一模型中的 Scenario Reader 模块获取世界坐标系中的道路数据。Lidar Point Cloud Generator 模块根据道路数据和 **Ego Vehicle** 输入端口处的自车位姿，计算自车坐标系中的道路网格。Lidar Point Cloud Generator 模块的 **Maximum detection range (m)** 参数决定道路网格的范围。要从点云中排除道路数据，请清除 **Include roads in generated point cloud** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 参数
+- name: Required interval between sensor updates (s)
+  summary: 传感器更新之间的所需时间间隔 0.1（默认）| 正标量
+  group: 参数
+- name: Sensor's (x,y) position (m)
+  summary: 激光雷达传感器中心的位置 [1.5 0]（默认）| 实值 1×2 向量
+  group: 参数
+- name: Sensor's height (m)
+  summary: 激光雷达传感器的高度 1.6（默认）| 正标量
+  group: 参数
+- name: Yaw angle of sensor mounted on ego vehicle (deg)
+  summary: 激光雷达传感器的偏航角 0（默认）| 实值标量
+  group: 参数
+- name: Pitch angle of sensor mounted on ego vehicle (deg)
+  summary: 激光雷达传感器的俯仰角 0（默认）| 实值标量
+  group: 参数
+- name: Roll angle of sensor mounted on ego vehicle (deg)
+  summary: 激光雷达传感器的横滚角 0（默认）| 实值标量
+  group: 参数
+- name: Coordinate system used to report point cloud
+  summary: 报告检测结果的坐标系 Ego Cartesian（默认）| Sensor Cartesian
+  group: 参数
+- name: Include ego vehicle in generated point cloud
+  summary: 在点云中包含自车 on（默认）| off
+  group: 参数
+- name: ActorID of ego vehicle
+  summary: 自车的 ActorID 值 1（默认）| 正整数
+  group: 参数
+- name: Include roads in generated point cloud
+  summary: 在点云中包含道路 on（默认）| off
+  group: 参数
+- name: Source of actor profiles
+  summary: 参与者配置文件的来源 From Scenario Reader block（默认）| From workspace
+  group: 参数
+- name: MATLAB or model workspace variable name
+  summary: 参与者配置文件的变量名 actor_profiles（默认）| 有效变量名
+  group: 参数
+- name: Maximum detection range (m)
+  summary: 最大检测距离 120（默认）| 正标量
+  group: 测量
+- name: Range accuracy (m)
+  summary: 距离测量的精度 0.002（默认）| 正标量
+  group: 测量
+- name: Azimuthal resolution of lidar (deg)
+  summary: 激光雷达传感器的方位角分辨率 0.16（默认）| 正标量
+  group: 测量
+- name: Elevation resolution of lidar (deg)
+  summary: 激光雷达传感器的仰角分辨率 1.25（默认）| 正标量
+  group: 测量
+- name: Azimuthal limits of lidar (deg)
+  summary: 激光雷达传感器的方位角范围 [-180 180]（默认）| [*min*, *max*] 形式的 1×2 实值向量
+  group: 测量
+- name: Elevation limits of lidar (deg)
+  summary: 激光雷达传感器的仰角范围 [-20 20]（默认）| [*min*, *max*] 形式的 1×2 实值向量
+  group: 测量
+- name: Add noise to measurements
+  summary: 向测量添加噪声 on（默认）| off
+  group: 测量
+```
 
 ### 参数
 
@@ -216,7 +290,6 @@ m×n=VFOVVRES×HFOVHRES
 ### **Add noise to measurements** — 向测量添加噪声 `on`（默认）| `off`
 
 选择此参数以向激光雷达传感器测量添加噪声。清除此参数时，测量不包含噪声。
-
 ## 所属库
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

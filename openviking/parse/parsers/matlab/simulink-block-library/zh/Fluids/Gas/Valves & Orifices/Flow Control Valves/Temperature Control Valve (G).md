@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Temperature Control Valve (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 阀门入口气体
+  direction: conserving
+- name: B
+  summary: 阀门入口气体
+  direction: conserving
+- name: T
+  summary: 传感端口气体 | 热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +45,70 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将**Temperature sensing**设置为`Gas sensing port`或`Thermal sensing port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve operation
+  summary: 开口面积变化的符号 Opens above activation temperature（默认）| Closes above activation temperature
+  group: ''
+- name: Temperature sensing
+  summary: 控制阀门温度传感的方法 Valve inlet temperature（默认）| Gas sensing port | Thermal sensing port
+  group: ''
+- name: Activation temperature
+  summary: 触发开启机构的温度 330 K（默认）| 标量
+  group: ''
+- name: Temperature regulation range
+  summary: 开口面积可变的温度区间跨度 8 K（默认）| 正标量
+  group: ''
+- name: Sensor time constant
+  summary: 温度变化在入口传感器处记录所需的时间 1.5 s（默认）| 以时间为单位的正标量
+  group: ''
+- name: Valve parameterization
+  summary: 用于指定节流孔流动特性的参数化方法 Cv flow coefficient（默认）| Kv flow coefficient | Sonic conductance | Orifice area
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应于组件最大开启状态的Cv系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 阻塞流时的压差比系数 0.7（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应于组件最大开启状态的Kv系数 3.6（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 对应于组件最大开启状态的声速导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Maximum orifice area
+  summary: 对应于组件最大开启状态的流动面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 范围[0,1]内的正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围[0,1]内的正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流流态之间过渡的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 气体端口处的流动面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Valve operation** — 开口面积变化的符号 `Opens above activation temperature`（默认）| `Closes above activation temperature`
 
@@ -176,7 +250,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at ports A and B** — 气体端口处的流动面积 `0.01 m^2`（默认）| 正标量
 
 每个端口处垂直于流动路径的面积。各端口尺寸相同。此参数的值应与阻力元件所连接组件的入口面积相匹配。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Valves & Orifices / Flow Control Valves

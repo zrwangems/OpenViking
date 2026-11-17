@@ -14,6 +14,54 @@ language: en
 # INS
 
 ## Ports
+```yaml
+ports:
+- name: Position
+  summary: Position of INS sensor *N*-by-3 real-valued matrix
+  direction: input
+  data_types: single | double
+- name: Velocity
+  summary: Velocity of INS sensor *N*-by-3 real-valued matrix of scalar
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: Orientation of INS sensor 3-by-3-by-*N* real-valued array | *N*-by-4 real-valued matrix | *N*-by-3 matrix of Euler
+    angles
+  direction: input
+  data_types: single | double
+- name: Acceleration
+  summary: Acceleration of INS sensor *N*-by-3 real-valued matrix
+  direction: input
+  data_types: single | double
+- name: AngularVelocity
+  summary: Angular velocity of INS sensor *N*-by-3 real-valued matrix
+  direction: input
+  data_types: single | double
+- name: HasGNSSFix
+  summary: Enable GNSS fix *N*-by-1 logical vector
+  direction: input
+  data_types: single | double
+- name: Position
+  summary: Position of INS sensor *N*-by-3 real-valued matrix
+  direction: output
+  data_types: single | double
+- name: Velocity
+  summary: Velocity of INS sensor *N*-by-3 real-valued matrix
+  direction: output
+  data_types: single | double
+- name: Orientation
+  summary: Orientation of INS sensor 3-by-3-by-*N* real-valued array | *N*-by-4 real-valued matrix
+  direction: output
+  data_types: single | double
+- name: Acceleration
+  summary: Acceleration of INS sensor *N*-by-3 real-valued matrix
+  direction: output
+  data_types: single | double
+- name: AngularVelocity
+  summary: Angular velocity of INS sensor *N*-by-3 real-valued matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -150,8 +198,49 @@ To enable this output port, select **Use acceleration and angular
 velocity**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mounting location (m)
+  summary: Location of sensor on platform (m) [0 0 0] (default) | three-element real-valued vector of form [*x* *y* *z*]
+  group: ''
+- name: Roll (X-axis) accuracy (deg)
+  summary: Accuracy of roll measurement (deg) 0.2 (default) | nonnegative real scalar
+  group: ''
+- name: Pitch (Y-axis) accuracy (deg)
+  summary: Accuracy of pitch measurement (deg) 0.2 (default) | nonnegative real scalar
+  group: ''
+- name: Yaw (Z-axis) accuracy (deg)
+  summary: Accuracy of yaw measurement (deg) 1 (default) | nonnegative real scalar
+  group: ''
+- name: Position accuracy (m)
+  summary: Accuracy of position measurement (m) 1 (default) | nonnegative real scalar | 1-by-3 vector of nonnegative values
+  group: ''
+- name: Velocity accuracy (m/s)
+  summary: Accuracy of velocity measurement (m/s) 0.05 (default) | nonnegative real scalar
+  group: ''
+- name: Use acceleration and angular velocity
+  summary: Use acceleration and angular velocity off (default) | on
+  group: ''
+- name: Acceleration accuracy (m/s2)
+  summary: Accuracy of acceleration measurement (m/s2) 0 (default) | nonnegative real scalar
+  group: ''
+- name: Angular velocity accuracy (deg/s)
+  summary: Accuracy of angular velocity measurement (deg/s) 0 (default) | nonnegative real scalar
+  group: ''
+- name: Enable HasGNSSFix port
+  summary: Enable HasGNSSFix input port off (default) | on
+  group: ''
+- name: Position error factor
+  summary: Position error factor (m) [0 0 0] (default) | nonnegative scalar | 1-by-3 real-valued vector
+  group: ''
+- name: Seed
+  summary: Initial seed for randomization 67 (default) | nonnegative integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code Generation (default) | Interpreted Execution
+  group: ''
+```
 
 ### **Mounting location (m)** — Location of sensor on platform (m) `[0 0 0]` (default) | three-element real-valued vector of form [*x* *y* *z*]
 
@@ -310,7 +399,6 @@ integer.
   C code. The first time that you run a simulation, Simulink® generates C code for the block. The C code is reused for subsequent
   simulations if the model does not change. This option requires additional startup
   time.
-
 ## Libraries
 
 Navigation Toolbox / Multisensor Positioning / Sensor Models Automated Driving Toolbox / Driving Scenario and Sensor Modeling Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Sensor Models UAV Toolbox / UAV Scenario and Sensor Modeling

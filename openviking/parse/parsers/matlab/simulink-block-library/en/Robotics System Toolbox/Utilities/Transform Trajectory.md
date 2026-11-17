@@ -14,6 +14,42 @@ language: en
 # Transform Trajectory
 
 ## Ports
+```yaml
+ports:
+- name: Time
+  summary: Time point along trajectory scalar | vector
+  direction: input
+  data_types: single | double
+- name: T0
+  summary: Initial transformation matrix 4-by-4 homogeneous transformation
+  direction: input
+  data_types: single | double
+- name: TF
+  summary: Final transformation matrix 4-by-4 homogeneous transformation
+  direction: input
+  data_types: single | double
+- name: TimeInterval
+  summary: Start and end times for trajectory two-element vector
+  direction: input
+  data_types: single | double
+- name: TSTime
+  summary: Time scaling time points scalar | *p*-element vector
+  direction: input
+  data_types: single | double
+- name: TimeScaling
+  summary: Time scaling vector and first two derivatives three-element vector | 3-by-*p* matrix
+  direction: input
+  data_types: single | double
+- name: tform
+  summary: Homogeneous transformation matrices 4-by-4-by-*m* homogenous matrix array
+  direction: output
+- name: vel
+  summary: Transform velocities 6-by-*m* matrix
+  direction: output
+- name: alpha
+  summary: Transform accelerations 6-by-*m* matrix
+  direction: output
+```
 
 ### Input
 
@@ -148,8 +184,38 @@ Each row of the vector is the angular and linear acceleration of the transform a
 `[alphax alphay alphaz ax ay az]`. *alpha*
 represents an angular acceleration and *a* represents a linear
 acceleration.
-
 ## Parameters
+```yaml
+parameters:
+- name: Waypoint source
+  summary: Source for waypoints Internal (default) | External
+  group: ''
+- name: Initial transform
+  summary: Initial transformation matrix trvec2tform([1 10 -1]) (default) | 4-by-4 homogeneous transformation
+  group: ''
+- name: Final transform
+  summary: Final transformation matrix eul2tform([0 pi pi/2]) (default) | 4-by-4 homogeneous transformation
+  group: ''
+- name: Time interval
+  summary: Start and end times for trajectory [2 3] | two-element vector
+  group: ''
+- name: Use custom time scaling
+  summary: Enable custom time scaling off (default) | on
+  group: ''
+- name: Parameter source
+  summary: Source for waypoints Internal (default) | External
+  group: ''
+- name: Time scaling time
+  summary: Time scaling time points 2:0.1:3 (default) | scalar | *p*-element vector
+  group: ''
+- name: Time scaling values
+  summary: Time scaling vector and first two derivatives [0:0.1:1; ones(1,11); zeros(1,11)] (default) | three-element vector
+    | 3-by-*m* matrix
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Waypoint source** — Source for waypoints `Internal` (default) | `External`
 
@@ -259,7 +325,6 @@ To specify a three-element vector, the **Time** and
   `Interpreted execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Utilities

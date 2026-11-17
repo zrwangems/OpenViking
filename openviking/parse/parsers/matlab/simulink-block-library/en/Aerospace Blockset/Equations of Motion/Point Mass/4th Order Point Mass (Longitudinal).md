@@ -14,6 +14,33 @@ language: en
 # 4th Order Point Mass (Longitudinal)
 
 ## Ports
+```yaml
+ports:
+- name: Fx(N)
+  summary: Force in *x*-axis scalar | array
+  direction: input
+  data_types: double
+- name: Fz(N)
+  summary: Force in *z*-axis scalar | array
+  direction: input
+  data_types: double
+- name: ɣ
+  summary: Flight path angle scalar | array
+  direction: output
+  data_types: double
+- name: V
+  summary: Airspeed scalar | array
+  direction: output
+  data_types: double
+- name: XEast
+  summary: Downrange or amount traveled east scalar | array
+  direction: output
+  data_types: double
+- name: XUp
+  summary: Altitude or amount traveled up scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -57,8 +84,52 @@ Altitude or amount traveled up, returned as a scalar or array, in
 selected units.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Initial flight path angle
+  summary: Initial flight path angle 0 (default) | scalar | vector
+  group: ''
+  block_parameter: gamma0
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Initial airspeed
+  summary: Initial airspeed 100 (default) | scalar | vector
+  group: ''
+  block_parameter: V0
+  type: character vector
+  values: scalar | vector
+  default: '''100'''
+- name: Initial downrange [East]
+  summary: Initial downrange 0 (default) | scalar | vector
+  group: ''
+  block_parameter: x0
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Initial altitude [Up]
+  summary: Initial altitude of point masses 0 (default) | scalar | vector
+  group: ''
+  block_parameter: h0
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Initial mass
+  summary: Point mass 1.0 (default) | scalar | vector
+  group: ''
+  block_parameter: mass0
+  type: character vector
+  values: scalar | vector
+  default: '''1.0'''
+```
 
 ### **Units** — Units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -147,7 +218,6 @@ Mass of the point mass(es), specified as a scalar or vector.
 | **Type**: character vector |
 | **Values**: scalar | vector |
 | **Default**: `'1.0'` |
-
 ## Libraries
 
 Aerospace Blockset / Equations of Motion / Point Mass

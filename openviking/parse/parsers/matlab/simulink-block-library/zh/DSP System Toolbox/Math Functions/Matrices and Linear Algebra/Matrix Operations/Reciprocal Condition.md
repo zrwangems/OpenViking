@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Reciprocal Condition
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入矩阵 方阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 倒数条件输出 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -34,11 +45,12 @@ chinese_source: worker-translation
 病态的，输出接近 0.0。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

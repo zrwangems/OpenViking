@@ -14,6 +14,21 @@ language: en
 # Transmission
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gear selection physical signal
+  direction: input
+- name: B
+  summary: Base interface mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower interface mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -45,8 +60,71 @@ Thermal conserving port associated with heat flow.
 
 To enable this port, set **Thermal port** to
 `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Forward gear ratios
+  summary: Transmission forward gear ratios [2.3, 1.6, 1.2, 1, .8, .6] (default) | vector of positive numbers
+  group: Gears
+- name: Reverse gear ratio
+  summary: Transmission reverse gear ratio -3 (default) | negative scalar
+  group: Gears
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Gear-dependent
+    efficiency
+  group: Gears
+- name: Efficiency
+  summary: Gear efficiency 0.95 (default) | positive scalar
+  group: Gears
+- name: Efficiency vector
+  summary: Forward gear-dependent efficiencies [.95, .95, .95, .95, .95, .95] (default) | vector of positive elements
+  group: Gears
+- name: Reverse efficiency
+  summary: Reverse gear efficiency 0.90 (default) | positive scalar
+  group: Gears
+- name: Follower power threshold
+  summary: Point at which block applies full efficiency loss 0.001 W (default) | positive scalar
+  group: Gears
+- name: Stiffness at base (B)
+  summary: Base spring rate coefficient 3e5 N*m/rad (default) | positive scalar
+  group: Gears
+- name: Damping at base (B)
+  summary: Base damping coefficient 3e4 N*m*s/rad (default) | positive scalar
+  group: Gears
+- name: Initial input torque at base (B)
+  summary: Starting torque at base 0 N*m (default) | scalar
+  group: Gears
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: Base and follower viscous friction vector [0, 0] N*m/(rad/s) (default) | vector of nonnegative elements
+  group: Gears
+- name: Kinetic friction torque
+  summary: Kinetic friction torque threshold 1000 N*m (default) | nonnegative scalar
+  group: Clutch
+- name: Static friction torque
+  summary: Static friction torque threshold 2000 N*m (default) | positive scalar
+  group: Clutch
+- name: Shift model
+  summary: Option to include finite shift time Instantaneous (default) | Finite shift time
+  group: Clutch
+- name: Shift time
+  summary: Time in neutral between gear ratios 100 ms (default) | positive scalar
+  group: Clutch
+- name: Clutch velocity tolerance
+  summary: Motion boundary condition 0.001 rad/s (default) | nonnegative scalar
+  group: Clutch
+- name: Initial State
+  summary: Clutch state at simulation start Unlocked (default) | Locked
+  group: Clutch
+- name: Thermal port
+  summary: Option to expose thermal port Omit (default) | Model
+  group: Thermal Port
+- name: Thermal mass
+  summary: Thermal mass 100 kJ/K (default) | positive scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Temperature at simulation start 300 K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Gears
 
@@ -194,7 +272,6 @@ temperature change.
 
 To enable this parameter, set **Thermal port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Driveline / Gears

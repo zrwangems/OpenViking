@@ -14,6 +14,9 @@ language: en
 # Barrage Jammer
 
 ## Ports
+```yaml
+ports: []
+```
 
 **Note**
 
@@ -25,8 +28,10 @@ the underlying System object. See link at the bottom of this page.
 | --- | --- | --- |
 | `Ref` | Reference signal input | Double-precision floating point |
 | `Out` | Jammer output | Double-precision floating point |
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Effective radiated power (W)**
 :   Specify the effective radiated power (ERP) in watts of the jamming signal
@@ -90,7 +95,6 @@ the underlying System object. See link at the bottom of this page.
     | `Code Generation` | The block is compiled. | All blocks in the model are compiled. |
 
     For more information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Not documented in R2025b.

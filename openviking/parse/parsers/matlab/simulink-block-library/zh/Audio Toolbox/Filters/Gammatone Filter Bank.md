@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Gammatone Filter Bank
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 滤波器组的音频输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 滤波器组的音频输出 标量 | 向量 | 矩阵 | 三维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,40 @@ chinese_source: worker-translation
 滤波器组的音频输出，以标量、向量、矩阵或三维数组形式返回。输出信号的形状取决于输入信号的形状和 **Number of filters**。如果输入是 *M*×*N* 矩阵，则输出是 *M*×Number of filters×*N* 数组。如果 *N* 为 `1`，则输出为矩阵。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Frequency range (Hz)
+  summary: 滤波器组的频率范围 [50 8000]（默认）| 由单调递增的值组成的二元素行向量
+  group: ''
+- name: Number of filters
+  summary: 滤波器数量 32（默认）| 正整数
+  group: ''
+- name: Inherit sample rate from input
+  summary: 从输入端口指定采样率 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 16000（默认）| 正整数
+  group: ''
+- name: Bands as separate output port
+  summary: 为每个滤波器输出使用单独的端口 off（默认）| on
+  group: ''
+- name: View Filter Response
+  summary: 可视化滤波器组响应 按钮
+  group: ''
+- name: Variable name
+  summary: 导出的滤波器组的变量名称 myFilt（默认）| 有效变量名称
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: 如果变量已存在则覆盖 on（默认）| off
+  group: ''
+- name: Export filter to workspace
+  summary: 将滤波器组导出到工作区 按钮
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Frequency range (Hz)** — 滤波器组的频率范围 `[50 8000]`（默认）| 由单调递增的值组成的二元素行向量
 
@@ -93,7 +136,6 @@ chinese_source: worker-translation
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为模块生成 C 代码。只要模型不变，后续仿真将重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution`。
 
 **可调：** 否
-
 ## 所属库
 
 Audio Toolbox / Filters

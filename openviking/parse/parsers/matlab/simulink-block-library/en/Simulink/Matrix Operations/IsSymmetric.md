@@ -14,6 +14,17 @@ language: en
 # IsSymmetric
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input matrix matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Symmetric or skew-symmetric matrix real scalar boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -29,8 +40,17 @@ Input, specified as a matrix.
 A symmetric or skew-symmetric matrix, returned as a real scalar boolean.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Whether matrix is symmetric or skew-symmetric Symmetric (default) | Skew-Symmetric
+  group: ''
+  block_parameter: Mode
+  type: character vector
+  values: '''Symmetric'' | ''Skew-Symmetric'''
+  default: '''Symmetric'''
+```
 
 ### **Mode** — Whether matrix is symmetric or skew-symmetric `Symmetric` (default) | `Skew-Symmetric`
 
@@ -45,7 +65,6 @@ Identify the matrix as `Symmetric` or
 | **Type:** character vector |
 | **Values:** `'Symmetric'` | `'Skew-Symmetric'` |
 | **Default:** `'Symmetric'` |
-
 ## Libraries
 
 Simulink / Matrix Operations

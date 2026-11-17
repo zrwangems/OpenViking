@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # OFDM Channel Estimator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据子载波 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: refData
+  summary: 参考数据子载波 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: refValid
+  summary: 指示有效参考数据 标量
+  direction: input
+  data_types: Boolean
+- name: numScPerSym
+  summary: 每个 OFDM 符号的有效子载波数 标量
+  direction: input
+  data_types: uint8 | uint16 | uint32 | unsigned fixed point
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 输出信道估计 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -96,8 +131,28 @@ chinese_source: worker-translation
 此端口是一个控制信号，用于指示 **data** 输出端口的数据何时有效。当 **data** 输出端口的数据样本可用时，模块将此值设置为 `1`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable averaging
+  summary: 平均 LS 估计 off（默认）| on
+  group: ''
+- name: Number of symbols to be averaged
+  summary: 要平均的符号数 2（默认）| 范围从 2 到 14 的整数
+  group: ''
+- name: Enable interpolation
+  summary: 插值 LS 估计 off（默认）| on
+  group: ''
+- name: Interpolation factor
+  summary: 插值因子 3（默认）| 范围从 2 到 12 的整数
+  group: ''
+- name: Maximum number of subcarriers per symbol
+  summary: 每个符号的最大子载波数 52（默认）| 范围从 2 到 65, 536 的整数
+  group: ''
+- name: Enable reset input port
+  summary: 复位信号 off（默认）| on
+  group: ''
+```
 
 ### **Enable averaging** — 平均 LS 估计 `off`（默认）| `on`
 
@@ -134,7 +189,6 @@ chinese_source: worker-translation
 ### **Enable reset input port** — 复位信号 `off`（默认）| `on`
 
 选择此参数以在模块图标上启用 **reset** 端口。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

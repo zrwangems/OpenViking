@@ -14,6 +14,21 @@ language: en
 # Interface (PB-Translational)
 
 ## Ports
+```yaml
+ports:
+- name: Bpb
+  summary: Position-based port on left side position-based mechanical translational
+  direction: conserving
+- name: Fpb
+  summary: Position-based port on right side position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Non-position-based port on right side mechanical translational
+  direction: conserving
+- name: B
+  summary: Non-position-based port on left side mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -60,8 +75,13 @@ translational port of another block.
 
 To enable this port, set the **Position-based port** parameter
 to `Follower`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Position-based port
+  summary: Interface orientation Base (default) | Follower
+  group: ''
+```
 
 ### **Position-based port** — Interface orientation `Base` (default) | `Follower`
 
@@ -77,7 +97,6 @@ Specify the block orientation:
   default orientation, and the mechanical translational port **B** on
   the left side. The block positive direction is from port **B** to
   port **Fpb**.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Utilities

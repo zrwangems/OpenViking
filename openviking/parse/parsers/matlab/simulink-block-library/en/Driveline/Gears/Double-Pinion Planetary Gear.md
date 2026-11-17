@@ -14,6 +14,21 @@ language: en
 # Double-Pinion Planetary Gear
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Planet gear carrier rotational mechanical
+  direction: conserving
+- name: R
+  summary: Ring gear rotational mechanical
+  direction: conserving
+- name: S
+  summary: Sun gear rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +56,81 @@ transmission efficiency by altering the gear temperatures.
 
 To enable this port, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ring (R) to sun (S) teeth ratio (NR/NS)
+  summary: Ring to sun gear rotation ratio 2 (default) | positive scalar
+  group: Main
+- name: Outer planet (Po) to inner planet (Pi) teeth ratio (NPo/NPi)
+  summary: Outer planet to inner planet gear rotation ratio 1 (default) | positive scalar
+  group: Main
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Sun-planet, ring-planet and planet-planet ordinary efficiencies
+  summary: Torque transfer efficiencies for the [.98, .98, .99] (default) | vector
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Sun-planet efficiency
+  summary: Torque transfer efficiency from the sun gear to the inner planet gears [.75, .65, .6] (default) | vector
+  group: Meshing Losses
+- name: Ring-planet efficiency
+  summary: Torque transfer efficiency from the ring gear to the outer planet gears [.5, .45, .4] (default) | vector
+  group: Meshing Losses
+- name: Planet-planet efficiency
+  summary: Torque transfer efficiency from the inner planet gears to the outer planet gears [.5, .45, .4] (default) | vector
+  group: Meshing Losses
+- name: Sun-carrier, ring-carrier, and planet-carrier power thresholds
+  summary: Minimum efficiency power threshold for the sun-carrier, ring-carrier, and planet-carrier gear couplings [.001,
+    .001, .001] W (default) | vector
+  group: Meshing Losses
+- name: Sun-carrier, ring-carrier, and planet-carrier viscous friction coefficients
+  summary: Gear viscous friction [0, 0, 0] N*m/(rad/s) (default) | vector
+  group: Viscous Losses
+- name: Inertia
+  summary: Inertia option off (default) | on
+  group: Inertia
+- name: Sun gear inertia
+  summary: Sun gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Sun gear radius
+  summary: Sun gear radius 0.01 m (default) | positive scalar
+  group: Inertia
+- name: Ring gear inertia
+  summary: Ring gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Carrier gear inertia
+  summary: Carrier gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Inner planet gear spin inertia
+  summary: Inner planet gear spin inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Inner planet gear mass
+  summary: Inner planet gear mass 0.001 kg (default) | positive scalar
+  group: Inertia
+- name: Inner planet gear radius
+  summary: Inner planet gear radius 0.01 m (default) | positive scalar
+  group: Inertia
+- name: Outer planet gear spin inertia
+  summary: Outer planet gear spin inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Outer planet gear mass
+  summary: Inner planet gear mass 0.001 kg (default) | positive scalar
+  group: Inertia
+- name: Outer planet gear radius
+  summary: Inner planet gear radius 0.02 m (default) | positive scalar
+  group: Inertia
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -315,7 +403,6 @@ component efficiencies according to their respective efficiency vectors.
 
 To enable this parameter, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears

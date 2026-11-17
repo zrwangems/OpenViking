@@ -14,6 +14,30 @@ language: en
 # Induction Motor
 
 ## Ports
+```yaml
+ports:
+- name: LdTrq
+  summary: Load torque on motor scalar
+  direction: input
+- name: Spd
+  summary: Rotor shaft speed scalar
+  direction: input
+- name: PhaseVolt
+  summary: Stator terminal voltages 1-by-3 array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: PhaseCurr
+  summary: Phase a, b, c current 1-by-3 array
+  direction: output
+- name: MtrTrq
+  summary: Motor torque scalar
+  direction: output
+- name: MtrSpd
+  summary: Motor speed scalar
+  direction: output
+```
 
 ### Input
 
@@ -93,8 +117,63 @@ Angular speed of the motor,
 
 To create this port, select `Torque` for
 the **Port configuration** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulation type
+  summary: Select simulation type Continuous (default) | Discrete
+  group: ''
+  block_parameter: sim_type
+  values: Continuous (default) | Discrete
+- name: Sample time, Ts
+  summary: Sample time for discrete integration 0.001 (default) | scalar
+  group: ''
+  block_parameter: Ts
+  values: 0.001 (default) | scalar
+- name: Port configuration
+  summary: Select port configuration Torque (default) | Speed
+  group: ''
+  block_parameter: port_config
+  values: Torque (default) | Speed
+- name: File
+  summary: Path to motor parameter ".m" or ".mat" file scalar
+  group: ''
+- name: Number of pole pairs, P
+  summary: Pole pairs 2 (default) | scalar
+  group: ''
+  block_parameter: P
+  values: 2 (default) | scalar
+- name: Stator resistance and leakage inductance, Zs
+  summary: Resistance and inductance [1.77 0.0139] (default) | vector
+  group: ''
+  block_parameter: Zs
+  values: '[1.77 0.0139] (default) | vector'
+- name: Rotor resistance and leakage inductance, Zr
+  summary: Resistance and inductance [1.34 0.0121] (default) | vector
+  group: ''
+  block_parameter: Zr
+  values: '[1.34 0.0121] (default) | vector'
+- name: Magnetizing inductance, Lm
+  summary: Inductance 0.3687 (default) | scalar
+  group: ''
+  block_parameter: Lm
+  values: 0.3687 (default) | scalar
+- name: Physical inertia, viscous damping, static friction, mechanical
+  summary: Inertia, damping, friction [0.001 0 0] (default) | vector
+  group: ''
+  block_parameter: mechanical
+  values: '[0.001 0 0] (default) | vector'
+- name: Initial mechanical position, theta_init
+  summary: Angular position 0 (default) | scalar
+  group: ''
+  block_parameter: theta_init
+  values: 0 (default) | scalar
+- name: Initial mechanical speed, omega_init
+  summary: Angular speed 0 (default) | scalar
+  group: ''
+  block_parameter: omega_init
+  values: 0 (default) | scalar
+```
 
 #### Block Options
 
@@ -365,7 +444,6 @@ function.
 
 To enable this parameter, select `Torque` for
 the **Port configuration**.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters Motor Control Blockset / Electrical Systems / Motors

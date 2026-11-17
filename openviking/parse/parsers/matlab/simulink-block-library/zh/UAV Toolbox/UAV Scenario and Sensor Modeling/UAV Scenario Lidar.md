@@ -15,14 +15,52 @@ chinese_source: worker-translation
 # UAV Scenario Lidar
 
 ## 端口
+```yaml
+ports:
+- name: Pointcloud
+  summary: 点云数据 *N*-by-*M*-by-3 double 矩阵 | *N*-by-3 double 矩阵
+  direction: output
+```
 
 ### 输出
 
 ### **Pointcloud** — 点云数据 *N*-by-*M*-by-3 double 矩阵 | *N*-by-3 double 矩阵
 
 在 Sensor Frame 中报告的点云数据。当勾选 `Output organized point cloud locations` 时，点云数据指定为 *N*-by-*M*-by-3 double 矩阵，其中 *N* 是垂直扫描数，*M* 是水平扫描数。当取消勾选 `Output organized point cloud locations` 时，点云数据指定为 *N*-by-3 double 矩阵，其中 *N* 是点云中的点数。
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor name
+  summary: 激光雷达传感器名称 'UAV/Lidar'（默认）| string
+  group: ''
+- name: Max range
+  summary: 激光雷达最大距离 120（默认）| double
+  group: ''
+- name: Range Accuracy
+  summary: 激光雷达距离精度 0.002（默认）| double
+  group: ''
+- name: Azimuthal limits
+  summary: 激光雷达方位角限制 [-180, 180]（默认）| 二元素向量
+  group: ''
+- name: Azimuthal resolution
+  summary: 方位角分辨率 0.16（默认）| double
+  group: ''
+- name: Elevation limits
+  summary: 激光雷达仰角限制 [-20, 20]（默认）| 二元素向量
+  group: ''
+- name: Elevation resolution
+  summary: 仰角分辨率 1.25（默认）| double
+  group: ''
+- name: Add noise to measurement
+  summary: 向测量添加噪声 'on'（默认）| 'off'
+  group: ''
+- name: Output organized point cloud locations
+  summary: 输出组织化点云位置 'on'（默认）| 'off'
+  group: ''
+- name: Sample Time
+  summary: 采样时间 0.1（默认）| double
+  group: ''
+```
 
 ### **Sensor name** — 激光雷达传感器名称 `'UAV/Lidar'`（默认）| string
 
@@ -85,7 +123,6 @@ chinese_source: worker-translation
 以秒为单位将激光雷达的采样时间指定为双精度标量。采样时间必须是 UAV Scenario Configuration 模块中指定的采样时间的倍数。
 
 如果使用 **Select** 指定 **Sensor name** 参数，UAV Scenario Lidar 模块将 **Sample Time** 参数的值设置为 `1/UpdateRate`。`UpdateRate` 是指定激光雷达传感器的 `UpdateRate` 属性。
-
 ## 所属库
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # TDOA Estimator
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据 *N*×*M*×*L* 复值数组
+  direction: input
+  data_types: single | double
+- name: DelayOffset
+  summary: 延迟偏移（秒）标量 | 1×*L* 实值向量
+  direction: input
+  data_types: single | double
+- name: Npow
+  summary: 输入噪声功率（W）正标量 | 1×*L* 正值向量
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: TDOA 估计值（秒）*K*×(*L*-1) 实值矩阵
+  direction: output
+  data_types: single | double
+- name: Var
+  summary: 估计的 TDOA 方差 1×(*L*-1) 正值向量
+  direction: output
+  data_types: single | double
+- name: TDOAResp
+  summary: TDOA 响应 *P*×*M*×(*L*-1) MATLAB® 数组
+  direction: output
+  data_types: single | double
+- name: TDOAGrid
+  summary: TDOA 网格实值 *P*×(*L*-1) 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -91,8 +122,40 @@ TDOA 响应，输出为 *P*×*M*×(*L*-1) MATLAB 数组，其中 *P* 是 TDOA �
 grid** 复选框。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Signal sample rate (Hz)
+  summary: 信号采样率 1000000（默认）| 实值正标量
+  group: ''
+- name: Maximum number of TDOA estimates
+  summary: 最大 TDOA 估计数 1（默认）| 正整数
+  group: ''
+- name: Enable known delay offset input
+  summary: 启用已知延迟偏移输入 false (0)（默认）| true (1)
+  group: ''
+- name: Output variance of TDOA Estimates
+  summary: 输出 TDOA 估计的方差 false (0)（默认）| true (1)
+  group: ''
+- name: Output TDOA response and TDOA grid
+  summary: 输出 TDOA 响应和 TDOA 网格 false (0)（默认）| true (1)
+  group: ''
+- name: Source of noise power
+  summary: 噪声功率来源 Property（默认）| Input port
+  group: ''
+- name: Noise power (W)
+  summary: 噪声功率 1（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -192,7 +255,6 @@ port`。
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

@@ -14,6 +14,36 @@ language: en
 # Channelizer
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar or column vector of real or complex values
+  direction: input
+  data_types: fixed point | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | single | double
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Frequency channel output data vector
+  direction: output
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: start
+  summary: Indicates first valid cycle of output frame scalar
+  direction: output
+  data_types: Boolean
+- name: end
+  summary: Indicates last valid cycle of output frame scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -130,8 +160,52 @@ select the **Enable end output port**
 parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter coefficients
+  summary: Polyphase filter coefficients [ -0.032, 0.121, 0.318, 0.482, 0.546, 0.482, 0.318, 0.121, -0.032 ] (default) | vector
+    of real or complex numeric values
+  group: Main
+- name: Filter structure
+  summary: HDL filter architecture Direct form transposed (default) | Direct form systolic
+  group: Main
+- name: Number of frequency bands (FFT length)
+  summary: FFT length 8 (default) | integer power of two
+  group: Main
+- name: Complex multiplication
+  summary: HDL implementation of complex multipliers Use 4 multipliers and 2 adders (default) | Use 3 multipliers and 5 adders
+  group: Main
+- name: Output vector size
+  summary: Size of output data Same as number of frequency bands (default) | Same as input size
+  group: Main
+- name: Divide butterfly outputs by two
+  summary: FFT scaling on (default) | off
+  group: Main
+- name: Rounding mode
+  summary: Rounding method used for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round
+    | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow handling for internal fixed-point calculations off (default) | on
+  group: Data Types
+- name: Coefficients
+  summary: 'Data type of the filter coefficients Inherit: Same word length as input (default) | data type expression'
+  group: Data Types
+- name: Filter output
+  summary: 'Data type of the output of the polyphase filter Inherit: Same word length as input (default) | Inherit: via internal
+    rule | data type expression'
+  group: Data Types
+- name: Enable reset input port
+  summary: Optional reset signal off (default) | on
+  group: Control Ports
+- name: Enable start output port
+  summary: Optional control signal indicating start of data off (default) | on
+  group: Control Ports
+- name: Enable end output port
+  summary: Optional control signal indicating end of data off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -261,7 +335,6 @@ for the first cycle of output data in a frame.
 When you select this parameter, the **end** port
 shows on the block icon. The **end** signal is true for
 the last cycle of output data in a frame.
-
 ## Libraries
 
 DSP HDL Toolbox / Filtering

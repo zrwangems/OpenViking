@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Permanent Magnet
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 北极端子磁端口
+  direction: conserving
+- name: S
+  summary: 南极端子磁端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,29 @@ chinese_source: worker-translation
 ### **S** — 南极端子磁端口
 
 与南极端子关联的磁守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Cross-sectional area
+  summary: 磁体横截面积 25 mm^2（默认）| 正标量
+  group: ''
+- name: Length of magnet
+  summary: 磁体长度 0.02 m（默认）| 正标量
+  group: ''
+- name: Remanent field parameterization
+  summary: 剩磁参数化方法 Remanent flux density and relative permeability（默认）| Remanent flux density and coercivity | Relative permeability
+    and coercivity
+  group: ''
+- name: Relative magnetic permeability of material
+  summary: 相对磁导率 1.05（默认）| 正标量
+  group: ''
+- name: Remanent flux density of magnet
+  summary: 剩磁通密度 1.2 T（默认）| 正标量
+  group: ''
+- name: Coercivity of magnet
+  summary: 磁体矫顽力 1.2 / 1.05 / (4*pi*1e-7) A/m（默认）| 正标量
+  group: ''
+```
 
 ### **Cross-sectional area** — 磁体横截面积 `25 mm^2`（默认）| 正标量
 
@@ -63,7 +93,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Remanent field parameterization** 设置为 `Remanent flux density and coercivity` 或 `Relative permeability and coercivity`。
-
 ## 所属库
 
 Simscape / Foundation Library / Magnetic / Magnetic Elements

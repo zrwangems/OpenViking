@@ -14,6 +14,41 @@ language: en
 # Inverse Park Transform
 
 ## Ports
+```yaml
+ports:
+- name: d
+  summary: Axis component scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: q
+  summary: Axis component scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: dq0
+  summary: Axis components scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: sin θe
+  summary: Sine value of rotational angle scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: cos θe
+  summary: Cosine value of rotational angle scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: α
+  summary: Axis component scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: β
+  summary: Axis component scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: αβ0
+  summary: Axis components scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -109,8 +144,25 @@ To enable this port, set the **Number of inputs** parameter to
 `Three inputs`.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Number of block inputs Two inputs (default) | Three inputs
+  group: ''
+- name: Alpha (phase-a) axis alignment
+  summary: '*dq* reference frame alignment D-axis (default) | Q-axis'
+  group: ''
+- name: Theta input
+  summary: Type of position input Sine and Cosine electrical position (default) | Electrical position
+  group: ''
+- name: Theta units
+  summary: Unit of electrical position input Per-unit (default) | Radians | Degrees
+  group: ''
+- name: Number of data points for lookup table
+  summary: Size of lookup table array 1024 (default) | scalar
+  group: ''
+```
 
 ### **Number of inputs** — Number of block inputs `Two inputs` (default) | `Three inputs`
 
@@ -167,7 +219,6 @@ Size of the lookup table array that the block uses to compute
 
 To enable this parameter, set **Theta input** to
 `Electrical position`.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

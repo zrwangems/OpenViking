@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Gain
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -30,15 +39,19 @@ chinese_source: worker-translation
 输出物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Gain
+  summary: 乘法系数 1 1（默认）
+  group: ''
+```
 
 ### **Gain** — 乘法系数 `1 1`（默认）
 
 乘法系数。第一个编辑框表示系数的值。您可以指定正值和负值。
 
 第二个组合框表示乘法系数的单位。默认情况下，单位为 `1`（无单位），这意味着端口 **O** 处的输出信号与输入信号具有相同的单位。如果您为 **Gain** 参数指定不同的单位，则输出端口 **O** 处的信号单位是输入信号单位乘以 **Gain** 参数的单位。您可以从下拉列表中选择单位，或键入所需的单位名称（如 `rpm`）或有效表达式（如 `rad/s`）。有关更多信息以及单位缩写列表，请参阅如何在模块对话框中指定单位和单位定义。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Functions

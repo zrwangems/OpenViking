@@ -14,6 +14,15 @@ language: en
 # Tire (Simple)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Axle mechanical rotational
+  direction: conserving
+- name: H
+  summary: Hub mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,8 +34,31 @@ on.
 ### **H** — Hub mechanical rotational
 
 Mechanical rotational port associated with the wheel hub.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rolling radius
+  summary: Radius 0.3 m (default) | positive scalar
+  group: ''
+- name: Compliance
+  summary: Compliance model No compliance - Suitable for HIL simulation (default) | Specify stiffness and damping
+  group: ''
+- name: Longitudinal stiffness
+  summary: Longitudinal stiffness 1e6 N/m (default) | positive scalar
+  group: ''
+- name: Longitudinal damping
+  summary: Longitudinal damping 1000 N/(m/s) (default) | positive scalar
+  group: ''
+- name: Inertia
+  summary: Inertia model No inertia (default) | Specify inertia and initial velocity
+  group: ''
+- name: Tire inertia
+  summary: Tire inertia 1 kg*/m^2 (default) | positive scalar
+  group: ''
+- name: Initial velocity
+  summary: Initial velocity 0 rad/s (default)
+  group: ''
+```
 
 The table shows how the visibility of some Tire
 (Simple) parameters depends on the option that you choose for other
@@ -111,7 +143,6 @@ Initial rotational velocity of the tire.
 This parameter appears only if the **Inertia**
 parameter is set to `Specify inertia and initial
 velocity`. For more information, see Parameter Dependencies.
-
 ## Libraries
 
 Simscape / Driveline / Tires & Vehicles

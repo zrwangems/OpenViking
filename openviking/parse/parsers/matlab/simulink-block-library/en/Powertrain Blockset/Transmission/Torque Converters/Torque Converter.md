@@ -14,6 +14,27 @@ language: en
 # Torque Converter
 
 ## Ports
+```yaml
+ports:
+- name: ImpTrq
+  summary: Applied impeller torque scalar
+  direction: input
+- name: TurbTrq
+  summary: Applied turbine torque scalar
+  direction: input
+- name: Clutch Force
+  summary: Applied clutch force scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: ImpSpd
+  summary: Impeller speed scalar
+  direction: output
+- name: TurbSpd
+  summary: Turbine speed scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -67,8 +88,120 @@ Impeller rotational shaft speed, ωi, in rad/s.
 ### **TurbSpd** — Turbine speed `scalar`
 
 Turbine rotational shaft speed, ωt, in rad/s.
-
 ## Parameters
+```yaml
+parameters:
+- name: Lock-up clutch configuration
+  summary: Select lock-up clutch configuration Lock-up (default) | No lock-up | External lock-up input
+  group: ''
+  block_parameter: TCType
+  values: Lock-up (default) | No lock-up | External lock-up input
+- name: Impeller shaft inertia, Ji
+  summary: Inertia .1 (default) | scalar
+  group: ''
+  block_parameter: Ji
+  values: .1 (default) | scalar
+- name: Impeller shaft viscous damping, bi
+  summary: Viscous damping coefficient .001 (default) | scalar
+  group: ''
+  block_parameter: bi
+  values: .001 (default) | scalar
+- name: Turbine shaft inertia, Jt
+  summary: Inertia .1 (default) | scalar
+  group: ''
+  block_parameter: Jt
+  values: .1 (default) | scalar
+- name: Turbine shaft viscous damping, bt
+  summary: Viscous damping coefficient .001 (default) | scalar
+  group: ''
+  block_parameter: bt
+  values: .001 (default) | scalar
+- name: Initial impeller shaft velocity, omegai_o
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+  block_parameter: omegai_o
+  values: 0 (default) | scalar
+- name: Initial turbine shaft velocity, omegat_o
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+  block_parameter: omegat_o
+  values: 0 (default) | scalar
+- name: Speed ratio vector, phi
+  summary: Ratio [ 0 0.50 0.60 0.70 0.80 0.87 0.92 0.94 0.96 0.97] (default) | vector
+  group: ''
+  block_parameter: phi
+  values: '[ 0 0.50 0.60 0.70 0.80 0.87 0.92 0.94 0.96 0.97] (default) | vector'
+- name: Capacity factor parameterization
+  summary: Select factor ratio type Input speed / sqrt(input torque) (default) | Absorbed torque / input speed^2
+  group: ''
+  block_parameter: KType
+  values: Input speed / sqrt(input torque) (default) | Absorbed torque / input speed^2
+- name: Capacity vector, psi
+  summary: Vector [12.2938 12.8588 13.1452 13.6285 14.6163 16.2675 19.3503 22.1046 29.9986 50.00] (default) | vector
+  group: ''
+  block_parameter: psi
+  values: '[12.2938 12.8588 13.1452 13.6285 14.6163 16.2675 19.3503 22.1046 29.9986 50.00] (default) | vector'
+- name: Torque ratio vector, zeta
+  summary: Vector [2.2320 1.5462 1.4058 1.2746 1.1528 1.0732 1.0192 0.9983 0.9983 0.9983] (default) | vector
+  group: ''
+  block_parameter: zeta
+  values: '[2.2320 1.5462 1.4058 1.2746 1.1528 1.0732 1.0192 0.9983 0.9983 0.9983] (default) | vector'
+- name: Fluid torque response time constant (set to 0 to disable), tauTC
+  summary: Time constant .02 (default) | scalar
+  group: ''
+  block_parameter: tauTC
+  values: .02 (default) | scalar
+- name: Interpolation method
+  summary: Select interpolation method Linear (default) | Flat | Nearest
+  group: ''
+  block_parameter: InterpMethod
+  values: Linear (default) | Flat | Nearest
+- name: Clutch force equivalent net radius, Reff
+  summary: Effective radius .3 (default) | scalar
+  group: ''
+  block_parameter: Reff
+  values: .3 (default) | scalar
+- name: Static friction coefficient, mus
+  summary: Coefficient 1.2 (default) | scalar
+  group: ''
+  block_parameter: mus
+  values: 1.2 (default) | scalar
+- name: Kinetic friction coefficient, muk
+  summary: Coefficient 1 (default) | scalar
+  group: ''
+  block_parameter: muk
+  values: 1 (default) | scalar
+- name: Start simulation with clutch initially locked
+  summary: Select to initially lock clutch off (default) | on
+  group: ''
+  block_parameter: Jin
+  values: off (default) | on
+- name: Lock-up speed ratio threshold, philu
+  summary: Threshold .85 (default) | scalar
+  group: ''
+  block_parameter: philu
+  values: 0.1 (default) | scalar
+- name: Minimum lock-up engagement speed, omegal
+  summary: Angular velocity 900*pi/30 (default) | scalar
+  group: ''
+  block_parameter: omegal
+  values: 0.1 (default) | scalar
+- name: Lock-up disengagement speed, omegau
+  summary: Angular velocity 800*pi/30 (default) | scalar
+  group: ''
+  block_parameter: omegau
+  values: 0.1 (default) | scalar
+- name: Lock-up clutch force gain, K_c
+  summary: Gain 5000 (default) | scalar
+  group: ''
+  block_parameter: K_c
+  values: 0.1 (default) | scalar
+- name: Lock-up clutch time constant, tauC
+  summary: Time constant .0500 (default) | scalar
+  group: ''
+  block_parameter: tauC
+  values: 0.1 (default) | scalar
+```
 
 #### Configuration
 
@@ -559,7 +692,6 @@ programmatically, use the `get_param` function.
 To enable this parameter, select `Lock-up`
 for the **Lock-up clutch configuration**
 parameter.
-
 ## Libraries
 
 Powertrain Blockset / Transmission / Torque Converters

@@ -14,6 +14,16 @@ language: en
 # TPC Encoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Message to encode column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: TPC-encoded message column vector
+  direction: output
+```
 
 ### Input
 
@@ -48,8 +58,43 @@ input signal.
   - *N*C is the value of Number of columns in code, Nc.
   - *K*C is the value of Number of columns in message, Kc.
   - *S*C is the value of Number of columns in shortened message, Sc.
-
 ## Parameters
+```yaml
+parameters:
+- name: Extended codes
+  summary: Extended codes indicator for TPC row parameters on (default) | off
+  group: ''
+- name: Number of rows in code, Nr
+  summary: Number of rows in product code matrix 16 (default) | integer
+  group: ''
+- name: Number of rows in message, Kr
+  summary: Number of rows in message matrix 11 (default) | integer
+  group: ''
+- name: Specify shortened message length
+  summary: Specify shortened message length for rows off (default) | on
+  group: ''
+- name: Number of rows in shortened message, Sr
+  summary: Number of rows in shortened message matrix 9 (default) | integer
+  group: ''
+- name: Extended codes
+  summary: Extended codes indicator for TPC column parameters on (default) | off
+  group: ''
+- name: Number of columns in code, Nc
+  summary: Number of columns in product code matrix 32 (default) | integer
+  group: ''
+- name: Number of columns in message, Kc
+  summary: Number of columns in message matrix 26 (default) | integer
+  group: ''
+- name: Specify shortened message length
+  summary: Specify shortened message length for columns off (default) | on
+  group: ''
+- name: Number of columns in shortened message, Sc
+  summary: Number of columns in shortened message matrix 22 (default) | integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -162,7 +207,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Block

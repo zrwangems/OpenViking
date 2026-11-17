@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # PCCCS2
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 第一个控制输入电气正电压
+  direction: conserving
+- name: 1-
+  summary: 第一个控制输入电气负电压
+  direction: conserving
+- name: 2+
+  summary: 第二个控制输入电气正电压
+  direction: conserving
+- name: 2-
+  summary: 第二个控制输入电气负电压
+  direction: conserving
+- name: +
+  summary: 正输出电压电气端口
+  direction: conserving
+- name: '-'
+  summary: 负输出电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +62,16 @@ chinese_source: worker-translation
 ### **-** — 负输出电压电气端口
 
 与 PCCCS2 负输出电压关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Polynomial coefficients
+  summary: 多项式系数 [ 0 1 1 ]（默认值）
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: 是否包含并联电导 Yes（默认值） | No
+  group: ''
+```
 
 ### **Polynomial coefficients** — 多项式系数 `[ 0 1 1 ]`（默认值）
 
@@ -61,7 +90,6 @@ chinese_source: worker-translation
 | *`Yes`* | | *`No`* | | |
 | **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且其不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

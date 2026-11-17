@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PWM Gate Signal Generator (Three-phase, Three-level)
 
 ## 端口
+```yaml
+ports:
+- name: TgabcON
+  summary: 开通门极时间向量
+  direction: input
+- name: TgabcOFF
+  summary: 关断门极时间向量
+  direction: input
+- name: SmallHexNum
+  summary: 小六边形编号标量
+  direction: input
+- name: g
+  summary: 门极控制向量
+  direction: output
+```
 
 ### 输入
 
@@ -35,8 +50,19 @@ chinese_source: worker-translation
 ### **g** — 门极控制向量
 
 用于确定所连接功率变换器中开关行为的十二个脉冲波形，以向量形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Sampling mode
+  summary: 波形采样方法 Natural（默认）| Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: 开关频率 1e3（默认）| 正标量
+  group: ''
+- name: Sample time (s)
+  summary: 模块采样时间 5e-5（默认）| 正标量
+  group: ''
+```
 
 ### **Sampling mode** — 波形采样方法 `Natural`（默认）| `Asymmetric` | `Symmetric`
 
@@ -52,7 +78,6 @@ chinese_source: worker-translation
 `1/(50*Fsw)`，
 其中 *F*sw 为
 **Switching frequency (Hz)**。
-
 ## 所属库
 
 Simscape / Electrical / Control / Pulse Width Modulation

@@ -14,6 +14,23 @@ language: en
 # Check Dynamic Lower Bound
 
 ## Ports
+```yaml
+ports:
+- name: min
+  summary: Lower bound of dynamic range check scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: u
+  summary: Input signal checked against bound scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: Port_1
+  summary: Assertion output signal scalar
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -51,8 +68,44 @@ To enable this output port, select the **Output assertion signal**
 parameter check box.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable assertion
+  summary: Enable or disable check on (default) | off
+  group: ''
+  block_parameter: enabled
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Simulation callback when assertion fails (optional)
+  summary: Expression to evaluate when assertion fails "" (default) | MATLAB expression
+  group: ''
+  block_parameter: callback
+  type: string scalar or character vector
+  default: '""'
+- name: Stop simulation when assertion fails
+  summary: Whether to stop simulation when check fails on (default) | off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Output assertion signal
+  summary: Create output signal off (default) | on
+  group: ''
+  block_parameter: export
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"off"'
+- name: Select icon type
+  summary: Select icon type graphic (default) | text
+  group: ''
+  block_parameter: icon
+  type: string scalar or character vector
+  values: '"graphic" | "text"'
+  default: '"graphic"'
+```
 
 ### **Enable assertion** — Enable or disable check `on` (default) | `off`
 
@@ -131,7 +184,6 @@ the assertion condition.
 | **Type:** string scalar or character vector |
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
-
 ## Libraries
 
 Simulink / Model Verification HDL Coder / Model Verification

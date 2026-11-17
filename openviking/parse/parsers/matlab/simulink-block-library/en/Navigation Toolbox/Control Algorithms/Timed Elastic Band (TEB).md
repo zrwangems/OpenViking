@@ -14,6 +14,89 @@ language: en
 # Timed Elastic Band
 
 ## Ports
+```yaml
+ports:
+- name: Pose
+  summary: Current pose of robot three-element vector of form [*x* *y* *theta*]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Vel
+  summary: Current velocity of robot two-element vector of form [*v* *w*]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MapInfo
+  summary: Local map information bus
+  direction: input
+  data_types: bus
+- name: RefPath
+  summary: Reference path to follow *N*-by-3 matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MaxVel
+  summary: Maximum limits of linear and angular velocity [0.8, 1.6] (default) | two-element positive vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MaxRevVel
+  summary: Maximum velocity for reverse motion NaN (default) | positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MaxAccel
+  summary: Maximum limits of linear and angular acceleration [2.4, 4.8] (default) | two-element positive vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: MinTurnRad
+  summary: Minimum turning radius for vehicle on optimized path 0 (default) | nonnegative scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: TimeWeight
+  summary: Weight for time 10 (default) | positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: SmoothWeight
+  summary: Weight for smooth motion 1000 (default) | positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: ObstWeight
+  summary: Weight for safe distance from obstacles 50 (default) | positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: ObstMargin
+  summary: Safe distance between robot and obstacles 0.5 (default) | positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: NumIter
+  summary: Number of iterations to optimize trajectory 2 (default) | positive integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: LookAheadTime
+  summary: Lookahead time 5 (default) | positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: GoalTol
+  summary: Tolerance around goal pose [0.1,0.1,0.1] (default) | three-element column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: RefDelTime
+  summary: Reference delta time 0.3 (default) | positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: VelCmds
+  summary: Velocity commands *N*-by-2 matrix
+  direction: output
+  data_types: double
+- name: Timestamps
+  summary: Timestamps corresponding to velocity commands *N*-element column vector
+  direction: output
+  data_types: double
+- name: OptPath
+  summary: Optimized path *N*-by-3 matrix
+  direction: output
+  data_types: double
+- name: SolnInfo
+  summary: Extra information bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -271,8 +354,94 @@ fields:
 | `ExitFlag` | Scalar value indicating the exit condition of the `Timed Elastic Band` function.  - 0 — Indicates that the `Timed Elastic Band` function   returned feasible velocity commands and trajectory. - 1 — Indicates that the trajectory output returned by the   `Timed Elastic Band` function is collision free only until   the index value specified using   `LastFeasibleIdx`. - 2 — Indicates that the poses corresponding to indices after the   `LastFeasibleIdx` violates the obstacle safety   margin constraint of the TEB controller by more than 10%. - 3 — Indicates that the turning radius of the vehicle while moving   from a pose at `LastFeasibleIdx` to a subsequent pose   violates the minimum turning radius constraint by more than   10%. - 4 — Indicates that one or more time stamps returned by the   `Timed Elastic Band` function are older than the previous   time stamp. - 5 — Indicates that the robot will not reach the reference path   within a specified look-ahead time even if it travels at a maximum   linear velocity from its current position. |
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (s)
+  summary: Sample time of controller 1 (default) | positive scalar
+  group: ''
+- name: Specify lookahead time using input port
+  summary: Add input port for lookahead time off (default) | on
+  group: ''
+- name: Lookahead time (s)
+  summary: Lookahead time 5 (default) | positive scalar
+  group: ''
+- name: Specify goal tolerance using input port
+  summary: Add input port for goal tolerance off (default) | on
+  group: ''
+- name: Goal tolerance ([m m rad])
+  summary: Tolerance around goal pose [0.1, 0.1, 0.1] (default) | three-element column vector
+  group: ''
+- name: Shape
+  summary: Shape of robot Rectangle (default) | Point
+  group: ''
+- name: Dimension ([m m])
+  summary: Size of robot [1, 0.67] (default) | two-element positive vector
+  group: ''
+- name: Fixed transform ([m m rad])
+  summary: Transformation matrix se2 (default) | three-element row vector of form [*x*, *y*, *theta*]
+  group: ''
+- name: Specify obstacle safety margin using input port
+  summary: Add input port for obstacle safety margin off (default) | on
+  group: ''
+- name: Obstacle safety margin (m)
+  summary: Safe distance between robot and obstacles 0.5 (default) | positive scalar
+  group: ''
+- name: Specify max velocity using input port
+  summary: Add input port for maximum velocity off (default) | on
+  group: ''
+- name: Maximum velocity ([m/s rad/s])
+  summary: Maximum limits of linear and angular velocity [0.8, 1.6] (default) | two-element positive vector
+  group: ''
+- name: Specify max reverse velocity using input port
+  summary: Add input port for maximum reverse velocity off (default) | on
+  group: ''
+- name: Maximum reverse velocity (m/s)
+  summary: Maximum velocity for reverse motion NaN (default) | positive scalar
+  group: ''
+- name: Specify max acceleration using input port
+  summary: Add input port for maximum acceleration off (default) | on
+  group: ''
+- name: Maximum acceleration ([m/s^2 rad/s^2])
+  summary: Maximum limits of linear and angular acceleration [2.4,4.8] (default) | two-element positive vector
+  group: ''
+- name: Specify min turning radius using input port
+  summary: Add input port for minimum turning radius off (default) | on
+  group: ''
+- name: Minimum turning radius (m)
+  summary: Minimum turning radius for vehicle on optimized path 0 (default) | nonnegative scalar
+  group: ''
+- name: Specify reference delta time using input port
+  summary: Add input port for reference delta time off (default) | on
+  group: ''
+- name: Reference delta time (s)
+  summary: Reference delta time 0.3 (default) | positive scalar
+  group: ''
+- name: Specify number of iterations using input port
+  summary: Add input port for number of iterations off (default) | on
+  group: ''
+- name: Number of iterations
+  summary: Number of iterations to optimize trajectory 2 (default) | positive integer
+  group: ''
+- name: Specify time weight using input port
+  summary: Add input port for time weight off (default) | on
+  group: ''
+- name: Time weight
+  summary: Cost function weight for time 10 (default) | positive integer
+  group: ''
+- name: Specify smoothness weight using input port
+  summary: Add input port for smoothness weight off (default) | on
+  group: ''
+- name: Smoothness weight
+  summary: Weight for smooth motion 1000 (default) | positive scalar
+  group: ''
+- name: Specify obstacle weight using input port
+  summary: Add input port for obstacle weight off (default) | on
+  group: ''
+- name: Obstacle weight
+  summary: Weight for safe distance from obstacles 50 (default) | positive scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -521,7 +690,6 @@ weight value.
 
 To enable this parameter, clear the **Specify obstacle weight using input
 port** checkbox.
-
 ## Libraries
 
 Navigation Toolbox / Control Algorithms

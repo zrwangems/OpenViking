@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Obstacle Avoidance
 
 ## 端口
+```yaml
+ports:
+- name: Position
+  summary: 无人机位置向量
+  direction: input
+  data_types: double
+- name: Orientation
+  summary: 无人机姿态向量
+  direction: input
+  data_types: double
+- name: ObstaclePoints
+  summary: 障碍物位置矩阵
+  direction: input
+  data_types: double
+- name: TargetPostion
+  summary: 目标位置向量
+  direction: input
+  data_types: double
+- name: DesiredDirection
+  summary: 期望方向向量
+  direction: output
+  data_types: double
+- name: DesiredYaw
+  summary: 期望偏航角标量
+  direction: output
+  data_types: double
+- name: Status
+  summary: 无障碍方向的状态 0 | 1 | 2 | 3
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -84,8 +115,55 @@ pi]`。
 - `3` — 未找到无障碍方向且接近障碍物。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor range limits (m)
+  summary: 距离传感器的限制 [0.2 10]（默认）| 形式为 [min max] 的向量
+  group: ''
+- name: Sensor horizontal field of view (deg)
+  summary: 距离传感器的水平视场限制 [-60 60]（默认）| 形式为 [min max] 的向量
+  group: ''
+- name: Sensor vertical field of view (deg)
+  summary: 距离传感器的垂直视场限制 [-30 30]（默认）| 形式为 [min max] 的向量
+  group: ''
+- name: Sensor location [X, Y, Z] (m)
+  summary: 传感器在无人机上的安装位置 [0 0 0]（默认）| 形式为 [x y z] 的向量
+  group: ''
+- name: Sensor orientation [Roll, Pitch, Yaw] (deg)
+  summary: 安装在无人机上的传感器姿态 [0 0 0]（默认）| 形式为 [roll pitch yaw] 的向量
+  group: ''
+- name: Vehicle radius (m)
+  summary: Radius of UAV 1 (default) | numeric scalar
+  group: ''
+- name: Minimum distance to obstacle (m)
+  summary: Safety distance around UAV to obstacle 1 (default) | numeric scalar
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+- name: Histogram resolution (deg)
+  summary: Histogram grid resolution 5 (default) | 1 | 3 | 6 | 10 | 15 | 18 | 30 | 45 | 60
+  group: ''
+- name: Histogram window size
+  summary: 直方图窗口大小 1（默认）| 奇数
+  group: ''
+- name: Histogram threshold
+  summary: 用于计算直方图的阈值 1（默认）| 正整数
+  group: ''
+- name: Maximum age of obstacle point
+  summary: Maximum age of remembered obstacle point 0 (default) | numeric scalar
+  group: ''
+- name: Target direction weight
+  summary: 目标方向的代价函数权重 5（默认）| 数值标量
+  group: ''
+- name: Current direction weight
+  summary: 当前方向的代价函数权重 2（默认）| 数值标量
+  group: ''
+- name: Previous direction weight
+  summary: 前一方向的代价函数权重 2（默认）| 数值标量
+  group: ''
+```
 
 #### 主
 
@@ -192,7 +270,6 @@ yaw]` 的向量，值以度为单位。
 指定沿先前所选转向方向移动的函数权重。此权重值越高，生成的路径越平滑。要忽略先前方向代价，请将此权重设置为 `0`。
 
 **数据类型：** `double`
-
 ## 所属库
 
 UAV Toolbox / Algorithms

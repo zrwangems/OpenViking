@@ -14,6 +14,37 @@ language: en
 # Farrow Rate Converter
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data real or complex scalar
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: rate
+  summary: Rate change factor scalar
+  direction: input
+  data_types: fixed point
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Filtered output data real or complex scalar
+  direction: output
+  data_types: fixed point | single | double
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready for new input data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -142,8 +173,49 @@ time step. When **ready** is
 block ignores any input data in the next time step.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rate change source
+  summary: Source of rate change Property (default) | Input port
+  group: Main
+- name: Rate change (fsin/fsout)
+  summary: Rate change factor 147/160 (default) | positive real scalar
+  group: Main
+- name: Coefficients matrix
+  summary: FIR filter coefficients [-1/6 1/2 -1/3 0;1/2 -1 -1/2 1;-1/2 1/2 1 0;1/6 0 -1/6 0] (default) | matrix of real values
+  group: Main
+- name: Filter structure
+  summary: HDL filter architecture Direct form systolic (default) | Direct form transposed
+  group: Main
+- name: Minimum number of cycles between valid input samples
+  summary: Serialization requirement for input timing 1 (default) | positive integer
+  group: Main
+- name: Rounding mode
+  summary: Rounding mode for type-casting the output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow handling for type-casting the output off (default) | on
+  group: Data Types
+- name: Coefficients
+  summary: 'Data type of filter coefficients Inherit: Same word length as input (default) | <data type expression>'
+  group: Data Types
+- name: RateChange
+  summary: Data type of rate change factor fixdt(0,16) (default) | <data type expression>
+  group: Data Types
+- name: Multiplicand
+  summary: 'Data type of multiplicand Inherit: Inherit via internal rule (default) | <data type expression>'
+  group: Data Types
+- name: Output
+  summary: 'Data type of filter output Inherit: Same as first input (default) | <data type expression>'
+  group: Data Types
+- name: Enable reset input port
+  summary: Option to enable reset input port off (default) | on
+  group: Control Ports
+- name: Use HDL global reset
+  summary: Option to connect data path registers to generated HDL global reset signal off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -339,7 +411,6 @@ synchronous or asynchronous depending on the **HDL Code Generation** > **Global 
 For more reset considerations, see the Reset Signal section on
 the Hardware Control Signals
 page.
-
 ## Libraries
 
 DSP HDL Toolbox / Signal Operations

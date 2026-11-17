@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # C Function
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入端口 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean | enumerated
+    | bus | fixedpoint
+- name: Port_1
+  summary: 输出端口 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean | enumerated
+    | bus | fixedpoint
+```
 
 ### 输入
 
@@ -30,8 +43,202 @@ chinese_source: worker-translation
 输出端口数量由模块参数对话框中 **Symbols** 表格中定义的具有 `Output` 或 `InputOutput` 作用域的符号数量决定。每个输出端口的标签与 `Output` 或 `InputOutput` 符号的名称相同，除非您通过编辑模块对话框 **Symbols** 表格中的 **Label** 字段来更改它。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `enumerated` | `bus` | `fixedpoint`
-
 ## 参数
+```yaml
+parameters:
+- name: Configure custom code settings
+  summary: 用于指定自定义代码位置的选项 按钮
+  group: ''
+  block_parameter: CustomCodeSettingLocation
+  type: character vector
+  values: '''BlockSettings'' | ''ModelConfigurationParameters'''
+  default: '''BlockSettings'''
+- name: Port and Parameter Symbols
+  summary: 符号和符号属性表
+  group: ''
+  block_parameter: SymbolSpec
+  type: SymbolSpec object
+  values: SymbolSpec object
+  default: Empty array of Symbol objects
+- name: Sample time
+  summary: 采样周期 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  default: '"-1"'
+- name: Block specified custom code supports multiple instances
+  summary: 用于在多个 C Function 模块中本地指定相同自定义代码的选项 off（默认）| on
+  group: ''
+  block_parameter: CustomCodeIsMultiInstantiable
+  type: string scalar or character vector
+  default: '''off'''
+- name: Output
+  summary: 输出代码 无默认值
+  group: 仿真
+  block_parameter: OutputCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Start
+  summary: 初始化代码 无默认值
+  group: 仿真
+  block_parameter: StartCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Initialize Conditions
+  summary: 重新初始化代码 无默认值
+  group: 仿真
+  block_parameter: InitializeConditionsCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Terminate
+  summary: 终止代码 无默认值
+  group: 仿真
+  block_parameter: TerminateCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Headers
+  summary: 本地指定自定义代码的头文件 无默认值
+  group: 仿真
+  block_parameter: SimCustomHeaderFile
+  type: character vector or string scalar
+  values: 'header file names or #include statements'
+  default: '""'
+- name: Sources
+  summary: 本地指定自定义代码的源文件 无默认值
+  group: 仿真
+  block_parameter: SimCustomSourceFile
+  type: character vector or string scalar
+  values: any file name
+  default: '""'
+- name: Libraries
+  summary: 本地指定静态或共享库列表 无默认值
+  group: 仿真
+  block_parameter: SimCustomLibraries
+  type: character vector or string scalar
+  values: any library file name
+  default: '""'
+- name: Search Directories
+  summary: 本地指定包含自定义代码头文件和源文件的目录 无默认值
+  group: 仿真
+  block_parameter: SimCustomSearchDirectory
+  type: character vector or string scalar
+  values: any folder path
+  default: '""'
+- name: Defines
+  summary: 本地指定要添加到编译器命令行的预处理器宏定义 无默认值
+  group: 仿真
+  block_parameter: SimCustomDefines
+  type: character vector
+  values: preprocessor macro definition
+  default: ''''''
+- name: Compiler Flags
+  summary: 本地指定要添加到编译器命令行的附加标志 无默认值
+  group: 仿真
+  block_parameter: SimCustomCompilerFlags
+  type: character vector
+  values: compiler flags
+  default: ''''''
+- name: Linker Flags
+  summary: 本地指定要添加到链接器命令行的附加标志 无默认值
+  group: 仿真
+  block_parameter: SimCustomLinkerFlags
+  type: character vector
+  values: linker flags
+  default: ''''''
+- name: Use same code as simulation
+  summary: 用于为仿真和代码生成使用相同或不同代码的选项 on（默认）| off
+  group: Code generation
+  block_parameter: CodegenUsesSimCustomCode
+  type: string scalar or character vector
+  default: '''on'''
+- name: Generate code as - is (optimizations off)
+  summary: 用于允许对代码生成代码进行解析的选项 on（默认）| off
+  group: Code generation
+  block_parameter: GenerateCodeAsIs
+  type: string scalar or character vector
+  default: '''on'''
+- name: Output
+  summary: 输出代码 无值
+  group: Code generation
+  block_parameter: CodegenOutputCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Start
+  summary: 初始化代码 无默认值
+  group: Code generation
+  block_parameter: CodegenStartCode
+  type: 字符向量或字符串标量
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Initialize Conditions
+  summary: 重新初始化代码 无默认值
+  group: Code generation
+  block_parameter: CodegenInitializeConditionsCode
+  type: 字符向量或字符串标量
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Terminate
+  summary: 终止代码 无默认值
+  group: Code generation
+  block_parameter: CodegenTerminateCode
+  type: 字符向量或字符串标量
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Headers
+  summary: 本地指定自定义代码的头文件 无默认值
+  group: Code generation
+  block_parameter: CustomHeaderFile
+  type: 字符向量或字符串标量
+  values: '头文件名或 #include 语句'
+  default: '""'
+- name: Sources
+  summary: 本地指定自定义代码的源文件 无默认值
+  group: Code generation
+  block_parameter: CustomSourceFile
+  type: 字符向量或字符串标量
+  values: 任意文件名
+  default: '""'
+- name: Libraries
+  summary: 本地指定静态库或共享库的列表 无默认值
+  group: Code generation
+  block_parameter: CustomLibraries
+  type: 字符向量或字符串标量
+  values: 任意库文件名
+  default: '""'
+- name: Search Directories
+  summary: 本地指定包含自定义代码头文件和源文件的目录 无默认值
+  group: Code generation
+  block_parameter: CustomSearchDirectory
+  type: 字符向量或字符串标量
+  values: 任意文件夹路径
+  default: '""'
+- name: Defines
+  summary: 本地指定要添加到编译器命令行的预处理器宏定义 无默认值
+  group: Code generation
+  block_parameter: CustomDefines
+  type: 字符向量
+  values: 预处理器宏定义
+  default: ''''''
+- name: Compiler Flags
+  summary: 向编译器命令行添加额外标志 无默认值
+  group: Code generation
+  block_parameter: CustomCompilerFlags
+  type: 字符向量
+  values: 编译器标志
+  default: ''''''
+- name: Linker Flags
+  summary: 向链接器命令行添加额外标志 无默认值
+  group: Code generation
+  block_parameter: CustomLinkerFlags
+  type: 字符向量
+  values: 链接器标志
+  default: ''''''
+```
 
 **Simulation** 和 **Code Generation** 选项卡共有的参数。
 
@@ -526,7 +733,6 @@ C 代码中使用的符号和符号属性，以表格形式指定。您必须在
 | **类型：** 字符向量 |
 | **值：** 链接器标志 |
 | **默认值：** `''` |
-
 ## 所属库
 
 Simulink / User-Defined Functions

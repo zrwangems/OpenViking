@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # SynRM Torque Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Id
+  summary: D 轴电流标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Iq
+  summary: Q 轴电流标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm
+  summary: 转子机械转速标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Ld
+  summary: D 轴电感标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Lq
+  summary: Q 轴电感标量
+  direction: input
+  data_types: single | double | fixed point
+- name: FluxPM
+  summary: 永磁体磁链标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Te
+  summary: 估算转矩标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Pe
+  summary: 估算功率标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -78,8 +113,77 @@ Q 轴绕组电感（单位：亨利）。
 电机的功率输出（单位：瓦特）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Motor topology
+  summary: 同步磁阻电机拓扑 Synchronous reluctance motor（默认）| PM-assisted synchronous reluctance motor
+  group: ''
+- name: Definition of d-axis and q-axis
+  summary: '*d* 轴和 *q* 轴的对齐方式 Ld > Lq (different from PMSM)（默认）| Lq > Ld (same as PMSM)'
+  group: ''
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 4（默认）| 标量
+  group: ''
+- name: Motor parameter input method
+  summary: 电机参数类型 Linear model with lumped parameters（默认）| Non-linear model with D,Q-flux linkage LUTs | Non-linear model
+    with Ld and Lq LUTs | Non-linear model with Ld, Lq, and FluxPM LUTs | Input port based Ld and Lq | Input port based Ld,
+    Lq, and FluxPM
+  group: ''
+- name: D 轴电流断点向量，id (A)
+  summary: D 轴电流查找向量 [0,10,20,30]（默认）| 向量
+  group: ''
+- name: Q 轴电流断点向量，iq (A)
+  summary: Q 轴电流查找向量 [0,10,20,30,40]（默认）| 向量
+  group: ''
+- name: 定子 d 轴电感，Ld (H)
+  summary: D 轴定子绕组电感 0.9e-3（默认）| 标量
+  group: ''
+- name: 定子 q 轴电感，Lq (H)
+  summary: Q 轴定子绕组电感 0.15e-3（默认）| 标量
+  group: ''
+- name: 永磁体磁链，FluxPM (Wb)
+  summary: 永磁体磁链 0.4e-4（默认）| 标量
+  group: ''
+- name: D 轴磁链 LUT，FluxD(id,iq) (Wb)
+  summary: D 轴磁链查找数据 [0,0,0,0,0;0.009,0.009,0.009,0.009,0.0090;0.018,0.018,0.018,0.018,0.0180;0.027,0.027,0.027,0.027,0.0270]（默认）|
+    矩阵
+  group: ''
+- name: Q 轴磁链 LUT，FluxQ(id,iq) (Wb)
+  summary: Q 轴磁链查找数据 [0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060]（默认）|
+    矩阵
+  group: ''
+- name: Ld LUT，Ld(id,iq) (H)
+  summary: D 轴电感查找数据 0.9e-3 * ones(4, 5)（默认）| 矩阵
+  group: ''
+- name: Lq LUT，Lq(id,iq) (H)
+  summary: Q 轴电感查找表数据 0.15e-3 * ones(4, 5)（默认）| 矩阵
+  group: ''
+- name: PM flux linkage LUT, FluxPM(id,iq) (Wb)
+  summary: PM 磁链查找数据 0.4e-4 * ones(4, 5)（默认）| 矩阵
+  group: ''
+- name: Input units
+  summary: 输入值的单位 Per-Unit (PU)（默认）| SI Units
+  group: ''
+- name: Base Voltage (V)
+  summary: 标称电压限值 24/sqrt(3)（默认）| 标量
+  group: ''
+- name: Base Current (A)
+  summary: 标称电流限值 19.3（默认）| 标量
+  group: ''
+- name: Base Speed (rpm)
+  summary: 标称转速限值 4107（默认）| 标量
+  group: ''
+- name: Base torque (Nm)
+  summary: 标称转矩限值 0.93271（默认）| 标量
+  group: ''
+- name: Base power (W)
+  summary: 标称功率限值 401.143（默认）| 标量
+  group: ''
+- name: Allow scaled-down motor parameters with CodeGen (higher precision with Fixed-Point data type)
+  summary: 缩小内部参数以匹配标幺刻度 on（默认）| off
+  group: ''
+```
 
 #### 电机参数
 
@@ -307,7 +411,6 @@ Q 轴电感
 #### 依赖关系
 
 要启用此参数，请将 **Input units** 设置为 `Per-Unit (PU)`。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Bus Creator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要包含在总线中的输入元素 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: Port_1
+  summary: 输出虚拟或非虚拟总线 标量 | 总线
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -46,8 +59,33 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inputs
+  summary: 模块输入数量 2（默认）| 整数
+  group: ''
+  block_parameter: Inputs
+  values: '''2''（默认）| 带引号的整数'
+- name: Inputs
+  summary: 模块输入 元素名称列表
+  group: ''
+- name: Output data type
+  summary: '输出总线的数据类型 Inherit: auto（默认）| Bus: <object name>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto"（默认）| "Bus: <object name>"'
+- name: Element names
+  summary: 输出总线元素名称的来源 From inputs（默认）| From output data type
+  group: ''
+  block_parameter: InheritFromInputs
+  values: '"on"（默认）| "off"'
+- name: Output as nonvirtual bus
+  summary: 输出非虚拟总线的选项 off（默认）| on
+  group: ''
+  block_parameter: NonVirtualBus
+  values: '"off"（默认）| "on"'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -196,7 +234,6 @@ InheritFromInputs="off")`
 | **值：** | `"off"`（默认）| `"on"` |
 
 **示例：** `set_param(gcb, NonVirtualBus="on")`
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing

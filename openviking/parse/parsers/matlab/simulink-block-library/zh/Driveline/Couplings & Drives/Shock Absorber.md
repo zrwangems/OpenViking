@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Shock Absorber
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 壳体机械平移
+  direction: conserving
+- name: R
+  summary: 杆机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,55 @@ chinese_source: worker-translation
 ### **R** — 杆机械平移
 
 与减震器一端相关联的机械平移守恒端口。正力从端口 **R** 作用于端口 **C**。
-
 ## 参数
+```yaml
+parameters:
+- name: Spring stiffness
+  summary: 弹簧刚度 1e4 N/m（默认）| 非负标量
+  group: 弹簧-阻尼器
+- name: Viscous friction coefficient
+  summary: 粘性摩擦系数 1e2 N*s/m（默认）| 非负标量
+  group: 弹簧-阻尼器
+- name: Coulomb friction force
+  summary: 库仑摩擦力 0 N（默认）| 非负标量
+  group: 弹簧-阻尼器
+- name: Ratio of static to kinetic friction
+  summary: 静摩擦与动摩擦之比 1.1（默认）| 大于或等于 1 的标量
+  group: 弹簧-阻尼器
+- name: Velocity tolerance
+  summary: 滑移速度阈值 0.001 m/s（默认）| 正标量
+  group: 弹簧-阻尼器
+- name: Hard stop
+  summary: 硬限位选项 No hard stops - Suitable for HIL simulation（默认）| Compliant hard stops
+  group: 硬限位
+- name: Upper bound
+  summary: 滑块与上限之间的间隙 0.1 m（默认）| 标量
+  group: 硬限位
+- name: Lower bound
+  summary: 滑块与下限之间的间隙 -0.1 m（默认）| 标量
+  group: 硬限位
+- name: Contact stiffness
+  summary: 接触刚度常数 1e6 N/m（默认）| 非负标量
+  group: 硬限位
+- name: Contact damping
+  summary: 接触阻尼常数 1e4 N*s/m（默认）| 正标量
+  group: 硬限位
+- name: Hard stop model
+  summary: 硬限位过渡行为 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| ...
+  group: 硬限位
+- name: Transition region
+  summary: 硬限位过渡距离 0.1 mm（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位之间最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无量纲值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力矩 0.001 N（默认）
+  group: 硬限位
+```
 
 ### 弹簧-阻尼器
 
@@ -131,7 +187,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Hard stop** 设置为 `Compliant hard stops`，并将 **Hard stop model** 设置为 `Based on coefficient of restitution`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

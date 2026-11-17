@@ -14,6 +14,24 @@ language: en
 # Compressor (2P)
 
 ## Ports
+```yaml
+ports:
+- name: SM
+  summary: Surge margin physical signal
+  direction: output
+- name: A
+  summary: Compressor inlet two-phase fluid
+  direction: conserving
+- name: B
+  summary: Compressor outlet two-phase fluid
+  direction: conserving
+- name: C
+  summary: Compressor casing mechanical rotational
+  direction: conserving
+- name: R
+  summary: Compressor shaft mechanical rotational
+  direction: conserving
+```
 
 ### Output
 
@@ -49,8 +67,97 @@ case.
 
 Mechanical rotational conserving port associated with the compressor
 shaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Compressor performance parameterization Analytical (default) | Tabulated
+  group: Compressor Map
+- name: Corrected speed at design point
+  summary: Operational corrected shaft speed 25000 rpm (default) | positive scalar
+  group: Compressor Map
+- name: Pressure ratio at design point
+  summary: Operational outlet-to-inlet pressure ratio 2.2 (default) | positive scalar
+  group: Compressor Map
+- name: Corrected mass flow rate at design point
+  summary: Operational corrected mass flow rate 0.20 kg/s (default) | positive scalar
+  group: Compressor Map
+- name: Efficiency specification
+  summary: Isentropic efficiency option Constant (default) | Analytical
+  group: Compressor Map
+- name: Maximum isentropic efficiency
+  summary: Maximum compressor efficiency 0.887 (default) | positive scalar in the range (0,1]
+  group: Compressor Map
+- name: Minimum isentropic efficiency
+  summary: Minimum compressor efficiency 0.5 (default) | positive scalar in the range (0,1]
+  group: Compressor Map
+- name: Corrected mass flow rate at maximum efficiency point
+  summary: Corrected mass flow rate at compressor maximum efficiency 0.19 kg/s (default) | positive scalar
+  group: Compressor Map
+- name: Pressure ratio at maximum efficiency point
+  summary: Pressure ratio at compressor maximum efficiency 2.1 (default) | positive scalar
+  group: Compressor Map
+- name: Constant isentropic efficiency
+  summary: Constant isentropic efficiency value 0.8 (default) | positive scalar
+  group: Compressor Map
+- name: Corrected speed index vector, N
+  summary: Vector of corrected shaft speeds [12500, 17750, 21750, 25000] rpm (default) | vector
+  group: Compressor Map
+- name: Beta index vector, beta
+  summary: 'Vector of corrected speed line intervals 0 : 1 / 5 : 1 (default) | vector of elements in the range [0,1]'
+  group: Compressor Map
+- name: Pressure ratio table, pr(N, beta)
+  summary: Compressor map pressure ratio data *M*-by-*N* matrix (default)
+  group: Compressor Map
+- name: Corrected mass flow rate table, mdot(N,beta)
+  summary: Compressor map corrected mass flow rate data *M*-by-*N* matrix (default)
+  group: Compressor Map
+- name: Isentropic efficiency table, eta(N,beta)
+  summary: Compressor map isentropic efficiency data *M*-by-*N* matrix (default)
+  group: Compressor Map
+- name: Report when surge margin is negative
+  summary: Negative surge margin notification None (default) | Warning | Error
+  group: Compressor Map
+- name: Spine shape, a
+  summary: Spine shape exponent 1.5 (default) | positive scalar
+  group: Map Coefficients
+- name: Speed line spread, b
+  summary: Constant speed line spacing exponent 5 (default) | positive scalar
+  group: Map Coefficients
+- name: Speed line roundness, k
+  summary: Constant speed line shape coefficient 0.03 (default) | positive scalar
+  group: Map Coefficients
+- name: Efficiency peak flatness orthogonal to spine, c
+  summary: Flatness orthogonal to spine exponent 3 (default) | positive scalar
+  group: Map Coefficients
+- name: Efficiency peak flatness along spine, d
+  summary: Along spine flatness exponent 4 (default) | positive scalar
+  group: Map Coefficients
+- name: Efficiency contour gradient orthogonal to spine, C
+  summary: Orthogonal gradient coefficient 15 (default) | positive scalar
+  group: Map Coefficients
+- name: Efficiency contour gradient along spine, D
+  summary: Along spine gradient coefficient 1 (default) | positive scalar
+  group: Map Coefficients
+- name: Reference pressure for corrected flow
+  summary: Correcting pressure 0.101325 MPa (default) | positive scalar
+  group: Parameters
+- name: Reference temperature for corrected flow
+  summary: Correcting temperature 373.15 K (default) | positive scalar
+  group: Parameters
+- name: Mechanical efficiency
+  summary: Efficiency of conversion to torque 0.9 (default) | positive scalar in the range [0,1]
+  group: Parameters
+- name: Inlet area at port A
+  summary: Compressor inlet area 0.01 m^2 (default) | positive scalar
+  group: Parameters
+- name: Outlet area at port B
+  summary: Compressor outlet area 0.01 m^2 (default) | positive scalar
+  group: Parameters
+- name: Report when fluid at inlet is not fully vapor
+  summary: Fluid not fully vapor notification None (default) | Warning | Error
+  group: Parameters
+```
 
 ### Compressor Map
 
@@ -426,7 +533,6 @@ Compressor outlet cross-sectional area.
 
 Whether the block does nothing, generates a warning, or generates an
 error when it detects fluid that is not fully vapor.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Fluid Machines

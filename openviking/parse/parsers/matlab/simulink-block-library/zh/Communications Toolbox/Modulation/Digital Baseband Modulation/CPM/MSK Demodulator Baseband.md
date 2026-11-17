@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # MSK Demodulator Baseband
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **输出类型**
 :   确定输出由双极性值还是二进制值组成。
@@ -44,7 +49,6 @@ R2025b 中未记录。
 
 **输出数据类型**
 :   输出数据类型可以为 `boolean`、`int8`、`int16`、`int32` 或 `double`。
-
 ## 所属库
 
 R2025b 中未记录。

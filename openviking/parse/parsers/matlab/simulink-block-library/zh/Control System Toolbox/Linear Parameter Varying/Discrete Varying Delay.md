@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Discrete Varying Delay
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 数据输入信号 标量 | 向量
+  direction: input
+- name: d
+  summary: 延迟长度 标量 | 向量
+  direction: input
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +46,28 @@ chinese_source: worker-translation
 ### **Port\_1** — 输出信号 标量 | 向量
 
 指定为标量或向量的输出信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal delay (number of samples)
+  summary: 延迟的标称值 1 （默认） | 非负整数 | 非负整数值向量
+  group: ''
+- name: Maximum delay
+  summary: 延迟长度输入的最大值 10 （默认） | 非负整数 | 非负整数值向量
+  group: ''
+- name: Fixed delays (indices)
+  summary: 具有固定延迟的信号索引 [] （默认） | 正标量 | 正值向量
+  group: ''
+- name: Initial output
+  summary: 初始输出 0 （默认） | 标量 | 向量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 采样时间 -1 （默认） | 正标量
+  group: ''
+- name: Prevent direct feedthrough with minimum delay of 1
+  summary: 防止直接馈通 off （默认） | on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -66,7 +98,6 @@ chinese_source: worker-translation
 选择此项可将最小延迟长度从零增加到 1。
 
 选中此复选框可防止从输入端口 **u** 到输出端口的直接馈通。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

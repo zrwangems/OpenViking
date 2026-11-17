@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Data Type Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+```
 
 ### 输入
 
@@ -32,8 +45,84 @@ chinese_source: worker-translation
 输出信号，转换为您指定的数据类型，其维度与输入信号相同。
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: ''
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: ''
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via back propagation（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data type
+    expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''Enum: <class name>'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via back propagation'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: ''
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Input and output to have equal
+  summary: 转换定点数据类型的约束 Real World Value (RWV)（默认）| Stored Integer (SI)
+  group: ''
+  block_parameter: ConvertRealWorld
+  type: 字符向量
+  values: '''Real World Value (RWV)'' | ''Stored Integer (SI)'''
+  default: '''Real World Value (RWV)'''
+- name: Integer rounding mode
+  summary: 指定定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Mode
+  summary: 选择数据类型模式 Inherit（默认）| Built in | Fixed Point
+  group: ''
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: ''
+- name: Signedness
+  summary: 指定有符号或无符号 Signed（默认）| Unsigned
+  group: ''
+- name: Scaling
+  summary: 定点数据定标的方法 Best precision（默认）| Binary point | Slope and bias
+  group: ''
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认）| 0 到 32 的整数
+  group: ''
+- name: Fraction length
+  summary: 指定定点数据类型的小数长度 0（默认）| 标量整数
+  group: ''
+- name: Slope
+  summary: 指定定点数据类型的斜率 2^0（默认）| 正实值标量
+  group: ''
+- name: Bias
+  summary: 指定定点数据类型的偏置 0（默认）| 实值标量
+  group: ''
+```
 
 ### **Output minimum** — 用于范围检查的最小输出值 `[]`（默认）| 标量
 
@@ -292,7 +381,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Scaling** 设置为 `Slope and bias`。
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Signal Attributes HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Signal Attributes

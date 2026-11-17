@@ -14,6 +14,13 @@ language: en
 # Publish
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: ROS message non-virtual bus
+  direction: input
+  data_types: bus
+```
 
 ### Input
 
@@ -22,8 +29,43 @@ language: en
 ROS message, specified as a nonvirtual bus. To specify the type of ROS message, use the **Message type** parameter.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic source
+  summary: Source for specifying topic name Select from ROS network | Specify your own
+  group: ''
+- name: Topic
+  summary: Topic name to publish to string
+  group: ''
+- name: Message type
+  summary: ROS message type string
+  group: ''
+- name: History
+  summary: Mode of storing messages in the queue Keep last (default) | Keep all
+  group: ''
+- name: Depth
+  summary: Size of the message queue 1 (default) | positive scalar
+  group: ''
+- name: Reliability
+  summary: Delivery guarantee of messages Reliable (default) | Best effort
+  group: ''
+- name: Durability
+  summary: Persistence of messages Volatile (default) | Transient local
+  group: ''
+- name: Deadline
+  summary: Expected interval between publishing consecutive messages Inf (default) | positive scalar
+  group: ''
+- name: Lifespan
+  summary: Message validity window between publishing and reception Inf (default) | positive scalar
+  group: ''
+- name: Liveliness
+  summary: Publisher aliveness asserting protocol "automatic" (default)
+  group: ''
+- name: Lease Duration
+  summary: Maximum time window between liveliness assertions Inf (default) | positive scalar
+  group: ''
+```
 
 #### Main
 
@@ -106,7 +148,6 @@ is set to 5, it implies that the publisher has a maximum duration of 5 seconds t
 demonstrate its liveliness. If the publisher does not send any messages or explicitly
 assert its liveliness within that time frame, it is considered to have lost
 liveliness.
-
 ## Libraries
 
 ROS Toolbox / ROS 2

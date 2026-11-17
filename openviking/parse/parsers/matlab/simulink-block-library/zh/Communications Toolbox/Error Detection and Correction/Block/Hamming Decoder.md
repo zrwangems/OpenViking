@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # Hamming Decoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Codeword length N**
 :   码字长度 *N*，同时也是输入向量长度。
 
 **Message length K, or M-degree primitive polynomial**
 :   消息长度，同时也是输入向量长度，或者一个表示 GF(2M) 本原多项式的二进制向量，或者一个多项式字符向量。
-
 ## 所属库
 
 R2025b 中未记录。

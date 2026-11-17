@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Smoothing (fast->slow)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 采样较快的信号 实数标量
+  direction: input
+- name: y
+  summary: 用于较慢网络的平滑信号 实数标量
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,19 @@ chinese_source: worker-translation
 ### **y** — 用于较慢网络的平滑信号 实数标量
 
 将此端口连接到较慢网络，即 Network 2 的输入。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of samples over which to smooth
+  summary: 指定用于对输出求平均的样本数 1（默认）| 正标量
+  group: ''
+- name: Port u discrete sample time (s)
+  summary: 指定较快网络的采样时间 -1（默认）| 正标量
+  group: ''
+- name: Initial output
+  summary: 指定初始输出值 0（默认）| 标量
+  group: ''
+```
 
 ### **Number of samples over which to smooth** — 指定用于对输出求平均的样本数 `1`（默认）| 正标量
 
@@ -40,7 +60,6 @@ chinese_source: worker-translation
 ### **Initial output** — 指定初始输出值 `0`（默认）| 标量
 
 指定较快网络 Network 1 的初始输出值。
-
 ## 所属库
 
 Simscape / Utilities / Network Couplers / Fundamental Components

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Eye Diagram
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,116 @@ chinese_source: worker-translation
 输入信号，指定为标量或列向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Display mode
+  summary: 显示模式 Line plot（默认）| 2D color Histogram
+  group: 主选项卡
+- name: Enable measurements
+  summary: 启用测量 off（默认）| on
+  group: 主选项卡
+- name: Show horizontal (jitter) histogram
+  summary: 显示抖动直方图 off（默认）| on
+  group: 主选项卡
+- name: Show vertical (noise) histogram
+  summary: 显示噪声直方图 off（默认）| on
+  group: 主选项卡
+- name: Do not show horizontal or vertical histogram
+  summary: 不显示水平或垂直直方图 on（默认）| off
+  group: 主选项卡
+- name: Show horizontal bathtub curve
+  summary: 显示水平浴盆曲线 off（默认）| on
+  group: 主选项卡
+- name: Show vertical bathtub curve
+  summary: 显示垂直浴盆曲线 off（默认）| on
+  group: 主选项卡
+- name: Eye diagram to display
+  summary: 要显示的眼图 Real only（默认）| Real and imaginary
+  group: 主选项卡
+- name: Color fading
+  summary: 颜色渐隐 off（默认）| on
+  group: 主选项卡
+- name: Samples per symbol
+  summary: 每符号采样数 8（默认）| 正整数
+  group: 主选项卡
+- name: Sample offset
+  summary: 采样偏移 0（默认）| 非负整数
+  group: 主选项卡
+- name: Symbols per trace
+  summary: 每条迹线的符号数 2（默认）| 正整数
+  group: 主选项卡
+- name: Traces to display
+  summary: 要显示的迹线数 40（默认）| 正整数
+  group: 主选项卡
+- name: Title
+  summary: 标题标签 *None*（默认）
+  group: 坐标轴选项卡
+- name: Show grid
+  summary: 切换示波器网格 on（默认）| off
+  group: 坐标轴选项卡
+- name: Y-limits (Minimum)
+  summary: '*y* 轴下限 -1.1（默认）| 标量'
+  group: 坐标轴选项卡
+- name: Y-limits (Maximum)
+  summary: '*y* 轴上限 1.1（默认）| 标量'
+  group: 坐标轴选项卡
+- name: Real axis label
+  summary: 实轴标签 Real Amplitude（默认）
+  group: 坐标轴选项卡
+- name: Imaginary axis label
+  summary: 虚轴标签 Imaginary Amplitude（默认）
+  group: 坐标轴选项卡
+- name: Oversampling method
+  summary: 过采样方法 None（默认）| Input interpolation | Histogram interpolation
+  group: 2D Histogram Tab
+- name: Color scale
+  summary: 颜色刻度 Linear（默认）| Logarithmic
+  group: 2D Histogram Tab
+- name: Export measurements, histograms and bathtub curves
+  summary: 导出测量值、直方图和浴盆曲线 Off（默认）| off
+  group: Export Tab
+- name: Variable name
+  summary: 变量名 EyeData（默认）
+  group: Export Tab
+- name: Figure color
+  summary: 图窗颜色 black（默认）
+  group: Style Dialog Box
+- name: Axes colors
+  summary: 坐标轴颜色 black | gray（默认）
+  group: Style Dialog Box
+- name: Line
+  summary: 线图的线型、线宽和颜色 continuous | 0.5 | yellow（默认）
+  group: Style Dialog Box
+- name: Marker
+  summary: 数据点标记 None（默认）| ...
+  group: Style Dialog Box
+- name: Colormap
+  summary: 直方图的颜色图 Hot（默认）| Parula | Jet | HSV | Cool | Spring Summer | Autumn | Winter | Gray | Bone | Copper | Pink | Lines
+    | Custom
+  group: Style Dialog Box
+- name: Eye level boundaries
+  summary: 用于计算眼高的时间范围 [40 60]（默认）| 二元素向量
+  group: 测量设置窗格
+- name: Decision boundary
+  summary: 幅度电平阈值 0（默认）| 标量
+  group: 测量设置窗格
+- name: Rise/Fall thresholds
+  summary: 上升和下降转换的幅度电平 [10 90]（默认）| 二元素向量
+  group: 测量设置窗格
+- name: Hysteresis
+  summary: 水平交叉的幅度容差 0（默认）| 标量
+  group: 测量设置窗格
+- name: BER threshold
+  summary: 用于眼图测量的 BER 1e-12（默认）| 从 0 到 0.5 的非负标量
+  group: 测量设置窗格
+- name: Bathtub BERs
+  summary: 用于计算浴盆曲线开度的 BER 值 [0.5 0.1 0.01 0.001 0.0001 1e-05 1e-06 1e-07 1e-08 1e-09 1e-10 1e-11 1e-12]（默认）| 向量
+  group: 测量设置窗格
+- name: Measurement delay
+  summary: 从测量中丢弃的初始数据持续时间 0（默认）| 非负标量
+  group: 测量设置窗格
+```
 
 ### 主选项卡
 
@@ -304,7 +419,6 @@ chinese_source: worker-translation
 ### **Measurement delay** — 从测量中丢弃的初始数据持续时间 `0`（默认）| 非负标量
 
 从测量中丢弃的初始数据持续时间，以秒为单位，指定为非负标量。
-
 ## 所属库
 
 Communications Toolbox / Comm Sinks Communications Toolbox HDL Support / Comm Sinks Mixed-Signal Blockset / Utilities SerDes Toolbox / Utilities

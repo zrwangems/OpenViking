@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Simulation 3D Ray Tracer
 
 ## 端口
+```yaml
+ports:
+- name: HitLocations
+  summary: 命中位置 实数值 *N(B+1)*-by-3 数组
+  direction: output
+  data_types: double
+- name: HitNormals
+  summary: 命中位置处的射线法线 实数值 *N(B+1)*-by-3 数组
+  direction: output
+  data_types: double
+- name: HitDistances
+  summary: 射线到命中位置的距离 实数值 *N(B+1)*-by-1 数组
+  direction: output
+  data_types: double
+- name: SurfaceIds
+  summary: 命中表面的对象 ID 整数值 *N(B+1)*-by-1 向量 | 0
+  direction: output
+  data_types: uint8
+- name: IsValidHit
+  summary: 命中标志 *N*-by-1 向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -49,8 +72,53 @@ chinese_source: worker-translation
 命中标志，以 *N*-by-1 布尔向量返回。*N* 是射线数量。值为 1 表示射线命中了表面。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: ''
+- name: Parent name
+  summary: 父级名称 Scene Origin（默认）
+  group: ''
+- name: Coordinate system
+  summary: 用于 actor 变换的坐标系 Default（默认）| MATLAB | ISO8855 | AERO | VRML | SAE
+  group: ''
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）| Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof
+    center | ...
+  group: ''
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移 off（默认）| on
+  group: ''
+- name: Relative translation [X, Y, Z]
+  summary: 相对于安装位置的平移偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: ''
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: 相对于安装位置 [0, 0, 0]（默认）的旋转偏移 | 实数值 1×3 向量
+  group: ''
+- name: Ray origins
+  summary: 射线原点 zeros(10,3)（默认）| 实数值 *N*×3 数组
+  group: ''
+- name: Ray directions
+  summary: 归一化射线方向 ones(10,3)（默认）| 实数值 *N*×3 数组
+  group: ''
+- name: Max ray lengths
+  summary: 最大射线总长度 ones(10,1)*10（默认）| 实数值 *N*×1 向量
+  group: ''
+- name: Number of bounces
+  summary: 每条射线的反弹次数 2（默认）| 正整数
+  group: ''
+- name: Visualize trace line
+  summary: 可视化射线追踪 on（默认）| off
+  group: ''
+- name: Enable optimization
+  summary: 启用优化 on（默认）| off
+  group: ''
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 #### 安装
 
@@ -174,7 +242,6 @@ chinese_source: worker-translation
 模块的采样时间，单位为秒，指定为正标量。3D 仿真环境帧率是采样时间的倒数。
 
 如果将采样时间设置为 `-1`，则模块从 Simulation 3D Scene Configuration 模块继承其采样时间。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Vehicle / Components Simulink 3D Animation / Simulation 3D / Sensors

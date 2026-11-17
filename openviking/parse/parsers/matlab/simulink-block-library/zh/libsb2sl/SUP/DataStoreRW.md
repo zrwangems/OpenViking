@@ -15,10 +15,155 @@ chinese_source: worker-translation
 # Data Store Memory
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Data store name
+  summary: 数据存储的名称 A（默认）| 字符向量 | 字符串
+  group: 主要
+  block_parameter: DataStoreName
+  type: 字符向量
+  values: '''A'' | ...'
+  default: '''A'''
+- name: Rename All
+  summary: 在模型中重命名数据存储的选项 按钮
+  group: 主要
+- name: Data store reference
+  summary: 用于访问更高层级模型中定义的内存 off（默认）| on
+  group: 主要
+  block_parameter: DataStoreReference
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Corresponding Data Store Read/Write blocks
+  summary: 连接的 Data Store Read/Write 模块的路径 模块路径
+  group: 主要
+- name: Initial value
+  summary: 数据存储的初始值 0（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: 信号属性
+  block_parameter: InitialValue
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵 | N 维数组
+  default: '''0'''
+- name: Minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  type: 字符向量
+  values: 标量
+  default: '''[ ]'''
+- name: Maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  type: 字符向量
+  values: 标量
+  default: '''[ ]'''
+- name: Data type
+  summary: '输出数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Enum: <class name> | Simulink.ImageType(480,640,3)'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string'' | ''Enum:
+    <class name>'' | ''Simulink.ImageType(480,640,3)'''
+  default: '''Inherit: auto'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖输出数据类型的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Dimensions (-1 to infer from Initial value)
+  summary: 数据存储的维度 -1（默认）| 标量 | 向量 | 矩阵
+  group: 信号属性
+  block_parameter: Dimensions
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵
+  default: '''-1'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量解释为一维的选项 on（默认）| off
+  group: 信号属性
+  block_parameter: VectorParams1D
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Signal type
+  summary: 数据存储值的复杂度 auto（默认）| real | complex
+  group: 信号属性
+  block_parameter: SignalType
+  type: 字符向量
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Share across model instances
+  summary: 允许 Model 模块从同一数据存储读取的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: ShareAcrossModelInstances
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Data store name must resolve to Simulink signal object
+  summary: 将数据存储名称解析为 Simulink 信号对象的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: StateMustResolveToSignalObject
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Detect Read Before Write
+  summary: 模型在当前时间步中尝试在写入之前读取数据时的操作 warning（默认）| none | error
+  group: 诊断
+  block_parameter: ReadBeforeWriteMsg
+  type: 字符向量
+  values: '''none'' | ''warning'' | ''error'''
+  default: '''warning'''
+- name: Detect Write After Read
+  summary: 模块在同一时间步中读取后尝试写入时的操作 warning（默认）| none | error
+  group: 诊断
+  block_parameter: WriteAfterReadMsg
+  type: 字符向量
+  values: '''none'' | ''warning'' | ''error'''
+  default: '''warning'''
+- name: Detect Write After Write
+  summary: 模型在同一时间步中写入两次时的操作 warning（默认）| none | error
+  group: 诊断
+  block_parameter: WriteAfterWriteMsg
+  type: 字符向量
+  values: '''none'' | ''warning'' | ''error'''
+  default: '''warning'''
+- name: Log data store data
+  summary: 记录数据存储数据的选项 off（默认）| on
+  group: 记录
+  block_parameter: DataLogging
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 日志名称
+  summary: 与记录的信号数据关联的名称 Use data store name（默认）| Custom
+  group: 记录
+  block_parameter: DataLoggingName
+  type: 字符向量
+  values: 字符向量
+  default: ''''''
+- name: 将数据点限制为最后
+  summary: 丢弃除最后 *N* 个数据点之外的所有数据点的选项 5000 | 非零整数
+  group: 记录
+  block_parameter: DataLoggingMaxPoints
+  type: 字符向量
+  values: 非零整数
+  default: '''5000'''
+- name: 抽取
+  summary: 记录每第 *N* 个数据点的选项 2（默认）| 整数
+  group: 记录
+  block_parameter: DataLoggingDecimation
+  type: 字符向量
+  values: 非零整数
+  default: '''2'''
+```
 
 ### 主要
 
@@ -486,7 +631,6 @@ MATLAB 工作区。
 | **类型：** 字符向量 |
 | **值：** 非零整数 |
 | **默认值：** `'2'` |
-
 ## 所属库
 
 Simulink / Signal Routing

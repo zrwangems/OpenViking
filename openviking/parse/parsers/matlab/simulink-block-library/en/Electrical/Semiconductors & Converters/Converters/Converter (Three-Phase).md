@@ -14,6 +14,33 @@ language: en
 # Converter (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate terminals electrical
+  direction: conserving
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -105,8 +132,250 @@ To enable this port:
 - In the **Switching Devices**
   settings, select the **Model thermal
   effects** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Fidelity level
+  summary: Fidelity level Detailed model - switching devices (default) | Equivalent model - PWM-controlled
+  group: Main
+- name: Switching device
+  summary: Switching device Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 'Switching Devices: GTO'
+- name: Model thermal effects
+  summary: Option to model thermal effects Off (default) | On
+  group: 'Switching Devices: GTO'
+- name: Gate trigger voltage, Vgt
+  summary: Gate trigger voltage 1 V (default)
+  group: 'Switching Devices: GTO'
+- name: Gate turn-off voltage, Vgt_off
+  summary: Gate turn-off voltage -1 V (default)
+  group: 'Switching Devices: GTO'
+- name: Holding current
+  summary: Holding current 1 A (default)
+  group: 'Switching Devices: GTO'
+- name: Forward voltage, Vf
+  summary: Forward voltage 0.8 V (default)
+  group: 'Switching Devices: GTO'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: GTO'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: GTO'
+- name: Switching device
+  summary: Switching device Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Threshold voltage, Vth
+  summary: Threshold voltage 6 V (default)
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Switching device
+  summary: Switching device Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 'Switching Devices: IGBT'
+- name: Model thermal effects
+  summary: Option to model thermal effects Off (default) | On
+  group: 'Switching Devices: IGBT'
+- name: Threshold voltage, Vth
+  summary: Threshold voltage 6 V (default)
+  group: 'Switching Devices: IGBT'
+- name: Forward voltage, Vf
+  summary: Forward voltage 0.8 V (default)
+  group: 'Switching Devices: IGBT'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: IGBT'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: IGBT'
+- name: Switching device
+  summary: Switching device Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 'Switching Devices: MOSFET'
+- name: Model thermal effects
+  summary: Option to model thermal effects Off (default) | On
+  group: 'Switching Devices: MOSFET'
+- name: Threshold voltage, Vth
+  summary: Threshold voltage 6 V (default)
+  group: 'Switching Devices: MOSFET'
+- name: Drain-source on resistance, R_DS(on)
+  summary: Drain-source on resistance 0.001 Ohm (default)
+  group: 'Switching Devices: MOSFET'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: MOSFET'
+- name: Switching device
+  summary: Switching device Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 'Switching Devices: Thyristor'
+- name: Model thermal effects
+  summary: Option to model thermal effects Off (default) | On
+  group: 'Switching Devices: Thyristor'
+- name: Gate trigger voltage, Vgt
+  summary: Gate trigger voltage 1 V (default)
+  group: 'Switching Devices: Thyristor'
+- name: Holding current
+  summary: Holding current 1 A (default)
+  group: 'Switching Devices: Thyristor'
+- name: Forward voltage, Vf
+  summary: Forward voltage 0.8 V (default)
+  group: 'Switching Devices: Thyristor'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: Thyristor'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: Thyristor'
+- name: Switching device
+  summary: Switching device Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 'Switching Devices: Averaged Switch'
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: Integer mode for FPGA deployment 0 (default) | nonnegative scalar
+  group: 'Switching Devices: Averaged Switch'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: Averaged Switch'
+- name: Switch-on loss
+  summary: Switch-on loss 22.86e-3 J (default) | positive scalar
+  group: Switching Losses
+- name: Switch-off loss
+  summary: Forced commutation switch-off loss 17.14e-3 J (default) | positive scalar
+  group: Switching Losses
+- name: Natural commutation rectification loss
+  summary: Natural commutation rectification loss 10e-3 J (default) | positive scalar
+  group: Switching Losses
+- name: Off-state voltage for switching loss data
+  summary: Off-state voltage for loss data 300 V (default) | positive scalar
+  group: Switching Losses
+- name: On-state current for switching loss data
+  summary: Output current 600 A (default) | positive scalar
+  group: Switching Losses
+- name: Wait time before switch-on current measurement
+  summary: Wait time before switch-on current measurement 0 s (default) | nonnegative scalar
+  group: Switching Losses
+- name: Use last on-state current from previous cycle for turn-on loss
+  summary: Option to use last on-state current from previous cycle for turn-on loss Off (default) | On
+  group: Switching Losses
+- name: Use last off-state current from previous cycle for turn-offloss
+  summary: Option to use last off-state current from previous cycle for turn-off loss Off (default) | On
+  group: Switching Losses
+- name: Integral protection diode
+  summary: Integral protection diode model None (default) | Diode with no dynamics | Diode with charge dynamics
+  group: Integral Diodes
+- name: Forward voltage
+  summary: Forward voltage 0.8 V (default)
+  group: Integral Diodes
+- name: On resistance
+  summary: On resistance 0.001 Ohm (default)
+  group: Integral Diodes
+- name: Off conductance
+  summary: Off conductance 1e-5 1/Ohm (default)
+  group: Integral Diodes
+- name: Reverse recovery loss model
+  summary: Model for reverse recovery loss Fixed loss (default) | Tabulated loss
+  group: Integral Diodes
+- name: Reverse recovery loss
+  summary: Reverse recovery loss 0 J (default) | nonnegative scalar
+  group: Integral Diodes
+- name: Scale reverse recovery loss with current and voltage
+  summary: Option to scale reverse recovery loss On (default) | Off
+  group: Integral Diodes
+- name: Forward current when measuring recovery loss, Irec
+  summary: Forward current when block measures recovery loss 10 A (default) | positive scalar
+  group: Integral Diodes
+- name: Turn-off voltage when measuring recovery loss, Vrec
+  summary: Turn-off voltage when measuring recovery loss 10 V (default) | positive scalar
+  group: Integral Diodes
+- name: Filter time constant for voltage and current values
+  summary: Filter time constant for voltage and current values 1 / 1000 / 100 s (default) | positive scalar
+  group: Integral Diodes
+- name: Reverse recovery loss table, Erec(Tj, If)
+  summary: Reverse recovery loss zeros(2, 3) J (default) | vector of nonnegative scalars
+  group: Integral Diodes
+- name: Temperature vector for recovery loss table, Tj
+  summary: Temperature vector for recovery loss table [298.15, 398.15] K (default) | vector
+  group: Integral Diodes
+- name: Forward current vector for recovery loss table, If
+  summary: Forward current vector for recovery loss table [.1, 1, 10] A (default) | vector of nonnegative scalars
+  group: Integral Diodes
+- name: Junction capacitance
+  summary: Junction capacitance 50e-9 F (default)
+  group: Integral Diodes
+- name: Peak reverse current, iRM
+  summary: Peak reverse current -235 A (default) | negative scalar
+  group: Integral Diodes
+- name: Initial forward current when measuring iRM
+  summary: Initial forward current when measuring iRM 300 A (default) | positive scalar
+  group: Integral Diodes
+- name: Rate of change of current when measuring iRM
+  summary: Rate of change of current when measuring iRM -50A/μs (default) | negative scalar
+  group: Integral Diodes
+- name: Reverse recovery time parameterization
+  summary: Reverse recovery time parameterization Specify reverse recovery time directly (default) | Specify stretch factor
+    | Specify reverse recovery charge
+  group: Integral Diodes
+- name: Reverse recovery time, trr
+  summary: Reverse recovery time 15 μs (default)
+  group: Integral Diodes
+- name: Reverse recovery time stretch factor
+  summary: Reverse recovery time stretch factor 3 (default) | scalar greater than 1
+  group: Integral Diodes
+- name: Reverse recovery charge, Qrr
+  summary: Reverse recovery charge 1500 μAs (default)
+  group: Integral Diodes
+- name: Snubber
+  summary: Snubber None (default) | RC snubber
+  group: Snubbers
+- name: Snubber resistance
+  summary: Snubber resistance 0.1 Ohm (default)
+  group: Snubbers
+- name: Snubber capacitance
+  summary: Snubber capacitance 1e-7 F (default)
+  group: Snubbers
+- name: Thermal network
+  summary: Options for thermal network modeling External (default) | Specify junction and case thermal parameters | Cauer
+    model | Cauer model parameterized with Foster coefficients
+  group: Thermal Port
+- name: Thermal mass parameterization
+  summary: Option to parameterize thermal mass By thermal time constants (default) | By thermal mass
+  group: Thermal Port
+- name: Junction case and case-ambient (or case-heatsink) thermal resistances, [R_JC R_CA]
+  summary: Junction case and case-ambient (or case-heatsink) thermal resistances [.08, .5] K/W (default) | vector of positive
+    values
+  group: Thermal Port
+- name: Junction and case thermal time constants, [t_J t_C]
+  summary: Junction and case thermal time constants [.001, .2] s (default) | vector of positive values
+  group: Thermal Port
+- name: Junction and case thermal masses, [M_J M_C]
+  summary: Junction and case thermal masses [.01, .5] J/K (default) | vector of positive values
+  group: Thermal Port
+- name: Junction and case initial temperatures, [T_J T_C]
+  summary: Junction and case initial temperatures [25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Thermal resistances, [R1 R2 … Rn]
+  summary: Thermal resistances [.08,.1,.5] K/W (default) | [.08,.14,.22,.16] K/W | vector of positive values
+  group: Thermal Port
+- name: Thermal masses, [M1 M2 … Mn]
+  summary: Thermal masses [.01,.1,.5] J/K | [.001,.005,.05,.5] J/K | vector of positive values
+  group: Thermal Port
+- name: Thermal masses initial temperatures, [T1 T2 … Tn]
+  summary: Initial temperatures of thermal masses [25, 25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Thermal time constants, [t1 t2 … tn]
+  summary: Thermal time constants [.001,.1,.2] s | [7e-05, .0007, .01, .08] s | vector of positive values
+  group: Thermal Port
+- name: Initial node temperatures, [T1 T2 ... Tn]
+  summary: Initial node temperatures [25, 25, 25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Junction thermal mass
+  summary: Thermal mass of junction 0.01 J/K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -1175,7 +1444,6 @@ Thermal mass of the junction.
 
 To enable this parameter, set **Thermal network**
 to `External`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

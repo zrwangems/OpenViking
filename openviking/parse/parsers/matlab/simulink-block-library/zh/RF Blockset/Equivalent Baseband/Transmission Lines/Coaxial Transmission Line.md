@@ -15,10 +15,81 @@ chinese_source: worker-translation
 # Coaxial Transmission Line
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Outer radius (m)
+  summary: 外导体半径 2.57e-3（默认）| 标量
+  group: 主
+- name: Inner radius(m)
+  summary: 内导体半径 0.725e-3（默认）| 标量
+  group: 主
+- name: Relative permeability constant
+  summary: 电介质的相对磁导率 1（默认）| 实标量
+  group: 主
+- name: Relative permittivity constant
+  summary: 电介质的相对介电常数 2.3（默认）| 实标量
+  group: 主
+- name: Loss tangent of dielectric
+  summary: 电介质损耗角正切 0（默认）| 非负标量
+  group: 主
+- name: Conductivity of the conductor (S/m)
+  summary: 导体电导率 inf（默认）| 正标量
+  group: 主
+- name: Transmission line length (m)
+  summary: 传输线物理长度 0.01（默认）| 正标量
+  group: 主
+- name: Stub mode
+  summary: 短截线类型 Not a stub（默认）| Shunt | Series
+  group: 主
+- name: Termination of stub
+  summary: 短截线终端 Open（默认）| Short
+  group: 主
+- name: Source of frequency data
+  summary: 频率数据源 User-specified（默认）
+  group: 可视化
+- name: Frequency data (Hz)
+  summary: 频率数据范围 [1e9:1e6:3e9]（默认）| 向量
+  group: 可视化
+- name: Reference impedance (ohms)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: X parameter
+  summary: 频率图 Freq（默认值）
+  group: 可视化
+- name: X format
+  summary: 频率图格式 Hz（默认值）| Auto | kHz | MHz | GHz | THz
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认值）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认值）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主
 
@@ -234,7 +305,6 @@ plane`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘制按钮绘制指定数据。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Transmission Lines

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # DBPSK Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: DBPSK 调制基带信号 标量 | 列向量
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -34,8 +45,16 @@ DBPSK 调制基带信号，返回为复值标量或列向量。
 此端口在模块上未命名。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase rotation (rad)
+  summary: 附加相移 0（默认）| 标量
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single
+  group: 主要
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -50,7 +69,6 @@ DBPSK 调制基带信号，返回为复值标量或列向量。
 ### **Output data type** — 输出数据类型 `double`（默认）| `single`
 
 输出数据类型，指定为 `double` 或 `single`。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK

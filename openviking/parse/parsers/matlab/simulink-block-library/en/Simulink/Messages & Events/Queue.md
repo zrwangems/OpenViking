@@ -14,6 +14,39 @@ language: en
 # Queue
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity or message scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: Output entity or message scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: Number of entities that have departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: Number of entities that have not yet departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: Average wait time for entities in the block scalar
+  direction: output
+  data_types: double
+- name: Port_l
+  summary: Average length of the entity queue scalar
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: Number of entities extracted scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -91,8 +124,100 @@ select the **Number of entities extracted, ex**
 check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Overwrite the oldest element if queue is full
+  summary: Specify queue overwriting policy on (default for Simulink®) | off (default for SimEvents®)
+  group: ''
+  block_parameter: QueueOverwriting
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'' (for Simulink) and ''off'' (for SimEvents)'
+- name: Capacity
+  summary: Specify the capacity of the queue 25 (default) | scalar
+  group: ''
+  block_parameter: Capacity
+  type: character vector
+  values: '''25'' | scalar'
+  default: '''25'''
+- name: Queue type
+  summary: Choose the queue type FIFO (default) | LIFO | Priority
+  group: ''
+  block_parameter: QueueType
+  type: character vector
+  values: '''FIFO'' | ''LIFO'' | ''Priority'''
+  default: '''FIFO'''
+- name: Multicast tag
+  summary: Specify the tag when accepting entities broadcast via multicast sources A (default) | character vector
+  group: ''
+  block_parameter: MulticastTag
+  type: character vector
+  values: '''A'' | character vector'
+  default: '''A'''
+- name: Priority source
+  summary: Specify which attribute of the entity determines its priority character vector | entitySys.priority
+  group: ''
+  block_parameter: PrioritySource
+  type: character vector
+  values: '''entity'' | ''entitySys.priority'' | character vector'
+- name: Sorting direction
+  summary: Choose the direction of sorting based on priority Ascending (default) | Descending
+  group: ''
+  block_parameter: SortingDirection
+  type: character vector
+  values: '''Ascending'' | ''Descending'''
+  default: '''Ascending'''
+- name: Entity arrival source
+  summary: Choose the source of arrival for the entities Input port (default) | Multicast
+  group: ''
+  block_parameter: EntityArrivalSource
+  type: character vector
+  values: '''Input port'' | ''Multicast'''
+  default: '''Input port'''
+- name: Event action
+  summary: Specify the behavior of the entity in certain events Entry (default) | Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities departed, d
+  summary: Outputs the number of entities that have departed the block off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: Outputs the number of entities present in the block, that are yet to depart off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average wait, w
+  summary: Outputs the average wait time off (default) | on
+  group: ''
+  block_parameter: AverageWait
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average queue length, l
+  summary: Outputs the average length of the entity queue off (default) | on
+  group: ''
+  block_parameter: AverageQueueLength
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: Number of entities extracted from this block off (default) | on
+  group: ''
+  block_parameter: NumEntitiesExtracted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Overwrite the oldest element if queue is full** — Specify queue overwriting policy on (default for Simulink®) | off (default for SimEvents®)
 
@@ -420,7 +545,6 @@ full** check box.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Messages & Events SimEvents

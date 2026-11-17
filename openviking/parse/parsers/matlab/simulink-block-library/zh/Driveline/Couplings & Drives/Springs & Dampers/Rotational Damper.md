@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Rotational Damper
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 杆接口机械旋转
+  direction: unspecified
+- name: C
+  summary: 壳体接口机械旋转
+  direction: unspecified
+- name: H
+  summary: 热流热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +45,25 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Thermal port** 设置为 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Damping coefficient
+  summary: 阻尼系数 1e-3 N*m/(rad/s)（默认）| 正标量
+  group: 主要
+- name: Damping fault
+  summary: 用于对阻尼故障建模的选项 Add fault
+  group: 故障
+- name: Faulted damping coefficient
+  summary: 发生故障时的阻尼系数 100 N*m*s/rad（默认）| 正标量
+  group: 故障
+- name: Thermal port
+  summary: 热建模 Omit（默认）| Model
+  group: 热端口
+- name: Thermal mass
+  summary: 热质量 50 kJ/K（默认）| 正标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -67,7 +96,6 @@ chinese_source: worker-translation
 ### **Thermal mass** — 热质量 `50` `kJ/K`（默认）| 正标量
 
 使组件温度升高一个单位所需的热能。热质量表示阻尼器吸收和保持热能的能力。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

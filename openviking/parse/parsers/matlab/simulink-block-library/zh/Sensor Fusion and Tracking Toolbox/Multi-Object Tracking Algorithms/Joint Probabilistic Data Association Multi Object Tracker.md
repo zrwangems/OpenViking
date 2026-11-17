@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Joint Probabilistic Data Association Multi Object Tracker
 
 ## 端口
+```yaml
+ports:
+- name: Detections
+  summary: 检测列表 包含 MATLAB® 结构的 Simulink® 总线
+  direction: input
+- name: Prediction Time
+  summary: 航迹更新时间 实数标量
+  direction: input
+- name: Cost Matrix
+  summary: 代价矩阵 实值 *N*t×*N*d 矩阵
+  direction: input
+- name: Detectable TrackIDs
+  summary: 可检测航迹 ID 实值 *M*×1 向量 | 实值 *M*×2 矩阵
+  direction: input
+- name: State Parameters
+  summary: 跟踪状态参数 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Confirmed Tracks
+  summary: 确认航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Tentative Tracks
+  summary: 暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: All Tracks
+  summary: 确认和暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Info
+  summary: 用于分析航迹更新的附加信息 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+```
 
 ### 输入
 
@@ -185,8 +215,121 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Port Setting** 选项卡上，选择 **Enable information output**。
-
 ## 参数
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: 唯一跟踪器标识符 0（默认）| 非负整数
+  group: ''
+- name: 滤波器初始化函数
+  summary: 滤波器初始化函数 initcvekf（默认）| 函数名
+  group: ''
+- name: k-best JPDA 的 k 值
+  summary: k-best JPDA 的 k 值 inf（默认）| 正整数
+  group: ''
+- name: 可行联合事件生成函数名
+  summary: 可行联合事件生成函数名 jpdaEvents（默认）| 函数名
+  group: ''
+- name: 最大航迹数
+  summary: 最大航迹数 100（默认）| 正整数
+  group: ''
+- name: Maximum number of sensors
+  summary: 最大传感器数量 20（默认）| 正整数
+  group: ''
+- name: Absolute tolerance between time stamps of detections
+  summary: 检测时间戳之间的绝对容差 20（默认）| 正整数
+  group: ''
+- name: Out-of-sequence measurements handling
+  summary: 乱序测量处理 Terminate（默认）| Neglect | Retrodiction
+  group: ''
+- name: Maximum number of OOSM steps
+  summary: 最大 OOSM 步数 3（默认）| 正整数
+  group: ''
+- name: Track state parameters
+  summary: 航迹状态参考坐标系参数 结构体 | 结构体数组
+  group: ''
+- name: Update track state parameters with time
+  summary: 随时间更新航迹状态参数 off（默认）| on
+  group: ''
+- name: Enable memory management
+  summary: 启用内存管理 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted Execution（默认）| Code Generation
+  group: ''
+- name: 用于将检测分配给航迹的阈值
+  summary: 用于将检测分配给航迹的阈值 30*[1 Inf]（默认）| 正标量 | 1×2 正值向量
+  group: ''
+- name: 用于初始化航迹的阈值
+  summary: 用于初始化航迹的阈值 0（默认）| 范围 [0, 1] 内的标量
+  group: ''
+- name: 检测概率
+  summary: 检测概率 0.9（默认）| 范围 [0, 1] 内的标量
+  group: ''
+- name: 杂波测量的空间密度
+  summary: 杂波测量的空间密度 1e-5（默认）| 正标量
+  group: ''
+- name: 航迹确认和删除逻辑类型
+  summary: 确认和删除逻辑类型 History（默认）| Integrated
+  group: ''
+- name: 确认阈值 [M N]
+  summary: 历史逻辑的航迹确认阈值 [2, 3]（默认）| 正整数的实值 1×2 向量
+  group: ''
+- name: 删除阈值 [P Q]
+  summary: 历史逻辑的航迹删除阈值 [5, 5]（默认）| 正整数的实值 1×2 向量
+  group: ''
+- name: 注册 'hit' 或 'miss' 的阈值
+  summary: 注册 'Hit' 或 'Miss' 的阈值 0.2（默认）| 范围 [0, 1] 内的标量
+  group: ''
+- name: 确认阈值 [概率]
+  summary: 积分逻辑的航迹确认阈值 0.95（默认）| 正标量
+  group: ''
+- name: 删除阈值 [概率]
+  summary: 积分逻辑的航迹删除阈值 0.1（默认）| 正标量
+  group: ''
+- name: 新目标的空间密度
+  summary: 新目标的空间密度 1e-5（默认）| 正标量
+  group: ''
+- name: 真实目标消亡的时间速率
+  summary: 真实目标消亡的时间速率 0.01（默认）| 范围 [0, 1] 内的标量
+  group: ''
+- name: 预测时间源
+  summary: 预测时间的来源 Auto（默认）| Input port
+  group: ''
+- name: 启用代价矩阵输入
+  summary: 启用代价矩阵的输入端口 off（默认）| on
+  group: ''
+- name: 启用可检测航迹 ID 输入
+  summary: 启用可检测航迹 ID 输入 off（默认）| on
+  group: ''
+- name: Enable tentative tracks output
+  summary: 启用暂定航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable all tracks output
+  summary: 启用所有航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable information output
+  summary: 启用分析信息输出端口 off（默认）| on
+  group: ''
+- name: Source of output bus name
+  summary: 输出航迹总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Source of output info bus name
+  summary: 输出信息总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Maximum number of detections per sensor
+  summary: 每个传感器的最大检测数 100（默认）| 正整数
+  group: ''
+- name: Maximum number of detections per cluster
+  summary: 每个聚类的最大检测数 5（默认）| 正整数
+  group: ''
+- name: Maximum number of tracks per cluster
+  summary: 每个聚类的最大航迹数 5（默认）| 正整数
+  group: ''
+- name: Handle run-time violation of cluster size
+  summary: 处理簇大小的运行时违规 Auto（默认）| Property
+  group: ''
+```
 
 #### Tracker Management
 
@@ -564,7 +707,6 @@ PTE(t+δt)=(1−DeathRate)δtPTE(t)
 #### 依赖关系
 
 要启用此参数，请在 **Tracker Management** 选项卡中选择 **Enable Memory Management**。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

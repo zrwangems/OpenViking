@@ -14,6 +14,18 @@ language: en
 # Band-Limited Op-Amp
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Non-inverting input electrical
+  direction: conserving
+- name: '-'
+  summary: Inverting input electrical
+  direction: conserving
+- name: OUT
+  summary: Output voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,34 @@ input
 
 Electrical conserving port associated with the op-amp output
 voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain, A
+  summary: Open-loop gain 1000 (default)
+  group: ''
+- name: Input resistance, Rin
+  summary: Input resistance 1e6 Ohm (default)
+  group: ''
+- name: Output resistance, Rout
+  summary: Output resistance 100 Ohm (default)
+  group: ''
+- name: Minimum output, Vmin
+  summary: Minimum output -15 V (default)
+  group: ''
+- name: Maximum output, Vmax
+  summary: Maximum output 15 V (default)
+  group: ''
+- name: Maximum slew rate, Vdot
+  summary: Maximum slew rate 1000 V/s (default)
+  group: ''
+- name: Bandwidth, f
+  summary: Open-loop bandwidth 1e5 Hz (default)
+  group: ''
+- name: Initial output voltage, V0
+  summary: Initial output voltage 0 V (default)
+  group: ''
+```
 
 ### **Gain, A** — Open-loop gain `1000` (default)
 
@@ -78,7 +116,6 @@ is zero.
 
 This parameter value does not account for the voltage drop across the
 output resistor.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

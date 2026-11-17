@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Estimate Center of Gravity
 
 ## 端口
+```yaml
+ports:
+- name: mass
+  summary: 质量标量
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: 变化率标量 | 三元素向量
+  direction: input
+  data_types: '| double'
+- name: CG
+  summary: 重心位置三元素向量
+  direction: output
+  data_types: double
+- name: dCG/dt
+  summary: 变化率三元素向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +61,38 @@ chinese_source: worker-translation
 重心位置变化率，返回为三元素向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Full mass
+  summary: 质量 2（默认）| 标量
+  group: ''
+  block_parameter: fmass
+  type: 字符向量
+  values: 双精度标量
+  default: '''2'''
+- name: Empty mass
+  summary: 空载质量 1（默认）| 标量
+  group: ''
+  block_parameter: emass
+  type: 字符向量
+  values: 双精度标量
+  default: '''1'''
+- name: Full center of gravity
+  summary: 满载重心 [1 1 1]'（默认）| 三元素向量
+  group: ''
+  block_parameter: fcg
+  type: 字符向量
+  values: 三元素向量
+  default: '[1 1 1]'''
+- name: Empty center of gravity
+  summary: 空载重心 [0.5 0.5 0.5]'（默认）| 三元素向量
+  group: ''
+  block_parameter: ecg
+  type: 字符向量
+  values: 三元素向量
+  default: '[0.5 0.5 0.5]'''
+```
 
 ### **Full mass** — 质量 `2`（默认）| 标量
 
@@ -96,7 +145,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：三元素向量 |
 | **默认值**：`[0.5 0.5 0.5]'` |
-
 ## 所属库
 
 Aerospace Blockset / Mass Properties

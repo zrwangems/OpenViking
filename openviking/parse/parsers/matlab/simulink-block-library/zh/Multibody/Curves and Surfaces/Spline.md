@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Spline
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+- name: G
+  summary: 样条曲线表示几何
+  direction: unspecified
+```
 
 ### Frame
 
@@ -27,8 +36,46 @@ chinese_source: worker-translation
 ### **G** — 样条曲线表示几何
 
 与二维或三维连续样条曲线表示相关联的几何数据。它向与其连接的其他模块（例如 Point on Curve Constraint 模块）提供样条曲线规格。
-
 ## 参数
+```yaml
+parameters:
+- name: Interpolation Points
+  summary: 用于指定样条曲线的插值点坐标 [6 -2 9; -6 5 -4; -6 -7 9; 6 0 -4; -3 6 9; -3 -8 -4] m（默认）| *N*×2 矩阵 | *N*×3 矩阵
+  group: ''
+- name: End Conditions
+  summary: 曲线端点的处理方式 Periodic (Closed)（默认）| Natural (Open)
+  group: ''
+- name: Type
+  summary: 样条可视化设置 From Geometry（默认）| Marker | None
+  group: ''
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: ''
+- name: Diffuse Color
+  summary: 真彩色，格式为 [R,G,B,A] [0.0 0.0 0.0]（默认）| 三元素向量 | 四元素向量
+  group: ''
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: ''
+- name: Specular Color
+  summary: 镜面反射产生的光颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: ''
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: ''
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: ''
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值范围约束为 0–128 的标量
+  group: ''
+- name: Shape
+  summary: 图形标记的形状 Sphere（默认）| Cube | Frame
+  group: ''
+- name: Size
+  summary: 标记的宽度（以像素为单位）10 pixels（默认）| 标量
+  group: ''
+```
 
 ### **Interpolation Points** — 用于指定样条曲线的插值点坐标 [6 -2 9; -6 5 -4; -6 -7 9; 6 0 -4; -3 6 9; -3 -8 -4] m（默认）| *N*×2 矩阵 | *N*×3 矩阵
 
@@ -140,7 +187,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Type** 设置为 `Marker`。
-
 ## 所属库
 
 Simscape / Multibody / Curves and Surfaces

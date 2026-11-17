@@ -14,6 +14,17 @@ language: en
 # Serial Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data received vector | matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Status
+  summary: New data available false or 0 (default) | true or 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -36,8 +47,84 @@ To enable this port, unselect the **Enable blocking mode**
 parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Port
+  summary: Serial communication port available communication ports
+  group: ''
+  block_parameter: Port
+  type: character vector, string
+- name: Data type
+  summary: Output data type uint8 (default) | single | double | int8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataType
+  type: character vector, string
+  values: '''uint8'' | ''single'' | ''double'' | ''int8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'''
+  default: '''uint8'''
+- name: Header
+  summary: Header numeric array | integer from 0 to 255, inclusive
+  group: ''
+  block_parameter: Header
+  type: character vector, string
+  values: integer array
+  default: '''off'''
+- name: End token
+  summary: Terminator <none> (default) | CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+  block_parameter: Terminator
+  type: character vector, string
+  values: '''<none>'' | ''CR (''\r'')'' | ''LF (''\n'')'' | ''CR/LF (''\r\n'')'' | ''NULL (''\0'')'' | ''Custom Terminator'''
+  default: '''<none>'''
+- name: Custom terminator
+  summary: Custom terminator numeric array | integer from 0 to 255, inclusive
+  group: ''
+  block_parameter: CustomTerminator
+  type: character vector, string
+  values: integer array
+- name: Input Format
+  summary: Format of data read Column major (default) | Row major
+  group: ''
+  block_parameter: InputFormat
+  type: character vector, string
+  values: '''Row major'' | ''Column major'''
+  default: '''Column major'''
+- name: Data size
+  summary: Number of values read [1 1] (default) | numeric array
+  group: ''
+  block_parameter: DataSize
+  type: character vector, string
+  values: integer array
+  default: '''[1 1]'''
+- name: Enable blocking mode
+  summary: Simulation waits while receiving data on (default) | off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Action when data is not available
+  summary: Action to take when data not available Output last received value (default) | Output custom value | Error
+  group: ''
+  block_parameter: ActionDataUnavailable
+  type: character vector, string
+  values: '''Output last received value'' | ''Output custom value'' | ''Error'''
+  default: '''Output last received value'''
+- name: Custom value
+  summary: Custom output value when data unavailable 0 (default) | numeric
+  group: ''
+  block_parameter: CustomValue
+  type: character vector, string
+  values: numeric
+  default: '''0'''
+- name: Block sample time
+  summary: Sampling time 0.01 (default) | positive numeric
+  group: ''
+  block_parameter: SampleTime
+  type: character vector, string
+  values: positive numeric
+  default: '''0.01'''
+```
 
 ### **Port** — Serial communication port available communication ports
 
@@ -275,7 +362,6 @@ block is executed during simulation.
 | **Type:** character vector, string |
 | **Values:** positive numeric |
 | **Default:** `'0.01'` |
-
 ## Libraries
 
 Instrument Control Toolbox Motor Control Blockset / Protection and Diagnostics

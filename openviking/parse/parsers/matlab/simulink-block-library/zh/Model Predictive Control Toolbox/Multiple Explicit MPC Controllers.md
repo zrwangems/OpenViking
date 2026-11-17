@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Multiple Explicit MPC Controllers
 
 ## 端口
+```yaml
+ports:
+- name: switch
+  summary: 控制器选择整数
+  direction: input
+- name: mo
+  summary: 测量输出向量
+  direction: input
+- name: x[k|k]
+  summary: 自定义状态估计向量
+  direction: input
+- name: ref
+  summary: 模型参考输出向量
+  direction: input
+- name: md
+  summary: 测量扰动向量
+  direction: input
+- name: ext.mv
+  summary: 上一控制区间内被控对象所使用的控制信号向量
+  direction: input
+- name: mv
+  summary: 最优操纵变量控制作用列向量
+  direction: output
+- name: status
+  summary: 分段仿射函数评估状态 1 | 0 | -1
+  direction: output
+- name: region
+  summary: 所评估分段仿射函数的区域编号 非负整数
+  direction: output
+- name: est.state
+  summary: 估计的控制器状态向量
+  direction: output
+```
 
 ### 输入
 
@@ -141,8 +174,78 @@ Multiple Explicit MPC Controllers 模块将活动控制器的输出传递到 **m
 #### 依赖关系
 
 要启用此端口，请选择 **Estimated controller states** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Cell Array of Explicit MPC Controllers
+  summary: 候选控制器元胞数组，包含 explicitMPC 对象 | 字符串元胞数组 | 字符向量元胞数组
+  group: ''
+  block_parameter: empcobjs
+  type: string, character vector, cell array of strings, cell array of character vectors
+  default: '""'
+- name: Cell Array of Initial Controller States
+  summary: 初始状态元胞数组，包含 mpcstate 对象 | 字符串元胞数组 | 字符向量元胞数组
+  group: ''
+  block_parameter: x0s
+  type: string, character vector, cell array of strings, cell array of character vectors
+  default: '""'
+- name: Measured disturbances
+  summary: 添加可测扰动输入端口 on（默认）| off
+  group: ''
+  block_parameter: md_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: External manipulated variable
+  summary: 添加外部操纵变量输入端口 off（默认）| on
+  group: ''
+  block_parameter: mv_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Status of piecewise affine function evaluation
+  summary: 添加评估状态输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_status_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Region number of evaluated piecewise affine function
+  summary: 添加区域编号输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_region_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 估计的控制器状态
+  summary: 添加估计状态输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_state_multiple
+  type: 字符串、字符向量
+  values: '"off"、"on"'
+  default: '"off"'
+- name: 使用自定义状态估计代替内置卡尔曼滤波器
+  summary: 使用自定义状态估计输入端口 off（默认）| on
+  group: ''
+  block_parameter: state_inport_multiple
+  type: 字符串、字符向量
+  values: '"off"、"on"'
+  default: '"off"'
+- name: 模块数据类型
+  summary: 指定操纵变量的数据类型 double（默认）| single | data type expression
+  group: ''
+  block_parameter: BlockDataType_multiple
+  type: 字符串、字符向量
+  values: '"double"、"single"、data type expression'
+  default: '"double"'
+- name: 继承采样时间
+  summary: 从父子系统继承模块采样时间 off（默认）| on
+  group: ''
+  block_parameter: SampleTimeInherited_multiple
+  type: 字符串、字符向量
+  values: '"off"、"on"'
+  default: '"off"'
+```
 
 ### **Cell Array of Explicit MPC Controllers** — 候选控制器元胞数组，包含 `explicitMPC` 对象 | 字符串元胞数组 | 字符向量元胞数组
 
@@ -319,7 +422,6 @@ Subsystem 模块。否则，您可能会看到意外结果，原因有两个。
 | **类型：** 字符串、字符向量 |
 | **值：** `"off"`、`"on"` |
 | **默认值：** `"off"` |
-
 ## 所属库
 
 Model Predictive Control Toolbox

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Slew Rate
 
 ## 端口
+```yaml
+ports:
+- name: events
+  summary: 输入信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: wave
+  summary: 输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,40 @@ chinese_source: worker-translation
 固定步长、均匀采样的输出信号，以标量形式返回。您可以为 **wave** 端口处的信号定义有限压摆率和传播延迟。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Output step size calculation
+  summary: 定义如何计算输出步长 Default（默认）| Advanced
+  group: ''
+- name: Maximum frequency of interest (Hz)
+  summary: 输出端的最大关注频率 11e9（默认）| 标量
+  group: ''
+- name: Output sample interval
+  summary: 输出采样间隔 23ps（默认）| 标量
+  group: ''
+- name: Minimum 20%-80% rise/fall time
+  summary: 输出端进行有意义仿真所需的最小上升/下降时间 23ps（默认）| 标量
+  group: ''
+- name: Rise/fall time (s)
+  summary: 输出端的 20%-80% 上升时间 30e-12（默认）| 标量
+  group: ''
+- name: Slew rate for 20%-80% edge of unit amplitude signal
+  summary: 输出端 20%-80% 边沿的压摆率 56GHz（默认）| 标量
+  group: ''
+- name: Minimum propagation delay
+  summary: 用于有效仿真的最小传播延迟 48ps（默认）| 标量
+  group: ''
+- name: Propagation delay (s)
+  summary: 上升沿的传播延迟 48e-12（默认）| 标量
+  group: ''
+- name: Enable increased buffer size
+  summary: 启用增大缓冲区大小按钮
+  group: ''
+- name: Buffer size
+  summary: 模块的缓冲区大小 10（默认）| 正整数标量
+  group: ''
+```
 
 ### **Output step size calculation** — 定义如何计算输出步长 `Default`（默认）| `Advanced`
 
@@ -141,7 +184,6 @@ PLL 模型中属于 Mixed-Signal Blockset/Utilities Simulink 库的所有模块�
 
 - 使用 `get_param(gcb,'NBuffer')` 查看 **Buffer size** 的当前值。
 - 使用 `set_param(gcb,'NBuffer',value)` 将 **Buffer size** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

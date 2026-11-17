@@ -14,6 +14,19 @@ language: en
 # Symbol Synchronizer
 
 ## Ports
+```yaml
+ports:
+- name: Samp
+  summary: Input samples scalar (default) | column vector
+  direction: input
+  data_types: double | single
+- name: Sym
+  summary: Output signal symbols scalar | column vector
+  direction: output
+- name: Err
+  summary: Estimated timing error scalar | column vector
+  direction: output
+```
 
 ### Input
 
@@ -55,8 +68,35 @@ has the same data type and size as the input signal.
 
 To enable this port, select **Normalized timing error
 output port**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation type
+  summary: Modulation type PAM/PSK/QAM (default) | OQPSK
+  group: ''
+- name: Timing error detector
+  summary: Type of timing error detector Zero-Crossing (decision-directed) (default) | Gardner (non-data-aided) | Early-Late
+    (non-data-aided) | Mueller-Muller (decision-directed)
+  group: ''
+- name: Samples per symbol
+  summary: Samples per symbol 2 (default) | positive integer greater than 1
+  group: ''
+- name: Damping factor
+  summary: Damping factor of the loop filter 1 (default) | positive scalar
+  group: ''
+- name: Normalized loop bandwidth
+  summary: Normalized bandwidth of loop filter 0.01 (default) | positive scalar less than 1
+  group: ''
+- name: Detector gain
+  summary: Phase detector gain 2.7 (default) | positive scalar
+  group: ''
+- name: Normalized timing error output port
+  summary: Enable normalized timing error output port on (default) | off
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -139,7 +179,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Synchronization

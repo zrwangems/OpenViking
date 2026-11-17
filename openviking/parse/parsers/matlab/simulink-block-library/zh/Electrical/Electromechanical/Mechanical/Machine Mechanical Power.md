@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Machine Mechanical Power
 
 ## 端口
+```yaml
+ports:
+- name: Pm
+  summary: 机械功率 物理 | 正
+  direction: input
+- name: pu
+  summary: 标幺值机械功率 物理 | 正
+  direction: input
+- name: R
+  summary: 电机转子 机械
+  direction: input
+- name: C
+  summary: 电机机壳 机械
+  direction: input
+```
 
 ### 输入
 
@@ -46,8 +61,55 @@ unit** 参数设置为 `Per unit` 时，此端口才可见。
 ### **C** — 电机机壳 机械
 
 与电机机壳相关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Input power sign convention
+  summary: 类型规格 Generator（默认）| Motor
+  group: 主要参数
+- name: Rated apparent power
+  summary: 额定视在功率 555e6 V*A（默认）
+  group: 主要参数
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz（默认）
+  group: 主要参数
+- name: Number of pole pairs
+  summary: 极对数 1（默认）
+  group: 主要参数
+- name: PS input unit
+  summary: 物理信号单位制 SI（默认）| Per unit
+  group: 主要参数
+- name: Peak torque to rated torque ratio
+  summary: 峰值转矩与额定转矩之比 2（默认）
+  group: 主要参数
+- name: Specify inertia parameterization by
+  summary: 惯量参数化 Inertia constant, H（默认）| Actual Inertia, J
+  group: Inertia
+- name: Inertia constant, H
+  summary: 惯量常数 3.525 s*W/VA（默认）
+  group: Inertia
+- name: Actual inertia, J
+  summary: 实际惯量 27548 kg*m^2（默认）
+  group: Inertia
+- name: Specify damper parameterization by
+  summary: 阻尼参数化 Per-unit damping coefficient, pu_D（默认）| SI damping coefficient, D
+  group: Inertia
+- name: Per-unit damping coefficient
+  summary: 标幺值阻尼系数 0.01（默认）
+  group: Inertia
+- name: SI damping coefficient
+  summary: 阻尼系数 39.0509 Nm/(rad/s)（默认）
+  group: Inertia
+- name: Specify initialization by
+  summary: 频率初始化 Initial electrical frequency（默认）| Initial mechanical frequency
+  group: 初始条件
+- name: Initial electrical frequency
+  summary: 初始电气频率 60 Hz（默认）
+  group: 初始条件
+- name: Initial mechanical frequency
+  summary: 初始机械频率 60 Hz（默认）
+  group: 初始条件
+```
 
 ### 主要参数
 
@@ -157,7 +219,6 @@ electrical frequency` 时，此参数才可见。
 仅当您将 **Specify
 initialization by** 参数设置为 `Initial
 mechanical frequency` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechanical

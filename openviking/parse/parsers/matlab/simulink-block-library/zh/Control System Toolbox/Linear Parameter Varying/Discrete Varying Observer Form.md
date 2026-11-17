@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Discrete Varying Observer Form
 
 ## 端口
+```yaml
+ports:
+- name: yk
+  summary: 测量信号 标量 | 向量
+  direction: input
+- name: A
+  summary: 对象状态矩阵 矩阵
+  direction: input
+- name: B
+  summary: 对象输入矩阵 矩阵
+  direction: input
+- name: C
+  summary: 对象输出矩阵 矩阵
+  direction: input
+- name: D
+  summary: 对象前馈矩阵 矩阵
+  direction: input
+- name: K
+  summary: 状态反馈矩阵 矩阵
+  direction: input
+- name: L
+  summary: 状态观测器矩阵 矩阵
+  direction: input
+- name: uk
+  summary: 控制信号 标量 | 向量
+  direction: output
+- name: xk
+  summary: 估计的对象状态向量 向量
+  direction: output
+- name: xk+1
+  summary: 估计的下一状态向量 向量
+  direction: output
+```
 
 ### 输入
 
@@ -66,8 +99,22 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Output state updates** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial conditions
+  summary: 系统初始条件 0（默认）| 标量 | 向量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 –1（默认）| 正标量
+  group: ''
+- name: Output states
+  summary: 提供状态输出 on（默认）| off
+  group: ''
+- name: Output state derivatives
+  summary: 提供状态更新 on（默认）| off
+  group: ''
+```
 
 ### **Initial conditions** — 系统初始条件 0（默认）| 标量 | 向量
 
@@ -84,7 +131,6 @@ chinese_source: worker-translation
 ### **Output state derivatives** — 提供状态更新 on（默认）| off
 
 选择以启用估计状态更新输出端口 **xk+1**。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

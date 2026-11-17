@@ -14,6 +14,45 @@ language: en
 # Field-Oriented Current Controller
 
 ## Ports
+```yaml
+ports:
+- name: IdqRef
+  summary: Reference *d*- and *q*-axis currents vector
+  direction: input
+  data_types: single | double | fixed point
+- name: IabMeas
+  summary: Measured phase *a* and *b* currents vector
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: Motor electrical position scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: VSatLim
+  summary: Saturation limit of *d-q* voltages scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Kp,Ki\*Ts
+  summary: '*d*- and *q*-axis PI controller gains vector'
+  direction: input
+  data_types: single | double | fixed point
+- name: PIConfig
+  summary: Initial values and limits of the PI controller output vector
+  direction: input
+  data_types: single | double | fixed point
+- name: Enable
+  summary: Reset block scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vabc
+  summary: Motor phase voltages vector
+  direction: output
+  data_types: single | double | fixed point
+- name: Debug
+  summary: Signals for debugging vector
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -124,8 +163,25 @@ debugging purposes. The multiplexed signal consists of these elements:
   **IabMeas** input.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input electrical position unit
+  summary: Unit of electrical position input Radians (default) | Degrees | Per-unit
+  group: ''
+- name: Number of data points for sine-cosine lookup table
+  summary: Size of lookup table array 1024 (default) | scalar in the range [125, 4095]
+  group: ''
+- name: Alpha (phase-a) axis alignment
+  summary: '*dq* reference frame alignment D-axis (default) | Q-axis'
+  group: ''
+- name: Saturation method
+  summary: Saturation method used by block D-Q equivalence (default) | Prioritize D axis | Prioritize Q axis
+  group: ''
+- name: PWM method
+  summary: 'Modulation technique SVM: space vector modulation (default) | SPWM: sinusoidal PWM'
+  group: ''
+```
 
 ### **Input electrical position unit** — Unit of electrical position input `Radians` (default) | `Degrees` | `Per-unit`
 
@@ -159,7 +215,6 @@ outputs, specified as one of these:
 
 - `SVM: space vector modulation`
 - `SPWM: sinusoidal PWM`
-
 ## Libraries
 
 Motor Control Blockset / Controls / Controllers

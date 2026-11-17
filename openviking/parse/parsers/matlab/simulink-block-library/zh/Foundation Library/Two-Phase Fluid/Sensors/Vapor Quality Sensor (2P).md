@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Vapor Quality Sensor (2P)
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 蒸汽干度，无量纲物理信号
+  direction: output
+- name: A
+  summary: 传感器入口两相流体
+  direction: output
+```
 
 ### 输出
 
@@ -26,13 +35,17 @@ chinese_source: worker-translation
 ### **A** — 传感器入口两相流体
 
 两相流体守恒端口。将此端口连接到两相流体网络中您想要测量蒸汽干度的节点。
-
 ## 参数
+```yaml
+parameters:
+- name: Vapor fraction specification
+  summary: 以质量基准还是体积基准表示蒸汽分数 Vapor quality（默认）| Vapor void fraction
+  group: ''
+```
 
 ### **Vapor fraction specification** — 以质量基准还是体积基准表示蒸汽分数 `Vapor quality`（默认）| `Vapor void fraction`
 
 在端口 **X** 处报告的测量类型。选择 `Vapor quality` 表示两相流体中蒸汽的质量分数。选择 `Vapor void fraction` 表示体积分数。两种情况下测量范围均为 `0` 到 `1`。对于临界和超临界流体，输出为 `-1`。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Sensors

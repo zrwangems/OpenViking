@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Pressure Compensator Valve (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 湿空气端口 湿空气
+  direction: input
+- name: B
+  summary: 湿空气端口 湿空气
+  direction: input
+- name: X
+  summary: 压力参考 湿空气
+  direction: input
+- name: Y
+  summary: 压力参考 湿空气
+  direction: input
+- name: Ps
+  summary: 受控压差，Pa 物理信号
+  direction: input
+```
 
 ### 守恒
 
@@ -42,8 +60,94 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **设置压力控制** 设置为 `Controlled`。
-
 ## 参数
+```yaml
+parameters:
+- name: 阀参数化
+  summary: 阀参数化模型 Cv flow coefficient (默认) | Kv flow coefficient | Sonic conductance | Orifice area
+  group: ''
+- name: 开度特性
+  summary: 将控制信号转换为流通能力度量的方法 Linear (默认) | Tabulated
+  group: ''
+- name: 阀规格
+  summary: 阀偏置 Normally open (默认) | Normally closed
+  group: ''
+- name: Set pressure control
+  summary: 恒定或受控的阀门运行 Constant（默认） | Controlled
+  group: ''
+- name: Set pressure differential
+  summary: 超出后触发恒定阀门运行的范围 0 MPa（默认） | scalar
+  group: ''
+- name: Pressure regulation range
+  summary: 阀门工作压力范围 0.1 MPa（默认） | scalar
+  group: ''
+- name: Opening pressure differential vector
+  summary: '用于表格化参数设置的压差值 [0.2 : 0.2 : 1.2] MPa（默认） | 1-by*n* vector'
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 组件处于最大开启状态时对应的 *Cv* 系数 4（默认） | positive scalar
+  group: ''
+- name: Cv 流量系数向量
+  summary: 与构件位置向量中的值对应的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认值）| 1×*n* 向量
+  group: ''
+- name: 最大 Kv 流量系数
+  summary: 组件完全打开时对应的 *Kv* 系数 3.6（默认值）| 正标量
+  group: ''
+- name: Kv 流量系数向量
+  summary: 与构件位置向量中的值对应的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认值）| 1×*n* 向量
+  group: ''
+- name: 最大声速流导
+  summary: 组件开度最大时对应的声速流导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: 临界压力比
+  summary: 流动首次发生壅塞时下游压力与上游压力之比 0.3（默认）| 正标量
+  group: ''
+- name: 亚声速指数
+  summary: 用于表征亚声速流动状态下质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO 参考温度
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO 参考密度
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认值）| 正标量
+  group: ''
+- name: 声速流导向量
+  summary: 与控制件位置向量中的值对应的声速流导 [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)（默认值）| 正值向量
+  group: ''
+- name: 临界压力比向量
+  summary: 与控制件位置向量中的值对应的临界压力比 0.3 * ones(1,6)（默认值）| 正数向量
+  group: ''
+- name: 阻塞流时的 xT 压差比系数
+  summary: 压差比 0.7（默认值）| 正标量
+  group: ''
+- name: 最大孔口面积
+  summary: 最大阀门开口面积 1e-4 m^2（默认） | 正标量
+  group: ''
+- name: 孔口面积向量
+  summary: 阀门开口面积值向量 [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2（默认） | 1×*n* 向量
+  group: ''
+- name: 流量系数
+  summary: 流量系数 0.64（默认） | 正标量
+  group: ''
+- name: 泄漏流量比例
+  summary: 流量比 1e-6（默认） | 正标量
+  group: ''
+- name: 平滑因子
+  summary: 数值平滑因子 0.01（默认） | 范围 [0,1] 内的正标量
+  group: ''
+- name: 层流压力比
+  summary: 层流-湍流转变压力比 0.999（默认值）| 正标量
+  group: ''
+- name: 端口 A 和 B 的横截面积
+  summary: 阀门端口面积 0.01 m^2（默认值）| 正标量
+  group: ''
+- name: 开启动态特性
+  summary: 是否考虑流量对阀门开启的响应 off（默认值）| on
+  group: ''
+- name: 开启时间常数
+  summary: 阀门开启时间常数 0.1 s（默认值）| 正标量
+  group: ''
+```
 
 ### **阀参数化** — 阀参数化模型 `Cv flow coefficient` (默认) | `Kv flow coefficient` | `Sonic conductance` | `Orifice area`
 
@@ -247,7 +351,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择**开启动态特性**。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Pressure Control Valves

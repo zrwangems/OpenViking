@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # MFSK Waveform
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: MFSK 波形 复值列向量
+  direction: output
+```
 
 ### 输出
 
@@ -25,8 +31,46 @@ MFSK 波形，以包含波形样本的复值列向量形式返回。
 - 如果 **Output signal format** 参数设置为 `Steps`，则该端口的输出包含由 **Number of frequency steps in output** 参数设置的步数。
 - 如果 **Output signal format** 参数设置为 `Samples`，则该端口的输出包含由 **Number of samples in output** 参数设置的样本数。
 - 如果 **Output signal format** 参数设置为 `Sweeps`，则该端口的输出包含由 **Number of sweeps in output** 参数设置的扫描数。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: 采样率 151e6（默认）| 正标量
+  group: ''
+- name: Sweep bandwidth (Hz)
+  summary: MFSK 扫描带宽 150e6（默认）| 正标量
+  group: ''
+- name: Frequency step burst time (s)
+  summary: 频率步进突发时间 5e-6（默认）| 正标量
+  group: ''
+- name: Number of steps per sweep
+  summary: 每次扫描的总频率步数 512（默认）| 偶正标量
+  group: ''
+- name: Chirp offset frequency (Hz)
+  summary: 线性调频偏移频率 -294e3（默认）| 实标量
+  group: ''
+- name: Output signal format
+  summary: 输出信号格式 Steps（默认）| Samples | Sweeps
+  group: ''
+- name: Number of sweeps in output
+  summary: 输出中的扫描次数 1（默认）| 正整数
+  group: ''
+- name: Number of frequency steps in output
+  summary: 输出中的频率步数 1（默认）| 正整数
+  group: ''
+- name: Number of samples in output
+  summary: 输出中的样本数 100（默认）| 正整数
+  group: ''
+  block_parameter: NumSamples
+  type: double
+  values: positive scalar
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 ### **Sample rate (Hz)** — 采样率 `151e6`（默认）| 正标量
 
@@ -134,7 +178,6 @@ Generation` 运行模块。长时间仿真使用生成代码比
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Waveforms

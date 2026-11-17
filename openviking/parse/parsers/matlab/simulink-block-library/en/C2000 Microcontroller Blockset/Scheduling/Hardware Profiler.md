@@ -14,6 +14,16 @@ language: en
 # Hardware Profiler
 
 ## Ports
+```yaml
+ports:
+- name: f()
+  summary: Function call port scalar
+  direction: output
+- name: cnt
+  summary: Count port scalar
+  direction: output
+  data_types: uint32
+```
 
 ### Output
 
@@ -33,8 +43,23 @@ mode** parameter to either `Embedded Real-time Analysis
 & Diagnostic (ERAD)` or `Timer`.
 
 **Data Types:** `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement mode
+  summary: Select hardware profiling technique Embedded Real-time Analysis & Diagnostic (ERAD) (default) | General Purpose
+    Input Output (GPIO) | Timer
+  group: ''
+- name: ERAD module
+  summary: Specify ERAD module 1 (default) | 2 | 3 | 4
+  group: ''
+- name: GPIO number
+  summary: Specify GPIO number 0 (default)
+  group: ''
+- name: Sample time
+  summary: Sample time at which block reads data from hardware profiler -1 (default)
+  group: ''
+```
 
 ### **Measurement mode** — Select hardware profiling technique `Embedded Real-time Analysis & Diagnostic (ERAD)` (default) | `General Purpose Input Output (GPIO)` | `Timer`
 
@@ -96,7 +121,6 @@ function-call subsystem.
 Use this parameter to specify the time interval between 2 function-call
 triggers. The count data is also updated at the mentioned sample time. To inherit
 sample time, set this parameter to -1.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Scheduling

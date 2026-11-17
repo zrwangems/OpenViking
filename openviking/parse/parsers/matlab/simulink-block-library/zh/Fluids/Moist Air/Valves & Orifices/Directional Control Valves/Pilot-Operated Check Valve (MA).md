@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pilot-Operated Check Valve (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 阀入口或出口湿空气
+  direction: conserving
+- name: B
+  summary: 阀入口或出口湿空气
+  direction: conserving
+- name: X
+  summary: 先导端口湿空气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,70 @@ chinese_source: worker-translation
 ### **X** — 先导端口湿空气
 
 与先导机构关联的湿空气守恒端口，通过施加足够的压力来致动先导机构，从而打开阀以实现反向流动。该端口没有质量流量。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: 用于指定节流孔流动特性的参数化方法 Cv flow coefficient（默认）| Kv flow coefficient | Sonic conductance | Orifice area
+  group: ''
+- name: Pilot configuration
+  summary: 处理负先导压力作用力的方法 Rigidly connected pilot spool and poppet（默认）| Disconnected pilot spool and poppet
+  group: ''
+- name: Pilot pressure specification
+  summary: 选择用作阀控制信号的压力测量 Pressure difference of port X relative to port A（默认）| Gauge pressure at port X
+  group: ''
+- name: Cracking pressure differential
+  summary: 阀首次打开时的有效控制压力 0.01 MPa（默认）| 正标量
+  group: ''
+- name: Maximum opening pressure differential
+  summary: 阀完全打开时的有效控制压力 0.02 MPa（默认）| 正标量
+  group: ''
+- name: Pilot ratio
+  summary: 先导端口面积与入口端口面积之比 1（默认）| 正标量
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应于组件最大开启状态的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应于组件最大开启状态的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 对应于组件最大开启状态的声速导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力之比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Maximum orifice area
+  summary: 对应于组件最大开启状态的流动面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 范围在 [0,1] 内的正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: orifice 关闭时与打开时的流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流与湍流状态之间转换时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 湿空气端口处的流通面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Valve parameterization** — 用于指定节流孔流动特性的参数化方法 `Cv flow coefficient`（默认）| `Kv flow coefficient` | `Sonic conductance` | `Orifice area`
 
@@ -203,7 +277,6 @@ orifice 关闭时与打开时的流量比。
 ### **Cross-sectional area at ports A and B** — 湿空气端口处的流通面积 `0.01 m^2`（默认）| 正标量
 
 每个端口处垂直于流动路径的面积。各端口尺寸相同。此参数的值应与阻力元件所连接组件的入口面积相匹配。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Directional Control Valves

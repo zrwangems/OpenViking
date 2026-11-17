@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # TOA Estimator
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 信道估计矩阵 *N*×*M* 复值矩阵 | *N*×*M*×*L* 复值数组 | 1×*L* 元胞数组
+  direction: input
+  data_types: single | double
+- name: FreqSpacing
+  summary: 信道估计的频率间隔 900000
+  direction: input
+  data_types: single | double
+- name: DelayOffset
+  summary: 已知延迟偏移 标量 | 实值 1×*L* 向量
+  direction: input
+  data_types: single | double
+- name: NPow
+  summary: 高斯白噪声功率 标量 | 正实值 1×*L* 向量
+  direction: input
+  data_types: single | double
+- name: AnchorPos
+  summary: 锚点位置 *Q*×*L* 实值矩阵
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: TOA 和 TDOA 估计结果 1×*L* 实值向量 | 1×(*L*-1) 实值向量
+  direction: output
+  data_types: single | double
+- name: Var
+  summary: 测量方差 1×*L* 向量 | 1×(*L*-1) 向量
+  direction: output
+  data_types: single | double
+- name: TgtPosEst
+  summary: 目标位置估计 实值 *Q*×1 向量
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: 目标位置协方差估计 *Q*×*Q* 实正半定对称矩阵
+  direction: output
+  data_types: single | double
+- name: TOAResp
+  summary: 基于 FFT 的 TOA 响应 *P*×*M*×*L* 矩阵 | 1×*L* 元胞数组
+  direction: output
+  data_types: single | double
+- name: TOAGrid
+  summary: TOA 网格 *P*×*L* 矩阵 | 1×*L* 元胞数组
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -140,8 +187,50 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output FFT-based TOA response** 复选框。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: ''
+- name: TOA/TDOA measurement
+  summary: 测量类型 TOA（默认）| TDOA
+  group: ''
+- name: TOA spectrum analysis method
+  summary: 频谱分析方法 FFT（默认）| MUSIC
+  group: ''
+- name: Enable known delay offset input
+  summary: 启用延迟偏移输入 0（默认）| 1
+  group: ''
+- name: Output variance of TOA/TDOA estimates
+  summary: 启用 TOA/TDOA 估计方差输出 0（默认）| 1
+  group: ''
+- name: Output FFT-based TOA response
+  summary: 启用基于 FFT 的 TOA 响应输出 0（默认）| 1
+  group: ''
+- name: Enable forward-backward averaging
+  summary: 启用前向-后向平均 0（默认）| 1
+  group: ''
+- name: Spatial smoothing
+  summary: 空间平滑参数 0（默认）| 非负整数
+  group: ''
+- name: Output estimated target position
+  summary: 启用估计目标位置输出 0（默认）| 1
+  group: ''
+- name: Source of noise power
+  summary: 噪声功率来源 Property（默认）| Input port
+  group: ''
+- name: Noise power (W)
+  summary: 高斯白噪声功率 正标量（默认）| 1-by-*L* 正实数值向量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -268,7 +357,6 @@ TOA 频谱分析方法，指定为 `FFT` 或 `MUSIC`。当选择 `FFT` 时，使
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

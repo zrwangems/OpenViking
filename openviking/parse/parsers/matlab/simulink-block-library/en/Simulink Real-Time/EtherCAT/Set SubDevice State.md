@@ -14,6 +14,21 @@ language: en
 # EtherCAT Set Device State
 
 ## Ports
+```yaml
+ports:
+- name: New State
+  summary: State transmitted to the EtherCAT network 1 | 2 | 4 | 8
+  direction: input
+- name: Enable
+  summary: Enables block to send state request 0 | 1
+  direction: input
+- name: Prev State
+  summary: Previous state of the selected device 1 | 2 | 4 | 8
+  direction: output
+- name: Error
+  summary: Report an EtherCAT state error 0 | integer
+  direction: output
+```
 
 ### Input
 
@@ -42,8 +57,22 @@ value might not be the same as the previous state of this block.
 If no error occurs, this port
 returns `0`. Otherwise, it returns a nonzero value. For
 more information, see EtherCAT Error Codes.
-
 ## Parameters
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT network identifier 0 (default) | 0-11
+  group: ''
+  block_parameter: device_id
+- name: SubDevice Name
+  summary: Name of EtherCAT subordinate device character vector
+  group: ''
+  block_parameter: device_name
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT network identifier `0` (default) | `0-11`
 
@@ -80,7 +109,6 @@ that the sample time is inherited.
 |  |
 | --- |
 | **Block Parameter:** `sample_time` |
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

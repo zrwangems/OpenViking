@@ -14,6 +14,33 @@ language: en
 # Integrator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal to integrate scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: External Reset
+  summary: Signal for resetting state to initial condition scalar | vector | matrix
+  direction: input
+  data_types: Boolean
+- name: x0
+  summary: Initial condition scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Integrated signal scalar | vector | matrix
+  direction: output
+  data_types: double
+- name: Port_2
+  summary: Output saturation signal scalar | vector | matrix
+  direction: output
+  data_types: double
+- name: Port_3
+  summary: Block state scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -100,8 +127,114 @@ To enable this port, select **Show state
 port**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: External reset
+  summary: Reset states to their initial conditions none (default) | rising | falling | either | level | level hold
+  group: ''
+  block_parameter: ExternalReset
+  type: character vector , string
+  values: '''none'' | ''rising'' | ''falling'' | ''either'' | ''level'' | ''level hold'''
+  default: '''none'''
+- name: Initial condition source
+  summary: Option to set initial condition using external signal internal (default) | external
+  group: ''
+  block_parameter: InitialConditionSource
+  type: character vector, string
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial condition
+  summary: Initial state 0 (default) | real scalar or array
+  group: ''
+  block_parameter: InitialCondition
+  type: scalar or vector
+  default: '''0'''
+- name: Limit output
+  summary: Limit block output values to specified range off (default for Integrator) | on (default for Integrator Limited)
+  group: ''
+  block_parameter: LimitOutput
+  type: character vector , string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Upper saturation limit
+  summary: Upper limit for the integral inf (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: UpperSaturationLimit
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''inf'''
+- name: Lower saturation limit
+  summary: Lower limit for the integral -inf (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: LowerSaturationLimit
+  type: character vector , string
+  values: scalar | vector | matrix
+  default: '''-inf'''
+- name: Wrap state
+  summary: Enable wrapping of states off (default) | on
+  group: ''
+  block_parameter: WrapState
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Wrapped state upper value
+  summary: Specify upper value for wrapped state pi (default) | scalar | vector
+  group: ''
+  block_parameter: WrappedStateUpperValue
+  type: scalar or vector
+  values: '''2*pi'''
+  default: '''pi'''
+- name: Wrapped state lower value
+  summary: Specify lower value for wrap state -pi (default) | scalar | vector
+  group: ''
+  block_parameter: WrappedStateLowerValue
+  type: scalar or vector
+  values: '''0'''
+  default: '''-pi'''
+- name: Show saturation port
+  summary: Enable saturation output port off (default) | on
+  group: ''
+  block_parameter: ShowSaturationPort
+  type: character vector , string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show state port
+  summary: Enable state output port off (default) | on
+  group: ''
+  block_parameter: ShowStatePort
+  type: character vector , string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Absolute tolerance
+  summary: Absolute tolerance for block states auto (default) | real scalar or vector
+  group: ''
+  block_parameter: AbsoluteTolerance
+  type: character vector, string, scalar, or vector
+  values: '''auto'' | ''-1'' | any positive real scalar or vector'
+  default: '''auto'''
+- name: Ignore limit and reset when linearizing
+  summary: Option to use default reset and limit behavior for block during linearization off (default) | on
+  group: ''
+  block_parameter: IgnoreLimit
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: State Name (e.g., 'position')
+  summary: Assign unique name to each state ' ' (default) | character vector | string
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  type: character vector, string
+  values: ''' '' | user-defined'
+  default: ''' '''
+```
 
 ### **External reset** — Reset states to their initial conditions `none` (default) | `rising` | `falling` | `either` | `level` | `level hold`
 
@@ -419,7 +552,6 @@ Select to enable zero-crossing detection. For more information, see Zero-Crossin
 | **Type:**  character vector, string |
 | **Values:**  `' '` | user-defined |
 | **Default:**  `' '` |
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Continuous

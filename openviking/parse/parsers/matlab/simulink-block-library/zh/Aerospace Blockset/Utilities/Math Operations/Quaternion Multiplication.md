@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Quaternion Multiplication
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 第一个四元数 四元数 | 四元数向量
+  direction: input
+  data_types: double
+- name: r
+  summary: 第二个四元数 四元数 | 四元数向量
+  direction: input
+  data_types: double
+- name: q\*r
+  summary: 乘积 向量 | 四元数乘积向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -58,11 +73,12 @@ chinese_source: worker-translation
 两个四元数的乘积，输出为向量或四元数乘积向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

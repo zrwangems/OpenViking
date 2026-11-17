@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # World Magnetic Model
 
 ## 端口
+```yaml
+ports:
+- name: h
+  summary: 椭球高度标量
+  direction: input
+  data_types: double
+- name: μ (deg)
+  summary: 纬度标量
+  direction: input
+  data_types: double
+- name: l (deg)
+  summary: 经度标量
+  direction: input
+  data_types: double
+- name: Decimal Year
+  summary: 期望年份标量
+  direction: input
+  data_types: double
+- name: Magnetic Field (nT)
+  summary: 磁场矢量
+  direction: output
+  data_types: double
+- name: Horizontal Intensity (nT)
+  summary: 水平强度标量
+  direction: output
+  data_types: double
+- name: Declination (deg)
+  summary: 磁偏角标量
+  direction: output
+  data_types: double
+- name: Inclination (deg)
+  summary: 磁倾角标量
+  direction: output
+  data_types: double
+- name: Total Intensity (nT)
+  summary: 总强度标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -83,8 +122,97 @@ dyear =
 总强度，以标量形式返回，单位为所选单位。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: WMM coefficients
+  summary: World Magnetic Model 系数文件 WMM2025 (2025-2030)（默认）| WMM2020 (2020-2025) | WMM2015 V2 (2015-2020) | WMM2000 (2000-2005)
+    | WMM2005 (2005-2010) | WMM2010 (2010-2015) | WMM2015 V1 (2015-2020) | Custom
+  group: ''
+  block_parameter: model
+  type: 字符向量
+  values: '''WMM2025 (2025-2030)'' ''WMM2020 (2020-2025)'' | ''WMM2015 V2 (2015-2020)'' | ''WMM2000 (2000-2005)'' | ''WMM2005
+    (2005-2010)'' | ''WMM2010 (2010-2015)'' | ''WMM2015 V1 (2015-2020)'' | ''Custom'''
+  default: '''WMM2025 (2025-2030)'''
+- name: Custom .COF file
+  summary: 自定义 World Magnetic Model 系数文件 'WMM2025COF'（默认）| 任意系数文件名
+  group: ''
+  block_parameter: customFile
+  type: 字符向量
+  values: '''WMM2025.COF'' | 任意系数文件名'
+  default: '''WMM2025.COF'''
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Input decimal year
+  summary: 输入十进制年份 开（默认）| 关
+  group: ''
+  block_parameter: time_in
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Month
+  summary: 输入月份 January（默认）| February | March | April | May | June | July | August | September | October | November | December
+  group: ''
+  block_parameter: month
+  type: 字符向量
+  values: '''January'' | ''February'' | ''March'' | ''April'' | ''May'' | ''June'' | ''July'' | ''August'' | ''September''
+    | ''October'' | ''November'' | ''December'''
+  default: '''January'''
+- name: Day
+  summary: 输入日期 1（默认）| 1 到 31
+  group: ''
+  block_parameter: day
+  type: 字符向量
+  values: '''1'' 到 ''31'''
+  default: '''1'''
+- name: Year
+  summary: 输入年份 2025（默认）| 任意年份
+  group: ''
+  block_parameter: year
+  type: 字符向量
+  values: 任意年份
+  default: '''2025'''
+- name: Action for out-of-range input
+  summary: 超出范围操作 Error（默认）| Warning | None
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''Error'' | ''Warning'' | ''None'''
+  default: '''Error'''
+- name: Output horizontal intensity
+  summary: 输出水平强度 开（默认）| off
+  group: ''
+  block_parameter: h_out
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output declination
+  summary: 输出磁偏角 开（默认）| off
+  group: ''
+  block_parameter: dec_out
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output inclination
+  summary: 输出磁倾角 开（默认）| off
+  group: ''
+  block_parameter: inc_out
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output total intensity
+  summary: 输出总强度 开（默认）| off
+  group: ''
+  block_parameter: ti_out
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **WMM coefficients** — World Magnetic Model 系数文件 `WMM2025 (2025-2030)`（默认）| `WMM2020 (2020-2025)` | `WMM2015 V2 (2015-2020)` | `WMM2000 (2000-2005)` | `WMM2005 (2005-2010)` | `WMM2010 (2010-2015)` | `WMM2015 V1 (2015-2020)` | `Custom`
 
@@ -302,7 +430,6 @@ World Magnetic Model 系数文件，从列表中选择。
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认值：** `'on'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Gravity

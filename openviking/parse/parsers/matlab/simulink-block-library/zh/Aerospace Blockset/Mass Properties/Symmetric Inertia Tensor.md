@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Symmetric Inertia Tensor
 
 ## 端口
+```yaml
+ports:
+- name: Ixx
+  summary: 惯性矩标量
+  direction: input
+  data_types: double
+- name: Ixy
+  summary: '*xy* 平面内的惯性积标量'
+  direction: input
+  data_types: double
+- name: Ixz
+  summary: '*xz* 平面内的惯性积标量'
+  direction: input
+  data_types: double
+- name: Iyy
+  summary: 绕 *y* 轴的惯性矩标量
+  direction: input
+  data_types: double
+- name: Iyz
+  summary: '*yz* 平面内的惯性积标量'
+  direction: input
+  data_types: double
+- name: Izz
+  summary: 绕 *z* 轴的惯性矩标量
+  direction: input
+  data_types: double
+- name: I
+  summary: 惯性张量 3×3 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -60,11 +91,12 @@ chinese_source: worker-translation
 对称惯性张量，以 3×3 矩阵形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Mass Properties

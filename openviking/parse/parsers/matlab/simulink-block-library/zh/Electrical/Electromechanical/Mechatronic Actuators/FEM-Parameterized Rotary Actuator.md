@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # FEM-Parameterized Rotary Actuator
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 壳体机械
+  direction: conserving
+- name: R
+  summary: 转子机械
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +59,102 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical model
+  summary: 电气模型参数化 Define in terms of dPhi(i,theta)/dtheta and dPhi(i,theta)/di（默认）| Define in terms of Phi(i,theta)
+  group: 磁力
+- name: Current vector, i
+  summary: 电流向量 [0, .2, .4, .6, .8, 1] A（默认）
+  group: 磁力
+- name: Angle vector, theta
+  summary: 角度向量 [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180] deg（默认）
+  group: 磁力
+- name: Flux partial derivative wrt current, dPhi(i,theta)/di
+  summary: 磁通对电流的偏导数 [.002, .0024, .0035, .0052, .0074, .0096, .0118, .0135, .0146, .015, .0146, .0135, .0118, .0096, .0074,
+    .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074, .0096, .0118, .0135, .0146, .015, .0146, .0135, .0118, .0096,
+    .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074, .0096, .0118, .0135, .0146, .015, .0146, .0135, .0118,
+    .0096, .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074, .0096, .0118, .0135, .0146, .015, .0146, .0135,
+    .0118, .0096, .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074, .0096, .0118, .0135, .0146, .015, .0146,
+    .0135, .0118, .0096, .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074, .0096, .0118, .0135, .0146, .015,
+    .0146, .0135, .0118, .0096, .0074, .0052, .0035, .0024, .002] Wb/A（默认）
+  group: 磁力
+- name: Flux partial derivative wrt angle, dPhi(i,theta)/dtheta
+  summary: 磁通对角度的偏导数 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; 0, .0009, .0017, .0023, .0026, .0026, .0023,
+    .0017, .0009, 0, -.0009, -.0017, -.0023, -.0026, -.0026, -.0023, -.0017, -.0009, 0; 0, .0018, .0033, .0045, .0051, .0051,
+    .0045, .0033, .0018, 0, -.0018, -.0033, -.0045, -.0051, -.0051, -.0045, -.0033, -.0018, 0; 0, .0027, .005, .0068, .0077,
+    .0077, .0068, .005, .0027, 0, -.0027, -.005, -.0068, -.0077, -.0077, -.0068, -.005, -.0027, 0; 0, .0036, .0067, .009,
+    .0102, .0102, .009, .0067, .0036, 0, -.0036, -.0067, -.009, -.0102, -.0102, -.009, -.0067, -.0036, 0; 0, .0044, .0084,
+    .0113, .0128, .0128, .0113, .0084, .0044, 0, -.0044, -.0084, -.0113, -.0128, -.0128, -.0113, -.0084, -.0044, 0] Wb/rad（默认）
+  group: 磁力
+- name: Flux linkage matrix, Phi(i,theta)
+  summary: 磁链矩阵 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; .0004, .00048, .0007, .00105, .00147, .00193, .00235,
+    .0027, .00292, .003, .00292, .0027, .00235, .00193, .00147, .00105, .0007, .00048, .0004; .0008, .00096, .00141, .0021,
+    .00295, .00385, .0047, .00539, .00584, .006, .00584, .00539, .0047, .00385, .00295, .0021, .00141, .00096, .0008; .0012,
+    .00144, .00211, .00315, .00442, .00578, .00705, .00809, .00876, .009, .00876, .00809, .00705, .00578, .00442, .00315,
+    .00211, .00144, .0012; .0016, .00191, .00282, .0042, .0059, .0077, .0094, .01078, .01169, .012, .01169, .01078, .0094,
+    .0077, .0059, .0042, .00282, .00191, .0016; .002, .00239, .00352, .00525, .00737, .00963, .01175, .01348, .01461, .015,
+    .01461, .01348, .01175, .00963, .00737, .00525, .00352, .00239, .002] Wb（默认）
+  group: 磁力
+- name: Calculate torque matrix?
+  summary: 电磁转矩数据指定方式 No（默认）| Yes
+  group: 磁力
+- name: Torque matrix, T(i,theta)
+  summary: 转矩矩阵 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; 0, .0889, .1671, .2252, .2561, .2561, .2252, .1671,
+    .0889, 0, -.0889, -.1671, -.2252, -.2561, -.2561, -.2252, -.1671, -.0889, 0; 0, .3557, .6685, .9007, 1.0242, 1.0242, .9007,
+    .6685, .3557, 0, -.3557, -.6685, -.9007, -1.0242, -1.0242, -.9007, -.6685, -.3557, 0; 0, .8003, 1.5041, 2.0265, 2.3045,
+    2.3045, 2.0265, 1.5041, .8003, 0, -.8003, -1.5041, -2.0265, -2.3045, -2.3045, -2.0265, -1.5041, -.8003, 0; 0, 1.4228,
+    2.674, 3.6027, 4.0968, 4.0968, 3.6027, 2.674, 1.4228, 0, -1.4228, -2.674, -3.6027, -4.0968, -4.0968, -3.6027, -2.674,
+    -1.4228, 0; 0, 2.2231, 4.1781, 5.6292, 6.4013, 6.4013, 5.6292, 4.1781, 2.2231, 0, -2.2231, -4.1781, -5.6292, -6.4013,
+    -6.4013, -5.6292, -4.1781, -2.2231, 0] mN*m（默认）
+  group: 磁力
+- name: Flux dependence on displacement
+  summary: 磁通模式 Unique（默认）| Cyclic
+  group: 磁力
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 磁力
+- name: Extrapolation method
+  summary: 外插方法 Linear（默认）| Nearest | Error
+  group: 磁力
+- name: Winding resistance
+  summary: 电气绕组总电阻 14 Ohm（默认）
+  group: 磁力
+- name: Magnetizing resistance
+  summary: 铁损的励磁电阻 inf Ohm（默认）
+  group: 磁力
+- name: Damping
+  summary: 旋转阻尼 0.0001 N*m/(rad/s)（默认）
+  group: 机械
+- name: Rotor inertia
+  summary: 转子惯量 0.00005 kg*m^2（默认）
+  group: 机械
+- name: Minimum rotor angle
+  summary: 最小转子角度 -Inf deg（默认）
+  group: 机械
+- name: Maximum rotor angle
+  summary: 最大转子角度 Inf deg（默认）
+  group: 机械
+- name: Contact stiffness
+  summary: 接触刚度 1e8 N*m/rad（默认）
+  group: 机械
+- name: Contact damping
+  summary: 接触阻尼 1e4 N*m/(rad/s)（默认）
+  group: 机械
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 温度依赖性
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: 温度依赖性
+- name: Thermal mass
+  summary: 热质量 100 J/K（默认）
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -244,7 +356,6 @@ chinese_source: worker-translation
 ### **Thermal mass** — 热质量 `100` `J/K`（默认）
 
 热质量是使温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

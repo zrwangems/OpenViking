@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # To Video Display
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: 图像矩阵 | 数组的红色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: 图像矩阵 | 数组的绿色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: 图像矩阵 | 数组的蓝色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Y
+  summary: 图像矩阵 | 数组的亮度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cb
+  summary: 图像矩阵 | 数组的蓝色差色度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cr
+  summary: 图像矩阵 | 数组的红色差色度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -99,8 +130,22 @@ chinese_source: worker-translation
 要启用此端口，请将 **Input Color Format** 参数设置为 `YCbCr 4:2:2`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Window size
+  summary: 显示窗口大小 Normal（默认）| Full-screen (Esc to exit) | True size (1:1)
+  group: 视图
+- name: Open at Start of Simulation
+  summary: 在仿真开始时打开窗口 on（默认）| off
+  group: 视图
+- name: Input Color Format
+  summary: 输入颜色格式 RGB（默认）| YCbCr 4:2:2
+  group: 设置
+- name: Image signal
+  summary: 配置输入端口 One multidimensional signal（默认）| Separate color signals
+  group: 设置
+```
 
 ### 视图
 
@@ -135,7 +180,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Input Color Format** 参数设置为 `RGB`。
-
 ## 所属库
 
 Computer Vision Toolbox / Sinks

@@ -14,6 +14,24 @@ language: en
 # RC Servo
 
 ## Ports
+```yaml
+ports:
+- name: s
+  summary: Shaft control electrical
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: R
+  summary: Rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Casing mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -42,8 +60,70 @@ rotor.
 
 Mechanical rotational conserving port associated with the stator
 (casing).
-
 ## Parameters
+```yaml
+parameters:
+- name: Stall torque
+  summary: Maximum load torque 2.4 kg*cm (default)
+  group: Electrical Torque
+- name: Time to travel 60 degrees (no load)
+  summary: Output shaft 60 degrees turn time 0.28 s (default)
+  group: Electrical Torque
+- name: Corresponding nominal voltage
+  summary: DC supply voltage 4.8 V (default)
+  group: Electrical Torque
+- name: Rotational range
+  summary: Output shaft angular range [0 180] deg (default)
+  group: Electrical Torque
+- name: Corresponding pulse widths
+  summary: Input pulse widths range [550 2330] us (default)
+  group: Electrical Torque
+- name: Pulse threshold
+  summary: Threshold voltage for pulse control 3 V (default)
+  group: Control
+- name: Signal input resistance
+  summary: Impedance 18 kOhm (default)
+  group: Control
+- name: Angle resolution
+  summary: Minimum error allowed between the demanded and measured output shaft angle 0.1 deg (default)
+  group: Control
+- name: Angle measurement error
+  summary: Model error in angle measurement 0 deg (default)
+  group: Control
+- name: Backdrive torque (unpowered)
+  summary: Load torque required to backdrive unpowered motor 0.5 kg*cm (default)
+  group: Mechanical
+- name: Gear reduction ratio
+  summary: Approximate reduction ratio from motor shaft to RC servo output shaft 320 (default)
+  group: Mechanical
+- name: Rotor inertia
+  summary: Inertia of DC motor and rotor gearing 10 g*cm^2 (default)
+  group: Mechanical
+- name: End-stop angles
+  summary: Mechanical angle range [-5 185] deg (default)
+  group: Mechanical
+- name: End-stop stiffness
+  summary: Stiffness of mechanical end stops 1e6 N*m/rad (default)
+  group: Mechanical
+- name: End-stop damping
+  summary: Damping of mechanical end stops 0.01 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Servo fault
+  summary: Option to add fault to RC servo Add fault (default)
+  group: Faults
+- name: Failure mode
+  summary: Select the type of fault Fail off (default) | Fail forward | Fail reverse | Failed winding
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible current
+  summary: Current threshold to fault transition 1 A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding maximum permissible current
+  summary: Maximum length of time the current exceeds the threshold 1 s (default) | nonnegative scalar
+  group: Faults
+```
 
 ### Electrical Torque
 
@@ -200,7 +280,6 @@ permissible value without triggering the fault.
 
 To enable this parameter, set **Trigger Type** to
 `Behavioral`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Brushed Motors

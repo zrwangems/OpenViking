@@ -14,6 +14,25 @@ language: en
 # Binary-Output RS Decoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Reed-Solomon codeword binary column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | ufix(1)
+- name: Era
+  summary: Erasure vector binary column vector
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: Decoded message binary column vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | ufix(1)
+- name: Err
+  summary: Decoding errors integer vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -113,8 +132,38 @@ symbol errors**.
 **Data Types:** `double`
 
 For more information, see Supported Data Types.
-
 ## Parameters
+```yaml
+parameters:
+- name: Codeword length N (symbols)
+  summary: Codeword length 7 (default) | integer
+  group: ''
+- name: Message length K (symbols)
+  summary: Message word length 3 (default) | integer
+  group: ''
+- name: Shortened message length S (symbols)
+  summary: Shortened message word length 3 (default) | integer
+  group: ''
+- name: Generator polynomial
+  summary: Generator polynomial rsgenpoly(7, 3, [], [], 'double') (default) | polynomial character vector | binary row vector
+    | binary Galois row vector
+  group: ''
+- name: Primitive polynomial
+  summary: Primitive polynomial 'X^3 + X + 1' (default) | polynomial character vector | binary row vector
+  group: ''
+- name: Puncture vector
+  summary: Puncture vector [ones(2,1); zeros(2,1)] (default) | binary column vector
+  group: ''
+- name: Enable erasures input port
+  summary: Enable erasures input port off (default) | on
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: Enable port to output number of corrected symbol errors off (default) | on
+  group: ''
+- name: Output data type
+  summary: Output type of the block Same as input (default) | boolean | double
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -228,7 +277,6 @@ the block corrected in the input codeword.
 Output type of the block, specified as `Same as
 input`, `boolean`, or
 `double`.
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Block

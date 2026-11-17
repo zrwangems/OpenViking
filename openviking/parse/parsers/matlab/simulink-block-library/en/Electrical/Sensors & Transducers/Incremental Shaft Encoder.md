@@ -14,6 +14,27 @@ language: en
 # Incremental Shaft Encoder
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rotational velocity mechanical rotational
+  direction: conserving
+- name: C
+  summary: Rotational velocity mechanical rotational
+  direction: conserving
+- name: A
+  summary: Voltage electrical
+  direction: conserving
+- name: B
+  summary: Voltage electrical
+  direction: conserving
+- name: Z
+  summary: Index or synchronization electrical
+  direction: conserving
+- name: Ref
+  summary: Voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -42,8 +63,19 @@ Index, or synchronization, electrical output.
 ### **Ref** — Voltage electrical
 
 Floating zero-volt reference.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pulses per revolution
+  summary: Pulse count 2 (default)
+  group: ''
+- name: Output voltage amplitude
+  summary: Voltage 5 V (default)
+  group: ''
+- name: Index pulse offset relative to shaft initial angle
+  summary: Position 0 deg (default)
+  group: ''
+```
 
 ### **Pulses per revolution** — Pulse count `2` (default)
 
@@ -60,7 +92,6 @@ high.
 Offset of the index pulse *Z* relative to the angle of
 the shaft at the start of the simulation. This parameter lets you set the
 initial location of the index pulse.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

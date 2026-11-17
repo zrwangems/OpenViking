@@ -15,14 +15,35 @@ chinese_source: worker-translation
 # Two-Phase Fluid Predefined Properties (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 两相流体连接端口
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 两相流体连接端口
 
 两相流体守恒端口，用于将模块连接到网络。该端口可连接到框图内两相连接线上的任意点。当您将 Two-Phase Fluid Predefined Properties (2P) 模块连接到网络管线时，流体属性会传播到回路中的所有模块。
-
 ## 参数
+```yaml
+parameters:
+- name: Two-phase fluid
+  summary: 工作流体 Water (R-718)（默认）| Ammonia (R-717) | Carbon dioxide (R-744) | Isobutane (R-600a) | Propane (R-290) | R-1233zd(E)
+    | R-1234yf | R-134a | R-22 | R-32 | R-404A | R-407C | R-410A
+  group: ''
+- name: Atmospheric pressure
+  summary: 环境压力 0.101325 MPa（默认）| 正标量
+  group: ''
+- name: Pressure and specific internal energy outside valid range
+  summary: 是否在压力或比内能超出有效范围时发出通知 Error（默认）| Warning | None
+  group: ''
+- name: Dynamic pressure threshold for flow reversal
+  summary: 设置应用数值平滑的区域 0.01 Pa（默认）| 正标量
+  group: ''
+```
 
 ### **Two-phase fluid** — 工作流体 `Water (R-718)`（默认）| `Ammonia (R-717)` | `Carbon dioxide (R-744)` | `Isobutane (R-600a)` | `Propane (R-290)` | `R-1233zd(E)` | `R-1234yf` | `R-134a` | `R-22` | `R-32` | `R-404A` | `R-407C` | `R-410A`
 
@@ -43,7 +64,6 @@ chinese_source: worker-translation
 ### **Dynamic pressure threshold for flow reversal** — 设置应用数值平滑的区域 `0.01` Pa（默认）| 正标量
 
 设置应用数值平滑的区域。在 **Dynamic pressure threshold for flow reversal** 的正值和负值之间，围绕 0 MPa 定义了一个过渡区域。在该过渡区域内，计算得到的属性会进行调整，以确保平滑过渡。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Utilities

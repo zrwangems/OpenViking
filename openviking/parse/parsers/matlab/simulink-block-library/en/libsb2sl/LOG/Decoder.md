@@ -14,6 +14,17 @@ language: en
 # Bitwise Operator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -48,8 +59,45 @@ mask, the output is a scalar. If you do specify a bit mask, the output
 is a vector.
 
 **Data Types:** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operator
+  summary: Bitwise logical operator AND (default) | OR | NOR | NAND | XOR | NOT
+  group: ''
+  block_parameter: logicop
+  type: character vector
+  values: '''AND''|''OR''|''NAND''|''NOR''|''XOR''  | ''NOT'''
+  default: '''AND'''
+- name: Use bit mask
+  summary: Select to use bit mask checked (default) | unchecked
+  group: ''
+  block_parameter: UseBitMask
+  type: character vector
+  values: '''off''|''on'''
+  default: '''on'''
+- name: Number of input ports
+  summary: Number of input signals 1 (default) | integer
+  group: ''
+  block_parameter: NumInputPorts
+  type: character vector
+  values: positive integer
+  default: '''1'''
+- name: Bit Mask
+  summary: Bit mask to associate with a single input bin2dec (default)
+  group: ''
+  block_parameter: BitMask
+  type: character vector
+  values: positive integer
+  default: '''bin2dec(''11011001'')'''
+- name: Treat mask as
+  summary: Treat the mask as a real-world value or a stored integer Stored Integer (default) | Real World Value
+  group: ''
+  block_parameter: BitMaskRealWorld
+  type: character vector
+  values: '''Real World Value'' | ''Stored Integer'''
+  default: '''Stored Integer'''
+```
 
 ### **Operator** — Bitwise logical operator AND (default) | OR | NOR | NAND | XOR | NOT
 
@@ -172,7 +220,6 @@ mask**.
 | **Type**: character vector |
 | **Values**: `'Real World Value'` | `'Stored Integer'` |
 | **Default**: `'Stored Integer'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

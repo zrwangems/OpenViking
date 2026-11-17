@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Pulse Compression Library
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入信号 复数值 *K*×*L* 矩阵 | 复数值 *K*×*N* 矩阵 | 复数值 *K*×*N*×*L* 数组
+  direction: input
+  data_types: double
+- name: Idx
+  summary: 处理规格索引 正整数
+  direction: input
+  data_types: double
+- name: Y
+  summary: 输出信号 复数值 *K*×*L* 矩阵 | 复数值 *K*×*N* 矩阵 | 复数值 *K*×*N*×*L* 数组
+  direction: output
+  data_types: double
+- name: Range
+  summary: 采样距离 实数值长度-*M* 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -46,8 +65,30 @@ chinese_source: worker-translation
 采样距离，返回为实数值长度-*M* 向量，其中 *M* 是 `Y` 的行数。该向量的元素表示对应于 `Y` 各行的距离。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实数值正标量
+  group: ''
+- name: 库中每个波形的规格
+  summary: 库中脉冲波形的规格 {{'Rectangular','PRF',1e4,'PulseWidth',50e-6},{'LinearFM','PRF',1e4,'PulseWidth',50e-6,'SweepBandwidth',1e5,'SweepDirection','Up','SweepInterval','Positive'}}（默认）|
+    元胞数组
+  group: ''
+- name: Pulse compression specifications
+  summary: 指定脉冲压缩类型 {{'MatchedFilter','SpectrumWindow','None'},{'StretchProcessor','RangeSpan',200,'ReferenceRange',5e3,'RangeWindow','None'}}（默认）|
+    元胞数组
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率，on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认）| 正实值标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+```
 
 ### **Signal propagation speed (m/s)** — 信号传播速度 `physconst('LightSpeed')`（默认）| 实数值正标量
 
@@ -150,7 +191,6 @@ chinese_source: worker-translation
 | `Code Generation` | 模块被编译。 | 模型中的所有模块被编译。 |
 
 有关详细信息，请参阅 Choosing a Simulation Mode (Simulink)。
-
 ## 所属库
 
 Radar Toolbox

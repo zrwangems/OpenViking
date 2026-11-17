@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Simulation 3D Spacecraft
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: 航天器平移 10×3 数组 | 20×3 数组
+  direction: input
+  data_types: single | double
+- name: Rotation
+  summary: 航天器旋转 10×3 数组 | 20×3 数组
+  direction: input
+  data_types: single | double
+- name: Scale
+  summary: 网格缩放 [1 1 1]（默认）| 1×3 数组
+  direction: input
+```
 
 ### 输入
 
@@ -89,8 +103,60 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Scale source** 参数设置为 `Port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 航天器类型 CubeSat（默认）| SmallSat
+  group: ''
+  block_parameter: Mesh
+  values: CubeSat（默认）| SmallSat
+- name: Path to CubeSat mesh
+  summary: CubeSat 网格路径 /MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat（默认）| 字符向量
+  group: ''
+  block_parameter: MeshPath
+  values: /MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat | 字符向量
+- name: Path to SmallSat mesh
+  summary: SmallSat 网格路径 /MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat（默认）| 字符向量
+  group: ''
+  block_parameter: MeshPathSmall
+  values: /MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat | 字符向量
+- name: Name
+  summary: 航天器名称 SimulinkVehicle1（默认）| 字符向量
+  group: ''
+  block_parameter: ActorName
+  values: SimulinkVehicle1（默认）| 字符向量
+- name: Initial translation (m)
+  summary: 航天器初始平移 zeros(10,3)（默认）| 10×3 数组 | 20×3 数组
+  group: ''
+  block_parameter: Translation
+  values: zeros(10,3)（默认）| 10×3 数组 | 20×3 数组
+- name: Initial rotation (rad)
+  summary: 航天器初始旋转 zeros(10,3)（默认）| 10×3 数组 | 20×3 数组
+  group: ''
+  block_parameter: Rotation
+  values: zeros(10,3)（默认）| 10×3 数组 | 20×3 数组
+- name: Scale source
+  summary: 缩放来源 Dialog（默认）| Port
+  group: ''
+  block_parameter: ScaleInputPort
+  values: Dialog（默认）| Port
+- name: Initial scale
+  summary: 初始网格缩放 [1 1 1]（默认）| 1×3 数组
+  group: ''
+  block_parameter: InitialScale
+  values: '[1 1 1]（默认）| 1×3 数组'
+- name: Scale
+  summary: 网格缩放 [1 1 1]（默认）| 1×3 数组
+  group: ''
+  block_parameter: Scale
+  values: '[1 1 1]（默认）| 1×3 数组'
+- name: Sample time
+  summary: 采样时间 0.02（默认）| 实数标量
+  group: ''
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 实数标量'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -295,7 +361,6 @@ SmallSat 网格路径，指定为字符向量。要创建自定义航空航天�
 | **值：** | `'-1'`（默认）| 实数标量 |
 
 **示例：** `'-1'`
-
 ## 所属库
 
 Aerospace Blockset / Animation / Simulation 3D

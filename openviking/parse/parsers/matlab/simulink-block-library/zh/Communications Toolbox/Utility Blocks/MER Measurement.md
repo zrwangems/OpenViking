@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # MER Measurement
 
 ## 端口
+```yaml
+ports:
+- name: Ref
+  summary: 参考信号 标量 | 向量 | 矩阵 | 三维数组
+  direction: input
+  data_types: single | double | fixed point
+- name: Rcv
+  summary: 接收信号 标量 | 向量 | 矩阵 | 三维数组
+  direction: input
+  data_types: single | double | fixed point
+- name: MS
+  summary: 接收信号的百分比 MER 标量
+  direction: output
+  data_types: double
+- name: min
+  summary: 最小百分比 MER 标量
+  direction: output
+  data_types: double
+- name: X%
+  summary: '*X*% 的 MER 测量值低于此值 标量'
+  direction: output
+  data_types: double
+- name: nSym
+  summary: 符号数 正整数
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -75,8 +102,40 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output X-percentile MER** 和 **Output the number of symbols processed** 参数。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Reference signal
+  summary: 参考信号源 Input port | Estimated from reference constellation
+  group: ''
+- name: Reference constellation
+  summary: 参考星座 constellation(pskmod((0:3)',4,pi/4,"bin"))（默认）| 向量
+  group: ''
+- name: Measurement interval
+  summary: 测量区间源 Input length（默认）| Entire history | Custom | Custom with periodic reset
+  group: ''
+- name: Custom measurement interval
+  summary: 自定义测量区间 100（默认）| 正整数
+  group: ''
+- name: Averaging dimensions
+  summary: 平均维度 1（默认）| 范围 [1, 3] 内的整数向量
+  group: ''
+- name: Output minimum MER
+  summary: 添加 min 端口以输出最小 MER 测量的选项 Off（默认）| On
+  group: ''
+- name: Output X-percentile MER
+  summary: 添加 X% 端口以输出 *X* 百分位 MER 测量的选项 Off（默认）| On
+  group: ''
+- name: X-Percentile value (%)
+  summary: '*X*% 的 MER 测量值低于此值 95（默认）| 范围 [0, 100] 内的标量'
+  group: ''
+- name: Output the number of symbols processed
+  summary: 添加 nSym 端口以输出符号数的选项 Off（默认）| On
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -147,7 +206,6 @@ MER 和最小 MER 测量的测量区间源，指定为以下值之一。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Utility Blocks

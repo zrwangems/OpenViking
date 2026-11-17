@@ -14,6 +14,33 @@ language: en
 # Turbofan Engine System
 
 ## Ports
+```yaml
+ports:
+- name: Throttle position
+  summary: Throttle position scalar | vector
+  direction: input
+  data_types: double
+- name: Mach
+  summary: Mach number scalar
+  direction: input
+  data_types: double
+- name: Altitude
+  summary: Altitude scalar | vector
+  direction: input
+  data_types: double
+- name: Initial thrust
+  summary: Initial thrust scalar | vector
+  direction: input
+  data_types: double
+- name: Thrust
+  summary: Thrust scalar | vector
+  direction: output
+  data_types: double
+- name: Fuel flow
+  summary: Fuel flow scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -63,8 +90,59 @@ Fuel flow, returned as scalar or vector, in the units specified in the
 **Units** parameter units per second.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Initial thrust source
+  summary: Initial thrust source Internal (default) | External
+  group: ''
+  block_parameter: ic_source
+  type: character vector
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Initial thrust
+  summary: Initial 0 (default) | scalar
+  group: ''
+  block_parameter: IC
+  type: character vector
+  values: double scalar
+  default: '''0'''
+- name: Maximum sea-level static thrust
+  summary: Maximum thrust at sea-level 45000 (default) | scalar
+  group: ''
+  block_parameter: Fmax
+  type: character vector
+  values: double scalar
+  default: '''45000'''
+- name: Fastest engine time constant at sea-level static (sec)
+  summary: Fastest engine time at sea level 1 (default) | scalar
+  group: ''
+  block_parameter: tau
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Sea-level static thrust specific fuel consumption
+  summary: Thrust-specific fuel consumption at sea level 0.35 (default) | scalar
+  group: ''
+  block_parameter: SFC
+  type: character vector
+  values: double scalar
+  default: '''0.35'''
+- name: Ratio of installed thrust to uninstalled thrust
+  summary: Coefficient representing loss 0.9 (default) | scalar
+  group: ''
+  block_parameter: Nt
+  type: character vector
+  values: double scalar
+  default: '''0.9'''
+```
 
 ### **Units** — Input and output units `Metric (MKS)` (default) | `English`
 
@@ -171,7 +249,6 @@ double value.
 | **Type**: character vector |
 | **Values**: double scalar |
 | **Default**: `'0.9'` |
-
 ## Libraries
 
 Aerospace Blockset / Propulsion

@@ -14,6 +14,18 @@ language: en
 # Mach Number Sensor (G)
 
 ## Ports
+```yaml
+ports:
+- name: Mach
+  summary: Mach number measurement, unitless physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet gas
+  direction: conserving
+- name: B
+  summary: Sensor outlet gas
+  direction: conserving
+```
 
 ### Output
 
@@ -31,13 +43,17 @@ is from port **A** to port **B**.
 
 Gas conserving port associated with the sensor outlet. The positive flow direction
 is from port **A** to port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Area of flow path
+  summary: Flow path area 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Area of flow path** — Flow path area `0.01 m^2` (default) | positive scalar
 
 Cross-sectional area of the flow path.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Sensors

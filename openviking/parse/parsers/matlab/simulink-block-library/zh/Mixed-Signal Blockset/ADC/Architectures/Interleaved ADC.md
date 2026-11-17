@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Interleaved ADC
 
 ## 端口
+```yaml
+ports:
+- name: analog
+  summary: 模拟输入信号 标量
+  direction: input
+  data_types: double
+- name: start
+  summary: 启动转换的外部时钟 标量 | 向量
+  direction: input
+  data_types: double | Boolean
+- name: Offset calibration
+  summary: 模拟输入端的失调误差校准 标量 | 向量
+  direction: input
+  data_types: double
+- name: Gain calibration
+  summary: 模拟输入端的增益误差校准 标量 | 向量
+  direction: input
+  data_types: double
+- name: digital
+  summary: 转换后的数字输出信号 标量 | 向量
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ready
+  summary: 确定模数转换是否完成 标量 | 向量
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -63,8 +90,92 @@ chinese_source: worker-translation
 通常，**ready** 信号的数据类型与 **start** 信号的数据类型相同。但如果 start 信号是定点类型或 64 位整数类型，**ready** 信号的数据类型默认为 Boolean。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of bits
+  summary: 所有 ADC 核心的物理输出位数 8（默认）| 标量 | 向量
+  group: 配置
+  block_parameter: NBits
+  type: 字符向量
+  values: 标量 | 向量
+- name: Input range
+  summary: ADC 动态范围 [-1 1]（默认）| 2 元素行向量 | [NADCs x 2] 矩阵
+  group: 配置
+  block_parameter: InputRange
+  type: 字符向量
+  values: 2 元素行向量 | [NADCs x 2] 矩阵
+- name: Linearly interpolate analog input to find sampled value
+  summary: 使用正弦转换启动信号进行子采样插值 off（默认）| on
+  group: 配置
+- name: Number of ADCs (N)
+  summary: 要交错的 ADC 核心数量 4（默认）| 正实数整数
+  group: 配置
+  block_parameter: NADCs
+  type: 字符向量
+  values: 正实数整数
+- name: Match output to input scale
+  summary: 从输入继承输出极性和数据类型 off（默认）| on
+  group: 配置
+- name: Output polarity
+  summary: 定义 ADC 输出极性 Auto（默认）| Bipolar | Unipolar
+  group: 配置
+  block_parameter: OutputPolarity
+  type: 字符向量
+  values: Auto | Bipolar | Unipolar
+  default: Auto
+- name: Output data type
+  summary: 定义 ADC 输出数据类型 double（默认）| single | (u)int8 | (u)int16 | (u)int32 | fixdt(OutputPolarity,NBits)
+  group: 配置
+  block_parameter: OutDataType
+  type: 字符向量
+  values: double | single | (u)int8 | (u)int16 | (u)int32 | fixdt(OutputPolarity,NBits)
+  default: double
+- name: Convert the output to scalar
+  summary: 将输出转换为标量 on（默认）| off
+  group: 配置
+- name: Sample time
+  summary: 固定步长采样率 6.25e-12（默认）| 正实数标量
+  group: 配置
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 正实数标量
+  default: '6.25e-12'
+- name: Simulate using
+  summary: 定义如何仿真 ADC Code generation（默认）| Interpreted execution
+  group: 配置
+- name: Enable linearity impairments
+  summary: 在 ADC 仿真中启用线性度损伤 off（默认）| on
+  group: 损伤
+- name: Offset error
+  summary: 按特定值偏移量化步长 0 LSB（默认）| 实数标量
+  group: 损伤
+  block_parameter: OffsetError
+  type: 字符向量
+  values: 实数标量
+  default: 0 LSB
+- name: 增益误差
+  summary: ADC 转换曲线斜率的误差 0 LSB（默认）| 实数标量
+  group: 损伤
+  block_parameter: GainError
+  type: 字符向量
+  values: 实数标量
+- name: 启用时序损伤
+  summary: 在 ADC 仿真中启用时序损伤 关（默认）| 开
+  group: 损伤
+- name: 转换延迟（秒）
+  summary: ADC 的延迟 0（默认）| 非负实数标量
+  group: 损伤
+  block_parameter: ConversionDelay
+  type: 字符向量
+  values: 实数标量
+- name: 启用偏移校准端口
+  summary: 启用偏移校准端口 关（默认）| 开
+  group: 损伤
+- name: 启用增益校准端口
+  summary: 启用增益校准端口 关（默认）| 开
+  group: 损伤
+```
 
 ### 配置
 
@@ -297,7 +408,6 @@ LSB 由以下公式计算：LSB = 转换器满量程范围2NBits。
 ### **启用增益校准端口** — 启用增益校准端口 关（默认）| 开
 
 选择以启用**增益校准**端口。此端口的值会乘以模拟输入，以校准增益误差。
-
 ## 所属库
 
 Mixed-Signal Blockset / ADC / Architectures

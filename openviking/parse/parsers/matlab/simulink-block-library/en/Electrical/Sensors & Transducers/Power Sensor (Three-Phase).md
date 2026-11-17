@@ -14,6 +14,21 @@ language: en
 # Power Sensor (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Three-phase port electrical
+  direction: conserving
+- name: ~2
+  summary: Three-phase port electrical
+  direction: conserving
+- name: P
+  summary: Active power physical
+  direction: output
+- name: Q
+  summary: Reactive power physical
+  direction: output
+```
 
 ### Conserving
 
@@ -37,8 +52,26 @@ measurements.
 
 Physical signal port associated with the reactive power
 measurements.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Load type
+  summary: Load type Balanced (default) | Unbalanced
+  group: ''
+- name: Rated frequency
+  summary: Rated frequency 60 Hz (default) | scalar
+  group: ''
+- name: Downstream configuration
+  summary: Downstream configuration Without neutral (default) | With neutral
+  group: ''
+- name: Neutral conductor resistance divided by phase conductor resistance
+  summary: Ratio of neutral conductor resistance over phase conductor resistance 1 (default) | scalar
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -84,7 +117,6 @@ Ratio of neutral conductor resistance over phase conductor resistance, RneutralR
 To enable this parameter, set **Downstream
 configuration** to `With
 neutral`.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

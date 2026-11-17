@@ -14,14 +14,34 @@ language: en
 # Legacy Serial Write
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data for serial port write serial data
+  direction: input
+```
 
 ### Input
 
 ### **Input** — Data for serial port write serial data
 
 The Input port contains the data to write for the serial port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Serial port
+  summary: Port that is being accessed Legacy Serial Port 1 (default) | .. | Legacy Serial Port 8 | USB Serial Port 1 | ..
+    | USB Serial Port 8
+  group: ''
+  block_parameter: port
+- name: Output Datatype
+  summary: Select output data type 8 bit uint null terminated (default) | 8 bit int null terminated | count+16 bit uint |
+    count+16 bit int | count+32 bit uint | count+32 bit int
+  group: ''
+- name: SampleTime
+  summary: Select sample time in seconds .01 (default) | double
+  group: ''
+```
 
 ### **Serial port** — Port that is being accessed `Legacy Serial Port 1` (default) | .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
@@ -59,7 +79,6 @@ Use this value to select the sample time in seconds.
 ```
 sampletime
 ```
-
 ## Libraries
 
 Simulink Real-Time / RS232 / Mainboard

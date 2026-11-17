@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Nonlinear Translational Spring
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 从动端口 机械旋转
+  direction: unspecified
+- name: R
+  summary: 基座端口 机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,37 @@ chinese_source: worker-translation
 ### **R** — 基座端口 机械旋转
 
 与基座端关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 表征弹簧行为的方法 By polynomial（默认）| By table lookup
+  group: ''
+- name: Symmetry
+  summary: 相对于零变形位置的弹簧行为 Symmetric（默认）| Two-sided
+  group: ''
+- name: Vector of spring coefficients
+  summary: 对称变形多项式系数 [100, 0, 10, 0, 1] N/m（默认）| 向量
+  group: ''
+- name: Vector of spring tension coefficients
+  summary: 正向双侧变形多项式系数 [100, 0, 10, 0, 1] N/m（默认）
+  group: ''
+- name: Vector of spring compression coefficients
+  summary: 负向双侧变形多项式系数 [1000, -10, 100, 0, 0] N/m（默认）
+  group: ''
+- name: Deformation vector
+  summary: 力查找表条目对应的变形 [-1, -.5, -.3, -.1, .1, .3, .5, 1]（默认）
+  group: ''
+- name: Force vector
+  summary: 查找表条目对应的施加力 [-1000, -400, -200, -50, 50, 200, 400, 1000]（默认）
+  group: ''
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Smooth（默认）| Linear
+  group: ''
+- name: Extrapolation method
+  summary: 处理超出断点数据集范围的输入值的方法 Linear（默认）| Nearest | Error
+  group: ''
+```
 
 ### **Parameterization** — 表征弹簧行为的方法 `By polynomial`（默认）| `By table lookup`
 
@@ -86,7 +124,6 @@ chinese_source: worker-translation
 - `Error` — 当您希望数据在表范围内时，选择此选项可避免外推。如果输入信号超出表的范围，仿真将停止并生成错误。
 
 有关详细信息，请参阅 `tablelookup`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

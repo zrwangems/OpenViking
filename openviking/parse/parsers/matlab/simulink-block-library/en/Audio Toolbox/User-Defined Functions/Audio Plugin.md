@@ -14,6 +14,15 @@ language: en
 # Audio Plugin
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Plugin input column vector | matrix
+  direction: input
+- name: y
+  summary: Plugin output scalar | column vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -47,8 +56,28 @@ output ports.
 For audio plugins authored in MATLAB, the number of outputs and the number of channels per output are
 defined by the `OutputChannels` property in the
 plugin's `audioPluginInterface`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Number of samples per frame positive integer
+  group: ''
+- name: Output data type
+  summary: Data type of output signal double (default) | single
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate of output signal positive scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 **Note**
 
@@ -111,7 +140,6 @@ The block has this parameter only if the audio plugin is a source plugin.
   simulations as long as the model does not change. This option requires additional
   startup time, but the speed of the subsequent simulations is comparable to
   `Interpreted execution`.
-
 ## Libraries
 
 Audio Toolbox / User-Defined Functions

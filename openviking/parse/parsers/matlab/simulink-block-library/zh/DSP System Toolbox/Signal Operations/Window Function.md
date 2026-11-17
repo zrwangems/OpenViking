@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Window Function
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Out
+  summary: 输出 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Win
+  summary: 窗输出 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -49,8 +64,85 @@ chinese_source: worker-translation
 窗输出，以向量形式返回。当 **Operation** 设置为 `Apply window to input` 或 `Generate and apply window` 时，窗向量的长度与输入信号的行数相同。当 **Operation** 设置为 `Generate window` 时，窗向量的长度由 **Window length** 参数决定。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation
+  summary: 操作模式 Apply window to input（默认）| Generate window | Generate and apply window
+  group: 主要
+- name: Window type
+  summary: 窗类型 Hamming（默认）| Bartlett | Blackman | ...
+  group: 主要
+- name: Sampling
+  summary: 采样类型 Symmetric（默认）| Periodic
+  group: 主要
+- name: Sample mode
+  summary: 采样模式 Continuous（默认）| Discrete
+  group: 主要
+- name: Sample time
+  summary: 采样时间 1（默认）| 实标量
+  group: 主要
+- name: Window length
+  summary: 窗长度 64（默认）| 正整数
+  group: 主要
+- name: Stopband attenuation in dB
+  summary: 阻带衰减（dB） 50（默认）| 非负标量
+  group: 主要
+- name: Beta
+  summary: Kaiser 窗 *β* 参数 10（默认）| 实标量
+  group: 主要
+- name: Number of sidelobes
+  summary: 旁瓣数量 4（默认）| 正整数
+  group: 主要
+- name: Maximum sidelobe level relative to mainlobe (dB)
+  summary: 相对于主瓣的最大旁瓣电平（dB） -30（默认）| 小于或等于零的标量
+  group: 主要
+- name: Window function name
+  summary: 窗函数名称 hamming（默认）| 字符向量
+  group: 主要
+- name: Specify additional arguments to the hamming function
+  summary: 指定窗函数的附加参数 关（默认）| 开
+  group: 主要
+- name: Cell array of additional arguments
+  summary: 附加参数 {'symmetric'}（默认）| 元胞数组
+  group: 主要
+- name: Window data type
+  summary: 窗数据类型 double（默认）| single | Fixed-point | User-defined | Inherit via back propagation
+  group: 数据类型
+- name: Signed
+  summary: 窗输出为有符号 开（默认）| 关
+  group: 数据类型
+- name: Word length
+  summary: 字长 16（默认）| 范围 [2 128] 内的正整数
+  group: 数据类型
+- name: User-defined data type (e.g. sfix(16), float('single))
+  summary: 用户定义数据类型 sfix(16)（默认）| 内置数据类型 | 定点数据类型
+  group: 数据类型
+- name: Set fraction length in output to
+  summary: 定点窗数据类型的定标 Best precision（默认）| User-defined
+  group: 数据类型
+- name: Fraction length
+  summary: 用户定义小数长度 15（默认）| 整数
+  group: 数据类型
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+- name: Overflow mode
+  summary: 溢出模式 Wrap（默认）| Saturate
+  group: 数据类型
+- name: Window
+  summary: 窗数据类型 Same word length as input（默认）| Specify word length | Binary point scaling | Slope and bias scaling
+  group: 数据类型
+- name: Product output
+  summary: 乘积输出数据类型 Inherit via internal rule（默认）| Same as input | Binary point scaling | Slope and bias scaling
+  group: 数据类型
+- name: Output
+  summary: 输出数据类型 Same as product output（默认）| Same as input | Binary point scaling | Slope and bias scaling
+  group: 数据类型
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主要
 
@@ -338,7 +430,6 @@ w = w(1:M)
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

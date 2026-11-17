@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # 8-Speed
 
 ## 端口
+```yaml
+ports:
+- name: Gear
+  summary: 挡位标量的数值输入
+  direction: input
+  data_types: single | double
+- name: B
+  summary: 基座接口机械旋转
+  direction: input
+- name: F
+  summary: 从动接口机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -32,13 +45,17 @@ chinese_source: worker-translation
 ### **F** — 从动接口机械旋转
 
 与从动轴关联的守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial gear
+  summary: 仿真开始时的挡位状态 Neutral（默认）| 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 | Reverse
+  group: ''
+```
 
 ### **Initial gear** — 仿真开始时的挡位状态 `Neutral`（默认）| `8` | `7` | `6` | `5` | `4` | `3` | `2` | `1` | `Reverse`
 
 使用离合器调度表设置离合器的初始接合或分离状态。当变速器处于空挡时，从基座轴到从动轴没有功率流。
-
 ## 所属库
 
 Simscape / Driveline / Transmissions

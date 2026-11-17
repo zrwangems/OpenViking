@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Open Differential
 
 ## 端口
+```yaml
+ports:
+- name: DriveshftTrq
+  summary: 扭矩 scalar
+  direction: input
+- name: Axl1Trq
+  summary: 扭矩 scalar
+  direction: input
+- name: Axl2Trq
+  summary: 扭矩 scalar
+  direction: input
+- name: Temp
+  summary: 温度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: DriveshftSpd
+  summary: 角速度 scalar
+  direction: output
+- name: Axl1Spd
+  summary: 角速度 scalar
+  direction: output
+- name: Axl2Spd
+  summary: 角速度 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -73,8 +100,105 @@ chinese_source: worker-translation
 ### **Axl2Spd** — 角速度 `scalar`
 
 车轴 2 角速度，*ω2*，单位为 rad/s。
-
 ## 参数
+```yaml
+parameters:
+- name: Efficiency factors
+  summary: 指定配置 Constant（默认）| Driveshaft torque, speed and temperature
+  group: ''
+  block_parameter: DiffEffModelPopup
+  values: Constant（默认）| Driveshaft torque, speed and temperature
+- name: Interpolation method
+  summary: 方法 Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline
+  group: ''
+  block_parameter: InterpMethod
+  values: Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline
+- name: Input ambient temperature
+  summary: 创建输入端口 off（默认）| on
+  group: ''
+  block_parameter: extTamb
+  values: off（默认） | on
+- name: Crown wheel (ring gear) located
+  summary: 指定冠齿轮连接 To the left of center-line（默认） | To the right of center-line
+  group: ''
+  block_parameter: shaftSwitchMask
+  values: To the left of center-line（默认） | To the right of center-line
+- name: Carrier to drive shaft ratio, Ndiff
+  summary: 传动比 4（默认） | scalar
+  group: ''
+  block_parameter: Ndiff
+  values: 4（默认） | scalar
+- name: Carrier inertia, Jd
+  summary: 惯量 .1（默认） | scalar
+  group: ''
+  block_parameter: Jd
+  values: .1（默认） | scalar
+- name: Carrier damping, bd
+  summary: 阻尼 1e-3（默认） | scalar
+  group: ''
+  block_parameter: bd
+  values: 1e-3（默认） | scalar
+- name: Axle 1 inertia, Jw1
+  summary: 惯量 .1（默认） | scalar
+  group: ''
+  block_parameter: Jw1
+  values: .1（默认） | scalar
+- name: Axle 1 damping, bw1
+  summary: 阻尼 1e-3（默认） | scalar
+  group: ''
+  block_parameter: bw1
+  values: 1e-3（默认） | scalar
+- name: Axle 2 inertia, Jw2
+  summary: 惯量 .1（默认） | scalar
+  group: ''
+  block_parameter: Jw2
+  values: .1（默认） | scalar
+- name: Axle 2 damping, bw2
+  summary: 阻尼 1e-3（默认） | scalar
+  group: ''
+  block_parameter: bw2
+  values: 1e-3（默认） | scalar
+- name: Axle 1 initial velocity, omegaw1o
+  summary: 角速度 0（默认） | scalar
+  group: ''
+  block_parameter: omegaw1o
+  values: 0（默认） | scalar
+- name: Axle 2 initial velocity, omegaw2o
+  summary: 角速度 0（默认） | scalar
+  group: ''
+  block_parameter: omegaw2o
+  values: 0（默认） | scalar
+- name: Constant efficiency factor, eta
+  summary: 效率 1（默认） | 正标量
+  group: ''
+  block_parameter: eta
+  values: 1（默认） | 正标量
+- name: Efficiency lookup table, eta_tbl
+  summary: 查找表 M×N×L 数组
+  group: ''
+  block_parameter: eta_tbl
+  values: M×N×L 数组
+- name: Efficiency torque breakpoints, Trq_bpts
+  summary: 扭矩断点 [25, 50, 75, 100, 150, 200, 250]（默认） | 1×M 向量
+  group: ''
+  block_parameter: Trq_bpts
+  values: '[25, 50, 75, 100, 150, 200, 250]（默认） | 1×M 向量'
+- name: Efficiency speed breakpoints, omega_bpts
+  summary: 转速断点 [52.4 78.5 105 131 157 183 209 262 314 419 524]（默认） | 1×N 向量
+  group: ''
+  block_parameter: omega_bpts
+  values: '[52.4 78.5 105 131 157 183 209 262 314 419 524]（默认） | 1×N 向量'
+- name: Efficiency temperature breakpoints, Temp_bpts
+  summary: 温度断点 [290 358]（默认）| 1×L 向量
+  group: ''
+  block_parameter: Temp_bpts
+  values: '[290 358]（默认）| 1×L 向量'
+- name: Ambient temperature, Tamb
+  summary: 环境温度 297.15（默认）| scalar
+  group: ''
+  block_parameter: Tamb
+  values: 297.15（默认）| scalar
+```
 
 #### 模块选项
 
@@ -451,7 +575,6 @@ rad/s。
 
 - 将 **Efficiency factors** 设置为 `Driveshaft torque, speed and temperature`。
 - 清除 **Input ambient temperature**。
-
 ## 所属库
 
 Powertrain Blockset / Drivetrain / Final Drive Unit Vehicle Dynamics Blockset / Powertrain / Drivetrain / Final Drive Unit

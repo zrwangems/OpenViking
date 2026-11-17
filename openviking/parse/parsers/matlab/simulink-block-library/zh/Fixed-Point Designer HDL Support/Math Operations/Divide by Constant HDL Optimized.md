@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Divide by Constant HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 被除数实数标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: validIn
+  summary: 输入是否有效布尔标量
+  direction: input
+  data_types: Boolean
+- name: Y
+  summary: 除法和舍入运算的结果标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: validOut
+  summary: 输出数据是否有效布尔标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -44,8 +63,24 @@ chinese_source: worker-translation
 输出数据是否有效，以布尔标量形式返回。当此控制信号的值为 `1`（`true`）时，模块已成功计算输出 **Y**。当此值为 `0`（`false`）时，输出数据无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Denominator for rational division
+  summary: 除数 10 （默认） | 标量
+  group: ''
+  block_parameter: Denominator
+  type: character vector
+  values: MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value
+  default: '''10'''
+- name: Rounding Method
+  summary: 要使用的舍入方法 Floor （默认） | Ceiling | Nearest | Zero | Convergent
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Floor'' | ''Ceiling'' | ''Nearest'' | ''Zero'' | ''Convergent'''
+  default: '''Floor'''
+```
 
 ### **Denominator for rational division** — 除数 10 （默认） | 标量
 
@@ -79,7 +114,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Floor'` | `'Ceiling'` | `'Nearest'` | `'Zero'` | `'Convergent'` |
 | **默认值**：`'Floor'` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Math Operations

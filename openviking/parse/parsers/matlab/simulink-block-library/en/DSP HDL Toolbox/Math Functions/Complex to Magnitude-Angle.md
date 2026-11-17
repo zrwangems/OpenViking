@@ -14,6 +14,29 @@ language: en
 # Complex to Magnitude-Angle
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Complex input signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: Magnitude
+  summary: Magnitude of the input signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: Angle
+  summary: Angle of the input signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -79,8 +102,28 @@ values from the **Magnitude** and/or **Angle** ports
 are not valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of iterations source
+  summary: Source of number of iterations Auto (default) | Property
+  group: ''
+- name: Number of iterations
+  summary: Number of CORDIC iterations positive integer
+  group: ''
+- name: Output format
+  summary: Output signal format Magnitude and Angle (default) | Magnitude | Angle
+  group: ''
+- name: Angle format
+  summary: Output angle format Normalized (default) | Radians
+  group: ''
+- name: Scale output
+  summary: Scales output on (default) | off
+  group: ''
+- name: Scaling method
+  summary: Implementation of CORDIC gain scaling Shift-Add (default) | Multipliers
+  group: ''
+```
 
 ### **Number of iterations source** — Source of number of iterations `Auto` (default) | `Property`
 
@@ -158,7 +201,6 @@ cycles.
 
 To enable this parameter, select the **Scale output**
 parameter.
-
 ## Libraries
 
 DSP HDL Toolbox / Math Functions

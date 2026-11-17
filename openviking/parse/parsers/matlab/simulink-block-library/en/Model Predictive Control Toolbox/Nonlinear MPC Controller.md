@@ -14,6 +14,93 @@ language: en
 # Nonlinear MPC Controller
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: input vector
+  direction: input
+- name: ref
+  summary: Model output reference values row vector | matrix
+  direction: input
+- name: last_mv
+  summary: Control signals used in plant at previous control interval vector
+  direction: input
+- name: md
+  summary: input row vector | matrix
+  direction: input
+- name: params
+  summary: Optional parameters bus
+  direction: input
+- name: mv.target
+  summary: Manipulated variable targets vector
+  direction: input
+- name: y.min
+  summary: Minimum output variable constraints vector | matrix
+  direction: input
+- name: y.max
+  summary: Maximum output variable constraints vector | matrix
+  direction: input
+- name: mv.min
+  summary: Minimum manipulated variable constraints vector | matrix
+  direction: input
+- name: mv.max
+  summary: Maximum manipulated variable constraints vector | matrix
+  direction: input
+- name: dmv.min
+  summary: Minimum manipulated variable rate constraints vector | matrix
+  direction: input
+- name: dmv.max
+  summary: Maximum manipulated variable rate constraints vector | matrix
+  direction: input
+- name: x.min
+  summary: Minimum state constraints vector | matrix
+  direction: input
+- name: x.max
+  summary: Maximum state constraints vector | matrix
+  direction: input
+- name: y.wt
+  summary: Output variable tuning weights row vector | matrix
+  direction: input
+- name: mv.wt
+  summary: Manipulated variable tuning weights row vector | matrix
+  direction: input
+- name: dmv.wt
+  summary: Manipulated variable rate tuning weights row vector | matrix
+  direction: input
+- name: ecr.wt
+  summary: Slack variable tuning weight scalar
+  direction: input
+- name: mv.init
+  summary: Initial guesses for the optimal manipulated variable solutions vector | matrix
+  direction: input
+- name: x.init
+  summary: Initial guesses for the optimal state variable solutions vector | matrix
+  direction: input
+- name: e.init
+  summary: Initial guess for the slack variable at the solution nonnegative scalar
+  direction: input
+- name: mv
+  summary: Optimal manipulated variable control action column vector
+  direction: output
+- name: cost
+  summary: Objective function cost nonnegative scalar
+  direction: output
+- name: slack
+  summary: Slack variable 0 | nonnegative scalar
+  direction: output
+- name: nlp.status
+  summary: Optimization status scalar
+  direction: output
+- name: mv.seq
+  summary: Optimal manipulated variable sequence matrix
+  direction: output
+- name: x.seq
+  summary: Optimal prediction model state sequence matrix
+  direction: output
+- name: y.seq
+  summary: Optimal output variable sequence matrix
+  direction: output
+```
 
 ### Input
 
@@ -603,8 +690,196 @@ identical.
 #### Dependencies
 
 To enable this port, select the **Optimal output sequence** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nonlinear MPC Controller
+  summary: Controller object nlmpc object name
+  group: ''
+  block_parameter: nlmpcobj
+  type: string, character vector
+  default: '""'
+- name: Use prediction model sample time
+  summary: Flag for using the prediction model sample time on (default) | off
+  group: ''
+  block_parameter: UseObjectTs
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Make block run at a different sample time
+  summary: Controller sample time positive finite scalar | -1
+  group: ''
+  block_parameter: TsControl
+  type: string, character vector
+  default: '""'
+- name: Use MEX to speed up simulation
+  summary: Flag for simulating controller use MEX function off (default) | on
+  group: ''
+  block_parameter: UseMEX
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Specify MEX function name
+  summary: Controller MEX function name string
+  group: ''
+  block_parameter: mexname
+  type: string, character vector
+  default: '""'
+- name: Measured disturbances
+  summary: Add measured disturbance input port off (default) | on
+  group: General Tab
+  block_parameter: md_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Targets for manipulated variables
+  summary: Add manipulated variable target input port off (default) | on
+  group: General Tab
+  block_parameter: mvtarget_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Model parameters
+  summary: Add model parameters input port off (default) | on
+  group: General Tab
+  block_parameter: param_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal cost
+  summary: Add optimal cost output port off (default) | on
+  group: General Tab
+  block_parameter: cost_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal control sequence
+  summary: Add optimal control sequence output port off (default) | on
+  group: General Tab
+  block_parameter: mvseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal state sequence
+  summary: Add optimal state sequence output port off (default) | on
+  group: General Tab
+  block_parameter: stateseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal output sequence
+  summary: Add optimal output sequence output port off (default) | on
+  group: General Tab
+  block_parameter: ovseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Slack variable
+  summary: Add slack variable output port off (default) | on
+  group: General Tab
+  block_parameter: slack_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimization status
+  summary: Add optimization status output port off (default) | on
+  group: General Tab
+  block_parameter: status_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower OV limits
+  summary: Add minimum OV constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: ov_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper OV limits
+  summary: Add maximum OV constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: ov_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MV limits
+  summary: Add minimum MV constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mv_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper MV limits
+  summary: Add maximum MV constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mv_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MVRate limits
+  summary: Add minimum MV rate constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mvrate_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper MVRate limits
+  summary: Add maximum MV rate constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mvrate_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower state limits
+  summary: Add minimum state constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: state_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper state limits
+  summary: Add maximum state constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: state_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV weights
+  summary: Add OV tuning weights input port off (default) | on
+  group: Online Features Tab
+  block_parameter: ov_weight
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV weights
+  summary: Add MV tuning weights input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mv_weight
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MVRate weights
+  summary: Add MV rate tuning weights input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mvrate_weight
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: ECR weight
+  summary: Add ECR tuning weight input port off (default) | on
+  group: Online Features Tab
+  block_parameter: ecr_weight
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Initial guess
+  summary: Add initial guess input ports off (default) | on
+  group: Online Features Tab
+  block_parameter: nlp_initialize
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Nonlinear MPC Controller** — Controller object `nlmpc` object name
 
@@ -1030,7 +1305,6 @@ application.
 | **Type:** string, character vector |
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Model Predictive Control Toolbox

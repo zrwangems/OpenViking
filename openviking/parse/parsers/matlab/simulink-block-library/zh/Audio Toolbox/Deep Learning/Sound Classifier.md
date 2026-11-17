@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Sound Classifier
 
 ## 端口
+```yaml
+ports:
+- name: audioIn
+  summary: 声音数据列向量
+  direction: input
+  data_types: single | double
+- name: sound
+  summary: 预测的声音标签枚举标量
+  direction: output
+  data_types: enumerated
+- name: scores
+  summary: 预测的激活值或分数向量
+  direction: output
+  data_types: single
+- name: labels
+  summary: 预测分数的类别标签向量
+  direction: output
+  data_types: enumerated
+```
 
 ### 输入
 
@@ -42,8 +61,22 @@ chinese_source: worker-translation
 预测分数的类别标签，以 1×521 向量形式返回。
 
 **数据类型：** `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 16e3（默认）| 正标量
+  group: ''
+- name: Overlap percentage (%)
+  summary: 连续梅尔频谱图之间的重叠百分比 50（默认）| [0 100)
+  group: ''
+- name: Classification
+  summary: 选择以输出声音分类 on（默认）| off
+  group: ''
+- name: Predictions
+  summary: 输出所有分数和相关标签 off（默认）| on
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（Hz） `16e3`（默认）| 正标量
 
@@ -64,7 +97,6 @@ chinese_source: worker-translation
 ### **Predictions** — 输出所有分数和相关标签 `off`（默认）| `on`
 
 启用输出端口 **scores** 和 **labels**，它们输出所有预测分数和相关类别标签。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

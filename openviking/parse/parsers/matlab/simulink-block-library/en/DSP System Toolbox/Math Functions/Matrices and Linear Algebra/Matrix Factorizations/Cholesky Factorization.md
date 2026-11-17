@@ -14,6 +14,17 @@ language: en
 # Cholesky Factorization
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Input matrix square matrix
+  direction: input
+  data_types: single | double
+- name: LL'
+  summary: Lower and upper triangular factors square matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -68,8 +79,13 @@ MATLAB result.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Non-positive definite input
+  summary: Non-positive definite input Warning (default) | Ignore | Error
+  group: ''
+```
 
 ### **Non-positive definite input** — Non-positive definite input `Warning` (default) | `Ignore` | `Error`
 
@@ -100,7 +116,6 @@ Configuration Parameters dialog box, it is set to
 `Ignore` in the code generated for this
 block by Simulink®
 Coder™ code generation software.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Factorizations

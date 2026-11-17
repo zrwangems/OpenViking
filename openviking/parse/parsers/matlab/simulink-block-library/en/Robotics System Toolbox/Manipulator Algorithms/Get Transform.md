@@ -14,6 +14,15 @@ language: en
 # Get Transform
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Robot configuration vector
+  direction: input
+- name: Transform
+  summary: Homogeneous transform 4-by-4 matrix
+  direction: output
+```
 
 ### Input
 
@@ -31,8 +40,22 @@ Function block.
 ### **Transform** — Homogeneous transform 4-by-4 matrix
 
 Homogeneous transform, returned as a 4-by-4 matrix.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: Robot model twoJointRigidBodyTree (default) | RigidBodyTree object
+  group: ''
+- name: Target body
+  summary: Target body name body name
+  group: ''
+- name: Source body
+  summary: Source body name body name
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — Robot model `twoJointRigidBodyTree` (default) | `RigidBodyTree` object
 
@@ -73,7 +96,6 @@ coordinate system you want points transformed from.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Manipulator Algorithms

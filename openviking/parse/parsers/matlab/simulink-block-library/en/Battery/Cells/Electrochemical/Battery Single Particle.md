@@ -14,6 +14,18 @@ language: en
 # Battery Single Particle
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Battery thermal mass thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +40,202 @@ Electrical conserving port associated with the negative battery terminal.
 ### **H** — Battery thermal mass thermal
 
 Thermal conserving port associated with the thermal mass of the battery.
-
 ## Parameters
+```yaml
+parameters:
+- name: Extrapolation method for all tables
+  summary: Method of extrapolation for tables Nearest (default) | Linear | Error
+  group: Main
+  block_parameter: ExtrapolationMethod
+  values: '"nearest" (default) | "linear" | "error"'
+- name: Anode thickness
+  summary: Thickness of anode 3.4E-5 m (default) | positive scalar
+  group: Geometry
+- name: Electrolyte layer count of anode
+  summary: Electrolyte layer count of anode 10 (default) | scalar greater than 3
+  group: Geometry
+- name: Separator thickness
+  summary: Thickness of separator 2.5E-5m (default) | positive scalar
+  group: Geometry
+- name: Electrolyte layer count of separator
+  summary: Electrolyte layer count of separator 5 (default) | scalar greater than 3
+  group: Geometry
+- name: Cathode thickness
+  summary: Thickness of cathode 8E-5m (default) | positive scalar
+  group: Geometry
+- name: Electrolyte layer count of cathode
+  summary: Electrolyte layer count of cathode 10 (default) | scalar greater than 3
+  group: Geometry
+- name: Electrode plate area
+  summary: Area of electrode plate 1.8E-1m^2 (default) | positive scalar
+  group: Geometry
+- name: Anode particle radius
+  summary: Particle radius of anode 5E-6m (default) | positive scalar
+  group: Geometry
+- name: Anode shell count
+  summary: Number of shells for anode 10 (default) | positive scalar greater than 3
+  group: Geometry
+- name: Cathode particle radius
+  summary: Particle radius of cathode 5E-8m (default) | positive scalar
+  group: Geometry
+- name: Cathode shell count
+  summary: Number of shells for cathode 10 (default) | positive scalar greater than 3
+  group: Geometry
+- name: Volume fraction of anode active material
+  summary: Volume fraction of active material in anode 0.58 (default) | scalar in the range (0,1)
+  group: Electrodes Properties
+- name: Volume fraction of cathode active material
+  summary: Volume fraction of active material in cathode 0.374 (default) | scalar in the range (0,1)
+  group: Electrodes Properties
+- name: Stoichiometry breakpoints specification
+  summary: Option to specify stoichiometry breakpoints Normalized (default) | Absolute
+  group: Electrodes Properties
+- name: Normalized stoichiometry breakpoints
+  summary: Normalized stoichiometry breakpoints for open-circuit potential of electrode linspace(0.025, 0.975, 39) (default)
+    | vector of elements in the range [0,1]
+  group: Electrodes Properties
+- name: Anode open-circuit potential relative to normalized stoichiometry
+  summary: Open-circuit potential of anode relative to normalized stoichiometry [.435; .325; .259; .221; .204; .194; .179;
+    .166; .155; .145; .137; .131; .128; .127; .126; .125; .124; .123; .122; .121; .118; .117; .112; .109; .105; .1; .098;
+    .095; .094; .093; .091; .09; .089; .088; .087; .086; .085; .084; .083] V (default) | vector of positive elements
+  group: Electrodes Properties
+- name: Cathode open-circuit potential relative to normalized stoichiometry
+  summary: Open-circuit potential of cathode relative to normalized stoichiometry [3.598; 3.53; 3.494; 3.474; 3.46; 3.455;
+    3.454; 3.453; 3.4528; 3.4526; 3.4524; 3.452; 3.4518; 3.4516; 3.4514; 3.4512; 3.451; 3.4508; 3.4506; 3.4503; 3.45; 3.4498;
+    3.4495; 3.4493; 3.449; 3.4488; 3.4486; 3.4484; 3.4482; 3.4479; 3.4477; 3.4475; 3.4473; 3.447; 3.4468; 3.4466; 3.4464;
+    3.4462; 3.4458] V (default) | vector of positive elements
+  group: Electrodes Properties
+- name: Absolute anode stoichiometry breakpoints
+  summary: Absolute stoichiometry breakpoints for open-circuit potential of anode linspace(0.025, 0.975, 39) (default) | vector
+    of elements in the range [0,1]
+  group: Electrodes Properties
+- name: Anode open-circuit potential relative to absolute stoichiometry
+  summary: Open-circuit potential of anode relative to absolute stoichiometry [.484; .335; .253; .209; .2; .181; .165; .151;
+    .139; .131; .128; .125; .124; .124; .123; .122; .119; .117; .111; .108; .101; .098; .095; .093; .092; .088; .088; .088;
+    .088; .087; .087; .087; .085; .082; .079; .071; .064; .049; .026] V (default) | vector of positive elements
+  group: Electrodes Properties
+- name: Absolute cathode stoichiometry breakpoints
+  summary: Absolute stoichiometry breakpoints for open-circuit potential of cathode linspace(0.025, 0.975, 39) (default) |
+    vector of elements in the range [0,1]
+  group: Electrodes Properties
+- name: Cathode open-circuit potential relative to absolute stoichiometry
+  summary: Open-circuit potential of cathode relative to absolute stoichiometry [3.81; 3.608; 3.512; 3.478; 3.459; 3.453;
+    3.45257; 3.45214; 3.45171; 3.45128; 3.45085; 3.45042; 3.44999; 3.44956; 3.44913; 3.4487; 3.44827; 3.44784; 3.44741; 3.44698;
+    3.44655; 3.44612; 3.44569; 3.44526; 3.44483; 3.4444; 3.44397; 3.44354; 3.44311; 3.44268; 3.44225; 3.44182; 3.44139; 3.44096;
+    3.44053; 3.44; 3.412; 3.304; 2.968] V (default) | vector of positive elements
+  group: Electrodes Properties
+- name: Anode maximum ion concentration
+  summary: Maximum ion concentration in anode 30555 mol/m^3 (default) | positive scalar
+  group: Electrodes Properties
+- name: Anode maximum stoichiometry
+  summary: Maximum stoichiometry in anode 0.811 (default) | positive scalar
+  group: Electrodes Properties
+- name: Anode minimum stoichiometry
+  summary: Minimum stoichiometry in anode 0.0132 (default) | positive scalar
+  group: Electrodes Properties
+- name: Cathode maximum ion concentration
+  summary: Maximum ion concentration in cathode 22806 mol/m^3 (default) | positive scalar
+  group: Electrodes Properties
+- name: Cathode maximum stoichiometry
+  summary: Maximum stoichiometry in cathode 0.74 (default) | positive scalar
+  group: Electrodes Properties
+- name: Cathode minimum stoichiometry
+  summary: Minimum stoichiometry in cathode 0.035 (default) | positive scalar
+  group: Electrodes Properties
+- name: Diffusion coefficient of anode active material
+  summary: Diffusion coefficient of active material in anode 3E-15 m^2/s (default) | positive scalar
+  group: Electrodes Properties
+- name: Diffusion coefficient of cathode active material
+  summary: Diffusion coefficient of active material in cathode 5.9E-20 m^2/s (default) | positive scalar
+  group: Electrodes Properties
+- name: Anode conductivity
+  summary: Conductivity of anode 100 S/m (default) | positive scalar
+  group: Electrodes Properties
+- name: Cathode conductivity
+  summary: Conductivity of cathode 0.5 S/m (default) | positive scalar
+  group: Electrodes Properties
+- name: Current collector resistance
+  summary: Resistance of current collector 0 Ohm (default) | nonnegative scalar
+  group: Electrodes Properties
+- name: Volume fraction of electrolyte in anode
+  summary: Fraction of volume of electrolyte in anode 0.3874 (default) | scalar in the range (0,1)
+  group: Electrolyte Properties
+- name: Volume fraction of electrolyte in separator
+  summary: Fraction of volume of electrolyte in separator 0.45 (default) | scalar in the range (0,1)
+  group: Electrolyte Properties
+- name: Volume fraction of electrolyte in cathode
+  summary: Fraction of volume of electrolyte in cathode 0.5725 (default) | scalar in the range (0,1)
+  group: Electrolyte Properties
+- name: Electrolyte conductivity
+  summary: Conductivity of electrolyte 0.29 S/m (default) | positive scalar
+  group: Electrolyte Properties
+- name: Anode Bruggeman exponent
+  summary: Bruggeman exponent of anode 1.5 (default) | scalar greater than or equal to 1
+  group: Electrolyte Properties
+- name: Separator Bruggeman exponent
+  summary: Bruggeman exponent of separator 1.5 (default) | scalar greater than or equal to 1
+  group: Electrolyte Properties
+- name: Cathode Bruggeman exponent
+  summary: Bruggeman exponent of cathode 1.5 (default) | scalar greater than or equal to 1
+  group: Electrolyte Properties
+- name: Transference number
+  summary: Fraction of total electric current that ion carries in electrolyte 0.363 (default) | scalar in the range [0,1]
+  group: Electrolyte Properties
+- name: Diffusion coefficient of electrolyte
+  summary: Diffusion coefficient of electrolyte 2E-10 m^2/s (default) | positive scalar
+  group: Electrolyte Properties
+- name: Charge transfer rate constant for Anode
+  summary: Rate constant of charge transfer for anode 8.8E-11 m^(5/2)/(mol^(1/2)*s) (default) | positive scalar
+  group: Reaction Kinetics
+- name: Charge transfer rate constant for Cathode
+  summary: Rate constant of charge transfer for cathode 2.8E-13 m^(5/2)/(mol^(1/2)*s) (default) | positive scalar
+  group: Reaction Kinetics
+- name: Battery thermal mass
+  summary: Thermal mass of battery associated with thermal port 77 J/K (default) | positive scalar
+  group: Thermal
+- name: Arrhenius reference temperature
+  summary: Arrhenius reference temperature 298.15 K (default) | positive scalar
+  group: Thermal
+- name: Activation energy for diffusion in anode active material
+  summary: Activation energy for diffusion inside active material of anode 39000 J/mol (default) | positive scalar
+  group: Thermal
+- name: Activation energy for diffusion in cathode active material
+  summary: Activation energy for diffusion inside active material of cathode 35000 J/mol (default) | positive scalar
+  group: Thermal
+- name: Activation energy for diffusion in electrolyte
+  summary: Activation energy for diffusion inside electrolyte 26600 J/mol (default) | positive scalar
+  group: Thermal
+- name: Activation energy for conduction in anode
+  summary: Activation energy for conduction inside anode 3000 J/mol (default) | positive scalar
+  group: Thermal
+- name: Activation energy for conduction in cathode
+  summary: Activation energy for conduction inside cathode 3000 J/mol (default) | positive scalar
+  group: Thermal
+- name: Activation energy for conduction in electrolyte
+  summary: Activation energy for conduction inside electrolyte 11000 J/mol (default) | positive scalar
+  group: Thermal
+- name: Activation energy for charge transfer in Anode
+  summary: Activation energy for charge transfer inside anode 13000 J/mol (default) | positive scalar
+  group: Thermal
+- name: Activation energy for charge transfer in Cathode
+  summary: Activation energy for charge transfer inside cathode 20000 J/mol (default) | positive scalar
+  group: Thermal
+- name: Additional resistance fault
+  summary: Option to fault series-connected resistance Add fault
+  group: Faults
+- name: Additional resistance when faulted
+  summary: Additional resistance when block is faulted 1e5 Ohm (default) | positive scalar
+  group: Faults
+- name: Trigger type
+  summary: Type of fault trigger Always On (default) | Timed | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Trigger Configuration
+  summary: Option to enable additional trigger types for exothermic reactions fault Open fault properties
+  group: Faults
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -472,7 +678,6 @@ To enable this parameter, click the **Add fault** hyperlink for
 the **Additional resistance fault** parameter and set
 **Trigger type** to `Additional
 Triggers`.
-
 ## Libraries
 
 Simscape / Battery / Cells

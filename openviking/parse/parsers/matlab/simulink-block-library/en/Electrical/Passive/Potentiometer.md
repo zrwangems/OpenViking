@@ -14,6 +14,21 @@ language: en
 # Potentiometer
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Wiper position control physical signal
+  direction: input
+- name: L
+  summary: Left pin electrical
+  direction: conserving
+- name: R
+  summary: Right pin electrical
+  direction: conserving
+- name: W
+  summary: Wiper pin electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -42,8 +57,46 @@ wiper`.
 
 Electrical conserving port associated with the potentiometer wiper
 pin.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of visible ports
+  summary: 'Ports visibility option Three: left, right, and wiper (default) | Two: left and wiper'
+  group: ''
+- name: Total resistance
+  summary: Total resistance 1000 Ohm (default)
+  group: ''
+- name: Residual resistance
+  summary: Residual resistance 1 Ohm (default) | positive scalar
+  group: ''
+- name: PS input for wiper at L
+  summary: PS input for wiper at L 0 (default)
+  group: ''
+- name: PS input for wiper at R
+  summary: PS input for wiper at R 1 (default)
+  group: ''
+- name: Minimum resistance
+  summary: Minimum resistance 1 Ohm (default)
+  group: ''
+- name: Maximum resistance
+  summary: Maximum resistance 999 Ohm (default)
+  group: ''
+- name: PS input for wiper at minimum resistance
+  summary: PS input for wiper at minimum resistance 0 (default)
+  group: ''
+- name: PS input for wiper at maximum resistance
+  summary: PS input for wiper at maximum resistance 1 (default)
+  group: ''
+- name: Taper
+  summary: Resistance taper behavior Linear (default) | Logarithmic
+  group: ''
+- name: Resistance when centered
+  summary: Resistance when centered 200 Ohm (default)
+  group: ''
+- name: Resistance gradient
+  summary: Resistance gradient Higher at R (default) | Higher at L
+  group: ''
+```
 
 ### **Number of visible ports** — Ports visibility option `Three: left, right, and wiper` (default) | `Two: left and wiper`
 
@@ -198,7 +251,6 @@ the right end.
 
 To enable this parameter, set **Taper** to
 `Logarithmic`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

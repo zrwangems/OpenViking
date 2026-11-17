@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Cylinder Cushion (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 进液口 热液体
+  direction: unspecified
+- name: B
+  summary: 出液口 热液体
+  direction: unspecified
+- name: R
+  summary: 活塞杆 机械平动
+  direction: unspecified
+- name: C
+  summary: 缸体 机械平动
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +48,47 @@ chinese_source: worker-translation
 ### **C** — 缸体 机械平动
 
 与液压缸参考结构相关联的机械平动守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: 缓冲柱塞横截面积
+  summary: 缓冲柱塞的横截面积 1e-4 m^2（默认） | 正标量
+  group: 缓冲柱塞
+- name: 缓冲柱塞长度
+  summary: 缓冲柱塞的长度 1e-3 m（默认） | 正标量
+  group: 缓冲柱塞
+- name: 执行器活塞初始位移
+  summary: 所连接活塞的初始位移 0 m（默认） | 标量
+  group: 缓冲柱塞
+- name: 执行器机械方向
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认值）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 缓冲柱塞
+- name: 活塞横截面积
+  summary: 活塞的横截面积 0.01 m^2（默认值）| 正标量
+  group: 缓冲柱塞
+- name: 缓冲节流孔面积
+  summary: 缓冲阀的节流孔面积 1e-6 m^2（默认值）| 正标量
+  group: 阀
+- name: 柱塞与缓冲套筒之间的泄漏面积
+  summary: 柱塞位于端盖开口内时的总泄漏面积 1e-7 m^2（默认值）| 正标量
+  group: 阀
+- name: 单向阀开启压差
+  summary: 单向阀开始开启时的压差 0.01 MPa（默认值） | 正标量
+  group: 阀
+- name: 单向阀最大压差
+  summary: 完全打开单向阀所需的压差 0.1 MPa（默认值） | 正标量
+  group: 阀
+- name: 单向阀最大面积
+  summary: 单向阀完全打开时的开口面积 1e-4 m^2（默认值） | 正标量
+  group: 阀
+- name: 单向阀泄漏面积
+  summary: 单向阀完全关闭时的总泄漏面积 1e-10 m^2（默认值） | 正标量
+  group: 阀
+- name: 平滑因子
+  summary: 应用于单向阀和可变孔口开口面积函数的平滑量 0.01（默认值） | 正标量
+  group: 阀
+```
 
 ### 缓冲柱塞
 
@@ -96,7 +150,6 @@ relative to C`，则当端口 **R** 处的信号值减去端口 **C** 处的信�
 ### **平滑因子** — 应用于单向阀和可变孔口开口面积函数的平滑量 `0.01`（默认值） | 正标量
 
 连续平滑因子，在阀处于接近全开或接近全关位置时，为流量响应引入渐进变化。将此值设置为小于 1 的非零值，以提高仿真在这些工况下的稳定性。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Actuators / Auxiliary Components

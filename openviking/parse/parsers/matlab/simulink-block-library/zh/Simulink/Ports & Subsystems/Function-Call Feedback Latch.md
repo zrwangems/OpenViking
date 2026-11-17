@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Function-Call Feedback Latch
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 来自函数调用子系统模块的信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Out
+  summary: 输出至函数调用子系统模块的信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,11 +43,12 @@ chinese_source: worker-translation
 输出至函数调用子系统模块的信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Ports & Subsystems

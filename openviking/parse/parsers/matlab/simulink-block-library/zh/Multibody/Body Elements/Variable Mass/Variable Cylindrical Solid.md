@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Variable Cylindrical Solid
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+- name: len
+  summary: 圆柱体长度 physical signal
+  direction: unspecified
+- name: r
+  summary: 圆柱体半径 physical signal
+  direction: unspecified
+- name: m
+  summary: 圆柱体质量 physical signal
+  direction: unspecified
+- name: len
+  summary: 圆柱体长度 physical signal
+  direction: unspecified
+- name: r
+  summary: 圆柱体半径 physical signal
+  direction: unspecified
+- name: m
+  summary: 圆柱体质量 physical signal
+  direction: unspecified
+- name: com
+  summary: 圆柱体质心坐标 physical signal
+  direction: unspecified
+- name: I
+  summary: 圆柱体惯性矩阵 physical signal
+  direction: unspecified
+```
 
 ### 坐标系
 
@@ -55,8 +85,73 @@ chinese_source: worker-translation
 ### **I** — 圆柱体惯性矩阵 physical signal
 
 圆柱体惯性矩阵的输出端口，以九元素矩阵形式报告，在模块的参考坐标系中解析。对角矩阵元素为惯性矩。非对角元素为惯性积。
-
 ## 参数
+```yaml
+parameters:
+- name: Radius
+  summary: 半径参数化 Calculate from Mass（默认）| Constant | Provided by Input
+  group: ''
+- name: 'Radius: Value'
+  summary: 半径值 1 m（默认）| 带长度单位的标量
+  group: ''
+- name: Length
+  summary: 长度参数化 Calculate from Mass（默认）| Constant | Provided by Input
+  group: ''
+- name: 'Length: Value'
+  summary: 长度值 1 m（默认）| 带长度单位的标量
+  group: ''
+- name: Mass
+  summary: 质量参数化 Provided by Input（默认）| Calculate from Geometry
+  group: ''
+- name: 'Mass: Density'
+  summary: 单位体积材料质量 1000 kg/m^3（默认）| 以质量每单位体积为单位的标量
+  group: ''
+- name: Radius
+  summary: 半径的传感选择 已清除（默认）| 已选中
+  group: ''
+- name: Length
+  summary: 长度的传感选择 已清除（默认）| 已选中
+  group: ''
+- name: Mass
+  summary: 总质量的传感选择 已清除（默认）| 已选中
+  group: ''
+- name: Center of Mass
+  summary: 质心坐标的传感选择 已清除（默认）| 已选中
+  group: ''
+- name: Inertia Matrix
+  summary: 惯性矩阵的传感选项 已清除（默认）| 已选中
+  group: ''
+- name: Type
+  summary: 用于可视化的图形 From Geometry（默认）| Marker | None
+  group: 图形
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: 图形
+- name: Shape
+  summary: 用于表示实体的标记形状 Sphere（默认）| Cube | Frame
+  group: 图形
+- name: Size
+  summary: 标记的宽度，以像素为单位 10 pixels（默认）| 标量
+  group: 图形
+- name: Diffuse Color
+  summary: 漫反射产生的光的颜色 [0.5 0.5 0.5]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: 图形
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 取值范围为 0 到 1 的标量
+  group: 图形
+- name: Specular Color
+  summary: 镜面反射产生的光的颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: 图形
+- name: Ambient Color
+  summary: 环境光的颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: 图形
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: 图形
+- name: Shininess
+  summary: 高光锐度 75（默认）| 约束在 0–128 范围内的标量值
+  group: 图形
+```
 
 #### 几何与惯性
 
@@ -219,7 +314,6 @@ chinese_source: worker-translation
 
 1. **Type** 为 `From Geometry` 或 `Marker`
 2. **Visual Properties** 为 `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Body Elements / Variable Mass

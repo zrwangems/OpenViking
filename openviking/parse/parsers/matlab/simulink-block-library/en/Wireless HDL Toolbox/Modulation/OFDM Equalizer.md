@@ -14,6 +14,45 @@ language: en
 # OFDM Equalizer
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: OFDM data scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: hEst
+  summary: Channel estimated data scalar
+  direction: input
+  data_types: single | double | int8 | int16 | fixed point
+- name: valid
+  summary: Control to indicate valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: hEstLen
+  summary: Length of estimated channel per symbol scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: loadhEst
+  summary: Channel estimates control scalar
+  direction: input
+  data_types: Boolean
+- name: nVar
+  summary: Noise variance scalar
+  direction: input
+  data_types: single | double | uint8 | uint16 | fixed point
+- name: reset
+  summary: Reset internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Complex output data scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -136,8 +175,19 @@ output port is valid. When the data samples are available on the
 **valid** value to `1`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Equalization method
+  summary: Equalization method ZF (default) | MMSE
+  group: ''
+- name: Maximum length of channel estimate per symbol
+  summary: Maximum length of channel estimate per symbol 52 (default) | integer in the range from 2 to 65, 536
+  group: ''
+- name: Enable reset input port
+  summary: Reset signal off (default) | on
+  group: ''
+```
 
 ### **Equalization method** — Equalization method `ZF` (default) | `MMSE`
 
@@ -156,7 +206,6 @@ greater than or equal to 2.
 ### **Enable reset input port** — Reset signal `off` (default) | `on`
 
 Select this parameter to enable the **reset** input port.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

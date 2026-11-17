@@ -15,6 +15,35 @@ chinese_source: worker-translation
 # Simple Tri Port RAM System
 
 ## 端口
+```yaml
+ports:
+- name: din
+  summary: 要写入的数据 scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: wr_addr
+  summary: 要写入的地址 scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: we
+  summary: 写使能 scalar | Vector
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: rd_addr_a
+  summary: 要读取的地址 scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: rd_addr_b
+  summary: 要读取的地址 scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: dout_a
+  summary: 读取输出数据 scalar | vector
+  direction: output
+- name: dout_b
+  summary: 读取输出数据 scalar | vector
+  direction: output
+```
 
 ### 输入
 
@@ -64,8 +93,45 @@ chinese_source: worker-translation
 ### **dout\_b** — 读取输出数据 `scalar` | `vector`
 
 读取输出数据，以标量或向量形式返回。模块从 **rd\_addr\_b** 端口指定的存储位置读取旧的输出数据。
-
 ## 参数
+```yaml
+parameters:
+- name: Type of RAM
+  summary: RAM 类型 Simple tri port（默认）| Simple dual port | Single port | True dual port | Dual port
+  group: 主要
+  block_parameter: RAMType
+  type: 字符向量、字符串
+  values: Dual port | Simple dual port | Single port | True dual port | Simple tri port
+  default: Simple tri port
+- name: 在目标硬件中使用异步读取功能
+  summary: 在目标硬件中启用异步读取功能的选项 off（默认）| on
+  group: 主要
+  block_parameter: AsyncRead
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: RAM 的初始输出
+  summary: RAM 的初始仿真输出 '0.0'（默认）| Scalar | Vector
+  group: 主要
+  block_parameter: RAMInitialValue
+  type: 整数、浮点数
+  values: 0.0 | Scalar | Vector
+  default: '0.0'
+- name: 使用一个周期延迟对 RAM 建模
+  summary: 使用一个周期延迟对 RAM 建模 on（默认）| off
+  group: 高级
+  block_parameter: ModelRAMDelay
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 指定向量输入访问方式
+  summary: 将向量输入访问指定为串行或并行 serial（默认）| parallel
+  group: 高级
+  block_parameter: VectorAccess
+  type: 字符向量、字符串
+  values: '''serial'' | ''parallel'''
+  default: '''serial'''
+```
 
 ### 主要
 
@@ -166,7 +232,6 @@ RAM 类型，指定为以下之一：
 | **类型：**  字符向量、字符串 |
 | **值：**  `'serial'` | `'parallel'` |
 | **默认值：**  `'serial'` |
-
 ## 所属库
 
 HDL Coder / HDL RAMs

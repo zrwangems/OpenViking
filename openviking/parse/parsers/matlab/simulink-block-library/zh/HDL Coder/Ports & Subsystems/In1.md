@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Inport
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+```
 
 ### 输出
 
@@ -25,8 +33,117 @@ chinese_source: worker-translation
 您可以在子系统内使用 Inport 模块以结构体或任何其他格式提供定点数据。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: 端口号
+  summary: 端口在父模块上的位置 1（默认）| 实数整数
+  group: 主要
+  block_parameter: Port
+  values: '"1"（默认）| 带引号的实数整数'
+- name: 图标显示
+  summary: 图标显示 端口号（默认）| 信号名称 | 端口号和信号名称
+  group: 主要
+  block_parameter: IconDisplay
+  type: 字符向量
+  values: '''Signal name'' | ''Port number'' | ''Port number and signal name'''
+- name: 通过延迟外部信号锁存输入
+  summary: 通过延迟锁存信号的选项 off（默认）| on
+  group: 主要
+  block_parameter: LatchByDelayingOutsideSignal
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: 为函数调用子系统输出的反馈信号锁存输入
+  summary: 锁存信号以防止变化 off（默认）| on
+  group: 主要
+  block_parameter: LatchInputForFeedbackSignals
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: 连接输入
+  summary: 打开根 Inport 映射器工具的选项按钮
+  group: 主要
+- name: 输出函数调用
+  summary: 产生函数调用事件的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: OutputFunctionCall
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 最小值
+  summary: 最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  type: 字符向量
+  values: '''[ ]''| 标量'
+- name: 最大值
+  summary: 最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  type: 字符向量
+  values: '''[ ]''| 标量'
+- name: 数据类型
+  summary: '输出数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string''
+    | ''Enum: <class name>'' | ''Bus: <object name>'' | ''ValueType: <object name>'' | ''<data type expression>'' | Simulink.ImageType(480,640,3)'
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 防止定点工具覆盖数据类型的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+- name: 输出为非虚拟总线
+  summary: 指定总线输出虚拟性的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: BusOutputAsStruct
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 单位（例如 m、m/s^2、N\*m）
+  summary: 模块输入信号的物理单位 inherit（默认）| <输入单位>
+  group: 信号属性
+  block_parameter: Unit
+  type: 字符向量
+  values: '''inherit'' | ''<Enter unit>'''
+- name: 端口维度（-1 表示继承）
+  summary: 端口维度 -1（默认）| 整数 | [整数 整数]
+  group: 信号属性
+  block_parameter: PortDimensions
+  type: 字符向量
+  values: '''-1'' | 整数 | [整数 整数]'
+- name: 可变大小信号
+  summary: 允许或不允许可变大小信号的选项 Inherit（默认）| No | Yes
+  group: 信号属性
+  block_parameter: VarSizeSig
+  type: 字符向量
+  values: '''Inherit'' | ''No'' | ''Yes'''
+- name: 信号类型
+  summary: 输出信号类型 auto（默认）| real | complex
+  group: 信号属性
+  block_parameter: SignalType
+  type: 字符向量
+  values: '''auto'' | ''real'' | ''complex'''
+- name: Sample time (-1 for inherited)
+  summary: 用于指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''-1'''
+- name: Interpolate data
+  summary: 用于对输出数据进行线性插值的选项 on（默认）| off
+  group: 执行
+  block_parameter: Interpolate
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Events
+  summary: 用于基于流入端口的数据流触发模型分区的选项 事件触发对象的元胞数组
+  group: 执行
+  block_parameter: EventTriggers
+  values: 1-by-1 cell array | 2-by-1 cell array | 3-by-1 cell array
+  default: '[]'
+```
 
 ### 主要
 
@@ -409,7 +526,6 @@ Inport 模块通过显示 `<Li>` 来指示已选择此选项。
 | **模块参数**：`EventTriggers` |
 | **值**：`1`-by-`1` cell array | `2`-by-`1` cell array | `3`-by-`1` cell array |
 | **默认值**：`[]` |
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sources

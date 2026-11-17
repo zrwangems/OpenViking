@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Induction Motor Configuration
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 模块配置信号向量
+  direction: output
+  data_types: single
+```
 
 ### 输出
 
@@ -36,8 +43,43 @@ chinese_source: worker-translation
 | 端口配置（Torque 或 Speed） | | | - |
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Port configuration
+  summary: 选择端口配置 Torque（默认）| Speed
+  group: 模块选项
+- name: Sample Time (Ts)
+  summary: 模块再次执行前的采样时间 1e-6（默认）| 标量
+  group: 模块选项
+- name: Number of pole pairs
+  summary: 极对数 2（默认）| 标量
+  group: 参数
+- name: Stator resistance (Ohm)
+  summary: 定子电阻 1.77（默认）| 标量
+  group: 参数
+- name: Leakage inductance (H)
+  summary: 定子漏电感 0.0139（默认）| 标量
+  group: 参数
+- name: Rotor resistance (Ohm)
+  summary: 转子电阻 1.34（默认）| 标量
+  group: 参数
+- name: Leakage inductance (H)
+  summary: 转子漏电感 0.0121（默认）| 标量
+  group: 参数
+- name: Magnetizing inductance (H)
+  summary: 电感 0.3876（默认）| 标量
+  group: 参数
+- name: Physical Inertia (kg\*m^2)
+  summary: 物理惯量 0.001（默认）| 标量
+  group: 参数
+- name: Viscous damping (N\*m/rad/s)
+  summary: 粘性阻尼 0（默认）| 标量
+  group: 参数
+- name: Static friction (N\*m)
+  summary: 静摩擦 0（默认）| 标量
+  group: 参数
+```
 
 ### 模块选项
 
@@ -91,7 +133,6 @@ chinese_source: worker-translation
 ### **Static friction (N\*m)** — 静摩擦 `0`（默认）| 标量
 
 电动机中的静摩擦，*Tf*，单位为 N·m。
-
 ## 所属库
 
 Motor Control Blockset HDL Support / Electrical Systems / Motors

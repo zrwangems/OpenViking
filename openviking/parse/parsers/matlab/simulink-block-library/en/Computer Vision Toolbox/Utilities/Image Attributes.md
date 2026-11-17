@@ -14,6 +14,37 @@ language: en
 # Image Attributes
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal Simulink.ImageType
+  direction: input
+  data_types: Simulink.ImageType
+- name: rows
+  summary: Number of rows in image data scalar
+  direction: output
+  data_types: uint32
+- name: columns
+  summary: Number of columns in image data scalar
+  direction: output
+  data_types: uint32
+- name: channels
+  summary: Number of color channels or samples for each pixel in array scalar
+  direction: output
+  data_types: uint32
+- name: class
+  summary: Data type of underlying image data string
+  direction: output
+  data_types: string
+- name: color
+  summary: Color format of underlying image data string
+  direction: output
+  data_types: string
+- name: layout
+  summary: Array layout of image data string
+  direction: output
+  data_types: string
+```
 
 ### Input
 
@@ -85,11 +116,12 @@ Memory arrangement of the matrix data in the image, returned as
 `'ColumnMajor'` or `'RowMajor'`.
 
 **Data Types:** `string`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Computer Vision Toolbox / Utilities

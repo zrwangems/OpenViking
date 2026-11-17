@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Signal From Workspace
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 从工作区导入的信号 标量 | 向量 | 矩阵 | 三维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输出
 
@@ -27,8 +34,25 @@ chinese_source: worker-translation
 当 **Signal** 参数指定一个 *M*×*N*×*P* 数组时，*P* 个页（每个为一个 *M*×*N* 矩阵）按周期 *T*s 依次输出。**Samples per frame** 参数必须设置为 `1`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal
+  summary: 要导入的信号 1:10（默认）| MATLAB 工作区变量 | MATLAB 表达式
+  group: ''
+- name: Sample time
+  summary: 输出采样周期 1（默认）| 标量
+  group: ''
+- name: Samples per frame
+  summary: 每帧采样数 1（默认）| 正整数
+  group: ''
+- name: Form output after final data value by
+  summary: 最终导入信号值之后要输出的值 Setting to zero（默认）| Holding final value | Cyclic repetition
+  group: ''
+- name: Warn when frame size does not evenly divide input length
+  summary: 当输入长度不是帧大小的整数倍时发出警告 off（默认）| on
+  group: ''
+```
 
 ### **Signal** — 要导入的信号 `1:10`（默认）| MATLAB 工作区变量 | MATLAB 表达式
 
@@ -63,7 +87,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Form output after final data value by** 设置为 `Cyclic Repetition`。
-
 ## 所属库
 
 DSP System Toolbox / Sources

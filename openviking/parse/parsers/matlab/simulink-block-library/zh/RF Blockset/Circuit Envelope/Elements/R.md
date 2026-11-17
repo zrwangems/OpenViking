@@ -15,10 +15,21 @@ chinese_source: worker-translation
 # Resistor
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Resistance
+  summary: 电阻值 50 Ohm（默认）| 以欧姆为单位的实数
+  group: ''
+- name: Simulate noise
+  summary: 模拟热噪声 on（默认）| off
+  group: ''
+```
 
 ### **Resistance** — 电阻值 `50 Ohm`（默认）| 以欧姆为单位的实数
 
@@ -34,7 +45,6 @@ A2/Hz，其中：
 
 - k 是玻尔兹曼常数
 - T 是 **Temperature** 参数的值，以开尔文为单位。（同样位于 Configuration 模块中。）
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

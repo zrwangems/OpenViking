@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Longitudinal Controller Stanley
 
 ## 端口
+```yaml
+ports:
+- name: RefVelocity
+  summary: 参考速度 实数标量
+  direction: input
+- name: CurrVelocity
+  summary: 当前速度 实数标量
+  direction: input
+- name: Direction
+  summary: 行驶方向 1（前进运动） | -1（倒车运动）
+  direction: input
+- name: Reset
+  summary: 重置速度误差积分的触发信号 0（保持稳定） | 非零标量（重置）
+  direction: input
+- name: AccelCmd
+  summary: 加速度指令 范围为 [0, *M*A] 的实数标量
+  direction: output
+- name: DecelCmd
+  summary: 减速度指令 范围为 [0, *M*D] 的实数标量
+  direction: output
+```
 
 ### 输入
 
@@ -42,8 +63,25 @@ chinese_source: worker-translation
 ### **DecelCmd** — 减速度指令 范围为 [0, *M*D] 的实数标量
 
 减速度指令，返回为范围 [0, *M*D] 内的实数标量，其中 *M*D 是 **Maximum longitudinal deceleration (m/s^2)** 参数的值。
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain, Kp
+  summary: 比例增益 2.5（默认值） | 正实数标量
+  group: ''
+- name: Integral gain, Ki
+  summary: 积分增益 1（默认值） | 正实数标量
+  group: ''
+- name: Sample time (s)
+  summary: 采样时间 0.05（默认值） | 正实数标量
+  group: ''
+- name: Maximum longitudinal acceleration (m/s^2)
+  summary: 最大纵向加速度 3（默认值） | 正实数标量
+  group: ''
+- name: Maximum longitudinal deceleration (m/s^2)
+  summary: 最大纵向减速度 6（默认值） | 正实数标量
+  group: ''
+```
 
 ### **Proportional gain, Kp** — 比例增益 `2.5`（默认值） | 正实数标量
 
@@ -68,7 +106,6 @@ chinese_source: worker-translation
 最大纵向减速度，以米每二次方秒为单位，指定为正实数标量。
 
 该模块将 **DecelCmd** 端口的输出饱和至范围 [0, *M*D]，其中 *M*D 是该参数的值。高于 *M*D 的值被设置为 *M*D。
-
 ## 所属库
 
 Automated Driving Toolbox / Vehicle Control

@@ -27,6 +27,11 @@ from scrape_r2025b_all_blocks import (
 )
 from translate_r2025b_all_blocks import GENERIC_HEADINGS, validate_translation
 
+from openviking.parse.parsers.matlab.structure import (
+    validate_structured_document,
+    without_structured_data,
+)
+
 
 def local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
@@ -144,8 +149,7 @@ def untranslated_prose(markdown: str) -> list[str]:
             continue  # Equations commonly contain the English words "for" and "and".
         words = {word.lower() for word in ENGLISH_WORDS.findall(scrubbed)}
         if len(words) >= 2 or (
-            ENGLISH_SENTENCE_START.search(scrubbed)
-            and len(re.findall(r"[A-Za-z]+", scrubbed)) >= 5
+            ENGLISH_SENTENCE_START.search(scrubbed) and len(re.findall(r"[A-Za-z]+", scrubbed)) >= 5
         ):
             result.append(stripped)
     return result
@@ -175,6 +179,8 @@ def validate_chinese_language(translated: str) -> None:
 
 def validate_translation_for_audit(source: str, translated: str) -> None:
     """Require every source paragraph, heading, table row and generic label in Chinese."""
+    source = without_structured_data(source)
+    translated = without_structured_data(translated)
     validate_translation(source, translated)
     validate_chinese_language(translated)
     source_sections = re.findall(r"^## (.+)$", source, re.MULTILINE)
@@ -318,6 +324,10 @@ def main() -> None:
             or "完整中英文正文待补" in body
         ):
             failures["pending_placeholder"].append(relative)
+        try:
+            validate_structured_document(markdown)
+        except Exception as exc:
+            failures["invalid_structured_data"].append([relative, str(exc)])
 
     for product in manifest["products"]:
         if product["status"] != "enumerated":

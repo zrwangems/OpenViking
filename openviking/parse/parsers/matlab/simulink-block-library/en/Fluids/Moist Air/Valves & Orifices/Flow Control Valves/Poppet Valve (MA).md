@@ -14,6 +14,18 @@ language: en
 # Poppet Valve (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Valve entry or exit moist air
+  direction: conserving
+- name: B
+  summary: Valve entry or exit moist air
+  direction: conserving
+- name: S
+  summary: Stem displacement, m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -30,8 +42,74 @@ Liquid entry or exit port to the valve.
 
 Displacement of the valve control member in m, specified as a physical
 signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Poppet geometry
+  summary: Type of poppet Cylindrical stem (default) | Round ball
+  group: ''
+- name: Valve seat geometry
+  summary: Geometry of valve seat Sharp-edged (default) | Conical
+  group: ''
+- name: Ball diameter
+  summary: Diameter of ball control member 0.01 m (default) | positive scalar
+  group: ''
+- name: Orifice diameter
+  summary: Seat orifice diameter 7e-3 m (default) | positive scalar
+  group: ''
+- name: Stem diameter
+  summary: Diameter of cylindrical stem 0.01 m (default) | positive scalar
+  group: ''
+- name: Seat cone angle
+  summary: Angle of seat opening 120 deg (default) | positive scalar
+  group: ''
+- name: Control member position at closed orifice
+  summary: Control member offset 0 m (default) | positive scalar
+  group: ''
+- name: Valve parameterization
+  summary: Parameterization used to specify flow characteristics of orifice Orifice area based on geometry (default) | Cv
+    flow coefficient | Kv flow coefficient | Sonic conductance
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar in the range of [0,1]
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: Cv coefficient that corresponds to maximally open component 4 (default) | positive scalar
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: Kv coefficient that corresponds to maximally open component 3.6 (default) | positive scalar
+  group: ''
+- name: Maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open component 12 l/(bar*s) (default) | positive scalar
+  group: ''
+- name: Critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: ''
+- name: Subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at moist air ports 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Poppet geometry** — Type of poppet `Cylindrical stem` (default) | `Round ball`
 
@@ -253,7 +331,6 @@ pressure. Typical values range from `0.995` to
 Area normal to the flow path at each port. The ports are equal in size. The value of this
 parameter should match the inlet area of the components to which the
 resistive element connects.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Flow Control Valves

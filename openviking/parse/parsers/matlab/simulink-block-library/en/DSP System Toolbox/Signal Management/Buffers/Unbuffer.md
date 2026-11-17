@@ -14,6 +14,17 @@ language: en
 # Unbuffer
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Output
+  summary: Unbuffered signal scalar | row vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -35,8 +46,13 @@ independent time-sample in the output.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial conditions
+  summary: Initial conditions 0 (default) | scalar | vector | matrix
+  group: ''
+```
 
 ### **Initial conditions** — Initial conditions `0` (default) | scalar | vector | matrix
 
@@ -57,7 +73,6 @@ Specify the block's initial output for cases of nonzero latency as a:
 **Note**
 
 For more information on latency and the Simulink® tasking modes, see Excess Algorithmic Delay (Tasking Latency) and Time-Based Scheduling and Code Generation (Simulink Coder).
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Buffers

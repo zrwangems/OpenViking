@@ -14,18 +14,22 @@ language: en
 # Voltage-Controlled Voltage Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has four electrical conserving ports. Connections
 + and – on the left side of the block are the control ports.
 The other two ports are the electrical terminals that provide the
 output voltage. Polarity is indicated by the + and – signs.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Voltage gain K**
 :   The change in the output voltage divided by the change in the
     control voltage that causes it. The default value is `1`.
-
 ## Libraries
 
 Not documented in R2025b.

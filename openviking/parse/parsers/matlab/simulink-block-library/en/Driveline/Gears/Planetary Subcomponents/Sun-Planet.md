@@ -14,6 +14,21 @@ language: en
 # Sun-Planet
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Planet gear carrier rotational mechanical
+  direction: conserving
+- name: P
+  summary: Planet gear rotational mechanical
+  direction: conserving
+- name: S
+  summary: Sun gear rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -39,8 +54,35 @@ transmission efficiency by altering the gear temperatures.
 
 To enable this port, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Planet (P) to sun (S) teeth ratio (NP/NS)
+  summary: Planet-to-sun gear ratio 2 (default) | positive scalar
+  group: Main
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Ordinary efficiency
+  summary: Efficiency 0.98 (default) | scalar | 0 < *ηSP* ≤ 1
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Efficiency
+  summary: Gear efficiency [.95, .9, .85] (default) | array | 0 < *ηSP* ≤ 1
+  group: Meshing Losses
+- name: Sun-carrier power threshold
+  summary: Power threshold 0.001 W (default) | scalar
+  group: Meshing Losses
+- name: Sun-carrier viscous friction coefficient
+  summary: Viscous friction 0 N*m/(rad/s) (default)
+  group: Viscous Losses
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -151,7 +193,6 @@ change.
 To enable this parameter, set **Friction model** to
 `Temperature-dependent
 efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears / Planetary Subcomponents

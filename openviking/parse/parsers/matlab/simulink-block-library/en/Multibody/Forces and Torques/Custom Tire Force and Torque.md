@@ -14,6 +14,60 @@ language: en
 # Custom Tire Force and Torque
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base geometry geometry
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: ft
+  summary: Tire force, *N* physical signal
+  direction: input
+- name: tt
+  summary: Tire torque, *N\*m* physical signal
+  direction: input
+- name: con
+  summary: Contact signal, unitless physical signal
+  direction: output
+- name: vx
+  summary: Relative longitudinal velocity, *m/s* physical signal
+  direction: output
+- name: vy
+  summary: Relative lateral velocity, *m/s* physical signal
+  direction: output
+- name: psid
+  summary: Yaw velocity, *rad/s* physical signal
+  direction: output
+- name: gamma
+  summary: Camber angle, *rad* physical signal
+  direction: output
+- name: gammad
+  summary: Camber velocity, *rad/s* physical signal
+  direction: output
+- name: omega
+  summary: Spin velocity, *rad/s* physical signal
+  direction: output
+- name: rl
+  summary: Loaded radius, *m* physical signal
+  direction: output
+- name: rho
+  summary: Radial deflection, *m* physical signal
+  direction: output
+- name: Rb
+  summary: Base rotation, unitless physical signal
+  direction: output
+- name: pb
+  summary: Base translation, *m* physical signal
+  direction: output
+- name: Rf
+  summary: Follower rotation, unitless physical signal
+  direction: output
+- name: pf
+  summary: Follower translation, *m* physical signal
+  direction: output
+```
 
 ### Geometry
 
@@ -224,8 +278,17 @@ geometry.
 
 To enable this port, in the **Sensing > Contact Frame**
 section, select **Follower Translation**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tire Radius
+  summary: Radius of tire 1 m (default) | positive scalar
+  group: ''
+- name: Contact Frame Computation Method
+  summary: Method to use to compute location and orientation of the contact frame Weighted Penetration (default) | Closest
+    Point
+  group: ''
+```
 
 ### **Tire Radius** — Radius of tire `1 m` (default) | positive scalar
 
@@ -243,7 +306,6 @@ specified as:
   off-road scenarios.
 
 You can use the computed data to develop custom tire models.
-
 ## Libraries
 
 Simscape / Multibody / Forces and Torques

@@ -14,6 +14,15 @@ language: en
 # Flow Resistance (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet or outlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Inlet or outlet isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,19 @@ resistance. This block has no intrinsic directionality.
 
 Isothermal liquid conserving port associated with the inlet or outlet of the flow
 resistance. This block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal pressure drop
+  summary: Pressure drop at a known operating condition 0.001 MPa (default) | positive scalar
+  group: ''
+- name: Nominal mass flow rate
+  summary: Mass flow rate at a known operating condition 0.1 kg/s (default) | positive scalar
+  group: ''
+- name: Fraction of nominal mass flow rate for laminar flow
+  summary: Ratio of threshold to nominal mass flow rates 1e-3 (default) | scalar in the range [0,1]
+  group: ''
+```
 
 ### **Nominal pressure drop** — Pressure drop at a known operating condition 0.001 MPa (default) | positive scalar
 
@@ -46,7 +66,6 @@ drop and the mass flow rate.
 Ratio of the threshold mass flow rate to the nominal mass flow rate. The block uses
 this parameter to calculate the threshold mass flow rate—and ultimately to set the
 limits of linearization for the pressure drop.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

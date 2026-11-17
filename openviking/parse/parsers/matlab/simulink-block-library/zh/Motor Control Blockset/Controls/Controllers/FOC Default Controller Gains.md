@@ -15,6 +15,121 @@ chinese_source: worker-translation
 # FOC Default Controller Gains
 
 ## 端口
+```yaml
+ports:
+- name: Rs
+  summary: 定子电阻标量
+  direction: input
+  data_types: single | double
+- name: Ld
+  summary: '*d* 轴电感标量'
+  direction: input
+  data_types: single | double
+- name: Lq
+  summary: '*q* 轴电感标量'
+  direction: input
+  data_types: single | double
+- name: Lm
+  summary: 励磁电感标量
+  direction: input
+  data_types: single | double
+- name: Lls
+  summary: 定子漏电感标量
+  direction: input
+  data_types: single | double
+- name: Llr
+  summary: 转子漏电感标量
+  direction: input
+  data_types: single | double
+- name: J
+  summary: 电机惯量标量
+  direction: input
+  data_types: single | double
+- name: Ts
+  summary: 电流控制器采样时间标量
+  direction: input
+  data_types: single | double
+- name: Tsc
+  summary: 速度控制器采样时间标量
+  direction: input
+  data_types: single | double
+- name: SlowdownFactor
+  summary: 用于减慢系统响应的因子标量，范围为 [1, 20]
+  direction: input
+  data_types: single | double
+- name: IMax
+  summary: 最大可测峰值-中性点电流标量
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: 直流母线电压标量
+  direction: input
+  data_types: single | double
+- name: Nbase
+  summary: 电机额定转速标量
+  direction: input
+  data_types: single | double
+- name: Rs
+  summary: 定子电阻标量
+  direction: input
+  data_types: single | double
+- name: Ld
+  summary: '*d* 轴电感标量'
+  direction: input
+  data_types: single | double
+- name: Lq
+  summary: '*q* 轴电感标量'
+  direction: input
+  data_types: single | double
+- name: J
+  summary: 电机惯量标量
+  direction: input
+  data_types: single | double
+- name: p
+  summary: 电机中可用的极对数标量
+  direction: input
+  data_types: single | double
+- name: FluxPM
+  summary: 峰值永磁磁链标量
+  direction: input
+  data_types: single | double
+- name: Ts
+  summary: 电流控制器采样时间标量
+  direction: input
+  data_types: single | double
+- name: Tsc
+  summary: 速度控制器采样时间标量
+  direction: input
+  data_types: single | double
+- name: CurrLoopDelay
+  summary: 反馈路径中存在的电流延迟的总时间常数值标量
+  direction: input
+  data_types: single | double
+- name: SpeedLoopDelay
+  summary: 反馈路径中存在的速度延迟的总时间常数值标量
+  direction: input
+  data_types: single | double
+- name: Vbase
+  summary: 基准电压标量
+  direction: input
+  data_types: single | double
+- name: Ibase
+  summary: 基准电流标量
+  direction: input
+  data_types: single | double
+- name: Nbase
+  summary: 电机额定转速标量
+  direction: input
+  data_types: single | double
+- name: PI Gains
+  summary: PI 控制器增益总线
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: PI 增益计算状态 true | false
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -323,8 +438,31 @@ PI 增益的计算状态，返回以下值之一：
 - False 表示由于一个或多个输入的值不正确，模块无法计算 PI 控制器增益。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Motor selection
+  summary: 电机类型 PMSM（默认）| ACIM
+  group: ''
+- name: Output unit
+  summary: 模块输出的单位 SI Unit（默认）| Per-Unit
+  group: ''
+- name: Block Output
+  summary: 模块的输出 Current controller (d,q-axes) | Field-weakening controller | Speed controller
+  group: ''
+- name: Specify filter and sensor delays
+  summary: 启用滤波器和传感器延迟的添加 off（默认）| on
+  group: Delays
+- name: Current sensor delay (s)
+  summary: 电流传感器引起的延迟 50e-6（默认）| 标量
+  group: Delays
+- name: Speed sensor delay (s)
+  summary: 速度传感器引起的延迟 50e-6（默认）| 标量
+  group: Delays
+- name: Speed filter delay (s)
+  summary: 速度滤波引起的延迟 0.02（默认）| 标量
+  group: Delays
+```
 
 ### **Motor selection** — 电机类型 `PMSM`（默认）| `ACIM`
 
@@ -392,7 +530,6 @@ PI 增益的计算状态，返回以下值之一：
 要启用此参数，请选择 **Specify filter and sensor delays** 参数。
 
 仅当您选择 **Empirical method** 选项来计算控制器增益时，才会显示 **Specify filter and sensor delays** 参数。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Controllers

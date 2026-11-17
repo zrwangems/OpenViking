@@ -14,15 +14,19 @@ language: en
 # Differential Decoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Initial conditions**
 :   The logical exclusive-or of this value with the initial input value forms
     the initial output value.
-
 ## Libraries
 
 Not documented in R2025b.

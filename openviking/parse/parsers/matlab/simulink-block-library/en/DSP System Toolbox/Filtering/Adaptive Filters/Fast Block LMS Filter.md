@@ -14,6 +14,41 @@ language: en
 # Fast Block LMS Filter
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: single | double
+- name: Desired
+  summary: Desired signal scalar | column vector
+  direction: input
+  data_types: single | double
+- name: Step-size
+  summary: Adaptation step size nonnegative scalar
+  direction: input
+  data_types: single | double
+- name: Adapt
+  summary: Option to update filter weights scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Reset
+  summary: Reset signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Output
+  summary: Filtered signal scalar | column vector
+  direction: output
+  data_types: single | double
+- name: Error
+  summary: Difference between output and desired signal scalar | column vector
+  direction: output
+  data_types: single | double
+- name: Wts
+  summary: Adaptive filter weights scalar | column vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -165,8 +200,37 @@ parameter.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter length
+  summary: Length of FIR filter coefficients vector 32 (default) | positive integer
+  group: ''
+- name: Block size
+  summary: Number of samples acquired before weight adaptation 32 (default) | positive integer
+  group: ''
+- name: Specify step size via
+  summary: Source of adaptation step size Dialog (default) | Input port
+  group: ''
+- name: Step-size (mu)
+  summary: Step-size 0.008 (default) | nonnegative integer
+  group: ''
+- name: Leakage factor (0 to 1)
+  summary: Leakage factor used in leaky LMS algorithm 1.0 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Initial value of filter weights
+  summary: Initial value of filter weights 0 (default) | scalar | vector
+  group: ''
+- name: Adapt port
+  summary: Enable Adapt port off (default) | on
+  group: ''
+- name: Reset port
+  summary: Enable Reset port None (default) | Rising Edge | Falling Edge | Either Edge | Non-zero sample
+  group: ''
+- name: Output filter weights
+  summary: Output filter weights on (default) | off
+  group: ''
+```
 
 ### **Filter length** — Length of FIR filter coefficients vector `32` (default) | positive integer
 
@@ -251,7 +315,6 @@ information on each of the reset options, see the description for the
 
 Select this parameter to export the filter weights from the **Wts**
 port.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Adaptive Filters

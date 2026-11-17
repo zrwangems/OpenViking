@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Edge Detector
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: Th
+  summary: 阈值 标量
+  direction: input
+  data_types: single | double | int | uint | fixed point
+- name: Edge
+  summary: 布尔像素值，指示像素是否为边缘 标量 | 向量
+  direction: output
+  data_types: Boolean
+- name: Gv,Gh
+  summary: 垂直和水平梯度 标量 | 向量
+  direction: output
+  data_types: single | double | int | uint | fixed point
+- name: G45,G135
+  summary: 正交梯度 标量 | 向量
+  direction: output
+  data_types: single | double | int | uint | fixed point
+- name: ctrl
+  summary: 与像素流 pixelcontrol 总线关联的控制信号
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -92,8 +123,40 @@ chinese_source: worker-translation
 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 边缘检测算法 Sobel（默认）| Prewitt | Roberts
+  group: 主
+- name: Output the binary image
+  summary: 启用边缘输出端口 on（默认）| off
+  group: 主
+- name: Output the gradient components
+  summary: 启用梯度输出端口 off（默认）| on
+  group: 主
+- name: Source of threshold value
+  summary: 表示边缘的梯度阈值来源 Property（默认）| Input port
+  group: 主
+- name: Threshold value
+  summary: 表示边缘的梯度阈值 20（默认）| 标量
+  group: 主
+- name: Line buffer size
+  summary: 行内存缓冲区大小 2048（默认）| 整数
+  group: 主
+- name: Padding method
+  summary: 边界填充方法 Symmetric（默认）| None
+  group: 主
+- name: Rounding mode
+  summary: 内部定点计算的舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 内部定点计算的溢出操作 off（默认）| on
+  group: 数据类型
+- name: Gradient Data Type
+  summary: 梯度输出端口的数据类型 Inherit via internal rule（默认）| 数据类型表达式
+  group: 数据类型
+```
 
 ### 主
 
@@ -185,7 +248,6 @@ buffer size** 个内存位置来存储像素，其中
 #### 依赖关系
 
 要启用此参数，请在 **Main** 选项卡上选择 **Output the gradient components**。
-
 ## 所属库
 
 Vision HDL Toolbox / Analysis & Enhancement

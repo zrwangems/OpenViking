@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Host Serial Receive
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输出接收数据的端口 标量
+  direction: output
+  data_types: single | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: status
+  summary: 事务状态 标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输出
 
@@ -39,8 +50,43 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output receiving status** 参数。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Serial Connection
+  summary: 用于接收数据的串口 Serial 1（默认）| Serial 2 | Serial 3 | Serial 4
+  group: ''
+- name: Additional package header
+  summary: 包头部数据 'S'（默认）| 标量
+  group: ''
+- name: Additional package terminator
+  summary: 包终止符数据 'E'（默认）| 标量
+  group: ''
+- name: Data type
+  summary: 输出数据类型 single（默认）| int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+- name: Data size
+  summary: 输出数据大小 1（默认）| 标量 | 矩阵
+  group: ''
+- name: Initial output
+  summary: 默认模块输出值 0（默认）| 标量
+  group: ''
+- name: Action taken when connection times out
+  summary: 连接超时时模块采取的操作 Output the last received value（默认）| Output custom value | Error
+  group: ''
+- name: 连接超时时的输出值
+  summary: 连接超时时输出自定义值 0（默认）| 标量
+  group: ''
+- name: 采样时间
+  summary: 模块执行的采样时间 -1（默认）| 标量
+  group: ''
+- name: 输出接收状态
+  summary: 启用状态输出端口 off（默认）| on
+  group: ''
+- name: 启用阻塞模式
+  summary: 在接收数据时阻塞仿真 on（默认）| off
+  group: ''
+```
 
 ### **Serial Connection** — 用于接收数据的串口 `Serial 1`（默认）| `Serial 2` | `Serial 3` | `Serial 4`
 
@@ -95,7 +141,6 @@ chinese_source: worker-translation
 选择此参数以在接收数据时阻塞仿真。如果您不希望读取操作阻塞仿真，请清除此参数。
 
 如果启用阻塞模式，模型在等待接收所请求的数据时会阻塞仿真。如果未启用阻塞模式，仿真将持续运行。
-
 ## 所属库
 
 Motor Control Blockset / Protection and Diagnostics

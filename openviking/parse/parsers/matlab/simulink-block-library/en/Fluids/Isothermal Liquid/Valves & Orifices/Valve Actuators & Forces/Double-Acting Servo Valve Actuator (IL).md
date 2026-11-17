@@ -14,6 +14,18 @@ language: en
 # Double-Acting Servo Valve Actuator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port for chamber A isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port for chamber B isothermal liquid
+  direction: conserving
+- name: S
+  summary: Spool position, m physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -33,8 +45,64 @@ chamber B.
 Physical signal associated with the spool position, in m. A position
 of zero indicates that the spool is at a neutral position in the middle
 of a stroke.
-
 ## Parameters
+```yaml
+parameters:
+- name: Spool cross-sectional area
+  summary: Area measurement 1e-4 m^2 (default) | positive scalar
+  group: Actuator
+- name: Spool stroke
+  summary: Distance 5e-3 m (default) | positive scalar
+  group: Actuator
+- name: Spring stiffness
+  summary: Rate of force for the spring 1e3 N/m (default) | scalar
+  group: Actuator
+- name: Damping coefficient
+  summary: Damping coefficient 150 N/(m/s) (default) | positive scalar
+  group: Actuator
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+- name: Spool initial displacement
+  summary: Initial location of the spool 0 m (default) | scalar
+  group: Effects and Initial Conditions
+- name: Enable dynamic compressibility
+  summary: Fluid compressibility On (default) | Off
+  group: Effects and Initial Conditions
+- name: Nominal liquid pressure in chamber A
+  summary: Pressure at nominal operating conditions in chamber A 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Nominal liquid pressure in chamber B
+  summary: Pressure at nominal operating conditions in chamber B 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial liquid pressure in chamber A
+  summary: Liquid pressure 0.101325 MPa (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial liquid pressure in chamber B
+  summary: Liquid pressure 0.101325 MPa (default) | positive scalar
+  group: Effects and Initial Conditions
+```
 
 ### Actuator
 
@@ -205,7 +273,6 @@ Pressure in actuator chamber B at the start of simulation.
 
 To enable this parameter, select **Enable dynamic
 compressibility**.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces

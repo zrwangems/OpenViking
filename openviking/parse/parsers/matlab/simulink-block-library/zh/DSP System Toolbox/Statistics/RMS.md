@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # RMS
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double
+- name: Rst
+  summary: 复位端口 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: 沿指定维度的 RMS 值 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -61,8 +76,25 @@ chinese_source: worker-translation
   当复位事件发生时，每个通道的运行 RMS 变为当前输入帧中所有样本（直至并包括当前输入样本）的 RMS 值。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Running RMS
+  summary: 选择运行 RMS 的选项 关（默认） | 开
+  group: 主选项卡
+- name: Find the RMS value over
+  summary: 模块计算 RMS 值所沿的维度 Each column（默认） | Entire input | Each row | Specified dimension
+  group: 主选项卡
+- name: Dimension
+  summary: 自定义维度 1（默认） | 标量
+  group: 主选项卡
+- name: Input processing
+  summary: 在运行模式下处理输入的方法 Columns as channels (frame based)（默认） | Elements as channels (sample based)
+  group: 主选项卡
+- name: Reset port
+  summary: 复位事件 None（默认） | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: 主选项卡
+```
 
 ### 主选项卡
 
@@ -139,7 +171,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Running RMS** 参数。
-
 ## 所属库
 
 DSP System Toolbox / Statistics

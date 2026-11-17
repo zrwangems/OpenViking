@@ -14,6 +14,33 @@ language: en
 # 2-D CFAR Detector
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input image real *M*-by-*N* matrix | real *M*-by-*N*-by-*P* array
+  direction: input
+  data_types: double
+- name: idx
+  summary: Location of test cells *2*-by-*L* matrix of positive integers
+  direction: input
+  data_types: double
+- name: K
+  summary: Detection threshold factor positive scalar
+  direction: input
+  data_types: double
+- name: Y
+  summary: Detection results logical matrix (default) | real-valued matrix
+  direction: output
+  data_types: double
+- name: Th
+  summary: Computed detection threshold real-valued matrix
+  direction: output
+  data_types: double
+- name: N
+  summary: Estimated noise power real-valued matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -136,8 +163,46 @@ To enable this port, select the **Output estimated noise
 power** checkbox.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: CFAR algorithm
+  summary: Noise power estimation algorithm CA (default) | GOCA | SOCA | OS
+  group: ''
+- name: Rank of order statistic
+  summary: Rank of order statistic 1 (default) | positive integer
+  group: ''
+- name: Size in cells of the guard region band
+  summary: Widths of guard band [1,1] (default) | nonnegative integer scalar | 2-element vector of positive integers
+  group: ''
+- name: Size in cells of the training region band
+  summary: Widths of training band [1,1] (default) | nonnegative integer scalar | 2-element vector of positive integers
+  group: ''
+- name: Threshold factor method
+  summary: Method to determine threshold factor Auto (default) | Input port | Custom
+  group: ''
+- name: Custom threshold factor
+  summary: Custom threshold factor 1 (default) | positive scalar
+  group: ''
+- name: Probability of false alarm
+  summary: Probability of false alarm 0.1 (default) | real scalar between 0 and 1
+  group: ''
+- name: OutputFormat
+  summary: Format of detection results CUT result (default) | Detection index
+  group: ''
+- name: Output threshold detection
+  summary: Enable detection threshold output off (default) | on
+  group: ''
+- name: Output estimated noise power
+  summary: Enable detection threshold output off (default) | on
+  group: ''
+- name: Source of the number of detections
+  summary: Source of the number of detections to report Auto (default) | Property
+  group: ''
+- name: Maximum number of detections
+  summary: Maximum number of detection indices to report 1 (default) | positive integer
+  group: ''
+```
 
 ### **CFAR algorithm** — Noise power estimation algorithm `CA` (default) | `GOCA` | `SOCA` | `OS`
 
@@ -277,7 +342,6 @@ parameter to `Detection index` and the
 `Property`.
 
 **Data Types:** `double`
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Receiver Preamp
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入信号 复值矩阵
+  direction: input
+  data_types: double
+- name: TR
+  summary: 启用使能信号 逻辑值标量 | 标量
+  direction: input
+  data_types: double | Boolean
+- name: Ph
+  summary: 输入相位噪声 标量
+  direction: input
+  data_types: double
+- name: Out 1
+  summary: 输出 复值矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -62,8 +81,46 @@ input** 复选框。
 输出信号，以复值矩阵形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Gain (dB)
+  summary: 接收机增益 20（默认值）
+  group: ''
+- name: Loss factor (dB)
+  summary: 接收机损耗因子 0（默认值）
+  group: ''
+- name: Noise specification method
+  summary: 噪声指定方法 Noise temperature（默认值）| Noise power
+  group: ''
+- name: Noise power (W)
+  summary: 噪声功率 0（默认值）
+  group: ''
+- name: Noise figure (dB)
+  summary: 接收机噪声系数 0（默认值）
+  group: ''
+- name: Reference temperature (K)
+  summary: 接收机参考温度 290（默认值）
+  group: ''
+- name: Inherit sample rate
+  summary: 继承采样率 开启（默认值）| 关闭
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认值）| 正实值标量
+  group: ''
+- name: Enable enabling signal input
+  summary: 添加输入以指定使能信号 关（默认）| 开
+  group: ''
+- name: Enable phase noise input
+  summary: 添加输入以指定相位噪声 关（默认）| 开
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 ### **Gain (dB)** — 接收机增益 `20`（默认值）
 
@@ -176,7 +233,6 @@ temperature` 时，此参数才会显示。
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Transmitters and Receivers

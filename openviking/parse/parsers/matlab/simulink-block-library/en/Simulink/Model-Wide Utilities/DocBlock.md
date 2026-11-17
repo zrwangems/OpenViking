@@ -14,10 +14,29 @@ language: en
 # DocBlock
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Code generation template symbol
+  summary: Template symbol for generated code '' | Abstract | Description | History | Modified History | Notes
+  group: ''
+  block_parameter: ECoderFlag
+  type: character vector
+  values: '''Abstract'' | ''Description'' | ''History'' | ''Modified History'' | ''Notes'''
+  default: ''''''
+- name: Document type
+  summary: Type of document Text (default) | RTF | HTML
+  group: ''
+  block_parameter: DocumentType
+  type: character vector
+  values: '''Text'' | ''RTF'' | ''HTML'''
+  default: '''Text'''
+```
 
 ### **Code generation template symbol** — Template symbol for generated code `''` | `Abstract` | `Description` | `History` | `Modified History` | `Notes`
 
@@ -65,7 +84,6 @@ code.
 | **Type:** character vector |
 | **Values:** `'Text'` | `'RTF'` | `'HTML'` |
 | **Default:** `'Text'` |
-
 ## Libraries
 
 Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities

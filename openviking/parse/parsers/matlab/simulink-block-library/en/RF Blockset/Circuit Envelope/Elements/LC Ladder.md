@@ -14,10 +14,27 @@ language: en
 # LC Ladder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ladder topology
+  summary: Type of ladder topology LC Lowpass Tee (default)
+  group: ''
+- name: Inductance
+  summary: inductance values [1.3324e-5 1.3324e-5] H (default) | real number
+  group: ''
+- name: Capacitance
+  summary: Capacitance value 1.1327e-9 F (default) | real number
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Internally ground and hide the negative terminals on (default) | off
+  group: ''
+```
 
 ### **Ladder topology** — Type of ladder topology `LC Lowpass Tee` (default)
 
@@ -53,7 +70,6 @@ of the capacitance from the corresponding drop-down menu.
 Select this option to internally ground and hide the negative terminals.
 Clear this to expose the negative terminals. By exposing these terminals,
 you can connect them to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

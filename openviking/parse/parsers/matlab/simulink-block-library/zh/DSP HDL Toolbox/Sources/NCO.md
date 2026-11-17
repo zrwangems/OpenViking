@@ -15,6 +15,40 @@ chinese_source: worker-translation
 # NCO
 
 ## 端口
+```yaml
+ports:
+- name: inc
+  summary: 相位增量标量整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: offset
+  summary: 相位偏移标量整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: dither
+  summary: 抖动整数 | 整数列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: valid
+  summary: 启用 NCO 操作的控制信号标量
+  direction: input
+  data_types: Boolean
+- name: reset accum
+  summary: 复位累加器标量
+  direction: input
+  data_types: Boolean
+- name: sin, cos, exp
+  summary: 生成波形标量 | 列向量
+  direction: output
+- name: phase
+  summary: NCO 的当前相位标量 | 列向量
+  direction: output
+  data_types: single | double | fixdt(1,N,0)
+- name: valid
+  summary: 指示输出数据的有效性标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -102,8 +136,79 @@ NCO 的当前相位，以标量或长度等于 **Samples per frame** 参数值�
 当 **Samples per frame** 参数大于 `1` 时，此信号指示输出向量中所有元素的有效性。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase increment source
+  summary: 相位增量的来源 Input port（默认）| Property
+  group: 主要
+- name: Phase increment
+  summary: 生成波形的相位增量 100（默认）| 整数
+  group: 主要
+- name: Phase offset source
+  summary: 相位偏移的来源 Input port（默认）| Property
+  group: 主要
+- name: Phase offset
+  summary: 生成波形的相位偏移 0（默认）| 整数
+  group: 主要
+- name: Dither source
+  summary: 抖动位数的来源 Property（默认）| Input port | None
+  group: 主要
+- name: Number of dither bits
+  summary: 用于表示抖动的位数 4（默认）| 正整数
+  group: 主要
+- name: Samples per frame
+  summary: 基于帧的输入和输出的向量大小 1（默认）| 正整数
+  group: 主要
+- name: Enable look up table compression method
+  summary: 压缩查找表 off（默认）| on
+  group: 主要
+- name: Enable accumulator reset input port
+  summary: 启用复位控制信号 off（默认）| on
+  group: 主要
+- name: Type of output signal
+  summary: 输出波形的格式 Sine（默认）| Cosine | Complex exponential | Sine and cosine
+  group: 主要
+- name: Enable phase port
+  summary: 输出当前相位 off（默认）| on
+  group: 主要
+- name: Rounding Mode
+  summary: 定点运算的舍入模式 Floor（默认）
+  group: 数据类型
+- name: Overflow mode
+  summary: 定点运算的溢出模式 Wrap（默认）
+  group: 数据类型
+- name: Accumulator Data Type
+  summary: 累加器数据类型 Binary point scaling（默认）
+  group: 数据类型
+- name: Accumulator Signed
+  summary: 有符号或无符号累加器数据格式 Signed（默认）
+  group: 数据类型
+- name: Accumulator Word length
+  summary: 累加器字长 16（默认）| 整数
+  group: 数据类型
+- name: Accumulator Fraction length
+  summary: 累加器小数长度 0（默认）| 整数
+  group: 数据类型
+- name: Quantize phase
+  summary: 量化累加相位 off（默认）| on
+  group: 数据类型
+- name: Number of quantizer accumulator bits
+  summary: 量化器累加器位数 12（默认）| 整数
+  group: 数据类型
+- name: Output Data Type
+  summary: 输出数据类型 Binary point scaling（默认）| double | single
+  group: 数据类型
+- name: Output Signed
+  summary: 有符号或无符号输出数据格式 Signed（默认）
+  group: 数据类型
+- name: Output Word length
+  summary: 输出字长 16（默认）| 整数
+  group: 数据类型
+- name: Output Fraction length
+  summary: 输出小数长度 14（默认）| 整数
+  group: 数据类型
+```
 
 ### 主要
 
@@ -234,7 +339,6 @@ NCO 的当前相位，以标量或长度等于 **Samples per frame** 参数值�
 ### **Output Fraction length** — 输出小数长度 `14`（默认）| 整数
 
 单位为位。
-
 ## 所属库
 
 DSP HDL Toolbox / Signal Operations DSP HDL Toolbox / Sources

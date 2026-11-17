@@ -14,6 +14,27 @@ language: en
 # PVCCS2
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Positive voltage of the first controlling input electrical
+  direction: conserving
+- name: 1-
+  summary: Negative voltage of the first controlling input electrical
+  direction: conserving
+- name: 2+
+  summary: Positive voltage of the second controlling input electrical
+  direction: conserving
+- name: 2-
+  summary: Negative voltage of the second controlling input electrical
+  direction: conserving
+- name: +
+  summary: Positive output voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative output voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,8 +67,16 @@ voltage.
 
 Electrical conserving port associated with the PVCCS2 negative output
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Polynomial coefficients
+  summary: Polynomial coefficients [ 0 1 1 ] (default)
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: Whether to include parallel conductance Yes (default) | No
+  group: ''
+```
 
 ### **Polynomial coefficients** — Polynomial coefficients `[ 0 1 1 ]` (default)
 
@@ -68,7 +97,6 @@ This table shows the possible values of the parallel conductance,
 | *`Yes`* | | *`No`* | | |
 | **Model contains Environment Parameters block** | **Model does not contain Environment Parameters block** | Parallel conductance, *GMIN*, is not included and it does not affect the current source. | | |
 | *GMIN* is equal to the value of the **GMIN** parameter in the Environment Parameters block. | *GMIN* = `1e-12` `Ohm` |
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Plate Condenser Evaporator (TL-2P)
 
 ## 端口
+```yaml
+ports:
+- name: Z
+  summary: 液体、混合物和蒸气区分数，无量纲物理信号
+  direction: output
+- name: A1
+  summary: 热液体入口或出口 热液体
+  direction: output
+- name: B1
+  summary: 热液体入口或出口 热液体
+  direction: output
+- name: A2
+  summary: 两相流体入口或出口 两相流体
+  direction: output
+- name: B2
+  summary: 两相流体入口或出口 两相流体
+  direction: output
+```
 
 ### 输出
 
@@ -38,8 +56,148 @@ chinese_source: worker-translation
 ### **B2** — 两相流体入口或出口 两相流体
 
 与两相流体相关的入口或出口端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: 流路对齐方式 Counter flow（默认）| Parallel flow
+  group: 配置
+- name: Number of plates
+  summary: 热交换器中的板数 25（默认）| 正标量
+  group: 配置
+- name: Plate length
+  summary: 板长度 1 m（默认）| 正标量
+  group: 配置
+- name: Plate width
+  summary: 板宽度 0.5 m（默认）| 正标量
+  group: 配置
+- name: Spacing between plates
+  summary: 板间距 5e-3 m（默认）| 正标量
+  group: 配置
+- name: Corrugation pattern specification
+  summary: 指定波纹图案的选项 Surface area enlargement factor（默认）| Chevron geometry
+  group: 配置
+- name: Surface area enlargement factor
+  summary: 考虑板面积增大的乘数 1.17（默认）| 正标量
+  group: 配置
+- name: Corrugation chevron angle
+  summary: 板上人字形的角度 60 deg（默认）| 正标量
+  group: 配置
+- name: Corrugation depth to pitch ratio
+  summary: 人字形深度与节距之比 0.28（默认）| 正标量
+  group: 配置
+- name: Enable plate thermal resistance
+  summary: 建模板热阻的选项 off（默认）| on
+  group: 配置
+- name: Enable plate thermal mass
+  summary: 建模板热质量的选项 off（默认）| on
+  group: 配置
+- name: Plate thickness
+  summary: 板厚度 5e-4 m（默认）| 正标量
+  group: 配置
+- name: Plate density
+  summary: 板密度 7800 kg/m^3（默认）| 正标量
+  group: 配置
+- name: Plate specific heat
+  summary: 板比热 490 J/(K*kg)（默认）| 正标量
+  group: 配置
+- name: Plate thermal conductivity
+  summary: 通过板的热导率 15 W/(K*m)（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A1
+  summary: 端口 A1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B1
+  summary: 端口 B1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A2
+  summary: 端口 A2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B2
+  summary: 端口 B2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Pressure loss model
+  summary: 由粘性摩擦引起的压力损失计算方法 Correlation for flow between corrugated plates（默认）| Friction factor
+  group: Thermal Liquid 1
+- name: Darcy friction factor for flow between corrugated plates
+  summary: 恒定 Darcy 摩擦因子 1.7（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Loss coefficient for inlet and outlet manifolds and ports
+  summary: 入口和出口歧管及端口的压力损失系数 1.5（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Heat transfer coefficient model
+  summary: 传热系数计算方法 Correlation for flow between corrugated plates（默认）| Colburn equation
+  group: Thermal Liquid 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c
+  summary: Colburn 方程系数 [.141, .748, .333]（默认）| 三元素向量
+  group: Thermal Liquid 1
+- name: Coefficients for Martin correlation
+  summary: Martin 关联式系数 [.122, .374, .333]（默认）| 三元素向量
+  group: Thermal Liquid 1
+- name: Fouling factor
+  summary: 污垢沉积引起的热阻 0.1 K*m^2/kW（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Initial thermal liquid pressure
+  summary: 仿真开始时的热液体压力 0.101325 MPa（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Initial thermal liquid temperature
+  summary: 仿真开始时的热液体温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Thermal Liquid 1
+- name: Pressure loss model
+  summary: 由粘性摩擦引起的压力损失计算方法 Correlation for flow between corrugated plates（默认）| Friction factor
+  group: Two-Phase Fluid 2
+- name: Darcy friction factor for flow between corrugated plates
+  summary: 恒定 Darcy 摩擦因子 1.7（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Loss coefficient for inlet and outlet manifolds and ports
+  summary: 入口和出口歧管及端口的压力损失系数 1.5（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Heat transfer coefficient model
+  summary: 传热系数计算方法 Correlation for flow between corrugated plates（默认）| Colburn equation
+  group: Two-Phase Fluid 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in liquid zone
+  summary: 液体区 Colburn 方程系数 [.141, .748, .333]（默认）| 三元素向量
+  group: Two-Phase Fluid 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in mixture zone
+  summary: 混合物区 Longo 关联式方程系数 [1.875, .445, .333]（默认）| 三元素向量
+  group: Two-Phase Fluid 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in vapor zone
+  summary: 蒸气区 Colburn 方程系数 [.141, .748, .333]（默认）| 三元素向量
+  group: Two-Phase Fluid 2
+- name: Coefficients for Martin correlation in liquid zone
+  summary: 液体区 Martin 方程系数 [.122, .374, .333]（默认）| 三元素向量
+  group: Two-Phase Fluid 2
+- name: Coefficients for Longo correlation in mixture zone
+  summary: 混合物区 Longo 关联式方程系数 [1.875, .445, .333]（默认）| 三元素向量
+  group: Two-Phase Fluid 2
+- name: Coefficients for Martin correlation in vapor zone
+  summary: 蒸气区 Martin 方程系数 [.122, .374, .333]（默认）| 三元素向量
+  group: Two-Phase Fluid 2
+- name: 污垢系数
+  summary: 污垢沉积产生的热阻 0.1 K*m^2/kW（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: 初始流体能量规格
+  summary: 两相流体的初始状态 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: Two-Phase Fluid 2
+- name: 初始两相流体压力
+  summary: 仿真开始时的流体压力 0.101325 MPa（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: 初始两相流体温度
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Two-Phase Fluid 2
+- name: 初始两相流体蒸汽干度
+  summary: 仿真开始时的蒸汽质量分数 0.5（默认）| [0,1] 范围内的正标量 | [0,1] 范围内的二元素向量
+  group: Two-Phase Fluid 2
+- name: 初始两相流体蒸汽空隙率
+  summary: 仿真开始时的蒸汽体积分数 0.5（默认）| [0,1] 范围内的正标量 | [0,1] 范围内的二元素向量
+  group: Two-Phase Fluid 2
+- name: 初始两相流体比焓
+  summary: 仿真开始时的单位质量焓 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: Two-Phase Fluid 2
+- name: 初始两相流体比内能
+  summary: 仿真开始时的内能 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: Two-Phase Fluid 2
+```
 
 ### 配置
 
@@ -368,7 +526,6 @@ Nu=c1(fDarcyRe2sin2β)c2Prc3。
 #### 依赖关系
 
 要启用此参数，请将**初始流体能量规格**设置为`Specific internal energy`。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Two-Phase Fluid - Thermal Liquid

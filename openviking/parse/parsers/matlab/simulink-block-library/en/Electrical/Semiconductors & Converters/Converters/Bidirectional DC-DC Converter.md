@@ -14,6 +14,29 @@ language: en
 # Bidirectional DC-DC Converter
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Switching device gate control electrical | vector
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: Positive DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: Negative DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: Positive DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: Negative DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+```
 
 ### Conserving
 
@@ -51,8 +74,191 @@ Electrical conserving port associated with the negative terminal of
 the second DC voltage.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Converter model Nonisolated converter (default) | Isolated converter | Dual Active Bridge converter
+  group: ''
+- name: Fidelity level
+  summary: Fidelity level Detailed model - switching devices (default) | Equivalent model - PWM-controlled
+  group: Main
+- name: Switching device
+  summary: Switch type Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: Switching Devices
+- name: Forward voltage
+  summary: Voltage 0.8 V (default) | scalar
+  group: Switching Devices
+- name: On-state resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Drain-source on resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Off-state conductance
+  summary: Conductance 1e-5 1/Ohm (default) | scalar
+  group: Switching Devices
+- name: Threshold voltage
+  summary: Voltage threshold 6 V (default) | scalar
+  group: Switching Devices
+- name: Gate trigger voltage, Vgt
+  summary: Voltage threshold 1 V (default) | scalar
+  group: Switching Devices
+- name: Gate turn-off voltage, Vgt_off
+  summary: Voltage threshold -1 V (default) | scalar
+  group: Switching Devices
+- name: Holding current
+  summary: Current threshold 1 A (default) | scalar
+  group: Switching Devices
+- name: Switching device HV
+  summary: Switch Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: Switching Devices
+- name: Forward voltage HV
+  summary: Voltage 0.8 Ohm (default) | scalar
+  group: Switching Devices
+- name: Drain-source on resistance HV
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: On-state resistance HV
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Off-state conductance HV
+  summary: Conductance 1e-5 1/Ohm (default) | scalar
+  group: Switching Devices
+- name: Threshold voltage HV
+  summary: Voltage threshold 6 V (default) | scalar
+  group: Switching Devices
+- name: Gate trigger voltage HV, Vgt_hv
+  summary: Voltage threshold 1 V (default) | scalar
+  group: Switching Devices
+- name: Gate turn-off voltage HV, Vgt_off_hv
+  summary: Voltage threshold -1 V (default) | scalar
+  group: Switching Devices
+- name: Holding current HV
+  summary: Current threshold 1 A (default) | scalar
+  group: Switching Devices
+- name: Switching device LV
+  summary: Switch Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: Switching Devices
+- name: Forward voltage LV
+  summary: Voltage 0.8 Ohm (default) | scalar
+  group: Switching Devices
+- name: Drain-source on resistance LV
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: On-state resistance LV
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Off-state conductance LV
+  summary: Conductance 1e-5 1/Ohm (default) | scalar
+  group: Switching Devices
+- name: Threshold voltage LV
+  summary: Voltage threshold 6 V (default) | scalar
+  group: Switching Devices
+- name: Gate trigger voltage LV, Vgt_lv
+  summary: Voltage threshold 1 V (default) | scalar
+  group: Switching Devices
+- name: Gate turn-off voltage LV, Vgt_off_lv
+  summary: Voltage threshold -1 V (default) | scalar
+  group: Switching Devices
+- name: Holding current LV
+  summary: Current threshold 1 A (default) | scalar
+  group: Switching Devices
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: Integer mode for FPGA deployment 0 (default) | nonnegative scalar
+  group: Switching Devices
+- name: Model dynamics
+  summary: Diode model Diode with no dynamics (default) | Diode with charge dynamics
+  group: Protection Diode
+- name: Forward voltage
+  summary: Voltage 0.8 V (default) | scalar
+  group: Protection Diode
+- name: On resistance
+  summary: On resistance 0.001 Ohm (default) | scalar
+  group: Protection Diode
+- name: Off conductance
+  summary: Conductance 1e-5 1/Ohm (default) | scalar
+  group: Protection Diode
+- name: Junction capacitance
+  summary: Junction capacitance 50 nF (default) | scalar
+  group: Protection Diode
+- name: Peak reverse current, iRM
+  summary: Peak reverse current -235 A (default) | negative scalar
+  group: Protection Diode
+- name: Initial forward current when measuring iRM
+  summary: Initial forward current when measuring iRM 300 A (default) | positive scalar
+  group: Protection Diode
+- name: Rate of change of current when measuring iRM
+  summary: Current change rate -50 A/us (default) | scalar
+  group: Protection Diode
+- name: Reverse recovery time parameterization
+  summary: Recovery-time model Specify stretch factor (default) | Specify reverse recovery time directly | Specify reverse
+    recovery charge
+  group: Protection Diode
+- name: Reverse recovery time stretch factor
+  summary: Reverse recovery time stretch factor 3 (default) | scalar greater than 1
+  group: Protection Diode
+- name: Reverse recovery time, trr
+  summary: Reverse recovery time 15 us (default) | scalar
+  group: Protection Diode
+- name: Reverse recovery charge, Qrr
+  summary: Reverse recovery charge 1500 s*uA (default) | scalar
+  group: Protection Diode
+- name: Self inductance of transformer primary winding, L1
+  summary: Self-inductance of transformer primary winding 0.03 H (default) | positive scalar
+  group: Transformer
+- name: Self inductance of transformer secondary winding, L2
+  summary: Self-inductance of transformer secondary winding 0.03 H (default) | positive scalar
+  group: Transformer
+- name: Transformer coefficient of coupling
+  summary: Coupling coefficient 0.9 (default) | positive scalar greater than zero and less than 1
+  group: Transformer
+- name: Inductance, L
+  summary: Inductance 1e-6 H (default) | positive scalar
+  group: LC Parameters
+- name: Inductor series resistance
+  summary: Inductor series resistance 0 Ohm (default) | zero or positive scalar
+  group: LC Parameters
+- name: Capacitance, C1
+  summary: Capacitance 1e-7 F (default) | positive scalar
+  group: LC Parameters
+- name: Capacitance, C2
+  summary: Capacitance 1e-7 F (default) | positive scalar
+  group: LC Parameters
+- name: C1 effective series resistance
+  summary: Resistance 1e-6 Ohm (default) | zero or positive scalar
+  group: LC Parameters
+- name: C2 effective series resistance
+  summary: Resistance 1e-6 Ohm (default) | zero or positive scalar
+  group: LC Parameters
+- name: Snubber
+  summary: Snubber model None (default) | RC snubber
+  group: Snubbers
+- name: Snubber resistance
+  summary: Resistance 0.1 Ohm (default) | scalar
+  group: Snubbers
+- name: Snubber capacitance
+  summary: Capacitance 1e-7 F (default) | scalar
+  group: Snubbers
+- name: Snubber HV
+  summary: Snubber model None (default) | RC snubber
+  group: Snubbers
+- name: Snubber resistance HV
+  summary: Resistance 0.1 Ohm (default) | scalar
+  group: Snubbers
+- name: Snubber capacitance HV
+  summary: Capacitance 1e-7 F (default) | scalar
+  group: Snubbers
+- name: Snubber LV
+  summary: Snubber model None (default) | RC snubber
+  group: Snubbers
+- name: Snubber resistance LV
+  summary: Resistance 0.1 Ohm (default) | scalar
+  group: Snubbers
+- name: Snubber capacitance LV
+  summary: Capacitance 1e-7 F (default) | scalar
+  group: Snubbers
+```
 
 ### **Modeling option** — Converter model `Nonisolated converter` (default) | `Isolated converter` | `Dual Active Bridge converter`
 
@@ -895,7 +1101,6 @@ Capacitance of the low-voltage snubbers.
 #### Dependencies
 
 See the Snubbers Parameter Dependencies table.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

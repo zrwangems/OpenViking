@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Von Karman Wind Turbulence Model (Continuous)
 
 ## 端口
+```yaml
+ports:
+- name: h
+  summary: 高度标量
+  direction: input
+  data_types: double
+- name: V
+  summary: 飞行器速度标量
+  direction: input
+  data_types: double
+- name: DCM
+  summary: 方向余弦矩阵 3×3 矩阵
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: 湍流速度 三元素向量
+  direction: output
+  data_types: double
+- name: ωwind
+  summary: 湍流角速率 三元素向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -48,8 +71,91 @@ chinese_source: worker-translation
 湍流角速率，指定为三元素向量，单位为弧度每秒。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 风速单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Specification
+  summary: 军用参考标准 MIL-F-8785C（默认）| MIL-HDBK-1797 | MIL-HDBK-1797B
+  group: ''
+  block_parameter: spec
+  type: 字符向量
+  values: '''MIL-F-8785C'' | ''MIL-HDBK-1797'' | ''MIL-HDBK-1797B'''
+  default: '''MIL-F-8785C'''
+- name: Model type
+  summary: 湍流模型 Continuous Von Karman (+q -r)（默认）| Continuous Von Karman (+q +r) | Continuous Von Karman (-q +r) | Continuous
+    Dryden (+q -r) | Continuous Dryden (+q +r) | Continuous Dryden (-q +r) | Discrete Dryden (+q -r) | Discrete Dryden (+q
+    +r) | Discrete Dryden (-q +r)
+  group: ''
+  block_parameter: model
+  type: 字符向量
+  values: '''Continuous Von Karman (+q +r)'' | ''Continuous Von Karman (-q +r)'' | ''Continuous Dryden (+q -r)'' | ''Continuous
+    Dryden (+q +r)'' | ''Continuous Dryden (-q +r)'' | ''Discrete Dryden (+q -r)'' | ''Discrete Dryden (+q +r)'' | ''Discrete
+    Dryden (-q +r)'''
+  default: '''Continuous Von Karman (+q +r)'''
+- name: Wind speed at 6 m defines the low altitude intensity
+  summary: 测量风速 15（默认）| 实标量
+  group: ''
+  block_parameter: W20
+  type: 字符向量
+  values: 实标量
+  default: '''15'''
+- name: Wind direction at 6 m (degrees clockwise from north)
+  summary: 测量风向 0（默认）| 实标量
+  group: ''
+  block_parameter: Wdeg
+  type: 字符向量
+  values: 实标量
+  default: '''0'''
+- name: Probability of exceedance of high-altitude intensity
+  summary: 湍流强度 10^-2 - Light（默认）| 10^-1 | 2x10^-1 | 10^-3 - Moderate | 10^-4 | 10^-5 - Severe | 10^-6
+  group: ''
+  block_parameter: TurbProb
+  type: 字符向量
+  values: '''2x10^-1'' | ''10^-1'' | ''10^-2 - Light'' | ''10^-3 - Moderate'' | ''10^-4'' | ''10^-5 - Severe'' | ''10^-6'''
+  default: '''10^-2 - Light'''
+- name: Scale length at medium/high altitudes
+  summary: 湍流尺度长度 762（默认）| 实标量
+  group: ''
+  block_parameter: L_high
+  type: 字符向量
+  values: 实标量
+  default: '''762'''
+- name: Wingspan
+  summary: 翼展 10（默认）| 实标量
+  group: ''
+  block_parameter: Wingspan
+  type: 字符向量
+  values: 实标量
+  default: '''10'''
+- name: Band limited noise sample time (seconds)
+  summary: 噪声采样时间 0.1（默认）| 实标量
+  group: ''
+  block_parameter: ts
+  type: 字符向量
+  values: 实标量
+  default: '''0.1'''
+- name: Random noise seeds
+  summary: 噪声种子 [ug vg wg pg] [23341 23342 23343 23344]（默认）| 四元素向量
+  group: ''
+  block_parameter: Seed
+  type: 字符向量
+  values: 四元素向量
+  default: '''[23341 23342 23343 23344]'''
+- name: Turbulence on
+  summary: 湍流信号 on（默认）| off
+  group: ''
+  block_parameter: T_on
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Units** — 风速单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -221,7 +327,6 @@ Continuous Von Kármán 选项符合传递函数描述。
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Wind

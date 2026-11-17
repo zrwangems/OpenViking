@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Proof Assumption
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 指定为标量或元胞数组的输入信号 标量 | 元胞数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: 以标量或元胞数组形式返回的输出信号 标量 | 元胞数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,25 @@ Proof Assumption 模块接受 Simulink 软件支持的所有内置数据类型�
 Proof Assumption 模块返回 Simulink 软件支持的所有内置数据类型的信号。有关支持的数据类型的详细信息，请参阅 Simulink 支持的数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable
+  summary: 模块是否启用 on（默认）| off
+  group: ''
+- name: Type
+  summary: 模块表现为 Proof Assumption 还是 Test Condition 模块 on（默认）| off
+  group: ''
+- name: Values
+  summary: Proof Assumption 标量（默认）| 元胞数组
+  group: ''
+- name: Display values
+  summary: 是否显示 values 参数的内容 on（默认）| off
+  group: ''
+- name: Pass through style(show Outport)
+  summary: 模块是否在 Simulink Editor 中显示输出端口 on（默认）| off
+  group: ''
+```
 
 ### **Enable** — 模块是否启用 `on`（默认）| `off`
 
@@ -61,7 +91,6 @@ Condition` 将 Proof Assumption 模块转换为 Test Condition 模块。
 **Pass through style (show Outport)：选中**
 
 **Pass through style (show Outport)：未选中**
-
 ## 所属库
 
 Simulink Design Verifier / Objectives and Constraints

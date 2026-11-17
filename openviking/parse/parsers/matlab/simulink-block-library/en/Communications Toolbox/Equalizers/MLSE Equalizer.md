@@ -14,10 +14,15 @@ language: en
 # MLSE Equalizer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Specify channel via**
 :   The method for specifying the channel estimate. If you select
@@ -82,7 +87,6 @@ Not documented in R2025b.
     processing the input data. This option appears only if you set
     **Operation mode** to `Continuous with
     reset option`.
-
 ## Libraries
 
 Not documented in R2025b.

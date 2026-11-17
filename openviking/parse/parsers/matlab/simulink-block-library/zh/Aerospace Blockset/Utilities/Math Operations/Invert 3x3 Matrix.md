@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Invert 3x3 Matrix
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入矩阵 3×3 矩阵
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 矩阵逆 3×3 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 输入矩阵的矩阵逆，以 3×3 矩阵形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

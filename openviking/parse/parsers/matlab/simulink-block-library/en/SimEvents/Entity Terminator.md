@@ -14,6 +14,18 @@ language: en
 # Entity Terminator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_a
+  summary: Number of entities arrived scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +47,24 @@ and select the box labeled **Number of entities arrived,
 a**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Event action
+  summary: Specify the behavior of the entity in certain events Entry
+  group: ''
+  block_parameter: EntryAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities arrived, a
+  summary: Outputs the number of entities that have arrived at the block off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesArrived
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Event action** — Specify the behavior of the entity in certain events `Entry`
 
@@ -66,7 +94,6 @@ Number of entities that have arrived at the block.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

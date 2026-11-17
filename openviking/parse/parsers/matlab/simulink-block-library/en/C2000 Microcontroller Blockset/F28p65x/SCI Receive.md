@@ -14,6 +14,21 @@ language: en
 # C28x SCI Receive
 
 ## Ports
+```yaml
+ports:
+- name: Length
+  summary: Data length received from input port scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Data
+  summary: Data received from serial bus scalar | vector
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single
+- name: status
+  summary: Status of serial communication scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Input
 
@@ -104,8 +119,55 @@ This port appears only when you select **Output receiving
 status**.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: SCI module
+  summary: SCI module for communication A (default) | B | C | D
+  group: ''
+- name: Additional package header
+  summary: Indicates start of data 'S' (default) | string | char | number from 0 to 255
+  group: ''
+- name: Additional package terminator
+  summary: Indicates end of data 'E' (default) | string | char | number from 0 to 255
+  group: ''
+- name: Number of retries for header receive check
+  summary: Custom retrial count for header receive check 16 (default) | positive integer, finite | scalar
+  group: ''
+- name: Data type
+  summary: Data type of output data uint8 (default) | single | int8 | int16 | uint16 | int32 | uint32
+  group: ''
+- name: Data length option
+  summary: Data length the block receives Length via dialog (default) | Length via input port | Variable length
+  group: ''
+- name: Data length
+  summary: Number of data types the block receives 1 (default) | positive integer, finite | scalar
+  group: ''
+- name: Max data length
+  summary: Maximum number of data types the block receives 1 (default) | positive integer, finite | positive integer, finite
+  group: ''
+- name: Initial output
+  summary: Default value output from block 0 (default) | scalar | vector
+  group: ''
+- name: Action taken when connection times out
+  summary: Select type of output when connection times out Output the last received value (default) | Output custom value
+  group: ''
+- name: Output value when connection times out
+  summary: Custom output value from block when connection times out 0 (default) | scalar | vector
+  group: ''
+- name: Sample time
+  summary: Frequency at which data is read from SCI device 0.1 (default) | -1 | scalar
+  group: ''
+- name: Wait until data received
+  summary: Wait until requested data is available off (default) | on
+  group: ''
+- name: Timeout
+  summary: Amount of time in seconds the block waits until data is received inf (default) | positive value greater than 0
+  group: ''
+- name: Output receiving status
+  summary: Status of serial communication off (default) | on
+  group: ''
+```
 
 ### **SCI module** — SCI module for communication `A` (default) | `B` | `C` | `D`
 
@@ -407,7 +469,6 @@ the parameter `Wait until data received`.
 
 Creates a **Status** block output that provides the
 status of serial communication.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C281x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

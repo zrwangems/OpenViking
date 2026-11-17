@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Orifice (G)
 
 ## 端口
+```yaml
+ports:
+- name: L
+  summary: 节流口开度，无量纲物理信号
+  direction: input
+- name: A
+  summary: 流道气体
+  direction: input
+- name: B
+  summary: 流道气体
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,91 @@ chinese_source: worker-translation
 ### **B** — 流道气体
 
 与流阻的入口或出口开口相关联的气体守恒端口，流体通过该开口进入或离开流阻。该模块没有固有的方向性。根据流动方向，该端口可以用作入口或出口。
-
 ## 参数
+```yaml
+parameters:
+- name: Orifice type
+  summary: 节流口类型 Variable（默认）| Constant
+  group: ''
+- name: Orifice parameterization
+  summary: 用于指定节流口流动特性的参数化方法 Cv flow coefficient（默认）| Kv flow coefficient | Sonic conductance | Orifice area
+  group: ''
+- name: Opening characteristic
+  summary: 将控制信号转换为流量能力度量的方法 Linear（默认）| Tabulated
+  group: ''
+- name: Opening fraction vector
+  summary: '用于指定表格化参数数据的控制信号值 0 : 0.2 : 1（默认）| 正数向量'
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应最大开度组件的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认）| 正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Cv flow coefficient vector
+  summary: 对应开度分数向量中值的 Cv 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 正数向量
+  group: ''
+- name: Cv flow coefficient
+  summary: 流量系数 4（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应最大开度组件的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: Kv flow coefficient vector
+  summary: 对应开度分数向量中值的 Kv 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 正数向量
+  group: ''
+- name: Kv flow coefficient
+  summary: 流量系数 3.6（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 组件最大开启时对应的声速流导 12 l/(bar*s)（默认值）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流量首次阻塞时的下游与上游压力比 0.3（默认值）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态下质量流量的指数 0.5（默认值）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认值）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认值）| 正标量
+  group: ''
+- name: Sonic conductance vector
+  summary: 开度分数向量中各值对应的声速流导 [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)（默认值）| 正值向量
+  group: ''
+- name: Critical pressure ratio vector
+  summary: 开度分数向量中各值对应的临界压力比 0.3 * ones(1,6)（默认值）| 正数向量
+  group: ''
+- name: Sonic conductance
+  summary: 阻塞流态下流率能力的度量 12 l/(bar*s)（默认值）| 正标量
+  group: ''
+- name: Maximum orifice area
+  summary: 组件最大开启时对应的流通面积 1e-4 m^2（默认值）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认值）| [0,1] 范围内的正标量
+  group: ''
+- name: Orifice area vector
+  summary: 节流孔开口面积值向量 [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2（默认值）| 向量
+  group: ''
+- name: Orifice area
+  summary: 节流孔开口面积 1e-4 m^2（默认值）| 正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 层流与湍流流态之间转换时的压力比 0.999（默认值）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 气体端口处的流通面积 0.01 m^2（默认值）| 正标量
+  group: ''
+```
 
 ### **Orifice type** — 节流口类型 `Variable`（默认）| `Constant`
 
@@ -254,7 +349,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at ports A and B** — 气体端口处的流通面积 `0.01 m^2`（默认值）| 正标量
 
 每个端口处垂直于流动路径的面积。各端口尺寸相同。此参数的值应与阻性元件所连接组件的入口面积相匹配。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Valves & Orifices

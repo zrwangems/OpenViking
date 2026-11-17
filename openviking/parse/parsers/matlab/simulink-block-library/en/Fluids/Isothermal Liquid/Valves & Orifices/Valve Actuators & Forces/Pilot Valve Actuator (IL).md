@@ -14,6 +14,18 @@ language: en
 # Pilot Valve Actuator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Pressure port *P*X isothermal liquid
+  direction: conserving
+- name: Y
+  summary: Pressure port *P*Y isothermal liquid
+  direction: conserving
+- name: S
+  summary: Piston displacement, m physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -38,8 +50,59 @@ To enable this port, set **Actuator type** to
 Piston displacement, specified as a physical signal. The displacement
 sign corresponds to the direction specified in the **Mechanical
 orientation** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Actuator configuration
+  summary: Type of actuator modeled Single-acting (default) | Double-acting
+  group: ''
+- name: Piston area at port X
+  summary: Cross-sectional area of piston rod at port X 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Piston area at port Y
+  summary: Cross-sectional area of piston rod at port Y 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Spring preload force
+  summary: Force in the neutral position 20 N (default) | scalar
+  group: ''
+- name: Spring preload force at port X
+  summary: Force at port X in the neutral position 20 N (default) | scalar
+  group: ''
+- name: Spring preload force at port Y
+  summary: Force at port Y in the neutral position 20 N (default) | scalar
+  group: ''
+- name: Spring stiffness
+  summary: Stiffness coefficient 15e3 N/m (default) | positive scalar
+  group: ''
+- name: Spring stiffness at port X
+  summary: Stiffness coefficient at port X 15e3 N/m (default) | positive scalar
+  group: ''
+- name: Spring stiffness at port Y
+  summary: Stiffness coefficient at port Y 15e3 N/m (default) | positive scalar
+  group: ''
+- name: Piston stroke
+  summary: Maximum piston travel distance 5e-3 m (default) | positive scalar
+  group: ''
+- name: Piston stroke from port X
+  summary: Maximum piston travel distance at port X 5e-3 m (default) | positive scalar
+  group: ''
+- name: Piston stroke from port Y
+  summary: Maximum piston travel distance at port Y 5e-3 m (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Actuator dynamics
+  summary: Whether to account for transients during actuation Off (default) | On
+  group: ''
+- name: Actuator time constant
+  summary: Piston displacement time constant 0.1 s (default) | positive scalar
+  group: ''
+- name: Mechanical orientation
+  summary: Piston displacement direction Pilot pressure at port X causes positive piston displacement (default) | Pilot pressure
+    at port X causes negative piston displacement
+  group: ''
+```
 
 ### **Actuator configuration** — Type of actuator modeled `Single-acting` (default) | `Double-acting`
 
@@ -186,7 +249,6 @@ towards port **Y**. `Pilot pressure at port X
 causes negative piston displacement` corresponds to
 negative displacement when the pressure at **X** pushes the
 piston towards port **Y**.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces

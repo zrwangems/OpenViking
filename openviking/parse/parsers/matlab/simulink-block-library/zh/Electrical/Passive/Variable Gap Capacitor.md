@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Variable Gap Capacitor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: R
+  summary: 从动板机械平移
+  direction: conserving
+- name: C
+  summary: 基板机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,25 @@ chinese_source: worker-translation
 ### **C** — 基板机械平移
 
 与基板关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Capacitor plate area
+  summary: 电容器板面积 1e-3 m^2（默认）| 正标量
+  group: ''
+- name: Dielectric medium thickness
+  summary: 电介质厚度 1e-4 m（默认）| 正标量
+  group: ''
+- name: Specify properties of dielectric medium
+  summary: 指定电介质属性的选项 Off（默认）| On
+  group: ''
+- name: Relative permittivity of dielectric medium
+  summary: 电介质的相对介电常数 1.0（默认）| 正标量
+  group: ''
+- name: Young's modulus of dielectric material
+  summary: 电介质材料的杨氏模量 0 Pa（默认）| 非负标量
+  group: ''
+```
 
 ### **Capacitor plate area** — 电容器板面积 `1e-3` `m^2`（默认）| 正标量
 
@@ -63,7 +95,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Specify properties of dielectric medium** 参数。
-
 ## 所属库
 
 Simscape / Electrical / Passive

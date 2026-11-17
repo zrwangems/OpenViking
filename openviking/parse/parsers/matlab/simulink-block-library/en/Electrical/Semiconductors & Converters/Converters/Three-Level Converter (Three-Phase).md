@@ -14,6 +14,33 @@ language: en
 # Three-Level Converter (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate terminals electrical
+  direction: conserving
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '0'
+  summary: Neutral terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -81,8 +108,116 @@ terminal.
 
 Electrical conserving port associated with the DC negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: ''
+- name: Switching device
+  summary: Switching device Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Averaged Switch
+  group: ''
+- name: Forward voltage, Vf
+  summary: Forward voltage 0.8 V (default)
+  group: 'Switching Devices: GTO'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: GTO'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: GTO'
+- name: Gate trigger voltage, Vgt
+  summary: Gate trigger voltage 1 V (default)
+  group: 'Switching Devices: GTO'
+- name: Gate turn-off voltage, Vgt_off
+  summary: Gate turn-off voltage -1 V (default)
+  group: 'Switching Devices: GTO'
+- name: Holding current
+  summary: Holding current 1 A (default)
+  group: 'Switching Devices: GTO'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Threshold voltage, Vth
+  summary: Threshold voltage 6 V (default)
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Forward voltage, Vf
+  summary: Forward voltage 0.8 V (default)
+  group: 'Switching Devices: IGBT'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: IGBT'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: IGBT'
+- name: Threshold voltage, Vth
+  summary: Threshold voltage 6 V (default)
+  group: 'Switching Devices: IGBT'
+- name: Drain-source on resistance, R_DS(on)
+  summary: Drain-source on resistance 0.001 Ohm (default)
+  group: 'Switching Devices: MOSFET'
+- name: Off-state Conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: 'Switching Devices: MOSFET'
+- name: Threshold voltage, Vth
+  summary: Threshold voltage 6 V (default)
+  group: 'Switching Devices: MOSFET'
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: 'Switching Devices: Averaged Switch'
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: Integer mode for FPGA deployment 0 (default) | nonnegative scalar
+  group: 'Switching Devices: Averaged Switch'
+- name: Integral protection diode
+  summary: Integral protection diode Diode with no dynamics (default) | Diode with charge dynamics
+  group: Integral Diodes
+- name: Forward voltage
+  summary: Forward voltage 0.8 V (default)
+  group: Integral Diodes
+- name: On resistance
+  summary: On resistance 0.001 Ohm (default)
+  group: Integral Diodes
+- name: Off conductance
+  summary: Off conductance 1e-5 1/Ohm (default)
+  group: Integral Diodes
+- name: Junction capacitance
+  summary: Junction capacitance 50e-9 F (default)
+  group: Integral Diodes
+- name: Peak reverse current, iRM
+  summary: Peak reverse current -235 A (default) | negative scalar
+  group: Integral Diodes
+- name: Initial forward current when measuring iRM
+  summary: Initial forward current when measuring iRM 300 A (default) | positive scalar
+  group: Integral Diodes
+- name: Rate of change of current when measuring iRM
+  summary: Rate of change of current when measuring iRM -50A/μs (default) | negative scalar
+  group: Integral Diodes
+- name: Reverse recovery time parameterization
+  summary: Reverse recovery time parameterization Specify reverse recovery time directly (default) | Specify stretch factor
+    | Specify reverse recovery charge
+  group: Integral Diodes
+- name: Reverse recovery time, trr
+  summary: Reverse recovery time 15 μs (default)
+  group: Integral Diodes
+- name: Reverse recovery time stretch factor
+  summary: Reverse recovery time stretch factor 3 (default)
+  group: Integral Diodes
+- name: Reverse recovery charge, Qrr
+  summary: Reverse recovery charge 1500 μAs (default)
+  group: Integral Diodes
+- name: Snubber
+  summary: Snubber None (default) | RC snubber
+  group: Snubbers
+- name: Snubber resistance
+  summary: Snubber resistance 0.1 Ohm (default)
+  group: Snubbers
+- name: Snubber capacitance
+  summary: Snubber capacitance 1e-7 F (default)
+  group: Snubbers
+```
 
 ### **Electrical connection** — Electrical connection `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -430,7 +565,6 @@ Snubber capacitance.
 This parameter is visible only when the
 **Snubber** parameter is set to `RC
 snubber`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

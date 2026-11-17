@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Variable Translational Spring
 
 ## 端口
+```yaml
+ports:
+- name: K
+  summary: 可变弹簧系数，N/m 物理信号
+  direction: input
+- name: C
+  summary: 基座端口 机械平移
+  direction: input
+- name: R
+  summary: 从动端口 机械平移
+  direction: input
+```
 
 ### 输入
 
@@ -32,13 +44,17 @@ chinese_source: worker-translation
 
 与弹簧正端关联的机械平移守恒端口。正方向从端口 **R** 指向端口
 **C**。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum spring rate
+  summary: 弹簧刚度限值 1 N/m（默认）| 正标量
+  group: ''
+```
 
 ### **Minimum spring rate** — 弹簧刚度限值 `1` `N/m`（默认）| 正标量
 
 弹簧刚度允许的最小值。物理信号输入在低于指定值时饱和。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

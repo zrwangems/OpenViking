@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Euler to NED Transformation HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: U In
+  summary: 输入数组 3×1 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Angle In
+  summary: 旋转角度 3×1 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Valid In
+  summary: 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: Restart
+  summary: 是否清除内部状态 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: U Out
+  summary: 旋转后的数组 3×1 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Valid Out
+  summary: 输出数据是否有效 布尔标量
+  direction: output
+  data_types: Boolean
+- name: Ready
+  summary: 模块是否准备好接收输入 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -69,8 +100,17 @@ chinese_source: worker-translation
 模块是否准备好接收输入，以布尔标量形式返回。此控制信号指示模块何时准备好接收新的输入数据。当此值为 1（`true`）且 **Valid In** 值为 1（`true`）时，模块在下一个时间步接受输入数据。当此值为 0（`false`）时，模块在下一个时间步忽略输入数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Architecture
+  summary: 架构类型 Pipelined（默认）| Burst
+  group: ''
+  block_parameter: Architecture
+  type: character vector
+  values: '''Pipelined'' | ''Burst'''
+  default: '''Pipelined'''
+```
 
 ### **Architecture** — 架构类型 `Pipelined`（默认）| `Burst`
 
@@ -87,7 +127,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Pipelined'` | `'Burst'` |
 | **默认值**：`'Pipelined'` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Coordinate Transformations

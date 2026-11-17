@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Multiply-Add
 
 ## 端口
+```yaml
+ports:
+- name: a
+  summary: 输入信号 scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: b
+  summary: 输入信号 scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: c
+  summary: 输入信号 scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 输出信号 scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -42,8 +61,36 @@ chinese_source: worker-translation
 乘法加法运算的输出数据。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Function
+  summary: 指定函数 c+(a.*b)（默认） | c-(a.*b) | (a.*b)-c
+  group: ''
+  block_parameter: Function
+  type: 字符串标量 | 字符向量
+  values: '"c+(a.*b)" | "c-(a.*b)" |"(a.*b)-c"'
+  default: '''c+(a.*b)'''
+- name: Output data type
+  summary: '指定输出数据类型 Inherit: Inherit via internal rule（默认） | Inherit: Inherit via back propagation | Inherit: Same as first
+    input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: ''
+- name: Integer rounding mode
+  summary: 指定定点运算的舍入模式 Floor（默认） | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: 字符串标量 | 字符向量
+  values: '"Ceiling" | "Convergent" |"Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: 指定溢出是否饱和 Off（默认）| On
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: string scalar | character vector
+  values: '"off" | "on"'
+  default: '''off'''
+```
 
 ### **Function** — 指定函数 `c+(a.*b)`（默认） | `c-(a.*b)` | `(a.*b)-c`
 
@@ -136,7 +183,6 @@ Off
 | **类型**：string scalar | character vector |
 | **Value:**  `"off"` | `"on"` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 HDL Coder / HDL Operations

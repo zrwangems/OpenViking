@@ -14,6 +14,15 @@ language: en
 # Gear Box
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Input shaft mechanical rotational
+  direction: conserving
+- name: O
+  summary: Output shaft mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,14 +35,18 @@ shaft.
 
 Mechanical rotational conserving port associated with the output
 shaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gear ratio
+  summary: Ratio of gear velocities 5 (default)
+  group: ''
+```
 
 ### **Gear ratio** — Ratio of gear velocities `5` (default)
 
 The ratio of the input shaft angular velocity to that of the output shaft.
 You can specify both positive and negative values.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanisms

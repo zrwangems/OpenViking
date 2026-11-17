@@ -14,6 +14,24 @@ language: en
 # Drive Cycle Source
 
 ## Ports
+```yaml
+ports:
+- name: VelFdbk
+  summary: Vehicle longitudinal speed scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: RefSpd
+  summary: Vehicle reference speed scalar
+  direction: output
+- name: RefAcc
+  summary: Vehicle reference acceleration scalar
+  direction: output
+- name: Gear
+  summary: Vehicle gear scalar
+  direction: output
+```
 
 ### Input
 
@@ -85,8 +103,98 @@ To enable this port:
      .`txt` files.
 2. Select **Output gear shift**
    data.
-
 ## Parameters
+```yaml
+parameters:
+- name: Drive cycle source
+  summary: Select the drive cycle source FTP75 (default) | Wide Open Throttle (WOT) | Workspace variable | .mat, .xls, .xlsx
+    or .txt file
+  group: Cycle Setup
+- name: From workspace
+  summary: Workspace variable
+  group: Cycle Setup
+- name: Drive cycle source file
+  summary: File name .mat, .xls, .xlsx or .txt
+  group: Cycle Setup
+- name: Repeat cyclically
+  summary: Repeat drive cycle off (default) | on
+  group: Cycle Setup
+- name: Output acceleration
+  summary: Output the acceleration off (default)
+  group: Cycle Setup
+- name: Output gear shift data
+  summary: Output the gear off (default) | on
+  group: Cycle Setup
+- name: Start time, t_wot1
+  summary: Drive cycle start time 5 (default) | scalar
+  group: Cycle Setup
+- name: Initial reference speed, xdot_woto
+  summary: Speed 0 (default) | scalar
+  group: Cycle Setup
+- name: Nominal reference speed, xdot_wot1
+  summary: Speed 30 (default) | scalar
+  group: Cycle Setup
+- name: Time to start deceleration, t_wot2
+  summary: Time 20 (default) | scalar
+  group: Cycle Setup
+- name: Final reference speed, xdot_wot2
+  summary: Speed 0 (default) | scalar
+  group: Cycle Setup
+- name: WOT simulation time, t_wotend
+  summary: Time duration of simulation 30 (default) | scalar
+  group: Cycle Setup
+- name: Source velocity units
+  summary: Specify velocity units m/s (default)
+  group: Cycle Setup
+- name: Output velocity units
+  summary: Specify velocity units m/s (default)
+  group: Cycle Setup
+- name: Output acceleration units
+  summary: Specify acceleration units m/s^2 (default)
+  group: Cycle Setup
+- name: Output sample period (0 for continuous), dt
+  summary: Period between samples 0 (default) | scalar
+  group: Cycle Setup
+- name: Enable fault tracking
+  summary: Enable fault tracking off (default) | on
+  group: Fault Tracking
+- name: Speed tolerance, velBnd
+  summary: Drive cycle speed tolerance 2.0 (default) | scalar
+  group: Fault Tracking
+- name: Speed tolerance units, velBndUnit
+  summary: Set units mph (default)
+  group: Fault Tracking
+- name: Velocity feedback units, inUnit
+  summary: Set velocity feedback units m/s (default)
+  group: Fault Tracking
+- name: Time tolerance, timeBnd
+  summary: Time tolerance 1.0 (default) | scalar
+  group: Fault Tracking
+- name: Enable Failure Tracking
+  summary: Enable failure tracking off (default) | on
+  group: Fault Tracking
+- name: Stop simulation when trace fails
+  summary: Stop simulation when trace fails off (default) | on
+  group: Fault Tracking
+- name: Maximum number of faults, maxFaultCnt
+  summary: Maximum number of faults allowed 10 (default) | scalar
+  group: Fault Tracking
+- name: Maximum single fault time, maxFaultTime
+  summary: Maximum allowed duration of single fault 2.0 (default) | scalar
+  group: Fault Tracking
+- name: Maximum total fault time, maxTotFaultTime
+  summary: Maximum total fault time 15.0 (default) | scalar
+  group: Fault Tracking
+- name: Display simulation trace
+  summary: Display velocity trace off (default) | on
+  group: Fault Tracking
+- name: Simulation trace update rate, dtTrace
+  summary: Trace update period 1 (default) | scalar
+  group: Fault Tracking
+- name: Simulation trace display window, traceWindow
+  summary: Trace window update rate 10 (default) | scalar
+  group: Fault Tracking
+```
 
 ### Cycle Setup
 
@@ -584,7 +692,6 @@ Simulation trace window update rate, in s.
 To enable this parameter, on the **Fault
 Tracking** tab, select **Display simulation
 trace**.
-
 ## Libraries
 
 Powertrain Blockset / Vehicle Scenario Builder Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Nonlinear Inductor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气端口
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,87 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气端口
 
 与负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterized by
+  summary: 模块参数化方式 Single saturation point（默认）| Single inductance (linear) | Magnetic flux versus current characteristic |
+    Magnetic flux density versus magnetic field strength characteristic | Magnetic flux density versus magnetic field strength
+    characteristic with hysteresis
+  group: 主设置
+- name: Number of turns
+  summary: 总匝数 10（默认）
+  group: 主设置
+- name: Unsaturated inductance
+  summary: 非饱和电感 2e-4 H（默认）
+  group: 主设置
+- name: Saturated inductance
+  summary: 饱和电感 1e-4 H（默认）
+  group: 主设置
+- name: Saturation magnetic flux
+  summary: 饱和磁通 1.3e-05 Wb（默认）
+  group: 主设置
+- name: Current vector, i
+  summary: 电流数据向量 [0, .64, 1.28, 1.92, 2.56, 3.2] A（默认）
+  group: 主设置
+- name: Magnetic flux vector, phi
+  summary: 磁通数据 [0, 1.29, 2, 2.27, 2.36, 2.39] .* 1e-5 Wb（默认）
+  group: 主设置
+- name: Magnetic field strength vector, H
+  summary: 磁场强度向量 [0, 200, 400, 600, 800, 1000] A/m（默认）| 向量
+  group: 主设置
+- name: Magnetic flux density vector, B
+  summary: 磁通密度数据 [0, .81, 1.25, 1.42, 1.48, 1.49] T（默认）| 向量
+  group: 主设置
+- name: Effective length
+  summary: 有效磁芯长度 0.032 m（默认）| 正有限标量
+  group: 主设置
+- name: Effective cross-sectional area
+  summary: 有效磁芯横截面积 1.6e-5 m^2（默认）| 正有限标量
+  group: 主设置
+- name: Anhysteretic B-H gradient when H is zero
+  summary: 零场强附近无磁滞 B-H 曲线的梯度 0.005 m*T/A（默认）| 标量
+  group: 主设置
+- name: Flux density point on anhysteretic B-H curve
+  summary: 无磁滞 B-H 曲线上的磁通密度点 1.49 T（默认）| 标量
+  group: 主设置
+- name: Corresponding field strength
+  summary: 对应场强 1000 A/m（默认）| 标量
+  group: 主设置
+- name: Coefficient for reversible magnetization, c
+  summary: 可逆磁化系数 0.1（默认）| [0,1] 范围内的标量
+  group: 主设置
+- name: Bulk coupling coefficient, K
+  summary: 体耦合系数 200 A/m（默认）| 有限正标量
+  group: 主设置
+- name: Inter-domain coupling factor, alpha
+  summary: 域间耦合因子 1e-4（默认）| 标量
+  group: 主设置
+- name: Averaging period for power logging
+  summary: 功率记录平均周期 0 s（默认）| 标量
+  group: 主设置
+- name: Parasitic parallel conductance
+  summary: 寄生并联电导 1e-9 1/Ohm（默认）
+  group: 主设置
+- name: Interpolation option
+  summary: 插值选项 Linear（默认）| Smooth
+  group: 主设置
+- name: Specify initial state by
+  summary: 初始状态指定选项 Current（默认）| Magnetic flux
+  group: 初始条件
+- name: Initial current
+  summary: 初始电流 0 A（默认）
+  group: 初始条件
+- name: Initial magnetic flux
+  summary: 初始磁通 0 Wb（默认）
+  group: 初始条件
+- name: Initial magnetic flux density
+  summary: 初始磁通密度 0 T（默认）
+  group: 初始条件
+- name: Initial field strength
+  summary: 初始场强 0 A/m（默认）
+  group: 初始条件
+```
 
 ### 主设置
 
@@ -250,7 +338,6 @@ Jiles-Atherton 方程中的域间耦合因子 *α*。此参数主要影响 *B*-*
 #### 依赖关系
 
 要启用此参数，请在 **Main** 设置中将 **Parameterized by** 参数设置为 `Magnetic flux density versus magnetic field strength characteristic with hysteresis`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

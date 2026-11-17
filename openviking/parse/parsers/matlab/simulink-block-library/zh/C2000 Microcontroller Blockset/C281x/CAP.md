@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C281x CAP
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 ### Data Format Pane
 
@@ -255,7 +260,6 @@ CAP 窗格为各个 CAP 设置参数。CAP 窗格所影响的特定 CAP 取决�
 ### 另请参阅
 
 C28x Hardware Interrupt
-
 ## 所属库
 
 R2025b 中未记录。

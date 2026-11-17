@@ -15,6 +15,85 @@ chinese_source: worker-translation
 # Fixed-Wing UAV Point Mass
 
 ## 端口
+```yaml
+ports:
+- name: Lift
+  summary: 升力标量
+  direction: input
+  data_types: double
+- name: Drag
+  summary: 阻力标量
+  direction: input
+  data_types: double
+- name: Weight
+  summary: 重力标量
+  direction: input
+  data_types: double
+- name: Thrust
+  summary: 推力标量
+  direction: input
+  data_types: double
+- name: ɣa
+  summary: 相对于气流的航迹角标量
+  direction: input
+  data_types: double
+- name: μ
+  summary: 滚转角标量
+  direction: input
+  data_types: double
+- name: ɑ
+  summary: 迎角标量
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: 风矢量三元向量
+  direction: input
+  data_types: double
+- name: V
+  summary: 空速标量
+  direction: output
+  data_types: double
+- name: G
+  summary: 地速投影标量
+  direction: output
+  data_types: double
+- name: Va
+  summary: 相对于气流的速度矢量三元向量
+  direction: output
+  data_types: double
+- name: Ve
+  summary: 相对于地球的速度矢量，[North East Down] 方向三元向量
+  direction: output
+  data_types: double
+- name: VENU
+  summary: 相对于地球的速度矢量三元向量
+  direction: output
+  data_types: double
+- name: Xe
+  summary: 相对于地球的位置矢量三元向量
+  direction: output
+  data_types: double
+- name: XENU
+  summary: 相对于地球的位置矢量三元向量
+  direction: output
+  data_types: double
+- name: γa
+  summary: 相对于气流的航迹角标量
+  direction: output
+  data_types: double
+- name: γ
+  summary: 相对于地球的航迹角标量
+  direction: output
+  data_types: double
+- name: χa
+  summary: 相对于气流的航向角标量
+  direction: output
+  data_types: double
+- name: χ
+  summary: 相对于地球的航向角标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -162,8 +241,80 @@ Order (Coordinated Flight)`。
 Order (Coordinated Flight)`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English (velocity in ft/s) | English (velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (velocity in ft/s)'' | ''English (velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: 参考坐标系方向
+  summary: 参考坐标系 [North East Down]（默认）| [East North Up]
+  group: ''
+  block_parameter: frame
+  type: 字符向量
+  values: '''[East North Up]'' | ''[North East Down]'''
+  default: '''[North East Down]'''
+- name: 自由度
+  summary: 自由度 6th Order (Coordinated Flight)（默认）| 4th Order (Longitudinal)
+  group: ''
+  block_parameter: order
+  type: 字符向量
+  values: '''4th Order (Longitudinal)'' | ''6th Order (Coordinated Flight)'''
+  default: '''6th Order (Coordinated Flight)'''
+- name: 初始横向距离
+  summary: 初始东向（地球）横向距离位置 0（默认）| 标量
+  group: ''
+  block_parameter: east
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: 初始纵向距离
+  summary: 初始北向（地球）纵向距离 0（默认）| 标量
+  group: ''
+  block_parameter: north
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: 初始高度
+  summary: 初始高度 0（默认）| 标量
+  group: ''
+  block_parameter: altitude
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: 初始空速
+  summary: 初始空速 50（默认）| 标量
+  group: ''
+  block_parameter: '''airspeed'''
+  type: 字符向量
+  values: 标量
+  default: '''50'''
+- name: 初始航迹角
+  summary: 初始航迹角 0（默认）| 标量
+  group: ''
+  block_parameter: gamma
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: 初始航向角
+  summary: 初始航向角 0（默认）| 标量
+  group: ''
+  block_parameter: chi
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: 质量
+  summary: 质点质量 10（默认）| 标量
+  group: ''
+  block_parameter: mass
+  type: 字符向量
+  values: 标量
+  default: '''10'''
+```
 
 ### **Units** — 单位 `Metric (MKS)`（默认）| `English (velocity in ft/s)` | `English (velocity in kts)`
 
@@ -324,7 +475,6 @@ Order (Coordinated Flight)`。
 | **类型**：字符向量 |
 | **值**：标量 |
 | **默认值**：`'10'` |
-
 ## 所属库
 
 UAV Toolbox / Algorithms Aerospace Blockset / Equations of Motion / Point Mass

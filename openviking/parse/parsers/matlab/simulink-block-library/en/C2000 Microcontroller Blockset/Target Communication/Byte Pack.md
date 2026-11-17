@@ -14,6 +14,17 @@ language: en
 # Byte Pack
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First of *N* input ports scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: Vector containing packed data vector
+  direction: output
+  data_types: uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -33,8 +44,20 @@ specified in the cell array.
 Transmits a vector of packed data.
 
 **Data Types:** `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output port (packed) data type
+  summary: Data type of packed output signal uint8 (default) | uint16 | uint32
+  group: ''
+- name: Input port data types (cell array)
+  summary: Data types of unpacked input signals {'double'} (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | boolean
+  group: ''
+- name: Byte alignment
+  summary: Alignment of input signal data types after packing 1 (default) | 2 | 4 | 8
+  group: ''
+```
 
 ### **Output port (packed) data type** — Data type of packed output signal `uint8` (default) | `uint16` | `uint32`
 
@@ -195,7 +218,6 @@ FFF4) is allocated the next two memory cells (third and fourth). The rest of the
 input signals are packed in a similar way. After packing all signals, the
 Byte Pack block calculates total packets allocated and outputs a
 `uint16` vector of size 2 + 2 + 1 + 2 = 7.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Target Communication

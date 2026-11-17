@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Induction Machine Field-Oriented Control
 
 ## 端口
+```yaml
+ports:
+- name: imRef
+  summary: 电流标量
+  direction: input
+  data_types: single | double
+- name: wrRef
+  summary: 速度标量
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: 电流向量
+  direction: input
+  data_types: single | double
+- name: wr
+  summary: 速度标量
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: 电压标量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 门极脉冲向量 | 0 或 1
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: 可视化信号向量
+  direction: output
+  data_types: single | double | bus
+```
 
 ### 输入
 
@@ -60,8 +91,94 @@ chinese_source: worker-translation
 包含用于可视化的信号的总线。
 
 **数据类型：** `single` | `double` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Rated voltage, rms line-to-line (V)
+  summary: 电压 550（默认值）
+  group: 通用
+- name: Rated electrical frequency (Hz)
+  summary: 频率 60（默认值）
+  group: 通用
+- name: Rotor resistance, referred to the stator side (pu)
+  summary: 电阻 0.01（默认值）
+  group: 通用
+- name: Rotor leakage inductance, referred to the stator side (pu)
+  summary: 电感 0.06（默认值）
+  group: 通用
+- name: Magnetizing inductance (pu)
+  summary: 电感 2.7（默认值）
+  group: 通用
+- name: Time constant for dq currents filters (s)
+  summary: 时间常数 1e-4（默认值）
+  group: 通用
+- name: Inverter dc-link voltage threshold (V)
+  summary: 电压 500（默认值）
+  group: 通用
+- name: Fundamental sample time (s)
+  summary: 时间 5e-6（默认值） | 小于控制采样时间的正标量
+  group: 通用
+- name: Control sample time (s)
+  summary: 时间 5e-5（默认值） | 大于基本采样时间的正标量
+  group: 通用
+- name: Magnetizing current controller proportional gain
+  summary: 增益 10（默认值）
+  group: 外环
+- name: Magnetizing current controller integral gain
+  summary: 增益 1000（默认值）
+  group: 外环
+- name: Magnetizing current controller integral anti-windup gain
+  summary: 增益 1000（默认值）
+  group: 外环
+- name: Speed controller proportional gain
+  summary: 增益 10（默认值）
+  group: 外环
+- name: Speed controller integral gain
+  summary: 增益 1000（默认值）
+  group: 外环
+- name: Speed controller integral anti-windup gain
+  summary: 增益 1000（默认值）
+  group: 外环
+- name: Maximum d-axis current [pu]
+  summary: 电流 2（默认值）
+  group: 外环
+- name: Maximum q-axis current [pu]
+  summary: 电流 2（默认值）
+  group: 外环
+- name: Phase-a axis alignment
+  summary: '*dq0* 参考坐标系对齐 Q-axis（默认值） | D-axis'
+  group: 外环
+- name: D-axis current proportional gain
+  summary: '*D* 轴比例增益 1（默认值） | 正数'
+  group: 外环
+- name: D-axis current integral gain
+  summary: '*D* 轴积分增益 100（默认值） | 正数'
+  group: 外环
+- name: D-axis current anti-windup gain
+  summary: '*D* 轴抗饱和增益 1（默认值） | 正数'
+  group: 外环
+- name: Q-axis current proportional gain
+  summary: '*Q* 轴比例增益 1（默认值） | 正数'
+  group: 外环
+- name: Q-axis current integral gain
+  summary: '*Q* 轴积分增益 100（默认值） | 正数'
+  group: 外环
+- name: Q-axis current anti-windup gain
+  summary: '*Q* 轴抗饱和增益 1（默认值） | 正数'
+  group: 外环
+- name: Axis prioritization
+  summary: 电压限制器的轴优先级 Q-axis（默认值） | D-axis | D-Q equivalence
+  group: 外环
+- name: PWM method
+  summary: '脉宽调制方法 SVM: space vector modulation（默认值） | SPWM: sinusoidal PWM'
+  group: 外环
+- name: Sampling mode
+  summary: 波形采样方法 Natural（默认值） | Asymmetric | Symmetric
+  group: 外环
+- name: Switching frequency (Hz)
+  summary: 开关频率 1000（默认值） | 正整数
+  group: 外环
+```
 
 ### 通用
 
@@ -182,7 +299,6 @@ chinese_source: worker-translation
 ### **Switching frequency (Hz)** — 开关频率 `1000`（默认值） | 正整数
 
 指定功率变换器中开关的切换速率。
-
 ## 所属库
 
 Simscape / Electrical / Control / Induction Machine Control

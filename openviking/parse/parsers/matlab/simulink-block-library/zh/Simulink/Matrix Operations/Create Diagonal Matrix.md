@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Create Diagonal Matrix
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -38,11 +49,12 @@ A = diag(D)		% Equivalent MATLAB code
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Matrix Operations

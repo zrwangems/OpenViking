@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Algebraic Interleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **类型**：模块用于交织的置换表的类型。
 
@@ -33,7 +38,6 @@ R2025b 中未记录。
 
 **Primitive element**
 :   有限域 GF(N+1) 中阶为 *N* 的元素。仅当 **Type** 设置为 `Welch-Costas` 时，此字段才会出现。
-
 ## 所属库
 
 R2025b 中未记录。

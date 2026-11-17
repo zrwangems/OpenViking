@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Resolver-to-Digital Converter
 
 ## 端口
+```yaml
+ports:
+- name: Vp
+  summary: 电压相位角标量
+  direction: input
+  data_types: single | double
+- name: Vx
+  summary: x 轴电压标量
+  direction: input
+  data_types: single | double
+- name: Vy
+  summary: y 轴电压标量
+  direction: input
+  data_types: single | double
+- name: Velocity
+  summary: 旋转速度标量
+  direction: output
+  data_types: single | double
+- name: Angle
+  summary: 旋转角度标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -48,8 +71,25 @@ chinese_source: worker-translation
 对应于旋转角度的 Simulink 信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: 所连接电机的极对数 4（默认）| 正标量整数
+  group: ''
+- name: Phase-looked loop proportional gain
+  summary: PLL 比例增益 15（默认）| 正标量
+  group: ''
+- name: Phase-looked loop integral gain
+  summary: PLL 积分增益 2.5e5（默认）| 正标量
+  group: ''
+- name: Initial position (rad)
+  summary: 初始相位角 0 rad（默认）| 标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Number of pole pairs** — 所连接电机的极对数 `4`（默认）| 正标量整数
 
@@ -76,7 +116,6 @@ chinese_source: worker-translation
 **注意**
 
 如果此模块位于掩码子系统或允许在连续操作或离散操作之间切换的其他变体子系统中，请提升采样时间参数，以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / Observers

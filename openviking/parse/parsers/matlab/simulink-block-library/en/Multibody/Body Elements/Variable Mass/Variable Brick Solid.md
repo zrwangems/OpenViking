@@ -14,6 +14,42 @@ language: en
 # Variable Brick Solid
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+- name: lx
+  summary: '*x*-dimension of the brick physical signal'
+  direction: unspecified
+- name: ly
+  summary: '*y*-dimension of the brick physical signal'
+  direction: unspecified
+- name: lz
+  summary: '*z*-dimension of the brick physical signal'
+  direction: unspecified
+- name: m
+  summary: Brick mass physical signal
+  direction: unspecified
+- name: lx
+  summary: '*x*-dimension of the brick physical signal'
+  direction: unspecified
+- name: ly
+  summary: '*y*-dimension of the brick physical signal'
+  direction: unspecified
+- name: lz
+  summary: '*z*-dimension of the brick physical signal'
+  direction: unspecified
+- name: m
+  summary: Brick mass physical signal
+  direction: unspecified
+- name: com
+  summary: Center-of-mass coordinates of the brick physical signal
+  direction: unspecified
+- name: I
+  summary: Inertia matrix of the brick physical signal
+  direction: unspecified
+```
 
 ### Frame
 
@@ -74,8 +110,86 @@ Output port for the inertia matrix of the brick, reported as a
 nine-element matrix and resolved in the reference frame of the block.
 The diagonal matrix elements are the moments of inertia. The
 off-diagonal elements are the products of inertia.
-
 ## Parameters
+```yaml
+parameters:
+- name: X Length
+  summary: Parameterization of the *x* dimension Constant (default) | Calculate from Mass | Provided by Input
+  group: ''
+- name: 'X Length: Value'
+  summary: Value of the *x* dimension 1 m (default) | scalar with units of length
+  group: ''
+- name: Y Length
+  summary: Parameterization of the *y* dimension Constant (default) | Calculate from Mass | Provided by Input
+  group: ''
+- name: 'Y Length: Value'
+  summary: Value of the *y* dimension 1 m (default) | scalar with units of length
+  group: ''
+- name: Z Length
+  summary: Parameterization of the *z* dimension Calculate from Mass (default) | Constant | Provided by Input
+  group: ''
+- name: 'Z Length: Value'
+  summary: Value of the *z* dimension 1 m (default) | scalar with units of length
+  group: ''
+- name: Mass
+  summary: Mass parameterization Provided by Input (default) | Calculate from Geometry
+  group: ''
+- name: 'Mass: Density'
+  summary: Mass per unit volume of material 1000 kg/m^3 (default) | scalar in units of mass per unit volume
+  group: ''
+- name: X Length
+  summary: Sensing selection for the *x* dimension cleared (default) | checked
+  group: ''
+- name: Y Length
+  summary: Sensing selection for the *y* dimension cleared (default) | checked
+  group: ''
+- name: Z Length
+  summary: Sensing selection for the *z* dimension cleared (default) | checked
+  group: ''
+- name: Mass
+  summary: Sensing selection for the total mass cleared (default) | checked
+  group: ''
+- name: Center of Mass
+  summary: Sensing selection for the center-of-mass coordinates cleared (default) | checked
+  group: ''
+- name: Inertia Matrix
+  summary: Sensing option for the inertia matrix cleared (default) | checked
+  group: ''
+- name: Type
+  summary: Graphic to use for visualization From Geometry (default) | Marker | None
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Shape
+  summary: Shape of marker to represent to the solid Sphere (default) | Cube | Frame
+  group: Graphic
+- name: Size
+  summary: Width of the marker in pixels 10 pixels (default) | scalar
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: Graphic
+```
 
 #### Geometry and Inertia
 
@@ -368,7 +482,6 @@ To enable this parameter, set:
    `Marker`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Body Elements / Variable Mass

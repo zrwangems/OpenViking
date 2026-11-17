@@ -14,6 +14,9 @@ language: en
 # Two-Ray Channel
 
 ## Ports
+```yaml
+ports: []
+```
 
 **Note**
 
@@ -29,8 +32,10 @@ the underlying System object. See link at the bottom of this page.
 | `Vel1` | Signal source velocity. | Double-precision floating point |
 | `Vel2` | Signal destination velocity. | Double-precision floating point |
 | `Out` | Propagated signal. | Double-precision floating point |
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Signal Propagation speed (m/s)**
 :   Specify the propagation speed of the signal, in meters per second,
@@ -129,7 +134,6 @@ the underlying System object. See link at the bottom of this page.
     | `Code Generation` | The block is compiled. | All blocks in the model are compiled. |
 
     For more information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Not documented in R2025b.

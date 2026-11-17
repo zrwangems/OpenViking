@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Pressure Sensor (IL)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 压差测量值，Pa 物理信号
+  direction: output
+- name: Pa
+  summary: 绝对压力测量值，单位为帕斯卡 (Pa) 物理信号
+  direction: output
+- name: Pg
+  summary: 表压测量值，Pa 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口等温液体
+  direction: output
+- name: B
+  summary: 传感器出口等温液体
+  direction: output
+```
 
 ### 输出
 
@@ -54,8 +72,13 @@ chinese_source: worker-translation
 #### 依赖关系
 
 如果将 **Pressure Measurements** 参数设置为 `Pressure difference`，则此端口可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Pressure Measurements
+  summary: 选择传感器测量压差、绝对压力还是表压 Pressure difference（默认）| Absolute pressure | Gauge pressure
+  group: ''
+```
 
 ### **Pressure Measurements** — 选择传感器测量压差、绝对压力还是表压 `Pressure difference`（默认）| `Absolute pressure` | `Gauge pressure`
 
@@ -64,7 +87,6 @@ chinese_source: worker-translation
 - `Pressure difference` — 传感器测量传感器两端的压差。选择此选项会显示物理信号输出端口 **P** 和第二个等温液体端口 **B**。当端口 **A** 处的值大于端口 **B** 处的值时，测量值为正。
 - `Absolute pressure` — 传感器测量端口 **A** 处的绝对压力。选择此选项会显示物理信号输出端口 **Pa**。
 - `Gauge pressure` — 传感器测量端口 **A** 处的表压。选择此选项会显示物理信号输出端口 **Pg**。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Sensors

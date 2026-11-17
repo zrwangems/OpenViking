@@ -14,6 +14,9 @@ language: en
 # Fluid Inertia
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,8 +25,10 @@ The block has the following ports:
 
 `B`
 :   Hydraulic conserving port associated with the passage outlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Passage area**
 :   Fluid passage cross-sectional area. The default value is
@@ -37,7 +42,6 @@ The block has the following ports:
 :   Initial flow rate through the passage. This parameter specifies the
     initial condition for use in computing the block's initial state at the
     beginning of a simulation run. For more information, see Initial Conditions Computation. The default value is `0`.
-
 ## Libraries
 
 Not documented in R2025b.

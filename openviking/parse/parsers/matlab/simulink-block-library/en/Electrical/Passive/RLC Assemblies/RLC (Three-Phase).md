@@ -14,6 +14,33 @@ language: en
 # RLC (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Three-phase port electrical
+  direction: conserving
+- name: ~2
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a1
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b1
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c1
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: a2
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b2
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c2
+  summary: '*c*-phase electrical'
+  direction: conserving
+```
 
 ### Conserving
 
@@ -108,8 +135,43 @@ Electrical conserving port associated with the
 To enable this port, set **Electrical
 connection** to `Expanded three-phase
 ports`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: Main
+- name: Component structure
+  summary: Desired component combination R (default) | L | C | Series RL | Series RC | Series LC | Series RLC | Parallel RL
+    | Parallel RC | Parallel LC | Parallel RLC
+  group: Main
+- name: Resistance
+  summary: Resistance 1 Ohm (default) | positive scalar
+  group: Main
+- name: Inductance
+  summary: Inductance 1e-3 H (default) | positive scalar
+  group: Main
+- name: Capacitance
+  summary: Capacitance 1e-6 F (default) | positive scalar
+  group: Main
+- name: Parasitic series resistance
+  summary: Parasitic series resistance 0 Ohm (default) | nonnegative scalar
+  group: Parasitics
+- name: Parasitic parallel conductance
+  summary: Parasitic parallel conductance 0 1/Ohm (default) | nonnegative scalar
+  group: Parasitics
+- name: Branch fault
+  summary: Option to add branch fault Add fault
+  group: Faults
+- name: Faulted phase
+  summary: Option to specify faulted phase Phase a (default) | Phase b | Phase c | Phase a and b | Phase b and c | Phase c
+    and a | Phase a, b and c
+  group: Faults
+- name: Faulted resistance
+  summary: Resistance of faulted impedance components 0.01 Ohm (default) | positive scalar
+  group: Faults
+```
 
 ### Main
 
@@ -244,7 +306,6 @@ Resistance of the faulted impedance components.
 To enable this parameter, add a fault to the RLC (Three-Phase) block by
 clicking the **Add fault** hyperlink in the
 **Branch fault** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive / RLC Assemblies

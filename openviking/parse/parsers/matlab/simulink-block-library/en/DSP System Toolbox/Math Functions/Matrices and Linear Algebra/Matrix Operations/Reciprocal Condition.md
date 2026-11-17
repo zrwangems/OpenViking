@@ -14,6 +14,17 @@ language: en
 # Reciprocal Condition
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input matrix square matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Reciprocal condition output scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -33,11 +44,12 @@ If input is well conditioned, the output is near 1.0. If input is
 badly conditioned, the output is near 0.0.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

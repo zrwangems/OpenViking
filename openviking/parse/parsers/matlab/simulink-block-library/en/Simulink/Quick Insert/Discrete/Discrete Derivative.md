@@ -14,6 +14,17 @@ language: en
 # Discrete Derivative
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Scaled discrete time derivative scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -33,8 +44,70 @@ the output signal with the **Output data type**
 parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain value
+  summary: Scaling factor 1.0 (default) | scalar
+  group: Main
+  block_parameter: gainval
+  type: character vector
+  values: scalar
+  default: '''1.0'''
+- name: Initial condition for previous weighted input K\*u/Ts
+  summary: Initial condition 0.0 (default) | scalar
+  group: Main
+  block_parameter: ICPrevScaledInput
+  type: character vector
+  values: scalar
+  default: '''0.0'''
+- name: Input processing
+  summary: Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame
+    based)
+  group: Main
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | double
+    | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0)'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' |
+    ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' |
+    ''fixdt(1,16,2^0,0)'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -236,7 +309,6 @@ saturation code.
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discrete

@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # Block Processing
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入信号矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: P
+  summary: 用于提供子系统参数的附加输入 标量 | 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    string
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -42,8 +58,28 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inputs
+  summary: 输入数量 1（默认）| 正标量
+  group: ''
+- name: Add port to supply subsystem parameters
+  summary: 子系统参数输入端口 off（默认）| on
+  group: ''
+- name: Number of outputs
+  summary: 输出数量 1（默认）| 正标量
+  group: ''
+- name: Block size
+  summary: 块大小 {[8 8]}（默认）| 元胞数组
+  group: ''
+- name: Overlap
+  summary: 块重叠 {[0 0]}（默认）| 元胞数组
+  group: ''
+- name: Traverse order
+  summary: 块提取顺序 Row-wise（默认）| Column-wise
+  group: ''
+```
 
 ### **Number of inputs** — 输入数量 `1`（默认）| 正标量
 
@@ -75,7 +111,6 @@ chinese_source: worker-translation
 
 - 点击 **Open Subsystem** 打开 Block Processing 子系统。
 - 将模块拖入此子系统，以定义模块对子矩阵执行的处理操作。
-
 ## 所属库
 
 Computer Vision Toolbox / Utilities

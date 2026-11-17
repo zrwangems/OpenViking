@@ -14,6 +14,54 @@ language: en
 # Vehicle Body 6DOF Three Axles
 
 ## Ports
+```yaml
+ports:
+- name: FSusp
+  summary: Suspension forces on vehicle 3-by-6 array
+  direction: input
+- name: MSusp
+  summary: Suspension moment on vehicle 3-by-6 array
+  direction: input
+- name: FExt
+  summary: External forces acting on vehicle vector
+  direction: input
+- name: MExt
+  summary: External moments acting on vehicle vector
+  direction: input
+- name: Fh
+  summary: Hitch force on the body array
+  direction: input
+- name: Mh
+  summary: Hitch moment about body array
+  direction: input
+- name: WindXYZ
+  summary: Wind speed array
+  direction: input
+- name: AirTemp
+  summary: Ambient air temperature scalar
+  direction: input
+- name: Info
+  summary: Vehicle body information bus
+  direction: output
+- name: Vb
+  summary: Vehicle velocity along vehicle-fixed frame vector
+  direction: output
+- name: pqr
+  summary: Vehicle angular velocity about vehicle-fixed frame vector
+  direction: output
+- name: DCM
+  summary: Direction cosine matrix array
+  direction: output
+- name: Euler
+  summary: Euler angles array
+  direction: output
+- name: Xe
+  summary: Vehicle position in inertial reference frame vector
+  direction: output
+- name: Ve
+  summary: Vehicle velocity in inertial reference frame vector
+  direction: output
+```
 
 ### Input
 
@@ -371,8 +419,169 @@ Vehicle CM velocity along inertial-fixed
 *X*-, *Y*-,
 *Z*-axes, respectively, in m/s,
 returned as a vector.
-
 ## Parameters
+```yaml
+parameters:
+- name: Hitch forces
+  summary: Create hitch force input port off (default) | on
+  group: Block Options
+- name: Hitch moments
+  summary: Create hitch moment input port off (default) | on
+  group: Block Options
+- name: Vehicle mass, m
+  summary: Mass 2000 (default) | scalar
+  group: Chassis
+- name: Longitudinal distance from center of mass to front axle, a
+  summary: Distance from center of mass to front axle 1.4 (default) | scalar
+  group: Chassis
+- name: Longitudinal distance from center of mass to middle axle, b
+  summary: Distance from center of mass to middle axle 1.6 (default) | scalar
+  group: Chassis
+- name: Longitudinal distance from center of mass to rear axle, c
+  summary: Distance from center of mass to rear axle 1.8 (default) | scalar
+  group: Chassis
+- name: Lateral distance from geometric centerline to center of mass, d
+  summary: Distance from geometric centerline to center of mass 0 (default) | scalar
+  group: Chassis
+- name: Vertical distance from center of mass to axle plane, h
+  summary: Distance .35 (default) | scalar
+  group: Chassis
+- name: Longitudinal distance from center of mass to hitch, dh
+  summary: Longitudinal distance from CM to hitch 1 (default) | scalar
+  group: Chassis
+- name: Longitudinal distance from center of mass to hitch, hl
+  summary: Lateral distance from CM to hitch 0 (default) | scalar
+  group: Chassis
+- name: Vertical distance from hitch to axle plane, hh
+  summary: Distance from hitch to axle plane 0.1 (default) | scalar
+  group: Chassis
+- name: Initial position in the inertial frame [Xeo,Yeo,Zeo], Xe_o
+  summary: Initial position [0,0,0] (default) | vector
+  group: Chassis
+- name: Initial velocity in body axes [xdot_o,ydot_o,zdot_o], xbdot_o
+  summary: Initial velocity [0,0,0] (default) | vector
+  group: Chassis
+- name: Initial Euler orientation [roll, pitch, yaw], eul_o
+  summary: Initial Euler rotation [0,0,0] (default) | vector
+  group: Chassis
+- name: Initial body rotation rates [p,q,r], p_o
+  summary: Initial rotation rate [0,0,0] (default) | vector
+  group: Chassis
+- name: Chassis inertia tensor, Iveh
+  summary: Inertia [430 0 0; 0 1900 0; 0 0 2100] (default) | array
+  group: Chassis
+- name: Track widths [front,rear], w
+  summary: Widths [1.9,1.9,1.9] (default) | vector
+  group: Chassis
+- name: Mass, z1m
+  summary: Tractor front mass 0 (default) | scalar
+  group: Inertial Loads
+- name: Distance vector from front axle, z1R
+  summary: Tractor front distance from front axle [-.25,.125,.15] (default) | vector
+  group: Inertial Loads
+- name: Inertia tensor, z1I
+  summary: Tractor front inertia [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array
+  group: Inertial Loads
+- name: Mass, z2m
+  summary: Cab overhead mass 0 (default) | scalar
+  group: Inertial Loads
+- name: Distance vector from front axle, z2R
+  summary: Cab overhead distance from front axle [1.4,0,.8] (default) | vector
+  group: Inertial Loads
+- name: Inertia tensor, z2I
+  summary: Cab overhead inertia [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array
+  group: Inertial Loads
+- name: Mass, z3m
+  summary: Tractor frame left mass 0 (default) | scalar
+  group: Inertial Loads
+- name: Distance vector from front axle, z3R
+  summary: Tractor frame left distance from front axle [.75,-.5,.4] (default) | vector
+  group: Inertial Loads
+- name: Inertia tensor, z3I
+  summary: Tractor frame left inertia [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array
+  group: Inertial Loads
+- name: Mass, z4m
+  summary: Tractor frame right mass 0 (default) | scalar
+  group: Inertial Loads
+- name: Distance vector from front axle, z4R
+  summary: Tractor frame right distance from front axle [.75,.5,.4] (default) | vector
+  group: Inertial Loads
+- name: Inertia tensor, z4I
+  summary: Tractor frame right inertia [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array
+  group: Inertial Loads
+- name: Mass, z5m
+  summary: Cab left mass 0 (default) | scalar
+  group: Inertial Loads
+- name: Distance vector from front axle, z5R
+  summary: Cab left distance from front axle [1.25,-.5,.4] (default) | vector
+  group: Inertial Loads
+- name: Inertia tensor, z5I
+  summary: Cab left inertia [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array
+  group: Inertial Loads
+- name: Mass, z6m
+  summary: Cab right mass 0 (default) | scalar
+  group: Inertial Loads
+- name: Distance vector from front axle, z6R
+  summary: Cab right distance from front axle [1.25,-.5,.4] (default) | vector
+  group: Inertial Loads
+- name: Inertia tensor, z6I
+  summary: Cab right inertia [5,-.1,-2;-2,9,.1;-.1,.1,6].*0 (default) | array
+  group: Inertial Loads
+- name: Mass, z7m
+  summary: Tractor rear mass 0 (default) | scalar
+  group: Inertial Loads
+- name: Distance vector from front axle, z7R
+  summary: Tractor rear mass distance from front axle [2,0,.25] (default) | vector
+  group: Inertial Loads
+- name: Inertia tensor, z7I
+  summary: Tractor rear inertia [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0 (default) | array
+  group: Inertial Loads
+- name: Longitudinal drag area, Af
+  summary: Vehicle cross-sectional area 2 (default) | scalar
+  group: Aerodynamic
+- name: Longitudinal drag coefficient, Cd
+  summary: Air drag coefficient .3 (default) | scalar
+  group: Aerodynamic
+- name: Longitudinal lift coefficient, Cl
+  summary: Air lift coefficient .1 (default) | scalar
+  group: Aerodynamic
+- name: Longitudinal drag pitch moment, Cpm
+  summary: Pitch drag .1 (default) | scalar
+  group: Aerodynamic
+- name: Relative wind angle vector, beta_w
+  summary: Wind angle [0:0.001:0.01] (default) | vector
+  group: Aerodynamic
+- name: Side force coefficient vector, Cs
+  summary: Side force drag [0:0.01:0.1] (default) | vector
+  group: Aerodynamic
+- name: Yaw moment coefficient vector, Cym
+  summary: Yaw moment drag [0:0.001:0.01] (default) | vector
+  group: Aerodynamic
+- name: Absolute air pressure, Pabs
+  summary: Pressure 101325 (default) | scalar
+  group: Environment
+- name: Air temperature, Tair
+  summary: Ambient air temperature 273 (default) | scalar
+  group: Environment
+- name: Gravitational acceleration, g
+  summary: Gravity 9.81 (default) | scalar
+  group: Environment
+- name: Longitudinal velocity tolerance, xdot_tol
+  summary: Tolerance .1 (default) | scalar
+  group: Simulation
+- name: Geometric longitudinal offset from axle plane, longOff
+  summary: Longitudinal offset 0 (default) | scalar
+  group: Simulation
+- name: Geometric lateral offset from center plane, latOff
+  summary: Lateral offset 0 (default) | scalar
+  group: Simulation
+- name: Geometric vertical offset from axle plane, vertOff
+  summary: Vertical offset 0 (default) | scalar
+  group: Simulation
+- name: Wrap Euler angles, wrapAng
+  summary: Selection on (default) | off
+  group: Simulation
+```
 
 ### Block Options
 
@@ -890,7 +1099,6 @@ outside of the interval, consider clearing the parameter if you want to:
 - Track the total vehicle yaw rotation.
 - Avoid discontinuities in the vehicle state
   estimators.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Body

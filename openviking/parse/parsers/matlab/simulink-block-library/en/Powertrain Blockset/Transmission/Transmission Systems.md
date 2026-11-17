@@ -14,6 +14,33 @@ language: en
 # Automated Manual Transmission
 
 ## Ports
+```yaml
+ports:
+- name: Gear
+  summary: Gear number to engage scalar
+  direction: input
+- name: CltchCmd
+  summary: Clutch command scalar
+  direction: input
+- name: EngTrq
+  summary: Applied input torque scalar
+  direction: input
+- name: DiffTrq
+  summary: Applied load torque scalar
+  direction: input
+- name: Temp
+  summary: Oil temperature scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: EngSpd
+  summary: Angular speed scalar
+  direction: output
+- name: DiffSpd
+  summary: Angular speed scalar
+  direction: output
+```
 
 ### Input
 
@@ -90,8 +117,135 @@ Applied drive shaft angular speed input,
 
 Drive shaft angular speed output,
 *ωd*, in rad/s.
-
 ## Parameters
+```yaml
+parameters:
+- name: Control type
+  summary: Specify control type Ideal integrated controller (default) | External control
+  group: ''
+  block_parameter: cntrlType
+  values: Ideal integrated controller (default) | External control
+- name: Efficiency factors
+  summary: Specify efficiency calculation Gear only (default) | Gear, input torque, input speed, and temperature
+  group: ''
+  block_parameter: TransEffModelPopup
+  values: Gear only (default) | Gear, input torque, input speed, and temperature
+- name: Input shaft inertia, Jin
+  summary: Inertia .01 (default) | scalar
+  group: ''
+  block_parameter: Jin
+  values: .01 (default) | scalar
+- name: Input shaft damping, bin
+  summary: Damping .001 (default) | scalar
+  group: ''
+  block_parameter: bin
+  values: .001 (default) | scalar
+- name: Initial input velocity, omegain_o
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+  block_parameter: omegain_o
+  values: 0 (default) | scalar
+- name: Gear number vector, G
+  summary: Specify number of transmission speeds [-1, 0, 1, 2, 3, 4, 5] (default) | vector
+  group: ''
+  block_parameter: G
+  values: '[-1, 0, 1, 2, 3, 4, 5] (default) | vector'
+- name: Efficiency torque breakpoints, Trq_bpts
+  summary: Breakpoints [25, 50, 75, 100, 150, 200, 250] (default) | vector
+  group: ''
+  block_parameter: Trq_bpts
+  values: '[25, 50, 75, 100, 150, 200, 250] (default) | vector'
+- name: Efficiency speed breakpoints, omega_bpts
+  summary: Breakpoints [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | vector
+  group: ''
+  block_parameter: omega_bpts
+  values: '[52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | vector'
+- name: Efficiency temperature breakpoints, Temp_bpts
+  summary: Breakpoints [313 358] (default) | vector
+  group: ''
+  block_parameter: Temp_bpts
+  values: '[313 358] (default) | vector'
+- name: Gear ratio vector, N
+  summary: Ratio of input speed to output speed [-4.47, 1, 4.47, 2.47, 1.47, 1, 0.8] (default) | vector
+  group: ''
+  block_parameter: N
+  values: '[-4.47, 1, 4.47, 2.47, 1.47, 1, 0.8] (default) | vector'
+- name: Transmission inertia vector, Jout
+  summary: Gear rotational inertia [0.128 0.01 0.128 0.1 0.062 0.028 0.01] (default) | vector
+  group: ''
+  block_parameter: Jout
+  values: '[0.128 0.01 0.128 0.1 0.062 0.028 0.01] (default) | vector'
+- name: Transmission damping vector, bout
+  summary: Gear viscous damping coefficient [.003 .001 .003 .0025 .002 .001 .001] (default) | vector
+  group: ''
+  block_parameter: bout
+  values: '[.003 .001 .003 .0025 .002 .001 .001] (default) | vector'
+- name: Efficiency vector, eta
+  summary: Gear efficiency [0.9, 0.9, 0.9, 0.9, 0.9, 0.95, 0.95] (default) | vector
+  group: ''
+  block_parameter: eta
+  values: '[0.9, 0.9, 0.9, 0.9, 0.9, 0.95, 0.95] (default) | vector'
+- name: Efficiency lookup table, eta_tbl
+  summary: Gear efficiency array
+  group: ''
+  block_parameter: eta_tbl
+  values: array
+- name: Initial output velocity, omegaout_o
+  summary: Transmission 0 (default) | scalar
+  group: ''
+  block_parameter: omegaout_o
+  values: 0 (default) | scalar
+- name: Initial gear, G_o
+  summary: Engaged gear 0 (default) | scalar
+  group: ''
+  block_parameter: G_o
+  values: 0 (default) | scalar
+- name: Clutch pressure time constant, tauc
+  summary: Time .02 (default) | scalar
+  group: ''
+  block_parameter: tauc
+  values: .02 (default) | scalar
+- name: Synchronization time, ts
+  summary: Time .25 (default) | scalar
+  group: ''
+  block_parameter: ts
+  values: .25 (default) | scalar
+- name: Clutch time, tc
+  summary: Time .5 (default) | scalar
+  group: ''
+  block_parameter: tc
+  values: .5 (default) | scalar
+- name: Effective clutch radius, R
+  summary: Radius .2 (default) | scalar
+  group: ''
+  block_parameter: R
+  values: .2 (default) | scalar
+- name: Clutch force gain, K_c
+  summary: Force 5e3 (default) | scalar
+  group: ''
+  block_parameter: K_c
+  values: 5e3 (default) | scalar
+- name: Clutch static friction coefficient, mus
+  summary: Coefficient 0.6 (default) | scalar
+  group: ''
+  block_parameter: mus
+  values: 0.6 (default) | scalar
+- name: Clutch kinematic friction coefficient, muk
+  summary: Coefficient 0.4 (default) | scalar
+  group: ''
+  block_parameter: muk
+  values: 0.4 (default) | scalar
+- name: Start simulation with clutch locked
+  summary: Select to initially lock clutch off (default) | on
+  group: ''
+  block_parameter: locked
+  values: off (default) | on
+- name: Start simulation with synchronizer locked
+  summary: Select to initially lock synchronizer off (default) | on
+  group: ''
+  block_parameter: ClutchLocked
+  values: off (default) | on
+```
 
 ### **Control type** — Specify control type `Ideal integrated controller` (default) | `External control`
 
@@ -697,7 +851,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `ClutchLocked` |
 | **Values:** | `off` (default) | `on` |
 | **Data Types:** | `character vector` |
-
 ## Libraries
 
 Powertrain Blockset / Transmission / Transmission Systems

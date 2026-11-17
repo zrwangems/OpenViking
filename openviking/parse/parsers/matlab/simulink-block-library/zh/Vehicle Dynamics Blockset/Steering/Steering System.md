@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Steering System
 
 ## 端口
+```yaml
+ports:
+- name: VehSpd
+  summary: 车辆速度标量
+  direction: input
+- name: CstrAng
+  summary: 车轮主销后倾角 1×2 向量
+  direction: input
+- name: WhlAngFdk
+  summary: 车轮转向角反馈 1×2 向量
+  direction: input
+- name: AngIn
+  summary: 方向盘角度输入标量
+  direction: input
+- name: TrqIn
+  summary: 转向力矩输入标量
+  direction: input
+- name: PwrAstTrq
+  summary: 助力力矩标量
+  direction: input
+- name: PctAck
+  summary: 阿克曼百分比值标量
+  direction: input
+- name: TireFdk
+  summary: 轮胎力和力矩反馈 1×12 向量
+  direction: input
+- name: LftKpM
+  summary: 左主销力矩标量
+  direction: input
+- name: RghtKpM
+  summary: 右主销力矩标量
+  direction: input
+- name: Info
+  summary: 车辆动力学信息总线
+  direction: output
+- name: AngLft
+  summary: 左车轮转向角 scalar
+  direction: output
+- name: AngRght
+  summary: 右车轮转向角 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -147,8 +189,305 @@ assist** 模块选项。
 ### **AngRght** — 右车轮转向角 `scalar`
 
 右车轮转向角，*δR*，以弧度为单位，以标量形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 转向类型 Rack and pinion（默认）
+  group: ''
+  block_parameter: StrgType
+  values: Rack and pinion（默认）
+- name: Intermediate shaft type
+  summary: 中间轴类型 Single Cardan joint（默认） | Double Cardan joints
+  group: ''
+  block_parameter: IntmdShaftType
+  values: Single Cardan joint（默认） | Double Cardan joints
+- name: Power assist
+  summary: 助力建模选项 on（默认） | off
+  group: ''
+  block_parameter: PwrAst
+  values: on（默认） | off
+- name: Ackerman steering
+  summary: 使用阿克曼转向的选项 on（默认） | off
+  group: ''
+  block_parameter: AckStr
+  values: on（默认） | off
+- name: Power assist
+  summary: 外部助力扭矩 off（默认） | on
+  group: ''
+  block_parameter: PwrAstOverride
+  values: off（默认） | on
+- name: Ackerman steering
+  summary: 外部阿克曼百分比 off（默认） | on
+  group: ''
+  block_parameter: AckStrOverride
+  values: off（默认） | on
+- name: Kingpin moment
+  summary: 左右主销力矩 off（默认） | on
+  group: ''
+  block_parameter: KingpinOverride
+  values: off（默认） | on
+- name: Steered axle
+  summary: 转向系统位置 Front（默认） | Rear
+  group: ''
+  block_parameter: Loc
+  values: Front（默认） | Rear
+- name: Steering inputs
+  summary: 方向盘转角或力矩 Angle（默认） | Torque
+  group: ''
+  block_parameter: StrIn
+  values: Angle（默认） | Torque
+- name: Track width, TrckWdth
+  summary: 轮距 1（默认） | 标量
+  group: ''
+  block_parameter: TrckWdth
+  values: 1（默认） | 标量
+- name: Steering angle input range, StrRng
+  summary: 方向盘范围 1.25*pi（默认） | 标量
+  group: ''
+  block_parameter: StrRng
+  values: 1.25*pi（默认） | 标量
+- name: Steering angle input deadband width, DbWdth
+  summary: 转向角输入死区宽度 0（默认） | 标量
+  group: ''
+  block_parameter: DbWdth
+  values: 0（默认） | 标量
+- name: Steering wheel inertia, StrWhlInert
+  summary: 方向盘惯量 0.1（默认） | 标量
+  group: ''
+  block_parameter: StrWhlInert
+  values: 0.1（默认） | 标量
+- name: Steering shaft inertia, StrColInert
+  summary: 转向轴惯量 0.01（默认） | 标量
+  group: ''
+  block_parameter: StrCollnert
+  values: 0.01（默认）| 标量
+- name: Kingpin offset, KngpnOfst
+  summary: 主销偏移距 0.075（默认）| 标量
+  group: ''
+  block_parameter: KngpnOfst
+  values: 0.075（默认）| 标量
+- name: Kingpin inclination angle, Lambda
+  summary: 主销内倾角 0.2094（默认）| 标量
+  group: ''
+  block_parameter: Lambda
+  values: 0.2094（默认）| 标量
+- name: Hub lead, HbLead
+  summary: 轮毂前束 4.00E-05（默认）| 标量
+  group: ''
+  block_parameter: HbLead
+  values: 4.00E-05（默认）| 标量
+- name: Static loaded radius, StcLdRadius
+  summary: 静态加载半径 0.4（默认）| 标量
+  group: ''
+  block_parameter: StcLdRadius
+  values: 0.4（默认）| 标量
+- name: Overall steering ratio, OvrlStrRatio
+  summary: 总转向比 17.42（默认）| 标量
+  group: ''
+  block_parameter: OvrlStrRatio
+  values: 17.42（默认）| 标量
+- name: Steering angle breakpoints, StrgAngBpts
+  summary: 方向盘转角断点 [-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832]（默认）| 1×11 向量
+  group: ''
+  block_parameter: StrgAngBpts
+  values: '[-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832]（默认）| 1×11 向量'
+- name: CstrAng
+  summary: 主销后倾角 0（默认）| 标量
+  group: ''
+  block_parameter: CstrAng
+  values: 0（默认） | 标量
+- name: 齿条增益参数化方式
+  summary: 齿条增益参数化 Constant（默认） | Lookup table
+  group: ''
+  block_parameter: StrgRatioType
+  values: Constant（默认） | Lookup table
+- name: 齿条增益，RckGn
+  summary: 齿条增益 0.062（默认） | 标量
+  group: ''
+  block_parameter: RckGn
+  values: 0.062（默认） | 标量
+- name: 齿条增益表，RckGnTbl
+  summary: 齿条增益表 ones(1,11)*0.0057*2*pi（默认） | 1×11 向量
+  group: ''
+  block_parameter: RckGnTbl
+  values: ones(1,11)*0.0057*2*pi（默认） | 1×11 向量
+- name: 转向臂长度，StrgArmLngth
+  summary: 转向臂长度 0.1（默认） | 标量
+  group: ''
+  block_parameter: StrgArmLngth
+  values: 0.1（默认） | 标量
+- name: 齿条壳体长度，RckCsLngth
+  summary: 齿条长度 0.5（默认） | 标量
+  group: ''
+  block_parameter: RckCsLngth
+  values: 0.5（默认） | 标量
+- name: 横拉杆长度，TieRodLngth
+  summary: 横拉杆长度 0.248（默认） | 标量
+  group: ''
+  block_parameter: TieRodLngth
+  values: 0.248（默认） | 标量
+- name: 轴线与齿条之间的距离，Dst
+  summary: 车轴与齿条之间的距离 0.2（默认） | 标量
+  group: ''
+  block_parameter: Dst
+  values: 0.2（默认） | 标量
+- name: Efficiency of gears, Epsilon
+  summary: 齿轮效率 0.9（默认）| 标量
+  group: ''
+  block_parameter: Epsilon
+  values: 0.9（默认）| 标量
+- name: Pinion inertia, PnInert
+  summary: 小齿轮惯量 0.1（默认）| 标量
+  group: ''
+  block_parameter: PnInert
+  values: 0.1（默认）| 标量
+- name: Spatial angle for the single Cardan joint, SptlAng
+  summary: 单万向节的空间角 2.6178（默认）| 标量
+  group: ''
+  block_parameter: SptlAng
+  values: 2.6178（默认）| 标量
+- name: Spatial angle for the upper Cardan joint, Alpha_b
+  summary: 上万向节的空间角 2.6178（默认）| 标量
+  group: ''
+  block_parameter: Alpha_b
+  values: 2.6178（默认）| 标量
+- name: Spatial angle for the lower Cardan joint, Alpha_c
+  summary: 下万向节的空间角 2.7051（默认）| 标量
+  group: ''
+  block_parameter: Alpha_c
+  values: 2.7051（默认）| 标量
+- name: Edge view angle between the planes of the two joints, Sigma_bc
+  summary: 两个万向节平面之间的边缘视角 0.2618（默认）| 标量
+  group: ''
+  block_parameter: Sigma_bc
+  values: 0.2618（默认）| 标量
+- name: Phase angle, Gamma
+  summary: 相位角 0.2618（默认）| 标量
+  group: ''
+  block_parameter: Gamma
+  values: 0.2618（默认）| 标量
+- name: 方向盘扭矩断点，TrqBpts
+  summary: 方向盘扭矩断点 [-100 0 100]（默认）| 1×*M* 向量
+  group: ''
+  block_parameter: TrqBpts
+  values: '[-100 0 100]（默认）| 1×*M* 向量'
+- name: 车速断点，VehSpdBpts
+  summary: 车速断点 [0 20]（默认）| 1×*N* 向量
+  group: ''
+  block_parameter: VehSpdBpts
+  values: '[0 20]（默认）| 1×*N* 向量'
+- name: 辅助扭矩表，TrqTbl
+  summary: 扭矩辅助表 [0 -100;0 0;0 100]（默认）| *M*×*N* 矩阵
+  group: ''
+  block_parameter: TrqTbl
+  values: '[0 -100;0 0;0 100]（默认）| *M*×*N* 矩阵'
+- name: 辅助扭矩限值，TrqLmt
+  summary: 扭矩辅助限值 100（默认）| 标量
+  group: ''
+  block_parameter: TrqLmt
+  values: 100（默认）| 标量
+- name: 辅助功率限值，PwrLmt
+  summary: 辅助功率限值 1000（默认）| 标量
+  group: ''
+  block_parameter: PwrLmt
+  values: 1000（默认）| 标量
+- name: 辅助扭矩效率，Eta
+  summary: 扭矩辅助效率 1（默认）| 标量
+  group: ''
+  block_parameter: Eta
+  values: 1（默认）| 标量
+- name: 截止频率，CutOmege [rad/s]
+  summary: 截止频率 200（默认）| 标量
+  group: ''
+  block_parameter: omega_c
+  values: 200（默认）| 标量
+- name: Percent Ackerman parameterized by
+  summary: Ackermann 参数化方式 Constant（默认）| Lookup table
+  group: ''
+  block_parameter: AckParamType
+  values: Constant（默认）| Lookup table
+- name: Percent Ackerman, PctAck
+  summary: 百分比 Ackermann 100（默认）| 标量
+  group: ''
+  block_parameter: PctAck
+  values: 100（默认）| 标量
+- name: Percent Ackerman table, PctAckTbl
+  summary: 百分比 Ackermann 表 ones(1,11)*100（默认）| 1×11 向量
+  group: ''
+  block_parameter: PctAckTbl
+  values: ones(1,11)*100（默认）| 1×11 向量
+- name: 密封刚度，SlgStf
+  summary: 密封刚度 1.5e4（默认）| 标量
+  group: ''
+  block_parameter: SlgStf
+  values: 1.5e4（默认）| 标量
+- name: 上边界摩擦力，UpprFric
+  summary: 上边界摩擦力 1（默认）| 标量
+  group: ''
+  block_parameter: UpprFric
+  values: 1（默认）| 标量
+- name: 摩擦边界增加引起的压力变化，PrsFric
+  summary: 摩擦边界增加引起的压力变化 1e-5（默认）| 标量
+  group: ''
+  block_parameter: PrsFric
+  values: 1e-5（默认） | 标量
+- name: Maxwell 单元刚度，MaxStf
+  summary: Maxwell 单元刚度 10000（默认） | 标量
+  group: ''
+  block_parameter: MaxStf
+  values: 10000（默认） | 标量
+- name: Maxwell 单元上边界摩擦力，MaxUpprFric
+  summary: Maxwell 单元上边界摩擦力 0.2（默认） | 标量
+  group: ''
+  block_parameter: MaxUpprFric
+  values: 0.2（默认） | 标量
+- name: Maxwell 线性阻尼系数，MaxDamp
+  summary: Maxwell 线性阻尼系数 1（默认） | 标量
+  group: ''
+  block_parameter: MaxDamp
+  values: 1（默认） | 标量
+- name: 扭杆刚度系数，TorStf
+  summary: 转向轴扭转刚度 30（默认） | 标量
+  group: ''
+  block_parameter: TorStf
+  values: 30（默认） | 标量
+- name: 扭杆阻尼系数，TorDamp
+  summary: 转向轴中的扭转粘性阻尼 1（默认） | 标量
+  group: ''
+  block_parameter: TorDamp
+  values: 1（默认） | 标量
+- name: 积分抗饱和增益，A []
+  summary: 积分抗饱和增益 0（默认） | 标量
+  group: ''
+  block_parameter: A
+  values: 0（默认） | 标量
+- name: 微分增益，D []
+  summary: 微分增益 0.1（默认） | 标量
+  group: ''
+  block_parameter: D
+  values: 0.1（默认） | 标量
+- name: 积分增益，I []
+  summary: 积分增益 5（默认）| 标量
+  group: ''
+  block_parameter: I
+  values: 5（默认）| 标量
+- name: 转向扭矩输出饱和下限，OutSatLowLmt [Nm]
+  summary: 输出饱和下限 -500（默认）| 标量
+  group: ''
+  block_parameter: OutSatLowLmt
+  values: -500（默认）| 标量
+- name: 转向扭矩输出饱和上限，OutSatUpLmt [Nm]
+  summary: 转向扭矩输出饱和上限 500（默认）| 标量
+  group: ''
+  block_parameter: OutSatUpLmt
+  values: 500（默认）| 标量
+- name: 比例增益，P []
+  summary: 比例增益 150（默认）| 标量
+  group: ''
+  block_parameter: P
+  values: 150（默认）| 标量
+```
 
 #### 模块选项
 
@@ -1246,7 +1585,6 @@ Maxwell 线性阻尼系数，指定为标量。
 | **参数：** | `P` |
 | **值：** | `150`（默认）| 标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Steering

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Prediction (discrete->continuous)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 具有固定步长采样的信号 real scalar
+  direction: input
+- name: y
+  summary: 对变步长网络的预测 real scalar
+  direction: output
+```
 
 ### 输入
 
@@ -26,13 +35,17 @@ chinese_source: worker-translation
 ### **y** — 对变步长网络的预测 real scalar
 
 将此端口连接到变步长网络，即 Network 1 的输入。
-
 ## 参数
+```yaml
+parameters:
+- name: Port u discrete sample time (s)
+  summary: 指定固定步长网络的采样时间 -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Port u discrete sample time (s)** — 指定固定步长网络的采样时间 `-1` (default) | positive scalar
 
 以秒为单位指定固定步长网络，即 Network 2，的采样时间。
-
 ## 所属库
 
 Simscape / Utilities / Network Couplers / Fundamental Components

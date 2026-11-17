@@ -14,6 +14,13 @@ language: en
 # C28x DAC
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal real | scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | double
+```
 
 ### Input
 
@@ -23,8 +30,16 @@ The input port through which the block accepts the digital input value to conver
 it to analog signal.
 
 **Data Types:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: DAC channel
+  summary: The DAC channel to generate analog output 12 (default)
+  group: ''
+- name: Saturate on input overflow (>4095)
+  summary: The option to saturate the input value on input overflow off | on
+  group: ''
+```
 
 ### **DAC channel** — The DAC channel to generate analog output `12` (default)
 
@@ -44,7 +59,6 @@ parameter is deselected, an input value to the DAC greater than
 Starting R2021b, the output wraps around i.e., for an input of
 `65580`, results in output `44
 (65580-65536)`.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

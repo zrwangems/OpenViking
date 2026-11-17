@@ -14,6 +14,15 @@ language: en
 # Function-Call Split
 
 ## Ports
+```yaml
+ports:
+- name: Function Call
+  summary: Function-call line scalar
+  direction: input
+- name: Function Call
+  summary: Function-call signal scalar
+  direction: output
+```
 
 ### Input
 
@@ -28,8 +37,31 @@ block, or a Stateflow® chart can provide function-call events.
 
 Function-call line connected to a function-call subsystem or
 function-call model.
-
 ## Parameters
+```yaml
+parameters:
+- name: Icon shape
+  summary: Select block icon shape distinctive (default) | round
+  group: ''
+  block_parameter: IconShape
+  type: character vector
+  values: '''distinctive'' | ''round'''
+  default: '''distinctive'''
+- name: Number of output ports
+  summary: Specify number of output ports 2 (default) | integer
+  group: ''
+  block_parameter: NumOutputPorts
+  type: character vector
+  values: '''2'' | ''<integer>'''
+  default: '''2'''
+- name: Output port layout
+  summary: Select order of output ports default (default) | reverse
+  group: ''
+  block_parameter: OutputPortLayout
+  type: character vector
+  values: '''default'' | ''reverse'''
+  default: '''default'''
+```
 
 ### **Icon shape** — Select block icon shape `distinctive` (default) | `round`
 
@@ -94,7 +126,6 @@ provides a function-call first.
 | **Type**: character vector |
 | **Values**: `'default'` | `'reverse'` |
 | **Default**: `'default'` |
-
 ## Libraries
 
 Simulink / Ports & Subsystems

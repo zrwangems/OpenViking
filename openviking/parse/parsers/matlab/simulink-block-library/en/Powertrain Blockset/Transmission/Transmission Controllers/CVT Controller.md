@@ -14,6 +14,27 @@ language: en
 # CVT Controller
 
 ## Ports
+```yaml
+ports:
+- name: DirReq
+  summary: Direction request scalar
+  direction: input
+- name: PllyRatioReq
+  summary: Pulley ratio request scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: Dir
+  summary: Direction request scalar
+  direction: output
+- name: PriDispCmd
+  summary: Primary pulley displacement scalar
+  direction: output
+- name: SecDispCmd
+  summary: Secondary pulley displacement scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -65,8 +86,40 @@ Variator primary pulley displacement,
 
 Variator secondary pulley displacement,
 *xsec*, in m.
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum variator primary pulley radius, rp_max
+  summary: Radius .08 (default) | scalar
+  group: ''
+  block_parameter: rp_max
+  values: .08 (default) | scalar
+- name: Maximum variator secondary pulley radius, rs_max
+  summary: Radius .07 (default) | scalar
+  group: ''
+  block_parameter: rs_max
+  values: .07 (default) | scalar
+- name: Minimum variator primary pulley radius, rp_min
+  summary: Radius .03 (default) | scalar
+  group: ''
+  block_parameter: rp_min
+  values: .03 (default) | scalar
+- name: Minimum variator secondary pulley radius, rs_min
+  summary: Radius .03 (default) | scalar
+  group: ''
+  block_parameter: rs_min
+  values: .03 (default) | scalar
+- name: Gap distance between variator pulleys, rgap
+  summary: Specify crown wheel connection .025 (default) | scalar
+  group: ''
+  block_parameter: rgap
+  values: .025 (default) | scalar
+- name: Variator wedge angle, thetawedge
+  summary: Specify crown wheel connection 11 (default) | scalar
+  group: ''
+  block_parameter: thetaWedge
+  values: 11 (default) | scalar
+```
 
 #### Kinematics
 
@@ -187,7 +240,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `thetaWedge` |
 | **Values:** | `11` (default) | `scalar` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Transmission / Transmission Controllers

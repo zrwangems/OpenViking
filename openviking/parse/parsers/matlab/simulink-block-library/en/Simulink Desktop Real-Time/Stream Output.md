@@ -14,6 +14,22 @@ language: en
 # Stream Output
 
 ## Ports
+```yaml
+ports:
+- name: Input Data
+  summary: Data to write to communication channel numeric vector | string
+  direction: input
+- name: Data Ready
+  summary: Data ready port (optional) 1 | 0
+  direction: output
+- name: Data Error
+  summary: Data error port (optional) 1 | 0
+  direction: output
+- name: Missed Ticks
+  summary: Missed tick count (optional) double
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -55,8 +71,62 @@ When you select **Show “Missed Ticks”
 port**, this port is visible.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Install new board
+  summary: Register a board < no board selected > (default)
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: Delete the current board (button)
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: Set up the board (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Input port sizes
+  summary: Specify number and width of ports 1 (default) | vector
+  group: ''
+  block_parameter: PortSizes
+- name: Format string
+  summary: Format of data items being written to the stream '%g' (default) | character vector
+  group: ''
+  block_parameter: FormatString
+- name: Show “Data Ready” port
+  summary: Add port Data Ready that signals 1 when the block can accept new data 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowReady
+- name: Show “Data Error” port
+  summary: Add port Data Error that signals 1 if error occurs 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowError
+- name: Initial string
+  summary: Data to send when simulation begins character vector
+  group: ''
+  block_parameter: InitialValue
+- name: Final string
+  summary: Data to send when simulation ends character vector
+  group: ''
+  block_parameter: FinalValue
+```
 
 ### **Install new board** — Register a board `< no board selected >` (default)
 
@@ -287,7 +357,6 @@ device. It is sent literally as specified, without reference to
 |  |
 | --- |
 | **Block Parameter:** `FinalValue` |
-
 ## Libraries
 
 Simulink Desktop Real-Time

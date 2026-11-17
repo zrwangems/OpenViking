@@ -14,6 +14,21 @@ language: en
 # Sun-Planet Worm Gear
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Planet gear carrier rotational mechanical
+  direction: conserving
+- name: W
+  summary: Worm gear rotational mechanical
+  direction: conserving
+- name: S
+  summary: Sun gear rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +56,50 @@ transmission efficiency by altering the gear temperatures.
 
 To enable this port, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gear ratio
+  summary: Gear ratio 25 (default) | positive scalar
+  group: Main
+- name: Worm thread type
+  summary: Thread rotation direction Right-hand (default) | Left-hand
+  group: Main
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Friction parameterization
+  summary: Friction parameterization method Friction coefficient and geometrical parameters (default) | Efficiencies
+  group: Meshing Losses
+- name: Normal pressure angle
+  summary: Thread pressure angle 17.5 deg (default) | scalar
+  group: Meshing Losses
+- name: Lead angle
+  summary: Thread helix angle 20 deg (default) | positive scalar
+  group: Meshing Losses
+- name: Friction coefficient
+  summary: Thread friction 0.08 (default) | positive scalar
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Worm-gear efficiency
+  summary: Torque transfer efficiency from the worm gear to the sun gear [.75, .65, .6] or 0.74 (default) | vector or scalar
+  group: Meshing Losses
+- name: Gear-worm efficiency
+  summary: Torque transfer efficiency from the sun gear to the worm gear [.5, .45, .4] or 0.65 (default) | vector or scalar
+  group: Meshing Losses
+- name: Power threshold
+  summary: Minimum efficiency power threshold 0.001 W (default) | scalar
+  group: Meshing Losses
+- name: Worm-carrier and sun-carrier viscous friction coefficients
+  summary: Gear viscous friction [0, 0] N*m/(rad/s) (default) | vector
+  group: Viscous Losses
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -268,7 +325,6 @@ change.
 To enable this parameter, set **Friction model** to
 `Temperature-dependent
 efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears / Planetary Subcomponents

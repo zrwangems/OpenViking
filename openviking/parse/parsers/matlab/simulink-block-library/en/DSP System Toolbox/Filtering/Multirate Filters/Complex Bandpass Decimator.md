@@ -14,6 +14,21 @@ language: en
 # Complex Bandpass Decimator
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input data vector | matrix
+  direction: input
+  data_types: single | double
+- name: Fc
+  summary: Center frequency real scalar
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Filtered output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -114,8 +129,59 @@ output signal is always complex.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter specification
+  summary: Filter design parameters Decimation factor (default) | Bandwidth | Decimation factor and bandwidth
+  group: ''
+- name: Decimation factor
+  summary: Decimation factor 2 (default) | positive integer
+  group: ''
+- name: Bandwidth
+  summary: Width of frequency band of interest 0.2268 (default) | real positive scalar
+  group: ''
+- name: Specify center frequency from input port
+  summary: Specify source of center frequency off (default) | on
+  group: ''
+- name: Center frequency
+  summary: Center frequency of desired band 0 (default) | real scalar
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation in dB 80 (default) | positive scalar
+  group: ''
+- name: Passband ripple (dB)
+  summary: Passband ripple in dB 1 (default) | positive scalar
+  group: ''
+- name: Transition width
+  summary: Transition width 0.0045 (default) | positive scalar
+  group: ''
+- name: Reduce number of complex coefficients
+  summary: Minimize number of complex coefficients on (default) | off
+  group: ''
+- name: Mix signal to baseband
+  summary: Mix signal to baseband on (default) | off
+  group: ''
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Input sample rate in Hz 44100 (default) | real positive scalar
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: ''
+- name: View Filter Response
+  summary: Visualize frequency response button
+  group: ''
+- name: View Info
+  summary: View filter information button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Filter specification** — Filter design parameters `Decimation factor` (default) | `Bandwidth` | `Decimation factor and bandwidth`
 
@@ -379,7 +445,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

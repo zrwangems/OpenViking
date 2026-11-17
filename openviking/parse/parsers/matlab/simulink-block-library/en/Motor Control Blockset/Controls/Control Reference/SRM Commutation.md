@@ -14,6 +14,25 @@ language: en
 # SRM Commutation
 
 ## Ports
+```yaml
+ports:
+- name: θe
+  summary: Electrical motor position scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θeOn
+  summary: Turn on electrical motor position scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θeOff
+  summary: Turn off electrical motor position scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Ctrl
+  summary: Control signal vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -55,8 +74,16 @@ Combination of switching sequences that you can use to switch each phase to on a
 off to drive the motor.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of motor phases
+  summary: Number of phases in SRM 3 (default) | 4 | 5 | 6
+  group: ''
+- name: Input position units
+  summary: Unit of position inputs Radians (default) | Per unit | Degrees
+  group: ''
+```
 
 ### **Number of motor phases** — Number of phases in SRM `3` (default) | `4` | `5` | `6`
 
@@ -67,7 +94,6 @@ The number of phases in the stator windings of the SRM.
 Units for the `θe`,
 `θeOn`, and
 `θeOff` inputs.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Chroma Resampler
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: Y'CbCr 颜色空间中的输入像素流 向量 | 矩阵
+  direction: input
+  data_types: uint8 | uint16 | fi(0,N,0) , where N = 8,9,...,16 | single | double
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Y'CbCr 颜色空间中的输出像素流 向量 | 矩阵
+  direction: output
+  data_types: single | double | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -52,8 +71,31 @@ Y'CbCr 颜色空间中的输出像素流，以单像素流或多像素流形式�
 对于多像素流，每个像素值向量具有一组控制信号。由于该向量只有一个 `valid` 信号，因此向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Resampling
+  summary: 重采样类型 4:4:4 to 4:2:2（默认）| 4:2:2 to 4:4:4
+  group: 主
+- name: Antialiasing filter
+  summary: 跟随下采样操作的低通滤波器 Auto（默认）| Property | None
+  group: 主
+- name: Horizontal filter coefficients
+  summary: 抗混叠滤波器的系数 [0.2 0.6 0.2]（默认）| 向量
+  group: 主
+- name: Interpolation
+  summary: 上采样操作的插值方法 Linear（默认）| Pixel replication
+  group: 主
+- name: 舍入模式
+  summary: 内部定点计算的舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: 整数溢出时饱和
+  summary: 内部定点计算的溢出操作 off（默认）| on
+  group: 数据类型
+- name: 滤波器系数
+  summary: 抗混叠滤波器系数的数据类型 fixdt(1,16,15)（默认）| 数据类型表达式
+  group: 数据类型
+```
 
 ### 主
 
@@ -100,7 +142,6 @@ Y'CbCr 颜色空间中的输出像素流，以单像素流或多像素流形式�
 ### **滤波器系数** — 抗混叠滤波器系数的数据类型 `fixdt(1,16,15)`（默认）| 数据类型表达式
 
 当您将 **Antialiasing filter** 设置为 `Auto` 或 `Property` 时，此参数适用。
-
 ## 所属库
 
 Vision HDL Toolbox / Conversions

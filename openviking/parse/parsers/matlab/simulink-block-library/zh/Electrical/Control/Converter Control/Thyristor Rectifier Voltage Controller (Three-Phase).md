@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Thyristor Rectifier Voltage Controller (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: VdcRef
+  summary: 参考直流电压，V 标量
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: 直流母线电压，V 标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 外部复位标量
+  direction: input
+  data_types: single | double
+- name: Vabc
+  summary: 三相电压，V 向量
+  direction: input
+  data_types: single | double
+- name: P
+  summary: 脉冲向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -48,8 +71,37 @@ chinese_source: worker-translation
 脉冲控制信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Loop filter proportional gain
+  summary: 环路滤波器 *Kp* 2（默认）| 正标量
+  group: ''
+- name: Loop filter integral gain
+  summary: 环路滤波器 *Ki* 20（默认）| 正标量
+  group: ''
+- name: Proportional gain
+  summary: 控制器 *Kp* 1（默认）| 正标量
+  group: ''
+- name: Integral gain
+  summary: 控制器 *Ki* 1（默认）| 正标量
+  group: ''
+- name: Thyristor pulse width (rad)
+  summary: 脉冲宽度 5*pi/6（默认）| 正标量
+  group: ''
+- name: Pulse ordering
+  summary: 脉冲排序规则 Sequential device order（默认）| Natural order of commutation
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+- name: Time constant voltage filter
+  summary: 直流电压滤波器 *τ* 0.001（默认）| 正标量
+  group: ''
+- name: Filter DC voltage
+  summary: 直流电压滤波器选项 on（默认）| off
+  group: ''
+```
 
 ### **Loop filter proportional gain** — 环路滤波器 *Kp* `2`（默认）| 正标量
 
@@ -99,7 +151,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当选中 **Filter DC voltage** 复选框时，**Time constant voltage filter** 参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Control / Converter Control

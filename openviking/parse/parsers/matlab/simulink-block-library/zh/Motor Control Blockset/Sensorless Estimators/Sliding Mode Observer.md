@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Sliding Mode Observer
 
 ## 端口
+```yaml
+ports:
+- name: Vα
+  summary: '*α* 轴电压标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vβ
+  summary: '*β* 轴电压标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iα
+  summary: '*α* 轴电流标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iβ
+  summary: '*β* 轴电流标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Rst
+  summary: 复位模块标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: PMSM 电位置标量
+  direction: output
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: PMSM 机械速度标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -60,8 +91,55 @@ chinese_source: worker-translation
 转子的估计机械速度。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input units
+  summary: 模块输入的单位 SI unit（默认）| Per-unit
+  group: ''
+- name: Discrete step size (s)
+  summary: 模块再次执行前的采样时间 50e-6（默认）| 标量
+  group: ''
+- name: Stator resistance (ohm)
+  summary: 电阻 0.36（默认）| 标量
+  group: 电机参数
+- name: Stator inductance (H)
+  summary: 电感 0.2e-3（默认）| 标量
+  group: 电机参数
+- name: Maximum application speed (RPM)
+  summary: 支持的最大机械速度 6000（默认）| 标量
+  group: 电机参数
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 4（默认）| 标量
+  group: 电机参数
+- name: Base voltage (V)
+  summary: 对应一个标幺值的标称电压 13.8564（默认）| 标量
+  group: 电机参数
+- name: Base current (A)
+  summary: 对应一个标幺值的标称电流 21.4286（默认）| 标量
+  group: 电机参数
+- name: Back-emf observer gain
+  summary: 反电动势的滑模观测器增益 0.9（默认）| 标量
+  group: 观测器参数
+- name: Current observer gain
+  summary: 电流的滑模观测器增益 0.50881（默认）| 标量
+  group: 观测器参数
+- name: Filter cut-off frequency (Hz)
+  summary: 内部滤波器的截止频率 1200（默认）| 标量
+  group: 观测器参数
+- name: Position unit
+  summary: 位置输出的单位 Radians（默认）| Degrees | Per unit
+  group: 数据类型
+- name: Position data type
+  summary: 位置输出的数据类型 single（默认）| double | fixed point
+  group: 数据类型
+- name: Speed unit
+  summary: 速度输出的单位 RPM（默认）| Degrees/sec | Radians/sec | Per unit
+  group: 数据类型
+- name: Speed data type
+  summary: 速度输出的数据类型 single（默认）| double | fixed point
+  group: 数据类型
+```
 
 ### **Input units** — 模块输入的单位 `SI unit`（默认）| `Per-unit`
 
@@ -138,7 +216,6 @@ Sliding Mode Observer 模块偶尔可能会显示警告消息 `Wrap on overflow 
 ### **Speed data type** — 速度输出的数据类型 `single`（默认）| `double` | `fixed point`
 
 速度输出的数据类型。
-
 ## 所属库
 
 Motor Control Blockset / Sensorless Estimators

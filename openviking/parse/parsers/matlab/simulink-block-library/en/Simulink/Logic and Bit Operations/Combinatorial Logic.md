@@ -14,6 +14,17 @@ language: en
 # Combinatorial Logic
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector
+  direction: input
+  data_types: double | Boolean
+- name: Port_2
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -38,8 +49,17 @@ same as that of the input except that the block outputs
 and the truth table contains non-Boolean values.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Truth table
+  summary: Matrix of outputs matrix
+  group: ''
+  block_parameter: TruthTable
+  type: character vector
+  values: matrix
+  default: '''[0 0;0 1;0 1;1 0;0 1;1 0;1 0;1 1]'''
+```
 
 ### **Truth table** — Matrix of outputs matrix
 
@@ -79,7 +99,6 @@ u(1)*2`m-1
 | **Type**: character vector |
 | **Values**: matrix |
 | **Default**: `'[0 0;0 1;0 1;1 0;0 1;1 0;1 0;1 1]'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Gate Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 闸门位移，m 物理信号
+  direction: input
+- name: A
+  summary: 液体端口 热液体
+  direction: input
+- name: B
+  summary: 液体端口 热液体
+  direction: input
+```
 
 ### 输入
 
@@ -31,8 +43,31 @@ m。正信号使闸门缩回并打开阀门。
 ### **B** — 液体端口 热液体
 
 与阀门入口 B 相关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Orifice diameter
+  summary: 孔口直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Gate position when fully covering orifice
+  summary: 闸门偏移 0 m（默认）| 非负标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的孔口面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Orifice diameter** — 孔口直径 `0.01` `m`（默认）| 正标量
 
@@ -63,7 +98,6 @@ m。正信号使闸门缩回并打开阀门。
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过阀门的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Flow Control Valves

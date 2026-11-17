@@ -14,6 +14,17 @@ language: en
 # Bits to Word
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal binary-valued scalar | binary-valued vector
+  direction: input
+  data_types: fixdt(0,1,0)
+- name: Out
+  summary: Output signal scalar
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -36,8 +47,24 @@ input signal, then the output signal is an unsigned integer with the
 `ufix8` data type.
 
 **Data Types:** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input bit order
+  summary: Input bit order LSB first (default) | MSB first
+  group: ''
+  block_parameter: bitOrder
+  type: character vector
+  values: '''LSB first'' | ''MSB first'''
+  default: '''LSB first'''
+- name: After bit packing, treat resulting integer values as
+  summary: Flag for signed integer values after bit packing Unsigned (default) | Signed
+  group: ''
+  block_parameter: signedOutputValues
+  type: character vector
+  values: '''Unsigned'' | ''Signed'''
+  default: '''Unsigned'''
+```
 
 ### **Input bit order** — Input bit order `LSB first` (default) | `MSB first`
 
@@ -71,7 +98,6 @@ bit packing.
 | **Type**: character vector |
 | **Values**: `'Unsigned'` | `'Signed'` |
 | **Default**: `'Unsigned'` |
-
 ## Libraries
 
 HDL Coder / Logic and Bit Operations

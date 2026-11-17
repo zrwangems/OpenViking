@@ -14,17 +14,24 @@ language: en
 # Rotational Free End
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Zero torque mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
 ### **W** — Zero torque mechanical rotational
 
 Mechanical rotational conserving port that rotates freely, without torque.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Bicycle Kinematic Model
 
 ## 端口
+```yaml
+ports:
+- name: v
+  summary: 车辆速度 数值标量
+  direction: input
+- name: psi
+  summary: 转向角 数值标量
+  direction: input
+- name: omega
+  summary: 转向角速度 数值标量
+  direction: input
+- name: state
+  summary: 车辆位姿 三元素向量
+  direction: output
+- name: stateDot
+  summary: state 输出的导数 三元素向量
+  direction: output
+```
 
 ### 输入
 
@@ -52,8 +70,28 @@ Velocity`。
 车辆的线速度和角速度，以 *[xDot
 yDot thetaDot]* 向量表示，单位为米每秒和弧度每秒。线速度和角速度通过对 `state`
 输出求导计算得出。
-
 ## 参数
+```yaml
+parameters:
+- name: Vehicle inputs
+  summary: 车辆的速度和方向输入类型 Vehicle Speed & Steering Angle（默认）| Vehicle Speed & Heading Angular Velocity
+  group: ''
+- name: Wheel base
+  summary: 前轴和后轴之间的距离 1（默认）| 正数值标量
+  group: ''
+- name: Vehicle speed range
+  summary: 车辆速度的最小值和最大值 [-Inf Inf]（默认）| 二元素向量
+  group: ''
+- name: Maximum steering angle
+  summary: 最大转弯半径 pi/4（默认）| 数值标量
+  group: ''
+- name: Initial state
+  summary: 车辆的初始位姿 [0;0;0]（默认）| 三元素向量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Vehicle inputs** — 车辆的速度和方向输入类型 `Vehicle Speed & Steering Angle`（默认）| `Vehicle Speed & Heading Angular Velocity`
 
@@ -86,7 +124,6 @@ yDot thetaDot]* 向量表示，单位为米每秒和弧度每秒。线速度和�
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。
 
 **可调：** 否
-
 ## 所属库
 
 Robotics System Toolbox / Mobile Robot Algorithms

@@ -14,6 +14,28 @@ language: en
 # IncrementalClassificationLinear Predict
 
 ## Ports
+```yaml
+ports:
+- name: mdl
+  summary: Incremental learning model bus signal
+  direction: input
+- name: x
+  summary: Chunk of predictor data numeric matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: label
+  summary: Chunk of predicted class labels column vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: score
+  summary: Predicted class scores or posterior probabilities matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: CanPredict
+  summary: Model status logical
+  direction: output
+```
 
 ### Input
 
@@ -97,8 +119,138 @@ then the model status is 0 (false) during the estimation period.
 
 To enable this port, select the check box for **Add output port for status of trained machine learning model** on the
 **Main** tab of the Block Parameters dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Select initial machine learning model
+  summary: Initial incremental linear classification model linearMdl (default) | incrementalClassificationLinear model object
+  group: Main
+  block_parameter: InitialLearner
+  type: workspace variable
+  values: incrementalClassificationLinear model object
+  default: '"linearMdl"'
+- name: Add output port for predicted class scores
+  summary: Add second output port for predicted class scores off (default) | on
+  group: Main
+  block_parameter: ShowOutputScore
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Add output port for status of trained machine learning model
+  summary: Add second output port for model status off (default) | on
+  group: Main
+  block_parameter: ShowOutputCanPredict
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Predictor data observation dimension
+  summary: Observation dimension of predictor data rows (default) | columns
+  group: Main
+  block_parameter: ObservationsIn
+  type: character vector
+  values: '"rows" | "columns"'
+  default: '"rows"'
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: Main
+  block_parameter: SystemSampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Label data type
+  summary: 'Data type of label output Inherit: Inherit via back propagation | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data
+    type expression>'
+  group: Data Types
+  block_parameter: LabelDataTypeStr
+  type: character vector
+  values: '"Inherit: Inherit via back propagation" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16"
+    | "int32" | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "Enum: <class name>" |
+    "<data type expression>"'
+  default: '"Inherit: Inherit via back propagation" (for numeric and logical labels) | "Inherit: auto" (for nonnumeric labels)'
+- name: Label data type Minimum
+  summary: Minimum value of label output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LabelOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Label data type Maximum
+  summary: Maximum value of label output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LabelOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Score data type
+  summary: 'Data type of score output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: ScoreDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Score data type Minimum
+  summary: Minimum value of score output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: ScoreOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Score data type Maximum
+  summary: Maximum value of score output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: ScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Inner product data type
+  summary: 'Inner product data type Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 |
+    int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: InnerProductDataTypeStr
+  type: character vector
+  values: '"Inherit: Inherit via internal rule" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32"
+    | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"double"'
+- name: Inner product data type Minimum
+  summary: Minimum of inner product term for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: InnerProductOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Inner product data type Maximum
+  summary: Maximum of inner product term for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: InnerProductOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 ### Main
 
@@ -532,7 +684,6 @@ saturate or clip the actual inner product term value.
 | **Type**: character vector |
 | **Values**: `"[]"` | scalar |
 | **Default**: `"[]"` |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Classification / Linear

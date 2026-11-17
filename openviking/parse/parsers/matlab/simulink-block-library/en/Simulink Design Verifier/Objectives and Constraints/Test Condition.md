@@ -14,6 +14,19 @@ language: en
 # Test Condition
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal specified as a scalar or cell array scalar | cell array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: Output signal returned as a scalar or a cell array scalar | cell array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -35,8 +48,26 @@ supported by the Simulink software. For more information about supported data ty
 see Data Types Supported by Simulink.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable
+  summary: Whether block is enabled on (default) | off
+  group: ''
+- name: Type
+  summary: Whether the block behaves as a Test Condition or Proof Assumption block Test Condition (default) | Assumption
+  group: ''
+- name: Values
+  summary: Test condition scalar | cell array
+  group: ''
+- name: Display values
+  summary: Display the contents of values parameter on (default) | off
+  group: ''
+  values: parameter in the Simulink Editor.
+- name: Pass through style (show Outport)
+  summary: Whether block displays an output port in the Simulink Editor on (default) | off
+  group: ''
+```
 
 ### **Enable** — Whether block is enabled `on` (default) | `off`
 
@@ -131,7 +162,6 @@ each case.
 **Pass through style: Selected**
 
 **Pass through style: Cleared**
-
 ## Libraries
 
 Simulink Design Verifier / Objectives and Constraints

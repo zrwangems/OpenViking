@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Sphere Decoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Signal constellation**
 :   指定比特所映射到的信号星座中的点数。
@@ -57,7 +62,6 @@ R2025b 中未记录。
 :   指定该模块是使用 `Code generation` 还是
     `Interpreted execution` 进行仿真。默认值为 `Interpreted
     execution`。
-
 ## 所属库
 
 R2025b 中未记录。

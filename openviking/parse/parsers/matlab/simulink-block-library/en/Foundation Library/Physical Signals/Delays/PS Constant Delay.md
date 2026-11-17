@@ -14,6 +14,15 @@ language: en
 # PS Constant Delay
 
 ## Ports
+```yaml
+ports:
+- name: U
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: Y
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -25,8 +34,16 @@ Input physical signal.
 ### **Y** — Output physical signal, untyped physical signal
 
 Output physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input history
+  summary: Signal value and unit during the initial time interval 0.0 1 (default)
+  group: ''
+- name: Delay time
+  summary: Delay time for the signal 1 s (default)
+  group: ''
+```
 
 ### **Input history** — Signal value and unit during the initial time interval `0.0 1` (default)
 
@@ -45,7 +62,6 @@ and Unit Definitions.
 ### **Delay time** — Delay time for the signal `1 s` (default)
 
 The delay for the signal, in units of time. The parameter value must be positive.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Delays

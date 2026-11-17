@@ -14,6 +14,20 @@ language: en
 # Guidance Model
 
 ## Ports
+```yaml
+ports:
+- name: Control
+  summary: Control commands bus
+  direction: input
+- name: Environment
+  summary: Environmental inputs bus
+  direction: input
+  data_types: bus
+- name: State
+  summary: Simulated UAV state bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -109,8 +123,28 @@ For fixed-wing UAVs, the state is an eight-element bus:
   *x*-axis in radians per second.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: ModelType
+  summary: UAV guidance model type MultirotorGuidance (default) | FixedWingGuidance
+  group: ''
+- name: DataType
+  summary: Input and output numeric data types double (default) | single
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+- name: Initial State
+  summary: Initial UAV state tab multiple table entries
+  group: ''
+- name: Configuration
+  summary: UAV controller configuration tab multiple table entries
+  group: ''
+- name: Input/Output Bus Names
+  summary: Simulink bus signal names tab multiple entries of character vectors
+  group: ''
+```
 
 ### **ModelType** — UAV guidance model type `MultirotorGuidance` (default) | `FixedWingGuidance`
 
@@ -210,7 +244,6 @@ Simulink bus signal names tab, specified as multiple entries of character vector
 These buses have a default name based on the UAV model and input type. To use multiple
 guidance models in the same Simulink model, specify different bus names that do not intersect. All entries on
 this tab are nontunable.
-
 ## Libraries
 
 UAV Toolbox / Algorithms

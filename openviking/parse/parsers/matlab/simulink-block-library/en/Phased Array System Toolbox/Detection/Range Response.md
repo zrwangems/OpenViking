@@ -14,6 +14,31 @@ language: en
 # Range Response
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data cube complex-valued *K*-by-1 column vector | complex-valued *K*-by-*L* matrix | complex-valued *K*-by-*N*-by-*L*
+    array
+  direction: input
+  data_types: double
+- name: Coeff
+  summary: Matched filter coefficients complex-valued column vector
+  direction: input
+  data_types: double
+- name: XRef
+  summary: Reference signal complex-valued *K*-by-1 column vector
+  direction: input
+  data_types: double
+- name: Resp
+  summary: Range response data cube complex-valued *M*-element column vector | complex-valued *M*-by-*L* matrix | complex-valued
+    *M*-by-*N* by-*L* array
+  direction: output
+  data_types: double
+- name: Range
+  summary: Range values along range dimension real-valued *M*-by-1 column vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -113,8 +138,56 @@ vector. This quantity defines the range values along the first dimension
 of the `Resp` output port data. Units are in meters.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement mode
+  summary: Measurement mode Monostatic (default) | Bistatic
+  group: ''
+- name: Range processing method
+  summary: Range processing method Matched filter (default) | FFT
+  group: ''
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: FM sweep slope (Hz/s)
+  summary: FM sweep slope 1e9 (default) | scalar
+  group: ''
+- name: Dechirp input signal
+  summary: Enable dechirping of input signal on (default) | off
+  group: ''
+- name: Source of FFT length in range processing
+  summary: Source of FFT length for range processing Auto (default) | Property
+  group: ''
+- name: FFT length in range processing
+  summary: Range processing FFT length 1024 (default) | positive integer
+  group: ''
+- name: Range processing window
+  summary: Range FFT weighting window None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor
+  group: ''
+- name: Range sidelobe attenuation level
+  summary: Sidelobe attenuation for range processing 30 (default) | positive scalar
+  group: ''
+- name: Set reference range at center
+  summary: Set reference range at center of range grid on (default) | off
+  group: ''
+- name: Reference range (m)
+  summary: Reference range of range grid 0.0 (default) | nonnegative scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Measurement mode** — Measurement mode `Monostatic` (default) | `Bistatic`
 
@@ -318,7 +391,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

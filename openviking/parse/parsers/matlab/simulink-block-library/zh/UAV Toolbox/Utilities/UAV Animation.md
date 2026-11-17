@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # UAV Animation
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: UAV 的 *xyz* 位置矩阵
+  direction: input
+- name: Rotation
+  summary: UAV 机体坐标系旋转矩阵 | *m*×4 矩阵
+  direction: input
+- name: UAV Type
+  summary: UAV 网格类型向量
+  direction: input
+- name: UAV Mesh Configuration
+  summary: UAV 网格配置向量 | 矩阵
+  direction: input
+- name: Marker
+  summary: 无人机标记配置矩阵
+  direction: input
+```
 
 ### 输入
 
@@ -71,8 +89,40 @@ UAV 网格配置，指定为 *m* 元素列向量或 *m*×4 或 *m*×5 矩阵。*
 #### 依赖关系
 
 要启用此端口，请选择 **Draw marker** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of UAVs
+  summary: 要显示的无人机数量 1（默认）| 正整数
+  group: ''
+- name: Enable dynamic UAV mesh configuration
+  summary: 动态无人机网格配置 off（默认）| on
+  group: ''
+- name: UAV Type
+  summary: 要显示的无人机网格类型 Multirotor（默认）| FixedWing
+  group: ''
+- name: UAV size
+  summary: 框架和附加网格的大小 1（默认）| 正数值标量
+  group: ''
+- name: UAV mesh color
+  summary: 无人机网格的颜色 [1 0 0]（默认）| RGB 三元组
+  group: ''
+- name: UAV mesh and trajectory alpha
+  summary: 无人机网格和轨迹的透明度 1（默认）| 正数值标量
+  group: ''
+- name: Inertial frame z-axis direction
+  summary: 惯性坐标系 *z* 轴正方向 Down（默认）| Up
+  group: ''
+- name: Rotation format
+  summary: 旋转输入格式 Quaternion（默认）| Euler ZYX
+  group: ''
+- name: Draw marker
+  summary: 启用标记 off（默认）| on
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 –1（默认）| 标量
+  group: ''
+```
 
 ### **Number of UAVs** — 要显示的无人机数量 `1`（默认）| 正整数
 
@@ -136,7 +186,6 @@ UAV 网格配置，指定为 *m* 元素列向量或 *m*×4 或 *m*×5 矩阵。*
 默认值表示模块采样时间为*继承*。
 
 有关继承采样时间类型的详细信息，请参阅 Specify Sample Time (Simulink)。
-
 ## 所属库
 
 UAV Toolbox / Utilities

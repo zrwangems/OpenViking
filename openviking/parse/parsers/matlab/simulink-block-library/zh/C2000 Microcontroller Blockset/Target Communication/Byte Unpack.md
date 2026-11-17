@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Byte Unpack
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 打包数据 标量 | 向量 | 矩阵
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Port_1
+  summary: '*N* 个输出端口中的第一个 标量 | 向量 | 矩阵'
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -31,8 +42,19 @@ chinese_source: worker-translation
 个输出端口，由参数 **输出端口数据类型（元胞数组）** 中的元胞数组元素指定。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: 输出端口维度（元胞数组）
+  summary: 每个输出端口（解包后）的维度 {[1]}（默认） | {[N], [M], ...}
+  group: ''
+- name: 输出端口数据类型（元胞数组）
+  summary: 解包后输出信号的数据类型 double（默认） | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+- name: 字节对齐
+  summary: 解包前输出信号数据类型的对齐方式 1（默认） | 2 | 4 | 8
+  group: ''
+```
 
 ### **输出端口维度（元胞数组）** — 每个输出端口（解包后）的维度 `{[1]}`（默认） | `{[N], [M], ...}`
 
@@ -139,7 +161,6 @@ Unpack 模块在解包时考虑单元的对齐和填充。
 | –12 | FFF4 |
 | 标量 | 1 | `uint8` | 112 | 0070 |
 | 标量 | 1 | `uint32` | 5000 | 00001388 |
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Target Communication Simulink Support Package for Arduino Hardware / Utilities Embedded Coder / Embedded Targets / Host Communication Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Utilities Embedded Coder Support Package for STMicroelectronics STM32 Processors / Utilities Simulink Coder Support Package for STMicroelectronics Nucleo Boards / Utilities SoC Blockset Support Package for Infineon AURIX Microcontrollers / Utilities

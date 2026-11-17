@@ -14,6 +14,17 @@ language: en
 # Sign
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -34,8 +45,22 @@ Output signal that is the sign of the input signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Enable zero-crossing detection** — Enable zero-crossing detection `on` (default) | `off`
 
@@ -69,7 +94,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

@@ -14,6 +14,24 @@ language: en
 # Variant Start
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | struct
+- name: Port_1
+  summary: Output branch scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_N
+  summary: Output from *N*th branch scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -36,8 +54,67 @@ of the Variant End block.
 Output signal from the *N*th branch.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Variant Start End Tag
+  summary: Unique identifier of bounded region A (default) | valid MATLAB® identifier
+  group: ''
+  block_parameter: VariantStartEndTag
+  type: character vector
+  values: '''A'' | valid MATLAB identifier'
+  default: '''A'''
+- name: Variant control mode
+  summary: Variant control mode expression (default) | label | sim codegen switching
+  group: ''
+  block_parameter: VariantControlMode
+  type: character vector
+  values: '''expression'' | ''label'' | ''sim codegen switching'''
+  default: '''expression'''
+- name: Variant activation time
+  summary: Time when software chooses active variant choice update diagram (default) | update diagram analyze all choices
+    | code compile | startup | inherit from Simulink.VariantControl
+  group: ''
+  block_parameter: VariantActivationTime
+  type: character vector
+  values: '''update diagram'' | ''update diagram analyze all choices'' | ''code compile'' | ''startup'''
+  default: '''update diagram'''
+- name: Port and associated conditions
+  summary: Table of variant choices, variant controls, and conditions empty table (default)
+  group: ''
+- name: Port
+  summary: 'Number of connected output port Read-only: no default'
+  group: ''
+- name: Variant control label
+  summary: Name of choice in label mode true or false (default) | string
+  group: ''
+  block_parameter: VariantControl
+  values: variant control that is associated with the variant choice
+- name: Variant control expression
+  summary: Condition expression that determines the active choice true or false (default) | boolean condition expression |
+    a Simulink.VariantExpression object representing a boolean condition expression | (default)
+  group: ''
+  block_parameter: VariantControls
+  values: variant controls that are associated with variant choices
+- name: Condition (read-only)
+  summary: 'Condition expression in Simulink.VariantExpression object Read-only: N/A (default)'
+  group: ''
+- name: Label mode active choice
+  summary: Name of active choice in label mode true (Subsystem) (default) | false (Subsystem1)
+  group: ''
+  block_parameter: LabelModeActiveChoice
+  type: character vector
+  values: If no label mode active choice is specified, the value is empty. If a label mode active choice is specified, the
+    value is the variant control label for the active choice.
+  default: ''''''
+- name: Show variant condition on block
+  summary: Annotate block ports off (default) | on
+  group: ''
+  block_parameter: ShowConditionOnBlock
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Variant Start End Tag** — Unique identifier of bounded region `A` (default) | valid MATLAB® identifier
 
@@ -342,7 +419,6 @@ Variant Start block.
 | **Type:** character vector |
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Signal Routing

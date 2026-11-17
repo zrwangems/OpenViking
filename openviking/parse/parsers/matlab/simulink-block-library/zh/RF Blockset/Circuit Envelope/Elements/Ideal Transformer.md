@@ -15,15 +15,22 @@ chinese_source: worker-translation
 # Ideal Transformer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Winding ratio n
+  summary: 理想变压器的绕组比 1（默认）| 正标量
+  group: ''
+```
 
 ### **Winding ratio n** — 理想变压器的绕组比 `1`（默认）| 正标量
 
 理想变压器的绕组比，指定为正标量。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

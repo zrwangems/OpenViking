@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Power Measurement (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 输入电压向量
+  direction: input
+  data_types: single | double
+- name: I
+  summary: 输入电流向量
+  direction: input
+  data_types: single | double
+- name: P
+  summary: 有功功率标量或向量 | 向量
+  direction: output
+  data_types: single | double
+- name: Q
+  summary: 无功功率标量或向量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,22 @@ chinese_source: worker-translation
 所选频率分量的无功功率，单位为 var。如果 **Harmonic numbers** 参数值为标量，则该输出也为标量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Base frequency (Hz)
+  summary: 基波频率 60（默认）| 正数
+  group: ''
+- name: Harmonic numbers
+  summary: 频率分量 [0 1 2 3]（默认）| 标量或向量
+  group: ''
+- name: Sequence
+  summary: 对称序分量 Positive（默认）| Negative | Zero
+  group: ''
+- name: Sample time
+  summary: 模块采样时间 0（默认）| 正数
+  group: ''
+```
 
 ### **Base frequency (Hz)** — 基波频率 `60`（默认）| 正数
 
@@ -70,7 +103,6 @@ chinese_source: worker-translation
 对于连续运行，将此属性设置为 `0`。对于离散运行，将采样时间显式指定为正数。此模块不支持继承采样时间。
 
 如果此模块位于掩码子系统或其他允许连续和离散运行的变体子系统中，请提升采样时间参数。提升采样时间参数可确保在模块的连续和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / Measurements

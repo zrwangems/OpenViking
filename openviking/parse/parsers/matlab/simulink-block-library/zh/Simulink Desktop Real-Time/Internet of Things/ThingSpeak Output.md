@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # ThingSpeak Output
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要写入通道的数据 numeric
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -25,8 +32,66 @@ chinese_source: worker-translation
 **示例：** `3.14159`
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Channel number
+  summary: 正在访问的 ThingSpeak 通道 只读：0（默认）| numeric
+  group: ''
+  block_parameter: DrvAddress
+- name: Configure channel parameters
+  summary: 选择并配置要访问的通道（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: ThingSpeak server
+  summary: 用于数据传输的服务器 api.thingspeak.com（默认）| character vector
+  group: ''
+  block_parameter: DrvOptions
+- name: Channel ID
+  summary: 唯一通道 0（默认）| numeric
+  group: ''
+  block_parameter: DrvOptions
+- name: Write API key
+  summary: 用于写入通道的访问密钥 character vector
+  group: ''
+  block_parameter: DrvOptions
+- name: Update period (secs)
+  summary: 写入更新周期，以秒为单位 20（默认）| numeric
+  group: ''
+  block_parameter: DrvOptions
+- name: View channel web page
+  summary: 访问通道网页（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块采样时间 0.1（默认）| double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后内核的定时器节拍数 10（默认）| integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: 当内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Output fields
+  summary: 定义要写入的数据部分 1（默认）| [1–8]
+  group: ''
+  block_parameter: ChannelFields
+- name: Initial value
+  summary: 传输的第一个值 []（默认）| [integer]
+  group: ''
+  block_parameter: InitialValue
+- name: Final value
+  summary: 传输的最后一个值 []（默认）| [integer]
+  group: ''
+  block_parameter: FinalValue
+```
 
 ### **Channel number** — 正在访问的 ThingSpeak 通道 只读：`0`（默认）| numeric
 
@@ -183,7 +248,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `FinalValue` |
-
 ## 所属库
 
 Simulink Desktop Real-Time / Internet of Things

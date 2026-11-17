@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # atan2
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: y 坐标值（实数）标量
+  direction: input
+  data_types: single | double | fixed point
+- name: B
+  summary: x 坐标值（实数）标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θ
+  summary: 由反正切表示的角度 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -38,8 +53,16 @@ x 轴上的实数，作为模块的输入提供。
 **数据类型：** `single` | `double` | `fixed point`
 
 下图展示了输入值 A、B 以及反正切在 x-y 坐标平面上的表示。
-
 ## 参数
+```yaml
+parameters:
+- name: Approximation method
+  summary: 用于 atan2 计算的近似类型 None（默认）| CORDIC | Lookup
+  group: ''
+- name: Output unit
+  summary: 输出值的单位 Radians（默认）| PerUnit
+  group: ''
+```
 
 ### **Approximation method** — 用于 atan2 计算的近似类型 `None`（默认）| `CORDIC` | `Lookup`
 
@@ -60,7 +83,6 @@ x 轴上的实数，作为模块的输入提供。
 ### **Output unit** — 输出值的单位 `Radians`（默认）| `PerUnit`
 
 输出值的单位。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

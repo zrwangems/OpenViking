@@ -14,6 +14,13 @@ language: en
 # Signal From Workspace
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal imported from workspace scalar | vector | matrix | 3-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Output
 
@@ -48,8 +55,25 @@ sequence with period *T*s. The
 `1`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal
+  summary: Signal to import 1:10 (default) | MATLAB workspace variable | MATLAB expression
+  group: ''
+- name: Sample time
+  summary: Output sample period 1 (default) | scalar
+  group: ''
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: ''
+- name: Form output after final data value by
+  summary: Values to output after final imported signal value Setting to zero (default) | Holding final value | Cyclic repetition
+  group: ''
+- name: Warn when frame size does not evenly divide input length
+  summary: Warn when input length is not an integer multiple of frame size off (default) | on
+  group: ''
+```
 
 ### **Signal** — Signal to import `1:10` (default) | MATLAB workspace variable | MATLAB expression
 
@@ -120,7 +144,6 @@ model-wide:
 To enable this parameter set **Form output after final data
 value by** to `Cyclic
 Repetition`.
-
 ## Libraries
 
 DSP System Toolbox / Sources

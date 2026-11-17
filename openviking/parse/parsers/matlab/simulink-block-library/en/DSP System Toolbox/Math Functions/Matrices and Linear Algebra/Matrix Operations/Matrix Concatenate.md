@@ -14,6 +14,24 @@ language: en
 # Matrix Concatenate
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input to concatenate scalar | vector | matrix | array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_N
+  summary: '*N*th input to concatenate scalar | vector | matrix | array'
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: Concatenation of input signals scalar | vector | matrix | array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -52,8 +70,25 @@ equal to 2.
 Concatenation of input signals along specified dimension. Outputs have the same data type as the input.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Number of input ports 2 (default) | positive integer
+  group: ''
+  block_parameter: NumInputs
+  values: '''2'' (default) | positive integer in quotes'
+- name: Mode
+  summary: Type of concatenation Vector | Multidimensional array
+  group: ''
+  block_parameter: Mode
+  values: '''Vector'' | ''Multidimensional array'''
+- name: Concatenate dimension
+  summary: Output dimension along which to concatenate input arrays scalar integer
+  group: ''
+  block_parameter: ConcatenateDimension
+  values: scalar integer in quotes
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -138,7 +173,6 @@ the `set_param` function.
 | **Data Types:** | `char` | `string` |
 
 **Example:** `set_param(gcb,'ConcatenateDimension','2')`
-
 ## Libraries
 
 Simulink / Math Operations Simulink / Matrix Operations DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations HDL Coder / Math Operations

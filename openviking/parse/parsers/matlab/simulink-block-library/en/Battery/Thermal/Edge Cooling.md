@@ -14,6 +14,30 @@ language: en
 # Edge Cooling
 
 ## Ports
+```yaml
+ports:
+- name: Tp
+  summary: Plate temperature, K physical signal
+  direction: output
+- name: dT
+  summary: Fluid temperature change, K physical signal
+  direction: output
+- name: dP
+  summary: Fluid pressure drop, Pa physical signal
+  direction: output
+- name: fluid_in
+  summary: Fluid in cooling plate thermal fluid
+  direction: conserving
+- name: fluid_out
+  summary: Fluid out of cooling plate thermal fluid
+  direction: conserving
+- name: Surf1
+  summary: Surface 1 of cooling plate thermal
+  direction: conserving
+- name: Surf2
+  summary: Surface 2 of cooling plate thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -51,8 +75,81 @@ plate and battery pack or module.
 Thermal conserving port associated with the surface 2 of the cooling
 plate. This port connects the array of thermal nodes between the cooling
 plate and battery pack or module.
-
 ## Parameters
+```yaml
+parameters:
+- name: Battery Connectivity
+  summary: Connectivity of battery Single sided (default) | Double sided
+  group: Interface
+- name: Number of battery thermal nodes (surface 1)
+  summary: Number of battery thermal nodes on surface 1 1 (default) | positive scalar
+  group: Interface
+- name: Dimension of battery thermal nodes (surface 1)
+  summary: Dimension of battery thermal nodes on surface 1 ones(1, 2) (default)
+  group: Interface
+- name: Coordinates of battery thermal nodes (surface 1)
+  summary: Coordinates of battery thermal nodes on surface 1 ones(1, 2) (default) | M-by-N matrix
+  group: Interface
+- name: Number of battery thermal nodes (surface 2)
+  summary: Number of battery thermal nodes on surface 2 1 (default) | positive scalar
+  group: Interface
+- name: Dimension of battery thermal nodes (surface 2)
+  summary: Dimension of battery thermal nodes on surface 2 ones(1, 2) (default) | M-by-N matrix
+  group: Interface
+- name: Coordinates of battery thermal nodes (surface 2)
+  summary: Coordinates of battery thermal nodes on surface 2 ones(1, 2) (default) | M-by-N matrix
+  group: Interface
+- name: Number of partitions in X dimension for the cooling plate
+  summary: Number of partitions in X dimension for cooling plate 2 (default) | positive scalar
+  group: Interface
+- name: Number of partitions in Y dimension for the cooling plate
+  summary: Number of partitions in Y dimension for the cooling plate 5 (default) | positive scalar
+  group: Interface
+- name: Thickness of cooling plate material
+  summary: Thickness of material of cooling plate 2e-3 m (default) | positive scalar
+  group: Plate Material
+- name: Thermal conductivity of cooling plate material
+  summary: Thermal conductivity of material of cooling plate 20 W/(K*m) (default) | positive scalar
+  group: Plate Material
+- name: Density of cooling plate material
+  summary: Density of material of cooling plate 2500 kg/m^3 (default) | positive scalar
+  group: Plate Material
+- name: Specific heat of cooling plate material
+  summary: Specific heat of material of cooling plate 447 J/(K*kg (default) | positive scalar
+  group: Plate Material
+- name: Initial temperature of the cooling plate and the coolant fluid
+  summary: Temperature of cooling plate and coolant fluid at time zero 300 K (default) | positive scalar
+  group: Plate Material
+- name: Reynolds number upper limit for laminar flow
+  summary: Reynolds number above which flow begins to transition from laminar to turbulent 2000 (default) | scalar greater
+    than 1
+  group: Fluid Properties
+- name: Reynolds number lower limit for turbulent flow
+  summary: Reynolds number below which flow begins to transition from turbulent to laminar 4000 (default) | positive scalar
+  group: Fluid Properties
+- name: Nusselt number for laminar flow heat transfer
+  summary: Ratio of convective to conductive heat transfer 3.66 (default) | positive scalar
+  group: Fluid Properties
+- name: Aggregate equivalent length of local resistances
+  summary: Combined length of all local resistances present in the pipes 1e-3 m (default) | nonnegative scalar
+  group: Fluid Properties
+- name: Laminar friction constant for Darcy friction factor
+  summary: Effect of pipe geometry on the viscous friction losses 64 (default) | positive scalar
+  group: Fluid Properties
+- name: Select edge to be cooled
+  summary: Cooling edge Edge cooling along Y axis at X = Xmin (default) | Edge cooling along X axis at Y = Ymin | Edge cooling
+    along Y axis at X = Xmax | Edge cooling along X axis at Y = Ymax
+  group: Design
+- name: Cooling channel hydraulic diameter
+  summary: Hydraulic diameter of cooling channel 5e-3 m (default) | positive scalar
+  group: Design
+- name: Cooling channel cross-sectional area
+  summary: Cross-sectional area of cooling channel 2e-5 m^2 (default) | positive scalar
+  group: Design
+- name: Coolant channel roughness
+  summary: Roughness of the coolant channel 1.5e-05 m (default) | positive scalar
+  group: Design
+```
 
 ### Interface
 
@@ -251,7 +348,6 @@ flow.
 ### **Coolant channel roughness** — Roughness of the coolant channel `1.5e-05` `m` (default) | positive scalar
 
 Roughness of the coolant channel.
-
 ## Libraries
 
 Simscape / Battery / Thermal

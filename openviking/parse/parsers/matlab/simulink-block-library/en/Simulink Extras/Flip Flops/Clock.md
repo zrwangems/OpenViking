@@ -14,6 +14,13 @@ language: en
 # Clock
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Sample time scalar
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -23,8 +30,24 @@ Sample time, specified as the current simulation time at each
 simulation time step.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Display time
+  summary: Display simulation time on block icon off (default) | on
+  group: ''
+  block_parameter: DisplayTime
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Decimation
+  summary: Interval at which to update block icon 10 (default) | positive integer
+  group: ''
+  block_parameter: Decimation
+  type: character vector
+  values: scalar
+  default: '''10'''
+```
 
 ### **Display time** — Display simulation time on block icon `off` (default) | `on`
 
@@ -62,7 +85,6 @@ To display the simulation time on the block icon, you must select the
 | **Type:** character vector |
 | **Value:** scalar |
 | **Default:** `'10'` |
-
 ## Libraries
 
 Simulink / Sources

@@ -14,6 +14,21 @@ language: en
 # Bit Concat
 
 ## Ports
+```yaml
+ports:
+- name: H
+  summary: Highest-order Input Word scalar | vector
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: L
+  summary: Lowest-order Input Word scalar | vector
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Output
+  summary: Concatenated Word scalar | vector
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -38,8 +53,17 @@ The output is the concatenated word in low-to-high ordering of the input words.
 The maximum concatenated output word size is 65535 bits.
 
 **Data Types:** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of Inputs
+  summary: Number of input signals 2 (default) | positive integer value less than or equal to 128
+  group: ''
+  block_parameter: numInputs
+  type: string scalar | character vector
+  values: A positive integer value less than or equal to 128
+  default: '''2'''
+```
 
 ### **Number of Inputs** — Number of input signals 2 (default) | positive integer value less than or equal to 128
 
@@ -64,7 +88,6 @@ during code generation.
 | **Type:** string scalar | character vector |
 | **Value:** A positive integer value less than or equal to 128 |
 | **Default:** `'2'` |
-
 ## Libraries
 
 HDL Coder / Logic and Bit Operations

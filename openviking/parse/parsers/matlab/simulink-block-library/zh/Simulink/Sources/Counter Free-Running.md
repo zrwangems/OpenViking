@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Counter Free-Running
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 计数值标量
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输出
 
@@ -23,8 +30,22 @@ chinese_source: worker-translation
 计数值，以无符号整数形式返回，其长度由 **Number of Bits** 参数指定。当位数不是 8、16、32 或 64 时，输出类型为无符号定点数据类型。
 
 **数据类型：** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of Bits
+  summary: 位数 16（默认）| 标量
+  group: ''
+  block_parameter: NumBits
+  type: 字符向量
+  values: 标量
+- name: Sample time
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: tsamp
+  type: 字符向量
+  values: 标量 | 向量
+```
 
 ### **Number of Bits** — 位数 `16`（默认）| 标量
 
@@ -54,7 +75,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 标量 | 向量 |
 | **默认：** `'-1'` |
-
 ## 所属库
 
 Simulink / Sources HDL Coder / Sources

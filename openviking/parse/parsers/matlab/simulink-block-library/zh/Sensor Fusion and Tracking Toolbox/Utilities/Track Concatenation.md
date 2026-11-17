@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Track Concatenation
 
 ## 端口
+```yaml
+ports:
+- name: In1, In2, ..., InN
+  summary: 要合并的航迹，包含 MATLAB® 结构的 Simulink® 总线
+  direction: input
+- name: Out
+  summary: 合并后的航迹，包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +40,22 @@ chinese_source: worker-translation
 ### **Out** — 合并后的航迹，包含 MATLAB 结构的 Simulink 总线
 
 来自所有输入总线的合并航迹，以包含 MATLAB 结构的 Simulink 总线形式返回。请参阅 Create Nonvirtual Buses (Simulink)。您可以在跟踪器模块（例如 Global Nearest Neighbor Multi Object Tracker 模块）的 **Confirmed Tracks** 输出端口描述中找到航迹列表的定义。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input tracks to combine
+  summary: 输入航迹端口数量 2（默认）| 正整数
+  group: ''
+- name: Source of output bus name
+  summary: 输出总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Specify an output bus name
+  summary: 输出总线名称 BusTrackConcatenation
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Number of input tracks to combine** — 输入航迹端口数量 `2`（默认）| 正整数
 
@@ -59,7 +82,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C/C++ 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C/C++ 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Utilities

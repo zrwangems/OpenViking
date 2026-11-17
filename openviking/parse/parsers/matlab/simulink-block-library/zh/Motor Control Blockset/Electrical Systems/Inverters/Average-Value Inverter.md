@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Average Value Inverter
 
 ## 端口
+```yaml
+ports:
+- name: Dabc
+  summary: 三相电压的占空比 1×3 数组
+  direction: input
+  data_types: single | double | fixed point
+- name: Vdc
+  summary: 逆变器直流电压 标量
+  direction: input
+  data_types: single | double | fixed point | uint8 | uint16 | uint32
+- name: Vabc
+  summary: 三相电压输出 1×3 数组
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -37,11 +52,12 @@ chinese_source: worker-translation
 与驱动电机的输入占空比对应的三相电压（伏特）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Motor Control Blockset / Electrical Systems / Inverters

@@ -14,6 +14,33 @@ language: en
 # HRCAP
 
 ## Ports
+```yaml
+ports:
+- name: Rise[0,1]
+  summary: Output capture value vector
+  direction: output
+  data_types: uint16
+- name: Fall[0,1]
+  summary: Output capture value vector
+  direction: output
+  data_types: uint16
+- name: CounterOverflow
+  summary: Overflow status scalar
+  direction: output
+  data_types: uint16
+- name: Period
+  summary: Output capture data scalar
+  direction: output
+  data_types: Fixed point[0,16,16] | uint32
+- name: 'On'
+  summary: Output capture data scalar
+  direction: output
+  data_types: Fixed point[0,16,16] | uint32
+- name: 'Off'
+  summary: Output capture data scalar
+  direction: output
+  data_types: Fixed point[0,16,16] | uint32
+```
 
 ### Output
 
@@ -96,8 +123,41 @@ parameter to `High resolution` and HRCAP output to either
 Off)`.
 
 **Data Types:** `Fixed point[0,16,16]` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: HRCAP module
+  summary: Select HRCAP module HRCAP1 (default) | HRCAP2 | HRCAP3 | HRCAP4
+  group: ''
+- name: HRCAP mode
+  summary: Select HRCAP mode Normal (default) | High resolution
+  group: ''
+- name: HRCAP clock
+  summary: Select HRCAP clock SYSCLKOUT (default) | PLL clock
+  group: ''
+- name: Enable rising edge interrupt
+  summary: Enable interrupt when rising edge is detected on (default) | off
+  group: ''
+- name: Enable falling edge interrupt
+  summary: Enable interrupt when falling edge is detected on (default) | off
+  group: ''
+- name: Enable counter overflow interrupt
+  summary: Enable interrupt when counter overflow is detected off (default) | on
+  group: ''
+- name: Output type
+  summary: Select output data type HRCAPCLK cycles (default) | Microseconds | uint32 | fixdt(0,16,16)
+  group: ''
+- name: Enable counter overflow output
+  summary: Select to capture HCCOUNTER overflows off (default) | on
+  group: ''
+- name: HRCAP output
+  summary: High resolution HRCAP output Period only (default) | ON time only | Off time only | On and Off time | All above(Period,
+    On time, Off time )
+  group: ''
+- name: Sample time
+  summary: Frequency at which block reads data from HRCAP 0.1 (default)
+  group: ''
+```
 
 ### **HRCAP module** — Select HRCAP module `HRCAP1` (default) | `HRCAP2` | `HRCAP3` | `HRCAP4`
 
@@ -178,7 +238,6 @@ mode** parameter to `High resolution`.
 
 Use this parameter to specify the time interval between samples. To inherit
 sample time from an upstream block, set this parameter to -1.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2806x

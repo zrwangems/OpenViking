@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Inherit Complexity
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 数据输入 标量 | 向量 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Ref
+  summary: 参考输入 标量 | 向量 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Output
+  summary: 输出 标量 | 向量 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -39,11 +54,12 @@ Inherit Complexity 模块的输出，以标量、向量或 *N* 维数组形式�
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Signal Attributes

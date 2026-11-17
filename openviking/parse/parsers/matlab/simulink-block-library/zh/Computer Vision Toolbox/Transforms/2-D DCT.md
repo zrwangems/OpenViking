@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # 2-D DCT
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据矩阵 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出数据矩阵 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,35 @@ chinese_source: worker-translation
 包含 DCT 系数的输出数据，以矩阵或向量形式返回。输出的大小和数据类型与输入相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Sine and cosine computation
+  summary: 指定模块如何计算正弦和余弦项 Table lookup（默认）| Trigonometric fcn
+  group: ''
+- name: Rounding mode
+  summary: 定点表示的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: 指定溢出模式 关（默认）| 开
+  group: ''
+- name: Sine Table
+  summary: '正弦表的数据类型 Inherit: Same word length as input（默认）| fixdt(1,16) | <data type expression>'
+  group: ''
+- name: Product output
+  summary: '乘积输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Accumulator
+  summary: '累加器的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)
+    | <data type expression>'
+  group: ''
+- name: Output
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 数据类型覆盖 关（默认）| 开
+  group: ''
+```
 
 **主选项卡**
 
@@ -95,7 +133,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against change by the fixed-point tools** — 数据类型覆盖 关（默认）| 开
 
 选中此参数可防止定点工具覆盖您在模块封装上指定的数据类型。有关详细信息，请参阅 `fxptdlg` (Fixed-Point Designer)，即定点工具参考页。
-
 ## 所属库
 
 Computer Vision Toolbox / Transforms

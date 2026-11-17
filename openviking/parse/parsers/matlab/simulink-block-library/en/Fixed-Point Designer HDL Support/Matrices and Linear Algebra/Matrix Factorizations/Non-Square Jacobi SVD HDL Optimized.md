@@ -14,6 +14,45 @@ language: en
 # Non-Square Jacobi SVD HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: A(i,:)
+  summary: Rows of matrix *A* vector
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: Whether input is valid scalar
+  direction: input
+  data_types: Boolean
+- name: readyIn
+  summary: Whether downstream block is ready scalar
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: Whether to clear internal states scalar
+  direction: input
+  data_types: Boolean
+- name: s
+  summary: Singular values column vector
+  direction: output
+  data_types: single | double | fixed point
+- name: U
+  summary: Left singular vectors unitary n-by-n matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: V
+  summary: Right singular vectors unitary n-by-n matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: Whether output data is valid Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Whether block is ready Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -173,8 +212,35 @@ processed, you must wait until the `ready` signal is
 `validIn` signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of rows in matrix A
+  summary: Number of rows in *m*-by-*n* matrix *A* 8 (default) | integer-valued scalar where m > 2 and m > n
+  group: ''
+  block_parameter: m
+  values: 8 (default) | integer-valued scalar where m > 2 and m > n
+- name: Number of columns in matrix A
+  summary: Number of columns in *m*-by-*n* matrix *A* 4 (default) | integer-valued scalar where n ≥ 2 and m > n
+  group: ''
+  block_parameter: n
+  values: 4 (default) | integer-valued scalar where n ≥ 2 and m > n
+- name: Number of Jacobi iterations
+  summary: Number of iterations of Jacobi algorithm 10 (default) | positive integer
+  group: ''
+  block_parameter: nIterations
+  values: 10 (default) | positive integer
+- name: Select outputs
+  summary: Block outputs UsV (default) | Us | sV | s
+  group: ''
+  block_parameter: outputOption
+  values: UsV (default) | Us | sV | s
+- name: Signal type
+  summary: Complexity of input matrix *A* real (default) | complex
+  group: ''
+  block_parameter: complexity
+  values: real (default) | complex
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -296,7 +362,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `complexity` |
 | **Values:** | `real` (default) | `complex` |
 | **Data Types:** | `char` | `string` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations

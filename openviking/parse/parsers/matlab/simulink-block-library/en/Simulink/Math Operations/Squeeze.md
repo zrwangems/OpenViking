@@ -14,6 +14,19 @@ language: en
 # Squeeze
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Multidimensional input signal multidimensional signal
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: Output signal with no singleton dimensions multidimensional signal
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -32,11 +45,12 @@ If there are no singleton dimensions in the input, then the input signal
 is passed through unchanged to the output.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / Math Operations

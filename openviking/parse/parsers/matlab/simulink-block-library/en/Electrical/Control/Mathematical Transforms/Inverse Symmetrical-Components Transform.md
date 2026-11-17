@@ -14,6 +14,17 @@ language: en
 # Inverse Symmetrical-Components Transform
 
 ## Ports
+```yaml
+ports:
+- name: +-0
+  summary: Balanced *a* phasor components vector
+  direction: input
+  data_types: single | double
+- name: abc
+  summary: '*a*, *b*, and *c* phasors vector'
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -33,14 +44,18 @@ Regenerated three-phase set of unbalanced phasors, output as a complex
 signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Power invariant
+  summary: Transform type off (default) | on
+  group: ''
+```
 
 ### **Power invariant** — Transform type `off` (default) | `on`
 
 Power invariant toggle. Select this parameter to use the power-invariant
 alternative of the original Fortescue transform.
-
 ## Libraries
 
 Simscape / Electrical / Control / Mathematical Transforms

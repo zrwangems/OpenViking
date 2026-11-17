@@ -14,6 +14,29 @@ language: en
 # Wavetable Synthesizer
 
 ## Ports
+```yaml
+ports:
+- name: WT
+  summary: Single-cycle waveform vector of real values
+  direction: input
+  data_types: single | double
+- name: F
+  summary: Output wave frequency (Hz) nonnegative scalar | vector of nonnegative values
+  direction: input
+  data_types: single | double
+- name: A
+  summary: Output wave amplitude nonnegative scalar
+  direction: input
+  data_types: single | double
+- name: DC
+  summary: Output wave DC offset scalar
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -60,8 +83,37 @@ The Wavetable Synthesizer block outputs a periodic signal defined
 by the parameters of the block.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Single-cycle waveform
+  summary: Wavetable sin(2*pi*(0:511)/512) (default) | vector of real values
+  group: ''
+- name: Output wave frequency (Hz)
+  summary: Frequency of generated signal 100 (default) | nonnegative scalar
+  group: ''
+- name: Output wave amplitude
+  summary: Amplitude of generated signal 1 (default) | nonnegative scalar
+  group: ''
+- name: Output wave phase offset
+  summary: Normalized phase offset of generated signal 0 (default) | scalar in the range [0,1]
+  group: ''
+- name: Output wave DC offset
+  summary: Value added to each element of generated signal 0 (default) | scalar
+  group: ''
+- name: Samples per frame
+  summary: Number of samples per frame output from block 512 (default) | positive integer scalar
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate of generated signal 44100 (default) | positive scalar
+  group: ''
+- name: Output data type
+  summary: Data type of generated signal double (default) | single
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -137,7 +189,6 @@ Data type of generated signal, specified as `double` or
   the MATLAB® interpreter. This option reduces startup time and the simulation
   speed is comparable to `Code generation`. In this mode,
   you can debug the source code of the block.
-
 ## Libraries
 
 Audio Toolbox / Sources

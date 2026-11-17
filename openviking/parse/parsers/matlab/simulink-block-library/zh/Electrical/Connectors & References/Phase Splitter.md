@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Phase Splitter
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 可扩展三相端口 electrical
+  direction: conserving
+- name: a,b,c
+  summary: 组成相 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -27,11 +36,12 @@ chinese_source: worker-translation
 ### **a,b,c** — 组成相 electrical
 
 扩展三相端口的组成相
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Electrical / Connectors & References

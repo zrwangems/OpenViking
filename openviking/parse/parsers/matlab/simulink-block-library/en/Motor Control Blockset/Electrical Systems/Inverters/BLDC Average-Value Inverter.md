@@ -14,6 +14,21 @@ language: en
 # BLDC Average-Value Inverter
 
 ## Ports
+```yaml
+ports:
+- name: Dsw
+  summary: Duty cycles corresponding to six inverter switches 1-by-6 array
+  direction: input
+  data_types: single | double | fixed point
+- name: Vdc
+  summary: Inverter DC voltage scalar
+  direction: input
+  data_types: single | double | fixed point | uint8 | uint16 | uint32
+- name: Vabc
+  summary: Three-phase voltage output 1-by-3 array
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -37,11 +52,12 @@ Three-phase trapezoidal voltage (Volts) corresponding to the input duty cycles
 that runs the motor.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Motor Control Blockset / Electrical Systems / Inverters

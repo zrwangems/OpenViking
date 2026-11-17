@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Frame Rate Display
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -23,8 +30,13 @@ chinese_source: worker-translation
 输入数据，指定为 *M*×*N* 矩阵、*M*×*N*×*T* 数组或 *M*×*N*×*C*×*T* 数组。*T* 是视频或图像序列中的帧数，*C* 是颜色通道数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Update rate
+  summary: 更新频率 10（默认）| 正标量
+  group: ''
+```
 
 ### **Update rate** — 更新频率 `10`（默认）| 正标量
 
@@ -33,7 +45,6 @@ chinese_source: worker-translation
 **注意**
 
 如果 Frame Rate Display 模块的输入端口未连接到信号，模块将显示 Simulink® 模型的基础（最快）速率。
-
 ## 所属库
 
 Computer Vision Toolbox / Sinks

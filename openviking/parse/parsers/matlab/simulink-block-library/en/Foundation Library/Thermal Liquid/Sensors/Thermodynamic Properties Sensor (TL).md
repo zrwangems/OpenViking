@@ -14,6 +14,21 @@ language: en
 # Thermodynamic Properties Sensor (TL)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Specific internal energy measurement, kJ/kg physical signal
+  direction: output
+- name: ρ
+  summary: Density measurement, kg/m^3 physical signal
+  direction: output
+- name: cp
+  summary: Specific heat at constant pressure measurement, kJ/(kg\*K) physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet thermal liquid
+  direction: conserving
+```
 
 ### Output
 
@@ -54,8 +69,19 @@ Thermal liquid conserving port. Connect this port to the node in the
 thermal liquid network where you want to measure the thermodynamic
 properties. All measurements are taken with respect to absolute
 zero.
-
 ## Parameters
+```yaml
+parameters:
+- name: Internal energy
+  summary: Control output port visibility for measuring specific internal energy Off (default) | On
+  group: ''
+- name: Density
+  summary: Control output port visibility for measuring density On (default) | Off
+  group: ''
+- name: Specific heat
+  summary: Control output port visibility for measuring specific heat Off (default) | On
+  group: ''
+```
 
 ### **Internal energy** — Control output port visibility for measuring specific internal energy `Off` (default) | `On`
 
@@ -73,7 +99,6 @@ which lets you measure the thermal liquid density.
 Selecting this check box exposes the output port **cp**,
 which lets you measure the thermal liquid specific heat at constant
 pressure.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Sensors

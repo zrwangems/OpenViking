@@ -14,6 +14,41 @@ language: en
 # Stream Connector
 
 ## Ports
+```yaml
+ports:
+- name: wrData
+  summary: Input stream data scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wrValid
+  summary: Indication of valid input stream data boolean scalar
+  direction: input
+  data_types: Boolean
+- name: wrLast
+  summary: Indication of last beat in burst boolean scalar
+  direction: input
+  data_types: Boolean
+- name: rdReady
+  summary: Ready signal from downstream interface boolean scalar
+  direction: input
+  data_types: Boolean
+- name: rdData
+  summary: Output stream data scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rdValid
+  summary: Indication of valid output stream data boolean scalar
+  direction: output
+  data_types: Boolean
+- name: rdLast
+  summary: Indicates last beat in burst boolean scalar
+  direction: output
+  data_types: Boolean
+- name: wrReady
+  summary: Ready signal to upstream interface boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -72,11 +107,12 @@ Control signal that indicates if the block can receive stream data from the
 upstream interface.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Connectivity

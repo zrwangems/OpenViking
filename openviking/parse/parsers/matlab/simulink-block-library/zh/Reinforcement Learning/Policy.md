@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Policy
 
 ## 端口
+```yaml
+ports:
+- name: observation
+  summary: 环境观测值 标量 | 向量 | 非虚拟总线
+  direction: input
+- name: update parameters
+  summary: 启用策略参数更新 标量
+  direction: input
+- name: parameters
+  summary: 输入总线
+  direction: input
+- name: action
+  summary: 策略动作 标量 | 向量 | 非虚拟总线
+  direction: output
+```
 
 ### 输入
 
@@ -50,8 +65,32 @@ chinese_source: worker-translation
 **注意**
 
 从连续动作空间 `rlStochasticActorPolicy` 对象或连续动作空间 `rlACAgent`、`rlPGAgent` 或 `rlPPOAgent` 对象生成的 Policy 模块不会强制执行由动作规范设置的约束。对于这些模块，必须在环境内强制执行动作空间约束。
-
 ## 参数
+```yaml
+parameters:
+- name: Policy block data MAT file
+  summary: 策略模块数据 MAT 文件 blockAgentData.mat（默认）| 文件名
+  group: ''
+  block_parameter: MATFile
+  type: string, character vector
+  default: '"blockAgentData.mat"'
+- name: Policy parameter inputs
+  summary: 添加策略参数输入端口并创建 bus 对象和参数结构体 off（默认）| on
+  group: ''
+  block_parameter: PolicyParamsAsInput
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 策略参数总线名称
+  summary: 策略参数总线对象的名称 policy_param_bus（默认值）| 文件名
+  group: ''
+  block_parameter: PolicyParamsBusName
+  type: string, character vector
+  default: '"policy_param_bus"'
+- name: 生成 IC 模块
+  summary: 生成包含策略参数初始条件的模块 按钮
+  group: ''
+```
 
 ### **Policy block data MAT file** — 策略模块数据 MAT 文件 `blockAgentData.mat`（默认）| 文件名
 
@@ -100,7 +139,6 @@ chinese_source: worker-translation
 ### **生成 IC 模块** — 生成包含策略参数初始条件的模块 按钮
 
 点击此按钮可生成包含初始条件的 Constant 模块，这些模块连接到 **update parameters** 和 **parameters** 端口。连接到 **update parameters** 端口的模块返回 `false` 逻辑值作为输出。连接到 **parameters** 端口的模块返回包含策略参数的结构体作为输出，该结构体在您点击**应用**按钮时在工作区中创建。
-
 ## 所属库
 
 Reinforcement Learning Toolbox

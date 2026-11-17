@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Derivative
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 用于逼近连续导数的信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输入信号对时间的连续导数的逼近 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,15 @@ chinese_source: worker-translation
 Derivative 模块逼近输入信号对时间的连续导数，并将结果作为连续信号提供。输出信号的维度和复杂度与输入信号的维度和复杂度匹配，输入信号必须为实数。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Coefficient c in the transfer function approximation s/(c\*s + 1) used for linearization
+  summary: 用于逼近模块线性化的传递函数中极点的时间常数 inf（默认）| 有限正标量数值
+  group: ''
+  block_parameter: CoefficientInTFapproximation
+  values: inf (default) | finite positive scalar number
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -54,7 +72,6 @@ Derivative 模块逼近输入信号对时间的连续导数，并将结果作为
 | **Data Types:** | `char` | `string` |
 
 **Example:** `set_param("MyModel/Derivative","CoefficientInTFapproximation","0.001")` 将模型 `MyModel` 中名为 `Derivative` 的 Derivative 模块配置为在用于模块近似线性化的传递函数中使用系数 `0.001`。该系数值产生的截止频率为 `1000` 弧度/秒。
-
 ## 所属库
 
 Simulink / Continuous

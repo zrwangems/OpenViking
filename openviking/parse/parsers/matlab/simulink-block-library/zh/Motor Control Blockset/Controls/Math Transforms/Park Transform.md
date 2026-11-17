@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Park Transform
 
 ## 端口
+```yaml
+ports:
+- name: α
+  summary: 轴分量 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: β
+  summary: 轴分量 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: αβ0
+  summary: 轴分量 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: sin θe
+  summary: 旋转角正弦值 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: cos θe
+  summary: 旋转角余弦值 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: d
+  summary: 轴分量 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: q
+  summary: 轴分量 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: dq0
+  summary: 轴分量 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -90,8 +125,25 @@ chinese_source: worker-translation
 要启用此端口，请将 **Number of inputs** 参数设置为 `Three inputs`。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inputs
+  summary: 模块输入数量 Two inputs（默认）| Three inputs
+  group: ''
+- name: Alpha (phase-a) axis alignment
+  summary: '*dq* 参考系对齐 D-axis（默认）| Q-axis'
+  group: ''
+- name: Theta input
+  summary: 位置输入类型 Sine and Cosine electrical position（默认）| Electrical position
+  group: ''
+- name: Theta units
+  summary: 电位置输入的单位 Per-unit（默认）| Radians | Degrees
+  group: ''
+- name: Number of data points for lookup table
+  summary: 查找表数组的大小 1024（默认）| 标量
+  group: ''
+```
 
 ### **Number of inputs** — 模块输入数量 `Two inputs`（默认）| `Three inputs`
 
@@ -126,7 +178,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请将 **Theta input** 设置为 `Electrical position`。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

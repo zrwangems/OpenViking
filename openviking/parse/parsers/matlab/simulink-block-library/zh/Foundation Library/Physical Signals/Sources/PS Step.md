@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # PS Step
 
 ## 端口
+```yaml
+ports:
+- name: O
+  summary: 输出物理信号，其类型由模块参数值和单位物理信号决定
+  direction: output
+```
 
 ### 输出
 
@@ -23,8 +29,19 @@ chinese_source: worker-translation
 输出物理信号。信号大小与 **Initial value** 和 **Final value** 参数值的大小一致。信号单位由 **Initial value** 和 **Final value** 参数的单位决定。
 
 端口名称在模块图标中不可见，但你可以通过点击模块对话框 **Description** 选项卡中的 **Source code** 链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Step time
+  summary: 发生阶跃的时间 1 s（默认）| 标量
+  group: ''
+- name: Initial value
+  summary: 阶跃前的输出 0 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Final value
+  summary: 阶跃后的输出 1 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+```
 
 ### **Step time** — 发生阶跃的时间 `1 s`（默认）| 标量
 
@@ -41,7 +58,6 @@ chinese_source: worker-translation
 当仿真时间达到并超过 **Step time** 时模块的输出。第一个编辑框表示参数值。你可以指定标量、向量或矩阵。默认情况下，该值为标量 `1`。如果你指定向量或矩阵，**Initial value** 也必须是相同大小的向量或矩阵，或者是一个标量。
 
 第二个组合框表示参数单位。指定的单位必须与 **Initial value** 参数的单位可公度。默认情况下，单位为 `1`（无单位）。你可以从下拉列表中选择一个单位，或输入所需的单位名称，例如 `Pa`，或有效表达式，例如 `m^2`。有关更多信息以及单位缩写列表，请参见 How to Specify Units in Block Dialogs 和 Unit Definitions。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Sources

@@ -14,10 +14,15 @@ language: en
 # Quantizing Encoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Quantization partition**
 :   The vector of endpoints of the partition intervals.
@@ -27,7 +32,6 @@ Not documented in R2025b.
 
 **Index output data type**
 :   Select the output data type.
-
 ## Libraries
 
 Not documented in R2025b.

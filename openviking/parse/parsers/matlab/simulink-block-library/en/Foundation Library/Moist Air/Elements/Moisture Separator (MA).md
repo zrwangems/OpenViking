@@ -14,6 +14,21 @@ language: en
 # Moisture Separator (MA)
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Rate of water vapor removed, kg/s physical signal
+  direction: output
+- name: D
+  summary: Rate of water droplets removed, kg/s physical signal
+  direction: output
+- name: A
+  summary: Inlet or outlet moist air
+  direction: conserving
+- name: B
+  summary: Inlet or outlet moist air
+  direction: conserving
+```
 
 ### Output
 
@@ -35,8 +50,34 @@ separator. This block has no intrinsic directionality.
 
 Moist air conserving port associated with the inlet or outlet of the moisture
 separator. This block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Fraction of water vapor removed
+  summary: Water vapor removal fraction 0.5 (default) | scalar in the range of [0,1]
+  group: ''
+- name: Removed water vapor condensed to liquid
+  summary: Whether to condense removed water vapor off (default) | on
+  group: ''
+- name: Fraction of water droplets removed
+  summary: Water droplet removal fraction 0.5 (default) | scalar in the range of [0,1]
+  group: ''
+- name: Nominal pressure drop
+  summary: Pressure drop at nominal operating conditions 0.001 MPa (default) | scalar
+  group: ''
+- name: Nominal mass flow rate
+  summary: Mass flow rate at nominal operating conditions 0.1 kg/s (default) | positive scalar
+  group: ''
+- name: Nominal density
+  summary: Density at nominal operating conditions 0 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at ports 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Fraction of nominal mixture mass flow rate for laminar flow transition
+  summary: Ratio of threshold to nominal mass flow rates 1e-3 (default) | positive scalar
+  group: ''
+```
 
 ### **Fraction of water vapor removed** — Water vapor removal fraction `0.5` (default) | scalar in the range of [0,1]
 
@@ -82,7 +123,6 @@ identical in size.
 Ratio of the threshold mass flow rate to the nominal mass flow rate of the air
 mixture. The block uses this parameter to set the threshold for the linearization of the
 pressure drop.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Elements

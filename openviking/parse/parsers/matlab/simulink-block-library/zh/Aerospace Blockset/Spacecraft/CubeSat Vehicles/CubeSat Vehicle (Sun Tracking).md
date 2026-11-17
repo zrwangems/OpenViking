@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # CubeSat Vehicle Earth (Nadir) Pointing
 
 ## 端口
+```yaml
+ports:
+- name: AECEF (m/s2)
+  summary: 大小为 3 的航天器加速度矢量
+  direction: input
+  data_types: single | double
+- name: 1st AlignmentBody
+  summary: 主对准矢量三元矢量
+  direction: input
+  data_types: double
+- name: 1st ConstraintECI
+  summary: 主约束矢量三元矢量
+  direction: input
+  data_types: double
+- name: 1st AlignmentBody
+  summary: 主对准矢量三元矢量
+  direction: input
+  data_types: double
+- name: 1st ConstraintECI
+  summary: 主约束矢量三元矢量
+  direction: input
+  data_types: double
+- name: 2nd AlignmentBody
+  summary: 次对准矢量三元矢量
+  direction: input
+  data_types: double
+- name: 2nd ConstraintECI
+  summary: 次约束矢量三元矢量
+  direction: input
+  data_types: double
+- name: XECEF
+  summary: CubeSat 位置三元矢量
+  direction: output
+  data_types: double
+- name: VECEF
+  summary: 速度分量 3×1 数组
+  direction: output
+  data_types: double
+- name: qECI2Body
+  summary: 四元数旋转 4×1 数组
+  direction: output
+  data_types: double
+- name: qECEF2Body
+  summary: 四元数数组 4×1 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -97,8 +144,246 @@ chinese_source: worker-translation
 从地心地固坐标系到 Body 坐标系的四元数旋转。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Start date [Julian date]
+  summary: 仿真的初始开始日期 2458488（默认）| 儒略日
+  group: ''
+  block_parameter: sim_t0
+  type: 字符向量
+  values: 儒略日
+  default: '''2458488'''
+- name: Input method
+  summary: 初始航天器 Keplerian Orbital Elements（默认）| ECI Position and Velocity | ECEF Position and Velocity | Geodetic LatLonAlt
+    and Velocity in NED
+  group: CubeSat Orbit
+  block_parameter: method
+  type: 字符向量
+  values: '''Keplerian Orbital Elements'' | ''ECI Position and Velocit'' | ''ECEF Position and Velocity'' | ''Geodetic LatLonAlt
+    and Velocity in NED'''
+  default: '''Keplerian Orbital Elements'''
+- name: Epoch of ECI frame [Julian date]
+  summary: ECI 坐标系的历元 2451545（默认）| 儒略日
+  group: CubeSat Orbit
+  block_parameter: epoch
+  type: 字符向量
+  values: 儒略日格式
+  default: '''2451545'''
+- name: Semi-major axis [m]
+  summary: CubeSat 半长轴 6878137（默认）| 以米为单位的轴
+  group: CubeSat Orbit
+  block_parameter: a
+  type: 字符向量
+  values: 标量
+  default: '''6878137'''
+- name: Eccentricity
+  summary: 轨道偏心率 0（默认）| 大于或等于 0 的偏心率
+  group: CubeSat Orbit
+  block_parameter: ecc
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Inclination [deg]
+  summary: CubeSat 轨道平面的倾角 0 | 0 到 180 度之间
+  group: CubeSat Orbit
+  block_parameter: incl
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Right ascension of the ascending node [deg]
+  summary: 赤道平面内的角距离 0（默认）| 0 到 360 度之间
+  group: CubeSat Orbit
+  block_parameter: omega
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Argument of periapsis [deg]
+  summary: 从 CubeSat 体升交点到近拱点的角度 0（默认）| 0 到 360 度之间
+  group: CubeSat Orbit
+  block_parameter: argp
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: True anomaly [deg]
+  summary: 近拱点与 CubeSat 当前位置之间的角度 0（默认）| 0 到 360 度之间
+  group: CubeSat Orbit
+  block_parameter: nu
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: True longitude [deg] (circular equatorial)
+  summary: 近拱点 *x* 轴与 CubeSat 位置矢量之间的角度 0（默认）| 0 到 360 度之间
+  group: CubeSat Orbit
+  block_parameter: truelon
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Argument of latitude [deg] (circular inclined)
+  summary: 升交点与卫星位置矢量之间的角度 0（默认）| 0 到 360 度之间
+  group: CubeSat Orbit
+  block_parameter: arglat
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Longitude of periapsis [deg] (elliptical equatorial)
+  summary: 近拱点 *x* 轴与偏心率矢量之间的角度 0（默认）| 0 到 360 度之间
+  group: CubeSat Orbit
+  block_parameter: lonper
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: ECI position vector [m]
+  summary: 笛卡尔位置矢量 [0 0 0]（默认）| 矢量
+  group: CubeSat Orbit
+  block_parameter: r_eci
+  type: 字符向量
+  values: 标量
+  default: '''[0 0 0]'''
+- name: ECI velocity vector [m/s]
+  summary: 笛卡尔速度矢量 [0 0 0]（默认）| 速度矢量
+  group: CubeSat Orbit
+  block_parameter: v_eci
+  type: 字符向量
+  values: 标量
+  default: '''[0 0 0]'''
+- name: ECEF position vector [m]
+  summary: 笛卡尔位置矢量 [0 0 0]（默认）| 矢量
+  group: CubeSat Orbit
+  block_parameter: r_ecef
+  type: 字符向量
+  values: 标量
+  default: '''[0 0 0]'''
+- name: ECEF velocity vector [m/s]
+  summary: 笛卡尔速度矢量 [0 0 0]（默认）| 速度矢量
+  group: CubeSat Orbit
+  block_parameter: v_ecef
+  type: 字符向量
+  values: 标量
+  default: '''[0 0 0]'''
+- name: Geodetic latitude, longitude, altitude [deg, deg, m]
+  summary: 大地纬度和经度，以及高度 [0 0 0]（默认）| 速度矢量
+  group: CubeSat Orbit
+  block_parameter: lla
+  type: 字符向量
+  values: 标量
+  default: '''[0 0 0]'''
+- name: NED velocity vector [m/s]
+  summary: 体速度 [0 0 0]（默认）| 速度矢量
+  group: CubeSat Orbit
+  block_parameter: v_ned
+  type: 字符向量
+  values: 标量
+  default: '''[0 0 0]'''
+- name: Initial Euler angles (roll, pitch, yaw) [deg]
+  summary: 初始欧拉旋转角 [0 0 0]（默认）| 矢量 | 度
+  group: CubeSat Attitude
+  block_parameter: euler
+  type: 字符向量
+  values: 标量
+  default: '''[0 0 0]'''
+- name: Initial body angular rates [deg/s]
+  summary: 初始角速率 [0 0 -0.05168]（默认）| 矢量
+  group: CubeSat Attitude
+  block_parameter: pqr
+  type: 字符向量
+  values: 标量
+  default: '''[0 0 0]'''
+- name: Pointing mode
+  summary: CubeSat 航天器指向模式 Earth (Nadir) Pointing（默认）| Sun Tracking | Custom Pointing | Standby (Off)
+  group: CubeSat Attitude
+  block_parameter: pointingMode
+  type: 字符向量
+  values: '''Earth (Nadir) Pointing'' | ''Sun Tracking'' | ''Custom Pointing'' | ''Standby (Off)'''
+  default: '''Earth (Nadir) Pointing'''
+- name: Primary alignment vector (Body wrt BCM)
+  summary: 主对准矢量 Dialog（默认）| Input port
+  group: CubeSat Attitude
+  block_parameter: firstAlignExt
+  type: 字符向量
+  values: '''Input port'' | ''Dialog'''
+  default: '''Dialog'''
+- name: Secondary alignment vector (Body wrt BCM)
+  summary: 次对准矢量 Dialog（默认）| Input port
+  group: CubeSat Attitude
+  block_parameter: secondAlignExt
+  type: 字符向量
+  values: '''Input port'' | ''Dialog'''
+  default: '''Dialog'''
+- name: Constraint coordinate system
+  summary: 约束坐标系 ECI Axes（默认）| ECEF Axes | NED Axes | Body-Fixed Axes
+  group: CubeSat Attitude
+  block_parameter: constraintCoord
+  type: 字符向量
+  values: '''ECI Axes'' | ''ECEF Axes'' | ''NED Axes'' | ''Body-Fixed Axes'''
+  default: '''ECI Axes'''
+- name: Primary constraint vector (wrt BCM)
+  summary: 主约束矢量 Dialog（默认）| Input port
+  group: CubeSat Attitude
+  block_parameter: firstRefExt
+  type: 字符向量
+  values: '''Input port'' | ''Dialog'''
+  default: '''Dialog'''
+- name: Secondary constraint vector (wrt BCM)
+  summary: 次约束矢量 Dialog（默认）| Input port
+  group: CubeSat Attitude
+  block_parameter: secondRefExt
+  type: 字符向量
+  values: '''Input port'' | ''Dialog'''
+  default: '''Dialog'''
+- name: Analysis run time source
+  summary: 任务分析实时脚本的运行时间来源 Dialog（默认）| Model Stop Time
+  group: Mission Analysis
+  block_parameter: missionRTSource
+  type: character vector
+  values: '''Dialog'' | ''Model StopTime'''
+  default: '''Dialog'''
+- name: Run time [sec]
+  summary: 任务分析实时脚本的运行时间 6*60*60（默认）| 标量
+  group: Mission Analysis
+  block_parameter: missionRT
+  type: character vector
+  values: scalar
+  default: '''6*60*60'''
+- name: Ground station geodetic latitude, longitude [deg, deg]
+  summary: 地面站位置 [42, -71]（默认）| 向量
+  group: Mission Analysis
+  block_parameter: missionGS
+  type: character vector
+  values: vector
+  default: '''[42, -71]'''
+- name: Run TOI analysis
+  summary: 启用感兴趣时间任务分析 on（默认）| off
+  group: Mission Analysis
+  block_parameter: missionTOICheck
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Time of interest [Julian date]
+  summary: 任务分析实时脚本的感兴趣时间 []（默认）| 儒略日
+  group: Mission Analysis
+  block_parameter: missionTOI
+  type: character vector
+  values: Julian date
+  default: '''[]'''
+- name: Camera field-of-view (FOV) half angle (deg)
+  summary: 视场半角 55（默认）| [] | 标量
+  group: Mission Analysis
+  block_parameter: missionEta
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''55'''
+- name: Live script file name
+  summary: 任务分析实时脚本报告的文件名 空白项（默认）| 实时脚本文件名
+  group: Mission Analysis
+  block_parameter: missionName
+  type: character vector
+  values: blank entry | file name
+  default: blank entry
+- name: Create Live Script Report
+  summary: 分析任务并创建实时脚本报告 按钮
+  group: Mission Analysis
+```
 
 ### **Start date [Julian date]** — 仿真的初始开始日期 `2458488`（默认）| 儒略日
 
@@ -649,7 +934,6 @@ CubeSat 航天器指向模式，指定为 `Earth (Nadir) Pointing`、`Sun Tracki
 #### 依赖关系
 
 要使用 **Live script file name** 中指定的文件名创建实时脚本，请点击 **Create Live Script Report** 按钮。如果 **Live script file name** 为空，该模块将使用默认文件名创建实时脚本。
-
 ## 所属库
 
 Aerospace Blockset / Spacecraft / CubeSat Vehicles

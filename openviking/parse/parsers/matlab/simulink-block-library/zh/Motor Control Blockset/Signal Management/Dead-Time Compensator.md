@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Dead-Time Compensator
 
 ## 端口
+```yaml
+ports:
+- name: Vabc
+  summary: 参考电压 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Iab
+  summary: 测量的电机电流 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: fPWM
+  summary: PWM 频率 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vdc
+  summary: 逆变器直流电压 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Enable
+  summary: 使能模块输出的信号 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vabc ± Δ
+  summary: 补偿后的三相电压 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -61,8 +88,25 @@ chinese_source: worker-translation
 经过逆变器死区效应补偿后的电机三相电压（单位：伏特）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Dead time (s)
+  summary: 逆变器开关死区时间 1e-6（默认）| 标量
+  group: ''
+- name: Enable hysteresis for currents near zero-crossing
+  summary: 为接近零交叉点的电流使能滞环算法的选项 off（默认）| on
+  group: ''
+- name: Current hysteresis band (A)
+  summary: 零交叉点附近的电流滞环带 0.1（默认）| 标量
+  group: ''
+- name: Motor current input
+  summary: 电机电流输入类型 Two currents (Ia,Ib)（默认）| Three currents (Ia,Ib,Ic)
+  group: ''
+- name: Show enable port
+  summary: 使能输入端口的选项 off（默认）| on
+  group: 输入
+```
 
 ### **Dead time (s)** — 逆变器开关死区时间 `1e-6`（默认）| 标量
 
@@ -94,7 +138,6 @@ chinese_source: worker-translation
 ### **Show enable port** — 使能输入端口的选项 off（默认）| `on`
 
 选择此参数以显示输入端口 **Enable**。
-
 ## 所属库
 
 Motor Control Blockset / Signal Management Motor Control Blockset HDL Support / Signal Management

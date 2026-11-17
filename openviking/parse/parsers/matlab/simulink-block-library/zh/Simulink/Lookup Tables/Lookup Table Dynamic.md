@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Lookup Table Dynamic
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入向量 标量 | 向量 | 二维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: xdat
+  summary: 断点数据 严格单调递增值的 1×n 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: ydat
+  summary: 表数据 1×n 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: y
+  summary: 使用动态表数据对 y = f(x) 的近似 1×n 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -69,8 +91,46 @@ chinese_source: worker-translation
 `ydat` 表数据和 `y` 输出向量必须具有相同的符号、偏置和分数斜率。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Lookup Method
+  summary: 指定查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below | Use
+    Input Above
+  group: 主选项卡
+  block_parameter: LookUpMeth
+  type: character vector
+  values: '''Interpolation-Extrapolation'' | ''Interpolation-Use End Values'' | ''Use Input Nearest'' | ''Use Input Below''
+    | ''Use Input Above'''
+  default: '''Interpolation-Use End Values'''
+- name: Output data type
+  summary: '输出数据类型 double（默认）| ''Inherit: Inherit via back propagation'' | single | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 信号属性选项卡
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16''
+    | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | <data type
+    expression>'
+  default: '''double'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 信号属性选项卡
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性选项卡
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: 溢出操作的方法 off（默认）| on
+  group: 信号属性选项卡
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主选项卡
 
@@ -150,7 +210,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Lookup Tables

@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # MTPA Control Reference
 
 ## 端口
+```yaml
+ports:
+- name: Tref
+  summary: 参考转矩值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: 机械速度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vdc
+  summary: 直流母线电压标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Idref
+  summary: 参考 *d* 轴电流标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Iqref
+  summary: 参考 *q* 轴电流标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -67,8 +90,55 @@ Units`，则该端口接受以伏特为单位的输入信号。
 `SI Units`，则该端口输出以安培为单位的信号。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Type of motor
+  summary: PMSM 类型 Interior PMSM（默认）| Surface PMSM
+  group: 电机参数
+- name: Number of pole pairs
+  summary: 可用极对数 4（默认）| 标量
+  group: 电机参数
+- name: Stator resistance per phase (Ohm)
+  summary: 定子相绕组电阻（欧姆） 0.36（默认）| 标量
+  group: 电机参数
+- name: Stator d-axis inductance (H)
+  summary: '*d* 轴定子绕组电感 0.2e-3（默认）| 标量'
+  group: 电机参数
+- name: Stator q-axis inductance (H)
+  summary: '*q* 轴定子绕组电感 0.4e-3（默认）| 标量'
+  group: 电机参数
+- name: Permanent magnet flux linkage (Wb)
+  summary: 永磁体磁链 6.4e-3（默认）| 标量
+  group: 电机参数
+- name: Max current (A)
+  summary: 电机最大相电流限值（安培） 7.1（默认）| 标量
+  group: 电机参数
+- name: Vdc input method
+  summary: Vdc 输入方法 Specify via dialog（默认）| Input port
+  group: 电机参数
+- name: DC voltage (V)
+  summary: 直流母线电压（伏特） 24（默认）| 标量
+  group: 电机参数
+- name: Input signal units
+  summary: 模块输入值的单位 Per-Unit (PU)（默认）| SI Units
+  group: Input Units
+- name: Base speed (rpm)
+  summary: 电机基准转速（rpm） 4107（默认）| 标量
+  group: Input Units
+- name: Base current (A)
+  summary: 用于标幺值转换的基准电流（安培） 19.3（默认）| 标量
+  group: Input Units
+- name: Base torque (Nm)
+  summary: 用于标幺值转换的基准转矩（Nm） 0.74112（默认）| 标量
+  group: Input Units
+- name: Base voltage (V)
+  summary: 用于标幺值转换的基准电压（伏特） 24/sqrt(3)（默认）| 标量
+  group: Input Units
+- name: Prioritise execution time
+  summary: 缩减计算以缩短算法执行时间 on（默认）| off
+  group: Implementation
+```
 
 ### 电机参数
 
@@ -190,7 +260,6 @@ Units`，则该端口接受以伏特为单位的输入信号。
 ### **Prioritise execution time** — 缩减计算以缩短算法执行时间 `on`（默认）| `off`
 
 如果选择此参数，该模块将采用计算近似来优先缩短并减少算法执行时间。清除此字段可在不使用近似的情况下迭代运行模块算法。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference

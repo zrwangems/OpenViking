@@ -14,10 +14,85 @@ language: en
 # Microstrip Transmission Line
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Strip width (m)
+  summary: Width of microstrip transmission line 0.6e-3 (default) | scalar
+  group: Main
+- name: Substrate height (m)
+  summary: Thickness of dielectric on which the conductor resides 0.635e-3 (default) | scalar
+  group: Main
+- name: Strip thickness (m)
+  summary: Physical thickness of conductor 0.005e-3 (default) | positive scalar
+  group: Main
+- name: Relative permittivity constant
+  summary: Relative permittivity of dielectric material in the microstrip transmission line 9.8 (default) | scalar
+  group: Main
+- name: Loss tangent of dielectric
+  summary: Dielectric loss tangent 0 (default) | scalar
+  group: Main
+- name: Conductivity of the conductor (S/m)
+  summary: Conductivity of conductor inf (default) | scalar
+  group: Main
+- name: Transmission line length (m)
+  summary: Physical length of transmission line 0.01 (default) | positive scalar
+  group: Main
+- name: Stub mode
+  summary: Type of stub Not a stub (default) | Shunt | Series
+  group: Main
+- name: Termination of stub
+  summary: Stub termination Open (default) | Short
+  group: Main
+- name: Termination of stub
+  summary: Stub termination Open (default)
+  group: Main
+- name: Source of frequency data
+  summary: Frequency data source User-specified (default)
+  group: Visualization
+- name: Frequency data (Hz)
+  summary: Frequency data range [1e9:1e6:3e9] (default) | vector
+  group: Visualization
+- name: Reference impedance (ohms)
+  summary: Reference impedance 50 (default) | nonnegative scalar
+  group: Visualization
+- name: Plot type
+  summary: Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith
+    chart
+  group: Visualization
+- name: Y parameter1
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: Visualization
+- name: Y parameter2
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: Visualization
+- name: Y format1
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization
+- name: Y format2
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization
+- name: X parameter
+  summary: Frequency plot Freq (default)
+  group: Visualization
+- name: X format
+  summary: Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz
+  group: Visualization
+- name: Y scale
+  summary: Y-axis scale Linear (default) | Log
+  group: Visualization
+- name: X scale
+  summary: X-axis scale Linear (default) | Log
+  group: Visualization
+- name: Plot
+  summary: Plot specified data button
+  group: Visualization
+```
 
 ### Main
 
@@ -272,7 +347,6 @@ plane`.
 ### **Plot** — Plot specified data button
 
 Plot the specified data using the plot button.
-
 ## Libraries
 
 RF Blockset / Equivalent Baseband / Transmission Lines

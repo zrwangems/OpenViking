@@ -14,6 +14,21 @@ language: en
 # Window Function
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Out
+  summary: Output vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Win
+  summary: Window output vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -66,8 +81,87 @@ in the input signal. When **Operation** is set to
 determined by the **Window length** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation
+  summary: Modes of operation Apply window to input (default) | Generate window | Generate and apply window
+  group: Main
+- name: Window type
+  summary: Type of window Hamming (default) | Bartlett | Blackman | ...
+  group: Main
+- name: Sampling
+  summary: Type of sampling Symmetric (default) | Periodic
+  group: Main
+- name: Sample mode
+  summary: Sample mode Continuous (default) | Discrete
+  group: Main
+- name: Sample time
+  summary: Sample time 1 (default) | real scalar
+  group: Main
+- name: Window length
+  summary: Length of window 64 (default) | positive integer
+  group: Main
+- name: Stopband attenuation in dB
+  summary: Stopband attenuation in dB 50 (default) | nonnegative scalar
+  group: Main
+- name: Beta
+  summary: Kaiser window *β* parameter 10 (default) | real scalar
+  group: Main
+- name: Number of sidelobes
+  summary: Number of sidelobes 4 (default) | positive integer
+  group: Main
+- name: Maximum sidelobe level relative to mainlobe (dB)
+  summary: Maximum sidelobe level relative to mainlobe -30 (default) | scalar less than or equal to zero
+  group: Main
+- name: Window function name
+  summary: Window function name hamming (default) | character vector
+  group: Main
+- name: Specify additional arguments to the hamming function
+  summary: Specify additional arguments to the window function off (default) | on
+  group: Main
+- name: Cell array of additional arguments
+  summary: Additional arguments {'symmetric'} (default) | cell array
+  group: Main
+- name: Window data type
+  summary: Window data type double (default) | single | Fixed-point | User-defined | Inherit via back propagation
+  group: Data Types
+- name: Signed
+  summary: Window output is signed on (default) | off
+  group: Data Types
+- name: Word length
+  summary: Word length 16 (default) | positive integer in the range [2 128]
+  group: Data Types
+- name: User-defined data type (e.g. sfix(16), float('single))
+  summary: user-defined data type sfix(16) (default) | built-in data type | fixed-point data type
+  group: Data Types
+- name: Set fraction length in output to
+  summary: Scaling of fixed-point window data type Best precision (default) | User-defined
+  group: Data Types
+- name: Fraction length
+  summary: User-defined fraction length 15 (default) | integer
+  group: Data Types
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types
+- name: Overflow mode
+  summary: Overflow mode Wrap (default) | Saturate
+  group: Data Types
+- name: Window
+  summary: Window data type Same word length as input (default) | Specify word length | Binary point scaling | Slope and bias
+    scaling
+  group: Data Types
+- name: Product output
+  summary: Product output data type Inherit via internal rule (default) | Same as input | Binary point scaling | Slope and
+    bias scaling
+  group: Data Types
+- name: Output
+  summary: Output data type Same as product output (default) | Same as input | Binary point scaling | Slope and bias scaling
+  group: Data Types
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -483,7 +577,6 @@ When you select:
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # C28x DAC
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 real | scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | double
+```
 
 ### 输入
 
@@ -23,8 +30,16 @@ chinese_source: worker-translation
 输入端口，模块通过该端口接收数字输入值，将其转换为模拟信号。
 
 **数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: DAC channel
+  summary: 用于生成模拟输出的 DAC 通道 12（默认值）
+  group: ''
+- name: Saturate on input overflow (>4095)
+  summary: 输入溢出时饱和输入值的选项 off | on
+  group: ''
+```
 
 ### **DAC channel** — 用于生成模拟输出的 DAC 通道 `12`（默认值）
 
@@ -37,7 +52,6 @@ chinese_source: worker-translation
 #### 兼容性注意事项
 
 在 R2021b 之前，当 **Saturate on input overflow (>4095)** 参数未选中时，DAC 的输入值大于 `65536` 会导致输出饱和在 `65535`。从 R2021b 开始，输出会回绕，即输入 `65580` 时输出为 `44 (65580-65536)`。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

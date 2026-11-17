@@ -14,10 +14,63 @@ language: en
 # Mixer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of conversion gain
+  summary: Source parameter of conversion gain Available power gain (default) | Open circuit voltage gain | Polynomial coefficients
+  group: ''
+- name: Available power gain
+  summary: Linear gain of mixer 0 dB (default) | scalar
+  group: ''
+- name: Open circuit voltage gain
+  summary: Open circuit voltage gain 0 dB (default) | scalar
+  group: ''
+- name: Polynomial coefficients
+  summary: Order of polynomial [0 1] (default) | vector
+  group: ''
+- name: Input impedance (Ohm)
+  summary: Input impedance of mixer 50 (default) | scalar
+  group: ''
+- name: Output impedance (Ohm)
+  summary: Output impedance of mixer 50 (default) | scalar
+  group: ''
+- name: LO impedance (Ohm)
+  summary: Impedance at LO port of mixer inf (default) | scalar
+  group: ''
+- name: Noise figure (dB)
+  summary: Single-sideband IEEE noise figure of mixer 0 dB (default) | scalar
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+- name: Nonlinear polynomial type
+  summary: Polynomial nonlinearity Even and odd order (default) | Odd order
+  group: ''
+- name: Intercept points convention
+  summary: Intercept points convention Output (default) | Input
+  group: ''
+- name: IP2
+  summary: Second-order intercept point infdBm (default) | scalar
+  group: ''
+- name: IP3
+  summary: Third-order intercept point inf dBm (default) | scalar
+  group: ''
+- name: 1-dB gain compression power
+  summary: 1-dB gain compression power infdBm (default) | scalar
+  group: ''
+- name: Output saturation power
+  summary: Output saturation power infdBm (default) | scalar
+  group: ''
+- name: Gain compression at saturation
+  summary: Gain compression at saturation infdBm (default) | scalar
+  group: ''
+```
 
 #### Main
 
@@ -298,7 +351,6 @@ Gain compression at saturation, specified as a scalar.
 To enable this parameter, select `Odd order` in **Nonlinear
 polynomial type** tab and set **Output saturation
 power**.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

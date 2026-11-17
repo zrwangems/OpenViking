@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Current Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端口电气
+  direction: conserving
+- name: '-'
+  summary: 负极端口电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,40 @@ chinese_source: worker-translation
 ### **-** — 负极端口电气
 
 与电流源负极端子关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: DC current
+  summary: 直流电流 0 A（默认值）
+  group: 直流与交流分量
+- name: AC current peak amplitude
+  summary: 交流电流幅值 0 A（默认值）
+  group: 直流与交流分量
+- name: AC current phase shift
+  summary: 交流电流相位偏移 0 rad（默认值）
+  group: 直流与交流分量
+- name: AC current frequency
+  summary: 交流电流频率 60 Hz（默认值）
+  group: 直流与交流分量
+- name: Noise mode
+  summary: 噪声选项 Disabled（默认值） | Enabled
+  group: 噪声
+- name: Power spectral density
+  summary: 功率谱密度 0 A^2/Hz（默认值）
+  group: 噪声
+- name: Repeatability
+  summary: 噪声控制选项 Not repeatable（默认值） | Repeatable | Specify seed
+  group: 噪声
+- name: Auto-generated seed used for repeatable option
+  summary: 自动生成的随机数种子 3241354618（默认值）
+  group: 噪声
+- name: Seed
+  summary: 随机数种子 0（默认值）
+  group: 噪声
+- name: Sample time
+  summary: 采样时间 1e-3 s（默认值）
+  group: 噪声
+```
 
 ### 直流与交流分量
 
@@ -86,7 +127,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样时间 `1e-3` `s`（默认值）
 
 定义噪声源的采样速率。选择该值以反映模型中感兴趣的频率。将采样时间设置得过小会不必要地减慢仿真速度。
-
 ## 所属库
 
 Simscape / Electrical / Sources

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Diode
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -34,8 +46,372 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为 `Show
 thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Selected part
+  summary: 预定义参数化选项 <click to select>（默认）
+  group: ''
+- name: Fidelity level
+  summary: 保真度级别 Include capacitance and charge dynamics（默认）| Ideal switching
+  group: 主
+- name: Diode model
+  summary: 二极管模型 Piecewise Linear（默认）| Exponential | Tabulated I-V curve
+  group: 主
+- name: Table type
+  summary: 表格化函数 Table in If(Tj,Vf) form（默认）| Table in Vf(Tj,If) form
+  group: 主
+- name: Forward voltage
+  summary: 正向电压 0.6 V（默认）
+  group: 主
+- name: On resistance
+  summary: 导通电阻 0.3 Ohm（默认）
+  group: 主
+- name: Off conductance
+  summary: 关断电导 1e-8 1/Ohm（默认）
+  group: 主
+- name: Parameterization
+  summary: 模型参数化 Use two I-V curve data points（默认）| Use parameters IS and N | Use an I-V data point and IS | Use an I-V data
+    point and N
+  group: 主
+- name: Currents [I1 I2]
+  summary: 两个点处的电流值向量 [.0137, .545] A（默认）
+  group: 主
+- name: Voltages [V1 V2]
+  summary: 两个点处的电压值向量 [.6, .7] V（默认）
+  group: 主
+- name: Saturation current, IS
+  summary: 饱和电流 1e-12 A（默认）
+  group: 主
+- name: Emission coefficient, N
+  summary: 二极管发射系数 1（默认）
+  group: 主
+- name: Current I1
+  summary: 电流值 0.0137 A（默认）
+  group: 主
+- name: Voltage V1
+  summary: 电压值 0.6 V（默认）
+  group: 主
+- name: Ohmic resistance, RS
+  summary: 欧姆电阻 0 Ohm（默认）
+  group: 主
+- name: Measurement temperature
+  summary: 测量温度 298.15 K（默认）
+  group: 主
+- name: Forward currents, If(Tj,Vf)
+  summary: 正向电流向量 [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02, 6.35, 9.12] A（默认）| 非负向量
+  group: 主
+- name: Forward voltages, Vf(Tj,If)
+  summary: 正向电压向量 [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38, 1.77, 2.27, 2.7] V（默认）| 非负向量
+  group: 主
+- name: Junction temperatures, Tj
+  summary: 结温向量 [25, 125] degC（默认）
+  group: 主
+- name: Forward voltages, Vf
+  summary: 正向电压向量 [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V（默认）
+  group: 主
+- name: Forward currents, If
+  summary: 正向电流向量 [.1, .2, .5, 1, 2, 4, 7, 10] A（默认）
+  group: 主
+- name: Reverse currents, Ir(Tj,Vr)
+  summary: 反向电流向量 [1e-06, 2e-06, 5e-06, 1e-05, 2.5e-05, 5e-05, .0001; 2e-06, 5e-06, 1e-05, 4e-05, 8e-05, .0002, .0005] A（默认）|
+    非负向量
+  group: 主
+- name: Reverse voltages, Vr
+  summary: 反向电压向量 [10, 20, 40, 50, 70, 80, 100] V（默认）
+  group: 主
+- name: Reverse voltages, Vr(Tj,Ir)
+  summary: 反向电压向量 [10, 100, 200, 250, 300, 325, 350; 10, 70, 160, 220, 270, 300, 320] V（默认）| 非负向量
+  group: 主
+- name: Reverse currents, Ir
+  summary: 反向电流向量 [1e-06, 2e-06, 5e-06, 1e-05, 2e-05, 5e-05, .0001] A（默认）
+  group: 主
+- name: Number of series diodes
+  summary: 串联连接的二极管数量 1（默认）
+  group: 主
+- name: Number of parallel diodes
+  summary: 并联二极管数量 1（默认）
+  group: 主
+- name: Model Zener diode
+  summary: 建模齐纳二极管的选项 Off（默认）| On
+  group: 主
+- name: Zener resistance
+  summary: 齐纳电阻 0.3 Ohm（默认）| 正标量
+  group: 击穿
+- name: Reverse breakdown voltage
+  summary: 反向击穿电压 inf V（默认）| 正标量
+  group: 击穿
+- name: Parameterization
+  summary: 建模结电容 Fixed or zero junction capacitance（默认）| Use C-V curve data points | Use parameters CJ0, VJ, M & FC
+  group: 电容
+- name: Junction capacitance
+  summary: 结电容 0 pF（默认）
+  group: 电容
+- name: Reverse bias voltages [VR1 VR2 VR3]
+  summary: 反向偏置电压值向量 [.1, 10, 100] V（默认）
+  group: 电容
+- name: Corresponding capacitances [C1 C2 C3]
+  summary: 电容值向量 [3.5, 1, .4] pF（默认）
+  group: 电容
+- name: Zero-bias junction capacitance, CJ0
+  summary: 零偏结电容 5 pF（默认）
+  group: 电容
+- name: Junction potential, VJ
+  summary: 结电势 1 V（默认）
+  group: 电容
+- name: Grading coefficient, M
+  summary: 梯度系数 0.5（默认）
+  group: 电容
+- name: Capacitance coefficient, FC
+  summary: 电容系数 0.5（默认）
+  group: 电容
+- name: Charge dynamics
+  summary: 电荷动态参数化 Do not model charge dynamics（默认）| Use peak reverse current and stretch factor | Use peak reverse current
+    and reverse recovery time | Use peak reverse current and reverse recovery charge | Use peak reverse current and reverse
+    recovery energy | Use transit time and carrier lifetime
+  group: 电容
+- name: Peak reverse current, iRM
+  summary: 峰值反向电流 -7.15 A（默认）| 负标量
+  group: 电容
+- name: Initial forward current when measuring iRM
+  summary: 测量 iRM 时的初始正向电流 4 A（默认）| 正标量
+  group: 电容
+- name: Rate of change of current when measuring iRM
+  summary: 测量 iRM 时的电流变化率 -750 A/μs（默认）| 负标量
+  group: 电容
+- name: Reverse recovery time stretch factor
+  summary: 反向恢复时间拉伸因子 3（默认）
+  group: 电容
+- name: Reverse recovery time, trr
+  summary: 反向恢复时间 115（默认）
+  group: 电容
+- name: Reverse recovery charge, Qrr
+  summary: 反向恢复电荷 1500 s*μA（默认）
+  group: 电容
+- name: Diode turn-off voltage when measuring Erec
+  summary: 测量 Erec 时的二极管关断电压 -600 V（默认）
+  group: 电容
+- name: Stray inductance when measuring Erec
+  summary: 测量 Erec 时的杂散电感 150 nH（默认）
+  group: 电容
+- name: Reverse recovery energy, Erec
+  summary: 反向恢复能量 0.03 J（默认）
+  group: 电容
+- name: Transit time, TT
+  summary: 渡越时间 50 ns（默认）
+  group: 电容
+- name: Carrier lifetime, tau
+  summary: 载流子寿命 100 ns（默认）
+  group: 电容
+- name: Reverse recovery loss model
+  summary: 反向恢复损耗模型 Fixed loss（默认）| Tabulated loss
+  group: Reverse Recovery Loss
+- name: Reverse recovery loss
+  summary: 反向恢复损耗 0 J（默认）| 非负标量
+  group: Reverse Recovery Loss
+- name: Scale reverse recovery loss with current and voltage
+  summary: 按电流和电压缩放反向恢复损耗的选项 On（默认）| Off
+  group: Reverse Recovery Loss
+- name: Forward current when measuring recovery loss, Irec
+  summary: 模块测量恢复损耗时的正向电流 10 A（默认）| 正标量
+  group: Reverse Recovery Loss
+- name: Turn-off voltage when measuring recovery loss, Vrec
+  summary: 测量恢复损耗时的关断电压 10 V（默认）| 正标量
+  group: Reverse Recovery Loss
+- name: Filter time constant for voltage and current values
+  summary: 电压和电流值的滤波时间常数 1 / 1000 / 100 s（默认）| 正标量
+  group: Reverse Recovery Loss
+- name: Reverse recovery loss table, Erec(Tj, If)
+  summary: 反向恢复损耗表 zeros(2, 3) J（默认）| 非负标量向量
+  group: Reverse Recovery Loss
+- name: Temperature vector for recovery loss table, Tj
+  summary: 恢复损耗表的温度向量 [298.15, 398.15] K（默认）| 向量
+  group: Reverse Recovery Loss
+- name: Forward current vector for recovery loss table, If
+  summary: 恢复损耗表的正向电流向量 [.1, 1, 10] A（默认）| 非负标量向量
+  group: Reverse Recovery Loss
+- name: Parameterization
+  summary: 温度依赖性参数化 None - Use characteristics at parameter measurement temperature（默认）| Use an I-V data point at second measurement
+    temperature | Specify saturation current at second measurement temperature | Specify the energy gap EG
+  group: Temperature Dependence
+- name: Current I1 at second measurement temperature
+  summary: 第二测量温度下的电流 I1 0.0245 A（默认）
+  group: Temperature Dependence
+- name: Voltage V1 at second measurement temperature
+  summary: 第二测量温度下的电压 V1 0.5 V（默认）
+  group: Temperature Dependence
+- name: Saturation current, IS, at second measurement temperature
+  summary: 第二测量温度下的饱和电流 IS 1.25e-7 A（默认）
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: 第二测量温度 125 °C（默认）
+  group: Temperature Dependence
+- name: Energy gap parameterization
+  summary: 能隙参数化 Use nominal value for silicon (EG=1.11eV)（默认）| Use nominal value for 4H-SiC silicon carbide (EG=3.23eV) |
+    Use nominal value for 6H-SiC silicon carbide (EG=3.00eV) | Use nominal value for germanium (EG=0.67eV) | Use nominal value
+    for gallium arsenide (EG=1.43eV) | Use nominal value for selenium (EG=1.74eV) | Use nominal value for Schottky barrier
+    diodes (EG=0.69eV) | Specify a custom value
+  group: Temperature Dependence
+- name: Energy gap, EG
+  summary: 能隙 1.11 eV（默认）
+  group: Temperature Dependence
+- name: Saturation current temperature exponent parameterization
+  summary: 饱和电流温度指数参数化 Use nominal value for pn-junction diode (XTI=3)（默认）| Use nominal value for Schottky barrier diode (XTI=2)
+    | Specify a custom value
+  group: Temperature Dependence
+- name: Saturation current temperature exponent, XTI
+  summary: 饱和电流温度指数 3（默认）
+  group: Temperature Dependence
+- name: Reverse breakdown voltage temperature coefficient, dBV/dT
+  summary: 反向击穿电压温度系数 0 V/K（默认）
+  group: Temperature Dependence
+- name: Device simulation temperature
+  summary: 器件仿真温度 25 °C（默认）
+  group: Temperature Dependence
+- name: Diode fault
+  summary: 对二极管中的故障进行建模的选项 Add fault（默认）
+  group: 故障
+- name: Failure mode
+  summary: 故障类别 Open（默认）| Short | Parameter shift
+  group: 故障
+- name: Fault transition time constant
+  summary: 故障过渡时间常数 1e-3 s（默认）| 正标量
+  group: 故障
+- name: Faulted series resistance
+  summary: 故障串联电阻 1000 Ohm（默认）| 有限非负标量
+  group: 故障
+- name: Faulted parallel conductance
+  summary: 故障并联电导 1000 1/Ohm（默认）| 有限非负标量
+  group: 故障
+- name: Faulted forward voltage
+  summary: 故障正向电压 0.6 V（默认）| 正标量
+  group: 故障
+- name: Faulted on resistance
+  summary: 故障导通电阻 0.3 Ohm（默认）| 正标量
+  group: 故障
+- name: Faulted off conductance
+  summary: 故障关断电导 1e-8 S（默认）| 正标量
+  group: 故障
+- name: Faulted zener resistance
+  summary: 故障齐纳电阻 0.3 Ohm（默认）| 正标量
+  group: 故障
+- name: Faulted reverse breakdown voltage
+  summary: 故障反向击穿电压 inf V（默认）| 正标量
+  group: 故障
+- name: Faulted currents, [I1 I2]
+  summary: 故障电流 [.0137, .545] A（默认）| 正标量的二维向量
+  group: 故障
+- name: Faulted voltages, [V1 V2]
+  summary: 故障电压 [.6, .7] V（默认）| 正标量的二维向量
+  group: 故障
+- name: Faulted ohmic resistance, RS
+  summary: 故障电压 0 Ohm（默认）| 非负标量
+  group: 故障
+- name: Faulted saturation current, IS
+  summary: 故障饱和电流 1e-12 A（默认）| 正标量
+  group: 故障
+- name: Faulted emission coefficient, N
+  summary: 故障发射系数 1（默认）| 正标量
+  group: 故障
+- name: Faulted current, I1
+  summary: 故障电流 0.0137 A（默认）| 正标量
+  group: 故障
+- name: Faulted voltage, V1
+  summary: 故障电压 0.6 V（默认）| 正标量
+  group: 故障
+- name: Faulted forward currents, If(Tj,Vf)
+  summary: 故障正向电流 [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02, 6.35, 9.12] A（默认）| 非负标量矩阵
+  group: 故障
+- name: Faulted forward voltages, Vf
+  summary: 故障正向电压 [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V（默认）| 非负标量向量
+  group: 故障
+- name: Faulted reverse currents, Ir(Tj,Vr)
+  summary: 故障反向电流 [1e-06, 2e-06, 5e-06, 1e-05, 2.5e-05, 5e-05, .0001; 2e-06, 5e-06, 1e-05, 4e-05, 8e-05, .0002, .0005] A（默认）|
+    非负标量矩阵
+  group: 故障
+- name: Faulted reverse voltages, Vr
+  summary: 故障反向电压 [1, 2, 4, 5, 7, 8, 10] V（默认）| 非负标量向量
+  group: 故障
+- name: Faulted forward voltages, Vf(Tj,If)
+  summary: 故障正向电压 [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38, 1.77, 2.27, 2.7] V（默认）| 非负标量矩阵
+  group: 故障
+- name: Faulted forward currents, If
+  summary: 故障正向电流 [.1, .2, .5, 1, 2, 4, 7, 10] A（默认）| 非负标量向量
+  group: 故障
+- name: Faulted reverse voltages, Vr(Tj,Ir)
+  summary: 故障反向电压 [1, 10, 20, 25, 30, 32.5, 35; 1, 5, 10, 20, 25, 30, 32] V（默认）| 非负标量矩阵
+  group: 故障
+- name: Faulted reverse currents, Ir
+  summary: 故障反向电流 [1e-06, 2e-06, 5e-06, 1e-05, 2e-05, 5e-05, .0001] A（默认）| 非负标量向量
+  group: 故障
+- name: Faulted capacitance and charge as percentage of unfaulted
+  summary: 故障电容和电荷占未故障状态的百分比 100（默认）| 有限正标量
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible reverse voltage
+  summary: 最大允许反向电压 inf V（默认）| 正标量
+  group: 故障
+- name: Number of events to fail when exceeding voltage
+  summary: 超过电压时失效的事件数 1（默认）| 正整数标量
+  group: 故障
+- name: Maximum permissible current
+  summary: 故障转换的电流阈值 inf A（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding current
+  summary: 电流超过阈值的最大持续时间 1 s（默认）| 非负标量
+  group: 故障
+- name: Maximum diode recovery, dV/dt
+  summary: 二极管恢复阈值 inf V/s（默认）| 正标量
+  group: 故障
+- name: Maximum permissible temperature
+  summary: 故障转换的温度阈值 inf K（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding temperature
+  summary: 超过温度时失效的时间 1 s（默认）| 正标量
+  group: 故障
+- name: Thermal network
+  summary: 热网络建模选项 External（默认）| Specify junction and case thermal parameters | Cauer model | Cauer model parameterized with
+    Foster coefficients
+  group: 热端口
+- name: Thermal mass parameterization
+  summary: 热质量参数化选项 By thermal time constants（默认）| By thermal mass
+  group: 热端口
+- name: Junction case and case-ambient (or case-heatsink) thermal resistances, [R_JC R_CA]
+  summary: 结-壳和壳-环境（或壳-散热器）热阻 [0, 10] K/W（默认）| 非负值向量
+  group: 热端口
+- name: Junction and case thermal time constants, [t_J t_C]
+  summary: 结和壳热时间常数 [0, 10] s（默认）| 非负值向量
+  group: 热端口
+- name: Junction and case thermal masses, [M_J M_C]
+  summary: 结和壳热质量 [0, 1] J/K（默认）| 正值向量
+  group: 热端口
+- name: Junction and case initial temperatures, [T_J T_C]
+  summary: 结和壳初始温度 [25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Thermal resistances, [R1 R2 … Rn]
+  summary: 热阻 [1, 3, 10] K/W | [4, 6] K/W | 正值向量
+  group: 热端口
+- name: Thermal masses, [M1 M2 … Mn]
+  summary: 热质量 [.1, .3, 1] J/K | [1.5, 3] J/K | 正值向量
+  group: 热端口
+- name: Thermal masses initial temperatures, [T1 T2 … Tn]
+  summary: 热质量初始温度 [25, 25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Thermal time constants, [t1 t2 … tn]
+  summary: 热时间常数 [1, 3, 10] s | [6, 18] s | 正值向量
+  group: 热端口
+- name: Initial node temperatures, [T1 T2 ... Tn]
+  summary: 初始节点温度 [25, 25, 25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Junction thermal mass
+  summary: 结的热质量 0.01 J/K（默认）| 正标量
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -1462,7 +1838,6 @@ Foster coefficients`，并将 **Thermal mass parameterization** 设置为
 要启用此参数，请将 **Fidelity level** 设置为 `Ideal
 switching`，并将 **Thermal network** 设置为
 `External`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

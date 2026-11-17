@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Outport
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: Outport 信号 标量 | 向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image | datetime
+```
 
 ### 输入
 
@@ -25,8 +33,142 @@ chinese_source: worker-translation
 当 Outport 模块不是根级输出端口时，它可以接受定点数和枚举数据类型。模块输出的复杂度和数据类型与其输入相同。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image` | `datetime`
-
 ## 参数
+```yaml
+parameters:
+- name: Port number
+  summary: 端口在父模块上的位置 1（默认）| 实数整数
+  group: 主要
+  block_parameter: Port
+  values: '"1"（默认）| 带引号的实数整数'
+- name: Signal name
+  summary: 信号名称 ' '（默认）| 字符向量
+  group: 主要
+  block_parameter: SignalName
+  type: 字符向量
+  values: 字符向量
+  default: ''' '''
+- name: Icon display
+  summary: 图标显示 Port number（默认）| Signal name | Port number and signal name
+  group: 主要
+  block_parameter: IconDisplay
+  type: 字符向量
+  values: '''Signal name'' | ''Port number'' | ''Port number and signal name'''
+  default: '''Port number'''
+- name: Specify output when source is unconnected
+  summary: 指定未连接时的输出值 off（默认）| on
+  group: 主要
+  block_parameter: OutputWhenUnconnected
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Constant value
+  summary: 模块未连接时的输出值 0（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: OutputWhenUnconnectedValue
+  type: 字符向量
+  values: scalar | vector
+  default: '''0'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量视为一维 on（默认）| off
+  group: 主要
+  block_parameter: VectorParamsAs1DForOutWhenUnconnected
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Ensure outport is virtual
+  summary: 确保 outport 为虚拟 off（默认）| on
+  group: 主要
+  block_parameter: EnsureOutportIsVirtual
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Output when disabled
+  summary: 禁用时的输出 held（默认）| reset
+  group: 主要
+  block_parameter: OutputWhenDisabled
+  type: 字符向量
+  values: '''held'' | ''reset'''
+  default: '''held'''
+- name: Initial output
+  summary: 条件执行子系统的初始输出 []（默认）| 标量 | 结构体
+  group: 主要
+  block_parameter: InitialOutput
+  type: 字符向量
+  values: '''[]'' | 标量 | 结构体'
+  default: '''[]'''
+- name: Minimum
+  summary: 最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  type: 字符向量
+  values: '''[ ]''| 标量'
+  default: '''[ ]'''
+- name: Maximum
+  summary: 最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  type: 字符向量
+  values: '''[ ]''| 标量'
+  default: '''[ ]'''
+- name: Data type
+  summary: '输出数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string''
+    | ''Enum: <class name>'' | ''Bus: <object name>'' | ''ValueType: <object name>'' | ''<data type expression>'' | Simulink.ImageType(480,640,3)'
+  default: '''Inherit: auto'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output as nonvirtual bus in parent model
+  summary: 在父模型中作为非虚拟总线输出 off（默认）| on
+  group: 信号属性
+  block_parameter: BusOutputAsStruct
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Unit (e.g., m, m/s^2, N\*m)
+  summary: 模块输入信号的物理单位 inherit（默认）| <Enter unit>
+  group: 信号属性
+  block_parameter: Unit
+  type: character vector
+  values: '''inherit'' | ''<Enter unit>'''
+  default: '''inherit'''
+- name: Port dimensions (-1 for inherited)
+  summary: 端口维度 -1（默认）| 整数 | [整数, 整数]
+  group: 信号属性
+  block_parameter: PortDimensions
+  type: character vector
+  values: '''-1'' | integer | [integer, integer]'
+  default: '''-1'''
+- name: Variable-size signal
+  summary: 允许可变大小信号 Inherit（默认）| No | Yes
+  group: 信号属性
+  block_parameter: VarSizeSig
+  type: character vector
+  values: '''Inherit'' | ''No'' | ''Yes'''
+  default: '''Inherit'''
+- name: Signal type
+  summary: 输出信号类型 auto（默认）| real | complex
+  group: 信号属性
+  block_parameter: SignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Sample time (-1 for inherited)
+  summary: 指定采样时间的选项 -1（默认）| 标量
+  group: Execution
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''-1'''
+```
 
 ### 主要
 
@@ -444,7 +586,6 @@ Simulink 尝试从输入信号继承输出值。但是，如果输入信号不�
 | **类型**：character vector |
 | **值**：scalar |
 | **默认值**：`'-1'` |
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sinks

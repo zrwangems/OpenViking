@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Sinestream Signal Generator
 
 ## 端口
+```yaml
+ports:
+- name: start/stop
+  summary: 启动和停止信号生成 标量
+  direction: input
+  data_types: single | double
+- name: w
+  summary: 用于估计实验的频率 向量
+  direction: input
+  data_types: single | double
+- name: amp
+  summary: 扰动幅值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: sin、cos、sincos
+  summary: 正弦流扰动信号 标量 | 向量
+  direction: output
+  data_types: single | double
+- name: 3ϕ-sin、3ϕ-cos、3ϕ-sincos
+  summary: 三相正弦流扰动信号 向量
+  direction: output
+  data_types: single | double
+- name: idx w
+  summary: 输出频率索引 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -92,8 +119,43 @@ chinese_source: worker-translation
 #### 依赖关系
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: 采样时间 0.1（默认）| 正标量 | –1
+  group: ''
+- name: Data Type
+  summary: 浮点精度 double（默认）| single
+  group: ''
+- name: Excitation signal source
+  summary: 激励信号源 Block parameters（默认）| External ports
+  group: ''
+- name: Frequencies
+  summary: 用于估计的频率 [0.5 1 2]（默认）| 向量
+  group: ''
+- name: Amplitudes
+  summary: 注入扰动的幅值 1（默认）| 标量 | 向量
+  group: ''
+- name: Number of frequencies
+  summary: 外部提供的频率数量 3（默认）| 正整数
+  group: ''
+- name: Number of signal periods
+  summary: 每个正弦波处于最大幅值的周期数 6（默认）| 标量 | 向量
+  group: ''
+- name: Waveform Type
+  summary: 波形类型 sine（默认）| cosine | both
+  group: 高级设置
+- name: Phase Shift
+  summary: 波的相移 0（默认）| 标量 | 向量
+  group: 高级设置
+- name: Generate three-phase perturbation signal
+  summary: 生成三相扰动信号 off（默认）| on
+  group: 高级设置
+- name: Show frequency index port
+  summary: 启用频率索引端口 off（默认）| on
+  group: 高级设置
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -185,7 +247,6 @@ chinese_source: worker-translation
 ### **Show frequency index port** — 启用频率索引端口 `off`（默认）| `on`
 
 选择此选项以启用 **idx w** 端口。
-
 ## 所属库
 
 Simulink Control Design / Signal Generation

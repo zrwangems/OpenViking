@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # Binary Linear Decoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Generator matrix**
 :   码的生成矩阵；与 Binary Linear Encoder 模块中的相同。
 
 **Decoding table**
 :   一个 2N-K 行 N 列的矩阵，列出每个码字伴随式的纠正向量；或者标量 0，在这种情况下，模块默认使用与 **Generator matrix** 参数对应的表。
-
 ## 所属库
 
 R2025b 中未记录。

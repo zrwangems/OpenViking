@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # SPMT Switch
 
 ## 端口
+```yaml
+ports:
+- name: vT
+  summary: 开关控制端口物理信号
+  direction: input
+- name: p
+  summary: 公共端口电气
+  direction: input
+- name: n1
+  summary: 掷端口 1 电气
+  direction: input
+- name: n2
+  summary: 掷端口 2 电气
+  direction: input
+- name: n3
+  summary: 掷端口 3 电气
+  direction: input
+- name: n4
+  summary: 掷端口 4 电气
+  direction: input
+- name: n5
+  summary: 掷端口 5 电气
+  direction: input
+- name: n6
+  summary: 掷端口 6 电气
+  direction: input
+- name: n7
+  summary: 掷端口 7 电气
+  direction: input
+- name: n8
+  summary: 掷端口 8 电气
+  direction: input
+```
 
 ### 输入
 
@@ -86,8 +119,31 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将**掷端口数**设置为 `8`。
-
 ## 参数
+```yaml
+parameters:
+- name: 掷端口数
+  summary: 掷端口数 4（默认）| 3 | 5 | 6 | 7 | 8
+  group: 主要
+- name: 闭合电阻
+  summary: 闭合电阻 0.01 Ohm（默认）| 正标量
+  group: 主要
+- name: 断开电导
+  summary: 断开电导 1e-6 S（默认）| 正标量
+  group: 主要
+- name: 卡掷故障
+  summary: 添加卡掷故障的选项 Add fault（默认）
+  group: 故障
+- name: 在以下时间触发故障
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: 最大允许公共端口电流
+  summary: 最大允许公共端口电流 inf A（默认）| 正标量
+  group: 故障
+- name: 超过电流时的失效时间
+  summary: 超过电流时的失效时间 1 s（默认）| 正标量
+  group: 故障
+```
 
 ### 主要
 
@@ -137,7 +193,6 @@ chinese_source: worker-translation
 
 要启用此参数，请将**触发类型**设置为
 `Behavioral`。
-
 ## 所属库
 
 Simscape / Electrical / Switches & Breakers

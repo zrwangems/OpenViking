@@ -14,6 +14,13 @@ language: en
 # Analog Output
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Analog output to generate double
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -28,8 +35,22 @@ each port. Multiple ports are named by channel names or device specified channel
 IDs.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: Device through which you want to output data select available device
+  group: ''
+- name: Channels
+  summary: Device channel selection and configuration options depend on device
+  group: ''
+- name: Number of ports
+  summary: Number of input data ports 1 for all channels | 1 per channel
+  group: ''
+- name: Output sample rate
+  summary: Device sampling rate numeric value
+  group: ''
+```
 
 ### **Device** — Device through which you want to output data select available device
 
@@ -87,7 +108,6 @@ The rate at which samples are output from Simulink to the device, in samples per
 second. This is the sampling rate for the hardware. The default is defined when a device
 is selected. The sample rate must be a positive real number within the range allowed for
 the selected hardware.
-
 ## Libraries
 
 Data Acquisition Toolbox

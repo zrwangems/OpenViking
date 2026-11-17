@@ -14,6 +14,33 @@ language: en
 # Particle Filter
 
 ## Ports
+```yaml
+ports:
+- name: y1,y2,y3,y4,y5
+  summary: Measured system outputs vector
+  direction: input
+- name: StateTransitionFcnInputs
+  summary: Optional input argument to state transition function scalar | vector | matrix
+  direction: input
+- name: MeasurementLikelihoodFcn1Inputs,...,MeasurementLikelihoodFcn5Inputs
+  summary: Optional input argument to each measurement likelihood function scalar | vector | matrix
+  direction: input
+- name: Enable1,Enable2,Enable3,Enable4,Enable5
+  summary: Enable correction of estimated states when measured data is available scalar
+  direction: input
+- name: xhat
+  summary: Estimated states vector
+  direction: output
+- name: P
+  summary: State estimation error covariance matrix
+  direction: output
+- name: Particles
+  summary: Particle values used for state estimation array
+  direction: output
+- name: Weights
+  summary: Particle weights used for state estimation vector
+  direction: output
+```
 
 ### Input
 
@@ -217,8 +244,191 @@ estimation.
 To generate this port, select **Output weights**
 in the **Block outputs, Multirate** tab, and click
 **Apply**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: State transition function name 'vdpParticleFilterStateFcn' (default) | function name
+  group: System Model Tab
+  block_parameter: StateTransitionFcn
+  type: character vector, string
+  default: '''vdpParticleFilterStateFcn'''
+- name: Number of Particles
+  summary: Number of particles used in the filter 1000 (default) | positive scalar integer
+  group: System Model Tab
+  block_parameter: NumberOfParticles
+  type: positive scalar integer
+  default: '1000'
+- name: Distribution
+  summary: Initial distribution of particles 'Gaussian' (default) | 'Uniform' | 'Custom'
+  group: System Model Tab
+  block_parameter: InitialDistribution
+  type: character vector
+  values: '''Gaussian'', ''Uniform'', ''Custom'''
+  default: '''Gaussian'''
+- name: Mean
+  summary: Initial mean value of particles [0;0] (default) | vector
+  group: System Model Tab
+  block_parameter: InitialMean
+  type: array
+  default: '[0,0]'
+- name: Covariance
+  summary: Initial covariance of particles 1 (default) | scalar | vector | matrix
+  group: System Model Tab
+  block_parameter: InitialCovariance
+  type: scalar, vector, or matrix
+  default: '1'
+- name: Circular Variables
+  summary: Circular variables used for state estimation 0 (default) | scalar | vector
+  group: System Model Tab
+  block_parameter: CircularVariables
+  type: scalar, vector
+  default: '0'
+- name: State Orientation
+  summary: Orientation of input system states 'column' (default) | 'row'
+  group: System Model Tab
+  block_parameter: StateOrientation
+  type: character vector
+  values: '''column'', ''row'''
+  default: '''column'''
+- name: State bounds
+  summary: Initial bounds on system states [-3 3;-3 3] (default) | array
+  group: System Model Tab
+  block_parameter: InitialStateBounds
+  type: array
+  default: '[-3 3;-3 3]'
+- name: Particles
+  summary: Custom particle distribution for state estimation [] (default) | array
+  group: System Model Tab
+  block_parameter: InitialParticles
+  type: array
+  default: '[]'
+- name: Weights
+  summary: Custom particle weight values for state estimation [] (default) | vector of positive values
+  group: System Model Tab
+  block_parameter: InitialWeights
+  type: vector of positive values
+  default: '[]'
+- name: Function
+  summary: Measurement likelihood function name 'vdpMeasurementLikelihoodFcn' (default) | function name
+  group: System Model Tab
+  block_parameter: MeasurementLikelihoodFcn1, MeasurementLikelihoodFcn2, MeasurementLikelihoodFcn3, MeasurementLikelihoodFcn4,
+    MeasurementLikelihoodFcn5
+  type: character vector, string
+  default: '''vdpMeasurementLikelihoodFcn'''
+- name: Add Enable Port
+  summary: Enable correction of estimated states only when measured data is available off (default) | on
+  group: System Model Tab
+  block_parameter: HasMeasurementEnablePort1, HasMeasurementEnablePort2, HasMeasurementEnablePort3, HasMeasurementEnablePort4,
+    HasMeasurementEnablePort5
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Resampling method
+  summary: Method used for particle resampling 'Multinomial' (default) | 'Systemic' | 'Stratified'
+  group: System Model Tab
+  block_parameter: ResamplingMethod
+  type: character vector
+  values: '''Multinomial'', ''Systemic'', ''Stratified'''
+  default: '''Multinomial'''
+- name: Trigger method
+  summary: Method to determine when resampling occurs 'Ratio' (default) | 'Interval'
+  group: System Model Tab
+  block_parameter: TriggerMethod
+  type: character vector
+  values: '''Ratio'', ''Interval'''
+  default: '''Ratio'''
+- name: Minimum effective particle ratio
+  summary: Minimum desired ratio of the effective number of particles to the total number of particles 0.5 (default) | positive
+    scalar
+  group: System Model Tab
+  block_parameter: MinEffectiveParticleRatio
+  type: scalar
+  values: Range [0,1]
+  default: '0.5'
+- name: Sampling Interval
+  summary: Fixed interval between resampling 1 (default) | positive scalar integer
+  group: System Model Tab
+  block_parameter: SamplingInterval
+  type: positive scalar integer
+  default: '1'
+- name: Randomness
+  summary: Whether the random numbers are repeatable 'Repeatable' (default) | 'Not repeatable'
+  group: System Model Tab
+  block_parameter: Randomness
+  type: character vector
+  values: '''Repeatable'', ''Not repeatable'''
+  default: '''Repeatable'''
+- name: Seed
+  summary: Seed value for repeatable random numbers 0 (default) | scalar
+  group: System Model Tab
+  block_parameter: Seed
+  type: scalar
+  default: '0'
+- name: Data type
+  summary: Data type for block parameters double (default) | single
+  group: System Model Tab
+  block_parameter: DataType
+  type: character vector
+  values: '''single'', ''double'''
+  default: '''double'''
+- name: Sample time
+  summary: Block sample time 1 (default) | positive scalar
+  group: System Model Tab
+  block_parameter: SampleTime
+  type: character vector, string
+  default: '''1'''
+- name: State Estimation Method
+  summary: Method used for extracting a state estimate from particles 'Mean' (default) | 'MaxWeight' | 'None'
+  group: Block Outputs, Multirate Tab
+  block_parameter: StateEstimationMethod
+  type: character vector, string
+  values: '''Mean'', ''MaxWeight'', ''None'''
+  default: '''Mean'''
+- name: Output all particles
+  summary: Output all particles 'off' (default) | 'on'
+  group: Block Outputs, Multirate Tab
+  block_parameter: OutputParticles
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Output weights
+  summary: Output particle weights 'off' (default) | 'on'
+  group: Block Outputs, Multirate Tab
+  block_parameter: OutputWeights
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Output state estimation error covariance
+  summary: Output state estimation error covariance 'off' (default) | 'on'
+  group: Block Outputs, Multirate Tab
+  block_parameter: OutputStateCovariance
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Use the current measurements to improve state estimates
+  summary: Option to use current measurements for state estimation 'on' (default) | 'off'
+  group: Block Outputs, Multirate Tab
+  block_parameter: UseCurrentEstimator
+  type: character vector
+  values: '''on'', ''off'''
+  default: '''on'''
+- name: Enable multirate operation
+  summary: Enable specification of different sample times for state transition and measurement likelihood functions 'off'
+    (default) | 'on'
+  group: Block Outputs, Multirate Tab
+  block_parameter: EnableMultirate
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Sample times
+  summary: State transition and measurement likelihood function sample times positive scalar
+  group: Block Outputs, Multirate Tab
+  block_parameter: StateTransitionFcnSampleTime, MeasurementLikelihoodFcn1SampleTime1, MeasurementLikelihoodFcn1SampleTime2,
+    MeasurementLikelihoodFcn1SampleTime3, MeasurementLikelihoodFcn1SampleTime4, MeasurementLikelihoodFcn1SampleTime5
+  type: character vector, string
+  default: '''1'''
+```
 
 ### System Model Tab
 
@@ -1010,7 +1220,6 @@ Multirate** tab to `on`.
 | **Block Parameter:**`StateTransitionFcnSampleTime`, `MeasurementLikelihoodFcn1SampleTime1`, `MeasurementLikelihoodFcn1SampleTime2`, `MeasurementLikelihoodFcn1SampleTime3`, `MeasurementLikelihoodFcn1SampleTime4`, `MeasurementLikelihoodFcn1SampleTime5` |
 | **Type:** character vector, string |
 | **Default:**`'1'` |
-
 ## Libraries
 
 Control System Toolbox / State Estimation System Identification Toolbox / Estimators

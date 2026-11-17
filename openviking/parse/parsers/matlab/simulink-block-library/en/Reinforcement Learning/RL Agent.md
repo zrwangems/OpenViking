@@ -14,6 +14,33 @@ language: en
 # RL Agent
 
 ## Ports
+```yaml
+ports:
+- name: observation
+  summary: Environment observations scalar | vector | nonvirtual bus
+  direction: input
+- name: reward
+  summary: Reward from environment scalar
+  direction: input
+- name: isdone
+  summary: Flag to terminate episode simulation logical
+  direction: input
+- name: external action
+  summary: External action signal scalar | vector
+  direction: input
+- name: last action
+  summary: Last action applied to environment signal scalar | vector
+  direction: input
+- name: use external action
+  summary: Use external action signal 0 | 1
+  direction: input
+- name: action
+  summary: Agent action scalar | vector | nonvirtual bus
+  direction: output
+- name: cumulative reward
+  summary: Cumulative undiscounted reward scalar
+  direction: output
+```
 
 ### Input
 
@@ -119,8 +146,47 @@ cumulative reward evolves over time.
 
 To enable this port, select the **Cumulative reward output**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Agent object
+  summary: Agent to train agentObj (default) | agent object
+  group: ''
+  block_parameter: Agent
+  type: string, character vector
+  default: '"agentObj"'
+- name: Generate greedy policy block
+  summary: Generate greedy policy block controller button
+  group: ''
+- name: External action inputs
+  summary: Add input ports for external action off (default) | on
+  group: ''
+  block_parameter: ExternalActionAsInput
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Last action input
+  summary: Add input ports for last action applied to environment off (default) | on
+  group: ''
+  block_parameter: ProvideLastAction
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Cumulative reward output
+  summary: Add cumulative reward output port off (default) | on
+  group: ''
+  block_parameter: ProvideCumRwd
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Use strict observation data types
+  summary: Enforce strict data types for observations off (default) | on
+  group: ''
+  block_parameter: UseStrictObservationDataTypes
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+```
 
 ### **Agent object** — Agent to train `agentObj` (default) | agent object
 
@@ -216,7 +282,6 @@ Enforcing strict data types:
 | **Type:** string, character vector |
 | **Values:** `"off"` | `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Reinforcement Learning Toolbox

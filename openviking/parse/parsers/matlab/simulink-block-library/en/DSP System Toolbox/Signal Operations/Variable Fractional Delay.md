@@ -14,6 +14,21 @@ language: en
 # Variable Fractional Delay
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Delay
+  summary: Delay input scalar | vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Delayed output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -168,8 +183,74 @@ data input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Interpolation mode
+  summary: Method of interpolation Linear (default) | FIR | Farrow
+  group: ''
+- name: Interpolation filter half-length (P)
+  summary: Half length of interpolation filter 4 (default) | positive integer in the range [1 65535]
+  group: ''
+- name: Interpolation points per input sample
+  summary: Number of interpolation points per input sample 10 (default) | positive integer in the range [2, 65,535]
+  group: ''
+- name: Normalized input bandwidth (0 to 1)
+  summary: Normalized input bandwidth 1 (default) | real scalar in the range (0, 1]
+  group: ''
+- name: Farrow filter length (N)
+  summary: Length of Farrow filter 4 (default) | integer greater than or equal to 2
+  group: ''
+- name: Maximum delay (Dmax) in samples
+  summary: Maximum delay 100 (default) | integer in the range [0 65535]
+  group: ''
+- name: Input processing
+  summary: Method to process the input Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: InitialConditions
+  summary: Initial values in the memory 0 (default) | scalar | 1-by-*R*-by-*D* array | 1-by-*R*-by-(*D+L*) array
+  group: ''
+- name: Disable direct feedthrough by increasing minimum possible delay by one
+  summary: Disable direct feedthrough off (default) | on
+  group: ''
+- name: For small input delay values
+  summary: Action to take for small input delay values Clip to the minimum value necessary for centered kernel (default) |
+    Use off-centered kernel | Switch to linear interpolation if kernel cannot be centered
+  group: ''
+- name: Valid delay range (in samples)
+  summary: 'Range of valid delay values Read-only: [0 100] (default) | [*Dmin* *Dmax*]'
+  group: ''
+- name: Rounding mode
+  summary: Rounding method for fixed-point operations Zero (default) | Ceiling | Convergent | Floor | Nearest | Round | Simplest
+  group: Fixed-Point Properties
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Fixed-Point Properties
+- name: Coefficients
+  summary: Data type of the coefficients Same word length as input (default) | Specify word length
+  group: Fixed-Point Properties
+- name: Product output
+  summary: Data type of the product output Same as first input (default) | Binary point scaling
+  group: Fixed-Point Properties
+- name: Accumulator
+  summary: Data type of accumulation operation Same as product output (default) | Same as first input | Binary point scaling
+  group: Fixed-Point Properties
+- name: Product output polyval
+  summary: Data type of the product polynomial value Same as first input (default) | Binary point scaling
+  group: Fixed-Point Properties
+- name: Accumulator polyval
+  summary: Data type of the accumulator polynomial value Same as first input (default) | Binary point scaling
+  group: Fixed-Point Properties
+- name: Multiplicand polyval
+  summary: Data type of multiplicand polynomial value Same as first input (default) | Binary point scaling
+  group: Fixed-Point Properties
+- name: Output
+  summary: Data type of block output Same as accumulator (default) | Same as first input | Binary point scaling
+  group: Fixed-Point Properties
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Fixed-Point Properties
+```
 
 ### **Interpolation mode** — Method of interpolation `Linear` (default) | `FIR` | `Farrow`
 
@@ -661,7 +742,6 @@ section.
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

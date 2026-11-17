@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Integrator with Wrapped State (Discrete or Continuous)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 积分器输入向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 积分器输出向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 积分器输出。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Wrapped state upper limit
+  summary: 状态上限 2*pi（默认）| 实数
+  group: ''
+- name: Wrapped state lower limit
+  summary: 状态下限 0（默认）| 实数
+  group: ''
+- name: Initial condition
+  summary: 状态初始值 0（默认）| 实数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Wrapped state upper limit** — 状态上限 `2*pi`（默认）| 实数
 
@@ -52,7 +77,6 @@ chinese_source: worker-translation
 对于继承的离散时间操作，将此参数设置为 `-1`。对于离散时间操作，将此参数设置为正整数。对于连续时间操作，将此参数设置为 `0`。
 
 如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

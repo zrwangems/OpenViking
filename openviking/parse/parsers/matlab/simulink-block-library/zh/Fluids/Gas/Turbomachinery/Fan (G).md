@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Fan (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流体入口气体
+  direction: unspecified
+- name: B
+  summary: 流体出口气体
+  direction: unspecified
+- name: R
+  summary: 轴机械旋转
+  direction: unspecified
+- name: C
+  summary: 壳体机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +48,99 @@ chinese_source: worker-translation
 ### **C** — 壳体机械旋转
 
 与壳体关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Fan parameterization
+  summary: 风扇性能模型 Static pressure and flow rate at reference shaft speed（默认）| 1D tabulated data - static pressure vs. flow
+    rate at reference shaft speed | 2D 表格数据 - 静压与轴转速和 flow rate | 2D 表格数据 - 流量与轴转速和静压的关系 pressure
+  group: ''
+- name: Shaft power specification
+  summary: 功率定义 Fan efficiency（默认）| Brake power
+  group: ''
+- name: Nominal volumetric flow rate
+  summary: 参考轴转速下的流量 0.12 m^3/s（默认）| 正标量
+  group: ''
+- name: Nominal static pressure gain
+  summary: 参考轴转速下的压力增益 5400 Pa（默认）| 正标量
+  group: ''
+- name: Nominal efficiency
+  summary: 参考轴转速下的效率 0.40（默认）| 正标量
+  group: ''
+- name: Nominal mechanical power
+  summary: 标称效率下的功率 1620 W（默认）| 正标量
+  group: ''
+- name: Maximum static pressure gain at zero flow
+  summary: 参考轴转速下的最大压力 6400 Pa（默认）| 正标量
+  group: ''
+- name: Maximum volumetric flow rate at zero pressure
+  summary: 参考轴转速下的最大流量 0.24 m^3/s（默认）| 正标量
+  group: ''
+- name: Reference shaft speed
+  summary: 风扇曲线参考转速 3000 rpm（默认）| 正标量
+  group: ''
+- name: Minimum shaft speed threshold as fraction of reference
+  summary: 最小轴转速阈值 1e-2（默认）| 正标量
+  group: ''
+- name: Volumetric flow rate vector
+  summary: 风扇曲线流量向量 [.0278, .0556, .0833, .111, .139, .167] m^3/s（默认）| 向量
+  group: ''
+- name: Static pressure gain vector
+  summary: 给定体积流量下的压力增益 [6410, 6375, 6018, 5366, 4501, 3609] Pa（默认）| 向量
+  group: ''
+- name: Efficiency vector
+  summary: 给定体积流量下的效率 [.257, .394, .453, .47, .459, .415]（默认）| 向量
+  group: ''
+- name: Mechanical power vector
+  summary: 用于扭矩参数化的功率 [693, 900, 1107, 1267, 1363, 1452] W（默认）| 1×*n* 向量
+  group: ''
+- name: Reference density
+  summary: 与风扇曲线数据关联的密度 1.2 kg/m^3（默认）| 正标量
+  group: ''
+- name: Shaft speed vector, w
+  summary: 给定条件下的轴角速度 [2400; 3000; 3600] rpm（默认）| 向量
+  group: ''
+- name: Volumetric flow rate vector, q
+  summary: 用于压力增益参数化的流量 [.0278, .0556, .0833, .111, .139, .167] m^3/s（默认）| 1×*n* 向量
+  group: ''
+- name: Static pressure gain table, dp(w,q)
+  summary: 用于压力参数化的压力 [4111, 4010, 3551, 2881, 2167, 1453; 6410, 6375, 6018, 5366, 4501, 3609; 9217, 9285, 9022, 8428, 7552,
+    6482] Pa（默认）| *M*×*N* 矩阵
+  group: ''
+- name: Efficiency table, eta(w,q)
+  summary: 用于扭矩参数化的效率 [.3, .434, .468, .459, .4, .3; .257, .394, .453, .47, .459, .415; .225, .359, .434, .461, .47, .459]
+    1（默认）| *M*×*N* 矩阵
+  group: ''
+- name: Mechanical power table, W(w,q)
+  summary: 用于扭矩参数化的机械功率 [381, 514, 632, 697, 753, 809; 693, 900, 1107, 1267, 1363, 1452; 1139, 1438, 1732, 2029, 2233, 2358]
+    W（默认）| *M*×*N* 矩阵
+  group: ''
+- name: Static pressure gain vector, dp
+  summary: 用于流量参数化的压力 [31, 62, 93, 124] Pa（默认）| 1×*N* 向量
+  group: ''
+- name: Volumetric flow rate table, q(w,dp)
+  summary: 用于流量参数化的流量 [.802, .759, .703, .611; .936, .902, .862, .81; 1.056, 1.027, .994, .956] m^3/s（默认）| *M*×*N* 矩阵
+  group: ''
+- name: Efficiency table, eta(w,dp)
+  summary: 用于扭矩参数化的效率 [.088, .162, .22, .261; .068, .128, .18, .222; .055, .105, .148, .188]（默认）| *M*×*N* 矩阵
+  group: ''
+- name: Mechanical power table, W(w,dp)
+  summary: 用于扭矩参数化的机械功率 [283, 290, 297, 290; 427, 437, 445, 452; 595, 606, 625, 631] W（默认）| *M*×*N* 矩阵
+  group: ''
+- name: Fan diameter scale factor
+  summary: 模型到参考的比例因子 1（默认）| 正标量
+  group: ''
+- name: Mechanical orientation
+  summary: 旋转方向 Positive angular velocity of port R relative to port C corresponds to normal fan operation（默认）| Negative angular
+    velocity of port R relative to port C corresponds to normal fan operation
+  group: ''
+- name: Inlet flow area (port A)
+  summary: 端口 A 面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Outlet flow area (port B)
+  summary: 端口 B 面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Fan parameterization** — 风扇性能模型 `Static pressure and flow rate at reference shaft speed`（默认）| `1D tabulated data - static pressure vs. flow rate at reference shaft speed` | `2D 表格数据 - 静压与轴转速和 flow rate` | `2D 表格数据 - 流量与轴转速和静压的关系 pressure`
 
@@ -366,7 +472,6 @@ rate vs. shaft speed and static pressure`。
 ### **Outlet flow area (port B)** — 端口 B 面积 `0.01` `m^2`（默认）| 正标量
 
 风机出口处湿空气流的横截面积。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Turbomachinery

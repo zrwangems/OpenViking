@@ -14,6 +14,30 @@ language: en
 # Average-Value Voltage Source Converter
 
 ## Ports
+```yaml
+ports:
+- name: ModWave
+  summary: Modulation wave vector
+  direction: input
+- name: Vt
+  summary: RMS voltage scalar
+  direction: input
+- name: ph
+  summary: Phase shift scalar
+  direction: input
+- name: A
+  summary: AC-side terminal A electrical
+  direction: conserving
+- name: B
+  summary: AC-side terminal B electrical
+  direction: conserving
+- name: +
+  summary: DC-side positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: DC-side negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -60,8 +84,22 @@ Electrical conserving port associated with the DC-side positive terminal.
 ### **-** — DC-side negative terminal electrical
 
 Electrical conserving port associated with the DC-side negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input type
+  summary: Option to specify input of the block Modulation wave (default) | Sinusoidal magnitude and phase shift
+  group: ''
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz | scalar
+  group: ''
+- name: Initial current at DC side
+  summary: Initial current at DC side 0 A | scalar
+  group: ''
+- name: Time for holding initial current at DC side
+  summary: Time for holding initial current at DC side 1/60 s | scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -86,7 +124,6 @@ Initial current at the DC-side of the converter.
 ### **Time for holding initial current at DC side** — Time for holding initial current at DC side `1/60` `s` | scalar
 
 Time for holding the initial current at the DC side of the converter.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

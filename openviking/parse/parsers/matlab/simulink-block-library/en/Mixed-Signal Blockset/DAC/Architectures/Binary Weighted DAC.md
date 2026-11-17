@@ -14,6 +14,25 @@ language: en
 # Binary Weighted DAC
 
 ## Ports
+```yaml
+ports:
+- name: digital
+  summary: Digital input signal to DAC integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: start
+  summary: External clock to start conversion scalar
+  direction: input
+  data_types: double
+- name: analog
+  summary: Converted analog output signal scalar
+  direction: output
+  data_types: double
+- name: ready
+  summary: Indicates whether digital-to-analog conversion is complete scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -63,8 +82,102 @@ To enable this port, select **Show ready port** in the
 **General** tab.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of bits
+  summary: Number of bits in input word 5 (default) | positive real integer
+  group: General
+  block_parameter: NBits
+  type: character vector
+  values: positive real integer
+  default: '5'
+- name: Input polarity
+  summary: Polarity of input signal to DAC Bipolar (default) | Unipolar
+  group: General
+  block_parameter: Polarity
+  type: character vector
+  values: Bipolar|Unipolar
+  default: Bipolar
+- name: Use external start clock
+  summary: Connect to external start conversion clock on (default) | off
+  group: General
+- name: Conversion start frequency (Hz)
+  summary: Frequency of internal start conversion clock 1e6 (default) | positive real scalar
+  group: General
+  block_parameter: StartFreq
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Reference (V)
+  summary: Reference voltage 2 (default) | real scalar
+  group: General
+  block_parameter: Ref
+  type: character vector
+  values: real scalar
+  default: '2'
+- name: Bias (V)
+  summary: Bias voltage added to output 0 (default) | real scalar
+  group: General
+  block_parameter: Bias
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Show ready port
+  summary: Enable ready port on block off (default) | on
+  group: General
+- name: Enable linearity impairments
+  summary: Enable offset and gain errors in DAC simulation on (default) | off
+  group: Impairments
+- name: Offset error
+  summary: Shifts quantization steps by specific value 0 LSB (default) | real scalar
+  group: Impairments
+  block_parameter: OffsetError
+  type: character vector
+  values: real scalar
+  default: 0 LSB
+- name: Gain error
+  summary: Error in slope of DAC transfer curve 0 LSB (default) | real scalar
+  group: Impairments
+  block_parameter: GainError
+  type: character vector
+  values: real scalar
+  default: 0 LSB
+- name: Enable timing impairments
+  summary: Enable timing impairments in DAC simulation on (default) | off
+  group: Impairments
+- name: Specify switch timing using
+  summary: Specify how DAC calculates switch timing Settling time (default) | Slew rate
+  group: Impairments
+- name: Settling time (s)
+  summary: Time required for output to settle 2e-7 (default) | nonnegative real scalar
+  group: Impairments
+  block_parameter: SettlingTime
+  type: character vector
+  values: real scalar
+  default: 2e-7
+- name: Settling time tolerance (LSB)
+  summary: Tolerance for calculating settling time 0.5 (default) | positive real scalar
+  group: Impairments
+  block_parameter: SettlingTimeTolerance
+  type: character vector
+  values: positive real scalar
+  default: '0.5'
+- name: Rising slew rate
+  summary: Switch rising slew rate for DAC 5015625 (default) | positive real scalar | positive real vector
+  group: Impairments
+  block_parameter: RisingSlewRate
+  type: character vector
+  values: positive real scalar | positive real vector
+  default: '5015625'
+- name: Falling slew rate
+  summary: Switch falling slew rate for DAC -5015625 (default) | negative real scalar | negative real vector
+  group: Impairments
+  block_parameter: FallingSlewRate
+  type: character vector
+  values: negative real scalar | negative real vector
+  default: '-5015625'
+```
 
 ### General
 
@@ -358,7 +471,6 @@ rate` in the **Impairments** tab.
 | **Type:** character vector |
 | **Values:** negative real scalar | negative real vector |
 | **Default:** `-5015625` |
-
 ## Libraries
 
 Mixed-Signal Blockset / DAC / Architectures

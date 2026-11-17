@@ -15,14 +15,49 @@ chinese_source: worker-translation
 # Graphic
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
 ### **R** — 参考坐标系 frame
 
 图形标记的局部参考坐标系。连接到 frame 线或 frame 端口，以定义标记的相对位置和方向。
-
 ## 参数
+```yaml
+parameters:
+- name: Shape
+  summary: 可视化期间显示的标记形状 Sphere（默认）| Cube | Frame
+  group: ''
+- name: Size
+  summary: 标记的宽度（以像素为单位） 10 pixels（默认）| 标量
+  group: ''
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: Visual Properties
+- name: Diffuse Color
+  summary: 漫反射光的颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Visual Properties
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: Visual Properties
+- name: Specular Color
+  summary: 镜面反射光的颜色 [0.5 0.5 0.5 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Visual Properties
+- name: Ambient Color
+  summary: 环境光的颜色 [0.15 0.15 0.15 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Visual Properties
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: Visual Properties
+- name: Shininess
+  summary: 标记的光泽度 75（默认）| 取值范围为 1 到 128 的标量
+  group: Visual Properties
+```
 
 ### **Shape** — 可视化期间显示的标记形状 `Sphere`（默认）| `Cube` | `Frame`
 
@@ -85,7 +120,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Visual Properties** 设置为 `Advanced`。
-
 ## 所属库
 
 Simscape / Multibody / Body Elements

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # LSTM Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据向量 | 二维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出数据二维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,160 @@ chinese_source: worker-translation
 LSTM 运算的结果。输出数据具有两个维度，分别对应通道和时间步，顺序如此。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Layer
+  summary: 对应的层对象 layerObject（默认）| lstmLayer 对象
+  group: 主
+  block_parameter: Layer
+  type: workspace variable
+  values: lstmLayer object
+  default: '''layerObject'''
+- name: Data format
+  summary: 输入数据的格式 CT（默认）
+  group: 主
+  block_parameter: DataFormat
+  type: character vector
+  values: '''CT'''
+  default: '''CT'''
+- name: Stateful prediction
+  summary: 是否使用有状态预测 on（默认）| off
+  group: 主
+  block_parameter: StatefulPrediction
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Activation approximation method
+  summary: 计算激活函数输出的近似方法 None（默认）| CORDIC | Lookup
+  group: 数据类型
+  block_parameter: ApproximationMethod
+  type: character vector
+  values: '''None'' | ''CORDIC'' | ''Lookup'''
+  default: '''None'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认）| <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| <data type expression>'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Input weights
+  summary: '输入权重的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: InputWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Recurrent weights
+  summary: '循环权重的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: RecurrentWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Bias
+  summary: '偏置的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: BiasDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Initial cell state
+  summary: '初始单元状态的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: InitialCellStateDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Cell state
+  summary: '单元状态的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via
+    back propagation | Inherit: Same as first input | Inherit: Same as accumulator | <data type expression>'
+  group: 数据类型
+  block_parameter: CellStateDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Initial hidden state
+  summary: '初始隐藏状态的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: InitialHiddenStateDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Hidden state
+  summary: '隐藏状态的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit
+    via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: HiddenStateDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Input weights matrix multiply output
+  summary: '输入权重矩阵乘法输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: InputWeightsMatrixMulitplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Recurrent weights matrix multiply output
+  summary: '循环权重矩阵乘法输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: RecurrentWeightsMatrixMulitplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Linear gate accumulator
+  summary: '线性门累加器的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: LinearGateAccumDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Same as first input'' | <data type expression>'
+- name: Linear gate add output
+  summary: '线性门求和的数据类型 Inherit: Same as first input（默认）| Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via back
+    propagation | Inherit: Inherit via internal rule | Inherit: Same as accumulator | <data type expression>'
+  group: 数据类型
+  block_parameter: LinearGateAddOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Gate activation output
+  summary: '门激活输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: GateActivationoutDataTypeStr
+  values: 'Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | <data type expression>'
+- name: State activation output
+  summary: '状态激活输出的数据类型 ''Inherit: Inherit via internal rule''（默认）| ''Inherit: Same as first input'' | <data type expression>'
+  group: 数据类型
+  block_parameter: StateActivationOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Same as first input'' | <data type expression>'
+- name: Cell state product output
+  summary: '单元状态乘积的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Inherit via back propagation
+    | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: CellStateProductOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Inherit via back propagation'' |
+    ''Inherit: Same as first input'' | <data type expression>'
+- name: Cell state accumulator
+  summary: '单元状态累加器的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: CellStateProductOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Same as first input'' | <data type expression>'
+- name: Sample time
+  summary: 用于指定采样时间的选项 -1（默认）| 标量
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中，选择**属性检查器**。
 
@@ -525,7 +688,6 @@ Long Short-Term Memory Layer。
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **值**：`'-1'`（默认）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Sequence Layers

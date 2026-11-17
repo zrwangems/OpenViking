@@ -14,6 +14,21 @@ language: en
 # Complex to Magnitude-Angle
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Magnitude scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: Radian phase angle scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -51,8 +66,37 @@ matrix.
   `Angle`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Magnitude and/or phase angle output specification Magnitude and angle (default) | Magnitude | Angle
+  group: ''
+  block_parameter: Output
+  type: character vector
+  values: '''Magnitude and angle'' | ''Magnitude'' | ''Angle'''
+  default: '''Magnitude and angle'''
+- name: Approximation method
+  summary: Approximation method None (default) | CORDIC
+  group: ''
+  block_parameter: ApproximationMethod
+  type: character vector
+  values: '''None'' | ''CORDIC'''
+  default: '''None'''
+- name: Number of iterations
+  summary: Number of iterations for CORDIC algorithm 11 (default) | positive integer, less than or equal to word length of
+    fixed-point input
+  group: ''
+  block_parameter: NumberOfIterations
+  type: character vector
+  values: positive integer, less than or equal to word length of fixed-point input
+  default: '''11'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Output** — Magnitude and/or phase angle output specification `Magnitude and angle` (default) | `Magnitude` | `Angle`
 
@@ -139,7 +183,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Math Operations

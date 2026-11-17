@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Highpass IIR Filter Design
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 滤波器阶数 正整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Fc
+  summary: 3-dB 截止频率 正标量 ≤ 1
+  direction: input
+  data_types: single | double
+- name: Ap
+  summary: 通带波纹（dB） 正标量
+  direction: input
+  data_types: single | double
+- name: Ast
+  summary: 阻带衰减（dB） 正标量
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: 分子系数 *P*×3 矩阵
+  direction: output
+  data_types: single | double
+- name: Den
+  summary: 分母系数 *P*×3 矩阵
+  direction: output
+  data_types: single | double
+- name: g
+  summary: 每个二阶节的缩放值 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -128,8 +159,58 @@ H(z)=∏k=1PHk(z)=∏k=1Pb0k+b1kz−1+b2kz−2a0k+a1kz−1+a2kz−2,
 要启用此端口，请选择 **Design has scale values** 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Smooth tuned filter parameters
+  summary: 平滑可调滤波器参数 off（默认）| on
+  group: ''
+- name: Smoothing factor
+  summary: 平滑因子 0.6（默认）| 小于 1 的非负标量
+  group: ''
+- name: Design method
+  summary: 滤波器设计方法 Butterworth（默认）| Chebyshev Type I | Chebyshev Type II
+  group: ''
+- name: Specify filter order from input port
+  summary: 从输入端口指定滤波器阶数的标志 off（默认）| on
+  group: ''
+- name: Filter order
+  summary: 滤波器阶数 6（默认）| 正整数
+  group: ''
+- name: Filter maximum order
+  summary: 滤波器最大阶数 10（默认）| 正整数
+  group: ''
+- name: Design has scale values
+  summary: 指定滤波器是否为每个节具有缩放值 off（默认）| on
+  group: ''
+- name: Specify 3-dB cutoff frequency from input port
+  summary: 从输入端口指定 3-dB 截止频率的标志 off（默认）| on
+  group: ''
+- name: 3-dB cutoff frequency
+  summary: 3-dB 截止频率 0.25（默认）| 正标量 ≤ 1
+  group: ''
+- name: Specify the passband ripple from input port
+  summary: 从输入端口指定通带波纹的标志 off（默认）| on
+  group: ''
+- name: Passband ripple (dB)
+  summary: 通带波纹（dB） 1（默认）| 正标量
+  group: ''
+- name: Specify the stopband attenuation from input port
+  summary: 从输入端口指定阻带衰减的标志 off（默认）| on
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: 阻带衰减（dB） 60（默认）| 正标量
+  group: ''
+- name: Sample time
+  summary: 采样时间（秒） -1（默认）| 正标量 | Inf
+  group: ''
+- name: Output data type
+  summary: 滤波器系数的数据类型 double（默认）| single
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Smooth tuned filter parameters** — 平滑可调滤波器参数 `off`（默认）| `on`
 
@@ -261,7 +342,6 @@ H(z)=∏k=1PHk(z)=∏k=1Pb0k+b1kz−1+b2kz−2a0k+a1kz−1+a2kz−2,
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码将复用于后续仿真。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Sources

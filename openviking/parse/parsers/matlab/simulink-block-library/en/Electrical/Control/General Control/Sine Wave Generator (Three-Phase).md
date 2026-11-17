@@ -14,6 +14,24 @@ language: en
 # Sine Wave Generator (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: mag
+  summary: Magnitude of generated three-phase sine wave scalar
+  direction: input
+- name: ang
+  summary: Phase shift of the generated three-phase sine wave, deg scalar
+  direction: input
+- name: freq
+  summary: Frequency of generated three-phase sine wave, Hz scalar
+  direction: input
+- name: abc
+  summary: Three-phase sine wave vector
+  direction: output
+- name: wt
+  summary: Angle of sine wave of all three phases, rad vector
+  direction: output
+```
 
 ### Input
 
@@ -41,8 +59,13 @@ Three-phase sine wave, returned as a Simulink signal vector.
 
 Angle of all three phases of the sine wave, returned as a Simulink
 signal vector in rad.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Sample time (-1 for inherited)** — Block sample time `-1` (default) | `0` | positive scalar
 
@@ -58,7 +81,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

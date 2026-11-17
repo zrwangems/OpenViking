@@ -14,6 +14,21 @@ language: en
 # Demux
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Accept nonbus vector signal to extract and output signals from real or complex values of any nonbus data type supported
+    by Simulink® software
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+- name: Port_1
+  summary: Output signals extracted from input vector signal nonbus signal with real or complex values of any data type supported
+    by Simulink software
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+```
 
 ### Input
 
@@ -32,8 +47,20 @@ ports are ordered from top to bottom. For a description of the port order for va
 block orientations, see Identify Port Location on Rotated or Flipped Block.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of outputs
+  summary: Number of outputs 2 (default) | scalar | vector
+  group: ''
+  block_parameter: Outputs
+  values: '''2'' (default) | scalar in quotes | vector in quotes'
+- name: Display option
+  summary: Displayed block icon bar (default) | none
+  group: ''
+  block_parameter: DisplayOption
+  values: '''bar'' (default) | ''none'''
+```
 
 ### **Number of outputs** — Number of outputs 2 (default) | scalar | vector
 
@@ -100,7 +127,6 @@ the `set_param` function.
 | **Values:** | `'bar'` (default) | `'none'` |
 
 **Example:** `set_param(gcb,'DisplayOption','none')`
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing

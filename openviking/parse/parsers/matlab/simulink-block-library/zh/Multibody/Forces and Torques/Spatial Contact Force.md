@@ -15,6 +15,72 @@ chinese_source: worker-translation
 # Spatial Contact Force
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础几何体 geometry
+  direction: input
+- name: F
+  summary: 从动几何体 geometry
+  direction: input
+- name: fnz
+  summary: 法向接触力大小，N physical signal
+  direction: input
+- name: ffrxy
+  summary: 摩擦力，N physical signal
+  direction: input
+- name: con
+  summary: 接触信号，无量纲 physical signal
+  direction: output
+- name: pen
+  summary: 穿透深度，m physical signal
+  direction: output
+- name: sep
+  summary: 分离距离，m 物理信号
+  direction: output
+- name: vn
+  summary: 相对法向速度，m/s 物理信号
+  direction: output
+- name: vt
+  summary: 相对切向速度，m/s 物理信号
+  direction: output
+- name: fn
+  summary: 法向力，N 物理信号
+  direction: output
+- name: fnm
+  summary: 法向力大小，N 物理信号
+  direction: output
+- name: tn
+  summary: 法向力产生的力矩，N\*m 物理信号
+  direction: output
+- name: ffr
+  summary: 摩擦力，N 物理信号
+  direction: output
+- name: ffrm
+  summary: 摩擦力大小，N 物理信号
+  direction: output
+- name: tfr
+  summary: 摩擦力产生的力矩，N\*m 物理信号
+  direction: output
+- name: ft
+  summary: 总接触力，N 物理信号
+  direction: output
+- name: tt
+  summary: 总接触力产生的力矩，N\*m 物理信号
+  direction: output
+- name: Rb
+  summary: 基座旋转，无量纲 物理信号
+  direction: output
+- name: pb
+  summary: 基座平移，无量纲 物理信号
+  direction: output
+- name: Rf
+  summary: 从动件旋转，无量纲物理信号
+  direction: output
+- name: pf
+  summary: 从动件平移，无量纲物理信号
+  direction: output
+```
 
 ### 几何
 
@@ -259,8 +325,43 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Sensing > Contact Frame** 部分中，选择 **Follower Translation**。
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 指定法向接触力的方法 Smooth Spring-Damper（默认）| Provided by Input
+  group: 法向力
+- name: Stiffness
+  summary: 接触弹簧对几何穿透的阻力 1e6 N/m（默认）| 标量
+  group: 法向力
+- name: Damping
+  summary: 几何体穿透期间接触阻尼器对运动的阻力 1e3 N/(m/s)（默认）| 标量
+  group: 法向力
+- name: Transition Region Width
+  summary: 弹簧-阻尼器力上升至其完整值的区域 1e-4 m（默认）| 标量
+  group: 法向力
+- name: Method
+  summary: 指定摩擦力的方法 Smooth Stick-Slip（默认）| None | Provided by Input
+  group: 摩擦力
+- name: Coefficient of Static Friction
+  summary: 切向速度接近零时摩擦力大小与法向力大小之比 0.5（默认）| 非负标量
+  group: 摩擦力
+- name: Coefficient of Dynamic Friction
+  summary: 切向速度较大时摩擦力大小与法向力大小之比 0.3（默认）| 非负标量
+  group: 摩擦力
+- name: Critical Velocity
+  summary: 决定静摩擦系数与动摩擦系数之间混合的临界速度 1e-3 m/s（默认）| 标量
+  group: 摩擦力
+- name: Direction
+  summary: 测量方向 Base on Follower（默认）| Follower on Base
+  group: Sensing
+- name: Resolution Frame
+  summary: 用于解析测量值的坐标系 Contact（默认）| Base | Follower
+  group: Sensing
+- name: Detect Contact Start and End
+  summary: 将接触的开始和结束检测为零交叉事件 off（默认）| on
+  group: Zero-Crossings
+```
 
 ### 法向力
 
@@ -366,7 +467,6 @@ Stick-Slip`。
 ### **Detect Contact Start and End** — 将接触的开始和结束检测为零交叉事件 off（默认）| on
 
 选择此项可将每个接触的开始和结束检测为零交叉事件。当分离距离从正值或零变为负值，或从负值变为正值或零时，会发生零交叉事件。
-
 ## 所属库
 
 Simscape / Multibody / Forces and Torques

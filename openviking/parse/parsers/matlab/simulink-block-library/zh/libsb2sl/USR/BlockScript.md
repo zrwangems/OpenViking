@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # MATLAB Function
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入变量 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumerated | bus
+- name: Port_1
+  summary: 输出变量 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumerated | bus
+```
 
 ### 输入
 
@@ -42,8 +55,55 @@ MATLAB 函数中的输出变量，指定为实值标量、向量或矩阵。每�
 要创建输出端口，请打开模块并在 **Symbols** 窗格中创建输出变量。请参阅 Create and Define MATLAB Function Block Variables。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Update method
+  summary: 用于激活模块的方法 Inherited（默认）| Discrete | Continuous
+  group: ''
+  block_parameter: ChartUpdate
+  values: '"INHERITED"（默认）| "CONTINUOUS" | "DISCRETE"'
+- name: Sample time
+  summary: 模块在仿真期间激活的时间间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 标量 | 向量'
+- name: Saturate on integer overflow
+  summary: 数据在整数溢出时是否饱和 on（默认）| off
+  group: 高级
+  block_parameter: SaturateOnIntegerOverflow
+  values: true 或 1（默认）| false 或 0
+- name: Support variable-size arrays
+  summary: 模块是否支持可变大小数据 on（默认）| off
+  group: 高级
+  block_parameter: SupportVariableSizing
+  values: true 或 1（默认）| false 或 0
+- name: Allow direct feedthrough
+  summary: 模块是否支持直接馈通语义 on（默认）| off
+  group: 高级
+  block_parameter: AllowDirectFeedthrough
+  values: true 或 1（默认）| false 或 0
+- name: Interpret output column vectors as one-dimensional data
+  summary: 模块是否将长度为 1 的维度的输出变量视为固定大小 off（默认）| on
+  group: 高级
+  block_parameter: VectorOutputs1D
+  values: false 或 0（默认）| true 或 1
+- name: Treat dimensions of length 1 as fixed size
+  summary: 至少有一个长度为 1 的维度的变量是否为固定大小 on（默认）| off
+  group: 高级
+  block_parameter: TreatDimensionOfLengthOneAsFixedSize
+  values: true 或 1（默认）| false 或 0
+- name: Treat these inherited Simulink signal types as fi objects
+  summary: 要视为 fi 对象的继承 Simulink 信号 Fixed-point（默认）| Fixed-point & Integer
+  group: 定点属性
+  block_parameter: TreatAsFi
+  values: '"Fixed-point"（默认）| "Fixed-point & Integer"'
+- name: MATLAB function fimath
+  summary: 默认 fimath 属性 Same as MATLAB（默认）| Specify Other
+  group: 定点属性
+  block_parameter: EmlDefaultFimath
+  values: '"Same as MATLAB Default"（默认）| "Other:UserSpecified"'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -260,7 +320,6 @@ MATLAB Function 模块还具有子系统模块参数，您可以通过右键单�
 | --- | --- |
 | **参数：** | `EmlDefaultFimath` |
 | **值：** | `"Same as MATLAB Default"`（默认）| `"Other:UserSpecified"` |
-
 ## 所属库
 
 Simulink / User-Defined Functions HDL Coder / User-Defined Functions

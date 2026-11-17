@@ -14,6 +14,41 @@ language: en
 # To Multimedia File
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image frame matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: Red color component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: Green color component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: Blue color component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Y
+  summary: Luma component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cb
+  summary: Blue-difference chrominance component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cr
+  summary: Red-difference chrominance component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Audio
+  summary: Input audio signal vector | matrix
+  direction: input
+  data_types: single | double | int16 | int32 | uint8
+```
 
 ### Input
 
@@ -193,8 +228,42 @@ To enable this port:
   only`.
 
 **Data Types:** `single` | `double` | `int16` | `int32` | `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Name of multimedia file output.avi (default) | character vector
+  group: ''
+- name: File type
+  summary: Type of multimedia file AVI (default) | WAV | MJ2000 | WMA | WMV | MPEG4 | FLAC | OGG
+  group: ''
+- name: Write
+  summary: Type of media Video only (default) | Audio only | Video and audio
+  group: ''
+- name: Video compressor
+  summary: Video compression algorithm None (uncompressed) (default) | DV Video Encoder | MJPEG Compressor | Lossy | Lossless
+  group: ''
+- name: Compression Factor (>1)
+  summary: Compression factor 10 (default) | integer greater than 1
+  group: ''
+- name: Video Quality (0-100)
+  summary: Quality of video 75 (default) | integer in range [0, 100]
+  group: ''
+- name: File color format
+  summary: Color format of output video RGB (default) | YCbCr 4:2:2
+  group: ''
+- name: Image signal
+  summary: Input port configuration for RGB video One multidimensional signal (default) | Separate color signals
+  group: ''
+- name: Audio compressor
+  summary: Audio compression algorithm None (uncompressed) (default) | CCITT A-Law | CCITT u-Law | GSM 6.10 | IMA ADPCM |
+    Microsoft ADPCM | PCM
+  group: ''
+- name: Audio data type
+  summary: Audio data type Determine from input data type (default) | 8-bit integer | 16-bit integer | 24-bit integer | 32-bit
+    integer | 32-bit float | 64-bit float
+  group: ''
+```
 
 ### **File name** — Name of multimedia file `output.avi` (default) | character vector
 
@@ -357,7 +426,6 @@ To enable this parameter select, use either of these options:
   `8-bit integer`, `16-bit
   integer`, and `24-bit integer` data
   types.
-
 ## Libraries
 
 Computer Vision Toolbox / Sinks

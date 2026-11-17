@@ -14,6 +14,15 @@ language: en
 # Neutral Port (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: n
+  summary: Neutral point electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,17 @@ port.
 ### **n** — Neutral point electrical
 
 Electrical conserving port associated with the neutral point
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Parasitic ground conductance
+  summary: Parasitic ground conductance 1e-12 1/Ohm (default)
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -44,7 +62,6 @@ using three separate electrical conserving ports.
 
 Parasitic conductance to ground. A nonzero value is required for the
 simulation of some circuit topologies.
-
 ## Libraries
 
 Simscape / Electrical / Connectors & References

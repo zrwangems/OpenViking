@@ -14,6 +14,16 @@ language: en
 # Bit to Integer Converter
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal bit scalar | column vector of bits
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output signal integer | column vector of integers
+  direction: output
+```
 
 ### Input
 
@@ -42,8 +52,40 @@ unsigned or signed.
   [(–2*M*-1),
   (2*M* – 1 –
   1)].
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of bits per integer(M)
+  summary: Number of bits per integer 3 (default) | integer in the range [1, 32]
+  group: ''
+  block_parameter: nbits
+  type: character vector
+  values: integer in the range [1, 32]
+  default: '''3'''
+- name: Input bit order
+  summary: Input bit order MSB first (default) | LSB first
+  group: ''
+  block_parameter: bitOrder
+  type: character vector
+  values: '''MSB first'' | ''LSB first'''
+  default: '''MSB first'''
+- name: After bit packing, treat resulting integer values as
+  summary: Flag for signed integer values after bit packing Unsigned (default) | Signed
+  group: ''
+  block_parameter: signedOutputValues
+  type: character vector
+  values: '''Unsigned'' | ''Signed'''
+  default: '''Unsigned'''
+- name: Output data type
+  summary: Output data type Inherit via internal rule (default) | Smallest integer | Same as input | double | single | int8
+    | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: outDtype
+  type: character vector
+  values: '''Inherit via internal rule'' | ''Smallest integer'' | ''Same as input'' | ''double'' | ''single'' | ''int8'' |
+    ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'''
+  default: '''Inherit via internal rule'''
+```
 
 ### **Number of bits per integer(M)** — Number of bits per integer `3` (default) | integer in the range [1, 32]
 
@@ -160,7 +202,6 @@ the Configuration Parameters dialog box.
 | **Type**: character vector |
 | **Values**: `'Inherit via internal rule'` | `'Smallest integer'` | `'Same as input'` | `'double'` | `'single'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` |
 | **Default**: `'Inherit via internal rule'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations

@@ -15,6 +15,73 @@ chinese_source: worker-translation
 # 3DOF Acceleration
 
 ## 端口
+```yaml
+ports:
+- name: θ
+  summary: 俯仰姿态标量
+  direction: input
+  data_types: double
+- name: γ
+  summary: 航迹角标量
+  direction: input
+  data_types: double
+- name: q
+  summary: 俯仰角速率标量
+  direction: input
+  data_types: double
+- name: Vw
+  summary: 风轴坐标系中的速度二元素向量
+  direction: input
+  data_types: double
+- name: U w
+  summary: 机体速度二元素向量
+  direction: input
+  data_types: double
+- name: α
+  summary: 迎角标量
+  direction: input
+  data_types: double
+- name: g
+  summary: 重力标量
+  direction: input
+  data_types: double
+- name: Fuel
+  summary: 燃料箱状态标量
+  direction: input
+  data_types: double
+- name: m
+  summary: 质量标量
+  direction: input
+  data_types: double
+- name: Fx
+  summary: 沿 *x* 轴施加的力标量
+  direction: input
+  data_types: double
+- name: Fz
+  summary: 沿 *z* 轴施加的力标量
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: 质量变化率标量
+  direction: input
+  data_types: double
+- name: I
+  summary: 惯性张量标量
+  direction: input
+  data_types: double
+- name: Vre
+  summary: 相对速度二元素向量
+  direction: input
+  data_types: double
+- name: AxbAzb
+  summary: 机体加速度二元素向量
+  direction: output
+  data_types: double
+- name: AxeAze
+  summary: 机体加速度二元素向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -183,8 +250,28 @@ Az*)，以二元素向量返回，单位由
 **Units** 选择。通常将此信号连接到加速度计。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: Metric (MKS) | English (Velocity in ft/s) | English (Velocity in kts)
+- name: Mass type
+  summary: 质量类型 Fixed（默认）| Simple Variable | Custom Variable
+  group: ''
+  block_parameter: mtype
+  type: 字符向量
+  values: Fixed | Simple Variable | Custom Variable
+- name: Axes
+  summary: 机体轴或风轴 Body（默认）| Wind
+  group: ''
+  block_parameter: axes
+  type: 字符向量
+  values: Wind | Body
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -241,7 +328,6 @@ Inspector**。
 | **类型：** 字符向量 |
 | **值：** `Wind` | `Body` |
 | **默认：** `Body` |
-
 ## 所属库
 
 Aerospace Blockset / Equations of Motion / Acceleration

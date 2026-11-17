@@ -15,10 +15,121 @@ chinese_source: worker-translation
 # Linear Circuit Wizard
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: 电路设计名称
+  summary: 模块图标上显示的电路名称 'Linear Circuit'（默认）| 字符向量 | 字符串标量
+  group: 电路定义
+  block_parameter: CircuitDesignName
+  type: 字符向量
+  values: 字符串
+- name: 模块名称
+  summary: 模块图标下显示的实例名称 'Linear Circuit'（默认）| 字符向量 | 字符串标量
+  group: 电路定义
+  block_parameter: BlockName
+  type: 字符向量
+  values: 字符串
+- name: 网表文件名
+  summary: 定义电路的网表文件名 字符向量 | 字符串标量
+  group: 电路定义
+  block_parameter: NetlistFileName
+  type: 字符向量
+  values: 字符串
+- name: 配置名称
+  summary: 配置文件名 字符向量 | 字符串标量
+  group: 电路定义
+  block_parameter: ConfigurationName
+  type: 字符向量
+  values: 字符串
+- name: 解析网表文件并启动新配置
+  summary: 解析指定网表文件 按钮
+  group: 电路定义
+- name: 保存配置
+  summary: 将当前配置保存到文件 按钮
+  group: 电路定义
+- name: 加载配置
+  summary: 加载现有配置文件 按钮
+  group: 电路定义
+- name: 将配置附加到模块
+  summary: 将所选配置文件附加到 Simulink 模块 on（默认）| off
+  group: 电路定义
+- name: 构建 Simulink 模块
+  summary: 创建 Simulink 模块或对象以对网表定义的电路进行建模 按钮
+  group: 电路定义
+- name: 极点/零点报告
+  summary: 将极点-零点报告添加到基础工作区 on（默认）| off
+  group: 线性分析
+- name: 传递函数图
+  summary: 绘制传递函数 on（默认）| off
+  group: 线性分析
+- name: 线性控制系统
+  summary: 将控制系统微分方程的矩阵添加到基础工作区 on（默认）| off
+  group: 线性分析
+- name: 分析
+  summary: 分析线性电路以生成所选输出 按钮
+  group: 线性分析
+- name: Output port
+  summary: 用于主输出值的 Outport 端口下拉菜单，由端口定义创建
+  group: 工作点分析
+- name: Steady state output value(s)
+  summary: 期望的主输出值 0（默认）| scalar | vector
+  group: 工作点分析
+  block_parameter: OutputValues
+  type: character vector
+  values: scalar | vector
+  default: '0'
+- name: Primary control variable
+  summary: 用于调节输出的变量 Duty cycle（默认）| Frequency
+  group: 工作点分析
+  block_parameter: ControlVariable
+  type: character vector
+  values: Duty cycle | Frequency
+  default: Duty cycle
+- name: Duty cycle value [min,max]
+  summary: 最小控制占空比 0（默认）| scalar | 2-element vector
+  group: 工作点分析
+  block_parameter: DutyCycle
+  type: character vector
+  values: scalar | 2-element vector
+  default: '0'
+- name: Frequency [min,max]
+  summary: 最小控制频率 0（默认）| scalar | 2-element vector
+  group: 工作点分析
+  block_parameter: Frequency
+  type: character vector
+  values: scalar | 2-element vector
+  default: '0'
+- name: Phase offset(s)
+  summary: 控制信号上升沿相位，作为控制周期的分数 0（默认）| scalar | vector
+  group: 工作点分析
+  block_parameter: PhaseOffsets
+  type: character vector
+  values: scalar | vector
+  default: '0'
+- name: Pulse Duration(s)
+  summary: 控制信号的脉冲持续时间，作为控制周期的函数 0（默认）| scalar | vector
+  group: 工作点分析
+  block_parameter: PulseDuration
+  type: character vector
+  values: scalar | vector
+  default: '0'
+- name: Samples per waveform
+  summary: 单个开关周期输出波中的样本数 1024（默认）| positive integer scalar
+  group: 工作点分析
+  block_parameter: WaveSamples
+  type: character vector
+  values: scalar
+  default: '1024'
+- name: Analyze operating point
+  summary: 开关电路工作点分析按钮
+  group: 工作点分析
+```
 
 ### 电路定义
 
@@ -216,7 +327,6 @@ R2025b 中未记录。
 ### **Analyze operating point** — 开关电路工作点分析按钮
 
 点击以执行开关电路的开关键控功率级工作点分析。
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

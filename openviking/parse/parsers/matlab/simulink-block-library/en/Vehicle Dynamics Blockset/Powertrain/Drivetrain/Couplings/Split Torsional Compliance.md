@@ -14,6 +14,66 @@ language: en
 # Split Torsional Compliance
 
 ## Ports
+```yaml
+ports:
+- name: RSpd
+  summary: Input shaft speed scalar
+  direction: input
+- name: C1Spd
+  summary: First output shaft speed scalar
+  direction: input
+- name: C2Spd
+  summary: Second output shaft speed scalar
+  direction: input
+- name: CSpd
+  summary: Input speed scalar
+  direction: input
+- name: R1Spd
+  summary: First input shaft speed scalar
+  direction: input
+- name: R2Spd
+  summary: Second input shaft speed scalar
+  direction: input
+- name: R
+  summary: Input shaft angular velocity and torque two-way connector port
+  direction: input
+- name: R1
+  summary: First input shaft angular velocity and torque two-way connector port
+  direction: input
+- name: R2
+  summary: Second input shaft angular velocity and torque two-way connector port
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: RTrq
+  summary: Input shaft torque scalar
+  direction: output
+- name: C1Trq
+  summary: First output shaft torque scalar
+  direction: output
+- name: C2Trq
+  summary: Second output shaft torque scalar
+  direction: output
+- name: CTrq
+  summary: Output shaft torque scalar
+  direction: output
+- name: R1Trq
+  summary: First input shaft torque scalar
+  direction: output
+- name: R2Trq
+  summary: Second input shaft torque scalar
+  direction: output
+- name: C1
+  summary: First output shaft angular velocity and torque two-way connector port
+  direction: output
+- name: C2
+  summary: Second output shaft angular velocity and torque two-way connector port
+  direction: output
+- name: C
+  summary: Output shaft angular velocity and torque two-way connector port
+  direction: output
+```
 
 ### Input
 
@@ -295,8 +355,53 @@ To enable this port, select:
 
 - **Port Configuration**>`Two-way connection`
 - **Coupling Configuration**>`Shaft merge`
-
 ## Parameters
+```yaml
+parameters:
+- name: Port Configuration
+  summary: Specify configuration Simulink (default) | Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink (default) | Two-way connection
+- name: Coupling Configuration
+  summary: Specify configuration Shaft split (default) | Shaft merge
+  group: ''
+  block_parameter: CplrMode
+  values: Shaft split (default) | Shaft merge
+- name: Output Info bus
+  summary: Selection off (default) | on
+  group: ''
+- name: Torsional stiffness, k1
+  summary: Stiffness 5e4 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: k1
+  values: 5e4 (default) | scalar greater than or equal to 0
+- name: Torsional damping, b1
+  summary: Damping 1e2 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: b1
+  values: 1e2 (default) | scalar greater than or equal to 0
+- name: Damping cutoff frequency, omega1_c
+  summary: Frequency 3000 (default) | positive scalar
+  group: ''
+  block_parameter: omega1_c
+  values: 3000 (default) | positive scalar
+- name: Torsional stiffness, k2
+  summary: Stiffness 5e4 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: k2
+  values: 5e4 (default) | scalar greater than or equal to 0
+- name: Torsional damping, b2
+  summary: Damping 1e2 (default) | scalar
+  group: ''
+  block_parameter: b2
+  values: 1e2 (default) | scalar greater than or equal to 0
+- name: Damping cutoff frequency, omega2_c
+  summary: Frequency 3000 (default) | positive scalar
+  group: ''
+  block_parameter: omega2_c
+  values: 3000 (default) | positive scalar
+```
 
 #### Block Options
 
@@ -455,7 +560,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `omega2_c` |
 | **Values:** | `3000` (default) | positive scalar |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertrain / Drivetrain / Couplings

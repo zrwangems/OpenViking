@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Mechanical Rotational Reference
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 角速度为零的机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **W** — 角速度为零的机械旋转
 
 机械旋转守恒端口，其角速度等于零。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Piston Engine
 
 ## 端口
+```yaml
+ports:
+- name: T
+  summary: 归一化发动机节气门开度，无量纲非负标量
+  direction: input
+- name: FC
+  summary: 燃油消耗率，kg/s 物理信号
+  direction: output
+- name: B
+  summary: 与发动机模块机械旋转相关联的基座端口
+  direction: output
+- name: F
+  summary: 发动机曲轴机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -35,8 +50,97 @@ chinese_source: worker-translation
 ### **F** — 发动机曲轴机械旋转
 
 发动机的随动端口。曲轴传递燃烧过程产生的功率。通常，这是您连接离合器和变速器的地方。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pistons
+  summary: 总排量计算 4（默认）| 正标量
+  group: 活塞
+- name: Offset angle vector
+  summary: 每个活塞的上止点偏移 [0, 180, 360, -180]（默认）| 向量
+  group: 活塞
+- name: Cylinder bore
+  summary: 活塞气缸壁的内径 .10 m（默认）| 正标量
+  group: 活塞
+- name: Piston stroke
+  summary: 活塞平移行程的长度 .06 m（默认）| 正标量
+  group: 活塞
+- name: Piston rod length
+  summary: 活塞到曲轴连杆的长度 .1 m（默认）| 正标量
+  group: 活塞
+- name: Number of strokes per cycle
+  summary: 完成一个燃烧循环的活塞冲程数 4（默认）| 正偶标量
+  group: 活塞
+- name: Pressure parameterization
+  summary: 确定施加到活塞的压力 By crank angle（默认）| By crank angle and throttle | By crank angle, throttle, and crank velocity
+  group: 活塞
+- name: Crank angle vector
+  summary: 不同的活塞曲柄角 [-360, -90, -30, 10, 30, 90, 160, 360] deg（默认）| 向量
+  group: 活塞
+- name: Throttle vector
+  summary: 不同的节气门位置 [0, .3, .8, 1]（默认）| 向量
+  group: 活塞
+- name: Crank velocity vector
+  summary: 不同的角速度 [0, 1000, 6000] rpm（默认）| 向量
+  group: 活塞
+- name: Pressure vector (gauge)
+  summary: 曲柄角参数化压力 [0, 3, 20, 50, 20, 10, 8, 0] bar（默认）| 向量
+  group: 活塞
+- name: Pressure matrix (gauge)
+  summary: 曲柄角和节气门参数化压力 *M*×*N* 矩阵（默认）| 矩阵
+  group: 活塞
+- name: Pressure 3D matrix (gauge)
+  summary: 曲柄角、节气门和曲柄速度参数化压力 *M*×*N*×*O* 矩阵（默认）| 三维矩阵
+  group: 活塞
+- name: Shaft dynamics
+  summary: 启用轴动力学建模参数 No shaft dynamics - Suitable for HIL simulation（默认）| Specify shaft stiffness, damping, and inertia
+  group: 曲轴
+- name: Base and follower bearing viscous friction coefficients
+  summary: 表征系统摩擦 [0, 0] deg（默认）| 向量
+  group: 曲轴
+- name: Initial crank angle
+  summary: 起始曲柄位置 90 deg（默认）| 标量
+  group: 曲轴
+- name: Stiffness
+  summary: 抗变形能力 1e6 N*m/rad（默认）| 正标量
+  group: 曲轴
+- name: Damping
+  summary: 从系统耗散能量的趋势 1000 N*m/(rad/s)（默认）| 正标量
+  group: 曲轴
+- name: Inertia
+  summary: 抵抗运动变化的趋势 .02 kg*m^2（默认）| 正标量
+  group: 曲轴
+- name: Initial angular deflection
+  summary: 角偏转初始化参数 0 deg（默认）
+  group: 曲轴
+- name: Initial angular velocity
+  summary: 角速度初始化参数 0（默认）| 标量
+  group: 曲轴
+- name: Fuel consumption model
+  summary: 启用燃油消耗建模参数 No fuel consumption（默认）| Constant per revolution | Fuel consumption by speed and torque | ...
+  group: 燃油消耗
+- name: Fuel consumption per piston revolution
+  summary: 常数 25 mg/rev（默认）| 正标量
+  group: 燃油消耗
+- name: Speed vector
+  summary: 发动机速度数据 [1000, 2000, 3000, 4000, 5000, 6000]（默认）| 向量
+  group: 燃油消耗
+- name: Torque vector
+  summary: 发动机扭矩数据 [0, 80, 160, 200, 240, 320, 360, 400]（默认）| 向量
+  group: 燃油消耗
+- name: Fuel consumption table
+  summary: 发动机燃油消耗数据 *M*×*N* 矩阵（默认）| 矩阵
+  group: 燃油消耗
+- name: Brake mean effective pressure vector
+  summary: 活塞压力数据 [0, 250, 500, 625, 750, 1000, 1150, 1250]（默认）| 向量
+  group: 燃油消耗
+- name: Brake specific fuel consumption table
+  summary: 制动比油耗数据 *M*×*N* 矩阵（默认）| 矩阵
+  group: 燃油消耗
+- name: Interpolation method
+  summary: 中间步骤行为 Linear（默认）| Smooth
+  group: 燃油消耗
+```
 
 ### 活塞
 
@@ -277,7 +381,6 @@ BMEP=T⋅(2π⋅ncVd)，
 #### 依赖关系
 
 要启用此参数，请将 **Fuel consumption** 设置为 `Fuel consumption by speed and torque`、`Brake specific fuel consumption by speed and torque` 或 `Brake specific fuel consumption by speed and brake mean effective pressure`。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors

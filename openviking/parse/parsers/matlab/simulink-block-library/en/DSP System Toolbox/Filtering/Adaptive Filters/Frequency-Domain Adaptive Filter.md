@@ -14,6 +14,53 @@ language: en
 # Frequency-Domain Adaptive Filter
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data input column vector
+  direction: input
+  data_types: single | double
+- name: Desired
+  summary: Desired signal column vector
+  direction: input
+  data_types: single | double
+- name: Mu
+  summary: Step size input real scalar in the range (0,1]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Leak
+  summary: Leakage factor input real scalar in the range (0,1]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Avrg
+  summary: Averaging factor input real scalar in the range (0,1]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Offset
+  summary: Offset for normalization terms nonnegative real scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Adapt
+  summary: Enable filter coefficient updates nonnegative real scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Reset
+  summary: Enable filter states reset nonnegative real scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Output
+  summary: Filtered output column vector
+  direction: output
+  data_types: single | double
+- name: Error
+  summary: Difference between output and desired signal column vector
+  direction: output
+  data_types: single | double
+- name: FFTCoeffs
+  summary: Current FFT coefficients of filter row vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -178,8 +225,62 @@ coefficients** check box.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Method to calculate filter coefficients Constrained FDAF (default) | Partitioned constrained FDAF | Unconstrained
+    FDAF | Partitioned unconstrained FDAF
+  group: ''
+- name: Filter length
+  summary: Length of filter coefficients vector 32 (default) | positive, integer-valued scalar
+  group: ''
+- name: Block length
+  summary: Block length for coefficient updates 32 (default) | positive, integer-valued scalar
+  group: ''
+- name: Specify step size from port
+  summary: Flag to specify step size off (default) | on
+  group: ''
+- name: Step size
+  summary: Adaptation step size 1 (default) | real scalar in the range (0,1]
+  group: ''
+- name: Specify leakage factor from port
+  summary: Flag to specify leakage factor off (default) | on
+  group: ''
+- name: LeakageFactor
+  summary: Adaptation leakage factor 1 (default) | real scalar in the range (0,1]
+  group: ''
+- name: Specify averaging factor from port
+  summary: Flag to specify averaging factor off (default) | on
+  group: ''
+- name: Averaging factor
+  summary: Averaging factor for signal power 0.9 (default) | real scalar in the range (0,1]
+  group: ''
+- name: Specify offset from port
+  summary: Flag to specify offset off (default) | on
+  group: ''
+- name: Offset
+  summary: Offset for normalization terms 0 (default) | nonnegative real scalar
+  group: ''
+- name: Initial FFT input signal power
+  summary: Initial FFT input signal power 1 (default) | positive numeric scalar
+  group: ''
+- name: Initial time-domain coefficients
+  summary: Initial time-domain coefficients of filter 0 (default) | scalar | vector
+  group: ''
+- name: Enable adapt port
+  summary: Flag to enable coefficient update off (default) | on
+  group: ''
+- name: Enable reset port
+  summary: Flag to reset internal states off (default) | on
+  group: ''
+- name: Output filter FFT coefficients
+  summary: Flag to output the DFT of the filter coefficients off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Method** — Method to calculate filter coefficients `Constrained FDAF` (default) | `Partitioned constrained FDAF` | `Unconstrained FDAF` | `Partitioned unconstrained FDAF`
 
@@ -365,7 +466,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Adaptive Filters

@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Variable Bandwidth FIR Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Fcut
+  summary: 滤波器截止频率 正标量
+  direction: input
+  data_types: single | double
+- name: Fc
+  summary: 滤波器中心频率 正标量
+  direction: input
+  data_types: single | double
+- name: BW
+  summary: 滤波器带宽 正标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 滤波后的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -70,8 +93,55 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: FIR filter order
+  summary: FIR 滤波器阶数 30（默认）| 正整数
+  group: ''
+- name: Filter type
+  summary: 滤波器类型 Lowpass（默认）| Highpass | Bandpass | Bandstop
+  group: ''
+- name: Specify cutoff frequency from input port
+  summary: 从输入端口指定截止频率 off（默认）| on
+  group: ''
+- name: Filter cutoff frequency
+  summary: 滤波器截止频率 512（默认）| 正标量
+  group: ''
+- name: Specify center frequency from input port
+  summary: 从输入端口指定中心频率 off（默认）| on
+  group: ''
+- name: Filter center frequency
+  summary: 滤波器中心频率 44100/4（默认）| 正标量
+  group: ''
+- name: Specify bandwidth from input port
+  summary: 从输入端口指定带宽 off（默认）| on
+  group: ''
+- name: Filter bandwidth
+  summary: 滤波器带宽 7680（默认）| 正标量
+  group: ''
+- name: Window function
+  summary: 窗函数 Hann（默认）| Hamming | Chebyshev | Kaiser
+  group: ''
+- name: Chebyshev window sidelobe attenuation (dB)
+  summary: Chebyshev 窗旁瓣衰减 60（默认）| 正标量
+  group: ''
+- name: Kaiser window parameter
+  summary: Kaiser 窗参数 0.5（默认）| 实标量
+  group: ''
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 正标量
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **FIR filter order** — FIR 滤波器阶数 `30`（默认）| 正整数
 
@@ -233,7 +303,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs

@@ -14,6 +14,21 @@ language: en
 # Active Disturbance Rejection Control
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Reference signal scalar
+  direction: input
+- name: y
+  summary: Plant output scalar
+  direction: input
+- name: u
+  summary: Control input scalar
+  direction: output
+- name: xhat
+  summary: Estimated extended states vector
+  direction: output
+```
 
 ### Input
 
@@ -48,8 +63,87 @@ vector of length three, with estimated states y^, y˙^, and f^(t).
 
 To enable this output port, select the **Estimated extended states**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Time domain
+  summary: Controller time domain discrete-time (default) | continuous-time
+  group: Parameters Tab
+  block_parameter: '''time_domain'''
+  type: character vector
+  values: '''discrete-time'' | ''continuous-time'''
+  default: '''discrete-time'''
+- name: Sample time
+  summary: Controller sample time 0.01 (default) | finite positive scalar
+  group: Parameters Tab
+  block_parameter: '''Ts'''
+  type: character vector
+  values: finite positive scalar
+  default: '''0.01'''
+- name: Model type
+  summary: Plant order type first-order (default) | second-order
+  group: Parameters Tab
+  block_parameter: '''model_type'''
+  type: character vector
+  values: '''first-order'' | ''second-order'''
+  default: '''first-order'''
+- name: Critical gain
+  summary: Critical gain 1 (default) | finite nonzero scalar
+  group: Parameters Tab
+  block_parameter: '''b0'''
+  type: character vector
+  values: finite nonzero scalar
+  default: '''1'''
+- name: Controller bandwidth (rad/sec)
+  summary: Controller bandwidth 1 (default) | finite positive scalar
+  group: Parameters Tab
+  block_parameter: '''wc'''
+  type: character vector
+  values: finite positive scalar
+  default: '''1'''
+- name: Observer bandwidth (rad/sec)
+  summary: Observer bandwidth 10 (default) | finite positive scalar
+  group: Parameters Tab
+  block_parameter: '''wo'''
+  type: character vector
+  values: finite positive scalar
+  default: '''10'''
+- name: Initial conditions
+  summary: Initial state values for extended state observer 0 (default) | scalar | vector
+  group: Block Tab
+  block_parameter: '''x0'''
+  type: character vector
+  values: finite scalar | vector
+  default: '''0'''
+- name: Limit output (u)
+  summary: Limit block output to specified saturation limits off (default) | on
+  group: Block Tab
+  block_parameter: '''ulim_checkbox'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Upper limit
+  summary: Upper saturation limit for block output inf (default) | scalar
+  group: Block Tab
+  block_parameter: '''umax'''
+  type: character vector
+  values: scalar
+  default: '''inf'''
+- name: Lower limit
+  summary: Lower saturation limit for block output –inf (default) | scalar
+  group: Block Tab
+  block_parameter: '''umin'''
+  type: character vector
+  values: scalar
+  default: '''–inf'''
+- name: Estimated extended states (xhat)
+  summary: Output estimated states from observer off (default) | on
+  group: Block Tab
+  block_parameter: '''xhat_checkbox'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Parameters Tab
 
@@ -240,7 +334,6 @@ If the **Model type** is
 | **Type:** character vector |
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink Control Design / Adaptive Control

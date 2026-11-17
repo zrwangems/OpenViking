@@ -14,6 +14,15 @@ language: en
 # Translational Damper (PB)
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -27,13 +36,17 @@ connection.
 Position-based mechanical translational conserving port that represents the
 follower connection. For positive length, port **F** has a more
 positive position than port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Damping coefficient
+  summary: Damping coefficient, defined by viscous friction 1e5 N/(m/s) (default) | scalar
+  group: ''
+```
 
 ### **Damping coefficient** — Damping coefficient, defined by viscous friction `1e5 N/(m/s)` (default) | scalar
 
 Damping coefficient, defined by viscous friction.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

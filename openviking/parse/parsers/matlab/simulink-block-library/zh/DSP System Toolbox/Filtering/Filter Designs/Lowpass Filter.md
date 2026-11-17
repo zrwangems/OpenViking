@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Lowpass Filter
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 待滤波的输入信号 列向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 滤波后的信号 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,49 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter type
+  summary: FIR 或 IIR 滤波器 FIR（默认）| IIR
+  group: 主
+- name: Design minimum order filter
+  summary: 设计最小阶数滤波器 on（默认）| off
+  group: 主
+- name: Filter order
+  summary: 低通滤波器的阶数 50（默认）| 正整数
+  group: 主
+- name: Passband edge frequency (Hz)
+  summary: 通带边缘频率 8e3（默认）| 实正标量
+  group: 主
+- name: Stopband edge frequency (Hz)
+  summary: 阻带边缘频率 12e3（默认）| 实正标量
+  group: 主
+- name: Maximum passband ripple (dB)
+  summary: 最大通带波纹 0.1（默认）| 实正标量
+  group: 主
+- name: Minimum stopband attenuation (dB)
+  summary: 最小阻带衰减 80（默认）| 实正标量
+  group: 主
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: 主
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 标量
+  group: 主
+- name: View Filter Response
+  summary: 打开滤波器可视化工具 button
+  group: 主
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 主
+- name: Rounding mode
+  summary: 舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+- name: Coefficients
+  summary: 系数数据类型 fixdt(1,16)（默认）| fixdt(1,16,0) | <data type expression>
+  group: 数据类型
+```
 
 ### 主
 
@@ -149,7 +201,6 @@ chinese_source: worker-translation
 - `Refresh Data Type` —— 刷新为默认数据类型。
 
 点击 **Show data type assistant** 按钮以显示数据类型助手，它可帮助您设置数据类型。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs

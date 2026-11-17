@@ -14,6 +14,30 @@ language: en
 # Simulation 3D Ultrasonic Array
 
 ## Ports
+```yaml
+ports:
+- name: Detections
+  summary: Object detections Simulink bus containing MATLAB® structure
+  direction: output
+- name: Has object
+  summary: Flag indicating whether any detectable object is present in the sensor field-of-view true | false
+  direction: output
+- name: Has range
+  summary: Flag indicating whether range measurement is possible for any object present in the sensor field-of-view true |
+    false
+  direction: output
+- name: Range
+  summary: Distance measurement to the closest object nonnegative scalar
+  direction: output
+- name: Translation
+  summary: Sensor location real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: Sensor orientation real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -137,8 +161,72 @@ select **Output
 location (m) and orientation (rad)**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Mounting
+- name: Parent name
+  summary: Name of parent vehicle Scene Origin (default) | vehicle name
+  group: Mounting
+- name: Mounting location
+  summary: Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview
+    mirror | Hood center | Roof center | ...
+  group: Mounting
+- name: Specify offset
+  summary: Specify offset from mounting location off (default) | on
+  group: Mounting
+- name: Relative translation [X, Y, Z] (m)
+  summary: Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Relative rotation [Roll, Pitch, Yaw] (deg)
+  summary: Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Mounting
+- name: Relative mounting locations (m)
+  summary: Relative mounting locations of individual sensors in the ultrasonic array [[0, -0.67, 0]; [0, -0.22, 0]; [0, 0.22,
+    0]; [0, 0.67, 0]] (default) | real-valued *N*-by-3 array
+  group: Sensor Parameters
+- name: Relative mounting rotations (deg)
+  summary: Relative mounting rotations of individual sensors in the ultrasonic array zeros(4,3) (default) | real-valued *N*-by-3
+    array
+  group: Sensor Parameters
+- name: Horizontal Field of view (deg)
+  summary: Horizontal field of view of ultrasonic array 70 (default) | positive real scalar
+  group: Sensor Parameters
+- name: Vertical field of view (deg)
+  summary: Vertical field of view of ultrasonic array 35 (default) | positive real scalar
+  group: Sensor Parameters
+- name: Detection ranges (m)
+  summary: Detection range vector of ultrasonic array (m) [0.03 0.15 5.5] (default) | 1-by-3 nonnegative real-valued vector
+    of form [minDetOnlyRange minDistRange maxDistRange]
+  group: Sensor Parameters
+- name: Acoustic frequency (kHz)
+  summary: Frequency of sound waves used by all sensor emitters in ultrasonic array 50 (default) | positive real scalar
+  group: Sensor Parameters
+- name: Sampling frequency (kHz)
+  summary: Sampling frequency of all sensor receivers in ultrasonic array 500 (default) | positive real scalar
+  group: Sensor Parameters
+- name: Pulse width (s)
+  summary: Pulse width of ultrasonic waves used by all sensors in ultrasonic array 1e-6 (default) | positive real scalar
+  group: Sensor Parameters
+- name: Gain
+  summary: Vector gain for sound signal used by sensors in ultrasonic array [1, 0] (default) | real-valued scalar | real-valued
+    1-by-2 vector
+  group: Sensor Parameters
+- name: Sound speed (m/s)
+  summary: Speed of sound in environment 330 (default) | positive real scalar
+  group: Sensor Parameters
+- name: Use bus output
+  summary: Select to output signals together as bus signal on (default) | off
+  group: Sensor Parameters
+- name: Output location (m) and orientation (rad)
+  summary: Output location and orientation of sensor off (default) | on
+  group: Ground Truth
+```
 
 ### Mounting
 
@@ -405,7 +493,6 @@ Select this parameter to output the translation and rotation of the
 sensor at the **Translation** and
 **Rotation** ports,
 respectively.
-
 ## Libraries
 
 Automated Driving Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors

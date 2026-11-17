@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Median Filter
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: PVal
+  summary: 填充值标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: 输出图像矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -47,8 +62,25 @@ chinese_source: worker-translation
 输出图像，以矩阵形式返回。中值滤波后输出图像的维度由 **Output size** 参数指定。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Neighborhood size
+  summary: 邻域窗口大小 [3 3]（默认）| 正整数 | 正整数的二元素向量
+  group: ''
+- name: Output size
+  summary: 输出尺寸确定方法 Same as input port I（默认）| Valid
+  group: ''
+- name: Padding options
+  summary: 填充方法 Symmetric（默认）| Constant | Replicate | Circular
+  group: ''
+- name: Pad value source
+  summary: 常量填充值的来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Pad value
+  summary: 填充值 0（默认）| 标量
+  group: ''
+```
 
 ### **Neighborhood size** — 邻域窗口大小 `[3 3]`（默认）| 正整数 | 正整数的二元素向量
 
@@ -108,7 +140,6 @@ options** 参数设置为 `Constant`。
   `Constant`。
 - 将 **Pad value source** 参数设置为
   `Specify via dialog`。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement Computer Vision Toolbox / Filtering

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Polynomial
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 实数标量或向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 计算得到的多项式值 实数标量或向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,18 @@ chinese_source: worker-translation
 在输入信号处计算得到的多项式 *P(u)* 的值。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Polynomial coefficients
+  summary: 待计算多项式的系数 [ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001
+    ]（默认）| 实数数组
+  group: ''
+  block_parameter: coefs
+  type: 实数数组
+  default: '[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001
+    ]'
+```
 
 ### **Polynomial coefficients** — 待计算多项式的系数 `[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ]`（默认）| 实数数组
 
@@ -44,7 +65,6 @@ chinese_source: worker-translation
 | **模块参数：** `coefs` |
 | **类型：** 实数数组 |
 | **默认值：** `[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ]` |
-
 ## 所属库
 
 Simulink / Math Operations

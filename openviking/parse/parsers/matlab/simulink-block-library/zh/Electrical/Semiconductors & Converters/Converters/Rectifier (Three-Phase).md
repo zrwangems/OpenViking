@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Rectifier (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: conserving
+- name: a
+  summary: '*a* 相电气'
+  direction: conserving
+- name: b
+  summary: '*b* 相电气'
+  direction: conserving
+- name: c
+  summary: '*c* 相电气'
+  direction: conserving
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -57,8 +78,49 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与负极端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主
+- name: Forward voltage
+  summary: 正向电压 0.8 V（默认）
+  group: 主
+- name: On resistance
+  summary: 导通电阻 0.001 Ohm（默认）
+  group: 主
+- name: Off conductance
+  summary: 关断电导 1e-5 1/Ohm（默认）
+  group: 主
+- name: Model dynamics
+  summary: 二极管电荷动态 No dynamics（默认）| Model charge dynamics
+  group: 电荷动态
+- name: Junction capacitance
+  summary: 结电容 50e-9 F（默认）
+  group: 电荷动态
+- name: Peak reverse current, iRM
+  summary: 峰值反向电流 -235 A（默认）| 负标量
+  group: 电荷动态
+- name: Initial forward current when measuring iRM
+  summary: 测量 iRM 时的初始正向电流 300 A（默认）| 正标量
+  group: 电荷动态
+- name: Rate of change of current when measuring iRM
+  summary: 测量 iRM 时的电流变化率 -50A/μs（默认）| 负标量
+  group: 电荷动态
+- name: Reverse recovery time parameterization
+  summary: 反向恢复时间参数化 Specify stretch factor（默认）| Specify reverse recovery time directly | Specify reverse recovery charge
+  group: 电荷动态
+- name: Reverse recovery time, trr
+  summary: 反向恢复时间 15 μs（默认）
+  group: 电荷动态
+- name: Reverse recovery time stretch factor
+  summary: 反向恢复时间拉伸因子 3（默认）
+  group: 电荷动态
+- name: Reverse recovery charge, Qrr
+  summary: 反向恢复电荷 1500 μAs（默认）
+  group: 电荷动态
+```
 
 ### 主
 
@@ -163,7 +225,6 @@ chinese_source: worker-translation
 仅当 **Model dynamics** 参数设置为 `Model charge dynamics` 且 **Reverse recovery time parameterization** 参数设置为 `Specify reverse recovery charge` 时，此参数才可见。
 
 有关这些参数的详细信息，请参阅 Diode。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

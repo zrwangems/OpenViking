@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Pipe Bend (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: B
+  summary: 液体端口（热液体）
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,43 @@ chinese_source: worker-translation
 ### **B** — 液体端口（热液体）
 
 与管道弯头一端相关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Pipe diameter
+  summary: 管道直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Bend radius
+  summary: 弯曲圆半径 0.04 m（默认）| 正标量
+  group: ''
+- name: Bend angle
+  summary: 弯曲角度 90 deg（默认）| 正标量
+  group: ''
+- name: Elevation gain from port A to port B
+  summary: 管道高程变化 0 m（默认）| 标量
+  group: ''
+- name: Gravitational acceleration
+  summary: 重力加速度 9.81 m/s^2（默认）| 标量
+  group: ''
+- name: Internal surface absolute roughness
+  summary: 管壁粗糙度 15e-6 m（默认）| 正标量
+  group: ''
+- name: Enable dynamic compressibility
+  summary: 是否对流体可压缩性建模 off（默认）| on
+  group: ''
+- name: Initial liquid temperature
+  summary: 仿真开始时的液体温度 293.15 K（默认）
+  group: ''
+- name: Initial liquid pressure
+  summary: 仿真开始时的管道压力 0.101325 MPa（默认）| 正标量
+  group: ''
+- name: Nominal liquid temperature
+  summary: 标称工况下的温度 293.15 K（默认）| 标量
+  group: ''
+- name: Nominal liquid pressure
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: ''
+```
 
 ### **Pipe diameter** — 管道直径 `0.01 m`（默认）| 正标量
 
@@ -83,7 +127,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请清除 **Enable dynamic compressibility** 复选框。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

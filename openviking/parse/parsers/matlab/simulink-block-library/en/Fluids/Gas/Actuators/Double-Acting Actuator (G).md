@@ -14,6 +14,33 @@ language: en
 # Double-Acting Actuator (G)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Piston position input, m physical signal
+  direction: input
+- name: p
+  summary: Piston position, m physical signal
+  direction: output
+- name: A
+  summary: Liquid port gas
+  direction: conserving
+- name: B
+  summary: Liquid port gas
+  direction: conserving
+- name: R
+  summary: Actuator piston mechanical translational
+  direction: conserving
+- name: C
+  summary: Actuator casing mechanical translational
+  direction: conserving
+- name: HA
+  summary: Heat transfer thermal
+  direction: conserving
+- name: HB
+  summary: Heat transfer thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -67,8 +94,87 @@ Thermal conserving port associated with chamber A.
 ### **HB** — Heat transfer thermal
 
 Thermal conserving port associated with chamber B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Same fluid on both sides
+  summary: Option to model same fluid in both chambers on (default) | off
+  group: Actuator
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Actuator
+- name: Piston cross-sectional area in chamber A
+  summary: Chamber A piston area 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston cross-sectional area in chamber B
+  summary: Chamber B piston area 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston stroke
+  summary: Maximum piston travel distance 0.1 m (default) | positive scalar
+  group: Actuator
+- name: Dead volume in chamber A
+  summary: Chamber A fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Dead volume in chamber B
+  summary: Chamber B fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Cross-sectional area at port A
+  summary: Area at port A 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Cross-sectional area at port B
+  summary: Area at port B 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Actuator
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Actuator
+- name: Hard stop model
+  summary: Hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default) | Full
+    stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound
+    | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+- name: Piston displacement from chamber A cap
+  summary: Method for determining piston position Calculate from velocity of port R relative to port C (default) | Provide
+    input signal from Multibody joint
+  group: Initial Conditions
+- name: Initial piston displacement from chamber A cap
+  summary: Piston displacement at start of simulation 0 m (default) | scalar
+  group: Initial Conditions
+- name: Initial gas pressure in chamber A
+  summary: Starting gas pressure in chamber A 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Initial gas pressure in chamber B
+  summary: Starting gas pressure in chamber B 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Initial gas temperature in chamber A
+  summary: Starting gas temperature in chamber A 293.15 K (default) | scalar
+  group: Initial Conditions
+- name: Initial gas temperature in chamber B
+  summary: Starting gas temperature in chamber B 293.15 K (default) | scalar
+  group: Initial Conditions
+```
 
 ### Actuator
 
@@ -271,7 +377,6 @@ Initial temperature of the gas volume in the actuator.
 ### **Initial gas temperature in chamber B** — Starting gas temperature in chamber B `293.15` `K` (default) | scalar
 
 Initial temperature of the gas volume in the actuator.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Actuators

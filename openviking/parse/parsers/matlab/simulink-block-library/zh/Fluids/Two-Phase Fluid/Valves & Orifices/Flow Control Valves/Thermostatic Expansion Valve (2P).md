@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Thermostatic Expansion Valve (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流体入口 两相流体
+  direction: conserving
+- name: B
+  summary: 流体出口 两相流体
+  direction: conserving
+- name: S
+  summary: 感温包温度测量 两相流体
+  direction: conserving
+- name: E
+  summary: 均压管压力测量 两相流体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +56,115 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Pressure equalization** 设置为 `External pressure equalization`。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: 参数化方法 Nominal capacity, superheat, and operating conditions（默认）| Tabulated data - quadrant diagram
+  group: ''
+- name: Capacity specification
+  summary: 容量指定方法 Evaporator heat transfer（默认）| Mass flow rate
+  group: ''
+- name: Nominal evaporator heat transfer
+  summary: 标称工况下的蒸发器传热速率 15 kW（默认）| 正标量
+  group: ''
+- name: Maximum evaporator heat transfer
+  summary: 最大蒸发器传热速率 20 kW（默认）| 正标量
+  group: ''
+- name: Nominal mass flow rate
+  summary: 标称工况下的质量流量 0.005 kg/s（默认）| 正标量
+  group: ''
+- name: Maximum mass flow rate
+  summary: 最大蒸发器传热速率 0.008 kg/s（默认）| 正标量
+  group: ''
+- name: Nominal pressure specification
+  summary: 指定标称压力的方法 Specified pressure（默认）| Pressure at specified saturation temperature
+  group: ''
+- name: Nominal condenser outlet pressure
+  summary: 标称工况下的冷凝器出口压力 1.5 MPa（默认）| 正标量
+  group: ''
+- name: Nominal evaporator outlet pressure
+  summary: 标称工况下的蒸发器出口压力 0.3 MPa（默认）| 正标量
+  group: ''
+- name: Nominal condensing (saturation) temperature
+  summary: 冷凝器中的制冷剂饱和温度 313.15 K（默认）| 正标量
+  group: ''
+- name: Nominal evaporating (saturation) temperature
+  summary: 标称工况下的蒸发器饱和温度 273.15 K（默认）| 正标量
+  group: ''
+- name: Nominal condenser subcooling
+  summary: 运行冷凝器出口温差 5 deltaK（默认）| 正标量
+  group: ''
+- name: Nominal (static + opening) evaporator superheat
+  summary: 运行蒸发器出口温差 10 deltaK（默认）| 正标量
+  group: ''
+- name: Static (minimum) evaporator superheat
+  summary: 蒸发器出口处最小允许温差 5 deltaK（默认）| 正标量
+  group: ''
+- name: MOP limit
+  summary: 是否启用压力或温度限制 Off（默认）| On - Specify maximum operating pressure | On - Specify maximum operating temperature
+  group: ''
+- name: Maximum evaporator outlet pressure
+  summary: 最大压力 0.5 MPa（默认）| 正标量
+  group: ''
+- name: Maximum evaporating (saturation) temperature
+  summary: 最高温度 288.15 K（默认）| 正标量
+  group: ''
+- name: Closed valve leakage as a fraction of nominal flow
+  summary: 阀门始终存在的最小流量 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Quadrant 1 – Evaporator outlet temperature vector
+  summary: '蒸发器出口温度值向量 0 : 10 : 40 degC（默认）| 向量'
+  group: ''
+- name: Quadrant 1 – Bulb pressure vector
+  summary: '感温包内流体压力值向量 0.3 : 0.1 : 0.7 MPa（默认）| 向量'
+  group: ''
+- name: Quadrant 2 – Valve lift vector
+  summary: '阀门升程值向量 0 : 0.15 : 0.6 mm（默认）| 向量'
+  group: ''
+- name: Quadrant 2 – Evaporator outlet pressure vector
+  summary: '蒸发器出口压力值向量 0.3 : -0.05 : 0.1 MPa（默认）| 向量'
+  group: ''
+- name: Quadrant 3 – Valve lift vector
+  summary: '阀门升程值向量 0 : 0.15 : 0.6 mm（默认）| 向量'
+  group: ''
+- name: Quadrant 3 – Mass flow rate vector
+  summary: '通过阀门的质量流量值向量 [1e-7,0.015 : 0.015 : 0.06] kg/s（默认）| 向量'
+  group: ''
+- name: Reference condenser outlet pressure
+  summary: 冷凝器出口参考压力 2 MPa（默认）| 标量
+  group: ''
+- name: Reference evaporator outlet pressure
+  summary: 蒸发器出口参考压力 0.3 MPa（默认）| 标量
+  group: ''
+- name: Reference evaporator outlet temperature
+  summary: 蒸发器出口参考温度 0 degC（默认）| 标量
+  group: ''
+- name: Reference condenser subcooling
+  summary: 冷凝器出口参考温差 5 deltaK（默认）| 标量
+  group: ''
+- name: Pressure equalization
+  summary: 压力测量位置 Internal pressure equalization（默认）| External pressure equalization
+  group: ''
+- name: Bulb temperature dynamics
+  summary: 是否对热滞后建模 off（默认）| on
+  group: ''
+- name: Bulb thermal time constant
+  summary: 热滞后时间常数 20 s（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 端口面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流态转变处的蒸发器压力比 0.999（默认）| 正标量
+  group: ''
+- name: Inlet phase change time constant
+  summary: 混合物比容的滞后 0.1 s（默认）| 正标量
+  group: ''
+```
 
 ### **Valve parameterization** — 参数化方法 `Nominal capacity, superheat, and operating conditions`（默认）| `Tabulated data - quadrant diagram`
 
@@ -308,7 +430,6 @@ chinese_source: worker-translation
 ### **Inlet phase change time constant** — 混合物比容的滞后 `0.1` `s`（默认）| 正标量
 
 计算流体比容时液-汽混合物的时间滞后。当入口流体为完全过冷液体时，此参数不影响比容。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Valves & Orifices / Flow Control Valves

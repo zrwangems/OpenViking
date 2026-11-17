@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Simplified Generator
 
 ## 端口
+```yaml
+ports:
+- name: Pref
+  summary: 参考功率，单位为标幺值的物理信号
+  direction: input
+- name: R
+  summary: 转子机械旋转
+  direction: input
+- name: C
+  summary: 机壳机械旋转
+  direction: input
+- name: '~'
+  summary: 三相端口 三相电气
+  direction: input
+- name: n
+  summary: 中性相电气
+  direction: input
+- name: a
+  summary: '*a* 相电气'
+  direction: input
+- name: b
+  summary: '*b* 相电气'
+  direction: input
+- name: c
+  summary: '*c* 相电气'
+  direction: input
+```
 
 ### 输入
 
@@ -72,8 +99,58 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Electrical connection** 设置为
 `Expanded three-phase ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 常规
+- name: Rated power
+  summary: 额定功率 100e3 W（默认）| 非负标量
+  group: 常规
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz（默认）| 正标量
+  group: 常规
+- name: Internal source voltage (phase-to-phase RMS)
+  summary: 内部电源电压 1485 V（默认）| 非负标量
+  group: 常规
+- name: Source impedance
+  summary: 电源阻抗参数化 X/R Ratio（默认）| Series RL
+  group: 常规
+- name: Short circuit power
+  summary: 短路功率 1e6 A*V（默认）| 正标量
+  group: 常规
+- name: X/R ratio
+  summary: X/R 比 15（默认）| 正标量
+  group: 常规
+- name: Inductance
+  summary: 电感 0.01 H（默认）| 正标量
+  group: 常规
+- name: Resistance
+  summary: 电阻 0.1 Ohm（默认）| 正标量
+  group: 常规
+- name: Source impedance parasitic parallel conductance
+  summary: 电源阻抗寄生并联电导 0 1/Ohm（默认）| 非负标量
+  group: 常规
+- name: Percentage mechanical efficiency
+  summary: 机械效率百分比 95（默认）| 正标量
+  group: 常规
+- name: Active power frequency droop
+  summary: 有功功率频率下垂 0.1 Hz（默认）| 非负标量
+  group: 常规
+- name: Droop filter time constant
+  summary: 下垂滤波器时间常数 1e-2 s（默认）| 标量
+  group: 常规
+- name: Rotor inertia
+  summary: 转子惯量 1 kg*m^2（默认）| 正标量
+  group: 常规
+- name: Rotor damping
+  summary: 转子阻尼 0 N*m*s/rad（默认）| 非负标量
+  group: 常规
+- name: Electrical power measurement filter time constant
+  summary: 电功率测量滤波器时间常数 1e-3 s（默认）| 非负标量
+  group: 常规
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -169,7 +246,6 @@ Inspector**。
 ### **Electrical power measurement filter time constant** — 电功率测量滤波器时间常数 `1e-3` `s`（默认）| 非负标量
 
 电功率测量的滤波器时间常数。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical

@@ -14,6 +14,17 @@ language: en
 # Image Complement
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: Port_1
+  summary: Output image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -31,11 +42,12 @@ intensity values. The size and data type of the output image are the same as tho
 the input image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Computer Vision Toolbox / Conversions

@@ -14,6 +14,26 @@ language: en
 # Transfer Fcn Direct Form II Time Varying
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Num
+  summary: Numerator coefficients scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Den No Lead
+  summary: Denominator coefficients scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: y
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -65,8 +85,32 @@ The block automatically selects the data types and scalings of the
 output and any temporary variables.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition
+  summary: Initial condition 0.0 (default) | scalar
+  group: ''
+  block_parameter: vinit
+  type: character vector
+  values: scalar
+  default: '''0.0'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate to max or min when overflows occur
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Initial condition** — Initial condition `0.0` (default) | scalar
 
@@ -113,7 +157,6 @@ saturation code.
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Additional Math & Discrete / Additional Discrete

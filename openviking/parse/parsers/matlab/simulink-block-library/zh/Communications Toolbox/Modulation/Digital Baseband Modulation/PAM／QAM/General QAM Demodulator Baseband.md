@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # General QAM Demodulator Baseband
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Signal constellation**
 :   一个实数或复数向量，列出星座点。
@@ -51,7 +56,6 @@ R2025b 中未记录。
     - 如果噪声方差和信号功率都是非常小的值，则为 `NaN`
 
     近似 LLR 算法不计算指数。可以通过使用近似 LLR 算法来避免 `Inf`、`-Inf` 和 `NaN` 结果。
-
 ## 所属库
 
 R2025b 中未记录。

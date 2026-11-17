@@ -14,6 +14,14 @@ language: en
 # Enable
 
 ## Ports
+```yaml
+ports:
+- name: Enable signal
+  summary: External enable signal for a subsystem or model scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    expression
+```
 
 ### Output
 
@@ -25,8 +33,85 @@ An enable signal port is added to an Enable block when
 you select the **Show output port** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `expression`
-
 ## Parameters
+```yaml
+parameters:
+- name: States when enabling
+  summary: Select block states when subsystem or model is disabled held (default) | reset
+  group: ''
+  block_parameter: StatesWhenEnabling
+  type: character vector
+  values: '''held'' | ''reset'''
+  default: '''held'''
+- name: Propagate sizes of variable-size signals
+  summary: Select when to propagate a variable-size signal Only when enabling (default) | During execution
+  group: ''
+  block_parameter: PropagateVarSize
+  type: character vector
+  values: '''Only when enabling'' | ''During execution'''
+  default: '''Only when enabling'''
+- name: Show output port
+  summary: Control display of output port for enable signal off (default) | on
+  group: ''
+  block_parameter: ShowOutputPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Enable zero-crossing detection
+  summary: Control zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Port dimensions
+  summary: Specify dimensions for the enable signal 1 (default) | [n] | [m n]
+  group: ''
+  block_parameter: PortDimensions
+  type: character vector
+  values: '''1'' | ''[n]'' | ''[m n]'''
+  default: '''1'''
+- name: Sample time
+  summary: Specify time interval -1 (default) | Ts | [Ts, To]
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: '''-1'' | ''Ts'' | ''[Ts, To]'''
+  default: '''-1'''
+- name: Minimum
+  summary: Specify minimum output value for the enable signal [] (default) | real scalar
+  group: ''
+  block_parameter: OutMin
+  type: character vector
+  values: '''[]'' | real scalar in quotes'
+  default: '''[]'''
+- name: Maximum
+  summary: Specify maximum output value for the enable signal [] (default) | real scalar
+  group: ''
+  block_parameter: OutMax
+  type: character vector
+  values: '''[]'' | real scalar in quotes'
+  default: '''[]'''
+- name: Data type
+  summary: Specify output data type for the enable signal double (default) | single | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^,0) | <data type expression>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' |
+    ''uint64'' | ''boolean'' | ''<fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''double'''
+- name: Mode
+  summary: Select data type category Built in (default) | Fixed point | Expression
+  group: ''
+- name: Interpolate data
+  summary: Specify value of missing workspace data on (default) | off
+  group: ''
+  block_parameter: Interpolate
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **States when enabling** — Select block states when subsystem or model is disabled `held` (default) | `reset`
 
@@ -332,7 +417,6 @@ off
 | **Type:** character vector |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

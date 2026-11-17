@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # H-Bridge
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正负载连接端口 electrical
+  direction: conserving
+- name: '-'
+  summary: 负负载连接端口 electrical
+  direction: conserving
+- name: V+
+  summary: 正电源连接 electrical
+  direction: conserving
+- name: V-
+  summary: 负电源连接 electrical
+  direction: conserving
+- name: PWM
+  summary: 脉宽调制信号 electrical
+  direction: conserving
+- name: REF
+  summary: 参考 electrical
+  direction: conserving
+- name: REV
+  summary: REV electrical
+  direction: conserving
+- name: BRK
+  summary: BRK electrical
+  direction: conserving
+- name: H
+  summary: 热端口 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -65,8 +95,80 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Power supply
+  summary: 电源端口的可见性 Internal（默认）| External
+  group: 仿真模式与负载假设
+- name: Simulation mode
+  summary: 仿真模式 PWM（默认）| Averaged
+  group: 仿真模式与负载假设
+- name: Freewheeling mode
+  summary: 续流模式 Via one semiconductor switch and one freewheeling diode（默认）| Via two freewheeling diodes | Via two semiconductor
+    switches and one freewheeling diode
+  group: 仿真模式与负载假设
+- name: Regenerative braking
+  summary: 再生制动 Depends on REV flag and current sign（默认）| Always enabled (suitable for linearization)
+  group: 仿真模式与负载假设
+- name: Load current characteristics
+  summary: 负载电流特性 Smoothed（默认）| Unsmoothed or discontinuous
+  group: 仿真模式与负载假设
+- name: Load total series resistance
+  summary: 负载总串联电阻 10Ohm（默认）
+  group: 仿真模式与负载假设
+- name: Load total series inductance
+  summary: 负载总串联电感 1e-5H（默认）
+  group: 仿真模式与负载假设
+- name: PWM frequency
+  summary: PWM 频率 10kHz（默认）
+  group: 仿真模式与负载假设
+- name: Freewheeling diode off-state conductance
+  summary: 续流二极管关断态电导 1e-6S（默认）
+  group: 仿真模式与负载假设
+- name: Enable threshold voltage
+  summary: 使能阈值电压 2.5V（默认）
+  group: 输入阈值
+- name: PWM signal amplitude
+  summary: PWM 信号幅值 5.0V（默认）
+  group: 输入阈值
+- name: Reverse threshold voltage
+  summary: 反转阈值电压 2.5V（默认）
+  group: 输入阈值
+- name: Braking threshold voltage
+  summary: 制动阈值电压 2.5V（默认）
+  group: 输入阈值
+- name: Output voltage amplitude
+  summary: 输出电压幅值 12V（默认）
+  group: 桥参数
+- name: Total bridge on resistance
+  summary: 桥总导通电阻 0.1Ohm（默认）
+  group: 桥参数
+- name: Freewheeling diode on resistance
+  summary: 续流二极管导通电阻 0.05Ohm（默认）
+  group: 桥参数
+- name: Measurement temperature
+  summary: 测量温度 298.15K（默认）
+  group: 桥参数
+- name: Total bridge on resistance at second measurement temperature
+  summary: 第二测量温度下的桥总导通电阻 0.1Ohm（默认）
+  group: 温度依赖性
+- name: Freewheeling diode on resistance at second measurement temperature
+  summary: 第二测量温度下的续流二极管导通电阻 0.05Ohm（默认）
+  group: 温度依赖性
+- name: Second measurement temperature
+  summary: 第二测量温度 398.15K（默认）
+  group: 温度依赖性
+- name: Thermal mass
+  summary: 热质量 100J/K（默认）
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 298.15K（默认）
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -236,7 +338,6 @@ PWM 输入处信号的幅值。
 ### **Initial temperature** — 初始温度 `298.15``K`（默认）
 
 仿真开始时热端口的温度。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

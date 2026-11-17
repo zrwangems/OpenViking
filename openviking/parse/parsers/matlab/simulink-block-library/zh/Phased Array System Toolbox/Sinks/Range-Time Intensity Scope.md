@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Range-Time Intensity Scope
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据，实值长度-*M* 向量
+  direction: input
+  data_types: double | single
+```
 
 ### 输入
 
@@ -23,8 +30,70 @@ chinese_source: worker-translation
 输入数据，指定为距离响应的实值长度-*M* 向量。每个向量对应一行数据。该模块接受单精度数据类型输入，但会将数据转换为双精度以进行显示。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Range Offset (m)
+  summary: 距离偏移 0.0（默认）| 正标量
+  group: ''
+  block_parameter: RangeOffset
+  type: double
+  values: 标量
+- name: Time Span (s)
+  summary: 显示的时间跨度 0.1（默认）| 正标量
+  group: ''
+  block_parameter: TimeSpan
+  type: double
+  values: 标量
+- name: Range Resolution (m)
+  summary: 采样之间的距离差 1（默认）| 正标量
+  group: ''
+  block_parameter: RangeResolution
+  type: double
+  values: 正标量
+- name: Time Resolution (s)
+  summary: 行之间的时间差 0.001（默认）| 正标量
+  group: ''
+  block_parameter: TimeResolution
+  type: double
+  values: 正标量
+- name: Show Grid
+  summary: 显示笛卡尔网格叠加 on（默认）| off
+  group: ''
+  block_parameter: ShowGrid
+  type: logical
+  values: 1 | 0
+- name: Show Ticks
+  summary: 显示刻度值标签 on（默认）| off
+  group: ''
+  block_parameter: ShowTicks
+  type: logical
+  values: 1 | 0
+- name: Range Label
+  summary: 距离轴标签 'Range (m)'（默认）| 字符串
+  group: ''
+  block_parameter: RangeLabel
+  type: string
+  values: 字符串
+- name: Time Label
+  summary: 时间轴标签 Time History (s)'（默认）| 字符串
+  group: ''
+  block_parameter: TimeLabel
+  type: string
+  values: 字符串
+- name: Title
+  summary: 窗口标题 'Range vs. Time'（默认）| 字符串
+  group: ''
+  block_parameter: Title
+  type: string
+  values: 字符串
+- name: Colorbar Label
+  summary: 颜色条 'mag'（默认）| 字符串
+  group: ''
+  block_parameter: ColorBarLabel
+  type: string
+  values: 字符串
+```
 
 #### 数据和坐标轴
 
@@ -183,7 +252,6 @@ chinese_source: worker-translation
 | **默认：**`'mag'` |
 
 **数据类型：** `string`
-
 ## 所属库
 
 Phased Array System Toolbox / Sinks

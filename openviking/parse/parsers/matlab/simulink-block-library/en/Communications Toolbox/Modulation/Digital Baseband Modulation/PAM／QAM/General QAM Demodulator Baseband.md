@@ -14,10 +14,15 @@ language: en
 # General QAM Demodulator Baseband
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Signal constellation**
 :   A real or complex vector that lists the
@@ -89,7 +94,6 @@ Not documented in R2025b.
     The approximate LLR algorithm does not compute exponentials. You can avoid
     `Inf`, `-Inf`, and `NaN` results by using
     the approximate LLR algorithm.
-
 ## Libraries
 
 Not documented in R2025b.

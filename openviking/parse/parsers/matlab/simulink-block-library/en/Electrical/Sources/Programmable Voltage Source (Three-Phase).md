@@ -14,6 +14,24 @@ language: en
 # Programmable Voltage Source (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: Frequency physical signal
+  direction: input
+- name: M
+  summary: Magnitude physical signal
+  direction: input
+- name: Phi
+  summary: Phase shift physical signal
+  direction: input
+- name: n
+  summary: Neutral electrical
+  direction: conserving
+- name: '~'
+  summary: Three-phase AC voltage electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -38,8 +56,125 @@ Electrical conserving port associated with a neutral point.
 
 Expandable electrical conserving three-phase
 port associated with the AC voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: AC magnitude configuration
+  summary: AC voltage magnitude configuration Constant (default) | Ramp | Step | Modulation | External
+  group: AC Magnitude
+- name: Rated voltage (phase-to-phase RMS)
+  summary: Rated AC voltage 100 V (default)
+  group: AC Magnitude
+- name: Rate of change
+  summary: AC voltage rate of change 1 V/s (default)
+  group: AC Magnitude
+- name: Step amplitude
+  summary: AC voltage step amplitude 1 V (default)
+  group: AC Magnitude
+- name: Modulation magnitude
+  summary: AC voltage modulation magnitude 1 V (default)
+  group: AC Magnitude
+- name: Modulation frequency
+  summary: AC voltage modulation frequency 1 Hz (default)
+  group: AC Magnitude
+- name: Start time
+  summary: AC voltage start time 1s (default)
+  group: AC Magnitude
+- name: Stop time
+  summary: AC voltage stop time 2s (default)
+  group: AC Magnitude
+- name: AC frequency configuration
+  summary: AC frequency configuration Constant (default) | Ramp | Step | Modulation | External
+  group: Frequency
+- name: Rated frequency
+  summary: Rated frequency 60 Hz (default)
+  group: Frequency
+- name: Rate of change
+  summary: AC frequency rate of change 1 Hz/s (default)
+  group: Frequency
+- name: Step amplitude
+  summary: AC frequency step amplitude 1 Hz (default)
+  group: Frequency
+- name: Modulation magnitude
+  summary: AC frequency modulation magnitude 1 Hz (default)
+  group: Frequency
+- name: Modulation frequency
+  summary: AC frequency modulation frequency 1 Hz (default)
+  group: Frequency
+- name: Start time
+  summary: AC frequency start time 1s (default)
+  group: Frequency
+- name: Stop time
+  summary: AC frequency start time 2s (default)
+  group: Frequency
+- name: AC phase shift configuration
+  summary: AC phase shift configuration Constant (default) | Ramp | Step | Modulation | External
+  group: Phase
+- name: Phase shift
+  summary: AC voltage phase shift 0 deg (default)
+  group: Phase
+- name: Rate of change
+  summary: AC phase shift rate of change 1 deg/s (default)
+  group: Phase
+- name: Step amplitude
+  summary: AC phase shift step amplitude 1 deg (default)
+  group: Phase
+- name: Modulation magnitude
+  summary: AC phase shift modulation magnitude 1 deg (default)
+  group: Phase
+- name: Modulation frequency
+  summary: AC phase shift modulation frequency 1 Hz (default)
+  group: Phase
+- name: Start time
+  summary: AC phase shift start time 1s (default)
+  group: Phase
+- name: Stop time
+  summary: AC phase shift start time 2s (default)
+  group: Phase
+- name: Source impedance
+  summary: Source impedance configuration None (default) | X/R Ratio | Series R | Series L | Series RL
+  group: Impedance
+- name: Short-circuit power level
+  summary: Short-circuit power level 1e6 V*A (default)
+  group: Impedance
+- name: Source X/R ratio
+  summary: X/R ratio 15 (default)
+  group: Impedance
+- name: Source resistance
+  summary: Resistance 0.01 Ohm (default)
+  group: Impedance
+- name: Source inductance
+  summary: Inductance 3.97e-4 H (default)
+  group: Impedance
+- name: Parasitic parallel conductance
+  summary: Parasitic parallel conductance 1e-6 1/Ohm (default)
+  group: Impedance
+- name: Source harmonics
+  summary: Source harmonics configuration None (default) | Generate harmonics
+  group: Harmonics
+- name: Harmonic orders
+  summary: Harmonic orders [5, 7, 11, 13] (default)
+  group: Harmonics
+- name: Harmonic to base magnitude ratios
+  summary: Harmonic to base magnitude ratios [.1, .1, .1, .1] (default)
+  group: Harmonics
+- name: Harmonic phase shifts
+  summary: Harmonic phase shifts [0, 0, 0, 0] deg (default)
+  group: Harmonics
+- name: Harmonic sequences
+  summary: Harmonic sequences [1, 1, 1, 1] (default)
+  group: Harmonics
+- name: Start time
+  summary: Source harmonics start time -infs (default)
+  group: Harmonics
+- name: Stop time
+  summary: Source harmonics stop time infs (default)
+  group: Harmonics
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -463,7 +598,6 @@ Simulation time for stop of source harmonics.
 To enable this parameter, set **Source
 harmonics** to `Generate
 harmonics`.
-
 ## Libraries
 
 Simscape / Electrical / Sources

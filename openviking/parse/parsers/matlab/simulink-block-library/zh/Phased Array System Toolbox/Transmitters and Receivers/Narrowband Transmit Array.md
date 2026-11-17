@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Narrowband Transmit Array
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 辐射信号 复值 *M*×1 向量 | 复值 *M*×*N* 矩阵
+  direction: input
+  data_types: double
+- name: Ang
+  summary: 输入 实值 2×*L* 矩阵
+  direction: input
+  data_types: double
+- name: W
+  summary: 元素或子阵列权重 *N*×1 列向量
+  direction: input
+  data_types: double
+- name: WS
+  summary: 子阵列元素权重输入端口 复值 *N*SE×*N* 矩阵 | 1×*N* 元胞数组
+  direction: input
+  data_types: double
+- name: Steer
+  summary: 输入 实值 2×1 向量
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: 输出 复值 *M*×*L* 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -85,8 +112,156 @@ chinese_source: worker-translation
 辐射信号，指定为复值 *M*×*L* 矩阵，其中 *L* 是 `Ang` 中辐射角的数量。*M* 是输入信号 `X` 的长度。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: 传播速度 (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: 主选项卡
+- name: 工作频率 (Hz)
+  summary: 系统工作频率 3e8（默认）| 正实标量
+  group: 主选项卡
+- name: 传感器增益度量
+  summary: 指定传感器增益 dB（默认）| dBi
+  group: 主选项卡
+- name: 启用权重输入
+  summary: 启用权重输入 off（默认）| on
+  group: 主选项卡
+- name: 仿真方式
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: 主选项卡
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+- name: 指定传感器阵列方式
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| Single element | Partitioned array | Replicated subarray | MATLAB expression
+  group: 传感器阵列选项卡
+  type: ''
+- name: Element type
+  summary: 阵列单元类型 Isotropic Antenna（默认）| Cardioid Antenna | Cosine Antenna | Custom Antenna | Gaussian Antenna | Sinc Antenna
+    | Omni Microphone | Custom Microphone
+  group: 传感器阵列选项卡
+- name: Operating frequency range (Hz)
+  summary: 天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值 1×2 行向量
+  group: 传感器阵列选项卡
+- name: Baffle the back of the element
+  summary: 将 Isotropic Antenna 单元或 Omni Microphone 单元的后向响应设置为零 off（默认）| on
+  group: 传感器阵列选项卡
+- name: Null axis direction
+  summary: 零轴方向 -x（默认）| +x | +y | -y | +z | -z
+  group: 传感器阵列选项卡
+- name: Exponent of cosine pattern
+  summary: 方位角和仰角余弦方向图的指数 [1.5 1.5]（默认）| 非负标量 | 非负实值 1×2 矩阵
+  group: 传感器阵列选项卡
+- name: Operating frequency vector (Hz)
+  summary: 自定义天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值行向量
+  group: 传感器阵列选项卡
+- name: Frequency responses (dB)
+  summary: 天线和麦克风频率响应 [0,0]（默认）| 实值行向量
+  group: 传感器阵列选项卡
+- name: Input Pattern Coordinate System
+  summary: 自定义天线方向图的坐标系 az-el（默认）| phi-theta
+  group: 传感器阵列选项卡
+- name: Azimuth angles (deg)
+  summary: 天线辐射方向图的方位角 [-180:180]（默认）| 实值行向量
+  group: 传感器阵列选项卡
+- name: Elevation angles (deg)
+  summary: 天线辐射方向图的仰角 [-90:90]（默认）| 实值行向量
+  group: 传感器阵列选项卡
+- name: Phi Angles (deg)
+  summary: 自定义天线辐射方向图的 Phi 角坐标 0:360 | 实值 1×*P* 行向量
+  group: 传感器阵列选项卡
+- name: Theta Angles (deg)
+  summary: 自定义天线辐射方向图的 Theta 角坐标 0:180 | 实值 1×*Q* 行向量
+  group: 传感器阵列选项卡
+- name: Magnitude pattern (dB)
+  summary: 组合天线辐射方向图的幅度 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: 传感器阵列选项卡
+- name: Phase pattern (deg)
+  summary: 自定义天线辐射相位方向图 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: 传感器阵列选项卡
+- name: Align element normal with array normal
+  summary: 将阵元法线与阵列法线对齐 on（默认）| off
+  group: 传感器阵列选项卡
+- name: Radiation pattern beamwidth (deg)
+  summary: 辐射方向图波束宽度 [10,10]（默认）
+  group: 传感器阵列选项卡
+- name: Polar pattern frequencies (Hz)
+  summary: 极坐标方向图麦克风响应频率 1e3（默认）| 实标量 | 实值 1×*L* 行向量
+  group: 传感器阵列选项卡
+- name: Polar pattern angles (deg)
+  summary: 极坐标方向图响应角度 [-180:180]（默认）| 实值 1×*P* 行向量
+  group: 传感器阵列选项卡
+- name: Polar pattern (dB)
+  summary: 自定义麦克风极性响应 zeros(1,361)（默认）| 实值 *L*×*P* 矩阵
+  group: 传感器阵列选项卡
+- name: Geometry
+  summary: 阵列几何结构 ULA（默认）| URA | UCA | Conformal Array
+  group: 传感器阵列选项卡
+- name: Number of elements
+  summary: 阵列阵元数量 ULA 阵列为 2，UCA 阵列为 5（默认）| 大于或等于 2 的整数
+  group: 传感器阵列选项卡
+- name: Array size
+  summary: URA 阵列的维度 [2,2]（默认）| 正整数 | 1×2 正整数向量
+  group: 传感器阵列选项卡
+- name: Element spacing (m)
+  summary: 阵列阵元之间的间距 ULA 阵列为 0.5，URA 阵列为 [0.5,0.5]（默认）| ULA 或 URA 阵列为正标量 | URA 阵列为 2 元素正数值向量
+  group: 传感器阵列选项卡
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认）| x | z
+  group: 传感器阵列选项卡
+- name: Element lattice
+  summary: URA 阵元位置的晶格 Rectangular（默认）| Triangular
+  group: 传感器阵列选项卡
+- name: Array normal
+  summary: 阵列法线方向 URA 阵列为 x 或 UCA 阵列为 z（默认）| y
+  group: 传感器阵列选项卡
+- name: Radius of UCA (m)
+  summary: UCA 阵列半径 0.5（默认）| 正标量
+  group: 传感器阵列选项卡
+- name: Element positions (m)
+  summary: 共形阵列阵元位置 [0;0;0]（默认）| 3×*N* 实数值矩阵
+  group: 传感器阵列选项卡
+- name: Element normals (deg)
+  summary: 共形阵列阵元法向量的方向 [0;0] | 2×1 列向量 | 2×*N* 矩阵
+  group: 传感器阵列选项卡
+- name: Taper
+  summary: 阵元锥削 1（默认）| 复值标量 | 复值行向量
+  group: 传感器阵列选项卡
+- name: Subarray definition matrix
+  summary: 定义属于子阵的阵元 逻辑矩阵
+  group: 传感器阵列选项卡
+- name: Subarray steering method
+  summary: 指定子阵导向方法 None（默认）| Phase | Time
+  group: 传感器阵列选项卡
+- name: Phase shifter frequency (Hz)
+  summary: 子阵移相频率 3.0e8（默认）| 正实值标量
+  group: 传感器阵列选项卡
+- name: Number of bits in phase shifters
+  summary: 子阵导向移相量化位数 0（默认）| 非负整数
+  group: 传感器阵列选项卡
+- name: Subarrays layout
+  summary: 子阵位置指定 Rectangular（默认）| Custom
+  group: 传感器阵列选项卡
+- name: Grid size
+  summary: 矩形子阵网格的维度 [1,2]（默认值）
+  group: 传感器阵列选项卡
+- name: Grid spacing (m)
+  summary: 矩形网格上子阵之间的间距 Auto（默认值） | 正实值标量 | 由正实值组成的 1×2 向量
+  group: 传感器阵列选项卡
+- name: Subarray positions (m)
+  summary: 子阵的位置 [0,0;0.5,0.5;0,0]（默认值） | 3×*N* 实值矩阵
+  group: 传感器阵列选项卡
+- name: Subarray normals
+  summary: 子阵法向量的方向 [0,0;0,0]（默认值） | 2×*N* 实矩阵
+  group: 传感器阵列选项卡
+- name: Expression
+  summary: 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
+  group: 传感器阵列选项卡
+- name: Analyze
+  summary: 启动 Sensor Array Analyzer（默认）
+  group: 传感器阵列选项卡
+```
 
 ### 主选项卡
 
@@ -556,7 +731,6 @@ UCA 阵列的半径，指定为正标量。
 ### **Analyze** — 启动 Sensor Array Analyzer（默认）
 
 点击 **Analyze** 按钮将启动 Sensor Array Analyzer 应用。该应用允许您检查重要的阵列属性，例如阵列响应和阵列几何结构。
-
 ## 所属库
 
 Phased Array System Toolbox / Transmitters and Receivers

@@ -14,10 +14,40 @@ language: en
 # Outport
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor type
+  summary: Type of signal measured by sensor Ideal voltage (default) | Ideal current | Power
+  group: ''
+- name: Load impedance (Ohm)
+  summary: Load impedance of RF circuit inf (default) | vector of positive integers in ohms
+  group: ''
+- name: Output
+  summary: Format of output signals Complex Baseband (default) | In-phase and Quadrature Baseband | Magnitude and Angle Baseband
+    | Real Passband
+  group: ''
+- name: Automatically compute output step size
+  summary: Determine optimal time step to resolve highest listed carrier frequency on (default) | off
+  group: ''
+- name: Step size
+  summary: Time step 1e-6 s (default) | positive integer in seconds
+  group: ''
+- name: Interpolation Filter Half Polyphase Length
+  summary: Half-polyphase length of filter 12 (default) | nonnegative integer
+  group: ''
+- name: Carrier frequencies
+  summary: Carrier frequencies 0 Hz (default) | vector of positive integers in Hz
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Sensor type** — Type of signal measured by sensor `Ideal voltage` (default) | `Ideal current` | `Power`
 
@@ -150,7 +180,6 @@ parameter to expose the negative terminals. By exposing these terminals, you
 can connect them to other parts of your model.
 
 By default, this option is selected.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Utilities

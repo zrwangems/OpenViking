@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # Integer-Output RS Decoder HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: dataIn
+  summary: 输入数据 标量
+  direction: input
+  data_types: double | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: startIn
+  summary: 输入帧起始指示 标量
+  direction: input
+  data_types: Boolean
+- name: endIn
+  summary: 输入帧结束指示 标量
+  direction: input
+  data_types: Boolean
+- name: validIn
+  summary: 有效输入数据指示 标量
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: 解码后的消息数据 标量
+  direction: output
+  data_types: double | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: startOut
+  summary: 输出帧起始指示 标量
+  direction: output
+  data_types: Boolean
+- name: endOut
+  summary: 输出帧结束指示 标量
+  direction: output
+  data_types: Boolean
+- name: validOut
+  summary: 有效输出数据指示 标量
+  direction: output
+  data_types: Boolean
+- name: errOut
+  summary: 接收数据损坏指示 标量
+  direction: output
+  data_types: Boolean
+- name: numErrors
+  summary: 已纠正错误数量 非负标量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -92,8 +135,31 @@ RS 码可纠正的最大错误数量等于（**Codeword length** – **Message l
 要启用此端口，请选中 **Output number of corrected symbol errors** 参数。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length
+  summary: 码字长度 7（默认）| 范围从 7 到 65,535
+  group: ''
+- name: Message length
+  summary: 消息长度 3（默认）| 正整数
+  group: ''
+- name: Source of primitive polynomial
+  summary: 本原多项式来源 Auto（默认）| Property
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 [ 1 0 1 1 ]（默认）| 二进制行向量
+  group: ''
+- name: Source of B, the starting power for roots of the primitive polynomial
+  summary: 本原多项式根的起始幂来源 Auto（默认）| Property
+  group: ''
+- name: B value
+  summary: 根的起始指数 1（默认）| 正整数
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: 已纠正符号错误数量 off（默认）| on
+  group: ''
+```
 
 ### **Codeword length** — 码字长度 `7`（默认）| 范围从 7 到 65,535
 
@@ -142,7 +208,6 @@ RS 码可纠正的最大错误数量等于（**Codeword length** – **Message l
 ### **Output number of corrected symbol errors** — 已纠正符号错误数量 `off`（默认）| `on`
 
 选中此参数以启用 **numErrors** 输出端口。此端口输出已纠正错误的数量。
-
 ## 所属库
 
 Communications Toolbox HDL Support / Error Detection and Correction / Block

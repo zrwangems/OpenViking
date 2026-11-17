@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Audio Delta
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 音频特征 标量 | 向量 | 矩阵 | 三维数组
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 音频特征的 Delta 标量 | 向量 | 矩阵 | 数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,16 @@ chinese_source: worker-translation
 音频特征的 Delta，返回为与输入大小和数据类型相同的数组。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Delta window length
+  summary: 计算 Delta 的窗口长度 9（默认）| 大于 2 的奇数整数
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Delta window length** — 计算 Delta 的窗口长度 `9`（默认）| 大于 2 的奇数整数
 
@@ -41,7 +60,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Audio Toolbox / Features

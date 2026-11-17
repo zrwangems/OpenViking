@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Dropout Layer
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入矩阵 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: 输出矩阵 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,15 @@ chinese_source: worker-translation
 等于输入数据的输出数据。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 采样时间
+  summary: 用于指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -52,7 +70,6 @@ chinese_source: worker-translation
 | **参数：** `SampleTime` |
 | **数据类型：** `char` |
 | **值：** `'-1'`（默认）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Utility Layers

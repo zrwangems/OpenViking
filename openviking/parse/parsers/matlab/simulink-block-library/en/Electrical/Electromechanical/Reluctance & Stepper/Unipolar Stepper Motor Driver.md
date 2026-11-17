@@ -14,6 +14,36 @@ language: en
 # Unipolar Stepper Motor Driver
 
 ## Ports
+```yaml
+ports:
+- name: A+
+  summary: Top A-phase electrical connection electrical
+  direction: conserving
+- name: A0
+  summary: A-phase center tap connection electrical
+  direction: conserving
+- name: A-
+  summary: Lower A-phase electrical connection electrical
+  direction: conserving
+- name: B+
+  summary: Top B-phase electrical connection electrical
+  direction: conserving
+- name: B0
+  summary: B-phase center tap connection electrical
+  direction: conserving
+- name: B-
+  summary: Lower B-phase electrical connection electrical
+  direction: conserving
+- name: ENA
+  summary: Triggering input step voltage electrical
+  direction: conserving
+- name: REF
+  summary: Rotor electrical
+  direction: conserving
+- name: REV
+  summary: Motor direction control voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -61,8 +91,28 @@ reference voltage.
 
 Electrical conserving port associated with the voltage that controls
 motor direction.
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulation mode
+  summary: Simulation mode Stepping (default) | Averaged
+  group: ''
+- name: Step rate sensitivity
+  summary: Step rate sensitivity 10 Hz/V (default)
+  group: ''
+- name: Enable threshold voltage
+  summary: Enable threshold voltage 2.5 V (default)
+  group: ''
+- name: Reverse threshold voltage
+  summary: Reverse threshold voltage 2.5 V (default)
+  group: ''
+- name: Output voltage amplitude
+  summary: Output voltage amplitude 10 V (default)
+  group: ''
+- name: Stepping mode
+  summary: Stepping mode Full stepping (default) | Half stepping
+  group: ''
+```
 
 ### **Simulation mode** — Simulation mode `Stepping` (default) | `Averaged`
 
@@ -110,7 +160,6 @@ Amplitude of the output pulse trains.
 
 Select `Full stepping` or `Half
 stepping`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

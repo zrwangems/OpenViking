@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Parameter Smoother
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 要平滑的输入参数 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: alpha
+  summary: 平滑因子 范围为 [0, 1) 的标量
+  direction: input
+  data_types: single | double
+- name: tau
+  summary: 平滑时间 非负标量
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 平滑后的参数 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -58,8 +77,34 @@ chinese_source: worker-translation
 参数的平滑值，以标量、向量或矩阵形式返回。这是参数的瞬时值，它会不断变化，直到参数达到您在输入端口 **P** 处指定的目标值。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of parameters
+  summary: 输入参数的数量 1（默认）| 正整数
+  group: ''
+- name: Smoothing mode
+  summary: 用于平滑的模式 Smoothing factor（默认）| Smoothing time
+  group: ''
+- name: Specify smoothing factor from input port
+  summary: 从输入端口指定平滑因子的选项 off（默认）| on
+  group: ''
+- name: Smoothing factor (between 0 and 1)
+  summary: 平滑因子 0.6（默认）| 范围为 [0, 1) 的标量
+  group: ''
+- name: Specify smoothing time from input port
+  summary: 从输入端口指定平滑时间的选项 off（默认）| on
+  group: ''
+- name: Smoothing time constant (seconds)
+  summary: 以秒为单位的平滑时间 10（默认）| 非负标量
+  group: ''
+- name: Sample time (−1 for inherited)
+  summary: 输入参数的采样时间 -1（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -138,7 +183,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

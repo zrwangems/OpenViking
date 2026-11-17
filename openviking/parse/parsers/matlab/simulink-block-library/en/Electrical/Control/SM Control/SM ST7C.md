@@ -14,6 +14,49 @@ language: en
 # SM ST7C
 
 ## Ports
+```yaml
+ports:
+- name: V_REF
+  summary: Voltage reference scalar
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: Input from stabilizer scalar
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: Terminal voltage scalar
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: Terminal current scalar
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: Overexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: Underexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: Summation point stator current limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: Take-over stator current limit for overexcitation limiter scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: Take-over stator current limit for underexcitation limiter scalar
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: Field voltage scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -177,8 +220,79 @@ Per-unit field voltage to apply to the field circuit of the
 synchronous machine, returned as a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: Initial output voltage 1 (default) | real scalar
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Resistive component of load compensation, R_C (pu)
+  summary: Compensation resistance 0 (default) | positive scalar
+  group: Pre-Control
+- name: Reactance component of load compensation, X_C (pu)
+  summary: Compensation reactance 0 (default) | positive scalar
+  group: Pre-Control
+- name: Regulator input filter time constant, T_R (s)
+  summary: Regulator time constant 0 (default) | positive scalar
+  group: Pre-Control
+- name: Regulator input filter time constant, T_G (s)
+  summary: Time constant for voltage filtering 1 (default) | positive scalar
+  group: Control
+- name: Voltage regulator denominator (lag) time constant, T_F (s)
+  summary: Lag time constant of the voltage regulator 1 (default) | positive scalar
+  group: Control
+- name: Maximum voltage reference, V_max (pu)
+  summary: Maximum voltage reference 1.1 (default) | real scalar
+  group: Control
+- name: Minimum voltage reference, V_min (pu)
+  summary: Minimum voltage referenc 0.9 (default) | real scalar
+  group: Control
+- name: Voltage regulator gain, K_PA (pu)
+  summary: Voltage regulator gain 40 (default) | positive scalar
+  group: Control
+- name: Voltage regulator denominator (lag) time constant, T_B (s)
+  summary: Voltage regulator lag time constant 1 (default) | positive scalar
+  group: Control
+- name: Voltage regulator numerator (lead) time constant, T_C (s)
+  summary: Voltage regulator lead time constant 1 (default) | positive scalar
+  group: Control
+- name: Thyristor bridge firing control equivalent time constant, T_A (s)
+  summary: Regulator lag time constant for first lead-lag block 0 (default) | positive scalar
+  group: Control
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: Maximum regulator output 5 (default) | real scalar
+  group: Control
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: Minimum regulator output -4.5 (default) | real scalar
+  group: Control
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL input location Unused (default) | Summation point at voltage reference | Take-over at voltage reference | Take-over
+    at voltage regulator output
+  group: Control
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL input location Unused (default) | Summation point at voltage reference | Take-over at voltage reference | Take-over
+    at voltage regulator output
+  group: Control
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL input location Unused (default) | Summation point at voltage reference | Take-over at voltage reference | Take-over
+    at voltage regulator output
+  group: Control
+- name: Minimum excitation limit gain, K_L (pu)
+  summary: Minimum excitation limit gain 1 (default) | real scalar
+  group: Exciter
+- name: Maximum excitation limit gain, K_H (pu)
+  summary: Maximum excitation limit gain 1 (default) | real scalar
+  group: Exciter
+- name: PI regulator feedback gain, K_IA (pu)
+  summary: PI regulator feedback gain 1 (default) | real scalar
+  group: Exciter
+- name: PI regulator feedback time constant, T_IA (s)
+  summary: PI regulator feedback time constant 3 (default) | positive scalar
+  group: Exciter
+```
 
 ### General
 
@@ -324,7 +438,6 @@ Per-unit feedback gain of the PI regulator.
 ### **PI regulator feedback time constant, T\_IA (s)** — PI regulator feedback time constant `3` (default) | positive scalar
 
 Feedback time constant of the Pi regulator, in seconds.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

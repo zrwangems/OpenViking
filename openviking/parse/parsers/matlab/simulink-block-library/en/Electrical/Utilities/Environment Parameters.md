@@ -14,6 +14,12 @@ language: en
 # Environment Parameters
 
 ## Ports
+```yaml
+ports:
+- name: OUT
+  summary: Output port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,16 @@ language: en
 
 Electrical conserving port associated with the environment parameters
 output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Temperature
+  summary: SPICE temperature 300.15 K (default) | positive scalar
+  group: ''
+- name: GMIN
+  summary: Minimum conductance 1e-12 1/Ohm (default) | positive scalar
+  group: ''
+```
 
 ### **Temperature** — SPICE temperature `300.15` `K` (default) | positive scalar
 
@@ -32,7 +46,6 @@ Temperature of the connected SPICE-compatible blocks.
 
 Minimum conductance for applicable connected SPICE-compatible
 blocks.
-
 ## Libraries
 
 Simscape / Electrical / Utilities

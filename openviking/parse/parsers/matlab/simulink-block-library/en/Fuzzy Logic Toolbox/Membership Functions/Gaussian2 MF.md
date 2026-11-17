@@ -14,6 +14,15 @@ language: en
 # Gaussian2 MF
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input value scalar | vector
+  direction: input
+- name: MF
+  summary: Membership value scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -39,8 +48,34 @@ maximum value of `1` over the range
 Otherwise, when *c*1 >
 *c*2, the maximum value is less than
 one.
-
 ## Parameters
+```yaml
+parameters:
+- name: Standard deviation for left curve sigma1
+  summary: Left Gaussian standard deviation 3 (default) | scalar
+  group: ''
+  block_parameter: sigma1
+  type: string, character vector
+  default: '"3"'
+- name: Mean for left curve c1
+  summary: Left Gaussian mean -1 (default) | scalar
+  group: ''
+  block_parameter: mu1
+  type: string, character vector
+  default: '"-1"'
+- name: Standard deviation for right curve sigma2
+  summary: Right Gaussian standard deviation 1 (default) | scalar
+  group: ''
+  block_parameter: sigma2
+  type: string, character vector
+  default: '"1"'
+- name: Mean for right curve c2
+  summary: Right Gaussian mean 5 (default) | scalar
+  group: ''
+  block_parameter: mu2
+  type: string, character vector
+  default: '"5"'
+```
 
 ### **Standard deviation for left curve sigma1** — Left Gaussian standard deviation `3` (default) | scalar
 
@@ -93,7 +128,6 @@ function.
 | **Block Parameter:** `mu2` |
 | **Type:** string, character vector |
 | **Default:** `"5"` |
-
 ## Libraries
 
 Fuzzy Logic Toolbox / Membership Functions

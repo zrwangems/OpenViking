@@ -14,6 +14,33 @@ language: en
 # AXI4 Random Access Memory
 
 ## Ports
+```yaml
+ports:
+- name: wrData
+  summary: Writer data bus signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: rdCtrlIn
+  summary: Reader input control signal bus
+  direction: input
+  data_types: ReadControlM2SBusObj
+- name: wrCtrlIn
+  summary: Writer input control signal bus
+  direction: input
+  data_types: WriteControlM2SBusObj
+- name: rdData
+  summary: Output data signal to data consumer scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: rdCtrlOut
+  summary: Reader control signal from memory channel to data consumer bus
+  direction: output
+  data_types: ReadControlS2MBusObj
+- name: wrCtrlOut
+  summary: Writer control signal from memory channel to data producer bus
+  direction: output
+  data_types: WriteControlS2MBusObj
+```
 
 ### Input
 
@@ -59,8 +86,63 @@ This bus represents the protocol bus from the memory channel to the data produce
 To separate the signal from the bus, use the SoC Bus Selector block.
 
 **Data Types:** `WriteControlS2MBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Memory simulation
+  summary: Set simulation timing accuracy Burst accurate (default) | Protocol accurate
+  group: ''
+- name: Memory selection
+  summary: Choose between memory regions PS memory (default) | PL memory
+  group: Main
+- name: Region size (bytes)
+  summary: Size of buffer, in bytes 4096 (default) | scalar
+  group: Main
+- name: Initialize memory content
+  summary: Initialize memory for simulation off (default) | on
+  group: Main
+- name: Initial value
+  summary: Initial memory value 0 (default) | scalar | vector
+  group: Main
+- name: Log memory content
+  summary: Log memory contents off (default) | on
+  group: Main
+- name: Log variable name
+  summary: Variable name for memory log string | character vector
+  group: Main
+- name: Dimensions
+  summary: Dimensions of input data signal scalar | array
+  group: Signal Attributes
+- name: Data type
+  summary: Data type of writer data uint32 (default) | double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint64
+    | boolean | fixed point
+  group: Signal Attributes
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: Signal Attributes
+- name: Enable sample packing (last signal dimension as channel)
+  summary: Pack data on the last dimension of the signal off (default) | on
+  group: Signal Attributes
+- name: Output data signal matches input
+  summary: Reader and writer use the same values on (default) | off
+  group: Signal Attributes
+- name: Dimensions
+  summary: Dimensions of output data signal scalar | array
+  group: Signal Attributes
+- name: Data type
+  summary: Data type of reader data uint32 (default) | double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint64
+    | boolean | fixed point
+  group: Signal Attributes
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: Signal Attributes
+- name: Enable sample packing (last signal dimension as channel)
+  summary: Pack data on last dimension of the signal off (default) | on
+  group: Signal Attributes
+- name: View performance plots
+  summary: Display performance metrics button
+  group: Performance
+```
 
 ### **Memory simulation** — Set simulation timing accuracy `Burst accurate` (default) | `Protocol accurate`
 
@@ -285,7 +367,6 @@ latencies. For more information about performance graphs, see Memory Controller 
 
 To enable this parameter, select **Burst accurate** under
 **Memory simulation**.
-
 ## Libraries
 
 SoC Blockset / Memory

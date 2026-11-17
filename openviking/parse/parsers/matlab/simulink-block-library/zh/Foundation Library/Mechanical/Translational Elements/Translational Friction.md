@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Translational Friction
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 杆机械平移
+  direction: conserving
+- name: C
+  summary: 壳体机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 与壳体（即静止体）关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Breakaway friction force
+  summary: 库仑摩擦与静摩擦之和 25 N（默认）| 标量
+  group: ''
+- name: Breakaway friction velocity
+  summary: Stribeck 摩擦的峰值速度 0.1 m/s（默认）| 正标量
+  group: ''
+- name: Coulomb friction force
+  summary: 阻碍运动的摩擦力 20 N（默认）| 标量
+  group: ''
+- name: Viscous friction coefficient
+  summary: 比例系数 100 N/(m/s)（默认）| 非负标量
+  group: ''
+```
 
 ### **Breakaway friction force** — 库仑摩擦与静摩擦之和 `25 N`（默认）| 标量
 
@@ -43,7 +66,6 @@ Stribeck 摩擦达到峰值时的速度。此时，Stribeck 摩擦与库仑摩�
 ### **Viscous friction coefficient** — 比例系数 `100 N/(m/s)`（默认）| 非负标量
 
 摩擦力与相对速度之间的比例系数。该参数值必须大于或等于零。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Translational Elements

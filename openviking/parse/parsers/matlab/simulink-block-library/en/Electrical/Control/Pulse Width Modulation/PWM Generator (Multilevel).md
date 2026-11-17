@@ -14,6 +14,16 @@ language: en
 # PWM Generator (Multilevel)
 
 ## Ports
+```yaml
+ports:
+- name: ref
+  summary: Reference signal vector
+  direction: input
+- name: PWM
+  summary: PWM signal vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -51,8 +61,22 @@ of power submodules specified in the **Number of power
 submodules** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Converter topology
+  summary: Modular multilevel converter topology Half-bridge (default) | Full-bridge
+  group: ''
+- name: Number of power submodules
+  summary: Number of modular multilevel submodules 1 (default) | positive scalar
+  group: ''
+- name: Timer period (s)
+  summary: PWM period 0.001 (default) | positive scalar
+  group: ''
+- name: Sample time
+  summary: Block sample time 5e-5 (default) | positive scalar
+  group: ''
+```
 
 ### **Converter topology** — Modular multilevel converter topology `Half-bridge` (default) | `Full-bridge`
 
@@ -74,7 +98,6 @@ positive value that is less than or equal to `10 *
 Tper`, where
 *Tper* is the
 **Timer period (s)**.
-
 ## Libraries
 
 Simscape / Electrical / Control / Pulse Width Modulation

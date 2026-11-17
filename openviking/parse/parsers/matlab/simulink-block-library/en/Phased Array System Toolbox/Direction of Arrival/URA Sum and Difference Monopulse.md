@@ -14,6 +14,9 @@ language: en
 # URA Sum and Difference Monopulse
 
 ## Ports
+```yaml
+ports: []
+```
 
 **Note**
 
@@ -26,8 +29,10 @@ the underlying System object. See link at the bottom of this page.
 | `X` | Input signal.  The size of the first dimension of the input matrix can vary to simulate a changing signal length. A size change can occur, for example, in the case of a pulse waveform with variable pulse repetition frequency. | Double-precision floating point |
 | `Steer` | Initial estimate of arrival directions. | Double-precision floating point |
 | `Ang` | Estimate of arrival directions. | Double-precision floating point |
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Signal Propagation speed (m/s)**
 :   Specify the propagation speed of the signal, in meters per second,
@@ -395,7 +400,6 @@ the underlying System object. See link at the bottom of this page.
     from *broadside* are set to zero. Define the
     broadside direction as 0° azimuth angle and 0° elevation
     angle.
-
 ## Libraries
 
 Not documented in R2025b.

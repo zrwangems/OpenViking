@@ -14,6 +14,12 @@ language: en
 # F28M35x/F28M36x UART Transmit
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: UART send data vector | scalar
+  direction: input
+```
 
 ### Input
 
@@ -22,8 +28,22 @@ language: en
 The port sends the data to the UART port.
 
 DMA will be used internally to copy data in FIFO.
-
 ## Parameters
+```yaml
+parameters:
+- name: UART Port
+  summary: Select UART port for data transmission UART0 (default) | UART1 | UART2 | UART3 | UART4
+  group: ''
+- name: Additional package header
+  summary: Prefix header S (default)
+  group: ''
+- name: Additional package terminator
+  summary: Suffix terminator E (default)
+  group: ''
+- name: Enable blocking mode
+  summary: Enable blocking mode for data transmission off (default) | on
+  group: ''
+```
 
 ### **UART Port** — Select UART port for data transmission `UART0` (default) | `UART1` | `UART2` | `UART3` | `UART4`
 
@@ -46,7 +66,6 @@ packet to synchronize the data packets.
 
 Enabling this option ensures that the FIFO buffer is checked for data availability
 before sending the data.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28M35x / M3 C2000 Microcontroller Blockset / F28M36x / M3

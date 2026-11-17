@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # FlightGear Preconfigured 6DoF Animation
 
 ## 端口
+```yaml
+ports:
+- name: l,μ,h,ϕ,θ,ψ
+  summary: 经度、纬度、高度、滚转角、俯仰角和偏航角向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -23,8 +30,31 @@ chinese_source: worker-translation
 经度、纬度、高度、滚转角、俯仰角和偏航角，以双精度指定为向量。经度和纬度的单位为度（西经/北纬），高度的单位为米（高于平均海平面），姿态值的单位为弧度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Destination IP address
+  summary: 目标 IP 地址 127.0.0.1（默认）| 标量
+  group: ''
+  block_parameter: DestinationIpAddress
+  type: 字符向量
+  values: 标量
+  default: '''127.0.0.1'''
+- name: Destination port
+  summary: 目标端口 标量
+  group: ''
+  block_parameter: DestinationPort
+  type: 字符向量
+  values: 标量
+  default: '''5502'''
+- name: Sample time
+  summary: 采样时间 1/30（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''1/30'''
+```
 
 ### **Destination IP address** — 目标 IP 地址 `127.0.0.1`（默认）| 标量
 
@@ -64,7 +94,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 |
 | **默认值**：`'1/30'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

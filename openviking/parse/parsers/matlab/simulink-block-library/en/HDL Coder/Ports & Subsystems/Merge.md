@@ -14,6 +14,24 @@ language: en
 # Merge
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_n
+  summary: '*n*th input signal scalar | vector'
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -36,8 +54,38 @@ signals.
 Output signal merged from the input signals.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Number of input signals to merge 2 (default) | integer
+  group: ''
+  block_parameter: Inputs
+  type: character vector
+  values: integer
+  default: '''2'''
+- name: Initial output
+  summary: Initial output value [ ] (default) | scalar | vector
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector
+  values: scalar | vector
+  default: '''[ ]'''
+- name: Allow unequal port widths
+  summary: Allow inputs of unequal dimensions off (default) | on
+  group: ''
+  block_parameter: AllowUnequalInputPortWidths
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Input port offsets
+  summary: Offset for input signals [ ] (default) | vector
+  group: ''
+  block_parameter: InputPortOffsets
+  type: character vector
+  values: scalar | vector
+  default: '''[ ]'''
+```
 
 ### **Number of inputs** — Number of input signals to merge `2` (default) | `integer`
 
@@ -132,7 +180,6 @@ widths**.
 | **Type:** character vector |
 | **Values:** scalar | vector |
 | **Default:** `'[ ]'` |
-
 ## Libraries
 
 Simulink / Signal Routing HDL Coder / Ports & Subsystems

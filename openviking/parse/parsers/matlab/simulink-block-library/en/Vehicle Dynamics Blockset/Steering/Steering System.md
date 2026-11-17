@@ -14,6 +14,48 @@ language: en
 # Steering System
 
 ## Ports
+```yaml
+ports:
+- name: VehSpd
+  summary: Vehicle speed scalar
+  direction: input
+- name: CstrAng
+  summary: Wheel caster angle 1-by-2 vector
+  direction: input
+- name: WhlAngFdk
+  summary: Wheel steer angle feedback 1-by-2 vector
+  direction: input
+- name: AngIn
+  summary: Steering wheel angle input scalar
+  direction: input
+- name: TrqIn
+  summary: Steering torque input scalar
+  direction: input
+- name: PwrAstTrq
+  summary: Power assist torque scalar
+  direction: input
+- name: PctAck
+  summary: Percent Ackermann value scalar
+  direction: input
+- name: TireFdk
+  summary: Tire forces and moments feedback 1-by-12 vector
+  direction: input
+- name: LftKpM
+  summary: Left kingpin moment scalar
+  direction: input
+- name: RghtKpM
+  summary: Right kingpin moment scalar
+  direction: input
+- name: Info
+  summary: Vehicle dynamics information bus
+  direction: output
+- name: AngLft
+  summary: Left wheel steer angle scalar
+  direction: output
+- name: AngRght
+  summary: Right wheel steer angle scalar
+  direction: output
+```
 
 ### Input
 
@@ -164,8 +206,306 @@ in radians, returned as a scalar.
 
 Right wheel steer angle, *δR*,
 in radians, returned as a scalar.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Steering type Rack and pinion (default)
+  group: ''
+  block_parameter: StrgType
+  values: Rack and pinion (default)
+- name: Intermediate shaft type
+  summary: Intermediate shaft type Single Cardan joint (default) | Double Cardan joints
+  group: ''
+  block_parameter: IntmdShaftType
+  values: Single Cardan joint (default) | Double Cardan joints
+- name: Power assist
+  summary: Option to model power assist on (default) | off
+  group: ''
+  block_parameter: PwrAst
+  values: on (default) | off
+- name: Ackerman steering
+  summary: Option to use Ackermann steering on (default) | off
+  group: ''
+  block_parameter: AckStr
+  values: on (default) | off
+- name: Power assist
+  summary: External power assist torque off (default) | on
+  group: ''
+  block_parameter: PwrAstOverride
+  values: off (default) | on
+- name: Ackerman steering
+  summary: External Ackermann percent off (default) | on
+  group: ''
+  block_parameter: AckStrOverride
+  values: off (default) | on
+- name: Kingpin moment
+  summary: Left and right kingpin moments off (default) | on
+  group: ''
+  block_parameter: KingpinOverride
+  values: off (default) | on
+- name: Steered axle
+  summary: Location of steering system Front (default) | Rear
+  group: ''
+  block_parameter: Loc
+  values: Front (default) | Rear
+- name: Steering inputs
+  summary: Steering wheel angle or torque Angle (default) | Torque
+  group: ''
+  block_parameter: StrIn
+  values: Angle (default) | Torque
+- name: Track width, TrckWdth
+  summary: Track width 1 (default) | scalar
+  group: ''
+  block_parameter: TrckWdth
+  values: 1 (default) | scalar
+- name: Steering angle input range, StrRng
+  summary: Steering wheel range 1.25*pi (default) | scalar
+  group: ''
+  block_parameter: StrRng
+  values: 1.25*pi (default) | scalar
+- name: Steering angle input deadband width, DbWdth
+  summary: Steering angle input deadband width 0 (default) | scalar
+  group: ''
+  block_parameter: DbWdth
+  values: 0 (default) | scalar
+- name: Steering wheel inertia, StrWhlInert
+  summary: Steering wheel inertia 0.1 (default) | scalar
+  group: ''
+  block_parameter: StrWhlInert
+  values: 0.1 (default) | scalar
+- name: Steering shaft inertia, StrColInert
+  summary: Inertia of steering shaft 0.01 (default) | scalar
+  group: ''
+  block_parameter: StrCollnert
+  values: 0.01 (default) | scalar
+- name: Kingpin offset, KngpnOfst
+  summary: Kingpin offset 0.075 (default) | scalar
+  group: ''
+  block_parameter: KngpnOfst
+  values: 0.075 (default) | scalar
+- name: Kingpin inclination angle, Lambda
+  summary: Kingpin inclination angle 0.2094 (default) | scalar
+  group: ''
+  block_parameter: Lambda
+  values: 0.2094 (default) | scalar
+- name: Hub lead, HbLead
+  summary: Hub lead 4.00E-05 (default) | scalar
+  group: ''
+  block_parameter: HbLead
+  values: 4.00E-05 (default) | scalar
+- name: Static loaded radius, StcLdRadius
+  summary: Static loaded radius 0.4 (default) | scalar
+  group: ''
+  block_parameter: StcLdRadius
+  values: 0.4 (default) | scalar
+- name: Overall steering ratio, OvrlStrRatio
+  summary: Overall steering ratio 17.42 (default) | scalar
+  group: ''
+  block_parameter: OvrlStrRatio
+  values: 17.42 (default) | scalar
+- name: Steering angle breakpoints, StrgAngBpts
+  summary: Steering wheel angle breakpoints [-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832]
+    (default) | 1-by-11 vector
+  group: ''
+  block_parameter: StrgAngBpts
+  values: '[-6.2832 -5.0265 -3.7699 -2.5133 -1.2566 0 1.2566 2.5133 3.7699 5.0265 6.2832] (default) | 1-by-11 vector'
+- name: CstrAng
+  summary: Caster angle 0 (default) | scalar
+  group: ''
+  block_parameter: CstrAng
+  values: 0 (default) | scalar
+- name: Rack gain parameterized by
+  summary: Rack gain parameterization Constant (default) | Lookup table
+  group: ''
+  block_parameter: StrgRatioType
+  values: Constant (default) | Lookup table
+- name: Rack gain, RckGn
+  summary: Rack gain 0.062 (default) | scalar
+  group: ''
+  block_parameter: RckGn
+  values: 0.062 (default) | scalar
+- name: Rack gain table, RckGnTbl
+  summary: Rack gain table ones(1,11)*0.0057*2*pi (default) | 1-by-11 vector
+  group: ''
+  block_parameter: RckGnTbl
+  values: ones(1,11)*0.0057*2*pi (default) | 1-by-11 vector
+- name: Steering arm length, StrgArmLngth
+  summary: Steering arm length 0.1 (default) | scalar
+  group: ''
+  block_parameter: StrgArmLngth
+  values: 0.1 (default) | scalar
+- name: Rack casing length, RckCsLngth
+  summary: Rack length 0.5 (default) | scalar
+  group: ''
+  block_parameter: RckCsLngth
+  values: 0.5 (default) | scalar
+- name: Tie rod length, TieRodLngth
+  summary: Tie rod length 0.248 (default) | scalar
+  group: ''
+  block_parameter: TieRodLngth
+  values: 0.248 (default) | scalar
+- name: Distance between axis and rack, Dst
+  summary: Distance between axle and rack 0.2 (default) | scalar
+  group: ''
+  block_parameter: Dst
+  values: 0.2 (default) | scalar
+- name: Efficiency of gears, Epsilon
+  summary: Efficiency of gears 0.9 (default) | scalar
+  group: ''
+  block_parameter: Epsilon
+  values: 0.9 (default) | scalar
+- name: Pinion inertia, PnInert
+  summary: Pinion inertia 0.1 (default) | scalar
+  group: ''
+  block_parameter: PnInert
+  values: 0.1 (default) | scalar
+- name: Spatial angle for the single Cardan joint, SptlAng
+  summary: Spatial angle for the single Cardan joint 2.6178 (default) | scalar
+  group: ''
+  block_parameter: SptlAng
+  values: 2.6178 (default) | scalar
+- name: Spatial angle for the upper Cardan joint, Alpha_b
+  summary: Spatial angle for upper Cardan joint 2.6178 (default) | scalar
+  group: ''
+  block_parameter: Alpha_b
+  values: 2.6178 (default) | scalar
+- name: Spatial angle for the lower Cardan joint, Alpha_c
+  summary: Spatial angle for lower Cardan joint 2.7051 (default) | scalar
+  group: ''
+  block_parameter: Alpha_c
+  values: 2.7051 (default) | scalar
+- name: Edge view angle between the planes of the two joints, Sigma_bc
+  summary: Edge view angle between planes of the two joints 0.2618 (default) | scalar
+  group: ''
+  block_parameter: Sigma_bc
+  values: 0.2618 (default) | scalar
+- name: Phase angle, Gamma
+  summary: Phase angle 0.2618 (default) | scalar
+  group: ''
+  block_parameter: Gamma
+  values: 0.2618 (default) | scalar
+- name: Steering wheel torque breakpoints, TrqBpts
+  summary: Steering wheel torque breakpoints [-100 0 100] (default) | 1-by-*M* vector
+  group: ''
+  block_parameter: TrqBpts
+  values: '[-100 0 100] (default) | 1-by-*M* vector'
+- name: Vehicle speed breakpoints, VehSpdBpts
+  summary: Vehicle speed breakpoints [0 20] (default) | 1-by-*N* vector
+  group: ''
+  block_parameter: VehSpdBpts
+  values: '[0 20] (default) | 1-by-*N* vector'
+- name: Assisting torque table, TrqTbl
+  summary: Torque assist table [0 -100;0 0;0 100] (default) | *M*-by-*N* matrix
+  group: ''
+  block_parameter: TrqTbl
+  values: '[0 -100;0 0;0 100] (default) | *M*-by-*N* matrix'
+- name: Assisting torque limit, TrqLmt
+  summary: Torque assist limit 100 (default) | scalar
+  group: ''
+  block_parameter: TrqLmt
+  values: 100 (default) | scalar
+- name: Assisting power limit, PwrLmt
+  summary: Assist power limit 1000 (default) | scalar
+  group: ''
+  block_parameter: PwrLmt
+  values: 1000 (default) | scalar
+- name: Assisting torque efficiency, Eta
+  summary: Torque assist efficiency 1 (default) | scalar
+  group: ''
+  block_parameter: Eta
+  values: 1 (default) | scalar
+- name: Cutoff frequency, CutOmege [rad/s]
+  summary: Cutoff frequency 200 (default) | scalar
+  group: ''
+  block_parameter: omega_c
+  values: 200 (default) | scalar
+- name: Percent Ackerman parameterized by
+  summary: Ackermann parameterization Constant (default) | Lookup table
+  group: ''
+  block_parameter: AckParamType
+  values: Constant (default) | Lookup table
+- name: Percent Ackerman, PctAck
+  summary: Percent Ackermann 100 (default) | scalar
+  group: ''
+  block_parameter: PctAck
+  values: 100 (default) | scalar
+- name: Percent Ackerman table, PctAckTbl
+  summary: Percent Ackermann table ones(1,11)*100 (default) | 1-by-11 vector
+  group: ''
+  block_parameter: PctAckTbl
+  values: ones(1,11)*100 (default) | 1-by-11 vector
+- name: Sealing stiffness, SlgStf
+  summary: Sealing stiffness 1.5e4 (default) | scalar
+  group: ''
+  block_parameter: SlgStf
+  values: 1.5e4 (default) | scalar
+- name: Upper boundary friction, UpprFric
+  summary: Upper boundary friction 1 (default) | scalar
+  group: ''
+  block_parameter: UpprFric
+  values: 1 (default) | scalar
+- name: Pressure change due to friction boundary increase, PrsFric
+  summary: Pressure change due to friction boundary increase 1e-5 (default) | scalar
+  group: ''
+  block_parameter: PrsFric
+  values: 1e-5 (default) | scalar
+- name: Maxwell element stiffness, MaxStf
+  summary: Maxwell element stiffness 10000 (default) | scalar
+  group: ''
+  block_parameter: MaxStf
+  values: 10000 (default) | scalar
+- name: Maxwell element upper boundary friction, MaxUpprFric
+  summary: Maxwell element upper boundary friction 0.2 (default) | scalar
+  group: ''
+  block_parameter: MaxUpprFric
+  values: 0.2 (default) | scalar
+- name: Maxwell linear damping coefficient, MaxDamp
+  summary: Maxwell linear damping coefficient 1 (default) | scalar
+  group: ''
+  block_parameter: MaxDamp
+  values: 1 (default) | scalar
+- name: Torsion bar stiffness coefficient, TorStf
+  summary: Torsional stiffness of steering shaft 30 (default) | scalar
+  group: ''
+  block_parameter: TorStf
+  values: 30 (default) | scalar
+- name: Torsion bar damping coefficient, TorDamp
+  summary: Torsional viscous damping in steering shaft 1 (default) | scalar
+  group: ''
+  block_parameter: TorDamp
+  values: 1 (default) | scalar
+- name: Integral anti-windup gain, A []
+  summary: Integral anti-windup gain 0 (default) | scalar
+  group: ''
+  block_parameter: A
+  values: 0 (default) | scalar
+- name: Derivative gain, D []
+  summary: Derivative gain 0.1 (default) | scalar
+  group: ''
+  block_parameter: D
+  values: 0.1 (default) | scalar
+- name: Integral gain, I []
+  summary: Integral gain 5 (default) | scalar
+  group: ''
+  block_parameter: I
+  values: 5 (default) | scalar
+- name: Steering torque output saturation lower limit, OutSatLowLmt [Nm]
+  summary: Output saturation lower limit -500 (default) | scalar
+  group: ''
+  block_parameter: OutSatLowLmt
+  values: -500 (default) | scalar
+- name: Steering torque output saturation upper limit, OutSatUpLmt [Nm]
+  summary: Steering torque output saturation upper limit 500 (default) | scalar
+  group: ''
+  block_parameter: OutSatUpLmt
+  values: 500 (default) | scalar
+- name: Proportional gain, P []
+  summary: Proportional gain 150 (default) | scalar
+  group: ''
+  block_parameter: P
+  values: 150 (default) | scalar
+```
 
 #### Block Options
 
@@ -1435,7 +1775,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `P` |
 | **Values:** | `150` (default) | scalar |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Steering

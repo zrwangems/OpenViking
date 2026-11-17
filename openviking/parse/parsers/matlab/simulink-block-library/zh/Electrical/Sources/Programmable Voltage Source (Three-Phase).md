@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Programmable Voltage Source (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 频率物理信号
+  direction: input
+- name: M
+  summary: 幅值物理信号
+  direction: input
+- name: Phi
+  summary: 相移物理信号
+  direction: input
+- name: n
+  summary: 中性点电气
+  direction: input
+- name: '~'
+  summary: 三相交流电压电气
+  direction: input
+```
 
 ### 输入
 
@@ -38,8 +56,124 @@ chinese_source: worker-translation
 ### **~** — 三相交流电压电气
 
 与交流电压关联的可扩展电气守恒三相端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: AC magnitude configuration
+  summary: 交流电压幅值配置 Constant（默认）| Ramp | Step | Modulation | External
+  group: 交流幅值
+- name: Rated voltage (phase-to-phase RMS)
+  summary: 额定交流电压 100 V（默认）
+  group: 交流幅值
+- name: Rate of change
+  summary: 交流电压变化率 1 V/s（默认）
+  group: 交流幅值
+- name: Step amplitude
+  summary: 交流电压阶跃幅值 1 V（默认）
+  group: 交流幅值
+- name: Modulation magnitude
+  summary: 交流电压调制幅值 1 V（默认）
+  group: 交流幅值
+- name: Modulation frequency
+  summary: 交流电压调制频率 1 Hz（默认）
+  group: 交流幅值
+- name: Start time
+  summary: 交流电压起始时间 1s（默认）
+  group: 交流幅值
+- name: Stop time
+  summary: 交流电压停止时间 2s（默认）
+  group: 交流幅值
+- name: AC frequency configuration
+  summary: 交流频率配置 Constant（默认）| Ramp | Step | Modulation | External
+  group: 频率
+- name: Rated frequency
+  summary: 额定频率 60 Hz（默认）
+  group: 频率
+- name: Rate of change
+  summary: 交流频率变化率 1 Hz/s（默认）
+  group: 频率
+- name: Step amplitude
+  summary: 交流频率阶跃幅值 1 Hz（默认）
+  group: 频率
+- name: Modulation magnitude
+  summary: 交流频率调制幅值 1 Hz（默认）
+  group: 频率
+- name: Modulation frequency
+  summary: 交流频率调制频率 1 Hz（默认）
+  group: 频率
+- name: Start time
+  summary: 交流频率起始时间 1s（默认）
+  group: 频率
+- name: Stop time
+  summary: 交流频率起始时间 2s（默认）
+  group: 频率
+- name: AC phase shift configuration
+  summary: 交流相移配置 Constant（默认）| Ramp | Step | Modulation | External
+  group: 相位
+- name: Phase shift
+  summary: 交流电压相移 0 deg（默认）
+  group: 相位
+- name: Rate of change
+  summary: 交流相移变化率 1 deg/s（默认）
+  group: 相位
+- name: Step amplitude
+  summary: 交流相移阶跃幅值 1 deg（默认）
+  group: 相位
+- name: Modulation magnitude
+  summary: 交流相移调制幅值 1 deg（默认）
+  group: 相位
+- name: Modulation frequency
+  summary: 交流相移调制频率 1 Hz（默认）
+  group: 相位
+- name: Start time
+  summary: 交流相移起始时间 1s（默认）
+  group: 相位
+- name: Stop time
+  summary: 交流相移起始时间 2s（默认）
+  group: 相位
+- name: Source impedance
+  summary: 源阻抗配置 None（默认）| X/R Ratio | Series R | Series L | Series RL
+  group: 阻抗
+- name: Short-circuit power level
+  summary: 短路功率水平 1e6 V*A（默认）
+  group: 阻抗
+- name: Source X/R ratio
+  summary: X/R 比 15（默认）
+  group: 阻抗
+- name: Source resistance
+  summary: 电阻 0.01 Ohm（默认）
+  group: 阻抗
+- name: Source inductance
+  summary: 电感 3.97e-4 H（默认）
+  group: 阻抗
+- name: Parasitic parallel conductance
+  summary: 寄生并联电导 1e-6 1/Ohm（默认）
+  group: 阻抗
+- name: Source harmonics
+  summary: 源谐波配置 None（默认）| Generate harmonics
+  group: 谐波
+- name: Harmonic orders
+  summary: 谐波次数 [5, 7, 11, 13]（默认）
+  group: 谐波
+- name: Harmonic to base magnitude ratios
+  summary: 谐波与基波幅值比 [.1, .1, .1, .1]（默认）
+  group: 谐波
+- name: Harmonic phase shifts
+  summary: 谐波相移 [0, 0, 0, 0] deg（默认）
+  group: 谐波
+- name: Harmonic sequences
+  summary: 谐波序 [1, 1, 1, 1]（默认）
+  group: 谐波
+- name: Start time
+  summary: 源谐波起始时间 -infs（默认）
+  group: 谐波
+- name: Stop time
+  summary: 源谐波停止时间 infs（默认）
+  group: 谐波
+```
 
 ### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -366,7 +500,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Source harmonics** 设置为 `Generate harmonics`。
-
 ## 所属库
 
 Simscape / Electrical / Sources

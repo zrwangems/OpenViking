@@ -14,6 +14,33 @@ language: en
 # CIC Decimator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar | column vector
+  direction: input
+  data_types: int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: R
+  summary: Variable decimation rate scalar
+  direction: input
+  data_types: fixdt(0,12,0)
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: CIC-decimated output data scalar | column vector
+  direction: output
+  data_types: int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -98,8 +125,40 @@ the output **data** port. When **valid** is
 **data** port are not valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Decimation factor source
+  summary: Source of decimation factor Property (default) | Input port
+  group: Main
+- name: Decimation factor (R)
+  summary: Decimation factor 2 (default) | integer from 1 to 2048
+  group: Main
+- name: Decimation factor (Rmax)
+  summary: Upper bound of variable decimation factor 2 (default) | integer from 1 to 2048
+  group: Main
+- name: Differential delay (M)
+  summary: Differential delay 1 (default) | 2
+  group: Main
+- name: Number of sections (N)
+  summary: Number of integrator and comb sections 2 (default) | 1 | 3 | 4 | 5 | 6
+  group: Main
+- name: Gain correction
+  summary: Output gain compensation off (default) | on
+  group: Main
+- name: Output data type
+  summary: Data type of output Full precision (default) | Same word length as input | Minimum section word lengths
+  group: Data Types
+- name: Output word length
+  summary: Word length of output 16 (default) | integer from 2 to 104
+  group: Data Types
+- name: Enable reset input port
+  summary: Reset signal off (default) | on
+  group: Control Ports
+- name: Use HDL global reset
+  summary: Option to connect data path registers to generated HDL global reset signal off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -204,7 +263,6 @@ only the control path registers. The generated HDL global reset can be synchrono
 asynchronous depending on the **HDL Code Generation** > **Global Settings** > **Reset type** parameter in the model Configuration Parameters.
 
 For more reset considerations, see Tips.
-
 ## Libraries
 
 DSP HDL Toolbox / Filtering

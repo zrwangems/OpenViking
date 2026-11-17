@@ -14,6 +14,27 @@ language: en
 # Task Space Motion Model
 
 ## Ports
+```yaml
+ports:
+- name: refPose
+  summary: Desired end-effector pose 4-by-4 matrix
+  direction: input
+- name: refVel
+  summary: Desired end-effector velocities 6-element vector
+  direction: input
+- name: FExt
+  summary: External forces 6-by-*m* matrix
+  direction: input
+- name: q
+  summary: Joint positions *n*-element vector
+  direction: output
+- name: qd
+  summary: Joint velocities *n*-element
+  direction: output
+- name: qdd
+  summary: Joint accelerations *n*-element
+  direction: output
+```
 
 ### Input
 
@@ -67,8 +88,37 @@ Joint accelerations output as an *n*-element in radians per
 second squared or meters per second squared, where *n* is the number
 of nonfixed joints in the `rigidBodyTree` object in the `Rigid body
 tree` parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: Rigid body tree twoJointRigidBodyTree object (default) | RigidBodyTree object
+  group: ''
+- name: End effector
+  summary: End effector body tool (default)
+  group: ''
+- name: Proportional gain
+  summary: Proportional gain for PD Control 500*eye(6) (default) | 6-by-6 matrix
+  group: ''
+- name: Derivative gain
+  summary: Derivative gain for PD Control 100*eye(6) (default) | 6-by-6 matrix
+  group: ''
+- name: Joint damping
+  summary: Damping ratios [1 1] (default) | *n*-element vector | scalar
+  group: ''
+- name: Show external force input
+  summary: Display FExt port off (default) | on
+  group: ''
+- name: Initial joint configuration
+  summary: Initial joint positions 0 (default) | *n*-element vector | scalar
+  group: ''
+- name: Initial joint velocities
+  summary: Initial joint velocities 0 (default) | *n*-element vector | scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — Rigid body tree `twoJointRigidBodyTree` object (default) | `RigidBodyTree` object
 
@@ -133,7 +183,6 @@ tree` parameter.
   simulations, as long as the model does not change.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Manipulator Algorithms

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Rotational Inerter
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 杆机械旋转
+  direction: unspecified
+- name: C
+  summary: 壳体机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **C** — 壳体机械旋转
 
 与壳体（即静止体）关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Rotational inertance
+  summary: 端口间转矩与相对速度变化率之间的比例系数 1 kg*m^2（默认）| 标量
+  group: ''
+```
 
 ### **Rotational inertance** — 端口间转矩与相对速度变化率之间的比例系数 `1 kg*m^2`（默认）| 标量
 
 端口间转矩与相对角速度变化率之间的比例系数。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

@@ -14,6 +14,29 @@ language: en
 # LDPC Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Data bits scalar | column vector *(since R2025a)*
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Encoded data bits scalar | column vector *(since R2025a)*
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: Ready for new inputs scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -91,8 +114,19 @@ frame in progress and begins processing the new data.
 For more information, see Using the nextFrame Output Signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Parity-check matrix
+  summary: QC-LDPC matrix [5 14 12 1 2 37 45 26 24 0 3 -1 34 7 46 10 -1 -1 -1 -1; 0 35 1 26 0 10 16 16 34 4 2 23 0 51 -1 49
+    20 -1 -1 -1; 12 28 22 46 3 16 51 2 25 29 19 18 52 -1 37 -1 34 39 -1 -1; 0 51 16 31 13 39 27 33 8 27 53 13 -1 52 33 -1
+    -1 38 7 -1; 36 6 3 51 4 19 4 45 48 9 -1 11 22 23 43 -1 -1 -1 14 1] (default) | any QC-LDPC matrix with circulant weight
+    1
+  group: ''
+- name: Block size
+  summary: Size of block 56 (default) | integer in the range [2, 512]
+  group: ''
+```
 
 ### **Parity-check matrix** — QC-LDPC matrix `[5 14 12 1 2 37 45 26 24 0 3 -1 34 7 46 10 -1 -1 -1 -1; 0 35 1 26 0 10 16 16 34 4 2 23 0 51 -1 49 20 -1 -1 -1; 12 28 22 46 3 16 51 2 25 29 19 18 52 -1 37 -1 34 39 -1 -1; 0 51 16 31 13 39 27 33 8 27 53 13 -1 52 33 -1 -1 38 7 -1; 36 6 3 51 4 19 4 45 48 9 -1 11 22 23 43 -1 -1 -1 14 1]` (default) | any QC-LDPC matrix with circulant weight 1
 
@@ -110,7 +144,6 @@ To learn more about the supported parity-check matrices, see Parity-Check Matrix
 
 Specify the block size. The block size must be an integer in the range [2,
 512].
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

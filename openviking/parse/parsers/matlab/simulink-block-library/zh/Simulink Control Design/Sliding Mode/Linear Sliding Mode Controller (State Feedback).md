@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Linear Sliding Mode Controller (State Feedback)
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 系统状态 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: r
+  summary: 参考信号 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: r.dot
+  summary: 参考信号的导数 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: u
+  summary: 控制作用 标量 | 向量
+  direction: output
+  data_types: single | double
+- name: s(x)
+  summary: 切换函数值 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -67,8 +90,128 @@ chinese_source: worker-translation
 要启用此端口，请启用 **Output Switching Function** 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: A
+  summary: 状态矩阵 [0 1; 0 0]（默认）| 方阵
+  group: 模型参数
+  block_parameter: A
+  values: '"[0 1; 0 0]"（默认）| 方阵'
+- name: B
+  summary: 输入矩阵 [0; 1]（默认）| 矩阵
+  group: 模型参数
+  block_parameter: B
+  values: '"[0; 1]"（默认）| 矩阵'
+- name: C
+  summary: 输出矩阵 [1 0]（默认）| 矩阵
+  group: 模型参数
+  block_parameter: C
+  values: '"[1 0]"（默认）| 矩阵'
+- name: Am
+  summary: 参考模型状态矩阵 [0 1; 0 0]（默认）| 矩阵
+  group: 参考模型参数
+  block_parameter: Am
+  values: '"[0 1; 0 0]"（默认）| 方阵'
+- name: Bm
+  summary: 参考模型输入矩阵 [0; 1]（默认）| 矩阵
+  group: 参考模型参数
+  block_parameter: Bm
+  values: '"[0; 1]"（默认）| 矩阵'
+- name: Task Mode
+  summary: 运行模式 Regulation（默认）| Reference Tracking | Model-Reference Tracking
+  group: Sliding Surface Tab
+  block_parameter: TaskMode
+  values: '"Regulation"（默认）| "Reference Tracking" | "Model-Reference Tracking"'
+- name: Output Switching Function
+  summary: 输出切换函数 off（默认）| on
+  group: Sliding Surface Tab
+  block_parameter: EnableSwitchingFunction
+  values: '"off"（默认）| "on"'
+- name: Include derivative reference signal
+  summary: 在外部指定参考信号的导数 off（默认）| on
+  group: Sliding Surface Tab
+  block_parameter: EnableTrackingDerivative
+  values: '"off"（默认）| "on"'
+- name: Sr
+  summary: 参考跟踪的设计矩阵 0.1（默认）| 标量 | 矩阵
+  group: Sliding Surface Tab
+  block_parameter: Sr
+  values: '"0.1"（默认）| 带引号的标量或矩阵'
+- name: Tuning Method
+  summary: 滑模面设计方法 Pole Placement（默认）| Quadratic Minimization | User-Defined Matrix (S)
+  group: Sliding Surface Tab
+  block_parameter: Tuning
+  values: '"Pole Placement"（默认）| "Quadratic Minimization" | "User-defined Matrix (S)"'
+- name: Pole Location
+  summary: 极点配置方法的极点位置 -1（默认）| 列向量
+  group: Sliding Surface Tab
+  block_parameter: PoleLocation
+  values: '"-1"（默认）| 带引号的列向量'
+- name: Weighted Matrix
+  summary: 二次性能指标的加权矩阵 eye(2)（默认）| 方阵
+  group: Sliding Surface Tab
+  block_parameter: WeightedMatrix
+  values: '"eye(2)"（默认）| 带引号的矩阵'
+- name: Export Hyperplane Matrix S
+  summary: 将设计好的超平面矩阵发送到 MATLAB® 工作区按钮
+  group: Sliding Surface Tab
+- name: S
+  summary: 用户定义的超平面矩阵 [1 1]（默认）| 矩阵
+  group: Sliding Surface Tab
+  block_parameter: S
+  values: '"[0; 1]"（默认）| 矩阵'
+- name: Reaching Law
+  summary: 趋近律 Constant Rate（默认）| Exponential | Power Rate | Unit Vector
+  group: Reaching Law Tab
+  block_parameter: ReachingLaw
+  values: '"Constant Rate"（默认）| "Exponential" | "Power Rate" | "Unit Vector"'
+- name: Reaching Rate (η)
+  summary: 趋近速率 0.01（默认）| 正标量 | 列向量
+  group: Reaching Law Tab
+  block_parameter: ReachingRate
+  values: '"0.01"（默认）| 带引号的正标量 | 带引号的列向量'
+- name: Control Gain (K)
+  summary: 控制增益 0.01（默认）| 正标量 | 列向量
+  group: Reaching Law Tab
+  block_parameter: ControlGain
+  values: '"0.01"（默认） | 带引号的正标量 | 带引号的列向量'
+- name: Power Rate Exponent (α)
+  summary: 幂次趋近律指数 0.01（默认） | 0 到 1 之间的正标量 | 0 到 1 之间的正数值列向量
+  group: Reaching Law Tab
+  block_parameter: PowerRate
+  values: '"0.01"（默认） | 带引号的 0 到 1 之间的正标量 | 带引号的 0 到 1 之间的正数值列向量'
+- name: Select Boundary Layer
+  summary: 边界层函数 Sign（默认） | Relay | Hyperbolic Tangent | Saturation
+  group: Reaching Law Tab
+  block_parameter: BoundaryLayer
+  values: '"Sign"（默认） | "Relay" | "Hyperbolic Tangent" | "Saturation"'
+- name: Phi
+  summary: 边界层厚度 0.01（默认） | 正标量 | 列向量
+  group: Reaching Law Tab
+  block_parameter: Phi
+  values: '"0.01"（默认） | 带引号的正标量 | 带引号的列向量'
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 off（默认） | on
+  group: Reaching Law Tab
+  block_parameter: ZeroCross
+  values: '"off"（默认） | "on"'
+- name: Time domain
+  summary: 控制器时域 Continuous-Time（默认）| Discrete-Time
+  group: 模块选项卡
+  block_parameter: TimeDomain
+  values: '"Continuous-Time"（默认）| "Discrete-Time"'
+- name: Sample time
+  summary: 采样时间 -1（默认）| 有限正标量
+  group: 模块选项卡
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的正标量'
+- name: Integrator method
+  summary: 离散时间积分方法 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: 模块选项卡
+  block_parameter: IntegratorMethod
+  values: '"Forward Euler"（默认）| "Backward Euler" | "Trapezoidal"'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -673,7 +816,6 @@ Minimization")`
 | **值**：| `"Forward Euler"`（默认）| `"Backward Euler"` | `"Trapezoidal"` |
 
 **Example:** `set_param(gcb,"IntegratorMethod","Trapezoidal")`
-
 ## 所属库
 
 Simulink Control Design / Sliding Mode

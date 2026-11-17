@@ -14,6 +14,18 @@ language: en
 # Ball Valve (G)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Valve position, rad physical signal
+  direction: input
+- name: A
+  summary: Valve port A gas
+  direction: conserving
+- name: B
+  summary: Valve port B gas
+  direction: conserving
+```
 
 ### Input
 
@@ -31,8 +43,80 @@ Gas conserving port associated with the valve port A.
 ### **B** — Valve port B gas
 
 Gas conserving port associated with the valve port B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: Parameterization that specifies flow characteristics of valve Orifice area based on geometry (default) | Cv flow
+    coefficient | Kv flow coefficient | Sonic conductance
+  group: ''
+- name: Opening characteristic
+  summary: Ball valve parameterization Area of overlapping circles (default) | Tabulated
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar in the range of [0,1]
+  group: ''
+- name: Area vector
+  summary: Flow area for tabulated parameterization [1e-10, 45, 90, 135, 180, 225, 270, 315, 360, 405, 450] mm^2 (default)
+    | vector of positive numbers
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: ''
+- name: Cv flow coefficient vector
+  summary: '*Cv* coefficients that correspond to values in ball rotation vector [1e-06, .0725, .1437, .2375, .35, .5375, .875,
+    1.3125, 2.125, 3.25, 4] 1 (default) | vector of positive numbers'
+  group: ''
+- name: Ball rotation vector
+  summary: 'Values at which to specify tabulated parameter data pi / 2 .* (0 : 0.1 : 1) rad (default) | vector of positive
+    numbers'
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: ''
+- name: Kv flow coefficient vector
+  summary: '*Kv* coefficients that correspond to values in ball rotation vector [1e-06, .0653, .1293, .2137, .315, .4838,
+    .7875, 1.1813, 1.8381, 2.8112, 3.6] (default) | vector of positive numbers'
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: ''
+- name: Maximum sonic conductance
+  summary: Sonic conductance that corresponds to maximally open component 12 l/(bar*s) (default) | positive scalar
+  group: ''
+- name: Critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: ''
+- name: Sonic conductance vector
+  summary: Sonic conductances that correspond to values in ball rotation vector [1e-05, .2175, .4312, .7125, 1.05, 1.6125,
+    2.625, 3.9375, 6.375, 9.75, 12] l/(bar*s) (default) | vector of positive numbers
+  group: ''
+- name: Critical pressure ratio vector
+  summary: Critical pressure ratios that correspond to values in ball rotation vector 0.3 * ones(1, 11) (default) | vector
+    of positive numbers
+  group: ''
+- name: Subsonic index
+  summary: Exponent used to calculate mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at gas ports pi * (0.025 ^ 2) / 4 m^2 (default) | positive scalar
+  group: ''
+- name: Ball bore area
+  summary: Area of ball bore pi * (0.02 ^ 2) / 4 m^2 (default) | positive scalar
+  group: ''
+- name: Leakage flow fraction
+  summary: Ratio of flow rate 1e-6 (default) | positive scalar
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve parameterization** — Parameterization that specifies flow characteristics of valve `Orifice area based on geometry` (default) | `Cv flow coefficient` | `Kv flow coefficient` | `Sonic conductance`
 
@@ -298,7 +382,6 @@ Pressure ratio at which flow transitions between laminar and turbulent
 flow regimes. The pressure ratio is the outlet pressure divided by inlet
 pressure. Typical values range from `0.995` to
 `0.999`.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Valves & Orifices / Flow Control Valves

@@ -14,6 +14,57 @@ language: en
 # Digital DATCOM Forces and Moments
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Angle of attack scalar
+  direction: input
+  data_types: double
+- name: Port_2
+  summary: Sideslip angle scalar
+  direction: input
+  data_types: double
+- name: Port_3
+  summary: Mach number scalar
+  direction: input
+  data_types: double
+- name: Port_4
+  summary: Altitude scalar
+  direction: input
+  data_types: double
+- name: Port_5
+  summary: Dynamic pressure scalar
+  direction: input
+  data_types: double
+- name: Port_6
+  summary: Velocity three-element vector
+  direction: input
+  data_types: double
+- name: Port_7
+  summary: Angle of attack rate scalar
+  direction: input
+  data_types: double
+- name: Port_8
+  summary: Body angular rates three-element vector
+  direction: input
+  data_types: double
+- name: Port_9
+  summary: Ground height scalar
+  direction: input
+  data_types: double
+- name: Port_10
+  summary: Control surface deflection scalar
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Aerodynamic forces at the center of gravity three-element vector
+  direction: output
+  data_types: double
+- name: Port_2
+  summary: Aerodynamic moments at the center of gravity three-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -123,8 +174,59 @@ three-element vector, in body coordinates
 *M*z).
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Digital DATCOM structure
+  summary: Digital DATCOM data structure factstruct{1} (default) | structure
+  group: ''
+  block_parameter: dcase
+  type: character vector
+  values: factstruct{1} | structure
+  default: factstruct{1}
+- name: Force axes
+  summary: Coordinate system for aerodynamic force Body (default) | Wind
+  group: ''
+  block_parameter: fmode
+  type: character vector
+  values: '''Body'' | ''Wind'''
+  default: '''Body'''
+- name: Interpolation method
+  summary: Interpolation method None - flat (default) | Linear
+  group: ''
+  block_parameter: imethod
+  type: character vector
+  values: '''None (flat)'' | ''Linear'''
+  default: '''None (flat)'''
+- name: Extrapolation method
+  summary: Extrapolation method None - clip (default) | Linear
+  group: ''
+  block_parameter: emethod
+  type: character vector
+  values: '''None (flat)'' | ''Linear'''
+  default: '''None (flat)'''
+- name: Process out-of-range input
+  summary: Handle out-of-range input Clip to Range (default) | Linear Extrapolation
+  group: ''
+  block_parameter: rmethod
+  type: character vector
+  values: '''Clip to Range'' | ''Linear Extrapolation'''
+  default: '''Clip to Range'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Units** — Units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -245,7 +347,6 @@ Out-of-range block behavior, specified as:
 | **Type**: character vector |
 | **Values**: `'None'` | `'Warning'` | `'Error'` |
 | **Default**: `'Warning'` |
-
 ## Libraries
 
 Aerospace Blockset / Aerodynamics

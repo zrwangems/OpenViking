@@ -14,6 +14,16 @@ language: en
 # Network Coupler (Flexible Shaft)
 
 ## Ports
+```yaml
+ports:
+- name: '1'
+  summary: Connect this port to the variable-step network, or to the fixed-step network with the smaller sample time mechanical
+    rotational
+  direction: conserving
+- name: '2'
+  summary: Connect this port to the fixed-step network with the larger sample time mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +41,60 @@ If one of the coupled networks is running variable step, connect port
 **2** of the Network Coupler (Flexible Shaft) block
 to the fixed-step network. If both networks are running fixed step, connect this port
 to the network with the larger sample time.
-
 ## Parameters
+```yaml
+parameters:
+- name: Separate using
+  summary: Select separation type an actual shaft compliance (default) | an added numerical compliance
+  group: Main
+- name: Shaft stiffness (Nm/rad)
+  summary: Specify stiffness of flexible shaft 250 (default) | positive scalar
+  group: Main
+- name: Shaft damping (Nm/(rad/s))
+  summary: Specify damping coefficient of flexible shaft 20 (default) | positive scalar
+  group: Main
+- name: Sampling type
+  summary: Select sampling types scenario for coupled networks Variable step at ports 1 and 2 (default) | Variable step at
+    port 1 and fixed step at port 2 | Fixed step both ports with common sample time | Fixed step both ports with faster sampling
+    at port 1
+  group: Main
+- name: Separator time constant (s)
+  summary: Specify filter time constant 0.001 (default) | positive scalar
+  group: Main
+- name: Port 1 network discrete sample time (s)
+  summary: Specify sample time for Network 1 0.001 (default) | positive scalar
+  group: Main
+- name: Port 2 network discrete sample time (s)
+  summary: Specify sample time for Network 2 0.01 (default) | positive scalar
+  group: Main
+- name: Use prediction when connecting fixed step to variable step
+  summary: Lets you enable the prediction (discrete->continuous) algorithm off (default) | on
+  group: Main
+- name: Use smoothing when connecting variable step to fixed step
+  summary: Lets you enable the smoothing (continuous->discrete) algorithm off (default) | on
+  group: Main
+- name: Smoothing time constant (s)
+  summary: Specify time constant for the first-order filter 0.01 (default) | positive scalar
+  group: Main
+- name: Use prediction when connecting slow to fast sample times
+  summary: Lets you enable the prediction (slow->fast) algorithm off (default) | on
+  group: Main
+- name: Use smoothing when connecting fast to slow sample times
+  summary: Lets you enable the smoothing (fast->slow) algorithm off (default) | on
+  group: Main
+- name: Number of samples over which to smooth
+  summary: Specify number of samples for averaging 1 (default) | positive scalar
+  group: Main
+- name: Approximate inertia at port 1 (kg\*m^2)
+  summary: Specify approximate inertia at port 1 1 (default) | positive scalar
+  group: Analysis
+- name: Approximate inertia at port 2 (kg\*m^2)
+  summary: Specify approximate inertia at port 2 1 (default) | positive scalar
+  group: Analysis
+- name: Initial transmitted torque (Nm)
+  summary: Specify initial torque transmitted by the shaft 0 (default) | positive scalar
+  group: Initial Conditions
+```
 
 ### Main
 
@@ -192,7 +254,6 @@ For information on how to use the **Derived values** section, see Using the Deri
 ### **Initial transmitted torque (Nm)** — Specify initial torque transmitted by the shaft `0` (default) | positive scalar
 
 Specify initial condition for the torque transmitted by the shaft, in N\*m.
-
 ## Libraries
 
 Simscape / Utilities / Network Couplers

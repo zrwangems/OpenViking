@@ -14,6 +14,18 @@ language: en
 # Needle Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Needle displacement, m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -30,8 +42,37 @@ Liquid entry or exit port to the valve.
 
 Control member displacement in m, specified as a physical signal. A
 positive signal retracts the needle and opens the valve.
-
 ## Parameters
+```yaml
+parameters:
+- name: Seat orifice diameter
+  summary: Diameter of seat 5e-3 m (default) | positive scalar
+  group: ''
+- name: Needle cone angle
+  summary: Control member geometry angle 90 deg (default) | positive scalar
+  group: ''
+- name: Needle position when in the seat
+  summary: Needle offset 0 m (default) | scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area at conserving ports inf m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: ''
+```
 
 ### **Seat orifice diameter** — Diameter of seat `5e-3 m` (default) | positive scalar
 
@@ -83,7 +124,6 @@ these regimes.
 Whether to account for pressure increase when fluid flows from a region of
 smaller cross-sectional area to a region of larger cross-sectional
 area.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

@@ -14,6 +14,17 @@ language: en
 # Algebraic Constraint
 
 ## Ports
+```yaml
+ports:
+- name: f(z)
+  summary: Input signal real scalar or vector
+  direction: input
+  data_types: double
+- name: z
+  summary: Output state real scalar or vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -33,8 +44,38 @@ Solution to the algebraic loop when the input signal
 z*.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Constraint
+  summary: Constraint on input signal f(z) = 0 (default) | f(z) = z
+  group: ''
+  block_parameter: Constraint
+  type: character vector
+  values: '''f(z) = 0'' | ''f(z) = z'''
+  default: '''f(z) = 0'''
+- name: Solver
+  summary: Algebraic Loop Solver auto (default) | Trust region | Line search
+  group: ''
+  block_parameter: Solver
+  type: character vector
+  values: '''auto'' | ''Trust region'' | ''Line search'''
+  default: '''auto'''
+- name: Tolerance
+  summary: Solver Tolerance auto (default) | positive scalar
+  group: ''
+  block_parameter: Tolerance
+  type: character vector
+  values: '''auto'' | positive scalar'
+  default: '''auto'''
+- name: Initial Guess
+  summary: Initial guess of solution value 0 (default) | scalar
+  group: ''
+  block_parameter: InitialGuess
+  type: character vector
+  values: scalar
+  default: '''0'''
+```
 
 ### **Constraint** — Constraint on input signal `f(z) = 0` (default) | `f(z) = z`
 
@@ -97,7 +138,6 @@ loop solver. By default, this value is set to 0
 | **Type:** character vector |
 | **Values:** scalar |
 | **Default:** `'0'` |
-
 ## Libraries
 
 Simulink / Math Operations

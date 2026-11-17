@@ -14,6 +14,18 @@ language: en
 # Ideal Force Sensor
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: Force, N physical signal
+  direction: output
+- name: R
+  summary: Rod (positive probe) mechanical translational
+  direction: conserving
+- name: C
+  summary: Case (reference probe) mechanical translational
+  direction: conserving
+```
 
 ### Output
 
@@ -31,11 +43,12 @@ positive probe.
 
 Mechanical translational conserving port associated with the sensor
 negative (reference) probe.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanical Sensors

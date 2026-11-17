@@ -14,6 +14,29 @@ language: en
 # Average-Value Chopper
 
 ## Ports
+```yaml
+ports:
+- name: DutyCycle
+  summary: Duty Cycle electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: Positive DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: Negative DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: Positive DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: Negative DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+```
 
 ### Conserving
 
@@ -50,8 +73,26 @@ Electrical conserving port associated with the negative terminal of
 the second DC voltage.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Chopper type
+  summary: Chopper class Class A - first quadrant (default) | Class B - second quadrant | Class C - first and second quadrant
+    | Class D - first and fourth quadrant | Class E - four quadrant
+  group: ''
+- name: Converter efficiency
+  summary: Converter efficiency parameterization Constant (default) | Tabulated
+  group: ''
+- name: Efficiency (%)
+  summary: Converter efficiency 100 (default) | scalar
+  group: ''
+- name: Output current vector
+  summary: Vector of output current [0, 2, 5] A (default) | row vector of at least two elements
+  group: ''
+- name: Efficiency vector (%)
+  summary: Vector of efficiencies [90, 95, 98] (default) | row vector of at least two elements
+  group: ''
+```
 
 ### **Chopper type** — Chopper class `Class A - first quadrant` (default) | `Class B - second quadrant` | `Class C - first and second quadrant` | `Class D - first and fourth quadrant` | `Class E - four quadrant`
 
@@ -94,7 +135,6 @@ vector**.
 To enable this parameter, set **Converter
 efficiency** to
 `Tabulated`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

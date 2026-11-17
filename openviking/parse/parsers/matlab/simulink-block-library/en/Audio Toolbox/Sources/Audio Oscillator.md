@@ -14,6 +14,25 @@ language: en
 # Audio Oscillator
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: Frequency (Hz) nonnegative scalar | vector of nonnegative values
+  direction: input
+  data_types: single | double
+- name: A
+  summary: Amplitude nonnegative scalar | vector of nonnegative values
+  direction: input
+  data_types: single | double
+- name: DC
+  summary: DC offset scalar | vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -51,8 +70,44 @@ The Audio Oscillator block outputs a periodic signal defined by the
 parameters of the block.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal type
+  summary: Type of generated waveform sine (default) | square | sawtooth
+  group: ''
+- name: Frequency (Hz)
+  summary: Frequency of generated waveform 100 (default) | nonnegative scalar | vector of nonnegative values
+  group: ''
+- name: Amplitude
+  summary: Amplitude of generated waveform 1 (default) | nonnegative scalar | vector of nonnegative values
+  group: ''
+- name: Phase offset
+  summary: Normalized phase offset of generated waveform 0 (default) | scalar in the range [0, 1] | vector with values in
+    the range [0, 1]
+  group: ''
+- name: DC offset
+  summary: Value added to each element of generated waveform 0 (default) | scalar | vector
+  group: ''
+- name: Duty cycle
+  summary: Square waveform duty cycle 0.5 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Width
+  summary: Sawtooth width 1 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Samples per frame
+  summary: Number of samples per frame 512 (default) | positive integer
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate of generated waveform 44100 (default) | positive scalar
+  group: ''
+- name: Output data type
+  summary: Data type of generated waveform double (default) | single
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -182,7 +237,6 @@ Data type of generated waveform, specified as `double` or
   MATLAB® interpreter. This option reduces startup time and the simulation has
   speed comparable to `Code generation`. In this mode, you
   can debug the source code of the block.
-
 ## Libraries
 
 Audio Toolbox / Sources

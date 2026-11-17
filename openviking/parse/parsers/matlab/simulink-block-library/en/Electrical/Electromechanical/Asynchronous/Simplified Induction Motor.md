@@ -14,6 +14,33 @@ language: en
 # Simplified Induction Motor
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Real power physical
+  direction: output
+- name: wm
+  summary: Mechanical speed physical
+  direction: output
+- name: VAR
+  summary: Imaginary power physical
+  direction: output
+- name: s
+  summary: Motor slip physical
+  direction: output
+- name: R
+  summary: Rotor mechanical
+  direction: conserving
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: H1
+  summary: Rotor thermal
+  direction: conserving
+- name: H2
+  summary: Rotor thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -62,8 +89,95 @@ Rotor thermal port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Model parameterization
+  summary: Block parameterization By motor ratings (default) | By equivalent circuit parameters
+  group: Electrical Torque
+- name: Stator resistance R1
+  summary: Stator winding resistance 1 Ohm (default)
+  group: Electrical Torque
+- name: Rotor resistance R2
+  summary: Rotor resistance 1 Ohm (default)
+  group: Electrical Torque
+- name: Stator inductance L1
+  summary: Stator winding inductance 0.02 H (default)
+  group: Electrical Torque
+- name: Rotor inductance L2
+  summary: Rotor inductance 0.02 H (default)
+  group: Electrical Torque
+- name: Magnetizing inductance Lm
+  summary: Stator magnetizing inductance 0.5 H (default)
+  group: Electrical Torque
+- name: Rated mechanical power
+  summary: Motor mechanical power 825 W (default)
+  group: Electrical Torque
+- name: Rated speed
+  summary: Rated motor speed 3500 rpm (default)
+  group: Electrical Torque
+- name: Rated RMS line-to-line voltage
+  summary: Rated line-to-line voltage 200 V (default)
+  group: Electrical Torque
+- name: Rated supply frequency
+  summary: Frequency of the AC supply voltage 60 Hz (default)
+  group: Electrical Torque
+- name: Rated RMS line current
+  summary: Rated line current 2.7 A (default)
+  group: Electrical Torque
+- name: R1 parameterization
+  summary: Equivalent circuit resistance parameterization From motor efficiency (default) | From power factor | Use measured
+    stator resistance R1
+  group: Electrical Torque
+- name: Motor efficiency (percent)
+  summary: Motor efficiency 95 (default)
+  group: Electrical Torque
+- name: Motor power factor
+  summary: Motor power factor 0.93 (default)
+  group: Electrical Torque
+- name: Measured stator resistance R1
+  summary: Measured stator resistance 1 Ohm (default)
+  group: Electrical Torque
+- name: Number of pole pairs
+  summary: Number of motor pole pairs 1 (default)
+  group: Electrical Torque
+- name: Number of phases
+  summary: Number of supply phases 3 (default)
+  group: Electrical Torque
+- name: Stator connections
+  summary: Motor stator configurations Delta configuration (default) | Star configuration
+  group: Electrical Torque
+- name: Supply RMS line-to-line voltage
+  summary: Supply RMS line-to-line voltage 200 V (default)
+  group: Power Supply
+- name: Supply frequency
+  summary: AC supply frequency 60 Hz (default)
+  group: Power Supply
+- name: Rotor inertia
+  summary: Rotor inertia 1e-3 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 1e-4 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Initial rotor speed
+  summary: Initial rotor speed 0 rpm (default)
+  group: Mechanical
+- name: Stator and rotor resistance temperature coefficients, [alpha_1 alpha_2]
+  summary: Stator and rotor resistance temperature coefficients [.00393, .00393] 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 C (default)
+  group: Temperature Dependence
+- name: Stator and rotor thermal masses, [M_1 M_2]
+  summary: Stator and rotor thermal masses [100, 100] J/K (default)
+  group: Thermal Port
+- name: Stator and rotor initial temperatures, [T_1 T_2]
+  summary: Stator and rotor initial temperatures [25, 25] C (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -327,7 +441,6 @@ temperature by one degree.
 
 A 1 by 2 row vector defining the temperature of the stator and rotor
 thermal ports at the start of simulation.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Asynchronous

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # PMSM Torque Estimator
 
 ## 端口
+```yaml
+ports:
+- name: idq
+  summary: 定子电流向量
+  direction: input
+  data_types: single | double
+- name: TqEst
+  summary: 转矩估计标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,43 @@ PMSM 的定子直轴和交轴电流，单位为 A。
 PMSM 的估计机械转矩值，单位为 N\*m。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Machine parameters
+  summary: 参数选择策略 Constant parameters（默认）| Lookup table based parameters
+  group: ''
+- name: Number of pole pairs
+  summary: 极对数 8（默认）| 正整数
+  group: ''
+- name: D-axis current vector, id (A)
+  summary: 直轴电流断点向量 [-200,0,200]A（默认）| 单调递增向量
+  group: ''
+- name: Q-axis current vector, iq (A)
+  summary: 交轴电流断点向量 [-200,0,200]A（默认）| 单调递增向量
+  group: ''
+- name: Ld matrix, Ld(id,iq) (H)
+  summary: 直轴电感查找数据 0.0002 * ones(3, 3)H（默认）| 正矩阵
+  group: ''
+- name: Lq matrix, Lq(id,iq) (H)
+  summary: 交轴电感查找数据 0.0002 * ones(3, 3)H（默认）| 正矩阵
+  group: ''
+- name: Permanent magnet flux linkage matrix, PM(id,iq) (Wb)
+  summary: 磁链查找数据 0.04 * ones(3, 3)Wb（默认）| 实矩阵
+  group: ''
+- name: D-axis inductance (H)
+  summary: 直轴电感 0.0002（默认）| 正标量
+  group: ''
+- name: Q-axis inductance (H)
+  summary: 交轴电感 0.0002（默认）| 正标量
+  group: ''
+- name: Permanent magnet flux linkage (Wb)
+  summary: 永磁体磁链 0.04Wb（默认）| 正标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| -1 或正数
+  group: ''
+```
 
 ### **Machine parameters** — 参数选择策略 `Constant parameters`（默认）| `Lookup table based parameters`
 
@@ -76,7 +122,6 @@ PMSM 的估计机械转矩值，单位为 N\*m。
 ### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| `-1` 或正数
 
 模块的采样时间（-1 表示继承）。如果在触发子系统内使用此模块，请将采样时间设置为 `-1`。如果在连续变步长模型中使用此模块，请显式设置采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / PMSM Control

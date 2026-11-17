@@ -14,6 +14,23 @@ language: en
 # Backscatter Radar Target
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Narrowband signal *N*-by-*1* complex-valued vector | *N*-by-*M* complex-valued matrix
+  direction: input
+  data_types: double
+- name: Ang
+  summary: Incident signal direction 2-by-1 real-valued column vector | 2-by-*M* real-valued column matrix
+  direction: input
+  data_types: double
+- name: Update
+  summary: Switch to update RCS false | true
+  direction: input
+- name: Port_1
+  summary: Narrowband reflected signal 1-by-*M* complex-valued vector | *N*-by-*M* complex-valued matrix
+  direction: output
+```
 
 ### Input
 
@@ -83,8 +100,36 @@ destination within the current input time frame. When the propagation
 time from source to destination exceeds the current time frame duration,
 the output does not contain all contributions from the input of the
 current time frame.
-
 ## Parameters
+```yaml
+parameters:
+- name: Azimuth angles (deg)
+  summary: Azimuth angles [-180:180] (default) | 1-by-*P* real-valued row vector | *P*-by-1 real-valued column vector
+  group: ''
+- name: Elevation angles (deg)
+  summary: Elevation angles [-90:90] (default) | 1-by-*Q* real-valued row vector | *Q*-by-1 real-valued column vector
+  group: ''
+- name: RCS pattern (m^2)
+  summary: Radar cross-section pattern ones(181,361) (default) | *Q*-by-*P* real-valued matrix | *Q*-by-*P*-by-*M* real-valued
+    array | 1-by-*P* real-valued vector | *M*-by-*P* real-valued matrix
+  group: ''
+- name: Fluctuation model
+  summary: Target fluctuation model Nonfluctuating (default) | Swerling1 | Swerling2 | Swerling3 | Swerling4
+  group: ''
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: Operating frequency (Hz)
+  summary: Operating frequency 3e8 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Azimuth angles (deg)** — Azimuth angles `[-180:180]` (default) | 1-by-*P* real-valued row vector | *P*-by-1 real-valued column vector
 
@@ -202,7 +247,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

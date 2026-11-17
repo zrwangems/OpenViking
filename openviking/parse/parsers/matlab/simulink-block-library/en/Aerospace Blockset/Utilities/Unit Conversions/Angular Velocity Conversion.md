@@ -14,6 +14,17 @@ language: en
 # Angular Velocity Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Angular acceleration scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Angular acceleration scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -41,8 +52,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units deg/s (default) | rad/s | rpm
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''deg/s'' | ''rad/s'' | ''rpm/s'''
+  default: '''deg/s'''
+- name: Final unit
+  summary: Output units rad/s (default) | deg/s | rpm
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''deg/s'' | ''rad/s'' | ''rpm/s'''
+  default: '''deg/s'''
+```
 
 ### **Initial unit** — Input units `deg/s` (default) | `rad/s` | `rpm`
 
@@ -91,7 +118,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `'deg/s'` | `'rad/s'` | `'rpm/s'` |
 | **Default**: `'deg/s'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

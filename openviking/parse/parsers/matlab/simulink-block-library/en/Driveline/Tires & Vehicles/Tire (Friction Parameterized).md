@@ -14,6 +14,24 @@ language: en
 # Tire (Friction Parameterized)
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Normal force, N physical signal
+  direction: input
+- name: M
+  summary: Friction coefficients, unitless physical signal | two-element vector
+  direction: input
+- name: S
+  summary: Slip, unitless or in rad/s physical signal
+  direction: output
+- name: A
+  summary: Axle mechanical rotational
+  direction: conserving
+- name: H
+  summary: Hub mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -57,8 +75,95 @@ Mechanical rotational conserving port associated with the axle.
 ### **H** — Hub mechanical rotational
 
 Mechanical rotational port associated with the wheel hub.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rolling radius
+  summary: Unloaded tire-wheel radius 0.3 m (default) | positive scalar
+  group: Main
+- name: Slip output type
+  summary: Relative or absolute switch option Relative (default) | Absolute
+  group: Main
+- name: Friction model
+  summary: Friction model Fixed kinetic friction coefficient (default) | Table lookup kinetic friction coefficient | Physical
+    signal friction coefficients
+  group: Main
+- name: Static friction coefficient
+  summary: Static friction coefficient 0.90 (default) | positive scalar
+  group: Main
+- name: Kinetic friction coefficient
+  summary: Kinetic friction coefficient 0.70 (default) | positive scalar
+  group: Main
+- name: Tire slip vector
+  summary: Tire slip [0, .02, .06, .15, .6, 1] rad/s (default) | vector
+  group: Main
+- name: Kinetic friction coefficient vector
+  summary: Kinetic friction coefficient [.89, .88, .8, .75, .7, .7] (default) | vector
+  group: Main
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Main
+- name: Extrapolation method
+  summary: Extrapolation method Linear (default) | Nearest | Error
+  group: Main
+- name: Compliance
+  summary: Dynamical compliance model No compliance - Suitable for HIL simulation (default) | Specify stiffness and damping
+  group: Dynamics
+- name: Longitudinal stiffness
+  summary: Longitudinal stiffness 1e6 N/m (default) | positive scalar
+  group: Dynamics
+- name: Longitudinal damping
+  summary: Longitudinal damping 1000 N/(m/s) (default) | positive scalar
+  group: Dynamics
+- name: Inertia
+  summary: Inertia option No inertia (default) | Specify inertia and initial velocity
+  group: Dynamics
+- name: Tire inertia
+  summary: Tire rotational inertia 1 kg*m^2 (default) | positive scalar
+  group: Dynamics
+- name: Initial velocity
+  summary: Initial rotational velocity 0 rad/s (default) | scalar
+  group: Dynamics
+- name: Rolling resistance
+  summary: Rolling resistance option off (default) | on
+  group: Rolling Resistance
+- name: Resistance model
+  summary: Rolling resistance option Constant coefficient (default) | Pressure and velocity dependent
+  group: Rolling Resistance
+- name: Constant coefficient
+  summary: Proportionality constant 0.015 (default) | positive scalar
+  group: Rolling Resistance
+- name: Tire pressure
+  summary: Tire pressure 250e3 Pa (default) | positive scalar
+  group: Rolling Resistance
+- name: Alpha
+  summary: Tire pressure equation exponent -0.003 (default) | scalar
+  group: Rolling Resistance
+- name: Beta
+  summary: Normal force equation exponent 0.97 (default) | scalar
+  group: Rolling Resistance
+- name: Coefficient A
+  summary: Velocity-independent force component *A* 84e-4 (default) | positive scalar
+  group: Rolling Resistance
+- name: Coefficient B
+  summary: Velocity-dependent force component *B* 6.2e-4 s/m (default) | positive scalar
+  group: Rolling Resistance
+- name: Coefficient C
+  summary: Velocity-dependent force component *C* 1.6e-4 s^2/m^2 (default) | positive scalar
+  group: Rolling Resistance
+- name: Velocity threshold
+  summary: Wheel hub velocity threshold for mathematical slip model 0.001 m/s (default) | positive scalar
+  group: Rolling Resistance
+- name: Traction velocity tolerance
+  summary: Traction velocity tolerance 0.01 m/s (default) | positive scalar
+  group: Advanced
+- name: Engagement threshold force
+  summary: Engagement threshold force 10 N (default) | positive scalar
+  group: Advanced
+- name: Initial traction state
+  summary: Initial traction state Tire is initially slipping (default) | Tire is initially in traction
+  group: Advanced
+```
 
 ### Main
 
@@ -386,7 +491,6 @@ forces. The parameter must be greater than zero.
 
 Option to have the tire in traction or slipping at the start of
 simulation.
-
 ## Libraries
 
 Simscape / Driveline / Tires & Vehicles

@@ -24,6 +24,11 @@ from extract_r2025b_block_manifest import (
 )
 from scrape_r2025b_all_blocks import document_source, unique_entries
 
+from openviking.parse.parsers.matlab.structure import (
+    structure_block_document,
+    without_structured_data,
+)
+
 
 def source_parts(markdown: str) -> tuple[list[str], str]:
     match = re.match(r"\A---\n(.*?)\n---\n(.*)\Z", markdown, re.DOTALL)
@@ -97,8 +102,9 @@ def localize_generic_labels(markdown: str) -> str:
     for source, translated in GENERIC_HEADINGS.items():
         markdown = re.sub(
             rf"(?m)^(#{{2,6}}) {re.escape(source)}( Tab)?$",
-            lambda match, translated=translated: f"{match.group(1)} {translated}"
-            + ("选项卡" if match.group(2) else ""),
+            lambda match, translated=translated: (
+                f"{match.group(1)} {translated}" + ("选项卡" if match.group(2) else "")
+            ),
             markdown,
         )
     for source, translated in {
@@ -110,15 +116,9 @@ def localize_generic_labels(markdown: str) -> str:
         markdown = re.sub(
             rf"\*\*{re.escape(source)}\*\*\s*[:：]\s*", f"**{translated}**：", markdown
         )
-        markdown = re.sub(
-            rf"\*\*{re.escape(source)}[:：]\*\*\s*", f"**{translated}**：", markdown
-        )
-    markdown = re.sub(
-        r"\*\*Introduced in (R20\d\d[ab])\*\*", r"**在 \1 中引入**", markdown
-    )
-    markdown = re.sub(
-        r"\*\*Introduced before (R20\d\d[ab])\*\*", r"**在 \1 之前引入**", markdown
-    )
+        markdown = re.sub(rf"\*\*{re.escape(source)}[:：]\*\*\s*", f"**{translated}**：", markdown)
+    markdown = re.sub(r"\*\*Introduced in (R20\d\d[ab])\*\*", r"**在 \1 中引入**", markdown)
+    markdown = re.sub(r"\*\*Introduced before (R20\d\d[ab])\*\*", r"**在 \1 之前引入**", markdown)
     return markdown
 
 
@@ -160,9 +160,7 @@ def validate_translation(source: str, translated: str) -> None:
     if translated_shapes != source_shapes:
         raise ValueError(f"table shapes changed: {translated_shapes} vs {source_shapes}")
     source_blocks = [block for block in re.split(r"\n\s*\n", source) if block.strip()]
-    translated_blocks = [
-        block for block in re.split(r"\n\s*\n", translated) if block.strip()
-    ]
+    translated_blocks = [block for block in re.split(r"\n\s*\n", translated) if block.strip()]
     # A translator may insert a blank line inside a paragraph without dropping
     # content. Fewer blocks are always rejected as possible omitted prose.
     if len(translated_blocks) < len(source_blocks):
@@ -290,6 +288,9 @@ def main() -> None:
         english_relative = entry["documents"]["en"]["path"]
         english_path = args.manifest.parent / english_relative
         metadata, source = source_parts(english_path.read_text(encoding="utf-8"))
+        # Translate knowledge prose only. Rebuild the localized YAML index after
+        # translation so a model can never rename keys or damage its syntax.
+        source = without_structured_data(source)
         source_release = entry.get("source_release", "R2025b")
         release_prefix = "" if source_release == "R2025b" else f"{source_release}/"
         relative = (
@@ -360,6 +361,7 @@ def main() -> None:
         translated = localize_generic_labels(translated)
         translated = preserve_source_heading_structure(source, translated)
         validate_translation(source, translated)
+        translated = structure_block_document(translated)
         chinese_metadata = []
         for line in metadata:
             if line.startswith("language:"):

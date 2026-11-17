@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # DVB-S2 Symbol Demodulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 数据符号 实值标量 | 复值标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: valid
+  summary: 指示输入数据是否有效 标量
+  direction: input
+  data_types: Boolean
+- name: modIdx
+  summary: 调制索引 0 | 1 | 2 | 3 | 4
+  direction: input
+  data_types: single | double | fixdt(0,3,0)
+- name: codeRateIdx
+  summary: 码率索引 5 | 6 | 7 | 8 | 9 | 10
+  direction: input
+  data_types: single | double | fixdt(0,4,0)
+- name: nVar
+  summary: 噪声方差 实值正标量
+  direction: input
+  data_types: single | double | uint8 | uint16 | unsigned fixed point
+- name: data
+  summary: 解调后的 LLR 值或数据比特 标量 | 八元素实值列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | Boolean | fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: valid
+  summary: 有效输出数据指示 0 | 1
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已就绪 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -158,8 +201,31 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output type** 参数设置为 `Scalar`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation source
+  summary: 调制类型的来源 Input port（默认）| Property
+  group: ''
+- name: Modulation
+  summary: 调制类型 QPSK（默认）| 8-PSK | 16-APSK | 32-APSK | pi/2-BPSK
+  group: ''
+- name: Code rate
+  summary: 码率 3/4（默认）| 2/3 | 4/5 | 5/6 | 8/9 | 9/10
+  group: ''
+- name: Decision type
+  summary: 解映射类型 Approximate log-likelihood ratio（默认）| Hard
+  group: ''
+- name: Output type
+  summary: 输出类型 Vector（默认）| Scalar
+  group: ''
+- name: Unit average power
+  summary: 单位平均功率 off（默认）| on
+  group: ''
+- name: Enable noise variance input port
+  summary: 启用噪声方差端口 off（默认）| on
+  group: ''
+```
 
 ### **Modulation source** — 调制类型的来源 `Input port`（默认）| `Property`
 
@@ -212,7 +278,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Decision type** 参数设置为 `Approximate log-likelihood ratio`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

@@ -14,6 +14,17 @@ language: en
 # Bit Reduce
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input Signal scalar | vector
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output Signal scalar | vector
+  direction: output
+  data_types: ufix1
+```
 
 ### Input
 
@@ -32,8 +43,17 @@ Input signal on which the bit-reduction operation is performed.
 Output signal that is bit-reduced.
 
 **Data Types:** `ufix1`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reduction Mode
+  summary: Reduction operation on input AND (default) | OR | XOR
+  group: ''
+  block_parameter: mode
+  type: string scalar | character vector
+  values: '"AND" | "OR" | "XOR"'
+  default: '''AND'''
+```
 
 ### **Reduction Mode** — Reduction operation on input `AND` (default) | `OR` | `XOR`
 
@@ -54,7 +74,6 @@ Specifies the reduction operation:
 | **Type:** string scalar | character vector |
 | **Value:** `"AND"` | `"OR"` | `"XOR"` |
 | **Default:** `'AND'` |
-
 ## Libraries
 
 HDL Coder / Logic and Bit Operations

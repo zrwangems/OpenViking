@@ -14,10 +14,19 @@ language: en
 # Shared Memory Pack
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Partition struct
+  summary: Name of structure [] (default)
+  group: ''
+  block_parameter: partition
+```
 
 ### **Partition struct** — Name of structure `[]` (default)
 
@@ -28,7 +37,6 @@ Enter the name of the predefined shared memory partition structure.
 |  |
 | --- |
 | **Block Parameter:** `partition` |
-
 ## Libraries
 
 Simulink Real-Time / Shared Memory

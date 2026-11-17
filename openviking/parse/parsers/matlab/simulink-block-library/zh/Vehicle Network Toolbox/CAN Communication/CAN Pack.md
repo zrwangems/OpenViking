@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # CAN Pack
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: CAN 消息信号输入 single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean
+  direction: input
+- name: CAN Msg ID
+  summary: CAN 消息标识符 single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+  direction: input
+- name: CAN Msg
+  summary: CAN 消息输出 CAN_MESSAGE | CAN_MESSAGE_BUS
+  direction: output
+```
 
 ### 输入
 
@@ -36,8 +48,79 @@ CAN Msg ID 输入端口允许您动态指定 CAN 消息标识符。仅当选中 
 ### **CAN Msg** — CAN 消息输出 `CAN_MESSAGE` | `CAN_MESSAGE_BUS`
 
 该模块有一个输出端口，即 CAN Msg。CAN Pack 模块获取指定的输入信号并将其打包为 CAN 消息。输出数据类型由 **Output as bus** 参数设置决定。
-
 ## 参数
+```yaml
+parameters:
+- name: Data input as
+  summary: 选择您的数据信号 raw data（默认）| manually specified signals | CANdb specified signals | ARXML specified signals
+  group: ''
+  block_parameter: DataFormat
+  type: string | character vector
+  values: '''raw data'' | ''manually specified signals'' | ''CANdb specified signals'' | ''ARXML specified signals'''
+  default: '''raw data'''
+- name: Database file
+  summary: ARXML 或 CAN 数据库文件 character vector
+  group: ''
+  block_parameter: CANdbFile
+  type: string | character vector
+- name: 消息列表
+  summary: CAN 消息列表字符向量数组
+  group: ''
+  block_parameter: MsgList
+  type: string | character vector
+- name: 名称
+  summary: CAN 消息名称 CAN Msg（默认）| 字符向量
+  group: ''
+  block_parameter: MsgName
+  type: string | character vector
+- name: 标识符类型
+  summary: CAN 标识符类型 Standard (11-bit identifier)（默认）| Extended (29-bit identifier)
+  group: ''
+  block_parameter: MsgIDType
+  type: string | character vector
+  values: '''Standard (11-bit identifier)'' | ''Extended (29-bit identifier)'''
+- name: CAN 标识符
+  summary: CAN 消息 ID 0（默认）| 0 到 536870911
+  group: ''
+  block_parameter: MsgIdentifier
+  type: string | character vector
+  values: '''0'' 到 ''536870911'''
+- name: 从输入端口指定 CAN 标识符
+  summary: CAN 消息 ID 值 off（默认）| on
+  group: ''
+  block_parameter: CANIDInput
+  type: string | character vector
+  values: '''off'' | ''on'''
+- name: 长度（字节）
+  summary: CAN 消息长度 8（默认）| 0 到 8
+  group: ''
+  block_parameter: MsgLength
+  type: string | character vector
+  values: '''0'' 到 ''8'''
+- name: 远程帧
+  summary: CAN 消息作为远程帧 off（默认）| on
+  group: ''
+  block_parameter: Remote
+  type: string | character vector
+  values: '''off'' | ''on'''
+- name: 输出为总线
+  summary: CAN 消息作为总线 off（默认）| on
+  group: ''
+  block_parameter: BusOutput
+  type: string | character vector
+  values: '''off'' | ''on'''
+- name: Add signal
+  summary: 添加 CAN 信号
+  group: ''
+- name: Delete signal
+  summary: 删除 CAN 信号
+  group: ''
+- name: Signals
+  summary: Signals 表 表
+  group: ''
+  block_parameter: SignalInfo
+  type: string | character vector
+```
 
 ### **Data input as** — 选择您的数据信号 `raw data`（默认）| `manually specified signals` | `CANdb specified signals` | `ARXML specified signals`
 
@@ -287,7 +370,6 @@ CAN Msg ID 输入端口允许您动态指定 CAN 消息标识符。仅当选中 
 | --- |
 | **模块参数**：`SignalInfo` |
 | **类型**：`string` | `character vector` |
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN Communication C2000 Microcontroller Blockset / Target Communication Embedded Coder / Embedded Targets / Host Communication Simulink Real-Time / CAN / CAN MSG blocks

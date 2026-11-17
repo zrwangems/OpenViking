@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # C29x UART Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: UART 接收数据，向量 | 标量
+  direction: output
+- name: Status
+  summary: UART 接收状态 0 | 1 | 2 | 3 | 4 | 8
+  direction: output
+```
 
 ### 输出
 
@@ -32,8 +41,31 @@ Status 端口输出以下值之一：
 - 3 — 表示数据同步错误
 - 4 — 表示数据接收中断
 - 8 — 表示溢出错误。
-
 ## 参数
+```yaml
+parameters:
+- name: UART 模块
+  summary: UART 模块 A（默认） | B
+  group: ''
+- name: 附加数据包标头
+  summary: 前缀标头 S（默认）
+  group: ''
+- name: 附加数据包终止符
+  summary: 后缀终止符 E（默认）
+  group: ''
+- name: 数据类型
+  summary: 要接收的数据类型 uint8（默认） | double | single | int8 | int8 | int16 | int32 | uint32 | boolean
+  group: ''
+- name: 数据长度
+  summary: 要接收的数据大小 1（默认） | 正整数
+  group: ''
+- name: 启用阻塞模式
+  summary: 为数据传输启用阻塞模式 off（默认） | on
+  group: ''
+- name: 采样时间
+  summary: 模块读取数据的时间间隔 0.1（默认）
+  group: ''
+```
 
 ### **UART 模块** — UART 模块 `A`（默认） | `B`
 
@@ -62,7 +94,6 @@ Status 端口输出以下值之一：
 ### **采样时间** — 模块读取数据的时间间隔 `0.1`（默认）
 
 指定接收数据的采样时间。要异步执行此模块，请将采样时间设置为 -1。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F29H85x

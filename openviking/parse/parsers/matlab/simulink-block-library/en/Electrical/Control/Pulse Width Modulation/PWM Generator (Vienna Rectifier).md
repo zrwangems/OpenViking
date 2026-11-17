@@ -14,6 +14,24 @@ language: en
 # PWM Generator (Vienna Rectifier)
 
 ## Ports
+```yaml
+ports:
+- name: Vabc
+  summary: Three-phase sinusoidal reference signal vector
+  direction: input
+- name: Iabc
+  summary: Three-phase current reference signal vector
+  direction: input
+- name: vdc
+  summary: DC link voltage signal positive scalar
+  direction: input
+- name: vneutral
+  summary: DC link neutral point balance control scalar
+  direction: input
+- name: g
+  summary: Gate control vector
+  direction: output
+```
 
 ### Input
 
@@ -41,8 +59,19 @@ value of the signal must be between `–1` and
 
 Three-pulse waveforms that determine the switching behavior in the attached power
 converter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sampling mode
+  summary: Wave sampling method Natural (default) | Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: Switching rate 1e3 Hz (default) | positive number
+  group: ''
+- name: Sample time (s)
+  summary: Block sample time 5e-5 s (default) | positive number
+  group: ''
+```
 
 ### **Sampling mode** — Wave sampling method `Natural` (default) | `Asymmetric` | `Symmetric`
 
@@ -61,7 +90,6 @@ the generated signal, set this value to be less than or equal to
 `1/(50*Fsw)`,
 where *F*sw is the
 **Switching frequency (Hz)**.
-
 ## Libraries
 
 Simscape / Electrical / Control / Pulse Width Modulation

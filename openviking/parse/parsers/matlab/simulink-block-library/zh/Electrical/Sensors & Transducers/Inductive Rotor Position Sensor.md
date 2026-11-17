@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Inductive Rotor Position Sensor
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 传感器正探头机械旋转的旋转速度
+  direction: output
+- name: C
+  summary: 传感器负探头机械旋转的旋转速度
+  direction: output
+- name: yp
+  summary: y 轴正端子电气
+  direction: output
+- name: yn
+  summary: y 轴负端子电气
+  direction: output
+- name: xp
+  summary: x 轴正端子电气
+  direction: output
+- name: xn
+  summary: x 轴负端子电气
+  direction: output
+- name: Angle
+  summary: 旋转角度物理信号
+  direction: output
+```
 
 ### 守恒
 
@@ -66,8 +90,34 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Output interface** 设置为 `Decoded angular position`。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: 极对数 2（默认）| 标量
+  group: ''
+- name: X-axis voltage amplitude
+  summary: x 轴电压 2.5 V（默认）| 标量
+  group: ''
+- name: Y-axis voltage amplitude
+  summary: y 轴电压 2.5 V（默认）| 标量
+  group: ''
+- name: X-axis voltage offset
+  summary: x 轴电压偏移 0 V（默认）| 标量
+  group: ''
+- name: Y-axis voltage offset
+  summary: y 轴电压偏移 0 V（默认）| 标量
+  group: ''
+- name: Quadrature error
+  summary: 正交误差 0 deg（默认）| 标量
+  group: ''
+- name: Tumbling coefficient
+  summary: 翻滚系数 0（默认）| 标量
+  group: ''
+- name: Output interface
+  summary: 解码信息的接口 Electrical connections（默认）| Decoded angular position
+  group: ''
+```
 
 ### **Number of pole pairs** — 极对数 `2`（默认）| 标量
 
@@ -100,7 +150,6 @@ chinese_source: worker-translation
 ### **Output interface** — 解码信息的接口 `Electrical connections`（默认）| `Decoded angular position`
 
 用于解码信息的端口接口，指定为 `Electrical connections` 或 `Decoded angular position`。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

@@ -14,6 +14,12 @@ language: en
 # Enable File Log
 
 ## Ports
+```yaml
+ports:
+- name: E
+  summary: Enable or disable file logging boolean
+  direction: input
+```
 
 ### Input
 
@@ -23,11 +29,12 @@ Provides enable or disable control over File
 Log block operation. When the enable input is triggered by a boolean signal
 in the model, there are logs created on the target computer. Retention of these logs
 depends on the `FileLogMaxRuns` setting.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Real-Time / Logging

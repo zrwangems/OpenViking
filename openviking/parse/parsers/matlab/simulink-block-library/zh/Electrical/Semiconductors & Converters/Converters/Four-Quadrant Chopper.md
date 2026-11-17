@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # Four-Quadrant Chopper
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 开关器件门极控制 电气 | 向量
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: 直流电压 1 正极 电气 | 标量
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: 直流电压 1 负极 电气 | 标量
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: 直流电压 2 正极 电气 | 标量
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: 直流电压 2 负极 电气 | 标量
+  direction: conserving
+  data_types: double
+- name: H
+  summary: 热端口 热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -66,8 +92,179 @@ chinese_source: worker-translation
   - `MOSFET`
   - `Thyristor`
 - 在 **Switching Devices** 设置中，选中 **Model thermal effects** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Fidelity level
+  summary: 保真度级别 Detailed model - switching devices（默认）| Equivalent model - PWM-controlled
+  group: 主要参数
+- name: Switching device
+  summary: 开关类型 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: Switching Devices
+- name: Model thermal effects
+  summary: 热效应建模选项 Off（默认）| On
+  group: Switching Devices
+- name: Gate trigger voltage, Vgt
+  summary: 电压阈值 1 V（默认）| 标量
+  group: Switching Devices
+- name: Gate turn-off voltage, Vgt_off
+  summary: 电压阈值 -1 V（默认）| 标量
+  group: Switching Devices
+- name: Holding current
+  summary: 电流阈值 1 A（默认）| 标量
+  group: Switching Devices
+- name: Forward voltage
+  summary: 电压 0.8 Ohm（默认）| 标量
+  group: Switching Devices
+- name: On-state resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: Switching Devices
+- name: Drain-source on resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: Switching Devices
+- name: Off-state conductance
+  summary: 电导 1e-5 1/Ohm（默认）| 标量
+  group: Switching Devices
+- name: Threshold voltage
+  summary: 电压阈值 6 V（默认）| 标量
+  group: Switching Devices
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: FPGA 部署的整数模式 0（默认）| 非负标量
+  group: Switching Devices
+- name: Switch-on loss
+  summary: 开通损耗 22.86e-3 J（默认）| 正标量
+  group: Switching Losses
+- name: Switch-off loss
+  summary: 关断损耗 17.14e-3 J（默认）| 正标量
+  group: Switching Losses
+- name: Natural commutation rectification loss
+  summary: 自然换流整流损耗 10e-3 J（默认）| 正标量
+  group: Switching Losses
+- name: Off-state voltage for switching loss data
+  summary: 损耗数据的断态电压 300 V（默认）| 正标量
+  group: Switching Losses
+- name: On-state current for switching loss data
+  summary: 输出电流 600 A（默认）| 正标量
+  group: Switching Losses
+- name: Wait time before switch-on current measurement
+  summary: 开通电流测量前的等待时间 0 s（默认）| 非负标量
+  group: Switching Losses
+- name: Use last on-state current from previous cycle for turn-on loss
+  summary: 使用上一周期的最后通态电流计算开通损耗的选项 Off（默认）| On
+  group: Switching Losses
+- name: Use last off-state current from previous cycle for turn-offloss
+  summary: 使用上一周期的最后断态电流计算关断损耗的选项 Off（默认）| On
+  group: Switching Losses
+- name: Model dynamics
+  summary: 二极管模型 None（默认）| Diode with no dynamics | Diode with charge dynamics
+  group: Protection Diodes
+- name: Forward voltage
+  summary: 正向电压 0.8 V（默认）| 标量
+  group: Protection Diodes
+- name: On resistance
+  summary: 导通电阻 0.001 Ohm（默认）| 标量
+  group: Protection Diodes
+- name: Off conductance
+  summary: 断态电导 1e-5 1/Ohm（默认）| 标量
+  group: Protection Diodes
+- name: Reverse recovery loss model
+  summary: 反向恢复损耗模型 Fixed loss（默认）| Tabulated loss
+  group: Protection Diodes
+- name: Reverse recovery loss
+  summary: 反向恢复损耗 0 J（默认）| 非负标量
+  group: Protection Diodes
+- name: Scale reverse recovery loss with current and voltage
+  summary: 根据电流和电压缩放反向恢复损耗的选项 On（默认）| Off
+  group: Protection Diodes
+- name: Forward current when measuring recovery loss, Irec
+  summary: 模块测量恢复损耗时的正向电流 10 A（默认）| 正标量
+  group: Protection Diodes
+- name: Turn-off voltage when measuring recovery loss, Vrec
+  summary: 测量恢复损耗时的关断电压 10 V（默认）| 正标量
+  group: Protection Diodes
+- name: Filter time constant for voltage and current values
+  summary: 电压和电流值的滤波时间常数 1 / 1000 / 100 s（默认）| 正标量
+  group: Protection Diodes
+- name: Reverse recovery loss table, Erec(Tj, If)
+  summary: 反向恢复损耗 zeros(2, 3) J（默认）| 非负标量向量
+  group: Protection Diodes
+- name: Temperature vector for recovery loss table, Tj
+  summary: 恢复损耗表的温度向量 [298.15, 398.15] K（默认）| 向量
+  group: Protection Diodes
+- name: Forward current vector for recovery loss table, If
+  summary: 恢复损耗表的正向电流向量 [.1, 1, 10] A（默认）| 非负标量向量
+  group: Protection Diodes
+- name: Junction capacitance
+  summary: 结电容 50 nF（默认）| 标量
+  group: Protection Diodes
+- name: Peak reverse current, iRM
+  summary: 峰值反向电流 -235 A（默认）| 负标量
+  group: Protection Diodes
+- name: Initial forward current when measuring iRM
+  summary: 测量 iRM 时的初始正向电流 300 A（默认）| 正标量
+  group: Protection Diodes
+- name: Rate of change of current when measuring iRM
+  summary: 测量 iRM 时的电流变化率 -50 A/us（默认）| 标量
+  group: Protection Diodes
+- name: Reverse recovery time parameterization
+  summary: 恢复时间模型 Specify stretch factor（默认）| Specify reverse recovery time directly | Specify reverse recovery charge
+  group: Protection Diodes
+- name: Reverse recovery time stretch factor
+  summary: 反向恢复时间拉伸因子 3（默认）| 大于 1 的标量
+  group: Protection Diodes
+- name: Reverse recovery time, trr
+  summary: 反向恢复时间 15 us（默认）| 标量
+  group: Protection Diodes
+- name: Reverse recovery charge, Qrr
+  summary: 反向恢复电荷 1500 s*uA（默认）| 标量
+  group: Protection Diodes
+- name: Snubber
+  summary: 缓冲器模型 None（默认）| RC snubber
+  group: 缓冲器
+- name: Snubber resistance
+  summary: 电阻 0.1 Ohm（默认）| 标量
+  group: 缓冲器
+- name: Snubber capacitance
+  summary: 电容 1e-7（默认）| F | 标量
+  group: 缓冲器
+- name: Thermal network
+  summary: 热网络建模选项 External（默认）| Specify junction and case thermal parameters | Cauer model | Cauer model parameterized with
+    Foster coefficients
+  group: 热端口
+- name: Thermal mass parameterization
+  summary: 热质量参数化选项 By thermal time constants（默认）| By thermal mass
+  group: 热端口
+- name: Junction case and case-ambient (or case-heatsink) thermal resistances, [R_JC R_CA]
+  summary: 结-壳和壳-环境（或壳-散热器）热阻 [.08, .5] K/W（默认）| 正值向量
+  group: 热端口
+- name: Junction and case thermal time constants, [t_J t_C]
+  summary: 结和壳热时间常数 [.001, .2] s（默认）| 正值向量
+  group: 热端口
+- name: Junction and case thermal masses, [M_J M_C]
+  summary: 结和壳热质量 [.01, .5] J/K（默认）| 正值向量
+  group: 热端口
+- name: Junction and case initial temperatures, [T_J T_C]
+  summary: 结和壳初始温度 [25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Thermal resistances, [R1 R2 … Rn]
+  summary: 热阻 [.08,.1,.5] K/W | [.08,.14,.22,.16] K/W | 正值向量
+  group: 热端口
+- name: Thermal masses, [M1 M2 … Mn]
+  summary: 热质量 [.01,.1,.5] J/K | [.001,.005,.05,.5] J/K | 正值向量
+  group: 热端口
+- name: Thermal masses initial temperatures, [T1 T2 … Tn]
+  summary: 热质量初始温度 [25, 25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: 热时间常数，[t1 t2 … tn]
+  summary: 热时间常数 [.001,.1,.2] s | [7e-05, .0007, .01, .08] s | 正值向量
+  group: 热端口
+- name: 初始节点温度，[T1 T2 ... Tn]
+  summary: 初始节点温度 [25, 25, 25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: 结热质量
+  summary: 结的热质量 0.01 J/K（默认）| 正标量
+  group: 热端口
+```
 
 ### 主要参数
 
@@ -839,7 +1036,6 @@ i 个 Cauer 元件（如果将
 
 要启用此参数，请将 **热网络**
 设置为 `外部`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

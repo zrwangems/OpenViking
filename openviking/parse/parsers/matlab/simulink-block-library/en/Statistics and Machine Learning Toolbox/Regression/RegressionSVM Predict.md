@@ -14,6 +14,17 @@ language: en
 # RegressionSVM Predict
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Predictor data row vector | column vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yfit
+  summary: Predicted response scalar
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -42,8 +53,85 @@ model.
 Predicted response, returned as a scalar.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select trained machine learning model
+  summary: SVM regression model svmMdl (default) | RegressionSVM object | CompactRegressionSVM object
+  group: Main
+  block_parameter: TrainedLearner
+  type: workspace variable
+  values: RegressionSVM object | CompactRegressionSVM object
+  default: '''svmMdl'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Output data type
+  summary: 'Data type of yfit output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Output data type Minimum
+  summary: Minimum value of yfit output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Output data type Maximum
+  summary: Maximum value of yfit output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Kernel data type
+  summary: Kernel computation data type double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | int64 |
+    uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>
+  group: Data Types
+  block_parameter: KernelDataTypeStr
+  type: character vector
+  values: '''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''uint64''
+    | ''int64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''double'''
+- name: Kernel data type Minimum
+  summary: Minimum kernel computation value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: KernelOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Kernel data type Maximum
+  summary: Maximum kernel computation value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: KernelOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+```
 
 ### Main
 
@@ -293,7 +381,6 @@ or clip the actual kernel computation value.
 | **Type**: character vector |
 | **Values**: `'[]'` | scalar |
 | **Default**: `'[]'` |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Regression

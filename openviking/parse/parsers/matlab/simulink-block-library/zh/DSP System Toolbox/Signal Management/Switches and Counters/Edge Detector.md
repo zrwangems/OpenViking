@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Edge Detector
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Output
+  summary: 边沿检测器的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### 输入
 
@@ -32,8 +43,13 @@ chinese_source: worker-translation
 根据输入数据类型以及布尔支持是启用还是禁用，该模块可能输出布尔值。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Input processing
+  summary: 输入处理 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+```
 
 ### **Input processing** — 输入处理 `Columns as channels (frame based)`（默认）| `Elements as channels (sample based)`
 
@@ -41,7 +57,6 @@ chinese_source: worker-translation
 
 - `Columns as channels (frame based)`（默认）— 选择此选项时，该模块将输入的每一列视为单独的信道。
 - `Elements as channels (sample based)` — 选择此选项时，该模块将输入的每个元素视为单独的信道。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Switches and Counters

@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Constant Area Hydraulic Orifice
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,8 +26,10 @@ chinese_source: worker-translation
 
 `B`
 :   与节流孔出口关联的液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Orifice area**
 :   节流孔通道面积。默认值为 `1e-4`
@@ -62,7 +67,6 @@ chinese_source: worker-translation
     `12`，对应于薄材料中带锐边的圆形节流孔。此参数仅在
     **Laminar transition specification** 参数设置为
     `Reynolds number` 时可见。
-
 ## 所属库
 
 R2025b 中未记录。

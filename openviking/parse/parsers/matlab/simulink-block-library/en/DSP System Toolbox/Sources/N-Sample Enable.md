@@ -14,6 +14,17 @@ language: en
 # N-Sample Enable
 
 ## Ports
+```yaml
+ports:
+- name: Rst
+  summary: Reset signal scalar
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: Output signal scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -50,8 +61,28 @@ in the **Active level** parameter) until a reset event
 occurs or the simulation terminates.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trigger count, N
+  summary: Number of samples to output the active value 8 (default) | scalar integer
+  group: ''
+- name: Active level
+  summary: Active level Low (0) (default) | High (1)
+  group: ''
+- name: Reset input
+  summary: Enable reset input port off (default) | on
+  group: ''
+- name: Trigger type
+  summary: Type of triggering event Rising edge (default) | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Sample time
+  summary: Output sample period 1 (default) | positive scalar
+  group: ''
+- name: Output data type
+  summary: Output data type Logical (default) | Boolean
+  group: ''
+```
 
 ### **Trigger count, N** — Number of samples to output the active value `8` (default) | scalar integer
 
@@ -128,7 +159,6 @@ value to the inactive value at
 
 Specify the output data type as `Logical` or
 `Boolean`.
-
 ## Libraries
 
 DSP System Toolbox / Sources DSP System Toolbox / Signal Management / Switches and Counters

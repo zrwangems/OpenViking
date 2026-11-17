@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Simulation 3D UAV Vehicle
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: UAV 的平移位置向量
+  direction: input
+  data_types: double
+- name: Rotation
+  summary: UAV 的旋转向量 | 矩阵
+  direction: input
+  data_types: double
+- name: GeoOrigin
+  summary: Unreal Engine 世界原点的地理空间坐标向量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -81,8 +96,38 @@ Unreal Engine 世界原点的地理空间坐标，以 [*latitude* *longitude* *a
 要启用此端口，请选中 **Use geospatial coordinates for inputs and initial values** 参数。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 车辆类型 Quadcopter（默认）| Fixed wing | Custom
+  group: 车辆参数
+- name: Path to custom mesh
+  summary: 自定义 UAV 网格资产的参考路径 /MathWorksUAVContent/UAVs/HexaRotorUAV/HexaRotor.HexaRotor（默认）| 有效的资产参考路径
+  group: 车辆参数
+- name: Color
+  summary: 载具颜色 Black（默认）| Orange | Yellow | Green | Blue | Red | White | Silver
+  group: 车辆参数
+- name: Name
+  summary: 载具名称 SimulinkVehicle1（默认）| 载具名称
+  group: 车辆参数
+- name: Use geospatial coordinates for inputs and initial values
+  summary: 对端口输入和初始值使用地理空间坐标 off（默认）| on
+  group: 车辆参数
+- name: Initial Translation (m)
+  summary: 载具初始位置 [0 0 0]（默认）| 向量
+  group: Initial Values
+- name: Initial Georeference Origin (LLA)
+  summary: 初始地理参考原点 [0 0 0]（默认）| 向量
+  group: Initial Values
+- name: Initial Rotation (rad)
+  summary: 载具初始旋转角度 [0 0 0]（默认）| 向量 | 矩阵
+  group: Initial Values
+  type: 参数的值。对于 Type 参数的任意值，您都可以将此参数指定为 1×3
+- name: Sample time
+  summary: 采样时间 -1（默认）| 标量
+  group: Sample Time
+```
 
 ### 车辆参数
 
@@ -181,7 +226,6 @@ UAV 的初始旋转。此参数的维度取决于
 
 如果将采样时间设置为 `-1`，则该模块使用 Simulation 3D Scene Configuration 模块中指定的采样
 时间。
-
 ## 所属库
 
 UAV Toolbox / Simulation 3D

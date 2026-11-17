@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Total Harmonic Distortion
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 谐波幅值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: THD (%)
+  summary: 总谐波失真 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,16 @@ chinese_source: worker-translation
 以百分比表示的总谐波失真。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Fundamental frequency
+  summary: 基波频率，单位为 Hz 60 Hz（默认值）
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认值）| 非负标量
+  group: ''
+```
 
 ### **Fundamental frequency** — 基波频率，单位为 Hz `60` `Hz`（默认值）
 
@@ -49,7 +68,6 @@ chinese_source: worker-translation
 **注意**
 
 如果此模块位于掩码子系统或其他允许连续或离散操作的变体子系统中，请提升采样时间参数，以确保模块在连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / Measurements

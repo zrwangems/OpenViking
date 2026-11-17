@@ -15,14 +15,40 @@ chinese_source: worker-translation
 # PS Repeating Sequence
 
 ## 端口
+```yaml
+ports:
+- name: Y
+  summary: 输出物理信号，无量纲物理信号
+  direction: output
+```
 
 ### 输出
 
 ### **Y** — 输出物理信号，无量纲物理信号
 
 输出物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial output
+  summary: 时间为零时的输出 0（默认）
+  group: ''
+- name: Time offset
+  summary: 初始时间偏移 0 s（默认）
+  group: ''
+- name: Signal type
+  summary: 生成信号的类型 Discontinuous（默认）| Continuous | Discrete
+  group: ''
+- name: Durations
+  summary: 线性段持续时间 [ 1, 1 ] s（默认）
+  group: ''
+- name: Start output values
+  summary: 每个线性段的起始值 [ 0, 2 ]（默认）
+  group: ''
+- name: End output values
+  summary: 每个线性段的结束值 [ 1, 1 ]（默认）
+  group: ''
+```
 
 ### **Initial output** — 时间为零时的输出 `0`（默认）
 
@@ -55,7 +81,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当 **Signal type** 参数设置为 `Discontinuous` 时启用。对于其他信号类型，段的结束值由下一段的起始值（`Continuous`）或同一段的起始值（`Discrete`）定义。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Sources

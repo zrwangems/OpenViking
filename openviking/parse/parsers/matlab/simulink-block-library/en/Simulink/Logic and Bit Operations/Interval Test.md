@@ -14,6 +14,18 @@ language: en
 # Interval Test
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### Input
 
@@ -39,8 +51,45 @@ type** as `boolean` or
 `uint8`.
 
 **Data Types:** `uint8` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Interval closed on right
+  summary: Include upper limit value on (default) | off
+  group: ''
+  block_parameter: IntervalClosedRight
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Upper limit
+  summary: Upper limit of interval 0.5 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: uplimit
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''0.5'''
+- name: Interval closed on left
+  summary: Include lower limit value on (default) | off
+  group: ''
+  block_parameter: IntervalClosedLeft
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Lower limit
+  summary: Lower limit of interval -0.5 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: lowlimit
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''-0.5'''
+- name: Output data type
+  summary: Output data type boolean (default) | uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+```
 
 ### **Interval closed on right** — Include upper limit value `on` (default) | `off`
 
@@ -113,7 +162,6 @@ Specify the output data type as `boolean` or
 | **Type:** character vector |
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations

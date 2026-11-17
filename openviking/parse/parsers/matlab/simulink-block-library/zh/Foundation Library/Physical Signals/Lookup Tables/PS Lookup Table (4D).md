@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # PS Lookup Table (4D)
 
 ## 端口
+```yaml
+ports:
+- name: x1
+  summary: 沿第一个轴的输入查询点或查询点的 N 维数组，无类型物理信号
+  direction: input
+- name: x2
+  summary: 沿第二个轴的输入查询点或查询点的 N 维数组，无类型物理信号
+  direction: input
+- name: x3
+  summary: 沿第三个轴的输入查询点或查询点的 N 维数组，无类型物理信号
+  direction: input
+- name: x4
+  summary: 沿第四个轴的输入查询点或查询点的 N 维数组，无类型物理信号
+  direction: input
+- name: f
+  summary: 输出函数值，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +57,31 @@ chinese_source: worker-translation
 ### **f** — 输出函数值，无类型物理信号
 
 输出函数值，基于将查找表应用于四个输入值。输出信号大小与沿第一个轴的输入信号大小匹配。输出信号单位由 **4D array of table values** 参数的单位决定。
-
 ## 参数
+```yaml
+parameters:
+- name: Table grid vector 1
+  summary: 沿第一个轴的数据值向量 [1, 2, 3]（默认值）
+  group: ''
+- name: Table grid vector 2
+  summary: 沿第二个轴的数据值向量 [1, 2, 3, 4]（默认值）
+  group: ''
+- name: Table grid vector 3
+  summary: 沿第三个轴的数据值向量 [1, 2, 3]（默认值）
+  group: ''
+- name: Table grid vector 4
+  summary: 沿第四轴的数据值向量 [1, 2, 3, 4, 5]（默认值）
+  group: ''
+- name: 4D array of table values
+  summary: 表网格顶点处函数值的四维数组 ones(3, 4, 3, 5)（默认值）
+  group: ''
+- name: Interpolation method
+  summary: 选择插值方法 Linear（默认值） | Smooth
+  group: ''
+- name: Extrapolation method
+  summary: 选择外推方法 Linear（默认值） | Nearest | Error
+  group: ''
+```
 
 ### **Table grid vector 1** — 沿第一个轴的数据值向量 `[1, 2, 3]`（默认值）
 
@@ -86,7 +127,6 @@ chinese_source: worker-translation
 - `Linear` — 从插值区域的边缘进行线性扩展。线性外推的斜率等于插值区域边缘处插值曲面的斜率。
 - `Nearest` — 从插值区域的边缘以常数进行扩展。最近外推的值等于插值区域边缘处插值曲面的值。选择此选项可生成不会高于数据中最高点或低于数据中最低点的外推。
 - `Error` — 如果任何输入信号超出表的范围，则发出错误。当您希望数据位于表范围内时，选择此选项可避免进入外推模式。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Lookup Tables

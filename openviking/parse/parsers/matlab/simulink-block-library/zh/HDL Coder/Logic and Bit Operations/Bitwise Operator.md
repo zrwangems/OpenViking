@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Bitwise Operator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -36,8 +47,45 @@ chinese_source: worker-translation
 模块输出的大小取决于输入数量、向量大小以及您选择的运算符。如果未指定位掩码，则输出为标量。如果指定了位掩码，则输出为向量。
 
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Operator
+  summary: 按位逻辑运算符 AND（默认）| OR | NOR | NAND | XOR | NOT
+  group: ''
+  block_parameter: logicop
+  type: character vector
+  values: '''AND''|''OR''|''NAND''|''NOR''|''XOR''  | ''NOT'''
+  default: '''AND'''
+- name: Use bit mask
+  summary: 选择以使用位掩码 已选中（默认）| 未选中
+  group: ''
+  block_parameter: UseBitMask
+  type: character vector
+  values: '''off''|''on'''
+  default: '''on'''
+- name: Number of input ports
+  summary: 输入信号数量 1（默认）| 整数
+  group: ''
+  block_parameter: NumInputPorts
+  type: character vector
+  values: positive integer
+  default: '''1'''
+- name: Bit Mask
+  summary: 与单个输入关联的位掩码 bin2dec（默认）
+  group: ''
+  block_parameter: BitMask
+  type: character vector
+  values: positive integer
+  default: '''bin2dec(''11011001'')'''
+- name: Treat mask as
+  summary: 将掩码视为实际值或存储整数 Stored Integer（默认）| Real World Value
+  group: ''
+  block_parameter: BitMaskRealWorld
+  type: character vector
+  values: '''Real World Value'' | ''Stored Integer'''
+  default: '''Stored Integer'''
+```
 
 ### **Operator** — 按位逻辑运算符 AND（默认）| OR | NOR | NAND | XOR | NOT
 
@@ -142,7 +190,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Real World Value'` | `'Stored Integer'` |
 | **默认值**：`'Stored Integer'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

@@ -14,10 +14,24 @@ language: en
 # NVRAM Service Component
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Block ID
+  summary: ID that identifies service block 1 (default) | scalar
+  group: ''
+- name: Maximum number of memory blocks
+  summary: Maximum number of memory blocks to use in NvM service operations 10 (default) | scalar
+  group: ''
+- name: Initial Value
+  summary: Initial values of NvM client ports 0 (default) | real, finite scalar or vector
+  group: ''
+```
 
 ### **Block ID** — ID that identifies service block 1 (default) | scalar
 
@@ -37,7 +51,6 @@ operations.
 Specify the initial values of the NvM client ports as finite, real-valued
 scalars or vectors. The values must be scalar, or have the same dimensions
 as the input signal.
-
 ## Libraries
 
 AUTOSAR Blockset / Classic Platform / Basic Software / NVRAM Manager (NvM)

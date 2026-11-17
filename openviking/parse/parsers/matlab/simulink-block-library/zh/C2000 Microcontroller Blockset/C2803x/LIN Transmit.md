@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2803x LIN Transmit
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Send checksum**
 :   选中此复选框可在校验字节的最后一个数据字段中包含校验和。LIN 2.0 实现需要此校验和。
@@ -59,7 +64,6 @@ R2025b 中未记录。
 :   如果启用此选项，LIN 节点会在生成校验和并设置 Transmitter buffer register ready 标志时生成中断。
 
     默认值为 `Disabled`。
-
 ## 所属库
 
 R2025b 中未记录。

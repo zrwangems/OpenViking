@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Angle-Time Intensity Scope
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据，实值长度-*M* 向量
+  direction: input
+  data_types: double | single
+```
 
 ### 输入
 
@@ -23,8 +30,80 @@ chinese_source: worker-translation
 输入数据，指定为角度响应的实值长度-*M* 向量。每个向量对应一行数据。该模块可以接受单精度数据类型输入，但会将数据转换为双精度以进行显示。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Angle offset (degree)
+  summary: 角度偏移 0.0（默认）| 标量
+  group: ''
+  block_parameter: AngleOffset
+  type: double
+  values: scalar |
+  default: '0.0'
+- name: Angle resolution (degree)
+  summary: 采样之间的角度差 1.0（默认）| 正标量
+  group: ''
+  block_parameter: AngleResolution
+  type: double
+  values: positive scalar |
+  default: '0.0'
+- name: Time span (s)
+  summary: 显示的时间跨度 Auto（默认）
+  group: ''
+  block_parameter: TimeSpan
+  type: double
+  values: scalar
+  default: '0.1'
+- name: Time resolution (s)
+  summary: 各行之间的时间差 Auto（默认）
+  group: ''
+  block_parameter: TimeResolution
+  type: double
+  values: positive scalar
+  default: '0.001'
+- name: Grid
+  summary: 显示笛卡尔网格叠加 on（默认）| off
+  group: ''
+  block_parameter: ShowGrid
+  type: logical
+  values: 1 | 0
+  default: '1'
+- name: Ticks
+  summary: 显示刻度值标签 on（默认）| off
+  group: ''
+  block_parameter: ShowTicks
+  type: logical
+  values: 1 | 0
+  default: '1'
+- name: Angle label
+  summary: 角度轴标签 'Angle (degree)'（默认）| 字符向量 | 字符串
+  group: ''
+  block_parameter: AngleLabel
+  type: string
+  values: string
+  default: '''Angle (degree)'''
+- name: Time label
+  summary: 时间轴标签 'Time History (s)'（默认）| 字符串
+  group: ''
+  block_parameter: TimeLabel
+  type: string
+  values: string
+  default: '''Time History (s)'''
+- name: Title
+  summary: 窗口标题 Angle vs. Time'（默认）| 字符串
+  group: ''
+  block_parameter: Title
+  type: string
+  values: string
+  default: '''Doppler vs. Time'''
+- name: Colorbar label
+  summary: 颜色条标签 'dB'（默认）| 字符串
+  group: ''
+  block_parameter: ColorBarLabel
+  type: string
+  values: string
+  default: '''dB'''
+```
 
 ### **Angle offset (degree)** — 角度偏移 `0.0`（默认）| 标量
 
@@ -183,7 +262,6 @@ chinese_source: worker-translation
 | **默认值：**`'dB'` |
 
 **数据类型：** `string`
-
 ## 所属库
 
 Phased Array System Toolbox / Sinks

@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Hydraulic Mass Flow Rate Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -26,11 +29,12 @@ chinese_source: worker-translation
 
 `M`
 :   控制信号端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 R2025b 中未记录。

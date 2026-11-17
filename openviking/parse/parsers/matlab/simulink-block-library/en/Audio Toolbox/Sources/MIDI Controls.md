@@ -14,6 +14,13 @@ language: en
 # MIDI Controls
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: double | uint8
+```
 
 ### Output
 
@@ -32,8 +39,33 @@ mode** parameter.
 | `uint8` | `RAW MIDI (0-127)` |
 
 **Data Types:** `double` | `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: MIDI device
+  summary: MIDI control surface your block listens to Default (default) | Specify other
+  group: ''
+- name: MIDI device name
+  summary: Device name of MIDI control surface your block listens to character vector
+  group: ''
+- name: MIDI controls
+  summary: Specify if block responds to all controllers or specific controllers on MIDI surface Respond to any control (default)
+    | Respond to specified controls
+  group: ''
+- name: MIDI control numbers
+  summary: Control numbers associated with MIDI surface controllers that your block responds to 0 (default) | integer | array
+    of integers
+  group: ''
+- name: Initial values
+  summary: Control numbers associated with MIDI surface controllers that your block responds to 0 (default) | scalar | array
+  group: ''
+- name: Send initial values to device at start
+  summary: Synchronize MIDI surface with values specified initial values off (default) | on
+  group: ''
+- name: Output Mode
+  summary: Output mode for MIDI control value Normalized (0-1) (default) | RAW MIDI (0-127)
+  group: ''
+```
 
 ### **MIDI device** — MIDI control surface your block listens to `Default` (default) | `Specify other`
 
@@ -97,7 +129,6 @@ are generated.
 Output mode for MIDI control value, specified as `Normalized
 (0-1)` or `RAW MIDI
 (0-127)`.
-
 ## Libraries
 
 Audio Toolbox / Sources DSP System Toolbox / Sources

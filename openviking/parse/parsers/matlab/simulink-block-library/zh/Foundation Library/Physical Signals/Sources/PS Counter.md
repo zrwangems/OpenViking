@@ -15,14 +15,34 @@ chinese_source: worker-translation
 # PS Counter
 
 ## 端口
+```yaml
+ports:
+- name: Y
+  summary: 输出物理信号，无量纲物理信号
+  direction: output
+```
 
 ### 输出
 
 ### **Y** — 输出物理信号，无量纲物理信号
 
 输出物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 采样时间间隔 1 s（默认值）
+  group: ''
+- name: Initial value
+  summary: 零时刻的输出 0（默认值）
+  group: ''
+- name: Reset value
+  summary: 最小输出 0（默认值）
+  group: ''
+- name: Maximum value
+  summary: 最大输出 intmax（默认值）
+  group: ''
+```
 
 ### **Sample time** — 采样时间间隔 `1 s`（默认值）
 
@@ -39,7 +59,6 @@ chinese_source: worker-translation
 ### **Maximum value** — 最大输出 `intmax`（默认值）
 
 计数周期结束时输出信号的值。模块的输出保持此值一个时间 *`step`*，由 **Sample time** 参数指定，此时信号返回到 **Reset value**，周期重新开始。该值必须为整数。默认值为 `intmax`（2147483647，即 MATLAB® 软件中 32 位整数可表示的最大正值）。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Sources

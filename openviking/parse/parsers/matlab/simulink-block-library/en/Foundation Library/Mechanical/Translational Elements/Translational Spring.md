@@ -14,6 +14,15 @@ language: en
 # Translational Spring
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,13 +35,17 @@ moving body.
 
 Mechanical translational conserving port associated with the case, that is, the
 stationary body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Spring rate
+  summary: Spring rate 1000 N/m (default) | scalar
+  group: ''
+```
 
 ### **Spring rate** — Spring rate `1000 N/m` (default) | scalar
 
 Spring rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Translational Elements

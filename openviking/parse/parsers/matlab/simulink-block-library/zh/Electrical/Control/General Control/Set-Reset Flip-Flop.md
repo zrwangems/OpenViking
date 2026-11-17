@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Set-Reset Flip-Flop
 
 ## 端口
+```yaml
+ports:
+- name: Set
+  summary: 置位输入信号 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Reset
+  summary: 复位输入信号 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Q
+  summary: 输出信号 0 | 1
+  direction: output
+  data_types: Boolean
+- name: '!Q'
+  summary: 互补输出信号 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -42,8 +61,19 @@ chinese_source: worker-translation
 输出信号 **!Q**，其维度和数据类型与输入 **signal** 相同。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Priority when undefined state
+  summary: 状态优先级 Set（默认）| Reset
+  group: ''
+- name: Initial condition for Q state
+  summary: 输出 Q 的初始值 0（默认）| 1
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Priority when undefined state** — 状态优先级 `Set`（默认）| `Reset`
 
@@ -60,7 +90,6 @@ chinese_source: worker-translation
 对于继承的离散时间操作，将此参数设置为 `-1`。对于离散时间操作，将此参数设置为正整数。对于连续时间操作，将此参数设置为 `0`。
 
 如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

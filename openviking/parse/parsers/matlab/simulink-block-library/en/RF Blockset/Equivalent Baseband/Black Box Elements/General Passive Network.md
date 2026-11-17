@@ -14,10 +14,67 @@ language: en
 # General Passive Network
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data source
+  summary: Data source that describes the passive device behaviour Data file (default) | RFDATA object
+  group: Main
+- name: Data file
+  summary: Name of file that contains passive device data passive.s2p (default) | string | character vector
+  group: Main
+- name: RFDATA object
+  summary: RF data object that contains passive device data read(rfdata.data, 'passive.s2p') (default) | rfdata.data object
+  group: Main
+- name: Interpolation method
+  summary: Method to interpolate network parameters Linear (default) | Spline | Cubic
+  group: Main
+- name: Source of frequency data
+  summary: Frequency data source Extracted from data source (default) | User-specified
+  group: Visualization
+- name: Frequency data
+  summary: Frequency data range [0.3e6:1e:6e9] (default) | vector
+  group: Visualization
+- name: Reference impedance (ohms)
+  summary: Reference impedance 50 (default) | nonnegative scalar
+  group: Visualization
+- name: Plot type
+  summary: Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith
+    chart
+  group: Visualization
+- name: Y parameter1
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: Visualization
+- name: Y parameter2
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: Visualization
+- name: Y format1
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization
+- name: Y format2
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization
+- name: X parameter
+  summary: Frequency plot Freq (default)
+  group: Visualization
+- name: X format
+  summary: Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz
+  group: Visualization
+- name: Y scale
+  summary: Y-axis scale Linear (default) | Log
+  group: Visualization
+- name: X scale
+  summary: X-axis scale Linear (default) | Log
+  group: Visualization
+- name: Plot
+  summary: Plot specified data button
+  group: Visualization
+```
 
 ### Main
 
@@ -206,7 +263,6 @@ plane`.
 ### **Plot** — Plot specified data button
 
 Plot specified data using the plot button.
-
 ## Libraries
 
 RF Blockset / Equivalent Baseband / Black Box Elements

@@ -14,6 +14,21 @@ language: en
 # Discrete Transfer Function Estimator
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: System input signal vector | matrix
+  direction: input
+  data_types: double | single
+- name: y
+  summary: System output signal vector | matrix
+  direction: input
+  data_types: double | single
+- name: Output
+  summary: Transfer function estimate vector | matrix
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -43,8 +58,52 @@ details on how the block computes the transfer function estimate, see
 Algorithms.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Window length source
+  summary: Window length source Same as input frame length (default) | Specify on dialog
+  group: ''
+- name: Window length
+  summary: Window length 1024 (default) | positive integer ≥ 2
+  group: ''
+- name: Window overlap (%)
+  summary: Percentage of overlap between windows 0 (default) | nonnegative scalar
+  group: ''
+- name: Averaging method
+  summary: Averaging method Running (default) | Exponential
+  group: ''
+- name: Specify forgetting factor from input port
+  summary: Specify forgetting factor from input port off (default) | on
+  group: ''
+- name: Forgetting factor
+  summary: Forgetting factor 0.9 (default) | positive scalar ≤ 1
+  group: ''
+- name: Number of spectral averages
+  summary: Number of spectral averages 1 (default) | positive integer
+  group: ''
+- name: FFT length source
+  summary: Source of FFT length value Auto (default) | Property
+  group: ''
+- name: FFT length
+  summary: FFT length 128 (default) | positive integer
+  group: ''
+- name: Window function
+  summary: Window function Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular
+  group: ''
+- name: Sidelobe attenuation of window (dB)
+  summary: Sidelobe attenuation of window 60 (default) | positive scalar
+  group: ''
+- name: Frequency range
+  summary: Frequency range of the transfer function estimate Centered (default) | One-sided | Two-sided
+  group: ''
+- name: Output magnitude squared coherence estimate
+  summary: Magnitude squared coherence estimate off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Window length source** — Window length source `Same as input frame length` (default) | `Specify on dialog`
 
@@ -193,7 +252,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

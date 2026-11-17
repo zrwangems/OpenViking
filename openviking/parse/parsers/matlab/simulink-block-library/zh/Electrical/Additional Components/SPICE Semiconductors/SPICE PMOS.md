@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # SPICE PMOS
 
 ## 端口
+```yaml
+ports:
+- name: gx
+  summary: 栅极端子电气
+  direction: conserving
+- name: dx
+  summary: 漏极端子电气
+  direction: conserving
+- name: sx
+  summary: 源极端子电气
+  direction: conserving
+- name: bx
+  summary: 体极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,181 @@ chinese_source: worker-translation
 ### **bx** — 体极端子电气
 
 与晶体管体极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: MOS model
+  summary: 漏极电流模型 Level 1 MOS（默认）| Level 3 MOS
+  group: 模型选择
+- name: Device area factor, AREA
+  summary: 器件面积 1.0（默认）| 正标量
+  group: 尺寸
+- name: Number of parallel devices, SCALE
+  summary: 并联器件数 1（默认）| 正整数
+  group: 尺寸
+- name: Length of channel, LENGTH
+  summary: 源到漏沟道长度 1e-4 m（默认）| 正标量
+  group: 尺寸
+- name: Width of channel, WIDTH
+  summary: 源到漏沟道宽度 1e-4 m（默认）| 正标量
+  group: 尺寸
+- name: Area of drain, AD
+  summary: 漏极面积 0 m^2（默认）| 非负标量
+  group: 尺寸
+- name: Area of source, AS
+  summary: 源极面积 0 m^2（默认）| 非负标量
+  group: 尺寸
+- name: Perimeter of drain, PD
+  summary: 漏极周长 0 m（默认）| 非负标量
+  group: 尺寸
+- name: Perimeter of source, PS
+  summary: 源极周长 0 m（默认）| 非负标量
+  group: 尺寸
+- name: Number of drain squares, NRD
+  summary: 漏极扩散电阻方数 0（默认）| 非负标量
+  group: 电阻
+- name: Number of source squares, NRS
+  summary: 晶体管源极扩散电阻方数 0（默认）| 非负标量
+  group: 电阻
+- name: Drain resistance, RD
+  summary: 串联电阻 0.01 Ohm（默认）| 非负标量
+  group: 电阻
+- name: Source resistance, RS
+  summary: 串联电阻 0.0001 Ohm（默认）| 非负标量
+  group: 电阻
+- name: Sheet resistance, RSH
+  summary: 每方电阻 0 Ohm（默认）| 非负标量
+  group: 电阻
+- name: Threshold voltage, VTO
+  summary: 阈值电压 0 V（默认）| 标量
+  group: 直流电流
+- name: Transconductance, KP
+  summary: 跨导 2e-5 A/V^2（默认）| 非负标量
+  group: 直流电流
+- name: Bulk threshold, GAMMA
+  summary: 体阈值 0 V^0.50000（默认）| 非负标量
+  group: 直流电流
+- name: Surface potential, PHI
+  summary: 表面电势 0.6 V（默认）| 非负标量
+  group: 直流电流
+- name: Channel modulation, LAMBDA
+  summary: 沟道长度调制 0 1/V（默认）| 标量
+  group: 直流电流
+- name: Bulk saturation current, IS
+  summary: 体饱和电流幅值 1e-14 A（默认）| 非负标量
+  group: 直流电流
+- name: Emission coefficient, N
+  summary: 发射系数 1（默认）| 非负标量
+  group: 直流电流
+- name: Bulk jct sat current density, JS
+  summary: 体结饱和电流密度 0 A/m^2（默认）| 非负标量
+  group: 直流电流
+- name: Width effect on threshold, DELTA
+  summary: 宽度因子 0（默认）| 标量
+  group: 直流电流
+- name: Max carrier drift velocity, VMAX
+  summary: 最大漂移速度 0 m/s（默认）| 标量
+  group: 直流电流
+- name: Fast surface state density, NFS
+  summary: 快表面态密度 0 1/cm^2（默认）| 标量
+  group: 直流电流
+- name: Vds dependence threshold volt, ETA
+  summary: 漏源电压阈值 0（默认）| 标量
+  group: 直流电流
+- name: Vgs dependence on mobility, THETA
+  summary: 迁移率依赖系数 0 1/V（默认）| 标量
+  group: 直流电流
+- name: Mobility modulation, KAPPA
+  summary: 迁移率调制系数 0.2（默认）| 标量
+  group: 直流电流
+- name: Model gate capacitance (CGS, CGD, CGB)
+  summary: 栅极电容模型 No intrinsic capacitance（默认）| Meyer gate capacitances | Charge conservation capacitances
+  group: C-V
+- name: Model gate overlap capacitance (CGSO, CGDO, CGBO)
+  summary: 栅极重叠模型 No（默认）| Yes
+  group: C-V
+- name: G-S overlap capacitance, CGSO
+  summary: 栅源重叠电容 0 F/m（默认）| 标量 | 0 或 ≥ 1e-18
+  group: C-V
+- name: G-D overlap capacitance, CGDO
+  summary: 栅漏重叠电容 0 F/m（默认）| 标量 | 0 或 ≥ 1e-18
+  group: C-V
+- name: G-B overlap capacitance, CGBO
+  summary: 栅体重叠电容 0 F/m（默认）| 标量 | 0 或 ≥ 1e-18
+  group: C-V
+- name: Model junction capacitance (CBD, CBS)
+  summary: 结电容模型 No（默认）| Yes
+  group: C-V
+- name: Zero-bias BD capacitance, CBD
+  summary: 零偏结电容 0 F（默认）| 0 或 ≥ 1e-18
+  group: C-V
+- name: Zero-bias BS capacitance, CBS
+  summary: 零偏体源电容 0 F（默认）| 标量 | 0 或 ≥ 1e-18
+  group: C-V
+- name: Bulk junction potential, PB
+  summary: 体结电势 0.8 V（默认）| 标量 | 0 或 ≥ 0.01
+  group: C-V
+- name: Bottom junction cap per area, CJ
+  summary: 每结面积的零偏体结底部电容 0 F/m^2（默认）| 标量 | 0 或 ≥ 1e-18
+  group: C-V
+- name: Bottom grading coefficient, MJ
+  summary: 底部梯度系数 0.5（默认）| 标量 | 0 或 < 0.9
+  group: C-V
+- name: Side jct cap/area of jct perimeter, CJSW
+  summary: 每结周长的零偏体结侧壁电容 0 F/m（默认）| 标量 | 0 或 ≥ 1e-18
+  group: C-V
+- name: Side grading coefficient, MJSW
+  summary: 侧壁梯度系数 0.5（默认）| 标量 | 0 < *MJSW* < 0.9
+  group: C-V
+- name: Capacitance coefficient, FC
+  summary: 电容系数 0.5（默认）| 0 或 ≤ 0.95 | 标量
+  group: C-V
+- name: Specify initial condition
+  summary: 初始条件模型 No（默认）| Yes
+  group: C-V
+- name: Initial condition voltage, ICVDS
+  summary: 初始电压 0 V（默认）| 标量
+  group: C-V
+- name: Initial condition voltage, ICVGS
+  summary: 初始电压 0 V（默认）| 标量
+  group: C-V
+- name: Initial condition voltage, ICVBS
+  summary: 初始电压 0 V（默认）| 标量
+  group: C-V
+- name: Oxide thickness, TOX
+  summary: 栅氧化层厚度 1e-7 m（默认）| 非负标量
+  group: 工艺
+- name: Lateral diffusion, LD
+  summary: 横向扩散长度 0 m（默认）| 标量
+  group: 工艺
+- name: Surface mobility, U0
+  summary: 零偏置表面迁移率系数 600 cm^2/s/V（默认）
+  group: 工艺
+- name: Substrate doping, NSUB
+  summary: 衬底掺杂 NaN 1/cm^3（默认）| 标量 ≥ 1.45e10
+  group: 工艺
+- name: Gate type, TPG
+  summary: 栅极类型 Opposite of substrate (1)（默认）| Same as substrate (-1) | Aluminum (0)
+  group: 工艺
+- name: Surface state density, NSS
+  summary: 表面态密度 NaN 1/cm^2（默认）| 标量
+  group: 工艺
+- name: Junction depth, XJ
+  summary: 结深 0m（默认）
+  group: 工艺
+- name: Model temperature dependence using
+  summary: 温度依赖模型 Device temperature（默认）| Fixed temperature
+  group: 温度
+- name: Fixed circuit temperature, TFIXED
+  summary: 固定电路温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Parameter extraction temperature, TMEAS
+  summary: 参数提取温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Offset local circuit temperature, TOFFSET
+  summary: 局部电路温度偏移 0 K（默认）| 标量
+  group: 温度
+```
 
 ### 模型选择
 
@@ -467,7 +655,6 @@ temperature` 时可见。
 此参数仅在您为 **Model temperature
 dependence using** 参数选择 `Device
 temperature` 时可见。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

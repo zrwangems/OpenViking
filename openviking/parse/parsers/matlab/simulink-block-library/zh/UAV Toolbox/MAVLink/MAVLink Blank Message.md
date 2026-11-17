@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # MAVLink Blank Message
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: MAVLink 数据包非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输出
 
@@ -28,8 +35,31 @@ ID 初始化为对应的 **System ID** 和
 **Component ID** 参数。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: MAVLink dialect source
+  summary: 用于指定 MAVLink 消息定义的源 Select from standard MAVLink dialects（默认）| Specify your own
+  group: ''
+- name: MAVLink dialect
+  summary: 用于解析 MAVLink 消息的消息定义 common.xml（默认）| 字符串
+  group: ''
+- name: MAVLink version
+  summary: MAVLink 协议版本 2（默认）| 1
+  group: ''
+- name: MAVLink Message type
+  summary: MAVLink 消息 HEARTBEAT（默认）
+  group: ''
+- name: System ID
+  summary: 发送方的系统 ID 1（默认）
+  group: ''
+- name: Component ID
+  summary: 发送方的组件 ID 1（默认）
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 inf（默认）| 标量
+  group: ''
+```
 
 ### **MAVLink dialect source** — 用于指定 MAVLink 消息定义的源 `Select from standard MAVLink dialects`（默认）| `Specify your own`
 
@@ -84,7 +114,6 @@ MAVLink 组件 ID，指定为 1 到 255 之间的正整数。
 有关详细信息，请参阅 Specify Sample Time (Simulink) (Simulink)。
 
 **数据类型：** `uint8`
-
 ## 所属库
 
 UAV Toolbox / MAVLink

@@ -14,6 +14,18 @@ language: en
 # Magnetic Core
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: North terminal magnetic
+  direction: conserving
+- name: S
+  summary: South terminal magnetic
+  direction: conserving
+- name: H
+  summary: Thermal mass thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -33,8 +45,73 @@ Thermal port associated with the thermal mass.
 
 To enable this port, select the **Model thermal effects**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Effective length
+  summary: Effective core length 0.032 m (default) | positive finite scalar
+  group: Main
+- name: Effective cross-sectional area
+  summary: Effective core cross-sectional area 1.6e-5 m^2 (default) | positive finite scalar
+  group: Main
+- name: Parameterization option
+  summary: Parameterization method Magnetic Characteristics (default) | Jiles-Atherton Model | Saturated BH Curve
+  group: Main
+- name: Magnetic remanence of saturation cycle
+  summary: Residual magnetism 0.68 T (default) | positive scalar
+  group: Main
+- name: Magnetic coercivity of saturation cycle
+  summary: Magnitude of field strength to demagnetize core 151 A/m (default) | positive scalar
+  group: Main
+- name: Magnetic flux density at saturation point
+  summary: Maximum flux density magnitude 1.25 T (default) | positive scalar
+  group: Main
+- name: Magnetic field intensity at saturation point
+  summary: Field intensity at saturation point 3000 A/m (default) | positive scalar
+  group: Main
+- name: Saturation magnetization, Ms
+  summary: Saturation magnetization, Ms 1e6 A/m (default) | positive finite scalar
+  group: Main
+- name: Anhysteretic magnetization coefficient, a
+  summary: Anhysteretic magnetization coefficient, a 82 A/m (default) | finite positive scalar
+  group: Main
+- name: Inter-domain coupling factor, alpha
+  summary: Inter-domain coupling factor, alpha 0.0001 (default) | scalar
+  group: Main
+- name: Coefficient for reversible magnetization, c
+  summary: Coefficient for reversible magnetization 0.1 (default) | scalar in the range [0,1]
+  group: Main
+- name: Bulk coupling coefficient, k
+  summary: Bulk coupling coefficient 200 A/m (default) | finite positive scalar
+  group: Main
+- name: Magnetic flux density, B(H)
+  summary: Magnetic flux density vector [-1.25,-0.68,0,0.885,1.124,1.25] T (default) | vector
+  group: Main
+- name: Magnetic field intensity, H
+  summary: Magnetic field intensity vector [-3000,0,151,500,1000,3000] A/m (default) | vector
+  group: Main
+- name: Averaging period for hysteresis losses
+  summary: Averaging period for hysteresis loss calculation 1e-3 s (default) | positive scalar
+  group: Losses
+- name: Model eddy losses
+  summary: Option to model eddy losses Off (default) | On
+  group: Losses
+- name: Geometrical coefficient
+  summary: Geometrical coefficient 6 (default) | positive scalar
+  group: Losses
+- name: Thickness of laminations
+  summary: Characteristic cross-sectional dimension 1 mm (default) | positive scalar
+  group: Losses
+- name: Electrical resistivity
+  summary: Electrical resistivity of core 1.03e-7 Ohm*m (default) | positive scalar
+  group: Losses
+- name: Model thermal effects
+  summary: Option to model thermal effects Off (default) | On
+  group: Thermal
+- name: Thermal mass
+  summary: Thermal mass associated with H port 2 J/K (default) | positive scalar
+  group: Thermal
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -260,7 +337,6 @@ the energy required to raise the temperature of the thermal port by 1 K.
 
 To enable this parameter, select the **Model thermal effects**
 parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive

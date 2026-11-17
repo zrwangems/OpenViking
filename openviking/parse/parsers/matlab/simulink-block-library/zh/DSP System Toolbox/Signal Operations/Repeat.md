@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Repeat
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: L
+  summary: 重复次数 正整数 ≤ *Lmax*
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -60,8 +75,28 @@ Repeat 模块输出的信号具有与输入信号 **in** 相同的数据类型�
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Repetition count source
+  summary: 指定重复次数的模式 Dialog parameter（默认）| Input port
+  group: ''
+- name: Repetition count, L
+  summary: 重复次数 5（默认）| 正整数
+  group: ''
+- name: Maximum repetition factor, Lmax
+  summary: 最大重复次数 16（默认）| 正整数 ≥ 1
+  group: ''
+- name: Input processing
+  summary: 处理输入信号的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: 模块对输入进行上采样的方法 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Initial conditions
+  summary: 初始条件 0（默认）| 标量 | 矩阵
+  group: ''
+```
 
 ### **Repetition count source** — 指定重复次数的模式 `Dialog parameter`（默认）| `Input port`
 
@@ -123,7 +158,6 @@ Repeat 模块输出的信号具有与输入信号 **in** 相同的数据类型�
 #### 依赖关系
 
 要启用此参数，请将 **Rate options** 设置为 `Allow multirate processing`。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations Communications Toolbox / Sequence Operations DSP System Toolbox HDL Support / Signal Operations

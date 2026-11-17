@@ -14,6 +14,15 @@ language: en
 # Ellipsoidal Solid
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+- name: G
+  summary: Geometry geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -33,8 +42,87 @@ Geometry that represents the solid. Connect this port to a Spatial Contact Force
 
 To enable this port, under **Geometry**, expand **Export**
 and select **Entire Geometry**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Radii
+  summary: Ellipsoid radii along the *x*, *y*, and *z* semiprincipal axes [1 1 2] m (default) | scalar with units of length
+  group: Geometry
+- name: Entire Geometry
+  summary: Export the true geometry of the block off (default) | on
+  group: Geometry
+- name: Type
+  summary: Inertia parameterization to use Calculate from Geometry (default) | Point Mass | Custom
+  group: Inertia
+- name: Based on
+  summary: Parameter to base inertia calculation on Density (default) | Mass
+  group: Inertia
+- name: Density
+  summary: Mass per unit volume of material 1000 kg/m^3 (default)
+  group: Inertia
+- name: Mass
+  summary: Total mass of the solid element 1 kg (default) | scalar with units of mass
+  group: Inertia
+- name: 'Custom: Center of Mass'
+  summary: Center-of-mass coordinates [0 0 0] m (default) | three-element vector with units of length
+  group: Inertia
+- name: 'Custom: Moments of Inertia'
+  summary: Diagonal elements of inertia tensor [1 1 1] kg*m^2 (default) | three-element vector with units of mass\*length^2
+  group: Inertia
+- name: 'Custom: Products of Inertia'
+  summary: Off-diagonal elements of inertia tensor [0 0 0] kg*m^2 (default) | three-element vector with units of mass\*length^2
+  group: Inertia
+- name: 'Calculate from Geometry: Derived Values'
+  summary: Display of calculated values of mass properties button
+  group: Inertia
+- name: Type
+  summary: Graphic to use for visualization From Geometry (default) | Marker | None
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Shape
+  summary: Shape of marker to represent to the solid Sphere (default) | Cube | Frame
+  group: Graphic
+- name: Size
+  summary: Width of the marker in pixels 10 pixels (default) | scalar
+  group: Graphic
+- name: Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: Graphic
+- name: Show Port R
+  summary: Show reference frame port for connection to other blocks on (default) | off
+  group: Frames
+- name: New Frame
+  summary: Create custom frame for connection to other blocks button
+  group: Frames
+- name: FrameN
+  summary: Edit or delete existing custom frame frame name
+  group: Frames
+```
 
 ### Geometry
 
@@ -387,7 +475,6 @@ custom frame.
 #### Dependencies
 
 To enable this parameter, create a frame by clicking **New Frame**.
-
 ## Libraries
 
 Simscape / Multibody / Body Elements

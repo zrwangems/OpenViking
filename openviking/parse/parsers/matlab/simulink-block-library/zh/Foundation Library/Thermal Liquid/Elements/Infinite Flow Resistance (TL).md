@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Infinite Flow Resistance (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流量为零的热流体
+  direction: conserving
+- name: B
+  summary: 流量为零的热流体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,11 +34,12 @@ chinese_source: worker-translation
 ### **B** — 流量为零的热流体
 
 无流体或热流流动的热流体守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Elements

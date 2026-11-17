@@ -15,6 +15,46 @@ chinese_source: worker-translation
 # Interpolation Using Prelookup
 
 ## 端口
+```yaml
+ports:
+- name: k1
+  summary: 表第一维的索引 k 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: f1
+  summary: 表第一维的分数 f 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: kn
+  summary: 表第 n 维的索引 k 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: fn
+  summary: 表第 n 维的分数 f 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: kf1
+  summary: 包含索引 k 和分数 f 的输入 总线对象
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: kfn
+  summary: 包含索引 k 和分数 f 的输入 总线对象
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: sm
+  summary: 选择并插值表数据的子集 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: T
+  summary: 表数据 标量 | 向量 | 矩阵 | n 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: N 维函数的近似值 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -94,8 +134,184 @@ chinese_source: worker-translation
 N 维函数的近似值，通过使用输入索引 `k` 和分数 `f` 的值对表数据进行插值（或外插）计算得出。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of dimensions
+  summary: 表数据的维数 2（默认）| 1 到 30 之间的整数
+  group: 主要
+  block_parameter: NumberOfTableDimensions
+  type: character vector
+  values: '''1'' | ''2'' | ''3'' |''4'' | ... | ''30'''
+  default: '''2'''
+- name: Require index and fraction as bus
+  summary: 索引和分数输入可以组合在总线中 off（默认）| on
+  group: 主要
+  block_parameter: RequireIndexFractionAsBus
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Specification
+  summary: 选择如何输入表数据 Explicit values（默认）| Lookup table object
+  group: 主要
+  block_parameter: TableSpecification
+  type: character vector
+  values: '''Explicit values'' | ''Lookup table object'''
+  default: '''Explicit values'''
+- name: Source
+  summary: 表数据的来源 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: TableSource
+  type: character vector
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: Value
+  summary: 指定表数据值 sqrt([1:11]' * [1:11])（默认）| 表数据的多维数组
+  group: 主要
+  block_parameter: Table
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''sqrt([1:11]'' * [1:11])'''
+- name: Name
+  summary: Simulink.LookupTable 对象的名称 Simulink.LookupTable object
+  group: 主要
+  block_parameter: LookupTableObject
+  type: character vector
+  values: Simulink.LookupTable object
+  default: ''''''
+- name: Interpolation method
+  summary: 选择 Linear point-slope、Flat、Nearest 或 Linear Lagrange Linear point-slope（默认）| Nearest | Flat | Linear Lagrange
+  group: 主要
+  block_parameter: InterpMethod
+  type: character vector
+  values: '''Flat'' | ''Linear point-slope'' | ''Nearest'' | ''Linear Lagrange'''
+  default: '''Linear point-slope'''
+- name: Extrapolation method
+  summary: 处理超出断点数据集范围的输入的方法 Linear（默认）| Clip
+  group: 主要
+  block_parameter: ExtrapMethod
+  type: character vector
+  values: '''Clip'' | ''Linear'''
+  default: '''Linear'''
+- name: Valid index input may reach last index
+  summary: 允许输入访问表数据的最后一个元素 off（默认）| on
+  group: 主要
+  block_parameter: ValidIndexMayReachLast
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Assume index is within range
+  summary: 用于检查索引值是否越界的选项 off（默认）| on
+  group: 主要
+  block_parameter: RemoveProtectionIndex
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Diagnostic for out-of-range input
+  summary: 输入越界时的模块操作 None（默认）| Warning | Error
+  group: 主要
+  block_parameter: DiagnosticForOutOfRangeInput
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Number of sub-table selection dimensions
+  summary: 输出计算子表的维度数 0（默认）| 正整数，小于或等于表维度数
+  group: 主要
+  block_parameter: NumSelectionDims
+  type: character vector
+  values: '''0'' | ''1'' | ''2'' | ''3'' | ''4'' | ... | Number of table dimensions'
+  default: '''0'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Table data
+  summary: '表值的数据类型 Inherit: Same as output（默认）| Inherit: Inherit from ''Table data'' | double | single | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: TableDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit from table data'' | ''Inherit: Same as output'' | ''double'' | ''single'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Same as output'''
+- name: Table minimum
+  summary: 表数据的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: TableMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Table maximum
+  summary: 表数据的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: TableMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Intermediate results
+  summary: '中间结果的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as output | double | single | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: IntermediateResultsDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as output'' | ''double'' | ''single'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output
+  summary: '输出数据类型 Inherit: Inherit from ''Table data''（默认）| Inherit: Inherit via back propagation | double | single | int8
+    | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type
+    expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''Inherit: Inherit from table data'' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit from table data'''
+- name: Output minimum
+  summary: 模块可以输出的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Output maximum
+  summary: 模块可以输出的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Internal rule priority
+  summary: 中间计算的内部规则 Speed（默认）| Precision
+  group: 数据类型
+  block_parameter: InternalRulePriority
+  type: character vector
+  values: '''Speed'' | ''Precision'''
+  default: '''Speed'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Convergent | Ceiling | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+```
 
 ### 主要
 
@@ -690,7 +906,6 @@ MATLAB 舍入函数的表达式。
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **值**：| `'off'` (default) | `'on'` |
-
 ## 所属库
 
 Simulink / Lookup Tables

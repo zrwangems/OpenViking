@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # VbyF Controller
 
 ## 端口
+```yaml
+ports:
+- name: ωmref
+  summary: 参考速度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ωmrated
+  summary: 电机额定速度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Npp
+  summary: 电机极对数标量
+  direction: input
+  data_types: single | double | fixed point | uint | int
+- name: Vrated
+  summary: 电机额定相电压幅值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vmin
+  summary: 最小输出电压标量
+  direction: input
+  data_types: single | double | fixed point
+- name: NRamp
+  summary: 初始斜坡上升步数标量
+  direction: input
+  data_types: single | double | fixed point | uint | int
+- name: Enable
+  summary: 使能模块输出标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vabc
+  summary: 电机相电压向量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -69,8 +104,19 @@ V/F 控制的参考机械速度。
 驱动电机的定子相 *a*、*b* 和 *c* 电压。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input speed unit
+  summary: 速度输入的单位 Radians/Sec（默认）| RPM | Degrees/Sec | Per unit based on dialog
+  group: ''
+- name: Per unit speed (RPM)
+  summary: 电机的基准速度（RPM） 1200（默认）| 标量
+  group: ''
+- name: Discrete step size (s) (-1 for inherit)
+  summary: 模块再次执行前的采样时间 50e-6（默认）| 标量
+  group: ''
+```
 
 ### **Input speed unit** — 速度输入的单位 `Radians/Sec`（默认）| `RPM` | `Degrees/Sec` | `Per unit based on dialog`
 
@@ -92,7 +138,6 @@ V/F 控制的参考机械速度。
 ### **Discrete step size (s) (-1 for inherit)** — 模块再次执行前的采样时间 `50e-6`（默认）| 标量
 
 模块两次连续执行实例之间的固定时间间隔（以秒为单位）。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Controllers

@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Interprocess Data Read
 
 ## 端口
+```yaml
+ports:
+- name: msg
+  summary: 来自进程间数据通道的数据消息 标量
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: 从另一个处理器读取的数据帧 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | bus
+- name: status
+  summary: 进程间数据读取状态 0 | 1 | 2 | 4 | 6
+  direction: output
+```
 
 ### 输入
 
@@ -48,8 +62,32 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此端口在您禁用 **Enable simulation port** 参数时出现。
-
 ## 参数
+```yaml
+parameters:
+- name: Enable simulation port
+  summary: 启用外设仿真端口以进行阻塞 on（默认）| off
+  group: ''
+- name: Data type
+  summary: 进程间数据通道的数据类型 double（默认）| single | int8 | int16 | int32 | int64 | int64 | uint8 | uint16 | uint32 | uint64 | uint64
+    | Boolean | bus
+  group: ''
+- name: Circular FIFO depth
+  summary: 存储缓冲区数量 1（默认）| 正整数
+  group: ''
+- name: Circular FIFO element size
+  summary: 从进程间数据通道读取的数据向量大小 1（默认）| 正整数
+  group: ''
+- name: Channel number
+  summary: 选择通道号 0（默认）| 1 | 2 | ...
+  group: ''
+- name: Participating cores
+  summary: 选择处理器的参与核心 选项因您选择的硬件板而异
+  group: ''
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 ### **Enable simulation port** — 启用外设仿真端口以进行阻塞 `on`（默认）| `off`
 
@@ -98,7 +136,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样时间 `-1`（默认）| 正标量
 
 输入模块的采样时间，以应用于定时器驱动的任务子系统。
-
 ## 所属库
 
 SoC Blockset / Processor Interconnect C2000 Microcontroller Blockset / Target Communication Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Target Communication Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Target Communication

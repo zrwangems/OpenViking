@@ -14,6 +14,39 @@ language: en
 # Busbar (DC)
 
 ## Ports
+```yaml
+ports:
+- name: Vt
+  summary: Voltage, V physical signal
+  direction: output
+- name: P
+  summary: Power, W physical signal
+  direction: output
+- name: 1+
+  summary: Positive connection 1 electrical
+  direction: conserving
+- name: 2+
+  summary: Positive connection 2 electrical
+  direction: conserving
+- name: 3+
+  summary: Positive connection 3 electrical
+  direction: conserving
+- name: 4+
+  summary: Positive connection 4 electrical
+  direction: conserving
+- name: 1-
+  summary: Negative connection 1 electrical
+  direction: conserving
+- name: 2-
+  summary: Negative connection 2 electrical
+  direction: conserving
+- name: 3-
+  summary: Negative connection 3 electrical
+  direction: conserving
+- name: 4-
+  summary: Negative connection 4 electrical
+  direction: conserving
+```
 
 ### Output
 
@@ -124,8 +157,25 @@ connection.
 To enable this port, in the **Parameters**
 settings, set the **Number of connections**
 parameter to `4`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of connections
+  summary: Number of port connections 2 (default) | 1 | 3 | 4
+  group: ''
+- name: Rated DC voltage
+  summary: Busbar rated DC voltage 1e3 V (default) | positive scalar
+  group: ''
+- name: Measurement type
+  summary: Measurement type Instantaneous (default) | Average over a specified period
+  group: ''
+- name: Averaging period
+  summary: Averaging period of measurement 1e-2 s (default) | positive scalar
+  group: ''
+- name: Measurement ports
+  summary: Measurement port exposure No (default) | Yes
+  group: ''
+```
 
 ### **Number of connections** — Number of port connections `2` (default) | `1` | `3` | `4`
 
@@ -157,7 +207,6 @@ To enable this parameter, set **Measurement type** to
 
 Whether to expose the **Vt** and **P**
 physical signal output measurement ports.
-
 ## Libraries
 
 Simscape / Electrical / Connectors & References

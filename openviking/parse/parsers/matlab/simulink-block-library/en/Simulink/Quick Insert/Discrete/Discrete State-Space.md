@@ -14,6 +14,17 @@ language: en
 # Discrete State-Space
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output vector scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -38,8 +49,66 @@ Output vector, with width equal to the number of rows in the
 more information, see Description.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: A
+  summary: Matrix coefficient A 1 (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: A
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''1'''
+- name: B
+  summary: Matrix coefficient B 1 (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: B
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''1'''
+- name: C
+  summary: Matrix coefficient, C 1 (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: C
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''1'''
+- name: D
+  summary: Matrix coefficient, D 1 (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: D
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''1'''
+- name: Initial conditions
+  summary: Initial state vector 0 (default) | scalar | vector
+  group: Main
+  block_parameter: InitialCondition
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Sample time (–1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: State name
+  summary: Unique name for block state '' (default) | alphanumeric string
+  group: State Attributes
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: Require state name resolve to a signal object off (default) | on
+  group: State Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -175,7 +244,6 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discrete Simulink / Quick Insert / Discrete HDL Coder / RCP and HIL

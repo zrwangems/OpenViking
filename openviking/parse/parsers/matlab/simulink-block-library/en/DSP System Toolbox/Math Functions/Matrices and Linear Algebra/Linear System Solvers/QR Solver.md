@@ -14,6 +14,21 @@ language: en
 # QR Solver
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: System matrix vector | matrix
+  direction: input
+  data_types: single | double
+- name: B
+  summary: Right-side matrix of system equation vector | matrix
+  direction: input
+  data_types: single | double
+- name: X
+  summary: Minimum-norm-residual solution vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -74,8 +89,13 @@ see Algorithms.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Simulate using** — Type of simulation to run `Interpreted execution` (default) | `Code generation`
 
@@ -88,7 +108,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

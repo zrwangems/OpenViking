@@ -14,6 +14,15 @@ language: en
 # DC Current Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,16 @@ positive voltage
 
 Electrical conserving port associated with the DC current source
 negative voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant value, DC
+  summary: DC output current 0 A (default)
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: Whether to include parallel conductance Yes (default) | No
+  group: ''
+```
 
 ### **Constant value, DC** — DC output current `0` `A` (default)
 
@@ -47,7 +64,6 @@ This table shows the possible values of the parallel conductance,
 | *`Yes`* | | *`No`* | | |
 | **Model contains Environment Parameters block** | **Model does not contain Environment Parameters block** | Parallel conductance, *GMIN*, is not included and it does not affect the current source. | | |
 | *GMIN* is equal to the value of the **GMIN** parameter in the Environment Parameters block. | *GMIN* = `1e-12` `Ohm` |
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

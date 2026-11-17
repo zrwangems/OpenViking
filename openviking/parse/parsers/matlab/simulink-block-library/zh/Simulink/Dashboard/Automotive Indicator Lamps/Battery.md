@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Battery
 
 ## 端口
+```yaml
+ports:
+- name: voltage
+  summary: EV3 主机电池电压标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输出
 
@@ -23,15 +30,19 @@ chinese_source: worker-translation
 该模块以毫伏为单位输出 LEGO MINDSTORMS EV3 主机的电池电压。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 模块读取 EV3 主机电池电压的时间间隔 0.1（默认）| 正整数
+  group: ''
+```
 
 ### **Sample time** — 模块读取 EV3 主机电池电压的时间间隔 `0.1`（默认）| 正整数
 
 指定模块读取 EV3 主机电池值的频率。较短的采样时间（例如 `0.01`）可能会产生不可靠的测量结果。
 
 较小的采样时间要求处理器在更短的时间内完成相同数量的指令，这可能导致任务超限。
-
 ## 所属库
 
 Simulink Support Package for LEGO MINDSTORMS EV3 Hardware

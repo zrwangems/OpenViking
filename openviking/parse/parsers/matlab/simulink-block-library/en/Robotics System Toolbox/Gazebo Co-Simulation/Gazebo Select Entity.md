@@ -14,6 +14,17 @@ language: en
 # Gazebo Select Entity
 
 ## Ports
+```yaml
+ports:
+- name: model
+  summary: Model name of entity model1 (default) | string (uint8[])
+  direction: output
+  data_types: uint8
+- name: Joint/Link
+  summary: Associated joint or link name of entity joint1 (default) | string (uint8[])
+  direction: output
+  data_types: uint8
+```
 
 ### Output
 
@@ -30,8 +41,16 @@ Associated joint or link, output as a string scalar. Strings are output as a
 `uint8` array for Gazebo.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Model Name
+  summary: Choose model name 'model1/joint1' (default) | string scalar
+  group: ''
+- name: Output vector size upper bound
+  summary: Upper limit of output array 128 (default)
+  group: ''
+```
 
 ### **Model Name** — Choose model name `'model1/joint1'` (default) | string scalar
 
@@ -46,7 +65,6 @@ Upper limit of the size of the output `uint8` arrays,
 `Model Name` and `Joint/Link`. Increase the
 upper bound when the names are longer than the default value
 `128`.
-
 ## Libraries
 
 Robotics System Toolbox / Gazebo Co-Simulation

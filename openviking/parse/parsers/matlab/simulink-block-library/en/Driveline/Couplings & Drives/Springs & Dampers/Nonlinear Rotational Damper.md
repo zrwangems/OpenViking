@@ -14,6 +14,15 @@ language: en
 # Nonlinear Rotational Damper
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Shaft mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,39 @@ shaft.
 
 Mechanical translational conserving port associated with the
 case.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Option to parameterize damping By polynomial (default) | By table lookup
+  group: ''
+- name: Symmetry
+  summary: Option to parameterize damping symmetry Symmetric (default) | Two-sided
+  group: ''
+- name: Vector of damping coefficients
+  summary: Polynomial damping coefficients [.0001, 0, 1e-05, 0, 1e-06] N*m*s/rad (default) | vector of length 5
+  group: ''
+- name: Vector of positive rotation damping coefficients
+  summary: Polynomial positive rotation damping coefficients [.0001, 0, 1e-05, 0, 1e-06] N*m*s/rad (default) | vector of length
+    5
+  group: ''
+- name: Vector of negative rotation damping coefficients
+  summary: Polynomial negative rotation damping coefficients [.001, -1e-05, .0001, 0, 0] N*m*s/rad (default) | vector of length
+    5
+  group: ''
+- name: Angular velocity vector
+  summary: Angular velocity [-1, -.5, -.3, -.1, .1, .3, .5, 1] rad/s (default) | vector
+  group: ''
+- name: Torque vector
+  summary: Damping torque [-.0001, -4e-05, -2e-05, -5e-06, 5e-06, 2e-05, 4e-05, .0001] N*m (default)
+  group: ''
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Linear (default) | Smooth
+  group: ''
+- name: Extrapolation method
+  summary: Method of handling input values that fall outside range of breakpoint data set Linear (default) | Nearest | Error
+  group: ''
+```
 
 ### **Parameterization** — Option to parameterize damping `By polynomial` (default) | `By table lookup`
 
@@ -144,7 +184,6 @@ array data to map input values to output values:
 
 To enable this parameter, set **Parameterization** to
 `By table lookup`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

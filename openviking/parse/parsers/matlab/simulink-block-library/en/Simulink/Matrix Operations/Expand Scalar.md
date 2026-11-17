@@ -14,6 +14,14 @@ language: en
 # Expand Scalar
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Scalar-expanded matrix scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | bus | Boolean | fixed
+    point
+```
 
 ### Output
 
@@ -22,8 +30,50 @@ language: en
 Scalar-expanded matrix, returned as a scalar, vector, or matrix.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `bus` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Element value
+  summary: Matrix element value 1 (default) | scalar
+  group: ''
+  block_parameter: ElementValue
+  values: 1 (default) | scalar
+- name: Output dimensions
+  summary: Dimension of output matrix 5 (default) | scalar | two-element vector
+  group: ''
+  block_parameter: OutputDimensions
+  values: '''5'' (default) | scalar | two-element vector'
+- name: Output data type
+  summary: 'Output data type double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 |
+    boolean | fixdt(1,16,0) | Inherit: Inherit via back propagation | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '''double'' (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0)
+    | Inherit: Inherit via back propagation | <data type expression>'
+- name: Mode
+  summary: Data type mode Inherit (default) | Built in | Fixed point | Expression
+  group: ''
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default) | Unsigned
+  group: ''
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point
+  group: ''
+- name: Word length
+  summary: Bit size of word that holds quantized integer 16 (default) | integer from 2 to 65,535
+  group: ''
+- name: Fraction length
+  summary: Fraction length for fixed-point data type 0 (default) | integer scalar
+  group: ''
+- name: Data type override
+  summary: Data type override mode Inherit (default) | Off
+  group: ''
+- name: Sample time
+  summary: Output sample period 1 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  values: '''1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -197,7 +247,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | `'1'` (default) | scalar |
 | **Data Types:** | `char` |
-
 ## Libraries
 
 Simulink / Matrix Operations

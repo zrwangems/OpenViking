@@ -15,10 +15,139 @@ chinese_source: worker-translation
 # Transmission Line
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Model type
+  summary: 传输线模型 Delay-based and lossless（默认）| Delay-based and lossy | Lumped parameter L-section | Lumped parameter Pi-section
+    | Coaxial | Coplanar waveguide | Microstrip | Stripline | Two-wire | Parallel-plate | Equation-based | RLCG | ...
+  group: 主要
+- name: Transmission delay
+  summary: 传输线中的延迟 4.7e-9 s（默认）| 实数标量 | s | ms | us | ns
+  group: 主要
+- name: Characteristic impedance
+  summary: 传输线的阻抗 50 ohm（默认）| 实数标量 | Ohm | kOhm | MOhm | GOhm
+  group: 主要
+- name: Resistance per unit length
+  summary: 传输线单位长度的电阻 0.3 Ohm/m（默认）| 正标量 | Ohm/m | kOhm/m | MOhm/m | GOhm/m
+  group: 主要
+- name: Number of segments
+  summary: 传输线中的段数 10（默认）| 正标量
+  group: 主要
+- name: Parameterization
+  summary: 用于对传输线中的段进行建模的参数类型 By characterisitc impedance and capacitance（默认）| By inductance and capacitance
+  group: 主要
+- name: Capacitance per unit length
+  summary: 传输线单位长度的电容 94e-12 F/m（默认）| 正标量
+  group: 主要
+- name: Conductance per unit length
+  summary: 传输线单位长度的电导 5e-6 S/m（默认）| 正标量 | S/m | mS/m | uS/m | nS/m
+  group: 主要
+- name: Inductance per unit length
+  summary: 传输线单位长度的电感 235e-9 H/m（默认）| 正标量 | H/m | mH/m | uH/m | nH/m
+  group: 主要
+- name: Outer radius
+  summary: 同轴传输线的外半径 2.57 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Inner radius
+  summary: 同轴传输线的内半径 2.57 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Conductor width
+  summary: 导体的物理宽度 0.6 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Slot width
+  summary: 槽的物理宽度 0.2 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Conductor backed
+  summary: 无限底部导体 off（默认）| on
+  group: 主要
+- name: Structure
+  summary: 微带传输线的类型 Standard（默认）| Embedded | Inverted | Suspended
+  group: 主要
+- name: Strip Width
+  summary: 微带传输线的宽度 0.6 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Strip thickness
+  summary: 导体的物理厚度 5 um（默认）| 非负标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Strip Height
+  summary: 微带传输线的带条高度 0.635 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Wire radius
+  summary: 双线传输线导线的半径 0.67 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Wire separation
+  summary: 双线传输线导线之间的物理距离 1.62 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Plate width
+  summary: 平行板传输线的宽度 5 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Plate separation
+  summary: 分隔极板的电介质厚度 1 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Phase velocity (m/s)
+  summary: 均匀平面波在传输线上的传播速度 299792458（默认）| 正标量
+  group: 主要
+- name: Loss (dB/m)
+  summary: 信号在传输线上传播时的强度衰减 0（默认）| 正标量
+  group: 主要
+- name: Frequency
+  summary: 建模频率 1e9 Hz（默认）| 正标量 | Hz | kHz | MHz | GHz
+  group: 主要
+- name: Interpolation method
+  summary: 用于计算建模频率处值的插值方法 Linear（默认）| Spline | Cubic
+  group: 主要
+- name: Conductivity of conductor
+  summary: 导体的电导率 inf（默认）| 标量 | S/m | mS/m | uS/m | nS/m
+  group: 主要
+- name: Dielectric Thickness
+  summary: 导体所在电介质的厚度 0.635 mm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: Relative permeability of dielectric
+  summary: 电介质的相对磁导率 1（默认）| 标量
+  group: 主要
+- name: Relative permittivity of dielectric
+  summary: 电介质的相对介电常数 2.2（默认）| 标量
+  group: 主要
+- name: Loss tangent of dielectric
+  summary: 电介质的损耗角正切 0（默认）| 标量
+  group: 主要
+- name: 线长
+  summary: 传输线的物理长度 1 cm（默认）| 正标量 | m | cm | mm | um | in | ft
+  group: 主要
+- name: 短截线模式
+  summary: 短截线的类型 Not a stub（默认）| Shunt | Series
+  group: 主要
+- name: 短截线终端
+  summary: 短截线的终端类型 Open（默认）| Short
+  group: 主要
+- name: 接地并隐藏负端子
+  summary: 将 RF 电路端子接地 on（默认）| off
+  group: 主要
+- name: 建模选项
+  summary: 用于对 S 参数建模的选项 Frequency domain（默认）| Time domain
+  group: 建模
+- name: 自动估计冲激响应持续时间
+  summary: 自动计算冲激响应持续时间 off（默认）| on
+  group: 建模
+- name: 冲激响应持续时间
+  summary: 手动指定冲激响应持续时间 0 s（默认）| 正标量 | s | ms | us | ns
+  group: 建模
+- name: 拟合选项
+  summary: rationalfit 的拟合选项 Share all poles（默认）| Share poles by columns | Fit individually
+  group: 建模
+- name: Relative error desired (dB)
+  summary: 有理拟合输出中可接受的相对误差 -40（默认）| 实数标量
+  group: 建模
+- name: Rational fitting results
+  summary: rationalfit 计算的值 只读（默认）
+  group: 建模
+```
 
 ### 主要
 
@@ -445,7 +574,6 @@ poles`。
 **Note**
 
 Modeling 选项卡对所有传输线类型均启用，但 `Delay-based and lossless`、`Delay-based and lossy`、`Lumped parameter L-section` 和 `Lumped parameter pi-section` 除外。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

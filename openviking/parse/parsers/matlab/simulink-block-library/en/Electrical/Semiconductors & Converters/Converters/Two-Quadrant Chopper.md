@@ -14,6 +14,29 @@ language: en
 # Two-Quadrant Chopper
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Switching device gate control electrical | vector
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: Positive DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: Negative DC voltage 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: Positive DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: Negative DC voltage 2 electrical | scalar
+  direction: conserving
+  data_types: double
+```
 
 ### Conserving
 
@@ -51,8 +74,86 @@ Electrical conserving port associated with the negative terminal of
 the second DC voltage.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Chopper operating quadrants First and second quadrant (default) | First and fourth quadrant
+  group: ''
+- name: Switching device
+  summary: Switch type Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: Switching Devices
+- name: Forward voltage
+  summary: Voltage 0.8 Ohm (default) | scalar
+  group: Switching Devices
+- name: On-state resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Drain-source on resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Off-state conductance
+  summary: Conductance 1e-5 1/Ohm (default) | scalar
+  group: Switching Devices
+- name: Threshold voltage
+  summary: Voltage threshold 6 V (default) | scalar
+  group: Switching Devices
+- name: Gate trigger voltage, Vgt
+  summary: Voltage threshold 1 V (default) | scalar
+  group: Switching Devices
+- name: Gate turn-off voltage, Vgt_off
+  summary: Voltage threshold -1 V (default) | scalar
+  group: Switching Devices
+- name: Holding current
+  summary: Current threshold 1 A (default) | scalar
+  group: Switching Devices
+- name: Model dynamics
+  summary: Diode model Diode with no dynamics (default) | Diode with charge dynamics
+  group: Protection Diode
+- name: Forward voltage
+  summary: Voltage 0.8 V (default) | scalar
+  group: Protection Diode
+- name: On resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Protection Diode
+- name: Off conductance
+  summary: Conductance 1e-5 1/Ohm (default) | scalar
+  group: Protection Diode
+- name: Junction capacitance
+  summary: Capacitance 50 nF (default) | scalar
+  group: Protection Diode
+- name: Peak reverse current, iRM
+  summary: Current -235 A (default) | scalar less than 0
+  group: Protection Diode
+- name: Initial forward current when measuring iRM
+  summary: Current 300 A (default) | scalar greater than 0
+  group: Protection Diode
+- name: Rate of change of current when measuring iRM
+  summary: Current change rate -50 A/us (default) | scalar
+  group: Protection Diode
+- name: Reverse recovery time parameterization
+  summary: Recovery-time model Specify stretch factor (default) | Specify reverse recovery time directly | Specify reverse
+    recovery charge
+  group: Protection Diode
+- name: Reverse recovery time stretch factor
+  summary: Stretch factor 3 (default) | scalar greater than 1
+  group: Protection Diode
+- name: Reverse recovery time, trr
+  summary: Time 15 us (default) | scalar
+  group: Protection Diode
+- name: Reverse recovery charge, Qrr
+  summary: Charge 1500 s*uA (default) | scalar
+  group: Protection Diode
+- name: Snubber
+  summary: Snubber model None (default) | RC snubber
+  group: Snubbers
+- name: Snubber resistance
+  summary: Resistance 0.1 Ohm (default) | scalar
+  group: Snubbers
+- name: Snubber capacitance
+  summary: Capacitance 1e-7 (default) | F | scalar
+  group: Snubbers
+```
 
 ### **Modeling option** — Chopper operating quadrants `First and second quadrant` (default) | `First and fourth quadrant`
 
@@ -403,7 +504,6 @@ Capacitance of the switching device snubber.
 #### Dependencies
 
 See the Snubbers Parameter Dependencies table.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

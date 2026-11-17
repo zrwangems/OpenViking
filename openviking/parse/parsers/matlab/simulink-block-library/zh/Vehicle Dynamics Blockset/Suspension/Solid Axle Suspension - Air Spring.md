@@ -15,6 +15,57 @@ chinese_source: worker-translation
 # Solid Axle Suspension - Air Spring
 
 ## 端口
+```yaml
+ports:
+- name: WhlPz
+  summary: 车轮 z 轴位移数组
+  direction: input
+- name: WhlRe
+  summary: 车轮有效半径数组
+  direction: input
+- name: WhlVz
+  summary: 车轮 z 轴速度数组
+  direction: input
+- name: WhlFx
+  summary: 作用于车辆的纵向车轮力数组
+  direction: input
+- name: WhlFy
+  summary: 作用于车辆的侧向车轮力数组
+  direction: input
+- name: WhlM
+  summary: 车轮阵列上的悬架力矩
+  direction: input
+- name: VehP
+  summary: 车辆位移阵列
+  direction: input
+- name: VehV
+  summary: 车辆速度数组
+  direction: input
+- name: StrgAng
+  summary: 转向角，可选数组
+  direction: input
+- name: Pressure
+  summary: 空气弹簧中的压力数组
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: VehF
+  summary: 施加到车辆的悬架力 array
+  direction: output
+- name: VehM
+  summary: 作用在车辆上的悬架力矩 array
+  direction: output
+- name: WhlF
+  summary: 作用在车轮上的悬架力 array
+  direction: output
+- name: WhlV
+  summary: 车轮速度 array
+  direction: output
+- name: WhlAng
+  summary: 车轮外倾角、主销后倾角、前束角 array
+  direction: output
+```
 
 ### 输入
 
@@ -421,8 +472,190 @@ enable by axle, StrgEnByAxl** 向量的一个元素设置为 `1`。
   | 前右 | `WhlF(3,2)` | `1` | `2` |
   | 后左 | `WhlF(3,3)` | `2` | `1` |
   | 后右 | `WhlF(3,4)` | `2` | `2` |
-
 ## 参数
+```yaml
+parameters:
+- name: Model type
+  summary: 空气悬架模型类型 Physical（默认）| Mapped
+  group: ''
+  block_parameter: SuspModelType
+  values: Physical（默认）| Mapped
+- name: Number of axles, NumAxl
+  summary: 轴数 2（默认）| 标量
+  group: ''
+  block_parameter: NumAxl
+  values: 2（默认）| 标量
+- name: Number of wheels by axle, NumWhlsByAxl
+  summary: 每轴车轮数 [2 2]（默认）| 向量
+  group: ''
+  block_parameter: NumWhlsByAxl
+  values: '[2 2]（默认）| 向量'
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: 用于启用车轴转向的布尔向量 [1 0]（默认）| 向量
+  group: ''
+  block_parameter: StrgEnByAxl
+  values: '[1 0]（默认）| 向量'
+- name: Axle and wheels lumped principal moment of inertia about longitudinal axis, AxlIxx
+  summary: 绕纵轴的主转动惯量 200（默认）| 向量
+  group: ''
+  block_parameter: AxlIxx
+  values: 200（默认）| 向量
+- name: Axle and wheels lumped mass, AxlM
+  summary: 车轴和车轮集中质量 300（默认）| 向量
+  group: ''
+  block_parameter: AxlM
+  values: 300（默认）| 向量
+- name: Track hardpoint coordinates relative to axle center, TrackCoords
+  summary: 轮距硬点坐标 [0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）
+  group: ''
+  block_parameter: TrackCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）'
+- name: Suspension hardpoint coordinates relative to axle center, SuspCoords
+  summary: 悬架硬点坐标 [0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）
+  group: ''
+  block_parameter: SuspCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）'
+- name: Wheel and axle interface compliance constant, KzWhlAxl
+  summary: 车轮与车轴接口柔度常数 6437000（默认）
+  group: ''
+  block_parameter: KzWhlAxl
+  values: 6437000（默认）
+- name: Wheel and axle interface compliance preload, F0zWhlAxl
+  summary: 车轮与车轴接口柔度预载 9810（默认）
+  group: ''
+  block_parameter: F0zWhlAxl
+  values: 9810（默认）
+- name: Wheel and axle interface damping constant, CzWhlAxl [Ns/m]
+  summary: 车轮与车轴接口阻尼常数 10000（默认）
+  group: ''
+  block_parameter: CzWhlAxl
+  values: 10000（默认）
+- name: Air suspension spring preload, F0z
+  summary: 空气悬架弹簧预载 9810（默认）| 标量
+  group: ''
+  block_parameter: F0z
+  values: 9810（默认）| 标量
+- name: Air suspension shock damping constant, Cz
+  summary: 空气悬架减振器阻尼常数 10000（默认）| 标量
+  group: ''
+  block_parameter: Cz
+  values: 10000（默认）| 标量
+- name: Air spring effective area, EffctArea
+  summary: 空气弹簧有效面积 0.21993（默认）| 标量
+  group: ''
+  block_parameter: EffctArea
+  values: 0.21993（默认） | 标量
+- name: 设计位置空气弹簧体积，VolDgnPos
+  summary: 设计位置空气弹簧体积 0.08（默认） | 标量
+  group: ''
+  block_parameter: VolDgnPos
+  values: 0.08（默认） | 标量
+- name: 空气弹簧等熵指数，IstpExp
+  summary: 空气弹簧等熵指数 1.4（默认） | 标量
+  group: ''
+  block_parameter: IstpExp
+  values: 1.4（默认） | 标量
+- name: 空气弹簧外径，OuterDiam
+  summary: 空气弹簧外径 0.6199（默认） | 标量
+  group: ''
+  block_parameter: OuterDiam
+  values: 0.6199（默认） | 标量
+- name: 空气弹簧活塞直径，PistDiam
+  summary: 空气弹簧活塞直径 0.236（默认） | 标量
+  group: ''
+  block_parameter: PistDiam
+  values: 0.236（默认） | 标量
+- name: 空气悬架最大高度，Hmax
+  summary: 空气悬架最大高度 0.5（默认） | 标量
+  group: ''
+  block_parameter: Hmax
+  values: 0.5（默认） | 标量
+- name: 转向中心处的前束角，Toe
+  summary: 前束角 0.0349（默认） | 标量
+  group: ''
+  block_parameter: Toe
+  values: 0.0349（默认） | 标量
+- name: 侧倾转向随悬架高度斜率，RollStrgSlp
+  summary: 转向角悬架斜率 -0.2269（默认） | 标量 | vector
+  group: ''
+  block_parameter: RollStrgSlp
+  values: -0.2269（默认） | 标量 | 向量
+- name: Toe angle vs steering angle slope, ToeStrgSlp
+  summary: 前束角转向斜率 0.01（默认） | 标量 | 向量
+  group: ''
+  block_parameter: ToeStrgSlp
+  values: 0.01（默认） | 标量 | 向量
+- name: Caster angle at steering center, Caster
+  summary: 转向中心处的主销后倾角 0.0698（默认） | 标量
+  group: ''
+  block_parameter: Caster
+  values: 0.0698（默认） | 标量
+- name: Caster angle vs suspension height slope, CasterHslp
+  summary: 主销后倾角对悬架高度斜率 -0.2269（默认） | 标量 | 向量
+  group: ''
+  block_parameter: CasterHslp
+  values: -0.2269（默认） | 标量 | 向量
+- name: Caster angle vs steering angle slope, CasterStrgSlp
+  summary: 主销后倾角对转向角斜率 0.01（默认） | 标量 | 向量
+  group: ''
+  block_parameter: CasterStrgSlp
+  values: 0.01（默认） | 标量 | 向量
+- name: Camber angle at steering center, Camber
+  summary: 转向中心处的车轮外倾角 0.0698（默认） | 标量
+  group: ''
+  block_parameter: Camber
+  values: 0.0698（默认）| 标量
+- name: 外倾角与悬架高度斜率，CamberHslp
+  summary: 外倾角与悬架高度斜率 -0.2269（默认）| 标量 | 向量
+  group: ''
+  block_parameter: CamberHslp
+  values: -0.2269（默认）| 标量 | 向量
+- name: 外倾角与转向角斜率，CamberStrgSlp
+  summary: 外倾角与转向角斜率 0.01（默认）| 标量 | 向量
+  group: ''
+  block_parameter: CamberStrgSlp
+  values: 0.01（默认）| 标量 | 向量
+- name: 悬架高度与转向角斜率，StrgHgtSlp
+  summary: 悬架高度与转向角斜率 0.1432（默认）| 标量 | 向量
+  group: ''
+  block_parameter: StrgHgtSlp
+  values: 0.1432（默认）| 标量 | 向量
+- name: 车轴断点，f_susp_axl_bp
+  summary: 断点 [1 2]（默认）| 1 乘 P 数组
+  group: ''
+  block_parameter: f_susp_axl_bp
+  values: '[1 2]（默认）| 1 乘 P 数组'
+- name: 垂直轴悬架高度断点，f_susp_dz_bp
+  summary: 断点 1 乘 M 数组
+  group: ''
+  block_parameter: f_susp_dz_bp
+  values: 1 乘 M 数组
+- name: 垂直轴空气悬架压力断点，f_susp_press_bp
+  summary: 垂直轴空气悬架压力断点 [0.50 7]（默认）| 1×M 数组
+  group: ''
+  block_parameter: f_susp_press_bp
+  values: '[0.50 7]（默认）| 1×M 数组'
+- name: 垂直空气轴悬架力和力矩响应，f_susp_fmz
+  summary: 输出数组 zeros(31,31,61,2,4)（默认）| M×N×O×P×4 数组
+  group: ''
+  block_parameter: f_susp_fmz
+  values: zeros(31,31,61,2,4)（默认）| M×N×O×P×4 数组
+- name: 空气悬架减振器阻尼常数，c_airSusp
+  summary: 空气悬架减振器阻尼常数 6e6（默认）| 标量
+  group: ''
+  block_parameter: c_airSusp
+  values: 6e6（默认）| 标量
+- name: 悬架几何响应，f_susp_geom
+  summary: 悬架几何响应 zeros(31,61,2,3)（默认）| M×O×P×3 数组
+  group: ''
+  block_parameter: f_susp_geom
+  values: zeros(31,61,2,3)（默认）| M×O×P×3 数组
+- name: 转向角断点，f_susp_strgdelta_bp
+  summary: 转向角断点 1×O 数组
+  group: ''
+  block_parameter: f_susp_strgdelta_bp
+  values: 1×O 数组
+```
 
 ### **Model type** — 空气悬架模型类型 `Physical`（默认）| `Mapped`
 
@@ -1276,7 +1509,6 @@ m。
 | **参数：** | `f_susp_strgdelta_bp` |
 | **值：** | `1`×`O` 数组 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Suspension

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # P-Channel JFET
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 栅极端子电气端口
+  direction: conserving
+- name: D
+  summary: 漏极端子电气端口
+  direction: conserving
+- name: S
+  summary: 源极端子电气端口
+  direction: conserving
+- name: H
+  summary: 热端口热端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -38,8 +53,94 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为 `Show
 thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Parameterization
+  summary: 模块参数化 Specify from a datasheet（默认）| Specify using equation parameters directly
+  group: 主
+- name: Gate reverse current, I_gss
+  summary: 栅极反向电流 5 nA（默认）
+  group: 主
+- name: Saturated drain current, I_dss
+  summary: 饱和漏极电流 -3 mA（默认）
+  group: 主
+- name: I_dss measurement point, [V_gs V_ds]
+  summary: I_dss 测量点 [ 0 -15 ] V（默认）
+  group: 主
+- name: Small-signal parameters, [g_fs g_os]
+  summary: 小信号参数 [ 2.5e+3 75 ] uS（默认）
+  group: 主
+- name: Small-signal measurement point [V_gs V_ds]
+  summary: 小信号测量点 [ 0 -15 ] V（默认）
+  group: 主
+- name: Transconductance parameter
+  summary: 跨导参数 1e-04 A/V2（默认）
+  group: 主
+- name: Saturation current
+  summary: 饱和电流 1e-14 A（默认）
+  group: 主
+- name: Threshold voltage
+  summary: 阈值电压 2 V（默认）
+  group: 主
+- name: Channel-length modulation
+  summary: 沟道长度调制 0 1/V（默认）
+  group: 主
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: 主
+- name: Source ohmic resistance
+  summary: 源极欧姆电阻 0.0001 Ohm（默认）| 非负标量
+  group: 欧姆电阻
+- name: Drain ohmic resistance
+  summary: 漏极欧姆电阻 0.01 Ohm（默认）| 非负标量
+  group: 欧姆电阻
+- name: Parameterization
+  summary: 结电容参数化 Specify from a datasheet（默认）| Specify using equation parameters directly
+  group: 结电容
+- name: Input capacitance, Ciss
+  summary: 输入电容 5 pF（默认）
+  group: 结电容
+- name: Reverse transfer capacitance, Crss
+  summary: 反向传输电容 1 pF（默认）
+  group: 结电容
+- name: Gate-source junction capacitance
+  summary: 栅源结电容 4 pF（默认）
+  group: 结电容
+- name: Gate-drain junction capacitance
+  summary: 栅漏结电容 1 pF（默认）
+  group: 结电容
+- name: Parameterization
+  summary: 温度依赖性参数化 None — Simulate at parameter measurement temperature（默认）| Model temperature dependence
+  group: 温度依赖性
+- name: Gate reverse current, I_gss, at second measurement temperature
+  summary: 第二测量温度下的栅极反向电流 I_gss 950 nA（默认）
+  group: 温度依赖性
+- name: Saturated drain current, I_dss, at second measurement temperature
+  summary: 第二测量温度下的饱和漏极电流 I_dss -2.3 mA（默认）
+  group: 温度依赖性
+- name: Second measurement temperature
+  summary: 第二测量温度 125 degC（默认）
+  group: 温度依赖性
+- name: Energy gap, EG
+  summary: 能隙 1.11 eV（默认）
+  group: 温度依赖性
+- name: Saturation current temperature exponent, XTI
+  summary: 饱和电流温度指数 3（默认）
+  group: 温度依赖性
+- name: Gate threshold voltage temperature coefficient, dVt0/dT
+  summary: 栅极阈值电压温度系数 1 mV/K（默认）
+  group: 温度依赖性
+- name: Mobility temperature exponent, BEX
+  summary: 迁移率温度指数 -1.5（默认）
+  group: 温度依赖性
+- name: Device simulation temperature
+  summary: 器件仿真温度 25 degC（默认）
+  group: 温度依赖性
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -281,7 +382,6 @@ parameters directly` 时，此参数才可见。
 ### **Device simulation temperature** — 器件仿真温度 `25` `degC`（默认）
 
 仿真器件时的温度 *Ts*。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

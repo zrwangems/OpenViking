@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Gamma Corrector
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint8 | uint16 | int8 | int16 | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 输出像素流 标量 | 向量
+  direction: output
+  data_types: uint8 | uint16 | int8 | int16 | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -51,8 +70,22 @@ chinese_source: worker-translation
 对于多像素流，每个像素值向量都有一组控制信号。由于该向量只有一个 `valid` 信号，因此向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation
+  summary: 像素值调整方向 Gamma（默认）| De-gamma
+  group: ''
+- name: Gamma
+  summary: 目标伽马值 2.2（默认）| 大于或等于 1 的标量
+  group: ''
+- name: Linear segment
+  summary: 在伽马曲线中包含线性段 on（默认）| off
+  group: ''
+- name: Break point
+  summary: 伽马曲线与线性段相交的点 0.018（默认）| 0 到 1 之间的标量
+  group: ''
+```
 
 ### **Operation** — 像素值调整方向 `Gamma`（默认）| `De-gamma`
 
@@ -79,7 +112,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数仅在选中 **Linear segment** 复选框时适用。
-
 ## 所属库
 
 Vision HDL Toolbox / Conversions

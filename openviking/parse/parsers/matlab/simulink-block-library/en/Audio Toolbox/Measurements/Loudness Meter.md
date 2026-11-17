@@ -14,6 +14,25 @@ language: en
 # Loudness Meter
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal matrix | 1-D vector
+  direction: input
+  data_types: single | double
+- name: M
+  summary: Momentary loudness measurement column vector
+  direction: output
+  data_types: single | double
+- name: S
+  summary: Short-term loudness measurement column vector
+  direction: output
+  data_types: single | double
+- name: TP
+  summary: True-peak value real scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -52,8 +71,31 @@ input signal.
 To enable this port, select the **Output true-peak value** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Channel weights
+  summary: Linear weighting applied to each input channel [1, 1, 1, 1.41, 1.41] (default) | nonnegative row vector
+  group: ''
+- name: Use relative scale for loudness measurements
+  summary: Specify block to output loudness measurements relative to target level off (default) | on
+  group: ''
+- name: Target loudness level (LUFS)
+  summary: Reference level for relative loudness measurements –23 (default) | real scalar
+  group: ''
+- name: Output true-peak value
+  summary: Add output port for true-peak value off (default) | on
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate on (default) | off
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -137,7 +179,6 @@ input** parameter.
   code of the block.
 
 **Tunable:** No
-
 ## Libraries
 
 Audio Toolbox / Measurements

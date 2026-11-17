@@ -14,6 +14,15 @@ language: en
 # PS Gain
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -33,8 +42,13 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain
+  summary: Multiplication coefficient 1 1 (default)
+  group: ''
+```
 
 ### **Gain** — Multiplication coefficient `1 1` (default)
 
@@ -51,7 +65,6 @@ or type the desired unit name, such as `rpm`, or a valid expression,
 such as `rad/s`. For more information and a list of unit abbreviations,
 see How to Specify Units in Block Dialogs
 and Unit Definitions.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Functions

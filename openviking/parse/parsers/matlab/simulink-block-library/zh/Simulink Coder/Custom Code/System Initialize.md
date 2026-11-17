@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # System Initialize
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: System Initialize Function Declaration Code
+  summary: 要添加到所生成函数声明部分的代码 无默认值
+  group: ''
+- name: System Initialize Function Execution Code
+  summary: 要添加到所生成函数执行部分的代码 无默认值
+  group: ''
+- name: System Initialize Function Exit Code
+  summary: 要添加到所生成函数退出部分的代码 无默认值
+  group: ''
+```
 
 ### **System Initialize Function Declaration Code** — 要添加到所生成函数声明部分的代码 无默认值
 
@@ -31,7 +45,6 @@ R2025b 中未记录。
 ### **System Initialize Function Exit Code** — 要添加到所生成函数退出部分的代码 无默认值
 
 指定希望代码生成器添加到模型或子系统的 `SystemInitialize` 函数退出部分的代码。
-
 ## 所属库
 
 Simulink Coder / Custom Code

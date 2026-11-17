@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Wind Turbine (Mechanical)
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 入射风速，m/s，物理信号
+  direction: input
+- name: β
+  summary: 桨距角，deg，物理信号
+  direction: input
+- name: R
+  summary: 涡轮轴机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -31,8 +43,40 @@ chinese_source: worker-translation
 ### **R** — 涡轮轴机械旋转
 
 与风力涡轮轴关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Turbine radius
+  summary: 叶尖半径 80 m（默认）| 正标量
+  group: 主要
+- name: Pitch angle vector, β
+  summary: 参考桨距角 [0, 3, 5, 10, 20, 90] deg（默认）| 长度为 *M* 的向量
+  group: 主要
+- name: Tip speed ratio vector, TSR
+  summary: 参考叶尖速比 [0, 2, 4, 6, 8, 10, 12, 14, 15]（默认）| 长度为 *N* 的向量
+  group: 主要
+- name: Power coefficient table, Cp(β,TSR)
+  summary: 功率系数表 *M*×*N*（默认）
+  group: 主要
+- name: Wind speed threshold
+  summary: 速度平滑阈值 0.01 m/s（默认）| 正标量
+  group: 主要
+- name: Rotational velocity threshold
+  summary: 速度平滑阈值 0.01 rad/s（默认）| 正标量
+  group: 主要
+- name: Air density
+  summary: 空气密度 1.225 kg/m^3（默认）| 正标量
+  group: 主要
+- name: Include inertia
+  summary: 是否对转子惯量建模 Off（默认）| On
+  group: 机械
+- name: Rotor Inertia
+  summary: 转子转动惯量 0.1 kg*m^2（默认）| 正标量
+  group: 机械
+- name: Rotor damping
+  summary: 转子阻尼 0 N*m*s/rad（默认）| 正标量
+  group: 机械
+```
 
 ### 主要
 
@@ -81,7 +125,6 @@ chinese_source: worker-translation
 ### **Rotor damping** — 转子阻尼 `0` `N*m*s/rad`（默认）| 正标量
 
 转子的阻尼。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical

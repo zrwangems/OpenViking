@@ -14,6 +14,25 @@ language: en
 # Resize
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image or video matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ROI
+  summary: Region of interest vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Out
+  summary: Resized output image or video matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Flag
+  summary: ROI is outside image region 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -83,8 +102,38 @@ To enable this port, select these parameters:
   bounds**
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify
+  summary: Aspects of image to resize Output size as a percentage of input size (default) | Number of output columns and preserve
+    aspect ratio | Number of output rows and preserve aspect ratio | Number of output rows and columns
+  group: ''
+- name: Resize factor in percentage
+  summary: Percentage factor for input image transformation [200 150] (default) | scalar | two-element vector
+  group: ''
+- name: Number of output columns
+  summary: Number of columns in output image 25 (default) | scalar
+  group: ''
+- name: Number of output rows
+  summary: Number of rows in output image 25 (default) | scalar
+  group: ''
+- name: Number of output rows and columns
+  summary: Number of rows and columns in output image [25 35] (default) | two-element vector
+  group: ''
+- name: Interpolation method
+  summary: Interpolation method Bilinear (default) | Nearest neighbor | Bicubic | Lanczos2 | Lanczos3
+  group: ''
+- name: Perform antialiasing when resize factor is between 0 and 100
+  summary: Prevent aliasing when shrinking image off (default) | on
+  group: ''
+- name: Enable ROI processing
+  summary: Enable ROI input off (default) | on
+  group: ''
+- name: Output flag indicating if ROI is within image bounds
+  summary: Enable flag indicating if specified ROI is outside input image region off (default) | on
+  group: ''
+```
 
 ### **Specify** — Aspects of image to resize `Output size as a percentage of input size` (default) | `Number of output columns and preserve aspect ratio` | `Number of output rows and preserve aspect ratio` | `Number of output rows and columns`
 
@@ -244,7 +293,6 @@ image dimensions.
 
 To enable this parameter, select the **Enable ROI processing**
 parameter.
-
 ## Libraries
 
 Computer Vision Toolbox / Geometric Transformations

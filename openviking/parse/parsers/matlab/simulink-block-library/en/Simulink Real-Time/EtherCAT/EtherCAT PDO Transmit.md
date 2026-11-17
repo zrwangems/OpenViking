@@ -14,6 +14,12 @@ language: en
 # EtherCAT PDO Transmit
 
 ## Ports
+```yaml
+ports:
+- name: D
+  summary: Data to transmit to subordinate device [double]
+  direction: input
+```
 
 ### Input
 
@@ -21,8 +27,38 @@ language: en
 
 Vector of data to transmit to the EtherCAT subordinate
 device.
-
 ## Parameters
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT network identifier 0 (default) | 0-15
+  group: ''
+  block_parameter: device_id
+- name: Signal name
+  summary: EtherCAT device variable name character vector
+  group: ''
+  block_parameter: sig_name
+- name: Signal Offset
+  summary: 'Location in the process of signal data Read-only: integer'
+  group: ''
+  block_parameter: sig_offset
+- name: Signal Type
+  summary: 'Data type for EtherCAT data Read-only: character vector'
+  group: ''
+  block_parameter: sig_type
+- name: Type Size (bits)
+  summary: 'Size of EtherCAT data type Read-only: integer'
+  group: ''
+  block_parameter: type_size
+- name: Signal Dimension
+  summary: 'Dimension of the signal Read-only: integer'
+  group: ''
+  block_parameter: sig_dim
+- name: Sample Time
+  summary: 'Rate at which this block is executed Read-only: numeric'
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT network identifier `0` (default) | `0-15`
 
@@ -117,7 +153,6 @@ This rate is the execution rate of the EtherCAT task, as specified in the ENI fi
 |  |
 | --- |
 | **Block Parameter:** `sample_time` |
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

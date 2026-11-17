@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM ST1C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考值标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 接管定子电流限制（OEL）标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 接管定子电流限制（UEL）标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -135,8 +182,91 @@ chinese_source: worker-translation
 施加到同步电机励磁绕组的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认）| 正数
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认）| 正数
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0.02（默认）| 正数
+  group: 预控制
+- name: Regulator output gain, K_A (pu)
+  summary: 调节器增益 210（默认）| 正数
+  group: 控制
+- name: Regulator output time constant, T_A (s)
+  summary: 调节器时间常数 0（默认）| 正数
+  group: 控制
+- name: Regulator denominator (lag) time constant, T_B (s)
+  summary: 第一个超前-滞后环节的调节器滞后时间常数 1（默认）| 正数
+  group: 控制
+- name: Regulator numerator (lead) time constant, T_C (s)
+  summary: 第一个超前-滞后环节的调节器超前时间常数 1（默认）| 正数
+  group: 控制
+- name: Regulator denominator (lag) time constant, T_B 1(s)
+  summary: 第二个超前-滞后环节的调节器滞后时间常数 0（默认）| 正数
+  group: 控制
+- name: Regulator numerator (lead) time constant, T_C1 (s)
+  summary: 第二个超前-滞后环节的调节器超前时间常数 0（默认）| 正数
+  group: 控制
+- name: Rate feedback gain, K_F (pu)
+  summary: 速率反馈增益 0（默认）| 正数
+  group: 控制
+- name: Rate feedback time constant, T_F (s)
+  summary: 速率反馈时间常数 1（默认）| 正数
+  group: 控制
+- name: Maximum regulator output, V_Amax (pu)
+  summary: 调节器输出上限 6.43（默认）| 实数
+  group: 控制
+- name: Minimum regulator output, V_Amin (pu)
+  summary: 调节器输出下限 -6（默认）| 实数
+  group: 控制
+- name: Maximum voltage error (regulator input), V_Imax (pu)
+  summary: 电压上限 99（默认）| 实数
+  group: 控制
+- name: Minimum voltage error (regulator input), V_Imin (pu)
+  summary: 电压下限 -99（默认）| 实数
+  group: 控制
+- name: Alternate PSS input locations (V_S)
+  summary: PSS 输入位置 Summation point at voltage error（默认）| Summation point at voltage regulator output
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: 整流器负载系数 0.038（默认）| 正数
+  group: 励磁机
+- name: Exciter output current limiter gain, K_LR (pu)
+  summary: 励磁机输出电流限制器增益 4.54（默认）| 实数
+  group: 励磁机
+- name: Exciter output current limit reference, I_LR (pu)
+  summary: 励磁机输出电流限制参考值 4.4（默认）| 实数
+  group: 励磁机
+- name: Maximum exciter output, V_Rmax (pu)
+  summary: 励磁机上限 6.43（默认）| 实数
+  group: 励磁机
+- name: Minimum exciter output, V_Rmin (pu)
+  summary: 励磁机下限 -6（默认）| 实数
+  group: 励磁机
+```
 
 ### 常规
 
@@ -272,7 +402,6 @@ chinese_source: worker-translation
 ### **Minimum exciter output, V\_Rmin (pu)** — 励磁机下限 `-6`（默认）| 实数
 
 最小标幺励磁机电压输出。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

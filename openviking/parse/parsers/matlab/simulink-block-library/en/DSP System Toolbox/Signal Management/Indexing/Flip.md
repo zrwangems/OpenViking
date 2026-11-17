@@ -14,6 +14,17 @@ language: en
 # Flip
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Output
+  summary: Flipped output matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### Input
 
@@ -32,8 +43,13 @@ Flipped output, returned as a matrix of size
 the same dimensionality as the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Flip along
+  summary: Specify dimension to flip along Columns (default) | Rows
+  group: ''
+```
 
 ### **Flip along** — Specify dimension to flip along `Columns` (default) | `Rows`
 
@@ -67,7 +83,6 @@ y = fliplr(u) % Equivalent MATLAB code
 When flipping the input horizontally, the block treats
 length-*N* unoriented vector inputs as
 1-by-*N* row vectors.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Indexing

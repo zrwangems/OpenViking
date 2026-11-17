@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # LTE Gold Sequence Generator
 
 ## 端口
+```yaml
+ports:
+- name: load
+  summary: 加载初始移位寄存器值 标量
+  direction: input
+  data_types: Boolean
+- name: init
+  summary: 初始移位寄存器值 标量 | 向量
+  direction: input
+  data_types: ufix31
+- name: enable
+  summary: 使能序列生成 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 生成的 Gold 序列 标量 | 向量
+  direction: output
+  data_types: Boolean
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -48,11 +71,12 @@ chinese_source: worker-translation
 控制信号，指示 **data** 输出端口何时有效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Wireless HDL Toolbox / Utilities

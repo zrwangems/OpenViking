@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Constant Ramp
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,44 @@ length equals number of** 或 **Dimension**
 参数来确定输出的长度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Ramp length equals number of
+  summary: 用于确定斜坡长度的维度 Rows（默认） | Columns | Elements in specified dimension
+  group: 主要
+- name: Dimension
+  summary: 确定输出斜坡长度的维度 1（默认） | 正整数
+  group: 主要
+- name: Slope
+  summary: 斜坡的斜率 1（默认） | 标量
+  group: 主要
+- name: Offset
+  summary: 斜坡的 *y* 截距 0（默认） | 标量
+  group: 主要
+- name: Output data type
+  summary: '输出数据类型 Inherit: Same as input（默认） | Inherit: Inherit via back propagation | double | single | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+- name: Mode
+  summary: 数据类型模式 Inherit（默认） | Built in | Fixed point | Expression
+  group: 数据类型助手参数
+- name: Signedness
+  summary: 定点数据的有符号性 Signed（默认） | Unsigned
+  group: 数据类型助手参数
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认） | 2 到 128 之间的整数
+  group: 数据类型助手参数
+- name: Scaling
+  summary: 定点数据的定标方法 Best precision（默认） | Binary point
+  group: 数据类型助手参数
+- name: Data type override
+  summary: 数据类型覆盖模式 Inherit（默认） | Off
+  group: 数据类型助手参数
+- name: Fraction length
+  summary: 定点数据类型的小数长度 0（默认） | 整数标量
+  group: 数据类型助手参数
+```
 
 ### 主要
 
@@ -150,7 +197,6 @@ in` 或 `Fixed point`。有关
 `Fixed point`，并将
 **Scaling** 设置为 `Binary
 point`。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

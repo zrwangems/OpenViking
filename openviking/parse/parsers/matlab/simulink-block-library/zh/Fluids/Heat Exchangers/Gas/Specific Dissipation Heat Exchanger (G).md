@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Specific Dissipation Heat Exchanger (G)
 
 ## 端口
+```yaml
+ports:
+- name: A1
+  summary: 气体端口 gas
+  direction: conserving
+- name: B1
+  summary: 气体端口 gas
+  direction: conserving
+- name: H2
+  summary: 受控流体 2 的入口温度 thermal
+  direction: conserving
+- name: CP2
+  summary: 受控流体的等压比热 physical signal
+  direction: input
+- name: M2
+  summary: 受控流体的质量流量 physical signal
+  direction: input
+```
 
 ### 守恒端口
 
@@ -38,8 +56,58 @@ chinese_source: worker-translation
 ### **M2** — 受控流体的质量流量 physical signal
 
 受控流体质量流量的瞬时值。
-
 ## 参数
+```yaml
+parameters:
+- name: Gas mass flow rate vector, mdot1
+  summary: 比热耗散表查找表中每个断点处的气体质量流量 numerical array with units of mass over time
+  group: 传热
+- name: Controlled fluid mass flow rate vector, mdot2
+  summary: 比热耗散表查找表中每个断点处的受控流体质量流量 numerical array with units of mass over time
+  group: 传热
+- name: Specific heat dissipation table, SD(mdot1,mdot2)
+  summary: 查找表中气体和受控流体质量流量各断点处的比热耗散 numerical array with units of power over temperature
+  group: 传热
+- name: Check if violating maximum specific dissipation
+  summary: 比热耗散超过最小热容率时的警告条件 Warning (default) | None | Error
+  group: 传热
+- name: Mass flow rate vector
+  summary: 压降查找表中每个断点处的质量流量 numerical array with units of mass per unit time
+  group: 压力损失
+- name: Pressure drop vector
+  summary: 查找表中质量流量各断点处的压降 numerical array with units of pressure
+  group: 压力损失
+- name: Reference inflow temperature
+  summary: 表格数据中假定的绝对入口温度 293.15 K (default) | scalar with units of temperature
+  group: 压力损失
+- name: Reference inflow pressure
+  summary: 表格数据中假定的绝对入口压力 0.101325 MPa (default) | scalar with units of pressure
+  group: 压力损失
+- name: Mass flow rate threshold for flow reversal
+  summary: 质量流量数值平滑区域的上界 1e-3 kg/s (default) | scalar with units of mass/time
+  group: 压力损失
+- name: Gas volume
+  summary: 气体流道中的流体体积 0.01 m^3 (default) | scalar with units of length cubed
+  group: 压力损失
+- name: Cross-sectional area at ports A1 and B1
+  summary: 流道入口和出口处的流通面积 0.01 m^2 (default) | scalar with units of length squared
+  group: 压力损失
+- name: Enable Gas dynamic compressibility
+  summary: 对气体通道中的压力动态进行建模的选项 On (default) | Off
+  group: 效应和初始条件
+- name: Gas nominal temperature
+  summary: 额定工况下的温度 293.15 K (default) | scalar
+  group: 效应和初始条件
+- name: Gas nominal pressure
+  summary: 额定工况下的压力 0.101325 MPa (default) | scalar
+  group: 效应和初始条件
+- name: Gas initial temperature
+  summary: 仿真开始时气体通道中的温度 293.15 K (default) | scalar
+  group: 效应和初始条件
+- name: Gas initial pressure
+  summary: 仿真开始时气体通道中的压力 0.101325 MPa (default) | scalar
+  group: 效应和初始条件
+```
 
 ### 传热
 
@@ -134,7 +202,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Enable Gas dynamic compressibility**。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Gas

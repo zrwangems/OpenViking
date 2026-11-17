@@ -15,14 +15,28 @@ chinese_source: worker-translation
 # Floating Reference
 
 ## 端口
+```yaml
+ports:
+- name: n
+  summary: 直流电流为零的电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **n** — 直流电流为零的电气端口
 
 直流电流为零的电气守恒端口。使用此端口测量浮地电气网络中其他节点的电压。
-
 ## 参数
+```yaml
+parameters:
+- name: Capacitance
+  summary: 阻断直流电流的电容 1 uF（默认）| 正标量
+  group: ''
+- name: Parasitic parallel conductance
+  summary: 小寄生效应 0 1/Ohm（默认）| 非负标量
+  group: ''
+```
 
 ### **Capacitance** — 阻断直流电流的电容 `1 uF`（默认）| 正标量
 
@@ -31,7 +45,6 @@ chinese_source: worker-translation
 ### **Parasitic parallel conductance** — 小寄生效应 `0 1/Ohm`（默认）| 非负标量
 
 表示小寄生效应。对于某些电路拓扑的仿真，需要非零值。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements Simscape / Electrical / Connectors & References

@@ -15,14 +15,34 @@ chinese_source: worker-translation
 # C28x CLA Task
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 到函数调用子系统或函数调用模型的函数调用信号 标量
+  direction: output
+```
 
 ### 输出
 
 ### **Port\_1** — 到函数调用子系统或函数调用模型的函数调用信号 标量
 
 该输出触发 CLA 任务，该任务在 CLA 内核上执行下游函数调用子系统。
-
 ## 参数
+```yaml
+parameters:
+- name: CLA task number
+  summary: 在 CLA 内核上执行的 CLA 任务编号 1（默认）| [1, 8] 范围内的整数
+  group: ''
+- name: CLA task trigger source
+  summary: CLA 任务触发源 Software（默认）| 外设中断
+  group: ''
+- name: Wait until completion of task
+  summary: 阻塞 C28x 执行直到 CLA 任务完成 off（默认）| on
+  group: ''
+- name: Sample time
+  summary: 函数调用子系统被触发的频率 0.2（默认）| -1 | 标量
+  group: ''
+```
 
 ### **CLA task number** — 在 CLA 内核上执行的 CLA 任务编号 `1`（默认）| [1, 8] 范围内的整数
 
@@ -49,7 +69,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请在 **CLA task trigger source** 中选择 `Software` 选项。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

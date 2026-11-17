@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Ideal Semiconductor Switch
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 栅极端子物理信号
+  direction: input
+- name: G
+  summary: 栅极端子电气
+  direction: input
+- name: A
+  summary: 阳极端子电气
+  direction: input
+- name: K
+  summary: 阴极端子电气
+  direction: input
+```
 
 ### 输入
 
@@ -44,8 +59,55 @@ chinese_source: worker-translation
 ### **K** — 阴极端子电气
 
 与阴极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Gate-control port
+  summary: 指定物理控制端口还是电气控制端口 PS（默认）| Electrical
+  group: 主要
+- name: On-state resistance
+  summary: 导通状态电阻 0.001 Ohm（默认）
+  group: 主要
+- name: Off-state conductance
+  summary: 关断状态电导 1e-6 1/Ohm（默认）
+  group: 主要
+- name: Threshold voltage, Vth
+  summary: 阈值电压 0.5 V（默认）
+  group: 主要
+- name: Integral protection diode
+  summary: 集成保护二极管 External diode（默认）| Protection diode with no dynamics | Protection diode with charge dynamics
+  group: 集成二极管
+- name: Forward voltage
+  summary: 正向电压 0.8 V（默认）
+  group: 集成二极管
+- name: On resistance
+  summary: 导通电阻 0.001 Ohm（默认）
+  group: 集成二极管
+- name: Off conductance
+  summary: 关断电导 1e-5 1/Ohm（默认）
+  group: 集成二极管
+- name: Junction capacitance
+  summary: 结电容 50e-9 F（默认）
+  group: 集成二极管
+- name: Initial forward current when measuring iRM
+  summary: 测量 iRM 时的初始正向电流 300 A（默认）| 正标量
+  group: 集成二极管
+- name: Rate of change of current when measuring iRM
+  summary: 测量 iRM 时的电流变化率 -50A/μs（默认）| 负标量
+  group: 集成二极管
+- name: Reverse recovery time parameterization
+  summary: 反向恢复时间参数化 Specify reverse recovery time directly（默认）| Specify stretch factor | Specify reverse recovery charge
+  group: 集成二极管
+- name: Reverse recovery time, trr
+  summary: 反向恢复时间 15 μs（默认）| 标量
+  group: 集成二极管
+- name: Reverse recovery time stretch factor
+  summary: 反向恢复时间拉伸因子 3（默认）| 大于 1 的标量
+  group: 集成二极管
+- name: Reverse recovery charge, Qrr
+  summary: 反向恢复电荷 1500 μAs（默认）
+  group: 集成二极管
+```
 
 ### 主要
 
@@ -194,7 +256,6 @@ dynamics` 时可见。
 `Specify reverse recovery charge` 时可见。
 
 有关这些参数的详细信息，请参阅 Diode。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

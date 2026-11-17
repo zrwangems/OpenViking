@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Induction Machine Direct Torque Control
 
 ## 端口
+```yaml
+ports:
+- name: FluxRef
+  summary: 磁链标量
+  direction: input
+  data_types: single | double
+- name: TqRef
+  summary: 转矩标量
+  direction: input
+  data_types: single | double
+- name: vabc
+  summary: 电压矢量
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: 电流矢量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 门极脉冲矢量 | 0 或 1
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -48,8 +71,25 @@ chinese_source: worker-translation
 逆变器门极脉冲。该模块不考虑任何死区时间。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Stator resistance (Ohm)
+  summary: 电阻 0.25（默认值）| 正标量
+  group: ''
+- name: Number of pole pairs
+  summary: 极对数 1（默认值）| 正整数
+  group: ''
+- name: Flux hysteresis bandwidth (Wb)
+  summary: 磁链 0.02（默认值）| 正标量
+  group: ''
+- name: Torque hysteresis bandwidth (N\*m)
+  summary: 转矩 10（默认值）| 正标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认值）| 正标量
+  group: ''
+```
 
 ### **Stator resistance (Ohm)** — 电阻 `0.25`（默认值）| 正标量
 
@@ -72,7 +112,6 @@ chinese_source: worker-translation
 连续模块执行之间的时间，以 s 为单位。在执行期间，模块产生输出，并在适当情况下更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于连续变步长模型中，请使用正标量显式指定采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / Induction Machine Control

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PS Transfer Function
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: R
+  summary: 复位物理信号，*R*，无类型物理信号
+  direction: input
+- name: Y0
+  summary: 初始输出物理信号，*YO*，无类型物理信号
+  direction: input
+- name: Y
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -47,8 +62,31 @@ chinese_source: worker-translation
 输出物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: 传递函数类型
+  summary: 指定低通滤波器的类型 Lag（默认）| Lead-lag
+  group: ''
+- name: 滞后时间常数，T
+  summary: 一阶低通滤波器的滞后时间常数 1 s（默认）| 正标量
+  group: ''
+- name: 超前时间常数，T1
+  summary: 超前-滞后滤波器的超前时间常数 2 s（默认）| 正标量
+  group: ''
+- name: 滞后时间常数，T2
+  summary: 超前-滞后滤波器的滞后时间常数 1 s（默认）| 正标量
+  group: ''
+- name: 外部复位
+  summary: 指定模块是否基于外部复位信号将其状态复位到初始输出 None（默认）| Rising | Falling | Either
+  group: ''
+- name: 初始输出源
+  summary: 选择将初始输出值指定为模块参数还是附加输入信号 Internal（默认）| External
+  group: ''
+- name: Initial output
+  summary: 仿真开始时和复位后的输出信号值和单位 0 1（默认）| 标量、向量或矩阵
+  group: ''
+```
 
 ### **传递函数类型** — 指定低通滤波器的类型 `Lag`（默认）| `Lead-lag`
 
@@ -101,7 +139,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Initial output source** 设置为 `Internal`。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Linear Operators

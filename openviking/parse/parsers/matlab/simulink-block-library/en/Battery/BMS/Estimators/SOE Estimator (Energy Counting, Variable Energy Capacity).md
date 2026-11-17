@@ -14,6 +14,24 @@ language: en
 # SOE Estimator (Energy Counting, Variable Energy Capacity)
 
 ## Ports
+```yaml
+ports:
+- name: Current
+  summary: Battery current, ampere scalar | vector
+  direction: input
+- name: Voltage
+  summary: Battery voltage, volt scalar | vector
+  direction: input
+- name: EnergyCapacity
+  summary: Battery cell energy capacity, W\*Hr nonnegative scalar
+  direction: input
+- name: InitialSOE
+  summary: Initial state of energy, unitless scalar | vector
+  direction: input
+- name: SOE
+  summary: Battery state of energy scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -47,8 +65,19 @@ State of energy of the battery, returned as a scalar or a vector. The
 size of this output port is equal to the size of the
 **Current** and **InitialSOE**
 input ports.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify Current input as cell current(s)
+  summary: Option to specify current input port as vector off (default) | on
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time 1 (default) | 0 | -1 | integer
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 ### **Specify Current input as cell current(s)** — Option to specify current input port as vector `off` (default) | `on`
 
@@ -95,7 +124,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Estimators

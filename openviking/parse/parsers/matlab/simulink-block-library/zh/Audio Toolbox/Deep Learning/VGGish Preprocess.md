@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # VGGish Preprocess
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 声音数据列向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 梅尔频谱图 96×64 矩阵
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -35,8 +46,16 @@ chinese_source: worker-translation
 连续 96×64 梅尔频谱图之间的重叠由 **Overlap percentage (%)** 参数的值决定。您可以将该梅尔频谱图作为输入提供给 VGGish 预训练网络，或提供给接受与 VGGish 相同输入的网络。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 16e3（默认）| 正标量
+  group: ''
+- name: Overlap percentage (%)
+  summary: 连续梅尔频谱图之间的重叠百分比 50（默认）| [0 100)
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（Hz） `16e3`（默认）| 正标量
 
@@ -45,7 +64,6 @@ chinese_source: worker-translation
 ### **Overlap percentage (%)** — 连续梅尔频谱图之间的重叠百分比 `50`（默认）| [0 100)
 
 将连续梅尔频谱图之间的重叠百分比指定为范围 [0 100) 内的标量。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

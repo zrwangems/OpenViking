@@ -14,6 +14,137 @@ language: en
 # Compute Parameter
 
 ## Ports
+```yaml
+ports:
+- name: Npp
+  summary: Number of pole pairs available in motor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: R
+  summary: Stator winding resistance scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Rs
+  summary: Stator winding resistance scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Ld
+  summary: Stator winding inductance along *d*-axis scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Lq
+  summary: Stator winding inductance along *q*-axis scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Lls
+  summary: Stator leakage inductance of induction motor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Llr
+  summary: Rotor leakage inductance of induction motor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Lm
+  summary: Magnetizing inductance of induction motor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: fcutoff
+  summary: Cutoff frequency of internal highpass filter scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: NumSlits
+  summary: Number of slits per phase scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: CountsPerSlit
+  summary: Number of counts generated for every slit scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ω1 (RPM)
+  summary: Speed (after motor starts) at which I-F control stops scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ω2 (RPM)
+  summary: Speed required to re-enter I-F control scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ωmax
+  summary: Maximum supported mechanical speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Imax (A)
+  summary: Maximum motor current during I-F control scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Max(Δω/Δt) (RPM/s)
+  summary: Maximum rate of speed change during I-F control scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: IDecayRate (A/s)
+  summary: Maximum rate of current decay during I-F control scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ζ
+  summary: Speed oscillation damping coefficient value scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: TIdle (s)
+  summary: Time of constant speed and current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: KEEMF
+  summary: Extended EMF observer gain scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: fEEMFcutoff
+  summary: Cutoff frequency of EEMF filter scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: fSpdcutoff
+  summary: Cutoff frequency of speed filter scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: fcutoff
+  summary: Cutoff frequency of lowpass filter scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: KSpdp
+  summary: Proportional gain of the speed observer scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: KSpdi
+  summary: Integral gain of the speed observer scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Kp
+  summary: Proportional controller gain scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Ki
+  summary: Integral gain of the controller scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: UseInternalKpKi
+  summary: Use internal gains of the controller 0 | 1
+  direction: input
+  data_types: Boolean
+- name: fmax
+  summary: Maximum applicable input frequency scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: Computed parameters for compatible blocks bus
+  direction: output
+  data_types: single
+- name: CountsPerRev
+  summary: Number of counts per revolution scalar
+  direction: output
+  data_types: single
+- name: 1/CountsPerRev
+  summary: Inverse of number of counts per revolution scalar
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -507,8 +638,19 @@ relative path of the Quadrature Decoder block in the current
 model.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Relative path of compatible block that needs functional extension
+  summary: Relative path of compatible block blank (default) | string
+  group: ''
+- name: Get a list of supported block paths in the model
+  summary: Obtain list of compatible block paths button
+  group: ''
+- name: Supported block paths
+  summary: List of compatible block paths display cell
+  group: ''
+```
 
 ### **Relative path of compatible block that needs functional extension** — Relative path of compatible block blank (default) | string
 
@@ -529,7 +671,6 @@ configure this block.
 
 This section displays the list of relative paths of the compatible blocks in
 the current model.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management

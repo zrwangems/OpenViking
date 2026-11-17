@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # dB Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -69,8 +80,22 @@ dBm 转换等效于将输入转换为毫瓦后执行 dB 运算。
 dBm 转换等效于将 `(abs(u)^2/R)` 结果转换为毫瓦后执行 dB 运算。比例因子 R 以欧姆为单位指定。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Convert to
+  summary: 要转换的信号 dB（默认）| dBm
+  group: ''
+- name: Input signal
+  summary: 信号类型 Amplitude（默认）| Power
+  group: ''
+- name: Load resistance (ohms)
+  summary: 比例因子 1（默认）| 正标量 | 正整数
+  group: ''
+- name: Add eps to input to protect against "log(0) = -inf"
+  summary: 添加 eps off（默认）| on
+  group: ''
+```
 
 ### **Convert to** — 要转换的信号 `dB`（默认）| `dBm`
 
@@ -141,7 +166,6 @@ dBm 转换等效于将 `(abs(u)^2/R)` 结果转换为 mW 后执行 dB 运算。�
 选择此参数可将 `eps` 添加到所有输入值（功率或电压）。
 
 **可调：** 是
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Math Operations Communications Toolbox / Utility Blocks

@@ -15,14 +15,28 @@ chinese_source: worker-translation
 # Environment Parameters
 
 ## 端口
+```yaml
+ports:
+- name: OUT
+  summary: 输出端口电气
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **OUT** — 输出端口电气
 
 与环境参数输出相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Temperature
+  summary: SPICE 温度 300.15 K（默认）| 正标量
+  group: ''
+- name: GMIN
+  summary: 最小电导 1e-12 1/Ohm（默认）| 正标量
+  group: ''
+```
 
 ### **Temperature** — SPICE 温度 `300.15` `K`（默认）| 正标量
 
@@ -31,7 +45,6 @@ chinese_source: worker-translation
 ### **GMIN** — 最小电导 `1e-12` `1/Ohm`（默认）| 正标量
 
 适用的所连接 SPICE 兼容模块的最小电导。
-
 ## 所属库
 
 Simscape / Electrical / Utilities

@@ -14,6 +14,28 @@ language: en
 # Warp
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image matrix | 3-D numeric array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: TForm
+  summary: Transformation matrix 3-by-2 matrix | 3-by-3 matrix
+  direction: input
+  data_types: double | single
+- name: ROI
+  summary: Region of interest 4-element vector
+  direction: input
+- name: Image
+  summary: Transformed image matrix | 3-D numeric array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Err_roi
+  summary: Indicator for transformed ROI outside image region 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -87,8 +109,37 @@ Indicator for transformed ROI outside image region, returned as
 `0` or `1`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Transformation matrix for source
+  summary: Source for passing transformation matrix Input port (default) | Custom
+  group: ''
+- name: Transformation matrix
+  summary: Value for transformation matrix 3-by-2 matrix | 3-by-3 matrix
+  group: ''
+- name: Interpolation method
+  summary: Method for interpolating transformed pixel values Bilinear (default) | Nearest neighbor | Bicubic
+  group: ''
+- name: Background fill value
+  summary: Intensity value for background pixels in the transformed image 0 (default) | scalar | 3-element vector
+  group: ''
+- name: Output image position source
+  summary: Source for passing output image size Same as input image (default) | Custom
+  group: ''
+- name: Output image position vector [x y width height]
+  summary: Size of the output image [1 1 512 512] (default) | 4-element vector
+  group: ''
+- name: Enable ROI input port
+  summary: Input ROI off (default) | on
+  group: ''
+- name: Enable output port indicating if any part of ROI is outside input image
+  summary: Output if transformed ROI is outside the specified image size off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+```
 
 ### **Transformation matrix for source** — Source for passing transformation matrix `Input port` (default) | `Custom`
 
@@ -201,7 +252,6 @@ Block simulation method, specified as `Interpreted Execution` or
 `Code Generation`. If you want your block to use the MATLAB® interpreter, choose `Interpreted Execution`. If you want
 your block to run as compiled code, choose `Code Generation`. For more
 information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Computer Vision Toolbox / Geometric Transformations

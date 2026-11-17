@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Overwrite Values
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入数据 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | bus
+- name: V
+  summary: 覆盖值 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | bus
+- name: B
+  summary: 修改后的数据 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | bus
+```
 
 ### 输入
 
@@ -40,8 +55,82 @@ chinese_source: worker-translation
 输出的大小与原始输入信号相同。此模块的输入和输出必须具有相同的数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Overwrite
+  summary: 覆盖子矩阵或对角线 Submatrix（默认）| Diagonal
+  group: ''
+- name: Source of overwriting value(s)
+  summary: 覆盖值的来源 Specify via dialog（默认）| Second input port
+  group: ''
+- name: Overwrite with
+  summary: 覆盖值 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Row span
+  summary: 输入行的跨度 Range of rows（默认）| All rows | One row
+  group: ''
+- name: Row/Starting row
+  summary: 行或起始行 First（默认）| Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Row index/Starting row index
+  summary: 行索引或起始行索引 1（默认）| 正整数
+  group: ''
+- name: Row offset/Starting row offset
+  summary: 行偏移或起始行偏移 1 | 非负整数
+  group: ''
+- name: Ending row
+  summary: 结束行 Last（默认）| Index | Offset from last | Offset from middle | Middle
+  group: ''
+- name: Ending row index
+  summary: 子矩阵最后一行的索引 1（默认）| 正整数
+  group: ''
+- name: Ending row offset
+  summary: 结束行偏移 1 | 非负整数
+  group: ''
+- name: Column span
+  summary: 输入列的跨度 Range of columns（默认）| All columns | One column
+  group: ''
+- name: Column/Starting column
+  summary: 列或起始列 First（默认）| Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Column index/Starting column index
+  summary: 列索引或起始列索引 1 | 正整数
+  group: ''
+- name: Column offset/Starting column offset
+  summary: 列偏移或起始列偏移 1 | 非负整数
+  group: ''
+- name: Ending column
+  summary: 结束列 Last（默认）| Index | Offset from last | Offset from middle | Middle
+  group: ''
+- name: Ending column index
+  summary: 结束列索引 1（默认）| 正整数
+  group: ''
+- name: Ending column offset
+  summary: 结束列偏移 1 | 非负整数
+  group: ''
+- name: Diagonal span
+  summary: 对角元素的跨度 Range of elements（默认）| All elements | One element
+  group: ''
+- name: Element/Starting element
+  summary: 元素或起始元素 Index（默认）| First | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Element index/Starting element index
+  summary: 元素或起始元素索引 2（默认）| 正整数
+  group: ''
+- name: Ending element
+  summary: 结束元素 Index（默认）| Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Ending element index
+  summary: 结束元素索引 4（默认）| 正整数
+  group: ''
+- name: Element offset/Starting element offset
+  summary: 元素偏移或起始元素偏移 2 | 整数（用于从中间偏移）| 非负整数（用于从末尾偏移）
+  group: ''
+- name: Ending element offset
+  summary: 结束元素偏移 4 | 非负整数
+  group: ''
+```
 
 ### **Overwrite** — 覆盖子矩阵或对角线 `Submatrix`（默认）| `Diagonal`
 
@@ -315,7 +404,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Ending element** 设置为 `Offset from middle` 或 `Offset from last`。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Indexing / Matrix Operations DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

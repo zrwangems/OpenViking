@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Simulation 3D Actor Transform Get
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: 角色平移 array
+  direction: output
+- name: Rotation
+  summary: 角色旋转 array
+  direction: output
+- name: Scale
+  summary: 角色缩放 array
+  direction: output
+```
 
 ### 输出
 
@@ -121,8 +133,22 @@ chinese_source: worker-translation
   | 右后轮，*XRRscale* | `Scale(5,1)` |
   | 右后轮，*YRRscale* | `Scale(5,2)` |
   | 右后轮，*ZRRscale* | `Scale(5,3)` |
-
 ## 参数
+```yaml
+parameters:
+- name: Tag for actor in 3D scene, ActorTag
+  summary: 名称 SimulinkActor1（默认）| 字符向量
+  group: ''
+- name: Number of parts per actor to get, NumberOfParts
+  summary: 名称 1（默认）| scalar
+  group: ''
+- name: Coordinate system
+  summary: 角色变换的坐标系 Default（默认）| MATLAB | ISO8855 | AERO | VRML | SAE
+  group: ''
+- name: Sample time
+  summary: 采样时间 -1（默认）| scalar
+  group: ''
+```
 
 ### **Tag for actor in 3D scene, ActorTag** — 名称 `SimulinkActor1`（默认）| 字符向量
 
@@ -170,7 +196,6 @@ Transform Get 和 Simulation 3D Actor Transform Set）引用同一场景角色�
 
 采样时间，*Ts*。图形帧率
 是采样时间的倒数。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blockset / Animation / Simulation 3D Simulink 3D Animation / Simulation 3D / Utilities

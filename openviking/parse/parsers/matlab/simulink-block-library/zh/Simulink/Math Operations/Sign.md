@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Sign
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输入
 
@@ -34,8 +45,22 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量 | 字符串
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+```
 
 ### **Enable zero-crossing detection** — 启用过零检测 `on`（默认）| `off`
 
@@ -66,7 +91,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `SampleTime` |
 | **值：** | `"-1"`（默认）| 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

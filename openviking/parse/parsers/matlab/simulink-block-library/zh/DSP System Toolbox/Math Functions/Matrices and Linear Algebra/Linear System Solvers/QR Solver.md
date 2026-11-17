@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # QR Solver
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 系统矩阵 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: B
+  summary: 系统方程右侧矩阵 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: X
+  summary: 最小范数残差解 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -47,8 +62,13 @@ A*X*=B 的最小范数残差解，以 *N*×*L* 矩阵 *X* 返回。该模块确�
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Simulate using** — 要运行的仿真类型 `Interpreted execution`（默认）| `Code generation`
 
@@ -56,7 +76,6 @@ A*X*=B 的最小范数残差解，以 *N*×*L* 矩阵 *X* 返回。该模块确�
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

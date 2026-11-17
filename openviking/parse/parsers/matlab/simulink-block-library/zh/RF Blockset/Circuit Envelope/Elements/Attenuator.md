@@ -15,10 +15,30 @@ chinese_source: worker-translation
 # Attenuator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Attenuation (dB)
+  summary: 插入损耗或衰减水平 3（默认）| 标量
+  group: ''
+- name: Input impedance (Ohm)
+  summary: 输入阻抗 50（默认）| 标量
+  group: ''
+- name: Output impedance (Ohm)
+  summary: 输出阻抗 50（默认）| 标量
+  group: ''
+- name: Simulate noise
+  summary: 仿真热噪声 on（默认）| off
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏 RF 电路端子 on（默认）| off
+  group: ''
+```
 
 ### **Attenuation (dB)** — 插入损耗或衰减水平 `3`（默认）| 标量
 
@@ -46,7 +66,6 @@ A2/Hz，其中：
 ### **Ground and hide negative terminals** — 接地并隐藏 RF 电路端子 on（默认）| off
 
 选择此参数以接地并隐藏负端子。要暴露负端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其它部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

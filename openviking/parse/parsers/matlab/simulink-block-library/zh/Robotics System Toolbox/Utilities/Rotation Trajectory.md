@@ -15,6 +15,42 @@ chinese_source: worker-translation
 # Rotation Trajectory
 
 ## 端口
+```yaml
+ports:
+- name: Time
+  summary: 沿轨迹的时间点 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: R0
+  summary: 初始姿态 四元数向量 | 3×3 旋转矩阵
+  direction: input
+  data_types: single | double
+- name: RF
+  summary: 最终姿态 四元素向量 | 3×3 旋转矩阵
+  direction: input
+  data_types: single | double
+- name: TimeInterval
+  summary: 轨迹的开始和结束时间 二元素向量
+  direction: input
+  data_types: single | double
+- name: TSTime
+  summary: 时间缩放时间点 标量 | *p* 元素向量
+  direction: input
+  data_types: single | double
+- name: TimeScaling
+  summary: 时间缩放向量及其前两阶导数 三元素向量 | 3×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: R
+  summary: 姿态向量 4×*m* 四元数数组 | 3×3×*m* 旋转矩阵数组
+  direction: output
+- name: omega
+  summary: 姿态角速度 3×*m* 矩阵
+  direction: output
+- name: alpha
+  summary: 姿态角加速度 3×*m* 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -120,8 +156,40 @@ s(3,:) = [0    0   0 0 0 0] % Acceleration
 ### **alpha** — 姿态角加速度 3×*m* 矩阵
 
 姿态角加速度，返回为 3×*m* 矩阵，其中 *m* 是 **Time** 输入中的点数。
-
 ## 参数
+```yaml
+parameters:
+- name: Rotation format
+  summary: 姿态格式 Quaternion（默认）| Rotation Matrix
+  group: ''
+- name: Waypoint source
+  summary: 路点来源 Internal（默认）| External
+  group: ''
+- name: Initial rotation
+  summary: 初始姿态 [1 0 0 0]'（默认）| 四元素四元数向量 | 3×3 旋转矩阵
+  group: ''
+- name: Final rotation
+  summary: 最终姿态 [0 0 1 0]'（默认）| 四元素向量 | 3×3 旋转矩阵
+  group: ''
+- name: Time interval
+  summary: 轨迹的开始和结束时间 [0 10]（默认）| 二元素向量
+  group: ''
+- name: Use custom time scaling
+  summary: 启用自定义时间缩放 off（默认）| on
+  group: ''
+- name: Parameter source
+  summary: 路点来源 Internal（默认）| External
+  group: ''
+- name: Time scaling time
+  summary: 时间缩放时间点 2:0.1:3（默认）| 标量 | *p* 元素向量
+  group: ''
+- name: Time scaling values
+  summary: 时间缩放向量及前两阶导数 [0:0.1:1; ones(1,11); zeros(1,11)]（默认）| 三元素向量 | 3×*m* 矩阵
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Rotation format** — 姿态格式 `Quaternion`（默认）| `Rotation Matrix`
 
@@ -213,7 +281,6 @@ s(3,:) = [0    0   0 0 0 0] % Acceleration
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 Robotics System Toolbox / Utilities

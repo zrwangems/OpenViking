@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Integer-Output RS Decoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 里德-所罗门码字整数列向量
+  direction: input
+  data_types: single | double | integer
+- name: Era
+  summary: 擦除向量二进制列向量
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: 解码消息整数列向量
+  direction: output
+- name: Err
+  summary: 解码错误整数向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -86,8 +104,34 @@ symbol errors**。
 **数据类型：** `double`
 
 有关详细信息，请参阅支持的数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length N
+  summary: 码字长度 7（默认）| 整数
+  group: ''
+- name: Message length K
+  summary: 消息字长度 3（默认）| 整数
+  group: ''
+- name: Shortened message length S
+  summary: 缩短的消息字长度 3（默认）| 整数
+  group: ''
+- name: Generator polynomial
+  summary: 生成多项式 rsgenpoly(7, 3, [], [], 'double')（默认）| 多项式字符向量 | 二进制行向量 | 二进制伽罗瓦行向量
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 'X^3 + X + 1'（默认）| 多项式字符向量 | 二进制行向量
+  group: ''
+- name: Puncture vector
+  summary: 删余向量 [ones(2,1); zeros(2,1)]（默认）| 二进制列向量
+  group: ''
+- name: Enable erasures input port
+  summary: 启用擦除输入端口 关（默认）| 开
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: 启用端口以输出已纠正符号错误数量 关（默认）| 开
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -161,7 +205,6 @@ symbol errors**。
 ### **Output number of corrected symbol errors** — 启用端口以输出已纠正符号错误数量 关（默认）| 开
 
 选中此复选框将启用一个额外的输出端口 **Err**，它指示该块在输入码字中纠正的符号错误数量。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

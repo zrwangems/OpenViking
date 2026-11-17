@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Dot Product
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 第一个操作数输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: 第二个操作数输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 点积输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -36,8 +51,57 @@ chinese_source: worker-translation
 由两个输入信号的点积计算得到的输出信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Require all inputs to have the same data type
+  summary: 要求所有输入具有相同的数据类型 on（默认） | off
+  group: ''
+  block_parameter: InputSameDT
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认） | 标量
+  group: ''
+  block_parameter: OutMin
+  values: '''[]''（默认） | 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认） | 标量
+  group: ''
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[ ]'''
+- name: Output data type
+  summary: '指定输出数据类型 Inherit: Inherit via internal rule（默认） | Inherit: Inherit via back propagation | Inherit: Same as first
+    input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0)
+    | fixdt(1,16,2^0,0) | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Same as first input'' | ''Inherit: Inherit via back propagation''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认） | on
+  group: ''
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认） | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  values: '''Floor''（默认） | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认） | on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认） | ''on'''
+```
 
 ### **Require all inputs to have the same data type** — 要求所有输入具有相同的数据类型 `on`（默认） | `off`
 
@@ -189,7 +253,6 @@ Simulink 使用最大值来执行：
 | --- | --- |
 | **Parameter：** | `SaturateOnIntegerOverflow` |
 | **值**：| `'off'`（默认） | `'on'` |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / Math Operations

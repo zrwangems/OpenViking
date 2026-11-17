@@ -14,6 +14,53 @@ language: en
 # CubeSat Vehicle Earth (Nadir) Pointing
 
 ## Ports
+```yaml
+ports:
+- name: AECEF (m/s2)
+  summary: Vehicle accelerations vector of size 3
+  direction: input
+  data_types: single | double
+- name: 1st AlignmentBody
+  summary: Primary alignment vector three-element vector
+  direction: input
+  data_types: double
+- name: 1st ConstraintECI
+  summary: Primary constraint vector three-element vector
+  direction: input
+  data_types: double
+- name: 1st AlignmentBody
+  summary: Primary alignment vector three-element vector
+  direction: input
+  data_types: double
+- name: 1st ConstraintECI
+  summary: Primary constraint vector three-element vector
+  direction: input
+  data_types: double
+- name: 2nd AlignmentBody
+  summary: Secondary alignment vector three-element vector
+  direction: input
+  data_types: double
+- name: 2nd ConstraintECI
+  summary: Secondary constraint vector three-element vector
+  direction: input
+  data_types: double
+- name: XECEF
+  summary: CubeSat position three-element vector
+  direction: output
+  data_types: double
+- name: VECEF
+  summary: Velocity components 3-by-1 array
+  direction: output
+  data_types: double
+- name: qECI2Body
+  summary: Quaternion rotation 4-by-1 array
+  direction: output
+  data_types: double
+- name: qECEF2Body
+  summary: Quaternion array 4-by-1 array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -111,8 +158,246 @@ Quaternion rotation from Earth-centered inertial frame to Body frame.
 Quaternion rotation from Earth-centered Earth-fixed frame to Body frame.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Start date [Julian date]
+  summary: Initial start date of simulation 2458488 (default) | Julian date
+  group: ''
+  block_parameter: sim_t0
+  type: character vector
+  values: Julian date
+  default: '''2458488'''
+- name: Input method
+  summary: Initial vehicle Keplerian Orbital Elements (default) | ECI Position and Velocity | ECEF Position and Velocity |
+    Geodetic LatLonAlt and Velocity in NED
+  group: CubeSat Orbit
+  block_parameter: method
+  type: character vector
+  values: '''Keplerian Orbital Elements'' | ''ECI Position and Velocit'' | ''ECEF Position and Velocity'' | ''Geodetic LatLonAlt
+    and Velocity in NED'''
+  default: '''Keplerian Orbital Elements'''
+- name: Epoch of ECI frame [Julian date]
+  summary: Epoch of ECI frame 2451545 (default) | Julian date
+  group: CubeSat Orbit
+  block_parameter: epoch
+  type: character vector
+  values: Julian date format
+  default: '''2451545'''
+- name: Semi-major axis [m]
+  summary: CubeSat semi-major axis 6878137 (default) | axis in meters
+  group: CubeSat Orbit
+  block_parameter: a
+  type: character vector
+  values: scalar
+  default: '''6878137'''
+- name: Eccentricity
+  summary: Orbital eccentricity 0 (default) | eccentricity greater than or equal to 0
+  group: CubeSat Orbit
+  block_parameter: ecc
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Inclination [deg]
+  summary: Tilt angle of CubeSat orbital plane 0 | degrees between 0 and 180
+  group: CubeSat Orbit
+  block_parameter: incl
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Right ascension of the ascending node [deg]
+  summary: Angular distance in equatorial plane 0 (default) | degrees between 0 and 360
+  group: CubeSat Orbit
+  block_parameter: omega
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Argument of periapsis [deg]
+  summary: Angle from CubeSat body ascending node to periapsis 0 (default) | degrees between 0 and 360
+  group: CubeSat Orbit
+  block_parameter: argp
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: True anomaly [deg]
+  summary: Angle between periapsis and current position of CubeSat 0 (default) | degrees between 0 and 360
+  group: CubeSat Orbit
+  block_parameter: nu
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: True longitude [deg] (circular equatorial)
+  summary: Angle between *x*-axis of periapsis and position of CubeSat vector 0 (default) | degrees between 0 and 360
+  group: CubeSat Orbit
+  block_parameter: truelon
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Argument of latitude [deg] (circular inclined)
+  summary: Angle between ascending node and satellite position vector 0 (default) | degrees between 0 and 360
+  group: CubeSat Orbit
+  block_parameter: arglat
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Longitude of periapsis [deg] (elliptical equatorial)
+  summary: Angle between *x*-axis of periapsis and eccentricity vector 0 (default) | degrees between 0 and 360
+  group: CubeSat Orbit
+  block_parameter: lonper
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: ECI position vector [m]
+  summary: Cartesian position vector [0 0 0] (default) | vector
+  group: CubeSat Orbit
+  block_parameter: r_eci
+  type: character vector
+  values: scalar
+  default: '''[0 0 0]'''
+- name: ECI velocity vector [m/s]
+  summary: Cartesian velocity vector [0 0 0] (default) | velocity vector
+  group: CubeSat Orbit
+  block_parameter: v_eci
+  type: character vector
+  values: scalar
+  default: '''[0 0 0]'''
+- name: ECEF position vector [m]
+  summary: Cartesian position vector [0 0 0] (default) | vector
+  group: CubeSat Orbit
+  block_parameter: r_ecef
+  type: character vector
+  values: scalar
+  default: '''[0 0 0]'''
+- name: ECEF velocity vector [m/s]
+  summary: Cartesian velocity vector [0 0 0] (default) | velocity vector
+  group: CubeSat Orbit
+  block_parameter: v_ecef
+  type: character vector
+  values: scalar
+  default: '''[0 0 0]'''
+- name: Geodetic latitude, longitude, altitude [deg, deg, m]
+  summary: Geodetic latitude and longitude, and altitude [0 0 0] (default) | velocity vector
+  group: CubeSat Orbit
+  block_parameter: lla
+  type: character vector
+  values: scalar
+  default: '''[0 0 0]'''
+- name: NED velocity vector [m/s]
+  summary: Body velocity [0 0 0] (default) | velocity vector
+  group: CubeSat Orbit
+  block_parameter: v_ned
+  type: character vector
+  values: scalar
+  default: '''[0 0 0]'''
+- name: Initial Euler angles (roll, pitch, yaw) [deg]
+  summary: Initial Euler rotation angles [0 0 0] (default) | vector | degrees
+  group: CubeSat Attitude
+  block_parameter: euler
+  type: character vector
+  values: scalar
+  default: '''[0 0 0]'''
+- name: Initial body angular rates [deg/s]
+  summary: Initial angular rates [0 0 -0.05168] (default) | vector
+  group: CubeSat Attitude
+  block_parameter: pqr
+  type: character vector
+  values: scalar
+  default: '''[0 0 0]'''
+- name: Pointing mode
+  summary: CubeSat vehicle pointing mode Earth (Nadir) Pointing (default) | Sun Tracking | Custom Pointing | Standby (Off)
+  group: CubeSat Attitude
+  block_parameter: pointingMode
+  type: character vector
+  values: '''Earth (Nadir) Pointing'' | ''Sun Tracking'' | ''Custom Pointing'' | ''Standby (Off)'''
+  default: '''Earth (Nadir) Pointing'''
+- name: Primary alignment vector (Body wrt BCM)
+  summary: Primary alignment vector Dialog (default) | Input port
+  group: CubeSat Attitude
+  block_parameter: firstAlignExt
+  type: character vector
+  values: '''Input port'' | ''Dialog'''
+  default: '''Dialog'''
+- name: Secondary alignment vector (Body wrt BCM)
+  summary: Secondary alignment vector Dialog (default) | Input port
+  group: CubeSat Attitude
+  block_parameter: secondAlignExt
+  type: character vector
+  values: '''Input port'' | ''Dialog'''
+  default: '''Dialog'''
+- name: Constraint coordinate system
+  summary: Constraint coordinate system ECI Axes (default) | ECEF Axes | NED Axes | Body-Fixed Axes
+  group: CubeSat Attitude
+  block_parameter: constraintCoord
+  type: character vector
+  values: '''ECI Axes'' | ''ECEF Axes'' | ''NED Axes'' | ''Body-Fixed Axes'''
+  default: '''ECI Axes'''
+- name: Primary constraint vector (wrt BCM)
+  summary: Primary constraint vector Dialog (default) | Input port
+  group: CubeSat Attitude
+  block_parameter: firstRefExt
+  type: character vector
+  values: '''Input port'' | ''Dialog'''
+  default: '''Dialog'''
+- name: Secondary constraint vector (wrt BCM)
+  summary: Secondary constraint vector Dialog (default) | Input port
+  group: CubeSat Attitude
+  block_parameter: secondRefExt
+  type: character vector
+  values: '''Input port'' | ''Dialog'''
+  default: '''Dialog'''
+- name: Analysis run time source
+  summary: Source of run time for mission analysis live script Dialog (default) | Model Stop Time
+  group: Mission Analysis
+  block_parameter: missionRTSource
+  type: character vector
+  values: '''Dialog'' | ''Model StopTime'''
+  default: '''Dialog'''
+- name: Run time [sec]
+  summary: Run time for mission analysis live script 6*60*60 (default) | scalar
+  group: Mission Analysis
+  block_parameter: missionRT
+  type: character vector
+  values: scalar
+  default: '''6*60*60'''
+- name: Ground station geodetic latitude, longitude [deg, deg]
+  summary: Ground station location [42, -71] (default) | vector
+  group: Mission Analysis
+  block_parameter: missionGS
+  type: character vector
+  values: vector
+  default: '''[42, -71]'''
+- name: Run TOI analysis
+  summary: Enable time of interest mission analysis on (default) | off
+  group: Mission Analysis
+  block_parameter: missionTOICheck
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Time of interest [Julian date]
+  summary: Time of interest for mission analysis live script [] (default) | Julian date
+  group: Mission Analysis
+  block_parameter: missionTOI
+  type: character vector
+  values: Julian date
+  default: '''[]'''
+- name: Camera field-of-view (FOV) half angle (deg)
+  summary: Half angle of field of view 55 (default) | [] | scalar
+  group: Mission Analysis
+  block_parameter: missionEta
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''55'''
+- name: Live script file name
+  summary: File name for mission analysis live script report blank entry (default) | live script file name
+  group: Mission Analysis
+  block_parameter: missionName
+  type: character vector
+  values: blank entry | file name
+  default: blank entry
+- name: Create Live Script Report
+  summary: Analyze mission and create live script report button
+  group: Mission Analysis
+```
 
 ### **Start date [Julian date]** — Initial start date of simulation `2458488` (default) | Julian date
 
@@ -733,7 +1018,6 @@ To create the live script with the file name specified in **Live script
 file name**, click the **Create Live Script Report**
 button. If **Live script file name** is blank, the block creates a
 live script with a default file name.
-
 ## Libraries
 
 Aerospace Blockset / Spacecraft / CubeSat Vehicles

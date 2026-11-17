@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Loudness Meter
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号矩阵 | 一维向量
+  direction: input
+  data_types: single | double
+- name: M
+  summary: 瞬时响度测量列向量
+  direction: output
+  data_types: single | double
+- name: S
+  summary: 短时响度测量列向量
+  direction: output
+  data_types: single | double
+- name: TP
+  summary: 真峰值实数标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -47,8 +66,31 @@ chinese_source: worker-translation
 要启用此端口，请选择**输出真峰值**参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Channel weights
+  summary: 应用于每个输入声道的线性加权 [1, 1, 1, 1.41, 1.41]（默认）| 非负行向量
+  group: ''
+- name: Use relative scale for loudness measurements
+  summary: 指定模块输出相对于目标级别的响度测量值 off（默认）| on
+  group: ''
+- name: Target loudness level (LUFS)
+  summary: 相对响度测量的参考级别 –23（默认）| 实数标量
+  group: ''
+- name: Output true-peak value
+  summary: 添加真峰值输出端口 off（默认）| on
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 on（默认）| off
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 如果参数被列为可调，则可以在仿真期间更改其值。
 
@@ -105,7 +147,6 @@ chinese_source: worker-translation
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项缩短了启动时间，但仿真速度比 `Code generation` 慢。在此模式下，可以调试模块的源代码。
 
 **可调：** 否
-
 ## 所属库
 
 Audio Toolbox / Measurements

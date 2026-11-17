@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Common Gear Constraint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座坐标系 frame
+  direction: unspecified
+- name: F
+  summary: 从动坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -25,8 +34,25 @@ chinese_source: worker-translation
 ### **F** — 从动坐标系 frame
 
 从动齿轮体上的连接坐标系。
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 基座齿轮体与从动齿轮体之间的啮合类型 External（默认）| Internal
+  group: ''
+- name: Center Distance
+  summary: 基座齿轮与从动齿轮中心之间的距离 20 cm（默认）| 以长度单位为单位的正标量
+  group: ''
+- name: Gear Ratio (Nf/Nb)
+  summary: 从动齿轮齿数与基座齿轮齿数之比 1.0（默认）| 无量纲正标量
+  group: ''
+- name: Base Gear Radius
+  summary: 基座齿轮体节圆的半径 10 cm（默认）| 以长度单位为单位的正标量
+  group: ''
+- name: Follower Gear Radius
+  summary: 从动齿轮体节圆的半径 10 cm（默认）| 以长度单位为单位的正标量
+  group: ''
+```
 
 ### **Type** — 基座齿轮体与从动齿轮体之间的啮合类型 `External`（默认）| `Internal`
 
@@ -72,7 +98,6 @@ Radii` 时，此参数启用。
 当 **Specification
 Method** 参数设置为 `Pitch Circle
 Radii` 时，此参数启用。
-
 ## 所属库
 
 Simscape / Multibody / Gears and Couplings / Gears

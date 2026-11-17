@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Octave Filter Bank
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号矩阵 | 三维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -40,8 +51,50 @@ Octave Filter Bank 模块输出的信号与输入信号具有相同的数据类�
 当启用 **Bands as separate output ports** 参数时，每个输出与输入大小相同。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Bandwidth (octaves)
+  summary: 以倍频程指定的滤波器带宽 1 octave（默认）| 2/3 octave | 1/2 octave | 1/3 octave | 1/6 octave | 1/12 octave | 1/24 octave | 1/48
+    octave
+  group: ''
+- name: Frequency range (Hz)
+  summary: 滤波器组的频率范围（Hz） [22 22050]（默认）| 由正单调递增值组成的二元素行向量
+  group: ''
+- name: Reference frequency (Hz)
+  summary: 滤波器组的参考频率（Hz） 1000（默认）| 正整数标量
+  group: ''
+- name: Filter order
+  summary: 倍频程滤波器的阶数 12（默认）| 正偶数整数
+  group: ''
+- name: Octave ratio
+  summary: 滤波器之间的间距 Base ten (ANSI S1.11 preferred)（默认）| Base two (musical scale)
+  group: ''
+- name: Inherit sample rate from input
+  summary: 允许由输入信号设置采样率 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入的采样率 44100（默认）| 正标量
+  group: ''
+- name: Bands as separate output ports
+  summary: 每个滤波器频带一个输出端口 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+- name: View filter response
+  summary: 打开绘图以可视化幅度响应 按钮
+  group: ''
+- name: Variable name
+  summary: 导出的滤波器组的变量名称 myFilt（默认）| 有效变量名
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: 如果变量已存在则覆盖 on（默认）| off
+  group: ''
+- name: Export filter to workspace
+  summary: 将滤波器组导出到工作区 按钮
+  group: ''
+```
 
 ### **Bandwidth (octaves)** — 以倍频程指定的滤波器带宽 `1 octave`（默认）| `2/3 octave` | `1/2 octave` | `1/3 octave` | `1/6 octave` | `1/12 octave` | `1/24 octave` | `1/48 octave`
 
@@ -107,7 +160,6 @@ Octave Filter Bank 模块输出的信号与输入信号具有相同的数据类�
 #### 提示
 
 如果启用了 **Inherit sample rate from input** 参数且模型未运行，则无法导出滤波器组。
-
 ## 所属库
 
 Audio Toolbox / Filters

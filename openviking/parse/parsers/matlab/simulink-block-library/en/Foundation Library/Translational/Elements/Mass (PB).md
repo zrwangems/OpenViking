@@ -14,6 +14,12 @@ language: en
 # Mass (PB)
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Port that connects mass to the circuit position-based mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,13 +27,17 @@ language: en
 
 Position-based mechanical translational conserving port that connects the mass to
 the physical network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass
+  summary: Constant mass 1 kg (default) | positive scalar
+  group: ''
+```
 
 ### **Mass** — Constant mass `1 kg` (default) | positive scalar
 
 Mass value. The mass is constant during simulation.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

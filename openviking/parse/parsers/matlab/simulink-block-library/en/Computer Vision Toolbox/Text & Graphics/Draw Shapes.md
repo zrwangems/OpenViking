@@ -14,6 +14,42 @@ language: en
 # Draw Shapes
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image or video stream *M*-by-*N* matrix of intensity values | *M*-by-*N*-by-*3* array of color values
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: R
+  summary: Red color channel of the image or video frame *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: G
+  summary: Green color channel of the image or video frame *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: B
+  summary: Blue color channel of the image or video frame *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Pts
+  summary: Shape coordinates *M*-by-3 matrix | *M*-by-4 matrix | *M*-by-2*L* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ROI
+  summary: Region of interest 4-element vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Clr
+  summary: Color of shape 3-element vector | *M*-by-*3* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output image *M*-by-*N* matrix of intensity values | *M*-by-*N*-by-*3* array of color values
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -177,8 +213,46 @@ or *M*-by-*N*-by-*3* array. The
 output image is of the same dimension as the input image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Shape
+  summary: Shape to draw Rectangles (default) | Lines | Polygons | Circles
+  group: ''
+- name: Fill shapes
+  summary: Fill shapes with color off (default) | on
+  group: ''
+- name: Line width
+  summary: Line width for the shapes 1 (default) | positive scalar
+  group: ''
+- name: Fill color source
+  summary: Input source to specify fill color Specify via dialog (default) | Input port
+  group: ''
+- name: Fill color
+  summary: Color to fill the shapes Black (default) | White | User-specified value
+  group: ''
+- name: Border color source
+  summary: Input source to specify border color Specify via dialog (default) | Input port
+  group: ''
+- name: Border color
+  summary: Outline color of the shape Black (default) | White | User-specified value
+  group: ''
+- name: Color value(s)
+  summary: Color value to draw the border or fill the shape scalar | 3-element vector
+  group: ''
+- name: Opacity factor (between 0 and 1)
+  summary: Opacity of the color value in the range [0,1] | *R*-element vector
+  group: ''
+- name: Use antialiasing
+  summary: Smoothing algorithm off | on
+  group: ''
+- name: Draw shapes in
+  summary: Region to draw the shape Entire image (default) | Specify region of interest via port
+  group: ''
+- name: Image signal
+  summary: Number of input ports for the image signal One multidimensional signal (default) | Separate color signals
+  group: ''
+```
 
 **Main Tab**
 
@@ -341,7 +415,6 @@ value as one of the following:
 **Data Types Tab**
 
 For details on the fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Text & Graphics

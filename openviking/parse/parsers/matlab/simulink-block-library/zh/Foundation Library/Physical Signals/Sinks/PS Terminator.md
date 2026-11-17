@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # PS Terminator
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+```
 
 ### 输入
 
@@ -23,11 +29,12 @@ chinese_source: worker-translation
 输入物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Sinks

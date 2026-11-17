@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CAN Receive
 
 ## 端口
+```yaml
+ports:
+- name: CAN Msg
+  summary: 接收到的 CAN 报文 CAN_MESSAGE | bus
+  direction: output
+  data_types: CAN_MESSAGE | bus
+- name: f()
+  summary: 函数调用事件输出 function-call event
+  direction: output
+  data_types: function-call event
+```
 
 ### 输出
 
@@ -29,8 +40,50 @@ chinese_source: worker-translation
 `f()` 输出端口是到 Function-Call 子系统的触发。如果模块接收到新报文，它会从此端口触发 Function-Call。然后您可以连接到 Function-Call Subsystem (Simulink) 来解包并处理报文。
 
 **数据类型：** `function-call event`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: CAN 设备和通道列表选项
+  group: ''
+  block_parameter: Device
+  type: character vector, string
+- name: Standard IDs Filter
+  summary: 基于标准 ID 限制或允许报文 Allow all (default) | Allow only | Block all
+  group: ''
+  block_parameter: StandardIDs
+  type: character vector, string
+  values: integer scalar or row vector
+  default: '''Allow all'''
+- name: Extended IDs Filter
+  summary: 基于扩展 ID 限制或允许报文 Allow all (default) | Allow only | Block all
+  group: ''
+  block_parameter: ExtendedIDs
+  type: character vector, string
+  values: integer scalar or row vector
+  default: '''Allow all'''
+- name: Sample time
+  summary: 模块执行速率 0.01 (default)
+  group: ''
+  block_parameter: SampleTime
+  type: character vector, string
+  values: double
+  default: '''0.01'''
+- name: Number of messages received at each timestep
+  summary: 接收一条或所有报文 all (default) | 1
+  group: ''
+  block_parameter: MsgsPerTimestep
+  type: character vector, string
+  values: '''all'' | ''1'''
+  default: '''all'''
+- name: Output as bus
+  summary: 输出 Simulink 总线信号 off (default) | on
+  group: ''
+  block_parameter: BusOutput
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 **提示**
 
@@ -138,7 +191,6 @@ chinese_source: worker-translation
 | **类型**：character vector, string |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN Communication

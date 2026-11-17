@@ -14,6 +14,29 @@ language: en
 # Acceleration and Braking
 
 ## Ports
+```yaml
+ports:
+- name: xdot
+  summary: Vehicle longitudinal velocity scalar
+  direction: input
+  data_types: double
+- name: r
+  summary: Vehicle yaw rate scalar
+  direction: input
+  data_types: double
+- name: SteerCmd
+  summary: Vehicle handwheel angle scalar
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: Driver reference data bus
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: Driver command data bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -97,8 +120,90 @@ Bus Assignment block to override the
 Block diagram where the Bus Assignment block overrides the TransModeCmd output from the Acceleration and Braking block.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: Start time 2 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: tStart
+  values: 2 (default) | positive scalar
+- name: Longitudinal acceleration at tStart, ax [g]
+  summary: Longitudinal acceleration at simulation start 0.5 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: ax
+  values: 0.5 (default) | positive scalar
+- name: Longitudinal velocity setpoint, velRef
+  summary: Target velocity 50 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: velRef
+  values: 50 (default) | positive scalar
+- name: Longitudinal velocity setpoint units, velRefUnit []
+  summary: Units mph (default)
+  group: Maneuver Parameters
+  block_parameter: velRefUnit
+  values: mph (default) | character vector
+- name: Brake pedal actuation
+  summary: Brake pedal actuation Time (default) | Longitudinal displacement
+  group: Maneuver Parameters
+  block_parameter: brakingType
+  values: Time (default) | Longitudinal displacement
+- name: Brake actuation time, tBrake [s]
+  summary: Brake actuation time 15 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: tBrake
+  values: 15 (default) | positive scalar
+- name: Longitudinal displacement of vehicle CG, xBrake [m]
+  summary: Nominal lateral offset 200 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: xBrake
+  values: 200 (default) | positive scalar
+- name: Longitudinal deceleration at tBrake, axDecel [g]
+  summary: Deceleration rate 1 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: axDecel
+  values: 1 (default) | positive scalar
+- name: Set handwheel angle to 0 deg after braking
+  summary: Option to set handwheel angle to zero degrees after braking on (default) | off
+  group: Maneuver Parameters
+  block_parameter: steerZero
+  values: on (default) | off
+- name: Enable fault tracking before braking
+  summary: Option to enable fault tracking before braking off (default) | on
+  group: Tracking Parameters
+  block_parameter: faultTracking
+  values: off (default) | on
+- name: Transport delay buffer size, bufferSize []
+  summary: Transport delay buffer size 4096 (default) | positive scalar
+  group: Tracking Parameters
+  block_parameter: bufferSize
+  values: 4096 (default) | positive scalar
+- name: Longitudinal velocity and mean longitudinal velocity, velMaxDiff
+  summary: Velocity difference 1 (default) | positive scalar
+  group: Tracking Parameters
+  block_parameter: velMaxDiff
+  values: 1 (default) | positive scalar
+- name: Mean longitudinal velocity and longitudinal velocity reference, velMeanDiff
+  summary: Velocity tolerance 2 (default) | positive scalar
+  group: Tracking Parameters
+  block_parameter: velMeanDiff
+  values: 2 (default) | positive scalar
+- name: Yaw velocity and mean yaw velocity, rMaxDiff [deg/s]
+  summary: Velocity tolerance 1 (default) | positive scalar
+  group: Tracking Parameters
+  block_parameter: rMaxDiff
+  values: 1 (default) | positive scalar
+- name: Handwheel angle and mean handwheel angle, steerMaxDiff [deg]
+  summary: Handwheel angle tolerance 3 (default) | positive scalar
+  group: Tracking Parameters
+  block_parameter: steerMaxDiff
+  values: 3 (default) | positive scalar
+- name: Stop Simulation when fault occurs
+  summary: Option to stop simulation when fault occurs off (default) | on
+  group: Tracking Parameters
+  block_parameter: stopOnFault
+  values: off (default) | on
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -462,7 +567,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `stopOnFault` |
 | **Values:** | `off` (default) | `on` |
 | **Data Types:** | `character vector` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # C Caller
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入端口 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | string
+- name: Port_1
+  summary: 输出端口 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string
+```
 
 ### 输入
 
@@ -36,8 +49,31 @@ chinese_source: worker-translation
 除非在**模块对话框**的**端口规范**下编辑 **Label** 列，否则输出端口标签与输出端口同名。如果将标签重命名为某个输入端口，C Caller 模块将更改该端口的名称。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string`
-
 ## 参数
+```yaml
+parameters:
+- name: Function name
+  summary: 函数名称 字符向量 | 字符串标量
+  group: ''
+  block_parameter: FunctionName
+  type: 字符向量或字符串标量
+- name: Port specification
+  summary: 端口属性 表
+  group: ''
+  type: FunctionPortSpecification 对象
+  block_parameter: FunctionPortSpecification
+- name: Available Functions
+  summary: 可用函数列表 元胞数组
+  group: ''
+  block_parameter: AvailableFunctions
+  type: 元胞数组
+- name: Sample time
+  summary: 采样周期 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符串标量或字符向量
+  default: '"-1"'
+```
 
 ### **Function name** — 函数名称 字符向量 | 字符串标量
 
@@ -123,7 +159,6 @@ allAvailableFunctions =
 | **模块参数**：`SampleTime` |
 | **类型**：字符串标量或字符向量 |
 | **默认值**：`"-1"` |
-
 ## 所属库
 
 Simulink / User-Defined Functions

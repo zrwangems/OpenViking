@@ -14,6 +14,12 @@ language: en
 # Inertia
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -22,8 +28,59 @@ language: en
 Local reference frame of the inertia element. Connect to a frame line
 or frame port to define the relative position and orientation of the
 inertia.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Inertia parameterization to use Point Mass (default) | Custom
+  group: Inertia
+- name: Mass
+  summary: Total mass of the solid element 1 kg (default) | scalar with units of mass
+  group: Inertia
+- name: 'Custom: Center of Mass'
+  summary: Center-of-mass coordinates [0 0 0] m (default) | three-element vector with units of length
+  group: Inertia
+- name: 'Custom: Moments of Inertia'
+  summary: Diagonal elements of inertia tensor [1 1 1] kg*m^2 (default) | three-element vector with units of mass\*length^2
+  group: Inertia
+- name: 'Custom: Products of Inertia'
+  summary: Off-diagonal elements of inertia tensor [0 0 0] kg*m^2 (default) | three-element vector with units of mass\*length^2
+  group: Inertia
+- name: Type
+  summary: Graphic to use in the visualization of the inertia Marker (default) | None
+  group: Graphic
+- name: Shape
+  summary: Shape of marker to represent to the inertia Inertia Icon (default) | Sphere | Cube | Frame
+  group: Graphic
+- name: Size
+  summary: Width of the marker in pixels 20 pixels (default) | scalar
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Shininess of marker 75 (default) | scalar in the range of 1 to 128
+  group: Graphic
+```
 
 ### Inertia
 
@@ -234,7 +291,6 @@ To enable this parameter, set:
    `Marker`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Body Elements

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # First Order Hold
 
 ## 端口
+```yaml
+ports:
+- name: Port 1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Port 1
+  summary: 线性近似输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,38 @@ chinese_source: worker-translation
 输入信号的分段线性近似。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial output
+  summary: 初始输出 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: InitialOutput
+  type: 字符向量、字符串
+  values: 标量 | 向量
+  default: '''0'''
+- name: Output algorithm
+  summary: 输出信号近似技术 Slow (Avoid Overshoot)（默认）| Fast (Minimize Error)
+  group: ''
+  block_parameter: OutputAlgorithm
+  type: 字符向量、字符串
+  values: Slow (Avoid Overshoot)| Fast (Minimize Error)
+  default: '''Slow (Avoid Overshoot)'''
+- name: Reset if relative extrapolation error exceeds
+  summary: 求解器重置的误差容限 inf（默认）| 非负实数标量
+  group: ''
+  block_parameter: ErrorTolerance
+  type: 字符向量、字符串
+  values: 标量
+  default: '''inf'''
+- name: Allow continuous input
+  summary: 对连续信号应用保持 off（默认）| on
+  group: ''
+  block_parameter: AllowContinuousInput
+  type: 字符向量、字符串
+  values: '''off''| ''on'''
+  default: '''off'''
+```
 
 ### **Initial output** — 初始输出 `0`（默认）| 标量 | 向量
 
@@ -98,7 +139,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量、字符串 |
 | **值：** `'off'`| `'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Continuous

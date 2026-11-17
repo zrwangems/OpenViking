@@ -14,6 +14,15 @@ language: en
 # Modem Control
 
 ## Ports
+```yaml
+ports:
+- name: RTS
+  summary: Level-sensitive signal for setting ready-to-send line double
+  direction: input
+- name: DTR
+  summary: Level-sensitive signal for setting data-terminal-ready line double
+  direction: input
+```
 
 ### Input
 
@@ -52,8 +61,21 @@ If the **DTR** parameter is
 `off`, this input has
 no
 effect.
-
 ## Parameters
+```yaml
+parameters:
+- name: RTS
+  summary: Enable control of RTS line for serial device on (default) | off
+  group: ''
+- name: DTR
+  summary: Enable control of DTR line for serial device on (default) | off
+  group: ''
+- name: Serial port
+  summary: Port that is being accessed Legacy Serial Port 1 (default) | .. | Legacy Serial Port 8 | USB Serial Port 1 | ..
+    | USB Serial Port 8
+  group: ''
+  block_parameter: port
+```
 
 ### **RTS** — Enable control of RTS line for serial device `on` (default) | `off`
 
@@ -91,7 +113,6 @@ computer or serial device if there is no change in the connections to the ports.
 |  |
 | --- |
 | **Block Parameter:** `port` |
-
 ## Libraries
 
 Simulink Real-Time / RS232 / Mainboard

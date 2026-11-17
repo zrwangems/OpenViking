@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Needle Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 针阀位移，m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -30,8 +42,37 @@ chinese_source: worker-translation
 ### **S** — 针阀位移，m，物理信号
 
 控制构件位移，单位为 m，指定为物理信号。正信号使针阀缩回并打开阀门。
-
 ## 参数
+```yaml
+parameters:
+- name: Seat orifice diameter
+  summary: 阀座孔径 5e-3 m（默认）| 正标量
+  group: ''
+- name: Needle cone angle
+  summary: 控制构件几何角度 90 deg（默认）| 正标量
+  group: ''
+- name: Needle position when in the seat
+  summary: 针阀偏移 0 m（默认）| 标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的面积 inf m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 off（默认）| on
+  group: ''
+```
 
 ### **Seat orifice diameter** — 阀座孔径 `5e-3 m`（默认）| 正标量
 
@@ -68,7 +109,6 @@ chinese_source: worker-translation
 ### **Pressure recovery** — 是否考虑面积扩大时的压力增加 `off`（默认）| `on`
 
 是否考虑当流体从较小横截面积区域流向较大横截面积区域时的压力增加。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

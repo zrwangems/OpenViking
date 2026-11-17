@@ -14,6 +14,54 @@ language: en
 # Recursive Least Squares Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Regressors
+  summary: Regressors signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Measured output scalar | vector
+  direction: input
+  data_types: single | double
+- name: Enable
+  summary: Enable estimation updates true (default) | false
+  direction: input
+  data_types: single | double | Boolean | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32
+- name: Reset
+  summary: Reset trigger scalar
+  direction: input
+  data_types: single | double | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: InitialParameters
+  summary: Initial parameter estimates vector
+  direction: input
+  data_types: single | double
+- name: InitialCovariance
+  summary: Initial covariance of parameters positive scalar (default) | vector of positive scalars | symmetric positive-definite
+    matrix
+  direction: input
+  data_types: single | double
+- name: InitialRegressors
+  summary: Initial values of the regressors matrix
+  direction: input
+  data_types: single | double
+- name: InitialOutputs
+  summary: Initial value of the measured output buffer vector
+  direction: input
+  data_types: single | double
+- name: Parameters
+  summary: Estimated parameters vector
+  direction: output
+  data_types: single | double
+- name: Error
+  summary: Estimation error scalar | vector
+  direction: output
+  data_types: single | double
+- name: Covariance
+  summary: Parameter estimation error covariance P matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -208,8 +256,134 @@ To enable this port:
   parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial Estimate
+  summary: Source of initial parameter estimates None (default) | Internal | External
+  group: Model Parameters
+  block_parameter: InitialEstimateSource
+  type: character vector, string
+  values: '''None'', ''Internal'', ''External'''
+  default: '''None'''
+- name: Number of Parameters
+  summary: Number of parameters to estimate 2 (default) | positive integer
+  group: Model Parameters
+  block_parameter: InitialParameterData
+  type: positive integer
+  default: '2'
+- name: Parameter Covariance Matrix
+  summary: Initial parameter covariance 1e4 (default) | scalar | vector | matrix
+  group: Model Parameters
+  block_parameter: P0
+  type: scalar, vector, or matrix
+  default: 1e4
+- name: Initial Parameter Values
+  summary: Initial values of the parameters to estimate [1 1] (default) | vector
+  group: Model Parameters
+  block_parameter: InitialParameterData
+  type: real vector
+  default: '[1 1]'
+- name: Initial Regressors
+  summary: Initial values of the regressors buffer 0 (default) | matrix
+  group: Model Parameters
+  block_parameter: InitialRegressors
+  type: real matrix
+  default: '0'
+- name: Initial Outputs
+  summary: Initial values of the measured outputs buffer 0 (default) | vector
+  group: Model Parameters
+  block_parameter: InitialOutputs
+  type: real vector
+  default: '0'
+- name: Input Processing
+  summary: Choose sample-based or frame-based processing Sample-based (default) | Frame-based
+  group: Model Parameters
+  block_parameter: InputProcessing
+  type: character vector, string
+  values: '''Sample-based'', ''Frame-based'''
+  default: '''Sample-based'''
+- name: Sample Time
+  summary: Block sample time -1 (default) | positive scalar
+  group: Model Parameters
+  block_parameter: Ts
+  type: real scalar
+  default: '-1'
+- name: History
+  summary: Choose infinite or finite data history Infinite (default) | Finite
+  group: Algorithm and Block Options
+  block_parameter: History
+  type: character vector, string
+  values: '''Infinite'', ''Finite'''
+  default: '''Infinite'''
+- name: Window Length
+  summary: Window size for finite sliding-window estimation 200 (default) | positive integer
+  group: Algorithm and Block Options
+  block_parameter: WindowLength
+  type: positive integer
+  default: '200'
+- name: Estimation Method
+  summary: Recursive estimation algorithm Forgetting Factor (default) | Kalman Filter | Normalized Gradient | Gradient
+  group: Algorithm and Block Options
+  block_parameter: EstimationMethod
+  type: character vector, string
+  values: '''Forgetting Factor'',''Kalman Filter'',''Normalized Gradient'',''Gradient'''
+  default: '''Forgetting Factor'''
+- name: Forgetting Factor
+  summary: Discount old data using forgetting factor 1 (default) | positive scalar in (0 1] range
+  group: Algorithm and Block Options
+  block_parameter: AdaptationParameter
+  type: scalar
+  values: (0 1] range
+  default: '1'
+- name: Process Noise Covariance
+  summary: Process noise covariance for Kalman filter estimation method 1 (default) | nonnegative scalar | vector of nonnegative
+    scalars | symmetric positive semidefinite matrix
+  group: Algorithm and Block Options
+  block_parameter: AdaptationParameter
+  type: scalar, vector, matrix
+  default: '1'
+- name: Adaptation Gain
+  summary: Adaptation gain specification for gradient estimation methods 1 (default) | positive scalar
+  group: Algorithm and Block Options
+  block_parameter: AdaptationParameter
+  type: scalar
+  default: '1'
+- name: Normalization Bias
+  summary: Bias for adaptation gain scaling for normalized gradient estimation method eps (default) | nonnegative scalar
+  group: Algorithm and Block Options
+  block_parameter: NormalizationBias
+  type: scalar
+  default: eps
+- name: Output estimation error
+  summary: Add Error outport to block off (default) | on
+  group: Algorithm and Block Options
+  block_parameter: OutputError
+  type: character vector, string
+  values: '''off'',''on'','
+  default: '''off'''
+- name: Output parameter covariance matrix
+  summary: Add covariance outport to block off (default) | on
+  group: Algorithm and Block Options
+  block_parameter: OutputP
+  type: character vector, string
+  values: '''off'',''on'''
+  default: '''off'''
+- name: Add enable port
+  summary: Add Enable inport to block off (default) | on
+  group: Algorithm and Block Options
+  block_parameter: AddEnablePort
+  type: character vector, string
+  values: '''off'',''on'''
+  default: '''off'''
+- name: External reset
+  summary: Specify trigger for external reset None (default) | Rising | Falling | Either | Level | Level hold
+  group: Algorithm and Block Options
+  block_parameter: ExternalReset
+  type: character vector, string
+  values: '''None'',''Rising'',''Falling'', ''Either'', ''Level'', ''Level hold'''
+  default: '''None'''
+```
 
 ### Model Parameters
 
@@ -833,7 +1007,6 @@ to this inport.
 | **Type:** character vector, string |
 | **Values:**`'None'`,`'Rising'`,`'Falling'`, `'Either'`, `'Level'`, `'Level hold'` |
 | **Default:** `'None'` |
-
 ## Libraries
 
 System Identification Toolbox / Estimators

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Hysteresis Current Controller (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: iabc\*
+  summary: 电流向量
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: 电流向量
+  direction: input
+  data_types: single | double
+- name: S
+  summary: 控制器输出向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +51,16 @@ chinese_source: worker-translation
 用于功率变换器控制的六脉冲向量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Current hysteresis band (A)
+  summary: 滞环带宽 1（默认）| 正数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 ### **Current hysteresis band (A)** — 滞环带宽 `1`（默认）| 正数
 
@@ -54,7 +77,6 @@ chinese_source: worker-translation
 如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承
 采样时间。如果此模块位于连续变步长模型中，请使用正
 标量显式指定采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Machine Control

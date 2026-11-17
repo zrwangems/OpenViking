@@ -14,6 +14,37 @@ language: en
 # Interpolate Matrix(x,y,z)
 
 ## Ports
+```yaml
+ports:
+- name: x_k
+  summary: First interpolation index scalar
+  direction: input
+  data_types: double
+- name: x_f
+  summary: First interpolation fraction scalar
+  direction: input
+  data_types: double
+- name: y_k
+  summary: Second interpolation index scalar
+  direction: input
+  data_types: double
+- name: y_f
+  summary: Second interpolation fraction scalar
+  direction: input
+  data_types: double
+- name: z_k
+  summary: Third interpolation index scalar
+  direction: input
+  data_types: double
+- name: z_f
+  summary: Third interpolation fraction scalar
+  direction: input
+  data_types: double
+- name: Matrix(x,y,z)
+  summary: Interpolated matrix matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -62,8 +93,17 @@ a scalar.
 Interpolated matrix, specified as a matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Matrix to interpolate
+  summary: Matrix to interpolate matrix (default)
+  group: ''
+  block_parameter: matrix
+  type: character vector
+  values: matrix
+  default: '''matrix'''
+```
 
 ### **Matrix to interpolate** — Matrix to interpolate `matrix` (default)
 
@@ -79,7 +119,6 @@ fifth indices labeling the interpolating values of *x*,
 | **Type**: character vector |
 | **Values**: matrix |
 | **Default**: `'matrix'` |
-
 ## Libraries
 
 Aerospace Blockset / GNC / Control

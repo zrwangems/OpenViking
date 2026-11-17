@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Simple Gear
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座旋转机械
+  direction: conserving
+- name: F
+  summary: 从动旋转机械
+  direction: conserving
+- name: H
+  summary: 热流
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -38,8 +50,104 @@ chinese_source: worker-translation
   efficiency`
 - `Temperature and load-dependent
   efficiency`
-
 ## 参数
+```yaml
+parameters:
+- name: Follower (F) to base (B) teeth ratio (NF/NB)
+  summary: 齿轮比 2（默认）| 正标量
+  group: 主要
+- name: Output shaft rotates
+  summary: 轴旋转方向 In opposite direction to input shaft（默认）| In same direction as input shaft
+  group: 主要
+- name: Friction model
+  summary: 默认摩擦模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Load-dependent efficiency | Temperature-dependent
+    efficiency | Temperature and load-dependent efficiency
+  group: 啮合损耗
+- name: Efficiency
+  summary: 扭矩传递效率，*η* 0.8（默认）| 0≤ *η* < 1
+  group: 啮合损耗
+- name: Follower power threshold
+  summary: 效率因子功率基准 0.001 W（默认）| 正标量
+  group: 啮合损耗
+- name: Input shaft torque at no load
+  summary: 空载扭矩 0.1 N*m（默认）| 正标量
+  group: 啮合损耗
+- name: Nominal output torque
+  summary: 额定扭矩 5 N*m（默认）| 正标量
+  group: 啮合损耗
+- name: Efficiency at nominal output torque
+  summary: 额定效率，*η* 0.8（默认）| 0 ≤ *η* < 1 | 标量
+  group: 啮合损耗
+- name: Follower angular velocity threshold
+  summary: 效率因子角速度基准 0.01 rad/s（默认）| 正标量
+  group: 啮合损耗
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 正数组
+  group: 啮合损耗
+- name: Efficiency
+  summary: 效率，*η* [.95, .9, .85]（默认）| 0 ≤ *η* < 1 | 数组
+  group: 啮合损耗
+- name: Follower power threshold
+  summary: 效率因子功率基准 0.001 W（默认）| 正数组
+  group: 啮合损耗
+- name: Load at base gear
+  summary: 基座齿轮负载 [1, 5, 10] N*m（默认）| 正数组
+  group: 啮合损耗
+- name: Efficiency matrix
+  summary: 效率 [.85, .8, .75; .95, .9, .85; .85, .8, .7]（默认）| 元素为正且范围在 [0,1) 内的数值数组
+  group: 啮合损耗
+- name: Follower angular velocity threshold
+  summary: 效率因子角速度基准 0.01 rad/s（默认）| 正标量
+  group: 啮合损耗
+- name: Enable backlash
+  summary: 齿隙选项 off（默认）| on
+  group: 齿隙
+- name: Hard stop model
+  summary: 硬限位过渡行为 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| ...
+  group: 齿隙
+- name: Linear backlash
+  summary: 平移齿隙距离 1e-3 mm（默认）| 正标量
+  group: 齿隙
+- name: Base (B) gear radius
+  summary: 基座齿轮节圆半径 0.1 m（默认）| 正标量
+  group: 齿隙
+- name: Transition region
+  summary: 硬限位效应渐变区域 1e-4 mm（默认）| 正标量
+  group: 齿隙
+- name: Linear stiffness
+  summary: 抗平移变形阻力 1e6 N/m（默认）| 正标量
+  group: 齿隙
+- name: Linear damping
+  summary: 耗散平移能量的趋势 1e3 N/(m/s)（默认）| 正标量
+  group: 齿隙
+- name: Coefficient of restitution
+  summary: 碰撞能量损失系数 0.7（默认）| 正标量
+  group: 齿隙
+- name: Static contact speed threshold
+  summary: 碰撞前齿轮齿之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 齿隙
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N（默认）| 正标量
+  group: 齿隙
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: 粘性摩擦系数 [0, 0] N*m/(rad/s)（默认）| 正数组
+  group: 粘性损耗
+- name: 齿轮故障
+  summary: 对齿轮故障建模的选项 添加故障
+  group: 故障
+- name: 故障效率
+  summary: 故障效率 0.05（默认）| [0,1] 范围内的标量
+  group: 故障
+- name: 故障角度范围
+  summary: 故障角度范围 pi / 12 rad（默认）| 非负标量
+  group: 故障
+- name: 热质量
+  summary: 热质量 50 J/K（默认）| 正标量
+  group: 热端口
+- name: 初始温度
+  summary: 温度 300 K（默认）| 正标量
+  group: 热端口
+```
 
 ### 参数依赖关系表
 
@@ -417,7 +525,6 @@ restitution`。
 
 - `温度相关效率`
 - `温度和负载相关效率`
-
 ## 所属库
 
 Simscape / Driveline / Gears

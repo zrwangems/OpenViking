@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Legacy Serial Port F
 
 ## 端口
+```yaml
+ports:
+- name: XMT
+  summary: 要发送的数据向量 vector
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: FIFO
+  summary: 通过串口接收的数据的 FIFO serialfifoptr
+  direction: output
+```
 
 ### 输入
 
@@ -28,8 +38,51 @@ chinese_source: worker-translation
 ### **FIFO** — 通过串口接收的数据的 FIFO serialfifoptr
 
 包含从串口接收到的数据的先进先出（FIFO）缓冲区。
-
 ## 参数
+```yaml
+parameters:
+- name: Serial port
+  summary: 正在访问的端口 Legacy Serial Port 1（默认）| .. | Legacy Serial Port 8 | USB Serial Port 1 | .. | USB Serial Port 8
+  group: ''
+  block_parameter: port
+- name: Baud rate
+  summary: 数据传输的波特率 115200（默认）| 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1200 | 600 | 300 | 110
+  group: ''
+  block_parameter: baud
+- name: Data bits
+  summary: 每个字符的位数 8（默认）| 7 | 6 | 5
+  group: ''
+  block_parameter: width
+- name: Stop bits
+  summary: 端口的停止位数 1（默认）| 2
+  group: ''
+  block_parameter: nstop
+- name: Parity
+  summary: 用于检查数据传输的奇偶校验 None（默认）| Even | Odd | Mark | Space
+  group: ''
+  block_parameter: parity
+- name: Enable auto RTS/CTS
+  summary: 启用 RTS/CTS 握手 off（默认）| on
+  group: ''
+  block_parameter: ctsmode
+- name: Port to modify
+  summary: 正在访问的端口 1（默认）| 2
+  group: ''
+  block_parameter: port
+- name: Receive FIFO size
+  summary: FIFO 大小（以字节为单位） 1024（默认）
+  group: ''
+  block_parameter: fifosize
+- name: Transmit data type
+  summary: 发送器的数据类型 count+32 bit int（默认）| count+32 bit uint | count+16 bit int | count+16 bit uint | 8 bit int null terminated
+    | 8 bit uint null terminated
+  group: ''
+  block_parameter: idtype
+- name: Sample Time
+  summary: 采样时间 -1（默认）| 数值
+  group: ''
+  block_parameter: sampletime
+```
 
 ### **Serial port** — 正在访问的端口 `Legacy Serial Port 1`（默认）| .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
@@ -145,7 +198,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `sampletime` |
-
 ## 所属库
 
 Simulink Real-Time / RS232 / Mainboard

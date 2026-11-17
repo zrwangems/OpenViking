@@ -14,6 +14,21 @@ language: en
 # Ideal Transformer
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Primary winding positive terminal electrical
+  direction: conserving
+- name: 1-
+  summary: Primary winding negative terminal electrical
+  direction: conserving
+- name: 2+
+  summary: Secondary winding positive terminal electrical
+  direction: conserving
+- name: 2-
+  summary: Secondary winding negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,14 +51,18 @@ winding.
 
 Electrical conserving port associated with the negative terminal of the secondary
 winding.
-
 ## Parameters
+```yaml
+parameters:
+- name: Winding ratio
+  summary: Ratio of primary coil turns to secondary coil turns 1 (default) | positive scalar
+  group: ''
+```
 
 ### **Winding ratio** — Ratio of primary coil turns to secondary coil turns `1` (default) | positive scalar
 
 Winding ratio of the transformer, which is the ratio of primary coil turns to
 secondary coil turns.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

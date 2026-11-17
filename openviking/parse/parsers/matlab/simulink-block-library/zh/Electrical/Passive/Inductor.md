@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Inductor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气端口
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,83 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气端口
 
 与电感负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Inductance
+  summary: 标称电感值 1e-6 H（默认）
+  group: 主要
+- name: Tolerance (%)
+  summary: 电感容差，以百分比表示 20（默认）
+  group: 主要
+- name: Tolerance application
+  summary: 选择仿真期间如何应用容差 None — use nominal value（默认）| Random tolerance | Apply maximum tolerance value | Apply minimum tolerance
+    value
+  group: 主要
+- name: Tolerance distribution
+  summary: 选择分布类型 Uniform（默认）| Gaussian
+  group: 主要
+- name: Number of standard deviations for quoted tolerance
+  summary: 用于计算高斯随机数 4（默认）
+  group: 主要
+- name: Series resistance
+  summary: 电感的等效串联电阻 0 Ohm（默认）
+  group: 主要
+- name: Parallel conductance
+  summary: 与电感关联的并联泄漏路径 1e-9 1/Ohm（默认）
+  group: 主要
+- name: Enable operating limits
+  summary: 选择 Yes 以启用超出工作限值时的报告 No（默认）| Yes
+  group: 工作限值
+- name: Reporting when operating limits exceeded
+  summary: 选择报告方法 Warn（默认）| Error
+  group: 工作限值
+- name: Saturation current
+  summary: 电感饱和电流 1 A（默认）
+  group: 工作限值
+- name: Power rating
+  summary: 电感中的最大功率耗散 1 W（默认）
+  group: 工作限值
+- name: Inductor fault
+  summary: 对电感中的故障建模的选项 Add fault（默认）
+  group: 故障
+- name: Location of fault node (% of total turns from - terminal)
+  summary: 与模块 – 端口接触的子电感中的匝数百分比 50（默认）| (0,100) 范围内的标量
+  group: 故障
+- name: Faulted coupling factor
+  summary: 两个子电感之间的互感耦合 0.9999（默认）| [0,1) 范围内的标量
+  group: 故障
+- name: Short-circuit turns
+  summary: 选择故障是否导致其中一个段短路 No（默认）| To negative terminal | To positive terminal
+  group: 故障
+- name: Open-circuit at fault node
+  summary: 选择是否在段之间应用开路故障 No（默认）| Yes
+  group: 故障
+- name: Ground fault
+  summary: 选择故障是否导致其中一个段短路 No（默认）| Negative terminal side of fault node | Positive terminal side of fault node
+  group: 故障
+- name: Conductance of faulted ground path
+  summary: 两个子电感之间的互感耦合 1 1/Ohm（默认）| 非负标量
+  group: 故障
+- name: Fault transition time constant
+  summary: 过渡到故障状态的时间常数 1e-3 s（默认）| 正标量
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible voltage
+  summary: 故障过渡的电压阈值 100 V（默认）| 正标量
+  group: 故障
+- name: Number of events to fail when exceeding voltage
+  summary: 电压超过阈值的最大次数 1（默认）| 正标量
+  group: 故障
+- name: Maximum permissible current
+  summary: 故障过渡的电流阈值 1 A（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding current
+  summary: 电流超过阈值的最大持续时间 1 s（默认）| 非负标量
+  group: 故障
+```
 
 ### 主要
 
@@ -241,7 +325,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Behavioral`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

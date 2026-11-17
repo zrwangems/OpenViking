@@ -15,14 +15,34 @@ chinese_source: worker-translation
 # PS Uniform Random Number
 
 ## 端口
+```yaml
+ports:
+- name: Y
+  summary: 输出物理信号，无量纲物理信号
+  direction: output
+```
 
 ### 输出
 
 ### **Y** — 输出物理信号，无量纲物理信号
 
 输出物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum
+  summary: 最小输出值 0（默认）
+  group: ''
+- name: Maximum
+  summary: 最大输出值 1（默认）
+  group: ''
+- name: Seed
+  summary: 起始种子 0（默认）
+  group: ''
+- name: Sample time
+  summary: 采样时间间隔 1 s（默认）
+  group: ''
+```
 
 ### **Minimum** — 最小输出值 `0`（默认）
 
@@ -39,7 +59,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样时间间隔 `1 s`（默认）
 
 时间 *`step`* 间隔的值。默认 *`step`* 值为 `1` s。要指定初始时间偏移，请将参数值输入为 `[step, offset]`，否则 *`offset`* 值假定为 `0`。偏移量必须小于步长。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Sources

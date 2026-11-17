@@ -14,6 +14,21 @@ language: en
 # Cholesky Solver
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Input *S* matrix *M*-by-*M* matrix
+  direction: input
+  data_types: single | double
+- name: B
+  summary: '*B* matrix *M*-by-*N* matrix | *M*-by-1 vector'
+  direction: input
+  data_types: single | double
+- name: X
+  summary: Solution to system of equations *M*-by-*N* matrix | *M*-by-1 matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -56,8 +71,13 @@ The block returns the output as an
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Non-positive definite input
+  summary: Response to nonpositive definite matrix input Ignore (default) | Warning | Error
+  group: ''
+```
 
 ### **Non-positive definite input** — Response to nonpositive definite matrix input `Ignore` (default) | `Warning` | `Error`
 
@@ -84,7 +104,6 @@ Configuration Parameters dialog box, it is set to
 `Ignore` in the code generated for this
 block by Simulink®
 Coder™ code generation software.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

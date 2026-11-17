@@ -14,6 +14,13 @@ language: en
 # Proxy Task
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Function-call from Task Manager block scalar
+  direction: input
+  data_types: function-call
+```
 
 ### Input
 
@@ -28,8 +35,16 @@ To enable this port, set the `Type` property to
 `Event-driven`.
 
 **Data Types:** `function-call`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Type of task Timer-driven (default) | Event-driven
+  group: ''
+- name: Sample Time
+  summary: Sample time 1 (default) | positive scalar
+  group: ''
+```
 
 ### **Type** — Type of task `Timer-driven` (default) | `Event-driven`
 
@@ -53,7 +68,6 @@ Sample time of the block.
 
 To enable this parameter, set the `Type` property to
 `Timer-driven`.
-
 ## Libraries
 
 SoC Blockset / Processor Task Execution

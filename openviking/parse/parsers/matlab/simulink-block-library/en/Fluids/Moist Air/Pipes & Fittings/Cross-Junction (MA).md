@@ -14,6 +14,21 @@ language: en
 # Cross-Junction (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Moist air port moist air
+  direction: conserving
+- name: B
+  summary: Moist air port moist air
+  direction: conserving
+- name: C
+  summary: Moist air port moist air
+  direction: conserving
+- name: D
+  summary: Moist air port moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -32,8 +47,79 @@ Moist air conserving port associated with the liquid port.
 ### **D** — Moist air port moist air
 
 Moist air conserving port associated with the liquid port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Main line area (A,C)
+  summary: Area of main path 0.01 m^2 (default) | positive scalar
+  group: Junction Properties
+- name: Branch line area (B,D)
+  summary: Area of branch path 0.01 m^2 (default) | positive scalar
+  group: Junction Properties
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: Junction Properties
+- name: Zero-flow threshold pressure ratio
+  summary: Pressure ratio that corresponds to stagnant flow 0.999999 (default) | positive scalar
+  group: Junction Properties
+- name: Loss coefficient configuration change time constant
+  summary: Time scale of smoothing function 0.0001 s (default) | positive scalar
+  group: Junction Properties
+- name: Minimum valid flow ratio for coefficient calculation
+  summary: Limit on flow ratios for coefficient calculations 0.2 (default) | positive scalar
+  group: Junction Properties
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | scalar between 0 and 1
+  group: Junction Properties
+- name: Fluid inertia
+  summary: Option to model fluid inertia off (default) | on
+  group: Junction Properties
+- name: Loss coefficient model
+  summary: Loss coefficient type Idel'chik correlation (default) | Custom
+  group: Junction Properties
+- name: Report when flow configuration is invalid
+  summary: Simulation warning mode for invalid flow configurations None (default) | Warning | Error
+  group: Junction Properties
+- name: Diverging flow loss coefficients
+  summary: Option to specify loss coefficients for diverging flow on (default) | off
+  group: Junction Properties
+- name: Converging flow loss coefficients
+  summary: Option to specify loss coefficients for converging flow on (default) | off
+  group: Junction Properties
+- name: Perpendicular flow loss coefficients
+  summary: Option to specify loss coefficients for perpendicular flow off (default) | on
+  group: Junction Properties
+- name: Colliding flow loss coefficients
+  summary: Option to specify loss coefficients for colliding flow off (default) | on
+  group: Junction Properties
+- name: Diverging flow straight loss coefficient
+  summary: Diverging flow straight loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Diverging Flow Coefficients
+- name: Diverging flow turning loss coefficient
+  summary: Diverging flow turning loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Diverging Flow Coefficients
+- name: Converging flow straight loss coefficient
+  summary: Converging flow straight loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Converging Flow Coefficients
+- name: Converging flow turning loss coefficient
+  summary: Converging flow turning loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Converging Flow Coefficients
+- name: Perpendicular flow straight loss coefficient
+  summary: Perpendicular flow straight loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Perpendicular Flow Coefficients
+- name: Perpendicular flow turning to inflow loss coefficient
+  summary: Perpendicular flow turning to inflow loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Perpendicular Flow Coefficients
+- name: Perpendicular flow turning to outflow loss coefficient
+  summary: Perpendicular flow turning to outflow loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Perpendicular Flow Coefficients
+- name: Colliding flow straight loss coefficient
+  summary: Colliding flow straight loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Colliding Flow Coefficients
+- name: Colliding flow turning loss coefficient
+  summary: Colliding flow turning loss coefficient [1.12, 1.12] (default) | positive scalar or vector
+  group: Colliding Flow Coefficients
+```
 
 ### Junction Properties
 
@@ -307,7 +393,6 @@ scalar.
 To enable this parameter, set **Loss coefficient model** to
 `Custom` and select **Colliding flow loss
 coefficients**.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

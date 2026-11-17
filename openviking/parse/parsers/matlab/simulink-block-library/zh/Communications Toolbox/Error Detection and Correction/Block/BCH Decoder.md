@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # BCH Decoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 编码消息二进制列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Era
+  summary: 删除向量二进制列向量
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: 解码消息二进制列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Err
+  summary: 解码错误整数向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -52,8 +71,37 @@ chinese_source: worker-translation
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
 
 有关详细信息，请参阅支持的数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length, N
+  summary: 码字长度 15（默认）| 整数
+  group: ''
+- name: Message length, K
+  summary: 消息长度 5（默认）| 整数
+  group: ''
+- name: Shortened message length, S
+  summary: 缩短消息长度 5（默认）| 整数
+  group: ''
+- name: Generator polynomial
+  summary: 生成多项式 'X^10 + X^8 + X^5 + X^4 + X^2 + X + 1'（默认）| 多项式字符向量 | 二进制行向量 | 二进制伽罗瓦行向量
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 'X^4 + X + 1'（默认）| 多项式字符向量 | 二进制行向量
+  group: ''
+- name: Disable generator polynomial checking
+  summary: 禁用生成多项式检查的选项 on（默认）| off
+  group: ''
+- name: Puncture vector
+  summary: 删余向量 [ones(8,1); zeros(2,1)]（默认）| 列向量
+  group: ''
+- name: Enable erasures input port
+  summary: 启用删除输入端口的选项 off（默认）| on
+  group: ''
+- name: Output number of corrected errors
+  summary: 启用输出已纠正错误数端口的选项 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -133,7 +181,6 @@ chinese_source: worker-translation
 ### **Output number of corrected errors** — 启用输出已纠正错误数端口的选项 off（默认）| on
 
 选中此复选框将启用额外的输出端口 `Err`，它指示模块在输入码字中纠正的错误数量。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

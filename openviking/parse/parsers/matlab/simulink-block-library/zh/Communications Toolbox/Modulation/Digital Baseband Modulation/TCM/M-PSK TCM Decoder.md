@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # M-PSK TCM Decoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Trellis structure**
 :   包含卷积编码器网格描述的 MATLAB® 结构体。
@@ -44,7 +49,6 @@ R2025b 中未记录。
 **输出数据类型**
 :   该模块的输出类型可以指定为
     `boolean` 或 `double`。默认情况下，该模块将其设置为 `double`。
-
 ## 所属库
 
 R2025b 中未记录。

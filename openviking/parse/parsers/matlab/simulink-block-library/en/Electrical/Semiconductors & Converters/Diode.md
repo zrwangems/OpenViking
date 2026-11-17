@@ -14,6 +14,18 @@ language: en
 # Diode
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -33,8 +45,382 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to `Show
 thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Selected part
+  summary: Predefined parameterization option <click to select> (default)
+  group: ''
+- name: Fidelity level
+  summary: Level of fidelity Include capacitance and charge dynamics (default) | Ideal switching
+  group: Main
+- name: Diode model
+  summary: Diode model Piecewise Linear (default) | Exponential | Tabulated I-V curve
+  group: Main
+- name: Table type
+  summary: Tabulated function Table in If(Tj,Vf) form (default) | Table in Vf(Tj,If) form
+  group: Main
+- name: Forward voltage
+  summary: Forward voltage 0.6 V (default)
+  group: Main
+- name: On resistance
+  summary: On resistance 0.3 Ohm (default)
+  group: Main
+- name: Off conductance
+  summary: Off conductance 1e-8 1/Ohm (default)
+  group: Main
+- name: Parameterization
+  summary: Model parameterization Use two I-V curve data points (default) | Use parameters IS and N | Use an I-V data point
+    and IS | Use an I-V data point and N
+  group: Main
+- name: Currents [I1 I2]
+  summary: Vector of current values at two points [.0137, .545] A (default)
+  group: Main
+- name: Voltages [V1 V2]
+  summary: Vector of voltage values at two points [.6, .7] V (default)
+  group: Main
+- name: Saturation current, IS
+  summary: Saturation current 1e-12 A (default)
+  group: Main
+- name: Emission coefficient, N
+  summary: Diode emission coefficient 1 (default)
+  group: Main
+- name: Current I1
+  summary: Current value 0.0137 A (default)
+  group: Main
+- name: Voltage V1
+  summary: Voltage value 0.6 V (default)
+  group: Main
+- name: Ohmic resistance, RS
+  summary: Ohmic resistance 0 Ohm (default)
+  group: Main
+- name: Measurement temperature
+  summary: Measurement temperature 298.15 K (default)
+  group: Main
+- name: Forward currents, If(Tj,Vf)
+  summary: Vector of forward currents [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02, 6.35, 9.12] A (default)
+    | nonnegative vector
+  group: Main
+- name: Forward voltages, Vf(Tj,If)
+  summary: Vector of forward voltages [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38, 1.77, 2.27, 2.7]
+    V (default) | nonnegative vector
+  group: Main
+- name: Junction temperatures, Tj
+  summary: Vector of junction temperatures [25, 125] degC (default)
+  group: Main
+- name: Forward voltages, Vf
+  summary: Vector of forward voltages [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V (default)
+  group: Main
+- name: Forward currents, If
+  summary: Vector of forward currents [.1, .2, .5, 1, 2, 4, 7, 10] A (default)
+  group: Main
+- name: Reverse currents, Ir(Tj,Vr)
+  summary: Vector of reverse currents [1e-06, 2e-06, 5e-06, 1e-05, 2.5e-05, 5e-05, .0001; 2e-06, 5e-06, 1e-05, 4e-05, 8e-05,
+    .0002, .0005] A (default) | nonnegative vector
+  group: Main
+- name: Reverse voltages, Vr
+  summary: Vector of reverse voltages [10, 20, 40, 50, 70, 80, 100] V (default)
+  group: Main
+- name: Reverse voltages, Vr(Tj,Ir)
+  summary: Vector of reverse voltages [10, 100, 200, 250, 300, 325, 350; 10, 70, 160, 220, 270, 300, 320] V (default) | nonnegative
+    vector
+  group: Main
+- name: Reverse currents, Ir
+  summary: Vector of reverse currents [1e-06, 2e-06, 5e-06, 1e-05, 2e-05, 5e-05, .0001] A (default)
+  group: Main
+- name: Number of series diodes
+  summary: Number of diodes connected in series 1 (default)
+  group: Main
+- name: Number of parallel diodes
+  summary: Number of parallel diodes 1 (default)
+  group: Main
+- name: Model Zener diode
+  summary: Option to model a Zener diode Off (default) | On
+  group: Main
+- name: Zener resistance
+  summary: Zener resistance 0.3 Ohm (default) | positive scalar
+  group: Breakdown
+- name: Reverse breakdown voltage
+  summary: Reverse breakdown voltage inf V (default) | positive scalar
+  group: Breakdown
+- name: Parameterization
+  summary: Modeling junction capacitance Fixed or zero junction capacitance (default) | Use C-V curve data points | Use parameters
+    CJ0, VJ, M & FC
+  group: Capacitance
+- name: Junction capacitance
+  summary: Junction capacitance 0 pF (default)
+  group: Capacitance
+- name: Reverse bias voltages [VR1 VR2 VR3]
+  summary: Vector of reverse bias voltage values [.1, 10, 100] V (default)
+  group: Capacitance
+- name: Corresponding capacitances [C1 C2 C3]
+  summary: Vector of capacitance values [3.5, 1, .4] pF (default)
+  group: Capacitance
+- name: Zero-bias junction capacitance, CJ0
+  summary: Zero-bias junction capacitance 5 pF (default)
+  group: Capacitance
+- name: Junction potential, VJ
+  summary: Junction potential 1 V (default)
+  group: Capacitance
+- name: Grading coefficient, M
+  summary: Grading coefficient 0.5 (default)
+  group: Capacitance
+- name: Capacitance coefficient, FC
+  summary: Capacitance coefficient 0.5 (default)
+  group: Capacitance
+- name: Charge dynamics
+  summary: Charge dynamics parameterization Do not model charge dynamics (default) | Use peak reverse current and stretch
+    factor | Use peak reverse current and reverse recovery time | Use peak reverse current and reverse recovery charge | Use
+    peak reverse current and reverse recovery energy | Use transit time and carrier lifetime
+  group: Capacitance
+- name: Peak reverse current, iRM
+  summary: Peak reverse current -7.15 A (default) | negative scalar
+  group: Capacitance
+- name: Initial forward current when measuring iRM
+  summary: Initial forward current when measuring iRM 4 A (default) | positive scalar
+  group: Capacitance
+- name: Rate of change of current when measuring iRM
+  summary: Rate of change of current when measuring iRM -750 A/μs (default) | negative scalar
+  group: Capacitance
+- name: Reverse recovery time stretch factor
+  summary: Reverse recovery time stretch factor 3 (default)
+  group: Capacitance
+- name: Reverse recovery time, trr
+  summary: Reverse recovery time 115 (default)
+  group: Capacitance
+- name: Reverse recovery charge, Qrr
+  summary: Reverse recovery charge 1500 s*μA (default)
+  group: Capacitance
+- name: Diode turn-off voltage when measuring Erec
+  summary: Diode turn-off voltage when measuring Erec -600 V (default)
+  group: Capacitance
+- name: Stray inductance when measuring Erec
+  summary: Stray inductance when measuring Erec 150 nH (default)
+  group: Capacitance
+- name: Reverse recovery energy, Erec
+  summary: Reverse recovery energy 0.03 J (default)
+  group: Capacitance
+- name: Transit time, TT
+  summary: Transit time 50 ns (default)
+  group: Capacitance
+- name: Carrier lifetime, tau
+  summary: Carrier lifetime 100 ns (default)
+  group: Capacitance
+- name: Reverse recovery loss model
+  summary: Model for reverse recovery loss Fixed loss (default) | Tabulated loss
+  group: Reverse Recovery Loss
+- name: Reverse recovery loss
+  summary: Reverse recovery loss 0 J (default) | nonnegative scalar
+  group: Reverse Recovery Loss
+- name: Scale reverse recovery loss with current and voltage
+  summary: Option to scale reverse recovery loss On (default) | Off
+  group: Reverse Recovery Loss
+- name: Forward current when measuring recovery loss, Irec
+  summary: Forward current when block measures recovery loss 10 A (default) | positive scalar
+  group: Reverse Recovery Loss
+- name: Turn-off voltage when measuring recovery loss, Vrec
+  summary: Turn-off voltage when measuring recovery loss 10 V (default) | positive scalar
+  group: Reverse Recovery Loss
+- name: Filter time constant for voltage and current values
+  summary: Filter time constant for voltage and current values 1 / 1000 / 100 s (default) | positive scalar
+  group: Reverse Recovery Loss
+- name: Reverse recovery loss table, Erec(Tj, If)
+  summary: Reverse recovery loss zeros(2, 3) J (default) | vector of nonnegative scalars
+  group: Reverse Recovery Loss
+- name: Temperature vector for recovery loss table, Tj
+  summary: Temperature vector for recovery loss table [298.15, 398.15] K (default) | vector
+  group: Reverse Recovery Loss
+- name: Forward current vector for recovery loss table, If
+  summary: Forward current vector for recovery loss table [.1, 1, 10] A (default) | vector of nonnegative scalars
+  group: Reverse Recovery Loss
+- name: Parameterization
+  summary: Temperature dependence parameterization None - Use characteristics at parameter measurement temperature (default)
+    | Use an I-V data point at second measurement temperature | Specify saturation current at second measurement temperature
+    | Specify the energy gap EG
+  group: Temperature Dependence
+- name: Current I1 at second measurement temperature
+  summary: Current I1 at second measurement temperature 0.0245 A (default)
+  group: Temperature Dependence
+- name: Voltage V1 at second measurement temperature
+  summary: Voltage V1 at second measurement temperature 0.5 V (default)
+  group: Temperature Dependence
+- name: Saturation current, IS, at second measurement temperature
+  summary: Saturation current, IS, at second measurement temperature 1.25e-7 A (default)
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: Second measurement temperature 125 °C (default)
+  group: Temperature Dependence
+- name: Energy gap parameterization
+  summary: Energy gap parameterization Use nominal value for silicon (EG=1.11eV) (default) | Use nominal value for 4H-SiC
+    silicon carbide (EG=3.23eV) | Use nominal value for 6H-SiC silicon carbide (EG=3.00eV) | Use nominal value for germanium
+    (EG=0.67eV) | Use nominal value for gallium arsenide (EG=1.43eV) | Use nominal value for selenium (EG=1.74eV) | Use nominal
+    value for Schottky barrier diodes (EG=0.69eV) | Specify a custom value
+  group: Temperature Dependence
+- name: Energy gap, EG
+  summary: Energy gap 1.11 eV (default)
+  group: Temperature Dependence
+- name: Saturation current temperature exponent parameterization
+  summary: Saturation current temperature exponent parameterization Use nominal value for pn-junction diode (XTI=3) (default)
+    | Use nominal value for Schottky barrier diode (XTI=2) | Specify a custom value
+  group: Temperature Dependence
+- name: Saturation current temperature exponent, XTI
+  summary: Saturation current temperature exponent 3 (default)
+  group: Temperature Dependence
+- name: Reverse breakdown voltage temperature coefficient, dBV/dT
+  summary: Reverse breakdown voltage temperature coefficient 0 V/K (default)
+  group: Temperature Dependence
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 °C (default)
+  group: Temperature Dependence
+- name: Diode fault
+  summary: Option to model fault in diode Add fault (default)
+  group: Faults
+- name: Failure mode
+  summary: Failure category Open (default) | Short | Parameter shift
+  group: Faults
+- name: Fault transition time constant
+  summary: Fault transition time constant 1e-3 s (default) | positive scalar
+  group: Faults
+- name: Faulted series resistance
+  summary: Faulted series resistance 1000 Ohm (default) | finite nonnegative scalar
+  group: Faults
+- name: Faulted parallel conductance
+  summary: Faulted parallel conductance 1000 1/Ohm (default) | finite nonnegative scalar
+  group: Faults
+- name: Faulted forward voltage
+  summary: Faulted forward voltage 0.6 V (default) | positive scalar
+  group: Faults
+- name: Faulted on resistance
+  summary: Faulted on resistance 0.3 Ohm (default) | positive scalar
+  group: Faults
+- name: Faulted off conductance
+  summary: Faulted off conductance 1e-8 S (default) | positive scalar
+  group: Faults
+- name: Faulted zener resistance
+  summary: Faulted zener resistance 0.3 Ohm (default) | positive scalar
+  group: Faults
+- name: Faulted reverse breakdown voltage
+  summary: Faulted reverse breakdown voltage inf V (default) | positive scalar
+  group: Faults
+- name: Faulted currents, [I1 I2]
+  summary: Faulted currents [.0137, .545] A (default) | 2-D vector of positive scalars
+  group: Faults
+- name: Faulted voltages, [V1 V2]
+  summary: Faulted voltages [.6, .7] V (default) | 2-D vector of positive scalars
+  group: Faults
+- name: Faulted ohmic resistance, RS
+  summary: Faulted voltages 0 Ohm (default) | nonnegative scalar
+  group: Faults
+- name: Faulted saturation current, IS
+  summary: Faulted saturation current 1e-12 A (default) | positive scalar
+  group: Faults
+- name: Faulted emission coefficient, N
+  summary: Faulted emission coefficient 1 (default) | positive scalar
+  group: Faults
+- name: Faulted current, I1
+  summary: Faulted current 0.0137 A (default) | positive scalar
+  group: Faults
+- name: Faulted voltage, V1
+  summary: Faulted voltage 0.6 V (default) | positive scalar
+  group: Faults
+- name: Faulted forward currents, If(Tj,Vf)
+  summary: Faulted forward currents [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02, 6.35, 9.12] A (default)
+    | matrix of nonnegative scalars
+  group: Faults
+- name: Faulted forward voltages, Vf
+  summary: Faulted forward voltages [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V (default) | vector of nonnegative scalars
+  group: Faults
+- name: Faulted reverse currents, Ir(Tj,Vr)
+  summary: Faulted reverse currents [1e-06, 2e-06, 5e-06, 1e-05, 2.5e-05, 5e-05, .0001; 2e-06, 5e-06, 1e-05, 4e-05, 8e-05,
+    .0002, .0005] A (default) | matrix of nonnegative scalars
+  group: Faults
+- name: Faulted reverse voltages, Vr
+  summary: Faulted reverse voltages [1, 2, 4, 5, 7, 8, 10] V (default) | vector of nonnegative scalars
+  group: Faults
+- name: Faulted forward voltages, Vf(Tj,If)
+  summary: Faulted forward voltages [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38, 1.77, 2.27, 2.7]
+    V (default) | matrix of nonnegative scalars
+  group: Faults
+- name: Faulted forward currents, If
+  summary: Faulted forward currents [.1, .2, .5, 1, 2, 4, 7, 10] A (default) | vector of nonnegative scalars
+  group: Faults
+- name: Faulted reverse voltages, Vr(Tj,Ir)
+  summary: Faulted reverse voltages [1, 10, 20, 25, 30, 32.5, 35; 1, 5, 10, 20, 25, 30, 32] V (default) | matrix of nonnegative
+    scalars
+  group: Faults
+- name: Faulted reverse currents, Ir
+  summary: Faulted reverse currents [1e-06, 2e-06, 5e-06, 1e-05, 2e-05, 5e-05, .0001] A (default) | vector of nonnegative
+    scalars
+  group: Faults
+- name: Faulted capacitance and charge as percentage of unfaulted
+  summary: Faulted capacitance and charge as percentage of unfaulted 100 (default) | finite positive scalar
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible reverse voltage
+  summary: Maximum permissible reverse voltage inf V (default) | positive scalar
+  group: Faults
+- name: Number of events to fail when exceeding voltage
+  summary: Number of events to fail when exceeding voltage 1 (default) | positive scalar integer
+  group: Faults
+- name: Maximum permissible current
+  summary: Current threshold to fault transition inf A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding current
+  summary: Maximum length of time the current exceeds the threshold 1 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum diode recovery, dV/dt
+  summary: Diode recovery threshold inf V/s (default) | positive scalar
+  group: Faults
+- name: Maximum permissible temperature
+  summary: Temperature threshold to fault transition inf K (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding temperature
+  summary: Time to fail when exceeding current 1 s (default) | positive scalar
+  group: Faults
+- name: Thermal network
+  summary: Options for thermal network modeling External (default) | Specify junction and case thermal parameters | Cauer
+    model | Cauer model parameterized with Foster coefficients
+  group: Thermal Port
+- name: Thermal mass parameterization
+  summary: Option to parameterize thermal mass By thermal time constants (default) | By thermal mass
+  group: Thermal Port
+- name: Junction case and case-ambient (or case-heatsink) thermal resistances, [R_JC R_CA]
+  summary: Junction case and case-ambient (or case-heatsink) thermal resistances [0, 10] K/W (default) | vector of nonnegative
+    values
+  group: Thermal Port
+- name: Junction and case thermal time constants, [t_J t_C]
+  summary: Junction and case thermal time constants [0, 10] s (default) | vector of nonnegative values
+  group: Thermal Port
+- name: Junction and case thermal masses, [M_J M_C]
+  summary: Junction and case thermal masses [0, 1] J/K (default) | vector of positive values
+  group: Thermal Port
+- name: Junction and case initial temperatures, [T_J T_C]
+  summary: Junction and case initial temperatures [25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Thermal resistances, [R1 R2 … Rn]
+  summary: Thermal resistances [1, 3, 10] K/W | [4, 6] K/W | vector of positive values
+  group: Thermal Port
+- name: Thermal masses, [M1 M2 … Mn]
+  summary: Thermal masses [.1, .3, 1] J/K | [1.5, 3] J/K | vector of positive values
+  group: Thermal Port
+- name: Thermal masses initial temperatures, [T1 T2 … Tn]
+  summary: Initial temperatures of thermal masses [25, 25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Thermal time constants, [t1 t2 … tn]
+  summary: Thermal time constants [1, 3, 10] s | [6, 18] s | vector of positive values
+  group: Thermal Port
+- name: Initial node temperatures, [T1 T2 ... Tn]
+  summary: Initial node temperatures [25, 25, 25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Junction thermal mass
+  summary: Thermal mass of junction 0.01 J/K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -1739,7 +2125,6 @@ Thermal mass of the junction.
 To enable this parameter, set **Fidelity level** to `Ideal
 switching` and **Thermal network** to
 `External`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

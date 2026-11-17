@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Variable Inductor
 
 ## 端口
+```yaml
+ports:
+- name: L
+  summary: 电感物理信号
+  direction: input
+- name: +
+  summary: 正端子电气
+  direction: input
+- name: '-'
+  summary: 负端子电气
+  direction: input
+```
 
 ### 输入
 
@@ -30,8 +42,25 @@ chinese_source: worker-translation
 ### **-** — 负端子电气
 
 与电感负电压关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Equation
+  summary: 模块电感方程 V = L*dI/dt + dL/dt*I（默认）| V = L*dI/dt
+  group: ''
+- name: Minimum inductance L>0
+  summary: 最小电感 1e-6 H（默认）
+  group: ''
+- name: Parallel conductance
+  summary: 并联电导 1e-9 1/Ohm（默认）
+  group: ''
+- name: Initial current
+  summary: 初始电流 0 A（默认）
+  group: ''
+- name: Initial magnetic flux
+  summary: 初始磁通量 0 Wb（默认）
+  group: ''
+```
 
 ### **Equation** — 模块电感方程 `V = L*dI/dt + dL/dt*I`（默认）| `V = L*dI/dt`
 
@@ -63,7 +92,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当为 **Equation** 参数选择 `V = L*dI/dt + dL/dt*I` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Passive

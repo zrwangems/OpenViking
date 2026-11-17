@@ -14,10 +14,57 @@ language: en
 # Continuous Wave
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Wave type Ideal voltage (default) | Ideal current | Power
+  group: ''
+- name: Constant in-phase value
+  summary: In-phase modulations of carrier frequencies 0 V (default) | vector of real numbers | V | mV | kV
+  group: ''
+- name: Constant quadrature value
+  summary: Quadrature modulations of carrier frequencies 0 V (default) | vector of real numbers | V | mV | kV
+  group: ''
+- name: Source impedance(Ohm)
+  summary: Input impedance of source 50 (default) | positive real number | complex number
+  group: ''
+- name: Available power
+  summary: Available power of carrier frequencies 0 W (default) | vector of real numbers | W | mW | dBW | dBm
+  group: ''
+- name: Angle(degrees)
+  summary: Phase angle of power waves 0 (default) | vector of real numbers
+  group: ''
+- name: Carrier frequencies
+  summary: Carrier frequencies 0 (default) | vector of real positive numbers | Hz | kHz | MHz | GHz
+  group: ''
+- name: Add phase noise
+  summary: Add phase noise off (default) | on
+  group: ''
+- name: Phase noise frequency offset (Hz)
+  summary: Phase noise frequency offset 0 (default) | scalar | vector | matrix
+  group: ''
+- name: Phase noise level (dBc/Hz)
+  summary: Phase noise level 0 (default) | scalar | vector | matrix
+  group: ''
+- name: Automatically estimate impulse response duration
+  summary: Automatically estimate impulse response duration on (default) | off
+  group: ''
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10s (default) | scalar
+  group: ''
+- name: Plot phase noise characteristics
+  summary: Phase noise magnitude response button
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Source type** — Wave type `Ideal voltage` (default) | `Ideal current` | `Power`
 
@@ -198,7 +245,6 @@ To enable this parameter, select **Add phase noise**.
 Select this option to internally ground and hide the negative terminals.
 To expose the negative terminals, clear the option. By exposing these
 terminals, you can connect them to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Sources

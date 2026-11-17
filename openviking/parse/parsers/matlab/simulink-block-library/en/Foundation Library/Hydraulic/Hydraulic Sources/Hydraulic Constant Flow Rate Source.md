@@ -14,6 +14,9 @@ language: en
 # Hydraulic Constant Flow Rate Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,13 +25,14 @@ The block has the following ports:
 
 `P`
 :   Hydraulic conserving port associated with the source outlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Source flow rate**
 :   Specifies the flow rate through the source. The default value is
     `0.001` m^3/s.
-
 ## Libraries
 
 Not documented in R2025b.

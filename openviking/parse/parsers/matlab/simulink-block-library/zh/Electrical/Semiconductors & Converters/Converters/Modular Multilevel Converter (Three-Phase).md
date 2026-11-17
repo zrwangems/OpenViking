@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Modular Multilevel Converter (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 物理信号子模块门极控制矩阵
+  direction: input
+- name: ref
+  summary: 物理信号子模块参考波形向量
+  direction: input
+- name: vc
+  summary: 物理信号电容电压向量
+  direction: output
+- name: +
+  summary: 正极端子电气端口
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气端口
+  direction: conserving
+- name: '~'
+  summary: 三相端口电气端口
+  direction: conserving
+- name: a
+  summary: '*a* 相电气端口'
+  direction: conserving
+- name: b
+  summary: '*b* 相电气端口'
+  direction: conserving
+- name: c
+  summary: '*c* 相电气端口'
+  direction: conserving
+```
 
 ### 输入
 
@@ -87,8 +117,115 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主
+- name: Converter topology
+  summary: 换流器拓扑 Half-bridge（默认）| Full-bridge
+  group: 主
+- name: Fidelity level
+  summary: 模型保真度 Detailed model - switching devices（默认）| Equivalent model - PWM-controlled | Equivalent model - waveform-controlled
+  group: 主
+- name: Capacitor voltages
+  summary: 电容电压测量 Instrumented（默认）| Uninstrumented
+  group: 主
+- name: Number of power submodules
+  summary: 子模块数量 1（默认）| 正标量
+  group: 主
+- name: Capacitance
+  summary: 子模块电容 1e-7 F（默认）| 标量 | 向量
+  group: 主
+- name: Capacitor effective series resistance
+  summary: 电容等效串联电阻 1e-6 Ohm（默认）| 标量 | 向量
+  group: 主
+- name: Arm inductance
+  summary: 桥臂电感 1e-6 H（默认）| 标量
+  group: 主
+- name: Arm inductance series resistance
+  summary: 桥臂电感串联电阻 0 Ohm（默认）| 标量
+  group: 主
+- name: Capacitor initial voltage
+  summary: 电容初始电压 500 V（默认）| 标量 | 向量
+  group: 主
+- name: Switching device
+  summary: 开关类型 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: Switching Devices
+- name: Forward voltage
+  summary: 电压 0.8 V（默认）| 标量
+  group: Switching Devices
+- name: On-state resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: Switching Devices
+- name: Drain-source on resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: Switching Devices
+- name: 断态电导
+  summary: 器件关断时的电导 1e-5 1/Ohm（默认）| 标量
+  group: Switching Devices
+- name: 阈值电压
+  summary: 电压阈值 6 V（默认）| 标量
+  group: Switching Devices
+- name: 栅极触发电压，Vgt
+  summary: 栅极-阴极激活电压阈值 1 V（默认）| 标量
+  group: Switching Devices
+- name: 栅极关断电压，Vgt_off
+  summary: 栅极-阴极去激活电压阈值 -1 V（默认）| 标量
+  group: Switching Devices
+- name: 维持电流
+  summary: 电流阈值 1 A（默认）| 标量
+  group: Switching Devices
+- name: 栅极输入分段常数逼近的整数（0 表示禁用）
+  summary: 用于 FPGA 部署的整数模式 0（默认）| 非负标量
+  group: Switching Devices
+- name: 模型动态特性
+  summary: 二极管模型 Diode with no dynamics（默认）| Diode with charge dynamics | None
+  group: 保护二极管
+- name: 正向电压
+  summary: 正向电压 0.8 V（默认）| 标量
+  group: 保护二极管
+- name: 导通电阻
+  summary: 导通电阻 0.001 Ohm（默认）| 标量
+  group: 保护二极管
+- name: 断态电导
+  summary: 断态电导 1e-5 1/Ohm（默认）| 标量
+  group: 保护二极管
+- name: Junction capacitance
+  summary: 结电容 50 nF（默认值）| 标量
+  group: 保护二极管
+- name: Peak reverse current, iRM
+  summary: 峰值反向电流 -235 A（默认值）| 负标量
+  group: 保护二极管
+- name: Initial forward current when measuring iRM
+  summary: 测量 iRM 时的初始正向电流 300 A（默认值）| 正标量
+  group: 保护二极管
+- name: Rate of change of current when measuring iRM
+  summary: 测量 iRM 时的电流变化率 -50 A/μs（默认值）| 负标量
+  group: 保护二极管
+- name: Reverse recovery time parameterization
+  summary: 反向恢复时间选项 Specify stretch factor（默认值）| Specify reverse recovery time directly | Specify reverse recovery charge
+  group: 保护二极管
+- name: Reverse recovery time, trr
+  summary: 反向恢复时间 15 μs（默认值）| 标量
+  group: 保护二极管
+- name: Reverse recovery time stretch factor
+  summary: 反向恢复时间拉伸因子 3（默认值）| 标量
+  group: 保护二极管
+- name: Reverse recovery charge, Qrr
+  summary: 反向恢复电荷 1500 s*μA（默认值）| 标量
+  group: 保护二极管
+- name: Snubber
+  summary: 缓冲器 None（默认）| RC snubber
+  group: 缓冲器
+- name: Snubber resistance
+  summary: 缓冲器电阻 0.1 Ohm（默认）| 标量
+  group: 缓冲器
+- name: Snubber capacitance
+  summary: 缓冲器电容 1e-7 F（默认）| 标量
+  group: 缓冲器
+```
 
 ### 主
 
@@ -420,7 +557,6 @@ devices`。
 #### 依赖关系
 
 要启用此参数，请将 **Snubber** 设置为 `RC snubber`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS State-Space
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 输入物理信号向量，*u*，无类型物理信号
+  direction: input
+- name: Y
+  summary: 输出物理信号向量，*y*，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,28 @@ chinese_source: worker-translation
 ### **Y** — 输出物理信号向量，*y*，无类型物理信号
 
 输出物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: A
+  summary: 状态矩阵 [0, 1; -1, -2]（默认）| 标量 | 矩阵
+  group: ''
+- name: B
+  summary: 输入矩阵 [0, 1]（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: C
+  summary: 输出矩阵 [1, 0]（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: D
+  summary: 前馈矩阵或直接传输矩阵 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: E
+  summary: 描述符矩阵 [1, 0; 0, 1]（默认）| 标量 | 矩阵
+  group: ''
+- name: Initial state vector
+  summary: 状态向量的初始条件 [0; 0]（默认）| 标量 | 向量 | 矩阵
+  group: ''
+```
 
 ### **A** — 状态矩阵 `[0, 1; -1, -2]`（默认）| 标量 | 矩阵
 
@@ -62,7 +91,6 @@ chinese_source: worker-translation
 
 无量纲向量，表示状态向量在
 时间 *t*=0 时的初始条件。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Linear Operators

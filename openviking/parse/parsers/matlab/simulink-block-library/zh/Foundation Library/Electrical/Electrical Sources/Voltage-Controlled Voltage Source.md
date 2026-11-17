@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # Voltage-Controlled Voltage Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块有四个电气守恒端口。模块左侧的连接 + 和 – 是控制端口。另外两个端口是提供输出电压的电气端子。极性由 + 和 – 符号指示。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Voltage gain K**
 :   输出电压的变化量除以引起该变化的控制电压的变化量。默认值为 `1`。
-
 ## 所属库
 
 R2025b 中未记录。

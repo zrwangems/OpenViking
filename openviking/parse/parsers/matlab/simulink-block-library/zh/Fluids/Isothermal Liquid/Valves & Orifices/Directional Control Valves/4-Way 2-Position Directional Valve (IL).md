@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # 4-Way 2-Position Directional Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 进油或出油口，等温液体
+  direction: conserving
+- name: B
+  summary: 进油或出油口，等温液体
+  direction: conserving
+- name: P
+  summary: 进油或出油口，等温液体
+  direction: conserving
+- name: T
+  summary: 进油或出油口，等温液体
+  direction: conserving
+- name: S
+  summary: 阀芯位移，m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -38,8 +56,213 @@ chinese_source: worker-translation
 ### **S** — 阀芯位移，m，物理信号
 
 与阀芯位移相关的物理信号，单位为 m。
-
 ## 参数
+```yaml
+parameters:
+- name: 正阀芯位置开启连接
+  summary: 阀芯处于正位置时打开的流路 P-A, B-T（默认）| P-A, P-B | P-B, A-T | P-A | P-B | P-A, P-B, A-T, B-T
+  group: 阀配置
+- name: 负阀芯位置开启连接
+  summary: 阀芯沿负方向运动时打开的流路 P-B, A-T（默认）| P-A, B-T | P-A, P-B | P-A | P-B | P-A, P-B, A-T, B-T
+  group: 阀配置
+- name: 面积特性
+  summary: 节流口的流量方程 所有流路相同（默认）| 每条流路不同
+  group: 模型参数化
+- name: 节流口参数化
+  summary: 计算开启面积的方法 线性面积 vs. 阀芯行程（默认）| 表格数据 - 面积 vs. 阀芯行程 | 表格数据 - 体积流量 vs. 阀芯行程和压降
+  group: 模型参数化
+- name: 关闭和开启节流口之间的阀芯行程
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: 模型参数化
+- name: 最大节流口面积
+  summary: 最大节流口开启面积 1e-4 m^2（默认）| 正标量
+  group: 模型参数化
+- name: 泄漏面积
+  summary: 节流口完全关闭时的开启面积 1e-10 m^2（默认）| 正标量
+  group: 模型参数化
+- name: 阀芯行程向量
+  summary: 相对于完全关闭位置的阀芯开启距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 节流口面积向量
+  summary: 阀开启面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 阀芯行程向量，ds
+  summary: 相对于完全关闭位置的阀芯开启距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 压降向量，dp
+  summary: 阀压降值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 体积流量表，q(ds,dp)
+  summary: 体积流量数组 [-1e-08, 2.2e-08, 2.8e-08, 3.4e-08; -9e-06, .00015, .0002, .00024; -.00036, .00063, .00081, .00096; .00054,
+    .00094, .0012, .0014; -.00091, .0016, .002, .0024] m^3/s（默认）| *M*×*N* 矩阵
+  group: 模型参数化
+- name: 恒定节流口面积
+  summary: 相同流路的节流口面积 1e-4 m^2（默认）| 正标量
+  group: 模型参数化
+- name: 恒定节流口压降向量
+  summary: 相同流路的压差值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 恒定节流口体积流量向量
+  summary: 相同流路的体积流量值向量 [-.0009, .0016, .002, .0024] m^3/s（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 端口 P、T、A 和 B 处的横截面积
+  summary: 守恒端口处的面积 inf m^2（默认）| 正标量
+  group: 模型参数化
+- name: 流量系数
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 模型参数化
+- name: 临界雷诺数
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 模型参数化
+- name: 平滑因子
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: 模型参数化
+- name: 压力恢复
+  summary: 是否考虑面积扩大时的压力增加 off（默认）| on
+  group: 模型参数化
+- name: 最大 P-A 节流口面积处的阀芯位置
+  summary: 完全开启 P-A 节流口的阀芯偏移 5e-3 m（默认）| 正标量
+  group: P-A 节流口
+- name: 关闭和开启节流口之间的 P-A 阀芯行程
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: P-A 节流口
+- name: P-A 最大节流口面积
+  summary: 最大节流口开启面积 1e-4 m^2（默认）| 正标量
+  group: P-A 节流口
+- name: P-A 节流口阀芯行程向量
+  summary: 相对于完全关闭位置的阀芯开启距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A 节流口面积向量
+  summary: 阀开启面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A orifice spool travel vector, ds
+  summary: 相对于完全关闭位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A orifice pressure drop vector, dp
+  summary: 压降值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A orifice volumetric flow rate table, q(ds,dp)
+  summary: 体积流量值数组 [-1e-08, 2.2e-08, 2.8e-08, 3.4e-08; -9e-06, .00015, .0002, .00024; -.00036, .00063, .00081, .00096; -.00054,
+    .00094, .0012, .0014; -.00091, .0016, .002, .0024] m^3/s（默认）| *M*×*N* 矩阵
+  group: P-A 节流口
+- name: P-A constant orifice area
+  summary: 恒定节流口的横截面积 1e-4 m^2（默认）| 正标量
+  group: P-A 节流口
+- name: P-A constant orifice pressure drop vector
+  summary: 恒定节流口的压差值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A constant orifice volumetric flow rate vector
+  summary: 恒定节流口的体积流量向量 [-.0009, .0016, .002, .0024] m^3/s（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: Spool position at maximum P-B orifice area
+  summary: 完全打开 P-B 节流口时的阀芯偏移 -5e-3（默认）| 正标量
+  group: P-B Orifice
+- name: P-B spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: P-B Orifice
+- name: P-B maximum orifice area
+  summary: 最大节流口开口面积 1e-4 m^2（默认）| 正标量
+  group: P-B Orifice
+- name: P-B orifice spool travel vector
+  summary: 相对于完全关闭位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B orifice area vector
+  summary: 阀门开口面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B orifice spool travel vector, ds
+  summary: 相对于完全关闭位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B orifice pressure drop vector, dp
+  summary: 压差值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B orifice volumetric flow rate table, q(ds,dp)
+  summary: 体积流量值数组 [-1e-08, 2.2e-08, 2.8e-08, 3.4e-08; -9e-06, .00015, .0002, .00024; -.00036, .00063, .00081, .00096; -.00054,
+    .00094, .0012, .0014; -.00091, .0016, .002, .0024] m^3/s（默认）| *M*×*N* 矩阵
+  group: P-B Orifice
+- name: P-B constant orifice area
+  summary: 恒定节流口的横截面积 1e-4 m^2（默认）| 正标量
+  group: P-B Orifice
+- name: P-B constant orifice pressure drop vector
+  summary: 恒定节流孔压降向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B constant volumetric flow rate vector
+  summary: 恒定节流孔体积流量值向量 [-.0009, .0016, .002, .0024] m^3/s（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: Spool position at maximum A-T orifice area
+  summary: 完全打开 A-T 节流孔的阀芯偏移 -5e-3 m（默认）| 正标量
+  group: A-T Orifice
+- name: A-T spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: A-T Orifice
+- name: A-T maximum orifice area
+  summary: 最大节流孔开口面积 1e-4 m^2（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice spool travel vector
+  summary: 相对于完全关闭位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T orifice spool travel vector
+  summary: 相对于完全关闭位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T orifice spool travel vector, ds
+  summary: 相对于完全关闭位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T orifice pressure drop vector, dp
+  summary: 压差值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T orifice volumetric flow rate table, q(ds,dp)
+  summary: 体积流量值数组 [-1e-08, 2.2e-08, 2.8e-08, 3.4e-08; -9e-06, .00015, .0002, .00024; -.00036, .00063, .00081, .00096; -.00054,
+    .00094, .0012, .0014; -.00091, .0016, .002, .0024] m^3/s（默认）| *M*×*N* 矩阵
+  group: A-T Orifice
+- name: A-T constant orifice area
+  summary: 恒定节流孔横截面积 1e-4 m^2（默认）| 正标量
+  group: A-T Orifice
+- name: A-T constant orifice pressure drop vector
+  summary: 恒定节流孔压差值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T constant orifice volumetric flow rate vector
+  summary: 恒定节流孔体积流量值向量 [-.0009, .0016, .002, .0024] m^3/s（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: Spool position at maximum B-T orifice area
+  summary: 完全打开 B-T 节流孔的阀芯偏移 5e-3 m（默认）| 正标量
+  group: B-T Orifice
+- name: B-T spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: B-T Orifice
+- name: B-T maximum orifice area
+  summary: 最大节流孔开口面积 1e-4 m^2（默认）| 正标量
+  group: B-T Orifice
+- name: B-T orifice spool travel vector
+  summary: 相对于完全关闭位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T orifice area vector
+  summary: 阀门开口面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T orifice spool travel vector, ds
+  summary: 相对于全关位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T orifice pressure drop vector, dp
+  summary: 压差值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T orifice volumetric flow rate table, q(ds,dp)
+  summary: 体积流量值数组 [-1e-08, 2.2e-08, 2.8e-08, 3.4e-08; -9e-06, .00015, .0002, .00024; -.00036, .00063, .00081, .00096; -.00054,
+    .00094, .0012, .0014; -.00091, .0016, .002, .0024] m^3/s（默认）| *M*×*N* 矩阵
+  group: B-T Orifice
+- name: B-T constant orifice area
+  summary: 恒定节流口的横截面积 1e-4 m^2（默认）| 正标量
+  group: B-T Orifice
+- name: B-T constant orifice pressure drop vector
+  summary: 恒定节流口的压差值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T constant volumetric flow rate vector
+  summary: 恒定节流口的体积流量向量 [-.0009, .0016, .002, .0024] m^3/s（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: 4-Way 2-Position Directional Valve Area fault
+  summary: 用于对阀门面积故障建模的选项 Add fault
+  group: 故障
+- name: Spool position when faulted
+  summary: 故障时的阀门特性 Positive（默认）| Negative | Maintain last value
+  group: 故障
+```
 
 ### 阀配置
 
@@ -1396,7 +1619,6 @@ open connections** 和 **Negative spool position open connections**
 #### 依赖关系
 
 要启用此参数，请点击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

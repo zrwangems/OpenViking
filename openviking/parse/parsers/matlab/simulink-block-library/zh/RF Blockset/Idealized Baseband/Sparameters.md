@@ -15,10 +15,105 @@ chinese_source: worker-translation
 # S-Parameters
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: 数据源
+  summary: 数据源 Data file（默认）| Network-parameters | Rational model
+  group: ''
+- name: 数据文件
+  summary: 网络参数数据文件的名称 simrfV2_unitygain.s2p（默认）| 字符向量
+  group: ''
+- name: 网络参数对象
+  summary: 作为数据源的网络参数对象 off（默认）| on
+  group: ''
+- name: 网络参数类型
+  summary: 网络参数类型 S-parameters（默认）| Y-parameters | Z-parameters
+  group: ''
+- name: 网络参数
+  summary: 网络参数值 [0 0;1 0]（默认）| 多维数组 | 标量
+  group: ''
+- name: 频率 (dB)
+  summary: 网络参数的频率 1e9 Hz（默认）| 标量 | 向量 | Hz | kHz | MHz | GHz
+  group: ''
+- name: 参考阻抗(Ohm)
+  summary: 网络参数的参考阻抗 50（默认）| 正标量 | 正标量向量
+  group: ''
+- name: Use rational object
+  summary: 作为数据源的 rational 对象 off（默认）| on
+  group: ''
+- name: Residues
+  summary: 按有理模型顺序排列的留数 0（默认）| 向量
+  group: ''
+- name: Poles
+  summary: 按有理模型顺序排列的极点 0（默认）| 向量
+  group: ''
+- name: Direct feedthrough
+  summary: 直接馈通 {0 0:1 0}（默认）| 向量数组
+  group: ''
+- name: Simulate noise
+  summary: 模拟热噪声波 off（默认）| on
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地 RF 电路端子 on（默认）| off
+  group: ''
+- name: Modeling options
+  summary: 对 S 参数建模 Time domain（默认）| Frequency domain
+  group: ''
+- name: Fitting options
+  summary: 有理拟合选项 Fit individually（默认）| Share poles by column | Share all poles
+  group: ''
+- name: Relative error desired (dB)
+  summary: 有理拟合可接受的相对误差 -40（默认）| 标量
+  group: ''
+- name: Maximum number of poles
+  summary: 最大极点数 48（默认）| 正标量
+  group: ''
+- name: Automatically estimate impulse response duration
+  summary: 自动计算冲激响应 on | off
+  group: ''
+- name: Impulse response duration
+  summary: 冲激响应持续时间 1e-10（默认）| 标量
+  group: ''
+- name: Use only S-parameter magnitude with appropriate delay
+  summary: 仅使用带适当延迟的 S 参数幅值 off（默认）| on
+  group: ''
+- name: Source of frequency data
+  summary: 频率数据源 Extracted from data source（默认）| User-defined
+  group: ''
+- name: Frequency data
+  summary: 频率数据范围 [1e9:1e6:3e9] Hz（默认）| 向量 | 标量
+  group: ''
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: ''
+- name: Parameter 1
+  summary: 要绘制的 S 参数类型 S11（默认）| SNN
+  group: ''
+- name: Parameter 2
+  summary: 要绘制的 S 参数类型 None（默认）| SNN
+  group: ''
+- name: Format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Angle(degrees) | Real | Imaginary
+  group: ''
+- name: Format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Angle(degrees) | Real | Imaginary
+  group: ''
+- name: Y-axis scale
+  summary: Y 轴刻度 Linear（默认）| Logarithmic
+  group: ''
+- name: X-axis scale
+  summary: X 轴刻度 Linear（默认）| Logarithmic
+  group: ''
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: ''
+```
 
 #### 主要
 
@@ -283,7 +378,6 @@ X 轴刻度，指定为 `Linear` 或 `Logarithmic`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘图按钮绘制指定数据。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

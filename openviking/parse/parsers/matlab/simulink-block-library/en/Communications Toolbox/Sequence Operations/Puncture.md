@@ -14,6 +14,16 @@ language: en
 # Puncture
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal column vector
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output signal column vector
+  direction: output
+```
 
 ### Input
 
@@ -35,8 +45,13 @@ vector is an integer multiple of the number of 1s in the
 contains only elements from the input signal that align with integer
 multiples of the element location of 1s in the **Puncture
 vector**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Puncture vector
+  summary: Puncture pattern [1 1 0 1 0 1]' (default) | column vector of binary values
+  group: ''
+```
 
 ### **Puncture vector** — Puncture pattern `[1 1 0 1 0 1]'` (default) | column vector of binary values
 
@@ -51,7 +66,6 @@ pattern, as necessary, to include all input elements.
 - The element locations of 1s in **Puncture
   vector** indicate which elements are preserved from
   the input signal to construct the output signal.
-
 ## Libraries
 
 Communications Toolbox / Sequence Operations

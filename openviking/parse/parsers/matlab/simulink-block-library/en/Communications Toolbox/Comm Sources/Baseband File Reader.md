@@ -14,6 +14,16 @@ language: en
 # Baseband File Reader
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Baseband signal scalar | vector | matrix
+  direction: output
+  data_types: double
+- name: EOF
+  summary: End-of-file indicator logical scalar
+  direction: output
+```
 
 ### Output
 
@@ -35,8 +45,28 @@ End-of-file indicator, returned as a logical scalar. The output is
 file** parameter is `false` and the entire
 file has been read. To enable this port, select the **Output
 end-of-file indicator** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Baseband file name
+  summary: Name of baseband file to read example.bb (default) | character vector
+  group: ''
+- name: Inherit sample time from file
+  summary: Select source of sample time on (default) | off
+  group: ''
+- name: Sample time (s)
+  summary: Block sample time 1 (default) | positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Number of samples per output frame 100 (default) | positive integer scalar
+  group: ''
+- name: Repeatedly read the file
+  summary: Continuously loop data from file off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -123,7 +153,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Comm Sources

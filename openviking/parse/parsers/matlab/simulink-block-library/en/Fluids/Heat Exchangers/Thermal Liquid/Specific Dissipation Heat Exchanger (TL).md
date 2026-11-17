@@ -14,6 +14,24 @@ language: en
 # Specific Dissipation Heat Exchanger (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A1
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+- name: B1
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+- name: H2
+  summary: Entrance temperature of controlled fluid 2 thermal
+  direction: conserving
+- name: CP2
+  summary: Isobaric specific heat of controlled fluid physical signal
+  direction: input
+- name: M2
+  summary: Mass flow rate of controlled fluid physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -41,8 +59,65 @@ fluid.
 
 Instantaneous value of the mass flow rate of the controlled
 fluid.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermal liquid mass flow rate vector, mdot1
+  summary: Mass flow rate of thermal liquid at each breakpoint in lookup table for specific heat dissipation table numerical
+    array with units of mass over time
+  group: Heat Transfer
+- name: Controlled fluid mass flow rate vector, mdot2
+  summary: Mass flow rate of controlled fluid at each breakpoint in lookup table for specific heat dissipation table numerical
+    array with units of mass over time
+  group: Heat Transfer
+- name: Specific heat dissipation table, SD(mdot1,mdot2)
+  summary: Specific heat dissipation at each breakpoint in lookup table over mass flow rates of thermal liquid and controlled
+    fluid numerical array with units of power over temperature
+  group: Heat Transfer
+- name: Check if violating maximum specific dissipation
+  summary: Warning condition for specific heat dissipation in excess of minimum heat capacity rate Warning (default) | None
+    | Error
+  group: Heat Transfer
+- name: Mass flow rate vector
+  summary: Mass flow rate at each breakpoint in lookup table for pressure drop numerical array with units of mass per unit
+    time
+  group: Pressure Loss
+- name: Pressure drop vector
+  summary: Pressure drop at each breakpoint in lookup table over mass flow rate numerical array with units of pressure
+  group: Pressure Loss
+- name: Reference inflow temperature
+  summary: Absolute inlet temperature assumed in tabulated data 293.15 K (default) | scalar with units of temperature
+  group: Pressure Loss
+- name: Reference inflow pressure
+  summary: Absolute inlet pressure assumed in tabulated data 0.101325 MPa (default) | scalar with units of pressure
+  group: Pressure Loss
+- name: Mass flow rate threshold for flow reversal
+  summary: Upper bound of numerically smooth region for mass flow rate 1e-3 kg/s (default) | scalar with units of mass/time
+  group: Pressure Loss
+- name: Thermal liquid volume
+  summary: Volume of fluid in the thermal liquid flow channel 0.01 m^3 (default) | scalar with units of length cubed
+  group: Pressure Loss
+- name: Cross-sectional area at ports A1 and B1
+  summary: Flow area at the inlet and outlet of the flow channel 0.01 m^2 (default) | scalar with units of length squared
+  group: Pressure Loss
+- name: Enable Thermal Liquid dynamic compressibility
+  summary: Setting for liquid compressibility in heat exchanger On (default) | Off | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid initial temperature
+  summary: Temperature in the thermal liquid channel at the start of simulation 293.15 K (default) | scalar with units of
+    temperature
+  group: Effects and Initial Conditions
+- name: Thermal Liquid initial pressure
+  summary: Pressure in the thermal liquid channel at the start of simulation 0.101325 MPa (default) | scalar with units of
+    pressure
+  group: Effects and Initial Conditions
+```
 
 ### Heat Transfer
 
@@ -222,7 +297,6 @@ simulation.
 
 To enable this parameter, select **Enable Thermal Liquid
 dynamic compressibility** .
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid

@@ -14,6 +14,15 @@ language: en
 # Pulse Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,31 @@ pulse voltage source positive voltage
 
 Electrical conserving port associated with the
 pulse voltage source negative voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial value, V1
+  summary: Initial output voltage 0 V (default)
+  group: ''
+- name: Pulse value, V2
+  summary: High output voltage 0 V (default)
+  group: ''
+- name: Pulse delay time, TD
+  summary: Pulse delay time 0 s (default)
+  group: ''
+- name: Pulse rise time, TR
+  summary: Pulse rise time 1e-9 s (default) | nonnegative scalar
+  group: ''
+- name: Pulse fall time, TF
+  summary: Pulse fall time 1e-9 s (default) | nonnegative scalar
+  group: ''
+- name: Pulse width, PW
+  summary: Output pulse time width Inf s (default) | positive scalar
+  group: ''
+- name: Pulse period, PER
+  summary: Output pulse period Inf s (default) | positive scalar
+  group: ''
+```
 
 ### **Initial value, V1** — Initial output voltage `0` `V` (default)
 
@@ -69,7 +101,6 @@ Period of the output pulse. For the default value,
 `Inf``s`,
 the block produces a single pulse with an infinite
 period.
-
 ## Libraries
 
 Simscape / Electrical / Sources Simscape / Electrical / Additional Components / SPICE Sources

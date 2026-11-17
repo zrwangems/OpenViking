@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Interpolation
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double
+- name: Pts
+  summary: 插值点 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: 输出信号 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -46,8 +61,31 @@ chinese_source: worker-translation
 当 `Source of interpolation points` 设置为 `Input port` 之前，此端口未命名。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Source of interpolation points
+  summary: 插值点输入方法 Specify via dialog（默认）| Input port
+  group: ''
+- name: Interpolation points
+  summary: 插值点 [1.1 4.8 2.67 1.6 3.2]'（默认）| 标量 | 向量 | 矩阵 | *N* 维数组
+  group: ''
+- name: Interpolation mode
+  summary: 插值模式 Linear（默认）| FIR
+  group: ''
+- name: Interpolation filter half-length
+  summary: FIR 插值滤波器的半长度 3（默认）| 正整数
+  group: ''
+- name: Interpolation points per input sample
+  summary: 每个输入采样的插值点数 3（默认）
+  group: ''
+- name: Normalized input bandwidth
+  summary: 归一化输入带宽 0.5（默认）| (0 1] 范围内的标量
+  group: ''
+- name: Out of range interpolation points
+  summary: 超出范围点的错误处理 Clip（默认）| Clip and warn | Error
+  group: ''
+```
 
 ### **Source of interpolation points** — 插值点输入方法 `Specify via dialog`（默认）| `Input port`
 
@@ -114,7 +152,6 @@ chinese_source: worker-translation
 - `IPts = [10 2.6 -3]'`
 
 由于 *D* 有四个采样，有效插值点范围为 1 到 4。模块将插值点 10 裁剪为 4，将点 -3 裁剪为 1，得到裁剪后的插值向量 `IPtsClipped = [4 2.6 1]'`。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

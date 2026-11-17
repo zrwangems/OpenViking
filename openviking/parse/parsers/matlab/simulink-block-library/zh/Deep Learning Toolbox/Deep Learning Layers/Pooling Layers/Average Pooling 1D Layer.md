@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Average Pooling 1D Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据 二维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 下采样输出数据 二维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,81 @@ chinese_source: worker-translation
 对输入数据进行下采样的结果。输出数据具有两个维度，对应于您使用 **Data format** 模块参数指定的格式。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Layer
+  summary: 对应的层对象 layerObject（默认）| averagePooling1dLayer 对象
+  group: 主要
+  block_parameter: Layer
+  type: workspace variable
+  values: averagePooling1dLayer object
+  default: '''layerObject'''
+- name: Data format
+  summary: 输入数据的格式 CT（默认）| SC
+  group: 主要
+  block_parameter: DataFormat
+  type: character vector
+  values: '''CT'' | ''SC'''
+  default: '''CT'''
+- name: Output minimum
+  summary: 用于范围检查的输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit
+    via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Output integer rounding mode
+  summary: 定点输出转换操作的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Output saturate on integer overflow
+  summary: 输出转换操作的溢出操作方式 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Accumulator
+  summary: '累加器的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: AccumDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Same as first input'' | <data type expression>'
+- name: Number of pooling elements
+  summary: '标准差的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: NumPoolingElementsDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Internal integer rounding mode
+  summary: 内部定点操作的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: InternalRndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Internal saturate on integer overflow
+  summary: 内部模块操作的溢出操作方式 off（默认）| on
+  group: 数据类型
+  block_parameter: InternalSaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Sample time
+  summary: 指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -270,7 +354,6 @@ chinese_source: worker-translation
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **值**：`'-1'`（默认）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Pooling Layers

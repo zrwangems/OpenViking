@@ -14,6 +14,30 @@ language: en
 # Compressor
 
 ## Ports
+```yaml
+ports:
+- name: Ds
+  summary: Drive shaft speed two-way connector port
+  direction: input
+- name: A
+  summary: Inlet pressure, temperature, enthalpy, mass fractions two-way connector port
+  direction: input
+- name: B
+  summary: Outlet pressure, temperature, enthalpy, mass fractions two-way connector port
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: Ds
+  summary: Drive shaft torque two-way connector port
+  direction: output
+- name: A
+  summary: Inlet mass flow rate, heat flow rate, temperature, mass fractions two-way connector port
+  direction: output
+- name: B
+  summary: Outlet mass flow rate, heat flow rate, temperature, mass fractions two-way connector port
+  direction: output
+```
 
 ### Input
 
@@ -119,8 +143,53 @@ Bus containing:
   - `PmMassFrac` — Particulate matter
   - `AirMassFrac` — Air
   - `BrndGasMassFrac` — Burned gas
-
 ## Parameters
+```yaml
+parameters:
+- name: Calibrate Performance Maps
+  summary: Calibrate tables with measured data selection
+  group: ''
+- name: Corrected mass flow rate table, mdot_corr_tbl
+  summary: Lookup table array
+  group: ''
+  block_parameter: mdot_corr_tbl
+  values: array
+- name: Efficiency table, eta_comp_tbl
+  summary: Lookup table array
+  group: ''
+  block_parameter: eta_comp_tbl
+  values: array
+- name: Corrected speed breakpoints, w_corr_bpts1
+  summary: Breakpoints vector
+  group: ''
+  block_parameter: w_corr_bpts1
+  values: vector
+- name: Pressure ratio breakpoints, Pr_bpts2
+  summary: Breakpoints vector
+  group: ''
+  block_parameter: Pr_bpts2
+  values: vector
+- name: Reference temperature, T_ref
+  summary: Reference 293.15 (default) | scalar
+  group: ''
+  block_parameter: T_ref
+  values: 293.15 (default) | scalar
+- name: Reference pressure, P_ref
+  summary: Reference 101325 (default) | scalar
+  group: ''
+  block_parameter: P_ref
+  values: 101325 (default) | scalar
+- name: Ideal gas constant, R
+  summary: Constant 287 (default) | scalar
+  group: ''
+  block_parameter: R
+  values: 287 (default) | scalar
+- name: Specific heat at constant pressure, cp
+  summary: Specific heat 1005 (default) | scalar
+  group: ''
+  block_parameter: cp
+  values: 1005 (default) | scalar
+```
 
 #### Performance Tables
 
@@ -290,7 +359,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `cp` |
 | **Values:** | `1005` (default) | `scalar` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Boost

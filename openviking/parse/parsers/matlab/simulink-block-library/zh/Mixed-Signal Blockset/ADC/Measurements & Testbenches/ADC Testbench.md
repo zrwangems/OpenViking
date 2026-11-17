@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # ADC Testbench
 
 ## 端口
+```yaml
+ports:
+- name: from adc digital
+  summary: 来自 ADC 输出的数字信号 标量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: from adc ready
+  summary: 来自 ADC 输出的转换就绪信号 标量
+  direction: input
+  data_types: double
+- name: to adc analog
+  summary: 用于 ADC 输入的模拟激励信号 标量
+  direction: output
+  data_types: double
+- name: to adc start
+  summary: 用于 ADC 的外部启动转换时钟 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +61,135 @@ chinese_source: worker-translation
 用于 ADC 的外部启动转换时钟，以标量形式返回。此信号的上升沿启动 ADC 模块中的转换过程。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement
+  summary: 选择测量直流还是交流性能指标 DC（默认）| AC
+  group: ''
+- name: Recommended min. simulation stop time (s)
+  summary: 仿真必须运行以获得有意义结果的最短时间 2.048e-02（默认）| 正实数标量
+  group: ''
+- name: Set as model stop time
+  summary: 自动将推荐的仿真最短停止时间设置为模型停止时间 按钮
+  group: ''
+- name: Endpoint
+  summary: 使用端点法测量 DNL、INL 开（默认）| 关
+  group: ''
+- name: Best fit
+  summary: 使用最佳拟合方法测量 DNL、INL 开（默认）| 关
+  group: ''
+- name: Plot DC analysis result
+  summary: 绘制 DC 分析结果按钮
+  group: ''
+- name: Export measurement result
+  summary: 将详细测试结果存储到基础工作区按钮
+  group: ''
+- name: Sample interval (s)
+  summary: ADC Testbench 轮询输入的速率 1e-6（默认）| 正实数标量
+  group: Stimulus
+  block_parameter: SampleInterval
+  type: 字符向量
+  values: 正实数标量
+  default: 1e-6
+- name: Distortion measurement type
+  summary: 要测量的失真类型 Harmonic（默认）| Intermodulation
+  group: Stimulus
+  block_parameter: DistortionMeasurement
+  type: 字符向量
+  values: Harmonic | Intermodulation
+  default: Harmonic
+- name: Analog stimulus frequency (Hz)
+  summary: ADC 模拟输入信号的频率 正实数标量 | 正实数值向量
+  group: Stimulus
+  block_parameter: InputFrequency
+  type: 字符向量
+  values: 正实数标量 | 正实数值向量
+  default: '98632.8125'
+- name: Resolution bandwidth (Hz)
+  summary: 分辨率带宽 正实数标量
+  group: Stimulus
+  block_parameter: RBW
+  type: 字符向量
+  values: 正实数标量
+  default: '976.5625'
+- name: 起始转换频率 (Hz)
+  summary: ADC 起始转换时钟的频率 1e6（默认）| 正实数标量
+  group: Stimulus
+  block_parameter: StartFreq
+  type: 字符向量
+  values: 正实数标量
+  default: 1e6
+- name: RMS 孔径抖动 (s)
+  summary: 由起始转换时钟添加的 RMS 孔径抖动 40e-12（默认）| 正实数标量
+  group: Stimulus
+  block_parameter: RMSJitt
+  type: 字符向量
+  values: 正实数标量
+  default: 40e-12
+- name: 误差容限 (LSB)
+  summary: 模拟信号相邻采样之间的最大差值 0.1（默认）| 范围 (0, 1] 内的正标量
+  group: Stimulus
+- name: 自动确定扫描范围
+  summary: 自动确定扫描范围 开（默认）| 关
+  group: Stimulus
+- name: 扫描范围
+  summary: 自定义扫描范围 [-1 1]（默认）| 2 元素向量
+  group: Stimulus
+- name: 完成时停止仿真
+  summary: 完成时停止仿真 开（默认）| 关
+  group: Stimulus
+- name: 自动填充设置参数
+  summary: 自动从 ADC 传播设置参数 按钮
+  group: 设置
+- name: 位数
+  summary: 物理输出位数 10（默认）| 范围 [1, 26] 内的正实数整数
+  group: 设置
+- name: 输入范围 (V)
+  summary: ADC 动态范围 [-1 1]（默认）| 2 元素行向量
+  group: 设置
+  block_parameter: InputRange
+  type: 字符向量
+  values: 2 元素行向量
+  default: '[-1 1]'
+- name: 保持时间 (s)
+  summary: 测量分析前的延迟 0（默认）| 非负实数标量
+  group: 设置
+  block_parameter: HoldOffTime
+  type: 字符向量
+  values: 非负实数标量
+  default: '0'
+- name: 在仿真期间显示频谱分析仪
+  summary: 在仿真期间显示频谱分析仪 off（默认）| on
+  group: 设置
+- name: 启用增大的缓冲区大小
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: 设置
+- name: 缓冲区大小
+  summary: 仿真期间可用的输入缓冲采样数 5（默认）| 正整数标量
+  group: 设置
+  block_parameter: NBuffer
+  type: 字符向量
+  values: 正整数标量
+  default: '5'
+- name: 自动填充目标指标
+  summary: 从 ADC 自动传播目标指标 button
+  group: 目标指标
+- name: 失调误差
+  summary: 将量化步长偏移特定值 1.5 LSB（默认）| 实数标量
+  group: 目标指标
+  block_parameter: TargetOffsetError
+  type: 字符向量
+  values: 实数标量
+  default: 1.5 LSB
+- name: 增益误差
+  summary: ADC 传输曲线斜率上的误差 1 LSB（默认）| 实数标量
+  group: 目标指标
+  block_parameter: TargetGainError
+  type: 字符向量
+  values: 实数标量
+  default: 1 LSB
+```
 
 ### **Measurement** — 选择测量直流还是交流性能指标 `DC`（默认）| `AC`
 
@@ -419,7 +565,6 @@ LSB 由以下公式计算：LSB = Full scale range of converter2NBits。
 | **默认值：** `1 LSB` |
 
 **数据类型：** `double`
-
 ## 所属库
 
 Mixed-Signal Blockset / ADC / Measurements & Testbenches

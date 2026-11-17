@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Battery Single Particle
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: H
+  summary: 电池热质量热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,197 @@ chinese_source: worker-translation
 ### **H** — 电池热质量热
 
 与电池热质量关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: 所有表格的外推方法
+  summary: 表格的外推方法 Nearest（默认）| Linear | Error
+  group: 主
+  block_parameter: ExtrapolationMethod
+  values: '"nearest"（默认）| "linear" | "error"'
+- name: 负极厚度
+  summary: 负极的厚度 3.4E-5 m（默认）| 正标量
+  group: 几何
+- name: 负极电解质层数
+  summary: 负极的电解质层数 10（默认）| 大于 3 的标量
+  group: 几何
+- name: 隔膜厚度
+  summary: 隔膜的厚度 2.5E-5m（默认）| 正标量
+  group: 几何
+- name: 隔膜电解质层数
+  summary: 隔膜的电解质层数 5（默认）| 大于 3 的标量
+  group: 几何
+- name: 正极厚度
+  summary: 正极的厚度 8E-5m（默认）| 正标量
+  group: 几何
+- name: 正极电解质层数
+  summary: 正极的电解质层数 10（默认）| 大于 3 的标量
+  group: 几何
+- name: 电极板面积
+  summary: 电极板的面积 1.8E-1m^2（默认）| 正标量
+  group: 几何
+- name: 负极颗粒半径
+  summary: 负极的颗粒半径 5E-6m（默认）| 正标量
+  group: 几何
+- name: 负极壳层数
+  summary: 负极的壳层数 10（默认）| 大于 3 的正标量
+  group: 几何
+- name: 正极颗粒半径
+  summary: 正极的颗粒半径 5E-8m（默认）| 正标量
+  group: 几何
+- name: 正极壳层数
+  summary: 正极的壳层数 10（默认）| 大于 3 的正标量
+  group: 几何
+- name: 负极活性材料体积分数
+  summary: 负极中活性材料的体积分数 0.58（默认）| 范围 (0,1) 内的标量
+  group: 电极属性
+- name: 正极活性材料体积分数
+  summary: 正极中活性材料的体积分数 0.374（默认）| 范围 (0,1) 内的标量
+  group: 电极属性
+- name: 化学计量断点指定
+  summary: 用于指定化学计量断点的选项 Normalized（默认）| Absolute
+  group: 电极属性
+- name: 归一化化学计量断点
+  summary: 电极开路电位的归一化化学计量断点 linspace(0.025, 0.975, 39)（默认）| 范围 [0,1] 内元素的向量
+  group: 电极属性
+- name: 相对于归一化化学计量的负极开路电位
+  summary: 相对于归一化化学计量的负极开路电位 [.435; .325; .259; .221; .204; .194; .179; .166; .155; .145; .137; .131; .128; .127; .126; .125;
+    .124; .123; .122; .121; .118; .117; .112; .109; .105; .1; .098; .095; .094; .093; .091; .09; .089; .088; .087; .086; .085;
+    .084; .083] V（默认）| 正元素向量
+  group: 电极属性
+- name: 相对于归一化化学计量的正极开路电位
+  summary: 相对于归一化化学计量的正极开路电位 [3.598; 3.53; 3.494; 3.474; 3.46; 3.455; 3.454; 3.453; 3.4528; 3.4526; 3.4524; 3.452; 3.4518;
+    3.4516; 3.4514; 3.4512; 3.451; 3.4508; 3.4506; 3.4503; 3.45; 3.4498; 3.4495; 3.4493; 3.449; 3.4488; 3.4486; 3.4484; 3.4482;
+    3.4479; 3.4477; 3.4475; 3.4473; 3.447; 3.4468; 3.4466; 3.4464; 3.4462; 3.4458] V（默认）| 正元素向量
+  group: 电极属性
+- name: 绝对负极化学计量断点
+  summary: 负极开路电位的绝对化学计量断点 linspace(0.025, 0.975, 39)（默认）| 范围 [0,1] 内元素的向量
+  group: 电极属性
+- name: 相对于绝对化学计量的负极开路电位
+  summary: 相对于绝对化学计量的负极开路电位 [.484; .335; .253; .209; .2; .181; .165; .151; .139; .131; .128; .125; .124; .124; .123; .122;
+    .119; .117; .111; .108; .101; .098; .095; .093; .092; .088; .088; .088; .088; .087; .087; .087; .085; .082; .079; .071;
+    .064; .049; .026] V（默认）| 正元素向量
+  group: 电极属性
+- name: 绝对正极化学计量断点
+  summary: 正极开路电位的绝对化学计量断点 linspace(0.025, 0.975, 39)（默认）| 范围 [0,1] 内元素的向量
+  group: 电极属性
+- name: 相对于绝对化学计量的正极开路电位
+  summary: 相对于绝对化学计量的正极开路电位 [3.81; 3.608; 3.512; 3.478; 3.459; 3.453; 3.45257; 3.45214; 3.45171; 3.45128; 3.45085; 3.45042;
+    3.44999; 3.44956; 3.44913; 3.4487; 3.44827; 3.44784; 3.44741; 3.44698; 3.44655; 3.44612; 3.44569; 3.44526; 3.44483; 3.4444;
+    3.44397; 3.44354; 3.44311; 3.44268; 3.44225; 3.44182; 3.44139; 3.44096; 3.44053; 3.44; 3.412; 3.304; 2.968] V（默认）| 正元素向量
+  group: 电极属性
+- name: 负极最大离子浓度
+  summary: 负极中的最大离子浓度 30555 mol/m^3（默认）| 正标量
+  group: 电极属性
+- name: 负极最大化学计量
+  summary: 负极中的最大化学计量 0.811（默认）| 正标量
+  group: 电极属性
+- name: 负极最小化学计量
+  summary: 负极中的最小化学计量 0.0132（默认）| 正标量
+  group: 电极属性
+- name: 正极最大离子浓度
+  summary: 正极中的最大离子浓度 22806 mol/m^3（默认）| 正标量
+  group: 电极属性
+- name: 正极最大化学计量
+  summary: 正极中的最大化学计量 0.74（默认）| 正标量
+  group: 电极属性
+- name: 正极最小化学计量
+  summary: 正极中的最小化学计量 0.035（默认）| 正标量
+  group: 电极属性
+- name: 负极活性材料扩散系数
+  summary: 负极中活性材料的扩散系数 3E-15 m^2/s（默认）| 正标量
+  group: 电极属性
+- name: 正极活性材料扩散系数
+  summary: 正极中活性材料的扩散系数 5.9E-20 m^2/s（默认）| 正标量
+  group: 电极属性
+- name: 负极电导率
+  summary: 负极的电导率 100 S/m（默认）| 正标量
+  group: 电极属性
+- name: 正极电导率
+  summary: 正极的电导率 0.5 S/m（默认）| 正标量
+  group: 电极属性
+- name: 集流体电阻
+  summary: 集流体的电阻 0 Ohm（默认）| 非负标量
+  group: 电极属性
+- name: 负极中电解质体积分数
+  summary: 负极中电解质的体积分数 0.3874（默认）| 范围 (0,1) 内的标量
+  group: 电解质属性
+- name: 隔膜中电解质体积分数
+  summary: 隔膜中电解质的体积分数 0.45（默认）| 范围 (0,1) 内的标量
+  group: 电解质属性
+- name: 正极中电解质体积分数
+  summary: 正极中电解质的体积分数 0.5725（默认）| 范围 (0,1) 内的标量
+  group: 电解质属性
+- name: 电解质电导率
+  summary: 电解质的电导率 0.29 S/m（默认）| 正标量
+  group: 电解质属性
+- name: 负极 Bruggeman 指数
+  summary: 负极的 Bruggeman 指数 1.5（默认）| 大于或等于 1 的标量
+  group: 电解质属性
+- name: 隔膜 Bruggeman 指数
+  summary: 隔膜的 Bruggeman 指数 1.5（默认）| 大于或等于 1 的标量
+  group: 电解质属性
+- name: 正极 Bruggeman 指数
+  summary: 正极的 Bruggeman 指数 1.5（默认）| 大于或等于 1 的标量
+  group: 电解质属性
+- name: 迁移数
+  summary: 离子在电解质中携带的总电流的分数 0.363（默认）| 范围 [0,1] 内的标量
+  group: 电解质属性
+- name: 电解质扩散系数
+  summary: 电解质的扩散系数 2E-10 m^2/s（默认）| 正标量
+  group: 电解质属性
+- name: 负极电荷转移速率常数
+  summary: 负极的电荷转移速率常数 8.8E-11 m^(5/2)/(mol^(1/2)*s)（默认）| 正标量
+  group: 反应动力学
+- name: 正极电荷转移速率常数
+  summary: 正极的电荷转移速率常数 2.8E-13 m^(5/2)/(mol^(1/2)*s)（默认）| 正标量
+  group: 反应动力学
+- name: 电池热质量
+  summary: 与热端口关联的电池热质量 77 J/K（默认）| 正标量
+  group: 热
+- name: Arrhenius 参考温度
+  summary: Arrhenius 参考温度 298.15 K（默认）| 正标量
+  group: 热
+- name: 负极活性材料扩散活化能
+  summary: 负极活性材料内部扩散的活化能 39000 J/mol（默认）| 正标量
+  group: 热
+- name: 正极活性材料扩散活化能
+  summary: 正极活性材料内部扩散的活化能 35000 J/mol（默认）| 正标量
+  group: 热
+- name: 电解质扩散活化能
+  summary: 电解质内部扩散的活化能 26600 J/mol（默认）| 正标量
+  group: 热
+- name: 负极传导活化能
+  summary: 负极内部传导的活化能 3000 J/mol（默认）| 正标量
+  group: 热
+- name: 正极传导活化能
+  summary: 正极内部传导的活化能 3000 J/mol（默认）| 正标量
+  group: 热
+- name: 电解质传导活化能
+  summary: 电解质内部传导的活化能 11000 J/mol（默认）| 正标量
+  group: 热
+- name: 负极电荷转移活化能
+  summary: 负极内部电荷转移的活化能 13000 J/mol（默认）| 正标量
+  group: 热
+- name: Activation energy for charge transfer in Cathode
+  summary: 阴极内部电荷转移的活化能 20000 J/mol（默认）| 正标量
+  group: 热
+- name: Additional resistance fault
+  summary: 对串联电阻进行故障设置的选项 Add fault
+  group: 故障
+- name: Additional resistance when faulted
+  summary: 模块发生故障时的附加电阻 1e5 Ohm（默认）| 正标量
+  group: 故障
+- name: Trigger type
+  summary: 故障触发类型 Always On（默认）| Timed | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Trigger Configuration
+  summary: 为放热反应故障启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -381,7 +582,6 @@ Arrhenius 参考温度。
 #### 依赖关系
 
 要启用此参数，请点击 **Additional resistance fault** 参数的 **Add fault** 超链接，并将 **Trigger type** 设置为 `Additional Triggers`。
-
 ## 所属库
 
 Simscape / Battery / Cells

@@ -14,6 +14,27 @@ language: en
 # Differential Drive Kinematic Model
 
 ## Ports
+```yaml
+ports:
+- name: dϕL/dt
+  summary: Left wheel speed numeric scalar
+  direction: input
+- name: dϕR/dt
+  summary: Right wheel speed numeric scalar
+  direction: input
+- name: v
+  summary: Vehicle speed numeric scalar
+  direction: input
+- name: ɷ
+  summary: Angular velocity of vehicle numeric scalar
+  direction: input
+- name: state
+  summary: Pose of vehicle three-element vector
+  direction: output
+- name: stateDot
+  summary: Derivatives of state output three-element vector
+  direction: output
+```
 
 ### Input
 
@@ -69,8 +90,28 @@ The current linear and angular velocities of the vehicle specified as a
 second. The linear and angular velocities are calculated by taking the derivative of
 the `state`
 output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Vehicle inputs
+  summary: Type of speed and directional inputs for vehicle Wheel Speeds (default) | Vehicle Speed & Heading Angular Velocity
+  group: ''
+- name: Wheel radius
+  summary: Wheel radius of vehicle 0.05 (default) | positive numeric scalar
+  group: ''
+- name: Wheel speed range
+  summary: Minimum and maximum vehicle speeds [-Inf Inf] (default) | two-element vector
+  group: ''
+- name: Track width
+  summary: Track length of vehicle from wheel to wheel 0.2 (default) | numeric scalar
+  group: ''
+- name: Initial state
+  summary: Initial pose of the vehicle [0;0;0] (default) | three-element vector
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Vehicle inputs** — Type of speed and directional inputs for vehicle `Wheel Speeds` (default) | `Vehicle Speed & Heading Angular Velocity`
 
@@ -110,7 +151,6 @@ the vehicle.
   simulations, as long as the model does not change.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Mobile Robot Algorithms

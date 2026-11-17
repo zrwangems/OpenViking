@@ -14,6 +14,15 @@ language: en
 # Function-Call Generator
 
 ## Ports
+```yaml
+ports:
+- name: Enable
+  summary: Control signal input scalar
+  direction: input
+- name: Function Call
+  summary: Function-call event output scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -32,8 +41,38 @@ port** check box.
 
 Sends function-call events to the function-call input port of a
 function-call subsystem or function-call model.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Specify time interval 1 (default) | scalar | vector | -1
+  group: ''
+  block_parameter: sample_time
+  type: character vector
+  values: '''1'' | scalar expression | vector expression | ''-1'''
+  default: '''1'''
+- name: Number of iterations
+  summary: Specify number of times to provide a function-call at each time step 1 (default) | integer
+  group: ''
+  block_parameter: numberOfIterations
+  type: character vector
+  values: '''1'' | integer in quotes | vector of integers in quotes'
+  default: '''1'''
+- name: Disallow wide output
+  summary: Prevent implicit expansion of output signal off (default) | on
+  group: ''
+  block_parameter: DisallowWideOutput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show enable port
+  summary: Add input port for control signal off (default) | on
+  group: ''
+  block_parameter: ShowEnablePort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Sample time** — Specify time interval `1` (default) | scalar | vector | `-1`
 
@@ -154,7 +193,6 @@ outputs function-call events at every time step.
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Ports & Subsystems

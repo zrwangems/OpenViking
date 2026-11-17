@@ -14,6 +14,21 @@ language: en
 # AXI4 Master Source
 
 ## Ports
+```yaml
+ports:
+- name: wrCtrlIn
+  summary: Input control bus bus
+  direction: input
+  data_types: WriteControlS2MBusObj
+- name: wrData
+  summary: Output AXI data scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wrCtrlOut
+  summary: Output control bus bus
+  direction: output
+  data_types: WriteControlM2SBusObj
+```
 
 ### Input
 
@@ -55,8 +70,41 @@ these control signals:
   **wrData** output port is valid
 
 **Data Types:** `WriteControlM2SBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Data type
+  summary: Output data type uint8 (default) | double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 |
+    fixed point
+  group: ''
+- name: Dimensions
+  summary: Output data dimensions 1 | positive scalar | array
+  group: ''
+- name: Enable sample packing (last signal dimension as channel)
+  summary: Pack data on the last dimension of the signal off (default) | on
+  group: ''
+- name: Number of transfers
+  summary: Number of write requests to send 1 (default) | positive integer
+  group: ''
+- name: Initial address
+  summary: Start address 0 (default) | nonnegative integer
+  group: ''
+- name: Initial delay
+  summary: Initial delay 0 (default) | nonnegative scalar
+  group: ''
+- name: Data generation
+  summary: Output generation type counter (default) | random | ones | workspace
+  group: ''
+- name: Counter init value
+  summary: Initial counter value 0 (default) | scalar
+  group: ''
+- name: Variable name
+  summary: Workspace variable name simOut (default) | any MATLAB-supported variable name
+  group: ''
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: ''
+```
 
 ### **Data type** — Output data type `uint8` (default) | `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint16` | `uint32` | `uint64` | `fixed point`
 
@@ -166,7 +214,6 @@ want the output to have a time offset. To add a time offset to the output, speci
 `1`-by-`2` vector where the first element is the
 sampling period and the second element is the offset. For more information about sample
 times in Simulink®, see Specify Sample Time.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Testbench

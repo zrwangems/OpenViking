@@ -15,6 +15,93 @@ chinese_source: worker-translation
 # Nonlinear MPC Controller
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入向量
+  direction: input
+- name: ref
+  summary: 模型输出参考值 行向量 | 矩阵
+  direction: input
+- name: last_mv
+  summary: 上一控制区间在被控对象中使用的控制信号 向量
+  direction: input
+- name: md
+  summary: 输入 行向量 | 矩阵
+  direction: input
+- name: params
+  summary: 可选参数 总线
+  direction: input
+- name: mv.target
+  summary: 操纵变量目标 向量
+  direction: input
+- name: y.min
+  summary: 最小输出变量约束 向量 | 矩阵
+  direction: input
+- name: y.max
+  summary: 最大输出变量约束 向量 | 矩阵
+  direction: input
+- name: mv.min
+  summary: 最小操纵变量约束 向量 | 矩阵
+  direction: input
+- name: mv.max
+  summary: 最大操纵变量约束向量 | 矩阵
+  direction: input
+- name: dmv.min
+  summary: 最小操纵变量速率约束向量 | 矩阵
+  direction: input
+- name: dmv.max
+  summary: 最大操纵变量速率约束向量 | 矩阵
+  direction: input
+- name: x.min
+  summary: 最小状态约束 向量 | 矩阵
+  direction: input
+- name: x.max
+  summary: 最大状态约束 向量 | 矩阵
+  direction: input
+- name: y.wt
+  summary: 输出变量整定权重 行向量 | 矩阵
+  direction: input
+- name: mv.wt
+  summary: 操纵变量调节权重行向量 | 矩阵
+  direction: input
+- name: dmv.wt
+  summary: 操纵变量速率调节权重行向量 | 矩阵
+  direction: input
+- name: ecr.wt
+  summary: 松弛变量调节权重标量
+  direction: input
+- name: mv.init
+  summary: 最优操纵变量解向量的初始猜测 | 矩阵
+  direction: input
+- name: x.init
+  summary: 最优状态变量解向量的初始猜测 | 矩阵
+  direction: input
+- name: e.init
+  summary: 解处松弛变量的初始猜测 非负标量
+  direction: input
+- name: mv
+  summary: 最优操纵变量控制作用 列向量
+  direction: output
+- name: cost
+  summary: 目标函数代价 非负标量
+  direction: output
+- name: slack
+  summary: 松弛变量 0 | 非负标量
+  direction: output
+- name: nlp.status
+  summary: 优化状态标量
+  direction: output
+- name: mv.seq
+  summary: 最优操纵变量序列矩阵
+  direction: output
+- name: x.seq
+  summary: 最优预测模型状态序列矩阵
+  direction: output
+- name: y.seq
+  summary: 最优输出变量序列矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -407,8 +494,196 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请选择 **Optimal output sequence** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Nonlinear MPC Controller
+  summary: 控制器对象 nlmpc 对象名称
+  group: ''
+  block_parameter: nlmpcobj
+  type: 字符串、字符向量
+  default: '""'
+- name: Use prediction model sample time
+  summary: 使用预测模型采样时间的标志 开（默认）| 关
+  group: ''
+  block_parameter: UseObjectTs
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Make block run at a different sample time
+  summary: 使模块以不同采样时间运行 控制器采样时间 正有限标量 | -1
+  group: ''
+  block_parameter: TsControl
+  type: string, character vector
+  default: '""'
+- name: Use MEX to speed up simulation
+  summary: 使用 MEX 加速仿真的标志 关（默认）| 开
+  group: ''
+  block_parameter: UseMEX
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Specify MEX function name
+  summary: 指定 MEX 函数名称 控制器 MEX 函数名称 字符串
+  group: ''
+  block_parameter: mexname
+  type: string, character vector
+  default: '""'
+- name: Measured disturbances
+  summary: 测量扰动 添加测量扰动输入端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: md_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Targets for manipulated variables
+  summary: 操作变量目标 添加操作变量目标输入端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: mvtarget_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Model parameters
+  summary: 添加模型参数输入端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: param_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal cost
+  summary: 添加最优代价输出端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: cost_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal control sequence
+  summary: 添加最优控制序列输出端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: mvseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal state sequence
+  summary: 添加最优状态序列输出端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: stateseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal output sequence
+  summary: 添加最优输出序列输出端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: ovseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Slack variable
+  summary: 添加松弛变量输出端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: slack_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimization status
+  summary: 添加优化状态输出端口 关（默认）| 开
+  group: 常规选项卡
+  block_parameter: status_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower OV limits
+  summary: 添加最小 OV 约束输入端口 关（默认）| 开
+  group: Online Features Tab
+  block_parameter: ov_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper OV limits
+  summary: 添加最大 OV 约束输入端口 关（默认）| 开
+  group: Online Features Tab
+  block_parameter: ov_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MV limits
+  summary: 添加最小 MV 约束输入端口 关（默认）| 开
+  group: Online Features Tab
+  block_parameter: mv_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper MV limits
+  summary: 添加最大 MV 约束输入端口 关（默认）| 开
+  group: Online Features Tab
+  block_parameter: mv_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MVRate limits
+  summary: 添加最小 MV 速率约束输入端口 关（默认）| 开
+  group: Online Features Tab
+  block_parameter: mvrate_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper MVRate limits
+  summary: 添加最大 MV 速率约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: mvrate_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower state limits
+  summary: 添加最小状态约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: state_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper state limits
+  summary: 添加最大状态约束输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: state_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV weights
+  summary: 添加 OV 整定权重输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: ov_weight
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV weights
+  summary: 添加 MV 整定权重输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: mv_weight
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MVRate weights
+  summary: 添加 MV 速率整定权重输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: mvrate_weight
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: ECR weight
+  summary: 添加 ECR 整定权重输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: ecr_weight
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Initial guess
+  summary: 添加初始猜测输入端口 off（默认）| on
+  group: Online Features Tab
+  block_parameter: nlp_initialize
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Nonlinear MPC Controller** — 控制器对象 `nlmpc` 对象名称
 
@@ -783,7 +1058,6 @@ MV 速率向量的第一个元素（即操作变量当前值与上一个值之�
 | **类型：** string, character vector |
 | **值：** `"off"`, `"on"` |
 | **默认值：** `"off"` |
-
 ## 所属库
 
 Model Predictive Control Toolbox

@@ -14,6 +14,33 @@ language: en
 # Real Divide HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: num
+  summary: Numerator scalar | vector | matrix
+  direction: input
+  data_types: single | double | fixed point
+- name: den
+  summary: Denominator scalar | vector | matrix
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: Whether input is valid Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: Output computed by dividing inputs real scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: divideByZero
+  summary: Whether the value at output is the result of division by zero Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: validOut
+  summary: Whether output data is valid Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -94,8 +121,35 @@ this value is `0` (`false`), the output data is not
 valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output datatype
+  summary: Data type of the output fixdt(1,18,10) (default) | single | double | fixdt(1,16,0) | <data type expression>
+  group: ''
+  block_parameter: OutputType
+  values: fixdt(1,18,10) (default) | single | double | fixdt(1,16,0) | <data type expression>
+- name: Show divide by zero port
+  summary: Whether to show the divideByZero port off (default) | on
+  group: ''
+  block_parameter: dbzPort
+  values: 0 (false) (default) | 1 (true)
+- name: Automatically select CORDIC maximum shift value based on input word length
+  summary: Automatically select CORDIC maximum shift value based on input word length on (default) | off
+  group: ''
+  block_parameter: autoMaximumShiftVal
+  values: on (default) | off
+- name: CORDIC maximum shift value
+  summary: Maximum shift value of hyperbolic vectoring CORDIC wl - 1 (default) | 10 | positive integer-valued scalar
+  group: ''
+  block_parameter: maximumShiftValue
+  values: 10 (default) | positive integer-valued scalar
+- name: Number of iterations per pipeline register
+  summary: Number of CORDIC iterations to perform per pipeline stage 1 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: nIterPerReg
+  values: 1 (default) | positive integer-valued scalar
+```
 
 ### **Output datatype** — Data type of the output `fixdt(1,18,10)` (default) | `single` | `double` | `fixdt(1,16,0)` | `<data type expression>`
 
@@ -233,7 +287,6 @@ programmatically, use the `get_param` function.
 | **Data Types:** | `char` | `string` |
 
 **Example:** `set_param(gcb,"nIterPerReg","2")`
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Math Operations

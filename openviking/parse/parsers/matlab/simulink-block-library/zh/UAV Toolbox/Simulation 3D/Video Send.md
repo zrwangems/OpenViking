@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Video Send
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 要流式传输的 RGB 或灰度图像信号 *M*-by-*N*-by-*3* 矩阵 | *M*-by-*N* 矩阵
+  direction: input
+  data_types: uint8 | uint16
+- name: R
+  summary: 要流式传输的 RGB 图像的红色通道信号 *M*-by-*N* 矩阵。
+  direction: input
+  data_types: uint8
+- name: G
+  summary: 要流式传输的 RGB 图像的绿色通道信号 *M*-by-*N* 矩阵
+  direction: input
+  data_types: uint8
+- name: B
+  summary: 要流式传输的 RGB 图像的蓝色通道信号 *M*-by-*N* 矩阵
+  direction: input
+  data_types: uint8
+```
 
 ### 输入
 
@@ -66,8 +85,31 @@ multidimensional signal`。
 `Separate color signals`。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Format
+  summary: 输入视频流信号格式 RGB（默认）| Grayscale | Grayscale (16-bit)
+  group: ''
+- name: Image signal
+  summary: RGB 图像输入信号的性质 One multidimensional signal（默认）| Separate color signals
+  group: ''
+- name: Compression
+  summary: 视频流的压缩格式 JPEG（默认）| VP8 | VP9
+  group: ''
+- name: Quality
+  summary: 视频流的质量 85（默认）| 0-100
+  group: ''
+- name: Max frame time (ms)
+  summary: 每帧最大时间 30（默认）| 非负整数
+  group: ''
+- name: Remote address
+  summary: 远程 IP 地址 127.0.0.1（默认）| 字符向量
+  group: ''
+- name: Remote port
+  summary: 远程 IP 端口 5004（默认）| 0-65535
+  group: ''
+```
 
 #### 视频参数
 
@@ -151,7 +193,6 @@ multidimensional signal`。
 ### **Remote port** — 远程 IP 端口 5004（默认）| 0-65535
 
 指定远程设备的 IP 端口，模块将消息发送到该设备。在流式传输视频时，此模块会选择第一个可用的本地 UDP 端口，与您指定的远程端口无关。
-
 ## 所属库
 
 UAV Toolbox / Simulation 3D

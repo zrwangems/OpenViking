@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Bit to Integer Converter
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 位标量 | 位列向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出信号 整数 | 整数列向量
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +41,40 @@ chinese_source: worker-translation
 
 - 当输入位被视为无符号时，每个整数输出在范围 [0, (2*M* – 1)] 内。
 - 当输入位被视为有符号时，每个整数输出在范围 [(–2*M*-1), (2*M* – 1 – 1)] 内。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of bits per integer(M)
+  summary: 每个整数对应的位数 3（默认）| [1, 32] 范围内的整数
+  group: ''
+  block_parameter: nbits
+  type: character vector
+  values: integer in the range [1, 32]
+  default: '''3'''
+- name: Input bit order
+  summary: 输入位顺序 MSB first（默认）| LSB first
+  group: ''
+  block_parameter: bitOrder
+  type: character vector
+  values: '''MSB first'' | ''LSB first'''
+  default: '''MSB first'''
+- name: After bit packing, treat resulting integer values as
+  summary: 位打包后所得整数值的符号标志 Unsigned（默认）| Signed
+  group: ''
+  block_parameter: signedOutputValues
+  type: character vector
+  values: '''Unsigned'' | ''Signed'''
+  default: '''Unsigned'''
+- name: Output data type
+  summary: 输出数据类型 Inherit via internal rule（默认）| Smallest integer | Same as input | double | single | int8 | uint8 | int16
+    | uint16 | int32 | uint32
+  group: ''
+  block_parameter: outDtype
+  type: character vector
+  values: '''Inherit via internal rule'' | ''Smallest integer'' | ''Same as input'' | ''double'' | ''single'' | ''int8'' |
+    ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'''
+  default: '''Inherit via internal rule'''
+```
 
 ### **Number of bits per integer(M)** — 每个整数对应的位数 `3`（默认）| [1, 32] 范围内的整数
 
@@ -119,7 +161,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Inherit via internal rule'` | `'Smallest integer'` | `'Same as input'` | `'double'` | `'single'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` |
 | **默认值**：`'Inherit via internal rule'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations

@@ -14,6 +14,41 @@ language: en
 # PLL with Feed Forward
 
 ## Ports
+```yaml
+ports:
+- name: α
+  summary: '*α*-axis signal scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: β
+  summary: '*β*-axis signal scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Rst
+  summary: External reset pulse scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: Computed parameters for PLL with Feed Forward bus
+  direction: input
+  data_types: single | double
+- name: θ
+  summary: Angular position scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Sin θ
+  summary: Sine of angular position scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Cos θ
+  summary: Cos of angular position scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: ω
+  summary: Angular frequency scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -99,8 +134,55 @@ Angular frequency (in either degrees/sec, radians/sec, or hertz) of the
 orthogonal input signals.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable input normalization
+  summary: Enable block to normalize inputs on (default) | off
+  group: ''
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: Option to enable input port to accept computed parameters off (default) | on
+  group: ''
+- name: Position output
+  summary: Type of position output Angular position (default) | Sine and Cosine Position
+  group: ''
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: ''
+- name: Frequency ratio
+  summary: Ratio of frequencies of output and input signals 1 (default) | scalar
+  group: PLL Parameters
+- name: Maximum application frequency (Hz)
+  summary: Maximum applicable input frequency 7500 (default) | scalar
+  group: PLL Parameters
+- name: Cutoff frequency for output filter (Hz)
+  summary: Cutoff frequency of lowpass filter 15 (default) | scalar
+  group: PLL Parameters
+- name: Number of data points for lookup table
+  summary: Size of lookup table array 1024 (default) | scalar
+  group: PLL Parameters
+- name: Proportional (P)
+  summary: Proportional controller gain 942.4778 (default) | scalar
+  group: PLL Parameters
+- name: Integral (I)
+  summary: Integral controller gain 222066.099 (default) | scalar
+  group: PLL Parameters
+- name: Position unit
+  summary: Unit of position output Degrees (default) | Radians | Per-unit
+  group: Datatypes
+- name: Position data type
+  summary: Data type of position output single (default) | double | fixed point
+  group: Datatypes
+- name: Frequency unit
+  summary: Unit of angular frequency output Degrees/sec (default) | Radians/sec | Hz
+  group: Datatypes
+- name: Frequency data type
+  summary: Data type of angular frequency output single (default) | double | fixed point
+  group: Datatypes
+- name: Table data type
+  summary: Data type of sine-cosine lookup table single (default) | double | fixed point
+  group: Datatypes
+```
 
 ### **Enable input normalization** — Enable block to normalize inputs `on` (default) | `off`
 
@@ -210,7 +292,6 @@ Data type of the sine-cosine lookup table used by the block.
 
 To enable this parameter, set **Position output** to
 `Angular position`.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management

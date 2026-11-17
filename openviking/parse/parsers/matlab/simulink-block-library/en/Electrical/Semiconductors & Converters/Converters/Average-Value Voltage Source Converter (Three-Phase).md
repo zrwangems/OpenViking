@@ -14,6 +14,39 @@ language: en
 # Average-Value Voltage Source Converter (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: ModWave
+  summary: Modulation wave vector
+  direction: input
+- name: Vt
+  summary: Phase-to-phase RMS voltage scalar
+  direction: input
+- name: ph
+  summary: Phase shift scalar
+  direction: input
+- name: '~'
+  summary: Voltage electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -116,8 +149,53 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: ''
+- name: AC frequency
+  summary: AC frequency Variable (default) | Constant
+  group: ''
+- name: Input type
+  summary: Type of input Modulation wave (default) | Sinusoidal magnitude and phase shift
+  group: ''
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz | scalar
+  group: ''
+- name: Losses parameterization
+  summary: 'Losses parameterization Fixed (default) | Coefficients: loss=Pfixed+ks*vdc*Irms+kc1*Irms+kc2*Irms^2 | Profile:
+    loss=f(Irms,vdc_nom)'
+  group: ''
+- name: Fixed power loss
+  summary: Power loss 1 W (default)
+  group: ''
+- name: Switching losses coefficient, ks
+  summary: Coefficient of switching losses 0.01 (default)
+  group: ''
+- name: Conduction losses coefficient, kc1
+  summary: First coefficient of conduction losses 1.7 V (default)
+  group: ''
+- name: Conduction losses coefficient, kc2
+  summary: Second coefficient of conduction losses 0.01 Ohm (default)
+  group: ''
+- name: Converter losses
+  summary: Converter losses vector [100, 800, 1870, 3250, 4900] W (default)
+  group: ''
+- name: RMS current for converter losses
+  summary: RMS currents vector [10, 100, 200, 300, 400] A (default)
+  group: ''
+- name: Nominal dc-link voltage
+  summary: Nominal dc-link voltage 300 V (default)
+  group: ''
+- name: Thermal mass
+  summary: Thermal mass 30000 J/K (default)
+  group: ''
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -269,7 +347,6 @@ Thermal mass.
 
 To enable this parameter, set **Modeling option** to
 `Show thermal port`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

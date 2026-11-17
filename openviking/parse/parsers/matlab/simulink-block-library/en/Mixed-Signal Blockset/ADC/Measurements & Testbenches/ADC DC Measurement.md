@@ -14,6 +14,25 @@ language: en
 # ADC DC Measurement
 
 ## Ports
+```yaml
+ports:
+- name: analog
+  summary: Analog input signal to ADC scalar
+  direction: input
+  data_types: double
+- name: start
+  summary: External conversion start clock scalar
+  direction: input
+  data_types: double
+- name: digital
+  summary: Converted digital signal from ADC scalar
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ready
+  summary: Indicates whether analog to digital conversion is complete scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -43,8 +62,43 @@ Indicates whether the analog to digital conversion is complete, specified as a
 scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input range (V)
+  summary: Dynamic range of ADC [-1 1] (default) | 2-element vector
+  group: ''
+- name: Hold off time (s)
+  summary: Delays measurement analysis to avoid corruption by transients 0 (default) | nonnegative real scalar
+  group: ''
+- name: Number of bits
+  summary: Number of physical bits in ADC 5 (default) | positive real integer
+  group: ''
+- name: Start conversion frequency (Hz)
+  summary: Frequency of the start conversion clock of ADC 10e6 (default) | positive real scalar
+  group: ''
+- name: Recommended min. simulation stop time (s)
+  summary: Minimum time simulation must run for meaningful result 3.2e-5 (default) | positive real scalar
+  group: ''
+- name: Set as model stop time
+  summary: Automatically set recommended min. simulation stop time as model stop time button
+  group: ''
+- name: Endpoint
+  summary: Measure DNL, INL using endpoint method on (default) | off
+  group: ''
+- name: Best fit
+  summary: Measure DNL, INL using best fit method on (default) | off
+  group: ''
+- name: Output result to base workspace
+  summary: Store detailed test results to base workspace off (default) | on
+  group: ''
+- name: Workspace variable name
+  summary: Name of the variable that stores detailed test results adc_dc_out (default) | character string
+  group: ''
+- name: Plot
+  summary: Plot measurement results button
+  group: ''
+```
 
 ### **Input range (V)** — Dynamic range of ADC `[-1 1]` (default) | 2-element vector
 
@@ -162,7 +216,6 @@ workspace** is selected
 ### **Plot** — Plot measurement results button
 
 Click to plot measurement result for further analysis.
-
 ## Libraries
 
 Mixed-Signal Blockset / ADC / Measurements & Testbenches

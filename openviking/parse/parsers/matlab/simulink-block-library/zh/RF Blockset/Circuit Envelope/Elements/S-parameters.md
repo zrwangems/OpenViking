@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # S-parameters
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 时变输入信号 实数标量 | 实数列向量 | 复数标量 | 复数列向量
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: 时变输出信号 复数标量 | 复数列向量
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -30,8 +41,73 @@ chinese_source: worker-translation
 时变输出信号，返回为复数标量或复数列向量。输出时变信号的大小与输入时变信号相等。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Data source
+  summary: 用于对 RF 复基带 S 参数建模的数据源 file（默认）| sparameters | rational
+  group: 主要
+- name: File
+  summary: 双端口 Touchstone 数据文件 unitygain.s2p（默认）| 字符向量
+  group: 主要
+- name: Sparameter object
+  summary: 使用 sparameters 对象作为数据源 sparameters('unitygain.s2p')（默认）
+  group: 主要
+- name: Rational object
+  summary: 使用 rational 对象作为数据源 rational('unitygain.s2p','TendsToZero',false)（默认）
+  group: 主要
+- name: Carrier frequency (Hz)
+  summary: 对 S 参数建模时的载波频率 1000000000（默认）| 正实数标量
+  group: 主要
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 主要
+- name: Modeling domain
+  summary: 建模域 Time (Fixed step)（默认）| Time (Continuous) | Frequency (Digital filter)
+  group: 建模
+- name: Solver
+  summary: 时域求解器 NDF2（默认）| Trapezoidal | Backward Euler | ode15s | ode23s | ode23t (trap) | ode23tb (trap+BE)
+  group: 建模
+- name: Pole fitting options
+  summary: 有理拟合选项 Share all poles（默认）| Fit individually | Share poles by columns
+  group: 建模
+- name: Rational arguments
+  summary: 用于控制拟合的有理拟合参数 { 'Tolerance',-40,'TendsToZero',false,'MaxPoles',48,'Qlimit',inf }（默认）| 元胞数组
+  group: 建模
+- name: FIR filter length
+  summary: 一维数字滤波器的滤波器长度 128（默认）| 实正整数
+  group: 建模
+- name: First plot type
+  summary: 绘图类型 S21（默认）| Phase delay | Group delay | Impulse response | Step response
+  group: 可视化
+- name: Impulse response arguments
+  summary: 绘制冲激响应的输入参数 [ 1e-11, 1e4]（默认）| 二元素向量
+  group: 可视化
+- name: Step response arguments
+  summary: 绘制阶跃响应的输入参数 [ 1e-11, 1e4, 1e-10 ]（默认）| 三元素向量
+  group: 可视化
+- name: First plot y-axis units
+  summary: 第一个图的 Y 轴单位 Magnitude (dB)（默认）| Magnitude (linear) | Angle (degrees) | Real | Imaginary
+  group: 可视化
+- name: Second Plot type
+  summary: 第二个图的绘图类型 None（默认）| S21 | Phase delay | Group delay | Impulse response | Step response
+  group: 可视化
+- name: Second plot y-axis units
+  summary: 第二个图的 Y 轴单位 Magnitude (dB)（默认）| Magnitude (linear) | Angle (degrees) | Real | Imaginary
+  group: 可视化
+- name: X-axis frequency points (Hz)
+  summary: 用于绘制 S 参数数据的频率点 logspace(8,10,2001)（默认）| 正实数向量
+  group: 可视化
+- name: X-axis scale
+  summary: 线性或对数 X 轴刻度 Linear（默认）| Logarithmic
+  group: 可视化
+- name: Y-axis scale
+  summary: 线性或对数 Y 轴刻度 Linear（默认）| Logarithmic
+  group: 可视化
+- name: Plot Sparameter characteristics
+  summary: 绘制 S 参数数据按钮
+  group: 可视化
+```
 
 ### 主要
 
@@ -226,7 +302,6 @@ chinese_source: worker-translation
 ### **Plot Sparameter characteristics** — 绘制 S 参数数据按钮
 
 选择此按钮可绘制 S 参数数据的特性。
-
 ## 所属库
 
 RF Blockset / Idealized Baseband

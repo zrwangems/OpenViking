@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pressure Source (MA)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 压差控制信号，Pa 物理信号
+  direction: input
+- name: A
+  summary: 源入口湿空气
+  direction: conserving
+- name: B
+  summary: 源出口湿空气
+  direction: conserving
+```
 
 ### 输入
 
@@ -35,8 +47,25 @@ chinese_source: worker-translation
 ### **B** — 源出口湿空气
 
 湿空气守恒端口。正压差使端口 **B** 处的压力大于端口 **A** 处的压力。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 选择压差是否可以在仿真期间变化 Controlled（默认）| Constant
+  group: ''
+- name: Pressure differential
+  summary: 源两端的恒定压差 0 MPa（默认）| 标量
+  group: ''
+- name: Power added
+  summary: 选择源是否做功 Isentropic（默认）| None
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 端口 A 处垂直于流动路径的面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port B
+  summary: 端口 B 处垂直于流动路径的面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Source type** — 选择压差是否可以在仿真期间变化 `Controlled`（默认）| `Constant`
 
@@ -67,7 +96,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at port B** — 端口 B 处垂直于流动路径的面积 `0.01 m^2`（默认）| 正标量
 
 端口 **B** 处垂直于流动路径的面积。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Sources

@@ -15,6 +15,51 @@ chinese_source: worker-translation
 # Switched Reluctance Machine
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 正三相复合端子 electrical
+  direction: conserving
+- name: ~2
+  summary: 负三相复合端子 electrical
+  direction: conserving
+- name: a1
+  summary: 正 *a* 相端子 electrical
+  direction: conserving
+- name: a2
+  summary: 负 *a* 相端子 electrical
+  direction: conserving
+- name: b1
+  summary: 正 *b* 相端子 electrical
+  direction: conserving
+- name: b2
+  summary: 负 *b* 相端子 electrical
+  direction: conserving
+- name: c1
+  summary: 正 *c* 相端子 electrical
+  direction: conserving
+- name: c2
+  summary: 负 *c* 相端子 electrical
+  direction: conserving
+- name: R
+  summary: 转子 mechanical
+  direction: conserving
+- name: C
+  summary: 机壳 mechanical
+  direction: conserving
+- name: HA
+  summary: '*a* 相端子热端口 thermal'
+  direction: conserving
+- name: HB
+  summary: '*b* 相端子热端口 thermal'
+  direction: conserving
+- name: HC
+  summary: '*c* 相端子热端口 thermal'
+  direction: conserving
+- name: HR
+  summary: 转子热端口 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -121,8 +166,91 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主
+- name: Number of rotor poles
+  summary: 转子极数 4（默认）| 正整数
+  group: 主
+- name: Stator resistance per phase
+  summary: 电阻 3 Ohm（默认）| 正标量
+  group: 主
+- name: Stator parameterization
+  summary: 参数化方法 Specify parametric data（默认）| Specify parametric and geometric data | Specify tabulated flux data
+  group: 主
+- name: Magnetizing resistance
+  summary: 磁损耗 inf Ohm（默认）| 实标量
+  group: 主
+- name: Saturated flux linkage
+  summary: 磁链 0.43 Wb（默认）| 正标量
+  group: 主
+- name: Aligned inductance
+  summary: 电感 0.0046 H（默认）| 正标量
+  group: 主
+- name: Unaligned inductance
+  summary: 电感 6.7e-4 H（默认）| 正标量
+  group: 主
+- name: Angle subtended by each stator pole
+  summary: 定子齿角度 45 deg（默认）| 正标量
+  group: 主
+- name: Angle subtended by each rotor pole
+  summary: 转子齿角度 42 deg（默认）| 正标量
+  group: 主
+- name: Angle over which flux gradient changes are smoothed
+  summary: 拐点平滑 0.5 deg（默认）| 正标量
+  group: 主
+- name: Current vector, i
+  summary: 电流 [0, 50, 100] A（默认）| 向量
+  group: 主
+- name: Angle vector, theta
+  summary: 角度 [0, 45, 90] deg（默认）| 向量
+  group: 主
+- name: Flux linkage matrix, Phi(i,theta)
+  summary: 磁链 [0, 0, 0; .37, .06, .37; .43, .1, .43] Wb（默认）| 矩阵
+  group: 主
+- name: Model
+  summary: 铁损耗建模选项 None（默认）| Tabulate losses from current and speed | Tabulate losses from current, speed, and angle
+  group: 铁损耗
+- name: Magnetizing resistance
+  summary: 铁损耗的磁化电阻 inf Ohm（默认）
+  group: 铁损耗
+- name: Rotor speed vector, w
+  summary: 转子速度 [500, 1000, 1500] rpm（默认）
+  group: 铁损耗
+- name: Iron loss table, Ploss(i,w)
+  summary: 基于电流和速度制表的铁损耗表 zeros(3, 3) W（默认）
+  group: 铁损耗
+- name: Iron loss table, Ploss(i,w,theta)
+  summary: 基于电流、速度和角度制表的铁损耗表 zeros(3, 3, 2) W（默认）
+  group: 铁损耗
+- name: Rotor inertia
+  summary: 惯量 0.01 kg*m^2（默认）| 零或正标量
+  group: 机械
+- name: Rotor Damping
+  summary: 阻尼 0 N*m/(rad/s)（默认）| 正标量
+  group: 机械
+- name: Resistance temperature coefficient
+  summary: 温度系数 3.93e-3 1/K（默认）| 正标量
+  group: 热
+- name: Measurement temperature
+  summary: 额定温度 25 degC（默认）| 实标量
+  group: 热
+- name: Winding thermal mass
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热
+- name: Rotor thermal mass
+  summary: 转子热质量 50 J/K（默认）| 正标量
+  group: 热
+- name: Percentage of total iron losses associated with the rotor
+  summary: 总铁损耗百分比 50（默认）
+  group: 热
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -328,7 +456,6 @@ chinese_source: worker-translation
 ### **Percentage of total iron losses associated with the rotor** — 总铁损耗百分比 `50`（默认）
 
 与转子关联的总铁损耗百分比。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

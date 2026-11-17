@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Discrete Impulse
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 离散冲激信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输出
 
@@ -23,8 +30,41 @@ chinese_source: worker-translation
 在输出样本 `D(i)+1` 处包含离散冲激的输出信号，其中 `D` 是由 **Delay** 参数指定的标量或向量。有关详细信息，请参阅描述。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Delay (samples)
+  summary: 零值输出样本数 0（默认） | 标量 | 向量
+  group: 主要
+- name: Sample time
+  summary: 输出样本周期 1（默认） | 正标量
+  group: 主要
+- name: Samples per frame
+  summary: 每帧样本数 1（默认） | 正整数
+  group: 主要
+- name: Output data type
+  summary: '输出数据类型 double（默认） | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16)
+    | fixdt(1,16,0) | Inherit: Inherit via back propagation | <data type expression>'
+  group: 数据类型
+- name: Mode
+  summary: 数据类型模式 Inherit（默认） | Built in | Fixed point | Expression
+  group: 数据类型助手
+- name: Signedness
+  summary: 定点数据的有符号性 Signed（默认） | Unsigned
+  group: 数据类型助手
+- name: Scaling
+  summary: 定点数据定标方法 Best precision（默认） | Binary point
+  group: 数据类型助手
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认） | 2 到 128 的整数
+  group: 数据类型助手
+- name: Fraction length
+  summary: 定点数据类型的小数长度 0（默认） | 整数标量
+  group: 数据类型助手
+- name: Data type override
+  summary: 数据类型覆盖模式 Inherit（默认） | Off
+  group: 数据类型助手
+```
 
 ### 主要
 
@@ -105,7 +145,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Mode** 设置为 `Built in` 或 `Fixed point`。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
-
 ## 所属库
 
 DSP System Toolbox / Sources

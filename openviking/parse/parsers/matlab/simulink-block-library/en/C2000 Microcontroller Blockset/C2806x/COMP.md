@@ -14,10 +14,15 @@ language: en
 # C2802x/C2803x/C2806x/F28M3x COMP
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Comparator module**
 :   Select the comparator module to configure. Use only one block per module.
@@ -94,7 +99,6 @@ Not documented in R2025b.
 **Sample time**
 :   Specify the time interval between samples. To inherit sample time from the
     upstream block, set this parameter to -1.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -14,6 +14,21 @@ language: en
 # Quaternion Division
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Dividend quaternion quaternion | vector of quaternions
+  direction: input
+  data_types: double
+- name: r
+  summary: Divisor quaternion quaternion | vector of quaternions
+  direction: input
+  data_types: double
+- name: q/r
+  summary: Output quaternion quaternion | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -54,11 +69,12 @@ Output quaternion or vector of resulting quaternions from
 division.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

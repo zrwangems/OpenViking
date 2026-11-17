@@ -14,13 +14,17 @@ language: en
 # I/Q Compensator Coefficient to Imbalance
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

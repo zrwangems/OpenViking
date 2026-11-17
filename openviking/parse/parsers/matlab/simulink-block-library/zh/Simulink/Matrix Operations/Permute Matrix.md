@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Permute Matrix
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入矩阵 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: P
+  summary: 索引矩阵 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated
+- name: Port_1
+  summary: 输出信号 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### 输入
 
@@ -36,8 +53,38 @@ chinese_source: worker-translation
 输出信号，指定为向量或矩阵。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Permute
+  summary: 置换方法 Columns（默认） | Rows
+  group: ''
+  block_parameter: mode
+  type: 字符向量、字符串
+  values: ''' Columns'' | ''Rows'''
+  default: ''' Columns'''
+- name: Index mode
+  summary: 索引模式 One-based（默认） | Zero-based
+  group: ''
+  block_parameter: ZeroOneIdxMode
+  type: 字符向量、字符串
+  values: ''' Zero-based'' | ''One-based'''
+  default: '''One-based'''
+- name: Invalid permutation index
+  summary: 对无效索引值的响应 Clip index（默认） | Clip and warn | Generate error
+  group: ''
+  block_parameter: errmode
+  type: 字符向量、字符串
+  values: '''Clip index'' | ''Clip and warn'' | ''Generate error'''
+  default: '''Clip index'''
+- name: Error when length of P is not equal to Permute dimension size
+  summary: P 长度错误消息 off（默认） | on
+  group: ''
+  block_parameter: checkDims
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Permute** — 置换方法 `Columns`（默认） | `Rows`
 
@@ -115,7 +162,6 @@ chinese_source: worker-translation
 | **类型**：字符向量、字符串 |
 | **值**： `'off'` | `'on'` |
 | **默认值**： `'off'` |
-
 ## 所属库
 
 Simulink / Matrix Operations

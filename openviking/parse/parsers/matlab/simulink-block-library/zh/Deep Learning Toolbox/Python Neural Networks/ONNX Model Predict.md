@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # ONNX Model Predict
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 输入数据数值数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Out1
+  summary: 预测响应数值数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,53 @@ chinese_source: worker-translation
 预测响应，以数值数组形式返回。您可以通过在“模块参数”对话框的 **Outputs** 选项卡上指定置换向量，重新排列 Python 模型返回的输出数据的维度（请参阅输出）。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Path to ONNX model file
+  summary: Python ONNX 模型的名称或路径 untitled（默认）| 字符向量
+  group: 指定模型文件
+  block_parameter: ModelFile
+  type: character vector
+  values: path to Python ONNX model file
+  default: '"untitled"'
+- name: Execution Providers
+  summary: ONNX 运行时执行提供程序的优先级列表 CPUExecutionProvider（默认）| 字符向量
+  group: 指定模型文件
+  block_parameter: ExecutionProviders
+  type: character vector
+  values: ONNX runtime execution provider name
+  default: '"CUDAExecutionProvider, CPUExecutionProvider"'
+- name: Sample time (–1 for inherited)
+  summary: 用于指定采样时间的选项 –1（默认）| 标量
+  group: 指定模型文件
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Inputs
+  summary: 输入端口属性表
+  group: 输入
+  block_parameter: InputTable
+  type: cell array
+- name: Outputs
+  summary: 输出端口属性表
+  group: 输出
+  block_parameter: OutputTable
+  type: cell array
+- name: Path to Python file defining preprocess()
+  summary: 定义 preprocess() 的 Python 文件的名称或路径 字符向量
+  group: 预处理/后处理
+  block_parameter: PreprocessingFilePath
+  type: character vector
+  values: Python file | path to Python file
+- name: Path to Python file defining postprocess()
+  summary: 定义 postprocess() 的 Python 文件的名称或路径 字符向量
+  group: 预处理/后处理
+  block_parameter: PostprocessingFilePath
+  type: character vector
+  values: Python file | path to Python file
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -164,7 +220,6 @@ outputList = postprocess(model,inputList)
 | **模块参数**：`PostprocessingFilePath` |
 | **类型**：character vector |
 | **值**：Python file | path to Python file |
-
 ## 所属库
 
 Deep Learning Toolbox / Python Neural Networks

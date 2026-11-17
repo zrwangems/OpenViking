@@ -14,6 +14,30 @@ language: en
 # Double-Acting Actuator (TL-G)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Piston position, m physical signal
+  direction: output
+- name: A
+  summary: Inlet to chamber A thermal liquid
+  direction: conserving
+- name: B
+  summary: Inlet to chamber B gas
+  direction: conserving
+- name: R
+  summary: Actuator piston mechanical translational
+  direction: conserving
+- name: C
+  summary: Actuator casing mechanical translational
+  direction: conserving
+- name: HA
+  summary: Chamber A heat flow thermal
+  direction: conserving
+- name: HB
+  summary: Chamber B heat flow thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -57,8 +81,97 @@ Thermal conserving port associated with the surface through which heat
 exchange can occur between the gas volume and the actuator surroundings.
 The thermal processes at this port influence the temperature in the gas
 chamber and therefore at port **A**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: Direction of motion of the piston relative to the direction of flow of the fluid Positive | Negative
+  group: Thermal Liquid Side
+- name: Piston cross-sectional area in chamber A
+  summary: Cross-sectional area of the fluid volume in the thermal liquid chamber 0.01 m^2 (default) | scalar in units of
+    area
+  group: Thermal Liquid Side
+- name: Piston stroke
+  summary: Distance of travel of the piston from hard stop to hard stop 0.2 m (default) | scalar in units of length
+  group: Thermal Liquid Side
+- name: Piston initial displacement
+  summary: Position of the piston at the start of simulation 0 m (default) | scalar in units of length
+  group: Thermal Liquid Side
+- name: Dead volume in chamber A
+  summary: Fluid volume in the thermal liquid chamber in the bottomed-out position 1e-4 m^3 (default) | scalar in units of
+    volume
+  group: Thermal Liquid Side
+- name: Enable dynamic compressibility
+  summary: Choice to model the effects of dynamic compressibility inside the thermal liquid chamber On (default) | Off
+  group: Thermal Liquid Side
+- name: Initial liquid pressure in chamber A (absolute)
+  summary: Absolute pressure in the thermal liquid chamber 0.101325 Pa (default) | scalar in units of pressure
+  group: Thermal Liquid Side
+- name: Initial liquid temperature in chamber A
+  summary: Temperature in the thermal liquid chamber at the start of simulation 293.15 K (default) | scalar in units of temperature
+  group: Thermal Liquid Side
+- name: Nominal liquid pressure in chamber A (absolute)
+  summary: Pressure at nominal operating conditions in chamber A 0.101325 MPa (default) | scalar
+  group: Thermal Liquid Side
+- name: Nominal liquid temperature in chamber A
+  summary: Temperature at nominal operating conditions in chamber A 293.15 K (default) | scalar
+  group: Thermal Liquid Side
+- name: Environment pressure specification
+  summary: Choice of atmospheric or custom environment pressure for the thermal liquid side Atmospheric pressure (default)
+    | Specified pressure
+  group: Thermal Liquid Side
+- name: Environment pressure
+  summary: Absolute pressure of the environment outside the thermal liquid chamber 0.101325 MPa (default) | scalar in units
+    of pressure
+  group: Thermal Liquid Side
+- name: Piston cross-sectional area in chamber B
+  summary: Cross-sectional area of the fluid volume in the gas chamber 1e-3 m^2 (default) | positive scalar in units of area
+  group: Gas Side
+- name: Cross-sectional area at port B
+  summary: Cross-sectional area of the inlet of the gas chamber 1e-3 m^2 (default) | positive scalar in units of area
+  group: Gas Side
+- name: Dead volume in chamber B
+  summary: Fluid volume in the gas chamber in the bottomed-out state 1e-4 m^3 (default) | positive scalar in units of volume
+  group: Gas Side
+- name: Initial gas pressure in chamber B (absolute)
+  summary: Absolute pressure inside the gas chamber at the start of simulation 0.101325 MPa (default) | scalar in units of
+    pressure
+  group: Gas Side
+- name: Initial gas temperature in chamber B
+  summary: Temperature in the gas chamber at the start of simulation 293.15 K (default) | scalar in units of temperature
+  group: Gas Side
+- name: Environment pressure specification
+  summary: Choice of atmospheric or custom environment pressure for the gas side Atmospheric pressure (default) | Specified
+    pressure
+  group: Gas Side
+- name: Environment pressure
+  summary: Absolute pressure of the environment outside the gas chamber 0.101325 MPa (default) | scalar in units of pressure
+  group: Gas Side
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e6 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+```
 
 ### Thermal Liquid Side
 
@@ -317,7 +430,6 @@ Minimum force needed to release the slider from a static contact mode.
 To enable this parameter, set **Hard stop model**
 to `Based on coefficient of
 restitution`.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Actuators

@@ -14,6 +14,15 @@ language: en
 # Area Change (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,44 @@ Liquid entry port.
 ### **B** — Liquid port isothermal liquid
 
 Liquid exit port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cone angle
+  summary: Gradual area change angle 30 (default) | positive scalar
+  group: ''
+- name: Local loss parameterization
+  summary: Model of hydraulic losses Semi-empirical correlation - sudden area change (default) | Semi-empirical correlation
+    - gradual area change | Tabulated data - loss coefficient vs. Reynolds number
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area at port A 0.02 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port B
+  summary: area at port B 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Reynolds number vector
+  summary: Vector of Reynolds number values for tabular parameterization [10, 20, 30, 40, 50, 100, 200, 500, 1000, 2000] (default)
+    | 1-by-n vector
+  group: ''
+- name: Contraction loss coefficient vector
+  summary: Vector of loss coefficients for an area contraction [5, 2.7, 1.8, 1.46, 1.3, .9, .65, .42, .3, .2] (default) |
+    1-by-*n* vector
+  group: ''
+- name: Expansion loss coefficient vector
+  summary: Vector of loss coefficients for an area expansion [3.1, 2.3, 1.65, 1.35, 1.15, .9, .75, .65, .9, .65] (default)
+    | 1-by-n vector
+  group: ''
+- name: Expansion correction factor
+  summary: Coefficient in semi-empirical loss factor equation 1 (default) | positive scalar
+  group: ''
+- name: Contraction correction factor
+  summary: Coefficient in semi-empirical loss factor equation 1 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+```
 
 ### **Cone angle** — Gradual area change angle `30` (default) | positive scalar
 
@@ -127,7 +172,6 @@ parameterization** to either:
 ### **Critical Reynolds number** — Upper Reynolds number limit for laminar flow `150` (default) | positive scalar
 
 Upper Reynolds number limit for laminar flow through the orifice.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

@@ -14,6 +14,15 @@ language: en
 # Piecewise Linear Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,22 @@ voltage
 
 Electrical conserving port associated with the piecewise linear voltage source negative
 voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Time specification
+  summary: Vector of time values [0, 1, 2, 3, 4] s (default)
+  group: ''
+- name: Current at specified time
+  summary: Vector of current values [0, 0, 0, 0, 0] V (default)
+  group: ''
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: ''
+- name: Extrapolation method
+  summary: Extrapolation method Nearest (default) | Linear
+  group: ''
+```
 
 ### **Time specification** — Vector of time values `[0, 1, 2, 3, 4]` `s` (default)
 
@@ -58,7 +81,6 @@ points that are outside the time range specified in the preceding vectors:
   input value for extrapolation.
 - `Linear` — Select this option to use a linear
   function.
-
 ## Libraries
 
 Simscape / Electrical / Sources Simscape / Electrical / Additional Components / SPICE Sources

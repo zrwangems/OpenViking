@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Piecewise Linear Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电气端口
+  direction: conserving
+- name: '-'
+  summary: 负电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **-** — 负电压电气端口
 
 与分段线性电压源负电压相关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Time specification
+  summary: 时间值向量 [0, 1, 2, 3, 4] s（默认）
+  group: ''
+- name: Current at specified time
+  summary: 电流值向量 [0, 0, 0, 0, 0] V（默认）
+  group: ''
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: ''
+- name: Extrapolation method
+  summary: 外插方法 Nearest（默认）| Linear
+  group: ''
+```
 
 ### **Time specification** — 时间值向量 `[0, 1, 2, 3, 4]` `s`（默认）
 
@@ -49,7 +72,6 @@ chinese_source: worker-translation
 
 - `Nearest` — 选择此选项以使用最近的输入值进行外插。
 - `Linear` — 选择此选项以使用线性函数。
-
 ## 所属库
 
 Simscape / Electrical / Sources Simscape / Electrical / Additional Components / SPICE Sources

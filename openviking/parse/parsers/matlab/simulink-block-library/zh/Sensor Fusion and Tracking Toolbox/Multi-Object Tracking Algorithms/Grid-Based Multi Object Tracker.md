@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Grid-Based Multi Object Tracker
 
 ## 端口
+```yaml
+ports:
+- name: Sensor Data
+  summary: 包含 MATLAB® 结构的传感器数据 Simulink® 总线
+  direction: input
+- name: Prediction Time
+  summary: 航迹更新时间 实数标量
+  direction: input
+- name: Sensor Configurations
+  summary: 跟踪传感器的配置 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: State Parameters
+  summary: 跟踪状态参数 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Confirmed Tracks
+  summary: 确认航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Tentative Tracks
+  summary: 暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: All Tracks
+  summary: 确认和暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -125,8 +149,133 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Port Setting** 选项卡中，选择 **Enable all tracks output**。
-
 ## 参数
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: 唯一跟踪器标识符 0（默认）| 非负整数
+  group: ''
+- name: Maximum number of tracks
+  summary: 最大航迹数量 100（默认）| 正整数
+  group: ''
+- name: Maximum number of sensors
+  summary: 最大传感器数量 20（默认）| 正整数
+  group: ''
+- name: Sensor configurations
+  summary: 跟踪传感器的配置 struct('SensorIndex',1,'IsValidTime',true,'SensorLimits',[-180 180; 0 100])（默认）| 结构体 | 结构体数组
+  group: ''
+- name: Update sensor configurations with time
+  summary: 随时间更新传感器配置 off（默认）| on
+  group: ''
+- name: Track state parameters
+  summary: 航迹状态参考系的参数 结构体
+  group: ''
+- name: Update track state parameters with time
+  summary: 随时间更新航迹状态参数 off（默认）| on
+  group: ''
+- name: Enable GPU computation
+  summary: 启用 GPU 计算 off（默认）| on
+  group: ''
+- name: X-dimension of grid
+  summary: 网格 X 维度 100（默认）| 正标量
+  group: ''
+- name: Y-dimension of grid
+  summary: 网格 Y 维度 100（默认）| 正标量
+  group: ''
+- name: Resolution of grid
+  summary: 网格分辨率 1（默认）| 正标量
+  group: ''
+- name: Grid origin
+  summary: 网格原点 [-50 -50]（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted Execution（默认）| Code Generation
+  group: ''
+- name: Motion model for tracking
+  summary: 用于跟踪的运动模型 constant-velocity（默认）| constant-acceleration | constant-turnrate
+  group: ''
+- name: Minimum and maximum velocity of objects (m/s)
+  summary: 目标的最小和最大速度（m/s）[-10 10; -10 10]（默认）| 2×2 标量矩阵
+  group: ''
+- name: Enable additive process noise
+  summary: 启用加性过程噪声 false（默认）| true
+  group: ''
+- name: 过程噪声协方差矩阵
+  summary: 过程噪声协方差矩阵 eye(2)（默认）| *N*×*N* 矩阵
+  group: ''
+- name: 持久粒子数
+  summary: 持久粒子数 1e5（默认）| 正整数
+  group: ''
+- name: 每步新生粒子数
+  summary: 每步新生粒子数 1e4（默认）| 正标量
+  group: ''
+- name: 每步单元内出生概率
+  summary: 每步单元内出生概率 0.01（默认）| 范围 [0, 1) 内的标量
+  group: ''
+- name: 单位时间内目标死亡率
+  summary: 单位时间内目标死亡率 1e-3（默认）| 正标量
+  group: ''
+- name: 自由空间预测置信度
+  summary: 自由空间预测置信度 0.8（默认）| 标量
+  group: ''
+- name: 随机数生成
+  summary: 随机数种子生成方法 Repeatable（默认）| Not repeatable | Specify seed
+  group: ''
+- name: 初始种子
+  summary: 随机化初始种子 0（默认）| 非负整数
+  group: ''
+- name: Clustering method for new object extraction
+  summary: 新目标提取的聚类方法 DBSCAN（默认）| Custom
+  group: ''
+- name: Threshold for DBSCAN clustering
+  summary: DBSCAN 聚类的阈值 5（默认）| 正标量
+  group: ''
+- name: Minimum number of cells per cluster for DBSCAN
+  summary: DBSCAN 每个聚类的最小单元数 2（默认）| 正整数
+  group: ''
+- name: Name of 'Custom' clustering function
+  summary: 自定义聚类函数的名称 函数名
+  group: ''
+- name: Function to initialize tracks from grid cell sets
+  summary: 用于从网格单元集合初始化航迹的函数 trackerGridRFS.defaultTrackInitialization（默认）| 函数名
+  group: ''
+- name: 用于更新现有航迹的函数
+  summary: 用于更新现有航迹的函数 trackerGridRFS.defaultTrackUpdate（默认）| 函数名
+  group: ''
+- name: 将动态网格单元分配给航迹的阈值
+  summary: 将动态网格单元分配给航迹的阈值 30（默认）| 正标量
+  group: ''
+- name: 确认阈值 [M N]
+  summary: 航迹确认阈值 [2 3]（默认）| 1×2 正整数向量
+  group: ''
+- name: 删除阈值 [P Q]
+  summary: 航迹删除阈值 [5 5]（默认）| 1×2 正整数向量
+  group: ''
+- name: 启用动态网格地图可视化
+  summary: 启用动态网格地图可视化 on（默认）| off
+  group: ''
+- name: Plot velocity
+  summary: 启用速度绘图 off（默认）| on
+  group: ''
+- name: Fast update
+  summary: 启用从上一地图更新 on（默认）| off
+  group: ''
+- name: Invert colors
+  summary: 启用反转颜色 off（默认）| on
+  group: ''
+- name: Prediction time source
+  summary: 预测时间来源 Input port（默认）| Auto
+  group: ''
+- name: Enable tentative tracks output
+  summary: 启用暂定航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable all tracks output
+  summary: 启用所有航迹输出端口 off（默认）| on
+  group: ''
+- name: Source of output bus name
+  summary: 输出航迹总线名称的来源 Auto（默认）| Property
+  group: ''
+```
 
 #### Tracker Configuration
 
@@ -475,7 +624,6 @@ function updatedTrack = TrackUpdateFcn(predictedTrack,dynamicGridCells)
 
 - `Auto` — 该模块自动创建输出航迹总线名称。
 - `Property` — 通过 **Specify an output bus name** 参数指定输出航迹总线名称。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

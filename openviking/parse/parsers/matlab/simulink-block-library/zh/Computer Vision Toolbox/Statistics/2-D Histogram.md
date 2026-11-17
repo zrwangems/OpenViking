@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 2-D Histogram
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入图像 向量 | 矩阵 | 三维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rst
+  summary: 重置值 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Port_1
+  summary: 直方图输出 向量 | 矩阵 | 三维数组
+  direction: output
+  data_types: single | double | uint32
+```
 
 ### 输入
 
@@ -42,8 +57,34 @@ chinese_source: worker-translation
 如果将 **直方图统计范围** 参数设置为 `Entire input`，则输出始终为向量。如果将 **直方图统计范围** 参数设置为 `Each column`，则输出的维度数与输入相同。
 
 **数据类型：** `single` | `double` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: 直方图下限
+  summary: 最低值区间的下限 0 (默认) | 实数标量
+  group: ''
+- name: 直方图上限
+  summary: 最高值区间的上限 1 (默认) | 实数标量
+  group: ''
+- name: 区间数
+  summary: 直方图中的区间数 256 (默认) | 实数标量
+  group: ''
+- name: 直方图计算范围
+  summary: 计算直方图的维度 Entire input (默认) | Each column
+  group: ''
+- name: 归一化
+  summary: 归一化直方图输出 off (默认) | on
+  group: ''
+- name: Running histogram
+  summary: 连续输入的频率分布 off（默认值）| on
+  group: ''
+- name: 触发类型
+  summary: 运行直方图的重置条件 None（默认） | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: 防止定点工具更改数据类型设置
+  summary: 防止定点工具覆盖数据类型 off（默认） | on
+  group: ''
+```
 
 **主要**
 
@@ -128,7 +169,6 @@ chinese_source: worker-translation
 ### **防止定点工具更改数据类型设置** — 防止定点工具覆盖数据类型 `off`（默认） | `on`
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅锁定输出数据类型设置 (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

@@ -14,6 +14,16 @@ language: en
 # Memoryless Nonlinearity
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Input RF baseband signal scalar | column vector
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: Output RF baseband signal scalar | column vector
+  direction: output
+```
 
 ### Input
 
@@ -30,8 +40,76 @@ vector.
 
 Output RF baseband signal, returned as a scalar or column vector. The
 output is of the same data type as the input.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model
+  summary: Amplifier nonlinearity model cubic (default) | ampm | modified-rapp | saleh
+  group: Main Tab
+- name: Linear power gain (dB)
+  summary: Linear gain of amplifier 0 (default) | real scalar
+  group: Main Tab
+- name: Type of Non-linearity
+  summary: Type of nonlinearity OIP3 (default) | IIP3 | IP1dB | OP1dB | IPsat | OPsat
+  group: Main Tab
+- name: IIP3 (dBm)
+  summary: Input third-order intercept point Inf (default) | real positive number
+  group: Main Tab
+- name: OIP3 (dBm)
+  summary: Output third-order intercept point Inf (default) | real positive number
+  group: Main Tab
+- name: IP1dB (dBm)
+  summary: Input 1 dB compression point Inf (default) | real positive number
+  group: Main Tab
+- name: OP1dB (dBm)
+  summary: Output 1 dB compression point Inf (default) | real positive number
+  group: Main Tab
+- name: IPsat (dBm)
+  summary: Input saturation point Inf (default) | real positive number
+  group: Main Tab
+- name: OPsat (dBm)
+  summary: Output saturation point Inf (default) | real positive number
+  group: Main Tab
+- name: Lookup table (Pin(dBm), Pout(dBm), deg)
+  summary: Lookup table [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ] (default) | *M*-by-3 real matrix
+  group: Main Tab
+- name: Output saturation level (V)
+  summary: Output saturation level 1 (default) | real positive number
+  group: Main Tab
+- name: Magnitude smoothness factor
+  summary: Magnitude smoothness factor 2 (default) | real positive number
+  group: Main Tab
+- name: Phase gain (rad)
+  summary: Phase gain -0.45 (default) | real scalar
+  group: Main Tab
+- name: Phase saturation
+  summary: Phase saturation 0.88 (default) | real positive number
+  group: Main Tab
+- name: Phase smoothness factor
+  summary: Phase smoothness factor 3.43 (default) | positive scalar | positive two-element vector
+  group: Main Tab
+- name: Input scaling (dB)
+  summary: Scaling factor for input signal level 0 (default) | nonnegative real number
+  group: Main Tab
+- name: AM / AM parameters [alpha beta]
+  summary: AM/AM conversion parameters [ 2.1587, 1.1517 ] (default) | two-element vector
+  group: Main Tab
+- name: AM / PM parameters [alpha beta]
+  summary: AM/PM conversion parameters [ 4.0033, 9.1040 ] (default) | two-element vector
+  group: Main Tab
+- name: Output scaling (dB)
+  summary: Scaling factor for output signal level 0 (default) | nonnegative real number
+  group: Main Tab
+- name: Reference load (ohm)
+  summary: Reference load 1 (default) | positive scalar
+  group: Main Tab
+- name: Plot power characteristics
+  summary: Plot power characteristics button
+  group: Main Tab
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: Main Tab
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -278,7 +356,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / RF Impairments and Components

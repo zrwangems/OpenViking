@@ -14,6 +14,12 @@ language: en
 # UAV Scenario Lidar
 
 ## Ports
+```yaml
+ports:
+- name: Pointcloud
+  summary: Point cloud data *N*-by-*M*-by-3 double matrix | *N*-by-3 double matrix
+  direction: output
+```
 
 ### Output
 
@@ -27,8 +33,40 @@ the number of horizontal scans. When `Output organized point cloud
 locations` is unchecked, the point cloud data is specified as an
 *N*-by-3 double matrix, where *N* is the number of
 points in the point cloud.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor name
+  summary: Lidar sensor name 'UAV/Lidar' (default) | string
+  group: ''
+- name: Max range
+  summary: Max range of lidar 120 (default) | double
+  group: ''
+- name: Range Accuracy
+  summary: Range accuracy of lidar 0.002 (default) | double
+  group: ''
+- name: Azimuthal limits
+  summary: Azimuthal limits of lidar [-180, 180] (default) | two-element vector
+  group: ''
+- name: Azimuthal resolution
+  summary: Azimuthal resolution 0.16 (default) | double
+  group: ''
+- name: Elevation limits
+  summary: Elevation limits of lidar [-20, 20] (default) | two-element vector
+  group: ''
+- name: Elevation resolution
+  summary: Elevation resolution 1.25 (default) | double
+  group: ''
+- name: Add noise to measurement
+  summary: Add noise to measurement 'on' (default) | 'off'
+  group: ''
+- name: Output organized point cloud locations
+  summary: Output point cloud locations 'on' (default) | 'off'
+  group: ''
+- name: Sample Time
+  summary: Sample time 0.1 (default) | double
+  group: ''
+```
 
 ### **Sensor name** — Lidar sensor name `'UAV/Lidar'` (default) | string
 
@@ -137,7 +175,6 @@ name** parameter, the UAV Scenario Lidar block sets the value of the
 **Sample Time** parameter to `1/UpdateRate`.
 `UpdateRate` is the `UpdateRate` property of the
 specified lidar sensor.
-
 ## Libraries
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

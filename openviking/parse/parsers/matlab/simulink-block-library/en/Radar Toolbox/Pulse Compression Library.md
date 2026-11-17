@@ -14,6 +14,27 @@ language: en
 # Pulse Compression Library
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input signal complex-valued *K*-by-*L* matrix | complex-valued *K*-by-*N* matrix | complex-valued *K*-by-*N*-by-*L*
+    array
+  direction: input
+  data_types: double
+- name: Idx
+  summary: Index of processing specification positive integer
+  direction: input
+  data_types: double
+- name: Y
+  summary: Output signal complex-valued *K*-by-*L* matrix | complex-valued *K*-by-*N* matrix | complex-valued *K*-by-*N*-by-*L*
+    array
+  direction: output
+  data_types: double
+- name: Range
+  summary: Sample range real-valued length-*M* vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -73,8 +94,30 @@ vector where *M* is the number of rows of
 corresponding to the rows of `Y`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: Specification of each waveform in the library
+  summary: Specification of pulse waveforms in the library {{'Rectangular','PRF',1e4,'PulseWidth',50e-6},{'LinearFM','PRF',1e4,'PulseWidth',50e-6,'SweepBandwidth',1e5,'SweepDirection','Up','SweepInterval','Positive'}}
+    (default) | cell array
+  group: ''
+- name: Pulse compression specifications
+  summary: Specify type of pulse compression {{'MatchedFilter','SpectrumWindow','None'},{'StretchProcessor','RangeSpan',200,'ReferenceRange',5e3,'RangeWindow','None'}}
+    (default) | cell array
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+```
 
 ### **Signal propagation speed (m/s)** — Signal propagation speed `physconst('LightSpeed')` (default) | real-valued positive scalar
 
@@ -297,7 +340,6 @@ using **Simulate using** overrides the simulation mode.
 | `Code Generation` | The block is compiled. | All blocks in the model are compiled. |
 
 For more information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Radar Toolbox

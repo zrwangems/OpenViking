@@ -14,6 +14,17 @@ language: en
 # Force Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Force scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Force scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -39,8 +50,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units lbf (default) | N
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: lbf | N
+  default: lbf
+- name: Final unit
+  summary: Output units N (default) | lbf
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: lbf | N
+  default: N
+```
 
 ### **Initial unit** — Input units `lbf` (default) | `N`
 
@@ -87,7 +114,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `lbf` | `N` |
 | **Default**: `N` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

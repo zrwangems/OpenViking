@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Road Profile
 
 ## 端口
+```yaml
+ports:
+- name: H
+  summary: 水平运动机械平移
+  direction: output
+- name: MF
+  summary: 前轴摩擦系数向量
+  direction: output
+- name: MR
+  summary: 后轴摩擦系数向量
+  direction: output
+- name: beta
+  summary: 车辆角度标量
+  direction: output
+```
 
 ### 守恒
 
@@ -51,8 +66,40 @@ chinese_source: worker-translation
 ### **beta** — 车辆角度标量
 
 车辆角度的物理信号输出端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Horizontal distance from CG to front axle
+  summary: 质心到前轴的距离 1.4 m（默认）| 正标量
+  group: 主
+- name: Horizontal distance from CG to rear axle
+  summary: 质心到后轴的距离 1.6 m（默认）| 正标量
+  group: 主
+- name: Horizontal distance for vertical profile
+  summary: 垂直剖面的水平距离 [-10, 0, 10] m（默认）| 向量
+  group: 主
+- name: Vertical profile
+  summary: 垂直剖面 [0, 0, .25] m（默认）| 向量
+  group: 主
+- name: Friction output
+  summary: 摩擦系数输出类型 None（默认）| Physical signal Magic Formula coefficients | Physical signal friction coefficients
+  group: 摩擦
+- name: Horizontal distance for friction profile
+  summary: 摩擦剖面的水平距离 [-10, 2, 2.1, 6, 6.1, 10] m（默认）| 向量
+  group: 摩擦
+- name: Magic Formula coefficients for front axle
+  summary: 前轴 Magic Formula 系数 [10, 2, 1, 1; 10, 2, 1, 1; 8, 3, 1, 1; 8, 3, 1, 1; 9, 4, 1, 1; 9, 4, 1, 1]（默认）| 矩阵
+  group: 摩擦
+- name: Magic Formula coefficients for rear axle
+  summary: 后轴 Magic Formula 系数 [10, 2, 1, 1; 10, 2, 1, 1; 8, 3, 1, 1; 8, 3, 1, 1; 9, 4, 1, 1; 9, 4, 1, 1]（默认）| 矩阵
+  group: 摩擦
+- name: Static and kinetic friction coefficients for front axle
+  summary: 前轴摩擦系数 [.9, .7; .9, .7; .7, .5; .7, .5; .8, .6; .8, .6]（默认）| 矩阵
+  group: 摩擦
+- name: Static and kinetic friction coefficients for rear axle
+  summary: 后轴摩擦系数 [.9, .7; .9, .7; .7, .5; .7, .5; .8, .6; .8, .6]（默认）| 矩阵
+  group: 摩擦
+```
 
 ### 主
 
@@ -124,7 +171,6 @@ Magic Formula 系数，指定为 *n*×*4* 矩阵，其中 *n* 是由 **Horizonta
 #### 依赖关系
 
 仅当 **Friction** 参数的 **Friction output** 设置为 **Physical signal friction coefficients** 时，此参数可见。
-
 ## 所属库
 
 Simscape / Driveline / Tires & Vehicles

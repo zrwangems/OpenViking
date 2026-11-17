@@ -14,6 +14,21 @@ language: en
 # Mutual Inductor
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Primary winding positive terminal electrical
+  direction: conserving
+- name: 1-
+  summary: Primary winding negative terminal electrical
+  direction: conserving
+- name: 2+
+  summary: Secondary winding positive terminal electrical
+  direction: conserving
+- name: 2-
+  summary: Secondary winding negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,22 @@ winding.
 
 Electrical conserving port associated with the negative terminal of the secondary
 winding.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inductance L1
+  summary: Self-inductance of primary winding 10 H (default) | positive scalar
+  group: ''
+- name: Inductance L2
+  summary: Self-inductance of secondary winding 0.1 H (default) | positive scalar
+  group: ''
+- name: Perfect coupling – no leakage
+  summary: Use ideal mutual inductor Off (default) | On
+  group: ''
+- name: Coefficient of coupling
+  summary: Coefficient of coupling for mutual inductance 0.9 (default) | scalar in the range (0,1)
+  group: ''
+```
 
 ### **Inductance L1** — Self-inductance of primary winding `10 H` (default) | positive scalar
 
@@ -64,7 +93,6 @@ close to 1 (such as 0.9999) because that can introduce fast simulation dynamics.
 
 To enable this parameter, clear the **Perfect coupling – no
 leakage** check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

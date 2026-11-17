@@ -15,6 +15,31 @@ chinese_source: worker-translation
 # Video Input
 
 ## 端口
+```yaml
+ports:
+- name: ROI Input Data
+  summary: 感兴趣区域原点坐标 ROI 输入数据
+  direction: input
+- name: Data
+  summary: 视频数据输出 RGB 数据 | Luminance 数据
+  direction: output
+- name: Frame Ready
+  summary: 指示视频帧就绪 boolean
+  direction: output
+  data_types: Boolean
+- name: Frame Error
+  summary: 指示数据采集帧错误 boolean
+  direction: output
+  data_types: Boolean
+- name: Timestamp
+  summary: 提供视频帧时间戳 double
+  direction: output
+  data_types: double
+- name: Missed Ticks
+  summary: 错过的节拍计数（可选） double
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -64,8 +89,54 @@ Data 输出提供视频数据输出。端口的维度和格式取决于 ROI 参�
 当选择 **Show “Missed Ticks” port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认） | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器节拍数 10（默认）| 整数
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: 在内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: ROI origin source
+  summary: 选择感兴趣区域原点来源 Internal（默认）| External
+  group: ''
+  block_parameter: ROIOriginSource
+- name: ROI origin
+  summary: 选择感兴趣区域原点 [X Y] 值 [1 1]（默认）| 2 元素向量
+  group: ''
+  block_parameter: RoiOrigin
+- name: ROI Dimensions
+  summary: 选择感兴趣区域尺寸 [W H] 值 全帧宽度和高度尺寸（默认）| [640 480]（未配置设备时的默认值）| 2 元素向量
+  group: ''
+  block_parameter: RoiDimensions
+- name: Frame format
+  summary: 选择视频数据格式 RGB（默认）| Luminance
+  group: ''
+  block_parameter: Channels
+- name: Show "Frame Ready" port
+  summary: 启用 "Frame Ready" 输出端口 off（默认）| on
+  group: ''
+  block_parameter: ShowReady
+- name: Show "Frame Error" port
+  summary: 启用 "Frame Error" 输出端口 off（默认）| on
+  group: ''
+  block_parameter: ShowError
+- name: Show frame timestamp port
+  summary: 启用 timestamp 输出端口 off（默认）| on
+  group: ''
+  block_parameter: ShowTimestamp
+```
 
 ### **Sample time** — 模块的采样时间 `0.1`（默认） | double
 
@@ -187,7 +258,6 @@ Frame format 决定视频数据是以 RGB 格式提供，还是以亮度格式�
 |  |
 | --- |
 | **模块参数**：`ShowTimestamp` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

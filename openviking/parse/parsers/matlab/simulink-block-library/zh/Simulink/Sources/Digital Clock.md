@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Digital Clock
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 采样时间标量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,17 @@ chinese_source: worker-translation
 采样时间，以秒为单位，位于指定的采样间隔。在其他时间，该模块将输出保持在前一个值。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 采样间隔 1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''1'''
+```
 
 ### **Sample time** — 采样间隔 `1`（默认）| 标量 | 向量
 
@@ -47,7 +63,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：scalar | vector |
 | **默认值**：`'1'` |
-
 ## 所属库
 
 Simulink / Sources

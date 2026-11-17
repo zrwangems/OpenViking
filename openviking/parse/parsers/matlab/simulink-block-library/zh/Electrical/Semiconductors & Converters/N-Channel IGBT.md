@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # N-Channel IGBT
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 集电极端子 electrical
+  direction: conserving
+- name: G
+  summary: 栅极端子 electrical
+  direction: conserving
+- name: E
+  summary: 发射极端子 electrical
+  direction: conserving
+- name: H
+  summary: 热端口 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +56,238 @@ chinese_source: worker-translation
 thermal port` 或 `Simplified I-V
 characteristics and event-based timing | Show thermal
 port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling Option
+  summary: IGBT 表示 Full I-V and capacitance characteristics | No thermal port（默认） | Full I-V and capacitance characteristics
+    | Show thermal port | Simplified I-V characteristics and event-based timing | No thermal port | Simplified I-V characteristics
+    and event-based timing | Show thermal port
+  group: ''
+- name: I-V characteristics defined by
+  summary: IGBT 表示 Fundamental nonlinear equations（默认） | Lookup table (2D, temperature independent) | Lookup table (3D, temperature
+    dependent)
+  group: Main（完整 I-V 和电容特性）
+- name: Zero gate voltage collector current, Ices
+  summary: 零栅压集电极电流 2 mA（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Voltage at which Ices is defined
+  summary: 定义 Ices 时的电压 600 V（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Gate-emitter threshold voltage, Vge(th)
+  summary: 栅极-发射极阈值电压 6 V（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Collector-emitter saturation voltage, Vce(sat)
+  summary: 集电极-发射极饱和电压 2.6 V（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Collector current at which Vce(sat) is defined
+  summary: 定义 Vce(sat) 时的集电极电流 400 A（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Gate-emitter voltage at which Vce(sat) is defined
+  summary: 定义 Vce(sat) 时的栅极-发射极电压 10 V（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Vector of gate-emitter voltages, Vge
+  summary: 栅极-发射极电压向量 [-1 0 0.5 1 1.5 2 2.5 3 3.5 4] V（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Vector of collector-emitter voltages, Vce
+  summary: 集电极-发射极电压向量 [-2 6 7 8 10 12 15 20] V（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Tabulated collector currents, Ic(Vge,Vce)
+  summary: 表格化集电极电流（温度无关） [-1.015e-05, 1.35e-08, .00047135, .0005092, .0005105, .00051175, .00051299, .00051423, .00051548,
+    .00051672; -9.9869e-06, 1.35e-08, .00047135, .0005092, .0005105, .00051175, .00051299, .00051423, .00051548, .00051672;
+    -9.955e-06, 1.35e-08, .0065225, 3.3324, 48.154, 93.661, 105.52, 105.72, 105.93, 106.14; -9.955e-06, 1.35e-08, .0065235,
+    3.5783, 70.264, 166.33, 252.4, 317.67, 353.38, 357.39; -9.955e-06, 1.35e-08, .006524, 3.7206, 89.171, 228.09, 371.63,
+    511.02, 642.69, 764.04; -9.9549e-06, 1.35e-08, .0065242, 3.7716, 97.793, 256.21, 424.27, 592.92, 759.2, 921.52; -9.9549e-06,
+    1.35e-08, .0065243, 3.8067, 104.52, 278.11, 464.6, 654.37, 844.57, 1033.9; -9.9549e-06, 1.35e-08, .0065244, 3.8324, 109.92,
+    295.67, 496.54, 702.28, 909.96, 1118.3] A（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Vector of temperatures, T
+  summary: 温度向量 [25 125] degC（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Tabulated collector currents, Ic(Vge,Vce,T)
+  summary: 表格化集电极电流（温度相关） zeros(8, 10, 2) A（默认）
+  group: Main（完整 I-V 和电容特性）
+- name: Parameterization
+  summary: 结电容参数化 Specify 固定输入、反向传输和输出 capacitance（默认） | Specify fixed gate-emitter, gate-collector, and collector-emitter
+    capacitance | Specify 表格化输入、反向传输和输出 capacitance | Specify tabulated gate-emitter, gate-collector, and collector-emitter
+    capacitance
+  group: 结电容（完整 I-V 和电容特性）
+- name: Input capacitance, Cies
+  summary: 输入电容 26.4 nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Input capacitance, Cies (Vce)
+  summary: 表格化输入的输入电容 [80 40 32 28 27.5 27 26.5 26.5 26.5] nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Reverse transfer capacitance, Cres
+  summary: 反向传输电容 2.7 nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Reverse transfer capacitance, Cres (Vce)
+  summary: 表格化输入的反向传输电容 [55 9 5.5 3.1 2.5 2.1 1.9 1.8 1.7] nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Output capacitance, Coes
+  summary: 输出电容 0 nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Output capacitance, Coes (Vce)
+  summary: 表格化输入的输出电容 [60 20 12 8 6 4.8 4 3.5 3.1] nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Gate-emitter capacitance
+  summary: 栅极-发射极电容 23.7 nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Gate-emitter capacitance, Cge(Vge,Vce)
+  summary: 表格化值的栅极-发射极电容 [25 31 26.5 24.9 25 24.9 24.6 24.7 24.8] nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Gate-collector capacitance
+  summary: 栅极-集电极电容 2.7 nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Gate-collector capacitance, Cgc(Vge,Vce)
+  summary: 表格化值的栅极-集电极电容 [55 9 5.5 3.1 2.5 2.1 1.9 1.8 1.7] nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Corresponding gate-emitter voltages for tabulated gate capacitance, Vge
+  summary: 对应的集电极-发射极电压 0 V（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Collector-emitter capacitance
+  summary: 集电极-发射极电容 0 nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Collector-emitter capacitance, Cce(Vce)
+  summary: 表格化值的集电极-发射极电容 [5 11 6.5 4.9 3.5 2.7 2.1 1.7 1.4] nF（默认） | nF
+  group: 结电容（完整 I-V 和电容特性）
+- name: Corresponding collector-emitter voltages
+  summary: 对应的集电极-发射极电压 [0 1 2 5 10 15 20 25 30] V（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Charge-voltage linearity
+  summary: 电荷-电压线性度 Gate-collector capacitance is constant（默认）| Gate-collector charge function is nonlinear
+  group: 结电容（完整 I-V 和电容特性）
+- name: Gate-collector oxide capacitance
+  summary: 栅极-集电极氧化层电容 20 nF（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Collector-gate voltage below which oxide capacitance becomes active
+  summary: 氧化层电容开始生效的集电极-栅极电压 -5 V（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Total forward transit time
+  summary: 总正向渡越时间 0 us（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Turn-off tail current transit time
+  summary: 总正向渡越时间 0 us（默认）
+  group: 结电容（完整 I-V 和电容特性）
+- name: Collector lead resistance
+  summary: 晶体管集电极引线电阻 0 Ohm（默认）| 非负标量
+  group: 封装（完整 I-V 和电容特性）
+- name: Emitter lead resistance
+  summary: 晶体管发射极引线电阻 0 Ohm（默认）| 非负标量
+  group: 封装（完整 I-V 和电容特性）
+- name: Gate lead resistance
+  summary: 晶体管栅极引线电阻 0 Ohm（默认）| 非负标量
+  group: 封装（完整 I-V 和电容特性）
+- name: Collector lead inductance
+  summary: 晶体管集电极引线电感 0 nH（默认）| 非负标量
+  group: 封装（完整 I-V 和电容特性）
+- name: Emitter lead inductance
+  summary: 晶体管发射极引线电感 0 nH（默认）| 非负标量
+  group: 封装（完整 I-V 和电容特性）
+- name: Gate lead inductance
+  summary: 晶体管栅极引线电感 0 nH（默认）| 非负标量
+  group: 封装（完整 I-V 和电容特性）
+- name: Emission coefficient, N
+  summary: 发射系数 1（默认）
+  group: 高级（完整 I-V 和电容特性）
+- name: Forward Early voltage, VAF
+  summary: 正向厄利电压 200 V（默认）
+  group: 高级（完整 I-V 和电容特性）
+- name: Collector resistance, RC
+  summary: 集电极电阻 0.001 Ohm（默认）
+  group: 高级（完整 I-V 和电容特性）
+- name: Emitter resistance, RE
+  summary: 发射极电阻 0.001Ohm（默认）
+  group: 高级（完整 I-V 和电容特性）
+- name: Internal gate resistance, RG
+  summary: 内部栅极电阻 0.001Ohm（默认）
+  group: 高级（完整 I-V 和电容特性）
+- name: Forward current transfer ratio, BF
+  summary: 正向电流传输比 50（默认）
+  group: 高级（完整 I-V 和电容特性）
+- name: Parameterization
+  summary: 温度依赖性参数化 None — Simulate at parameter measurement temperature（默认）| Specify Ices and Vce(sat) at second measurement
+    temperature | Specify Vce(sat) at second measurement temperature plus the energy gap, EG
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Energy gap, EG
+  summary: 能隙 1.11 eV（默认）
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Zero gate voltage collector current, Ices, at second measurement temperature
+  summary: 第二测量温度下的零栅压集电极电流 Ices 100 mA（默认）
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Collector-emitter saturation voltage, Vce(sat), at second measurement temperature
+  summary: 第二测量温度下的集电极-发射极饱和电压 Vce(sat) 3 V（默认）
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Second measurement temperature
+  summary: 第二测量温度 125 degC（默认）
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Saturation current temperature exponent, XTI
+  summary: 饱和电流温度指数 3（默认）
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Mobility temperature exponent, BEX
+  summary: 迁移率温度指数 -1.5（默认）
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Internal gate resistance temperature coefficient
+  summary: 内部栅极电阻温度系数 0 1/K（默认）
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Device simulation temperature
+  summary: 器件仿真温度 25 degC（默认）
+  group: 温度依赖性（完整 I-V 和电容特性）
+- name: Vector of collector currents, Ic
+  summary: 集电极电流向量 [0, 10, 50, 100, 200, 400, 600] A（默认）
+  group: 主要（简化 I-V 特性和基于事件的时序）
+- name: Vector of temperatures, Tj
+  summary: 温度向量 [298.15, 398.15] K（默认）
+  group: 主要（简化 I-V 特性和基于事件的时序）
+- name: Corresponding on-state collector-emitter voltages
+  summary: 对应的导通状态集电极-发射极电压 [0, 1.1, 1.3, 1.45, 1.75, 2.25, 2.7] V（默认）
+  group: 主要（简化 I-V 特性和基于事件的时序）
+- name: Collector-emitter on-state voltages, Vce=fcn(Tj,Ic)
+  summary: 集电极-发射极导通状态电压 [0, 1.1, 1.3, 1.45, 1.75, 2.25, 2.7; 0, 1.0, 1.15, 1.35, 1.7, 2.35, 3.0] V（默认）
+  group: 主要（简化 I-V 特性和基于事件的时序）
+- name: Miller resistance
+  summary: 米勒电阻 0.1 Ohm（默认）
+  group: 主要（简化 I-V 特性和基于事件的时序）
+- name: Off-state conductance
+  summary: 关断状态电导 1e-5 Ohm（默认）
+  group: 主要（简化 I-V 特性和基于事件的时序）
+- name: Gate-emitter threshold voltage, Vge(th)
+  summary: 阈值电压 6 V（默认）
+  group: 主要（简化 I-V 特性和基于事件的时序）
+- name: Vector of temperatures for switching losses, Tj
+  summary: 开关损耗温度 [298.15, 398.15] K（默认）
+  group: 开关损耗（简化 I-V 特性和基于事件的时序）
+- name: Vector of collector currents for switching losses, Ic
+  summary: 开关损耗集电极电流 [0, 10, 50, 100, 200, 400, 600] A（默认）
+  group: 开关损耗（简化 I-V 特性和基于事件的时序）
+- name: Turn-on switching losses, Eon=fcn(Tj,Ic)
+  summary: 开通开关损耗 [0, 0.2, 1, 2, 4, 8, 15; 0, 0.3, 1.3, 2.5, 5, 11, 18]*1e-3 J（默认）
+  group: 开关损耗（简化 I-V 特性和基于事件的时序）
+- name: Turn-off switching losses, Eoff=fcn(Tj,Ic)
+  summary: 关断开关损耗 [0, 0.3, 1.5, 3, 6, 15, 25; 0, 0.7, 3.3, 6.5, 13, 25, 35]*1e-3 J（默认）
+  group: 开关损耗（简化 I-V 特性和基于事件的时序）
+- name: Turn-on delay
+  summary: 开通延迟 0.07 us（默认）
+  group: 动态特性（简化 I-V 特性和基于事件的时序）
+- name: Current rise time
+  summary: 电流上升时间 0.7 us（默认）
+  group: 动态特性（简化 I-V 特性和基于事件的时序）
+- name: Turn-off delay
+  summary: 关断延迟 0.2 us（默认值）
+  group: 动态特性（简化 I-V 特性和基于事件的时序）
+- name: Current fall time
+  summary: 电流下降时间 0.5 us（默认值）
+  group: 动态特性（简化 I-V 特性和基于事件的时序）
+- name: Off-state voltage for rise and fall times
+  summary: 上升和下降时间的断态电压 300 V（默认值）
+  group: 动态特性（简化 I-V 特性和基于事件的时序）
+- name: Off-state voltage for rise and fall times
+  summary: 上升和下降时间的断态电压 300 V（默认值）
+  group: 动态特性（简化 I-V 特性和基于事件的时序）
+```
 
 ### **Modeling Option** — IGBT 表示 `Full I-V and capacitance characteristics | No thermal port`（默认） | `Full I-V and capacitance characteristics | Show thermal port` | `Simplified I-V characteristics and event-based timing | No thermal port` | `Simplified I-V characteristics and event-based timing | Show thermal port`
 
@@ -737,7 +982,6 @@ port` 来暴露热端口。
 #### 依赖关系
 
 要启用此参数，请通过将 **Modeling option** 设置为 `Simplified I-V characteristics and event-based timing | Show thermal port` 来暴露热端口。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

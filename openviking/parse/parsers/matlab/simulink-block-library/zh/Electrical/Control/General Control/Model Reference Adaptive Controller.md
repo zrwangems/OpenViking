@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Model Reference Adaptive Controller
 
 ## 端口
+```yaml
+ports:
+- name: r
+  summary: 被控对象参考，*r* 标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 被控对象输出，*y* 标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 积分器复位 标量
+  direction: input
+  data_types: Boolean
+- name: u
+  summary: 控制器调整后输出，*u* 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,58 @@ chinese_source: worker-translation
 调整后的控制信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain
+  summary: 控制器比例增益，*Kp* 1（默认）| 正标量
+  group: 控制器参数
+- name: Integral gain
+  summary: 控制器积分增益，*Ki* 1（默认）| 正标量
+  group: 控制器参数
+- name: Derivative gain
+  summary: 控制器微分增益，*Kd* 0（默认）
+  group: 控制器参数
+- name: Anti-windup gain
+  summary: 控制器抗积分饱和增益 1（默认）| 正标量
+  group: 控制器参数
+- name: Use filtered derivative
+  summary: 滤波选项 on（默认）| off
+  group: 控制器参数
+- name: Filter coefficient
+  summary: 参考信号滤波系数 100（默认）
+  group: 控制器参数
+- name: Control action upper limit
+  summary: 控制信号上限，*upid_max* 5（默认）
+  group: 控制器参数
+- name: Control action lower limit
+  summary: 控制信号下限，*upid_min* -5（默认）
+  group: 控制器参数
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: 控制器参数
+- name: Model parameterization
+  summary: 离散或连续模型选项 Discrete-time（默认）| Continuous-time
+  group: 参考模型
+- name: Discrete-time numerator
+  summary: 离散时间传递函数分子 [0.01 -0.0099]（默认）
+  group: 参考模型
+- name: Discrete-time denominator
+  summary: 离散时间传递函数分母 [1 -1.9801 0.9802]（默认）| 向量
+  group: 参考模型
+- name: Discretization sample time
+  summary: 离散化采样时间 0.01（默认）| -1 或正数
+  group: 参考模型
+- name: Continuous-time numerator
+  summary: 连续时间传递函数分子 [1 1]（默认）| 向量
+  group: 参考模型
+- name: Continuous-time denominator
+  summary: 连续时间传递函数分母 [1 2 1]（默认）| 向量
+  group: 参考模型
+- name: Learning rate
+  summary: '*γ* 0.5（默认）'
+  group: 调整机制
+```
 
 ### 控制器参数
 
@@ -158,7 +227,6 @@ chinese_source: worker-translation
 ### **Learning rate** — *γ* `0.5`（默认）
 
 对被控对象变化的调整速率。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

@@ -14,6 +14,17 @@ language: en
 # Audio Device Writer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int16 | int32 | uint8
+- name: Port_1
+  summary: Number of samples underrun scalar
+  direction: output
+  data_types: uint32
+```
 
 ### Input
 
@@ -38,8 +49,38 @@ To enable this port, select the **Output number of samples
 underrun** parameter.
 
 **Data Types:** `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Driver
+  summary: Driver used to access your audio device DirectSound (default) | ASIO | WASAPI
+  group: ''
+- name: Device
+  summary: Device used to play audio samples default audio device (default)
+  group: ''
+- name: Info
+  summary: View information about your audio output configuration button
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate used by device to play audio data 44100 (default) | positive scalar
+  group: ''
+- name: Device bit depth
+  summary: Data type used by device to perform digital-to-analog conversion 16-bit integer (default) | 8-bit integer | 24-bit
+    integer | 32-bit float
+  group: ''
+- name: Use default channel mapping
+  summary: Toggle channel mapping source on (default) | off
+  group: ''
+- name: Device output channels
+  summary: Specify nondefault channel mapping [1:MaximumOutputChannels] (default) | scalar | vector
+  group: ''
+- name: Output number of samples underrun
+  summary: Specify output port for number of samples underrun off (default) | on
+  group: ''
+```
 
 #### Main Tab
 
@@ -153,7 +194,6 @@ channels** parameter.
 When you select this parameter, an output port is added to the block. The
 port outputs the number of samples underrun while writing a frame of data
 (one input matrix).
-
 ## Libraries
 
 Audio Toolbox / Sinks DSP System Toolbox / Sinks

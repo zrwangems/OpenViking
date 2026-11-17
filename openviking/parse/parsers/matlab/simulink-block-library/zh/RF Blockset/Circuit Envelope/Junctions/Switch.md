@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Switch
 
 ## 端口
+```yaml
+ports:
+- name: Vctl
+  summary: Simulink 控制信号标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,19 @@ chinese_source: worker-translation
 Simulink 控制信号，指定为标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: On resistance
+  summary: 导通电阻 10（默认）| 正标量
+  group: ''
+- name: Off resistance
+  summary: 关断电阻 1e-6（默认）| 正标量
+  group: ''
+- name: Threshold voltage
+  summary: 阈值电压 0（默认）| 标量
+  group: ''
+```
 
 ### **On resistance** — 导通电阻 `10`（默认）| 正标量
 
@@ -37,7 +55,6 @@ Simulink 控制信号，指定为标量。
 ### **Threshold voltage** — 阈值电压 `0`（默认）| 标量
 
 开关的阈值电压，指定为以伏特为单位的标量。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Junctions

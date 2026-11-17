@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Generalized Bell MF
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入值 标量 | 向量
+  direction: input
+- name: MF
+  summary: 隶属度值 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,28 @@ chinese_source: worker-translation
 ### **MF** — 隶属度值 标量 | 向量
 
 隶属度值，以标量或向量形式返回。**MF** 的维度与 **x** 的维度一致。**MF** 的每个元素是对 **x** 中对应元素计算得到的隶属度值。
-
 ## 参数
+```yaml
+parameters:
+- name: a
+  summary: 函数形状参数 5（默认）| 标量
+  group: ''
+  block_parameter: a
+  type: 字符串、字符向量
+  default: '"5"'
+- name: b
+  summary: 函数形状参数 4（默认）| 正标量
+  group: ''
+  block_parameter: b
+  type: 字符串、字符向量
+  default: '"4"'
+- name: c
+  summary: 中心点 0（默认）| 标量
+  group: ''
+  block_parameter: c
+  type: 字符串、字符向量
+  default: '"0"'
+```
 
 ### **a** — 函数形状参数 `5`（默认）| 标量
 
@@ -65,7 +94,6 @@ chinese_source: worker-translation
 | **模块参数：** `c` |
 | **类型：** 字符串、字符向量 |
 | **默认值：** `"0"` |
-
 ## 所属库
 
 Fuzzy Logic Toolbox / Membership Functions

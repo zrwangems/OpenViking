@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Transmission Line (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 三相端口 electrical
+  direction: conserving
+- name: ~2
+  summary: 三相端口 electrical
+  direction: conserving
+- name: g1
+  summary: 端 ~1 处的接地连接 electrical
+  direction: conserving
+- name: g2
+  summary: 端 ~2 处的接地连接 electrical
+  direction: conserving
+- name: g1'
+  summary: 故障位置 1 处的接地连接 electrical
+  direction: conserving
+- name: g2'
+  summary: 故障位置 2 处的接地连接 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -49,8 +70,78 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Accessible ground connections at section interface** 设置为 `Yes`
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是对复合三相端口还是扩展三相端口进行建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Line length
+  summary: 传输线的长度 1 km（默认）
+  group: 主
+- name: Frequency used for rlcg specification
+  summary: 用于 rlcg 规格的频率 60 Hz（默认）| 正标量
+  group: 主
+- name: Resistance
+  summary: 传输线的电阻 0.02 Ohm/km（默认）
+  group: 主
+- name: Inductance
+  summary: 传输线的自感 0.5 mH/km（默认）
+  group: 主
+- name: Mutual inductance
+  summary: 线间互感 0.1 mH/km（默认）
+  group: 主
+- name: Line-line capacitance
+  summary: 线间电容 0.3 μF/km（默认）
+  group: 主
+- name: Line-ground capacitance
+  summary: 线地电容 0.1 μF/km（默认）
+  group: 主
+- name: Mutual resistance
+  summary: 线间互阻 0 Ohm/km（默认）
+  group: 主
+- name: Model two line sections
+  summary: 线间互阻 No（默认）| Yes
+  group: 主
+- name: Number of segments
+  summary: 区段数 1（默认）
+  group: 主
+- name: Position of section interface
+  summary: 区段接口的位置 0.5 Km（默认）
+  group: 主
+- name: Number of segments in first section
+  summary: 第一区段中的区段数 1（默认）
+  group: 主
+- name: Number of segments in second section
+  summary: 第二区段中的区段数 1（默认）
+  group: 主
+- name: Accessible ground connections at section interface
+  summary: 访问故障位置处接地连接的选项 No（默认）| Yes
+  group: 主
+- name: Parasitic series resistance
+  summary: 寄生串联电阻 1e-6 Ohm（默认）
+  group: 寄生参数
+- name: Parasitic parallel conductance
+  summary: 寄生并联电导 1e-6 1/Ohm（默认）
+  group: 寄生参数
+- name: Section interface fault
+  summary: 向区段接口添加故障的选项 Add fault
+  group: 故障
+- name: Fault type
+  summary: 故障类型 Single-phase to ground (a-g)（默认）| Single-phase to ground (b-g) | Single-phase to ground (c-g) | Two-phase
+    (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase to ground
+    (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: 故障
+- name: Faulted phase-neutral resistance
+  summary: 故障相-中性点电阻 1e-3 Ohm（默认）
+  group: 故障
+- name: Faulted neutral-ground resistance
+  summary: 故障中性点-地电阻 1e-3 Ohm（默认）
+  group: 故障
+- name: Unfaulted phase-neutral conductance
+  summary: 未故障相-中性点电导 1e-6 1/Ohm（默认）
+  group: 故障
+```
 
 ### **Modeling option** — 是对复合三相端口还是扩展三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -242,7 +333,6 @@ pi 线路模型第二区段中的区段数。如果您添加非侵入式故障�
 - `Two-phase to ground (c-a-g)`
 - `Three-phase (a-b-c)`
 - `Three-phase to ground (a-b-c-g)`
-
 ## 所属库
 
 Simscape / Electrical / Passive / Lines

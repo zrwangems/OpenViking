@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Velocity Profiler
 
 ## 端口
+```yaml
+ports:
+- name: Directions
+  summary: 沿路径的行驶方向 *M*×1 向量，元素为 1（前进运动）和 –1（倒车运动）
+  direction: input
+- name: CumLengths
+  summary: 累积路径长度 *M*×1 向量，元素为单调递增的实数值
+  direction: input
+- name: Curvatures
+  summary: 沿路径的带符号路径曲率 *M*×1 实数值向量
+  direction: input
+- name: StartVelocity
+  summary: 车辆在路径起点处的纵向速度 实数标量
+  direction: input
+- name: EndVelocity
+  summary: 车辆在路径终点处的纵向速度 实数标量
+  direction: input
+- name: Velocities
+  summary: 沿路径的速度剖面 *M*×1 实数值向量
+  direction: output
+- name: Times
+  summary: 速度剖面的车辆到达时间 *M*×1 实数值向量
+  direction: output
+```
 
 ### 输入
 
@@ -69,8 +93,34 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Show Times output port** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum longitudinal acceleration (m/s^2)
+  summary: 车辆最大纵向加速度 3（默认值）| 正实数标量
+  group: ''
+- name: Maximum longitudinal deceleration (m/s^2)
+  summary: 车辆最大纵向减速度 6（默认值）| 正实数标量
+  group: ''
+- name: Maximum allowable speed (m/s)
+  summary: 沿路径的最大允许速度 10（默认值）| 正实数标量
+  group: ''
+- name: Maximum longitudinal jerk (m/s^3)
+  summary: 最大纵向加加速度 1（默认值）| 正实数标量
+  group: ''
+- name: Maximum lateral acceleration (m/s^2)
+  summary: 最大横向加速度 1（默认值）| 正实数标量
+  group: ''
+- name: Show Times output port
+  summary: 输出速度剖面的到达时间 off（默认值）| on
+  group: ''
+- name: Sample time
+  summary: 模块采样时间 -1（默认值）| 正实数标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code Generation（默认值）| Interpreted Execution
+  group: ''
+```
 
 ### **Maximum longitudinal acceleration (m/s^2)** — 车辆最大纵向加速度 `3`（默认值）| 正实数标量
 
@@ -118,7 +168,6 @@ chinese_source: worker-translation
 
 - `Code generation` — 使用生成的 C/C++ 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C/C++ 代码。只要模型不更改，C 代码就会在后续仿真中重用。此选项需要额外的启动时间。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
-
 ## 所属库
 
 Automated Driving Toolbox

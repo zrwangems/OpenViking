@@ -14,6 +14,17 @@ language: en
 # Buffer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -106,8 +117,19 @@ input
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Output buffer size (per channel)
+  summary: Buffer size 64 (default) | positive integer
+  group: ''
+- name: Buffer overlap
+  summary: Buffer overlap 0 (default) | integer
+  group: ''
+- name: Initial conditions
+  summary: Initial output 0 (default) | scalar | vector | matrix
+  group: ''
+```
 
 ### **Output buffer size (per channel)** — Buffer size `64` (default) | positive integer
 
@@ -226,7 +248,6 @@ For more information on latency and the Simulink® tasking modes, see Excess Alg
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Buffers

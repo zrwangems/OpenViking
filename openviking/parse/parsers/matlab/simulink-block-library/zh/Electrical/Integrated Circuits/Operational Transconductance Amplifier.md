@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Operational Transconductance Amplifier
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 同相输入电气端口
+  direction: conserving
+- name: '-'
+  summary: 反相电压电气端口
+  direction: conserving
+- name: C
+  summary: 控制电流电气端口
+  direction: conserving
+- name: OUT
+  summary: 输出电流电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,46 @@ chinese_source: worker-translation
 ### **OUT** — 输出电流电气端口
 
 与运算放大器输出端关联的电气守恒端口。该端口名称在模块图标上隐藏，但您可以在仿真数据日志中看到它。
-
 ## 参数
+```yaml
+parameters:
+- name: Transconductance
+  summary: 跨导 9600 uS（默认值）
+  group: 标称测量值
+- name: Input resistance
+  summary: 输入电阻 25 kOhm（默认值）
+  group: 标称测量值
+- name: Output resistance
+  summary: 输出电阻 3 MOhm（默认值）
+  group: 标称测量值
+- name: Reference control current
+  summary: 参考控制电流 500 uA（默认值）
+  group: 标称测量值
+- name: Dynamics
+  summary: 动态特性 No lag（默认值）| Finite bandwidth with slew rate limiting
+  group: 动态特性
+- name: Bandwidth
+  summary: 一阶滞后的带宽 2 MHz（默认值）
+  group: 动态特性
+- name: Maximum current slew rate
+  summary: 跨导电流的最大变化率 2 A/us（默认值）
+  group: 动态特性
+- name: Initial current
+  summary: 初始跨导电流 0 A（默认值）
+  group: 动态特性
+- name: Minimum output voltage
+  summary: 最小输出电压 -15 V（默认值）
+  group: 限值
+- name: Maximum output voltage
+  summary: 最大输出电压 15 V（默认值）
+  group: 限值
+- name: Additional output resistance at voltage swing limits
+  summary: 电压摆幅限值处的附加输出电阻 1 Ohm（默认值）
+  group: 限值
+- name: Minimum control current for simulation
+  summary: 仿真用最小控制电流 0.001 uA（默认值）
+  group: 限值
+```
 
 ### 标称测量值
 
@@ -104,7 +157,6 @@ chinese_source: worker-translation
 ### **Minimum control current for simulation** — 仿真用最小控制电流 `0.001` `uA`（默认值）
 
 在控制电流引脚 `C` 处测得的控制电流被限制为大于此参数的值。这可以防止在根据控制电流值计算输入和输出电阻值时出现潜在的除零错误。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Kasami Sequence Generator
 
 ## 端口
+```yaml
+ports:
+- name: oSiz
+  summary: 当前输出大小 标量 | 向量
+  direction: input
+  data_types: double
+- name: Ref
+  summary: 参考输入信号 标量 | 列向量
+  direction: input
+  data_types: double
+- name: Rst
+  summary: 复位信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出信号 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -61,8 +80,43 @@ chinese_source: worker-translation
 输出信号，以二值列向量形式返回。**Initial states** 参数向量中至少有一个元素必须非零，模块才能生成非零序列。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Generator polynomial
+  summary: 生成多项式 'z^6 + z + 1'（默认）| 多项式字符向量 | 字符串标量 | 二值行向量 | 整数值行向量
+  group: ''
+- name: Initial states
+  summary: 初始状态 [0 0 0 0 0 1]（默认）| 二值标量 | 二值行向量
+  group: ''
+- name: Sequence index(es)
+  summary: 序列索引 0（默认）| 整数 | 形式为 [*k* *m*] 的向量
+  group: ''
+- name: Shift
+  summary: 序列相对于起始点的偏移 0（默认）| 整数
+  group: ''
+- name: Output variable-size signals
+  summary: 输出可变长度信号的选项 off（默认）| on
+  group: ''
+- name: Maximum output size source
+  summary: 最大输出大小来源 Dialog parameter（默认）| Inherit from reference port
+  group: ''
+- name: Maximum output size
+  summary: 最大输出大小 [10 1]（默认）| 形式为 [*n* 1] 的向量
+  group: ''
+- name: Sample time
+  summary: 输出采样时间 1（默认）| -1 | 正标量
+  group: ''
+- name: Samples per frame
+  summary: 每帧采样数 1（默认）| 正整数
+  group: ''
+- name: Reset on nonzero input
+  summary: 复位输出信号的选项 off（默认）| on
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| boolean
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -134,7 +188,6 @@ chinese_source: worker-translation
 ### **Output data type** — 输出数据类型 `double`（默认）| `boolean`
 
 指定模块的输出数据类型。
-
 ## 所属库
 
 Communications Toolbox / Comm Sources / Sequence Generators

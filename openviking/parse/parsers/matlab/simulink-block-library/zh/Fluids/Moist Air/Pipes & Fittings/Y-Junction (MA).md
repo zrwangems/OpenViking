@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Y-Junction (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 湿空气端口 moist air
+  direction: conserving
+- name: B
+  summary: 湿空气端口 moist air
+  direction: conserving
+- name: C
+  summary: 湿空气端口 moist air
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,58 @@ chinese_source: worker-translation
 ### **C** — 湿空气端口 moist air
 
 与连接处液体入口或出口相关联的湿空气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Main branch area (A-B)
+  summary: 端口 A 和 B 之间的横截面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Side branch area (C)
+  summary: 侧支路的横截面积 0.004 m^2（默认）| 正标量
+  group: ''
+- name: Loss coefficient model
+  summary: 损失系数类型 Idel'chik correlation（默认）| Custom
+  group: ''
+- name: Loss coefficient configuration change time constant
+  summary: 平滑函数的时间尺度 0.0001 s（默认）| 正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流状态之间转换的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Zero-flow threshold pressure ratio
+  summary: 对应于停滞流动的压力比 0.999999（默认）| 正标量
+  group: ''
+- name: Junction angle between (A-C)
+  summary: 侧支路的偏置角度 45 deg（默认）| 介于 15 和 60 之间的正标量
+  group: ''
+- name: Minimum valid flow ratio for coefficient calculation
+  summary: 系数计算的流量比限制 0.2（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 介于 0 和 1 之间的标量
+  group: ''
+- name: Fluid inertia
+  summary: 用于对流体惯性建模的选项 off（默认）| on
+  group: ''
+- name: Report when flow configuration is invalid
+  summary: 无效流动配置的仿真警告模式 None（默认）| Warning | Error
+  group: ''
+- name: Main branch converging loss coefficient
+  summary: A 和 B 之间的汇流损失系数 1.12（默认）| 正标量
+  group: ''
+- name: Main branch diverging loss coefficient
+  summary: A 和 B 之间的分流损失系数 1.12（默认）| 正标量
+  group: ''
+- name: Side branch converging loss coefficient
+  summary: C 与主管路之间的汇流损失系数 1.12（默认）| 正标量
+  group: ''
+- name: Side branch diverging loss coefficient
+  summary: C 与主管路之间的分流损失系数 1.12（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Main branch area (A-B)** — 端口 A 和 B 之间的横截面积 `0.01 m^2`（默认）| 正标量
 
@@ -135,7 +197,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过连接处的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

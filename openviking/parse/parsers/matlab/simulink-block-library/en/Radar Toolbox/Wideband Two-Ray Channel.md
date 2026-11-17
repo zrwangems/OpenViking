@@ -14,6 +14,32 @@ language: en
 # Wideband Two-Ray Channel
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Wideband input signal *M*-by-*N* complex-valued matrix | *M*-by-*2N* complex-valued matrix
+  direction: input
+  data_types: double
+- name: Pos1
+  summary: Position of signal origin 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Pos2
+  summary: Position of signal destination 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Vel1
+  summary: Velocity of signal origin 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Vel2
+  summary: Velocity of signal destination 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Out
+  summary: Propagated signal *M*-by-*N* complex-valued matrix | *M*-by-*2N* complex-valued matrix
+  direction: output
+```
 
 ### Input
 
@@ -136,8 +162,55 @@ Whenever it takes longer than the current time frame for the signal
 to propagate from the origin to the destination, the output may not
 contain all contributions from the input of the current time frame.
 The remaining output will appear in the next execution of the block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: Signal carrier frequency 300e6 (default) | positive real-valued scalar
+  group: ''
+- name: Number of subbands
+  summary: Number of processing subbands 64 (default) | positive integer
+  group: ''
+- name: Specify atmospheric parameters
+  summary: Enable atmospheric attenuation model off (default) | on
+  group: ''
+- name: Temperature (degrees Celsius)
+  summary: Ambient temperature 15 (default) | real-valued scalar
+  group: ''
+- name: Dry air pressure (Pa)
+  summary: Atmospheric dry air pressure 101.325e3 (default) | positive real-valued scalar
+  group: ''
+- name: Water vapour density (g/m^3)
+  summary: Atmospheric water vapor density 7.5 (default) | positive real-valued scalar
+  group: ''
+- name: Liquid water density (g/m^3)
+  summary: Liquid water density 0.0 (default) | nonnegative real-valued scalar
+  group: ''
+- name: Rain rate (mm/hr)
+  summary: Rainfall rate 0.0 (default) | non-negative real-valued scalar
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Ground reflection coefficient
+  summary: Ground reflection coefficient -1 (default) | complex-valued scalar | complex-valued 1-by-*N* row vector
+  group: ''
+- name: Combine two rays at output
+  summary: Option to combine two rays at output on (default) | off
+  group: ''
+- name: Maximum one-way propagation distance (m)
+  summary: Maximum one-way propagation distance 10.0e3 (default) | positive real-valued scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+```
 
 ### **Signal propagation speed (m/s)** — Signal propagation speed `physconst('LightSpeed')` (default) | real-valued positive scalar
 
@@ -316,7 +389,6 @@ using **Simulate using** overrides the simulation mode.
 | `Code Generation` | The block is compiled. | All blocks in the model are compiled. |
 
 For more information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Radar Toolbox

@@ -14,6 +14,18 @@ language: en
 # Capacitor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Capacitor thermal mass thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -33,8 +45,104 @@ voltage.
 
 Thermal conserving port associated with the capacitor thermal
 mass.
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacitance model
+  summary: Capacitor type Constant (default) | Lookup table | Dielectric relaxation (Debye)
+  group: Main
+- name: Capacitance
+  summary: Nominal capacitance 1e-6 F (default)
+  group: Main
+- name: Capacitance values
+  summary: Vector of capacitance values [1e-05, 1e-06] F (default) | positive vector
+  group: Main
+- name: Corresponding voltage values
+  summary: Input vector of voltage values [0, 10] V (default)
+  group: Main
+- name: Symmetric C-V table
+  summary: Table data Yes - use voltage magnitude when computing C (default) | No - use C-V data as-is
+  group: Main
+- name: Frequencies for specifying dissipation factors [f1 f2]
+  summary: Frequencies for dissipation factors calculation [1, 10] kHz (default)
+  group: Main
+- name: Dissipation factors (%) at f1 and f2 [DF1 DF2]
+  summary: Dissipation factors at f1 and f2 [.8, 1.2] (default)
+  group: Main
+- name: Capacitance tolerance (%)
+  summary: Capacitor tolerance 5 (default)
+  group: Main
+- name: Tolerance application
+  summary: Tolerance application None — use nominal value (default) | Random tolerance | Apply maximum tolerance value | Apply
+    minimum tolerance value
+  group: Main
+- name: Tolerance distribution
+  summary: Tolerance distribution type Uniform (default) | Gaussian
+  group: Main
+- name: Number of standard deviations for quoted tolerance
+  summary: Number of standard deviations for quoted tolerance 4 (default)
+  group: Main
+- name: Series resistance
+  summary: Series resistance 1e-6 Ohm (default)
+  group: Main
+- name: Parallel conductance
+  summary: Parallel leakage path 0 1/Ohm (default)
+  group: Main
+- name: Averaging period for power logging
+  summary: Averaging period for power logging 0 s (default)
+  group: Main
+- name: Enable operating limits
+  summary: Enable operating limits No (default) | Yes
+  group: Operating Limits
+- name: Reporting if operating limits exceeded
+  summary: Report behavior Warn (default) | Error
+  group: Operating Limits
+- name: Working voltage range
+  summary: Working voltage range [-25, 25] V (default)
+  group: Operating Limits
+- name: Power rating
+  summary: Maximum instantaneous power dissipation 1 W (default)
+  group: Operating Limits
+- name: Temperature
+  summary: Maximum permissible temperature 85 degC (default)
+  group: Operating Limits
+- name: Model thermal port
+  summary: Option to model thermal port off (default) | on
+  group: Thermal
+- name: Thermal mass
+  summary: Thermal mass associated with thermal port 1 J/K (default)
+  group: Thermal
+- name: Capacitor fault
+  summary: Option to model fault in capacitor Add fault (default)
+  group: Faults
+- name: Faulted capacitance as % of unfaulted
+  summary: Faulted capacitance as % of unfaulted 100 (default) | positive scalar
+  group: Faults
+- name: Faulted series resistance
+  summary: Faulted series resistance 1e-3 Ohm (default) | finite positive scalar
+  group: Faults
+- name: Faulted parallel conductance
+  summary: Faulted parallel conductance 0 1/Ohm (default) | finite nonnegative scalar
+  group: Faults
+- name: Fault transition time constant
+  summary: Fault transition time constant 1e-3 s (default) | positive scalar
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible temperature
+  summary: Maximum permissible temperature 85 degC (default) | nonnegative scalar
+  group: Faults
+- name: Time to fail when exceeding maximum temperature
+  summary: Time to fail when exceeding maximum temperature 1 s (default) | nonnegative scalar
+  group: Faults
+- name: Permissible voltage range
+  summary: Minimum and maximum permissible voltage [-100, 100] V (default) | vector of length 2
+  group: Faults
+- name: Time to fail when exceeding voltage range
+  summary: Time to fail when exceeding voltage range 1 s (default) | nonnegative scalar
+  group: Faults
+```
 
 ### Main
 
@@ -416,7 +524,6 @@ voltage range without triggering the fault.
 
 To enable this parameter, set **Trigger Type** to
 `Behavioral`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

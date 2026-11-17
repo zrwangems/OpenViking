@@ -14,6 +14,9 @@ language: en
 # Wideband Transmit Array
 
 ## Ports
+```yaml
+ports: []
+```
 
 **Note**
 
@@ -29,8 +32,10 @@ the underlying System object. See link at the bottom of this page.
 | `WS` | Subarray element weights input port. To enable this port select `Custom` from the **Subarray steering method** pull down menu. |  |
 | `Steer` | Steering angle input port. To enable this port, select `Phase` or `Time` from the **Subarray steering method** pull down menu. |  |
 | `Out` | Radiated signals. | Double-precision floating point |
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Signal Propagation speed (m/s)**
 :   Specify the propagation speed of the signal, in meters per second,
@@ -679,7 +684,6 @@ the underlying System object. See link at the bottom of this page.
     from *broadside* are set to zero. Define the
     broadside direction as 0° azimuth angle and 0° elevation
     angle.
-
 ## Libraries
 
 Not documented in R2025b.

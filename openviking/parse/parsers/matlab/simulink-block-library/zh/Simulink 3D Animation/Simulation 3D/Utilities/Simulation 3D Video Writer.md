@@ -15,10 +15,30 @@ chinese_source: worker-translation
 # Simulation 3D Video Writer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Filename
+  summary: 视频文件名称 output.avi（默认）| 字符向量 | 字符串
+  group: ''
+  block_parameter: Filename
+  values: '''output.avi''（默认）| 字符向量 | 字符串'
+- name: File action
+  summary: 如何管理视频文件 Preserve（默认）| Overwrite | 字符向量 | 字符串
+  group: ''
+  block_parameter: FileAction
+  values: '''Preserve''（默认）| ''Overwrite'' | 字符向量 | 字符串'
+- name: Recording interval (s)
+  summary: 记录时间间隔 [0 inf]（默认）| 实数正 1×2 向量
+  group: ''
+  block_parameter: Interval
+  values: '[0 inf]（默认）| 实数正 1×2 向量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -86,7 +106,6 @@ R2025b 中未记录。
 | **Data Types:** | `double` |
 
 **Example:** `set_param(gcb,"Interval","[0 inf]")`
-
 ## 所属库
 
 Simulink 3D Animation / Simulation 3D / Utilities

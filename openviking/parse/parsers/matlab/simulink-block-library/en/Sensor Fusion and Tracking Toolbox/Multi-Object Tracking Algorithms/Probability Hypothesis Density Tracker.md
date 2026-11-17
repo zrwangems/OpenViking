@@ -14,6 +14,33 @@ language: en
 # Probability Hypothesis Density (PHD) Tracker
 
 ## Ports
+```yaml
+ports:
+- name: Detections
+  summary: Detection list Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Prediction Time
+  summary: Track update time real scalar
+  direction: input
+- name: Sensor Configurations
+  summary: Configurations of tracking sensors Simulink bus containing MATLAB structure
+  direction: input
+- name: State Parameters
+  summary: Track state parameters Simulink bus containing MATLAB structure
+  direction: input
+- name: Confirmed Tracks
+  summary: Confirmed tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Tentative Tracks
+  summary: Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: All Tracks
+  summary: Confirmed and Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Info
+  summary: Additional information for analyzing track updates Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -178,8 +205,83 @@ information reports. Each report is a structure containing these fields:
 
 To enable this port, in the **Port Setting** tab, select
 **Enable information output**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: Unique tracker identifier 0 (default) | nonnegative integer
+  group: ''
+- name: Detection partition function
+  summary: Function to partition detections into detection cells partitionDetections (default) | function name
+  group: ''
+- name: Assignment threshold
+  summary: Threshold of selecting detections for component initialization 25 (default) | real positive scalar
+  group: ''
+- name: Maximum number of sensors
+  summary: Maximum number of sensors 20 (default) | positive integer
+  group: ''
+- name: Maximum number of tracks
+  summary: Maximum number of tracks 1000 (default) | positive integer
+  group: ''
+- name: Maximum number of components
+  summary: Maximum number of components 1000 (default) | positive integer
+  group: ''
+- name: Sensor configurations
+  summary: Configurations of tracking sensors struct('SensorIndex',1,'IsValidTime',true) (default) | structure | structure
+    array
+  group: ''
+- name: Update sensor configurations with time
+  summary: Update sensor configurations with time off (default) | on
+  group: ''
+- name: Track state parameters
+  summary: Parameters of track state reference frame structure | structure array
+  group: ''
+- name: Update track state parameters with time
+  summary: Update track state parameters with time off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted Execution (default) | Code Generation
+  group: ''
+- name: Birth rate of new targets
+  summary: Birth rate of new targets in the density 1e-3 (default) | positive real scalar
+  group: ''
+- name: Death rate of components
+  summary: Death rate of components in the density 1e-6 (default) | positive real scalar
+  group: ''
+- name: Threshold for initializing tentative tracks
+  summary: Threshold for initializing tentative track 0.5 (default) | positive real scalar
+  group: ''
+- name: Threshold for track confirmation
+  summary: Threshold for track confirmation 0.8 (default) | positive real scalar
+  group: ''
+- name: Threshold for track deletion
+  summary: Threshold for component deletion 1e-3 (default) | positive real scalar
+  group: ''
+- name: Threshold for components merging
+  summary: Threshold for components merging 25 (default) | positive real scalar
+  group: ''
+- name: Thresholds for label management
+  summary: Thresholds for label management [1.1 1 0.8] (default) | 1-by-3 vector of positive values
+  group: ''
+- name: Prediction time source
+  summary: Source of prediction time Auto (default) | Input port
+  group: ''
+- name: Enable tentative tracks output
+  summary: Enable output port for tentative tracks off (default) | on
+  group: ''
+- name: Enable all tracks output
+  summary: Enable output port for all tracks off (default) | on
+  group: ''
+- name: Enable information output
+  summary: Enable output port for analysis information off (default) | on
+  group: ''
+- name: Source of output bus name
+  summary: Source of output track bus name Auto (default) | Property
+  group: ''
+- name: Source of output info bus name
+  summary: Source of output information bus name Auto (default) | Property
+  group: ''
+```
 
 #### Tracker Configuration
 
@@ -481,7 +583,6 @@ Source of the output information bus name, specified as:
 
 To enable this parameter, on the **Port Setting** tab, select
 **Enable information output**.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

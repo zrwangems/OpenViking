@@ -14,6 +14,17 @@ language: en
 # Weighting Filter
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal matrix | 1-D vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -38,8 +49,37 @@ on the size of the input:
   vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Weighting method
+  summary: Type of frequency weighting A-weighting (default) | C-weighting | K-weighting
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+- name: Mask for attenuation limits
+  summary: Creates a mask for filter response visualization No mask (default) | Class 1 | Class 2
+  group: ''
+- name: Visualize filter response
+  summary: Open plot to visualize magnitude response and compliance mask button
+  group: ''
+- name: Variable name
+  summary: Variable name of exported filter myFilt (default) | valid variable name
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: Overwrite variable if it already exists on (default) | off
+  group: ''
+- name: Export filter to workspace
+  summary: Export filter to workspace button
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -132,7 +172,6 @@ Export the filter to the base workspace in the variable specified by the
 You cannot export the filter if you have enabled the **Inherit
 sample rate from input** parameter and the model is not
 running.
-
 ## Libraries
 
 Audio Toolbox / Filters

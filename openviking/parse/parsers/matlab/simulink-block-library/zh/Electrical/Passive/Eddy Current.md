@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Eddy Current
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 北端子磁
+  direction: unspecified
+- name: S
+  summary: 南端子磁
+  direction: unspecified
+- name: H
+  summary: 热端口热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +45,25 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请选择 **Show thermal port** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Conductance of eddy current loop
+  summary: 涡流电导 1 1/Ohm（默认）| 正数
+  group: ''
+- name: Parasitic series reluctance
+  summary: 串联磁阻 1e-3 1/H（默认）| 非负数
+  group: ''
+- name: Parasitic parallel permeance
+  summary: 并联漏磁导 1e-6 H（默认）| 非负数
+  group: ''
+- name: Show thermal port
+  summary: 热端口可见性 Off（默认）| On
+  group: ''
+- name: Thermal mass
+  summary: 热质量 0.1 J/K（默认）| 正数
+  group: ''
+```
 
 ### **Conductance of eddy current loop** — 涡流电导 `1` `1/Ohm`（默认）| 正数
 
@@ -59,7 +88,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请选择 **Show thermal port** 参数。
-
 ## 所属库
 
 Simscape / Electrical / Passive

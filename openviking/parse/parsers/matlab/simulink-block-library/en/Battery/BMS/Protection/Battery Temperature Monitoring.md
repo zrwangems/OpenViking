@@ -14,6 +14,18 @@ language: en
 # Battery Temperature Monitoring
 
 ## Ports
+```yaml
+ports:
+- name: CellTemperature
+  summary: Cell temperature, K scalar | vector
+  direction: input
+- name: UndertemperatureError
+  summary: Indication of undertemperature error, unitless 0 | 1
+  direction: output
+- name: OvertemperatureError
+  summary: Indication of overtemperature error, unitless 0 | 1
+  direction: output
+```
 
 ### Input
 
@@ -39,8 +51,37 @@ state.
 Indication of an overtemperature error. If this output is equal to
 `1`, the battery is in an overtemperature
 state.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify input as [Min,Max]
+  summary: Option to specify input as minimum and maximum values off (default) | on
+  group: ''
+- name: Undertemperature limit
+  summary: Undertemperature limit 270 (default) | nonnegative scalar
+  group: ''
+- name: Overtemperature limit
+  summary: Overtemperature limit 320 (default) | nonnegative scalar
+  group: ''
+- name: Qualification time undertemperature (s)
+  summary: Undertemperature qualification time 2 (default) | positive scalar
+  group: ''
+- name: Disqualification time undertemperature (s)
+  summary: Undertemperature disqualification time 0 (default) | nonnegative scalar
+  group: ''
+- name: Qualification time overtemperature (s)
+  summary: Overtemperature qualification time 2 (default) | positive scalar
+  group: ''
+- name: Disqualification time overtemperature (s)
+  summary: Overtemperature disqualification time 0 (default) | nonnegative scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive integer
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 ### **Specify input as [Min,Max]** — Option to specify input as minimum and maximum values `off` (default) | `on`
 
@@ -119,7 +160,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Protection

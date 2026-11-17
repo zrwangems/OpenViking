@@ -14,6 +14,17 @@ language: en
 # Analog Filter Design
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -30,8 +41,43 @@ real-valued scalar value.
 Filtered signal, returned as a real double scalar value.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Design method
+  summary: Filter design Butterworth (default) | Chebyshev I | Chebyshev II | Elliptic | Bessel
+  group: ''
+- name: Filter type
+  summary: Filter type Lowpass (default) | Highpass | Bandpass | Bandstop
+  group: ''
+- name: Filter order
+  summary: Filter order 8 (default) | scalar value
+  group: ''
+- name: Passband edge frequency (rad/s)
+  summary: Passband edge frequency 30 (default) | scalar value
+  group: ''
+- name: Lower passband edge frequency (rad/s)
+  summary: Lower passband edge frequency 30 (default) | scalar value
+  group: ''
+- name: Upper passband edge frequency (rad/s)
+  summary: Upper passband edge frequency 80 (default) | scalar value
+  group: ''
+- name: Stopband edge frequency (rad/s)
+  summary: Stopband edge frequency 30 (default) | scalar value
+  group: ''
+- name: Lower stopband edge frequency (rad/s)
+  summary: Lower stopband edge frequency 30 (default) | scalar value
+  group: ''
+- name: Upper stopband edge frequency (rad/s)
+  summary: Upper stopband edge frequency 80 (default) | scalar value
+  group: ''
+- name: Passband ripple in dB
+  summary: Passband ripple 2 (default) | scalar value
+  group: ''
+- name: Stopband attenuation in dB
+  summary: Stopband attenuation 40 (default) | scalar value
+  group: ''
+```
 
 ### **Design method** — Filter design `Butterworth` (default) | `Chebyshev I` | `Chebyshev II` | `Elliptic` | `Bessel`
 
@@ -238,7 +284,6 @@ method` is set to:
 
 - `Chebyshev II`
 - `Elliptic`
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Designs

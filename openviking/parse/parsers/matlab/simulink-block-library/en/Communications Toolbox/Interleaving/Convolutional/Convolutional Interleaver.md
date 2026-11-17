@@ -14,10 +14,15 @@ language: en
 # Convolutional Interleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Rows of shift registers**
 :   The number of shift registers that the block uses internally.
@@ -29,7 +34,6 @@ Not documented in R2025b.
 **Initial conditions**
 :   The values that fill each shift register when the simulation
     begins.
-
 ## Libraries
 
 Not documented in R2025b.

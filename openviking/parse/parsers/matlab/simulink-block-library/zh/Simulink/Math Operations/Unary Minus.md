@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Unary Minus
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要求负的信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Port_1
+  summary: 输入信号的负值 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 输入信号的负值。输出与输入具有相同的数据类型和维度。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+```
 
 ### **Saturate on integer overflow** — 溢出操作的方法 `off`（默认）| `on`
 
@@ -71,7 +96,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **值**：| `"-1"`（默认）| 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

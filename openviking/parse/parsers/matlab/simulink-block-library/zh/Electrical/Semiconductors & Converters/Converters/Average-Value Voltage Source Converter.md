@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Average-Value Voltage Source Converter
 
 ## 端口
+```yaml
+ports:
+- name: ModWave
+  summary: 调制波向量
+  direction: input
+- name: Vt
+  summary: RMS 电压标量
+  direction: input
+- name: ph
+  summary: 相移标量
+  direction: input
+- name: A
+  summary: 交流侧端子 A 电气
+  direction: input
+- name: B
+  summary: 交流侧端子 B 电气
+  direction: input
+- name: +
+  summary: 直流侧正极端子 电气
+  direction: input
+- name: '-'
+  summary: 直流侧负极端子 电气
+  direction: input
+```
 
 ### 输入
 
@@ -61,8 +85,22 @@ chinese_source: worker-translation
 ### **-** — 直流侧负极端子 电气
 
 与直流侧负极端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Input type
+  summary: 用于指定模块输入的选项 Modulation wave（默认）| Sinusoidal magnitude and phase shift
+  group: ''
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz | 标量
+  group: ''
+- name: Initial current at DC side
+  summary: 直流侧初始电流 0 A | 标量
+  group: ''
+- name: Time for holding initial current at DC side
+  summary: 保持直流侧初始电流的时间 1/60 s | 标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -86,7 +124,6 @@ Inspector**。
 ### **Time for holding initial current at DC side** — 保持直流侧初始电流的时间 `1/60` `s` | 标量
 
 保持变换器直流侧初始电流的时间。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

@@ -14,6 +14,29 @@ language: en
 # J-K Flip-Flop
 
 ## Ports
+```yaml
+ports:
+- name: J
+  summary: Input signal J scalar
+  direction: input
+  data_types: double | Boolean
+- name: CLK
+  summary: Clock signal scalar
+  direction: input
+  data_types: double | Boolean
+- name: K
+  summary: Input signal K scalar
+  direction: input
+  data_types: double | Boolean
+- name: Q
+  summary: Output signal Q scalar
+  direction: output
+  data_types: double | Boolean
+- name: '!Q'
+  summary: Output signal !Q scalar
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -92,8 +115,17 @@ Output signal **!Q**, with the same dimensions and
 data type as the input.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition (state of Q)
+  summary: Initial value of output Q 0 (default) | scalar
+  group: ''
+  block_parameter: initial_condition
+  type: character vector
+  values: scalar
+  default: '''0'''
+```
 
 ### **Initial condition (state of Q)** — Initial value of output Q `0` (default) | scalar
 
@@ -108,7 +140,6 @@ value is treated as true (`1`).
 | **Type:** character vector |
 | **Values:** scalar |
 | **Default:** `'0'` |
-
 ## Libraries
 
 Simulink Extras / Flip Flops

@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # PMSM Rs Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Iabc
+  summary: 三相电流响应矢量
+  direction: input
+  data_types: single
+- name: Vdc
+  summary: 直流母线电压标量
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: '*Rs* 估计逻辑的控制信号'
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: 总线信号输入总线
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*、*b* 和 *c* 轴定子参考电压分量矢量'
+  direction: output
+  data_types: single
+- name: Rs
+  summary: 估计的定子电阻标量
+  direction: output
+  data_types: single
+- name: Log
+  summary: 调试信号总线
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -109,8 +140,28 @@ PMSM 的估计定子电阻（单位为欧姆）。
 | `8003` | *Rs3* 估算失败，原因是 *Ic* 相电流存在问题。检查电机是否正确连接，以及 ADC 是否正确测量 *Ic*。 | - |
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum current limit (A)
+  summary: 测试期间允许的最大电流 15（默认）| scalar
+  group: ''
+- name: Step size during injected voltage ramp up (per-unit)
+  summary: 注入电压斜坡上升期间的步长 0.0001（默认）| scalar
+  group: ''
+- name: Maximum voltage ramp up time limit (s)
+  summary: 最大电压斜坡上升持续时间 0.25（默认）| scalar
+  group: ''
+- name: Number of voltage and current samples per voltage injection instance
+  summary: 用于 Rs 估算的电压和电流采样数 1000（默认）| scalar
+  group: ''
+- name: Dwell time between voltage injections (s)
+  summary: 电压注入之间的等待持续时间 0.25（默认）| scalar
+  group: ''
+- name: Threshold to determine imbalance in phase resistances (0,1)
+  summary: 用于确定相电阻不平衡的阈值 0.2（默认）| scalar
+  group: ''
+```
 
 ### **Maximum current limit (A)** — 测试期间允许的最大电流 `15`（默认）| `scalar`
 
@@ -135,7 +186,6 @@ PMSM 的估计定子电阻（单位为欧姆）。
 ### **Threshold to determine imbalance in phase resistances (0,1)** — 用于确定相电阻不平衡的阈值 `0.2`（默认）| `scalar`
 
 用于确定相电阻之间不平衡的阈值（指定为 `0` 到 `1` 之间的值），超过该阈值即判定为不平衡。
-
 ## 所属库
 
 Motor Control Blockset / Parameter Estimation / PMSM Parameter Estimation

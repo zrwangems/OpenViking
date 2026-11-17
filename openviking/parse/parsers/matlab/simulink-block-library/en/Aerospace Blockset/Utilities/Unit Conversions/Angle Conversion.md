@@ -14,6 +14,17 @@ language: en
 # Angle Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Angle scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Angle scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -39,8 +50,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units deg (default) | rad | rev
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''deg'' | ''rad'' | ''rev'''
+  default: '''deg'''
+- name: Final unit
+  summary: Output units rad (default) | deg | rev
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''deg'' | ''rad'' | ''rev'''
+  default: '''rad'''
+```
 
 ### **Initial unit** — Input units `deg` (default) | `rad` | `rev`
 
@@ -89,7 +116,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `'deg'` | `'rad'` | `'rev'` |
 | **Default**: `'rad'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

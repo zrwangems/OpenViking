@@ -14,6 +14,17 @@ language: en
 # Radius at Geocentric Latitude
 
 ## Ports
+```yaml
+ports:
+- name: λs
+  summary: Geocentric latitude scalar | vector
+  direction: input
+  data_types: double
+- name: rs
+  summary: Radius scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -31,8 +42,38 @@ Radius of planet at geocentric latitude, returned as a scalar or
 vector, in the same units as flattening.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Output units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Planet model
+  summary: Planet model Earth (WGS84) (default) | Custom
+  group: ''
+  block_parameter: ptype
+  type: character vector
+  values: '''Earth (WGS84)'' | ''Custom'''
+  default: '''Earth (WGS84)'''
+- name: Flattening
+  summary: Flattening of planet 1/298.257223563 (default) | scalar
+  group: ''
+  block_parameter: F
+  type: character vector
+  values: double scalar
+  default: 1/298.257223563
+- name: Equatorial radius of planet
+  summary: Radius of planet at equator 6378137 (default) | scalar
+  group: ''
+  block_parameter: R
+  type: character vector
+  values: double scalar
+  default: '6378137'
+```
 
 ### **Units** — Output units `Metric (MKS)` (default) | `English`
 
@@ -107,7 +148,6 @@ model** to `Custom`.
 | **Type**: character vector |
 | **Values**: double scalar |
 | **Default**: `6378137` |
-
 ## Libraries
 
 Aerospace Blockset / Flight Parameters

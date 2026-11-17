@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # MATLAB System
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: MATLAB System 模块的信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: MATLAB System 模块的信号输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -34,8 +46,39 @@ MATLAB System 模块支持 Simulink 帧。有关详细信息，请参阅 Sample-
 System object 返回的 MATLAB System 模块的信号输出。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: System Object Name
+  summary: System object 的名称 字符向量 (默认)
+  group: ''
+  block_parameter: System
+  type: character vector
+  values: System object 的名称
+  default: ''' '''
+- name: New
+  summary: 从模板创建 System object Basic (默认) | Advanced | Simulink Extension
+  group: ''
+- name: Simulate using
+  summary: 选择仿真模式 Code generation (默认) | Interpreted Execution
+  group: ''
+- name: Dependency
+  summary: MATLAB System 模块的依赖参数 auto (默认)
+  group: ''
+- name: Saturate on integer overflow
+  summary: 指定溢出是否饱和 Off (默认) | On
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Treat these inherited Simulink signal types as fi objects
+  summary: 指定 fi 数据类型 Fixed-point (默认) | Fixed-point & Integer
+  group: ''
+- name: MATLAB System fimath
+  summary: 指定要使用的定点设置 Same as MATLAB (默认) | Specify Other
+  group: ''
+```
 
 ### **System Object Name** — System object 的名称 字符向量 (默认)
 
@@ -151,7 +194,6 @@ Off
 #### 依赖关系
 
 当您在 System object 中使用 `showFiSettingsImpl` 方法时，此复选框会出现。
-
 ## 所属库
 
 Simulink / User-Defined Functions HDL Coder / User-Defined Functions

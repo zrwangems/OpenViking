@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Piezo Rotary Actuator
 
 ## 端口
+```yaml
+ports:
+- name: f
+  summary: 电机驱动频率物理量
+  direction: input
+- name: v
+  summary: RMS 电源电压和旋转方向物理量
+  direction: input
+- name: i
+  summary: RMS 相电流物理量
+  direction: output
+- name: wm
+  summary: 转子速度物理量
+  direction: output
+- name: C
+  summary: 外壳机械
+  direction: output
+- name: R
+  summary: 转子机械
+  direction: output
+```
 
 ### 输入
 
@@ -45,8 +66,52 @@ chinese_source: worker-translation
 ### **R** — 转子机械
 
 与电机转子相关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Motor natural frequency
+  summary: 电机固有频率 40 kHz（默认值）
+  group: 电气扭矩
+- name: Rated RMS voltage
+  summary: 额定 RMS 电压 130 V（默认值）
+  group: 电气扭矩
+- name: Rated torque
+  summary: 额定扭矩 0.5 N*m（默认值）
+  group: 电气扭矩
+- name: Rated rotational speed
+  summary: 额定转速 100 rpm（默认值）
+  group: 电气扭矩
+- name: No-load maximum rotational speed
+  summary: 空载最大转速 160 rpm（默认值）
+  group: 电气扭矩
+- name: Maximum torque
+  summary: 最大扭矩 1 N*m（默认值）
+  group: 电气扭矩
+- name: Resonance quality factor
+  summary: 共振品质因数 100（默认值）
+  group: 电气扭矩
+- name: Capacitance per phase
+  summary: 每相电容 5 nF（默认值）
+  group: 电气扭矩
+- name: Rotor inertia
+  summary: 转子惯量 200 g*cm^2（默认值）
+  group: 机械
+- name: Holding torque
+  summary: 保持扭矩 1.5 N*m（默认值）
+  group: 电机关闭摩擦
+- name: Coulomb friction torque
+  summary: 库仑摩擦力矩 1.0 N*m（默认值）
+  group: 电机关闭摩擦
+- name: Viscous friction coefficient
+  summary: 粘性摩擦系数 0.001 N*m/(rad*s)（默认值） | 非负标量
+  group: 电机关闭摩擦
+- name: Transition approximation coefficient
+  summary: 过渡近似系数 10 s/rad（默认值）
+  group: 电机关闭摩擦
+- name: Linear region velocity threshold
+  summary: 线性区域速度阈值 1e-4 rad/s（默认值）
+  group: 电机关闭摩擦
+```
 
 ### 电气扭矩
 
@@ -113,7 +178,6 @@ chinese_source: worker-translation
 ### **Linear region velocity threshold** — 线性区域速度阈值 `1e-4` `rad/s`（默认值）
 
 该参数设置零速度附近的小邻域，在该邻域内摩擦力矩被认为与相对速度成线性比例。MathWorks® 建议使用 `1e-5` 到 `1e-3` `rad/s` 范围内的值。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

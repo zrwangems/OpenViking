@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Wavelet Scattering
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 输出信号 矩阵 | 三维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -38,8 +49,49 @@ chinese_source: worker-translation
 对于矩阵输入，输出维度为 *Npath*×*Nscat*×*Nchann*，其中 *Nchann* 是输入中的列数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal length (samples)
+  summary: 以采样点表示的信号长度 1024（默认）| 正整数 ≥ 16
+  group: ''
+- name: Overlap length (Samples)
+  summary: 以采样点表示的重叠长度 0（默认）| 正整数
+  group: ''
+- name: Specify sample rate
+  summary: 指定采样率 off（默认）| on
+  group: ''
+- name: Sample rate (Hz)
+  summary: 采样率 16e3（默认）| 正标量
+  group: ''
+- name: Invariance scale (samples)
+  summary: 以采样点表示的散射变换不变尺度 512（默认）| 正整数
+  group: ''
+- name: Invariance scale (s)
+  summary: 以秒表示的散射变换不变尺度 0.032（默认）| 正标量
+  group: ''
+- name: Quality factors
+  summary: 散射滤波器组的品质因数 [8,1]（默认）| 正整数 | 单调递减正整数向量
+  group: ''
+- name: Reduce the number of scattering paths
+  summary: 优化散射变换 off（默认）| on
+  group: ''
+- name: Oversampling factor
+  summary: 过采样因子 0（默认）| 非负整数 | Inf
+  group: ''
+- name: Boundary signal extension
+  summary: 信号延拓方法 periodic（默认）| reflection
+  group: ''
+- name: Include zeroth-order coefficients
+  summary: 包含零阶系数 off（默认）| on
+  group: 散射系数
+- name: Normalization
+  summary: 系数归一化 none（默认）| parent
+  group: 散射系数
+- name: Transform
+  summary: 系数变换 none（默认）| log
+  group: 散射系数
+```
 
 ### **Signal length (samples)** — 以采样点表示的信号长度 `1024`（默认）| 正整数 ≥ 16
 
@@ -157,7 +209,6 @@ chinese_source: worker-translation
 ### **Transform** — 系数变换 `none`（默认）| `log`
 
 将应用于散射系数的变换类型指定为 `none` 或 `log`。
-
 ## 所属库
 
 DSP System Toolbox / Feature Extractors

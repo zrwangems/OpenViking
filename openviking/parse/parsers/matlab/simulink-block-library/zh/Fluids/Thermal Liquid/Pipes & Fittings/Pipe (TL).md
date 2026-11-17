@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Pipe (TL)
 
 ## 端口
+```yaml
+ports:
+- name: EL
+  summary: 端口高程差，m 物理信号
+  direction: input
+- name: G
+  summary: 重力加速度，m/s^2 物理信号
+  direction: input
+- name: A
+  summary: 管道开口 热液体
+  direction: input
+- name: B
+  summary: 管道开口 热液体
+  direction: input
+- name: H
+  summary: 管壁 热
+  direction: input
+```
 
 ### 输入
 
@@ -46,8 +64,229 @@ chinese_source: worker-translation
 ### **H** — 管壁 热
 
 管壁温度。
-
 ## 参数
+```yaml
+parameters:
+- name: Enable dynamic compressibility
+  summary: 是否对流体动态可压缩性建模 on（默认）| off
+  group: 配置
+- name: Enable fluid inertia
+  summary: 是否对流体加速度建模 off（默认）| on
+  group: 配置
+- name: Number of segments
+  summary: 管道离散化 1（默认）| 正的无量纲标量
+  group: 配置
+- name: Pipe total length
+  summary: 管道总长度 5 m（默认）| 以长度单位为单位的正标量
+  group: 配置
+- name: Cross-sectional geometry
+  summary: 管道几何形状 Circular（默认）| Annular | Rectangular | Elliptical | Isosceles triangular | Custom
+  group: 配置
+- name: Pipe diameter
+  summary: 管道直径 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe inner diameter
+  summary: 管道内径 0.05 m（默认）| 正标量
+  group: 配置
+- name: Pipe outer diameter
+  summary: 管道外径 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe width
+  summary: 矩形管道宽度 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe height
+  summary: 矩形管道高度 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe major axis
+  summary: 椭圆管道长轴 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe minor axis
+  summary: 椭圆管道短轴 0.05 m（默认）| 正标量
+  group: 配置
+- name: Pipe side length
+  summary: 三角形管道边长 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe vertex angle
+  summary: 三角形管道顶角 30 deg（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area
+  summary: 无变形时的管道横截面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Hydraulic diameter
+  summary: 非圆形管道的有效直径 0.1128 m（默认）| 以长度单位为单位的正标量
+  group: 配置
+- name: Elevation gain specification
+  summary: 设置管道高程属性 Constant（默认）| Variable
+  group: 配置
+- name: Elevation gain from port A to port B
+  summary: 从端口 A 到端口 B 的高程变化 0 m（默认）| 以长度单位为单位的正标量
+  group: 配置
+- name: Gravitational acceleration specification
+  summary: 加速度规格 Constant（默认）| Variable
+  group: 配置
+- name: Gravitational acceleration
+  summary: 管道平均高程处的重力加速度 9.81 m/s^2（默认）| 标量
+  group: 配置
+- name: Viscous friction parameterization
+  summary: 摩擦模型 Haaland correlation（默认）| Nominal pressure drop vs. nominal mass flow rate | Tabulated data - Darcy friction
+    factor vs. Reynolds number
+  group: 粘性摩擦
+- name: Local resistances specification
+  summary: 在 Haaland 关联式中量化压力损失的方法 Aggregate equivalent length（默认）| Local loss coefficient
+  group: 粘性摩擦
+- name: Total local loss coefficient
+  summary: 定义管道上的损失系数 0.1（默认）| 正标量
+  group: 粘性摩擦
+- name: Aggregate equivalent length of local resistances
+  summary: 管道中的局部阻力压力损失，以长度表示 1 m（默认）| 正标量
+  group: 粘性摩擦
+- name: Surface roughness specification
+  summary: '用于粗糙度指定的管道材料 Commercially smooth brass, lead, copper, or plastic pipe: 1.52 um（默认）| Steel and wrought iron : 46
+    um | Galvanized iron or steel : 152 um | Cast iron : 259 um | Custom'
+  group: 粘性摩擦
+- name: Internal surface absolute roughness
+  summary: 管壁绝对粗糙度 1.5e-5 m（默认）| 以长度单位为单位的正标量
+  group: 粘性摩擦
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流的摩擦常数 64（默认）| 正标量
+  group: 粘性摩擦
+- name: Laminar flow upper Reynolds number limit
+  summary: 低于该雷诺数时流动为层流 2e+3（默认）| 正标量
+  group: 粘性摩擦
+- name: Turbulent flow lower Reynolds number limit
+  summary: 高于该雷诺数时流动为湍流 4e+3（默认）| 正标量
+  group: 粘性摩擦
+- name: Nominal mass flow rate
+  summary: 管道质量流量 [0.1 1] kg/s（默认）| 以质量/时间为单位的标量或数值向量
+  group: 粘性摩擦
+- name: Nominal pressure drop
+  summary: 管道上的压力降 [0.001 0.01] MPa（默认）| 以压力为单位的标量或数值向量
+  group: 粘性摩擦
+- name: Mass flow rate threshold for flow reversal
+  summary: 低于该阈值时应用数值平滑 1e-6 kg/s（默认）| 以质量/时间为单位的正标量
+  group: 粘性摩擦
+- name: Reynolds number vector for turbulent Darcy friction factor
+  summary: 用于制表 Darcy 摩擦因子的雷诺数 [ 400 1000 1.5e+3 3e+3 4e+3 6e+3 1e+4 2e+4 4e+4 6e+4 1e+5 1e+8 ]（默认）| 正数向量
+  group: 粘性摩擦
+- name: Darcy friction factor vector
+  summary: 制表雷诺数处的 Darcy 摩擦因子 [ 0.264 0.112 0.07099999999999999 0.0417 0.0387 0.0268 0.025 0.0232 0.0226 0.022 0.0214 0.0214
+    ]（默认）| 正数向量
+  group: 粘性摩擦
+- name: Pipe wall specification
+  summary: 管壁柔性 Rigid（默认）| Flexible
+  group: Pipe Wall
+- name: Volumetric expansion specification
+  summary: 线性膨胀相关性 Cross-sectional area vs. pressure（默认）| Cross-sectional area vs. pressure - Tabulated | Hydraulic diameter
+    vs. pressure | Based on material properties
+  group: Pipe Wall
+- name: Static gauge pressure to cross-sectional area gain
+  summary: 面积相关管道变形的系数 1e-6 m^2/MPa（默认）| 正标量
+  group: Pipe Wall
+- name: Static gauge pressure vector
+  summary: 表压向量 [.1,1] MPa（默认）| 向量
+  group: Pipe Wall
+- name: Cross sectional area gain vector
+  summary: 管道横截面积向量 [1e-05, 1.1e-05] m^2（默认）| 向量
+  group: Pipe Wall
+- name: Static gauge pressure to hydraulic diameter gain
+  summary: 直径相关管道变形的系数 1e-6 m/MPa（默认）| 正标量
+  group: Pipe Wall
+- name: Material behavior
+  summary: 指定材料行为的方法 Linear Elastic（默认）| Multilinear Elastic
+  group: Pipe Wall
+- name: Pipe wall thickness
+  summary: 管壁宽度 0.05 m（默认）| 正标量
+  group: Pipe Wall
+- name: Young's modulus
+  summary: 管壁材料的杨氏模量 69 GPa（默认）| 正标量
+  group: Pipe Wall
+- name: Poisson's ratio
+  summary: 管壁材料的泊松比 0.33（默认）| 正标量
+  group: Pipe Wall
+- name: Stress vector
+  summary: 管壁材料的应力向量 [276, 310] MPa（默认）| 向量
+  group: Pipe Wall
+- name: Strain vector
+  summary: 管壁材料的应变向量 [.004, .02]（默认）| 向量
+  group: Pipe Wall
+- name: Check if stress exceeds specified allowable level
+  summary: 当应力超过指定最大值时的通知 None（默认）| Warning | Error
+  group: Pipe Wall
+- name: Maximum allowable stress
+  summary: 管壁上允许的最大应力 400 MPa（默认）| 正标量
+  group: Pipe Wall
+- name: Volumetric expansion time constant
+  summary: 管道变形时间常数 0.01 s（默认）| 正标量
+  group: Pipe Wall
+- name: Pipe thermal expansion
+  summary: 是否对热膨胀建模 off（默认）| on
+  group: Pipe Wall
+- name: Coefficient of thermal expansion
+  summary: 管道热膨胀系数 24 um/(deltaK*m)（默认）| 正标量
+  group: Pipe Wall
+- name: Thermal expansion reference temperature
+  summary: 管道热膨胀的参考温度 293.15 K（默认）| 正标量
+  group: Pipe Wall
+- name: Heat transfer parameterization
+  summary: 捕获与管壁对流传热的方法 Gnielinski correlationNominal temperature differential vs. nominal mass flow rate（默认）| Dittus-Boelter
+    correlation | Tabulated data - Colburn factor vs. Reynolds number | Tabulated data - Nusselt number vs. Reynolds number
+    & Prandtl number
+  group: 传热
+- name: Nusselt number for laminar flow heat transfer
+  summary: 层流换热计算中使用的努塞尔数 3.66（默认）
+  group: 传热
+- name: Nominal mass flow rate
+  summary: 管道质量流量 [0.1 1] kg/s（默认）| 以质量/时间为单位的标量或数值向量
+  group: 传热
+- name: Nominal inflow temperature
+  summary: 管道入口温度 [293.15 293.15] K（默认）| 以温度为单位的标量或数值向量
+  group: 传热
+- name: Nominal outflow temperature
+  summary: 管道出口温度 [300 300] K（默认）| 以温度为单位的标量或数值向量
+  group: 传热
+- name: Nominal inflow pressure
+  summary: 管道入口压力 [0.101325 0.101325] MPa（默认）| 以压力为单位的标量或数值向量
+  group: 传热
+- name: Nominal wall temperature
+  summary: 管道壁温 [303.15 303.15] K（默认）| 以温度为单位的标量或数值向量
+  group: 传热
+- name: Coefficient a
+  summary: Dittus-Boelter 关联式的经验常数 *a* 0.023（默认）| 正标量
+  group: 传热
+- name: Exponent b
+  summary: Dittus-Boelter 关联式的经验常数 *b* 0.8（默认）| 正标量
+  group: 传热
+- name: Exponent c
+  summary: Dittus-Boelter 关联式的经验常数 *c* 0.4（默认）| 正标量
+  group: 传热
+- name: Reynolds number vector for Colburn factor
+  summary: 用于将 Colburn 因子制表的 Reynolds 数 [100 150 1000]（默认）| 正数向量
+  group: 传热
+- name: Colburn factor vector
+  summary: 在制表的 Reynolds 数处的 Colburn 因子 [0.019 0.013 0.002]（默认）| 正数向量
+  group: 传热
+- name: Reynolds number vector for Nusselt number
+  summary: 用于将 Nusselt 数制表的 Reynolds 数 [100 150 100]（默认）| 正数向量
+  group: 传热
+- name: Prandtl number vector for Nusselt number
+  summary: 用于将 Nusselt 数制表的 Prandtl 数 [1 10]（默认）| 正数向量
+  group: 传热
+- name: Nusselt number table
+  summary: 在制表的 Reynolds 数和 Prandtl 数处的 Nusselt 数 [ 3.72 4.21; 3.75 4.44; 4.21 7.15 ]（默认）| 正数矩阵
+  group: 传热
+- name: 初始液体温度
+  summary: 仿真开始时的液体温度 293.15 K（默认）
+  group: 初始条件
+- name: 初始液体压力
+  summary: 仿真开始时的管道压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: 标称液体温度
+  summary: 标称工况下的温度 293.15 K（默认）| 标量
+  group: 初始条件
+- name: 标称液体压力
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 初始条件
+```
 
 ### 配置
 
@@ -596,7 +835,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请清除 **Enable dynamic compressibility** 复选框。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Pipes & Fittings

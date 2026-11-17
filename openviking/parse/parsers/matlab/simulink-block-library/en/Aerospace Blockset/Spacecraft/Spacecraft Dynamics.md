@@ -14,6 +14,137 @@ language: en
 # Spacecraft Dynamics
 
 ## Ports
+```yaml
+ports:
+- name: Fb
+  summary: Applied forces 3-element vector | *numSat*-by-3 array
+  direction: input
+  data_types: double
+- name: Mb
+  summary: Applied moments 3-element vector | *numSat*-by-3 array
+  direction: input
+  data_types: double
+- name: A
+  summary: External acceleration 3-element vector | *m*-by-3 array
+  direction: input
+  data_types: double
+- name: φθψ
+  summary: Moon libration angles 3-element vector
+  direction: input
+  data_types: double
+- name: αδW
+  summary: Right ascension, declination, and rotation angle 3-element vector
+  direction: input
+  data_types: double
+- name: m
+  summary: Spacecraft mass scalar | 1D array of size *numSat*
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: Rate of change of mass scalar | 1D array of size *numSat*
+  direction: input
+  data_types: double
+- name: I
+  summary: Spacecraft inertia tensor 3-by-3 array | 3-by-3-by-*numSat* array
+  direction: input
+  data_types: double
+- name: dI/dt
+  summary: Rate of change of inertia tensor matrix 3-by-3 array | 3-by-3-by-*numSat* array
+  direction: input
+  data_types: double
+- name: Vre
+  summary: Relative velocity 3-element vector | *numSat*-by-3 array
+  direction: input
+  data_types: double
+- name: ρ
+  summary: Atmospheric density scalar
+  direction: input
+  data_types: double
+- name: F107a
+  summary: 81-day average Ottawa F10.7 cm solar flux scalar
+  direction: input
+  data_types: double
+- name: F107
+  summary: Daily Ottawa F10.7 cm solar flux scalar
+  direction: input
+  data_types: double
+- name: aph
+  summary: Daily magnetic index information *N*-by-7 array
+  direction: input
+  data_types: double
+- name: Flags
+  summary: Variation flags array of 23
+  direction: input
+  data_types: double
+- name: Cd
+  summary: Atmospheric drag coefficient scalar | vector of size *numSat*
+  direction: input
+  data_types: double
+- name: Ad
+  summary: Atmospheric drag area scalar | vector of size *numSat*
+  direction: input
+  data_types: double
+- name: Rcb, 3
+  summary: Position of one or more custom bodies 3-element vector | *numCustom3rdBodies*x3-element vector
+  direction: input
+  data_types: double
+- name: Fraction
+  summary: Fraction of solar disk between 0 (full eclipse) and 1 (full sunlight) | scalar | *numSat*
+  direction: input
+  data_types: double
+- name: RC
+  summary: Reflectivity coefficient scalar or *numSat* of values in the range 1≤*RC*≤2
+  direction: input
+  data_types: double
+- name: Asrp
+  summary: Cross section area of the spacecraft scalar | *numSat*
+  direction: input
+  data_types: double
+- name: X
+  summary: Position of spacecraft 3-element vector | *numSat*-by-3 array
+  direction: output
+  data_types: double
+- name: V
+  summary: Velocity 3-element vector | *numSat*-by-3 array
+  direction: output
+  data_types: double
+- name: A
+  summary: Total inertial acceleration 3-element vector | *numSat*-by-3 array
+  direction: output
+  data_types: double
+- name: qbody2icrf
+  summary: Spacecraft attitude quaternion 4-element quaternion | *numSat*-by-4 array
+  direction: output
+  data_types: double
+- name: DCM
+  summary: Spacecraft attitude direction cosine matrix 3-by-3 array | *numSat*-by-3-by-3 array
+  direction: output
+  data_types: double
+- name: R1,R2,R3
+  summary: Spacecraft attitude Euler angles 3-element vector | *numSat*-by-3 array
+  direction: output
+  data_types: double
+- name: ω
+  summary: Angular rate of spacecraft 3-element vector | *numSat*-by-3 array
+  direction: output
+  data_types: double
+- name: dω/dt
+  summary: Body angular acceleration 3-element array | *numSat*-by-3 array
+  direction: output
+  data_types: double
+- name: qicrf2ff
+  summary: Coordinate system transformation 4-element array
+  direction: output
+  data_types: double
+- name: tutc
+  summary: Time at current time step scalar | 6-element array
+  direction: output
+  data_types: double
+- name: Fuel Status
+  summary: Fuel status scalar | *numSat*-element array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -609,8 +740,868 @@ To enable this port:,
   `on`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input body forces
+  summary: Option to enable external forces on (default) | off
+  group: Main
+  block_parameter: forcesin
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Input body moments
+  summary: Option to enable external moments on (default) | off
+  group: Main
+  block_parameter: momentsIn
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Input external accelerations
+  summary: Option to input additional force accelerations off (default) | on
+  group: Main
+  block_parameter: accelIn
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: External acceleration coordinate frame
+  summary: Frame for acceleration input port ICRF (default) | Fixed-frame
+  group: Main
+  block_parameter: accelFrame
+  type: character vector
+  values: '''ICRF'' | ''Fixed-frame'''
+  default: '''ICRF'''
+- name: State vector output coordinate frame
+  summary: Position and velocity state output port coordinate frame ICRF (default) | Fixed-frame
+  group: Main
+  block_parameter: outportFrame
+  type: character vector
+  values: '''ICRF'' | ''Fixed-frame'''
+  default: '''ICRF'''
+- name: Output total inertial acceleration
+  summary: Option to enable total acceleration port off (default) | on
+  group: Main
+  block_parameter: AccelOut
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Start date/time (UTC Julian date)
+  summary: Initial start time for simulation juliandate (2020, 1, 1, 12, 0, 0) (default) | valid scalar Julian date | valid
+    Gregorian date including year, month, day, hours, minutes, seconds as 1D or 6-element array for Gregorian dates
+  group: Main
+  block_parameter: startDate
+  type: character vector
+  values: '''juliandate(2020, 1, 1, 12, 0, 0)'' | valid scalar Julian date | valid Gregorian date including year, month, day,
+    hours, minutes, seconds as 1D or 6-element array'
+  default: '''juliandate(2020, 1, 1, 12, 0, 0)'''
+- name: Output current date/time (UTC Julian date)
+  summary: Option to add output port tutc on (default) | off
+  group: Main
+  block_parameter: dateOut
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior Warning (default) | Error | None
+  group: Main
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Mass type
+  summary: Spacecraft mass type Fixed (default) | Simple Variable | Custom Variable
+  group: Mass
+  block_parameter: massType
+  type: character vector
+  values: '''Fixed'' | ''Simple Variable'' | ''Custom Variable'''
+  default: '''Fixed'''
+- name: Mass
+  summary: Initial mass of rigid body spacecraft 4.0 (default) | scalar | vector of size *numSat*
+  group: Mass
+  block_parameter: mass
+  type: character vector
+  values: scalar | vector of size *numSat*
+  default: '''4.0'''
+- name: Empty mass
+  summary: Spacecraft empty mass 3.5 (default) | scalar | vector of size *numSat*
+  group: Mass
+  block_parameter: emptyMass
+  type: character vector
+  values: 1D array of size *numSat* | 1D array of size *numSat*
+  default: '''3.5'''
+- name: Full mass
+  summary: Spacecraft full mass 4.0 (default) | scalar | vector of size *numSat*
+  group: Mass
+  block_parameter: fullMass
+  type: character vector
+  values: scalar | vector of size *numSat*
+  default: '''4.0'''
+- name: Inertia tensor
+  summary: Inertia tensor matrix [0.2273, 0, 0; 0 0.2273 0; 0 0 .0040] (default) | 3-by-3 array | 3-by-3-by-*numSat* array
+  group: Mass
+  block_parameter: inertia
+  type: character vector
+  values: '''[0.2273, 0, 0; 0 0.2273 0; 0 0 .0040]'' | 3-by-3 array | 3-by-3-by-*numSat* array'
+  default: '''[0.2273, 0, 0; 0 0.2273 0; 0 0 .0040]'''
+- name: Empty inertia tensor
+  summary: Empty inertia tensor matrix [0.1989, 0, 0; 0 0.1989 0; 0 0 .0035] (default) | 3-by-3 array | 3-by-3-by-*numSat*
+    array
+  group: Mass
+  block_parameter: emptyInertia
+  type: character vector
+  values: 3-by-3 array | 3-by-3-by-*numSat* array
+  default: '[0.1989, 0, 0; 0 0.1989 0; 0 0 .0035]'
+- name: Full inertia tensor
+  summary: Full inertia tensor matrix [0.2273, 0, 0; 0, 0.2273, 0; 0, 0, .0040] (default) | 3-by-3 array | 3-by-3-by-*numSat*
+    array
+  group: Mass
+  block_parameter: fullInertia
+  type: character vector
+  values: 3-by-3 array | 3-by-3-by-*numSat* array
+  default: '[0.2273, 0, 0; 0, 0.2273, 0; 0, 0, .0040]'
+- name: Include mass flow relative velocity
+  summary: Option to enable mass flow velocity off (default) | on
+  group: Mass
+  block_parameter: useMassFlowRelativeVelocity
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Limit mass flow when mass is empty or full
+  summary: Option to limit mass flow on (default) | off
+  group: Mass
+  block_parameter: limitMassFlow
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output fuel tank status
+  summary: Option to enable fuel tank status on (default) | off
+  group: Mass
+  block_parameter: outputFuelStatus
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Initial state format
+  summary: Input method for initial states of orbit Orbital elements (default) | ICRF state vector | Fixed-frame state vector
+  group: Orbit
+  block_parameter: stateFormatNum when propagator is set to High precision (numerical)
+  type: character vector
+  values: '''Orbital elements'' | ''Orbital elements'' | ''ICRF state vector'' | ''Fixed-frame state'' when propagator is
+    set to ''High precision (numerical)'''
+  default: '''Orbital elements'''
+- name: Orbit type
+  summary: Orbit classification Keplerian (default) | Elliptical equatorial | Circular | Circular equatorial
+  group: Orbit
+  block_parameter: orbitType
+  type: character vector
+  values: '''Keplerian'' | ''Elliptical equatorial'' | ''Circular inclined'' | ''Circular equatorial'''
+  default: '''Keplerian'''
+- name: Semi-major axis
+  summary: Half of major axis of ellipse 6786000 (default) | scalar | 1D array of size *numSat*
+  group: Orbit
+  block_parameter: semiMajorAxis
+  type: character vector
+  values: scalar | 1D array of size *numSat*
+  default: '''6786000'''
+- name: Eccentricity
+  summary: Deviation of orbit 0.01 (default) | scalar | value between 0 and 1, or greater than 1 for Keplerian orbit type
+    | 1D array of size *numSat*
+  group: Orbit
+  block_parameter: eccentricity
+  type: character vector
+  values: 0.01 | scalar | value between 0 and 1, or greater than 1 for Keplerian orbit type | 1D array of size *numSat*
+  default: '''0.01'''
+- name: Inclination
+  summary: Tilt angle of orbital plane 50 (default) | scalar | 1D array of size *numSat* | degrees between 0 and 180 | radians
+    between 0 and pi
+  group: Orbit
+  block_parameter: inclination
+  type: character vector
+  values: 50 | scalar | 1D array of size *numSat* | degrees between 0 and 180 | radians between 0 and pi
+  default: '''50'''
+- name: RAAN
+  summary: Angular distance in equatorial plane 95 (default) | scalar value between 0 and 360 | 1D array of size *numSat*
+  group: Orbit
+  block_parameter: raan
+  type: character vector
+  values: '''95'' | scalar value between 0 and 360 | 1D array of size *numSat*'
+  default: '''95'''
+- name: Argument of periapsis
+  summary: Angle from spacecraft ascending node to periapsis 93 (default) | value between 0 and 360 | 1D array of size *numSat*
+  group: Orbit
+  block_parameter: argPeriapsis
+  type: character vector
+  values: 93 | scalar value between 0 and 360 | 1D array of size *numSat*
+  default: '''93'''
+- name: True anomaly
+  summary: Angle between periapsis and initial position of spacecraft 203 (default) | scalar value between 0 and 360 | 1D
+    array of size *numSat*
+  group: Orbit
+  block_parameter: trueAnomaly
+  type: character vector
+  values: '''203'' | scalar value between 0 and 360 | 1D array of size *numSat*'
+  default: '''203'''
+- name: Argument of latitude
+  summary: Angle between ascending node and initial position of spacecraft 200 (default) | scalar | value between 0 and 360
+    | 1D array of size *numSat*
+  group: Orbit
+  block_parameter: argLat
+  type: character vector
+  values: '''200'' | scalar value between 0 and 360 | 1D array of size *numSat*'
+  default: '''200'''
+- name: Longitude of periapsis
+  summary: Angle between ICRF *x*-axis and eccentricity vector 100 (default) | scalar | value between 0 and 360 | 1D array
+    of size *numSat*
+  group: Orbit
+  block_parameter: lonPeriapsis
+  type: character vector
+  values: 100 | scalar value between 0 and 360 | 1D array of size *numSat*
+  default: '''100'''
+- name: True longitude
+  summary: Angle between ICRF *x*-axis and initial position of spacecraft 150 (default) | scalar | value between 0 and 360
+    | 1D array of size *numSat* | *numSat*-by-3 vector
+  group: Orbit
+  block_parameter: trueLon
+  type: character vector
+  values: '''150'' | scalar value between 0 and 360 | 1D array of size *numSat* | *numSat*-by-3 vector'
+  default: '''150'''
+- name: ICRF position
+  summary: Cartesian position vector of spacecraft [3649700.0 3308200.0 -4676600.0] (default) | 3-element vector | | *numSat*-by-3
+    array
+  group: Orbit
+  block_parameter: inertialPosition
+  type: character vector
+  values: '[3649700.0 3308200.0 -4676600.0] | 3-element vector | *numSat*-by-3 array'
+  default: '''[3649700.0 3308200.0 -4676600.0]'''
+- name: ICRF velocity
+  summary: Cartesian velocity vector of spacecraft [-2750.8 6666.4 2573.4] (default) | 3-element vector | *numSat*-by-3 array
+  group: Orbit
+  block_parameter: inertialVelocity
+  type: character vector
+  values: '[-2750.8 6666.4 2573.4] | 3-element vector | 2-D array of size *numSat*-by-3 array'
+  default: '''[-2750.8 6666.4 2573.4]'''
+- name: Fixed-frame position
+  summary: Position vector of spacecraft [-4142689.0 -2676864.7 -4669861.6] (default) | 3-element vector | *numSat*-by-3 array
+  group: Orbit
+  block_parameter: fixedPosition
+  type: character vector
+  values: '''[-4142689.0 -2676864.7 -4669861.6]'' | 3-element vector for single spacecraft | *numSat*-by-3 array'
+  default: '''[-2750.8 6666.4 2573.4]'''
+- name: Fixed-frame velocity
+  summary: Velocity vector of spacecraft [1452.7 -6720.7 2568.1] (default) | 3-element vector | *numSat*-by-3 array
+  group: Orbit
+  block_parameter: fixedVelocity
+  type: character vector
+  values: '''[1452.7 -6720.7 2568.1]'' | 3-element vector | *numSat*-by-3 array'
+  default: '''[1452.7 -6720.7 2568.1]'''
+- name: Attitude reference coordinate frame
+  summary: Attitude and angular rate coordinate frame ICRF (default) | Fixed-frame | NED | LVLH
+  group: Attitude
+  block_parameter: attitudeFrame
+  type: character vector
+  values: '''ICRF'' | ''Fixed-frame'' | ''NED'' | ''LVLH'''
+  default: '''ICRF'''
+- name: Attitude representation
+  summary: Orientation format Quaternion (default) | DCM | Euler angles
+  group: Attitude
+  block_parameter: attitudeFrame
+  type: character vector
+  values: '''Quaternion'' | ''DCM'' | ''Euler angles'''
+  default: '''Quaternion'''
+- name: Initial body attitude
+  summary: Spacecraft initial attitude [1, 0, 0, 0] (default) | 4-element vector | *numSat*-by-4 array | 3-by-3 array | *numSat*-by-3-by-3
+    array
+  group: Attitude
+  block_parameter: attitude
+  type: character vector
+  values: 4-element vector | *numSat*-by-4 array | 3-by-3 array | *numSat*-by-3-by-3 array | 3-element array | *numSat*-by-3
+    array
+  default: '''[1, 0, 0, 0]'''
+- name: Angle rotation order
+  summary: Angle rotation order ZYX (default) | ZYX | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX
+  group: Attitude
+  block_parameter: rotationOrder
+  type: character vector
+  values: '''ZYX'' | ''ZYZ'' |''ZXY'' | ''ZXZ'' | ''YXZ'' | ''YXY'' | ''YZX'' | ''YZY'' | ''XYZ'' | ''XYX'' | ''XZY'' | ''XZX'''
+  default: '''ZYX'''
+- name: Initial body angular rates PQR
+  summary: Initial body-fixed angular rates [0, 0, 0] (default) | 3-element vector | *numSat*-by-3 array
+  group: Attitude
+  block_parameter: attitudeRate
+  type: character vector
+  values: 3-element vector | *numSat*-by-3 array
+  default: '[0, 0, 0]'
+- name: Output total inertial angular acceleration
+  summary: Option to enable total vehicle acceleration off (default) | on
+  group: Attitude
+  block_parameter: angAccelOut
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Include gravity gradient torque
+  summary: Option to enable gravity gradient torque on (default) | off
+  group: Attitude
+  block_parameter: angAccelOut
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Central body
+  summary: Celestial body around which spacecraft orbits Earth (default) | Moon | Mercury | Venus | Mars | Jupiter | Saturn
+    | Uranus | Neptune | Sun | Custom
+  group: Central Body
+  block_parameter: centralBody
+  type: character vector
+  values: '''Earth'' | ''Moon'' |''Mercury'' | ''Venus'' | ''Mars'' | ''Jupiter'' | ''Saturn'' | ''Uranus'' | ''Neptune''
+    | ''Sun'' | ''Custom'' |'
+  default: '''Earth'''
+- name: Gravitational potential model
+  summary: Gravity model for central body Spherical harmonics when Central body set to Earth, Moon, Mars, or Custom, Oblate
+    ellipsoid when Central body set to Mercury, Venus, Jupiter, Saturn, Uranus, or Neptune (default) | Point-mass | Oblate
+    ellipsoid (J2)
+  group: Central Body
+  block_parameter: gravityModel when centralBody set to 'Earth', 'Moon', 'Mars', or 'Custom' | gravityModelnoSH when centralBody
+    set to Mercury, Venus, Jupiter, Saturn, Uranus, or Neptune
+  type: character vector
+  values: '''Spherical harmonics'' | ''Point-mass'' | ''Oblate ellipsoid (J2)'' when centralBody set to ''Earth'', ''Moon'',
+    ''Mars'', or ''Custom''; ''Point-mass'' | ''Oblate ellipsoid (J2)'' when centralBody set to Mercury, Venus, Jupiter, Saturn,
+    Uranus, or Neptune'
+  default: '''Spherical harmonics'' when centralBody set to ''Earth'', ''Moon'', ''Mars'', or ''Custom''; ''Oblate ellipsoid
+    (J2)'' when centralBody set to Mercury, Venus, Jupiter, Saturn, Uranus, or Neptune'
+- name: Spherical harmonic model
+  summary: Spherical harmonic model EGM2008 for Central body set to Earth, LP-100K for Central body set to Moon, GMM2B for
+    Central body set to Mars, (default) | EGM96 | EIGEN-GL04C | LP-165P
+  group: Central Body
+  block_parameter: '''earthSH'' when centralBody set to ''Earth'' | ''moonSH'' when centralBody set to ''Moon'' | ''marsSH''
+    when centralBody set to ''Mars'''
+  type: character vector
+  values: '''EGM2008'' | ''EGM96'' | ''EIGEN-GL04C'' when centralBody set to ''earthSH''; ''LP-100K'' | ''LP-165P'' when centralBody
+    set to ''moonSH''; ''GMM2B'' when centralBody set to ''marsSH'''
+  default: '''Spherical harmonics'''
+- name: Rotational rate
+  summary: Rotational rate 4.06124975e-3 (default) | scalar
+  group: Central Body
+  block_parameter: '''customOmega'''
+  type: character vector
+  values: '''4.06124975e-3'' | scalar'
+  default: '''4.06124975e-3'''
+- name: Spherical harmonic coefficient file
+  summary: Harmonic coefficient MAT file aerogmm2b.mat (default) | harmonic coefficient MAT file
+  group: Central Body
+  block_parameter: shFile
+  type: character vector
+  values: '''aerogmm2b.mat'' | harmonic coefficient MAT file'
+  default: '''aerogmm2b.mat'''
+- name: Degree
+  summary: Degree of harmonic model 120 (default) | scalar | maximum of 2159
+  group: Central Body
+  block_parameter: shDegree
+  type: character vector
+  values: '''80'' | scalar'
+  default: '''80'''
+- name: Use Earth orientation parameters (EOPs)
+  summary: Option to use Earth orientation parameters on (default) | off
+  group: Central Body
+  block_parameter: useEOPs
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: IERS EOP data file
+  summary: Earth orientation data aeroiersdata.mat (default) | MAT file
+  group: Central Body
+  block_parameter: eopFile
+  type: character vector
+  values: '''aeroiersdata.mat'' | MAT-file'
+  default: '''aeroiersdata.mat'''
+- name: Input Moon libration angles
+  summary: Moon libration Euler angle rate off (default) | on
+  group: Central Body
+  block_parameter: useMoonLib
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output quaternion (ICRF to Fixed-frame)
+  summary: Option to add output transformation quaternion port off (default) | on
+  group: Central Body
+  block_parameter: outputTransform
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Central body spin axis source
+  summary: Central body spin source Port (default) | Dialog
+  group: Central Body
+  block_parameter: cbPoleSrc
+  type: character vector
+  values: '''Port'' | ''Dialog'''
+  default: '''Port'''
+- name: Spin axis right ascension (RA) at J2000
+  summary: Right ascension of central body spin axis at J2000 317.68143 (default) | double scalar
+  group: Central Body
+  block_parameter: cbRA
+  type: character vector
+  values: '''317.68143'' | double scalar'
+  default: '''317.68143'''
+- name: Spin axis RA rate (deg/century)
+  summary: Right ascension rate of central body spin axis -0.1061 (default) | double scalar
+  group: Central Body
+  block_parameter: cbRARate
+  type: character vector
+  values: '''-0.1061'' | double scalar'
+  default: '''-0.1061'''
+- name: Spin axis declination (Dec) at J2000
+  summary: Declination of central body spin axis at J2000 52.88650 (default) | double scalar
+  group: Central Body
+  block_parameter: cbDec
+  type: character vector
+  values: '''52.88650'' | double scalar'
+  default: '''52.88650'''
+- name: Spin axis Dec rate (deg/century)
+  summary: Declination rate of central body spin axis -0.0609 (default) | double scalar
+  group: Central Body
+  block_parameter: cbDecRate
+  type: character vector
+  values: '''-0.0609'' | double scalar'
+  default: '''-0.0609'''
+- name: Initial rotation angle at J2000
+  summary: Rotation angle of central body *x*-axis 176.630 (default) | double scalar
+  group: Central Body
+  block_parameter: cbRotAngle
+  type: character vector
+  values: '''176.630'' | double scalar'
+  default: '''176.630'''
+- name: Rotation rate (deg/day)
+  summary: Rotation rate of central body *x*-axis 350.89198226 (default) | double scalar
+  group: Central Body
+  block_parameter: cbRotRate
+  type: character vector
+  values: '''350.89198226'' | double scalar'
+  default: '''350.89198226'''
+- name: Equatorial radius
+  summary: Equatorial radius 3.3962e6 (default) | double scalar
+  group: Central Body
+  block_parameter: customR
+  type: character vector
+  values: '''3.3962e6'' | double scalar'
+  default: '''3.3962e6'''
+- name: Flattening
+  summary: Flattening of planet 0.00589 (default) | double scalar
+  group: Central Body
+  block_parameter: customF
+  type: character vector
+  values: '''0.00589'' | double scalar'
+  default: '''0.00589'''
+- name: Gravitational parameter
+  summary: Gravitational parameter 4.305e13 (default) | double scalar
+  group: Central Body
+  block_parameter: customMu
+  type: character vector
+  values: '''4.305e13'' | double scalar'
+  default: '''4.305e13'''
+- name: Second degree zonal harmonic (J2)
+  summary: Most significant or largest spherical harmonic term 1.0826269e-03 (default) | double scalar
+  group: Central Body
+  block_parameter: customJ2
+  type: character vector
+  values: '''1.0826269e-03'' | double scalar'
+  default: '''1.0826269e-03'''
+- name: Include atmospheric drag
+  summary: Option to include atmospheric drag off (default) | on
+  group: Drag
+  block_parameter: useDrag
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Atmospheric density source
+  summary: Source of atmospheric density value Dialog (default) | Port
+  group: Drag
+  block_parameter: atmosSrc
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Atmospheric model
+  summary: Atmospheric model NRLMSISE-00 (default)
+  group: Drag
+  block_parameter: atmosModel
+  type: character vector
+  values: '''NRLMSISE-00'''
+  default: '''NRLMSISE-00'''
+- name: Flux source
+  summary: Source of space weather data Dialog (default) | Port
+  group: Drag
+  block_parameter: fluxSrc
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Space weather data file
+  summary: MAT file of space weather data aeroSpaceWeatherData.mat (default) | MAT file name
+  group: Drag
+  block_parameter: SpaceWeatherDataFile
+  type: character vector
+  values: '''aeroSpaceWeatherData.mat'' | MAT file name'
+  default: '''aeroSpaceWeatherData.mat'''
+- name: F10.7 extrapolation method
+  summary: Extrapolation method for f107Average and f107Daily None - clip (default) | Constant | Least squares fit
+  group: Drag
+  block_parameter: F107ExtrapMethod
+  type: character vector
+  values: '''None - clip'' | ''Constant'' | ''Least squares fit'''
+  default: '''None - clip'''
+- name: Magnetic index extrapolation method
+  summary: Extrapolation method for magnetic index information None - clip (default) | Constant | IGRF
+  group: Drag
+  block_parameter: MagneticIndexExtrapMethod
+  type: character vector
+  values: '''None - clip'' | ''Constant'' | ''IGRF'''
+  default: '''None - clip'''
+- name: Flags source
+  summary: Variation flag source Dialog (default) | Port
+  group: Drag
+  block_parameter: fluxFlagsSrc
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Flags
+  summary: Variation flags ones(1,23) (default)
+  group: Drag
+  block_parameter: fluxFlags
+  type: character vector
+  values: '''ones(1,23)'''
+  default: '''ones(1,23)'''
+- name: Include anomalous oxygen in density calculation
+  summary: Option to include anomalous oxygen in density calculation off (default) | on
+  group: Drag
+  block_parameter: useOxygen
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Drag coefficient source
+  summary: Source of drag coefficient Dialog (default) | Port
+  group: Drag
+  block_parameter: dragCoeffSrc
+  type: character vector
+  values: '''Dialog'' | ''Source'''
+  default: '''Dialog'''
+- name: Drag coefficient
+  summary: Spacecraft coefficient of drag 2.179 (default) | scalar | vector of size *numSat*
+  group: Drag
+  block_parameter: dragCoeff
+  type: character vector
+  values: scalar | vector of size *numSat*
+  default: '''2.179'''
+- name: Drag area source
+  summary: Source of drag area Dialog (default) | Port
+  group: Drag
+  block_parameter: dragAreaSrc
+  type: character vector
+  values: '''Dialog'' | ''Source'''
+  default: '''Dialog'''
+- name: Drag area
+  summary: Area to compute acceleration due to atmospheric drag 1.0 (default) | scalar | vector of size *numSat*
+  group: Drag
+  block_parameter: dragArea
+  type: character vector
+  values: scalar | vector of size *numSat*
+  default: '''1.0'''
+- name: Ephemeris model
+  summary: Ephemeris model DE405 (default) | DE421 | DE423 | DE430 | DE432t
+  group: Third Body
+  block_parameter: ephemerisModel
+  type: character vector
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Limit ephemerides date range
+  summary: Option to enable start and end of range of ephemeris data off (default) | on
+  group: Third Body
+  block_parameter: useDateRange
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Start date (JD)
+  summary: Start date of ephemerides date range juliandate(2020, 1, 1) (default) | Julian date
+  group: Third Body
+  block_parameter: startDate
+  type: character vector
+  values: '''juliandate(2020, 1, 1)'' | Julian date'
+  default: '''juliandate(2020, 1, 1)'''
+- name: End date (JD)
+  summary: End date of ephemerides date range juliandate(2050, 1, 1) (default) | Julian date
+  group: Third Body
+  block_parameter: endDate
+  type: character vector
+  values: '''juliandate(2050, 1, 1)'' | Julian format date'
+  default: '''juliandate(2050, 1, 1)'''
+- name: Include third body gravity
+  summary: Acceleration due to third body gravity off (default) | on
+  group: Third Body
+  block_parameter: useThirdBodyGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sun
+  summary: Include gravitational acceleration due to Sun on (default) | off
+  group: Third Body
+  block_parameter: includeSunGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sun gravity model
+  summary: Third body gravity model for Sun Point-mass (default) | Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: sunThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Mercury
+  summary: Include gravitational acceleration due to Mercury off (default) | on
+  group: Third Body
+  block_parameter: includeMercuryGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Mercury gravity model
+  summary: Mercury gravity model Point-mass (default) | Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: mercuryThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Venus
+  summary: Include gravitational acceleration due to Venus off (default) | on
+  group: Third Body
+  block_parameter: includeVenusGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Venus gravity model
+  summary: Venus gravity model Point-mass (default) | Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: venusThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Earth
+  summary: Include gravitational acceleration due to Earth on (default) | off
+  group: Third Body
+  block_parameter: includeEarthGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Earth gravity model
+  summary: Earth gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics
+  group: Third Body
+  block_parameter: earthThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'' | ''Spherical harmonics'''
+  default: '''Point-mass'''
+- name: Moon
+  summary: Include gravitational acceleration due to Moon on (default) | off
+  group: Third Body
+  block_parameter: includeMoonGravity
+  type: character vector
+  values: '''off'' | ''on'' |'
+  default: '''on'''
+- name: Moon gravity model
+  summary: Moon gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics
+  group: Third Body
+  block_parameter: moonThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'' | ''Spherical harmonics'''
+  default: '''Point-mass'''
+- name: Mars
+  summary: Include gravitational acceleration due to Mars off (default) | on
+  group: Third Body
+  block_parameter: includeMarsGravity
+  type: character vector
+  values: '''off'' | ''on'' |'
+  default: '''off'''
+- name: Mars gravity model
+  summary: Mars gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics
+  group: Third Body
+  block_parameter: marsThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'' | ''Spherical harmonics'''
+  default: '''Point-mass'''
+- name: Jupiter
+  summary: Include gravitational acceleration due to Jupiter off (default) | on
+  group: Third Body
+  block_parameter: includeJupiterGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Jupiter gravity model
+  summary: Jupiter gravity model Point-mass (default) | Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: jupiterThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Saturn
+  summary: Include gravitational acceleration due to Saturn off (default) | on
+  group: Third Body
+  block_parameter: includeSaturnGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Saturn gravity model
+  summary: Saturn gravity model Point-mass (default) | Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: saturnThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Uranus
+  summary: Include gravitational acceleration due to Uranus off (default) | on
+  group: Third Body
+  block_parameter: includeUranusGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Uranus gravity model
+  summary: Uranus gravity model Point-mass (default) | Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: uranusThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Neptune
+  summary: Include gravitational acceleration due to Neptune off (default) | on
+  group: Third Body
+  block_parameter: includeNeptuneGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Neptune gravity model
+  summary: Neptune gravity model Point-mass (default) | Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: neptuneThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Pluto
+  summary: Include gravitational acceleration due to Pluto off (default) | on
+  group: Third Body
+  block_parameter: includePlutoGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Pluto gravity model
+  summary: Pluto gravity model Point-mass (default) | Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: plutoThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Custom
+  summary: Include gravitational acceleration due to custom planet off (default) | on
+  group: Third Body
+  block_parameter: includeCustomGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Custom gravity model
+  summary: Custom gravity model Point-mass (default) | Oblate ellipsoid (J2) | Spherical harmonics
+  group: Third Body
+  block_parameter: customThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Gravitational parameter (m^3/s^2)
+  summary: Custom gravitational acceleration 42.828314258067e12 (default) | scalar | vector of length *numCustom3rdBodies*
+  group: Third Body
+  block_parameter: customThirdBodyMu
+  type: character vector
+  values: '''42.828314258067e12'' | scalar | vector of length *numCustom3rdBodies*'
+  default: '''42.828314258067e12'''
+- name: Include solar radiation pressure (SRP)
+  summary: Acceleration due to solar radiation pressure off (default) | on
+  group: SRP
+  block_parameter: useSRP
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Eclipse fraction source
+  summary: Source of eclipse fraction Dialog (default) | Port
+  group: SRP
+  block_parameter: useSRP
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Shadow model
+  summary: Shadow model Dual cone (default) | Cylindrical
+  group: SRP
+  block_parameter: shadowModel
+  type: character vector
+  values: '''Dual cone'' | ''Cylindrical'''
+  default: '''Dual cone'''
+- name: Include Earth
+  summary: Option to include Earth on (default) | off
+  group: SRP
+  block_parameter: includeEarth
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Include Moon
+  summary: Option to include Moon on (default) | off
+  group: SRP
+  block_parameter: includeMoon
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Reflectivity coefficient source
+  summary: Source for spacecraft coefficient of reflectivity 'Dialog' (default) | 'Port'
+  group: SRP
+  block_parameter: reflectivityCoeffSrc
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''on'''
+- name: Reflectivity coefficient
+  summary: Spacecraft coefficient of reflectivity 1.8 (default) | scalar | 2D array of size *numSat* | between [1,2]
+  group: SRP
+  block_parameter: reflectivityCoeff
+  type: character vector
+  values: '''1.8'' | scalar | 2D array of size *numSat* | between [1,2]'
+  default: '''1.8'''
+- name: SRP area source
+  summary: Source for spacecraft solar radiation pressure area Dialog (default) | Port
+  group: SRP
+  block_parameter: srpAreaSrc
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: SRP area
+  summary: Cross section area of the spacecraft seen by the Sun 1.0 (default) | scalar | 2D array of size *numSat*
+  group: SRP
+  block_parameter: srpArea
+  type: character vector
+  values: '''1.0'' | scalar | 2D array of size *numSat*'
+  default: '''1.0'''
+- name: Solar flux pressure (W\*s/m^3)
+  summary: Spacecraft solar flux pressure 4.5344321e-6 (default) | scalar
+  group: SRP
+  block_parameter: fluxPressure
+  type: character vector
+  values: 4.5344321e-6 | scalar
+  default: '''4.5344321e-6'''
+- name: Units
+  summary: Parameter and port units Metric (m/s) (default) | Metric (km/s) | Metric (km/h) | English (ft/s) | English (kts)
+  group: Units
+  block_parameter: units
+  type: character vector
+  values: '''Metric (m/s)'' | ''Metric (km/s)'' | ''Metric (km/h)'' | ''English (ft/s)'' | ''English (kts)'''
+  default: '''Metric (m/s)'''
+- name: Angle units
+  summary: Angle units Degrees (default) | Radians
+  group: Units
+  block_parameter: angleUnits
+  type: character vector
+  values: '''Degrees'' | ''Radians'''
+  default: '''Degrees'''
+- name: Time format
+  summary: Time format for start date and time output Julian date (default) | Gregorian
+  group: Units
+  block_parameter: timeFormat
+  type: character vector
+  values: '''Julian date'' | ''Gregorian'''
+  default: '''Julian date'''
+```
 
 ### Main
 
@@ -3447,7 +4438,6 @@ port **tutc**, specified as
 | **Type:** character vector |
 | **Values:** `'Julian date'` | `'Gregorian'` |
 | **Default:** `'Julian date'` |
-
 ## Libraries
 
 Aerospace Blockset / Spacecraft / Spacecraft Dynamics

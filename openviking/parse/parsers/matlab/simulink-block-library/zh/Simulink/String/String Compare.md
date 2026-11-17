@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # String Compare
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要比较的第一个字符串 标量
+  direction: input
+  data_types: string
+- name: Port_2
+  summary: 要比较的第二个字符串 标量
+  direction: input
+  data_types: string
+- name: Port_1
+  summary: 真或假结果 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -39,8 +54,31 @@ chinese_source: worker-translation
 - `0` — 不匹配。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Case sensitive
+  summary: 字符串比较的区分大小写 on（默认）| off
+  group: ''
+  block_parameter: CaseSensitive
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Compare Option
+  summary: 要比较的字符数量 Entire string（默认）| First N characters
+  group: ''
+  block_parameter: CompareOption
+  type: character vector
+  values: '''Entire string'' | ''First N characters'''
+  default: '''Entire string'''
+- name: Number of characters
+  summary: 要比较的字符数量 1（默认）| 标量
+  group: ''
+  block_parameter: CompareOption
+  type: character vector
+  values: scalar
+  default: '''1'''
+```
 
 ### **Case sensitive** — 字符串比较的区分大小写 on（默认）| off
 
@@ -100,7 +138,6 @@ characters` 时，此参数启用。
 | **类型**：character vector |
 | **值**：scalar |
 | **默认值**：`'1'` |
-
 ## 所属库
 
 Simulink / String

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Enabled Synchronous Subsystem
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 子系统的输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -34,8 +47,45 @@ chinese_source: worker-translation
 有关详细信息，请参阅 Simulink 文档中的 Data Types Supported by Simulink。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Show port labels
+  summary: 端口标签的显示选项 FromPortIcon（默认）| FromPortBlockName | SignalName | none
+  group: ''
+  block_parameter: ShowPortLabels
+  type: character vector
+  values: '''FromPortIcon'' | ''FromPortBlockName'' | ''SignalName'' | ''none'''
+  default: '''FromPortIcon'''
+- name: Read/Write permissions
+  summary: 对子系统内容的访问级别 ReadWrite（默认）| ReadOnly | NoReadOrWrite
+  group: ''
+  block_parameter: Permissions
+  type: character vector
+  values: '''ReadWrite'' | ''ReadOnly'' | ''NoReadOrWrite'''
+  default: '''ReadWrite'''
+- name: Name of error callback function
+  summary: 发生错误时要调用的函数名称 ''（默认）| 函数名称
+  group: ''
+  block_parameter: ErrorFcn
+  type: character vector
+  values: ''''' | ''<function name>'''
+  default: ''''''
+- name: Permit hierarchical resolution
+  summary: 工作区变量名的解析方式 All（默认）| ExplicitOnly | None
+  group: ''
+  block_parameter: PermitHierarchicalResolution
+  type: character vector
+  values: '''All'' | ''ExplicitOnly'' | ''None'''
+  default: '''All'''
+- name: Function packaging
+  summary: 代码格式 Auto（默认）| Inline | Nonreusable function | Reusable function
+  group: ''
+  block_parameter: RTWSystemCode
+  type: character vector
+  values: '''Auto'' | ''Inline'' | ''Nonreusable function'' | ''Reusable function'''
+  default: '''Auto'''
+```
 
 ### **Show port labels** — 端口标签的显示选项 `FromPortIcon`（默认）| `FromPortBlockName` | `SignalName` | `none`
 
@@ -160,7 +210,6 @@ Simulink 软件向该函数传递两个参数：子系统的句柄和一个指�
 | **类型**：character vector |
 | **Value**: `'Auto'` | `'Inline'` | `'Nonreusable function'` | `'Reusable function'` |
 | **默认值**：`'Auto'` |
-
 ## 所属库
 
 HDL Coder / HDL Subsystems

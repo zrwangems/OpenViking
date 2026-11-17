@@ -14,6 +14,15 @@ language: en
 # PS Math Function
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input physical signal, *u*, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -33,8 +42,17 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Function choice
+  summary: Function to perform on the operand signal sin(u) (default) | cos(u) | exp(u) | log(u) | 10.^u | log10(u) | u.^2
+    | sqrt(u) | 1./u | tanh(u) | u.^v
+  group: ''
+- name: v
+  summary: Power 1 (default) | scalar, vector, or matrix
+  group: ''
+```
 
 ### **Function choice** — Function to perform on the operand signal `sin(u)` (default) | `cos(u)` | `exp(u)` | `log(u)` | `10.^u` | `log10(u)` | `u.^2` | `sqrt(u)` | `1./u` | `tanh(u)` | `u.^v`
 
@@ -57,7 +75,6 @@ input signal unit. Therefore, unless the input signal is unitless, changing the 
 
 To enable this parameter, set **Function choice** to
 `u.^v`.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Functions

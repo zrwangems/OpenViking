@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Image From Workspace
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输出图像矩阵 | 三维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: 图像矩阵的红色分量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: 图像矩阵的绿色分量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: 图像矩阵的蓝色分量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输出
 
@@ -57,8 +76,41 @@ chinese_source: worker-translation
 要启用此端口，请将 **Image signal** 参数设置为 `Separate color signals`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Value
+  summary: 要导入的图像 rand(100,100,3)（默认）| 向量 | 矩阵 | 三维数组 | MATLAB workspace variable | MATLAB function
+  group: ''
+- name: Sample time
+  summary: 模块执行的采样时间 inf（默认）| positive scalar | Vector
+  group: ''
+- name: Image signal
+  summary: 模块返回的信号 One multidimensional signal（默认）| Separate color signals
+  group: ''
+- name: Output port labels
+  summary: 输出端口标签 R|G|B（默认）| 端口名称
+  group: ''
+- name: Output data type
+  summary: 输出图像的数据类型 Inherit from Value（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean |
+    Fixed-point | User-defined | Inherit via back propagation | ...
+  group: ''
+- name: Signed
+  summary: 有符号定点数据类型 on（默认）| off
+  group: ''
+- name: Word length
+  summary: 定点数据类型中的位数 16（默认）| 正标量
+  group: ''
+- name: Set fraction length in output to
+  summary: 定点的缩放因子 User-defined（默认）| Best precision
+  group: ''
+- name: Fractional length
+  summary: 小数位数 15（默认）| scalar
+  group: ''
+- name: User-defined data type
+  summary: 用户定义的定点数据类型 sfix(16)（默认）| user-defined fixed-point data type
+  group: ''
+```
 
 **主**
 
@@ -142,7 +194,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output data type** 参数设置为 `User-defined`。
-
 ## 所属库
 
 Computer Vision Toolbox / Sources

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Toeplitz
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Toep Col
+  summary: 非对称 Toeplitz 矩阵的第一列 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Toep Row
+  summary: 非对称 Toeplitz 矩阵的第一行 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Output
+  summary: Toeplitz 矩阵 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -108,8 +127,16 @@ Toep Row = [7 7 3 3 2 1 3]
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Symmetric
+  summary: 对称 Toeplitz 矩阵输出 on（默认）| off
+  group: ''
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 on（默认）| off
+  group: ''
+```
 
 ### **Symmetric** — 对称 Toeplitz 矩阵输出 `on`（默认）| `off`
 
@@ -148,7 +175,6 @@ y(i,j)=conj(y(j,i))
 #### 依赖关系
 
 要启用此参数，请选中 **Symmetric** 复选框。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

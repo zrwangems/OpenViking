@@ -15,10 +15,71 @@ chinese_source: worker-translation
 # CAN FD Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: CAN 设备和通道列表选项
+  group: ''
+  block_parameter: Device
+  type: 字符向量、字符串
+- name: Arbitration Bus speed
+  summary: 仲裁比特率数值
+  group: ''
+  block_parameter: ArbitrationBusSpeed
+  type: 字符向量、字符串
+  values: 整数
+- name: Data Bus speed
+  summary: 数据比特率数值
+  group: ''
+  block_parameter: DataBusSpeed
+  type: 字符向量、字符串
+  values: 整数
+- name: Bus frequency
+  summary: PEAK-System 总线速率数值
+  group: ''
+  block_parameter: BusFrequency
+  type: 字符向量、字符串
+  values: 数值
+- name: Arbitration/Data bit rate prescaler
+  summary: 比特率预分频器整数
+  group: ''
+  block_parameter: ArbitrationPrescaler、DataPrescaler
+  type: 字符向量、字符串
+  values: 整数
+- name: Synchronization jump width
+  summary: 最大允许时间调整整数
+  group: ''
+  block_parameter: ArbitrationSJW、DataSJW
+  type: 字符向量、字符串
+  values: 整数
+- name: Time segment 1
+  summary: 采样点之前的位时间量子数整数
+  group: ''
+  block_parameter: ArbitrationTSEG1、DataTSEG1
+  type: 字符向量、字符串
+  values: 整数
+- name: Time segment 2
+  summary: 采样点之后的位时间量子数整数
+  group: ''
+  block_parameter: ArbitrationTSEG2、DataTSEG2
+  type: 字符向量、字符串
+  values: 整数
+- name: Verify bit parameter settings validity
+  summary: 检查设置的有效性
+  group: ''
+- name: 确认模式
+  summary: 控制 CAN 总线上的通道活动 Normal（默认）| Silent
+  group: ''
+  block_parameter: AckMode
+  type: 字符向量、字符串
+  values: '''Normal'' | ''Silent'''
+```
 
 ### **Device** — CAN 设备和通道列表选项
 
@@ -137,7 +198,6 @@ R2025b 中未记录。
 | **类型：** 字符向量、字符串 |
 | **值：** `'Normal'` | `'Silent'` |
 | **默认：** `'Normal'` |
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN FD Communication

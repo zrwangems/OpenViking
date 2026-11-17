@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Demosaic
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 待去马赛克的图像 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: R
+  summary: 处理后图像的红色通道 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: G
+  summary: 处理后图像的绿色通道 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: B
+  summary: 处理后图像的蓝色通道 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Image
+  summary: 多维处理后图像 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -67,8 +90,22 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output image signal** 参数指定为 `One multidimensional signal`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Interpolation algorithm
+  summary: 插值算法 Bilinear（默认）| Gradient-corrected linear
+  group: 主
+- name: Sensor alignment
+  summary: R、G、B 像素对齐方式 RGGB（默认）| GRBG | GBRG | BGGR
+  group: 主
+- name: Output image signal
+  summary: 输出图像的维度 One multidimensional signal（默认）| Separate color signals
+  group: 主
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主
 
@@ -98,7 +135,6 @@ Bayer 格式的 4×4 图像示意图，每个像素标记为 R、G 或 B。
 ### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Conversions

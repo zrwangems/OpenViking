@@ -14,6 +14,21 @@ language: en
 # Proximity Sensor
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Radial distance physical signal
+  direction: input
+- name: Z
+  summary: Perpendicular distance physical signal
+  direction: input
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -33,8 +48,25 @@ Electrical conserving port associated with the proximity sensor positive voltage
 ### **-** — Negative voltage electrical
 
 Electrical conserving port associated with the proximity sensor negative voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Vector of radial offset distances R
+  summary: Vector of radial offset distances [-25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25] mm (default)
+  group: ''
+- name: Corresponding sensing distances Z
+  summary: Corresponding sensing distances [0, 0, 5, 8, 9.5, 10, 9.5, 8, 5, 0, 0] mm (default)
+  group: ''
+- name: Output when not detected
+  summary: Output when not detected Normally Open (N.O.) (default) | Normally Closed (N.C.)
+  group: ''
+- name: Closed resistance R_closed
+  summary: Closed resistance 0.01 Ohm (default)
+  group: ''
+- name: Open conductance G_open
+  summary: Open conductance 1e-8 1/Ohm (default)
+  group: ''
+```
 
 ### **Vector of radial offset distances R** — Vector of radial offset distances `[-25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25]` `mm` (default)
 
@@ -59,7 +91,6 @@ Resistance between the + and - ports when the output contacts are closed.
 ### **Open conductance G\_open** — Open conductance `1e-8` `1/Ohm` (default)
 
 Conductance between the + and - ports when the output contacts are open.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

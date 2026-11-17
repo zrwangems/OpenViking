@@ -15,13 +15,17 @@ chinese_source: worker-translation
 # Two-Way Connection
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有一个 Simulink 输入端口、一个 Simulink 输出端口和一个双向连接器端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 R2025b 中未记录。

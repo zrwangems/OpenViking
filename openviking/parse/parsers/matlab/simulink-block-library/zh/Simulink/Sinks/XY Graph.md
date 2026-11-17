@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Record, XY Graph
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要记录的信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -33,8 +41,75 @@ XY Graph 模块是 Record 模块的一种替代配置，可在 XY 图上可视�
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input ports
+  summary: 输入端口数量 1（默认）| [1,100] 范围内的整数
+  group: 主要
+  block_parameter: '''NumPorts'''
+  type: integer | character vector
+  values: '[1,100] 范围内的整数'
+  default: '1'
+- name: Port
+  summary: 要为其指定输入处理模式的端口 1（默认）| 整数
+  group: 主要
+  block_parameter: '''FrameSettings'''
+  type: 逻辑数组
+  values: 1×n 行向量，其中 n 等于端口数量
+  default: '0'
+- name: Input Processing
+  summary: 所选端口的输入处理模式 Elements as channels (sample-based)（默认）| Columns as channels (frame-based)
+  group: 主要
+  block_parameter: '''FrameSettings'''
+  type: 逻辑数组
+  values: 1×n 行向量，其中 n 等于端口数量
+  default: '0'
+- name: Record to Workspace
+  summary: 工作区记录选项 off（默认）| on
+  group: 记录
+  block_parameter: '''RecordToWorkspace'''
+  type: character vector | boolean | numeric
+  values: '''on'' | ''off'' | true 或 1 | false 或 0'
+  default: '''off'''
+- name: Workspace Variable Name
+  summary: 包含所记录模块数据的工作区变量名称 recordout（默认）| 字符向量 | 字符串
+  group: 记录
+  block_parameter: '''VariableName'''
+  type: character vector | string
+  default: '''recordout'''
+- name: Record to File
+  summary: 记录到文件选项 off（默认）| on
+  group: 记录
+  block_parameter: '''RecordToFile'''
+  type: character vector | boolean | numeric
+  values: '''on'' | ''off'' | true 或 1 | false 或 0'
+  default: '''off'''
+- name: File Name
+  summary: 包含所记录数据的文件名 recording.mldatx（默认）| 字符向量 | 字符串
+  group: 记录
+  block_parameter: '''FileName'''
+  type: character vector | string
+  default: '''recording.mldatx'''
+- name: File Type
+  summary: 所记录数据的文件类型 *.mldatx（默认）| *.mat | *.xslx
+  group: 记录
+  block_parameter: '''FileName'''
+  type: character vector | string
+  default: '''recording.mldatx'''
+- name: File Location
+  summary: 包含所记录数据的文件路径 工作目录（默认）| 字符向量 | 字符串
+  group: 记录
+  block_parameter: '''FileName'''
+  type: character vector | string
+  default: '''recording.mldatx'''
+- name: Time
+  summary: 将时间数据导出到 Excel 文件的选项 Shared Time Columns（默认）| Individual Time Columns
+  group: 记录
+- name: Attributes
+  summary: 要导出到 Excel 文件的信号属性 Data Type | Units | Port Index | Block Path | Interpolation
+  group: 记录
+```
 
 要修改 Record 模块参数，请使用属性检查器。
 
@@ -250,7 +325,6 @@ XY Graph 模块是 Record 模块的一种替代配置，可在 XY 图上可视�
 #### 依赖关系
 
 要启用此参数，请选择 **Record to File** 并将 **File Type** 指定为 `*.xlsx`。
-
 ## 所属库
 
 Simulink / Sinks

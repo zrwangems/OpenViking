@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # String Find
 
 ## 端口
+```yaml
+ports:
+- name: str
+  summary: 要在其中查找模式的字符串标量
+  direction: input
+  data_types: string
+- name: sub
+  summary: 模式标量
+  direction: input
+  data_types: string
+- name: idx
+  summary: 找到的模式标量的位置索引
+  direction: output
+  data_types: int8 | int16 | int32
+```
 
 ### 输入
 
@@ -39,8 +54,22 @@ chinese_source: worker-translation
 - 如果 **sub** 参数为空（`""`），则模块返回 `1`，表示它匹配了被搜索字符串的开头。
 
 **数据类型：** `int8` | `int16` | `int32`
-
 ## 参数
+```yaml
+parameters:
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Inherit via back propagation | int8 | int16 | int32 |
+    <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''int8'' | ''int16'' | ''int32''
+    | *<data type expression>*'
+  default: '''Inherit: Inherit via internal rule'''
+- name: Mode
+  summary: 数据类型类别 Inherit（默认）| Built in | Expression
+  group: ''
+```
 
 ### **Output data type** — 输出数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Inherit via back propagation` | `int8` | `int16` | `int32` | `<data type expression>`
 
@@ -69,7 +98,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 点击 **Show data type assistant** 按钮可启用此参数。
-
 ## 所属库
 
 Simulink / String

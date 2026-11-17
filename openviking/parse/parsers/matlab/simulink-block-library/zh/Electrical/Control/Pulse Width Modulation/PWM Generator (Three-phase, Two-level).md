@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PWM Generator (Three-phase, Two-level)
 
 ## 端口
+```yaml
+ports:
+- name: Vabc
+  summary: 三相正弦参考信号向量
+  direction: input
+- name: vdc
+  summary: 直流母线电压信号标量
+  direction: input
+- name: g
+  summary: 门极控制向量
+  direction: output
+- name: ModWave
+  summary: 调制波向量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +49,28 @@ chinese_source: worker-translation
 ### **ModWave** — 调制波向量
 
 如果您要为具有 PWM 功能的硬件平台生成代码，可以将调制波部署到硬件。否则，此数据仅供您参考。
-
 ## 参数
+```yaml
+parameters:
+- name: PWM mode
+  summary: 脉宽调制方法 Continuous PWM (CPWM)（默认）| Discontinuous PWM (DPWM)
+  group: ''
+- name: Continuous PWM
+  summary: '连续脉宽调制方法 SPWM: sinusoidal PWM（默认）| SVM: space vector modulation'
+  group: ''
+- name: Sampling mode
+  summary: 波形采样方法 Natural（默认）| Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: 开关频率 1e3（默认）| 正数
+  group: ''
+- name: Sample time (s)
+  summary: 模块采样时间 5e-5（默认）| 正数
+  group: ''
+- name: Discontinuous PWM (DPWM)
+  summary: '钳位方法 60 DPWM: 60 degree discontinuous PWM（默认）'
+  group: ''
+```
 
 ### **PWM mode** — 脉宽调制方法 `Continuous PWM (CPWM)`（默认）| `Discontinuous PWM (DPWM)`
 
@@ -79,7 +114,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 **Discontinuous PWM** 参数仅在将 **PWM mode** 参数设置为 `Discontinuous PWM (DPWM)` 时可用。
-
 ## 所属库
 
 Simscape / Electrical / Control / Pulse Width Modulation

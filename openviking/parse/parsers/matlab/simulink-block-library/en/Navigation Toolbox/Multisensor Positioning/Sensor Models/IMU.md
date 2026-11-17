@@ -14,6 +14,42 @@ language: en
 # IMU
 
 ## Ports
+```yaml
+ports:
+- name: Linear Acceleration
+  summary: Acceleration of IMU in local navigation coordinate system (m/s2) *N*-by-3 matrix of real scalar
+  direction: input
+  data_types: single | double
+- name: Angular Velocity
+  summary: Angular velocity of IMU in local navigation coordinate system (rad/s) *N*-by-3 matrix of real scalar
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: Orientation of IMU in local navigation coordinate system *N*-by-4 array of real scalar | 3-by-3-by-*N*-element
+    rotation matrix
+  direction: input
+  data_types: single | double
+- name: Temperature
+  summary: Temperature of IMU (℃) *N*-by-1 vector of real scalar
+  direction: input
+  data_types: single | double
+- name: Magnetic Field
+  summary: Magnetic field vector in local navigation coordinate system (μT) *N*-by-3 matrix of real scalar
+  direction: input
+  data_types: single | double
+- name: Accel
+  summary: Accelerometer measurement of IMU in sensor body coordinate system (m/s2) *N*-by-3 matrix of real scalar
+  direction: output
+  data_types: single | double
+- name: Gyro
+  summary: Gyroscope measurement of IMU in sensor body coordinate system (rad/s) *N*-by-3 matrix of real scalar
+  direction: output
+  data_types: single | double
+- name: Mag
+  summary: Magnetometer measurement of IMU in sensor body coordinate system (μT) *N*-by-3 matrix of real scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -98,8 +134,150 @@ as an *N*-by-3 matrix of real scalars in microtesla.
 *N* is the number of samples in the current frame.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reference frame
+  summary: Navigation reference frame NED (default) | ENU
+  group: ''
+- name: Specify temperature from input port
+  summary: Specify temperature from input port off (default) | on
+  group: ''
+- name: Temperature (oC)
+  summary: Operating temperature of IMU (oC) 25 (default) | real scalar
+  group: ''
+- name: Specify magnetic field from input port
+  summary: Specify magnetic field from input port off (default) | on
+  group: ''
+- name: Magnetic field (NED)
+  summary: Magnetic field vector expressed in NED navigation frame (μT) [27.5550, -2.4169, -16.0849] (default) | 1-by-3 vector
+    of scalar
+  group: ''
+- name: MagneticField (ENU)
+  summary: Magnetic field vector expressed in ENU navigation frame (μT) [-2.4169, 27.5550, 16.0849] (default) | 1-by-3 vector
+    of scalar
+  group: ''
+- name: Seed
+  summary: Initial seed for randomization 67 (default) | nonnegative integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted Execution (default) | Code Generation
+  group: ''
+- name: Maximum readings (m/s2)
+  summary: Maximum sensor reading (m/s2) inf (default) | real positive scalar
+  group: ''
+- name: Resolution ((m/s2)/LSB)
+  summary: Resolution of sensor measurements ((m/s2)/LSB) 0 (default) | real nonnegative scalar
+  group: ''
+- name: Constant offset bias (m/s2)
+  summary: Constant sensor offset bias (m/s2) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Axis skew (%)
+  summary: Sensor axes skew (%) diag([100 100 100]) (default) | scalar | 3-element row vector | 3-by-3 matrix
+  group: ''
+- name: Velocity random walk (m/s2/√Hz)
+  summary: Velocity random walk (m/s2/√Hz) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Bias Instability (m/s2)
+  summary: Instability of the bias offset (m/s2) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Bias instability filter numerator coefficients
+  summary: Bias instability filter numerator coefficients fractalcoef.Numerator (default) | real-valued row vector
+  group: ''
+- name: Bias instability filter denominator coefficients
+  summary: Bias instability filter denominator coefficients fractalcoef.Denominator (default) | real-valued row vector
+  group: ''
+- name: Acceleration random walk ((m/s2)(√Hz))
+  summary: Acceleration random walk ((m/s2)(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Noise Type
+  summary: Type of random noise double-sided (default) | single-sided
+  group: ''
+- name: Bias from temperature ((m/s2)/℃)
+  summary: Sensor bias from temperature ((m/s2)/℃) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Temperature scale factor (%/℃)
+  summary: Scale factor error from temperature (%/℃) [0 0 0] (default) | real scalar in the range [0,100] | real 3-element
+    row vector in the range [0,100]
+  group: ''
+- name: Maximum readings (rad/s)
+  summary: Maximum sensor reading (rad/s) inf (default) | real positive scalar
+  group: ''
+- name: Resolution ((rad/s)/LSB)
+  summary: Resolution of sensor measurements ((rad/s)/LSB) 0 (default) | real nonnegative scalar
+  group: ''
+- name: Constant offset bias (rad/s)
+  summary: Constant sensor offset bias (rad/s) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Axis skew (%)
+  summary: Sensor axes skew (%) diag([100 100 100]) (default) | scalar | 3-element row vector | 3-by-3 matrix
+  group: ''
+- name: Bias from acceleration ((rad/s)/(m/s2)
+  summary: Sensor bias from linear acceleration (rad/s)/(m/s2) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Angle random walk ((rad/s)/(√Hz))
+  summary: Angle random walk ((rad/s)/(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Bias Instability (rad/s)
+  summary: Instability of the bias offset (rad/s) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Bias instability filter numerator coefficients
+  summary: Bias instability filter numerator coefficients fractalcoef.Numerator (default) | real-valued row vector
+  group: ''
+- name: Bias instability filter denominator coefficients
+  summary: Bias instability filter denominator coefficients fractalcoef.Denominator (default) | real-valued row vector
+  group: ''
+- name: Noise Type
+  summary: Type of random noise double-sided (default) | single-sided
+  group: ''
+- name: Rate random walk ((rad/s)(√Hz))
+  summary: Integrated white noise of sensor ((rad/s)(√Hz)) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Bias from temperature ((rad/s)/℃)
+  summary: Sensor bias from temperature ((rad/s)/℃) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Temperature scale factor (%/℃)
+  summary: Scale factor error from temperature (%/℃) [0 0 0] (default) | real scalar in the range [0,100] | real 3-element
+    row vector in the range [0,100]
+  group: ''
+- name: Maximum readings (μT)
+  summary: Maximum sensor reading (μT) inf (default) | real positive scalar
+  group: ''
+- name: Resolution ((μT)/LSB)
+  summary: Resolution of sensor measurements ((μT)/LSB) 0 (default) | real nonnegative scalar
+  group: ''
+- name: Constant offset bias (μT)
+  summary: Constant sensor offset bias (μT) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Axis skew (%)
+  summary: Sensor axes skew (%) diag([100 100 100]) (default) | scalar | 3-element row vector | 3-by-3 matrix
+  group: ''
+- name: White noise PSD (μT/√Hz)
+  summary: Power spectral density of sensor noise (μT/√Hz) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Bias Instability (μT)
+  summary: Instability of the bias offset (μT) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Bias instability filter numerator coefficients
+  summary: Bias instability filter numerator coefficients fractalcoef.Numerator (default) | real-valued row vector
+  group: ''
+- name: Bias instability filter denominator coefficients
+  summary: Bias instability filter denominator coefficients fractalcoef.Denominator (default) | real-valued row vector
+  group: ''
+- name: Noise Type
+  summary: Type of random noise double-sided (default) | single-sided
+  group: ''
+- name: Random walk ((μT)\*√Hz)
+  summary: Integrated white noise of sensor ((μT)\*√Hz) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Bias from temperature (μT/℃)
+  summary: Sensor bias from temperature (μT/℃) [0 0 0] (default) | real scalar | real 3-element row vector
+  group: ''
+- name: Temperature scale factor (%/℃)
+  summary: Scale factor error from temperature (%/℃) [0 0 0] (default) | real scalar in the range [0,100] | real 3-element
+    row vector in the range [0,100]
+  group: ''
+```
 
 #### Parameters
 
@@ -550,7 +728,6 @@ Scale factor error from temperature in %/℃, specified as a real scalar or real
 into a real 3-element row vector where each element has the input scalar value.
 
 **Data Types:** `single` | `double`
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Sensor Models Navigation Toolbox / Multisensor Positioning / Sensor Models

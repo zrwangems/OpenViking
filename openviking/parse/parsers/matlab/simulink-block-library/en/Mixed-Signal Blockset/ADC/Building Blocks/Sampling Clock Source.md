@@ -14,6 +14,13 @@ language: en
 # Sampling Clock Source
 
 ## Ports
+```yaml
+ports:
+- name: clk
+  summary: Output clock with aperture jitter scalar
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -24,8 +31,75 @@ periodic pulse train that can be a sine wave or a square wave, based on the
 **Clock type** parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Clock type
+  summary: Output clock signal shape Square wave (default) | Sine wave
+  group: ''
+  block_parameter: SignalType
+  type: character vector
+  values: Square wave | Sine wave
+  default: Square wave
+- name: Clock frequency (Hz)
+  summary: Desired frequency of output clock signal 1e6 (default) | scalar
+  group: ''
+  block_parameter: Freq
+  type: character vector
+  values: scalar
+  default: 1e6
+- name: Min (V)
+  summary: Minimum clock output voltage 0 (default) | real scalar
+  group: ''
+  block_parameter: Min
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Max (V)
+  summary: Maximum clock output voltage 1 (default) | real scalar
+  group: ''
+  block_parameter: Max
+  type: character vector
+  values: real scalar
+  default: '1'
+- name: RMS aperture jitter (s)
+  summary: Standard deviation of clock edge locations 1e-12 (default) | real nonnegative scalar
+  group: ''
+  block_parameter: RMSJitt
+  type: character vector
+  values: nonnegative real scalar
+  default: 1e-12
+- name: Specify custom seed
+  summary: Specify seed off (default) | on
+  group: ''
+- name: Seed
+  summary: Seed for generating clock signal 0 (default) | nonnegative real scalar
+  group: ''
+  block_parameter: Seed
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Specify custom initial output
+  summary: Specify initial output off (default) | on
+  group: ''
+- name: Initial output
+  summary: Initial output of sampling clock 1 (default) | real scalar
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: ''
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 50 (default) | positive integer scalar
+  group: ''
+  block_parameter: NBuffer
+  type: character vector
+  values: positive integer scalar
+  default: '50'
+```
 
 ### **Clock type** — Output clock signal shape `Square wave` (default) | `Sine wave`
 
@@ -185,7 +259,6 @@ in the **Advanced** tab.
 | **Type:** character vector |
 | **Values:** positive integer scalar |
 | **Default:** `50` |
-
 ## Libraries
 
 Mixed-Signal Blockset / ADC / Building Blocks

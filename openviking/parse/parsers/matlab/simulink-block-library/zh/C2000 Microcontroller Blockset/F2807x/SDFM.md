@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # F2807x/F2837xD/F2837xS/F28004x/F28003x/F2838x/F28p65x SDFM
 
 ## 端口
+```yaml
+ports:
+- name: DFSTS
+  summary: 数据滤波器状态 0 | 1 | -1
+  direction: output
+- name: DFLTX
+  summary: 数据滤波器 scalar
+  direction: output
+- name: CFSTS
+  summary: 比较器状态 0 | 1 | 2 | 3 | 4 | 5 | -1
+  direction: output
+- name: CFLTX
+  summary: 比较器滤波器 scalar
+  direction: output
+```
 
 ### 输出
 
@@ -61,8 +76,25 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Enable comparator filter output** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: SDFM module
+  summary: 指示使用哪个寄存器 1（默认）| 2
+  group: ''
+- name: Filter channel
+  summary: 选择滤波器模块 Filter1（默认）| Filter2 | Filter3 | Filter4
+  group: ''
+- name: Data representation
+  summary: 内部 DAC 的来源 16-bit（默认）| 32-bit
+  group: ''
+- name: Sample time
+  summary: 读取数据的频率 0.1（默认）
+  group: ''
+- name: Enable comparator filter output
+  summary: 启用比较器输出端口 off（默认）| on
+  group: ''
+```
 
 ### **SDFM module** — 指示使用哪个寄存器 `1`（默认）| `2`
 
@@ -89,7 +121,6 @@ F28004x 处理器只有一个 SDFM 模块。
 ### **Enable comparator filter output** — 启用比较器输出端口 `off`（默认）| `on`
 
 选择此选项以启用比较器状态 (CFSTS) 和比较器滤波器 (CFLTX) 输出端口。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x

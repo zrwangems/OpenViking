@@ -14,6 +14,27 @@ language: en
 # Dynamic Load (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Real power, W physical signal
+  direction: input
+- name: Q
+  summary: Reactive power, V\*A physical signal
+  direction: input
+- name: '~'
+  summary: Three-phase voltage electrical
+  direction: conserving
+- name: a
+  summary: Phase A voltage electrical
+  direction: conserving
+- name: b
+  summary: Phase B voltage electrical
+  direction: conserving
+- name: c
+  summary: Phase C voltage electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -71,8 +92,40 @@ port associated with the phase C voltage.
 To enable this port, set **Electrical
 connection** to `Expanded three-phase
 ports`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz (default) | positive scalar
+  group: Main
+- name: Minimum supply voltage (phase-to-phase RMS)
+  summary: Minimum supply voltage 100 V (default) | scalar
+  group: Main
+- name: Voltage time constant
+  summary: Voltage dynamics time constant 0.01 s (default) | positive scalar
+  group: Main
+- name: Initial supply voltage (phase-to-phase RMS)
+  summary: Initial terminal voltage 200 V (default) | positive scalar
+  group: Main
+- name: Initial supply voltage angle
+  summary: Terminal voltage angle of phase A at time zero 0 deg (default) | scalar
+  group: Main
+- name: Parasitic conductance to electrical reference
+  summary: Parasitic conductance to electrical reference 0 S (default) | nonnegative scalar
+  group: Main
+- name: Open circuit fault
+  summary: Option to add open circuit fault Add fault (default)
+  group: Faults
+- name: Open-circuit conductance
+  summary: Open-circuit conductance 1e-4 S (default) | scalar
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+```
 
 ### Main
 
@@ -155,7 +208,6 @@ Simulation time at which the block enters the faulted state.
 
 To enable this parameter, set **Trigger Type** to
 `Timed`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

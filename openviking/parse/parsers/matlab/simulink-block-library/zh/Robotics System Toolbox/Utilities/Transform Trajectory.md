@@ -15,6 +15,42 @@ chinese_source: worker-translation
 # Transform Trajectory
 
 ## 端口
+```yaml
+ports:
+- name: Time
+  summary: 沿轨迹的时间点 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: T0
+  summary: 初始变换矩阵 4×4 齐次变换
+  direction: input
+  data_types: single | double
+- name: TF
+  summary: 最终变换矩阵 4×4 齐次变换
+  direction: input
+  data_types: single | double
+- name: TimeInterval
+  summary: 轨迹的开始和结束时间 二元素向量
+  direction: input
+  data_types: single | double
+- name: TSTime
+  summary: 时间缩放时间点 标量 | *p* 元素向量
+  direction: input
+  data_types: single | double
+- name: TimeScaling
+  summary: 时间缩放向量及其前两阶导数 三元素向量 | 3×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: tform
+  summary: 齐次变换矩阵 4×4×*m* 齐次矩阵数组
+  direction: output
+- name: vel
+  summary: 变换速度 6×*m* 矩阵
+  direction: output
+- name: alpha
+  summary: 变换加速度 6×*m* 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -115,8 +151,37 @@ s(3,:) = [0    0   0 0 0 0] % Acceleration
 `[alphax alphay alphaz ax ay az]`。*alpha*
 表示角加速度，*a* 表示线
 加速度。
-
 ## 参数
+```yaml
+parameters:
+- name: Waypoint source
+  summary: 路点来源 Internal（默认）| External
+  group: ''
+- name: Initial transform
+  summary: 初始变换矩阵 trvec2tform([1 10 -1])（默认）| 4×4 齐次变换
+  group: ''
+- name: Final transform
+  summary: 最终变换矩阵 eul2tform([0 pi pi/2])（默认）| 4×4 齐次变换
+  group: ''
+- name: Time interval
+  summary: 轨迹的开始和结束时间 [2 3] | 二元素向量
+  group: ''
+- name: Use custom time scaling
+  summary: 启用自定义时间缩放 off（默认）| on
+  group: ''
+- name: Parameter source
+  summary: 路点来源 Internal（默认）| External
+  group: ''
+- name: Time scaling time
+  summary: 时间缩放时间点 2:0.1:3（默认）| 标量 | *p* 元素向量
+  group: ''
+- name: Time scaling values
+  summary: 时间缩放向量及其前两阶导数 [0:0.1:1; ones(1,11); zeros(1,11)]（默认）| 三元素向量 | 3×*m* 矩阵
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Waypoint source** — 路点来源 `Internal`（默认）| `External`
 
@@ -217,7 +282,6 @@ s(3,:) = [0    0   0 0 0 0] % Acceleration
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，后续仿真将复用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 Robotics System Toolbox / Utilities

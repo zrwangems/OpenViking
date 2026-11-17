@@ -14,6 +14,141 @@ language: en
 # Color Space Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input image array
+  direction: input
+  data_types: single | double | uint8
+- name: R'
+  summary: Red color component of image matrix
+  direction: input
+  data_types: single | double | uint8
+- name: G'
+  summary: Green color component of image matrix
+  direction: input
+  data_types: single | double | uint8
+- name: B'
+  summary: Blue color component of image matrix
+  direction: input
+  data_types: single | double | uint8
+- name: Y'
+  summary: Luma component of image matrix
+  direction: input
+  data_types: single | double | uint8
+- name: Cb
+  summary: Blue-difference chroma component of image matrix
+  direction: input
+  data_types: single | double | uint8
+- name: Cr
+  summary: Red-difference chroma component of image matrix
+  direction: input
+  data_types: single | double | uint8
+- name: H
+  summary: Hue component of image matrix
+  direction: input
+  data_types: single | double
+- name: S
+  summary: Saturation component of image matrix
+  direction: input
+  data_types: single | double
+- name: V
+  summary: Brightness component of image matrix
+  direction: input
+  data_types: single | double
+- name: X
+  summary: X component of image matrix
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: Y component of image matrix
+  direction: input
+  data_types: single | double
+- name: Z
+  summary: Z component of image matrix
+  direction: input
+  data_types: single | double
+- name: L\*
+  summary: Lightness component of image matrix
+  direction: input
+  data_types: single | double
+- name: a\*
+  summary: Red-green component of image *M*-by-*N* matrix
+  direction: input
+  data_types: single | double
+- name: b\*
+  summary: Yellow-blue component of image *M*-by-*N* matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output image array
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: R'
+  summary: Red color component of image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: G'
+  summary: Green color component of image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: B'
+  summary: Blue color component of image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: Y'
+  summary: Luma component of image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: Cb
+  summary: Blue-difference chroma component of image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: Cr
+  summary: Red-difference chroma component of image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: I'
+  summary: Intensity image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: H
+  summary: Hue component of image matrix
+  direction: output
+  data_types: single | double
+- name: S
+  summary: Saturation component of image matrix
+  direction: output
+  data_types: single | double
+- name: V
+  summary: Brightness component of image matrix
+  direction: output
+  data_types: single | double
+- name: X
+  summary: X component of image matrix
+  direction: output
+  data_types: single | double
+- name: Y
+  summary: Y component of image matrix
+  direction: output
+  data_types: single | double
+- name: Z
+  summary: Z component of image matrix
+  direction: output
+  data_types: single | double
+- name: L\*
+  summary: Lightness component of image matrix
+  direction: output
+  data_types: single | double
+- name: a\*
+  summary: Red-green component of image matrix
+  direction: output
+  data_types: single | double
+- name: b\*
+  summary: Yellow-blue component of image matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -584,8 +719,25 @@ To enable this port, set the **Image signal** parameter to
 L*a*b*`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Conversion
+  summary: Color space conversion R'G'B' to Y'CbCr (default) | Y'CbCr to R'G'B' | R'G'B' to intensity | ...
+  group: ''
+- name: Use conversion specified by
+  summary: Color conversion standard Rec. 601 (SDTV) (default) | Rec. 709 (HDTV)
+  group: ''
+- name: Scanning standard
+  summary: Scanning standard 1125/60/2:1 (default) | 1250/50/2:1
+  group: ''
+- name: White point
+  summary: White point D50 (default) | D55 | D65
+  group: ''
+- name: Image signal
+  summary: Image signal input One multidimensional signal (default) | Separate color signals
+  group: ''
+```
 
 ### **Conversion** — Color space conversion `R'G'B' to Y'CbCr` (default) | `Y'CbCr to R'G'B'` | `R'G'B' to intensity` | ...
 
@@ -657,7 +809,6 @@ and output them individually.
 - `Separate color signals` — The block accepts each
   color channel of the input image to a separate input port, and outputs each color
   channel of the converted image from a separate output port.
-
 ## Libraries
 
 Computer Vision Toolbox / Conversions

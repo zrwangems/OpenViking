@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Fault Qualification
 
 ## 端口
+```yaml
+ports:
+- name: Symptom
+  summary: 症状标志 0 | 1 | 0 或 1 值的向量
+  direction: input
+- name: Error
+  summary: 错误标志 0 | 1 | 0 或 1 值的向量
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,19 @@ chinese_source: worker-translation
 ### **Error** — 错误标志 `0` | `1` | `0` 或 `1` 值的向量
 
 表示电池存在错误。如果此输出等于 `1`，则电池存在错误。此端口的大小等于 **Symptom** 输入端口的大小。
-
 ## 参数
+```yaml
+parameters:
+- name: Qualification time (s)
+  summary: 错误确认时间 2（默认值）| 正标量
+  group: ''
+- name: Disqualification time (s)
+  summary: 错误取消确认时间 4（默认值）| 非负标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认值）| 0 | 正整数
+  group: ''
+```
 
 ### **Qualification time (s)** — 错误确认时间 `2`（默认值）| 正标量
 
@@ -45,7 +65,6 @@ chinese_source: worker-translation
 对于继承的离散时间操作，请将此参数指定为 `-1`。对于离散时间操作，请将此参数指定为正整数。对于连续时间操作，请将此参数指定为 `0`。
 
 如果此模块位于允许在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升采样时间参数。提升采样时间参数可确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Battery / BMS / Protection

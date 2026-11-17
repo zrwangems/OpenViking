@@ -14,6 +14,25 @@ language: en
 # Block Matching
 
 ## Ports
+```yaml
+ports:
+- name: I/I1
+  summary: Image or video frame scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I2
+  summary: Image or video frame scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: '|V|^2'
+  summary: Velocity magnitudes scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: V
+  summary: Velocity components in complex form scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -55,8 +74,34 @@ To expose this port, set the **Velocity output** parameter to
 form`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Estimate motion between
+  summary: Estimate motion between images or frames Current frame and N-th frame back (default) | Two images
+  group: ''
+- name: N
+  summary: Number of frames 1 (default) | scalar
+  group: ''
+- name: Search method
+  summary: Block match search method Exhaustive (default) | Three-step
+  group: ''
+- name: Block matching criteria
+  summary: Block matching criteria Mean square error (MSE) (default) | Mean absolute difference (MAD)
+  group: ''
+- name: Block size [height width]
+  summary: Block size [17 17] (default) | two-element vector
+  group: ''
+- name: Overlap size [r c]
+  summary: Block overlap [0 0] (default) | two-element vector
+  group: ''
+- name: Maximum displacement [r c]
+  summary: Maximum displacement [7 7] (default) | two-element vector
+  group: ''
+- name: Velocity output
+  summary: Velocity output Magnitude-squared (default) | Horizontal and vertical components in complex form
+  group: ''
+```
 
 **Main Tab**
 
@@ -147,7 +192,6 @@ the imaginary part of each value is the vertical velocity component.
 **Data Types Tab**
 
 For details on the fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

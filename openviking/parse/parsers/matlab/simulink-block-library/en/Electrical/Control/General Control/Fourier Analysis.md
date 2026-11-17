@@ -14,6 +14,21 @@ language: en
 # Fourier Analysis
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Fourier analysis input scalar | vector
+  direction: input
+  data_types: single | double
+- name: Magnitude
+  summary: Signal magnitude scalar | vector
+  direction: output
+  data_types: single | double
+- name: Angle
+  summary: Signal angle scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -37,8 +52,28 @@ Signal magnitude corresponding to the harmonic number.
 Signal angle corresponding to the harmonic number.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Fundamental frequency (Hz)
+  summary: Signal fundamental frequency 60 (default) | positive scalar | vector with positive values
+  group: ''
+- name: Harmonic numbers
+  summary: Signal harmonic numbers [1 2] (default) | vector with elements ≥ 0
+  group: ''
+- name: Initial magnitude
+  summary: Initial signal magnitude 1 (default) | vector with elements ≥ 0
+  group: ''
+- name: Initial phase (rad)
+  summary: Initial signal phase 0 (default) | vector
+  group: ''
+- name: Buffer size
+  summary: Buffer size 8192 (default) | scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Fundamental frequency (Hz)** — Signal fundamental frequency `60` (default) | positive scalar | vector with positive values
 
@@ -82,7 +117,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Receiver Accumulator (2P)
 
 ## 端口
+```yaml
+ports:
+- name: L
+  summary: 液位物理信号
+  direction: output
+- name: AV
+  summary: 储罐开口两相流体
+  direction: output
+- name: BV
+  summary: 储罐开口两相流体
+  direction: output
+- name: AL
+  summary: 储罐开口两相流体
+  direction: output
+- name: BL
+  summary: 储罐开口两相流体
+  direction: output
+- name: H
+  summary: 储罐壁热
+  direction: output
+```
 
 ### 输出
 
@@ -42,8 +63,92 @@ chinese_source: worker-translation
 ### **H** — 储罐壁热
 
 流体体积与储罐壁之间的热边界。使用此端口捕获流体与储罐外部环境之间的各种热交换——例如传导、对流或辐射。
-
 ## 参数
+```yaml
+parameters:
+- name: Total tank volume
+  summary: 储罐中液相和气相的总容积 1 m^3（默认）| 正标量
+  group: 主要
+- name: Tank cross-sectional area
+  summary: 储罐横截面积 0.5 m^2（默认）| 正标量
+  group: 主要
+- name: Cross-sectional area at port AV
+  summary: 端口 AV 处垂直于流动方向的面积 0.01 m^2（默认）| 正标量
+  group: 主要
+- name: Cross-sectional area at port BV
+  summary: 端口 BV 处垂直于流动方向的面积 0.01 m^2（默认）| 正标量
+  group: 主要
+- name: Cross-sectional area at port AL
+  summary: 端口 AL 处垂直于流动方向的面积 0.01 m^2（默认）| 正标量
+  group: 主要
+- name: Cross-sectional area at port BL
+  summary: 端口 BL 处垂直于流动方向的面积 0.01 m^2（默认）| 正标量
+  group: 主要
+- name: Liquid volume fraction out of range
+  summary: 当体积分数超出范围时的行为 No error（默认）| Error | Warning
+  group: 主要
+- name: Minimum liquid volume fraction
+  summary: 触发警告或错误的下限值 0.05（默认）| 0 到 1 之间的正标量
+  group: 主要
+- name: Maximum liquid volume fraction
+  summary: 触发警告或错误的上限值 0.95（默认）| 0 到 1 之间的正标量
+  group: 主要
+- name: Volume fraction threshold for transition to pure liquid or pure vapor
+  summary: 过渡到纯液体或纯蒸气的相体积分数阈值 0.05（默认）| 0 到 1 之间的正标量
+  group: 主要
+- name: Vapor heat transfer coefficient
+  summary: 蒸气与储罐壁之间热交换的系数 20 W/(m^2*K)（默认）| 正标量
+  group: 传热
+- name: Liquid heat transfer coefficient
+  summary: 液体与储罐壁之间热交换的系数 100 W/(m^2*K)（默认）| 正标量
+  group: 传热
+- name: Initial pressure
+  summary: 仿真开始时的绝对压力 0.101325 MPa（默认）| 标量
+  group: 效应和初始条件
+- name: Initial liquid fraction specification
+  summary: 初始液体分数的类型 Liquid mass fraction（默认）| Liquid volume fraction
+  group: 效应和初始条件
+- name: Initial liquid mass fraction
+  summary: 储罐中液体的初始质量分数 0.5（默认）| 0 到 1 之间的无量纲标量
+  group: 效应和初始条件
+- name: Initial liquid volume fraction
+  summary: 储罐中液体的初始体积分数 0.5（默认）| 0 到 1 之间的无量纲标量
+  group: 效应和初始条件
+- name: Initial liquid and vapor volumes fully saturated
+  summary: 将液体和蒸气指定为完全饱和的选项 on（默认）| off
+  group: 效应和初始条件
+- name: Initial fluid energy specification
+  summary: 用于定义初始流体能量的热力学变量 Degree of subcooling and superheating（默认）| Temperature | Specific enthalpy | Specific internal
+    energy
+  group: 效应和初始条件
+- name: Initial liquid subcooling
+  summary: 仿真开始时的液体过冷度 5 deltaK（默认）| 正标量
+  group: 效应和初始条件
+- name: 初始蒸气过热度
+  summary: 仿真开始时的蒸气过热度 5 deltaK（默认）| 正标量
+  group: 效应和初始条件
+- name: 初始液体温度
+  summary: 仿真开始时的液体温度 368.15 K（默认）| 标量
+  group: 效应和初始条件
+- name: 初始蒸气温度
+  summary: 仿真开始时的蒸气温度 378.15 K（默认）| 标量
+  group: 效应和初始条件
+- name: 初始液体比焓
+  summary: 仿真开始时的液体比焓 400 kJ/kg（默认）| 标量
+  group: 效应和初始条件
+- name: 初始蒸气比焓
+  summary: 仿真开始时的蒸气比焓 2700 kJ/kg（默认）| 标量
+  group: 效应和初始条件
+- name: 初始液体比内能
+  summary: 仿真开始时的液体比内能 400 kJ/kg（默认）| 标量
+  group: 效应和初始条件
+- name: 初始蒸气比内能
+  summary: 仿真开始时的蒸气比内能 2700 kJ/kg（默认）| 标量
+  group: 效应和初始条件
+- name: 汽化和冷凝时间常数
+  summary: 相变事件的特征持续时间 0.1 s（默认）| 正标量
+  group: 效应和初始条件
+```
 
 ### 主要
 
@@ -239,7 +344,6 @@ chinese_source: worker-translation
 ### **汽化和冷凝时间常数** — 相变事件的特征持续时间 `0.1 s`（默认）| 正标量
 
 储罐中发生的相变事件达到平衡的特征时间。增大此参数可减慢相变速率，减小此参数可加快相变速率。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Tanks & Accumulators

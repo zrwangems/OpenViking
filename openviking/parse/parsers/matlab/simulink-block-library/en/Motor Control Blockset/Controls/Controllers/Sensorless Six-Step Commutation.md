@@ -14,6 +14,49 @@ language: en
 # Sensorless Six-Step Commutation
 
 ## Ports
+```yaml
+ports:
+- name: StartDir
+  summary: Direction of motor rotation +1 | -1
+  direction: input
+  data_types: int16
+- name: VabcMeas
+  summary: Measured motor terminal voltages vector
+  direction: input
+  data_types: single | double | fixed point
+- name: VdcMeas
+  summary: Measured DC bus voltages vector
+  direction: input
+  data_types: single | double | fixed point
+- name: DutyRef
+  summary: Reference duty cycle input scalar | [0,1]
+  direction: input
+  data_types: single | double | fixed point
+- name: '[Tf,Td]'
+  summary: Filter time delay and demagnetization time delay vector
+  direction: input
+  data_types: single | double | fixed point
+- name: Enable
+  summary: Enable or disable the block scalar
+  direction: input
+  data_types: Boolean
+- name: Duty
+  summary: Duty cycle for the six switches using six-step commutation pattern scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: ωm
+  summary: Angular speed detected based on the BEMF (back EMF) zero cross detection scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Info
+  summary: Signal information for testing or debugging bus
+  direction: output
+  data_types: uint16
+- name: ComStatus
+  summary: Indication that block is transitioning from open-loop to controlled six-step commutation logical
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -130,8 +173,59 @@ commutation when back-EMF zero-crossing detections are successful (returns
 1).
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Alignment
+  summary: Determine initial rotor position by checking rotor alignment off (default) | on
+  group: ''
+- name: Alignment -> Open-loop run
+  summary: Determine rotor position by starting the motor in open-loop off (default) | on
+  group: ''
+- name: Alignment -> Open-loop run -> Controlled commutation
+  summary: Determine rotor position by running the motor in closed-loop on (default) | of
+  group: ''
+- name: Number of motor pole pairs
+  summary: Number of motor pole pairs 4 (default) | scalar
+  group: ''
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: ''
+- name: Alignment duty cycle
+  summary: Duty cycle of voltage to be applied between phases A and B 0.3 (default) | scalar
+  group: ''
+- name: Alignment time
+  summary: Duration to apply the voltage between phase A and B 0.5 (default) | scalar
+  group: ''
+- name: 'Open-loop duty cycle (range: [0,1])'
+  summary: Duty cycle of voltage to be applied to all three phases 0.4 (default) | scalar
+  group: ''
+- name: Target open-loop speed (RPM)
+  summary: Target speed (RPM) to be achieved to generate a sufficient back-EMF during open-loop run 800 (default) | scalar
+  group: ''
+- name: Ramp up time to reach target open-loop speed (s)
+  summary: Ramp up time (s) to achieve the RPM value specified for Target open-loop speed 0.7 (default) | scalar
+  group: ''
+- name: Open-loop speed to initiate transition to controlled commutation (RPM)
+  summary: Speed at which the algorithm starts motor phase voltage acquisition process during open-loop phase 500 (default)
+    | scalar
+  group: ''
+- name: Speed samples required to complete transition to controlled commutation
+  summary: Minimum number of speed samples to be considered before transitioning to controlled commutation phase 10 (default)
+    | scalar
+  group: ''
+- name: Compensation for filter delay (Tf) and demagnetization time (Td)
+  summary: Specify one of the two methods to define compensation for Tf and Td Specify via dialog (default) | Input port
+  group: ''
+- name: Time delay due to voltage sense filter, Tf (s)
+  summary: Time delay to compensate for delay due to a hardware or software filter used for voltage measurement 450e-6 (default)
+    | scalar
+  group: ''
+- name: Demagnetization time, Td (s)
+  summary: Time during which the demagnetization of winding is occurring and voltage signals need not be acquired 175e-6 (default)
+    | scalar
+  group: ''
+```
 
 ### **Alignment** — Determine initial rotor position by checking rotor alignment `off` (default) | `on`
 
@@ -263,7 +357,6 @@ signals need not be acquired, to prevent spurious zero-crossing detection. It is
 also defined as the waiting period between the time instance at which stator phase
 demagnetization occurs and the time instance when back-EMF crosses above the line
 of zero-crossing.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Controllers

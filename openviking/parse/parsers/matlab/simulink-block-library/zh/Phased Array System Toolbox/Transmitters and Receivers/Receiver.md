@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Receiver
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 接收信号 复值向量 | 复值矩阵
+  direction: input
+  data_types: single | double
+- name: EN
+  summary: 使能信号 实值向量（默认）| 实值矩阵 | 逻辑值向量 | 逻辑值矩阵
+  direction: input
+  data_types: double | single | Boolean
+- name: Y
+  summary: 放大信号 复值向量 | 复值矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -60,8 +75,64 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Enable signal enabling input
+  summary: 使能信号输入 false0（默认）| true1
+  group: ''
+- name: Add noise to input signal
+  summary: 向输入信号添加噪声 off（默认）| on
+  group: ''
+- name: Input noise temperature (K)
+  summary: 输入噪声温度 290（默认）| 正标量 | 长度为 *N* 的正值向量
+  group: ''
+- name: Sample rate (Hz)
+  summary: 采样率 1e6（默认）| 正标量
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+- name: Noise method
+  summary: 噪声方法 None | Noise figure | Noise factor | Noise temperature
+  group: ''
+- name: Noise figure (dB)
+  summary: 噪声系数 3（默认）| 实数标量 | 长度为 *N* 的向量或实数值
+  group: ''
+- name: Noise factor
+  summary: 噪声因子 2（默认）| 正标量 | 长度为 *N* 的正值向量
+  group: ''
+- name: Reference temperature (K)
+  summary: 参考温度 290（默认）| 正标量 | 长度为 *N* 的正值向量
+  group: ''
+- name: Gain method
+  summary: 增益方法 Linear（默认）| Cubic polynomial | Lookup table
+  group: ''
+- name: Gain (dB)
+  summary: 线性接收机增益 20（默认）| 实数标量 | 长度为 *N* 的实数值向量
+  group: ''
+- name: Output IP3 (dBm)
+  summary: 输出 IP3 Inf（默认）| 标量 | 长度为 *N* 的实数值向量
+  group: ''
+- name: Lookup table
+  summary: 查找表 [-25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12]（默认）| *M*×*N* 实值矩阵 | *M*×*N* 实值矩阵
+  group: ''
+- name: 相位偏移（度）
+  summary: 相位偏移 0（默认）| 标量 | 长度为 *N* 的实数向量
+  group: ''
+- name: 随机数生成器种子来源
+  summary: 随机数生成器种子来源 Auto（默认）| Property
+  group: ''
+- name: 随机数生成器种子
+  summary: 随机数生成器种子 0（默认）| 正整数
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -262,7 +333,6 @@ chinese_source: worker-translation
 随机生成器种子，指定为正整数。
 
 **数据类型：** `single` | `double`
-
 ## 所属库
 
 Phased Array System Toolbox / Transmitters and Receivers

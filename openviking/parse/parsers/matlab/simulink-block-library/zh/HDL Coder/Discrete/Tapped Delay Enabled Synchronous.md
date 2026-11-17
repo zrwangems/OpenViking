@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Tapped Delay Enabled Synchronous
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 标量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: E
+  summary: 使能信号 Scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: y
+  summary: 输入信号的延迟版本 标量 | 向量
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -39,8 +54,45 @@ chinese_source: worker-translation
 延迟输入信号的所有版本。使用 **Order output vector starting with** 参数指定输出向量中延迟信号的顺序。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial condition
+  summary: 初始输出 0.0（默认）| 标量
+  group: ''
+  block_parameter: vinit
+  type: character vector
+  values: scalar
+  default: '''0.0'''
+- name: Sample time
+  summary: 采样之间的时间 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: samptime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: Number of delays
+  summary: 离散时间算子数量 4（默认）| 正标量 | -1（用于继承）
+  group: ''
+  block_parameter: NumDelays
+  type: character vector
+  values: positive scalar | -1 (inherited)
+  default: '''4'''
+- name: Order output vector starting with
+  summary: 输出顺序 Oldest（默认）| Newest
+  group: ''
+  block_parameter: DelayOrder
+  type: character vector
+  values: '''Oldest'' | ''Newest'''
+  default: '''Oldest'''
+- name: Include current input in output vector
+  summary: 在输出向量中包含当前输入 off（默认）| on
+  group: ''
+  block_parameter: includeCurrent
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Initial condition** — 初始输出 `0.0`（默认）| 标量
 
@@ -112,7 +164,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 HDL Coder / Discrete

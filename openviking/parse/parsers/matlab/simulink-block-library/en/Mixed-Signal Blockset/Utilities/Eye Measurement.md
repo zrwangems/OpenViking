@@ -14,6 +14,21 @@ language: en
 # Eye Measurement
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar
+  direction: input
+  data_types: double
+- name: clock
+  summary: Sampling clock for input data scalar
+  direction: input
+  data_types: double
+- name: thresholds
+  summary: Symbol thresholds used to separate symbols vector | matrix
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -55,8 +70,218 @@ To enable this port, select the **Enable threshold input port**
 in the **Configuration** tab.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable threshold input port
+  summary: Enable threshold input port on (default) | off
+  group: Configuration
+- name: Modulation
+  summary: Number of symbol levels in eye diagram 2 (default) | nonnegative integer scalar
+  group: Configuration
+  block_parameter: Modulation
+  type: character vector
+  values: nonnegative integer scalar
+  default: '2'
+- name: Symbol thresholds
+  summary: Symbol thresholds auto (default) | real valued vector
+  group: Configuration
+  block_parameter: SymbolThresholds
+  type: character vector
+  values: real valued vector
+  default: auto
+- name: Enable clock input port
+  summary: Enable clock input port on (default) | off
+  group: Configuration
+- name: Clock type
+  summary: Determine how to sample waveform clock signal Rising (default) | Falling | Both | Times
+  group: Configuration
+  block_parameter: ClockType
+  type: character vector
+  values: Rising | Falling | Both | Times
+  default: Rising
+- name: Clock threshold
+  summary: Edge detection threshold for waveform clocks 0 (default) | real scalar
+  group: Configuration
+  block_parameter: ClockThreshold
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Clock mode
+  summary: Represent how data is captured by recovered clock Clocked (default) | Ideal | Convolved
+  group: Configuration
+  block_parameter: ClockMode
+  type: character vector
+  values: Clocked | Ideal | Convolved
+  default: Clocked
+- name: Clock phase offset
+  summary: Phase delay for moving clock PDF 0 (default) | nonnegative real scalar
+  group: Configuration
+  block_parameter: ClockPhaseOffset
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Window phase offset
+  summary: Delay between ideal clock edge and timing origin 0 (default) | nonnegative real scalar
+  group: Configuration
+  block_parameter: WindowPhaseOffset
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Symbols per diagram
+  summary: Width of eye diagram in symbols 2 (default) | scalar
+  group: Configuration
+  block_parameter: SymbolsperDiagram
+  type: character vector
+  values: scalar
+  default: '2'
+- name: Amplitude range
+  summary: Minimum and maximum eye amplitudes in eye diagram [] (default) | two-element vector
+  group: Configuration
+  block_parameter: AmplitudeRange
+  type: character vector
+  values: two-element vector
+  default: '[]'
+- name: Amplitude bins
+  summary: Number of amplitude bins in eye diagram 257 (default) | positive integer scalar
+  group: Configuration
+  block_parameter: AmplitudeBins
+  type: character vector
+  values: positive integer scalar
+  default: '257'
+- name: Time bins
+  summary: Number of time bins in eye diagram 256 (default) | positive integer scalar
+  group: Configuration
+  block_parameter: TimeBins
+  type: character vector
+  values: positive integer scalar
+  default: '256'
+- name: Hold off time
+  summary: Delay before measurement analysis 0 (default) | nonnegative real scalar
+  group: Configuration
+  block_parameter: HoldOffTime
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Symbol time
+  summary: Time for one symbol 16e-9 (default) | positive real scalar
+  group: Configuration
+  block_parameter: SymbolTime
+  type: character vector
+  values: positive real scalar
+  default: 16e-9
+- name: Sample time
+  summary: Time for one sample [1e-9, 0] (default) | two-element vector | scalar
+  group: Configuration
+  block_parameter: SampleTime
+  type: character vector
+  values: two-element vector | scalar
+  default: '[1e-9, 0]'
+- name: Add Metric
+  summary: Add new metric to calculate button
+  group: Metric Setup
+- name: Remove Selected Metrics
+  summary: Remove selected metrics button
+  group: Metric Setup
+- name: Store results in base workspace
+  summary: Store metric results to base workspace off (default) | on
+  group: Metric Setup
+- name: Metrics variable name
+  summary: Name of metrics variable that stores measurement results ans (default) | string
+  group: Metric Setup
+  block_parameter: MetricsVariableName
+  type: character vector
+  values: string
+  default: ans
+- name: Export to file
+  summary: Export simulation results to file button
+  group: Metric Setup
+- name: Export to base workspace
+  summary: Export simulation results to base workspace button
+  group: Metric Setup
+- name: Eye mask type
+  summary: Shape of eye mask Off (default) | Rectangle | Diamond | Hexagon | Custom
+  group: Eye Mask
+- name: W1 (UI)
+  summary: Width of rectangle, diamond, and center of hexagon eye masks 0.2 (default) | positive real scalar
+  group: Eye Mask
+  block_parameter: W1
+  type: character vector
+  values: positive real scalar
+  default: '0.2'
+- name: W2 (UI)
+  summary: Width of top and bottom of hexagon eye mask 0.1 (default) | positive real scalar
+  group: Eye Mask
+  block_parameter: W2
+  type: character vector
+  values: positive real scalar
+  default: '0.1'
+- name: H
+  summary: Height of rectangle, diamond, or hexagon eye masks 0.1 (default) | positive real scalar
+  group: Eye Mask
+  block_parameter: H
+  type: character vector
+  values: positive real scalar
+  default: '0.1'
+- name: Position mask in eye
+  summary: Position of origin of shape of mask in eye diagram At clock (default) | For best height margin | For best width
+    margin
+  group: Eye Mask
+  block_parameter: PositionMaskInEye
+  type: character vector
+  values: At clock | For best height margin | For best width margin
+  default: At clock
+- name: Custom eye mask
+  summary: Define custom eye mask from eye mask object [] (default) | object
+  group: Eye Mask
+  block_parameter: CustomEyeMask
+  type: character vector
+  values: object
+  default: '[]'
+- name: Margin SER
+  summary: Symbol error rate to measure eye mask margin 1e-5 | nonnegative real scalar in the range [0,1]
+  group: Eye Mask
+  block_parameter: MarginSER
+  type: character vector
+  values: nonnegative real scalar in the range [0,1]
+  default: 1e-5
+- name: Margin extrapolation
+  summary: Extrapolation method to generate eye contours none (default) | dualdirac | gaussian | linear | spline | pchip |
+    makima
+  group: Eye Mask
+  block_parameter: MarginExtrapolation
+  type: character vector
+  values: none | dualdirac | gaussian | linear | spline | pchip | makima
+  default: none
+- name: Mask variable name
+  summary: Name of mask variable to export mask ans (default) | string
+  group: Eye Mask
+  block_parameter: MaskVariableName
+  type: character vector
+  values: string
+  default: ans
+- name: Export mask to file
+  summary: Export mask to file button
+  group: Eye Mask
+- name: Export mask to base workspace
+  summary: Export mask to base workspace button
+  group: Eye Mask
+- name: Show plots at end of simulation
+  summary: Automatically show plots at end of simulation on (default) | off
+  group: Plot Setup
+- name: Plot grouping
+  summary: define how plots are grouped together Subplot on same figure (default) | One figure per plot
+  group: Plot Setup
+- name: Add Plot
+  summary: Add new plot to show button
+  group: Plot Setup
+- name: Remove Selected Plots
+  summary: Remove selected plots button
+  group: Plot Setup
+- name: Show Plots
+  summary: Show plots button
+  group: Plot Setup
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -569,7 +794,6 @@ Click to remove selected plots to focus on the area of interest.
 ### **Show Plots** — Show plots button
 
 Click to show the plots.
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities SerDes Toolbox / Utilities Signal Integrity Toolbox / Utilities

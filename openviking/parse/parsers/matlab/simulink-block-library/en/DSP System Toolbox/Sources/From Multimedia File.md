@@ -14,6 +14,49 @@ language: en
 # From Multimedia File
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Color image or video frame array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Simulink.ImageType
+- name: I
+  summary: Grayscale image or video frame matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: R
+  summary: Red color component of image or video frame matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: G
+  summary: Green color component of image or video frame matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: B
+  summary: Blue color component of image or video frame matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Y
+  summary: Luma component of image or video frame matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cb
+  summary: Blue-difference chrominance component of image or video frame matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cr
+  summary: Red-difference chrominance component of image or video frame matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Audio
+  summary: Audio signal vector | matrix
+  direction: output
+  data_types: single | double | int16 | uint8
+- name: EOF
+  summary: End-of-file indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -265,8 +308,48 @@ To enable this port, select the **Output end-of-file
 indicator** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Name of multimedia file speech_dft.mp3 (default) | character vector
+  group: Main Tab
+- name: Inherit sample time from file
+  summary: Inherit sample time from file on (default) | off
+  group: Main Tab
+- name: Desired sample time
+  summary: Block sample time 1/30 (default) | real positive scalar
+  group: Main Tab
+- name: Number of times to play file
+  summary: Number of times to play multimedia file inf (default) | positive integer
+  group: Main Tab
+- name: Read range
+  summary: Range of audio samples [1 Inf] (default) | two-element vector
+  group: Main Tab
+- name: Output end-of-file indicator
+  summary: End-of-file indicator off (default) | on
+  group: Main Tab
+- name: Multimedia outputs
+  summary: Type of media Audio only (default) | Video and audio | Video only
+  group: Main Tab
+- name: Samples per audio channel
+  summary: Samples per audio channel 1024 (default) | positive integer
+  group: Main Tab
+- name: Output color format
+  summary: Color format of video RGB (default) | Intensity | YCbCr 4:2:2
+  group: Main Tab
+- name: Image signal
+  summary: Output port configuration for RGB video One multidimensional signal (default) | Separate color signals | Simulink
+    image signal
+  group: Main Tab
+- name: Audio output data type
+  summary: Audio output data type double (default) | single | int16 | uint8
+  group: Data Types Tab
+- name: Video output data type
+  summary: Video output data type single (default) | double | int8 | uint8 | int16 | uint16 | int32 | uint32 | Inherit from
+    file
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -447,7 +530,6 @@ If the specified file contains both audio and video data, set the
 **Multimedia outputs** parameter to
 `Video only` or `Video and
 audio`.
-
 ## Libraries
 
 Audio Toolbox / Sources DSP System Toolbox / Sources

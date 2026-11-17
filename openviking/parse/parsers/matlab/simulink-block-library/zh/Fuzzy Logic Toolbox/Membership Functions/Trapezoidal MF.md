@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Trapezoidal MF
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入值 标量 | 向量
+  direction: input
+- name: MF
+  summary: 隶属度值 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,34 @@ chinese_source: worker-translation
 ### **MF** — 隶属度值 标量 | 向量
 
 隶属度值，以标量或向量形式返回。**MF** 的维度与 **x** 的维度一致。**MF** 的每个元素是为 **x** 中对应元素计算得到的隶属度值。
-
 ## 参数
+```yaml
+parameters:
+- name: Left base point a
+  summary: 梯形左底点 -8（默认）| 标量
+  group: ''
+  block_parameter: a
+  type: string, character vector
+  default: '"-8"'
+- name: Left top point b
+  summary: 梯形左肩点 -4（默认）| 标量
+  group: ''
+  block_parameter: b
+  type: string, character vector
+  default: '"-4"'
+- name: Right top point c
+  summary: 梯形右肩点 2（默认）| 标量
+  group: ''
+  block_parameter: c
+  type: string, character vector
+  default: '"2"'
+- name: Right base point d
+  summary: 梯形右底点 9（默认）| 标量
+  group: ''
+  block_parameter: d
+  type: string, character vector
+  default: '"9"'
+```
 
 ### **Left base point a** — 梯形左底点 `-8`（默认）| 标量
 
@@ -77,7 +112,6 @@ chinese_source: worker-translation
 | **模块参数**：`d` |
 | **类型**：string, character vector |
 | **默认值**：`"9"` |
-
 ## 所属库
 
 Fuzzy Logic Toolbox / Membership Functions

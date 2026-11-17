@@ -14,6 +14,18 @@ language: en
 # Thermal Resistor
 
 ## Ports
+```yaml
+ports:
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +40,25 @@ Electrical conserving port associated with the resistor positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the resistor negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal resistance
+  summary: Resistance at reference temperature 1 Ohm (default) | positive scalar
+  group: ''
+- name: Reference temperature
+  summary: Temperature corresponding to nominal resistance 298.15 K (default) | positive scalar
+  group: ''
+- name: Temperature coefficient
+  summary: Resistance temperature dependency coefficient 5e-05 1/K (default) | positive scalar
+  group: ''
+- name: Thermal time constant
+  summary: Time constant for thermal equation 10 s (default) | positive scalar
+  group: ''
+- name: Dissipation factor
+  summary: Dissipation coefficient for thermal equation 0.001 W/K (default) | positive scalar
+  group: ''
+```
 
 ### **Nominal resistance** — Resistance at reference temperature `1 Ohm` (default) | positive scalar
 
@@ -53,7 +82,6 @@ change when a step change in ambient temperature occurs.
 ### **Dissipation factor** — Dissipation coefficient for thermal equation `0.001 W/K` (default) | positive scalar
 
 The thermal power required to raise the thermal resistor temperature by one K.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

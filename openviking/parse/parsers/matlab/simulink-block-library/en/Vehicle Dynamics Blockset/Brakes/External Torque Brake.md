@@ -14,6 +14,33 @@ language: en
 # Rotational Brake
 
 ## Ports
+```yaml
+ports:
+- name: BrkPrs
+  summary: Brake pressure scalar | *N*-by-1 vector
+  direction: input
+- name: Omega
+  summary: Wheel angular velocity scalar | *N*-by-1 vector
+  direction: input
+- name: BrkTrqMax
+  summary: Maximum brake torque scalar | *N*-by-1 vector
+  direction: input
+- name: AxlTrq
+  summary: Axle torque scalar | *N*-by-1 vector
+  direction: input
+- name: WhlTrq
+  summary: Wheel torque scalar | *N*-by-1 vector
+  direction: input
+- name: Info
+  summary: Block data bus
+  direction: output
+- name: Omega
+  summary: Wheel angular velocity scalar | *N*-by-1 vector
+  direction: output
+- name: BrkTrqMax
+  summary: Maximum brake torque scalar | *N*-by-1 vector
+  direction: output
+```
 
 ### Input
 
@@ -143,8 +170,110 @@ block assumes that number of wheels is one.
 To enable this parameter, set **Brake Type** to
 `Disc`, `Drum`, or
 `Mapped`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Brake type
+  summary: Brake type Disc | Drum | Mapped | External torque
+  group: Tire Options
+  block_parameter: BrakeType
+  values: Disc | Drum | Mapped | External torque
+- name: Rotation type
+  summary: Rotation type Rotational inertia (default) | No inertia
+  group: Tire Options
+  block_parameter: rotType
+  values: Rotational inertia (default) | No inertia
+- name: Output Info bus
+  summary: Option to output Info bus off (default) | on
+  group: Tire Options
+  block_parameter: extInfo
+  values: off (default) | on
+- name: Wheel inertia, Iyy
+  summary: Wheel inertia scalar | *N*-by-1 vector
+  group: Wheel and Tire Parameters
+  block_parameter: Iyy
+  values: scalar | *N*-by-1 vector
+- name: Axle viscous damping coefficient, br
+  summary: Axle viscous damping coefficient scalar | *N*-by-1 vector
+  group: Wheel and Tire Parameters
+  block_parameter: br
+  values: scalar | *N*-by-1 vector
+- name: Wheel initial angular velocity, omegao
+  summary: Wheel initial angular velocity scalar | *N*-by-1 vector
+  group: Wheel and Tire Parameters
+  block_parameter: omegao
+  values: scalar | *N*-by-1 vector
+- name: Static friction coefficient, mu_static
+  summary: Static friction coefficient 0.3 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: mu_static
+  values: 0.3 (default) | scalar | *N*-by-1 vector
+- name: Kinetic friction coefficient, mu_kinetic
+  summary: Kinetic friction 0.2 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: mu_kinetic
+  values: 0.2 (default) | scalar | *N*-by-1 vector
+- name: Disc brake actuator bore, disc_abore
+  summary: Bore distance 0.05 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: disc_abore
+  values: 0.05 (default) | scalar | *N*-by-1 vector
+- name: Brake pad mean radius, Rm
+  summary: Radius 0.177 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: Rm
+  values: 0.177 (default) | scalar | *N*-by-1 vector
+- name: Number of brake pads, num_pads
+  summary: Number of brake pads 2 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: num_pads
+  values: 2 (default) | scalar | *N*-by-1 vector
+- name: Drum brake actuator bore, drum_abore
+  summary: Bore distance 0.0508 (default) | scalar | *N*-by-1 vector
+  group: Brake
+  block_parameter: drum_abore
+  values: 0.0508 (default) | scalar | *N*-by-1 vector
+- name: Shoe pin to drum center distance, drum_a
+  summary: Shoe pin to drum center distance 0.123 (default) | scalar
+  group: Brake
+  block_parameter: drum_a
+  values: 0.123 (default) | scalar
+- name: Shoe pin center to force application point distance, drum_c
+  summary: Shoe pin center to force application point distance 0.212 (default) | scalar
+  group: Brake
+  block_parameter: drum_c
+  values: 0.212 (default) | scalar
+- name: Drum internal radius, drum_r
+  summary: Drum internal radius 0.15 (default) | scalar
+  group: Brake
+  block_parameter: drum_r
+  values: 0.15 (default) | scalar
+- name: Shoe pin to pad start angle, drum_theta1
+  summary: Shoe pin to pad start angle 0 (default) | scalar
+  group: Brake
+  block_parameter: drum_theta1
+  values: 0 (default) | scalar
+- name: Shoe pin to pad end angle, drum_theta2
+  summary: Shoe pin to pad end angle 126 (default) | scalar
+  group: Brake
+  block_parameter: drum_theta2
+  values: 126 (default) | scalar
+- name: Brake actuator pressure breakpoints, brake_p_bpt
+  summary: Brake actuator pressure breakpoints vector
+  group: Brake
+  block_parameter: brake_p_bpt
+  values: vector
+- name: Wheel speed breakpoints, brake_n_bpt
+  summary: Wheel speed breakpoints vector
+  group: Brake
+  block_parameter: brake_n_bpt
+  values: vector
+- name: Brake torque map, f_brake_t
+  summary: Lookup table for brake torque array
+  group: Brake
+  block_parameter: f_brake_t
+  values: vector
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -673,7 +802,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `f_brake_t` |
 | **Values:** | vector |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Brakes

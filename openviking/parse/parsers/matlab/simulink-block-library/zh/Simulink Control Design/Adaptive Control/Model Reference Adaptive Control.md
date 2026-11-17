@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Model Reference Adaptive Control
 
 ## 端口
+```yaml
+ports:
+- name: r
+  summary: 参考信号 标量信号 | 向量信号
+  direction: input
+- name: state
+  summary: 受控系统状态 向量信号
+  direction: input
+- name: phi
+  summary: 扰动模型特征 向量信号 | 矩阵信号
+  direction: input
+- name: u
+  summary: 控制输入 标量信号 | 矩阵信号
+  direction: output
+- name: u_ad
+  summary: 扰动和不确定性估计 标量信号 | 矩阵信号
+  direction: output
+- name: Ahat
+  summary: 估计器状态矩阵 矩阵信号
+  direction: output
+- name: Bhat
+  summary: 估计器控制有效矩阵 向量信号 | 矩阵信号
+  direction: output
+```
 
 ### 输入
 
@@ -62,8 +86,285 @@ chinese_source: worker-translation
 #### 依赖
 
 此输出端口用于间接 MRAC。要启用此端口，请先选择 **Indirect** 算法选项。然后，选择 **Output estimated parameters** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: A
+  summary: 标称模型状态矩阵 0（默认）| 方阵
+  group: 系统
+  block_parameter: '''A'''
+  type: character vector
+  values: square matrix
+  default: '''0'''
+- name: B
+  summary: 标称模型控制有效矩阵 1（默认）| 向量 | 矩阵
+  group: 系统
+  block_parameter: '''B'''
+  type: character vector
+  values: vector | matrix
+  default: '''1'''
+- name: Am
+  summary: 参考模型状态矩阵 -1（默认）| 矩阵
+  group: 系统
+  block_parameter: '''Am'''
+  type: character vector
+  values: square matrix
+  default: '''-1'''
+- name: Bm
+  summary: 参考模型控制有效矩阵 1（默认）| 向量 | 矩阵
+  group: 系统
+  block_parameter: '''Bm'''
+  type: character vector
+  values: vector | matrix
+  default: '''[0;4]'''
+- name: Ahat
+  summary: 估计器被控对象模型状态矩阵 0（默认）| 方阵
+  group: 系统
+  block_parameter: '''Ahat'''
+  type: 字符向量
+  values: 方阵
+  default: '''0'''
+- name: Adapt Ahat
+  summary: 用于自适应估计器被控对象模型状态矩阵的选项 on（默认）| off
+  group: 系统
+  block_parameter: '''ALrEnable'''
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_a)
+  summary: 用于自适应估计器被控对象模型状态矩阵的学习率 1（默认）| 有限正标量
+  group: 系统
+  block_parameter: '''gamma_a'''
+  type: 字符向量
+  values: 有限正标量
+  default: '''1'''
+- name: Use learning modification
+  summary: 用于启用学习修正以更新估计器模型状态矩阵的选项 on（默认）| off
+  group: 系统
+  block_parameter: '''ALrEnableMod'''
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Bhat
+  summary: 估计器被控对象模型控制有效矩阵 1（默认）| 向量 | 矩阵
+  group: 系统
+  block_parameter: '''Bhat'''
+  type: 字符向量
+  values: 向量 | 矩阵
+  default: '''1'''
+- name: Adapt Bhat
+  summary: 用于自适应估计器被控对象模型控制有效矩阵的选项 on（默认）| off
+  group: 系统
+  block_parameter: '''BLrEnable'''
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_b)
+  summary: 用于自适应估计器被控对象模型控制有效矩阵的学习率 1（默认）| 有限正标量
+  group: 系统
+  block_parameter: '''gamma_a'''
+  type: character vector
+  values: finite positive scalar
+  default: '''1'''
+- name: Use learning modification
+  summary: 用于启用学习修正以更新估计器模型控制有效矩阵的选项 on（默认）| off
+  group: 系统
+  block_parameter: '''BLrEnableMod'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Specify estimator feedback gain
+  summary: 用于启用估计器反馈增益指定的选项 off（默认）| on
+  group: 系统
+  block_parameter: '''externalKTauEnable'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Estimator feedback gain
+  summary: 估计器反馈增益 -1（默认）| matrix
+  group: 系统
+  block_parameter: '''k_tau'''
+  type: character vector
+  values: -1 | matrix
+  default: '''-1'''
+- name: Output estimated parameters
+  summary: 用于输出估计器状态和控制有效矩阵的选项 off（默认）| on
+  group: 系统
+  block_parameter: '''estParamOutput'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Feedback gains
+  summary: 用于模型匹配的反馈增益 0（默认）| finite scalar | matrix of finite values
+  group: Control Gains
+  block_parameter: '''kx'''
+  type: character vector
+  values: finite scalar | matrix of finite values
+  default: '''0'''
+- name: Adapt feedback gains
+  summary: 用于自适应调整反馈增益的选项 on（默认）| off
+  group: Control Gains
+  block_parameter: '''FBLrEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_x)
+  summary: 用于自适应反馈增益的学习率 1（默认）| 有限正标量
+  group: Control Gains
+  block_parameter: '''gamma_kx'''
+  type: character vector
+  values: finite positive scalar
+  default: '''1'''
+- name: Use learning modification
+  summary: 用于启用学习修正以更新反馈增益的选项 on（默认）| off
+  group: Control Gains
+  block_parameter: '''FBLrEnableMod'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Feedforward gains
+  summary: 用于模型匹配的前馈增益 0（默认）| 有限标量 | 有限值矩阵
+  group: Control Gains
+  block_parameter: '''kr'''
+  type: character vector
+  values: finite scalar | matrix of finite values
+  default: '''0'''
+- name: Adapt feedforward gains
+  summary: 用于自适应前馈增益的选项 on（默认）| off
+  group: Control Gains
+  block_parameter: '''FFLrEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_r)
+  summary: 用于自适应前馈增益的学习率 1（默认）| 有限正标量
+  group: Control Gains
+  block_parameter: '''gamma_kr'''
+  type: character vector
+  values: finite positive scalar
+  default: '''1'''
+- name: Use learning modification
+  summary: 用于启用学习修正以更新前馈增益的选项 on（默认）| off
+  group: Control Gains
+  block_parameter: '''FFLrEnableMod'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable disturbance adaptation
+  summary: 用于启用对系统扰动和不确定性的自适应的选项 on（默认）| off
+  group: Disturbance Model
+  block_parameter: '''AdaptEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_w)
+  summary: 用于自适应扰动模型参数的学习率 1（默认）| 有限正标量
+  group: Disturbance Model
+  block_parameter: '''gamma'''
+  type: 字符向量
+  values: 有限正标量
+  default: '''100'''
+- name: Use learning modification
+  summary: 用于启用学习修改以更新扰动模型参数的选项 on（默认）| off
+  group: Disturbance Model
+  block_parameter: '''WLrEnableMod'''
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Channel learning rate (Q)
+  summary: 用于 Lyapunov 解的通道学习率 1（默认）| 有限正标量 | 长度为 *N* 且包含正有限值的向量 | 大小为 *N*-by-*N* 的对称正定矩阵
+  group: Disturbance Model
+  block_parameter: '''Q'''
+  type: 字符向量
+  values: 有限正标量 | 正值向量 | 对称正定矩阵
+  default: '''1'''
+- name: Feature type
+  summary: 扰动模型特征类型 State（默认）| Radial Basis Function | Single Hidden Layer Network | Use External Source for Feature
+  group: Disturbance Model
+  block_parameter: '''FeatureTypeOptions'''
+  type: 字符向量
+  values: '''Radial Basis Function'' | ''State'' | ''Single Hidden Layer Network'' | ''Use External Source for Feature'''
+  default: '''Radial Basis Function'''
+- name: Number of RBF centers
+  summary: 扰动模型的径向基函数中心数量 20（默认）| 正整数
+  group: Disturbance Model
+  block_parameter: '''nCen'''
+  type: 字符向量
+  values: 正整数
+  default: '''20'''
+- name: Centers min
+  summary: 径向基函数中心的下限 -1（默认）| 有限标量 | 向量
+  group: Disturbance Model
+  block_parameter: '''cSpanMin'''
+  type: 字符向量
+  values: 有限标量 | 向量
+- name: Centers max
+  summary: 径向基函数中心的上限 1（默认）| 有限标量 | 向量
+  group: Disturbance Model
+  block_parameter: '''cSpanMax'''
+  type: 字符向量
+  values: 有限标量 | 向量
+- name: Bandwidth
+  summary: 径向基函数标准差 5（默认）| 正标量 | 向量
+  group: Disturbance Model
+  block_parameter: '''cSig'''
+  type: 字符向量
+  values: 正标量 | 向量
+- name: Number of neurons in hidden layer
+  summary: 神经元数量 10（默认）| 正整数
+  group: Disturbance Model
+  block_parameter: '''shlHiddenLayerSize'''
+  type: 字符向量
+  values: 正标量 | 向量
+- name: Hidden layer learning rate (gamma_v)
+  summary: 用于更新神经网络权重的学习率 0.1（默认）| 正标量
+  group: Disturbance Model
+  block_parameter: '''gamma_V'''
+  type: 字符向量
+  values: 正标量 | 向量
+- name: Output disturbance/uncertancy estimate
+  summary: 输出扰动和不确定性估计的选项 on（默认）| off
+  group: Disturbance Model
+  block_parameter: '''adaptiveCntrlOutport'''
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 修正方法
+  summary: 用于更新参数的修正方法 None（默认）| e-Modification | Sigma Modification
+  group: 学习修正
+  block_parameter: '''modChoice'''
+  type: 字符向量
+  values: '''Sigma Modification'' | ''e-Modification'' | ''None'''
+  default: '''Sigma Modification'''
+- name: Sigma
+  summary: 参数更新的动量权重 0.1（默认）| 标量
+  group: 学习修正
+  block_parameter: '''sigma_val'''
+  type: 字符向量
+  values: 有限正标量
+  default: '''0.1'''
+- name: 在自适应中使用离散时间积分
+  summary: 在自适应中使用离散时间积分 off（默认）| on
+  group: 学习修正
+  block_parameter: '''DiscreteEnable'''
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 采样时间
+  summary: 采样时间 0.05（默认）| 有限正标量
+  group: 学习修正
+  block_parameter: '''Ts'''
+  type: 字符向量
+  values: 有限正标量
+  default: '''0.05'''
+- name: 积分方法
+  summary: 离散积分方法 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: 学习修正
+  block_parameter: '''IntegrationMethods'''
+  type: 字符向量
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+```
 
 ### 系统
 
@@ -743,7 +1044,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'Forward Euler'` | `'Backward Euler'` | `'Trapezoidal'` |
 | **默认值：** `'Forward Euler'` |
-
 ## 所属库
 
 Simulink Control Design / Adaptive Control

@@ -14,6 +14,21 @@ language: en
 # ADC AC Measurement
 
 ## Ports
+```yaml
+ports:
+- name: digital
+  summary: Converted digital signal from ADC scalar
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ready
+  summary: Indicates whether analog to digital conversion is complete scalar
+  direction: input
+  data_types: double
+- name: start
+  summary: External conversion start clock scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -37,8 +52,71 @@ conversion process starts at the rising edge of the signal at the
 **start** port.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Distortion measurement type
+  summary: Type of distortion to measure Harmonic (default) | Intermodulation
+  group: ''
+  block_parameter: DistortionMeasurement
+  type: character vector
+  values: Harmonic | Intermodulation
+  default: Harmonic
+- name: Analog stimulus frequency (Hz)
+  summary: Frequency of the analog input signal to ADC positive real scalar | positive real valued vector
+  group: ''
+  block_parameter: InputFrequency
+  type: character vector
+  values: positive real scalar | positive real valued vector
+  default: '10000'
+- name: Spectrum estimation method
+  summary: Spectrum estimation method Welch (default) | Filter bank
+  group: ''
+  block_parameter: Method
+  type: character vector
+  values: Filter bank | Welch
+  default: Filter bank
+- name: Resolution bandwidth (Hz)
+  summary: Resolution bandwidth positive real scalar
+  group: ''
+  block_parameter: RBW
+  type: character vector
+  values: positive real scalar
+  default: '976.5625'
+- name: Start conversion frequency (Hz)
+  summary: Frequency of the start conversion clock of the ADC 1e6 (default) | positive real scalar
+  group: ''
+  block_parameter: Frequency
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Hold off time (s)
+  summary: Delays measurement analysis to avoid corruption by transients 0 (default) | nonnegative real scalar
+  group: ''
+  block_parameter: HoldOffTime
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Recommended min. simulation stop time (s)
+  summary: Minimum time simulation must run for meaningful result positive real scalar
+  group: ''
+- name: Set as model stop time
+  summary: Automatically set recommended min. simulation stop time as model stop time button
+  group: ''
+- name: Output result to base workspace
+  summary: Store detailed test results to base workspace off (default) | on
+  group: ''
+- name: Workspace variable name
+  summary: Name of the variable that stores detailed test results adc_ac_out (default) | character string
+  group: ''
+  block_parameter: VariableName
+  type: character vector
+  values: character string
+  default: adc_ac_out
+- name: Show spectrum analyzer during simulation
+  summary: Displays spectrum analyzer during simulation off (default) | on
+  group: ''
+```
 
 ### **Distortion measurement type** — Type of distortion to measure `Harmonic` (default) | `Intermodulation`
 
@@ -219,7 +297,6 @@ workspace** is selected.
 
 Displays spectrum analyzer during simulation. By default, this option is not
 selected.
-
 ## Libraries
 
 Mixed-Signal Blockset / ADC / Measurements & Testbenches

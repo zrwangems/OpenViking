@@ -14,6 +14,15 @@ language: en
 # PS Sum of Elements
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -38,15 +47,19 @@ scalar.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sum all elements
+  summary: Specify summing method for matrices Off (default) | On
+  group: ''
+```
 
 ### **Sum all elements** — Specify summing method for matrices `Off` (default) | `On`
 
 If the input signal is a matrix, then by default the block computes the column-wise
 sums of elements for each dimension. To sum all the elements of the matrix, select the
 **Sum all elements** check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Functions

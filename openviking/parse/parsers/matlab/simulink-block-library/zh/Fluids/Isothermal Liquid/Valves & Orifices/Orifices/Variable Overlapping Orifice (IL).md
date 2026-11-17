@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Variable Overlapping Orifice (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 套筒位移，m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -30,8 +42,40 @@ chinese_source: worker-translation
 ### **S** — 套筒位移，m，物理信号
 
 套筒相对于壳体的位置，单位为 m。
-
 ## 参数
+```yaml
+parameters:
+- name: Sleeve hole diameter
+  summary: 套筒孔径 5e-3 m（默认）| 正标量
+  group: ''
+- name: Case hole diameter
+  summary: 壳体孔径 5.5e-3 m（默认）| 正标量
+  group: ''
+- name: Sleeve position when holes are concentric
+  summary: 孔中心对齐时的运动元件位置 0 m（默认）| 标量
+  group: ''
+- name: Number of interacting pairs
+  summary: 重叠节流孔的数量，以对为单位 1（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的节流孔面积 inf m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 Off（默认）| On
+  group: ''
+```
 
 ### **Sleeve hole diameter** — 套筒孔径 `5e-3 m`（默认）| 正标量
 
@@ -72,7 +116,6 @@ chinese_source: worker-translation
 ### **Pressure recovery** — 是否考虑面积扩大时的压力增加 `Off`（默认）| `On`
 
 是否考虑当流体从较小横截面积区域流向较大横截面积区域时的压力增加。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Orifices

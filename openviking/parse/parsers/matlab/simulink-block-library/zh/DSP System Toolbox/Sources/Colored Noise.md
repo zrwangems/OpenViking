@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Colored Noise
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 有色噪声信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输出
 
@@ -23,8 +30,37 @@ chinese_source: worker-translation
 有色噪声输出信号。信号的大小和数据类型取决于 **Number of output channels**、**Number of samples per output channel** 和 **Output data type** 参数的值。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Noise color
+  summary: 生成噪声的颜色 pink（默认）| white | brown | blue | purple | custom
+  group: ''
+- name: Power of inverse frequency
+  summary: 逆功率谱密度分量 1（默认）| [-2 2] 范围内的标量
+  group: ''
+- name: Guarantee the output is bounded (+/-1)
+  summary: 将输出边界设置为 +1 和 −1 off（默认）| on
+  group: ''
+- name: Number of output channels
+  summary: 输出通道数 1（默认）| 正整数
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single
+  group: ''
+- name: Number of samples per output channel
+  summary: 每个输出通道的采样数 1024（默认）| 正整数
+  group: ''
+- name: Output sample time (s)
+  summary: 输出的采样时间 1（默认）| 正标量
+  group: ''
+- name: Initial seed
+  summary: 随机数生成器的初始种子 67（默认）| 正整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Noise color** — 生成噪声的颜色 `pink`（默认）| `white` | `brown` | `blue` | `purple` | `custom`
 
@@ -79,7 +115,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Sources

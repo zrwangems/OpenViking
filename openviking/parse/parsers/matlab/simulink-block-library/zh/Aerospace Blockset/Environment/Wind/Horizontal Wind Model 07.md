@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Horizontal Wind Model 07
 
 ## 端口
+```yaml
+ports:
+- name: μ l h
+  summary: 大地纬度、经度和位势高度三元向量 | 高度为 0 到 500 km 之间的值
+  direction: input
+  data_types: double
+- name: day
+  summary: 年积日 标量 | 值介于 1 到 366 之间
+  direction: input
+  data_types: double
+- name: sec
+  summary: 经过秒数 标量
+  direction: input
+  data_types: double
+- name: Ap
+  summary: Ap 指数 标量 | 范围从 0 到 400
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: 风速向量 1×2 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -68,8 +91,31 @@ chinese_source: worker-translation
 经向和纬向风分量，按此顺序。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Model
+  summary: 水平风模型类型 Quiet（默认）| Total | Disturbance
+  group: ''
+  block_parameter: model
+  type: 字符向量
+  values: '''Quiet'' | ''Total'' | ''Disturbance'''
+  default: '''Quiet'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 Error（默认）| Warning | None
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Units** — 输入和输出单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -135,7 +181,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'Warning'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Wind

@@ -14,6 +14,25 @@ language: en
 # Inverse Decoupled Transform (Six-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: dqz1z2o1o2
+  summary: Direct, Quadrature, *z1*, *z2*, *o1*, and *o2* components vector
+  direction: input
+  data_types: single | double
+- name: θelec
+  summary: Rotational angle scalar
+  direction: input
+  data_types: single | double
+- name: abc
+  summary: '*a*-, *b*-, and *c*-phase components vector'
+  direction: output
+  data_types: single | double
+- name: xyz
+  summary: '*x*-, *y*-, and *z*-phase components vector'
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -49,15 +68,19 @@ Components of the three-phase system in
 an *xyz* reference frame, returned as a vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase-a axis alignment
+  summary: '*dqz1z2o1o2* reference frame alignment Q-axis (default) | D-axis'
+  group: ''
+```
 
 ### **Phase-a axis alignment** — *dqz1z2o1o2* reference frame alignment `Q-axis` (default) | `D-axis`
 
 Whether to align the *a*-phase vector of the *abc*
 reference frame to the *d*-axis or
 *q*-axis of the rotating reference frame.
-
 ## Libraries
 
 Simscape / Electrical / Control / Mathematical Transforms

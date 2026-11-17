@@ -14,6 +14,18 @@ language: en
 # Check Static Gap
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal checked against gap scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: Assertion output signal scalar
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -42,8 +54,70 @@ To enable this output port, set the **Output assertion
 signal** parameter check box.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Upper bound
+  summary: Upper boundary value scalar | vector | matrix
+  group: ''
+  block_parameter: max
+  type: string scalar or character vector
+  default: '"100"'
+- name: Inclusive upper bound
+  summary: Include the upper bound in range on (default) | off
+  group: ''
+  block_parameter: max_included
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Lower bound
+  summary: Lower boundary value scalar | vector | matrix
+  group: ''
+  block_parameter: min
+  type: string scalar or character vector
+  default: '"0"'
+- name: Inclusive lower bound
+  summary: Include the lower bound in range on (default) | off
+  group: ''
+  block_parameter: min_included
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Enable assertion
+  summary: Enable or disable check on (default) | off
+  group: ''
+  block_parameter: enabled
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Simulation callback when assertion fails (optional)
+  summary: Expression to evaluate when assertion fails "" (default) | MATLAB expression
+  group: ''
+  block_parameter: callback
+  type: string scalar or character vector
+  default: '""'
+- name: Stop simulation when assertion fails
+  summary: Whether to stop simulation when check fails on (default) | off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Output assertion signal
+  summary: Create output signal off (default) | on
+  group: ''
+  block_parameter: export
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"off"'
+- name: Select icon type
+  summary: Select icon type graphic (default) | text
+  group: ''
+  block_parameter: icon
+  type: string scalar or character vector
+  values: '"graphic" | "text"'
+  default: '"graphic"'
+```
 
 ### **Upper bound** — Upper boundary value scalar | vector | matrix
 
@@ -176,7 +250,6 @@ the assertion condition.
 | **Type:** string scalar or character vector |
 | **Values:** `"graphic"` | `"text"` |
 | **Default:** `"graphic"` |
-
 ## Libraries
 
 Simulink / Model Verification HDL Coder / Model Verification

@@ -15,6 +15,99 @@ chinese_source: worker-translation
 # MCAN Interrupt Status
 
 ## 端口
+```yaml
+ports:
+- name: MCAN_IR
+  summary: MCAN 中断寄存器状态 uint32
+  direction: output
+- name: TEFN
+  summary: TX 事件 FIFO 新条目状态 boolean
+  direction: output
+- name: TEFW
+  summary: TX 事件 FIFO 水位线达到状态 boolean
+  direction: output
+- name: TEFF
+  summary: TX 事件 FIFO 满状态 boolean
+  direction: output
+- name: TEFL
+  summary: TX 事件 FIFO 元素丢失状态 boolean
+  direction: output
+- name: TC
+  summary: 发送完成状态 boolean
+  direction: output
+- name: TCF
+  summary: 发送取消完成状态 boolean
+  direction: output
+- name: TFE
+  summary: 发送 FIFO 空状态 boolean
+  direction: output
+- name: HPM
+  summary: 高优先级消息状态 boolean
+  direction: output
+- name: RF0N
+  summary: RX FIFO 0 新消息状态 boolean
+  direction: output
+- name: RF0W
+  summary: RX FIFO 0 水位线达到状态 boolean
+  direction: output
+- name: RF0FL
+  summary: RX FIFO 0 满状态 boolean
+  direction: output
+- name: RF0ML
+  summary: RX FIFO 0 消息丢失状态 boolean
+  direction: output
+- name: DRX
+  summary: 专用 RX 缓冲区消息状态 boolean
+  direction: output
+- name: RF1N
+  summary: RX FIFO 1 新消息状态 boolean
+  direction: output
+- name: RF1W
+  summary: RX FIFO 1 水位线达到状态 boolean
+  direction: output
+- name: RF1FL
+  summary: RX FIFO 1 满状态 boolean
+  direction: output
+- name: RF1ML
+  summary: RX FIFO 1 消息丢失状态 boolean
+  direction: output
+- name: TSW
+  summary: 时间戳回绕状态 boolean
+  direction: output
+- name: TOO
+  summary: 超时发生状态 boolean
+  direction: output
+- name: ELO
+  summary: 错误日志溢出状态 boolean
+  direction: output
+- name: EW
+  summary: 错误警告状态 boolean
+  direction: output
+- name: WD
+  summary: 看门狗事件状态 boolean
+  direction: output
+- name: PED
+  summary: 数据阶段协议错误状态 boolean
+  direction: output
+- name: MRAF
+  summary: 消息 RAM 访问失败状态 boolean
+  direction: output
+- name: BEU
+  summary: 位错误未纠正状态 boolean
+  direction: output
+- name: EP
+  summary: 错误被动状态 boolean
+  direction: output
+- name: BO
+  summary: 总线关闭状态 boolean
+  direction: output
+- name: PEA
+  summary: 仲裁协议错误状态 boolean
+  direction: output
+- name: ARA
+  summary: 访问保留地址状态 boolean
+  direction: output
+```
 
 ### 输出
 
@@ -370,11 +463,12 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Reversed address access** 参数。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F28p65x

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Binary-Output RS Decoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 里德-所罗门码字二进制列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | ufix(1)
+- name: Era
+  summary: 删除向量二进制列向量
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: 解码消息二进制列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | ufix(1)
+- name: Err
+  summary: 解码错误整数向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -107,8 +126,37 @@ symbol errors**。
 **数据类型：** `double`
 
 有关详细信息，请参阅 Supported Data Types。
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length N (symbols)
+  summary: 码字长度 7（默认）| 整数
+  group: ''
+- name: Message length K (symbols)
+  summary: 消息字长度 3（默认）| 整数
+  group: ''
+- name: Shortened message length S (symbols)
+  summary: 缩短的消息字长度 3（默认）| 整数
+  group: ''
+- name: Generator polynomial
+  summary: 生成多项式 rsgenpoly(7, 3, [], [], 'double')（默认）| 多项式字符向量 | 二进制行向量 | 二进制伽罗瓦行向量
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 'X^3 + X + 1'（默认）| 多项式字符向量 | 二进制行向量
+  group: ''
+- name: Puncture vector
+  summary: 删余向量 [ones(2,1); zeros(2,1)]（默认）| 二进制列向量
+  group: ''
+- name: Enable erasures input port
+  summary: 启用删除输入端口 off（默认）| on
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: 启用端口以输出已纠正符号错误数 off（默认）| on
+  group: ''
+- name: Output data type
+  summary: 模块的输出类型 Same as input（默认）| boolean | double
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -216,7 +264,6 @@ code**。
 模块的输出类型，指定为 `Same as
 input`、`boolean` 或
 `double`。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

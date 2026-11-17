@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Pulse Generator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输出
 
@@ -23,8 +30,66 @@ chinese_source: worker-translation
 由参数指定的生成方波脉冲信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Pulse type
+  summary: 计算技术 Time based（默认）| Sample based
+  group: ''
+  block_parameter: PulseType
+  type: 字符向量
+  values: '''Time based'' | ''Sample based'''
+  default: '''Time based'''
+- name: Time (t)
+  summary: 时间变量来源 Use simulation time（默认）| Use external signal
+  group: ''
+  block_parameter: TimeSource
+  type: 字符向量
+  values: '''Use simulation time'' | ''Use external signal'''
+  default: '''Use simulation time'''
+- name: Amplitude
+  summary: 信号幅值 1（默认）| scalar
+  group: ''
+  block_parameter: Amplitude
+  type: 字符向量
+  values: 标量
+  default: '''1'''
+- name: Period (secs)
+  summary: 脉冲周期 10（默认）| scalar
+  group: ''
+  block_parameter: Period
+  type: 字符向量
+  values: 标量
+  default: '''10'''
+- name: Pulse width
+  summary: 占空比 5（默认）| scalar in the range [0,100]
+  group: ''
+  block_parameter: PulseWidth
+  type: 字符向量
+  values: 标量
+  default: '''5'''
+- name: Phase delay (secs)
+  summary: 脉冲前延迟 0（默认）| scalar
+  group: ''
+  block_parameter: PhaseDelay
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Sample time
+  summary: 采样时间长度 0（默认）| scalar | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''1'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量视为一维 on（默认）| off
+  group: ''
+  block_parameter: VectorParams1D
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Pulse type** — 计算技术 `Time based`（默认）| `Sample based`
 
@@ -137,7 +202,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on' | 'off'` |
 | **默认值：** `'on'` |
-
 ## 所属库
 
 Simulink / Sources

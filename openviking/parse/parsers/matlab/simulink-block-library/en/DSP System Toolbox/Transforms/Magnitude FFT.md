@@ -14,6 +14,17 @@ language: en
 # Magnitude FFT
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output
+  summary: Magnitude FFT output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -86,8 +97,25 @@ y(:,k) = abs(fft(u,nfft)) 	% 1 ≤ k ≤ N
 ```
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Type of output Magnitude squared (default) | Magnitude
+  group: ''
+- name: FFT implementation
+  summary: FFT implementation Auto (default) | Radix-2 | FFTW
+  group: ''
+- name: Inherit FFT length from input dimensions
+  summary: Inherit FFT length from input frame size off (default) | on
+  group: ''
+- name: FFT length
+  summary: FFT length 256 (default) | positive integer
+  group: ''
+- name: Wrap input data when FFT length is shorter than input length
+  summary: Choose to wrap or truncate input on (default) | off
+  group: ''
+```
 
 ### **Output** — Type of output `Magnitude squared` (default) | `Magnitude`
 
@@ -150,7 +178,6 @@ When you select this parameter and if the **FFT length** is shorter than
 the input length, a modulo-length data wrapping occurs before the FFT
 operation. When you clear this parameter, the block truncates the input data
 to the FFT length before the FFT operation.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation DSP System Toolbox / Transforms / Power Spectrum Estimation

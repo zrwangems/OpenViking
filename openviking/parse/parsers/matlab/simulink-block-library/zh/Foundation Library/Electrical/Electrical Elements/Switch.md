@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Switch
 
 ## 端口
+```yaml
+ports:
+- name: PS
+  summary: 控制信号，无量纲物理信号
+  direction: input
+- name: p
+  summary: 电气端子 electrical
+  direction: input
+- name: n
+  summary: 电气端子 electrical
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,19 @@ chinese_source: worker-translation
 与另一个开关端子关联的电气守恒端口。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Closed resistance R_closed
+  summary: 闭合开关的电阻 0.01 Ohm（默认值）| 正标量
+  group: ''
+- name: Open conductance G_open
+  summary: 断开开关的电导 1e-8 1/Ohm（默认值）| 正标量
+  group: ''
+- name: Threshold
+  summary: 断开和闭合开关的阈值 0.5（默认值）| 无量纲标量
+  group: ''
+```
 
 ### **Closed resistance R\_closed** — 闭合开关的电阻 `0.01 Ohm`（默认值）| 正标量
 
@@ -48,7 +71,6 @@ chinese_source: worker-translation
 ### **Threshold** — 断开和闭合开关的阈值 `0.5`（默认值）| 无量纲标量
 
 断开和闭合开关的阈值。如果端口 **PS** 处的外部物理信号大于此值，则开关闭合，否则开关断开。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

@@ -14,6 +14,24 @@ language: en
 # Specific Dissipation Heat Exchanger Interface (G)
 
 ## Ports
+```yaml
+ports:
+- name: CP
+  summary: Isobaric specific heat of gas, kJ/(kg*K) physical signal
+  direction: output
+- name: M
+  summary: Mass flow rate of the thermal liquid, kg/s physical signal
+  direction: output
+- name: A
+  summary: Fluid opening gas
+  direction: conserving
+- name: B
+  summary: Fluid opening gas
+  direction: conserving
+- name: H
+  summary: Thermal condition at the fluid entrance thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -44,8 +62,54 @@ interface.
 
 Thermal port used to set the thermal condition at the gas port serving
 as the gas entrance.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass flow rate vector
+  summary: Mass flow rates at which to specify pressure-drop data [.3, .5, 1, 1.5, 2, 2.5] kg/s (default) | *K*-element array
+    with units of mass/time
+  group: ''
+- name: Pressure drop vector
+  summary: Pressure-drop data corresponding to specified mass flow rates [3, 5, 10, 25, 35, 50] * 1e-3 MPa (default) | *K*-element
+    array with units of pressure
+  group: ''
+- name: Reference inflow temperature
+  summary: Temperature at which pressure-drop data is specified 293.15 K (default) | scalar with units of temperature
+  group: ''
+- name: Reference inflow pressure
+  summary: Pressure at which pressure-drop tabulated data is specified 0.101325 MPa (default) | scalar with units of pressure
+  group: ''
+- name: Mass flow rate threshold for flow reversal
+  summary: Mass flow rate below which to smooth numerical data 1e-6 kg/s (default) | scalar with units of mass/time
+  group: ''
+- name: Gas volume
+  summary: Volume of gas inside the heat exchanger 0.01 m^3 (default) | scalar with units of volume
+  group: ''
+- name: Cross-sectional area at ports A1 and B1
+  summary: Flow area at the gas inlets 0.01 m^2 (default) | scalar with units of area
+  group: ''
+- name: Enable dynamic compressibility
+  summary: Option to model pressure dynamics in the gas channel On (default) | Off
+  group: ''
+- name: Nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: ''
+- name: Nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: ''
+- name: Initial pressure
+  summary: Pressure at the start of simulation 0.101325 MPa (default) | scalar
+  group: ''
+- name: Initial pressure priority
+  summary: Pressure parameter priority High (default) | Low | None
+  group: ''
+- name: Initial temperature
+  summary: Temperature at the start of simulation 293.15 K (default) | scalar
+  group: ''
+- name: Initial temperature priority
+  summary: Temperature parameter priority High (default) | Low | None
+  group: ''
+```
 
 #### Pressure Loss
 
@@ -157,7 +221,6 @@ initial conditions. You may need to set this parameter to
 `Low` or `None` if
 this initial condition conflicts with the initial conditions of another
 block.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

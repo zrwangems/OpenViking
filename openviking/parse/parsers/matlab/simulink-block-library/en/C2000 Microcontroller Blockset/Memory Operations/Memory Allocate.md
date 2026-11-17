@@ -14,10 +14,56 @@ language: en
 # Memory Allocate
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Variable name
+  summary: Name for variable myVariable (default) | string | character vector
+  group: Memory
+- name: Specify variable alignment
+  summary: Variable alignment flag off (default) | on
+  group: Memory
+- name: Memory alignment boundary
+  summary: Memory alignment for variable 4 (default) | 1 | 2 | 8
+  group: Memory
+- name: Data type
+  summary: Data type for variable uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64
+    | boolean
+  group: Memory
+- name: Specify data type qualifier
+  summary: Data type qualifier flag off (default) | on
+  group: Memory
+- name: Data type qualifier
+  summary: Data type qualifier for variable volatile (default) | sting | character vectory
+  group: Memory
+- name: Data dimension
+  summary: Number of elements of variable data type 64 (default) | positive integer
+  group: Memory
+- name: Initialize memory
+  summary: Memory initialization flag off (default) | on
+  group: Memory
+- name: Initial value
+  summary: Initial value for variable 0 (default) | scalar | vector | matrix
+  group: Memory
+- name: Specify memory section
+  summary: Memory section flag off (default) | on
+  group: Section
+- name: Memory section
+  summary: Memory section for variable mySEC1 (default) | string | character vector
+  group: Section
+- name: Bind memory section
+  summary: Bind memory section to start address flag off (default) | on
+  group: Section
+- name: Section start address
+  summary: Start address of memory section for variable hex2dec('8000') (default) | memory address in decimal or hexadecimal
+    form
+  group: Section
+```
 
 ### Memory
 
@@ -156,7 +202,6 @@ specified memory section.
   section**.
 - Do not specify a value for this parameter if you are associating the
   variable with an existing memory section.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Memory Operations

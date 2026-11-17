@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Ideal Rectangular Pulse Filter
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量 | 矩阵
+  direction: input
+  data_types: double | single | fixed point
+- name: Out
+  summary: 输出信号 列向量 | 矩阵
+  direction: output
+  data_types: double | single | fixed point
+```
 
 ### 输入
 
@@ -43,8 +54,52 @@ chinese_source: worker-translation
   参数中指定的值。
 
 **数据类型：** `double` | `single` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Pulse length (number of samples)
+  summary: 脉冲长度 8（默认）| 正整数
+  group: ''
+- name: Pulse delay (number of samples)
+  summary: 脉冲延迟 0（默认）| 非负整数
+  group: ''
+- name: Input processing
+  summary: 输入处理控制 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: 模块处理速率 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Normalize output signal
+  summary: 归一化输出信号的选项 off（默认）| on
+  group: ''
+- name: Normalization method
+  summary: 归一化方法 Sum of samples（默认）| Energy per pulse
+  group: ''
+- name: Linear amplitude gain
+  summary: 线性增益 1（默认）| 正标量
+  group: ''
+- name: Rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: 定点运算的溢出模式 off（默认）| on
+  group: ''
+- name: Coefficients
+  summary: '系数数据类型 Inherit: Same word length as input（默认）| fixdt(1,16) | fixdt(1,16,0)'
+  group: ''
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: ''
+- name: Accumulator
+  summary: '累加器数据类型 Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: ''
+- name: Output
+  summary: '输出数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: ''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -197,7 +252,6 @@ Discrete FIR Filter (Simulink) 和 Multiplication Data Types 的滤波器结构�
 选择此参数可防止定点工具覆盖您在模块对话框中指定的
 数据类型。有关详细信息，
 请参阅 Fixed-Point Tool (Fixed-Point Designer)。
-
 ## 所属库
 
 Communications Toolbox / Comm Filters

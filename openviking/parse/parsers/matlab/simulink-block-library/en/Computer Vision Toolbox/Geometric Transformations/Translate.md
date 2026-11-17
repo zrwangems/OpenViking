@@ -14,6 +14,21 @@ language: en
 # Translate
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image or video matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Offset
+  summary: Translation value vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Output
+  summary: Translated image or video matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -65,8 +80,28 @@ array. *T* is the number of frames in a video or image sequence, and
 *C* is the number of color channels.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output size after translation
+  summary: Translated image size Full (default) | Same as input image
+  group: ''
+- name: Offset source
+  summary: Source of translation value Specify via dialog (default) | Input port
+  group: ''
+- name: Offset
+  summary: Translation value [1.5 2.3] (default) | two-element vector
+  group: ''
+- name: Maximum offset
+  summary: Translation value limits [8 10] (default) | two-element vector
+  group: ''
+- name: Background fill value
+  summary: Intensity or color of background in translated image 0 (default) | scalar | RGB triplet
+  group: ''
+- name: Interpolation method
+  summary: Method for interpolating translated pixel values Bilinear (default) | Nearest neighbor | Bicubic
+  group: ''
+```
 
 ### **Output size after translation** — Translated image size `Full` (default) | `Same as input image`
 
@@ -151,7 +186,6 @@ least accurate, while the `Bicubic` interpolation is the least
 computationally efficient and the most accurate. For more information about
 interpolation methods and kernels, see the More About section and
 the Create and Compare Resizing Interpolation Kernels example.
-
 ## Libraries
 
 Computer Vision Toolbox / Geometric Transformations

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Multicast Receive Queue
 
 ## 端口
+```yaml
+ports:
+- name: receive
+  summary: 接收广播实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_1
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+```
 
 ### 输入
 
@@ -34,11 +47,12 @@ chinese_source: worker-translation
 字符串实体数据类型不支持事件动作
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string` | `fixed point`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 SimEvents

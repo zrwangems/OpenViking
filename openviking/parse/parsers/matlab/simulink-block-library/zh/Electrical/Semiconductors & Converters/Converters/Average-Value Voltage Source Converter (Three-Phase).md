@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Average-Value Voltage Source Converter (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: ModWave
+  summary: 调制波向量
+  direction: input
+- name: Vt
+  summary: 相间 RMS 电压标量
+  direction: input
+- name: ph
+  summary: 相移标量
+  direction: input
+- name: '~'
+  summary: 电压电气
+  direction: input
+- name: a
+  summary: '*a* 相电气'
+  direction: input
+- name: b
+  summary: '*b* 相电气'
+  direction: input
+- name: c
+  summary: '*c* 相电气'
+  direction: input
+- name: +
+  summary: 正极端子电气
+  direction: input
+- name: '-'
+  summary: 负极端子电气
+  direction: input
+- name: H
+  summary: 热端口热
+  direction: input
+```
 
 ### 输入
 
@@ -112,8 +145,52 @@ ports`。
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: AC frequency
+  summary: 交流频率 Variable（默认）| Constant
+  group: ''
+- name: Input type
+  summary: 输入类型 Modulation wave（默认）| Sinusoidal magnitude and phase shift
+  group: ''
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz | 标量
+  group: ''
+- name: Losses parameterization
+  summary: '损耗参数化 Fixed（默认）| Coefficients: loss=Pfixed+ks*vdc*Irms+kc1*Irms+kc2*Irms^2 | Profile: loss=f(Irms,vdc_nom)'
+  group: ''
+- name: Fixed power loss
+  summary: 功率损耗 1 W（默认）
+  group: ''
+- name: Switching losses coefficient, ks
+  summary: 开关损耗系数 0.01（默认）
+  group: ''
+- name: Conduction losses coefficient, kc1
+  summary: 导通损耗第一系数 1.7 V（默认）
+  group: ''
+- name: Conduction losses coefficient, kc2
+  summary: 导通损耗第二系数 0.01 Ohm（默认）
+  group: ''
+- name: Converter losses
+  summary: 变换器损耗向量 [100, 800, 1870, 3250, 4900] W（默认）
+  group: ''
+- name: RMS current for converter losses
+  summary: RMS 电流向量 [10, 100, 200, 300, 400] A（默认）
+  group: ''
+- name: Nominal dc-link voltage
+  summary: 标称直流母线电压 300 V（默认）
+  group: ''
+- name: Thermal mass
+  summary: 热质量 30000 J/K（默认）
+  group: ''
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -241,7 +318,6 @@ loss=f(Irms,vdc_nom)`。
 
 要启用此参数，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

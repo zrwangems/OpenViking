@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Proportional Valve Actuator
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 阀门开度信号 物理信号
+  direction: input
+- name: S
+  summary: 阀门开度距离，m 物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +38,19 @@ chinese_source: worker-translation
 所连接阀门的开度距离，以 m 为单位，指定为物理信号。
 
 如果将 Proportional Valve Actuator 模块与 Gas Library 中的阀门配合使用，气体模块会将执行器信号单位从 m 转换为单位 1。
-
 ## 参数
+```yaml
+parameters:
+- name: Actuator gain
+  summary: 输入信号乘数 5e-4 m（默认）| 正标量
+  group: ''
+- name: Time constant
+  summary: 开度信号时间常数 0.01 s（默认）| 正标量
+  group: ''
+- name: Valve stroke
+  summary: 最大阀门开度距离 0.005 m（默认）| 正标量
+  group: ''
+```
 
 ### **Actuator gain** — 输入信号乘数 `5e-4 m`（默认）| 正标量
 
@@ -43,7 +63,6 @@ chinese_source: worker-translation
 ### **Valve stroke** — 最大阀门开度距离 `0.005 m`（默认）| 正标量
 
 所连接阀门的最大开度距离。
-
 ## 所属库
 
 Simscape / Fluids / Valve Actuators Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces / Valve Actuators

@@ -14,10 +14,15 @@ language: en
 # Integrate and Dump
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Integration period**
 :   The number of input samples between resets.
@@ -94,7 +99,6 @@ fixed-point signals.
 
 For additional information about the parameters pertaining to fixed-point
 applications, see Specify Fixed-Point Attributes for Blocks.
-
 ## Libraries
 
 Not documented in R2025b.

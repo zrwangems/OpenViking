@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Lead-Lag (Discrete or Continuous)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 补偿器输入向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 补偿器输出向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,31 @@ chinese_source: worker-translation
 超前-滞后补偿器输出。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Lead time constant, T1
+  summary: 超前时间常数 0.2（默认）| 正数
+  group: ''
+- name: Lag time constant, T2
+  summary: 滞后时间常数 0.1（默认）| 正数
+  group: ''
+- name: Upper saturation limit
+  summary: 状态上限 inf（默认）| 实数
+  group: ''
+- name: Lower saturation limit
+  summary: 状态下限 -inf（默认）| 实数
+  group: ''
+- name: Initialization
+  summary: 初始状态指定 Inherited from block input（默认）| Specify as parameter
+  group: ''
+- name: Initial state
+  summary: 初始状态 0（默认）| 实数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Lead time constant, T1** — 超前时间常数 `0.2`（默认）| 正数
 
@@ -68,7 +102,6 @@ chinese_source: worker-translation
 对于继承的离散时间操作，请将此参数设置为 `-1`。对于离散时间操作，请将此参数设置为正整数。对于连续时间操作，请将此参数设置为 `0`。
 
 如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅提升掩码上的模块参数。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

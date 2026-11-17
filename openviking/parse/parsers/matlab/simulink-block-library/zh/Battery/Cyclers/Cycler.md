@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Cycler
 
 ## 端口
+```yaml
+ports:
+- name: i
+  summary: 电流，A 物理信号
+  direction: input
+- name: v
+  summary: 电压，V 物理信号
+  direction: input
+- name: c
+  summary: 控制，无量纲物理信号
+  direction: input
+- name: +
+  summary: 正极端子 电气
+  direction: input
+- name: '-'
+  summary: 负极端子 电气
+  direction: input
+```
 
 ### 输入
 
@@ -51,8 +69,16 @@ chinese_source: worker-translation
 ### **-** — 负极端子 电气
 
 与 cycler 负极端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Current sign convention
+  summary: 电流的符号约定选项 Positive for device discharge (IEC 62660)（默认）| Positive for device charge
+  group: ''
+- name: Configuration
+  summary: 模块配置 Cycler, specify current or voltage（默认）| Galvanostat, specify current | Potentiostat, specify voltage
+  group: ''
+```
 
 ### **Current sign convention** — 电流的符号约定选项 `Positive for device discharge (IEC 62660)`（默认）| `Positive for device charge`
 
@@ -61,7 +87,6 @@ chinese_source: worker-translation
 ### **Configuration** — 模块配置 `Cycler, specify current or voltage`（默认）| `Galvanostat, specify current` | `Potentiostat, specify voltage`
 
 用于配置模块行为的选项。
-
 ## 所属库
 
 Simscape / Battery / Cyclers

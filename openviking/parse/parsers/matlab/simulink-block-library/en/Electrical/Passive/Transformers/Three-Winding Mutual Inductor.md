@@ -14,6 +14,27 @@ language: en
 # Three-Winding Mutual Inductor
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: First inductor positive voltage electrical
+  direction: conserving
+- name: 1-
+  summary: First inductor negative voltage electrical
+  direction: conserving
+- name: 2+
+  summary: Second inductor positive voltage electrical
+  direction: conserving
+- name: 2-
+  summary: Second inductor negative voltage electrical
+  direction: conserving
+- name: 3+
+  summary: Third inductor positive voltage electrical
+  direction: conserving
+- name: 3-
+  summary: Third inductor negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,8 +67,31 @@ third mutual inductor.
 
 Electrical conserving port associated with the negative voltage of the
 third mutual inductor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inductance L1
+  summary: First winding self inductance 0.001 H (default) | positive scalar
+  group: ''
+- name: Inductance L2
+  summary: Second winding self inductance 0.001 H (default) | positive scalar
+  group: ''
+- name: Inductance L3
+  summary: Third winding self inductance 0.001 H (default) | positive scalar
+  group: ''
+- name: Perfect coupling - no leakage
+  summary: Option to enable perfect coupling Off (default) | On
+  group: ''
+- name: Coefficient of coupling, K12
+  summary: Coefficient of coupling between the first and second windings 0.9 (default) | scalar in the range [-1,1]
+  group: ''
+- name: Coefficient of coupling, K13
+  summary: Coefficient of coupling between the first and third windings 0.9 (default) | scalar in the range [-1,1]
+  group: ''
+- name: Coefficient of coupling, K23
+  summary: Coefficient of coupling between the second and third windings 0.9 (default) | scalar in the range [-1,1]
+  group: ''
+```
 
 ### **Inductance L1** — First winding self inductance `0.001` `H` (default) | positive scalar
 
@@ -110,7 +154,6 @@ instead.
 
 To enable this parameter, clear the **Perfect coupling - no
 leakage** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

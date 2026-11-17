@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PNP Bipolar Transistor
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基极端子电气
+  direction: conserving
+- name: C
+  summary: 集电极端子电气
+  direction: conserving
+- name: E
+  summary: 发射极端子电气
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -43,8 +58,97 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Parameterization
+  summary: 模块参数化 Specify from a datasheet（默认）| Specify using equation parameters directly
+  group: 主要
+- name: Forward current transfer ratio h_fe
+  summary: 正向电流传输比 100（默认）
+  group: 主要
+- name: Output admittance h_oe
+  summary: 输出导纳 50e-6 1/Ohm（默认）
+  group: 主要
+- name: Collector current at which h-parameters are defined
+  summary: 定义 h 参数时的集电极电流 -1 mA（默认）
+  group: 主要
+- name: Collector-emitter voltage at which h-parameters are defined
+  summary: 定义 h 参数时的集电极-发射极电压 -5 V（默认）
+  group: 主要
+- name: Voltage Vbe
+  summary: 电压 Vbe -0.55 V（默认）
+  group: 主要
+- name: Current Ib for voltage Vbe
+  summary: 电压 Vbe 对应的电流 Ib -0.5 mA（默认）
+  group: 主要
+- name: Forward current transfer ratio BF
+  summary: 正向电流传输比 100（默认）
+  group: 主要
+- name: Saturation current IS
+  summary: 饱和电流 1e-14 A（默认）
+  group: 主要
+- name: Forward Early voltage VAF
+  summary: 正向厄利电压 200 V（默认）
+  group: 主要
+- name: Reverse current transfer ratio BR
+  summary: 反向电流传输比 1（默认）
+  group: 主要
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: 主要
+- name: Collector resistance RC
+  summary: 集电极电阻 0.01 ohm（默认）
+  group: 欧姆电阻
+- name: Emitter resistance RE
+  summary: 发射极电阻 1e-4 Ohm（默认）
+  group: 欧姆电阻
+- name: Zero bias base resistance RB
+  summary: 零偏置基极电阻 1 Ohm（默认）
+  group: 欧姆电阻
+- name: Base-collector junction capacitance
+  summary: 基极-集电极结电容 5 pF（默认）
+  group: 电容
+- name: Base-emitter junction capacitance
+  summary: 基极-发射极结电容 5 pF（默认）
+  group: 电容
+- name: Total forward transit time
+  summary: 总正向渡越时间 0 us（默认）
+  group: 电容
+- name: Total reverse transit time
+  summary: 总反向渡越时间 0 us（默认）
+  group: 电容
+- name: Parameterization
+  summary: 温度依赖性参数化 None — Simulate at parameter measurement temperature（默认）| Model temperature dependence
+  group: 温度依赖性
+- name: Forward current transfer ratio, h_fe, at second measurement temperature
+  summary: 第二测量温度下的正向电流传输比 h_fe 125（默认）
+  group: 温度依赖性
+- name: Voltage Vbe at second measurement temperature
+  summary: 第二测量温度下的电压 Vbe -0.45 V（默认）
+  group: 温度依赖性
+- name: Current Ib for voltage Vbe at second measurement temperature
+  summary: 第二测量温度下电压 Vbe 对应的电流 Ib -0.5 mA（默认）
+  group: 温度依赖性
+- name: Second measurement temperature
+  summary: 第二测量温度 125 degC（默认）
+  group: 温度依赖性
+- name: Current gain temperature coefficient, XTB
+  summary: 电流增益温度系数 0（默认）
+  group: 温度依赖性
+- name: Energy gap, EG
+  summary: 能隙 1.11 eV（默认）
+  group: 温度依赖性
+- name: Saturation current temperature exponent, XTI
+  summary: 饱和电流温度指数 3（默认）
+  group: 温度依赖性
+- name: Device simulation temperature
+  summary: 器件仿真温度 25 degC（默认）
+  group: 温度依赖性
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -290,7 +394,6 @@ directly` 时，此参数才可见。
 ### **Device simulation temperature** — 器件仿真温度 `25` `degC`（默认）
 
 仿真器件时的温度 *T*s。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

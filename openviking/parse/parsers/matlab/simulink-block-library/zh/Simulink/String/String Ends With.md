@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # String Contains, String Starts With, String Ends With
 
 ## 端口
+```yaml
+ports:
+- name: str
+  summary: 要搜索的字符串 标量
+  direction: input
+  data_types: string
+- name: sub
+  summary: 要搜索的字符串模式 标量
+  direction: input
+  data_types: string
+- name: T/F
+  summary: 检测到的字符串模式 1 | 0
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -37,8 +52,24 @@ chinese_source: worker-translation
 (`1`) 或未检测到 (`0`)。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Case sensitive
+  summary: 区分大小写 开启（默认） | 关闭
+  group: ''
+  block_parameter: CaseSensitive
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Function
+  summary: 模式搜索函数 Contains | Starts with | Ends with
+  group: ''
+  block_parameter: Function
+  type: 字符向量
+  values: '''Contains'' | ''Starts with'' | ''Ends with'''
+  default: String Contains 模块为 'Contains'，String Starts With 模块为 'Starts with'，String Ends With 模块为 'Ends with'
+```
 
 ### **Case sensitive** — 区分大小写 开启（默认） | 关闭
 
@@ -81,7 +112,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值：** `'Contains'` | `'Starts with'` | `'Ends with'` |
 | **默认值**：String Contains 模块为 `'Contains'`，String Starts With 模块为 `'Starts with'`，String Ends With 模块为 `'Ends with'` |
-
 ## 所属库
 
 Simulink / String

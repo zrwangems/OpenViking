@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Clock
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 采样时间标量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,22 @@ chinese_source: worker-translation
 采样时间，指定为每个仿真时间步的当前仿真时间。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Display time
+  summary: 在模块图标上显示仿真时间 off（默认）| on
+  group: ''
+  block_parameter: DisplayTime
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Decimation
+  summary: 更新模块图标的间隔 10（默认）| 正整数
+  group: ''
+  block_parameter: Decimation
+  type: 字符向量
+  values: 标量
+```
 
 ### **Display time** — 在模块图标上显示仿真时间 `off`（默认）| `on`
 
@@ -57,7 +78,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 标量 |
 | **默认：** `'10'` |
-
 ## 所属库
 
 Simulink / Sources

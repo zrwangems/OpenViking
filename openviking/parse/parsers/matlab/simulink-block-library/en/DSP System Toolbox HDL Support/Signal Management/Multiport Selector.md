@@ -14,6 +14,17 @@ language: en
 # Multiport Selector
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Output(s)
+  summary: Row- or column-subsets of input vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### Input
 
@@ -37,8 +48,19 @@ output** array determines the number of output ports on the
 block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select
+  summary: Select input dimension Rows (default) | Columns
+  group: ''
+- name: Indices to output
+  summary: Indices to output { 4, [1:2 5], [7; 8], 10:-1:6 } (default) | cell array
+  group: ''
+- name: Invalid index
+  summary: Action to take for invalid index Clip Index (default) | Clip and Warn | Generate Error
+  group: ''
+```
 
 ### **Select** — Select input dimension `Rows` (default) | `Columns`
 
@@ -109,7 +131,6 @@ select one of the following options:
   at the MATLAB® command line.
 - `Generate error` — The block
   displays an error dialog box and terminates the simulation.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Indexing DSP System Toolbox HDL Support / Signal Management

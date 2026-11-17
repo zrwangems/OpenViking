@@ -14,6 +14,18 @@ language: en
 # Flow Coefficient Parameterized Valve (TL)
 
 ## Ports
+```yaml
+ports:
+- name: L
+  summary: Valve control signal, unitless physical signal
+  direction: input
+- name: A
+  summary: Flow passage thermal liquid
+  direction: conserving
+- name: B
+  summary: Flow passage thermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +49,44 @@ direction of flow.
 Opening through which the flow can enter or exit the flow resistance.
 Which of the ports serves as inlet and which as outlet depends on the
 direction of flow.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow coefficient specification
+  summary: Parameterization by which to specify the flow coefficient of the valve Cv coefficient (USG/min) (default) | Kv
+    coefficient (m^3/h)
+  group: ''
+- name: Cv coefficient at maximum flow
+  summary: Flow coefficient expressed in imperial units for a maximally open valve 1 (default) | positive scalar in units
+    of USG/min
+  group: ''
+- name: Kv coefficient at maximum flow
+  summary: Flow coefficient expressed in SI units for a maximally open valve 1 (default) | positive scalar in units of m^3/h
+  group: ''
+- name: Cv coefficient at minimum flow
+  summary: Flow coefficient expressed in imperial units for a maximally closed valve 1e-4 (default) | positive scalar in units
+    of USG/min
+  group: ''
+- name: Kv coefficient at minimum flow
+  summary: Flow coefficient expressed in SI units for a maximally closed valve 1e-4 (default) | positive scalar in units of
+    m^3/h
+  group: ''
+- name: Valve opening characteristics
+  summary: Parameterization by which to compute the valve opening fraction Linear (default) | Quick openingEqual percentages
+  group: ''
+- name: Exponent number
+  summary: Denominator of the exponent in the quick-opening parameterization 2 (default) | positive unitless scalar
+  group: ''
+- name: Valve rangeability
+  summary: Base of the exponent in the equal-percentages parameterization 50 (default) | positive unitless scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at the inlet and outlet of the valve 0.01 m^2 (default) | positive scalar in units of area
+  group: ''
+- name: Critical Reynolds number
+  summary: Reynolds number at which the flow switches between laminar and turbulent 150 (default) | positive unitless scalar
+  group: ''
+```
 
 ### **Flow coefficient specification** — Parameterization by which to specify the flow coefficient of the valve `Cv coefficient (USG/min)` (default) | `Kv coefficient (m^3/h)`
 
@@ -120,7 +168,6 @@ Reynolds number at which the fluid in the valve is expected to switch
 between its laminar and turbulent flow regimes. The switch is assumed to
 occur at once: the transition region that normally exists between the two
 flow regimes is ignored.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices

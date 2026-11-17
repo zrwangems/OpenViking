@@ -14,6 +14,21 @@ language: en
 # Battery Power Estimator
 
 ## Ports
+```yaml
+ports:
+- name: CellSOC
+  summary: Cell state of charge, unitless scalar | vector
+  direction: input
+- name: CellTemperature
+  summary: Cell temperature, K scalar | vector
+  direction: input
+- name: MaxPowerDischarging
+  summary: Maximum power for discharging battery, W scalar
+  direction: output
+- name: MaxPowerCharging
+  summary: Maximum power for charging battery, W scalar
+  direction: output
+```
 
 ### Input
 
@@ -39,8 +54,70 @@ Maximum power for discharging the battery over the prediction horizon.
 ### **MaxPowerCharging** — Maximum power for charging battery, W scalar
 
 Maximum power for charging the battery over the prediction horizon.
-
 ## Parameters
+```yaml
+parameters:
+- name: Vector of state-of-charge values, SOC (-)
+  summary: SOC breakpoints [0, .1, .25, .5, .75, .9, 1] (default) | vector of scalars in the range [0, 1]
+  group: Battery
+- name: Vector of temperatures, T
+  summary: Temperature breakpoints [278, 293, 313] (default) | vector of positive scalars
+  group: Battery
+- name: No-load voltage, V0(SOC,T), (V)
+  summary: '*V*0 lookup table [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07,
+    4.08, 4.08; 4.19, 4.19, 4.19] (default) | matrix of nonnegative entries'
+  group: Battery
+- name: Charging pulse test resistance, R0Dt(SOC,T), (ohm)
+  summary: Charging resistances over pulse of Δt seconds [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107,
+    .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] (default) | matrix of nonnegative entries
+  group: Battery
+- name: Discharging pulse test resistance, R0Dt(SOC,T), (ohm)
+  summary: Discharging resistances over pulse of Δt seconds [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107,
+    .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] (default) | matrix of nonnegative entries
+  group: Battery
+- name: Cell capacity, AH (A\*Hr)
+  summary: Battery capacity when fully charged 27 (default) | nonnegative scalar
+  group: Battery
+- name: Number of series modules, Ns
+  summary: Number of modules in series 10 (default) | positive scalar
+  group: Battery
+- name: Number of parallel modules, Np
+  summary: Number of modules in parallel 1 (default) | positive scalar
+  group: Battery
+- name: Charging efficiency ratio
+  summary: Ratio of charging efficiency 1 (default) | nonnegative scalar in the range (0,1]
+  group: Battery
+- name: Minimum cell voltage (V)
+  summary: Minimum voltage of cell 2.5 (default) | positive scalar
+  group: Limits
+- name: Maximum cell voltage (V)
+  summary: Maximum voltage of cell 4.5 (default) | positive scalar
+  group: Limits
+- name: Minimum state of charge, SOCmin(-)
+  summary: Minimum state of charge 0.1 (default) | nonnegative scalar in the range [0,1]
+  group: Limits
+- name: Maximum state of charge, SOCmax(-)
+  summary: Maximum state of charge 0.9 (default) | nonnegative scalar in the range [0,1]
+  group: Limits
+- name: Minimum pack current (A)
+  summary: Minimum current of pack -200 (default) | negative scalar
+  group: Limits
+- name: Maximum pack current (A)
+  summary: Maximum current of pack 200 (default) | positive scalar
+  group: Limits
+- name: Minimum cell power (W)
+  summary: Minimum power of battery cell -inf (default) | negative scalar
+  group: Limits
+- name: Maximum cell power (W)
+  summary: Maximum power of battery cell inf (default) | positive scalar
+  group: Limits
+- name: Time horizon (s)
+  summary: Time horizon 10 (default) | positive scalar
+  group: Limits
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: Signal Attributes
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -194,7 +271,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Estimators

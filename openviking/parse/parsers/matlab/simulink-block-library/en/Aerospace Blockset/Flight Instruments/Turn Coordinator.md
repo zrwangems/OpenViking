@@ -14,10 +14,25 @@ language: en
 # Turn Coordinator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Connect to signal signal name | 2-element signal
+  group: ''
+- name: Label
+  summary: Block label location Top (default) | Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — Connect to signal signal name | 2-element signal
 
@@ -59,7 +74,6 @@ hidden.
 | **Type**: character vector |
 | **Values**: `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default**: `'Top'` |
-
 ## Libraries
 
 Aerospace Blockset / Flight Instruments

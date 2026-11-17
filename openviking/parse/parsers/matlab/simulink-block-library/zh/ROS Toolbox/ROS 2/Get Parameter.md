@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Get Parameter
 
 ## 端口
+```yaml
+ports:
+- name: Value
+  summary: 参数值 标量 | 数组
+  direction: output
+  data_types: double | int64 | Boolean | uint8[]
+- name: Length
+  summary: 数组参数的长度 标量
+  direction: output
+```
 
 ### 输出
 
@@ -35,8 +45,25 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Data type** 参数设置为 `uint8[]`、`double[]`、`int64[]` 或 `boolean[]`。
-
 ## 参数
+```yaml
+parameters:
+- name: Name
+  summary: 参数名称 mynamespace.param（默认）| 字符串
+  group: ''
+- name: Data type
+  summary: 参数的数据类型 double（默认）| int64 | boolean | uint8[] | double[] | int64[] | boolean[]
+  group: ''
+- name: Maximum length
+  summary: 数组的最大长度 16（默认）| 数值标量
+  group: ''
+- name: Initial value
+  summary: 默认参数值输出 0.0（默认）| 数值标量 | 向量
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 -1（默认）| 数值标量
+  group: ''
+```
 
 ### **Name** — 参数名称 `mynamespace.param`（默认）| 字符串
 
@@ -70,7 +97,6 @@ chinese_source: worker-translation
 输出之间的间隔，指定为数值标量。默认值 `-1` 表示模块从模型继承输出采样时间。否则，模块在 `Sample time` 的每个间隔输出一个新的空白消息。
 
 有关详细信息，请参阅 Specify Sample Time (Simulink)。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

@@ -14,6 +14,72 @@ language: en
 # FEM-Parameterized Synchronous Machine
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase composite electrical
+  direction: conserving
+- name: a
+  summary: '*A* phase electrical'
+  direction: conserving
+- name: b
+  summary: '*B* phase electrical'
+  direction: conserving
+- name: c
+  summary: '*C* phase electrical'
+  direction: conserving
+- name: ~1
+  summary: Stator positive-end connections electrical
+  direction: conserving
+- name: ~2
+  summary: Stator negative-end connections electrical
+  direction: conserving
+- name: a1
+  summary: '*a* positive-end connection electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* positive-end connection electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* positive-end connection electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* negative-end connection electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* negative-end connection electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* negative-end connection electrical'
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: fd+
+  summary: Field winding positive terminal electrical
+  direction: conserving
+- name: fd-
+  summary: Field winding negative terminal electrical
+  direction: conserving
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+- name: HA
+  summary: Winding *A* thermal port thermal
+  direction: conserving
+- name: HB
+  summary: Winding *B* thermal port thermal
+  direction: conserving
+- name: HC
+  summary: Winding *C* thermal port thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -253,8 +319,96 @@ Thermal conserving port associated with the rotor.
 To enable this port, in the **Thermal Ports**
 section, enable the **Model thermal effects**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Flux & Torque
+- name: Winding type
+  summary: Stator windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Flux & Torque
+- name: Number of pole pairs
+  summary: Rotor pole pairs 4 (default) | positive integer
+  group: Flux & Torque
+- name: Park's convention for tabulated data
+  summary: Park convention for tabulated data Q leads D, rotor angle measured from A-phase to D-axis (default) | Q leads D,
+    rotor angle measured from A-phase to Q-axis | D leads Q, rotor angle measured from A-phase to D-axis | D leads Q, rotor
+    angle measured from A-phase to Q-axis
+  group: Flux & Torque
+- name: Peak current magnitude vector, I
+  summary: Peak current magnitudes [0, 100, 200] A (default) | row vector of nonnegative values
+  group: Flux & Torque
+- name: Current advance angle vector, B
+  summary: Current advance angles [-180, -90, 0, 90, 180] deg (default) | row vector of real values
+  group: Flux & Torque
+- name: Field current vector, If
+  summary: Field currents [0, 2, 4, 6, 8, 10] A (default) | row vector of nonnegative values
+  group: Flux & Torque
+- name: Rotor angle vector, theta
+  summary: Rotor angles [0, 15, 30, 45, 60, 75, 90] deg (default) | row vector of nonnegative values
+  group: Flux & Torque
+- name: A-phase flux linkage, F(I,B,If,theta)
+  summary: '*A*-phase flux linkage zeros(3, 5, 6, 7) Wb (default) | 4-D array'
+  group: Flux & Torque
+- name: Torque matrix, T(I,B,If,theta)
+  summary: Torque zeros(3, 5, 6, 7) N*m (default) | 4-D array
+  group: Flux & Torque
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Flux & Torque
+- name: Expose neutral port
+  summary: Neutral port visibility Off (default) | On
+  group: Flux & Torque
+- name: Stator zero-sequence inductance, L0
+  summary: Stator zero-sequence inductance 0.00016 H (default) | positive scalar
+  group: Flux & Torque
+- name: Stator resistance per phase
+  summary: Stator resistance per phase 0.013 Ohm (default) | positive scalar
+  group: Resistance
+- name: Field winding resistance
+  summary: Resistance of field winding 0.1 Ohm (default) | positive scalar
+  group: Resistance
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Resistance
+- name: Measurement temperature
+  summary: Resistance measurement temperature 298.15 k (default) | nonnegative scalar
+  group: Resistance
+- name: Rotor hysteresis loss coefficient, k_hr(I,B,If)
+  summary: Rotor hysteresis loss coefficient zeros(3, 5, 6) W/Hz (default) | 3-D array of real values
+  group: Iron Losses
+- name: Rotor eddy current loss coefficient, k_Jr(I,B,If)
+  summary: Rotor eddy current loss coefficient zeros(3, 5, 6) W/Hz^2 (default) | 3-D array of real values
+  group: Iron Losses
+- name: Rotor excess current loss coefficient, k_er(I,B,If)
+  summary: Rotor excess current loss coefficient zeros(3, 5, 6) W/Hz^(3/2) (default) | 3-D array of real values
+  group: Iron Losses
+- name: Stator hysteresis loss coefficient, k_hs(I,B,If)
+  summary: Stator hysteresis loss coefficient zeros(3, 5, 6) W/Hz (default) | 3-D array of real values
+  group: Iron Losses
+- name: Stator eddy current loss coefficient, k_Js(I,B,If)
+  summary: Stator eddy current loss coefficient zeros(3, 5, 6) W/Hz^2 (default) | 3-D array of real values
+  group: Iron Losses
+- name: Stator excess current loss coefficient, k_es(I,B,If)
+  summary: Stator excess current loss coefficient zeros(3, 5, 6) W/Hz^(3/2) (default) | 3-D array of real values
+  group: Iron Losses
+- name: Rotor inertia
+  summary: Inertia 0 kg*m^2 (default) | nonnegative scalar
+  group: Mechanical
+- name: Rotor Damping
+  summary: Damping 0 N*m*s/rad (default) | nonnegative scalar
+  group: Mechanical
+- name: Model thermal effects
+  summary: Option to model thermal effects Off (default) | On
+  group: Thermal Ports
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal Ports
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal Ports
+```
 
 ### Flux & Torque
 
@@ -497,7 +651,6 @@ energy required to raise the temperature by one degree.
 
 Thermal mass of the rotor. The thermal mass is the energy required to
 raise the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Synchronous

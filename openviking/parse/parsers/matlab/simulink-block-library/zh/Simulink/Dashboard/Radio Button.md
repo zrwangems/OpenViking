@@ -15,10 +15,65 @@ chinese_source: worker-translation
 # Radio Button
 
 ## 端口
+```yaml
+ports: []
+```
 
 在 R2025b 中未提供文档。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的模块参数值 参数值连接选项
+  group: Connection
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: 枚举数据类型
+  summary: 使用枚举数据类型指定状态值和标签 off（默认） | on
+  group: 主要
+  block_parameter: EnumeratedDataType
+  type: string or character array
+  values: '''on'' | ''off'''
+  default: ''''''
+- name: Group Name
+  summary: Radio Button 组的名称 RadioButtonGroup（默认值）| character vector
+  group: 主要
+  block_parameter: ButtonGroupName
+  type: string 或 character array
+  default: '''Group'''
+- name: Label
+  summary: 模块标签位置 Top（默认值）| Bottom | Hide
+  group: 主要
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+- name: States
+  summary: 为连接的参数选择的状态集 scalar 和 character vector
+  group: 主要
+  block_parameter: States
+  type: structure
+  default: 3x1 结构体数组
+- name: Opacity
+  summary: 模块背景不透明度 1（默认值） | scalar
+  group: 格式
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+- name: Foreground Color
+  summary: 模块前景色 [r g b] 向量
+  group: 格式
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] 向量'
+- name: Background Color
+  summary: 模块背景色 [r g b] 向量
+  group: 格式
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] 向量'
+```
 
 ### Connection
 
@@ -187,7 +242,6 @@ radioStates = [state1 state2];
 | **模块参数：** `BackgroundColor` |
 | **类型：** character vector | string |
 | **值：** `[r g b]` 向量 |
-
 ## 所属库
 
 Simulink / Dashboard

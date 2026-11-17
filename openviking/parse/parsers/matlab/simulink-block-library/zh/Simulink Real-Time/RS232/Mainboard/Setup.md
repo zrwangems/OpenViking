@@ -15,10 +15,33 @@ chinese_source: worker-translation
 # Legacy Serial Setup
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Serial port
+  summary: 选择串行端口 Legacy Serial Port 1（默认）| .. | Legacy Serial Port 8 | USB Serial Port 1 | .. | USB Serial Port 8
+  group: ''
+- name: Baud rate
+  summary: 选择串行端口波特率 115200（默认）| 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1200 | 600 | 300 | 110
+  group: ''
+- name: Number of data bits
+  summary: 选择串行端口数据位 8（默认）| 7 | 6 | 5
+  group: ''
+- name: Number of stop bits
+  summary: 选择串行端口停止位 1（默认）| 2
+  group: ''
+- name: Parity
+  summary: 选择串行端口奇偶校验 None（默认）| Even | Odd | Mark | Space
+  group: ''
+- name: Enable auto RTX/CTS
+  summary: 选择串行端口 RTX/CTS 模式 off（默认）| on
+  group: ''
+```
 
 ### **Serial port** — 选择串行端口 `Legacy Serial Port 1`（默认）| .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
@@ -79,7 +102,6 @@ parity
 ```
 ctsmode
 ```
-
 ## 所属库
 
 Simulink Real-Time / RS232 / Mainboard

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Notch-Peak Filter
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: notch
+  summary: 陷波滤波器输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: peak
+  summary: 峰值滤波器输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -41,8 +56,58 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter specification
+  summary: 滤波器设计规格 Bandwidth and center frequency（默认）| Coefficients | Quality factor and center frequency
+  group: ''
+- name: Specify bandwidth from input port
+  summary: 从输入端口指定 3 dB 带宽的选项 off（默认）| on
+  group: ''
+- name: 3 dB bandwidth
+  summary: 3-dB 带宽 2205（默认）| 正标量
+  group: ''
+- name: Specify center frequency from input port
+  summary: 从输入端口指定中心频率的选项 off（默认）| on
+  group: ''
+- name: Center frequency of notch or peak
+  summary: 陷波或峰值中心频率 11025（默认）| 正标量
+  group: ''
+- name: Specify bandwidth coefficient from input port
+  summary: 从输入端口指定带宽系数的选项 off（默认）| on
+  group: ''
+- name: Bandwidth coefficient
+  summary: 带宽系数 0.72654（默认）| 范围 [−1 1] 内的实标量
+  group: ''
+- name: Specify center frequency coefficient from input port
+  summary: 从输入端口指定中心频率系数的选项 off（默认）| on
+  group: ''
+- name: Center frequency coefficient
+  summary: 中心频率系数 0（默认）| 范围 [−1 1] 内的实标量
+  group: ''
+- name: Specify quality factor from input port
+  summary: 从输入端口指定品质因数的选项 off（默认）| on
+  group: ''
+- name: Quality factor
+  summary: 陷波或峰值滤波器的品质因数 5（默认）| 正标量
+  group: ''
+- name: Filter output
+  summary: 输出的滤波器响应 Notch and Peak（默认）| Notch | Peak
+  group: ''
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入的采样率 44100（默认）| 正标量
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应按钮（默认）
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Filter specification** — 滤波器设计规格 `Bandwidth and center frequency`（默认）| `Coefficients` | `Quality factor and center frequency`
 
@@ -321,7 +386,6 @@ Configure Filter Visualizer。
   生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，该 C 代码将在
   后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续
   仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Thermal Mass
 
 ## 端口
+```yaml
+ports:
+- name: Mdot
+  summary: 质量控制信号，kg/s 物理信号
+  direction: input
+- name: Tin
+  summary: 进入质量流的温度，K 物理信号
+  direction: input
+- name: M
+  summary: 将质量连接到回路热网络的端口
+  direction: input
+- name: N
+  summary: 第二个图形化热端口
+  direction: input
+```
 
 ### 输入
 
@@ -50,8 +65,25 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Number of graphical ports** 参数设置为 `2`。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass type
+  summary: 指定热质量是否可以在仿真期间变化 Constant（默认）| Variable
+  group: ''
+- name: Mass
+  summary: 恒定质量 1 kg（默认）| 正标量
+  group: ''
+- name: Specific heat
+  summary: 材料的比热容 447 J/(K*kg)（默认）| 正标量
+  group: ''
+- name: Minimum mass
+  summary: 最小可接受质量 1e-6 kg（默认）| 正标量
+  group: ''
+- name: Number of graphical ports
+  summary: 可见端口数量 1（默认）| 2
+  group: ''
+```
 
 ### **Mass type** — 指定热质量是否可以在仿真期间变化 `Constant`（默认）| `Variable`
 
@@ -86,7 +118,6 @@ chinese_source: worker-translation
 
 - `1` — 模块有一个守恒端口，将其连接到热回路。当模块只有一个端口时，将其连接到其他两个模块之间的连接线上。
 - `2` — 选择此选项会暴露第二个端口，允许您将模块与回路中的其他模块串联连接。由于两个端口具有相同的温度，模块的功能与只有一个端口时相同。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Elements

@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # Current-Controlled Voltage Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块有四个电气守恒端口。模块左侧的连接 + 和 – 是控制端口。箭头指示电流流动的正方向。另外两个端口是提供输出电压的电气端子。极性由 + 和 – 符号指示。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Transresistance K**
 :   两个输出端子之间的电压与流过两个控制端子之间的电流之比。默认值为 `1` Ω。
-
 ## 所属库
 
 R2025b 中未记录。

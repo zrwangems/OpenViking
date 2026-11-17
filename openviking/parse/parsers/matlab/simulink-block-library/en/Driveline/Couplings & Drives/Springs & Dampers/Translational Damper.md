@@ -14,6 +14,18 @@ language: en
 # Translational Damper
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod interface mechanical translational
+  direction: conserving
+- name: C
+  summary: Case interface mechanical translational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +48,25 @@ damper temperature, and therefore, power transmission efficiency.
 
 To enable this port, set **Thermal port** to
 `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Damping coefficient
+  summary: Damping coefficient 100 N/(m/s) (default) | nonnegative scalar
+  group: ''
+- name: Damping fault
+  summary: Fault option Add fault
+  group: ''
+- name: Faulted damping coefficient
+  summary: Faulted damping coefficient 1e6 N*s/m (default)
+  group: ''
+- name: Thermal port
+  summary: Thermal modelling Omit (default) | Model
+  group: ''
+- name: Thermal mass
+  summary: Thermal mass 50 kJ/K (default) | positive scalar
+  group: ''
+```
 
 #### Main
 
@@ -72,7 +101,6 @@ Option to model effects of heat flow and temperature change.
 Thermal energy required to change the component temperature by a unit
 increase. The thermal mass represents the ability of the damper to absorb
 and retain heat energy.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

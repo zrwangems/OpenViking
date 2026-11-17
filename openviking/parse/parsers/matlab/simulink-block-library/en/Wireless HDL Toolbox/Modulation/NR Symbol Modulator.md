@@ -14,6 +14,33 @@ language: en
 # NR Symbol Modulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data bits scalar
+  direction: input
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: Indicate valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: modSel
+  summary: Modulation selection integer
+  direction: input
+  data_types: fixdt(0,3,0) | double | single
+- name: load
+  summary: Modulation control scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Modulated complex data symbols scalar
+  direction: output
+  data_types: single | double | fixdt(1,wordlength,wordlength-2)
+- name: valid
+  summary: Valid output data indication scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -115,8 +142,22 @@ data on the **data** output port. When this value is
 **data** output port.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation source
+  summary: Source for modulation type Property (default) | Input port
+  group: Main
+- name: Modulation
+  summary: Modulation type BPSK (default) | QPSK | 16-QAM | 64-QAM | 256-QAM | pi/2-BPSK
+  group: Main
+- name: Output data type
+  summary: Output data type selection Custom (default) | double | single
+  group: Data Types
+- name: Word length
+  summary: Output word length 16 (default) | integer in the range [3, 32]
+  group: Data Types
+```
 
 ### Main
 
@@ -157,7 +198,6 @@ Specify the output word length. This value must be an integer in the range [3,
 
 To enable this parameter, set the **Output data type**
 parameter to `Custom`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

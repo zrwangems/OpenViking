@@ -14,6 +14,15 @@ language: en
 # Proportional Valve Actuator
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Valve opening signal physical signal
+  direction: input
+- name: S
+  summary: Valve opening distance, m physical signal
+  direction: output
+```
 
 ### Input
 
@@ -32,8 +41,19 @@ physical signal.
 If you use the Proportional Valve Actuator block with a valve from the
 Gas Library, the gas block converts the actuator signal units of m to
 units of 1.
-
 ## Parameters
+```yaml
+parameters:
+- name: Actuator gain
+  summary: Input signal multiplier 5e-4 m (default) | positive scalar
+  group: ''
+- name: Time constant
+  summary: Opening signal time constant 0.01 s (default) | positive scalar
+  group: ''
+- name: Valve stroke
+  summary: Maximum valve opening distance 0.005 m (default) | positive scalar
+  group: ''
+```
 
 ### **Actuator gain** — Input signal multiplier `5e-4 m` (default) | positive scalar
 
@@ -48,7 +68,6 @@ opening or closing signal.
 ### **Valve stroke** — Maximum valve opening distance `0.005 m` (default) | positive scalar
 
 Maximum opening distance of the connected valve.
-
 ## Libraries
 
 Simscape / Fluids / Valve Actuators Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces / Valve Actuators

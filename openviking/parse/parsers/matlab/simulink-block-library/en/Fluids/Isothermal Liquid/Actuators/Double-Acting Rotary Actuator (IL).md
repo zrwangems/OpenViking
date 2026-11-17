@@ -14,6 +14,27 @@ language: en
 # Double-Acting Rotary Actuator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Shaft angle physical signal
+  direction: input
+- name: q
+  summary: Actuator angle physical signal
+  direction: output
+- name: A
+  summary: Chamber A inlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Chamber B inlet isothermal liquid
+  direction: conserving
+- name: R
+  summary: Actuator shaft mechanical rotational
+  direction: conserving
+- name: C
+  summary: Actuator casing mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -58,8 +79,84 @@ Mechanical rotational conserving port associated with the shaft.
 ### **C** — Actuator casing mechanical rotational
 
 Mechanical rotational conserving port associated with the cylinder case.
-
 ## Parameters
+```yaml
+parameters:
+- name: Same fluid on both sides
+  summary: Option to model same fluid in both chambers on (default) | off
+  group: Actuator
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Actuator
+- name: Volume displacement in chamber A
+  summary: Volume displacement 1e-4 m^3/rad (default) | positive scalar
+  group: Actuator
+- name: Volume displacement in chamber B
+  summary: Volume displacement 1e-4 m^3/rad (default) | positive scalar
+  group: Actuator
+- name: Stroke
+  summary: Angle 5.0 rad (default) | positive scalar
+  group: Actuator
+- name: Dead volume in chamber A
+  summary: Fluid volume 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Dead volume in chamber B
+  summary: Fluid volume 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Environment pressure specification
+  summary: Pressure reference source Atmospheric pressure (default) | Specified pressure
+  group: Actuator
+- name: Environment pressure
+  summary: User-defined pressure reference 0.101325 MPa (default) | positive scalar
+  group: Actuator
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard stop stiffness coefficient
+  summary: Stiffness coefficient 1e6 N\*m/rad (default) | positive scalar
+  group: Hard Stop
+- name: Hard stop damping coefficient
+  summary: Damping coefficient 150 N\*m(rad/s) (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Transition region 0.001 rad (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.1 rad/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release torque threshold
+  summary: Threshold torque needed to transition from contact mode to free mode 0.001 N*m (default) | positive scalar
+  group: Hard Stop
+- name: Shaft rotation from chamber A
+  summary: Method for determining shaft angle Calculate from velocity of port R relative to port C (default) | Provide input
+    signal from Multibody joint
+  group: Initial Conditions
+- name: Initial shaft rotation from chamber A
+  summary: Initial rotation 0 rad (default) | scalar
+  group: Initial Conditions
+- name: Enable dynamic compressibility
+  summary: Fluid compressibility On (default) | Off
+  group: Initial Conditions
+- name: Initial liquid pressure in chamber A
+  summary: Liquid pressure 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Initial liquid pressure in chamber B
+  summary: Liquid pressure 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Nominal liquid pressure in chamber A
+  summary: Pressure at nominal operating conditions in chamber A 0.101325 MPa (default) | scalar
+  group: Initial Conditions
+- name: Nominal liquid pressure in chamber B
+  summary: Pressure at nominal operating conditions in chamber B 0.101325 MPa (default) | scalar
+  group: Initial Conditions
+```
 
 ### Actuator
 
@@ -302,7 +399,6 @@ disabled.
 
 To enable this parameter, clear the **Enable dynamic
 compressibility** checkbox.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Actuators

@@ -14,6 +14,18 @@ language: en
 # Pressure Transducer
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: pressure measurement gas | hydraulic | thermal liquid | moist air | two-phase fluid | isothermal liquid
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -32,8 +44,34 @@ terminal.
 
 Electrical conserving port associated with the negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Fluid port type
+  summary: Type of fluid port Gas (default) | Hydraulic | Thermal Liquid | Moist Air | Two-Phase Fluid | Isothermal Liquid
+  group: ''
+- name: Pressure range
+  summary: Maximum pressure 1e6 Pa (default) | positive scalar
+  group: ''
+- name: Operation mode
+  summary: Reference point for pressure measurement Absolute (default) | Gauge | Sealed-Gauge
+  group: ''
+- name: Reference pressure
+  summary: Reference pressure 101325 Pa (default) | positive scalar
+  group: ''
+- name: Full-scale deflection
+  summary: Output voltage at full-scale deflection 5 V (default) | positive scalar
+  group: ''
+- name: Output resistance
+  summary: Transducer output resistance 200 Ohm (default) | nonnegative scalar
+  group: ''
+- name: Dynamics
+  summary: Sensor dynamics option No dynamics — Suitable for HIL (default) | Model transducer bandwidth
+  group: ''
+- name: Bandwidth
+  summary: Bandwidth 5 kHz (default) | positive scalar
+  group: ''
+```
 
 ### **Fluid port type** — Type of fluid port `Gas` (default) | `Hydraulic` | `Thermal Liquid` | `Moist Air` | `Two-Phase Fluid` | `Isothermal Liquid`
 
@@ -144,7 +182,6 @@ Bandwidth. This parameter determines the value of the sensor lag.
 
 To enable this parameter, set **Dynamics** to
 `Model transducer bandwidth`.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

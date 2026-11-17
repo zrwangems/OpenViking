@@ -14,6 +14,49 @@ language: en
 # IFFT
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar or column vector of real or complex values
+  direction: input
+  data_types: fixed point | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | single | double
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: log2FFTLen
+  summary: Log2 of the FFT length scalar
+  direction: input
+  data_types: fixdt(0,M,0) where 1<M<6
+- name: loadFFTLen
+  summary: Indicates valid FFT size scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Frequency channel output data scalar or column vector of real or complex values
+  direction: output
+  data_types: fixed point | double | single
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready for new input data scalar
+  direction: output
+  data_types: Boolean
+- name: start
+  summary: Indicates first valid cycle of output frame scalar
+  direction: output
+  data_types: Boolean
+- name: end
+  summary: Indicates last valid cycle of output frame scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -197,8 +240,48 @@ To enable this port, on the **Control Ports** tab, select the
 **Enable end output port** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Architecture
+  summary: Hardware implementation Streaming Radix 2^2 (default) | Burst Radix 2
+  group: Main
+- name: FFT length source
+  summary: Source of FFT length Property (default) | Input port
+  group: Main
+- name: FFT length
+  summary: Number of data points used for one FFT calculation 1024 (default)
+  group: Main
+- name: Maximum FFT length
+  summary: Highest FFT length expected from the input port 1024 (default)
+  group: Main
+- name: Complex multiplication
+  summary: Hardware implementation of complex multipliers Use 4 multipliers and 2 adders (default) | Use 3 multipliers and
+    5 adders
+  group: Main
+- name: Output in bit-reversed order
+  summary: Order of output data on (default) | off
+  group: Main
+- name: Input in bit-reversed order
+  summary: Expected order of input data off (default) | on
+  group: Main
+- name: Divide butterfly outputs by two
+  summary: FFT scaling on (default) | off
+  group: Main
+- name: Rounding Method
+  summary: Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Zero
+  group: Data Types
+- name: Enable reset input port
+  summary: Optional reset signal off (default) | on
+  group: Control Ports
+- name: Enable start output port
+  summary: Optional control signal indicating start of data off (default) | on
+  group: Control Ports
+- name: Enable end output port
+  summary: Optional control signal indicating end of data off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -343,7 +426,6 @@ indicates the first sample of a frame of output data.
 
 Enable the output **end** port on the block. This output signal
 indicates the last sample of a frame of output data.
-
 ## Libraries
 
 DSP HDL Toolbox / Transforms

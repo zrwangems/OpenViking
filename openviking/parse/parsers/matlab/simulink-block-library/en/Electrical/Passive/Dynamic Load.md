@@ -14,6 +14,21 @@ language: en
 # Dynamic Load
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Real power, W physical signal
+  direction: input
+- name: Q
+  summary: Reactive power, V\*A physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +52,49 @@ terminal.
 
 Electrical conserving port associated with the dynamic load negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Load type
+  summary: Load type DC (default) | AC
+  group: Main
+- name: Minimum supply voltage
+  summary: Minimum DC supply voltage 20 V (default) | scalar
+  group: Main
+- name: Minimum consumed power
+  summary: Minimum consumed power 1e-3 W (default) | scalar
+  group: Main
+- name: Reverse conductance
+  summary: Reverse conductance 1e-6 S (default) | scalar
+  group: Main
+- name: Transition voltage width
+  summary: Transition voltage width 1e-3 V (default) | scalar
+  group: Main
+- name: Rated frequency
+  summary: Rated frequency 60 Hz (default) | scalar
+  group: Main
+- name: Minimum supply voltage (RMS)
+  summary: Minimum AC supply voltage 200 V (default) | scalar
+  group: Main
+- name: Voltage time constant
+  summary: Time constant for voltage dynamics 0.01 s (default) | positive scalar
+  group: Main
+- name: Initial supply voltage (RMS)
+  summary: Initial terminal voltage 300 V (default) | positive scalar
+  group: Main
+- name: Initial supply voltage angle
+  summary: Initial angle of terminal voltage 0 deg (default) | scalar
+  group: Main
+- name: Open circuit fault
+  summary: Option to add open circuit fault Add fault (default)
+  group: Faults
+- name: Open-circuit conductance
+  summary: Open-circuit conductance 1e-4 S (default) | scalar
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+```
 
 ### Main
 
@@ -175,7 +231,6 @@ Simulation time at which the block enters the faulted state.
 
 To enable this parameter, set **Trigger Type** to
 `Timed`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

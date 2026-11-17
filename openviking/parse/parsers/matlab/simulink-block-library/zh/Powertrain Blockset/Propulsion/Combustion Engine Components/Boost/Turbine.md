@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Turbine
 
 ## 端口
+```yaml
+ports:
+- name: Ds
+  summary: 驱动轴转速双向连接端口
+  direction: input
+- name: A
+  summary: 入口压力、温度、焓、质量分数双向连接端口
+  direction: input
+- name: B
+  summary: 出口压力、温度、焓、质量分数双向连接端口
+  direction: input
+- name: RackPos
+  summary: 齿条位置 scalar
+  direction: input
+- name: WgAreaPct
+  summary: 废气门面积百分比 scalar
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: Ds
+  summary: 驱动轴扭矩双向连接端口
+  direction: output
+- name: A
+  summary: 入口质量流量、热流率、温度、质量分数双向连接端口
+  direction: output
+- name: B
+  summary: 出口质量流量、热流率、温度、质量分数双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -135,8 +165,64 @@ wastegate**。
   - `PmMassFrac` — 颗粒物
   - `AirMassFrac` — 空气
   - `BrndGasMassFrac` — 燃烧气体
-
 ## 参数
+```yaml
+parameters:
+- name: Turbine type
+  summary: 选择涡轮类型 Fixed geometry（默认）| Variable geometry
+  group: ''
+- name: Include wastegate
+  summary: 选择 on（默认）| off
+  group: ''
+- name: Calibrate Performance Maps
+  summary: 使用测量数据校准表格 selection
+  group: ''
+- name: 修正质量流量表，mdot_corrfx_tbl
+  summary: 查找表 array
+  group: ''
+- name: 效率表，eta_turbfx_tb
+  summary: 查找表 array
+  group: ''
+- name: 修正转速断点，w_corrfx_bpts1
+  summary: 固定几何 [0 1552 3104 4657 6209 7761 9313 1.087e+04 1.242e+04 1.397e+04]（默认）| vector
+  group: ''
+- name: 压力比断点，Pr_fx_bpts2
+  summary: 固定几何 [1 1.333 1.667 2 2.333 2.667 3 3.333 3.667 4]（默认）| vector
+  group: ''
+- name: 修正质量流量表，mdot_corrvr_tbl
+  summary: 查找表 array
+  group: ''
+- name: 效率表，eta_turbvr_tbl
+  summary: 查找表 array
+  group: ''
+- name: 修正转速断点，w_corrvr_bpts2
+  summary: 可变几何 [0 1752 3504 5257 7009 8761 1.051e+04 1.227e+04 1.402e+04 1.577e+04]（默认）| vector
+  group: ''
+- name: 压力比断点，Pr_vr_bpts2
+  summary: 可变几何 [1 1.306 1.611 1.917 2.222 2.528 2.833 3.139 3.444 3.75]（默认）| vector
+  group: ''
+- name: 齿条断点，L_rack_bpts3
+  summary: 可变几何 [0 0.2 0.3 0.5 0.7 1]（默认）| vector
+  group: ''
+- name: 参考温度，T_ref
+  summary: 温度 293.15（默认）| scalar
+  group: ''
+- name: 参考压力，P_ref
+  summary: 压力 101325（默认）| scalar
+  group: ''
+- name: 废气门流通面积，A_wgopen
+  summary: 面积 0.0003（默认）| scalar
+  group: ''
+- name: 压力比线性化限值，Plim_wg
+  summary: 面积，m^2 0.95（默认）| scalar
+  group: ''
+- name: Ideal gas constant, R
+  summary: 常量 287（默认）| scalar
+  group: ''
+- name: Specific heat at constant pressure, cp
+  summary: 比热 1005（默认）| scalar
+  group: ''
+```
 
 #### 模块选项
 
@@ -308,7 +394,6 @@ geometry`。
 ### **Specific heat at constant pressure, cp** — 比热 `1005`（默认）| `scalar`
 
 定压比热 cp，单位为 J/(kg·K)。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Boost

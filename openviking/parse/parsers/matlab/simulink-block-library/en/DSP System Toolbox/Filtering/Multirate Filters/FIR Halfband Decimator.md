@@ -14,6 +14,21 @@ language: en
 # FIR Halfband Decimator
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal column vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: LP
+  summary: Lowpass subband of decimator output column vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: HP
+  summary: Highpass subband of decimator output column vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### Input
 
@@ -135,8 +150,55 @@ subband** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter specification
+  summary: Filter design parameters Transition width and stopband attenuation (default) | Filter order and transition width
+    | Filter order and stopband attenuation | Coefficients
+  group: Main Tab
+- name: Filter order
+  summary: Filter order 52 (default) | even positive integer
+  group: Main Tab
+- name: Transition width (Hz)
+  summary: Transition width 4.1e3 (default) | positive scalar
+  group: Main Tab
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation 80 (default) | positive real scalar
+  group: Main Tab
+- name: Numerator
+  summary: FIR halfband filter coefficients designHalfbandFIR('TransitionWidth',0.186, 'StopbandAttenuation',80, 'Structure','decim')
+    (default) | row vector
+  group: Main Tab
+- name: Design method
+  summary: Filter design method Auto (default) | Equiripple | Kaiser
+  group: Main Tab
+- name: Output highpass subband
+  summary: Output highpass subband off (default) | on
+  group: Main Tab
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: Main Tab
+- name: Input sample rate (Hz)
+  summary: Sample rate of input signal 44100 (default) | positive real scalar
+  group: Main Tab
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: Main Tab
+- name: View Filter Response
+  summary: View Filter Response button
+  group: Main Tab
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode for output fixed-point operations Floor (default) | Ceiling | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Coefficients
+  summary: Word and fraction lengths of coefficients fixdt(1,16) (default) | fixdt(1,16,0)
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -424,7 +486,6 @@ following:
 Click the **Show data type assistant**
 button  to display the data type assistant,
 which helps you set the coefficients data type.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

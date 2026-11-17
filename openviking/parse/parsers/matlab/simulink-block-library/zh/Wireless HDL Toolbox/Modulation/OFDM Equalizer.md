@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # OFDM Equalizer
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: OFDM 数据标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: hEst
+  summary: 信道估计数据标量
+  direction: input
+  data_types: single | double | int8 | int16 | fixed point
+- name: valid
+  summary: 指示有效输入数据的控制信号标量
+  direction: input
+  data_types: Boolean
+- name: hEstLen
+  summary: 每个符号的估计信道长度标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: loadhEst
+  summary: 信道估计控制标量
+  direction: input
+  data_types: Boolean
+- name: nVar
+  summary: 噪声方差标量
+  direction: input
+  data_types: single | double | uint8 | uint16 | fixed point
+- name: reset
+  summary: 复位内部状态标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 复数输出数据标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输出数据标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -102,8 +141,19 @@ OFDM 数据，指定为复值标量。
 该端口是一个控制信号，用于指示 **data** 输出端口何时有效。当数据样本在 **data** 输出端口上可用时，模块将该输出 **valid** 值设置为 `1`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Equalization method
+  summary: 均衡方法 ZF（默认）| MMSE
+  group: ''
+- name: Maximum length of channel estimate per symbol
+  summary: 每个符号的信道估计最大长度 52（默认）| 范围从 2 到 65,536 的整数
+  group: ''
+- name: Enable reset input port
+  summary: 复位信号 off（默认）| on
+  group: ''
+```
 
 ### **Equalization method** — 均衡方法 `ZF`（默认）| `MMSE`
 
@@ -118,7 +168,6 @@ OFDM 数据，指定为复值标量。
 ### **Enable reset input port** — 复位信号 `off`（默认）| `on`
 
 选择此参数以启用 **reset** 输入端口。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

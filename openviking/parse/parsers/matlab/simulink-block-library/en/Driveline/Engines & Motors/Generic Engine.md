@@ -14,6 +14,27 @@ language: en
 # Generic Engine
 
 ## Ports
+```yaml
+ports:
+- name: Thr
+  summary: Normalized engine throttle level, unitless physical signal
+  direction: input
+- name: Trq
+  summary: Torque command, N\*m physical signal
+  direction: input
+- name: P
+  summary: Instantaneous engine power, W physical signal
+  direction: output
+- name: FC
+  summary: Fuel consumption rate, kg/s physical signal
+  direction: output
+- name: B
+  summary: Engine block mechanical rotational
+  direction: conserving
+- name: F
+  summary: Engine crankshaft mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -60,8 +81,127 @@ Mechanical rotational conserving port associated with the engine crankshaft. Thi
 follower port of the engine. The crankshaft transmits the power
 generated from the combustion process. Typically, you attach a clutch
 and transmission to this port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input type
+  summary: Option to drive by normalized throttle or by torque Normalized throttle (default) | Torque command
+  group: Engine Specifications
+- name: Model parameterization
+  summary: Engine model Normalized 3rd-order polynomial matched to peak power (default) | Tabulated torque data | Tabulated
+    power data
+  group: Engine Specifications
+- name: Engine type
+  summary: Combustion process to model Spark-ignition (default) | Diesel | Generic
+  group: Engine Specifications
+- name: Maximum torque
+  summary: Physical limit of engine torque output 380 N*m (default) | positive scalar
+  group: Engine Specifications
+- name: Speed at maximum torque
+  summary: Crankshaft angular velocity when engine reaches maximum power output 4300 rpm (default) | positive scalar
+  group: Engine Specifications
+- name: Maximum power
+  summary: Physical limit of engine power output 230 kW (default) | positive scalar
+  group: Engine Specifications
+- name: Speed at maximum power
+  summary: Crankshaft angular velocity when engine reaches maximum torque output 6858 rpm (default) | positive scalar
+  group: Engine Specifications
+- name: Maximum speed
+  summary: Maximum crankshaft angular velocity 7000 rpm (default) | positive scalar
+  group: Engine Specifications
+- name: Stall speed
+  summary: Engine cutoff speed 500 rpm (default) | positive scalar
+  group: Engine Specifications
+- name: Stall speed threshold
+  summary: Engine cutoff threshold 100 rpm (default) | positive scalar
+  group: Engine Specifications
+- name: Speed vector
+  summary: Tabulated engine speed data [500, 1000, 2000, 3000, 4300, 5000, 6000, 7000] rpm (default) | vector
+  group: Engine Specifications
+- name: Torque vector
+  summary: Tabulated engine torque data [250, 280, 330, 360, 380, 370, 350, 310] N*m (default) | vector
+  group: Engine Specifications
+- name: Power vector
+  summary: Tabulated engine power data [10, 30, 70, 110, 165, 190, 220, 230] kW (default) | vector
+  group: Engine Specifications
+- name: Interpolation method
+  summary: Intermediate point calculation method Linear (default) | Smooth
+  group: Engine Specifications
+- name: Inertia
+  summary: Enable inertia modeling parameters No inertia (default) | Specify inertia and initial velocity
+  group: Dynamics
+- name: Engine inertia
+  summary: Engine crankshaft rotational inertia 1 kg*m^2 (default) | positive scalar
+  group: Dynamics
+- name: Initial velocity
+  summary: Engine crankshaft angular velocity 800 rpm (default) | positive scalar
+  group: Dynamics
+- name: Time constant
+  summary: Enable engine lag modeling parameters No lag - Suitable for HIL simulation (default) | Specify time constant and
+    initial value
+  group: Dynamics
+- name: Engine time constant
+  summary: Engine lag value 0.2 s (default) | positive scalar
+  group: Dynamics
+- name: Initial normalized throttle
+  summary: Engine initial throttle value 0 (default) | scalar in the range [0,1]
+  group: Dynamics
+- name: Fuel consumption model
+  summary: Enable fuel consumption modeling parameters No fuel consumption (default) | Constant per revolution | Fuel consumption
+    by speed and torque | ...
+  group: Fuel Consumption
+- name: Fuel consumption per revolution
+  summary: Constant 25 mg/rev (default) | positive scalar
+  group: Fuel Consumption
+- name: Speed vector
+  summary: Engine speed data [1000, 2000, 3000, 4000, 5000, 6000] (default) | vector
+  group: Fuel Consumption
+- name: Torque vector
+  summary: Engine torque data [0, 80, 160, 200, 240, 320, 360, 400] (default) | vector
+  group: Fuel Consumption
+- name: Fuel consumption table
+  summary: Engine fuel consumption data *M*-by-*N* matrix (default) | matrix
+  group: Fuel Consumption
+- name: Brake mean effective pressure vector
+  summary: Piston pressure data [0, 250, 500, 625, 750, 1000, 1150, 1250] (default) | vector
+  group: Fuel Consumption
+- name: Brake specific fuel consumption table
+  summary: Brake specific fuel consumption data *M*-by-*N* matrix (default) | matrix
+  group: Fuel Consumption
+- name: Displaced volume
+  summary: Fuel volume displaced by a single piston stroke 400 cm^3 (default) | positive scalar
+  group: Fuel Consumption
+- name: Interpolation method
+  summary: Intermediate step behavior Linear (default) | Smooth
+  group: Fuel Consumption
+- name: Revolutions per cycle
+  summary: Combustion cycle revolutions 2 (default) | 1
+  group: Fuel Consumption
+- name: Idle speed control
+  summary: Enable speed control parameters Off (default) | On
+  group: Speed Control
+- name: Idle speed reference
+  summary: Steady-state idle speed 1000 rpm (default) | positive scalar
+  group: Speed Control
+- name: Controller time constant
+  summary: Idle controller response delay 1 s (default) | positive scalar
+  group: Speed Control
+- name: Controller threshold speed
+  summary: Controller response smoothness 1 rpm (default) | positive scalar
+  group: Speed Control
+- name: Redline control
+  summary: Enable redline control parameters Off (default) | On
+  group: Speed Control
+- name: Redline speed
+  summary: Crankshaft speed control peak threshold 5000 rpm (default) | positive scalar
+  group: Speed Control
+- name: Redline time constant
+  summary: Redline controller response delay 1 s (default) | positive scalar
+  group: Speed Control
+- name: Redline threshold speed
+  summary: Redline controller response smoothness 1 rpm (default) | positive scalar
+  group: Speed Control
+```
 
 ### Engine Specifications
 
@@ -580,7 +720,6 @@ responsiveness. Small values increase computational cost.
 
 To enable this parameter, select **Redline
 control**.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors

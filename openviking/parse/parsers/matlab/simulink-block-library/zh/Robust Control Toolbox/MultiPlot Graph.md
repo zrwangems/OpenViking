@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # MultiPlot Graph
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(y)
+  summary: 要绘制的信号 标量 | 向量
+  direction: input
+```
 
 ### 输入
 
@@ -25,8 +31,46 @@ chinese_source: worker-translation
 - Mux (Simulink)
 - Vector Concatenate (Simulink)
 - Bus Creator (Simulink)
-
 ## 参数
+```yaml
+parameters:
+- name: t-min
+  summary: X 轴下限 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: tmin
+  type: scalar, vector
+  default: '0'
+- name: t-max
+  summary: X 轴上限 20（默认）| 标量 | 向量
+  group: ''
+  block_parameter: tmax
+  type: scalar, vector
+  default: '20'
+- name: y-min
+  summary: Y 轴下限 –1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: ymin
+  type: scalar, vector
+  default: –1
+- name: y-max
+  summary: Y 轴上限 1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: ymax
+  type: scalar, vector
+  default: '1'
+- name: Plot title
+  summary: 图窗标题 空（默认）| 字符向量
+  group: ''
+  block_parameter: titleString
+  type: character vector
+  default: ''''''
+- name: Workspace variable for export
+  summary: 用于保存绘图数据的变量名 multisimout（默认）| 字符向量
+  group: ''
+  block_parameter: vnamesave
+  type: character vector
+  default: ''''''
+```
 
 ### **t-min** — X 轴下限 0（默认）| 标量 | 向量
 
@@ -107,7 +151,6 @@ chinese_source: worker-translation
 | **模块参数**：`vnamesave` |
 | **类型**：character vector |
 | **默认值**：`''` |
-
 ## 所属库
 
 Robust Control Toolbox

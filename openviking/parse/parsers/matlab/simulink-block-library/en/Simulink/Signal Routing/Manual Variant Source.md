@@ -14,6 +14,24 @@ language: en
 # Manual Variant Source
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First variant input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_n
+  summary: '*n*th variant input signal scalar | vector'
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -38,8 +56,17 @@ this port.
 Output signal passed from the active variant input signal.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of choices
+  summary: Number of input choices 2 (default) | scalar
+  group: ''
+  block_parameter: NumChoices
+  type: character vector
+  values: integer
+  default: '''2'''
+```
 
 To access the block parameter, right-click the block and select **Mask** > **Mask Parameters**.
 
@@ -55,7 +82,6 @@ Specify the number of variant input ports.
 | **Type:** character vector |
 | **Value:** `integer` |
 | **Default:** `'2'` |
-
 ## Libraries
 
 Simulink / Signal Routing

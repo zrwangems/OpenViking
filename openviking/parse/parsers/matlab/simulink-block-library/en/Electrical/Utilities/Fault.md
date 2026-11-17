@@ -14,6 +14,21 @@ language: en
 # Fault
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: External fault trigger signal physical
+  direction: input
+- name: X
+  summary: Fault state physical
+  direction: output
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -39,8 +54,55 @@ terminal.
 
 Electrical conserving port associated with the fault negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Unfaulted resistance
+  summary: Resistance with no fault inf Ohm (default)
+  group: Main
+- name: Faulted resistance
+  summary: Resistance with fault 1e-3 Ohm (default)
+  group: Main
+- name: Reporting when a fault occurs
+  summary: Fault occurrence report None (default) | Warn | Error
+  group: Main
+- name: Enable temporal fault trigger
+  summary: Temporal fault trigger option No (default) | Yes
+  group: Temporal Trigger
+- name: Simulation time for fault event
+  summary: Simulation time for fault event 1 s (default)
+  group: Temporal Trigger
+- name: Fault duration
+  summary: Duration time for the fault inf s (default)
+  group: Temporal Trigger
+- name: Enable behavioral fault trigger
+  summary: Behavioral fault trigger option No (default) | Yes
+  group: Behavioral Trigger
+- name: Permissible voltage range
+  summary: Permissible voltage range [-100, 100] V (default)
+  group: Behavioral Trigger
+- name: Time to fail when exceeding voltage range
+  summary: Time to fail when exceeding voltage range 1 s (default)
+  group: Behavioral Trigger
+- name: Permissible current range
+  summary: Permissible current range [-1, 1] A (default)
+  group: Behavioral Trigger
+- name: Time to fail when exceeding current range
+  summary: Time to fail when exceeding current range 1 s (default)
+  group: Behavioral Trigger
+- name: Enable external fault trigger
+  summary: External fault trigger option No (default) | Yes
+  group: External Trigger
+- name: External fault trigger
+  summary: External fault trigger condition Faulted if F >= Fault threshold (default) | Faulted if F <= Fault threshold
+  group: External Trigger
+- name: Fault threshold
+  summary: Fault threshold 0.5 (default)
+  group: External Trigger
+- name: Fault resets when fault trigger reverts
+  summary: Fault resets when fault trigger reverts No (default) | Yes
+  group: External Trigger
+```
 
 ### Main
 
@@ -197,7 +259,6 @@ signal reverts.
 This parameter is visible only when you set the **Enable
 external fault trigger** parameter to
 `Yes`.
-
 ## Libraries
 
 Simscape / Electrical / Utilities

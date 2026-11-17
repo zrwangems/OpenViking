@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM ST4C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 接管定子电流限制（OEL）标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 接管定子电流限制（UEL）标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -135,8 +182,110 @@ chinese_source: worker-translation
 要施加到同步电机励磁绕组的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数
+  group: 常规
+- name: Initial terminal voltage, Vt0 (pu)
+  summary: 初始机端电压 1（默认）| 实数
+  group: 常规
+- name: Initial terminal current, It0 (pu)
+  summary: 初始机端电流 1（默认）| 实数
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认）| 正数
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认）| 正数
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0（默认）| 正数
+  group: 预控制
+- name: Voltage regulator proportional gain, K_PR (pu)
+  summary: 调节器比例增益 10.75（默认）| 正数
+  group: 控制
+- name: Voltage regulator integral gain, K_IR (pu/s)
+  summary: 调节器积分增益 10.75（默认）| 正数
+  group: 控制
+- name: Thyristor bridge firing control equivalent time constant, T_A (s)
+  summary: 第一个超前-滞后模块的调节器滞后时间常数 0.02（默认）| 正数
+  group: 控制
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: 调节器输出上限 1（默认）| 实数
+  group: 控制
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: 调节器输出下限 -0.87（默认）| 实数
+  group: 控制
+- name: Forward proportional gain of inner loop field regulator, K_PM (pu)
+  summary: 内环前向比例增益 1（默认）| 正数
+  group: 控制
+- name: Forward integral gain of inner loop field regulator, K_IM (pu/s)
+  summary: 内环前向积分增益 0（默认）| 正数
+  group: 控制
+- name: Maximum output of field current regulator, V_Mmax (pu)
+  summary: 励磁电流调节器输出上限 99（默认）| 实数
+  group: 控制
+- name: Minimum output of field current regulator, V_Mmin (pu)
+  summary: 励磁电流调节器输出下限 -99（默认）| 实数
+  group: 控制
+- name: Maximum exciter output, V_Amax (pu)
+  summary: 励磁机输出上限 99（默认）| 实数
+  group: 控制
+- name: Minimum exciter output, V_Amin (pu)
+  summary: 励磁机输出下限 -99（默认）| 实数
+  group: 控制
+- name: Feedback gain of field current regulator, K_G (pu)
+  summary: 励磁电流调节器反馈增益 0（默认）| 正数
+  group: 控制
+- name: Feedback time constant of field current regulator, T_G (s)
+  summary: 励磁电流调节器反馈时间常数 0（默认）| 正数
+  group: 控制
+- name: Maximum feedback voltage for field current regulator, V_Gmax (pu)
+  summary: 励磁电流调节器最大反馈电压 99（默认）| 正数
+  group: 控制
+- name: Alternate PSS input locations (V_S)
+  summary: PSS 输入位置 Summation point before take-over UEL（默认）| Summation point after take-over UEL
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage regulator input | Take-over at inner-loop
+    output
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage regulator input | Take-over at inner-loop
+    output
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage regulator input | Take-over at inner-loop
+    output
+  group: 控制
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: 整流器负载系数 0.113（默认）| 正数
+  group: 励磁机
+- name: Potential circuit (voltage) gain coefficient, K_P (pu)
+  summary: 电势回路电压增益系数 9.3（默认）| 正数
+  group: 励磁机
+- name: Compound circuit (current) gain coefficient, K_I (pu)
+  summary: 电势回路电流增益系数 0（默认）| 正数
+  group: 励磁机
+- name: Reactance associated with potential source, X_L (pu)
+  summary: 电势源电抗 0.124（默认）| 正数
+  group: 励磁机
+- name: Potential circuit phase angle (degrees)
+  summary: 电势回路相位角 0（默认）| 正数
+  group: 励磁机
+- name: Maximum available exciter voltage, V_Bmax (pu)
+  summary: 励磁机电压上限 11.63（默认）| 正数
+  group: 励磁机
+- name: Power source selector
+  summary: '电源选择器 Position A: power source derived from generator terminal voltage（默认）| Position B: power source independent
+    of generator terminal conditions'
+  group: 励磁机
+```
 
 ### 常规
 
@@ -318,7 +467,6 @@ terminal voltage`。
 电源选择器的位置，指定为 `Position A: power source
 derived from generator terminal voltage` 或 `Position B: power source independent of generator
 terminal conditions`。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

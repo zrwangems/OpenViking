@@ -15,10 +15,19 @@ chinese_source: worker-translation
 # Shared Memory Unpack
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Partition struct
+  summary: 结构体名称 []（默认值）
+  group: ''
+  block_parameter: partition
+```
 
 ### **Partition struct** — 结构体名称 `[]`（默认值）
 
@@ -29,7 +38,6 @@ R2025b 中未记录。
 |  |
 | --- |
 | **模块参数：** `partition` |
-
 ## 所属库
 
 Simulink Real-Time / Shared Memory

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Variant End
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入分支 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_N
+  summary: 与第 *N* 个分支关联的输入端口 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -36,8 +54,22 @@ chinese_source: worker-translation
 来自活动变体的输出信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Variant Start End Tag
+  summary: 有界区域的唯一标识符 A（默认）| 有效的 MATLAB® 标识符
+  group: ''
+  block_parameter: VariantStartEndTag
+  type: 字符向量
+  values: '''A'' | 有效的 MATLAB 标识符'
+- name: Variant Paired Block
+  summary: 用于高亮显示配对的 Variant Start 模块的选项 off（默认）| on
+  group: ''
+  block_parameter: VariantPairedBlock
+  type: 字符向量
+  values: '''off'' | ''on'''
+```
 
 ### **Variant Start End Tag** — 有界区域的唯一标识符 `A`（默认）| 有效的 MATLAB® 标识符
 
@@ -64,7 +96,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off'` | `'on'` |
 | **默认：** `'off'` |
-
 ## 所属库
 
 Simulink / Signal Routing

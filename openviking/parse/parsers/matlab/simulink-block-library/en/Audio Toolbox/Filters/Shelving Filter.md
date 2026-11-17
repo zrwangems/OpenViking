@@ -14,6 +14,29 @@ language: en
 # Shelving Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal column vector | matrix
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Peak gain (dB) real scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: S
+  summary: Slope positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: F
+  summary: Cutoff frequency nonnegative scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Port_1
+  summary: Output signal column vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -67,8 +90,52 @@ Filtered output signal, returned as a column vector or matrix that is the same
 size and data type as the input signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify gain from input port
+  summary: Use additional input port to specify gain off (default) | on
+  group: ''
+- name: Gain (dB)
+  summary: Peak gain (dB) 0 (default) | real scalar
+  group: ''
+- name: Specify slope from input port
+  summary: Use additional input port to specify slope off (default) | on
+  group: ''
+- name: Slope
+  summary: Filter slope 1.5 (default) | positive scalar
+  group: ''
+- name: Specify cutoff frequency from input port
+  summary: Use additional input port to specify cutoff frequency off (default) | on
+  group: ''
+- name: Cutoff frequency (Hz)
+  summary: Filter cutoff frequency 200 (default) | nonnegative scalar
+  group: ''
+- name: Type
+  summary: Type of filter lowpass (default) | highpass
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | positive scalar
+  group: ''
+- name: Visualize filter response
+  summary: Open plot to visualize filter response button
+  group: ''
+- name: Variable name
+  summary: Variable name of exported filter myFilt (default) | valid variable name
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: Overwrite variable if it already exists on (default) | off
+  group: ''
+- name: Export filter to workspace
+  summary: Export filter to workspace button
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Specify gain from input port** — Use additional input port to specify gain `off` (default) | `on`
 
@@ -192,7 +259,6 @@ Export the filter to the base workspace in the variable specified by the
   simulations, as long as the model does not change. This option requires additional
   startup time, but the speed of the subsequent simulations is comparable to
   `Interpreted execution`.
-
 ## Libraries
 
 Audio Toolbox / Filters

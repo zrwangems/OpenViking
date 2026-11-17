@@ -14,6 +14,49 @@ language: en
 # DVB-S2 Symbol Demodulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Data symbols real-valued scalar | complex-valued scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: valid
+  summary: Indication of whether input data is valid scalar
+  direction: input
+  data_types: Boolean
+- name: modIdx
+  summary: Modulation index 0 | 1 | 2 | 3 | 4
+  direction: input
+  data_types: single | double | fixdt(0,3,0)
+- name: codeRateIdx
+  summary: Code rate index 5 | 6 | 7 | 8 | 9 | 10
+  direction: input
+  data_types: single | double | fixdt(0,4,0)
+- name: nVar
+  summary: Noise variance real-valued positive scalar
+  direction: input
+  data_types: single | double | uint8 | uint16 | unsigned fixed point
+- name: data
+  summary: Demodulated LLR values or data bits scalar | eight-element real-valued column vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | Boolean | fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: valid
+  summary: Valid output data indication 0 | 1
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -218,8 +261,31 @@ To enable this port, set the **Output type** parameter to
 `Scalar`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation source
+  summary: Source for modulation type Input port (default) | Property
+  group: ''
+- name: Modulation
+  summary: Modulation type QPSK (default) | 8-PSK | 16-APSK | 32-APSK | pi/2-BPSK
+  group: ''
+- name: Code rate
+  summary: Code rate 3/4 (default) | 2/3 | 4/5 | 5/6 | 8/9 | 9/10
+  group: ''
+- name: Decision type
+  summary: Type of demapping Approximate log-likelihood ratio (default) | Hard
+  group: ''
+- name: Output type
+  summary: Type of output Vector (default) | Scalar
+  group: ''
+- name: Unit average power
+  summary: Unit average power off (default) | on
+  group: ''
+- name: Enable noise variance input port
+  summary: Enable noise variance port off (default) | on
+  group: ''
+```
 
 ### **Modulation source** — Source for modulation type `Input port` (default) | `Property`
 
@@ -297,7 +363,6 @@ Select this parameter to enable the noise variance input port.
 
 To enable this parameter, set the **Decision type** parameter to
 `Approximate log-likelihood ratio`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

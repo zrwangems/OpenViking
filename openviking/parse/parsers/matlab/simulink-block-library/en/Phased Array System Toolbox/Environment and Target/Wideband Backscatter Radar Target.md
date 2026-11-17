@@ -14,6 +14,23 @@ language: en
 # Wideband Backscatter Radar Target
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Wideband incident nonpolarized signal *N*-by-*1* complex-valued vector | *N*-by-*M* complex-valued matrix
+  direction: input
+  data_types: double
+- name: Ang
+  summary: Incident signal direction 2-by-1 real-valued column vector | 2-by-*M* real-valued column matrix
+  direction: input
+  data_types: double
+- name: Update
+  summary: Switch to update RCS false | true
+  direction: input
+- name: Port_1
+  summary: Narrowband reflected signal 1-by-*M* complex-valued vector | *N*-by-*M* complex-valued matrix
+  direction: output
+```
 
 ### Input
 
@@ -84,8 +101,49 @@ destination within the current input time frame. When the propagation
 time from source to destination exceeds the current time frame duration,
 the output does not contain all contributions from the input of the
 current time frame.
-
 ## Parameters
+```yaml
+parameters:
+- name: Backscatter pattern frequency vector (Hz)
+  summary: Wideband backscatter pattern frequencies [0,1e20] (default) | real-valued row vector of positive values in strictly
+    increasing order
+  group: ''
+- name: Azimuth angles (deg)
+  summary: Azimuth angles [-180:180] (default) | 1-by-*P* real-valued row vector | *P*-by-1 real-valued column vector
+  group: ''
+- name: Elevation angles (deg)
+  summary: Elevation angles [-90:90] (default) | 1-by-*Q* real-valued row vector | *Q*-by-1 real-valued column vector
+  group: ''
+- name: RCS pattern (m^2)
+  summary: Radar cross-section pattern ones(181,361) (default) | *Q*-by-*P* real-valued matrix | *Q*-by-*P*-by-*K* real-valued
+    array | 1-by-*P*-by-*K* real-valued array | *K*-by-*P* real-valued matrix
+  group: ''
+- name: Fluctuation model
+  summary: Target fluctuation model Nonfluctuating (default) | Swerling1 | Swerling2 | Swerling3 | Swerling4
+  group: ''
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: Operating frequency (Hz)
+  summary: Signal carrier frequency 300.0e6 (default) | positive real-valued scalar
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Number of subbands
+  summary: Number of processing subbands 64 (default) | positive integer
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Backscatter pattern frequency vector (Hz)** — Wideband backscatter pattern frequencies `[0,1e20]` (default) | real-valued row vector of positive values in strictly increasing order
 
@@ -246,7 +304,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

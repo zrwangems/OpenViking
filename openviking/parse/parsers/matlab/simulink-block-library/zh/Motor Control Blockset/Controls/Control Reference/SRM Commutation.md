@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # SRM Commutation
 
 ## 端口
+```yaml
+ports:
+- name: θe
+  summary: 电机电角度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θeOn
+  summary: 开通电机电角度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θeOff
+  summary: 关断电机电角度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Ctrl
+  summary: 控制信号向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -42,8 +61,16 @@ chinese_source: worker-translation
 开关序列的组合，可用于将每一相切换为开通和关断以驱动电机。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of motor phases
+  summary: SRM 中的相数 3（默认）| 4 | 5 | 6
+  group: ''
+- name: Input position units
+  summary: 位置输入的单位 Radians（默认）| Per unit | Degrees
+  group: ''
+```
 
 ### **Number of motor phases** — SRM 中的相数 `3`（默认）| `4` | `5` | `6`
 
@@ -52,7 +79,6 @@ SRM 定子绕组中的相数。
 ### **Input position units** — 位置输入的单位 `Radians`（默认）| `Per unit` | `Degrees`
 
 `θe`、`θeOn` 和 `θeOff` 输入的单位。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference

@@ -14,6 +14,15 @@ language: en
 # Pulse Current Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,34 @@ positive terminal.
 
 Electrical conserving port associated with the pulse current source
 negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial value, I1
+  summary: Initial output current 0 A (default)
+  group: ''
+- name: Pulse value, I2
+  summary: High output current 0 A (default)
+  group: ''
+- name: Pulse delay time, TD
+  summary: Pulse delay time 0 s (default)
+  group: ''
+- name: Pulse rise time, TR
+  summary: Pulse rise time 1e-9 s (default) | nonnegative scalar
+  group: ''
+- name: Pulse fall time, TF
+  summary: Pulse fall time 1e-9 s (default) | nonnegative scalar
+  group: ''
+- name: Pulse width, PW
+  summary: Output pulse time width Inf s (default) | positive scalar
+  group: ''
+- name: Pulse period, PER
+  summary: Output pulse period Inf s (default) | positive scalar
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: Whether to include parallel conductance Yes (default) | No
+  group: ''
+```
 
 ### **Initial value, I1** — Initial output current `0` `A` (default)
 
@@ -78,7 +113,6 @@ This table shows the possible values of the parallel conductance,
 | *`Yes`* | | *`No`* | | |
 | **Model contains Environment Parameters block** | **Model does not contain Environment Parameters block** | Parallel conductance, *GMIN*, is not included and it does not affect the current source. | | |
 | *GMIN* is equal to the value of the **GMIN** parameter in the Environment Parameters block. | *GMIN* = `1e-12` `Ohm` |
-
 ## Libraries
 
 Simscape / Electrical / Sources Simscape / Electrical / Additional Components / SPICE Sources

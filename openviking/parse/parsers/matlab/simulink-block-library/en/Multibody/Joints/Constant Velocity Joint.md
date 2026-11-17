@@ -14,6 +14,48 @@ language: en
 # Constant Velocity Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: qb
+  summary: Bend angle scalar
+  direction: output
+- name: wb
+  summary: Velocity of bend angle scalar
+  direction: output
+- name: bb
+  summary: Acceleration of bend angle scalar
+  direction: output
+- name: qa
+  summary: Azimuth scalar
+  direction: output
+- name: wa
+  summary: Velocity of azimuth scalar
+  direction: output
+- name: ba
+  summary: Acceleration of azimuth scalar
+  direction: output
+- name: fc
+  summary: Constraint force, N physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total force, N physical signal
+  direction: output
+- name: tt
+  summary: Total torque, N\*m physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -185,8 +227,71 @@ Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque
 Sensing**, select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Internal State
+  summary: Internal state parameterization of joint Rotation Sequence (faster simulations) (default) | Quaternion (allows
+    zero bend angle)
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target > Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target > Value
+  summary: Angles to specify position target Bend Angle Only (default) | Bend Angle and Azimuth
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target > Value > Bend Angle
+  summary: Bend angle to specify 45 deg (default)
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target > Value > Azimuth
+  summary: Azimuth to specify 0 deg (default)
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Velocity Target
+  summary: Whether to specify velocity target off (default) | on
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Velocity Target > Priority
+  summary: Priority level of velocity target High (desired) (default) | Low (approximate)
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Velocity Target > Value
+  summary: Parameters to specify velocity target Bend Angle Only (default) | Bend Angle and Azimuth
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Velocity Target > Value > Bend Angle
+  summary: Bend angle velocity to specify 0 deg/s (default)
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Velocity Target > Value > Azimuth
+  summary: Azimuth velocity to specify 0 deg/s (default)
+  group: Constant Velocity Primitive (CV)
+- name: Sensing > Bend Angle > Position
+  summary: Whether to sense bend angle off (default) | on
+  group: Constant Velocity Primitive (CV)
+- name: Sensing > Bend Angle > Velocity
+  summary: Whether to sense velocity of bend angle off (default) | on
+  group: Constant Velocity Primitive (CV)
+- name: Sensing > Bend Angle > Acceleration
+  summary: Whether to sense acceleration of bend angle off (default) | on
+  group: Constant Velocity Primitive (CV)
+- name: Sensing > Azimuth > Position
+  summary: Whether to sense azimuth off (default) | on
+  group: Constant Velocity Primitive (CV)
+- name: Sensing > Azimuth > Velocity
+  summary: Whether to sense velocity of azimuth off (default) | on
+  group: Constant Velocity Primitive (CV)
+- name: Sensing > Azimuth > Acceleration
+  summary: Whether to sense acceleration of azimuth off (default) | on
+  group: Constant Velocity Primitive (CV)
+- name: Mode
+  summary: Joint mode Normal (default) | Locked | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 ### Constant Velocity Primitive (CV)
 
@@ -385,7 +490,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

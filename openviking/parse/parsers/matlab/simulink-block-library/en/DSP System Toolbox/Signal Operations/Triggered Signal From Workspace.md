@@ -14,6 +14,17 @@ language: en
 # Triggered Signal From Workspace
 
 ## Ports
+```yaml
+ports:
+- name: trigger
+  summary: Trigger signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Signal imported from workspace scalar | vector | matrix | 3-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -52,8 +63,25 @@ time. The **Samples per frame** parameter must be set
 to `1`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal
+  summary: Signal to import 1:10 (default) | MATLAB workspace variable | MATLAB expression
+  group: ''
+- name: Trigger type
+  summary: Type of triggering event Rising edge (default) | Falling edge | Either edge
+  group: ''
+- name: Initial output
+  summary: Initial output value 0 (default) | scalar | vector | matrix
+  group: ''
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: ''
+- name: Form output after final data value by
+  summary: Values to output after final imported signal value Setting to zero (default) | Holding final value | Cyclic repetition
+  group: ''
+```
 
 ### **Signal** — Signal to import `1:10` (default) | MATLAB workspace variable | MATLAB expression
 
@@ -136,7 +164,6 @@ generated.
 
 The block does not extrapolate the imported signal beyond the last
 sample.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

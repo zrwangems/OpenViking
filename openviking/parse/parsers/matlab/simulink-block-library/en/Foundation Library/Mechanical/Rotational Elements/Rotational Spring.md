@@ -14,6 +14,15 @@ language: en
 # Rotational Spring
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,13 +35,17 @@ body.
 
 Mechanical rotational conserving port associated with the case, that is, the
 stationary body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Spring rate
+  summary: Spring rate 10 N*m/rad (default) | scalar
+  group: ''
+```
 
 ### **Spring rate** — Spring rate `10 N*m/rad` (default) | scalar
 
 Spring rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

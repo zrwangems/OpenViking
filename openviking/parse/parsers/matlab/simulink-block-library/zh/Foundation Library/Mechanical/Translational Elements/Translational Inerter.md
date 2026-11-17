@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Translational Inerter
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 杆机械平移
+  direction: conserving
+- name: C
+  summary: 壳体机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 与壳体（即静止体）关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Inertance
+  summary: 力与端口间相对速度变化率之间的比例系数 1 kg（默认）| 标量
+  group: ''
+```
 
 ### **Inertance** — 力与端口间相对速度变化率之间的比例系数 `1 kg`（默认）| 标量
 
 力与端口间相对速度变化率之间的比例系数。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Translational Elements

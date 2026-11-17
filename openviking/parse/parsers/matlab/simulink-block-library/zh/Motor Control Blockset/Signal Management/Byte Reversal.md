@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Byte Reversal
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要转换的数据 标量、向量、矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: 转换后的数据 标量、向量、矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,15 +43,19 @@ chinese_source: worker-translation
 字节顺序已修改的数据。模块使用的输出端口数量取决于为 **Number of inputs** 参数指定的值。每个输入端口映射到匹配的输出端口。在输入端口 1 上接收的数据通过输出端口 1 发送，依此类推。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inputs
+  summary: 模块输入数量 1（默认）| 整数
+  group: ''
+```
 
 ### **Number of inputs** — 模块输入数量 1（默认）| 整数
 
 指定模块输入的数量。模块将创建该数量的输入端口和输出端口。每个输入端口映射到匹配的输出端口。在输入 `Port_1` 上接收的数据通过输出 `Port_1` 发送，依此类推。
 
 反转字节顺序不会更改数据类型。输入和输出保持匹配的数据类型。
-
 ## 所属库
 
 Motor Control Blockset / Signal Management

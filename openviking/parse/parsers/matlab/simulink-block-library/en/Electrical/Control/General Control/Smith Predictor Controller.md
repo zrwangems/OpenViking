@@ -14,6 +14,25 @@ language: en
 # Smith Predictor Controller
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Plant reference scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Integrator reset scalar
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: Plant output scalar
+  direction: input
+  data_types: single | double
+- name: u
+  summary: Controller output scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -41,8 +60,37 @@ Plant system output signal.
 Control system output signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain
+  summary: '*Kp* 1 (default) | positive scalar'
+  group: ''
+- name: Integral gain
+  summary: '*Ki* 1 (default) | positive scalar'
+  group: ''
+- name: Integrator initial condition
+  summary: Initial integrator value 0 (default) | scalar
+  group: ''
+- name: Control action upper limit
+  summary: '*umax* 5 (default) | scalar greater than the value of the Control action lower limit parameter'
+  group: ''
+- name: Control action lower limit
+  summary: '*umin* 0 (default) | scalar'
+  group: ''
+- name: Model discrete transfer function numerator
+  summary: Transfer function numerator 1 (default) | scalar or vector
+  group: ''
+- name: Model discrete transfer function denominator
+  summary: Transfer function denominator [1 0.5] (default) | vector
+  group: ''
+- name: System dead time (samples)
+  summary: Number of dead-time samples 2 (default) | 0 or a positive integer
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Sampling interval -1 (default) | default value or a positive number
+  group: ''
+```
 
 ### **Proportional gain** — *Kp* `1` (default) | positive scalar
 
@@ -88,7 +136,6 @@ parameter to `-1`. If this block is in a continuous
 variable-step model, specify the sample time explicitly. For more
 information, see What Is Sample Time? and
 Specify Sample Time.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

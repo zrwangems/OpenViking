@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Check Against Reference
 
 ## 端口
+```yaml
+ports:
+- name: Port_1 (u)
+  summary: 要对照指定参考信号检查的信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+- name: Port_1 (out)
+  summary: 输出断言信号 1 | 0
+  direction: output
+  data_types: Boolean | double
+```
 
 ### 输入
 
@@ -39,8 +51,80 @@ chinese_source: worker-translation
 要启用此端口，请在 **Assertion** 选项卡上选择 **Output assertion signal** 参数。
 
 **数据类型：** `Boolean` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Show Plot
+  summary: 打开绘图窗口 button
+  group: ''
+- name: Show plot on block open
+  summary: 双击模块以打开绘图 off (默认) | on
+  group: ''
+  block_parameter: LaunchViewOnOpen
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Response Optimization
+  summary: 打开 Response Optimizer button
+  group: ''
+- name: 在断言中包含参考信号跟踪
+  summary: 检查信号是否跟踪参考信号 on（默认）| off
+  group: Bounds 选项卡
+  block_parameter: EnableReferenceBound
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Times
+  summary: 时间向量 linspace(0,10)（默认）| 正值向量 | MATLAB 表达式
+  group: Bounds 选项卡
+  block_parameter: ReferenceTimes
+  type: 向量
+  values: 正值向量 | MATLAB 表达式
+- name: Amplitudes
+  summary: 参考信号幅值 1-exp(-linspace(0,10)/2)（默认）| 向量 | MATLAB 表达式
+  group: Bounds 选项卡
+  block_parameter: ReferenceAmplitudes
+  type: 向量
+  values: 向量 | MATLAB 表达式
+- name: Absolute tolerance
+  summary: 信号的绝对容差 eps^(1/3)（默认）| 正实数标量
+  group: Bounds 选项卡
+  block_parameter: AbsTolerance
+  type: 标量
+  values: 正实数标量
+- name: Relative tolerance
+  summary: 信号相对容差 0.01（默认）| 正实数标量
+  group: Bounds 选项卡
+  block_parameter: RelTolerance
+  type: scalar
+  values: positive real scalar
+  default: '0.01'
+- name: Enable assertion
+  summary: 启用或禁用检查 on（默认）| off
+  group: Assertion Tab
+  block_parameter: enabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Simulation callback when assertion fails (optional)
+  summary: 断言失败时要求值的表达式 ''（默认）| MATLAB 表达式
+  group: Assertion Tab
+  block_parameter: callback
+  type: character vector
+  values: MATLAB expression
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: 断言失败时停止仿真 off（默认）| on
+  group: Assertion Tab
+  block_parameter: stopWhenAssertionFail
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 输出断言信号
+  summary: 创建输出信号 off（默认）| on
+  group: Assertion Tab
+  block_parameter: export
+  type: 字符向量
+  values: '''on'' | ''off'''
+```
 
 ### **Show Plot** — 打开绘图窗口 `button`
 
@@ -291,7 +375,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认：** `'off'` |
-
 ## 所属库
 
 Simulink Design Optimization / Model Verification Simulink Design Optimization / Signal Constraints

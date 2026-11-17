@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Helical Deinterleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Number of columns in helical array**
 :   螺旋阵列中的列数 *C*。
@@ -31,7 +36,6 @@ R2025b 中未记录。
 
 **Initial conditions**
 :   一个标量，用于在放置第一个输入之前填充阵列。
-
 ## 所属库
 
 R2025b 中未记录。

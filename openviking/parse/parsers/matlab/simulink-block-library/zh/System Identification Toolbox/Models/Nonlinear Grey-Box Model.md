@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Nonlinear Grey-Box Model
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **IDNLGREY model**
 :   MATLAB® 工作区中 `idnlgrey` 变量的名称。
@@ -30,7 +35,6 @@ R2025b 中未记录。
     - `'m'`：指定模型的内部初始状态。
     - 大小等于 `idnlgrey` 对象中状态数的向量。
     - 初始状态结构体数组。有关创建此结构体的信息，请在 MATLAB 命令窗口中键入 `help idnlgrey/sim`。
-
 ## 所属库
 
 R2025b 中未记录。

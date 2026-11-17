@@ -14,14 +14,19 @@ language: en
 # Inverse Square Law Force
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block contains frame ports B and F, representing base and
 follower frames, respectively.
 
 Selecting **Sense Force** in the block dialog
 box exposes an additional physical signal port, **fm**.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Force Constant**
 :   Specify the proportionality constant of the inverse square law
@@ -36,7 +41,6 @@ box exposes an additional physical signal port, **fm**.
     an additional physical signal port to output the force signal. The
     output signal is a scalar value. This value is positive if the force
     is repulsive; it is negative if the force is attractive.
-
 ## Libraries
 
 Not documented in R2025b.

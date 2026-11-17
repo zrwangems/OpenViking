@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Gearbox
 
 ## 端口
+```yaml
+ports:
+- name: BTrq
+  summary: 基齿轮输入扭矩 scalar
+  direction: input
+- name: FTrq
+  summary: 从动齿轮输出扭矩 scalar
+  direction: input
+- name: B
+  summary: 基齿轮角速度和扭矩双向连接端口
+  direction: input
+- name: AirTemp
+  summary: 环境空气温度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: BSpd
+  summary: 输入齿轮角速度 scalar
+  direction: output
+- name: FSpd
+  summary: 输出齿轮角速度 scalar
+  direction: output
+- name: F
+  summary: 输出齿轮角速度和扭矩双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -94,8 +121,95 @@ chinese_source: worker-translation
 #### 依赖
 
 要创建此端口，请将 **Port Configuration** 设置为 `Two-way connection`。
-
 ## 参数
+```yaml
+parameters:
+- name: Port Configuration
+  summary: 指定配置 Simulink（默认）| Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink（默认）| Two-way connection
+- name: Efficiency factors
+  summary: 指定配置 Constant（默认）| Driveshaft torque, speed and temperature
+  group: ''
+  block_parameter: input_config
+  values: Constant（默认）| Driveshaft torque, speed and temperature
+- name: Interpolation method
+  summary: 方法 Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline
+  group: ''
+  block_parameter: InterpMethod
+  values: Flat | Nearest | Linear point-slope | Linear Lagrange | Cubic spline
+- name: Output shaft rotates in same direction as input
+  summary: 旋转 off（默认）| on
+  group: ''
+  block_parameter: dirSwitch
+  values: off（默认）| on
+- name: Input ambient temperature
+  summary: 创建输入端口 off（默认）| on
+  group: ''
+  block_parameter: extTamb
+  values: off（默认）| on
+- name: Input to output gear ratio, N
+  summary: 传动比 2（默认）| 正标量
+  group: ''
+  block_parameter: N
+  values: 2（默认）| 正标量
+- name: Input shaft inertia, J1
+  summary: 惯量 .01（默认）| 正标量
+  group: ''
+  block_parameter: J1
+  values: .01（默认）| 正标量
+- name: 输出轴惯量，J2
+  summary: 惯量 .01（默认）| 正标量
+  group: ''
+  block_parameter: J2
+  values: .01（默认）| 正标量
+- name: 输入轴阻尼，b1
+  summary: 阻尼 .001（默认）| 正标量
+  group: ''
+  block_parameter: b1
+  values: .001（默认）| 正标量
+- name: 输出轴阻尼，b2
+  summary: 阻尼 .001（默认）| 正标量
+  group: ''
+  block_parameter: b2
+  values: .001（默认）| 正标量
+- name: 输入轴初始速度，w1_o
+  summary: 初始速度 0（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: w1_o
+  values: 0（默认）| 大于或等于 0 的标量
+- name: 恒定效率因子，eta
+  summary: 效率 1（默认）| 正标量
+  group: ''
+  block_parameter: eta
+  values: 1（默认）| 正标量
+- name: 效率查找表，eta_tbl
+  summary: 查找表 M×N×L 数组
+  group: ''
+  block_parameter: eta_tbl
+  values: M×N×L 数组
+- name: 效率扭矩断点，Trq_bpts
+  summary: 扭矩断点 [25, 50, 75, 100, 150, 200, 250]（默认）| 1×M 向量
+  group: ''
+  block_parameter: Trq_bpts
+  values: '[25, 50, 75, 100, 150, 200, 250]（默认）| 1×M 向量'
+- name: Efficiency speed breakpoints, omega_bpts
+  summary: 速度断点 [52.4 78.5 105 131 157 183 209 262 314 419 524]（默认）| 1×N 向量
+  group: ''
+  block_parameter: omega_bpts
+  values: '[52.4 78.5 105 131 157 183 209 262 314 419 524]（默认）| 1×N 向量'
+- name: Efficiency temperature breakpoints, Temp_bpts
+  summary: 温度断点 [290 358]（默认）| 1×L 向量
+  group: ''
+  block_parameter: Temp_bpts
+  values: '[290 358]（默认）| 1×L 向量'
+- name: Air temperature, Tair
+  summary: 环境空气温度 297.15（默认）| 大于 0 的标量
+  group: ''
+  block_parameter: Tair
+  values: 297.15（默认）| 大于 0 的标量
+```
 
 #### 模块选项
 
@@ -444,7 +558,6 @@ chinese_source: worker-translation
 
 - 将 **Efficiency factors** 设置为 `Driveshaft torque, speed and temperature`。
 - 清除 **Input ambient temperature**。
-
 ## 所属库
 
 Powertrain Blockset / Drivetrain / Couplings

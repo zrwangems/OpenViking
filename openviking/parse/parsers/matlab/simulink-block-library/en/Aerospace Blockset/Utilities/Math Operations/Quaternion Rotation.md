@@ -14,6 +14,21 @@ language: en
 # Quaternion Rotation
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Quaternion quaternion | vector
+  direction: input
+  data_types: double
+- name: vec
+  summary: Initial vector vector | vector of vectors
+  direction: input
+  data_types: double
+- name: vec_rot
+  summary: Final quaternion rotated quaternion | vector of rotated quaternions
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -50,11 +65,12 @@ Initial vector or vector of vectors in the form of
 Final vector or vector of rotated vectors.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Entity Multicast
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: send
+  summary: 广播实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+```
 
 ### 输入
 
@@ -34,8 +47,16 @@ chinese_source: worker-translation
 输出广播的实体。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Multicast tag
+  summary: 指定用于广播实体的标签 A（默认）| 字符向量
+  group: ''
+  block_parameter: MulticastTag
+  type: 字符向量
+  values: '''A'' | 字符向量'
+```
 
 ### **Multicast tag** — 指定用于广播实体的标签 `A`（默认）| 字符向量
 
@@ -49,7 +70,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'A'` | 字符向量 |
 | **默认**：`'A'` |
-
 ## 所属库
 
 SimEvents

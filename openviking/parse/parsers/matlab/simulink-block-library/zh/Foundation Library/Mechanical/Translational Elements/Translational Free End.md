@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Translational Free End
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 零力机械平移
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **V** — 零力机械平移
 
 机械平移守恒端口，可自由移动，不受力。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Translational Elements

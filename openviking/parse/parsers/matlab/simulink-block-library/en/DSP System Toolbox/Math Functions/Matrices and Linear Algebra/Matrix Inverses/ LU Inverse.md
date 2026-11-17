@@ -14,6 +14,17 @@ language: en
 # LU Inverse
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input square matrix square matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Matrix inverse square matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -33,11 +44,12 @@ Matrix inverse, returned as an
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Inverses

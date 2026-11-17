@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # HDL Cosimulation
 
 ## 端口
+```yaml
+ports:
+- name: HDL_input_port_name
+  summary: 从 Simulink 传递到 HDL 仿真器的信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | Fixed-point
+- name: HDL_output_port_name
+  summary: 从 HDL 仿真器传递到 Simulink 的信号 标量 | 向量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | Fixed-point
+```
 
 ### 输入
 
@@ -30,8 +41,94 @@ chinese_source: worker-translation
 模块上的端口与 HDL 设计上的端口相对应。在 **端口** 选项卡上添加或删除端口。
 
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `Fixed-point`
-
 ## 参数
+```yaml
+parameters:
+- name: Block Info
+  summary: Vivado 协同仿真的模块信息 只读：模块生成设置
+  group: ''
+- name: Enable direct feedthrough
+  summary: 解决代数环警告 true（默认）| false
+  group: 端口
+- name: Full HDL Name
+  summary: 信号路径名称 字符串
+  group: 端口
+- name: I/O Mode
+  summary: 端口方向 Input | Output
+  group: 端口
+- name: HDL Type
+  summary: HDL 端口信号类型 只读：Logic（默认）| Vector
+  group: 端口
+- name: HDL Dims
+  summary: HDL 端口信号维度 只读：标量 | 向量
+  group: 端口
+- name: Sample Time
+  summary: 输出端口上读取采样之间的时间 1（默认）| 整数
+  group: 端口
+- name: Data Type
+  summary: 输出信号 Inherit（默认）| Fixedpoint | Double | Single | Half 的 Simulink 数据类型
+  group: 端口
+- name: Sign
+  summary: 输出数据类型的符号分量 Unsigned（默认）| Signed
+  group: 端口
+- name: Fraction Length
+  summary: 输出数据类型整数中的小数位数
+  group: 端口
+- name: Simulink Word Length
+  summary: Simulink 端口整数的位宽 <129 | inherit
+  group: 端口
+- name: HDL Word Length
+  summary: HDL 端口的位宽 只读：整数
+  group: 端口
+- name: Time to run HDL simulator before cosimulation starts
+  summary: 协同仿真开始前运行 HDL 仿真所需的时间 0（默认）| 非负整数
+  group: Clocks
+- name: Full HDL Name
+  summary: 信号路径名称字符串
+  group: Clocks
+- name: Active Clock Edge
+  summary: 用于采样信号的 HDL 时钟边沿 Rising（默认）| Falling
+  group: Clocks
+- name: Waveform Type
+  summary: 生成用于驱动 HDL 设计的时钟、复位或使能的波形 Rising（默认）| Falling | Step 1 to 0 | Step 0 to 1
+  group: Clocks
+- name: Period/Duration
+  summary: 时钟周期 2（默认）| 整数
+  group: Clocks
+- name: Automatically determine timescale at start of simulation
+  summary: 何时计算自动时间尺度 true（默认）| false
+  group: 时间尺度
+- name: 1 second in Simulink corresponds to {} in the HDL simulator
+  summary: Simulink 与 HDL 仿真器之间的时序关系 整数和时间单位
+  group: 时间尺度
+- name: Connection mode
+  summary: Simulink 与 HDL 仿真器之间的连接 Full Simulation（默认）| Confirm Interface Only | No Connection
+  group: 连接
+- name: HDL simulator is running on this computer
+  summary: HDL 仿真器和 Simulink 位于同一主机 true（默认）| false
+  group: 连接
+- name: Connection method
+  summary: HDL 仿真器与 Simulink 之间的连接 Socket（默认）| Shared memory
+  group: 连接
+- name: Host name
+  summary: HDL 仿真器主机名字符串
+  group: 连接
+- name: Port number or service
+  summary: 套接字端口号字符串
+  group: 连接
+- name: Show connection info on icon
+  summary: 在模块图标上添加连接参数 true（默认）| false
+  group: 连接
+- name: Time to run HDL simulator before cosimulation starts
+  summary: 使 Simulink 与 HDL 仿真器整数和时间单位对齐的偏移量
+  group: 仿真
+- name: Pre-simulation Tcl commands
+  summary: 在协同仿真之前在 HDL 仿真器中运行的命令字符串
+  group: 仿真
+- name: Post-simulation Tcl commands
+  summary: 在协同仿真字符串之后于 HDL 仿真器中运行的命令
+  group: 仿真
+```
 
 ### **Block Info** — Vivado 协同仿真的模块信息 只读：模块生成设置
 
@@ -446,7 +543,6 @@ TCP/IP 套接字模式可用，并且 **Connection method** 列表
 #### 依赖关系
 
 对于 VCS 协同仿真，此参数被禁用。请使用 `launchVCS` 函数的 `PostSimulationTcl` 属性来定义仿真后 Tcl 命令。
-
 ## 所属库
 
 HDL Verifier / For Use with AMD Vivado Simulator HDL Verifier / For Use with Cadence Xcelium HDL Verifier / For Use with Siemens ModelSim/Questa HDL Verifier / For Use with Synopsys VCS

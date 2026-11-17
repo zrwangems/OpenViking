@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Digital Output
 
 ## 端口
+```yaml
+ports:
+- name: Digital Data
+  summary: 要写入输出通道的数字数据 向量
+  direction: input
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Missed Ticks
+  summary: 错过的节拍计数（可选） double
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +45,54 @@ chinese_source: worker-translation
 当您选中 **Show “Missed Ticks” port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Install new board
+  summary: 注册板卡 < no board selected >（默认）
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: 删除当前板卡（按钮）
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: 设置板卡（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认） | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器节拍数 10（默认） | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认） | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: 在内核等待硬件时让出 CPU 'off'（默认） | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Output channels
+  summary: 选择数字输出通道 向量
+  group: ''
+  block_parameter: Channels
+- name: Channel mode
+  summary: 表示输出线的模式 Bit（默认） | Byte
+  group: ''
+  block_parameter: BitMode
+- name: Initial value
+  summary: 输出通道向量的初始值
+  group: ''
+  block_parameter: InitialValue
+- name: Final value
+  summary: 输出通道向量的最终值
+  group: ''
+  block_parameter: FinalValue
+```
 
 ### **Install new board** — 注册板卡 `< no board selected >`（默认）
 
@@ -210,7 +267,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`FinalValue` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

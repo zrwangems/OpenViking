@@ -14,6 +14,24 @@ language: en
 # Blob Analysis
 
 ## Ports
+```yaml
+ports:
+- name: BW
+  summary: Binary image vector | matrix
+  direction: input
+  data_types: Boolean
+- name: Area
+  summary: Number of pixels in labeled regions vector
+  direction: output
+  data_types: int32
+- name: Centroid
+  summary: Centroid coordinates *M*-by-2 matrix
+  direction: output
+  data_types: double | single | fixed point
+- name: BBox
+  summary: Bounding box coordinates *M*-by-4 matrix
+  direction: output
+```
 
 ### Input
 
@@ -79,8 +97,76 @@ at the **BBox** port.
 
 To enable this port, select the **Bounding Box**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Area
+  summary: Number of pixels in labeled regions vector
+  group: ''
+- name: Centroid
+  summary: Centroid coordinates *M*-by-2 matrix
+  group: ''
+- name: BBox
+  summary: Bounding box coordinates *M*-by-4 matrix
+  group: ''
+- name: Major axis length
+  summary: Length of major axis of ellipses off (default) | on
+  group: ''
+- name: Minor axis length
+  summary: Length of minor axis of ellipses off (default) | on
+  group: ''
+- name: Orientation
+  summary: Orientation off (default) | on
+  group: ''
+- name: Eccentricity
+  summary: Eccentricity off (default) | on
+  group: ''
+- name: Equivalent diameter squared
+  summary: Equivalent diameter squared off (default) | on
+  group: ''
+- name: Extent
+  summary: Extent off (default) | on
+  group: ''
+- name: Perimeter
+  summary: Perimeter length off (default) | on
+  group: ''
+- name: Statistics output data type
+  summary: Output data type double (default) | single | specify via Data Types tab
+  group: ''
+- name: Connectivity
+  summary: Number of labeled regions 8 (default) | 4
+  group: ''
+- name: Output label matrix
+  summary: Output label matrix off (default) | on
+  group: ''
+- name: Maximum number of blobs
+  summary: Maximum number of blobs scalar
+  group: ''
+- name: Warn if maximum number of blobs is exceeded
+  summary: Warn if maximum number of blobs is exceeded on (default) | off
+  group: ''
+- name: Output actual number of blobs
+  summary: Number of blobs off (default) | on
+  group: ''
+- name: Specify minimum blob area in pixels
+  summary: Minimum blob area in pixels 0 (default) | scalar
+  group: ''
+- name: Specify maximum blob area in pixels
+  summary: Maximum blob area in pixels intmax('uint32') (default) | scalar
+  group: ''
+- name: Exclude blobs touching image border
+  summary: Exclude blobs touching image border off (default) | on
+  group: ''
+- name: Output blob statistics as a variable size signal
+  summary: Output blob statistics as a variable size signal off (default) | on
+  group: ''
+- name: Fill empty spaces in output
+  summary: Fill empty spaces in output off (default) | on
+  group: ''
+- name: Fill values
+  summary: Scalar used to fill empty spaces in output -1 (default) | scalar | vector
+  group: ''
+```
 
 **Main Tab**
 
@@ -292,7 +378,6 @@ To enable option on the **Data Types** tab, in the
 **Main** tab, set the **Statistics output data type**
 parameter to `Specify via Data Types tab`. For details on the
 fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Statistics

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Cylinder Cushion (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体入口等温液体
+  direction: conserving
+- name: B
+  summary: 液体出口等温液体
+  direction: conserving
+- name: R
+  summary: 活塞杆机械平移
+  direction: conserving
+- name: C
+  summary: 壳体机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,44 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 与气缸参考结构相关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Cushion plunger cross-sectional area
+  summary: 缓冲柱塞横截面积 1e-4 m^2（默认）| 正标量
+  group: 缓冲柱塞
+- name: Cushion plunger length
+  summary: 缓冲柱塞长度 1e-3 m（默认）| 正标量
+  group: 缓冲柱塞
+- name: Initial actuator piston displacement
+  summary: 连接活塞的初始位移 0 m（默认）| 标量
+  group: 缓冲柱塞
+- name: Actuator mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 缓冲柱塞
+- name: Cushion orifice area
+  summary: 缓冲阀节流口面积 1e-6 m^2（默认）| 正标量
+  group: 阀
+- name: Leakage area between plunger and cushion sleeve
+  summary: 柱塞位于端盖开口内时的总泄漏面积 1e-7 m^2（默认）| 正标量
+  group: 阀
+- name: Check valve cracking pressure differential
+  summary: 单向阀开始开启时的压差 0.01 MPa（默认）| 正标量
+  group: 阀
+- name: Check valve maximum pressure differential
+  summary: 单向阀完全开启所需的压差 0.1 MPa（默认）| 正标量
+  group: 阀
+- name: Check valve maximum area
+  summary: 单向阀完全开启时的开口面积 1e-4 m^2（默认）| 正标量
+  group: 阀
+- name: Check valve leakage area
+  summary: 单向阀完全关闭时的总泄漏面积 1e-10 m^2（默认）| 正标量
+  group: 阀
+- name: Smoothing factor
+  summary: 应用于单向阀和可变节流口开口面积函数的平滑量 0.01（默认）| 正标量
+  group: 阀
+```
 
 ### 缓冲柱塞
 
@@ -89,7 +140,6 @@ chinese_source: worker-translation
 ### **Smoothing factor** — 应用于单向阀和可变节流口开口面积函数的平滑量 `0.01`（默认）| 正标量
 
 连续平滑因子，在阀接近开启或接近关闭位置时为流量响应引入一层渐变。将该值设置为小于 1 的非零值，以提高仿真在这些工况下的稳定性。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Actuators / Auxiliary Components

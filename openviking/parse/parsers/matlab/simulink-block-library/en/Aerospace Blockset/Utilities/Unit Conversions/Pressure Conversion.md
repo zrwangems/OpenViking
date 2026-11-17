@@ -14,6 +14,17 @@ language: en
 # Pressure Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Pressure scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Pressure scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -41,8 +52,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units psi (default) | Pa | psf | atm
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''psi'' | ''Pa'' | ''psf'' | ''atm'''
+  default: '''psi'''
+- name: Final unit
+  summary: Output units Pa (default) | psi | psf | atm
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''psi'' | ''Pa'' | ''psf'' | ''atm'''
+  default: '''Pa'''
+```
 
 ### **Initial unit** — Input units `psi` (default) | `Pa` | `psf` | `atm`
 
@@ -93,7 +120,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `'psi'` | `'Pa'` | `'psf'` | `'atm'` |
 | **Default**: `'Pa'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

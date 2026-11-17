@@ -14,6 +14,21 @@ language: en
 # Histogram
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: Histogram output vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | uint32
+```
 
 ### Input
 
@@ -111,8 +126,46 @@ range of any input exceeds this value, the block wraps the value back to
 `0`.
 
 **Data Types:** `single` | `double` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Lower limit of histogram
+  summary: Lower boundary of lowest-valued bin scalar
+  group: Main Tab
+- name: Upper limit of histogram
+  summary: Upper boundary of highest-valued bin scalar
+  group: Main Tab
+- name: Number of bins
+  summary: Number of histogram bins positive integer
+  group: Main Tab
+- name: Find the histogram over
+  summary: Compute histogram over each column or entire input Each column (default) | Entire input
+  group: Main Tab
+- name: Normalized
+  summary: Normalize output off (default) | on
+  group: Main Tab
+- name: Running histogram
+  summary: Track frequency distribution over time off (default) | on
+  group: Main Tab
+- name: Reset port
+  summary: Reset event Non-zero sample (default) | None | Rising edge | Falling edge | Either edge
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -292,7 +345,6 @@ For more information on the data type assistant, see Specify Data Types Using Da
 
 Select this parameter to prevent the fixed-point tools from overriding
 the data types you specify on the block.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

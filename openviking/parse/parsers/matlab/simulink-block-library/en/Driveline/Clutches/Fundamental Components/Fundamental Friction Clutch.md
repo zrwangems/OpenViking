@@ -14,6 +14,33 @@ language: en
 # Fundamental Friction Clutch
 
 ## Ports
+```yaml
+ports:
+- name: tK
+  summary: Kinetic friction torque, N\*m physical signal
+  direction: input
+- name: t+
+  summary: Static friction torque upper bound, N\*m physical signal
+  direction: input
+- name: t-
+  summary: Static friction torque lower bound, N\*m physical signal
+  direction: input
+- name: S
+  summary: Clutch slip velocity, rad/sec physical signal
+  direction: output
+- name: M
+  summary: Clutch state physical signal
+  direction: output
+- name: B
+  summary: Rotational velocity, rad/sec mechanical rotational
+  direction: conserving
+- name: F
+  summary: Rotational speed, rad/sec mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -59,8 +86,25 @@ more information, see Model Thermal Losses in Driveline Components.
 
 To enable these settings, set **Thermal Port** to
 `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Directionality
+  summary: Permissible inter-plate slip directions Bidirectional (default) | Unidirectional
+  group: ''
+- name: Thermal port
+  summary: Thermal model Omit (default) | Model
+  group: ''
+- name: Thermal mass
+  summary: Resistance to temperature change 50 kJ/K (default) | scalar
+  group: ''
+- name: Clutch velocity tolerance
+  summary: Slip velocity threshold 0.001 rad/s (default) | scalar
+  group: ''
+- name: Initial state
+  summary: Initial clutch state Unlocked (default) | Locked
+  group: ''
+```
 
 ### **Directionality** — Permissible inter-plate slip directions `Bidirectional` (default) | `Unidirectional`
 
@@ -113,7 +157,6 @@ this reason, after checking that the unlocked state is valid, the block
 automatically determines the appropriate direction of motion based on the
 driveline dynamics. Based on the direction of motion, the clutch then
 transitions to an unlocked-reverse or unlocked-forward state.
-
 ## Libraries
 
 Simscape / Driveline / Clutches / Fundamental Components

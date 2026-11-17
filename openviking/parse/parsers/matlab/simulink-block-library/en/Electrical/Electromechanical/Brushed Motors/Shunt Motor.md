@@ -14,6 +14,27 @@ language: en
 # Shunt Motor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: Hf
+  summary: Field winding thermal port thermal
+  direction: conserving
+- name: Ha
+  summary: Armature winding thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -54,8 +75,67 @@ Armature winding thermal port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Model parameterization
+  summary: Block parameterization By equivalent circuit parameters (default) | By rated power, rated speed & no-load speed
+  group: Electrical Torque
+- name: Armature resistance
+  summary: Armature resistance 110 Ohm (default)
+  group: Electrical Torque
+- name: Field winding resistance
+  summary: Field winding resistance 2500 Ohm (default)
+  group: Electrical Torque
+- name: Back-emf constant
+  summary: Back-emf constant 5.11 s*V/rad/A (default)
+  group: Electrical Torque
+- name: Armature inductance
+  summary: Armature inductance 0.1 H (default)
+  group: Electrical Torque
+- name: Field winding inductance
+  summary: Field winding inductance 0.1 H (default)
+  group: Electrical Torque
+- name: No-load speed
+  summary: No-load speed 4600 rpm (default)
+  group: Electrical Torque
+- name: Rated speed (at rated load)
+  summary: Rated speed 4000 rpm (default)
+  group: Electrical Torque
+- name: Rated load (mechanical power)
+  summary: Rated load 50 W (default)
+  group: Electrical Torque
+- name: Rated DC supply voltage
+  summary: Rated DC supply voltage 220 V (default)
+  group: Electrical Torque
+- name: Starting current at rated DC supply voltage
+  summary: Starting current at rated DC supply voltage 2.09 A (default)
+  group: Electrical Torque
+- name: Rotor inertia
+  summary: Rotor inertia 2e-4 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor dissipated energy 1e-6 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Initial rotor speed
+  summary: Initial rotor speed 0 rpm (default)
+  group: Mechanical
+- name: Resistance temperature coefficients, [alpha_f alpha_a]
+  summary: Stator and rotor resistance temperature coefficients [.00393, .00393] 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 C (default)
+  group: Temperature Dependence
+- name: Thermal masses, [Mf Ma]
+  summary: Thermal masses [100, 100] J/K (default)
+  group: Thermal Port
+- name: Initial temperatures
+  summary: Initial temperatures [25, 25] C (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -209,7 +289,6 @@ temperature by one degree.
 
 A 1 by 2 row vector that defines the temperature of the field and
 armature thermal ports at the start of simulation.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Brushed Motors

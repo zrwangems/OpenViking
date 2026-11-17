@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Quaternion Modulus
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 四元数 四元数 | 四元数向量
+  direction: input
+  data_types: double
+- name: '|q|'
+  summary: 四元数模 四元数模 | 四元数模向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -39,11 +50,12 @@ chinese_source: worker-translation
 *q* |, | *r* |, ...] 形式表示的四元数模或四元数模向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

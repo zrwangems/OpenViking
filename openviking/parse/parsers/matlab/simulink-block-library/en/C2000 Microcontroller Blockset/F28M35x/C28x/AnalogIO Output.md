@@ -14,10 +14,15 @@ language: en
 # C2802x/C2803x/C2806x/F28M3x AnalogIO Output
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Parameters (Output Pins)**
 :   Select the analog output pins. Selecting **Toggle**
@@ -28,7 +33,6 @@ Not documented in R2025b.
 :   Select the analog output pins. Selecting **Toggle**
     inverts the output voltage levels of the pins if the input of the block
     is True.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -14,13 +14,17 @@ language: en
 # Hydraulic Reference
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has one hydraulic conserving port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

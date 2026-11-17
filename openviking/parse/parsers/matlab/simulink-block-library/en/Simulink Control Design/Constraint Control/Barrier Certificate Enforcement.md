@@ -14,6 +14,36 @@ language: en
 # Barrier Certificate Enforcement
 
 ## Ports
+```yaml
+ports:
+- name: u0
+  summary: Control actions scalar | vector
+  direction: input
+- name: fx
+  summary: State function scalar | vector
+  direction: input
+- name: gx
+  summary: Input function scalar | vector | matrix
+  direction: input
+- name: hx
+  summary: Control barrier function scalar | vector
+  direction: input
+- name: qx
+  summary: Partial derivative of control barrier function scalar | vector | matrix
+  direction: input
+- name: umax
+  summary: Action signal upper bounds scalar | vector
+  direction: input
+- name: umin
+  summary: Action signal lower bounds scalar | vector
+  direction: input
+- name: u\*
+  summary: Modified control action scalar | vector
+  direction: output
+- name: exitflag
+  summary: Optimization status 1 | 0 | negative integer
+  direction: output
+```
 
 ### Input
 
@@ -147,8 +177,79 @@ possible status values.
 
 To enable this output port, select the **Optimization
 status** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of states
+  summary: Number of plant states 1 (default) | positive integer
+  group: ''
+  block_parameter: nx
+  type: character vector
+  default: '''1'''
+- name: Number of actions
+  summary: Number of control actions 1 (default) | positive integer
+  group: ''
+  block_parameter: nu
+  type: character vector
+  default: '''1'''
+- name: Number of barrier certificates
+  summary: Number of barrier certificate constraints 1 (default) | positive integer
+  group: ''
+  block_parameter: nc
+  type: character vector
+  default: '''1'''
+- name: Constraint factor
+  summary: Constraint factor 10 (default) | positive scalar | vector
+  group: ''
+  block_parameter: gamma
+  type: character vector
+  default: '''10'''
+- name: Constraint power
+  summary: Constraint power 1 (default) | positive odd integer | vector
+  group: ''
+  block_parameter: beta
+  type: character vector
+  default: '''1'''
+- name: Use external source for upper bound
+  summary: Add upper action bound input port off (default) | on
+  group: ''
+  block_parameter: external_umax
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Use external source for lower bound
+  summary: Add lower action bound input port off (default) | on
+  group: ''
+  block_parameter: external_umin
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Sample time
+  summary: Optimization sample time 0.1 (default) | positive scalar
+  group: ''
+  block_parameter: Ts
+  type: character vector
+  default: '''0.1'''
+- name: Maximum iterations
+  summary: Maximum optimization iterations 200 (default) | positive integer
+  group: ''
+  block_parameter: maxiter
+  type: character vector
+  default: '''200'''
+- name: Constraint tolerance
+  summary: Tolerance for constraint violations 1e-6 (default) | nonnegative scalar
+  group: ''
+  block_parameter: tol
+  type: character vector
+  default: '''1e-6'''
+- name: Optimization status
+  summary: Add exit flag output port off (default) | on
+  group: ''
+  block_parameter: exitflag
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+```
 
 #### Parameters Tab
 
@@ -307,7 +408,6 @@ for the optimization status of the QP solver.
 | **Type:** character vector |
 | **Values:** `'off'`|`'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink Control Design / Constraint Control

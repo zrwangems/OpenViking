@@ -14,6 +14,25 @@ language: en
 # Lookup Table
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixdt(0,N,F), N <= 16 | Boolean
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream scalar | vector
+  direction: output
+  data_types: uint8 | uint16 | int8 | int16 | fixed point | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -75,8 +94,13 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Table data
+  summary: Map between input pixel and output pixel uint8(0:1:255) (default) | vector
+  group: ''
+```
 
 ### **Table data** — Map between input pixel and output pixel `uint8(0:1:255)` (default) | vector
 
@@ -117,7 +141,6 @@ generation.
 **Example:** `uint8(linspace(255,0,256))`
 
 **Data Types:** `uint8` | `uint16` | `int8` | `int16` | `fixed point` | `Boolean` | `double` | `single`
-
 ## Libraries
 
 Vision HDL Toolbox / Conversions

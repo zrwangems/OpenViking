@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Motor & Drive (System Level)
 
 ## 端口
+```yaml
+ports:
+- name: Tr
+  summary: 参考转矩需求 physical
+  direction: input
+- name: 'OFF'
+  summary: 供电开关 physical
+  direction: input
+- name: W
+  summary: 机械转速输出 physical
+  direction: output
+- name: +
+  summary: 正直流电源 electrical
+  direction: output
+- name: '-'
+  summary: 负直流电源 electrical
+  direction: output
+- name: C
+  summary: 电机外壳 mechanical
+  direction: output
+- name: R
+  summary: 电机转子 mechanical
+  direction: output
+- name: H
+  summary: 热端口 thermal
+  direction: output
+```
 
 ### 输入
 
@@ -64,8 +91,150 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option**
 参数设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Parameterize by
+  summary: 转矩参数化方法 Tabulate torque envelope with speed（默认）| Maximum torque and power | Tabulate torque envelope with speed
+    and supply voltage
+  group: Electrical Torque
+- name: Allow intermittent over-torque
+  summary: 间歇过转矩选项 No（默认）| Yes
+  group: Electrical Torque
+- name: Continuous operation maximum torque envelope, T_c(w)
+  summary: 连续运行的最大转矩值向量 [.09, .08, .07, 0] N*m（默认）
+  group: Electrical Torque
+- name: Continuous operation maximum torque envelope, T_c(w, Vdc)
+  summary: 按转速和电压制表的连续运行最大转矩值向量 [.09, .09, .09; .08, .08, .08; .07, .07, .07; 0, 0, 0] N*m（默认）| 正值二维向量
+  group: Electrical Torque
+- name: Intermittent operation maximum torque envelope, T_i(w)
+  summary: 间歇运行的最大转矩值向量 [.36, .32, .28, 0] N*m（默认）
+  group: Electrical Torque
+- name: Intermittent operation maximum torque envelope, T_i(w,Vdc)
+  summary: 按转速和电压制表的间歇运行最大转矩值向量 [.36, .36, .36; .32, .32, .32; .28, .28, .28; 0, 0, 0] N*m（默认）| 正值二维向量
+  group: Electrical Torque
+- name: Corresponding rotational speeds, w
+  summary: 转速向量 [0, 3750, 7500, 8000] rpm（默认）
+  group: Electrical Torque
+- name: Corresponding DC supply voltage, Vdc
+  summary: 直流电源电压向量 [6, 12, 24] V（默认）| 正标量向量
+  group: Electrical Torque
+- name: Continuous operation maximum torque
+  summary: 连续运行的最大转矩 0.1 N*m（默认）| 正标量
+  group: Electrical Torque
+- name: Continuous operation maximum power
+  summary: 连续运行的最大功率 30 W（默认）| 正标量
+  group: Electrical Torque
+- name: Intermittent operation maximum torque
+  summary: 间歇运行的最大转矩 0.4 N*m（默认）| 正标量
+  group: Electrical Torque
+- name: Intermittent operation maximum power
+  summary: 间歇运行的最大功率 120 W（默认）| 正标量
+  group: Electrical Torque
+- name: Over-torque time limit
+  summary: 过转矩时间限制 30 s（默认）| 正标量
+  group: Electrical Torque
+- name: Recovery time
+  summary: 恢复时间 60 s（默认）| 正标量
+  group: Electrical Torque
+- name: Torque control time constant, Tc
+  summary: 转矩控制时间常数 0.02 s（默认）| 非负标量
+  group: Electrical Torque
+- name: Enable supply switch
+  summary: 启用供电切换的选项 off（默认）| on
+  group: Electrical Torque
+- name: Parameterize losses by
+  summary: 电气损耗参数化 Single efficiency measurement（默认）| Tabulated loss data as a function of speed and torque | Tabulated efficiency
+    data as a function of speed and torque | Tabulated loss data as a function of speed, torque, and DC supply voltage | Tabulated
+    efficiency data as a function of speed, torque, and DC supply voltage
+  group: Electrical Losses
+- name: Motor and driver overall efficiency (percent)
+  summary: 电机和驱动器总效率 100（默认）
+  group: Electrical Losses
+- name: Speed at which efficiency is measured
+  summary: 测量效率时的转速 3750 rpm（默认）
+  group: Electrical Losses
+- name: Torque at which efficiency is measured
+  summary: 测量效率时的转矩 0.08 N*m（默认）
+  group: Electrical Losses
+- name: Iron losses at measurement speed
+  summary: 测量转速下的铁耗 0 W（默认）
+  group: Electrical Losses
+- name: Fixed losses independent of torque and speed
+  summary: 与转矩和转速无关的固定损耗 0 W（默认）
+  group: Electrical Losses
+- name: Vector of speeds (w) for tabulated losses
+  summary: 用于制表损耗的转速向量 [-8000, -4000, 0, 4000, 8000] rpm（默认）
+  group: Electrical Losses
+- name: Vector of torques (T) for tabulated losses
+  summary: 用于制表损耗的转矩向量 [0, .03, .06, .09] Nm（默认）
+  group: Electrical Losses
+- name: Vector of DC supply voltages (v) for tabulated losses
+  summary: 用于制表损耗的直流电源电压向量 [100, 250, 400] V（默认）
+  group: Electrical Losses
+- name: Corresponding losses, P(w,T)
+  summary: 与转速和转矩对应的电气损耗 [1.49, 1.67, 2.21, 3.1; .42, .69, 1.14, 2.03; .06, .24, .78, 1.68; .42, .69, 1.14, 2.03; 1.49, 1.67,
+    2.21, 3.1] W（默认）
+  group: Electrical Losses
+- name: Corresponding efficiency (percent), E(w,T)
+  summary: 对应于转速和转矩的效率 [95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95]（默认）
+  group: Electrical Losses
+- name: Corresponding losses, P(w,T,v)
+  summary: 对应于转速、转矩和电源电压的电气损耗 ones(5, 4, 3) W（默认）
+  group: Electrical Losses
+- name: Corresponding efficiency (percent), E(w,T,v)
+  summary: 对应于转速、转矩和电源电压的效率 95 * ones(5, 4, 3)（默认）
+  group: Electrical Losses
+- name: External supply series resistance
+  summary: 外部电源串联电阻 0 Ohm（默认）| 非负标量
+  group: Electrical Losses
+- name: Rotor inertia
+  summary: 转子惯量 5e-6 kg*m^2（默认）| 非负标量
+  group: Mechanical
+- name: Rotor damping
+  summary: 转子阻尼 1e-5 N*m*s/rad（默认）| 非负标量
+  group: Mechanical
+- name: Initial rotor speed
+  summary: 初始转子转速 0 rpm（默认）
+  group: Mechanical
+- name: Open circuit fault
+  summary: 添加开路故障的选项 Add fault（默认）
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: 第二测量温度 125 degC（默认）
+  group: Temperature Dependence
+- name: Corresponding losses, P(w,T), at second measurement temperature
+  summary: 第二测量温度下对应于转速和转矩的电气损耗 [1.49, 1.74, 2.49, 3.74; .42, .67, 1.42, 2.67; .06, .31, 1.06, 2.31; .42, .67, 1.42, 2.67;
+    1.49, 1.74, 2.49, 3.74] W（默认）
+  group: Temperature Dependence
+- name: Corresponding efficiency (percent), E(w,T), at second measurement temperature
+  summary: 第二测量温度下对应于转速和转矩的效率 [95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95; 95, 95, 95, 95]（默认）
+  group: Temperature Dependence
+- name: Corresponding losses, P(w,T,v), at second measurement temperature
+  summary: 第二测量温度下对应于转速、转矩和电源电压的电气损耗 ones(5, 4, 3) W（默认）
+  group: Temperature Dependence
+- name: Corresponding efficiency (percent), E(w,T,v), at second measurement temperature
+  summary: 第二测量温度下对应于转速、转矩和电源电压的效率 95 * ones(5, 4, 3)（默认）
+  group: Temperature Dependence
+- name: Thermal mass
+  summary: 热质量 100 J/K（默认）
+  group: Thermal Port
+- name: Initial Temperature
+  summary: 初始温度 25 degC（默认）
+  group: Thermal Port
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -567,7 +736,6 @@ function of speed and torque`。
 ### **Initial Temperature** — 初始温度 `25` `degC`（默认）
 
 仿真开始时热端口的温度。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / System-Level Modeling

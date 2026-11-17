@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # MFCC
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 音频输入列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: MFCC 特征矩阵 | 三维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -41,8 +52,73 @@ chinese_source: worker-translation
 输出中大小为 1 的尾部维度将被移除。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Window
+  summary: 分析窗 hamming(1024,'periodic')（默认）| 实向量
+  group: ''
+- name: Overlap length
+  summary: 相邻窗之间重叠样本的数量 512（默认）| 范围 [0, windowLength) 内的整数
+  group: ''
+- name: Number of cepstral coefficients
+  summary: 每个特征向量中倒谱系数的数量 13（默认）| 大于 1 的正整数
+  group: ''
+- name: Rectification
+  summary: 非线性整流的类型 Logarithm（默认）| Cubic root
+  group: ''
+- name: Append delta
+  summary: 将 MFCC 的 delta 附加到特征向量 on（默认）| off
+  group: ''
+- name: Append delta-delta
+  summary: 将 MFCC 的 delta-delta 附加到特征向量 on（默认）| off
+  group: ''
+- name: Delta window length
+  summary: 用于计算 delta 和 delta-delta 的系数数量 9（默认）| 大于 2 的奇数
+  group: ''
+- name: Number of feature vectors
+  summary: 输出中 MFCC 特征向量的数量 1（默认）| 正整数
+  group: ''
+- name: Number of overlapped feature vectors
+  summary: 输出中重叠的特征向量数量 0（默认）| 非负整数
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入的采样率 44.1e3（默认）| 正标量
+  group: ''
+- name: Number of bands
+  summary: mel 滤波器组中的频带数量 32（默认）| 正整数
+  group: ''
+- name: Auto-determine frequency range
+  summary: 自动确定频率范围 on（默认）| off
+  group: ''
+- name: Frequency range (Hz)
+  summary: mel 滤波器组的频率范围 [0,22050]（默认）| 二元素行向量
+  group: ''
+- name: Filter bank design domain
+  summary: mel 滤波器组的设计域 linear（默认）| warped
+  group: ''
+- name: Filter bank normalization
+  summary: 滤波器组的归一化技术 bandwidth（默认）| area | none
+  group: ''
+- name: Mel style
+  summary: Mel 风格 oshaughnessy（默认）| slaney
+  group: ''
+- name: Normalize window
+  summary: 归一化分析窗 on（默认）| off
+  group: ''
+- name: Spectrum type
+  summary: 频谱类型 power（默认）| magnitude
+  group: ''
+- name: Auto-determine FFT length
+  summary: 自动确定 FFT 长度 on（默认）| off
+  group: ''
+- name: FFT length
+  summary: DFT 点数 1024（默认）| 正整数
+  group: ''
+```
 
 #### Mel-Frequency Cepstral Coefficients
 
@@ -170,7 +246,6 @@ mel 刻度的风格，指定为 `oshaughnessy` 或
 
 要启用此参数，请清除 **Auto-determine FFT length**
 参数。
-
 ## 所属库
 
 Audio Toolbox / Features

@@ -14,6 +14,25 @@ language: en
 # Resource Pool
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Change resource amount scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_u
+  summary: Outputs the number of resources that are in use scalar
+  direction: output
+  data_types: double
+- name: Port_util
+  summary: Outputs the average time the pool is utilized scalar
+  direction: output
+  data_types: double
+- name: Port_avail
+  summary: Outputs the number of resources that are available scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -66,8 +85,80 @@ and select the box labeled **Amount available,
 avail**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Resource name
+  summary: Name for the resources in the pool Resource1 (default) | character vector
+  group: ''
+  block_parameter: ResourceName
+  type: character vector
+  values: '''Resource1'' | character vector'
+  default: '''Resource1'''
+- name: Resource granularity
+  summary: Select granularity of resource use Discrete unit (default) | Fractional amount
+  group: ''
+  block_parameter: ResourceGranularity
+  type: character vector
+  values: '''Discrete unit'' | ''Fractional amount'''
+  default: '''Discrete unit'''
+- name: Reusable upon release
+  summary: Specify if the resource is reusable upon release off (default) | on
+  group: ''
+  block_parameter: ReusableUponRelease
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Resource amount source
+  summary: Select resource amount source Dialog (default) | Change amount through control port
+  group: ''
+  block_parameter: ResourceAmountSource
+  type: character vector
+  values: '''Dialog'' | ''Change amount through control port'''
+  default: '''Dialog'''
+- name: Resource amount
+  summary: Set the amount of resource 10 (default) | scalar
+  group: ''
+  block_parameter: ResourceAmount
+  type: character vector
+  values: '''10'' | scalar'
+  default: '''10'''
+- name: Initial resource amount
+  summary: Enter initial amount of resource 10 (default) | scalar
+  group: ''
+  block_parameter: InitialResourceAmount
+  type: character vector
+  values: '''10'' | scalar'
+  default: '''10'''
+- name: Resource visibility
+  summary: Select the availability of the resources Global (default) | Scoped
+  group: ''
+  block_parameter: InitialResourceAmount
+  type: character vector
+  values: '''10'' | scalar'
+  default: '''10'''
+- name: Amount in use, u
+  summary: Number of resources that are in use off (default) | on
+  group: ''
+  block_parameter: AmountInUse
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average utilization, util
+  summary: Outputs the average resource utilization off (default) | on
+  group: ''
+  block_parameter: AverageUtilization
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Amount available, avail
+  summary: Outputs the amount of resources available off (default) | on
+  group: ''
+  block_parameter: AmountAvailable
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Resource name** — Name for the resources in the pool `Resource1` (default) | character vector
 
@@ -264,7 +355,6 @@ Outputs the amount of resources available.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents / Entity Management SimEvents

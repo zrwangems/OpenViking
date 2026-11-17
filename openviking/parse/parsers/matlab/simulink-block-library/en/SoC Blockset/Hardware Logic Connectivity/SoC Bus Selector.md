@@ -14,6 +14,61 @@ language: en
 # SoC Bus Selector
 
 ## Ports
+```yaml
+ports:
+- name: ctrlBus
+  summary: Input control bus bus
+  direction: input
+  data_types: StreamM2SBusObj | StreamS2MBusObj | pixelcontrol | StreamVideoS2MBusObj | ReadControlS2MBusObj | WriteControlS2MBusObj
+- name: valid
+  summary: Valid control signal boolean scalar
+  direction: output
+  data_types: Boolean
+- name: tlast
+  summary: Indication of end of data packet boolean scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Ready control signal boolean scalar
+  direction: output
+  data_types: Boolean
+- name: hStart
+  summary: First pixel in horizontal line of frame boolean scalar
+  direction: output
+  data_types: Boolean
+- name: hEnd
+  summary: Last pixel in horizontal line of frame boolean scalar
+  direction: output
+  data_types: Boolean
+- name: vStart
+  summary: First pixel in first (top) line of frame boolean scalar
+  direction: output
+  data_types: Boolean
+- name: vEnd
+  summary: Last pixel in last (bottom) line of frame boolean scalar
+  direction: output
+  data_types: Boolean
+- name: rd_aready
+  summary: Accept read requests boolean scalar
+  direction: output
+  data_types: Boolean
+- name: rd_dvalid
+  summary: Read request valid boolean scalar
+  direction: output
+  data_types: Boolean
+- name: wr_ready
+  summary: Write ready signal boolean scalar
+  direction: output
+  data_types: Boolean
+- name: wr_bvalid
+  summary: Write valid signal boolean scalar
+  direction: output
+  data_types: Boolean
+- name: wr_complete
+  summary: Write transaction complete boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -194,8 +249,16 @@ To enable this port, set the **Control protocol** parameter to
 `Random access write`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Control protocol
+  summary: Protocol interface selection Data stream (default) | Pixel stream | Random access read | Random access write
+  group: ''
+- name: Control type
+  summary: Control type selection Valid (default) | Ready
+  group: ''
+```
 
 ### **Control protocol** — Protocol interface selection `Data stream` (default) | `Pixel stream` | `Random access read` | `Random access write`
 
@@ -221,7 +284,6 @@ Specify the type of control.
 The output ports of the block vary based on the type of **Control
 protocol** and **Control type** that you select. For more
 details, see Description.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Connectivity

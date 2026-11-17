@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # HDL Counter
 
 ## 端口
+```yaml
+ports:
+- name: rst
+  summary: 本地复位端口 标量
+  direction: input
+  data_types: Boolean
+- name: load
+  summary: 加载端口 标量
+  direction: input
+  data_types: Boolean
+- name: load_val
+  summary: 加载端口值 标量
+  direction: input
+  data_types: Boolean
+- name: enb
+  summary: 计数使能端口 标量
+  direction: input
+  data_types: Boolean
+- name: dir
+  summary: 计数方向端口 标量
+  direction: input
+  data_types: Boolean
+- name: count
+  summary: 计数值 标量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: count_hit
+  summary: 计数器限值指示 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -90,8 +121,115 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Count hit output port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Counter type
+  summary: 计数器行为 Free running（默认）| Count limited | Modulo
+  group: ''
+  block_parameter: CountType
+  type: 字符向量
+  values: '''Free running'' | ''Count limited'' | ''Modulo'''
+  default: '''Free running'''
+- name: Initial value
+  summary: 复位后的计数值 0（默认）
+  group: ''
+  block_parameter: CountInit
+  type: 字符向量
+  values: 大于或等于零的整数
+  default: '''0'''
+- name: Step value
+  summary: 计数的步长值 1（默认）
+  group: ''
+  block_parameter: CountStep
+  type: 字符向量
+  values: 大于或等于零的整数
+  default: '''1'''
+- name: 计数到值
+  summary: 阈值计数值 25（默认）
+  group: ''
+  block_parameter: CountMax
+  type: 字符向量
+  values: 大于或等于零的整数
+  default: '''25'''
+- name: 计数起始值
+  summary: 计数起始值的条件 初始值（默认） | 指定
+  group: ''
+  block_parameter: CountFromType
+  type: 字符向量
+  values: '''Initial value'' | ''Specify'''
+  default: '''Initial value'''
+- name: 计数起始值
+  summary: 计数的初始值 0（默认）
+  group: ''
+  block_parameter: CountFrom
+  type: 字符向量
+  values: '''Initial value'' | ''Specify'''
+  default: '''Initial value'''
+- name: 本地复位端口
+  summary: 用于复位计数器的本地端口 off（默认） | on
+  group: ''
+  block_parameter: CountResetPort
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 加载端口
+  summary: 用于加载值的端口 off（默认） | on
+  group: ''
+  block_parameter: CountLoadPort
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 计数使能端口
+  summary: 用于使能计数的端口 off（默认） | on
+  group: ''
+  block_parameter: CountEnbPort
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 计数方向端口
+  summary: 用于计数方向的端口 off（默认） | on
+  group: ''
+  block_parameter: CountDirPort
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 计数命中输出端口
+  summary: 用于计数限制的端口 off（默认） | on
+  group: ''
+  block_parameter: CountHitOutputPort
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 计数器输出数据为
+  summary: 输出数据类型符号性 Unsigned（默认） | Signed
+  group: ''
+  block_parameter: CountDataType
+  type: 字符向量
+  values: '''Unsigned'' | ''Signed'''
+  default: '''off'''
+- name: 字长
+  summary: 计数器字长 8（默认）
+  group: ''
+  block_parameter: CountWordLen
+  type: 字符向量
+  values: 大于或等于 1 的整数
+  default: '''8'''
+- name: 小数长度
+  summary: 计数器小数长度 0（默认）
+  group: ''
+  block_parameter: CountFracLen
+  type: 字符向量
+  values: 大于或等于 0 的整数
+  default: '''0'''
+- name: 采样时间
+  summary: 计数器采样时间 1（默认）
+  group: ''
+  block_parameter: CountSampTime
+  type: 字符向量
+  values: 大于或等于 1 的整数
+  default: '''1'''
+```
 
 ### **Counter type** — 计数器行为 `Free running`（默认）| `Count limited` | `Modulo`
 
@@ -306,7 +444,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 大于或等于 1 的整数 |
 | **默认值：** `'1'` |
-
 ## 所属库
 
 HDL Coder / Sources

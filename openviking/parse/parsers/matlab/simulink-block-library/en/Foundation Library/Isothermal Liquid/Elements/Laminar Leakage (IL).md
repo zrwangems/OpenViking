@@ -14,6 +14,15 @@ language: en
 # Laminar Leakage (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet or outlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Inlet or outlet isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,44 @@ laminar leakage. This block has no intrinsic directionality.
 
 Isothermal liquid conserving port associated with the inlet or outlet of the
 laminar leakage. This block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cross-sectional geometry
+  summary: Select the shape of the leakage cross section Circular (default) | Annular | Rectangular | Elliptical | Equilateral
+    triangular | Custom
+  group: ''
+- name: Diameter
+  summary: Diameter of the circular cross section 1e-3 m (default) | positive scalar
+  group: ''
+- name: Inner diameter
+  summary: Inner diameter of the annular cross section 5e-4 m (default) | positive scalar
+  group: ''
+- name: Outer diameter
+  summary: Outer diameter of the annular cross section 1e-3 m (default) | positive scalar
+  group: ''
+- name: Width
+  summary: Width of the rectangular cross section 1e-3 m (default) | positive scalar
+  group: ''
+- name: Height
+  summary: Height of the rectangular cross section 0.1 m (default) | positive scalar
+  group: ''
+- name: Major axis
+  summary: Major axis of the elliptical cross section 1e-3 m (default) | positive scalar
+  group: ''
+- name: Minor axis
+  summary: Minor axis of the elliptical cross section 5e-4 m (default) | positive scalar
+  group: ''
+- name: Side length
+  summary: Length of the triangle side for the equilateral triangular cross section 1e-3 m (default) | positive scalar
+  group: ''
+- name: Longitudinal length
+  summary: Length of the flow passage 5 m (default) | positive scalar
+  group: ''
+- name: Linear pressure-flow resistance
+  summary: Ratio of pressure loss to mass flow rate 1e3 s\*MPa/m^3 (default) | positive scalar
+  group: ''
+```
 
 ### **Cross-sectional geometry** — Select the shape of the leakage cross section `Circular` (default) | `Annular` | `Rectangular` | `Elliptical` | `Equilateral triangular` | `Custom`
 
@@ -119,7 +164,6 @@ known, the block acts as a linear hydraulic resistance.
 
 Enabled when the **Cross-sectional geometry** parameter is set to
 `Custom`.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

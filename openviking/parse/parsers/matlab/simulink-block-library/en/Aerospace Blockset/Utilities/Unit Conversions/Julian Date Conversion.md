@@ -14,6 +14,17 @@ language: en
 # Julian Date Conversion
 
 ## Ports
+```yaml
+ports:
+- name: day
+  summary: Clock source scalar | array
+  direction: input
+  data_types: double
+- name: JD
+  summary: Julian date scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -45,8 +56,78 @@ Julian date, returned as a scalar or array.
 #### Dependencies
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Year
+  summary: Year 2013 (default) | double, whole number, greater than 1
+  group: ''
+  block_parameter: year
+  type: character vector
+  values: double, greater than 1
+  default: '''2013'''
+- name: Month
+  summary: Month January (default) | February | March | April | May | June | July | August | September | October | November
+    | December
+  group: ''
+  block_parameter: month
+  type: character vector
+  values: '''January'' | ''February'' | ''March'' | ''April'' | ''May'' | ''June'' | ''July'' | ''August'' | ''September''
+    | ''October'' | ''November'' | ''December'''
+  default: '''January'''
+- name: Day
+  summary: Day 1 (default) | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22
+    | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+  group: ''
+  block_parameter: day
+  type: character vector
+  values: '''1'' | ''2'' | ''3'' | ''4'' | ''5'' | ''5'' | ''6'' | ''7'' | ''8'' | ''9'' | ''10'' | ''11'' | ''12'' | ''13''
+    | ''14'' | ''15'' | ''16'' | ''17'' | ''18'' | ''19'' | ''20'' | ''21'' | ''22'' | ''23'' | ''24'' | ''25'' | ''26'' |
+    ''27'' | ''28'' | ''29'' | ''30'' | ''31'''
+  default: '''1'''
+- name: Hour
+  summary: Hour 0 (default) | double, whole number, 0 to 24
+  group: ''
+  block_parameter: hour
+  type: character vector
+  values: double, whole number, 0 to 24
+  default: '''0'''
+- name: Minutes
+  summary: Minutes 0 (default) | double, whole number, 0 to 60
+  group: ''
+  block_parameter: min
+  type: character vector
+  values: double, whole number, 0 to 60
+  default: '''0'''
+- name: Seconds
+  summary: Seconds 0 (default) | double, whole number, 0 to 60
+  group: ''
+  block_parameter: sec
+  type: character vector
+  values: double, whole number, 0 to 60
+  default: '''0'''
+- name: Calculate modified Julian date
+  summary: Modified Julian data off (default) | on
+  group: ''
+  block_parameter: modflag
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Time increment
+  summary: Time increment Day (default) | Hour | Min | Sec | None
+  group: ''
+  block_parameter: deltaT
+  type: character vector
+  values: '''Day'' | ''Hour'' | ''Min'' | ''Sec'' | ''None'''
+  default: '''Day'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: errorflag
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+```
 
 ### **Year** — Year `2013` (default) | double, whole number, greater than 1
 
@@ -204,7 +285,6 @@ Out-of-range block behavior, specified as follows.
 | **Type**: character vector |
 | **Values**: `'None'` | `'Warning'` | `'Error'` |
 | **Default**: `'Error'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

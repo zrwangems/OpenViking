@@ -14,6 +14,22 @@ language: en
 # TCP Send
 
 ## Ports
+```yaml
+ports:
+- name: Enable
+  summary: Allow data transmission integer
+  direction: input
+- name: Data
+  summary: Data to transmit over the TCP network vector
+  direction: input
+  data_types: uint8
+- name: Length
+  summary: Length of data vector double
+  direction: input
+- name: Status
+  summary: Number of bytes sent double
+  direction: output
+```
 
 ### Input
 
@@ -45,8 +61,18 @@ device.
 Returns the number of `uint8` values transmitted to
 the client
 device.
-
 ## Parameters
+```yaml
+parameters:
+- name: Send using
+  summary: 'List of IP address and port pairs Read-only: x.x.x.x:y'
+  group: ''
+  block_parameter: socketAddPort
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sampleTime
+```
 
 ### **Send using** — List of IP address and port pairs Read-only: `x.x.x.x:y`
 
@@ -75,7 +101,6 @@ that the sample time is inherited.
 |  |
 | --- |
 | **Block Parameter:** `sampleTime` |
-
 ## Libraries
 
 Simulink Real-Time / IP

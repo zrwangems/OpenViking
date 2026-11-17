@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Transmitter
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 输入波形 复值矩阵
+  direction: input
+  data_types: double
+- name: Y
+  summary: 发射波形 复值矩阵
+  direction: output
+  data_types: double
+- name: TR
+  summary: 发射机开关状态 0 | 1
+  direction: output
+  data_types: double
+- name: Ph
+  summary: 相位噪声 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -53,8 +72,82 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Enable pulse phase noise output** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Peak power (W)
+  summary: 峰值功率 5000（默认）| 正标量
+  group: ''
+- name: Gain method
+  summary: 增益方法 Linear（默认）| Cubic polynomial | Lookup table
+  group: ''
+- name: Gain (dB)
+  summary: 线性发射机增益 20（默认）| 实标量 | 长度为 *N* 的实数值向量
+  group: ''
+- name: Output IP3 (dBm)
+  summary: 输出 IP3 Inf（默认）| 标量 | 长度为 *N* 的实数值向量
+  group: ''
+- name: Lookup table
+  summary: 查找表 [-25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12]（默认）| *M*×*N* 实值矩阵 | *M*×*N* 实值矩阵
+  group: ''
+- name: Loss factor (dB)
+  summary: 发射损耗因子 0（默认）| 非负标量 | 长度为 *N* 的非负值向量
+  group: ''
+- name: Enable transmitter status output
+  summary: 启用发射机状态输出 off（默认）| on
+  group: ''
+- name: Preserve coherence among pulses
+  summary: 保持脉冲间相干性 on（默认）| off
+  group: ''
+- name: Enable pulse phase noise output
+  summary: 启用脉冲相位噪声输出 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+- name: Add noise to input signal
+  summary: 向输入信号添加噪声 off（默认）| on
+  group: ''
+- name: Input noise temperature (K)
+  summary: 输入噪声温度 290（默认）| 正标量 | 长度为 *N* 的正值向量
+  group: ''
+- name: Noise method
+  summary: 噪声方法 None | Noise figure | Noise factor | Noise temperature
+  group: ''
+- name: Noise figure (dB)
+  summary: 噪声系数 3（默认）| 实标量 | 长度为 *N* 的实值向量
+  group: ''
+- name: Noise factor
+  summary: 噪声因子 2（默认）| 正标量 | 长度为 *N* 的正值向量
+  group: ''
+- name: Reference temperature (K)
+  summary: 参考温度 290（默认）| 正标量 | 长度为 *N* 的正值向量
+  group: ''
+- name: Sample rate (Hz)
+  summary: 采样率 1e6（默认）| 正标量
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 开（默认）| 关
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+- name: Phased offset (degrees)
+  summary: 相位偏移 0（默认）| 标量 | 长度为 *N* 的实数向量
+  group: ''
+- name: Source of seed for random number generator
+  summary: 随机数生成器种子的来源 Auto（默认）| Property
+  group: ''
+- name: Seed for random number generator
+  summary: 随机数生成器的种子 0（默认）| 正整数
+  group: ''
+```
 
 #### 主
 
@@ -316,7 +409,6 @@ uout=TAM−AM(|u|)eTAM−PM(|u|+∠u)
 随机数生成器的种子，指定为正整数。
 
 **数据类型：** `single` | `double`
-
 ## 所属库
 
 Phased Array System Toolbox / Transmitters and Receivers

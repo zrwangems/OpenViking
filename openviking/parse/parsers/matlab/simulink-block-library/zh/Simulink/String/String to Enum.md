@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # String to Enum
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入字符串信号 标量
+  direction: input
+  data_types: string
+- name: Output 1
+  summary: 枚举数字 标量
+  direction: output
+  data_types: enumerated
+```
 
 ### 输入
 
@@ -30,8 +41,20 @@ chinese_source: worker-translation
 与输入字符串关联的枚举数字，指定为标量。
 
 **数据类型：** `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Output data type
+  summary: 输出数据类型 SlDemoSign（默认）| <data type expression>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Enum: SlDemoSign'' | *<data type expression>*'
+  default: '''Enum: SlDemoSign'''
+- name: Mode
+  summary: 数据类别 Enumerated（默认）| <data type expression>
+  group: ''
+```
 
 ### **Output data type** — 输出数据类型 `SlDemoSign`（默认）| `<data type expression>`
 
@@ -58,7 +81,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 点击 **Show data type assistant** 按钮可启用此参数。
-
 ## 所属库
 
 Simulink / String

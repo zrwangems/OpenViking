@@ -14,6 +14,30 @@ language: en
 # Reservoir (MA)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Reservoir pressure, Pa physical signal
+  direction: input
+- name: T
+  summary: Reservoir temperature, K physical signal
+  direction: input
+- name: W
+  summary: Reservoir humidity, unitless physical signal
+  direction: input
+- name: Tw
+  summary: Reservoir wet-bulb temperature, K physical signal
+  direction: input
+- name: G
+  summary: Reservoir trace gas level, unitless physical signal
+  direction: input
+- name: D
+  summary: Reservoir water droplet mass ratio, unitless physical signal
+  direction: input
+- name: A
+  summary: Reservoir inlet moist air
+  direction: conserving
+```
 
 ### Input
 
@@ -91,8 +115,78 @@ water droplets**.
 ### **A** — Reservoir inlet moist air
 
 Moist air conserving port associated with the reservoir inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Provide input signal for pressure
+  summary: Method to specify pressure off (default) | on
+  group: ''
+- name: Reservoir pressure specification
+  summary: Specification method for reservoir pressure Atmospheric pressure (default) | Specified pressure
+  group: ''
+- name: Reservoir pressure
+  summary: Pressure in reservoir 0.101325 MPa (default) | positive scalar
+  group: ''
+- name: Provide input signal for temperature
+  summary: Method to specify reservoir temperature off (default) | on
+  group: ''
+- name: Reservoir temperature specification
+  summary: Specification method for reservoir temperature Atmospheric temperature (default) | Specified temperature
+  group: ''
+- name: Reservoir temperature
+  summary: Temperature in reservoir 293.15 K (default) | positive scalar
+  group: ''
+- name: Provide input signal for humidity
+  summary: Method to specify humidity off (default) | on
+  group: ''
+- name: Reservoir humidity specification
+  summary: Specification method for reservoir humidity Relative humidity (default) | Specific humidity | Mole fraction | Humidity
+    ratio | Wet-bulb temperature
+  group: ''
+- name: Reservoir relative humidity
+  summary: Relative humidity in reservoir 0.5 (default) | scalar in the range of [0,1]
+  group: ''
+- name: Reservoir specific humidity
+  summary: Specific humidity in reservoir 0.01 (default) | scalar in the range of [0,1]
+  group: ''
+- name: Reservoir water vapor mole fraction
+  summary: Water vapor mole fraction in reservoir 0.01 (default) | scalar in the range of [0,1]
+  group: ''
+- name: Reservoir humidity ratio
+  summary: Humidity ratio in reservoir 0.01 (default) | scalar in the range of [0,1]
+  group: ''
+- name: Reservoir wet-bulb temperature
+  summary: Wet-bulb temperature in reservoir 287 K (default) | positive scalar
+  group: ''
+- name: Provide input signal for trace gas
+  summary: Method to specify trace gas off (default) | on
+  group: ''
+- name: Reservoir trace gas specification
+  summary: Specification method for trace gas Mass fraction (default) | Mole fraction
+  group: ''
+- name: Reservoir trace gas mass fraction
+  summary: Trace gas mass fraction in reservoir 0.001 (default) | scalar in the range of [0,1]
+  group: ''
+- name: Reservoir trace gas mole fraction
+  summary: Trace gas mole fraction in reservoir 0.001 (default) | scalar in the range of [0,1]
+  group: ''
+- name: Provide input signal for water droplets
+  summary: Method to specify water droplets mass ratio off (default) | on
+  group: ''
+- name: Reservoir mass ration of water droplets to moist air
+  summary: Water droplet mass ratio in reservoir 0 (default) | positive scalar
+  group: ''
+- name: Relative humidity at saturation
+  summary: Relative humidity above which condensation occurs 1 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at reservoir inlet 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Inputs outside valid range
+  summary: Action to take when signal values are outside of valid range Warn and limit to valid values (default) | Limit to
+    valid values | Error
+  group: ''
+```
 
 ### **Provide input signal for pressure** — Method to specify pressure `off` (default) | `on`
 
@@ -343,7 +437,6 @@ To enable this parameter, select at least one of these parameters:
   gas**
 - **Provide input signal for water
   droplets**
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Elements

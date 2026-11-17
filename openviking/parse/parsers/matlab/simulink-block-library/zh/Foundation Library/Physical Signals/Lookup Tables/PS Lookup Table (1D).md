@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Lookup Table (1D)
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入查询点或沿 *x* 轴的 N 维查询点数组，无类型物理信号
+  direction: input
+- name: f
+  summary: 输出函数值，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,22 @@ chinese_source: worker-translation
 ### **f** — 输出函数值，无类型物理信号
 
 基于将查找表应用于输入查询的输出函数值。输出信号大小与输入信号大小匹配。输出信号单位由 **Table values** 参数的单位决定。
-
 ## 参数
+```yaml
+parameters:
+- name: Table grid vector
+  summary: 沿 *x* 轴的数据点向量 [1, 2, 3, 4, 5] 1（默认值）
+  group: ''
+- name: Table values
+  summary: 沿 *f* 轴的输出值向量 [0, 1, 2, 3, 4] 1（默认值）
+  group: ''
+- name: Interpolation method
+  summary: 选择插值方法 Linear（默认值） | Smooth
+  group: ''
+- name: Extrapolation method
+  summary: 选择外推方法 Linear（默认值） | Nearest | Error
+  group: ''
+```
 
 ### **Table grid vector** — 沿 *x* 轴的数据点向量 `[1, 2, 3, 4, 5] 1`（默认值）
 
@@ -55,7 +78,6 @@ chinese_source: worker-translation
 - `Linear` — 从插值区域的边缘进行线性延伸。线性外推的斜率等于插值区域边缘处插值曲线的斜率。
 - `Nearest` — 从插值区域的边缘以常数方式延伸。最近外推的值等于插值区域边缘处插值曲线的值。选择此选项可产生不会高于数据中最高点或低于数据中最低点的外推。
 - `Error` — 如果输入信号超出表的范围，则发出错误。当您希望数据位于表范围内时，选择此选项可避免进入外推模式。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Lookup Tables

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Bevel Gear Constraint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座坐标系 坐标系
+  direction: unspecified
+- name: F
+  summary: 从动坐标系 坐标系
+  direction: unspecified
+```
 
 ### 坐标系
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **F** — 从动坐标系 坐标系
 
 从动锥齿轮上的连接坐标系。
-
 ## 参数
+```yaml
+parameters:
+- name: Base Gear Radius
+  summary: 基座齿轮节圆半径 10 cm（默认）| 带长度单位的正标量
+  group: ''
+- name: Follower Gear Radius
+  summary: 从动齿轮节圆半径 10 cm（默认）| 带长度单位的正标量
+  group: ''
+- name: Shaft Axes
+  summary: 齿轮轴角的参数化方式 Perpendicular（默认）| Arbitrarily Oriented
+  group: ''
+- name: Angle Between Shafts
+  summary: 基座轴与从动轴之间的角度 90 deg（默认）| 正标量
+  group: ''
+```
 
 ### **Base Gear Radius** — 基座齿轮节圆半径 `10` `cm`（默认）| 带长度单位的正标量
 
@@ -47,7 +70,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Shaft Axes** 参数设置为 `Arbitrarily Oriented` 时，此参数启用。
-
 ## 所属库
 
 Simscape / Multibody / Gears and Couplings / Gears

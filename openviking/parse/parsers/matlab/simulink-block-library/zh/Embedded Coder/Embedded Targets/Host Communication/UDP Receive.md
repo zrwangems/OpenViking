@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # UDP Receive
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: UDP 数据包向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输出
 
@@ -23,8 +31,38 @@ chinese_source: worker-translation
 UDP 数据包，指定为数据向量，从 IP 网络端口接收。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Local IP port
+  summary: IP 端口号 25000（默认）| 范围 [1, 65535] 内的标量
+  group: ''
+- name: Remote IP address ('0.0.0.0' to accept all)
+  summary: 接受数据包的来源 IP 地址 '0.0.0.0'（默认）| IP 地址
+  group: ''
+- name: Receive buffer size (bytes)
+  summary: 接收 UDP 数据包的缓冲区大小 8192（默认）| 范围 [1, 67108864] 内的标量
+  group: ''
+- name: Maximum length for Message
+  summary: 输出数据的最大长度 255（默认）| 标量
+  group: ''
+- name: Data type for Message
+  summary: 消息的数据类型 uint8（默认）| single | double | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | boolean | fixed
+    point | enumerated | bus
+  group: ''
+- name: Message is complex
+  summary: 消息数据复数性 off（默认）| on
+  group: ''
+- name: Output variable-size signal
+  summary: 长度可变的消息输出 on（默认）| off
+  group: ''
+- name: Blocking time (seconds)
+  summary: 等待 UDP 数据包的秒数 inf（默认）| 标量
+  group: ''
+- name: Sample time (seconds)
+  summary: 调用模块的频率 0.01（默认）| 标量
+  group: ''
+```
 
 ### **Local IP port** — IP 端口号 25000（默认）| 范围 [1, 65535] 内的标量
 
@@ -90,7 +128,6 @@ sudo matlab
 ### **Sample time (seconds)** — 调用模块的频率 0.01（默认）| 标量
 
 指定调度器调用 UDP Receive 模块的频率（以秒为单位）。输入大于零的值。在实时操作中，将此参数设置为较小的值可降低 UDP 消息丢失的可能性。
-
 ## 所属库
 
 Embedded Coder / Embedded Targets / Host Communication

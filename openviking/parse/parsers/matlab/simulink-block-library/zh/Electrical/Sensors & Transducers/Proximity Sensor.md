@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Proximity Sensor
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 径向距离物理信号
+  direction: input
+- name: Z
+  summary: 垂直距离物理信号
+  direction: input
+- name: +
+  summary: 正电压电气
+  direction: input
+- name: '-'
+  summary: 负电压电气
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +49,25 @@ chinese_source: worker-translation
 ### **-** — 负电压电气
 
 与接近传感器负电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Vector of radial offset distances R
+  summary: 径向偏移距离向量 [-25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25] mm（默认）
+  group: ''
+- name: Corresponding sensing distances Z
+  summary: 对应感测距离 [0, 0, 5, 8, 9.5, 10, 9.5, 8, 5, 0, 0] mm（默认）
+  group: ''
+- name: Output when not detected
+  summary: 未检测到时的输出 Normally Open (N.O.)（默认）| Normally Closed (N.C.)
+  group: ''
+- name: Closed resistance R_closed
+  summary: 闭合电阻 0.01 Ohm（默认）
+  group: ''
+- name: Open conductance G_open
+  summary: 断开电导 1e-8 1/Ohm（默认）
+  group: ''
+```
 
 ### **Vector of radial offset distances R** — 径向偏移距离向量 `[-25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25]` `mm`（默认）
 
@@ -56,7 +88,6 @@ chinese_source: worker-translation
 ### **Open conductance G\_open** — 断开电导 `1e-8` `1/Ohm`（默认）
 
 输出触点断开时 + 和 - 端口之间的电导。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

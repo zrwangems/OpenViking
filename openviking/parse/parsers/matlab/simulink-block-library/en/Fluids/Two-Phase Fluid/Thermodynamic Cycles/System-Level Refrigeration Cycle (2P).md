@@ -14,6 +14,39 @@ language: en
 # System-Level Refrigeration Cycle (2P)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Signal that operates compressor, unitless physical signal
+  direction: input
+- name: F
+  summary: Refrigerant properties two-phase fluid
+  direction: conserving
+- name: Ac
+  summary: Condenser external fluid inlet gas | moist air | thermal liquid | two-phase fluid
+  direction: conserving
+- name: Bc
+  summary: Condenser external fluid outlet gas | moist air | thermal liquid | two-phase fluid
+  direction: conserving
+- name: Ae
+  summary: Evaporator external fluid inlet gas | moist air | thermal liquid | two-phase fluid
+  direction: conserving
+- name: Be
+  summary: Evaporator external fluid outlet gas | moist air | thermal liquid | two-phase fluid
+  direction: conserving
+- name: Qc
+  summary: Heat rejected in condenser, W physical signal
+  direction: output
+- name: Qe
+  summary: Heat absorbed in evaporator, W physical signal
+  direction: output
+- name: Pwr
+  summary: Mechanical power consumed by the compressor, W physical signal
+  direction: output
+- name: W
+  summary: Rate of condensation in evaporator, kg/s physical signal
+  direction: output
+```
 
 ### Input
 
@@ -91,8 +124,474 @@ air`. If the **External fluid for evaporator
 heat transfer** parameter is not moist air, this port
 outputs `0`. The value of this port does not include
 the portion of condensation that is entrained as water droplets.
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacity specification
+  summary: Method for specifying size of system Cooling load (default) | Heating load | Refrigerant mass flow rate
+  group: Refrigeration Cycle
+- name: Nominal condenser heat transfer
+  summary: Rate of heat transfer in condenser 15 kW (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Nominal evaporator heat transfer
+  summary: Rate of heat transfer in evaporator 15 kW (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Nominal mass flow rate
+  summary: Refrigerant mass flow rate 0.005 kg/s (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Pressure specification
+  summary: Method for specifying condenser and evaporator pressure Specified pressure (default) | Pressure at specified saturation
+    temperature
+  group: Refrigeration Cycle
+- name: Nominal condenser pressure
+  summary: Refrigerant pressure in condenser 1 MPa (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Nominal evaporator pressure
+  summary: Refrigerant pressure in evaporator 0.1 MPa (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Nominal condensing (saturation) temperature
+  summary: Condenser refrigerant saturation temperature 333.15 K (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Nominal evaporating (saturation) temperature
+  summary: Evaporator refrigerant saturation temperature 273.15 K (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Nominal condenser subcooling
+  summary: Operational condenser outlet temperature differential 5 deltaK (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Nominal (static + opening) evaporator superheat
+  summary: Operational evaporator outlet temperature differential 10 deltaK (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Static (minimum) evaporator superheat
+  summary: Minimum allowable temperature differential at evaporator outlet 5 deltaK (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Performance specification
+  summary: Method to specify refrigeration cycle efficiency Coefficient of performance for cooling (default) | Coefficient
+    of performance for heating | Compressor isentropic efficiency
+  group: Refrigeration Cycle
+- name: Coefficient of performance at nominal conditions
+  summary: Ratio of cooling or heating to power consumed for compressor 3 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Compressor isentropic efficiency
+  summary: Ratio of ideal-to-actual change in specific enthalpy across compressor 0.8 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Compressor volumetric efficiency at nominal conditions
+  summary: Ratio of volumetric flow rate to displacement rate 0.95 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Compressor mechanical efficiency
+  summary: Efficiency of conversion to torque 0.95 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Ratio of maximum to nominal expansion valve opening
+  summary: Ratio of open valve areas to maintain superheat 1.5 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Ratio of leakage to nominal expansion valve opening
+  summary: Ratio of closed valve areas to maintain superheat 1e-6 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Expansion valve smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Condenser refrigerant volume
+  summary: Volume of condenser refrigerant 0.001 m^3 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Evaporator refrigerant volume
+  summary: Volume of evaporator refrigerant 0.001 m^3 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Liquid receiver tank volume
+  summary: Volume of liquid and vapor phases in receiver tank 0.01 m^3 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Initial receiver liquid level
+  summary: Initial liquid volume fraction in tank 0.5 (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Initialize refrigerant to nominal operating conditions
+  summary: Whether to specify refrigerant initial conditions on (default) | off
+  group: Refrigeration Cycle
+- name: Initial condenser pressure
+  summary: Initial refrigerant pressure in condenser 1 MPa (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Initial evaporator pressure
+  summary: Initial refrigerant pressure in evaporator 0.1 MPa (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Initial condenser specific enthalpy [inlet, outlet]
+  summary: Initial refrigerant specific energy in condenser [450, 250] kJ/kg (default) | positive scalar | two-element vector
+  group: Refrigeration Cycle
+- name: Initial evaporator specific enthalpy [inlet, outlet]
+  summary: Initial refrigerant specific energy in evaporator [250, 400] kJ/kg (default) | positive scalar | two-element vector
+  group: Refrigeration Cycle
+- name: Initial receiver liquid and vapor fully saturated
+  summary: Whether to specify receiver initial conditions on (default) | off
+  group: Refrigeration Cycle
+- name: Initial receiver liquid specific enthalpy
+  summary: Receiver initial liquid specific enthalpy 500 kJ/kg (default) | positive scalar
+  group: Refrigeration Cycle
+- name: Initial receiver vapor specific enthalpy
+  summary: Receiver initial vapor specific enthalpy 3500 kJ/kg (default) | positive scalar
+  group: Refrigeration Cycle
+- name: External fluid for condenser heat transfer
+  summary: External fluid for heat transfer in condenser Moist air (default) | Gas | Thermal liquid | Two-phase fluid
+  group: Condenser External Fluid
+- name: Nominal mass flow rate
+  summary: Mass flow rate between condenser ports 0.5 kg/s (default) | positive scalar
+  group: Condenser External Fluid
+- name: Nominal pressure drop
+  summary: Pressure drop between condenser ports 0.001 MPa (default) | positive scalar
+  group: Condenser External Fluid
+- name: Pressure specification
+  summary: Method of pressure specification Specified pressure (default) | Pressure at specified saturation temperature
+  group: Condenser External Fluid
+- name: Nominal inlet pressure
+  summary: Pressure at external fluid side inlet of condenser 0.101325 MPa (default) | positive scalar
+  group: Condenser External Fluid
+- name: Nominal saturation temperature
+  summary: Nominal saturation temperature to specify pressure 400 K (default) | positive scalar
+  group: Condenser External Fluid
+- name: Inlet condition specification
+  summary: Method to describe inlet condition of fluid Specific enthalpy (default) | Temperature | Vapor quality
+  group: Condenser External Fluid
+- name: Nominal inlet temperature
+  summary: Temperature at condenser external fluid side inlet 400 K (default) | positive scalar
+  group: Condenser External Fluid
+- name: Nominal inlet specific enthalpy
+  summary: Specific enthalpy at condenser external fluid side inlet 500 kJ/kg (default) | positive scalar
+  group: Condenser External Fluid
+- name: Nominal inlet vapor quality
+  summary: Vapor quality at condenser external fluid side inlet 1 (default) | positive scalar
+  group: Condenser External Fluid
+- name: Inlet humidity specification
+  summary: Method to describe humidity level at condenser external fluid side inlet Relative humidity (default) | Specific
+    humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Condenser External Fluid
+- name: Nominal inlet relative humidity
+  summary: Relative humidity at inlet 0.1 (default) | scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: Nominal inlet specific humidity
+  summary: Specific humidity at inlet 0.01 (default) | scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: Nominal inlet water vapor mole fraction
+  summary: Mole fraction of water vapor at inlet 0.01 (default) | scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: Nominal inlet humidity ratio
+  summary: Humidity ratio at inlet 0.01 (default) | scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: Nominal inlet wet-bulb temperature
+  summary: Wet-bulb temperature at the start of simulation 287 K (default) | positive scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: Inlet trace gas specification
+  summary: Method to describe trace gas level at inlet Mass fraction (default) | Mole fraction
+  group: Condenser External Fluid
+- name: Nominal inlet trace gas mass fraction
+  summary: Mass fraction of trace gas at inlet 0.001 (default) | scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: Nominal inlet trace gas mole fraction
+  summary: Mole fraction of trace gas at inlet 0.001 (default) | scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: External fluid volume
+  summary: Volume of fluid in condenser 0.1 m^3 (default) | positive scalar
+  group: Condenser External Fluid
+- name: Cross-sectional area at port Ac
+  summary: Flow area at port Ac 0.01 m^2 (default) | positive scalar
+  group: Condenser External Fluid
+- name: Cross-sectional area at port Bc
+  summary: Flow area at port Bc 0.01 m^2 (default) | positive scalar
+  group: Condenser External Fluid
+- name: Enable condenser wall thermal mass
+  summary: Option to model condenser wall heat transfer Off (default) | On
+  group: Condenser External Fluid
+- name: Condenser wall mass
+  summary: Condenser heat transfer mass 1 kg (default) | positive scalar
+  group: Condenser External Fluid
+- name: Condenser wall specific heat
+  summary: Specific heat of condenser transfer surface 490 J/(K*kg) (default) | positive scalar
+  group: Condenser External Fluid
+- name: Initialize to nominal operating conditions
+  summary: Whether to specify condenser initial conditions On (default) | Off
+  group: Condenser External Fluid
+- name: Initial pressure
+  summary: Fluid pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Condenser External Fluid
+- name: Initial fluid energy specification
+  summary: Initial state of the condenser external fluid Specific enthalpy (default) | Temperature | Vapor quality | Vapor
+    void fraction | Specific internal energy
+  group: Condenser External Fluid
+- name: Initial temperature
+  summary: Temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Condenser External Fluid
+- name: Initial vapor quality
+  summary: Vapor mass fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Condenser External Fluid
+- name: Initial vapor void fraction
+  summary: Vapor volume fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Condenser External Fluid
+- name: Initial specific enthalpy
+  summary: Enthalpy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Condenser External Fluid
+- name: Initial specific internal energy
+  summary: Internal energy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Condenser External Fluid
+- name: Initial humidity specification
+  summary: Method used to describe initial humidity level Relative humidity (default) | Specific humidity | Mole fraction
+    | Humidity ratio | Wet-bulb temperature
+  group: Condenser External Fluid
+- name: Initial relative humidity
+  summary: Relative humidity at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Condenser External Fluid
+- name: Initial specific humidity
+  summary: Specific humidity at start of simulation 0.01 (default) | scalar in the range [0,1] | two-element vector
+  group: Condenser External Fluid
+- name: Initial water vapor mole fraction
+  summary: Mole fraction of water vapor at start of simulation 0.01 (default) | scalar in the range [0,1] | two-element vector
+  group: Condenser External Fluid
+- name: Initial humidity ratio
+  summary: Humidity ratio at start of simulation 0.01 (default) | scalar in the range [0,1] | two-element vector
+  group: Condenser External Fluid
+- name: Initial moist air wet-bulb temperature
+  summary: Wet-bulb temperature at the start of simulation 287 K (default) | positive scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: Initial trace gas specification
+  summary: Method to describe initial trace gas level Mass fraction (default) | Mole fraction
+  group: Condenser External Fluid
+- name: Initial trace gas mass fraction
+  summary: Mass fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1] | two-element vector
+  group: Condenser External Fluid
+- name: Initial trace gas mole fraction
+  summary: Mole fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1] | two-element vector
+  group: Condenser External Fluid
+- name: Initial mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Condenser External Fluid
+- name: Initial condenser wall temperature
+  summary: Condenser surface temperature at simulation start 293.15 K (default) | positive scalar | two-element vector
+  group: Condenser External Fluid
+- name: Relative humidity at saturation
+  summary: Relative humidity point of condensation 1 (default) | nonnegative scalar
+  group: Condenser External Fluid
+- name: Water vapor condensation time constant
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Condenser External Fluid
+- name: Water droplets evaporation time constant
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Condenser External Fluid
+- name: Fraction of condensate entrained as water droplets
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Condenser External Fluid
+- name: External fluid for evaporator heat transfer
+  summary: External fluid for heat transfer in evaporator Moist air (default) | Gas | Thermal liquid | Two-phase fluid
+  group: Evaporator External Fluid
+- name: Nominal mass flow rate
+  summary: Mass flow rate between evaporator ports 0.5 kg/s (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Nominal pressure drop
+  summary: Pressure drop between evaporator ports 0.001 MPa (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Pressure specification
+  summary: Method of pressure specification Specified pressure (default) | Pressure at specified saturation temperature
+  group: Evaporator External Fluid
+- name: Nominal inlet pressure
+  summary: Pressure at external fluid side inlet of evaporator 0.101325 MPa (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Nominal saturation temperature
+  summary: Nominal saturation temperature to specify pressure 400 K (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Inlet condition specification
+  summary: Method to describe inlet condition of fluid Specific enthalpy (default) | Temperature | Vapor quality
+  group: Evaporator External Fluid
+- name: Nominal inlet temperature
+  summary: Temperature at evaporator external fluid side inlet 400 K (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Nominal inlet specific enthalpy
+  summary: Specific enthalpy at evaporator external fluid side inlet 500 kJ/kg (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Nominal inlet vapor quality
+  summary: Vapor quality at evaporator external fluid side inlet 1 (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Inlet humidity specification
+  summary: Method to describe humidity level at evaporator external fluid side inlet Relative humidity (default) | Specific
+    humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Evaporator External Fluid
+- name: Nominal inlet relative humidity
+  summary: Relative humidity at inlet 0.1 (default) | scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: Nominal inlet specific humidity
+  summary: Specific humidity at inlet 0.01 (default) | scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: Nominal inlet water vapor mole fraction
+  summary: Mole fraction of water vapor at the inlet 0.01 (default) | scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: Nominal inlet humidity ratio
+  summary: Humidity ratio at inlet 0.01 (default) | scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: Nominal inlet wet-bulb temperature
+  summary: Wet-bulb temperature at the start of simulation 287 K (default) | positive scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: Inlet trace gas specification
+  summary: Method to describe trace gas level at inlet Mass fraction (default) | Mole fraction
+  group: Evaporator External Fluid
+- name: Nominal inlet trace gas mass fraction
+  summary: Mass fraction of trace gas at inlet 0.001 (default) | scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: Nominal inlet trace gas mole fraction
+  summary: Mole fraction of trace gas at inlet 0.001 (default) | scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: External fluid volume
+  summary: Volume of fluid in evaporator 0.1 m^3 (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Cross-sectional area at port Ae
+  summary: Flow area at port Ae 0.01 m^2 (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Cross-sectional area at port Be
+  summary: Flow area at port Be 0.01 m^2 (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Enable evaporator wall thermal mass
+  summary: Option to model evaporator wall heat transfer Off (default) | On
+  group: Evaporator External Fluid
+- name: Evaporator wall mass
+  summary: Evaporator heat transfer mass 1 kg (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Evaporator wall specific heat
+  summary: Specific heat of evaporator transfer surface 490 J/(K*kg) (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Initialize to nominal operating conditions
+  summary: Whether to specify evaporator initial conditions On (default) | Off
+  group: Evaporator External Fluid
+- name: Initial pressure
+  summary: Fluid pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Initial fluid energy specification
+  summary: Initial state of the evaporator external fluid Specific enthalpy (default) | Temperature | Vapor quality | Vapor
+    void fraction | Specific internal energy
+  group: Evaporator External Fluid
+- name: Initial temperature
+  summary: Temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Evaporator External Fluid
+- name: Initial vapor quality
+  summary: Vapor mass fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Evaporator External Fluid
+- name: Initial vapor void fraction
+  summary: Vapor volume fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Evaporator External Fluid
+- name: Initial specific enthalpy
+  summary: Enthalpy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Evaporator External Fluid
+- name: Initial specific internal energy
+  summary: Internal energy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Evaporator External Fluid
+- name: Initial humidity specification
+  summary: Method used to describe initial humidity level Relative humidity (default) | Specific humidity | Mole fraction
+    | Humidity ratio | Wet-bulb temperature
+  group: Evaporator External Fluid
+- name: Initial relative humidity
+  summary: Relative humidity at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Evaporator External Fluid
+- name: Initial specific humidity
+  summary: Specific humidity at start of simulation 0.01 (default) | scalar in the range [0,1] | two-element vector
+  group: Evaporator External Fluid
+- name: Initial water vapor mole fraction
+  summary: Mole fraction of water vapor at start of simulation 0.01 (default) | scalar in the range [0,1] | two-element vector
+  group: Evaporator External Fluid
+- name: Initial humidity ratio
+  summary: Humidity ratio at start of simulation 0.01 (default) | scalar in the range [0,1] | two-element vector
+  group: Evaporator External Fluid
+- name: Initial moist air wet-bulb temperature
+  summary: Wet-bulb temperature at the start of simulation 287 K (default) | positive scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: Initial trace gas specification
+  summary: Method to describe initial trace gas level Mass fraction (default) | Mole fraction
+  group: Evaporator External Fluid
+- name: Initial trace gas mass fraction
+  summary: Mass fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1] | two-element vector
+  group: Evaporator External Fluid
+- name: Initial trace gas mole fraction
+  summary: Mole fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1] | two-element vector
+  group: Evaporator External Fluid
+- name: Initial mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Initial evaporator wall temperature
+  summary: Evaporator surface temperature at simulation start 293.15 K (default) | positive scalar | two-element vector
+  group: Evaporator External Fluid
+- name: Relative humidity at saturation
+  summary: Relative humidity point of condensation 1 (default) | nonnegative scalar
+  group: Evaporator External Fluid
+- name: Water vapor condensation time constant
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Water droplets evaporation time constant
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Evaporator External Fluid
+- name: Fraction of condensate entrained as water droplets
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Evaporator External Fluid
+- name: Modify condenser Nusselt number correlation coefficients
+  summary: Whether to modify condenser Nusselt number correlation coefficients Off (default) | On
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for refrigerant, liquid regime
+  summary: Correlation coefficient for refrigerant subcooled liquid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for refrigerant, mixture regime
+  summary: Correlation coefficient for refrigerant liquid-vapor mixture 0.005 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for refrigerant, vapor regime
+  summary: Correlation coefficient for refrigerant superheated vapor 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for refrigerant
+  summary: Reynolds number exponent in correlation for refrigerant 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for refrigerant
+  summary: Prandtl number exponent in correlation for refrigerant 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for external fluid, liquid regime
+  summary: Correlation coefficient for subcooled liquid in two-phase fluid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for external fluid, mixture regime
+  summary: Correlation coefficient for liquid-vapor mixture in two-phase fluid 0.005 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for external fluid, vapor regime
+  summary: Correlation coefficient for superheated vapor in two-phase fluid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for external fluid
+  summary: Correlation coefficient for condenser external fluid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for external fluid
+  summary: Reynolds number exponent in correlation for condenser external fluid 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for external fluid
+  summary: Prandtl number exponent in correlation for condenser external fluid 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+- name: Modify evaporator Nusselt number correlation coefficients
+  summary: Whether to modify evaporator Nusselt number correlation coefficients Off (default) | On
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for refrigerant, liquid regime
+  summary: Correlation coefficient for refrigerant subcooled liquid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for refrigerant, mixture regime
+  summary: Correlation coefficient for refrigerant liquid-vapor mixture 0.005 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for refrigerant, vapor regime
+  summary: Correlation coefficient for refrigerant superheated vapor 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for refrigerant
+  summary: Reynolds number exponent in correlation for refrigerant 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for refrigerant
+  summary: Prandtl number exponent in correlation for refrigerant 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for external fluid, liquid regime
+  summary: Correlation coefficient for subcooled liquid in two-phase fluid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for external fluid, mixture regime
+  summary: Correlation coefficient for liquid-vapor mixture in two-phase fluid 0.005 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for external fluid, vapor regime
+  summary: Correlation coefficient for superheated vapor in two-phase fluid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for external fluid
+  summary: Correlation coefficient for evaporator external fluid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for external fluid
+  summary: Reynolds number exponent in correlation for evaporator external fluid 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for external fluid
+  summary: Prandtl number exponent in correlation for evaporator external fluid 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+```
 
 ### Refrigeration Cycle
 
@@ -1959,7 +2458,6 @@ The default value is based on the Colburn equation.
 
 To enable this parameter, select **Modify evaporator
 Nusselt number correlation coefficients**.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Thermodynamic Cycles

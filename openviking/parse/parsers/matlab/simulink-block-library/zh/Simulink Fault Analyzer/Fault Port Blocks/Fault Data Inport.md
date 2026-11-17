@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Fault Data Inport
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 来自模型信号的数据 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumeration | bus
+```
 
 ### 输出
 
@@ -23,11 +31,12 @@ chinese_source: worker-translation
 Fault Data Inport 模块输出实值标量、向量或矩阵数据。将该模块映射到模型中的模块或组件输出信号。模型必须包含分配给该行为的故障。映射到该模块的信号决定输出数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumeration` | `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Fault Analyzer / Fault Port Blocks

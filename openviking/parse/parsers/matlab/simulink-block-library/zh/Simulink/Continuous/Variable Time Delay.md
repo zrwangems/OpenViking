@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Variable Time Delay
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: t0
+  summary: 时间延迟输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: ti
+  summary: 瞬时时间延迟输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 延迟信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -56,8 +75,70 @@ chinese_source: worker-translation
 输出信号，指定为标量、向量或矩阵。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Select delay type
+  summary: 延迟类型 Variable time delay | Variable transport delay
+  group: ''
+  block_parameter: VariableDelayType
+  type: 字符向量、字符串
+  values: '''Variable transport delay'' | ''Variable time delay'''
+- name: Maximum delay
+  summary: 时间延迟输入的最大值 10（默认）| 标量 | 向量
+  group: ''
+  block_parameter: MaximumDelay
+  type: 字符向量、字符串
+  values: 标量 | 向量
+- name: Initial output
+  summary: 初始输出 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: InitialOutput
+  type: 字符向量、字符串
+  values: 标量 | 向量
+- name: Initial buffer size
+  summary: 初始内存分配 1024（默认）| 标量
+  group: ''
+  block_parameter: MaximumPoints
+  type: 字符向量、字符串
+  values: 标量 | 向量
+- name: Use fixed buffer size
+  summary: 使用固定大小缓冲区 off（默认）| on
+  group: ''
+  block_parameter: FixedBuffer
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+- name: Handle zero delay
+  summary: 允许零延迟的选项 off（默认）| on
+  group: ''
+  block_parameter: ZeroDelay
+  type: 字符串 | 字符向量
+  values: '''off'' | ''on'''
+- name: Direct feedthrough of input during linearization
+  summary: 在线性化和修剪操作期间使用零延迟的选项 off（默认）| on
+  group: ''
+  block_parameter: TransDelayFeedthrough
+  type: 字符串 | 字符向量
+  values: '''off'' | ''on'''
+- name: Pade order (for linearization)
+  summary: Pade 近似的阶数 0（默认）| 标量
+  group: ''
+  block_parameter: PadeOrder
+  type: 字符向量、字符串
+  values: 标量
+- name: Absolute tolerance
+  summary: 计算模块状态的绝对容差 auto（默认）| 正实数标量或向量
+  group: ''
+  block_parameter: AbsoluteTolerance
+  type: 字符向量、字符串
+  values: '''auto'' | ''-1'' | 任何正实数标量或向量'
+- name: State Name (e.g., 'position')
+  summary: 每个状态的唯一名称 ' '（默认）| 字符向量、字符串
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  type: 字符向量、字符串
+  values: ''' '' | 用户定义的字符向量、用户定义的字符串'
+```
 
 ### **Select delay type** — 延迟类型 `Variable time delay` | `Variable transport delay`
 
@@ -264,7 +345,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量、字符串 |
 | **值：** `' '` | 用户定义的字符向量、用户定义的字符串 |
 | **默认：** `' '` |
-
 ## 所属库
 
 Simulink / Continuous

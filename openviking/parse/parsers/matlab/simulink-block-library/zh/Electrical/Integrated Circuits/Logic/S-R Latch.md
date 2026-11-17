@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # S-R Latch
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 置位引脚电气端口
+  direction: conserving
+- name: R
+  summary: 复位引脚电气端口
+  direction: conserving
+- name: Q
+  summary: 输出引脚电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,61 @@ chinese_source: worker-translation
 ### **Q** — 输出引脚电气端口
 
 与 S-R 锁存器输出引脚关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Low level input voltage
+  summary: 低电平输入电压 2 V（默认值）
+  group: 输入
+- name: High level input voltage
+  summary: 高电平输入电压 3 V（默认值）
+  group: 输入
+- name: Average input capacitance
+  summary: 平均输入电容 5 pF（默认值）
+  group: 输入
+- name: Output current-voltage relationship
+  summary: 输出电流-电压关系 Linear（默认值） | Quadratic
+  group: 输出
+- name: Low level output voltage
+  summary: 低电平输出电压 0 V（默认值）
+  group: 输出
+- name: High level output voltage
+  summary: 高电平输出电压 5 V（默认值）
+  group: 输出
+- name: Output resistance
+  summary: 输出电阻 25 Ohm（默认值）
+  group: 输出
+- name: Supply voltage
+  summary: 电源电压 5 V（默认值）
+  group: 输出
+- name: Measurement voltage
+  summary: 测量电压 5 V（默认值）
+  group: 输出
+- name: Logic HIGH output resistance at zero current and at I_OH
+  summary: 零电流和 I_OH 时的逻辑 HIGH 输出电阻 [25, 250] Ohm
+  group: 输出
+- name: Logic HIGH output current I_OH when shorted to ground
+  summary: 短接到地时的逻辑 HIGH 输出电流 I_OH 63 mA（默认值）
+  group: 输出
+- name: Logic LOW output resistance at zero current and at I_OL
+  summary: 零电流和 I_OL 时的逻辑 LOW 输出电阻 [30, 800] Ohm（默认值）
+  group: 输出
+- name: Logic LOW output current I_OL when shorted to Vcc
+  summary: 短接到 Vcc 时的逻辑 LOW 输出电流 I_OL -45 mA（默认值）
+  group: 输出
+- name: Propagation delay
+  summary: 传播延迟 25 ns（默认值）
+  group: 输出
+- name: Protection diode on resistance
+  summary: 保护二极管导通电阻 5 Ohm（默认值）
+  group: 输出
+- name: Protection diode forward voltage
+  summary: 保护二极管正向电压 0.6 V（默认值）
+  group: 输出
+- name: Output initial state
+  summary: 输出初始状态 Low（默认值） | High
+  group: 初始条件
+```
 
 ### 输入
 
@@ -152,7 +217,6 @@ chinese_source: worker-translation
 ### **Output initial state** — 输出初始状态 `Low`（默认值） | `High`
 
 指定模块的初始输出状态为 `High` 还是 `Low`。只要 **Propagation delay** 参数大于零且 Solver Configuration 模块未选择 **Start simulation from steady state** 选项，此参数就适用于线性和二次输出状态。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits / Logic

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Varying Lowpass Filter
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 滤波器输入 标量
+  direction: input
+- name: freq
+  summary: 截止频率 标量
+  direction: input
+- name: y
+  summary: 滤波器输出 标量
+  direction: output
+```
 
 ### 输入
 
@@ -30,13 +42,17 @@ chinese_source: worker-translation
 ### **y** — 滤波器输出 标量
 
 低通滤波器输出信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Filter order
+  summary: 低通滤波器阶数 1（默认）| 正整数
+  group: ''
+```
 
 ### **Filter order** — 低通滤波器阶数 1（默认）| 正整数
 
 低通滤波器阶数，指定为正整数。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

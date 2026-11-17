@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # 2-Way Directional Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 阀芯位移，m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -30,8 +42,63 @@ chinese_source: worker-translation
 ### **S** — 阀芯位移，m，物理信号
 
 与阀芯位移相关联的物理信号，单位为 m。正值使阀门打开。
-
 ## 参数
+```yaml
+parameters:
+- name: Orifice parameterization
+  summary: 开口面积关系 Linear - area vs. spool travel（默认）| Tabulated data - Area vs. spool travel | Tabulated data - Volumetric
+    flow rate vs. spool travel and pressure drop
+  group: 模型参数化
+- name: Spool position at maximum orifice area
+  summary: 最大面积时的阀芯偏移 5e-3 m（默认）| 正标量
+  group: 模型参数化
+- name: Spool travel between closed and open orifice
+  summary: 最大阀芯行程 5e-3 m（默认）| 正标量
+  group: 模型参数化
+- name: Maximum orifice area
+  summary: 阀门完全打开时的面积 1e-4 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Leakage area
+  summary: 完全关闭位置时的阀门间隙面积 1e-10 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Spool travel vector
+  summary: 阀芯开口距离值 [0, .002, .004, .007, .017] m（默认）| 向量
+  group: 模型参数化
+- name: Orifice area vector
+  summary: 阀门开口面积值 [1e-09, 2.0352e-07, 4.0736e-05, .00011438, .00034356] m^2（默认）| 向量
+  group: 模型参数化
+- name: Spool travel vector, ds
+  summary: 表格阀芯开口距离值 [0, .002, .004, .007, .017] m（默认）| 向量
+  group: 模型参数化
+- name: Pressure drop vector, dp
+  summary: 表格压降值 [.3, .5, .7] MPa（默认）| 向量
+  group: 模型参数化
+- name: Volumetric flow rate table, q(ds,dp)
+  summary: 给定阀芯行程和压降下的体积流量 [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7, .9, 1.06; 1.96, 2.5, 3; 6, 7.7, 9.13] m^3/s（默认）|
+    矩阵
+  group: 模型参数化
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 模型参数化
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 模型参数化
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: 模型参数化
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 on（默认）| off
+  group: 模型参数化
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的阀门面积 inf m^2（默认）| 正标量
+  group: 模型参数化
+- name: 2-Way Directional Valve Area fault
+  summary: 建模阀芯位置故障的选项 Add fault
+  group: 故障
+- name: Spool position when faulted
+  summary: 故障时的阀门特性 Positive（默认）| Negative | Maintain last value
+  group: 故障
+```
 
 ### 模型参数化
 
@@ -206,7 +273,6 @@ faulted** 参数中指定的值进行设置。
 #### 依赖关系
 
 要启用此参数，请单击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

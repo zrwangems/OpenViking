@@ -15,10 +15,30 @@ chinese_source: worker-translation
 # RoadRunner Scenario
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Action name
+  summary: 用户定义动作的名称 字符串
+  group: 动作
+- name: Bus object name
+  summary: 总线对象的名称 字符串
+  group: 动作
+- name: Event name
+  summary: 用户定义事件的名称 字符串
+  group: 事件
+- name: Bus object name
+  summary: 总线对象的名称 字符串
+  group: 事件
+- name: Maximum Points on Path
+  summary: 路径上的最大点数 500（默认值）| 正标量
+  group: 配置
+```
 
 ### 动作
 
@@ -67,7 +87,6 @@ R2025b 中未记录。
 仅当 Simulink 参与者行为模型包含 RoadRunner Scenario Reader 模块，且该模块通过将 **Topic Category** 设置为 `Action` 并将 **Action Type** 设置为 `Path Following` 来读取参与者的 Path Following 动作时，此参数才适用。RoadRunner Scenario Reader 模块在路径上的点数达到最大值后停止读取。
 
 **数据类型：** `uint64`
-
 ## 所属库
 
 Automated Driving Toolbox / RoadRunner Scenario

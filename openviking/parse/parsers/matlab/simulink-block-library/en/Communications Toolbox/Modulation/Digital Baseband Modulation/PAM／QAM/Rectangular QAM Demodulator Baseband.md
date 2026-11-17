@@ -14,6 +14,20 @@ language: en
 # Rectangular QAM Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: QAM-modulated signal scalar | vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Var
+  summary: Noise Variance positive scalar | vector of positive values
+  direction: input
+  data_types: double
+- name: Out
+  summary: Demodulated signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -48,8 +62,69 @@ Demodulated signal, returned as a scalar, or vector. The dimensions of
 the demodulated signal depend on the specified **Output
 type** and **Decision type**. This port
 is unnamed on the block.
-
 ## Parameters
+```yaml
+parameters:
+- name: M-ary number
+  summary: Modulation order 16 (default) | positive integer
+  group: Main
+- name: Output type
+  summary: Output type Integer (default) | Bit
+  group: Main
+- name: Decision type
+  summary: Demodulation decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio
+  group: Main
+- name: Noise variance source
+  summary: Noise variance source Dialog (default) | Port
+  group: Main
+- name: Noise variance
+  summary: Noise Variance 1 (default) | positive scalar | vector of positive values
+  group: Main
+- name: Constellation ordering
+  summary: Mapping order of symbols Binary (default) | Gray | User-defined
+  group: Main
+- name: Constellation mapping
+  summary: User-defined constellation mapping [0:15] (default) | vector
+  group: Main
+- name: Normalization method
+  summary: Scaling method for constellation Min. distance between symbols (default) | Average Power | Peak Power
+  group: Main
+- name: Minimum distance
+  summary: Distance between two nearest constellation points 2 (default) | positive scalar
+  group: Main
+- name: Average power, referenced to 1 ohm (watts)
+  summary: Average power 1 (default) | positive scalar
+  group: Main
+- name: Peak power, referenced to 1 ohm (watts)
+  summary: Maximum power 1 (default) | positive scalar
+  group: Main
+- name: Phase offset (rad)
+  summary: Rotation of signal constellation 0 (default) | numeric scalar
+  group: Main
+- name: Output data type
+  summary: Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | boolean
+  group: Data Types
+- name: Derotate factor
+  summary: 'Derotate factor data type Inherit: Same word length as input (default) | fixdt(1,16) | <data type expression>'
+  group: Data Types
+- name: Denormalization factor
+  summary: 'Denormalization factor data type Inherit: Same word length as input (default) | fixdt(1,16) | <data type expression>'
+  group: Data Types
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | fixdt(1,16) | <data type expression>'
+  group: Data Types
+- name: Rounding mode
+  summary: Rounding mode for fixed-point operations Wrap (default) | Saturate
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Option to saturate on integer overflow off (default) | on
+  group: Data Types
+- name: Sum
+  summary: 'Sum data type Inherit: Inherit via internal rule (default) | Inherit: Same as product output | fixdt(1,16) | <data
+    type expression>'
+  group: Data Types
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -396,7 +471,6 @@ For information about specifying data types, see Data Type Assistant.
 
 This parameter applies only when the input is a fixed-point
 signal.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM Communications Toolbox HDL Support / Modulation / AM

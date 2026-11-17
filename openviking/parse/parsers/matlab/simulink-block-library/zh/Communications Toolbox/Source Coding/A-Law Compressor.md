@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # A-Law Compressor
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **A value**
 :   压缩器的 A-law 参数。
 
 **Peak signal magnitude**
 :   输入信号的峰值。这也是输出信号的峰值。
-
 ## 所属库
 
 R2025b 中未记录。

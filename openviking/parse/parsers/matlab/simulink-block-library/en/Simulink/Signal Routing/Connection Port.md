@@ -14,10 +14,21 @@ language: en
 # Connection Port
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port number
+  summary: Connector port number 1 (default) | scalar
+  group: ''
+- name: Port location on parent subsystem
+  summary: 'Port location on the parent subsystem. Choices are: left (default) | Right'
+  group: ''
+```
 
 PMC Port mask
 
@@ -33,7 +44,6 @@ labels.
 
 Use this parameter to choose on which side of the parent subsystem boundary the Port
 is placed.
-
 ## Libraries
 
 RF Blockset / Equivalent Baseband / Input RF Blockset / Circuit Envelope / Utilities

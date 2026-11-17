@@ -14,6 +14,29 @@ language: en
 # GCC DOA and TOA
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Received signal *M*-by-*N* complex-valued matrix
+  direction: input
+  data_types: single | double
+- name: Ang
+  summary: Direction of arrival 2-by-1 real-valued column vector | scalar
+  direction: output
+  data_types: double
+- name: Tau
+  summary: Time delays of arrival 1-by-*P* real-valued row vector
+  direction: output
+  data_types: double
+- name: Rxy
+  summary: Estimated cross-correlation (2*M*+1)-by-*P* complex-valued matrix
+  direction: output
+  data_types: double
+- name: Lag
+  summary: Time lags *M*-by-1 real-valued column vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -110,8 +133,167 @@ To enable this port, select the **Enable correlation
 output** check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: Main Tab
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: Main Tab
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: Main Tab
+- name: Source of sensor pairs
+  summary: Source of sensor pairs Auto (default) | Property
+  group: Main Tab
+- name: Sensor pairs
+  summary: Sensor pairs [2;1] (default)
+  group: Main Tab
+- name: Enable correlation output
+  summary: Option to enable correlation output off (default) | on
+  group: Main Tab
+- name: Enable delay output
+  summary: Option to enable delay output off (default) | on
+  group: Main Tab
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: Main Tab
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: Method to specify array Array (no subarrays) (default) | Partitioned array | Replicated subarray | MATLAB expression
+  group: Sensor Array Tab
+- name: Element type
+  summary: Array element types Isotropic Antenna (default) | Cardioid Antenna | Cosine Antenna | Custom Antenna | Gaussian
+    Antenna | Sinc Antenna | Omni Microphone | Custom Microphone
+  group: Sensor Array Tab
+- name: Operating frequency range (Hz)
+  summary: Operating frequency range of the antenna or microphone element [0,1e20] (default) | real-valued 1-by-2 row vector
+  group: Sensor Array Tab
+- name: Baffle the back of the element
+  summary: Set back response of an Isotropic Antenna element or an Omni Microphone element to zero off (default) | on
+  group: Sensor Array Tab
+- name: Null axis direction
+  summary: Null axis direction -x (default) | +x | +y | -y | +z | -z
+  group: Sensor Array Tab
+- name: Exponent of cosine pattern
+  summary: Exponents of azimuth and elevation cosine patterns [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2
+    matrix of nonnegative values
+  group: Sensor Array Tab
+- name: Operating frequency vector (Hz)
+  summary: Operating frequency range of custom antenna or microphone elements [0,1e20] (default) | real-valued row vector
+  group: Sensor Array Tab
+- name: Frequency responses (dB)
+  summary: Antenna and microphone frequency response [0,0] (default) | real-valued row vector
+  group: Sensor Array Tab
+- name: Input Pattern Coordinate System
+  summary: Coordinate system of custom antenna pattern az-el (default) | phi-theta
+  group: Sensor Array Tab
+- name: Azimuth angles (deg)
+  summary: Azimuth angles of antenna radiation pattern [-180:180] (default) | real-valued row vector
+  group: Sensor Array Tab
+- name: Elevation angles (deg)
+  summary: Elevation angles of antenna radiation pattern [-90:90] (default) | real-valued row vector
+  group: Sensor Array Tab
+- name: Phi Angles (deg)
+  summary: Phi angle coordinates of custom antenna radiation pattern 0:360 | real-valued 1-by-*P* row vector
+  group: Sensor Array Tab
+- name: Theta Angles (deg)
+  summary: Theta angle coordinates of custom antenna radiation pattern 0:180 | real-valued 1-by-*Q* row vector
+  group: Sensor Array Tab
+- name: Magnitude pattern (dB)
+  summary: Magnitude of combined antenna radiation pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued
+    *Q*-by-*P*-by-*L* array
+  group: Sensor Array Tab
+- name: Phase pattern (deg)
+  summary: Custom antenna radiation phase pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued *Q*-by-*P*-by-*L*
+    array
+  group: Sensor Array Tab
+- name: Align element normal with array normal
+  summary: Align element normal with array normal on (default) | off
+  group: Sensor Array Tab
+- name: Radiation pattern beamwidth (deg)
+  summary: Radiation pattern beamwidth [10,10] (default)
+  group: Sensor Array Tab
+- name: Polar pattern frequencies (Hz)
+  summary: Polar pattern microphone response frequencies 1e3 (default) | real scalar | real-valued 1-by-*L* row vector
+  group: Sensor Array Tab
+- name: Polar pattern angles (deg)
+  summary: Polar pattern response angles [-180:180] (default) | real-valued -by-*P* row vector
+  group: Sensor Array Tab
+- name: Polar pattern (dB)
+  summary: Custom microphone polar response zeros(1,361) (default) | real-valued *L*-by-*P* matrix
+  group: Sensor Array Tab
+- name: Geometry
+  summary: Array geometry ULA (default) | URA | UCA | Conformal Array
+  group: Sensor Array Tab
+- name: Number of elements
+  summary: Number of array elements 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2
+  group: Sensor Array Tab
+- name: Array size
+  summary: Dimensions of URA array [2,2] (default) | positive integer | 1-by-2 vector of positive integers
+  group: Sensor Array Tab
+- name: Element spacing (m)
+  summary: Spacing between array elements 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for
+    ULA or URA arrays | 2-element vector of positive values for URA arrays
+  group: Sensor Array Tab
+- name: Array axis
+  summary: Linear axis direction of ULA y (default) | x | z
+  group: Sensor Array Tab
+- name: Element lattice
+  summary: Lattice of URA element positions Rectangular (default) | Triangular
+  group: Sensor Array Tab
+- name: Array normal
+  summary: Array normal direction x for URA arrays or z for UCA arrays (default) | y
+  group: Sensor Array Tab
+- name: Radius of UCA (m)
+  summary: UCA array radius 0.5 (default) | positive scalar
+  group: Sensor Array Tab
+- name: Element positions (m)
+  summary: Positions of conformal array elements [0;0;0] (default) | 3-by-*N*matrix of real values
+  group: Sensor Array Tab
+- name: Element normals (deg)
+  summary: Direction of conformal array element normal vectors [0;0] | 2-by-1 column vector | 2-by-*N* matrix
+  group: Sensor Array Tab
+- name: Taper
+  summary: Array element tapers 1 (default) | complex-valued scalar | complex-valued row vector
+  group: Sensor Array Tab
+- name: Subarray definition matrix
+  summary: Define elements belonging to subarrays logical matrix
+  group: Sensor Array Tab
+- name: Subarray steering method
+  summary: Specify subarray steering method None (default) | Phase | Time
+  group: Sensor Array Tab
+- name: Phase shifter frequency (Hz)
+  summary: Subarray phase shifting frequency 3.0e8 (default) | positive real-valued scalar
+  group: Sensor Array Tab
+- name: Number of bits in phase shifters
+  summary: Subarray steering phase shift quantization bits 0 (default) | non-negative integer
+  group: Sensor Array Tab
+- name: Subarrays layout
+  summary: Subarray position specification Rectangular (default) | Custom
+  group: Sensor Array Tab
+- name: Grid size
+  summary: Dimensions of rectangular subarray grid [1,2] (default)
+  group: Sensor Array Tab
+- name: Grid spacing (m)
+  summary: Spacing between subarrays on rectangular grid Auto (default) | positive real-valued scalar | 1-by-2 vector of positive
+    real-values
+  group: Sensor Array Tab
+- name: Subarray positions (m)
+  summary: Positions of subarrays [0,0;0.5,0.5;0,0] (default) | 3-by-*N* real-valued matrix
+  group: Sensor Array Tab
+- name: Subarray normals
+  summary: Direction of subarray normal vectors [0,0;0,0] (default) | 2-by-*N* real matrix
+  group: Sensor Array Tab
+- name: Expression
+  summary: MATLAB expression used to create an array Phased Array System Toolbox™ array System object
+  group: Sensor Array Tab
+```
 
 ### Main Tab
 
@@ -918,7 +1100,6 @@ MATLAB expression used to create an array, specified as a valid Phased Array Sys
 
 To enable this parameter, set **Specify sensor array as** to
 `MATLAB expression`.
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

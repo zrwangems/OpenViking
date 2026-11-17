@@ -14,6 +14,471 @@ language: en
 # Simulation 3D Custom Pack
 
 ## Ports
+```yaml
+ports:
+- name: Body_T
+  summary: Body translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine1_T
+  summary: Engine 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine1_Prop_T
+  summary: Engine 1 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine2_T
+  summary: Engine 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine2_Prop_T
+  summary: Engine 2 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine3_T
+  summary: Engine 3 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine3_Prop_T
+  summary: Engine 3 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine4_T
+  summary: Engine 4 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine4_Prop_T
+  summary: Engine 4 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine5_T
+  summary: Engine 5 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine5_Prop_T
+  summary: Engine 5 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine6_T
+  summary: Engine 6 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine6_Prop_T
+  summary: Engine 6 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine7_T
+  summary: Engine 7 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine7_Prop_T
+  summary: Engine 7 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine8_T
+  summary: Engine 8 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine8_Prop_T
+  summary: Engine 8 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine9_T
+  summary: Engine 9 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine9_Prop_T
+  summary: Engine 9 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine10_T
+  summary: Engine 10 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine10_Prop_T
+  summary: Engine 10 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine11_T
+  summary: Engine 11 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine11_Prop_T
+  summary: Engine 11 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine12_T
+  summary: Engine 12 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine12_Prop_T
+  summary: Engine 12 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine13_T
+  summary: Engine 13 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine13_Prop_T
+  summary: Engine 13 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine14_T
+  summary: Engine 14 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine14_Prop_T
+  summary: Engine 14 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine15_T
+  summary: Engine 15 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine15_Prop_T
+  summary: Engine 15 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine16_T
+  summary: Engine 16 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine16_Prop_T
+  summary: Engine 16 propeller translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_T
+  summary: Wing 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Left_Flap_T
+  summary: Wing 1 left flap translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Right_Flap_T
+  summary: Wing 1 right flap translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Left_Aileron_T
+  summary: Wing 1 left aileron translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Right_Aileron_T
+  summary: Wing 1 right aileron translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Left_Spoiler_T
+  summary: Wing 1 left spoiler translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Right_Spoiler_T
+  summary: Wing 1 right spoiler translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing2_T
+  summary: Wing 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing2_Left_Flap_T
+  summary: Wing 2 left flap translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing2_Right_Flap_T
+  summary: Wing 2 right flap translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Horizontal_Stab_T
+  summary: Horizontal stab translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Elevator_T
+  summary: Left elevator translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Elevator_T
+  summary: Right elevator translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Rudder_T
+  summary: Left rudder translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Rudder_T
+  summary: Right rudder translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_T
+  summary: Nose gear translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_T
+  summary: Nose wheel translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door_T
+  summary: Nose gear door translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_T
+  summary: Left gear translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Wheel_T
+  summary: Left wheel translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door_T
+  summary: Left gear door translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_T
+  summary: Right gear translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Wheel_T
+  summary: Right wheel translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door_T
+  summary: Right gear door translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: Body rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine1_R
+  summary: Engine 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine1_Prop_R
+  summary: Engine 1 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine2_R
+  summary: Engine 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine2_Prop_R
+  summary: Engine 2 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine3_R
+  summary: Engine 3 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine3_Prop_R
+  summary: Engine 3 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine4_R
+  summary: Engine 4 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine4_Prop_R
+  summary: Engine 4 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine5_R
+  summary: Engine 5 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine5_Prop_R
+  summary: Engine 5 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine6_R
+  summary: Engine 6 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine6_Prop_R
+  summary: Engine 6 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine7_R
+  summary: Engine 7 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine7_Prop_R
+  summary: Engine 7 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine8_R
+  summary: Engine 8 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine8_Prop_R
+  summary: Engine 8 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine9_R
+  summary: Engine 9 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine9_Prop_R
+  summary: Engine 9 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine10_R
+  summary: Engine 10 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine10_Prop_R
+  summary: Engine 10 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine11_R
+  summary: Engine 11 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine11_Prop_R
+  summary: Engine 11 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine12_R
+  summary: Engine 12 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine12_Prop_R
+  summary: Engine 12 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine13_R
+  summary: Engine 13 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine13_Prop_R
+  summary: Engine 13 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine14_R
+  summary: Engine 14 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine14_Prop_R
+  summary: Engine 14 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine15_R
+  summary: Engine 15 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine15_Prop_R
+  summary: Engine 15 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine16_R
+  summary: Engine 16 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine16_Prop_R
+  summary: Engine 16 propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_R
+  summary: Wing 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Left_Flap_R
+  summary: Wing 1 left flap rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Right_Flap_R
+  summary: Wing 1 right flap rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Left_Aileron_R
+  summary: Wing 1 left aileron rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Right_Aileron_R
+  summary: Wing 1 right aileron rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Left_Spoiler_R
+  summary: Wing 1 left spoiler rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing1_Right_Spoiler_R
+  summary: Wing 1 right spoiler rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing2_R
+  summary: Wing 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing2_Left_Flap_R
+  summary: Wing 2 left flap rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Wing2_Right_Flap_R
+  summary: Wing 2 right flap rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Horizontal_Stab_R
+  summary: Horizontal stab rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Elevator_R
+  summary: Left elevator rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Elevator_R
+  summary: Right elevator rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Rudder_R
+  summary: Left rudder rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Rudder_R
+  summary: Right rudder rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_R
+  summary: Nose gear rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_R
+  summary: Nose wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door_R
+  summary: Nose gear door rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_R
+  summary: Left gear rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Wheel_R
+  summary: Left wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door_R
+  summary: Left gear door rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_R
+  summary: Right gear rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Wheel_R
+  summary: Right wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door_R
+  summary: Right gear door rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: Aircraft translation 57-by-3 array
+  direction: output
+- name: Rotation
+  summary: Aircraft rotation 57-by-3 array
+  direction: output
+```
 
 ### Input
 
@@ -1341,8 +1806,799 @@ The rotation applies to the same bones as listed for the Translation port.
 
 The signal contains the rotation [roll, pitch, yaw], in radians, with one row of
 the array for each bone of the aircraft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Engine 1 translation
+  summary: Option to enable Engine1_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 1 propeller translation
+  summary: Option to enable Engine1_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine1_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 2 translation
+  summary: Option to enable Engine2_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 2 propeller translation
+  summary: Option to enable Engine2_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine2_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 3 translation
+  summary: Option to enable Engine3_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine3_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 3 propeller translation
+  summary: Option to enable Engine3_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine3_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 4 translation
+  summary: Option to enable Engine4_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine4_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 4 propeller translation
+  summary: Option to enable Engine4_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine4_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 5 translation
+  summary: Option to enable Engine5_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine5_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 5 propeller translation
+  summary: Option to enable Engine5_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine5_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 6 translation
+  summary: Option to enable Engine6_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine6_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 6 propeller translation
+  summary: Option to enable Engine6_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine6_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 7 translation
+  summary: Option to enable Engine7_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine7_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 7 propeller translation
+  summary: Option to enable Engine7_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine7_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 8 translation
+  summary: Option to enable Engine8_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine8_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 8 propeller translation
+  summary: Option to enable Engine8_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine8_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 9 translation
+  summary: Option to enable Engine9_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine9_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 9 propeller translation
+  summary: Option to enable Engine9_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine9_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 10 translation
+  summary: Option to enable Engine10_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine10_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 10 propeller translation
+  summary: Option to enable Engine10_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine10_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 11 translation
+  summary: Option to enable Engine11_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine11_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 11 propeller translation
+  summary: Option to enable Engine11_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine11_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 12 translation
+  summary: Option to enable Engine12_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine12_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 12 propeller translation
+  summary: Option to enable Engine12_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine12_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 13 translation
+  summary: Option to enable Engine13_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine13_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 13 propeller translation
+  summary: Option to enable Engine13_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine13_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 14 translation
+  summary: Option to enable Engine14_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine14_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 14 propeller translation
+  summary: Option to enable Engine14_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine14_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 15 translation
+  summary: Option to enable Engine15_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine15_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 15 propeller translation
+  summary: Option to enable Engine15_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine15_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 16 translation
+  summary: Option to enable Engine16_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine16_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 16 propeller translation
+  summary: Option to enable Engine16_Prop_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine16_Prop_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 1 rotation
+  summary: Option to enable Engine1_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 1 propeller rotation
+  summary: Option to enable Engine1_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine1_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 2 rotation
+  summary: Option to enable Engine2_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 2 propeller rotation
+  summary: Option to enable Engine2_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine2_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 3 rotation
+  summary: Option to enable Engine3_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine3_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 3 propeller rotation
+  summary: Option to enable Engine3_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine3_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 4 rotation
+  summary: Option to enable Engine4_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine4_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 4 propeller rotation
+  summary: Option to enable Engine4_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine4_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 5 rotation
+  summary: Option to enable Engine5_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine5_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 5 propeller rotation
+  summary: Option to enable Engine5_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine5_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 6 rotation
+  summary: Option to enable Engine6_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine6_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 6 propeller rotation
+  summary: Option to enable Engine6_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine6_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 7 rotation
+  summary: Option to enable Engine7_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine7_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 7 propeller rotation
+  summary: Option to enable Engine7_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine7_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 8 rotation
+  summary: Option to enable Engine8_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine8_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 8 propeller rotation
+  summary: Option to enable Engine8_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine8_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 9 rotation
+  summary: Option to enable Engine9_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine9_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 9 propeller rotation
+  summary: Option to enable Engine9_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine9_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 10 rotation
+  summary: Option to enable Engine10_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine10_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 10 propeller rotation
+  summary: Option to enable Engine10_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine10_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 11 rotation
+  summary: Option to enable Engine11_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine11_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 11 propeller rotation
+  summary: Option to enable Engine11_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine11_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 12 rotation
+  summary: Option to enable Engine12_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine12_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 12 propeller rotation
+  summary: Option to enable Engine12_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine12_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 13 rotation
+  summary: Option to enable Engine13_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine13_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 13 propeller rotation
+  summary: Option to enable Engine13_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine13_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 14 rotation
+  summary: Option to enable Engine14_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine14_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 14 propeller rotation
+  summary: Option to enable Engine14_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine14_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 15 rotation
+  summary: Option to enable Engine15_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine15_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 15 propeller rotation
+  summary: Option to enable Engine15_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine15_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 16 rotation
+  summary: Option to enable Engine16_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine16_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 16 propeller rotation
+  summary: Option to enable Engine16_Prop_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine16_Prop_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 translation
+  summary: Option to enable Wing1_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 left flap translation
+  summary: Option to enable Wing1_Left_Flap_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Left_Flap_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 right flap translation
+  summary: Option to enable Wing1_Right_Flap_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Right_Flap_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 left aileron translation
+  summary: Option to enable Wing1_Left_Aileron_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Left_Aileron_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 right aileron translation
+  summary: Option to enable Wing1_Right_Aileron_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Right_Aileron_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 left spoiler translation
+  summary: Option to enable Wing1_Left_Spoiler_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Left_Spoiler_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 right spoiler translation
+  summary: Option to enable Wing1_Right_Spoiler_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Right_Spoiler_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 2 translation
+  summary: Option to enable Wing2_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 2 left flap translation
+  summary: Option to enable Wing2_Left_Flap_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing2_Left_Flap_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 2 right flap translation
+  summary: Option to enable Wing2_Right_Flap_T input port off (default) | on
+  group: Controls
+  block_parameter: Wing2_Right_Flap_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Horizontal stab translation
+  summary: Option to enable Horizontal_Stab_T input port off (default) | on
+  group: Controls
+  block_parameter: Horizontal_Stab_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left elevator translation
+  summary: Option to enable Left_Elevator_T input port off (default) | on
+  group: Controls
+  block_parameter: Left_Elevator_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right elevator translation
+  summary: Option to enable Right_Elevator_T input port off (default) | on
+  group: Controls
+  block_parameter: Right_Elevator_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left rudder translation
+  summary: Option to enable Left_Rudder_T input port off (default) | on
+  group: Controls
+  block_parameter: Left_Rudder_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right rudder translation
+  summary: Option to enable Right_Rudder_T input port off (default) | on
+  group: Controls
+  block_parameter: Right_Rudder_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 rotation
+  summary: Option to enable Wing1_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 left flap rotation
+  summary: Option to enable Wing1_Left_Flap_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Left_Flap_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 right flap rotation
+  summary: Option to enable Wing1_Right_Flap_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Right_Flap_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 left aileron rotation
+  summary: Option to enable Wing1_Left_Aileron_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Left_Aileron_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 right aileron rotation
+  summary: Option to enable Wing1_Right_Aileron_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Right_Aileron_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 left spoiler rotation
+  summary: Option to enable Wing1_Left_Spoiler_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Left_Spoiler_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 1 right spoiler rotation
+  summary: Option to enable Wing1_Right_Spoiler_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing1_Right_Spoiler_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 2 rotation
+  summary: Option to enable Wing2_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 2 left flap rotation
+  summary: Option to enable Wing2_Left_Flap_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing2_Left_Flap_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Wing 2 right flap rotation
+  summary: Option to enable Wing2_Right_Flap_R input port off (default) | on
+  group: Controls
+  block_parameter: Wing2_Right_Flap_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Horizontal stab rotation
+  summary: Option to enable Horizontal_Stab_R input port off (default) | on
+  group: Controls
+  block_parameter: Horizontal_Stab_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left elevator rotation
+  summary: Option to enable Left_Elevator_R input port off (default) | on
+  group: Controls
+  block_parameter: Left_Elevator_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right elevator rotation
+  summary: Option to enable Right_Elevator_R input port off (default) | on
+  group: Controls
+  block_parameter: Right_Elevator_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left rudder rotation
+  summary: Option to enable Left_Rudder_R input port off (default) | on
+  group: Controls
+  block_parameter: Left_Rudder_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right rudder rotation
+  summary: Option to enable Right_Rudder_R input port off (default) | on
+  group: Controls
+  block_parameter: Right_Rudder_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear translation
+  summary: Option to enable Nose_Gear_T input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel translation
+  summary: Option to enable Nose_Wheel_T input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door translation
+  summary: Option to enable Nose_Gear_Door_T input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_Door_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear translation
+  summary: Option to enable Left_Gear_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left wheel translation
+  summary: Option to enable Left_Wheel_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door translation
+  summary: Option to enable Left_Gear_Door_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Door_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear translation
+  summary: Option to enable Right_Gear_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right wheel translation
+  summary: Option to enable Right_Wheel_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door translation
+  summary: Option to enable Right_Gear_Door_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Door_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear rotation
+  summary: Option to enable Nose_Gear_R input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel rotation
+  summary: Option to enable Nose_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door rotation
+  summary: Option to enable Nose_Gear_Door_R input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_Door_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear rotation
+  summary: Option to enable Left_Gear_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left wheel rotation
+  summary: Option to enable Left_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door rotation
+  summary: Option to enable Left_Gear_Door_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Door_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear rotation
+  summary: Option to enable Right_Gear_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right wheel rotation
+  summary: Option to enable Right_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door rotation
+  summary: Option to enable Right_Gear_Door_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Door_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Select input coordinate frame
+  summary: Input coordinate frame NED (default) | Fixed-frame | ICRF
+  group: Input
+  block_parameter: GeoRadioButton
+  values: '''NED'' (default) | ''Fixed-frame'' | ''ICRF'''
+```
 
 ### Propulsion
 
@@ -2892,7 +4148,6 @@ programmatically, use the `get_param` function.
 | --- | --- |
 | **Parameter:** | `GeoRadioButton` |
 | **Values:** | `'NED'` (default) | `'Fixed-frame'` | `'ICRF'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Simulation 3D

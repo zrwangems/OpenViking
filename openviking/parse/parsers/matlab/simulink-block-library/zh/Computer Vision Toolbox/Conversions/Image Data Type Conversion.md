@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Image Data Type Conversion
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: Port_1
+  summary: 输出图像矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 输出图像，返回为 *M*×*N* 矩阵或 *M*×*N*×*C* 数组，其中 *C* 是输出图像中的颜色通道数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `uint8` | `uint16` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | boolean | Fixed-point | Inherit via back propagation
+  group: ''
+- name: Signed
+  summary: 有符号输出 on（默认）| off
+  group: ''
+- name: Word length
+  summary: 字长 16（默认）| 标量
+  group: ''
+- name: Fraction length
+  summary: 小数长度 0（默认）| 标量
+  group: ''
+```
 
 ### **Output data type** — 输出数据类型 `double`（默认）| `single` | `int8` | `uint8` | `int16` | `uint16` | `boolean` | `Fixed-point` | `Inherit via back propagation`
 
@@ -60,7 +85,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output data type** 参数设置为 `Fixed-point`。
-
 ## 所属库
 
 Computer Vision Toolbox / Conversions

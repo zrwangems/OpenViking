@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Gas Properties (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 连接端口气体
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 连接端口气体
 
 守恒气体端口，用于将模块连接到气体网络。您可以将其连接到框图中气体连接管线上的任意点。当您将 Gas Properties (G) 模块连接到气体管线时，软件会自动识别连接到特定回路的气体模块，并将气体属性传播到回路中的所有模块。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Utilities

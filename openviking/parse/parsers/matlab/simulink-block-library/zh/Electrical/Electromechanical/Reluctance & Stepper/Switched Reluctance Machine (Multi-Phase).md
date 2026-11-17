@@ -15,6 +15,86 @@ chinese_source: worker-translation
 # Switched Reluctance Machine (Multi-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 机器转子机械旋转
+  direction: unspecified
+  data_types: double
+- name: C
+  summary: 机器壳体机械旋转
+  direction: unspecified
+  data_types: double
+- name: a1
+  summary: '*a* 相正电源电气'
+  direction: unspecified
+  data_types: double
+- name: b1
+  summary: '*b* 相正电源电气'
+  direction: unspecified
+  data_types: double
+- name: c1
+  summary: '*c* 相正电源电气'
+  direction: unspecified
+  data_types: double
+- name: d1
+  summary: '*d* 相正电源电气'
+  direction: unspecified
+  data_types: double
+- name: e1
+  summary: '*e* 相正电源电气'
+  direction: unspecified
+  data_types: double
+- name: f1
+  summary: '*f* 相正电源电气'
+  direction: unspecified
+  data_types: double
+- name: a2
+  summary: '*a* 相负电源电气'
+  direction: unspecified
+  data_types: double
+- name: b2
+  summary: '*b* 相负电源电气'
+  direction: unspecified
+  data_types: double
+- name: c2
+  summary: '*c* 相负电源电气'
+  direction: unspecified
+  data_types: double
+- name: d2
+  summary: '*d* 相负电源电气'
+  direction: unspecified
+  data_types: double
+- name: e2
+  summary: '*e* 相负电源电气'
+  direction: unspecified
+  data_types: double
+- name: f2
+  summary: '*f* 相负电源电气'
+  direction: unspecified
+  data_types: double
+- name: HA
+  summary: '*a* 相端子热端口热'
+  direction: unspecified
+- name: HB
+  summary: '*b* 相端子热端口热'
+  direction: unspecified
+- name: HC
+  summary: '*c* 相端子热端口热'
+  direction: unspecified
+- name: HD
+  summary: '*d* 相端子热端口热'
+  direction: unspecified
+- name: HE
+  summary: '*e* 相端子热端口热'
+  direction: unspecified
+- name: HF
+  summary: '*f* 相端子热端口热'
+  direction: unspecified
+- name: HR
+  summary: 转子热端口热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -165,8 +245,79 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Number of stator phases
+  summary: 四相或五相 SRM Four-phase（默认）| Five-phase | Six-phase
+  group: 主
+- name: Number of rotor poles
+  summary: 转子极数 8（默认）| 正整数
+  group: 主
+- name: Stator resistance per phase
+  summary: 电阻 3 Ohm（默认）| 正标量
+  group: 主
+- name: Stator parameterization
+  summary: 参数化方法 Specify saturated flux linkage（默认）| Specify flux characteristic
+  group: 主
+- name: Saturated flux linkage
+  summary: 磁链 0.43 Wb（默认）| 正标量
+  group: 主
+- name: Aligned inductance
+  summary: 电感 0.0046 H（默认）| 正标量
+  group: 主
+- name: Unaligned inductance
+  summary: 电感 6.7e-4 H（默认）| 正标量
+  group: 主
+- name: Current vector, i
+  summary: 电流 [0, 50, 100] A（默认）| 正向量
+  group: 主
+- name: Angle vector, theta
+  summary: 角度 [0, 22.5, 45] deg（默认）| 正向量
+  group: 主
+- name: Flux linkage matrix, Phi(i,theta)
+  summary: 磁链 [0, 0, 0; .37, .06, .37; .43, .1, .43] Wb（默认）| 标量
+  group: 主
+- name: Model
+  summary: 铁损建模选项 None（默认）| Tabulate losses from current and speed | Tabulate losses from current, speed, and angle
+  group: 铁损
+- name: Magnetizing resistance
+  summary: 铁损的励磁电阻 inf Ohm（默认）
+  group: 铁损
+- name: Rotor speed vector, w
+  summary: 转子速度 [500, 1000, 1500] rpm（默认）
+  group: 铁损
+- name: Iron loss table, Ploss(i,w)
+  summary: 基于电流和速度制表的铁损表 zeros(3, 3) W（默认）
+  group: 铁损
+- name: Iron loss table, Ploss(i,w,theta)
+  summary: 基于电流、速度和角度制表的铁损表 zeros(3, 3, 2) W（默认）
+  group: 铁损
+- name: Rotor inertia
+  summary: 惯量 0.01 kg*m^2（默认）| 正标量
+  group: 机械
+- name: Rotor Damping
+  summary: 阻尼 0 N*m/(rad/s)（默认）| 标量
+  group: 机械
+- name: Measurement temperature
+  summary: 额定温度 298.15 k（默认）| 实标量
+  group: 热
+- name: Resistance temperature coefficient
+  summary: 温度系数 3.93e-3 1/K（默认）| 正标量
+  group: 热
+- name: Thermal mass for each stator winding
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）| 正标量
+  group: 热
+- name: Percentage of total iron losses associated with the rotor
+  summary: 总铁损百分比 50（默认）
+  group: 热
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -333,7 +484,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Model** 设置为 `Tabulate losses from current and speed` 或 `Tabulate losses from current, speed, and angle`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

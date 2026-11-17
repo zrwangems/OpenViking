@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # SLRT Overload Options
 
 ## 端口
+```yaml
+ports:
+- name: TID
+  summary: 任务 ID int
+  direction: input
+- name: Count
+  summary: 过载计数 int
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +38,25 @@ chinese_source: worker-translation
 ### **Count** — 过载计数 int
 
 所选模型速率的 CPU 过载计数。
-
 ## 参数
+```yaml
+parameters:
+- name: Startup Duration
+  summary: 选择用于忽略 CPU 过载的启动步数 1（默认）| int
+  group: ''
+- name: Source
+  summary: 选择启动期间的 CPU 过载输入 Tunable Parameter（默认）| Input Port
+  group: ''
+- name: Max Overloads
+  summary: 选择最大 CPU 过载数 0（默认）| int
+  group: ''
+- name: Source
+  summary: 选择启动后的 CPU 过载输入 Tunable Parameter（默认）| Input Port
+  group: ''
+- name: Enable TET Output
+  summary: 启用输出 TET 数据 off（默认）| on
+  group: ''
+```
 
 ### **Startup Duration** — 选择用于忽略 CPU 过载的启动步数 `1`（默认）| int
 
@@ -81,7 +107,6 @@ maxOverloadSrc
 ```
 TETFlag
 ```
-
 ## 所属库
 
 Simulink Real-Time / Target Management

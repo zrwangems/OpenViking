@@ -14,6 +14,17 @@ language: en
 # VGGish Preprocess
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Sound data column vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Mel spectrogram 96-by-64 matrix
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -48,8 +59,16 @@ input to the VGGish pretrained network or to a network that accepts the
 same inputs as VGGish.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: Sample rate of input signal in Hz 16e3 (default) | positive scalar
+  group: ''
+- name: Overlap percentage (%)
+  summary: Overlap percentage between consecutive mel spectrograms 50 (default) | [0 100)
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — Sample rate of input signal in Hz `16e3` (default) | positive scalar
 
@@ -60,7 +79,6 @@ scalar.
 
 Specify the overlap percentage between consecutive mel spectrograms as a
 scalar in the range [0 100).
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

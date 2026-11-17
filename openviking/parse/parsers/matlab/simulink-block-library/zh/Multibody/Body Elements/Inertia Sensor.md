@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Inertia Sensor
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 传感器端口坐标系
+  direction: input
+- name: M
+  summary: 自定义测量坐标系端口坐标系
+  direction: input
+- name: m
+  summary: 质量标量
+  direction: output
+- name: com
+  summary: 质心向量
+  direction: output
+- name: I
+  summary: 惯性矩阵矩阵
+  direction: output
+- name: Ic
+  summary: 中心惯性矩阵矩阵
+  direction: output
+- name: Ip
+  summary: 主惯性矩阵矩阵
+  direction: output
+- name: R
+  summary: 旋转矩阵矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -79,8 +106,67 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Rotation Matrix** 复选框。
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor Extent
+  summary: 确定 Inertia Sensor 模块测量的范围 Body Group（默认）| Mechanism
+  group: 传感器范围
+- name: 'Sensor Extent: Span Weld Joints'
+  summary: 在体组中包含通过焊接关节连接的体 cleared（默认）| 选中
+  group: 传感器范围
+- name: 'Sensor Extent: Exclude Grounded Bodies'
+  summary: 不测量接地体的惯性属性 cleared（默认）| 选中
+  group: 传感器范围
+- name: Measurement Frame
+  summary: 确定 Inertia Sensor 模块用于测量的坐标系 Attached（默认）| World | Custom
+  group: 传感器范围
+- name: Mass
+  summary: 所测量体的总质量 cleared（默认）| 选中
+  group: 传感器范围
+- name: Center of Mass
+  summary: 质心坐标 cleared（默认）| checked
+  group: 传感器范围
+- name: Inertia Matrix
+  summary: 惯性张量的测量 cleared（默认）| checked
+  group: 传感器范围
+- name: Centered Inertia Matrix
+  summary: 相对于中心坐标系的惯性张量的测量 cleared（默认）| checked
+  group: 传感器范围
+- name: Principal Inertia Matrix
+  summary: 相对于主惯性坐标系的惯性张量的测量 cleared（默认）| checked
+  group: 传感器范围
+- name: Rotation Matrix
+  summary: 主惯性坐标系的姿态 cleared（默认）| checked
+  group: 传感器范围
+- name: Type
+  summary: 传感器可视化设置 Principal Inertia Frame（默认）| Equivalent Inertia Ellipsoid | None
+  group: Graphic
+- name: Size
+  summary: 主惯性坐标系的显示大小 20 pixels（默认）| 正标量
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: Graphic
+- name: 漫反射颜色
+  summary: 漫反射产生的光的颜色 [0.5 0.5 0.5]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: 不透明度
+  summary: 图形不透明度 1.0（默认）| 取值范围为 0 到 1 的标量
+  group: Graphic
+- name: 镜面反射颜色
+  summary: 镜面反射产生的光的颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: 环境光颜色
+  summary: 环境光的颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: 自发光颜色
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: Graphic
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值范围约束为 0–128 的标量
+  group: Graphic
+```
 
 ### 传感器范围
 
@@ -250,7 +336,6 @@ Inertia Sensor 模块测量的范围，定义为 Body Group 或 Mechanism。
    Ellipsoid`
 2. **Visual Properties** 为
    `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Body Elements

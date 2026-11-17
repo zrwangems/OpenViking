@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Current Source (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: conserving
+- name: n
+  summary: 星形中性点电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **n** — 星形中性点电气
 
 与星形中性点相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Current (phase RMS)
+  summary: 相电流 RMS 值 100 / sqrt(2) A（默认）
+  group: ''
+- name: Phase shift
+  summary: 相移 0 deg（默认）
+  group: ''
+- name: Frequency
+  summary: 电流频率 60 Hz（默认）
+  group: ''
+```
 
 ### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -47,7 +70,6 @@ chinese_source: worker-translation
 ### **Frequency** — 电流频率 `60` `Hz`（默认）
 
 电流频率，以 Hz 或可直接转换为 Hz 的单位指定（其中 Hz 定义为 1/s）。例如，`kHz` 和 `MHz` 是有效单位，但 `rad/s` 不是。
-
 ## 所属库
 
 Simscape / Electrical / Sources

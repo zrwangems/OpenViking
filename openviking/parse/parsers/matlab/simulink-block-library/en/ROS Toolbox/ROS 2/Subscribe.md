@@ -14,6 +14,16 @@ language: en
 # Subscribe
 
 ## Ports
+```yaml
+ports:
+- name: IsNew
+  summary: New message indicator 0 | 1
+  direction: output
+- name: Msg
+  summary: ROS 2 message non-virtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -26,8 +36,46 @@ New message indicator, returned as a logical. If the output is `1`, then a new m
 ROS 2 message, returned as a non-virtual bus. The type of ROS message is specified in the **Message type** parameter. The Subscribe ROS 2 block outputs blank messages until it receives a message on the topic name you specify. These blank messages allow you to create and test full models before the rest of the network has been setup.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic source
+  summary: Source for specifying topic name Select from ROS network | Specify your own
+  group: ''
+- name: Topic
+  summary: Topic name to subscribe to string
+  group: ''
+- name: Message type
+  summary: ROS 2 message type string
+  group: ''
+- name: Sample time
+  summary: Interval between outputs –1 (default) | scalar
+  group: ''
+- name: History
+  summary: Mode of storing messages in the queue Keep last (default) | Keep all
+  group: ''
+- name: Depth
+  summary: Size of the message queue 10 (default) | positive scalar
+  group: ''
+- name: Reliability
+  summary: Delivery guarantee of messages Reliable (default) | Best effort
+  group: ''
+- name: Durability
+  summary: Persistence of messages Volatile (default) | Transient local
+  group: ''
+- name: Deadline
+  summary: Expected interval between consecutive message receptions Inf (default) | positive scalar
+  group: ''
+- name: Lifespan
+  summary: Message validity window between publishing and reception Inf (default) | positive scalar
+  group: ''
+- name: Liveliness
+  summary: Publisher aliveness asserting protocol "automatic" (default)
+  group: ''
+- name: Lease Duration
+  summary: Maximum time window between liveliness assertions Inf (default) | positive scalar
+  group: ''
+```
 
 #### Main
 
@@ -121,7 +169,6 @@ Duration` is set to 5, it implies that the subscriber can expect the
 publisher to demonstrate its liveliness within a maximum of 5 seconds. If the publisher
 does not send any messages or explicitly assert its liveliness within that time frame,
 it is considered to have lost liveliness.
-
 ## Libraries
 
 ROS Toolbox / ROS 2

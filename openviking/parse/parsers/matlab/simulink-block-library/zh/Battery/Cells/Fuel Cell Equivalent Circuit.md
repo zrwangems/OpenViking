@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Fuel Cell Equivalent Circuit
 
 ## 端口
+```yaml
+ports:
+- name: Anode water content
+  summary: 阳极中的水含量，无量纲物理信号
+  direction: input
+- name: Cathode water content
+  summary: 阴极中的水含量，无量纲物理信号
+  direction: input
+- name: Cell temperature
+  summary: 电池温度，K 物理信号
+  direction: input
+- name: +
+  summary: 燃料电池正极端子电气
+  direction: input
+- name: '-'
+  summary: 燃料电池负极端子电气
+  direction: input
+```
 
 ### 输入
 
@@ -50,8 +68,88 @@ chinese_source: worker-translation
 ### **-** — 燃料电池负极端子电气
 
 与燃料电池负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Active surface area
+  summary: 活性电池的总表面积 14.8 cm^2（默认）| 正标量
+  group: 主要
+- name: Open-circuit voltage
+  summary: 开路电压 1.23 V（默认）| 非负标量
+  group: 开路电压
+- name: Terminal voltage operating range, [Min Max]
+  summary: 端子电压的工作范围 [0, inf] V（默认）| 两个非负标量的向量
+  group: 开路电压
+- name: Tafel slope
+  summary: Tafel 斜率 0.0136 V（默认）| 非负标量
+  group: 过电位
+- name: Nominal exchange current
+  summary: 标称交换电流 0.04777 A（默认）| 正标量
+  group: 过电位
+- name: Activation and concentration equivalent resistance
+  summary: 活化和浓差等效电阻 5e-3 Ohm（默认）| 正标量
+  group: 过电位
+- name: Overpotential time constant
+  summary: 过电位时间常数 100 s（默认）| 正标量
+  group: 过电位
+- name: Total membrane thickness
+  summary: 膜的总厚度 0.127 mm（默认）| 正标量
+  group: 膜
+- name: Dry density of material
+  summary: 膜材料的干密度 19 g/cm^3（默认）| 正标量
+  group: 膜
+- name: Molecular mass of material
+  summary: 材料的分子质量 1400 g/mol（默认）| 正标量
+  group: 膜
+- name: Number of membrane discretizations
+  summary: 膜离散化数量 3（默认）| 正标量
+  group: 膜
+- name: Interface for lambda boundary conditions
+  summary: lambda 边界条件的选项 Mask Parameters（默认）| Physical Signal Inputs
+  group: 膜
+- name: Anode water content
+  summary: 阳极中的水含量 1（默认）| 非负标量
+  group: 膜
+- name: Cathode water content
+  summary: 阴极中的水含量 1（默认）| 非负标量
+  group: 膜
+- name: Initial lambda of each slice
+  summary: 每个切片的初始 lambda 1（默认）| 非负标量
+  group: 膜
+- name: Interface for diffusion parameters
+  summary: 扩散参数的选项 Mask Parameters（默认）| Lookup table | Literature Heuristic
+  group: 膜
+- name: Diffusion coefficient
+  summary: 扩散系数 1.5e-10 m^2/s（默认）| 正标量
+  group: 膜
+- name: Diffusion coefficient table data (1-D)
+  summary: 扩散系数表数据 [1e-10, 1.5e-10] m^2/s（默认）| 正标量的向量
+  group: 膜
+- name: Diffusion coefficient breakpoints
+  summary: 扩散系数查找表的断点 [0, 400] K（默认）| 非负标量的向量
+  group: 膜
+- name: Interface for electro-osmotic drag parameters
+  summary: 电渗透拖曳参数的选项 Mask Parameters（默认）| Lookup table | Literature Heuristic
+  group: 膜
+- name: Electro-osmotic drag coefficient
+  summary: 电渗透拖曳系数 2.5（默认）| 正标量
+  group: 膜
+- name: Drag table data (1-D)
+  summary: 拖曳表数据 [1, 2.5, 2.5]（默认）| 非负标量的向量
+  group: 膜
+- name: Electro-osmotic drag coefficient breakpoints
+  summary: 拖曳系数查找表的断点 [1, 14, 20]（默认）| 非负标量的向量
+  group: 膜
+- name: Drag scale factor
+  summary: 拖曳比例因子 1（默认）| 正标量
+  group: 膜
+- name: Interface for temperature
+  summary: 温度参数的选项 Mask Parameters（默认）| Physical Signal Inputs
+  group: 热
+- name: Cell temperature
+  summary: 燃料电池的温度 303.15 K（默认）| 正标量
+  group: 热
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -208,7 +306,6 @@ Tafel 斜率。模块使用此值计算理想 PEM 燃料电池的电位。
 #### 依赖关系
 
 要启用此参数，请将 **Interface for temperature** 设置为 `Mask Parameters`。
-
 ## 所属库
 
 Simscape / Battery / Cells

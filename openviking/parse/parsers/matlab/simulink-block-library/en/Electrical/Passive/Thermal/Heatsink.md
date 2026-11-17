@@ -14,6 +14,18 @@ language: en
 # Heatsink
 
 ## Ports
+```yaml
+ports:
+- name: v
+  summary: Flow speed physical
+  direction: input
+- name: A
+  summary: Ambient temperature thermal
+  direction: conserving
+- name: C
+  summary: Case thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -35,8 +47,87 @@ temperature.
 ### **C** — Case thermal
 
 Thermal conserving port associated with the case.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Parameterization type Assume rectangular parallel fins (default) | Datasheet | Tabulated convection and fin efficiency
+  group: Steady State
+- name: Convection
+  summary: Convection type Natural (default) | Forced - specify flow speed
+  group: Steady State
+- name: Fin height
+  summary: Fin height 38.1e-3 m (default) | positive scalar
+  group: Steady State
+- name: Fin thickness
+  summary: Fin thickness 6.5e-4 m (default) | positive scalar
+  group: Steady State
+- name: Fin depth
+  summary: Fin depth 139.7e-3 m (default) | positive scalar
+  group: Steady State
+- name: Gap between fins
+  summary: Gap between fins 9.4e-3 m (default) | positive scalar
+  group: Steady State
+- name: Number of fins
+  summary: Number of fins 11 (default) | positive scalar
+  group: Steady State
+- name: Fin thermal conductivity
+  summary: Fin thermal conductivity 237 W/(m*K) (default) | positive scalar
+  group: Steady State
+- name: Vector of temperature rises above ambient, T
+  summary: Vector of temperature rises above ambient temperature [10, 30, 50, 70, 90] K (default) | vector of positive scalars
+  group: Steady State
+- name: Vector of fluid flow speed, v
+  summary: Vector of fluid flow speed [0, 1, 2, 3] m/s (default) | vector of positive scalars
+  group: Steady State
+- name: Corresponding heat dissipated to ambient, Q_TLU1(T)
+  summary: Corresponding heat dissipated to ambient against temperature [6.1, 23.6, 44.5, 67.5, 92.3] W (default) | vector
+    of positive scalars
+  group: Steady State
+- name: Corresponding heat dissipated to ambient, Q_TLU2(T, v)
+  summary: Corresponding heat dissipated to ambient against temperature and flow speed [6.1, 18.8, 22.8, 25.7; 23.6, 61.1,
+    73, 81.5; 44.5, 106.4, 125.9, 140.1; 67.5, 153.5, 180.7, 200.3; 92.3, 202.1, 236.9, 262] W (default) | vector of positive
+    scalars
+  group: Steady State
+- name: Corresponding convective heat transfer coefficient, h_TLU1(T)
+  summary: Corresponding convective heat transfer coefficient against temperature [5.4, 7.02, 7.98, 8.68, 9.26] W/(m^2*K)
+    (default) | vector of positive scalars
+  group: Steady State
+- name: Corresponding convective heat transfer coefficient, h_TLU2(T, v)
+  summary: Corresponding convective heat transfer coefficient against temperature and flow speed [5.4, 17.86, 22.17, 25.41;
+    7.02, 19.49, 23.8, 27.03; 7.97, 20.44, 24.75, 27.99; 8.68, 21.15, 25.46, 28.69; 9.26, 21.73, 26.04, 29.27] (default) |
+    W/(m^2*K) | vector of positive scalars
+  group: Steady State
+- name: Vector of convective heat transfer coefficients, h
+  summary: Vector of convective heat transfer coefficients [5, 10, 15, 20, 25, 30] W/(m^2*K) (default) | vector of positive
+    scalars
+  group: Steady State
+- name: Corresponding fin efficiency (percent), eff_TLU(h)
+  summary: Fin efficiency that corresponds to heat transfer coefficients [96.97, 94.16, 91.53, 89.08, 86.78, 84.62] (default)
+    | vector of positive scalars
+  group: Steady State
+- name: Total heat exchange surface area
+  summary: Total heat exchange surface area 0.1171 m^2 (default) | positive scalar
+  group: Steady State
+- name: Fluid kinematic viscosity
+  summary: Fluid kinematic viscosity 1.51e-5 m^2/s (default) | positive scalar
+  group: Fluid Properties
+- name: Fluid thermal diffusivity
+  summary: Fluid thermal diffusivity 2.07e-5 m^2/s (default) | positive scalar
+  group: Fluid Properties
+- name: Fluid thermal conductivity
+  summary: Fluid thermal conductivity 25e-3 W/(m*K) (default) | positive scalar
+  group: Fluid Properties
+- name: Fluid coefficient of volume thermal expansion
+  summary: Fluid coefficient of volume thermal expansion 3.3e-3 1/K (default) | positive scalar
+  group: Fluid Properties
+- name: Heatsink mass
+  summary: Heatsink mass 0.35 kg (default) | positive scalar
+  group: Dynamics
+- name: Heatsink specific heat
+  summary: Heatsink specific heat 437 J/(K*kg) (default) | positive scalar
+  group: Dynamics
+```
 
 ### Steady State
 
@@ -264,7 +355,6 @@ Mass of the heatsink.
 ### **Heatsink specific heat** — Heatsink specific heat `437` `J/(K*kg)` (default) | positive scalar
 
 Specific heat of the heatsink.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Thermal

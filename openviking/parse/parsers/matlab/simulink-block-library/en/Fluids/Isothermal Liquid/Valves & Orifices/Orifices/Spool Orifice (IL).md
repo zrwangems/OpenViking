@@ -14,6 +14,21 @@ language: en
 # Spool Orifice (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Control member displacement, m physical signal
+  direction: input
+- name: F
+  summary: Flow force, N physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -34,8 +49,56 @@ Control member displacement for a variable-area orifice, in m.
 ### **F** — Flow force, N physical signal
 
 Axial flow force, in N.
-
 ## Parameters
+```yaml
+parameters:
+- name: Orifice parameterization
+  summary: Type of orifice Round holes (default) | Rectangular slot
+  group: ''
+- name: Diameter of round holes
+  summary: Diameter of round holes 5e-3 m (default) | positive scalar
+  group: ''
+- name: Number of round holes
+  summary: Number of round holes 6 (default) | positive integer
+  group: ''
+- name: Orifice width
+  summary: Rectangular slot width 0.01 m (default) | positive scalar
+  group: ''
+- name: Spool travel between closed and open orifice
+  summary: Control member maximum stroke 5e-3 m (default) | positive scalar
+  group: ''
+- name: Flow force output
+  summary: Whether to model axial hydraulic force on the spool off (default) | on
+  group: ''
+- name: Radial clearance
+  summary: Spool-sleeve clearance 1e-5 m (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when valve is in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Spool position at closed orifice
+  summary: Spool offset 0 (default) | scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Orifice area at conserving ports inf m^2 (default) | positive scalar
+  group: ''
+- name: Opening orientation
+  summary: Direction of changing orifice area Positive spool displacement opens the orifice (default) | Negative spool displacement
+    opens the orifice
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar in the range of [0,1]
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar
+  group: ''
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: ''
+```
 
 ### **Orifice parameterization** — Type of orifice `Round holes` (default) | `Rectangular slot`
 
@@ -147,7 +210,6 @@ in these regimes.
 Whether to account for pressure increase when fluid flows from a region of
 smaller cross-sectional area to a region of larger cross-sectional
 area.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Orifices

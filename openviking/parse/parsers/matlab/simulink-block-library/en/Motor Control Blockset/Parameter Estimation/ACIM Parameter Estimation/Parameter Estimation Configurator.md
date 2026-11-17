@@ -14,6 +14,13 @@ language: en
 # ACIM Parameter Estimation Configurator
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Bus signal bus
+  direction: output
+  data_types: single
+```
 
 ### Output
 
@@ -54,8 +61,94 @@ The configuration elements are analogous to the block parameters. For more
 information about these elements, see Parameters.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: Number of motor pole pairs 2 (default) | scalar
+  group: ''
+- name: Rated frequency (Hz)
+  summary: Motor rated frequency 50 (default) | scalar
+  group: ''
+- name: Nominal motor current (A)
+  summary: Motor nominal current 2 (default) | scalar
+  group: ''
+- name: Nominal voltage (V)
+  summary: Motor nominal voltage 24 (default) | scalar
+  group: ''
+- name: Maximum inverter current (A)
+  summary: Maximum measurable current 21 (default) | scalar
+  group: ''
+- name: Board resistance (ohm)
+  summary: Inverter bridge resistance 0.0043 (default) | scalar
+  group: ''
+- name: Current sense gain (A/ADC Count)
+  summary: Current per ADC count 0.0105 (default) | scalar
+  group: ''
+- name: Voltage sense gain (V/ADC Count)
+  summary: Voltage per ADC count 0.0098 (default) | scalar
+  group: ''
+- name: Measurement time (sec)
+  summary: Time used to measure and average-out current 5 (default) | scalar
+  group: ''
+- name: Open loop ramp time (sec)
+  summary: Time allotted to ramp up frequency 3 (default) | scalar
+  group: ''
+- name: Estimation time (sec)
+  summary: Time to run *Rs* estimation algorithm 2 (default) | scalar
+  group: ''
+- name: Vd reference voltage 1 (PU)
+  summary: First reference voltage for *Rs* estimation 0.1 (default) | scalar
+  group: ''
+- name: Vd reference voltage 2 (PU)
+  summary: Second reference voltage for *Rs* estimation 0.2 (default) | scalar
+  group: ''
+- name: Frequency 1 as a ratio of rated frequency (PU)
+  summary: Ratio of first injected low frequency over rated frequency 0.1 (default) | scalar
+  group: ''
+- name: Frequency 2 as a ratio of rated frequency (PU)
+  summary: Ratio of second injected low frequency over rated frequency 0.2 (default) | scalar
+  group: ''
+- name: High Frequency for Lm (Hz)
+  summary: Frequency of third injected signal 200 (default) | scalar
+  group: ''
+- name: Voltage sweep start value voltage (PU)
+  summary: Initial voltage at which voltage sweep begins 0.1 (default) | scalar
+  group: ''
+- name: Voltage sweep step value voltage (PU)
+  summary: Step size for voltage sweep 0.0125 (default) | scalar
+  group: ''
+- name: High frequency injection voltage (PU)
+  summary: Voltage of third injected signal 0.1 (default) | scalar
+  group: ''
+- name: Current measurement delay (s)
+  summary: Delay in current measurement 2 * 50e-6 (default) | scalar
+  group: ''
+- name: Closed loop duration (sec)
+  summary: Closed-loop motor run duration 5 (default) | scalar
+  group: ''
+- name: Closed loop speed (RPM)
+  summary: Closed-loop motor speed 950 (default) | scalar
+  group: ''
+- name: Iq reference current for FOC (PU)
+  summary: Reference current for FOC when estimating *J* and *B* 0.2 (default) | scalar
+  group: ''
+- name: Specify current controller gains
+  summary: Specify PI current controller gains off (default) | on
+  group: ''
+- name: Proportional gain
+  summary: Proportional gain of PI controller 1 (default) | scalar
+  group: ''
+- name: Integral gain
+  summary: Integral gain of PI controller 1000 (default) | scalar
+  group: ''
+- name: Speed lower limit for inertia estimation (RPM)
+  summary: Lower speed limit during coast-down 100 (default) | scalar
+  group: ''
+- name: Parameter estimation sample time (sec)
+  summary: Sample time for parameter estimation 50e-6 (default) | scalar
+  group: ''
+```
 
 #### Motor and Inverter
 
@@ -283,7 +376,6 @@ induction motors:
 - ACIM Rs Estimator
 - Rr L Estimator
 - ACIM Mechanical Parameter Estimator
-
 ## Libraries
 
 Motor Control Blockset / Parameter Estimation / ACIM Parameter Estimation

@@ -14,6 +14,60 @@ language: en
 # Aerodynamic Propeller
 
 ## Ports
+```yaml
+ports:
+- name: Va
+  summary: Advance velocity, m/s physical signal
+  direction: input
+- name: θ
+  summary: Blade pitch, deg physical signal
+  direction: input
+- name: θ_1c
+  summary: Lateral cyclic pitch, deg physical signal
+  direction: input
+- name: θ_1s
+  summary: Longitudinal cyclic pitch, deg physical signal
+  direction: input
+- name: ξ
+  summary: Air inflow angle, deg physical signal
+  direction: input
+- name: Rho
+  summary: Variable density, kg/m^3 physical signal
+  direction: input
+- name: w
+  summary: Propeller rotational velocity, rad/s physical signal
+  direction: input
+- name: Th
+  summary: Propeller thrust, N physical signal
+  direction: output
+- name: E
+  summary: Efficiency, unitless physical signal
+  direction: output
+- name: Q
+  summary: Propeller resistive drag, N\*m physical signal
+  direction: output
+- name: Fx
+  summary: Force in *x*-direction, N physical signal
+  direction: output
+- name: Fy
+  summary: Force in *y*-direction, N physical signal
+  direction: output
+- name: Mx
+  summary: Momentum in *x*-direction, N\*m physical signal
+  direction: output
+- name: My
+  summary: Momentum in *y*-direction, N\*m physical signal
+  direction: output
+- name: R1
+  summary: Rod interface mechanical rotational
+  direction: conserving
+- name: R2
+  summary: Vehicle velocity and thrust mechanical translational
+  direction: conserving
+- name: C2
+  summary: Reference flow mechanical translational
+  direction: conserving
+```
 
 ### Inputs
 
@@ -216,8 +270,160 @@ the air or wind that the propeller pushes against.
 To enable this port, set **Translational
 connections** to
 `Conserving`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Propeller parameterization Constant coefficients (default) | Polynomial fit | Tabulated data for advance ratio
+    | Tabulated data for advance angle | Tabulated data for airfoil lift and drag coefficients
+  group: Propeller
+- name: Propeller direction
+  summary: Propeller direction Negative rotational velocity generates positive thrust for positive thrust coefficients (default)
+    | Positive rotational velocity generates positive thrust for positive thrust coefficients
+  group: Propeller
+- name: Propeller diameter
+  summary: Propeller diameter 0.254 m (default) | positive scalar
+  group: Propeller
+- name: Enable collective pitch control
+  summary: Option for collective blade pitch off (default) | on
+  group: Propeller
+- name: Enable transverse flow and cyclic pitch controls
+  summary: Controlled cyclic option off (default) | on
+  group: Propeller
+- name: Thrust coefficient, kT
+  summary: Coefficient of thrust 0.25 (default) | positive scalar
+  group: Propeller
+- name: Power coefficient, kP
+  summary: Coefficient of power 0.13 (default) | positive scalar
+  group: Propeller
+- name: kT polynomial coefficients (pN...p0)
+  summary: Coefficient of thrust polynomial coefficients [.002, .0006, -.0509, .0617] (default) | vector
+  group: Propeller
+- name: kP polynomial coefficients (pN...p0)
+  summary: Coefficient of power polynomial coefficients [-.0752, .0577, -.0622, .16] (default) | vector
+  group: Propeller
+- name: Pitch angle vector, θ
+  summary: Pitch angle [-15, 15, 25, 35, 45] deg (default) | vector of elements in the range [-360,360]
+  group: Propeller
+- name: Table of kT polynomial coefficients (θ, pN...p0)
+  summary: Polynomial thrust coefficients for controllable pitch propellers [.0002, -.00041, -.036, .03; .00026, -.00056,
+    -.048, .04; .002, .00063, -.051, .062; .0014, -.0016, -.048, .087; .00087, -.0036, -.041, .12] (default) | matrix
+  group: Propeller
+- name: Table of kP polynomial coefficients (θ, pN...p0)
+  summary: Polynomial power coefficients for controllable pitch propellers [-.1, .031, .0055, .088; -.081, -.025, .0044, .07;
+    -.075, .058, -.062, .16; -.052, .065, -.08, .3; -.031, .057, -.069, .4] (default) | matrix
+  group: Propeller
+- name: Advance ratio vector, J
+  summary: Range of advance ratios for tabulated thrust and power coefficients [.01, .3, .625, 1.55, 2, 2.6] (default) | vector
+  group: Propeller
+- name: Thrust coefficient vector, kT(J)
+  summary: Tabulated thrust coefficient values for given advance ratio [.0614, .0473, .0318, -.0127, -.0343, -.063] (default)
+    | vector
+  group: Propeller
+- name: Power coefficient vector, kP(J)
+  summary: Tabulated power coefficient values for given advance ratio [.1496, .1314, .116, -.0521, -.1503, -.2813] (default)
+    | vector
+  group: Propeller
+- name: Thrust coefficient table, kT(θ, J)
+  summary: Tabulated thrust coefficient values for given pitch angle and advance ratio [.00019, .013, .0048, -.017, -.03,
+    -.045; (default) | matrix | ...
+  group: Propeller
+- name: Power coefficient table, kP(θ, J)
+  summary: Tabulated power coefficient values for given pitch angle and advance ratio [.029, .029, .016, .06, .009, -.16;
+    (default) | matrix | ...
+  group: Propeller
+- name: Advance angle vector, β
+  summary: Rising advance angles linspace(0, 360, 10) deg (default) | vector of length *N*
+  group: Propeller
+- name: Thrust coefficient vector, Ct(β)
+  summary: Tabulated thrust coefficients for given advance angle 0.035 * sind(linspace(0, 360, 10) - 200) (default) | vector
+    of length *N*
+  group: Propeller
+- name: Torque coefficient vector, Cq(β)
+  summary: Tabulated torque coefficients for given advance angle 0.010 * sind(linspace(0, 360, 10) - 200) (default) | vector
+    of length *N*
+  group: Propeller
+- name: Thrust coefficient table, Ct(θ, β)
+  summary: Tabulated thrust coefficients for given pitch angle and advance angle [0.01 * sind(linspace(0, 360, 10) - 200);
+    0.020 * sind(linspace(0, 360, 10) - 200); (default) | matrix | ...
+  group: Propeller
+- name: Torque coefficient table, Cq(θ, β)
+  summary: Tabulated torque coefficients for given pitch angle and advance angle [0.0005 * sind(linspace(0, 360, 10) - 200);
+    0.0015 * sind(linspace(0, 360, 10) - 200); (default) | matrix | ...
+  group: Propeller
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Linear (default) | Smooth
+  group: Propeller
+- name: Extrapolation method
+  summary: Method of handling input values that fall outside range of breakpoint data set Linear (default) | Nearest | Error
+  group: Propeller
+- name: Root pitch angle
+  summary: Root pitch angle 20 deg (default) | scalar
+  group: Propeller
+- name: Number of blades
+  summary: Number of blades 2 (default) | positive scalar
+  group: Propeller
+- name: Number of blade elements
+  summary: Number of blade elements 10 (default) | positive scalar
+  group: Propeller
+- name: Number of azimuthal locations
+  summary: Number of azimuthal locations 10 (default) | positive scalar
+  group: Propeller
+- name: Nondimensional radial location vector, r
+  summary: Radial location [.1, .12, .2, .4, .6, .8, 1] (default) | vector
+  group: Propeller
+- name: Blade twist vector, θ_tw(r)
+  summary: Blade element twist [30, 35, 50, 30, 20, 15, 10] deg (default) | vector
+  group: Propeller
+- name: Normalized chord length vector, c(r)/D
+  summary: Blade element chord length [.0676, .0666, .0824, .1025, .0885, .0598, .0133] (default) | vector of length *N*
+  group: Propeller
+- name: Airfoil angle of attack vector, α
+  summary: 'Angle of attack -180 : 10 : 180 deg (default) | vector of length *M*'
+  group: Propeller
+- name: Airfoil lift coefficient table, Cl(α,r)
+  summary: Airfoil lift coefficients *M* x *N* matrix | ...
+  group: Propeller
+- name: Airfoil drag coefficient table, Cd(α,r)
+  summary: Airfoil drag coefficients *M* x *N* matrix | ...
+  group: Propeller
+- name: Fluid density specification
+  summary: Fluid density selection Constant (default) | Variable
+  group: Environment and Dynamics
+- name: Fluid density
+  summary: Constant fluid density value 1.225 kg/m^3 (default)
+  group: Environment and Dynamics
+- name: Rotational connections
+  summary: Rotational motion input option Physical signals (default) | Conserving
+  group: Environment and Dynamics
+- name: Translational connections
+  summary: Translational motion input option Conserving (default) | Physical signals
+  group: Environment and Dynamics
+- name: Model inertia
+  summary: Inertia option off (default) | on
+  group: Environment and Dynamics
+- name: Propeller inertia
+  summary: Propeller inertia 1 kg*m^2 (default) | positive scalar
+  group: Environment and Dynamics
+- name: Propeller mass
+  summary: Propeller mass 10 kg (default) | positive scalar
+  group: Environment and Dynamics
+- name: Efficiency sensor
+  summary: Operating efficiency output option off (default) | on
+  group: Advanced
+- name: Rotational speed threshold
+  summary: Rotational speed smoothing point 0.001 Hz (default) | positive scalar
+  group: Advanced
+- name: Saturation threshold for nondimensional coefficients
+  summary: nondimensional coefficient smoothing point 0.001 (default) | positive scalar
+  group: Advanced
+- name: Check if operating beyond normal propeller operation
+  summary: Operating bounds tolerance Warning (default) | None | Error
+  group: Advanced
+- name: Power threshold for efficiency calculation
+  summary: Power threshold 100 W (default)
+  group: Advanced
+```
 
 ### Propeller
 
@@ -943,7 +1149,6 @@ To enable this parameter, set
 `Tabulated data for airfoil lift and drag
 coefficients` and select **Efficiency
 sensor**.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors

@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # ASCII Decode V2
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要解析的输入向量 character vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16
+- name: cnt
+  summary: 输入整数所满足的格式说明符数量
+  direction: output
+- name: Value
+  summary: 发送 Simulink 数值的内联端口 numeric
+  direction: output
+  data_types: single | double | int8 | uint8 | uint16 | int16 | int32 | uint32
+```
 
 ### 输入
 
@@ -37,8 +51,14 @@ chinese_source: worker-translation
 该模块为目标计算机生成内联代码。你不能将其用于 Simulink 仿真。
 
 **数据类型：** `single` | `double` | `int8` | `uint8` | `uint16` | `int16` | `int32` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Format
+  summary: 用于解析输入向量的格式说明符 '%f\n'（默认）| %c | %d | %i | %o | %u | %x | %e | %g
+  group: ''
+  block_parameter: format
+```
 
 ### **Format** — 用于解析输入向量的格式说明符 `'%f\n'`（默认）| `%c` | `%d` | `%i` | `%o` | `%u` | `%x` | `%e` | `%g`
 
@@ -61,7 +81,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `format` |
-
 ## 所属库
 
 Simulink Real-Time / RS232

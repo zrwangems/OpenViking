@@ -15,6 +15,69 @@ chinese_source: worker-translation
 # ACIM Mechanical Parameter Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Iabc
+  summary: 三相电流响应标量
+  direction: input
+  data_types: single
+- name: Vdc
+  summary: 直流母线电压标量
+  direction: input
+  data_types: single
+- name: Speed
+  summary: 转子速度标量
+  direction: input
+  data_types: single
+- name: Id0
+  summary: 估计的励磁电流标量
+  direction: input
+  data_types: single
+- name: Rtotal
+  summary: 定子和逆变器板电阻之和标量
+  direction: input
+  data_types: single
+- name: Rr
+  summary: 估计的转子电阻标量
+  direction: input
+  data_types: single
+- name: Lm
+  summary: 估计的励磁电感标量
+  direction: input
+  data_types: single
+- name: Lls
+  summary: 估计的定子漏电感标量
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: 机械参数估计的控制信号 逻辑
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: 总线信号输入总线
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*、*b* 和 *c* 轴定子参考电压分量标量'
+  direction: output
+  data_types: single
+- name: J
+  summary: 估计的转子惯量标量
+  direction: output
+  data_types: single
+- name: B
+  summary: 估计的粘性阻尼标量
+  direction: output
+  data_types: single
+- name: InverterEn
+  summary: 逆变器控制信号逻辑
+  direction: output
+  data_types: single
+- name: Log
+  summary: 调试信号总线
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -159,11 +222,12 @@ chinese_source: worker-translation
 | *SlipPU* | | | 电机闭环运行期间的转差（以标幺值表示） | - |
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Motor Control Blockset / Parameter Estimation / ACIM Parameter Estimation

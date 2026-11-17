@@ -14,6 +14,16 @@ language: en
 # Legacy Serial Port F
 
 ## Ports
+```yaml
+ports:
+- name: XMT
+  summary: Vector of data to transmit vector
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: FIFO
+  summary: FIFO of data received over serial port serialfifoptr
+  direction: output
+```
 
 ### Input
 
@@ -28,8 +38,52 @@ Vector of the data used to transmit over the port.
 
 First In, First Out (FIFO) containing data that has been received from
 the serial port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Serial port
+  summary: Port that is being accessed Legacy Serial Port 1 (default) | .. | Legacy Serial Port 8 | USB Serial Port 1 | ..
+    | USB Serial Port 8
+  group: ''
+  block_parameter: port
+- name: Baud rate
+  summary: Baud for transferring data 115200 (default) | 57600 | 38400 | 19200 | 9600 | 4800 | 2400 | 1200 | 600 | 300 | 110
+  group: ''
+  block_parameter: baud
+- name: Data bits
+  summary: Number of bits per character 8 (default) | 7 | 6 | 5
+  group: ''
+  block_parameter: width
+- name: Stop bits
+  summary: Number of stop bits for port 1 (default) | 2
+  group: ''
+  block_parameter: nstop
+- name: Parity
+  summary: Parity for checking data transfer None (default) | Even | Odd | Mark | Space
+  group: ''
+  block_parameter: parity
+- name: Enable auto RTS/CTS
+  summary: Enable RTS/CTS handshake off (default) | on
+  group: ''
+  block_parameter: ctsmode
+- name: Port to modify
+  summary: Port that is being accessed 1 (default) | 2
+  group: ''
+  block_parameter: port
+- name: Receive FIFO size
+  summary: FIFO size in bytes 1024 (default)
+  group: ''
+  block_parameter: fifosize
+- name: Transmit data type
+  summary: Data type of transmitter count+32 bit int (default) | count+32 bit uint | count+16 bit int | count+16 bit uint
+    | 8 bit int null terminated | 8 bit uint null terminated
+  group: ''
+  block_parameter: idtype
+- name: Sample Time
+  summary: Sample time -1 (default) | numeric
+  group: ''
+  block_parameter: sampletime
+```
 
 ### **Serial port** — Port that is being accessed `Legacy Serial Port 1` (default) | .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
@@ -160,7 +214,6 @@ Enter the base sample time or a multiple of the base sample time.
 |  |
 | --- |
 | **Block Parameter:** `sampletime` |
-
 ## Libraries
 
 Simulink Real-Time / RS232 / Mainboard

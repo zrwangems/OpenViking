@@ -14,6 +14,17 @@ language: en
 # AMI
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Modified output data scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -30,8 +41,22 @@ Modified output data that includes the effect of a lossy printed circuit board
 transmission line model according to the method outlined in [1].
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: DLL File
+  summary: Executable file DLL file | SO file
+  group: ''
+- name: AMI File
+  summary: AMI settings file text file
+  group: ''
+- name: Operation
+  summary: Define whether block is used as transmitter or receiver Tx (default) | Rx
+  group: ''
+- name: Correlation Flow
+  summary: Define whether block runs in parallel with another transmitter or receiver off (default) | on
+  group: ''
+```
 
 ### **DLL File** — Executable file DLL file | SO file
 
@@ -61,7 +86,6 @@ For more information about Init simulations, see Statistical Analysis in SerDes 
 
 Select this option to run the AMI block in parallel with another
 transmitter (Tx) or receiver (Rx).
-
 ## Libraries
 
 SerDes Toolbox / Utilities

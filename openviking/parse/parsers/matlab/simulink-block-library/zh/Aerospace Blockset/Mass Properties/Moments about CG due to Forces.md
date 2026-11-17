@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Moments about CG due to Forces
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 施加的力 三元向量
+  direction: input
+  data_types: double
+- name: CG
+  summary: 重心 三元向量
+  direction: input
+  data_types: double
+- name: CP
+  summary: 力的作用点 三元向量
+  direction: input
+  data_types: double | bus
+- name: M
+  summary: 重心处的力矩 三元向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,11 +61,12 @@ chinese_source: worker-translation
 重心处沿 *x* 轴、*y* 轴和 *z* 轴的力矩，以三元向量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Mass Properties

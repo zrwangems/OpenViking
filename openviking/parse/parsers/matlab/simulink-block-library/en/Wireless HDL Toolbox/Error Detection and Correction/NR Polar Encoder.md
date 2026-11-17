@@ -14,6 +14,37 @@ language: en
 # NR Polar Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data bit scalar
+  direction: input
+  data_types: fixdt(0,1,0) | Boolean | double | single
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: K
+  summary: Length of information block in bits positive integer
+  direction: input
+  data_types: fixdt(0,10,0)
+- name: E
+  summary: Rate-matched output length in bits positive integer
+  direction: input
+  data_types: fixdt(0,14,0)
+- name: data
+  summary: Encoded data bit scalar
+  direction: output
+  data_types: fixdt(0,1,0) | Boolean | double | single
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: Ready for new inputs scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -107,8 +138,22 @@ frame in progress and begins processing the new data.
 For more information, see Using the nextFrame Output Signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Link direction
+  summary: Direction of 5G NR link Downlink (default) | Uplink
+  group: ''
+- name: Configuration source
+  summary: Source for K and E Property (default) | Input port
+  group: ''
+- name: Message length (K)
+  summary: Length of information block in bits 56 (default) | positive integer
+  group: ''
+- name: Rate-matched length (E)
+  summary: Rate-matched output length in bits 864 (default) | positive integer
+  group: ''
+```
 
 ### **Link direction** — Direction of 5G NR link `Downlink` (default) | `Uplink`
 
@@ -143,7 +188,6 @@ Specify a value for **E** that is greater than
 
 To enable this parameter, set the **Configuration source**
 parameter to `Property`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

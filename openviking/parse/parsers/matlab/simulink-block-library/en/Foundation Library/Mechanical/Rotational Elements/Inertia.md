@@ -14,6 +14,15 @@ language: en
 # Inertia
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Port that connects inertia to the circuit mechanical rotational
+  direction: conserving
+- name: J
+  summary: Second graphical port mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -33,8 +42,17 @@ two-port block representations is purely graphical.
 
 To enable this port, set the **Number of graphical ports**
 parameter to `2`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inertia
+  summary: Constant inertia 0.01 kg*m^2 (default) | positive scalar
+  group: ''
+- name: Number of graphical ports
+  summary: Select whether the block is graphically connected to the side of a circuit or in series with other elements 1 (default)
+    | 2
+  group: ''
+```
 
 ### **Inertia** — Constant inertia `0.01 kg*m^2` (default) | positive scalar
 
@@ -51,7 +69,6 @@ Select how to connect the block to the rest of the circuit:
   port, which lets you connect the block in series with other blocks in the circuit.
   The two ports are rigidly connected and have the same angular velocity, therefore
   the block functions exactly the same as if it had one port.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

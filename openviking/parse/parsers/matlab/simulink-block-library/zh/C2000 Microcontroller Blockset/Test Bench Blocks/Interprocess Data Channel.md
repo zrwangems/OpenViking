@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Interprocess Data Channel
 
 ## 端口
+```yaml
+ports:
+- name: datain
+  summary: 输入数据消息标量
+  direction: input
+  data_types: SoCData
+- name: dataout
+  summary: 输出数据消息标量
+  direction: output
+  data_types: SoCData
+- name: overwritten
+  summary: 输出覆盖通知信号标量
+  direction: output
+  data_types: Boolean
+- name: used
+  summary: 输出正在使用的缓冲区数量标量
+  direction: output
+  data_types: Boolean
+- name: event
+  summary: 任务事件信号标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输入
 
@@ -65,8 +88,25 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Show event port** 参数。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters:
+- name: Circular FIFO depth
+  summary: 存储缓冲区数量 1（默认）| 正整数
+  group: ''
+- name: Propagation delay
+  summary: 数据通过通道的传播延迟 1e-6（默认）| 非负数
+  group: ''
+- name: Show event port
+  summary: 启用任务事件端口的选项 off（默认）| on
+  group: ''
+- name: Show number of used circular FIFO
+  summary: 启用循环 FIFO 计数端口的选项 off（默认）| on
+  group: ''
+- name: Show when circular FIFO is overwritten
+  summary: 启用显示循环 FIFO 覆盖的端口 off（默认）| on
+  group: ''
+```
 
 #### 主
 
@@ -91,7 +131,6 @@ chinese_source: worker-translation
 ### **Show when circular FIFO is overwritten** — 启用显示循环 FIFO 覆盖的端口 `off`（默认）| `on`
 
 启用一个输出端口，当 Interprocess Data Channel 模块内部循环 FIFO 队列发生覆盖时发出信号。
-
 ## 所属库
 
 SoC Blockset / Processor Interconnect C2000 Microcontroller Blockset / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

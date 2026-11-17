@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # SynRM FeedForward Control
 
 ## 端口
+```yaml
+ports:
+- name: Id
+  summary: D 轴电流标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Iq
+  summary: Q 轴电流标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm
+  summary: 转子机械速度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Ld
+  summary: D 轴电感标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Lq
+  summary: Q 轴电感标量
+  direction: input
+  data_types: single | double | fixed point
+- name: FluxPM
+  summary: 永磁磁链标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vsat
+  summary: 输出电压饱和限值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vd FF
+  summary: D 轴前馈电压增益标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Vq FF
+  summary: Q 轴前馈电压增益标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -88,8 +127,75 @@ Q 轴绕组电感（单位：亨利）。
 沿旋转 *dq* 参考坐标系 *q* 轴的前馈电压增益（单位：伏特）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Motor topology
+  summary: 同步磁阻电机拓扑 Synchronous reluctance motor（默认）| PM-assisted synchronous reluctance motor
+  group: 电机参数
+- name: Definition of d-axis and q-axis
+  summary: '*d* 轴和 *q* 轴的对齐方式 Ld > Lq (different from PMSM)（默认）| Lq > Ld (same as PMSM)'
+  group: 电机参数
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 4（默认）| 标量
+  group: 电机参数
+- name: Motor parameter input method
+  summary: 电机参数类型 Linear model with lumped parameters（默认）| Non-linear model with D,Q-flux linkage LUTs | Non-linear model
+    with Ld and Lq LUTs | Non-linear model with Ld, Lq and FluxPM LUTs | Input port based Ld and Lq | Input port based Ld,
+    Lq, and FluxPM
+  group: 电机参数
+- name: Vsat input method
+  summary: Vsat 输入方法 Specify via dialog（默认）| Input port
+  group: 电机参数
+- name: Output saturation (V)
+  summary: 输出值的饱和限值 24/sqrt(3)（默认）| 标量
+  group: 电机参数
+- name: D-axis current breakpoint vector (A)
+  summary: D 轴电流查找向量 [0,10,20,30]（默认）| 向量
+  group: 电机参数
+- name: Q-axis current breakpoint vector (A)
+  summary: Q 轴电流查找向量 [0,10,20,30,40]（默认）| 向量
+  group: 电机参数
+- name: Stator d-axis inductance (H)
+  summary: D 轴定子绕组电感 0.9e-3（默认）| 标量
+  group: 集总参数线性模型
+- name: Stator q-axis inductance (H)
+  summary: Q轴定子绕组电感 0.15e-3（默认值）| 标量
+  group: 集总参数线性模型
+- name: Permanent magnet flux linkage (Wb)
+  summary: 永磁体磁链 6.4e-3（默认值）| 标量
+  group: 集总参数线性模型
+- name: D-axis flux linkage LUT, FluxD(id,iq) (Wb)
+  summary: D轴磁链查找数据 [0,0,0,0,0;0,0,0,0,0.0090;0,0,0,0,0.0180;0,0,0,0,0.0270]（默认值）| 矩阵
+  group: 带D、Q轴磁链LUT的非线性模型
+- name: Q-axis flux linkage LUT, FluxQ(id,iq) (Wb)
+  summary: Q轴磁链查找数据 [0,0,0,0,0.0060;0,0,0,0,0.0060;0,0,0,0,0.0060;0,0,0,0,0.0060]（默认值）| 矩阵
+  group: 带D、Q轴磁链LUT的非线性模型
+- name: Ld LUT, Ld(id,iq) (H)
+  summary: D轴电感查找数据 0.9e-3 * ones(4, 5)（默认值）| 矩阵
+  group: 带 *Ld* 和 *Lq*（以及 *Ld*、*Lq* 和 *FluxPM*）LUT的非线性模型
+- name: Lq LUT, Lq(id,iq) (H)
+  summary: Q轴电感查找数据 0.15e-3 * ones(4, 5)（默认值）| 矩阵
+  group: 带 *Ld* 和 *Lq*（以及 *Ld*、*Lq* 和 *FluxPM*）LUT的非线性模型
+- name: PM flux linkage LUT, FluxPM(id,iq) (Wb)
+  summary: 永磁体磁链查找数据 6.4e-3 * ones(4, 5)（默认值）| 矩阵
+  group: 带 *Ld* 和 *Lq*（以及 *Ld*、*Lq* 和 *FluxPM*）LUT的非线性模型
+- name: Input units
+  summary: 输入值的单位 Per-Unit (PU)（默认值）| SI Units
+  group: 输入单位
+- name: Base voltage (V)
+  summary: 标称电压限值 24/sqrt(3)（默认值）| 标量
+  group: 输入单位
+- name: Base current (A)
+  summary: 标称电流限值 19.3（默认值）| 标量
+  group: 输入单位
+- name: Base speed (rpm)
+  summary: 标称转速限值 4107（默认值）| 标量
+  group: 输入单位
+- name: Allow scaled-down motor parameters with CodeGen (higher precision with Fixed-Point data type)
+  summary: 按标幺值比例缩小内部参数 on（默认）| off
+  group: 输入单位
+```
 
 ### 电机参数
 
@@ -336,7 +442,6 @@ Q轴电感
 
 要启用此参数，请将 **Input units** 设置为
 `Per-Unit (PU)`。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference

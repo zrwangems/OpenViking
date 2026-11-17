@@ -14,6 +14,13 @@ language: en
 # Send net_fdm Packet to FlightGear
 
 ## Ports
+```yaml
+ports:
+- name: net_fdm
+  summary: FlightGear net_fdm data packet scalar
+  direction: input
+  data_types: uint8
+```
 
 ### Input
 
@@ -23,8 +30,31 @@ FlightGear `net_fdm` data packet, specified as a
 scalar.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Destination IP address
+  summary: Destination IP address for remote computer 127.0.0.1 (default) | scalar
+  group: ''
+  block_parameter: DestinationIpAddress
+  type: character vector
+  values: scalar
+  default: 127.0.0.1
+- name: Destination port
+  summary: Destination port for remote computer 5502 (default) | scalar
+  group: ''
+  block_parameter: DestinationPort
+  type: character vector
+  values: scalar
+  default: '5502'
+- name: Sample time
+  summary: Sample time 1/30 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: 1/30
+```
 
 ### **Destination IP address** — Destination IP address for remote computer `127.0.0.1` (default) | scalar
 
@@ -104,7 +134,6 @@ Sample time (-1 for inherited), specified as a scalar.
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `1/30` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

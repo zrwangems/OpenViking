@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Channel Synthesizer
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 实值行向量 | 复值行向量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: 指示输入数据有效 标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 合成输出数据 复值列向量
+  direction: output
+  data_types: fixed point | single | double
+- name: valid
+  summary: 指示输出数据有效 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -64,8 +87,37 @@ chinese_source: worker-translation
 控制信号，指示来自输出 **data** 端口的数据是否有效。当 **valid** 为 `1`（`true`）时，模块从输出 **data** 端口返回有效数据。当 **valid** 为 `0`（`false`）时，输出 **data** 端口的值无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter coefficients
+  summary: 多相滤波器系数 [-0.0329 0.1218 0.3183 0.4829 0.5469 0.4829 0.5469 0.4829 0.3183 0.1218 -0.0329]（默认）| 复值向量
+  group: 主要
+- name: Filter structure
+  summary: HDL 滤波器架构 Direct form transposed（默认）| Direct form systolic
+  group: 主要
+- name: Complex multiplication
+  summary: 复数乘法器的 HDL 实现 Use 4 multipliers and 2 adders（默认）| Use 3 multipliers and 5 adders
+  group: 主要
+- name: Divide butterfly outputs by two
+  summary: IFFT 缩放 on（默认）| off
+  group: 主要
+- name: Rounding mode
+  summary: 类型转换输出的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 类型转换输出的溢出处理 off（默认）| on
+  group: 数据类型
+- name: Coefficients
+  summary: '系数的数据类型 Inherit: Same word length as input（默认）| <data type expression>'
+  group: 数据类型
+- name: Output
+  summary: '模块输出的数据类型 Inherit: via internal rule（默认）| Inherit: Same as input | <data type expression>'
+  group: 数据类型
+- name: Enable reset input port
+  summary: 启用复位输入端口的选项 off（默认）| on
+  group: 控制端口
+```
 
 ### 主要
 
@@ -111,7 +163,6 @@ chinese_source: worker-translation
 ### **Enable reset input port** — 启用复位输入端口的选项 `off`（默认）| `on`
 
 选择此参数以启用 **reset** 输入端口。复位信号实现数据路径寄存器的本地同步复位。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

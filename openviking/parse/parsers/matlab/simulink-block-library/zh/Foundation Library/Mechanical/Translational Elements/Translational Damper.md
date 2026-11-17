@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Translational Damper
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 杆机械平移
+  direction: conserving
+- name: C
+  summary: 壳体机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 与壳体（即静止体）关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Damping coefficient
+  summary: 阻尼系数，由粘性摩擦定义 100 N/(m/s)（默认）| 标量
+  group: ''
+```
 
 ### **Damping coefficient** — 阻尼系数，由粘性摩擦定义 `100 N/(m/s)`（默认）| 标量
 
 阻尼系数，由粘性摩擦定义。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Translational Elements

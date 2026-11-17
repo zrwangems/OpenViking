@@ -14,6 +14,19 @@ language: en
 # S-Function Builder
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: S-function input scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: Out
+  summary: S-function output scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+```
 
 ### Input
 
@@ -37,8 +50,25 @@ signals must have a data type that Simulink supports.
 For more information, see Data Types Supported by Simulink in the Simulink documentation.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: S-function name
+  summary: Name of the S-function system (default) | S-function name
+  group: ''
+  block_parameter: FunctionName
+  values: '''system'' (default) | S-function name in quotes'
+- name: S-function parameters
+  summary: Additional S-function parameters MATLAB® expressions | comma-separated variables
+  group: ''
+  block_parameter: Parameters
+  values: ''''' (default) | S-function parameters in quotes'
+- name: S-function modules
+  summary: Additional files for code generation '' (default) | filenames
+  group: ''
+  block_parameter: SFunctionModules
+  values: ''''' (default) | filenames in quotes'
+```
 
 Use the S-Function Builder editor to create user-defined parameters.
 For more information on creating user-defined parameters from the editor, see Specify Ports and Parameters for the S-Function.
@@ -100,7 +130,6 @@ For more information on using this parameter, see Specify Additional Source File
 | --- | --- |
 | **Parameter:** | `SFunctionModules` |
 | **Values:** | `''` (default) | filenames in quotes |
-
 ## Libraries
 
 Simulink / User-Defined Functions

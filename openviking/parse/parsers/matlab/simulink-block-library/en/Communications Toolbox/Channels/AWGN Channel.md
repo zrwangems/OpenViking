@@ -14,6 +14,20 @@ language: en
 # AWGN Channel
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input data signal vector | matrix
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: Variance of additive white Gaussian noise positive scalar | vector
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output data signal vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -60,8 +74,53 @@ source** to `Input port`.
 Output data signal for the AWGN channel, returned as a vector or matrix. The
 datatype and dimensions of **Out** match those of the input signal, **In**. This port
 is unnamed on the block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Variance mode Signal to noise ratio (SNR) (default) | Signal to noise ratio (Eb/No) | Signal to noise ratio (Es/No)
+    | Variance
+  group: ''
+- name: SNR (dB)
+  summary: Ratio of signal power to noise power 10 (default) | scalar | vector
+  group: ''
+- name: Eb/No (dB)
+  summary: Ratio of information bit energy per symbol to noise power spectral density 10 (default) | scalar | vector
+  group: ''
+- name: Es/No (dB)
+  summary: Ratio of information symbol energy per symbol to noise power spectral density 10 (default) | scalar | vector
+  group: ''
+- name: Number of bits per symbol
+  summary: Number of bits in each input symbol 1 (default) | scalar | vector
+  group: ''
+- name: Input signal power, referenced to 1 ohm (watts)
+  summary: Mean square power of input 1 (default) | scalar | vector
+  group: ''
+- name: Specify symbol duration in seconds
+  summary: Specify symbol duration in seconds off (default) | on
+  group: ''
+- name: Samples per symbol
+  summary: Samples per symbol 1 (default) | positive integer | vector of positive integers
+  group: ''
+- name: Symbol period (s)
+  summary: Symbol period in seconds [1 2 4] (default) | positive scalar | vector
+  group: ''
+- name: Noise variance source
+  summary: Noise variance source Parameter (default) | Input port
+  group: ''
+- name: Noise variance
+  summary: Variance of white Gaussian noise 1 (default) | scalar | vector
+  group: ''
+- name: Random number source
+  summary: Random number source Global stream (default) | mt19937ar with seed
+  group: ''
+- name: Initial seed
+  summary: Noise generator initial seed 67 (default) | nonnegative integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -252,7 +311,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Channels

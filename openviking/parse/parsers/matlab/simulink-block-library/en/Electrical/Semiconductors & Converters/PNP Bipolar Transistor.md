@@ -14,6 +14,21 @@ language: en
 # PNP Bipolar Transistor
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base terminal electrical
+  direction: conserving
+- name: C
+  summary: Collector terminal electrical
+  direction: conserving
+- name: E
+  summary: Emitter terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -52,8 +67,98 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Parameterization
+  summary: Block parameterization Specify from a datasheet (default) | Specify using equation parameters directly
+  group: Main
+- name: Forward current transfer ratio h_fe
+  summary: Forward current transfer ratio 100 (default)
+  group: Main
+- name: Output admittance h_oe
+  summary: Output admittance 50e-6 1/Ohm (default)
+  group: Main
+- name: Collector current at which h-parameters are defined
+  summary: Collector current at which h-parameters are defined -1 mA (default)
+  group: Main
+- name: Collector-emitter voltage at which h-parameters are defined
+  summary: Collector-emitter voltage at which h-parameters are defined -5 V (default)
+  group: Main
+- name: Voltage Vbe
+  summary: Voltage Vbe -0.55 V (default)
+  group: Main
+- name: Current Ib for voltage Vbe
+  summary: Current Ib for voltage Vbe -0.5 mA (default)
+  group: Main
+- name: Forward current transfer ratio BF
+  summary: Forward current transfer ratio 100 (default)
+  group: Main
+- name: Saturation current IS
+  summary: Saturation current 1e-14 A (default)
+  group: Main
+- name: Forward Early voltage VAF
+  summary: Forward Early voltage 200 V (default)
+  group: Main
+- name: Reverse current transfer ratio BR
+  summary: Reverse current transfer ratio 1 (default)
+  group: Main
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Main
+- name: Collector resistance RC
+  summary: Collector resistance 0.01 ohm (default)
+  group: Ohmic Resistance
+- name: Emitter resistance RE
+  summary: Emitter resistance 1e-4 Ohm (default)
+  group: Ohmic Resistance
+- name: Zero bias base resistance RB
+  summary: Zero bias base resistance 1 Ohm (default)
+  group: Ohmic Resistance
+- name: Base-collector junction capacitance
+  summary: Base-collector junction capacitance 5 pF (default)
+  group: Capacitance
+- name: Base-emitter junction capacitance
+  summary: Base-emitter junction capacitance 5 pF (default)
+  group: Capacitance
+- name: Total forward transit time
+  summary: Total forward transit time 0 us (default)
+  group: Capacitance
+- name: Total reverse transit time
+  summary: Total reverse transit time 0 us (default)
+  group: Capacitance
+- name: Parameterization
+  summary: Temperature dependence parameterization None — Simulate at parameter measurement temperature (default) | Model
+    temperature dependence
+  group: Temperature Dependence
+- name: Forward current transfer ratio, h_fe, at second measurement temperature
+  summary: Forward current transfer ratio, h_fe, at second measurement temperature 125 (default)
+  group: Temperature Dependence
+- name: Voltage Vbe at second measurement temperature
+  summary: Voltage Vbe at second measurement temperature -0.45 V (default)
+  group: Temperature Dependence
+- name: Current Ib for voltage Vbe at second measurement temperature
+  summary: Current Ib for voltage Vbe at second measurement temperature -0.5 mA (default)
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: Second measurement temperature 125 degC (default)
+  group: Temperature Dependence
+- name: Current gain temperature coefficient, XTB
+  summary: Current gain temperature coefficient 0 (default)
+  group: Temperature Dependence
+- name: Energy gap, EG
+  summary: Energy gap 1.11 eV (default)
+  group: Temperature Dependence
+- name: Saturation current temperature exponent, XTI
+  summary: Saturation current temperature exponent 3 (default)
+  group: Temperature Dependence
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 degC (default)
+  group: Temperature Dependence
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -375,7 +480,6 @@ directly` for the
 
 Temperature *T*s at which the
 device is simulated.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

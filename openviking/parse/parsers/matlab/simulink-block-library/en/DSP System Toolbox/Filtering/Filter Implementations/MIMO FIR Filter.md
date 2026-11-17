@@ -14,6 +14,21 @@ language: en
 # MIMO FIR Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: Time-domain FIR filter coefficients row vector | matrix
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Filtered output vector | matrix | 3-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -80,8 +95,28 @@ The output has the same data type and complexity as the input signal.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Numerator source
+  summary: Source of FIR filter coefficients Property (default) | Input port
+  group: ''
+- name: Numerator
+  summary: Time-domain FIR filter coefficients [0.5 0.5;0.75 0.25] (default) | row vector | matrix
+  group: ''
+- name: Number of propagation paths
+  summary: Number of propagation paths between each input and output channel pair 1 (default) | positive integer
+  group: ''
+- name: Sum filtered output contributions from all input channels
+  summary: Option to sum filtered output contributions from all input channels on (default) | off
+  group: ''
+- name: View Filter Response
+  summary: View Filter Response button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -199,7 +234,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Implementations

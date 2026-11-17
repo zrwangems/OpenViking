@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Simulation Pace
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 步调误差标量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -31,8 +38,38 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output pace error (sec)** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Simulation pace
+  summary: 仿真时间与时钟时间的比率 1（默认）| 标量
+  group: ''
+  block_parameter: OutputPaceError
+  type: 字符向量
+  values: '''1'' | 标量'
+  default: '''1'''
+- name: Sleep mode
+  summary: 控制仿真步调 Auto（默认）| MATLAB Thread | Off | Busy-Wait
+  group: ''
+  block_parameter: SleepMode
+  type: 字符向量
+  values: '''MATLAB Thread'' | ''Off'' | ''Busy-Wait'' | ''Auto'''
+  default: '''Auto'''
+- name: Output pace error
+  summary: 显示步调误差 off（默认）| on
+  group: ''
+  block_parameter: OutputPaceError
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time
+  summary: 采样时间 1/30（默认）| -1 | 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''1/30'''
+```
 
 ### **Simulation pace** — 仿真时间与时钟时间的比率 `1`（默认）| 标量
 
@@ -101,7 +138,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 | 向量 |
 | **默认值**：`'1/30'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Animation Support Utilities

@@ -14,14 +14,34 @@ language: en
 # PS Counter
 
 ## Ports
+```yaml
+ports:
+- name: Y
+  summary: Output physical signal, unitless physical signal
+  direction: output
+```
 
 ### Output
 
 ### **Y** — Output physical signal, unitless physical signal
 
 Output physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Sample time interval 1 s (default)
+  group: ''
+- name: Initial value
+  summary: Output at time zero 0 (default)
+  group: ''
+- name: Reset value
+  summary: Minimum output 0 (default)
+  group: ''
+- name: Maximum value
+  summary: Maximum output intmax (default)
+  group: ''
+```
 
 ### **Sample time** — Sample time interval `1 s` (default)
 
@@ -54,7 +74,6 @@ the **Sample time** parameter, at which point the signal returns to the
 **Reset value** and the cycle starts again. The value must be an
 integer. The default value is `intmax` (2147483647, the largest
 positive value that can be represented in the MATLAB® software with a 32-bit integer).
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Sources

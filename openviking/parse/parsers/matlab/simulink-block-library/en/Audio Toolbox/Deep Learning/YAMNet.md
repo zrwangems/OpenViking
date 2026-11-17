@@ -14,6 +14,25 @@ language: en
 # YAMNet
 
 ## Ports
+```yaml
+ports:
+- name: features
+  summary: Mel spectrograms 96-by-64 matrix | 96-by-64-by-1-by-*N* array
+  direction: input
+  data_types: single | double
+- name: sound
+  summary: Predicted sound label enumerated scalar
+  direction: output
+  data_types: enumerated
+- name: scores
+  summary: Predicted activations or scores vector
+  direction: output
+  data_types: single
+- name: labels
+  summary: Class labels for predicted scores vector
+  direction: output
+  data_types: enumerated
+```
 
 ### Input
 
@@ -53,8 +72,19 @@ Predicted activation or score values for each supported sound label, returned as
 Class labels for predicted scores, returned as a 1-by-521 vector.
 
 **Data Types:** `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mini-batch size
+  summary: Size of mini-batches 128 (default) | positive integer
+  group: ''
+- name: Classification
+  summary: Select to output sound classification on (default) | off
+  group: ''
+- name: Predictions
+  summary: Output all scores and associated labels off (default) | on
+  group: ''
+```
 
 ### **Mini-batch size** — Size of mini-batches `128` (default) | positive integer
 
@@ -72,7 +102,6 @@ sound.
 
 Enable the output ports **scores** and **labels**,
 which output all predicted scores and associated class labels.
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

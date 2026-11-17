@@ -14,6 +14,18 @@ language: en
 # 2-Way Directional Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Spool displacement, m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -30,8 +42,63 @@ Isothermal liquid conserving port.
 
 Physical signal associated with the spool displacement, in m. A positive value causes
 the valve to open.
-
 ## Parameters
+```yaml
+parameters:
+- name: Orifice parameterization
+  summary: Opening area relationship Linear - area vs. spool travel (default) | Tabulated data - Area vs. spool travel | Tabulated
+    data - Volumetric flow rate vs. spool travel and pressure drop
+  group: Model Parameterization
+- name: Spool position at maximum orifice area
+  summary: Spool offset at maximum area 5e-3 m (default) | positive scalar
+  group: Model Parameterization
+- name: Spool travel between closed and open orifice
+  summary: Maximum spool stroke 5e-3 m (default) | positive scalar
+  group: Model Parameterization
+- name: Maximum orifice area
+  summary: Area of fully open valve 1e-4 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Leakage area
+  summary: Valve gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Spool travel vector
+  summary: Spool opening distance values [0, .002, .004, .007, .017] m (default) | vector
+  group: Model Parameterization
+- name: Orifice area vector
+  summary: Valve opening area values [1e-09, 2.0352e-07, 4.0736e-05, .00011438, .00034356] m^2 (default) | vector
+  group: Model Parameterization
+- name: Spool travel vector, ds
+  summary: Tabular spool opening distance values [0, .002, .004, .007, .017] m (default) | vector
+  group: Model Parameterization
+- name: Pressure drop vector, dp
+  summary: Tabular pressure drop values [.3, .5, .7] MPa (default) | vector
+  group: Model Parameterization
+- name: Volumetric flow rate table, q(ds,dp)
+  summary: Volumetric flow rate for given spool travel and pressure drop [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7,
+    .9, 1.06; 1.96, 2.5, 3; 6, 7.7, 9.13] m^3/s (default) | matrix
+  group: Model Parameterization
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Model Parameterization
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Model Parameterization
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: Model Parameterization
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions on (default) | off
+  group: Model Parameterization
+- name: Cross-sectional area at ports A and B
+  summary: Valve area at conserving ports inf m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: 2-Way Directional Valve Area fault
+  summary: Option to model spool position fault Add fault
+  group: Faults
+- name: Spool position when faulted
+  summary: Faulted valve characteristics Positive (default) | Negative | Maintain last value
+  group: Faults
+```
 
 ### Model Parameterization
 
@@ -246,7 +313,6 @@ position when the fault triggers.
 #### Dependencies
 
 To enable this parameter, click the **Add fault** hyperlink.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

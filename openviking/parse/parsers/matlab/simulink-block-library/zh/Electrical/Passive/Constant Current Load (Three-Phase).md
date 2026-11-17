@@ -15,14 +15,46 @@ chinese_source: worker-translation
 # Constant Current Load (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **~** — 三相电压电气端口
 
 与三相电压关联的可扩展三相电气端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 选择建模为复合三相端口还是扩展三相端口 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Consumed current (RMS)
+  summary: 消耗电流的均方根值 1 A（默认）| 标量
+  group: 主参数
+- name: Minimum supply voltage (phase-to-phase RMS)
+  summary: 最小供电电压 10 V（默认）| 标量
+  group: 主参数
+- name: Open circuit fault
+  summary: 添加开路故障的选项 Add fault（默认）
+  group: 故障
+- name: Open-circuit conductance
+  summary: 开路电导 1e-4 S（默认）| 标量
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible power
+  summary: 故障转换的功率阈值 inf W（默认）
+  group: 故障
+- name: Time to fail when exceeding power
+  summary: 功率超过阈值的最长时间 1 s（默认）
+  group: 故障
+```
 
 ### **Modeling option** — 选择建模为复合三相端口还是扩展三相端口 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -83,7 +115,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Behavioral`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

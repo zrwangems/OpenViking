@@ -15,10 +15,29 @@ chinese_source: worker-translation
 # Timed-Based Linearization
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Linearization time
+  summary: 生成线性模型的时间 1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: LinearizationTime
+  type: character vector
+  values: scalar | vector
+  default: '''1'''
+- name: Sample time (of linearized model)
+  summary: 采样时间 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+```
 
 ### **Linearization time** — 生成线性模型的时间 `1`（默认）| 标量 | 向量
 
@@ -45,7 +64,6 @@ R2025b 中未记录。
 | **类型**：character vector |
 | **值**：scalar | vector |
 | **默认值**：`'0'` |
-
 ## 所属库
 
 Simulink / Model-Wide Utilities

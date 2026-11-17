@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Rectangular QAM Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据 标量 | 列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: 输出数据 标量 | 列向量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,43 @@ chinese_source: worker-translation
 矩形 QAM 调制基带信号，以标量或向量形式返回。使用 **Output data type** 参数指定输出数据类型。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: M-ary number
+  summary: 调制阶数 16（默认）| 正整数
+  group: 主要
+- name: Input type
+  summary: 输入类型 Integer（默认）| Bit
+  group: 主要
+- name: Constellation ordering
+  summary: 符号的映射顺序 Gray（默认）| Binary | User-defined
+  group: 主要
+- name: Constellation mapping
+  summary: 用户定义的星座映射 [0:15]（默认）| 向量
+  group: 主要
+- name: Normalization method
+  summary: 星座图的缩放方法 Min. distance between symbols（默认）| Average Power | Peak Power
+  group: 主要
+- name: Minimum distance
+  summary: 两个最近星座点之间的距离 2（默认）| 正标量
+  group: 主要
+- name: Average power, referenced to 1 ohm (watts)
+  summary: 平均功率 1（默认）| 正标量
+  group: 主要
+- name: Peak power, referenced to 1 ohm (watts)
+  summary: 最大功率 1（默认）| 正标量
+  group: 主要
+- name: Phase offset (rad)
+  summary: 信号星座图的旋转 0（默认）| 数值标量
+  group: 主要
+- name: View constellation
+  summary: 绘制参考星座图的选项 按钮
+  group: 主要
+- name: Output data type
+  summary: '输出数据类型 double（默认）| single | fixdt(1,16) | fixdt(1,16,0) | Inherit: Inherit via back propagation | <data type expression>'
+  group: 数据类型
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -110,7 +156,6 @@ chinese_source: worker-translation
 - `Inherit: Inherit via back propagation` 将输出数据类型和缩放设置为与下一个模块匹配。
 
 有关指定数据类型的信息，请参阅数据类型助手。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM Communications Toolbox HDL Support / Modulation / AM

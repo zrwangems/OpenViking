@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Quaternion Division
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 被除四元数 四元数 | 四元数向量
+  direction: input
+  data_types: double
+- name: r
+  summary: 除数四元数 四元数 | 四元数向量
+  direction: input
+  data_types: double
+- name: q/r
+  summary: 输出四元数 四元数 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -54,11 +69,12 @@ chinese_source: worker-translation
 输出四元数或除法得到的四元数向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

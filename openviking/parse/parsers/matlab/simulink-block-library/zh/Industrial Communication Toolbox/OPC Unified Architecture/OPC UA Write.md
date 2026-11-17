@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # OPC UA Write
 
 ## 端口
+```yaml
+ports:
+- name: Value
+  summary: 节点值向量 vector
+  direction: input
+  data_types: Boolean | single | double | datetime | duration | int8 | int16 | int32 | int64 | uint8 | uint8 vector | uint16
+    | uint32 | uint64 | struct | char vector
+```
 
 ### 输入
 
@@ -29,8 +37,26 @@ chinese_source: worker-translation
 要启用此端口，请在 **Nodes** 参数中指定一个或多个节点。
 
 **数据类型：** `Boolean` | `single` | `double` | `datetime` | `duration` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint8 vector` | `uint16` | `uint32` | `uint64` | `struct` | `char vector`
-
 ## 参数
+```yaml
+parameters:
+- name: Server
+  summary: 为模块定义 OPC UA 服务器 下拉列表
+  group: ''
+  block_parameter: ServerList
+  type: string | character vector
+- name: Nodes
+  summary: OPC UA 服务器节点列表 表格
+  group: ''
+  block_parameter: NodeList
+  type: string | character vector
+- name: Sample time
+  summary: 写入操作的采样时间 -1（默认）| 非负标量
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: 非负标量
+```
 
 ### **Server** — 为模块定义 OPC UA 服务器 下拉列表
 
@@ -73,7 +99,6 @@ chinese_source: worker-translation
 | **类型：** `string` | `character vector` |
 | **值：** 非负标量 |
 | **默认：** `'-1'` |
-
 ## 所属库
 
 Industrial Communication Toolbox / OPC Unified Architecture

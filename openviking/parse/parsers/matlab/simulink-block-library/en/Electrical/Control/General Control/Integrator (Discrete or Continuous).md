@@ -14,6 +14,25 @@ language: en
 # Integrator (Discrete or Continuous)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Integrator input vector
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Revert to initial state scalar
+  direction: input
+  data_types: single | double
+- name: x0
+  summary: Initial state vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Integrator output vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -45,8 +64,29 @@ reset, pass a signal to this port.
 Integrator output.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Integrator method
+  summary: 'Option to specify integration or accumulation method Integration: Forward Euler (default) | Integration: Backward
+    Euler | Integration: Trapezoidal | Accumulation: Forward Euler | Accumulation: Backward Euler | Accumulation: Trapezoidal'
+  group: ''
+- name: External reset
+  summary: Reset strategy level (default) | rising | falling | either
+  group: ''
+- name: Limit type
+  summary: Saturation strategy Anti-windup (default) | Windup
+  group: ''
+- name: Upper saturation limit
+  summary: State upper limit inf (default) | real number
+  group: ''
+- name: Lower saturation limit
+  summary: State lower limit -inf (default) | real number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Integrator method** — Option to specify integration or accumulation method `Integration: Forward Euler` (default) | `Integration: Backward Euler` | `Integration: Trapezoidal` | `Accumulation: Forward Euler` | `Accumulation: Backward Euler` | `Accumulation: Trapezoidal`
 
@@ -116,7 +156,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

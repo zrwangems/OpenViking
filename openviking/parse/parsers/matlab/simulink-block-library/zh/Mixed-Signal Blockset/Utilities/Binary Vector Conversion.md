@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Binary Vector Conversion
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入信号 标量 | 逻辑向量
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | Boolean | fixdt(0,16)
+- name: out
+  summary: 输出信号 标量 | 逻辑向量
+  direction: output
+  data_types: single | double | uint8 | uint16 | uint32 | Boolean | fixdt(0,16)
+```
 
 ### 输入
 
@@ -40,8 +51,46 @@ chinese_source: worker-translation
 - 解码时，输出信号为标量。
 
 **数据类型：** `single` | `double` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixdt(0,16)`
-
 ## 参数
+```yaml
+parameters:
+- name: Convert
+  summary: 转换操作类型 Scalar to binary-coded vector（默认）| Binary-coded vector to scalar | Resize binary-coded vector | Reverse
+    binary-coded vector
+  group: ''
+  block_parameter: Convert
+  type: 字符向量
+  values: Scalar to binary-coded vector| Binary-coded vector to scalar| Resize binary-coded vector| Reverse binary-coded vector
+  default: Scalar to binary-coded vector
+- name: Logical vector encoding
+  summary: 逻辑向量编码方法 Unipolar (magnitude)（默认）| Bipolar (2's complement)
+  group: ''
+  block_parameter: Encoding
+  type: 字符向量
+  values: Unipolar (magnitude)| Bipolar (2's complement)
+  default: Unipolar (magnitude)
+- name: Input vector length
+  summary: 输入向量中的向量元素数量 8（默认）| 正实数标量
+  group: ''
+  block_parameter: InputLength
+  type: 字符向量
+  values: 正实数标量
+  default: '8'
+- name: Output vector length
+  summary: 输出向量中的向量元素数量 8（默认）| 正实数标量
+  group: ''
+  block_parameter: OutputLength
+  type: 字符向量
+  values: 正实数标量
+  default: '8'
+- name: 输出数据类型
+  summary: '输出标量的数据类型 double（默认）| Inherit: Inherit via back propagation | single | uint8 | uint16 | uint32 | fixdt(0,16)'
+  group: ''
+  block_parameter: DataType
+  type: 字符向量
+  values: 'Inherit: Inherit via back propagation| double| single| uint8| uint16| uint32| fixdt(0,16)'
+  default: double
+```
 
 ### **Convert** — 转换操作类型 `Scalar to binary-coded vector`（默认）| `Binary-coded vector to scalar` | `Resize binary-coded vector` | `Reverse binary-coded vector`
 
@@ -137,7 +186,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `Inherit: Inherit via back propagation`| `double`| `single`| `uint8`| `uint16`| `uint32`| `fixdt(0,16)` |
 | **默认值：** `double` |
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

@@ -14,6 +14,25 @@ language: en
 # Toeplitz
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Toep Col
+  summary: First column of asymmetric Toeplitz matrix vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Toep Row
+  summary: First row of asymmetric Toeplitz matrix vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Output
+  summary: Toeplitz matrix matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -139,8 +158,16 @@ produce the Toeplitz matrix
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Symmetric
+  summary: Symmetric Toeplitz matrix output on (default) | off
+  group: ''
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow on (default) | off
+  group: ''
+```
 
 ### **Symmetric** — Symmetric Toeplitz matrix output `on` (default) | `off`
 
@@ -191,7 +218,6 @@ floating-point signals.
 
 To enable this parameter, select the **Symmetric**
 check box.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

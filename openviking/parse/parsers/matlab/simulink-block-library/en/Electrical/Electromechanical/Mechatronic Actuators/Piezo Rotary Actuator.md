@@ -14,6 +14,27 @@ language: en
 # Piezo Rotary Actuator
 
 ## Ports
+```yaml
+ports:
+- name: f
+  summary: Motor driving frequency physical
+  direction: input
+- name: v
+  summary: RMS supply voltage and direction of rotation physical
+  direction: input
+- name: i
+  summary: RMS phase current physical
+  direction: output
+- name: wm
+  summary: Rotor speed physical
+  direction: output
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Rotor mechanical
+  direction: conserving
+```
 
 ### Input
 
@@ -50,8 +71,52 @@ case.
 
 Mechanical translational conserving port associated with the motor
 rotor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Motor natural frequency
+  summary: Motor natural frequency 40 kHz (default)
+  group: Electrical Torque
+- name: Rated RMS voltage
+  summary: Rated RMS voltage 130 V (default)
+  group: Electrical Torque
+- name: Rated torque
+  summary: Rated torque 0.5 N*m (default)
+  group: Electrical Torque
+- name: Rated rotational speed
+  summary: Rated rotational speed 100 rpm (default)
+  group: Electrical Torque
+- name: No-load maximum rotational speed
+  summary: No-load maximum rotational speed 160 rpm (default)
+  group: Electrical Torque
+- name: Maximum torque
+  summary: Maximum torque 1 N*m (default)
+  group: Electrical Torque
+- name: Resonance quality factor
+  summary: Resonance quality factor 100 (default)
+  group: Electrical Torque
+- name: Capacitance per phase
+  summary: Capacitance per phase 5 nF (default)
+  group: Electrical Torque
+- name: Rotor inertia
+  summary: Rotor inertia 200 g*cm^2 (default)
+  group: Mechanical
+- name: Holding torque
+  summary: Holding torque 1.5 N*m (default)
+  group: Motor-Off Friction
+- name: Coulomb friction torque
+  summary: Coulomb friction torque 1.0 N*m (default)
+  group: Motor-Off Friction
+- name: Viscous friction coefficient
+  summary: Viscous friction coefficient 0.001 N*m/(rad*s) (default) | nonnegative scalar
+  group: Motor-Off Friction
+- name: Transition approximation coefficient
+  summary: Transition approximation coefficient 10 s/rad (default)
+  group: Motor-Off Friction
+- name: Linear region velocity threshold
+  summary: Linear region velocity threshold 1e-4 rad/s (default)
+  group: Motor-Off Friction
+```
 
 ### Electrical Torque
 
@@ -146,7 +211,6 @@ friction torque is considered to be linearly proportional to the
 relative velocity. MathWorks® recommends that you use values in the range between
 `1e-5` and
 `1e-3``rad/s`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

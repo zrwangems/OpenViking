@@ -14,6 +14,21 @@ language: en
 # String Find
 
 ## Ports
+```yaml
+ports:
+- name: str
+  summary: String in which to find pattern scalar
+  direction: input
+  data_types: string
+- name: sub
+  summary: Pattern scalar
+  direction: input
+  data_types: string
+- name: idx
+  summary: Position index of found pattern scalar
+  direction: output
+  data_types: int8 | int16 | int32
+```
 
 ### Input
 
@@ -45,8 +60,22 @@ scalar.
   beginning of the searched string.
 
 **Data Types:** `int8` | `int16` | `int32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | int8 |
+    int16 | int32 | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''int8'' | ''int16'' | ''int32''
+    | *<data type expression>*'
+  default: '''Inherit: Inherit via internal rule'''
+- name: Mode
+  summary: Category of data type Inherit (default) | Built in | Expression
+  group: ''
+```
 
 ### **Output data type** — Output data type `Inherit: Inherit via internal rule` (default) | `Inherit: Inherit via back propagation` | `int8` | `int16` | `int32` | `<data type expression>`
 
@@ -87,7 +116,6 @@ information on using this parameter, see Specify Data Types Using Data Type Assi
 
 Clicking the **Show data type assistant** button
 enables this parameter.
-
 ## Libraries
 
 Simulink / String

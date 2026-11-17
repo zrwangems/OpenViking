@@ -14,10 +14,15 @@ language: en
 # Digital Input
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Pin**
 :   Select a digital pin.
@@ -32,7 +37,6 @@ Not documented in R2025b.
 **View pin map**
 :   Click on this button to open a snapshot of the board with a reference to the
     GPIO pins.
-
 ## Libraries
 
 Not documented in R2025b.

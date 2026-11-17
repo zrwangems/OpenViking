@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Rolling Resistance
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 法向力，N 物理信号
+  direction: input
+- name: T
+  summary: 胎面摩擦力，N 物理信号
+  direction: input
+- name: H
+  summary: 轮毂，m/s 机械平移
+  direction: input
+```
 
 ### 输入
 
@@ -36,8 +48,53 @@ Formula)`。
 ### **H** — 轮毂，m/s 机械平移
 
 与轮毂关联的机械平移守恒端口，单位为 m/s。
-
 ## 参数
+```yaml
+parameters:
+- name: Resistance model
+  summary: 滚动阻力计算方法 Constant coefficient（默认）| Pressure and velocity dependent (SAE J2542) | Pressure and velocity dependent
+    (Magic Formula)
+  group: ''
+- name: Constant coefficient
+  summary: 滚动轮胎的阻力系数 0.015（默认）| 正标量
+  group: ''
+- name: Tire pressure
+  summary: 滚动轮胎的充气压力 250e3 Pa（默认）| 正标量
+  group: ''
+- name: Alpha
+  summary: 近似系数 α -0.003（默认）| 标量
+  group: ''
+- name: Beta
+  summary: 近似系数 β 0.97（默认）| 标量
+  group: ''
+- name: Coefficient A
+  summary: 近似系数 A 84e-4（默认）| 正标量
+  group: ''
+- name: Coefficient B
+  summary: 近似系数 B 6.2e-4 s/m（默认）| 非负标量
+  group: ''
+- name: Coefficient C
+  summary: 近似系数 C 1.6e-4 s^2/m^2（默认）| 非负标量
+  group: ''
+- name: Tire nominal pressure, NOMPRES
+  summary: 轮胎标称压力 240e3 Pa（默认）| 正标量
+  group: ''
+- name: Tire nominal vertical load, FNOMIN
+  summary: 法向力 4000 N（默认）| 正标量
+  group: ''
+- name: Nominal hub longitudinal speed, LONGVL
+  summary: 标称轮毂纵向速度 16 m/s（默认）| 正标量
+  group: ''
+- name: Q-coefficient parameters [qsy1 qsy2 qsy3 qsy4 qsy5 qsy6 qsy7 qsy8]
+  summary: Magic Formula Q 系数 [.0082, 0, .0014, .001, 0, 0, 1.08, -.5] 1（默认）| 长度为 8 的向量
+  group: ''
+- name: Scale factor of rolling resistance, LMY
+  summary: 滚动阻力 1（默认）| 正标量
+  group: ''
+- name: Velocity threshold
+  summary: 将全部滚动阻力传递到滚动轮毂时的速度 0.001 m/s（默认）| 正标量
+  group: ''
+```
 
 ### **Resistance model** — 滚动阻力计算方法 `Constant coefficient`（默认）| `Pressure and velocity dependent (SAE J2542)` | `Pressure and velocity dependent (Magic Formula)`
 
@@ -174,7 +231,6 @@ Formula)`。
 ### **Velocity threshold** — 将全部滚动阻力传递到滚动轮毂时的速度 `0.001` `m/s`（默认）| 正标量
 
 达到最大滚动阻力量的最小速度。
-
 ## 所属库
 
 Simscape / Driveline / Tires & Vehicles / Tire Subcomponents

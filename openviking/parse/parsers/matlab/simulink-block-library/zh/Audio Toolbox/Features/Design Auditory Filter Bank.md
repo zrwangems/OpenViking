@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Design Auditory Filter Bank
 
 ## 端口
+```yaml
+ports:
+- name: fb
+  summary: 滤波器组列向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: fvec
+  summary: 中心频率行向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输出
 
@@ -38,8 +49,52 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output center frequencies** 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Frequency scale
+  summary: 滤波器组的频率尺度 mel（默认）| bark | erb
+  group: ''
+- name: Mel style
+  summary: Mel 风格 oshaughnessy（默认）| slaney
+  group: ''
+- name: FFT length
+  summary: DFT 点数 1024（默认）| 正整数
+  group: ''
+- name: Design one-sided filter bank
+  summary: 设计单边或双边滤波器组 on（默认）| off
+  group: ''
+- name: Auto-determine number of bands
+  summary: 自动确定带通滤波器数量 on（默认）| off
+  group: ''
+- name: Number of bands
+  summary: 带通滤波器数量 32（默认）| 正整数
+  group: ''
+- name: Auto-determine frequency range
+  summary: 自动确定频率范围 on（默认）| off
+  group: ''
+- name: Frequency range (Hz)
+  summary: 设计听觉滤波器组的频率范围 [0,22050]（默认）| 二元素行向量
+  group: ''
+- name: Filter bank design domain
+  summary: 设计滤波器组的域 linear（默认）| warped
+  group: ''
+- name: Filter bank normalization
+  summary: 滤波器组的归一化技术 bandwidth（默认）| area | none
+  group: ''
+- name: Output data type
+  summary: 输出的数据类型 double（默认）| single
+  group: ''
+- name: Sample rate (Hz)
+  summary: 采样率 44.1e3（默认）| 正标量
+  group: ''
+- name: Visualize filter bank
+  summary: 打开绘图以可视化滤波器组 按钮
+  group: ''
+- name: Output center frequencies
+  summary: 指定中心频率的附加输出端口 off（默认）| on
+  group: ''
+```
 
 ### **Frequency scale** — 滤波器组的频率尺度 `mel`（默认）| `bark` | `erb`
 
@@ -123,7 +178,6 @@ mel 尺度的风格，指定为 `oshaughnessy` 或 `slaney`。
 ### **Output center frequencies** — 指定中心频率的附加输出端口 `off`（默认）| `on`
 
 选择此参数时，模块显示一个附加输出端口 **fvec**。此端口输出带通滤波器的中心频率。
-
 ## 所属库
 
 Audio Toolbox / Features

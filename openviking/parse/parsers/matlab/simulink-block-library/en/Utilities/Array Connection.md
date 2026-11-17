@@ -14,6 +14,15 @@ language: en
 # Array Connection
 
 ## Ports
+```yaml
+ports:
+- name: elementNodek
+  summary: Element connection node *k* to concatenate connection port
+  direction: conserving
+- name: arrayNode
+  summary: Concatenated array of nodes AON port
+  direction: conserving
+```
 
 ### Conserving
 
@@ -33,8 +42,29 @@ on, through *N*.
 Concatenated AON port of type defined by the **Domain**
 parameter, located on the opposite side of the block icon from the element ports. This
 port does not have a label.
-
 ## Parameters
+```yaml
+parameters:
+- name: Domain
+  summary: Specify domain for block connections Electrical Domain (default) | list of Foundation domains and registered custom
+    domains | <specify domain path>
+  group: ''
+- name: Concatenate dimension
+  summary: Array dimension along which to concatenate element nodes 2 (default) | positive scalar
+  group: ''
+- name: Mode
+  summary: Specify whether element nodes are scalars or arrays Scalar Elements (default) | Sized Elements
+  group: ''
+- name: Number of scalar elements
+  summary: Number of scalar element nodes to concatenate 2 (default) | positive integer
+  group: ''
+- name: Number of elements
+  summary: Number of nonscalar element nodes to concatenate 2 (default) | positive scalar
+  group: ''
+- name: Element size k
+  summary: Array size in connection node *k* [1,1] (default) | array
+  group: ''
+```
 
 ### **Domain** — Specify domain for block connections `Electrical Domain` (default) | list of Foundation domains and registered custom domains | `<specify domain path>`
 
@@ -110,7 +140,6 @@ elements** parameter.
 
 To enable this set of parameters, set the **Mode** parameter to
 `Sized Elements`.
-
 ## Libraries
 
 Simscape / Utilities

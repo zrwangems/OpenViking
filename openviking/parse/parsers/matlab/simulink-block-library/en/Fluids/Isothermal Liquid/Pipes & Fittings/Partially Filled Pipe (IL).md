@@ -14,6 +14,21 @@ language: en
 # Partially Filled Pipe (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: AL
+  summary: Relative liquid level of connected block, m physical signal
+  direction: input
+- name: L
+  summary: Pipe liquid level, m physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -43,8 +58,46 @@ the pipe end is submerged. Otherwise the port is exposed.
 ### **L** — Pipe liquid level, m physical signal
 
 Liquid level in the pipe in m, returned as a physical signal..
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe length
+  summary: Pipe length 5 m (default) | positive scalar
+  group: Geometry
+- name: Cross-sectional area
+  summary: Pipe cross-sectional area 0.01 m^2 (default) | positive scalar
+  group: Geometry
+- name: Hydraulic diameter
+  summary: Hydraulic diameter 0.1128 m (default) | positive scalar
+  group: Geometry
+- name: Elevation drop from port A to port B
+  summary: Vertical distance between A and B 5 m (default) | positive scalar
+  group: Geometry
+- name: Initial liquid level
+  summary: Starting liquid level 5 m (default) | positive scalar
+  group: Geometry
+- name: Liquid level below zero
+  summary: Whether to notify if no liquid is in pipe Error (default) | None | Warning
+  group: Geometry
+- name: Gravitational acceleration
+  summary: Acceleration of gravity 9.81 m/s^2 (default) | positive scalar
+  group: Geometry
+- name: Aggregate equivalent length of local resistances
+  summary: Contribution of pipe geometry to hydraulic losses 1 m (default) | positive scalar
+  group: Friction
+- name: Internal surface absolute roughness
+  summary: Pipe wall roughness 15e-6 m (default) | positive scalar
+  group: Friction
+- name: Laminar flow upper Reynolds number limit
+  summary: Laminar flow upper threshold 2000 (default) | positive scalar
+  group: Friction
+- name: Turbulent flow lower Reynolds number limit
+  summary: Turbulent flow lower threshold 4000 (default) | positive scalar
+  group: Friction
+- name: Laminar friction constant for Darcy friction factor
+  summary: Pipe friction constant for laminar flows 64 (default) | positive scalar
+  group: Friction
+```
 
 ### Geometry
 
@@ -117,7 +170,6 @@ limit**.
 Pipe friction constant for laminar flows. The laminar Darcy friction
 factor captures the contribution of wall friction in pressure loss
 calculations.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

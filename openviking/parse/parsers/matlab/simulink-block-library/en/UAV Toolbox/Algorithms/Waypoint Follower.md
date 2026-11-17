@@ -14,6 +14,45 @@ language: en
 # Waypoint Follower
 
 ## Ports
+```yaml
+ports:
+- name: Pose
+  summary: Current UAV pose [x y z chi] vector
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: Set of waypoints *n*-by-3 matrix | *n*-by-4 matrix | *n*-by-5 matrix
+  direction: input
+  data_types: single | double
+- name: LookaheadDistance
+  summary: Lookahead distance positive numeric scalar
+  direction: input
+  data_types: single | double
+- name: LookaheadPoint
+  summary: Lookahead point on path [x y z] position vector
+  direction: output
+  data_types: single | double
+- name: DesiredCourse
+  summary: Desired course numeric scalar
+  direction: output
+  data_types: single | double
+- name: DesiredYaw
+  summary: Desired yaw numeric scalar
+  direction: output
+  data_types: single | double
+- name: LookaheadDistFlag
+  summary: Lookahead distance flag 0 (default) | 1
+  direction: output
+  data_types: uint8
+- name: CrossTrackError
+  summary: Cross track error from UAV position to path positive numeric scalar
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: Status of waypoint navigation 0 | 1
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -126,8 +165,40 @@ This port is only visible if **Show UAV Status output port** is
 checked.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: UAV type
+  summary: Type of UAV fixed-wing (default) | multirotor
+  group: ''
+- name: StartFrom
+  summary: Waypoint start behavior first (default) | closest
+  group: ''
+- name: Transition radius source
+  summary: Source of transition radius internal (default) | external
+  group: ''
+- name: Transition radius (r)
+  summary: Transition radius for waypoints 10 (default) | positive numeric scalar
+  group: ''
+- name: Minimum lookahead distance (m)
+  summary: Minimum lookahead distance 0.1 (default) | positive numeric scalar
+  group: ''
+- name: Hover at last waypoint
+  summary: Lookahead point location at last waypoint off (default) | on
+  group: ''
+- name: Show Yaw input variable
+  summary: Accept yaw input for waypoints off (default) | on
+  group: ''
+- name: Show CrossTrackError output port
+  summary: Output cross track error off (default) | on
+  group: ''
+- name: Show UAV Status output port
+  summary: Output UAV waypoint status off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **UAV type** — Type of UAV `fixed-wing` (default) | `multirotor`
 
@@ -232,7 +303,6 @@ This parameter is non-tunable.
 This parameter is non-tunable.
 
 **Tunable:** No
-
 ## Libraries
 
 UAV Toolbox / Algorithms

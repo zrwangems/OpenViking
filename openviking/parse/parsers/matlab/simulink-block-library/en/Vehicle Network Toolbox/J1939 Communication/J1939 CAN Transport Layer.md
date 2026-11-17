@@ -14,10 +14,27 @@ language: en
 # J1939 CAN Transport Layer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Config name
+  summary: J1939 network configuration name configuration list option
+  group: ''
+- name: Device
+  summary: CAN device device list option
+  group: ''
+- name: Bus speed
+  summary: Speed of CAN bus 250000 (default) | 500000
+  group: ''
+- name: Sample time
+  summary: Simulation refresh rate 0.01 (default) | numeric
+  group: ''
+```
 
 ### **Config name** — J1939 network configuration name configuration list option
 
@@ -41,7 +58,6 @@ block runs during simulation. For information about simulation sample timing, se
 triggered subsystem or inherits a sample time, specify a value of `-1`.
 You can also specify a MATLAB® variable for sample time. The default value is `0.01`
 simulation seconds.
-
 ## Libraries
 
 Vehicle Network Toolbox / J1939 Communication

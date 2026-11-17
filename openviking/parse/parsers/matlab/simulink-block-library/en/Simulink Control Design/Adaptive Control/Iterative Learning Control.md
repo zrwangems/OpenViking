@@ -14,6 +14,21 @@ language: en
 # Iterative Learning Control
 
 ## Ports
+```yaml
+ports:
+- name: error
+  summary: Error signal scalar | vector
+  direction: input
+  data_types: single | double
+- name: control/reset
+  summary: ILC mode signal scalar
+  direction: input
+  data_types: Boolean
+- name: u
+  summary: Updated control signal scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -55,8 +70,71 @@ at the specified time points and measures the error between the desired
 reference and output.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: ILC sample time 0.01 (default) | positive scalar
+  group: ''
+  block_parameter: Ts
+  values: '"0.01" (default) | positive scalar in quotes'
+- name: Iteration duration (Tspan)
+  summary: Iteration duration 1 (default) | positive scalar
+  group: ''
+  block_parameter: Tspan
+  values: '"1" (default) | positive scalar in quotes'
+- name: Data Type
+  summary: Data type double (default) | single | <data type expression>
+  group: ''
+- name: ILC Algorithm
+  summary: ILC algorithm Model free ILC (default) | Model based ILC
+  group: ''
+  block_parameter: Algorithm
+  values: '"Model free ILC" (default) | "Model based ILC"'
+- name: P-gain (gamma_p)
+  summary: Proportional gain in model-free ILC 1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: gamma_p
+  values: '"1" (default) | nonnegative scalar in quotes'
+- name: D-gain (gamma_d)
+  summary: Derivative gain in model-free ILC 0 (default) | nonnegative scalar
+  group: ''
+  block_parameter: gamma_d
+  values: '"0" (default) | nonnegative scalar in quotes'
+- name: State Space Model
+  summary: Model time domain Continuous time (default) | Discrete time (Ts)
+  group: ''
+  block_parameter: ModelTimeDomain
+  values: '"Continuous time" (default) | "Discrete time (Ts)"'
+- name: A, B, C
+  summary: State-space model matrices 1 (default) | matrix
+  group: ''
+- name: ILC methods
+  summary: Model-based ILC method Gradient based (default) | Inverse-model based
+  group: ''
+  block_parameter: ModelBasedILCType
+  values: '"Gradient based" (default) | "Inverse-model based"'
+- name: ILC Gain (gamma_gradient)
+  summary: Gradient-based ILC gain 1 (default) | positive scalar
+  group: ''
+  block_parameter: gamma_grad
+  values: '"1" (default) | positive scalar in quotes'
+- name: ILC Gain (gamma_inverse)
+  summary: Inverse-model-based ILC gain 1 (default)
+  group: ''
+  block_parameter: gamma_inverse
+  values: '"1" (default) | positive scalar less than 2 in quotes'
+- name: Enable first-order low-pass filter
+  summary: Enable first-order low-pass filter off (default) | on
+  group: ''
+  block_parameter: LPFEnable
+  values: '"off" (default) | "on"'
+- name: Filter time constant (tau)
+  summary: Filter time constant 1 (default) | positive scalar
+  group: ''
+  block_parameter: tau
+  values: '"1" (default) | positive scalar in quotes'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -327,7 +405,6 @@ the `set_param` function.
 | **Values:** | `"1"` (default) | positive scalar in quotes |
 
 **Example:** `set_param(gcb,"tau","10")`
-
 ## Libraries
 
 Simulink Control Design / Adaptive Control

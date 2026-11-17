@@ -14,6 +14,27 @@ language: en
 # Single-Acting Actuator (G)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Multibody piston position input, m physical signal
+  direction: input
+- name: p
+  summary: Piston position, m physical signal
+  direction: output
+- name: A
+  summary: Liquid port gas
+  direction: conserving
+- name: C
+  summary: Actuator casing translational mechanical
+  direction: conserving
+- name: R
+  summary: Actuator piston translational mechanical
+  direction: conserving
+- name: H
+  summary: Heat transfer thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -61,8 +82,69 @@ piston.
 
 Thermal conserving port associated with the thermal mass of the gas
 volume.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Actuator
+- name: Piston cross-sectional area
+  summary: Cross-sectional area of piston rod 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston stroke
+  summary: Maximum piston travel distance 0.1 m (default) | positive scalar
+  group: Actuator
+- name: Dead volume
+  summary: Fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Cross-sectional area at port A
+  summary: Area at port A 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Actuator
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Actuator
+- name: Hard stop model
+  summary: Hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default) | Full
+    stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound
+    | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+- name: Piston displacement
+  summary: Method for determining piston position Calculate from velocity of port R relative to port C (default) | Provide
+    input signal from Multibody joint
+  group: Initial Conditions
+- name: Initial piston displacement
+  summary: Piston position at start of simulation 0 m (default) | scalar
+  group: Initial Conditions
+- name: Initial gas pressure
+  summary: Starting gas pressure 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Initial gas temperature
+  summary: Starting gas temperature 293.15 K (default) | scalar
+  group: Initial Conditions
+```
 
 ### Actuator
 
@@ -234,7 +316,6 @@ Initial pressure of the gas volume in the actuator.
 ### **Initial gas temperature** — Starting gas temperature `293.15` `K` (default) | scalar
 
 Initial temperature of the gas volume in the actuator.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Actuators

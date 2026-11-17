@@ -14,6 +14,33 @@ language: en
 # Path Manager
 
 ## Ports
+```yaml
+ports:
+- name: Pose
+  summary: Current UAV pose four-element column vector
+  direction: input
+  data_types: single | double
+- name: MissionData
+  summary: UAV mission data UAVPathManagerBus bus
+  direction: input
+  data_types: bus
+- name: IsModeDone
+  summary: Determine if mission point was executed 0 (default) | 1
+  direction: input
+  data_types: Boolean
+- name: MissionCmd
+  summary: Command to change mission uint8(0) (default) | 8-bit unsigned integer between 0 and 3
+  direction: input
+  data_types: uint8
+- name: Home
+  summary: UAV home location three-element column vector
+  direction: input
+  data_types: single | double
+- name: MissionParams
+  summary: UAV mission parameters UAVPathManagerBus bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -163,8 +190,22 @@ mode.
 | Second bus element: Previous | `mode` of the previous mission point | `position` of the previous mission point | `params` of the previous mission point |
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: UAV type
+  summary: Type of UAV multirotor (default) | fixed-wing
+  group: ''
+- name: Loiter radius
+  summary: Loiter radius for fixed-wing UAV 25 (default) | positive numeric scalar
+  group: ''
+- name: Data type
+  summary: Data type of input mission bus double (default) | single
+  group: ''
+- name: Mission bus name
+  summary: Name of input mission bus 'UAVPathManagerBus' (default)
+  group: ''
+```
 
 ### **UAV type** — Type of UAV `multirotor` (default) | `fixed-wing`
 
@@ -196,7 +237,6 @@ Name of the input mission bus, specified as
 `'UAVPathManagerBus'`.
 
 **Tunable:** No
-
 ## Libraries
 
 UAV Toolbox / Algorithms

@@ -14,6 +14,13 @@ language: en
 # Digital Clock
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Sample time scalar
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -23,8 +30,17 @@ Sample time, in seconds, at the specified sampling interval. At other times, the
 holds the output at the previous value.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Sampling interval 1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''1'''
+```
 
 ### **Sample time** — Sampling interval `1` (default) | scalar | vector
 
@@ -55,7 +71,6 @@ block is a source.
 | **Type:** character vector |
 | **Values:** scalar | vector |
 | **Default:** `'1'` |
-
 ## Libraries
 
 Simulink / Sources

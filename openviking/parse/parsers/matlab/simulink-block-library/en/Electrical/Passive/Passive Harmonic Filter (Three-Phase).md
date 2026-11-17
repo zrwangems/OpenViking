@@ -14,6 +14,12 @@ language: en
 # Passive Harmonic Filter (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,42 @@ language: en
 
 Expandable three-phase
 port associated with the voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Rated reactive power
+  summary: Reactive power 100e6 V*A (default)
+  group: ''
+- name: Rated voltage (phase-to-phase RMS)
+  summary: Phase-to-phase RMS Voltage 4160 V (default)
+  group: ''
+- name: Rated frequency
+  summary: Rated frequency 60 Hz (default)
+  group: ''
+- name: Quality factor
+  summary: Quality factor 10 (default)
+  group: ''
+- name: Filter type
+  summary: Filter model Band-pass filter, single-tuned (default) | Band-pass filter, double-tuned | High-pass filter, second-order
+    | High-pass filter, C-type
+  group: ''
+- name: Filter connection
+  summary: Connection type Wye with floating neutral (default) | Wye with neutral port | Wye with grounded neutral | Delta
+  group: ''
+- name: Tuned frequency
+  summary: Tuned frequency 5 * 60 Hz (default)
+  group: ''
+- name: Tuned frequency 1
+  summary: First tuned frequency 7 * 60 Hz (default)
+  group: ''
+- name: Tuned frequency 2
+  summary: Second tuned frequency 11 * 60 Hz (default)
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -104,7 +144,6 @@ Second tuned frequency, in Hz.
 This parameter is visible only when you select `Band-pass
 filter, double-tuned` for the **Filter
 type** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive

@@ -14,6 +14,31 @@ language: en
 # Deserializer1D
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Serial input data signal scalar
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: ValidIn
+  summary: Valid input control signal scalar
+  direction: input
+  data_types: Boolean
+- name: StartIn
+  summary: Start In control signal scalar
+  direction: input
+  data_types: Boolean
+- name: P
+  summary: Deserialized (Parallel) data output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: ValidOut
+  summary: Valid out control signal scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -53,8 +78,37 @@ Indicates valid output signal. This port is available when you select the
 **ValidOut** check box.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Ratio (Output Vector Size/Input Vector Size)
+  summary: Ratio of output vector size to input vector size 1 (default)
+  group: ''
+- name: Idle Cycles
+  summary: Number of idle cycles 0 (default)
+  group: ''
+- name: Initial condition
+  summary: Initial output data signal value 0 (default)
+  group: ''
+- name: StartIn
+  summary: Enable StartIn control port off (default) | on
+  group: ''
+- name: ValidIn
+  summary: Enable ValidIn control port off (default) | on
+  group: ''
+- name: ValidOut
+  summary: Enable ValidOut control port off (default) | on
+  group: ''
+- name: Input data port dimensions (-1 for inherited)
+  summary: Size of the input data signal 0 (default)
+  group: ''
+- name: Input sample time (-1 for inherited)
+  summary: Input sample time -1 (default)
+  group: ''
+- name: Input signal type
+  summary: Input signal type auto (default) | real | complex
+  group: ''
+```
 
 ### **Ratio (Output Vector Size/Input Vector Size)** — Ratio of output vector size to input vector size 1 (default)
 
@@ -114,7 +168,6 @@ information, see Sample Time.
 
 Specify the input signal type of the block as `auto`,
 `real`, or `complex`.
-
 ## Libraries
 
 HDL Coder / HDL Operations

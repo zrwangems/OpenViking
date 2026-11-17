@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # FIR Rate Converter
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据采样 标量 | 行向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: 指示输入数据有效 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 输出数据采样 标量 | 行向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: 指示输出数据有效 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已准备好接收新的输入数据 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -58,8 +81,34 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Enable ready output port** 复选框。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Interpolation factor
+  summary: 插值因子 3（默认）| 正整数
+  group: 主
+- name: Decimation factor
+  summary: 抽取因子 2（默认）| 正整数
+  group: 主
+- name: FIR filter coefficients
+  summary: FIR 滤波器系数 firpm(70, [0 0.28 0.32 1],[1 1 0 0])（默认）| 行向量
+  group: 主
+- name: Rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 溢出操作方式 off（默认）| on
+  group: 数据类型
+- name: Coefficients
+  summary: FIR 滤波器系数数据类型 fixdt(1,16,16)（默认）
+  group: 数据类型
+- name: Output
+  summary: '输出数据采样的数据类型 Inherit: Same word length as input（默认）| Inherit via internal rule | fixdt(s,wl,fl)'
+  group: 数据类型
+- name: Enable ready output port
+  summary: 启用 ready 控制信号的选项 off（默认）| on
+  group: 控制端口
+```
 
 ### 主
 
@@ -105,7 +154,6 @@ FIR 滤波器系数数据类型，指定为具有 `signedness`、`word length` �
 ### **Enable ready output port** — 启用 ready 控制信号的选项 `off`（默认）| `on`
 
 选中此参数以启用 **ready** 端口。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

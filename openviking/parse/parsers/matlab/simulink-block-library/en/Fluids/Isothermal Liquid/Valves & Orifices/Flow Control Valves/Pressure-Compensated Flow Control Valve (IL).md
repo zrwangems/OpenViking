@@ -14,6 +14,18 @@ language: en
 # Pressure-Compensated Flow Control Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Physical signal, in m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -30,8 +42,60 @@ Liquid entry or exit point to the valve.
 
 Orifice opening in m, returned as a physical signal. A positive signal
 opens the orifice.
-
 ## Parameters
+```yaml
+parameters:
+- name: Orifice parameterization
+  summary: Method of modeling orifice opening Linear - area vs. control member position (default) | Tabulated data - Area
+    vs. control member position | Tabulated data - Volumetric flow rate vs. control member position and pressure drop
+  group: ''
+- name: Control member travel between closed and open valve
+  summary: Maximum control member stroke 5e-3 m (default) | positive scalar
+  group: ''
+- name: Maximum orifice area
+  summary: Maximum orifice cross-sectional area 8e-5 m^2 (default) | positive scalar
+  group: ''
+- name: Control member position at closed valve
+  summary: Control member offset 0 m (default) | positive scalar
+  group: ''
+- name: Control member position vector
+  summary: Vector of control member travel distances [0, .002, .007] (default) | 1-by-*n* vector
+  group: ''
+- name: Orifice area vector
+  summary: Vector of opening areas [1e-09, 4e-09, 1e-05] m^2 (default) | 1-by-*n* vector
+  group: ''
+- name: Control member position vector, s
+  summary: Vector of control member displacements [0, .002, .004, .007, .017] m (default) | 1-by-*n* vector
+  group: ''
+- name: Pressure drop vector, dp
+  summary: Vector of pressure differential values [.3, .5, .7] MPa (default) | 1-by-*n* vector
+  group: ''
+- name: Volumetric flow rate table, q(s,dp)
+  summary: Array of volumetric flow rate values [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7, .9, 1.06; 1.96, 2.5, 3;
+    6, 7.7, 9.13] .* 1e-3 m^3/s (default) | *M*-by-*N* array
+  group: ''
+- name: Set orifice pressure differential
+  summary: Threshold for compensator valve operation 0.6 MPa (default) | scalar
+  group: ''
+- name: Pressure compensator valve regulation range
+  summary: Pressure operational region of the pressure compensating valve 0.1 MPa (default) | scalar
+  group: ''
+- name: Pressure compensator valve maximum area
+  summary: Area of the fully opened pressure compensator valve 1.5 * 8e-5 m^2 (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+```
 
 ### **Orifice parameterization** — Method of modeling orifice opening `Linear - area vs. control member position` (default) | `Tabulated data - Area vs. control member position` | `Tabulated data - Volumetric flow rate vs. control member position and pressure drop`
 
@@ -196,7 +260,6 @@ Continuous smoothing factor that introduces a layer of gradual change to the flo
 when the valve is in near-open or near-closed positions. Set this value to a
 nonzero value less than one to increase the stability of your simulation in
 these regimes.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

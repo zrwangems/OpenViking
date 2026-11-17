@@ -14,10 +14,33 @@ language: en
 # UAV Scenario Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: MATLAB or model workspace variable name
+  summary: MATLAB or model workspace variable name 'singleUAVScenario' (default) | string
+  group: Main
+- name: Sample time
+  summary: Sample time 0.1 (default) | positive double
+  group: Main
+- name: Sensor motion bus name
+  summary: Sensor motion bus name 'SensorMotionBus' (default) | string
+  group: Scenario Bus and Signal Names
+- name: Platform motion bus name
+  summary: Platform motion bus name 'PlatformMotionBus' (default) | string
+  group: Scenario Bus and Signal Names
+- name: Scenario motion bus name
+  summary: Scenario motion bus name 'SensorMotionBus' (default) | string
+  group: Scenario Bus and Signal Names
+- name: Scenario motion signal name
+  summary: Scenario motion signal name 'ScenarioMotions' (default) | string
+  group: Scenario Bus and Signal Names
+```
 
 ### Main
 
@@ -59,7 +82,6 @@ of all the platforms and sensors within the UAV Scenario.
 Specify the name of the scenario motion bus signal as a string. This is the name
 used for the Data Store Read block that stores the data for the UAV
 Scenario.
-
 ## Libraries
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

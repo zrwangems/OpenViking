@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # VCO Testbench
 
 ## 端口
+```yaml
+ports:
+- name: from vco
+  summary: 输入信号标量
+  direction: input
+  data_types: double
+- name: to vco
+  summary: 输出信号标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,49 @@ chinese_source: worker-translation
 输出信号，向 VCO DUT 的输入提供控制电压激励。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement
+  summary: 要测量的目标指标 Phase noise（默认）| Kvco and Fo
+  group: ''
+- name: Set stop time
+  summary: 将推荐的最小仿真停止时间设置为模型停止时间按钮
+  group: ''
+- name: Plot measurement
+  summary: 绘制测量结果按钮
+  group: ''
+- name: Export measurement results
+  summary: 导出测量结果按钮
+  group: ''
+- name: Control voltage (V)
+  summary: VCO 控制电压 2（默认）| 标量
+  group: 激励
+- name: Range of control voltage (V)
+  summary: VCO 控制电压范围 [2 7]（默认）| 二元素行向量
+  group: 激励
+- name: Autofill setup parameters
+  summary: 自动计算相位噪声测量的设置参数按钮
+  group: 设置
+- name: Resolution bandwidth (Hz)
+  summary: 可分辨的最小正频率 30e3（默认）| 实正标量
+  group: 设置
+- name: No. of spectral averages
+  summary: 频谱平均次数 8（默认）| 正整型标量
+  group: 设置
+- name: Hold-off time (s)
+  summary: 延迟测量分析以避免瞬态 0（默认）
+  group: 设置
+- name: Autofill target metric
+  summary: 自动填充目标相位噪声指标按钮
+  group: 目标指标
+- name: 相位噪声频率偏移向量 (Hz)
+  summary: 相位噪声频率偏移向量 [30e3 100e3 1e6 3e6 10e6]（默认）| 实值向量
+  group: 目标指标
+- name: 相位噪声向量 (dBc/Hz)
+  summary: 相位噪声向量 [-45 -55 -65 -75 -100]（默认）| 实值向量
+  group: 目标指标
+```
 
 ### **Measurement** — 要测量的目标指标 `Phase noise`（默认）| `Kvco and Fo`
 
@@ -248,7 +300,6 @@ noise` 作为 **Measurement**
 
 - 使用 `get_param(gcb,'PhaseNoiseVector')` 查看当前的 **相位噪声向量 (dBc/Hz)** 值。
 - 使用 `set_param(gcb,'PhaseNoiseVector',value)` 将 **相位噪声向量 (dBc/Hz)** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

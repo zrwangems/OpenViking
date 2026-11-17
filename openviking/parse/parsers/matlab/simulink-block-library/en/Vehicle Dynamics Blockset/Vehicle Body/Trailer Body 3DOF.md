@@ -14,6 +14,102 @@ language: en
 # Trailer Body 3DOF
 
 ## Ports
+```yaml
+ports:
+- name: WhlAngF
+  summary: Front wheel steering angles scalar | array
+  direction: input
+- name: WhlAngM
+  summary: Middle wheel steering angles scalar | array
+  direction: input
+- name: WhlAngR
+  summary: Rear wheel steering angles scalar | array
+  direction: input
+- name: xdotin
+  summary: Longitudinal velocity scalar
+  direction: input
+- name: FwF
+  summary: Total force on the front wheels scalar | array
+  direction: input
+- name: FwM
+  summary: Total force on the middle wheels scalar | array
+  direction: input
+- name: FwR
+  summary: Total force on the rear wheels scalar | array
+  direction: input
+- name: FExt
+  summary: External force on the vehicle CG array
+  direction: input
+- name: MExt
+  summary: External moment about vehicle CG array
+  direction: input
+- name: FhF
+  summary: Front hitch force on the body array
+  direction: input
+- name: MhF
+  summary: Front hitch moment about body array
+  direction: input
+- name: FhR
+  summary: Rear hitch force on the body array
+  direction: input
+- name: MhR
+  summary: Rear hitch moment about body array
+  direction: input
+- name: WindXYZ
+  summary: Wind speed array
+  direction: input
+- name: Mu
+  summary: Tire friction coefficient array
+  direction: input
+- name: AirTemp
+  summary: Ambient air temperature scalar
+  direction: input
+- name: X_o
+  summary: Initial longitudinal position scalar
+  direction: input
+- name: Y_o
+  summary: Initial lateral position scalar
+  direction: input
+- name: xdot_o
+  summary: Initial longitudinal position scalar
+  direction: input
+- name: ydot_o
+  summary: Initial lateral position scalar
+  direction: input
+- name: psi_o
+  summary: Initial yaw angle scalar
+  direction: input
+- name: r_o
+  summary: Initial yaw rate scalar
+  direction: input
+- name: Info
+  summary: Trailer data bus
+  direction: output
+- name: xdot
+  summary: Trailer longitudinal velocity scalar
+  direction: output
+- name: ydot
+  summary: Trailer lateral velocity scalar
+  direction: output
+- name: psi
+  summary: Yaw scalar
+  direction: output
+- name: r
+  summary: Yaw rate scalar
+  direction: output
+- name: FzF
+  summary: Normal force on the front wheels scalar | array
+  direction: output
+- name: FzM
+  summary: Normal force on the middle wheels scalar | array
+  direction: output
+- name: FzR
+  summary: Normal force on the rear wheels scalar | array
+  direction: output
+- name: Fhz
+  summary: Normal component of hitch force on the body scalar
+  direction: output
+```
 
 ### Input
 
@@ -655,8 +751,238 @@ block offsets the normal hitch force,
 *Fhz*, with the value of
 the *Fh* input port component along the vehicle-fixed
 *z*-axis.
-
 ## Parameters
+```yaml
+parameters:
+- name: Vehicle track
+  summary: Type of vehicle track Dual 2-axle (default) | Single 1-axle | Dual 1-axle | Single 2-axle | Dual 3-axle
+  group: ''
+- name: Axle forces
+  summary: Type of axle force External forces (default) | External longitudinal velocity | External longitudinal forces
+  group: ''
+- name: Front wheel steering
+  summary: WhlAngF input port off (default) | on
+  group: ''
+- name: Middle wheel steering
+  summary: WhlAngM input port off (default) | on
+  group: ''
+- name: Rear wheel steering
+  summary: WhlAngR input port off (default) | on
+  group: ''
+- name: External wind
+  summary: WindXYZ input port off (default) | on
+  group: ''
+- name: External friction
+  summary: Mu input port off (default) | on
+  group: ''
+- name: External forces
+  summary: FExt input port off (default) | on
+  group: ''
+- name: External moments
+  summary: MExt input port off (default) | on
+  group: ''
+- name: Front hitch forces
+  summary: FhF input port on (default) | off
+  group: ''
+- name: Front hitch moments
+  summary: MhF input port on (default) | off
+  group: ''
+- name: Rear hitch forces
+  summary: FhR input port off (default) | on
+  group: ''
+- name: Rear hitch moments
+  summary: MhR input port off (default) | on
+  group: ''
+- name: Initial longitudinal position
+  summary: X_o input port off (default) | on
+  group: ''
+- name: Initial yaw angle
+  summary: psi_o input port off (default) | on
+  group: ''
+- name: Initial longitudinal velocity
+  summary: xdot_o input port off (default) | on
+  group: ''
+- name: Initial yaw rate
+  summary: r_o input port off (default) | on
+  group: ''
+- name: Initial lateral position
+  summary: Y_o input port off (default) | on
+  group: ''
+- name: Air temperature
+  summary: AirTemp input port off (default) | on
+  group: ''
+- name: Initial lateral velocity
+  summary: ydot_o input port off (default) | on
+  group: ''
+- name: Number of wheels on front axle, NF
+  summary: Front wheel count 2 (default) | scalar
+  group: ''
+- name: Number of wheels on middle axle, NM
+  summary: Middle wheel count 2 (default) | scalar
+  group: ''
+- name: Number of wheels on rear axle, NR
+  summary: Rear wheel count 2 (default) | scalar
+  group: ''
+- name: Vehicle mass, m
+  summary: Vehicle mass 26000 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to front axle, a
+  summary: Distance from CM to front axle 4 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to middle axle, b
+  summary: Distance from CM to middle axle 4.5 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to rear axle, c
+  summary: Distance from CM to rear axle 5 (default) | scalar
+  group: ''
+- name: Vertical distance from center of mass to axle plane, h
+  summary: Distance from CM to axle plane 2 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to front hitch, dh_f
+  summary: Distance to front hitch 7.5 (default) | scalar
+  group: ''
+- name: Vertical distance from front hitch to axle plane, hh_f
+  summary: Distance from front hitch to axle plane 0.6 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to rear hitch, dh_r
+  summary: Distance to front hitch 7.5 (default) | scalar
+  group: ''
+- name: Vertical distance from front hitch to axle plane, hh_r
+  summary: Distance from rear hitch to axle plane 0.6 (default) | scalar
+  group: ''
+- name: Initial inertial frame longitudinal position, X_o
+  summary: Initial inertial X location 0 (default) | scalar
+  group: ''
+- name: Initial longitudinal velocity, xdot_o
+  summary: Initial velocity 0 (default) | scalar
+  group: ''
+- name: Mapped corner stiffness
+  summary: Selection off (default) | on
+  group: ''
+- name: Include relaxation length dynamics
+  summary: Enable relaxation length dynamics on (default) | off
+  group: ''
+- name: Lateral distance from geometric centerline to center of mass, d
+  summary: Distance from centerline to CM 0 (default) | scalar
+  group: ''
+- name: Lateral distance from geometric centerline to front hitch, hl_f
+  summary: Distance from centerline to front hitch 0 (default) | scalar
+  group: ''
+- name: Lateral distance from geometric centerline to rear hitch, hl_r
+  summary: Distance from centerline to rear hitch 0 (default) | scalar
+  group: ''
+- name: Front track width, w_f
+  summary: Front track width 1.82 (default) | scalar
+  group: ''
+- name: Middle track width, w_m
+  summary: Middle track width 1.82 (default) | scalar
+  group: ''
+- name: Rear track width, w_r
+  summary: Rear track width 1.82 (default) | scalar
+  group: ''
+- name: Front axle tire corner stiffness, Cy_f
+  summary: Front axle tire stiffness 12.3 (default) | scalar
+  group: ''
+- name: Middle axle tire corner stiffness, Cy_m
+  summary: Middle axle tire stiffness 11.3 (default) | scalar
+  group: ''
+- name: Rear axle tire corner stiffness, Cy_r
+  summary: Rear axle tire stiffness 11.3 (default) | scalar
+  group: ''
+- name: Front tire(s) relaxation length, sigma_f
+  summary: Relaxation length .1 (default) | scalar
+  group: ''
+- name: Middle tire(s) relaxation length, sigma_m
+  summary: Relaxation length .1 (default) | scalar
+  group: ''
+- name: Rear tire(s) relaxation length, sigma_r
+  summary: Relaxation length .1 (default) | scalar
+  group: ''
+- name: Front axle slip angle breakpoints, alpha_f_brk
+  summary: Breakpoints [-.1 .1] (default) | vector
+  group: ''
+- name: Front axle corner data, Cy_f_data
+  summary: Breakpoints [-9e3 9e3] (default) | vector
+  group: ''
+- name: Middle axle slip angle breakpoints, alpha_m_brk
+  summary: Breakpoints [-.1 .1] (default) | vector
+  group: ''
+- name: Middle axle corner data, Cy_m_data
+  summary: Breakpoints [-9e3 9e3] (default) | vector
+  group: ''
+- name: Rear axle slip angle breakpoints, alpha_r_brk
+  summary: Breakpoints [-.1 .1] (default) | vector
+  group: ''
+- name: Rear axle corner data, Cy_r_data
+  summary: Data [-9e3 9e3] (default) | vector
+  group: ''
+- name: Initial inertial frame lateral displacement, Y_o
+  summary: Position 0 (default) | scalar
+  group: ''
+- name: Initial lateral velocity, ydot_o
+  summary: Velocity 0 (default) | scalar
+  group: ''
+- name: Yaw polar inertia, Izz
+  summary: Inertia 4000 (default) | scalar
+  group: ''
+- name: Initial yaw angle, psi_o
+  summary: Psi rotation 0 (default) | scalar
+  group: ''
+- name: Initial yaw rate, r_o
+  summary: Yaw rate 0 (default) | scalar
+  group: ''
+- name: Longitudinal drag area, Af
+  summary: Effective vehicle cross-sectional area 2 (default) | scalar
+  group: ''
+- name: Longitudinal drag coefficient, Cd
+  summary: Air drag coefficient .3 (default) | scalar
+  group: ''
+- name: Longitudinal lift coefficient, Cl
+  summary: Air lift coefficient .1 (default) | scalar
+  group: ''
+- name: Longitudinal drag pitch moment, Cpm
+  summary: Pitch drag .1 (default) | scalar
+  group: ''
+- name: Relative wind angle vector, beta_w
+  summary: Wind angle [0:0.01:0.3] (default) | vector
+  group: ''
+- name: Side force coefficient vector, Cs
+  summary: Side force coefficient [0:0.03:0.9] (default) | vector
+  group: ''
+- name: Yaw moment coefficient vector, Cym
+  summary: Yaw moment drag [0:0.01:0.3] (default) | vector
+  group: ''
+- name: Absolute air pressure, Pabs
+  summary: Pressure 101325 (default) | scalar
+  group: ''
+- name: Air temperature, Tair
+  summary: Temperature 273 (default) | scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: Gravity 9.81 (default) | scalar
+  group: ''
+- name: Nominal friction scaling factor, mu
+  summary: Friction scale factor 1 (default) | scalar
+  group: ''
+- name: Longitudinal velocity tolerance, xdot_tol
+  summary: Tolerance .01 (default) | scalar
+  group: ''
+- name: Nominal normal force, Fznom
+  summary: Normal force 5000 (default) | scalar
+  group: ''
+- name: Geometric longitudinal offset from axle plane, longOff
+  summary: Longitudinal offset 0 (default) | scalar
+  group: ''
+- name: Geometric lateral offset from center plane, latOff
+  summary: Lateral offset 0 (default) | scalar
+  group: ''
+- name: Geometric vertical offset from axle plane, vertOff
+  summary: Vertical offset 0 (default) | scalar
+  group: ''
+- name: Wrap Euler angles, wrapAng
+  summary: Wrap the Euler angles to the interval [-pi, pi] off (default) | on
+  group: ''
+```
 
 #### Options
 
@@ -1418,7 +1744,6 @@ interval, consider clearing the parameter if you want to:
 
 - Track the total vehicle yaw rotation.
 - Avoid discontinuities in the vehicle state estimators.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Body

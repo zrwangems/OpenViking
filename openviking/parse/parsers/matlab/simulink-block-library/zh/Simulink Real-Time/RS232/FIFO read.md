@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # FIFO Read
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 从中读取数据的 FIFO serialfifoptr
+  direction: input
+- name: MAX
+  summary: 从 FIFO 读取的最大字节数 integer
+  direction: input
+- name: MIN
+  summary: 从 FIFO 读取的最小字节数 integer
+  direction: input
+- name: D
+  summary: 从 FIFO 读取的解析数据 vector
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: ENA
+  summary: 传递 MAX 的值 integer
+  direction: output
+```
 
 ### 输入
 
@@ -57,8 +76,42 @@ chinese_source: worker-translation
 #### 依赖
 
 要使此端口可见，请设置参数 **Max and Min read size ports** 和 **Enable passthrough**。
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum read size
+  summary: 模块返回的最大字符数 1024（默认）| integer
+  group: ''
+  block_parameter: maxsize
+- name: Minimum read size
+  summary: 模块返回的最小字符数 1（默认）| integer
+  group: ''
+  block_parameter: minsize
+- name: Read to delimiter
+  summary: 返回分隔元素集 on（默认）| off
+  group: ''
+  block_parameter: usedelimiter
+- name: Delimiter
+  summary: 分隔元素集的终止值 13（默认）| uint
+  group: ''
+  block_parameter: delimiter
+- name: Output vector type
+  summary: 指定输出数据类型 8 bit uint null terminated（默认）| count+32 bit int | count+32 bit uint | count+16 bit int | count+16 bit
+    uint | 8 bit int null terminated
+  group: ''
+  block_parameter: outputtype
+- name: Max and Min read size ports
+  summary: 启用最大和最小输入端口 off（默认）| on
+  group: ''
+  block_parameter: enable
+- name: Enable passthrough
+  summary: 启用 MAX 值的直通 off（默认）| on
+  group: ''
+  block_parameter: enableout
+- name: Sample time
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: ''
+```
 
 ### **Maximum read size** — 模块返回的最大字符数 `1024`（默认）| integer
 
@@ -157,7 +210,6 @@ chinese_source: worker-translation
 ```
 sampletime
 ```
-
 ## 所属库
 
 Simulink Real-Time / RS232

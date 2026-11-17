@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Simulation 3D Fisheye Camera
 
 ## 端口
+```yaml
+ports:
+- name: Rel Translation
+  summary: 传感器相对于安装点的相对平移 [0 0 0]（默认）| 形式为 [*X* *Y* *Z*] 的实值 1×3 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Rel Rotation
+  summary: 传感器相对于安装点的相对旋转 [0 0 0]（默认）| 形式为 [*Roll* *Pitch* *Yaw*] 的实值 1×3 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Image
+  summary: 3D 输出相机图像 *m*×*n*×3 的 RGB 三元组值数组
+  direction: output
+  data_types: int8 | uint8
+- name: Translation
+  summary: 传感器位置 实值 1×3 向量
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: 传感器方向 实值 1×3 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -71,8 +94,50 @@ location and orientation**。
 orientation**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 安装
+- name: Parent name
+  summary: 父车辆名称 Scene Origin（默认）| 车辆名称
+  group: 安装
+- name: Coordinate system
+  summary: 用于 actor 变换的坐标系 Default（默认）| MATLAB | ISO8855 | AERO | VRML | SAE
+  group: 安装
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）| Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof
+    center | ...
+  group: 安装
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移 off（默认）| on
+  group: 安装
+- name: Relative translation [X, Y, Z]
+  summary: 相对于安装位置的平移偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: 相对于安装位置的旋转偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 安装
+- name: Distortion center (pixels)
+  summary: 畸变中心 [640, 360]（默认）| 实值 1×2 向量
+  group: 参数
+- name: Image size (pixels)
+  summary: 相机生成的图像大小 [720, 1280]（默认）| 正整数的实值 1×2 向量
+  group: 参数
+- name: Mapping coefficients
+  summary: 投影函数的多项式系数 [320, 0, 0, 0]（默认）| 实值 1×4 向量
+  group: 参数
+- name: Stretch matrix
+  summary: 将点从传感器平面变换到相机平面 [1, 0; 0, 1]（默认）| 实值 2×2 矩阵
+  group: 参数
+- name: Output location and orientation
+  summary: 输出传感器的位置和方向 off（默认）| on
+  group: 真值
+```
 
 ### 安装
 
@@ -208,7 +273,6 @@ Origin`，该模块将传感器放置在场景原点。
 ### **Output location and orientation** — 输出传感器的位置和方向 `off`（默认）| `on`
 
 选择此参数以分别在 **Translation** 和 **Rotation** 端口输出传感器的平移和旋转。
-
 ## 所属库
 
 UAV Toolbox / Simulation 3D Automated Driving Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors

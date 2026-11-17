@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Heat Flow Rate Source
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 源入口热
+  direction: unspecified
+- name: B
+  summary: 源出口热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **B** — 源出口热
 
 与源出口关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Heat flow rate
+  summary: 通过源的热流量 0 W（默认值）
+  group: ''
+```
 
 ### **Heat flow rate** — 通过源的热流量 0 W（默认值）
 
 通过源的恒定热流量。正热流量从端口 A 流向端口 B。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Sources

@@ -14,6 +14,37 @@ language: en
 # Backscatter Pedestrian
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Incident radar signals complex-valued *M*-by-16 matrix
+  direction: input
+  data_types: double
+- name: Ang
+  summary: Incident signal directions real-valued 2-by-16 matrix
+  direction: input
+  data_types: double
+- name: AngH
+  summary: Pedestrian heading scalar
+  direction: input
+  data_types: double
+- name: Y
+  summary: Combined reflected radar signals complex-valued *M*-by-1 column vector
+  direction: output
+  data_types: double
+- name: Pos
+  summary: Positions of body segments real-valued 3-by-16 matrix
+  direction: output
+  data_types: double
+- name: Vel
+  summary: Velocity of body segments real-valued 3-by-16 matrix
+  direction: output
+  data_types: double
+- name: Ax
+  summary: Orientation of body segments real-valued 3-by-3-by-16 array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -88,8 +119,31 @@ dimensionless. See Body Segment Indices for the page
 representing the orientation of each body segment.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Height (m)
+  summary: Height of pedestrian 1.65 (default) | positive scalar
+  group: ''
+- name: Walking Speed (m/s)
+  summary: Walking speed of pedestrian 1.4 times pedestrian height (default) | nonnegative scalar
+  group: ''
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: Operating Frequency (Hz)
+  summary: Carrier frequency 300e6 (default) | positive scalar
+  group: ''
+- name: Initial Position (m)
+  summary: Initial position of pedestrian [0;0;0] (default) | 3-by-1 real-valued vector
+  group: ''
+- name: Initial Heading (deg)
+  summary: Initial heading of pedestrian 0 (default) | scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+```
 
 ### **Height (m)** — Height of pedestrian `1.65` (default) | positive scalar
 
@@ -169,7 +223,6 @@ using **Simulate using** overrides the simulation mode.
 | `Code Generation` | The block is compiled. | All blocks in the model are compiled. |
 
 For more information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Radar Toolbox

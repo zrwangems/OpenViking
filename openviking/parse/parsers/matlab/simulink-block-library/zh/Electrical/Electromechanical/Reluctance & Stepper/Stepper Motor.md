@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Stepper Motor
 
 ## 端口
+```yaml
+ports:
+- name: A+
+  summary: A 相正极端子 electrical
+  direction: conserving
+- name: A-
+  summary: A 相负极端子 electrical
+  direction: conserving
+- name: B+
+  summary: B 相正极端子 electrical
+  direction: conserving
+- name: B-
+  summary: B 相负极端子 electrical
+  direction: conserving
+- name: C
+  summary: 电机外壳机械旋转
+  direction: conserving
+- name: R
+  summary: 电机转子机械旋转
+  direction: conserving
+- name: HA
+  summary: 绕组 A 热质量 thermal
+  direction: conserving
+- name: HB
+  summary: 绕组 B 热质量 thermal
+  direction: conserving
+- name: HR
+  summary: 转子热质量 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -68,8 +98,85 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Selected part
+  summary: 预定义参数化选项 <click to select>（默认）
+  group: ''
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Simulation mode
+  summary: 仿真模式 Stepping（默认）| Averaged
+  group: 电磁转矩
+- name: Vector of rotational speeds
+  summary: 转子速度 [0, 1000, 3000] rpm（默认）| 正向量
+  group: 电磁转矩
+- name: Vector of maximum torque values
+  summary: 最大转矩 [2, 2, 1] N*m（默认）| 正向量
+  group: 电磁转矩
+- name: Action on slipping
+  summary: 滑差响应 none（默认）| warn | error
+  group: 电磁转矩
+- name: Approximate total load inertia
+  summary: 总负载惯量 1e-4 kg*m^2（默认）| 正数
+  group: 电磁转矩
+- name: Maximum step rate command
+  summary: 最大指令频率 10 Hz（默认）| 正数
+  group: 电磁转矩
+- name: Phase winding resistance
+  summary: 相电阻 0.55 Ohm（默认）| 正数
+  group: 电磁转矩
+- name: Phase winding inductance
+  summary: 相电感 1.5e-3 Ohm（默认）| 正数
+  group: 电磁转矩
+- name: Motor torque constant
+  summary: 转矩常数 0.19 N*m/A（默认）| 正数
+  group: 电磁转矩
+- name: Detent torque
+  summary: 转矩变化幅值 0 N*m（默认）| 正数
+  group: 电磁转矩
+- name: Magnetizing resistance
+  summary: 相磁化电阻 inf（默认）| 严格正数
+  group: 电磁转矩
+- name: Full step size
+  summary: 步长 1.8 deg（默认）| 正数
+  group: 电磁转矩
+- name: Rotor inertia
+  summary: 转动惯量 4.5e-5 kg*m^2（默认）| 零或正数
+  group: 机械
+- name: Rotor damping
+  summary: 转动阻尼 8.0e-4 N*m/(rad/s)（默认）| 零或正数
+  group: 机械
+- name: Initial rotor speed
+  summary: 初始速度 0 rpm（默认）| 实数
+  group: 机械
+- name: Initial rotor angle
+  summary: 初始角度 0 rad（默认）| 实数
+  group: 机械
+- name: Resistance temperature coefficients, [alpha_A alpha_B]
+  summary: 温度系数 [.00393, .00393] 1/K（默认）| 正向量
+  group: 温度依赖性
+- name: Measurement temperature
+  summary: 参考温度 25 degC（默认）| 实数
+  group: 温度依赖性
+- name: Winding thermal masses, [M_A M_B]
+  summary: 绕组热质量 [100, 100] J/K（默认）| 正向量
+  group: 热端口
+- name: Winding initial temperatures, [T_A T_B]
+  summary: 绕组初始温度 [25, 25] degC（默认）| 实数
+  group: 热端口
+- name: Rotor thermal mass
+  summary: 转子热质量 50 J/K（默认）| 正数
+  group: 热端口
+- name: Rotor initial temperature
+  summary: 转子初始温度 25 degC（默认）| 实数
+  group: 热端口
+- name: Percentage of magnetizing resistance associated with the rotor
+  summary: 磁化电阻转子百分比 90（默认）| 0 到 100 之间的正数
+  group: 热端口
+```
 
 ### **Selected part** — 预定义参数化选项 `<click to select>`（默认）
 
@@ -237,7 +344,6 @@ A 相和 B 相绕组的电感。
 ### **Percentage of magnetizing resistance associated with the rotor** — 磁化电阻转子百分比 `90`（默认）| `0` 到 `100` 之间的正数
 
 与通过转子的磁路关联的磁化电阻百分比。它决定了铁损加热中有多少归因于转子热端口 **HR** 以及绕组热端口 **HA** 和 **HB**。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

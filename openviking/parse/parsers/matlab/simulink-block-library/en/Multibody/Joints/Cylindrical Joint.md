@@ -14,6 +14,78 @@ language: en
 # Cylindrical Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: tz
+  summary: Actuation torque physical signal
+  direction: input
+- name: qz
+  summary: Motion profile physical signal
+  direction: input
+- name: fz
+  summary: Actuation force physical signal
+  direction: input
+- name: pz
+  summary: Motion profile physical signal
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: qz
+  summary: Position of joint primitive physical signal
+  direction: output
+- name: wz
+  summary: Angular velocity of joint primitive physical signal
+  direction: output
+- name: bz
+  summary: Angular acceleration of joint primitive physical signal
+  direction: output
+- name: tz
+  summary: Actuator torque acting on joint primitive physical signal
+  direction: output
+- name: tllz
+  summary: Lower-limit torque acting on joint primitive physical signal
+  direction: output
+- name: tulz
+  summary: Upper-limit torque acting on joint primitive physical signal
+  direction: output
+- name: pz
+  summary: Position of joint primitive physical signal
+  direction: output
+- name: vz
+  summary: Velocity of joint primitive physical signal
+  direction: output
+- name: az
+  summary: Acceleration of joint primitive physical signal
+  direction: output
+- name: fz
+  summary: Actuator force acting on joint primitive physical signal
+  direction: output
+- name: fllz
+  summary: Lower-limit force acting on joint primitive physical signal
+  direction: output
+- name: fulz
+  summary: Upper-limit force acting on joint primitive physical signal
+  direction: output
+- name: fc
+  summary: Constraint force, N physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total force, N physical signal
+  direction: output
+- name: tt
+  summary: Total torque, N\*m physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -298,8 +370,145 @@ Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque
 Sensing**, select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Z Revolute Primitive (Rz)
+- name: Value
+  summary: Position target 0 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Specify Velocity Target
+  summary: Whether to specify angular velocity target off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Priority
+  summary: Priority level of velocity target High (desired) (default) | Low (approximate)
+  group: Z Revolute Primitive (Rz)
+- name: Value
+  summary: Velocity target 0 deg/s (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Equilibrium Position
+  summary: Position where internal torque is zero 0 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N*m/deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N*m/(deg/s) (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Bound
+  summary: Lower bound of free region -90 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e4 N*m/deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 10 N*m/(deg/s) (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Z Revolute Primitive (Rz)
+- name: Bound
+  summary: Upper bound of free region 90 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e4 N*m/deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 10 N*m/(deg/s) (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: Z Revolute Primitive (Rz)
+- name: Torque
+  summary: Option to provide actuator torque None (default) | Provided by Input | Automatically Computed
+  group: Z Revolute Primitive (Rz)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: Z Revolute Primitive (Rz)
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: Value
+  summary: Position target 0 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Velocity Target
+  summary: Whether to specify linear velocity target off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Priority
+  summary: Priority level of linear velocity target High (desired) (default) | Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: Value
+  summary: Velocity target 0 m/s (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Equilibrium Position
+  summary: Position where internal force is zero 0 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N/m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N(m/s) (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Bound
+  summary: Lower bound of free region -1 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e6 N/m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 1e3 N/(m/s) (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Bound
+  summary: Upper bound of free region 1 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e6 N/m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 1e3 N/(m/s) (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Force
+  summary: Option to provide actuator force None (default) | Provided by Input | Automatically Computed
+  group: Z Prismatic Primitive (Pz)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: Z Prismatic Primitive (Pz)
+- name: Mode
+  summary: Joint mode Normal (default) | Locked | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 ### Z Revolute Primitive (Rz)
 
@@ -732,7 +941,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

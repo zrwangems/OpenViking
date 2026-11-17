@@ -14,6 +14,37 @@ language: en
 # Inverse Clarke Transform
 
 ## Ports
+```yaml
+ports:
+- name: αβ0
+  summary: '*α*-*β* axis and zero components vector'
+  direction: input
+  data_types: single | double
+- name: α
+  summary: Alpha-axis component scalar
+  direction: input
+  data_types: single | double
+- name: β
+  summary: Beta-axis component scalar
+  direction: input
+  data_types: single | double
+- name: abc
+  summary: '*a*-, *b*-, and *c*-phase components vector'
+  direction: output
+  data_types: single | double
+- name: a
+  summary: '*a*-phase component scalar'
+  direction: output
+  data_types: single | double
+- name: b
+  summary: '*b*-phase component scalar'
+  direction: output
+  data_types: single | double
+- name: c
+  summary: '*c*-phase component scalar'
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -132,8 +163,19 @@ parameter and set **Number of inputs** to
 `Two inputs`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Power Invariant
+  summary: Enable power invariance off (default) | on
+  group: ''
+- name: Use block for embedded implementation (requires Motor Control Blockset™)
+  summary: Option to use block for embedded implementation off (default) | on
+  group: ''
+- name: Number of inputs
+  summary: Number of block inputs Two inputs (default) | Three inputs
+  group: ''
+```
 
 ### **Power Invariant** — Enable power invariance `off` (default) | `on`
 
@@ -170,7 +212,6 @@ Select the number of inputs that you can specify:
 To enable this parameter, select the **Use block for embedded
 implementation (requires Motor Control Blockset™)**
 parameter.
-
 ## Libraries
 
 Simscape / Electrical / Control / Mathematical Transforms

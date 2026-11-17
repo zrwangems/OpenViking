@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Poppet Valve (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口气体
+  direction: conserving
+- name: B
+  summary: 液体端口气体
+  direction: conserving
+- name: L
+  summary: 归一化球位移，范围为 [0,1] 物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -31,8 +43,64 @@ chinese_source: worker-translation
 ### **L** — 归一化球位移，范围为 [0,1] 物理信号
 
 归一化球位移。球位置由最大开启距离归一化。值为 0 表示阀门完全关闭，值为 1 表示阀门完全打开。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve seat specification
+  summary: 阀座几何形状的定义 Sharp-edged（默认）| Conical
+  group: ''
+- name: Cone angle
+  summary: 阀锥形座与其中心线之间的角度 120 deg（默认）| 正标量
+  group: ''
+- name: Ball diameter
+  summary: 用于调节阀门开度的球的直径 0.01 m（默认）| 标量
+  group: ''
+- name: Orifice diameter
+  summary: 阀门孔口的直径 7e-3 m（默认）| 标量
+  group: ''
+- name: Valve parameterization
+  summary: 用于指定孔口流动特性的参数化方法 Orifice area based on geometry（默认）| Cv flow coefficient | Kv flow coefficient | Sonic conductance
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应最大开启状态的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应最大开启状态的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: 最大声速流导
+  summary: 对应组件最大开启状态的声速流导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: 临界压力比
+  summary: 流量首次阻塞时的下游与上游压力之比 0.3（默认）| 正标量
+  group: ''
+- name: 亚声速指数
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO 参考温度
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO 参考密度
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: 泄漏流量分数
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: 平滑因子
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: 层流压力比
+  summary: 流量在层流和湍流流态之间过渡时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: 端口 A 和 B 处的横截面积
+  summary: 气体端口处的流通面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Valve seat specification** — 阀座几何形状的定义 `Sharp-edged`（默认）| `Conical`
 
@@ -154,7 +222,6 @@ chinese_source: worker-translation
 ### **端口 A 和 B 处的横截面积** — 气体端口处的流通面积 `0.01 m^2`（默认）| 正标量
 
 每个端口处垂直于流动路径的面积。各端口尺寸相同。此参数的值应与阻性元件所连接组件的入口面积相匹配。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Valves & Orifices / Flow Control Valves

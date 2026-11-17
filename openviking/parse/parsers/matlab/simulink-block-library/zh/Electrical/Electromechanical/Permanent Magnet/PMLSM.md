@@ -15,6 +15,66 @@ chinese_source: worker-translation
 # PMLSM
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: conserving
+- name: a
+  summary: '*a* 相电气'
+  direction: conserving
+- name: b
+  summary: '*b* 相电气'
+  direction: conserving
+- name: c
+  summary: '*c* 相电气'
+  direction: conserving
+- name: ~1
+  summary: 定子正端连接电气
+  direction: conserving
+- name: ~2
+  summary: 定子负端连接电气
+  direction: conserving
+- name: a1
+  summary: '*a* 正端连接电气'
+  direction: conserving
+- name: b1
+  summary: '*b* 正端连接电气'
+  direction: conserving
+- name: c1
+  summary: '*c* 正端连接电气'
+  direction: conserving
+- name: a2
+  summary: '*a* 负端连接电气'
+  direction: conserving
+- name: b2
+  summary: '*b* 负端连接电气'
+  direction: conserving
+- name: c2
+  summary: '*c* 负端连接电气'
+  direction: conserving
+- name: n
+  summary: 中性相电气
+  direction: conserving
+- name: R
+  summary: 电机动子机械
+  direction: conserving
+- name: C
+  summary: 电机外壳机械
+  direction: conserving
+- name: HA
+  summary: 绕组 A 热端口热
+  direction: conserving
+- name: HB
+  summary: 绕组 B 热端口热
+  direction: conserving
+- name: HC
+  summary: 绕组 C 热端口热
+  direction: conserving
+- name: HR
+  summary: 转子热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -177,8 +237,110 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主
+- name: Winding type
+  summary: 绕组配置 Wye-wound（默认）| Delta-wound | Open-end
+  group: 主
+- name: Modeling fidelity
+  summary: 建模保真度 Constant Ld, Lq and PM（默认）| Tabulated Ld, Lq and PM
+  group: 主
+- name: Polar pitch
+  summary: 极距 0.03 m（默认）| 标量
+  group: 主
+- name: Permanent magnet flux linkage parameterization
+  summary: 永磁磁链参数化 Specify flux linkage（默认）| Specify force constant | Specify back EMF constant
+  group: 主
+- name: Permanent magnet flux linkage
+  summary: 永磁磁链 0.03 Wb（默认）| 标量
+  group: 主
+- name: Force constant
+  summary: 力常数 0.18 N/A（默认）| 标量
+  group: 主
+- name: Back EMF constant
+  summary: 反电动势常数 0.18 s*V/m（默认）| 标量
+  group: 主
+- name: Stator parameterization
+  summary: 定子参数化 Specify Ld, Lq, and L0（默认）| Specify Ls, Lm, and Ms
+  group: 主
+- name: Stator d-axis inductance, Ld
+  summary: 定子 d 轴电感 0.00019 H（默认）| 标量
+  group: 主
+- name: Stator q-axis inductance, Lq
+  summary: 定子 q 轴电感 0.00025 H（默认）| 标量
+  group: 主
+- name: Stator zero-sequence inductance, L0
+  summary: 定子零序电感 0.00016 H（默认）| 标量
+  group: 主
+- name: Direct-axis current vector, iD
+  summary: 直轴电流向量 [-200, 0, 200] A（默认）| 向量
+  group: 主
+- name: Quadrature-axis current vector, iQ
+  summary: 交轴电流向量 [-200, 0, 200] A（默认）| 向量
+  group: 主
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld 矩阵 0.00019 * ones(3, 3) H（默认）| 矩阵
+  group: 主
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq 矩阵 0.00025 * ones(3, 3) H（默认）| 矩阵
+  group: 主
+- name: Permanent magnet flux linkage, PM(id,iq)
+  summary: 永磁磁链 0.03 * ones(3, 3) Wb（默认）
+  group: 主
+- name: Force constant matrix, kf(iD,iQ)
+  summary: 力常数矩阵 0.18 * ones(3, 3) N/A（默认）| 矩阵
+  group: 主
+- name: Back EMF constant matrix, ke(iD,iQ)
+  summary: 反电动势常数矩阵 0.18 * ones(3, 3) s*V/m（默认）| 矩阵
+  group: 主
+- name: Stator self-inductance per phase, Ls
+  summary: 每相定子自感 0.0002 H（默认）| 标量
+  group: 主
+- name: Stator inductance fluctuation, Lm
+  summary: 定子电感波动 -0.00002 H（默认）| 标量
+  group: 主
+- name: Stator mutual inductance, Ms
+  summary: 定子互感 0.00002 H（默认）| 标量
+  group: 主
+- name: Stator resistance per phase, Rs
+  summary: 每相定子电阻 0.013 Ohm（默认）| 标量
+  group: 主
+- name: Zero sequence
+  summary: 零序选项 Include（默认）| Exclude
+  group: 主
+- name: Angle definition
+  summary: 角度测量的参考点 Angle between the a-phase magnetic axis and the d-axis（默认）| Angle between the a-phase magnetic axis and
+    the q-axis
+  group: 主
+- name: Mass of the mover
+  summary: 动子质量 0.01 kg（默认）
+  group: 机械
+- name: Linear damping
+  summary: 线性阻尼 0 N/(m/s)（默认）
+  group: 机械
+- name: Measurement temperature
+  summary: 测量温度 298.15 K（默认）
+  group: 热
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 热
+- name: Permanent magnet flux temperature coefficient
+  summary: 永磁磁通温度系数 -0.001 1/K（默认）
+  group: 热
+- name: Thermal mass for each stator winding
+  summary: 每个定子绕组的热质量 100 J/K（默认）
+  group: 热
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）
+  group: 热
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -427,7 +589,6 @@ A、B 和 C 绕组的热质量值。热质量是使温度升高一度所需的�
 ### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认）
 
 转子的热质量，即使转子温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

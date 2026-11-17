@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Bistatic Position Estimator
 
 ## 端口
+```yaml
+ports:
+- name: RngEst
+  summary: 距离测量（米）实值 1×*K* 向量 | 实值 *J*×*L* 矩阵
+  direction: input
+  data_types: single | double
+- name: AngEst
+  summary: 到达角估计（度）实值 1×*L* 行向量 | 实值 2×*L* 矩阵
+  direction: input
+  data_types: single | double
+- name: RngVar
+  summary: 距离方差（米平方）正实值 *J*×*L* 矩阵 | 正实值长度-*K* 行向量
+  direction: input
+  data_types: single | double
+- name: AngVar
+  summary: 角度方差（度平方）实值 1×*L* 行向量 | 实值 2×*L* 矩阵
+  direction: input
+  data_types: single | double
+- name: TxPos
+  summary: 发射锚点位置（米）实值 *Q*×*J* 矩阵
+  direction: input
+  data_types: single | double
+- name: RxPos
+  summary: 接收锚点位置（米）实值 *Q*×*L* 矩阵
+  direction: input
+  data_types: single | double
+- name: TgtPosEst
+  summary: 目标位置估计（米）实值 *Q*×1 向量
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: 估计的目标位置协方差（米²）实值 *Q*×*Q* 矩阵 | 实值 *Q*×*Q*×*K* 数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -137,8 +172,19 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output covariances of position estimates** 复选框。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Range Measurement
+  summary: 距离测量类型 Bistatic range（默认）| Range sum
+  group: ''
+- name: Enable known variance input
+  summary: 启用已知方差输入 on（默认）| off
+  group: ''
+- name: Output covariances of position estimates
+  summary: 输出位置估计的协方差 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -155,7 +201,6 @@ chinese_source: worker-translation
 选中此复选框以从 **TgtPosCov** 端口输出位置协方差估计。
 
 **数据类型：** `single` | `double`
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

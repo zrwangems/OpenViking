@@ -14,6 +14,17 @@ language: en
 # Second-Order Filter
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Filter input scalar
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Filtered output scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -29,8 +40,34 @@ Filter input.
 Filtered output.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter type
+  summary: Filter type Low-pass (default) | High-pass | Band-pass | Band-stop
+  group: Main
+- name: Natural frequency (Hz)
+  summary: Natural frequency 60 (default) | positive scalar
+  group: Main
+- name: Damping factor
+  summary: Damping factor 0.707 (default) | nonnegative scalar
+  group: Initial Conditions
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: Initial Conditions
+- name: Initial amplitude
+  summary: Initial amplitude 0 (default) | nonnegative scalar
+  group: Initial Conditions
+- name: Initial phase (rad)
+  summary: Initial phase 0 (default) | nonnegative scalar
+  group: Initial Conditions
+- name: Initial frequency (Hz)
+  summary: Initial frequency 0 (default) | scalar
+  group: Initial Conditions
+- name: Initial bias
+  summary: Initial bias 0 (default) | nonnegative scalar
+  group: Initial Conditions
+```
 
 ### Main
 
@@ -78,7 +115,6 @@ Frequency, in Hz, at the start of simulation.
 ### **Initial bias** — Initial bias `0` (default) | nonnegative scalar
 
 Bias at the start of simulation.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

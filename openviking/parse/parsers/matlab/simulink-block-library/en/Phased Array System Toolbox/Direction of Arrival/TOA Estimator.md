@@ -14,6 +14,54 @@ language: en
 # TOA Estimator
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Channel estimation matrices *N*-by-*M* complex-valued matrix | *N*-by-*M*-by-*L* complex-valued array | 1-by-*L*
+    cell array
+  direction: input
+  data_types: single | double
+- name: FreqSpacing
+  summary: Frequency spacings of channel estimates 900000
+  direction: input
+  data_types: single | double
+- name: DelayOffset
+  summary: Known delay offset scalar | real-valued 1-by-*L* vector
+  direction: input
+  data_types: single | double
+- name: NPow
+  summary: Gaussian white noise power scalar | positive real-valued 1-by-*L* vector
+  direction: input
+  data_types: single | double
+- name: AnchorPos
+  summary: Anchor positions *Q*-by-*L* real-valued matrix
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: TOA and TDOA estimation results 1-by-*L* real-valued vector | 1-by-(*L*-1) real-valued vector
+  direction: output
+  data_types: single | double
+- name: Var
+  summary: Measurement variance 1-by-*L* vector | 1-by-(*L*-1) vector
+  direction: output
+  data_types: single | double
+- name: TgtPosEst
+  summary: Target position estimate real-valued *Q*-by-1 vector
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: Target position covariance estimates *Q*-by-*Q* real positive semi-definite symmetric matrix
+  direction: output
+  data_types: single | double
+- name: TOAResp
+  summary: FFT-based TOA response *P*-by-*M*-by-*L* matrix | 1-by-*L* cell array
+  direction: output
+  data_types: single | double
+- name: TOAGrid
+  summary: TOA grid *P*-by-*L* matrix | 1-by-*L* cell array
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -225,8 +273,50 @@ To enable this port, select the **Output FFT-based TOA
 response** check box.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: TOA/TDOA measurement
+  summary: Measurement type TOA (default) | TDOA
+  group: ''
+- name: TOA spectrum analysis method
+  summary: Spectrum analysis method FFT (default) | MUSIC
+  group: ''
+- name: Enable known delay offset input
+  summary: Enable input of delay offsets 0 (default) | 1
+  group: ''
+- name: Output variance of TOA/TDOA estimates
+  summary: Enable output variance of TOA/TDOA estimates 0 (default) | 1
+  group: ''
+- name: Output FFT-based TOA response
+  summary: Enable output of FFT-based TOA response 0 (default) | 1
+  group: ''
+- name: Enable forward-backward averaging
+  summary: Enable forward-backward averaging 0 (default) | 1
+  group: ''
+- name: Spatial smoothing
+  summary: Spatial smoothing parameter 0 (default) | nonnegative integer
+  group: ''
+- name: Output estimated target position
+  summary: Enable output of estimated target position 0 (default) | 1
+  group: ''
+- name: Source of noise power
+  summary: Source of noise power Property (default) | Input port
+  group: ''
+- name: Noise power (W)
+  summary: Gaussian white noise power positive scalar (default) | 1-by-*L* real-valued vector of positive values
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -426,7 +516,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

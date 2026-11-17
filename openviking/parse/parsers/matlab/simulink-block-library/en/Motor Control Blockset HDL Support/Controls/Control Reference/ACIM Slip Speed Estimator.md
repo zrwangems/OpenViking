@@ -14,6 +14,21 @@ language: en
 # ACIM Slip Speed Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Isdref
+  summary: Reference *d*-axis stator current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Isqref
+  summary: Reference *q*-axis stator current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵mslip
+  summary: Slip speed of induction motor scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -35,8 +50,31 @@ Reference *q*-axis stator current.
 Mechanical slip speed of the rotor that the block computes.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 2 (default) | scalar
+  group: ''
+- name: Rotor resistance (Ohm)
+  summary: Rotor resistance of motor 1.05 (default) | scalar
+  group: ''
+- name: Rotor leakage inductance (H)
+  summary: Leakage inductance of rotor winding 6.81e-3 (default) | scalar
+  group: ''
+- name: Magnetizing inductance (H)
+  summary: Magnetizing inductance of induction motor 30e-3 (default) | scalar
+  group: ''
+- name: Output saturation (rpm)
+  summary: Saturation value for the block output 150 (default) | scalar
+  group: ''
+- name: Input units
+  summary: Unit of input values Per-Unit (PU) (default) | SI Units
+  group: ''
+- name: Base speed (rpm)
+  summary: Base speed for per-unit system 1500 (default) | scalar
+  group: ''
+```
 
 ### **Number of pole pairs** — Number of pole pairs available in motor `2` (default) | scalar
 
@@ -70,7 +108,6 @@ Base speed (in rpm) for per-unit system.
 
 To enable this parameter, set **Input units** to
 `Per-Unit (PU)`.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

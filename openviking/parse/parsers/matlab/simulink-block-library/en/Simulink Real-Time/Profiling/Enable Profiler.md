@@ -14,6 +14,17 @@ language: en
 # Enable Profiler
 
 ## Ports
+```yaml
+ports:
+- name: Start
+  summary: Starts the profiler 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Stop
+  summary: Stops the profiler 0 | 1
+  direction: input
+  data_types: Boolean
+```
 
 ### Input
 
@@ -44,11 +55,12 @@ collected is limited to `1`GB. The profiler stops by itself when it reaches
 this limit.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Real-Time / Profiling

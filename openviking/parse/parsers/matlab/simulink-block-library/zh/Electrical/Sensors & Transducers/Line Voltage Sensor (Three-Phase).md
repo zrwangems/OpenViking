@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Line Voltage Sensor (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 三元素向量物理信号
+  direction: output
+- name: ~1
+  summary: 三相端口电气
+  direction: output
+```
 
 ### 输出
 
@@ -27,8 +36,13 @@ chinese_source: worker-translation
 ### **~1** — 三相端口电气
 
 可扩展三相端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+```
 
 ### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -37,7 +51,6 @@ chinese_source: worker-translation
 复合三相端口用单个模块端口表示三个独立的电气守恒端口。您可以使用复合三相端口构建对应于三相电气系统单线图的模型。
 
 扩展三相端口使用三个独立的电气守恒端口表示三相系统的各相。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

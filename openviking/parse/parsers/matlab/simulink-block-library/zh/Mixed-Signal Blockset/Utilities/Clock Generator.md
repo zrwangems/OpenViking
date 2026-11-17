@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Clock Generator
 
 ## 端口
+```yaml
+ports:
+- name: vctrl
+  summary: 用于控制输出频率的电压 标量 | 向量
+  direction: input
+  data_types: double
+- name: ReferenceOffset
+  summary: 参考频率偏移 标量
+  direction: input
+  data_types: double
+- name: PhaseOffset
+  summary: 占空比相位偏移 标量
+  direction: input
+  data_types: double
+- name: clock0
+  summary: 饱和输出时钟信号 标量
+  direction: output
+  data_types: double
+- name: clockTime0
+  summary: 上次时钟跳变时的仿真时间 标量
+  direction: output
+  data_types: double
+- name: Phase
+  summary: 基频时钟的最新时钟相位 标量
+  direction: output
+  data_types: double
+- name: clockValid
+  summary: 可变步长离散采样时钟 标量
+  direction: output
+  data_types: double
+- name: clockTime
+  summary: 最近一次时钟变化的绝对时钟时间 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -72,8 +107,170 @@ chinese_source: worker-translation
 **clockValid** 端口处最近一次时钟变化的绝对时钟时间。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Specify using
+  summary: 定义时钟发生器的控制灵敏度 Voltage sensitivity（默认）| Output frequency vs. control voltage | Period offset
+  group: ''
+  block_parameter: SpecifyUsing
+  type: 字符向量
+  values: Voltage sensitivity | Output frequency vs. control voltage | Period offset
+  default: Voltage sensitivity
+- name: Voltage sensitivity (Hz/V)
+  summary: 输出频率变化的度量 100e6（默认）| 正实数标量
+  group: ''
+  block_parameter: Kvco
+  type: 字符向量
+  values: 正实数标量
+  default: 100e6
+- name: Free running frequency (Hz)
+  summary: 无控制电压时的输出频率 10e9（默认）| 正实数标量
+  group: ''
+  block_parameter: Fo
+  type: character vector
+  values: positive real scalar
+  default: 10e9
+- name: Control voltage (V)
+  summary: 控制电压值 [-5 0 5]（默认）| 实数值向量
+  group: ''
+  block_parameter: ControlVoltage
+  type: character vector
+  values: real valued vector
+  default: '[-5 0 5]'
+- name: Output frequency (Hz)
+  summary: 时钟发生器输出频率值 [9.9e9 10e9 10.5e9]（默认）| 正实数值向量
+  group: ''
+  block_parameter: OutputFrequency
+  type: character vector
+  values: positive real valued vector
+  default: '[9.9e9 10e9 10.5e9]'
+- name: Output amplitude (V)
+  summary: 时钟发生器输出电压的最大幅度 1（默认）| 正实数标量
+  group: ''
+  block_parameter: Amplitude
+  type: character vector
+  values: positive real scalar
+  default: '1'
+- name: Phase unit
+  summary: 输出相位和占空比的单位 Degrees（默认）| Fraction of a clock cycle
+  group: ''
+  block_parameter: PhaseUnits
+  type: character vector
+  values: Degrees | Fraction of a clock cycle
+  default: Degrees
+- name: Output phase
+  summary: 输出时钟信号的相位 [0]（默认）| 非负实数标量 | 非负实数值向量
+  group: ''
+  block_parameter: OutputPhase
+  type: character vector
+  values: nonnegative real scalar | nonnegative real valued vector
+  default: '[0]'
+- name: Output duty cycle
+  summary: 输出时钟信号的占空比 [180]（默认）| 正实数标量 | 正实数值向量
+  group: ''
+  block_parameter: OutputDutyCycle
+  type: character vector
+  values: positive real scalar | positive real valued vector
+  default: '[180]'
+- name: PhaseOffsetPort
+  summary: 通过输入端口定义占空比相位偏移 on（默认）| off
+  group: ''
+- name: 相位偏移（符号时间）
+  summary: 占空比相位偏移 0（默认）| [-0.5,0.5] 范围内的标量
+  group: ''
+  block_parameter: PhaseOffset
+  type: 字符向量
+  values: 标量
+- name: ReferenceOffsetPort
+  summary: 通过输入端口定义参考频率偏移 开（默认）| 关
+  group: ''
+- name: 参考时钟频率偏移（ppm）
+  summary: 标称输出频率偏移的因子 0（默认）| [-300,300] 范围内的标量
+  group: ''
+  block_parameter: ReferenceOffset
+  type: 字符向量
+  values: '[-300,300] 范围内的标量'
+- name: 仿真方式
+  summary: 选择仿真模式 代码生成（默认）| 解释执行
+  group: ''
+  block_parameter: SimulateUsing
+  type: 字符向量
+  values: Code generation| Interpreted execution
+- name: 添加相位噪声
+  summary: 添加作为频率函数的相位噪声 开（默认）| 关
+  group: ''
+- name: 相位噪声频率偏移（Hz）
+  summary: 指定相位噪声相对于载波频率的频率偏移 [30e3 100e3 1e6 3e6 10e6]（默认）| 正实值向量
+  group: ''
+  block_parameter: Foffset
+  type: 字符向量
+  values: 正实值向量
+- name: 相位噪声电平（dBc/Hz）
+  summary: 指定相位噪声频率偏移处相对于载波的相位噪声功率 [-56 -106 -132 -143 -152]（默认）| 负实值向量
+  group: ''
+  block_parameter: PhaseNoise
+  type: 字符向量
+  values: 负实值向量
+  default: '[-56 -106 -132 -143 -152]'
+- name: Estimate phase noise parameters
+  summary: 从测得的相位噪声数据估计相位噪声参数按钮
+  group: ''
+- name: Period jitter (S)
+  summary: 周期抖动的标准差 1.7e-15（默认）| 正实标量
+  group: ''
+  block_parameter: PeriodJitter
+  type: 字符向量
+  values: 正实标量
+  default: '1.7e-15'
+- name: Flicker corner frequency (Hz)
+  summary: 闪烁噪声的拐角频率 0（默认）| 标量
+  group: ''
+  block_parameter: CornerFrequency
+  type: 字符向量
+  values: 标量
+  default: '0'
+- name: Customize flicker exponent (Advanced feature)
+  summary: 自定义闪烁噪声功率谱分布 关（默认）| 开
+  group: ''
+- name: Flicker exponent
+  summary: 闪烁噪声功率指数 1.0（默认）| 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5
+  group: ''
+  block_parameter: FlickerExponent
+  type: 字符向量
+  values: 1.0 | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5
+  default: '1.0'
+- name: Plot fit
+  summary: 绘制拟合的相位噪声曲线按钮
+  group: ''
+- name: Symbol time (s)
+  summary: 单个符号持续时间的时间 100e-12（默认）| 实正标量
+  group: ''
+  block_parameter: SymbolTime
+  type: 字符向量
+  values: 实正标量
+  default: 100e-12
+- name: Sample interval (s)
+  summary: 波形的均匀时间步长 6.25e-12（默认）| 实正标量
+  group: ''
+  block_parameter: SampleInterval
+  type: 字符向量
+  values: 实正标量
+  default: '6.25e-12'
+- name: Modulation (2:NRZ, 3:PAM3, 4:PAM4)
+  summary: 调制方案 2（默认）| 3 | 4
+  group: ''
+  block_parameter: Modulation
+  type: 字符向量
+  values: 2 | 3 | 4
+  default: '2'
+- name: 输入波形类型
+  summary: 输入波形的类型 Sample（默认）| Impulse
+  group: ''
+  block_parameter: WaveType
+  type: 字符向量
+  values: Sample | Impulse
+```
 
 #### 主
 
@@ -435,7 +632,6 @@ cycle`。
 | **类型：** 字符向量 |
 | **值：** `Sample` | `Impulse` |
 | **默认：** `Sample` |
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

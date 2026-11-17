@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PVCVS
 
 ## 端口
+```yaml
+ports:
+- name: p1
+  summary: 控制输入电气的正电压
+  direction: conserving
+- name: n1
+  summary: 控制输入电气的负电压
+  direction: conserving
+- name: p2
+  summary: 正输出电压电气
+  direction: conserving
+- name: n2
+  summary: 负输出电压电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,13 +48,17 @@ chinese_source: worker-translation
 ### **n2** — 负输出电压电气
 
 与 PVCVS 负输出电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Polynomial coefficients
+  summary: 多项式系数 [0, 1]（默认值）
+  group: ''
+```
 
 ### **Polynomial coefficients** — 多项式系数 `[0, 1]`（默认值）
 
 将输入电压与输出电压关联起来的多项式系数，如上一节所述。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

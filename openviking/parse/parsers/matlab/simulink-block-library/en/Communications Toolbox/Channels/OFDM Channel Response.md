@@ -14,6 +14,24 @@ language: en
 # OFDM Channel Response
 
 ## Ports
+```yaml
+ports:
+- name: Path gains
+  summary: Channel path gains array
+  direction: input
+  data_types: single | double
+- name: Path filters
+  summary: Channel path filter coefficients matrix
+  direction: input
+  data_types: single | double
+- name: Offset
+  summary: Timing offset scalar
+  direction: input
+  data_types: double | single
+- name: hEst
+  summary: Frequency response array
+  direction: output
+```
 
 ### Input
 
@@ -112,8 +130,25 @@ array.
     gains** and **Path
     filters** as inputs when **Enable timing
     offset input port** is not selected
-
 ## Parameters
+```yaml
+parameters:
+- name: FFT length
+  summary: FFT length 512 (default) | positive integer
+  group: ''
+- name: Cyclic prefix length
+  summary: Cyclic prefix length of one OFDM symbol 16 (default) | nonnegative integer
+  group: ''
+- name: Active subcarrier indices
+  summary: Number of active subcarriers 1:512 (default) | positive integer | column vector
+  group: ''
+- name: Enable timing offset input port
+  summary: Option to add input port for timing offset off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -166,7 +201,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Channels

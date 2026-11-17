@@ -14,17 +14,24 @@ language: en
 # Electrical Reference
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Voltage is zero electrical
+  direction: conserving
+```
 
 ### Conserving
 
 ### **V** — Voltage is zero electrical
 
 Electrical conserving port where voltage is equal to zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements Simscape / Electrical / Connectors & References

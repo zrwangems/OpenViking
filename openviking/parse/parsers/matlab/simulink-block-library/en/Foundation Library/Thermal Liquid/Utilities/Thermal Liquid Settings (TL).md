@@ -14,6 +14,12 @@ language: en
 # Thermal Liquid Settings (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Thermal liquid network connector thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,120 @@ language: en
 
 Port identifying the thermal liquid network to which the specified
 fluid properties apply.
-
 ## Parameters
+```yaml
+parameters:
+- name: Table dimensions
+  summary: Dimensions of the fluid property tables 2D tables based on temperature and pressure (T,p) (default) | 1D vectors
+    based on temperature (T)
+  group: ''
+- name: Temperature vector
+  summary: 'Reference temperatures at which to specify the fluid properties [273.1600 : 10 : 373.16]'' K (default) | *M*-element
+    column vector with units of temperature'
+  group: ''
+- name: Pressure vector
+  summary: 'Reference pressures at which to specify the fluid properties [0.01, 0.1, 5 : 5 : 50] MPa (default) | *N*-element
+    row vector with units of pressure'
+  group: ''
+- name: Atmospheric pressure
+  summary: Absolute pressure of the thermal liquid network environment 0.101325 MPa (default) | scalar with units of pressure
+  group: ''
+- name: Valid pressure-temperature region parameterization
+  summary: Specification method for the pressure-temperature validity region Specified minimum and maximum values (default)
+    | Validity matrix
+  group: ''
+- name: Minimum valid temperature
+  summary: Lowest temperature allowed in a model 273.16 K (default) | scalar with units of temperature
+  group: ''
+- name: Maximum valid temperature
+  summary: Highest temperature allowed in a model 373.16 K (default) | scalar with units of temperature
+  group: ''
+- name: Minimum valid pressure
+  summary: Lowest pressure allowed in a model 0.01 MPa (default) | scalar with units of pressure
+  group: ''
+- name: Maximum valid pressure
+  summary: Highest pressure allowed in a model 50 MPa (default) | scalar with units of pressure
+  group: ''
+- name: Pressure-temperature validity matrix
+  summary: Matrix of allowed and disallowed pressure-temperature conditions 11-by-12 matrix of zeros and ones (default) |
+    unitless *M*-by-*N* matrix
+  group: ''
+- name: Pressure and temperature outside valid range
+  summary: Whether to notify when pressure or temperature are outside valid range Error (default) | Warning | None
+  group: ''
+- name: Density parameterization
+  summary: Specification method for the fluid density Density, bulk modulus and thermal expansion tables - rho(T,p), beta(T,p),
+    alpha(T,p) (default) | Density table - rho(T,p) | Reference density | Density vector - rho(T)
+  group: ''
+- name: Density table, rho(T,p)
+  summary: Matrix of fluid densities at the specified temperatures and pressures 11-by-12 matrix (default) | *M*-by-*N* matrix
+    with units of mass/volume
+  group: ''
+- name: Density vector, rho(T)
+  summary: Vector of fluid densities at the specified temperatures 11-element column vector (default) | *M*-element vector
+    with units of mass/volume
+  group: ''
+- name: Isothermal bulk modulus table, beta(T,p)
+  summary: Matrix of isothermal bulk moduli at the specified temperatures and pressures 11-by-12 matrix (default) | *M*-by-*N*
+    matrix with units of pressure
+  group: ''
+- name: Isobaric thermal expansion coefficient table, alpha(T,p)
+  summary: Matrix of isobaric thermal expansion coefficients at the specified temperatures and pressures 11-by-12 matrix (default)
+    | *M*-by-*N* matrix with units of 1/temperature
+  group: ''
+- name: Reference density
+  summary: Density at a known operating condition 998.21 kg/m^3 (default) | scalar with units of mass/volume
+  group: ''
+- name: Reference temperature
+  summary: Temperature at a known operating condition 293.16 K (default) | scalar with units of temperature
+  group: ''
+- name: Reference pressure
+  summary: Pressure at a known operating condition 0.101325 MPa (default) | scalar with units of pressure
+  group: ''
+- name: Constant isothermal bulk modulus
+  summary: Isothermal bulk modulus at a known operating condition 2.1791 GPa (default) | scalar with units of pressure
+  group: ''
+- name: Constant isobaric thermal expansion coefficient
+  summary: Isobaric thermal expansion coefficient at a known operating condition 2.0691e-4 1/K (default) | scalar with units
+    of 1/temperature
+  group: ''
+- name: Internal energy parameterization
+  summary: Specification method for the fluid internal energy Specific internal energy and specific heat tables - u(T,p),
+    cp(T,p) (default) | Specific internal energy table - u(T,p) | Specific heat table - cp(T,p)
+  group: ''
+- name: Specific internal energy table, u(T,p)
+  summary: Matrix of internal energies at the specified temperatures and pressures 11-by-12 matrix (default) | *M*-by-*N*
+    matrix with units of energy/mass
+  group: ''
+- name: Specific internal energy vector, u(T)
+  summary: Vector of internal energies at the specified temperatures 11-element vector (default) | *M*-element vector with
+    units of energy/mass
+  group: ''
+- name: Specific heat at constant pressure table, cp(T,p)
+  summary: Matrix of specific heats at the specified temperatures and pressures 11-by-12 matrix (default) | *M*-by-*N* matrix
+    with units of energy/(mass\*temperature)
+  group: ''
+- name: Specific heat at constant pressure vector, u(T)
+  summary: Vector of specific heats at the specified temperatures 11-element vector (default) | *M*-element vector with units
+    of energy/(mass\*temperature)
+  group: ''
+- name: Kinematic viscosity table, nu(T,p)
+  summary: Matrix of kinematic viscosities at the specified temperatures and pressures 11-element vector (default) | *M*-element
+    vector with units of area/time
+  group: ''
+- name: Thermal conductivity table, K(T,p)
+  summary: Matrix of thermal conductivities at the specified temperatures and pressures 11-element vector (default) | *M*-element
+    vector with units of power/(length\*temperature)
+  group: ''
+- name: Kinematic viscosity vector, nu(T)
+  summary: Vector of kinematic viscosities at the specified temperatures 11-by-12 matrix (default) | *M*-by-*N* matrix with
+    units of area/time
+  group: ''
+- name: Thermal conductivity vector, K(T)
+  summary: Vector of thermal conductivities at the specified temperatures 11-by-12 matrix (default) | *M*-by-*N* matrix with
+    units of power/(length\*temperature)
+  group: ''
+```
 
 #### Temperature and Pressure
 
@@ -245,7 +363,6 @@ Tabulated data for the thermal conductivity at the temperatures provided
 in the **Temperature and Pressure** section. Each row
 corresponds to a different temperature. The dependence of the thermal
 conductivity on pressure is ignored.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Utilities

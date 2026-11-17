@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Linear Hydraulic Resistance
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,13 +26,14 @@ chinese_source: worker-translation
 
 `B`
 :   与阻力出口关联的液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Resistance**
 :   线性阻力系数。默认值为 `10e9`
     Pa/(m^3/s)。
-
 ## 所属库
 
 R2025b 中未记录。

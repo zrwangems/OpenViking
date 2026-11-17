@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Turbo Encoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入消息二进制列向量
+  direction: input
+  data_types: double | int8 | fi(data,0,1)
+- name: IntrInd
+  summary: 交织器索引整数列向量
+  direction: input
+  data_types: double
+- name: OutInd
+  summary: 输出索引整数列向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 并行级联码字二进制列向量
+  direction: output
+  data_types: double | int8 | fi(data,0,1)
+```
 
 ### 输入
 
@@ -52,8 +71,43 @@ chinese_source: worker-translation
 并行级联码字，返回为长度为 *M* 的二进制列向量，其中 *M* 是并行级联码字中的比特数。此输出继承其数据类型自 `In` 输入。
 
 **数据类型：** `double` | `int8` | `fi(data,0,1)`
-
 ## 参数
+```yaml
+parameters:
+- name: Trellis structure
+  summary: 组成卷积码的网格描述 poly2trellis(4,[13 15],13)（默认）| 结构体
+  group: ''
+- name: numInputSymbols
+  summary: 编码器输入的符号数 2*K*
+  group: ''
+- name: numOutputSymbols
+  summary: 编码器输出的符号数 2*N*
+  group: ''
+- name: numStates
+  summary: 编码器中的状态数 2 的幂
+  group: ''
+- name: nextStates
+  summary: 下一状态整数矩阵
+  group: ''
+- name: outputs
+  summary: 输出八进制数矩阵
+  group: ''
+- name: Source of interleaver indices
+  summary: 交织器索引的来源 Property（默认）| Input port
+  group: ''
+- name: Interleaver indices
+  summary: 交织器索引 (64:-1:1).'（默认）| 整数列向量
+  group: ''
+- name: Source of output indices
+  summary: 输出索引的来源 Auto | Property | Input port
+  group: ''
+- name: Output indices
+  summary: 输出索引 getTurboIOIndices(64,2,3)（默认）| 整数列向量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -128,7 +182,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 为模块生成 C 代码。除非模型更改，否则模型在后续仿真中重用 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Convolutional

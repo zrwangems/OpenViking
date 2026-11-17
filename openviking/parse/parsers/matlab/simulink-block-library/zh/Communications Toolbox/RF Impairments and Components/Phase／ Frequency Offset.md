@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Phase/Frequency Offset
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 复数信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Frq
+  summary: 频率偏移 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -43,8 +57,19 @@ chinese_source: worker-translation
 输出信号，以标量、向量或矩阵形式返回。此输出的维度和数据类型与输入信号相同。
 
 此端口在模块上未命名。
-
 ## 参数
+```yaml
+parameters:
+- name: Phase offset (deg)
+  summary: 相位偏移 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Frequency offset from port
+  summary: 用于添加端口以设置频率偏移的选项 off（默认）| on
+  group: ''
+- name: Frequency offset (Hz)
+  summary: 频率偏移 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -74,7 +99,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请清除 **Frequency offset from port** 参数。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments Correction Communications Toolbox / RF Impairments and Components

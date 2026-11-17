@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Reference Frame
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
 ### **R** — 参考坐标系 frame
 
 由该模块表示的局部参考坐标系。连接到 frame 线或 frame 端口，以定义参考坐标系的相对位置和方向。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Multibody / Frames and Transforms

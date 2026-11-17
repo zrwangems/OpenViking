@@ -14,6 +14,29 @@ language: en
 # Quadrature Decoder
 
 ## Ports
+```yaml
+ports:
+- name: Cnt
+  summary: Quadrature encoder counter value scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Idx
+  summary: Quadrature encoder counter value at last index pulse scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: CountsPerRev
+  summary: Number of counts generated for every revolution scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32 | single | double | fixed point
+- name: 1/CountsPerRev
+  summary: Inverse of the number of counts generated for every revolution scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θm
+  summary: Angular position of quadrature encoder scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -81,8 +104,34 @@ Angular position that the block computes based on the `Cnt` and
 `Idx` inputs.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: Enable CountsPerRev and 1/CountsPerRev input ports off (default) | on
+  group: ''
+- name: Data type for 1/CountsPerRev input
+  summary: Data type of 1/CountsPerRev input single (default) | double | fixed point
+  group: ''
+- name: Encoder slits
+  summary: Number of slits per phase 1000 (default) | scalar
+  group: ''
+- name: Encoder counts per slit
+  summary: Number of counts generated for every slit 4 (default) | 1 | 2
+  group: ''
+- name: Counter size
+  summary: Size of quadrature encoder counter 16 bits (default) | 8 bits | 32 bits
+  group: ''
+- name: External index count
+  summary: Enable Idx input port on (default) | off
+  group: ''
+- name: Position unit
+  summary: Unit of angular position output Radians (default) | Degrees | Per unit
+  group: ''
+- name: Position data type
+  summary: Data type of angular position output single (default) | double | fixed point
+  group: ''
+```
 
 ### **Use input port for computed parameters (run-time motor swap)** — Enable `CountsPerRev` and `1/CountsPerRev` input ports `off` (default) | `on`
 
@@ -150,7 +199,6 @@ The data type for the angular position output.
 
 The Quadrature Decoder block can display the warning message
 `'Wrap on overflow detected'` when needed.
-
 ## Libraries
 
 Motor Control Blockset / Sensor Decoders Motor Control Blockset HDL Support / Sensor Decoders

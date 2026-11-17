@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Viterbi Decoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 卷积编码码字列向量
+  direction: input
+  data_types: double | single | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32 | ufixn
+- name: Era
+  summary: 码字中的擦除比特二值向量
+  direction: input
+  data_types: double | Boolean
+- name: Rst
+  summary: 重置解码器寄存器状态的选项 scalar
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: 输出消息二值列向量
+  direction: output
+  data_types: double | single | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32 | ufix1
+```
 
 ### 输入
 
@@ -62,8 +81,65 @@ chinese_source: worker-translation
 此端口在模块图标上未命名。
 
 **数据类型：** `double` | `single` | `Boolean` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `ufix1`
-
 ## 参数
+```yaml
+parameters:
+- name: Trellis structure
+  summary: 卷积码的网格描述 poly2trellis(7,[171 133])（默认）
+  group: ''
+- name: numInputSymbols
+  summary: 编码器输入的符号数 2*K*
+  group: ''
+- name: numOutputSymbols
+  summary: 编码器输出的符号数 2*N*
+  group: ''
+- name: numStates
+  summary: 编码器中的状态数 2 的幂
+  group: ''
+- name: nextStates
+  summary: 下一状态整数矩阵
+  group: ''
+- name: outputs
+  summary: 八进制数输出矩阵
+  group: ''
+- name: Punctured code
+  summary: 启用码打孔指定的选项 off（默认）| on
+  group: ''
+- name: Puncture vector
+  summary: 打孔模式向量 [1; 1; 0; 1; 0; 1]（默认）| 向量
+  group: ''
+- name: Enable erasures input port
+  summary: 启用擦除输入端口的选项 off（默认）| on
+  group: ''
+- name: Decision type
+  summary: 解码器判决类型 Unquantized（默认）| Hard decision | Soft decision
+  group: ''
+- name: Number of soft decision bits
+  summary: 软输入字长 4（默认）| 正整数
+  group: ''
+- name: Error if quantized input values are out of range
+  summary: 量化输入值超出范围时报错的选项 off（默认）| on
+  group: ''
+- name: Traceback depth
+  summary: 回溯深度 34（默认）| 正整数
+  group: ''
+- name: Operation mode
+  summary: 编码帧的终止方法 Continuous（默认）| Truncated | Terminated
+  group: ''
+- name: Enable reset input port
+  summary: 添加重置输入端口的选项 off（默认）| on
+  group: ''
+- name: Delay reset action to next time step
+  summary: 将重置操作延迟到下一时间步的选项 off（默认）| on
+  group: ''
+- name: State metric word length
+  summary: 状态度量字长 16（默认）| 正整数
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 Inherit via internal rule（默认）| Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | boolean
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -207,7 +283,6 @@ chinese_source: worker-translation
   - 对于双精度输入，输出数据类型为 double
   - 对于单精度输入，输出数据类型为 single
   - 对于所有其他数据类型输入，行为类似于 `'Smallest unsigned integer'` 选项
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Convolutional Communications Toolbox HDL Support / Error Detection and Correction / Convolutional

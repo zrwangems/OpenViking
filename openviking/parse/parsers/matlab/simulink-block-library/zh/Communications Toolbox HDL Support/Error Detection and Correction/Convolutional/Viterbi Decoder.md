@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Viterbi Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入样本列向量
+  direction: input
+  data_types: int8 | int16 | uint8 | uint16 | Boolean | fixdt(0,1,0) | fixdt(S,WL,0) | single | double
+- name: valid
+  summary: 输入样本的有效性 标量
+  direction: input
+  data_types: Boolean
+- name: erasure
+  summary: 中性符号位置 列向量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 输出样本 标量
+  direction: output
+  data_types: int8 | int16 | uint8 | uint16 | Boolean | fixdt(0,1,0) | fixdt(S,WL,0) | single | double
+- name: valid
+  summary: 输出样本的有效性 标量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -92,8 +127,28 @@ chinese_source: worker-translation
 要启用此端口，请将 **Operation mode** 设置为 `Terminated` 或 `Truncated`。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Constraint length
+  summary: 网格约束长度 7（默认）| [3, 9] 范围内的整数
+  group: ''
+- name: Code generator
+  summary: 码生成多项式 [171, 133]（默认）| 八进制值向量
+  group: ''
+- name: Enable erasure input port
+  summary: 使用可选 erasure 信号 off（默认）| on
+  group: ''
+- name: Traceback depth
+  summary: 网格分支数 32（默认）| [3, 256] 范围内的整数
+  group: ''
+- name: Operation mode
+  summary: 帧结束行为 Continuous（默认）| Truncated | Terminated
+  group: ''
+- name: Enable reset input port
+  summary: 使用可选 reset 信号 off（默认）| on
+  group: ''
+```
 
 ### **Constraint length** — 网格约束长度 `7`（默认）| [3, 9] 范围内的整数
 
@@ -134,7 +189,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Operation mode** 设置为 `Continuous`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

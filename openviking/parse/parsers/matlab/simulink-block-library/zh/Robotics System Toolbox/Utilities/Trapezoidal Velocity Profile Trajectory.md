@@ -15,6 +15,44 @@ chinese_source: worker-translation
 # Trapezoidal Velocity Profile Trajectory
 
 ## 端口
+```yaml
+ports:
+- name: Time
+  summary: 沿轨迹的时间点 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: 沿轨迹的路径点位置 *n*×*p* 矩阵
+  direction: input
+- name: PeakVel
+  summary: 速度曲线的峰值速度 [1;2]（默认）| 标量 | *n* 元素向量 | *n*×(*p* – 1) 矩阵
+  direction: input
+  data_types: single | double
+- name: Accel
+  summary: 速度曲线的加速度 [2;2]（默认）| 标量 | *n* 元素向量 | *n*×(*p* – 1) 矩阵
+  direction: input
+  data_types: single | double
+- name: EndTime
+  summary: 轨迹段的持续时间 [1;2]（默认）| 标量 | *n* 元素向量 | *n*×(*p* – 1) 矩阵
+  direction: input
+  data_types: single | double
+- name: AccelTime
+  summary: 速度曲线加速阶段的持续时间 [1;1]（默认）| 标量 | *n* 元素向量 | *n*×(*p* – 1) 矩阵
+  direction: input
+  data_types: single | double
+- name: q
+  summary: 轨迹位置 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: qd
+  summary: 轨迹速度 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: qdd
+  summary: 轨迹加速度 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -98,8 +136,43 @@ chinese_source: worker-translation
 轨迹的加速度，指定为标量、向量或矩阵。如果为 `Time` 输入指定标量，且轨迹为 *n* 维，则输出为具有 *n* 个元素的向量。如果为 `Time` 输入指定具有 *m* 个元素的向量，则输出为 *n*×*m* 矩阵。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Waypoint source
+  summary: 路点来源 Internal（默认） | External
+  group: ''
+- name: Waypoints
+  summary: 沿轨迹的路点位置 *n*×*p* 矩阵
+  group: ''
+- name: Number of parameters
+  summary: 速度剖面参数的数量 0（默认） | 1 | 2
+  group: ''
+- name: Parameter 1
+  summary: 速度剖面参数 Peak Velocity | Acceleration | End Time | Acceleration Time
+  group: ''
+- name: Parameter 2
+  summary: 速度剖面参数 Peak Velocity | Acceleration | End Time | Acceleration Time
+  group: ''
+- name: Parameter source
+  summary: 路点来源 Internal（默认） | External
+  group: ''
+- name: Peak velocity
+  summary: 速度曲线的峰值速度 [1;2]（默认）| 标量 | *n* 元素向量 | *n*×(*p* – 1) 矩阵
+  group: ''
+- name: Acceleration
+  summary: 速度曲线的加速度 [2;2]（默认）| 标量 | *n* 元素向量 | *n*×(*p* – 1) 矩阵
+  group: ''
+- name: End time
+  summary: 轨迹段的持续时间 [1;2]（默认）| 标量 | *n* 元素向量 | *n*×(*p* – 1) 矩阵
+  group: ''
+- name: Acceleration time
+  summary: 速度曲线加速阶段的持续时间 [1;1]（默认）| 标量 | *n* 元素向量 | *n*×(*p* – 1) 矩阵
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Waypoint source** — 路点来源 `Internal`（默认） | `External`
 
@@ -199,7 +272,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 Robotics System Toolbox / Utilities

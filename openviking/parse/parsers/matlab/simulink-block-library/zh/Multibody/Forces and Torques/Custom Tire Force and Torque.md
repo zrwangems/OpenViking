@@ -15,6 +15,60 @@ chinese_source: worker-translation
 # Custom Tire Force and Torque
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础几何 geometry
+  direction: input
+- name: F
+  summary: 从动坐标系 frame
+  direction: input
+- name: ft
+  summary: 轮胎力，*N* 物理信号
+  direction: input
+- name: tt
+  summary: 轮胎力矩，*N\*m* 物理信号
+  direction: input
+- name: con
+  summary: 接触信号，无量纲物理信号
+  direction: output
+- name: vx
+  summary: 相对纵向速度，*m/s* 物理信号
+  direction: output
+- name: vy
+  summary: 相对侧向速度，*m/s* 物理信号
+  direction: output
+- name: psid
+  summary: 横摆角速度，*rad/s* 物理信号
+  direction: output
+- name: gamma
+  summary: 外倾角，*rad* 物理信号
+  direction: output
+- name: gammad
+  summary: 外倾角速度，*rad/s* 物理信号
+  direction: output
+- name: omega
+  summary: 自旋速度，*rad/s* 物理信号
+  direction: output
+- name: rl
+  summary: 负载半径，*m* 物理信号
+  direction: output
+- name: rho
+  summary: 径向变形，*m* 物理信号
+  direction: output
+- name: Rb
+  summary: 基础旋转，无量纲物理信号
+  direction: output
+- name: pb
+  summary: 基础平移，*m* 物理信号
+  direction: output
+- name: Rf
+  summary: 从动旋转，无量纲物理信号
+  direction: output
+- name: pf
+  summary: 从动平移，*m* 物理信号
+  direction: output
+```
 
 ### 几何
 
@@ -177,8 +231,16 @@ chinese_source: worker-translation
 
 要启用此端口，请在 **Sensing > Contact Frame**
 部分中，选择 **Follower Translation**。
-
 ## 参数
+```yaml
+parameters:
+- name: Tire Radius
+  summary: 轮胎半径 1 m（默认）| 正标量
+  group: ''
+- name: Contact Frame Computation Method
+  summary: 用于计算接触坐标系位置和方向的方法 Weighted Penetration（默认）| Closest Point
+  group: ''
+```
 
 ### **Tire Radius** — 轮胎半径 `1 m`（默认）| 正标量
 
@@ -192,7 +254,6 @@ chinese_source: worker-translation
 - `Weighted Penetration`：将此方法用于涉及多点接触的崎岖地面行驶工况，例如越野场景。
 
 您可以使用计算得到的数据来开发自定义轮胎模型。
-
 ## 所属库
 
 Simscape / Multibody / Forces and Torques

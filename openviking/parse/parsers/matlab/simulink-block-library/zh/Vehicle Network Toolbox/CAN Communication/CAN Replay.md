@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CAN Replay
 
 ## 端口
+```yaml
+ports:
+- name: CAN Msg
+  summary: 重放的 CAN 报文 CAN_MESSAGE | CAN_MESSAGE_BUS
+  direction: output
+  data_types: CAN_MESSAGE | CAN_MESSAGE_BUS
+- name: f()
+  summary: 函数调用事件输出 函数调用事件
+  direction: output
+  data_types: function-call event
+```
 
 ### 输出
 
@@ -31,8 +42,31 @@ chinese_source: worker-translation
 当模块接收到新报文时，此端口向函数调用子系统提供触发信号。您可以将其连接到函数调用子系统 (Simulink)，以解包并处理该报文。
 
 **数据类型：** `function-call event`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 包含报文的 MAT 文件的路径和名称 untitled.mat（默认）| 文件名
+  group: ''
+- name: Variable name
+  summary: MAT 文件中保存报文的变量 ans（默认）| 变量
+  group: ''
+- name: Number of times to replay messages
+  summary: 重复次数 Inf（默认）| 整数
+  group: ''
+- name: Replay messages to
+  summary: 指定输出位置 CAN Bus（默认）| Output port
+  group: ''
+- name: Device
+  summary: CAN 设备和通道 设备列表选项
+  group: ''
+- name: Sample time
+  summary: 模块执行速率 0.01（默认）| 数值
+  group: ''
+- name: Output as bus
+  summary: 启用信号总线输出 off（默认）| on
+  group: ''
+```
 
 **提示**
 
@@ -65,7 +99,6 @@ chinese_source: worker-translation
 ### **Output as bus** — 启用信号总线输出 off（默认）| on
 
 选择此选项可使模块将 CAN 报文作为 Simulink 总线信号输出。有关 Simulink 总线对象的详细信息，请参阅 Composite Interfaces (Simulink)。
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN Communication

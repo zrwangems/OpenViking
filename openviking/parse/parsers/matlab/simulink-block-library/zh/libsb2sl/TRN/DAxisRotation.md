@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Rotation Angles to Direction Cosine Matrix
 
 ## 端口
+```yaml
+ports:
+- name: '[R1,R2,R3]'
+  summary: 旋转角度 3×1 向量
+  direction: input
+  data_types: double
+- name: DCM
+  summary: 方向余弦矩阵 3×3 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,17 @@ chinese_source: worker-translation
 基于旋转角度执行坐标变换的方向余弦矩阵，返回为 3×3 矩阵。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Rotation Order
+  summary: 旋转顺序 ZYX（默认）| ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX
+  group: ''
+  block_parameter: rotationOrder
+  type: 字符向量
+  values: '''ZYX'' | ''ZYZ'' |''ZXY'' | ''ZXZ'' | ''YXZ'' | ''YXY'' | ''YZX'' | ''YZY'' | ''XYZ'' | ''XYX'' | ''XZY'' | ''XZX'''
+  default: '''ZYX'''
+```
 
 ### **Rotation Order** — 旋转顺序 `ZYX`（默认）| `ZYZ` | `ZXY` | `ZXZ` | `YXZ` | `YXY` | `YZX` | `YZY` | `XYZ` | `XYX` | `XZY` | `XZX`
 
@@ -45,7 +65,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'ZYX'` | `'ZYZ'` |`'ZXY'` | `'ZXZ'` | `'YXZ'` | `'YXY'` | `'YZX'` | `'YZY'` | `'XYZ'` | `'XYX'` | `'XZY'` | `'XZX'` |
 | **默认值**：`'ZYX'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Axes Transformations

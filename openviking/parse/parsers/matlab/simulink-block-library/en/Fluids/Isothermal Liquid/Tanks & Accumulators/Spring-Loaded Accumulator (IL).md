@@ -14,6 +14,12 @@ language: en
 # Spring-Loaded Accumulator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Hydraulic conserving port hydraulic conserving
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,25 @@ language: en
 
 Hydraulic conserving port associated with the accumulator inlet. The
 flow rate is positive if liquid flows into the accumulator.
-
 ## Parameters
+```yaml
+parameters:
+- name: Liquid capacity
+  summary: Liquid capacity 8e-3 m^3 (default) | positive scalar
+  group: ''
+- name: Preload pressure
+  summary: Spring pressure 1.01325 MPa (default) | positive scalar
+  group: ''
+- name: Pressure at full capacity
+  summary: Spring pressure 3.01325 MPa (default) | positive scalar
+  group: ''
+- name: Hard stop stiffness coefficient
+  summary: Proportionality constant 1e4 MPa/m^3 (default) | positive scalar
+  group: ''
+- name: Enable dynamic compressibility
+  summary: Fluid compressibility on (default) | off
+  group: ''
+```
 
 ### **Liquid capacity** — Liquid capacity `8e-3 m^3` (default) | positive scalar
 
@@ -49,7 +72,6 @@ When you select **Enable dynamic compressibility**, changes
 due to the mass flow rate into the block are calculated in addition to
 density changes due to changes in pressure. In the Isothermal Liquid
 Library, all blocks calculate density as a function of pressure.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Tanks & Accumulators

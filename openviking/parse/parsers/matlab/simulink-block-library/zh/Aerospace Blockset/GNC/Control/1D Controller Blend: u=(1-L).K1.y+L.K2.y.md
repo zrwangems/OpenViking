@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 1D Controller Blend u=(1-L).K1.y+L.K2.y
 
 ## 端口
+```yaml
+ports:
+- name: y
+  summary: 飞行器测量值向量
+  direction: input
+  data_types: double
+- name: v
+  summary: 调度变量向量
+  direction: input
+  data_types: double
+- name: u
+  summary: 执行器需求向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,59 @@ chinese_source: worker-translation
 执行器需求，指定为向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: A-matrix(v)
+  summary: 状态空间实现的 *A* 矩阵 A1 (默认) | array
+  group: ''
+  block_parameter: A
+  type: character vector
+  values: vector
+  default: '''A1'''
+- name: B-matrix(v)
+  summary: 状态空间实现的 *B* 矩阵 B1 (默认) | array
+  group: ''
+  block_parameter: B
+  type: character vector
+  values: vector
+  default: '''B1'''
+- name: C-matrix(v)
+  summary: 状态空间实现的 *C* 矩阵 C1（默认）| array
+  group: ''
+  block_parameter: C
+  type: character vector
+  values: vector
+  default: '''C1'''
+- name: D-matrix(v)
+  summary: 状态空间实现的 *D* 矩阵 D1（默认）| array
+  group: ''
+  block_parameter: D
+  type: character vector
+  values: vector
+  default: '''D1'''
+- name: 调度变量断点
+  summary: 调度变量的断点 [1 1.5 2]（默认）| vector
+  group: ''
+  block_parameter: breakpoints_v
+  type: character vector
+  values: vector
+  default: '''[1 1.5 2]'''
+- name: 初始状态，x_initial
+  summary: 初始状态 0（默认）| vector
+  group: ''
+  block_parameter: x_initial
+  type: character vector
+  values: vector
+  default: '''0'''
+- name: A(v)-H(v)\*C(v) = [w1 ... wn]) 的极点
+  summary: 观测器极点 [-5 -2]（默认）| vector
+  group: ''
+  block_parameter: vec_w
+  type: character vector
+  values: vector
+  default: '''[-5 -2]'''
+```
 
 ### **A-matrix(v)** — 状态空间实现的 *A* 矩阵 `A1` (默认) | array
 
@@ -129,7 +195,6 @@ chinese_source: worker-translation
 | **类型**: character vector |
 | **值**: vector |
 | **默认值**: `'[-5 -2]'` |
-
 ## 所属库
 
 Aerospace Blockset / GNC / Control

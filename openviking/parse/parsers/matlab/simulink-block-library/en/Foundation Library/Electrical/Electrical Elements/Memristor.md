@@ -14,6 +14,15 @@ language: en
 # Memristor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,25 @@ terminal.
 
 Electrical conserving port associated with the memristor negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Resistance of state A
+  summary: Entire memristor in state A 1 Ohm (default) | positive scalar
+  group: ''
+- name: Resistance of state B
+  summary: Entire memristor in state B 100 Ohm (default) | positive scalar
+  group: ''
+- name: Total charge required for full state transition
+  summary: Charge required for full transition between states 10 mC (default) | positive scalar
+  group: ''
+- name: State A fraction at t=0
+  summary: 'Fraction of memristor in state A at start of simulation 0 (default) | min/max: (0,1)'
+  group: ''
+- name: Exponent of the window function
+  summary: Drift control at the boundaries 2 (default) | positive integer scalar
+  group: ''
+```
 
 ### **Resistance of state A** — Entire memristor in state A `1 Ohm` (default) | positive scalar
 
@@ -55,7 +81,6 @@ to 1.
 
 The exponent, *p*, of the window function, which keeps
 the value of *ξ* between 0 and 1.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

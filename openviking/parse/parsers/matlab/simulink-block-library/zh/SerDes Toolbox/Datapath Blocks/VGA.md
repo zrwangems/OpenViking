@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # VGA
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 估计的信道输出 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 估计的信道输出，以与输入信号对应的标量或向量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: VGA 工作模式 On（默认）| Off
+  group: ''
+- name: Gain
+  summary: 用于缩放输入波形的乘法增益 1（默认）| 标量
+  group: ''
+- name: Mode
+  summary: 在 IBIS-AMI 模型中包含 Mode 参数 on（默认）| off
+  group: ''
+- name: Gain
+  summary: 在 IBIS-AMI 模型中包含 Gain 参数 on（默认）| off
+  group: ''
+```
 
 ### **Mode** — VGA 工作模式 `On`（默认）| `Off`
 
@@ -65,7 +90,6 @@ VGA 工作模式：
 ### **Gain** — 在 IBIS-AMI 模型中包含 Gain 参数 on（默认）| off
 
 选择此项以将 **Gain** 作为参数包含在 IBIS-AMI 文件中。如果取消选择 **Gain**，它将从 AMI 文件中移除，实际上将 **Gain** 硬编码为其当前值。
-
 ## 所属库
 
 SerDes Toolbox / Datapath Blocks

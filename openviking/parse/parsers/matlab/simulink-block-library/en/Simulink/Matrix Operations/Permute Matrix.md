@@ -14,6 +14,23 @@ language: en
 # Permute Matrix
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input matrix scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: P
+  summary: Index matrix scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated
+- name: Port_1
+  summary: Output signal vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### Input
 
@@ -35,8 +52,38 @@ Index matrix, specified as a scalar or vector.
 Output signal, specified as a vector or matrix.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Permute
+  summary: Permute method Columns (default) | Rows
+  group: ''
+  block_parameter: mode
+  type: character vector, string
+  values: ''' Columns'' | ''Rows'''
+  default: ''' Columns'''
+- name: Index mode
+  summary: Index mode One-based (default) | Zero-based
+  group: ''
+  block_parameter: ZeroOneIdxMode
+  type: character vector, string
+  values: ''' Zero-based'' | ''One-based'''
+  default: '''One-based'''
+- name: Invalid permutation index
+  summary: Response to an invalid index value Clip index (default) | Clip and warn | Generate error
+  group: ''
+  block_parameter: errmode
+  type: character vector, string
+  values: '''Clip index'' | ''Clip and warn'' | ''Generate error'''
+  default: '''Clip index'''
+- name: Error when length of P is not equal to Permute dimension size
+  summary: Error message for P length off (default) | on
+  group: ''
+  block_parameter: checkDims
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Permute** — Permute method `Columns` (default) | `Rows`
 
@@ -151,7 +198,6 @@ setting this parameter to `on`.
 | **Type**: character vector, string |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Matrix Operations

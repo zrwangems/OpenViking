@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Cable and Connectors
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入连接器端子 electrical | electrical array-of-nodes
+  direction: conserving
+- name: Out
+  summary: 输出连接器端子 electrical | electrical array-of-nodes
+  direction: conserving
+- name: H
+  summary: 热质量 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +53,169 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Model thermal effects** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Model multiple conductors in cable
+  summary: 用于对电缆中的多个导体建模的选项 Off（默认）| On
+  group: 主要参数
+- name: Number of independent conductors in cable
+  summary: 电缆中独立导体的数量 3（默认）| 有限正标量
+  group: 主要参数
+- name: Model input connector
+  summary: 用于对输入连接器建模的选项 On（默认）| Off
+  group: 主要参数
+- name: Model output connector
+  summary: 用于对输出连接器建模的选项 On（默认）| Off
+  group: 主要参数
+- name: Conductor material
+  summary: 导体材料 Copper（默认）| Annealed copper | Aluminum | Silver | Gold | Custom
+  group: Cable
+- name: Electrical conductivity of material
+  summary: 材料的电导率 5.96e7 S/m（默认）| 非负标量
+  group: Cable
+- name: Length of conductor
+  summary: 导体长度 1 m（默认）| 正标量
+  group: Cable
+- name: Gauge of each conductor
+  summary: AWG 制中的导体线规 Custom（默认）| AWG1 | AWG2 | ...
+  group: Cable
+- name: Conductor diameter
+  summary: 以长度单位表示的每个导体线规 0.5 mm（默认）| 正标量
+  group: Cable
+- name: Model cable inductance
+  summary: 用于对电缆电感建模的选项 Off（默认）| On
+  group: Cable
+- name: Model skin effect
+  summary: 用于对集肤效应建模的选项 Off（默认）| On
+  group: Cable
+- name: Rated frequency
+  summary: 额定频率 50 Hz（默认）| 非负标量
+  group: Cable
+- name: Relative magnetic permeability of material
+  summary: 材料的相对磁导率 1（默认）| 正标量
+  group: Cable
+- name: Contact resistance between pins and sockets
+  summary: 引脚与插座之间的接触电阻 1 Ohm（默认）| 正标量
+  group: Connectors
+- name: Conductance between pins
+  summary: 引脚之间的电导 1e-12 S（默认）| 正标量
+  group: Connectors
+- name: Model thermal effects
+  summary: 用于对热效应建模的选项 Off（默认）| On
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 1e-6 1/K（默认）| 非负标量
+  group: Thermal
+- name: Measurement temperature
+  summary: 测量温度 298.15 K（默认）| 标量
+  group: Thermal
+- name: Thermal mass of each conductor
+  summary: 每个导体的热质量 0.1 J/K（默认）| 正标量
+  group: Thermal
+- name: Thermal mass of each connector pin
+  summary: 每个连接器引脚的热质量 0.1 J/K（默认）| 正标量
+  group: Thermal
+- name: Inter-pin short circuit in input connector fault
+  summary: 用于添加输入连接器引脚间短路故障的选项 Add fault
+  group: 故障
+- name: Short-circuit conductance of faulted input connector
+  summary: 故障输入连接器的短路电导 1e9 S（默认）| 非负标量
+  group: 故障
+- name: Faultable pin pairs
+  summary: 可故障引脚对 Make all pin pairs faultable（默认）| Specify faultable pin pairs
+  group: 故障
+- name: Matrix of faultable pin pairs
+  summary: 可故障引脚对 [1,2;1,3]（默认）| 矩阵
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible temperature
+  summary: 故障转换的温度上限阈值 inf degC（默认）| 标量
+  group: 故障
+- name: Time to fail when exceeding temperature
+  summary: 超过温度时的失效时间 1 s（默认）| 正标量
+  group: 故障
+- name: Maximum permissible voltage
+  summary: 故障转换的电压阈值 inf V（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding voltage
+  summary: 超过电压时的失效时间 1 s（默认）| 正标量
+  group: 故障
+- name: Trigger configuration
+  summary: 用于启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: Inter-pin short circuit in output connector fault
+  summary: 用于添加输出连接器引脚间短路故障的选项 Add fault
+  group: 故障
+- name: Short-circuit conductance of faulted output connector
+  summary: 故障输出连接器的短路电导 1e9 S（默认）| 非负标量
+  group: 故障
+- name: Faultable pin pairs
+  summary: 可故障引脚对 Make all pin pairs faultable（默认）| Specify faultable pin pairs
+  group: 故障
+- name: Matrix of faultable pin pairs
+  summary: 可故障引脚对 [1,2;1,3]（默认）| 矩阵
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible temperature
+  summary: 故障转换的温度上限阈值 inf degC（默认）| 标量
+  group: 故障
+- name: Time to fail when exceeding temperature
+  summary: 超过温度时的失效时间 1 s（默认）| 正标量
+  group: 故障
+- name: Maximum permissible voltage
+  summary: 故障转换的电压阈值 inf V（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding voltage
+  summary: 超过电压时的失效时间 1 s（默认）| 正标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: Open-circuit fault
+  summary: 添加开路故障的选项 Add fault
+  group: 故障
+- name: Open-circuit conductance
+  summary: 开路电导 1e-5 S（默认）| 正标量
+  group: 故障
+- name: Faultable conductors
+  summary: 可故障导体 Make all conductors faultable（默认）| Specify faultable conductors
+  group: 故障
+- name: Indices of faultable conductors
+  summary: 可故障导体的索引 [1,2]（默认）| 向量
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible current
+  summary: 故障转换的电流阈值 inf A（默认）| 正标量
+  group: 故障
+- name: Maximum permissible temperature
+  summary: 故障转换的温度上限阈值 inf degC（默认）| 标量
+  group: 故障
+- name: Time to fail when exceeding current
+  summary: 超过电流时的失效时间 1 s（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding temperature
+  summary: 超过温度时的失效时间 1 s（默认）| 正标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -589,7 +762,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请单击 **Open-circuit fault** 参数的 **Add fault** 超链接，并将 **Trigger type** 设置为 `Additional triggers`。
-
 ## 所属库
 
 Simscape / Electrical / Connectors & References

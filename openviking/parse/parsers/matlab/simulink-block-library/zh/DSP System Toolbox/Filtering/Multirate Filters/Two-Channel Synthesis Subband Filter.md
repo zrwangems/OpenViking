@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Two-Channel Synthesis Subband Filter
 
 ## 端口
+```yaml
+ports:
+- name: Hi band
+  summary: 高频子带向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Lo band
+  summary: 低频子带向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output 1
+  summary: 合成输出向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -43,8 +58,55 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Lowpass FIR filter coefficients
+  summary: 低通 FIR 滤波器系数 [0.3327 0.8069 0.4599 -0.1350 -0.0854 0.0352]（默认）
+  group: 主选项卡
+- name: Highpass FIR filter coefficients
+  summary: 高通 FIR 滤波器系数 [0.0352 0.0854 -0.1350 -0.4599 0.8069 -0.3327]（默认）
+  group: 主选项卡
+- name: Input processing
+  summary: 输入处理 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: 主选项卡
+- name: Rate options
+  summary: 速率选项 Enforce single-rate processing（默认）| Allow multirate processing
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认）| on
+  group: 数据类型选项卡
+- name: Coefficients
+  summary: '系数的数据类型 Inherit: Same word length as input（默认）| fixdt(1,16) | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Coefficients Minimum
+  summary: 滤波器系数的最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Coefficients Maximum
+  summary: 滤波器系数的最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出的数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 输出最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 输出最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -176,7 +238,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

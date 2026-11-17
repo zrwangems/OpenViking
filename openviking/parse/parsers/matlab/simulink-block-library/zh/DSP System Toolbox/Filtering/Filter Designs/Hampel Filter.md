@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Hampel Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: T
+  summary: 阈值 大于或等于 0 的实数标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 滤波后的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: outlier
+  summary: 输出离群值状态 向量 | 矩阵
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -54,8 +73,25 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output outlier status** 复选框。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Window length
+  summary: 滑动窗口的长度 11 （默认） | 正奇标量整数
+  group: ''
+- name: Specify threshold from input port
+  summary: 用于指定阈值的标志 关闭 （默认） | 打开
+  group: ''
+- name: Threshold for outlier detection (standard deviations)
+  summary: 阈值 3 （默认） | 大于或等于 0 的实数标量
+  group: ''
+- name: Output outlier status
+  summary: 用于输出离群值状态的标志 关闭 （默认） | 打开
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution （默认） | Code generation
+  group: ''
+```
 
 如果参数列为可调，则您可以在仿真期间更改其值。
 
@@ -87,7 +123,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs

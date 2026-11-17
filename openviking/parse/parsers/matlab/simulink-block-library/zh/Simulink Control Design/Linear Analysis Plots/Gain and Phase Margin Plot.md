@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Gain and Phase Margin Plot
 
 ## 端口
+```yaml
+ports:
+- name: Trigger
+  summary: 外部触发信号 标量
+  direction: input
+- name: z–1
+  summary: 断言信号 1 | 0
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +48,185 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Output assertion signal** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Plot type
+  summary: 选择绘图类型 Bode（默认） | Nichols | Nyquist | Tabular
+  group: ''
+  block_parameter: PlotType
+  type: character vector
+  values: '''bode'' | ''nichols'' | ''nyquist'' | ''table'''
+  default: '''bode'''
+- name: Show Plot
+  summary: 打开绘图 按钮
+  group: ''
+- name: Show plot on block open
+  summary: 打开模块时打开绘图 off（默认） | on
+  group: ''
+  block_parameter: LaunchViewOnOpen
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Response Optimization
+  summary: 打开 Response Optimizer 按钮
+  group: ''
+- name: Linearization inputs/outputs
+  summary: 指定要线性化的模型部分（线性分析点）
+  group: Linearizations
+- name: Enable regular expression
+  summary: 启用使用正则表达式进行信号搜索 on（默认）| off
+  group: Linearizations
+- name: Show filtered results as a flat list
+  summary: 使用平面列表显示过滤后的总线信号层级 off（默认）| on
+  group: Linearizations
+- name: Linearize on
+  summary: 何时计算线性模型 Simulation snapshots（默认）| External trigger
+  group: Linearizations
+  block_parameter: LinearizeAt
+  type: 字符向量
+  values: '''SnapshotTimes'' | ''ExternalTrigger'''
+  default: '''SnapshotTimes'''
+- name: Snapshot times
+  summary: 计算线性模型的仿真时间 0（默认）| 正实数值 | 正实数值向量
+  group: Linearizations
+  block_parameter: SnapshotTimes
+  type: 字符向量
+  values: '''0'' | 正实数值 | 正实数值向量'
+  default: '''0'''
+- name: Trigger type
+  summary: 要检测的外部触发类型 Rising edge（默认）| Falling edge
+  group: Linearizations
+  block_parameter: TriggerType
+  type: 字符向量
+  values: '''rising'' | ''falling'''
+  default: '''rising'''
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: Linearizations
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Use exact delays
+  summary: 在线性模型中使用精确延迟 off（默认）| on
+  group: Linearizations
+  block_parameter: UseExactDelayModel
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Linear system sample time
+  summary: 线性系统的采样时间 'auto'（默认）| 正有限值 | 0
+  group: Linearizations
+  block_parameter: SampleTime
+  type: character vector
+  values: '''auto'' | positive finite value | ''0'''
+  default: '''auto'''
+- name: Sample time rate conversion method
+  summary: 采样时间速率转换方法 Zero-Order Hold（默认）| Tustin (bilinear) | Tustin with Prewarping | ...
+  group: Linearizations
+  block_parameter: RateConversionMethod
+  type: character vector
+  values: '''zoh'' | ''tustin'' | ''prewarp''| ''upsampling_zoh''| ''upsampling_tustin''| ''upsampling_prewarp'''
+  default: '''zoh'''
+- name: Prewarp frequency
+  summary: Tustin 速率转换的预畸变频率 '10'（默认）| 正标量
+  group: Linearizations
+  block_parameter: PreWarpFreq
+  type: character vector
+  values: positive scalar
+  default: '''10'''
+- name: Use full block names
+  summary: 在状态、输入和输出名称中使用完整模块路径 off（默认）| on
+  group: Linearizations
+  block_parameter: UseFullBlockNameLabels
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use bus signal names
+  summary: 在线性系统中使用总线信号名称 off（默认）| on
+  group: Linearizations
+  block_parameter: UseBusSignalLabels
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Include gain and phase margins in assertion
+  summary: 检查增益裕度和相位裕度是否违反边界 on | off
+  group: Bounds
+  block_parameter: EnableMargins
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'' for Gain and Phase Margin Plot block, ''on'' for Check Gain and Phase Margins block'
+- name: Gain margin
+  summary: 最小增益裕度边界 正有限值
+  group: Bounds
+  block_parameter: GainMargin
+  type: 字符向量
+  values: 正有限数值
+  default: Gain and Phase Margin Plot 模块为 '[]'，Check Bode Characteristics 模块为 '20'
+- name: 相位裕度
+  summary: 最小相位最小边界正有限值
+  group: Bounds
+  block_parameter: PhaseMargin
+  type: 字符向量
+  values: 正有限数值
+  default: Gain and Phase Margin Plot 模块为 '[]'，Check Bode Characteristics 模块为 '30'
+- name: 反馈符号
+  summary: 用于计算裕度的反馈符号 negative feedback（默认）| positive feedback
+  group: Bounds
+  block_parameter: FeedbackSign
+  type: 字符向量
+  values: '''-1'' | ''+1'''
+  default: '''-1'''
+- name: Save data to workspace
+  summary: 保存线性系统以供进一步分析 off（默认）| on
+  group: 记录
+  block_parameter: SaveToWorkspace
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Variable name
+  summary: 用于保存线性系统的数据结构名称 sys（默认）| 字符向量
+  group: 记录
+  block_parameter: SaveName
+  type: character vector
+  default: '''sys'''
+- name: Save operating points for each linearization
+  summary: 保存每次线性化对应的工作点 off（默认）| on
+  group: 记录
+  block_parameter: SaveOperatingPoints
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Enable assertion
+  summary: 启用边界检查 on（默认）| off
+  group: Assertion
+  block_parameter: enabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Simulation callback when assertion fails
+  summary: 当违反边界时要求值的表达式 ''（默认）| MATLAB expression
+  group: Assertion
+  block_parameter: callback
+  type: character vector
+  values: MATLAB expression
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: 当违反边界时停止仿真 off（默认）| on
+  group: Assertion
+  block_parameter: stopWhenAssertionFail
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output assertion signal
+  summary: 添加断言输出端口 off（默认）| on
+  group: Assertion
+  block_parameter: export
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Plot type** — 选择绘图类型 `Bode`（默认） | `Nichols` | `Nyquist` | `Tabular`
 
@@ -674,7 +860,6 @@ Tustin 速率转换的预畸变频率，以弧度每秒为单位，指定为小�
 | **类型**：character vector |
 | **Value:** `'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink Control Design / Linear Analysis Plots Simulink Control Design / Model Verification

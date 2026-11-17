@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # EtherCAT Get Emergency
 
 ## 端口
+```yaml
+ports:
+- name: Err Code
+  summary: 错误代码 uint16
+  direction: output
+  data_types: uint16
+- name: Err Reg
+  summary: 错误寄存器 uint8
+  direction: output
+  data_types: uint8
+- name: Data
+  summary: 紧急数据向量 uint8
+  direction: output
+  data_types: uint8
+- name: Name
+  summary: 站地址 uint8
+  direction: output
+  data_types: uint8
+```
 
 ### 输出
 
@@ -41,8 +60,22 @@ chinese_source: worker-translation
 `Name` 输出是一个以 null 结尾的字符数组，用于标识发送紧急消息的设备。此输出是 ENI 文件中设备的名称。根据 TwinCAT® 或 EC-Engineer 软件用于标识设备的字符串不同，此名称可能有所不同。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT 网络标识符 0（默认）| 0-11
+  group: ''
+  block_parameter: device_id
+- name: Log messages to statusmonitor
+  summary: 启用消息日志记录 on（默认）| off
+  group: ''
+  block_parameter: logmsg
+- name: Sample time
+  summary: 模块的采样时间 .001（默认）| 数值
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT 网络标识符 `0`（默认）| `0-11`
 
@@ -73,7 +106,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`sample_time` |
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

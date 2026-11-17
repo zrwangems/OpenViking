@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # IMU
 
 ## 端口
+```yaml
+ports:
+- name: Linear Acceleration
+  summary: IMU 在局部导航坐标系中的加速度 (m/s2) *N*×3 的实数标量矩阵
+  direction: input
+  data_types: single | double
+- name: Angular Velocity
+  summary: IMU 在局部导航坐标系中的角速度 (rad/s) *N*×3 的实数标量矩阵
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: IMU 在局部导航坐标系中的姿态 *N*×4 的实数标量数组 | 3×3×*N* 元素的旋转矩阵
+  direction: input
+  data_types: single | double
+- name: Temperature
+  summary: IMU 的温度 (℃) *N*×1 的实数标量向量
+  direction: input
+  data_types: single | double
+- name: Magnetic Field
+  summary: 局部导航坐标系中的磁场向量 (μT) *N*×3 的实数标量矩阵
+  direction: input
+  data_types: single | double
+- name: Accel
+  summary: IMU 在传感器机体坐标系中的加速度计测量值 (m/s2) *N*×3 的实数标量矩阵
+  direction: output
+  data_types: single | double
+- name: Gyro
+  summary: IMU 在传感器机体坐标系中的陀螺仪测量值 (rad/s) *N*×3 的实数标量矩阵
+  direction: output
+  data_types: single | double
+- name: Mag
+  summary: IMU 在传感器机体坐标系中的磁力计测量值 (μT) *N*×3 的实数标量矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -77,8 +112,145 @@ IMU 在传感器机体坐标系中的陀螺仪测量值，返回为以弧度每�
 IMU 在传感器机体坐标系中的磁力计测量值，返回为以微特斯拉为单位的 *N*×3 实数标量矩阵。*N* 是当前帧中的采样数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Reference frame
+  summary: 导航参考坐标系 NED（默认）| ENU
+  group: ''
+- name: Specify temperature from input port
+  summary: 从输入端口指定温度 关（默认）| 开
+  group: ''
+- name: Temperature (oC)
+  summary: IMU 的工作温度（oC） 25（默认）| 实数标量
+  group: ''
+- name: Specify magnetic field from input port
+  summary: 从输入端口指定磁场 关（默认）| 开
+  group: ''
+- name: Magnetic field (NED)
+  summary: 在 NED 导航坐标系中表示的磁场矢量（μT） [27.5550, -2.4169, -16.0849]（默认）| 1×3 标量向量
+  group: ''
+- name: MagneticField (ENU)
+  summary: 在 ENU 导航坐标系中表示的磁场矢量（μT） [-2.4169, 27.5550, 16.0849]（默认）| 1×3 标量向量
+  group: ''
+- name: Seed
+  summary: 随机化的初始种子 67（默认）| 非负整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted Execution（默认）| Code Generation
+  group: ''
+- name: Maximum readings (m/s2)
+  summary: 最大传感器读数（m/s2） inf（默认）| 实正标量
+  group: ''
+- name: Resolution ((m/s2)/LSB)
+  summary: 传感器测量的分辨率（(m/s2)/LSB） 0（默认）| 实非负标量
+  group: ''
+- name: Constant offset bias (m/s2)
+  summary: 恒定传感器偏移偏置 (m/s2) [0 0 0]（默认）| 实数标量 | 实数 3 元素行向量
+  group: ''
+- name: Axis skew (%)
+  summary: 传感器轴偏斜 (%) diag([100 100 100])（默认）| 标量 | 3 元素行向量 | 3×3 矩阵
+  group: ''
+- name: Velocity random walk (m/s2/√Hz)
+  summary: 速度随机游走 (m/s2/√Hz) [0 0 0]（默认）| 实数标量 | 实数 3 元素行向量
+  group: ''
+- name: Bias Instability (m/s2)
+  summary: 偏置偏移的不稳定性 (m/s2) [0 0 0]（默认）| 实数标量 | 实数 3 元素行向量
+  group: ''
+- name: Bias instability filter numerator coefficients
+  summary: 偏置不稳定性滤波器分子系数 fractalcoef.Numerator（默认）| 实值行向量
+  group: ''
+- name: Bias instability filter denominator coefficients
+  summary: 偏置不稳定性滤波器分母系数 fractalcoef.Denominator（默认）| 实值行向量
+  group: ''
+- name: Acceleration random walk ((m/s2)(√Hz))
+  summary: 加速度随机游走 ((m/s2)(√Hz)) [0 0 0]（默认）| 实数标量 | 实数 3 元素行向量
+  group: ''
+- name: Noise Type
+  summary: 随机噪声类型 double-sided（默认）| single-sided
+  group: ''
+- name: Bias from temperature ((m/s2)/℃)
+  summary: 温度引起的传感器偏置 ((m/s2)/℃) [0 0 0]（默认）| 实数标量 | 实数 3 元素行向量
+  group: ''
+- name: Temperature scale factor (%/℃)
+  summary: 温度引起的比例因子误差 (%/℃) [0 0 0]（默认）| 范围 [0,100] 内的实标量 | 范围 [0,100] 内的实数 3 元素行向量
+  group: ''
+- name: Maximum readings (rad/s)
+  summary: 最大传感器读数 (rad/s) inf（默认）| 实正标量
+  group: ''
+- name: Resolution ((rad/s)/LSB)
+  summary: 传感器测量分辨率 ((rad/s)/LSB) 0（默认）| 实非负标量
+  group: ''
+- name: Constant offset bias (rad/s)
+  summary: 恒定传感器偏移偏置 (rad/s) [0 0 0]（默认）| 实标量 | 实数 3 元素行向量
+  group: ''
+- name: Axis skew (%)
+  summary: 传感器轴偏斜 (%) diag([100 100 100])（默认）| 标量 | 3 元素行向量 | 3×3 矩阵
+  group: ''
+- name: Bias from acceleration ((rad/s)/(m/s2)
+  summary: 线性加速度引起的传感器偏置 (rad/s)/(m/s2) [0 0 0]（默认）| 实标量 | 实数 3 元素行向量
+  group: ''
+- name: Angle random walk ((rad/s)/(√Hz))
+  summary: 角度随机游走 ((rad/s)/(√Hz)) [0 0 0]（默认）| 实标量 | 实数 3 元素行向量
+  group: ''
+- name: Bias Instability (rad/s)
+  summary: 偏置偏移的不稳定性 (rad/s) [0 0 0]（默认）| 实标量 | 实数 3 元素行向量
+  group: ''
+- name: Bias instability filter numerator coefficients
+  summary: 偏置不稳定性滤波器分子系数 fractalcoef.Numerator（默认）| 实值行向量
+  group: ''
+- name: 偏置不稳定性滤波器分母系数
+  summary: 偏置不稳定性滤波器分母系数 fractalcoef.Denominator（默认）| 实值行向量
+  group: ''
+- name: 噪声类型
+  summary: 随机噪声的类型 double-sided（默认）| single-sided
+  group: ''
+- name: 速率随机游走 ((rad/s)(√Hz))
+  summary: 传感器的积分白噪声 ((rad/s)(√Hz)) [0 0 0]（默认）| 实标量 | 实 3 元素行向量
+  group: ''
+- name: 温度引起的偏置 ((rad/s)/℃)
+  summary: 温度引起的传感器偏置 ((rad/s)/℃) [0 0 0]（默认）| 实标量 | 实 3 元素行向量
+  group: ''
+- name: 温度比例因子 (%/℃)
+  summary: 温度引起的比例因子误差 (%/℃) [0 0 0]（默认）| 范围 [0,100] 内的实标量 | 范围 [0,100] 内的实 3 元素行向量
+  group: ''
+- name: 最大读数 (μT)
+  summary: 最大传感器读数 (μT) inf（默认）| 实正标量
+  group: ''
+- name: 分辨率 ((μT)/LSB)
+  summary: 传感器测量分辨率 ((μT)/LSB) 0（默认）| 实非负标量
+  group: ''
+- name: 恒定偏移偏置 (μT)
+  summary: 恒定传感器偏移偏置 (μT) [0 0 0]（默认）| 实标量 | 实 3 元素行向量
+  group: ''
+- name: 轴偏斜 (%)
+  summary: 传感器轴偏斜 (%) diag([100 100 100])（默认）| 标量 | 3 元素行向量 | 3×3 矩阵
+  group: ''
+- name: White noise PSD (μT/√Hz)
+  summary: 传感器噪声的功率谱密度 (μT/√Hz) [0 0 0]（默认）| 实数标量 | 实数三元行向量
+  group: ''
+- name: Bias Instability (μT)
+  summary: 偏置偏移的不稳定性 (μT) [0 0 0]（默认）| 实数标量 | 实数三元行向量
+  group: ''
+- name: Bias instability filter numerator coefficients
+  summary: 偏置不稳定性滤波器分子系数 fractalcoef.Numerator（默认）| 实值行向量
+  group: ''
+- name: Bias instability filter denominator coefficients
+  summary: 偏置不稳定性滤波器分母系数 fractalcoef.Denominator（默认）| 实值行向量
+  group: ''
+- name: Noise Type
+  summary: 随机噪声的类型 double-sided（默认）| single-sided
+  group: ''
+- name: Random walk ((μT)\*√Hz)
+  summary: 传感器的积分白噪声 ((μT)\*√Hz) [0 0 0]（默认）| 实数标量 | 实数三元行向量
+  group: ''
+- name: Bias from temperature (μT/℃)
+  summary: 温度引起的传感器偏置 (μT/℃) [0 0 0]（默认）| 实数标量 | 实数三元行向量
+  group: ''
+- name: Temperature scale factor (%/℃)
+  summary: 温度引起的比例因子误差 (%/℃) [0 0 0]（默认）| 范围 [0,100] 内的实数标量 | 范围 [0,100] 内的实数三元行向量
+  group: ''
+```
 
 #### 参数
 
@@ -421,7 +593,6 @@ vmeasure=1100M vtrue=1100[m11m12m13m21m22m23m31m32m33]vtrue
 温度引起的比例因子误差，单位为 %/℃，指定为取值范围为 0 到 100 的实数标量或实数三元行向量。任何标量输入都会转换为实数三元行向量，其中每个元素均具有该输入标量值。
 
 **数据类型：** `single` | `double`
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Sensor Models Navigation Toolbox / Multisensor Positioning / Sensor Models

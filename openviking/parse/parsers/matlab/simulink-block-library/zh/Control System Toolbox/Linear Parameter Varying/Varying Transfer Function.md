@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Varying Transfer Function
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 传递函数输入 标量
+  direction: input
+- name: b0, b1, ...
+  summary: 分子系数 标量
+  direction: input
+- name: a1, a2, ...
+  summary: 分母系数 标量
+  direction: input
+- name: y
+  summary: 传递函数输出 标量
+  direction: output
+```
 
 ### 输入
 
@@ -38,8 +53,16 @@ chinese_source: worker-translation
 ### **y** — 传递函数输出 标量
 
 传递函数输出信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Transfer function order
+  summary: 极点数量 N 1（默认）| 正整数
+  group: ''
+- name: Enable feedthrough
+  summary: 为直通项添加输入端口 on（默认）| off
+  group: ''
+```
 
 ### **Transfer function order** — 极点数量 N 1（默认）| 正整数
 
@@ -50,7 +73,6 @@ chinese_source: worker-translation
 *自 R2023a 起*
 
 为具有直接直通的传递函数启用 **b0** 输入端口。对于零直通传递函数，清除此复选框。对于零直通模型，禁用该端口比向端口馈入零常数在数值上更可靠。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

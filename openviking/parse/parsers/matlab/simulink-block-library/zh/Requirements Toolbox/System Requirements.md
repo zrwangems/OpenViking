@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # System Requirements
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **模块标题**
 :   模型中系统需求列表的标题。默认标题为 `System Requirements`。您可以输入自定义标题，例如 `Engine Requirements`。
-
 ## 所属库
 
 Requirements Toolbox

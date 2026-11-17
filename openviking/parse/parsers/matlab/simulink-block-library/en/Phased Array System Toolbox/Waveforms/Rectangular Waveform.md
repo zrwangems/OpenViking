@@ -14,6 +14,29 @@ language: en
 # Rectangular Waveform
 
 ## Ports
+```yaml
+ports:
+- name: PRFIdx
+  summary: PRF Index positive integer
+  direction: input
+  data_types: double
+- name: FreqOffset
+  summary: Frequency offset scalar
+  direction: input
+  data_types: double
+- name: Y
+  summary: Pulse waveform complex-valued vector
+  direction: output
+  data_types: double
+- name: PRF
+  summary: Pulse repetition frequency positive scalar
+  direction: output
+  data_types: double
+- name: Coeff
+  summary: Matched filter coefficients vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -80,8 +103,115 @@ Output**.
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: Sample rate of the output waveform 1e6 (default) | positive scalar
+  group: ''
+  block_parameter: SampleRate
+  type: double
+  values: positive scalar
+  default: 1e6
+- name: Method to specify pulse duration
+  summary: Pulse duration as time or duty cycle Pulse width (default) | Duty cycle
+  group: ''
+  block_parameter: DurationSpecification
+  type: string
+  values: string
+  default: '''Pulse width'''
+- name: Pulse width (s)
+  summary: Time duration of pulse 50e-6 (default) | positive scalar
+  group: ''
+  block_parameter: PulseWidth
+  type: double
+  values: string
+  default: 50e-6
+- name: Duty cycle
+  summary: Waveform duty cycle 0.5 (default) | scalar in the range *[0,1]*
+  group: ''
+  block_parameter: DutyCycle
+  type: double
+  values: positive scalar
+  default: 1e6
+- name: Pulse repetition frequency (Hz)
+  summary: Pulse repetition frequency 1e4 (default) | positive scalar
+  group: ''
+  block_parameter: PRF
+  type: double
+  values: positive scalar
+  default: 1e6
+- name: Enable PRF selection input
+  summary: Select predefined PRF off (default) | on
+  group: ''
+  block_parameter: PRFSelectionInputPort
+  type: logical
+  values: positive scalar
+  default: 'off'
+- name: Source of Frequency Offset
+  summary: Source of frequency offset Property (default) | Input port
+  group: ''
+  block_parameter: FrequencyOffsetSource
+  type: enum
+  values: Property, Input Port
+  default: Property
+- name: Frequency Offset (Hz)
+  summary: Frequency offset 0 (default) | scalar
+  group: ''
+  block_parameter: FrequencyOffset
+  type: double
+  values: scalar
+  default: '0'
+- name: Source of simulation sample time
+  summary: Source of simulation sample time Derive from waveform parameters (default) | Inherit from Simulink engine
+  group: ''
+  block_parameter: SimulationTimeSource
+  type: enum
+  values: Derive from waveform parameters, Inherit from Simulink engine
+  default: Derive from waveform parameters
+- name: Output signal format
+  summary: Format of the output signal Pulses (default) | Samples
+  group: ''
+  block_parameter: OutputFormat
+  type: enum
+  values: Pulses Samples
+  default: Pulses
+- name: Number of samples in output
+  summary: Number of samples in output 100 (default) | positive integer
+  group: ''
+  block_parameter: NumSamples
+  type: double
+  values: positive scalar
+  default: '100'
+- name: Number of pulses in output
+  summary: Number of pulses in output 1 (default) | positive integer
+  group: ''
+  block_parameter: NumPulses
+  type: double
+  values: positive scalar
+  default: '1'
+- name: Enable PRF Output
+  summary: Enable output of PRF off (default) | on
+  group: ''
+  block_parameter: PRFOutputPort
+  type: enum
+  values: off on
+  default: 'off'
+- name: Enable Matched Filter Coefficients Output
+  summary: Enable output of matched filter coefficients off (default) | on
+  group: ''
+  block_parameter: CoefficientOutputPort
+  type: enum
+  values: off on
+  default: 'off'
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Sample rate (Hz)** — Sample rate of the output waveform `1e6` (default) | positive scalar
 
@@ -436,7 +566,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Cartridge Valve Insert (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口 等温液体
+  direction: conserving
+- name: X
+  summary: 压力端口 等温液体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,72 @@ chinese_source: worker-translation
 ### **X** — 压力端口 等温液体
 
 先导压力端口。通过端口 **X** 无质量流量。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve seat specification
+  summary: 阀座几何形状 Conical（默认）| Custom
+  group: ''
+- name: Poppet diameter
+  summary: 阀控制构件直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Seat cone angle
+  summary: 阀座开口角度 120 deg（默认）| 正标量
+  group: ''
+- name: Orifice parameterization
+  summary: 节流孔面积计算方法 Linear - area vs. control member position（默认）| Tabulated data - Area vs. control member position | Tabulated
+    data - Volumetric flow rate vs. control member position and pressure drop
+  group: ''
+- name: Poppet stroke
+  summary: 阀芯最大位移 5e-3 m（默认）| 正标量
+  group: ''
+- name: Maximum orifice area
+  summary: 最大节流孔横截面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Poppet position vector
+  summary: 开口位置向量 [0, .002, .004, .007, .017] m（默认）| 1×*n* 向量
+  group: ''
+- name: Orifice area vector
+  summary: 开口面积向量 [1e-09, 2.0352e-07, 4.0736e-05, .00011438, .00034356] m^2（默认）| 1×*n* 向量
+  group: ''
+- name: Poppet position vector, s
+  summary: 控制构件位置向量 [0, .002, .004, .007, .017] m（默认）| 1×*n* 向量
+  group: ''
+- name: Pressure drop vector, dp
+  summary: 压差值向量 [.3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: ''
+- name: Volumetric flow rate table, q(s,dp)
+  summary: 体积流量值数组 [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7, .9, 1.06; 1.96, 2.5, 3; 6, 7.7, 9.13] .* 1e-3 m^3/s（默认）|
+    *M*×*N* 数组
+  group: ''
+- name: Port A poppet area
+  summary: 端口 A 横截面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Port A poppet to port X pilot area ratio
+  summary: 入口与先导端口面积比 0.5（默认）| 正标量
+  group: ''
+- name: Spring preload force
+  summary: 阀芯中立位置时的弹簧力 25 N（默认）| 正标量
+  group: ''
+- name: Spring stiffness
+  summary: 刚度常数 15e3 N/m（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Valve opening time constant
+  summary: 阀门时间常数 0.1 s（默认）| 正标量
+  group: ''
+```
 
 ### **Valve seat specification** — 阀座几何形状 `Conical`（默认）| `Custom`
 
@@ -186,7 +262,6 @@ chinese_source: worker-translation
 ### **Valve opening time constant** — 阀门时间常数 `0.1 s`（默认）| 正标量
 
 表征阀门从一个位置开启或关闭到另一个位置时，流体达到稳态条件所需时间的常数。该参数影响所建模的开启动态特性。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

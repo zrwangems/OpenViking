@@ -14,6 +14,21 @@ language: en
 # Interpolate Matrix(x)
 
 ## Ports
+```yaml
+ports:
+- name: x_k
+  summary: Interpolation index *i* scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: x_f
+  summary: Interpolation fraction scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: Matrix(x)
+  summary: Interpolated matrix matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -36,8 +51,17 @@ Interpolation fraction *λ*, specified as a scalar.
 Interpolated matrix, specified as a matrix.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Matrix to interpolate
+  summary: Matrix matrix (default)
+  group: ''
+  block_parameter: matrix
+  type: character vector
+  values: matrix
+  default: '''matrix'''
+```
 
 ### **Matrix to interpolate** — Matrix `matrix` (default)
 
@@ -52,7 +76,6 @@ the interpolating values of *x*.
 | **Type**: character vector |
 | **Values**: matrix |
 | **Default**: `'matrix'` |
-
 ## Libraries
 
 Aerospace Blockset / GNC / Control

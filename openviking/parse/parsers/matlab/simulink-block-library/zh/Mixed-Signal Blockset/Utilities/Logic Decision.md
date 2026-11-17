@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Logic Decision
 
 ## 端口
+```yaml
+ports:
+- name: wave
+  summary: 输入信号 固定步长采样 | 可变步长采样 | 标量
+  direction: input
+  data_types: double | Boolean
+- name: vth
+  summary: 判决阈值 标量
+  direction: input
+  data_types: floating point
+- name: events
+  summary: 输出信号 0 | 1
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -36,8 +51,22 @@ chinese_source: worker-translation
 输出信号，返回为 `0` 或 `1`。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 采样时间来源 Inherited（默认）| Fixed
+  group: ''
+- name: Sample time value
+  summary: 采样时间的实际值 20e-12（默认）| 非零实数标量
+  group: ''
+- name: Minimum delay value
+  summary: 最小传播延迟值 1e-15（默认）| 正标量
+  group: ''
+- name: Buffer size
+  summary: 要缓冲的阈值穿越次数 1（默认）| 正整数标量
+  group: ''
+```
 
 ### **Sample time** — 采样时间来源 `Inherited`（默认）| `Fixed`
 
@@ -81,7 +110,6 @@ chinese_source: worker-translation
 
 - 使用 `get_param(gcb,'BufferSizeIn')` 查看当前的 **Buffer size**。
 - 使用 `set_param(gcb,'BufferSizeIn',value)` 将 **Buffer size** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

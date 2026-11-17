@@ -14,6 +14,12 @@ language: en
 # DDS Send
 
 ## Ports
+```yaml
+ports:
+- name: DDS Msg
+  summary: DDS message simulink message of Bus type
+  direction: input
+```
 
 ### Input
 
@@ -22,8 +28,30 @@ language: en
 Input the DDS message to be sent to a target.
 
 **Example:** `message`
-
 ## Parameters
+```yaml
+parameters:
+- name: Data Dictionary
+  summary: Associate a data dictionary string | char
+  group: ''
+  block_parameter: datadict
+- name: Topic
+  summary: Select a topic name string scalar | char vector
+  group: ''
+  block_parameter: topic
+- name: Writer XML Path
+  summary: Data writer XML path string (default)
+  group: ''
+  block_parameter: xmlPath
+- name: Writer QoS
+  summary: Quality of service string (default)
+  group: ''
+  block_parameter: qos
+- name: Sample time
+  summary: Sample time -1 (default) | numeric
+  group: ''
+  block_parameter: sampletime
+```
 
 ### **Data Dictionary** — Associate a data dictionary string | char
 
@@ -76,7 +104,6 @@ Enter the base sample time or a multiple of the base sample time.
 |  |
 | --- |
 | **Block Parameter:** `sampletime` |
-
 ## Libraries
 
 Simulink Real-Time / DDS

@@ -14,6 +14,16 @@ language: en
 # If
 
 ## Ports
+```yaml
+ports:
+- name: Logical operands
+  summary: Values for evaluating logical expressions scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Action
+  summary: Action signal for an If Action Subsystem block scalar
+  direction: output
+```
 
 ### Input
 
@@ -34,8 +44,52 @@ limitation. See Support for Fixed-Point Data Type in Select Subsystem Execution.
 Outputs from the `if`, `else`, and
 `elseif` ports are action signals to If Action
 Subsystem blocks.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Specify number of input ports 1 (default) | integer
+  group: ''
+  block_parameter: NumInputs
+  type: character vector
+  values: '''1'' | integer in quotes'
+  default: '''1'''
+- name: Show else condition
+  summary: Control display of else port on (default) | off
+  group: ''
+  block_parameter: ShowElse
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: Control zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Provide if-else statements in generated code
+  summary: Option to include only if-else statements in code generated from If block off (default) | on
+  group: ''
+  block_parameter: EnsureIfElseCode
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: if
+  summary: Logical expression u1 > 0 (default) | logical expression
+  group: ''
+  block_parameter: IfExpression
+  type: character vector
+  values: '''u1 > 0'' | logical expression in quotes'
+  default: '''u1 > 0'''
+- name: elseif
+  summary: Logical expression empty (default) | list of logical expressions
+  group: ''
+  block_parameter: ElseIfExpressions
+  type: character vector
+  values: ''''' | list of logical expressions separated by commas placed in quotes'
+  default: ''''''
+```
 
 ### **Number of inputs** — Specify number of input ports `1` (default) | integer
 
@@ -233,7 +287,6 @@ list of logical expressions
 | **Type**: character vector |
 | **Values**: `''` | list of logical expressions separated by commas placed in quotes |
 | **Default**: `''` |
-
 ## Libraries
 
 Simulink / Ports & Subsystems

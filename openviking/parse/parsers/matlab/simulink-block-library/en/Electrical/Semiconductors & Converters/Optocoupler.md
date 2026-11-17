@@ -14,6 +14,24 @@ language: en
 # Optocoupler
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Transistor collector terminal electrical
+  direction: conserving
+- name: E
+  summary: Transistor emitter terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +59,98 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to `Show
 thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Current transfer ratio
+  summary: Current transfer ratio 0.2 (default)
+  group: Main
+- name: Diode parameterization
+  summary: Model parameterization Use I-V curve data points (default) | Use parameters IS and N
+  group: Main
+- name: Currents [I1 I2]
+  summary: Vector of current values at two points [.001, .015] A (default)
+  group: Main
+- name: Voltages [V1 V2]
+  summary: Vector of voltage values at two points [.9, 1.05] V (default)
+  group: Main
+- name: Ohmic resistance, RS
+  summary: Ohmic resistance 0.1 Ohm (default)
+  group: Main
+- name: Saturation current, IS
+  summary: Saturation current 1e-10 A (default)
+  group: Main
+- name: Measurement temperature
+  summary: Measurement temperature 25 °C (default)
+  group: Main
+- name: Emission coefficient, N
+  summary: Diode emission coefficient 2 (default)
+  group: Main
+- name: Capacitance
+  summary: Modeling diode junction capacitance Fixed or zero junction capacitance (default) | Use C-V curve data points |
+    Use parameters CJ0, VJ, M & FC
+  group: Junction Capacitance
+- name: Junction capacitance
+  summary: Diode junction capacitance 5 pF (default)
+  group: Junction Capacitance
+- name: Zero-bias junction capacitance, CJ0
+  summary: Zero-bias junction capacitance 5 pF (default)
+  group: Junction Capacitance
+- name: Junction potential, VJ
+  summary: Junction potential 1 V (default)
+  group: Junction Capacitance
+- name: Grading coefficient, M
+  summary: Grading coefficient 0.5 (default)
+  group: Junction Capacitance
+- name: Reverse bias voltages [VR1 VR2 VR3]
+  summary: Vector of reverse bias voltages [.1, 10, 100] V (default)
+  group: Junction Capacitance
+- name: Corresponding capacitances [C1 C2 C3]
+  summary: Vector of corresponding capacitances [3.5, 1, .4] pF (default)
+  group: Junction Capacitance
+- name: Capacitance coefficient, FC
+  summary: Fitting capacitance coefficient 0.5 (default)
+  group: Junction Capacitance
+- name: Parameterization
+  summary: Temperature dependence parameterization None — Simulate at parameter measurement temperature (default) | Use an
+    I-V data point at second measurement temperature T2 | Specify saturation current at second measurement temperature T2
+    | Specify the energy gap EG
+  group: Temperature Dependence
+- name: Current I1 at second measurement temperature
+  summary: Current I1 at second measurement temperature 0.029 A (default)
+  group: Temperature Dependence
+- name: Voltage V1 at second measurement temperature
+  summary: Voltage V1 at second measurement temperature 1.05 V (default)
+  group: Temperature Dependence
+- name: Saturation current, IS, at second measurement temperature
+  summary: Saturation current, IS, at second measurement temperature 1.8e-8 A (default)
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: Second measurement temperature 125 °C (default)
+  group: Temperature Dependence
+- name: Energy gap parameterization
+  summary: Energy gap parameterization Use nominal value for silicon (EG=1.11eV) (default) | Use nominal value for 4H-SiC
+    silicon carbide (EG=3.23eV) | Use nominal value for 6H-SiC silicon carbide (EG=3.00eV) | Use nominal value for germanium
+    (EG=0.67eV) | Use nominal value for gallium arsenide (EG=1.43eV) | Use nominal value for selenium (EG=1.74eV) | Use nominal
+    value for Schottky barrier diodes (EG=0.69eV) | Specify a custom value
+  group: Temperature Dependence
+- name: Energy gap, EG
+  summary: Energy gap 1.11 eV (default)
+  group: Temperature Dependence
+- name: Saturation current temperature exponent parameterization
+  summary: Saturation current temperature exponent parameterization Use nominal value for pn-junction diode (XTI=3) (default)
+    | Use nominal value for Schottky barrier diode (XTI=2) | Specify a custom value
+  group: Temperature Dependence
+- name: Saturation current temperature exponent, XTI
+  summary: Saturation current temperature exponent 3 (default)
+  group: Temperature Dependence
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 °C (default)
+  group: Temperature Dependence
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -325,7 +433,6 @@ parameterization** parameter.
 
 Specify the value for the temperature *T*s, at
 which the device is to be simulated.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

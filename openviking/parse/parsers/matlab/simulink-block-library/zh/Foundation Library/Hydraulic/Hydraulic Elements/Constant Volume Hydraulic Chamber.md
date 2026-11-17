@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Constant Volume Hydraulic Chamber
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块有一个与腔体入口关联的液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Chamber specification**
 :   该参数可以有两个值之一：`By volume` 或
@@ -74,7 +79,6 @@ chinese_source: worker-translation
 
 所有其他模块参数均可修改。可修改模块参数的实际集合取决于模型进入受限模式时的 **Tube cross
 section type** 和 **Chamber wall type** 参数值。
-
 ## 所属库
 
 R2025b 中未记录。

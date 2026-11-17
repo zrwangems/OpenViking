@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Global Max Pooling 3D Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据，4 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 下采样后的输出数据，4 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,68 @@ chinese_source: worker-translation
 按此顺序分别对应三个空间维度和一个通道维度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 层
+  summary: 对应的层对象 layerObject（默认值） | globalMaxPooling3dLayer 对象
+  group: 主要
+  block_parameter: Layer
+  type: 工作区变量
+  values: globalMaxPooling3dLayer 对象
+  default: '''layerObject'''
+- name: 数据格式
+  summary: 输入数据的格式 SSSC（默认值）
+  group: 主要
+  block_parameter: DataFormat
+  type: 字符向量
+  values: '''SSSC'''
+  default: '''SSSC'''
+- name: 输入大小
+  summary: 输入数据的大小 [10 10 10 64]（默认）| 正标量数组
+  group: 主要
+  block_parameter: InputSize
+  type: array
+  values: '[10 10 10 64] | ''<array>'''
+  default: '''[10 10 10 64]'''
+- name: 输出最小值
+  summary: 用于范围检查的最小输出值 []（默认）| scalar
+  group: 数据类型
+  block_parameter: OutMin
+  values: '''[]''（默认） | 用引号括起来的标量'
+- name: 输出最大值
+  summary: 用于范围检查的最大输出值 []（默认值）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  values: '''[]''（默认值） | 用引号括起来的标量'
+- name: 输出数据类型
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认值）| Inherit: Inherit via back propagation | Inherit: Same as first
+    input | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认值） | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first
+    input'' | <data type expression>'
+- name: 锁定输出数据类型设置以防止定点工具更改
+  summary: 防止定点工具覆盖输出数据类型的选项 off（默认值）| on
+  group: 数据类型
+  block_parameter: LockScale
+  values: '''off''（默认值） | ''on'''
+- name: 整数舍入模式
+  summary: 定点运算的舍入模式 Floor（默认值）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor''（默认值） | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: 整数溢出时饱和
+  summary: 溢出处理方式 off（默认） | on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认） | ''on'''
+- name: 采样时间
+  summary: 用于指定采样时间的选项 -1（默认值）| scalar
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1''（默认值） | scalar'
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条上，在**仿真**选项卡的
@@ -233,7 +304,6 @@ Simulink 会选择一种数据类型，在考虑嵌入式目标硬件属性的�
 | **参数：** `SampleTime` |
 | **数据类型：** `char` |
 | **值：** `'-1'`（默认值） | scalar |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Pooling Layers

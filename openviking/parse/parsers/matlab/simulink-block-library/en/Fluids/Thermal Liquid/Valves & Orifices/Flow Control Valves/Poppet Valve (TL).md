@@ -14,6 +14,18 @@ language: en
 # Poppet Valve (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: S
+  summary: Poppet displacement, m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -30,8 +42,40 @@ Thermal liquid conserving port associated with valve inlet B.
 
 Physical signal port associated with the displacement of the poppet,
 in m.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve seat specification
+  summary: Geometry of valve seat Sharp-edged (default) | Conical
+  group: ''
+- name: Cone angle
+  summary: Angle of seat opening 120 deg (default) | positive scalar
+  group: ''
+- name: Ball diameter
+  summary: Poppet diameter 0.01 m (default) | positive scalar
+  group: ''
+- name: Orifice diameter
+  summary: Seat orifice diameter 7e-3 m (default) | positive scalar
+  group: ''
+- name: Poppet position when in the seat
+  summary: Poppet offset 0 m (default) | nonnegative scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Gap area when in fully closed position 0.01 (default) | scalar in the range [0,1]
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area at conserving ports 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve seat specification** — Geometry of valve seat `Sharp-edged` (default) | `Conical`
 
@@ -90,7 +134,6 @@ flows.
 ### **Critical Reynolds number** — Upper Reynolds number limit for laminar flow `150` (default) | positive scalar
 
 Upper Reynolds number limit for laminar flow through the orifice.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Flow Control Valves

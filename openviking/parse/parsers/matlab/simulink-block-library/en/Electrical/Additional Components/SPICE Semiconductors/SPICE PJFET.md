@@ -14,6 +14,18 @@ language: en
 # SPICE PJFET
 
 ## Ports
+```yaml
+ports:
+- name: gx
+  summary: Gate terminal electrical
+  direction: conserving
+- name: dx
+  summary: Drain terminal electrical
+  direction: conserving
+- name: sx
+  summary: Source terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,82 @@ terminal.
 
 Electrical conserving port associated with the transistor source
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Device area, AREA
+  summary: Device area 1.0 m^2 (default) | positive scalar
+  group: Main
+- name: Number of parallel devices, SCALE
+  summary: Number of parallel devices 1 (default) | positive integer
+  group: Main
+- name: Threshold voltage, VTO
+  summary: Threshold voltage -2 V (default) | scalar
+  group: Main
+- name: Transconductance, BETA
+  summary: Channel modulation 1e-4 A/m^2/V^2 (default) | nonnegative scalar
+  group: Main
+- name: Channel modulation, LAMBDA
+  summary: Channel modulation 0 1/V (default) | scalar
+  group: Main
+- name: Saturation current, IS
+  summary: Saturation current 1e-14 A/m^2 (default) | nonnegative scalar
+  group: Main
+- name: Drain resistance, RD
+  summary: Series resistance 0.01 m^2*Ohm (default) | nonnegative scalar
+  group: Main
+- name: Source resistance, RS
+  summary: Series resistance 0.0001 m^2*Ohm (default) | nonnegative scalar
+  group: Main
+- name: Emission coefficient, N
+  summary: Emission coefficient 1 (default) | positive scalar
+  group: Main
+- name: Model junction capacitance
+  summary: Junction capacitance model No (default) | Yes
+  group: Junction Capacitance
+- name: Zero-bias GS capacitance, CGS
+  summary: Zero-bias junction capacitance 0 F/m^2 (default) | nonnegative scalar
+  group: Junction Capacitance
+- name: Zero-bias GD capacitance, CGD
+  summary: Zero-bias junction capacitance 0 F/m^2 (default) | nonnegative scalar
+  group: Junction Capacitance
+- name: Junction potential, VJ
+  summary: Junction potential 1 V (default) | *VJ* > 0.01 | scalar
+  group: Junction Capacitance
+- name: Grading coefficient, M
+  summary: Grading coefficient 0.5 (default) | 0 < *M* < 0.9 | scalar
+  group: Junction Capacitance
+- name: Capacitance coefficient, FC
+  summary: Capacitance coefficient 0.5 (default) | 0 ≤ *FC* < 0.95 | scalar
+  group: Junction Capacitance
+- name: Specify initial condition
+  summary: Initial condition model No (default) | Yes
+  group: Junction Capacitance
+- name: Initial condition voltage, ICVDS
+  summary: Initial voltage 0 V (default) | scalar
+  group: Junction Capacitance
+- name: Initial condition voltage, ICVGS
+  summary: Initial voltage 0 V (default) | scalar
+  group: Junction Capacitance
+- name: Model temperature dependence using
+  summary: Temperature dependence model Device temperature (default) | Fixed temperature
+  group: Temperature
+- name: Saturation current temperature exponent, XTI
+  summary: Saturation current temperature exponent 0 (default) | positive scalar
+  group: Temperature
+- name: Activation energy, EG
+  summary: Activation energy 1.11 eV (default) | *EG* *≥* 0.1 | scalar
+  group: Temperature
+- name: Fixed circuit temperature, TFIXED
+  summary: Fixed circuit temperature 300.15 K (default) | positive scalar
+  group: Temperature
+- name: Parameter extraction temperature, TMEAS
+  summary: Parameter extraction temperature 300.15 K (default) | positive scalar
+  group: Temperature
+- name: Offset local circuit temperature, TOFFSET
+  summary: Local circuit temperature offset 0 K (default) | scalar
+  group: Temperature
+```
 
 ### Main
 
@@ -262,7 +348,6 @@ Amount by which the transistor temperature differs from the circuit temperature.
 This parameter is only visible when you select `Device
 temperature` for the **Model temperature
 dependence using** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

@@ -14,6 +14,14 @@ language: en
 # UDP Receive
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: UDP packet vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Output
 
@@ -22,8 +30,38 @@ language: en
 UDP packet, specified as a data vector, which is received from an IP network port.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Local IP port
+  summary: Number of IP port 25000 (default) | scalar in the range [1, 65535]
+  group: ''
+- name: Remote IP address ('0.0.0.0' to accept all)
+  summary: IP address from which to accept packets '0.0.0.0' (default) | IP address
+  group: ''
+- name: Receive buffer size (bytes)
+  summary: Size of buffer that receives UDP packets 8192 (default) | scalar in the range [1, 67108864]
+  group: ''
+- name: Maximum length for Message
+  summary: Maximum length of output data 255 (default) | scalar
+  group: ''
+- name: Data type for Message
+  summary: Data type of message uint8 (default) | single | double | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64
+    | boolean | fixed point | enumerated | bus
+  group: ''
+- name: Message is complex
+  summary: Message data complexity off (default) | on
+  group: ''
+- name: Output variable-size signal
+  summary: Message output that varies in length on (default) | off
+  group: ''
+- name: Blocking time (seconds)
+  summary: Number of seconds to wait for UDP packet inf (default) | scalar
+  group: ''
+- name: Sample time (seconds)
+  summary: Frequency of calls to block 0.01 (default) | scalar
+  group: ''
+```
 
 ### **Local IP port** — Number of IP port 25000 (default) | scalar in the range [1, 65535]
 
@@ -136,7 +174,6 @@ UDP Receive block, in seconds. Enter a value
 greater than zero. In real-time operation, setting
 this parameter to a smaller value reduces the
 likelihood of dropped UDP messages.
-
 ## Libraries
 
 Embedded Coder / Embedded Targets / Host Communication

@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # 2-D Lookup Table
 
 ## 端口
+```yaml
+ports:
+- name: u1
+  summary: 第一维（行）输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: u2
+  summary: 第二维（列）输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: T
+  summary: 定义输出值表 维度与 Number of table dimensions 及表中每个维度的断点长度匹配的值矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: bp1
+  summary: 显式断点值 1×n 或 n×1 的单调递增向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: bp2
+  summary: 显式断点值 1×n 或 n×1 的单调递增向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: Port_1
+  summary: 通过查找或估计表值计算的输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -101,8 +132,289 @@ chinese_source: worker-translation
 | 与断点向量中的索引值不匹配，且超出范围 | 使用您选择的 **Extrapolation method** 外推输出值 |
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of table dimensions
+  summary: 查找表维度数 2（默认）| 1 | 3 | 4 | ... | 30
+  group: 表和断点
+  block_parameter: NumberOfTableDimensions
+  type: character vector
+  values: '''1'' | ''2'' | ''3'' | ''4'' | ... | 30'
+  default: '''2'''
+- name: Data specification
+  summary: 表和断点指定方法 Table and breakpoints（默认）| Lookup table object
+  group: 表和断点
+  block_parameter: DataSpecification
+  type: character vector
+  values: '''Table and breakpoints'' | ''Lookup table object'''
+  default: '''Table and breakpoints'''
+- name: Name
+  summary: 查找表对象的名称 []（默认）| Simulink.LookupTable 对象
+  group: 表和断点
+  block_parameter: LookupTableObject
+  type: character vector
+  values: name of a Simulink.LookupTable object
+  default: ''''''
+- name: Breakpoints specification
+  summary: 断点指定方法 Explicit values（默认）| Even spacing
+  group: 表和断点
+  block_parameter: BreakpointsSpecification
+  type: character vector
+  values: '''Explicit values'' | ''Even spacing'''
+  default: '''Explicit values'''
+- name: Support tunable size
+  summary: 启用可调表大小的选项 off（默认）| on
+  group: 表和断点
+  block_parameter: SupportTunableSize
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Source
+  summary: 表和断点数据的来源 Dialog（默认）| Input port
+  group: 表和断点
+  block_parameter: TableSource | BreakpointsForDimension1Source | BreakpointsForDimension2Source | BreakpointsForDimension3Source
+  type: character vector
+  values: Dialog | Input port
+  default: '''Dialog'''
+- name: Tunable size
+  summary: 每个数组的最大元素数 -1（默认）| 实数整数标量
+  group: 表和断点
+  block_parameter: N1 to N31
+  type: character vector
+  values: -1 | real integer scalar
+  default: '-1'
+- name: Table data
+  summary: 定义输出值表 [4 5 6; 16 19 20; 10 18 23]（默认）| 值矩阵
+  group: 表和断点
+  block_parameter: Table
+  type: character vector
+  values: matrix of table values
+  default: '''[4 5 6; 16 19 20; 10 18 23]'''
+- name: Breakpoints
+  summary: 显式断点值，或断点的第一个点和间距 [1:3]（默认）| 1×n 或 n×1 的单调递增向量
+  group: 表和断点
+  block_parameter: BreakpointsForDimension1
+  type: character vector
+  values: 1-by-n or n-by-1 vector of monotonically increasing values
+  default: '''[1:3]'''
+- name: First point
+  summary: 等间距断点数据中的第一个点 1（默认）| 标量
+  group: 表和断点
+  block_parameter: BreakpointsForDimension1FirstPoint | BreakpointsForDimension2FirstPoint
+  type: character vector
+  values: real-valued, finite, scalar
+  default: '''1'''
+- name: Spacing
+  summary: 等间距断点之间的间距 1（默认）| 标量
+  group: 表和断点
+  block_parameter: BreakpointsForDimension1Spacing | BreakpointsForDimension2Spacing
+  type: character vector
+  values: positive, real-valued, finite, scalar
+  default: '''1'''
+- name: Edit table and breakpoints
+  summary: 启动 Lookup Table Editor 对话框 按钮
+  group: 表和断点
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Linear point-slope（默认）| Flat | Nearest | Linear Lagrange | Cubic spline | Akima spline
+  group: 算法
+  block_parameter: InterpMethod
+  type: character vector
+  values: '''Linear point-slope'' | ''Flat'' | ''Nearest'' | ''Linear Lagrange'' | ''Cubic spline'' | ''Akima spline'''
+  default: '''Linear point-slope'''
+- name: Extrapolation method
+  summary: 处理落在断点向量范围之外的输入值的方法 Linear（默认）| Clip | Cubic spline | Akima spline
+  group: 算法
+  block_parameter: ExtrapMethod
+  type: character vector
+  values: '''Linear'' | ''Clip'' | ''Cubic spline'' | ''Akima spline'''
+  default: '''Linear'''
+- name: Index search method
+  summary: 计算表索引的方法 Binary search（默认）| Linear search | Evenly spaced points
+  group: 算法
+  block_parameter: IndexSearchMethod
+  type: character vector
+  values: '''Binary search'' | ''Evenly spaced points'' | ''Linear search'''
+  default: '''Binary search'''
+- name: Apply more accurate and efficient rounding when possible
+  summary: 使用高效的 round to nearest 实现更准确的定点表查找 off（默认）| on
+  group: 算法
+  block_parameter: ApplyAccurateEfficientRounding
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Begin index search using previous index result
+  summary: 使用上一时间步的索引开始搜索 off（默认）| on
+  group: 算法
+  block_parameter: BeginIndexSearchUsingPreviousIndexResult
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Assume input is within range
+  summary: 检查超出范围输入值的选项 off（默认）| on
+  group: 算法
+  block_parameter: RemoveProtectionInput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Diagnostic for out-of-range input
+  summary: 输入超出范围时的模块操作 None（默认）| Warning | Error
+  group: 算法
+  block_parameter: DiagnosticForOutOfRangeInput
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Apply full precision fixed-point algorithm when possible
+  summary: 更准确的定点表查找 off（默认）| on
+  group: 算法
+  block_parameter: ApplyFullPrecisionForLinearInterpolation
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use last table value for inputs at or above last breakpoint
+  summary: 为位于或高于最后一个断点的输入计算输出的方法 off（默认）| on
+  group: 算法
+  block_parameter: UseLastTableValue
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| scalar | vector
+  group: 算法
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Use one input port for all input data
+  summary: 仅使用一个输入端口 off（默认）| on
+  group: 算法
+  block_parameter: UseOneInputPortForAllInputData
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Table data
+  summary: '表数据的数据类型 Inherit: Same as output（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: TableDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit from ''Table data'''' | ''Inherit: Same as output'' | ''double'' | ''single'' | ''half'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)''|''<data type expression>'''
+  default: '''Inherit: Same as output'''
+- name: Table data Minimum
+  summary: 表数据的最小值 [] | scalar
+  group: 数据类型
+  block_parameter: TableMin
+  type: 字符向量
+  values: 标量
+  default: '''[]'''
+- name: Table data Maximum
+  summary: 表数据的最大值 [] | scalar
+  group: 数据类型
+  block_parameter: TableMax
+  type: 字符向量
+  values: 标量
+  default: '''[]'''
+- name: Breakpoints
+  summary: '断点数据类型 Inherit: Same as corresponding input（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data type expression>'
+  group: 数据类型
+  block_parameter: BreakpointsForDimension1DataTypeStr | BreakpointsForDimension2DataTypeStr| ... | BreakpointsForDimension30DataTypeStr
+  type: 字符向量
+  values: '''Inherit: Same as corresponding input'' | ''Inherit: Inherit from ''Breakpoint data'''' | ''double'' | ''single''
+    | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)''
+    | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''|''<data type expression>'''
+  default: '''Inherit: Same as corresponding input'''
+- name: Breakpoints Minimum
+  summary: 断点数据可以具有的最小值 [] | scalar
+  group: 数据类型
+  block_parameter: BreakpointsForDimension1Min | BreakpointsForDimension2Min | ... | BreakpointsForDimension30Min
+  type: 字符向量
+  values: 标量
+  default: '''[]'''
+- name: Breakpoints Maximum
+  summary: 断点数据可以具有的最大值 [] | scalar
+  group: 数据类型
+  block_parameter: BreakpointsForDimension1Max | BreakpointsForDimension2Max | ... | BreakpointsForDimension30Max
+  type: 字符向量
+  values: 标量
+  default: '''[]'''
+- name: Fraction
+  summary: '小数数据类型 Inherit: Inherit via internal rule（默认）| double | single | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: FractionDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | ''fixdt(1,16,0)''|''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Intermediate results
+  summary: '中间结果数据类型 Inherit: Same as output（默认）| Inherit: Inherit via internal rule | double | single | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: IntermediateResultsDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as output'' | ''double'' | ''single'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''|''<data
+    type expression>'''
+  default: '''Inherit: Same as output'''
+- name: Output
+  summary: '输出数据类型 Inherit: Same as input（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via back propagation'' | ''Inherit: Inherit from table data'' | ''Inherit: Same as first input''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''|''<data type expression'''
+  default: '''Inherit: Same as first input'''
+- name: Output Minimum
+  summary: 用于范围检查的最小值 [] | scalar
+  group: 数据类型
+  block_parameter: OutMin
+  type: 字符向量
+  values: 标量
+  default: '''[]'''
+- name: Output Maximum
+  summary: 用于范围检查的最大值 [] | scalar
+  group: 数据类型
+  block_parameter: OutMax
+  type: 字符向量
+  values: 标量
+  default: '''[]'''
+- name: Internal rule priority
+  summary: 中间计算的内部规则 Speed（默认）| Precision
+  group: 数据类型
+  block_parameter: InternalRulePriority
+  type: 字符向量
+  values: '''Speed'' | ''Precision'''
+  default: '''Speed'''
+- name: Require all inputs to have the same data type
+  summary: 要求所有输入具有相同的数据类型 on（默认）| off
+  group: 数据类型
+  block_parameter: InputSameDT
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Simplest（默认）| Ceiling | Convergent | Floor | Nearest | Round | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Simplest'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 表和断点
 
@@ -1093,7 +1405,6 @@ results** 或 **Fraction** 参数设置为
 | **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Lookup Tables HDL Coder / Lookup Tables

@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Pixel Stream Aligner
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量 | 矩阵
+  direction: input
+  data_types: fixed point | uint | int | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: refPixel
+  summary: 参考像素流 标量 | 向量 | 矩阵
+  direction: input
+  data_types: fixed point | uint | int | Boolean | double | single
+- name: refCtrl
+  summary: 参考像素流控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 对齐的像素流 标量 | 向量 | 矩阵
+  direction: output
+  data_types: fixed point | uint | int | Boolean | double | single
+- name: refPixel
+  summary: 参考像素流 标量 | 向量 | 矩阵
+  direction: output
+  data_types: fixed point | uint | int | Boolean | double | single
+- name: refCtrl
+  summary: 参考控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -87,8 +118,16 @@ chinese_source: worker-translation
 该模块将输入 **refCtrl** 信号以较小的延迟通过该模块。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Line buffer size
+  summary: 行内存缓冲区大小 2048（默认）| 正整数
+  group: ''
+- name: Maximum number of lines
+  summary: 缓冲深度，用于容纳输入流之间的时序偏移 10（默认）| 正整数
+  group: ''
+```
 
 ### **Line buffer size** — 行内存缓冲区大小 `2048`（默认）| 正整数
 
@@ -101,7 +140,6 @@ chinese_source: worker-translation
 该模块实现一个 2*m* 像素的循环缓冲区，其中 *m* 为 **Maximum number of lines** + log2(**Line buffer size**)，以及一个具有 **Maximum number of lines** 个位置的线地址缓冲区。循环存储器存储较早的输入行，直到参考控制信号到达。线地址缓冲区存储每行起始的地址。当参考控制信号到达时，该模块使用存储的地址读取并发送延迟的行。此参数必须容纳两个输入流之间的时序差异，包括该模块读取第一行之前的内部延迟。在仿真期间，当发生溢出时该模块会发出警告。为避免溢出情况，请增大 **Maximum number of lines**。流之间的延迟不能超过一整帧。
 
 当输入 **pixel** 为向量或矩阵时，该模块为每个元素复制循环缓冲区。对于多像素流式传输，该模块调整线缓冲区大小以存储 1/**Number of pixels** 个像素。例如，对于 4×3 输入流，每个缓冲区存储一行中 ¼ 的像素，缓冲区为 12×2*m*-2* 个位置。线地址缓冲区保持相同大小。
-
 ## 所属库
 
 Vision HDL Toolbox / Utilities

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Smith Predictor Controller
 
 ## 端口
+```yaml
+ports:
+- name: r
+  summary: 被控对象参考值 标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 积分器复位 标量
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: 被控对象输出 标量
+  direction: input
+  data_types: single | double
+- name: u
+  summary: 控制器输出 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,37 @@ chinese_source: worker-translation
 控制系统输出信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain
+  summary: '*Kp* 1（默认）| 正标量'
+  group: ''
+- name: Integral gain
+  summary: '*Ki* 1（默认）| 正标量'
+  group: ''
+- name: Integrator initial condition
+  summary: 积分器初始值 0（默认）| 标量
+  group: ''
+- name: Control action upper limit
+  summary: '*umax* 5（默认）| 大于 Control action lower limit 参数值的标量'
+  group: ''
+- name: Control action lower limit
+  summary: '*umin* 0（默认）| 标量'
+  group: ''
+- name: Model discrete transfer function numerator
+  summary: 传递函数分子 1（默认）| 标量或向量
+  group: ''
+- name: Model discrete transfer function denominator
+  summary: 传递函数分母 [1 0.5]（默认）| 向量
+  group: ''
+- name: System dead time (samples)
+  summary: 死区时间采样数 2（默认）| 0 或正整数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 采样间隔 -1（默认）| 默认值或正数
+  group: ''
+```
 
 ### **Proportional gain** — *Kp* `1`（默认）| 正标量
 
@@ -80,7 +128,6 @@ PI 控制器的积分增益 *Ki*。
 ### **Sample time (-1 for inherited)** — 采样间隔 `-1`（默认）| 默认值或正数
 
 采样之间的时间间隔。如果该模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果该模块位于连续变步长模型中，请显式指定采样时间。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

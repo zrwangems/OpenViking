@@ -14,6 +14,24 @@ language: en
 # Translational Mechanical Converter (G)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Displacement of port R relative to port C, m physical signal
+  direction: input
+- name: A
+  summary: Converter inlet gas
+  direction: conserving
+- name: H
+  summary: Temperature inside converter thermal
+  direction: conserving
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -49,8 +67,36 @@ moving interface.
 
 Mechanical translational conserving port associated with the
 converter casing.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: Select the converter orientation Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: ''
+- name: Interface displacement
+  summary: Select method to determine relative port positions Calculate from velocity of port R relative to port C (default)
+    | Provide input signal from Multibody joint
+  group: ''
+- name: Initial interface displacement
+  summary: Translational offset of port R relative to port C at the start of simulation 0 m (default)
+  group: ''
+- name: Interface cross-sectional area
+  summary: The area on which the gas exerts pressure to generate the translational force 0.01 m^2 (default)
+  group: ''
+- name: Dead volume
+  summary: Volume of gas when the interface displacement is 0 1e-5 m^3 (default)
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at the converter inlet 0.01 m^2 (default)
+  group: ''
+- name: Environment pressure specification
+  summary: Select a specification method for the environment pressure Atmospheric pressure (default) | Specified pressure
+  group: ''
+- name: Environment pressure
+  summary: Pressure outside the converter 0.101325 MPa (default)
+  group: ''
+```
 
 ### **Mechanical orientation** — Select the converter orientation `Pressure at A causes positive displacement of R relative to C` (default) | `Pressure at A causes negative displacement of R relative to C`
 
@@ -139,7 +185,6 @@ expands into vacuum.
 
 Enabled when the **Environment pressure specification** parameter
 is set to `Specified pressure`.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Elements

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CREPE
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 预处理后的音频输入向量 | 4-D 数组
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 网络激活矩阵
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -34,8 +45,16 @@ CREPE 网络输出的网络激活，以 *N*×360 矩阵形式返回，其中 *N*
 CREPE Postprocess 模块将这些网络激活转换为以 Hz 为单位的音高估计。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Model capacity
+  summary: 训练神经网络的大小 Full（默认）| Large | Medium | Small | Tiny
+  group: ''
+- name: Mini-batch size
+  summary: 小批量的大小 128（默认）| 正整数
+  group: ''
+```
 
 ### **Model capacity** — 训练神经网络的大小 `Full`（默认）| `Large` | `Medium` | `Small` | `Tiny`
 
@@ -44,7 +63,6 @@ CREPE Postprocess 模块将这些网络激活转换为以 Hz 为单位的音高�
 ### **Mini-batch size** — 小批量的大小 `128`（默认）| 正整数
 
 用于预测的小批量大小，指定为正整数。较大的小批量大小需要更多内存，但可以带来更快的预测速度。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

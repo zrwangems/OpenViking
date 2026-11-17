@@ -14,6 +14,21 @@ language: en
 # Cylinder Friction (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: C
+  summary: Mechanical port velocity mechanical translational
+  direction: conserving
+- name: R
+  summary: Mechanical port velocity mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,34 @@ housing motion.
 
 Mechanical translational conserving port associated with the cylinder
 rod motion.
-
 ## Parameters
+```yaml
+parameters:
+- name: Same fluid on both sides
+  summary: Option to model same fluid on both sides of block on (default) | off
+  group: ''
+- name: Breakaway to Coulomb friction force ratio
+  summary: Ratio of breakaway force to Coulomb friction force 1.2 (default) | positive scalar
+  group: ''
+- name: Breakaway friction velocity
+  summary: Threshold for motion against friction force 0.1 m/s (default) | positive scalar
+  group: ''
+- name: Preload force
+  summary: Initial force in cylinder due to seal assembly 20 N (default) | scalar
+  group: ''
+- name: Coulomb friction force coefficient
+  summary: Coulomb friction force coefficient 1e-6 N/Pa (default) | positive scalar
+  group: ''
+- name: Viscous friction coefficient
+  summary: Viscous friction coefficient 100 N*s/m (default) | positive scalar
+  group: ''
+- name: Environment pressure specification
+  summary: Pressure reference source Atmospheric pressure (default) | Specified pressure
+  group: ''
+- name: Environment pressure
+  summary: User-defined pressure reference 0.101325 MPa (default) | positive scalar
+  group: ''
+```
 
 ### **Same fluid on both sides** — Option to model same fluid on both sides of block `on` (default) | `off`
 
@@ -83,7 +124,6 @@ calculation.
 To enable this parameter, set **Environment pressure
 specification** to `Specified
 pressure`.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Actuators / Auxiliary Components

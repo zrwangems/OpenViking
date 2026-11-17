@@ -14,6 +14,33 @@ language: en
 # Multi-Object Tracker
 
 ## Ports
+```yaml
+ports:
+- name: Detections
+  summary: Detection list Simulink bus containing MATLAB® structure
+  direction: input
+- name: Prediction Time
+  summary: Track update time real scalar
+  direction: input
+- name: Cost Matrix
+  summary: Cost matrix real-valued *N*t-by-*N*d matrix
+  direction: input
+- name: Detectable Track IDs
+  summary: Detectable track IDs real-valued *M*-by-1 vector | real-valued *M*-by-2 matrix
+  direction: input
+- name: State Parameters
+  summary: Track state parameters Simulink bus containing MATLAB structure
+  direction: input
+- name: Confirmed Tracks
+  summary: Confirmed tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Tentative Tracks
+  summary: Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: All Tracks
+  summary: All tracks Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -259,8 +286,64 @@ For more details about these fields, see `objectTrack`.
 
 To enable this port, select **Enable all tracks
 output**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: Unique tracker identifier 0 (default) | nonnegative integer
+  group: Tracker Management
+- name: Filter initialization function name
+  summary: Kalman filter initialization function initcvkf (default) | function name
+  group: Tracker Management
+- name: Threshold for assigning detections to tracks
+  summary: Detection assignment threshold 30.0 (default) | positive real scalar
+  group: Tracker Management
+- name: M and N for the M-out-of-N confirmation
+  summary: Confirmation parameters for track creation [2,3] (default) | two-element vector of positive integers
+  group: Tracker Management
+- name: P and R for the P-out-of-R deletion
+  summary: Track deletion threshold [5 5] (default) | real-valued 1-by-2 vector of positive integers
+  group: Tracker Management
+- name: Maximum number of tracks
+  summary: Maximum number of tracks 200 (default) | positive integer
+  group: Tracker Management
+- name: Maximum number of sensors
+  summary: Maximum number of sensors 20 (default) | positive integer
+  group: Tracker Management
+- name: Out-of-sequence measurements handling
+  summary: Out-of-sequence measurements handling Terminate (default) | neglect
+  group: Tracker Management
+- name: Track state parameters
+  summary: Parameters of track state reference frame structure | structure array
+  group: Tracker Management
+- name: Update track state parameters with time
+  summary: Update track state parameters with time off (default) | on
+  group: Tracker Management
+- name: Prediction time source
+  summary: Source for prediction time Input port (default) | Auto
+  group: Inputs and Outputs
+- name: Enable cost matrix input
+  summary: Enable input port for cost matrix off (default) | on
+  group: Inputs and Outputs
+- name: Enable detectable track IDs input
+  summary: Enable detectable track IDs input off (default) | on
+  group: Inputs and Outputs
+- name: Source of output bus name
+  summary: Source of output bus name Auto (default) | Property
+  group: Inputs and Outputs
+- name: Specify an output bus name
+  summary: Name of output bus no default
+  group: Inputs and Outputs
+- name: Enable tentative tracks output
+  summary: Enable output port for tentative tracks off (default) | on
+  group: Inputs and Outputs
+- name: Enable all tracks output
+  summary: Enable output port for all tracks off (default) | on
+  group: Inputs and Outputs
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Inputs and Outputs
+```
 
 ### Tracker Management
 
@@ -439,7 +522,6 @@ the **All Tracks** output port.
   code. The first time you run a simulation, Simulink generates C/C++ code for the block. The C code is reused for subsequent
   simulations as long as the model does not change. This option requires additional startup
   time.
-
 ## Libraries
 
 Automated Driving Toolbox

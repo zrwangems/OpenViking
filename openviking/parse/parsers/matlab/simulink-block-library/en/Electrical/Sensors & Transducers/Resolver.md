@@ -14,6 +14,33 @@ language: en
 # Resolver
 
 ## Ports
+```yaml
+ports:
+- name: p1
+  summary: Primary winding positive terminal electrical
+  direction: conserving
+- name: p2
+  summary: Primary winding negative terminal electrical
+  direction: conserving
+- name: R
+  summary: Resolver rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Resolver case mechanical rotational
+  direction: conserving
+- name: x1
+  summary: Secondary winding *x* positive terminal electrical
+  direction: conserving
+- name: x2
+  summary: Secondary winding *x* negative terminal electrical
+  direction: conserving
+- name: y1
+  summary: Secondary winding *y* positive terminal electrical
+  direction: conserving
+- name: y2
+  summary: Secondary winding *y* negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -55,8 +82,44 @@ secondary winding *y*.
 
 Electrical conserving port associated with the negative terminal of
 secondary winding *y*.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Resolver parameterization Specify transformation ratio and omit dynamics (default) | Specify transformation ratio
+    and measured impedances | Specify equation parameters directly
+  group: ''
+- name: Transformation ratio
+  summary: Peak output to input voltage ratio 0.5 (default) | positive number
+  group: ''
+- name: Rotor resistance
+  summary: Primary resistance 70 Ohm (default) | positive number
+  group: ''
+- name: Stator resistance
+  summary: Secondary resistance 180 Ohm (default) | positive number
+  group: ''
+- name: Rotor reactance
+  summary: Primary reactance 100 Ohm (default) | positive number
+  group: ''
+- name: Stator reactance
+  summary: Secondary reactance 300 Ohm (default) | positive number
+  group: ''
+- name: Frequency at which reactances and transformation ratio are specified
+  summary: Sinusoidal source frequency 10 kHz (default) | positive number
+  group: ''
+- name: Rotor inductance
+  summary: Primary reactance 0.0016 H (default) | positive number
+  group: ''
+- name: Stator inductance
+  summary: Secondary reactance 0.0048 H (default) | positive number
+  group: ''
+- name: Peak coefficient of coupling
+  summary: Maximum coupling coefficient 0.35 (default) | number between zero and one, exclusive
+  group: ''
+- name: Number of pole pairs
+  summary: Rotor pole pairs 1 (default) | positive number
+  group: ''
+```
 
 ### **Parameterization** — Resolver parameterization `Specify transformation ratio and omit dynamics` (default) | `Specify transformation ratio and measured impedances` | `Specify equation parameters directly`
 
@@ -204,7 +267,6 @@ directly`.
 ### **Number of pole pairs** — Rotor pole pairs `1` (default) | positive number
 
 Number of pole pairs on the rotor.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

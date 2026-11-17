@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Enable File Log
 
 ## 端口
+```yaml
+ports:
+- name: E
+  summary: 启用或禁用文件记录 布尔
+  direction: input
+```
 
 ### 输入
 
 ### **E** — 启用或禁用文件记录 布尔
 
 提供对 File Log 模块操作的启用或禁用控制。当模型中的布尔信号触发使能输入时，目标计算机上会创建日志。这些日志的保留取决于 `FileLogMaxRuns` 设置。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Real-Time / Logging

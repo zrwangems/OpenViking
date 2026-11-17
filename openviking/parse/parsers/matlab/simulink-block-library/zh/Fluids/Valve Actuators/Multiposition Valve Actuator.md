@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Multiposition Valve Actuator
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入信号 物理信号
+  direction: input
+- name: B
+  summary: 输入信号 物理信号
+  direction: input
+- name: S
+  summary: 执行器位置，m 物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -41,8 +53,31 @@ chinese_source: worker-translation
 执行器位置，以 m 为单位，指定为物理信号。
 
 如果将 Multiposition Valve Actuator 模块与 Gas Library 中的阀门配合使用，气体模块会将执行器信号单位从 m 转换为单位 1。
-
 ## 参数
+```yaml
+parameters:
+- name: Actuator positions
+  summary: 阀门位置信号数量 2（默认）| 3
+  group: ''
+- name: Push-pin stroke
+  summary: 推杆最大伸出量 0.01 m（默认）| 正标量
+  group: ''
+- name: Switching-on time
+  summary: 信号过渡时间段 0.1 s（默认）| 正标量
+  group: ''
+- name: Switching-off time
+  summary: 信号过渡时间段 0.1 s（默认）| 正标量
+  group: ''
+- name: Nominal signal value
+  summary: 执行器完全伸出的标称信号 24（默认）| 正标量
+  group: ''
+- name: Initial position
+  summary: 执行器起始位置 Retracted（默认）| Extended | Neutral
+  group: ''
+- name: Actuator travel direction
+  summary: 执行器运动方向 Positive（默认）| Negative
+  group: ''
+```
 
 ### **Actuator positions** — 阀门位置信号数量 `2`（默认）| `3`
 
@@ -77,7 +112,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Actuator positions** 设置为 `2`。
-
 ## 所属库
 
 Simscape / Fluids / Valve Actuators Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces / Valve Actuators

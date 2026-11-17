@@ -14,6 +14,13 @@ language: en
 # String Constant
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output string scalar
+  direction: output
+  data_types: string
+```
 
 ### Output
 
@@ -22,8 +29,27 @@ language: en
 Output string, specified as a scalar.
 
 **Data Types:** `string`
-
 ## Parameters
+```yaml
+parameters:
+- name: String
+  summary: Input string "Hello!" (default) | scalar
+  group: ''
+  block_parameter: String
+  type: character vector
+  values: '''"Hello!"'' | scalar'
+  default: '''"Hello!"'''
+- name: Output data type
+  summary: Output data type string (default) | <data type expression>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''string'' | *<data type expression>*'
+  default: '''string'''
+- name: Mode
+  summary: Category of data string (default) | scalar
+  group: ''
+```
 
 ### **String** — Input string "Hello!" (default) | scalar
 
@@ -70,7 +96,6 @@ Use the `stringtype` function, for example,
 
 Clicking the **Show data type assistant** button
 enables this parameter.
-
 ## Libraries
 
 Simulink / String

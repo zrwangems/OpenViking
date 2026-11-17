@@ -14,10 +14,22 @@ language: en
 # Observer Reference
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Observer Model name
+  summary: Filename of Observer model '' (default) | character vector
+  group: ''
+  block_parameter: ObserverModelName
+  type: character vector
+  values: ''''' | ''<observer model name>'''
+  default: ''''''
+```
 
 ### **Observer Model name** — Filename of Observer model `''` (default) | character vector
 
@@ -35,7 +47,6 @@ specify from the dialog box.
 | **Type**: character vector |
 | **Value**: `''` | `'<observer model name>'` |
 | **Default**: `''` |
-
 ## Libraries
 
 Simulink Test

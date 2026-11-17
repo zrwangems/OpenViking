@@ -14,6 +14,9 @@ language: en
 # Distance Constraint
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block provides two frame ports:
 
@@ -26,8 +29,10 @@ output ports:
 - f — Distance constraint force vector
 - fm — Signed magnitude of the distance constraint
   force
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Distance**
 :   Constraint distance between the base and follower frame origins.
@@ -72,7 +77,6 @@ you specify between the base and follower port frames.
 **Signed Force Magnitude**
 :   Compute and output the magnitude of the distance constraint
     force, including its sign.
-
 ## Libraries
 
 Not documented in R2025b.

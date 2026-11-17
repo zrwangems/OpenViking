@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Weld Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基坐标系 frame
+  direction: input
+- name: F
+  summary: 从坐标系 frame
+  direction: input
+- name: mode
+  summary: 关节模式控制 physical signal
+  direction: input
+- name: fc
+  summary: 约束力，N physical signal
+  direction: output
+- name: tc
+  summary: 约束力矩，N\*m physical signal
+  direction: output
+- name: ft
+  summary: 总力，N physical signal
+  direction: output
+- name: tt
+  summary: 总力矩，N\*m physical signal
+  direction: output
+```
 
 ### 坐标系
 
@@ -84,8 +108,19 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在**复合力/力矩传感**下，选择**总力矩**。
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 关节模式 Normal（默认）| Disengaged | Provided by Input
+  group: 模式配置
+- name: Direction
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: 用于解析测量的坐标系 Base（默认）| Follower
+  group: Composite Force/Torque Sensing
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink Toolstrip 的**仿真**选项卡上，在**准备**库中，选择 **Property Inspector**。
 
@@ -120,7 +155,6 @@ chinese_source: worker-translation
 - `Follower` — 模块在从动坐标系的坐标中解析测量值。
 
 此参数仅影响 **Composite Force/Torque Sensing** 部分下的输出信号。
-
 ## 所属库
 
 Simscape / Multibody / Joints

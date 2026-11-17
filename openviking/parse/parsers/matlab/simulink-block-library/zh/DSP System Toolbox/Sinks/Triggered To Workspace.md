@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Triggered To Workspace
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 要记录到工作区的数据 标量 | 向量 | 矩阵 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string
+    | fixed point | enumerated | bus | image
+- name: Trigger
+  summary: 触发信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -34,8 +46,28 @@ chinese_source: worker-translation
 指定控制模块执行的触发信号，可以是标量、向量或矩阵。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Trigger type
+  summary: 触发类型 Rising edge（默认）| Falling edge | Either edge
+  group: ''
+- name: Variable name
+  summary: 工作区变量名称 yout（默认）| 字符向量 | 字符串
+  group: ''
+- name: Decimation
+  summary: 抽取因子 1（默认）| 标量
+  group: ''
+- name: Maximum number of rows
+  summary: 要保存的最大行数 1000（默认）| 正整数
+  group: ''
+- name: Save 2-D signals as
+  summary: 记录数据中二维样本值的排列方式 2-D array (concatenate along first dimension)（默认）| 3-D array (concatenate along third dimension)
+  group: ''
+- name: Log fixed-point data as a fi object
+  summary: 将定点数据记录为 fi 对象 off（默认）| on
+  group: ''
+```
 
 ### **Trigger type** — 触发类型 `Rising edge`（默认）| `Falling edge` | `Either edge`
 
@@ -81,7 +113,6 @@ chinese_source: worker-translation
 指定如何记录定点输入数据。默认情况下，Triggered To Workspace 模块将定点输入数据记录为 `double`。当您选择此参数时，Triggered To Workspace 模块将定点输入记录为 Fixed-Point Designer `fi` (Fixed-Point Designer) 对象。
 
 使用 Triggered To Workspace 模块记录定点数据需要 Fixed-Point Designer 许可证。
-
 ## 所属库
 
 DSP System Toolbox / Sinks

@@ -14,6 +14,24 @@ language: en
 # Pressure Sensor (IL)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Pressure difference measurement, Pa physical signal
+  direction: output
+- name: Pa
+  summary: Absolute pressure measurement, in Pascal (Pa) physical signal
+  direction: output
+- name: Pg
+  summary: Gauge pressure measurement, Pa physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Sensor outlet isothermal liquid
+  direction: conserving
+```
 
 ### Output
 
@@ -57,8 +75,14 @@ Isothermal liquid conserving port.
 
 This port is visible if you set the **Pressure Measurements**
 parameter to `Pressure difference`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pressure Measurements
+  summary: Select whether the sensor measures pressure difference, absolute pressure, or gauge pressure Pressure difference
+    (default) | Absolute pressure | Gauge pressure
+  group: ''
+```
 
 ### **Pressure Measurements** — Select whether the sensor measures pressure difference, absolute pressure, or gauge pressure `Pressure difference` (default) | `Absolute pressure` | `Gauge pressure`
 
@@ -76,7 +100,6 @@ Select the type of measurements:
 - `Gauge pressure` — The sensors measures the
   gauge pressure at port **A**. Selecting this option exposes the
   physical signal output port **Pg**.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Sensors

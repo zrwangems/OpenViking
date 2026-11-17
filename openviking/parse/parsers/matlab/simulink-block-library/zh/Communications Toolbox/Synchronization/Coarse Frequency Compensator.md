@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Coarse Frequency Compensator
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 列向量
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: 补偿后的输出信号 复数列向量
+  direction: output
+  data_types: single | double
+- name: FreqEst
+  summary: 频率偏移估计值 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -43,8 +58,31 @@ chinese_source: worker-translation
 要添加此端口，请选择 **Estimated frequency offset output port**。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation type of input signal
+  summary: 调制类型 QAM（默认）| 8PSK | BPSK | OQPSK | PAM | QPSK
+  group: ''
+- name: Estimation algorithm
+  summary: 用于估计频率偏移的算法 FFT-based（默认）| Correlation-based
+  group: ''
+- name: Frequency resolution (Hz)
+  summary: 频率分辨率 100（默认）| 正标量
+  group: ''
+- name: Samples per symbol
+  summary: 每个符号的采样数 4（默认）| 大于或等于 4 的偶数整数
+  group: ''
+- name: Maximum frequency offset (Hz)
+  summary: 最大可测量频率偏移 5e3（默认）| 正标量
+  group: ''
+- name: Estimated frequency offset output port
+  summary: 添加估计频率偏移输出端口的选项 on（默认）| off
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -100,7 +138,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短了启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments Correction Communications Toolbox / Synchronization

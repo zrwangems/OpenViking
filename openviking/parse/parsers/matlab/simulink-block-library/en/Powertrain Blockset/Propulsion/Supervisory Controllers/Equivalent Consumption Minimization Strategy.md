@@ -14,6 +14,48 @@ language: en
 # Equivalent Consumption Minimization Strategy
 
 ## Ports
+```yaml
+ports:
+- name: WhlTrqCmd
+  summary: Wheel torque command scalar
+  direction: input
+  data_types: double
+- name: BattSoc
+  summary: Battery state of charge scalar
+  direction: input
+  data_types: double
+- name: BattVolt
+  summary: Battery voltage scalar
+  direction: input
+  data_types: double
+- name: Gear
+  summary: Transmission gear scalar
+  direction: input
+  data_types: double
+- name: MtrSpd
+  summary: Motor speed scalar
+  direction: input
+  data_types: double
+- name: VehSpd
+  summary: Vehicle speed scalar
+  direction: input
+  data_types: double
+- name: TransTemp
+  summary: Transmission temperature scalar
+  direction: input
+  data_types: double
+- name: Info
+  summary: Block data bus
+  direction: output
+- name: EngTrqCmd
+  summary: Engine torque command scalar
+  direction: output
+  data_types: double
+- name: MtrTrqCmd
+  summary: Motor torque command scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -83,8 +125,224 @@ Engine torque command, in N·m.
 Motor torque command, in N·m.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Motor location
+  summary: Location of motor P0 (default) | P1 | P2 | P3 | P4
+  group: ''
+- name: ECMS method
+  summary: ECMS method Non-adaptive (default) | Adaptive
+  group: ''
+  block_parameter: EcmsMethod
+  values: Non-adaptive (default) | Adaptive
+- name: Differential gear ratio, N_diff
+  summary: Differential gear ratio 3.32 (default) | scalar
+  group: ''
+  block_parameter: N_diff
+  values: 3.32 (default) | scalar
+- name: Differential efficiency factor, eta_diff
+  summary: Differential efficiency factor 0.98 (default) | scalar
+  group: ''
+  block_parameter: eta_diff
+  values: 0.98 (default) | scalar
+- name: Loaded wheel radius, Re
+  summary: Loaded wheel radius 0.327 (default) | scalar
+  group: ''
+  block_parameter: Re
+  values: 0.327 (default) | scalar
+- name: Transmission efficiency factors
+  summary: Transmission efficiency factors Gear, input torque, input speed, and temperature (default) | Gear only
+  group: ''
+  block_parameter: TransEffFactors
+  values: Gear, input torque, input speed, and temperature (default) | Gear only
+- name: Transmission gear number vector, G_trans
+  summary: Transmission gear number vector [0 1 2 3 4 5 6] (default) | vector
+  group: ''
+  block_parameter: G_trans
+  values: '[0 1 2 3 4 5 6] (default) | vector'
+- name: Transmission gear ratio vector, N_trans
+  summary: Transmission gear ratio vector [1 4.212 2.637 1.8 1.386 1 0.772] (default) | vector
+  group: ''
+  block_parameter: N_trans
+  values: '[1 4.212 2.637 1.8 1.386 1 0.772] (default) | vector'
+- name: Transmission efficiency vector, eta_trans
+  summary: Transmission efficiency vector [1 1 1 1 1 1 1] (default) | vector
+  group: ''
+  block_parameter: eta_trans
+  values: '[1 1 1 1 1 1 1] (default) | vector'
+- name: Transmission efficiency torque breakpoints, Trq_trans_bpts
+  summary: Transmission efficiency torque breakpoints [25 50 75 100 150 200 250] (default) | vector
+  group: ''
+  block_parameter: Trq_trans_bpts
+  values: '[25 50 75 100 150 200 250] (default) | vector'
+- name: Transmission efficiency speed breakpoints, omega_trans_bpts
+  summary: Transmission efficiency speed breakpoints [500.383141080919 749.619781962827 1002.676141478941 1250.957852702297
+    1499.239563925654 1747.521275149011 1995.802986372368 2501.915705404595 2998.479127851308 4001.155269330249 5003.83141080919]
+    (default) | vector
+  group: ''
+  block_parameter: omega_trans_bpts
+  values: vector
+- name: Transmission efficiency temperature breakpoints, Temp_trans_bpts
+  summary: Transmission efficiency temperature breakpoints [313 358] (default) | vector
+  group: ''
+  block_parameter: Temp_trans_bpts
+  values: '[313 358] (default) | vector'
+- name: Transmission efficiency vector, eta_trans_tbl
+  summary: Transmission efficiency vector array
+  group: ''
+  block_parameter: eta_trans_tbl
+  values: array
+- name: Speed breakpoints, f_tbrake_n_bpt
+  summary: Speed breakpoints [0 750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857
+    2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default)
+    | vector
+  group: ''
+  block_parameter: f_tbrake_n_bpt
+  values: vector
+- name: Commanded torque breakpoints, f_tbrake_t_bpt
+  summary: Commanded torque breakpoints [0 15 26.4285714285714 37.8571428571429 49.2857142857143 60.7142857142857 72.1428571428571
+    83.5714285714286 95 106.428571428571 117.857142857143 129.285714285714 140.714285714286 152.142857142857 163.571428571429
+    175] (default) | vector
+  group: ''
+  block_parameter: f_tbrake_t_bpt
+  values: vector
+- name: Brake torque map, f_tbrake
+  summary: Brake torque map array
+  group: ''
+  block_parameter: f_tbrake
+  values: array
+- name: Minimum engine torque command table, f_tbrake_min
+  summary: Minimum engine torque command table vector
+  group: ''
+  block_parameter: f_tbrake_min
+  values: vector
+- name: Fuel flow map, f_fuel
+  summary: Fuel flow map array
+  group: ''
+  block_parameter: f_fuel
+  values: array
+- name: Minimum engine torque command, HEVEngTrq_min
+  summary: Minimum engine torque command 16.18610438796213 (default) | scalar
+  group: ''
+  block_parameter: HEVEngTrq_min
+  values: 16.18610438796213 (default) | scalar
+- name: Fuel lower heating value, LHV
+  summary: Fuel lower heating value 46000000 (default) | scalar
+  group: ''
+  block_parameter: LHV
+  values: 46000000 (default) | scalar
+- name: Engine idle speed, N_idle
+  summary: Engine idle speed 750 (default) | scalar
+  group: ''
+  block_parameter: N_idle
+  values: 750 (default) | scalar
+- name: Battery state-of-charge breakpoints, SOC_bpt
+  summary: Battery state-of-charge breakpoints [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1] (default) | vector
+  group: ''
+  block_parameter: SOC_bpt
+  values: '[0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1] (default) | vector'
+- name: Battery charge limit table, ChrgLmt
+  summary: Battery charge limit table [1 1 1 1 1 1 1 0.9 0.7 0.5 0] (default) | vector
+  group: ''
+  block_parameter: ChrgLmt
+  values: '[1 1 1 1 1 1 1 0.9 0.7 0.5 0] (default) | vector'
+- name: Battery discharge limit table, DischrgLmt
+  summary: Battery discharge limit table [0 0.5 0.7 0.9 1 1 1 1 1 1 1] (default) | vector
+  group: ''
+  block_parameter: DischrgLmt
+  values: '[0 0.5 0.7 0.9 1 1 1 1 1 1 1] (default) | vector'
+- name: Maximum battery current, BattCurrMax
+  summary: Maximum battery current 150 (default) | scalar
+  group: ''
+  block_parameter: BattCurrMax
+  values: 150 (default) | scalar
+- name: DC/DC converter efficiency, eta_dcdc
+  summary: DC/DC converter efficiency 1 (default) | scalar
+  group: ''
+  block_parameter: eta_dcdc
+  values: 1 (default) | scalar
+- name: Maximum battery charge power, BattChrgPwrMax
+  summary: Maximum battery charge power -30000 (default) | scalar
+  group: ''
+  block_parameter: BattChrgPwrMax
+  values: -30000 (default) | scalar
+- name: Maximum battery discharge power, BattDischrgPwrMax
+  summary: Maximum battery discharge power 46000 (default) | scalar
+  group: ''
+  block_parameter: BattDischrgPwrMax
+  values: 46000 (default) | scalar
+- name: Motor maximum torque table, f_tmtr_max
+  summary: Motor maximum torque table vector
+  group: ''
+  block_parameter: f_tmtr_max
+  values: vector
+- name: Motor speed breakpoints, f_mtr_w_bpt
+  summary: Motor speed breakpoints vector
+  group: ''
+  block_parameter: f_mtr_w_bpt
+  values: vector
+- name: Motor torque breakpoints, f_mtr_t_bpt
+  summary: Motor torque breakpoints vector
+  group: ''
+  block_parameter: f_mtr_t_bpt
+  values: vector
+- name: Motor efficiency map, f_mtr_eta
+  summary: Motor efficiency map array
+  group: ''
+  block_parameter: f_mtr_eta
+  values: array
+- name: Number of motor torque calculation points, Ngrid
+  summary: Number of motor torque calculation points 200 (default) | scalar
+  group: ''
+  block_parameter: Ngrid
+  values: 200 (default) | scalar
+- name: P0 belt ratio, N_P0
+  summary: P0 belt ratio 3 (default) | scalar
+  group: ''
+  block_parameter: N_P0
+  values: 3 (default) | scalar
+- name: ECMS weighting factor, ECMS_s
+  summary: ECMS weighting factor 3.385 (default) | scalar
+  group: ''
+  block_parameter: ECMS_s
+  values: 3.385 (default) | scalar
+- name: Penalty factor power, a
+  summary: Penalty factor power 3 (default) | scalar
+  group: ''
+  block_parameter: PenaltyFctrPwr
+  values: array
+- name: Adaptive ECMS proportional gain, ECMS_Kp
+  summary: Adaptive ECMS proportional gain 0 (default) | scalar
+  group: ''
+  block_parameter: ECMS_Kp
+  values: 0 (default) | scalar
+- name: Adaptive ECMS integral gain, ECMS_Ki
+  summary: Adaptive ECMS integral gain 0 (default) | scalar
+  group: ''
+  block_parameter: ECMS_Ki
+  values: 0 (default) | scalar
+- name: Constraint penalty factor, PenaltyFctr
+  summary: Constraint penalty factor 10000000 (default) | scalar
+  group: ''
+  block_parameter: PenaltyFctr
+  values: 10000000 (default) | scalar
+- name: Target battery state-of-charge, SOCTrgt
+  summary: Target battery state-of-charge 60 (default) | scalar
+  group: ''
+  block_parameter: SOCTrgt
+  values: 60 (default) | scalar
+- name: Minimum battery state-of-charge, SOCmin
+  summary: Minimum battery state-of-charge 40 (default) | scalar
+  group: ''
+  block_parameter: SOCmin
+  values: 40 (default) | scalar
+- name: Maximum battery state-of-charge, SOCmax
+  summary: Maximum battery state-of-charge 80 (default) | scalar
+  group: ''
+  block_parameter: SOCmax
+  values: 80 (default) | scalar
+```
 
 #### Block Options
 
@@ -901,7 +1159,6 @@ modeling, estimation and optimization of energy storage devices for automotive a
 grid-level applications, hybrid and electric vehicles modeling and control, PDE modeling,
 and model-order reduction and estimation of emission mitigation systems. She is a senior
 member of IEEE®.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Supervisory Controllers

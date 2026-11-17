@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Constant Delay
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: Y
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,16 @@ chinese_source: worker-translation
 ### **Y** — 输出物理信号，无类型物理信号
 
 输出物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Input history
+  summary: 初始时间间隔内的信号值和单位 0.0 1（默认）
+  group: ''
+- name: Delay time
+  summary: 信号的延迟时间 1 s（默认）
+  group: ''
+```
 
 ### **Input history** — 初始时间间隔内的信号值和单位 `0.0 1`（默认）
 
@@ -38,7 +55,6 @@ chinese_source: worker-translation
 ### **Delay time** — 信号的延迟时间 `1 s`（默认）
 
 信号的延迟，以时间单位表示。参数值必须为正。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Delays

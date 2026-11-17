@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Constant
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 常量值 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输出
 
@@ -23,8 +31,73 @@ chinese_source: worker-translation
 常量值，指定为实值或复值标量、向量、矩阵或 N 维数组。默认情况下，Constant 模块输出的信号的维度、数据类型和复数性与 **Constant value** 参数相同。但是，您可以将输出指定为 Simulink® 支持的任何数据类型，包括定点数据类型和枚举数据类型。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Constant value
+  summary: 常量输出值 标量 | 向量 | 矩阵 | N 维数组
+  group: 主要
+  block_parameter: Value
+  values: 带引号的标量 | 带引号的向量 | 带引号的矩阵 | 带引号的数组
+- name: Interpret vector parameters as 1-D
+  summary: 将向量视为一维 on (默认) | off
+  group: 主要
+  block_parameter: VectorParams1D
+  values: '''on'' (默认) | ''off'''
+- name: Sample time
+  summary: 采样间隔 inf (默认) | 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '''inf'' (默认) | 带引号的标量 | 带引号的向量'
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 [] (默认) | 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[ ]'' (默认) | 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 [] (默认) | 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[ ]'' (默认) | 带引号的标量'
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit from ''Constant value'' (默认) | Inherit: Inherit via back propagation | double | single
+    | half | int8 | int16 | ...'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit from ''Constant value'''' (默认) | ''Inherit: Inherit via back propagation'' | ''double'' | ''single''
+    | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean''
+    | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''Bus: <object name>'' | ''ValueType:
+    <object name>'' | ''<data type expression>'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type off (默认) | on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off'' (默认) | ''on'''
+- name: Mode
+  summary: 要指定的数据类别 Inherit (默认) | Built in | Fixed point | Enumerated | Bus object | Value type | Expression
+  group: 信号属性
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 信号属性
+- name: Signedness
+  summary: 指定有符号或无符号 Signed (默认) | Unsigned
+  group: 信号属性
+- name: Scaling
+  summary: 定点数据的定标方法 Best precision (默认) | Binary point | Slope and bias
+  group: 信号属性
+- name: Word length
+  summary: 保存量化整数的字长位数 16 (默认) | 0 到 32 的整数
+  group: 信号属性
+- name: Fraction length
+  summary: 指定定点数据类型的小数长度 0 (默认) | 标量整数
+  group: 信号属性
+- name: Slope
+  summary: 指定定点数据类型的斜率 2^0 (默认) | 正实值标量
+  group: 信号属性
+- name: Bias
+  summary: 指定定点数据类型的偏置 0 (默认) | 实值标量
+  group: 信号属性
+```
 
 ### 主要
 
@@ -304,7 +377,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Scaling** 设置为 `Slope and bias`。
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Sources DSP System Toolbox / Sources HDL Coder / Commonly Used Blocks HDL Coder / Sources

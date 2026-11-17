@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Image Pad
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: PVal
+  summary: 填充值标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: 输出图像矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -40,8 +55,49 @@ chinese_source: worker-translation
 输出图像，以填充后的矩阵或数组形式返回。输出图像的维度由 **Specify** 参数指定。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 填充方法 Constant（默认）| Replicate | Symmetric | Circular
+  group: ''
+- name: Pad value source
+  summary: 常量填充值的来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Pad value
+  summary: 填充值 0（默认）| 标量
+  group: ''
+- name: Specify
+  summary: 填充尺寸指定格式 Pad size（默认）| Output size
+  group: ''
+- name: Add columns to
+  summary: 列填充位置 Left（默认）| Right | Both left and right | No padding
+  group: ''
+- name: Output column mode
+  summary: 输出列尺寸确定方法 User-specified（默认）| Next power of two
+  group: ''
+- name: Number of output columns
+  summary: 输出图像中的列数 10（默认）| 正整数
+  group: ''
+- name: Number of added columns
+  summary: 添加到输入图像的列数 2（默认）| 正整数 | 正整数二元向量
+  group: ''
+- name: Add rows to
+  summary: 行填充位置 Top（默认）| Bottom | Both top and bottom | No padding
+  group: ''
+- name: Output row mode
+  summary: 输出行尺寸确定方法 User-specified（默认）| Next power of two
+  group: ''
+- name: Number of output rows
+  summary: 输出图像中的行数 12（默认）| 正整数
+  group: ''
+- name: Number of added rows
+  summary: 添加到输入图像的行数 [2 3]（默认）| 正整数 | 正整数二元向量
+  group: ''
+- name: Action when truncation occurs
+  summary: 输入信号被截断时的操作 None（默认）| Warning | Error
+  group: ''
+```
 
 ### **Method** — 填充方法 `Constant`（默认）| `Replicate` | `Symmetric` | `Circular`
 
@@ -173,7 +229,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Specify** 参数设置为 `Output size`。
-
 ## 所属库
 
 Computer Vision Toolbox / Utilities

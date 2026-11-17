@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Saturation
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +39,19 @@ chinese_source: worker-translation
 输出物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Upper limit
+  summary: 信号上界 0.5 1（默认值）
+  group: ''
+- name: Lower limit
+  summary: 信号下界 -0.5 1（默认值）
+  group: ''
+- name: Enable zero-crossing detection
+  summary: 是否启用过零检测 on（默认值） | off
+  group: ''
+```
 
 ### **Upper limit** — 信号上界 `0.5 1`（默认值）
 
@@ -48,7 +68,6 @@ chinese_source: worker-translation
 ### **Enable zero-crossing detection** — 是否启用过零检测 `on`（默认值） | `off`
 
 清除此选项可禁用过零检测并提高仿真速度。有关更多信息，请参阅 Managing Zero Crossings in Simscape Models。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Nonlinear Operators

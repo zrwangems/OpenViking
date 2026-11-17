@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Pressure-Compensated 3-Way Flow Control Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 阀液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 节流孔液体端口，等温液体
+  direction: conserving
+- name: R
+  summary: 减压阀液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 物理信号，单位为 m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -34,8 +49,60 @@ chinese_source: worker-translation
 ### **S** — 物理信号，单位为 m，物理信号
 
 节流孔开度，单位为 m，设定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Orifice parameterization
+  summary: 节流孔开度的建模方法 Linear - area vs. control member position（默认）| Tabulated data - Area vs. control member position | Tabulated
+    data - Volumetric flow rate vs. control member position and pressure drop
+  group: ''
+- name: Control member position at closed orifice
+  summary: 控制构件偏移量 0 m（默认）| 标量
+  group: ''
+- name: Control member travel between closed and opened orifice
+  summary: 最大控制构件行程 5e-3 m（默认）| 正标量
+  group: ''
+- name: Maximum orifice area
+  summary: 最大节流孔横截面积 8e-5 m^2（默认）| 正标量
+  group: ''
+- name: Control member position vector
+  summary: 开度位置向量 [0, .002, .007] m（默认）| 1×*n* 向量
+  group: ''
+- name: Orifice area vector
+  summary: 开度面积向量 [1e-09, 4e-09, 1e-05] m^2（默认）| 1×*n* 向量
+  group: ''
+- name: Control member position vector, s
+  summary: 控制构件位置向量 [0, .002, .004, .007, .017] m（默认）| 1×*n* 向量
+  group: ''
+- name: Pressure drop vector, dp
+  summary: 压差值向量 [.3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: ''
+- name: Volumetric flow rate table, q(s,dp)
+  summary: 体积流量值数组 [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7, .9, 1.06; 1.96, 2.5, 3; 6, 7.7, 9.13] .* 1e-3 m^3/s（默认）|
+    *M*×*N* 数组
+  group: ''
+- name: Set orifice pressure differential
+  summary: 补偿阀操作的阈值 0.6 MPa（默认）| 正标量
+  group: ''
+- name: Pressure compensator valve regulation range
+  summary: 压力补偿阀完全打开时的面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Pressure compensator valve maximum area
+  summary: 压力补偿阀的压力工作区域 0.1 MPa（默认）| 标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: ''
+```
 
 ### **Orifice parameterization** — 节流孔开度的建模方法 `Linear - area vs. control member position`（默认）| `Tabulated data - Area vs. control member position` | `Tabulated data - Volumetric flow rate vs. control member position and pressure drop`
 
@@ -131,7 +198,6 @@ chinese_source: worker-translation
 ### **Smoothing factor** — 数值平滑因子 `0.01`（默认）| [0,1] 范围内的正标量
 
 连续平滑因子，当阀处于接近打开或接近关闭位置时，为流量响应引入一层渐变变化。将此值设置为小于 1 的非零值可提高这些工况下仿真的稳定性。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

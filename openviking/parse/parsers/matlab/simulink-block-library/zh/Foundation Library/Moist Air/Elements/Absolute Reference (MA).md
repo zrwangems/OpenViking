@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Absolute Reference (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 压力、温度、比湿度和微量气体质量分数均为零的湿空气
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 压力、温度、比湿度和微量气体质量分数均为零的湿空气
 
 湿空气守恒端口，其中压力和温度等于绝对零度，比湿度和微量气体质量分数等于零。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Elements

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Moving Minimum
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 数据输入 列向量 | 行向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 移动最小值输出 列向量 | 行向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +47,19 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Specify window length
+  summary: 用于指定窗口长度的标志 on（默认）| off
+  group: ''
+- name: Window length
+  summary: 滑动窗口的长度 4（默认）| 正标量整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Specify window length** — 用于指定窗口长度的标志 on（默认）| off
 
@@ -64,7 +86,6 @@ length** 复选框时显示。
   生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将复用于
   后续仿真。此选项需要额外的启动时间，但可提供更快的后续
   仿真。
-
 ## 所属库
 
 DSP System Toolbox / Statistics

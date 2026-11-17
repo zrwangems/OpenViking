@@ -14,6 +14,37 @@ language: en
 # SRM Current Controller with PWM Generation
 
 ## Ports
+```yaml
+ports:
+- name: IsRef
+  summary: Reference current scalar
+  direction: input
+  data_types: single | double
+- name: Is
+  summary: Measured current scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Integrator reset scalar
+  direction: input
+  data_types: Boolean
+- name: theta
+  summary: Theta-rotor angle scalar
+  direction: input
+  data_types: single | double
+- name: thetaON
+  summary: Switch-on angle scalar
+  direction: input
+  data_types: single | double
+- name: thetaOFF
+  summary: Switch-off angle scalar
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Gate control vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -59,8 +90,31 @@ Angle for switching on the phase supply.
 Pulse waveforms that determine switching behavior.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain
+  summary: Controller proportional gain, *Kp* 1 (default) | positive scalar
+  group: Control Parameters
+- name: Integral gain
+  summary: Integral gain, *Ki* 5 (default) | positive scalar
+  group: Control Parameters
+- name: Anti-windup gain
+  summary: Anti-windup gain, *Kaw* 1 (default) | positive scalar
+  group: Control Parameters
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: Control Parameters
+- name: Carrier counter
+  summary: Carrier counter model Up (default) | Down | Up-Down
+  group: PWM Generator
+- name: Timer period (s)
+  summary: PWM timer period 0.001 (default) | positive scalar
+  group: PWM Generator
+- name: Fundamental sample time (s)
+  summary: Sample time for PWM generation 0.0001 (default) | positive scalar
+  group: PWM Generator
+```
 
 ### Control Parameters
 
@@ -117,7 +171,6 @@ set the fundamental sample time so that 0<Ts\_pwm≤10Tper, where:
   **Fundamental sample time (s)**.
 - *Tper* is the **Timer
   period (s)**.
-
 ## Libraries
 
 Simscape / Electrical / Control / SRM Control

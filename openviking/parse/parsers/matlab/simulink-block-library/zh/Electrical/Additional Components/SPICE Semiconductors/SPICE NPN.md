@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # SPICE NPN
 
 ## 端口
+```yaml
+ports:
+- name: bx
+  summary: 基极端子电气
+  direction: unspecified
+- name: cx
+  summary: 集电极端子电气
+  direction: unspecified
+- name: ex
+  summary: 发射极端子电气
+  direction: unspecified
+- name: sx
+  summary: 衬底端子电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +48,151 @@ chinese_source: worker-translation
 ### **sx** — 衬底端子电气
 
 与晶体管衬底端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Device area, AREA
+  summary: 器件面积 1.0 m^2（默认）| 正标量
+  group: 主要
+- name: Number of parallel devices, SCALE
+  summary: 并联器件数 1（默认）| 正标量
+  group: 主要
+- name: Transport saturation current, IS
+  summary: 饱和电流幅值 1e-16 A/m^2（默认）| 正标量
+  group: 正向增益
+- name: Forward beta, BF
+  summary: 理想最大正向 beta 100（默认）| 正标量
+  group: 正向增益
+- name: Forward emission coefficient, NF
+  summary: 正向发射系数 1（默认）| 正标量
+  group: 正向增益
+- name: Forward Early voltage, VAF
+  summary: 正向 Early 电压 Inf V（默认）| 非负标量
+  group: 正向增益
+- name: Forward knee current, IKF
+  summary: 正向 beta 大电流滚降电流 Inf A/m^2（默认）| 非负标量
+  group: 正向增益
+- name: B-E leakage current, ISE
+  summary: 基极-发射极漏电流 0 A/m^2（默认）| 非负标量
+  group: 正向增益
+- name: B-E emission coefficient, NE
+  summary: 基极-发射极发射系数 1.5（默认）| 正标量
+  group: 正向增益
+- name: Reverse beta, BR
+  summary: 理想最大反向 beta 1（默认）| 正标量
+  group: 反向增益
+- name: Reverse emission coefficient, NR
+  summary: 反向发射系数 1（默认）| 正标量
+  group: 反向增益
+- name: Reverse Early voltage, VAR
+  summary: 反向 Early 电压 Inf V（默认）| 非负标量
+  group: 反向增益
+- name: Reverse knee current, IKR
+  summary: 反向 beta 大电流滚降电流 Inf A/m^2（默认）| 非负标量
+  group: 反向增益
+- name: B-C leakage current, ISC
+  summary: 基极-集电极漏电流 0 A/m^2（默认）| 非负标量
+  group: 反向增益
+- name: B-C emission coefficient, NC
+  summary: 基极-集电极发射系数 2（默认）| 正标量
+  group: 反向增益
+- name: Zero-bias base resistance, RB
+  summary: 基极电阻 1 m^2*Ohm（默认）| 非负标量
+  group: 电阻
+- name: Half base resistance cur, IRB
+  summary: 基极电阻半零偏压降电流 Inf A/m^2（默认）| 非负标量
+  group: 电阻
+- name: Minimum base resistance, RBM
+  summary: 最小基极电阻 0 m^2*Ohm（默认）| 标量 < *RB*
+  group: 电阻
+- name: Emitter resistance, RE
+  summary: 发射极电阻 1e-4 m^2*Ohm（默认）| 非负标量
+  group: 电阻
+- name: Collector resistance, RC
+  summary: 集电极电阻 0.01 m^2*Ohm（默认）| 非负标量
+  group: 电阻
+- name: Model junction capacitance
+  summary: 结电容模型 No（默认）| Yes
+  group: 电容
+- name: Capacitance coefficient, FC
+  summary: 电容系数 0.5（默认）| 0 ≤ *FC* < 0.95 | 标量
+  group: 电容
+- name: Specify initial condition
+  summary: 初始条件模型 No（默认）| Yes
+  group: 电容
+- name: Initial condition voltage ICVBE
+  summary: 初始基极-发射极电压 0 V（默认）| 标量
+  group: 电容
+- name: Initial condition voltage ICVCE
+  summary: 初始基极-集电极电压 0 V（默认）| 标量
+  group: 电容
+- name: B-E depletion capacitance, CJE
+  summary: 基极-发射极结耗尽电容 0 F/m^2（默认）| 非负标量
+  group: B-E 电容
+- name: B-E built-in potential, VJE
+  summary: 基极-发射极结电势 0.75 V（默认）| 标量 | 0.01 ≤ *VJE*
+  group: B-E 电容
+- name: B-E exponential factor, MJE
+  summary: 基极-发射极结梯度系数 0.33（默认）| 标量 | 0 ≤ *MJC* ≤ 0.9
+  group: B-E 电容
+- name: Forward transit time, TF
+  summary: 少数载流子渡越时间 0 s（默认）| 非负标量
+  group: B-E 电容
+- name: Coefficient of TF, XTF
+  summary: 基极-发射极渡越时间偏置依赖系数 0（默认）| 非负标量
+  group: B-E 电容
+- name: VBC dependence of TF, VTF
+  summary: 基极-集电极渡越时间偏置依赖系数 Inf V（默认）| 非负标量
+  group: B-E 电容
+- name: Coefficient of TF, ITF
+  summary: 集电极电流渡越时间依赖系数 0 A/m^2（默认）| 非负标量
+  group: B-E 电容
+- name: B-C depletion capacitance, CJC
+  summary: 基极-集电极结耗尽电容 0 F/m^2（默认）| 正标量
+  group: B-C 电容
+- name: B-C built-in potential, VJC
+  summary: 基极-集电极结电势 0.75 V（默认）| 标量 | 0.01 ≤ *VJC*
+  group: B-C 电容
+- name: B-C exponential factor, MJC
+  summary: 基极-集电极结梯度系数 0.33（默认）| 0 ≤ *MJC* ≤ 0.9
+  group: B-C 电容
+- name: B-C capacitance fraction, XCJC
+  summary: 基极-集电极耗尽电容分数 1（默认）| 标量 | 0 ≤ *XCJC* ≤ 1
+  group: B-C 电容
+- name: Reverse transit time, TR
+  summary: 少数载流子渡越时间 0 s（默认）| 非负标量
+  group: B-C 电容
+- name: C-S junction capacitance, CJS
+  summary: 集电极-衬底结电容 0F/m^2（默认）| 非负标量
+  group: C-S 电容
+- name: Substrate built-in potential, VJS
+  summary: 衬底电势 0.75 V（默认）| 标量 | 0.01 ≤ *VJC*
+  group: C-S 电容
+- name: Substrate exponential factor, MJS
+  summary: 集电极-衬底结梯度系数 0（默认）| 标量 | 0 ≤ *MJS* ≤ 0.9
+  group: C-S 电容
+- name: Model temperature dependence using
+  summary: 温度依赖模型 Device temperature（默认）| Fixed temperature
+  group: 温度
+- name: Beta temperature exponent, XTB
+  summary: 正向和反向 beta 温度指数 0（默认）| 非负标量
+  group: 温度
+- name: Energy gap, EG
+  summary: 能隙 1.11 eV（默认）| *EG* ≥ 0.1 | 标量
+  group: 温度
+- name: Temperature exponent for IS, XTI
+  summary: 饱和电流指数增长阶数 3（默认）| 非负标量
+  group: 温度
+- name: Offset local circuit temperature, TOFFSET
+  summary: 局部电路温度偏移 0 K（默认）| 标量
+  group: 温度
+- name: Fixed circuit temperature, TFIXED
+  summary: 固定电路温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Parameter extraction temperature, TMEAS
+  summary: 参数提取温度 300.15 K（默认）| 正标量
+  group: 温度
+```
 
 ### 主要
 
@@ -360,7 +518,6 @@ chinese_source: worker-translation
 ### **Parameter extraction temperature, TMEAS** — 参数提取温度 `300.15` `K`（默认）| 正标量
 
 测量晶体管参数时的温度。该值必须大于 `0` `K`。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

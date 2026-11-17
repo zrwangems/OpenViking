@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Chirp
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 扫频余弦（chirp）信号 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输出
 
@@ -25,8 +32,40 @@ chinese_source: worker-translation
 有关该模块如何计算输出的详细信息，请参阅算法。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Frequency sweep
+  summary: 频率扫描类型 Linear（默认）| Swept cosine | Logarithmic | Quadratic
+  group: ''
+- name: Sweep mode
+  summary: 扫描模式 Unidirectional（默认）| Bidirectional
+  group: ''
+- name: Initial frequency (Hz)
+  summary: 初始频率 1000（默认）| 标量
+  group: ''
+- name: Target frequency (Hz)
+  summary: 目标频率 4000（默认）| 标量
+  group: ''
+- name: Target time (s)
+  summary: 扫描的目标时间 1（默认）| 标量
+  group: ''
+- name: Sweep time (s)
+  summary: 扫描时间 1（默认）| 标量
+  group: ''
+- name: Initial phase (rad)
+  summary: 余弦输出的初始相位 0（默认）| 标量
+  group: ''
+- name: Sample time
+  summary: 输出采样周期 1/8000（默认）| 正标量
+  group: ''
+- name: Samples per frame
+  summary: 每帧采样数 1（默认）| 正整数
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 Double（默认）| Single
+  group: ''
+```
 
 ### **Frequency sweep** — 频率扫描类型 `Linear`（默认）| `Swept cosine` | `Logarithmic` | `Quadratic`
 
@@ -148,7 +187,6 @@ mode** 中，**Sweep time** 是输出频率扫描周期的一半。**Sweep time*
 ### **Output data type** — 输出数据类型 `Double`（默认）| `Single`
 
 输出的数据类型，指定为单精度或双精度。
-
 ## 所属库
 
 DSP System Toolbox / Sources

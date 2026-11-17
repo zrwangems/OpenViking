@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Reservoir (MA)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 储液器压力，Pa 物理信号
+  direction: input
+- name: T
+  summary: 储液器温度，K 物理信号
+  direction: input
+- name: W
+  summary: 储液器湿度，无量纲 物理信号
+  direction: input
+- name: Tw
+  summary: 储液器湿球温度，K 物理信号
+  direction: input
+- name: G
+  summary: 储液器微量气体水平，无量纲 物理信号
+  direction: input
+- name: D
+  summary: 储液器水滴质量比，无量纲 物理信号
+  direction: input
+- name: A
+  summary: 储液器入口湿空气
+  direction: input
+```
 
 ### 输入
 
@@ -75,8 +99,76 @@ chinese_source: worker-translation
 ### **A** — 储液器入口湿空气
 
 与储液器入口相关联的湿空气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Provide input signal for pressure
+  summary: 指定压力的方法 off（默认）| on
+  group: ''
+- name: Reservoir pressure specification
+  summary: 储液器压力的指定方法 Atmospheric pressure（默认）| Specified pressure
+  group: ''
+- name: Reservoir pressure
+  summary: 储液器中的压力 0.101325 MPa（默认）| 正标量
+  group: ''
+- name: Provide input signal for temperature
+  summary: 指定储液器温度的方法 off（默认）| on
+  group: ''
+- name: Reservoir temperature specification
+  summary: 储液器温度的指定方法 Atmospheric temperature（默认）| Specified temperature
+  group: ''
+- name: Reservoir temperature
+  summary: 储液器中的温度 293.15 K（默认）| 正标量
+  group: ''
+- name: Provide input signal for humidity
+  summary: 指定湿度的方式 off（默认）| on
+  group: ''
+- name: Reservoir humidity specification
+  summary: 储液器湿度的指定方法 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: ''
+- name: Reservoir relative humidity
+  summary: 储液器中的相对湿度 0.5（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Reservoir specific humidity
+  summary: 储液器中的比湿 0.01（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Reservoir water vapor mole fraction
+  summary: 储液器中的水蒸气摩尔分数 0.01（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Reservoir humidity ratio
+  summary: 储液器中的湿度比 0.01（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Reservoir wet-bulb temperature
+  summary: 储液器中的湿球温度 287 K（默认）| 正标量
+  group: ''
+- name: Provide input signal for trace gas
+  summary: 指定示踪气体的方法 off（默认）| on
+  group: ''
+- name: Reservoir trace gas specification
+  summary: 示踪气体的指定方法 Mass fraction（默认）| Mole fraction
+  group: ''
+- name: Reservoir trace gas mass fraction
+  summary: 储层中的示踪气体质量分数 0.001（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Reservoir trace gas mole fraction
+  summary: 储层中的示踪气体摩尔分数 0.001（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Provide input signal for water droplets
+  summary: 指定水滴质量比的方法 off（默认）| on
+  group: ''
+- name: Reservoir mass ration of water droplets to moist air
+  summary: 储层中的水滴质量比 0（默认）| 正标量
+  group: ''
+- name: Relative humidity at saturation
+  summary: 发生冷凝时的相对湿度 1（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 储层入口处垂直于流路的面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Inputs outside valid range
+  summary: 信号值超出有效范围时要执行的操作 Warn and limit to valid values（默认）| Limit to valid values | Error
+  group: ''
+```
 
 ### **Provide input signal for pressure** — 指定压力的方法 `off`（默认）| `on`
 
@@ -238,7 +330,6 @@ chinese_source: worker-translation
 - **为湿度提供输入信号**
 - **为微量气体提供输入信号**
 - **为水滴提供输入信号**
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Elements

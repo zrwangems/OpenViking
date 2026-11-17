@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Voltage-Controlled Oscillator
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 正输入电压电气
+  direction: unspecified
+- name: 1-
+  summary: 负输入电压电气
+  direction: unspecified
+- name: 2+
+  summary: 正输出电压电气
+  direction: unspecified
+- name: 2-
+  summary: 负输出电压电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +48,52 @@ chinese_source: worker-translation
 ### **2-** — 负输出电压电气
 
 与振荡器负输出电压关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Frequency dependence on input voltage
+  summary: 模块参数化 Linear（默认）| Tabulated
+  group: 频率
+- name: Nominal frequency
+  summary: 标称频率 1000 Hz（默认）
+  group: 频率
+- name: Input voltage corresponding to nominal frequency
+  summary: 对应于标称频率的输入电压 0.5 V（默认）
+  group: 频率
+- name: Rate of change of frequency with input voltage
+  summary: 频率随输入电压的变化率 1 Hz/V（默认）
+  group: 频率
+- name: Minimum input voltage
+  summary: 最小输入电压 0 V（默认）
+  group: 频率
+- name: Maximum input voltage
+  summary: 最大输入电压 1 V（默认）
+  group: 频率
+- name: Input voltage vector
+  summary: 输入电压向量 [0, .2, .4, .6, .8, 1] V（默认）
+  group: 频率
+- name: Frequency deviation from nominal
+  summary: 相对于标称值的频率偏差 [-1000, -329, -51, 162, 342, 500] Hz（默认）
+  group: 频率
+- name: Output voltage peak amplitude
+  summary: 输出电压峰值幅度 1 V（默认）
+  group: 电气特性
+- name: Input resistance
+  summary: 输入电阻 inf Ohm（默认）
+  group: 电气特性
+- name: Output resistance
+  summary: 输出电阻 0 Ohm（默认）
+  group: 电气特性
+- name: Dynamics
+  summary: 动态特性指定 No dynamics（默认）| Model frequency tracking dynamics
+  group: 动态特性
+- name: Frequency tracking time constant
+  summary: 频率跟踪时间常数 1e-3 s（默认）
+  group: 动态特性
+- name: Initial frequency
+  summary: 初始频率 1000 Hz（默认）
+  group: 动态特性
+```
 
 ### 频率
 
@@ -131,7 +190,6 @@ chinese_source: worker-translation
 ### **Initial frequency** — 初始频率 `1000` `Hz`（默认）
 
 初始 VCO 输出频率。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

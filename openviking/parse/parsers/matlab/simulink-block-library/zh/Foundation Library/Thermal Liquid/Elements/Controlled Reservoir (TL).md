@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Controlled Reservoir (TL)
 
 ## 端口
+```yaml
+ports:
+- name: T
+  summary: 温度控制信号，K，物理信号
+  direction: input
+- name: A
+  summary: 储液器入口热液体
+  direction: input
+```
 
 ### 输入
 
@@ -27,8 +36,19 @@ chinese_source: worker-translation
 ### **A** — 储液器入口热液体
 
 与储液器入口相关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Reservoir pressure specification
+  summary: 储液器压力的指定方法 Atmospheric pressure（默认）| Specified pressure
+  group: ''
+- name: Reservoir pressure
+  summary: 储液器中的压力 0.101325 MPa（默认）
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 储液器入口处垂直于流路的面积 0.01 m^2（默认）
+  group: ''
+```
 
 ### **Reservoir pressure specification** — 储液器压力的指定方法 `Atmospheric pressure`（默认）| `Specified pressure`
 
@@ -48,7 +68,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at port A** — 储液器入口处垂直于流路的面积 `0.01 m^2`（默认）
 
 储液器入口管道的横截面积。该模块使用此面积来确定发生热传导的管道特征长度。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Elements

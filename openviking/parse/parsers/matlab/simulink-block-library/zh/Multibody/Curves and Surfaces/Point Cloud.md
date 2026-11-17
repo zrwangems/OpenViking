@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Point Cloud
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 局部参考坐标系 frame
+  direction: unspecified
+- name: G
+  summary: 几何坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -26,8 +35,40 @@ chinese_source: worker-translation
 ### **G** — 几何坐标系 frame
 
 表示由该模块定义的点的几何坐标系。要在点上建模接触，请将此端口连接到 Spatial Contact Force 或 Planar Contact Force 模块。
-
 ## 参数
+```yaml
+parameters:
+- name: Coordinates Matrix
+  summary: 点的坐标 [0 0 0 ] m（默认）| *N*×2 矩阵 | *N*×3 矩阵
+  group: ''
+- name: Type
+  summary: 用于点云可视化的图形 Marker Cloud（默认）| None
+  group: Graphic
+- name: Sphere Radius
+  summary: 标记半径 1e-2 m（默认）| 正标量
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化设置 Simple（默认）| Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: 图形颜色 [0.5 0.5 0.5]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: Graphic
+- name: Specular Color
+  summary: 高光颜色 [0.5 0.5 0.5 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Ambient Color
+  summary: 阴影颜色 [0.15 0.15 0.15 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Shininess
+  summary: 高光锐度 75（默认）| 0 到 128 范围内的标量
+  group: Graphic
+```
 
 ### **Coordinates Matrix** — 点的坐标 [0 0 0 ] `m`（默认）| *N*×2 矩阵 | *N*×3 矩阵
 
@@ -128,7 +169,6 @@ chinese_source: worker-translation
    Cloud`
 2. **Visual Properties** 为
    `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Curves and Surfaces

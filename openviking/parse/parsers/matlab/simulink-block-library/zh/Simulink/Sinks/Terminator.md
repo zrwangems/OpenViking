@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Terminator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | n 维数组 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+```
 
 ### 输入
 
@@ -23,11 +31,12 @@ chinese_source: worker-translation
 使用此端口引导来自仿真期间其他未连接输出端口的信号。该端口接受所有数据类型的实数或复数信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Sinks

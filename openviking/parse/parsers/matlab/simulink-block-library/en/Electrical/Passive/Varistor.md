@@ -14,6 +14,15 @@ language: en
 # Varistor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,43 @@ terminal.
 
 Electrical conserving port associated with the varistor negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Varistor operation mode Linear (default) | Power-law
+  group: ''
+- name: Clamping voltage
+  summary: Threshold voltage 260 (default) | positive number
+  group: ''
+- name: Off resistance
+  summary: Low-voltage resistance 3e8 (default) | positive number
+  group: ''
+- name: On resistance
+  summary: High-voltage resistance 1 (default) | positive number
+  group: ''
+- name: Leakage to normal voltage transition
+  summary: First threshold voltage 130 (default) | positive number
+  group: ''
+- name: Normal to upturn voltage transition
+  summary: Second threshold voltage 300 (default) | positive number
+  group: ''
+- name: Leakage-mode resistance
+  summary: Low-voltage resistance 3e8 (default) | positive number
+  group: ''
+- name: Normal-mode power-law exponent
+  summary: Mid-voltage resistance 45 (default) | positive number
+  group: ''
+- name: Upturn-mode resistance
+  summary: High-voltage resistance 0.07 (default) | positive number
+  group: ''
+- name: Terminal resistance
+  summary: Terminal resistance 100e-6 (default) | non-negative number
+  group: ''
+- name: Capacitance
+  summary: Parallel capacitance 4.4 (default) | non-negative number
+  group: ''
+```
 
 ### **Parameterization** — Varistor operation mode `Linear` (default) | `Power-law`
 
@@ -131,7 +175,6 @@ zero to remove the resistance from the equivalent circuit.
 
 Capacitor in parallel with the varistor. Set this value to zero to remove
 the capacitor from the equivalent circuit.
-
 ## Libraries
 
 Simscape / Electrical / Passive

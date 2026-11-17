@@ -14,6 +14,18 @@ language: en
 # Controlled Heat Flow Rate Source
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Heat flow control signal, W physical signal
+  direction: input
+- name: A
+  summary: Source inlet thermal
+  direction: conserving
+- name: B
+  summary: Source outlet thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -30,11 +42,12 @@ Thermal conserving port associated with the source inlet.
 ### **B** — Source outlet thermal
 
 Thermal conserving port associated with the source outlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Sources

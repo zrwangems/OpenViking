@@ -14,6 +14,18 @@ language: en
 # Simulation 3D Actor Transform Set
 
 ## Ports
+```yaml
+ports:
+- name: Translation
+  summary: Actor translation array
+  direction: input
+- name: Rotation
+  summary: Actor rotation array
+  direction: input
+- name: Scale
+  summary: Actor scale array
+  direction: input
+```
 
 ### Input
 
@@ -134,8 +146,31 @@ For example, consider a vehicle actor with a vehicle body and four wheels. The
   | Rear right wheel, *XRRscale* | `Scale(5,1)` |
   | Rear right wheel, *YRRscale* | `Scale(5,2)` |
   | Rear right wheel, *ZRRscale* | `Scale(5,3)` |
-
 ## Parameters
+```yaml
+parameters:
+- name: Tag for actor in 3D scene, ActorTag
+  summary: Name SimulinkActor1 (default) | character vector
+  group: ''
+- name: Number of parts per actor to set, NumberOfParts
+  summary: Name 1 (default) | scalar
+  group: ''
+- name: Coordinate system
+  summary: Coordinate system for actor transformation Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE
+  group: ''
+- name: Initial array values to translate actor per part, Translation
+  summary: Actor initial position [0 0 0] (default) | array
+  group: ''
+- name: Initial array values to rotate actor per part, Rotation
+  summary: Actor initial rotation [0 0 0] (default) | array
+  group: ''
+- name: Initial array values to scale actor per part, Scale
+  summary: Actor initial scale [1 1 1] (default) | array
+  group: ''
+- name: Sample time
+  summary: Sample time -1 (default) | scalar
+  group: ''
+```
 
 #### Actor Setup
 
@@ -311,7 +346,6 @@ For example, consider a vehicle actor with a vehicle body and four wheels. The p
 
 Sample time, *Ts*. The graphics frame rate
 is the inverse of the sample time.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blockset / Animation / Simulation 3D Simulink 3D Animation / Simulation 3D / Utilities

@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Planetary Gear
 
 ## 端口
+```yaml
+ports:
+- name: SunTrq
+  summary: 太阳轮施加的转矩 scalar
+  direction: input
+- name: CarrTrq
+  summary: 行星架施加的转矩 scalar
+  direction: input
+- name: RingTrq
+  summary: 齿圈施加的转矩 scalar
+  direction: input
+- name: C
+  summary: 行星架角速度和转矩双向连接端口
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: SunSpd
+  summary: 太阳轮角速度 scalar
+  direction: output
+- name: CarrSpd
+  summary: 行星架角速度 scalar
+  direction: output
+- name: RingSpd
+  summary: 齿圈角速度 scalar
+  direction: output
+- name: S
+  summary: 太阳轮角速度和转矩双向连接端口
+  direction: output
+- name: R
+  summary: 齿圈角速度和转矩双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -128,8 +161,75 @@ chinese_source: worker-translation
 
 要创建此端口，请将 **Port Configuration** 设置为
 `Two-way connection`。
-
 ## 参数
+```yaml
+parameters:
+- name: Port Configuration
+  summary: 指定配置 Simulink（默认）| Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink（默认）| Two-way connection
+- name: Sun to planet ratio, Nsp
+  summary: 比值 30/23（默认）| 正标量
+  group: ''
+  block_parameter: Nsp
+  values: 30/23（默认）| 正标量
+- name: Sun to ring ratio, Nsr
+  summary: 比值 30/78（默认）| 正标量
+  group: ''
+  block_parameter: Nsr
+  values: 30/78（默认）| 正标量
+- name: Sun inertia, Js
+  summary: 惯性 .003（默认）| 正标量
+  group: ''
+  block_parameter: Js
+  values: .003（默认）| 正标量
+- name: Planet inertia, Jp
+  summary: 惯性 .001（默认）| 正标量
+  group: ''
+  block_parameter: Jp
+  values: .001（默认）| 正标量
+- name: Ring inertia, Jr
+  summary: 惯性 .01（默认）| 正标量
+  group: ''
+  block_parameter: Jr
+  values: .01（默认）| 正标量
+- name: Carrier inertia, Jc
+  summary: 惯性 .002（默认）| 正标量
+  group: ''
+  block_parameter: Jc
+  values: .002（默认）| 正标量
+- name: Sun viscous damping, bs
+  summary: 阻尼 .001（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: bs
+  values: .001（默认）| 大于或等于 0 的标量
+- name: Ring viscous damping, br
+  summary: 阻尼 .001（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: br
+  values: .001（默认）| 大于或等于 0 的标量
+- name: Planet viscous damping, bp
+  summary: 阻尼 .001（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: bp
+  values: .001（默认）| 大于或等于 0 的标量
+- name: Carrier viscous damping, bc
+  summary: 阻尼 .001（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: bc
+  values: .001（默认）| 大于或等于 0 的标量
+- name: 初始太阳轮速度，ws_o
+  summary: 角速度 0（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: ws_o
+  values: 0（默认）| 大于或等于 0 的标量
+- name: 初始行星架速度，wc_o
+  summary: 角速度 0（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: wc_o
+  values: 0（默认）| 大于或等于 0 的标量
+```
 
 #### 模块选项
 
@@ -361,7 +461,6 @@ chinese_source: worker-translation
 | **参数：** | `wc_o` |
 | **值：** | `0`（默认）| 大于或等于 0 的标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Drivetrain / Couplings

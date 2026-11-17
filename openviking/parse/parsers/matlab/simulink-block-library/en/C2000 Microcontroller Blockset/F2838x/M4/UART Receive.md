@@ -14,6 +14,15 @@ language: en
 # F2838x-M4 UART Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: UART receive data vector | scalar
+  direction: output
+- name: Status
+  summary: UART receive status 0 | 1 | 2 | 3 | 4 | 8
+  direction: output
+```
 
 ### Output
 
@@ -31,8 +40,28 @@ The status port outputs one of these values:
 - 3 — represents data synchronization error
 - 4 — represents a break in the data reception
 - 8 — represents an overrun error.
-
 ## Parameters
+```yaml
+parameters:
+- name: Additional package header
+  summary: Prefix header S (default)
+  group: ''
+- name: Additional package terminator
+  summary: Suffix terminator E (default)
+  group: ''
+- name: Data type
+  summary: Type of data to be received uint8 (default) | double | single | int8 | int8 | int16 | int32 | uint32 | boolean
+  group: ''
+- name: Data length
+  summary: Size of data to be received 1 (default) | positive integer
+  group: ''
+- name: Enable blocking mode
+  summary: Enable blocking mode for data transmission off (default) | on
+  group: ''
+- name: Sample time
+  summary: Interval at which block reads data 0.1 (default)
+  group: ''
+```
 
 ### **Additional package header** — Prefix header `S` (default)
 
@@ -61,7 +90,6 @@ before receiving the data.
 
 Specify the sample time for receiving data. To execute this block asynchronously,
 set Sample Time to -1.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28M35x / M3 C2000 Microcontroller Blockset / F28M36x / M3

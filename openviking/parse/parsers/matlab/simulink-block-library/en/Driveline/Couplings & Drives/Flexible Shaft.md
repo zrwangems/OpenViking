@@ -14,6 +14,27 @@ language: en
 # Flexible Shaft
 
 ## Ports
+```yaml
+ports:
+- name: Fr
+  summary: Force on bearing supports physical signal
+  direction: output
+- name: M
+  summary: Moment on bearing supports physical signal
+  direction: output
+- name: V
+  summary: Shaft translational velocity physical signal
+  direction: output
+- name: W
+  summary: Shaft angular velocity physical signal
+  direction: output
+- name: B
+  summary: Base rotational mechanical
+  direction: conserving
+- name: F
+  summary: Follower rotational mechanical
+  direction: conserving
+```
 
 ### Output
 
@@ -65,8 +86,302 @@ Rotational conserving port associated with the shaft base.
 ### **F** — Follower rotational mechanical
 
 Rotational conserving port associated with the shaft follower.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model torsional flexibility
+  summary: Torsional flexibility option on (default) | off
+  group: Shaft
+- name: Model bending flexibility
+  summary: Bending flexibility option off (default) | on
+  group: Shaft
+- name: Minimum number of flexible elements
+  summary: Minimum number of flexible elements 1 (default) | positive integer
+  group: Shaft
+- name: Parameterization
+  summary: Parameterization method By stiffness and inertia (default) | By material and geometry | By segment stiffness and
+    inertia | By material and segment geometry
+  group: Shaft
+- name: Shaft length
+  summary: Shaft length 1 m (default) | positive scalar
+  group: Shaft
+- name: Segment lengths [B,...,F]
+  summary: Length of each shaft segment [1, .5, .25] (default) | vector
+  group: Shaft
+- name: Torsional stiffness
+  summary: Material stiffness 2e5 N*m/rad (default) | positive scalar
+  group: Shaft
+- name: Torsional Inertia
+  summary: Polar moment of inertia 0.02 kg*m^2 (default) | positive scalar
+  group: Shaft
+- name: Segment torsional stiffness [B,...,F]
+  summary: Material stiffness for each shaft segment [400000, 200000, 100000] N*m/rad (default) | positive vector
+  group: Shaft
+- name: Segment torsional inertia [B,...,F]
+  summary: Polar moment of inertia for each shaft segment [.025, .02, .015] kg*m^2 (default) | positive vector
+  group: Shaft
+- name: Bending rigidity
+  summary: Bending rigidity 5e5 m^4*Pa (default) | positive scalar
+  group: Shaft
+- name: Linear density
+  summary: Density per unit length 19 kg/m (default) | positive scalar
+  group: Shaft
+- name: Segment bending rigidity [B,...,F]
+  summary: Bending rigidity of each segment [600000, 500000, 400000] m^4*Pa (default) | vector of positive elements
+  group: Shaft
+- name: Segment linear density [B,...,F]
+  summary: Density per unit length for each segment [20, 19, 18] kg/m (default) | positive vector
+  group: Shaft
+- name: Material density
+  summary: Material density 7.8e3 kg/m^3 (default) | positive scalar
+  group: Shaft
+- name: Shear modulus
+  summary: Shear modulus 7.93e9 Pa (default) | positive scalar
+  group: Shaft
+- name: Shaft geometry
+  summary: Cross-sectional geometry Solid (default) | Annular
+  group: Shaft
+- name: Young's modulus
+  summary: Young's modulus 200e9 Pa (default) | positive scalar
+  group: Shaft
+- name: Shaft outer diameter
+  summary: Outer diameter of the shaft 0.075 m (default) | positive scalar
+  group: Shaft
+- name: Shaft inner diameter
+  summary: Inner diameter of the shaft 0.05 m (default) | positive scalar
+  group: Shaft
+- name: Segment outer diameters [B,...,F]
+  summary: Outer diameter for each shaft segment [.085, .075, .065] m (default) | positive vector
+  group: Shaft
+- name: Segment inner diameters [B,...,F]
+  summary: Inner diameter for each shaft segment [.055, .05, .045] m (default) | vector
+  group: Shaft
+- name: Damping ratio from internal losses
+  summary: Material damping ratio 0.01 (default) | positive scalar
+  group: Torsion
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: Viscous friction coefficients [0, 0] N*m/(rad/s) (default) | nonnegative vector
+  group: Torsion
+- name: Viscous friction coefficients at each support [B1,...,F1]
+  summary: Viscous friction coefficients [0, 0] N*m/(rad/s) (default) | nonnegative vector
+  group: Torsion
+- name: Initial shaft torsional deflection
+  summary: Initial shaft torsional deflection 0 rad (default) | nonnegative scalar
+  group: Torsion
+- name: Initial shaft rotational velocity
+  summary: Initial angular velocity 0 rpm (default) | nonnegative scalar
+  group: Torsion
+- name: Number of supports
+  summary: Number of supports 2 (default) | 3 | 4
+  group: Supports
+- name: Support locations relative to base (B)
+  summary: Support locations [0, 1] m (default) | nonnegative increasing vector
+  group: Supports
+- name: Base (B1) mounting type
+  summary: Support *B1* mounting type Clamped (default) | Pinned | Free | Bearing matrix | Speed-dependent bearing matrix
+  group: Supports
+- name: Base (B1) rotational damping [xx,yy]
+  summary: Support *B1* rotational damping [1e3, 1e3] N*m/(rad/s) (default) | vector
+  group: Supports
+- name: Base (B1) translational damping [xx,xy,yx,yy]
+  summary: Support *B1* translational damping [2e4, -4.4e4, -4.4e4, 3.5e5] N/(m/s) (default) | vector
+  group: Supports
+- name: Base (B1) speed-dependent translational damping [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: Support *B1* speed-dependent translational damping [2e4, -4.4e4, -4.4e4, 3.5e5; 1e4, -2.5e4, -2.5e4, 1.4e5; 5e3,
+    -1.0e4, -1.0e4, 2.0e4] N/(m/s) (default) | matrix
+  group: Supports
+- name: Base (B1) rotational stiffness [xx,yy]
+  summary: Support *B1* rotational stiffness [1e4, 1e4] N*m/rad (default) | nonnegative vector
+  group: Supports
+- name: Base (B1) translational stiffness [xx,xy,yx,yy]
+  summary: Support *B1* translational stiffness [1e6, -2e5, -3e5, 5e] N/m (default) | vector
+  group: Supports
+- name: Base (B1) speed-dependent translational stiffness [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: Support *B1* speed-dependent translational stiffness [1e6, -6e5, -3.5e6, 8e6; 1e6, -2e5, -3.0e6, 5e6; 1e6, -5e4,
+    -2.5e6, 3e6] N/m (default) | matrix
+  group: Supports
+- name: Intermediate (I1) mounting type
+  summary: Support *I1* mounting type Clamped (default) | Pinned | Free | Bearing matrix | Speed-dependent bearing matrix
+  group: Supports
+- name: Intermediate (I1) rotational damping [xx,yy]
+  summary: Support *I1* rotational damping [1e3, 1e3] N*m/(rad/s) (default) | vector
+  group: Supports
+- name: Intermediate (I1) translational damping [xx,xy,yx,yy]
+  summary: Support *I1* translational damping [2e4, -4.4e4, -4.4e4, 3.5e5] N/(m/s) (default) | vector
+  group: Supports
+- name: Intermediate (I1) speed-dependent translational damping [xx1,xy1,yx1,yy1;...xxsS,xyS,yxS,yyS]
+  summary: Support *I1* speed-dependent translational damping [2e4, -4.4e4, -4.4e4, 3.5e5; 1e4, -2.5e4, -2.5e4, 1.4e5; 5e3,
+    -1.0e4, -1.0e4, 2.0e4] N/(m/s) (default) | matrix
+  group: Supports
+- name: Intermediate (I1) rotational stiffness [xx,yy]
+  summary: Support *I1* rotational stiffness [1e4, 1e4] N*m/rad (default) | nonnegative vector
+  group: Supports
+- name: Intermediate (I1) translational stiffness [xx,xy,yx,yy]
+  summary: Support *I1* translational stiffness [1e6, -2e5, -3e5, 5e] N/m (default) | vector
+  group: Supports
+- name: Intermediate (I1) speed-dependent translational stiffness [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: Support *I1* speed-dependent translational stiffness [1e6, -6e5, -3.5e6, 8e6; 1e6, -2e5, -3.0e6, 5e6; 1e6, -5e4,
+    -2.5e6, 3e6] N/m (default) | matrix
+  group: Supports
+- name: Intermediate (I2) mounting type
+  summary: Support *I2* mounting type Clamped (default) | Pinned | Free | Bearing matrix | Speed-dependent bearing matrix
+  group: Supports
+- name: Intermediate (I2) rotational damping [xx,yy]
+  summary: Support *I2* rotational damping [1e3, 1e3] N*m/(rad/s) (default) | vector
+  group: Supports
+- name: Intermediate (I2) translational damping [xx,xy,yx,yy]
+  summary: Support *I2* translational damping [2e4, -4.4e4, -4.4e4, 3.5e5] N/(m/s) (default) | vector
+  group: Supports
+- name: Intermediate (I2) speed-dependent translational damping [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: Support *I2* speed-dependent translational damping [2e4, -4.4e4, -4.4e4, 3.5e5; 1e4, -2.5e4, -2.5e4, 1.4e5; 5e3,
+    -1.0e4, -1.0e4, 2.0e4] N/(m/s) (default) | matrix
+  group: Supports
+- name: Intermediate (I2) rotational stiffness [xx,yy]
+  summary: Support *I2* rotational stiffness [1e4, 1e4] N*m/rad (default) | nonnegative vector
+  group: Supports
+- name: Intermediate (I2) translational stiffness [xx,xy,yx,yy]
+  summary: Support *I2* translational stiffness [1e6, -2e5, -3e5, 5e] N/m (default) | vector
+  group: Supports
+- name: Intermediate (I2) speed-dependent translational stiffness [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: Support *I2* speed-dependent translational stiffness [1e6, -6e5, -3.5e6, 8e6; 1e6, -2e5, -3.0e6, 5e6; 1e6, -5e4,
+    -2.5e6, 3e6] N/m (default) | vector
+  group: Supports
+- name: Follower (F1) mounting type
+  summary: Support *F1* mounting type Clamped (default) | Pinned | Free | Bearing matrix | Speed-dependent bearing matrix
+  group: Supports
+- name: Follower (F1) rotational damping [xx,yy]
+  summary: Support *F1* rotational damping [1e3, 1e3] N*m/(rad/s) (default) | vector
+  group: Supports
+- name: Follower (F1) translational damping [xx,xy,yx,yy]
+  summary: Support *F1* translational damping [2e4, -4.4e4, -4.4e4, 3.5e5] N/(m/s) (default) | vector
+  group: Supports
+- name: Follower (F1) speed-dependent translational damping [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: Support *F1* speed-dependent translational damping [2e4, -4.4e4, -4.4e4, 3.5e5; 1e4, -2.5e4, -2.5e4, 1.4e5; 5e3,
+    -1.0e4, -1.0e4, 2.0e4] N/(m/s) (default) | matrix
+  group: Supports
+- name: Follower (F1) rotational stiffness [xx,yy]
+  summary: Support *F1* rotational stiffness [1e4, 1e4] N*m/rad (default) | nonnegative vector
+  group: Supports
+- name: Follower (F1) translational stiffness [xx,xy,yx,yy]
+  summary: Support *F1* translational stiffness [1e6, -2e5, -3e5, 5e] N/m (default) | vector
+  group: Supports
+- name: Follower (F1) speed-dependent translational stiffness [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: Support *F1* speed-dependent translational stiffness [1e6, -6e5, -3.5e6, 8e6; 1e6, -2e5, -3.0e6, 5e6; 1e6, -5e4,
+    -2.5e6, 3e6] N/m (default) | matrix
+  group: Supports
+- name: Bearing speed [s1,...,sS]
+  summary: Support bearing rotational speed [200, 500, 1500] rpm (default) | nonnegative vector
+  group: Supports
+- name: Damping constant proportional to mass
+  summary: Damping constant *α* 10 1/s (default) | positive scalar
+  group: Bending
+- name: Damping constant proportional to stiffness
+  summary: Damping constant β 1e-8 s (default) | positive scalar
+  group: Bending
+- name: Rigid masses concentrically attached to shaft
+  summary: Type of rigid masses attached to shaft None (default) | Point mass | Disk
+  group: Bending
+- name: Rigid mass distances from base (B)
+  summary: Rigid mass locations along shaft in distance from base node 0.5 m (default) | nonnegative scalar or vector
+  group: Bending
+- name: Rigid masses
+  summary: Mass of rigid masses concentrically attached to shaft 2 kg (default) | positive scalar or vector
+  group: Bending
+- name: Rigid mass diametric moments of inertia about axis perpendicular to shaft
+  summary: Diametric moments of inertia about axis perpendicular to shaft 0.025 kg*m^2 (default) | positive scalar or vector
+  group: Bending
+- name: Rigid mass polar moments of inertia about shaft axis
+  summary: Polar moments of inertia about shaft axis 0.050 kg*m^2 (default) | positive scalar or vector
+  group: Bending
+- name: Enable static unbalances that excite bending
+  summary: Static unbalance excitation option on (default) | off
+  group: Bending
+- name: Static unbalances
+  summary: Excitational static unbalances [.01, .01] m*kg (default) | nonnegative vector
+  group: Bending
+- name: Static unbalance distances from base (B)
+  summary: Static unbalance distances from base [.33, .67] m (default) | nonnegative vector
+  group: Bending
+- name: Static unbalance offset angles
+  summary: Static unbalance offset angles [0, pi] rad (default) | nonnegative vector
+  group: Bending
+- name: Enable external forces that excite bending
+  summary: External force excitation option off (default) | on
+  group: Bending
+- name: External force magnitudes
+  summary: External force magnitudes [1, 2] N (default) | vector
+  group: Bending
+- name: External force distances from base (B)
+  summary: External force positions [.25, .75] m (default)
+  group: Bending
+- name: External force frequency harmonic of rotor speed
+  summary: External force frequency harmonics [.5, 2] (default) | vector
+  group: Bending
+- name: External force offset angles
+  summary: External force offset angles [pi / 2, 3 * pi / 4] rad (default)
+  group: Bending
+- name: Bending vibration analysis method
+  summary: Bending vibration analysis method Lumped mass (default) | Eigenmodes
+  group: Advanced Bending
+- name: Bending mode determination
+  summary: Bending mode determination method Simscape determined (default) | User defined
+  group: Advanced Bending
+- name: Limit number of modes
+  summary: Maximum number of modes 6 (default) | positive integer scalar
+  group: Advanced Bending
+- name: Simulated eigenmode dependency on rotation speed
+  summary: Eigenmode dependency Static (default) | Dynamic
+  group: Advanced Bending
+- name: Nominal shaft speed for bending modes
+  summary: Nominal shaft speed 5000 rpm (default) | scalar
+  group: Advanced Bending
+- name: Eigenfrequency upper limit
+  summary: Eigenfrequency upper limit 1e8 rpm (default) | positive integer scalar
+  group: Advanced Bending
+- name: Shaft length increments for mode shape computations
+  summary: Shaft length increments 0.01 m (default) | positive scalar
+  group: Advanced Bending
+- name: Modal frequencies [m]
+  summary: Bearing-speed-independent modal frequencies [280, 644, 615, 1285] rad/s (default) | nonnegative vector
+  group: Advanced Bending
+- name: Modal frequencies [s,m]
+  summary: Bearing-speed-dependent modal frequencies [257, 780, 580, 1560; 280, 644, 615, 1285; 294, 513, 636, 1020] rad/s
+    (default) | nonnegative matrix
+  group: Advanced Bending
+- name: Shaft position [z]
+  summary: Shaft position [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] (default) | increasing nonnegative vector
+  group: Advanced Bending
+- name: X-direction mode shapes [z,m]
+  summary: Bearing-speed-independent *X*-direction mode shapes [.1648, .0086, -.2759, .0162; .1671, .0093, -.2231, .0133;
+    .1691, .01, -.1689, .0102; .1707, .0105, -.1135, .007; .1717, .0108, -.057, .0035; .1721, .0109, 0, 0; .1717, .0108, .057,
+    -.0035; .1707, .0105, .1135, -.007; .1691, .01, .1689, -.0102; .1671, .0093, .2231, -.0133; .1648, .0086, .2759, -.0162]
+    (default) | matrix
+  group: Advanced Bending
+- name: X-direction mode shapes [z,m,s]
+  summary: Bearing speed dependent *X*-direction mode shapes *z*-by-*m*-by-*s* matrix (default) | ...
+  group: Advanced Bending
+- name: Y-direction mode shapes [z,m]
+  summary: Bearing-speed-independent *Y*-direction mode shapes [.1193, -.1784, -.1997, -.3348; .1209, -.1933, -.1615, -.2751;
+    .1224, -.2068, -.1223, -.2119; .1235, -.2176, -.0821, -.1445; .1243, -.2245, -.0413, -.0734; .1246, -.2269, 0, 0; .1243,
+    -.2245, .0413, .0734; .1235, -.2176, .0821, .1445; .1224, -.2068, .1223, .2119; .1209, -.1933, .1615, .2751; .1193, -.1784,
+    .1997, .3348] (default) | matrix
+  group: Advanced Bending
+- name: Y-direction mode shapes [z,m,s]
+  summary: Bearing-speed-dependent *y*-direction mode shapes *z*-by-*m*-by-*s* matrix
+  group: Advanced Bending
+- name: Bending node displacements (units of m and rad)
+  summary: Nominal bending node displacements 1 (default) | positive scalar
+  group: Nominal Values
+- name: Bending node velocities (units of m/s and rad/s)
+  summary: Nominal bending node velocities 1 (default) | positive scalar
+  group: Nominal Values
+- name: Bending mode displacements (units of 1)
+  summary: Nominal bending mode displacements 1 (default) | positive scalar
+  group: Nominal Values
+- name: Bending mode velocities nominal value (units of 1/s)
+  summary: Nominal bending mode velocities 1 (default) | positive scalar
+  group: Nominal Values
+```
 
 ### Shaft
 
@@ -1923,7 +2238,6 @@ To enable this parameter, select **Model bending
 flexibility** and set **Bending vibration
 analysis method** to
 `Eigenmodes`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Interval Test
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### 输入
 
@@ -34,8 +46,45 @@ chinese_source: worker-translation
 输出信号，指示输入值是否落在指定区间内。您可以将 **Output data type** 指定为 `boolean` 或 `uint8`。
 
 **数据类型：** `uint8` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Interval closed on right
+  summary: 包含上限值 on（默认）| off
+  group: ''
+  block_parameter: IntervalClosedRight
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Upper limit
+  summary: 区间上限 0.5（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: uplimit
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''0.5'''
+- name: Interval closed on left
+  summary: 包含下限值 on（默认）| off
+  group: ''
+  block_parameter: IntervalClosedLeft
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Lower limit
+  summary: 区间下限 -0.5（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: lowlimit
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''-0.5'''
+- name: Output data type
+  summary: 输出数据类型 boolean（默认）| uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+```
 
 ### **Interval closed on right** — 包含上限值 `on`（默认）| `off`
 
@@ -101,7 +150,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'boolean' | 'uint8'` |
 | **默认值**：`'boolean'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations

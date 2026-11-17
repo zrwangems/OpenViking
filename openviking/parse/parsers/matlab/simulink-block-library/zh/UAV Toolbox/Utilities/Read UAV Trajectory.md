@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Read UAV Trajectory
 
 ## 端口
+```yaml
+ports:
+- name: Time
+  summary: 沿轨迹采样的时间点 标量
+  direction: input
+  data_types: double
+- name: Translation
+  summary: UAV 的位置 向量
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: UAV 的欧拉角 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -46,8 +61,26 @@ UAV 的欧拉角，以 `[Rz Ry Rx]` 形式的向量返回，其中 `Rz`、`Ry` �
 **示例：** `[1 0 0]`
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Trajectory source
+  summary: 轨迹源 From trajectory object in workspace（默认）| From UAV Scenario in workspace
+  group: ''
+- name: UAV scenario object
+  summary: UAV 场景对象 singleUAVScenario（默认）| uavScenario 对象
+  group: ''
+- name: UAV platform name
+  summary: UAV 平台名称 UAV（默认）| UAV 平台名称
+  group: ''
+- name: Trajectory object
+  summary: 轨迹对象 waypointTrajectory()（默认）| multirotorFlightTrajectory 对象 | fixedwingFlightTrajectory 对象 | polynomialTrajectory
+    对象 | waypointTrajectory 对象
+  group: ''
+- name: Convert to ENU reference frame and Front-Left-Up body frame
+  summary: 平移和旋转坐标系 on（默认）| off
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -89,7 +122,6 @@ UAV 的欧拉角，以 `[Rz Ry Rx]` 形式的向量返回，其中 `Rz`、`Ry` �
 ### **Convert to ENU reference frame and Front-Left-Up body frame** — 平移和旋转坐标系 `on`（默认）| `off`
 
 选择此参数以输出 ENU 参考坐标系中的平移以及从 ENU 坐标系到 Front-Left-Up 机体坐标系的旋转。否则，该模块输出与轨迹源相同坐标系中的平移和旋转。如果要将此模块的输出用作 Simulation 3D UAV Vehicle 模块的 **Translation** 和 **Rotation** 输入，请选择此参数。
-
 ## 所属库
 
 UAV Toolbox / Utilities

@@ -14,6 +14,17 @@ language: en
 # Filtered Derivative (Discrete or Continuous)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Derivative input vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Derivative output vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -30,8 +41,34 @@ value to determine the state initial value.
 Filtered derivative output signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain
+  summary: Derivative gain 1 (default) | positive number
+  group: ''
+- name: Time constant
+  summary: Derivative time constant 0.1 (default) | positive number
+  group: ''
+- name: Upper saturation limit
+  summary: Output upper limit inf (default) | real number
+  group: ''
+- name: Lower saturation limit
+  summary: Output lower limit -inf (default) | real number
+  group: ''
+- name: Minimum sample time to time constant ratio
+  summary: Discrete ratio 10 (default) | real number
+  group: ''
+- name: Initialization
+  summary: Initial state specification Inherited from block input (default) | Specify as parameter
+  group: ''
+- name: Initial state
+  summary: Initial state 0 (default) | real number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive number
+  group: ''
+```
 
 ### **Gain** — Derivative gain `1` (default) | positive number
 
@@ -91,7 +128,6 @@ allows either continuous and discrete operation, promote the sample time
 parameter. Promoting the sample time parameter ensures correct switching
 between the continuous and discrete implementations of the block. For more
 information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

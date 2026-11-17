@@ -14,6 +14,25 @@ language: en
 # Set-Reset Flip-Flop
 
 ## Ports
+```yaml
+ports:
+- name: Set
+  summary: Set input signal 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Reset
+  summary: Reset input signal 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Q
+  summary: Output signal 0 | 1
+  direction: output
+  data_types: Boolean
+- name: '!Q'
+  summary: Complement output signal 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -43,8 +62,19 @@ Output signal **!Q**, with the same
 dimensions and data type as the input **signal**.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Priority when undefined state
+  summary: State priority Set (default) | Reset
+  group: ''
+- name: Initial condition for Q state
+  summary: Initial value of the output Q 0 (default) | 1
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Priority when undefined state** — State priority `Set` (default) | `Reset`
 
@@ -70,7 +100,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

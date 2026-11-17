@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CPM Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出信号 标量 | 列向量
+  direction: output
+  data_types: double | Boolean | int8 | int16 | int32
+```
 
 ### 输入
 
@@ -38,8 +49,55 @@ chinese_source: worker-translation
 **数据类型：** `double` | `Boolean` | `int8` | `int16` | `int32`
 
 有关处理速率的详细信息，请参阅 Single-Rate Processing 和 Multirate Processing。
-
 ## 参数
+```yaml
+parameters:
+- name: M-ary number
+  summary: 调制阶数 4（默认）| 正整数
+  group: ''
+- name: Output type
+  summary: 确定输出由整数还是比特组组成 Integer（默认）| Bit
+  group: ''
+- name: Symbol set ordering
+  summary: 比特映射 Binary（默认）| Gray
+  group: ''
+- name: Modulation index
+  summary: 调制指数 {*h*i} 0.5（默认）| 非负标量 | 列向量
+  group: ''
+- name: Frequency pulse shape
+  summary: 脉冲成形类型 Rectangular（默认）| Raised Cosine | Spectral Raised Cosine | Gaussian | Tamed FM
+  group: ''
+- name: Main lobe pulse duration (symbol intervals)
+  summary: 主瓣持续时间 1（默认）| 正整数
+  group: ''
+- name: Rolloff
+  summary: 频谱升余弦脉冲形状的滚降因子 0.2（默认）| [0, 1] 范围内的标量
+  group: ''
+- name: BT product
+  summary: 高斯脉冲的带宽与符号时间之积 0.3（默认）| 正标量
+  group: ''
+- name: Pulse length (symbol intervals)
+  summary: 频率脉冲形状的长度 1（默认）| 正整数
+  group: ''
+- name: Symbol prehistory
+  summary: 仿真开始前使用的数据符号 1（默认）| 标量 | 向量
+  group: ''
+- name: Phase offset (rad)
+  summary: 初始相位偏移 0（默认）| 标量
+  group: ''
+- name: Samples per symbol
+  summary: 符号采样率 8（默认）| 正标量
+  group: ''
+- name: Rate options
+  summary: 模块处理速率 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Traceback depth
+  summary: Viterbi 算法的回溯深度 16（默认）| 正整数
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| boolean | int8 | int16 | int32
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -133,7 +191,6 @@ Viterbi 算法的回溯深度，指定为正整数，表示 Viterbi 算法用于
 ### **Output data type** — 输出数据类型 `double`（默认）| `boolean` | `int8` | `int16` | `int32`
 
 输出数据类型，指定为 `double`、`boolean`、`int8`、`int16` 或 `int32`。有关详细信息，请参阅 `Out` 中的 **Supported Data Types**。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / CPM

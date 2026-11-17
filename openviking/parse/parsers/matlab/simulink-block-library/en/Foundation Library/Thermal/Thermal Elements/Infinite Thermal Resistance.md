@@ -14,13 +14,17 @@ language: en
 # Infinite Thermal Resistance
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has two thermal conserving ports.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

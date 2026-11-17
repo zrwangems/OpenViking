@@ -14,6 +14,17 @@ language: en
 # Analytic Signal
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Analytic signal output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -42,8 +53,16 @@ The output has the same size and data type as the input.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter order (must be even)
+  summary: Filter order 100 (default) | even positive integer
+  group: ''
+- name: Input processing
+  summary: Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+```
 
 ### **Filter order (must be even)** — Filter order `100` (default) | even positive integer
 
@@ -71,7 +90,6 @@ You can set this parameter to one of these options:
   matrix input as *M*\**N*
   independent channels and computes the analytic signal for each
   channel (matrix element) over time.
-
 ## Libraries
 
 DSP System Toolbox / Transforms

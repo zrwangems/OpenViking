@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Piezo Linear Actuator
 
 ## 端口
+```yaml
+ports:
+- name: f
+  summary: 电机驱动频率物理量
+  direction: input
+- name: v
+  summary: RMS 电源电压和旋转方向物理量
+  direction: input
+- name: i
+  summary: RMS 相电流物理量
+  direction: output
+- name: vel
+  summary: 转子速度物理量
+  direction: output
+- name: C
+  summary: 外壳机械
+  direction: output
+- name: R
+  summary: 转子机械
+  direction: output
+```
 
 ### 输入
 
@@ -44,8 +65,52 @@ chinese_source: worker-translation
 ### **R** — 转子机械
 
 与电机转子相关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Motor natural frequency
+  summary: 电机固有频率 92 kHz（默认值）
+  group: 电力
+- name: Rated RMS voltage
+  summary: 额定 RMS 电压 5.7 V（默认值）
+  group: 电力
+- name: Rated force
+  summary: 额定力 0.1 N（默认值）
+  group: 电力
+- name: Rated speed
+  summary: 额定速度 50 mm/s（默认值）
+  group: 电力
+- name: No-load maximum speed
+  summary: 空载最大速度 150 mm/s（默认值）
+  group: 电力
+- name: Maximum (stall) force
+  summary: 最大力 0.15 N（默认值）
+  group: 电力
+- name: Resonance quality factor
+  summary: 共振品质因数 100（默认值）
+  group: 电力
+- name: Capacitance per phase
+  summary: 每相电容 5 nF（默认值）
+  group: 电力
+- name: Plunger mass
+  summary: 柱塞质量 0.3 g（默认值）
+  group: 机械
+- name: Holding force
+  summary: 保持力 0.3 N（默认值）
+  group: 电机关闭摩擦
+- name: Coulomb friction force
+  summary: 库仑摩擦力 0.15 N（默认值）
+  group: 电机关闭摩擦
+- name: Viscous friction coefficient
+  summary: 粘性摩擦系数 1e-5 s*N/mm（默认值）| 非负标量
+  group: 电机关闭摩擦
+- name: Transition approximation coefficient
+  summary: 过渡近似系数 0.1 s/mm（默认值）
+  group: 电机关闭摩擦
+- name: Linear region velocity threshold
+  summary: 线性区域速度阈值 0.1 mm/s（默认值）
+  group: 电机关闭摩擦
+```
 
 ### 电力
 
@@ -112,7 +177,6 @@ chinese_source: worker-translation
 ### **Linear region velocity threshold** — 线性区域速度阈值 `0.1` `mm/s`（默认值）
 
 该参数设置零速度附近的小邻域，在该邻域内摩擦力被认为与相对速度成线性比例。MathWorks 建议使用 `1e-6` 到 `1e-4` mm/s 之间的值。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

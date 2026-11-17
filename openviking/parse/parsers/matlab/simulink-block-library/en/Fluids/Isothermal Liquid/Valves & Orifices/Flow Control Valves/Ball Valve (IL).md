@@ -14,6 +14,18 @@ language: en
 # Ball Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Valve position, rad physical signal
+  direction: input
+- name: A
+  summary: Valve port A isothermal liquid
+  direction: conserving
+- name: B
+  summary: Valve port B isothermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -31,8 +43,53 @@ Isothermal liquid conserving port associated with valve port A.
 ### **B** — Valve port B isothermal liquid
 
 Isothermal liquid conserving port associated with valve port B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: Option to parameterize given flow coefficient Orifice area based on geometry (default) | Cv flow coefficient |
+    Kv flow coefficient
+  group: ''
+- name: Opening characteristic
+  summary: Ball valve parameterization Area of overlapping circles (default) | Tabulated
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: Maximum valve flow coefficient 32 gpm (default) | positive scalar
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: Maximum valve flow factor 49 m^3/hr (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Valve port cross-sectional area pi * (25 ^ 2) / 4 mm^2 (default) | positive scalar
+  group: ''
+- name: Ball bore area
+  summary: Area of ball bore pi * (20 ^ 2) / 4 mm^2 (default) | positive scalar
+  group: ''
+- name: Cv flow coefficient vector
+  summary: Flow coefficient for given ball rotation [1e-06, .58, 1.15, 1.9, 2.8, 4.3, 7, 10.5, 17, 26, 32] gpm (default) |
+    vector
+  group: ''
+- name: Kv flow coefficient vector
+  summary: Flow factor for given ball rotation [1e-06, .34, .76, 1.6, 2.45, 4.1, 5.75, 9.4, 13, 28, 50] m^3/hr (default) |
+    vector
+  group: ''
+- name: Area vector
+  summary: Area for given ball rotation [1e-10, 62.5, 125, 187.5, 250, 312.5, 375, 437.5, 500, 562.5, 625] mm^2 (default)
+    | vector
+  group: ''
+- name: Ball rotation vector
+  summary: Ball rotation pi / 2 .* [0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1] rad (default) | vector
+  group: ''
+- name: Leakage area
+  summary: Valve gap area when in fully shut position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve parameterization** — Option to parameterize given flow coefficient `Orifice area based on geometry` (default) | `Cv flow coefficient` | `Kv flow coefficient`
 
@@ -181,7 +238,6 @@ To enable this parameter, set **Opening characteristic** to
 ### **Critical Reynolds number** — Upper Reynolds number limit for laminar flow `150` (default) | positive scalar
 
 Upper Reynolds number limit for laminar flow through the valve.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

@@ -14,10 +14,93 @@ language: en
 # IMT Mixer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: Carrier frequency 1e9 (default) | scalar
+  group: ''
+- name: Local oscillator frequency (Hz)
+  summary: Local oscillator (LO) frequency 0.9e9 (default) | scalar
+  group: ''
+- name: Reference input power (dBm)
+  summary: Reference input power -10 (default) | scalar
+  group: ''
+- name: Nominal output power (dbm)
+  summary: Nominal LO power -20 (default) | scalar
+  group: ''
+- name: Use data file
+  summary: Specify data file to use off (default) | on
+  group: ''
+- name: Data file
+  summary: Data file samplespur1.s2d (default)
+  group: ''
+- name: Input impedance (Ohm)
+  summary: Input impedance of mixer 50 (default) | real scalar | vector of positive real scalars
+  group: ''
+- name: Output impedance (Ohm)
+  summary: Output impedance of mixer 50 (default) | real scalar | vector of positive real scalars
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF negative circuit terminals on (default) | off
+  group: ''
+- name: IMT table
+  summary: IMT spur visualization [99 99 99; 99 0 99; 99 99 99] (default) | square matrix
+  group: ''
+- name: Output signal power (dBm)
+  summary: Signal power of desired output tone 0 (default) | scalar
+  group: ''
+- name: Mixer type
+  summary: Mixer type Upconverter (default) | Downconverter
+  group: ''
+- name: Plot
+  summary: Visualize IMT table values using specified signal power and mixer type button
+  group: ''
+- name: Simulate noise
+  summary: Simulate device or phase noise on (default) | off
+  group: ''
+- name: Noise type
+  summary: Noise type Noise figure (default) | Spot noise data
+  group: ''
+- name: Noise distribution
+  summary: Noise distribution White (default) | Piece-wise linear | Colored
+  group: ''
+- name: Noise figure (dB)
+  summary: Noise figure 0 (default) | scalar
+  group: ''
+- name: Frequencies (Hz)
+  summary: Frequency data 0 (default) | scalar | vector
+  group: ''
+- name: Minimum noise figure (dB)
+  summary: Minimum noise figure 0 (default) | scalar | vector
+  group: ''
+- name: Optimal reflection coefficient
+  summary: Optimal reflection coefficient 0 (default) | scalar | vector
+  group: ''
+- name: Equivalent normalized noise resistance
+  summary: Equivalent normalized noise resistance 0 (default) | scalar | vector
+  group: ''
+- name: Add LO phase noise
+  summary: Add phase noise off (default) | on
+  group: ''
+- name: Phase noise frequency offset (Hz)
+  summary: Phase noise frequency offset 1 (default) | scalar | vector
+  group: ''
+- name: Phase noise level (dBc/Hz)
+  summary: Phase noise level -Inf (default) | scalar | vector | matrix
+  group: ''
+- name: Automatically estimate impulse response duration
+  summary: Automatically estimate impulse response duration on (default) | off
+  group: ''
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10s (default) | scalar
+  group: ''
+```
 
 #### Main
 
@@ -299,7 +382,6 @@ NTstep`.
 
 To set this parameter, first clear **Automatically estimate
 impulse response duration**.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

@@ -14,6 +14,45 @@ language: en
 # MCAN Receive
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: CAN Message vector | scalar
+  direction: output
+  data_types: CAN Msg
+- name: Data
+  summary: Message data vector | scalar
+  direction: output
+  data_types: uint8
+- name: Status
+  summary: Status of received message scalar
+  direction: output
+  data_types: uint8
+- name: CAN identifier(ID)
+  summary: CAN message identifier scalar
+  direction: output
+  data_types: uint32
+- name: Length(LEN)
+  summary: CAN message length scalar
+  direction: output
+  data_types: uint8
+- name: Remote transmission request(RTR)
+  summary: Remote frame status scalar
+  direction: output
+  data_types: uint8
+- name: Bit rate switch(BRS)
+  summary: Bit rate switch status scalar
+  direction: output
+  data_types: uint8
+- name: Extended identifier(XTD)
+  summary: Extended or standard identifier scalar
+  direction: output
+  data_types: uint8
+- name: Frame data format(FDF)
+  summary: CAN frame data format scalar
+  direction: output
+  data_types: uint8
+```
 
 ### Output
 
@@ -135,8 +174,28 @@ To enable this port, set **Output type** to
 `Unpacked`.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: MCAN module
+  summary: CAN module A (default) | B
+  group: ''
+- name: Read source
+  summary: CAN receive message source Buffers (default) | FIFO 0 | FIFO 1
+  group: ''
+- name: Buffer number (0-63)
+  summary: Buffer number 0 (default) | 1 | 2...
+  group: ''
+- name: Output Type
+  summary: Message output type Packed (default) | Unpacked
+  group: ''
+- name: Output Status
+  summary: Enable output status off (default) | on
+  group: ''
+- name: Sample Time
+  summary: Time interval to read message 0.1 (default) | -1 | nonnegative real value
+  group: ''
+```
 
 ### **MCAN module** — CAN module `A` (default) | `B`
 
@@ -182,7 +241,6 @@ status.
 Specify how often the block receives message, in seconds. When you specify this
 parameter as `-1`, Simulink determines the best sample time for the block based on the block context
 within the model.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F28p65x

@@ -14,6 +14,12 @@ language: en
 # FMCW Waveform
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: FMCW Waveform complex-valued column vector
+  direction: output
+```
 
 ### Output
 
@@ -34,8 +40,49 @@ the waveform samples.
   parameter. Also, if the **Sweep direction**
   parameter is set to `Triangle` each sweep
   is one-half period in duration.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: Sample rate of the output waveform 1e6 (default) | positive scalar
+  group: ''
+  block_parameter: SampleRate
+  type: double
+  values: positive scalar
+  default: 1e6
+- name: Sweep time (s)
+  summary: Duration of each linear FM sweep 1e-4 (default)
+  group: ''
+- name: Sweep bandwidth (Hz)
+  summary: FM sweep bandwidth 1e5 (default)
+  group: ''
+- name: Sweep direction
+  summary: FM sweep direction Up (default) | Down | Triangle
+  group: ''
+- name: Sweep interval
+  summary: Location of FM sweep interval Positive (default) | Symmetric
+  group: ''
+- name: Output signal format
+  summary: Output signal format Sweeps (default) | Samples
+  group: ''
+- name: Number of samples in output
+  summary: Number of samples in output 100 (default) | positive integer
+  group: ''
+  block_parameter: NumSamples
+  type: double
+  values: positive scalar
+  default: '100'
+- name: Number of sweeps in output
+  summary: Number of sweeps in output 1 (default)
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Sample rate (Hz)** — Sample rate of the output waveform `1e6` (default) | positive scalar
 
@@ -198,7 +245,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Waveforms

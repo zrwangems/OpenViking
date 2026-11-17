@@ -14,6 +14,24 @@ language: en
 # Variant End
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input branch scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_N
+  summary: Input port associated with *N*th branch scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -38,8 +56,24 @@ Start block.
 Output signal from the active variant.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Variant Start End Tag
+  summary: Unique identifier of bounded region A (default) | valid MATLAB® identifier
+  group: ''
+  block_parameter: VariantStartEndTag
+  type: character vector
+  values: '''A'' | valid MATLAB identifier'
+  default: '''A'''
+- name: Variant Paired Block
+  summary: Option to highlight paired Variant Start block off (default) | on
+  group: ''
+  block_parameter: VariantPairedBlock
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Variant Start End Tag** — Unique identifier of bounded region `A` (default) | valid MATLAB® identifier
 
@@ -74,7 +108,6 @@ highlighted.
 | **Type:** character vector |
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Signal Routing

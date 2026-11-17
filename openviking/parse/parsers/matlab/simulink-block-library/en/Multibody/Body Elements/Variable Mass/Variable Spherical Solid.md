@@ -14,6 +14,30 @@ language: en
 # Variable Spherical Solid
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+- name: r
+  summary: Radius of the sphere physical signal
+  direction: unspecified
+- name: m
+  summary: Mass of the sphere physical signal
+  direction: unspecified
+- name: r
+  summary: Radius of the sphere physical signal
+  direction: unspecified
+- name: m
+  summary: Mass of the sphere physical signal
+  direction: unspecified
+- name: com
+  summary: Center-of-mass coordinates of the sphere physical signal
+  direction: unspecified
+- name: I
+  summary: Inertia matrix of the sphere physical signal
+  direction: unspecified
+```
 
 ### Frame
 
@@ -57,8 +81,68 @@ shifted to the center of mass. The axes of the inertia frame of
 resolution are parallel to the axes of the reference frame. The diagonal
 elements of the matrix are the moments of inertia and the off-diagonal
 elements are the products of inertia.
-
 ## Parameters
+```yaml
+parameters:
+- name: Radius
+  summary: Radius parameterization Calculate from Mass (default) | Constant | Provided by Input
+  group: ''
+- name: 'Radius: Value'
+  summary: Value of the radius 1 m (default) | scalar with units of length
+  group: ''
+- name: Mass
+  summary: Mass parameterization Provided by Input (default) | Calculate from Geometry
+  group: ''
+- name: 'Mass: Density'
+  summary: Mass per unit volume of material 1000 kg/m^3 (default) | scalar in units of mass per unit volume
+  group: ''
+- name: Radius
+  summary: Sensing selection for the radius cleared (default) | checked
+  group: ''
+- name: Mass
+  summary: Sensing selection for the total mass cleared (default) | checked
+  group: ''
+- name: Center of Mass
+  summary: Sensing selection for the center-of-mass coordinates cleared (default) | checked
+  group: ''
+- name: Inertia Matrix
+  summary: Sensing option for the inertia matrix cleared (default) | checked
+  group: ''
+- name: Type
+  summary: Graphic to use for visualization From Geometry (default) | Marker | None
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Shape
+  summary: Shape of marker to represent to the solid Sphere (default) | Cube | Frame
+  group: Graphic
+- name: Size
+  summary: Width of the marker in pixels 10 pixels (default) | scalar
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: Graphic
+```
 
 #### Geometry and Inertia
 
@@ -288,7 +372,6 @@ To enable this parameter, set:
    `Marker`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Body Elements / Variable Mass

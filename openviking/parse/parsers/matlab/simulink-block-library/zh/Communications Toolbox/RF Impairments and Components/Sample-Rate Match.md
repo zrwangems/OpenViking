@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Sample-Rate Match
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 第一个输入信号 列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: In2
+  summary: 第二个输入信号 列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: 输出信号 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -39,8 +54,22 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Input sample rate (Hz)
+  summary: 每个输入信号的采样率 [1 2]\*1e6（默认）| 2 元素向量
+  group: ''
+- name: Output samples per frame
+  summary: 每帧输出的样本数 1000（默认）| 正整数
+  group: ''
+- name: Output sample rate options
+  summary: 输出采样率选项 Auto（默认）| Specify via property
+  group: ''
+- name: Output sample rate (Hz)
+  summary: 输出信号采样率 2e6（默认）| 正标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -66,7 +95,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 `Output sample rate options` 参数设置为 `Specify via property`。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments and Components

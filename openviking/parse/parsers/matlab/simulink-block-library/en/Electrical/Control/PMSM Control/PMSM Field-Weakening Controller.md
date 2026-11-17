@@ -14,6 +14,25 @@ language: en
 # PMSM Field-Weakening Controller
 
 ## Ports
+```yaml
+ports:
+- name: idqRef
+  summary: Reference currents vector
+  direction: input
+  data_types: single | double
+- name: vdq
+  summary: Voltages vector
+  direction: input
+  data_types: single | double
+- name: VphMax
+  summary: Maximum phase voltage scalar
+  direction: input
+  data_types: single | double
+- name: idqRefFW
+  summary: Field-weakening reference currents vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -44,8 +63,22 @@ Field-weakening reference direct and quadrature axis currents, in
 A.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation index threshold
+  summary: Modulation index threshold 1 (default) | positive number
+  group: ''
+- name: Field-weakening controller integral gain
+  summary: Integral gain 100 (default) | positive number
+  group: ''
+- name: Integral anti-windup gain
+  summary: Anti-windup gain 10 (default) | positive number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | -1 or positive number
+  group: ''
+```
 
 ### **Modulation index threshold** — Modulation index threshold `1` (default) | positive number
 
@@ -65,7 +98,6 @@ Sample time for the block (-1 for inherited). If you use this block inside
 a triggered subsystem, set the sample time to `-1`. If you
 use this block in a continuous variable-step model, set the sample time
 explicitly.
-
 ## Libraries
 
 Simscape / Electrical / Control / PMSM Control

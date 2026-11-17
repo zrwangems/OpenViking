@@ -14,6 +14,25 @@ language: en
 # Logical Operator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: Second input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_N
+  summary: Nth input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -50,8 +69,67 @@ type** and **Output data type**
 parameters.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operator
+  summary: Logical operator AND (default) | OR | NAND | NOR | XOR | NXOR | NOT
+  group: Main
+  block_parameter: Operator
+  type: character vector
+  values: '''AND'' | ''OR'' | ''NAND'' | ''NOR'' | ''XOR'' | ''NXOR'' | ''NOT'''
+  default: '''AND'''
+- name: Number of input ports
+  summary: Number of inputs 2 (default) | positive integer
+  group: Main
+  block_parameter: Inputs
+  type: character vector
+  values: positive integer
+  default: '''2'''
+- name: Icon shape
+  summary: Icon shape rectangular (default) | distinctive
+  group: Main
+  block_parameter: IconShape
+  type: character vector
+  values: '''rectangular'' | ''distinctive'''
+  default: '''rectangular'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Require all inputs and output to have the same data type
+  summary: Require all ports to have same data type off (default) | on
+  group: Data Type
+  block_parameter: AllPortsSameDT
+  type: character vector
+  values: '''off'' | ''on'
+  default: '''off'''
+- name: Output data type
+  summary: 'Output data type boolean (default) | Inherit: Logical (see Configuration Parameters: Optimization) | Inherit:
+    Inherit via back propagation | fixdt(1,16) | <data type expression>'
+  group: Data Type
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Logical (see Configuration Parameters: Optimization)'' | ''boolean'' | ''fixdt(1,16)'' | ''<data type
+    expression>'''
+  default: '''boolean'''
+- name: Mode
+  summary: Category of data to specify Built in (default) | Inherit | Fixed point | Expression
+  group: Data Type
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: Data Type
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default) | Unsigned
+  group: Data Type
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: Data Type
+- name: Scaling
+  summary: Method of scaling Integer (default)
+  group: Data Type
+```
 
 ### Main
 
@@ -286,7 +364,6 @@ result as specifying a binary point location and setting the fraction length to
 To enable this parameter, click the **Show data type
 assistant** button and set **Mode** to
 `Fixed point`.
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Logic and Bit Operations HDL Coder / Commonly Used Blocks HDL Coder / Logic and Bit Operations

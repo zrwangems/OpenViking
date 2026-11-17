@@ -14,6 +14,15 @@ language: en
 # PS Lookup Table (1D)
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input query point or N-D array of query points along the *x*-axis, untyped physical signal
+  direction: input
+- name: f
+  summary: Output function value, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -31,8 +40,22 @@ Output function value, based on applying the lookup table to the input
 query. The output signal size matches the input signal size. The output
 signal unit is determined by the unit of the **Table
 values** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Table grid vector
+  summary: Vector of data points along the *x*-axis [1, 2, 3, 4, 5] 1 (default)
+  group: ''
+- name: Table values
+  summary: Vector of output values along the *f*-axis [0, 1, 2, 3, 4] 1 (default)
+  group: ''
+- name: Interpolation method
+  summary: Select the interpolation method Linear (default) | Smooth
+  group: ''
+- name: Extrapolation method
+  summary: Select the extrapolation method Linear (default) | Nearest | Error
+  group: ''
+```
 
 ### **Table grid vector** — Vector of data points along the *x*-axis `[1, 2, 3, 4, 5] 1` (default)
 
@@ -93,7 +116,6 @@ argument list:
   input signal is outside the range of the table. Select this option
   to avoid going into the extrapolation mode when you want your data
   to be within the table range.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Lookup Tables

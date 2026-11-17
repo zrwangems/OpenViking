@@ -15,6 +15,35 @@ chinese_source: worker-translation
 # Enabled Resettable Delay
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 数据输入信号 标量 | 向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: d
+  summary: 延迟长度 标量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+- name: Enable
+  summary: 外部使能信号 标量
+  direction: input
+  data_types: Boolean
+- name: External reset
+  summary: 外部复位信号 标量
+  direction: input
+  data_types: Boolean
+- name: x0
+  summary: 初始条件 标量 | 向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -54,8 +83,93 @@ chinese_source: worker-translation
 输出信号，即输入信号延迟由 **Delay length** 参数指定的时间长度。输出信号的初始值取决于若干条件。请参阅 Delay。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Delay length
+  summary: 延迟长度 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: DelayLengthUpperLimit
+  type: 字符向量
+  values: 标量
+  default: '''100'''
+- name: Initial condition
+  summary: 初始条件 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: InitialCondition
+  type: 字符向量
+  values: 标量
+  default: '''0.0'''
+- name: 输入处理
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: 主要
+  block_parameter: InputProcessing
+  type: 字符向量
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: 使用循环缓冲区存储状态
+  summary: 用于存储状态的循环缓冲区 off（默认）| on
+  group: 主要
+  block_parameter: UseCircularBuffer
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 防止直接馈通
+  summary: 防止直接馈通 off（默认）| on
+  group: 主要
+  block_parameter: PreventDirectFeedthrough
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 在生成的代码中移除延迟长度检查
+  summary: 移除延迟长度超出范围检查 off（默认）| on
+  group: 主要
+  block_parameter: RemoveDelayLengthCheckInGeneratedCode
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 延迟长度的诊断
+  summary: 延迟长度的诊断检查 None（默认）| Warning | Error
+  group: 主要
+  block_parameter: DiagnosticForDelayLength
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: 显示使能端口
+  summary: 创建使能端口 on（默认）| off
+  group: 主要
+  block_parameter: ShowEnablePort
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: 外部复位
+  summary: 外部状态复位 None（默认）| Rising | Falling | Either | Level | Level hold
+  group: 主要
+  block_parameter: ExternalReset
+  type: 字符向量
+  values: '''None'' | ''Rising'' | ''Falling'' | ''Either'' | ''Level'' | ''Level hold'''
+  default: '''None'''
+- name: 采样时间（-1 表示继承）
+  summary: 采样时间命中之间的离散间隔 -1（默认）| scalar
+  group: 主要
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 实数标量
+  default: '''-1'''
+- name: 状态名称
+  summary: 模块状态的唯一名称 ''（默认）| 字母数字字符串
+  group: 状态属性
+  block_parameter: StateName
+  type: 字符向量
+  values: 唯一名称
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: 要求状态名称解析为信号对象的选项 off（默认）| on
+  group: 状态属性
+  block_parameter: StateMustResolveToSignalObject
+  type: 字符向量
+  values: '''off'' | ''on'''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -318,7 +432,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off'` | `'on'` |
 | **默认**：`'off'` |
-
 ## 所属库
 
 HDL Coder / Discrete Simulink / Discrete

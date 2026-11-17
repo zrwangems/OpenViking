@@ -14,6 +14,15 @@ language: en
 # Radar Detection Generator
 
 ## Ports
+```yaml
+ports:
+- name: Actors
+  summary: Scenario actor poses Simulink bus containing MATLAB® structure
+  direction: input
+- name: Detections
+  summary: Detections Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -106,8 +115,149 @@ is a structure with these fields.
 | --- | --- |
 | `TargetIndex` | Identifier of the actor, `ActorID`, that generated the detection. For false alarms, this value is negative. |
 | `SNR` | Signal-to-noise ratio of the detection. Units are in dB. |
-
 ## Parameters
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Parameters
+- name: Required interval between sensor updates (s)
+  summary: Required time interval 0.1 (default) | positive real scalar
+  group: Parameters
+- name: Sensor's (x,y) position (m)
+  summary: Location of the radar sensor center [3.4 0] (default) | real-valued 1-by-2 vector
+  group: Parameters
+- name: Sensor's height (m)
+  summary: Radar sensor height above the ground plane 0.2 (default) | positive real scalar
+  group: Parameters
+- name: Yaw angle of sensor mounted on ego vehicle (deg)
+  summary: Yaw angle of sensor 0 (default) | real scalar
+  group: Parameters
+- name: Pitch angle of sensor mounted on ego vehicle (deg)
+  summary: Pitch angle of sensor 0 (default) | real scalar
+  group: Parameters
+- name: Roll angle of sensor mounted on ego vehicle (deg)
+  summary: Roll angle of sensor 0 (default) | real scalar
+  group: Parameters
+- name: Source of output bus name
+  summary: Source of output bus name Auto (default) | Property
+  group: Parameters
+- name: Specify an output bus name
+  summary: Name of output bus no default
+  group: Parameters
+- name: Maximum number of reported detections
+  summary: Maximum number of reported detections 50 (default) | positive integer
+  group: Parameters
+- name: Coordinate system used to report detections
+  summary: Coordinate system of reported detections Ego Cartesian (default) | Sensor Cartesian | Sensor Spherical
+  group: Parameters
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Parameters
+- name: Azimuthal resolution of radar (deg)
+  summary: Azimuth resolution of radar 4.0 (default) | positive real scalar
+  group: Measurements
+- name: Elevation resolution of radar (deg)
+  summary: Elevation resolution of radar 10.0 (default) | positive real scalar
+  group: Measurements
+- name: Range resolution of radar (m)
+  summary: Range resolution of radar 2.5 (default) | positive real scalar
+  group: Measurements
+- name: Range rate resolution of radar (m/s)
+  summary: Range rate resolution of the radar 0.5 (default) | positive real scalar
+  group: Measurements
+- name: Fractional azimuthal bias component of radar
+  summary: Azimuth bias fraction 0.1 (default) | nonnegative real scalar
+  group: Measurements
+- name: Fractional elevation bias component of radar
+  summary: Elevation bias fraction 0.1 (default) | nonnegative real scalar
+  group: Measurements
+- name: Fractional range bias component of radar
+  summary: Range bias fraction 0.05 (default) | nonnegative real scalar
+  group: Measurements
+- name: Fractional range rate bias component of radar
+  summary: Range rate bias fraction of the radar 0.05 (default) | nonnegative real scalar
+  group: Measurements
+- name: Total angular field of view for radar (deg)
+  summary: Field of view of radar sensor [20 5] (default) | real-valued 1-by-2 vector of positive values
+  group: Measurements
+- name: Maximum detection range (m)
+  summary: Maximum detection range 150 (default) | positive real scalar
+  group: Measurements
+- name: Minimum and maximum range rates that can be reported
+  summary: Minimum and maximum detection range rates [-100 100] (default) | real-valued 1-by-2 vector
+  group: Measurements
+- name: Detection probability
+  summary: Probability of detecting a target 0.9 (default) | positive real scalar less than or equal to 1
+  group: Measurements
+- name: Rate at which false alarms are reported
+  summary: False alarm rate 1e-6 (default) | positive real scalar
+  group: Measurements
+- name: 'Range where detection probability is achieved (m):'
+  summary: Reference range for given probability of detection 100 (default) | positive real scalar
+  group: Measurements
+- name: Radar cross section at which detection probability is achieved (dBsm)
+  summary: Reference radar cross-section for given probability of detection 0.0 (default) | nonnegative real scalar
+  group: Measurements
+- name: Enable elevation angle measurements
+  summary: Enable radar to measure elevation off (default) | on
+  group: Measurements
+- name: Enable range rate measurements
+  summary: Enable radar to measure range rate on (default) | off | on
+  group: Measurements
+- name: Add noise to measurements
+  summary: Enable adding noise to radar sensor measurements on (default) | off
+  group: Measurements
+- name: Enable false detections
+  summary: Enable creating false alarm radar detections on (default) | off
+  group: Measurements
+- name: Enable occlusion
+  summary: Enable line-of-sight occlusion on (default) | off
+  group: Measurements
+- name: Select method to specify initial seed
+  summary: Method to specify random number generator seed Repeatable (default) | Specify seed | Not repeatable
+  group: Measurements
+- name: Initial seed
+  summary: Random number generator seed 0 (default) | nonnegative integer less than 232
+  group: Measurements
+- name: Select method to specify actor profiles
+  summary: Method to specify actor profiles From Scenario Reader block (default) | Parameters | MATLAB expression
+  group: Actor Profiles
+- name: MATLAB expression for actor profiles
+  summary: MATLAB expression for actor profiles struct('ClassID',0,'Length',4.7,'Width',1.8,'Height',1.4,'OriginOffset',[-1.35,0,0])
+    (default) | MATLAB structure | MATLAB structure array | valid MATLAB expression
+  group: Actor Profiles
+- name: Unique identifier for actors
+  summary: Scenario-defined actor identifier [] (default) | positive integer | length-*L* vector of unique positive integers
+  group: Actor Profiles
+- name: User-defined integer to classify actors
+  summary: User-defined classification identifier 0 (default) | integer | length-*L* vector of integers
+  group: Actor Profiles
+- name: Length of actors cuboids (m)
+  summary: Length of cuboid 4.7 (default) | positive real scalar | length-*L* vector of positive values
+  group: Actor Profiles
+- name: Width of actors cuboids (m)
+  summary: Width of cuboid 4.7 (default) | positive real scalar | length-*L* vector of positive values
+  group: Actor Profiles
+- name: Height of actors cuboids (m)
+  summary: Height of cuboid 4.7 (default) | positive real scalar | length-*L* vector of positive values
+  group: Actor Profiles
+- name: Rotational center of actors from bottom center (m)
+  summary: Rotational center of the actor { [ -1.35, 0, 0 ] } (default) | length-*L* cell array of real-valued 1-by-3 vectors
+  group: Actor Profiles
+- name: Radar cross section pattern (dBsm)
+  summary: Radar cross-section {[10,10;10,10]} (default) | real-valued *Q*-by-*P* matrix | length-*L* cell array of real-valued
+    *Q*-by-*P* matrices
+  group: Actor Profiles
+- name: Azimuth angles defining RCSPattern (deg)
+  summary: Azimuth angles of radar cross-section pattern {[-180 180]} (default) | length-*L* cell array of real-valued *P*-length
+    vectors
+  group: Actor Profiles
+- name: Elevation angles defining RCSPattern (deg)
+  summary: Elevation angles of radar cross-section pattern {[-90 90]} (default) | length-*L* cell array of real-valued *Q*-length
+    vectors
+  group: Actor Profiles
+```
 
 ### Parameters
 
@@ -712,7 +862,6 @@ containing an elevation angle vector.
 To enable this parameter, set the **Select method to
 specify actor profiles** parameter to
 `Parameters`.
-
 ## Libraries
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

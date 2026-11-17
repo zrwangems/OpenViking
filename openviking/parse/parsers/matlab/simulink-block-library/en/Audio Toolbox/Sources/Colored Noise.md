@@ -14,6 +14,13 @@ language: en
 # Colored Noise
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Colored noise signal scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Output
 
@@ -26,8 +33,37 @@ channel**, and **Output data type**
 parameters.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Noise color
+  summary: Color of the generated noise pink (default) | white | brown | blue | purple | custom
+  group: ''
+- name: Power of inverse frequency
+  summary: Inverse power spectral density component 1 (default) | scalar in the range [-2 2]
+  group: ''
+- name: Guarantee the output is bounded (+/-1)
+  summary: Set output bounds to +1 and −1 off (default) | on
+  group: ''
+- name: Number of output channels
+  summary: Number of output channels 1 (default) | positive integer
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: ''
+- name: Number of samples per output channel
+  summary: Samples per frame of output 1024 (default) | positive integer
+  group: ''
+- name: Output sample time (s)
+  summary: Sample time of the output 1 (default) | positive scalar
+  group: ''
+- name: Initial seed
+  summary: Initial seed of random number generator 67 (default) | positive integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Noise color** — Color of the generated noise `pink` (default) | `white` | `brown` | `blue` | `purple` | `custom`
 
@@ -130,7 +166,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Sources

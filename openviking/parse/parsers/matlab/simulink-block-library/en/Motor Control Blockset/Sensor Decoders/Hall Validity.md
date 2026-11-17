@@ -14,6 +14,45 @@ language: en
 # Hall Validity
 
 ## Ports
+```yaml
+ports:
+- name: HallVal
+  summary: Current Hall sensor output state scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: PrevHallVal
+  summary: Previous Hall sensor output state scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Cnt
+  summary: External counter value scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: PrevDir
+  summary: Rotor spin direction during previous Hall state scalar
+  direction: input
+  data_types: int8 | int16 | int32
+- name: Invalid
+  summary: Indicator of Hall state validity scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: SpdCnt
+  summary: Count at Hall state change scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Dir
+  summary: Rotor spin direction during current Hall state scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: SpdVal
+  summary: Validity of current and previous Hall states and speed calculation scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: HallChng
+  summary: Set flag to one, indicating Hall state change scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -117,8 +156,19 @@ The port outputs the value one (and sets the Hall state change flag to one) afte
 the Hall state changes and the block has completed execution.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Expected hall sequence in positive direction
+  summary: Sequence indicating positive direction ABC (default) | CBA | Custom sequence
+  group: ''
+- name: Sequence
+  summary: Custom sequence indicating positive direction [5,4,6,2,3,1] (default) | scalar
+  group: ''
+- name: Counter size
+  summary: Size of external counter register 16 bits (default) | 8 bits | 32 bits
+  group: ''
+```
 
 ### **Expected hall sequence in positive direction** — Sequence indicating positive direction `ABC` (default) | `CBA` | `Custom sequence`
 
@@ -138,7 +188,6 @@ direction** to `Custom sequence`.
 ### **Counter size** — Size of external counter register `16 bits` (default) | `8 bits` | `32 bits`
 
 The register size of the external counter. The maximum counter value is 2n-1, where n = counter size.
-
 ## Libraries
 
 Motor Control Blockset / Sensor Decoders

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Flexible Angle Beam
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 连接坐标系 frame
+  direction: unspecified
+- name: B
+  summary: 连接坐标系 frame
+  direction: unspecified
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -31,8 +43,148 @@ chinese_source: worker-translation
 表示柔性体整体刚体运动的虚拟未变形体的参考坐标系。**R** 坐标系并非物理上附着于柔性体。
 
 **R** 端口不得与任何施加力和力矩或具有惯性的模块刚性连接。
-
 ## 参数
+```yaml
+parameters:
+- name: End-to-End Width
+  summary: 水平腿两端之间的距离 1 m（默认）| 正标量
+  group: Geometry
+- name: End-to-End Height
+  summary: 竖直腿两端之间的距离 1 m（默认）| 正标量
+  group: Geometry
+- name: Horizontal Leg Thickness
+  summary: 水平腿两个面之间的距离 0.1 m（默认）| 正标量
+  group: Geometry
+- name: Vertical Leg Thickness
+  summary: 竖直腿两个面之间的距离 0.1 m（默认）| 正标量
+  group: Geometry
+- name: Length
+  summary: 梁的拉伸长度 10 m（默认）| 正标量
+  group: Geometry
+- name: Type
+  summary: 用于指定刚度和惯性属性的方法 Calculate from Geometry（默认）| Custom
+  group: Stiffness and Inertia
+- name: Density
+  summary: 材料单位体积质量 2700 kg/m^3（默认）| 正标量
+  group: Stiffness and Inertia
+- name: Specify
+  summary: 用于参数化梁的弹性属性 Young's Modulus and Poisson's Ratio（默认）| Young's and Shear Modulus
+  group: Stiffness and Inertia
+- name: Young's Modulus
+  summary: 轴向应力与轴向应变之比 70 GPa（默认）| 正标量
+  group: Stiffness and Inertia
+- name: Poisson's Ratio
+  summary: 横向应变与纵向应变之比 0.33（默认）| 范围 [0, 0.5) 内的标量
+  group: Stiffness and Inertia
+- name: Shear Modulus
+  summary: 剪应力与工程剪应变之比 26 GPa（默认）| 正标量
+  group: Stiffness and Inertia
+- name: Derived Values
+  summary: 质量和刚度截面特性的计算值 按钮
+  group: Stiffness and Inertia
+- name: Geometric Centroid
+  summary: 梁横截面的形心 [0 0] m（默认）| 2×1 数组
+  group: Stiffness and Inertia
+- name: Bending Centroid
+  summary: 中性轴与横截面的交点 [0 0] m（默认）| 2×1 数组
+  group: Stiffness and Inertia
+- name: Shear Center
+  summary: 梁的剪切中心 [0 0] m（默认）| 2×1 数组
+  group: Stiffness and Inertia
+- name: Axial Rigidity
+  summary: 抵抗轴向变形 1 Pa*m^2（默认）| 标量
+  group: Stiffness and Inertia
+- name: Flexural Rigidity
+  summary: 抵抗弯曲变形 [1 1] Pa*m^4（默认）| 2×1 数组
+  group: Stiffness and Inertia
+- name: Cross Flexural Rigidity
+  summary: 抵抗因绕 y 轴弯矩引起的绕 x 轴弯曲变形 0 Pa*m^4（默认）| 标量
+  group: Stiffness and Inertia
+- name: Torsional Rigidity
+  summary: 抵抗扭转 1 Pa*m^4（默认）| 标量
+  group: Stiffness and Inertia
+- name: Center of Mass
+  summary: 质心 [0 0] m（默认）| 2×1 数组
+  group: Stiffness and Inertia
+- name: Mass Per Unit Length
+  summary: 单位长度质量 1 kg/m（默认）| 标量
+  group: Stiffness and Inertia
+- name: Mass Moment of Inertia Density
+  summary: 抵抗绕 x 和 y 轴的旋转 [1 1] kg*m（默认）| 2×1 数组
+  group: Stiffness and Inertia
+- name: Mass Product of Inertia Density
+  summary: 抵抗因绕 y 轴力矩引起的绕 x 轴旋转 0 kg*m（默认）| 标量
+  group: Stiffness and Inertia
+- name: Type
+  summary: 阻尼方法类型 Proportional（默认）| Uniform Modal | None
+  group: Damping
+- name: Mass Coefficient
+  summary: 质量矩阵系数 0 1/s（默认）| 非负标量
+  group: Damping
+- name: Stiffness Coefficient
+  summary: 刚度矩阵系数 0.001 s（默认）| 非负标量
+  group: Damping
+- name: Damping Ratio
+  summary: 均匀模态阻尼方法的阻尼比 0.01（默认）| 无量纲非负标量
+  group: Damping
+- name: Number of Elements
+  summary: 梁有限元数量 1（默认）| 正整数
+  group: 离散化
+- name: Type
+  summary: 参考条件类型 Linearized Mean Axes（默认）| Body-Fixed
+  group: 参考条件
+- name: Frame
+  summary: 用于体固定参考条件的连接坐标系 坐标系名称
+  group: 参考条件
+- name: Show Port R
+  summary: 显示参考坐标系端口 关闭（默认）| 开启
+  group: 参考条件
+- name: Reduction
+  summary: 柔性体建模方法 None（默认）| Modally Reduced
+  group: Fidelity
+- name: Number of Retained Modes
+  summary: 保留模态数 1（默认）| 非负整数
+  group: Fidelity
+- name: Type
+  summary: 用于梁可视化的图形 From Geometry（默认）| None
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: Graphic
+- name: Color
+  summary: 漫反射光颜色 [0.5 0.5 0.5]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 取值范围为 0 到 1 的标量
+  group: Graphic
+- name: Diffuse Color
+  summary: 漫反射光颜色 [0.5 0.5 0.5]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Specular Color
+  summary: 由于镜面反射产生的光的颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Ambient Color
+  summary: 环境光的颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: Graphic
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值范围约束为 0–128 的标量
+  group: Graphic
+- name: Show Port A
+  summary: 显示端口 A 以连接到其他模块 on（默认）| off
+  group: Frames
+- name: Show Port B
+  summary: 显示端口 B 以连接到其他模块 on（默认）| off
+  group: Frames
+- name: New Frame
+  summary: 为连接到其他模块创建自定义坐标系按钮
+  group: Frames
+- name: FrameN
+  summary: 编辑或删除现有自定义坐标系坐标系名称
+  group: Frames
+```
 
 ### Geometry
 
@@ -500,7 +652,6 @@ Modal`。
 #### 依赖关系
 
 要启用此参数，请单击 **New Frame** 创建一个坐标系。
-
 ## 所属库
 
 Simscape / Multibody / Body Elements / Flexible Bodies / Beams

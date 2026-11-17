@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # TCP Receive
 
 ## 端口
+```yaml
+ports:
+- name: Enable
+  summary: 允许数据接收 integer
+  direction: input
+- name: Data
+  summary: 从远程客户端接收的数据 vector
+  direction: output
+  data_types: uint8
+- name: Length
+  summary: 数据向量的实际大小 double
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +47,22 @@ chinese_source: worker-translation
 ### **Length** — 数据向量的实际大小 double
 
 要测试数据项数量是否超过数据输出端口的宽度，请使用此值。
-
 ## 参数
+```yaml
+parameters:
+- name: Receive using
+  summary: 'IP 地址和端口对列表 Read-only: x.x.x.x:y'
+  group: ''
+  block_parameter: socketAddPort
+- name: Receive width
+  summary: 数据向量的最大预期长度 1–65504
+  group: ''
+  block_parameter: rcvWidth
+- name: Sample time
+  summary: 模块的采样时间 -1 (default) | numeric
+  group: ''
+  block_parameter: sampleTime
+```
 
 ### **Receive using** — IP 地址和端口对列表 Read-only: `x.x.x.x:y`
 
@@ -70,7 +97,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`sampleTime` |
-
 ## 所属库
 
 Simulink Real-Time / IP

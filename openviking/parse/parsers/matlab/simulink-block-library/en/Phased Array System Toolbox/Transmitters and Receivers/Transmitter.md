@@ -14,6 +14,25 @@ language: en
 # Transmitter
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Input waveform complex-valued matrix
+  direction: input
+  data_types: double
+- name: Y
+  summary: Transmitted waveform complex-valued matrix
+  direction: output
+  data_types: double
+- name: TR
+  summary: Transmitter on-off status 0 | 1
+  direction: output
+  data_types: double
+- name: Ph
+  summary: Phase noise scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -59,8 +78,85 @@ To enable this port, select the **Enable pulse phase noise
 output** check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Peak power (W)
+  summary: Peak power 5000 (default) | positive scalar
+  group: ''
+- name: Gain method
+  summary: Gain method Linear (default) | Cubic polynomial | Lookup table
+  group: ''
+- name: Gain (dB)
+  summary: Linear transmitter gain 20 (default) | real scalar | length-*N* vector of real values
+  group: ''
+- name: Output IP3 (dBm)
+  summary: Output IP3 Inf (default) | scalar | length-*N* vector of real values
+  group: ''
+- name: Lookup table
+  summary: Lookup table [-25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12] (default) | *M*-by-*N* real-valued matrix | *M*-by-*N*
+    real-valued matrix
+  group: ''
+- name: Loss factor (dB)
+  summary: Transmit loss factor 0 (default) | nonnegative scalar | length-*N* vector of nonnegative values
+  group: ''
+- name: Enable transmitter status output
+  summary: Enable transmitter status output off (default) | on
+  group: ''
+- name: Preserve coherence among pulses
+  summary: Preserve coherence among pulses on (default) | off
+  group: ''
+- name: Enable pulse phase noise output
+  summary: Enable pulse phase noise output off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Add noise to input signal
+  summary: Add noise to input signal off (default) | on
+  group: ''
+- name: Input noise temperature (K)
+  summary: Input noise temperature 290 (default) | positive scalar | length-*N* vector of positive values
+  group: ''
+- name: Noise method
+  summary: Noise method None | Noise figure | Noise factor | Noise temperature
+  group: ''
+- name: Noise figure (dB)
+  summary: Noise figure 3 (default) | real scalar | length-*N* vector or real values
+  group: ''
+- name: Noise factor
+  summary: Noise factor 2 (default) | positive scalar | length-*N* vector of positive values
+  group: ''
+- name: Reference temperature (K)
+  summary: Reference temperature 290 (default) | positive scalar | length-*N* vector of positive values
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate 1e6 (default) | positive scalar
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Phased offset (degrees)
+  summary: Phase offset 0 (default) | scalar | length-*N* vector of real values
+  group: ''
+- name: Source of seed for random number generator
+  summary: Source of seed for random number generator Auto (default) | Property
+  group: ''
+- name: Seed for random number generator
+  summary: Seed for random number generator 0 (default) | positive integer
+  group: ''
+```
 
 #### Main
 
@@ -443,7 +539,6 @@ parameter.
 Seed for random generator, specified as a positive integer.
 
 **Data Types:** `single` | `double`
-
 ## Libraries
 
 Phased Array System Toolbox / Transmitters and Receivers

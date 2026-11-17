@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # N-Channel MOSFET
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 栅极端子电气
+  direction: conserving
+- name: D
+  summary: 漏极端子电气
+  direction: conserving
+- name: S
+  summary: 源极端子电气
+  direction: conserving
+- name: B
+  summary: 体端子电气
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -48,8 +66,566 @@ chinese_source: worker-translation
 要启用此端口，请将 **Modeling option** 设置为
 `Threshold-based with thermal` 或
 `Surface-potential-based with thermal`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling Option
+  summary: MOSFET 表示 Threshold-based（默认）| Threshold-based with thermal | Surface-potential-based | Surface-potential-based
+    with thermal
+  group: ''
+- name: Number of terminals
+  summary: 端子参数化 Three（默认）| Four
+  group: 主参数（基于阈值建模选项）
+- name: Parameterization
+  summary: 模块参数化 Specify from a datasheet（默认）| Specify using equation parameters directly | Lookup table (2-D, temperature
+    independent) | Lookup table (3-D, temperature dependent)
+  group: 主参数（基于阈值建模选项）
+- name: Drain-source on resistance, R_DS(on)
+  summary: 漏源导通电阻 0.025 Ohm（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Drain current, Ids, for R_DS(on)
+  summary: 漏极电流 6A（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Gate-source voltage, Vgs, for R_DS(on)
+  summary: 栅源电压，Vgs 10 V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Gain, K
+  summary: 正常数增益系数 5.0 A/V2（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Gate-source threshold voltage, Vth
+  summary: 栅源阈值电压 1.7 V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Gate-source threshold voltage at zero bulk-source voltage, Vth0
+  summary: 零体源电压下的栅源阈值电压 1.7 V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Channel modulation, L
+  summary: 沟道调制 0 1/V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Gate-source threshold voltage at first non-zero bulk-source voltage, Vth1
+  summary: 第一非零体源电压下的栅源阈值电压 1.9071 V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: First bulk-source voltage, Vbs1
+  summary: 第一体源电压 -1 V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Gate-source threshold voltage at second non-zero bulk-source voltage, Vth2
+  summary: 第二非零体源电压下的栅源阈值电压 2.066 V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Second bulk-source voltage, Vbs2
+  summary: 第二体源电压 -2 V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Body factor
+  summary: 体因子 0.5 V^0.50000（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Surface potential
+  summary: 表面电势 0.5 V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Measurement temperature
+  summary: 测量温度 25 °C（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Vector of gate-source voltages, Vgs
+  summary: 栅源电压向量 [-.5, 2, 3, 4, 5] V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Vector of drain-source voltages, Vds
+  summary: 漏源电压向量 [0, 2, 4, 8, 12, 16, 20] V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Vector of bulk-source voltages, Vbs
+  summary: 漏源电压向量 [0, -4, -6, -12] V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Tabulated drain-source currents, Ids(Vgs,Vds)
+  summary: 表格化漏源电流，温度无关 [0, 0, 0, 0, 0, 0, 0; 0, .003, .0038, .0043, .0046, .0048, .0049; 0, .0055, .008, .009, .0095, .01,
+    .0101; 0, .0115, .016, .018, .019, .0195, .02; 0, .0152, .0225, .0265, .028, .0295, .03] A（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Vector of temperatures, T
+  summary: 温度向量 [25 125] degC（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Tabulated drain-source currents, Ids(Vgs,Vds,T)
+  summary: 表格化漏源电流，温度相关 zeros(5, 7, 2) A（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Tabulated gate-source threshold voltage, Vth(Vbs)
+  summary: 栅源阈值电压向量，温度无关 [.4, 1.2, 1.4, 1.45] V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Tabulated drain-source currents at zero bulk-source voltage, Ids(Vgs,Vds)
+  summary: 零体源电压下的表格化漏源电流，温度无关 [0, 0, 0, 0, 0, 0, 0; 0, .003, .0038, .0043, .0046, .0048, .0049; 0, .0055, .008, .009, .0095,
+    .01, .0101; 0, .0115, .016, .018, .019, .0195, .02; 0, .0152, .0225, .0265, .028, .0295, .03] A（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Tabulated gate-source threshold voltage, Vth(Vbs,T)
+  summary: 栅源阈值电压向量，温度相关 [.4, .35; 1.2, 1.15; 1.4, 1.35; 1.45, 1.4] V（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Tabulated drain-source currents at zero bulk-source voltage, Ids(Vgs,Vds,T)
+  summary: 零体源电压下的表格化漏源电流，温度相关 zeros(5, 7, 2) A（默认）
+  group: 主参数（基于阈值建模选项）
+- name: Ids-Vds parameterization
+  summary: Ids-Vds 表数据作为对称数据 Provide negative and positive Vds data（默认）| Provide positive Vds data only
+  group: 主参数（基于阈值建模选项）
+- name: Number of terminals
+  summary: 端子参数化 Three（默认）| Four
+  group: 主参数（基于表面电势建模选项）
+- name: Gain
+  summary: MOSFET 增益 18 A/V 2（默认）| 正标量
+  group: 主参数（基于表面电势建模选项）
+- name: Flatband voltage
+  summary: 平带电压 -1.1 V（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Body factor
+  summary: 体因子 3.5 V1/2（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Surface potential at strong inversion
+  summary: 强反型时的表面电势 1 V（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Velocity saturation factor
+  summary: 速度饱和因子 0.4 1/V（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Channel-length modulation factor
+  summary: 沟道长度调制因子 0（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Channel-length modulation voltage
+  summary: 沟道长度调制电压 5e-2 V（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Surface roughness scattering factor
+  summary: 表面粗糙度散射因子 0 1/V（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Linear-to-saturation transition coefficient
+  summary: 线性到饱和过渡系数 8（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Measurement temperature
+  summary: 测量温度 25 °C（默认）
+  group: 主参数（基于表面电势建模选项）
+- name: Source ohmic resistance, Rs
+  summary: 晶体管源极电阻 0.0001 Ohm（默认）| 非负标量
+  group: Ohmic Resistance
+- name: Drain ohmic resistance, Rd
+  summary: 晶体管漏极电阻 0.01 Ohm（默认）| 非负标量
+  group: Ohmic Resistance
+- name: Gate ohmic resistance, Rg
+  summary: 晶体管栅极电阻 8.4 Ohm（默认）| 非负标量
+  group: Ohmic Resistance
+- name: Body ohmic resistance, Rb
+  summary: 晶体管体电阻 0.001 Ohm（默认）| 非负标量
+  group: Ohmic Resistance
+- name: Bulk ohmic resistance
+  summary: 晶体管衬底电阻 2e-3 Ohm（默认）| 非负标量
+  group: Ohmic Resistance
+- name: Source lead resistance
+  summary: 晶体管源极引线电阻 0 Ohm（默认）| 非负标量
+  group: Packaging
+- name: Drain lead resistance
+  summary: 晶体管漏极引线电阻 0 Ohm（默认）| 非负标量
+  group: Packaging
+- name: Gate lead resistance
+  summary: 晶体管栅极引线电阻 0 Ohm（默认）| 非负标量
+  group: Packaging
+- name: Body lead resistance
+  summary: 晶体管体引线电阻 0 Ohm（默认）| 非负标量
+  group: Packaging
+- name: Source lead inductance
+  summary: 晶体管源极引线电感 0 nH（默认）| 非负标量
+  group: Packaging
+- name: Drain lead inductance
+  summary: 晶体管漏极引线电感 0 nH（默认）| 非负标量
+  group: Packaging
+- name: Gate lead inductance
+  summary: 晶体管栅极引线电感 0 nH（默认）| 非负标量
+  group: Packaging
+- name: Body lead inductance
+  summary: 晶体管体引线电感 0 nH（默认）| 非负标量
+  group: Packaging
+- name: Parameterization
+  summary: 电容参数化 Specify fixed input, reverse transfer, and output capacitance（默认）| Specify fixed gate-source, gate-drain,
+    and drain-source capacitance | Specify tabulated input, reverse transfer, and output capacitance | Specify tabulated gate-source,
+    gate-drain, and drain-source capacitance
+  group: Capacitance
+- name: Input capacitance, Ciss
+  summary: 输入栅源电容 350 pF（默认）
+  group: Capacitance
+- name: Input capacitance, Ciss(Vds)
+  summary: 带表格化输入的输入栅源电容 [720 700 590 470 390 310] pF（默认）
+  group: Capacitance
+- name: Reverse transfer capacitance, Crss
+  summary: 反向传输电容 80 pF（默认）
+  group: Capacitance
+- name: Reverse transfer capacitance, Crss(Vds)
+  summary: 带表格化输入的反向传输电容 [450 400 300 190 95 55] pF（默认）
+  group: Capacitance
+- name: Output capacitance, Coss
+  summary: 输出电容 0 pF（默认）
+  group: Capacitance
+- name: Output capacitance, Coss(Vds)
+  summary: 带表格化输入的输出电容 [900 810 690 420 270 170] pF（默认）
+  group: Capacitance
+- name: Gate-source capacitance, Cgs
+  summary: 栅源电容 270 pF（默认）
+  group: Capacitance
+- name: Gate-source capacitance, Cgs(Vgs, Vds)
+  summary: 带表格化值的栅源电容 [270 300 290 280 295 255] pF（默认）
+  group: Capacitance
+- name: Gate-drain capacitance, Cgd
+  summary: 栅漏电容 80 pF（默认）
+  group: Capacitance
+- name: Gate-drain capacitance, Cgd(Vgs,Vds)
+  summary: 带表格化值的栅漏电容 [450 400 300 190 95 55] pF（默认）
+  group: Capacitance
+- name: Gate-bulk capacitance, Cgb
+  summary: 栅衬底电容 0 pF（默认）
+  group: Capacitance
+- name: Gate-bulk capacitance, Cgb(Vgs,Vds)
+  summary: 带表格化值的栅衬底电容 [450 400 300 190 95 55] pF（默认）
+  group: Capacitance
+- name: Corresponding gate-source voltages, Vgs
+  summary: 对应的栅源电压 0 V（默认）
+  group: Capacitance
+- name: Drain-source capacitance, Cds
+  summary: 漏源电容 0 pF（默认）
+  group: Capacitance
+- name: Drain-source capacitance, Cds(vds)
+  summary: 带表格化值的漏源电容 [450 410 390 230 175 115] pF（默认）
+  group: Capacitance
+- name: Corresponding drain-source voltages, Vds
+  summary: 对应的漏源电压 [.1, .3, 1, 3, 10, 30] V（默认值）
+  group: Capacitance
+- name: Gate-source voltage, Vgs, for tabulated capacitances
+  summary: 列表电容对应的栅源电压 0 V（默认值）
+  group: Capacitance
+- name: Gate-drain charge-voltage linearity
+  summary: 电荷-电压线性度 Gate-drain capacitance is constant（默认值）| Gate-drain charge function is nonlinear
+  group: Capacitance
+- name: Gate-drain oxide capacitance
+  summary: 栅漏氧化层电容 200 pF（默认值）
+  group: Capacitance
+- name: Drain-gate voltage at which oxide capacitance becomes active
+  summary: 氧化层电容开始生效的漏栅电压 -0.5 V（默认值）
+  group: Capacitance
+- name: Gate-bulk and gate-source charge-voltage linearity
+  summary: 栅体与栅源电荷-电压线性度 Gate-bulk and gate-source capacitance change instantly（默认值）| Gate-bulk and gate-source capacitance
+    change gradually | Separate gate-bulk and gate-source capacitance
+  group: Capacitance
+- name: Oxide capacitance
+  summary: 氧化层电容 1500 pF（默认值）
+  group: 沟道电容
+- name: Gate-source overlap capacitance
+  summary: 栅源重叠电容 100 pF（默认值）
+  group: 沟道电容
+- name: Gate-drain overlap capacitance
+  summary: 栅漏重叠电容 14 pF（默认值）
+  group: 沟道电容
+- name: Model body diode
+  summary: 体二极管建模选项 No（默认值）| Exponential | Tabulated I-V curve
+  group: 体二极管
+- name: Table type
+  summary: 列表函数 Table in If(Tj,Vf) form（默认值）| Table in Vf(Tj,If) form
+  group: 体二极管
+- name: Reverse saturation current, Is
+  summary: 反向饱和电流 0 A（默认值）
+  group: 体二极管
+- name: Built-in voltage, Vbi
+  summary: 内建电压 0.6 V（默认值）
+  group: 体二极管
+- name: Ideality factor, n
+  summary: 理想因子 1（默认值）
+  group: 体二极管
+- name: Zero-bias junction capacitance, Cj0
+  summary: 零偏结电容 0 pF（默认值）
+  group: 体二极管
+- name: Transit time, TT
+  summary: 渡越时间 50e-9 s（默认值）
+  group: 体二极管
+- name: Measurement temperature
+  summary: 测量温度 25 °C（默认值）
+  group: 体二极管
+- name: Diode forward voltages, Vf(If)
+  summary: 二极管正向电压 [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85] V（默认值）
+  group: 体二极管
+- name: Diode forward currents, If
+  summary: 二极管正向电流（温度无关） [.1, .2, .5, 1, 2, 4, 7, 10] A（默认值）
+  group: 体二极管
+- name: Diode forward currents, If(Vf)
+  summary: 二极管正向电流（以正向电压列表） [.07, .12, .19, 1.75, 4.24, 7.32, 11.2] A（默认值）
+  group: 体二极管
+- name: Diode forward voltages, Vf
+  summary: 二极管正向电压（温度无关） [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V（默认值）
+  group: 体二极管
+- name: Diode junction temperatures, Tj
+  summary: 二极管结温 [25, 125] degC（默认值）
+  group: 体二极管
+- name: Diode forward currents, If(Tj,Vf)
+  summary: 二极管正向电流（温度相关） [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02, 6.35, 9.12] A（默认值）
+  group: 体二极管
+- name: Diode forward voltages, If(Tj,Vf)
+  summary: 二极管正向电压（温度相关） [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38, 1.77, 2.27, 2.7] V（默认值）
+  group: 体二极管
+- name: Diode off conductance
+  summary: 二极管反向偏置时的电导 1e-12 1/Ohm（默认值）| 正标量
+  group: 体二极管
+- name: Parameterization
+  summary: 温度依赖性参数化 None — Simulate at parameter measurement temperature（默认值）| Model temperature dependence
+  group: 温度依赖性（基于阈值的建模选项）
+- name: Drain-source on resistance, R_DS(on), at second measurement temperature
+  summary: 第二测量温度下的漏源导通电阻 0.037 Ohm（默认值）
+  group: 温度依赖性（基于阈值的建模选项）
+- name: Second measurement temperature
+  summary: 第二测量温度 125 °C（默认值）
+  group: 温度依赖性（基于阈值的建模选项）
+- name: Gate threshold voltage temperature coefficient, dVth/dT
+  summary: 栅源电压，Vgs -6 mV/K（默认值）
+  group: 温度依赖性（基于阈值的建模选项）
+- name: Mobility temperature exponent, BEX
+  summary: 迁移率温度指数 -1.5（默认值）
+  group: 温度依赖性（基于阈值的建模选项）
+- name: Body diode reverse saturation current temperature exponent
+  summary: 体二极管反向饱和电流温度指数 3（默认值）
+  group: 温度依赖性（基于阈值的建模选项）
+- name: Device simulation temperature
+  summary: 器件仿真温度 25 °C（默认值）
+  group: 温度依赖性（基于阈值的建模选项）
+- name: 参数化
+  summary: 温度依赖性参数化 None — Simulate at parameter measurement temperature（默认）| Model temperature dependence
+  group: 温度依赖性（基于表面势的建模选项）
+- name: 增益温度指数
+  summary: 增益温度指数 1.3（默认）
+  group: 温度依赖性（基于表面势的建模选项）
+- name: 平带电压温度系数
+  summary: 平带电压温度系数 5e-4 V/K（默认）
+  group: 温度依赖性（基于表面势的建模选项）
+- name: 强反型表面势温度系数
+  summary: 强反型表面势温度系数 -8.5e-4 V/K（默认）
+  group: 温度依赖性（基于表面势的建模选项）
+- name: 速度饱和温度指数
+  summary: 速度饱和温度指数 1.04（默认）
+  group: 温度依赖性（基于表面势的建模选项）
+- name: 表面粗糙度散射温度指数
+  summary: 表面粗糙度散射温度指数 0.65（默认）
+  group: 温度依赖性（基于表面势的建模选项）
+- name: 电阻温度指数
+  summary: 电阻温度指数 0.95（默认）
+  group: 温度依赖性（基于表面势的建模选项）
+- name: 体二极管反向饱和电流温度指数
+  summary: 体二极管反向饱和电流温度指数 3（默认）
+  group: 温度依赖性（基于表面势的建模选项）
+- name: 器件仿真温度
+  summary: 器件仿真温度 25 °C（默认）
+  group: 温度依赖性（基于表面势的建模选项）
+- name: NMOS 故障
+  summary: 添加故障的选项 Add fault（默认）
+  group: 故障
+- name: 在以下时间触发故障
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: 最大允许栅源电压
+  summary: 故障转换的栅源电压阈值 inf V（默认）| 正标量
+  group: 故障
+- name: 最大允许漏源电压
+  summary: 故障转换的漏源电压阈值 inf V（默认）| 正标量
+  group: 故障
+- name: 最大允许漏体电压
+  summary: 故障转换的漏体电压阈值 inf V（默认）| 正标量
+  group: 故障
+- name: 最大允许漏源电流
+  summary: 故障转换的电流阈值 inf A（默认）| 正标量
+  group: 故障
+- name: 超过漏源电流时的故障时间
+  summary: 超过漏源电流时的故障时间 1 s（默认）| 正标量
+  group: 故障
+- name: 最大允许体二极管电流
+  summary: 故障转换的体二极管电流阈值 inf A（默认）| 正标量
+  group: 故障
+- name: 超过体二极管电流时的故障时间
+  summary: 超过体二极管电流时的故障时间 1 s（默认）| 正标量
+  group: 故障
+- name: 最大二极管恢复，dV/dt
+  summary: 最大二极管恢复 inf V/s（默认）| 正标量
+  group: 故障
+- name: 最大允许温度
+  summary: 故障转换的温度阈值 inf K（默认）| 正标量
+  group: 故障
+- name: 超过温度时的故障时间
+  summary: 超过温度时的故障时间 1 s（默认）| 正标量
+  group: 故障
+- name: 故障转换时间常数，tau
+  summary: 故障转换时间常数 1e-3 s（默认）
+  group: 故障
+- name: 故障模式
+  summary: 故障类别 Open circuit（默认）| Drain-source short | Drain-bulk short or source-bulk short | Gate oxide short | Parameter
+    shift
+  group: 故障
+- name: 故障串联栅极电阻，Rg
+  summary: 故障串联栅极电阻 1e6 Ohm（默认）
+  group: 故障
+- name: 故障串联漏极电阻，Rd
+  summary: 故障串联漏极电阻 1000 Ohm（默认）
+  group: 故障
+- name: 故障串联源极电阻，Rs
+  summary: 故障串联源极电阻 1000 Ohm（默认）
+  group: 故障
+- name: 故障串联体电阻，Rb
+  summary: 故障串联源极电阻 1000 Ohm（默认）
+  group: 故障
+- name: 故障并联漏源电导，Gds
+  summary: 故障并联漏源电导 1000 1/Ohm（默认）
+  group: 故障
+- name: 故障并联漏体电导，Gdb
+  summary: 故障并联漏体电导 1000 1/Ohm（默认）
+  group: 故障
+- name: 故障并联源体电导，Gsb
+  summary: 故障并联源体电导 1000 1/Ohm（默认）
+  group: 故障
+- name: 故障节点位置（距源极的总沟道长度百分比）
+  summary: 故障节点位置 0（默认）
+  group: 故障
+- name: 栅极氧化物短路电导，G
+  summary: 栅极氧化物短路电导 1000 1/Ohm（默认）
+  group: 故障
+- name: Model gate oxide short diode
+  summary: 栅氧化层短路二极管建模选项 No（默认）| Yes
+  group: 故障
+- name: Gate oxide short diode reverse saturation current, Is
+  summary: 栅氧化层短路二极管反向饱和电流 0 A（默认）
+  group: 故障
+- name: Gate oxide short diode built-in voltage, Vbi
+  summary: 栅氧化层短路二极管内建电压 0.6 V（默认）
+  group: 故障
+- name: Gate oxide short diode ideality factor, n
+  summary: 栅氧化层短路二极管理想因子 1（默认）
+  group: 故障
+- name: Gate oxide short diode zero-bias junction capacitance, Cj0
+  summary: 栅氧化层短路二极管零偏结电容 0 pF（默认）
+  group: 故障
+- name: Gate oxide short diode transit time, TT
+  summary: 栅氧化层短路二极管渡越时间 50e-9 s（默认）
+  group: 故障
+- name: Shifted gain as percentage of unshifted
+  summary: 偏移后增益相对于未偏移的百分比 100（默认）
+  group: 故障
+- name: Threshold voltage shift value, dVth
+  summary: 阈值电压偏移值 0 V（默认）
+  group: 故障
+- name: Faulted channel modulation, L
+  summary: 故障态沟道调制 0 1/V（默认）
+  group: 故障
+- name: Shifted body factor as percentage of unshifted
+  summary: 偏移后体因子相对于未偏移的百分比 100（默认）
+  group: 故障
+- name: Surface potential shift value, dPhib
+  summary: 表面电势偏移值 0 V（默认）
+  group: 故障
+- name: Faulted source ohmic resistance, Rs
+  summary: 故障态源极欧姆电阻 0.0001 Ohm（默认）
+  group: 故障
+- name: Faulted drain ohmic resistance, Rd
+  summary: 故障态漏极欧姆电阻 0.01 Ohm（默认）
+  group: 故障
+- name: Faulted body ohmic resistance, Rb
+  summary: 故障态体极欧姆电阻 0.001 Ohm（默认）
+  group: 故障
+- name: Faulted vector of gate-source voltages, Vgs
+  summary: 故障态栅源电压向量 [-.5, 2, 3, 4, 5] V（默认）
+  group: 故障
+- name: Faulted vector of drain-source voltages, Vds
+  summary: 故障态漏源电压向量 [0, 2, 4, 8, 12, 16, 20] V（默认）
+  group: 故障
+- name: Faulted vector of bulk-source voltages, Vbs
+  summary: 故障态体源电压向量 [0, -4, -6, -12] V（默认）
+  group: 故障
+- name: Faulted tabulated gate-source threshold voltage, Vth(Vbs)
+  summary: 故障态列表栅源阈值电压 [.4, 1.2, 1.4, 1.45] V（默认）
+  group: 故障
+- name: Faulted tabulated gate-source threshold voltage, Vth(Vbs,T)
+  summary: 故障态列表栅源阈值电压（依赖于温度） [.4, .35; 1.2, 1.15; 1.4, 1.35; 1.45, 1.4] V（默认）
+  group: 故障
+- name: Faulted tabulated drain-source currents, Ids(Vgs,Vds)
+  summary: 故障态列表漏源电流 [0, 0, 0, 0, 0, 0, 0; 0, .003, .0038, .0043, .0046, .0048, .0049; 0, .0055, .008, .009, .0095, .01, .0101;
+    0, .0115, .016, .018, .019, .0195, .02; 0, .0152, .0225, .0265, .028, .0295, .03] A（默认）
+  group: 故障
+- name: Faulted tabulated drain-source currents, Ids(Vgs,Vds,T)
+  summary: 故障态列表漏源电流（依赖于温度） zeros(5, 7, 2) A（默认）
+  group: 故障
+- name: Faulted tabulated drain-source currents at zero bulk-source voltage, Ids(Vgs,Vds)
+  summary: 零体源电压下的故障态列表漏源电流 [0, 0, 0, 0, 0, 0, 0; 0, .003, .0038, .0043, .0046, .0048, .0049; 0, .0055, .008, .009, .0095,
+    .01, .0101; 0, .0115, .016, .018, .019, .0195, .02; 0, .0152, .0225, .0265, .028, .0295, .03] A（默认）
+  group: 故障
+- name: Faulted tabulated drain-source currents at zero bulk-source voltage, Ids(Vgs,Vds,T)
+  summary: 零体源电压下的故障态列表漏源电流（依赖于温度） zeros(5, 7, 2) A（默认）
+  group: 故障
+- name: Faulted gate-source capacitance as percentage of unfaulted
+  summary: 故障态栅源电容相对于未故障的百分比 100（默认）
+  group: 故障
+- name: Faulted gate-drain capacitance as percentage of unfaulted
+  summary: 故障态栅漏电容相对于未故障的百分比 100（默认）
+  group: 故障
+- name: Faulted gate-bulk capacitance as percentage of unfaulted
+  summary: 故障态栅体电容相对于未故障的百分比 100（默认）
+  group: 故障
+- name: Faulted drain-source capacitance as percentage of unfaulted
+  summary: 故障状态下漏源电容占未故障状态的百分比 100（默认值）
+  group: 故障
+- name: Faulted gate-drain oxide capacitance as percentage of unfaulted
+  summary: 故障状态下栅漏氧化层电容占未故障状态的百分比 100（默认值）
+  group: 故障
+- name: Faulted drain-gate voltage at which oxide capacitance becomes active
+  summary: 故障状态下氧化层电容开始生效时的漏栅电压 -0.5 V（默认值）
+  group: 故障
+- name: Faulted input capacitance, Ciss(Vds)
+  summary: 故障状态下的输入电容 [720, 700, 590, 470, 390, 310] pF（默认值）
+  group: 故障
+- name: Faulted reverse transfer capacitance, Crss(Vds)
+  summary: 故障状态下的反向传输电容 [450, 400, 300, 190, 95, 55] pF（默认值）
+  group: 故障
+- name: Faulted output capacitance, Coss(Vds)
+  summary: 故障状态下的输出电容 [900, 810, 690, 420, 270, 170] pF（默认值）
+  group: 故障
+- name: Faulted corresponding drain-source voltages, Vds
+  summary: 故障状态下对应的漏源电压 [.1, .3, 1, 3, 10, 30] V（默认值）
+  group: 故障
+- name: Faulted gate-source voltages, Vgs, for tabulated capacitances
+  summary: 故障状态下用于表格化电容的栅源电压 0 V（默认值）
+  group: 故障
+- name: Faulted gate-source capacitance, Cgs(Vgs,Vds)
+  summary: 故障状态下的栅源电容 [270, 300, 290, 280, 295, 255] pF（默认值）
+  group: 故障
+- name: Faulted gate-drain capacitance, Cgd(Vgs,Vds)
+  summary: 故障状态下的栅源电容 [450, 400, 300, 190, 95, 55] pF（默认值）
+  group: 故障
+- name: Faulted gate-bulk capacitance, Cgb(Vgs,Vds)
+  summary: 故障状态下的栅源电容 [270, 300, 290, 280, 295, 255] pF（默认值）
+  group: 故障
+- name: Faulted corresponding gate-source voltages, Vgs
+  summary: 故障状态下对应的栅源电压 0 V（默认值）
+  group: 故障
+- name: Faulted diode reverse saturation current, Is
+  summary: 故障状态下的二极管反向饱和电流 0 A（默认值）
+  group: 故障
+- name: Faulted diode built-in voltage, Vbi
+  summary: 故障状态下的二极管内建电压 0.6 V（默认值）
+  group: 故障
+- name: Faulted diode ideality factor, n
+  summary: 故障状态下的二极管理想因子 1（默认值）
+  group: 故障
+- name: Faulted diode zero-bias junction capacitance as percentage of unfaulted
+  summary: 故障状态下二极管零偏结电容占未故障状态的百分比 100（默认值）
+  group: 故障
+- name: Faulted diode transit time, TT
+  summary: 故障状态下的二极管渡越时间 50e-9 s（默认值）
+  group: 故障
+- name: Faulted diode forward currents, If(Vf)
+  summary: 故障状态下的二极管正向电流 [.07, .12, .19, 1.75, 4.24, 7.32, 11.2] A（默认值）
+  group: 故障
+- name: Faulted diode forward voltages, Vf
+  summary: 故障状态下的二极管正向电压 [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V（默认值）
+  group: 故障
+- name: Faulted diode forward voltages, Vf(If)
+  summary: 故障状态下的二极管正向电压 [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85] V（默认值）
+  group: 故障
+- name: Faulted diode forward currents, If
+  summary: 故障状态下的二极管正向电流 [.1, .2, .5, 1, 2, 4, 7, 10] A（默认值）
+  group: 故障
+- name: Faulted diode forward currents, If(Tj,Vf)
+  summary: 故障状态下带表格化输入的二极管正向电流 [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02, 6.35, 9.12] A（默认值）
+  group: 故障
+- name: Faulted diode forward voltages, Vf(Tj,If)
+  summary: 故障状态下带表格化输入的二极管正向电压 [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38, 1.77, 2.27, 2.7] V（默认值）
+  group: 故障
+- name: Faulted diode off conductance
+  summary: 故障二极管关断电导 1e-12 1/Ohm（默认值）
+  group: 故障
+```
 
 ### **Modeling Option** — MOSFET 表示 `Threshold-based`（默认）| `Threshold-based with thermal` | `Surface-potential-based` | `Surface-potential-based with thermal`
 
@@ -2133,7 +2709,6 @@ short`。
 - 通过点击 **NMOS fault** 参数中的 **Add fault** 超链接，向 N-Channel MOSFET 模块添加故障。
 - 将 **Failure mode** 设置为 `Parameter
   shift`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

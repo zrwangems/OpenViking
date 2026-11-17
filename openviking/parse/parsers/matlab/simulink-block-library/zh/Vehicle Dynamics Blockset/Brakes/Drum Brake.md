@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Rotational Brake
 
 ## 端口
+```yaml
+ports:
+- name: BrkPrs
+  summary: 制动压力 标量 | *N*×1 向量
+  direction: input
+- name: Omega
+  summary: 车轮角速度 标量 | *N*×1 向量
+  direction: input
+- name: BrkTrqMax
+  summary: 最大制动力矩 标量 | *N*×1 向量
+  direction: input
+- name: AxlTrq
+  summary: 车轴力矩 标量 | *N*×1 向量
+  direction: input
+- name: WhlTrq
+  summary: 车轮力矩 标量 | *N*×1 向量
+  direction: input
+- name: Info
+  summary: 模块数据总线
+  direction: output
+- name: Omega
+  summary: 车轮角速度 标量 | *N*×1 向量
+  direction: output
+- name: BrkTrqMax
+  summary: 最大制动力矩 标量 | *N*×1 向量
+  direction: output
+```
 
 ### 输入
 
@@ -105,8 +132,110 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Brake Type** 设置为 `Disc`、`Drum` 或 `Mapped`。
-
 ## 参数
+```yaml
+parameters:
+- name: Brake type
+  summary: 制动器类型 Disc | Drum | Mapped | External torque
+  group: 轮胎选项
+  block_parameter: BrakeType
+  values: Disc | Drum | Mapped | External torque
+- name: Rotation type
+  summary: 旋转类型 Rotational inertia（默认）| No inertia
+  group: 轮胎选项
+  block_parameter: rotType
+  values: Rotational inertia（默认）| No inertia
+- name: Output Info bus
+  summary: 输出 Info 总线的选项 off（默认）| on
+  group: 轮胎选项
+  block_parameter: extInfo
+  values: off（默认）| on
+- name: Wheel inertia, Iyy
+  summary: 车轮惯量 标量 | *N*×1 向量
+  group: 车轮和轮胎参数
+  block_parameter: Iyy
+  values: 标量 | *N*×1 向量
+- name: Axle viscous damping coefficient, br
+  summary: 车轴粘性阻尼系数 标量 | *N*×1 向量
+  group: 车轮和轮胎参数
+  block_parameter: br
+  values: 标量 | *N*×1 向量
+- name: Wheel initial angular velocity, omegao
+  summary: 车轮初始角速度标量 | *N*×1 向量
+  group: 车轮和轮胎参数
+  block_parameter: omegao
+  values: 标量 | *N*×1 向量
+- name: Static friction coefficient, mu_static
+  summary: 静摩擦系数 0.3（默认）| 标量 | *N*×1 向量
+  group: Brake
+  block_parameter: mu_static
+  values: 0.3（默认）| 标量 | *N*×1 向量
+- name: Kinetic friction coefficient, mu_kinetic
+  summary: 动摩擦 0.2（默认）| 标量 | *N*×1 向量
+  group: Brake
+  block_parameter: mu_kinetic
+  values: 0.2（默认）| 标量 | *N*×1 向量
+- name: Disc brake actuator bore, disc_abore
+  summary: 缸径距离 0.05（默认）| 标量 | *N*×1 向量
+  group: Brake
+  block_parameter: disc_abore
+  values: 0.05（默认）| 标量 | *N*×1 向量
+- name: Brake pad mean radius, Rm
+  summary: 半径 0.177（默认）| 标量 | *N*×1 向量
+  group: Brake
+  block_parameter: Rm
+  values: 0.177（默认）| 标量 | *N*×1 向量
+- name: 制动片数量，num_pads
+  summary: 制动片数量 2（默认）| 标量 | *N*×1 向量
+  group: Brake
+  block_parameter: num_pads
+  values: 2（默认）| 标量 | *N*×1 向量
+- name: 鼓式制动器执行器孔径，drum_abore
+  summary: 孔径距离 0.0508（默认）| 标量 | *N*×1 向量
+  group: Brake
+  block_parameter: drum_abore
+  values: 0.0508（默认）| 标量 | *N*×1 向量
+- name: 制动蹄销到鼓中心距离，drum_a
+  summary: 制动蹄销到鼓中心距离 0.123（默认）| 标量
+  group: Brake
+  block_parameter: drum_a
+  values: 0.123（默认）| 标量
+- name: 制动蹄销中心到力作用点距离，drum_c
+  summary: 制动蹄销中心到力作用点距离 0.212（默认）| 标量
+  group: Brake
+  block_parameter: drum_c
+  values: 0.212（默认）| 标量
+- name: 鼓内半径，drum_r
+  summary: 鼓内半径 0.15（默认）| 标量
+  group: Brake
+  block_parameter: drum_r
+  values: 0.15（默认）| 标量
+- name: 制动蹄销到制动片起始角，drum_theta1
+  summary: 制动蹄销到制动片起始角 0（默认）| 标量
+  group: Brake
+  block_parameter: drum_theta1
+  values: 0（默认）| 标量
+- name: 制动蹄销到衬块末端角度，drum_theta2
+  summary: 制动蹄销到衬块末端角度 126（默认）| 标量
+  group: Brake
+  block_parameter: drum_theta2
+  values: 126（默认）| 标量
+- name: 制动执行器压力断点，brake_p_bpt
+  summary: 制动执行器压力断点向量
+  group: Brake
+  block_parameter: brake_p_bpt
+  values: 向量
+- name: 车轮速度断点，brake_n_bpt
+  summary: 车轮速度断点向量
+  group: Brake
+  block_parameter: brake_n_bpt
+  values: 向量
+- name: 制动力矩映射，f_brake_t
+  summary: 制动力矩查找表数组
+  group: Brake
+  block_parameter: f_brake_t
+  values: 向量
+```
 
 要交互式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -536,7 +665,6 @@ chinese_source: worker-translation
 | **参数：** | `f_brake_t` |
 | **值：** | 向量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Brakes

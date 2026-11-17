@@ -14,6 +14,34 @@ language: en
 # LRT Detector
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data real-valued *N*-by-*1* vector | complex-valued *N*-by-*1* vector | real-valued *N*-by-*M* matrix | complex-valued
+    *N*-by-*M* matrix
+  direction: input
+  data_types: single | double
+- name: XK
+  summary: Known signal real-valued *N*-by-1 vector | complex-valued *N*-by-1 vector
+  direction: input
+  data_types: single | double
+- name: NCov
+  summary: Noise power positive scalar
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: Detection results 1-by-*M* logical-valued vector | 1-by-*L* integer-valued vector
+  direction: output
+  data_types: single | double | Boolean
+- name: Stat
+  summary: Detection statistics *D*-by-*M* (default) | matrix | 1-by-*L* vector
+  direction: output
+  data_types: single | double
+- name: Th
+  summary: Detection threshold scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -118,8 +146,38 @@ To enable this port, select the **Output detection statistics and
 threshold** check box.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Probability of false alarm
+  summary: Probability of false alarm 0.1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: ProbabilityFalseAlarm
+  type: double, single
+  values: scalar |
+  default: '0.1'
+- name: Output format
+  summary: Format of output data Detection result (default) | Detection index
+  group: ''
+  block_parameter: OutputFormat
+  type: char, string
+  values: Detection result | Detection index
+  default: Detection result
+- name: Output detection statistics and threshold
+  summary: Output detection statistics and threshold false (default) | true
+  group: ''
+  block_parameter: ThresholdOutputPort
+  type: check box
+  values: 0 | 1
+  default: '0'
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Probability of false alarm** — Probability of false alarm `0.1` (default) | nonnegative scalar
 
@@ -212,7 +270,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

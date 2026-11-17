@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # SFFM Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电气端口
+  direction: conserving
+- name: '-'
+  summary: 负电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,25 @@ chinese_source: worker-translation
 ### **-** — 负电压电气端口
 
 与 SFFM 电压源负电压相关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Voltage offset, VO
+  summary: 电压偏置 0 V（默认值）
+  group: ''
+- name: Voltage amplitude, VA
+  summary: 电压幅值 0 V（默认值）
+  group: ''
+- name: Carrier frequency, FC
+  summary: 载波频率 0 Hz（默认值）| 非负标量
+  group: ''
+- name: Modulation index, MI
+  summary: 调制指数 0（默认值）| 非负标量
+  group: ''
+- name: Signal frequency, FS
+  summary: 信号频率 0 Hz（默认值）| 非负标量
+  group: ''
+```
 
 ### **Voltage offset, VO** — 电压偏置 `0` `V`（默认值）
 
@@ -47,7 +73,6 @@ chinese_source: worker-translation
 ### **Signal frequency, FS** — 信号频率 `0` `Hz`（默认值）| 非负标量
 
 调制信号的频率。该值必须大于或等于 `0`。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

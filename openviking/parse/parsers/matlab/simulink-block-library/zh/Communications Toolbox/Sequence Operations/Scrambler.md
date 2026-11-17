@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Scrambler
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据信号向量
+  direction: input
+  data_types: double | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Rst
+  summary: 复位扰码器标量
+  direction: input
+- name: ISt
+  summary: 初始状态向量
+  direction: input
+- name: Out
+  summary: 输出扰码数据向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -46,8 +63,25 @@ chinese_source: worker-translation
 输出扰码数据，以 *N*S×1 向量形式返回。*N*S 等于输入信号中的样本数。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Calculation base
+  summary: 计算基数 4（默认）| 非负整数
+  group: ''
+- name: Scramble polynomial
+  summary: 定义扰码器中连接关系的多项式 '1 + x^-1 + x^-2 + x^-4'（默认）| 字符向量 | 整数向量 | 二进制向量
+  group: ''
+- name: Initial states source
+  summary: 设置扰码器初始状态的来源 Dialog Parameter（默认）| Input port
+  group: ''
+- name: Initial states
+  summary: 扰码器寄存器的初始状态 [0 1 2 3]（默认）| 非负整数向量
+  group: ''
+- name: Reset on nonzero input via port
+  summary: 通过输入端口复位扰码器 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -87,7 +121,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 `Initial states source` 设置为 `Dialog Parameter` 时，此参数可用。
-
 ## 所属库
 
 Communications Toolbox / Sequence Operations

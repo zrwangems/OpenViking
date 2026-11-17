@@ -14,6 +14,17 @@ language: en
 # Gazebo Subscribe
 
 ## Ports
+```yaml
+ports:
+- name: IsNew
+  summary: Status of custom messages in the previous time step 0 (default) | 1
+  direction: output
+  data_types: Boolean
+- name: Msg
+  summary: Gazebo custom message bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -34,8 +45,22 @@ The `Msg` output always outputs the most recent message
 received.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic source
+  summary: Source for specifying topic From Gazebo (default) | Specify your own
+  group: ''
+- name: Topic
+  summary: Topic name of custom message /my_topic (default) | string
+  group: ''
+- name: Message type
+  summary: Gazebo custom message type gazebo_msgs/TestPose (default) | string
+  group: ''
+- name: Sample time
+  summary: Sampling time of input 0.001 (default) | positive
+  group: ''
+```
 
 ### **Topic source** — Source for specifying topic `From Gazebo` (default) | `Specify your own`
 
@@ -70,7 +95,6 @@ this parameter is set automatically.
 
 Sample time indicates the interval at which messages are received from the Gazebo
 simulator.
-
 ## Libraries
 
 Robotics System Toolbox / Gazebo Co-Simulation

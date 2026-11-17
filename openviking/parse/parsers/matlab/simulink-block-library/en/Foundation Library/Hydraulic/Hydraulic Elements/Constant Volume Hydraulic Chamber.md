@@ -14,10 +14,15 @@ language: en
 # Constant Volume Hydraulic Chamber
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has one hydraulic conserving port associated with the chamber inlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Chamber specification**
 :   The parameter can have one of two values: `By volume` or
@@ -89,7 +94,6 @@ All other block parameters are available for modification. The actual set of
 modifiable block parameters depends on the values of the **Tube cross
 section type** and **Chamber wall type** parameters at
 the time the model entered Restricted mode.
-
 ## Libraries
 
 Not documented in R2025b.

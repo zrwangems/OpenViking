@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Logical Operator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 第一个输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: 第二个输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_N
+  summary: 第 N 个输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -46,8 +65,67 @@ chinese_source: worker-translation
 输出信号，由 0 和 1 组成，其维度与输入相同。您可以通过 **Require all inputs and output to have the same data type** 和 **Output data type** 参数控制输出数据类型。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Operator
+  summary: 逻辑运算符 AND（默认） | OR | NAND | NOR | XOR | NXOR | NOT
+  group: 主要
+  block_parameter: Operator
+  type: 字符向量
+  values: '''AND'' | ''OR'' | ''NAND'' | ''NOR'' | ''XOR'' | ''NXOR'' | ''NOT'''
+  default: '''AND'''
+- name: Number of input ports
+  summary: 输入数量 2（默认） | 正整数
+  group: 主要
+  block_parameter: Inputs
+  type: 字符向量
+  values: 正整数
+  default: '''2'''
+- name: Icon shape
+  summary: 图标形状 rectangular（默认） | distinctive
+  group: 主要
+  block_parameter: IconShape
+  type: 字符向量
+  values: '''rectangular'' | ''distinctive'''
+  default: '''rectangular'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认） | 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认） | 带引号的标量或向量'
+- name: Require all inputs and output to have the same data type
+  summary: 要求所有端口具有相同的数据类型 off（默认） | on
+  group: 数据类型
+  block_parameter: AllPortsSameDT
+  type: 字符向量
+  values: '''off'' | ''on'
+  default: '''off'''
+- name: Output data type
+  summary: '输出数据类型 boolean（默认） | Inherit: Logical (see Configuration Parameters: Optimization) | Inherit: Inherit via back
+    propagation | fixdt(1,16) | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Logical (see Configuration Parameters: Optimization)'' | ''boolean'' | ''fixdt(1,16)'' | ''<data type
+    expression>'''
+  default: '''boolean'''
+- name: Mode
+  summary: 要指定的数据类别 Built in（默认） | Inherit | Fixed point | Expression
+  group: 数据类型
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 数据类型
+- name: Signedness
+  summary: 定点数据的有符号性 Signed（默认） | Unsigned
+  group: 数据类型
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认） | 0 到 32 的整数
+  group: 数据类型
+- name: Scaling
+  summary: 定标方法 Integer（默认）
+  group: 数据类型
+```
 
 ### 主要
 
@@ -221,7 +299,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请单击 **Show data type assistant** 按钮，并将 **Mode** 设置为 `Fixed point`。
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Logic and Bit Operations HDL Coder / Commonly Used Blocks HDL Coder / Logic and Bit Operations

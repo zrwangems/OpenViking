@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # UDP Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 接收的数据 向量 | 矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Status
+  summary: 新数据可用 0（默认） | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -33,8 +44,110 @@ chinese_source: worker-translation
 要启用此端口，请取消选中 **Enable blocking mode** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Local address
+  summary: 本地主机名或 IP 地址 0.0.0.0（默认） | 本地主机名或 IP 地址
+  group: ''
+  block_parameter: LocalAddress
+  type: 字符向量、字符串
+- name: Local port
+  summary: 用于绑定的本地主机端口 -1（默认） | 本地主机端口
+  group: ''
+  block_parameter: LocalPort
+  type: 字符向量、字符串
+- name: Enable local port sharing
+  summary: 允许其他 UDP 套接字绑定到同一本地端口 off（默认） | on
+  group: ''
+  block_parameter: EnablePortSharing
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+- name: Remote address
+  summary: 远程主机名或地址 localhost（默认） | 远程主机名或 IP 地址
+  group: ''
+  block_parameter: Host
+  type: 字符向量、字符串
+- name: Remote port
+  summary: 远程主机端口 9090（默认） | 远程主机端口
+  group: ''
+  block_parameter: Port
+  type: 字符向量、字符串
+  values: 1 到 65,535
+- name: Verify address and port connectivity
+  summary: 远程机器连接验证按钮
+  group: ''
+- name: Output latest data
+  summary: 接收最新数据 off（默认） | on
+  group: ''
+  block_parameter: GetLatestData
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+- name: Data size
+  summary: 读取的值的数量 [1, 1]（默认）| 数值数组
+  group: ''
+  block_parameter: DataSize
+  type: 字符向量、字符串
+  values: 向量
+  default: '''[ 1, 1 ]'''
+- name: Source Data type
+  summary: 输出数据类型 uint8（默认）| single | double | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | ASCII
+  group: ''
+  block_parameter: DataType
+  type: 字符向量、字符串
+  values: '''single'' | ''double'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' |
+    ''uint64'' | ''ASCII'''
+  default: '''uint8'''
+- name: ASCII format string
+  summary: 字符串数据的格式 %f（默认）| 数值转换说明符
+  group: ''
+  block_parameter: ASCIIFormatting
+  type: 字符向量、字符串
+  values: '''%d'' | ''%i'' | ''%ld'' | ''%li'' | ''%u'' | %o'' | ''%x'' | ''%lu'' | ''%lo'' | ''%lx'' | ''%f'' | ''%e'' |
+    ''%g'''
+  default: '''%f'''
+- name: Terminator
+  summary: 终止符 LF（默认）| CR | CR/LF | LF/CR | Custom terminator
+  group: ''
+  block_parameter: Terminator
+  type: 字符向量、字符串
+  values: '''CR'' | ''LF'' | ''CR/LF'' | ''LF/CR'' | ''Custom terminator'''
+  default: '''LF'''
+- name: Custom Terminator
+  summary: 自定义终止符数值数组 | 从 0 到 255 的整数
+  group: ''
+  block_parameter: CustomTerminator
+  type: 字符向量、字符串
+  values: 整数数组
+  default: '''10'''
+- name: Byte order
+  summary: 字节的顺序 big-endian（默认） | little-endian
+  group: ''
+  block_parameter: ByteOrder
+  type: 字符向量、字符串
+  values: '''little-endian'' | ''big-endian'''
+  default: '''big-endian'''
+- name: Enable blocking mode
+  summary: 仿真在接收数据时等待 on（默认） | off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Timeout
+  summary: 完成操作所允许的时间 10（默认） | 正标量
+  group: ''
+  block_parameter: Timeout
+  type: 字符向量、字符串
+  values: 正标量
+  default: '''10'''
+- name: 模块采样时间
+  summary: 采样时间 0.01（默认）| 正数值
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量、字符串
+  values: 正数值
+```
 
 ### **Local address** — 本地主机名或 IP 地址 0.0.0.0（默认） | 本地主机名或 IP 地址
 
@@ -300,7 +413,6 @@ UDP 端口可被其他应用程序共享，以允许多个应用程序监听该�
 | **类型：** 字符向量、字符串 |
 | **值：** 正数值 |
 | **默认：** `'0.01'` |
-
 ## 所属库
 
 Instrument Control Toolbox

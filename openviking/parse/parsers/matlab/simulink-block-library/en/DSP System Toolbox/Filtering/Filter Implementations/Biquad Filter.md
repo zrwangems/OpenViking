@@ -14,6 +14,29 @@ language: en
 # Biquad Filter
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Num
+  summary: Numerator coefficients matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Den
+  summary: Denominator coefficients matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: g
+  summary: Scale values row vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Out
+  summary: Filtered output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### Input
 
@@ -93,8 +116,82 @@ This port is unnamed unless you set the **Coefficient source** to
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: Mode of operation Dialog parameters (default) | Input port(s) | Filter object
+  group: Main Tab
+- name: Filter
+  summary: Name of filter object BQF (default) | dsp.BiquadFilter System object name
+  group: Main Tab
+- name: Filter structure
+  summary: Filter structure Direct form II transposed (default) | Direct form I | Direct form I transposed | Direct form II
+  group: Main Tab
+- name: SOS Matrix (Mx6)
+  summary: SOS matrix [1 0.3 0.4 1 0.1 0.2] (default) | *M*-by-6 matrix
+  group: Main Tab
+- name: Scale values
+  summary: Scale values 1 (default) | scalar | vector
+  group: Main Tab
+- name: Initial conditions
+  summary: Initial conditions 0 (default) | scalar | vector
+  group: Main Tab
+- name: Initial conditions on zeros side
+  summary: Initial conditions on zeros side 0 (default) | scalar | vector
+  group: Main Tab
+- name: Initial conditions on poles side
+  summary: Initial conditions on poles side 0 (default) | scalar | vector
+  group: Main Tab
+- name: Scale values mode
+  summary: Mode to specify scale values Specify via input port (g) (default) | Assume all are unity and optimize
+  group: Main Tab
+- name: Action when the a0 values of the SOS matrix are not one
+  summary: Action when a0 values of SOS matrix are not one Warning (default) | None | Error
+  group: Main Tab
+- name: Optimize unity scale values
+  summary: Optimize unity scale values on (default) | off
+  group: Main Tab
+- name: Input processing
+  summary: Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: Main Tab
+- name: View Filter Response
+  summary: View filter response button
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Section input
+  summary: Section input data type Same as input (default) | Binary point scaling
+  group: Data Types Tab
+- name: Section output
+  summary: Section output data type Same as section input (default) | Binary point scaling
+  group: Data Types Tab
+- name: Multiplicand
+  summary: Multiplicand data type Same as output (default) | Binary point scaling
+  group: Data Types Tab
+- name: Coefficients
+  summary: Coefficients data type Same word length as input (default) | Specify word length | Binary point scaling
+  group: Data Types Tab
+- name: Product output
+  summary: Product output data type Same as input (default) | Inherit via internal rule | Binary point scaling
+  group: Data Types Tab
+- name: Accumulator
+  summary: Accumulator data type Same as product output (default) | Same as input | Binary point scaling
+  group: Data Types Tab
+- name: States
+  summary: States data type Same as accumulator (default) | Same as input | Binary point scaling
+  group: Data Types Tab
+- name: Output
+  summary: Output data type Same as accumulator (default) | Same as input | Binary point scaling
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Lock data type settings off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -523,7 +620,6 @@ depicting the use of the output data type in this block. When you select:
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify on the block mask.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Implementations DSP System Toolbox HDL Support / Filtering

@@ -14,6 +14,15 @@ language: en
 # Infinite Flow Resistance (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Mass flow rate and energy flow rate are zero gas
+  direction: conserving
+- name: B
+  summary: Mass flow rate and energy flow rate are zero gas
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,11 +35,12 @@ both equal to zero.
 
 Gas conserving port where the mass flow rate and energy flow rate are
 both equal to zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Elements

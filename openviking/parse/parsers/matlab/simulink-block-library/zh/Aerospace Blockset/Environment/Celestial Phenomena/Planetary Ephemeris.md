@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Planetary Ephemeris
 
 ## 端口
+```yaml
+ports:
+- name: TJD
+  summary: 儒略日 标量 | 正值 | 介于最小和最大儒略日之间
+  direction: input
+  data_types: double
+- name: T0JD
+  summary: 固定儒略日 标量 | 正值
+  direction: input
+  data_types: double
+- name: ΔTJD
+  summary: 经过的儒略时间 标量 | 正值
+  direction: input
+  data_types: double
+- name: Xicrf1
+  summary: 质心位置矢量
+  direction: output
+  data_types: double
+- name: Vicrf
+  summary: 速度矢量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -74,8 +97,91 @@ chinese_source: worker-translation
 **Target** 对象质心相对于 **Center** 对象质心的速度（*V*icrf），指定为矢量，单位为 km/s 或天文单位（AU）/天。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输出单位 km,km/s（默认）| AU,AU/day
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: m,m/s | km,km/s | AU,AU/day
+  default: '''km,km/s'''
+- name: Epoch
+  summary: 历元 Julian date（默认）| T0 and elapsed Julian time
+  group: ''
+  block_parameter: epochFormat
+  type: 字符向量
+  values: Julian date | T0 and elapsed Julian time
+  default: '''Julian date'''
+- name: Ephemeris model
+  summary: 星历模型 DE405（默认）| DE421 | DE423 | DE430 | DE432t
+  group: ''
+  block_parameter: ephemerisModel
+  type: 字符向量
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Ephemeris model
+  summary: 星历模型 DE405（默认）| DE421 | DE423 | DE430 | DE432t
+  group: ''
+  block_parameter: ephemerisModel
+  type: 字符向量
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Center
+  summary: 中心天体 Sun（默认）| Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system
+    barycenter | Earth-Moon barycenter
+  group: ''
+  block_parameter: center
+  type: 字符向量
+  values: Sun | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system barycenter
+    | Earth-Moon barycenter
+  default: '''Sun'''
+- name: Target
+  summary: 目标天体 Sun（默认）| Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system
+    barycenter | Earth-Moon barycenter
+  group: ''
+  block_parameter: target
+  type: 字符向量
+  values: Sun | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system barycenter
+    | Earth-Moon barycenter
+  default: '''Moon'''
+- name: Limit ephemerides date range
+  summary: 用于启用星历数据范围起止的选项 off（默认）| on
+  group: ''
+  block_parameter: useDateRange
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Start date (JD)
+  summary: 星历日期范围的起始日期 juliandate(2020, 1, 1)（默认）| 儒略日
+  group: ''
+  block_parameter: startDate
+  type: 字符向量
+  values: '''juliandate(2020, 1, 1)'' | 儒略日'
+  default: '''juliandate(2020, 1, 1)'''
+- name: End date (JD)
+  summary: 星历日期范围的结束日期 juliandate(2050, 1, 1)（默认）| 儒略日
+  group: ''
+  block_parameter: endDate
+  type: 字符向量
+  values: '''juliandate(2050, 1, 1)'' | 儒略格式日期'
+  default: '''juliandate(2050, 1, 1)'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Calculate velocity
+  summary: 计算目标质心速率 on（默认）| off
+  group: ''
+  block_parameter: outputVelocity
+  type: 字符向量
+  values: '''off'' | ''on'' |'
+  default: '''on'''
+```
 
 ### **Units** — 输出单位 `km,km/s`（默认）| `AU,AU/day`
 
@@ -298,7 +404,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off'` | `'on'` | |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Celestial Phenomena

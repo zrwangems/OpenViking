@@ -14,6 +14,33 @@ language: en
 # BLDC Current Controller
 
 ## Ports
+```yaml
+ports:
+- name: IsRef
+  summary: Reference current scalar
+  direction: input
+  data_types: single | double
+- name: Is
+  summary: Measured current scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: External reset scalar
+  direction: input
+  data_types: single | double
+- name: Hall
+  summary: Hall sensor vector
+  direction: input
+  data_types: single | double
+- name: Direction
+  summary: Motor direction scalar
+  direction: input
+  data_types: single | double
+- name: vabcRef
+  summary: Reference voltage vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -54,8 +81,28 @@ Reference voltage for the *a*-,
 *b*-, and *c*-phases.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain
+  summary: Controller proportional gain, *Kp* 1 (default) | positive scalar
+  group: ''
+- name: Integral gain
+  summary: Integral gain, *Ki* 5 (default) | positive scalar
+  group: ''
+- name: Anti-windup gain
+  summary: Anti-windup gain, *Kaw* 1 (default) | positive scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+- name: Discretization sample time
+  summary: Sample time for discretization 0.001 (default) | positive scalar
+  group: ''
+- name: Enable zero cancellation
+  summary: Feedforward zero cancellation off (default) | on
+  group: ''
+```
 
 ### **Proportional gain** — Controller proportional gain, *Kp* `1` (default) | positive scalar
 
@@ -112,7 +159,6 @@ If you select the **Enable zero cancellation** option and set
 **Sample time (-1 for inherited)** to `-1`,
 the **Discretization sample time** parameter becomes
 visible.
-
 ## Libraries
 
 Simscape / Electrical / Control / BLDC Control

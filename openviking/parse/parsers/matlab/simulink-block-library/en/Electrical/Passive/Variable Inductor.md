@@ -14,6 +14,18 @@ language: en
 # Variable Inductor
 
 ## Ports
+```yaml
+ports:
+- name: L
+  summary: Inductance physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -32,8 +44,25 @@ voltage.
 
 Electrical conserving port associated with the inductor negative
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Equation
+  summary: Equation for block inductance V = L*dI/dt + dL/dt*I (default) | V = L*dI/dt
+  group: ''
+- name: Minimum inductance L>0
+  summary: Minimum inductance 1e-6 H (default)
+  group: ''
+- name: Parallel conductance
+  summary: Parallel conductance 1e-9 1/Ohm (default)
+  group: ''
+- name: Initial current
+  summary: Initial current 0 A (default)
+  group: ''
+- name: Initial magnetic flux
+  summary: Initial magnetic flux 0 Wb (default)
+  group: ''
+```
 
 ### **Equation** — Equation for block inductance `V = L*dI/dt + dL/dt*I` (default) | `V = L*dI/dt`
 
@@ -76,7 +105,6 @@ The magnetic flux at the start of the simulation.
 This parameter is visible only when you select `V =
 L*dI/dt + dL/dt*I` for the
 **Equation** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive

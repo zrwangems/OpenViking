@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Time feature extractor
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 提取的特征 向量 | 三维数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -40,8 +51,58 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Window length
+  summary: 每帧的采样数 64（默认）| 正整数
+  group: ''
+- name: Specify
+  summary: 缓冲方法 Overlap length（默认）| Hop size
+  group: ''
+- name: Overlap length
+  summary: 连续帧之间的重叠采样数 0（默认）| 正整数
+  group: ''
+- name: Hop size
+  summary: 帧起始之间的采样数 64（默认）| 正整数
+  group: ''
+- name: Mean
+  summary: 提取均值的选项 on（默认）| off
+  group: ''
+- name: RMS
+  summary: 提取均方根的选项 off（默认）| on
+  group: ''
+- name: Standard deviation
+  summary: 提取标准差的选项 off（默认）| on
+  group: ''
+- name: Shape factor
+  summary: 提取波形因数的选项 off（默认）| on
+  group: ''
+- name: SNR
+  summary: 提取信噪比的选项 off（默认）| on
+  group: ''
+- name: THD
+  summary: 提取总谐波失真的选项 off（默认）| on
+  group: ''
+- name: SINAD
+  summary: 提取信纳比的选项 off（默认）| on
+  group: ''
+- name: Peak value
+  summary: 提取峰值的选项 off（默认）| on
+  group: ''
+- name: Crest factor
+  summary: 提取峰值因数的选项 off（默认）| on
+  group: ''
+- name: Clearance factor
+  summary: 提取裕度因数的选项 off（默认）| on
+  group: ''
+- name: Impulse factor
+  summary: 提取脉冲因数的选项 off（默认）| on
+  group: ''
+- name: Feature to output mapping
+  summary: 显示特征在输出中的列索引
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -183,7 +244,6 @@ chinese_source: worker-translation
 ### **Feature to output mapping** — 显示特征在输出中的列索引
 
 展开此部分以显示每个特征在输出中的列索引。从输入信号中提取的每个特征出现在输出的单独列中。对于表格 **Feature** 部分中列出的每个特征，**Column index in output** 部分中的对应条目显示该特征在输出信号中出现的列索引。
-
 ## 所属库
 
 DSP System Toolbox / Feature Extractors

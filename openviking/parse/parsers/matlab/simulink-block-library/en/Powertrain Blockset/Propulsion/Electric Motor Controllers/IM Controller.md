@@ -14,6 +14,36 @@ language: en
 # IM Controller
 
 ## Ports
+```yaml
+ports:
+- name: SpdReq
+  summary: Rotor mechanical speed command scalar
+  direction: input
+- name: TrqCmd
+  summary: Torque command scalar
+  direction: input
+- name: BusVolt
+  summary: DC bus voltage scalar
+  direction: input
+- name: PhaseCurrA
+  summary: Current scalar
+  direction: input
+- name: PhaseCurrB
+  summary: Current scalar
+  direction: input
+- name: SpdFdbk
+  summary: Rotor mechanical speed scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: BusCurr
+  summary: Bus current scalar
+  direction: output
+- name: PhaseVolt
+  summary: Stator terminal voltages array
+  direction: output
+```
 
 ### Input
 
@@ -81,8 +111,196 @@ Stator terminal voltages,
 *Va*,
 *Vb*, and
 *Vc*, in V.
-
 ## Parameters
+```yaml
+parameters:
+- name: Control Type
+  summary: Select control Speed Control (default) | Torque Control
+  group: ''
+  block_parameter: control_type
+  values: Speed Control (default) | Torque Control
+- name: Stator resistance, Rs
+  summary: Resistance 1.77 (default) | scalar
+  group: ''
+  block_parameter: Rs
+  values: 1.77 (default) | scalar
+- name: Stator leakage inductance, Lls
+  summary: Inductance 0.0139 (default) | scalar
+  group: ''
+  block_parameter: Lls
+  values: 0.0139 (default) | scalar
+- name: Rotor resistance, Rr
+  summary: Resistance 1.34 (default) | scalar
+  group: ''
+  block_parameter: Rr
+  values: 1.34 (default) | scalar
+- name: Rotor leakage inductance, Llr
+  summary: Inductance 0.0121 (default) | scalar
+  group: ''
+  block_parameter: Llr
+  values: 0.0121 (default) | scalar
+- name: Rotor magnetizing inductance, Lm
+  summary: Inductance 0.3687 (default) | scalar
+  group: ''
+  block_parameter: Lm
+  values: 0.3687 (default) | scalar
+- name: Number of pole pairs, PolePairs
+  summary: Poles 2 (default) | scalar
+  group: ''
+  block_parameter: PolePairs
+  values: 2 (default) | scalar
+- name: Physical inertia, viscous damping, static friction, Mechanical
+  summary: Mechanical properties of motor [0.025, 0, 0] (default) | vector
+  group: ''
+  block_parameter: Mechanical
+  values: '[0.025, 0, 0] (default) | vector'
+- name: Rated synchronous speed, Frate
+  summary: Motor frequency 60 (default) | scalar
+  group: ''
+  block_parameter: Frate
+  values: 60 (default) | scalar
+- name: Rated line to line voltage RMS, Vrate
+  summary: Motor voltage 460 (default) | scalar
+  group: ''
+  block_parameter: Vrate
+  values: 460 (default) | scalar
+- name: Rated slip, Srate
+  summary: Motor slip speed 0.0172 (default) | scalar
+  group: ''
+  block_parameter: Srate
+  values: 0.0172 (default) | scalar
+- name: Calculate Rated Stator Flux Current
+  summary: Derive parameters button
+  group: ''
+- name: D-axis rated current, Isd_0
+  summary: Derived 3.1004 (default) | scalar
+  group: ''
+  block_parameter: Isd_0
+  values: 3.1004 (default) | scalar
+- name: Q-axis rated current, Isq_0
+  summary: Derived 5.7131 (default) | scalar
+  group: ''
+  block_parameter: Isq_0
+  values: 5.7131 (default) | scalar
+- name: Torque at rated current, Tem
+  summary: Derived 12.6467 (default) | scalar
+  group: ''
+  block_parameter: Tem
+  values: 12.6467 (default) | scalar
+- name: Bandwidth of the current regulator, EV_current
+  summary: Bandwidth 200 (default) | scalar
+  group: ''
+  block_parameter: EV_current
+  values: 200 (default) | scalar
+- name: Sample time for the torque control, Tst
+  summary: Time 5e-5 (default) | scalar
+  group: ''
+  block_parameter: Tst
+  values: 5e-5 (default) | scalar
+- name: Calculate Current Regulator Gains
+  summary: Derive parameters button
+  group: ''
+- name: D and Q axis proportional gain, Kp
+  summary: Derived 32.1894 (default) | scalar
+  group: ''
+  block_parameter: Kp
+  values: 32.1894 (default) | scalar
+- name: D and Q axis integral gain, Ki
+  summary: Derived 2224.2476 (default) | scalar
+  group: ''
+  block_parameter: Ki
+  values: 2224.2476 (default) | scalar
+- name: Bandwidth of the motion controller, EV_motion
+  summary: Bandwidth [20, 4, 0.8] (default) | vector
+  group: ''
+  block_parameter: EV_motion
+  values: '[20, 4, 0.8] (default) | vector'
+- name: Bandwidth of the state filter, EV_sf
+  summary: Bandwidth 200 (default) | scalar
+  group: ''
+  block_parameter: EV_sf
+  values: 200 (default) | scalar
+- name: Calculate Speed Regulator Gains
+  summary: Derive parameters button
+  group: ''
+- name: Proportional gain, ba
+  summary: Derived 3.7477 (default) | scalar
+  group: ''
+  block_parameter: ba
+  values: 3.7477 (default) | scalar
+- name: Angular gain, Ksa
+  summary: Derived 94.0877 (default) | scalar
+  group: ''
+  block_parameter: Ksa
+  values: 94.0877 (default) | scalar
+- name: Rotational gain, Kisa
+  summary: Derived 381.7822 (default) | scalar
+  group: ''
+  block_parameter: Kisa
+  values: 381.7822 (default) | scalar
+- name: Speed regulation time constant, Ksf
+  summary: Derived 1217.9727 (default) | scalar
+  group: ''
+  block_parameter: Ksf
+  values: 1217.9727 (default) | scalar
+- name: Inertia compensation, Jcomp
+  summary: Derived 0.025 (default) | scalar
+  group: ''
+  block_parameter: Jcomp
+  values: 0.025 (default) | scalar
+- name: Viscous damping compensation, Fv
+  summary: Derived 0 (default) | scalar
+  group: ''
+  block_parameter: Fv
+  values: 0 (default) | scalar
+- name: Static friction, Fs
+  summary: Derived 0 (default) | scalar
+  group: ''
+  block_parameter: Fs
+  values: 0 (default) | scalar
+- name: Parameterize losses by
+  summary: Select type Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data
+- name: Overall inverter efficiency, eff
+  summary: Constant 98 (default) | scalar
+  group: ''
+  block_parameter: eff
+  values: 98 (default) | scalar
+- name: Vector of speeds (w) for tabulated loss, w_loss_bp
+  summary: Breakpoints [0 200 400 600 800 1000] (default) | 1-by-M vector
+  group: ''
+  block_parameter: w_loss_bp
+  values: '[0 200 400 600 800 1000] (default) | 1-by-M vector'
+- name: Vector of torques (T) for tabulated loss, T_loss_bp
+  summary: Breakpoints [0 25 50 75 100] (default) | 1-by-N vector
+  group: ''
+  block_parameter: T_loss_bp
+  values: '[0 25 50 75 100] (default) | 1-by-N vector'
+- name: Corresponding losses, losses_table
+  summary: Table [100 100 100 100 100;100 150 200 250 300;100 200 300 400 500;100 250 400 550 700;100 300 500 700 900;100
+    350 600 850 1100] (default) | M-by-N array
+  group: ''
+  block_parameter: losses_table
+  values: M-by-N array
+- name: Vector of speeds (w) for tabulated efficiency, w_eff_bp
+  summary: Breakpoints [200 400 600 800 1000] (default) | 1-by-M vector
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[200 400 600 800 1000] (default) | 1-by-M vector'
+- name: Vector of torques (T) for tabulated efficiency, T_eff_bp
+  summary: Breakpoints [25 50 75 100] (default) | 1-by-N vector
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[25 50 75 100] (default) | 1-by-N vector'
+- name: Corresponding efficiency, efficiency_table
+  summary: Table [96.2 98.1 98.7 99;98.1 99 99.4 99.5;98.7 99.4 99.6 99.7;99 99.5 99.7 99.8;99.2 99.6 99.7 99.8] (default)
+    | M-by-N array
+  group: ''
+  block_parameter: efficiency_table
+  values: M-by-N array
+```
 
 #### Block Options
 
@@ -1147,7 +1365,6 @@ programmatically, use the `get_param` function.
 
 To enable this parameter, for **Parameterize losses by**, select
 `Tabulated efficiency data`.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Electric Motor Controllers

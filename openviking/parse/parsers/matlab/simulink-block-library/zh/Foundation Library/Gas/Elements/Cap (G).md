@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Cap (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 质量流量和能量流量为零的气体端口
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **A** — 质量流量和能量流量为零的气体端口
 
 气体守恒端口，其质量流量和能量流量均等于零。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

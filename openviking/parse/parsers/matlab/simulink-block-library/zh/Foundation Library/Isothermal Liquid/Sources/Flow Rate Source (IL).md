@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Flow Rate Source (IL)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量控制信号，kg/s 物理信号
+  direction: input
+- name: V
+  summary: 体积流量控制信号，m^3/s 物理信号
+  direction: input
+- name: A
+  summary: 源入口等温液体
+  direction: input
+- name: B
+  summary: 源出口等温液体
+  direction: input
+```
 
 ### 输入
 
@@ -42,8 +57,22 @@ chinese_source: worker-translation
 ### **B** — 源出口等温液体
 
 等温液体守恒端口。正流量使流体从端口 **A** 流向端口 **B**。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 选择流量在仿真期间是否可以变化 Controlled（默认）| Constant
+  group: ''
+- name: Flow rate type
+  summary: 选择源生成质量流量还是体积流量 Mass flow rate（默认）| Volumetric flow rate
+  group: ''
+- name: Mass flow rate
+  summary: 通过该源的恒定质量流量 0 kg/s（默认）| 标量
+  group: ''
+- name: Volumetric flow rate
+  summary: 通过该源的恒定体积流量 0 m^3/s（默认）| 标量
+  group: ''
+```
 
 ### **Source type** — 选择流量在仿真期间是否可以变化 `Controlled`（默认）| `Constant`
 
@@ -71,7 +100,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Source type** 设置为 `Constant`，并将 **Flow rate type** 设置为 `Volumetric flow rate`。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Sources

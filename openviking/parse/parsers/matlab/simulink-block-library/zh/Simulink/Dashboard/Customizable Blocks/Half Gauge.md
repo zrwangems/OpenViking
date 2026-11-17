@@ -15,10 +15,180 @@ chinese_source: worker-translation
 # Half Gauge
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: 连接
+  summary: 要连接的信号及显示信号连接选项
+  group: 参数
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: 最小值
+  summary: 最小刻度值 0（默认）| 标量
+  group: 参数
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: 最大值
+  summary: 最大刻度值 100（默认）| 标量
+  group: 参数
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: 刻度间隔
+  summary: 主刻度线之间的间隔 auto（默认）| 标量
+  group: 参数
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: 方向
+  summary: 刻度值递增的方向 Clockwise（默认）| Counterclockwise
+  group: 参数
+  block_parameter: ScaleDirection
+  type: 字符向量
+  values: '''Clockwise'' | ''Counterclockwise'''
+  default: '''Clockwise'''
+- name: 标签
+  summary: 显示所连接元素名称的标签位置 Hide（默认）| Bottom | Top
+  group: 参数
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: 锁定纵横比
+  summary: 保持模块纵横比的选项 on（默认）| off
+  group: 参数
+- name: 刻度颜色
+  summary: 刻度范围的颜色指示
+  group: 参数
+  block_parameter: ScaleColors
+  type: 结构体数组
+  default: 0x1 结构体数组
+- name: 锁定纵横比
+  summary: 保持模块纵横比的选项 on（默认）| off
+  group: 设计
+- name: 最小值
+  summary: 最小刻度值 0（默认）| 标量
+  group: 设计
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: 最大值
+  summary: 最大刻度值 100（默认）| 标量
+  group: 设计
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: 刻度间隔
+  summary: 主刻度线之间的间隔 auto（默认）| 标量
+  group: 设计
+  block_parameter: Limits
+  type: 1x3 向量
+  default: '[0 -1 100]'
+- name: 原点
+  summary: 指针移动和值条增长的刻度值 auto（默认）| 标量
+  group: 设计
+- name: 方向
+  summary: 刻度值递增的方向 Clockwise（默认）| Counterclockwise
+  group: 设计
+  block_parameter: ScaleDirection
+  type: 字符向量
+  values: '''Clockwise'' | ''Counterclockwise'''
+  default: '''Clockwise'''
+- name: 弧
+  summary: 刻度的弧长 180（默认）| 标量
+  group: 设计
+- name: 起始角度
+  summary: 刻度最小值的角度位置 180（默认）| 标量
+  group: 设计
+- name: 内半径
+  summary: 刻度刻度线自由端的半径 标量
+  group: 设计
+- name: 外半径
+  summary: 跨度线半径 标量
+  group: 设计
+- name: X 偏移
+  summary: 刻度边界框左边缘相对于模块左边缘的水平偏移 标量
+  group: 设计
+- name: Y 偏移
+  summary: 刻度边界框上边缘相对于模块上边缘的垂直偏移 标量
+  group: 设计
+- name: 宽度
+  summary: 刻度宽度 标量
+  group: 设计
+- name: 高度
+  summary: 刻度高度 标量
+  group: 设计
+- name: 锁定纵横比
+  summary: 保持刻度纵横比的选项 on（默认）| off
+  group: 设计
+- name: 刻度颜色
+  summary: 刻度刻度线、跨度线和模块名称的颜色 [r g b] 向量
+  group: 设计
+  block_parameter: ForegroundColor
+  type: 字符向量 | 字符串
+  values: '[r g b] 向量'
+- name: 次刻度高度
+  summary: 刻度上次刻度线的高度 1（默认）| 标量
+  group: 设计
+- name: 标签颜色
+  summary: 刻度标签字体颜色 [r g b] 向量
+  group: 设计
+- name: 标签半径
+  summary: 刻度标签距刻度中心的距离 标量
+  group: 设计
+- name: 宽度
+  summary: 指针图像宽度 标量
+  group: 设计
+- name: 高度
+  summary: 指针图像高度 标量
+  group: 设计
+- name: 锁定纵横比
+  summary: 保持图像纵横比的选项 on（默认）| off
+  group: 设计
+- name: 旋转图像
+  summary: 指针图像的旋转 180（默认）| 标量
+  group: 设计
+- name: 距中心偏移
+  summary: 指针图像中心距刻度中心的偏移 0（默认）| 标量
+  group: 设计
+- name: Use Background Color
+  summary: 指定纯色模块背景色的选项 off（默认）| on
+  group: 设计
+- name: Color
+  summary: 模块背景色 [r g b] 向量
+  group: 设计
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| 标量
+  group: 设计
+- name: Corner radius
+  summary: 模块背景色区域外边缘与刻度线的偏移量 标量
+  group: 设计
+- name: X Offset
+  summary: 前景图像左边缘与模块左边缘的水平偏移量 标量
+  group: 设计
+- name: Y Offset
+  summary: 前景图像上边缘与模块上边缘的垂直偏移量 标量
+  group: 设计
+- name: Width
+  summary: 前景图像宽度 标量
+  group: 设计
+- name: Height
+  summary: 前景图像高度 标量
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持前景图像宽高比的选项 on（默认）| off
+  group: 设计
+```
 
 使用属性检查器和模块参数对话框来指定模块参数的值。要设置仪表板模块的核心参数，请使用模块参数对话框或属性检查器中的**参数**选项卡。要自定义模块，请使用属性检查器中的**设计**选项卡。要打开模块的模块参数对话框，请双击该模块。要打开属性检查器，请在**建模**选项卡的**设计**下，选择**属性检查器**。
 
@@ -438,7 +608,6 @@ scaleRanges = [range1 range2];
 ### **Lock Aspect Ratio** — 保持前景图像宽高比的选项 `on`（默认）| `off`
 
 选择此参数可在使用属性检查器调整图像大小时保持宽高比。
-
 ## 所属库
 
 Simulink / Dashboard / Customizable Blocks

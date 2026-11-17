@@ -14,6 +14,33 @@ language: en
 # Read Binary File
 
 ## Ports
+```yaml
+ports:
+- name: Y'
+  summary: Luminance component 3-D array
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cb
+  summary: Blue difference component 3-D array
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cr
+  summary: Red difference component 3-D array
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: A
+  summary: Alpha component 3-D array
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: T
+  summary: Transparency component 3-D array
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: EOF
+  summary: Last video frame indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -90,8 +117,105 @@ To enable this port, select the **Output end-of-file
 indicator** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Name of binary file vipmen.bin (default) | file name
+  group: ''
+- name: Video format
+  summary: Format of video data Four character codes (default) | Custom
+  group: ''
+- name: Four character code
+  summary: Format of binary file I420 (default) | AYUV | CLJR | cyuv | GREY | IF09 | IMC1 | IMC2 | IMC3 | IMC4 | IUYV | IY41
+    | IYU1 | IYU2 | IYUV | NV12 | NV21 | UYNV | UYNY | V210 | Y411 | Y41P | Y41T | Y422 | Y42T | Y8 | Y800 | YUNV | YUY2 |
+    YUYV | YV12 | YV16 | YVU9 | YVYU | ...
+  group: ''
+- name: FrameSize Rows
+  summary: Number of rows in output array 120 (default) | positive integer
+  group: ''
+- name: FrameSize Cols
+  summary: Number of columns in output array 160 (default) | positive integer
+  group: ''
+- name: Line ordering
+  summary: Output array fill direction Top line first (default) | Bottom line first
+  group: ''
+- name: Number of times to play file
+  summary: Number of times to play the file 1 (default) | positive integer | inf
+  group: ''
+- name: Output end-of-file indicator
+  summary: Indicate when block output reaches last frame off (default) | on
+  group: ''
+- name: Sample time
+  summary: Sample period of output 1/30 (default) | positive scalar | -1
+  group: ''
+- name: Bit stream format
+  summary: Specifies if data is planar or packed Planar (default) | Packed
+  group: ''
+- name: Number of output components
+  summary: Number of components in binary file 3 (default) | 1 | 2 | 4
+  group: ''
+- name: Component1
+  summary: Name for luminance component Y' (default) | component name
+  group: ''
+- name: Component2
+  summary: Name for blue difference component Cb (default) | component name
+  group: ''
+- name: Component3
+  summary: Name for red difference component Cr (default) | component name
+  group: ''
+- name: Component4
+  summary: Name for alpha component Alpha (default) | component name
+  group: ''
+- name: Bits1
+  summary: Size of luminance component 8 (default) | 16 | 24 | 32
+  group: ''
+- name: Bits2
+  summary: Size of blue difference component 8 (default) | 16 | 24 | 32
+  group: ''
+- name: Bits3
+  summary: Size of red difference component 8 (default) | 16 | 24 | 32
+  group: ''
+- name: Bits4
+  summary: Size of alpha component 8 (default) | 16 | 24 | 32
+  group: ''
+- name: Rows1
+  summary: Number of rows for luminance component 120 (default) | positive integer
+  group: ''
+- name: Rows2
+  summary: Number of rows for blue difference component 60 (default) | positive integer
+  group: ''
+- name: Rows3
+  summary: Number of rows for red difference component 60 (default) | positive integer
+  group: ''
+- name: Rows4
+  summary: Number of rows for alpha component 288 (default) | positive integer
+  group: ''
+- name: Cols1
+  summary: Number of columns for luminance component 160 (default) | positive integer
+  group: ''
+- name: Cols2
+  summary: Number of columns for blue difference component 80 (default) | positive integer
+  group: ''
+- name: Cols3
+  summary: Number of columns for red difference component 80 (default) | positive integer
+  group: ''
+- name: Cols4
+  summary: Number of columns for the alpha component 352 (default) | positive integer
+  group: ''
+- name: Component order in binary file
+  summary: Arrangement of components in binary file [1 2 3] (default) | vector of valid component identifiers
+  group: ''
+- name: Interlaced video
+  summary: Read video data from file as interlaced off (default) | on
+  group: ''
+- name: Input file has signed data
+  summary: File has signed integers off (default) | on
+  group: ''
+- name: Byte order in binary file
+  summary: Byte order of binary file Little endian (default) | Big endian
+  group: ''
+```
 
 ### **File name** — Name of binary file `vipmen.bin` (default) | file name
 
@@ -452,7 +576,6 @@ endian.
 
 To enable this parameter, set the **Video format** parameter to
 `Custom`.
-
 ## Libraries
 
 Computer Vision Toolbox / Sinks

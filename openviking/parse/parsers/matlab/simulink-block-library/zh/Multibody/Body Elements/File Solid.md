@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # File Solid
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 局部参考坐标系 坐标系
+  direction: unspecified
+- name: CH
+  summary: 凸包表示 几何
+  direction: unspecified
+```
 
 ### 坐标系
 
@@ -30,8 +39,88 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Geometry** 下展开 **Export** 并选择 **Convex Hull**。
-
 ## 参数
+```yaml
+parameters:
+- name: File Name
+  summary: CAD 文件名或 CAD 文件路径 字符向量
+  group: 几何
+- name: Unit Type
+  summary: 实体几何单位的来源 From File（默认）| Custom
+  group: 几何
+- name: Unit
+  summary: 导入文件中指定几何坐标所用的长度单位 m（默认）| cm | mm | km | in | ft
+  group: 几何
+- name: Convex Hull
+  summary: 生成真实几何的凸包表示 off（默认）| on
+  group: 几何
+- name: Type
+  summary: 要使用的惯性参数化方式 Calculate from Geometry（默认）| Point Mass | Custom
+  group: 惯性
+- name: Based on
+  summary: 惯性计算中使用的参数 Density from File（默认）| Custom Density | Custom Mass
+  group: 惯性
+- name: Density
+  summary: 材料单位体积质量 1000 kg/m^3（默认）
+  group: 惯性
+- name: Mass
+  summary: 实体单元的总质量 1 kg（默认）| 带质量单位的标量
+  group: 惯性
+- name: Center of Mass
+  summary: 质心坐标 [0 0 0] m（默认）| 带长度单位的三元素向量
+  group: 惯性
+- name: Moments of Inertia
+  summary: 惯性张量的对角元素 [1 1 1] kg*m^2（默认）| 带质量\*长度^2 单位的三元素向量
+  group: 惯性
+- name: Products of Inertia
+  summary: 惯性张量的非对角元素 [0 0 0] kg*m^2（默认）| 带质量\*长度^2 单位的三元素向量
+  group: 惯性
+- name: Derived Values
+  summary: 惯性属性计算值的显示 按钮
+  group: 惯性
+- name: Type
+  summary: 用于可视化的图形 From Geometry（默认）| Marker | None
+  group: 图形
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: 图形
+- name: Shape
+  summary: 用于表示实心体的标记形状 Sphere（默认）| Cube | Frame
+  group: 图形
+- name: Size
+  summary: 标记的宽度（以像素为单位） 10 pixels（默认）| 标量
+  group: 图形
+- name: Color
+  summary: 漫反射光的颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: 图形
+- name: Diffuse Color
+  summary: 漫反射光的颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Specular Color
+  summary: 镜面反射光的颜色 [0.5 0.5 0.5 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: 图形
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: 图形
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值约束为 0–128 的标量
+  group: 图形
+- name: Show Port R
+  summary: 显示用于连接到其他模块的参考坐标系端口 on（默认）| off
+  group: Frames
+- name: New Frame
+  summary: 创建用于连接到其他模块按钮的自定义坐标系
+  group: Frames
+- name: FrameN
+  summary: 编辑或删除现有自定义坐标系坐标系名称
+  group: Frames
+```
 
 ### 几何
 
@@ -321,7 +410,6 @@ Geometry` 或
 #### 依赖关系
 
 要启用此参数，请单击 **New Frame** 创建一个坐标系。
-
 ## 所属库
 
 Simscape / Multibody / Body Elements

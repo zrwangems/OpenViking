@@ -14,10 +14,15 @@ language: en
 # C2802x/C2803x/C2806x/F28M3x AnalogIO Input
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Parameters (Input pins)**
 :   Select the input pins to sample.
@@ -52,7 +57,6 @@ Not documented in R2025b.
     `uint8`, `int16`,
     `uint16`, `int32`,
     and `uint32`.
-
 ## Libraries
 
 Not documented in R2025b.

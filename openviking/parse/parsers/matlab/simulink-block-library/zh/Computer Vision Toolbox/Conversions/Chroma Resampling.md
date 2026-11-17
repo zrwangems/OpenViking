@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Chroma Resampling
 
 ## 端口
+```yaml
+ports:
+- name: Cb
+  summary: 图像矩阵的蓝色差色度分量
+  direction: input
+  data_types: single | double | uint8
+- name: Cr
+  summary: 图像矩阵的红色差色度分量
+  direction: input
+  data_types: single | double | uint8
+- name: Cb
+  summary: 图像矩阵的蓝色差色度分量
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: Cr
+  summary: 图像矩阵的红色差色度分量
+  direction: output
+  data_types: single | double | int8 | uint8
+```
 
 ### 输入
 
@@ -42,8 +61,28 @@ chinese_source: worker-translation
 图像的红色差色度分量，返回为 *M*×*P* 矩阵。*P* 是重采样后图像宽度的一半。如果对输入图像进行下采样，*P* 小于 *D*。如果对输入图像进行上采样，*P* 大于 *D*
 
 **数据类型：** `single` | `double` | `int8` | `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Resampling
+  summary: 色度重采样方法 4:4:4 to 4:2:2（默认）| 4:4:4 to 4:2:0 (MPEG1) | 4:4:4 to 4:2:0 (MPEG2) | ...
+  group: ''
+- name: Antialiasing filter
+  summary: 色度下采样抗混叠滤波器 Default（默认）| User-defined | None
+  group: ''
+- name: Horizontal filter coefficients
+  summary: 水平低通滤波器系数 [0.2 0.6 0.2]（默认）| 行向量
+  group: ''
+- name: Vertical filter coefficients
+  summary: 垂直低通滤波器系数 [0.5 0.5]（默认）| 行向量
+  group: ''
+- name: Interpolation
+  summary: 色度上采样插值方法 linear（默认）| pixel replication
+  group: ''
+- name: Input image is transposed (data order is row major)
+  summary: 按行读取数据 off（默认）| on
+  group: ''
+```
 
 ### **Resampling** — 色度重采样方法 `4:4:4 to 4:2:2`（默认）| `4:4:4 to 4:2:0 (MPEG1)` | `4:4:4 to 4:2:0 (MPEG2)` | ...
 
@@ -145,7 +184,6 @@ chinese_source: worker-translation
 ### **Input image is transposed (data order is row major)** — 按行读取数据 `off`（默认）| `on`
 
 启用此参数以按行读取数据元素。
-
 ## 所属库
 
 Computer Vision Toolbox / Conversions

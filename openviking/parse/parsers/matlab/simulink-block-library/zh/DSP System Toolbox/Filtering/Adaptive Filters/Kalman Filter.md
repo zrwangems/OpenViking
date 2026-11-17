@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Kalman Filter
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Number of filters**
 :   指定用于预测或估计当前值的滤波器数量。
@@ -67,7 +72,6 @@ R2025b 中未记录。
 
 **Output MSE of predicted state <MSE\_prb>**
 :   如果希望模块输出预测状态的均方误差，请选中此复选框。
-
 ## 所属库
 
 R2025b 中未记录。

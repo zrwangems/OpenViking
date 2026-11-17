@@ -14,6 +14,18 @@ language: en
 # Probabilistic Rule Agg
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Input values row vector
+  direction: input
+- name: In2
+  summary: Input values row vector
+  direction: input
+- name: Out1
+  summary: Probabilistic OR values row vector
+  direction: output
+```
 
 ### Input
 
@@ -42,11 +54,12 @@ elements of the input vectors is the following algebraic sum.
 ```
 y(i) = A(i) + B(i) - A(i)*B(i);
 ```
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Fuzzy Logic Toolbox / Membership Functions

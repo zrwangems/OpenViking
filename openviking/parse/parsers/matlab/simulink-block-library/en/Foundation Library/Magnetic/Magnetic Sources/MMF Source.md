@@ -14,16 +14,20 @@ language: en
 # MMF Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has two magnetic conserving ports associated with
 its terminals.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Constant mmf**
 :   Output mmf. You can specify any real value. The default value
     is `1` A.
-
 ## Libraries
 
 Not documented in R2025b.

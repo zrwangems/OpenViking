@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Backscatter Pedestrian
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 入射雷达信号 复值 *M*×16 矩阵
+  direction: input
+  data_types: double
+- name: Ang
+  summary: 入射信号方向 实值 2×16 矩阵
+  direction: input
+  data_types: double
+- name: AngH
+  summary: 行人朝向 标量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 合并的反射雷达信号 复值 *M*×1 列向量
+  direction: output
+  data_types: double
+- name: Pos
+  summary: 身体段位置 实值 3×16 矩阵
+  direction: output
+  data_types: double
+- name: Vel
+  summary: 身体段速度 实值 3×16 矩阵
+  direction: output
+  data_types: double
+- name: Ax
+  summary: 身体段方向 实值 3×3×16 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -66,8 +97,31 @@ chinese_source: worker-translation
 身体段的方向轴，返回为实值 3×3×16 数组。每一页表示 16 个身体段之一的 3×3 方向轴。单位无量纲。关于表示每个身体段方向的页，请参见 Body Segment Indices。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Height (m)
+  summary: 行人高度 1.65（默认）| 正标量
+  group: ''
+- name: Walking Speed (m/s)
+  summary: 行人步行速度 1.4 倍行人高度（默认）| 非负标量
+  group: ''
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: ''
+- name: Operating Frequency (Hz)
+  summary: 载波频率 300e6（默认）| 正标量
+  group: ''
+- name: Initial Position (m)
+  summary: 行人的初始位置 [0;0;0]（默认）| 3×1 实值向量
+  group: ''
+- name: Initial Heading (deg)
+  summary: 行人的初始航向 0（默认）| 标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+```
 
 ### **Height (m)** — 行人高度 `1.65`（默认）| 正标量
 
@@ -127,7 +181,6 @@ chinese_source: worker-translation
 | `Code Generation` | 模块被编译。 | 模型中的所有模块被编译。 |
 
 有关详细信息，请参阅 Choosing a Simulation Mode (Simulink)。
-
 ## 所属库
 
 Radar Toolbox

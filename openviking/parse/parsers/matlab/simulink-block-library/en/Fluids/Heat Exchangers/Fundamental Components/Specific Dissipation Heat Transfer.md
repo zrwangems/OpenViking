@@ -14,6 +14,27 @@ language: en
 # Specific Dissipation Heat Transfer
 
 ## Ports
+```yaml
+ports:
+- name: CP1
+  summary: Isobaric specific heat of controlled fluid 1 physical signal
+  direction: input
+- name: CP2
+  summary: Isobaric specific heat of controlled fluid 2 physical signal
+  direction: input
+- name: M1
+  summary: Entrance mass flow rate of controlled fluid 1 physical signal
+  direction: input
+- name: M2
+  summary: Entrance mass flow rate of controlled fluid 2 physical signal
+  direction: input
+- name: H1
+  summary: Entrance temperature of controlled fluid 1 thermal
+  direction: conserving
+- name: H2
+  summary: Entrance temperature of controlled fluid 2 thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -47,8 +68,28 @@ Entrance temperature of controlled fluid 1.
 ### **H2** — Entrance temperature of controlled fluid 2 thermal
 
 Entrance temperature of controlled fluid 2.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermal Liquid mass flow rate vector, mdot1
+  summary: Entrance mass flow rate at which to specify specific-dissipation data [.3, .5, .6, .7, 1, 1.4, 1.9, 2.3] kg/s (default)
+    | *M*-element array with units of mass/time
+  group: ''
+- name: Controlled fluid mass flow rate vector, mdot2
+  summary: Entrance mass flow rate at which to specify specific-dissipation data [.3, .5, 1, 1.3, 1.7, 2, 2.6, 3.3] kg/s (default)
+    | *N*-element array with units of mass/time
+  group: ''
+- name: Specific dissipation table, SD(mdot1, mdot2)
+  summary: Specific dissipation values corresponding to specified mass flow rates 8-by-8 matrix with units of kW/K (default)
+    | *M*-by-*N* matrix with units of power/temperature
+  group: ''
+- name: Mass flow rate threshold for flow reversal
+  summary: Mass flow rate below which to smooth numerical data 1e-3 kg/s (default) | scalar with units of mass/time
+  group: ''
+- name: Check if violating maximum specific dissipation
+  summary: Option to warn if the specific dissipation exceeds the maximum allowed value Warning (default) | None | Error
+  group: ''
+```
 
 ### **Thermal Liquid mass flow rate vector, mdot1** — Entrance mass flow rate at which to specify specific-dissipation data `[.3, .5, .6, .7, 1, 1.4, 1.9, 2.3] kg/s` (default) | *M*-element array with units of mass/time
 
@@ -86,7 +127,6 @@ discontinuities in the simulation data.
 
 Option to warn if the specific dissipation exceeds the maximum value
 described in the block description.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

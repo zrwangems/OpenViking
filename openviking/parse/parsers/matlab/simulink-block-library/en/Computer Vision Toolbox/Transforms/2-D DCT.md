@@ -14,6 +14,17 @@ language: en
 # 2-D DCT
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data matrix | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output data matrix | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,38 @@ Output data containing the DCT coefficients, returned as a matrix or vector. The
 size and the datatype of the output is same as that of the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sine and cosine computation
+  summary: Specify how the block computes the sine and cosine terms Table lookup (default) | Trigonometric fcn
+  group: ''
+- name: Rounding mode
+  summary: Rounding mode for fixed-point representation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest
+    | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: Specify overflow mode off (default) | on
+  group: ''
+- name: Sine Table
+  summary: 'Data type of sine table Inherit: Same word length as input (default) | fixdt(1,16) | <data type expression>'
+  group: ''
+- name: Product output
+  summary: 'Data type of product output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)
+    | <data type expression>'
+  group: ''
+- name: Accumulator
+  summary: 'Data type of accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same
+    as product output | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Output
+  summary: 'Data type of output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0) | <data
+    type expression>'
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Data type override off (default) | on
+  group: ''
+```
 
 **Main Tab**
 
@@ -122,7 +163,6 @@ this parameter to
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify on the block mask. For more information, see `fxptdlg` (Fixed-Point Designer), a reference page on the Fixed-Point Tool.
-
 ## Libraries
 
 Computer Vision Toolbox / Transforms

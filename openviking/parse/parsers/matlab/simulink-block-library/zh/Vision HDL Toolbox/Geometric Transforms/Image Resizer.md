@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Image Resizer
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流标量
+  direction: input
+  data_types: uint8 | uint16 | fixdt(0,WL,0), WL between 8 and 16 | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: inputSize
+  summary: 输入流中有效帧的维度 [ActiveVideoLines,ActivePixelsPerLine]
+  direction: input
+  data_types: single | double | uint8 | uint16 | fixdt(0,WL,0), WL up to 16
+- name: outputSize
+  summary: 输出流中有效帧的维度 [ActiveVideoLines,ActivePixelsPerLine]
+  direction: input
+  data_types: single | double | uint8 | uint16 | fixdt(0,WL,0), WL up to 16
+- name: pixel
+  summary: 输出像素流标量
+  direction: output
+  data_types: uint8 | uint16 | fixdt(0,WL,0), WL between 8 and 16 | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -74,8 +101,52 @@ chinese_source: worker-translation
 `pixelcontrol` 总线包含五个信号。这些信号描述像素的有效性及其在帧中的位置。有关详细信息，请参阅 Pixel Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Input height and width
+  summary: 输入流中有效帧的维度 [1080,1920]（默认）| [ActiveVideoLines,ActivePixelsPerLine]
+  group: 主
+- name: Input size source
+  summary: 输入有效帧大小的来源 Property（默认）| Input port
+  group: 主
+- name: Maximum input height and width
+  summary: 可容纳最大预期输入尺寸的活动帧大小 [1080,1920]（默认）| [ActiveVideoLines,ActivePixelsPerLine]
+  group: 主
+- name: Output height and width
+  summary: 输出流中活动帧的尺寸 [720,1280]（默认）| [ActiveVideoLines,ActivePixelsPerLine]
+  group: 主
+- name: Output size source
+  summary: 输入活动帧尺寸的来源 Property（默认）| Input port
+  group: 主
+- name: Maximum output height and width
+  summary: 可容纳最大预期输出尺寸的活动帧大小 [720, 1280]（默认）| [ActiveVideoLines,ActivePixelsPerLine]
+  group: 主
+- name: Insert horizontal blanking
+  summary: 在活动行之间添加无效周期 off（默认）| on
+  group: 主
+- name: Minimum output horizontal blanking
+  summary: 在输出行之间插入的无效周期数 370（默认）
+  group: 主
+- name: Interpolation method
+  summary: 插值像素值的方法 Bilinear（默认）| Nearest Neighbor
+  group: 主
+- name: Perform antialiasing on downscale
+  summary: 在缩放前应用抗混叠滤波器 on（默认）| off
+  group: 主
+- name: Rounding mode
+  summary: 内部定点计算的舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 内部定点计算的溢出操作 off（默认）| on
+  group: 数据类型
+- name: Coefficients
+  summary: 插值滤波器系数的数据类型 fixdt(0,16)（默认）| <data type expression>
+  group: 数据类型
+- name: Output
+  summary: '输出数据类型 Inherit: Same as first input（默认）| fixdt(0,16,0) | <data type expression>'
+  group: 数据类型
+```
 
 ### 主
 
@@ -211,7 +282,6 @@ blanking**。
 - `<data type expression>` — 将输出像素的数据类型设置为此数据类型。
 
 当将像素值转换为指定的数据类型时，该模块使用 **Rounding method** 和 **Overflow action** 参数的设置。
-
 ## 所属库
 
 Vision HDL Toolbox / Geometric Transforms

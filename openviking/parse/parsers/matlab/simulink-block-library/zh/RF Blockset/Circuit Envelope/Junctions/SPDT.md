@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # SPDT
 
 ## 端口
+```yaml
+ports:
+- name: Vctl
+  summary: Simulink 控制信号标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,37 @@ chinese_source: worker-translation
 Simulink 控制信号，指定为标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Threshold voltage
+  summary: 阈值电压 0（默认）| 正标量
+  group: ''
+- name: Characterization
+  summary: 特性表征 Resistance（默认）| Insertion loss
+  group: ''
+- name: On resistance
+  summary: 导通电阻 10（默认）| 正标量
+  group: ''
+- name: Off resistance
+  summary: 关断电阻 1e-6（默认）| 正标量
+  group: ''
+- name: Insertion loss (dB)
+  summary: 插入损耗 1（默认）| 标量
+  group: ''
+- name: Isolation (dB)
+  summary: 隔离度值 70（默认）| 标量
+  group: ''
+- name: Loading type
+  summary: 负载类型 Reflective（默认）| Absorptive
+  group: ''
+- name: Port terminations (Ohm)
+  summary: 端口端接 50（默认）| 标量 | 大小为 1×3 的向量
+  group: ''
+- name: Ground and hide reference terminals
+  summary: 将 RF 电路端子接地 开（默认）| 关
+  group: ''
+```
 
 ### **Threshold voltage** — 阈值电压 `0`（默认）| 正标量
 
@@ -69,7 +105,6 @@ Simulink 控制信号，指定为标量。
 ### **Ground and hide reference terminals** — 将 RF 电路端子接地 开（默认）| 关
 
 选择此参数可在内部将参考端子接地并隐藏。要暴露参考端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其它部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Junctions

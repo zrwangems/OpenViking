@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # FM Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据信号 scalar | vector | matrix
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出数据信号 scalar | vector | matrix
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -30,8 +41,16 @@ chinese_source: worker-translation
 输出信号，返回为实数标量、向量或矩阵。此端口的数据与输入信号具有相同的数据类型和大小。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Frequency deviation (Hz)
+  summary: 调制器的频率偏差 75e3（默认值）| positive scalar
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认值）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -47,7 +66,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Analog Baseband Modulation

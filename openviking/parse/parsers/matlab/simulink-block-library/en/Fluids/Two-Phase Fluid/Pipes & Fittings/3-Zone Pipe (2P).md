@@ -14,6 +14,21 @@ language: en
 # 3-Zone Pipe (2P)
 
 ## Ports
+```yaml
+ports:
+- name: Z
+  summary: Zone length fractions physical signal
+  direction: output
+- name: A
+  summary: Pipe opening two-phase fluid
+  direction: conserving
+- name: B
+  summary: Pipe opening two-phase fluid
+  direction: conserving
+- name: H
+  summary: Pipe wall thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -48,8 +63,111 @@ this port to capture heat exchange of various kinds—for example,
 conductive, convective, or radiative—between the pipe wall and the
 environment. Heat exchange between the inner surface of the wall and the
 fluid is captured directly in the block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe length
+  summary: Distance between the ports of the pipe 5 m (default) | positive scalar with units of length
+  group: Geometry
+- name: Cross-sectional area
+  summary: Internal area normal to the direction of the flow 0.01 m^2 (default) | positive scalar with units of area
+  group: Geometry
+- name: Hydraulic diameter
+  summary: Diameter of a cylindrical pipe with the given cross-sectional area 0.1 m (default) | positive scalar in units of
+    length
+  group: Geometry
+- name: Elevation gain from port A to port B
+  summary: Constant pipe elevation differential 0 m (default) | scalar
+  group: Geometry
+- name: Gravitational acceleration
+  summary: Gravitational acceleration 9.81 m/s^2 (default) | scalar
+  group: Geometry
+- name: Aggregate equivalent length of local resistances
+  summary: Minor pressure loss in the pipe expressed as a length 1 m (default) | positive scalar in units of length
+  group: Viscous Friction
+- name: Internal surface absolute roughness
+  summary: Average depth of surface defects on the internal surface of the pipe 15e-6 m (default) | positive scalar in units
+    of length
+  group: Viscous Friction
+- name: Laminar flow upper Reynolds number limit
+  summary: Reynolds number below which the flow is laminar 2e+3 (default) | positive unitless scalar
+  group: Viscous Friction
+- name: Turbulent flow lower Reynolds number limit
+  summary: Reynolds number above which the flow is turbulent 4e+3 (default) | positive unitless scalar
+  group: Viscous Friction
+- name: Shape factor for laminar flow viscous friction
+  summary: Dimensionless factor used to capture the effect of geometry on viscous friction losses 64 (default) | positive
+    unitless scalar
+  group: Viscous Friction
+- name: External environment heat transfer coefficient
+  summary: Heat transfer coefficient between the environment and the pipe wall 100 W/(m^2*K) (default) | positive scalar with
+    units of power/(area\*temperature)
+  group: Heat Transfer
+- name: Wall thickness
+  summary: Average thickness of the pipe wall material 0 m (default) | positive scalar with units of length
+  group: Heat Transfer
+- name: Wall thermal conductivity
+  summary: Thermal conductivity of the pipe wall material 390 W/(m*K) (default) | positive scalar with units of power/(length\*temperature)
+  group: Heat Transfer
+- name: Wall specific heat
+  summary: Heat capacity per unit mass of pipe wall material 390 J/kg/K (default) | positive scalar with units of energy/(mass\*temperature)
+  group: Heat Transfer
+- name: Wall density
+  summary: Mass density of the pipe wall material 9e3 kg/m^3 (default) | positive scalar with units of mass/volume
+  group: Heat Transfer
+- name: Ratio of external fins surface area to no-fin surface area
+  summary: Ratio of heat transfer surface area with external fins to that without 0 (default) | positive unitless scalar
+  group: Heat Transfer
+- name: External fin efficiency
+  summary: Ratio of actual to ideal heat exchange rates with external fins 0.5 (default) | positive unitless scalar
+  group: Heat Transfer
+- name: Ratio of internal fins surface area to no-fin surface area
+  summary: Ratio of heat transfer surface area with internal fins to that without 0 (default) | positive unitless scalar
+  group: Heat Transfer
+- name: Internal fin efficiency
+  summary: Ratio of actual to ideal heat exchange rates with internal fins 0.5 (default) | positive unitless scalar
+  group: Heat Transfer
+- name: Heat transfer coefficient model
+  summary: Method of calculating heat transfer coefficient between fluid and wall Correlation for flow inside tubes (default)
+    | Colburn equation
+  group: Heat Transfer
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in liquid zone
+  summary: Colburn equation coefficients in liquid zone [.023, .8, .33] (default) | three-element vector of positive scalars
+  group: Heat Transfer
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in mixture zone
+  summary: Cavallini-Zecchin equation coefficients in mixture zone [.05, .8, .33] (default) | three-element vector of positive
+    scalars
+  group: Heat Transfer
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in vapor zone
+  summary: Colburn equation coefficients in vapor zone [.023, .8, .33] (default) | three-element vector of positive scalars
+  group: Heat Transfer
+- name: Nusselt number for laminar flow heat transfer
+  summary: Ratio of convective to conductive heat exchange rates in the laminar flow regime 3.66 (default)
+  group: Heat Transfer
+- name: Initial fluid energy specification
+  summary: Thermodynamic variable whose initial value to set Temperature (default) | Vapor quality | Vapor void fraction |
+    Specific enthalpy | Specific internal energy
+  group: Effects and Initial Conditions Tab
+- name: Initial pressure
+  summary: Absolute pressure at the start of simulation 0.101325 MPa (default) | scalar with units of pressure
+  group: Effects and Initial Conditions Tab
+- name: Initial temperature
+  summary: Absolute temperature at the start of simulation 293.15 K (default) | scalar or two-element vector with units of
+    temperature
+  group: Effects and Initial Conditions Tab
+- name: Initial vapor quality
+  summary: Mass fraction of vapor at the start of simulation 0.5 (default) | unitless scalar between 0 and 1
+  group: Effects and Initial Conditions Tab
+- name: Initial vapor void fraction
+  summary: Volume fraction of vapor at the start of simulation 0.5 (default) | unitless scalar between 0 and 1
+  group: Effects and Initial Conditions Tab
+- name: Initial specific enthalpy
+  summary: Specific enthalpy at the start of simulation 1500 kJ/kg (default) | scalar with units of energy/mass
+  group: Effects and Initial Conditions Tab
+- name: Initial specific internal energy
+  summary: Specific internal energy at the start of simulation 1500 kJ/kg (default) | scalar with units of energy/mass
+  group: Effects and Initial Conditions Tab
+```
 
 ### Geometry
 
@@ -370,7 +488,6 @@ and the second vector element that at the outlet.
 This parameter is active when the **Initial fluid energy
 specification** option is set to `Specific
 internal energy`.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Pipes & Fittings

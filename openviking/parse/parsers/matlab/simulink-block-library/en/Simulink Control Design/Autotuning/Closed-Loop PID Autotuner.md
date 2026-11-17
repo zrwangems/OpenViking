@@ -14,6 +14,62 @@ language: en
 # Closed-Loop PID Autotuner
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Signal from controller scalar
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Plant output scalar
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: Start and stop the autotuning experiment scalar
+  direction: input
+  data_types: single | double
+- name: bandwidth
+  summary: Target bandwidth for tuning scalar
+  direction: input
+  data_types: single | double
+- name: target PM
+  summary: Target phase margin for tuning scalar
+  direction: input
+  data_types: single | double
+- name: signal Amp
+  summary: Amplitudes of injected perturbation signals scalar | vector
+  direction: input
+  data_types: single | double
+- name: isExpGood
+  summary: Disable perturbations and tuning scalar
+  direction: input
+  data_types: single | double
+- name: u+Δu
+  summary: Signal for plant input scalar
+  direction: output
+  data_types: single | double
+- name: Δu
+  summary: Plant input perturbation scalar
+  direction: output
+  data_types: single | double
+- name: '% conv'
+  summary: Convergence of FRD estimation during experiment scalar
+  direction: output
+  data_types: single | double
+- name: pid gains
+  summary: Tuned PID coefficients bus
+  direction: output
+  data_types: single | double
+- name: estimated PM
+  summary: Estimated phase margin with tuned controller scalar
+  direction: output
+- name: frd
+  summary: Estimated frequency response vector
+  direction: output
+- name: nominal
+  summary: Plant input and output at nominal operating point vector
+  direction: output
+```
 
 ### Input
 
@@ -280,8 +336,145 @@ experiment.
 #### Dependencies
 
 To enable this port, in the Experiment tab, select **Plant nominal input and output**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: PID controller actions PI (default) | PID | PIDF | ...
+  group: ''
+  block_parameter: PIDType
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: PID controller form Parallel (default) | Ideal
+  group: ''
+  block_parameter: PIDForm
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Time Domain
+  summary: PID controller time domain discrete-time (default) | continuous-time
+  group: ''
+  block_parameter: TimeDomain
+  type: character vector
+  values: '''discrete-time'' | ''continuous-time'''
+  default: '''discrete-time'''
+- name: Controller sample time (sec)
+  summary: Sample time of PID controller 0.1 (default) | positive scalar | –1
+  group: ''
+  block_parameter: DiscreteTs
+  type: scalar
+  values: positive scalar | –1
+  default: '0.1'
+- name: Tune at different sample time
+  summary: Enable tuning at different sample time from PID controller and experiment off (default) | on
+  group: ''
+  block_parameter: UseTuningTs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Tuning sample time (sec)
+  summary: Sample time of tuning algorithm 0.2 (default) | positive scalar
+  group: ''
+  block_parameter: TuningTs
+  type: scalar
+  values: positive scalar
+  default: '0.2'
+- name: Experiment sample time (sec)
+  summary: Sample time for experiment 0.02 (default) | positive scalar
+  group: ''
+  block_parameter: ContinuousTs
+  type: positive scalar
+  default: '0.02'
+- name: Integrator method
+  summary: Discrete integration formula for integrator term Forward Euler (default) | Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: IntegratorFormula
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: Discrete integration formula for derivative filter term Forward Euler (default) | Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: FilterFormula
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: Target crossover frequency of tuned response 1 (default) | positive scalar
+  group: ''
+  block_parameter: Bandwidth
+  type: positive scalar
+  default: '1'
+- name: Target phase margin (degrees)
+  summary: Target minimum phase margin of open-loop response 60 (default) | scalar in range 0–90
+  group: ''
+  block_parameter: TargetPM
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Experiment Mode
+  summary: Perturbation signal type Superposition (default) | Sinestream | PRBS *(since R2023b)*
+  group: ''
+  block_parameter: ExperimentMode
+  type: character vector
+  values: '''Sinestream'' | ''Superposition'' | ''PRBS'''
+  default: '''Superposition'''
+- name: Plant Type
+  summary: Stability of plant Stable (default) | Integrating
+  group: ''
+  block_parameter: PlantType
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: Sign of plant Positive (default) | Negative
+  group: ''
+  block_parameter: PlantSign
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Signal Amplitudes
+  summary: Amplitude of perturbations 1 (default) | scalar | vector of length 5
+  group: ''
+  block_parameter: AmpSine
+  type: scalar, vector of length 5
+  default: '1'
+- name: Reduce memory and avoid task overrun (external mode only)
+  summary: Deploy tuning algorithm only off (default) | on
+  group: ''
+  block_parameter: DeployTuningModule
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Configure block for PLC Coder
+  summary: Configure block for code generation with Simulink PLC Coder off (default) | on
+  group: ''
+- name: Output Signal Configuration
+  summary: Provide control signal plus perturbation or perturbation only control action + perturbation (default) | perturbation
+    only
+  group: ''
+- name: Data Type
+  summary: Floating point precision double (default) | single
+  group: ''
+  block_parameter: BlockDataType
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: Clicking "Update PID Block" writes tuned gains to the PID block connected to "u" port
+  summary: Automatically detect target for writing tuned PID coefficients on (default) | off
+  group: ''
+- name: Specify PID block path
+  summary: Target PID controller block for writing tuned coefficients [] (default) | block path
+  group: ''
+- name: Update PID Block
+  summary: Write tuned PID gains to target controller block button
+  group: ''
+- name: Export to MATLAB
+  summary: Send experiment and tuning results to MATLAB® workspace button
+  group: ''
+```
 
 #### Tuning Tab
 
@@ -937,7 +1130,6 @@ fields:
 
 You can export to the MATLAB workspace while the simulation is running, including when
 running in external mode.
-
 ## Libraries
 
 Simulink Control Design / Autotuning

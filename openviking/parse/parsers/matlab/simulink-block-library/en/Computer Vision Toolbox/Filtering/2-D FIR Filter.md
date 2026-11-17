@@ -14,6 +14,33 @@ language: en
 # 2-D FIR Filter
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: H
+  summary: Filter coefficients matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: HV
+  summary: Vertical filter coefficients vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: HH
+  summary: Horizontal filter coefficients vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: PVal
+  summary: Pad value scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Output
+  summary: Filtered output image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -101,8 +128,43 @@ Filtered output image, returned as a numeric matrix of the same data type as the
 input image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Separable filter coefficients
+  summary: Filter coefficients are separable off (default) | on
+  group: Main
+- name: Coefficient source
+  summary: Source of filter coefficients Specify via dialog (default) | Input port
+  group: Main
+- name: Coefficients
+  summary: Filter coefficients [1 0; 0 -1] (default) | numeric matrix
+  group: Main
+- name: Vertical coefficients (across height)
+  summary: Vertical filter coefficients [4 0] (default) | numeric vector
+  group: Main
+- name: Horizontal coefficients (across height)
+  summary: Horizontal filter coefficients [4 0] (default) | numeric vector
+  group: Main
+- name: Output size
+  summary: Size of filtered image Full (default) | Same as input port I | Valid
+  group: Main
+- name: Padding options
+  summary: Padding method Constant (default) | Replicate | Symmetric | Circular
+  group: Main
+- name: Pad value source
+  summary: Source of padding value Specify via dialog (default) | Input port
+  group: Main
+- name: Pad value
+  summary: Padding value 0 (default) | numeric scalar
+  group: Main
+- name: Filtering based on
+  summary: Method of filtering Convolution (default) | Correlation
+  group: Main
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -249,7 +311,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Filtering

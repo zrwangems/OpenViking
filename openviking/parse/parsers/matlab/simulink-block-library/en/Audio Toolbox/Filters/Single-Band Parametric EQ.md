@@ -14,6 +14,33 @@ language: en
 # Single-Band Parametric EQ
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal matrix | 1-D vector
+  direction: input
+  data_types: single | double
+- name: Fc
+  summary: Center frequency (Hz) scalar
+  direction: input
+  data_types: single | double
+- name: BW
+  summary: Bandwidth (Hz) scalar
+  direction: input
+  data_types: single | double
+- name: GdB
+  summary: Peak or dip gain (dB) scalar
+  direction: input
+  data_types: single | double
+- name: Q
+  summary: Quality factor scalar
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -96,8 +123,37 @@ the input signal. The size of the output depends on the size of the input:
   1-D vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter order
+  summary: Order of filter 2 (default) | positive even scalar
+  group: ''
+- name: Filter specification
+  summary: Specify parameters used to design filter Bandwidth and center frequency (default) | Quality factor and center frequency
+  group: ''
+- name: Center Frequency (Hz)
+  summary: Center frequency of filter 11025 (default) | positive scalar
+  group: ''
+- name: Filter Bandwidth (Hz)
+  summary: Bandwidth of filter 2205 (default) | positive scalar in the range [0, max(fs/2, 20,000)]
+  group: ''
+- name: Quality Factor
+  summary: Quality factor 5 (default) | scalar in the range [0.1, 20]
+  group: ''
+- name: Peak Gain (dB)
+  summary: Peak or dip gain of filter 6.0206 (default) | scalar in the range [−30, 30]
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate on (default) | off
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -201,7 +257,6 @@ input** parameter.
   `Interpreted execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Audio Toolbox / Filters

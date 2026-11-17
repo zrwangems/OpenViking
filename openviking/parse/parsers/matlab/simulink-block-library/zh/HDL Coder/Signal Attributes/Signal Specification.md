@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Signal Specification
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -30,8 +43,105 @@ chinese_source: worker-translation
 当信号的所有属性与对话框中指定的属性匹配时，输出信号即为输入信号。如果属性不匹配，模块将生成错误。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum
+  summary: 范围检查的最小值 []（默认）| 标量
+  group: ''
+  block_parameter: OutMin
+  type: 字符向量
+  values: 标量
+  default: '''[ ]'''
+- name: Maximum
+  summary: 范围检查的最大值 []（默认）| 标量
+  group: ''
+  block_parameter: OutMax
+  type: 字符向量
+  values: 标量
+  default: '''[ ]'''
+- name: Data type
+  summary: '输出数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string'' | ''Enum:
+    <class name>'' | ''Bus: <object name>'' | ''ValueType: <object name>'' | <data type expression> | Simulink.ImageType(480,640,3)'
+  default: '''Inherit: auto'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型的选项 off（默认）| on
+  group: ''
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Require nonvirtual bus
+  summary: 仅接受非虚拟总线信号 off（默认）| on
+  group: ''
+  block_parameter: BusOutputAsStruct
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Unit (e.g., m, m/s^2, N\*m)
+  summary: 模块输入信号的物理单位 inherit（默认）| <Enter unit>
+  group: ''
+  block_parameter: Unit
+  type: 字符向量
+  values: '''inherit'' | ''<Enter unit>'''
+  default: '''inherit'''
+- name: Dimensions (-1 for inherited)
+  summary: 输入和输出信号的维度 -1（默认）| n | [m n]
+  group: ''
+  block_parameter: Dimensions
+  type: 字符向量
+  values: '''-1'' | n | [m n]'
+  default: '''-1'''
+- name: Variable-size signal
+  summary: 允许信号为可变大小、固定大小或两者兼有 Inherit（默认）| No | Yes
+  group: ''
+  block_parameter: VarSizeSig
+  type: 字符向量
+  values: '''Inherit'' | ''No'' | ''Yes'''
+  default: '''Inherit'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 任何有效的采样时间
+  default: '''-1'''
+- name: Signal type
+  summary: 信号的复/实性 auto（默认）| real | complex
+  group: ''
+  block_parameter: SignalType
+  type: 字符向量
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Mode
+  summary: 数据类型模式 Inherit（默认）| Built in | Fixed point | Enumerated | Bus object | Value type | Expression
+  group: ''
+- name: Signedness
+  summary: 有符号或无符号 Signed
+  group: ''
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: ''
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认）| 0 到 32 的整数
+  group: ''
+- name: Scaling
+  summary: 定点数据的定标方法 Best precision（默认）| Binary point | Slope and bias
+  group: ''
+- name: Fraction length
+  summary: 指定定点数据类型的小数长度 0（默认）| 标量整数
+  group: ''
+- name: Slope
+  summary: 指定定点数据类型的斜率 2^0（默认）| 正实值标量
+  group: ''
+- name: Bias
+  summary: 指定定点数据类型的偏置 0（默认）| 实值标量
+  group: ''
+```
 
 ### **Minimum** — 范围检查的最小值 `[]`（默认）| 标量
 
@@ -356,7 +466,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Scaling** 设置为 `Slope and bias`。
-
 ## 所属库
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

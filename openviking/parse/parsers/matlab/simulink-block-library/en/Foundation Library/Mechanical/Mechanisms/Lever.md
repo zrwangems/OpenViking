@@ -14,6 +14,18 @@ language: en
 # Lever
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Node A of the lever mechanical translational
+  direction: conserving
+- name: B
+  summary: Node B of the lever mechanical translational
+  direction: conserving
+- name: C
+  summary: Node C of the lever mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,16 @@ the lever.
 
 Mechanical translational conserving port associated with the node C of
 the lever.
-
 ## Parameters
+```yaml
+parameters:
+- name: AC arm length
+  summary: Arm length between nodes A and C 0.1 m (default)
+  group: ''
+- name: BC arm length
+  summary: Arm length between nodes B and C 0.1 m (default)
+  group: ''
+```
 
 ### **AC arm length** — Arm length between nodes A and C `0.1 m` (default)
 
@@ -41,7 +61,6 @@ Arm length between nodes A and C.
 ### **BC arm length** — Arm length between nodes B and C `0.1 m` (default)
 
 Arm length between nodes B and C.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanisms

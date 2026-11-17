@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Wheel and Axle
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 车轴机械旋转
+  direction: conserving
+- name: P
+  summary: 车轮周边机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,16 @@ chinese_source: worker-translation
 ### **P** — 车轮周边机械平移
 
 与车轮周边关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Wheel radius
+  summary: 车轮半径 0.05 m（默认值）
+  group: ''
+- name: Mechanism orientation
+  summary: 车轴旋转与平移运动方向之间的关系 Drives in positive direction（默认值） | Drives in negative direction
+  group: ''
+```
 
 ### **Wheel radius** — 车轮半径 `0.05 m`（默认值）
 
@@ -35,7 +52,6 @@ chinese_source: worker-translation
 ### **Mechanism orientation** — 车轴旋转与平移运动方向之间的关系 `Drives in positive direction`（默认值） | `Drives in negative direction`
 
 值 `Drives in positive direction` 指定一种机构，其中车轴沿全局指定的正方向旋转被转换为正方向的平移运动。值 `Drives in negative direction` 指定一种机构，其中车轴沿全局指定的正方向旋转被转换为负方向的平移运动。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Mechanisms

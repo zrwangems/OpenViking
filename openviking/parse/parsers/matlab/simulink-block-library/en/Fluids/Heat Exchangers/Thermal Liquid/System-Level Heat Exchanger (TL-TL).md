@@ -14,6 +14,27 @@ language: en
 # System-Level Heat Exchanger (TL-TL)
 
 ## Ports
+```yaml
+ports:
+- name: Q1
+  summary: Rate of heat transfer to thermal liquid 1, W physical signal
+  direction: output
+- name: Q2
+  summary: Rate of heat transfer to thermal liquid 2, W physical signal
+  direction: output
+- name: A1
+  summary: Thermal liquid port on side 1 thermal liquid
+  direction: conserving
+- name: B1
+  summary: Thermal liquid port on side 1 thermal liquid
+  direction: conserving
+- name: A2
+  summary: Thermal liquid port on side 2 thermal liquid
+  direction: conserving
+- name: B2
+  summary: Thermal liquid port on side 2 thermal liquid
+  direction: conserving
+```
 
 ### Output
 
@@ -57,8 +78,122 @@ network.
 
 Inlet or outlet port associated with the second thermal liquid
 network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement at nominal operating conditions
+  summary: Flow path alignment Counter flow - Thermal Liquid 1 flows from A to B, Thermal Liquid 2 flows from B to A (default)
+    | Parallel flow - Both fluids flow from A to B | Cross flow - Both fluids flow from A to B
+  group: Configuration
+- name: Enable wall thermal mass
+  summary: Whether to enable effect of thermal mass on heat transfer surface off (default) | on
+  group: Configuration
+- name: Wall mass
+  summary: Mass of heat transfer surface 1 kg (default) | positive scalar
+  group: Configuration
+- name: Wall specific heat
+  summary: Specific heat of heat transfer surface 490 J/(K*kg) (default) | positive scalar
+  group: Configuration
+- name: Initialize wall temperature to nominal operating conditions
+  summary: Option for initializing wall temperature on (default) | off
+  group: Configuration
+- name: Initial wall temperature
+  summary: Initial temperature of wall 293.15 K (default) | positive scalar or two element vector
+  group: Configuration
+- name: Cross-sectional area at port A1
+  summary: Flow area at port A1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B1
+  summary: Flow area at port B1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port A2
+  summary: Flow area at port A2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B2
+  summary: Area normal to flow at port B2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Nominal operating condition
+  summary: Nominal operating condition Heat transfer from Thermal Liquid 1 to Thermal Liquid 2 (default) | Heat transfer from
+    Thermal Liquid 2 to Thermal Liquid 1
+  group: Thermal Liquid 1
+- name: Nominal mass flow rate
+  summary: Mass flow rate between thermal liquid 1 ports during nominal operating condition 0.1 kg/s (default) | positive
+    scalar
+  group: Thermal Liquid 1
+- name: Nominal pressure drop
+  summary: Pressure drop between thermal liquid 1 ports during nominal operating condition 0.01 MPa (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal inlet pressure
+  summary: Pressure at the thermal liquid 1 inlet 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal inlet temperature
+  summary: Temperature at the thermal liquid 1 inlet 333.15 K (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Heat transfer capacity specification
+  summary: How to specify heat transfer capacity of thermal liquid 1 Rate of heat transfer (default) | Outlet condition
+  group: Thermal Liquid 1
+- name: Nominal rate of heat transfer
+  summary: Rate of heat transfer 1 kW (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal outlet temperature
+  summary: Outlet temperature 323.15 K (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Thermal liquid 1 volume
+  summary: Total volume of thermal liquid 1 0.001 m^3 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initialize thermal liquid 1 to nominal operating conditions
+  summary: Option for initializing thermal liquid 1 on (default) | off
+  group: Thermal Liquid 1
+- name: Initial thermal liquid 1 pressure
+  summary: Thermal liquid 1 pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initial thermal liquid 1 temperature
+  summary: Thermal liquid 1 temperature at start of simulation 293.15 K (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal mass flow rate
+  summary: Mass flow rate between thermal liquid 2 ports during nominal operating condition 0.1 kg/s (default) | positive
+    scalar
+  group: Thermal Liquid 2
+- name: Nominal pressure drop
+  summary: Pressure drop between thermal liquid 2 ports during nominal operating condition 0.01 MPa (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Nominal inlet pressure
+  summary: Pressure at thermal liquid 2 inlet 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Nominal inlet temperature
+  summary: Temperature at the thermal liquid 2 inlet 293.15 K (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Thermal liquid 2 volume
+  summary: Total volume of thermal liquid 2 in heat exchanger 0.001 m^3 (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Initialize thermal liquid 2 to nominal operating conditions
+  summary: Option for initializing thermal liquid 2 on (default) | off
+  group: Thermal Liquid 2
+- name: Initial thermal liquid 2 pressure
+  summary: Thermal liquid 2 pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 2
+- name: Initial thermal liquid 2 temperature
+  summary: Thermal liquid 2 temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Thermal Liquid 2
+- name: a in Nu = a\*Re^b\*Pr^c for thermal liquid 1
+  summary: Correlation coefficient for thermal liquid 1 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for thermal liquid 1
+  summary: Reynolds number exponent in correlation for thermal liquid 1 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for thermal liquid 1
+  summary: Prandtl number exponent in correlation for thermal liquid 1 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for thermal liquid 2
+  summary: Correlation coefficient for thermal liquid 2 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for thermal liquid 2
+  summary: Reynolds number exponent in correlation for thermal liquid 2 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for thermal liquid 2
+  summary: Prandtl number exponent in correlation for thermal liquid 2 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+```
 
 ### Configuration
 
@@ -384,7 +519,6 @@ value is based on the Colburn equation.
 Prandtl number exponent in the correlation of the Nusselt number as a function of the
 Reynolds number and Prandtl number for thermal liquid 2. The default
 value is based on the Colburn equation.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid

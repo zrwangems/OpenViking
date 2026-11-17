@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # DFEClkFwd
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入基带信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 估计的信道输出 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,46 @@ chinese_source: worker-translation
 估计的信道输出。如果输入信号是指定为标量的逐样本信号，则输出也是标量。如果输入信号是冲激响应向量信号，则输出也是向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: DFE 工作模式 Fixed（默认）| Off | Adapt
+  group: DFE
+- name: Initial tap weights (V)
+  summary: 初始 DFE 抽头权重 [0 0 0 0]（默认）| 行向量
+  group: DFE
+- name: Adaptive gain
+  summary: 控制 DFE 抽头权重更新速率 9.6e-5（默认）| 正实数标量
+  group: DFE
+- name: Adaptive step size (V)
+  summary: DFE 自适应步长分辨率 1e-06（默认）| 非负实数标量 | 非负实值行向量
+  group: DFE
+- name: Minimum DFE tap value (V)
+  summary: 自适应抽头的最小值 -1（默认）| 实数标量 | 实值行向量
+  group: DFE
+- name: Maximum DFE tap value (V)
+  summary: 自适应抽头最大值 1（默认）| 非负实数标量 | 非负实值行向量
+  group: DFE
+- name: 2x tap weights
+  summary: 将 DFE 抽头权重乘以二 on（默认）| off
+  group: DFE
+- name: Phase offset (symbol time)
+  summary: 手动时钟相位偏移 0（默认）| 范围 [−0.5, 0.5] 内的实数标量
+  group: CDR
+- name: Reference offset (ppm)
+  summary: 参考时钟偏移损伤 0（默认）| 范围 [−300, 300] 内的实数标量
+  group: CDR
+- name: Early/late count threshold
+  summary: 触发相位更新的早/晚 CDR 计数阈值 5（默认）| 正整数 ≥5
+  group: CDR
+- name: Step (symbol time)
+  summary: 时钟相位分辨率 0.005（默认）| 实数标量
+  group: CDR
+- name: Sensitivity (V)
+  summary: 采样锁存器亚稳态电压 0（默认）| 实数标量
+  group: CDR
+```
 
 ### DFE
 
@@ -173,7 +222,6 @@ SerDes Toolbox™ 中 DFEClkFwd 模块的判决器输出为 `[-0.5 0.5]`。但�
 - 使用 `set_param(gcb,'Sensitivity',value)` 将 DFEClkFwd 设置为 **Sensitivity (V)** 的特定值。
 
 **数据类型：** `double`
-
 ## 所属库
 
 SerDes Toolbox / Datapath Blocks

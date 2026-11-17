@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 3-Way Directional Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: P
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: T
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 控制构件位移，m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -34,8 +49,144 @@ chinese_source: worker-translation
 ### **S** — 控制构件位移，m，物理信号
 
 以 m 为单位的阀芯位置位移，作为物理信号接收。对于在正阀芯位置打开的流路，正信号打开节流口。对于在负阀芯位置打开的流路，负信号打开节流口。
-
 ## 参数
+```yaml
+parameters:
+- name: Positive spool position open connections
+  summary: 阀芯处于正位置时打开的流路 P-T（默认）| All closed | P-A, A-T, P-T | P-A | A-T
+  group: 模型参数化
+- name: Negative spool position open connections
+  summary: 阀芯向负方向运动时打开的流路 P-A（默认）| All closed | P-A, A-T, P-T | A-T | P-T
+  group: 模型参数化
+- name: Area characteristics
+  summary: 节流口的流量方程 Identical for all flow paths（默认）| Different for each flow path
+  group: 模型参数化
+- name: Orifice parameterization
+  summary: 计算开口面积的方法 Linear area vs. spool travel（默认）| Tabulated data - Area vs. spool travel | Tabulated data - volumetric
+    flow rate vs. spool travel and pressure drop
+  group: 模型参数化
+- name: Spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: 模型参数化
+- name: Maximum orifice area
+  summary: 最大节流口开口面积 1e-4 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Cross-sectional area at ports A, P and T
+  summary: 阀入口或出口处的面积 inf m^2（默认）| 正标量
+  group: 模型参数化
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 模型参数化
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 模型参数化
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: 模型参数化
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 on（默认）| off
+  group: 模型参数化
+- name: Spool travel vector
+  summary: 阀开口距离向量 [0, .00125, .0025, .00375, .005]m（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: Orifice area vector
+  summary: 阀开口面积向量 [1e-10, 1e-05, 4e-05, 8e-05, .0001]m^2（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: Spool travel vector, ds
+  summary: 阀开口距离向量 [0, .00125, .0025, .00375, .005]m（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: Pressure drop vector, dp
+  summary: 阀压降值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: Volumetric flow rate table, q(ds,dp)
+  summary: 体积流量数组 [-9.05e-10, 1.57e-09, 2.02e-09, 2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362, .000627, .00081,
+    .000958; -.000724, .00125, .00162, .00192; -.000905, .00156, .002, .00239] m^3/s（默认）| *M*×*N* 矩阵
+  group: 模型参数化
+- name: Spool position at maximum P-A orifice area
+  summary: 端口 P 和 A 之间最大面积处的阀芯偏移量 4.5e-3 m（默认）| 标量
+  group: P-A 节流口
+- name: P-A spool travel between closed and open orifice
+  summary: 端口 P 和 A 之间阀芯的最大行程 0.005 m（默认）| 正标量
+  group: P-A 节流口
+- name: P-A maximum orifice area
+  summary: 端口 P 和 A 之间的最大面积 1e-4 m^2（默认）| 正标量
+  group: P-A 节流口
+- name: P-A orifice spool travel vector
+  summary: 阀开口距离向量 [0, .00125, .0025, .00375, .005]m（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A orifice area vector
+  summary: 阀开口面积向量 [1e-10, 1e-05, 4e-05, 8e-05, .0001]m^2（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A orifice spool travel vector, ds
+  summary: 阀开口距离向量 [0, .00125, .0025, .00375, .005]m（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A orifice pressure drop vector, dp
+  summary: 阀压降值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: P-A 节流口
+- name: P-A orifice volumetric flow rate table, q(ds,dp)
+  summary: 阀体积流量向量 [-9.05e-10, 1.57e-09, 2.02e-09, 2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362, .000627, .00081,
+    .000958; -.000724, .00125, .00162, .00192; -.000905, .00156, .002, .00239] m^3/s（默认）| *M*×*N* 矩阵
+  group: P-A 节流口
+- name: Spool position at maximum A-T orifice area
+  summary: 端口 A 和 T 之间最大面积处的阀芯偏移量 -4.5e-3 m（默认）| 标量
+  group: A-T 节流口
+- name: A-T spool travel between closed and open orifice
+  summary: 端口 A 和 T 之间阀芯的最大行程 0.005 m（默认）| 正标量
+  group: A-T 节流口
+- name: A-T maximum orifice area
+  summary: 端口 A 和 T 之间的最大面积 1e-4 m^2（默认）| 正标量
+  group: A-T 节流口
+- name: A-T orifice spool travel vector
+  summary: 阀口开度距离向量 [0, .00125, .0025, .00375, .005]m（默认）| 1×*n* 向量
+  group: A-T 节流口
+- name: A-T orifice area vector
+  summary: 阀口开度面积向量 [1e-10, 1e-05, 4e-05, 8e-05, .0001]m^2（默认）| 1×*n* 向量
+  group: A-T 节流口
+- name: A-T orifice spool travel vector, ds
+  summary: 阀口开度距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: A-T 节流口
+- name: A-T orifice pressure drop vector, dp
+  summary: 阀上压降值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: A-T 节流口
+- name: A-T orifice volumetric flow rate table, q(ds,dp)
+  summary: 用于表格化参数化的体积流量向量 - 不同流路 [-9.05e-10, 1.57e-09, 2.02e-09, 2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362,
+    .000627, .00081, .000958; -.000724, .00125, .00162, .00192; -.000905, .00156, .002, .00239] m^3/s（默认）| *M*×*N* 矩阵
+  group: A-T 节流口
+- name: Spool position at maximum P-T orifice area
+  summary: 端口 P 和 T 之间最大面积处的滑阀偏移 4.5e-3 m（默认）| 标量
+  group: P-T Orifice
+- name: P-T spool travel between closed and open orifice
+  summary: 端口 P 和 T 之间滑阀的最大行程 0.005 m（默认）| 正标量
+  group: P-T Orifice
+- name: P-T maximum orifice area
+  summary: 端口 P 和 T 之间的最大面积 1e-4 m^2（默认）| 正标量
+  group: P-T Orifice
+- name: P-T orifice spool travel vector
+  summary: 阀口开度距离向量 [0, .00125, .0025, .00375, .005]m（默认）| 1×*n* 向量
+  group: P-T Orifice
+- name: P-T orifice area vector
+  summary: 阀口开度面积向量 [1e-10, 1e-05, 4e-05, 8e-05, .0001]m^2（默认）| 1×*n* 向量
+  group: P-T Orifice
+- name: P-T orifice spool travel vector, ds
+  summary: 阀口开度距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: P-T Orifice
+- name: P-T orifice pressure drop vector, dp
+  summary: 阀上压降值向量 [-.1, .3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: P-T Orifice
+- name: P-T orifice volumetric flow rate table, q(ds,dp)
+  summary: 用于表格化参数化的体积流量向量 - 不同流路 [-9.05e-10, 1.57e-09, 2.02e-09, 2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362,
+    .000627, .00081, .000958; -.000724, .00125, .00162, .00192; -.000905, .00156, .002, .00239] m^3/s（默认）| *M*×*N* 矩阵
+  group: P-T Orifice
+- name: 3-Way Directional Valve Area fault
+  summary: 用于对阀面积故障建模的选项 Add fault
+  group: 故障
+- name: Spool position when faulted
+  summary: 故障时的阀特性 Positive（默认）| Negative | Maintain last value
+  group: 故障
+```
 
 ### 模型参数化
 
@@ -362,7 +513,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请点击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

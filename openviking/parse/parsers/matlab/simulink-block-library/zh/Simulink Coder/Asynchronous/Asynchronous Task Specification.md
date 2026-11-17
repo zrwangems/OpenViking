@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Asynchronous Task Specification
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 中断输入信号 标量
+  direction: input
+- name: Port_1
+  summary: 带优先级的中断信号 标量
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,13 @@ chinese_source: worker-translation
 ### **Port\_1** — 带优先级的中断信号 标量
 
 具有指定任务优先级的信号，用于触发函数调用子系统。
-
 ## 参数
+```yaml
+parameters:
+- name: Task priority
+  summary: 调用函数调用子系统的异步任务的优先级 10（默认值）
+  group: ''
+```
 
 ### **Task priority** — 调用函数调用子系统的异步任务的优先级 `10`（默认值）
 
@@ -41,7 +55,6 @@ chinese_source: worker-translation
 被引用模型包含以下内容。
 
 如果 **Task priority** 参数设置为 10，则父模型中的 Async Interrupt 模块也必须具有优先级 10。如果该参数设置为 []，则 Async Interrupt 模块的优先级可以是 10 以外的值。
-
 ## 所属库
 
 Simulink Coder / Asynchronous

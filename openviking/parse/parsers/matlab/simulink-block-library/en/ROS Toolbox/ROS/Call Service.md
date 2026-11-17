@@ -14,6 +14,21 @@ language: en
 # Call Service
 
 ## Ports
+```yaml
+ports:
+- name: Req
+  summary: Request message nonvirtual bus
+  direction: input
+  data_types: bus
+- name: Resp
+  summary: Response message nonvirtual bus
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: Error conditions for service call integer
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -46,8 +61,28 @@ Error conditions for service call, specified as an integer. Each integer corresp
 This output is enabled when the **Show ErrorCode output port** check box is `on`.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source
+  summary: Source for specifying service name Select from ROS network | Specify your own
+  group: ''
+- name: Name
+  summary: Service name character vector
+  group: ''
+- name: Type
+  summary: Service type character vector
+  group: ''
+- name: Connection timeout
+  summary: Timeout for service server connection 5 (default) | positive numeric scalar
+  group: ''
+- name: Keep persistent connection
+  summary: Keep connection to service server off (default) | on
+  group: ''
+- name: Show ErrorCode output port
+  summary: Enable error code output port on (default) | off
+  group: ''
+```
 
 ### **Source** — Source for specifying service name `Select from ROS network` | `Specify your own`
 
@@ -77,7 +112,6 @@ Check this box to maintain a persistent connection with the ROS service server. 
 ### **Show ErrorCode output port** — Enable error code output port `on` (default) | `off`
 
 Check this box to output the **ErrorCode** output. If an error condition occurs, **Resp** outputs the last response message or a blank message if response was not previously received.
-
 ## Libraries
 
 ROS Toolbox / ROS

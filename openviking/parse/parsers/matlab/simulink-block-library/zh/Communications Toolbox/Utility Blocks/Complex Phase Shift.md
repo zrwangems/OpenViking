@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Complex Phase Shift
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Ph
+  summary: 相移 标量 | 列向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Out1
+  summary: 相移后的信号 标量 | 列向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -39,11 +53,12 @@ chinese_source: worker-translation
 ### **Out1** — 相移后的信号 标量 | 列向量 | 矩阵
 
 相移后的信号，以复数值标量、列向量或矩阵形式返回。此输出与输入信号具有相同的维度和数据类型。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Communications Toolbox / Utility Blocks

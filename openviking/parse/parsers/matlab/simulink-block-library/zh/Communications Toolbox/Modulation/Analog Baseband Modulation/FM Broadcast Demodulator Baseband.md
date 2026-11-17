@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # FM Broadcast Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: FM 调制基带音频信号 列向量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: RDS（或 RBDS）信号 *N* 元素列向量 | 2×*N* 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -32,8 +42,43 @@ RDS（或 RBDS）信号，返回为与输入信号具有相同数据类型的列
 
 - 单声道信号的 *N* 元素列向量 — *N* 是音频信号中的样本数。如果未选择 **Stereo audio**，则输出为列向量。
 - 立体声信号的 2×*N* 矩阵 — *N* 是每个通道音频信号中的样本数。如果选择 **Stereo audio**，则输出具有两个通道，并且模块在去加重滤波后执行立体声解码。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: 输出信号采样率 240e3 | 正标量
+  group: ''
+- name: Frequency deviation (Hz)
+  summary: 输出信号频率的峰值偏差 75e3 | 正标量
+  group: ''
+- name: De-emphasis filter time constant (s)
+  summary: 去加重低通滤波器时间常数 7.5e-05（默认）| 正标量
+  group: ''
+- name: Output audio sample rate (Hz)
+  summary: 输出音频采样率 48000（默认）| 正标量
+  group: ''
+- name: Play audio device
+  summary: 使用默认音频设备播放声音 on（默认）| off
+  group: ''
+- name: Buffer size (samples)
+  summary: 缓冲区大小 4096（默认）| 正标量
+  group: ''
+- name: Stereo audio
+  summary: 启用立体声解调的选项 off（默认）| on
+  group: ''
+- name: RDS/RBDS demodulation
+  summary: 启用 RDS（或 RBDS）波形解调的选项 off（默认）| on
+  group: ''
+- name: Number of samples per RDS/RBDS symbol
+  summary: 每个 RDS/RBDS 符号输出的样本数 10（默认）| 正整数
+  group: ''
+- name: RDS/RBDS Costas loop
+  summary: 启用 Costas 环路的选项 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -104,7 +149,6 @@ RDS（或 RBDS）信号，返回为与输入信号具有相同数据类型的列
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度比 `Code generation` 选项更慢。在此模式下，可以调试模块的源代码。
 
 有关详细信息，请参阅解释执行与代码生成（Simulink）。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Analog Baseband Modulation

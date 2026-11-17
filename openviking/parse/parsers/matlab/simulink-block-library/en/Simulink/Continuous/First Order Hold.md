@@ -14,6 +14,17 @@ language: en
 # First Order Hold
 
 ## Ports
+```yaml
+ports:
+- name: Port 1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: Port 1
+  summary: Linearly approximated output signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -29,8 +40,38 @@ Input signal, specified as a real scalar, vector, or matrix.
 Piecewise linear approximation of the input signal.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial output
+  summary: Initial output 0 (default) | scalar | vector
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector, string
+  values: scalar | vector
+  default: '''0'''
+- name: Output algorithm
+  summary: Output signal approximation technique Slow (Avoid Overshoot) (default) | Fast (Minimize Error)
+  group: ''
+  block_parameter: OutputAlgorithm
+  type: character vector, string
+  values: Slow (Avoid Overshoot)| Fast (Minimize Error)
+  default: '''Slow (Avoid Overshoot)'''
+- name: Reset if relative extrapolation error exceeds
+  summary: Error tolerance for solver reset inf (default) | non-negative real scalar
+  group: ''
+  block_parameter: ErrorTolerance
+  type: character vector, string
+  values: scalar
+  default: '''inf'''
+- name: Allow continuous input
+  summary: Apply hold on continuous signals off (default) | on
+  group: ''
+  block_parameter: AllowContinuousInput
+  type: character vector, string
+  values: '''off''| ''on'''
+  default: '''off'''
+```
 
 ### **Initial output** — Initial output `0` (default) | scalar | vector
 
@@ -107,7 +148,6 @@ loop.
 | **Type:** character vector, string |
 | **Values:** `'off'`| `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Continuous

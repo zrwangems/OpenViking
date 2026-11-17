@@ -14,6 +14,41 @@ language: en
 # Viterbi Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input sample column vector
+  direction: input
+  data_types: int8 | int16 | uint8 | uint16 | Boolean | fixdt(0,1,0) | fixdt(S,WL,0) | single | double
+- name: valid
+  summary: Validity of input samples scalar
+  direction: input
+  data_types: Boolean
+- name: erasure
+  summary: Neutral symbol locations column vector
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clear internal state scalar
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Output sample scalar
+  direction: output
+  data_types: int8 | int16 | uint8 | uint16 | Boolean | fixdt(0,1,0) | fixdt(S,WL,0) | single | double
+- name: valid
+  summary: Validity of output samples scalar
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -141,8 +176,28 @@ To enable this port, set **Operation mode** to
 `Truncated`.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Constraint length
+  summary: Trellis constraint length 7 (default) | integer in the range [3, 9]
+  group: ''
+- name: Code generator
+  summary: Code generation polynomial [171, 133] (default) | vector of octal values
+  group: ''
+- name: Enable erasure input port
+  summary: Use optional erasure signal off (default) | on
+  group: ''
+- name: Traceback depth
+  summary: Number of trellis branches 32 (default) | integer in the range [3, 256]
+  group: ''
+- name: Operation mode
+  summary: End of frame behavior Continuous (default) | Truncated | Terminated
+  group: ''
+- name: Enable reset input port
+  summary: Use optional reset signal off (default) | on
+  group: ''
+```
 
 ### **Constraint length** — Trellis constraint length `7` (default) | integer in the range [3, 9]
 
@@ -206,7 +261,6 @@ calculation and clears internal branch and state metrics.
 
 To enable this parameter, set **Operation mode** to
 `Continuous`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

@@ -15,6 +15,54 @@ chinese_source: worker-translation
 # Synchronous Machine (Six-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: fd+
+  summary: 励磁绕组正极端口 electrical
+  direction: conserving
+- name: fd-
+  summary: 励磁绕组负极端口 electrical
+  direction: conserving
+- name: R
+  summary: 电机转子机械端口
+  direction: conserving
+- name: C
+  summary: 电机机壳机械端口
+  direction: conserving
+- name: ~ABC
+  summary: 定子 ABC 绕组电气端口
+  direction: conserving
+- name: ~XYZ
+  summary: 定子 XYZ 绕组电气端口
+  direction: conserving
+- name: n1
+  summary: ABC 绕组中性点电气端口
+  direction: conserving
+- name: n2
+  summary: XYZ 绕组中性点电气端口
+  direction: conserving
+- name: HA
+  summary: '*a* 相端子热端口 thermal'
+  direction: conserving
+- name: HB
+  summary: '*b* 相端子热端口 thermal'
+  direction: conserving
+- name: HC
+  summary: '*c* 相端子热端口 thermal'
+  direction: conserving
+- name: HX
+  summary: '*x* 相端子热端口 thermal'
+  direction: conserving
+- name: HY
+  summary: '*y* 相端子热端口 thermal'
+  direction: conserving
+- name: HZ
+  summary: '*z* 相端子热端口 thermal'
+  direction: conserving
+- name: HR
+  summary: 转子热端口 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -113,8 +161,96 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Nominal power
+  summary: 额定功率 100e3 V*A（默认）| 标量
+  group: 主参数
+- name: Nominal voltage (line-to-line,rms)
+  summary: 额定线电压均方根值 240 V（默认）| 标量
+  group: 主参数
+- name: Nominal electrical frequency
+  summary: 额定电气频率 60 Hz（默认）| 标量
+  group: 主参数
+- name: Number of pole pairs
+  summary: 转子极对数 2（默认）| 正标量
+  group: 主参数
+- name: Zero sequence
+  summary: 零序模型 Include（默认）| Exclude
+  group: 主参数
+- name: Rotor angle definition
+  summary: 转子角度参考点 Angle between the a-phase magnetic axis and the d-axis（默认）| Angle between the a-phase magnetic axis and
+    the q-axis
+  group: 主参数
+- name: Stator resistance, Rs
+  summary: 定子电阻 0.0288（默认）| 正标量
+  group: 阻抗
+- name: Stator leakage inductance, Ll
+  summary: 定子漏电感 0.0969（默认）| 正标量
+  group: 阻抗
+- name: Stator d-axis mutual inductance, Lmd
+  summary: 定子 *d* 轴互感 1.9583（默认）| 正标量
+  group: 阻抗
+- name: Stator q-axis mutual inductance, Lmq
+  summary: 定子 *q* 轴互感 0.9045（默认）| 正标量
+  group: 阻抗
+- name: Rotor field winding resistance, Rfd'
+  summary: 转子励磁绕组电阻 0.0028（默认）| 正标量
+  group: 阻抗
+- name: Rotor field winding inductance, Llfd'
+  summary: 转子励磁绕组电感 0.0813（默认）| 正标量
+  group: 阻抗
+- name: Rotor d-axis damper winding resistance, Rkd'
+  summary: 转子 *d* 轴阻尼绕组电阻 0.0041（默认）| 正标量
+  group: 阻抗
+- name: Rotor d-axis damper winding inductance, Llkd'
+  summary: 转子 *d* 轴阻尼绕组电感 0.0918（默认）| 正标量
+  group: 阻抗
+- name: Rotor q-axis damper winding resistance, Rkq'
+  summary: 转子 *q* 轴阻尼绕组电阻 0.0043（默认）| 正标量
+  group: 阻抗
+- name: Rotor q-axis damper winding inductance, Llkq'
+  summary: 转子 *q* 轴阻尼绕组电感 0.1174（默认）| 正标量
+  group: 阻抗
+- name: Initialization option
+  summary: 初始化选项 Set real power, reactive power, terminal voltage, and terminal phase（默认）| Set targets for rotor angle and
+    Park's transform variables
+  group: 初始条件
+- name: Terminal voltage magnitude
+  summary: 端子电压幅值 240 V（默认）| 标量
+  group: 初始条件
+- name: Terminal voltage angle corresponding to ABC group
+  summary: ABC 组对应的端子电压角度 0 deg（默认）| 标量
+  group: 初始条件
+- name: Terminal active power (ABC group)
+  summary: ABC 端子有功功率 50e3 V*A（默认）| 标量
+  group: 初始条件
+- name: Terminal reactive power (ABC group)
+  summary: ABC 端子无功功率 0 V*A（默认）| 标量
+  group: 初始条件
+- name: Terminal active power (XYZ group)
+  summary: XYZ 端子有功功率 20e3 V*A（默认）| 标量
+  group: 初始条件
+- name: Terminal reactive power (XYZ group)
+  summary: XYZ 端子无功功率 0 V*A（默认）| 标量
+  group: 初始条件
+- name: Measurement temperature
+  summary: 额定温度 298.15 k（默认）| 实标量
+  group: 热参数
+- name: Resistance temperature coefficient
+  summary: 温度系数 3.93e-3 1/K（默认）| 正标量
+  group: 热参数
+- name: Thermal mass for each stator winding
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热参数
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）| 正标量
+  group: 热参数
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -267,7 +403,6 @@ ABC 定子对应的端子电压角度。
 ### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认）| 正标量
 
 转子的热质量。热质量是将转子温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Synchronous

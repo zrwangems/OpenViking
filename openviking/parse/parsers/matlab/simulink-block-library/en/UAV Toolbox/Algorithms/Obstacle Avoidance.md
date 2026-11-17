@@ -14,6 +14,37 @@ language: en
 # Obstacle Avoidance
 
 ## Ports
+```yaml
+ports:
+- name: Position
+  summary: Position of UAV vector
+  direction: input
+  data_types: double
+- name: Orientation
+  summary: Orientation of UAV vector
+  direction: input
+  data_types: double
+- name: ObstaclePoints
+  summary: Positions of obstacles matrix
+  direction: input
+  data_types: double
+- name: TargetPostion
+  summary: Position of target vector
+  direction: input
+  data_types: double
+- name: DesiredDirection
+  summary: Desired direction vector
+  direction: output
+  data_types: double
+- name: DesiredYaw
+  summary: Desired yaw scalar
+  direction: output
+  data_types: double
+- name: Status
+  summary: Status of obstacle-free direction 0 | 1 | 2 | 3
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -107,8 +138,55 @@ Status of the obstacle-free direction, returned as `0`,
   obstacle.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor range limits (m)
+  summary: Limits of range sensor [0.2 10] (default) | vector of form [min max]
+  group: ''
+- name: Sensor horizontal field of view (deg)
+  summary: Horizontal field of view limits of range sensor [-60 60] (default) | vector of form [min max]
+  group: ''
+- name: Sensor vertical field of view (deg)
+  summary: Vertical field of view limits of range sensor [-30 30] (default) | vector of form [min max]
+  group: ''
+- name: Sensor location [X, Y, Z] (m)
+  summary: Sensor mounting location on UAV [0 0 0] (default) | vector of form [x y z]
+  group: ''
+- name: Sensor orientation [Roll, Pitch, Yaw] (deg)
+  summary: Orientation of sensor mounted on UAV [0 0 0] (default) | vector of form [roll pitch yaw]
+  group: ''
+- name: Vehicle radius (m)
+  summary: Radius of UAV 1 (default) | numeric scalar
+  group: ''
+- name: Minimum distance to obstacle (m)
+  summary: Safety distance around UAV to obstacle 1 (default) | numeric scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+- name: Histogram resolution (deg)
+  summary: Histogram grid resolution 5 (default) | 1 | 3 | 6 | 10 | 15 | 18 | 30 | 45 | 60
+  group: ''
+- name: Histogram window size
+  summary: Histogram window size 1 (default) | odd integer
+  group: ''
+- name: Histogram threshold
+  summary: Threshold for computing histogram 1 (default) | positive integer
+  group: ''
+- name: Maximum age of obstacle point
+  summary: Maximum age of remembered obstacle point 0 (default) | numeric scalar
+  group: ''
+- name: Target direction weight
+  summary: Cost function weight for target direction 5 (default) | numeric scalar
+  group: ''
+- name: Current direction weight
+  summary: Cost function weight for current direction 2 (default) | numeric scalar
+  group: ''
+- name: Previous direction weight
+  summary: Cost function weight for previous direction 2 (default) | numeric scalar
+  group: ''
+```
 
 #### Main
 
@@ -249,7 +327,6 @@ direction. Higher values of this weight produce smoother paths. To ignore the pr
 direction cost, set this weight to `0`.
 
 **Data Types:** `double`
-
 ## Libraries
 
 UAV Toolbox / Algorithms

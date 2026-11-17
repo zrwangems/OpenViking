@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Belt-Cable Spool
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 局部参考坐标系 frame
+  direction: unspecified
+- name: A
+  summary: 卷筒缆绳连接点 belt-cable
+  direction: unspecified
+```
 
 ### Frame
 
@@ -26,8 +35,16 @@ chinese_source: worker-translation
 ### **A** — 卷筒缆绳连接点 belt-cable
 
 绳索中心线与卷筒节圆之间的切点。
-
 ## 参数
+```yaml
+parameters:
+- name: Pitch Radius
+  summary: 从卷筒中心到绳索中心线的距离 10 cm（默认）| 以长度单位为单位的正标量
+  group: ''
+- name: Sensing
+  summary: 选择要感测的运动学变量 Unchecked（默认）| Checked
+  group: ''
+```
 
 ### **Pitch Radius** — 从卷筒中心到绳索中心线的距离 `10 cm`（默认）| 以长度单位为单位的正标量
 
@@ -61,7 +78,6 @@ chinese_source: worker-translation
   `Unrestricted`。
 
   使用端口 **qfa** 进行此测量。
-
 ## 所属库
 
 Simscape / Multibody / Belts and Cables

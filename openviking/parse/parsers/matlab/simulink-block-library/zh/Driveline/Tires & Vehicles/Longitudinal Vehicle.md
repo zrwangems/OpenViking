@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Longitudinal Vehicle
 
 ## 端口
+```yaml
+ports:
+- name: Brake
+  summary: 纵向制动力，N 物理信号
+  direction: input
+- name: Angle
+  summary: 道路倾角，rad 物理信号
+  direction: input
+- name: NG
+  summary: 归一化道路坡度，无量纲物理信号
+  direction: input
+- name: PG
+  summary: 百分比道路坡度，无量纲物理信号
+  direction: input
+- name: Wind
+  summary: 纵向风速，m/s 物理信号
+  direction: input
+- name: VehSpd
+  summary: 车辆速度，m/s 物理信号
+  direction: output
+- name: G
+  summary: 纵向 G 力，无量纲物理信号
+  direction: output
+- name: Axle
+  summary: 车轮旋转 机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -84,8 +111,62 @@ chinese_source: worker-translation
 ### **Axle** — 车轮旋转 机械旋转
 
 与车轮轮毂的车轴连接关联的机械旋转守恒端口。将此端口连接到齿轮系统，例如减速齿轮。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization type
+  summary: 车辆参数化选择 Regular parameter set（默认）| Road-load | Typical small car | Typical medium-sized car | Typical large sports
+    utility vehicle
+  group: 车辆
+- name: Vehicle mass
+  summary: 惯性质量 1200 kg（默认）| 正标量
+  group: 车辆
+- name: Tire rolling radius
+  summary: 轮胎滚动半径 0.3 m（默认）| 正标量
+  group: 车辆
+- name: Tire rolling coefficient
+  summary: 轮胎滚动系数 0.0136（默认）| 非负标量
+  group: 车辆
+- name: Air drag coefficient
+  summary: 车辆阻力系数 0.31（默认）| 非负标量
+  group: 车辆
+- name: Vehicle frontal area
+  summary: 迎风表面积 2.3 m^2（默认）| 正标量
+  group: 车辆
+- name: Road-load coefficient A
+  summary: ARL 系数 120 N（默认）| 正标量
+  group: 车辆
+- name: Road-load coefficient B
+  summary: BRL 系数 1.8 N/(m/s)（默认）| 正标量
+  group: 车辆
+- name: Road-load coefficient C
+  summary: CRL 系数 0.389 N*s^2/m^2（默认）| 正标量
+  group: 车辆
+- name: Gravitational acceleration
+  summary: 重力加速度 9.81 m/s^2（默认）| 正标量
+  group: 车辆
+- name: Vehicle speed threshold
+  summary: 车辆运动容差 0.3 m/s（默认）| 标量
+  group: 仿真
+- name: Axle speed threshold
+  summary: 车轴旋转容差 0.01 rad/s（默认）| 标量
+  group: 仿真
+- name: Show brake force inport
+  summary: 理想制动器端口 On（默认）| Off
+  group: 仿真
+- name: Show road slope inport
+  summary: 道路坡度端口 On（默认）| Off
+  group: 仿真
+- name: Slope input type
+  summary: 坡度测量类型 Percent grade（默认）| Normalized grade | Incline angle
+  group: 仿真
+- name: Show wind speed inport
+  summary: 风端口 On（默认）| Off
+  group: 仿真
+- name: Show G outport
+  summary: G 力输出端口 Off（默认）| On
+  group: 仿真
+```
 
 ### 车辆
 
@@ -198,7 +279,6 @@ chinese_source: worker-translation
 ### **Show G outport** — G 力输出端口 `Off`（默认）| `On`
 
 显示 **G** 端口的选项。将 G 力记录为 **Gravitational acceleration** 参数的倍数。
-
 ## 所属库
 
 Simscape / Driveline / Tires & Vehicles

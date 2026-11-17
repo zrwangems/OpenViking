@@ -14,10 +14,58 @@ language: en
 # Rack & Pinion
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterize by
+  summary: Rack and gear parameterization method Pinion radius (default) | Tooth parameters
+  group: Main
+- name: Pinion radius
+  summary: Pinion effective radius 100 mm (default) | positive scalar
+  group: Main
+- name: Number of pinion teeth
+  summary: Number of pinion teeth 20 (default) | positive scalar
+  group: Main
+- name: Rack tooth spacing
+  summary: Space between rack and teeth 5 mm (default) | positive scalar
+  group: Main
+- name: Rack direction
+  summary: Rack rotational orientation Positive for positive pinion rotation (default) | Negative for positive pinion rotation
+  group: Main
+- name: Friction model
+  summary: Friction losses from nonideal meshing of gear threads No meshing losses — Suitable for HIL simulation (default)
+    | Constant efficiency | Temperature-dependent efficiency
+  group: Meshing Losses
+- name: Efficiency
+  summary: Torque transfer efficiency 0.8 (default) | positive scalar in the range of (0,1]
+  group: Meshing Losses
+- name: Temperature
+  summary: Array for tabular parameterization of efficiency [280 300 320] K (default) | vector
+  group: Meshing Losses
+- name: Efficiency
+  summary: Array of efficiencies [0.95 0.9 0.85] (default) | vector
+  group: Meshing Losses
+- name: Rack power threshold
+  summary: Power below which numerical smoothing is applied 0.001 W (default) | positive scalar
+  group: Meshing Losses
+- name: Pinion rotational viscous friction coefficient
+  summary: Pinion fluid dynamic friction coefficient 0 N\*m/(rad/s) (default) | positive scalar
+  group: Viscous Losses
+- name: Rack translational viscous friction coefficient
+  summary: Numerical constant 0 N/(m/s) (default) | positive scalar
+  group: Viscous Losses
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -156,7 +204,6 @@ temperature change.
 Component temperature at the start of simulation. The initial temperature
 alters the component efficiency according to an efficiency vector that you
 specify, affecting the starting meshing or friction losses.
-
 ## Libraries
 
 Simscape / Driveline / Gears / Rotational- Translational

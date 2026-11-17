@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Resource Pool
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 更改资源量 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_u
+  summary: 输出正在使用的资源数量 标量
+  direction: output
+  data_types: double
+- name: Port_util
+  summary: 输出资源池被使用的平均时间 标量
+  direction: output
+  data_types: double
+- name: Port_avail
+  summary: 输出可用资源数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -63,8 +82,80 @@ util** 的复选框。
 avail** 的复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Resource name
+  summary: 资源池中资源的名称 Resource1（默认）| 字符向量
+  group: ''
+  block_parameter: ResourceName
+  type: 字符向量
+  values: '''Resource1'' | 字符向量'
+  default: '''Resource1'''
+- name: Resource granularity
+  summary: 选择资源使用的粒度 Discrete unit（默认）| Fractional amount
+  group: ''
+  block_parameter: ResourceGranularity
+  type: 字符向量
+  values: '''Discrete unit'' | ''Fractional amount'''
+  default: '''Discrete unit'''
+- name: Reusable upon release
+  summary: 指定资源在释放后是否可重用 off（默认）| on
+  group: ''
+  block_parameter: ReusableUponRelease
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Resource amount source
+  summary: 选择资源量来源 Dialog（默认）| Change amount through control port
+  group: ''
+  block_parameter: ResourceAmountSource
+  type: 字符向量
+  values: '''Dialog'' | ''Change amount through control port'''
+  default: '''Dialog'''
+- name: Resource amount
+  summary: 设置资源量 10（默认）| 标量
+  group: ''
+  block_parameter: ResourceAmount
+  type: 字符向量
+  values: '''10'' | 标量'
+  default: '''10'''
+- name: 初始资源量
+  summary: 输入资源的初始数量 10（默认）| 标量
+  group: ''
+  block_parameter: InitialResourceAmount
+  type: 字符向量
+  values: '''10'' | 标量'
+  default: '''10'''
+- name: 资源可见性
+  summary: 选择资源的可用性 Global（默认）| Scoped
+  group: ''
+  block_parameter: InitialResourceAmount
+  type: 字符向量
+  values: '''10'' | 标量'
+  default: '''10'''
+- name: 使用量，u
+  summary: 正在使用的资源数量 off（默认）| on
+  group: ''
+  block_parameter: AmountInUse
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 平均利用率，util
+  summary: 输出平均资源利用率 off（默认）| on
+  group: ''
+  block_parameter: AverageUtilization
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 可用量，avail
+  summary: 输出可用资源数量 off（默认）| on
+  group: ''
+  block_parameter: AmountAvailable
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Resource name** — 资源池中资源的名称 `Resource1`（默认）| 字符向量
 
@@ -227,7 +318,6 @@ avail** 的复选框。
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents / Entity Management SimEvents

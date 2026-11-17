@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Drive Cycle Source
 
 ## 端口
+```yaml
+ports:
+- name: VelFdbk
+  summary: 车辆纵向速度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: RefSpd
+  summary: 车辆参考速度 scalar
+  direction: output
+- name: RefAcc
+  summary: 车辆参考加速度 scalar
+  direction: output
+- name: Gear
+  summary: 车辆挡位 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -73,8 +91,97 @@ chinese_source: worker-translation
    - 工作区变量。
    - .`mat`、.`xls`、.`xlsx` 或 .`txt` 文件。
 2. 选择**输出换挡数据**。
-
 ## 参数
+```yaml
+parameters:
+- name: Drive cycle source
+  summary: 选择行驶循环来源 FTP75（默认）| Wide Open Throttle (WOT) | Workspace variable | .mat, .xls, .xlsx or .txt file
+  group: 循环设置
+- name: From workspace
+  summary: 工作区 variable
+  group: 循环设置
+- name: Drive cycle source file
+  summary: 文件名 .mat、.xls、.xlsx 或 .txt
+  group: 循环设置
+- name: Repeat cyclically
+  summary: 循环重复行驶循环 off（默认） | on
+  group: 循环设置
+- name: Output acceleration
+  summary: 输出加速度 off（默认）
+  group: 循环设置
+- name: Output gear shift data
+  summary: 输出挡位 off（默认） | on
+  group: 循环设置
+- name: Start time, t_wot1
+  summary: 驾驶循环开始时间 5（默认）| scalar
+  group: 循环设置
+- name: Initial reference speed, xdot_woto
+  summary: 速度 0（默认）| scalar
+  group: 循环设置
+- name: Nominal reference speed, xdot_wot1
+  summary: 速度 30（默认）| scalar
+  group: 循环设置
+- name: Time to start deceleration, t_wot2
+  summary: 时间 20（默认）| scalar
+  group: 循环设置
+- name: Final reference speed, xdot_wot2
+  summary: 速度 0（默认）| scalar
+  group: 循环设置
+- name: WOT simulation time, t_wotend
+  summary: 仿真时间持续时间 30（默认）| scalar
+  group: 循环设置
+- name: Source velocity units
+  summary: 指定速度单位 m/s（默认）
+  group: 循环设置
+- name: Output velocity units
+  summary: 指定速度单位 m/s（默认）
+  group: 循环设置
+- name: Output acceleration units
+  summary: 指定加速度单位 m/s^2（默认）
+  group: 循环设置
+- name: Output sample period (0 for continuous), dt
+  summary: 采样之间的周期 0（默认）| scalar
+  group: 循环设置
+- name: Enable fault tracking
+  summary: 启用故障跟踪 off（默认）| on
+  group: 故障跟踪
+- name: 速度容差，velBnd
+  summary: 驾驶循环速度容差 2.0（默认）| 标量
+  group: 故障跟踪
+- name: 速度容差单位，velBndUnit
+  summary: 设置单位 mph（默认）
+  group: 故障跟踪
+- name: 速度反馈单位，inUnit
+  summary: 设置速度反馈单位 m/s（默认）
+  group: 故障跟踪
+- name: 时间容差，timeBnd
+  summary: 时间容差 1.0（默认）| 标量
+  group: 故障跟踪
+- name: 启用故障跟踪
+  summary: 启用故障跟踪 off（默认）| on
+  group: 故障跟踪
+- name: 当轨迹失败时停止仿真
+  summary: 当轨迹失败时停止仿真 off（默认）| on
+  group: 故障跟踪
+- name: 最大故障数，maxFaultCnt
+  summary: 允许的最大故障数 10（默认）| 标量
+  group: 故障跟踪
+- name: Maximum single fault time, maxFaultTime
+  summary: 单个故障的最大允许持续时间 2.0（默认）| scalar
+  group: 故障跟踪
+- name: Maximum total fault time, maxTotFaultTime
+  summary: 最大总故障时间 15.0（默认）| scalar
+  group: 故障跟踪
+- name: Display simulation trace
+  summary: 显示速度轨迹 off（默认）| on
+  group: 故障跟踪
+- name: Simulation trace update rate, dtTrace
+  summary: 轨迹更新周期 1（默认）| scalar
+  group: 故障跟踪
+- name: Simulation trace display window, traceWindow
+  summary: 轨迹窗口更新速率 10（默认）| scalar
+  group: 故障跟踪
+```
 
 ### 循环设置
 
@@ -458,7 +565,6 @@ trace**。
 要启用此参数，请在 **Fault
 Tracking** 选项卡上，选择 **Display simulation
 trace**。
-
 ## 所属库
 
 Powertrain Blockset / Vehicle Scenario Builder Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

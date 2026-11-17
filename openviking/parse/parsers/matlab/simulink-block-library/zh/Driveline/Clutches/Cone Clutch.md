@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Cone Clutch
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 法向力物理信号
+  direction: input
+- name: X
+  summary: 换挡连杆位置物理信号
+  direction: output
+- name: B
+  summary: 基座机械旋转
+  direction: output
+- name: F
+  summary: 从动件机械旋转
+  direction: output
+- name: H
+  summary: 热流热
+  direction: output
+- name: S
+  summary: 换挡连杆机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -61,8 +82,95 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当在**几何**设置中，**换挡连杆控制**参数设置为 `Conserving port` 时，此端口才可见。有关详细信息，请参阅换挡连杆控制和几何参数依赖关系。
-
 ## 参数
+```yaml
+parameters:
+- name: 接触面最大直径
+  summary: 外径 150 mm（默认）| 正标量
+  group: 几何
+- name: 接触面最小直径
+  summary: 内径 100 mm（默认）| 正标量
+  group: 几何
+- name: 锥半角
+  summary: 锥半角 12 deg（默认）| 正标量
+  group: 几何
+- name: 换挡连杆控制
+  summary: 换挡连杆模型 Physical signal（默认）| Conserving port
+  group: 几何
+- name: 换挡连杆后部硬限位
+  summary: 硬限位选项 on（默认）| off
+  group: 换挡连杆
+- name: 分离时的环毂间隙
+  summary: 环毂间隙 3 mm（默认）| 非负标量
+  group: 换挡连杆
+- name: 环挡块刚度
+  summary: 环挡块刚度 10e5 N/m（默认）| 非负标量
+  group: 换挡连杆
+- name: 环挡块阻尼
+  summary: 环挡块阻尼 1e3 N/(m/s)（默认）| 非负标量
+  group: 换挡连杆
+- name: 换挡连杆粘性摩擦系数
+  summary: 换挡连杆粘性摩擦 100 N/(m/s)（默认）| 正标量
+  group: 换挡连杆
+- name: 连杆行程方向
+  summary: 分离行程方向 Positive shift linkage displacement engages clutch（默认）| Negative shift linkage displacement engages clutch
+  group: 换挡连杆
+- name: 摩擦模型
+  summary: 摩擦模型 Fixed kinetic friction coefficient（默认）| Velocity-dependent kinetic friction coefficient | Temperature-dependent
+    friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: 摩擦
+- name: 相对速度向量
+  summary: 相对速度 [0, 100, 1000] rad/s（默认）| 向量
+  group: 摩擦
+- name: 温度向量
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: 摩擦
+- name: 静摩擦系数
+  summary: 静摩擦系数 0.35（默认）| 标量
+  group: 摩擦
+- name: 静摩擦系数向量
+  summary: 静摩擦系数 [.4, .38, .36]（默认）| 向量
+  group: 摩擦
+- name: 动摩擦系数
+  summary: 动摩擦系数 0.3（默认）| 正标量
+  group: 摩擦
+- name: 动摩擦系数向量
+  summary: 动摩擦系数 [.3, .22, .19]（默认）| [.3, .28, .25] | 向量
+  group: 摩擦
+- name: Kinetic friction coefficient matrix
+  summary: 动摩擦系数 [.34, .32, .3; .3, .28, .25; .25, .2, .15]（默认）| 矩阵
+  group: 摩擦
+- name: Friction coefficient interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 摩擦
+- name: Friction coefficient extrapolation method
+  summary: 外插方法 Linear（默认）| Nearest | Error
+  group: 摩擦
+- name: Velocity tolerance
+  summary: 相对速度锁定阈值 0.001 rad/s（默认）| 标量
+  group: 摩擦
+- name: Threshold force
+  summary: 法向接触力阈值 1 N（默认）| 标量
+  group: 摩擦
+- name: Viscous friction coefficient
+  summary: 粘性摩擦 0（默认）| 非负标量
+  group: 摩擦
+- name: Initial state
+  summary: 初始离合器状态 Unlocked（默认）| Locked
+  group: 初始条件
+- name: 离合器故障
+  summary: 对摩擦故障建模的选项 添加故障
+  group: 故障
+- name: 发生故障时的行为
+  summary: 离合器摩擦故障响应 无法传递动力（默认）| 无法解锁
+  group: 故障
+- name: 热质量
+  summary: 热质量 50 kJ/K（默认）| 标量
+  group: 热端口
+- name: 初始温度
+  summary: 初始温度 300 K（默认）| 标量
+  group: 热端口
+```
 
 ### 几何
 
@@ -313,7 +421,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数仅在 **摩擦** 设置中的 **摩擦模型** 参数设置为 `温度相关摩擦系数` 或 `温度和速度相关摩擦系数` 时可见。有关详细信息，请参阅摩擦参数依赖关系。
-
 ## 所属库
 
 Simscape / Driveline / Clutches

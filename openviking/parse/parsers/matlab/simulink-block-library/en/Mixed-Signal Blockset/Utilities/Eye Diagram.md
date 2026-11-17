@@ -14,6 +14,13 @@ language: en
 # Eye Diagram
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -22,8 +29,117 @@ language: en
 Input signal, specified as a scalar or column vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Display mode
+  summary: Display mode Line plot (default) | 2D color Histogram
+  group: Main Tab
+- name: Enable measurements
+  summary: Enable measurements off (default) | on
+  group: Main Tab
+- name: Show horizontal (jitter) histogram
+  summary: Display jitter histogram off (default) | on
+  group: Main Tab
+- name: Show vertical (noise) histogram
+  summary: Display noise histogram off (default) | on
+  group: Main Tab
+- name: Do not show horizontal or vertical histogram
+  summary: Do not show horizontal or vertical histogram on (default) | off
+  group: Main Tab
+- name: Show horizontal bathtub curve
+  summary: Show horizontal bathtub curve off (default) | on
+  group: Main Tab
+- name: Show vertical bathtub curve
+  summary: Show vertical bathtub curve off (default) | on
+  group: Main Tab
+- name: Eye diagram to display
+  summary: Eye diagram to display Real only (default) | Real and imaginary
+  group: Main Tab
+- name: Color fading
+  summary: Color fading off (default) | on
+  group: Main Tab
+- name: Samples per symbol
+  summary: Samples per symbol 8 (default) | positive integer
+  group: Main Tab
+- name: Sample offset
+  summary: Sample offset 0 (default) | nonnegative integer
+  group: Main Tab
+- name: Symbols per trace
+  summary: Symbols per trace 2 (default) | positive integer
+  group: Main Tab
+- name: Traces to display
+  summary: Number of traces to display 40 (default) | positive integer
+  group: Main Tab
+- name: Title
+  summary: Title label *None* (default)
+  group: Axes Tab
+- name: Show grid
+  summary: Toggle scope grid on (default) | off
+  group: Axes Tab
+- name: Y-limits (Minimum)
+  summary: Lower limit of *y*-axis -1.1 (default) | scalar
+  group: Axes Tab
+- name: Y-limits (Maximum)
+  summary: Upper limit of *y*-axis 1.1 (default) | scalar
+  group: Axes Tab
+- name: Real axis label
+  summary: Real axis label Real Amplitude (default)
+  group: Axes Tab
+- name: Imaginary axis label
+  summary: Imaginary axis label Imaginary Amplitude (default)
+  group: Axes Tab
+- name: Oversampling method
+  summary: Oversampling method None (default) | Input interpolation | Histogram interpolation
+  group: 2D Histogram Tab
+- name: Color scale
+  summary: Color scale Linear (default) | Logarithmic
+  group: 2D Histogram Tab
+- name: Export measurements, histograms and bathtub curves
+  summary: Export measurements, histograms and bathtub curves Off (default) | off
+  group: Export Tab
+- name: Variable name
+  summary: Variable name EyeData (default)
+  group: Export Tab
+- name: Figure color
+  summary: Figure color black (default)
+  group: Style Dialog Box
+- name: Axes colors
+  summary: Axes colors black | gray (default)
+  group: Style Dialog Box
+- name: Line
+  summary: Line style, thickness and color for line plots continuous | 0.5 | yellow (default)
+  group: Style Dialog Box
+- name: Marker
+  summary: Data point marker None (default) | ...
+  group: Style Dialog Box
+- name: Colormap
+  summary: Colormap for histograms Hot (default) | Parula | Jet | HSV | Cool | Spring Summer | Autumn | Winter | Gray | Bone
+    | Copper | Pink | Lines | Custom
+  group: Style Dialog Box
+- name: Eye level boundaries
+  summary: Time range for calculating eye levels [40 60] (default) | two-element vector
+  group: Measurement Settings Pane
+- name: Decision boundary
+  summary: Amplitude level threshold 0 (default) | scalar
+  group: Measurement Settings Pane
+- name: Rise/Fall thresholds
+  summary: Amplitude levels of the rise and fall transitions [10 90] (default) | two-element vector
+  group: Measurement Settings Pane
+- name: Hysteresis
+  summary: Amplitude tolerance of the horizontal crossings 0 (default) | scalar
+  group: Measurement Settings Pane
+- name: BER threshold
+  summary: BER used for eye measurements 1e-12 (default) | nonnegative scalar from 0 to 0.5
+  group: Measurement Settings Pane
+- name: Bathtub BERs
+  summary: BER values used to calculate openings of bathtub curves [0.5 0.1 0.01 0.001 0.0001 1e-05 1e-06 1e-07 1e-08 1e-09
+    1e-10 1e-11 1e-12] (default) | vector
+  group: Measurement Settings Pane
+- name: Measurement delay
+  summary: Duration of initial data discarded from measurements 0 (default) | nonnegative scalar
+  group: Measurement Settings Pane
+```
 
 ### Main Tab
 
@@ -408,7 +524,6 @@ curve**, or both.
 
 Duration of initial data discarded from measurements, in seconds,
 specified as a nonnegative scalar.
-
 ## Libraries
 
 Communications Toolbox / Comm Sinks Communications Toolbox HDL Support / Comm Sinks Mixed-Signal Blockset / Utilities SerDes Toolbox / Utilities

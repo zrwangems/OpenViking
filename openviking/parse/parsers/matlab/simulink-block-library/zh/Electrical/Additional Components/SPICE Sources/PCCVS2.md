@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # PCCVS2
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 第一个控制输入电气正电压
+  direction: conserving
+- name: 1-
+  summary: 第一个控制输入电气负电压
+  direction: conserving
+- name: 2+
+  summary: 第二个控制输入电气正电压
+  direction: conserving
+- name: 2-
+  summary: 第二个控制输入电气负电压
+  direction: conserving
+- name: +
+  summary: 输出正电压电气端口
+  direction: conserving
+- name: '-'
+  summary: 输出负电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,13 +62,17 @@ chinese_source: worker-translation
 ### **-** — 输出负电压电气端口
 
 与 PCCVS2 输出负电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Polynomial coefficients
+  summary: 多项式系数 [ 0 1 1 ]（默认值）
+  group: ''
+```
 
 ### **Polynomial coefficients** — 多项式系数 `[ 0 1 1 ]`（默认值）
 
 将输入电流与输出电压关联起来的多项式系数，如前一节所述。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

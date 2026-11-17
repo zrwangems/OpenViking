@@ -14,6 +14,19 @@ language: en
 # Reshape
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -31,8 +44,26 @@ Output signal created with the dimensions specified in the **Output
 dimensionality** parameter.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output dimensionality
+  summary: Dimensions of output signal 1-D array (default) | Column vector (2-D) | Row vector (2-D) | Customize | Derive from
+    reference input port
+  group: ''
+  block_parameter: OutputDimensionality
+  type: character vector
+  values: '''1-D array'' | ''Column vector (2-D)'' | ''Row vector (2-D)'' | ''Customize'' | ''Derive from reference input
+    port'''
+  default: '''1-D array'''
+- name: Output dimensions
+  summary: Custom dimensions of output signal [1,1] (default) | [integer] | [integer,integer]
+  group: ''
+  block_parameter: OutputDimensions
+  type: character vector
+  values: '''[1,1]'' | ''integer'' | ''[integer,integer]'''
+  default: '''[1,1]'''
+```
 
 ### **Output dimensionality** — Dimensions of output signal `1-D array` (default) | `Column vector (2-D)` | `Row vector (2-D)` | `Customize` | `Derive from reference input port`
 
@@ -80,7 +111,6 @@ dimensionality** to
 | **Type**: character vector |
 | **Value**: `'[1,1]'` | `'integer'` | `'[integer,integer]'` |
 | **Default**: `'[1,1]'` |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / Math Operations

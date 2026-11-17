@@ -15,6 +15,93 @@ chinese_source: worker-translation
 # MPC Controller
 
 ## 端口
+```yaml
+ports:
+- name: mo
+  summary: 测量输出向量
+  direction: input
+- name: x[k|k]
+  summary: 自定义状态估计向量
+  direction: input
+- name: ref
+  summary: 模型输出参考值行向量 | 矩阵
+  direction: input
+- name: md
+  summary: 输入行向量 | 矩阵
+  direction: input
+- name: ext.mv
+  summary: 上一控制区间内用于被控对象的控制信号向量
+  direction: input
+- name: switch
+  summary: 启用或禁用优化标量
+  direction: input
+- name: mv.target
+  summary: 操纵变量目标向量
+  direction: input
+- name: ymin
+  summary: 最小输出变量约束向量 | 矩阵
+  direction: input
+- name: ymax
+  summary: 最大输出变量约束向量 | 矩阵
+  direction: input
+- name: umin
+  summary: 被操纵变量最小值约束向量 | 矩阵
+  direction: input
+- name: umax
+  summary: 被操纵变量最大约束向量 | 矩阵
+  direction: input
+- name: E
+  summary: 操纵变量约束矩阵 矩阵
+  direction: input
+- name: F
+  summary: 受控输出约束矩阵 矩阵
+  direction: input
+- name: G
+  summary: 自定义约束向量 行向量
+  direction: input
+- name: S
+  summary: 测量扰动约束矩阵 矩阵
+  direction: input
+- name: y.wt
+  summary: 输出变量调整权重 行向量 | 矩阵
+  direction: input
+- name: u.wt
+  summary: 操纵变量调整权重 行向量 | 矩阵
+  direction: input
+- name: du.wt
+  summary: 被操纵变量速率调节权重行向量 | 矩阵
+  direction: input
+- name: ecr.wt
+  summary: 松弛变量调节权重标量
+  direction: input
+- name: p
+  summary: 预测时域 正整数
+  direction: input
+- name: m
+  summary: 控制时域 正整数 | 向量
+  direction: input
+- name: mv
+  summary: 最优操纵变量控制动作列向量
+  direction: output
+- name: cost
+  summary: 目标函数代价非负标量
+  direction: output
+- name: qp.status
+  summary: 优化状态整数
+  direction: output
+- name: est.state
+  summary: 估计的控制器状态向量
+  direction: output
+- name: mv.seq
+  summary: 最优操纵变量序列矩阵
+  direction: output
+- name: x.seq
+  summary: 最优预测模型状态序列矩阵
+  direction: output
+- name: y.seq
+  summary: 最优输出变量序列矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -486,8 +573,236 @@ QP 求解器可能由于以下原因而无法找到最优解：
 #### 依赖
 
 要启用此端口，请选中 **Optimal output sequence** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: MPC Controller
+  summary: 控制器对象 mpc 对象名称
+  group: ''
+  block_parameter: mpcobj
+  type: string, character vector
+  default: '""'
+- name: Initial Controller State
+  summary: 初始状态 mpcstate 对象名称
+  group: ''
+  block_parameter: x0
+  type: string, character vector
+  default: '""'
+- name: Design
+  summary: 交互式设计控制器按钮
+  group: ''
+- name: Review
+  summary: 审查控制器的稳定性和鲁棒性问题按钮
+  group: ''
+- name: Measured disturbance
+  summary: 添加可测扰动输入端口 on（默认）| off
+  group: ''
+  block_parameter: md_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: External manipulated variable
+  summary: 添加外部操纵变量输入端口 off（默认）| on
+  group: ''
+  block_parameter: mv_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Targets for manipulated variables
+  summary: 添加操纵变量目标输入端口 off（默认）| on
+  group: ''
+  block_parameter: uref_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal cost
+  summary: 添加最优代价输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_cost
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimization status
+  summary: 添加优化状态输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_qpstatus
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Estimated controller states
+  summary: 添加估计状态输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_state
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal control sequence
+  summary: 添加最优控制序列输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_mvseq
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal state sequence
+  summary: 添加最优状态序列输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_xseq
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 最优输出序列
+  summary: 添加最优输出序列输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_ovseq
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 使用自定义状态估计代替内置卡尔曼滤波器
+  summary: 使用自定义状态估计输入端口 off（默认）| on
+  group: ''
+  block_parameter: state_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV 下限
+  summary: 添加最小 OV 约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: ymin_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV 上限
+  summary: 添加最大 OV 约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: ymax_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV 下限
+  summary: 添加最小 MV 约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: umin_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV 上限
+  summary: 添加最大 MV 约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: umax_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 自定义约束
+  summary: 添加混合输入/输出线性约束矩阵的输入端口 off（默认）| on
+  group: ''
+  block_parameter: cc_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV 权重
+  summary: 添加 OV 整定权重输入端口 off（默认）| on
+  group: ''
+  block_parameter: ywt_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV 权重
+  summary: 添加 MV 整定权重输入端口 off（默认）| on
+  group: ''
+  block_parameter: uwt_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MVRate 权重
+  summary: 添加 MV 速率整定权重输入端口 off（默认）| on
+  group: ''
+  block_parameter: duwt_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 松弛变量权重
+  summary: 添加 ECR 整定权重输入端口 off（默认）| on
+  group: ''
+  block_parameter: rhoeps_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 在运行时调整预测时域和控制时域
+  summary: 添加时域输入端口 off（默认）| on
+  group: ''
+  block_parameter: pm_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 最大预测时域
+  summary: 添加时域输入端口 10（默认）| 正整数
+  group: ''
+  block_parameter: MaximumP
+  type: string, character vector
+  default: '"10"'
+- name: 采样时间
+  summary: 默认模块采样时间 1（默认）| 正标量
+  group: ''
+  block_parameter: n_ts
+  type: string, character vector
+  default: '"1"'
+- name: 预测时域
+  summary: 默认预测时域 10（默认）| 正整数
+  group: ''
+  block_parameter: n_p
+  type: string, character vector
+  default: '"10"'
+- name: 操纵变量数量
+  summary: 默认操纵变量数量 1（默认）| 正整数
+  group: ''
+  block_parameter: n_mv
+  type: string, character vector
+  default: '"1"'
+- name: 可测扰动数量
+  summary: 默认可测扰动数量 1（默认）| 非负整数
+  group: ''
+  block_parameter: n_md
+  type: string, character vector
+  default: '"1"'
+- name: 不可测扰动数量
+  summary: 默认不可测扰动数量 0（默认）| 非负整数
+  group: ''
+  block_parameter: n_ud
+  type: string, character vector
+  default: '"0"'
+- name: 被测输出数量
+  summary: 被测输出的默认数量 1（默认）| 正整数
+  group: ''
+  block_parameter: n_mo
+  type: string, character vector
+  default: '"1"'
+- name: 非被测输出数量
+  summary: 非被测输出的默认数量 0（默认）| 非负整数
+  group: ''
+  block_parameter: n_uo
+  type: string, character vector
+  default: '"0"'
+- name: 模块数据类型
+  summary: 指定操纵变量的数据类型 double（默认）| single | data type expression
+  group: ''
+  block_parameter: BlockDataType
+  type: string, character vector
+  values: '"double", "single", data type expression'
+  default: '"double"'
+- name: 继承采样时间
+  summary: 从父子系统继承模块采样时间 off（默认）| on
+  group: ''
+  block_parameter: SampleTimeInherited
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 使用外部信号启用或禁用优化
+  summary: 添加开关输入端口 off（默认）| on
+  group: ''
+  block_parameter: switch_inport
+  type: string, character vector
+  values: '"off", "on"'
+```
 
 ### **MPC Controller** — 控制器对象 `mpc` 对象名称
 
@@ -988,7 +1303,6 @@ QP 求解器可能由于以下原因而无法找到最优解：
 | **类型：** string, character vector |
 | **值：** `"off"`, `"on"` |
 | **默认：** `"off"` |
-
 ## 所属库
 
 Model Predictive Control Toolbox

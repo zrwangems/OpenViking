@@ -14,6 +14,17 @@ language: en
 # Zero Crossing
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Cnt
+  summary: Number of zero crossings scalar | row vector
+  direction: output
+  data_types: uint32
+```
 
 ### Input
 
@@ -37,8 +48,13 @@ The block outputs the number of zero crossings in the data input as one of these
   column of the data input.
 
 **Data Types:** `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input processing
+  summary: Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+```
 
 ### **Input processing** — Method to process input signals `Columns as channels (frame based)` (default) | `Elements as channels (sample based)`
 
@@ -50,7 +66,6 @@ Specify how the block should process the input.
 - `Elements as channels (sample based)`
   — When you select this option, the block treats each
   element of the input as a separate channel.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

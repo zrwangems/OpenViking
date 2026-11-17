@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Repeating Sequence
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 周期输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,24 @@ chinese_source: worker-translation
 由 **Time values** 和 **Output values** 参数指定的输出信号，用于生成周期标量信号。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Time values
+  summary: 输出时间向量 [0 2]（默认）| 向量
+  group: ''
+  block_parameter: rep_seq_t
+  type: 字符向量
+  values: 向量
+  default: '[0 2]'
+- name: Output values
+  summary: 输出值向量 [0 2]（默认）| 向量
+  group: ''
+  block_parameter: rep_seq_y
+  type: 字符向量
+  values: 向量
+  default: '[0 2]'
+```
 
 ### **Time values** — 输出时间向量 `[0 2]`（默认）| 向量
 
@@ -51,7 +74,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：向量 |
 | **默认值**：`[0 2]` |
-
 ## 所属库
 
 Simulink / Sources

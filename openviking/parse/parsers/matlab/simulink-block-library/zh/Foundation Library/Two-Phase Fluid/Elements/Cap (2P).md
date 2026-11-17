@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Cap (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 质量流量和能量流量为零的两相流体
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 质量流量和能量流量为零的两相流体
 
 两相流体守恒端口，其质量流量和能量流量均等于零。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

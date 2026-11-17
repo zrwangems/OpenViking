@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Out Bus Element
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 外部端口的完整或部分输出 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -28,8 +36,97 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: 端口名称
+  summary: 输出端口的名称 OutBus（默认）| 端口名称
+  group: 模块标签
+  block_parameter: PortName
+  values: '"OutBus"（默认）| 带引号的端口名称'
+- name: 元素
+  summary: 可选的总线元素指定 signal1（默认）| 元素路径
+  group: 模块标签
+  block_parameter: Element
+  values: '"signal1"（默认）| 带引号的元素路径'
+- name: 端口号
+  summary: 端口在父模块上的位置 1（默认）| 实数整数
+  group: 端口选项卡
+  block_parameter: Port
+  values: '"1"（默认）| 带引号的实数整数'
+- name: 输出名称
+  summary: 父子系统或模型中输出总线、信号或消息的名称 无默认值
+  group: 端口选项卡
+  block_parameter: OutputName
+  values: '""（默认）| 带引号的输出名称'
+- name: 初始输出
+  summary: 父条件执行子系统的初始输出 []（默认）| 标量 | 结构体
+  group: 端口选项卡
+  block_parameter: InitialOutput
+  values: '''[]''（默认）| 带引号的标量 | 带引号的结构体'
+- name: 禁用时输出
+  summary: 父条件执行子系统禁用时的输出 held（默认）| reset
+  group: 端口选项卡
+  block_parameter: OutputWhenDisabled
+  values: '"held"（默认）| "reset"'
+- name: 数据类型
+  summary: '数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: 信号选项卡
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto"（默认）| "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32"
+    | "int64" | "uint64" | "boolean" | "fixdt(1,16)" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "string" | "Enum: <class name>"
+    | "Bus: <object name>" | "ValueType: <object name>" | 带引号的数据类型表达式'
+- name: 数据模式
+  summary: 输出元素的数据模式 inherit（默认）| signal | message
+  group: 信号选项卡
+  block_parameter: DataMode
+  values: '"inherit"（默认）| "signal" | "message"'
+- name: 总线虚拟性
+  summary: 虚拟或非虚拟总线 inherit（默认）| virtual | nonvirtual
+  group: 信号选项卡
+  block_parameter: BusVirtuality
+  values: '"inherit"（默认）| "virtual" | "nonvirtual"'
+- name: Dimensions
+  summary: 信号维度 -1（默认）| 整数 | 1×2 整数向量
+  group: 信号选项卡
+  block_parameter: PortDimensions
+  values: '"-1"（默认）| 带引号的整数 | 带引号的 1×2 整数向量'
+- name: Dimensions mode
+  summary: 仅允许可变大小或固定大小信号的选项 Inherit（默认）| Fixed | Variable
+  group: 信号选项卡
+  block_parameter: VarSizeSig
+  values: '"Inherit"（默认）| "No" | "Yes"'
+- name: Unit
+  summary: 物理单位 inherit（默认）| Simulink 软件支持的单位
+  group: 信号选项卡
+  block_parameter: Unit
+  values: '"inherit"（默认）| 带引号的 Simulink 软件支持的单位'
+- name: Complexity
+  summary: 数值类型 auto（默认）| real | complex
+  group: 信号选项卡
+  block_parameter: SignalType
+  values: '"auto"（默认）| "real" | "complex"'
+- name: Minimum
+  summary: 最小值 []（默认）| 标量
+  group: 信号选项卡
+  block_parameter: OutMin
+  values: '"[]"（默认）| 带引号的标量'
+- name: Maximum
+  summary: 最大值 []（默认）| 标量
+  group: 信号选项卡
+  block_parameter: OutMax
+  values: '"[]"（默认）| 带引号的标量'
+- name: Description
+  summary: 总线、信号或消息的描述 无默认值
+  group: 信号选项卡
+  block_parameter: Description
+  values: '""（默认）| 带引号的描述'
+- name: Sample time
+  summary: 采样时间 -1（默认）| 标量
+  group: Execution Tab
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量'
+```
 
 要编辑与 Out Bus Element 模块关联的元素，请在 Simulink® 编辑器中编辑模块标签。
 
@@ -509,7 +606,6 @@ used by...")`
 | **Data Types:** | `char` | `string` |
 
 **Example:** `set_param("mymodel/Subsystem1/myBus.signal1",SampleTime="0.01")`
-
 ## 所属库
 
 Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Ports & Subsystems HDL Coder / Sinks

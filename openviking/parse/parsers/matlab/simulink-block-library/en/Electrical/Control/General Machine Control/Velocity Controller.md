@@ -14,6 +14,29 @@ language: en
 # Velocity Controller
 
 ## Ports
+```yaml
+ports:
+- name: wRef
+  summary: Desired velocity scalar
+  direction: input
+  data_types: single | double
+- name: wMechanical
+  summary: Actual velocity scalar
+  direction: input
+  data_types: single | double
+- name: TqRefSat
+  summary: Saturated reference torque scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Integral reset scalar
+  direction: input
+  data_types: single | double
+- name: TqRefUnsat
+  summary: Unsaturated desired torque scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -48,8 +71,34 @@ External reset signal (rising edge) for the integrator.
 Unsaturated reference torque, in N\*m.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Control type
+  summary: Control model PI control (default) | P control | P-PI control
+  group: ''
+- name: Controller proportional gain
+  summary: Proportional gain 1 (default) | positive scalar
+  group: ''
+- name: Controller integral gain
+  summary: Integral gain 1 (default) | positive scalar
+  group: ''
+- name: P controller proportional gain
+  summary: P proportional gain 1 (default) | positive scalar
+  group: ''
+- name: Integral anti-windup gain
+  summary: PI anti-windup gain 1 (default) | positive scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+- name: Discretization sample time
+  summary: Sample time for discretization 0.001 (default) | positive scalar
+  group: ''
+- name: Enable zero cancellation
+  summary: Feedforward zero-cancellation off (default) | on
+  group: ''
+```
 
 ### **Control type** — Control model `PI control` (default) | `P control` | `P-PI control`
 
@@ -156,7 +205,6 @@ control` or `P-PI control`.
 
 The **Discretization sample time** parameter is only visible when
 **Enable zero cancellation** is selected .
-
 ## Libraries
 
 Simscape / Electrical / Control / General Machine Control

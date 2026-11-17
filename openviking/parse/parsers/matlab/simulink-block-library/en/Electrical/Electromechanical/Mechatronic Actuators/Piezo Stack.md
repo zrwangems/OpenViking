@@ -14,6 +14,21 @@ language: en
 # Piezo Stack
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Rotor mechanical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,61 @@ case.
 
 Mechanical translational conserving port associated with the
 rotor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Static force parameterization Specify from a datasheet (default) | Specify material properties
+  group: Static Force
+- name: Stack area
+  summary: Cross-sectional stack area 100 mm^2 (default) | positive scalar
+  group: Static Force
+- name: Stack length
+  summary: Stack length 36 mm (default) | positive scalar
+  group: Static Force
+- name: No-load displacement at V0 volts
+  summary: No-load unconstrained displacement 0.038 mm (default) | positive scalar
+  group: Static Force
+- name: Blocking force at V0 volts
+  summary: Blocking force 3800 N (default) | positive scalar
+  group: Static Force
+- name: Test voltage V0
+  summary: Test voltage 120 V (default) | positive scalar
+  group: Static Force
+- name: Capacitance
+  summary: Capacitance 13 uF (default) | positive scalar
+  group: Static Force
+- name: Piezo layer thickness
+  summary: Piezo layer thickness 0.3 mm (default) | positive scalar
+  group: Static Force
+- name: Number of layers
+  summary: Number of layers 50 (default) | scalar greater than or equal to 1
+  group: Static Force
+- name: Piezoelectric charge constant
+  summary: Piezoelectric charge constant 500e-12 m/V (default) | positive scalar
+  group: Static Force
+- name: Dielectric constant
+  summary: Dielectric constant 2.1240e-08 F/m (default) | positive scalar
+  group: Static Force
+- name: Elastic compliance
+  summary: Elastic compliance 19e-12 m^2/N (default) | positive scalar
+  group: Static Force
+- name: Parameterization
+  summary: Dynamic force parameterization Specify from a datasheet (default) | Specify material properties
+  group: Dynamic Forces
+- name: Resonant frequency at constant field
+  summary: Resonant frequency at constant field inf kHz (default) | positive scalar
+  group: Dynamic Forces
+- name: Mechanical quality factor
+  summary: Mechanical quality factor inf (default) | positive scalar
+  group: Dynamic Forces
+- name: Damping
+  summary: Translational damping 0 N/(m/s) (default) | nonnegative scalar
+  group: Dynamic Forces
+- name: Effective mass
+  summary: Effective mass 0 g (default) | nonnegative scalar
+  group: Dynamic Forces
+```
 
 ### Static Force
 
@@ -219,7 +287,6 @@ actual stack mass.
 To enable this parameter, set
 **Parameterization** to `Specify
 from a datasheet`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

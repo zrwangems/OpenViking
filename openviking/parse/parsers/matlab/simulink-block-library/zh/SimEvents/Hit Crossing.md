@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # Hit Crossing
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 消息 | 函数调用事件
+  direction: output
+- name: CrossingType
+  summary: 过零方向 None | NegativeToPositive | NegativeToZero | ZeroToPositive | PositiveToNegative | PositiveToZero | ZeroToNegative
+  direction: output
+  data_types: slHitCrossingType
+- name: Index
+  summary: 发生命中穿越事件的输入信号索引 非负整数
+  direction: output
+  data_types: uint32
+- name: Time
+  summary: 命中穿越事件的时间 实数、有限值
+  direction: output
+  data_types: double
+- name: Offset
+  summary: 用于检测的命中穿越值 0（默认）| 实数值
+  direction: output
+  data_types: double | Boolean | struct
+```
 
 ### 输入
 
@@ -118,8 +144,45 @@ Hit Crossing 模块的 *n* 个信号，此字段表示
 **数据类型：** `double`
 
 **数据类型：** `double` | `Boolean` | `struct`
-
 ## 参数
+```yaml
+parameters:
+- name: Hit crossing offset
+  summary: 用于检测的命中穿越值 0（默认）| 实数值
+  group: ''
+  block_parameter: HitCrossingOffset
+  type: character vector
+  values: real values
+  default: '''0'''
+- name: Hit crossing direction
+  summary: 输入信号到达命中穿越的方向 either（默认）| falling | rising
+  group: ''
+  block_parameter: HitCrossingDirection
+  type: character vector
+  values: '''either'' | ''rising'' | ''falling'''
+  default: '''either'''
+- name: Show output port
+  summary: 显示输出端口 off（默认）| on
+  group: ''
+  block_parameter: ShowOutputPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Output type
+  summary: 选择信号、消息或函数调用输出 Signal（Simulink® 的默认值）| Message（SimEvents 的默认值）| Function-Call
+  group: ''
+  block_parameter: HitCrossingOutputType
+  type: character vector
+  values: '''Signal'' | ''Message'' | ''Function-Call'''
+  default: '''Signal'''
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Hit crossing offset** — 用于检测的命中穿越值 `0`（默认）| 实数值
 
@@ -207,7 +270,6 @@ offset** 值时，输出信号被置为一，
 | **类型**：character vector, string |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Discontinuities Simulink / Messages & Events HDL Coder / Discontinuities SimEvents

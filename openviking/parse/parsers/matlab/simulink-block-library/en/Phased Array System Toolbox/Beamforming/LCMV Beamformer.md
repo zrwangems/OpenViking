@@ -14,6 +14,25 @@ language: en
 # LCMV Beamformer
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input signal *M*-by-*N* complex-valued matrix
+  direction: input
+  data_types: double
+- name: XT
+  summary: Training signal *P*-by-*N* complex-valued matrix
+  direction: input
+  data_types: double
+- name: Y
+  summary: Beamformed output *M*-by-1 complex-valued column vector
+  direction: output
+  data_types: double
+- name: W
+  summary: Beamformer weights output *N*-by-1 complex-valued column vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -71,8 +90,32 @@ To enable this port, select the **Enable weights output** checkbox.
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Constraint matrix
+  summary: LCMV beamformer constraint matrix complex([1;1]) (default) | *N*-by-*K* complex-valued matrix
+  group: ''
+- name: Desired response vector
+  summary: Desired response for LCMV beamforming 1 (default) | real-valued *K*-by-1 column vector
+  group: ''
+- name: Diagonal loading factor
+  summary: Diagonal loading factor positive scalar
+  group: ''
+- name: Enable training data input
+  summary: Enable training data input port off (default) | on
+  group: ''
+- name: Enable weights output
+  summary: Enable output of beamformer weights off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Constraint matrix** — LCMV beamformer constraint matrix `complex([1;1])` (default) | *N*-by-*K* complex-valued matrix
 
@@ -151,7 +194,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Beamforming

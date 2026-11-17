@@ -14,6 +14,15 @@ language: en
 # Smoothing (fast->slow)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Signal with faster sampling real scalar
+  direction: input
+- name: y
+  summary: Smoothed signal for the slower network real scalar
+  direction: output
+```
 
 ### Input
 
@@ -25,8 +34,19 @@ Connect this port to the faster network, Network 1, to capture its output.
 ### **y** — Smoothed signal for the slower network real scalar
 
 Connect this port to the input of the slower network, Network 2.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of samples over which to smooth
+  summary: Specify number of samples for averaging the output 1 (default) | positive scalar
+  group: ''
+- name: Port u discrete sample time (s)
+  summary: Specify sample time for the faster network -1 (default) | positive scalar
+  group: ''
+- name: Initial output
+  summary: Specify initial output value 0 (default) | scalar
+  group: ''
+```
 
 ### **Number of samples over which to smooth** — Specify number of samples for averaging the output `1` (default) | positive scalar
 
@@ -40,7 +60,6 @@ Specify sample time for the faster network, Network 1, in seconds.
 ### **Initial output** — Specify initial output value `0` (default) | scalar
 
 Specify initial output value for the faster network, Network 1.
-
 ## Libraries
 
 Simscape / Utilities / Network Couplers / Fundamental Components

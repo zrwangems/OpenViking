@@ -14,6 +14,29 @@ language: en
 # ACIM Torque Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Isd
+  summary: D-axis stator current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Isq
+  summary: Q-axis stator current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm
+  summary: Mechanical speed of rotor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Te
+  summary: Electromechanical torque scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Pe
+  summary: Electromechanical power scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -49,8 +72,59 @@ Electromechanical torque of the rotor.
 Electromechanical power of the rotor.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 2 (default) | scalar
+  group: ''
+- name: Motor parameter input method
+  summary: Type of motor parameters Linear model with lumped parameters (default) | Non-linear model with D,Q-flux linkage
+    LUTs
+  group: ''
+- name: Stator leakage inductance (H)
+  summary: Leakage inductance of stator winding 6.81e-3 (default) | scalar
+  group: ''
+- name: Rotor leakage inductance (H)
+  summary: Leakage inductance of rotor winding 6.81e-3 (default) | scalar
+  group: ''
+- name: Magnetizing Inductance (H)
+  summary: Magnetizing inductance of induction motor 30e-3 (default) | scalar
+  group: ''
+- name: Rated Flux (Wb)
+  summary: Rated flux of motor 38.2e-3 (default) | scalar
+  group: ''
+- name: D-axis current breakpoint vector, id (A)
+  summary: '*d*-axis current lookup vector [0, 150, 350, 500] (default) | vector'
+  group: ''
+- name: Q-axis current breakpoint vector, id (A)
+  summary: '*q*-axis current lookup vector [0, 250, 500] (default) | vector'
+  group: ''
+- name: D-axis flux linkage LUT, FluxD (id,iq) (Wb)
+  summary: Reference *d*-axis flux linkage lookup data 4.4e-2 * repmat([0, 150, 350, 500]', 1, 3) (default) | vector
+  group: ''
+- name: Q-axis flux linkage LUT, FluxD (id,iq) (Wb)
+  summary: Reference *q*-axis flux linkage lookup data 2.1e-3 * repmat([0, 250, 500], 4, 1) (default) | vector
+  group: ''
+- name: Input units
+  summary: Unit of input values Per-Unit (PU) (default) | SI Units
+  group: ''
+- name: Base Voltage (V)
+  summary: Base voltage for per-unit system 24/sqrt(3) (default) | scalar
+  group: ''
+- name: Base Current (A)
+  summary: Base current for per-unit system 5.3611 (default) | scalar
+  group: ''
+- name: Base Speed (rpm)
+  summary: Base speed for per-unit system 1500 (default) | scalar
+  group: ''
+- name: Base torque (Nm)
+  summary: Base torque for per-unit system 0.50072 (default) | scalar
+  group: ''
+- name: Base power (W)
+  summary: Base power for per-unit system 111.4284 (default) | scalar
+  group: ''
+```
 
 ### **Number of pole pairs** — Number of pole pairs available in motor `2` (default) | scalar
 
@@ -216,7 +290,6 @@ using other parameters.
 
 To display this parameter, set **Input units** to
 `Per-Unit (PU)`.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

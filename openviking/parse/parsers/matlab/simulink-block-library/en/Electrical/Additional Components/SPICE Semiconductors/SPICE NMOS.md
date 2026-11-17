@@ -14,6 +14,21 @@ language: en
 # SPICE NMOS
 
 ## Ports
+```yaml
+ports:
+- name: gx
+  summary: Gate terminal electrical
+  direction: conserving
+- name: dx
+  summary: Drain terminal electrical
+  direction: conserving
+- name: sx
+  summary: Source terminal electrical
+  direction: conserving
+- name: bx
+  summary: Bulk terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,181 @@ terminal.
 
 Electrical conserving port associated with the transistor bulk
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: MOS model
+  summary: Drain current model Level 1 MOS (default) | Level 3 MOS
+  group: Model Selection
+- name: Device area factor, AREA
+  summary: Device area 1.0 (default) | positive scalar
+  group: Dimensions
+- name: Number of parallel devices, SCALE
+  summary: Number of parallel devices 1 (default) | positive integer
+  group: Dimensions
+- name: Length of channel, LENGTH
+  summary: Source-to-drain channel length 1e-4 m (default) | positive scalar
+  group: Dimensions
+- name: Width of channel, WIDTH
+  summary: Source-to-drain channel width 1e-4 m (default) | positive scalar
+  group: Dimensions
+- name: Area of drain, AD
+  summary: Drain area 0 m^2 (default) | nonnegative scalar
+  group: Dimensions
+- name: Area of source, AS
+  summary: Source area 0 m^2 (default) | nonnegative scalar
+  group: Dimensions
+- name: Perimeter of drain, PD
+  summary: Drain perimeter 0 m (default) | nonnegative scalar
+  group: Dimensions
+- name: Perimeter of source, PS
+  summary: Source perimeter 0 m (default) | nonnegative scalar
+  group: Dimensions
+- name: Number of drain squares, NRD
+  summary: Number of drain diffusion resistance squares 0 (default) | nonnegative scalar
+  group: Resistors
+- name: Number of source squares, NRS
+  summary: Number of transistor source diffusion squares of resistance 1 (default) | nonnegative scalar
+  group: Resistors
+- name: Drain resistance, RD
+  summary: Series resistance 0 Ohm (default) | nonnegative scalar
+  group: Resistors
+- name: Source resistance, RS
+  summary: Series resistance 0 Ohm (default) | nonnegative scalar
+  group: Resistors
+- name: Sheet resistance, RSH
+  summary: Per square resistance 0 Ohm (default) | nonnegative scalar
+  group: Resistors
+- name: Threshold voltage, VTO
+  summary: Threshold voltage 0 V (default) | scalar
+  group: DC Currents
+- name: Transconductance, KP
+  summary: Transconductance 2e-5 A/V^2 (default) | nonnegative scalar
+  group: DC Currents
+- name: Bulk threshold, GAMMA
+  summary: Bulk threshold 0 V^0.50000 (default) | nonnegative scalar
+  group: DC Currents
+- name: Surface potential, PHI
+  summary: Surface potential 0.6 V (default) | nonnegative scalar
+  group: DC Currents
+- name: Channel modulation, LAMBDA
+  summary: Channel-length modulation 0 1/V (default) | scalar
+  group: DC Currents
+- name: Bulk saturation current, IS
+  summary: Bulk saturation current magnitude 1e-14 A (default) | nonnegative scalar
+  group: DC Currents
+- name: Emission coefficient, N
+  summary: Emission coefficient 1 (default) | nonnegative scalar
+  group: DC Currents
+- name: Bulk jct sat current density, JS
+  summary: Bulk junction saturation current density 0 A/m^2 (default) | nonnegative scalar
+  group: DC Currents
+- name: Width effect on threshold, DELTA
+  summary: Width factor 0 (default) | scalar
+  group: DC Currents
+- name: Max carrier drift velocity, VMAX
+  summary: Maximum drift velocity 0 m/s (default) | scalar
+  group: DC Currents
+- name: Fast surface state density, NFS
+  summary: Fast surface state density 0 1/cm^2 (default) | scalar
+  group: DC Currents
+- name: Vds dependence threshold volt, ETA
+  summary: Drain-source voltage threshold 0 (default) | scalar
+  group: DC Currents
+- name: Vgs dependence on mobility, THETA
+  summary: Mobility dependence coefficient 0 1/V (default) | scalar
+  group: DC Currents
+- name: Mobility modulation, KAPPA
+  summary: Mobility modulation coefficient 0.2 (default) | scalar
+  group: DC Currents
+- name: Model gate capacitance (CGS, CGD, CGB)
+  summary: Gate capacitance model No intrinsic capacitance (default) | Meyer gate capacitances | Charge conservation capacitances
+  group: C-V
+- name: Model gate overlap capacitance (CGSO, CGDO, CGBO)
+  summary: Gate overlap model No (default) | Yes
+  group: C-V
+- name: G-S overlap capacitance, CGSO
+  summary: Gate-source overlap capacitance 0 F/m (default) | scalar | 0 or ≥ 1e-18
+  group: C-V
+- name: G-D overlap capacitance, CGDO
+  summary: Gate-drain overlap capacitance 0 F/m (default) | scalar | 0 or ≥ 1e-18
+  group: C-V
+- name: G-B overlap capacitance, CGBO
+  summary: Gate-bulk overlap capacitance 0 F/m (default) | scalar | 0 or ≥ 1e-18
+  group: C-V
+- name: Model junction capacitance (CBD, CBS)
+  summary: Junction capacitance model No (default) | Yes
+  group: C-V
+- name: Zero-bias BD capacitance, CBD
+  summary: Zero-bias junction capacitance 0 F (default) | 0 or ≥ 1e-18
+  group: C-V
+- name: Zero-bias BS capacitance, CBS
+  summary: Zero-bias bulk-source capacitance 0 F (default) | scalar | 0 or ≥ 1e-18
+  group: C-V
+- name: Bulk junction potential, PB
+  summary: Bulk junction potential 0.8 V (default) | scalar | 0 or ≥ 0.01
+  group: C-V
+- name: Bottom junction cap per area, CJ
+  summary: Zero-bias bulk junction bottom capacitance per junction area 0 F/m^2 (default) | scalar | 0 or ≥ 1e-18
+  group: C-V
+- name: Bottom grading coefficient, MJ
+  summary: Bottom grading coefficient 0.5 (default) | scalar | 0 or < 0.9
+  group: C-V
+- name: Side jct cap/area of jct perimeter, CJSW
+  summary: Zero-bias bulk junction sidewall capacitance per junction perimeter 0 F/m (default) | scalar | 0 or ≥ 1e-18
+  group: C-V
+- name: Side grading coefficient, MJSW
+  summary: Sidewall grading coefficient 0.5 (default) | scalar | 0 < *MJSW* < 0.9
+  group: C-V
+- name: Capacitance coefficient, FC
+  summary: Capacitance coefficient 0.5 (default) | 0 or ≤ 0.95 | scalar
+  group: C-V
+- name: Specify initial condition
+  summary: Initial condition model No (default) | Yes
+  group: C-V
+- name: Initial condition voltage, ICVDS
+  summary: Initial voltage 0 V (default) | scalar
+  group: C-V
+- name: Initial condition voltage, ICVGS
+  summary: Initial voltage 0 V (default) | scalar
+  group: C-V
+- name: Initial condition voltage, ICVBS
+  summary: Initial voltage 0 V (default) | scalar
+  group: C-V
+- name: Oxide thickness, TOX
+  summary: Gate oxide thickness 1e-7 m (default) | nonegative scalar
+  group: Process
+- name: Lateral diffusion, LD
+  summary: Length of lateral diffusion 0 m (default) | scalar
+  group: Process
+- name: Surface mobility, U0
+  summary: Zero-bias surface mobility coefficient 600 cm^2/s/V (default)
+  group: Process
+- name: Substrate doping, NSUB
+  summary: Substrate doping NaN 1/cm^3 (default) | scalar ≥ 1.45e10
+  group: Process
+- name: Gate type, TPG
+  summary: Gate type Opposite of substrate (1) (default) | Same as substrate (-1) | Aluminum (0)
+  group: Process
+- name: Surface state density, NSS
+  summary: Surface state density NaN 1/cm^2 (default) | scalar
+  group: Process
+- name: Junction depth, XJ
+  summary: Junction depth 0m (default)
+  group: Process
+- name: Model temperature dependence using
+  summary: Temperature dependence model Device temperature (default) | Fixed temperature
+  group: Temperature
+- name: Fixed circuit temperature, TFIXED
+  summary: Fixed circuit temperature 300.15 K (default) | positive scalar
+  group: Temperature
+- name: Parameter extraction temperature, TMEAS
+  summary: Parameter extraction temperature 300.15 K (default) | positive scalar
+  group: Temperature
+- name: Offset local circuit temperature, TOFFSET
+  summary: Local circuit temperature offset 0 K (default) | scalar
+  group: Temperature
+```
 
 ### Model Selection
 
@@ -634,7 +822,6 @@ temperature.
 This parameter is only visible when you select `Device
 temperature` for the **Model temperature
 dependence using** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

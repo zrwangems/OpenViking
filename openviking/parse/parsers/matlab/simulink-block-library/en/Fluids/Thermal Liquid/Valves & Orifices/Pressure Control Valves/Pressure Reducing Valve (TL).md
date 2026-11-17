@@ -14,6 +14,18 @@ language: en
 # Pressure Reducing Valve (TL)
 
 ## Ports
+```yaml
+ports:
+- name: Ps
+  summary: Set pressure signal, Pa physical signal
+  direction: input
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port thermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -34,8 +46,102 @@ Thermal liquid conserving port associated with valve inlet A.
 ### **B** — Liquid port thermal liquid
 
 Thermal liquid conserving port associated with valve inlet B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Opening parameterization
+  summary: Opening parameterization Linear - Area vs. pressure (default) | Tabulated data - Area vs. pressure | Tabulated
+    data - Volumetric flow rate vs. pressure
+  group: Parameters
+- name: Set pressure control
+  summary: Valve operation method Constant (default) | Controlled
+  group: Parameters
+- name: Set pressure (gauge)
+  summary: Gauge pressure at which the valve begins to shut 0.1 MPa (default) | positive scalar
+  group: Parameters
+- name: Pressure regulation range
+  summary: Valve pressure range 0.01 MPa (default) | positive scalar
+  group: Parameters
+- name: Maximum opening area
+  summary: Opening area in fully open position 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Parameters
+- name: Pressure at port B (gauge) vector
+  summary: 'Vector of gauge pressure values for tabulated area parameterization [0.2 : 0.2 : 1.2] MPa (default) | 1-by-*n*
+    vector'
+  group: Parameters
+- name: Opening area vector
+  summary: Valve opening areas for tabulated area parameterization [1e-05, 8e-06, 6e-06, 4e-06, 2e-06, 1e-10] m^2 (default)
+    | 1-by-*n* vector
+  group: Parameters
+- name: Reference pressure at port A (gauge)
+  summary: Reference pressure at port A 1.5 MPa (default) | positive scalar
+  group: Parameters
+- name: Reference pressure at port B (gauge) vector
+  summary: Reference pressure at port B [1.2, 1, .8, .6, .4, .2] MPa (default) | 1-by-*n* vector
+  group: Parameters
+- name: Reference volumetric flow rate vector
+  summary: Reference volumetric flow rate [1e-09, 1.8e-05, 6.6e-05, .00013, .0002, .00028] m^3/s (default) | 1-by-*n* vector
+  group: Parameters
+- name: Cross-sectional area at ports A and B
+  summary: Area at conserving ports 0.01 m^2 (default) | positive scalar
+  group: Parameters
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Parameters
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Parameters
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: Parameters
+- name: Pressure recovery
+  summary: Option to include pressure increase during area expansions off (default) | on
+  group: Parameters
+- name: Opening dynamics
+  summary: Option to include flow response to valve opening off (default) | on
+  group: Parameters
+- name: Opening time constant
+  summary: Valve opening time constant 0.1 s (default) | positive scalar
+  group: Parameters
+- name: Enable check valve
+  summary: Check valve option off (default) | on
+  group: Check Valve
+- name: Cracking pressure differential
+  summary: Set pressure for check valve operation 0.1 MPa (default) | positive scalar
+  group: Check Valve
+- name: Maximum opening pressure differential
+  summary: Maximum pressure in valve 0.2 MPa (default) | positive scalar
+  group: Check Valve
+- name: Maximum opening area
+  summary: Maximum open area 1e-4 m^2 (default) | positive scalar
+  group: Check Valve
+- name: Pressure differential vector
+  summary: 'Pressure differential for check valve operation [0.01 : 0.01 : 1] MPa (default) | 1-by-*n* vector'
+  group: Check Valve
+- name: Opening area vector
+  summary: Check stage opening areas [1e-10, 1e-05, 2e-05, 3e-05, 4e-05, 5e-05, 6e-05, 7.5e-05, 8.5e-05, .0001] m^2 (default)
+    | 1-by-*n* vector
+  group: Check Valve
+- name: Volumetric flow rate vector
+  summary: Check stage volumetric flow rates [.000358, .045, .11, .191, .284, .39, .505, .63, .764, .905] .* 1e-3 m^3/s (default)
+    | 1-by-*n* vector
+  group: Check Valve
+- name: Pressure-Reducing Valve Area fault
+  summary: Option to model reducing valve fault Add fault
+  group: Faults
+- name: Reducing valve opening when faulted
+  summary: Reducing valve fault position Closed (default) | Open | Maintain last value
+  group: Faults
+- name: Check Valve Area fault
+  summary: Option to model check valve fault Add fault
+  group: Faults
+- name: Check valve opening when faulted
+  summary: Faulted valve characteristics Closed (default) | Open | Maintain last value
+  group: Faults
+```
 
 ### Parameters
 
@@ -375,7 +481,6 @@ To enable this parameter, select **Enable check
 valve** and enable faults for the block by clicking the
 **Add fault** hyperlink for the
 **Check Valve Area fault** parameter.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Pressure Control Valves

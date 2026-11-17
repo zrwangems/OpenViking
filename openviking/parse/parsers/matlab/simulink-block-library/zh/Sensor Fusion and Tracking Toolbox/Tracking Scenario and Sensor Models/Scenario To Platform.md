@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Scenario To Platform
 
 ## 端口
+```yaml
+ports:
+- name: Platforms (Scenario Frame)
+  summary: 场景坐标系中的平台位姿 包含 MATLAB® 结构的 Simulink® 总线
+  direction: input
+- name: Reference Platform Pose (Scenario Frame)
+  summary: 场景坐标系中的参考平台位姿 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Platforms (Platform Body Frame)
+  summary: 参考平台本体坐标系下的目标平台位姿 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+```
 
 ### 输入
 
@@ -87,8 +99,25 @@ Create Nonvirtual Buses (Simulink)。该结构具有以下字段：
 | `AngularVelocity` | 目标平台在参考平台本体坐标系中的角速度，指定为实值 1×3 向量。向量的大小定义了角速率。单位为度每秒。 |
 
 您可以将此输出用作 Fusion Radar Sensor 模块的输入。
-
 ## 参数
+```yaml
+parameters:
+- name: Reference platform index
+  summary: 参考平台索引 0（默认）| 正整数
+  group: ''
+- name: Enable reference platform pose input
+  summary: 启用参考平台位姿输入 off（默认）| on
+  group: ''
+- name: Source of output bus name
+  summary: 输出总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Specify an output bus name
+  summary: 输出端口总线名称 BusPlatforms（默认）| 有效总线名称
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Reference platform index** — 参考平台索引 `0`（默认）| 正整数
 
@@ -121,7 +150,6 @@ Create Nonvirtual Buses (Simulink)。该结构具有以下字段：
 
 - `Interpreted execution` — 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，后续仿真将复用该 C 代码。此选项需要额外的启动时间。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Tracking Scenario and Sensor Models

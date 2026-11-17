@@ -14,10 +14,129 @@ language: en
 # Lamp
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Signal to connect and display signal connection options
+  group: Parameters
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Label
+  summary: Position of label displaying name of connected element Hide (default) | Bottom | Top
+  group: Parameters
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Parameters
+- name: Specify State Values as Ranges
+  summary: Option to specify ranges of values that activate states off (default) | on
+  group: Parameters
+  block_parameter: StateValueType
+  type: character vector | string
+  values: '"Discrete" | "Range"'
+  default: '"Discrete"'
+- name: States
+  summary: Pairings of lamp color with signal value scalar and [r g b] vector
+  group: Parameters
+  block_parameter: ColorDefault
+  type: '[r g b] vector'
+  default: '[0.7529 0.7529 0.7529]'
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Design
+- name: Select State
+  summary: Selection of state to configure scalar and [r g b] vector
+  group: Design
+  block_parameter: ColorDefault
+  type: '[r g b] vector'
+  default: '[0.7529 0.7529 0.7529]'
+- name: Apply Default Settings to All States
+  summary: Option to apply settings of default state to all other states off (default) | on
+  group: Design
+- name: Specify State Values as Ranges
+  summary: Option to specify ranges of values that activate states off (default) | on
+  group: Design
+  block_parameter: StateValueType
+  type: character vector | string
+  values: '"Discrete" | "Range"'
+  default: '"Discrete"'
+- name: Value
+  summary: State value scalar
+  group: Design
+- name: Color
+  summary: State color [r g b] vector
+  group: Design
+- name: Opacity
+  summary: State color opacity 1 (default) | scalar
+  group: Design
+- name: Style
+  summary: Shape and icon combination style Intersect (default) | Simple | Subtract
+  group: Design
+- name: Shape
+  summary: State shape image
+  group: Design
+- name: Icon
+  summary: Lamp block appearance SVG image
+  group: Design
+  block_parameter: Icon
+  type: string | character vector
+  default: '''Default'''
+- name: X Offset
+  summary: Horizontal offset of left edge of shape icon combination bounding box from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of shape icon combination bounding box from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Width of shape icon combination scalar
+  group: Design
+- name: Height
+  summary: Height of shape icon combination scalar
+  group: Design
+- name: Icon Size
+  summary: Icon image zoom level scalar
+  group: Design
+- name: Use Background Color
+  summary: Option to specify solid block background color off (default) | on
+  group: Design
+- name: Color
+  summary: Block background color [r g b] vector
+  group: Design
+  block_parameter: BackgroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Design
+- name: Corner Radius
+  summary: Corner radius of area with block background color scalar
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of left edge of foreground image from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of foreground image from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Foreground image width scalar
+  group: Design
+- name: Height
+  summary: Foreground image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain foreground image aspect ratio on (default) | off
+  group: Design
+```
 
 Use the Property Inspector and the Block Parameters dialog box
 to specify the values of the block parameters. To set the core parameters of the dashboard
@@ -635,7 +754,6 @@ Specify the height of the foreground image as a ratio of the block height.
 
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
-
 ## Libraries
 
 Simulink / Dashboard / Customizable Blocks

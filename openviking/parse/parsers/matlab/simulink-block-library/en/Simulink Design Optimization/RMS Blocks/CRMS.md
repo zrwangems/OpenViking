@@ -14,6 +14,15 @@ language: en
 # CRMS
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+- name: Port_1
+  summary: CRMS value scalar
+  direction: output
+```
 
 ### Input
 
@@ -26,11 +35,12 @@ Input value, specified as a scalar signal.
 
 Computed continuous-time, root mean square value, output as a scalar
 signal.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Design Optimization / RMS Blocks

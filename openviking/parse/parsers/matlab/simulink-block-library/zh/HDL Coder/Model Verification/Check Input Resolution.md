@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Check Input Resolution
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 根据分辨率标量检查的输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 断言输出信号 标量
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -34,8 +45,43 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output assertion signal**。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Resolution
+  summary: 要与输入信号进行比较的分辨率值 标量 | 向量
+  group: ''
+  block_parameter: resolution
+  type: 字符串标量或字符向量
+  default: '"1"'
+- name: Enable assertion
+  summary: 启用或禁用检查 on（默认）| off
+  group: ''
+  block_parameter: enabled
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Simulation callback when assertion fails (optional)
+  summary: 断言失败时要计算的表达式 ""（默认）| MATLAB 表达式
+  group: ''
+  block_parameter: callback
+  type: 字符串标量或字符向量
+  default: '""'
+- name: Stop simulation when assertion fails
+  summary: 检查失败时是否停止仿真 on（默认）| off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Output assertion signal
+  summary: 创建输出信号 off（默认）| on
+  group: ''
+  block_parameter: export
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"off"'
+```
 
 ### **Resolution** — 要与输入信号进行比较的分辨率值 标量 | 向量
 
@@ -103,7 +149,6 @@ chinese_source: worker-translation
 | **类型：** 字符串标量或字符向量 |
 | **值：** `"on"` | `"off"` |
 | **默认值：** `"off"` |
-
 ## 所属库
 
 Simulink / Model Verification HDL Coder / Model Verification

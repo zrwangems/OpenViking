@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Power Amplifier
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 随时间变化的输入信号列
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: 随时间变化的输出信号复数列
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 随时间变化的输出信号，以复数列形式返回。输出随时间变化的信号在大小上与输入随时间变化的信号相等。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Model
+  summary: 用于设计放大器的模型 Memory polynomial（默认）| Cross-term memory
+  group: ''
+- name: Coefficient matrix
+  summary: 系数矩阵 1+0i（默认）| 二维复数矩阵
+  group: ''
+- name: Measured interval of PA data (s)
+  summary: 测得输入输出数据的采样时间 1e-6（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 ### **Model** — 用于设计放大器的模型 `Memory polynomial`（默认）| `Cross-term memory`
 
@@ -69,7 +94,6 @@ chinese_source: worker-translation
 
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution`。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短了启动时间，但后续仿真的速度慢于 `Code generation`。在此模式下，您可以调试模块的源代码。
-
 ## 所属库
 
 RF Blockset / Idealized Baseband

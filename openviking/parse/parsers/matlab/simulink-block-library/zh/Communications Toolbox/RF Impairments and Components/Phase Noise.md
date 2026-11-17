@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Phase Noise
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出信号向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +39,28 @@ chinese_source: worker-translation
 ### **Out** — 输出信号向量 | 矩阵
 
 输出信号，返回为与输入信号具有相同数据类型和大小的复值信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Phase noise level (dBc/Hz)
+  summary: 相位噪声电平 [-80 -100]（默认）| 负标量向量
+  group: ''
+- name: Frequency offset (Hz)
+  summary: 频率偏移 [2000 20000]（默认）| 正递增向量
+  group: ''
+- name: Sample rate (Hz)
+  summary: 采样率 1e6（默认）| 正标量
+  group: ''
+- name: Initial seed
+  summary: 噪声发生器的初始种子 2137（默认）| 正标量
+  group: ''
+- name: View Filter Response
+  summary: 显示滤波器幅度响应 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -66,7 +96,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments and Components

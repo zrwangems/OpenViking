@@ -14,6 +14,25 @@ language: en
 # Video To Workspace
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input video matrix | 3-D array | 4-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: Red color channel scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: Green color channel scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: Blue color channel scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -88,8 +107,28 @@ To enable this port, set the **Number of inputs** parameter to
 a value equal to `3`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Variable name
+  summary: MATLAB workspace variable name vout (default) | valid MATLAB variable name
+  group: ''
+- name: Number of inputs
+  summary: Number of inputs ports 1 (default) | positive integer
+  group: ''
+- name: Limit data points to last
+  summary: Maximum number of frames to export 10 (default) | positive integer
+  group: ''
+- name: Decimation
+  summary: Downsample video signal 1 (default) | positive integer
+  group: ''
+- name: Log fixed-point data as a fi object
+  summary: Create fixed-point numeric object off (default) | on
+  group: ''
+- name: Input port labels
+  summary: Input port names R|G|B (default)
+  group: ''
+```
 
 ### **Variable name** — MATLAB workspace variable name `vout` (default) | valid MATLAB variable name
 
@@ -123,7 +162,6 @@ Name the input ports using the vertical bar character as a delimiter.
 
 To enable this parameter, set the **Number of inputs** parameter
 to a value greater than `1`.
-
 ## Libraries
 
 Computer Vision Toolbox / Sinks

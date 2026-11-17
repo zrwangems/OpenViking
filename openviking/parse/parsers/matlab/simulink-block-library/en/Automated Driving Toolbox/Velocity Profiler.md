@@ -14,6 +14,30 @@ language: en
 # Velocity Profiler
 
 ## Ports
+```yaml
+ports:
+- name: Directions
+  summary: Driving directions along path *M*-by-1 vector of 1s (forward motion) and –1s (reverse motion)
+  direction: input
+- name: CumLengths
+  summary: Cumulative path lengths *M*-by-1 vector of monotonically increasing real-valued elements
+  direction: input
+- name: Curvatures
+  summary: Signed path curvatures along path *M*-by-1 real-valued vector
+  direction: input
+- name: StartVelocity
+  summary: Longitudinal velocity of vehicle at start of path real scalar
+  direction: input
+- name: EndVelocity
+  summary: Longitudinal velocity of vehicle at end of path real scalar
+  direction: input
+- name: Velocities
+  summary: Velocity profile along path *M*-by-1 real-valued vector
+  direction: output
+- name: Times
+  summary: Vehicle times of arrival for velocity profile *M*-by-1 real-valued vector
+  direction: output
+```
 
 ### Input
 
@@ -106,8 +130,34 @@ described in Variable-Size Signal Limitations (Simulink).
 
 To enable this port, select the **Show Times output port**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum longitudinal acceleration (m/s^2)
+  summary: Maximum longitudinal acceleration of vehicle 3 (default) | positive real scalar
+  group: ''
+- name: Maximum longitudinal deceleration (m/s^2)
+  summary: Maximum longitudinal deceleration of vehicle 6 (default) | positive real scalar
+  group: ''
+- name: Maximum allowable speed (m/s)
+  summary: Maximum allowable speed along path 10 (default) | positive real scalar
+  group: ''
+- name: Maximum longitudinal jerk (m/s^3)
+  summary: Maximum longitudinal jerk 1 (default) | positive real scalar
+  group: ''
+- name: Maximum lateral acceleration (m/s^2)
+  summary: Maximum lateral acceleration 1 (default) | positive real scalar
+  group: ''
+- name: Show Times output port
+  summary: Output times of arrival for velocity profile off (default) | on
+  group: ''
+- name: Sample time
+  summary: Sample time of block -1 (default) | positive real scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code Generation (default) | Interpreted Execution
+  group: ''
+```
 
 ### **Maximum longitudinal acceleration (m/s^2)** — Maximum longitudinal acceleration of vehicle `3` (default) | positive real scalar
 
@@ -188,7 +238,6 @@ times.
 - `Interpreted execution` — Simulate the model using the
   MATLAB® interpreter. This option shortens startup time. In `Interpreted
   execution` mode, you can debug the source code of the block.
-
 ## Libraries
 
 Automated Driving Toolbox

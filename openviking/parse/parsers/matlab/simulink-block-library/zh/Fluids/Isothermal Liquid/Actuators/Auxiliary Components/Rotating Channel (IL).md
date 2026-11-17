@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Rotating Channel (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: W
+  summary: 角速度，rad/s，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -31,8 +43,22 @@ chinese_source: worker-translation
 ### **W** — 角速度，rad/s，物理信号
 
 旋转轴角速度，单位为 rad/s，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Channel area
+  summary: 轴通道横截面积 1e-3 m^2（默认）| 正标量
+  group: ''
+- name: Port B radius of rotation
+  summary: 旋转半径 0.01 m（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Channel area** — 轴通道横截面积 `1e-3` m^2（默认）| 正标量
 
@@ -49,7 +75,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过孔口的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

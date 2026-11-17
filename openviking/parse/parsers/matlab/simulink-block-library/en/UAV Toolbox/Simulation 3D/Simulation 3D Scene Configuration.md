@@ -14,10 +14,183 @@ language: en
 # Simulation 3D Scene Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Scene source
+  summary: Source of scene Default Scenes (default) | RoadRunner | Unreal Executable | Unreal Editor
+  group: Scene
+- name: Scene name
+  summary: Name of prebuilt 3D scene US city block | Suburban scene
+  group: Scene
+- name: Project name
+  summary: Name of Unreal Engine executable file VehicleSimulation.exe (default) | valid executable file name
+  group: Scene
+- name: Project
+  summary: Name of Unreal Engine project file or RoadRunner file valid project file name
+  group: Scene
+- name: Scene view
+  summary: Placement of virtual camera that displays scene Scene Origin (default) | Custom | vehicle name | sim3d actor name
+    | viewpoint name
+  group: Scene
+- name: Name
+  summary: Name of custom viewpoint custom (default) | character array | string scalar
+  group: Scene
+- name: Translation
+  summary: Viewpoint translation [0 0 0] (default) | real 1-by-3 vector
+  group: Scene
+- name: Rotation
+  summary: Viewpoint rotation [0 0 0] (default) | real 1-by-3 vector
+  group: Scene
+- name: Viewer relative translation [X, Y, Z] (m)
+  summary: Viewpoint translation relative to actor [0 0 0] (default) | real 1-by-3 vector
+  group: Scene
+- name: Viewer relative rotation [Roll, Pitch, Yaw] (deg)
+  summary: Viewpoint rotation relative to actor [0 0 0] (default) | real 1-by-3 vector
+  group: Scene
+- name: Sample time
+  summary: Sample time of visualization engine 1/60 (default) | real positive scalar
+  group: Scene
+- name: Display 3D simulation window
+  summary: Unreal Engine visualization on (default) | off
+  group: Scene
+- name: Override scene weather
+  summary: Option to control the scene weather and sun position off (default) | on
+  group: Weather
+- name: Sun azimuth
+  summary: Azimuth angle from south to horizontal projection of the sun ray 90 (default) | any value between 0 and 360
+  group: Weather
+- name: Sun altitude
+  summary: Altitude angle between sun and horizon 40 (default) | any value between -90 and 90
+  group: Weather
+- name: Enable geospatial sun
+  summary: Option to enable geospatial sun off (default) | on
+  group: Weather
+- name: Latitude
+  summary: Latitude of geolocation on earth 0 (default) | scalar
+  group: Weather
+- name: Longitude
+  summary: Longitude of geolocation on earth 0 (default) | scalar
+  group: Weather
+- name: Date (YYYY-MM-DD)
+  summary: Date 2023-01-01 (default) | integer
+  group: Weather
+- name: Time (HH:MM:SS)
+  summary: Time 10:30:00 (default) | integer
+  group: Weather
+- name: Time zone
+  summary: Time zone -5.0 (default) | any value between -12.0 and 12.0
+  group: Weather
+- name: Daylight saving time
+  summary: Option to enable daylight saving time off (default) | on
+  group: Weather
+- name: Cloud speed
+  summary: Unreal Editor Cloud Speed global actor target value 1 (default) | any value between -100 and 100
+  group: Weather
+- name: Cloud opacity
+  summary: Unreal Editor Cloud Opacity global actor target value 10 (default) | any value between 0 and 100
+  group: Weather
+- name: Enable volumetric clouds
+  summary: Option to enable volumetric clouds off (default) | on
+  group: Weather
+- name: Cloud coverage
+  summary: Unreal Editor Cloud Density global target value 1.0 (default) | any value between 0 and 100
+  group: Weather
+- name: Cloud layer altitude
+  summary: Unreal Editor Layer Bottom Altitude global actor target value 6 (default) | any value between 5 and 20
+  group: Weather
+- name: Fog density
+  summary: Unreal Editor Set Fog Density and Set Start Distance target values 0 (default) | any value between 0 and 100
+  group: Weather
+- name: Rain density
+  summary: Unreal Editor local actor controlling rain density, wetness, rain puddles, and ripples 0 (default) | any value
+    between 0 and 100
+  group: Weather
+- name: Enable raindrops on camera lens
+  summary: Option to enable raindrops on camera lens off (default) | on
+  group: Weather
+- name: Snow density
+  summary: Unreal Editor global actor controlling snow density 0 (default) | any value between 0 and 100
+  group: Weather
+- name: Enable geospatial configuration
+  summary: Option to enable geospatial parameters and variant subsystem off (default) | on
+  group: Geospatial
+- name: Access token ID
+  summary: ID of stored token string representing ID of stored token
+  group: Geospatial
+- name: Use Earth center as origin (ECEF)
+  summary: Use Earth center as origin (ECEF) off (default) | on
+  group: Geospatial
+- name: Origin height (m)
+  summary: Height at georeference point on globe real scalar
+  group: Geospatial
+- name: Origin latitude
+  summary: Latitude real scalar
+  group: Geospatial
+- name: Origin longitude
+  summary: Longitude real scalar
+  group: Geospatial
+- name: Map style
+  summary: Raster overlay type Aerial (default) | Aerial with labels | Road
+  group: Geospatial
+- name: Additional asset IDs
+  summary: Local dataset IDs [] (default) | array | vector
+  group: Geospatial
+- name: Use advanced Sun sky
+  summary: Georeferenced, location-accurate Sun Sky actor off (default) | on
+  group: Geospatial
+- name: Solar time
+  summary: Current solar time 11 (default) | scalar real
+  group: Geospatial
+- name: Time zone
+  summary: Time zone 11 (default) | scalar real
+  group: Geospatial
+- name: Day
+  summary: Day 21 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21
+    | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+  group: Geospatial
+- name: Month
+  summary: Month 9 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+  group: Geospatial
+- name: Year
+  summary: Year 2022 (default) | scalar real
+  group: Geospatial
+- name: Use daylight saving time (DST)
+  summary: Daylight saving time off (default) | on
+  group: Geospatial
+- name: DST start day
+  summary: Start day of daylight saving time 10 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15
+    | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+  group: Geospatial
+- name: DST start month
+  summary: Start month of daylight saving time 3 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+  group: Geospatial
+- name: DST end day
+  summary: Last day of daylight saving time 3 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15
+    | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+  group: Geospatial
+- name: DST end month
+  summary: Last month of daylight saving time 11 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+  group: Geospatial
+- name: DST switch hour
+  summary: Hour when daylight saving time switches 2 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14
+    | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24
+  group: Geospatial
+- name: Authentication manager
+  summary: Management of access tokens button
+  group: Geospatial
+- name: TilesetSource
+  summary: Tileset Source 'Earth Terrain' (default) | 'URL' | 'None'
+  group: Geospatial
+- name: TilesetUrl
+  summary: File path of locally stored 3d tileset data string
+  group: Geospatial
+```
 
 ### Scene
 
@@ -862,7 +1035,6 @@ configuration** check box and set the
 **TilesetSource** parameter to `URL`.
 
 **Data Types:** `string`
-
 ## Libraries
 
 Offroad Autonomy Library / Simulation 3D Aerospace Blockset / Animation / Simulation 3D Automated Driving Toolbox / Simulation 3D Robotics System Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Environment UAV Toolbox / Simulation 3D Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core

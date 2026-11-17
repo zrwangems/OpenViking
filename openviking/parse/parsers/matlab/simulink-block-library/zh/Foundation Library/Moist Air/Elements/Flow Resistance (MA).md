@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Flow Resistance (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口或出口湿空气
+  direction: conserving
+- name: B
+  summary: 入口或出口湿空气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,25 @@ chinese_source: worker-translation
 ### **B** — 入口或出口湿空气
 
 与流动阻力入口或出口相关联的湿空气守恒端口。该模块没有固有的方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal pressure drop
+  summary: 已知工况下的压降 0.001 MPa（默认值）
+  group: ''
+- name: Nominal mixture mass flow rate
+  summary: 已知工况下的质量流量 0.1 kg/s（默认值）
+  group: ''
+- name: Nominal mixture density
+  summary: 已知工况下的密度 0 kg/m^3（默认值）
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 流动阻力端口处的流通面积 0.01 m^2（默认值）
+  group: ''
+- name: Fraction of nominal mixture mass flow rate for laminar flow transition
+  summary: 阈值与标称质量流量之比 1e-3（默认值）
+  group: ''
+```
 
 ### **Nominal pressure drop** — 已知工况下的压降 `0.001 MPa`（默认值）
 
@@ -47,7 +73,6 @@ chinese_source: worker-translation
 ### **Fraction of nominal mixture mass flow rate for laminar flow transition** — 阈值与标称质量流量之比 `1e-3`（默认值）
 
 空气混合物阈值质量流量与标称质量流量之比。该模块使用此参数来设置压降线性化的阈值。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Elements

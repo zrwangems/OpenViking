@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # LMS Filter
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: single | double | fixed point
+- name: Desired
+  summary: 期望信号 标量 | 列向量
+  direction: input
+  data_types: single | double | fixed point
+- name: Step-size
+  summary: 步长 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Adapt
+  summary: 更新滤波器权重 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | Boolean
+- name: Reset
+  summary: 重置滤波器权重 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | Boolean
+- name: Output
+  summary: 期望信号的估计 标量 | 列向量
+  direction: output
+  data_types: single | double | fixed point
+- name: Error
+  summary: 输出信号与期望信号之间的误差 标量 | 列向量
+  direction: output
+  data_types: single | double | fixed point
+- name: Wts
+  summary: 滤波器权重 标量 | 列向量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -128,8 +163,58 @@ sample` 时出现。
 `On` 时出现。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Algorithm
+  summary: 选择算法 LMS（默认）| Normalized LMS | Sign-Error LMS | Sign-Data LMS | Sign-Sign LMS
+  group: 主选项卡
+- name: Filter length
+  summary: 滤波器长度 32（默认）| 标量
+  group: 主选项卡
+- name: Specify step size via
+  summary: 通过以下方式指定步长 Dialog（默认）| Input port
+  group: 主选项卡
+- name: Step size (mu)
+  summary: 步长 0.1（默认）| 正标量
+  group: 主选项卡
+- name: Leakage factor (0 to 1)
+  summary: 泄漏因子 1.0（默认）| 标量
+  group: 主选项卡
+- name: Initial value of filter weights
+  summary: 滤波器权重的初始值 0（默认）| 向量 | 标量
+  group: 主选项卡
+- name: Adapt port
+  summary: 启用 Adapt 端口 off（默认）| on
+  group: 主选项卡
+- name: Reset port
+  summary: 重置端口 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: 主选项卡
+- name: Output filter weights
+  summary: 输出滤波器权重 on（默认）| off
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入运算的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型选项卡
+- name: Parameters
+  summary: 参数 Same word length as first input（默认）| Specify word length | Binary point scaling
+  group: 数据类型选项卡
+- name: Weights
+  summary: 滤波器权重的字长和小数长度 Same as first input（默认）| Binary point scaling
+  group: 数据类型选项卡
+- name: Product and quotient
+  summary: 乘积和商的字长和小数长度 Same as first input（默认）| Binary point scaling
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: 累加器的字长和小数长度 Same as first input（默认）| Binary point scaling
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -327,7 +412,6 @@ step size via** 参数设置为
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数以防止定点工具覆盖您在模块对话框中所指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Adaptive Filters DSP System Toolbox HDL Support / Filtering

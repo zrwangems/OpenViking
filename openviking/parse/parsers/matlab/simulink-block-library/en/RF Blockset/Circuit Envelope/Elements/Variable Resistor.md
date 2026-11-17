@@ -14,6 +14,13 @@ language: en
 # Variable Resistor
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Simulink control signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -22,8 +29,13 @@ language: en
 Simulink control signal, specified as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulate noise
+  summary: Simulate thermal noise on (default) | off
+  group: ''
+```
 
 ### **Simulate noise** — Simulate thermal noise `on` (default) | `off`
 
@@ -41,7 +53,6 @@ A2/Hz, where:
 - T is the value of the **Temperature** parameter,
   in degrees Kelvin. (Also located in the Configuration
   block.)
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

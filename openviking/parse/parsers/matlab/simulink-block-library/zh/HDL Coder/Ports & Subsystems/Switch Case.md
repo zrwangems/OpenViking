@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Switch Case
 
 ## 端口
+```yaml
+ports:
+- name: u1 (logical operator)
+  summary: 用于 case 选择的值 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | enumerated
+- name: case
+  summary: 用于 Switch Case Action Subsystem 模块的动作信号 标量
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +41,31 @@ Switch Case 模块标记为 **u1** 的端口的输入可以是：
 ### **case** — 用于 Switch Case Action Subsystem 模块的动作信号 标量
 
 **Case** 和 **default** 端口的输出是连接到 Switch Case Action Subsystem 模块的动作信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Case conditions
+  summary: 指定 case 值 {1}（默认）| case 列表
+  group: ''
+  block_parameter: CaseConditions
+  type: 字符向量
+  values: '''{1}'' | 带引号的 case 列表'
+  default: '''{1}'''
+- name: Show default case
+  summary: 控制默认输出端口的显示 on（默认）| off
+  group: ''
+  block_parameter: ShowDefaultCase
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: 控制过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Case conditions** — 指定 case 值 `{1}`（默认）| case 列表
 
@@ -96,7 +129,6 @@ off
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

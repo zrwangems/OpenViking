@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Monitor Action Goal
 
 ## 端口
+```yaml
+ports:
+- name: UUID
+  summary: 专用于任意目标消息的唯一 ID 非虚拟总线
+  direction: input
+  data_types: bus
+- name: StatusCode
+  summary: 与 UUID 输入对应的动作目标的执行状态 标量
+  direction: output
+  data_types: int8
+- name: Result
+  summary: 与特定动作目标关联的结果消息 非虚拟总线
+  direction: output
+  data_types: bus
+- name: Feedback
+  summary: 与特定动作目标关联的反馈消息 非虚拟总线
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: 监视动作目标时的错误条件 整数
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -77,8 +100,25 @@ chinese_source: worker-translation
 当选中 **Show ErrorCode output port** 时，此输出启用。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Name
+  summary: 从配对的 Send Action Goal 模块继承的动作名称 字符向量
+  group: ''
+- name: Type
+  summary: 从配对的 Send Action Goal 模块继承的动作类型 字符向量
+  group: ''
+- name: Paired Send Action Goal Block
+  summary: 配对 Send Action Goal 模块的路径 block path
+  group: ''
+- name: Show Feedback output port
+  summary: 启用反馈输出端口 off（默认）| on
+  group: ''
+- name: Show ErrorCode output port
+  summary: 启用错误代码输出端口 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -107,7 +147,6 @@ chinese_source: worker-translation
 ### **Show ErrorCode output port** — 启用错误代码输出端口 `off`（默认）| `on`
 
 选中此复选框以启用 **ErrorCode** 输出。如果发生错误条件，**Result** 端口会输出空消息。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

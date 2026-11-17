@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Sigmoid Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出数据 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,52 @@ chinese_source: worker-translation
 对输入矩阵应用 sigmoid 函数的结果。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Approximation method
+  summary: 用于计算层输出的近似方法 None（默认）| CORDIC | Lookup
+  group: 数据类型
+  block_parameter: ApproximationMethod
+  type: 字符向量
+  values: '''none'' | ''CORDIC'' | ''Lookup'''
+  default: '''none'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认）| <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| <data type expression>'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 阻止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Sample time
+  summary: 用于指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中，选择**属性检查器**。
 
@@ -192,7 +247,6 @@ chinese_source: worker-translation
 | **参数：** `SampleTime` |
 | **数据类型：** `char` |
 | **值：** `'-1'`（默认）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Activation Layers

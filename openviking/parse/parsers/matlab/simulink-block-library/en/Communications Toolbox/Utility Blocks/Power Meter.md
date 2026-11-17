@@ -14,6 +14,37 @@ language: en
 # Power Meter
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: Boolean
+- name: Avg
+  summary: Average power scalar | vector | matrix
+  direction: output
+  data_types: single | double
+- name: Peak
+  summary: Peak power scalar | vector | matrix
+  direction: output
+  data_types: single | double
+- name: PAPR
+  summary: Peak-to-average power ratio scalar | vector | matrix
+  direction: output
+  data_types: single | double
+- name: RelPwr
+  summary: Relative power *N*-by-*M* matrix
+  direction: output
+  data_types: single | double
+- name: Prob
+  summary: Probability in percentage *N*-by-*M* matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -220,8 +251,53 @@ then set the **CCDF output** parameter to `Probability
 curve)`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement
+  summary: Desired power measurement Average power (default) | Peak power | Peak-to-average power ratio | All
+  group: ''
+- name: Reference load (ohms)
+  summary: Reference load in ohms 1 (default) | positive scalar in ohms
+  group: ''
+- name: Output power units
+  summary: Units of measured power values dBm (default) | dBW | Watts
+  group: ''
+- name: Compute CCDF
+  summary: Enable CCDF computations off (default) | on
+  group: ''
+- name: Window length
+  summary: Window length 256 (default) | positive integer
+  group: ''
+- name: Overlap length
+  summary: Overlap length between windows 255 (default) | nonnegative integer
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: ''
+- name: Power range (dB)
+  summary: Power range in dB 50 (default) | positive scalar
+  group: ''
+- name: Power resolution (dB)
+  summary: Power Resolution in dB 0.1 (default) | positive scalar
+  group: ''
+- name: CCDF output
+  summary: CCDF output Relative power (dB above average power) (default) | Probability (%) | Relative power and probability
+    (whole CCDF curve)
+  group: ''
+- name: Specify probability (%) for relative power output
+  summary: Specify probability for relative power output [10;1;0.1;0.01;0.001;0.0001] (default) | column vector
+  group: ''
+- name: Specify relative power (dB) for probability output
+  summary: Specify relative power for probability output [0;3;6;9;12] (default) | column vector
+  group: ''
+- name: Reset port
+  summary: Enable reset port off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Measurement** — Desired power measurement `Average power` (default) | `Peak power` | `Peak-to-average power ratio` | `All`
 
@@ -436,7 +512,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Statistics Communications Toolbox / Utility Blocks

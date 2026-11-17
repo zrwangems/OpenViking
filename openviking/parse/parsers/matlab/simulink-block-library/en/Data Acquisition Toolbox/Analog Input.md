@@ -14,6 +14,17 @@ language: en
 # Analog Input
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Acquired analog input double
+  direction: output
+  data_types: double
+- name: Relative timestamp
+  summary: Relative timestamps of scans
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -35,8 +46,31 @@ available when you check the Output
 relative timestamps parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: Device from which you want to acquire data
+  group: ''
+- name: Acquisition Mode
+  summary: Synchronous setting Asynchronous | Synchronous
+  group: ''
+- name: Channels
+  summary: Device channel selection and configuration options depend on device
+  group: ''
+- name: Number of ports
+  summary: Number of output data ports 1 for all channels | 1 per channel
+  group: ''
+- name: Input sample rate
+  summary: Device sampling rate numeric value
+  group: ''
+- name: Block size
+  summary: Number of scans per time step integer value
+  group: ''
+- name: Output relative timestamps
+  summary: Add timestamp output port
+  group: ''
+```
 
 Use the Block Parameters dialog box to select your acquisition mode and to set other
 configuration options.
@@ -184,7 +218,6 @@ relative timestamp is a monotonically-increasing number relative to the
 start of simulation. For synchronous acquisition, an acquisition is
 initiated at every time step; as a result, the relative timestamp is reset
 to zero every time an acquisition is initiated.
-
 ## Libraries
 
 Data Acquisition Toolbox

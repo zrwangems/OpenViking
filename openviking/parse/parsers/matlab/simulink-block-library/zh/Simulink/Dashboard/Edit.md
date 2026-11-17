@@ -15,10 +15,53 @@ chinese_source: worker-translation
 # Edit
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 用于连接参数值的模块参数值连接选项
+  group: 连接
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Align
+  summary: 文本对齐方式 Center（默认）| Left | Right
+  group: 主要
+  block_parameter: Alignment
+  type: 字符串或字符向量
+  values: '''Center'' | ''Left'' | ''Right'''
+  default: '''Center'''
+- name: Label
+  summary: 模块标签位置 Hide（默认）| Bottom | Top
+  group: 主要
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| 标量
+  group: 格式
+  block_parameter: Opacity
+  type: 标量
+  default: '1'
+- name: Foreground Color
+  summary: 模块前景色 [r g b] 向量
+  group: 格式
+  block_parameter: ForegroundColor
+  type: 字符向量 | 字符串
+  values: '[r g b] 向量'
+- name: Background Color
+  summary: 模块背景色 [r g b] 向量
+  group: 格式
+  block_parameter: BackgroundColor
+  type: 字符向量 | 字符串
+  values: '[r g b] 向量'
+```
 
 ### 连接
 
@@ -119,7 +162,6 @@ Edit 模块中文本的对齐方式。
 | **模块参数：** `BackgroundColor` |
 | **类型：** 字符向量 | 字符串 |
 | **值：** `[r g b]` 向量 |
-
 ## 所属库
 
 Simulink / Dashboard

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pilot-Operated Check Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 阀入口，热液体
+  direction: conserving
+- name: B
+  summary: 阀入口，热液体
+  direction: conserving
+- name: X
+  summary: 先导端口，热液体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,40 @@ chinese_source: worker-translation
 ### **X** — 先导端口，热液体
 
 通过该开口（施加足够的压力）来致动先导机构，从而打开阀门以实现反向流动。
-
 ## 参数
+```yaml
+parameters:
+- name: Pressure control specification
+  summary: 选择用作阀门控制信号的压力测量值 Pressure difference of port X relative to port A（默认）| Pressure at port X
+  group: ''
+- name: Cracking pressure differential
+  summary: 阀门首次打开时的有效控制压力 0.01 MPa（默认）| 以压力为单位的正标量
+  group: ''
+- name: Maximum opening pressure differential
+  summary: 阀门完全打开时的有效控制压力 0.02 MPa（默认）| 以压力为单位的正标量
+  group: ''
+- name: Pilot ratio
+  summary: 先导端口面积与入口端口面积之比 1（默认）| 正的无量纲标量
+  group: ''
+- name: Maximum opening area
+  summary: 由于密封不完美，完全打开位置时的开口面积 1e-4 m^2（默认）| 以面积为单位的正标量
+  group: ''
+- name: Leakage area
+  summary: 由于密封不完美，最大关闭位置时的开口面积 1e-10 m^2（默认）| 以面积为单位的正标量
+  group: ''
+- name: Smoothing factor
+  summary: 应用于阀门开口面积函数的平滑量 0（默认）
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 阀门端口处垂直于流动路径的面积 0.01 m^2（默认）| 以面积为单位的正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 定义为实际质量流量与理想质量流量之比的经验因子 0.64（默认）| 正的无量纲标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流与湍流流态之间边界处的雷诺数 150（默认）| 正的无量纲标量
+  group: ''
+```
 
 ### **Pressure control specification** — 选择用作阀门控制信号的压力测量值 `Pressure difference of port X relative to port A`（默认）| `Pressure at port X`
 
@@ -77,7 +121,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流与湍流流态之间边界处的雷诺数 `150`（默认）| 正的无量纲标量
 
 假定流动在层流与湍流流态之间过渡时的雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Directional Control Valves

@@ -15,10 +15,33 @@ chinese_source: worker-translation
 # XCP CAN Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 指定 XCP CAN 会话名称 'CAN_Config1'（默认）
+  group: ''
+- name: A2L File
+  summary: 选择 A2L 文件 文件名
+  group: ''
+- name: Enable seed/key security
+  summary: 选择建立连接所需的密钥 off（默认）| on
+  group: ''
+- name: File (\*.DLL)
+  summary: 选择种子和密钥安全文件 文件名
+  group: ''
+- name: User-defined connect mode
+  summary: 允许特殊连接模式 off（默认）| on
+  group: ''
+- name: Output connection status
+  summary: 显示连接状态 off（默认）| on
+  group: ''
+```
 
 ### **Config name** — 指定 XCP CAN 会话名称 `'CAN_Config1'`（默认）
 
@@ -45,7 +68,6 @@ R2025b 中未记录。
 ### **Output connection status** — 显示连接状态 `off`（默认）| `on`
 
 选择此选项以显示与服务器模块的连接状态。选择此选项会添加一个新的输出端口。
-
 ## 所属库
 
 Vehicle Network Toolbox / XCP Communication / CAN Simulink Real-Time / XCP / CAN

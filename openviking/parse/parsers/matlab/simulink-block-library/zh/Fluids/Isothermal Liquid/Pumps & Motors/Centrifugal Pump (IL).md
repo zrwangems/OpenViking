@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Centrifugal Pump (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 泵入口等温液体
+  direction: conserving
+- name: B
+  summary: 泵出口等温液体
+  direction: conserving
+- name: R
+  summary: 叶轮轴机械旋转
+  direction: conserving
+- name: C
+  summary: 泵壳体机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,71 @@ chinese_source: worker-translation
 ### **C** — 泵壳体机械旋转
 
 与壳体关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Pump parameterization
+  summary: 扬程和制动功率参数化 Capacity, head, and brake power at reference shaft speed（默认）| 1D tabulated data - head and brake power
+    vs. capacity at reference shaft speed | 2D tabulated data - head and brake power vs. capacity and shaft speed
+  group: ''
+- name: Nominal capacity
+  summary: 泵体积流量 45 lpm（默认）| 正标量
+  group: ''
+- name: Nominal head
+  summary: 泵扬程 40 m（默认）| 正标量
+  group: ''
+- name: Nominal brake power
+  summary: 泵功率 0.85 kW（默认）| 正标量
+  group: ''
+- name: Maximum head at zero capacity
+  summary: 零流量时的最大泵扬程 60 m（默认）| 正标量
+  group: ''
+- name: Maximum capacity at zero head
+  summary: 零扬程时的最大流量 80 lpm（默认）| 正标量
+  group: ''
+- name: Reference shaft speed
+  summary: 用于相似定律计算的参考轴角速度 1770 rpm | 3500 rpm | 正标量
+  group: ''
+- name: Minimum shaft speed threshold as fraction of reference
+  summary: 最小轴转速阈值 1e-2（默认）| 正标量
+  group: ''
+- name: Reference capacity vector
+  summary: 体积流量 [16.67, 30, 40, 53.33, 66.67, 83.33] lpm（默认）| 向量
+  group: ''
+- name: Reference head vector
+  summary: 泵扬程向量 [50, 47.5, 45, 40, 35, 25] m（默认）| 向量
+  group: ''
+- name: Reference brake power vector
+  summary: 泵制动功率向量 [.6, .75, .85, .93, .98, .99] kW（默认）| 向量
+  group: ''
+- name: Capacity vector, q
+  summary: 体积排量向量 [16.67, 23.33, 30, 40, 53.33, 60] lpm（默认）| 向量
+  group: ''
+- name: Shaft speed vector, w
+  summary: 角速度向量 [2450, 2800, 3150, 3500] rpm（默认）| 向量
+  group: ''
+- name: Head table, H(q,w)
+  summary: 泵扬程矩阵 [25, 32.7, 42.5, 50; 24, 31.7, 41, 49; 22.7, 30.5, 39, 47.5; 20, 28, 36, 45; 15.7, 24, 32, 40; 12.5, 21,
+    29.5, 37.5] m（默认）| *M*×*N* 矩阵
+  group: ''
+- name: Brake power table, Wb(q,w)
+  summary: 泵制动功率矩阵 [.28, .38, .5, .6; .31, .41, .55, .68; .33, .44, .6, .75; .36, .48, .65, .83; .38, .53, .72, .93; .39,
+    .55, .75, .97] kW（默认）| *M*×*N* 矩阵
+  group: ''
+- name: Reference density
+  summary: 给定泵性能数据的流体密度 998 kg/m^3（默认）| 正标量
+  group: ''
+- name: Impeller diameter scale factor
+  summary: 用于相似定律计算的模型直径与参考直径之比 1（默认）| 正标量
+  group: ''
+- name: Mechanical orientation
+  summary: 轴正常旋转方向 Positive angular velocity of port R relative to port C corresponds to normal pump operation（默认）| Negative
+    angular velocity of port R relative to port C corresponds to normal pump operation
+  group: ''
+- name: Check if operating beyond normal pump operation
+  summary: 当模块超出运行边界时发出通知的选项 None（默认）| Warning | Error
+  group: ''
+```
 
 ### **Pump parameterization** — 扬程和制动功率参数化 `Capacity, head, and brake power at reference shaft speed`（默认）| `1D tabulated data - head and brake power vs. capacity at reference shaft speed` | `2D tabulated data - head and brake power vs. capacity and shaft speed`
 
@@ -264,7 +342,6 @@ and shaft speed`。
 要启用此参数，请将 **Pump
 parameterization** 设置为 `Capacity, head, and
 brake power at reference shaft speed`。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors

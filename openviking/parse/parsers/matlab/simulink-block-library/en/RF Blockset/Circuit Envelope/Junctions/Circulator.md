@@ -14,10 +14,31 @@ language: en
 # Circulator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Select component
+  summary: Circulator direction Circulator clockwise (default) | Circulator counter clockwise | Tee H-plane (S11=0) | Reciprocal
+    phase shifter
+  group: ''
+- name: Reference impedances (Ohm)
+  summary: Reference impedance of circulator 50 (default) | positive scalar | three-tuple vector
+  group: ''
+- name: Phase shift, ports 1 and 2 (rad)
+  summary: Angle to shift phase of signal in port 1 and port 2 0 (default) | positive scalar
+  group: ''
+- name: Phase shift, ports 3 (rad)
+  summary: Angle to shift phase of signal in port 3 0 (default) | positive scalar
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Select component** — Circulator direction `Circulator clockwise` (default) | `Circulator counter clockwise` | `Tee H-plane (S11=0)` | `Reciprocal phase shifter`
 
@@ -74,7 +95,6 @@ To expose the negative terminals, clear this parameter. By exposing
 these terminals, you can connect them to other parts of your model.
 
 By default, this option is selected.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Junctions

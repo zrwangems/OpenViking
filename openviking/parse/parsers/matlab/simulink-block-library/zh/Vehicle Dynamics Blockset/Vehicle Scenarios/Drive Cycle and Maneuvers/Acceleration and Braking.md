@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Acceleration and Braking
 
 ## 端口
+```yaml
+ports:
+- name: xdot
+  summary: 车辆纵向速度标量
+  direction: input
+  data_types: double
+- name: r
+  summary: 车辆横摆角速度标量
+  direction: input
+  data_types: double
+- name: SteerCmd
+  summary: 车辆方向盘转角标量
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: 驾驶员参考数据总线
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: 驾驶员指令数据总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -94,8 +117,90 @@ chinese_source: worker-translation
 Bus Assignment 模块覆盖 Acceleration and Braking 模块的 TransModeCmd 输出的框图。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: 起始时间 2（默认）| 正标量
+  group: 机动参数
+  block_parameter: tStart
+  values: 2（默认）| 正标量
+- name: tStart 处的纵向加速度，ax [g]
+  summary: 仿真开始时的纵向加速度 0.5（默认）| 正标量
+  group: 机动参数
+  block_parameter: ax
+  values: 0.5（默认）| 正标量
+- name: 纵向速度设定点，velRef
+  summary: 目标速度 50（默认）| 正标量
+  group: 机动参数
+  block_parameter: velRef
+  values: 50（默认）| 正标量
+- name: 纵向速度设定点单位，velRefUnit []
+  summary: 单位 mph（默认）
+  group: 机动参数
+  block_parameter: velRefUnit
+  values: mph（默认）| 字符向量
+- name: 制动踏板 actuation
+  summary: 制动踏板 actuation Time（默认）| Longitudinal displacement
+  group: 机动参数
+  block_parameter: brakingType
+  values: Time（默认）| Longitudinal displacement
+- name: 制动 actuation 时间，tBrake [s]
+  summary: 制动 actuation 时间 15（默认）| 正标量
+  group: 机动参数
+  block_parameter: tBrake
+  values: 15（默认）| 正标量
+- name: 车辆 CG 的纵向位移，xBrake [m]
+  summary: 标称横向偏移 200（默认）| 正标量
+  group: 机动参数
+  block_parameter: xBrake
+  values: 200（默认）| 正标量
+- name: tBrake 处的纵向减速度，axDecel [g]
+  summary: 减速度 1（默认）| 正标量
+  group: 机动参数
+  block_parameter: axDecel
+  values: 1（默认）| 正标量
+- name: 制动后将方向盘角度设置为 0 度
+  summary: 制动后将方向盘角度设置为零度的选项 on（默认）| off
+  group: 机动参数
+  block_parameter: steerZero
+  values: on（默认） | off
+- name: Enable fault tracking before braking
+  summary: 在制动前启用故障跟踪的选项 off（默认） | on
+  group: 跟踪参数
+  block_parameter: faultTracking
+  values: off（默认） | on
+- name: Transport delay buffer size, bufferSize []
+  summary: 传输延迟缓冲区大小 4096（默认） | 正标量
+  group: 跟踪参数
+  block_parameter: bufferSize
+  values: 4096（默认） | 正标量
+- name: Longitudinal velocity and mean longitudinal velocity, velMaxDiff
+  summary: 速度差 1（默认） | 正标量
+  group: 跟踪参数
+  block_parameter: velMaxDiff
+  values: 1（默认） | 正标量
+- name: Mean longitudinal velocity and longitudinal velocity reference, velMeanDiff
+  summary: 速度容差 2（默认） | 正标量
+  group: 跟踪参数
+  block_parameter: velMeanDiff
+  values: 2（默认） | 正标量
+- name: Yaw velocity and mean yaw velocity, rMaxDiff [deg/s]
+  summary: 速度容差 1（默认） | 正标量
+  group: 跟踪参数
+  block_parameter: rMaxDiff
+  values: 1（默认）| 正标量
+- name: 方向盘转角与平均方向盘转角，steerMaxDiff [deg]
+  summary: 方向盘转角容差 3（默认）| 正标量
+  group: 跟踪参数
+  block_parameter: steerMaxDiff
+  values: 3（默认）| 正标量
+- name: 发生故障时停止仿真
+  summary: 发生故障时停止仿真的选项 off（默认）| on
+  group: 跟踪参数
+  block_parameter: stopOnFault
+  values: off（默认）| on
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -398,7 +503,6 @@ Bus Assignment 模块覆盖 Acceleration and Braking 模块的 TransModeCmd 输�
 | **参数：** | `stopOnFault` |
 | **值：** | `off`（默认）| `on` |
 | **数据类型：** | `character vector` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

@@ -14,6 +14,65 @@ language: en
 # International Geomagnetic Reference Field
 
 ## Ports
+```yaml
+ports:
+- name: h
+  summary: Height scalar
+  direction: input
+  data_types: double
+- name: μ (deg)
+  summary: Latitude scalar
+  direction: input
+  data_types: double
+- name: l (deg)
+  summary: Longitude scalar
+  direction: input
+  data_types: double
+- name: dyear
+  summary: Desired year scalar
+  direction: input
+  data_types: double
+- name: XYZ
+  summary: Magnetic field vector
+  direction: output
+  data_types: double
+- name: H
+  summary: Horizontal intensity scalar
+  direction: output
+  data_types: double
+- name: D
+  summary: Declination scalar
+  direction: output
+  data_types: double
+- name: l
+  summary: Inclination scalar
+  direction: output
+  data_types: double
+- name: F
+  summary: Total intensity scalar
+  direction: output
+  data_types: double
+- name: DXDYDZ
+  summary: Secular variation of magnetic field vector
+  direction: output
+  data_types: double
+- name: DH
+  summary: Secular variation of horizontal intensity scalar
+  direction: output
+  data_types: double
+- name: DD
+  summary: Secular variation of declination scalar
+  direction: output
+  data_types: double
+- name: DI
+  summary: Secular variation of inclination scalar
+  direction: output
+  data_types: double
+- name: DF
+  summary: Secular variation of total intensity scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -145,8 +204,68 @@ To enable this port, select **Output secular
 variation**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Generation
+  summary: International Geomagnetic Reference Field generation IGRF-14 (default) | IGRF-13 | IGRF-11 | IGRF-12
+  group: ''
+  block_parameter: generation
+  type: character vector
+  values: '''IGRF-14'' | ''IGRF-13'' | ''IGRF-12'' | ''IGRF-11'' |'
+  default: '''IGRF-14'''
+- name: Units
+  summary: Units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Input decimal year
+  summary: Desired year on (default) | off
+  group: ''
+  block_parameter: time_in
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Month
+  summary: Input month January (default) | February | March | April | May | June | July | August | September | October | November
+    | December
+  group: ''
+  block_parameter: month
+  type: character vector
+  values: '''January'' | ''February'' | ''March'' | ''April'' | ''May'' | ''June'' | ''July'' | ''August'' | ''September''
+    | ''October'' | ''November'' | ''December'''
+  default: '''January'''
+- name: Day
+  summary: Input day 1 (default) | 1 to 31
+  group: ''
+  block_parameter: day
+  type: character vector
+  values: '''1'' to ''31'''
+  default: '''1'''
+- name: Year
+  summary: Input year 2025 (default) | 1900 to 2030
+  group: ''
+  block_parameter: year
+  type: character vector
+  values: any year
+  default: '''2025'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Output secular variance
+  summary: Secular variances on (default) | off
+  group: ''
+  block_parameter: sv_out
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Generation** — International Geomagnetic Reference Field generation `IGRF-14` (default) | `IGRF-13` | `IGRF-11` | `IGRF-12`
 
@@ -309,7 +428,6 @@ Clear this check box to enable just the nonsecular variances:
 | **Type:** character vector |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Gravity

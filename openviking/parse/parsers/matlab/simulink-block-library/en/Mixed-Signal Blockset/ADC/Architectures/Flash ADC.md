@@ -14,6 +14,25 @@ language: en
 # Flash ADC
 
 ## Ports
+```yaml
+ports:
+- name: analog
+  summary: Analog input signal scalar
+  direction: input
+  data_types: double
+- name: start
+  summary: External clock to start conversion scalar
+  direction: input
+  data_types: double
+- name: digital
+  summary: Converted digital output signal scalar
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: ready
+  summary: Determines whether analog to digital conversion is complete scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -44,8 +63,90 @@ Determines whether the analog to digital conversion is complete, returned as a
 scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of bits
+  summary: Number of physical output bits 10 (default) | positive real integer in the range [1, 26]
+  group: Configuration
+- name: Input range (V)
+  summary: ADC dynamic range [-1 1] (default) | 2-element row vector
+  group: Configuration
+  block_parameter: InputRange
+  type: character vector
+  values: 2-element row vector
+  default: '[-1 1]'
+- name: Use external start clock
+  summary: Connect to external start conversion clock on (default) | off
+  group: Configuration
+- name: Conversion start frequency (Hz)
+  summary: Frequency of internal start conversion clock 1e6 (default) | positive real scalar
+  group: Configuration
+- name: RMS aperture jitter (s)
+  summary: RMS aperture jitter added to the start conversion clock 1e-12 (default) | real nonnegative scalar
+  group: Configuration
+- name: Edge trigger type
+  summary: Clock edge type that triggers the output update Rising edge (default) | Falling edge | Either edge
+  group: Configuration
+- name: Match input scale
+  summary: Inherit output polarity and data type from input off (default) | on
+  group: Configuration
+- name: Output polarity
+  summary: Defines ADC output polarity Auto (default) | Bipolar | Unipolar
+  group: Configuration
+  block_parameter: OutputPolarity
+  type: character vector
+  values: Auto | Bipolar | Unipolar
+  default: Auto
+- name: Output data type
+  summary: 'Defines ADC output data type fixdt(1,Nbits) (default) | fixdt(0,Nbits) | double | single | int8 | int16 | int32
+    | uint8 | uint16 | uint32 | Inherit: Inherit via back propagation'
+  group: Configuration
+  block_parameter: OutDataType
+  type: character vector
+  values: 'double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixdt(0,Nbits) | fixdt(1,Nbits) | Inherit: Inherit
+    via back propagation'
+  default: fixdt(1,Nbits)
+- name: Simulate using
+  summary: Define how to simulate ADC Simulink blocks (default) | System object (interpreted) | System object (code generation)
+  group: Configuration
+- name: Enable Linearity Impairments
+  summary: Enable linearity impairments in ADC simulation off (default) | on
+  group: Impairments
+- name: Offset error
+  summary: Shifts quantization steps by specific value 3 LSB (default) | real scalar
+  group: Impairments
+  block_parameter: OffsetError
+  type: character vector
+  values: real scalar
+  default: 3 LSB
+- name: Gain error
+  summary: Error on slope of ADC transfer curve 2 LSB (default) | real scalar
+  group: Impairments
+  block_parameter: GainError
+  type: character vector
+  values: real scalar
+  default: 2 LSB
+- name: Missing codes
+  summary: Position of the failed comparators [] (default) | row vector with positive real values
+  group: Impairments
+- name: Enable Timing Impairments
+  summary: Enable timing impairments in ADC simulation off (default) | on
+  group: Impairments
+- name: Conversion delay (s)
+  summary: Latency of ADC 0 (default) | nonnegative real scalar
+  group: Impairments
+  block_parameter: ConversionDelay
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: Impairments
+- name: Buffer size
+  summary: Number of extra buffer filters 100 (default) | positive real scalar
+  group: Impairments
+```
 
 ### Configuration
 
@@ -362,7 +463,6 @@ To enable this parameter, set **Simulate using** to
 `Simulink blocks` in the Configuration tab. Then select
 **Enable Timing Impairments** and **Enable
 Increased Buffer Size** in the Impairments tab.
-
 ## Libraries
 
 Mixed-Signal Blockset / ADC / Architectures

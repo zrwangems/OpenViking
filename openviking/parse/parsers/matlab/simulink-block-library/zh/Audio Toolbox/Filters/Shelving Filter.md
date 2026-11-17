@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Shelving Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号 列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 峰值增益 (dB) 实数标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: S
+  summary: 斜率 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: F
+  summary: 截止频率 非负标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Port_1
+  summary: 输出信号 列向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -60,8 +83,52 @@ chinese_source: worker-translation
 滤波后的输出信号，以与输入信号大小和数据类型相同的列向量或矩阵形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Specify gain from input port
+  summary: 使用附加输入端口指定增益 off（默认）| on
+  group: ''
+- name: Gain (dB)
+  summary: 峰值增益 (dB) 0（默认）| 实数标量
+  group: ''
+- name: Specify slope from input port
+  summary: 使用附加输入端口指定斜率 off（默认）| on
+  group: ''
+- name: Slope
+  summary: 滤波器斜率 1.5（默认）| 正标量
+  group: ''
+- name: Specify cutoff frequency from input port
+  summary: 使用附加输入端口指定截止频率 off（默认）| on
+  group: ''
+- name: Cutoff frequency (Hz)
+  summary: 滤波器截止频率 200（默认）| 非负标量
+  group: ''
+- name: Type
+  summary: 滤波器类型 lowpass（默认）| highpass
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入的采样率 44100（默认）| 正标量
+  group: ''
+- name: Visualize filter response
+  summary: 打开绘图以可视化滤波器响应 按钮
+  group: ''
+- name: Variable name
+  summary: 导出滤波器的变量名 myFilt（默认）| 有效变量名
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: 如果变量已存在则覆盖 on（默认）| off
+  group: ''
+- name: Export filter to workspace
+  summary: 将滤波器导出到工作区 按钮
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Specify gain from input port** — 使用附加输入端口指定增益 `off`（默认）| `on`
 
@@ -149,7 +216,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Audio Toolbox / Filters

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # ACIM Parameter Estimation Configurator
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 总线信号总线
+  direction: output
+  data_types: single
+```
 
 ### 输出
 
@@ -54,8 +61,94 @@ chinese_source: worker-translation
 配置元素与模块参数类似。有关这些元素的详细信息，请参阅参数。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: 电机极对数 2（默认）| scalar
+  group: ''
+- name: Rated frequency (Hz)
+  summary: 电机额定频率 50（默认）| scalar
+  group: ''
+- name: Nominal motor current (A)
+  summary: 电机标称电流 2（默认）| scalar
+  group: ''
+- name: Nominal voltage (V)
+  summary: 电机标称电压 24（默认）| scalar
+  group: ''
+- name: Maximum inverter current (A)
+  summary: 最大可测量电流 21（默认）| scalar
+  group: ''
+- name: Board resistance (ohm)
+  summary: 逆变器桥电阻 0.0043（默认）| scalar
+  group: ''
+- name: Current sense gain (A/ADC Count)
+  summary: 每个 ADC 计数的电流 0.0105（默认）| scalar
+  group: ''
+- name: Voltage sense gain (V/ADC Count)
+  summary: 每个 ADC 计数的电压 0.0098（默认）| scalar
+  group: ''
+- name: Measurement time (sec)
+  summary: 用于测量和平均电流的时间 5（默认）| scalar
+  group: ''
+- name: Open loop ramp time (sec)
+  summary: 分配给频率斜坡上升的时间 3（默认）| scalar
+  group: ''
+- name: Estimation time (sec)
+  summary: 运行 *Rs* 估计算法的时间 2（默认）| scalar
+  group: ''
+- name: Vd reference voltage 1 (PU)
+  summary: 用于 *Rs* 估计的第一个参考电压 0.1（默认）| scalar
+  group: ''
+- name: Vd reference voltage 2 (PU)
+  summary: 用于 *Rs* 估计的第二个参考电压 0.2（默认）| scalar
+  group: ''
+- name: Frequency 1 as a ratio of rated frequency (PU)
+  summary: 第一个注入低频与额定频率的比值 0.1（默认）| scalar
+  group: ''
+- name: Frequency 2 as a ratio of rated frequency (PU)
+  summary: 第二个注入低频与额定频率的比值 0.2（默认）| scalar
+  group: ''
+- name: High Frequency for Lm (Hz)
+  summary: 第三个注入信号的频率 200（默认）| scalar
+  group: ''
+- name: Voltage sweep start value voltage (PU)
+  summary: 电压扫描开始时的初始电压 0.1（默认）| scalar
+  group: ''
+- name: Voltage sweep step value voltage (PU)
+  summary: 电压扫描的步长 0.0125（默认）| scalar
+  group: ''
+- name: High frequency injection voltage (PU)
+  summary: 第三个注入信号的电压 0.1（默认）| scalar
+  group: ''
+- name: Current measurement delay (s)
+  summary: 电流测量中的延迟 2 * 50e-6（默认）| scalar
+  group: ''
+- name: 闭环持续时间 (sec)
+  summary: 闭环电机运行持续时间 5（默认）| scalar
+  group: ''
+- name: 闭环速度 (RPM)
+  summary: 闭环电机速度 950（默认）| scalar
+  group: ''
+- name: 用于 FOC 的 Iq 参考电流 (PU)
+  summary: 估算 *J* 和 *B* 时用于 FOC 的参考电流 0.2（默认）| scalar
+  group: ''
+- name: 指定电流控制器增益
+  summary: 指定 PI 电流控制器增益 off（默认）| on
+  group: ''
+- name: 比例增益
+  summary: PI 控制器的比例增益 1（默认）| scalar
+  group: ''
+- name: 积分增益
+  summary: PI 控制器的积分增益 1000（默认）| scalar
+  group: ''
+- name: 惯性估算的速度下限 (RPM)
+  summary: 惯性滑行期间的速度下限 100（默认）| scalar
+  group: ''
+- name: 参数估算采样时间 (sec)
+  summary: 参数估算的采样时间 50e-6（默认）| scalar
+  group: ''
+```
 
 #### 电机和逆变器
 
@@ -200,7 +293,6 @@ ACIM 机械参数估算模块在惯性滑行期间记录时间戳以估算电机
 - ACIM Rs Estimator
 - Rr L Estimator
 - ACIM Mechanical Parameter Estimator
-
 ## 所属库
 
 Motor Control Blockset / Parameter Estimation / ACIM Parameter Estimation

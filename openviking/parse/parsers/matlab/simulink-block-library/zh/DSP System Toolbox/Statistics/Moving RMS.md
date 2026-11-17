@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Moving RMS
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: lambda
+  summary: 遗忘因子 范围 [0,1] 内的非负实数标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 移动 RMS 输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -58,8 +73,34 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 移动 RMS 方法 Sliding window（默认）| Exponential weighting
+  group: ''
+- name: Specify window length
+  summary: 用于指定窗口长度的标志 开（默认）| 关
+  group: ''
+- name: Window length
+  summary: 滑动窗口的长度 4（默认）| 正标量整数
+  group: ''
+- name: Overlap length
+  summary: 窗口之间的重叠长度 3（默认）| 非负整数
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号的任意帧长度 关（默认）| 开
+  group: ''
+- name: Specify forgetting factor from input port
+  summary: 用于指定遗忘因子的标志 关（默认）| 开
+  group: ''
+- name: Forgetting factor
+  summary: 指数加权因子 0.9（默认）| 范围 [0,1] 内的非负实数标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 如果某个参数被列为可调，则您可以在仿真期间更改其值。
 
@@ -131,7 +172,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` –– 使用生成的 C 代码仿真模型。第一次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Statistics

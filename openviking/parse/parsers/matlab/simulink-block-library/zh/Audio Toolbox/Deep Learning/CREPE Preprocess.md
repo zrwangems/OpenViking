@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CREPE Preprocess
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 音频输入向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 预处理后的音频帧 4 维数组
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -30,8 +41,19 @@ chinese_source: worker-translation
 用于 CREPE 神经网络的预处理音频帧，返回为 1024×1×1×*N* 数组，其中 *N* 是由 **Number of output frames** 指定的生成帧数。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 16e3（默认）| 正标量
+  group: ''
+- name: Overlap percentage (%)
+  summary: 连续帧之间的重叠百分比 85（默认）| [0, 100)
+  group: ''
+- name: Number of output frames
+  summary: 生成的帧数 1（默认）| 正整数
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（Hz） `16e3`（默认）| 正标量
 
@@ -44,7 +66,6 @@ chinese_source: worker-translation
 ### **Number of output frames** — 生成的帧数 `1`（默认）| 正整数
 
 输出中生成的帧数，指定为正整数。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

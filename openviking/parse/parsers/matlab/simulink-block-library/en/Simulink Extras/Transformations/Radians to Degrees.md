@@ -14,6 +14,17 @@ language: en
 # Radians to Degrees
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input angle in radians scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output angle in degrees scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -29,11 +40,12 @@ Input signal specifying the angle in radians.
 Output signal specifying the angle converted to degrees.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Extras / Transformations

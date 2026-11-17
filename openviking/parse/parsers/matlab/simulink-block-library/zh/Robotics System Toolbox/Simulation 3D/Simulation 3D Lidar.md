@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Simulation 3D Lidar
 
 ## 端口
+```yaml
+ports:
+- name: Point cloud
+  summary: 点云数据 *m*-by-*n*-by-3 的正实数值 [*x*, *y*, *z*] 点数组
+  direction: output
+  data_types: single
+- name: Distance
+  summary: 到对象点的距离 *m*-by-*n* 正实数值矩阵
+  direction: output
+  data_types: single
+- name: Reflectivity
+  summary: 表面材质的反射率 *m*-by-*n* 强度值矩阵，范围在 [0, 1] 内
+  direction: output
+  data_types: single
+- name: Labels
+  summary: 标签标识符 *m*×*n* 标签标识符数组
+  direction: output
+  data_types: uint8
+- name: Translation
+  summary: 传感器位置 实值 1×3 向量
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: 传感器方向 实值 1×3 向量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -144,8 +171,61 @@ m×n=VFOVVRES×HFOVHRES
 要启用此端口，请在 **Ground Truth** 选项卡上选择 **Output location (m) and orientation (rad)**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 安装
+- name: Parent name
+  summary: 父级车辆名称 Scene Origin（默认）| 车辆名称
+  group: 安装
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）| ...
+  group: 安装
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移 off（默认）| on
+  group: 安装
+- name: Relative translation [X, Y, Z] (m)
+  summary: 相对于安装位置的平移偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Relative rotation [Roll, Pitch, Yaw] (deg)
+  summary: 相对于安装位置的旋转偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 安装
+- name: Detection range (m)
+  summary: 激光雷达传感器测量的最大距离 120（默认）| 正标量
+  group: 参数
+- name: Range resolution (m)
+  summary: 激光雷达传感器距离分辨率 0.002（默认）| 正实标量
+  group: 参数
+- name: Vertical field of view (deg)
+  summary: 垂直视场 40（默认）| 正标量
+  group: 参数
+- name: Vertical resolution (deg)
+  summary: 垂直角分辨率 1.25（默认）| 正标量
+  group: 参数
+- name: Horizontal field of view (deg)
+  summary: 水平视场 360（默认）| 正标量
+  group: 参数
+- name: Horizontal resolution (deg)
+  summary: 水平角（方位角）分辨率 0.16（默认）| 正标量
+  group: 参数
+- name: Distance outport
+  summary: 输出到被测对象点的距离 off（默认）| on
+  group: 参数
+- name: Reflectivity outport
+  summary: 表面材质的输出反射率 off（默认）| on
+  group: 参数
+- name: Output semantic segmentation
+  summary: 输出标签 ID 的语义分割图 off（默认）| on
+  group: Ground Truth
+- name: Output location (m) and orientation (rad)
+  summary: 输出传感器的位置和方向 off（默认）| on
+  group: Ground Truth
+```
 
 ### 安装
 
@@ -282,7 +362,6 @@ Origin` 来将传感器安装到场景原点，则 *X*、*Y* 和
 ### **Output location (m) and orientation (rad)** — 输出传感器的位置和方向 `off`（默认）| `on`
 
 选择此参数可分别在 **Translation** 和 **Rotation** 端口输出传感器的平移和旋转。
-
 ## 所属库
 
 Offroad Autonomy Library / Simulation 3D Automated Driving Toolbox / Simulation 3D Robotics System Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors UAV Toolbox / Simulation 3D

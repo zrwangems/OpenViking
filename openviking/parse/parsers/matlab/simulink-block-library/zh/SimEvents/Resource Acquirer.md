@@ -15,6 +15,35 @@ chinese_source: worker-translation
 # Resource Acquirer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: 已离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: 尚未离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: 模块中实体的平均等待时间 标量
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: 提取的实体数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -70,8 +99,52 @@ chinese_source: worker-translation
 要启用此端口，请点击 **Statistics** 选项卡，并选中标记为 **Number of entities extracted, ex** 的复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum number of waiting entities
+  summary: 可以等待资源的实体最大数量 1（默认）| scalar
+  group: ''
+  block_parameter: NumberWaitingEntities
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Event actions
+  summary: 指定实体在特定事件下的行为 Entry（默认）| Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities departed, d
+  summary: 输出已离开模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: 输出模块中存在的、尚未离开的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average wait, w
+  summary: 输出平均等待时间 off（默认）| on
+  group: ''
+  block_parameter: AverageWait
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: 从此模块提取的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumEntitiesExtracted
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Maximum number of waiting entities** — 可以等待资源的实体最大数量 `1`（默认）| `scalar`
 
@@ -154,7 +227,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

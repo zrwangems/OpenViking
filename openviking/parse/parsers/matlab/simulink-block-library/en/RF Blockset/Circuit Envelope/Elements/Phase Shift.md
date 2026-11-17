@@ -14,10 +14,18 @@ language: en
 # Phase Shift
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase shift
+  summary: Phase shift angle 90 deg (default) | non-negative scalar integer
+  group: ''
+```
 
 ### **Phase shift** — Phase shift angle `90 deg` (default) | non-negative scalar integer
 
@@ -26,7 +34,6 @@ The phase shift is applied to all nonzero simulation frequencies. For zero
 (DC) frequency, the shift is always zero.
 
 **Data Types:** `double`
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

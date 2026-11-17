@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Linear FM Waveform
 
 ## 端口
+```yaml
+ports:
+- name: PRFIdx
+  summary: PRF 索引 正整数
+  direction: input
+  data_types: double
+- name: FreqOffset
+  summary: 频率偏移 标量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 脉冲波形 复值向量
+  direction: output
+  data_types: double
+- name: PRF
+  summary: 脉冲重复频率 正标量
+  direction: output
+  data_types: double
+- name: Coeff
+  summary: 匹配滤波器系数 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -71,8 +94,123 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **支持复数：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: 输出波形的采样率 1e6（默认）| 正标量
+  group: ''
+  block_parameter: SampleRate
+  type: double
+  values: 正标量
+- name: Method to specify pulse duration
+  summary: 以时间或占空比表示脉冲持续时间 Pulse width（默认）| Duty cycle
+  group: ''
+  block_parameter: DurationSpecification
+  type: string
+  values: string
+- name: Pulse width (s)
+  summary: 脉冲的时间持续时间 50e-6（默认）| 正标量
+  group: ''
+  block_parameter: PulseWidth
+  type: double
+  values: string
+- name: Duty cycle
+  summary: 波形占空比 0.5（默认）| *[0,1]* 范围内的标量
+  group: ''
+  block_parameter: DutyCycle
+  type: double
+  values: 正标量
+- name: Pulse repetition frequency (Hz)
+  summary: 脉冲重复频率 1e4（默认）| 正标量
+  group: ''
+  block_parameter: PRF
+  type: double
+  values: positive scalar
+  default: 1e6
+- name: Enable PRF selection input
+  summary: 选择预定义 PRF off（默认）| on
+  group: ''
+  block_parameter: PRFSelectionInputPort
+  type: logical
+  values: positive scalar
+  default: 'off'
+- name: Sweep bandwidth (Hz)
+  summary: FM 扫频带宽 1e5（默认）| 正标量
+  group: ''
+- name: Sweep direction
+  summary: FM 扫频方向 Up（默认）| Down
+  group: ''
+- name: Sweep interval
+  summary: FM 频率扫频间隔 Positive（默认）| Symmetric
+  group: ''
+- name: Envelope function
+  summary: FM 信号幅度包络 Rectangular（默认）| Gaussian
+  group: ''
+- name: Source of Frequency Offset
+  summary: 频率偏移源 Property（默认）| Input port
+  group: ''
+  block_parameter: FrequencyOffsetSource
+  type: enum
+  values: Property, Input Port
+  default: Property
+- name: Frequency Offset (Hz)
+  summary: 频率偏移 0（默认）| 标量
+  group: ''
+  block_parameter: FrequencyOffset
+  type: double
+  values: scalar
+  default: '0'
+- name: Source of simulation sample time
+  summary: 仿真采样时间源 Derive from waveform parameters（默认）| Inherit from Simulink engine
+  group: ''
+  block_parameter: SimulationTimeSource
+  type: enum
+  values: Derive from waveform parameters, Inherit from Simulink engine
+  default: Derive from waveform parameters
+- name: Output signal format
+  summary: 输出信号的格式 Pulses（默认）| Samples
+  group: ''
+  block_parameter: OutputFormat
+  type: enum
+  values: Pulses Samples
+  default: Pulses
+- name: Number of samples in output
+  summary: 输出中的样本数 100（默认）| 正整数
+  group: ''
+  block_parameter: NumSamples
+  type: double
+  values: positive scalar
+  default: '100'
+- name: Number of pulses in output
+  summary: 输出中的脉冲数 1（默认）| 正整数
+  group: ''
+  block_parameter: NumPulses
+  type: double
+  values: positive scalar
+  default: '1'
+- name: Enable PRF Output
+  summary: 启用 PRF 输出 off（默认）| on
+  group: ''
+  block_parameter: PRFOutputPort
+  type: enum
+  values: off on
+  default: 'off'
+- name: Enable Matched Filter Coefficients Output
+  summary: 启用匹配滤波器系数输出 off（默认）| on
+  group: ''
+  block_parameter: CoefficientOutputPort
+  type: enum
+  values: off on
+  default: 'off'
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+  default: Interpreted Execution
+```
 
 ### **Sample rate (Hz)** — 输出波形的采样率 `1e6`（默认）| 正标量
 
@@ -388,7 +526,6 @@ FM 信号幅度包络，指定为
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认值：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Waveforms

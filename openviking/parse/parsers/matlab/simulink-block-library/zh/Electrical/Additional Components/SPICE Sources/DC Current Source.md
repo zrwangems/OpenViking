@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # DC Current Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电端口
+  direction: conserving
+- name: '-'
+  summary: 负电压电端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,16 @@ chinese_source: worker-translation
 ### **-** — 负电压电端口
 
 与直流电流源负电压相关联的电守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Constant value, DC
+  summary: 直流输出电流 0 A（默认）
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: 是否包含并联电导 Yes（默认）| No
+  group: ''
+```
 
 ### **Constant value, DC** — 直流输出电流 `0` `A`（默认）
 
@@ -45,7 +62,6 @@ chinese_source: worker-translation
 | *`Yes`* | | *`No`* | | |
 | **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且其不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

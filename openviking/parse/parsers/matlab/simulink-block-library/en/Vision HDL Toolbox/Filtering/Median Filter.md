@@ -14,6 +14,25 @@ language: en
 # Median Filter
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream scalar | vector
+  direction: output
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -80,8 +99,22 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Neighborhood size
+  summary: Size of image region used to compute median 3×3 (default) | 5×5 | 7×7
+  group: ''
+- name: Padding method
+  summary: Method for padding boundary of input image Symmetric (default) | Constant | Replicate | Reflection | None
+  group: ''
+- name: Padding value
+  summary: Value used to pad boundary of input image 0 (default) | integer
+  group: ''
+- name: Line buffer size
+  summary: Size of line buffer 2048 (default) | integer
+  group: ''
+```
 
 ### **Neighborhood size** — Size of image region used to compute median `3×3` (default) | `5×5` | `7×7`
 
@@ -139,7 +172,6 @@ The block allocates (*N*— 1) -by-**Line buffer
 size** memory locations to store the pixels used to compute the median value.
 *N* is the dimension of the square region specified by the
 **Neighborhood size** parameter.
-
 ## Libraries
 
 Vision HDL Toolbox / Analysis & Enhancement Vision HDL Toolbox / Filtering

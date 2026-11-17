@@ -15,10 +15,27 @@ chinese_source: worker-translation
 # Byte Reversal/Change Endianess
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input ports
+  summary: 端口数量 1（默认）
+  group: Change Endianess 的模块参数
+  block_parameter: numInp
+- name: Machine word length
+  summary: 转换的字长 Byte（默认） | Word | Double Word
+  group: Change Endianess 的模块参数
+  block_parameter: />
+- name: Number of inputs
+  summary: 端口数量 1（默认）
+  group: Byte Reversal 模块参数
+  block_parameter: numInp
+```
 
 ### Change Endianess 的模块参数
 
@@ -53,7 +70,6 @@ R2025b 中未记录。
 |  |
 | --- |
 | **模块参数：** `numInp` |
-
 ## 所属库
 
 Simulink Real-Time / Utilities

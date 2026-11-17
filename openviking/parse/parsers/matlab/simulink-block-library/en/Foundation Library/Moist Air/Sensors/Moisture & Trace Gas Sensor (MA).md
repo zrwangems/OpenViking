@@ -14,6 +14,24 @@ language: en
 # Moisture & Trace Gas Sensor (MA)
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Humidity measurement, unitless physical signal
+  direction: output
+- name: Tw
+  summary: Wet-bulb temperature measurement, K physical signal
+  direction: output
+- name: G
+  summary: Trace gas level measurement, unitless physical signal
+  direction: output
+- name: D
+  summary: Mass ratio of water droplets to moist air, unitless physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet moist air
+  direction: conserving
+```
 
 ### Output
 
@@ -71,8 +89,26 @@ droplets** check box.
 
 Moist air conserving port. Connect this port to the node in the moist
 air network where you want to measure the moisture and trace gas level.
-
 ## Parameters
+```yaml
+parameters:
+- name: Humidity
+  summary: Control output port visibility for measuring humidity On (default) | Off
+  group: ''
+- name: Measured humidity specification
+  summary: Select the humidity property to measure Relative humidity (default) | Specific humidity | Mole fraction | Humidity
+    ratio | Wet-bulb temperature
+  group: ''
+- name: Trace gas
+  summary: Control output port visibility for measuring trace gas On (default) | Off
+  group: ''
+- name: Measured trace gas specification
+  summary: Select the trace gas property to measure Mass fraction (default) | Mole fraction
+  group: ''
+- name: Water droplets
+  summary: Control output port visibility for measuring water droplets Off (default) | On
+  group: ''
+```
 
 ### **Humidity** — Control output port visibility for measuring humidity `On` (default) | `Off`
 
@@ -119,7 +155,6 @@ Select the property to measure:
 
 Selecting this check box exposes the output port **D**,
 which lets you measure the mass ratio of water droplets to moist air.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Sensors

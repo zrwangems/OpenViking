@@ -15,13 +15,17 @@ chinese_source: worker-translation
 # Internal Force
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块包含坐标系端口 **B** 和 **F**，分别表示基础坐标系和从动坐标系。物理信号端口 **fm** 提供了指定作用在两个端口坐标系之间的内部力的途径。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 R2025b 中未记录。

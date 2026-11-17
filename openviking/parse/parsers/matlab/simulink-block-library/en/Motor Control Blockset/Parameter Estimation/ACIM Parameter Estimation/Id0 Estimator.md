@@ -14,6 +14,33 @@ language: en
 # Id0 Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Iabc
+  summary: Three-phase current response scalar
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: Control signal for *Id0* estimation logical
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: Bus signal input bus
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*, *b*, and *c*-axis stator reference voltage components scalar'
+  direction: output
+  data_types: single
+- name: Id0
+  summary: Estimated magnetizing current scalar
+  direction: output
+  data_types: single
+- name: Log
+  summary: Debug signals bus
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -109,11 +136,12 @@ debug signals.
 | `1` | *Id0* estimation completed successfully | - |
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Motor Control Blockset / Parameter Estimation / ACIM Parameter Estimation

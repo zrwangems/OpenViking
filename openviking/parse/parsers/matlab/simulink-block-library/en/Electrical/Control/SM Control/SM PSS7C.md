@@ -14,6 +14,21 @@ language: en
 # SM PSS7C
 
 ## Ports
+```yaml
+ports:
+- name: V_SI1
+  summary: Speed, frequency, or power scalar
+  direction: input
+  data_types: single | double
+- name: V_SI2
+  summary: Electrical power scalar
+  direction: input
+  data_types: single | double
+- name: V_ST
+  summary: Stabilization speed, frequency, or power scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -39,8 +54,109 @@ Automatic voltage regulator input stabilization signal, as limited by
 scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Power system stabilizer main gain, K_S1 (pu)
+  summary: Power system stabilizer forward path gain 50 (default) | scalar
+  group: ''
+- name: Power system stabilizer gain, K_S2 (pu)
+  summary: Power system stabilizer transducer gain 0.7052 (default) | scalar
+  group: ''
+- name: Power system stabilizer gain, K_S3 (pu)
+  summary: Power system stabilizer gain 1 (default) | scalar
+  group: ''
+- name: PSS transducer time constant, T_6 (s)
+  summary: Transducer time constant 6 0 (default) | scalar
+  group: ''
+- name: PSS transducer time constant, T_7 (s)
+  summary: Transducer time constant 7 10 (default) | scalar
+  group: ''
+- name: PSS washout time constant, T_w1 (s)
+  summary: Washout time constant 1 10 (default) | scalar
+  group: ''
+- name: PSS washout time constant, T_w2 (s)
+  summary: Washout time constant 2 10 (default) | scalar
+  group: ''
+- name: PSS washout time constant, T_w3 (s)
+  summary: Washout time constant 3 10 (default) | scalar
+  group: ''
+- name: PSS washout time constant, T_w4 (s)
+  summary: Washout time constant 4 0 (default) | scalar
+  group: ''
+- name: PSS transducer time constant, T_8 (s)
+  summary: Transducer time constant 8 0.5 (default) | scalar
+  group: ''
+- name: PSS washout time constant, T_9 (s)
+  summary: Washout time constant 9 0.1 (default) | scalar
+  group: ''
+- name: Denominator exponent for ramp-track filter, M
+  summary: Exponent of denominator of the ramp-track filter 5 (default) | scalar
+  group: ''
+- name: Overall exponent for ramp-track filter, N
+  summary: Overall exponent of ramp-track filter 1 (default) | scalar
+  group: ''
+- name: PSS canonical gain 0, K_0 (pu)
+  summary: Power system stabilizer canonical gain 0 0.399 (default) | scalar
+  group: ''
+- name: PSS canonical gain 1, K_1 (pu)
+  summary: Power system stabilizer canonical gain 1 1.8462 (default) | scalar
+  group: ''
+- name: PSS canonical gain 2, K_2 (pu)
+  summary: Power system stabilizer canonical gain 2 0.4231 (default) | scalar
+  group: ''
+- name: PSS canonical gain 3, K_3 (pu)
+  summary: Power system stabilizer canonical gain 3 0.2104 (default) | scalar
+  group: ''
+- name: PSS canonical gain 4, K_4 (pu)
+  summary: Power system stabilizer canonical gain 4 0 (default) | scalar
+  group: ''
+- name: PSS third block gain, K_i3 (pu)
+  summary: Power system stabilizer third block gain 1 (default) | scalar
+  group: ''
+- name: PSS fourth block gain, K_i4 (pu)
+  summary: Power system stabilizer fourth block gain 0 (default) | scalar
+  group: ''
+- name: PSS time constant (first block), T_i1 (s)
+  summary: Power system stabilizer time constant for the first block 0.03 (default) | scalar
+  group: ''
+- name: PSS time constant (second block), T_i2 (s)
+  summary: Power system stabilizer time constant for the second block 0.0293 (default) | scalar
+  group: ''
+- name: PSS time constant (third block), T_i3 (s)
+  summary: Power system stabilizer time constant for the third block 0.2804 (default) | scalar
+  group: ''
+- name: PSS time constant (fourth block), T_i4 (s)
+  summary: Power system stabilizer time constant for the fourth block 1 (default) | scalar
+  group: ''
+- name: Maximum PSS output, V_STmax (pu)
+  summary: Maximum stabilization 0.05 (default) | scalar
+  group: ''
+- name: Minimum PSS output, V_STmin (pu)
+  summary: Minimum stabilization -0.05 (default) | scalar
+  group: ''
+- name: 'Input signal #1 maximum limit, V_S1max (pu)'
+  summary: Maximum limit for the first input 2 (default) | scalar
+  group: ''
+- name: 'Input signal #1 minimum limit, V_S1min (pu)'
+  summary: Minimum limit for the first input -2 (default) | scalar
+  group: ''
+- name: 'Input signal #2 maximum limit, V_S2max (pu)'
+  summary: Maximum limit for the second input 2 (default) | scalar
+  group: ''
+- name: 'Input signal #2 minimum limit, V_S2min (pu)'
+  summary: Minimum limit for the second input -2 (default) | scalar
+  group: ''
+- name: Generator MW threshold for PSS activation, P_PSSon (pu)
+  summary: Generator threshold for power system stabilizer activation 0 (default) | scalar
+  group: ''
+- name: Generator MW threshold for PSS de-activation, P_PSSoff (pu)
+  summary: Generator threshold for power system stabilizer deactivation 0 (default) | scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Power system stabilizer main gain, K\_S1 (pu)** — Power system stabilizer forward path gain 50 (default) | scalar
 
@@ -196,7 +312,6 @@ For more information, see What Is Sample Time? and Specify Sample Time.
 For inherited discrete-time operation, set the sample time to `-1`.
 For discrete-time operation, set the sample time to a positive scalar. For
 continuous-time operation, set the sample time to `0`.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

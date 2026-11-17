@@ -15,10 +15,57 @@ chinese_source: worker-translation
 # Continuous Wave
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 波形类型 Ideal voltage（默认）| Ideal current | Power
+  group: ''
+- name: Constant in-phase value
+  summary: 载波频率的同相调制 0 V（默认）| 实数向量 | V | mV | kV
+  group: ''
+- name: Constant quadrature value
+  summary: 载波频率的正交调制 0 V（默认）| 实数向量 | V | mV | kV
+  group: ''
+- name: Source impedance(Ohm)
+  summary: 源的输入阻抗 50（默认）| 正实数 | 复数
+  group: ''
+- name: Available power
+  summary: 载波频率的可用功率 0 W（默认）| 实数向量 | W | mW | dBW | dBm
+  group: ''
+- name: Angle(degrees)
+  summary: 功率波的相位角 0（默认）| 实数向量
+  group: ''
+- name: Carrier frequencies
+  summary: 载波频率 0（默认）| 正实数向量 | Hz | kHz | MHz | GHz
+  group: ''
+- name: Add phase noise
+  summary: 添加相位噪声 off（默认）| on
+  group: ''
+- name: Phase noise frequency offset (Hz)
+  summary: 相位噪声频率偏移 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Phase noise level (dBc/Hz)
+  summary: 相位噪声电平 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Automatically estimate impulse response duration
+  summary: 自动估计冲激响应持续时间 on（默认）| off
+  group: ''
+- name: Impulse response duration
+  summary: 冲激响应持续时间 1e-10 s（默认）| 标量
+  group: ''
+- name: Plot phase noise characteristics
+  summary: 相位噪声幅度响应按钮
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏 RF 电路端子 on（默认）| off
+  group: ''
+```
 
 ### **Source type** — 波形类型 `Ideal voltage`（默认）| `Ideal current` | `Power`
 
@@ -133,7 +180,6 @@ R2025b 中未记录。
 ### **Ground and hide negative terminals** — 接地并隐藏 RF 电路端子 `on`（默认）| `off`
 
 选择此选项可在内部将负端子接地并隐藏。要暴露负端子，请清除该选项。通过暴露这些端子，您可以将它们连接到模型的其他部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Sources

@@ -14,6 +14,15 @@ language: en
 # Translational Hard Stop (PB)
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -27,8 +36,37 @@ connection.
 Position-based mechanical translational conserving port that represents the
 follower connection. When the hard stop is disengaged, port **F** has
 a more positive position than port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: ''
+- name: Contact stiffness
+  summary: Elasticity of collision 1e6 N/m (default) | positive scalar
+  group: ''
+- name: Contact damping
+  summary: Dissipating property during collision 150 N/(m/s) (default) | positive scalar
+  group: ''
+- name: Transition region
+  summary: Region where force is ramped up 0.1 mm (default) | positive scalar
+  group: ''
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between bodies after collision 0.7 (default) | unitless value between
+    0 and 1
+  group: ''
+- name: Initial state
+  summary: Whether hard stop initial state is free or in contact Free (default) | In contact
+  group: ''
+- name: Static contact speed threshold
+  summary: Threshold relative speed between bodies before collision 0.001 m/s (default) | nonnegative scalar
+  group: ''
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: ''
+```
 
 ### **Hard stop model** — Select the hard stop model `Stiffness and damping applied smoothly through transition region, damped rebound` (default) | `Full stiffness and damping applied at bounds, undamped rebound` | `Full stiffness and damping applied at bounds, damped rebound` | `Based on coefficient of restitution`
 
@@ -147,7 +185,6 @@ Minimum force needed to release the two bodies from a static contact mode.
 
 To enable this parameter, set **Hard stop model** to
 `Based on coefficient of restitution`.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

@@ -15,10 +15,57 @@ chinese_source: worker-translation
 # General Circuit Element
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: RFCKT object
+  summary: 包含电路元件设备数据的 RFCKT 对象 read(rfckt.passive, 'passive.s2p')（默认）| 任意 rfckt 对象
+  group: 主要
+- name: Source of frequency data
+  summary: 频率数据源 User-specified（默认）
+  group: 可视化
+- name: Frequency data (Hz)
+  summary: 频率数据范围 [1.9e9:1.0e6:2.2e9]（默认）| 向量
+  group: 可视化
+- name: Reference impedance (ohms)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: X parameter
+  summary: 频率绘图 Freq（默认）
+  group: 可视化
+- name: X format
+  summary: 频率绘图格式 Hz（默认）| Auto | kHz | MHz | GHz | THz
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主要
 
@@ -159,7 +206,6 @@ plane`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘图按钮绘制指定数据。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Black Box Elements

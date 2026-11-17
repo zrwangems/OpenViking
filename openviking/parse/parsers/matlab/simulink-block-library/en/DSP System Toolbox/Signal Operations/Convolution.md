@@ -14,6 +14,21 @@ language: en
 # Convolution
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input signal scalar | vector | matrix | *N*-*D* array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_2
+  summary: Second input signal scalar | vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix | *N*-*D* array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -58,8 +73,39 @@ signal changes based on the inputs, see More About.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Computation domain
+  summary: Computation domain Time (default) | Frequency | Fastest
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Data type of accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input | Inherit:
+    Same as product output | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Data type of output Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product
+    output | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum value that block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum value that block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -248,7 +294,6 @@ Specify the maximum value the block can output. Simulink uses this maximum value
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

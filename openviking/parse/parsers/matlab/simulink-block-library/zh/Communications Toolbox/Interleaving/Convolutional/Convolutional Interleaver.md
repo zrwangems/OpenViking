@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Convolutional Interleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Rows of shift registers**
 :   模块内部使用的移位寄存器数量。
@@ -28,7 +33,6 @@ R2025b 中未记录。
 
 **Initial conditions**
 :   仿真开始时填充每个移位寄存器的值。
-
 ## 所属库
 
 R2025b 中未记录。

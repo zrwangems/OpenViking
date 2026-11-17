@@ -14,6 +14,27 @@ language: en
 # Piezo Linear Actuator
 
 ## Ports
+```yaml
+ports:
+- name: f
+  summary: Motor driving frequency physical
+  direction: input
+- name: v
+  summary: RMS supply voltage and direction of rotation physical
+  direction: input
+- name: i
+  summary: RMS phase current physical
+  direction: output
+- name: vel
+  summary: Rotor speed physical
+  direction: output
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Rotor mechanical
+  direction: conserving
+```
 
 ### Input
 
@@ -50,8 +71,52 @@ case.
 
 Mechanical translational conserving port associated with the motor
 rotor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Motor natural frequency
+  summary: Motor natural frequency 92 kHz (default)
+  group: Electrical Force
+- name: Rated RMS voltage
+  summary: Rated RMS voltage 5.7 V (default)
+  group: Electrical Force
+- name: Rated force
+  summary: Rated force 0.1 N (default)
+  group: Electrical Force
+- name: Rated speed
+  summary: Rated speed 50 mm/s (default)
+  group: Electrical Force
+- name: No-load maximum speed
+  summary: No-load maximum speed 150 mm/s (default)
+  group: Electrical Force
+- name: Maximum (stall) force
+  summary: Maximum force 0.15 N (default)
+  group: Electrical Force
+- name: Resonance quality factor
+  summary: Resonance quality factor 100 (default)
+  group: Electrical Force
+- name: Capacitance per phase
+  summary: Capacitance per phase 5 nF (default)
+  group: Electrical Force
+- name: Plunger mass
+  summary: Plunger mass 0.3 g (default)
+  group: Mechanical
+- name: Holding force
+  summary: Holding force 0.3 N (default)
+  group: Motor-Off Friction
+- name: Coulomb friction force
+  summary: Coulomb friction force 0.15 N (default)
+  group: Motor-Off Friction
+- name: Viscous friction coefficient
+  summary: Viscous friction coefficient 1e-5 s*N/mm (default) | nonnegative scalar
+  group: Motor-Off Friction
+- name: Transition approximation coefficient
+  summary: Transition approximation coefficient 0.1 s/mm (default)
+  group: Motor-Off Friction
+- name: Linear region velocity threshold
+  summary: Linear region velocity threshold 0.1 mm/s (default)
+  group: Motor-Off Friction
+```
 
 ### Electrical Force
 
@@ -145,7 +210,6 @@ The parameter sets the small vicinity near zero velocity, within which
 friction force is considered to be linearly proportional to the relative
 velocity. MathWorks recommends that you use values between
 `1e-6` and `1e-4` mm/s.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

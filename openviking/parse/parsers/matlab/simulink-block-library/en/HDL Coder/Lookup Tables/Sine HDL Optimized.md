@@ -14,6 +14,25 @@ language: en
 # Sine HDL Optimized and Cosine HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal to implement sine or cosine wave real-valued signal
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | enumerated | bus
+- name: sin(2\*pi\*u)
+  summary: Fixed-point sine wave real-valued fixed-point signal
+  direction: output
+  data_types: fixed point
+- name: cos(2\*pi\*u)
+  summary: Fixed-point cosine wave real-valued fixed-point signal
+  direction: output
+  data_types: fixed point
+- name: exp(j\*2\*pi\*u)
+  summary: Complex exponential complex-valued fixed-point signal
+  direction: output
+  data_types: fixed point
+```
 
 ### Input
 
@@ -58,8 +77,26 @@ This port is enabled when the **Output formula** is set to
 `exp(j*2*pi*u)`.
 
 **Data Types:** `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output formula
+  summary: Select the signal(s) to output cos(2*pi*u) | sin(2*pi*u) | exp(j*2*pi*u) | sin(2*pi*u) and cos(2*pi*u)
+  group: ''
+- name: Number of data points
+  summary: Specify the number of data points to retrieve from the lookup table 64 (default) | integer, greater than or equal
+    to 2
+  group: ''
+- name: Table data type
+  summary: Specify the table data type fixdt(0,16,15) (default) | fixed point expression
+  group: ''
+- name: Data type assistant
+  summary: Select the mode of data type specification Fixed point (default) | Expression
+  group: ''
+- name: Simulate RAM Delay
+  summary: Insert a unit delay off (default) | on
+  group: ''
+```
 
 ### **Output formula** — Select the signal(s) to output `cos(2*pi*u)` | `sin(2*pi*u)` | `exp(j*2*pi*u)` | `sin(2*pi*u) and cos(2*pi*u)`
 
@@ -100,7 +137,6 @@ delay in the Simulink® modeling environment. When you generate HDL code, a
 no-reset register is inserted after the block. The
 combination of lookup table with no-reset register maps
 to RAM on the target hardware.
-
 ## Libraries
 
 HDL Coder / Lookup Tables

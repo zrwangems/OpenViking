@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Adaptive Cruise Control System
 
 ## 端口
+```yaml
+ports:
+- name: Set velocity
+  summary: 自车速度设定值，非负标量
+  direction: input
+- name: Time gap
+  summary: 安全时间间隔，非负标量
+  direction: input
+- name: Longitudinal velocity
+  summary: 自车速度，非负标量
+  direction: input
+- name: Relative distance
+  summary: 前车与自车之间的距离，正标量
+  direction: input
+- name: Relative velocity
+  summary: 前车与自车之间的速度差，标量
+  direction: input
+- name: Minimum longitudinal acceleration
+  summary: 自车最小加速度，负标量
+  direction: input
+- name: Maximum longitudinal acceleration
+  summary: 自车最大加速度，正标量
+  direction: input
+- name: Enable optimization
+  summary: 控制器优化启用信号，标量
+  direction: input
+- name: External control signal
+  summary: 施加到自车的纵向加速度，标量
+  direction: input
+- name: Longitudinal acceleration
+  summary: 加速度控制信号，标量
+  direction: output
+```
 
 ### 输入
 
@@ -80,8 +113,86 @@ chinese_source: worker-translation
 ### **Longitudinal acceleration** — 加速度控制信号，标量
 
 由控制器生成的加速度控制信号，单位为 m/s2。
-
 ## 参数
+```yaml
+parameters:
+- name: Linear model from longitudinal acceleration to longitudinal velocity
+  summary: 自车模型 tf(1,[0.5,1,0])（默认）| LTI 模型 | 线性 System Identification Toolbox™ 模型
+  group: 参数选项卡
+  block_parameter: EgoModel
+  type: string, character vector
+  default: '"tf(1,[0.5,1,0])"'
+- name: Initial condition for longitudinal velocity
+  summary: 自车模型的初始速度 20（默认）| 非负标量
+  group: 参数选项卡
+  block_parameter: InitialEgoVelocity
+  type: string, character vector
+  default: '"20"'
+- name: Default spacing
+  summary: 与前方车辆的最小间距 10（默认）| 非负标量
+  group: 参数选项卡
+  block_parameter: DefaultSpacing
+  type: string, character vector
+  default: '"10"'
+- name: Maximum velocity
+  summary: 最大纵向速度 50（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: MaxVelocity
+  type: string, character vector
+  default: '"50"'
+- name: Minimum longitudinal acceleration
+  summary: 自车最小加速度 -3（默认）| 负标量
+  group: 参数选项卡
+  block_parameter: MinAcceleration
+  type: string, character vector
+  default: '"-3"'
+- name: Maximum longitudinal acceleration
+  summary: 自车最大加速度 2（默认）| 非负标量
+  group: 参数选项卡
+  block_parameter: MaxAcceleration
+  type: string, character vector
+  default: '"2"'
+- name: Sample time
+  summary: 控制器采样时间 0.1（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: Ts
+  type: string, character vector
+  default: '"0.1"'
+- name: Prediction horizon
+  summary: 控制器预测时域 10（默认）| 正整数
+  group: 参数选项卡
+  block_parameter: PredictionHorizon
+  type: string, character vector
+  default: '"30"'
+- name: 控制器行为
+  summary: 闭环控制器性能 0.5（默认）| 0 到 1 之间的标量
+  group: 参数选项卡
+  block_parameter: ControllerBehavior
+  type: string, character vector
+- name: 使用次优解
+  summary: 在指定迭代次数后应用次优解 off（默认）| on
+  group: 模块选项卡
+  block_parameter: suboptimal
+  type: string, character vector
+- name: 最大迭代次数
+  summary: 最大优化迭代次数 10（默认）| 正整数
+  group: 模块选项卡
+  block_parameter: maxiter
+  type: string, character vector
+- name: 使用外部信号启用或禁用优化
+  summary: 添加用于启用优化的端口 off（默认）| on
+  group: 模块选项卡
+  block_parameter: optmode
+  type: string, character vector
+- name: 使用外部信号在 ACC 和其他控制器之间进行无扰切换
+  summary: 添加外部控制信号输入端口 off（默认）| on
+  group: 模块选项卡
+  block_parameter: trackmode
+  type: string, character vector
+- name: 创建 ACC 子系统
+  summary: 创建自定义控制器按钮
+  group: 模块选项卡
+```
 
 ### 参数选项卡
 
@@ -284,7 +395,6 @@ chinese_source: worker-translation
 - 修改默认 MPC 设置或使用高级 MPC 功能。
 - 修改默认控制器初始条件。
 - 使用不同的应用设置，例如自定义安全跟车距离定义。
-
 ## 所属库
 
 Model Predictive Control Toolbox / Automated Driving

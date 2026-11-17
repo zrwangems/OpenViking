@@ -14,6 +14,21 @@ language: en
 # Power Sensor
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Measured power physical signal
+  direction: output
+- name: S
+  summary: Positive supply rail electrical
+  direction: conserving
+- name: +
+  summary: Load positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Load negative terminal electrical
+  direction: conserving
+```
 
 ### Output
 
@@ -36,8 +51,16 @@ load
 
 Electrical conserving port connected to the negative terminal of the
 load
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement type
+  summary: Measurement type Instantaneous power (default) | Instantaneous power
+  group: ''
+- name: Averaging period
+  summary: Averaging period 1e-4 s (default)
+  group: ''
+```
 
 ### **Measurement type** — Measurement type `Instantaneous power` (default) | `Instantaneous power`
 
@@ -55,7 +78,6 @@ Fixed period of time for measuring the average power.
 This parameter is visible only when you select `Average
 power over a specified period` for the
 **Measurement type** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

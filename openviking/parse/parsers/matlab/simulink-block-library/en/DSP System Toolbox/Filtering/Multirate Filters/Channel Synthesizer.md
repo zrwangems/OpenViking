@@ -14,6 +14,21 @@ language: en
 # Channel Synthesizer
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input narrowband signals *Q*-by-*M* matrix | *L*-by-*M*-by-*N* array
+  direction: input
+  data_types: single | double
+- name: coeffs
+  summary: Prototype lowpass filter coefficients row vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Broadband signal *Q×M*-by-1 vector | *L×M*-by-*N* matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -77,8 +92,31 @@ If the input is one of the following:
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: InterpolationFactor
+  summary: Interpolation factor Number of frequency bands (default) | positive integer
+  group: ''
+- name: Polyphase filter specification
+  summary: Filter design parameters or coefficients Number of taps per band and stopband attenuation (default) | Coefficients
+  group: ''
+- name: Number of filter taps per frequency band
+  summary: Number of filter coefficients per frequency band 12 (default) | positive integer
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation 80 (default) | positive real scalar
+  group: ''
+- name: Specify coefficients from input port
+  summary: Flag to specify lowpass filter coefficients off (default) | on
+  group: ''
+- name: Prototype lowpass filter coefficients
+  summary: Coefficients of prototype lowpass filter rcosdesign(0.25,6,8,'sqrt') (default) | row vector
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -201,7 +239,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

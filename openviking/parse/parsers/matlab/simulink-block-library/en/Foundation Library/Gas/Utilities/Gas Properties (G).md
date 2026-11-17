@@ -14,6 +14,12 @@ language: en
 # Gas Properties (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Connection port gas
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,11 +31,12 @@ Gas Properties (G) block to a gas
 line, the software automatically identifies the gas blocks connected to
 the particular circuit and propagates the gas properties to all the
 blocks in the circuit.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Utilities

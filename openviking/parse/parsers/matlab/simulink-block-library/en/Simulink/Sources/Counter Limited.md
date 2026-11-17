@@ -14,6 +14,13 @@ language: en
 # Counter Limited
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Count value scalar
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Output
 
@@ -24,8 +31,24 @@ ufix128. The block uses the smallest number of bits required to
 represent the upper limit.
 
 **Data Types:** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Upper limit
+  summary: Upper limit 7 (default) | scalar
+  group: ''
+  block_parameter: uplimit
+  type: character vector
+  values: scalar
+  default: '''7'''
+- name: Sample time
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: tsamp
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+```
 
 ### **Upper limit** — Upper limit `7` (default) | scalar
 
@@ -55,7 +78,6 @@ parameter to `-1`. For more information, see Specify Sample Time.
 | **Type:** character vector |
 | **Values:** scalar | vector |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 Simulink / Sources HDL Coder / Sources

@@ -14,6 +14,13 @@ language: en
 # ADXL34x Accelerometer
 
 ## Ports
+```yaml
+ports:
+- name: Acceleration
+  summary: Linear acceleration measured by ADXL34x sensor vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -31,8 +38,35 @@ m/s2) along the
 It is observed that there are many faulty cloned ADXL345 sensors available in
 the market, with Z axis raw output becoming unresponsive. Buy the sensor from a
 genuine distributor to avoid this issue.
-
 ## Parameters
+```yaml
+parameters:
+- name: I2C module
+  summary: Module for communication I2C_A (default)
+  group: ''
+- name: I2C address
+  summary: I2C address of ADXL34x sensor 0x53 (default) | 0x1D
+  group: ''
+- name: Data type
+  summary: Output data type for values from ADXL34x sensor single (default) | double
+  group: ''
+- name: Sample time
+  summary: Time interval to read data -1 (default) | positive integer
+  group: ''
+- name: Accelerometer range
+  summary: Full scale for measuring linear acceleration ±4g (default) | ±2g | ±8g | ±16g
+  group: Advanced settings
+- name: Accelerometer output data rate
+  summary: Rate at which accelerometer data is sampled 12.5 Hz (default) | 0.1 Hz | 0.2 Hz | 0.39 Hz | 0.78 Hz | 1.56 Hz |
+    3.13 Hz | 6.25 Hz | 25 Hz | 50 Hz | 100 Hz | 200 Hz | 400 Hz | 800 Hz | 1600 Hz
+  group: Advanced settings
+- name: Enable data ready interrupt
+  summary: Enable interrupt when data is ready off (default) | on
+  group: Advanced settings
+- name: Interrupt generate pin
+  summary: Pin to generate data ready interrupt INT1 (default) | INT2
+  group: Advanced settings
+```
 
 ### **I2C module** — Module for communication `I2C_A` (default)
 
@@ -99,7 +133,6 @@ Select the interrupt generate pin to read accelerometer data.
 
 To enable this parameter, select the **Enable data ready
 interrupt** parameter.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Sensors Simulink Coder Support Package for STMicroelectronics Nucleo Boards / Sensors Simulink Support Package for Arduino Hardware / Sensors

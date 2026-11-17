@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # NR Polar Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据位 标量
+  direction: input
+  data_types: fixdt(0,1,0) | Boolean | double | single
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: K
+  summary: 信息块长度（以位为单位） 正整数
+  direction: input
+  data_types: fixdt(0,10,0)
+- name: E
+  summary: 速率匹配输出长度（以位为单位） 正整数
+  direction: input
+  data_types: fixdt(0,14,0)
+- name: data
+  summary: 编码数据位 标量
+  direction: output
+  data_types: fixdt(0,1,0) | Boolean | double | single
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 准备接收新输入 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -84,8 +115,22 @@ chinese_source: worker-translation
 有关更多信息，请参阅 Using the nextFrame Output Signal。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Link direction
+  summary: 5G NR 链路方向 Downlink（默认）| Uplink
+  group: ''
+- name: Configuration source
+  summary: K 和 E 的来源 Property（默认）| Input port
+  group: ''
+- name: Message length (K)
+  summary: 信息块长度（以位为单位） 56（默认）| 正整数
+  group: ''
+- name: Rate-matched length (E)
+  summary: 速率匹配输出长度（以位为单位） 864（默认）| 正整数
+  group: ''
+```
 
 ### **Link direction** — 5G NR 链路方向 `Downlink`（默认）| `Uplink`
 
@@ -110,7 +155,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Configuration source** 参数设置为 `Property`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

@@ -14,10 +14,21 @@ language: en
 # Model Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Top of Model Source
+  summary: Code to add near top of generated source file no default
+  group: ''
+- name: Bottom of Model Source
+  summary: Code to add at bottom of generated source file no default
+  group: ''
+```
 
 ### **Top of Model Source** — Code to add near top of generated source file no default
 
@@ -30,7 +41,6 @@ code (top of source file)`.
 Specify code that you want the code generator to add at the bottom of the source
 file for the model. The code generator places the code in the section labeled
 `user code (bottom of source file)`.
-
 ## Libraries
 
 Simulink Coder / Custom Code

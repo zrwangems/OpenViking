@@ -14,6 +14,37 @@ language: en
 # Induction Machine Field-Oriented Control
 
 ## Ports
+```yaml
+ports:
+- name: imRef
+  summary: Current scalar
+  direction: input
+  data_types: single | double
+- name: wrRef
+  summary: Velocity scalar
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: Current vector
+  direction: input
+  data_types: single | double
+- name: wr
+  summary: Velocity scalar
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: Voltage scalar
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Gate pulses vector | 0 or 1
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: Visualization signals vector
+  direction: output
+  data_types: single | double | bus
+```
 
 ### Input
 
@@ -60,8 +91,94 @@ time.
 Bus containing signals for visualization.
 
 **Data Types:** `single` | `double` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rated voltage, rms line-to-line (V)
+  summary: Voltage 550 (default)
+  group: General
+- name: Rated electrical frequency (Hz)
+  summary: Frequency 60 (default)
+  group: General
+- name: Rotor resistance, referred to the stator side (pu)
+  summary: Resistance 0.01 (default)
+  group: General
+- name: Rotor leakage inductance, referred to the stator side (pu)
+  summary: Inductance 0.06 (default)
+  group: General
+- name: Magnetizing inductance (pu)
+  summary: Inductance 2.7 (default)
+  group: General
+- name: Time constant for dq currents filters (s)
+  summary: Time constant 1e-4 (default)
+  group: General
+- name: Inverter dc-link voltage threshold (V)
+  summary: Voltage 500 (default)
+  group: General
+- name: Fundamental sample time (s)
+  summary: Time 5e-6 (default) | positive scalar less than the control sample time
+  group: General
+- name: Control sample time (s)
+  summary: Time 5e-5 (default) | positive scalar greater than the fundamental sample time
+  group: General
+- name: Magnetizing current controller proportional gain
+  summary: Gain 10 (default)
+  group: Outer Loop
+- name: Magnetizing current controller integral gain
+  summary: Gain 1000 (default)
+  group: Outer Loop
+- name: Magnetizing current controller integral anti-windup gain
+  summary: Gain 1000 (default)
+  group: Outer Loop
+- name: Speed controller proportional gain
+  summary: Gain 10 (default)
+  group: Outer Loop
+- name: Speed controller integral gain
+  summary: Gain 1000 (default)
+  group: Outer Loop
+- name: Speed controller integral anti-windup gain
+  summary: Gain 1000 (default)
+  group: Outer Loop
+- name: Maximum d-axis current [pu]
+  summary: Current 2 (default)
+  group: Outer Loop
+- name: Maximum q-axis current [pu]
+  summary: Current 2 (default)
+  group: Outer Loop
+- name: Phase-a axis alignment
+  summary: '*dq0* reference frame alignment Q-axis (default) | D-axis'
+  group: Outer Loop
+- name: D-axis current proportional gain
+  summary: '*D*-axis proportional gain 1 (default) | positive number'
+  group: Outer Loop
+- name: D-axis current integral gain
+  summary: '*D*-axis integral gain 100 (default) | positive number'
+  group: Outer Loop
+- name: D-axis current anti-windup gain
+  summary: '*D*-axis anti-windup gain 1 (default) | positive number'
+  group: Outer Loop
+- name: Q-axis current proportional gain
+  summary: '*Q*-axis proportional gain 1 (default) | positive number'
+  group: Outer Loop
+- name: Q-axis current integral gain
+  summary: '*Q*-axis integral gain 100 (default) | positive number'
+  group: Outer Loop
+- name: Q-axis current anti-windup gain
+  summary: '*Q*-axis anti-windup gain 1 (default) | positive number'
+  group: Outer Loop
+- name: Axis prioritization
+  summary: Axis prioritization for voltage limiter Q-axis (default) | D-axis | D-Q equivalence
+  group: Outer Loop
+- name: PWM method
+  summary: 'Pulse width modulation method SVM: space vector modulation (default) | SPWM: sinusoidal PWM'
+  group: Outer Loop
+- name: Sampling mode
+  summary: Wave-sampling method Natural (default) | Asymmetric | Symmetric
+  group: Outer Loop
+- name: Switching frequency (Hz)
+  summary: Switching rate 1000 (default) | positive integer
+  group: Outer Loop
+```
 
 ### General
 
@@ -198,7 +315,6 @@ both of its boundary conditions.
 
 Specify the rate at which you want the switches in the power converter
 to switch.
-
 ## Libraries
 
 Simscape / Electrical / Control / Induction Machine Control

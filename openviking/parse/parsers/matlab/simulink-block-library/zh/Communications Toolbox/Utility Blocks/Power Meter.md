@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Power Meter
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Rst
+  summary: 复位端口 标量
+  direction: input
+  data_types: Boolean
+- name: Avg
+  summary: 平均功率 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: Peak
+  summary: 峰值功率 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: PAPR
+  summary: 峰均功率比 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: RelPwr
+  summary: 相对功率 *N*-by-*M* 矩阵
+  direction: output
+  data_types: single | double
+- name: Prob
+  summary: 概率（百分比） *N*-by-*M* 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -145,8 +176,53 @@ PAPR 应小于 100 dB 以获得准确的 CCDF 测量值。如果 PAPR 高于 100
 要启用此端口，请选择 **Compute CCDF** 参数，然后将 **CCDF output** 参数设置为 `Probability (%)` 或 `Relative power and probability (whole CCDF curve)`。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement
+  summary: 期望的功率测量值 Average power（默认）| Peak power | Peak-to-average power ratio | All
+  group: ''
+- name: Reference load (ohms)
+  summary: 参考负载（欧姆） 1（默认）| 以欧姆为单位的正标量
+  group: ''
+- name: Output power units
+  summary: 测量功率值的单位 dBm（默认）| dBW | Watts
+  group: ''
+- name: Compute CCDF
+  summary: 启用 CCDF 计算 off（默认）| on
+  group: ''
+- name: Window length
+  summary: 窗口长度 256（默认）| 正整数
+  group: ''
+- name: Overlap length
+  summary: 窗口之间的重叠长度 255（默认）| 非负整数
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号的任意帧长度 off（默认）| on
+  group: ''
+- name: Power range (dB)
+  summary: 功率范围（dB） 50（默认）| 正标量
+  group: ''
+- name: Power resolution (dB)
+  summary: 功率分辨率（dB） 0.1（默认）| 正标量
+  group: ''
+- name: CCDF output
+  summary: CCDF 输出 Relative power (dB above average power)（默认）| Probability (%) | Relative power and probability (whole CCDF
+    curve)
+  group: ''
+- name: Specify probability (%) for relative power output
+  summary: 为相对功率输出指定概率（%） [10;1;0.1;0.01;0.001;0.0001]（默认）| 列向量
+  group: ''
+- name: Specify relative power (dB) for probability output
+  summary: 为概率输出指定相对功率 [0;3;6;9;12]（默认）| 列向量
+  group: ''
+- name: Reset port
+  summary: 启用复位端口 关（默认）| 开
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Measurement** — 期望的功率测量值 `Average power`（默认）| `Peak power` | `Peak-to-average power ratio` | `All`
 
@@ -298,7 +374,6 @@ PAPR 应小于 100 dB 以获得准确的 CCDF 测量值。如果 PAPR 高于 100
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码就会在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Statistics Communications Toolbox / Utility Blocks

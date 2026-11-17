@@ -14,6 +14,86 @@ language: en
 # Switched Reluctance Machine (Multi-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+  data_types: double
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+  data_types: double
+- name: a1
+  summary: '*a*-phase positive supply electrical'
+  direction: conserving
+  data_types: double
+- name: b1
+  summary: '*b*-phase positive supply electrical'
+  direction: conserving
+  data_types: double
+- name: c1
+  summary: '*c*-phase positive supply electrical'
+  direction: conserving
+  data_types: double
+- name: d1
+  summary: '*d*-phase positive supply electrical'
+  direction: conserving
+  data_types: double
+- name: e1
+  summary: '*e*-phase positive supply electrical'
+  direction: conserving
+  data_types: double
+- name: f1
+  summary: '*f*-phase positive supply electrical'
+  direction: conserving
+  data_types: double
+- name: a2
+  summary: '*a*-phase negative supply electrical'
+  direction: conserving
+  data_types: double
+- name: b2
+  summary: '*b*-phase negative supply electrical'
+  direction: conserving
+  data_types: double
+- name: c2
+  summary: '*c*-phase negative supply electrical'
+  direction: conserving
+  data_types: double
+- name: d2
+  summary: '*d*-phase negative supply electrical'
+  direction: conserving
+  data_types: double
+- name: e2
+  summary: '*e*-phase negative supply electrical'
+  direction: conserving
+  data_types: double
+- name: f2
+  summary: '*f*-phase negative supply electrical'
+  direction: conserving
+  data_types: double
+- name: HA
+  summary: '*a*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HB
+  summary: '*b*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HC
+  summary: '*c*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HD
+  summary: '*d*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HE
+  summary: '*e*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HF
+  summary: '*f*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -190,8 +270,80 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Number of stator phases
+  summary: Four- or five-phase SRM Four-phase (default) | Five-phase | Six-phase
+  group: Main
+- name: Number of rotor poles
+  summary: Rotor pole 8 (default) | positive integer
+  group: Main
+- name: Stator resistance per phase
+  summary: Resistance 3 Ohm (default) | positive scalar
+  group: Main
+- name: Stator parameterization
+  summary: Parameterization method Specify saturated flux linkage (default) | Specify flux characteristic
+  group: Main
+- name: Saturated flux linkage
+  summary: Flux linkage 0.43 Wb (default) | positive scalar
+  group: Main
+- name: Aligned inductance
+  summary: Inductance 0.0046 H (default) | positive scalar
+  group: Main
+- name: Unaligned inductance
+  summary: Inductance 6.7e-4 H (default) | positive scalar
+  group: Main
+- name: Current vector, i
+  summary: Current [0, 50, 100] A (default) | positive vector
+  group: Main
+- name: Angle vector, theta
+  summary: Angle [0, 22.5, 45] deg (default) | positive vector
+  group: Main
+- name: Flux linkage matrix, Phi(i,theta)
+  summary: Flux [0, 0, 0; .37, .06, .37; .43, .1, .43] Wb (default) | scalar
+  group: Main
+- name: Model
+  summary: Iron losses modeling option None (default) | Tabulate losses from current and speed | Tabulate losses from current,
+    speed, and angle
+  group: Iron Losses
+- name: Magnetizing resistance
+  summary: Magnetizing resistance for iron losses inf Ohm (default)
+  group: Iron Losses
+- name: Rotor speed vector, w
+  summary: Rotor speed [500, 1000, 1500] rpm (default)
+  group: Iron Losses
+- name: Iron loss table, Ploss(i,w)
+  summary: Iron loss table tabulated on current and speed zeros(3, 3) W (default)
+  group: Iron Losses
+- name: Iron loss table, Ploss(i,w,theta)
+  summary: Iron loss table tabulated on current, speed, and angle zeros(3, 3, 2) W (default)
+  group: Iron Losses
+- name: Rotor inertia
+  summary: Inertia 0.01 kg*m^2 (default) | positive scalar
+  group: Mechanical
+- name: Rotor Damping
+  summary: Damping 0 N*m/(rad/s) (default) | scalar
+  group: Mechanical
+- name: Measurement temperature
+  summary: Rated temperature 298.15 k (default) | real scalar
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal
+- name: Percentage of total iron losses associated with the rotor
+  summary: Percentage of total iron losses 50 (default)
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -404,7 +556,6 @@ To enable this parameter, set **Model** to either
 `Tabulate losses from current and
 speed` or `Tabulate losses from
 current, speed, and angle`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

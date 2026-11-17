@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # WGS84 Gravity Model
 
 ## 端口
+```yaml
+ports:
+- name: μ l h
+  summary: 大地纬度、经度和高度位置 三元素向量 | *M*×3 数组
+  direction: input
+  data_types: double
+- name: JD
+  summary: 儒略日 标量 | 大于 2451545 的值
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: 重力 三元素向量 | *M*×3 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -47,8 +62,81 @@ chinese_source: worker-translation
 | Exact | 同时输出正常重力和切向重力（NED 坐标系中向下和向北）。 |
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Type of gravity model
+  summary: 重力模型方法 WGS84 Taylor Series（默认）| WGS84 Close Approximation | WGS84 Exact
+  group: ''
+  block_parameter: model
+  type: 字符向量
+  values: '''WGS84 Taylor Series'' | ''WGS84 Close Approximation'' | ''WGS84 Exact'''
+  default: '''WGS84 Taylor Series'''
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Exclude Earth's atmosphere
+  summary: 地球大气 on（默认）| off
+  group: ''
+  block_parameter: no_atmos
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Precessing reference frame
+  summary: 进动参考系 on（默认）| off
+  group: ''
+  block_parameter: precessing
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Input Julian date
+  summary: 儒略日 off（默认）| on
+  group: ''
+  block_parameter: jd_loc
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Month
+  summary: 月 January（默认）| February | March | April | May | June | July | August | September | October | November | December
+  group: ''
+  block_parameter: month
+  type: 字符向量
+  values: '''January'' | ''February'' | ''March'' | ''April'' | ''May'' | ''June'' | ''July'' | ''August'' | ''September''
+    | ''October'' | ''November'' | ''December'''
+  default: '''January'''
+- name: Day
+  summary: 日 10（默认）| 1 到 31
+  group: ''
+  block_parameter: day
+  type: 字符向量
+  values: '''1'' 到 ''31'''
+  default: '''10'''
+- name: Year
+  summary: 年 2004（默认）| 任意年份
+  group: ''
+  block_parameter: year
+  type: 字符向量
+  values: 任意年份
+  default: '''2004'''
+- name: No centrifugal effects
+  summary: 离心效应 on（默认）| off
+  group: ''
+  block_parameter: no_centrifugal
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 Warning（默认）| Error | None
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Type of gravity model** — 重力模型方法 `WGS84 Taylor Series`（默认）| `WGS84 Close Approximation` | `WGS84 Exact`
 
@@ -244,7 +332,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'Warning'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Gravity

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Local Resistance (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口湿空气
+  direction: conserving
+- name: B
+  summary: 液体端口湿空气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,33 @@ chinese_source: worker-translation
 ### **B** — 液体端口湿空气
 
 与管段入口或出口端口关联的湿空气守恒端口。流量从端口 **A** 流向端口 **B** 为正方向。
-
 ## 参数
+```yaml
+parameters:
+- name: Local loss parametrization
+  summary: 损失系数计算方法 Constant（默认）| Tabulated data - loss coefficient vs. Reynolds number
+  group: ''
+- name: Forward flow loss coefficient (from A to B)
+  summary: 从端口 A 流向 B 的损失系数 1（默认）| 正标量
+  group: ''
+- name: Reverse flow loss coefficient (from B to A)
+  summary: 从端口 B 流向 A 的损失系数 1（默认）| 正标量
+  group: ''
+- name: Reynolds number vector
+  summary: 表格参数化的雷诺数 [-500, -200, -100, -50, -40, -30, -20, -10, 10, 20, 30, 40, 50, 100, 200, 500, 1000, 2000]（默认）| 1×*n*
+    向量
+  group: ''
+- name: Loss coefficient vector
+  summary: 表格参数化的损失系数 [.65, .75, .9, 1.15, 1.35, 1.65, 2.3, 3.1, 4, 2.7, 1.8, 1.46, 1.3, .9, .65, .42, .3, .2]（默认）| 1×*n*
+    向量
+  group: ''
+- name: Flow area
+  summary: 管段横截面积 1e-3 m^2（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Local loss parametrization** — 损失系数计算方法 `Constant`（默认）| `Tabulated data - loss coefficient vs. Reynolds number`
 
@@ -71,7 +105,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过阀门的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

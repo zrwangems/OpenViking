@@ -14,6 +14,15 @@ language: en
 # Translational Damper
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,13 +35,17 @@ moving body.
 
 Mechanical translational conserving port associated with the case, that is, the
 stationary body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Damping coefficient
+  summary: Damping coefficient, defined by viscous friction 100 N/(m/s) (default) | scalar
+  group: ''
+```
 
 ### **Damping coefficient** — Damping coefficient, defined by viscous friction `100 N/(m/s)` (default) | scalar
 
 Damping coefficient, defined by viscous friction.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Translational Elements

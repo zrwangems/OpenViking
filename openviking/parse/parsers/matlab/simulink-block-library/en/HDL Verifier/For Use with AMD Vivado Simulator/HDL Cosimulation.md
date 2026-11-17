@@ -14,6 +14,17 @@ language: en
 # HDL Cosimulation
 
 ## Ports
+```yaml
+ports:
+- name: HDL_input_port_name
+  summary: Signal passed from Simulink to HDL simulator scalar | vector
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | Fixed-point
+- name: HDL_output_port_name
+  summary: Signal passed from HDL simulator to Simulink scalar | vector
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | Fixed-point
+```
 
 ### Input
 
@@ -29,8 +40,95 @@ The ports on the block correspond with ports on your HDL design. Add or remove p
 The ports on the block correspond with ports on your HDL design. Add or remove ports on the **Ports** tab.
 
 **Data Types:** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `Fixed-point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Block Info
+  summary: 'Block information for Vivado cosimulation Read-only: block generation settings'
+  group: ''
+- name: Enable direct feedthrough
+  summary: Work around algebraic loop warnings true (default) | false
+  group: Ports
+- name: Full HDL Name
+  summary: Signal path name string
+  group: Ports
+- name: I/O Mode
+  summary: Port direction Input | Output
+  group: Ports
+- name: HDL Type
+  summary: 'Type of HDL port signal Read-only: Logic (default) | Vector'
+  group: Ports
+- name: HDL Dims
+  summary: 'Dimension of HDL port signal Read-only: scalar | vector'
+  group: Ports
+- name: Sample Time
+  summary: Time between reading samples on an output port 1 (default) | integer
+  group: Ports
+- name: Data Type
+  summary: Simulink Data type for output signal Inherit (default) | Fixedpoint | Double | Single | Half
+  group: Ports
+- name: Sign
+  summary: Sign component of output data type Unsigned (default) | Signed
+  group: Ports
+- name: Fraction Length
+  summary: Number of fractional bits in output data type integer
+  group: Ports
+- name: Simulink Word Length
+  summary: Bit width of Simulink port integer <129 | inherit
+  group: Ports
+- name: HDL Word Length
+  summary: 'Bit width of HDL port Read-only: integer'
+  group: Ports
+- name: Time to run HDL simulator before cosimulation starts
+  summary: time required for HDL simulation before cosimulation starts 0 (default) | nonnegative integer
+  group: Clocks
+- name: Full HDL Name
+  summary: Signal path name string
+  group: Clocks
+- name: Active Clock Edge
+  summary: HDL clock edge used to sample signals Rising (default) | Falling
+  group: Clocks
+- name: Waveform Type
+  summary: Generate waveforms to drive clocks, resets, or enables to HDL design Rising (default) | Falling | Step 1 to 0 |
+    Step 0 to 1
+  group: Clocks
+- name: Period/Duration
+  summary: Clock period 2 (default) | integer
+  group: Clocks
+- name: Automatically determine timescale at start of simulation
+  summary: When to calculate automatic timescale true (default) | false
+  group: Timescales
+- name: 1 second in Simulink corresponds to {} in the HDL simulator
+  summary: Timing relationship between Simulink and HDL simulator integer and time units
+  group: Timescales
+- name: Connection mode
+  summary: Connection between Simulink and HDL simulator Full Simulation (default) | Confirm Interface Only | No Connection
+  group: Connection
+- name: HDL simulator is running on this computer
+  summary: Same host for HDL simulator and Simulink true (default) | false
+  group: Connection
+- name: Connection method
+  summary: Connection between HDL simulator and Simulink Socket (default) | Shared memory
+  group: Connection
+- name: Host name
+  summary: HDL simulator host machine string
+  group: Connection
+- name: Port number or service
+  summary: Socket port number string
+  group: Connection
+- name: Show connection info on icon
+  summary: Add connection parameters on block icon true (default) | false
+  group: Connection
+- name: Time to run HDL simulator before cosimulation starts
+  summary: Offset that aligns Simulink with HDL simulator integer and time unit
+  group: Simulation
+- name: Pre-simulation Tcl commands
+  summary: Commands to run in HDL simulator before cosimulation string
+  group: Simulation
+- name: Post-simulation Tcl commands
+  summary: Commands to run in HDL simulator after cosimulation string
+  group: Simulation
+```
 
 ### **Block Info** — Block information for Vivado cosimulation Read-only: block generation settings
 
@@ -670,7 +768,6 @@ each successive simulation.
 For VCS cosimulation, this parameter is disabled. Use the
 `PostSimulationTcl` property of the `launchVCS` function to define post-simulation Tcl
 commands.
-
 ## Libraries
 
 HDL Verifier / For Use with AMD Vivado Simulator HDL Verifier / For Use with Cadence Xcelium HDL Verifier / For Use with Siemens ModelSim/Questa HDL Verifier / For Use with Synopsys VCS

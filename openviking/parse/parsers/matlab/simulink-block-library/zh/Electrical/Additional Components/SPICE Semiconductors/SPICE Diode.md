@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # SPICE Diode
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电气端口
+  direction: conserving
+- name: '-'
+  summary: 负电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,109 @@ chinese_source: worker-translation
 ### **-** — 负电压电气端口
 
 与负电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Device area, AREA
+  summary: 器件面积 1.0 m^2（默认）| 正标量
+  group: 主要
+- name: Number of parallel devices, SCALE
+  summary: 并联器件数 1（默认）| 正标量
+  group: 主要
+- name: Saturation current, IS
+  summary: 饱和电流 1e-14 A/m^2（默认）| 非负标量
+  group: 主要
+- name: High-injection knee current, IKF
+  summary: 高注入拐点电流 Inf A/m^2（默认）| 标量
+  group: 主要
+- name: Recombination current parameter, ISR
+  summary: 复合电流 0 A/m^2（默认）| 标量
+  group: 主要
+- name: Emission coefficient, N
+  summary: 发射系数 1（默认）| 正标量
+  group: 主要
+- name: Emission coefficient for ISR, NR
+  summary: ISR 的发射系数 2（默认）| 正标量
+  group: 主要
+- name: Grading coefficient, M
+  summary: 梯度系数 0.5（默认）| 0 < *M* < 0.9 | 标量
+  group: 主要
+- name: Junction potential, VJ
+  summary: 结电势 1 V（默认）| *VJ* > 0.01 | 标量
+  group: 主要
+- name: Ohmic resistance, RS
+  summary: 串联电阻 0.01 m^2*Ohm（默认）| 非负标量
+  group: 主要
+- name: Model junction capacitance
+  summary: 结电容模型 No（默认）| Yes
+  group: 结电容
+- name: Zero-bias junction capacitance, CJO
+  summary: 零偏结电容 0 F/m^2（默认）| 非负标量
+  group: 结电容
+- name: Capacitance coefficient, FC
+  summary: 电容系数 0.5（默认）| 0 ≤ *FC* < 0.95 | 标量
+  group: 结电容
+- name: Transit time, TT
+  summary: 渡越时间 0 s（默认）| 非负标量
+  group: 结电容
+- name: Specify initial condition
+  summary: 初始条件模型 No（默认）| Yes
+  group: 结电容
+- name: Initial condition voltage, V0
+  summary: 初始电压 0 V（默认）| 标量
+  group: 结电容
+- name: Model reverse breakdown
+  summary: 反向击穿模型 No（默认）| Yes
+  group: 反向击穿
+- name: Reverse breakdown voltage, BV
+  summary: 反向击穿阈值电压 Inf V（默认）| 非负标量
+  group: 反向击穿
+- name: Reverse breakdown current, IBV
+  summary: 反向击穿电流 1e-10 A/m^2（默认）| 正标量
+  group: 反向击穿
+- name: Low-level reverse breakdown knee current, IBVL
+  summary: 低电平反向击穿拐点电流 0 A/m^2（默认）| 正标量
+  group: 反向击穿
+- name: Reverse breakdown ideality factor, NBV
+  summary: 反向击穿理想因子 1（默认）| 正标量
+  group: 反向击穿
+- name: Low-level reverse breakdown ideality factor, NBVL
+  summary: 低电平反向击穿理想因子 1（默认）| 正标量
+  group: 反向击穿
+- name: Model temperature dependence using
+  summary: 温度依赖模型 Device temperature（默认）| Fixed temperature
+  group: 温度
+- name: Saturation current temperature exponent, XTI
+  summary: 饱和电流温度指数 3.0（默认）| 正标量
+  group: 温度
+- name: Activation energy, EG
+  summary: 激活能 1.11 eV（默认）| *EG* *≥* 0.1 | 标量
+  group: 温度
+- name: IKF temperature coefficient (linear), TIKF
+  summary: IKF 的温度系数 0 1/K（默认）| 正标量
+  group: 温度
+- name: RS temperature coefficient (linear), TRS1
+  summary: RS 的温度系数 0 1/K（默认）| 正标量
+  group: 温度
+- name: RS temperature coefficient (quadratic), TRS2
+  summary: RS 的温度系数 0 1/K^2（默认）| 正标量
+  group: 温度
+- name: BV temperature coefficient (linear), TBV1
+  summary: BV 的温度系数 0 1/K（默认）| 正标量
+  group: 温度
+- name: BV temperature coefficient (quadratic), TBV2
+  summary: BV 的温度系数 0 1/K^2（默认）| 正标量
+  group: 温度
+- name: Fixed circuit temperature, TFIXED
+  summary: 固定电路温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Parameter extraction temperature, TMEAS
+  summary: 参数提取温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: Offset local circuit temperature, TOFFSET
+  summary: 局部电路温度偏移 0 K（默认）| 标量
+  group: 温度
+```
 
 ### 主要
 
@@ -245,7 +355,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Model temperature dependence using** 设置为 `Device temperature`。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

@@ -14,6 +14,21 @@ language: en
 # Specific Dissipation Heat Exchanger (G-TL)
 
 ## Ports
+```yaml
+ports:
+- name: A1
+  summary: Gas port gas
+  direction: conserving
+- name: B1
+  summary: Gas port gas
+  direction: conserving
+- name: A2
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+- name: B2
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -34,8 +49,109 @@ exchanger.
 
 Opening for thermal liquid to enter and exit its side of the heat
 exchanger.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gas 1 mass flow rate vector, mdot1
+  summary: Mass flow rate of gas at each breakpoint in lookup table for specific heat dissipation table numerical array with
+    units of mass over time
+  group: Heat Transfer
+- name: Thermal Liquid 2 mass flow rate vector, mdot2
+  summary: Mass flow rate of thermal liquid at each breakpoint in lookup table for specific heat dissipation table numerical
+    array with units of mass over time
+  group: Heat Transfer
+- name: Specific heat dissipation table, SD(mdot1, mdot2)
+  summary: Specific heat dissipation at each breakpoint in lookup table over mass flow rates of gas and thermal liquid numerical
+    array with units of power over temperature
+  group: Heat Transfer
+- name: Check if violating maximum specific dissipation
+  summary: Warning condition for specific heat dissipation in excess of minimum heat capacity rate Warning (default) | None
+    | Error
+  group: Heat Transfer
+- name: Mass flow rate vector
+  summary: Mass flow rate at each breakpoint in lookup table for pressure drop numerical array with units of mass per unit
+    time
+  group: Gas 1
+- name: Pressure drop vector
+  summary: Pressure drop at each breakpoint in lookup table over mass flow rate numerical array with units of pressure
+  group: Gas 1
+- name: Reference inflow temperature
+  summary: Absolute inlet temperature assumed in tabulated data 293.15 K (default) | scalar with units of temperature
+  group: Gas 1
+- name: Reference inflow pressure
+  summary: Absolute inlet pressure assumed in tabulated data 0.101325 MPa (default) | scalar with units of pressure
+  group: Gas 1
+- name: Mass flow rate threshold for flow reversal
+  summary: Upper bound of numerically smooth region for mass flow rate 1e-3 kg/s (default) | scalar with units of mass/time
+  group: Gas 1
+- name: Gas 1 volume
+  summary: Volume of fluid in the gas flow channel 0.01 m^3 (default) | scalar with units of length cubed
+  group: Gas 1
+- name: Cross-sectional area at ports A1 and B1
+  summary: Flow area at the inlet and outlet of the flow channel 0.01 m^2 (default) | scalar with units of length squared
+  group: Gas 1
+- name: Mass flow rate vector
+  summary: Mass flow rate at each breakpoint in lookup table for pressure drop numerical array with units of mass per unit
+    time
+  group: Thermal Liquid 2
+- name: Pressure drop vector
+  summary: Pressure drop at each breakpoint in lookup table over mass flow rate numerical array with units of pressure
+  group: Thermal Liquid 2
+- name: Reference inflow temperature
+  summary: Absolute inlet temperature assumed in tabulated data 293.15 K (default) | scalar with units of temperature
+  group: Thermal Liquid 2
+- name: Reference inflow pressure
+  summary: Absolute inlet pressure assumed in tabulated data 0.101325 MPa (default) | scalar with units of pressure
+  group: Thermal Liquid 2
+- name: Mass flow rate threshold for flow reversal
+  summary: Upper bound of numerically smooth region for mass flow rate 1e-3 kg/s (default) | scalar with units of mass/time
+  group: Thermal Liquid 2
+- name: Thermal Liquid 2 volume
+  summary: Volume of fluid in the thermal liquid flow channel 0.01 m^3 (default) | scalar with units of length cubed
+  group: Thermal Liquid 2
+- name: Cross-sectional area at ports A2 and B2
+  summary: Flow area at the inlet and outlet of the flow channel 0.01 m^2 (default) | scalar with units of length squared
+  group: Thermal Liquid 2
+- name: Enable Gas 1 dynamic compressibility
+  summary: Option to model pressure dynamics in the gas channel On (default) | Off
+  group: Effects and Initial Conditions
+- name: Gas 1 nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Gas 1 nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Gas 1 initial temperature
+  summary: Temperature in the gas channel at the start of simulation 293.15 K (default) | scalar with units of temperature
+  group: Effects and Initial Conditions
+- name: Gas 1 initial pressure
+  summary: Pressure in the gas channel at the start of simulation 0.101325 MPa (default) | scalar with units of pressure
+  group: Effects and Initial Conditions
+- name: Enable Thermal Liquid 2 dynamic compressibility
+  summary: Option to model pressure dynamics in the thermal liquid channel On (default) | Off
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 initial temperature
+  summary: Temperature in the thermal liquid channel at the start of simulation 293.15 K (default) | scalar with units of
+    temperature
+  group: Effects and Initial Conditions
+- name: Enable Thermal Liquid 2 dynamic compressibility
+  summary: Option to model pressure dynamics in the thermal liquid channel On (default) | Off
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 initial temperature
+  summary: Temperature in the thermal liquid channel at the start of simulation 293.15 K (default) | scalar with units of
+    temperature
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 initial pressure
+  summary: Pressure in the thermal liquid channel at the start of simulation 0.101325 MPa (default) | scalar with units of
+    pressure
+  group: Effects and Initial Conditions
+```
 
 ### Heat Transfer
 
@@ -298,7 +414,6 @@ Pressure in the thermal liquid channel at the start of simulation.
 
 To enable this parameter, select **Enable Thermal Liquid 2 dynamic
 compressibility** .
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid - Gas

@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Translational World (PB)
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 绝对零位置和速度 基于位置的机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **R** — 绝对零位置和速度 基于位置的机械平移
 
 基于位置的机械平移守恒端口，用于为所连接的回路设置绝对零位置和速度。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Elements

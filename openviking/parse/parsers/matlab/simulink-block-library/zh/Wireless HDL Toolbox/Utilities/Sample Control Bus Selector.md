@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Sample Control Bus Selector
 
 ## 端口
+```yaml
+ports:
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: start
+  summary: 帧起始标量
+  direction: output
+  data_types: Boolean
+- name: end
+  summary: 帧结束标量
+  direction: output
+  data_types: Boolean
+- name: valid
+  summary: 样本有效性标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -48,11 +67,12 @@ chinese_source: worker-translation
 样本有效性，以 `Boolean` 标量形式返回。该信号在对应于有效样本的时间步上为 1（true）。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Wireless HDL Toolbox / Utilities

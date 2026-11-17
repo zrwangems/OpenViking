@@ -14,6 +14,17 @@ language: en
 # Event Source
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data numeric vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Input
 
@@ -37,8 +48,19 @@ This port sends a task event signal that triggers the Task Manager block to
 execute the associated event-driven task.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input
+  summary: Source of input data From dialog (default) | From input port | From timeseries object
+  group: ''
+- name: Sample time
+  summary: Time interval of sampling -1 (default) | nonnegative scalar
+  group: ''
+- name: Object name
+  summary: Name of timeseries object [] (default) | timeseries object
+  group: ''
+```
 
 ### **Input** — Source of input data `From dialog` (default) | `From input port` | `From timeseries object`
 
@@ -72,7 +94,6 @@ objects, see Time Series Objects and Collections.
 
 To enable this parameter, set the **Input** parameter to
 `From timeseries object`.
-
 ## Libraries
 
 SoC Blockset / Processor Testbench C2000 Microcontroller Blockset / Scheduling Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

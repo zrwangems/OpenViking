@@ -14,6 +14,12 @@ language: en
 # World Frame
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: World frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -21,11 +27,12 @@ language: en
 
 World frame represented by the block. Connect to another frame to fix
 the position and orientation of that frame to the world frame.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Multibody / Frames and Transforms

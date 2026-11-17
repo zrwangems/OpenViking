@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Time Varying Gain
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵 | 数组
+  direction: input
+  data_types: double | single
+- name: Port_2
+  summary: 距离损耗 列向量
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: 距离补偿信号 向量 | 矩阵 | 数组
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -44,8 +59,25 @@ chinese_source: worker-translation
 距离补偿信号，以向量、矩阵或数组形式返回。距离补偿信号的大小与输入信号相同。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Source of range losses
+  summary: 距离损耗的来源 Property（默认） | Input Port
+  group: ''
+- name: Range losses (dB)
+  summary: 每个输入样本距离处的损耗 0（默认） | 向量
+  group: ''
+- name: Reference range loss (dB)
+  summary: 参考距离处的损耗 0（默认） | 标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认） | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 ### **Source of range losses** — 距离损耗的来源 `Property`（默认） | `Input Port`
 
@@ -103,7 +135,6 @@ chinese_source: worker-translation
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

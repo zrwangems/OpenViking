@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Twelve-Pulse Gate Multiplexer
 
 ## 端口
+```yaml
+ports:
+- name: Ga(1),Ga(2),Ga(3),Ga(4)
+  summary: Ga(1),Ga(2),Ga(3),Ga(4) 物理信号
+  direction: input
+- name: Gb(1),Gb(2),Gb(3),Gb(4)
+  summary: Gb(1),Gb(2),Gb(3),Gb(4) 物理信号
+  direction: input
+- name: Gc(1),Gc(2),Gc(3),Gc(4)
+  summary: Gc(1),Gc(2),Gc(3),Gc(4) 物理信号
+  direction: input
+- name: Ga(1),Ga(2),Ga(3),Ga(4)
+  summary: Ga(1),Ga(2),Ga(3),Ga(4) 电气
+  direction: input
+- name: Gb(1),Gb(2),Gb(3),Gb(4)
+  summary: Gb(1),Gb(2),Gb(3),Gb(4) 电气
+  direction: input
+- name: Gc(1),Gc(2),Gc(3),Gc(4)
+  summary: Gc(1),Gc(2),Gc(3),Gc(4) 电气
+  direction: input
+- name: G
+  summary: G 电气
+  direction: input
+- name: Ka(1),Ka(2),Ka(3),Ka(4)
+  summary: Ka(1),Ka(2),Ka(3),Ka(4) 电气
+  direction: input
+- name: Kb(1),Kb(2),Kb(3),Kb(4)
+  summary: Kb(1),Kb(2),Kb(3),Kb(4) 电气
+  direction: input
+- name: Kc(1),Kc(2),Kc(3),Kc(4)
+  summary: Kc(1),Kc(2),Kc(3),Kc(4) 电气
+  direction: input
+```
 
 ### 输入
 
@@ -117,13 +150,17 @@ Converter (Three-Phase) 模块的 G 端口。
 
 要启用此端口，请将 **Gate-control port** 设置为
 `Electrical`。
-
 ## 参数
+```yaml
+parameters:
+- name: Gate-control port
+  summary: 栅极控制端口 PS（默认）| Electrical
+  group: ''
+```
 
 ### **Gate-control port** — 栅极控制端口 `PS`（默认）| `Electrical`
 
 是否暴露 PS 或电气控制端口。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

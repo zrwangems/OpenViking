@@ -14,6 +14,25 @@ language: en
 # IMU Filter
 
 ## Ports
+```yaml
+ports:
+- name: Accel
+  summary: Accelerometer readings in sensor body coordinate system (m/s2) matrix
+  direction: input
+  data_types: single | double
+- name: Gyro
+  summary: Gyroscope readings in sensor body coordinate system (rad/s) matrix
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: Orientation of sensor body frame relative to navigation frame matrix | array
+  direction: output
+  data_types: single | double
+- name: Angular Velocity
+  summary: Angular velocity in sensor body coordinate system (rad/s) matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -66,8 +85,40 @@ The number of input samples *N* and the **Decimation
 factor** parameter determine the output size *M*.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reference frame
+  summary: Navigation reference frame NED (default) | ENU
+  group: ''
+- name: Orientation format
+  summary: Orientation output format quaternion (default) | Rotation Matrix
+  group: ''
+- name: Decimation factor
+  summary: Decimation factor 1 (default) | positive integer
+  group: ''
+- name: Initial process noise
+  summary: Initial process noise imufilter.defaultProcessNoise (default) | 9-by-9 matrix of real numbers
+  group: ''
+- name: Accelerometer noise ((m/s2)2)
+  summary: Variance of accelerometer signal noise (m/s2)2 0.0001924722 (default) | positive real scalar
+  group: ''
+- name: Gyroscope noise ((rad/s)2)
+  summary: Variance of gyroscope signal noise (rad/s)2 9.1385e-5 (default) | positive real scalar
+  group: ''
+- name: Gyroscope drift noise ((rad/s)2)
+  summary: Variance of gyroscope offset drift (rad/s)2 3.0462e-13 (default) | positive real scalar
+  group: ''
+- name: Linear acceleration noise ((m/s2)2)
+  summary: Variance of linear acceleration noise (m/s2)2 0.0096236100000000012 (default) | positive real scalar
+  group: ''
+- name: Linear acceleration decay factor
+  summary: Decay factor for linear acceleration drift 0.5 (default) | scalar in the range [0 1)
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Reference frame** — Navigation reference frame `NED` (default) | `ENU`
 
@@ -147,7 +198,6 @@ Select the type of simulation to run from these options:
   does not change. This option requires additional startup time for the initial run,
   but increases the speed of subsequent simulations relative to
   `Interpreted execution`.
-
 ## Libraries
 
 Navigation Toolbox / Multisensor Positioning / Navigation Filters Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Navigation Filters

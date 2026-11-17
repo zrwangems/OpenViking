@@ -15,10 +15,66 @@ chinese_source: worker-translation
 # CAN Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: CAN 设备和通道列表选项
+  group: ''
+  block_parameter: Device
+  type: 字符向量、字符串
+- name: Bus speed
+  summary: CAN 总线位速率整数
+  group: ''
+  block_parameter: BusSpeed
+  type: 字符向量、字符串
+  values: 整数
+- name: Manually configure bit parameters
+  summary: 允许指定各个位参数 关（默认） | 开
+  group: ''
+  block_parameter: EnableBitParameters
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+- name: Synchronization jump width
+  summary: 允许的最大时间调整量 整数
+  group: ''
+  block_parameter: SJW
+  type: 字符向量、字符串
+  values: 整数
+- name: Time segment 1
+  summary: 采样点之前的时间量子数 整数
+  group: ''
+  block_parameter: TSEG1
+  type: 字符向量、字符串
+  values: 整数
+- name: Time segment 2
+  summary: 采样点之后的时间量子数 整数
+  group: ''
+  block_parameter: TSEG2
+  type: 字符向量、字符串
+  values: 整数
+- name: Number of samples
+  summary: 每位的采样数 整数
+  group: ''
+  block_parameter: NSamples
+  type: 字符向量、字符串
+  values: 整数
+- name: Verify bit parameter settings validity
+  summary: 检查设置的有效性
+  group: ''
+- name: Acknowledge mode
+  summary: 控制 CAN 总线上的通道活动 Normal（默认）| Silent
+  group: ''
+  block_parameter: AckMode
+  type: character vector, string
+  values: '''Normal'' | ''Silent'''
+  default: '''Normal'''
+```
 
 ### **Device** — CAN 设备和通道列表选项
 
@@ -133,7 +189,6 @@ R2025b 中未记录。
 | **类型**：character vector, string |
 | **值**：`'Normal'` | `'Silent'` |
 | **默认值**：`'Normal'` |
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN Communication

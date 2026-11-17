@@ -14,6 +14,37 @@ language: en
 # FIR Interpolator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data real or complex scalar or vector
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: coeff
+  summary: Filter coefficients real or complex row vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Interpolated output data real or complex scalar or vector
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready for new input data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -131,8 +162,50 @@ and **valid**  inputs for the next time step. When
 (`false`), the block ignores any input data in the next time step.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: Source of filter coefficients Property (default) | Input port (Parallel interface)
+  group: Main
+- name: Coefficients
+  summary: FIR filter coefficients fir1(35,0.4) (default) | real- or complex-valued vector
+  group: Main
+- name: Coefficients prototype
+  summary: Prototype filter coefficients [] (default) | real or complex vector
+  group: Main
+- name: Filter structure
+  summary: HDL filter architecture Direct form systolic (default) | Direct form transposed
+  group: Main
+- name: Interpolation factor
+  summary: Interpolation factor 2 (default) | integer greater than two
+  group: Main
+- name: Minimum number of cycles between valid input samples
+  summary: Serialization requirement for input timing 1 (default) | positive integer
+  group: Main
+- name: Optimize symmetric coefficients
+  summary: Share multipliers for symmetric coefficients on (default) | off
+  group: Main
+- name: Rounding mode
+  summary: Rounding mode for type-casting the output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow handling for type-casting the output off (default) | on
+  group: Data Types
+- name: Coefficients
+  summary: 'Data type of filter coefficients Inherit: Same word length as input (default) | <data type expression>'
+  group: Data Types
+- name: Output
+  summary: 'Data type of filter output Inherit: Inherit via internal rule (default) | Inherit: Same word length as input |
+    <data type expression>'
+  group: Data Types
+- name: Enable reset input port
+  summary: Option to enable reset input port off (default) | on
+  group: Control Ports
+- name: Use HDL global reset
+  summary: Option to connect data path registers to generated HDL global reset signal off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -341,7 +414,6 @@ synchronous or asynchronous depending on the **HDL Code Generation** > **Global 
 For more reset considerations, see the Reset Signal section on
 the Hardware Control Signals
 page.
-
 ## Libraries
 
 DSP HDL Toolbox / Filtering

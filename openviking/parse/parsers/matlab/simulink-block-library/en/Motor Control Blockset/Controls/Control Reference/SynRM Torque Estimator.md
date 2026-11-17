@@ -14,6 +14,41 @@ language: en
 # SynRM Torque Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Id
+  summary: D-axis current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Iq
+  summary: Q-axis current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm
+  summary: Mechanical speed of rotor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Ld
+  summary: D-axis inductance scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Lq
+  summary: Q-axis inductance scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: FluxPM
+  summary: Permanent magnet flux linkage scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Te
+  summary: Estimated torque scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Pe
+  summary: Estimated power scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -88,8 +123,78 @@ Mechanical torque (in Nm) output of the motor.
 Power output of the motor (in watts).
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Motor topology
+  summary: Synchronous reluctance motor topology Synchronous reluctance motor (default) | PM-assisted synchronous reluctance
+    motor
+  group: ''
+- name: Definition of d-axis and q-axis
+  summary: Alignment of *d*- and *q*-axes Ld > Lq (different from PMSM) (default) | Lq > Ld (same as PMSM)
+  group: ''
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 4 (default) | scalar
+  group: ''
+- name: Motor parameter input method
+  summary: Type of motor parameters Linear model with lumped parameters (default) | Non-linear model with D,Q-flux linkage
+    LUTs | Non-linear model with Ld and Lq LUTs | Non-linear model with Ld, Lq, and FluxPM LUTs | Input port based Ld and
+    Lq | Input port based Ld, Lq, and FluxPM
+  group: ''
+- name: D-axis current breakpoint vector, id (A)
+  summary: D-axis current lookup vector [0,10,20,30] (default) | vector
+  group: ''
+- name: Q-axis current breakpoint vector, iq (A)
+  summary: Q-axis current lookup vector [0,10,20,30,40] (default) | vector
+  group: ''
+- name: Stator d-axis inductance, Ld (H)
+  summary: D-axis stator winding inductance 0.9e-3 (default) | scalar
+  group: ''
+- name: Stator q-axis inductance, Lq (H)
+  summary: Q-axis stator winding inductance 0.15e-3 (default) | scalar
+  group: ''
+- name: Permanent magnet flux linkage, FluxPM (Wb)
+  summary: Permanent magnet flux linkage 0.4e-4 (default) | scalar
+  group: ''
+- name: D-axis flux linkage LUT, FluxD(id,iq) (Wb)
+  summary: D-axis flux linkage lookup data [0,0,0,0,0;0.009,0.009,0.009,0.009,0.0090;0.018,0.018,0.018,0.018,0.0180;0.027,0.027,0.027,0.027,0.0270]
+    (default) | matrix
+  group: ''
+- name: Q-axis flux linkage LUT, FluxQ(id,iq) (Wb)
+  summary: Q-axis flux linkage lookup data [0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060;0,0.0015,0.0030,0.0045,0.0060]
+    (default) | matrix
+  group: ''
+- name: Ld LUT, Ld(id,iq) (H)
+  summary: D-axis inductance lookup data 0.9e-3 * ones(4, 5) (default) | matrix
+  group: ''
+- name: Lq LUT, Lq(id,iq) (H)
+  summary: Q-axis inductance lookup table data 0.15e-3 * ones(4, 5) (default) | matrix
+  group: ''
+- name: PM flux linkage LUT, FluxPM(id,iq) (Wb)
+  summary: PM flux linkage lookup data 0.4e-4 * ones(4, 5) (default) | matrix
+  group: ''
+- name: Input units
+  summary: Unit of input values Per-Unit (PU) (default) | SI Units
+  group: ''
+- name: Base Voltage (V)
+  summary: Nominal voltage limit 24/sqrt(3) (default) | scalar
+  group: ''
+- name: Base Current (A)
+  summary: Nominal current limit 19.3 (default) | scalar
+  group: ''
+- name: Base Speed (rpm)
+  summary: Nominal speed limit 4107 (default) | scalar
+  group: ''
+- name: Base torque (Nm)
+  summary: Nominal torque limit 0.93271 (default) | scalar
+  group: ''
+- name: Base power (W)
+  summary: Nominal power limit 401.143 (default) | scalar
+  group: ''
+- name: Allow scaled-down motor parameters with CodeGen (higher precision with Fixed-Point data type)
+  summary: Scale down internal parameters to match per-unit scale on (default) | off
+  group: ''
+```
 
 #### Motor Parameters
 
@@ -379,7 +484,6 @@ code.
 
 To enable this parameter, set **Input units** to
 `Per-Unit (PU)`.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference

@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # SRM Current Controller
 
 ## 端口
+```yaml
+ports:
+- name: IsRef
+  summary: 参考电流标量
+  direction: input
+  data_types: single | double
+- name: Is
+  summary: 测量电流标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 积分器复位标量
+  direction: input
+  data_types: Boolean
+- name: theta
+  summary: Theta 转子角度标量
+  direction: input
+  data_types: single | double
+- name: thetaON
+  summary: 开通角标量
+  direction: input
+  data_types: single | double
+- name: thetaOFF
+  summary: 关断角标量
+  direction: input
+  data_types: single | double
+- name: abcRef
+  summary: 参考电压矢量
+  direction: output
+  data_types: single | double
+- name: abcOnOff
+  summary: 开关信号矢量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -66,8 +101,22 @@ chinese_source: worker-translation
 用于 *a*、*b* 和 *c* 相的开关信号。`1` 表示开通条件，`0` 表示关断条件
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain
+  summary: 控制器比例增益，*Kp* 1（默认）| 正标量
+  group: ''
+- name: Integral gain
+  summary: 积分增益，*Ki* 5（默认）| 正标量
+  group: ''
+- name: Anti-windup gain
+  summary: 抗积分饱和增益，*Kaw* 1（默认）| 正标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 ### **Proportional gain** — 控制器比例增益，*Kp* `1`（默认）| 正标量
 
@@ -86,7 +135,6 @@ chinese_source: worker-translation
 连续模块执行之间的时间，以 s 为单位。在执行期间，模块产生输出，并在适当的情况下更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于连续变步长模型中，请使用正标量显式指定采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / SRM Control

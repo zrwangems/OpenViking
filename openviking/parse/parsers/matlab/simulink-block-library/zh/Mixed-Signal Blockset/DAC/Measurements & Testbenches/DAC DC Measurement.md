@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # DAC DC Measurement
 
 ## 端口
+```yaml
+ports:
+- name: digital
+  summary: 来自 DAC 的数字输入信号 标量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: analog
+  summary: 来自 DAC 的转换后模拟信号 标量
+  direction: input
+  data_types: double
+- name: start
+  summary: 用于启动转换的外部时钟 标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -35,8 +50,74 @@ chinese_source: worker-translation
 用于启动转换的外部时钟，指定为标量。此端口决定数模转换过程何时开始。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input polarity
+  summary: DAC 输入信号的极性 Bipolar（默认）| Unipolar
+  group: ''
+  block_parameter: Polarity
+  type: 字符向量
+  values: Bipolar|Unipolar
+- name: Reference (V)
+  summary: 参考电压 2（默认）| 实数标量
+  group: ''
+  block_parameter: Ref
+  type: 字符向量
+  values: 实数标量
+- name: Bias (V)
+  summary: 添加到输出的偏置电压 0（默认）| 实数标量
+  group: ''
+  block_parameter: Bias
+  type: 字符向量
+  values: 实数标量
+- name: Settling time (s)
+  summary: 输出稳定所需时间 3e-7（默认）| 非负实数标量
+  group: ''
+  block_parameter: SettlingTime
+  type: 字符向量
+  values: 实数标量
+- name: Hold off time (s)
+  summary: 测量分析前的延迟 1e-3（默认）| 非负实数标量
+  group: ''
+  block_parameter: HoldOffTime
+  type: 字符向量
+  values: 非负实数标量
+- name: Number of bits
+  summary: 输入字中的位数 10（默认）| 正实数整数
+  group: ''
+  block_parameter: NBits
+  type: 字符向量
+  values: 正实数整数
+- name: Start conversion frequency (Hz)
+  summary: 内部启动转换时钟的频率 1e6（默认）| 正实数标量
+  group: ''
+  block_parameter: StartFreq
+  type: 字符向量
+  values: 正实数标量
+- name: Recommended simulation stop time (s)
+  summary: 仿真必须运行以获得有意义结果的最短时间 0.02148（默认）| 正实数标量
+  group: ''
+- name: Endpoint
+  summary: 使用端点法测量 DNL、INL on（默认）| off
+  group: ''
+- name: Best fit
+  summary: 使用最佳拟合方法测量 DNL、INL on（默认）| off
+  group: ''
+- name: Output result to base workspace
+  summary: 将详细测试结果存储到基础工作区 off（默认）| on
+  group: ''
+- name: Workspace variable name
+  summary: 存储详细测试结果的变量名称 dac_dc_out（默认）| 字符字符串
+  group: ''
+  block_parameter: VariableName
+  type: character vector
+  values: character string
+  default: dac_dc_out
+- name: Plot
+  summary: 绘制测量结果 button
+  group: ''
+```
 
 ### **Input polarity** — DAC 输入信号的极性 `Bipolar`（默认）| `Unipolar`
 
@@ -195,7 +276,6 @@ Samples per bit = max(1Error tolerance,10)。
 ### **Plot** — 绘制测量结果 button
 
 点击以绘制测量结果以供进一步分析。
-
 ## 所属库
 
 Mixed-Signal Blockset / DAC / Measurements & Testbenches

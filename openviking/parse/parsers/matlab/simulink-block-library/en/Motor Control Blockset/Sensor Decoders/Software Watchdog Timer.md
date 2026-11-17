@@ -14,6 +14,17 @@ language: en
 # Software Watchdog Timer
 
 ## Ports
+```yaml
+ports:
+- name: Restart
+  summary: Pulse to restart watchdog timer counter scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Status
+  summary: Watchdog timer status scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -36,8 +47,16 @@ The watchdog timer status indicated as one of the following:
   counter.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum count
+  summary: Maximum limit of watchdog timer value 10 (default) | scalar
+  group: ''
+- name: Counter data type
+  summary: Data type of Status output uint8 (default) | uint16 | uint32
+  group: ''
+```
 
 ### **Maximum count** — Maximum limit of watchdog timer value `10` (default) | scalar
 
@@ -47,7 +66,6 @@ the counter and turn the watchdog timer status to false.
 ### **Counter data type** — Data type of `Status` output `uint8` (default) | `uint16` | `uint32`
 
 The data type of the watchdog timer status output.
-
 ## Libraries
 
 Motor Control Blockset / Sensor Decoders

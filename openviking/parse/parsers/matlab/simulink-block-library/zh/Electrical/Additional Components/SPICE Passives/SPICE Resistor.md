@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # SPICE Resistor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: unspecified
+- name: '-'
+  summary: 负极端子电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,49 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与 SPICE 电阻负电压端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: 器件缩放因子，SCALE
+  summary: 器件缩放因子 1.0（默认）
+  group: 电阻
+- name: 电阻参数化
+  summary: 参数化选项 Use specified resistance（默认） | Calculate from process information
+  group: 电阻
+- name: Resistance, R
+  summary: 电阻 0 Ohm（默认）
+  group: 电阻
+- name: Sheet resistance, RSH
+  summary: 每方块电阻 0 Ohm（默认）
+  group: 电阻
+- name: Resistor length, LENGTH
+  summary: 电阻长度 1e-6 m（默认）
+  group: 电阻
+- name: Resistor width, WIDTH
+  summary: 电阻宽度 1e-6 m（默认）
+  group: 电阻
+- name: Etch narrowing, NARROW
+  summary: 蚀刻窄化 0 m（默认）
+  group: 电阻
+- name: Model temperature dependence using
+  summary: 温度依赖性参数化 Device temperature（默认） | Fixed temperature
+  group: 温度
+- name: First order temperature coefficient, TC1
+  summary: 一阶温度系数 0 1/K（默认）
+  group: 温度
+- name: Second order temperature coefficient, TC2
+  summary: 二阶温度系数 0 1/K^2（默认）
+  group: 温度
+- name: Offset local circuit temperature, TOFFSET
+  summary: 偏移本地电路温度 0 K（默认）
+  group: 温度
+- name: Fixed circuit temperature, TFIXED
+  summary: 固定电路温度 300.15 K（默认）
+  group: 温度
+- name: Parameter extraction temperature, TMEAS
+  summary: 参数提取温度 300.15 K（默认）
+  group: 温度
+```
 
 ### 电阻
 
@@ -156,7 +206,6 @@ temperature` 时可见。
 ### **Parameter extraction temperature, TMEAS** — 参数提取温度 `300.15` `K`（默认）
 
 测量电阻参数时的温度。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Passives

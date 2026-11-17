@@ -14,6 +14,22 @@ language: en
 # OPC UA Read
 
 ## Ports
+```yaml
+ports:
+- name: Value
+  summary: Current data values of selected nodes scalar | bus
+  direction: output
+  data_types: Boolean | single | double | datetime | int8 | int16 | int32 | int64 | uint8 | uint8 vector | uint16 | uint32
+    | uint64 | struct | char vector | bus
+- name: Timestamp
+  summary: Timestamp of selected nodes data seconds (default) | date number
+  direction: output
+  data_types: double
+- name: Quality
+  summary: Quality of read data from selected nodes boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -77,8 +93,49 @@ To enable this port, select the **Show
 quality port** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Server
+  summary: Define OPC UA server for block drop-down list
+  group: ''
+  block_parameter: ServerList
+  type: string | character vector
+- name: Nodes
+  summary: List of OPC UA server nodes table
+  group: ''
+  values: port.
+  block_parameter: NodeList
+  type: string | character vector
+- name: Show quality port
+  summary: Add quality output to block on (default) | off
+  group: ''
+  block_parameter: ShowQualityPort
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show timestamp port
+  summary: Add timestamp output to block on (default) | off
+  group: ''
+  block_parameter: ShowTimestampPort
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show timestamp port as
+  summary: Set timestamp basis Seconds since start (default) | Serial date number
+  group: ''
+  block_parameter: ShowTimestampPortAs
+  type: string | character vector
+  values: '''Seconds since start'' | ''Serial date number'''
+  default: '''Seconds since start'''
+- name: Sample time
+  summary: Sample time for read operation -1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: nonnegative scalar
+  default: '''-1'''
+```
 
 ### **Server** — Define OPC UA server for block drop-down list
 
@@ -189,7 +246,6 @@ time. For more information, see Specify Sample Time (Simulink).
 | **Type:** `string` | `character vector` |
 | **Values:** nonnegative scalar |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 Industrial Communication Toolbox / OPC Unified Architecture

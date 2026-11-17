@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Quadrature Shaft Decoder
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 数字信号 *A* 标量
+  direction: input
+  data_types: single | double
+- name: B
+  summary: 数字信号 *B* 标量
+  direction: input
+  data_types: single | double
+- name: Z
+  summary: 索引脉冲 标量
+  direction: input
+  data_types: single | double
+- name: Velocity
+  summary: 轴旋转速度 标量
+  direction: output
+  data_types: single | double
+- name: Position
+  summary: 轴旋转角度 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -48,8 +71,16 @@ Simulink 信号，指定为标量，与轴旋转速度相关联。
 Simulink 信号，指定为标量，与轴旋转角度相关联。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Pulses per revolution
+  summary: 每转脉冲数 4（默认）| 大于 0 的整数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 ### **Pulses per revolution** — 每转脉冲数 4（默认）| 大于 0 的整数
 
@@ -60,7 +91,6 @@ Simulink 信号，指定为标量，与轴旋转角度相关联。
 连续模块执行之间的时间，单位为秒。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 如果此模块位于触发子系统内，您可以通过将此参数设置为 `-1` 来使此模块继承采样时间。如果此模块位于连续变步长模型中，请使用正标量显式指定采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / Observers

@@ -14,6 +14,24 @@ language: en
 # Solenoid
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Plunger mechanical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -45,8 +63,58 @@ Thermal port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Motion direction under excitation
+  summary: Motion direction under excitation Port R moves towards port C (default) | Port R moves away from port C
+  group: Magnetic Force
+- name: Pull-in forces [F1 F2]
+  summary: Vector of pull-in forces [7.5, .75] N (default)
+  group: Magnetic Force
+- name: Stroke (air gap) [X1 X2]
+  summary: Vector of strokes [1, 5] mm (default)
+  group: Magnetic Force
+- name: Rated voltage Vdc
+  summary: Rated voltage 50 V (default)
+  group: Magnetic Force
+- name: Rated current Idc
+  summary: Rated current 0.05 A (default)
+  group: Magnetic Force
+- name: Spring constant
+  summary: Spring constant 200 N/m (default)
+  group: Mechanical
+- name: Stroke for zero spring force
+  summary: Stroke for zero spring force 5 mm (default)
+  group: Mechanical
+- name: Damping
+  summary: Damping 1 N/(m/s) (default)
+  group: Mechanical
+- name: Plunger mass
+  summary: Plunger mass 0.05 kg (default)
+  group: Mechanical
+- name: Maximum stroke
+  summary: Maximum stroke Inf mm (default)
+  group: Mechanical
+- name: Contact stiffness
+  summary: Contact stiffness 1e6 N/m (default)
+  group: Mechanical
+- name: Contact damping
+  summary: Contact damping 500 N/(m/s) (default)
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Thermal
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Thermal
+- name: Thermal mass
+  summary: Thermal mass 100 J/K (default)
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -156,7 +224,6 @@ Temperature for which the actuator parameters are defined.
 
 Thermal mass is the energy required to raise the temperature by one
 degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

@@ -14,6 +14,25 @@ language: en
 # Hough Transform
 
 ## Ports
+```yaml
+ports:
+- name: BW
+  summary: Binary image matrix
+  direction: input
+  data_types: Boolean
+- name: Hough
+  summary: Parameter space matrix matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: Theta
+  summary: Theta values vector
+  direction: output
+  data_types: single | double | fixed point
+- name: Rho
+  summary: Rho values vector
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -54,8 +73,25 @@ To enable this port, you must select the **Output theta and rho
 values** parameter.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Theta resolution (radians)
+  summary: Theta resolution pi/180 (default) | positive scalar
+  group: Main
+- name: Rho resolution (pixels)
+  summary: Rho resolution 1 (default) | positive scalar
+  group: Main
+- name: Output theta and rho values
+  summary: Enable Theta and Rho output ports off (default) | on
+  group: Main
+- name: Output data type
+  summary: Output data type double (default) | single | Specify via Fixed-point tab
+  group: Main
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -93,7 +129,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Transforms

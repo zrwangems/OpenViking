@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Heat Exchanger Interface (TL)
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 热容率物理信号
+  direction: output
+- name: HC
+  summary: 传热系数物理信号
+  direction: output
+- name: A
+  summary: 热液体端口 热液体
+  direction: output
+- name: B
+  summary: 热液体端口 热液体
+  direction: output
+- name: H
+  summary: 热入口温度 热
+  direction: output
+```
 
 ### 输出
 
@@ -38,8 +56,107 @@ chinese_source: worker-translation
 ### **H** — 热入口温度 热
 
 与热液体入口温度相关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum free-flow area
+  summary: 流动通道最窄处的横截面积 0.01 m^2（默认）| 标量
+  group: ''
+- name: Hydraulic diameter for pressure loss
+  summary: 通道的直径或等效直径 0.1 m（默认）| 标量
+  group: ''
+- name: Thermal liquid volume
+  summary: 流动通道中所含流体的总体积 0.01 m^3（默认）| 单位为长度平方的标量
+  group: ''
+- name: Laminar flow upper Reynolds number limit
+  summary: 层流与湍流状态之间过渡的起点 2000（默认）| 标量
+  group: ''
+- name: Turbulent flow lower Reynolds number limit
+  summary: 层流与湍流状态之间过渡的终点 4000（默认）| 标量
+  group: ''
+- name: Pressure loss model
+  summary: 摩擦压降的数学模型 Pressure loss coefficient（默认）| Correlation for flow inside tubes | Tabulated data - Darcy friction factor
+    vs. Reynolds number | Tabulated data - Euler number vs. Reynolds number
+  group: ''
+- name: Pressure loss coefficient
+  summary: 端口之间所有流动阻力的总损失系数 0.1（默认）| 标量
+  group: ''
+- name: Length of flow path from inlet to outlet
+  summary: 从端口到端口所经过的距离 1 m（默认）| 单位为长度的标量
+  group: ''
+- name: Aggregate equivalent length of local resistances
+  summary: 以长度表示的局部次要压降总和 0.1 m（默认）| 标量
+  group: ''
+- name: Internal surface absolute roughness
+  summary: 导致摩擦损失的壁面表面变化的平均高度 15e-6 m（默认）| 单位为长度的标量
+  group: ''
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流条件下流动横截面的压降修正 64（默认）| 标量
+  group: ''
+- name: Reynolds number vector for Darcy friction factor
+  summary: Darcy 摩擦因子查找表中每个断点处的 Reynolds 数 [400, 1000, 1500, 3000, 4000, 6000, 10000, 20000, 40000, 60000, 100000, 100000000]（默认）|
+    数组
+  group: ''
+- name: Darcy friction factor vector
+  summary: Reynolds 数查找表中每个断点处的 Darcy 摩擦因子 [.264, .112, .071, .0417, .0387, .0268, .025, .0232, .0226, .022, .0214, .0214]（默认）|
+    数组
+  group: ''
+- name: Reynolds number vector for Euler number
+  summary: Euler 数查找表中每个断点处的 Reynolds 数 [50, 500, 1000, 2000]（默认）| 数组
+  group: ''
+- name: Euler number vector
+  summary: 雷诺数查找表中每个断点处的欧拉数 [4.4505, .6864, .4791, .3755]（默认）| 数组
+  group: ''
+- name: Heat transfer coefficient model
+  summary: 流体与壁面之间传热的数学模型 Constant heat transfer coefficient（默认）| Correlation for flow inside tubes | Tabulated data - Colburn
+    factor vs. Reynolds number | Tabulated data - Nusselt number vs. Reynolds number and Prandtl number
+  group: ''
+- name: Liquid-wall heat transfer coefficient
+  summary: 流体与壁面之间对流传热的传热系数 100 W/(m^2 * K)（默认）| 标量
+  group: ''
+- name: Heat transfer surface area
+  summary: 流体与壁面之间传热所用的有效表面积 0.4 m^2（默认）| 单位为长度平方的标量
+  group: ''
+- name: Length of flow path for heat transfer
+  summary: 流体与壁面之间传热所经过的特征长度 1 m（默认）| 单位为长度的标量
+  group: ''
+- name: Nusselt number for laminar flow heat transfer
+  summary: 层流流动传热中 Nusselt 数的假定常数 3.66（默认）| 正标量
+  group: ''
+- name: Reynolds number vector for Colburn factor
+  summary: Colburn 因子查找表中每个断点处的雷诺数 [100, 150, 1000]（默认）| 数组
+  group: ''
+- name: Colburn factor vector
+  summary: 雷诺数查找表中每个断点处的 Colburn 因子 [.019, .013, .002]（默认）| 数组
+  group: ''
+- name: Reynolds number vector for Nusselt number
+  summary: Nusselt 数查找表中每个断点处的雷诺数 [100, 150, 1000]（默认）| 数组
+  group: ''
+- name: Prandtl number vector for Nusselt number
+  summary: Nusselt 数查找表中每个断点处的 Prandtl 数 [1, 10]（默认）| 数组
+  group: ''
+- name: Nusselt number table, Nu(Re,Pr)
+  summary: 雷诺数-Prandtl 数查找表中每个断点处的 Nusselt 数 [3.72, 4.21; 3.75, 4.44; 4.21, 7.15]（默认）| 数组
+  group: ''
+- name: Fouling factor
+  summary: 因结垢而增加的阻力 1e-4 m^2*K/W（默认）| 标量
+  group: ''
+- name: Enable dynamic compressibility
+  summary: 换热器中液体可压缩性的设置 On（默认）| Off | 标量
+  group: ''
+- name: Thermal Liquid nominal temperature
+  summary: 额定工况下的温度 293.15 K（默认）| 标量
+  group: ''
+- name: Thermal Liquid nominal pressure
+  summary: 额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: ''
+- name: Thermal Liquid initial temperature
+  summary: 仿真开始时热液体通道中的温度 293.15 K（默认）| 单位为温度的标量
+  group: ''
+- name: Thermal Liquid initial pressure
+  summary: 仿真开始时热液体通道中的压力 0.101325 MPa（默认）| 单位为压力的标量
+  group: ''
+```
 
 ### **Minimum free-flow area** — 流动通道最窄处的横截面积 `0.01 m^2`（默认）| 标量
 
@@ -250,7 +367,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Enable dynamic compressibility**。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

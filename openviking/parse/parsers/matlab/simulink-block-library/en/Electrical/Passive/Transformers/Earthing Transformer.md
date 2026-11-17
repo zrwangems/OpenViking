@@ -14,6 +14,15 @@ language: en
 # Earthing Transformer
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase voltage electrical
+  direction: conserving
+- name: n
+  summary: Neutral electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +37,50 @@ voltage.
 Electrical three-phase
 electrical conserving port associated with the neutral
 point.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Rated apparent power
+  summary: Rated apparent power 100e6 V*A (default) | positive scalar
+  group: ''
+- name: Rated voltage
+  summary: Rated voltage 24e3 V (default) | positive scalar
+  group: ''
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz (default) | positive scalar
+  group: ''
+- name: Units
+  summary: Parameterization unit system Per unit (default) | SI
+  group: ''
+- name: Zero-sequence resistance (pu)
+  summary: Zero-sequence resistance 0.01 (default) | positive scalar
+  group: ''
+- name: Zero-sequence reactance (pu)
+  summary: Zero-sequence reactance 0.3 (default) | positive scalar
+  group: ''
+- name: Shunt magnetizing resistance (pu)
+  summary: Shunt magnetizing resistance 500 (default) | positive scalar
+  group: ''
+- name: Shunt magnetizing reactance (pu)
+  summary: Shunt magnetizing reactance 500 (default) | positive scalar
+  group: ''
+- name: Zero-sequence resistance
+  summary: Zero-sequence resistance 0.0576 Ohm (default) | positive scalar
+  group: ''
+- name: Zero-sequence inductance
+  summary: Zero-sequence inductance 1.728 H (default) | positive scalar
+  group: ''
+- name: Shunt magnetizing resistance
+  summary: Shunt magnetizing resistance 2880 Ohm (default) | positive scalar
+  group: ''
+- name: Shunt magnetizing inductance
+  summary: Shunt magnetizing inductance 2880 H (default) | positive scalar
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -144,7 +195,6 @@ Shunt magnetizing inductance in SI units. The value must be greater than
 
 This parameter is only visible when the **Units**
 parameter is set to `SI`.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

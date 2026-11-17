@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Ramp
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,34 @@ chinese_source: worker-translation
 生成的输出斜坡信号，由 **Slope**、**Start time** 和 **Initial output** 参数决定其特征。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Slope
+  summary: 信号的斜率 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: slope
+  type: 字符向量
+  values: 标量
+- name: Start time
+  summary: 输出开始的时间 0（默认）| 标量
+  group: ''
+  block_parameter: start
+  type: 字符向量
+  values: 标量
+- name: Initial output
+  summary: 输出信号的初始值 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: InitialOutput
+  type: 字符向量
+  values: 标量
+- name: Interpret vector parameters as 1-D
+  summary: 将向量视为一维 on（默认）| off
+  group: ''
+  block_parameter: VectorParams1D
+  type: 字符向量
+  values: '''on'' | ''off'''
+```
 
 ### **Slope** — 信号的斜率 1（默认）| 标量 | 向量 | 矩阵
 
@@ -80,7 +113,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on' | 'off'` |
 | **默认：** `'on'` |
-
 ## 所属库
 
 Simulink / Sources

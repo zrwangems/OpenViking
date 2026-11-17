@@ -14,6 +14,42 @@ language: en
 # Tank (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: C
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: D
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: E
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: F
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: H
+  summary: Fluid temperature thermal liquid
+  direction: conserving
+- name: P
+  summary: Tank pressure, MPa physical signal
+  direction: input
+- name: V
+  summary: Liquid volume, m^3 physical signal
+  direction: output
+- name: L
+  summary: Liquid level, m physical signal
+  direction: output
+- name: T
+  summary: Fluid temperature, K physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -102,8 +138,55 @@ physical signal.
 
 Tank fluid temperature in `K`, specified as a
 physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inlets
+  summary: Number of inlet ports 1 (default) | 2 | 3 | 4 | 5 | 6
+  group: ''
+- name: Pressurization specification
+  summary: Tank pressure specification method Atmospheric pressure (default) | Specified pressure | Variable pressure
+  group: ''
+- name: Tank pressurization
+  summary: User-defined tank pressure 0.101325 MPa (default) | positive scalar
+  group: ''
+- name: Tank volume parameterization
+  summary: Tank area characteristics Constant cross-section area (default) | Tabulated data - volume vs. level
+  group: ''
+- name: Tank cross-sectional area
+  summary: Tank cross-sectional area 1 m^2 (default) | positive scalar
+  group: ''
+- name: Liquid level vector
+  summary: Vector of tank fluid levels [0, 3, 5] m (default) | 1-by-*n* vector
+  group: ''
+- name: Liquid volume vector
+  summary: Vector of tank fluid levels [0, 4, 6] m^3 (default) | 1-by-*n* vector
+  group: ''
+- name: Inlet height
+  summary: Height of inlet port 0.1 m (default) | positive scalar
+  group: ''
+- name: Inlet cross-sectional area
+  summary: Cross-sectional area of the port inlet 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Height vector for inlets A and B
+  summary: Vector of port heights for multiple enabled ports [.1, .1] m (default) | 1-by-*n* vector
+  group: ''
+- name: Cross-sectional area vector for inlets A and B
+  summary: Vector of inlet areas for two enabled ports [.01, .01] m^2 (default) | 1-by-*n* vector
+  group: ''
+- name: Liquid level below inlet height
+  summary: Whether to be notified of low tank levels Error (default) | Warning | None
+  group: ''
+- name: Liquid volume above max capacity
+  summary: Whether to be notified of high tank volume None (default) | Warning | Error
+  group: ''
+- name: Maximum tank capacity
+  summary: Fill limit of the tank 10 m^3 (default) | positive scalar
+  group: ''
+- name: Gravitational acceleration
+  summary: Acceleration of gravity constant 9.81 m/s^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Number of inlets** — Number of inlet ports `1` (default) | `2` | `3` | `4` | `5` | `6`
 
@@ -257,7 +340,6 @@ capacity** to either:
 ### **Gravitational acceleration** — Acceleration of gravity constant `9.81` m/s^2 (default) | positive scalar
 
 Constant for the acceleration of gravity.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Tanks & Accumulators

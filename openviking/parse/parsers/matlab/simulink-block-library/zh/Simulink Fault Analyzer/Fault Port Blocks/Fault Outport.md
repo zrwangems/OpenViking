@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Fault Outport
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输出故障行为 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumeration | bus
+```
 
 ### 输入
 
@@ -23,11 +31,12 @@ chinese_source: worker-translation
 从行为到模型的输出，指定为标量、向量或矩阵。连接到此模块以在另一个模型中表示所引入的行为。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumeration` | `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Fault Analyzer / Fault Port Blocks

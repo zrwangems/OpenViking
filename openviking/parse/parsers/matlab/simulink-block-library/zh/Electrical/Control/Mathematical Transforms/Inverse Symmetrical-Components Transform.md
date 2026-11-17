@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Inverse Symmetrical-Components Transform
 
 ## 端口
+```yaml
+ports:
+- name: +-0
+  summary: 平衡的 *a* 相量分量向量
+  direction: input
+  data_types: single | double
+- name: abc
+  summary: '*a*、*b* 和 *c* 相量向量'
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,13 +41,17 @@ chinese_source: worker-translation
 重新生成的三相不平衡相量集，以复信号形式输出。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Power invariant
+  summary: 变换类型 off（默认）| on
+  group: ''
+```
 
 ### **Power invariant** — 变换类型 `off`（默认）| `on`
 
 功率不变切换。选择此参数以使用原始 Fortescue 变换的功率不变替代方案。
-
 ## 所属库
 
 Simscape / Electrical / Control / Mathematical Transforms

@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Flux-Based PMSM
 
 ## 端口
+```yaml
+ports:
+- name: LdTrq
+  summary: 转子轴转矩 scalar
+  direction: input
+- name: Spd
+  summary: 转子轴转速 scalar
+  direction: input
+- name: PhaseVolt
+  summary: 定子端电压 1×3 数组
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: PhaseCurr
+  summary: a、b、c 相电流 1×3 数组
+  direction: output
+- name: MtrTrq
+  summary: 电机转矩 scalar
+  direction: output
+- name: MtrSpd
+  summary: 电机转速 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -99,8 +123,110 @@ N·m。
 
 要创建此端口，请为
 **端口配置** 参数选择 `Torque`。
-
 ## 参数
+```yaml
+parameters:
+- name: 仿真类型
+  summary: 选择仿真类型 Continuous（默认）| Discrete
+  group: ''
+  block_parameter: sim_type
+  values: Continuous（默认）| Discrete
+- name: 采样时间 Ts
+  summary: 离散积分采样时间 0.001（默认）| scalar
+  group: ''
+  block_parameter: Ts
+  values: 0.001（默认）| scalar
+- name: 端口配置
+  summary: 选择端口配置 Torque（默认）| Speed
+  group: ''
+  block_parameter: port_config
+  values: Torque（默认） | Speed
+- name: Enable memory optimized 2D LUT
+  summary: 选择 off（默认） | on
+  group: ''
+  block_parameter: enable_hdl
+  values: off（默认） | on
+- name: Vector of d-axis flux, flux_d
+  summary: 磁链断点 1×M 向量
+  group: ''
+  block_parameter: flux_d
+  values: 1×M 向量
+- name: Resample storage size for flux_d, n1
+  summary: 磁链位大小 2（默认） | 4 | 8 | 16 | 32 | 64 | 128 | 256
+  group: ''
+  block_parameter: n1
+  values: 2（默认） | 4 | 8 | 16 | 32 | 64 | 128 | 256
+- name: Vector of q-axis flux, flux_q
+  summary: 磁链断点 1×N 向量
+  group: ''
+  block_parameter: flux_q
+  values: 1×N 向量
+- name: Resample storage size for flux_q, n2
+  summary: 磁链位大小 2（默认） | 4 | 8 | 16 | 32 | 64 | 128 | 256
+  group: ''
+  block_parameter: n2
+  values: 2（默认） | 4 | 8 | 16 | 32 | 64 | 128 | 256
+- name: Corresponding d-axis current, id
+  summary: 二维查找表 M×N 数组
+  group: ''
+  block_parameter: id
+  values: M×N 数组
+- name: Corresponding q-axis current, iq
+  summary: 2D lookup table M-by-N array
+  group: ''
+  block_parameter: iq
+  values: M-by-N array
+- name: flux_d max endpoint, u1max
+  summary: Flux breakpoint 0.22457 (default) | scalar
+  group: ''
+  block_parameter: u1max
+  values: 0.22457 (default) | scalar
+- name: flux_d min endpoint, u1min
+  summary: Flux breakpoint -0.22607 (default) | scalar
+  group: ''
+  block_parameter: u1min
+  values: -0.22607 (default) | scalar
+- name: flux_q max endpoint, u2max
+  summary: Flux breakpoint 0.42959 (default) | scalar
+  group: ''
+  block_parameter: u2max
+  values: 0.42959 (default) | scalar
+- name: flux_q min endpoint, u2min
+  summary: Flux breakpoint -0.4296 (default) | scalar
+  group: ''
+  block_parameter: u2min
+  values: -0.4296 (default) | scalar
+- name: Stator phase resistance, Rs
+  summary: Resistance 0.02 (default) | scalar
+  group: ''
+  block_parameter: Rs
+  values: 0.02 (default) | scalar
+- name: Number of pole pairs, P
+  summary: Pole pairs 4 (default) | scalar
+  group: ''
+  block_parameter: P
+  values: 4 (default) | scalar
+- name: Initial flux, fluxdq0
+  summary: 磁链 [0 0]（默认）| vector
+  group: ''
+  block_parameter: fluxdq0
+  values: '[0 0]（默认）| vector'
+- name: Initial mechanical position, theta_init
+  summary: 角度 0（默认）| scalar
+  group: ''
+  block_parameter: theta_init
+  values: 0（默认）| scalar
+- name: Initial mechanical speed, omega_init
+  summary: 速度 0（默认）| scalar
+  group: ''
+  block_parameter: omega_init
+  values: 0（默认）| scalar
+- name: Physical inertia, viscous damping, and static friction, mechanical
+  summary: 惯量、阻尼、摩擦 [0.0027, 4.924e-4, 0]（默认）| vector
+  group: ''
+  block_parameter: mechanical
+  values: '[0.0027, 4.924e-4, 0]（默认）| vector'
+```
 
 #### 模块选项
 
@@ -501,7 +627,6 @@ Ts** 参数。
 
 要启用此参数，请选择 `Torque`
 配置参数。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters

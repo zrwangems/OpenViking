@@ -14,6 +14,13 @@ language: en
 # Gazebo Pacer
 
 ## Ports
+```yaml
+ports:
+- name: Status
+  summary: Status of synchronization 0 | 1
+  direction: output
+  data_types: uint8
+```
 
 ### Output
 
@@ -24,8 +31,16 @@ Status of synchronization, output as either `0` or
 syncing. A value of `1` means the simulations are out of sync.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reset behavior
+  summary: Reset simulation time or scene Reset Gazebo simulation time (default) | Reset Gazebo simulation time and scene
+  group: ''
+- name: Sample time
+  summary: Sampling time of input 0.001 (default) | positive
+  group: ''
+```
 
 ### **Reset behavior** — Reset simulation time or scene `Reset Gazebo simulation time` (default) | `Reset Gazebo simulation time and scene`
 
@@ -40,7 +55,6 @@ Select from the Reset behavior drop-down.
 
 Set the Sample time parameter to step the Gazebo simulation at the given rate. This
 parameter must be a multiple of the maximum step size of the Gazebo solver.
-
 ## Libraries
 
 Robotics System Toolbox / Gazebo Co-Simulation

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # PLL Testbench
 
 ## 端口
+```yaml
+ports:
+- name: from pll
+  summary: 输入时钟信号标量
+  direction: input
+  data_types: double
+- name: to pll
+  summary: 输出时钟信号标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,96 @@ PLL Testbench 的输入时钟信号，指定为标量。**from pll** 端口连�
 输出时钟信号，根据 **Signal type** 参数指定为正弦波或方波返回。**to pll** 端口处的信号为 PLL 系统提供激励。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Set stop time
+  summary: 将推荐的最小仿真停止时间设为模型停止时间 按钮
+  group: ''
+- name: Plot phase noise profile
+  summary: 绘制 PLL DUT 的相位噪声曲线 按钮
+  group: ''
+- name: Export measurement results
+  summary: 仿真后导出测量结果 按钮
+  group: ''
+- name: Amplitude (V)
+  summary: PLL 输入处激励信号的最大值 1（默认）| 实正标量
+  group: 激励
+- name: Frequency (Hz)
+  summary: PLL 输入处激励信号的频率 30e6（默认）| 实正标量
+  group: 激励
+- name: Add phase noise
+  summary: 添加相位噪声作为频率的函数 off（默认）| on
+  group: 激励
+- name: Phase noise frequency offset (Hz)
+  summary: 相位噪声相对于载波频率的频率偏移 [500 1e3 10e3 100e3]（默认）| 实值向量
+  group: 激励
+  block_parameter: Foffset
+  type: 字符向量
+  values: 实值向量
+- name: Phase noise level (dBc/Hz)
+  summary: 指定频率偏移处相对于载波的相位噪声功率 [-115 -122 -142 -161]（默认）| 实值向量
+  group: 激励
+  block_parameter: PhaseNoise
+  type: 字符向量
+  values: 实值向量
+- name: Estimate phase noise parameters
+  summary: 自动估计相位噪声参数 on（默认）| off
+  group: 激励
+- name: Period jitter (S)
+  summary: 周期抖动的标准差 4.8666e-15（默认）| 正实数标量
+  group: 激励
+  block_parameter: PeriodJitter
+  type: 字符向量
+  values: 正实数标量
+  default: '4.8666e-15'
+- name: Flicker corner frequency (Hz)
+  summary: 闪烁噪声的转角频率 517103.8168（默认）| 标量
+  group: 激励
+  block_parameter: CornerFrequency
+  type: 字符向量
+  values: 标量
+  default: '517103.8168'
+- name: Plot fit
+  summary: 绘制指定和期望的输出相位噪声密度 按钮
+  group: 激励
+- name: Frequency of operation
+  summary: 测量 PLL DUT 的工作频率 on（默认）| off
+  group: 设置
+- name: Lock time
+  summary: 测量 PLL DUT 的锁定时间 off（默认）| on
+  group: 设置
+- name: Target frequency of operation (Hz)
+  summary: 用于计算锁定时间的 PLL DUT 目标工作频率 2.1e9（默认）| 实正标量
+  group: 设置
+- name: Error tolerance (Hz)
+  summary: 锁定时间测量的误差容限 1e6（默认）| 实正标量
+  group: 设置
+- name: Phase noise
+  summary: 测量 PLL DUT 的相位噪声水平 off（默认）| on
+  group: 设置
+- name: Resolution bandwidth (Hz)
+  summary: 可分辨的最小正频率 200e3（默认）| 实正标量
+  group: 设置
+- name: No. of spectral averages
+  summary: 频谱平均次数 4（默认）| 正整数标量
+  group: 设置
+- name: Hold off time (s)
+  summary: 延迟测量分析以避免瞬态 0（默认）| 实非负标量
+  group: 设置
+- name: Frequency offset vector (Hz)
+  summary: 相对于基频计算相位噪声的频率点 [300e3 1e6 3e6 10e6]（默认）| 实值向量
+  group: 设置
+- name: Frequency of operation
+  summary: PLL 需要锁定的目标工作频率 2.1e9（默认）| 实正标量
+  group: 目标指标
+- name: Lock time (s)
+  summary: PLL DUT 需要锁定的最大时间 3e-6（默认）| 实非负标量
+  group: 目标指标
+- name: 相位噪声 (dBc/Hz)
+  summary: 与频率偏移向量 [-85,-125,-150,-180]（默认）对应的目标噪声功率 | 实值向量
+  group: 目标指标
+```
 
 ### **Set stop time** — 将推荐的最小仿真停止时间设为模型停止时间 按钮
 
@@ -299,7 +398,6 @@ PLL DUT 需要锁定的最大时间，指定为以 s 为单位的实非负标量
 
 - 使用 `get_param(gcb,'TargetPhaseNoiseVector')` 查看 **Phase noise** 的当前值。
 - 使用 `set_param(gcb,'TargetPhaseNoiseVector',value)` 将 **Phase noise** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

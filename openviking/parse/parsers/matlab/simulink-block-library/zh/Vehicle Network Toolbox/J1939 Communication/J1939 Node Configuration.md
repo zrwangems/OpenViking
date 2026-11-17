@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # J1939 Node Configuration
 
 ## 端口
+```yaml
+ports:
+- name: Address
+  summary: 返回节点的有效地址 int8
+  direction: output
+- name: AC Status
+  summary: 指示节点地址声明的成功 (1) 或失败 (0) 0 | 1
+  direction: output
+```
 
 ### 输出
 
@@ -27,8 +36,28 @@ address** 复选框时，此可选输出端口存在。
 
 当您在对话框中选中 **Output address claim
 status** 复选框时，此可选输出端口存在。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 要与此节点关联的 J1939 网络配置的 ID ConfigX（默认）| 字符向量
+  group: ''
+- name: Node name
+  summary: 此 J1939 节点的名称 NodeX（默认）| 字符向量
+  group: ''
+- name: Message
+  summary: 由与 J1939 协议一致的数据库文件定义的九个网络属性 向量数组
+  group: ''
+- name: Sample time
+  summary: 仿真刷新率 0.01（默认）| double
+  group: ''
+- name: Output current node address
+  summary: 启用或禁用 Address 端口显示 off（默认）| on
+  group: ''
+- name: Output address claim status
+  summary: 启用或禁用地址声明 AC Status 显示 off（默认）| on
+  group: ''
+```
 
 ### **Config name** — 要与此节点关联的 J1939 网络配置的 ID `ConfigX`（默认）| 字符向量
 
@@ -65,7 +94,6 @@ status** 复选框时，此可选输出端口存在。
 ### **Output address claim status** — 启用或禁用地址声明 AC Status 显示 `off`（默认）| `on`
 
 启用或禁用地址声明 **AC Status** 输出端口以显示地址声明的成功。输出值为二进制，1 表示成功，0 表示失败。此端口默认禁用。
-
 ## 所属库
 
 Simulink Real-Time / J1939 Communication Vehicle Network Toolbox / J1939 Communication

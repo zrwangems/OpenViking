@@ -14,6 +14,41 @@ language: en
 # LTE OFDM Demodulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid input data Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: NDLRB
+  summary: Number of downlink resource blocks 6 | 15 | 25 | 50 | 75 | 100
+  direction: input
+  data_types: uint8 | uint16 | uint32 | fixdt(0,K,0), K >= 7 | single | double
+- name: cyclicPrefixType
+  summary: Type of CP scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clear internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Output data scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -123,8 +158,41 @@ rate** parameter to `Match input data
 sample rate to NDLRB`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: NDLRB source
+  summary: Source of NDLRB Property (default) | Input port
+  group: Main
+- name: NDLRB
+  summary: Number of downlink resource blocks 6 (default) | 15 | 25 | 50 | 75 | 100
+  group: Main
+- name: Cyclic prefix source
+  summary: Source of cyclic prefix type Property (default) | Input port
+  group: Main
+- name: Cyclic prefix type
+  summary: Type of cyclic prefix Normal (default) | Extended
+  group: Main
+- name: CP fraction
+  summary: Percent of cyclic prefix to remove 0.55 (default) | value from 0 to 1
+  group: Main
+- name: Remove DC subcarrier
+  summary: Exclude or include DC subcarrier off (default) | on
+  group: Main
+- name: Enable reset input port
+  summary: Reset signal off (default) | on
+  group: Main
+- name: Input data sample rate
+  summary: Input sample rate Use maximum input data sample rate (default) | Match input data sample rate to NDLRB
+  group: Main
+- name: Divide butterfly outputs by two
+  summary: Divide FFT butterfly outputs by two off (default) | on
+  group: FFT Parameters
+- name: Rounding Method
+  summary: Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Zero
+  group: FFT Parameters
+```
 
 ### Main
 
@@ -247,7 +315,6 @@ data type, the FFT algorithm uses fixed-point arithmetic for internal
 calculations. This parameter does not apply when the input is of data
 type `single` or `double`. Rounding
 applies to twiddle-factor multiplication and scaling operations.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

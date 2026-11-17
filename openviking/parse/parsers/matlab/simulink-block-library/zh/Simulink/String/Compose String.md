@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Compose String
 
 ## 端口
+```yaml
+ports:
+- name: d
+  summary: 字符串标量第一部分的数据
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: f
+  summary: 字符串标量第二部分的数据
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: Port_N
+  summary: 字符串标量 N 部分的数据（默认）
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: str
+  summary: 输出字符串标量
+  direction: output
+  data_types: string
+```
 
 ### 输入
 
@@ -48,8 +67,27 @@ chinese_source: worker-translation
 由输入组成的输出字符串，指定为标量。
 
 **数据类型：** `string`
-
 ## 参数
+```yaml
+parameters:
+- name: Format
+  summary: 输入数据的格式 "%d %f"（默认）| 格式字符串 | 字符向量
+  group: ''
+  block_parameter: Format
+  type: character vector
+  values: '''<filename>'''
+  default: '''"%d %f"'''
+- name: Output data type
+  summary: 输出数据类型 string（默认）| <data type expression>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''string'' | *<data type expression>*'
+  default: '''string'''
+- name: Mode
+  summary: 数据类别 string（默认）| scalar
+  group: ''
+```
 
 ### **Format** — 输入数据的格式 "%d %f"（默认）| 格式字符串 | 字符向量
 
@@ -90,7 +128,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 点击 **Show data type assistant** 按钮会启用此参数。
-
 ## 所属库
 
 Simulink / String

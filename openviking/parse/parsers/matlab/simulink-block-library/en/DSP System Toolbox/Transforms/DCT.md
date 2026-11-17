@@ -14,6 +14,17 @@ language: en
 # DCT
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Input signal vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Output 1
+  summary: DCT output vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point | bus
+```
 
 ### Input
 
@@ -57,8 +68,41 @@ signed fixed-point.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Sine and cosine computation
+  summary: Sine and cosine computation Table lookup (default) | Trigonometric fcn
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+- name: Sine table
+  summary: 'Sine table Inherit: Same word length as input (default) | fixdt(1,16)'
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as product output
+    | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Data type of output Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Output minimum [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Output maximum [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -237,7 +281,6 @@ value is `[]` (unspecified). Simulink software uses this value to perform:
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Transforms

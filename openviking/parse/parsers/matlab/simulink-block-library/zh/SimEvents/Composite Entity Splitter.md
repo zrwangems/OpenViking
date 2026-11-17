@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Composite Entity Splitter
 
 ## 端口
+```yaml
+ports:
+- name: port_1
+  summary: 输入复合实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_1
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_2
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | enumerated | bus | fixed point
+```
 
 ### 输入
 
@@ -36,8 +53,17 @@ chinese_source: worker-translation
 离开模块的实体的输出端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of output ports
+  summary: 指定输出端口数量 2（默认）| 标量
+  group: ''
+  block_parameter: NumberOutputPorts
+  type: 字符向量
+  values: '''2'' | 标量'
+  default: '''2'''
+```
 
 ### **Number of output ports** — 指定输出端口数量 `2`（默认）| 标量
 
@@ -51,7 +77,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'2'` | 标量 |
 | **默认值**：`'2'` |
-
 ## 所属库
 
 SimEvents

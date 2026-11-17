@@ -14,6 +14,33 @@ language: en
 # Stream FIFO
 
 ## Ports
+```yaml
+ports:
+- name: dataIn
+  summary: Input stream data scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: dValidIn
+  summary: Indication of valid input stream data Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: rdyFromDown
+  summary: Ready signal from downstream interface Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: Output stream data scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: dValidOut
+  summary: Indication of valid output stream data Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: rdyToUp
+  summary: Ready signal to upstream interface Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -68,8 +95,16 @@ ready to accept stream data from the upstream interface. When this value is
 upstream interface.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Depth of FIFO
+  summary: FIFO depth 16 (default) | integer greater than or equal to four
+  group: ''
+- name: Almost full threshold
+  summary: Almost full threshold value 8 (default) | positive integer
+  group: ''
+```
 
 ### **Depth of FIFO** — FIFO depth `16` (default) | integer greater than or equal to four
 
@@ -85,7 +120,6 @@ source.
 To avoid dropping data, set a value allowing the data source enough time to react to
 backpressure. This value must be a positive integer and smaller than the FIFO
 depth.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Connectivity

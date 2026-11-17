@@ -15,14 +15,52 @@ chinese_source: worker-translation
 # Belt-Cable Properties
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 带缆网络连接点 belt-cable
+  direction: unspecified
+```
 
 ### Belt-Cable
 
 ### **P** — 带缆网络连接点 belt-cable
 
 带缆网络的连接点，此模块旨在指定该网络的属性。
-
 ## 参数
+```yaml
+parameters:
+- name: Drum Belt-Cable Alignment
+  summary: 允许绳索与卷筒中心平面之间的对齐类型 Unrestricted（默认）| Monitored Planar
+  group: ''
+- name: Type
+  summary: 可视化绳索的方式 Pitch Line（默认）| None
+  group: ''
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化方式 Simple（默认）| Advanced
+  group: ''
+- name: Color
+  summary: 漫反射光的颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: ''
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: ''
+- name: Diffuse Color
+  summary: 漫反射光的颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: ''
+- name: Specular Color
+  summary: 由于镜面反射产生的光颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: ''
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: ''
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: ''
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值约束为 0–128 的标量
+  group: ''
+```
 
 ### **Drum Belt-Cable Alignment** — 允许绳索与卷筒中心平面之间的对齐类型 `Unrestricted`（默认）| `Monitored Planar`
 
@@ -130,7 +168,6 @@ chinese_source: worker-translation
    `Marker`
 2. **Visual Properties** 为
    `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Belts and Cables

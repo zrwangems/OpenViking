@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # AC-DC Converter (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: Vref
+  summary: 直流电压参考物理信号
+  direction: input
+- name: '~'
+  summary: 三相端口电气
+  direction: input
+- name: a
+  summary: '*a* 相电气'
+  direction: input
+- name: b
+  summary: '*b* 相电气'
+  direction: input
+- name: c
+  summary: '*c* 相电气'
+  direction: input
+- name: +
+  summary: 正极端子电气
+  direction: input
+- name: '-'
+  summary: 负极端子电气
+  direction: input
+```
 
 ### 输入
 
@@ -62,8 +86,52 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与负极端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Output DC voltage droop with output current
+  summary: 1 A 时的电压跌落 1 V/A（默认）| 非负标量
+  group: ''
+- name: Voltage dynamics at DC side
+  summary: 直流侧动态模型 No dynamics（默认）| Specify voltage regulation time constant
+  group: ''
+- name: Voltage regulation time constant at DC side
+  summary: 直流侧电压动态时间常数 0.02 s（默认）| 正标量
+  group: ''
+- name: Initial output voltage at DC side
+  summary: 时间零点的直流侧输出电压 100 V（默认）| 标量
+  group: ''
+- name: Rated electrical frequency at AC side
+  summary: 交流侧额定电气频率 60 Hz（默认）| 正标量
+  group: ''
+- name: Minimum AC side voltage (phase-to-phase RMS)
+  summary: 最小交流侧电压 80 V（默认）| 正标量
+  group: ''
+- name: Voltage time constant at AC side
+  summary: 交流侧电压时间常数 0.01 s（默认）| 正标量
+  group: ''
+- name: Initial voltage at AC side (phase-to-phase RMS)
+  summary: 交流侧初始电压 100 V（默认）| 正标量
+  group: ''
+- name: Initial voltage angle at AC side
+  summary: 交流侧 *a* 相初始电压角度 0 deg（默认）| 标量
+  group: ''
+- name: Power balance dynamics
+  summary: 用于包含功率平衡动态的选项 Specify power time constant（默认）| No dynamics
+  group: ''
+- name: Power balance time constant
+  summary: 功率平衡动态的时间常数 0.01 s（默认）| 正标量
+  group: ''
+- name: Initial active power
+  summary: 交流侧初始有功功率 1e3 W（默认）| 标量
+  group: ''
+- name: Parasitic conductance to electrical reference
+  summary: 到电气参考的寄生电导 1e-6 S（默认）| 非负标量
+  group: ''
+```
 
 ### **Electrical connection** — 电气连接 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -136,7 +204,6 @@ chinese_source: worker-translation
 ### **Parasitic conductance to electrical reference** — 到电气参考的寄生电导 `1e-6` `S`（默认）| 非负标量
 
 到电气参考的寄生电导。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

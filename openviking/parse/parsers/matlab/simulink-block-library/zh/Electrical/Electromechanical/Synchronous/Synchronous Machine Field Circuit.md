@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Synchronous Machine Field Circuit
 
 ## 端口
+```yaml
+ports:
+- name: Efd
+  summary: 励磁电压物理信号
+  direction: input
+- name: Efd_pu
+  summary: 标幺值励磁电压物理信号
+  direction: input
+- name: Ifd
+  summary: 励磁电流物理信号
+  direction: output
+- name: Ifd_pu
+  summary: 标幺值励磁电流物理信号
+  direction: output
+- name: fd+
+  summary: 励磁绕组正极端子电气端口
+  direction: conserving
+- name: fd-
+  summary: 励磁绕组负极端子电气端口
+  direction: conserving
+```
 
 ### 输入
 
@@ -61,8 +82,64 @@ chinese_source: worker-translation
 ### **fd-** — 励磁绕组负极端子电气端口
 
 与励磁绕组负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: PS input and output unit
+  summary: 单位制配置 SI（默认）| Per unit
+  group: 主要
+- name: Rated apparent power
+  summary: 额定视在功率 555e6 V*A（默认）
+  group: 主要
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz（默认）
+  group: 主要
+- name: Specify field circuit input required to produce rated terminal voltage at no load by
+  summary: 指定空载时产生额定端电压所需的励磁回路输入量 Field circuit current（默认）| Field circuit voltage
+  group: 主要
+- name: Field circuit current
+  summary: 励磁回路电流 1300 A（默认）
+  group: 主要
+- name: Field circuit voltage
+  summary: 励磁回路电压 92.95 V（默认）
+  group: 主要
+- name: Specify parameterization by
+  summary: 电机参数化方式 Fundamental Parameters（默认）| Standard Parameters
+  group: 电机参数
+- name: Stator d-axis mutual inductance (unsaturated), Ladu
+  summary: 定子 d 轴互感（未饱和） 1.66（默认）
+  group: 电机参数
+- name: Rotor field circuit resistance, Rfd
+  summary: 转子励磁回路电阻 0.0006（默认）
+  group: 电机参数
+- name: Stator leakage reactance, Xl
+  summary: 定子漏电抗 0.15（默认）
+  group: 电机参数
+- name: d-axis synchronous reactance, Xd
+  summary: d 轴同步电抗 1.81（默认值）
+  group: 电机参数
+- name: d-axis transient reactance, Xd'
+  summary: d 轴瞬态电抗 0.3（默认值）
+  group: 电机参数
+- name: d-axis subtransient reactance, Xd''
+  summary: d 轴次瞬态电抗 0.23（默认值）
+  group: 电机参数
+- name: Specify d-axis time constant
+  summary: d 轴时间常数指定 Open-circuit value（默认值）| Short-circuit value
+  group: 电机参数
+- name: d-axis transient open-circuit, Td0'
+  summary: d 轴瞬态开路 8 s（默认值）
+  group: 电机参数
+- name: d-axis transient short-circuit, Td'
+  summary: d 轴瞬态短路 1.3260 s（默认值）
+  group: 电机参数
+- name: d-axis subtransient open-circuit, Td0''
+  summary: d 轴次瞬态开路 0.03（默认值）
+  group: 电机参数
+- name: d-axis subtransient short-circuit, Td''
+  summary: d 轴次瞬态短路 0.0230（默认值）
+  group: 电机参数
+```
 
 仅当将 **PS input and output unit** 参数设置为 `Per unit` 时，此模块的附加参数才可见。
 
@@ -200,7 +277,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当您将 **Specify parameterization by** 参数设置为 `Standard Parameters`，并将 **Specify d-axis transient time constant** 设置为 `Short-circuit value` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Synchronous

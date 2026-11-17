@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Opening
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Nhood
+  summary: 邻域值向量 | 矩阵
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: 开运算后的图像矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -40,8 +55,16 @@ chinese_source: worker-translation
 开运算后的图像以强度值矩阵形式返回。开运算后图像的大小和数据类型与输入图像相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Neighborhood or structuring element source
+  summary: 邻域或结构元素的来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Neighborhood or structuring element
+  summary: 邻域或结构元素 strel('disk',5)（默认）| 向量 | 矩阵
+  group: ''
+```
 
 ### **Neighborhood or structuring element source** — 邻域或结构元素的来源 `Specify via dialog`（默认）| `Input port`
 
@@ -59,7 +82,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Neighborhood or structuring element source** 参数设置为 `Specify via dialog`。
-
 ## 所属库
 
 Computer Vision Toolbox / Morphological Operations

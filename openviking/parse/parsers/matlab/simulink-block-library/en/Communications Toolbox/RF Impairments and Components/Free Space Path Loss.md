@@ -14,6 +14,16 @@ language: en
 # Free Space Path Loss
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Complex signal scalar | column vector
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: Output signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +39,22 @@ Complex signal, specified as a scalar or column vector.
 
 Output signal, returned as a scalar or column vector. This output is
 the same dimension and data type as the input signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Loss calculation mode Decibels (default) | Distance and Frequency
+  group: ''
+- name: Loss (dB)
+  summary: Power loss 10 (default) | scalar
+  group: ''
+- name: Distance (km)
+  summary: Distance between transmitter and receiver 0.100 (default) | scalar
+  group: ''
+- name: Carrier frequency (MHz)
+  summary: Carrier frequency 1920 (default) | scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -76,7 +100,6 @@ Carrier frequency in megahertz, specified as a scalar.
 
 To enable this parameter, set the **Mode** parameter
 to `Distance and Frequency`.
-
 ## Libraries
 
 Communications Toolbox / RF Impairments and Components

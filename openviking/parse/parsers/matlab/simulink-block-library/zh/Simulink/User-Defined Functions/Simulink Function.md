@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Simulink Function
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 子系统的信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | struct
+- name: ArgIn
+  summary: 子系统的参数输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | struct
+- name: Out
+  summary: 子系统的信号输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | struct
+- name: ArgOut
+  summary: 子系统的参数输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | struct
+```
 
 ### 输入
 
@@ -46,8 +69,30 @@ chinese_source: worker-translation
 子系统中的 Argument Outport 模块提供一个与输出参数对应的输出端口。该端口不会显示在子系统模块上。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image` | `struct`
-
 ## 参数
+```yaml
+parameters:
+- name: Show port labels
+  summary: 端口标签的显示选项 FromPortIcon（默认）| FromPortBlockName | SignalName | none
+  group: 主要
+  block_parameter: ShowPortLabels
+  values: '''FromPortIcon''（默认）| ''FromPortBlockName'' | ''SignalName'' | ''none'''
+- name: Read/Write permissions
+  summary: 对子系统内容的访问级别 ReadWrite（默认）| ReadOnly | NoReadOrWrite
+  group: 主要
+  block_parameter: Permissions
+  values: '''ReadWrite''（默认）| ''ReadOnly'' | ''NoReadOrWrite'''
+- name: Name of error callback function
+  summary: 发生错误时要调用的函数名称 无默认值
+  group: 主要
+  block_parameter: ErrorFcn
+  values: '''''（默认）| 带引号的函数名称'
+- name: Permit hierarchical resolution
+  summary: 工作区变量名称的解析方式 All（默认）| ExplicitOnly | None
+  group: 主要
+  block_parameter: PermitHierarchicalResolution
+  values: '''All''（默认）| ''ExplicitOnly'' | ''None'''
+```
 
 ### 主要
 
@@ -128,7 +173,6 @@ chinese_source: worker-translation
 **注意**
 
 要配置 Simulink Function 模块的作用域可见性和同步性，请打开位于 Simulink Function 模块内部的 Trigger 模块的模块参数。
-
 ## 所属库
 
 Simulink / User-Defined Functions

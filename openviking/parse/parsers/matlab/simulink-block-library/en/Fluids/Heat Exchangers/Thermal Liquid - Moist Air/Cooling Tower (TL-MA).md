@@ -14,6 +14,60 @@ language: en
 # Cooling Tower (TL-MA)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mass flow rate, kg/s physical signal
+  direction: input
+- name: V
+  summary: Volumetric flow rate, m^3/s physical signal
+  direction: input
+- name: Pwr
+  summary: Fan power, W physical signal
+  direction: input
+- name: P
+  summary: Pressure, Pa physical signal
+  direction: input
+- name: T
+  summary: Temperature, K physical signal
+  direction: input
+- name: W
+  summary: Measure of humidity, unitless physical signal
+  direction: input
+- name: Tw
+  summary: Wet-bulb temperature, K physical signal
+  direction: input
+- name: Vm
+  summary: Volumetric flow rate, m^3/s physical signal
+  direction: input
+- name: Tm
+  summary: Temperature, K physical signal
+  direction: input
+- name: Q
+  summary: Heat transfer, W physical signal
+  direction: output
+- name: E
+  summary: Evaporation rate, kg/s physical signal
+  direction: output
+- name: L
+  summary: Liquid level, m physical signal
+  direction: output
+- name: Pwr
+  summary: Fan power, W physical signal
+  direction: output
+- name: A1
+  summary: Thermal liquid inlet thermal liquid
+  direction: conserving
+- name: B1
+  summary: Thermal liquid outlet thermal liquid
+  direction: conserving
+- name: A2
+  summary: Moist air inlet or outlet moist air
+  direction: conserving
+- name: B2
+  summary: Moist air inlet or outlet moist air
+  direction: conserving
+```
 
 ### Input
 
@@ -190,8 +244,198 @@ side.
 To enable this port, set **Moist air operating
 conditions** to `Moist air domain
 port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: Flow arrangement of moist air and thermal liquid Counter flow (default) | Cross flow
+  group: Thermal Liquid 1
+- name: Nominal capacity specification
+  summary: Method for specifying size of system Water volumetric flow rate (default) | Water mass flow rate | Rate of cooling
+    in cooling tower | Rate of cooling in evaporator
+  group: Thermal Liquid 1
+- name: Nominal water mass flow rate
+  summary: Mass flow rate at nominal conditions 42.7 kg/s (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal water volumetric flow rate
+  summary: Volumetric flow rate at nominal conditions 154 m^3/hr (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal cooling tower heat transfer
+  summary: Heat transfer at nominal conditions 1000 kW (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal evaporator heat transfer
+  summary: Evaporator heat transfer at nominal conditions 800 kW (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal hot-water inlet temperature
+  summary: Thermal liquid inlet temperature 35 degC (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal cold-water outlet temperature
+  summary: Thermal liquid outlet temperature 29.44 degC (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Model cold-water basin
+  summary: Option to model thermal liquid side 1 as a tank on (default) | off
+  group: Thermal Liquid 1
+- name: Basin cross-sectional area
+  summary: Area of basin 8 m^2 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Cross-sectional area at port A1
+  summary: Flow area of thermal liquid inlet 0.01 m^2 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Cross-sectional area at port B1
+  summary: Flow area of thermal liquid outlet 0.01 m^2 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Drift rate as fraction of water flow
+  summary: Drift rate of thermal liquid 0 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Automatically replenish lost water
+  summary: Option to automatically replenish lost water on thermal liquid 1 side on (default) | off
+  group: Thermal Liquid 1
+- name: Temperature of make-up water
+  summary: Temperature of replenishing water 15 degC (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initialize thermal liquid to nominal operating conditions
+  summary: Option for initializing thermal liquid on (default) | off
+  group: Thermal Liquid 1
+- name: Initial basin liquid temperature
+  summary: Basin temperature at start of simulation 29.44 degC (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initial basin liquid level
+  summary: Basin level at start of simulation 0.2 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Gravitational acceleration
+  summary: Acceleration of gravity constant 9.81 m/s^2 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Moist air operating conditions
+  summary: Method to specify moist air conditions Provided by input signals (default) | Moist air domain ports
+  group: Moist Air 2
+- name: Flow rate input signal specification
+  summary: Method to specify actual moist air flow rate Volumetric flow rate (default) | Mass flow rate | Fan power
+  group: Moist Air 2
+- name: Output fan power
+  summary: Option to output fan power off (default) | on
+  group: Moist Air 2
+- name: Nominal fan power
+  summary: Fan power at nominal operating conditions 7.5 kW (default) | positive scalar
+  group: Moist Air 2
+- name: Humidity input signal specification
+  summary: Quantity used to describe actual humidity level at tower moist air inlet Wet-bulb temperature (default) | Specific
+    humidity | Mole fraction | Humidity ratio | Relative humidity
+  group: Moist Air 2
+- name: Input signals outside valid range
+  summary: Method to handle invalid signal values Warn and limit to valid values (default) | Limit to valid values | Error
+  group: Moist Air 2
+- name: Specify full moist air nominal condition
+  summary: Option to specify moist air nominal conditions off (default) | on
+  group: Moist Air 2
+- name: Nominal flow rate specification
+  summary: Option to specify moist air flow rate Volumetric flow rate (default) | Mass flow rate
+  group: Moist Air 2
+- name: Nominal moist air mass flow rate
+  summary: Nominal mass flow rate 36 kg/s (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal moist air volumetric flow rate
+  summary: Nominal volumetric flow rate 30 m^3/s (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal moist air pressure loss
+  summary: Pressure drop between moist air ports during nominal operating condition 250 Pa (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal inlet pressure
+  summary: Pressure at moist air side inlet 0.101325 MPa (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal inlet temperature
+  summary: Temperature at moist air side inlet 34.28 degC (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal humidity specification
+  summary: Quantity used to describe humidity level at nominal conditions Wet-bulb temperature (default) | Specific humidity
+    | Mole fraction | Humidity ratio | Relative humidity
+  group: Moist Air 2
+- name: Nominal inlet relative humidity
+  summary: Relative humidity at inlet 0.5 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet specific humidity
+  summary: Specific humidity at inlet 0.0167 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet water vapor mole fraction
+  summary: Mole fraction of water vapor at inlet 0.0266 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet humidity ratio
+  summary: Humidity ratio at inlet 0.017 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet wet-bulb temperature
+  summary: Wet-bulb temperature at moist air inlet 25.56 degC (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal trace gas specification
+  summary: Quantity used to describe nominal trace gas level Mass fraction (default) | Mole fraction
+  group: Moist Air 2
+- name: Nominal inlet trace gas mass fraction
+  summary: Mass fraction of trace gas at inlet 6e-4 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet trace gas mole fraction
+  summary: Mole fraction of trace gas at inlet 4e-4 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Moist air volume
+  summary: Total volume of moist air in cooling tower 24 m^3 (default) | positive scalar
+  group: Moist Air 2
+- name: Cross-sectional area at port A2
+  summary: Area of moist air inlet or outlet 4 m^2 (default) | positive scalar
+  group: Moist Air 2
+- name: Cross-sectional area at port B2
+  summary: Area of moist air inlet or outlet 4 m^2 (default) | positive scalar
+  group: Moist Air 2
+- name: Initialize moist air to nominal operating conditions
+  summary: Option for initializing moist air on (default) | off
+  group: Moist Air 2
+- name: Initial moist air pressure
+  summary: Moist air pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Moist Air 2
+- name: Initial moist air temperature
+  summary: Moist air temperature at start of simulation 34.28 degC (default) | scalar | two-element vector
+  group: Moist Air 2
+- name: Initial humidity specification
+  summary: Quantity used to describe initial humidity level Relative humidity (default) | Specific humidity | Mole fraction
+    | Humidity ratio | Wet-bulb temperature
+  group: Moist Air 2
+- name: Initial moist air relative humidity
+  summary: Relative humidity at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial moist air specific humidity
+  summary: Specific humidity at start of simulation 0.0167 (default) | scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial moist air water vapor mole fraction
+  summary: Mole fraction of water vapor at start of simulation 0.0266 (default) | scalar in the range [0,1] | two-element
+    vector
+  group: Moist Air 2
+- name: Initial moist air humidity ratio
+  summary: Humidity ratio at start of simulation 0.017 (default) | scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial moist air wet-bulb temperature
+  summary: Wet-bulb temperature at start of simulation 25.56 degC (default) | positive scalar
+  group: Moist Air 2
+- name: Initial trace gas specification
+  summary: Quantity used to describe initial trace gas level Mass fraction (default) | Mole fraction
+  group: Moist Air 2
+- name: Initial moist air trace gas mass fraction
+  summary: Mass fraction of trace gas at start of simulation 6e-4 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Initial moist air trace gas mole fraction
+  summary: Mole fraction of trace gas at start of simulation 4e-4 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Initial mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Moist Air 2
+- name: Relative humidity at saturation
+  summary: Relative humidity above which condensation occurs 1 (default) | positive scalar
+  group: Moist Air 2
+- name: Water vapor condensation time constant
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Moist Air 2
+- name: Water droplets evaporation time constant
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Moist Air 2
+- name: Fraction of condensate entrained as water droplets
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+```
 
 ### Thermal Liquid 1
 
@@ -959,7 +1203,6 @@ droplets.
 To enable this parameter, set **Moist air operating
 conditions** to `Moist air domain
 ports`.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid - Moist Air

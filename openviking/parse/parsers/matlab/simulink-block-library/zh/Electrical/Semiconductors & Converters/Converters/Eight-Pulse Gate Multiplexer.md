@@ -15,6 +15,80 @@ chinese_source: worker-translation
 # Eight-Pulse Gate Multiplexer
 
 ## 端口
+```yaml
+ports:
+- name: G1
+  summary: 栅极控制电压信号 1，V 物理信号
+  direction: input
+  data_types: double
+- name: G2
+  summary: 栅极控制电压信号 2，V 物理信号
+  direction: input
+  data_types: double
+- name: G3
+  summary: 栅极控制电压信号 3，V 物理信号
+  direction: input
+  data_types: double
+- name: G4
+  summary: 栅极控制电压信号 4，V 物理信号
+  direction: input
+  data_types: double
+- name: G5
+  summary: 栅极控制电压信号 5，V 物理信号
+  direction: input
+  data_types: double
+- name: G6
+  summary: 栅极控制电压信号 6，V 物理信号
+  direction: input
+  data_types: double
+- name: G7
+  summary: 栅极控制电压信号 7，V 物理信号
+  direction: input
+  data_types: double
+- name: G8
+  summary: 栅极控制电压信号 8，V 物理信号
+  direction: input
+  data_types: double
+- name: G1
+  summary: 栅极控制电压信号 1 电气
+  direction: input
+- name: a
+  summary: '*A* 相参考点 电气'
+  direction: input
+- name: G3
+  summary: 栅极控制电压信号 3 电气
+  direction: input
+- name: b
+  summary: '*B* 相参考点 电气'
+  direction: input
+- name: G5
+  summary: 栅极控制电压信号 5 电气
+  direction: input
+- name: c
+  summary: '*C* 相参考点 电气'
+  direction: input
+- name: G7
+  summary: 栅极控制电压信号 7 电气
+  direction: input
+- name: d
+  summary: '*D* 相参考点 电气'
+  direction: input
+- name: G2
+  summary: 栅极控制电压信号 2 电气
+  direction: input
+- name: G4
+  summary: 栅极控制电压信号 4 电气
+  direction: input
+- name: G6
+  summary: 栅极控制电压信号 6 电气
+  direction: input
+- name: G8
+  summary: 栅极控制电压信号 8 电气
+  direction: input
+- name: L
+  summary: 直流参考点 电气
+  direction: input
+```
 
 ### 输入
 
@@ -223,13 +297,17 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Gate-control port** 设置为
 `Electrical`。
-
 ## 参数
+```yaml
+parameters:
+- name: Gate-control port
+  summary: 栅极控制端口 PS（默认）| Electrical
+  group: ''
+```
 
 ### **Gate-control port** — 栅极控制端口 `PS`（默认）| `Electrical`
 
 是暴露物理信号控制端口还是电气控制端口。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

@@ -14,6 +14,17 @@ language: en
 # MFCC
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Audio input column vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: MFCC features matrix | 3-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -46,8 +57,73 @@ dimensions of the output are
 Trailing dimensions of size 1 are removed from the output.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Window
+  summary: Analysis window hamming(1024,'periodic') (default) | real vector
+  group: ''
+- name: Overlap length
+  summary: Number of overlapping samples between adjacent windows 512 (default) | integer in the range [0, windowLength)
+  group: ''
+- name: Number of cepstral coefficients
+  summary: Number of cepstral coefficients in each feature vector 13 (default) | positive integer greater than 1
+  group: ''
+- name: Rectification
+  summary: Type of nonlinear rectification Logarithm (default) | Cubic root
+  group: ''
+- name: Append delta
+  summary: Append delta of MFCCs to feature vectors on (default) | off
+  group: ''
+- name: Append delta-delta
+  summary: Append delta-delta of MFCCs to feature vectors on (default) | off
+  group: ''
+- name: Delta window length
+  summary: Number of coefficients for calculating delta and delta-delta 9 (default) | odd integer greater than 2
+  group: ''
+- name: Number of feature vectors
+  summary: Number of MFCC feature vectors in output 1 (default) | positive integer
+  group: ''
+- name: Number of overlapped feature vectors
+  summary: Number of feature vectors overlapped in output 0 (default) | nonnegative integer
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44.1e3 (default) | positive scalar
+  group: ''
+- name: Number of bands
+  summary: Number of bands in mel filter bank 32 (default) | positive integer
+  group: ''
+- name: Auto-determine frequency range
+  summary: Automatically determine frequency range on (default) | off
+  group: ''
+- name: Frequency range (Hz)
+  summary: Frequency range of mel filter bank [0,22050] (default) | two-element row vector
+  group: ''
+- name: Filter bank design domain
+  summary: Design domain of mel filter bank linear (default) | warped
+  group: ''
+- name: Filter bank normalization
+  summary: Normalization technique for filter bank bandwidth (default) | area | none
+  group: ''
+- name: Mel style
+  summary: Mel style oshaughnessy (default) | slaney
+  group: ''
+- name: Normalize window
+  summary: Normalize analysis window on (default) | off
+  group: ''
+- name: Spectrum type
+  summary: Type of spectrum power (default) | magnitude
+  group: ''
+- name: Auto-determine FFT length
+  summary: Automatically determine FFT length on (default) | off
+  group: ''
+- name: FFT length
+  summary: Number of DFT points 1024 (default) | positive integer
+  group: ''
+```
 
 #### Mel-Frequency Cepstral Coefficients
 
@@ -199,7 +275,6 @@ Number of points used to calculate the DFT, specified as a positive integer.
 
 To enable this parameter, clear the **Auto-determine FFT length**
 parameter.
-
 ## Libraries
 
 Audio Toolbox / Features

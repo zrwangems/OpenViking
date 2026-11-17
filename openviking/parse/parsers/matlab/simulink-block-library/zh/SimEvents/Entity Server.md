@@ -15,6 +15,55 @@ chinese_source: worker-translation
 # Entity Server
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_2
+  summary: 服务时间源的输入信号端口 标量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_d
+  summary: 已离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: 尚未离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_pe
+  summary: 模块中的待处理实体 off（默认）| on
+  direction: output
+  data_types: double
+- name: Port_np
+  summary: 待处理实体数量 off（默认）| on
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: 模块中实体的平均等待时间 标量
+  direction: output
+  data_types: double
+- name: Port_util
+  summary: 输出服务器被占用的平均时间 标量
+  direction: output
+  data_types: double
+- name: Port_p
+  summary: 输出被抢占的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: 被提取的实体数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -120,8 +169,143 @@ chinese_source: worker-translation
 要启用此端口，请单击 **Statistics** 选项卡，然后选中标记为 **Number of entities extracted, ex** 的框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Capacity
+  summary: 指定服务器的容量 1（默认）| 标量
+  group: ''
+  block_parameter: Capacity
+  type: 字符向量
+  values: '''1''| 标量'
+  default: '''1'''
+- name: Service time source
+  summary: 选择用于指定服务时间的来源 Dialog（默认）| Signal port | Attribute | MATLAB action
+  group: ''
+  block_parameter: ServiceTimeSource
+  type: character vector
+  values: '''Dialog'' | ''Signal port'' | ''Attribute''| ''MATLAB action'''
+  default: '''Dialog'''
+- name: Service time attribute name
+  summary: 指定服务时间来源属性名称 ServiceTime（默认）| character vector
+  group: ''
+  block_parameter: ServiceTimeAttributeName
+  type: character vector
+  values: '''ServiceTime'' | character vector'
+  default: '''ServiceTime'''
+- name: Service time value
+  summary: 指定服务时间的值 1（默认）| scalar
+  group: ''
+  block_parameter: ServiceTimeValue
+  type: character vector
+  values: '''1.0'' | scalar'
+  default: '''1.0'''
+- name: Service time action
+  summary: 指定服务时间 dt = rand(1,1)（默认）| MATLAB code
+  group: ''
+  block_parameter: ServiceTimeAction
+  type: character vector
+  values: MATLAB code
+  default: '''dt = rand(1,1);'''
+- name: Event action
+  summary: 指定实体在特定事件中的行为 Entry（默认）| Service complete | Exit | Blocked | Preempt
+  group: ''
+  block_parameter: EntryAction, ServiceCompleteAction, ExitAction, BlockedAction, PreemptAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Permit preemption based on attribute
+  summary: 启用实体抢占 off（默认）| on
+  group: ''
+  block_parameter: PermitPreemptionBasedOnAttribute
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sorting attribute name
+  summary: 指定用于确定优先级的属性名称 entity | entitySys.priority | character vector
+  group: ''
+  block_parameter: SortingAttributeName
+  type: character vector
+  values: '''entity'' | ''entitySys.priority'' | character vector'
+  default: '''entity'''
+- name: Sorting direction
+  summary: 选择实体排序的方向 Ascending（默认）| Descending
+  group: ''
+  block_parameter: SortingDirection
+  type: character vector
+  values: '''Ascending'' | ''Descending'''
+  default: '''Ascending'''
+- name: Write residual time to attribute
+  summary: 将被抢占实体的剩余服务时间保存到属性 off（默认）| on
+  group: ''
+  block_parameter: WriteResidualTimeToAttribute
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Residual time attribute name
+  summary: 指定用于包含被抢占实体剩余服务时间的属性名称 ResidualTime（默认）| character vector
+  group: ''
+  block_parameter: ResidualTimeAttributeName
+  type: character vector
+  values: '''ResidualTime'' | character vector'
+  default: '''ResidualTime'''
+- name: Number of entities departed, d
+  summary: 输出已离开该模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: 输出该模块中当前存在但尚未离开的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Pending entity in block, pe
+  summary: 待处理实体 off（默认）| on
+  group: ''
+  block_parameter: PendingEntityPresentInBlock
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 待处理实体数，np
+  summary: 待处理实体数 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesPending
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 平均等待时间，w
+  summary: 输出平均等待时间 off（默认）| on
+  group: ''
+  block_parameter: AverageWait
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 利用率，util
+  summary: 输出服务器被占用的平均时间 off（默认）| on
+  group: ''
+  block_parameter: Utilization
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 被抢占实体数，p
+  summary: 输出被抢占的实体数 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesPreempted
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 被提取实体数，ex
+  summary: 从该模块提取的实体数 off（默认）| on
+  group: ''
+  block_parameter: NumEntitiesExtracted
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Capacity** — 指定服务器的容量 `1`（默认）| 标量
 
@@ -431,7 +615,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

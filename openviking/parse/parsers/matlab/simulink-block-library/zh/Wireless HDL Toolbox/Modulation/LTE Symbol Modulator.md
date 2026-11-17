@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # LTE Symbol Modulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据比特 标量
+  direction: input
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: modSel
+  summary: 调制选择 整数
+  direction: input
+  data_types: fixdt(0,3,0) | double | single
+- name: load
+  summary: 调制控制 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 调制后的复数据符号 标量
+  direction: output
+  data_types: single | double | fixdt(1,wordlength,wordlength-2)
+- name: valid
+  summary: 有效输出数据指示 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -86,8 +113,22 @@ chinese_source: worker-translation
 控制信号，用于指示 **data** 输出端口的数据是否有效。当该值为 `1`（true）时，模块在 **data** 输出端口上返回有效数据。当该值为 `0`（false）时，模块忽略 **data** 输出端口上的值。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation source
+  summary: 调制类型的来源 Property（默认） | Input port
+  group: 主要
+- name: Modulation
+  summary: 调制类型 BPSK（默认） | QPSK | 16-QAM | 64-QAM | 256-QAM
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型选择 Custom（默认） | double | single
+  group: 数据类型
+- name: Word length
+  summary: 输出字长 16（默认） | [3, 32] 范围内的整数
+  group: 数据类型
+```
 
 ### 主要
 
@@ -120,7 +161,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output data type** 参数设置为 `Custom`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

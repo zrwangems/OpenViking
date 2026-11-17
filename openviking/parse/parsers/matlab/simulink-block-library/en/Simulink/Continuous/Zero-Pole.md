@@ -14,6 +14,17 @@ language: en
 # Zero-Pole
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -36,8 +47,49 @@ provided as a scalar or vector signal.
   system.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Zeros
+  summary: Matrix of zeros [1] (default) | vector | matrix
+  group: ''
+  block_parameter: Zeros
+  type: string | character vector
+  values: vector | matrix
+  default: '''[1]'''
+- name: Poles
+  summary: Vector of poles [0 -1] (default) | vector
+  group: ''
+  block_parameter: Poles
+  type: string | character vector
+  values: vector
+  default: '''[0 -1]'''
+- name: Gain
+  summary: Vector of gains [1] (default) | vector
+  group: ''
+  block_parameter: Gain
+  type: string | character vector
+  values: vector
+  default: '''[1]'''
+- name: Parameter tunability
+  summary: Tunable representation of block parameters in code Auto (default) | Optimized | Unconstrained
+  group: ''
+  block_parameter: ParameterTunability
+  type: string | character vector
+  values: '''Auto'' | ''Optimized'' | ''Unconstrained'''
+  default: '''Auto'''
+- name: Absolute tolerance
+  summary: Absolute tolerance for computing block states auto (default) | scalar | vector
+  group: ''
+  block_parameter: AbsoluteTolerance
+  values: '''auto'' (default) | ''-1'' | positive real scalar number | vector of positive real scalar numbers'
+- name: State Name (e.g., 'position')
+  summary: Option to assign unique names to states '' (default) | character vector | cell array of character vectors | MATLAB®
+    variable | ...
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  values: ''''' (default) | valid MATLAB variable name'
+```
 
 ### **Zeros** — Matrix of zeros `[1]` (default) | vector | matrix
 
@@ -203,7 +255,6 @@ programmatically, use the `get_param` function.
 
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
-
 ## Libraries
 
 Simulink / Continuous

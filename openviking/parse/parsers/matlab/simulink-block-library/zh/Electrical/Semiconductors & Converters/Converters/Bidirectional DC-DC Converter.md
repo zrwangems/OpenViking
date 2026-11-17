@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Bidirectional DC-DC Converter
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 开关器件栅极控制 electrical | vector
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: 正直流电压 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: 负直流电压 1 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: 正直流电压 2 electrical | scalar
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: 负直流电压 2 electrical | scalar
+  direction: conserving
+  data_types: double
+```
 
 ### 守恒端口
 
@@ -47,8 +70,190 @@ chinese_source: worker-translation
 与第二个直流电压负极端子关联的电气守恒端口。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 变换器模型 Nonisolated converter（默认）| Isolated converter | Dual Active Bridge converter
+  group: ''
+- name: Fidelity level
+  summary: 保真度级别 Detailed model - switching devices（默认）| Equivalent model - PWM-controlled
+  group: 主要
+- name: Switching device
+  summary: 开关类型 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 开关器件
+- name: Forward voltage
+  summary: 电压 0.8 V（默认）| scalar
+  group: 开关器件
+- name: On-state resistance
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 开关器件
+- name: Drain-source on resistance
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 开关器件
+- name: Off-state conductance
+  summary: 电导 1e-5 1/Ohm（默认）| scalar
+  group: 开关器件
+- name: Threshold voltage
+  summary: 电压阈值 6 V（默认）| scalar
+  group: 开关器件
+- name: Gate trigger voltage, Vgt
+  summary: 电压阈值 1 V（默认）| scalar
+  group: 开关器件
+- name: Gate turn-off voltage, Vgt_off
+  summary: 电压阈值 -1 V（默认）| scalar
+  group: 开关器件
+- name: Holding current
+  summary: 电流阈值 1 A（默认）| scalar
+  group: 开关器件
+- name: Switching device HV
+  summary: 开关 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 开关器件
+- name: Forward voltage HV
+  summary: 电压 0.8 Ohm（默认）| scalar
+  group: 开关器件
+- name: Drain-source on resistance HV
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 开关器件
+- name: On-state resistance HV
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 开关器件
+- name: Off-state conductance HV
+  summary: 电导 1e-5 1/Ohm（默认）| scalar
+  group: 开关器件
+- name: Threshold voltage HV
+  summary: 电压阈值 6 V（默认）| scalar
+  group: 开关器件
+- name: Gate trigger voltage HV, Vgt_hv
+  summary: 电压阈值 1 V（默认）| scalar
+  group: 开关器件
+- name: Gate turn-off voltage HV, Vgt_off_hv
+  summary: 电压阈值 -1 V（默认）| scalar
+  group: 开关器件
+- name: Holding current HV
+  summary: 电流阈值 1 A（默认）| scalar
+  group: 开关器件
+- name: Switching device LV
+  summary: 开关 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 开关器件
+- name: Forward voltage LV
+  summary: 电压 0.8 Ohm（默认）| scalar
+  group: 开关器件
+- name: Drain-source on resistance LV
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 开关器件
+- name: On-state resistance LV
+  summary: 电阻 0.001 Ohm（默认）| scalar
+  group: 开关器件
+- name: Off-state conductance LV
+  summary: 电导 1e-5 1/Ohm（默认）| scalar
+  group: 开关器件
+- name: Threshold voltage LV
+  summary: 电压阈值 6 V（默认）| 标量
+  group: 开关器件
+- name: Gate trigger voltage LV, Vgt_lv
+  summary: 电压阈值 1 V（默认）| 标量
+  group: 开关器件
+- name: Gate turn-off voltage LV, Vgt_off_lv
+  summary: 电压阈值 -1 V（默认）| 标量
+  group: 开关器件
+- name: Holding current LV
+  summary: 电流阈值 1 A（默认）| 标量
+  group: 开关器件
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: 用于 FPGA 部署的整数模式 0（默认）| 非负标量
+  group: 开关器件
+- name: Model dynamics
+  summary: 二极管模型 Diode with no dynamics（默认）| Diode with charge dynamics
+  group: Protection Diode
+- name: Forward voltage
+  summary: 电压 0.8 V（默认）| 标量
+  group: Protection Diode
+- name: On resistance
+  summary: 导通电阻 0.001 Ohm（默认）| 标量
+  group: Protection Diode
+- name: Off conductance
+  summary: 电导 1e-5 1/Ohm（默认）| 标量
+  group: Protection Diode
+- name: Junction capacitance
+  summary: 结电容 50 nF（默认）| 标量
+  group: Protection Diode
+- name: Peak reverse current, iRM
+  summary: 峰值反向电流 -235 A（默认）| 负标量
+  group: Protection Diode
+- name: Initial forward current when measuring iRM
+  summary: 测量 iRM 时的初始正向电流 300 A（默认）| 正标量
+  group: Protection Diode
+- name: Rate of change of current when measuring iRM
+  summary: 电流变化率 -50 A/us（默认）| 标量
+  group: Protection Diode
+- name: Reverse recovery time parameterization
+  summary: 恢复时间模型 Specify stretch factor（默认）| Specify reverse recovery time directly | Specify reverse recovery charge
+  group: Protection Diode
+- name: Reverse recovery time stretch factor
+  summary: 反向恢复时间拉伸因子 3（默认）| 大于 1 的标量
+  group: Protection Diode
+- name: Reverse recovery time, trr
+  summary: 反向恢复时间 15 us（默认）| 标量
+  group: Protection Diode
+- name: Reverse recovery charge, Qrr
+  summary: 反向恢复电荷 1500 s*uA（默认）| 标量
+  group: Protection Diode
+- name: Self inductance of transformer primary winding, L1
+  summary: 变压器初级绕组自感 0.03 H（默认）| 正标量
+  group: Transformer
+- name: Self inductance of transformer secondary winding, L2
+  summary: 变压器次级绕组自感 0.03 H（默认）| 正标量
+  group: Transformer
+- name: Transformer coefficient of coupling
+  summary: 耦合系数 0.9（默认）| 大于零且小于 1 的正标量
+  group: Transformer
+- name: Inductance, L
+  summary: 电感 1e-6 H（默认）| 正标量
+  group: LC Parameters
+- name: Inductor series resistance
+  summary: 电感串联电阻 0 Ohm（默认）| 零或正标量
+  group: LC Parameters
+- name: Capacitance, C1
+  summary: 电容 1e-7 F（默认）| 正标量
+  group: LC Parameters
+- name: Capacitance, C2
+  summary: 电容 1e-7 F（默认）| 正标量
+  group: LC Parameters
+- name: C1 effective series resistance
+  summary: 电阻 1e-6 Ohm（默认）| 零或正标量
+  group: LC Parameters
+- name: C2 effective series resistance
+  summary: 电阻 1e-6 Ohm（默认）| 零或正标量
+  group: LC Parameters
+- name: Snubber
+  summary: 缓冲器模型 None（默认）| RC snubber
+  group: Snubbers
+- name: Snubber resistance
+  summary: 电阻 0.1 Ohm（默认）| 标量
+  group: Snubbers
+- name: Snubber capacitance
+  summary: 电容 1e-7 F（默认）| 标量
+  group: Snubbers
+- name: Snubber HV
+  summary: 缓冲器模型 None（默认）| RC snubber
+  group: Snubbers
+- name: Snubber resistance HV
+  summary: 电阻 0.1 Ohm（默认）| 标量
+  group: Snubbers
+- name: Snubber capacitance HV
+  summary: 电容 1e-7 F（默认）| 标量
+  group: Snubbers
+- name: Snubber LV
+  summary: 缓冲器模型 None（默认）| RC snubber
+  group: Snubbers
+- name: Snubber resistance LV
+  summary: 电阻 0.1 Ohm（默认）| 标量
+  group: Snubbers
+- name: Snubber capacitance LV
+  summary: 电容 1e-7 F（默认）| 标量
+  group: Snubbers
+```
 
 ### **Modeling option** — 变换器模型 `Nonisolated converter`（默认）| `Isolated converter` | `Dual Active Bridge converter`
 
@@ -724,7 +929,6 @@ Bidirectional DC-DC Converter 模块用于每个开关器件的保护二极管�
 #### 依赖关系
 
 请参阅 Snubbers Parameter Dependencies 表。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

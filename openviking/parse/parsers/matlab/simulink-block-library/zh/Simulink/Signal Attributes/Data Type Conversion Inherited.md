@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Data Type Conversion Inherited
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 参考信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: u
+  summary: 要转换的输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: y
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+```
 
 ### 输入
 
@@ -36,8 +54,31 @@ chinese_source: worker-translation
 输出为输入信号 **u** 转换为参考数据类型后的结果。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Input and Output to have equal
+  summary: 定点数据类型转换的约束 Real World Value（默认） | Stored Integer
+  group: ''
+  block_parameter: ConvertRealWorld
+  type: character vector
+  values: '''Real World Value'' | ''Stored Integer'''
+  default: '''Real World Value'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认） | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate to max or min when overflows occur
+  summary: 溢出操作方法 off（默认） | on
+  group: ''
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Input and Output to have equal** — 定点数据类型转换的约束 `Real World Value`（默认） | `Stored Integer`
 
@@ -83,7 +124,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Signal Attributes

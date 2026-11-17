@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pipe (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口或出口气体
+  direction: conserving
+- name: B
+  summary: 入口或出口气体
+  direction: conserving
+- name: H
+  summary: 管壁热温度
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,67 @@ chinese_source: worker-translation
 ### **H** — 管壁热温度
 
 与管壁温度关联的热守恒端口。该温度可能与气体体积的温度不同。
-
 ## 参数
+```yaml
+parameters:
+- name: Pipe length
+  summary: 管道长度 5 m（默认值）
+  group: 几何
+- name: Cross-sectional area
+  summary: 管道内部面积 0.01 m^2（默认值）
+  group: 几何
+- name: Hydraulic diameter
+  summary: 具有相同横截面积的等效圆柱形管道的直径 0.1 m（默认值）
+  group: 几何
+- name: Aggregate equivalent length of local resistances
+  summary: 管道中所有局部阻力的合计长度 0.1 m（默认值）
+  group: 摩擦与传热
+- name: Internal surface absolute roughness
+  summary: 管道内表面所有表面缺陷的平均深度 15e-6 m（默认值）
+  group: 摩擦与传热
+- name: Laminar flow upper Reynolds number limit
+  summary: 流动开始从层流过渡到湍流时的雷诺数 2000（默认值）
+  group: 摩擦与传热
+- name: Turbulent flow lower Reynolds number limit
+  summary: 流动开始从湍流过渡到层流时的雷诺数 4000（默认值）
+  group: 摩擦与传热
+- name: Shape factor for laminar flow viscous friction
+  summary: 管道几何形状对粘性摩擦损失的影响 64（默认值）
+  group: 摩擦与传热
+- name: Nusselt number for laminar flow heat transfer
+  summary: 对流传热与导热传热之比 3.66（默认值）
+  group: 摩擦与传热
+- name: Enable dynamic compressibility
+  summary: 选择是否对气体压力动态建模 On（默认值）| Off
+  group: 效应与初始条件
+- name: Enable fluid inertia
+  summary: 选择是否对气体惯性建模 Off（默认值）| On
+  group: 效应与初始条件
+- name: Initial pressure
+  summary: 仿真开始时的气体压力 0.101325 MPa（默认值）| 正标量
+  group: 效应与初始条件
+- name: Initial pressure priority
+  summary: 压力参数优先级 High（默认值）| Low | None
+  group: 效应与初始条件
+- name: Initial temperature
+  summary: 仿真开始时的温度 293.15 K（默认值）| 正标量
+  group: 效应与初始条件
+- name: Initial temperature priority
+  summary: 温度参数优先级 High（默认值）| Low | None
+  group: 效应与初始条件
+- name: Nominal pressure
+  summary: 标称气体压力 0.101325 MPa（默认值）| 正标量
+  group: 效应与初始条件
+- name: Nominal temperature
+  summary: 标称气体温度 293.15 K（默认值）| 正标量
+  group: 效应与初始条件
+- name: Initial mass flow rate from port A to port B
+  summary: 零时刻的质量流量 0 kg/s（默认值）| 标量
+  group: 效应与初始条件
+- name: Initial mass flow rate priority
+  summary: 质量流量参数优先级 High（默认值）| Low | None
+  group: 效应与初始条件
+```
 
 ### 几何
 
@@ -147,7 +218,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Enable fluid inertia** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

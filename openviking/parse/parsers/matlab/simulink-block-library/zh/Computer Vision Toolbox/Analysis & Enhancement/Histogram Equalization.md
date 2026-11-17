@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Histogram Equalization
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Hist
+  summary: 目标直方图整数向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 输出图像矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -45,8 +60,22 @@ chinese_source: worker-translation
 输出图像，以强度值矩阵形式返回。输出图像的数据类型与输入图像的数据类型相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Target histogram
+  summary: 期望直方图的类型 Uniform（默认）| User-defined
+  group: ''
+- name: Number of bins
+  summary: 目标直方图的 bin 数量 64（默认）| 大于 1 的整数
+  group: ''
+- name: Histogram source
+  summary: 目标直方图的来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Histogram
+  summary: 目标直方图的 bin 计数 ones(1,64)（默认）| 整数向量
+  group: ''
+```
 
 ### **Target histogram** — 期望直方图的类型 `Uniform`（默认）| `User-defined`
 
@@ -88,7 +117,6 @@ chinese_source: worker-translation
 
 - **Target histogram**：`User-defined`
 - **Histogram source**：`Specify via dialog`
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

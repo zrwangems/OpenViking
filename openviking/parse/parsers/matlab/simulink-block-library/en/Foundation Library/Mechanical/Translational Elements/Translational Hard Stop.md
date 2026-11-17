@@ -14,6 +14,15 @@ language: en
 # Translational Hard Stop
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Slider mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,8 +34,46 @@ that travels between stops installed on the case.
 ### **C** — Case mechanical translational
 
 Mechanical translational conserving port associated with the case.
-
 ## Parameters
+```yaml
+parameters:
+- name: Upper bound
+  summary: Gap between slider and upper bound 0.1 m (default) | scalar
+  group: ''
+- name: Lower bound
+  summary: Gap between slider and lower bound -0.1 m (default) | scalar
+  group: ''
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: ''
+- name: Contact stiffness at upper bound
+  summary: Elasticity of collision at upper bound 1e6 N/m (default) | positive scalar
+  group: ''
+- name: Contact stiffness at lower bound
+  summary: Elasticity of collision at lower bound 1e6 N/m (default) | positive scalar
+  group: ''
+- name: Contact damping at upper bound
+  summary: Dissipating property at upper bound 150 N/(m/s) (default) | positive scalar
+  group: ''
+- name: Contact damping at lower bound
+  summary: Dissipating property at lower bound 150 N/(m/s) (default) | positive scalar
+  group: ''
+- name: Transition region
+  summary: Region where force is ramped up 0.1 mm (default) | positive scalar
+  group: ''
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: ''
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: ''
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: ''
+```
 
 ### **Upper bound** — Gap between slider and upper bound `0.1 m` (default) | scalar
 
@@ -201,7 +248,6 @@ Minimum force needed to release the slider from a static contact mode.
 To enable this parameter, set **Hard stop model** to
 `Based on coefficient of
 restitution`.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Translational Elements

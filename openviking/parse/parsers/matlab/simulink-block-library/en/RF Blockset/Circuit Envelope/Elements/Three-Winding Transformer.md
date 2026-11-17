@@ -14,10 +14,36 @@ language: en
 # Three-Winding Transformer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inductance L1
+  summary: Inductance value of first inductor 1e-6 H (default) | nonnegative scalar integer
+  group: ''
+- name: Inductance L2
+  summary: Inductance value of second inductor 1e-6 H (default) | nonnegative scalar integer
+  group: ''
+- name: Inductance L3
+  summary: Inductance value of third inductor 1e-6 H (default) | nonnegative scalar integer
+  group: ''
+- name: Inductance L3
+  summary: Inductance value of third inductor 1e-6 H (default) | nonnegative scalar integer
+  group: ''
+- name: Coefficient of coupling K12
+  summary: Coupling coefficient of first and second inductors 0.9 (default) | nonnegative scalar integer
+  group: ''
+- name: Coefficient of coupling K13
+  summary: Coupling coefficient of first and third inductors 0.9 (default) | nonnegative scalar integer
+  group: ''
+- name: Coefficient of coupling K23
+  summary: Coupling coefficient of second and third inductors 0.9 (default) | nonnegative scalar integer
+  group: ''
+```
 
 ### **Inductance L1** — Inductance value of first inductor `1e-6 H` (default) | nonnegative scalar integer
 
@@ -81,7 +107,6 @@ The minimum nonzero inductance value that the RF Blockset environment
 recognizes is `1e-18` `H`. During simulation, the block
 uses a value of `1e-18` `H` for any inductance and mutual
 inductance values specified between `0` and `1e-18` `H`.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

@@ -15,13 +15,18 @@ chinese_source: worker-translation
 # Model Type Converter
 
 ## 端口
+```yaml
+ports: []
+```
 
 | 端口 | 端口类型（输入/输出） | 描述 |
 | --- | --- | --- |
 | u | 输入 | 估计的 A、B、C、D 和 F 多项式系数，指定为包含以下元素的总线：A、B、C、D 和 F。 |
 | y | 输出 | 状态空间模型，返回为包含对应于 A、B、C 和 D 矩阵的元素的总线。 |
-
 ## 参数
+```yaml
+parameters: []
+```
 
 ### 输入模型类型
 
@@ -31,7 +36,6 @@ chinese_source: worker-translation
 - `ARMAX`
 - `OE`
 - `BJ`
-
 ## 所属库
 
 R2025b 中未记录。

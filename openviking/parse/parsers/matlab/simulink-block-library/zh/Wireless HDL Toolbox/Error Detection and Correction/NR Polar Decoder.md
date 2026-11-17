@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # NR Polar Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入样本标量
+  direction: input
+  data_types: fixed point | int8 | int16 | double | single
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: K
+  summary: 信息块长度（以位为单位） 正整数
+  direction: input
+  data_types: fixdt(0,10,0)
+- name: E
+  summary: 速率匹配输出长度（以位为单位） 标量正整数
+  direction: input
+  data_types: fixdt(0,14,0)
+- name: RNTI
+  summary: 目标 RNTI 16 位无符号整数
+  direction: input
+  data_types: uint16
+- name: data
+  summary: 解码数据位 标量
+  direction: output
+  data_types: fixdt(0,1,0) | Boolean | double | single
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: err
+  summary: CRC 结果 标量
+  direction: output
+  data_types: Boolean | ufix11 | ufix24
+- name: nextFrame
+  summary: 准备好接收新输入标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -103,8 +142,31 @@ CRC 结果，以标量形式返回。如果清除 **Full checksum mismatch** 参
 有关详细信息，请参阅使用 nextFrame 输出信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Link direction
+  summary: 5G NR 链路方向 Downlink（默认）| Uplink
+  group: ''
+- name: List length
+  summary: 解码路径数量 2（默认）| 4 | 8
+  group: ''
+- name: Configuration source
+  summary: K 和 E 的来源 Property（默认）| Input port
+  group: ''
+- name: Message length (K)
+  summary: 信息块长度（以位为单位） 56（默认）| 正整数
+  group: ''
+- name: Rate-matched length (E)
+  summary: 速率匹配输出长度（以位为单位） 864（默认）| 正整数
+  group: ''
+- name: Full checksum mismatch
+  summary: 从最终解码阶段返回校验和 off（默认）| on
+  group: ''
+- name: Enable target RNTI port
+  summary: 用于指定目标 RNTI 值的可选端口 off（默认）| on
+  group: ''
+```
 
 ### **Link direction** — 5G NR 链路方向 `Downlink`（默认）| `Uplink`
 
@@ -154,7 +216,6 @@ CRC 结果，以标量形式返回。如果清除 **Full checksum mismatch** 参
 
 要启用此参数，请将 **Link direction** 参数设置为
 `Downlink`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

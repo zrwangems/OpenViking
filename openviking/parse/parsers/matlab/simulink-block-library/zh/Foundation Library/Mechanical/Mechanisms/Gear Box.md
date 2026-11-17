@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Gear Box
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 输入轴机械旋转
+  direction: conserving
+- name: O
+  summary: 输出轴机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **O** — 输出轴机械旋转
 
 与输出轴关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Gear ratio
+  summary: 齿轮速度比 5（默认值）
+  group: ''
+```
 
 ### **Gear ratio** — 齿轮速度比 `5`（默认值）
 
 输入轴角速度与输出轴角速度之比。您可以指定正值和负值。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Mechanisms

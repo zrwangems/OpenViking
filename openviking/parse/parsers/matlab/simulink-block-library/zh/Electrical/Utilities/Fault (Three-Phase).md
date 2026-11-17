@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Fault (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口 electrical
+  direction: input
+- name: F
+  summary: 外部触发故障控制输入 physical
+  direction: input
+- name: X
+  summary: 故障状态 physical
+  direction: output
+```
 
 ### 守恒
 
@@ -42,8 +54,51 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请在 **Main** 设置中，将 **State port** 参数设置为 `Visible`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是建模为复合三相端口还是扩展三相端口 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Failure mode
+  summary: 故障类型 None（默认）| Single-phase to ground (a-g) | Single-phase to ground (b-g) | Single-phase to ground (c-g) | Two-phase
+    (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase to ground
+    (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: 主要参数
+- name: Faulted phase-neutral resistance
+  summary: 故障相-中性点电阻 1e-3 Ohm（默认）
+  group: 主要参数
+- name: Faulted neutral-ground resistance
+  summary: 故障中性点-地电阻 1e-3 Ohm（默认）
+  group: 主要参数
+- name: State port
+  summary: 状态端口可见性 Hidden（默认）| Visible
+  group: 主要参数
+- name: Enable external fault trigger
+  summary: 外部故障模型 No（默认）| Yes
+  group: External Trigger
+- name: Fault threshold
+  summary: 触发故障的阈值 0.5（默认）
+  group: External Trigger
+- name: External fault trigger
+  summary: 故障条件 Faulted if F >= Fault threshold（默认）| Faulted if F <= Fault threshold
+  group: External Trigger
+- name: Fault resets when fault trigger reverts
+  summary: 故障触发恢复时故障复位 No（默认）| Yes
+  group: External Trigger
+- name: Enable temporal fault trigger
+  summary: 时间故障模型 No（默认）| Yes
+  group: Temporal Trigger
+- name: Fault start time
+  summary: 故障开始时间 1 s（默认）
+  group: Temporal Trigger
+- name: Fault duration
+  summary: 故障持续时间 0.1 s（默认）
+  group: Temporal Trigger
+- name: Unfaulted phase-neutral conductance
+  summary: 无故障相-中性点电导 1e-6 1/Ohm（默认）
+  group: Parasitics
+```
 
 ### **Modeling option** — 是建模为复合三相端口还是扩展三相端口 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -181,7 +236,6 @@ chinese_source: worker-translation
 ### **Unfaulted phase-neutral conductance** — 无故障相-中性点电导 `1e-6` `1/Ohm`（默认）
 
 当某相未参与故障时，相连接与中性点之间的电导。
-
 ## 所属库
 
 Simscape / Electrical / Utilities

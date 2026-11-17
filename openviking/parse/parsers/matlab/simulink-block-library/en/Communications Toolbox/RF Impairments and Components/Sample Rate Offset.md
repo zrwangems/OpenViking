@@ -14,6 +14,16 @@ language: en
 # Sample Rate Offset
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output signal scalar | vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -34,8 +44,16 @@ input signals, the sample rate offset is applied independently to each column.
 
 Output signal, returned as a scalar, vector, or matrix. This output is the same
 data type as the input signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate offset
+  summary: Sample rate offset 10 (default) | scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -65,7 +83,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / RF Impairments and Components

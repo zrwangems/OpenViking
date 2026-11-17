@@ -14,6 +14,25 @@ language: en
 # Receiver Preamp
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input signal complex-valued matrix
+  direction: input
+  data_types: double
+- name: TR
+  summary: Enable enabling signal logical-valued scalar | scalar
+  direction: input
+  data_types: double | Boolean
+- name: Ph
+  summary: Input phase noise scalar
+  direction: input
+  data_types: double
+- name: Out 1
+  summary: Output complex-valued matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -68,8 +87,47 @@ input** check box.
 Output signal, returned as a complex-valued matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain (dB)
+  summary: Gain of receiver 20 (default)
+  group: ''
+- name: Loss factor (dB)
+  summary: Loss factor of receiver 0 (default)
+  group: ''
+- name: Noise specification method
+  summary: Noise specification method Noise temperature (default) | Noise power
+  group: ''
+- name: Noise power (W)
+  summary: Noise power 0 (default)
+  group: ''
+- name: Noise figure (dB)
+  summary: Noise figure of receiver 0 (default)
+  group: ''
+- name: Reference temperature (K)
+  summary: Reference temperature of receiver 290 (default)
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Enable enabling signal input
+  summary: Add input to specify enabling signal off (default) | on
+  group: ''
+- name: Enable phase noise input
+  summary: Add input to specify phase noise off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Gain (dB)** — Gain of receiver `20` (default)
 
@@ -211,7 +269,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Transmitters and Receivers

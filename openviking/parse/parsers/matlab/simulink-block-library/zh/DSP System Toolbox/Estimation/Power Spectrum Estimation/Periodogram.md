@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Periodogram
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -37,8 +48,43 @@ chinese_source: worker-translation
 该模块为 *N* 个独立通道分别计算估计值，并生成 *Nfft*×*N* 矩阵输出。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement
+  summary: 测量类型 Power spectral density（默认）| Mean-square spectrum
+  group: ''
+- name: Window
+  summary: 窗类型 Hamming（默认）| Bartlett | Blackman | Boxcar | Chebyshev | Hann | Hanning | Kaiser | Triang
+  group: ''
+- name: Beta
+  summary: Beta 5（默认）| 标量
+  group: ''
+- name: Window sampling
+  summary: 窗采样 Symmetric（默认）| Periodic
+  group: ''
+- name: FFT implementation
+  summary: FFT 实现 Auto（默认）| Radix-2 | FFTW
+  group: ''
+- name: Stopband attenuation in dB
+  summary: 阻带衰减（dB） 50（默认）| 标量
+  group: ''
+- name: Inherit FFT length from input dimensions
+  summary: 继承 FFT 长度 off（默认）| on
+  group: ''
+- name: FFT length
+  summary: 数据点数 256（默认）| 标量
+  group: ''
+- name: Number of spectral averages
+  summary: 频谱平均次数 4（默认）| 标量
+  group: ''
+- name: Inherit sample time from input
+  summary: 从输入继承采样时间 on（默认）| off
+  group: ''
+- name: Sample time of original time series
+  summary: 原始时间序列的采样时间 1（默认）| 标量
+  group: ''
+```
 
 ### **Measurement** — 测量类型 `Power spectral density`（默认）| `Mean-square spectrum`
 
@@ -144,7 +190,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当您清除 `Inherit sample time from input` 复选框时，此参数才可见。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

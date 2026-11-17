@@ -14,6 +14,13 @@ language: en
 # FlightGear Preconfigured 6DoF Animation
 
 ## Ports
+```yaml
+ports:
+- name: l,μ,h,ϕ,θ,ψ
+  summary: Longitude, latitude, altitude, roll, pitch, and yaw vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -25,8 +32,31 @@ for longitude and latitude, meters above mean sea level for altitude,
 and radians for attitude values.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Destination IP address
+  summary: Destination IP address 127.0.0.1 (default) | scalar
+  group: ''
+  block_parameter: DestinationIpAddress
+  type: character vector
+  values: scalar
+  default: '''127.0.0.1'''
+- name: Destination port
+  summary: Destination port scalar
+  group: ''
+  block_parameter: DestinationPort
+  type: character vector
+  values: scalar
+  default: '''5502'''
+- name: Sample time
+  summary: Sample time 1/30 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''1/30'''
+```
 
 ### **Destination IP address** — Destination IP address `127.0.0.1` (default) | scalar
 
@@ -68,7 +98,6 @@ Sample time specified as a scalar (–1 for inherited).
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'1/30'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

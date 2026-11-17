@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Matrix Square
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入矩阵 *M*×1 矩阵 | 1×*N* 矩阵 | *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出矩阵 *M*×*M* 矩阵 | *N*×*N* 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,73 @@ chinese_source: worker-translation
 输出矩阵，返回为 *N*×*N* 或 *M*×*M* 矩阵。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: ''
+  block_parameter: OutMin
+  type: 字符向量
+  values: '''[ ]''| 标量'
+  default: '''[ ]'''
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: ''
+  block_parameter: OutMax
+  type: 字符向量
+  values: '''[ ]''| 标量'
+  default: '''[ ]'''
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Inherit via back propagation | Inherit: Same as input
+    | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | fixdt(1,16,0) | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Same as input'' | ''Inherit: Inherit via internal rule''| ''Inherit: Inherit via back propagation''
+    | ''double'' | ''single'' | ''int8'' | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''
+    | fixdt(1,16,0) | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 输出数据类型锁定 off（默认）| on
+  group: ''
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: 整数溢出时的行为 off（默认）| on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Mode
+  summary: 要指定的数据类别 Inherit（默认）| Built in | Fixed point | Expression
+  group: ''
+- name: Signedness
+  summary: 指定有符号或无符号 Signed（默认）| Unsigned
+  group: ''
+- name: Scaling
+  summary: 定点数据的缩放方法 Binary point（默认）
+  group: ''
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: ''
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认）| 0 到 32 的整数
+  group: ''
+- name: Fraction length
+  summary: 指定定点数据类型的小数长度 0（默认）| 标量整数
+  group: ''
+```
 
 ### **Output minimum** — 用于范围检查的最小输出值 `[]`（默认）| 标量
 
@@ -227,7 +303,6 @@ point`。
   point`
 - **Scaling** 设置为 `Binary
   point`
-
 ## 所属库
 
 Simulink / Matrix Operations

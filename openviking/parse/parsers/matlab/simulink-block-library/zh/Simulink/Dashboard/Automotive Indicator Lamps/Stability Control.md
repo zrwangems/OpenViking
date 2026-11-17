@@ -15,10 +15,46 @@ chinese_source: worker-translation
 # Lamp
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的信号及显示信号连接选项
+  group: ''
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: States
+  summary: 信号值与颜色对 标量和 RGB 向量
+  group: ''
+  block_parameter: ColorDefault
+  type: '[r g b] vector'
+  default: '[0.7529 0.7529 0.7529]'
+- name: Icon
+  summary: Lamp 模块外观 SVG 图像
+  group: ''
+  block_parameter: Icon
+  type: string | character vector
+  default: '''Default'''
+- name: Label
+  summary: 模块标签位置 Top（默认）| Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+- name: Opacity
+  summary: 模块不透明度 1（默认）| 标量
+  group: ''
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+```
 
 ### **Connection** — 要连接的信号及显示信号连接选项
 
@@ -217,7 +253,6 @@ lampStates = [lampState1 lampState2];
 | **模块参数**：`Opacity` |
 | **类型**：scalar |
 | **默认值**：`1` |
-
 ## 所属库
 
 Simulink / Dashboard

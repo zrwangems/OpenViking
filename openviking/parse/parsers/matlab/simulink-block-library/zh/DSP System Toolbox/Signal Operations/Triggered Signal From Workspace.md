@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Triggered Signal From Workspace
 
 ## 端口
+```yaml
+ports:
+- name: trigger
+  summary: 触发信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 从工作区导入的信号 标量 | 向量 | 矩阵 | 三维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -51,8 +62,25 @@ chinese_source: worker-translation
 为 `1`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal
+  summary: 要导入的信号 1:10（默认）| MATLAB 工作区变量 | MATLAB 表达式
+  group: ''
+- name: Trigger type
+  summary: 触发事件的类型 Rising edge（默认）| Falling edge | Either edge
+  group: ''
+- name: Initial output
+  summary: 初始输出值 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Samples per frame
+  summary: 每帧采样数 1（默认）| 正整数
+  group: ''
+- name: Form output after final data value by
+  summary: 最终导入信号值之后的输出值 Setting to zero（默认）| Holding final value | Cyclic repetition
+  group: ''
+```
 
 ### **Signal** — 要导入的信号 `1:10`（默认）| MATLAB 工作区变量 | MATLAB 表达式
 
@@ -130,7 +158,6 @@ output** 参数值可以是相同大小的矩阵，或一个
 
 该模块不会将导入信号外推到最后一个
 采样之外。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

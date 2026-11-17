@@ -14,6 +14,14 @@ language: en
 # Proof Objective
 
 ## Ports
+```yaml
+ports:
+- name: Values
+  summary: Input signal scalar | cell array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -26,8 +34,27 @@ the Simulink software, see Data Types Supported by Simulink. The block does not
 support complex input signals.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable
+  summary: Specify whether the block is enabled on (default) | off
+  group: ''
+- name: Values
+  summary: Specify the proof objective scalar | cell array
+  group: ''
+- name: Diaplay values
+  summary: Display the contents of values parameter on (default) | off
+  group: ''
+  values: parameter in the Simulink Editor. By default, this option is selected.
+- name: Pass through style
+  summary: Specify the proof objective on (default) | off
+  group: ''
+- name: Stop simulation when the property is violated
+  summary: Specify whether to stop the simulation on (default) | off
+  group: ''
+  values: parameter.
+```
 
 ### **Enable** — Specify whether the block is enabled `on` (default) | `off`
 
@@ -68,7 +95,6 @@ signal that violates the property specified in the
 
 If you select this parameter and simulate the model, the simulation stops
 if it encounters a violation of the specified property.
-
 ## Libraries
 
 Simulink Design Verifier / Objectives and Constraints

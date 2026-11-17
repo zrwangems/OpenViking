@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Median Filter
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 输出像素流 标量 | 向量
+  direction: output
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -54,8 +73,22 @@ chinese_source: worker-translation
 对于多像素流，每个像素值向量都有一组控制信号。由于该向量只有一个 `valid` 信号，因此向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Neighborhood size
+  summary: 用于计算中值的图像区域大小 3×3（默认）| 5×5 | 7×7
+  group: ''
+- name: Padding method
+  summary: 输入图像边界填充方法 Symmetric（默认）| Constant | Replicate | Reflection | None
+  group: ''
+- name: Padding value
+  summary: 用于填充输入图像边界的值 0（默认）| 整数
+  group: ''
+- name: Line buffer size
+  summary: 行缓冲区大小 2048（默认）| 整数
+  group: ''
+```
 
 ### **Neighborhood size** — 用于计算中值的图像区域大小 `3×3`（默认）| `5×5` | `7×7`
 
@@ -90,7 +123,6 @@ chinese_source: worker-translation
 当您使用多像素输入时，此值必须容纳（**Active pixels per line**）/（**Number of pixels**）+ 2。
 
 该模块分配 (*N*— 1) × **Line buffer size** 个内存位置来存储用于计算中值的像素。*N* 是由 **Neighborhood size** 参数指定的正方形区域的维度。
-
 ## 所属库
 
 Vision HDL Toolbox / Analysis & Enhancement Vision HDL Toolbox / Filtering

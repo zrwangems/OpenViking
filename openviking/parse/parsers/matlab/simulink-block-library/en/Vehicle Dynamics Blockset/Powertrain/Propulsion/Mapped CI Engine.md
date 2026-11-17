@@ -14,6 +14,27 @@ language: en
 # Mapped CI Engine
 
 ## Ports
+```yaml
+ports:
+- name: FuelMassCmd
+  summary: Injected fuel mass command scalar
+  direction: input
+- name: TrqCmd
+  summary: Torque command scalar
+  direction: input
+- name: EngSpd
+  summary: Engine speed scalar
+  direction: input
+- name: EngTemp
+  summary: Engine temperature scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: EngTrq
+  summary: Power scalar
+  direction: output
+```
 
 ### Input
 
@@ -77,8 +98,243 @@ Bus signal containing these block calculations.
 ### **EngTrq** — Power `scalar`
 
 Engine power, Tbrake, in N·m.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input command
+  summary: Table functions Fuel mass (default) | Torque
+  group: ''
+  block_parameter: InputCmdPopup
+  values: Fuel mass (default) | Torque
+- name: Include turbocharger lag effect
+  summary: Increase time constant off (default) | on
+  group: ''
+  block_parameter: TurboLagCheckbox
+  values: off (default) | on
+- name: Input engine temperature
+  summary: Create input port off (default) | on
+  group: ''
+  block_parameter: EngTmpInpEnbl
+  values: off (default) | on
+- name: Calibrate Maps
+  summary: Calibrate tables with measured data selection
+  group: ''
+- name: Breakpoints for commanded fuel mass input, f_tbrake_f_bpt
+  summary: Breakpoints 1-by-M vector
+  group: ''
+  block_parameter: f_tbrake_f_bpt
+  values: 1-by-M vector
+- name: Breakpoints for commanded torque input, f_tbrake_t_bpt
+  summary: Breakpoints 1-by-M vector
+  group: ''
+  block_parameter: f_tbrake_t_bpt
+  values: 1-by-M vector
+- name: Breakpoints for engine speed input, f_tbrake_n_bpt
+  summary: Breakpoints 1-by-N vector
+  group: ''
+  block_parameter: f_tbrake_n_bpt
+  values: 1-by-N vector
+- name: Breakpoints for temperature input, f_tbrake_engtmp_bpt
+  summary: Breakpoints [233.15 273.15 373.15] (default) | 1-by-L vector
+  group: ''
+  block_parameter: f_tbrake_engtmp_bpt
+  values: 1-by-L vector
+- name: Number of cylinders, NCyl
+  summary: Number 4 (default) | scalar
+  group: ''
+  block_parameter: NCyl
+  values: 4 (default) | scalar
+- name: Crank revolutions per power stroke, Cps
+  summary: Crank revolutions 2 (default) | scalar
+  group: ''
+  block_parameter: Cps
+  values: 2 (default) | scalar
+- name: Total displaced volume, Vd
+  summary: Volume 0.0015 (default) | scalar
+  group: ''
+  block_parameter: Vd
+  values: 0.0015 (default) | scalar
+- name: Fuel lower heating value, Lhv
+  summary: Heating value 45e6 (default) | scalar
+  group: ''
+  block_parameter: Lhv
+  values: 45e6 (default) | scalar
+- name: Fuel specific gravity, Sg
+  summary: Specific gravity 0.832 (default) | scalar
+  group: ''
+  block_parameter: Sg
+  values: 0.832 (default) | scalar
+- name: Ideal gas constant air, Rair
+  summary: Constant 287 (default) | scalar
+  group: ''
+  block_parameter: Rair
+  values: 287 (default) | scalar
+- name: Air standard pressure, Pstd
+  summary: Pressure 101325 (default) | scalar
+  group: ''
+  block_parameter: Pstd
+  values: 101325 (default) | scalar
+- name: Air standard temperature, Tstd
+  summary: Temperature 293.15 (default) | scalar
+  group: ''
+  block_parameter: Tstd
+  values: 293.15 (default) | scalar
+- name: Boost torque line, f_tbrake_bst
+  summary: Boost lag [90,95,95,95,96,100,104,104,104,100,95,85,75,67,60,55] (default) | 1-by-M vector
+  group: ''
+  block_parameter: f_tbrake_bst
+  values: 1-by-M vector
+- name: Time constant below boost line, tau_nat
+  summary: Time constant below 0.1 (default) | scalar
+  group: ''
+  block_parameter: tau_nat
+  values: 0.1 (default) | scalar
+- name: Rising maximum fuel mass boost time constant, tau_bst_rising
+  summary: Rising time constant 1.0 (default) | scalar
+  group: ''
+  block_parameter: tau_bst_rising
+  values: 1.0 (default) | scalar
+- name: Falling maximum fuel mass boost time constant, tau_bst_falling
+  summary: Falling time constant 0.7 (default) | scalar
+  group: ''
+  block_parameter: tau_bst_falling
+  values: 0.7 (default) | scalar
+- name: Turbocharger time constant blend fuel mass fraction, f_blend_frac
+  summary: Time constant 0.01 (default) | scalar
+  group: ''
+  block_parameter: f_blend_frac
+  values: 0.01 (default) | scalar
+- name: Brake torque map, f_tbrake
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_tbrake
+  values: M-by-N matrix
+- name: Plot brake torque map
+  summary: Plot table button
+  group: ''
+- name: Brake torque map, f_tbrake_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_tbrake_3d
+  values: M-by-N-by-L array
+- name: Air mass flow map, f_air
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_air
+  values: M-by-N matrix
+- name: Plot air mass map
+  summary: Plot table button
+  group: ''
+- name: Air mass flow map, f_air_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_air_3d
+  values: M-by-N-by-L array
+- name: Fuel flow map, f_fuel
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_fuel
+  values: M-by-N matrix
+- name: Plot fuel flow map
+  summary: Plot table button
+  group: ''
+- name: Fuel flow map, f_fuel_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_fuel_3d
+  values: M-by-N-by-L array
+- name: Exhaust temperature map, f_texh
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_texh
+  values: M-by-N matrix
+- name: Plot exhaust temperature map
+  summary: Plot table button
+  group: ''
+- name: Exhaust temperature map, f_texh_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_texh_3d
+  values: M-by-N-by-L array
+- name: BSFC map, f_eff
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_eff
+  values: M-by-N matrix
+- name: Plot BSFC map
+  summary: Plot table button
+  group: ''
+- name: BSFC map, f_eff_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_eff_3d
+  values: M-by-N-by-L array
+- name: EO HC map, f_hc
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_hc
+  values: M-by-N matrix
+- name: Plot EO HC map
+  summary: Plot table button
+  group: ''
+- name: EO HC map, f_hc_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_hc_3d
+  values: M-by-N-by-L array
+- name: EO CO map, f_co
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_co
+  values: M-by-N matrix
+- name: Plot EO CO map
+  summary: Plot table button
+  group: ''
+- name: EO CO map, f_co_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_co_3d
+  values: M-by-N-by-L array
+- name: EO NOx map, f_nox
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_nox
+  values: M-by-N matrix
+- name: Plot EO NOx map
+  summary: Plot table button
+  group: ''
+- name: EO NOx map, f_nox_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_nox_3d
+  values: M-by-N-by-L array
+- name: EO CO2 map, f_co2
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_co2
+  values: M-by-N matrix
+- name: Plot CO2 map
+  summary: Plot table button
+  group: ''
+- name: EO CO2 map, f_co2_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_co2_3d
+  values: M-by-N-by-L array
+- name: EO PM map, f_pm
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_pm
+  values: M-by-N matrix
+- name: Plot EO PM map
+  summary: Plot table button
+  group: ''
+- name: EO PM map, f_pm_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_pm_3d
+  values: M-by-N-by-L array
+```
 
 #### Block Options
 
@@ -1181,7 +1437,6 @@ programmatically, use the `get_param` function.
 #### Dependencies
 
 To enable this parameter, select **Input engine temperature**.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Combustion Engines Vehicle Dynamics Blockset / Powertrain / Propulsion

@@ -14,6 +14,53 @@ language: en
 # SM AC11C
 
 ## Ports
+```yaml
+ports:
+- name: V_REF
+  summary: Voltage reference scalar
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: Input from stabilizer scalar
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: Terminal voltage scalar
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: Terminal current scalar
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: Overexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: Underexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: Summation point stator current limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: Take-over stator current limit for overexcitation limiter scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: Take-over stator current limit for underexcitation limiter scalar
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: Measured field current scalar
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: Field voltage scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -181,8 +228,156 @@ Per-unit field voltage to apply to the field circuit of the
 synchronous machine, returned as a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: Initial output voltage 1 (default) | real scalar
+  group: General
+- name: Initial terminal voltage, Vt0 (pu)
+  summary: Initial terminal voltage 1 (default) | real scalar
+  group: General
+- name: Initial terminal current, It0 (pu)
+  summary: Initial terminal current 1 (default) | real scalar
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Resistive component of load compensation, R_C (pu)
+  summary: Compensation resistance 0 (default) | positive scalar
+  group: Pre-Control
+- name: Reactance component of load compensation, X_C (pu)
+  summary: Compensation reactance 0 (default) | positive scalar
+  group: Pre-Control
+- name: Regulator input filter time constant, T_R (s)
+  summary: Regulator time constant 0.01 (default) | positive scalar
+  group: Pre-Control
+- name: Voltage regulator proportional gain, K_PA (pu)
+  summary: Proportional gain of voltage regulator 30 (default)
+  group: Control
+- name: Voltage regulator integral time constant, T_IA (s)
+  summary: Integral time constant of voltage regulator 2 (default)
+  group: Control
+- name: UEL regulator proportional gain, K_PU (pu)
+  summary: Proportional gain of UEL regulator 30 (default)
+  group: Control
+- name: UEL regulator integral time constant, T_IU (s)
+  summary: Integral time constant of UEL regulator 2 (default)
+  group: Control
+- name: Voltage and UEL regulator derivative gain, K_B (pu)
+  summary: Derivative gain of voltage and UEL regulator 3 (default)
+  group: Control
+- name: Time constant for derivative element, T_B (s)
+  summary: Time constant for derivative element 0.4 (default)
+  group: Control
+- name: OEL regulator proportional gain, K_PO (pu)
+  summary: Proportional gain of OEL regulator 30 (default)
+  group: Control
+- name: OEL regulator integral time constant, T_IO (s)
+  summary: Integral time constant of OEL regulator 2 (default)
+  group: Control
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: Maximum regulator output 20 (default) | real scalar
+  group: Control
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: Minimum regulator output -20 (default) | real scalar
+  group: Control
+- name: Maximum PSS regulator output, V_RSmax (pu)
+  summary: Maximum PSS regulator output 3 (default) | real scalar
+  group: Control
+- name: Minimum PSS regulator output, V_RSmin (pu)
+  summary: Minimum PSS regulator output -3 (default) | real scalar
+  group: Control
+- name: Maximum exciter output, V_Amax (pu)
+  summary: Maximum exciter output 20 (default) | real scalar
+  group: Control
+- name: Minimum exciter output, V_Amin (pu)
+  summary: Minimum exciter output 0 (default) | real scalar
+  group: Control
+- name: Alternate PSS input locations (V_S)
+  summary: PSS input location Output of AVR (after take-over limits) (default) | Voltage error calculation | Voltage error
+    or after take-over limits
+  group: Control
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL input location Take-over at voltage error (default) | Unused | Summation point at voltage error | Take-over
+    at voltage regulator output
+  group: Control
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL input location Take-over at voltage error (default) | Unused | Summation point at voltage error | Take-over
+    at voltage regulator output
+  group: Control
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL input location Take-over at voltage error (default) | Unused | Summation point at voltage error | Take-over
+    at voltage regulator output
+  group: Control
+- name: Exciter field proportional constant, K_E (pu)
+  summary: Exciter field gain 1 (default) | positive scalar
+  group: Exciter
+- name: Exciter field time constant, T_E (s)
+  summary: Exciter field time constant 0.4 (default) | positive scalar
+  group: Exciter
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: Rectifier loading factor 0.173 (default) | positive scalar
+  group: Exciter
+- name: Demagnetizing factor, function of exciter alternator reactances, K_D (pu)
+  summary: Demagnetization factor 1 (default) | positive scalar
+  group: Exciter
+- name: Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)
+  summary: First saturation output voltage 7.4 (default) | positive scalar
+  group: Exciter
+- name: Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)
+  summary: First saturation lookup voltage 0.214 (default) | positive scalar
+  group: Exciter
+- name: Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)
+  summary: Second saturation output voltage 5.55 (default) | positive scalar
+  group: Exciter
+- name: Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)
+  summary: Second saturation lookup voltage 0.044 (default) | positive scalar
+  group: Exciter
+- name: Maximum exciter field current, V_FEmax (pu)
+  summary: Exciter upper limit 20 (default) | real scalar
+  group: Exciter
+- name: Minimum exciter output limit, V_Emin (pu)
+  summary: Exciter lower limit 0 (default) | real scalar
+  group: Exciter
+- name: Potential circuit (voltage) gain coefficient, K_P (pu)
+  summary: Potential circuit gain coefficient 1 (default) | real scalar
+  group: Exciter
+- name: Potential circuit phase angle (degrees)
+  summary: Potential circuit phase angle 0 (default) | real scalar
+  group: Exciter
+- name: Potential circuit (current) gain coefficient, K_I (pu)
+  summary: Potential circuit current gain coefficient 0 (default) | real scalar
+  group: Exciter
+- name: Reactance associated with potential source, X_L (pu)
+  summary: Reactance associated with potential source 0 (default) | real scalar
+  group: Exciter
+- name: Rectifier loading factor proportional to commutating reactance, K_C1 (pu)
+  summary: Rectifier loading factor proportional to commutating reactance 0 (default) | real scalar
+  group: Exciter
+- name: Power source selector SW1
+  summary: 'Power source selector Position B: power source independent of the terminal conditions (default) | Position A:
+    power source derived from terminal voltage'
+  group: Exciter
+- name: Maximum available exciter voltage, V_B1max (pu)
+  summary: Maximum available exciter field voltage 1.5 (default) | real scalar
+  group: Exciter
+- name: Rectifier loading factor proportional to commutating reactance, K_C2 (pu)
+  summary: Rectifier loading factor proportional to commutating reactance 0 (default) | real scalar
+  group: Exciter
+- name: Additive potential circuit (current) gain coefficient, K_I2 (pu)
+  summary: Additive circuit current gain coefficient 0 (default) | real scalar
+  group: Exciter
+- name: Maximum available exciter voltage, V_B2max (pu)
+  summary: Maximum available exciter voltage 0 (default) | real scalar
+  group: Exciter
+- name: Additive independent source, K_BOOST (pu)
+  summary: Additive independent source 0 (default)
+  group: Exciter
+- name: Reference value for applying additive (boost) circuit, V_BOOST (pu)
+  summary: Reference value for applying boost circuit 0 (default)
+  group: Exciter
+```
 
 ### General
 
@@ -471,7 +666,6 @@ Per-unit additive independent source for the boost circuit.
 
 Per-unit reference value for activating the additive boost circuit in
 the excitation system.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

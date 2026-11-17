@@ -14,6 +14,25 @@ language: en
 # RegressionGP Predict
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Predictor data row vector | column vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yfit
+  summary: Predicted response scalar
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: ysd
+  summary: Standard deviation of response scalar
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yint
+  summary: Prediction intervals of response 1-by-2 vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -53,8 +72,200 @@ lower limits of the prediction intervals, and the second column contains the upp
 limits.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select trained machine learning model
+  summary: Gaussian process regression model gpMdl (default) | RegressionGP | CompactRegressionGP
+  group: Main
+  block_parameter: TrainedLearner
+  type: workspace variable
+  values: RegressionGP object | CompactRegressionGP object
+  default: '''gpMdl'''
+- name: Add output port for estimated standard deviation
+  summary: Optional output port for standard deviation off (default) | on
+  group: Main
+  block_parameter: ShowOutputSD
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Add output port for prediction intervals
+  summary: Optional output port for prediction intervals off (default) | on
+  group: Main
+  block_parameter: ShowOutputIntervals
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Alpha
+  summary: Significance level 0.05 (default) | scalar in [0 1]
+  group: Main
+  block_parameter: Alpha
+  type: character vector
+  values: scalar in [0 1]
+  default: '0.05'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Output data type
+  summary: 'Data type of yfit output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Output data type Minimum
+  summary: Minimum value of yfit output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Output data type Maximum
+  summary: Maximum value of yfit output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Output standard deviation data type
+  summary: 'Data type of ysd output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: SDDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Output standard deviation data type Minimum
+  summary: Minimum value of ysd output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: SDOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Output standard deviation data type Maximum
+  summary: Maximum value of ysd output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: SDOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Output prediction intervals data type
+  summary: 'Data type of yint output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: IntervalsDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Output prediction intervals data type Minimum
+  summary: Minimum value of yint output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: IntervalsOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Output prediction intervals data type Maximum
+  summary: Maximum value of yint output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: IntervalsOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Kernel data type
+  summary: 'Data type of kernel function Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: KernelDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Kernel data type Minimum
+  summary: Minimum value of kernel function [] (default) | scalar
+  group: Data Types
+  block_parameter: KernelOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Kernel data type Maximum
+  summary: Maximum value of kernel function [] (default) | scalar
+  group: Data Types
+  block_parameter: KernelOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Distance data type
+  summary: 'Data type of method for computing kernel distance Inherit: Inherit via internal rule (default) | double | single
+    | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: Data Types
+  block_parameter: DistanceDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Distance data type Minimum
+  summary: Minimum value of kernel distance [] (default) | scalar
+  group: Data Types
+  block_parameter: DistanceOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Distance data type Maximum
+  summary: Maximum value of kernel distance [] (default) | scalar
+  group: Data Types
+  block_parameter: DistanceOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Basis data type
+  summary: 'Data type of basis function Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 |
+    int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: BasisDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Basis data type Minimum
+  summary: Minimum value of basis function [] (default) | scalar
+  group: Data Types
+  block_parameter: BasisOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Basis data type Maximum
+  summary: Maximum value of basis function [] (default) | scalar
+  group: Data Types
+  block_parameter: BasisOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+```
 
 ### Main
 
@@ -693,7 +904,6 @@ or clip the actual basis function signal.
 | **Type**: character vector |
 | **Values**: `'[]'` | scalar |
 | **Default**: `'[]'` |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Regression

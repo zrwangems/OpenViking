@@ -14,6 +14,19 @@ language: en
 # State Transition Table
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input port scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | string
+- name: Port_1
+  summary: Output port scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | string
+```
 
 ### Input
 
@@ -33,8 +46,105 @@ When you create output data in the Stateflow state transition table by using the
 Transition Table block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `string`
-
 ## Parameters
+```yaml
+parameters:
+- name: Update method
+  summary: Method to update or wake up Stateflow state transition tables Inherited (default) | Discrete | Continuous
+  group: ''
+  block_parameter: ChartUpdate
+  values: '"INHERITED" (default) | "CONTINUOUS" | "DISCRETE"'
+- name: Sample time
+  summary: Time interval that state transition table wakes up during simulation -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | string scalar | character vector'
+- name: Create output for monitoring
+  summary: Whether to create active state data output off (default) | on
+  group: ''
+  block_parameter: HasOutputData
+  values: false or 0 (default) | true or 1
+- name: Output monitoring mode
+  summary: Monitoring mode for active state output Child activity (default) | Leaf state activity
+  group: ''
+  block_parameter: OutputMonitoringMode
+  values: '"ChildActivity" (default) | "LeafStateActivity"'
+- name: Data name
+  summary: Name of active state data object State_Transition_TableMode (default) | scalar
+  group: ''
+  block_parameter: OutputPortName
+  values: '"State_Transition_TableMode" (default) | string scalar | character vector'
+- name: Enum name
+  summary: Name of enumerated data type for active state data object State_Transition_TableModeType (default) | scalar
+  group: ''
+  block_parameter: EnumTypeName
+  values: '"State_Transition_TableModeType" (default) | string scalar | character vector'
+- name: Define enumerated type manually
+  summary: Whether to define enumerated data type manually off (default) | on
+  group: ''
+  block_parameter: DoNotAutogenerateEnum
+  values: false or 0 (default) | true or 1
+- name: Execute (enter) chart at initialization
+  summary: Whether to initialize state configuration off (default) | on
+  group: Advanced
+  block_parameter: ExecuteAtInitialization
+  values: false or 0 (default) | true or 1
+- name: Saturate on integer overflow
+  summary: Whether data saturates on integer overflow on (default) | off
+  group: Advanced
+  block_parameter: SaturateOnIntegerOverflow
+  values: true or 1 (default) | false or 0
+- name: Initialize outputs every time chart wakes up
+  summary: Whether to initialize output data off (default) | on
+  group: Advanced
+  block_parameter: InitializeOutput
+  values: false or 0 (default) | true or 1
+- name: Support variable-size arrays
+  summary: Whether the state transition table supports variable size data on (default) | off
+  group: Advanced
+  block_parameter: SupportVariableSizing
+  values: true or 1 (default) | false or 0
+- name: Enable super step semantics
+  summary: Whether to enable super step semantics off (default) | on
+  group: Advanced
+  block_parameter: EnableNonTerminalStates
+  values: false or 0 (default) | true or 1
+- name: Max iterations in a superstep
+  summary: Maximum number of transitions 1000 (default) | positive integer
+  group: Advanced
+  block_parameter: NonTerminalMaxCounts
+  values: 1000 (default) | positive integer
+- name: After too many iterations
+  summary: Action if super step exceeds maximum number of transitions Proceed (default) | Throw Error
+  group: Advanced
+  block_parameter: NonTerminalUnstableBehavior
+  values: '"Proceed" (default) | "Throw Error"'
+- name: Treat dimensions of length 1 as fixed size
+  summary: Whether state transition table treats non-scalar data with dimension of length 1 as fixed size on (default) | off
+  group: Advanced
+  block_parameter: TreatDimensionOfLengthOneAsFixedSize
+  values: true or 1 (default) | false or 0
+- name: Action language
+  summary: Action language MATLAB (default) | C
+  group: Advanced
+  block_parameter: ActionLanguage
+  values: '"MATLAB" (default) | "C"'
+- name: State machine type
+  summary: State machine semantics Classic (default) | Mealy | Moore
+  group: Advanced
+  block_parameter: StateMachineType
+  values: '"Classic" (default) | "Mealy" | "Moore"'
+- name: Treat these inherited Simulink signal types as fi objects
+  summary: Inherited Simulink signals to treat as fi objects Fixed-point (default) | Fixed-point & Integer
+  group: Fixed-point properties
+  block_parameter: TreatAsFi
+  values: '"Fixed-point" (default) | "Fixed-point & Integer"'
+- name: MATLAB Function fimath
+  summary: Default fimath properties Same as MATLAB (default) | Specify Other
+  group: Fixed-point properties
+  block_parameter: EmlDefaultFimath
+  values: '"Same as MATLAB Default" (default) | "Other:UserSpecified"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -505,7 +615,6 @@ block and change the object property by using dot notation.
 | --- | --- |
 | **Parameter:** | `EmlDefaultFimath` |
 | **Values:** | `"Same as MATLAB Default"` (default) | `"Other:UserSpecified"` |
-
 ## Libraries
 
 Stateflow

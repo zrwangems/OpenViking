@@ -14,6 +14,37 @@ language: en
 # To Video Display
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: Red color component of image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: Green color component of image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: Blue color component of image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Y
+  summary: Luma component of image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cb
+  summary: Blue-difference chroma component of image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cr
+  summary: Red-difference chroma component of image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -135,8 +166,22 @@ To enable this port, set the **Input Color Format** parameter
 to `YCbCr 4:2:2`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Window size
+  summary: Display window size Normal (default) | Full-screen (Esc to exit) | True size (1:1)
+  group: View
+- name: Open at Start of Simulation
+  summary: Open window at start of simulation on (default) | off
+  group: View
+- name: Input Color Format
+  summary: Input color format RGB (default) | YCbCr 4:2:2
+  group: Settings
+- name: Image signal
+  summary: Configure input port One multidimensional signal (default) | Separate color signals
+  group: Settings
+```
 
 ### View
 
@@ -189,7 +234,6 @@ separate signals for each color channel..
 
 To enable this parameter, set the **Input Color Format**
 parameter to `RGB`.
-
 ## Libraries
 
 Computer Vision Toolbox / Sinks

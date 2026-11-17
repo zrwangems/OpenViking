@@ -15,16 +15,20 @@ chinese_source: worker-translation
 # Ground
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 Ground 模块没有参数。
 
 RF Blockset 文档中的所有模型都包含一个 Ground 模块。
 有关电路包络仿真的介绍，请参阅 Model an RF Mixer。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

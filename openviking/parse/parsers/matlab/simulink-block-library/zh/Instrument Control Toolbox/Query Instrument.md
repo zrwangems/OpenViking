@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Query Instrument
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Block sample time**
 :   Block sample time 参数是对话框选项卡之外的唯一设置。默认值为 `1`。将值设置为 `-1` 会使模块继承时序。正值用作采样周期。
@@ -150,7 +155,6 @@ R2025b 中未记录。
 **注意**
 
 对话框框中显示的硬件信息在您首次打开对话框时确定并缓存。要使用新值刷新显示，请重新启动 MATLAB。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -14,6 +14,15 @@ language: en
 # CAN FD Unpack
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: CAN FD message input CAN_FD_MESSAGE_BUS
+  direction: input
+- name: Data
+  summary: CAN message output single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean
+  direction: output
+```
 
 ### Input
 
@@ -43,8 +52,127 @@ support fixed-point types.
 
 Additional output ports can be added by the options in the parameters
 **Output ports** pane.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data to output as
+  summary: Select your data signal raw data (default) | manually specify signals | CANdb specified signals | ARXML specified
+    signals
+  group: ''
+  block_parameter: DataFormat
+  type: string | character vector
+  values: '''raw data'' | ''manually specified signals'' | ''CANdb specified signals'' ''ARXML specified signals'''
+  default: '''raw data'''
+- name: Database file
+  summary: ARXML or CAN database file character vector
+  group: ''
+  block_parameter: CANdbFile
+  type: string | character vector
+- name: Message list
+  summary: Message list array of character vectors
+  group: ''
+  block_parameter: MsgList
+  type: string | character vector
+- name: Name
+  summary: Message name CAN Msg (default) | character vector
+  group: ''
+  block_parameter: MsgName
+  type: string | character vector
+- name: Identifier type
+  summary: Identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)
+  group: ''
+  block_parameter: MsgIDType
+  type: string | character vector
+  values: '''Standard (11-bit identifier)'' | ''Extended (29-bit identifier)'''
+  default: '''Standard (11-bit identifier)'''
+- name: Identifier
+  summary: Message identifier 0 (default) | 0 .. 536870911
+  group: ''
+  block_parameter: MsgIdentifier
+  type: string | character vector
+  values: '''0'' to ''536870911'''
+- name: Length (bytes)
+  summary: CAN message length 8 (default) | 0 .. 8
+  group: ''
+  block_parameter: MsgLength
+  type: string | character vector
+  values: '''0'' to ''8'', ''12'', ''16'', ''20'', ''24'', ''32'', ''48'', ''64'''
+  default: '''8'''
+- name: Add signal
+  summary: Add CAN signal
+  group: ''
+- name: Delete signal
+  summary: Remove CAN signal
+  group: ''
+- name: Signals
+  summary: Signals table table
+  group: ''
+  block_parameter: SignalInfo
+  type: string | character vector
+- name: Output identifier
+  summary: Add CAN ID output port off (default) | on
+  group: ''
+  block_parameter: IDPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output timestamp
+  summary: Add Timestamp output port off (default) | on
+  group: ''
+  block_parameter: TimestampPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output error
+  summary: Add Error output port off (default) | on
+  group: ''
+  block_parameter: ErrorPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output remote
+  summary: Add Remote output port off (default) | on
+  group: ''
+  block_parameter: RemotePort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output length
+  summary: Add Length output port off (default) | on
+  group: ''
+  block_parameter: LengthPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output status
+  summary: Add Status output port off (default) | on
+  group: ''
+  block_parameter: StatusPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output Bit Rate Switch (BRS)
+  summary: Add BRS output port off (default) | on
+  group: ''
+  block_parameter: BRSPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output Error Status Indicator (ESI)
+  summary: Add ESI output port off (default) | on
+  group: ''
+  block_parameter: ESIPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output Data Length Code (DLC)
+  summary: Add DLC output port off (default) | on
+  group: ''
+  block_parameter: DLCPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Data to output as** — Select your data signal `raw data` (default) | `manually specify signals` | `CANdb specified signals` | `ARXML specified signals`
 
@@ -478,7 +606,6 @@ This option adds a new output port to the block. The data type of this port is
 | **Type:** `string` | `character vector` |
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN FD Communication C2000 Microcontroller Blockset / Target Communication Simulink Real-Time / CAN / CAN-FD MSG blocks

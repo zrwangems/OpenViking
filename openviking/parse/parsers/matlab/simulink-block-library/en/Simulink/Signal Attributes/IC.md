@@ -14,6 +14,19 @@ language: en
 # IC
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -33,8 +46,22 @@ by the actual values of the input signal. See Behavior for Nonzero Sample Time O
 for more information.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial value
+  summary: Initial value 1 (default) | real, finite scalar, vector, matrix, or N-D array
+  group: ''
+  block_parameter: Value
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''1'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Initial value** — Initial value `1` (default) | real, finite scalar, vector, matrix, or N-D array
 
@@ -70,7 +97,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Signal Attributes

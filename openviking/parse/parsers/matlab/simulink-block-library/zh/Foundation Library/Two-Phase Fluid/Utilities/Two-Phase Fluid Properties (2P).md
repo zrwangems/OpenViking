@@ -15,14 +15,97 @@ chinese_source: worker-translation
 # Two-Phase Fluid Properties (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 连接端口两相流体
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 连接端口两相流体
 
 守恒端口，用于将模块连接到两相流体网络。您可以将其连接到框图中两相流体连接线上的任意点。当您将 Two-Phase Fluid Properties (2P) 模块连接到连接线时，软件会自动识别连接到特定回路的两相流体模块，并将属性传播到所有这些模块。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum valid specific internal energy
+  summary: 允许的最低比内能 0 kJ/kg（默认）| 非负标量
+  group: 参数
+- name: Maximum valid specific internal energy
+  summary: 允许的最高比内能 4000 kJ/kg（默认）| 非负标量
+  group: 参数
+- name: Pressure vector
+  summary: 用于表格查找的压力值向量 向量
+  group: 参数
+- name: Critical pressure
+  summary: 液体和蒸气不再作为不同相存在的压力 22.0640 MPa（默认）| 正标量
+  group: 参数
+- name: Thermal transport properties near critical point
+  summary: 是否在临界点附近裁剪热输运属性的峰值 Clip peak values（默认）| Do not clip peak values
+  group: 参数
+- name: Fraction above and below Critical pressure for clipping
+  summary: 用于裁剪热输运属性峰值的压力范围 0.12（默认）| 正标量
+  group: 参数
+- name: Atmospheric pressure
+  summary: 环境的绝对压力 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: Pressure and specific internal energy outside valid range
+  summary: 当压力或比内能超出有效范围时是否通知 Error（默认）| Warning | None
+  group: 参数
+- name: Dynamic pressure threshold for flow reversal
+  summary: 流动开始反向时的动压 0.01 Pa（默认）| 正标量
+  group: 参数
+- name: 归一化液体比内能向量
+  summary: 用于查表的归一化液体比内能值向量 向量
+  group: 液体属性
+- name: 液体比体积表
+  summary: 用于查表的液体比体积值矩阵 矩阵
+  group: 液体属性
+- name: 液体比熵表
+  summary: 用于查表的液体比熵值矩阵 矩阵
+  group: 液体属性
+- name: 液体温度表
+  summary: 用于查表的液体温度值矩阵 矩阵
+  group: 液体属性
+- name: 液体运动黏度表
+  summary: 用于查表的液体运动黏度值矩阵 矩阵
+  group: 液体属性
+- name: 液体热导率表
+  summary: 用于查表的液体热导率值矩阵 矩阵
+  group: 液体属性
+- name: Liquid Prandtl number table
+  summary: 用于查表矩阵的液体普朗特数矩阵
+  group: 液体属性
+- name: Saturated liquid internal energy vector
+  summary: 用于查表向量的饱和液体比内能向量
+  group: 液体属性
+- name: Normalized vapor internal energy vector
+  summary: 用于查表向量的归一化蒸汽比内能向量
+  group: Vapor Properties
+- name: Vapor specific volume table
+  summary: 用于查表矩阵的蒸汽比体积矩阵
+  group: Vapor Properties
+- name: Vapor specific entropy table
+  summary: 用于查表矩阵的蒸汽比熵矩阵
+  group: Vapor Properties
+- name: Vapor temperature table
+  summary: 用于查表矩阵的蒸汽温度矩阵
+  group: Vapor Properties
+- name: Vapor kinematic viscosity table
+  summary: 用于查表矩阵的蒸汽运动黏度矩阵
+  group: Vapor Properties
+- name: Vapor thermal conductivity table
+  summary: 用于查表矩阵的蒸汽热导率矩阵
+  group: Vapor Properties
+- name: Vapor Prandtl number table
+  summary: 用于查表矩阵的蒸汽普朗特数矩阵
+  group: Vapor Properties
+- name: 饱和蒸气比内能向量
+  summary: 用于查表的饱和蒸气比内能值向量
+  group: Vapor Properties
+```
 
 ### 参数
 
@@ -189,7 +272,6 @@ chinese_source: worker-translation
 长度为 *N* 的向量，包含与压力向量对应的饱和蒸气比内能值。处于或高于临界压力的元素必须与 **饱和液体比内能向量** 模块参数中的对应元素相等。
 
 默认值为水的 100 元素向量。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Utilities

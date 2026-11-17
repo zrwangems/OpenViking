@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # FIFO Write
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 要写入 FIFO 的数据向量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: F
+  summary: FIFO 向量 serialfifoptr
+  direction: output
+- name: DP
+  summary: 如果 FIFO 中存在新数据则为 True true | false
+  direction: output
+```
 
 ### 输入
 
@@ -40,8 +53,30 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要使此端口可见，请设置参数 **Max and Min read size ports** 和 **Enable passthrough**。
-
 ## 参数
+```yaml
+parameters:
+- name: Size
+  summary: FIFO 的大小，以字节为单位 1024（默认值）| 整数
+  group: ''
+  block_parameter: size
+- name: Input vector type
+  summary: 指定输入数据类型 8 bit uint null terminated（默认值）| count+32 bit int | count+32 bit uint | count+16 bit int | count+16 bit
+    uint | 8 bit int null terminated
+  group: ''
+  block_parameter: inputtype
+- name: Data present output
+  summary: 启用输出 DP off（默认值）| on
+  group: ''
+  block_parameter: present
+- name: Sample time
+  summary: 模块的采样时间 -1（默认值）| 数值
+  group: ''
+- name: ID
+  summary: 溢出消息的标识符 字符向量
+  group: ''
+  block_parameter: id
+```
 
 ### **Size** — FIFO 的大小，以字节为单位 `1024`（默认值）| 整数
 
@@ -98,7 +133,6 @@ sampletime
 |  |
 | --- |
 | **模块参数：** `id` |
-
 ## 所属库
 
 Simulink Real-Time / RS232

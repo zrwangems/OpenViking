@@ -14,6 +14,30 @@ language: en
 # Horizontal Wind Model 07
 
 ## Ports
+```yaml
+ports:
+- name: μ l h
+  summary: Geodetic latitude, longitude, and geopotential altitude three-element vector | altitude is a value between 0 and
+    500 km
+  direction: input
+  data_types: double
+- name: day
+  summary: Day scalar | value between 1 and 366
+  direction: input
+  data_types: double
+- name: sec
+  summary: Elapsed seconds scalar
+  direction: input
+  data_types: double
+- name: Ap
+  summary: Ap index scalar | range from 0 to 400
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: Wind velocity vector 1-by-2 vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -67,8 +91,31 @@ Wind velocity vector, returned as a 1-by-2 vector, containing the
 meridional and zonal wind components, in that order.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Model
+  summary: Horizontal wind model type Quiet (default) | Total | Disturbance
+  group: ''
+  block_parameter: model
+  type: character vector
+  values: '''Quiet'' | ''Total'' | ''Disturbance'''
+  default: '''Quiet'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior Error (default) | Warning | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Units** — Input and output units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -134,7 +181,6 @@ Out-of-range block behavior, specified as follows.
 | **Type**: character vector |
 | **Values**: `'None'` | `'Warning'` | `'Error'` |
 | **Default**: `'Warning'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Wind

@@ -14,6 +14,15 @@ language: en
 # Bevel Gear Constraint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: unspecified
+- name: F
+  summary: Follower frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -24,8 +33,22 @@ Connection frame on the base bevel gear.
 ### **F** — Follower frame frame
 
 Connection frame on the follower bevel gear.
-
 ## Parameters
+```yaml
+parameters:
+- name: Base Gear Radius
+  summary: Radius of the base gear pitch circle 10 cm (default) | positive scalar with units of length
+  group: ''
+- name: Follower Gear Radius
+  summary: Radius of the follower gear pitch circle 10 cm (default) | positive scalar with units of length
+  group: ''
+- name: Shaft Axes
+  summary: Parameterization for the gear shaft angle Perpendicular (default) | Arbitrarily Oriented
+  group: ''
+- name: Angle Between Shafts
+  summary: Angle between the base and follower shafts 90 deg (default) | positive scalar
+  group: ''
+```
 
 ### **Base Gear Radius** — Radius of the base gear pitch circle `10` `cm` (default) | positive scalar with units of length
 
@@ -62,7 +85,6 @@ other constraints, must be the same as that specified here.
 This parameter is enabled when the **Shaft Axes**
 parameter is set to `Arbitrarily
 Oriented`.
-
 ## Libraries
 
 Simscape / Multibody / Gears and Couplings / Gears

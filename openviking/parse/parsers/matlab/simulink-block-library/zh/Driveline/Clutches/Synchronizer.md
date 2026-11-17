@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Synchronizer
 
 ## 端口
+```yaml
+ports:
+- name: X1
+  summary: 犬牙离合器位移物理信号
+  direction: output
+- name: X2
+  summary: 锥形离合器位移物理信号
+  direction: output
+- name: H
+  summary: 离合器轮毂机械旋转
+  direction: output
+- name: R
+  summary: 离合器齿圈机械旋转
+  direction: output
+- name: S
+  summary: 换挡连杆机械旋转
+  direction: output
+- name: T
+  summary: 热流热
+  direction: output
+```
 
 ### 输出
 
@@ -46,8 +67,180 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请在 **Friction** 部分中，将 **Friction model** 设置为 `Temperature-dependent friction coefficients` 或 `Temperature and velocity-dependent friction coefficients`。
-
 ## 参数
+```yaml
+parameters:
+- name: Contact surface maximum diameter
+  summary: 外径 150 mm（默认）| 正标量
+  group: Cone Clutch
+- name: Contact surface minimum diameter
+  summary: 内径 100 mm（默认）| 正标量
+  group: Cone Clutch
+- name: Cone half angle
+  summary: 锥半角 12 deg（默认）| 正标量
+  group: Cone Clutch
+- name: Friction model
+  summary: 摩擦模型 Fixed kinetic friction coefficient（默认）| Velocity-dependent kinetic friction coefficient | Temperature-dependent
+    friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: Cone Clutch
+- name: Relative velocity vector
+  summary: 相对速度 [0, 100, 1000] rad/s（默认）| 向量
+  group: Cone Clutch
+- name: Temperature vector
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: Cone Clutch
+- name: Static friction coefficient
+  summary: 静摩擦系数 0.35（默认）| 标量
+  group: Cone Clutch
+- name: Static friction coefficient vector
+  summary: 静摩擦系数 [.4, .38, .36]（默认）| 向量
+  group: Cone Clutch
+- name: Kinetic friction coefficient
+  summary: 动摩擦系数 0.3（默认）| 正标量
+  group: Cone Clutch
+- name: Kinetic friction coefficient vector
+  summary: 动摩擦系数 [.3, .22, .19]（默认）| [.3, .28, .25] | 向量
+  group: Cone Clutch
+- name: Kinetic friction coefficient matrix
+  summary: 动摩擦系数 [.34, .32, .3; .3, .28, .25; .25, .2, .15]（默认）| 矩阵
+  group: Cone Clutch
+- name: Friction coefficient interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: Cone Clutch
+- name: Friction coefficient extrapolation method
+  summary: 外推方法 Linear（默认）| Nearest | Error
+  group: Cone Clutch
+- name: Velocity tolerance
+  summary: 相对速度锁定阈值 0.001 rad/s（默认）| 标量
+  group: Cone Clutch
+- name: Threshold force
+  summary: 法向接触力阈值 1 N（默认）| 标量
+  group: Cone Clutch
+- name: Torque transmission model
+  summary: 扭矩传递模型 Friction clutch approximation — Suitable for HIL and linearization（默认）| Dynamic with backlash | Dynamic
+    modal
+  group: Dog Clutch
+- name: Temperature vector
+  summary: 温度 [280, 300, 320] K（默认）| 递增值的向量
+  group: Dog Clutch
+- name: Maximum transmitted torque
+  summary: 最大传递扭矩 1000 N*m（默认）| 正标量
+  group: Dog Clutch
+- name: Maximum transmitted torque vector
+  summary: 最大传递扭矩 [1000, 1050, 1000] N*m（默认）| 向量
+  group: Dog Clutch
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: Dog Clutch
+- name: Extrapolation method
+  summary: 外插方法 Linear（默认）| Nearest | Error
+  group: Dog Clutch
+- name: Clutch teeth mean radius
+  summary: 离合器齿平均半径 50 mm（默认）| 正标量
+  group: Dog Clutch
+- name: Number of teeth
+  summary: 齿圈或轮毂齿数 6（默认）| 正非零标量整数
+  group: Dog Clutch
+- name: Rotational backlash
+  summary: 旋转齿隙 10 deg（默认）| 正标量
+  group: Dog Clutch
+- name: Torsional stiffness
+  summary: 扭转刚度 10e6 N*m/rad（默认）| 正标量
+  group: Dog Clutch
+- name: Torsional damping
+  summary: 扭转阻尼 100 N*m/(rad/s)（默认）| 正标量
+  group: Dog Clutch
+- name: Engagement speed threshold
+  summary: 接合速度阈值 5 rpm（默认）| 正标量
+  group: Dog Clutch
+- name: Peak force
+  summary: 峰值力 500 N（默认）| 非负标量
+  group: Detent
+- name: Notch width
+  summary: 凹口宽度 3 mm（默认）| 非负标量
+  group: Detent
+- name: Viscous friction coefficient
+  summary: 粘性摩擦系数 0.1 N/(m/s)（默认）| 非负标量
+  group: Detent
+- name: Friction to peak force ratio
+  summary: 摩擦力与峰值力之比 0.01（默认）| 非负标量
+  group: Detent
+- name: Friction velocity threshold
+  summary: 动摩擦速度阈值 0.05 m/s（默认）
+  group: Detent
+- name: Linkage travel direction
+  summary: 接合条件行程方向 Positive shift linkage displacement engages clutch（默认）| Negative shift linkage displacement engages clutch
+  group: Shift Linkage
+- name: Maximum engagement speed
+  summary: 接合速度上限阈值 inf（默认）| 正标量
+  group: Shift Linkage
+- name: Tooth overlap to engage
+  summary: 接合所需齿重叠量 3 mm（默认）| 正标量
+  group: Shift Linkage
+- name: Tooth height
+  summary: 齿高 10 mm（默认）| 正标量
+  group: Shift Linkage
+- name: Ring-hub clearance when disengaged
+  summary: 分离时齿圈-轮毂间隙 3 mm（默认）| 正标量
+  group: Shift Linkage
+- name: Hard stop at back of shift linkage
+  summary: 换挡机构后部硬限位 on（默认）| off
+  group: Shift Linkage
+- name: Dog clutch ring stop stiffness
+  summary: 爪式离合器齿圈限位刚度 10e5 N/m（默认）| 正标量
+  group: Shift Linkage
+- name: Cone clutch ring stop stiffness
+  summary: 锥式离合器齿圈限位刚度 10e5 N/m（默认）| 正标量
+  group: Shift Linkage
+- name: Dog clutch ring stop damping
+  summary: 爪式离合器齿圈限位阻尼 1e3 N/(m/s)（默认）| 非负标量
+  group: Shift Linkage
+- name: Cone clutch ring stop damping
+  summary: 锥式离合器齿圈限位阻尼 1e3 N/(m/s)（默认）| 非负标量
+  group: Shift Linkage
+- name: Shift linkage viscous friction coefficient
+  summary: 换挡机构粘性摩擦系数 100 N/(m/s)（默认）| 正标量
+  group: Shift Linkage
+- name: Engagement block stiffness
+  summary: 接合阻挡刚度系数 10e6 N/m（默认）| 正标量
+  group: Shift Linkage
+- name: Engagement block damping
+  summary: 接合阻挡阻尼系数 300 N*s/m（默认）| 正标量
+  group: Shift Linkage
+- name: Shift linkage engaged friction coefficient
+  summary: 接合摩擦系数 100 N*s/m（默认）| 正标量
+  group: Shift Linkage
+- name: Shift linkage disengaged friction coefficient
+  summary: 分离摩擦系数 50 N*s/m（默认）| 正标量
+  group: Shift Linkage
+- name: Static contact speed threshold
+  summary: 静态接触速度阈值 0.1 m/s（默认）| 正标量
+  group: Shift Linkage
+- name: Static contact release force threshold
+  summary: 释放力阈值 0.001 N（默认）| 正标量
+  group: Shift Linkage
+- name: Tooth-tooth friction coefficient
+  summary: 齿对齿接触动摩擦系数 0.05（默认）| 正标量
+  group: Shift Linkage
+- name: Initial state
+  summary: 初始离合器状态 All clutches unlocked（默认）| Cone clutch locked | All clutches locked
+  group: 初始条件
+- name: Dog clutch initial shift linkage position
+  summary: 爪形离合器初始换挡连杆位置 0 mm（默认）| 标量
+  group: 初始条件
+- name: Cone clutch initial shift linkage position
+  summary: 锥形离合器初始换挡连杆位置 0 mm（默认）| 标量
+  group: 初始条件
+- name: Initial dog clutch ring-hub offset angle
+  summary: 初始爪形离合器齿环-轮毂偏移角 0 deg（默认）| 标量
+  group: 初始条件
+- name: Thermal mass
+  summary: 热质量 50 kJ/K（默认）| 标量
+  group: Thermal Port
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 标量
+  group: Thermal Port
+```
 
 ### Cone Clutch
 
@@ -484,7 +677,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请在 **Cone Clutch** 部分中，将 **Friction model** 设置为 `Temperature-dependent friction coefficients` 或 `Temperature and velocity-dependent friction coefficients`。
-
 ## 所属库
 
 Simscape / Driveline / Clutches

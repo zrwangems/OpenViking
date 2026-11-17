@@ -14,6 +14,24 @@ language: en
 # Circuit Breaker (with arc)
 
 ## Ports
+```yaml
+ports:
+- name: vT
+  summary: Scalar control port physical signal
+  direction: input
+- name: '1'
+  summary: Port 1 electrical
+  direction: conserving
+- name: '2'
+  summary: Port 2 electrical
+  direction: conserving
+- name: +
+  summary: Positive port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative port electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -52,8 +70,25 @@ Negative electrical conserving port.
 
 To enable this port, set **Modeling option** to
 `Electrical control port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to specify physical or electrical control port PS control port (default) | Electrical control port
+  group: ''
+- name: Arc time constant, tau
+  summary: Arc time constant 0.3e-6 s (default)
+  group: ''
+- name: Cooling power, P
+  summary: Cooling power 30900 W (default)
+  group: ''
+- name: Initial arc conductance, g0
+  summary: Initial arc conductance 1e4 s (default)
+  group: ''
+- name: Threshold
+  summary: Threshold voltage 0.5 V (default)
+  group: ''
+```
 
 ### **Modeling option** — Whether to specify physical or electrical control port `PS control port` (default) | `Electrical control port`
 
@@ -80,7 +115,6 @@ start of the simulation to determine whether the breaker is initially open
 or closed. When the voltage rises above the threshold, the breaker opens.
 When the control port voltage falls below the threshold, the breaker
 closes.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers

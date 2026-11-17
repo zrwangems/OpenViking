@@ -14,6 +14,25 @@ language: en
 # Ultra Local Model
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Plant input scalar
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Plant output scalar
+  direction: input
+  data_types: single | double
+- name: Fhat
+  summary: Estimated disturbances and unmodeled dynamics scalar
+  direction: output
+  data_types: single | double
+- name: yhat
+  summary: Estimated output scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -50,8 +69,45 @@ To enable this port, select **Output estimated
 yhat**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input gain (α)
+  summary: Input gain 1 (default) | nonzero finite scalar
+  group: ''
+  block_parameter: alpha
+  values: '"1" (default) | nonzero finite scalar in quotes'
+- name: Model Order
+  summary: Ultra-local model order 1 (default) | 2
+  group: ''
+  block_parameter: modelOrder
+  values: '"1" (default) | "2"'
+- name: Estimator sample time
+  summary: Estimator sample time 0.01 (default)
+  group: ''
+  block_parameter: Ts
+  values: '"0.01" (default) | positive scalar in quotes'
+- name: Integration window (steps)
+  summary: Integration window 3 (default) | positive integer greater than 3
+  group: ''
+  block_parameter: numIntegrationSteps
+  values: '"3" (default) | positive integer greater than 3 in quotes'
+- name: Include current time inputs for F estimation
+  summary: Include current time inputs for estimation off (default) | on
+  group: ''
+  block_parameter: useCurrentdata
+  values: '"off" (default) | "on"'
+- name: Output estimated yhat
+  summary: Output one-step estimation of output off (default) | on
+  group: ''
+  block_parameter: enableYhatport
+  values: '"off" (default) | "on"'
+- name: Observer gain (L)
+  summary: Observer gain 0 (default) | nonnegative scalar
+  group: ''
+  block_parameter: ObsvGain
+  values: '"0" (default) | nonnegative scalar in quotes'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -232,7 +288,6 @@ the `set_param` function.
 | **Values:** | `"0"` (default) | nonnegative scalar in quotes |
 
 **Example:** `set_param(gcb,"ObsvGain","2");`
-
 ## Libraries
 
 Simulink Control Design / Disturbance Observer

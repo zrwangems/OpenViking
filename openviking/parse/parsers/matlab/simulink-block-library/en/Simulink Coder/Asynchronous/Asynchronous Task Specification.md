@@ -14,6 +14,15 @@ language: en
 # Asynchronous Task Specification
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Interrupt input signal scalar
+  direction: input
+- name: Port_1
+  summary: Interrupt signal with priority scalar
+  direction: output
+```
 
 ### Input
 
@@ -26,8 +35,13 @@ Interrupt input signal received from a root-level Inport block.
 
 Interrupt signal with specified task priority that triggers a
 function-call subsystem.
-
 ## Parameters
+```yaml
+parameters:
+- name: Task priority
+  summary: Priority of asynchronous task that calls function-call subsystem 10 (default)
+  group: ''
+```
 
 ### **Task priority** — Priority of asynchronous task that calls function-call subsystem `10` (default)
 
@@ -51,7 +65,6 @@ Async Interrupt block in the parent model must also have
 a priority of 10. If the parameter is set to [], the priority of the
 Async Interrupt block can be a value other than
 10.
-
 ## Libraries
 
 Simulink Coder / Asynchronous

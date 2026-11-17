@@ -14,6 +14,9 @@ language: en
 # Variable Translational Damper
 
 ## Ports
+```yaml
+ports: []
+```
 
 `B`
 :   Physical signal input port representing the variable translational damping
@@ -24,15 +27,16 @@ language: en
 
 `R`
 :   Translational conserving port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Minimum damping coefficient**
 :   Minimum value allowed for the variable damping coefficient. The physical
     signal input saturates below the specified value. The parameter must be
     greater than or equal to zero. The default value is `0`
     `N/(m/s)`.
-
 ## Libraries
 
 Not documented in R2025b.

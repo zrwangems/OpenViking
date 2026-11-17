@@ -14,6 +14,33 @@ language: en
 # Hit Crossing
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output signal scalar | vector | message | function-call event
+  direction: output
+- name: CrossingType
+  summary: Direction of zero-crossing None | NegativeToPositive | NegativeToZero | ZeroToPositive | PositiveToNegative | PositiveToZero
+    | ZeroToNegative
+  direction: output
+  data_types: slHitCrossingType
+- name: Index
+  summary: Index of the input signal at which the hit crossing event occurs nonnegative integer
+  direction: output
+  data_types: uint32
+- name: Time
+  summary: Time of hit crossing event real, finite
+  direction: output
+  data_types: double
+- name: Offset
+  summary: Hit crossing value for detection 0 (default) | real values
+  direction: output
+  data_types: double | Boolean | struct
+```
 
 ### Input
 
@@ -164,8 +191,46 @@ Hit crossing offset value as specified by the Hit crossing offset parameter.
 **Data Types:** `double`
 
 **Data Types:** `double` | `Boolean` | `struct`
-
 ## Parameters
+```yaml
+parameters:
+- name: Hit crossing offset
+  summary: Hit crossing value for detection 0 (default) | real values
+  group: ''
+  block_parameter: HitCrossingOffset
+  type: character vector
+  values: real values
+  default: '''0'''
+- name: Hit crossing direction
+  summary: Input signal direction to hit crossing either (default) | falling | rising
+  group: ''
+  block_parameter: HitCrossingDirection
+  type: character vector
+  values: '''either'' | ''rising'' | ''falling'''
+  default: '''either'''
+- name: Show output port
+  summary: Display an output port off (default) | on
+  group: ''
+  block_parameter: ShowOutputPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Output type
+  summary: Choose signal, message, or function-call output Signal (default for Simulink®) | Message (default for SimEvents)
+    | Function-Call
+  group: ''
+  block_parameter: HitCrossingOutputType
+  type: character vector
+  values: '''Signal'' | ''Message'' | ''Function-Call'''
+  default: '''Signal'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Hit crossing offset** — Hit crossing value for detection `0` (default) | real values
 
@@ -255,7 +320,6 @@ Select to enable zero-crossing detection. For more information, see Zero-Crossin
 | **Type:** character vector, string |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Discontinuities Simulink / Messages & Events HDL Coder / Discontinuities SimEvents

@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # Binary Cyclic Encoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Codeword length N**
 :   码字长度，也是输出向量长度。
 
 **Message length K, or generator polynomial**
 :   消息长度，也是输入向量长度，可以是多项式字符向量，或表示该码的生成多项式的二进制向量。
-
 ## 所属库
 
 R2025b 中未记录。

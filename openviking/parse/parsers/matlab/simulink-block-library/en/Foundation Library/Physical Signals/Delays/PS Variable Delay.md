@@ -14,6 +14,21 @@ language: en
 # PS Variable Delay
 
 ## Ports
+```yaml
+ports:
+- name: U
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: T
+  summary: Delay time, s physical signal
+  direction: input
+- name: H
+  summary: Output during initial time interval, untyped physical signal
+  direction: input
+- name: Y
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -36,14 +51,18 @@ time. The signal unit must be commensurate with the unit of the output signal at
 ### **Y** — Output physical signal, untyped physical signal
 
 Output physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum delay time
+  summary: Delay time for the signal 10 s (default)
+  group: ''
+```
 
 ### **Maximum delay time** — Delay time for the signal `10 s` (default)
 
 The upper limit for the delay time. Exceeding the maximum delay time during
 simulation results in a runtime error. The parameter value must be positive.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Delays

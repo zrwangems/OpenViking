@@ -14,6 +14,21 @@ language: en
 # 3-Way Directional Valve (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Moist air port moist air
+  direction: conserving
+- name: P
+  summary: Moist air port moist air
+  direction: conserving
+- name: T
+  summary: Moist air port moist air
+  direction: conserving
+- name: S
+  summary: Control member displacement, m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -36,8 +51,303 @@ Spool position displacement in m, received as a physical signal. For
 flow paths that open in the positive spool position, a positive signal
 opens the orifice. For flow paths that open in the negative spool
 position, a negative signal opens the orifice.
-
 ## Parameters
+```yaml
+parameters:
+- name: Positive spool position open connections
+  summary: Flow paths open when the spool is in positive position All closed (default) | P-A, A-T, P-T | P-A | A-T | P-T
+  group: Valve Configuration
+- name: Negative spool position open connections
+  summary: Flow paths open when spool moves in negative direction All closed (default) | P-A, A-T, P-T | P-A | A-T | P-T
+  group: Valve Configuration
+- name: Area characteristics
+  summary: Flow equations for orifices Identical for all flow paths (default) | Different for each flow path
+  group: Model Parameterization
+- name: Valve parameterization
+  summary: Variable or constant orifice parameterization Cv flow coefficient (default) | Kv flow coefficient | Sonic conductance
+    | Orifice area
+  group: Model Parameterization
+- name: Spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: Model Parameterization
+- name: Opening characteristic
+  summary: Method to convert control signal to measure of flow capacity Linear (default) | Tabulated
+  group: Model Parameterization
+- name: Spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: Model Parameterization
+- name: Maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: Model Parameterization
+- name: Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: Model Parameterization
+- name: Maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: Model Parameterization
+- name: Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: Model Parameterization
+- name: Maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: Model Parameterization
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: Model Parameterization
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Model Parameterization
+- name: Maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open component 12 l/(bar*s) (default) | positive scalar
+  group: Model Parameterization
+- name: Critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: Model Parameterization
+- name: Subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: Model Parameterization
+- name: ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: Model Parameterization
+- name: ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: Model Parameterization
+- name: Sonic conductance vector
+  summary: Sonic conductances corresponding to values in spool travel vector [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s) (default)
+    | vector of positive values
+  group: Model Parameterization
+- name: Critical pressure ratio vector
+  summary: Critical pressure ratios corresponding to values in spool travel vector 0.3 * ones(1,6) (default) | vector of positive
+    numbers
+  group: Model Parameterization
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: Model Parameterization
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range of [0,1]
+  group: Model Parameterization
+- name: Laminar flow pressure ratio
+  summary: Laminar-turbulent transition pressure ratio 0.999 (default) | positive scalar
+  group: Model Parameterization
+- name: Cross-sectional area at ports A, P, and T
+  summary: Area at conserving ports 0.01 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Spool position at maximum P-A orifice area
+  summary: Spool offset for fully open P-A orifice 5e-3 m (default) | positive scalar
+  group: P-A Orifice
+- name: P-A spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: P-A Orifice
+- name: P-A constant orifice Cv flow coefficient
+  summary: Flow coefficient 4 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: P-A Orifice
+- name: P-A orifice Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: P-A Orifice
+- name: P-A constant orifice Kv flow coefficient
+  summary: Flow coefficient 3.6 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: P-A Orifice
+- name: P-A orifice Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: P-A Orifice
+- name: P-A orifice spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A constant orifice area
+  summary: Cross-sectional area for constant orifice 1e-4 m^2 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A constant orifice sonic conductance
+  summary: Sonic conductance for constant orifice 12 l/(bar*s) (default) | positive scalar
+  group: P-A Orifice
+- name: P-A constant orifice critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes for constant orifice 0.3 (default) |
+    positive scalar
+  group: P-A Orifice
+- name: P-A orifice maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open orifice 12 l/(bar*s) (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice sonic conductance vector
+  summary: Sonic conductances corresponding to values in spool travel vector [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s) (default)
+    | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A orifice critical pressure ratio vector
+  summary: Critical pressure ratios corresponding to values in spool travel vector 0.3 * ones(1, 6) (default) | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A orifice subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: P-A Orifice
+- name: P-A orifice ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: P-A Orifice
+- name: Spool position at maximum A-T orifice area
+  summary: Spool offset for fully open A-T orifice 5e-3 m (default) | positive scalar
+  group: A-T Orifice
+- name: A-T spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: A-T Orifice
+- name: A-T constant orifice Cv flow coefficient
+  summary: Flow coefficient 4 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: A-T Orifice
+- name: A-T orifice Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: A-T Orifice
+- name: A-T constant orifice Kv flow coefficient
+  summary: Flow coefficient 3.6 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: A-T Orifice
+- name: A-T orifice Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: A-T Orifice
+- name: A-T orifice spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T constant orifice area
+  summary: Cross-sectional area for constant orifice 1e-4 m^2 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T constant orifice sonic conductance
+  summary: Sonic conductance for constant orifice 12 l/(bar*s) (default) | positive scalar
+  group: A-T Orifice
+- name: A-T constant orifice critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes for constant orifice 0.3 (default) |
+    positive scalar
+  group: A-T Orifice
+- name: A-T orifice maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open orifice 12 l/(bar*s) (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice sonic conductance vector
+  summary: Sonic conductances corresponding to values in spool travel vector [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s) (default)
+    | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T orifice critical pressure ratio vector
+  summary: Critical pressure ratios corresponding to values in spool travel vector 0.3 * ones(1, 6) (default) | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T orifice subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: A-T Orifice
+- name: A-T orifice ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: A-T Orifice
+- name: Spool position at maximum P-T orifice area
+  summary: Spool offset for fully open P-T orifice 5e-3 m (default) | positive scalar
+  group: P-T Orifice
+- name: P-T spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: P-T Orifice
+- name: P-T constant orifice Cv flow coefficient
+  summary: Flow coefficient 4 (default) | positive scalar
+  group: P-T Orifice
+- name: P-T orifice maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: P-T Orifice
+- name: P-T orifice Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: P-T Orifice
+- name: P-T constant orifice Kv flow coefficient
+  summary: Flow coefficient 3.6 (default) | positive scalar
+  group: P-T Orifice
+- name: P-T orifice maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: P-T Orifice
+- name: P-T orifice Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: P-T Orifice
+- name: P-T orifice spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: P-T Orifice
+- name: P-T maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: P-T Orifice
+- name: P-T orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: P-T Orifice
+- name: P-T constant orifice area
+  summary: Cross-sectional area for constant orifice 1e-4 m^2 (default) | positive scalar
+  group: P-T Orifice
+- name: P-T orifice xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: P-T Orifice
+- name: P-T constant orifice sonic conductance
+  summary: Sonic conductance for constant orifice 12 l/(bar*s) (default) | positive scalar
+  group: P-T Orifice
+- name: P-T constant orifice critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes for constant orifice 0.3 (default) |
+    positive scalar
+  group: P-T Orifice
+- name: P-T orifice maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open orifice 12 l/(bar*s) (default) | positive scalar
+  group: P-T Orifice
+- name: P-T orifice critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: P-T Orifice
+- name: P-T orifice sonic conductance vector
+  summary: Sonic conductances corresponding to values in spool travel vector [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s) (default)
+    | 1-by-*n* vector
+  group: P-T Orifice
+- name: P-T orifice critical pressure ratio vector
+  summary: Critical pressure ratios corresponding to values in spool travel vector 0.3 * ones(1, 6) (default) | 1-by-*n* vector
+  group: P-T Orifice
+- name: P-T orifice subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: P-T Orifice
+- name: P-T orifice ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: P-T Orifice
+- name: P-T orifice ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: P-T Orifice
+```
 
 ### Valve Configuration
 
@@ -2333,7 +2643,6 @@ of the following parameters:
 - **Negative spool position open
   connections** to `P-T`
   or `P-A, A-T, P-T`.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Directional Control Valves

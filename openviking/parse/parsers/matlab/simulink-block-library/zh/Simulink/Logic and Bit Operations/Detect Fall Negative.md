@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Detect Fall Negative
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 信号值
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: 输出信号 0 | 1
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,28 @@ chinese_source: worker-translation
 输出信号，当输入信号小于零且其前一值大于或等于零时为 true（等于 1）；当输入信号大于或等于零，或者输入信号为负且其前一值也为负时为 false（等于 0）。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial condition
+  summary: 前一输入的初始条件 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: vinit
+  type: 字符向量
+  values: 标量 | 向量
+- name: Input processing
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: ''
+  block_parameter: InputProcessing
+  type: 字符向量
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+- name: Output data type
+  summary: 输出的数据类型 boolean（默认）| uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''boolean'' | ''uint8'''
+```
 
 ### **Initial condition** — 前一输入的初始条件 0（默认）| 标量 | 向量
 
@@ -82,7 +115,6 @@ chinese_source: worker-translation
 | **类型**： 字符向量 |
 | **值**： `'boolean'` | `'uint8'` |
 | **默认**： `'boolean'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations

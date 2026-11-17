@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Bit Rotate
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +41,22 @@ chinese_source: worker-translation
 ### **Port\_1** — 输出信号 标量 | 向量
 
 经过位旋转的输出信号。输出信号的数据类型与输入信号相同。
-
 ## 参数
+```yaml
+parameters:
+- name: Rotate Mode
+  summary: 指定旋转方向，向左或向右 Rotate Left（默认）| Rotate Right
+  group: ''
+  block_parameter: mode
+  type: string scalar | character vector
+  values: '"Rotate Left" | "Rotate Right"'
+- name: Rotate Length
+  summary: 指定要旋转的位数 0（默认）| 大于或等于零的整数
+  group: ''
+  block_parameter: N
+  type: string scalar | character vector
+  values: 大于或等于零的整数
+```
 
 ### **Rotate Mode** — 指定旋转方向，向左或向右 `Rotate Left`（默认）| `Rotate Right`
 
@@ -59,7 +83,6 @@ chinese_source: worker-translation
 | **类型：** string scalar | character vector |
 | **值：** 大于或等于零的整数 |
 | **默认：** `'0'` |
-
 ## 所属库
 
 HDL Coder / Logic and Bit Operations

@@ -14,6 +14,24 @@ language: en
 # FEM-Parameterized Rotary Actuator
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Rotor mechanical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,8 +64,104 @@ Thermal port.
 To enable this port, set **Modeling
 option** to `Show thermal
 port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical model
+  summary: Electrical model parameterization Define in terms of dPhi(i,theta)/dtheta and dPhi(i,theta)/di (default) | Define
+    in terms of Phi(i,theta)
+  group: Magnetic Force
+- name: Current vector, i
+  summary: Current vector [0, .2, .4, .6, .8, 1] A (default)
+  group: Magnetic Force
+- name: Angle vector, theta
+  summary: Angle vector [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180] deg (default)
+  group: Magnetic Force
+- name: Flux partial derivative wrt current, dPhi(i,theta)/di
+  summary: Flux partial derivative with respect to current [.002, .0024, .0035, .0052, .0074, .0096, .0118, .0135, .0146,
+    .015, .0146, .0135, .0118, .0096, .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074, .0096, .0118, .0135,
+    .0146, .015, .0146, .0135, .0118, .0096, .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074, .0096, .0118,
+    .0135, .0146, .015, .0146, .0135, .0118, .0096, .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074, .0096,
+    .0118, .0135, .0146, .015, .0146, .0135, .0118, .0096, .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052, .0074,
+    .0096, .0118, .0135, .0146, .015, .0146, .0135, .0118, .0096, .0074, .0052, .0035, .0024, .002; .002, .0024, .0035, .0052,
+    .0074, .0096, .0118, .0135, .0146, .015, .0146, .0135, .0118, .0096, .0074, .0052, .0035, .0024, .002] Wb/A (default)
+  group: Magnetic Force
+- name: Flux partial derivative wrt angle, dPhi(i,theta)/dtheta
+  summary: Flux partial derivative with respect to angle [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; 0, .0009,
+    .0017, .0023, .0026, .0026, .0023, .0017, .0009, 0, -.0009, -.0017, -.0023, -.0026, -.0026, -.0023, -.0017, -.0009, 0;
+    0, .0018, .0033, .0045, .0051, .0051, .0045, .0033, .0018, 0, -.0018, -.0033, -.0045, -.0051, -.0051, -.0045, -.0033,
+    -.0018, 0; 0, .0027, .005, .0068, .0077, .0077, .0068, .005, .0027, 0, -.0027, -.005, -.0068, -.0077, -.0077, -.0068,
+    -.005, -.0027, 0; 0, .0036, .0067, .009, .0102, .0102, .009, .0067, .0036, 0, -.0036, -.0067, -.009, -.0102, -.0102, -.009,
+    -.0067, -.0036, 0; 0, .0044, .0084, .0113, .0128, .0128, .0113, .0084, .0044, 0, -.0044, -.0084, -.0113, -.0128, -.0128,
+    -.0113, -.0084, -.0044, 0] Wb/rad (default)
+  group: Magnetic Force
+- name: Flux linkage matrix, Phi(i,theta)
+  summary: Flux linkage matrix [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; .0004, .00048, .0007, .00105, .00147,
+    .00193, .00235, .0027, .00292, .003, .00292, .0027, .00235, .00193, .00147, .00105, .0007, .00048, .0004; .0008, .00096,
+    .00141, .0021, .00295, .00385, .0047, .00539, .00584, .006, .00584, .00539, .0047, .00385, .00295, .0021, .00141, .00096,
+    .0008; .0012, .00144, .00211, .00315, .00442, .00578, .00705, .00809, .00876, .009, .00876, .00809, .00705, .00578, .00442,
+    .00315, .00211, .00144, .0012; .0016, .00191, .00282, .0042, .0059, .0077, .0094, .01078, .01169, .012, .01169, .01078,
+    .0094, .0077, .0059, .0042, .00282, .00191, .0016; .002, .00239, .00352, .00525, .00737, .00963, .01175, .01348, .01461,
+    .015, .01461, .01348, .01175, .00963, .00737, .00525, .00352, .00239, .002] Wb (default)
+  group: Magnetic Force
+- name: Calculate torque matrix?
+  summary: Electromagnetic torque data specification No (default) | Yes
+  group: Magnetic Force
+- name: Torque matrix, T(i,theta)
+  summary: Torque matrix [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; 0, .0889, .1671, .2252, .2561, .2561, .2252,
+    .1671, .0889, 0, -.0889, -.1671, -.2252, -.2561, -.2561, -.2252, -.1671, -.0889, 0; 0, .3557, .6685, .9007, 1.0242, 1.0242,
+    .9007, .6685, .3557, 0, -.3557, -.6685, -.9007, -1.0242, -1.0242, -.9007, -.6685, -.3557, 0; 0, .8003, 1.5041, 2.0265,
+    2.3045, 2.3045, 2.0265, 1.5041, .8003, 0, -.8003, -1.5041, -2.0265, -2.3045, -2.3045, -2.0265, -1.5041, -.8003, 0; 0,
+    1.4228, 2.674, 3.6027, 4.0968, 4.0968, 3.6027, 2.674, 1.4228, 0, -1.4228, -2.674, -3.6027, -4.0968, -4.0968, -3.6027,
+    -2.674, -1.4228, 0; 0, 2.2231, 4.1781, 5.6292, 6.4013, 6.4013, 5.6292, 4.1781, 2.2231, 0, -2.2231, -4.1781, -5.6292, -6.4013,
+    -6.4013, -5.6292, -4.1781, -2.2231, 0] mN*m (default)
+  group: Magnetic Force
+- name: Flux dependence on displacement
+  summary: Flux pattern Unique (default) | Cyclic
+  group: Magnetic Force
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Magnetic Force
+- name: Extrapolation method
+  summary: Extrapolation method Linear (default) | Nearest | Error
+  group: Magnetic Force
+- name: Winding resistance
+  summary: Electrical winding total resistance 14 Ohm (default)
+  group: Magnetic Force
+- name: Magnetizing resistance
+  summary: Magnetizing resistance for iron losses inf Ohm (default)
+  group: Magnetic Force
+- name: Damping
+  summary: Rotary damping 0.0001 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Rotor inertia
+  summary: Rotor inertia 0.00005 kg*m^2 (default)
+  group: Mechanical
+- name: Minimum rotor angle
+  summary: Minimum rotor angle -Inf deg (default)
+  group: Mechanical
+- name: Maximum rotor angle
+  summary: Maximum rotor angle Inf deg (default)
+  group: Mechanical
+- name: Contact stiffness
+  summary: Contact stiffness 1e8 N*m/rad (default)
+  group: Mechanical
+- name: Contact damping
+  summary: Contact damping 1e4 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Temperature Dependence
+- name: Thermal mass
+  summary: Thermal mass 100 J/K (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -342,7 +456,6 @@ To enable this parameter, set **Modeling option** to
 
 Thermal mass is the energy required to raise the
 temperature by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

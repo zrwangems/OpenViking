@@ -14,6 +14,13 @@ language: en
 # Step
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output step signal scalar | vector
+  direction: output
+  data_types: double | single
+```
 
 ### Output
 
@@ -24,8 +31,65 @@ Output step function signal defined by the parameters **Step time**,
 value**.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Step time
+  summary: Time when step occurs 1 (default) | scalar
+  group: ''
+  block_parameter: Time
+  type: character vector
+  values: '''1'' | real- or complex-valued scalar, vector, or matrix'
+  default: '''1'''
+- name: Initial value
+  summary: Output value before step 0 (default) | scalar
+  group: ''
+  block_parameter: Before
+  type: character vector
+  values: '''1'' | real- or complex-valued scalar, vector, or matrix'
+  default: '''0'''
+- name: Final value
+  summary: Output value after step 1 (default) | scalar
+  group: ''
+  block_parameter: After
+  type: character vector
+  values: '''1'' | real- or complex-valued scalar, vector, or matrix'
+  default: '''1'''
+- name: Sample time
+  summary: Sample rate 0 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vectors as 1-D on (default) | off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Output data type
+  summary: 'Output data type double (default) | Inherit: Inherit via back propagation | single | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | <data type expression>'
+  default: '''double'''
+- name: Mode
+  summary: Category of data type Inherit (default) | Built in | Expression
+  group: ''
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: ''
+```
 
 ### **Step time** — Time when step occurs `1` (default) | scalar
 
@@ -183,7 +247,6 @@ provides greater control over the data types in your model when you
 apply data type override. For example, you can use this option to ensure
 that data types meet the requirements of downstream blocks regardless of
 the data type override setting.
-
 ## Libraries
 
 Simulink / Sources

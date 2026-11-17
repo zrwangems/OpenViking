@@ -14,6 +14,17 @@ language: en
 # Phase Extractor
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output 1
+  summary: Unwrapped phase vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -37,8 +48,16 @@ The block preserves the input size and dimension, and the output port
 rate equals the input port rate.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Unwrap phase only within the frame
+  summary: Unwrap phase only within the frame off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Unwrap phase only within the frame** — Unwrap phase only within the frame `off` (default) | `on`
 
@@ -58,7 +77,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

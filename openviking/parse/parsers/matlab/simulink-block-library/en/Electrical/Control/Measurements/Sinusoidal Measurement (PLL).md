@@ -14,6 +14,25 @@ language: en
 # Sinusoidal Measurement (PLL)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar or vector
+  direction: input
+  data_types: single | double
+- name: freq
+  summary: Frequency scalar or vector
+  direction: output
+  data_types: single | double
+- name: angle
+  summary: Phase angle scalar or vector
+  direction: output
+  data_types: single | double
+- name: mag
+  summary: Magnitude scalar or vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -41,8 +60,31 @@ Estimated phase angle of the input signal, in rad.
 Estimated magnitude of the input signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase detector integral gain
+  summary: PD integral gain 1000 (default) | positive scalar or vector
+  group: ''
+- name: Loop filter proportional gain
+  summary: LF proportional gain 400 (default) | positive scalar or vector
+  group: ''
+- name: Loop filter integral gain
+  summary: LF integral gain 20000 (default) | positive scalar or vector
+  group: ''
+- name: Initial frequency (Hz)
+  summary: Initial frequency 60 Hz (default) | scalar or vector
+  group: ''
+- name: Initial phase angle (rad)
+  summary: Initial phase 0 rad (default) | scalar or vector
+  group: ''
+- name: Initial magnitude
+  summary: Initial magnitude 1 (default) | scalar or vector
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Phase detector integral gain** — PD integral gain `1000` (default) | positive scalar or vector
 
@@ -104,7 +146,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / Measurements

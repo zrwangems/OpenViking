@@ -14,6 +14,21 @@ language: en
 # Stream Data Source
 
 ## Ports
+```yaml
+ports:
+- name: wrCtrlIn
+  summary: Input control bus bus
+  direction: input
+  data_types: StreamS2MBusObj
+- name: wrData
+  summary: Output stream data scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wrCtrlOut
+  summary: Output control bus bus
+  direction: output
+  data_types: StreamM2SBusObj
+```
 
 ### Input
 
@@ -46,8 +61,38 @@ these control signals:
   transaction
 
 **Data Types:** `StreamM2SBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Data type
+  summary: Output data type uint8 (default) | double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 |
+    fixdt(1,16,0)
+  group: ''
+- name: Dimensions
+  summary: Output data dimensions 10 (default) | positive integer | array
+  group: ''
+- name: Burst length
+  summary: Length of single burst 20 (default) | positive integer
+  group: ''
+- name: Total bursts
+  summary: Total number of bursts 4 (default) | positive integer
+  group: ''
+- name: Data generation
+  summary: Output generation type counter (default) | random | ones | workspace
+  group: ''
+- name: Counter init value
+  summary: Initial counter value 0 (default) | scalar
+  group: ''
+- name: Variable name
+  summary: Workspace variable name simOut (default) | any MATLAB supported variable name
+  group: ''
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: ''
+- name: Transfer delay (in samples)
+  summary: Delay between bursts 0 (default) | nonnegative integer
+  group: ''
+```
 
 ### **Data type** — Output data type `uint8` (default) | `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint16` | `uint32` | `uint64` | `fixdt(1,16,0)`
 
@@ -131,7 +176,6 @@ times in Simulink®, see Specify Sample Time.
 
 Time after which the next burst occurs. This value must be a nonnegative
 integer.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Testbench

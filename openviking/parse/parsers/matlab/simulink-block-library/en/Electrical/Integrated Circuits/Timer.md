@@ -14,6 +14,27 @@ language: en
 # Timer
 
 ## Ports
+```yaml
+ports:
+- name: THRES
+  summary: Threshold pin electrical
+  direction: conserving
+- name: TRIG
+  summary: Trigger pin electrical
+  direction: conserving
+- name: CONT
+  summary: Control pin electrical
+  direction: conserving
+- name: RESET
+  summary: Reset pin electrical
+  direction: conserving
+- name: OUT
+  summary: Output pin electrical
+  direction: conserving
+- name: DISCH
+  summary: Discharge pin electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -40,8 +61,34 @@ Electrical conserving port associated to the timer output pin
 ### **DISCH** — Discharge pin electrical
 
 Electrical conserving port associated to the timer discharge pin
-
 ## Parameters
+```yaml
+parameters:
+- name: Power supply voltage
+  summary: Power supply voltage 15 V (default)
+  group: Supply
+- name: Low level output voltage
+  summary: Low level output voltage 0 V (default)
+  group: Outputs
+- name: High level output voltage
+  summary: High level output voltage 14.1 V (default)
+  group: Outputs
+- name: Output resistance
+  summary: Output resistance 8 Ohm (default)
+  group: Outputs
+- name: Propagation delay
+  summary: Propagation delay 100e-9 s (default)
+  group: Outputs
+- name: Discharge switch on-resistance
+  summary: Discharge switch on-resistance 12 Ohm (default)
+  group: Discharge
+- name: Discharge switch off-resistance
+  summary: Discharge switch off-resistance 500e6 Ohm (default)
+  group: Discharge
+- name: Potential divider component resistance
+  summary: Potential divider component resistance 5 kOhm (default)
+  group: Potential Divider
+```
 
 ### Supply
 
@@ -85,7 +132,6 @@ pin voltage.
 
 A typical value for a 555-type timer is 5 kΩ. You can measure it directly across the
 positive supply and control pins when the chip does not connect to a circuit.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

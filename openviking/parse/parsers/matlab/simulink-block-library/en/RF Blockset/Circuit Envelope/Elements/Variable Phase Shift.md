@@ -14,6 +14,13 @@ language: en
 # Variable Phase Shift
 
 ## Ports
+```yaml
+ports:
+- name: Phase
+  summary: Simulink control signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -22,8 +29,19 @@ language: en
 Simulink control signal, specified as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase shift unit
+  summary: Angle units for controlling phase of circuit rad (default) | deg
+  group: ''
+- name: Reference impedances (Ohm)
+  summary: Reference impedance for phase shifter 50 (default) | vector of real positive scalars | real scalar
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Phase shift unit** — Angle units for controlling phase of circuit `rad` (default) | `deg`
 
@@ -45,7 +63,6 @@ Shift block is normalized to 50 ohms.
 Select this parameter to ground and hide the negative terminals.
 To expose the negative terminals, clear this parameter. By exposing
 these terminals, you can connect them to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

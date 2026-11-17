@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Finite-Gain Op-Amp
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电端口
+  direction: unspecified
+- name: '-'
+  summary: 负电压电端口
+  direction: unspecified
+- name: out
+  summary: 输出电压电端口
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -29,8 +41,67 @@ chinese_source: worker-translation
 ### **out** — 输出电压电端口
 
 与运放输出端关联的电守恒端口。该端口名称在模块图标上隐藏，但可以在仿真数据日志中看到。
-
 ## 参数
+```yaml
+parameters:
+- name: Gain, A
+  summary: 开环增益 1000（默认）
+  group: 主要
+- name: Input resistance, Rin
+  summary: 模块输入端的电阻 1e6 Ohm（默认）
+  group: 主要
+- name: Output resistance, Rout
+  summary: 模块输出端的电阻 100 Ohm（默认）
+  group: 主要
+- name: Minimum output, Vmin
+  summary: 输出电压下限 -15 V（默认）
+  group: 主要
+- name: Maximum output, Vmax
+  summary: 输出电压上限 15 V（默认）
+  group: 主要
+- name: Noise mode
+  summary: 选择运放是否生成热噪声 Disabled（默认）| Enabled
+  group: 噪声
+- name: Input noise voltage density
+  summary: 电压噪声密度 30e-9 V/Hz^0.5（默认）
+  group: 噪声
+- name: Noise current parameterization
+  summary: 选择两个输入的噪声电流密度是不同还是相同 Apply same density function to both inputs（默认）| Apply different density function to each input
+  group: 噪声
+- name: Input noise current density
+  summary: 两个输入端的电流噪声 0.5e-12 A/Hz^0.5（默认）
+  group: 噪声
+- name: Noninverting input noise current density
+  summary: 同相输入端的电流噪声 0.5e-12 A/Hz^0.5（默认）
+  group: 噪声
+- name: Inverting input noise current density
+  summary: 反相输入端的电流噪声 0.5e-12 A/Hz^0.5（默认）
+  group: 噪声
+- name: Sample time
+  summary: 噪声源的采样速率 1e-3 s（默认）
+  group: 噪声
+- name: Repeatability
+  summary: 选择噪声控制选项 Not repeatable（默认）| Repeatable | Specify seed
+  group: 噪声
+- name: Input noise voltage auto-generated seed used for repeatable option
+  summary: 用于可重复选项的电压噪声自动生成随机数种子 随机实数
+  group: 噪声
+- name: Noninverting input noise current auto-generated seed used for repeatable option
+  summary: 用于可重复选项的同相输入端电流噪声自动生成随机数种子 随机实数
+  group: 噪声
+- name: Inverting input noise current auto-generated seed used for repeatable option
+  summary: 用于可重复选项的反相输入端电流噪声自动生成随机数种子 随机实数
+  group: 噪声
+- name: Input noise voltage seed
+  summary: 电压噪声的随机数种子 0（默认）
+  group: 噪声
+- name: Noninverting input noise current seed
+  summary: 同相输入端电流噪声的随机数种子 0（默认）
+  group: 噪声
+- name: Inverting input noise current seed
+  summary: 反相输入端电流噪声的随机数种子 0（默认）
+  group: 噪声
+```
 
 ### 主要
 
@@ -170,7 +241,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Repeatability** 参数设置为 `Specify seed` 时启用。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

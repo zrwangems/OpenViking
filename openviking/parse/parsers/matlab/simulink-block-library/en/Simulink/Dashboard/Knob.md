@@ -14,10 +14,53 @@ language: en
 # Knob
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Block parameter value to connect parameter value connection options
+  group: ''
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Scale Type
+  summary: Type of scale Linear (default) | Log
+  group: ''
+  block_parameter: ScaleType
+  type: string or character vector
+  values: '''Linear'' | ''Log'''
+  default: '''Linear'''
+- name: Minimum
+  summary: Minimum tick mark value 0 (default) | scalar
+  group: ''
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Maximum
+  summary: Maximum tick mark value 100 (default) | scalar
+  group: ''
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Tick Interval
+  summary: Interval between major tick marks auto (default) | scalar
+  group: ''
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Label
+  summary: Block label position Top (default) | Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — Block parameter value to connect parameter value connection options
 
@@ -161,7 +204,6 @@ model, the label is the name of the connected element.
 | **Type:** character vector |
 | **Values:** `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default:** `'Top'` |
-
 ## Libraries
 
 Simulink / Dashboard

@@ -14,6 +14,48 @@ language: en
 # Saturation Properties Sensor (2P)
 
 ## Ports
+```yaml
+ports:
+- name: TL
+  summary: Saturated liquid temperature, K physical signal
+  direction: output
+- name: TV
+  summary: Saturated vapor temperature, K physical signal
+  direction: output
+- name: PL
+  summary: Saturated liquid pressure, MPa physical signal
+  direction: output
+- name: PV
+  summary: Saturated vapor pressure, MPa physical signal
+  direction: output
+- name: UL
+  summary: Saturated liquid specific internal energy, kJ/kg physical signal
+  direction: output
+- name: UV
+  summary: Saturated vapor specific internal energy, kJ/kg physical signal
+  direction: output
+- name: HL
+  summary: Saturated liquid specific enthalpy, kJ/kg physical signal
+  direction: output
+- name: HV
+  summary: Saturated vapor specific enthalpy, kJ/kg physical signal
+  direction: output
+- name: VL
+  summary: Saturated liquid specific volume, m^3/kg physical signal
+  direction: output
+- name: VV
+  summary: Saturated vapor specific volume, m^3/kg physical signal
+  direction: output
+- name: rhoL
+  summary: Saturated liquid density, kg/m^3 physical signal
+  direction: output
+- name: rhoV
+  summary: Saturated vapor density, kg/m^3 physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet two-phase fluid
+  direction: conserving
+```
 
 ### Output
 
@@ -143,8 +185,27 @@ to `Saturated density`.
 Two-phase fluid conserving port associated with the sensor inlet. Connect this
 port to the node in the two-phase fluid network for which you want to measure liquid
 and vapor saturation properties.
-
 ## Parameters
+```yaml
+parameters:
+- name: Saturated temperature measurement
+  summary: Measure saturated liquid and vapor temperature based on pressure On (default) | Off
+  group: ''
+- name: Saturated pressure measurement
+  summary: Measure saturated liquid and vapor pressure based on temperature Off (default) | On
+  group: ''
+- name: Saturated pressure beyond min and max pressure
+  summary: Reporting preference for out-of-bounds saturated pressure Error (default) | Warning | None
+  group: ''
+- name: Energy measurement
+  summary: Measure saturated specific internal energy or saturated specific enthalpy based on pressure Off (default) | Saturated
+    specific internal energy | Saturated specific enthalpy
+  group: ''
+- name: Density measurement
+  summary: Measure saturated specific volume or saturated density based on pressure Off (default) | Saturated specific volume
+    | Saturated density
+  group: ''
+```
 
 ### **Saturated temperature measurement** — Measure saturated liquid and vapor temperature based on pressure `On` (default) | `Off`
 
@@ -202,7 +263,6 @@ Setting this parameter to:
   **rhoL** and **rhoV**, which measure the
   saturated density of liquid and vapor, respectively, based on the pressure at port
   **A**.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Sensors

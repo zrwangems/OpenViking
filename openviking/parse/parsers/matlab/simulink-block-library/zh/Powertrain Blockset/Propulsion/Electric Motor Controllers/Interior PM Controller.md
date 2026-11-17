@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Interior PM Controller
 
 ## 端口
+```yaml
+ports:
+- name: SpdReq
+  summary: 转子速度指令 scalar
+  direction: input
+- name: TrqCmd
+  summary: 转矩指令 scalar
+  direction: input
+- name: BusVolt
+  summary: 直流母线电压 scalar
+  direction: input
+- name: PhaseCurrA
+  summary: 电流 scalar
+  direction: input
+- name: PhaseCurrB
+  summary: 电流 scalar
+  direction: input
+- name: SpdFdbk
+  summary: 转子速度 scalar
+  direction: input
+- name: PosFdbk
+  summary: 转子电角度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: BusCurr
+  summary: 母线电流 scalar
+  direction: output
+- name: PhaseVolt
+  summary: 定子端电压 array
+  direction: output
+```
 
 ### 输入
 
@@ -74,8 +107,208 @@ chinese_source: worker-translation
 ### **PhaseVolt** — 定子端电压 `array`
 
 定子端电压，*Va*、*Vb* 和 *Vc*，单位为 V。
-
 ## 参数
+```yaml
+parameters:
+- name: Control Type
+  summary: 选择控制方式 Speed Control（默认）| Torque Control
+  group: ''
+  block_parameter: control_type
+  values: Speed Control（默认）| Torque Control
+- name: Stator resistance, Rs
+  summary: 电阻 0.02（默认）| scalar
+  group: ''
+  block_parameter: Rs
+  values: 0.02（默认）| scalar
+- name: D-axis inductance, Ld
+  summary: 电感 1.7e-3（默认）| scalar
+  group: ''
+  block_parameter: Ld
+  values: 1.7e-3（默认）| scalar
+- name: Q-axis inductance, Lq
+  summary: 电感 3.2e-3（默认）| scalar
+  group: ''
+  block_parameter: Lq
+  values: 3.2e-3（默认）| scalar
+- name: 永磁体磁链，lambda_pm
+  summary: 磁链 0.2205（默认）| scalar
+  group: ''
+  block_parameter: lambda_pm
+  values: 0.2205（默认）| scalar
+- name: 极对数，PolePairs
+  summary: 极数 4（默认）| scalar
+  group: ''
+  block_parameter: PolePairs
+  values: 4（默认）| scalar
+- name: 物理惯量、粘性阻尼、静摩擦，Mechanical
+  summary: 惯量、阻尼、摩擦 [0.0027, 4.924e-4, 0]（默认）| vector
+  group: ''
+  block_parameter: Mechanical
+  values: '[0.0027, 4.924e-4, 0]（默认）| vector'
+- name: 电机约束
+  summary: 电机约束 Maximum Torque（默认）| Maximum Current
+  group: ''
+  block_parameter: MotorConstraint
+  values: Maximum Torque（默认）| Maximum Current
+- name: 最大电流，I_max
+  summary: 电流 44（默认）| scalar
+  group: ''
+  block_parameter: I_max
+  values: 44（默认） | scalar
+- name: Maximum torque, T_max
+  summary: 转矩 60（默认） | scalar
+  group: ''
+  block_parameter: T_max
+  values: 60（默认） | scalar
+- name: MTPA table breakpoints, bp
+  summary: 断点数量 10（默认） | scalar
+  group: ''
+  block_parameter: bp
+  values: 10（默认） | scalar
+- name: Calculate MTPA Table Data
+  summary: 推导参数按钮
+  group: ''
+- name: Torque Breakpoints, T_mtpa
+  summary: 派生 [0 6.41323967543524 12.8472271930531 19.3221671098192 25.8572437875407 32.4702594835269 39.177408529382 45.9931820911486
+    52.930379967864 60.0001984561834]（默认）| vector
+  group: ''
+  block_parameter: T_mtpa
+  values: vector
+- name: D-axis table data, id_mtpa
+  summary: 派生 [0 -0.159333276810563 -0.633258709677809 -1.41005695027301 -2.47173666500257 -3.79592548539108 -5.35786489234899
+    -7.13217478652462 -9.09420364751938 -11.2209236729158]（默认）| vector
+  group: ''
+  block_parameter: id_mtpa
+  values: vector
+- name: Q-axis table data, iq_mtpa
+  summary: 派生 [0 4.84224935172196 9.66902512748937 14.4660510262181 19.2212063070062 23.9250934510846 28.5711892538614 33.1556572971289
+    37.6769488702032 42.1353166357157]（默认）| vector
+  group: ''
+  block_parameter: iq_mtpa
+  values: vector
+- name: D, Q, and max current limits, idq_limits
+  summary: 派生 [-11.2210468862948 42.1352838229553 43.6038305205566]（默认）| array
+  group: ''
+  block_parameter: idq_limits
+  values: array
+- name: 电流调节器带宽，EV_current
+  summary: 带宽 200（默认）| 标量
+  group: ''
+  block_parameter: EV_current
+  values: 200（默认）| 标量
+- name: 转矩控制采样时间，Tst
+  summary: 时间 5e-5（默认）| 标量
+  group: ''
+  block_parameter: Tst
+  values: 5e-5（默认）| 标量
+- name: 计算电流调节器增益
+  summary: 推导参数按钮
+  group: ''
+- name: D 轴比例增益，Kp_d
+  summary: 推导 2.1363（默认）| 标量
+  group: ''
+  block_parameter: Kp_d
+  values: 2.1363（默认）| 标量
+- name: Q 轴比例增益，Kp_q
+  summary: 推导 4.0212（默认）| 标量
+  group: ''
+  block_parameter: Kp_q
+  values: 4.0212（默认）| 标量
+- name: D 轴和 Q 轴积分增益，Ki
+  summary: 推导 25.1327（默认）| 标量
+  group: ''
+  block_parameter: Ki
+  values: 25.1327（默认） | scalar
+- name: 运动控制器带宽，EV_motion
+  summary: 带宽 [20, 4, 0.8]（默认） | vector
+  group: ''
+  block_parameter: EV_motion
+  values: '[20, 4, 0.8]（默认） | vector'
+- name: 状态滤波器带宽，EV_sf
+  summary: 带宽 200（默认） | scalar
+  group: ''
+  block_parameter: EV_sf
+  values: 200（默认） | scalar
+- name: Calculate Speed Regulator Gains
+  summary: 推导参数按钮
+  group: ''
+- name: Proportional gain, ba
+  summary: 派生 3.7477（默认）| scalar
+  group: ''
+  block_parameter: ba
+  values: 3.7477（默认）| scalar
+- name: Angular gain, Ksa
+  summary: 派生 94.0877（默认）| scalar
+  group: ''
+  block_parameter: Ksa
+  values: 94.0877（默认）| scalar
+- name: Rotational gain, Kisa
+  summary: 派生 381.7822（默认）| scalar
+  group: ''
+  block_parameter: Kisa
+  values: 381.7822（默认）| scalar
+- name: Speed regulation time constant, Ksf
+  summary: 派生 1217.9727（默认）| scalar
+  group: ''
+  block_parameter: Ksf
+  values: 1217.9727（默认） | scalar
+- name: 惯性补偿，Jcomp
+  summary: 派生 0.025（默认） | scalar
+  group: ''
+  block_parameter: Jcomp
+  values: 0.025（默认） | scalar
+- name: 粘性阻尼补偿，Fv
+  summary: 派生 0（默认） | scalar
+  group: ''
+  block_parameter: Fv
+  values: 0（默认） | scalar
+- name: 静摩擦，Fs
+  summary: 派生 0（默认） | scalar
+  group: ''
+  block_parameter: Fs
+  values: 0（默认） | scalar
+- name: Parameterize losses by
+  summary: 选择类型 Single efficiency measurement（默认）| Tabulated loss data | Tabulated efficiency data
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement（默认）| Tabulated loss data | Tabulated efficiency data
+- name: Overall inverter efficiency, eff
+  summary: 常量 98（默认）| scalar
+  group: ''
+  block_parameter: eff
+  values: 98（默认）| scalar
+- name: Vector of speeds (w) for tabulated loss, w_loss_bp
+  summary: 断点 [0 200 400 600 800 1000]（默认）| 1×M 向量
+  group: ''
+  block_parameter: w_loss_bp
+  values: '[0 200 400 600 800 1000]（默认）| 1×M 向量'
+- name: Vector of torques (T) for tabulated loss, T_loss_bp
+  summary: 断点 [0 25 50 75 100]（默认）| 1×N 向量
+  group: ''
+  block_parameter: T_loss_bp
+  values: '[0 25 50 75 100]（默认）| 1×N 向量'
+- name: Corresponding losses, losses_table
+  summary: 表 [100 100 100 100 100;100 150 200 250 300;100 200 300 400 500;100 250 400 550 700;100 300 500 700 900;100 350
+    600 850 1100]（默认）| M×N 数组
+  group: ''
+  block_parameter: losses_table
+  values: M×N 数组
+- name: Vector of speeds (w) for tabulated efficiency, w_eff_bp
+  summary: 断点 [200 400 600 800 1000]（默认）| 1×M 向量
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[200 400 600 800 1000]（默认）| 1×M 向量'
+- name: Vector of torques (T) for tabulated efficiency, T_eff_bp
+  summary: 断点 [25 50 75 100]（默认）| 1×N 向量
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[25 50 75 100]（默认）| 1×N 向量'
+- name: Corresponding efficiency, efficiency_table
+  summary: 表 [96.2 98.1 98.7 99;98.1 99 99.4 99.5;98.7 99.4 99.6 99.7;99 99.5 99.7 99.8;99.2 99.6 99.7 99.8]（默认）| M×N 数组
+  group: ''
+  block_parameter: efficiency_table
+  values: M×N 数组
+```
 
 #### 模块选项
 
@@ -1099,7 +1332,6 @@ MTPA控制的电机约束。
 #### 依赖关系
 
 要启用此参数，请为 **Parameterize losses by** 选择 `Tabulated efficiency data`。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Electric Motor Controllers

@@ -14,6 +14,17 @@ language: en
 # VGGish Embeddings
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Sound data column vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Embeddings row vector of length 128
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -37,8 +48,16 @@ VGGish feature embeddings, returned as a row vector of length 128. The feature
 embeddings are a compact representation of audio data.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: Sample rate of input signal in Hz 16e3 (default) | positive scalar
+  group: ''
+- name: Overlap percentage (%)
+  summary: Overlap percentage between consecutive mel spectrograms 50 (default) | [0 100)
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — Sample rate of input signal in Hz `16e3` (default) | positive scalar
 
@@ -49,7 +68,6 @@ scalar.
 
 Specify the overlap percentage between consecutive mel spectrograms as a
 scalar in the range [0 100).
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # M-PSK Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -33,8 +44,31 @@ chinese_source: worker-translation
 输出信号，以复标量或复向量形式返回。输出是 PSK 调制信号的复基带表示。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: M-ary number
+  summary: PSK 星座的调制阶数 8（默认）| 标量
+  group: 主要
+- name: Input type
+  summary: 输入信号类型 Integer（默认）| Bit
+  group: 主要
+- name: Constellation ordering
+  summary: 符号映射 Gray（默认）| Binary | User-defined
+  group: 主要
+- name: Constellation mapping
+  summary: 用户定义符号映射 [0:7]（默认）| 向量
+  group: 主要
+- name: Phase offset (rad)
+  summary: 以弧度表示的相位偏移 pi/8（默认）| 标量
+  group: 主要
+- name: View constellation
+  summary: 绘制参考星座的选项 按钮
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single | Inherit via back propagation | fixdt(1,16) | fixdt(1,16,0) | <data type expression>
+  group: 数据类型
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -87,7 +121,6 @@ chinese_source: worker-translation
 指定调制输出信号的数据类型。将此参数设置为定点选项之一或 `<data type expression>`，以启用可指定其他详细信息的参数。将此参数设置为 `Inherit via back propagation`，以将输出数据类型和定标与模型中的下一个模块匹配。
 
 有关指定数据类型的信息，请参阅 Data Type Assistant。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

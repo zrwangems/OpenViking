@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pulley
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 局部参考坐标系 frame
+  direction: unspecified
+- name: A
+  summary: 带轮绳索切点 belt-cable
+  direction: unspecified
+- name: B
+  summary: 带轮绳索切点 belt-cable
+  direction: unspecified
+```
 
 ### Frame
 
@@ -30,8 +42,19 @@ chinese_source: worker-translation
 ### **B** — 带轮绳索切点 belt-cable
 
 绳索中心线与带轮节圆之间的切点。绳索从端口 **A** 到端口 **B** 逆时针缠绕在带轮上。
-
 ## 参数
+```yaml
+parameters:
+- name: Pitch Radius
+  summary: 从带轮中心到绳索中心线的距离 10 cm（默认）| 以长度单位为单位的正标量
+  group: ''
+- name: Initial Wrap Angle
+  summary: 仿真开始时带轮的最小包角 0.0 deg（默认）| 以度为单位的正标量
+  group: ''
+- name: Sensing
+  summary: 选择要感测的运动学变量 Unchecked（默认）| Checked
+  group: ''
+```
 
 ### **Pitch Radius** — 从带轮中心到绳索中心线的距离 `10 cm`（默认）| 以长度单位为单位的正标量
 
@@ -84,7 +107,6 @@ chinese_source: worker-translation
 请注意，如果 Belt-Cable Properties 模块的 **Drum Belt-Cable Alignment** 参数设置为 `Monitored Planar`，则滑轮组件必须是平面的，因此包角始终为零。要对非平面组件建模，请使用该参数的默认设置：`Unrestricted`。
 
 使用端口 **qfb** 进行此测量。
-
 ## 所属库
 
 Simscape / Multibody / Belts and Cables

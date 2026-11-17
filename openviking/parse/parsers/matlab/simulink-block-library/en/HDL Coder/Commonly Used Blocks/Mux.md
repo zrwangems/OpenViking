@@ -14,6 +14,19 @@ language: en
 # Mux
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal to include in mux signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+- name: Port_1
+  summary: Output mux signal vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+```
 
 ### Input
 
@@ -40,8 +53,21 @@ order of the input signals. For a description of the port order for
 various block orientations, see Identify Port Location on Rotated or Flipped Block.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Number of input signals 2 (default) | scalar | vector | cell array | comma-separated list of signal names
+  group: ''
+  block_parameter: Inputs
+  values: '''2'' (default) | scalar in quotes | vector in quotes | cell array in quotes | comma-separated list of signal names
+    in quotes'
+- name: Display option
+  summary: Block icon appearance bar (default) | signals | none
+  group: ''
+  block_parameter: DisplayOption
+  values: '''bar'' (default) | ''signals'' | ''none'''
+```
 
 ### **Number of inputs** — Number of input signals 2 (default) | scalar | vector | cell array | comma-separated list of signal names
 
@@ -109,7 +135,6 @@ the `set_param` function.
 | **Values:** | `'bar'` (default) | `'signals'` | `'none'` |
 
 **Example:** `set_param(gcb,'DisplayOption','signals')`
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing

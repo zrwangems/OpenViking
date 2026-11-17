@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Wind Shear Model
 
 ## 端口
+```yaml
+ports:
+- name: h
+  summary: 高度标量
+  direction: input
+  data_types: double
+- name: DCM
+  summary: 方向余弦矩阵 3×3 矩阵
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: 平均风速 三元素向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,38 @@ chinese_source: worker-translation
 平均风速，返回为与 **DCM** 输入相同的机体坐标参考下的三元素向量，单位为指定单位。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 风切变单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Flight phase
+  summary: 飞行阶段 Category C - Terminal Flight Phase（默认）| Other
+  group: ''
+  block_parameter: phase
+  type: 字符向量
+  values: '''Category C - Terminal Flight Phase'' | ''Other'''
+  default: '''Category C - Terminal Flight Phase'''
+- name: Wind speed at 20 ft altitude (kts)
+  summary: 风速 15（默认）| 标量
+  group: ''
+  block_parameter: W_20
+  type: 字符向量
+  values: scalar
+  default: '''15'''
+- name: Wind direction at 20 ft altitude (degrees clockwise from north)
+  summary: 风向 0（默认）| 标量
+  group: ''
+  block_parameter: Wdeg
+  type: 字符向量
+  values: scalar
+  default: '''0'''
+```
 
 ### **Units** — 风切变单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -99,7 +144,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`scalar` |
 | **默认值**：`'0'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Wind

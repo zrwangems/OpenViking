@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Smoothing (continuous->discrete)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 具有高频活动的信号 实标量
+  direction: input
+- name: y
+  summary: 用于定步长网络的平滑信号 实标量
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,16 @@ chinese_source: worker-translation
 ### **y** — 用于定步长网络的平滑信号 实标量
 
 将此端口连接到定步长网络 Network 2 的输入。
-
 ## 参数
+```yaml
+parameters:
+- name: Smoothing time constant (s)
+  summary: 指定一阶滤波器的时间常数 0.001（默认）| 正标量
+  group: ''
+- name: Initial output
+  summary: 指定初始输出值 0（默认）| 标量
+  group: ''
+```
 
 ### **Smoothing time constant (s)** — 指定一阶滤波器的时间常数 `0.001`（默认）| 正标量
 
@@ -37,7 +54,6 @@ chinese_source: worker-translation
 ### **Initial output** — 指定初始输出值 `0`（默认）| 标量
 
 指定变步长网络 Network 1 的初始输出值。
-
 ## 所属库
 
 Simscape / Utilities / Network Couplers / Fundamental Components

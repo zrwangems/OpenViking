@@ -14,6 +14,15 @@ language: en
 # SPICE Resistor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,49 @@ voltage terminal.
 
 Electrical conserving port associated with the SPICE resistor negative
 voltage terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Device scale factor, SCALE
+  summary: Device scale factor 1.0 (default)
+  group: Resistance
+- name: Resistor parameterization
+  summary: Parameterization options Use specified resistance (default) | Calculate from process information
+  group: Resistance
+- name: Resistance, R
+  summary: Resistance 0 Ohm (default)
+  group: Resistance
+- name: Sheet resistance, RSH
+  summary: Resistance per square 0 Ohm (default)
+  group: Resistance
+- name: Resistor length, LENGTH
+  summary: Resistor length 1e-6 m (default)
+  group: Resistance
+- name: Resistor width, WIDTH
+  summary: Resistor width 1e-6 m (default)
+  group: Resistance
+- name: Etch narrowing, NARROW
+  summary: Etch narrowing 0 m (default)
+  group: Resistance
+- name: Model temperature dependence using
+  summary: Temperature dependence parameterization Device temperature (default) | Fixed temperature
+  group: Temperature
+- name: First order temperature coefficient, TC1
+  summary: First order temperature coefficient 0 1/K (default)
+  group: Temperature
+- name: Second order temperature coefficient, TC2
+  summary: Second order temperature coefficient 0 1/K^2 (default)
+  group: Temperature
+- name: Offset local circuit temperature, TOFFSET
+  summary: Offset local circuit temperature 0 K (default)
+  group: Temperature
+- name: Fixed circuit temperature, TFIXED
+  summary: Fixed circuit temperature 300.15 K (default)
+  group: Temperature
+- name: Parameter extraction temperature, TMEAS
+  summary: Parameter extraction temperature 300.15 K (default)
+  group: Temperature
+```
 
 ### Resistance
 
@@ -176,7 +226,6 @@ dependence using** parameter.
 ### **Parameter extraction temperature, TMEAS** — Parameter extraction temperature `300.15` `K` (default)
 
 The temperature at which the resistor parameters were measured.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Passives

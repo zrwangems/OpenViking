@@ -14,6 +14,17 @@ language: en
 # CIC Decimation
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | fixed point
+- name: Port_1
+  summary: CIC decimated output vector | matrix
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | fixed point
+```
 
 ### Input
 
@@ -39,8 +50,47 @@ decimation factor and *Num* is the number of input rows.
 
 **Data Types:** `int8` | `int16` | `int32` | `int64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: Source of the filter information Dialog parameters (default) | Filter object
+  group: ''
+- name: Decimation factor (R)
+  summary: Decimation factor 2 (default) | integer
+  group: ''
+- name: Differential Delay (M)
+  summary: Differential delay 1 (default) | positive integer
+  group: ''
+- name: Number of sections (N)
+  summary: Number of filter sections 2 (default) | positive integer
+  group: ''
+- name: Data type specification mode
+  summary: Specify word length and fraction length of filter sections and output Full precision (default) | Minimum section
+    word lengths | Specify word lengths | Binary point scaling
+  group: ''
+- name: Section word lengths
+  summary: Word length of filter sections [16 16 16 16] (default) | scalar | row vector
+  group: ''
+- name: Section fraction lengths
+  summary: Fraction lengths of filter sections 0 (default) | integer
+  group: ''
+- name: Output word length
+  summary: Word length of filter output 32 (default) | integer
+  group: ''
+- name: Output fraction length
+  summary: Fraction length of filter output 0 (default) | integer
+  group: ''
+- name: Rate options
+  summary: Rate processing rule Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Filter object
+  summary: Multirate filter object dsp.CICDecimator
+  group: ''
+- name: View Filter Response
+  summary: View filter response gui button
+  group: ''
+```
 
 ### **Coefficient source** — Source of the filter information `Dialog parameters` (default) | `Filter object`
 
@@ -215,7 +265,6 @@ block. For more information on FVTool, see the Signal Processing Toolbox documen
 If you specify a filter in the **Filter object** parameter, you
 must apply the filter by clicking the **Apply** button before using
 the **View Filter Response** button.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters DSP System Toolbox HDL Support / Filtering

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # DSB AM Modulator Passband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +45,19 @@ chinese_source: worker-translation
 此端口在模块上未命名。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input signal offset
+  summary: 输入信号偏移因子 1（默认）| 标量
+  group: ''
+- name: Carrier frequency (Hz)
+  summary: 载波频率（Hz） 300（默认）| 正标量
+  group: ''
+- name: Initial phase (rad)
+  summary: 初始相位偏移（弧度） 0（默认）| 标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -52,7 +74,6 @@ chinese_source: worker-translation
 ### **Initial phase (rad)** — 初始相位偏移（弧度） `0`（默认）| 标量
 
 载波的初始相位偏移（弧度），指定为标量。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Analog Passband Modulation

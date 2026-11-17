@@ -14,6 +14,25 @@ language: en
 # Kasami Sequence Generator
 
 ## Ports
+```yaml
+ports:
+- name: oSiz
+  summary: Current output size scalar | vector
+  direction: input
+  data_types: double
+- name: Ref
+  summary: Reference input signal scalar | column vector
+  direction: input
+  data_types: double
+- name: Rst
+  summary: Reset signal scalar | vector
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output Signal vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -76,8 +95,44 @@ element of the **Initial states** parameter vector must
 be nonzero for the block to generate a nonzero sequence.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Generator polynomial
+  summary: Generator polynomial 'z^6 + z + 1' (default) | polynomial character vector | string scalar | binary-valued row
+    vector | integer-valued row vector
+  group: ''
+- name: Initial states
+  summary: Initial states [0 0 0 0 0 1] (default) | binary-valued scalar | binary-valued row vector
+  group: ''
+- name: Sequence index(es)
+  summary: Sequence index 0 (default) | integer | vector of the form [*k* *m*]
+  group: ''
+- name: Shift
+  summary: Sequence offset from starting point 0 (default) | integer
+  group: ''
+- name: Output variable-size signals
+  summary: Option to output variable-length signals off (default) | on
+  group: ''
+- name: Maximum output size source
+  summary: Maximum output size source Dialog parameter (default) | Inherit from reference port
+  group: ''
+- name: Maximum output size
+  summary: Maximum output size [10 1] (default) | vector of the form [*n* 1]
+  group: ''
+- name: Sample time
+  summary: Output sample time 1 (default) | -1 | positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: ''
+- name: Reset on nonzero input
+  summary: Option to reset output signal off (default) | on
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | boolean
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -217,7 +272,6 @@ parameter value.
 ### **Output data type** — Output data type `double` (default) | `boolean`
 
 Specify the output data type of the block.
-
 ## Libraries
 
 Communications Toolbox / Comm Sources / Sequence Generators

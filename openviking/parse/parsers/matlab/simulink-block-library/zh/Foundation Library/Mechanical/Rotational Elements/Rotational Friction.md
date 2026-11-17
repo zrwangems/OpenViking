@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Rotational Friction
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 杆机械旋转
+  direction: unspecified
+- name: C
+  summary: 壳体机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **C** — 壳体机械旋转
 
 与壳体（即静止体）关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Breakaway friction torque
+  summary: 库仑摩擦与静摩擦之和 25 N*m（默认）| 标量
+  group: ''
+- name: Breakaway friction velocity
+  summary: Stribeck 摩擦的峰值角速度 0.1 rad/s（默认）| 正标量
+  group: ''
+- name: Coulomb friction torque
+  summary: 阻碍旋转的摩擦 20 N*m（默认）| 标量
+  group: ''
+- name: Viscous friction coefficient
+  summary: 比例系数 0.001 N*m/(rad/s)（默认）| 非负标量
+  group: ''
+```
 
 ### **Breakaway friction torque** — 库仑摩擦与静摩擦之和 `25 N*m`（默认）| 标量
 
@@ -43,7 +66,6 @@ Stribeck 摩擦达到峰值时的角速度。此时，Stribeck 摩擦与库仑�
 ### **Viscous friction coefficient** — 比例系数 `0.001 N*m/(rad/s)`（默认）| 非负标量
 
 摩擦力矩与相对角速度之间的比例系数。该参数值必须大于或等于零。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

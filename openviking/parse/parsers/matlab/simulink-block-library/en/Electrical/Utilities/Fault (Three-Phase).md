@@ -14,6 +14,18 @@ language: en
 # Fault (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: F
+  summary: Externally triggered fault control input physical
+  direction: input
+- name: X
+  summary: Fault state physical
+  direction: output
+```
 
 ### Conserving
 
@@ -47,8 +59,52 @@ Physical signal scalar output port for reporting the fault state:
 To enable this port, on the **Main** settings,
 set the **State port** parameter to
 `Visible`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Failure mode
+  summary: Type of fault None (default) | Single-phase to ground (a-g) | Single-phase to ground (b-g) | Single-phase to ground
+    (c-g) | Two-phase (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g)
+    | Two-phase to ground (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: Main
+- name: Faulted phase-neutral resistance
+  summary: Faulted phase-neutral resistance 1e-3 Ohm (default)
+  group: Main
+- name: Faulted neutral-ground resistance
+  summary: Faulted neutral-ground resistance 1e-3 Ohm (default)
+  group: Main
+- name: State port
+  summary: State port visibility Hidden (default) | Visible
+  group: Main
+- name: Enable external fault trigger
+  summary: External fault model No (default) | Yes
+  group: External Trigger
+- name: Fault threshold
+  summary: Threshold value that triggers the fault 0.5 (default)
+  group: External Trigger
+- name: External fault trigger
+  summary: Fault condition Faulted if F >= Fault threshold (default) | Faulted if F <= Fault threshold
+  group: External Trigger
+- name: Fault resets when fault trigger reverts
+  summary: Fault resets when fault trigger reverts No (default) | Yes
+  group: External Trigger
+- name: Enable temporal fault trigger
+  summary: Temporal fault model No (default) | Yes
+  group: Temporal Trigger
+- name: Fault start time
+  summary: Fault start time 1 s (default)
+  group: Temporal Trigger
+- name: Fault duration
+  summary: Fault duration 0.1 s (default)
+  group: Temporal Trigger
+- name: Unfaulted phase-neutral conductance
+  summary: Unfaulted phase-neutral conductance 1e-6 1/Ohm (default)
+  group: Parasitics
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -242,7 +298,6 @@ trigger** parameter to `Yes`.
 
 Conductance between the phase connections and the neutral point when a
 phase is not involved in the fault.
-
 ## Libraries
 
 Simscape / Electrical / Utilities

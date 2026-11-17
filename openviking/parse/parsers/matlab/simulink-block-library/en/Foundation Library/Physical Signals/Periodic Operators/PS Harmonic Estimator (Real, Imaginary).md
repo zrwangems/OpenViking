@@ -14,6 +14,18 @@ language: en
 # PS Harmonic Estimator (Real, Imaginary)
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Periodic signal, untyped physical signal
+  direction: input
+- name: Re
+  summary: Real part of the harmonic signal, untyped physical signal
+  direction: output
+- name: Im
+  summary: Imaginary part of the harmonic signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -34,8 +46,16 @@ Output physical signal corresponding to the real part of the selected harmonic.
 
 Output physical signal corresponding to the imaginary part of the selected
 harmonic.
-
 ## Parameters
+```yaml
+parameters:
+- name: Base frequency
+  summary: Periodic signal frequency 60 Hz (default)
+  group: ''
+- name: Harmonic number
+  summary: Number of harmonic 1 (default)
+  group: ''
+```
 
 ### **Base frequency** — Periodic signal frequency `60 Hz` (default)
 
@@ -45,7 +65,6 @@ Base frequency of the periodic signal.
 
 The number of harmonic within the periodic signal. The value must be a positive
 integer.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Periodic Operators

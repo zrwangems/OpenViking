@@ -14,6 +14,28 @@ language: en
 # Interval Test Dynamic
 
 ## Ports
+```yaml
+ports:
+- name: up
+  summary: Upper limit of interval scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: u
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: lo
+  summary: Lower limit of interval scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: y
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### Input
 
@@ -65,8 +87,31 @@ type** as `boolean` or
 `uint8`.
 
 **Data Types:** `uint8` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Interval closed on right
+  summary: Include upper limit value on (default) | off
+  group: ''
+  block_parameter: IntervalClosedRight
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Interval closed on left
+  summary: Include lower limit value on (default) | off
+  group: ''
+  block_parameter: IntervalClosedLeft
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output data type
+  summary: Output data type boolean (default) | uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+```
 
 ### **Interval closed on right** — Include upper limit value `on` (default) | `off`
 
@@ -111,7 +156,6 @@ Specify the output data type as `boolean` or
 | **Type:** character vector |
 | **Values:** `'boolean' | 'uint8'` |
 | **Default:** `'boolean'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations

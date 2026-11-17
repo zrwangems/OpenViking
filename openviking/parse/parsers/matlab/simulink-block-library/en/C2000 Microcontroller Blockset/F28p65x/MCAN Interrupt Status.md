@@ -14,6 +14,99 @@ language: en
 # MCAN Interrupt Status
 
 ## Ports
+```yaml
+ports:
+- name: MCAN_IR
+  summary: Status of MCAN interrupt register uint32
+  direction: output
+- name: TEFN
+  summary: Status of TX event FIFO new entry boolean
+  direction: output
+- name: TEFW
+  summary: Status of TX event FIFO watermark reached boolean
+  direction: output
+- name: TEFF
+  summary: Status of TX event FIFO full boolean
+  direction: output
+- name: TEFL
+  summary: Status of TX event FIFO element lost boolean
+  direction: output
+- name: TC
+  summary: Status of transmission completed boolean
+  direction: output
+- name: TCF
+  summary: Status of transmission cancellation finished boolean
+  direction: output
+- name: TFE
+  summary: Status of transmission FIFO empty boolean
+  direction: output
+- name: HPM
+  summary: Status of high priority message boolean
+  direction: output
+- name: RF0N
+  summary: Status of RX FIFO 0 new message boolean
+  direction: output
+- name: RF0W
+  summary: Status of RX FIFO 0 watermark reached boolean
+  direction: output
+- name: RF0FL
+  summary: Status of RX FIFO 0 full boolean
+  direction: output
+- name: RF0ML
+  summary: Status of RX FIFO 0 message lost boolean
+  direction: output
+- name: DRX
+  summary: Status of dedicated RX buffer message boolean
+  direction: output
+- name: RF1N
+  summary: Status of RX FIFO 1 new message boolean
+  direction: output
+- name: RF1W
+  summary: Status of RX FIFO 1 watermark reached boolean
+  direction: output
+- name: RF1FL
+  summary: Status of RX FIFO 1 full boolean
+  direction: output
+- name: RF1ML
+  summary: Status of RX FIFO 1 message lost boolean
+  direction: output
+- name: TSW
+  summary: Status of timestamp wraparound boolean
+  direction: output
+- name: TOO
+  summary: Status of timeout occurred boolean
+  direction: output
+- name: ELO
+  summary: Status of error logging overflow boolean
+  direction: output
+- name: EW
+  summary: Status of error warning boolean
+  direction: output
+- name: WD
+  summary: Status of watchdog event boolean
+  direction: output
+- name: PED
+  summary: Status of protocol error in data phase boolean
+  direction: output
+- name: MRAF
+  summary: Status of message RAM access failure boolean
+  direction: output
+- name: BEU
+  summary: Status of bit error uncorrected boolean
+  direction: output
+- name: EP
+  summary: Status of error passive boolean
+  direction: output
+- name: BO
+  summary: Status of bus off boolean
+  direction: output
+- name: PEA
+  summary: Status of arbitration protocol error boolean
+  direction: output
+- name: ARA
+  summary: Status of access to reserved address boolean
+  direction: output
+```
 
 ### Output
 
@@ -435,11 +528,12 @@ Output port to display the reversed address access status. The status port outpu
 
 To enable this port, select the **Reversed address
 access** parameter.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F28p65x

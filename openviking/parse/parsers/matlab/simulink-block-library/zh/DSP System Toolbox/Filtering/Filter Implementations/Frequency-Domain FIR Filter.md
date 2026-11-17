@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Frequency-Domain FIR Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: 时域 FIR 滤波器系数 行向量 | 矩阵 *(自 R2024a 起)*
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: NumFFT
+  summary: 频域 FIR 滤波器系数 行向量 | 矩阵 | 三维数组 *(自 R2024a 起)*
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: output
+  summary: 滤波后的输出 向量 | 矩阵 | 三维数组 *(自 R2024a 起)*
+  direction: input
+  data_types: single | double
+- name: latency
+  summary: 滤波器延迟 正整数
+  direction: input
+  data_types: uint32
+```
 
 ### 输入
 
@@ -80,8 +103,61 @@ chinese_source: worker-translation
 在您选择 **Output filter latency** 复选框并点击 **Apply** 之前，此端口未命名。
 
 **数据类型：** `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Frequency-domain filter method
+  summary: 频域滤波方法 Overlap-save（默认）| Overlap-add
+  group: ''
+- name: Numerator domain
+  summary: 分子域 Time（默认）| Frequency
+  group: ''
+- name: Specify coefficients from input port
+  summary: 指定时域 FIR 滤波器系数的标志 off（默认）| on
+  group: ''
+- name: Filter coefficients
+  summary: 时域 FIR 滤波器系数 fir1(100,0.3)（默认）| 行向量 | 矩阵 *(自 R2024a 起)*
+  group: ''
+- name: Specify frequency response from input port
+  summary: 指定频域滤波器系数的标志 off（默认）| on
+  group: ''
+- name: Frequency response
+  summary: 滤波器的频率响应 fft(fir1(100,0.3),202)（默认）| 行向量 | 矩阵 | 三维数组 *(自 R2024a 起)*
+  group: ''
+- name: Number of propagation paths
+  summary: 每个输入通道和输出通道对之间的传播路径数 1（默认）| 正整数
+  group: ''
+- name: Sum filtered output contributions from all input channels
+  summary: 对所有输入通道的滤波输出贡献求和的选项 true（默认）| false
+  group: ''
+- name: Partition numerator to reduce latency
+  summary: 对分子进行分区以减少延迟的选项 off（默认）| on
+  group: ''
+- name: Numerator partition length
+  summary: 分子的分区长度 32（默认）| 正整数
+  group: ''
+- name: Time-domain numerator length
+  summary: 时域分子长度 101（默认）| 正整数
+  group: ''
+- name: Inherit FFT length from numerator length
+  summary: 从分子长度继承 FFT 长度的标志 on（默认）| off
+  group: ''
+- name: FFT length
+  summary: FFT 长度 1024（默认）| 正整数
+  group: ''
+- name: Filter is real
+  summary: 指定滤波器是否为实数的标志 true（默认）| false
+  group: ''
+- name: Output filter latency
+  summary: 输出滤波器延迟的标志 'off'（默认）| 'on'
+  group: ''
+- name: View Filter Response
+  summary: 可视化频率响应 button
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Frequency-domain filter method** — 频域滤波方法 `Overlap-save`（默认）| `Overlap-add`
 
@@ -250,7 +326,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Implementations

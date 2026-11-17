@@ -14,6 +14,21 @@ language: en
 # Centrifugal Pump (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Pump inlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Pump outlet thermal liquid
+  direction: conserving
+- name: R
+  summary: Impeller shaft mechanical rotational
+  direction: conserving
+- name: C
+  summary: Pump casing mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -33,8 +48,75 @@ shaft.
 ### **C** — Pump casing mechanical rotational
 
 Mechanical rotational conserving port associated with the case.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pump parameterization
+  summary: Head and brake power parameterization Capacity, head, and brake power at reference shaft speed (default) | 1D tabulated
+    data - head and brake power vs. capacity at reference shaft speed | 2D tabulated data - head and brake power vs. capacity
+    and shaft speed
+  group: ''
+- name: Nominal capacity
+  summary: Pump volumetric flow rate 45 lpm (default) | positive scalar
+  group: ''
+- name: Nominal head
+  summary: Pump head 40 m (default) | positive scalar
+  group: ''
+- name: Nominal brake power
+  summary: Pump power 0.85 kW (default) | positive scalar
+  group: ''
+- name: Maximum head at zero capacity
+  summary: Maximum pump head with no flow 60 m (default) | positive scalar
+  group: ''
+- name: Maximum capacity at zero head
+  summary: Maximum flow rate with zero head 80 lpm (default) | positive scalar
+  group: ''
+- name: Reference shaft speed
+  summary: Reference shaft angular velocity for affinity law calculations 1770 rpm | 3500 rpm | positive scalar
+  group: ''
+- name: Minimum shaft speed threshold as fraction of reference
+  summary: Threshold for minimum shaft speed 1e-2 (default) | positive scalar
+  group: ''
+- name: Reference capacity vector
+  summary: Volumetric flow rate [16.67, 30, 40, 53.33, 66.67, 83.33] lpm (default) | vector
+  group: ''
+- name: Reference head vector
+  summary: Pump head vector [50, 47.5, 45, 40, 35, 25] m (default) | vector
+  group: ''
+- name: Reference brake power vector
+  summary: Pump brake power vector [.6, .75, .85, .93, .98, .99] kW (default) | vector
+  group: ''
+- name: Capacity vector, q
+  summary: Volumetric displacement vector [16.67, 23.33, 30, 40, 53.33, 60] lpm (default) | vector
+  group: ''
+- name: Shaft speed vector, w
+  summary: Angular velocity vector [2450, 2800, 3150, 3500] rpm (default) | vector
+  group: ''
+- name: Head table, H(q,w)
+  summary: Pump head matrix [25, 32.7, 42.5, 50; 24, 31.7, 41, 49; 22.7, 30.5, 39, 47.5; 20, 28, 36, 45; 15.7, 24, 32, 40;
+    12.5, 21, 29.5, 37.5] m (default) | *M*-by-*N* matrix
+  group: ''
+- name: Brake power table, Wb(q,w)
+  summary: Pump brake power matrix [.28, .38, .5, .6; .31, .41, .55, .68; .33, .44, .6, .75; .36, .48, .65, .83; .38, .53,
+    .72, .93; .39, .55, .75, .97] kW (default) | *M*-by-*N* matrix
+  group: ''
+- name: Reference density
+  summary: Fluid density for listed pump performance data 998 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Impeller diameter scale factor
+  summary: Ratio of model diameter to reference diameter for affinity law calculations 1 (default) | positive scalar
+  group: ''
+- name: Mechanical orientation
+  summary: Shaft normal rotational direction Positive angular velocity of port R relative to port C corresponds to normal
+    pump operation (default) | Negative angular velocity of port R relative to port C corresponds to normal pump operation
+  group: ''
+- name: Check if operating beyond normal pump operation
+  summary: Option to notify when block is beyond operating bounds None (default) | Warning | Error
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at pump inlet and outlet 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Pump parameterization** — Head and brake power parameterization `Capacity, head, and brake power at reference shaft speed` (default) | `1D tabulated data - head and brake power vs. capacity at reference shaft speed` | `2D tabulated data - head and brake power vs. capacity and shaft speed`
 
@@ -343,7 +425,6 @@ brake power at reference shaft speed`.
 
 Flow area at the pump inlet and outlet. The block assumes that the areas
 are equal.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Pumps & Motors

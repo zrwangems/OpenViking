@@ -14,14 +14,18 @@ language: en
 # Controlled MMF Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has one physical signal input port and two magnetic
 conserving ports associated with its magnetic terminals.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

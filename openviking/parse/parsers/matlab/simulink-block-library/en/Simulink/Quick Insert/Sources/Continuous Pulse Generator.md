@@ -14,6 +14,13 @@ language: en
 # Pulse Generator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Output
 
@@ -22,8 +29,66 @@ language: en
 Generated square wave pulse signal specified by the parameters.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Pulse type
+  summary: Computational technique Time based (default) | Sample based
+  group: ''
+  block_parameter: PulseType
+  type: character vector
+  values: '''Time based'' | ''Sample based'''
+  default: '''Time based'''
+- name: Time (t)
+  summary: Source of time variable Use simulation time (default) | Use external signal
+  group: ''
+  block_parameter: TimeSource
+  type: character vector
+  values: '''Use simulation time'' | ''Use external signal'''
+  default: '''Use simulation time'''
+- name: Amplitude
+  summary: Signal amplitude 1 (default) | scalar
+  group: ''
+  block_parameter: Amplitude
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Period (secs)
+  summary: Pulse period 10 (default) | scalar
+  group: ''
+  block_parameter: Period
+  type: character vector
+  values: scalar
+  default: '''10'''
+- name: Pulse width
+  summary: Duty cycle 5 (default) | scalar in the range [0,100]
+  group: ''
+  block_parameter: PulseWidth
+  type: character vector
+  values: scalar
+  default: '''5'''
+- name: Phase delay (secs)
+  summary: Delay before pulse 0 (default) | scalar
+  group: ''
+  block_parameter: PhaseDelay
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Sample time
+  summary: Length of sample time 0 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vectors as 1-D on (default) | off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Pulse type** — Computational technique `Time based` (default) | `Sample based`
 
@@ -164,7 +229,6 @@ For more information on how this parameter is used, see Determine the Output Dim
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Sources

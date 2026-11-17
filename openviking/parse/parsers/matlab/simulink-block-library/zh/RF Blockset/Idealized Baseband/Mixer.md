@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Mixer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 时变输入信号 实数标量 | 实数列向量 | 复数标量 | 复数列向量
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: 时变输出信号 复数标量 | 复数列向量
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -30,8 +41,106 @@ chinese_source: worker-translation
 时变输出信号，返回为复数标量或复数列向量。输出时变信号的大小与输入时变信号的大小相等。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Mixer type
+  summary: 混频器类型 mod（默认）| demod | iqmod | iqdemod
+  group: 主选项卡
+- name: Sideband
+  summary: 混频器边带 upper（默认）| lower
+  group: 主选项卡
+- name: RF (Hz)
+  summary: 射频载波频率 1e9（默认）| 实数
+  group: 主选项卡
+- name: LO (Hz)
+  summary: 本振频率 1e8（默认）| 实数
+  group: 主选项卡
+- name: Gain (dB)
+  summary: 混频器转换增益 0（默认）| 实数
+  group: 主选项卡
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 主选项卡
+- name: LO phase offset (deg)
+  summary: 本振相位偏移 0（默认）| 实数
+  group: 损伤选项卡
+- name: I/Q gain imbalance (dB)
+  summary: IQ 增益不平衡 0（默认）| 非负实数
+  group: 损伤选项卡
+- name: I/Q phase imbalance (deg)
+  summary: IQ 相位不平衡 0（默认）| 实数
+  group: 损伤选项卡
+- name: Non-Linearity
+  summary: 三阶非线性类型 OIP3（默认）| IIP3 | IP1dB | OP1dB | IPsat | OPsat
+  group: 损伤选项卡
+- name: IIP3 (dBm)
+  summary: 输入三阶截取点 Inf（默认）| 正实数
+  group: 损伤选项卡
+- name: OIP3 (dBm)
+  summary: 输出三阶截点 Inf（默认）| 正实数
+  group: 损伤选项卡
+- name: IP1dB (dBm)
+  summary: 输入 1 dB 压缩点 Inf（默认）| 正实数
+  group: 损伤选项卡
+- name: OP1dB (dBm)
+  summary: 输出 1 dB 压缩点 Inf（默认）| 正实数
+  group: 损伤选项卡
+- name: IPsat (dBm)
+  summary: 输入饱和点 Inf（默认）| 正实数
+  group: 损伤选项卡
+- name: OPsat (dBm)
+  summary: 输出饱和点 Inf（默认）| 正实数
+  group: 损伤选项卡
+- name: Plot power characteristics
+  summary: 绘制功率特性 按钮
+  group: 损伤选项卡
+- name: Include mixer noise
+  summary: 将混频器噪声添加到系统 off（默认）| on
+  group: 噪声选项卡
+- name: Mixer noise type
+  summary: 噪声表示 NF（默认）| noise-temperature | noise-factor
+  group: 噪声选项卡
+- name: Noise temperature (K)
+  summary: 用于建模混频器噪声的噪声温度 290（默认）| 非负实数
+  group: 噪声选项卡
+- name: Noise figure (dB)
+  summary: 用于建模混频器噪声的噪声系数 10 * log10( 2 )（默认）| 非负实数
+  group: 噪声选项卡
+- name: Noise factor
+  summary: 用于建模混频器噪声的噪声因子 2（默认）| 大于或等于 1 的正整数标量
+  group: 噪声选项卡
+- name: Seed source, mixer noise
+  summary: 初始种子 auto（默认）| user 的来源
+  group: 噪声选项卡
+- name: Seed for mixer noise
+  summary: 随机数生成器的种子 67987（默认）| 小于 232 的非负整数
+  group: 噪声选项卡
+- name: Include phase noise
+  summary: 将本振相位噪声添加到本振信号 off（默认）| on
+  group: 噪声选项卡
+- name: Phase noise level (dBc/Hz)
+  summary: 相对于载波的相位噪声电平 [-145 -150]（默认）| 负实数标量 | 负实数向量
+  group: 噪声选项卡
+- name: Frequency offset (Hz)
+  summary: 相位频率偏移 [2000 20000]（默认）| 正实数标量 | 正递增实数值向量
+  group: 噪声选项卡
+- name: Automatic frequency resolution
+  summary: 自动确定频率 bin 数量 on（默认）| off
+  group: 噪声选项卡
+- name: Number of signal samples
+  summary: 时域信号中的样本数 0（默认）| 小于或等于 65536 的实非负整数
+  group: 噪声选项卡
+- name: Seed source, phase noise
+  summary: 初始种子的来源 auto（默认）| user
+  group: 噪声选项卡
+- name: Seed for phase noise
+  summary: 随机数生成器的种子 67987（默认）| 小于 232 的非负整数
+  group: 噪声选项卡
+- name: Plot phase characteristics
+  summary: 绘制相位特性按钮
+  group: 噪声选项卡
+```
 
 ### 主选项卡
 
@@ -333,7 +442,6 @@ resolution**。
 此按钮根据 **Noise** 选项卡上指定的参数以及已执行仿真时的模块采样时间，或根据 Frequency offset (Hz) 参数值估算的采样时间来绘制相位特性。
 
 有关详细信息，请参阅 Plot Phase Noise Characteristics。
-
 ## 所属库
 
 RF Blockset / Idealized Baseband

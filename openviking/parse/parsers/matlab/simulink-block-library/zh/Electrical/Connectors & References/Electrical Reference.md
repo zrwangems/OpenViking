@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Electrical Reference
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 电压为零的电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **V** — 电压为零的电气端口
 
 电压等于零的电气守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements Simscape / Electrical / Connectors & References

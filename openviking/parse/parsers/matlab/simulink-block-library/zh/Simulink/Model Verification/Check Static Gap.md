@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Check Static Gap
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 根据间隙标量检查的输入信号 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: 断言输出信号 标量
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -34,8 +46,70 @@ chinese_source: worker-translation
 要启用此输出端口，请选中 **Output assertion signal** 参数复选框。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Upper bound
+  summary: 上边界值 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: max
+  type: 字符串标量或字符向量
+  default: '"100"'
+- name: Inclusive upper bound
+  summary: 在范围内包含上界 on（默认） | off
+  group: ''
+  block_parameter: max_included
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Lower bound
+  summary: 下边界值 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: min
+  type: 字符串标量或字符向量
+  default: '"0"'
+- name: Inclusive lower bound
+  summary: 在范围内包含下界 on（默认） | off
+  group: ''
+  block_parameter: min_included
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Enable assertion
+  summary: 启用或禁用检查 on（默认） | off
+  group: ''
+  block_parameter: enabled
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Simulation callback when assertion fails (optional)
+  summary: 断言失败时要求值的表达式 ""（默认） | MATLAB 表达式
+  group: ''
+  block_parameter: callback
+  type: 字符串标量或字符向量
+  default: '""'
+- name: Stop simulation when assertion fails
+  summary: 检查失败时是否停止仿真 on（默认） | off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Output assertion signal
+  summary: 创建输出信号 off（默认） | on
+  group: ''
+  block_parameter: export
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"off"'
+- name: Select icon type
+  summary: 选择图标类型 graphic（默认） | text
+  group: ''
+  block_parameter: icon
+  type: 字符串标量或字符向量
+  values: '"graphic" | "text"'
+  default: '"graphic"'
+```
 
 ### **Upper bound** — 上边界值 标量 | 向量 | 矩阵
 
@@ -154,7 +228,6 @@ chinese_source: worker-translation
 | **类型：** 字符串标量或字符向量 |
 | **值：** `"graphic"` | `"text"` |
 | **默认值：** `"graphic"` |
-
 ## 所属库
 
 Simulink / Model Verification HDL Coder / Model Verification

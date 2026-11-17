@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Rotational Velocity Noise Source
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 单边噪声功率谱密度物理信号
+  direction: input
+- name: B
+  summary: 基座接口机械旋转
+  direction: input
+- name: F
+  summary: 从动接口机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -31,8 +43,19 @@ chinese_source: worker-translation
 ### **F** — 从动接口机械旋转
 
 与从动接口关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 时间步周期和偏移量 1e-3 s（默认）| [step, offset] s
+  group: ''
+- name: Repeatability
+  summary: 随机数种子控制 Not repeatable（默认）| Repeatable | Specify seed
+  group: ''
+- name: Seed
+  summary: 随机数生成种子值 0（默认）
+  group: ''
+```
 
 ### **Sample time** — 时间步周期和偏移量 `1e-3` `s`（默认）| `[step, offset]` `s`
 
@@ -55,7 +78,6 @@ chinese_source: worker-translation
 ### **Seed** — 随机数生成种子值 `0`（默认）
 
 种子必须为 `0` 或正整数。此参数仅在您为 **Repeatability** 参数选择 `Specify seed` 时可用。
-
 ## 所属库
 
 Simscape / Driveline / Sources

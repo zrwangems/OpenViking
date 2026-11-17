@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 3-Way Directional Valve (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 湿空气端口 湿空气
+  direction: conserving
+- name: P
+  summary: 湿空气端口 湿空气
+  direction: conserving
+- name: T
+  summary: 湿空气端口 湿空气
+  direction: conserving
+- name: S
+  summary: 控制构件位移，m 物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -34,8 +49,287 @@ chinese_source: worker-translation
 ### **S** — 控制构件位移，m 物理信号
 
 以 m 为单位的阀芯位置位移，以物理信号形式接收。对于在正阀芯位置打开的流路，正信号打开节流孔。对于在负阀芯位置打开的流路，负信号打开节流孔。
-
 ## 参数
+```yaml
+parameters:
+- name: 正阀芯位置打开的连接
+  summary: 阀芯处于正位置时打开的流路 All closed（默认）| P-A, A-T, P-T | P-A | A-T | P-T
+  group: 阀门配置
+- name: 负阀芯位置打开的连接
+  summary: 阀芯沿负方向移动时打开的流路 All closed（默认）| P-A, A-T, P-T | P-A | A-T | P-T
+  group: 阀门配置
+- name: 面积特性
+  summary: 节流孔的流量方程 Identical for all flow paths（默认）| 每条流各不相同 path
+  group: 模型参数化
+- name: 阀门参数化
+  summary: 可变或恒定节流孔参数化 Cv flow coefficient（默认）| Kv flow coefficient | Sonic conductance | Orifice area
+  group: 模型参数化
+- name: 关闭和打开节流孔之间的阀芯行程
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: 模型参数化
+- name: 开启特性
+  summary: 将控制信号转换为流量能力度量的方法 Linear（默认）| Tabulated
+  group: 模型参数化
+- name: 阀芯行程向量
+  summary: 相对于完全关闭位置的阀芯开启距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 最大 Cv 流量系数
+  summary: 对应于最大开启组件的 *Cv* 系数 4（默认）| 正标量
+  group: 模型参数化
+- name: Cv 流量系数向量
+  summary: 构件位置向量中各值对应的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 最大 Kv 流量系数
+  summary: 对应于最大开启组件的 *Kv* 系数 3.6（默认）| 正标量
+  group: 模型参数化
+- name: Kv 流量系数向量
+  summary: 构件位置向量中各值对应的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 最大节流孔面积
+  summary: 最大节流孔开口面积 1e-4 m^2（默认）| 正标量
+  group: 模型参数化
+- name: 节流孔面积向量
+  summary: 阀门开口面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: 阻塞流下的 xT 压差比系数
+  summary: 压差比 0.7（默认）| 正标量
+  group: 模型参数化
+- name: 流量系数
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 模型参数化
+- name: Maximum sonic conductance
+  summary: 对应组件最大开启状态的声导 12 l/(bar*s)（默认）| 正标量
+  group: 模型参数化
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: 模型参数化
+- name: Subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: 模型参数化
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: 模型参数化
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: 模型参数化
+- name: Sonic conductance vector
+  summary: 对应阀芯行程向量中各值的声导 [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)（默认）| 正值向量
+  group: 模型参数化
+- name: Critical pressure ratio vector
+  summary: 对应阀芯行程向量中各值的临界压力比 0.3 * ones(1,6)（默认）| 正数向量
+  group: 模型参数化
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: 模型参数化
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: 模型参数化
+- name: Laminar flow pressure ratio
+  summary: 层流-湍流过渡压力比 0.999（默认）| 正标量
+  group: 模型参数化
+- name: Cross-sectional area at ports A, P, and T
+  summary: 守恒端口处的面积 0.01 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Spool position at maximum P-A orifice area
+  summary: P-A 节流口完全打开时的阀芯偏移 5e-3 m（默认）| 正标量
+  group: P-A Orifice
+- name: P-A spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: P-A Orifice
+- name: P-A constant orifice Cv flow coefficient
+  summary: 流量系数 4（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice maximum Cv flow coefficient
+  summary: 对应组件最大开启状态的 *Cv* 系数 4（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice Cv flow coefficient vector
+  summary: 对应成员位置向量 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）中值的 *Cv* 系数 | 1×*n* 向量
+  group: P-A Orifice
+- name: P-A constant orifice Kv flow coefficient
+  summary: 流量系数 3.6（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice maximum Kv flow coefficient
+  summary: 对应最大开启组件的 *Kv* 系数 3.6（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice Kv flow coefficient vector
+  summary: 对应成员位置向量 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）中值的 *Kv* 系数 | 1×*n* 向量
+  group: P-A Orifice
+- name: P-A orifice spool travel vector
+  summary: 相对于完全关闭位置的阀芯开启距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: P-A Orifice
+- name: P-A maximum orifice area
+  summary: 最大孔口开启面积 1e-4 m^2（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice area vector
+  summary: 阀门开启面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: P-A Orifice
+- name: P-A constant orifice area
+  summary: 恒定孔口的横截面积 1e-4 m^2（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: P-A Orifice
+- name: P-A constant orifice sonic conductance
+  summary: 恒定节流口声导 12 l/(bar*s)（默认）| 正标量
+  group: P-A Orifice
+- name: P-A constant orifice critical pressure ratio
+  summary: 恒定节流口流量首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice maximum sonic conductance
+  summary: 节流口最大开启时对应的声导 12 l/(bar*s)（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice critical pressure ratio
+  summary: 流量首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice sonic conductance vector
+  summary: 阀芯行程向量中各值对应的声导 [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)（默认）| 1×*n* 向量
+  group: P-A Orifice
+- name: P-A orifice critical pressure ratio vector
+  summary: 阀芯行程向量中各值对应的临界压力比 0.3 * ones(1, 6)（默认）| 1×*n* 向量
+  group: P-A Orifice
+- name: P-A orifice subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: P-A Orifice
+- name: P-A orifice ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: P-A Orifice
+- name: Spool position at maximum A-T orifice area
+  summary: A-T 节流口完全打开时的阀芯偏移 5e-3 m（默认）| 正标量
+  group: A-T Orifice
+- name: A-T spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: A-T Orifice
+- name: A-T constant orifice Cv flow coefficient
+  summary: 流量系数 4（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice maximum Cv flow coefficient
+  summary: 对应组件最大开启状态的 *Cv* 系数 4（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice Cv flow coefficient vector
+  summary: 对应构件位置向量中各值的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T constant orifice Kv flow coefficient
+  summary: 流量系数 3.6（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice maximum Kv flow coefficient
+  summary: 对应组件最大开启状态的 *Kv* 系数 3.6（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice Kv flow coefficient vector
+  summary: 对应构件位置向量中各值的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T orifice spool travel vector
+  summary: 相对于完全关闭位置的阀芯开度距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T maximum orifice area
+  summary: 最大节流口开启面积 1e-4 m^2（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice area vector
+  summary: 阀门开口面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T constant orifice area
+  summary: 恒定节流口的横截面积 1e-4 m^2（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: A-T Orifice
+- name: A-T constant orifice sonic conductance
+  summary: 恒定节流口的声速导流 12 l/(bar*s)（默认）| 正标量
+  group: A-T Orifice
+- name: A-T constant orifice critical pressure ratio
+  summary: 恒定节流口流量首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice maximum sonic conductance
+  summary: 节流口最大开启时对应的声速导流 12 l/(bar*s)（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice critical pressure ratio
+  summary: 流量首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice sonic conductance vector
+  summary: 与阀芯行程向量中的值对应的声速导流 [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T orifice critical pressure ratio vector
+  summary: 与阀芯行程向量中的值对应的临界压力比 0.3 * ones(1, 6)（默认）| 1×*n* 向量
+  group: A-T Orifice
+- name: A-T orifice subsonic index
+  summary: 用于表征亚声速流态下质量流量的指数 0.5（默认）| 正标量
+  group: A-T Orifice
+- name: A-T orifice ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: A-T Orifice
+- name: A-T orifice ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: A-T Orifice
+- name: Spool position at maximum P-T orifice area
+  summary: 完全打开 P-T 节流口的阀芯偏移量 5e-3 m（默认）| 正标量
+  group: P-T Orifice
+- name: P-T spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: P-T Orifice
+- name: P-T constant orifice Cv flow coefficient
+  summary: 流量系数 4（默认）| 正标量
+  group: P-T Orifice
+- name: P-T orifice maximum Cv flow coefficient
+  summary: 对应组件最大开度的 *Cv* 系数 4（默认）| 正标量
+  group: P-T Orifice
+- name: P-T orifice Cv flow coefficient vector
+  summary: 成员位置向量中各值对应的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: P-T Orifice
+- name: P-T constant orifice Kv flow coefficient
+  summary: 流量系数 3.6（默认）| 正标量
+  group: P-T Orifice
+- name: P-T orifice maximum Kv flow coefficient
+  summary: 对应组件最大开度的 *Kv* 系数 3.6（默认）| 正标量
+  group: P-T Orifice
+- name: P-T orifice Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量'
+  group: P-T Orifice
+- name: P-T orifice spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m（默认）| 1×*n*
+    向量
+  group: P-T Orifice
+- name: P-T maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2（默认）| 正标量
+  group: P-T Orifice
+- name: P-T orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: P-T Orifice
+- name: P-T constant orifice area
+  summary: Cross-sectional area for constant orifice 1e-4 m^2（默认）| 正标量
+  group: P-T Orifice
+- name: P-T orifice xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7（默认）| 正标量
+  group: P-T Orifice
+- name: P-T constant orifice sonic conductance
+  summary: Sonic conductance for constant orifice 12 l/(bar*s)（默认）| 正标量
+  group: P-T Orifice
+- name: P-T constant orifice critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes for constant orifice 0.3（默认）| 正标量
+  group: P-T Orifice
+- name: P-T orifice maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open orifice 12 l/(bar*s)（默认）| 正标量
+  group: P-T Orifice
+- name: P-T 节流孔临界压力比
+  summary: 流量首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: P-T Orifice
+- name: P-T 节流孔声速导纳向量
+  summary: 与阀芯行程向量中的值对应的声速导纳 [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)（默认）| 1×*n* 向量
+  group: P-T Orifice
+- name: P-T 节流孔临界压力比向量
+  summary: 与阀芯行程向量中的值对应的临界压力比 0.3 * ones(1, 6)（默认）| 1×*n* 向量
+  group: P-T Orifice
+- name: P-T 节流孔亚声速指数
+  summary: 用于表征亚声速流态下质量流量的指数 0.5（默认）| 正标量
+  group: P-T Orifice
+- name: P-T 节流孔 ISO 参考温度
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: P-T Orifice
+- name: P-T 节流孔 ISO 参考密度
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: P-T Orifice
+```
 
 ### 阀门配置
 
@@ -1870,7 +2164,6 @@ flow path`，将 **开启特性**设置为
   或 `P-A, A-T, P-T`。
 - **负阀芯位置开启连接**为 `P-T`
   或 `P-A, A-T, P-T`。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Directional Control Valves

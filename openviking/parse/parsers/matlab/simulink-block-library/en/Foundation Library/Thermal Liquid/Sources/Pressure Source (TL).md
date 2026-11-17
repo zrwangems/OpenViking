@@ -14,6 +14,18 @@ language: en
 # Pressure Source (TL)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Pressure differential control signal, Pa physical signal
+  direction: input
+- name: A
+  summary: Source inlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Source outlet thermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -38,8 +50,22 @@ pressure at port **B** to be greater than the pressure at port
 Thermal liquid conserving port. A positive pressure differential causes the
 pressure at port **B** to be greater than the pressure at port
 **A**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Select whether pressure differential can change during simulation Controlled (default) | Constant
+  group: ''
+- name: Pressure differential
+  summary: Constant pressure differential across the source 0 Pa (default) | scalar
+  group: ''
+- name: Power added
+  summary: Select whether the source performs work Isentropic (default) | None
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area normal to flow path at inlet and outlet 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Source type** — Select whether pressure differential can change during simulation `Controlled` (default) | `Constant`
 
@@ -79,7 +105,6 @@ Select whether the source performs work on the fluid flow:
 
 Area normal to the direction of flow at the source inlet and outlet. The two
 cross-sectional areas are assumed identical.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Sources

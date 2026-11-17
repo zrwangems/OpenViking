@@ -14,6 +14,15 @@ language: en
 # Variant Connector
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Condition port untyped conserving port
+  direction: conserving
+- name: Port_2
+  summary: Connection port untyped conserving port
+  direction: conserving
+```
 
 ### Conserving
 
@@ -35,8 +44,33 @@ Conserving connection port. By default, this port is untyped.
 
 You define the type of the port by connecting it to a conserving port of another
 block, components in the network, or a Simscape Bus port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connector Type
+  summary: Type of connector block Leaf (default) | Primary | Nonprimary
+  group: ''
+- name: Connector Tag
+  summary: Unique identifier of bounded region A (default) | valid MATLAB® identifier that starts with a letter, contains
+    no spaces or special characters and is at most 2048 characters long
+  group: ''
+- name: Variant control expression
+  summary: Variant controls available in global workspace true (default) | boolean condition expression
+  group: ''
+  block_parameter: VariantControls
+  type: cell array of character vectors
+  values: Variant control that is associated with the Variant choice
+  default: '''Variant'''
+- name: Condition (read-only)
+  summary: Condition for Variant controls no default
+  group: ''
+- name: Show variant condition on block
+  summary: Display variant condition on block icon off (default) | on
+  group: ''
+- name: Open block in Variant Manager
+  summary: Open Variant Manager window no default
+  group: ''
+```
 
 ### **Connector Type** — Type of connector block `Leaf` (default) | `Primary` | `Nonprimary`
 
@@ -138,7 +172,6 @@ condition associated with the block on the block icon.
 
 Click **Open block in Variant Manager** to open the Variant
 Manager.
-
 ## Libraries
 
 Simscape / Utilities

@@ -14,6 +14,13 @@ language: en
 # State Writer
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: State value scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -26,8 +33,17 @@ value is expanded to match the dimension of the state. All elements of
 the state are set to the same value.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: State owner block
+  summary: Name of state owner block none (default)
+  group: ''
+  block_parameter: StateOwnerBlock
+  type: character vector
+  values: ''''' | ''<model path/block name>'''
+  default: ''''''
+```
 
 ### **State owner block** — Name of state owner block none (default)
 
@@ -52,7 +68,6 @@ model hierarchy.
 | **Type:** character vector |
 | **Value:** `''` | `'<model path/block name>'` |
 | **Default:** `''` |
-
 ## Libraries
 
 Simulink / Signal Routing

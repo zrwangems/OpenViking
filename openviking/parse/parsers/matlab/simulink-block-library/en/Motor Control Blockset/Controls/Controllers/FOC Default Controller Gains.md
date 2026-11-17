@@ -14,6 +14,121 @@ language: en
 # FOC Default Controller Gains
 
 ## Ports
+```yaml
+ports:
+- name: Rs
+  summary: Stator resistance scalar
+  direction: input
+  data_types: single | double
+- name: Ld
+  summary: '*d*-axis inductance scalar'
+  direction: input
+  data_types: single | double
+- name: Lq
+  summary: '*q*-axis inductance scalar'
+  direction: input
+  data_types: single | double
+- name: Lm
+  summary: Magnetizing inductance scalar
+  direction: input
+  data_types: single | double
+- name: Lls
+  summary: Stator leakage inductance scalar
+  direction: input
+  data_types: single | double
+- name: Llr
+  summary: Rotor leakage inductance scalar
+  direction: input
+  data_types: single | double
+- name: J
+  summary: Motor inertia scalar
+  direction: input
+  data_types: single | double
+- name: Ts
+  summary: Current controller sample time scalar
+  direction: input
+  data_types: single | double
+- name: Tsc
+  summary: Speed controller sample time scalar
+  direction: input
+  data_types: single | double
+- name: SlowdownFactor
+  summary: Factor to slow down system response scalar in the range of [1, 20]
+  direction: input
+  data_types: single | double
+- name: IMax
+  summary: Maximum measurable peak-neutral current scalar
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: DC link voltage scalar
+  direction: input
+  data_types: single | double
+- name: Nbase
+  summary: Motor rated speed scalar
+  direction: input
+  data_types: single | double
+- name: Rs
+  summary: Stator resistance scalar
+  direction: input
+  data_types: single | double
+- name: Ld
+  summary: '*d*-axis inductance scalar'
+  direction: input
+  data_types: single | double
+- name: Lq
+  summary: '*q*-axis inductance scalar'
+  direction: input
+  data_types: single | double
+- name: J
+  summary: Motor inertia scalar
+  direction: input
+  data_types: single | double
+- name: p
+  summary: Number of pole pairs available in the motor scalar
+  direction: input
+  data_types: single | double
+- name: FluxPM
+  summary: Peak permanent magnet flux linkage scalar
+  direction: input
+  data_types: single | double
+- name: Ts
+  summary: Current controller sample time scalar
+  direction: input
+  data_types: single | double
+- name: Tsc
+  summary: Speed controller sample time scalar
+  direction: input
+  data_types: single | double
+- name: CurrLoopDelay
+  summary: Overall time constant value for the current delay present in feedback path scalar
+  direction: input
+  data_types: single | double
+- name: SpeedLoopDelay
+  summary: Overall time constant value for the speed delay present in feedback path scalar
+  direction: input
+  data_types: single | double
+- name: Vbase
+  summary: Base voltage scalar
+  direction: input
+  data_types: single | double
+- name: Ibase
+  summary: Base current scalar
+  direction: input
+  data_types: single | double
+- name: Nbase
+  summary: Motor rated speed scalar
+  direction: input
+  data_types: single | double
+- name: PI Gains
+  summary: PI controller gains bus
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: PI gains computation status true | false
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -392,8 +507,31 @@ Computation status of the PI gains, returned as one of these values:
   gains as the value of one or more inputs was incorrect.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Motor selection
+  summary: Type of motor PMSM (default) | ACIM
+  group: ''
+- name: Output unit
+  summary: Unit of the block output SI Unit (default) | Per-Unit
+  group: ''
+- name: Block Output
+  summary: Output of the block Current controller (d,q-axes) | Field-weakening controller | Speed controller
+  group: ''
+- name: Specify filter and sensor delays
+  summary: Enable addition of filter and sensor delays off (default) | on
+  group: Delays
+- name: Current sensor delay (s)
+  summary: Delay due to current sensor 50e-6 (default) | scalar
+  group: Delays
+- name: Speed sensor delay (s)
+  summary: Delay due to speed sensor 50e-6 (default) | scalar
+  group: Delays
+- name: Speed filter delay (s)
+  summary: Delay due to speed filtering 0.02 (default) | scalar
+  group: Delays
+```
 
 ### **Motor selection** — Type of motor `PMSM` (default) | `ACIM`
 
@@ -489,7 +627,6 @@ delays** parameter.
 The **Specify filter and sensor delays** parameter
 appears only if you select **Empirical method** option to
 compute controller gain.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Controllers

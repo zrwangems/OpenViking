@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Turbine (MA)
 
 ## 端口
+```yaml
+ports:
+- name: VN
+  summary: 喷嘴开度分数，无量纲物理信号
+  direction: input
+- name: W
+  summary: 湿空气冷凝率，kg/s 物理信号
+  direction: output
+- name: A
+  summary: 湿空气入口 湿空气
+  direction: output
+- name: B
+  summary: 湿空气出口 湿空气
+  direction: output
+- name: C
+  summary: 涡轮机壳体 机械平移
+  direction: output
+- name: R
+  summary: 涡轮机轴 机械平移
+  direction: output
+```
 
 ### 输入
 
@@ -53,8 +74,87 @@ chinese_source: worker-translation
 ### **R** — 涡轮机轴 机械平移
 
 与涡轮机轴扭矩和角速度关联的端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Turbine map parameterization
+  summary: 性能参数化 Analytical - Nominal pressure ratio and corrected mass flow rate（默认）| Tabulated data - Flow rate and efficiency
+    vs. pressure ratio | Tabulated data - Flow rate and efficiency vs. corrected speed and pressure ratio
+  group: 涡轮机映射
+- name: Model variable nozzle
+  summary: 是否启用可变喷嘴输入端口 Off（默认）| On
+  group: 涡轮机映射
+- name: Minimum nozzle opening fraction
+  summary: 最小开度分数 1e-3（默认）| 范围 (0,1] 内的正标量
+  group: 涡轮机映射
+- name: Maximum nozzle opening fraction
+  summary: 最大开度分数 1（默认）| 范围 (0,1] 内的正标量
+  group: 涡轮机映射
+- name: Corrected speed index vector, N
+  summary: 表格数据轴转速索引 100 .* [50, 60, 70, 80, 90, 100, 110] rpm（默认）| 正标量向量
+  group: 涡轮机映射
+- name: Nominal pressure ratio
+  summary: 压力比值 2（默认）| 正标量
+  group: 流量数据
+- name: Nominal corrected mass flow rate
+  summary: 修正质量流量值 48 kg/s（默认）| 正标量
+  group: 流量数据
+- name: Pressure ratio vector, pr
+  summary: 压力比向量 [1.251, 1.345, 1.442, 1.521, 1.596, 1.692, 1.849, 1.972, 2.1, 2.173, 2.259, 2.3424]（默认）| 正标量向量
+  group: 流量数据
+- name: Corrected mass flow rate vector, mdot(pr)
+  summary: 修正质量流量值向量 [39.439, 43.01, 45.556, 46.801, 47.792, 48.388, 48.634, 48.67, 48.689, 48.747, 48.825, 48.912] kg/s（默认）|
+    正标量向量
+  group: 流量数据
+- name: Pressure ratio table, pr(N,beta)
+  summary: 涡轮特性图压力比数据 *M*×*N* 矩阵（默认）
+  group: 流量数据
+- name: Corrected mass flow rate table, mdot(N,beta)
+  summary: 涡轮特性图修正质量流量数据 *M*×*N* 矩阵（默认）
+  group: 流量数据
+- name: Constant isentropic efficiency
+  summary: 等熵效率值 0.8（默认）| 正标量
+  group: 效率数据
+- name: Pressure ratio vector, pr
+  summary: 压比向量 [1.252, 1.328, 1.425, 1.544, 1.642, 1.757, 1.873, 2.005, 2.1, 2.204, 2.248, 2.28]（默认）| 正标量向量
+  group: 效率数据
+- name: Isentropic efficiency vector, eta(pr)
+  summary: 等熵效率向量 [.559, .61, .673, .741, .788, .835, .869, .895, .908, .899, .854, .751]（默认）| 取值范围为 (0,1] 的元素向量
+  group: 效率数据
+- name: Pressure ratio table, pr(N,beta)
+  summary: 涡轮特性图压比数据 *M*×*N* 矩阵（默认）
+  group: 效率数据
+- name: Isentropic efficiency table, eta(N,beta)
+  summary: 涡轮特性图等熵效率数据 *M*×*N* 矩阵（默认）
+  group: 效率数据
+- name: Reference pressure for corrected flow
+  summary: 修正压力 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: Reference temperature for corrected flow
+  summary: 修正温度 288.15 K（默认）| 正标量
+  group: 参数
+- name: Reference relative humidity for corrected flow
+  summary: 修正相对湿度 0（默认）| 范围 [0,1] 内的标量
+  group: 参数
+- name: Mechanical efficiency
+  summary: 转换为扭矩的效率 0.9（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Model water vapor condensation
+  summary: 模拟水蒸气冷凝的选项 off（默认）| on
+  group: 参数
+- name: Relative humidity at saturation
+  summary: 发生冷凝时的相对湿度阈值 1（默认）| 正标量
+  group: 参数
+- name: Fraction of condensate entrained as water droplets
+  summary: 夹带为水滴的冷凝物比例 1（默认）| 范围 [0,1] 内的标量
+  group: 参数
+- name: 端口 A 处的入口面积
+  summary: 涡轮入口面积 1 m^2（默认）| 正标量
+  group: 参数
+- name: 端口 B 处的出口面积
+  summary: 涡轮出口面积 1 m^2（默认）| 正标量
+  group: 参数
+```
 
 ### 涡轮机映射
 
@@ -300,7 +400,6 @@ condensation**。
 ### **端口 B 处的出口面积** — 涡轮出口面积 `1` m^2（默认）| 正标量
 
 涡轮出口横截面积。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Turbomachinery

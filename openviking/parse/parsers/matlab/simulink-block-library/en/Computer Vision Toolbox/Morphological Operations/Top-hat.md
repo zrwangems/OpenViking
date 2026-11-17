@@ -14,6 +14,21 @@ language: en
 # Top-hat
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Nhood
+  summary: Neighborhood values vector | matrix
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: Filtered image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -44,8 +59,19 @@ The top-hat filtered image is returned as a matrix of intensity values. The size
 and data type of the filtered image are the same as those of the input image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input image type
+  summary: Type of input image Intensity (default) | Binary
+  group: ''
+- name: Neighborhood or structuring element source
+  summary: Source of neighborhood or structuring element Specify via dialog (default) | Input port
+  group: ''
+- name: Neighborhood or structuring element
+  summary: Neighborhood or structuring element strel('square',4) (default) | vector | matrix
+  group: ''
+```
 
 ### **Input image type** — Type of input image `Intensity` (default) | `Binary`
 
@@ -81,7 +107,6 @@ at higher speed due to the use of a more efficient algorithm.
 To enable this parameter, set the **Neighborhood or structuring element
 source** parameter, to `Specify via
 dialog`.
-
 ## Libraries
 
 Computer Vision Toolbox / Morphological Operations

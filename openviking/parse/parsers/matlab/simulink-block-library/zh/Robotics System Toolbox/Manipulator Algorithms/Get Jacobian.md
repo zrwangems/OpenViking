@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Get Jacobian
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 机器人配置向量
+  direction: input
+- name: Jacobian
+  summary: 末端执行器的几何雅可比 6-by-*n* 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +40,19 @@ chinese_source: worker-translation
 使用雅可比和关节速度计算末端执行器线速度的方程
 
 *ω* 是角速度，*υ* 是线速度， 是关节空间速度。
-
 ## 参数
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: 机器人模型 twoJointRigidBodyTree（默认）| RigidBodyTree 对象
+  group: ''
+- name: End effector
+  summary: 雅可比的末端执行器 刚体名称
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — 机器人模型 `twoJointRigidBodyTree`（默认）| `RigidBodyTree` 对象
 
@@ -50,7 +70,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 为模块生成 C 代码。只要模型不更改，C 代码将复用于后续仿真。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **Tunable:** No
-
 ## 所属库
 
 Robotics System Toolbox / Manipulator Algorithms

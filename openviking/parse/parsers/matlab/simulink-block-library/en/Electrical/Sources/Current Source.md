@@ -14,6 +14,15 @@ language: en
 # Current Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,40 @@ terminal
 
 Electrical conserving port associated with the current source negative
 terminal
-
 ## Parameters
+```yaml
+parameters:
+- name: DC current
+  summary: DC current 0 A (default)
+  group: DC & AC Components
+- name: AC current peak amplitude
+  summary: AC current amplitude 0 A (default)
+  group: DC & AC Components
+- name: AC current phase shift
+  summary: AC current phase offset 0 rad (default)
+  group: DC & AC Components
+- name: AC current frequency
+  summary: AC current frequency 60 Hz (default)
+  group: DC & AC Components
+- name: Noise mode
+  summary: Noise option Disabled (default) | Enabled
+  group: Noise
+- name: Power spectral density
+  summary: Power spectral density 0 A^2/Hz (default)
+  group: Noise
+- name: Repeatability
+  summary: Noise control option Not repeatable (default) | Repeatable | Specify seed
+  group: Noise
+- name: Auto-generated seed used for repeatable option
+  summary: Auto-generated random number seed 3241354618 (default)
+  group: Noise
+- name: Seed
+  summary: Random number seed 0 (default)
+  group: Noise
+- name: Sample time
+  summary: Sample time 1e-3 s (default)
+  group: Noise
+```
 
 ### DC & AC Components
 
@@ -112,7 +153,6 @@ seed` for the **Repeatability** parameter.
 Defines the rate at which the noise source is sampled. Choose it to reflect the
 frequencies of interest in your model. Making the sample time too small will
 unnecessarily slow down your simulation.
-
 ## Libraries
 
 Simscape / Electrical / Sources

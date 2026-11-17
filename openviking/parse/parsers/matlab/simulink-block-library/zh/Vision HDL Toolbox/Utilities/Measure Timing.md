@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Measure Timing
 
 ## 端口
+```yaml
+ports:
+- name: ctrlIn
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: activePixels
+  summary: 活动视频帧每一行中的像素数 标量
+  direction: output
+  data_types: double
+- name: activeLines
+  summary: 活动视频帧中的行数 标量
+  direction: output
+  data_types: double
+- name: totalPixels
+  summary: 每一行中的像素数（包括水平消隐间隔） 标量
+  direction: output
+  data_types: double
+- name: totalLines
+  summary: 帧中的行数（包括垂直消隐间隔） 标量
+  direction: output
+  data_types: double
+- name: horizBlank
+  summary: 帧的行之间的非活动像素数 标量
+  direction: output
+  data_types: double
+- name: vertBlank
+  summary: 帧之间的非活动行数 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -71,11 +102,12 @@ chinese_source: worker-translation
 除以 `totalPixels` 来测量。请参阅图中的标记 `6`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Vision HDL Toolbox / Utilities

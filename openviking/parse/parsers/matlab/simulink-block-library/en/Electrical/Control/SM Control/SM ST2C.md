@@ -14,6 +14,53 @@ language: en
 # SM ST2C
 
 ## Ports
+```yaml
+ports:
+- name: V_REF
+  summary: Voltage reference scalar
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: Input from stabilizer scalar
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: Terminal voltage scalar
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: Terminal current scalar
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: Overexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: Underexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: Summation point stator current limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: Take-over stator current limit (OEL) scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: Take-over stator current limit (UEL) scalar
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: Measured field current scalar
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: Field voltage scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -156,8 +203,97 @@ Per-unit field voltage to apply to the field circuit of the synchronous machine,
 returned as a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: Initial output voltage 1 (default) | real number
+  group: General
+- name: Initial terminal voltage, Vt0 (pu)
+  summary: Initial terminal voltage 1 (default) | real number
+  group: General
+- name: Initial terminal current, It0 (pu)
+  summary: Initial terminal current 1 (default) | real number
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Resistive component of load compensation, R_C (pu)
+  summary: Compensation resistance 0 (default) | positive number
+  group: Pre-Control
+- name: Reactance component of load compensation, X_C (pu)
+  summary: Compensation reactance 0 (default) | positive number
+  group: Pre-Control
+- name: Regulator input filter time constant, T_R (s)
+  summary: Regulator time constant 0 (default) | positive number
+  group: Pre-Control
+- name: Voltage regulator proportional gain, K_PR (pu)
+  summary: Regulator proportional gain 1 (default) | positive number
+  group: Control
+- name: Voltage regulator integral gain, K_IR (pu/s)
+  summary: Regulator integral gain 0 (default) | positive number
+  group: Control
+- name: Maximum voltage regulator output, V_PImax (pu)
+  summary: Upper limit of regolator output for PI control 99 (default) | real number
+  group: Control
+- name: Minimum voltage regulator output, V_PImin (pu)
+  summary: Lower limit of regolator output for PI control -99 (default) | real number
+  group: Control
+- name: Voltage regulator gain, K_A (pu)
+  summary: Regulator gain 120 (default) | positive number
+  group: Control
+- name: Voltage regulator time constant, T_A (s)
+  summary: Regulator time constant 0.15 (default) | positive number
+  group: Control
+- name: Rate feedback gain, K_F (pu)
+  summary: Rate feedback gain 0.05 (default) | positive number
+  group: Control
+- name: Rate feedback time constant, T_F (s)
+  summary: Rate feedback time constant 1 (default) | positive number
+  group: Control
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: Upper limit of the regulator output 1 (default) | real number
+  group: Control
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: Lower limit of the regulator output 0 (default) | real number
+  group: Control
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: Rectifier loading factor 0.1 (default) | positive number
+  group: Exciter
+- name: Exciter field proportional constant, K_E (pu)
+  summary: Exciter field gain 1 (default) | positive number
+  group: Exciter
+- name: Exciter field time constant, T_E (s)
+  summary: Exciter field time constant 0.5 (default) | positive number
+  group: Exciter
+- name: Maximum generator field voltage, E_FDmax (pu)
+  summary: Upper limit of generator field voltage 4.4 (default) | positive number
+  group: Exciter
+- name: Potential circuit (voltage) gain coefficient, K_P (pu)
+  summary: Potential circuit voltage gain coefficient 4.88 (default) | positive number
+  group: Exciter
+- name: Compound circuit (current) gain coefficient, K_I (pu)
+  summary: Potential circuit current gain coefficient 0 (default) | positive number
+  group: Exciter
+- name: Reactance associated with potential source, X_L (pu)
+  summary: Potential source reactance 0 (default) | positive number
+  group: Exciter
+- name: Potential circuit phase angle (degrees)
+  summary: Potential circuit phase angle 0 (default) | positive number
+  group: Exciter
+- name: Maximum available exciter voltage, V_Bmax (pu)
+  summary: Upper limit of exciter voltage 5.2 (default) | positive number
+  group: Exciter
+```
 
 ### General
 
@@ -310,7 +446,6 @@ Phase angle of the power source circuit, in degrees.
 ### **Maximum available exciter voltage, V\_Bmax (pu)** — Upper limit of exciter voltage `5.2` (default) | positive number
 
 Maximum per-unit available exciter voltage value.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

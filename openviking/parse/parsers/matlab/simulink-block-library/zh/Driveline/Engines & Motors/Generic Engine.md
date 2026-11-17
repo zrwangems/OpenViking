@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Generic Engine
 
 ## 端口
+```yaml
+ports:
+- name: Thr
+  summary: 归一化发动机节气门开度，无量纲物理信号
+  direction: input
+- name: Trq
+  summary: 扭矩指令，N\*m 物理信号
+  direction: input
+- name: P
+  summary: 瞬时发动机功率，W 物理信号
+  direction: output
+- name: FC
+  summary: 燃油消耗率，kg/s 物理信号
+  direction: output
+- name: B
+  summary: 发动机缸体机械旋转
+  direction: output
+- name: F
+  summary: 发动机曲轴机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -51,8 +72,124 @@ chinese_source: worker-translation
 ### **F** — 发动机曲轴机械旋转
 
 与发动机曲轴关联的机械旋转守恒端口。这是发动机的从动端口。曲轴传递燃烧过程产生的功率。通常，您将离合器和变速器连接到此端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Input type
+  summary: 通过归一化节气门或扭矩驱动的选项 Normalized throttle（默认）| Torque command
+  group: 发动机规格
+- name: Model parameterization
+  summary: 发动机模型 Normalized 3rd-order polynomial matched to peak power（默认）| Tabulated torque data | Tabulated power data
+  group: 发动机规格
+- name: Engine type
+  summary: 要建模的燃烧过程 Spark-ignition（默认）| Diesel | Generic
+  group: 发动机规格
+- name: Maximum torque
+  summary: 发动机扭矩输出的物理极限 380 N*m（默认）| 正标量
+  group: 发动机规格
+- name: Speed at maximum torque
+  summary: 发动机达到最大功率输出时的曲轴角速度 4300 rpm（默认）| 正标量
+  group: 发动机规格
+- name: Maximum power
+  summary: 发动机功率输出的物理极限 230 kW（默认）| 正标量
+  group: 发动机规格
+- name: Speed at maximum power
+  summary: 发动机达到最大扭矩输出时的曲轴角速度 6858 rpm（默认）| 正标量
+  group: 发动机规格
+- name: Maximum speed
+  summary: 最大曲轴角速度 7000 rpm（默认）| 正标量
+  group: 发动机规格
+- name: Stall speed
+  summary: 发动机切断转速 500 rpm（默认）| 正标量
+  group: 发动机规格
+- name: Stall speed threshold
+  summary: 发动机切断阈值 100 rpm（默认）| 正标量
+  group: 发动机规格
+- name: Speed vector
+  summary: 表列发动机转速数据 [500, 1000, 2000, 3000, 4300, 5000, 6000, 7000] rpm（默认）| 向量
+  group: 发动机规格
+- name: Torque vector
+  summary: 表列发动机扭矩数据 [250, 280, 330, 360, 380, 370, 350, 310] N*m（默认）| 向量
+  group: 发动机规格
+- name: Power vector
+  summary: 表列发动机功率数据 [10, 30, 70, 110, 165, 190, 220, 230] kW（默认）| 向量
+  group: 发动机规格
+- name: Interpolation method
+  summary: 中间点计算方法 Linear（默认）| Smooth
+  group: 发动机规格
+- name: Inertia
+  summary: 启用惯性建模参数 No inertia（默认）| Specify inertia and initial velocity
+  group: 动力学
+- name: Engine inertia
+  summary: 发动机曲轴转动惯量 1 kg*m^2（默认）| 正标量
+  group: 动力学
+- name: Initial velocity
+  summary: 发动机曲轴角速度 800 rpm（默认）| 正标量
+  group: 动力学
+- name: Time constant
+  summary: 启用发动机滞后建模参数 No lag - Suitable for HIL simulation（默认）| Specify time constant and initial value
+  group: 动力学
+- name: Engine time constant
+  summary: 发动机滞后值 0.2 s（默认）| 正标量
+  group: 动力学
+- name: Initial normalized throttle
+  summary: 发动机初始节气门值 0（默认）| [0,1] 范围内的标量
+  group: 动力学
+- name: Fuel consumption model
+  summary: 启用燃油消耗建模参数 No fuel consumption（默认）| Constant per revolution | Fuel consumption by speed and torque | ...
+  group: 燃油消耗
+- name: Fuel consumption per revolution
+  summary: 常数 25 mg/rev（默认）| 正标量
+  group: 燃油消耗
+- name: Speed vector
+  summary: 发动机转速数据 [1000, 2000, 3000, 4000, 5000, 6000]（默认）| 向量
+  group: 燃油消耗
+- name: Torque vector
+  summary: 发动机扭矩数据 [0, 80, 160, 200, 240, 320, 360, 400]（默认）| 向量
+  group: 燃油消耗
+- name: Fuel consumption table
+  summary: 发动机燃油消耗数据 *M*×*N* 矩阵（默认）| 矩阵
+  group: 燃油消耗
+- name: Brake mean effective pressure vector
+  summary: 活塞压力数据 [0, 250, 500, 625, 750, 1000, 1150, 1250]（默认）| 向量
+  group: 燃油消耗
+- name: Brake specific fuel consumption table
+  summary: 制动比油耗数据 *M*×*N* 矩阵（默认）| 矩阵
+  group: 燃油消耗
+- name: Displaced volume
+  summary: 单个活塞冲程排出的燃油体积 400 cm^3（默认）| 正标量
+  group: 燃油消耗
+- name: Interpolation method
+  summary: 中间步骤行为 Linear（默认）| Smooth
+  group: 燃油消耗
+- name: Revolutions per cycle
+  summary: 燃烧循环转数 2（默认）| 1
+  group: 燃油消耗
+- name: Idle speed control
+  summary: 启用速度控制参数 Off（默认）| On
+  group: 转速控制
+- name: Idle speed reference
+  summary: 稳态怠速 1000 rpm（默认）| 正标量
+  group: 转速控制
+- name: Controller time constant
+  summary: 怠速控制器响应延迟 1 s（默认）| 正标量
+  group: 转速控制
+- name: Controller threshold speed
+  summary: 控制器响应平滑度 1 rpm（默认）| 正标量
+  group: 转速控制
+- name: Redline control
+  summary: 启用红线控制参数 Off（默认）| On
+  group: 转速控制
+- name: Redline speed
+  summary: 曲轴速度控制峰值阈值 5000 rpm（默认）| 正标量
+  group: 转速控制
+- name: Redline time constant
+  summary: 红线控制器响应延迟 1 s（默认）| 正标量
+  group: 转速控制
+- name: Redline threshold speed
+  summary: 红线控制器响应平滑度 1 rpm（默认）| 正标量
+  group: 转速控制
+```
 
 ### 发动机规格
 
@@ -388,7 +525,6 @@ BMEP=T⋅(2π⋅ncVd)，
 #### 依赖关系
 
 要启用此参数，请选择 **Redline control**。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors

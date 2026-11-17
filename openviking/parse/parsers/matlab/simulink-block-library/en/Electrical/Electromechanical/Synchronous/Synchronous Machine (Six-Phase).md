@@ -14,6 +14,54 @@ language: en
 # Synchronous Machine (Six-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: fd+
+  summary: Field winding positive terminal electrical
+  direction: conserving
+- name: fd-
+  summary: Field winding negative terminal electrical
+  direction: conserving
+- name: R
+  summary: Machine rotor mechanical
+  direction: conserving
+- name: C
+  summary: Machine case mechanical
+  direction: conserving
+- name: ~ABC
+  summary: Stator ABC windings electrical
+  direction: conserving
+- name: ~XYZ
+  summary: Stator XYZ windings electrical
+  direction: conserving
+- name: n1
+  summary: ABC winding neutral point electrical
+  direction: conserving
+- name: n2
+  summary: XYZ winding neutral point electrical
+  direction: conserving
+- name: HA
+  summary: '*a*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HB
+  summary: '*b*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HC
+  summary: '*c*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HX
+  summary: '*x*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HY
+  summary: '*y*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HZ
+  summary: '*z*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -135,8 +183,96 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Nominal power
+  summary: Nominal power 100e3 V*A (default) | scalar
+  group: Main
+- name: Nominal voltage (line-to-line,rms)
+  summary: Nominal root mean square voltage 240 V (default) | scalar
+  group: Main
+- name: Nominal electrical frequency
+  summary: Nominal electrical frequency 60 Hz (default) | scalar
+  group: Main
+- name: Number of pole pairs
+  summary: Rotor pole pairs 2 (default) | positive scalar
+  group: Main
+- name: Zero sequence
+  summary: Zero sequence model Include (default) | Exclude
+  group: Main
+- name: Rotor angle definition
+  summary: Rotor angle reference point Angle between the a-phase magnetic axis and the d-axis (default) | Angle between the
+    a-phase magnetic axis and the q-axis
+  group: Main
+- name: Stator resistance, Rs
+  summary: Stator resistance 0.0288 (default) | positive scalar
+  group: Impedances
+- name: Stator leakage inductance, Ll
+  summary: Stator leakage inductance 0.0969 (default) | positive scalar
+  group: Impedances
+- name: Stator d-axis mutual inductance, Lmd
+  summary: Stator *d*-axis mutual inductance 1.9583 (default) | positive scalar
+  group: Impedances
+- name: Stator q-axis mutual inductance, Lmq
+  summary: Stator *q*-axis mutual inductance 0.9045 (default) | positive scalar
+  group: Impedances
+- name: Rotor field winding resistance, Rfd'
+  summary: Rotor field winding resistance 0.0028 (default) | positive scalar
+  group: Impedances
+- name: Rotor field winding inductance, Llfd'
+  summary: Rotor field winding inductance 0.0813 (default) | positive scalar
+  group: Impedances
+- name: Rotor d-axis damper winding resistance, Rkd'
+  summary: Rotor *d*-axis damper winding resistance 0.0041 (default) | positive scalar
+  group: Impedances
+- name: Rotor d-axis damper winding inductance, Llkd'
+  summary: Rotor *d*-axis damper winding inductance 0.0918 (default) | positive scalar
+  group: Impedances
+- name: Rotor q-axis damper winding resistance, Rkq'
+  summary: Rotor *q*-axis damper winding resistance 0.0043 (default) | positive scalar
+  group: Impedances
+- name: Rotor q-axis damper winding inductance, Llkq'
+  summary: Rotor *q*-axis damper winding inductance 0.1174 (default) | positive scalar
+  group: Impedances
+- name: Initialization option
+  summary: Initialization option Set real power, reactive power, terminal voltage, and terminal phase (default) | Set targets
+    for rotor angle and Park's transform variables
+  group: Initial Conditions
+- name: Terminal voltage magnitude
+  summary: Terminal voltage magnitude 240 V (default) | scalar
+  group: Initial Conditions
+- name: Terminal voltage angle corresponding to ABC group
+  summary: Terminal voltage angle corresponding to ABC group 0 deg (default) | scalar
+  group: Initial Conditions
+- name: Terminal active power (ABC group)
+  summary: ABC terminal active power 50e3 V*A (default) | scalar
+  group: Initial Conditions
+- name: Terminal reactive power (ABC group)
+  summary: ABC terminal reactive power 0 V*A (default) | scalar
+  group: Initial Conditions
+- name: Terminal active power (XYZ group)
+  summary: XYZ terminal active power 20e3 V*A (default) | scalar
+  group: Initial Conditions
+- name: Terminal reactive power (XYZ group)
+  summary: XYZ terminal reactive power 0 V*A (default) | scalar
+  group: Initial Conditions
+- name: Measurement temperature
+  summary: Rated temperature 298.15 k (default) | real scalar
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -342,7 +478,6 @@ energy required to raise the temperature by one degree.
 
 Thermal mass of the rotor. The thermal mass is the energy required to
 raise the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Synchronous

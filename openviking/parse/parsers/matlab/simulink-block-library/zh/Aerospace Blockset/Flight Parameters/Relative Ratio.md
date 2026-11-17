@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Relative Ratio
 
 ## 端口
+```yaml
+ports:
+- name: Mach
+  summary: 马赫数标量
+  direction: input
+  data_types: double
+- name: γ
+  summary: 比值标量
+  direction: input
+  data_types: double
+- name: To
+  summary: 静温标量
+  direction: input
+  data_types: double
+- name: Po
+  summary: 静压标量
+  direction: input
+  data_types: double
+- name: ρo
+  summary: 静密度标量
+  direction: input
+  data_types: double
+- name: θ
+  summary: 相对温度比标量
+  direction: output
+  data_types: double
+- name: sqrt(θ)
+  summary: 相对温度比的平方根标量
+  direction: output
+  data_types: double
+- name: δ
+  summary: 相对压力比标量
+  direction: output
+  data_types: double
+- name: σ
+  summary: 相对密度比标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -88,8 +127,40 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Sigma**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+- name: Theta
+  summary: 相对温度比 on（默认）| off
+  group: ''
+  block_parameter: theta
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Square root of theta
+  summary: 相对温度比的平方根 on（默认）| off
+  group: ''
+  block_parameter: sq_theta
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Delta
+  summary: 相对压力比 on（默认）| off
+  group: ''
+  block_parameter: delta
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Sigma
+  summary: 相对密度比 on（默认）| off
+  group: ''
+  block_parameter: sigma
+  type: 字符向量
+  values: '''on'' | ''off'''
+```
 
 ### **Units** — 单位 `Metric (MKS)`（默认）| `English`
 
@@ -164,7 +235,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认**：`'on'` |
-
 ## 所属库
 
 Aerospace Blockset / Flight Parameters

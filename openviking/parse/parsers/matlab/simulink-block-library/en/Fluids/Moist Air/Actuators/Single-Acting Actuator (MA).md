@@ -14,6 +14,27 @@ language: en
 # Single-Acting Actuator (MA)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Multibody piston position input, m physical signal
+  direction: input
+- name: p
+  summary: Piston position, m physical signal
+  direction: output
+- name: A
+  summary: Liquid port moist air
+  direction: conserving
+- name: C
+  summary: Actuator casing translational mechanical
+  direction: conserving
+- name: R
+  summary: Actuator piston translational mechanical
+  direction: conserving
+- name: H
+  summary: Heat transfer thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -61,8 +82,112 @@ piston.
 
 Thermal conserving port associated with the thermal mass of the moist
 air volume.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Actuator
+- name: Piston cross-sectional area
+  summary: Cross-sectional area of piston rod 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston stroke
+  summary: Maximum piston travel distance 0.1 m (default) | positive scalar
+  group: Actuator
+- name: Dead volume
+  summary: Fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Cross-sectional area at port A
+  summary: Area at port A 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Actuator
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Actuator
+- name: Hard stop model
+  summary: Hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default) | Full
+    stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound
+    | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+- name: Piston displacement
+  summary: Method for determining piston position Calculate from velocity of port R relative to port C (default) | Provide
+    input signal from Multibody joint
+  group: Initial Conditions
+- name: Initial piston displacement
+  summary: Piston position at start of simulation 0 m (default) | scalar
+  group: Initial Conditions
+- name: Initial moist air pressure
+  summary: Moist air pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Initial moist air temperature
+  summary: Moist air temperature at start of simulation 293.15 K (default) | scalar
+  group: Initial Conditions
+- name: Initial humidity specification
+  summary: Quantity to use to describe initial humidity level Relative humidity (default) | Specific humidity | Mole fraction
+    | Humidity ratio | Wet-bulb temperature
+  group: Initial Conditions
+- name: Initial moist air relative humidity
+  summary: Relative humidity at start of simulation 0.5 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial moist air specific humidity
+  summary: Specific humidity at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial moist air water vapor mole fraction
+  summary: Mole fraction of water vapor at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial moist air humidity ratio
+  summary: Humidity ratio at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial moist air wet-bulb temperature
+  summary: Wet-bulb temperature at start of simulation 287 K (default) | positive scalar
+  group: Initial Conditions
+- name: Initial trace gas specification
+  summary: Quantity to use to describe initial trace gas level Mass fraction (default) | Mole fraction
+  group: Initial Conditions
+- name: Initial trace gas mass fraction
+  summary: Mass fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial trace gas mole fraction
+  summary: Mole fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Initial Conditions
+- name: Relative humidity at saturation
+  summary: Relative humidity above which condensation occurs 1 (default) | positive scalar
+  group: Initial Conditions
+- name: Water vapor condensation time constant
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Initial Conditions
+- name: Water droplets evaporation time constant
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Initial Conditions
+- name: Fraction of condensate entrained as water droplets
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+```
 
 ### Actuator
 
@@ -348,7 +473,6 @@ vapor.
 
 Fraction of the condensate in the moist air that is entrained as water
 droplets.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Actuators

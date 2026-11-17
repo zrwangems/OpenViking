@@ -14,6 +14,9 @@ language: en
 # Variable Rotational Spring
 
 ## Ports
+```yaml
+ports: []
+```
 
 `K`
 :   Physical signal input port representing the variable spring
@@ -24,15 +27,16 @@ language: en
 
 `R`
 :   Rotational conserving port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Minimum spring rate**
 :   Minimum value allowed for the spring rate (stiffness). The physical signal
     input saturates below the specified value. The parameter must be greater
     than zero. The default value is `0.01`. The default unit is
     `(N*m/rad)`.
-
 ## Libraries
 
 Not documented in R2025b.

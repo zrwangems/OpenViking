@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Biquad Filter
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Num
+  summary: 分子系数矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Den
+  summary: 分母系数矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: g
+  summary: 缩放值行向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Out
+  summary: 滤波后的输出向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### 输入
 
@@ -78,8 +101,82 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Coefficient source
+  summary: 操作模式 Dialog parameters（默认）| Input port(s) | Filter object
+  group: 主选项卡
+- name: Filter
+  summary: 滤波器对象名称 BQF（默认）| dsp.BiquadFilter System object 名称
+  group: 主选项卡
+- name: Filter structure
+  summary: 滤波器结构 Direct form II transposed（默认）| Direct form I | Direct form I transposed | Direct form II
+  group: 主选项卡
+- name: SOS Matrix (Mx6)
+  summary: SOS 矩阵 [1 0.3 0.4 1 0.1 0.2]（默认）| *M*×6 矩阵
+  group: 主选项卡
+- name: Scale values
+  summary: 缩放值 1（默认）| 标量 | 向量
+  group: 主选项卡
+- name: Initial conditions
+  summary: 初始条件 0（默认）| 标量 | 向量
+  group: 主选项卡
+- name: Initial conditions on zeros side
+  summary: 零点侧初始条件 0（默认）| 标量 | 向量
+  group: 主选项卡
+- name: Initial conditions on poles side
+  summary: 极点侧初始条件 0（默认）| 标量 | 向量
+  group: 主选项卡
+- name: Scale values mode
+  summary: 指定缩放值的模式 Specify via input port (g)（默认）| Assume all are unity and optimize
+  group: 主选项卡
+- name: Action when the a0 values of the SOS matrix are not one
+  summary: 当 SOS 矩阵的 a0 值不为 1 时的操作 Warning（默认）| None | Error
+  group: 主选项卡
+- name: Optimize unity scale values
+  summary: 优化单位缩放值 on（默认）| off
+  group: 主选项卡
+- name: Input processing
+  summary: 输入处理 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: 主选项卡
+- name: View Filter Response
+  summary: 查看滤波器响应按钮
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作方法 off（默认）| on
+  group: 数据类型选项卡
+- name: Section input
+  summary: 节输入数据类型 Same as input（默认）| Binary point scaling
+  group: 数据类型选项卡
+- name: Section output
+  summary: 节输出数据类型 Same as section input（默认）| Binary point scaling
+  group: 数据类型选项卡
+- name: Multiplicand
+  summary: 被乘数数据类型 Same as output（默认）| Binary point scaling
+  group: 数据类型选项卡
+- name: Coefficients
+  summary: 系数数据类型 Same word length as input（默认）| Specify word length | Binary point scaling
+  group: 数据类型选项卡
+- name: Product output
+  summary: 乘积输出数据类型 Same as input（默认）| Inherit via internal rule | Binary point scaling
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: 累加器数据类型 Same as product output（默认）| Same as input | Binary point scaling
+  group: 数据类型选项卡
+- name: States
+  summary: 状态数据类型 Same as accumulator（默认）| Same as input | Binary point scaling
+  group: 数据类型选项卡
+- name: Output
+  summary: 输出数据类型 Same as accumulator（默认）| Same as input | Binary point scaling
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 锁定数据类型设置 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -354,7 +451,6 @@ Biquad Filter 模块默认将内部滤波器状态初始化为零。要为滤波
 ### **Lock data type settings against changes by the fixed-point tools** — 锁定数据类型设置 `off`（默认）| `on`
 
 选择此参数以防止定点工具覆盖您在模块掩码上指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Implementations DSP System Toolbox HDL Support / Filtering

@@ -14,6 +14,24 @@ language: en
 # SPDT Switch (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: vT
+  summary: Control port physical signal
+  direction: input
+- name: ~1
+  summary: Expandable three-phase port electrical
+  direction: conserving
+- name: ~2
+  summary: Expandable three-phase port electrical
+  direction: conserving
+- name: ~3
+  summary: Expandable three-phase port electrical
+  direction: conserving
+- name: vT
+  summary: Control port electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -51,8 +69,24 @@ To enable this port, set **Modeling option** to
 `Expanded three-phase ports| Electrical control
 port` or `Composite three-phase ports|
 Electrical control port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Connection and gate control ports Composite three-phase ports | PS control port (default) | Composite three-phase
+    ports| Electrical control port | Expanded three-phase ports | PS control port | Expanded three-phase ports| Electrical
+    control port
+  group: ''
+- name: Closed resistance
+  summary: Closed resistance 0.001 Ohm (default)
+  group: ''
+- name: Open conductance
+  summary: Open conductance 1e-6 1/Ohm (default)
+  group: ''
+- name: Threshold
+  summary: Threshold 0.5 V (default)
+  group: ''
+```
 
 ### **Modeling option** — Connection and gate control ports `Composite three-phase ports | PS control port` (default) | `Composite three-phase ports| Electrical control port` | `Expanded three-phase ports | PS control port` | `Expanded three-phase ports| Electrical control port`
 
@@ -72,7 +106,6 @@ Conductance between ports **~1** and
 
 Threshold voltage for the control port *vT*. When the
 voltage is above the threshold, the switch is closed.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers

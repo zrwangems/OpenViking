@@ -14,6 +14,19 @@ language: en
 # Permute Dimensions
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: Permutation of input signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -33,8 +46,17 @@ the value of the **Order** parameter. The output has
 the same data type as the input.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Order
+  summary: Permutation vector [2,1] (default) | N-element vector, where N is the number of dimensions of the input signal
+  group: ''
+  block_parameter: Order
+  type: character vector
+  values: N-element vector
+  default: '''[2 1]'''
+```
 
 ### **Order** — Permutation vector `[2,1]` (default) | `N`-element vector, where `N` is the number of dimensions of the input signal
 
@@ -56,7 +78,6 @@ the input signal.
 | **Type**: character vector |
 | **Value**: N-element vector |
 | **Default**: `'[2 1]'` |
-
 ## Libraries
 
 Simulink / Math Operations

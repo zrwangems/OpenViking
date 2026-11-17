@@ -14,6 +14,46 @@ language: en
 # Interpolation Using Prelookup
 
 ## Ports
+```yaml
+ports:
+- name: k1
+  summary: Index, k, for the first dimension of the table scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: f1
+  summary: Fraction, f, for the first dimension of the table scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: kn
+  summary: Index, k, for the n-th dimension of the table scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: fn
+  summary: Fraction, f, for the n-th dimension of the table scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: kf1
+  summary: Input containing index k and fraction f bus object
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: kfn
+  summary: Input containing index k and fraction f bus object
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: sm
+  summary: Select and interpolate a subset of the table data scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: T
+  summary: Table data scalar | vector | matrix | n-d array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Approximation of N-dimensional function scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -133,8 +173,189 @@ extrapolating) table data using values from the input index,
 `k`, and fraction, `f`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of dimensions
+  summary: Number of table data dimensions 2 (default) | integer between 1 and 30
+  group: Main
+  block_parameter: NumberOfTableDimensions
+  type: character vector
+  values: '''1'' | ''2'' | ''3'' |''4'' | ... | ''30'''
+  default: '''2'''
+- name: Require index and fraction as bus
+  summary: Index and fraction inputs can be combined in a bus off (default) | on
+  group: Main
+  block_parameter: RequireIndexFractionAsBus
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Specification
+  summary: Choose how to enter table data Explicit values (default) | Lookup table object
+  group: Main
+  block_parameter: TableSpecification
+  type: character vector
+  values: '''Explicit values'' | ''Lookup table object'''
+  default: '''Explicit values'''
+- name: Source
+  summary: Source of table data Dialog (default) | Input port
+  group: Main
+  values: '''Dialog'' | ''Input port'''
+  block_parameter: TableSource
+  type: character vector
+  default: '''Dialog'''
+- name: Value
+  summary: Specify table data values sqrt([1:11]' * [1:11]) (default) | multidimensional array of table data
+  group: Main
+  block_parameter: Table
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''sqrt([1:11]'' * [1:11])'''
+- name: Name
+  summary: Name of a Simulink.LookupTable object Simulink.LookupTable object
+  group: Main
+  block_parameter: LookupTableObject
+  type: character vector
+  values: Simulink.LookupTable object
+  default: ''''''
+- name: Interpolation method
+  summary: Select Linear point-slope, Flat, Nearest, or Linear Lagrange Linear point-slope (default) | Nearest | Flat | Linear
+    Lagrange
+  group: Main
+  block_parameter: InterpMethod
+  type: character vector
+  values: '''Flat'' | ''Linear point-slope'' | ''Nearest'' | ''Linear Lagrange'''
+  default: '''Linear point-slope'''
+- name: Extrapolation method
+  summary: Method of handling input that falls outside the range of the breakpoint data set Linear (default) | Clip
+  group: Main
+  block_parameter: ExtrapMethod
+  type: character vector
+  values: '''Clip'' | ''Linear'''
+  default: '''Linear'''
+- name: Valid index input may reach last index
+  summary: Allow inputs to access the last elements of table data off (default) | on
+  group: Main
+  block_parameter: ValidIndexMayReachLast
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Assume index is within range
+  summary: Option to check for out-of-range index values off (default) | on
+  group: Main
+  block_parameter: RemoveProtectionIndex
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Diagnostic for out-of-range input
+  summary: Block action when input is out of range None (default) | Warning | Error
+  group: Main
+  block_parameter: DiagnosticForOutOfRangeInput
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Number of sub-table selection dimensions
+  summary: Number of dimensions of the output computation subtable 0 (default) | positive integer, less than or equal to the
+    number of table dimensions
+  group: Main
+  block_parameter: NumSelectionDims
+  type: character vector
+  values: '''0'' | ''1'' | ''2'' | ''3'' | ''4'' | ... | Number of table dimensions'
+  default: '''0'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Table data
+  summary: 'Data type of table values Inherit: Same as output (default) | Inherit: Inherit from ''Table data'' | double |
+    single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: Data Types
+  block_parameter: TableDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit from table data'' | ''Inherit: Same as output'' | ''double'' | ''single'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Same as output'''
+- name: Table minimum
+  summary: Minimum value of table data [] (default) | scalar
+  group: Data Types
+  block_parameter: TableMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Table maximum
+  summary: Maximum value of table data [] (default) | scalar
+  group: Data Types
+  block_parameter: TableMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Intermediate results
+  summary: 'Data type of intermediate results Inherit: Inherit via internal rule (default) | Inherit: Same as output | double
+    | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: Data Types
+  block_parameter: IntermediateResultsDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as output'' | ''double'' | ''single'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output
+  summary: 'Output data type Inherit: Inherit from ''Table data'' (default) | Inherit: Inherit via back propagation | double
+    | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''Inherit: Inherit from table data'' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit from table data'''
+- name: Output minimum
+  summary: Minimum value the block can output [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Output maximum
+  summary: Maximum value the block can output [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Internal rule priority
+  summary: Internal rule for intermediate calculations Speed (default) | Precision
+  group: Data Types
+  block_parameter: InternalRulePriority
+  type: character vector
+  values: '''Speed'' | ''Precision'''
+  default: '''Speed'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Convergent | Ceiling | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+```
 
 ### Main
 
@@ -820,7 +1041,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
-
 ## Libraries
 
 Simulink / Lookup Tables

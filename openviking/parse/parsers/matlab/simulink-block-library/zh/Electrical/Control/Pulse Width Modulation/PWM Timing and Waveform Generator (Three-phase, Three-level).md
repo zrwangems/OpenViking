@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # PWM Timing and Waveform Generator (Three-phase, Three-level)
 
 ## 端口
+```yaml
+ports:
+- name: Vabc
+  summary: 三相正弦参考信号向量
+  direction: input
+- name: vdc
+  summary: 直流母线电压信号标量
+  direction: input
+- name: vneutral
+  summary: 直流母线中性点平衡控制标量
+  direction: input
+- name: TgabcON
+  summary: 开通门极时间向量
+  direction: output
+- name: TgabcOFF
+  summary: 关断门极时间向量
+  direction: output
+- name: SmallHexNum
+  summary: 小六边形编号标量
+  direction: output
+- name: ModWave
+  summary: 调制波向量
+  direction: output
+```
 
 ### 输入
 
@@ -46,8 +70,19 @@ chinese_source: worker-translation
 ### **ModWave** — 调制波向量
 
 调制波，以包含三个元素的向量形式返回，每个元素对应一相。
-
 ## 参数
+```yaml
+parameters:
+- name: Continuous PWM
+  summary: '连续脉宽调制方法 SPWM: sinusoidal PWM（默认）| SVM: space vector modulation'
+  group: ''
+- name: Sampling mode
+  summary: 波形采样方法 Natural（默认）| Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: 开关频率 1e3（默认）| 正标量
+  group: ''
+```
 
 ### **Continuous PWM** — 连续脉宽调制方法 `SPWM: sinusoidal PWM`（默认）| `SVM: space vector modulation`
 
@@ -60,7 +95,6 @@ chinese_source: worker-translation
 ### **Switching frequency (Hz)** — 开关频率 `1e3`（默认）| 正标量
 
 功率变换器中开关的切换速率。
-
 ## 所属库
 
 Simscape / Electrical / Control / Pulse Width Modulation

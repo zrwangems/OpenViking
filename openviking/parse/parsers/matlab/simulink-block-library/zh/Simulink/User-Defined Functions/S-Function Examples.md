@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # S-Function
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: S-Function 模块的信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: S-Function 模块的信号输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +42,25 @@ chinese_source: worker-translation
 您可以使用 `mdlInitializeSizes` 回调函数配置输出端口。使用 `mdlInitializeSizes` 函数指定输出端口数量、输出信号维度，以及每个端口的采样时间。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: S-function name
+  summary: S-Function 的名称 system（默认）| S-Function 名称
+  group: ''
+  block_parameter: FunctionName
+  values: '''system''（默认）| 带引号的 S-Function 名称'
+- name: S-function parameters
+  summary: 附加的 S-Function 参数 MATLAB 表达式 | 逗号分隔的变量
+  group: ''
+  block_parameter: Parameters
+  values: '''''（默认）| 带引号的 S-Function 参数'
+- name: S-function modules
+  summary: 用于代码生成的附加文件 ''（默认）| 文件名
+  group: ''
+  block_parameter: SFunctionModules
+  values: '''''（默认）| 带引号的文件名'
+```
 
 ### **S-function name** — S-Function 的名称 `system`（默认）| S-Function 名称
 
@@ -77,7 +106,6 @@ A, B, C, D, [eye(2,2);zeros(2,2)]
 | --- | --- |
 | **参数：** | `SFunctionModules` |
 | **值：** | `''`（默认）| 带引号的文件名 |
-
 ## 所属库
 
 Simulink / User-Defined Functions

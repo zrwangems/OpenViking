@@ -15,10 +15,117 @@ chinese_source: worker-translation
 # General Amplifier
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: 数据源
+  summary: 描述放大器行为的数据源 Data file（默认）| RFDATA 对象
+  group: 主
+- name: 数据文件
+  summary: 包含放大器数据的文件名 default.s2d（默认）| 字符串 | 字符向量
+  group: 主
+- name: RFDATA 对象
+  summary: 包含放大器数据的 RF 数据对象 read(rfdata.data, 'default.amp')（默认）| rfdata.data 对象
+  group: 主
+- name: 插值方法
+  summary: 插值网络参数的方法 Linear（默认）| Spline | Cubic
+  group: 主
+- name: 噪声类型
+  summary: 噪声数据的类型 Noise figure（默认）| Spot noise data | Noise factor | Noise temperature
+  group: 噪声数据
+- name: 噪声系数 (dB)
+  summary: 输入端的可用信噪比与输出端的可用信噪比之比 0（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: 最小噪声系数
+  summary: 输入端的可用信噪比与输出端的可用信噪比之比的最小值 0（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: 最佳反射系数
+  summary: 最佳源阻抗 1+0i（默认）| 复标量 | 复向量
+  group: 噪声数据
+- name: 等效归一化噪声电阻
+  summary: 用于进行噪声测量的归一化电阻值 1（默认）| 正标量 | 正向量
+  group: 噪声数据
+- name: 噪声因子
+  summary: 输入端的可用信噪功率与输出端的可用信噪功率之比 1（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Noise temperature (K)
+  summary: 产生与放大器相同噪声量的等效温度 0（默认）| 非负标量 | 非负向量
+  group: 噪声数据
+- name: Frequency (Hz)
+  summary: 用于表示噪声数据的频率范围 2.0e9（默认）| 非负标量 | 非负向量
+  group: 噪声数据
+- name: IP3 type
+  summary: 三阶截点的类型 OIP3（默认）| IIP3
+  group: 非线性数据
+- name: IP3 (dBm)
+  summary: IP3 值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: 1dB gain compression power (dBm)
+  summary: 增益下降 1 dB 时的输出功率值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: Output saturation power (dBm)
+  summary: 放大器完全饱和时产生的输出功率值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: Gain compression at saturation (dB)
+  summary: 增益值的下降量 3（默认）| 标量 | 向量
+  group: 非线性数据
+- name: Frequency (Hz)
+  summary: 对应于三阶截点或功率数据的频率点 2.0e9（默认）| 正标量 | 正向量
+  group: 非线性数据
+- name: Source of frequency data
+  summary: 频率数据源 Extracted from data source（默认）| User-specified
+  group: 可视化
+- name: Frequency data (Hz)
+  summary: 频率数据范围 [1e9:1e8:2.9e9]（默认）| 向量
+  group: 可视化
+- name: Source of input power
+  summary: 输入功率源 User-specified（默认）| Extracted from data source
+  group: 可视化
+- name: Input power data (dBm)
+  summary: 输入功率数据范围 [0:19]（默认）| 向量
+  group: 可视化
+- name: Reference impedance (ohms)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: X parameter
+  summary: 频率绘图 Freq（默认）| AM
+  group: 可视化
+- name: X format
+  summary: 频率绘图格式 Hz（默认）| Auto | kHz | MHz | GHz | THz | ...
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+- name: Bias
+  summary: 放大器偏置 1.9（默认）| 标量
+  group: 工作条件
+```
 
 ### 主
 
@@ -304,7 +411,6 @@ Agilent® P2D 和 S2D 文件为若干工作条件定义模块参数。工作条�
 
 放大器偏置，指定为以伏特为单位的标量。当 **Data file**
 为 `default.s2p` 时，此参数设置为 `1.9` 伏特。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Amplifiers

@@ -15,10 +15,27 @@ chinese_source: worker-translation
 # LC Ladder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Ladder topology
+  summary: 梯形拓扑类型 LC Lowpass Tee（默认）
+  group: ''
+- name: Inductance
+  summary: 电感值 [1.3324e-5 1.3324e-5] H（默认）| 实数
+  group: ''
+- name: Capacitance
+  summary: 电容值 1.1327e-9 F（默认）| 实数
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 在内部将负端子接地并隐藏 on（默认）| off
+  group: ''
+```
 
 ### **Ladder topology** — 梯形拓扑类型 `LC Lowpass Tee`（默认）
 
@@ -50,7 +67,6 @@ R2025b 中未记录。
 ### **Ground and hide negative terminals** — 在内部将负端子接地并隐藏 `on`（默认）| `off`
 
 选择此选项可在内部将负端子接地并隐藏。清除此选项可暴露负端子。通过暴露这些端子，您可以将它们连接到模型的其他部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

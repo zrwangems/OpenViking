@@ -14,13 +14,18 @@ language: en
 # Variable Mass
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has one conserving translational port and one physical signal input port.
 The conserving translational port identifies the driveline component whose mass varies
 with time. The physical signal input port provides the means to specify the mass as a
 function of time.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Minimum mass**
 :   Lowest value that the variable mass can take on during simulation. The
@@ -28,7 +33,6 @@ function of time.
     minimum mass, it is set equal to the minimum mass value. The default value
     is `0.1`
     `kg`.
-
 ## Libraries
 
 Not documented in R2025b.

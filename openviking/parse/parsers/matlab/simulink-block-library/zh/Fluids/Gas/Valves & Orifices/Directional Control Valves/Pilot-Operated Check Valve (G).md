@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pilot-Operated Check Valve (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 阀入口气体
+  direction: conserving
+- name: B
+  summary: 阀入口气体
+  direction: conserving
+- name: X
+  summary: 先导端口气体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,70 @@ chinese_source: worker-translation
 ### **X** — 先导端口气体
 
 与通过施加足够压力来致动先导机构从而使阀打开以允许反向流动的开口关联的气体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Pilot configuration
+  summary: 处理负先导压力力的方法 Rigidly connected pilot spool and poppet（默认）| Disconnected pilot spool and poppet
+  group: ''
+- name: Pilot pressure specification
+  summary: 用作阀控制信号的压力测量选择 Pressure difference of port X relative to port A（默认）| Gauge pressure at port X
+  group: ''
+- name: Cracking pressure differential
+  summary: 阀首次打开时的有效控制压力 0.01 MPa（默认）| 正标量
+  group: ''
+- name: Maximum opening pressure differential
+  summary: 阀完全打开时的有效控制压力 0.02 MPa（默认）| 正标量
+  group: ''
+- name: Pilot ratio
+  summary: 先导端口面积与入口端口面积之比 1（默认）| 正标量
+  group: ''
+- name: Valve parameterization
+  summary: 用于指定节流孔流动特性的参数化方法 Cv flow coefficient（默认）| Kv flow coefficient | Sonic conductance | Orifice area
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 组件最大打开时对应的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 组件最大打开时对应的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 组件最大打开时对应的声速导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力之比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Maximum orifice area
+  summary: 组件最大打开时对应的流动面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流与湍流流态之间过渡时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 气体端口处的流动面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Pilot configuration** — 处理负先导压力力的方法 `Rigidly connected pilot spool and poppet`（默认）| `Disconnected pilot spool and poppet`
 
@@ -233,7 +307,6 @@ area`。
 每个端口处垂直于流动路径的面积。端口尺寸相等。
 此参数的值应与阻性元件所连接组件的入口面积
 匹配。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Valves & Orifices / Directional Control Valves

@@ -14,6 +14,25 @@ language: en
 # Wind Angular Rates
 
 ## Ports
+```yaml
+ports:
+- name: ɑ β
+  summary: Angles of attack and sideslip 2-by-1 vector
+  direction: input
+  data_types: double
+- name: dɑ/dt dβ/dt
+  summary: Rates of change 2-by-1 vector
+  direction: input
+  data_types: double
+- name: ω
+  summary: Body angular rates three-element vector
+  direction: input
+  data_types: double
+- name: ωw
+  summary: Wind angular rates three-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -44,11 +63,12 @@ per second.
 Wind angular rates, returned as a three-element vector, in radians per second.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Flight Parameters

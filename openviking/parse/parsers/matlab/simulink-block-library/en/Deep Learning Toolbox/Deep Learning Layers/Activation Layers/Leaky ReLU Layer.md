@@ -14,6 +14,17 @@ language: en
 # Leaky ReLU Layer
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input matrix scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: Output matrix scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,75 @@ than zero in the input matrix are multiplied by the value of the
 **Scale** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Scale
+  summary: Scale factor for negative inputs 0.01 (default) | numeric scalar
+  group: Main
+  block_parameter: Scale
+  type: character vector
+  values: numeric scalar
+  default: '''0.01'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Data type of output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output integer rounding mode
+  summary: Rounding mode for fixed-point output cast operation Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: Data Types
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Output saturate on integer overflow
+  summary: Method of overflow action for output cast operation off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Scale
+  summary: 'Data type of scale factor Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant value''
+    | <data type expression>'
+  group: Data Types
+  block_parameter: ScaleDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Internal integer rounding mode
+  summary: Rounding mode for internal fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest
+    | Zero
+  group: Data Types
+  block_parameter: InternalRndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Internal saturate on integer overflow
+  summary: Method of overflow action for internal block operations off (default) | on
+  group: Data Types
+  block_parameter: InternalSaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Sample time
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -318,7 +396,6 @@ programmatically, use the `set_param` (Simulink) function.
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **Values:** `'-1'` (default) | scalar |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Learning Layers / Activation Layers

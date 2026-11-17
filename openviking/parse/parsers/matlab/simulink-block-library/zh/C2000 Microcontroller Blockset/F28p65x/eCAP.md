@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # C28x eCAP
 
 ## 端口
+```yaml
+ports:
+- name: SI
+  summary: 来自软件的同步输入 标量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: RA
+  summary: 单次捕获序列 标量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: T
+  summary: APWM 周期 标量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: W
+  summary: APWM 宽度 标量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: TS
+  summary: 捕获事件的时间戳输出 向量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: CF
+  summary: 捕获事件状态 向量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: OF
+  summary: 溢出状态 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: Scale factor
+  summary: HRCLK 周期缩放因子 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -119,8 +154,109 @@ capture**** 参数并在 **eCAP** 选项卡上将 **Output
 type** 设置为 **HRCLK/ SYSCLK cycles** 时出现。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Operating mode
+  summary: 选择 eCAP 或 APWM 模式 eCAP（默认）| APWM
+  group: 常规
+- name: eCAPx pin
+  summary: 选择捕获单元引脚 eCAP1（默认）| eCAP2 | eCAP3 | eCAP4 | eCAP5 | eCAP6 | eCAP7
+  group: 常规
+- name: Counter phase offset value (0 ~ 4294967295)
+  summary: 事件捕获的时基 0（默认）| [0 4294967295] 范围内的整数
+  group: 常规
+- name: Enable counter Sync-In mode
+  summary: 使能 TSCTR 计数器从 CTRPHS 寄存器加载 off（默认）| on
+  group: 常规
+- name: Enable software-forced counter synchronizing input
+  summary: 同步一个或多个 eCAP 时基 off（默认）| on
+  group: 常规
+- name: Sync output selection
+  summary: 将 eCAP 计数器与其他 eCAP 计数器同步 Disabled（默认）| Pass through | CTR=PRD
+  group: 常规
+- name: Sample time
+  summary: 模块读取输入引脚值的频率 0.001（默认）
+  group: 常规
+- name: Event prescaler (integer from 0 to 31)
+  summary: 以 2 的倍数对输入信号进行预分频 0（默认）| [0 31] 范围内的标量整数
+  group: eCAP
+- name: Enable high resolution capture
+  summary: 选择启用高分辨率捕获或 HRCAP 模式 off（默认）| on
+  group: eCAP
+- name: Enable continuous calibration mode
+  summary: 选择启用连续校准模式 off（默认）| on
+  group: eCAP
+- name: Calibration period in seconds
+  summary: 指定校准周期 0.0016（默认）| on
+  group: eCAP
+- name: Select mode control
+  summary: 捕获模式 Continuous（默认）| One-Shot
+  group: eCAP
+- name: Enable One-Shot rearming control via input port
+  summary: 重新武装单次捕获序列 off（默认）| on
+  group: eCAP
+- name: Stop value after
+  summary: 捕获停止前经过的捕获事件数 Capture Event 1（默认）| Capture Event 2 | Capture Event 3 | Capture Event 4
+  group: eCAP
+- name: 'Enable reset counter after capture event # time-stamp'
+  summary: 捕获事件后复位计数器 off（默认）| on
+  group: eCAP
+- name: 'Select capture event # polarity'
+  summary: 在上升沿或下降沿启动捕获事件 Rising Edge（默认）| Falling Edge
+  group: eCAP
+- name: Output type
+  summary: 选择 eCAP 的输出类型 HRCLK/SYSCLK cycles（默认）| Microseconds
+  group: eCAP
+- name: Time-Stamp counter data type
+  summary: 计数器的数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: eCAP
+- name: Enable capture event status flag output
+  summary: 输出捕获事件状态 off（默认）| on
+  group: eCAP
+- name: Capture flag data type
+  summary: 输出端口 CF 的数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: eCAP
+- name: Enable overflow status flag output
+  summary: 输出 FIFO 缓冲区元素的状态 off（默认）| on
+  group: eCAP
+- name: Overflow flag data type
+  summary: 输出端口 OF 的数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: eCAP
+- name: Waveform period units
+  summary: 测量波形周期的单位 Seconds（默认）| Clock cycles
+  group: APWM
+- name: Waveform period source
+  summary: 获取波形周期值的来源 Specify via dialog（默认）| Input port
+  group: APWM
+- name: Waveform period
+  summary: PWM 波形的周期 0.001（默认）
+  group: APWM
+- name: Duty cycle units
+  summary: 测量占空比的单位 Percentages（默认）| Clock cycles
+  group: APWM
+- name: Duty cycle source
+  summary: 获取 PWM 波形占空比的来源 Specify via dialog（默认）| Input port
+  group: APWM
+- name: Duty cycle
+  summary: PWM 波形脉冲持续时间与 PWM 波形周期的比率 50（默认）
+  group: APWM
+- name: Output polarity select
+  summary: 设置输出的有效电平 Active High（默认）| Active Low
+  group: APWM
+- name: 'Post interrupt on capture event #'
+  summary: 将中断源设置为捕获事件 off（默认）| on
+  group: Interrupt
+- name: Post interrupt on counter overflow
+  summary: 在计数器溢出时触发中断 off（默认）| on
+  group: Interrupt
+- name: Post interrupt on counter equal period match
+  summary: 当计数器等于周期寄存器时发送中断 off（默认）| on
+  group: Interrupt
+- name: Post interrupt on counter equal compare match
+  summary: 当计数器等于比较寄存器时发送中断 off（默认）| on
+  group: Interrupt
+```
 
 ### 常规
 
@@ -367,7 +503,6 @@ mode** 设置为 `APWM` 时出现。
 
 此参数仅在您在 **General** 选项卡上将 **Operating
 mode** 设置为 `APWM` 时出现。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

@@ -14,6 +14,17 @@ language: en
 # Power Amplifier
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Time-dependent input signal column
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: Time-dependent output signal complex column
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -31,8 +42,22 @@ Time-dependent output signal, returned as a complex column. The output
 time-dependent signal is equal in size to the input time dependent signal.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Model
+  summary: Model to design amplifier Memory polynomial (default) | Cross-term memory
+  group: ''
+- name: Coefficient matrix
+  summary: Coefficient matrix 1+0i (default) | 2-D complex matrix
+  group: ''
+- name: Measured interval of PA data (s)
+  summary: Sample time of measured input-output data 1e-6 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 ### **Model** — Model to design amplifier `Memory polynomial` (default) | `Cross-term memory`
 
@@ -90,7 +115,6 @@ Type of simulation to run, specified as one of the following:
   of the subsequent simulations is slower than `Code
   generation`. In this mode, you can debug the source code of the
   block.
-
 ## Libraries
 
 RF Blockset / Idealized Baseband

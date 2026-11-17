@@ -14,6 +14,21 @@ language: en
 # Write Image
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image signal *M*-by-*N*-by-3 matrix | *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16
+- name: AlphaChannel
+  summary: Alpha channel for input image *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16
+- name: Msg
+  summary: ROS or ROS 2 image message nonvirtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -47,14 +62,18 @@ Publish or ROS 2 Publish block
 to publish the message to an active ROS or ROS 2 network respectively.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Image Encoding
+  summary: Image encoding rgb8 (default) | rgba8 | ...
+  group: ''
+```
 
 ### **Image Encoding** — Image encoding `rgb8` (default) | `rgba8` | ...
 
 Image encoding for the input **Image**, specified as
 one of the supported options. For more information about encoding types, see `rosReadImage`.
-
 ## Libraries
 
 ROS Toolbox / ROS ROS Toolbox / ROS 2

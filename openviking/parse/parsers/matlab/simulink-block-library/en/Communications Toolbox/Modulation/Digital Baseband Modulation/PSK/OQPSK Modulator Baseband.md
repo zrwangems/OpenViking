@@ -14,6 +14,16 @@ language: en
 # OQPSK Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input data integer column vector | bit column vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: Output baseband waveform column vector
+  direction: output
+```
 
 ### Input
 
@@ -33,8 +43,47 @@ Output baseband waveform, returned as a column vector of complex data.
 The **Output data
 type** parameter specifies the data type of the output
 signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input type
+  summary: Input type Integer (default) | Bit
+  group: Modulation
+- name: Symbol mapping
+  summary: Signal constellation bit mapping Gray (default) | Binary | custom 4-element numeric vector of integers with values
+    from 0 to 3
+  group: Modulation
+- name: Phase offset (rad)
+  summary: Phase of zeroth point of signal constellation 0 (default) | scalar
+  group: Modulation
+- name: View Constellation
+  summary: Option to plot reference constellation button
+  group: Modulation
+- name: Pulse shape
+  summary: Filtering pulse shape Half sine (default) | Normal raised cosine | Root raised cosine | Custom
+  group: Filtering
+- name: Rolloff factor
+  summary: Raised cosine filter rolloff factor 0.2 (default) | scalar
+  group: Filtering
+- name: Filter span (in symbols)
+  summary: Filter length 10 (default) | scalar
+  group: Filtering
+- name: Filter numerator
+  summary: Filter numerator [0.7071 0.7071] (default) | row vector
+  group: Filtering
+- name: Filter Denominator
+  summary: Filter denominator 1 (default) | row vector
+  group: Filtering
+- name: Samples per symbol
+  summary: Number of samples per symbol 4 (default) | positive even integer
+  group: Filtering
+- name: Rate options
+  summary: Processing rate option Enforce single-rate processing (default) | Allow multirate processing
+  group: Other Parameters
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: Other Parameters
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -176,7 +225,6 @@ integer.
 
 Select the output data type: `double` or
 `single`.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK

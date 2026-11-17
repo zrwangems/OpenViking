@@ -14,6 +14,33 @@ language: en
 # Track-To-Track Fuser
 
 ## Ports
+```yaml
+ports:
+- name: Tracks
+  summary: Track list Simulink bus containing MATLAB® structure
+  direction: input
+- name: Prediction Time
+  summary: Track update time real scalar
+  direction: input
+- name: Source Configurations
+  summary: Source configuration list Simulink bus containing MATLAB structure
+  direction: input
+- name: State Parameters
+  summary: Track state parameters Simulink bus containing MATLAB structure
+  direction: input
+- name: Confirmed Tracks
+  summary: Confirmed tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Tentative Tracks
+  summary: Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: All Tracks
+  summary: Confirmed and tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Info
+  summary: Additional information for analyzing track updates Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -179,8 +206,112 @@ This table shows the fields of the info structure:
 
 To enable this port, on the **Port Setting** tab, select
 **Enable information output**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Fuser Index
+  summary: Unique index for track fuser 1 (default) | positive integer
+  group: ''
+- name: Assignment algorithm name
+  summary: Assignment algorithm MatchPairs (default) | Munkres | Jonker-Volgenant | Auction | Custom
+  group: ''
+- name: Name of 'Custom' assignment function
+  summary: Name of 'Custom' assignment function function name
+  group: ''
+- name: Threshold for assigning source to central tracks
+  summary: Threshold for assigning source to central tracks [1 Inf]*30.0 (default) | positive scalar | 1-by-2 vector of positive
+    values
+  group: ''
+- name: Maximum number of central tracks
+  summary: Maximum number of central tracks 100 (default) | positive integer
+  group: ''
+- name: Maximum number of source configurations
+  summary: Maximum number of source configurations 20 (default) | positive integer
+  group: ''
+- name: Source configurations
+  summary: Configuration of source systems struct('SourceIndex',1) (default) | array of source configuration structures
+  group: ''
+- name: Update source configurations with time
+  summary: Update source configurations with time off (default) | on
+  group: ''
+- name: Track state parameters
+  summary: Parameters of track state reference frame structure | structure array
+  group: ''
+- name: Update track state parameters with time
+  summary: Update track state parameters with time off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code Generation
+  group: ''
+- name: Confirmation threshold [M N]
+  summary: Threshold for central track confirmation [2 3] (default) | positive integer | real-valued 1-by-2 vector of positive
+    integers
+  group: ''
+- name: Deletion threshold [P Q]
+  summary: Threshold for central track deletion [5 5] (default) | positive integer | real-valued 1-by-2 vector of positive
+    integers
+  group: ''
+- name: Central track state size
+  summary: Central track state size 6 (default) | positive integer
+  group: ''
+- name: Central track object attributes
+  summary: Central track object attributes struct (default) | structure
+  group: ''
+- name: State transition function
+  summary: State transition function constvel (default) | function name
+  group: ''
+- name: State transition Jacobian function
+  summary: State transition Jacobian function function name
+  group: ''
+- name: Process noise matrix
+  summary: Process noise matrix eye(3) (default) | positive real scalar | positive definite matrix
+  group: ''
+- name: Enable additive process noise
+  summary: Enable additive process noise off (default) | on
+  group: ''
+- name: State fusion function
+  summary: State fusion function Cross (default) | Intersection | Custom
+  group: ''
+- name: Name of 'Custom' fusion function
+  summary: Name of custom assignment function function name
+  group: ''
+- name: State fusion parameters source
+  summary: State fusion parameters source Auto (default) | Property
+  group: ''
+- name: Cross covariance factor
+  summary: Cross covariance factor 0.4 (default) | scalar in range (0,1)
+  group: ''
+- name: Optimize covariance based on
+  summary: Intersection algorithm criteria det (default) | trace
+  group: ''
+- name: State fusion custom algorithm parameters
+  summary: State fusion custom algorithm parameters MATLAB variable
+  group: ''
+- name: Fuse only confirmed source tracks
+  summary: Fuse only confirmed source tracks on (default) | off
+  group: ''
+- name: Fuse coasted source tracks
+  summary: Fuse only confirmed source tracks off (default) | on
+  group: ''
+- name: Prediction time source
+  summary: Source of prediction time Auto (default) | Input port
+  group: ''
+- name: Enable tentative tracks output
+  summary: Enable output port for tentative tracks off (default) | on
+  group: ''
+- name: Enable all tracks output
+  summary: Enable output port for all tracks off (default) | on
+  group: ''
+- name: Enable information output
+  summary: Enable output port for analysis information off (default) | on
+  group: ''
+- name: Source of output bus name
+  summary: Source of output track bus name Auto (default) | Property
+  group: ''
+- name: Source of output info bus name
+  summary: Source of output info bus name Auto (default) | Property
+  group: ''
+```
 
 #### Fuser Management
 
@@ -611,7 +742,6 @@ Source of the output info bus name, specified as one of these options:
   info bus name.
 - `Property` — Specify the output info bus name by
   using the **Fuser info bus name** parameter.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

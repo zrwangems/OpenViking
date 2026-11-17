@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Centrifugal Effect Model
 
 ## 端口
+```yaml
+ports:
+- name: Xecef
+  summary: 行星中心行星固定坐标 m×3 矩阵
+  direction: input
+  data_types: double
+- name: ω
+  summary: 行星自转速率 标量
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: 重力值 m×3 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -40,8 +55,32 @@ chinese_source: worker-translation
 重力值，以 m×3 数组形式返回，分别位于行星中心行星固定坐标的 *x* 轴、*y* 轴和 *z* 轴上，单位为输入距离单位每秒平方。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Planet model
+  summary: 行星模型 Earth（默认）| Venus | Mercury | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Custom
+  group: ''
+  block_parameter: ptype
+  type: character vector
+  values: '''Mercury'' | ''Venus'' | ''Earth'' | ''Moon'' | ''Mars'' | ''Jupiter'' | ''Saturn'' | ''Uranus'' | ''Neptune''
+    | ''Custom'''
+  default: '''Earth'''
+- name: Planetary rotational rate (rad/sec)
+  summary: 行星自转速率 7.2921150e-05（默认）| 标量
+  group: ''
+  block_parameter: omega
+  type: character vector
+  values: '''7.2921150e-05'' | scalar'
+  default: '''7.2921150e-05'''
+- name: Input planetary rotation rate
+  summary: 行星自转速率端口 off（默认）| on
+  group: ''
+  block_parameter: rate_loc
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Planet model** — 行星模型 `Earth`（默认）| `Venus` | `Mercury` | `Moon` | `Mars` | `Jupiter` | `Saturn` | `Uranus` | `Neptune` | `Custom`
 
@@ -95,7 +134,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Gravity

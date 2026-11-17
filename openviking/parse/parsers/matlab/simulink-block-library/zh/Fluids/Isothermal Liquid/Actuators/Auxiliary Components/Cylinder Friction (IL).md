@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Cylinder Friction (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口 等温液体
+  direction: conserving
+- name: C
+  summary: 机械端口 速度 机械平移
+  direction: conserving
+- name: R
+  summary: 机械端口 速度 机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,34 @@ chinese_source: worker-translation
 ### **R** — 机械端口 速度 机械平移
 
 与缸杆运动相关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Same fluid on both sides
+  summary: 用于对模块两侧流体进行相同建模的选项 on（默认）| off
+  group: ''
+- name: Breakaway to Coulomb friction force ratio
+  summary: 启动力与库仑摩擦力之比 1.2（默认）| 正标量
+  group: ''
+- name: Breakaway friction velocity
+  summary: 克服摩擦力运动的阈值 0.1 m/s（默认）| 正标量
+  group: ''
+- name: Preload force
+  summary: 由于密封组件在缸中产生的初始力 20 N（默认）| 标量
+  group: ''
+- name: Coulomb friction force coefficient
+  summary: 库仑摩擦力系数 1e-6 N/Pa（默认）| 正标量
+  group: ''
+- name: Viscous friction coefficient
+  summary: 粘性摩擦系数 100 N*s/m（默认）| 正标量
+  group: ''
+- name: Environment pressure specification
+  summary: 压力参考源 Atmospheric pressure（默认）| Specified pressure
+  group: ''
+- name: Environment pressure
+  summary: 用户定义的压力参考 0.101325 MPa（默认）| 正标量
+  group: ''
+```
 
 ### **Same fluid on both sides** — 用于对模块两侧流体进行相同建模的选项 `on`（默认）| `off`
 
@@ -71,7 +112,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Environment pressure specification** 设置为 `Specified pressure`。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Actuators / Auxiliary Components

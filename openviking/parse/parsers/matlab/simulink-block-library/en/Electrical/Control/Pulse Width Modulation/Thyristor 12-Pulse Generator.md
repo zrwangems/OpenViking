@@ -14,6 +14,25 @@ language: en
 # Thyristor 12-Pulse Generator
 
 ## Ports
+```yaml
+ports:
+- name: theta
+  summary: Synchronization angle, rad scalar
+  direction: input
+  data_types: single | double
+- name: alpha
+  summary: Firing angle, rad scalar
+  direction: input
+  data_types: single | double
+- name: Pdelta
+  summary: Delta pulse vector vector
+  direction: output
+  data_types: single | double
+- name: Pwye
+  summary: Wye pulse vector vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -42,8 +61,22 @@ Thyristor pulse vector for the delta connection.
 Thyristor pulse vector for the wye connection.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Pulse ordering
+  summary: Pulse ordering strategy Sequential device order (default) | Natural order of commutation
+  group: ''
+- name: Delta connection
+  summary: Delta sinusoidal phase variance model Leading (Delta11) (default) | Lagging (Delta1)
+  group: ''
+- name: Pulse width (rad)
+  summary: Pulse width 5*pi/6 rad (default) | positive scalar in range [0, pi]
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time 1e-5 (default) | positive scalar
+  group: ''
+```
 
 ### **Pulse ordering** — Pulse ordering strategy `Sequential device order` (default) | `Natural order of commutation`
 
@@ -72,7 +105,6 @@ If this block is inside a triggered subsystem, inherit the
 sample time by setting this parameter to `-1`. If this block is in a
 continuous variable-step model, specify the sample time explicitly using a positive
 scalar.
-
 ## Libraries
 
 Simscape / Electrical / Control / Pulse Width Modulation

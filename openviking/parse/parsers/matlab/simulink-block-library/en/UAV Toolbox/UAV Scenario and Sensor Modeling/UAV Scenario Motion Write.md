@@ -14,6 +14,24 @@ language: en
 # UAV Scenario Motion Write
 
 ## Ports
+```yaml
+ports:
+- name: Position
+  summary: Position 1-by-3 vector
+  direction: input
+- name: Orientation
+  summary: Orientation quaternion 1-by-4 vector
+  direction: input
+- name: Velocity
+  summary: Velocity 1-by-3 vector
+  direction: input
+- name: Acceleration
+  summary: Acceleration 1-by-3 vector
+  direction: input
+- name: AngularVelocity
+  summary: Angular Velocity 1-by-3 vector
+  direction: input
+```
 
 ### Input
 
@@ -41,8 +59,16 @@ vector.
 
 Specify input angular velocity of platform in input coordinate frame, specified as
 a 1-by-3 vector.
-
 ## Parameters
+```yaml
+parameters:
+- name: Platform name
+  summary: Platform name 'UAV' (default) | string
+  group: ''
+- name: Coordinate frame of input motion
+  summary: Coordinate frame of input motion 'NED' (default) | ENU
+  group: ''
+```
 
 ### **Platform name** — Platform name `'UAV'` (default) | string
 
@@ -54,7 +80,6 @@ Scenario.
 Specify coordinate frame of input motion as
 `'NED'`(North-East-Down) or
 `'ENU'`(East-North-Up).
-
 ## Libraries
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

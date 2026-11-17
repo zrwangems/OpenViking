@@ -15,14 +15,42 @@ chinese_source: worker-translation
 # Function Element
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 外部端口函数的完整或部分输出
+  direction: input
+```
 
 ### 输入
 
 ### **Port\_1** — 外部端口函数的完整或部分输出
 
 连接一个函数，以传递给父模型对应的外部输出端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Port name
+  summary: 导出函数端口的名称 server（默认）| 端口名称
+  group: 模块标签
+  block_parameter: PortName
+  values: '''server''（默认）| 带引号的端口名称'
+- name: Element
+  summary: 可选的函数元素指定 f1（默认）| 元素路径
+  group: 模块标签
+  block_parameter: Element
+  values: '''f1''（默认）| 带引号的元素路径'
+- name: Port number
+  summary: 端口在父模块上的位置 1（默认）| 实数整数
+  group: 端口选项卡
+  block_parameter: Port
+  values: '''1''（默认）| 带引号的实数整数'
+- name: Data type
+  summary: '端口数据类型 Inherit: auto（默认）| Bus: <object name> | ValueType: <object name>'
+  group: 信号选项卡
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto"（默认）| "Bus: <object name>" | "ValueType: <object name>"'
+```
 
 要编辑与 Function Element 模块关联的元素，请在 Simulink 编辑器中编辑模块标签。
 
@@ -129,7 +157,6 @@ Port="5")`
 **示例：** `set_param("mymodel/client",
 OutDataTypeStr="Bus:
 ServiceInterface")`
-
 ## 所属库
 
 Simulink / Ports & Subsystems

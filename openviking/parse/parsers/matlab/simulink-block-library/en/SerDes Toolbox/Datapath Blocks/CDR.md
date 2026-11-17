@@ -14,6 +14,13 @@ language: en
 # CDR
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input baseband signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -23,8 +30,87 @@ Input baseband signal. The input to the CDR must be applied as one sample at a
 time and not as a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: CDR Mode
+  summary: Determine CDR order 1st order (default) | 2nd order
+  group: ''
+  block_parameter: CDRMode
+  type: character vector
+  values: 1st order | 2nd order
+  default: 1st order
+- name: Phase Detector
+  summary: Clock phase detector option BangBang (default) | BaudRateTypeA
+  group: ''
+  block_parameter: PhaseDetector
+  type: character vector
+  values: BangBang | BaudRateTypeA
+  default: BangBang
+- name: Phase Offset (symbol time)
+  summary: Clock phase offset 0 (default) | real scalar in the range [-0.5,0.5]
+  group: ''
+  block_parameter: PhaseOffset
+  type: character vector
+  values: real scalar in the range [-0.5,0.5]
+  default: '0'
+- name: Reference offset (ppm)
+  summary: Reference clock offset impairment 0 (default) | real scalar in the range [0, 300]
+  group: ''
+  block_parameter: ReferenceOffset
+  type: character vector
+  values: real scalar in the range [0, 300]
+  default: '0'
+- name: Early/late count threshold
+  summary: Early or late CDR count threshold to trigger phase update 16 (default) | real positive integer ≥5
+  group: ''
+  block_parameter: Count
+  type: character vector
+  values: real positive integer ≥5
+  default: '16'
+- name: Step (symbol time)
+  summary: Clock phase resolution 0.0078 (default) | real scalar
+  group: ''
+  block_parameter: Step
+  type: character vector
+  values: real scalar
+  default: '0.0078'
+- name: Frequency tracking gain
+  summary: Internal gain for frequency tracking 0.00048828125 (default) | nonnegative real scalar
+  group: ''
+  block_parameter: FrequencyStep
+  type: character vector
+  values: nonnegative real scalar
+  default: '0.00048828125'
+- name: Frequency tracking update
+  summary: Frequency tracking update 16 (default) | nonnegative integer scalar
+  group: ''
+  block_parameter: FrequencyCount
+  type: character vector
+  values: nonnegative real scalar
+  default: '16'
+- name: Frequency step ramp
+  summary: Number of symbol times required for initial internal frequency tracking gain to reach specified value 3000 (default)
+    | nonnegative integer scalar
+  group: ''
+  block_parameter: FrequencyStepRamp
+  type: character vector
+  values: nonnegative real scalar
+  default: '3000'
+- name: Sensitivity (V)
+  summary: Sampling latch metastability voltage 0 (default) | real scalar
+  group: ''
+  block_parameter: Sensitivity
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Phase Offset
+  summary: Include Phase Offset parameter in IBIS-AMI model on (default) | off
+  group: ''
+- name: Reference offset
+  summary: Include Reference offset parameter in IBIS-AMI model on (default) | off
+  group: ''
+```
 
 ### **CDR Mode** — Determine CDR order `1st order` (default) | `2nd order`
 
@@ -227,7 +313,6 @@ Select to include **Reference offset** as a parameter in the
 IBIS-AMI file. If you deselect **Reference offset**, it is removed from
 the AMI files, effectively hard-coding **Reference offset** to its
 current value.
-
 ## Libraries
 
 SerDes Toolbox / Datapath Blocks

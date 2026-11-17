@@ -14,6 +14,19 @@ language: en
 # Preamble Detector
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input data [ ] | scalar | column vector
+  direction: input
+  data_types: single | double | Boolean | int8 | uint8
+- name: Idx
+  summary: Index of last preamble symbol [ ] | scalar | column vector
+  direction: output
+- name: DtMt
+  summary: Detection metric scalar | column vector
+  direction: output
+```
 
 ### Input
 
@@ -61,8 +74,28 @@ dimensions and data type as the input data packet, `In`.
 To enable this port, set the **Input** parameter
 to `Symbol`, and select the **Output
 detection metric** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input
+  summary: Input type Symbol (default) | Bit
+  group: ''
+- name: Preamble
+  summary: Preamble sequence [1 + 1i; 1 - 1i] (default) | column vector
+  group: ''
+- name: Detection threshold
+  summary: Detection threshold 3 (default) | nonnegative scalar
+  group: ''
+- name: Output detection metric
+  summary: Option to output detection metric off (default) | on
+  group: ''
+- name: Detections
+  summary: Detections returned All (default) | First
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -143,7 +176,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Synchronization

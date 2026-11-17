@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Histogram
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint | fixdt(0,W,0) | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: binAddr
+  summary: 用于读取直方图值的 bin 编号 整数
+  direction: input
+  data_types: fixdt(0,W,0)
+- name: binReset
+  summary: 重置直方图 bin 值 标量
+  direction: input
+  data_types: Boolean
+- name: readRdy
+  summary: 指示直方图 bin 可供读取 标量
+  direction: output
+  data_types: Boolean
+- name: hist
+  summary: 与请求地址对应的 bin 值 整数
+  direction: output
+  data_types: fixed point
+- name: validOut
+  summary: 指示直方图值有效 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -70,8 +101,19 @@ chinese_source: worker-translation
 当 **validOut** 为 1（`true`）时，直方图 bin 值 **hist** 有效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of bins
+  summary: 直方图 bin 的数量 256（默认）| 32 到 4096 之间的 2 的幂
+  group: ''
+- name: Data type
+  summary: 直方图 bin 值的数据类型 Unsigned fixed point（默认）| double | single
+  group: ''
+- name: Word length
+  summary: 直方图 bin 的字长 16（默认）| 整数
+  group: ''
+```
 
 ### **Number of bins** — 直方图 bin 的数量 `256`（默认）| `32` 到 `4096` 之间的 2 的幂
 
@@ -90,7 +132,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当您将 **Data type** 设置为 `Unsigned fixed point` 时，此参数适用。
-
 ## 所属库
 
 Vision HDL Toolbox / Statistics

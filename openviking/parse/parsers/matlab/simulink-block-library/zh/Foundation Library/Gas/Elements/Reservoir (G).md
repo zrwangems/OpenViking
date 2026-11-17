@@ -15,14 +15,34 @@ chinese_source: worker-translation
 # Reservoir (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 储气库入口气体
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **A** — 储气库入口气体
 
 与储气库入口关联的气体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Reservoir pressure specification
+  summary: 选择储气库压力的指定方法 Atmospheric pressure（默认）| Specified pressure
+  group: ''
+- name: Reservoir pressure
+  summary: 储气库中的压力 0.101325 MPa（默认）
+  group: ''
+- name: Reservoir temperature
+  summary: 储气库中的温度 293.15 K（默认）
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 储气库入口处垂直于流动路径的面积 0.01 m^2（默认）
+  group: ''
+```
 
 ### **Reservoir pressure specification** — 选择储气库压力的指定方法 `Atmospheric pressure`（默认）| `Specified pressure`
 
@@ -46,7 +66,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at port A** — 储气库入口处垂直于流动路径的面积 `0.01 m^2`（默认）
 
 储气库入口处沿垂直于气体流动路径方向的横截面积。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

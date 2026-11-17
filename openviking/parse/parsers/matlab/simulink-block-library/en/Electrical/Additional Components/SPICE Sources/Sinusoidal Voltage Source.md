@@ -14,6 +14,15 @@ language: en
 # Sinusoidal Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,25 @@ voltage
 
 Electrical conserving port associated with the sinusoidal voltage source negative
 voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Voltage offset, VO
+  summary: Voltage offset 0 V (default)
+  group: ''
+- name: Sinusoidal amplitude, VA
+  summary: Sinusoidal amplitude 0 V (default)
+  group: ''
+- name: Sinusoidal frequency, FREQ
+  summary: Sinusoidal frequency 1e6 Hz (default)
+  group: ''
+- name: Time delay, TD
+  summary: Time delay 0 s (default)
+  group: ''
+- name: Damping factor, DF
+  summary: Damping factor 0 1/s (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Voltage offset, VO** — Voltage offset `0` `V` (default)
 
@@ -53,7 +79,6 @@ Exponential damping factor for the sine wave to produce the output voltage. If
 *DF* is greater than or equal to `0`, the exponential part
 of the equation is always damping for time greater than *TD*. The value must
 be greater than or equal to `0`.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

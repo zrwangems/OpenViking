@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Voltage Source (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: conserving
+- name: n
+  summary: 星形中性点电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,49 @@ chinese_source: worker-translation
 ### **n** — 星形中性点电气
 
 与星形中性点相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Rated voltage (phase-to-phase RMS)
+  summary: RMS 线电压 sqrt(3) * 100 / sqrt(2) V（默认）
+  group: 主
+- name: Phase shift
+  summary: 相移 0 deg（默认）
+  group: 主
+- name: Frequency
+  summary: 电压频率 60 Hz（默认）
+  group: 主
+- name: Source impedance
+  summary: 源阻抗方法 X/R Ratio（默认）| None | Series R | Series L | Series RL
+  group: 主
+- name: Short-circuit power level
+  summary: 短路功率水平 1e6 V*A（默认）
+  group: 主
+- name: Source X/R ratio
+  summary: 电抗与电阻之比 15（默认）
+  group: 主
+- name: Source resistance
+  summary: 源电阻 0.01 Ohm（默认）
+  group: 主
+- name: Source inductance
+  summary: 源电感 3.97e-4 H（默认）
+  group: 主
+- name: Source harmonics
+  summary: 源谐波 None（默认）| Generate harmonics
+  group: 谐波
+- name: Harmonic orders
+  summary: 谐波次数 [5, 7, 11, 13]（默认）
+  group: 谐波
+- name: Harmonic magnitude to peak magnitude ratios
+  summary: 谐波幅值与峰值幅值之比 [.1, .1, .1, .1]（默认）
+  group: 谐波
+- name: Source impedance parasitic parallel conductance
+  summary: 源阻抗寄生并联电导 0 1/Ohm（默认）
+  group: 寄生参数
+```
 
 ### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -123,7 +173,6 @@ RMS 相间电压，即线电压。
 #### 依赖关系
 
 仅当为 **Source Impedance** 参数选择 `X/R Ratio`、`Series L` 或 `Series RL` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Sources

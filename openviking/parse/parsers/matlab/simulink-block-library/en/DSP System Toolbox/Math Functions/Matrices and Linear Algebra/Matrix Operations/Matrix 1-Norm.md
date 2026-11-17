@@ -14,6 +14,17 @@ language: en
 # Matrix 1-Norm
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output signal scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -37,8 +48,31 @@ Matrix 1-norm or maximum column-sum of the input, returned as a
 scalar. The output *y* is always a scalar.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow handling method off (default) | on
+  group: Data Types
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types
+- name: Output
+  summary: 'Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types
+- name: Output Minimum
+  summary: Minimum value that block can output [] (default) | scalar
+  group: Data Types
+- name: Output Maximum
+  summary: Maximum value that block can output [] (default) | scalar
+  group: Data Types
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -175,7 +209,6 @@ you specify in the block dialog box.
 Floating-point inheritance takes precedence over the data type settings
 defined on this tab. When inputs are floating point, the block ignores these
 settings and all internal data types are floating point.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Interpreted MATLAB Function
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: Interpreted MATLAB 函数的输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Out
+  summary: Interpreted MATLAB 函数的输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,25 @@ Interpreted MATLAB Function 模块接受一个 `double` 类型的实数或复数
 Interpreted MATLAB Function 模块接受一个 `double` 类型的实数或复数输入，并根据 **Output signal type** 参数的设置生成 `double` 类型的实数或复数输出。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: MATLAB Function
+  summary: 指定函数或表达式 函数（默认）
+  group: ''
+- name: Output dimensions
+  summary: 指定模块输出信号的维度 标量 | 矩阵 | 向量 | 继承
+  group: ''
+- name: Output signal type
+  summary: 指定模块输出信号类型 auto（默认） | real | complex
+  group: ''
+- name: Collapse 2-D results to 1-D
+  summary: 将二维数组输出为一维数组 off（默认） | on
+  group: ''
+- name: Sample time
+  summary: 指定模块中的采样时间 标量
+  group: ''
+```
 
 ### **MATLAB Function** — 指定函数或表达式 函数（默认）
 
@@ -60,7 +88,6 @@ Interpreted MATLAB Function 模块接受一个 `double` 类型的实数或复数
 **注意**
 
 除非将此参数显式设置为 `-1` 以外的值，否则此参数在模块对话框中不可见。要了解更多信息，请参阅 Blocks for Which Sample Time Is Not Recommended。
-
 ## 所属库
 
 Simulink / User-Defined Functions

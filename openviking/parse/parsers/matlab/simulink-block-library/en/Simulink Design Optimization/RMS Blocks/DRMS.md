@@ -14,6 +14,15 @@ language: en
 # DRMS
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+- name: Port_1
+  summary: DRMS value scalar
+  direction: output
+```
 
 ### Input
 
@@ -25,8 +34,16 @@ Input value, specified as a scalar signal.
 ### **Port\_1** — DRMS value scalar
 
 Computed discrete-time, root mean square value, output as a scalar signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sampling interval
+  summary: Sample time 1 (default) | positive scalar
+  group: ''
+  block_parameter: Ts
+  values: positive scalar in quotes
+  default: '''1'''
+```
 
 ### **Sampling interval** — Sample time `1` (default) | positive scalar
 
@@ -39,7 +56,6 @@ Sample time for computing DRMS value.
 | **Parameter:** `Ts` |
 | **Value:** positive scalar in quotes |
 | **Default:** `'1'` |
-
 ## Libraries
 
 Simulink Design Optimization / RMS Blocks

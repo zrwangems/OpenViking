@@ -14,6 +14,36 @@ language: en
 # Bicycle Model
 
 ## Ports
+```yaml
+ports:
+- name: WhlAngF
+  summary: Wheel angle scalar
+  direction: input
+- name: FxF
+  summary: 'Force Input: Total longitudinal force on the front axle scalar'
+  direction: input
+- name: FxR
+  summary: 'Force Input: Total longitudinal force on the rear axle scalar'
+  direction: input
+- name: xdotin
+  summary: 'Velocity Input: Longitudinal velocity scalar'
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: xdot
+  summary: Vehicle body longitudinal velocity scalar
+  direction: output
+- name: ydot
+  summary: Vehicle body lateral velocity scalar
+  direction: output
+- name: psi
+  summary: Yaw scalar
+  direction: output
+- name: r
+  summary: Yaw rate scalar
+  direction: output
+```
 
 ### Input
 
@@ -209,8 +239,103 @@ Rotation of the vehicle-fixed frame about earth-fixed
 
 Vehicle angular velocity, `r`, about the
 vehicle-fixed `z`-axis (yaw rate), in rad/s.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of wheels on front axle, NF
+  summary: Front wheel count 2 (default) | scalar
+  group: ''
+- name: Number of wheels on rear axle, NR
+  summary: Rear wheel count 2 (default) | scalar
+  group: ''
+- name: Vehicle mass, m
+  summary: Vehicle mass 2000 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to front axle, a
+  summary: Front axle distance 1.4 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to rear axle, b
+  summary: Rear axle distance 1.6 (default) | scalar
+  group: ''
+- name: Vertical distance from center of mass to axle plane, h
+  summary: Height 0.35 (default) | scalar
+  group: ''
+- name: Initial inertial frame longitudinal position, X_o
+  summary: Position 0 (default) | scalar
+  group: ''
+- name: Initial longitudinal velocity, xdot_o
+  summary: Velocity 0 (default) | scalar
+  group: ''
+- name: Front tire corner stiffness, Cy_f
+  summary: Stiffness 12e3 (default) | scalar
+  group: ''
+- name: Rear tire corner stiffness, Cy_r
+  summary: Stiffness 11e3 (default) | scalar
+  group: ''
+- name: Initial inertial frame lateral displacement, Y_o
+  summary: Position 0 (default) | scalar
+  group: ''
+- name: Initial lateral velocity, ydot_o
+  summary: Velocity 0 (default) | scalar
+  group: ''
+- name: Yaw polar inertia, Izz
+  summary: Inertia 4000 (default) | scalar
+  group: ''
+- name: Initial yaw angle, psi_o
+  summary: Psi rotation 0 (default) | scalar
+  group: ''
+- name: Initial yaw rate, r_o
+  summary: Yaw rate 0 (default) | scalar
+  group: ''
+- name: Longitudinal drag area, Af
+  summary: Effective vehicle cross-sectional area 2 (default) | scalar
+  group: ''
+- name: Longitudinal drag coefficient, Cd
+  summary: Air drag coefficient .3 (default) | scalar
+  group: ''
+- name: Longitudinal lift coefficient, Cl
+  summary: Air lift coefficient .1 (default) | scalar
+  group: ''
+- name: Longitudinal drag pitch moment, Cpm
+  summary: Pitch drag .1 (default) | scalar
+  group: ''
+- name: Relative wind angle vector, beta_w
+  summary: Wind angle [0:0.01:0.3] (default) | vector
+  group: ''
+- name: Side force coefficient vector, Cs
+  summary: Side force coefficient [0:0.03:0.9] (default) | vector
+  group: ''
+- name: Yaw moment coefficient vector, Cym
+  summary: Yaw moment drag [0:0.01:0.3] (default) | vector
+  group: ''
+- name: Absolute pressure, Pabs
+  summary: Pressure 101325 (default) | scalar | scalar
+  group: ''
+- name: Air temperature, Tair
+  summary: Temperature 273 (default) | scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: Gravity 9.81 (default) | scalar
+  group: ''
+- name: Nominal friction scaling factor, mu
+  summary: Friction scale factor 1 (default) | scalar
+  group: ''
+- name: Longitudinal velocity tolerance, xdot_tol
+  summary: Tolerance .01 (default) | scalar
+  group: ''
+- name: Nominal normal force, Fznom
+  summary: Normal force 5000 (default) | scalar
+  group: ''
+- name: Geometric longitudinal offset from axle plane, longOff
+  summary: Longitudinal offset 0 (default) | scalar
+  group: ''
+- name: Geometric lateral offset from center plane, latOff
+  summary: Lateral offset 0 (default) | scalar
+  group: ''
+- name: Geometric vertical offset from axle plane, vertOff
+  summary: Vertical offset 0 (default) | scalar
+  group: ''
+```
 
 #### Longitudinal
 
@@ -381,7 +506,6 @@ Vehicle chassis offset from axle plane along body-fixed
 *z*-axis, in m. When you use the 3D visualization
 engine, consider using the offset to locate the chassis independent of the
 vehicle CG.
-
 ## Libraries
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling Vehicle Dynamics Blockset / Vehicle Body

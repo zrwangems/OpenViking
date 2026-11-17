@@ -14,6 +14,24 @@ language: en
 # Heat Exchanger Interface (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Gas port gas
+  direction: conserving
+- name: B
+  summary: Gas port gas
+  direction: conserving
+- name: H
+  summary: Thermal boundary thermal
+  direction: conserving
+- name: C
+  summary: Heat capacity rate physical signal
+  direction: input
+- name: HC
+  summary: Heat transfer coefficient physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -40,8 +58,116 @@ specified as a physical signal.
 
 Instantaneous value of the heat transfer coefficient between gas flow
 and the wall, specified as a physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum free-flow area
+  summary: Cross-sectional area of flow channel at its narrowest point 0.01 m^2 (default) | scalar with units of length squared
+  group: Parameters
+- name: Hydraulic diameter
+  summary: Diameter or equivalent diameter of a circular channel 0.1 m (default) | scalar with units of length
+  group: Parameters
+- name: Gas volume
+  summary: Total volume of fluid contained in flow channel 0.01 m^3 (default) | scalar with units of length squared
+  group: Parameters
+- name: Laminar flow upper Reynolds number limit
+  summary: Start of transition between laminar and turbulent regimes 2000 (default) | scalar
+  group: Parameters
+- name: Turbulent flow lower Reynolds number limit
+  summary: End of transition between laminar and turbulent regimes 4000 (default) | scalar
+  group: Parameters
+- name: Pressure loss model
+  summary: Mathematical model for pressure loss due to friction Pressure loss coefficient (default) | Correlation for flow
+    inside tubes | Tabulated data - Darcy friction factor vs. Reynolds number | Tabulated data - Euler number vs. Reynolds
+    number
+  group: Parameters
+- name: Pressure loss coefficient
+  summary: Aggregate loss coefficient for all flow resistances between the ports 0.1 (default) | scalar
+  group: Parameters
+- name: Length of flow path from inlet to outlet
+  summary: Distance traveled from port to port 1 m (default) | scalar with units of length
+  group: Parameters
+- name: Aggregate equivalent length of local resistances
+  summary: Aggregate minor pressure loss expressed in length 0.1 m (default) | scalar with units of length
+  group: Parameters
+- name: Internal surface absolute roughness
+  summary: Mean height of wall surface variations that contribute to frictional losses 15e-6 m (default) | scalar with units
+    of length
+  group: Parameters
+- name: Laminar friction constant for Darcy friction factor
+  summary: Pressure loss correction for flow cross section in laminar flow conditions 64 (default) | scalar
+  group: Parameters
+- name: Reynolds number vector for Darcy friction factor
+  summary: Reynolds number at each breakpoint in Darcy friction factor lookup table numerical array
+  group: Parameters
+- name: Darcy friction factor vector
+  summary: Darcy friction factor at each breakpoint in Reynolds number lookup table numerical array
+  group: Parameters
+- name: Reynolds number vector for Euler number
+  summary: Reynolds number at each breakpoint in the Euler number lookup table numerical array
+  group: Parameters
+- name: Euler number vector
+  summary: Euler number at each breakpoint in the Reynolds number lookup table numerical array
+  group: Parameters
+- name: Heat transfer coefficient model
+  summary: Mathematical model for heat transfer between fluid and wall Constant heat transfer coefficient (default) | Correlation
+    for flow inside tubes | Tabulated data - Colburn factor vs. Reynolds number | Tabulated data - Nusselt number vs. Reynolds
+    number and Prandtl number
+  group: Parameters
+- name: Gas-wall heat transfer coefficient
+  summary: Heat transfer coefficient for convection between fluid and wall 100 W/(m^2 * K) (default) | scalar
+  group: Parameters
+- name: Heat transfer surface area
+  summary: Effective surface area used in heat transfer between fluid and wall 0.4 m^2 (default) | scalar with units of length
+    squared
+  group: Parameters
+- name: Length of flow path for heat transfer
+  summary: Characteristic length traversed in heat transfer between fluid and wall 1 m (default) | scalar with units of length
+  group: Parameters
+- name: Nusselt number for laminar flow heat transfer
+  summary: Constant assumed for Nusselt number in laminar flow 3.66 (default) | positive scalar
+  group: Parameters
+- name: Reynolds number vector for Colburn factor
+  summary: Reynolds number at each breakpoint in Colburn factor lookup table numerical array
+  group: Parameters
+- name: Colburn factor vector
+  summary: Colburn factor at each breakpoint in Reynolds number lookup table numerical array
+  group: Parameters
+- name: Reynolds number vector for Nusselt number
+  summary: Reynolds number at each breakpoint in Nusselt number lookup table numerical array
+  group: Parameters
+- name: Prandtl number vector for Nusselt number
+  summary: Prandtl number at each breakpoint in the Nusselt number lookup table numerical array
+  group: Parameters
+- name: Nusselt number table, Nu(Re,Pr)
+  summary: Nusselt number at each breakpoint in Reynolds-Prandtl number lookup table numerical array
+  group: Parameters
+- name: Threshold mass flow rate for flow reversal
+  summary: Upper bound of numerically smooth region for mass flow rate 1e-4 kg/s (default) | scalar with units of mass per
+    unit time
+  group: Parameters
+- name: Enable dynamic compressibility
+  summary: Option to model pressure dynamics in the gas channel On (default) | Off
+  group: Effects and Initial Conditions
+- name: Nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial pressure
+  summary: Pressure at the start of simulation 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial pressure priority
+  summary: Pressure parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial temperature
+  summary: Temperature at the start of simulation 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial temperature priority
+  summary: Temperature parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+```
 
 ### Parameters
 
@@ -506,7 +632,6 @@ initial conditions. You may need to set this parameter to
 `Low` or `None` if
 this initial condition conflicts with the initial conditions of another
 block.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Polynomial Stability Test
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入多项式向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 多项式稳定性测试输出标量 | 1×*N* 矩阵
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -41,8 +52,13 @@ f(x)=u1xM−1+u2xM−2+…+uM
 值 `1` 表示输入对应列中的多项式是稳定的，即 *f(x)* = 0 的所有解的幅值都小于 1。值 `0` 表示输入对应列中的多项式可能是不稳定的，即 *f*(*x*) = 0 的至少一个解的幅值大于或等于 1。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认） | Code generation
+  group: ''
+```
 
 ### **Simulate using** — 要运行的仿真类型 `Interpreted execution`（默认） | `Code generation`
 
@@ -50,7 +66,6 @@ f(x)=u1xM−1+u2xM−2+…+uM
 
 - `Interpreted execution` —— 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Polynomial Functions

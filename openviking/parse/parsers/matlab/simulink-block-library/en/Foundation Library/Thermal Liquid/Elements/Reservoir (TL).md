@@ -14,14 +14,34 @@ language: en
 # Reservoir (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Reservoir inlet thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
 ### **A** — Reservoir inlet thermal liquid
 
 Thermal liquid conserving port associated with the reservoir inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Reservoir pressure specification
+  summary: Specification method for reservoir pressure Atmospheric pressure (default) | Specified pressure
+  group: ''
+- name: Reservoir pressure
+  summary: Pressure in reservoir 0.101325 MPa (default)
+  group: ''
+- name: Reservoir temperature
+  summary: Temperature in reservoir 293.15 K (default)
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at reservoir inlet 0.01 m^2 (default)
+  group: ''
+```
 
 ### **Reservoir pressure specification** — Specification method for reservoir pressure `Atmospheric pressure` (default) | `Specified pressure`
 
@@ -52,7 +72,6 @@ simulation.
 
 Cross-sectional area of the reservoir inlet pipe. The block uses this area to
 determine the characteristic length of the pipe along which heat conduction occurs.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Elements

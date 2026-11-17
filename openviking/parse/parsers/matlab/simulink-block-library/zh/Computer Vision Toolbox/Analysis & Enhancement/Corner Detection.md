@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Corner Detection
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 强度值输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Loc
+  summary: 角点位置 *M*×2 矩阵
+  direction: output
+  data_types: uint32
+- name: Count
+  summary: 检测到的角点数量 标量
+  direction: output
+  data_types: uint32
+- name: Metric
+  summary: 角点度量值矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -67,8 +86,44 @@ corners** 参数。
 - `Metric matrix`
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 角点检测方法 Harris corner detection (Harris & Stephens)（默认）| Minimum eigenvalue (Shi & Tomasi) | Local intensity comparison
+    (Rosten & Drummond)
+  group: 主
+- name: Sensitivity factor (0<k<0.25)
+  summary: 灵敏度因子 0.04（默认）| 标量
+  group: 主
+- name: Coefficients for separable smoothing filter
+  summary: 滤波器系数 fspecial('gaussian', [1 5], 1.5)（默认）| 向量
+  group: 主
+- name: Intensity comparison threshold
+  summary: 强度阈值 0.1（默认）| 标量
+  group: 主
+- name: Maximum angle to be considered a corner (in degrees)
+  summary: 最大角点角度 157.5（默认）| 标量
+  group: 主
+- name: Output
+  summary: 模块输出 Corner location（默认）| Corner location and metric matrix | Metric matrix
+  group: 主
+- name: Maximum number of corners
+  summary: 最大角点数量 200（默认）| 整数
+  group: 主
+- name: Minimum metric value that indicates a corner
+  summary: 最小角点度量值 0.0005（默认）| 标量
+  group: 主
+- name: Neighborhood size
+  summary: 邻域大小 [11 11]（默认）| 二元素向量
+  group: 主
+- name: Output variable size signal
+  summary: 可变大小信号 on（默认）| off
+  group: 主
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 数据类型覆盖 off（默认）| on
+  group: 数据类型
+```
 
 ### 主
 
@@ -201,7 +256,6 @@ around detected corners)** 参数。
 
 选择此参数以防止定点工具覆盖您在此模块中指定的数据
 类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

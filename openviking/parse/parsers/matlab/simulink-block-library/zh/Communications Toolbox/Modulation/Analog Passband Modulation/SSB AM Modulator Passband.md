@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # SSB AM Modulator Passband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +45,22 @@ chinese_source: worker-translation
 此端口在模块上未命名。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: 载波频率，单位为 Hz 300（默认）| 正标量
+  group: ''
+- name: Initial phase (rad)
+  summary: 初始相位偏移，单位为弧度 0（默认）| 标量
+  group: ''
+- name: Sideband to modulate
+  summary: 要调制的边带 Upper（默认）| Lower
+  group: ''
+- name: Hilbert Transform filter order (must be even)
+  summary: Hilbert 变换滤波器阶数 100（默认）| 正标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -58,7 +83,6 @@ chinese_source: worker-translation
 ### **Hilbert Transform filter order (must be even)** — Hilbert 变换滤波器阶数 `100`（默认）| 正标量
 
 Hilbert 变换滤波器阶数，指定为大于 `2` 的偶数正标量。此参数值定义用于计算 Hilbert 变换的 FIR 滤波器的长度。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Analog Passband Modulation

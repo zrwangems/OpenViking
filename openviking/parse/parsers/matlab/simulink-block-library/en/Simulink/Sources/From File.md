@@ -14,6 +14,13 @@ language: en
 # From File
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output created using MAT file data scalar | vector | matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### Output
 
@@ -31,8 +38,52 @@ an array of buses.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: MAT file name or path to MAT file untitled.mat (default) | MAT file name | path to MAT file
+  group: ''
+  block_parameter: FileName
+  values: '''untitled.mat'' (default) | MAT file name | path to MAT file'
+- name: Output data type
+  summary: 'Data type of data in MAT file Inherit: auto (default) | double | single | fixdt(1,16,0) | fixdt(1,16,2^0,0) |
+    Enum: <class_name> | Bus: <bus_object> | <data type expression> | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '''Inherit (auto)'' (default) | ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''Bus: <object name>''
+    | ''<data type expression>'''
+- name: Sample time
+  summary: Output sample period and optional time offset 0 | scalar | 1-by-2 vector
+  group: ''
+  block_parameter: SampleTime
+  values: '''0'' (default) | scalar | 1-by-2 vector'
+- name: Data extrapolation before first data point
+  summary: Method to determine block output before first data point in MAT file Linear extrapolation (default) | Hold first
+    value | Ground value
+  group: ''
+  block_parameter: ExtrapolationBeforeFirstDataPoint
+  values: '''Linear extrapolation'' (default) | ''Hold first value'' | ''Ground value'''
+- name: Data interpolation within time range
+  summary: Interpolation method Linear interpolation (default) | Zero order hold
+  group: ''
+  block_parameter: InterpolationWithinTimeRange
+  values: '''Linear interpolation'' (default) | ''Zero order hold'''
+- name: Data extrapolation after last data point
+  summary: Method to determine block output after final data point in MAT file Linear extrapolation (default) | Hold last
+    value | Ground value
+  group: ''
+  block_parameter: ExtrapolationAfterLastDataPoint
+  values: '''Linear extrapolation'' (default) | ''Hold last value'' | ''Ground value'''
+- name: Enable zero-crossing detection
+  summary: Option to enable zero-crossing detection for this block off (default) | on
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' (default) | ''off'''
+  default: '''on'''
+```
 
 ### **File name** — MAT file name or path to MAT file `untitled.mat` (default) | MAT file name | path to MAT file
 
@@ -354,7 +405,6 @@ File","ZeroCross","off")` configures the From File
 block named `From File` in the model
 `mdl` to disable zero-crossing
 detection.
-
 ## Libraries
 
 Simulink / Sources

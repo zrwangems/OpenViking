@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Shuttle Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口（等温液体）
+  direction: conserving
+- name: A1
+  summary: 液体端口（等温液体）
+  direction: conserving
+- name: B
+  summary: 液体端口（等温液体）
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,43 @@ chinese_source: worker-translation
 ### **B** — 液体端口（等温液体）
 
 阀的出口端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Pressure at which A-B is fully closed and A1-B is fully open
+  summary: 入口 A1 完全打开时的阈值压力 -0.01 MPa（默认）| 标量
+  group: ''
+- name: Pressure at which A-B is fully open and A1-B is fully closed
+  summary: 入口 A 完全打开时的阈值压力 0.01 MPa（默认）| 标量
+  group: ''
+- name: Maximum opening area
+  summary: 最大阀面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的面积 inf m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 Off（默认）| On
+  group: ''
+- name: Opening dynamics
+  summary: 是否引入阀打开导致的流量滞后 Off（默认）| On
+  group: ''
+- name: Opening time constant
+  summary: 阀打开时间常数 0.1 s（默认）| 正标量
+  group: ''
+```
 
 ### **Pressure at which A-B is fully closed and A1-B is fully open** — 入口 A1 完全打开时的阈值压力 `-0.01 MPa`（默认）| 标量
 
@@ -79,7 +126,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Opening dynamics** 设置为 `On`。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # AGC
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入基带信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 估计的信道输出 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,28 @@ chinese_source: worker-translation
 估计的信道输出。如果输入信号是按样本指定的标量信号，则输出也是标量。如果输入信号是冲激响应向量信号，则输出也是向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: AGC 工作模式 On（默认）| Off
+  group: ''
+- name: Target RMS voltage (V)
+  summary: 输出波形的期望 RMS 电压 0.3（默认）| 范围 [0.003, 10] 内的实标量
+  group: ''
+- name: Maximum gain
+  summary: 允许的最大 AGC 增益 10（默认）| 正实标量
+  group: ''
+- name: Averaging length
+  summary: RMS 计算的平均长度 100（默认）| 正实标量
+  group: ''
+- name: Mode
+  summary: 在 IBIS-AMI 模型中包含 Mode 参数 on（默认）| off
+  group: ''
+- name: Target RMS voltage
+  summary: 在 IBIS-AMI 模型中包含 Target RMS voltage 参数 on（默认）| off
+  group: ''
+```
 
 ### **Mode** — AGC 工作模式 `On`（默认）| `Off`
 
@@ -87,7 +118,6 @@ AGC 工作模式：
 ### **Target RMS voltage** — 在 IBIS-AMI 模型中包含 Target RMS voltage 参数 on（默认）| off
 
 选择以在 IBIS-AMI 文件中将 **Target RMS voltage** 作为参数包含。如果取消选择 **Target RMS voltage**，则会将其从 AMI 文件中移除，实际上将 **Target RMS voltage** 硬编码为其当前值。
-
 ## 所属库
 
 SerDes Toolbox / Datapath Blocks

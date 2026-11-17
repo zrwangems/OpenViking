@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Multiphase Clock
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 时钟信号向量 vector
+  direction: output
+  data_types: single | double | Boolean
+```
 
 ### 输出
 
@@ -23,8 +30,28 @@ chinese_source: worker-translation
 1×*N* 时钟信号向量，其中 *N* 由 **Number of phases** 参数指定。有关详细信息，请参阅描述。
 
 **数据类型：** `single` | `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Clock frequency (Hz)
+  summary: 所有时钟信号的频率 1（默认）| 正标量
+  group: ''
+- name: Number of phases, N
+  summary: 输出向量中的相位数 4（默认）| 正整数
+  group: ''
+- name: Starting phase (1 to N)
+  summary: 起始相位的向量索引 1（默认）| 从 1 到 *N* 的整数
+  group: ''
+- name: Number of phase intervals over which clock is active (1 to N-1)
+  summary: 每个输出的有效电平持续时间 3（默认）| 从 1 到 *N*-1 的整数
+  group: ''
+- name: Active level (polarity)
+  summary: 有效电平 High (1)（默认）| Low (0)
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 Logical（默认）| Boolean
+  group: ''
+```
 
 ### **Clock frequency (Hz)** — 所有时钟信号的频率 `1`（默认）| 正标量
 
@@ -49,7 +76,6 @@ chinese_source: worker-translation
 ### **Output data type** — 输出数据类型 `Logical`（默认）| `Boolean`
 
 输出数据类型，指定为 `Logical` 或 `Boolean`。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Switches and Counters DSP System Toolbox / Sources

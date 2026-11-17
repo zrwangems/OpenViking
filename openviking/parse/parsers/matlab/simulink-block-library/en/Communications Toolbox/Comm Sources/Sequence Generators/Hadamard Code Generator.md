@@ -14,10 +14,15 @@ language: en
 # Hadamard Code Generator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Code length**
 :   A positive integer that is a power of two specifying the length of the
@@ -63,7 +68,6 @@ Not documented in R2025b.
     :   Simulate model without generating code. This option results in
         faster start times but can slow subsequent simulation
         performance.
-
 ## Libraries
 
 Not documented in R2025b.

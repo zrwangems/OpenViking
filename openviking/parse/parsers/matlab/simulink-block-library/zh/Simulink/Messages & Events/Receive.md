@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Receive
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入消息 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_S
+  summary: 显示是否接收到消息 标量
+  direction: output
+  data_types: double
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+```
 
 ### 输入
 
@@ -40,8 +57,73 @@ chinese_source: worker-translation
 信号的输出端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Use internal queue
+  summary: 选择使用内部队列 on（SimEvents® 的默认值） | off（Simulink® 的默认值）
+  group: ''
+  block_parameter: UseInternalQueue
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Overwrite the oldest element if queue is full
+  summary: 指定队列覆盖策略 on（Simulink 的默认值） | off（SimEvents 的默认值）
+  group: ''
+  block_parameter: QueueOverwriting
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on''（对于 Simulink）和 ''off''（对于 SimEvents）'
+- name: Queue length
+  summary: 指定消息队列的长度 16（默认值） | scalar
+  group: ''
+  block_parameter: QueueLength
+  type: 字符向量
+  values: '''16'' | scalar'
+  default: '''16'''
+- name: Queue type
+  summary: 指定消息队列排序策略 FIFO（默认值） | LIFO | Priority
+  group: ''
+  block_parameter: QueueType
+  type: 字符向量
+  values: '''FIFO'' | ''LIFO'' | ''Priority'''
+  default: '''FIFO'''
+- name: Priority order
+  summary: 指定消息队列优先级 Ascending（默认值） | Descending
+  group: ''
+  block_parameter: PriorityOrder
+  type: 字符向量
+  values: '''Ascending'' | ''Descending'''
+  default: '''Ascending'''
+- name: Show receive status
+  summary: 显示是否接收到消息 off（默认值） | on
+  group: ''
+  block_parameter: ShowQueueStatus
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Initial value
+  summary: 设置初始数据值 [](unspecified)（默认值） | scalar | vector | matrix
+  group: ''
+  block_parameter: InitialValue
+  type: 字符向量
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Value source when queue is empty
+  summary: 空队列时的值来源 Hold last value（默认值） | Use initial value
+  group: ''
+  block_parameter: ValueSourceWhenQueueIsEmpty
+  type: 字符向量
+  values: '''Hold last value'' | ''Use initial value'''
+  default: '''Hold last value'''
+- name: Sample time (-1 for inherited)
+  summary: 指定采样之间的时间间隔 -1（默认值） | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: '''-1'' | scalar'
+  default: '''-1'''
+```
 
 ### **Use internal queue** — 选择使用内部队列 on（SimEvents® 的默认值） | off（Simulink® 的默认值）
 
@@ -202,7 +284,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'-1'` | scalar |
 | **默认值**：`'-1'` |
-
 ## 所属库
 
 Simulink / Messages & Events SimEvents

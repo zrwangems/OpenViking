@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Phasor Measurement Unit (PMU, Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: abc
+  summary: 三相信号向量
+  direction: input
+  data_types: single | double
+- name: freq
+  summary: 正序分量频率标量
+  direction: output
+  data_types: single | double
+- name: angle
+  summary: 正序分量相角标量
+  direction: output
+  data_types: single | double
+- name: mag
+  summary: 正序分量幅值标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,19 @@ chinese_source: worker-translation
 测得正序分量的幅值，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Rated frequency (Hz)
+  summary: 额定频率 60（默认）| 50
+  group: ''
+- name: Sampling points per cycle
+  summary: 每周期采样点数 64（默认）| 24 | 48
+  group: ''
+- name: Reporting rate factor
+  summary: 报告速率因子 1（默认）| 标量
+  group: ''
+```
 
 ### **Rated frequency (Hz)** — 额定频率 `60`（默认）| `50`
 
@@ -56,7 +86,6 @@ chinese_source: worker-translation
 ### **Reporting rate factor** — 报告速率因子 `1`（默认）| 标量
 
 模块的报告速率与采样速率之比。
-
 ## 所属库
 
 Simscape / Electrical / Control / Measurements

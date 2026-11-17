@@ -14,6 +14,13 @@ language: en
 # ThingSpeak Output
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data to write to channel numeric
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -24,8 +31,66 @@ Scalar numeric data to write to the ThingSpeak channel.
 **Example:** `3.14159`
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Channel number
+  summary: 'ThingSpeak channel being accessed Read-only: 0 (default) | numeric'
+  group: ''
+  block_parameter: DrvAddress
+- name: Configure channel parameters
+  summary: Select and configure channel to access (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: ThingSpeak server
+  summary: Server for data transfer api.thingspeak.com (default) | character vector
+  group: ''
+  block_parameter: DrvOptions
+- name: Channel ID
+  summary: Unique channel 0 (default) | numeric
+  group: ''
+  block_parameter: DrvOptions
+- name: Write API key
+  summary: Access key for writing to channel character vector
+  group: ''
+  block_parameter: DrvOptions
+- name: Update period (secs)
+  summary: Write update period, in seconds 20 (default) | numeric
+  group: ''
+  block_parameter: DrvOptions
+- name: View channel web page
+  summary: Access web page for channel (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Output fields
+  summary: Define which parts of data to write 1 (default) | [1–8]
+  group: ''
+  block_parameter: ChannelFields
+- name: Initial value
+  summary: First value transmitted [] (default) | [integer]
+  group: ''
+  block_parameter: InitialValue
+- name: Final value
+  summary: Last value transmitted [] (default) | [integer]
+  group: ''
+  block_parameter: FinalValue
+```
 
 ### **Channel number** — ThingSpeak channel being accessed Read-only: `0` (default) | numeric
 
@@ -207,7 +272,6 @@ command.
 |  |
 | --- |
 | **Block Parameter:** `FinalValue` |
-
 ## Libraries
 
 Simulink Desktop Real-Time / Internet of Things

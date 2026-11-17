@@ -14,6 +14,15 @@ language: en
 # Thermal Resistance
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Layer A thermal
+  direction: conserving
+- name: B
+  summary: Layer B thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,13 +33,17 @@ Thermal conserving port associated with layer A.
 ### **B** — Layer B thermal
 
 Thermal conserving port associated with layer B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermal resistance
+  summary: Thermal resistance value 1 K/W (default)
+  group: ''
+```
 
 ### **Thermal resistance** — Thermal resistance value 1 K/W (default)
 
 Thermal resistance value.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Elements

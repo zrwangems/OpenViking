@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Wideband Backscatter Radar Target
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 宽带入射非极化信号 *N*×*1* 复值向量 | *N*×*M* 复值矩阵
+  direction: input
+  data_types: double
+- name: Ang
+  summary: 入射信号方向 2×1 实值列向量 | 2×*M* 实值列矩阵
+  direction: input
+  data_types: double
+- name: Update
+  summary: 切换以更新 RCS false | true
+  direction: input
+- name: Port_1
+  summary: 窄带反射信号 1×*M* 复值向量 | *N*×*M* 复值矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -51,8 +68,47 @@ chinese_source: worker-translation
 量 *N* 是信号采样数，*M* 是从目标反射的信号数。每一列对应一个不同的反射角度。
 
 输出端口包含在当前输入时间帧内到达信号目的地的信号采样。当从源到目的地的传播时间超过当前时间帧持续时间时，输出不包含当前时间帧输入的所有贡献。
-
 ## 参数
+```yaml
+parameters:
+- name: Backscatter pattern frequency vector (Hz)
+  summary: 宽带后向散射方向图频率 [0,1e20]（默认）| 严格递增的正值实值行向量
+  group: ''
+- name: Azimuth angles (deg)
+  summary: 方位角 [-180:180]（默认）| 1×*P* 实值行向量 | *P*×1 实值列向量
+  group: ''
+- name: Elevation angles (deg)
+  summary: 俯仰角 [-90:90]（默认）| 1×*Q* 实值行向量 | *Q*×1 实值列向量
+  group: ''
+- name: RCS pattern (m^2)
+  summary: 雷达散射截面方向图 ones(181,361)（默认）| *Q*×*P* 实值矩阵 | *Q*×*P*×*K* 实值数组 | 1×*P*×*K* 实值数组 | *K*×*P* 实值矩阵
+  group: ''
+- name: Fluctuation model
+  summary: 目标起伏模型 Nonfluctuating（默认）| Swerling1 | Swerling2 | Swerling3 | Swerling4
+  group: ''
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: ''
+- name: Operating frequency (Hz)
+  summary: 信号载波频率 300.0e6（默认）| 正实值标量
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认）| 正实值标量
+  group: ''
+- name: Number of subbands
+  summary: 处理子带数量 64（默认）| 正整数
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Backscatter pattern frequency vector (Hz)** — 宽带后向散射方向图频率 `[0,1e20]`（默认）| 严格递增的正值实值行向量
 
@@ -177,7 +233,6 @@ Generation` 运行模块。长时间仿真使用生成代码比
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Environment and Target

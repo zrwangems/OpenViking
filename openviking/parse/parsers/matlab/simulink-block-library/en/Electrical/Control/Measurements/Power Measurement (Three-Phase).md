@@ -14,6 +14,25 @@ language: en
 # Power Measurement (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Input voltage vector
+  direction: input
+  data_types: single | double
+- name: I
+  summary: Input current vector
+  direction: input
+  data_types: single | double
+- name: P
+  summary: Real power scalar or vector | vector
+  direction: output
+  data_types: single | double
+- name: Q
+  summary: Reactive power scalar or vector | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -47,8 +66,22 @@ Reactive power for selected frequency components, in var. If the
 this output is also a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Base frequency (Hz)
+  summary: Fundamental frequency 60 (default) | positive number
+  group: ''
+- name: Harmonic numbers
+  summary: Frequency components [0 1 2 3] (default) | scalar or vector
+  group: ''
+- name: Sequence
+  summary: Symmetrical sequence Positive (default) | Negative | Zero
+  group: ''
+- name: Sample time
+  summary: Block sample time 0 (default) | positive number
+  group: ''
+```
 
 ### **Base frequency (Hz)** — Fundamental frequency `60` (default) | positive number
 
@@ -88,7 +121,6 @@ If this block is in a masked subsystem, or other variant subsystem that allows e
 continuous and discrete operation, promote the sample time parameter. Promoting the
 sample time parameter ensures correct switching between the continuous and discrete
 implementations of the block. For more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / Measurements

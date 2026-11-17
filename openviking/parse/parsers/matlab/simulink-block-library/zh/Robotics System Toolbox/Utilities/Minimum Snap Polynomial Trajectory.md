@@ -15,6 +15,69 @@ chinese_source: worker-translation
 # Minimum Snap Polynomial Trajectory
 
 ## 端口
+```yaml
+ports:
+- name: Time
+  summary: 沿轨迹的时间点 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: 沿轨迹的航点位置 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: TimePoints
+  summary: 轨迹航点的时间点 *p* 元素行向量
+  direction: input
+  data_types: single | double
+- name: VelBC
+  summary: 航点的速度边界条件 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: AccelBC
+  summary: 航点的加速度边界条件 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: JerkBC
+  summary: 航点的加加速度边界条件 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: SnapBC
+  summary: 航点的急动度边界条件 *n*×*p* 矩阵
+  direction: input
+  data_types: single | double
+- name: q
+  summary: 轨迹的位置 *n* 元素向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: qd
+  summary: 轨迹速度 *n* 元向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: qdd
+  summary: 轨迹加速度 *n* 元向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: qddd
+  summary: 轨迹加加速度 *n* 元向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: qdddd
+  summary: 轨迹加加加速度 *n* 元向量 | *n*×*m* 矩阵
+  direction: output
+  data_types: single | double
+- name: TimeOfArrival
+  summary: 到达每个路点的时间 *p* 元向量
+  direction: output
+  data_types: single | double
+- name: PolynomialCoefs
+  summary: 多项式系数 *n*(*p*–1)×10 矩阵
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: 轨迹生成状态 形式为 [SingularityStatus MaxIterStatus MaxTimeStatus] 的三元向量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -164,8 +227,40 @@ chinese_source: worker-translation
 要启用此输出端口，请选择 `Show status output port`。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Show boundary conditions input ports
+  summary: 接受边界条件输入 off（默认）| on
+  group: ''
+- name: Show polynomial coefficients output port
+  summary: 输出多项式系数 off（默认）| on
+  group: ''
+- name: Show status output port
+  summary: 输出状态 off（默认）| on
+  group: ''
+- name: 时间分配
+  summary: 启用时间分配 off（默认）| on
+  group: ''
+- name: 时间权重
+  summary: 时间分配的权重 100（默认）| 正标量
+  group: ''
+- name: 最小段时间
+  summary: 最小时间段长度 0.1（默认）| 正标量 | (*p*–1) 元正行向量
+  group: ''
+- name: 最大段时间
+  summary: 最大时间段长度 1（默认）| 正标量 | (*p*–1) 元正行向量
+  group: ''
+- name: 最大迭代次数
+  summary: 求解器的最大迭代次数 1500（默认）| 正整数标量
+  group: ''
+- name: 最大时间
+  summary: 求解器的最大时间 10（默认）| 正标量
+  group: ''
+- name: 仿真方式
+  summary: 要运行的仿真类型 解释执行（默认）| 代码生成
+  group: ''
+```
 
 ### **Show boundary conditions input ports** — 接受边界条件输入 `off`（默认）| `on`
 
@@ -249,7 +344,6 @@ chinese_source: worker-translation
 - `代码生成` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但后续仿真的速度与 `解释执行` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 UAV Toolbox / Algorithms Robotics System Toolbox / Utilities

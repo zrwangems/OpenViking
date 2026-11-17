@@ -14,6 +14,13 @@ language: en
 # EtherCAT Get Notifications
 
 ## Ports
+```yaml
+ports:
+- name: Values
+  summary: Self-descriptive 21-element vector containing EtherCAT notification codes [Length 20 * Notification]
+  direction: output
+  data_types: int32
+```
 
 ### Output
 
@@ -57,8 +64,18 @@ To print the valid notification values and descriptions, call
 argument.
 
 **Data Types:** `int32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT network identifier 0 (default) | 0-11
+  group: ''
+  block_parameter: device_id
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT network identifier `0` (default) | `0-11`
 
@@ -82,7 +99,6 @@ time. Use the EtherCAT task sample time.
 |  |
 | --- |
 | **Block Parameter:** `sample_time` |
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

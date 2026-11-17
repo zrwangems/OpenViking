@@ -14,6 +14,24 @@ language: en
 # Thermodynamic Properties Sensor (G)
 
 ## Ports
+```yaml
+ports:
+- name: h
+  summary: Specific enthalpy measurement, kJ/kg physical signal
+  direction: output
+- name: ρ
+  summary: Density measurement, kg/m^3 physical signal
+  direction: output
+- name: cp
+  summary: Specific heat at constant pressure measurement, kJ/(kg\*K) physical signal
+  direction: output
+- name: s
+  summary: Specific entropy measurement, kJ/(kg\*K) physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet gas
+  direction: conserving
+```
 
 ### Output
 
@@ -60,8 +78,31 @@ box.
 Gas conserving port. Connect this port to the node in the gas
 network where you want to measure the thermodynamic properties. All
 measurements are taken with respect to absolute zero.
-
 ## Parameters
+```yaml
+parameters:
+- name: Enthalpy
+  summary: Control output port visibility for measuring specific enthalpy Off (default) | On
+  group: ''
+- name: Density
+  summary: Control output port visibility for measuring density On (default) | Off
+  group: ''
+- name: Specific heat
+  summary: Control output port visibility for measuring specific heat Off (default) | On
+  group: ''
+- name: Entropy
+  summary: Control output port visibility for measuring specific entropy Off (default) | On
+  group: ''
+- name: Specific entropy at reference pressure and temperature
+  summary: Reference specific entropy used for sensor calibration 3.8635 kJ/kg/K (default)
+  group: ''
+- name: Reference pressure for specific entropy
+  summary: Reference pressure used for sensor calibration 0.101325 MPa (default)
+  group: ''
+- name: Reference temperature for specific entropy
+  summary: Reference temperature used for sensor calibration 293.15 K (default)
+  group: ''
+```
 
 ### **Enthalpy** — Control output port visibility for measuring specific enthalpy `Off` (default) | `On`
 
@@ -117,7 +158,6 @@ reference pressure and temperature.
 
 To enable this parameter, select the **Entropy**
 check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Sensors

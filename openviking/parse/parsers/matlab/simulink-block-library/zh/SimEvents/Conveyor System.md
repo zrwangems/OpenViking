@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Conveyor System
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 传入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: S
+  summary: 传入匿名实体 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Port_1
+  summary: 离开实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: 已离开实体数 关闭（默认）| 开启
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: 模块中的实体数 关闭（默认）| 开启
+  direction: output
+  data_types: double
+- name: Port_pe
+  summary: 模块中的待处理实体 关闭（默认）| 开启
+  direction: output
+  data_types: double
+- name: Port_s
+  summary: 传送带速度 关闭（默认）| 开启
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -76,8 +109,105 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Statistics** > **Conveyor speed, s**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Conveyor length
+  summary: 表面长度 100（默认）| 数值
+  group: ''
+  block_parameter: mConveyorLength
+  type: 字符向量
+  values: '''100'' | 标量'
+  default: '''100'''
+- name: Conveyor speed
+  summary: 传送带表面速度 1000（默认）| 数值
+  group: ''
+  block_parameter: mConveyorSpeed
+  type: 字符向量
+  values: '''1000'' | 标量'
+  default: '''1000'''
+- name: Minimum distance between entities
+  summary: 最小物理间距 0（默认）| 数值
+  group: ''
+  block_parameter: mMinDisBetEntity
+  type: 字符向量
+  values: '''0'' | 标量'
+  default: '''0'''
+- name: Entity length source
+  summary: 实体长度来源 Dialog（默认）| Attribute
+  group: ''
+  block_parameter: mEntityLengthSource
+  type: 字符向量
+  values: '''Dialog'' | ''Attribute'''
+  default: '''Dialog'''
+- name: Entity length value
+  summary: 实体长度 1（默认）| 数值
+  group: ''
+  block_parameter: mEntityLength
+  type: 字符向量
+  values: '''1'' | 标量'
+  default: '''1'''
+- name: Entity length attribute name
+  summary: 实体长度属性名称 Length（默认）| 字符向量
+  group: ''
+  block_parameter: mEntityLengthAttrName
+  type: 字符向量
+  values: '''Length'' | 字符向量'
+  default: '''Length'''
+- name: Blocked output behavior
+  summary: 输出阻塞时的行为 Accumulate（默认）| Pause | Error
+  group: ''
+  block_parameter: mOutputBlockedOpt
+  type: 字符向量
+  values: '''Accumulate'' | ''Pause'' | ''Error'''
+  default: '''Accumulate'''
+- name: Error if conveyor full
+  summary: 达到最大实体数量时的传送带行为 on（默认）| off
+  group: ''
+  block_parameter: mErrorUponFullOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Variable conveyor speed
+  summary: 恒定或可变传送带速度 off（默认）| on
+  group: ''
+  block_parameter: mIsVariableSpeed
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Number of entities departed, d
+  summary: 已离开的实体数量 off（默认）| on
+  group: ''
+  block_parameter: mNumEntitiesDepOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: 现有实体数量 off（默认）| on
+  group: ''
+  block_parameter: mNumEntitiesInBlockOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 模块中的待处理实体，pe
+  summary: 待处理实体 off（默认）| on
+  group: ''
+  block_parameter: mEntityPendingOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: 提取的实体数量，ex
+  summary: 从此模块提取的实体数量 off（默认）| on
+  group: ''
+  block_parameter: mNumExtractedFromBlockOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: 传送带速度，s
+  summary: 仿真期间传送带的速度 off（默认）| on
+  group: ''
+  block_parameter: mConveyorSpeedOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+```
 
 ### **Conveyor length** — 表面长度 100（默认）| 数值
 
@@ -295,7 +425,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认**：`'off'` |
-
 ## 所属库
 
 SimEvents

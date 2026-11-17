@@ -14,6 +14,12 @@ language: en
 # Mechanical Rotational Reference
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Angular velocity is zero mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,11 +27,12 @@ language: en
 
 Mechanical rotational conserving port where angular velocity is equal to
 zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

@@ -14,6 +14,21 @@ language: en
 # Histogram Equalization
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Hist
+  summary: Target histogram vector of integers
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -52,8 +67,22 @@ Output image, returned as a matrix of intensity values. The data type of the
 output image is the same as the data type of the input image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Target histogram
+  summary: Type of desired histogram Uniform (default) | User-defined
+  group: ''
+- name: Number of bins
+  summary: Number of bins of target histogram 64 (default) | integer greater than one
+  group: ''
+- name: Histogram source
+  summary: Source of target histogram Specify via dialog (default) | Input port
+  group: ''
+- name: Histogram
+  summary: Bin counts of target histogram ones(1,64) (default) | vector of integers
+  group: ''
+```
 
 ### **Target histogram** — Type of desired histogram `Uniform` (default) | `User-defined`
 
@@ -111,7 +140,6 @@ To enable this parameter, set these block parameters:
   `User-defined`
 - **Histogram source**: `Specify via
   dialog`
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

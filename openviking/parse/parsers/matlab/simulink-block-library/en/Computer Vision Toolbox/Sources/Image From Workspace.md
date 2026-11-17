@@ -14,6 +14,25 @@ language: en
 # Image From Workspace
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Output image matrix | 3-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: Red color component of image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: Green color component of image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: Blue color component of image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Output
 
@@ -72,8 +91,42 @@ To enable this port ,set the **Image signal** parameter to
 `Separate color signals`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Value
+  summary: Image to be imported rand(100,100,3) (default) | vector | matrix | 3-D array | MATLAB workspace variable | MATLAB
+    function
+  group: ''
+- name: Sample time
+  summary: Sample time for block execution inf (default) | positive scalar | Vector
+  group: ''
+- name: Image signal
+  summary: Signal returned by block One multidimensional signal (default) | Separate color signals
+  group: ''
+- name: Output port labels
+  summary: Output port labels R|G|B (default) | port names
+  group: ''
+- name: Output data type
+  summary: Data type of the output image Inherit from Value (default) | double | single | int8 | uint8 | int16 | uint16 |
+    int32 | uint32 | boolean | Fixed-point | User-defined | Inherit via back propagation | ...
+  group: ''
+- name: Signed
+  summary: Signed fixed-point data type on (default) | off
+  group: ''
+- name: Word length
+  summary: Bits in fixed-point data type 16 (default) | positive scalar
+  group: ''
+- name: Set fraction length in output to
+  summary: Scaling factor of the fixed-point User-defined (default) | Best precision
+  group: ''
+- name: Fractional length
+  summary: Fractional bits 15 (default) | scalar
+  group: ''
+- name: User-defined data type
+  summary: User-defined fixed-point data type sfix(16) (default) | user-defined fixed-point data type
+  group: ''
+```
 
 **Main**
 
@@ -191,7 +244,6 @@ types using the `fixdt` (Simulink) function.
 
 To enable this parameter, set the **Output data type** parameter
 to `User-defined`.
-
 ## Libraries
 
 Computer Vision Toolbox / Sources

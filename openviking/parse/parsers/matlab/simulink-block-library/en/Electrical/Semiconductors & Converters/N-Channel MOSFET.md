@@ -14,6 +14,24 @@ language: en
 # N-Channel MOSFET
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate terminal electrical
+  direction: conserving
+- name: D
+  summary: Drain terminal electrical
+  direction: conserving
+- name: S
+  summary: Source terminal electrical
+  direction: conserving
+- name: B
+  summary: Body terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -47,8 +65,578 @@ Thermal conserving port.
 To enable this port, set **Modeling option** to
 `Threshold-based with thermal` or
 `Surface-potential-based with thermal`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling Option
+  summary: MOSFET representation Threshold-based (default) | Threshold-based with thermal | Surface-potential-based | Surface-potential-based
+    with thermal
+  group: ''
+- name: Number of terminals
+  summary: Terminal parameterization Three (default) | Four
+  group: Main (Threshold-Based Modeling Option)
+- name: Parameterization
+  summary: Block parameterization Specify from a datasheet (default) | Specify using equation parameters directly | Lookup
+    table (2-D, temperature independent) | Lookup table (3-D, temperature dependent)
+  group: Main (Threshold-Based Modeling Option)
+- name: Drain-source on resistance, R_DS(on)
+  summary: Drain-source on resistance 0.025 Ohm (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Drain current, Ids, for R_DS(on)
+  summary: Drain current 6A (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Gate-source voltage, Vgs, for R_DS(on)
+  summary: Gate-source voltage, Vgs 10 V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Gain, K
+  summary: Positive constant gain coefficient 5.0 A/V2 (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Gate-source threshold voltage, Vth
+  summary: Gate-source threshold voltage 1.7 V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Gate-source threshold voltage at zero bulk-source voltage, Vth0
+  summary: Gate-source threshold voltage at zero bulk-source voltage 1.7 V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Channel modulation, L
+  summary: Channel modulation 0 1/V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Gate-source threshold voltage at first non-zero bulk-source voltage, Vth1
+  summary: Gate-source threshold voltage at first non-zero bulk-source voltage 1.9071 V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: First bulk-source voltage, Vbs1
+  summary: First bulk-source voltage -1 V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Gate-source threshold voltage at second non-zero bulk-source voltage, Vth2
+  summary: Gate-source threshold voltage at second non-zero bulk-source voltage 2.066 V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Second bulk-source voltage, Vbs2
+  summary: Second bulk-source voltage -2 V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Body factor
+  summary: Body factor 0.5 V^0.50000 (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Surface potential
+  summary: Surface potential 0.5 V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Measurement temperature
+  summary: Measurement temperature 25 °C (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Vector of gate-source voltages, Vgs
+  summary: Vector of gate-source voltages [-.5, 2, 3, 4, 5] V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Vector of drain-source voltages, Vds
+  summary: Vector of drain-source voltages [0, 2, 4, 8, 12, 16, 20] V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Vector of bulk-source voltages, Vbs
+  summary: Vector of drain-source voltages [0, -4, -6, -12] V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Tabulated drain-source currents, Ids(Vgs,Vds)
+  summary: Tabulated drain-source currents temperature independent [0, 0, 0, 0, 0, 0, 0; 0, .003, .0038, .0043, .0046, .0048,
+    .0049; 0, .0055, .008, .009, .0095, .01, .0101; 0, .0115, .016, .018, .019, .0195, .02; 0, .0152, .0225, .0265, .028,
+    .0295, .03] A (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Vector of temperatures, T
+  summary: Vector of temperatures [25 125] degC (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Tabulated drain-source currents, Ids(Vgs,Vds,T)
+  summary: Tabulated drain-source currents temperature dependent zeros(5, 7, 2) A (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Tabulated gate-source threshold voltage, Vth(Vbs)
+  summary: Vector of gate-source threshold voltage temperature independent [.4, 1.2, 1.4, 1.45] V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Tabulated drain-source currents at zero bulk-source voltage, Ids(Vgs,Vds)
+  summary: Tabulated drain-source currents at zero bulk-source voltage, temperature independent [0, 0, 0, 0, 0, 0, 0; 0, .003,
+    .0038, .0043, .0046, .0048, .0049; 0, .0055, .008, .009, .0095, .01, .0101; 0, .0115, .016, .018, .019, .0195, .02; 0,
+    .0152, .0225, .0265, .028, .0295, .03] A (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Tabulated gate-source threshold voltage, Vth(Vbs,T)
+  summary: Vector of gate-source threshold voltage temperature dependent [.4, .35; 1.2, 1.15; 1.4, 1.35; 1.45, 1.4] V (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Tabulated drain-source currents at zero bulk-source voltage, Ids(Vgs,Vds,T)
+  summary: Tabulated drain-source currents at zero bulk-source voltage, temperature dependent zeros(5, 7, 2) A (default)
+  group: Main (Threshold-Based Modeling Option)
+- name: Ids-Vds parameterization
+  summary: Ids-Vds table data as symmetric data Provide negative and positive Vds data (default) | Provide positive Vds data
+    only
+  group: Main (Threshold-Based Modeling Option)
+- name: Number of terminals
+  summary: Terminal parameterization Three (default) | Four
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Gain
+  summary: MOSFET gain 18 A/V 2 (default) | positive scalar
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Flatband voltage
+  summary: Flatband voltage -1.1 V (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Body factor
+  summary: Body factor 3.5 V1/2 (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Surface potential at strong inversion
+  summary: Surface potential at strong inversion 1 V (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Velocity saturation factor
+  summary: Velocity saturation factor 0.4 1/V (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Channel-length modulation factor
+  summary: Channel-length modulation factor 0 (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Channel-length modulation voltage
+  summary: Channel-length modulation voltage 5e-2 V (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Surface roughness scattering factor
+  summary: Surface roughness scattering factor 0 1/V (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Linear-to-saturation transition coefficient
+  summary: Linear-to-saturation transition coefficient 8 (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Measurement temperature
+  summary: Measurement temperature 25 °C (default)
+  group: Main (Surface-Potential-Based Modeling Option)
+- name: Source ohmic resistance, Rs
+  summary: Transistor source resistance 0.0001 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Drain ohmic resistance, Rd
+  summary: Transistor drain resistance 0.01 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Gate ohmic resistance, Rg
+  summary: Transistor gate resistance 8.4 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Body ohmic resistance, Rb
+  summary: Transistor body resistance 0.001 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Bulk ohmic resistance
+  summary: Transistor bulk resistance 2e-3 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Source lead resistance
+  summary: Source lead resistance of transistor 0 Ohm (default) | nonnegative scalar
+  group: Packaging
+- name: Drain lead resistance
+  summary: Drain lead resistance of transistor 0 Ohm (default) | nonnegative scalar
+  group: Packaging
+- name: Gate lead resistance
+  summary: Gate lead resistance of transistor 0 Ohm (default) | nonnegative scalar
+  group: Packaging
+- name: Body lead resistance
+  summary: Body lead resistance of transistor 0 Ohm (default) | nonnegative scalar
+  group: Packaging
+- name: Source lead inductance
+  summary: Source lead inductance of transistor 0 nH (default) | nonnegative scalar
+  group: Packaging
+- name: Drain lead inductance
+  summary: Drain lead inductance of transistor 0 nH (default) | nonnegative scalar
+  group: Packaging
+- name: Gate lead inductance
+  summary: Gate lead inductance of transistor 0 nH (default) | nonnegative scalar
+  group: Packaging
+- name: Body lead inductance
+  summary: Body lead inductance of transistor 0 nH (default) | nonnegative scalar
+  group: Packaging
+- name: Parameterization
+  summary: Capacitance parameterization Specify fixed input, reverse transfer, and output capacitance (default) | Specify
+    fixed gate-source, gate-drain, and drain-source capacitance | Specify tabulated input, reverse transfer, and output capacitance
+    | Specify tabulated gate-source, gate-drain, and drain-source capacitance
+  group: Capacitance
+- name: Input capacitance, Ciss
+  summary: Input gate-source capacitance 350 pF (default)
+  group: Capacitance
+- name: Input capacitance, Ciss(Vds)
+  summary: Input gate-source capacitance with tabulated input [720 700 590 470 390 310] pF (default)
+  group: Capacitance
+- name: Reverse transfer capacitance, Crss
+  summary: Reverse transfer capacitance 80 pF (default)
+  group: Capacitance
+- name: Reverse transfer capacitance, Crss(Vds)
+  summary: Reverse transfer capacitance with tabulated inputs [450 400 300 190 95 55] pF (default)
+  group: Capacitance
+- name: Output capacitance, Coss
+  summary: Output capacitance 0 pF (default)
+  group: Capacitance
+- name: Output capacitance, Coss(Vds)
+  summary: Output capacitance with tabulated inputs [900 810 690 420 270 170] pF (default)
+  group: Capacitance
+- name: Gate-source capacitance, Cgs
+  summary: Gate-source capacitance 270 pF (default)
+  group: Capacitance
+- name: Gate-source capacitance, Cgs(Vgs, Vds)
+  summary: Gate-source capacitance with tabulated values [270 300 290 280 295 255] pF (default)
+  group: Capacitance
+- name: Gate-drain capacitance, Cgd
+  summary: Gate-drain capacitance 80 pF (default)
+  group: Capacitance
+- name: Gate-drain capacitance, Cgd(Vgs,Vds)
+  summary: Gate-drain capacitance with tabulated values [450 400 300 190 95 55] pF (default)
+  group: Capacitance
+- name: Gate-bulk capacitance, Cgb
+  summary: Gate-bulk capacitance 0 pF (default)
+  group: Capacitance
+- name: Gate-bulk capacitance, Cgb(Vgs,Vds)
+  summary: Gate-bulk capacitance with tabulated values [450 400 300 190 95 55] pF (default)
+  group: Capacitance
+- name: Corresponding gate-source voltages, Vgs
+  summary: Corresponding gate-source voltages 0 V (default)
+  group: Capacitance
+- name: Drain-source capacitance, Cds
+  summary: Drain-source capacitance 0 pF (default)
+  group: Capacitance
+- name: Drain-source capacitance, Cds(vds)
+  summary: Drain-source capacitance with tabulated values [450 410 390 230 175 115] pF (default)
+  group: Capacitance
+- name: Corresponding drain-source voltages, Vds
+  summary: Corresponding drain-source voltages [.1, .3, 1, 3, 10, 30] V (default)
+  group: Capacitance
+- name: Gate-source voltage, Vgs, for tabulated capacitances
+  summary: Gate-source voltage for tabulated capacitances 0 V (default)
+  group: Capacitance
+- name: Gate-drain charge-voltage linearity
+  summary: Charge-voltage linearity Gate-drain capacitance is constant (default) | Gate-drain charge function is nonlinear
+  group: Capacitance
+- name: Gate-drain oxide capacitance
+  summary: Gate-drain oxide capacitance 200 pF (default)
+  group: Capacitance
+- name: Drain-gate voltage at which oxide capacitance becomes active
+  summary: Drain-gate voltage at which oxide capacitance becomes active -0.5 V (default)
+  group: Capacitance
+- name: Gate-bulk and gate-source charge-voltage linearity
+  summary: Gate-bulk and gate-source charge-voltage linearity Gate-bulk and gate-source capacitance change instantly (default)
+    | Gate-bulk and gate-source capacitance change gradually | Separate gate-bulk and gate-source capacitance
+  group: Capacitance
+- name: Oxide capacitance
+  summary: Oxide capacitance 1500 pF (default)
+  group: Channel Capacitances
+- name: Gate-source overlap capacitance
+  summary: Gate-source overlap capacitance 100 pF (default)
+  group: Channel Capacitances
+- name: Gate-drain overlap capacitance
+  summary: Gate-drain overlap capacitance 14 pF (default)
+  group: Channel Capacitances
+- name: Model body diode
+  summary: Body diode modeling option No (default) | Exponential | Tabulated I-V curve
+  group: Body Diode
+- name: Table type
+  summary: Tabulated function Table in If(Tj,Vf) form (default) | Table in Vf(Tj,If) form
+  group: Body Diode
+- name: Reverse saturation current, Is
+  summary: Reverse saturation current 0 A (default)
+  group: Body Diode
+- name: Built-in voltage, Vbi
+  summary: Built-in voltage 0.6 V (default)
+  group: Body Diode
+- name: Ideality factor, n
+  summary: Ideality factor 1 (default)
+  group: Body Diode
+- name: Zero-bias junction capacitance, Cj0
+  summary: Zero-bias junction capacitance 0 pF (default)
+  group: Body Diode
+- name: Transit time, TT
+  summary: Transit time 50e-9 s (default)
+  group: Body Diode
+- name: Measurement temperature
+  summary: Measurement temperature 25 °C (default)
+  group: Body Diode
+- name: Diode forward voltages, Vf(If)
+  summary: Diode forward voltages [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85] V (default)
+  group: Body Diode
+- name: Diode forward currents, If
+  summary: Diode forward currents temperature independent [.1, .2, .5, 1, 2, 4, 7, 10] A (default)
+  group: Body Diode
+- name: Diode forward currents, If(Vf)
+  summary: Diode forward currents tabulated with forward voltages [.07, .12, .19, 1.75, 4.24, 7.32, 11.2] A (default)
+  group: Body Diode
+- name: Diode forward voltages, Vf
+  summary: Diode forward voltages temperature independent [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V (default)
+  group: Body Diode
+- name: Diode junction temperatures, Tj
+  summary: Diode junction temperatures [25, 125] degC (default)
+  group: Body Diode
+- name: Diode forward currents, If(Tj,Vf)
+  summary: Diode forward currents temperature dependent [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02,
+    6.35, 9.12] A (default)
+  group: Body Diode
+- name: Diode forward voltages, If(Tj,Vf)
+  summary: Diode forward voltages temperature dependent [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38,
+    1.77, 2.27, 2.7] V (default)
+  group: Body Diode
+- name: Diode off conductance
+  summary: Conductance of diode when reverse biased 1e-12 1/Ohm (default) | positive scalar
+  group: Body Diode
+- name: Parameterization
+  summary: Temperature dependence parameterization None — Simulate at parameter measurement temperature (default) | Model
+    temperature dependence
+  group: Temperature Dependence (Threshold-Based Modeling Option)
+- name: Drain-source on resistance, R_DS(on), at second measurement temperature
+  summary: Drain-source on resistance at second measurement temperature 0.037 Ohm (default)
+  group: Temperature Dependence (Threshold-Based Modeling Option)
+- name: Second measurement temperature
+  summary: Second temperature 125 °C (default)
+  group: Temperature Dependence (Threshold-Based Modeling Option)
+- name: Gate threshold voltage temperature coefficient, dVth/dT
+  summary: Gate-source voltage, Vgs -6 mV/K (default)
+  group: Temperature Dependence (Threshold-Based Modeling Option)
+- name: Mobility temperature exponent, BEX
+  summary: Mobility temperature exponent -1.5 (default)
+  group: Temperature Dependence (Threshold-Based Modeling Option)
+- name: Body diode reverse saturation current temperature exponent
+  summary: Body diode reverse saturation current temperature exponent 3 (default)
+  group: Temperature Dependence (Threshold-Based Modeling Option)
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 °C (default)
+  group: Temperature Dependence (Threshold-Based Modeling Option)
+- name: Parameterization
+  summary: Temperature dependence parameterization None — Simulate at parameter measurement temperature (default) | Model
+    temperature dependence
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: Gain temperature exponent
+  summary: Gain temperature exponent 1.3 (default)
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: Flatband voltage temperature coefficient
+  summary: Flatband voltage temperature coefficient 5e-4 V/K (default)
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: Surface potential at strong inversion temperature coefficient
+  summary: Surface potential at strong inversion temperature coefficient -8.5e-4 V/K (default)
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: Velocity saturation temperature exponent
+  summary: Velocity saturation temperature exponent 1.04 (default)
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: Surface roughness scattering temperature exponent
+  summary: Surface roughness scattering temperature exponent 0.65 (default)
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: Resistance temperature exponent
+  summary: Resistance temperature exponent 0.95 (default)
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: Body diode reverse saturation current temperature exponent
+  summary: Body diode reverse saturation current temperature exponent 3 (default)
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 °C (default)
+  group: Temperature Dependence (Surface-Potential-Based Modeling Option)
+- name: NMOS fault
+  summary: Option to add fault Add fault (default)
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible gate-source voltage
+  summary: Gate-source voltage threshold to fault transition inf V (default) | positive scalar
+  group: Faults
+- name: Maximum permissible drain-source voltage
+  summary: Drain-source voltage threshold to fault transition inf V (default) | positive scalar
+  group: Faults
+- name: Maximum permissible drain-bulk voltage
+  summary: Drain-bulk voltage threshold to fault transition inf V (default) | positive scalar
+  group: Faults
+- name: Maximum permissible drain-source current
+  summary: Current threshold to fault transition inf A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding drain-source current
+  summary: Time to fail when exceeding drain-source current 1 s (default) | positive scalar
+  group: Faults
+- name: Maximum permissible body diode current
+  summary: Body diode current threshold to fault transition inf A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding body diode current
+  summary: Time to fail when exceeding body diode current 1 s (default) | positive scalar
+  group: Faults
+- name: Maximum diode recovery, dV/dt
+  summary: Maximum diode recovery inf V/s (default) | positive scalar
+  group: Faults
+- name: Maximum permissible temperature
+  summary: Temperature threshold to fault transition inf K (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding temperature
+  summary: Time to fail when exceeding temperature 1 s (default) | positive scalar
+  group: Faults
+- name: Fault transition time constant, tau
+  summary: Fault transition time constant 1e-3 s (default)
+  group: Faults
+- name: Failure mode
+  summary: Failure category Open circuit (default) | Drain-source short | Drain-bulk short or source-bulk short | Gate oxide
+    short | Parameter shift
+  group: Faults
+- name: Faulted series gate resistance, Rg
+  summary: Faulted series gate resistance 1e6 Ohm (default)
+  group: Faults
+- name: Faulted series drain resistance, Rd
+  summary: Faulted series drain resistance 1000 Ohm (default)
+  group: Faults
+- name: Faulted series source resistance, Rs
+  summary: Faulted series source resistance 1000 Ohm (default)
+  group: Faults
+- name: Faulted series bulk resistance, Rb
+  summary: Faulted series source resistance 1000 Ohm (default)
+  group: Faults
+- name: Faulted parallel drain-source conductance, Gds
+  summary: Faulted parallel drain-source conductance 1000 1/Ohm (default)
+  group: Faults
+- name: Faulted parallel drain-bulk conductance, Gdb
+  summary: Faulted parallel drain-bulk conductance 1000 1/Ohm (default)
+  group: Faults
+- name: Faulted parallel source-bulk conductance, Gsb
+  summary: Faulted parallel source-bulk conductance 1000 1/Ohm (default)
+  group: Faults
+- name: Location of fault node (percentage of total channel length from source)
+  summary: Fault node location 0 (default)
+  group: Faults
+- name: Gate oxide short conductance, G
+  summary: Gate oxide short conductance 1000 1/Ohm (default)
+  group: Faults
+- name: Model gate oxide short diode
+  summary: Model option for gate oxide short diode No (default) | Yes
+  group: Faults
+- name: Gate oxide short diode reverse saturation current, Is
+  summary: Reverse saturation current of gate oxide short diode 0 A (default)
+  group: Faults
+- name: Gate oxide short diode built-in voltage, Vbi
+  summary: Built-in voltage of gate oxide short diode 0.6 V (default)
+  group: Faults
+- name: Gate oxide short diode ideality factor, n
+  summary: Ideality factor of gate oxide short diode 1 (default)
+  group: Faults
+- name: Gate oxide short diode zero-bias junction capacitance, Cj0
+  summary: Zero-bias junction capacitance of gate oxide short diode 0 pF (default)
+  group: Faults
+- name: Gate oxide short diode transit time, TT
+  summary: Transit time of gate oxide short diode 50e-9 s (default)
+  group: Faults
+- name: Shifted gain as percentage of unshifted
+  summary: Shifted gain as percentage of unshifted 100 (default)
+  group: Faults
+- name: Threshold voltage shift value, dVth
+  summary: Threshold voltage shift value 0 V (default)
+  group: Faults
+- name: Faulted channel modulation, L
+  summary: Faulted channel modulation 0 1/V (default)
+  group: Faults
+- name: Shifted body factor as percentage of unshifted
+  summary: Shifted body factor as percentage of unshifted 100 (default)
+  group: Faults
+- name: Surface potential shift value, dPhib
+  summary: Surface potential shift value 0 V (default)
+  group: Faults
+- name: Faulted source ohmic resistance, Rs
+  summary: Faulted source ohmic resistance 0.0001 Ohm (default)
+  group: Faults
+- name: Faulted drain ohmic resistance, Rd
+  summary: Faulted drain ohmic resistance 0.01 Ohm (default)
+  group: Faults
+- name: Faulted body ohmic resistance, Rb
+  summary: Faulted body ohmic resistance 0.001 Ohm (default)
+  group: Faults
+- name: Faulted vector of gate-source voltages, Vgs
+  summary: Faulted vector of gate-source voltages [-.5, 2, 3, 4, 5] V (default)
+  group: Faults
+- name: Faulted vector of drain-source voltages, Vds
+  summary: Faulted vector of drain-source voltages [0, 2, 4, 8, 12, 16, 20] V (default)
+  group: Faults
+- name: Faulted vector of bulk-source voltages, Vbs
+  summary: Faulted vector of bulk-source voltages [0, -4, -6, -12] V (default)
+  group: Faults
+- name: Faulted tabulated gate-source threshold voltage, Vth(Vbs)
+  summary: Faulted tabulated gate-source threshold voltage [.4, 1.2, 1.4, 1.45] V (default)
+  group: Faults
+- name: Faulted tabulated gate-source threshold voltage, Vth(Vbs,T)
+  summary: Faulted tabulated gate-source threshold voltage dependent on temperature [.4, .35; 1.2, 1.15; 1.4, 1.35; 1.45,
+    1.4] V (default)
+  group: Faults
+- name: Faulted tabulated drain-source currents, Ids(Vgs,Vds)
+  summary: Faulted tabulated drain-source currents [0, 0, 0, 0, 0, 0, 0; 0, .003, .0038, .0043, .0046, .0048, .0049; 0, .0055,
+    .008, .009, .0095, .01, .0101; 0, .0115, .016, .018, .019, .0195, .02; 0, .0152, .0225, .0265, .028, .0295, .03] A (default)
+  group: Faults
+- name: Faulted tabulated drain-source currents, Ids(Vgs,Vds,T)
+  summary: Faulted tabulated drain-source currents, dependent on temperature zeros(5, 7, 2) A (default)
+  group: Faults
+- name: Faulted tabulated drain-source currents at zero bulk-source voltage, Ids(Vgs,Vds)
+  summary: Faulted tabulated drain-source currents at zero bulk-source voltage [0, 0, 0, 0, 0, 0, 0; 0, .003, .0038, .0043,
+    .0046, .0048, .0049; 0, .0055, .008, .009, .0095, .01, .0101; 0, .0115, .016, .018, .019, .0195, .02; 0, .0152, .0225,
+    .0265, .028, .0295, .03] A (default)
+  group: Faults
+- name: Faulted tabulated drain-source currents at zero bulk-source voltage, Ids(Vgs,Vds,T)
+  summary: Faulted tabulated drain-source currents at zero bulk-source voltage, dependent on temperature zeros(5, 7, 2) A
+    (default)
+  group: Faults
+- name: Faulted gate-source capacitance as percentage of unfaulted
+  summary: Faulted gate-source capacitance as percentage of unfaulted 100 (default)
+  group: Faults
+- name: Faulted gate-drain capacitance as percentage of unfaulted
+  summary: Faulted gate-drain capacitance as percentage of unfaulted 100 (default)
+  group: Faults
+- name: Faulted gate-bulk capacitance as percentage of unfaulted
+  summary: Faulted gate-bulk capacitance as percentage of unfaulted 100 (default)
+  group: Faults
+- name: Faulted drain-source capacitance as percentage of unfaulted
+  summary: Faulted drain-source capacitance as percentage of unfaulted 100 (default)
+  group: Faults
+- name: Faulted gate-drain oxide capacitance as percentage of unfaulted
+  summary: Faulted gate-drain oxide capacitance as percentage of unfaulted 100 (default)
+  group: Faults
+- name: Faulted drain-gate voltage at which oxide capacitance becomes active
+  summary: Faulted drain-gate voltage at which oxide capacitance becomes active -0.5 V (default)
+  group: Faults
+- name: Faulted input capacitance, Ciss(Vds)
+  summary: Faulted input capacitance [720, 700, 590, 470, 390, 310] pF (default)
+  group: Faults
+- name: Faulted reverse transfer capacitance, Crss(Vds)
+  summary: Faulted reverse transfer capacitance [450, 400, 300, 190, 95, 55] pF (default)
+  group: Faults
+- name: Faulted output capacitance, Coss(Vds)
+  summary: Faulted output capacitance [900, 810, 690, 420, 270, 170] pF (default)
+  group: Faults
+- name: Faulted corresponding drain-source voltages, Vds
+  summary: Faulted corresponding drain-source voltages [.1, .3, 1, 3, 10, 30] V (default)
+  group: Faults
+- name: Faulted gate-source voltages, Vgs, for tabulated capacitances
+  summary: Faulted gate-source voltages for tabulated capacitances 0 V (default)
+  group: Faults
+- name: Faulted gate-source capacitance, Cgs(Vgs,Vds)
+  summary: Faulted gate-source capacitance [270, 300, 290, 280, 295, 255] pF (default)
+  group: Faults
+- name: Faulted gate-drain capacitance, Cgd(Vgs,Vds)
+  summary: Faulted gate-source capacitance [450, 400, 300, 190, 95, 55] pF (default)
+  group: Faults
+- name: Faulted gate-bulk capacitance, Cgb(Vgs,Vds)
+  summary: Faulted gate-source capacitance [270, 300, 290, 280, 295, 255] pF (default)
+  group: Faults
+- name: Faulted corresponding gate-source voltages, Vgs
+  summary: Faulted corresponding gate-source voltages 0 V (default)
+  group: Faults
+- name: Faulted diode reverse saturation current, Is
+  summary: Faulted diode reverse saturation current 0 A (default)
+  group: Faults
+- name: Faulted diode built-in voltage, Vbi
+  summary: Faulted diode built-in voltage 0.6 V (default)
+  group: Faults
+- name: Faulted diode ideality factor, n
+  summary: Faulted diode ideality factor 1 (default)
+  group: Faults
+- name: Faulted diode zero-bias junction capacitance as percentage of unfaulted
+  summary: Faulted diode zero-bias junction capacitance as percentage of unfaulted 100 (default)
+  group: Faults
+- name: Faulted diode transit time, TT
+  summary: Faulted diode transit time 50e-9 s (default)
+  group: Faults
+- name: Faulted diode forward currents, If(Vf)
+  summary: Faulted diode forward currents [.07, .12, .19, 1.75, 4.24, 7.32, 11.2] A (default)
+  group: Faults
+- name: Faulted diode forward voltages, Vf
+  summary: Faulted diode forward voltages [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V (default)
+  group: Faults
+- name: Faulted diode forward voltages, Vf(If)
+  summary: Faulted diode forward voltages [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85] V (default)
+  group: Faults
+- name: Faulted diode forward currents, If
+  summary: Faulted diode forward currents [.1, .2, .5, 1, 2, 4, 7, 10] A (default)
+  group: Faults
+- name: Faulted diode forward currents, If(Tj,Vf)
+  summary: Faulted diode forward currents with tabulated inputs [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14,
+    4.02, 6.35, 9.12] A (default)
+  group: Faults
+- name: Faulted diode forward voltages, Vf(Tj,If)
+  summary: Faulted diode forward voltages with tabulated inputs [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75,
+    1.1, 1.38, 1.77, 2.27, 2.7] V (default)
+  group: Faults
+- name: Faulted diode off conductance
+  summary: Faulted diode off conductance 1e-12 1/Ohm (default)
+  group: Faults
+```
 
 ### **Modeling Option** — MOSFET representation `Threshold-based` (default) | `Threshold-based with thermal` | `Surface-potential-based` | `Surface-potential-based with thermal`
 
@@ -2731,7 +3319,6 @@ To enable this parameter,
   parameter.
 - Set **Failure mode** to `Parameter
   shift`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

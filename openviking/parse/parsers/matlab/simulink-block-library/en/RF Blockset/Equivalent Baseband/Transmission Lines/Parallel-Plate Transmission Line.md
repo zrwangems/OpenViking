@@ -14,10 +14,82 @@ language: en
 # Parallel-Plate Transmission Line
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Plate width (m)
+  summary: Width of parallel-plate transmission line 5e-3 (default) | scalar
+  group: ''
+- name: Plate separation (m)
+  summary: Dielectric spacing in parallel-plate transmission line 1e-3 (default) | scalar
+  group: ''
+- name: Relative permeability constant
+  summary: Relative permeability of the dielectric material in the parallel-plate transmission line 1 (default) | scalar
+  group: ''
+- name: Relative permittivity constant
+  summary: Relative permittivity of the dielectric material in the parallel-plate transmission line 2.3 (default) | scalar
+  group: ''
+- name: Loss tangent of dielectric
+  summary: Loss tangent of dielectric in the parallel-plate transmission line 0 (default) | scalar
+  group: ''
+- name: Conductivity of the conductor (S/m)
+  summary: Conductivity of conductor inf (default) | scalar
+  group: ''
+- name: Transmission line length(m)
+  summary: Physical length of the transmission line 0.01 (default) | positive scalar
+  group: ''
+- name: Stub mode
+  summary: Type of stub Not a stub (default) | Shunt | Series
+  group: ''
+- name: Termination of stub
+  summary: Stub termination Open (default)
+  group: ''
+- name: Source of frequency data
+  summary: Frequency data source User-specified (default)
+  group: ''
+- name: Frequency data (Hz)
+  summary: Frequency data range [1e9:1e6:3e9] (default) | vector
+  group: ''
+- name: Reference impedance (ohms)
+  summary: Reference impedance 50 (default) | nonnegative scalar
+  group: ''
+- name: Plot type
+  summary: Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith
+    chart
+  group: ''
+- name: Y parameter1
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: ''
+- name: Y parameter2
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: ''
+- name: Y format1
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: ''
+- name: Y format2
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: ''
+- name: X parameter
+  summary: Frequency plot Freq (default)
+  group: ''
+- name: X format
+  summary: Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz
+  group: ''
+- name: Y scale
+  summary: Y-axis scale Linear (default) | Log
+  group: ''
+- name: X scale
+  summary: X-axis scale Linear (default) | Log
+  group: ''
+- name: Plot
+  summary: Plot specified data button
+  group: ''
+```
 
 #### Main
 
@@ -260,7 +332,6 @@ plane`.
 ### **Plot** — Plot specified data button
 
 Plot specified data using plot button.
-
 ## Libraries
 
 RF Blockset / Equivalent Baseband / Transmission Lines

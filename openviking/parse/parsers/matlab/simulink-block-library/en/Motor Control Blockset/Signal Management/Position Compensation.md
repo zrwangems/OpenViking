@@ -14,6 +14,25 @@ language: en
 # Position Compensation
 
 ## Ports
+```yaml
+ports:
+- name: θin
+  summary: Position input value scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ϕ
+  summary: Position offset scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ω
+  summary: Angular velocity scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θout
+  summary: Position output value scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -64,8 +83,35 @@ delay`, or `Low-pass filter delay`.
 Position output value that is corrected for offset.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Nature of offset
+  summary: Type of offset Sample delay (default) | Constant delay | External delay | High-pass filter delay | Low-pass filter
+    delay
+  group: ''
+- name: Offset value
+  summary: Position offset value 0.1 (default) | scalar
+  group: ''
+- name: Number of sample delay
+  summary: Number of block execution time samples 1 (default) | scalar
+  group: ''
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: ''
+- name: Cut-off frequency (Hz)
+  summary: Filter cutoff frequency 9.578 (default) | scalar
+  group: ''
+- name: Position unit
+  summary: Unit of position input Radians (default) | Degrees | Per unit
+  group: ''
+- name: Speed unit
+  summary: Unit of angular velocity input RPM (default) | Degrees/Sec | Radians/Sec | Per unit
+  group: ''
+- name: Maximum application speed (RPM)
+  summary: Upper limit of angular velocity 4000 (default) | scalar
+  group: ''
+```
 
 ### **Nature of offset** — Type of offset `Sample delay` (default) | `Constant delay` | `External delay` | `High-pass filter delay` | `Low-pass filter delay`
 
@@ -145,7 +191,6 @@ Upper limit or the maximum possible value for the angular velocity input
 To enable this parameter, set **Nature of offset** to
 `Sample delay`, `High-pass filter
 delay`, or `Low-pass filter delay`.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management

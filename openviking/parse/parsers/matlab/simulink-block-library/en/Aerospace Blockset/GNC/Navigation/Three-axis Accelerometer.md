@@ -14,6 +14,33 @@ language: en
 # Three-axis Accelerometer
 
 ## Ports
+```yaml
+ports:
+- name: Ab
+  summary: Actual accelerations three-element vector
+  direction: input
+  data_types: double
+- name: ω
+  summary: Angular rates three-element vector
+  direction: input
+  data_types: double
+- name: dω/dt
+  summary: Angular accelerations three-element vector
+  direction: input
+  data_types: double
+- name: CG
+  summary: Location of center of gravity three-element vector
+  direction: input
+  data_types: double
+- name: g
+  summary: Gravity three-element vector
+  direction: input
+  data_types: double
+- name: Ameas
+  summary: Measured accelerations three-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -59,8 +86,101 @@ Measured accelerations from the accelerometer, returned as a three-element vecto
 the units specified in the **Units** parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Accelerometer location
+  summary: Accelerometer location [0 0 0] (default) | three-element vector
+  group: ''
+  block_parameter: acc
+  type: character vector
+  values: three-element vector
+  default: '''[0 0 0]'''
+- name: Subtract gravity
+  summary: Subtract gravity on (default) | off
+  group: ''
+  block_parameter: gtype
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Second order dynamics
+  summary: Second-order dynamics on (default) | off
+  group: ''
+  block_parameter: dtype_a
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Natural frequency (rad/sec)
+  summary: Natural frequency 190 (default) | scalar
+  group: ''
+  block_parameter: w_a
+  type: character vector
+  values: double scalar
+  default: '''190'''
+- name: Damping ratio
+  summary: Damping ratio 0.707 (default) | scalar
+  group: ''
+  block_parameter: z_a
+  type: character vector
+  values: double scalar
+  default: '''0.707'''
+- name: Scale factors and cross-coupling
+  summary: Scale factors and cross coupling [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix
+  group: ''
+  block_parameter: a_sf_cc
+  type: character vector
+  values: 3-by-3 matrix
+  default: '''[1 0 0; 0 1 0; 0 0 1]'''
+- name: Measurement bias
+  summary: Measurement bias [0 0 0] (default) | three-element vector
+  group: ''
+  block_parameter: a_bias
+  type: character vector
+  values: 3-by-3 matrix
+  default: '''[0 0 0]'''
+- name: Update rate (sec)
+  summary: Update rate 0 (default) | scalar
+  group: ''
+  block_parameter: a_Ts
+  type: character vector
+  values: double scalar
+  default: '''0'''
+- name: Noise on
+  summary: White noise on (default) | off
+  group: ''
+  block_parameter: a_rand
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Noise seeds
+  summary: Noise seeds [23093 23094 23095] (default) | three-element vector
+  group: ''
+  block_parameter: a_seeds
+  type: character vector
+  values: three-element vector
+  default: '''[23093 23094 23095]'''
+- name: Noise power
+  summary: Noise power [0.001 0.001 0.001] (default) | three-element vector
+  group: ''
+  block_parameter: a_pow
+  type: character vector
+  values: three-element vector
+  default: '''[0.001 0.001 0.001]'''
+- name: Lower and upper output limits
+  summary: Minimum and maximum values of acceleration [-inf -inf -inf inf inf inf] (default) | six-element vector
+  group: ''
+  block_parameter: a_sat
+  type: character vector
+  values: six-element vector
+  default: '''[-inf -inf -inf inf inf inf]'''
+```
 
 ### **Units** — Units `Metric (MKS)` (default) | `English`
 
@@ -281,7 +401,6 @@ specified in the **Units** parameter.
 | **Type**: character vector |
 | **Values**: six-element vector |
 | **Default**: `'[-inf -inf -inf inf inf inf]'` |
-
 ## Libraries
 
 Aerospace Blockset / GNC / Navigation

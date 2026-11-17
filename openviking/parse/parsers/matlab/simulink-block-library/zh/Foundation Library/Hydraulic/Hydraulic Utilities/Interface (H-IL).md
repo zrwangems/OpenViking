@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Interface (H-IL)
 
 ## 端口
+```yaml
+ports:
+- name: H
+  summary: 液压端口 hydraulic
+  direction: conserving
+- name: IL
+  summary: 等温液体端口 isothermal liquid
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -26,11 +35,12 @@ chinese_source: worker-translation
 ### **IL** — 等温液体端口 isothermal liquid
 
 表示通过接口的通道点的等温液体守恒端口。将此端口连接到基于 Simscape 等温液体域构建的模块网络。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Hydraulic / Hydraulic Utilities

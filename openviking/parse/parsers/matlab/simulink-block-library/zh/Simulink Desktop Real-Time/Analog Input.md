@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Analog Input
 
 ## 端口
+```yaml
+ports:
+- name: Analog Data
+  summary: 从输入通道向量读取的模数转换器数据
+  direction: output
+  data_types: double | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Missed Ticks
+  summary: 错过的节拍计数（可选）double
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -33,8 +44,54 @@ chinese_source: worker-translation
 当您选择 **Show "Missed Ticks" port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Install new board
+  summary: 注册板卡 < no board selected >（默认）
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: 删除当前板卡（按钮）
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: 设置板卡（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认）| double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器节拍数 10（默认）| integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: 显示“Missed Ticks”端口
+  summary: 将错过的 tick 数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: 等待时让出 CPU
+  summary: 在内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: 输入通道
+  summary: 选择模拟输入通道 1（默认）| 向量
+  group: ''
+  block_parameter: Channels
+- name: 输入范围
+  summary: 模拟输入的输入范围，取决于板卡
+  group: ''
+  block_parameter: VoltRange
+- name: 模块输出信号
+  summary: 模块返回的值类型 Volts（默认）| Normalized bipolar | Normalized unipolar | Raw
+  group: ''
+  block_parameter: RangeMode
+- name: 输出数据类型
+  summary: 模块输出的数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataType
+```
 
 ### **Install new board** — 注册板卡 `< no board selected >`（默认）
 
@@ -199,7 +256,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`DataType` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

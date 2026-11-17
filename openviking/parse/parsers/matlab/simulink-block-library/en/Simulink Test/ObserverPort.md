@@ -14,6 +14,13 @@ language: en
 # Observer Port
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Mapped signal scalar | vector
+  direction: output
+  data_types: double | single | Boolean | base integer | fixed point | enumerated | non-virtual bus
+```
 
 ### Output
 
@@ -23,11 +30,12 @@ Mapped signal that flows through the Observer Port into the
 Observer model.
 
 **Data Types:** `double` | `single` | `Boolean` | `base integer` | `fixed point` | `enumerated` | `non-virtual bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Test

@@ -14,6 +14,21 @@ language: en
 # Signal Invalidation
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data value numeric value
+  direction: input
+  data_types: single | double | base integer | Boolean | fixed point | enumerated | bus
+- name: Port_2
+  summary: Invalidation control flag true | false
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: Output data value numeric value
+  direction: output
+  data_types: single | double | base integer | Boolean | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -43,8 +58,24 @@ Output data value produced by the combination of the input data value and the
 invalidation control flag.
 
 **Data Types:** `single` | `double` | `base integer` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal invalidation policy
+  summary: Invalidation policy Keep (default) | Replace | DontInvalidate
+  group: ''
+  block_parameter: InvalidationPolicy
+  type: character vector
+  values: '''Keep'' | ''Replace'' | ''DontInvalidate'''
+  default: '''Keep'''
+- name: Initial value
+  summary: Data element initial value 0 (default) | double
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector
+  values: real finite values
+  default: '''0'''
+```
 
 ### **Signal invalidation policy** — Invalidation policy `Keep` (default) | `Replace` | `DontInvalidate`
 
@@ -75,7 +106,6 @@ the specified initial value.
 | **Type:** character vector |
 | **Values:** real finite values |
 | **Default:** `'0'` |
-
 ## Libraries
 
 AUTOSAR Blockset / Classic Platform / Signal Routing

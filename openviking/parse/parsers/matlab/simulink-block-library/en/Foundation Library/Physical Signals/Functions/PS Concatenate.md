@@ -14,6 +14,18 @@ language: en
 # PS Concatenate
 
 ## Ports
+```yaml
+ports:
+- name: I1
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: I2
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -41,15 +53,19 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Concatenate horizontally
+  summary: Specify concatenation method for matrices Off (default) | On
+  group: ''
+```
 
 ### **Concatenate horizontally** — Specify concatenation method for matrices `Off` (default) | `On`
 
 If the input signals are matrices, then by default the block concatenates them
 vertically. To concatenate the matrices horizontally, select the **Concatenate
 horizontally** check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Functions

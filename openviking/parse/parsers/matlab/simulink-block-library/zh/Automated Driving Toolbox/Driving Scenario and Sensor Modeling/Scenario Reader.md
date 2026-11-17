@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Scenario Reader
 
 ## 端口
+```yaml
+ports:
+- name: Ego Vehicle
+  summary: 自车姿态 Simulink 总线，包含 MATLAB® 结构体
+  direction: input
+- name: Actors
+  summary: 场景参与者姿态 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+- name: Lane Boundaries
+  summary: 场景车道边界 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+- name: Ego Vehicle Pose
+  summary: 自车姿态 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+- name: Ego Vehicle State
+  summary: 自车状态 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+```
 
 ### 输入
 
@@ -157,8 +175,91 @@ chinese_source: worker-translation
 1. 将 **Coordinate system of actors output** 参数设置为 `Vehicle coordinates`。
 2. 将 **Source of ego vehicle** 参数设置为 `Scenario`。
 3. 选中 **Output ego vehicle state** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Source of driving scenario
+  summary: 驾驶场景来源 From file（默认）| From workspace
+  group: ''
+- name: Driving Scenario Designer file name
+  summary: 场景文件名 EgoVehicleGoesStraight.mat（默认）| MATLAB 搜索路径上的场景文件 | 场景文件路径
+  group: ''
+- name: MATLAB or model workspace variable name
+  summary: 场景变量名 scenario（默认）| drivingScenario 对象变量名
+  group: ''
+- name: Coordinate system of actors output
+  summary: 参与者输出的坐标系 Vehicle coordinates（默认）| World coordinates
+  group: ''
+- name: Source of ego vehicle
+  summary: 自车来源 Scenario（默认）| Input port
+  group: ''
+- name: Ego vehicle ActorID
+  summary: 自车的参与者 ID 1（默认）| 正整数
+  group: ''
+- name: Output ego vehicle pose
+  summary: 输出自车位姿 off（默认）| on
+  group: ''
+- name: Output ego vehicle state
+  summary: 输出自车状态 off（默认）| on
+  group: ''
+- name: Ego vehicle follows ground
+  summary: 使自车朝向跟随路面 off（默认）| on
+  group: ''
+- name: Sample time (s)
+  summary: 仿真采样时间 0.1（默认）| 正实数标量
+  group: ''
+- name: Lane boundaries to output
+  summary: 要输出的车道边界 None（默认）| Ego vehicle lane boundaries | All lane boundaries
+  group: ''
+- name: Distances from ego vehicle for computing boundaries (m)
+  summary: 用于计算边界的距自车距离 linspace(-150,150,101)（默认）| *N* 元素实值向量
+  group: ''
+- name: Location of boundaries on lane markings
+  summary: 车道边界位置 Center of lane markings（默认）| Inner edge of lane markings
+  group: ''
+- name: Source of actors bus name
+  summary: 参与者位姿总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Actors bus name
+  summary: 参与者位姿总线名称 有效总线名称
+  group: ''
+- name: Source of maximum number of actors
+  summary: 最大参与者数量的来源 Scenario（默认）| Property
+  group: ''
+- name: Maximum number of actors
+  summary: 最大参与者数量 100（默认）| 正整数
+  group: ''
+- name: Source of lane boundaries bus name
+  summary: 车道边界总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Lane boundaries bus name
+  summary: 车道边界总线名称 有效总线名称
+  group: ''
+- name: Source of maximum number of lane boundaries
+  summary: 最大车道边界数量的来源 Scenario（默认）| Property
+  group: ''
+- name: Maximum number of lane boundaries
+  summary: 最大车道边界数量 10（默认）| 正整数
+  group: ''
+- name: Source of ego vehicle pose bus name
+  summary: 自车位姿总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Ego vehicle pose bus name
+  summary: 自车位姿总线名称 有效总线名称
+  group: ''
+- name: Source of ego vehicle state bus name
+  summary: 自车状态总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Ego vehicle state bus name
+  summary: 自车状态总线名称 有效总线名称
+  group: ''
+- name: Show coordinate labels
+  summary: 显示输入和输出的坐标系 on（默认）| off
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 #### 场景
 
@@ -468,7 +569,6 @@ rmpath(genpath(path))
 
 - `Interpreted execution` — 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，你可以调试该模块的源代码。
 - `Code generation` — 使用生成的 C/C++ 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C/C++ 代码。只要模型不更改，C 代码就会在后续仿真中复用。此选项需要额外的启动时间。
-
 ## 所属库
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

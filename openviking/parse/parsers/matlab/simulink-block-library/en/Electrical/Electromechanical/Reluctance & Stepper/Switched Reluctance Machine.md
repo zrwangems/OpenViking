@@ -14,6 +14,51 @@ language: en
 # Switched Reluctance Machine
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Positive three-phase composite terminal electrical
+  direction: conserving
+- name: ~2
+  summary: Negative three-phase composite terminal electrical
+  direction: conserving
+- name: a1
+  summary: Positive *a*-phase terminal electrical
+  direction: conserving
+- name: a2
+  summary: Negative *a*-phase terminal electrical
+  direction: conserving
+- name: b1
+  summary: Positive *b*-phase terminal electrical
+  direction: conserving
+- name: b2
+  summary: Negative *b*-phase terminal electrical
+  direction: conserving
+- name: c1
+  summary: Positive *c*-phase terminal electrical
+  direction: conserving
+- name: c2
+  summary: Negative *c*-phase terminal electrical
+  direction: conserving
+- name: R
+  summary: Rotor mechanical
+  direction: conserving
+- name: C
+  summary: Casing mechanical
+  direction: conserving
+- name: HA
+  summary: '*a*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HB
+  summary: '*b*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HC
+  summary: '*c*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -155,8 +200,93 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Number of rotor poles
+  summary: Rotor poles 4 (default) | positive integer
+  group: Main
+- name: Stator resistance per phase
+  summary: Resistance 3 Ohm (default) | positive scalar
+  group: Main
+- name: Stator parameterization
+  summary: Parameterization method Specify parametric data (default) | Specify parametric and geometric data | Specify tabulated
+    flux data
+  group: Main
+- name: Magnetizing resistance
+  summary: Magnetic losses inf Ohm (default) | real scalar
+  group: Main
+- name: Saturated flux linkage
+  summary: Flux linkage 0.43 Wb (default) | positive scalar
+  group: Main
+- name: Aligned inductance
+  summary: Inductance 0.0046 H (default) | positive scalar
+  group: Main
+- name: Unaligned inductance
+  summary: Inductance 6.7e-4 H (default) | positive scalar
+  group: Main
+- name: Angle subtended by each stator pole
+  summary: Stator tooth angle 45 deg (default) | positive scalar
+  group: Main
+- name: Angle subtended by each rotor pole
+  summary: Rotor tooth angle 42 deg (default) | positive scalar
+  group: Main
+- name: Angle over which flux gradient changes are smoothed
+  summary: Inflection point smoothing 0.5 deg (default) | positive scalar
+  group: Main
+- name: Current vector, i
+  summary: Current [0, 50, 100] A (default) | vector
+  group: Main
+- name: Angle vector, theta
+  summary: Angle [0, 45, 90] deg (default) | vector
+  group: Main
+- name: Flux linkage matrix, Phi(i,theta)
+  summary: Flux [0, 0, 0; .37, .06, .37; .43, .1, .43] Wb (default) | matrix
+  group: Main
+- name: Model
+  summary: Iron losses modeling option None (default) | Tabulate losses from current and speed | Tabulate losses from current,
+    speed, and angle
+  group: Iron Losses
+- name: Magnetizing resistance
+  summary: Magnetizing resistance for iron losses inf Ohm (default)
+  group: Iron Losses
+- name: Rotor speed vector, w
+  summary: Rotor speed [500, 1000, 1500] rpm (default)
+  group: Iron Losses
+- name: Iron loss table, Ploss(i,w)
+  summary: Iron loss table tabulated on current and speed zeros(3, 3) W (default)
+  group: Iron Losses
+- name: Iron loss table, Ploss(i,w,theta)
+  summary: Iron loss table tabulated on current, speed, and angle zeros(3, 3, 2) W (default)
+  group: Iron Losses
+- name: Rotor inertia
+  summary: Inertia 0.01 kg*m^2 (default) | zero or positive scalar
+  group: Mechanical
+- name: Rotor Damping
+  summary: Damping 0 N*m/(rad/s) (default) | positive scalar
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Measurement temperature
+  summary: Rated temperature 25 degC (default) | real scalar
+  group: Thermal
+- name: Winding thermal mass
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 50 J/K (default) | positive scalar
+  group: Thermal
+- name: Percentage of total iron losses associated with the rotor
+  summary: Percentage of total iron losses 50 (default)
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -428,7 +558,6 @@ to raise the temperature of the rotor by one degree.
 ### **Percentage of total iron losses associated with the rotor** — Percentage of total iron losses `50` (default)
 
 Percentage of total iron losses associated with the rotor.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

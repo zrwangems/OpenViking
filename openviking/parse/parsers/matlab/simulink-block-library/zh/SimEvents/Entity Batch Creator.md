@@ -15,6 +15,35 @@ chinese_source: worker-translation
 # Entity Batch Creator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 输出批次实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_a
+  summary: 已到达实体数 标量
+  direction: output
+  data_types: double
+- name: Port_d
+  summary: 已离开模块的实体数 标量
+  direction: output
+  data_types: double
+- name: Port_rem
+  summary: 下一批次剩余实体数 标量
+  direction: output
+  data_types: double
+- name: Port_pe
+  summary: 模块中的待处理实体 off（默认）| on
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -70,8 +99,73 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Statistics** > **Pending entity in block, pe**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of entities in batch
+  summary: 一个批次中的实体数量 4（默认）| 标量
+  group: ''
+  block_parameter: NumberOfEntitiesInBatch
+  type: 字符向量
+  values: '''4'' | 标量'
+  default: '''4'''
+- name: Entity type name
+  summary: 合并传入实体后创建的批次实体的名称 Batch（默认）| 字符向量
+  group: ''
+  block_parameter: EntityTypeName
+  type: 字符向量
+  values: '''Batch'' | 字符向量'
+  default: '''Batch'''
+- name: Bus object
+  summary: 指定是否将批次实体输出为总线对象 off（默认）| on
+  group: ''
+  block_parameter: BusObject
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Input entity name
+  summary: 指定要附加到输入实体的名称 batch（默认）| 字符向量
+  group: ''
+  block_parameter: InputEntityName
+  type: 字符向量
+  values: '''batch'' | 字符向量'
+  default: '''batch'''
+- name: Event actions
+  summary: 指定事件动作 Entry（默认）| Batch generate | Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, BatchGenerateAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: 已到达实体数，a
+  summary: 输出已到达该模块的实体数 off（默认）| on
+  group: ''
+  block_parameter: NumberOfEntitiesArrived
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 已离开实体数，d
+  summary: 输出已离开该模块的实体数 off（默认）| on
+  group: ''
+  block_parameter: NumberOfEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 下一批次剩余实体数，rem
+  summary: 输出下一批次剩余实体数 off（默认）| on
+  group: ''
+  block_parameter: NumberOfEntitiesRequiredForNextBatch
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 模块中待处理实体，pe
+  summary: 待处理实体 off（默认）| on
+  group: ''
+  block_parameter: PendingEntity
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Number of entities in batch** — 一个批次中的实体数量 `4`（默认）| 标量
 
@@ -189,7 +283,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

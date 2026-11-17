@@ -14,6 +14,66 @@ language: en
 # Multistage Nonlinear MPC Controller
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: input vector
+  direction: input
+- name: last_mv
+  summary: Control signals used in the plant at the previous control interval vector
+  direction: input
+- name: md
+  summary: input row vector | matrix
+  direction: input
+- name: state.param
+  summary: Optional parameters vector
+  direction: input
+- name: stage.param
+  summary: Optional parameters vector
+  direction: input
+- name: mv.min
+  summary: Minimum manipulated variable constraints vector | matrix
+  direction: input
+- name: mv.max
+  summary: Maximum manipulated variable constraints vector | matrix
+  direction: input
+- name: dmv.min
+  summary: Minimum manipulated variable rate constraints vector | matrix
+  direction: input
+- name: dmv.max
+  summary: Maximum manipulated variable rate constraints vector | matrix
+  direction: input
+- name: x.min
+  summary: Minimum state constraints vector | matrix
+  direction: input
+- name: x.max
+  summary: Maximum state constraints vector | matrix
+  direction: input
+- name: x.terminal
+  summary: Terminal state vector
+  direction: input
+- name: z0
+  summary: Initial guesses for the decision variables vector vector
+  direction: input
+- name: mv
+  summary: Optimal manipulated variable control action column vector
+  direction: output
+- name: cost
+  summary: Objective function cost nonnegative scalar
+  direction: output
+- name: slack
+  summary: Stacked slack variables vector nonnegative vector
+  direction: output
+- name: nlp.status
+  summary: Optimization status scalar
+  direction: output
+- name: mv.seq
+  summary: Optimal manipulated variable sequence matrix
+  direction: output
+- name: x.seq
+  summary: Optimal prediction model state sequence matrix
+  direction: output
+```
 
 ### Input
 
@@ -438,8 +498,154 @@ block input **x[k|k]**. The next *p* rows of
 #### Dependencies
 
 To enable this port, select the **Optimal state sequence** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Multistage Nonlinear MPC Controller
+  summary: Controller object nlmpcMultistage object name
+  group: ''
+  block_parameter: nlmpcobj
+  type: string, character vector
+  default: '""'
+- name: Use prediction model sample time
+  summary: Flag for using the prediction model sample time on (default) | off
+  group: ''
+  block_parameter: UseObjectTs
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Make block run at a different sample time
+  summary: Controller sample time positive finite scalar | -1
+  group: ''
+  block_parameter: TsControl
+  type: string, character vector
+  default: '""'
+- name: Use MEX to speed up simulation
+  summary: Flag for simulating controller use MEX function off (default) | on
+  group: ''
+  block_parameter: UseMEX
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Specify MEX function name
+  summary: Controller MEX function name string
+  group: ''
+  block_parameter: mexname
+  type: string, character vector
+  default: '""'
+- name: Measured disturbances
+  summary: Add measured disturbance input port off (default) | on
+  group: General Tab
+  block_parameter: md_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: StateFcn parameter
+  summary: Add state function parameters input port off (default) | on
+  group: General Tab
+  block_parameter: stateparam_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Stacked stage parameters
+  summary: Add stage functions parameter input port off (default) | on
+  group: General Tab
+  block_parameter: stageparam_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal cost
+  summary: Add optimal cost output port off (default) | on
+  group: General Tab
+  block_parameter: cost_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal control sequence
+  summary: Add optimal control sequence output port off (default) | on
+  group: General Tab
+  block_parameter: mvseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal state sequence
+  summary: Add optimal state sequence output port off (default) | on
+  group: General Tab
+  block_parameter: stateseq_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Slack variable
+  summary: Add slack variable output port off (default) | on
+  group: General Tab
+  block_parameter: slack_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimization status
+  summary: Add optimization status output port off (default) | on
+  group: General Tab
+  block_parameter: status_enabled
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MV limits
+  summary: Add minimum MV constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mv_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper MV limits
+  summary: Add maximum MV constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mv_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MVRate limits
+  summary: Add minimum MV rate constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mvrate_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper MVRate limits
+  summary: Add maximum MV rate constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: mvrate_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower state limits
+  summary: Add minimum state constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: state_min
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper state limits
+  summary: Add maximum state constraint input port off (default) | on
+  group: Online Features Tab
+  block_parameter: state_max
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Terminal state
+  summary: Terminal State off (default) | on
+  group: Online Features Tab
+  block_parameter: terminal_state
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Initial guess
+  summary: Add initial guess input port off (default) | on
+  group: Online Features Tab
+  block_parameter: nlp_initialize
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Multistage Nonlinear MPC Controller** — Controller object `nlmpcMultistage` object name
 
@@ -778,7 +984,6 @@ Enable the initial guess port only if you need it for your application.
 | **Type:** string, character vector |
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Model Predictive Control Toolbox

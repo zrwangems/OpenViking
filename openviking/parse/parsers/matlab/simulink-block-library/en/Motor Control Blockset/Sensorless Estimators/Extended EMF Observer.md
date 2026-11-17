@@ -14,6 +14,49 @@ language: en
 # Extended EMF Observer
 
 ## Ports
+```yaml
+ports:
+- name: Vα
+  summary: '*α-*axis voltage scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vβ
+  summary: '*β-*axis voltage scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iα
+  summary: '*α-*axis current scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iβ
+  summary: '*β-*axis current scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Rst
+  summary: Reset the block scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: Computed parameters for Extended EMF Observer bus
+  direction: input
+  data_types: single | double
+- name: θe
+  summary: Electrical position of PMSM scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Sin θe
+  summary: Sine of electrical position of PMSM scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Cos θe
+  summary: Cosine of electrical position of PMSM scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: Mechanical speed of PMSM scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -119,8 +162,76 @@ To enable this port, set the **Position output** parameter to
 The estimated mechanical speed of the rotor.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: Option to enable input port to accept computed parameters off (default) | on
+  group: ''
+- name: Input units
+  summary: Units of block input SI unit (default) | Per-unit
+  group: ''
+- name: Position output
+  summary: Type of position output Electrical position (default) | Sine and Cosine electrical position
+  group: ''
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: ''
+- name: Stator resistance (ohm)
+  summary: Resistance 0.36 (default) | scalar
+  group: Motor Parameters
+- name: Stator d-axis inductance (H)
+  summary: '*D*-axis inductance 0.2e-3 (default) | scalar'
+  group: Motor Parameters
+- name: Stator d-axis inductance (H)
+  summary: '*Q*-axis inductance 0.2e-3 (default) | scalar'
+  group: Motor Parameters
+- name: Maximum application speed (RPM)
+  summary: Maximum supported mechanical speed 6000 (default) | scalar
+  group: Motor Parameters
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 4 (default) | scalar
+  group: Motor Parameters
+- name: Maximum voltage (V)
+  summary: Nominal voltage corresponding to one per unit 13.8564 (default) | scalar
+  group: Motor Parameters
+- name: Maximum current (A)
+  summary: Nominal current corresponding to one per unit 21.4286 (default) | scalar
+  group: Motor Parameters
+- name: EEMF observer gain
+  summary: Extended EMF observer gain 10 (default) | scalar
+  group: Observer Parameters
+- name: EEMF filter cutoff frequency (Hz)
+  summary: Cutoff frequency of EEMF filter 7500 (default) | scalar
+  group: Observer Parameters
+- name: Proportional (P)
+  summary: Proportional gain of speed observer 250 (default) | scalar
+  group: Observer Parameters
+- name: Integral (I)
+  summary: Integral gain of the speed observer 200000 (default) | scalar
+  group: Observer Parameters
+- name: Number of data points for sine-cosine lookup table
+  summary: Number of data points used for speed computation 1024 (default) | scalar
+  group: Observer Parameters
+- name: Speed filter cutoff frequency (Hz)
+  summary: Cutoff frequency of speed filter 15 (default) | scalar
+  group: Observer Parameters
+- name: Position unit
+  summary: Unit of position output Degrees (default) | Radians | Per-unit
+  group: Datatypes
+- name: Position data type
+  summary: Data type of position output single (default) | double | fixed point
+  group: Datatypes
+- name: Speed unit
+  summary: Unit of speed output Degrees/sec (default) | Radians/sec | RPM | Per-unit
+  group: Datatypes
+- name: Speed data type
+  summary: Data type of speed output single (default) | double | fixed point
+  group: Datatypes
+- name: Table data type
+  summary: Data type of table single (default) | double | fixed point
+  group: Datatypes
+```
 
 ### **Use input port for computed parameters (run-time motor swap)** — Option to enable input port to accept computed parameters `off` (default) | on
 
@@ -308,7 +419,6 @@ Data type of the speed output.
 ### **Table data type** — Data type of table `single` (default) | `double` | `fixed point`
 
 Data type of the table.
-
 ## Libraries
 
 Motor Control Blockset / Sensorless Estimators

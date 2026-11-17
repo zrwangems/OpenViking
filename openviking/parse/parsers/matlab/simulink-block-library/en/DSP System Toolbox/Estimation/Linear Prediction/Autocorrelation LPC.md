@@ -14,6 +14,25 @@ language: en
 # Autocorrelation LPC
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Input array unoriented vector | column vector | matrix
+  direction: input
+  data_types: single | double
+- name: A
+  summary: Polynomial coefficients column vector | matrix
+  direction: output
+  data_types: single | double
+- name: K
+  summary: Reflection coefficients column vector | matrix
+  direction: output
+  data_types: single | double
+- name: P
+  summary: Prediction error power vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -79,8 +98,22 @@ To enable port P, select the **Output prediction error
 power (P)** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output(s)
+  summary: Type of prediction coefficients A (default) | A and K | K
+  group: ''
+- name: Output prediction error power (P)
+  summary: Output prediction error power off (default) | on
+  group: ''
+- name: Inherit prediction order from input dimensions
+  summary: Inherit prediction order from input dimensions off (default) | on
+  group: ''
+- name: Prediction order (N)
+  summary: Prediction order 1 (default) | scalar
+  group: ''
+```
 
 ### **Output(s)** — Type of prediction coefficients `A` (default) | `A and K` | `K`
 
@@ -114,7 +147,6 @@ of the input channels or the block produces an error.
 This parameter appears only when you do not select the
 **Inherit prediction order from input dimensions**
 parameter.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Linear Prediction

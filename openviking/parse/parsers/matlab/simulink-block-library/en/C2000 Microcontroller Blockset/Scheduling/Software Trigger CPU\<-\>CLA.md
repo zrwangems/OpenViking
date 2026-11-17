@@ -14,6 +14,17 @@ language: en
 # Software Trigger CPU<->CLA
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Event trigger signal scalar
+  direction: input
+  data_types: Boolean
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Input
 
@@ -39,8 +50,19 @@ block, that connects to this **event** port must be configured as a
 non-virtual bus.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters:
+- name: Task number
+  summary: Task identification number 1 (default) | integer from 1 to 8
+  group: ''
+- name: Trigger condition
+  summary: Condition to trigger an event Rising edge (default) | Input high
+  group: ''
+- name: Trigger type
+  summary: Trigger type Trig (default) | TrigAndWait(codegen)
+  group: ''
+```
 
 ### **Task number** — Task identification number `1` (default) | integer from `1` to `8`
 
@@ -67,7 +89,6 @@ simulation.
 
 To enable this parameter, the block must be inside a reference model with the
 **Processing Unit** set to one of the CPUs.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Scheduling

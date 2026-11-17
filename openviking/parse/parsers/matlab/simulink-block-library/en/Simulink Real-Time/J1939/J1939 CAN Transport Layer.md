@@ -14,6 +14,21 @@ language: en
 # J1939 CAN Transport Layer
 
 ## Ports
+```yaml
+ports:
+- name: CAN Msg
+  summary: CAN MESSAGE structures being consumed vector
+  direction: input
+- name: N
+  summary: Number of messages integer
+  direction: input
+- name: CAN Msg
+  summary: CAN MESSAGE structures being generated vector
+  direction: output
+- name: N
+  summary: Number of messages integer
+  direction: output
+```
 
 ### Input
 
@@ -33,11 +48,12 @@ Vector of CAN MESSAGE structures being generated.
 ### **N** — Number of messages integer
 
 Number of messages in the vector.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Real-Time / J1939

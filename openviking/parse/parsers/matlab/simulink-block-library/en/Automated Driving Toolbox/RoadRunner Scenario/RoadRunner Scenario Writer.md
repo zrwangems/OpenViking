@@ -14,6 +14,12 @@ language: en
 # RoadRunner Scenario Writer
 
 ## Ports
+```yaml
+ports:
+- name: Message
+  summary: State information Simulink message
+  direction: input
+```
 
 ### Input
 
@@ -21,8 +27,22 @@ language: en
 
 State information to write to the scenario, specified as a Simulink message. To construct a Simulink message from an input signal within your model, use the Send (Simulink) block. Then, connect the output of the Send block to
 the RoadRunner Scenario Writer block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic Category
+  summary: Topic category Actor (default) | Event | Diagnostics
+  group: ''
+- name: Actor Type
+  summary: Type of actor in scenario All Types (default) | Vehicle
+  group: ''
+- name: Topic
+  summary: Actor or vehicle data Actor Pose | Actor Pose (Driving Scenario compatible) | Vehicle Pose
+  group: ''
+- name: Event Type
+  summary: Type of event Action Complete (default) | User-Defined
+  group: ''
+```
 
 ### **Topic Category** — Topic category `Actor` (default) | `Event` | `Diagnostics`
 
@@ -98,7 +118,6 @@ Type of event written to the scenario, specified as one of the following.
 
 To enable this parameter, set **Topic Category** to
 `Event`.
-
 ## Libraries
 
 Automated Driving Toolbox / RoadRunner Scenario

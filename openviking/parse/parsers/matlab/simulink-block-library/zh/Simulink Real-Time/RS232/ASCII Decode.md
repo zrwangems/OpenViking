@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # ASCII Decode
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 要解析的输入向量 character vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16
+- name: '1'
+  summary: 发送 Simulink® 数值的编号端口 numeric
+  direction: output
+  data_types: double | int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### 输入
 
@@ -35,8 +46,22 @@ chinese_source: worker-translation
 **Number of variables** 决定输出端口的数量。
 
 **数据类型：** `double` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Format string
+  summary: 用于解析输入向量的格式说明符 %d\r （默认） | %c | %i | %o | %u | %x | %e | %f | %g
+  group: ''
+  block_parameter: format
+- name: Number of variables
+  summary: 此模块的输出端口数量 1 （默认） | 整数
+  group: ''
+  block_parameter: nvars
+- name: Variable types
+  summary: 输出端口允许的 Simulink 数据类型 {'double'} （默认） | {'int8'} | {'uint8'} | {'int16} | {'uint16'} | {'int32'} | {'uint32'}
+  group: ''
+  block_parameter: varids
+```
 
 ### **Format string** — 用于解析输入向量的格式说明符 `%d\r` （默认） | `%c` | `%i` | `%o` | `%u` | `%x` | `%e` | `%f` | `%g`
 
@@ -105,7 +130,6 @@ nvars=3
 |  |
 | --- |
 | **模块参数：** `varids` |
-
 ## 所属库
 
 Simulink Real-Time / RS232

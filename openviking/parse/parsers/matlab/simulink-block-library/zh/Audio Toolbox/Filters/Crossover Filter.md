@@ -15,6 +15,65 @@ chinese_source: worker-translation
 # Crossover Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号矩阵 | 一维向量
+  direction: input
+  data_types: single | double
+- name: F1
+  summary: 分频频率 (Hz) 范围为 20 到 20000 的实数标量
+  direction: input
+  data_types: single | double
+- name: O1
+  summary: 分频阶数 范围为 0 到 8 的整数
+  direction: input
+  data_types: single | double
+- name: F2
+  summary: 分频频率 (Hz) 范围为 20 到 20000 的实数标量
+  direction: input
+  data_types: single | double
+- name: O2
+  summary: 分频阶数 范围为 0 到 8 的整数
+  direction: input
+  data_types: single | double
+- name: F3
+  summary: 分频频率 (Hz) 范围为 20 到 20000 的实数标量
+  direction: input
+  data_types: single | double
+- name: O3
+  summary: 分频阶数 范围为 0 到 8 的整数
+  direction: input
+  data_types: single | double
+- name: F4
+  summary: 分频频率 (Hz) 范围为 20 到 20000 的实数标量
+  direction: input
+  data_types: single | double
+- name: O4
+  summary: 分频阶数 范围为 0 到 8 的整数
+  direction: input
+  data_types: single | double
+- name: Y1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+- name: Y2
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+- name: Y3
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+- name: Y4
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+- name: Y5
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -155,8 +214,40 @@ chinese_source: worker-translation
 当 **Number of crossovers** 设置为 `4` 时可用。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of crossovers
+  summary: 幅频响应频带交叉数 1（默认）| 2 | 3 | 4
+  group: ''
+- name: Crossover frequency (Hz)
+  summary: 幅频响应频带的交点 100（默认）| 范围为 20 到 20000 的实数标量
+  group: ''
+- name: Crossover order
+  summary: 各个分频滤波器的阶数 2（默认）| 范围为 [0, 8] 的整数
+  group: ''
+- name: View filter response
+  summary: 打开每个滤波器频带的幅频响应图 按钮
+  group: ''
+- name: Variable name
+  summary: 导出的滤波器的变量名 myFilt（默认）| 有效变量名
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: 如果变量已存在则覆盖 on（默认）| off
+  group: ''
+- name: Export filter to workspace
+  summary: 将滤波器导出到工作区 按钮
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入的采样率 44100（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 如果参数被列为可调，则您可以在仿真期间更改其值。
 
@@ -226,7 +317,6 @@ Crossover Filter 模块输出的频带数比 **Number of crossovers** 多一。
 - `Code generation` – 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为模块生成 C 代码。只要模型不更改，C 代码将在后续仿真中重用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 Audio Toolbox / Filters

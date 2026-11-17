@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Real Reciprocal HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 取倒数的值 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: 倒数 实数标量
+  direction: output
+  data_types: single | double | fixed point
+- name: divideByZero
+  summary: 输出值是否为除零的结果 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: validOut
+  summary: 输出数据是否有效 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -58,8 +81,35 @@ chinese_source: worker-translation
 输出数据是否有效，返回为布尔标量。当此控制信号的值为 `1`（`true`）时，模块已成功计算 **y** 端口处的输出。当此值为 `0`（`false`）时，输出数据无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Output datatype
+  summary: 输出的数据类型 fixdt(1,18,10)（默认）| single | double | fixdt(1,16,0) | <data type expression>
+  group: ''
+  block_parameter: OutputType
+  values: fixdt(1,18,10)（默认）| single | double | fixdt(1,16,0) | <data type expression>
+- name: Show divide by zero port
+  summary: 是否显示 divideByZero 端口 off（默认）| on
+  group: ''
+  block_parameter: dbzPort
+  values: 0（false）（默认）| 1（true）
+- name: Automatically select CORDIC maximum shift value based on input word length
+  summary: 基于输入字长自动选择 CORDIC 最大移位值 on（默认）| off
+  group: ''
+  block_parameter: autoMaximumShiftVal
+  values: on（默认）| off
+- name: CORDIC maximum shift value
+  summary: 双曲向量化 CORDIC 的最大移位值 wl - 1（默认）| 10 | 正整数值标量
+  group: ''
+  block_parameter: maximumShiftValue
+  values: 10（默认）| 正整数值标量
+- name: Number of iterations per pipeline register
+  summary: 每个流水线级执行的 CORDIC 迭代次数 1（默认）| 正整数值标量
+  group: ''
+  block_parameter: nIterPerReg
+  values: 1（默认）| 正整数值标量
+```
 
 ### **Output datatype** — 输出的数据类型 `fixdt(1,18,10)`（默认）| `single` | `double` | `fixdt(1,16,0)` | `<data type expression>`
 
@@ -170,7 +220,6 @@ chinese_source: worker-translation
 | **数据类型：** | `char` | `string` |
 
 **示例：** `set_param(gcb,"nIterPerReg","2")`
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Math Operations

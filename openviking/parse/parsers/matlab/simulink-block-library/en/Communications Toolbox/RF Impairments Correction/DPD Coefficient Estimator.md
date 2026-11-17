@@ -14,6 +14,24 @@ language: en
 # DPD Coefficient Estimator
 
 ## Ports
+```yaml
+ports:
+- name: PA In
+  summary: Power amplifier baseband-equivalent input column vector
+  direction: input
+  data_types: double
+- name: PA Out
+  summary: Power amplifier baseband-equivalent output column vector
+  direction: input
+  data_types: double
+- name: Forgetting Factor
+  summary: Forgetting factor scalar in the range (0, 1]
+  direction: input
+  data_types: double
+- name: Out
+  summary: Memory-polynomial coefficients matrix
+  direction: output
+```
 
 ### Input
 
@@ -53,8 +71,37 @@ Memory-polynomial coefficients, returned as a matrix. For more information, see
 Digital Predistortion.
 
 This port is unnamed on the block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Desired amplitude gain (dB)
+  summary: Desired amplitude gain in dB 10 (default) | scalar
+  group: ''
+- name: Polynomial type
+  summary: Polynomial type Memory polynomial (default) | Cross-term memory polynomial
+  group: ''
+- name: Degree
+  summary: Memory-polynomial degree 5 (default) | positive integer
+  group: ''
+- name: Memory depth
+  summary: Memory-polynomial depth 3 (default) | positive integer
+  group: ''
+- name: Algorithm
+  summary: Estimation algorithm Least squares (default) | Recursive least squares
+  group: ''
+- name: Forgetting factor source
+  summary: Source of forgetting factor Property (default) | Input port
+  group: ''
+- name: Forgetting factor
+  summary: Forgetting factor 0.99 (default) | scalar in the range (0, 1]
+  group: ''
+- name: Initial coefficient estimate
+  summary: Initial coefficient estimate [] (default) | matrix
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -176,7 +223,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / RF Impairments Correction

@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Proof Objective
 
 ## 端口
+```yaml
+ports:
+- name: Values
+  summary: 输入信号 标量 | 元胞数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -23,8 +31,25 @@ chinese_source: worker-translation
 Proof Objective 模块接受 Simulink 软件支持的所有内置数据类型的信号。有关 Simulink 软件支持的数据类型的讨论，请参阅 Simulink 支持的数据类型。该模块不支持复数输入信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable
+  summary: 指定模块是否启用 on（默认）| off
+  group: ''
+- name: Values
+  summary: 指定证明目标 标量 | 元胞数组
+  group: ''
+- name: Diaplay values
+  summary: 显示 values 参数的内容 on（默认）| off
+  group: ''
+- name: Pass through style
+  summary: 指定证明目标 on（默认）| off
+  group: ''
+- name: Stop simulation when the property is violated
+  summary: 指定是否停止仿真 on（默认）| off
+  group: ''
+```
 
 ### **Enable** — 指定模块是否启用 `on`（默认）| `off`
 
@@ -51,7 +76,6 @@ Proof Objective 模块接受 Simulink 软件支持的所有内置数据类型的
 指定当仿真遇到违反 **Values** 参数中指定属性的信号时是否停止仿真。
 
 如果选中此参数并仿真模型，当遇到违反指定属性的情况时，仿真将停止。
-
 ## 所属库
 
 Simulink Design Verifier / Objectives and Constraints

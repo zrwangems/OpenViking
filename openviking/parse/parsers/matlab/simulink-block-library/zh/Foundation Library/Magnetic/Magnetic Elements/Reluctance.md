@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Reluctance
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,8 +26,10 @@ chinese_source: worker-translation
 
 `S`
 :   与模块南端子关联的磁守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Thickness or length of section or gap**
 :   所建模区段的厚度，或气隙的长度。
@@ -35,7 +40,6 @@ chinese_source: worker-translation
 
 **Relative permeability of material**
 :   区段材料的相对磁导率。默认值为 `1`。
-
 ## 所属库
 
 R2025b 中未记录。

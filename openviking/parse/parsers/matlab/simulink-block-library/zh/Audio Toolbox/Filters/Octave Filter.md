@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Octave Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号矩阵 | 一维向量
+  direction: input
+  data_types: single | double
+- name: CF
+  summary: 中心频率 (Hz) 标量，范围 3 到 22,000（含）
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -44,8 +59,47 @@ Octave Filter 模块输出的信号与输入信号具有相同的数据类型。
 - 一维向量输入 –– 模块输出 *N*×1 矩阵（列向量），其中 *N* 是一维向量中的元素个数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter order
+  summary: 倍频程滤波器阶数 6（默认）| 偶数整数
+  group: ''
+- name: Center frequency (Hz)
+  summary: 倍频程滤波器中心频率 1000（默认）| 范围 3 到 22,000（含）内的标量
+  group: ''
+- name: Bandwidth
+  summary: 以倍频程为单位的滤波器带宽 1 octave（默认）| 2/3 octave | 1/2 octave | 1/3 octave | 1/6 octave | 1/12 octave | 1/24 octave | 1/48
+    octave
+  group: ''
+- name: Oversample the input by 2 for this filter
+  summary: 过采样开关 off（默认）| on
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+- name: Mask for attenuation limits
+  summary: 为滤波器响应可视化创建掩膜 No mask（默认）| Class 0 | Class 1 | Class 2
+  group: ''
+- name: Visualize filter response
+  summary: 打开绘图以可视化幅值响应和合规掩膜 按钮
+  group: ''
+- name: Variable name
+  summary: 导出的滤波器的变量名 myFilt（默认）| 有效变量名
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: 如果变量已存在则覆盖 on（默认）| off
+  group: ''
+- name: Export filter to workspace
+  summary: 将滤波器导出到工作区 按钮
+  group: ''
+```
 
 如果参数被列为可调，则您可以在仿真期间更改其值。
 
@@ -125,7 +179,6 @@ Octave Filter 模块输出的信号与输入信号具有相同的数据类型。
 
 - 如果您启用了 **Inherit sample rate from input** 参数且模型未运行，则无法导出滤波器。
 - 如果您从输入端口指定滤波器特性，则无法导出滤波器。
-
 ## 所属库
 
 Audio Toolbox / Filters

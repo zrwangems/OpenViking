@@ -15,10 +15,58 @@ chinese_source: worker-translation
 # Rack & Pinion
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterize by
+  summary: 齿条和小齿轮参数化方法 Pinion radius（默认）| Tooth parameters
+  group: 主要
+- name: Pinion radius
+  summary: 小齿轮有效半径 100 mm（默认）| 正标量
+  group: 主要
+- name: Number of pinion teeth
+  summary: 小齿轮齿数 20（默认）| 正标量
+  group: 主要
+- name: Rack tooth spacing
+  summary: 齿条齿间距 5 mm（默认）| 正标量
+  group: 主要
+- name: Rack direction
+  summary: 齿条旋转方向 Positive for positive pinion rotation（默认）| Negative for positive pinion rotation
+  group: 主要
+- name: Friction model
+  summary: 齿轮螺纹非理想啮合产生的摩擦损失 No meshing losses — Suitable for HIL simulation（默认）| Constant efficiency | Temperature-dependent
+    efficiency
+  group: 啮合损失
+- name: Efficiency
+  summary: 扭矩传递效率 0.8（默认）| (0,1] 范围内的正标量
+  group: 啮合损失
+- name: Temperature
+  summary: 效率表格参数化数组 [280 300 320] K（默认）| 向量
+  group: 啮合损失
+- name: Efficiency
+  summary: 效率数组 [0.95 0.9 0.85]（默认）| 向量
+  group: 啮合损失
+- name: Rack power threshold
+  summary: 低于此功率时应用数值平滑 0.001 W（默认）| 正标量
+  group: 啮合损失
+- name: Pinion rotational viscous friction coefficient
+  summary: 小齿轮流体动摩擦系数 0 N\*m/(rad/s)（默认）| 正标量
+  group: 粘性损失
+- name: Rack translational viscous friction coefficient
+  summary: 数值常数 0 N/(m/s)（默认）| 正标量
+  group: 粘性损失
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 正标量
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 正标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -117,7 +165,6 @@ R2025b 中未记录。
 ### **Initial temperature** — 初始温度 `300` `K`（默认）| 正标量
 
 仿真开始时组件的温度。初始温度根据您指定的效率向量改变组件效率，影响起始啮合或摩擦损失。
-
 ## 所属库
 
 Simscape / Driveline / Gears / Rotational- Translational

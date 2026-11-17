@@ -14,6 +14,13 @@ language: en
 # Simulation 3D Camera Get
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: 3D output camera image *m*-by-*n*-by-3 array of RGB triplet values
+  direction: output
+  data_types: int8 | uint8
+```
 
 ### Output
 
@@ -22,8 +29,44 @@ language: en
 3D output camera image, returned as an *m*-by-*n*-by-3 array of RGB triplet values. *m* is the vertical resolution of the image, and *n* is the horizontal resolution of the image.
 
 **Data Types:** `int8` | `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: Number to identify unique sensor 0 (default) | positive integer
+  group: ''
+- name: Parent name
+  summary: Name of parent Scene Origin (default) | character vector
+  group: ''
+- name: Coordinate system
+  summary: Coordinate system for actor transformation Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE
+  group: ''
+- name: Mounting location
+  summary: Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview
+    mirror | Hood center | Roof center
+  group: ''
+- name: Specify offset
+  summary: Specify offset from mounting location off (default) | on
+  group: ''
+- name: Relative translation [X, Y, Z]
+  summary: Translation offset from mounting location [0,0,0] (default) | real-valued 1-by-3 vector
+  group: ''
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: Rotational offset from mounting location [0,0,0] (default) | real-valued 1-by-3 vector
+  group: ''
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: ''
+- name: Horizontal resolution
+  summary: Pixels uint32(1280) (default) | scalar
+  group: ''
+- name: Vertical resolution
+  summary: Pixels uint32(720) (default) | scalar
+  group: ''
+- name: Horizontal field of view
+  summary: Field of view single(60) (default) | scalar
+  group: ''
+```
 
 #### Mounting
 
@@ -218,7 +261,6 @@ Vertical image resolution, in pixels.
 ### **Horizontal field of view** — Field of view `single(60)` (default) | `scalar`
 
 Horizontal field of view (FOV), in deg.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blockset / Animation / Simulation 3D Simulink 3D Animation / Simulation 3D / Utilities

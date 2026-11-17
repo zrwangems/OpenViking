@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Rotational Mechanical Converter (G)
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 端口 R 相对于端口 C 的旋转，rad，物理信号
+  direction: input
+- name: A
+  summary: 转换器入口气体
+  direction: input
+- name: H
+  summary: 转换器内部温度，热
+  direction: input
+- name: R
+  summary: 杆，机械旋转
+  direction: input
+- name: C
+  summary: 壳体，机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -43,8 +61,36 @@ chinese_source: worker-translation
 ### **C** — 壳体，机械旋转
 
 与转换器壳体相关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: 选择转换器方向 Pressure at A causes positive rotation of R relative to C（默认）| Pressure at A causes negative rotation of
+    R relative to C
+  group: ''
+- name: Interface rotation
+  summary: 选择确定相对端口位置的方法 Calculate from angular velocity of port R relative to port C（默认）| Provide input signal from Multibody
+    joint
+  group: ''
+- name: Initial interface rotation
+  summary: 仿真开始时端口 R 相对于端口 C 的旋转偏移 0 rad（默认）
+  group: ''
+- name: Interface volume displacement
+  summary: 每单位旋转所排开的气体体积 0.01 m^3/rad（默认）
+  group: ''
+- name: Dead volume
+  summary: 界面旋转为 0 时的气体体积 1e-5 m^3（默认）
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 转换器入口处垂直于流动路径的面积 0.01 m^2（默认）
+  group: ''
+- name: 环境压力设定
+  summary: 选择环境压力 Atmospheric pressure（默认）| Specified pressure 的设定方法
+  group: ''
+- name: 环境压力
+  summary: 转换器外部压力 0.101325 MPa（默认）
+  group: ''
+```
 
 ### **Mechanical orientation** — 选择转换器方向 `Pressure at A causes positive rotation of R relative to C`（默认）| `Pressure at A causes negative rotation of R relative to C`
 
@@ -99,7 +145,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Environment pressure specification** 参数设置为 `Specified pressure` 时启用。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

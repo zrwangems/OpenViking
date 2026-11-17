@@ -14,6 +14,15 @@ language: en
 # Infinite Plane
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+- name: G
+  summary: Geometry frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -28,8 +37,40 @@ location and orientation of the infinite plane.
 Geometry that represents the plane defined by this block. Connect this port to a
 Spatial Contact
 Force block to model contacts with supported geometries.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Visual representation of plane Rectangle (default) | None
+  group: Graphic
+- name: Width (X)
+  summary: Width of plane visual representation 1 m (default) | positive integer
+  group: Graphic
+- name: Height (Y)
+  summary: Height of plane visual representation 1 m (default) | positive integer
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: Graphic color [0.5 0.5 0.5] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 0.25 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Highlight color [0.5 0.5 0.5 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Ambient Color
+  summary: Shadow color [0.15 0.15 0.15 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | three-element vector | four-element vector
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar in the range of 1 to 128
+  group: Graphic
+```
 
 ### Graphic
 
@@ -158,7 +199,6 @@ To enable this parameter, set:
 1. **Type** to `Rectangle`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Curves and Surfaces

@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # ULA MVDR Spectrum
 
 ## 端口
+```yaml
+ports: []
+```
 
 **注意**
 
@@ -25,8 +28,10 @@ chinese_source: worker-translation
 | `In` | 输入信号。输入矩阵第一维的大小可以变化，以模拟变化的信号长度。例如，在具有可变脉冲重复频率的脉冲波形情况下，可能会发生大小变化。 | 双精度浮点 |
 | `Ang` | 估计的侧射 DOA 角度。 | 双精度浮点 |
 | `Y` | 估计的空间谱。 | 双精度浮点 |
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Signal Propagation speed (m/s)**
 :   将信号的传播速度指定为正标量，单位为米每秒。您可以使用函数 `physconst` 来指定光速。
@@ -217,7 +222,6 @@ chinese_source: worker-translation
 :   此复选框仅在 **Element type** 参数设置为 `Isotropic Antenna` 或 `Omni Microphone` 时出现。
 
     选中此复选框以对天线单元背面加障板。在这种情况下，天线对偏离 *broadside* 超过 ±90° 的所有方位角的响应均设置为零。将 broadside 方向定义为 0° 方位角和 0° 仰角。
-
 ## 所属库
 
 R2025b 中未记录。

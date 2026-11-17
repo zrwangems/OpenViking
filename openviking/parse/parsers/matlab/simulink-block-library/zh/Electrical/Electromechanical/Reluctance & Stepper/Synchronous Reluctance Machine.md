@@ -15,6 +15,66 @@ chinese_source: worker-translation
 # Synchronous Reluctance Machine
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 电机转子机械旋转
+  direction: conserving
+- name: C
+  summary: 电机机壳机械旋转
+  direction: conserving
+- name: '~'
+  summary: 三相复合电气
+  direction: conserving
+- name: a
+  summary: '*a* 相电气'
+  direction: conserving
+- name: b
+  summary: '*b* 相电气'
+  direction: conserving
+- name: c
+  summary: '*c* 相电气'
+  direction: conserving
+- name: ~1
+  summary: 定子正端连接电气
+  direction: conserving
+- name: ~2
+  summary: 定子负端连接电气
+  direction: conserving
+- name: a1
+  summary: '*a* 正端连接电气'
+  direction: conserving
+- name: b1
+  summary: '*b* 正端连接电气'
+  direction: conserving
+- name: c1
+  summary: '*c* 正端连接电气'
+  direction: conserving
+- name: a2
+  summary: '*a* 负端连接电气'
+  direction: conserving
+- name: b2
+  summary: '*b* 负端连接电气'
+  direction: conserving
+- name: c2
+  summary: '*c* 负端连接电气'
+  direction: conserving
+- name: n
+  summary: 中性相电气
+  direction: conserving
+- name: HA
+  summary: 绕组 A 热端口热
+  direction: conserving
+- name: HB
+  summary: 绕组 B 热端口热
+  direction: conserving
+- name: HC
+  summary: 绕组 C 热端口热
+  direction: conserving
+- name: HR
+  summary: 转子热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -177,8 +237,123 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主
+- name: Winding type
+  summary: 绕组配置 Wye-wound（默认）| Delta-wound | Open-end
+  group: 主
+- name: Number of pole pairs
+  summary: 转子极对数 6（默认）| 整数
+  group: 主
+- name: Stator parameterization
+  summary: 参数化模型 Specify Ld, Lq and L0（默认）| Specify Ls, Lm, and Ms
+  group: 主
+- name: Modeling fidelity
+  summary: 建模保真度 Constant Ld and Lq（默认）| Tabulated Ld and Lq
+  group: 主
+- name: Stator d-axis inductance, Ld
+  summary: 电感 0.0031 H（默认）
+  group: 主
+- name: Stator q-axis inductance, Lq
+  summary: 电感 0.004 H（默认）
+  group: 主
+- name: Direct-axis current vector, iD
+  summary: 直轴电流向量 [-200, 0, 200] A（默认）
+  group: 主
+- name: Quadrature-axis current vector, iQ
+  summary: 交轴电流向量 [-200, 0, 200] A（默认）
+  group: 主
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld 矩阵 0.0031 * ones(3, 3) H（默认）
+  group: 主
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq 矩阵 0.004 * ones(3, 3) H（默认）
+  group: 主
+- name: Stator zero-sequence inductance, L0
+  summary: 电感 0.0005 H（默认）
+  group: 主
+- name: Stator self-inductance per phase, Ls
+  summary: 电感 0.0025 H（默认）
+  group: 主
+- name: Stator inductance fluctuation, Lm
+  summary: 电感 -0.0003 H（默认）
+  group: 主
+- name: Stator mutual inductance, Ms
+  summary: 电感 0.0010 H（默认）
+  group: 主
+- name: Stator resistance per phase, Rs
+  summary: 电阻 0.7 Ohm（默认）
+  group: 主
+- name: Zero sequence
+  summary: 零序模型 Include（默认）| Exclude
+  group: 主
+- name: Model
+  summary: 铁损建模选项 Specify magnetizing resistance（默认）| Specify tabulated Steinmetz coefficients | Tabulate with current and
+    speed
+  group: 铁损
+- name: Magnetizing resistance
+  summary: 铁损的励磁电阻 inf Ohm（默认）
+  group: 铁损
+- name: Rotor hysteresis loss coefficient, k_hr(id,iq)
+  summary: 转子磁滞损耗系数 zeros(3, 3) W/Hz（默认）
+  group: 铁损
+- name: Rotor eddy current loss coefficient, k_Jr(id,iq)
+  summary: 转子涡流损耗系数 zeros(3, 3) W/Hz^2（默认）
+  group: 铁损
+- name: Rotor excess current loss coefficient, k_er(id,iq)
+  summary: 转子附加电流损耗系数 zeros(3, 3) W/Hz^1.50000（默认）
+  group: 铁损
+- name: Stator hysteresis loss coefficient, k_hs(id,iq)
+  summary: 定子磁滞损耗系数 zeros(3, 3) W/Hz（默认）
+  group: 铁损
+- name: Stator eddy current loss coefficient, k_Js(id,iq)
+  summary: 定子涡流损耗系数 zeros(3, 3) W/Hz^2（默认）
+  group: 铁损
+- name: Stator excess current loss coefficient, k_es(id,iq)
+  summary: 定子附加电流损耗系数 zeros(3, 3) W/Hz^1.50000（默认）
+  group: 铁损
+- name: Rotor speed vector, w
+  summary: 转子速度 [1000, 2000] rpm（默认）
+  group: 铁损
+- name: Rotor iron loss table, Pr(id,iq,w)
+  summary: 转子铁损表 zeros(3, 3, 2) W（默认）
+  group: 铁损
+- name: Stator iron loss table, Ps(id,iq,w)
+  summary: 定子铁损表 zeros(3, 3, 2) W（默认）
+  group: 铁损
+- name: Rotor inertia
+  summary: 惯量 0.01 kg*m^2（默认）
+  group: 机械
+- name: Rotor Damping
+  summary: 阻尼 0 N*m/(rad/s)（默认）
+  group: 机械
+- name: Rotor angle definition
+  summary: 角度 Angle between the a-phase magnetic axis and the d-axis（默认）| Angle between the a-phase magnetic axis and the
+    q-axis
+  group: 机械
+- name: Measurement temperature
+  summary: 测量温度 298.15 K（默认）
+  group: 热
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 热
+- name: Thermal mass for each stator winding
+  summary: 每个定子绕组的热质量 100 J/K（默认）
+  group: 热
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）
+  group: 热
+- name: Percentage of total iron losses associated with the rotor
+  summary: 总铁损百分比 50（默认）
+  group: 热
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -458,7 +633,6 @@ A、B 和 C 绕组的热质量值。热质量是将温度升高一度所需的�
 #### 依赖关系
 
 要启用此参数，请将 **Modeling fidelity** 设置为 `Costant Ld and Lq`，或将 **Stator parameterization** 设置为 `Specify Ls, Lm, and Ms`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

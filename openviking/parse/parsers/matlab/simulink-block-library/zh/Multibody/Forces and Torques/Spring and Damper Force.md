@@ -15,12 +15,17 @@ chinese_source: worker-translation
 # Spring and Damper Force
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块包含坐标系端口 B 和 F，分别表示基础坐标系和从动坐标系。
 
 在模块对话框中选中 **Sense Force** 复选框会添加一个物理信号端口 **fm**。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Natural Length**
 :   输入基础坐标系和从动坐标系原点之间的平衡距离。这是弹簧力大小为零时的距离。默认值为 `0`。选择或输入一个物理单位。
@@ -33,7 +38,6 @@ chinese_source: worker-translation
 
 **Sense Force**
 :   选中此项以检测作用在两个坐标系原点之间的弹簧和阻尼力的带符号大小。该模块会暴露一个额外的物理信号端口以输出力信号。输出信号为标量值。如果力为排斥力，该值为正；如果力为吸引力，该值为负。
-
 ## 所属库
 
 R2025b 中未记录。

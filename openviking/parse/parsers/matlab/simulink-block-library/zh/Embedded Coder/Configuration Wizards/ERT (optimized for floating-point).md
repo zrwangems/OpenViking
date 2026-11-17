@@ -15,10 +15,25 @@ chinese_source: worker-translation
 # ERT (optimized for floating-point)
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Configure the model for
+  summary: 配置目标 ERT (optimized for floating-point)（默认）| ERT (optimized for fixed-point) | GRT (optimized for fixed/floating-point)
+    | GRT (debug for fixed/floating-point) | Custom
+  group: ''
+- name: Configuration function
+  summary: 自定义 MATLAB 脚本 rtwsampleconfig（默认）
+  group: ''
+- name: Invoke build process after configuration
+  summary: 启动构建过程 off（默认）| on
+  group: ''
+```
 
 ### **Configure the model for** — 配置目标 `ERT (optimized for floating-point)`（默认）| `ERT (optimized for fixed-point)` | `GRT (optimized for fixed/floating-point)` | `GRT (debug for fixed/floating-point)` | `Custom`
 
@@ -35,7 +50,6 @@ R2025b 中未记录。
 ### **Invoke build process after configuration** — 启动构建过程 `off`（默认）| `on`
 
 如果选中，预定义脚本在更新配置参数后启动代码生成和构建过程。
-
 ## 所属库
 
 Embedded Coder / Configuration Wizards

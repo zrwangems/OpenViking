@@ -14,6 +14,81 @@ language: en
 # PMSM (Five-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: d
+  summary: '*d*-phase electrical'
+  direction: conserving
+- name: e
+  summary: '*e*-phase electrical'
+  direction: conserving
+- name: a1
+  summary: '*a* positive-end connection electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* positive-end connection electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* positive-end connection electrical'
+  direction: conserving
+- name: d1
+  summary: '*d* positive-end connection electrical'
+  direction: conserving
+- name: e1
+  summary: '*e* positive-end connection electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* negative-end connection electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* negative-end connection electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* negative-end connection electrical'
+  direction: conserving
+- name: d2
+  summary: '*d* negative-end connection electrical'
+  direction: conserving
+- name: e2
+  summary: '*e* negative-end connection electrical'
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: HA
+  summary: '*a*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HB
+  summary: '*b*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HC
+  summary: '*c*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HD
+  summary: '*d*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HE
+  summary: '*e*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -276,8 +351,84 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Winding type
+  summary: Windings configuration Star-wound (default) | Pentagon-wound | Pentacle-wound | Open-end
+  group: Main
+- name: Number of pole pairs
+  summary: Number of pole pairs 6 (default) | scalar
+  group: Main
+- name: Permanent magnet flux linkage parameterization
+  summary: Permanent magnet flux linkage parameterization Specify flux linkage (default) | Specify torque constant | Specify
+    back EMF constant
+  group: Main
+- name: Permanent magnet flux linkage
+  summary: Permanent magnet flux linkage 0.03 Wb (default) | scalar
+  group: Main
+- name: Torque constant
+  summary: Torque constant 0.18 N*m/A (default) | scalar
+  group: Main
+- name: Back EMF constant
+  summary: Back EMF constant 0.18 V/(rad/s) (default) | scalar
+  group: Main
+- name: Stator parameterization
+  summary: Stator parameterization Specify Ld, Lq, and L0 (default) | Specify Ls, Lm, and Ms
+  group: Main
+- name: Stator d-axis inductance, Ld
+  summary: Stator *d*-axis inductance 0.00019 H (default) | scalar
+  group: Main
+- name: Stator q-axis inductance, Lq
+  summary: Stator *q*-axis inductance 0.00025 H (default) | scalar
+  group: Main
+- name: Stator zero-sequence inductance, L0
+  summary: Stator zero-sequence inductance 0.00016 H (default) | scalar
+  group: Main
+- name: Stator self-inductance per phase, Ls
+  summary: Stator self-inductance per phase 0.0002 H (default) | scalar
+  group: Main
+- name: Stator inductance fluctuation, Lm
+  summary: Stator inductance fluctuation -0.00002 H (default) | scalar
+  group: Main
+- name: Stator mutual inductance, Ms
+  summary: Stator mutual inductance 0.00002 H (default) | scalar
+  group: Main
+- name: Stator resistance per phase, Rs
+  summary: Stator resistance per phase 0.013 Ohm (default) | scalar
+  group: Main
+- name: Zero sequence
+  summary: Zero sequence option Include (default) | Exclude
+  group: Main
+- name: Rotor angle definition
+  summary: Reference point for the rotor angle measurement Angle between the a-phase magnetic axis and the d-axis (default)
+    | Angle between the a-phase magnetic axis and the q-axis
+  group: Main
+- name: Rotor inertia
+  summary: Rotor inertia 0.01 kg*m^2 (default) | nonnegative scalar
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 0 N*m/(rad/s) (default) | nonnegative scalar
+  group: Mechanical
+- name: Measurement temperature
+  summary: Rated temperature 298.15 k (default) | real scalar
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Permanent magnet flux temperature coefficient
+  summary: Permanent magnet flux temperature coefficient -0.001 1/K (default) | scalar
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -511,7 +662,6 @@ energy required to raise the temperature by one degree.
 
 Thermal mass of the rotor. The thermal mass is the energy required to
 raise the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

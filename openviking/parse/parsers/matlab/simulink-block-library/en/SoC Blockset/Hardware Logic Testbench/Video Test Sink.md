@@ -14,6 +14,21 @@ language: en
 # Video Test Sink
 
 ## Ports
+```yaml
+ports:
+- name: rdData
+  summary: Input video stream data vector
+  direction: input
+  data_types: uint8
+- name: rdCtrlIn
+  summary: Input control bus bus
+  direction: input
+  data_types: pixelcontrol
+- name: rdCtrlOut
+  summary: Output control bus bus
+  direction: output
+  data_types: StreamVideoS2MBusObj
+```
 
 ### Input
 
@@ -48,8 +63,28 @@ Output control bus to the data source signaling that the block is ready to accep
 video stream data. This control bus comprises a ready signal.
 
 **Data Types:** `StreamVideoS2MBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Frame size
+  summary: Frame dimensions 160x120p (default) | ...
+  group: ''
+- name: Color space
+  summary: Color space YCbCr422 (default) | RGB | YOnly
+  group: ''
+- name: Reorder input frame
+  summary: Input frame reorder off (default) | on
+  group: ''
+- name: Save data in workspace
+  summary: Save data in workspace off (default) | on
+  group: ''
+- name: Variable name
+  summary: Workspace variable name simOut (default) | any MATLAB-supported variable name
+  group: ''
+- name: View input
+  summary: Display input in MATLAB off (default) | on
+  group: ''
+```
 
 ### **Frame size** — Frame dimensions `160x120p` (default) | ...
 
@@ -107,7 +142,6 @@ parameter.
 ### **View input** — Display input in MATLAB `off` (default) | `on`
 
 Select this parameter to view the input video stream data in the MATLAB viewer.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Testbench

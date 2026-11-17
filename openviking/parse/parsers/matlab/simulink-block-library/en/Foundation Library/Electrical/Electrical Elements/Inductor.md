@@ -14,6 +14,15 @@ language: en
 # Inductor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,19 @@ Electrical conserving port associated with the inductor positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the inductor negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inductance
+  summary: Inductance of the inductor 1e-6 H (default) | positive scalar
+  group: ''
+- name: Series resistance
+  summary: Small parasitic effects 0 Ohm (default) | nonnegative scalar
+  group: ''
+- name: Parallel conductance
+  summary: Small parasitic effects 1e-9 1/Ohm (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Inductance** — Inductance of the inductor `1e-6 H` (default) | positive scalar
 
@@ -40,7 +60,6 @@ the DC winding resistance or the resistance due to the skin effect.
 
 Represents small parasitic effects. Simulation of some circuits may require the
 presence of a small parallel conductance.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

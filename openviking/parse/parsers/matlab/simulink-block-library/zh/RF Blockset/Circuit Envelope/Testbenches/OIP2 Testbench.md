@@ -15,10 +15,48 @@ chinese_source: worker-translation
 # OIP2 Testbench
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Use Internal Configuration block
+  summary: 使用测试平台内部配置模块 on（默认）| off
+  group: ''
+- name: Simulate noise (both stimulus and DUT internal)
+  summary: 启用激励信号中的噪声建模 on（默认）| off
+  group: ''
+- name: Input power amplitude (dBm)
+  summary: DUT 的输入功率 -30（默认）| 标量
+  group: ''
+- name: Input frequency (Hz)
+  summary: DUT 的载波频率 2.1e9（默认）| 标量
+  group: ''
+- name: Output frequency (Hz)
+  summary: DUT 的输出频率 2.1e9（默认）| 标量
+  group: ''
+- name: Baseband bandwidth (Hz)
+  summary: 输入信号的基带带宽 10e6（默认）| 标量
+  group: ''
+- name: Ratio of test tone frequency to baseband bandwidth
+  summary: 测试音调的位置 1/8（默认）| 标量
+  group: ''
+- name: Source resistance (Ohm)
+  summary: 用于测量 DUT 的源电阻 50（默认）| 正有限标量
+  group: ''
+- name: Load resistance (Ohm)
+  summary: 用于测量 DUT 的负载电阻 50（默认）| 正有限标量
+  group: ''
+- name: Show Response spectrum
+  summary: 在仿真期间使用频谱示波器查看响应频谱 on（默认）| off
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 在内部接地并隐藏 RF 电路端子 on（默认）| off
+  group: ''
+```
 
 #### 参数
 
@@ -77,7 +115,6 @@ DUT 的输出频率，指定为以 Hz 为单位的标量。输出频率必须大
 ### **Ground and hide negative terminals** — 在内部接地并隐藏 RF 电路端子 on（默认）| off
 
 选择以在内部接地并隐藏负端子。清除以暴露负端子。通过暴露这些端子，您可以将它们连接到模型的其它部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Testbenches

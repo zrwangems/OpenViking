@@ -14,6 +14,24 @@ language: en
 # D Flip-Flop
 
 ## Ports
+```yaml
+ports:
+- name: Invalid
+  summary: Output validity, unitless physical signal
+  direction: output
+- name: D
+  summary: Data pin electrical
+  direction: conserving
+- name: Clk
+  summary: Clock pin electrical
+  direction: conserving
+- name: Q
+  summary: Output pin electrical
+  direction: conserving
+- name: '!Q'
+  summary: Inverted output pin electrical
+  direction: conserving
+```
 
 ### Output
 
@@ -45,8 +63,70 @@ Electrical conserving port associated with the output pin.
 ### **!Q** — Inverted output pin electrical
 
 Electrical conserving port associated with the inverted output pin.
-
 ## Parameters
+```yaml
+parameters:
+- name: Low level input voltage
+  summary: Input voltage below which logic is 0 2 V (default) | nonnegative scalar
+  group: Inputs
+- name: High level input voltage
+  summary: Input voltage above which logic is 1 3 V (default) | positive scalar
+  group: Inputs
+- name: Average input capacitance
+  summary: Input capacitance for MOSFET gate 5 pF (default) | nonnegative scalar
+  group: Inputs
+- name: Edge Trigger
+  summary: Active edge of clock trigger Falling (default) | Rising
+  group: Inputs
+- name: Output current-voltage relationship
+  summary: Model for output current-voltage relationship Linear (default) | Quadratic
+  group: Outputs
+- name: Low level output voltage
+  summary: Output voltage when logic is 0 0 V (default) | nonnegative scalar
+  group: Outputs
+- name: High level output voltage
+  summary: Output voltage when logic is 1 5 V (default) | positive scalar
+  group: Outputs
+- name: Output resistance
+  summary: Output resistance 25 Ohm (default) | nonnegative scalar
+  group: Outputs
+- name: Supply voltage
+  summary: Supply voltage 5 V (default) | positive scalar
+  group: Outputs
+- name: Measurement voltage
+  summary: Measurement supply voltage 5 V (default) | positive scalar
+  group: Outputs
+- name: Logic HIGH output resistance at zero current and at I_OH
+  summary: Resistance when output logic is 1 [25, 250] Ohm | 2-D vector of positive scalars
+  group: Outputs
+- name: Logic HIGH output current I_OH when shorted to ground
+  summary: Output current when logic is 1 63 mA (default) | positive scalar
+  group: Outputs
+- name: Logic LOW output resistance at zero current and at I_OL
+  summary: Resistance when output logic is 0 [30, 800] Ohm (default) | 2-D vector of positive scalars
+  group: Outputs
+- name: Logic LOW output current I_OL when shorted to Vcc
+  summary: Output current when logic is 0 -45 mA (default) | negative scalar
+  group: Outputs
+- name: Propagation delay
+  summary: Time for output voltage to change states 25 ns (default) | nonnegative scalar
+  group: Outputs
+- name: Setup time
+  summary: Time input must remain stable before transition 20 ns (default) | nonnegative scalar
+  group: Outputs
+- name: Hold time
+  summary: Time input must remain stable after transition 5 ns (default) | nonnegative scalar
+  group: Outputs
+- name: Protection diode on resistance
+  summary: Protection diode on resistance 5 Ohm (default) | positive scalar
+  group: Outputs
+- name: Protection diode forward voltage
+  summary: Protection diode forward voltage 0.6 V (default) | positive scalar
+  group: Outputs
+- name: Expose output validity port
+  summary: Option to expose output validity port Off (default) | On
+  group: Outputs
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -237,7 +317,6 @@ relationship** to `Quadratic`.
 ### **Expose output validity port** — Option to expose output validity port `Off` (default) | `On`
 
 Option to expose the **Invalid** port.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits / Logic

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # MQTT Client Publish
 
 ## 端口
+```yaml
+ports:
+- name: Topic_*x*
+  summary: 要发布到 MQTT 主题的消息 double
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string
+```
 
 ### 输入
 
@@ -27,8 +34,30 @@ chinese_source: worker-translation
 要启用此端口，请在 **要发布的主题** 参数中指定一个或多个主题。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string`
-
 ## 参数
+```yaml
+parameters:
+- name: Client
+  summary: 选择 MQTT 客户端 下拉列表
+  group: ''
+  block_parameter: ClientList
+  values: MQTT 客户端名称
+- name: Topics to publish
+  summary: MQTT 主题列表 表格
+  group: ''
+  block_parameter: TopicsTable
+  values: MQTT 主题名称和信息
+- name: Publish only on input data change
+  summary: 确定何时发布消息 on（默认）| off
+  group: ''
+  block_parameter: PublishOnDataChange
+  values: on（默认）| off
+- name: 模块采样时间
+  summary: 读取操作的采样时间 -1（默认）| 非负标量
+  group: ''
+  block_parameter: SampleTime
+  values: -1（默认）| 非负标量
+```
 
 ### **Client** — 选择 MQTT 客户端 下拉列表
 
@@ -113,7 +142,6 @@ chinese_source: worker-translation
 | **参数：** | `SampleTime` |
 | **值：** | -1（默认）| 非负标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Industrial Communication Toolbox / MQTT

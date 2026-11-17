@@ -14,6 +14,17 @@ language: en
 # GELU Layer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output data scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -29,8 +40,53 @@ The data on which to perform the GELU operation.
 The result of performing the GELU operation on the input matrix.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Approximation
+  summary: Approximation method for GELU operation none (default) | tanh
+  group: Main
+  block_parameter: Approximation
+  values: '''none'' (default) | ''tanh'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Data type of output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Sample time
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -237,7 +293,6 @@ programmatically, use the `set_param` (Simulink) function.
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **Values:** `'-1'` (default) | scalar |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Learning Layers / Activation Layers

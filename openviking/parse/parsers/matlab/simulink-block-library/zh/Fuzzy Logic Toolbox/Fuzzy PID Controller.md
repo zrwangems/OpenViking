@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Fuzzy PID Controller
 
 ## 端口
+```yaml
+ports:
+- name: r
+  summary: 参考标量
+  direction: input
+- name: y
+  summary: 被控对象输出标量
+  direction: input
+- name: u
+  summary: 控制器输出标量
+  direction: output
+- name: e
+  summary: 误差标量
+  direction: output
+```
 
 ### 输入
 
@@ -38,8 +53,95 @@ chinese_source: worker-translation
 #### 依赖关系
 
 - 要启用此端口，请选择 **Add error (e) output** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Time Domain
+  summary: 控制器时域 Discrete-time（默认）| Continuous-time
+  group: 控制器选项
+  block_parameter: TimeDomainType
+  values: '"Discrete-time" (default) | "Continuous-time"'
+- name: Ce
+  summary: 误差增益 1（默认）| 标量
+  group: 控制器选项
+  block_parameter: CE
+  values: '"1" (default) | nonnegative scalar in quotes'
+- name: Cd
+  summary: 微分信号增益 1（默认）| 标量
+  group: 控制器选项
+  block_parameter: CD
+  values: '"1" | nonnegative scalar in quotes'
+- name: C0
+  summary: FIS 输出变化增益 1（默认）| 标量
+  group: 控制器选项
+  block_parameter: C0
+  values: '"1" | nonnegative scalar in quotes'
+- name: C1
+  summary: FIS 输出增益 1（默认）| 标量
+  group: 控制器选项
+  block_parameter: C1
+  values: '"1" | nonnegative scalar in quotes'
+- name: Integrator method
+  summary: 离散时间控制器中用于计算积分的方法 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: 控制器选项
+  block_parameter: IntegratorMethod
+  values: '"Forward Euler"（默认）| "Backward Euler" | "Trapezoidal"'
+- name: Use accumulator
+  summary: 在积分器中累积信号 off（默认）| on
+  group: 控制器选项
+  block_parameter: UseAccumulator
+  values: '"off"（默认）| "on"'
+- name: Derivative signal
+  summary: 用于计算导数的信号 Error (e)（默认）| Process output (y)
+  group: 控制器选项
+  block_parameter: DerivativeSignal
+  values: '"Error (e)"（默认）| "Process output (y)"'
+- name: Use filtered derivative
+  summary: 对导数项应用滤波器 on（默认）| off
+  group: 控制器选项
+  block_parameter: UseFilter
+  values: '"on"（默认）| "off"'
+- name: 滤波器系数
+  summary: 微分滤波器系数 100（默认）| 正标量
+  group: 控制器选项
+  block_parameter: N
+  values: '"100"（默认）| 带引号的正标量'
+- name: 滤波方法
+  summary: 离散时间控制器中计算微分的方法 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: 控制器选项
+  block_parameter: DerivativeFilterMethod
+  values: '"Forward Euler"（默认）| "Backward Euler" | "Trapezoidal"'
+- name: 添加误差 (e) 输出
+  summary: 启用 e 输出端口 off（默认）| on
+  group: 控制器选项
+  block_parameter: E
+  values: '"off"（默认）| "on"'
+- name: 采样时间（–1 表示继承）
+  summary: 采样时间 -1（默认）| 正标量
+  group: 控制器选项
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的正标量'
+- name: FIS name
+  summary: 模糊推理系统 mamfis 对象 | sugfis 对象 | mamfistype2 对象 | sugfistype2 对象 | 带引号的 FIS 文件名 | 带引号的 MAT 文件名
+  group: 模糊推理系统
+  block_parameter: FIS
+  values: '''"fuzzycontroller"''（默认） | 带引号的变量名 | 带引号的文件名'
+- name: Number of samples for output discretization
+  summary: 输出模糊集中的点数 101（默认） | 大于 1 的整数
+  group: 模糊推理系统
+  block_parameter: OutputSampleNumber
+  values: '"101"（默认） | 带引号的、大于 1 的整数'
+- name: Implement FIS as lookup table
+  summary: 将 FIS 转换为查找表 off（默认） | on
+  group: 模糊推理系统
+  block_parameter: UseLookupTable
+  values: '"off"（默认） | "on"'
+- name: Number of input breakpoints (samples)
+  summary: 查找表断点数量 10（默认） | 正整数
+  group: 模糊推理系统
+  block_parameter: NumBreakpoints
+  values: '"10"（默认） | 带引号的正整数'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -405,7 +507,6 @@ input breakpoints** 参数指定。
 | --- | --- |
 | **Parameter:** | `NumBreakpoints` |
 | **值**：| `"10"`（默认） | 带引号的正整数 |
-
 ## 所属库
 
 Fuzzy Logic Toolbox

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Truth Table
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入端口 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | string
+- name: Port_1
+  summary: 输出端口 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | string
+```
 
 ### 输入
 
@@ -30,8 +43,50 @@ chinese_source: worker-translation
 当您使用 **Symbols** 窗格在 Stateflow 真值表中创建输出数据时，Stateflow 会在 Truth Table 模块上创建对应的输出端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `string`
-
 ## 参数
+```yaml
+parameters:
+- name: Update method
+  summary: 更新或唤醒 Stateflow 真值表的方法 Inherited（默认）| Discrete | Continuous
+  group: ''
+  block_parameter: ChartUpdate
+  values: '"INHERITED"（默认）| "CONTINUOUS" | "DISCRETE"'
+- name: Sample time
+  summary: Stateflow 真值表在仿真期间唤醒的时间间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认） | 字符串标量 | 字符向量'
+- name: 整型溢出时饱和
+  summary: 数据在整型溢出时是否饱和 on（默认） | off
+  group: 高级
+  block_parameter: SaturateOnIntegerOverflow
+  values: true 或 1（默认） | false 或 0
+- name: 支持可变大小数组
+  summary: 真值表是否支持可变大小数据 on（默认） | off
+  group: 高级
+  block_parameter: SupportVariableSizing
+  values: true 或 1（默认） | false 或 0
+- name: 将长度为 1 的维度视为固定大小
+  summary: 真值表是否将长度为 1 的维度的非标量数据视为固定大小 on（默认） | off
+  group: 高级
+  block_parameter: TreatDimensionOfLengthOneAsFixedSize
+  values: true 或 1（默认） | false 或 0
+- name: 过度指定
+  summary: 真值表过度指定时的诊断级别 "Error"（默认） | "Warning" | "None"
+  group: 高级
+  block_parameter: OverSpecDiagnostic
+  values: '"Error"（默认） | "Warning" | "None"'
+- name: 将这些继承的 Simulink 信号类型视为 fi 对象
+  summary: 要视为 fi 对象的继承 Simulink 信号 Fixed-point（默认） | Fixed-point & Integer
+  group: 定点属性
+  block_parameter: TreatAsFi
+  values: '"Fixed-point"（默认） | "Fixed-point & Integer"'
+- name: MATLAB Chart fimath
+  summary: 默认 fimath 对象属性 Same as MATLAB（默认） | Specify Other
+  group: 定点属性
+  block_parameter: EmlDefaultFimath
+  values: '"Same as MATLAB Default"（默认） | "Other:UserSpecified"'
+```
 
 要交互式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -197,7 +252,6 @@ MATLAB 作为动作语言的真值表。
 | --- | --- |
 | **参数：** | `EmlDefaultFimath` |
 | **值：** | `"Same as MATLAB Default"`（默认） | `"Other:UserSpecified"` |
-
 ## 所属库
 
 Stateflow

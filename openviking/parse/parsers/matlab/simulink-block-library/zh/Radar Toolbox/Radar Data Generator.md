@@ -15,6 +15,31 @@ chinese_source: worker-translation
 # Radar Data Generator
 
 ## 端口
+```yaml
+ports:
+- name: Targets (Body Frame)
+  summary: 目标位姿 Simulink® 总线，包含 MATLAB® 结构体
+  direction: input
+- name: INS
+  summary: 来自 INS 的雷达位姿 Simulink 总线，包含 MATLAB 结构体
+  direction: input
+- name: Time
+  summary: 当前仿真时间 非负标量
+  direction: input
+  data_types: double
+- name: Clustered detections
+  summary: 包含 MATLAB 结构的 Simulink 总线，用于聚类目标检测
+  direction: output
+- name: Tracks
+  summary: 目标航迹，包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Detections
+  summary: 包含 MATLAB 结构的 Simulink 总线，用于未聚类目标检测
+  direction: output
+- name: Configuration
+  summary: 当前传感器配置 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -270,8 +295,160 @@ Configuration，返回为包含 MATLAB 结构的 Simulink 总线。此输出可�
 #### 依赖关系
 
 要启用此端口，请选中 **Enable radar configuration output** 复选框。
-
 ## 参数
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: 唯一传感器标识符 0（默认）| 正整数
+  group: 参数
+- name: Update rate (Hz)
+  summary: 传感器更新速率 10（默认）| 正实数标量
+  group: 参数
+- name: Translation [ X, Y, Z ] relative to ego origin (m)
+  summary: 雷达在平台上的安装位置 [3.4,0,0.2]（默认）| 形式为 [x,y,z] 的 1×3 实数值向量
+  group: 参数
+- name: Rotation [Yaw,Pitch,Roll] relative to ego's frame (deg)
+  summary: 雷达的安装旋转角度 [0 0 0]（默认）| 形式为 [*z*yaw *y*pitch *x*roll] 的 1×3 实值向量
+  group: 参数
+- name: Enable elevation angle measurements
+  summary: 使雷达能够测量目标仰角 off（默认）| on
+  group: 参数
+- name: Enable range rate measurements
+  summary: 使雷达能够测量目标距离变化率 on（默认）| off
+  group: 参数
+- name: Add noise to measurements
+  summary: 启用向雷达传感器测量值添加噪声 on（默认）| off
+  group: 参数
+- name: Enable false reports
+  summary: 启用生成虚警雷达检测 on（默认）| off
+  group: 参数
+- name: Enable occlusion
+  summary: 启用视线遮挡 on（默认）| off
+  group: 参数
+- name: Enable ghosts
+  summary: 启用鬼影目标 off（默认）| on
+  group: 参数
+- name: Maximum number of target reports
+  summary: 最大检测数或航迹数 50（默认）| 正整数
+  group: 参数
+- name: Target reporting format
+  summary: 生成的目标报告的格式 Clustered detections（默认）| Tracks | Detections
+  group: 参数
+- name: Coordinate system
+  summary: 所报告检测的坐标系 Body（默认）| Sensor rectangular | Sensor spherical | Scenario
+  group: 参数
+- name: Source of target truth time
+  summary: 目标真值时间的来源 Auto（默认）| Input port
+  group: 参数
+- name: Enable INS
+  summary: 启用 INS 输入端口 off（默认）| on
+  group: 参数
+- name: Source of output target report bus name
+  summary: 输出目标报告总线名称的来源 Auto（默认）| Property
+  group: 参数
+- name: Specify an output target report bus name
+  summary: 目标报告输出总线的名称 BusRadarDataGenerator（默认）| 有效总线名称
+  group: 参数
+- name: Enable radar configuration output
+  summary: 启用雷达配置输出 off（默认）| on
+  group: 参数
+- name: Source of output config bus name
+  summary: 输出 config 总线名称的来源 Auto（默认）| Property
+  group: 参数
+- name: Specify an output config bus name
+  summary: 目标报告输出总线的名称 BusRadarDataGeneratorConfig（默认）| 有效总线名称
+  group: 参数
+- name: Azimuth resolution (deg)
+  summary: 雷达方位分辨率 4（默认）| 正实数标量
+  group: Measurements
+- name: Elevation resolution (deg)
+  summary: 雷达俯仰分辨率 5（默认）| 正实数标量
+  group: Measurements
+- name: Range resolution (m)
+  summary: 雷达距离分辨率 2.5（默认）| 正实数标量
+  group: Measurements
+- name: Range rate resolution (m/s)
+  summary: 雷达距离变化率分辨率 0.5（默认）| 正实数标量
+  group: Measurements
+- name: Azimuth bias fraction
+  summary: 雷达方位偏置系数 0.1（默认）| 非负标量
+  group: Measurements
+- name: Elevation bias fraction
+  summary: 雷达俯仰偏置系数 0.1（默认）| 非负标量
+  group: Measurements
+- name: Range bias fraction
+  summary: 距离偏置系数 0.05（默认）| 非负标量
+  group: Measurements
+- name: Range rate bias fraction
+  summary: 距离变化率偏置系数 0.05（默认）| 非负标量
+  group: Measurements
+- name: 总角视场 [AZ, EL] (deg)
+  summary: 雷达的角视场 [20 5]（默认）| 形式为 [azfov,elfov] 的 1×2 正实值向量
+  group: Measurements
+- name: 距离限制 [MIN, MAX] (m)
+  summary: 雷达的最小和最大距离 [0 150]（默认）| 形式为 [min max] 的 1×2 非负实值向量
+  group: Measurements
+- name: 距离变化率限制 [MIN, MAX] (m/s)
+  summary: 雷达的最小和最大距离变化率 (m/s) [-100 100]（默认）| 形式为 [min max] 的 1×2 实值向量
+  group: Measurements
+- name: 检测概率
+  summary: 检测目标的概率 0.9（默认）| 范围 (0, 1] 内的标量
+  group: Measurements
+- name: 虚警率
+  summary: 虚警报告率 1e-06（默认）| 范围 [10–7, 10–3] 内的正实标量
+  group: Measurements
+- name: 参考目标距离 (m)
+  summary: 给定检测概率的参考距离 100（默认）| 正实标量
+  group: Measurements
+- name: 参考目标 RCS (dBsm)
+  summary: 给定检测概率的参考雷达截面积 0（默认）| 实标量
+  group: Measurements
+- name: 中心频率 (Hz)
+  summary: 雷达频带的中心频率 77e9（默认）| 正实标量
+  group: Measurements
+- name: 滤波器初始化函数名称
+  summary: 卡尔曼滤波器初始化函数 initcvekf（默认）| 函数句柄
+  group: Measurements
+- name: M-out-of-N 确认的 M 和 N
+  summary: 航迹确认阈值 [2 3]（默认）| 正整数的 1×2 向量
+  group: Measurements
+- name: P-out-of-R 删除的 P 和 R
+  summary: 航迹删除阈值 [5 5]（默认）| 正整数的 1×2 向量
+  group: Measurements
+- name: 随机数生成
+  summary: 指定随机数生成器种子的方法 Repeatable（默认）| Specify seed | Not repeatable
+  group: Measurements
+- name: Initial seed
+  summary: 随机数生成器种子 0（默认）| 小于 232 的非负整数
+  group: Measurements
+- name: 目标配置文件定义
+  summary: 指定目标配置文件的方法 From Scenario Reader block（默认）| MATLAB expression | Parameters
+  group: 目标配置文件
+- name: MATLAB expression for target profiles
+  summary: 目标配置文件的 MATLAB 表达式 MATLAB 结构体 | MATLAB 结构体数组 | 有效的 MATLAB 表达式
+  group: 目标配置文件
+- name: Unique target identifiers
+  summary: 场景定义的目标标识符 []（默认）| 正整数 | 长度为 *L* 的唯一正整数向量
+  group: 目标配置文件
+- name: 目标分类标识符
+  summary: 用户自定义分类标识符 0（默认）| 整数 | 长度为 *L* 的整数向量
+  group: 目标配置文件
+- name: 目标长方体长度 (m)
+  summary: 目标长方体长度 4.7（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: 目标配置文件
+- name: 目标长方体宽度 (m)
+  summary: 目标长方体宽度 1.8（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: 目标配置文件
+- name: 高度长方体高度 (m)
+  summary: 角色长方体高度 1.4（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: 目标配置文件
+- name: 目标长方体旋转中心 (m)
+  summary: 目标长方体旋转中心 {[-1.35, 0, 0]}（默认）| 长度为 *L* 的元胞数组，包含实值 1×3 向量
+  group: 目标配置文件
+- name: Target signatures
+  summary: 目标签名元胞数组
+  group: 目标配置文件
+```
 
 ### 参数
 
@@ -675,7 +852,6 @@ struct('ClassID',0,'Length',4.7,'Width',1.8,'Height',1.4, ...
 #### 依赖关系
 
 要启用此参数，请将 **Target profiles definition** 参数设置为 `Parameters`。
-
 ## 所属库
 
 Radar Toolbox

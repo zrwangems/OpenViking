@@ -14,6 +14,21 @@ language: en
 # EtherCAT Async SSC/SoE Upload
 
 ## Ports
+```yaml
+ports:
+- name: Enable
+  summary: Enables block to upload data int32
+  direction: input
+- name: Data
+  summary: Data received from subordinate device numeric
+  direction: output
+- name: Status
+  summary: Status of data transfer 0 | 1 | 2 | 3
+  direction: output
+- name: Error
+  summary: Report an EtherCAT network error 0 | integer
+  direction: output
+```
 
 ### Input
 
@@ -46,8 +61,42 @@ Status of asynchronous data transfer:
 If no error occurs, this port transmits
 `0`. Otherwise, it transmits a
 nonzero value. For list of error codes, see EtherCAT Error Codes.
-
 ## Parameters
+```yaml
+parameters:
+- name: IDN
+  summary: Identification Number character vector
+  group: ''
+  block_parameter: idn
+- name: Drive Number
+  summary: Index number of the drive integer
+  group: ''
+  block_parameter: drive
+- name: Data Type
+  summary: Data type of the IDN double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+  block_parameter: sig_type
+- name: Dimension
+  summary: Dimension of data for this IDN 1 (default)
+  group: ''
+  block_parameter: sig_dim
+- name: Network Device Index
+  summary: EtherCAT network identifier 0 (default) | 0-11
+  group: ''
+  block_parameter: device_id
+- name: SubDevice Name
+  summary: Name of device that contains the IDN character vector
+  group: ''
+  block_parameter: subdevice_name
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+- name: Timeout
+  summary: Time to wait for response from subordinate device numeric
+  group: ''
+  block_parameter: timeout
+```
 
 ### **IDN** — Identification Number character vector
 
@@ -161,7 +210,6 @@ Enter the maximum number of milliseconds to wait for a response from the EtherCA
 |  |
 | --- |
 | **Block Parameter:** `timeout` |
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # Simscape Bus
 
 ## 端口
+```yaml
+ports:
+- name: Bus
+  summary: Simscape Bus 端口总线
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -23,8 +29,19 @@ chinese_source: worker-translation
 连接到 Simscape Bus 线路的端口，该线路表示一组守恒连接线。该组包含连接到模块另一侧的所有线路。
 
 默认情况下，该另一侧没有端口。您可以通过将连接线拖到模块的该侧，或使用模块对话框来添加端口。进入子侧模块的元素可以是守恒连接线或 Simscape Bus 线路。每次在子侧添加端口时，相应的连接会添加到模块内部的连接列表中。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection type
+  summary: '指定或移除刚性接口 Inherit: auto（默认）| Bus: <object name> | CompositeConnection: <domain name> | ConnectionBus 对象列表'
+  group: ''
+- name: Mode
+  summary: 指定连接模式 Inherit（默认）| Connection Bus object | Composite domain
+  group: ''
+- name: Hierarchy Strings
+  summary: 连接名称列表 空（默认）| 连接名称
+  group: ''
+```
 
 ### **Connection type** — 指定或移除刚性接口 `Inherit: auto`（默认）| `Bus: <object name>` | `CompositeConnection: <domain name>` | `ConnectionBus` 对象列表
 
@@ -51,7 +68,6 @@ chinese_source: worker-translation
 与连接到 Simscape Bus 模块的守恒线相对应的连接名称列表。默认情况下，此列表为空。每次添加连接时，模块的子侧会出现一个守恒端口。使用模块对话框中的 或 按钮来添加或移除连接。
 
 您也可以直接在模型画布上添加和移除连接，如 Working with the Block on Model Canvas 中所述。
-
 ## 所属库
 
 Simscape / Utilities

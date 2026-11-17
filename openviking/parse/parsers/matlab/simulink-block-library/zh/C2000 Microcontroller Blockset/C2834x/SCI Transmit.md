@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # C28x SCI Transmit
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 写入串行总线的数据 标量 | 向量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single
+- name: Status
+  summary: 在给定时间步传输的数据 标量
+  direction: output
+  data_types: uint8 | uint16
+```
 
 ### 输入
 
@@ -36,8 +47,28 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output status** 参数。
 
 **数据类型：** `uint8` | `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: SCI module
+  summary: 用于通信的 SCI 模块 A（默认）| B | C | D
+  group: ''
+- name: Additional package header
+  summary: 指示数据起始 'S'（默认）| 字符串 | 字符 | 0 到 255 之间的数字
+  group: ''
+- name: Additional package terminator
+  summary: 指示数据结束 'E'（默认）| 字符串 | 字符 | 0 到 255 之间的数字
+  group: ''
+- name: Frame size
+  summary: 指定要接收的数据长度 600（默认）| 任意正整数
+  group: ''
+- name: Wait until previous data transmitted
+  summary: 等待上一步接收的数据发送完成 on（默认）| off
+  group: ''
+- name: Output status
+  summary: 用于在数据传输期间显示发送状态的选项 off（默认）| on
+  group: ''
+```
 
 ### **SCI module** — 用于通信的 SCI 模块 `A`（默认）| `B` | `C` | `D`
 
@@ -83,7 +114,6 @@ chinese_source: worker-translation
 选择此选项可在数据传输期间显示发送状态。
 
 选择 Output status 参数时，模块会配置一个输出端口。模块上的该端口标记为 Status，表示模块在输出端口输出发送操作的状态。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C281x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

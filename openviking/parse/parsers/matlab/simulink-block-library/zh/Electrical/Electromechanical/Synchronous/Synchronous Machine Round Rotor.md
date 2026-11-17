@@ -15,6 +15,51 @@ chinese_source: worker-translation
 # Synchronous Machine Round Rotor
 
 ## 端口
+```yaml
+ports:
+- name: pu
+  summary: 电机标幺值测量 physical
+  direction: output
+- name: fd+
+  summary: 励磁绕组正极端子 electrical
+  direction: output
+- name: fd-
+  summary: 励磁绕组负极端子 electrical
+  direction: output
+- name: R
+  summary: 电机转子 mechanical
+  direction: output
+- name: C
+  summary: 电机机壳 mechanical
+  direction: output
+- name: '~'
+  summary: 定子绕组 electrical
+  direction: output
+- name: n
+  summary: 中性相 electrical
+  direction: output
+- name: a
+  summary: '*a* 相 electrical'
+  direction: output
+- name: b
+  summary: '*b* 相 electrical'
+  direction: output
+- name: c
+  summary: '*c* 相 electrical'
+  direction: output
+- name: HA
+  summary: '*a* 相端子热端口 thermal'
+  direction: output
+- name: HB
+  summary: '*b* 相端子热端口 thermal'
+  direction: output
+- name: HC
+  summary: '*c* 相端子热端口 thermal'
+  direction: output
+- name: HR
+  summary: 转子热端口 thermal
+  direction: output
+```
 
 ### 输出
 
@@ -142,8 +187,189 @@ ports`。
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 启用热端口的选项 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主
+- name: Rated apparent power
+  summary: 额定视在功率 555e6 V*A（默认）
+  group: 主
+- name: Rated voltage
+  summary: RMS 额定线电压 24e3 V（默认）
+  group: 主
+- name: Rated electrical frequency
+  summary: 标称电气频率 60 Hz（默认）
+  group: 主
+- name: Number of pole pairs
+  summary: 极对数 1（默认）
+  group: 主
+- name: Specify parameterization by
+  summary: 模块参数化 Fundamental parameters（默认）| Standard parameters
+  group: 主
+- name: Specify field circuit input required to produce rated terminal voltage at no load by
+  summary: 指定空载时产生额定端子电压所需的励磁电路输入 Field circuit current（默认）| Field circuit voltage
+  group: 主
+- name: Field circuit voltage
+  summary: 励磁电路电压 95.95 V（默认）
+  group: 主
+- name: Field circuit current
+  summary: 励磁电路电流 1300 A（默认）
+  group: 主
+- name: Zero sequence
+  summary: 零序模型 Include（默认）| Exclude
+  group: 主
+- name: Rotor angle definition
+  summary: 转子角度测量的参考点 Angle between the a-phase magnetic axis and the d-axis（默认）| Angle between the a-phase magnetic axis
+    and the q-axis
+  group: 主
+- name: Stator d-axis mutual inductance (unsaturated), Ladu
+  summary: 定子 d 轴互感（未饱和）1.66（默认）| 正标量
+  group: 阻抗
+- name: Stator q-axis mutual inductance (unsaturated), Laqu
+  summary: 定子 q 轴互感（未饱和）1.61（默认）| 正标量
+  group: 阻抗
+- name: Stator zero-sequence inductance, L0
+  summary: 定子零序电感 0.15（默认）| 正标量
+  group: 阻抗
+- name: Stator leakage inductance, Ll
+  summary: 定子漏电感 0.15（默认）| 正标量
+  group: 阻抗
+- name: Stator resistance, Ra
+  summary: 定子电阻 0.003（默认）| 正标量
+  group: 阻抗
+- name: Rotor field circuit inductance, Lfd
+  summary: 转子励磁电路电感 0.165（默认）| 正标量
+  group: 阻抗
+- name: Rotor field circuit resistance, Rfd
+  summary: 转子励磁电路电阻 0.0006（默认）| 正标量
+  group: 阻抗
+- name: Rotor d-axis damper winding 1 inductance, L1d
+  summary: 转子 d 轴阻尼绕组 1 电感 0.1713（默认）| 正标量
+  group: 阻抗
+- name: Rotor d-axis damper winding 1 resistance, R1d
+  summary: 转子 d 轴阻尼绕组 1 电阻 0.0284（默认）| 正标量
+  group: 阻抗
+- name: Rotor q-axis damper winding 1 inductance, L1q
+  summary: 转子 q 轴阻尼绕组 1 电感 0.7252（默认）| 正标量
+  group: 阻抗
+- name: Rotor q-axis damper winding 1 resistance, R1q
+  summary: 转子 q 轴阻尼绕组 1 电阻 0.00619（默认）| 正标量
+  group: 阻抗
+- name: Rotor q-axis damper winding 2 inductance, L2q
+  summary: 转子 q 轴阻尼绕组 2 电感 0.125（默认）| 正标量
+  group: 阻抗
+- name: Rotor q-axis damper winding 2 resistance, R2q
+  summary: 转子 q 轴阻尼绕组 2 电阻 0.02368（默认）| 正标量
+  group: 阻抗
+- name: Stator leakage reactance, Xl
+  summary: 定子漏电抗 0.15（默认）| 正标量
+  group: 阻抗
+- name: d-axis synchronous reactance, Xd
+  summary: d 轴同步电抗 1.81（默认）| 正标量
+  group: 阻抗
+- name: q-axis synchronous reactance, Xq
+  summary: q 轴同步电抗 1.76（默认）| 正标量
+  group: 阻抗
+- name: zero-sequence reactance, X0
+  summary: 零序电抗 0.15（默认）| 正标量
+  group: 阻抗
+- name: d-axis transient reactance, Xd'
+  summary: d 轴瞬态电抗 0.3（默认）| 正标量
+  group: 阻抗
+- name: q-axis transient reactance, Xq'
+  summary: q 轴瞬态电抗 0（默认）| 正标量
+  group: 阻抗
+- name: d-axis subtransient reactance, Xd''
+  summary: d 轴次瞬态电抗 0.23（默认）| 正标量
+  group: 阻抗
+- name: q-axis subtransient reactance, Xq''
+  summary: q 轴次瞬态电抗 0.25（默认）| 正标量
+  group: 阻抗
+- name: Specify d-axis time constant
+  summary: 指定 d 轴时间常数 Open circuit（默认）| Short circuit
+  group: 时间常数
+- name: d-axis transient open-circuit, Td0'
+  summary: d 轴瞬态开路 8 s（默认）| 正标量
+  group: 时间常数
+- name: d-axis transient short-circuit, Td'
+  summary: d 轴瞬态短路 1.3260 s（默认）| 正标量
+  group: 时间常数
+- name: d-axis subtransient open-circuit, Td0''
+  summary: d 轴次瞬态开路 0.03 s（默认）| 正标量
+  group: 时间常数
+- name: d-axis subtransient short-circuit, Td''
+  summary: d 轴次瞬态短路 0.0230 s（默认）| 正标量
+  group: 时间常数
+- name: Specify q-axis time constant
+  summary: 指定 q 轴时间常数 Open circuit（默认）| Short circuit
+  group: 时间常数
+- name: q-axis transient open-circuit, Tq0'
+  summary: q 轴瞬态开路 1 s（默认）| 正标量
+  group: 时间常数
+- name: q-axis transient short-circuit, Tq'
+  summary: q 轴瞬态短路 0.3693 s（默认）| 正标量
+  group: 时间常数
+- name: q-axis subtransient open-circuit, Tq0''
+  summary: q 轴次瞬态开路 0.07 s（默认）| 正标量
+  group: 时间常数
+- name: q-axis subtransient short-circuit, Tq''
+  summary: q 轴次瞬态短路 0.0269 s（默认）| 正标量
+  group: 时间常数
+- name: Magnetic saturation representation
+  summary: 磁饱和表示 None（默认）| Open-circuit lookup table (v versus i)
+  group: 饱和
+- name: Per-unit field current saturation data, ifd
+  summary: 标幺励磁电流饱和数据 [0, .48, .76, 1.38, 1.79]（默认）
+  group: 饱和
+- name: Per-unit air-gap voltage saturation data, Vag
+  summary: 标幺气隙电压饱和数据 [0, .8, 1.08, 1.31, 1.4]（默认）
+  group: 饱和
+- name: Initialization option
+  summary: 用于指定仿真开始时的值的选项 Set real power, reactive power, terminal voltage, and terminal phase（默认）| Set targets for rotor
+    angle and Park's transform variables | Set targets for load flow variables
+  group: 初始条件
+- name: Source type
+  summary: 电压源模型 Swing bus（默认）| PV bus | PQ bus
+  group: 初始条件
+- name: Terminal voltage magnitude
+  summary: 端电压幅值 24e3 V（默认）| 正标量
+  group: 初始条件
+- name: Terminal voltage angle
+  summary: 端电压角度 0 deg（默认）| 标量
+  group: 初始条件
+- name: Active power generated
+  summary: 生成的有功功率 500e6 V*A（默认）| 标量
+  group: 初始条件
+- name: Reactive power generated
+  summary: 生成的无功功率 0 V*A（默认）| 标量
+  group: 初始条件
+- name: Minimum terminal voltage magnitude (pu)
+  summary: 最小端电压幅值 0.95（默认）| 正标量
+  group: 初始条件
+- name: Phase search range at terminals
+  summary: 端子处的相位搜索范围 [-inf, inf] deg（默认）| 两个元素的向量
+  group: 初始条件
+- name: Parasitic conductance to electrical reference
+  summary: 到电气参考的寄生电导 1e-6 S（默认）| 正标量
+  group: 初始条件
+- name: Measurement temperature
+  summary: 额定温度 298.15 k（默认）| 实标量
+  group: 热
+- name: Resistance temperature coefficient
+  summary: 温度系数 3.93e-3 1/K（默认）| 正标量
+  group: 热
+- name: Thermal mass for each stator winding
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）| 正标量
+  group: 热
+```
 
 ### **Modeling option** — 启用热端口的选项 `No thermal port`（默认）| `Show thermal port`
 
@@ -645,7 +871,6 @@ transient time constant** 参数设置为 `Open circuit` 时，此参数才可�
 ### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认）| 正标量
 
 转子的热质量。热质量是使转子温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Synchronous

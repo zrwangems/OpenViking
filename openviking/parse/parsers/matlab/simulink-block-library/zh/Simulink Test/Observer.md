@@ -15,10 +15,22 @@ chinese_source: worker-translation
 # Observer Reference
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Observer Model name
+  summary: Observer 模型的文件名 ''（默认）| 字符向量
+  group: ''
+  block_parameter: ObserverModelName
+  type: character vector
+  values: ''''' | ''<observer model name>'''
+  default: ''''''
+```
 
 ### **Observer Model name** — Observer 模型的文件名 `''`（默认）| 字符向量
 
@@ -32,7 +44,6 @@ Observer 模型的路径。文件名必须是有效的 MATLAB® 标识符。扩�
 | **类型**：character vector |
 | **Value**: `''` | `'<observer model name>'` |
 | **默认值**：`''` |
-
 ## 所属库
 
 Simulink Test

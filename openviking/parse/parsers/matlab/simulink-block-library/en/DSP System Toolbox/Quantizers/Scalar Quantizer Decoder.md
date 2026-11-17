@@ -14,6 +14,21 @@ language: en
 # Scalar Quantizer Decoder
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Index values vector
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: C
+  summary: Codebook values vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Q(U)
+  summary: Quantized output values vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -50,8 +65,23 @@ parameter determines the data type of the quantized output
 values.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Action for out of range index value
+  summary: Action for out of range index value Clip (default) | Clip and warn | Error
+  group: Main Tab
+- name: Source of codebook
+  summary: Source of codebook Specify via dialog (default) | Input port
+  group: Main Tab
+- name: Codebook values
+  summary: Codebook values [1:10] (default) | vector | matrix
+  group: Main Tab
+- name: Codebook and output data type
+  summary: Codebook and output data type double (default) | Same as input | single | Inherit via back propagation | numeric
+    type
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -123,7 +153,6 @@ dialog`. If you set the **Source of
 codebook** parameter to `Input
 port`, the quantized output values have the same
 data type as the input codebook values.
-
 ## Libraries
 
 DSP System Toolbox / Quantizers

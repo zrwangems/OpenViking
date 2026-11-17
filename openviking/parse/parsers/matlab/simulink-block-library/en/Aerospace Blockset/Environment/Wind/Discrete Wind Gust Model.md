@@ -14,6 +14,17 @@ language: en
 # Discrete Wind Gust Model
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Air speed scalar
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: Wind speed scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -29,8 +40,59 @@ Airspeed, specified as a scalar, in selected units.
 Wind speed, returned as a scalar, in selected units.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Gust in u-axis
+  summary: Wind gust to *u*-axis on (default) | off
+  group: ''
+  block_parameter: Gx
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Gust in v-axis
+  summary: Wind gust to *v*-axis on (default) | off
+  group: ''
+  block_parameter: Gy
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Gust in w-axis
+  summary: Wind gust to *w*-axis on (default) | off
+  group: ''
+  block_parameter: Gz
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Gust start time (sec)
+  summary: Gust start time 5 (default) | scalar
+  group: ''
+  block_parameter: t_0
+  type: character vector
+  values: scalar
+  default: '''5'''
+- name: Gust length [dx dy dz] (m)
+  summary: Gust length [120 120 80] (default)
+  group: ''
+  block_parameter: d_m
+  type: character vector
+  values: vector
+  default: '''[120 120 80]'''
+- name: Gust amplitude [ug vg wg] (m/s)
+  summary: Gust amplitude [3.5 3.5 3.0] (default)
+  group: ''
+  block_parameter: d_m
+  type: character vector
+  values: vector
+  default: '''[3.5 3.5 3.0]'''
+```
 
 ### **Units** — Units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -134,7 +196,6 @@ axis. These values may be positive or negative.
 | **Type**: character vector |
 | **Values**: vector |
 | **Default**: `'[3.5 3.5 3.0]'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Wind

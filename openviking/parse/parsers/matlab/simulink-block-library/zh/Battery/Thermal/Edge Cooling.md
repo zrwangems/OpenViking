@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Edge Cooling
 
 ## 端口
+```yaml
+ports:
+- name: Tp
+  summary: 冷却板温度，K physical signal
+  direction: output
+- name: dT
+  summary: 流体温度变化，K physical signal
+  direction: output
+- name: dP
+  summary: 流体压降，Pa physical signal
+  direction: output
+- name: fluid_in
+  summary: 冷却板入口热流体
+  direction: conserving
+- name: fluid_out
+  summary: 冷却板出口热流体
+  direction: conserving
+- name: Surf1
+  summary: 冷却板热表面 1
+  direction: conserving
+- name: Surf2
+  summary: 冷却板热表面 2
+  direction: conserving
+```
 
 ### 输出
 
@@ -46,8 +70,80 @@ chinese_source: worker-translation
 ### **Surf2** — 冷却板热表面 2
 
 与冷却板表面 2 相关联的热守恒端口。此端口连接冷却板与电池包或模块之间的热节点阵列。
-
 ## 参数
+```yaml
+parameters:
+- name: Battery Connectivity
+  summary: 电池连接方式 Single sided（默认）| Double sided
+  group: Interface
+- name: Number of battery thermal nodes (surface 1)
+  summary: 表面 1 上的电池热节点数量 1（默认）| 正标量
+  group: Interface
+- name: Dimension of battery thermal nodes (surface 1)
+  summary: 表面 1 上的电池热节点尺寸 ones(1, 2)（默认）
+  group: Interface
+- name: Coordinates of battery thermal nodes (surface 1)
+  summary: 表面 1 上的电池热节点坐标 ones(1, 2)（默认）| M×N 矩阵
+  group: Interface
+- name: Number of battery thermal nodes (surface 2)
+  summary: 表面 2 上的电池热节点数量 1（默认）| 正标量
+  group: Interface
+- name: Dimension of battery thermal nodes (surface 2)
+  summary: 表面 2 上的电池热节点尺寸 ones(1, 2)（默认）| M×N 矩阵
+  group: Interface
+- name: Coordinates of battery thermal nodes (surface 2)
+  summary: 表面 2 上的电池热节点坐标 ones(1, 2)（默认）| M×N 矩阵
+  group: Interface
+- name: Number of partitions in X dimension for the cooling plate
+  summary: 冷却板 X 方向分区数量 2（默认）| 正标量
+  group: Interface
+- name: Number of partitions in Y dimension for the cooling plate
+  summary: 冷却板 Y 方向分区数量 5（默认）| 正标量
+  group: Interface
+- name: Thickness of cooling plate material
+  summary: 冷却板材料厚度 2e-3 m（默认）| 正标量
+  group: Plate Material
+- name: Thermal conductivity of cooling plate material
+  summary: 冷却板材料导热系数 20 W/(K*m)（默认）| 正标量
+  group: Plate Material
+- name: Density of cooling plate material
+  summary: 冷却板材料密度 2500 kg/m^3（默认）| 正标量
+  group: Plate Material
+- name: Specific heat of cooling plate material
+  summary: 冷却板材料比热容 447 J/(K*kg（默认）| 正标量
+  group: Plate Material
+- name: Initial temperature of the cooling plate and the coolant fluid
+  summary: 零时刻冷却板和冷却液温度 300 K（默认）| 正标量
+  group: Plate Material
+- name: Reynolds number upper limit for laminar flow
+  summary: 流动开始从层流过渡到湍流时的雷诺数 2000（默认）| 大于 1 的标量
+  group: Fluid Properties
+- name: Reynolds number lower limit for turbulent flow
+  summary: 流动开始从湍流过渡到层流时的雷诺数 4000（默认）| 正标量
+  group: Fluid Properties
+- name: Nusselt number for laminar flow heat transfer
+  summary: 对流传热与导热传热之比 3.66（默认）| 正标量
+  group: Fluid Properties
+- name: Aggregate equivalent length of local resistances
+  summary: 管道中所有局部阻力的合计长度 1e-3 m（默认）| 非负标量
+  group: Fluid Properties
+- name: Laminar friction constant for Darcy friction factor
+  summary: 管道几何形状对粘性摩擦损失的影响 64（默认）| 正标量
+  group: Fluid Properties
+- name: Select edge to be cooled
+  summary: 冷却边缘 Edge cooling along Y axis at X = Xmin（默认）| Edge cooling along X axis at Y = Ymin | Edge cooling along Y axis
+    at X = Xmax | Edge cooling along X axis at Y = Ymax
+  group: Design
+- name: Cooling channel hydraulic diameter
+  summary: 冷却通道水力直径 5e-3 m（默认）| 正标量
+  group: Design
+- name: Cooling channel cross-sectional area
+  summary: 冷却通道横截面积 2e-5 m^2（默认）| 正标量
+  group: Design
+- name: Coolant channel roughness
+  summary: 冷却液通道粗糙度 1.5e-05 m（默认）| 正标量
+  group: Design
+```
 
 ### Interface
 
@@ -174,7 +270,6 @@ chinese_source: worker-translation
 ### **Coolant channel roughness** — 冷却液通道粗糙度 `1.5e-05` `m`（默认）| 正标量
 
 冷却液通道的粗糙度。
-
 ## 所属库
 
 Simscape / Battery / Thermal

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Stimulus
 
 ## 端口
+```yaml
+ports:
+- name: WaveOut
+  summary: 具有特定 PRBS 模式向量的输出信号
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,190 @@ chinese_source: worker-translation
 具有特定 PRBS 模式的输出模式，指定为向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of symbols
+  summary: 用于仿真的激励模式长度 20000（默认）| 正实数整数
+  group: Stimulus
+  block_parameter: NumberOfSymbols
+  type: 字符向量
+  values: 正实数整数
+- name: Use recommended simulation stop time
+  summary: 将推荐的仿真停止时间设置为仿真停止时间 开（默认）| 关
+  group: Stimulus
+- name: Waveform creation method
+  summary: 定义激励波形的创建方式 Random Symbols（默认）| Serial PRBS | Symbol Pattern | Binary Pattern | Symbol Voltage Pattern | Sampled
+    Voltage | Parallel PRBS
+  group: Stimulus
+  block_parameter: CreationMethod
+  type: 字符向量
+  values: Random Symbols | Serial PRBS | Symbol Pattern | Binary Pattern | Symbol Voltage Pattern | Sampled Voltage | Parallel
+    PRBS
+- name: Random symbols seed
+  summary: 用于生成随机符号波形的种子 1431655765（默认）| 正实数标量
+  group: Stimulus
+  block_parameter: soPAMnSeed
+  type: 字符向量
+  values: 正实数标量
+- name: PRBS order
+  summary: 伪随机二进制序列的阶数 11（默认）| 7 | 9 | 13 | 15 | 20 | 23 | 31 | 47
+  group: Stimulus
+  block_parameter: PRBS
+  type: 字符向量
+  values: 7 | 9 | 11 | 13 | 15 | 20 | 23 | 31 | 47
+- name: PRBS seed
+  summary: 伪随机二进制序列的种子 1（默认）| 范围 [1, 2Order-1] 内的整数
+  group: Stimulus
+  block_parameter: PRBSSeed
+  type: 字符向量
+  values: 范围 [1, 2Order-1] 内的整数
+  default: '1'
+- name: Reverse PRBS in time
+  summary: 通过反转特征多项式的抽头位置在时间上反转 PRBS 关闭（默认）| 打开
+  group: Stimulus
+- name: Invert PRBS in voltage
+  summary: 通过翻转 0 和 1 的值在电压上反转 PRBS 关闭（默认）| 打开
+  group: Stimulus
+- name: Symbol pattern
+  summary: 以符号时间间隔间隔的符号整数向量 [0 0 1 0 0 1 1 0 1 0 1 1 1 1 0]（默认）| 元素值在范围 [0, (Number of modulation levels-1)] 内的向量
+  group: Stimulus
+  block_parameter: SymbolPattern
+  type: 字符向量
+  values: 元素值在范围 [0, (Number of modulation levels-1)] 内的向量
+  default: '[0 0 1 0 0 1 1 0 1 0 1 1 1 1 0]'
+- name: Binary pattern
+  summary: 以采样时间间隔间隔的 1 和 0 向量 [0 0 0 1 0 0 1 0 1 1 0 0 1 1 1 1 1 0 0 0 1 1 0 1 1 1 0 1 0 1 0]（默认）| 具有二进制元素的向量
+  group: Stimulus
+  block_parameter: BinaryPattern
+  type: 字符向量
+  values: 具有二进制元素的向量
+  default: '[0 0 0 1 0 0 1 0 1 1 0 0 1 1 1 1 1 0 0 0 1 1 0 1 1 1 0 1 0 1 0]'
+- name: Symbol voltage pattern
+  summary: 以符号时间间隔间隔的符号电压向量 1/2*[1 1 1 1 -1 -1 -1 -1]（默认）| 具有十进制值的向量
+  group: Stimulus
+  block_parameter: SymbolVoltageDataPattern
+  type: 字符向量
+  values: 具有十进制值的向量
+  default: 1/2*[1 1 1 1 -1 -1 -1 -1]
+- name: Sampled voltage pattern
+  summary: 以采样间隔间隔的电压向量 [zeros(1,(SymbolTime/SampleInterval)),ones(1,(SymbolTime/SampleInterval))]-0.5（默认）| 实值向量
+  group: Stimulus
+  block_parameter: CustomStimulus
+  type: 字符向量
+  values: 实值向量
+  default: '[zeros(1,(SymbolTime/SampleInterval)),ones(1,(SymbolTime/SampleInterval))]-0.5'
+- name: Sub symbol time delay (s)
+  summary: 将激励波形延迟模符号时间 0（默认）| 非负实数标量
+  group: Stimulus
+  block_parameter: soDelay
+  type: 字符向量
+  values: 非负实数标量
+  default: '0'
+- name: Change in IBIS-AMI Manager
+  summary: 修改 Rx_Use_Clock_Input 保留 AMI 参数按钮
+  group: 时钟转发
+- name: Generate Clock or Strobe Waveform
+  summary: 从波形参数生成时钟或选通波形 关（默认）| 开
+  group: 时钟转发
+- name: Use External Waveform or Clock Times Array
+  summary: 使用外部波形进行转发 开（默认）| 关
+  group: 时钟转发
+- name: Include Analog Channel Model in clock waveform
+  summary: 在时钟波形中包含模拟通道模型 开（默认）| 关
+  group: 时钟转发
+- name: Clock Pattern
+  summary: 转发时钟模式 关（默认）| 开
+  group: 时钟转发
+- name: Strobe Pattern
+  summary: 转发选通模式 开（默认）| 关
+  group: 时钟转发
+- name: Delay (s)
+  summary: 延迟转发时钟 0（默认）| 非负实数标量
+  group: 时钟转发
+  block_parameter: CF_Delay
+  type: 字符向量
+  values: 非负实数标量
+- name: Burst Length
+  summary: 选通突发模式之间的符号数 16（默认）| 非负标量整数
+  group: 时钟转发
+  block_parameter: CF_BurstLen
+  type: 字符向量
+  values: 非负标量整数
+- name: Idle Length
+  summary: 突发之间的符号数 8（默认）| 非负标量整数
+  group: 时钟转发
+  block_parameter: CF_IdleLen
+  type: 字符向量
+  values: 非负标量整数
+- name: Preamble
+  summary: 添加到每个突发开始处的额外时钟周期数 2（默认）| 非负标量整数
+  group: 时钟转发
+  block_parameter: CF_Preamble
+  type: 字符向量
+  values: 非负标量整数
+- name: Postamble
+  summary: 添加到每个突发末尾的额外时钟周期数 0（默认）| 非负标量整数
+  group: 时钟转发
+  block_parameter: CF_Postamble
+  type: 字符向量
+  values: 非负标量整数
+- name: Include Transmitter Jitter
+  summary: 在前传时钟中包含发射机抖动 on（默认）| off
+  group: 时钟转发
+- name: Tx_Dj (UI)
+  summary: 发射机确定性抖动 0（默认）| 范围 [0 1] 内的标量
+  group: 时钟转发
+  block_parameter: CF_TxDj
+  type: 字符向量
+  values: 范围 [0 1] 内的标量
+- name: Tx_Rj (UI)
+  summary: 发射机随机抖动 0（默认）| 范围 [0 1] 内的标量
+  group: 时钟转发
+  block_parameter: CF_TxRj
+  type: 字符向量
+  values: 范围 [0 1] 内的标量
+- name: Tx_DCD (UI)
+  summary: 发射机占空比失真 0（默认）| 范围 [0 1] 内的标量
+  group: 时钟转发
+  block_parameter: CF_TxDCD
+  type: 字符向量
+  values: 范围 [0 1] 内的标量
+- name: Tx_Sj (UI)
+  summary: 发射机正弦抖动 0（默认）| 范围 [0 1] 内的标量
+  group: 时钟转发
+  block_parameter: CF_Sj
+  type: 字符向量
+  values: 范围 [0 1] 内的标量
+- name: Tx_Sj_Frequency (Hz)
+  summary: 发射机正弦抖动频率 0（默认）| 范围 [0 100e9] 内的标量
+  group: 时钟转发
+  block_parameter: CF_TxSjFreq
+  type: 字符向量
+  values: 范围 [0 100e9] 内的标量
+  default: '0'
+- name: Waveform Name
+  summary: 工作区中波形参数的名称 defaultClockWave（默认）| 字符串
+  group: 时钟转发
+  block_parameter: CF_WaveformName
+  type: 字符向量
+  values: 字符串
+  default: '0'
+- name: Waveform Delay (s)
+  summary: 转发时钟的延迟 0（默认）| 非负标量整数
+  group: 时钟转发
+  block_parameter: CF_WaveDelay
+  type: 字符向量
+  values: 非负标量整数
+  default: '0'
+- name: Clock Times Name
+  summary: 工作区中时钟时间参数的名称 defaultClockTimes（默认）| 字符串
+  group: 时钟转发
+  block_parameter: CF_ClockTimesName
+  type: 字符向量
+  values: 字符串
+  default: '0'
+```
 
 ### Stimulus
 
@@ -480,7 +669,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 字符串 |
 | **默认值：** `0` |
-
 ## 所属库
 
 SerDes Toolbox / Utilities

@@ -14,6 +14,45 @@ language: en
 # Flux Observer
 
 ## Ports
+```yaml
+ports:
+- name: Vα
+  summary: '*α-*axis voltage scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vβ
+  summary: '*β-*axis voltage scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iα
+  summary: '*α-*axis current scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iβ
+  summary: '*β-*axis current scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Rst
+  summary: Reset block scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: Computed parameters for flux observer bus
+  direction: input
+  data_types: single | double
+- name: θe
+  summary: Electrical position of motor scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Ψ
+  summary: Rotor flux of motor scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Te
+  summary: Electrical torque of motor scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -109,8 +148,79 @@ To enable this port, select the **Torque** option in the
 **Block output** parameter.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Motor selection
+  summary: Type of motor PMSM (default) | ACIM
+  group: Parameters
+- name: Support 16-bit fixedpoint datatype
+  summary: Support the data type of 16-bit fixed-point off (default) | on
+  group: Parameters
+- name: Input unit
+  summary: Unit of voltage and current inputs SI unit (default) | Per-unit
+  group: Parameters
+- name: Base voltage (V)
+  summary: Nominal voltage corresponding to one per-unit 13.86 (default) | scalar
+  group: Parameters
+- name: Base current (A)
+  summary: Nominal current corresponding to one per-unit 19.3 (default) | scalar
+  group: Parameters
+- name: Block output
+  summary: Block output options Position | Flux | Torque
+  group: Parameters
+- name: Pole pairs
+  summary: Number of pole pairs available in motor 4 (default) | scalar
+  group: Parameters
+- name: Stator resistance (ohm)
+  summary: Stator winding resistance 0.36 (default) | scalar
+  group: Parameters
+- name: Stator d-axis inductance (H)
+  summary: Stator winding inductance along *d*-axis 0.2e-3 (default) | scalar
+  group: Parameters
+- name: Stator leakage inductance (H)
+  summary: Leakage inductance of stator winding 0.0068 (default) | scalar
+  group: Parameters
+- name: Rotor leakage inductance (H)
+  summary: Leakage inductance of rotor winding 0.0068 (default) | scalar
+  group: Parameters
+- name: Magnetizing inductance (H)
+  summary: Magnetizing inductance of induction motor 0.0300 (default) | scalar
+  group: Parameters
+- name: Cutoff frequency (Hz)
+  summary: Cutoff frequency of internal highpass filter 3.1863 (default) | scalar
+  group: Parameters
+- name: Discrete step size (s)
+  summary: Interval between consecutive block executions 50e-6 (default) | scalar
+  group: Parameters
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: Option to enable input port to accept computed parameters off (default) | on
+  group: Parameters
+- name: Position unit
+  summary: Unit of electrical position output Radians (default) | Degrees | Per-unit
+  group: Datatypes
+- name: Position datatype
+  summary: Data type of electrical position output single (default) | double | fixed point
+  group: Datatypes
+- name: Flux unit
+  summary: Unit of magnetic flux output Weber (default) | Per-unit
+  group: Datatypes
+- name: Per unit flux (Wb)
+  summary: Flux corresponding to one per-unit 0.1 (default) | scalar
+  group: Datatypes
+- name: Flux datatype
+  summary: Data type of magnetic flux output single (default) | double | fixed point
+  group: Datatypes
+- name: Torque unit
+  summary: Unit of electrical torque output Nm (default) | Per-unit
+  group: Datatypes
+- name: Per unit torque (Nm)
+  summary: Torque corresponding to one per-unit 100 (default) | scalar
+  group: Datatypes
+- name: Torque datatype
+  summary: Data type of electrical torque output single (default) | double | fixed point
+  group: Datatypes
+```
 
 ### Parameters
 
@@ -369,7 +479,6 @@ Data type of the electrical torque output.
 
 To enable this parameter, select the **Torque** option in the
 **Block output** parameter.
-
 ## Libraries
 
 Motor Control Blockset HDL Support / Sensorless Estimators Motor Control Blockset / Sensorless Estimators

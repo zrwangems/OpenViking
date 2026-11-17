@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Battery Equivalent Circuit
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: H
+  summary: 电池热质量热
+  direction: conserving
+- name: HDist
+  summary: 离散化电池热质量热节点数组
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -55,8 +70,646 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在**主**部分中，将**热模型**参数设置为 `Height distributed thermal mass`。
-
 ## 参数
+```yaml
+parameters:
+- name: Selected part
+  summary: 预定义参数化选项 <click to select>（默认）
+  group: ''
+- name: Battery capacity
+  summary: 满充电时的电池容量 27 A*hr（默认）| 非负标量
+  group: 主
+- name: Thermal model
+  summary: 定义电池热模型的选项 Constant temperature（默认）| No temperature dependence | Lumped thermal mass | Height distributed thermal
+    mass
+  group: 主
+  block_parameter: ThermalModel
+  values: '"simscape.battery.enum.cells.BatteryThermalModel.ConstantTemperature"（默认）| "simscape.battery.enum.cells.BatteryThermalModel.LumpedThermalMass"
+    | "simscape.battery.enum.cells.BatteryThermalModel.TemperatureIndependent" | "simscape.battery.enum.cells.BatteryThermalModel.HeightDistributedMass"'
+- name: Extrapolation method for all tables
+  summary: 表格的外推方法 Nearest（默认）| Linear | Error
+  group: 主
+  block_parameter: ExtrapolationMethod
+  values: '"simscape.enum.extrapolation.nearest"（默认）| "simscape.enum.extrapolation.linear" | "simscape.enum.extrapolation.error"'
+- name: State of charge breakpoints, SOC
+  summary: SOC 断点 [0, .1, .25, .5, .75, .9, 1]（默认）| 范围 [0, 1] 内的值向量
+  group: 开路电压
+- name: Temperature breakpoints, T
+  summary: 温度断点 [278, 293, 313] K（默认）| 正值向量
+  group: 开路电压
+- name: Open-circuit voltage, OCV(SOC)
+  summary: 指定 SOC 下的开路电压查找数据 [3.5057, 3.566, 3.6337, 3.7127, 3.9259, 4.0777, 4.1928] V（默认）| 非负值向量
+  group: 开路电压
+- name: Open-circuit voltage, OCV(SOC,T)
+  summary: 指定 SOC 和温度下的开路电压查找数据 [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94;
+    4.07, 4.08, 4.08; 4.19, 4.19, 4.19] V（默认）| 非负值矩阵
+  group: 开路电压
+- name: Terminal voltage operating range, [Min Max]
+  summary: 端子电压工作范围 [0, inf] V（默认）| 非负值向量
+  group: 开路电压
+- name: Hysteresis model
+  summary: 对迟滞建模的选项 None（默认）| One-state model
+  group: 开路电压
+  block_parameter: HysteresisModel
+  values: '"simscape.battery.enum.cells.HysteresisModel.none"（默认）| "simscape.battery.enum.cells.HysteresisModel.oneStateModel"'
+- name: Maximum dynamic hysteresis voltage, MaximumHysteresisVoltage(SOC)
+  summary: 指定 SOC 下的最大动态迟滞电压 [0, 0, 0, 0, 0, 0, 0] V（默认）| 非负值向量
+  group: 开路电压
+- name: Instantaneous hysteresis voltage, InstantaneousHysteresisVoltage(SOC)
+  summary: 指定 SOC 下的瞬时迟滞电压 [0, 0, 0, 0, 0, 0, 0] V（默认）| 非负值向量
+  group: 开路电压
+- name: Hysteresis rate, HysteresisRate(SOC)
+  summary: 指定 SOC 下的迟滞率 0.1（默认）| 非负标量 | 非负值向量
+  group: 开路电压
+- name: Maximum dynamic hysteresis voltage, MaximumHysteresisVoltageThermal(SOC,T)
+  summary: 指定 SOC 和温度下的最大动态迟滞电压 [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0] V（默认）| 非负值矩阵
+  group: 开路电压
+- name: Instantaneous hysteresis voltage, InstantaneousHysteresisVoltageThermal(SOC,T)
+  summary: 指定 SOC 和温度下的瞬时迟滞电压 [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0] V（默认）| 非负值矩阵
+  group: 开路电压
+- name: Hysteresis rate, HysteresisRateThermal(SOC,T)
+  summary: 指定 SOC 和温度下的迟滞率 0.1（默认）| 非负标量 | 非负值矩阵
+  group: 开路电压
+- name: State of charge breakpoints for resistance, SOC
+  summary: 电阻参数的 SOC 断点 [0, .1, .25, .5, .75, .9, 1]（默认）| 范围 [0, 1] 内的值向量
+  group: 过电位
+- name: Temperature breakpoints for resistance, T
+  summary: 电阻参数的温度断点 [278, 293, 313] K（默认）| 正值向量
+  group: 过电位
+- name: Current breakpoints for resistance, I
+  summary: 电阻参数的电流断点 [-1, 0, 1] A（默认）| 标量向量
+  group: 过电位
+- name: Current dependence for resistance parameters
+  summary: 启用电阻参数电流依赖性的选项 Disabled（默认）| Lookup tables (current directionality dependent) | Lookup tables (current dependent)
+  group: 过电位
+  block_parameter: CurrentDependence
+  values: '"simscape.battery.enum.cells.CurrentDependence.Disabled"（默认）| "simscape.battery.enum.cells.CurrentDependence.CurrentDirectionalityDependent"
+    | "simscape.battery.enum.cells.CurrentDependence.CurrentDependent"'
+- name: Instantaneous resistance, R0(SOC)
+  summary: 指定 SOC 下电池的瞬时电阻 [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm（默认）| 非负值向量
+  group: 过电位
+- name: Instantaneous resistance, R0(SOC,T)
+  summary: 指定 SOC 和温度下电池的瞬时电阻 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083,
+    .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm（默认）| 非负值矩阵
+  group: 过电位
+- name: Instantaneous resistance during discharging, R0(SOC)
+  summary: 放电阶段指定 SOC 下电池的瞬时电阻 [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm（默认）| 非负值向量
+  group: 过电位
+- name: Instantaneous resistance during charging, R0(SOC)
+  summary: 充电阶段指定 SOC 下电池的瞬时电阻 [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm（默认）| 非负值向量
+  group: 过电位
+- name: Instantaneous resistance during charging, R0(SOC,T)
+  summary: 充电阶段在指定 SOC 和温度下的电池瞬时电阻 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107,
+    .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm（默认）| 非负值矩阵
+  group: 过电位
+- name: Instantaneous resistance during discharging, R0(SOC,T)
+  summary: 放电阶段在指定 SOC 和温度下的电池瞬时电阻 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107,
+    .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm（默认）| 非负值矩阵
+  group: 过电位
+- name: Instantaneous resistance, R0(SOC,I)
+  summary: 在指定 SOC 和电流下的电池瞬时电阻 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083,
+    .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm（默认）| 非负值矩阵
+  group: 过电位
+- name: Instantaneous resistance, R0(SOC,T,I)
+  summary: 在指定 SOC、温度和电流下的电池瞬时电阻 repmat([.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088;
+    .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089], 1, 1, 3) Ohm（默认）| 非负值三维数组
+  group: 过电位
+- name: Parallel resistor capacitor pairs
+  summary: 用于对电池充电动态建模的选项 No dynamics（默认）| One time-constant dynamics | Two time-constant dynamics | Three time-constant dynamics
+  group: 过电位
+  block_parameter: RCPairs
+  values: '"simscape.battery.enum.cells.RCPairs.noDynamics"（默认）| "simscape.battery.enum.cells.RCPairs.rc1" | "simscape.battery.enum.cells.RCPairs.rc2"
+    | "simscape.battery.enum.cells.RCPairs.rc3"'
+- name: First polarization resistance, R1(SOC)
+  summary: 在指定 SOC 下的第一并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: First time constant, Tau1(SOC)
+  summary: 在指定 SOC 下的第一并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正值向量
+  group: 过电位
+- name: Second polarization resistance, R2(SOC)
+  summary: 在指定 SOC 下的第二并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: Second time constant, Tau2(SOC)
+  summary: 在指定 SOC 下的第二并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正值向量
+  group: 过电位
+- name: Third polarization resistance, R3(SOC)
+  summary: 在指定 SOC 下的第三并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: Third time constant, Tau3(SOC)
+  summary: 在指定 SOC 下的第三并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正值向量
+  group: 过电位
+- name: First polarization resistance during discharging, R1(SOC)
+  summary: 放电阶段在指定 SOC 下的第一并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: First time constant during discharging, Tau1(SOC)
+  summary: 放电阶段在指定 SOC 下的第一并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正值向量
+  group: 过电位
+- name: First polarization resistance during charging, R1(SOC)
+  summary: 充电阶段在指定 SOC 下的第一并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: First time constant during charging, Tau1(SOC)
+  summary: 充电阶段在指定 SOC 下的第一并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] Ohm（默认）| 正值向量
+  group: 过电位
+- name: Second polarization resistance during discharging, R2(SOC)
+  summary: 放电阶段在指定 SOC 下的第二并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: Second time constant during discharging, Tau2(SOC)
+  summary: 放电阶段在指定 SOC 下的第二并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正值向量
+  group: 过电位
+- name: Second polarization resistance during charging, R2(SOC)
+  summary: 充电阶段在指定 SOC 下的第二并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: Second time constant during charging, Tau2(SOC)
+  summary: 充电阶段在指定 SOC 下的第二并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正值向量
+  group: 过电位
+- name: Third polarization resistance during discharging, R3(SOC)
+  summary: 放电阶段在指定 SOC 下的第三并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: Third time constant during discharging, Tau3(SOC)
+  summary: 放电阶段在指定 SOC 下的第三并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正值向量
+  group: 过电位
+- name: Third polarization resistance during charging, R3(SOC)
+  summary: 充电阶段在指定 SOC 下的第三并联 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正值向量
+  group: 过电位
+- name: Third time constant during charging, Tau3(SOC)
+  summary: 充电阶段在指定 SOC 下的第三并联 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正值向量
+  group: 过电位
+- name: First polarization resistance, R1(SOC,T)
+  summary: 在指定 SOC 和温度下的第一并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033,
+    .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: First time constant, Tau1(SOC,T)
+  summary: 指定 SOC 和温度下的第一并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33]
+    s（默认）| 正值矩阵
+  group: 过电位
+- name: Second polarization resistance, R2(SOC,T)
+  summary: 指定 SOC 和温度下的第二并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033,
+    .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: Second time constant, Tau2(SOC,T)
+  summary: 指定 SOC 和温度下的第二并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33]
+    s（默认）| 正值矩阵
+  group: 过电位
+- name: Third polarization resistance, R3(SOC,T)
+  summary: 指定 SOC 和温度下的第三并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033,
+    .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: Third time constant, Tau3(SOC,T)
+  summary: 指定 SOC 和温度下的第三并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33]
+    s（默认）| 正值矩阵
+  group: 过电位
+- name: First polarization resistance during discharging, R1(SOC,T)
+  summary: 放电阶段指定 SOC 和温度下的第一并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001;
+    .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: First time constant during discharging, Tau1(SOC,T)
+  summary: 放电阶段指定 SOC 和温度下的第一并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39,
+    33] s（默认）| 正值矩阵
+  group: 过电位
+- name: First polarization resistance during charging, R1(SOC,T)
+  summary: 充电阶段指定 SOC 和温度下的第一并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001;
+    .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: First time constant during charging, Tau1(SOC,T)
+  summary: 充电阶段指定 SOC 和温度下的第一并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39,
+    33] s（默认）| 正值矩阵
+  group: 过电位
+- name: Second polarization resistance during discharging, R2(SOC,T)
+  summary: 放电阶段指定 SOC 和温度下的第二并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001;
+    .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: Second time constant during discharging, Tau2(SOC,T)
+  summary: 放电阶段指定 SOC 和温度下的第二并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39,
+    33] s（默认）| 正值矩阵
+  group: 过电位
+- name: Second polarization resistance during charging, R2(SOC,T)
+  summary: 充电阶段指定 SOC 和温度下的第二并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001;
+    .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: Second time constant during charging, Tau2(SOC,T)
+  summary: 充电阶段指定 SOC 和温度下的第二并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39,
+    33] s（默认）| 正值矩阵
+  group: 过电位
+- name: Third polarization resistance during discharging, R3(SOC,T)
+  summary: 放电阶段指定 SOC 和温度断点下的第三并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001;
+    .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: Third time constant during discharging, Tau3(SOC,T)
+  summary: 放电阶段指定 SOC 和温度断点下的第三并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39,
+    33] s（默认）| 正值矩阵
+  group: 过电位
+- name: Third polarization resistance during charging, R3(SOC,T)
+  summary: 充电阶段指定 SOC 和温度断点下的第三并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001;
+    .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: Third time constant during charging, Tau3(SOC,T)
+  summary: 充电阶段指定 SOC 和温度断点下的第三并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39,
+    33] s（默认）| 正值矩阵
+  group: 过电位
+- name: First polarization resistance, R1(SOC,I)
+  summary: 指定 SOC 和电流下的第一并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033,
+    .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: First time constant, Tau1(SOC,I)
+  summary: 指定 SOC 和电流下的第一并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33]
+    s（默认）| 正值矩阵
+  group: 过电位
+- name: Second polarization resistance, R2(SOC,I)
+  summary: 指定 SOC 和电流下的第二并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033,
+    .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: Second time constant, Tau2(SOC,I)
+  summary: 指定 SOC 和电流下的第二并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33]
+    s（默认）| 正值矩阵
+  group: 过电位
+- name: Third polarization resistance, R3(SOC,I)
+  summary: 指定 SOC 和电流下的第三并联 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033,
+    .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正值矩阵
+  group: 过电位
+- name: Third time constant, Tau3(SOC,I)
+  summary: 指定 SOC 和电流下的第三并联 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33]
+    s（默认）| 正值矩阵
+  group: 过电位
+- name: First polarization resistance, R1(SOC,T,I)
+  summary: 指定 SOC、温度和电流下的第一并联 RC 电阻 repmat([.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001;
+    .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011], 1, 1, 3) Ohm（默认）| 正值三维数组
+  group: 过电位
+- name: First time constant, Tau1(SOC,T,I)
+  summary: 指定 SOC、温度和电流下的第一并联 RC 时间常数 repmat([20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25,
+    39, 33], 1, 1, 3) s（默认）| 正值三维数组
+  group: 过电位
+- name: Second polarization resistance, R2(SOC,T,I)
+  summary: 指定 SOC、温度和电流下的第二并联 RC 电阻 repmat([.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001;
+    .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011], 1, 1, 3) Ohm（默认）| 正值三维数组
+  group: 过电位
+- name: Second time constant, Tau2(SOC,T,I)
+  summary: 指定 SOC、温度和电流下的第二并联 RC 时间常数 [repmat([20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25,
+    39, 33], 1, 1, 3) s（默认）| 正值三维数组
+  group: 过电位
+- name: Third polarization resistance, R3(SOC,T,I)
+  summary: 指定 SOC、温度和电流下的第三并联 RC 电阻 [repmat([.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016,
+    .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011], 1, 1, 3) Ohm（默认）| 正值三维数组
+  group: 过电位
+- name: Third time constant, Tau3(SOC,T,I)
+  summary: 指定 SOC、温度和电流下的第三并联 RC 时间常数 repmat([20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25,
+    39, 33], 1, 1, 3) s（默认）| 正值矩阵
+  group: 过电位
+- name: Self discharge
+  summary: 用于对电池自放电电阻建模的选项 Disabled（默认）| Enabled
+  group: 过电位
+  block_parameter: SelfDischargeResistor
+  values: '"simscape.battery.enum.cells.BatteryEnable.Disabled"（默认）| "simscape.battery.enum.cells.BatteryEnable.Enabled"'
+- name: Self-discharge resistance, SelfDischargeR
+  summary: 电池的自放电电阻 7e3 Ohm（默认）| 正标量
+  group: 过电位
+- name: Self-discharge resistance, SelfDischargeR(T)
+  summary: 指定温度下电池的自放电电阻 [8000, 7000, 6000] Ohm（默认）| 正值向量
+  group: 过电位
+- name: Cycling aging model
+  summary: 用于定义衰减特性的选项 Disabled（默认）| Equations | Lookup tables (temperature independent) | Lookup tables (constant temperature
+    dependent) | Lookup tables (temperature dependent) | Lookup tables (temperature and current dependent)
+  group: Cycling Aging
+  block_parameter: CyclingAgingMethod
+  values: '"simscape.battery.enum.cells.CyclingAgingMethod.disabled"（默认）| "simscape.battery.enum.cells.CyclingAgingMethod.equations"
+    | "simscape.battery.enum.cells.CyclingAgingMethod.tableN" | "simscape.battery.enum.cells.CyclingAgingMethod.tableNandT"
+    | "simscape.battery.enum.cells.CyclingAgingMethod.tableNandVariableT" | "simscape.battery.enum.cells.CyclingAgingMethod.tableNandVariableTandI"'
+- name: Cycle calculation method
+  summary: 用于选择模块如何计算放电循环次数的选项 Equivalent cycles（默认）| Equivalent full cycles
+  group: Cycling Aging
+- name: Number of discharge cycles, NumDisCycles
+  summary: 用于百分比变化计算的循环次数 100（默认）| 范围 [1, inf) 内的标量
+  group: Cycling Aging
+- name: Change in open-circuit voltage after NumDisCycles discharge cycles (%)
+  summary: '*NumDisCycles* 次循环后开路电压的百分比变化 0（默认）| 标量'
+  group: Cycling Aging
+- name: Change in terminal resistance after NumDisCycles discharge cycles (%)
+  summary: '*NumDisCycles* 次循环后端子电阻的百分比变化 0（默认）| 标量'
+  group: Cycling Aging
+- name: Change in cell capacity after NumDisCycles discharge cycles (%)
+  summary: '*NumDisCycles* 次循环后电池容量的百分比变化 0（默认）| 标量'
+  group: Cycling Aging
+- name: Change in self-discharge resistance after NumDisCycles discharge cycles (%)
+  summary: '*NumDisCycles* 次循环后自放电电阻的百分比变化 0（默认）| 标量'
+  group: Cycling Aging
+- name: Change in first polarization resistance after NumDisCycles discharge cycles (%)
+  summary: '*NumDisCycles* 次循环后第一 RC 电阻的百分比变化 0（默认）| 标量'
+  group: Cycling Aging
+- name: Change in second polarization resistance after NumDisCycles discharge cycles (%)
+  summary: '*NumDisCycles* 次循环后第二 RC 电阻的百分比变化 0（默认）| 标量'
+  group: Cycling Aging
+- name: Change in third polarization resistance after NumDisCycles discharge cycles (%)
+  summary: 经过 *NumDisCycles* 次循环后第三 RC 电阻的百分比变化 0（默认）| 标量
+  group: Cycling Aging
+- name: Number of discharge cycles breakpoints, NumDisCyclesBreakpoints
+  summary: 用于百分比变化计算的参考向量或循环次数 [0, 100, 200, 300]（默认）| 非负值向量
+  group: Cycling Aging
+- name: Temperatures breakpoints for cycling aging data, T
+  summary: 模块从中提取衰减查找表的温度断点 [298.15, 323.15] K（默认）| 范围 [1, inf] 内的条目向量
+  group: Cycling Aging
+- name: Current breakpoints for cycling aging data, I
+  summary: 模块从中提取衰减查找表的电流断点 [-.1, -.5, -5] A（默认）| 负标量向量
+  group: Cycling Aging
+- name: Percentage change in open-circuit voltage, OCVChange(N)
+  summary: 经过 *N* 次循环后开路电压的百分比变化 [0, 0, 0, 0]（默认）| 标量向量
+  group: Cycling Aging
+- name: Percentage change in terminal resistance, R0Change(N)
+  summary: 经过 *N* 次循环后端子电阻的百分比变化 [0, 0, 0, 0]（默认）| 标量向量
+  group: Cycling Aging
+- name: Percentage change in cell capacity, CapacityChange(N)
+  summary: 经过 *N* 次循环后电池容量的百分比变化 [0, 0, 0, 0]（默认）| 标量向量
+  group: Cycling Aging
+- name: Percentage change in self-discharge resistance, SelfDischargeRChange(N)
+  summary: 经过 *N* 次循环后自放电电阻的百分比变化 [0, 0, 0, 0]（默认）| 标量向量
+  group: Cycling Aging
+- name: Percentage change in first polarization resistance, R1Change(N)
+  summary: 经过 *N* 次循环后第一并联 RC 电阻的百分比变化 [0, 0, 0, 0]（默认）| 标量向量
+  group: Cycling Aging
+- name: Percentage change in second polarization resistance, R2Change(N)
+  summary: 经过 *N* 次循环后第二并联 RC 电阻的百分比变化 [0, 0, 0, 0]（默认）| 标量向量
+  group: Cycling Aging
+- name: Percentage change in third polarization resistance, R3Change(N)
+  summary: 经过 *N* 次循环后第三并联 RC 电阻的百分比变化 [0, 0, 0, 0]（默认）| 标量向量
+  group: Cycling Aging
+- name: Percentage change in open-circuit voltage, OCVChange(N,T)
+  summary: 在指定温度下经过 *N* 次循环后开路电压的百分比变化 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Cycling Aging
+- name: Percentage change in terminal resistance, R0Change(N,T)
+  summary: 在指定温度下经过 *N* 次循环后端子电阻的百分比变化 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Cycling Aging
+- name: Initial target for percentage change in internal resistance due to cycling aging
+  summary: 由于循环老化导致的内阻百分比变化的初始目标值 0（默认）| 标量
+  group: Cycling Aging
+- name: Percentage change in cell capacity, CapacityChange(N,T)
+  summary: 在指定温度下经过 *N* 次循环后电池容量的百分比变化 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Cycling Aging
+- name: Initial target for percentage change in capacity due to cycling aging
+  summary: 由于循环老化导致的容量百分比变化的初始目标值 0（默认）| 标量
+  group: Cycling Aging
+- name: Percentage change in self-discharge resistance, SelfDischargeRChange(N,T)
+  summary: 在指定温度下经过 *N* 次循环后自放电电阻的百分比变化 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Cycling Aging
+- name: Initial target for percentage change in self-discharge resistance due to cycling aging
+  summary: 由于循环老化导致的自放电电阻百分比变化的初始目标值 0（默认）| 标量
+  group: Cycling Aging
+- name: 首次极化电阻变化百分比，R1Change(N,T)
+  summary: 在指定温度下经过 *N* 次循环后首次并联 RC 电阻的变化百分比 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Cycling Aging
+- name: 循环老化导致的首次极化电阻变化百分比初始目标值
+  summary: 循环老化导致的首次极化电阻变化百分比的初始目标值 0（默认）| 标量
+  group: Cycling Aging
+- name: 第二次极化电阻变化百分比，R2Change(N,T)
+  summary: 在指定温度下经过 *N* 次循环后第二次并联 RC 电阻的变化百分比 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Cycling Aging
+- name: 循环老化导致的第二次极化电阻变化百分比初始目标值
+  summary: 循环老化导致的第二次极化电阻变化百分比的初始目标值 0（默认）| 标量
+  group: Cycling Aging
+- name: 第三次极化电阻变化百分比，R3Change(N,T)
+  summary: 在指定温度下经过 *N* 次循环后第三次并联 RC 电阻的变化百分比 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Cycling Aging
+- name: 循环老化导致的第三次极化电阻变化百分比初始目标值
+  summary: 循环老化导致的第三次极化电阻变化百分比的初始目标值 0（默认）| 标量
+  group: Cycling Aging
+- name: 端子电阻变化百分比，R0Change(N,T,I)
+  summary: 在指定温度和电流下经过 *N* 次循环后端子电阻的变化百分比 repmat(0, 4, 2, 3)（默认）| 标量三维数组
+  group: Cycling Aging
+- name: 电芯容量变化百分比，CapacityChange(N,T,I)
+  summary: 在指定温度和电流下经过 *N* 次循环后电芯容量的变化百分比 repmat(0, 4, 2, 3)（默认）| 标量三维数组
+  group: Cycling Aging
+- name: 自放电电阻变化百分比，SelfDischargeRChange(N,T,I)
+  summary: 在指定温度和电流下经过 *N* 次循环后自放电电阻的变化百分比 repmat(0, 4, 2, 3)（默认）| 标量三维数组
+  group: Cycling Aging
+- name: 首次极化电阻变化百分比，R1Change(N,T,I)
+  summary: 在指定温度和电流下经过 *N* 次循环后首次极化电阻的变化百分比 repmat(0, 4, 2, 3)（默认）| 标量三维数组
+  group: Cycling Aging
+- name: 第二次极化电阻变化百分比，R2Change(N,T,I)
+  summary: 在指定温度和电流下经过 *N* 次循环后第二次极化电阻的变化百分比 repmat(0, 4, 2, 3)（默认）| 标量三维数组
+  group: Cycling Aging
+- name: 第三次极化电阻变化百分比，R2Change(N,T,I)
+  summary: 在指定温度和电流下经过 *N* 次循环后第三次极化电阻的变化百分比 repmat(0, 4, 2, 3)（默认）| 标量三维数组
+  group: Cycling Aging
+- name: 电阻日历老化
+  summary: 启用电阻日历老化的选项 Disabled（默认）| Enabled
+  group: 日历老化
+  block_parameter: CalendarAgeResistance
+  values: '"simscape.battery.enum.cells.BatteryEnable.Disabled"（默认）| "simscape.battery.enum.cells.BatteryEnable.Enabled"'
+- name: 容量日历老化
+  summary: 启用容量日历老化的选项 Disabled（默认）| Enabled
+  group: 日历老化
+  block_parameter: CalendarAgeCapacity
+  values: '"simscape.battery.enum.cells.BatteryEnable.Disabled"（默认） | "simscape.battery.enum.cells.BatteryEnable.Enabled"'
+- name: 建模选项
+  summary: '日历老化的建模选项 Equation-based（默认） | Tabulated: temperature | Tabulated: time and temperature'
+  group: 日历老化
+  block_parameter: CalendarAgingMethod
+  values: '"simscape.battery.enum.cells.CalendarAgingMethod.equation"（默认） | "simscape.battery.enum.cells.CalendarAgingMethod.tableT"
+    | "simscape.battery.enum.cells.CalendarAgingMethod.tableTandTime"'
+- name: 存储条件
+  summary: 存储条件 Specify open-circuit voltage during storage（默认） | Specify state-of-charge during storage
+  group: 日历老化
+  block_parameter: StorageVariable
+  values: '"simscape.battery.enum.cells.StorageVariable.OCV"（默认） | "simscape.battery.enum.cells.StorageVariable.SOC"'
+- name: 存储期间的归一化开路电压，V/Vnom
+  summary: 存储期间的归一化开路电压 0.9（默认） | 标量
+  group: 日历老化
+- name: 存储期间的荷电状态
+  summary: 存储期间的 SOC 百分比 0.6（默认） | 范围 [0, 1] 内的标量
+  group: 日历老化
+- name: 时间间隔向量
+  summary: 时间间隔 [0] d（默认） | 标量向量
+  group: 日历老化
+- name: 存储温度向量
+  summary: 存储温度 [273] K（默认） | 非负值向量
+  group: 日历老化
+- name: 端子电阻随电压的线性缩放，b
+  summary: 端子电阻的电压线性缩放系数 2.2134e6（默认） | 标量
+  group: 日历老化
+- name: 端子电阻随电压的常数偏移，c
+  summary: 端子电阻的电压常数偏移 1.632e6（默认） | 标量
+  group: 日历老化
+- name: 端子电阻随温度的指数增长，d
+  summary: 端子电阻随温度的指数增长 0.515833569 V（默认） | 标量
+  group: 日历老化
+- name: 端子电阻的时间指数，a
+  summary: 端子电阻中的时间指数 0.75（默认） | 标量
+  group: 日历老化
+- name: 用于端子电阻日历老化的采样温度向量，T_ar
+  summary: 用于端子电阻日历老化的采样温度 [273.15, 298.15, 323.15] K（默认） | 正值向量
+  group: 日历老化
+- name: 用于端子电阻日历老化的采样存储时间间隔向量，t_ar
+  summary: 用于端子电阻日历老化的采样存储时间间隔 [90, 180, 270, 360] d（默认） | 正值向量
+  group: 日历老化
+- name: 由于日历老化导致的端子电阻百分比变化，dR0(T_ar)
+  summary: 由于日历老化导致的端子电阻百分比变化 [0,0,0]（默认） | 标量向量
+  group: 日历老化
+- name: 端子电阻寿命开始与 dR(T_ar) 测量之间的时间
+  summary: 端子电阻寿命开始与 *dR(Tar)* 测量之间的时间 100 d（默认） | 非负标量
+  group: 日历老化
+- name: 由于日历老化导致的端子电阻百分比变化，dR0(t_ar,T_ar)
+  summary: 由于日历老化导致的端子电阻百分比变化 [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0]（默认） | 标量矩阵
+  group: 日历老化
+- name: 容量随电压的线性缩放，b
+  summary: 容量的电压线性缩放 1.5097e07（默认） | 标量
+  group: 日历老化
+- name: 容量随电压的常数偏移，c
+  summary: 容量的电压常数偏移 8.3625e06（默认） | 标量
+  group: 日历老化
+- name: 容量随温度的指数下降，d
+  summary: 容量随温度的指数下降 0.6011 V（默认） | 标量
+  group: 日历老化
+- name: 容量的时间指数，a
+  summary: 容量中的时间指数 0.75（默认） | 标量
+  group: 日历老化
+- name: 用于容量日历老化的采样温度向量，T_ac
+  summary: 用于容量日历老化的采样温度 [273.15, 298.15, 323.15] K（默认） | 正值向量
+  group: 日历老化
+- name: 用于容量日历老化的采样存储时间间隔向量，t_ac
+  summary: 用于容量日历老化的采样存储时间间隔 [90, 180, 270, 360] d（默认） | 正值向量
+  group: 日历老化
+- name: 由于日历老化导致的容量百分比变化，dAH(T_ac)
+  summary: 由于日历老化导致的容量百分比变化 [0, 0, 0]（默认） | 标量向量
+  group: 日历老化
+- name: 容量寿命开始与 dAH(T_ac) 测量之间的时间
+  summary: 容量寿命开始与 *dAH(Tac)* 测量之间的时间 100 d（默认） | 正标量
+  group: 日历老化
+- name: 由于日历老化导致的容量百分比变化，dAH(t_ac,T_ac)
+  summary: 由于日历老化导致的容量百分比变化 [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0]（默认） | 标量矩阵
+  group: 日历老化
+- name: 仿真温度
+  summary: 电池温度 298.15 K（默认） | 正标量
+  group: 热
+- name: 电池热质量
+  summary: 与热端口关联的电池热质量 100 J/K（默认） | 正标量
+  group: 热
+- name: 热模型数量
+  summary: 热模型中离散化元素的数量 6（默认） | 正标量
+  group: 热
+- name: Z 方向热导率
+  summary: 电芯在 *Z* 方向的热导率 18 W/(K*m)（默认） | 正标量
+  group: 热
+- name: XY 方向横截面积
+  summary: 电芯在 *XY* 方向的横截面积 3.5e-4 m^2（默认） | 正标量
+  group: 热
+- name: 电芯高度
+  summary: 电芯高度 0.07 m（默认） | 正标量
+  group: 热
+- name: 可逆热模型
+  summary: 用于对可逆热建模的选项 Disabled（默认） | Entropic coefficient
+  group: 热
+  block_parameter: ReversibleHeatModel
+  values: '"simscape.battery.enum.cells.ReversibleHeatModel.Disabled"（默认） | "simscape.battery.enum.cells.ReversibleHeatModel.EntropicCoefficient"'
+- name: 熵系数
+  summary: 可逆热的熵系数 [0, 0, 0, 0, 0, 0, 0] mV/K（默认） | 标量向量
+  group: 热
+- name: 附加电阻故障
+  summary: 用于使串联电阻发生故障的选项 Add fault（默认）
+  group: 故障
+- name: 放热反应故障
+  summary: 用于对自热和热失控事件建模的选项 Add fault（默认）
+  group: 故障
+- name: 内部短路故障
+  summary: 用于使并联电阻发生故障的选项 Add fault（默认）
+  group: 故障
+- name: 故障时的附加电阻
+  summary: 模块发生故障时的附加电阻 1e5 Ohm（默认）
+  group: 故障
+- name: Trigger type
+  summary: 附加电阻故障的故障触发类型 Always On（默认）| Timed | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 附加电阻故障进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Trigger Configuration
+  summary: 为附加电阻故障启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: Short parallel resistance when faulted
+  summary: 模块故障时的短路并联电阻 1e-6（默认）
+  group: 故障
+- name: Trigger type
+  summary: 内部短路故障的故障触发类型 Always On（默认）| Timed | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 内部短路故障进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Trigger Configuration
+  summary: 为内部短路故障启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: Modeling fidelity
+  summary: 放热反应建模的保真度选项 Analytical（默认）| Tabulated accelerated rate calorimetry test temperature rate
+  group: 故障
+  block_parameter: ExothermModel
+  values: '"simscape.battery.enum.cells.ExothermModel.analytical"（默认）| "simscape.battery.enum.cells.ExothermModel.acceleratedRateCalorimetryTemperature"'
+- name: Tabulate with state of charge
+  summary: 将放热反应参数制表为 SOC 函数的选项 off（默认）| on
+  group: 故障
+  block_parameter: TabulateWithSOC
+  values: false（默认）| true
+- name: Current interruption temperature
+  summary: 电流停止流动的温度 420 K（默认）| 正标量
+  group: 故障
+- name: Total heat of reaction
+  summary: 反应总热量 23e3 J（默认）| 正标量
+  group: 故障
+- name: Exotherm onset temperature
+  summary: 放热起始温度 350 K（默认）| 正标量
+  group: 故障
+- name: Exotherm onset temperature rate
+  summary: 放热起始温度速率 0.02 K/min（默认）| 正标量
+  group: 故障
+- name: Activation energy
+  summary: 活化能 160e3 J/mol（默认）| 正标量
+  group: 故障
+- name: Order of reaction
+  summary: 放热反应级数 1（默认）| 正标量
+  group: 故障
+- name: Percent of thermal mass vented
+  summary: 电池排放到环境的热质量百分比 40（默认）| 正标量
+  group: 故障
+- name: Vector of state of charge values for exothermic parameters, SOC
+  summary: 放热参数查找数据的 SOC 值 [0,.5,1]（默认）| 非负值向量
+  group: 故障
+- name: Corresponding current interruption temperature, Tci(SOC)
+  summary: 指定 SOC 断点处对应的电流中断温度 [420, 420, 420]（默认）| 非负值向量
+  group: 故障
+- name: Corresponding total heat of reaction, heat(SOC)
+  summary: 指定 SOC 断点处对应的反应总热量 [23000, 23000, 23000]（默认）| 非负值向量
+  group: 故障
+- name: Corresponding exotherm onset temperature, Tex(SOC)
+  summary: 指定 SOC 断点处对应的放热起始温度 [350, 350, 350]（默认）| 非负值向量
+  group: 故障
+- name: Corresponding activation energy, Ea(SOC)
+  summary: 指定 SOC 断点处对应的活化能 [160000, 160000, 160000]（默认）| 非负值向量
+  group: 故障
+- name: Corresponding order of reaction, Or(SOC)
+  summary: 指定 SOC 断点处对应的反应级数 [1, 1, 1]（默认）| 非负值向量
+  group: 故障
+- name: Vector of ARC test temperatures, T
+  summary: 查找数据的 ARC 测试温度 [323, 373, 423, 438, 463, 483, 513, 543, 545, 547, 549, 551, 553, 573, 623, 773, 923, 943, 1003,
+    1063, 1113, 1123, 1133, 1153, 1173]（默认）| 非负值向量
+  group: 故障
+- name: Corresponding ARC test temperature rates, dT/dt(T)
+  summary: 指定 T 断点处对应的 ARC 测试温度速率 [.0001, .001, .025, .2, .4, .6, 1.1, 1.3, 1.9, 3, 5, 11.6, 183.3, 191.6, 200, 208.3, 200,
+    175, 8.33, 1.33, .33, .2, .13, .0017, .00017]（默认）| 非负值向量
+  group: 故障
+- name: Corresponding ARC test temperature rates, dT/dt(T,SOC)
+  summary: 指定温度和 SOC 断点处对应的 ARC 测试温度速率 repmat([.0001, .001, .025, .2, .4, .6, 1.1, 1.3, 1.9, 3, 5, 11.6, 183.3, 191.6, 200,
+    208.3, 200, 175, 8.33, 1.33, .33, .2, .13, .0017, .00017]', 1, 3)（默认）| 非负值矩阵
+  group: 故障
+- name: Corresponding percent of thermal mass vented, Mvent(SOC)
+  summary: 在指定 SOC 断点处对应的排出热质量百分比 [40, 40, 40]（默认）| 范围 [0, 100] 内的值向量
+  group: 故障
+- name: Trigger type
+  summary: 放热反应故障的故障触发类型 Always On（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 放热反应故障进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Trigger temperature
+  summary: 触发故障的温度 350 K（默认）| 非负标量
+  group: 故障
+- name: Trigger Configuration
+  summary: 为放热反应故障启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 ### **Selected part** — 预定义参数化选项 `<click to select>`（默认）
 
@@ -2670,7 +3323,6 @@ Qrev=I TdOCVdT，
 - 将 **Thermal model** 参数设置为 `Lumped thermal mass`。
 - 点击 **Exothermic reactions fault** 参数的 **Add fault** 超链接。
 - 将 **Trigger type** 设置为 `Additional triggers`。
-
 ## 所属库
 
 Simscape / Battery / Cells

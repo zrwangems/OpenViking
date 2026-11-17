@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # ClassificationLinear Predict
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 预测变量数据 行向量 | 列向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: label
+  summary: 预测类别标签 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: score
+  summary: 预测类别得分或后验概率 行向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -44,8 +60,138 @@ chinese_source: worker-translation
 要启用此端口，请在“模块参数”对话框的 **Main** 选项卡中选中 **Add output port for predicted class scores** 复选框。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Select trained machine learning model
+  summary: 线性分类模型 linearMdl（默认）| ClassificationLinear 对象
+  group: 主要参数
+  block_parameter: TrainedLearner
+  type: 工作区变量
+  values: ClassificationLinear 对象
+- name: Add output port for predicted class scores
+  summary: 为预测类别得分添加第二个输出端口 off（默认）| on
+  group: 主要参数
+  block_parameter: ShowOutputScore
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: 对整数溢出进行饱和处理
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Label data type
+  summary: '标签输出的数据类型 Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data
+    type expression>'
+  group: 数据类型
+  block_parameter: LabelDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: Inherit via back propagation" | "Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16"
+    | "uint16" | "int32" | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "Enum: <class
+    name>" | "<data type expression>"'
+  default: '"Inherit: Inherit via back propagation"（用于数值和逻辑标签） | "Inherit: auto"（用于非数值标签）'
+- name: Label data type Minimum
+  summary: 用于范围检查的标签输出最小值 []（默认） | 标量
+  group: 数据类型
+  block_parameter: LabelOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Label data type Maximum
+  summary: 用于范围检查的 label 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LabelOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Score data type
+  summary: 'score 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: ScoreDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Score data type Minimum
+  summary: 用于范围检查的 score 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: ScoreOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Score data type Maximum
+  summary: 用于范围检查的 score 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: ScoreOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Raw score data type
+  summary: '未变换的 score 数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: RawScoreDataTypeStr
+  type: 字符向量
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Raw score data type Minimum
+  summary: 用于范围检查的最小未变换分数 []（默认）| 标量
+  group: 数据类型
+  block_parameter: RawScoreOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Raw score data type Maximum
+  summary: 用于范围检查的最大未变换分数 []（默认）| 标量
+  group: 数据类型
+  block_parameter: RawScoreOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Inner product data type
+  summary: '内积数据类型 Inherit: Inherit via internal rule（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: InnerProductDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: 内积数据类型最小值
+  summary: 用于范围检查的内积项最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: InnerProductOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: 内积数据类型最大值
+  summary: 用于范围检查的内积项最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: InnerProductOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+```
 
 ### 主要参数
 
@@ -405,7 +551,6 @@ Simulink 使用最大值来执行：
 | **类型**：字符向量 |
 | **值**：`"[]"` | 标量 |
 | **默认值**：`"[]"` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Classification

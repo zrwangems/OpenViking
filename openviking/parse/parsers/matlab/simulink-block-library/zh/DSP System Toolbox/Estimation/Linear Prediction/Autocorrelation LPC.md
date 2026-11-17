@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Autocorrelation LPC
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 输入数组 无向向量 | 列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: A
+  summary: 多项式系数 列向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: K
+  summary: 反射系数 列向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: P
+  summary: 预测误差功率 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -56,8 +75,22 @@ u^M+1=−(a2uM)−(a3uM−1)−...−(aN+1uM−N+1)
 要启用端口 P，请选中 **Output prediction error power (P)** 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Output(s)
+  summary: 预测系数类型 A（默认）| A and K | K
+  group: ''
+- name: Output prediction error power (P)
+  summary: 输出预测误差功率 off（默认）| on
+  group: ''
+- name: Inherit prediction order from input dimensions
+  summary: 从输入维度继承预测阶数 off（默认）| on
+  group: ''
+- name: Prediction order (N)
+  summary: 预测阶数 1（默认）| 标量
+  group: ''
+```
 
 ### **Output(s)** — 预测系数类型 `A`（默认）| `A and K` | `K`
 
@@ -80,7 +113,6 @@ u^M+1=−(a2uM)−(a3uM−1)−...−(aN+1uM−N+1)
 #### 依赖关系
 
 此参数仅在您未选中 **Inherit prediction order from input dimensions** 参数时显示。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Linear Prediction

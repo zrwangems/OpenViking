@@ -14,6 +14,17 @@ language: en
 # Yule-Walker Method
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input column vector | unoriented vector
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Power spectral density estimate column vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -38,8 +49,28 @@ rate of the signal.
 The block outputs are always nonsingular.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit estimation order from input dimensions
+  summary: Inherit estimation order from input dimensions off (default) | on
+  group: ''
+- name: Estimation order
+  summary: Order of AR model 6 (default) | nonnegative integer
+  group: ''
+- name: Inherit FFT length from estimation order
+  summary: Inherit FFT length from estimation order off (default) | on
+  group: ''
+- name: FFT length
+  summary: FFT length 256 (default) | positive integer greater than or equal to 2
+  group: ''
+- name: Inherit sample time from input
+  summary: Inherit sample time from input on (default) | off
+  group: ''
+- name: Sample time of original time series
+  summary: Sample time of original time-domain signal 1 (default) | positive scalar
+  group: ''
+```
 
 ### **Inherit estimation order from input dimensions** — Inherit estimation order from input dimensions `off` (default) | `on`
 
@@ -113,7 +144,6 @@ scalar.
 
 To enable this parameter, clear the **Inherit sample time from
 input** parameter.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

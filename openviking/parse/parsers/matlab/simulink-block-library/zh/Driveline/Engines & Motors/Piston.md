@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Piston
 
 ## 端口
+```yaml
+ports:
+- name: T
+  summary: 归一化发动机节气门开度，无量纲物理信号
+  direction: input
+- name: FC
+  summary: 燃油消耗，kg/s 物理信号
+  direction: output
+- name: B
+  summary: 与活塞容器关联的基座端口，机械旋转
+  direction: output
+- name: F
+  summary: 与曲轴扭矩关联的从动端口，机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -44,8 +59,77 @@ chinese_source: worker-translation
 ### **F** — 与曲轴扭矩关联的从动端口，机械旋转
 
 连接到发动机曲轴的旋转机械守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Cylinder bore
+  summary: 活塞缸壁内径 .10 m（默认）| 正标量
+  group: 主要
+- name: Piston stroke
+  summary: 活塞平移行程长度 .06 m（默认）| 正标量
+  group: 主要
+- name: Piston rod length
+  summary: 活塞到曲轴连杆长度 .1 m（默认）| 正标量
+  group: 主要
+- name: Number of strokes per cycle
+  summary: 完成一个燃烧循环的活塞行程数 4（默认）| 正偶标量
+  group: 主要
+- name: Pressure parameterization
+  summary: 用于确定施加到活塞的压力的方法 By crank angle（默认）| By crank angle and throttle | By crank angle, throttle, and crank velocity
+  group: 主要
+- name: Crank angle vector
+  summary: 不同的活塞曲轴转角 [-360, -90, -30, 10, 30, 90, 160, 360] deg（默认）| 向量
+  group: 主要
+- name: Throttle vector
+  summary: 不同的节气门位置 [0, .3, .8, 1]（默认）| 向量
+  group: 主要
+- name: Crank velocity vector
+  summary: 不同的角速度 [0, 1000, 6000] rpm（默认）| 向量
+  group: 主要
+- name: Pressure vector (gauge)
+  summary: 曲轴转角参数化压力 [0, 3, 20, 50, 20, 10, 8, 0] bar（默认）| 向量
+  group: 主要
+- name: Pressure matrix (gauge)
+  summary: 曲轴转角和节气门参数化压力 *M*×*N* 矩阵（默认）| 矩阵
+  group: 主要
+- name: Pressure 3D matrix (gauge)
+  summary: 曲轴转角、节气门和曲轴速度参数化压力 *M*×*N*×*O* 矩阵（默认）| 三维矩阵
+  group: 主要
+- name: Bearing viscous friction coefficient
+  summary: 主轴承和连杆轴承耗散功率的趋势 .001 N*m/(rad/s)（默认）| 正标量
+  group: 主要
+- name: Offset angle
+  summary: 发动机循环中点与上止点之间的角度偏差 0 deg（默认）| 标量
+  group: 主要
+- name: Initial crank angle
+  summary: 仿真开始时的曲轴转角 90 deg（默认）| 标量
+  group: 主要
+- name: Fuel consumption model
+  summary: 燃油消耗的参数化 No fuel consumption（默认）| Constant per revolution | Fuel consumption by speed and torque | Brake specific
+    fuel consumption by speed and torque | Brake specific fuel consumption by speed and brake mean effective pressure
+  group: 燃油消耗
+- name: Fuel consumption per revolution
+  summary: 单次曲轴旋转期间消耗的燃油 25 mg/rev（默认）| 标量
+  group: 燃油消耗
+- name: Speed vector
+  summary: 曲轴角速度 [1000, 2000, 3000, 4000, 5000, 6000] rpm（默认）| 向量
+  group: 燃油消耗
+- name: Torque vector
+  summary: 给定速度下施加的扭矩 [0, 80, 160, 200, 240, 320, 360, 400] N*m（默认）| 向量
+  group: 燃油消耗
+- name: Fuel consumption table
+  summary: 给定速度和扭矩组合下的燃油消耗率矩阵 *P*×*Q* 矩阵（默认）| 矩阵
+  group: 燃油消耗
+- name: Brake mean effective pressure vector
+  summary: 产生给定扭矩所需的平均缸压 [0, 250, 500, 625, 750, 1000, 1150, 1250] kPa（默认）
+  group: 燃油消耗
+- name: Brake specific fuel consumption table
+  summary: 制动比燃油消耗率的燃油效率 *P*×*Q* 矩阵（默认）| 矩阵
+  group: 燃油消耗
+- name: Interpolation method
+  summary: 数据点之间的速度和扭矩行为 Linear（默认）| Smooth
+  group: 燃油消耗
+```
 
 ### 主要
 
@@ -220,7 +304,6 @@ BMEP=T⋅(2π⋅ncVd)，
 - `Fuel consumption by speed and torque`
 - `Brake specific fuel consumption by speed and torque`
 - `Brake specific fuel consumption by speed and brake mean effective pressure`
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Float Extract Bits
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 包含浮点数据的信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | bus
+- name: Port_1
+  summary: 数据的二进制表示 标量 | 向量 | 矩阵
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -31,8 +42,24 @@ chinese_source: worker-translation
 Float Extract Bits 根据 **Output mode** 参数计算定点输出。
 
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output mode
+  summary: 要输出的数据部分 All bits（默认） | Range of bits | Sign | Mantissa | Exponent
+  group: ''
+  block_parameter: OutputMode
+  type: 字符向量
+  values: '''All bits'' | ''Range of bits'' | ''Sign'' | ''Mantissa'' | ''Exponent'''
+  default: '''All bits'''
+- name: Bit range ([start end], 0-based relative to LSB)
+  summary: 要返回的位范围 [0 15]（默认） | 向量
+  group: ''
+  block_parameter: BitRange
+  type: 字符向量
+  values: '''[0 15]'' | 向量'
+  default: '''[0 15]'''
+```
 
 ### **Output mode** — 要输出的数据部分 `All bits`（默认） | `Range of bits` | `Sign` | `Mantissa` | `Exponent`
 
@@ -65,7 +92,6 @@ Float Extract Bits 根据 **Output mode** 参数计算定点输出。
 | **类型**：字符向量 |
 | **值**：`'[0 15]'` | 向量 |
 | **默认值**：`'[0 15]'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations

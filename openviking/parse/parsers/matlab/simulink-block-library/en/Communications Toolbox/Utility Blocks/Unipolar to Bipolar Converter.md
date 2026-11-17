@@ -14,6 +14,16 @@ language: en
 # Unipolar to Bipolar Converter
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32
+- name: Out
+  summary: Output signal scalar | vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -49,8 +59,20 @@ The output signal is unnamed on the block mask.
 The output might not be valid for unsigned integer input values,
 noninteger input values, or integer input values outside the range
 [0, (*M* – 1)].
-
 ## Parameters
+```yaml
+parameters:
+- name: M-ary number
+  summary: Number of symbols 4 (default) | positive integer
+  group: ''
+- name: Polarity
+  summary: Relative ordering of symbols Positive (default) | Negative
+  group: ''
+- name: Output data type
+  summary: Output data type of bipolar signal Inherit via internal rule (default) | Same as input | double | int8 | int16
+    | int32
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -123,7 +145,6 @@ the input data type as follows:
 
 Selections in the Hardware Implementation Pane (Simulink) that constrain word length do not affect how this block
 determines output data types.
-
 ## Libraries
 
 Communications Toolbox / Utility Blocks

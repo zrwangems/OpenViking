@@ -14,6 +14,26 @@ language: en
 # Simulation 3D Bicyclist
 
 ## Ports
+```yaml
+ports:
+- name: Y
+  summary: Lateral position of bicyclist scalar
+  direction: input
+- name: X
+  summary: Longitudinal position of bicyclist scalar
+  direction: input
+- name: Yaw
+  summary: Yaw orientation angle of bicyclist scalar
+  direction: input
+- name: Location
+  summary: Location of bicyclist real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+- name: Orientation
+  summary: Orientation of bicyclist real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -90,8 +110,31 @@ To enable this port, on the **Ground Truth** tab, select
 orientation**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Scale
+  summary: Scale factor for bicyclist [1, 1, 1] (default) | real-valued 1-by-3 vector
+  group: Bicyclist Parameters
+- name: Coordinate system
+  summary: Coordinate system for actor transformation ISO8855 (default) | Default | MATLAB | AERO | VRML | SAE
+  group: Bicyclist Parameters
+- name: Initial position [X, Y, Z]
+  summary: Initial bicyclist position [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Bicyclist Parameters
+- name: Initial rotation [Roll, Pitch, Yaw]
+  summary: Initial angle of bicyclist rotation [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Bicyclist Parameters
+- name: Name
+  summary: Name of bicyclist SimulinkBicyclist1 (default) | bicyclist name
+  group: Bicyclist Parameters
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Bicyclist Parameters
+- name: Output location and orientation
+  summary: Output location and orientation of pedestrian off (default) | on
+  group: Ground Truth
+```
 
 ### Bicyclist Parameters
 
@@ -163,7 +206,6 @@ time specified in the Simulation 3D Scene Configuration block.
 Select this parameter to output the location and orientation of the pedestrian at
 the **Location** and **Orientation** ports,
 respectively.
-
 ## Libraries
 
 Automated Driving Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Actors

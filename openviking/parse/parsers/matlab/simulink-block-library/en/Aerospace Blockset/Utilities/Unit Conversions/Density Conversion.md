@@ -14,6 +14,17 @@ language: en
 # Density Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Density scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Density scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -39,8 +50,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units lbm/ft^3 (default) | kg/m^3 | slug/ft^3 | lbm/in^3
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''lbm/ft^3'' | ''kg/m^3'' | ''slug/ft^3'' | ''lbm/in^3'''
+  default: '''lbm/ft^3'''
+- name: Final unit
+  summary: Output units kg/m^3 (default) | lbm/ft^3 | slug/ft^3 | lbm/in^3
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''lbm/ft^3'' | ''kg/m^3'' | ''slug/ft^3'' | ''lbm/in^3'''
+  default: '''kg/m^3'''
+```
 
 ### **Initial unit** — Input units `lbm/ft^3` (default) | `kg/m^3` | `slug/ft^3` | `lbm/in^3`
 
@@ -91,7 +118,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `'lbm/ft^3'` | `'kg/m^3'` | `'slug/ft^3'` | `'lbm/in^3'` |
 | **Default**: `'kg/m^3'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

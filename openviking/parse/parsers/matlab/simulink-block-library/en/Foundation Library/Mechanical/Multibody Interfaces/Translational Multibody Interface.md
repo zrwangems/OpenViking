@@ -14,6 +14,21 @@ language: en
 # Translational Multibody Interface
 
 ## Ports
+```yaml
+ports:
+- name: v
+  summary: Relative velocity, m/s physical signal
+  direction: input
+- name: f
+  summary: Force, N physical signal
+  direction: output
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -44,11 +59,12 @@ blocks in the mechanical translational network.
 Mechanical translational conserving port with the same force and relative velocity
 as the joint primitive. Connect this port to ports **C** of other
 blocks in the mechanical translational network.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Multibody Interfaces

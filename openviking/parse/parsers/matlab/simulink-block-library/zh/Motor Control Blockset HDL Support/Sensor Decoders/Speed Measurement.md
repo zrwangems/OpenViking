@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Speed Measurement
 
 ## 端口
+```yaml
+ports:
+- name: θ
+  summary: 转子角位置 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Ts
+  summary: 模块再次执行前的采样时间 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵
+  summary: 转子角速度 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -41,8 +56,49 @@ chinese_source: worker-translation
 模块根据角位置输入计算得到的角速度。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Position unit
+  summary: 角位置单位 Radians（默认）| Degrees | Per unit
+  group: ''
+- name: Position scaling datatype
+  summary: 映射输入位置的范围 uint32（默认）| uint16 | uint64
+  group: ''
+- name: Speed calculation criteria
+  summary: 速度计算方法 Maximum application speed（默认）| Speed resolution | Time interval for speed calculation
+  group: ''
+- name: Discrete step size (s)
+  summary: 模块再次执行前的采样时间 100e-6（默认）| 标量
+  group: ''
+- name: Maximum application speed (RPM)
+  summary: 最大可测量转子速度 1000（默认）| 标量
+  group: ''
+- name: Speed Resolution (RPM)
+  summary: 最小可检测速度 5e-6（默认）| 标量
+  group: ''
+- name: Delays for speed calculation (number of samples)
+  summary: 用于计算速度的延迟（采样数） 299 或 28（默认）| 标量
+  group: ''
+- name: Maximum measurable speed (RPM)
+  summary: 最大可测量速度 1000 或 10344.8276 或 10713.2857（默认）| 标量
+  group: ''
+- name: Measurable speed resolution (RPM)
+  summary: 用于速度计算的最小速度分辨率 4.6566e-07 或 4.9892e-06（默认）| 标量
+  group: ''
+- name: Speed unit
+  summary: 角速度输出的单位 RPM（默认）| Degrees/Sec | Radians/Sec | Per unit based on maximum measurable speed | Per unit based on dialog
+  group: ''
+- name: Per unit speed (RPM)
+  summary: 用于标幺值计算的速度（以 RPM 为单位） 1000（默认）
+  group: ''
+- name: Speed data type
+  summary: 角速度输出的数据类型 single（默认）| double | fixed point
+  group: ''
+- name: Use input port for Discrete step size
+  summary: 使用输入端口指定采样步长 off（默认）| on
+  group: ''
+```
 
 ### **Position unit** — 角位置单位 `Radians`（默认）| `Degrees` | `Per unit`
 
@@ -168,7 +224,6 @@ Speed Measurement 模块可能偶尔会显示警告消息
 ### **Use input port for Discrete step size** — 使用输入端口指定采样步长 `off`（默认）| `on`
 
 如果要使用输入端口指定采样步长，请选择此参数。
-
 ## 所属库
 
 Motor Control Blockset / Sensor Decoders Motor Control Blockset HDL Support / Sensor Decoders

@@ -14,6 +14,15 @@ language: en
 # Pipe (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet or outlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Inlet or outlet isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,48 @@ This block has no intrinsic directionality.
 
 Isothermal liquid conserving port associated with the inlet or outlet of the pipe.
 This block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe length
+  summary: The length of the pipe 5 m (default) | positive scalar
+  group: Geometry
+- name: Cross-sectional area
+  summary: The internal area of the pipe 0.01 m^2 (default) | positive scalar
+  group: Geometry
+- name: Hydraulic diameter
+  summary: Diameter of an equivalent cylindrical pipe with the same cross-sectional area 0.1128 m (default) | positive scalar
+  group: Geometry
+- name: Aggregate equivalent length of local resistances
+  summary: The combined length of all local resistances present in the pipe 1 m (default) | positive scalar
+  group: Friction
+- name: Internal surface absolute roughness
+  summary: Average depth of all surface defects on the internal surface of the pipe 15e-6 m (default) | positive scalar
+  group: Friction
+- name: Laminar flow upper Reynolds number limit
+  summary: The Reynolds number above which flow begins to transition from laminar to turbulent 2000 (default) | scalar greater
+    than 1
+  group: Friction
+- name: Turbulent flow lower Reynolds number limit
+  summary: The Reynolds number below which flow begins to transition from turbulent to laminar 4000 (default) | scalar greater
+    than Laminar flow upper Reynolds number limit value
+  group: Friction
+- name: Laminar friction constant for Darcy friction factor
+  summary: Effect of pipe geometry on the viscous friction losses 64 (default) | positive scalar
+  group: Friction
+- name: Enable dynamic compressibility
+  summary: Select whether to model fluid dynamic compressibility On (default) | Off
+  group: Effects and Initial Conditions
+- name: Enable fluid inertia
+  summary: Select whether to model fluid inertia Off (default) | On
+  group: Effects and Initial Conditions
+- name: Initial liquid pressure
+  summary: Liquid pressure at time zero 0.101325 MPa (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial mass flow rate from port A to port B
+  summary: Mass flow rate at time zero 0 kg/s (default) | scalar
+  group: Effects and Initial Conditions
+```
 
 ### Geometry
 
@@ -114,7 +163,6 @@ time zero.
 
 To enable this parameter, select the **Enable fluid inertia**
 check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

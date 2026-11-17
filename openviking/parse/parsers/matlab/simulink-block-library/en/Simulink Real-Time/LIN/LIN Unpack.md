@@ -14,6 +14,18 @@ language: en
 # LIN Unpack
 
 ## Ports
+```yaml
+ports:
+- name: message_updated
+  summary: indicates message update 0 (logical false) | 1 (logical true)
+  direction: input
+- name: Lin_data_8_bytes
+  summary: input LIN data to unpack LIN data
+  direction: input
+- name: out
+  summary: output data data
+  direction: output
+```
 
 ### Input
 
@@ -35,8 +47,22 @@ Receives LIN data to unpack.
 Sends unpacked data. The number of the output ports is allocated based on the
 number of signals in the selected frame. When a frame is selected, the port name is
 assigned to each port.
-
 ## Parameters
+```yaml
+parameters:
+- name: LDF File Name
+  summary: File path of LDF empty (default) | character vector | string scalar
+  group: ''
+  block_parameter: LDFFileName
+- name: Select Frame
+  summary: LIN frame None (default) | character vector | string scalar
+  group: ''
+  block_parameter: selectedFrameName
+- name: Frame ID
+  summary: LIN frame ID 1 (default) | uint8
+  group: ''
+  block_parameter: frameId
+```
 
 ### **LDF File Name** — File path of LDF empty (default) | character vector | string scalar
 
@@ -70,7 +96,6 @@ the block uses `1`.
 |  |
 | --- |
 | **Block Parameter:** `frameId` |
-
 ## Libraries
 
 Simulink Real-Time / LIN

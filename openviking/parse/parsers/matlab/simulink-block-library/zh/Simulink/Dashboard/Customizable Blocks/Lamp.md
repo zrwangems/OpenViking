@@ -15,10 +15,129 @@ chinese_source: worker-translation
 # Lamp
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的信号及显示信号连接选项
+  group: 参数
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Label
+  summary: 显示所连接元素名称的标签位置 Hide（默认）| Bottom | Top
+  group: 参数
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 参数
+- name: Specify State Values as Ranges
+  summary: 指定激活状态的值范围的选项 off（默认）| on
+  group: 参数
+  block_parameter: StateValueType
+  type: 字符向量 | 字符串
+  values: '"Discrete" | "Range"'
+  default: '"Discrete"'
+- name: States
+  summary: 灯颜色与信号值标量及 [r g b] 向量的配对
+  group: 参数
+  block_parameter: ColorDefault
+  type: '[r g b] 向量'
+  default: '[0.7529 0.7529 0.7529]'
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 设计
+- name: Select State
+  summary: 选择要配置的状态标量及 [r g b] 向量
+  group: 设计
+  block_parameter: ColorDefault
+  type: '[r g b] 向量'
+  default: '[0.7529 0.7529 0.7529]'
+- name: Apply Default Settings to All States
+  summary: 将默认状态的设置应用于所有其他状态的选项 off（默认）| on
+  group: 设计
+- name: Specify State Values as Ranges
+  summary: 指定激活状态的值范围的选项 off（默认）| on
+  group: 设计
+  block_parameter: StateValueType
+  type: 字符向量 | 字符串
+  values: '"Discrete" | "Range"'
+  default: '"Discrete"'
+- name: Value
+  summary: 状态值标量
+  group: 设计
+- name: Color
+  summary: 状态颜色 [r g b] 向量
+  group: 设计
+- name: Opacity
+  summary: 状态颜色不透明度 1（默认）| 标量
+  group: 设计
+- name: Style
+  summary: 形状和图标组合样式 Intersect（默认）| Simple | Subtract
+  group: 设计
+- name: Shape
+  summary: 状态形状图像
+  group: 设计
+- name: Icon
+  summary: Lamp 模块外观 SVG 图像
+  group: 设计
+  block_parameter: Icon
+  type: string | character vector
+  default: '''Default'''
+- name: X Offset
+  summary: 形状图标组合边界框左边缘相对于模块左边缘的水平偏移 标量
+  group: 设计
+- name: Y Offset
+  summary: 形状图标组合边界框上边缘相对于模块上边缘的垂直偏移 标量
+  group: 设计
+- name: Width
+  summary: 形状图标组合的宽度 标量
+  group: 设计
+- name: Height
+  summary: 形状图标组合的高度 标量
+  group: 设计
+- name: Icon Size
+  summary: 图标图像缩放级别 标量
+  group: 设计
+- name: Use Background Color
+  summary: 指定纯色模块背景色的选项 off（默认）| on
+  group: 设计
+- name: Color
+  summary: 模块背景颜色 [r g b] 向量
+  group: 设计
+  block_parameter: BackgroundColor
+  type: string | character vector
+  values: '[r g b] 向量'
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| 标量
+  group: 设计
+- name: Corner Radius
+  summary: 模块背景颜色区域的圆角半径 标量
+  group: 设计
+- name: X Offset
+  summary: 前景图像左边缘相对于模块左边缘的水平偏移 标量
+  group: 设计
+- name: Y Offset
+  summary: 前景图像上边缘相对于模块上边缘的垂直偏移 标量
+  group: 设计
+- name: Width
+  summary: 前景图像宽度 标量
+  group: 设计
+- name: Height
+  summary: 前景图像高度 标量
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持前景图像宽高比的选项 on（默认）| off
+  group: 设计
+```
 
 使用属性检查器和模块参数对话框指定模块参数的值。要设置仪表板模块的核心参数，请使用模块参数对话框或属性检查器中的 **Parameters** 选项卡。要自定义模块，请使用属性检查器中的 **Design** 选项卡。要打开模块的模块参数对话框，请双击该模块。要打开属性检查器，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
 
@@ -469,7 +588,6 @@ Dashboard 库中包含为每个图标预配置了 Lamp 模块的库。
 ### **Lock Aspect Ratio** — 保持前景图像宽高比的选项 `on`（默认）| `off`
 
 选中此参数以在使用属性检查器调整图像大小时保持宽高比。
-
 ## 所属库
 
 Simulink / Dashboard / Customizable Blocks

@@ -14,6 +14,12 @@ language: en
 # Connection Label
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Connection port untyped circuit envelope port
+  direction: input
+```
 
 ### Input
 
@@ -26,8 +32,13 @@ another block in the subsystem. Once you establish a connection, other
 Connection Label blocks that are in the same
 subsystem and have the same label can be connected only to the same type of
 port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Label
+  summary: Name of connection label Label1 (default) | character vector | string
+  group: ''
+```
 
 ### **Label** — Name of connection label `Label1` (default) | character vector | string
 
@@ -38,7 +49,6 @@ them behave as though they are physically connected.
 
 The value of this parameter appears as a label next to the block icon on the model
 canvas.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Utilities Simscape / Utilities

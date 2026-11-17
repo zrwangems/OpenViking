@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # 2D Controller Blend
 
 ## 端口
+```yaml
+ports:
+- name: y
+  summary: 飞行器测量向量
+  direction: input
+  data_types: double
+- name: v1
+  summary: 调度变量向量
+  direction: input
+  data_types: double
+- name: v2
+  summary: 调度变量向量
+  direction: input
+  data_types: double
+- name: u
+  summary: 作动器需求向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +61,66 @@ chinese_source: worker-translation
 作动器需求，指定为向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: A-matrix(v1,v2)
+  summary: 状态空间实现的 *A* 矩阵 A（默认）| 数组
+  group: ''
+  block_parameter: A
+  type: character vector
+  values: vector
+  default: '''A'''
+- name: B-matrix(v1,v2)
+  summary: 状态空间实现的 *B* 矩阵 A（默认）| 数组
+  group: ''
+  block_parameter: B
+  type: character vector
+  values: vector
+  default: '''B'''
+- name: C-matrix(v1,v2)
+  summary: 状态空间实现的 *C* 矩阵 C（默认）| 数组
+  group: ''
+  block_parameter: C
+  type: character vector
+  values: vector
+  default: '''C'''
+- name: D-matrix(v1,v2)
+  summary: 状态空间实现的 *D* 矩阵 C（默认）| 数组
+  group: ''
+  block_parameter: D
+  type: character vector
+  values: vector
+  default: '''D'''
+- name: First scheduling variable (v1) breakpoints
+  summary: 第一个调度变量的断点 v1_vec（默认）| 向量
+  group: ''
+  block_parameter: breakpoints_v1
+  type: character vector
+  values: vector
+  default: '''v1_vec'''
+- name: Second scheduling variable (v2) breakpoints
+  summary: 第二个调度变量的断点 v2_vec（默认）| 向量
+  group: ''
+  block_parameter: breakpoints_v2
+  type: character vector
+  values: vector
+  default: '''v2_vec'''
+- name: Initial state, x_initial
+  summary: 初始状态 0（默认）| 向量
+  group: ''
+  block_parameter: x_initial
+  type: character vector
+  values: vector
+  default: '''0'''
+- name: Poles of A(v)-H(v)\*C(v)
+  summary: 期望极点 [-5 -2]（默认）
+  group: ''
+  block_parameter: vec_w
+  type: character vector
+  values: vector
+  default: '''[-5 -2]'''
+```
 
 ### **A-matrix(v1,v2)** — 状态空间实现的 *A* 矩阵 A（默认）| 数组
 
@@ -152,7 +229,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：vector |
 | **默认值**：`'[-5 -2]'` |
-
 ## 所属库
 
 Aerospace Blockset / GNC / Control

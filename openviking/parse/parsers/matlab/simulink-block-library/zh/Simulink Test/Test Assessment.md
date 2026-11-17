@@ -15,13 +15,17 @@ chinese_source: worker-translation
 # Test Assessment
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 有关模块参数的说明，请参阅 Subsystem。
-
 ## 所属库
 
 Simulink Test

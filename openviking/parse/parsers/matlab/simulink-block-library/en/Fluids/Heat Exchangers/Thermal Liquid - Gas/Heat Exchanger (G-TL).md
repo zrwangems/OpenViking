@@ -14,6 +14,21 @@ language: en
 # Heat Exchanger (G-TL)
 
 ## Ports
+```yaml
+ports:
+- name: A1
+  summary: Gas port gas
+  direction: conserving
+- name: B1
+  summary: Gas port gas
+  direction: conserving
+- name: A2
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+- name: B2
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,252 @@ exchanger.
 
 Opening for thermal liquid to enter and exit its side of the heat
 exchanger.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: Manner in which the flows align in the heat exchanger Parallel or counter flow (default) | Shell and tube | Cross
+    flow | Generic - effectiveness table
+  group: Common
+- name: Wall thermal resistance
+  summary: Resistance of the wall to heat flow by thermal conduction 0 K/W (default) | positive scalar
+  group: Common
+- name: Number of shell passes
+  summary: Number of times the flow traverses the shell before exiting 1 (default) | unitless scalar
+  group: Common
+- name: Cross flow type
+  summary: Mixing condition in each of the flow channels Both fluids mixed (default) | Both fluids unmixed | Thermal Liquid
+    1 mixed & Thermal Liquid 2 unmixed | Thermal Liquid 1 unmixed & Thermal Liquid 2 mixed
+  group: Common
+- name: Number of heat transfer units vector, NTU
+  summary: Number of transfer units at each breakpoint in lookup table for heat exchanger effectiveness unitless numerical
+    array
+  group: Common
+- name: Thermal capacity ratio vector, CR
+  summary: Thermal capacity ratio at each breakpoint in lookup table for heat exchanger effectiveness unitless numerical array
+  group: Common
+- name: Effectiveness table, E(NTU,CR)
+  summary: Heat exchanger effectiveness at each breakpoint in lookup table over the number of transfer units and thermal capacity
+    ratio unitless numerical array
+  group: Common
+- name: Enable wall thermal mass
+  summary: Option to model wall thermal mass off (default) | on
+  group: Common
+- name: Wall mass
+  summary: Heat exchanger wall mass 1 kg (default) | positive scalar
+  group: Common
+- name: Wall specific heat
+  summary: Heat exchanger wall specific heat 490 J/(K*kg) (default) | positive scalar
+  group: Common
+- name: Minimum free-flow area
+  summary: Cross-sectional area of the flow channel at its narrowest point 0.01 m^2 (default) | scalar with units of length
+    squared
+  group: Gas 1
+- name: Hydraulic diameter for pressure loss
+  summary: Effective diameter of the flow channel at its narrowest point 0.1 m (default) | scalar with units of length
+  group: Gas 1
+- name: Gas volume
+  summary: Total volume of fluid contained in the flow channel 0.01 m^3 (default) | scalar with units of length squared
+  group: Gas 1
+- name: Laminar flow upper Reynolds number limit
+  summary: Start of transition between laminar and turbulent zones 2000 (default) | unitless scalar
+  group: Gas 1
+- name: Turbulent flow lower Reynolds number limit
+  summary: End of transition between laminar and turbulent zones 4000 (default) | unitless scalar
+  group: Gas 1
+- name: Pressure loss model
+  summary: Mathematical model for pressure loss by viscous friction Pressure loss coefficient (default) | Correlation for
+    flow inside tubes | Tabulated data - Darcy friction factor vs. Reynolds number | Tabulated data - Euler number vs. Reynolds
+    number
+  group: Gas 1
+- name: Pressure loss coefficient
+  summary: Aggregate loss coefficient for all flow resistances between the ports 0.1 (default) | unitless scalar
+  group: Gas 1
+- name: Length of flow path from inlet to outlet
+  summary: Distance traveled from port to port 1 m (default) | scalar with units of length
+  group: Gas 1
+- name: Aggregate equivalent length of local resistances
+  summary: Aggregate minor pressure loss expressed as a length 0.1 m (default) | scalar with units of length
+  group: Gas 1
+- name: Internal surface absolute roughness
+  summary: Mean height of surface protrusions behind wall friction 15e-6 m (default) | scalar with units of length
+  group: Gas 1
+- name: Laminar friction constant for Darcy friction factor
+  summary: Pressure loss correction for flow cross section in laminar flow conditions 64 (default) | unitless scalar
+  group: Gas 1
+- name: Reynolds number vector for Darcy friction factor
+  summary: Reynolds number at each breakpoint in lookup table for Darcy friction factor unitless numerical array
+  group: Gas 1
+- name: Darcy friction factor vector
+  summary: Darcy friction factor at each breakpoint in lookup table over Reynolds number unitless numerical array
+  group: Gas 1
+- name: Reynolds number vector for Euler number
+  summary: Reynolds number at each breakpoint in lookup table for Euler number unitless numerical array
+  group: Gas 1
+- name: Euler number vector
+  summary: Euler number at each breakpoint in lookup table over Reynolds number unitless numerical array
+  group: Gas 1
+- name: Heat transfer coefficient model
+  summary: Mathematical model for heat transfer between fluid and wall Constant heat transfer coefficient (default) | Correlation
+    for flow inside tubes | Tabulated data - Colburn factor vs. Reynolds number | Tabulated data - Nusselt number vs. Reynolds
+    number and Prandtl number
+  group: Gas 1
+- name: Heat transfer surface area
+  summary: Effective surface area used in heat transfer between fluid and wall 0.4 m^2 (default) | scalar with units of length
+    squared
+  group: Gas 1
+- name: Gas-wall heat transfer coefficient
+  summary: Heat transfer coefficient for convection between gas and wall 100 W/(K*m^2) (default) | scalar
+  group: Gas 1
+- name: Length of flow path for heat transfer
+  summary: Characteristic length traversed in heat transfer between fluid and wall 1 m (default) | scalar with units of length
+  group: Gas 1
+- name: Nusselt number for laminar flow heat transfer
+  summary: Constant assumed for Nusselt number in laminar flow 3.66 (default) | positive unitless scalar
+  group: Gas 1
+- name: Reynolds number vector for Colburn factor
+  summary: Values of the Reynolds number at which to specify the Colburn factor data unitless numerical array
+  group: Gas 1
+- name: Colburn factor vector
+  summary: Colburn factor at each breakpoint in lookup table over Reynolds number unitless numerical array
+  group: Gas 1
+- name: Reynolds number vector for Nusselt number
+  summary: Reynolds number at each breakpoint in lookup table for Nusselt number unitless numerical array
+  group: Gas 1
+- name: Prandtl number vector for Nusselt number
+  summary: Prandtl number at each breakpoint in lookup table for Nusselt number unitless numerical array
+  group: Gas 1
+- name: Nusselt number table, Nu (Re,Pr)
+  summary: Nusselt number at each breakpoint in lookup table over Reynolds and Prandtl numbers unitless numerical array
+  group: Gas 1
+- name: Fouling factor
+  summary: Measure of thermal resistance due to fouling deposits 1e-4 K*m^2/W (default) | scalar with units of temperature
+    over power
+  group: Gas 1
+- name: Minimum gas-wall heat transfer coefficient
+  summary: Lower bound for the heat transfer coefficient 1 W/(m^2 * K) (default) | scalar with units of power/area/temperature
+  group: Gas 1
+- name: Minimum free-flow area
+  summary: Cross-sectional area of the flow channel at its narrowest point 0.01 m^2 (default) | scalar with units of length
+    squared
+  group: Thermal Liquid 2
+- name: Hydraulic diameter for pressure loss
+  summary: Effective diameter of the flow channel at its narrowest point 0.1 m (default) | scalar with units of length
+  group: Thermal Liquid 2
+- name: Liquid volume
+  summary: Total volume of fluid contained in the flow channel 0.01 m^3 (default) | scalar with units of length squared
+  group: Thermal Liquid 2
+- name: Laminar flow upper Reynolds number limit
+  summary: Start of transition between laminar and turbulent zones 2000 (default) | unitless scalar
+  group: Thermal Liquid 2
+- name: Turbulent flow lower Reynolds number limit
+  summary: End of transition between laminar and turbulent zones 4000 (default) | unitless scalar
+  group: Thermal Liquid 2
+- name: Pressure loss model
+  summary: Mathematical model for pressure loss by viscous friction Pressure loss coefficient (default) | Correlation for
+    flow inside tubes | Tabulated data - Darcy friction factor vs. Reynolds number | Tabulated data - Euler number vs. Reynolds
+    number
+  group: Thermal Liquid 2
+- name: Pressure loss coefficient
+  summary: Aggregate loss coefficient for all flow resistances between the ports 0.1 (default) | unitless scalar
+  group: Thermal Liquid 2
+- name: Length of flow path from inlet to outlet
+  summary: Distance traveled from port to port 1 m (default) | scalar with units of length
+  group: Thermal Liquid 2
+- name: Aggregate equivalent length of local resistances
+  summary: Aggregate minor pressure loss expressed as a length 0.1 m (default) | scalar with units of length
+  group: Thermal Liquid 2
+- name: Internal surface absolute roughness
+  summary: Mean height of surface protrusions behind wall friction 15e-6 m (default) | scalar with units of length
+  group: Thermal Liquid 2
+- name: Laminar friction constant for Darcy friction factor
+  summary: Pressure loss correction for flow cross section in laminar flow conditions 64 (default) | unitless scalar
+  group: Thermal Liquid 2
+- name: Reynolds number vector for Darcy friction factor
+  summary: Reynolds number at each breakpoint in lookup table for Darcy friction factor unitless numerical array
+  group: Thermal Liquid 2
+- name: Darcy friction factor vector
+  summary: Darcy friction factor at each breakpoint in lookup table over Reynolds number unitless numerical array
+  group: Thermal Liquid 2
+- name: Reynolds number vector for Euler number
+  summary: Reynolds number at each breakpoint in lookup table for Euler number unitless numerical array
+  group: Thermal Liquid 2
+- name: Euler number vector
+  summary: Euler number at each breakpoint in lookup table over Reynolds number unitless numerical array
+  group: Thermal Liquid 2
+- name: Heat transfer coefficient model
+  summary: Mathematical model for heat transfer between fluid and wall Constant heat transfer coefficient (default) | Correlation
+    for flow inside tubes | Tabulated data - Colburn factor vs. Reynolds number | Tabulated data - Nusselt number vs. Reynolds
+    number and Prandtl number
+  group: Thermal Liquid 2
+- name: Heat transfer surface area
+  summary: Effective surface area used in heat transfer between fluid and wall 0.4 m^2 (default) | scalar with units of length
+    squared
+  group: Thermal Liquid 2
+- name: Liquid-wall heat transfer coefficient
+  summary: Heat transfer coefficient for convection between fluid and wall 100 W/(K*m^2) (default) | scalar
+  group: Thermal Liquid 2
+- name: Length of flow path for heat transfer
+  summary: Characteristic length traversed in heat transfer between fluid and wall 1 m (default) | scalar with units of length
+  group: Thermal Liquid 2
+- name: Nusselt number for laminar flow heat transfer
+  summary: Constant assumed for Nusselt number in laminar flow 3.66 (default) | positive unitless scalar
+  group: Thermal Liquid 2
+- name: Reynolds number vector for Colburn factor
+  summary: Values of the Reynolds number at which to specify the Colburn factor data unitless numerical array
+  group: Thermal Liquid 2
+- name: Colburn factor vector
+  summary: Colburn factor at each breakpoint in lookup table over Reynolds number unitless numerical array
+  group: Thermal Liquid 2
+- name: Reynolds number vector for Nusselt number
+  summary: Reynolds number at each breakpoint in lookup table for Nusselt number unitless numerical array
+  group: Thermal Liquid 2
+- name: Prandtl number vector for Nusselt number
+  summary: Prandtl number at each breakpoint in lookup table for Nusselt number unitless numerical array
+  group: Thermal Liquid 2
+- name: Nusselt number table, Nu (Re,Pr)
+  summary: Nusselt number at each breakpoint in lookup table over Reynolds and Prandtl numbers unitless numerical array
+  group: Thermal Liquid 2
+- name: Fouling factor
+  summary: Measure of thermal resistance due to fouling deposits 1e-4 K * m^2 / W (default) | scalar with units of temperature
+    over power
+  group: Thermal Liquid 2
+- name: Minimum liquid-wall heat transfer coefficient
+  summary: Lower bound for the heat transfer coefficient 1 W/(m^2 * K) (default) | scalar with units of power/area/temperature
+  group: Thermal Liquid 2
+- name: Enable Gas 1 dynamic compressibility
+  summary: Option to model pressure dynamics in the gas channel On (default) | Off
+  group: Effects and Initial Conditions
+- name: Gas 1 nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Gas 1 nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Gas 1 initial temperature
+  summary: Temperature in the gas channel at the start of simulation 293.15 K (default) | scalar with units of temperature
+  group: Effects and Initial Conditions
+- name: Gas 1 initial pressure
+  summary: Pressure in the gas channel at the start of simulation 0.101325 MPa (default) | scalar with units of pressure
+  group: Effects and Initial Conditions
+- name: Enable Thermal Liquid 2 dynamic compressibility
+  summary: Option to model pressure dynamics in the thermal liquid channel On (default) | Off
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 initial temperature
+  summary: Temperature in the thermal liquid channel at the start of simulation 293.15 K (default) | scalar with units of
+    temperature
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 initial pressure
+  summary: Pressure in the thermal liquid channel at the start of simulation 0.101325 MPa (default) | scalar with units of
+    pressure
+  group: Effects and Initial Conditions
+```
 
 ### Common
 
@@ -1029,7 +1288,6 @@ simulation.
 
 To enable this parameter, select **Enable Thermal Liquid 2
 dynamic compressibility** .
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid - Gas

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Three-axis Gyroscope
 
 ## 端口
+```yaml
+ports:
+- name: ω
+  summary: 角速率三元向量
+  direction: input
+  data_types: double
+- name: G's
+  summary: 加速度三元向量
+  direction: input
+  data_types: double
+- name: ωmeas
+  summary: 测量角速率三元向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,87 @@ chinese_source: worker-translation
 陀螺仪输出的测量角速率，以三元向量形式返回，单位为弧度每秒。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Second order dynamics
+  summary: 二阶动力学 on（默认）| off
+  group: ''
+  block_parameter: dtype_g
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Natural frequency (rad/sec)
+  summary: 自然频率 190（默认）| 标量
+  group: ''
+  block_parameter: w_g
+  type: 字符向量
+  values: 双精度标量
+  default: '''190'''
+- name: Damping ratio
+  summary: 阻尼比 0.707（默认）| 标量
+  group: ''
+  block_parameter: z_g
+  type: 字符向量
+  values: 双精度标量
+  default: '''0.707'''
+- name: Scale factors and cross-coupling
+  summary: 比例因子和交叉耦合 [1 0 0; 0 1 0; 0 0 1]（默认）| 3×3 矩阵
+  group: ''
+  block_parameter: g_sf_cc
+  type: 字符向量
+  values: 3×3 矩阵
+  default: '''[1 0 0; 0 1 0; 0 0 1]'''
+- name: Measurement bias
+  summary: 测量偏置 [0 0 0]（默认）| 三元向量
+  group: ''
+  block_parameter: g_bias
+  type: 字符向量
+  values: 3×3 矩阵
+  default: '''[0 0 0]'''
+- name: G-sensitive bias
+  summary: 速率最大变化量 [0 0 0]（默认）| 三元向量
+  group: ''
+  block_parameter: g_sen
+  type: 字符向量
+  values: 三元向量
+  default: '''[0 0 0]'''
+- name: Update rate (sec)
+  summary: 更新速率 0（默认）| 标量
+  group: ''
+  block_parameter: g_Ts
+  type: 字符向量
+  values: 双精度标量
+  default: '''0'''
+- name: Noise on
+  summary: 白噪声 on（默认）| off
+  group: ''
+  block_parameter: g_rand
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Noise seeds
+  summary: 噪声种子 [23093 23094 23095]（默认）| 三元向量
+  group: ''
+  block_parameter: g_seeds
+  type: 字符向量
+  values: 三元向量
+  default: '''[23093 23094 23095]'''
+- name: Noise power
+  summary: 噪声功率 [0.0001 0.0001 0.0001]（默认）| 三元向量
+  group: ''
+  block_parameter: g_pow
+  type: 字符向量
+  values: 三元向量
+  default: '''[0.0001 0.0001 0.0001]'''
+- name: Lower and upper output limits
+  summary: 角速率的最小值和最大值 [-inf -inf -inf inf inf inf]（默认）| 六元向量
+  group: ''
+  block_parameter: g_sat
+  type: 字符向量
+  values: 六元向量
+  default: '''[-inf -inf -inf inf inf inf]'''
+```
 
 ### **Second order dynamics** — 二阶动力学 `on`（默认）| `off`
 
@@ -198,7 +292,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：六元向量 |
 | **默认值**：`'[-inf -inf -inf inf inf inf]'` |
-
 ## 所属库
 
 Aerospace Blockset / GNC / Navigation

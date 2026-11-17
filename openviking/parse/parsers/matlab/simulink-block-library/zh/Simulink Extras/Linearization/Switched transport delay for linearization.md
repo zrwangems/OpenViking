@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Transport Delay
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 延迟信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -32,8 +43,52 @@ chinese_source: worker-translation
 按指定时间量延迟后的输入信号。输出具有与输入信号相同的维度和数据类型。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Time delay
+  summary: 时间延迟 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: DelayTime
+  type: 字符向量、字符串
+  values: 非负标量、向量或矩阵
+  default: '''1'''
+- name: Initial output
+  summary: 初始输出值 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: InitialOutput
+  type: 字符向量、字符串
+  values: 标量 | 向量 | 矩阵
+  default: '''0'''
+- name: Initial buffer size
+  summary: 初始内存分配 1024（默认）| 正整数标量
+  group: ''
+  block_parameter: BufferSize
+  type: 字符向量、字符串
+  values: 正整数标量
+  default: '''1024'''
+- name: Use fixed buffer size
+  summary: 使用固定大小缓冲区 off（默认）| on
+  group: ''
+  block_parameter: FixedBuffer
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Direct feedthrough of input during linearization
+  summary: 启用直接馈通 off（默认）| on
+  group: ''
+  block_parameter: TransDelayFeedthrough
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Pade order (for linearization)
+  summary: Pade 近似阶数 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: PadeOrder
+  type: 字符向量、字符串
+  values: 标量 | 向量 | 矩阵
+  default: '''0'''
+```
 
 ### **Time delay** — 时间延迟 `1`（默认）| 标量 | 向量 | 矩阵
 
@@ -157,7 +212,6 @@ Coder™ 许可证，即使您未选中此复选框，ERT 或 GRT 代码生成�
 | **类型：** 字符向量、字符串 |
 | **值：** 标量 | 向量 | 矩阵 |
 | **默认值：** `'0'` |
-
 ## 所属库
 
 Simulink / Continuous

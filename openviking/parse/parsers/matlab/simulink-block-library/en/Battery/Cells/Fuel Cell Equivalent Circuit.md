@@ -14,6 +14,24 @@ language: en
 # Fuel Cell Equivalent Circuit
 
 ## Ports
+```yaml
+ports:
+- name: Anode water content
+  summary: Water content in anode, unitless physical signal
+  direction: input
+- name: Cathode water content
+  summary: Water content in cathode, unitless physical signal
+  direction: input
+- name: Cell temperature
+  summary: Cell temperature, K physical signal
+  direction: input
+- name: +
+  summary: Fuel cell positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Fuel cell negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -58,8 +76,88 @@ cell.
 
 Electrical conserving port associated with the negative terminal of the fuel
 cell.
-
 ## Parameters
+```yaml
+parameters:
+- name: Active surface area
+  summary: Total surface area of active cell 14.8 cm^2 (default) | positive scalar
+  group: Main
+- name: Open-circuit voltage
+  summary: Open-circuit voltage 1.23 V (default) | nonnegative scalar
+  group: Open-Circuit Voltage
+- name: Terminal voltage operating range, [Min Max]
+  summary: Operating range of terminal voltage [0, inf] V (default) | vector of two nonnegative scalars
+  group: Open-Circuit Voltage
+- name: Tafel slope
+  summary: Tafel slope 0.0136 V (default) | nonnegative scalar
+  group: Overpotential
+- name: Nominal exchange current
+  summary: Nominal exchange current 0.04777 A (default) | positive scalar
+  group: Overpotential
+- name: Activation and concentration equivalent resistance
+  summary: Activation and concentration equivalent resistance 5e-3 Ohm (default) | positive scalar
+  group: Overpotential
+- name: Overpotential time constant
+  summary: Overpotential time constant 100 s (default) | positive scalar
+  group: Overpotential
+- name: Total membrane thickness
+  summary: Total thickness of membrane 0.127 mm (default) | positive scalar
+  group: Membrane
+- name: Dry density of material
+  summary: Dry density of membrane material 19 g/cm^3 (default) | positive scalar
+  group: Membrane
+- name: Molecular mass of material
+  summary: Molecular mass of the material 1400 g/mol (default) | positive scalar
+  group: Membrane
+- name: Number of membrane discretizations
+  summary: Number of membrane discretizations 3 (default) | positive scalar
+  group: Membrane
+- name: Interface for lambda boundary conditions
+  summary: Option for lambda boundary conditions Mask Parameters (default) | Physical Signal Inputs
+  group: Membrane
+- name: Anode water content
+  summary: Water content in anode 1 (default) | nonnegative scalar
+  group: Membrane
+- name: Cathode water content
+  summary: Water content in cathode 1 (default) | nonnegative scalar
+  group: Membrane
+- name: Initial lambda of each slice
+  summary: Initial lambda of each slice 1 (default) | nonnegative scalar
+  group: Membrane
+- name: Interface for diffusion parameters
+  summary: Option for diffusion parameters Mask Parameters (default) | Lookup table | Literature Heuristic
+  group: Membrane
+- name: Diffusion coefficient
+  summary: Diffusion coefficient 1.5e-10 m^2/s (default) | positive scalar
+  group: Membrane
+- name: Diffusion coefficient table data (1-D)
+  summary: Diffusion coefficient table data [1e-10, 1.5e-10] m^2/s (default) | vector of positive scalars
+  group: Membrane
+- name: Diffusion coefficient breakpoints
+  summary: Breakpoints for diffusion coefficient lookup table [0, 400] K (default) | vector of nonnegative scalars
+  group: Membrane
+- name: Interface for electro-osmotic drag parameters
+  summary: Option for electro-osmotic drag parameters Mask Parameters (default) | Lookup table | Literature Heuristic
+  group: Membrane
+- name: Electro-osmotic drag coefficient
+  summary: Electro-osmotic drag coefficient 2.5 (default) | positive scalar
+  group: Membrane
+- name: Drag table data (1-D)
+  summary: Drag table data [1, 2.5, 2.5] (default) | vector of nonnegative scalars
+  group: Membrane
+- name: Electro-osmotic drag coefficient breakpoints
+  summary: Breakpoints for drag coefficient lookup table [1, 14, 20] (default) | vector of nonnegative scalars
+  group: Membrane
+- name: Drag scale factor
+  summary: Drag scale factor 1 (default) | positive scalar
+  group: Membrane
+- name: Interface for temperature
+  summary: Option for temperature parameter Mask Parameters (default) | Physical Signal Inputs
+  group: Thermal
+- name: Cell temperature
+  summary: Temperature of fuel cell 303.15 K (default) | positive scalar
+  group: Thermal
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -252,7 +350,6 @@ Temperature of the fuel cell.
 
 To enable this parameter, set **Interface for temperature** to
 `Mask Parameters`.
-
 ## Libraries
 
 Simscape / Battery / Cells

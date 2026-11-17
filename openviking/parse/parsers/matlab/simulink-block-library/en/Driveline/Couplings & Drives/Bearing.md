@@ -14,6 +14,21 @@ language: en
 # Bearing
 
 ## Ports
+```yaml
+ports:
+- name: Load
+  summary: Variable load input, N physical signal
+  direction: input
+- name: B
+  summary: Base mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -54,8 +69,87 @@ is enabled, the block assumes the casing reference is stationary.
 
 To enable this port, select **Enable case
 port**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Bearing type
+  summary: Bearing option Ball or Roller (default) | Journal
+  group: Mechanical Properties
+- name: Enable follower port
+  summary: Follower port option off (default) | on
+  group: Mechanical Properties
+- name: Enable case port
+  summary: Case port option off (default) | on
+  group: Mechanical Properties
+- name: Radius
+  summary: Bearing interface radius 30 mm (default) | positive scalar
+  group: Mechanical Properties
+- name: Length
+  summary: Bearing interface length 100 mm (default) | positive scalar
+  group: Mechanical Properties
+- name: Radial load specification
+  summary: Option to control radial load Constant (default) | Variable
+  group: Mechanical Properties
+- name: Load on bearing
+  summary: Constant bearing load 10 N (default) | positive scalar
+  group: Mechanical Properties
+- name: Force threshold
+  summary: Load threshold 0.001 N (default)
+  group: Mechanical Properties
+- name: Angular velocity threshold
+  summary: Angular velocity threshold 0.001 rev/s (default)
+  group: Mechanical Properties
+- name: Coefficient of friction specification
+  summary: Option to specify coefficient of friction Constant (default) | Variable
+  group: Mechanical Properties
+- name: Coefficient of friction
+  summary: Coefficient of friction 0.002 (default) | positive scalar
+  group: Mechanical Properties
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Linear (default) | Smooth
+  group: Mechanical Properties
+- name: Extrapolation method
+  summary: Method of handling input values that fall outside range of breakpoint data set Linear (default) | Nearest | Error
+  group: Mechanical Properties
+- name: Bearing angular speed vector, ω
+  summary: Bearing angular velocity [10, 2500, 5000, 10000, 25000] rpm (default) | vector of length *N*
+  group: Mechanical Properties
+- name: Coefficient of friction, f(ω)
+  summary: Coefficient of friction [.004, .001, .0005, .00025, .000125] (default) | vector of length *N*
+  group: Mechanical Properties
+- name: Customize friction curve
+  summary: Option to customize bearing friction curve off (default) | on
+  group: Fluid Properties
+- name: Dynamic viscosity
+  summary: Lubricant dynamic viscosity 0.29 Pa*s (default) | positive scalar
+  group: Fluid Properties
+- name: Minimum coefficient of friction
+  summary: Minimum coefficient of friction 0.002 (default) | positive scalar
+  group: Fluid Properties
+- name: Bearing Modulus
+  summary: Journal bearing modulus 7.2519e-08 rev (default) | positive scalar
+  group: Fluid Properties
+- name: Normalized Hersey number vector
+  summary: Normalized Hersey number [.4306, .6124, .6651, .7512, .866, 1, 1.1962, 1.4354, 3.8517] (default) | vector of length
+    *M*
+  group: Fluid Properties
+- name: Normalized viscous coefficient vector
+  summary: Normalized viscous friction coefficient [3.6621, 1.672, 1.3397, 1.1811, 1.0743, 1, 1.0358, 1.1173, 2.2792] (default)
+    | vector of length *M*
+  group: Fluid Properties
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Linear (default) | Smooth
+  group: Fluid Properties
+- name: Extrapolation method
+  summary: Method of handling input values that fall outside range of breakpoint data set Linear (default) | Nearest | Error
+  group: Fluid Properties
+- name: Damping fault
+  summary: Option to model bearing failure Add fault
+  group: Faults
+- name: Faulted damping coefficient multiplier
+  summary: Damping multiplier 5 (default) | positive scalar
+  group: Faults
+```
 
 ### Mechanical Properties
 
@@ -314,7 +408,6 @@ Damping coefficient when a fault is triggered.
 
 To enable this parameter, enable faults for the block by clicking the **Add
 fault** hyperlink.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

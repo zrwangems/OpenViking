@@ -14,6 +14,15 @@ language: en
 # Infinite Flow Resistance (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Flow rate is zero isothermal liquid
+  direction: conserving
+- name: B
+  summary: Flow rate is zero isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,11 +33,12 @@ Isothermal liquid conserving port with no fluid flow.
 ### **B** — Flow rate is zero isothermal liquid
 
 Isothermal liquid conserving port with no fluid flow.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

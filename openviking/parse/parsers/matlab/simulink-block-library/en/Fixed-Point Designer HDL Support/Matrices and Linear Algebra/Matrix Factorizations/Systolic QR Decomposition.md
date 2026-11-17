@@ -14,6 +14,45 @@ language: en
 # Systolic QR Decomposition
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Matrix *A* matrix
+  direction: input
+  data_types: single | double | fixed point
+- name: B
+  summary: Matrix *B* matrix
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: Whether inputs are valid scalar
+  direction: input
+  data_types: Boolean
+- name: readyIn
+  summary: Whether downstream block is ready scalar
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: Whether to clear internal states scalar
+  direction: input
+  data_types: Boolean
+- name: R
+  summary: Matrix *R* matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: C
+  summary: Matrix *C = Q'B* matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: Whether output data is valid scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Whether block is ready scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -145,8 +184,30 @@ until **ready** is set to `false` before sending another
 **validIn** signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of rows in matrices A and B
+  summary: Number of rows in matrices *A* and *B* 2 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: m
+  values: 2 (default) | positive integer-valued scalar
+- name: Number of columns in matrix A
+  summary: Number of columns in matrix *A* 2 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: n
+  values: 2 (default) | positive integer-valued scalar
+- name: Number of columns in matrix B
+  summary: Number of columns in matrix *B* 1 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: p
+  values: 1 (default) | positive integer-valued scalar
+- name: Signal type
+  summary: Complexity of matrices *A* and *B* real (default) | complex
+  group: ''
+  block_parameter: complexity
+  values: real (default) | complex
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -228,7 +289,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `complexity` |
 | **Values:** | `real` (default) | `complex` |
 | **Data Types:** | `char` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations

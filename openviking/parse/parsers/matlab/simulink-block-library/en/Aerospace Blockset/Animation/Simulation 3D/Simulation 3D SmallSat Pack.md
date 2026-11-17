@@ -14,6 +14,23 @@ language: en
 # Simulation 3D SmallSat Pack
 
 ## Ports
+```yaml
+ports:
+- name: Body_T
+  summary: Body translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: Body rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: Spacecraft translation 20-by-3 array
+  direction: output
+- name: Rotation
+  summary: Spacecraft rotation 20-by-3 array
+  direction: output
+```
 
 ### Input
 
@@ -71,8 +88,205 @@ The rotation applies to the same bones as listed for the Translation port.
 
 The signal contains the rotation [roll, pitch, yaw], in radians, with one row of
 the array for each bone of the spacecraft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Antenna 1 translation
+  summary: Option to enable Antenna1_T input port off (default) | on
+  group: Sensors
+  block_parameter: Antenna1_T
+  values: '''off'' (default) | ''on'''
+- name: Antenna 1 rotation
+  summary: Option to enable Antenna1_R input port off (default) | on
+  group: Sensors
+  block_parameter: Antenna1_R
+  values: '''off'' (default) | ''on'''
+- name: Antenna 2 translation
+  summary: Option to enable Antenna2_T input port off (default) | on
+  group: Sensors
+  block_parameter: Antenna2_T
+  values: '''off'' (default) | ''on'''
+- name: Antenna 2 rotation
+  summary: Option to enable Antenna2_R input port off (default) | on
+  group: Sensors
+  block_parameter: Antenna2_R
+  values: '''off'' (default) | ''on'''
+- name: Antenna 3 translation
+  summary: Option to enable Antenna3_T input port off (default) | on
+  group: Sensors
+  block_parameter: Antenna3_T
+  values: '''off'' (default) | ''on'''
+- name: Antenna 3 rotation
+  summary: Option to enable Antenna3_R input port off (default) | on
+  group: Sensors
+  block_parameter: Antenna3_R
+  values: '''off'' (default) | ''on'''
+- name: Antenna 4 translation
+  summary: Option to enable Antenna4_T input port off (default) | on
+  group: Sensors
+  block_parameter: Antenna4_T
+  values: '''off'' (default) | ''on'''
+- name: Antenna 4 rotation
+  summary: Option to enable Antenna4_R input port off (default) | on
+  group: Sensors
+  block_parameter: Antenna4_R
+  values: '''off'' (default) | ''on'''
+- name: Sensor 1 translation
+  summary: Option to enable Sensor1_T input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor1_T
+  values: '''off'' (default) | ''on'''
+- name: Sensor 1 rotation
+  summary: Option to enable Sensor1_R input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor1_R
+  values: '''off'' (default) | ''on'''
+- name: Sensor 2 translation
+  summary: Option to enable Sensor2_T input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor2_T
+  values: '''off'' (default) | ''on'''
+- name: Sensor 2 rotation
+  summary: Option to enable Sensor2_R input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor2_R
+  values: '''off'' (default) | ''on'''
+- name: Sensor 3 translation
+  summary: Option to enable Sensor3_T input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor3_T
+  values: '''off'' (default) | ''on'''
+- name: Sensor 3 rotation
+  summary: Option to enable Sensor3_R input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor3_R
+  values: '''off'' (default) | ''on'''
+- name: Sensor 4 translation
+  summary: Option to enable Sensor4_T input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor4_T
+  values: '''off'' (default) | ''on'''
+- name: Sensor 4 rotation
+  summary: Option to enable Sensor4_R input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor4_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1 translation
+  summary: Option to enable SolarArray1_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1 rotation
+  summary: Option to enable SolarArray1_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1.1 translation
+  summary: Option to enable SolarArray1_1_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_1_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1.1 rotation
+  summary: Option to enable SolarArray1_1_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_1_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1.1.1 translation
+  summary: Option to enable SolarArray1_1_1_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_1_1_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1.1.1 rotation
+  summary: Option to enable SolarArray1_1_1_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_1_1_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1.1.1.1 translation
+  summary: Option to enable SolarArray1_1_1_1_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_1_1_1_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1.1.1.1 rotation
+  summary: Option to enable SolarArray1_1_1_1_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_1_1_1_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1.1.1.1.1 translation
+  summary: Option to enable SolarArray1_1_1_1_1_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_1_1_1_1_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 1.1.1.1.1 rotation
+  summary: Option to enable SolarArray1_1_1_1_1_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray1_1_1_1_1_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2 translation
+  summary: Option to enable SolarArray2_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2 rotation
+  summary: Option to enable SolarArray2_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2.2 translation
+  summary: Option to enable SolarArray2_2_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_2_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2.2 rotation
+  summary: Option to enable SolarArray2_2_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_2_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2.2.2 translation
+  summary: Option to enable SolarArray2_2_2_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_2_2_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2.2.2 rotation
+  summary: Option to enable SolarArray2_2_2_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_2_2_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2.2.2.2 translation
+  summary: Option to enable SolarArray2_2_2_2_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_2_2_2_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2.2.2.2 rotation
+  summary: Option to enable SolarArray2_2_2_2_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_2_2_2_R
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2.2.2.2.2 translation
+  summary: Option to enable SolarArray2_2_2_2_2_T input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_2_2_2_2_T
+  values: '''off'' (default) | ''on'''
+- name: Solar array 2.2.2.2.2 rotation
+  summary: Option to enable SolarArray2_2_2_2_2_R input port off (default) | on
+  group: Solar Arrays
+  block_parameter: SolarArray2_2_2_2_2_R
+  values: '''off'' (default) | ''on'''
+- name: Thruster translation
+  summary: Option to enable Thruster_T input port off (default) | on
+  group: Thrusters
+  block_parameter: Thruster_T
+  values: '''off'' (default) | ''on'''
+- name: Thruster rotation
+  summary: Option to enable Thruster_R input port off (default) | on
+  group: Thrusters
+  block_parameter: Thruster_R
+  values: '''off'' (default) | ''on'''
+- name: Select input coordinate frame
+  summary: Input coordinate frame NED (default) | Fixed-frame | ICRF
+  group: Input
+  block_parameter: GeoRadioButton
+  values: '''NED'' (default) | ''Fixed-frame'' | ''ICRF'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -767,7 +981,6 @@ programmatically, use the `get_param` function.
 | --- | --- |
 | **Parameter:** | `GeoRadioButton` |
 | **Values:** | `'NED'` (default) | `'Fixed-frame'` | `'ICRF'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Simulation 3D

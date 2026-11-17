@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Logitech G29 Steering Wheel
 
 ## 端口
+```yaml
+ports:
+- name: Buttons
+  summary: 方向盘按钮状态 0（= 未按下）| 1（= 已按下）
+  direction: output
+  data_types: Boolean
+- name: Steering
+  summary: 方向盘位置值 0（= 最左）| 65535（= 最右）
+  direction: output
+  data_types: uint16
+- name: Pedals
+  summary: 油门、制动和离合器踏板状态 0（= 未踩下）| 255（= 完全踩下）
+  direction: output
+  data_types: uint8
+- name: Direction
+  summary: 方向盘方向板按钮状态 0（= UP）| 2（= RIGHT）| 4（= DOWN）| 6（= LEFT）| 8（= UNPRESSED）
+  direction: output
+  data_types: uint8
+- name: Status
+  summary: 与方向盘通信的状态 0（默认）| 负值
+  direction: output
+  data_types: int32
+```
 
 ### 输出
 
@@ -65,8 +88,14 @@ chinese_source: worker-translation
 `Status` 输出值指示与方向盘通信成功（0）或通信失败（负值）。
 
 **数据类型：** `int32`
-
 ## 参数
+```yaml
+parameters:
+- name: sampleTime
+  summary: 方向盘数据的采样时间 -1（继承）（默认）
+  group: ''
+  block_parameter: sampleTime
+```
 
 ### **sampleTime** — 方向盘数据的采样时间 -1（继承）（默认）
 
@@ -77,7 +106,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `sampleTime` |
-
 ## 所属库
 
 Simulink Real-Time / Logitech G29

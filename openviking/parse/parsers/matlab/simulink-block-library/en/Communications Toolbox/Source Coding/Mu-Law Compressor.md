@@ -14,10 +14,15 @@ language: en
 # Mu-Law Compressor
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **mu value**
 :   The µ-law parameter of the compressor.
@@ -25,7 +30,6 @@ Not documented in R2025b.
 **Peak signal magnitude**
 :   The peak value of the input signal. This is also the peak value of the
     output.
-
 ## Libraries
 
 Not documented in R2025b.

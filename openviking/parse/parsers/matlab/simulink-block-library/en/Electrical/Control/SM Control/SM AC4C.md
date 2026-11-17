@@ -14,6 +14,53 @@ language: en
 # SM AC4C
 
 ## Ports
+```yaml
+ports:
+- name: V_REF
+  summary: Voltage reference scalar
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: Input from stabilizer scalar
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: Terminal voltage scalar
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: Terminal current scalar
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: Overexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: Underexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: Summation point stator current limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_OELscl
+  summary: Take-over stator current limit for overexcitation limiter scalar
+  direction: input
+  data_types: single | double
+- name: V_UELscl
+  summary: Take-over stator current limit for underexcitation limiter scalar
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: Measured field current scalar
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: Field voltage scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -156,8 +203,61 @@ Per-unit field voltage to apply to the field circuit of the synchronous machine,
 scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: Initial output voltage 1 (default) | real number
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Resistive component of load compensation, R_C (pu)
+  summary: Compensation resistance 0 (default) | positive number
+  group: Pre-Control
+- name: Reactance component of load compensation, X_C (pu)
+  summary: Compensation reactance 0 (default) | positive number
+  group: Pre-Control
+- name: Regulator input filter time constant, T_R (s)
+  summary: Regulator time constant 0 (default) | positive number
+  group: Pre-Control
+- name: Regulator output gain, K_A (pu)
+  summary: Regulator gain 300 (default) | positive number
+  group: Control
+- name: Regulator output time constant, T_A (s)
+  summary: Regulator time constant 0.015 (default) | positive number
+  group: Control
+- name: Regulator denominator (lag) time constant, T_B (s)
+  summary: Regulator lag time constant 10 (default) | positive number
+  group: Control
+- name: Regulator numerator (lead) time constant, T_C (s)
+  summary: Regulator lead time constant 1 (default) | positive number
+  group: Control
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: Upper limit of the regulator output 5.64 (default) | real number
+  group: Control
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: Lower limit of the regulator output -4.53 (default) | real number
+  group: Control
+- name: Voltage regulator input (voltage error) maximum limit, V_Imax (pu)
+  summary: Maximum limit of the voltage error 10 (default) | real number
+  group: Control
+- name: Voltage regulator input (voltage error) minimum limit, V_Imin (pu)
+  summary: Minimum limit of the voltage error -10 (default) | real number
+  group: Control
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: Rectifier loading factor 0 (default) | positive number
+  group: Exciter
+```
 
 ### General
 
@@ -262,7 +362,6 @@ Location of the stator current limiter input:
 ### **Rectifier loading factor proportional to commutating reactance, K\_C (pu)** — Rectifier loading factor `0` (default) | positive number
 
 Rectifier loading factor proportional to the commutating reactance.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

@@ -14,6 +14,15 @@ language: en
 # Voltage Source (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: n
+  summary: Wye center electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -27,8 +36,50 @@ port associated with the three phases, *a*,
 
 Electrical conserving port associated with the center of the
 wye.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Rated voltage (phase-to-phase RMS)
+  summary: RMS line voltage sqrt(3) * 100 / sqrt(2) V (default)
+  group: Main
+- name: Phase shift
+  summary: Phase shift 0 deg (default)
+  group: Main
+- name: Frequency
+  summary: Voltage frequency 60 Hz (default)
+  group: Main
+- name: Source impedance
+  summary: Source impedance method X/R Ratio (default) | None | Series R | Series L | Series RL
+  group: Main
+- name: Short-circuit power level
+  summary: Short-circuit power level 1e6 V*A (default)
+  group: Main
+- name: Source X/R ratio
+  summary: Reactance-to-resistance ratio 15 (default)
+  group: Main
+- name: Source resistance
+  summary: Source resistance 0.01 Ohm (default)
+  group: Main
+- name: Source inductance
+  summary: Source inductance 3.97e-4 H (default)
+  group: Main
+- name: Source harmonics
+  summary: Source Harmonics None (default) | Generate harmonics
+  group: Harmonics
+- name: Harmonic orders
+  summary: Harmonic orders [5, 7, 11, 13] (default)
+  group: Harmonics
+- name: Harmonic magnitude to peak magnitude ratios
+  summary: Harmonic magnitude to peak magnitude ratios [.1, .1, .1, .1] (default)
+  group: Harmonics
+- name: Source impedance parasitic parallel conductance
+  summary: Source impedance parasitic parallel conductance 0 1/Ohm (default)
+  group: Parasitics
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -152,7 +203,6 @@ This parameter is visible only when you select `X/R
 Ratio`, `Series L` or
 `Series RL` for the **Source
 Impedance** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Sources

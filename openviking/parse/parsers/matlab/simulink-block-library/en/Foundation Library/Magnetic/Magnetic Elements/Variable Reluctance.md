@@ -14,6 +14,9 @@ language: en
 # Variable Reluctance
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -25,8 +28,10 @@ The block has the following ports:
 
 The block also has one physical signal input port that provides
 the value of the length of air gap or thickness of section.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Minimum length or thickness X>=0**
 :   The minimum value of length of air gap or thickness of section.
@@ -40,7 +45,6 @@ the value of the length of air gap or thickness of section.
 **Relative permeability of material**
 :   Relative permeability of the section material. The default value
     is `1`.
-
 ## Libraries
 
 Not documented in R2025b.

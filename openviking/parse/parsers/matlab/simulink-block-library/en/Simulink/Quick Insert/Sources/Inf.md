@@ -14,6 +14,14 @@ language: en
 # Constant
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Constant value scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Output
 
@@ -27,8 +35,74 @@ specify the output to be any data type that Simulink® supports, including fixed
 types.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant value
+  summary: Constant output value scalar | vector | matrix | N-D array
+  group: Main
+  block_parameter: Value
+  values: scalar in quotes | vector in quotes | matrix in quotes | array in quotes
+- name: Interpret vector parameters as 1-D
+  summary: Treat vectors as 1-D on (default) | off
+  group: Main
+  block_parameter: VectorParams1D
+  values: '''on'' (default) | ''off'''
+- name: Sample time
+  summary: Sampling interval inf (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '''inf''  (default) | scalar in quotes | vector in quotes'
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[ ]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[ ]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit from ''Constant value'' (default) | Inherit: Inherit via back propagation |
+    double | single | half | int8 | int16 | ...'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit from ''Constant value'''' (default) | ''Inherit: Inherit via back propagation'' | ''double''
+    | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''
+    | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''Bus: <object
+    name>'' | ''ValueType: <object name>'' | ''<data type expression>'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Mode
+  summary: Category of data to specify Inherit (default) | Built in | Fixed point | Enumerated | Bus object | Value type |
+    Expression
+  group: Signal Attributes
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: Signal Attributes
+- name: Signedness
+  summary: Specify signed or unsigned Signed (default) | Unsigned
+  group: Signal Attributes
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias
+  group: Signal Attributes
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: Signal Attributes
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: Signal Attributes
+- name: Slope
+  summary: Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar
+  group: Signal Attributes
+- name: Bias
+  summary: Specify bias for the fixed-point data type 0 (default) | real-valued scalar
+  group: Signal Attributes
+```
 
 ### Main
 
@@ -439,7 +513,6 @@ more information, see Specifying a Fixed-Point Data Type.
 
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Sources DSP System Toolbox / Sources HDL Coder / Commonly Used Blocks HDL Coder / Sources

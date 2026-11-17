@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # From Spreadsheet
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 来自电子表格的数据 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### 输出
 
@@ -29,8 +37,114 @@ chinese_source: worker-translation
 From Spreadsheet 模块在模块级别接受数据类型规范。如果要为每个信号指定不同的数据类型，请考虑选择 **Output Data Type** > **Inherit: Auto**。此选项使用反向传播来解析反向信号数据类型。例如，假设 From Spreadsheet 模块中有两个信号 In1 和 In2，该模块将它们发送到具有 int8 和 Boolean 数据类型的端口。通过反向传播，该模块将 In1 重新转换为 int8，将 In2 重新转换为 Boolean。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 完整路径和文件名 untitled.xlsx（默认）| 完整路径 | 相对路径
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: 完整路径和文件名
+  default: '''untitled.xlsx'''
+- name: Sheet name
+  summary: 电子表格中的工作表名称 Sheet1（默认）| 工作表名称
+  group: ''
+  block_parameter: SheetName
+  type: character vector
+  values: Sheet name
+  default: '''Sheet1'''
+- name: Range
+  summary: 单元格范围 工作表中已使用单元格的整个范围（默认）| 逗号分隔的 column:row 列表
+  group: ''
+  block_parameter: Range
+  type: character vector
+  values: entire range of used cells in sheet | comma-separated list of column:row
+  default: ''''''
+- name: Output data type
+  summary: '输出数据类型 Inherit: auto（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 |
+    boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class_name> | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''
+    | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''<data
+    type expression>'''
+  default: '''Inherit: auto'''
+- name: Treat first column as
+  summary: 时间或数据 Time（默认）| Data
+  group: ''
+  block_parameter: TreatFirstColumnAs
+  type: character vector
+  values: '''Time'' | ''Data'''
+  default: '''Time'''
+- name: Sample time
+  summary: 采样周期和偏移量 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Data extrapolation before first data point
+  summary: 电子表格中初始时间戳之前的仿真时间的外插方法 Linear extrapolation（默认）| Hold first value | Ground value
+  group: ''
+  block_parameter: ExtrapolationBeforeFirstDataPoint
+  type: character vector
+  values: '''Linear extrapolation'' | ''Hold first value'' | ''Ground value'''
+  default: '''Linear extrapolation'''
+- name: Data interpolation within time range
+  summary: 落在电子表格中两个时间戳之间的仿真时间的插值方法 Linear interpolation（默认）| Zero order hold
+  group: ''
+  block_parameter: InterpolationWithinTimeRange
+  type: character vector
+  values: '''Linear interpolation'' | ''Zero order hold'''
+  default: '''Linear interpolation'''
+- name: Data extrapolation after last data point
+  summary: 电子表格中最后一个时间戳之后的仿真时间的外插方法 Linear extrapolation（默认）| Hold last value | Ground value
+  group: ''
+  block_parameter: ExtrapolationAfterLastDataPoint
+  type: character vector
+  values: '''Linear extrapolation'' | ''Hold last value'' | ''Ground value'''
+  default: '''Linear extrapolation'''
+- name: Output after last data point
+  summary: 最后一个数据点之后的操作 Repeating sequence（默认）| Hold final value | Ground value
+  group: ''
+  block_parameter: OutputAfterLastPoint
+  type: character vector
+  values: '''Repeating sequence'' | ''Hold final value'' | ''Ground value'''
+  default: '''Repeating sequence'''
+- name: 启用过零检测
+  summary: 启用过零检测的选项 off（默认）| on
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 模式
+  summary: 要指定的数据类型类别 Inherit（默认）| Built in | Fixed point | Enumerated | Expression
+  group: ''
+- name: 数据类型覆盖
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: ''
+- name: 符号性
+  summary: 指定有符号或无符号 Signed（默认）| Unsigned
+  group: ''
+- name: 定标
+  summary: 定点数据的定标方法 Binary point（默认）| Best precision | Slope and bias
+  group: ''
+- name: 字长
+  summary: 保存量化整数的字的位大小 16（默认）| 0 到 32 的整数
+  group: ''
+- name: 小数长度
+  summary: 指定定点数据类型的小数长度 0（默认）| 标量整数
+  group: ''
+- name: 斜率
+  summary: 指定定点数据类型的斜率 2^0（默认）| 正实值标量
+  group: ''
+- name: 偏置
+  summary: 指定定点数据类型的偏置 0（默认）| 实值标量
+  group: ''
+```
 
 ### **File name** — 完整路径和文件名 `untitled.xlsx`（默认）| 完整路径 | 相对路径
 
@@ -422,7 +536,6 @@ signal:   2 3 4 5 6
 #### 依赖关系
 
 要启用此参数，请将**定标**设置为 `Slope and bias`。
-
 ## 所属库
 
 Simulink / Sources

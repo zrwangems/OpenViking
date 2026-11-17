@@ -14,6 +14,20 @@ language: en
 # Interlacer
 
 ## Ports
+```yaml
+ports:
+- name: O
+  summary: Odd-numbered elements vector
+  direction: input
+  data_types: double | single
+- name: E
+  summary: Even-numbered elements vector
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output signal column vector
+  direction: output
+```
 
 ### Input
 
@@ -43,11 +57,12 @@ elements in the output vector contain the elements from input
 vector contain the elements from input `E`. The
 output vector has the same data type and sample time as the
 input.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Communications Toolbox / Sequence Operations

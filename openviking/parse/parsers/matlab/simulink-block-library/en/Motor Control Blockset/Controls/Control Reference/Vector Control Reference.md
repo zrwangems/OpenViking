@@ -14,6 +14,25 @@ language: en
 # Vector Control Reference
 
 ## Ports
+```yaml
+ports:
+- name: magref
+  summary: Magnitude of reference vector scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: Electrical position of reference vector scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: dref
+  summary: '*d*-axis component of reference vector scalar'
+  direction: output
+  data_types: single | double | fixed point
+- name: qref
+  summary: '*q*-axis component of reference vector scalar'
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -45,8 +64,19 @@ Reference voltage, current, or flux vector component along the quadrature axis o
 the rotating *dq* reference frame.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Alpha (phase-a) axis alignment
+  summary: '*dq* reference frame alignment D-axis (default) | Q-axis'
+  group: ''
+- name: Theta units
+  summary: Unit of input position value Per-unit (default) | Radians | Degrees
+  group: ''
+- name: Number of data points for trigonometric lookup table
+  summary: Size of lookup table array 1024 (default) | scalar
+  group: ''
+```
 
 ### **Alpha (phase-a) axis alignment** — *dq* reference frame alignment `D-axis` (default) | `Q-axis`
 
@@ -62,7 +92,6 @@ vector.
 ### **Number of data points for trigonometric lookup table** — Size of lookup table array `1024` (default) | scalar
 
 Size of the lookup table array.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference

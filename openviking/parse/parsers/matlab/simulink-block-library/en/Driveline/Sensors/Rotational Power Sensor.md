@@ -14,6 +14,21 @@ language: en
 # Rotational Power Sensor
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Change in rotational power, W physical signal
+  direction: conserving
+- name: C
+  summary: Follower port mechanical rotational
+  direction: conserving
+- name: R
+  summary: Base port mechanical rotational
+  direction: conserving
+- name: S
+  summary: Source port mechanical rotational
+  direction: conserving
+```
 
 ### Physical Signal
 
@@ -34,8 +49,23 @@ Mechanical rotational conserving port associated with the load.
 ### **S** — Source port mechanical rotational
 
 Mechanical rotational conserving port associated with driving source.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement type
+  summary: Power measuring method Instantaneous power (default) | Average power over a specified period | Average power over
+    a vibration | Average power over a revolution
+  group: ''
+- name: Averaging period
+  summary: Timespan for power averaged over a specified period 1 s (default) | positive scalar
+  group: ''
+- name: Maximum vibration frequency
+  summary: Highest frequency to use when averaging power over a vibration 1000 Hz (default) | positive scalar
+  group: ''
+- name: Maximum rotational speed
+  summary: Highest angular velocity to use when averaging power over revolution 1000 rpm (default) | positive scalar
+  group: ''
+```
 
 ### **Measurement type** — Power measuring method `Instantaneous power` (default) | `Average power over a specified period` | `Average power over a vibration` | `Average power over a revolution`
 
@@ -86,7 +116,6 @@ measurements.
 
 To enable this parameter, set **Measurement type** to
 `Average power over a revolution`.
-
 ## Libraries
 
 Simscape / Driveline / Sensors

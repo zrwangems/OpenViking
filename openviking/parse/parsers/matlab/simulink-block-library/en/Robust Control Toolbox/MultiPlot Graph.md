@@ -14,6 +14,12 @@ language: en
 # MultiPlot Graph
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(y)
+  summary: Signal to plot scalar | vector
+  direction: input
+```
 
 ### Input
 
@@ -25,8 +31,46 @@ the signals you want to plot into a vector signal, using blocks such as:
 - Mux (Simulink)
 - Vector Concatenate (Simulink)
 - Bus Creator (Simulink)
-
 ## Parameters
+```yaml
+parameters:
+- name: t-min
+  summary: X-axis lower limit 0 (default) | scalar | vector
+  group: ''
+  block_parameter: tmin
+  type: scalar, vector
+  default: '0'
+- name: t-max
+  summary: X-axis upper limit 20 (default) | scalar | vector
+  group: ''
+  block_parameter: tmax
+  type: scalar, vector
+  default: '20'
+- name: y-min
+  summary: Y-axis lower limit –1 (default) | scalar | vector
+  group: ''
+  block_parameter: ymin
+  type: scalar, vector
+  default: –1
+- name: y-max
+  summary: Y-axis upper limit 1 (default) | scalar | vector
+  group: ''
+  block_parameter: ymax
+  type: scalar, vector
+  default: '1'
+- name: Plot title
+  summary: Figure title empty (default) | character vector
+  group: ''
+  block_parameter: titleString
+  type: character vector
+  default: ''''''
+- name: Workspace variable for export
+  summary: Variable name for saving plot data multisimout (default) | character vector
+  group: ''
+  block_parameter: vnamesave
+  type: character vector
+  default: ''''''
+```
 
 ### **t-min** — X-axis lower limit 0 (default) | scalar | vector
 
@@ -121,7 +165,6 @@ the following fields:
 | **Block Parameter:** `vnamesave` |
 | **Type:** character vector |
 | **Default:** `''` |
-
 ## Libraries
 
 Robust Control Toolbox

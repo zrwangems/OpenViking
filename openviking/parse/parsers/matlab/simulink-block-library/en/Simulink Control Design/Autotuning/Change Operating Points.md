@@ -14,6 +14,36 @@ language: en
 # Change Operating Points
 
 ## Ports
+```yaml
+ports:
+- name: systeminputs_in
+  summary: System inputs array
+  direction: input
+- name: enable/disable
+  summary: Enable and disable changing operating points scalar
+  direction: input
+- name: autotuning times
+  summary: Time vector to start autotuning vector
+  direction: input
+- name: next OP
+  summary: Next operating point scalar
+  direction: input
+- name: y
+  summary: Plant output scalar | vector
+  direction: input
+- name: enable autotuning
+  summary: Enable or disable autotuning scalar
+  direction: input
+- name: snapshot trigger
+  summary: Snapshot trigger vector
+  direction: input
+- name: systeminputs_out
+  summary: Operating point output bus
+  direction: output
+- name: start_stop
+  summary: Signal to start and stop the autotuning scalar
+  direction: output
+```
 
 ### Input
 
@@ -142,8 +172,207 @@ the autotuning method and steady-state settings.
 To enable this port, set **Operating mode** to
 `Import operating points` and select
 **Use block for autotuning**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Operating mode
+  summary: Mode for operating point data Import operating points (default) | Snapshot operating points
+  group: Import operating point Tab
+  block_parameter: OperatingMode
+  type: string
+  values: '"Import operating points" | "Snapshot operating points"'
+  default: '"Import operating points"'
+- name: Input method
+  summary: Input method for operating point data Manually edit table (default) | Automatically fill Table
+  group: Import operating point Tab
+  block_parameter: InputMethod
+  type: string
+  values: '"Manually edit table" | "Automatically fill table"'
+  default: '"Manually Edit Table"'
+- name: Number of inputs
+  summary: Number of model inputs 3 (default) | positive scalar
+  group: Import operating point Tab
+  block_parameter: NumSystemInputs
+  type: string
+  values: positive scalar in quotes
+  default: '"3"'
+- name: Workspace
+  summary: Workspace to import operating point data Base workspace (default) | Model workspace | Data dictionary
+  group: Import operating point Tab
+  block_parameter: ImportWorkspace
+  type: string
+  values: '"Data dictionary" | "Base workspace" | "Model workspace"'
+  default: '"Data dictionary"'
+- name: Data dictionary name
+  summary: Data dictionary name myDataDictionary.sldd (default) | string
+  group: Import operating point Tab
+  block_parameter: DataDictionaryName
+  type: string
+  default: '"myDataDictionary.sldd"'
+- name: Operating point variable
+  summary: Name of operating point variable myOperatingPoint (default) | string
+  group: Import operating point Tab
+  block_parameter: OperatingPointVariable
+  type: string
+  default: '"myOperatingPoint"'
+- name: Snapshot mode
+  summary: Operating point snapshot mode Time-based (default) | Event-based
+  group: Import operating point Tab
+  block_parameter: SnapshotMode
+  type: string
+  values: '"Time-based" | "Event-based"'
+  default: '"Time-based"'
+- name: Snapshot times (sec)
+  summary: Simulation snapshot times [0 1 2] (default) | scalar | vector
+  group: Import operating point Tab
+  block_parameter: SnapshotTimes
+  type: string
+  values: scalar or vector in quotes
+  default: '"[1 2 3]"'
+- name: Use external source
+  summary: Use input port for snapshot times off (default) | on
+  group: Import operating point Tab
+  block_parameter: SnapshotTimesExternalSource
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Sample time (-1 for inherited)
+  summary: Sample time -1 (default) | positive scalar
+  group: Import operating point Tab
+  block_parameter: SampleTime
+  type: string
+  values: positive scalar in quotes | "–1"
+  default: '"–1"'
+- name: Operating point definitions
+  summary: Operating point data multiple table entries
+  group: Import operating point Tab
+  block_parameter: OperatingPointTable
+  type: string
+  values: cell array in quotes
+  default: '"{''Indicies'',''[1 2 3]'';''Times (sec)'',''[0 1 2]'';''SystemInput_1'',''[1 1 1]'';''SystemInput_2'',''[2 2
+    2]'';''SystemInput_3'',''[3 3 3]''}"'
+- name: Bus name
+  summary: Name of bus object scdPlantOPsBusObject (default) | string
+  group: Import operating point Tab
+  block_parameter: BusName
+  type: string
+  values: string
+  default: '"scdPlantOPsBusObject"'
+- name: Specify bus name
+  summary: Specify bus name off (default) | on
+  group: Import operating point Tab
+  block_parameter: SpecifyBusName
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Data Type
+  summary: Floating point precision Double (default) | Single
+  group: Import operating point Tab
+  block_parameter: BlockDataType
+  type: string
+  values: '"Double" | "Single"'
+  default: '"Double"'
+- name: Use block for autotuning
+  summary: Use block for PID autotuning workflow on (default) | off
+  group: Change operating point setting Tab
+  block_parameter: UseAutotuning
+  type: string
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Method for starting autotuning
+  summary: Method for starting autotuning External time vector (default) | Time after reaching steady-state
+  group: Change operating point setting Tab
+  block_parameter: AutotuningTriggerMethod
+  type: string
+  values: '"External time vector" | "Time after reaching steady-state"'
+  default: '"External time vector"'
+- name: Add enable/disable port for autotuning
+  summary: Add enable/disable port for autotuning off (default) | on
+  group: Change operating point setting Tab
+  block_parameter: AddEnableDisableAutotuning
+  type: string
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Autotuning time span (sec)
+  summary: Autotuning experiment duration 10 (default) | positive scalar | vector
+  group: Change operating point setting Tab
+  block_parameter: AutotuningExperimentLength
+  type: string
+  values: positive scalar or vector in quotes
+  default: '"10"'
+- name: Number of samples to start autotuning after reaching steady-state
+  summary: Delay to start autotuning 2 (default) | positive scalar
+  group: Change operating point setting Tab
+  block_parameter: NumAutotuningDelaySamples
+  type: string
+  values: positive scalar in quotes
+  default: '"2"'
+- name: Transition method
+  summary: Operating point transition method Internal time vector (from operating point table) (default) | Time after reaching
+    steady-state | Time after completing autotuning | External trigger
+  group: Change operating point setting Tab
+  block_parameter: TransitionMethod
+  type: string
+  values: '"Internal time vector (from operating point table)" | "Time after reaching steady-state" | "Time after completing
+    autotuning" | "External trigger"'
+  default: '"Internal time vector (from operating point table)"'
+- name: Change operating point algorithm
+  summary: Operating point transition algorithm Step (default) | Ramp
+  group: Change operating point setting Tab
+  block_parameter: ChangeOPAlgorithm
+  type: string
+  values: '"Step" | "Ramp"'
+  default: '"Step"'
+- name: Rising slew rate (/sec)
+  summary: Limit of derivative for increasing input 1 (default) | scalar | vector
+  group: Change operating point setting Tab
+  block_parameter: RampSlewUpRate
+  type: string
+  values: scalar or vector in quotes
+  default: '"1"'
+- name: Falling slew rate (/sec)
+  summary: Limit of derivative for decreasing input -1 (default) | scalar | vector
+  group: Change operating point setting Tab
+  block_parameter: RampSlewLoRate
+  type: string
+  values: scalar or vector in quotes
+  default: '"–1"'
+- name: Number of samples to transition after reaching steady-state
+  summary: Delay to transition operating points 2 (default) | nonnegative scalar
+  group: Change operating point setting Tab
+  block_parameter: NumTransitionDelaySamples
+  type: string
+  values: nonnegative scalar in quotes
+  default: '"2"'
+- name: Number of samples to transition after completing autotuning
+  summary: Delay to transition operating points 2 (default) | nonnegative scalar
+  group: Change operating point setting Tab
+  block_parameter: NumSamplesAutotuningTranstion
+  type: string
+  values: nonnegative scalar in quotes
+  default: '"2"'
+- name: Settling time upper bounds
+  summary: Upper bound for settling time [1.1 2.1 3.1] (default) | vector
+  group: Change operating point setting Tab
+  block_parameter: SettlingTimeUpper
+  type: string
+  values: scalar or vector in quotes
+  default: '"[1.1 2.1 3.1]"'
+- name: Settling time lower bounds
+  summary: Lower bound for settling time [0.9 1.9 2.9] (default) | vector
+  group: Change operating point setting Tab
+  block_parameter: SettlingTimeLower
+  type: string
+  values: scalar or vector in quotes
+  default: '"[0.9 1.9 2.9]"'
+- name: Settling time interval
+  summary: Settling time interval 5 (default) | scalar | vector
+  group: Change operating point setting Tab
+  block_parameter: SettlingTimeInterval
+  type: string
+  values: scalar or vector in quotes
+  default: '"5"'
+```
 
 ### Import operating point Tab
 
@@ -804,7 +1033,6 @@ after reaching steady-state`.
 | **Type:** string |
 | **Values:**scalar or vector in quotes |
 | **Default:** `"5"` |
-
 ## Libraries
 
 Simulink Control Design / Autotuning

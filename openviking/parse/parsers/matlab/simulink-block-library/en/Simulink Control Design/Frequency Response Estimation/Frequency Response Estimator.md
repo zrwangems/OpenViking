@@ -14,6 +14,45 @@ language: en
 # Frequency Response Estimator
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Plant input before perturbation scalar
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Plant output scalar
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: Start and stop the estimation experiment scalar
+  direction: input
+  data_types: single | double
+- name: w
+  summary: Frequencies for estimation experiment vector
+  direction: input
+  data_types: single | double
+- name: amp
+  summary: Perturbation amplitudes scalar | vector
+  direction: input
+  data_types: single | double
+- name: u + Δu
+  summary: Perturbed plant input scalar
+  direction: output
+  data_types: single | double
+- name: Δu
+  summary: Plant input perturbation scalar
+  direction: output
+  data_types: single | double
+- name: data
+  summary: Experiment data bus
+  direction: output
+  data_types: single | double
+- name: frd
+  summary: Estimated frequency responses vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -248,8 +287,127 @@ To enable this port, set **Estimation Mode** to
 **Online**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: Experiment sample time 0.1 (default) | positive scalar | –1
+  group: ''
+  block_parameter: DiscreteTs
+  type: scalar
+  values: positive scalar | –1
+  default: '0.1'
+- name: Output Signal Configuration
+  summary: Provide control signal plus perturbation or perturbation only control action + perturbation (default) | perturbation
+    only
+  group: ''
+- name: Data Type
+  summary: Floating point precision double (default) | single
+  group: ''
+  block_parameter: BlockDataType
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: Excitation signal source
+  summary: Excitation signal source Block parameters (default) | External ports
+  group: ''
+  block_parameter: SineSource
+  type: character vector, string
+  values: '''Block parameters'' | ''External ports'''
+  default: '''Block parameters'''
+- name: Frequencies
+  summary: Frequencies for estimation [0.5 1 2] (default) | vector
+  group: ''
+  block_parameter: Frequencies
+  type: vector
+  values: positive real values
+  default: '''[0.5 1 2]'''
+- name: Frequency units
+  summary: Frequency units rad/s (default) | Hz
+  group: ''
+  block_parameter: FreqUnits
+  type: string, character vector
+  values: '''rad/s'',''Hz'''
+  default: '''rad/s'''
+- name: Amplitudes
+  summary: Amplitudes of injected perturbations 1 (default) | scalar | vector
+  group: ''
+  block_parameter: Amplitudes
+  type: scalar, vector
+  default: '''1'''
+- name: Number of frequencies in the excitation signal
+  summary: Number of externally supplied frequencies 3 (default) | positive integer
+  group: ''
+  block_parameter: NumOfFreq
+  type: scalar
+  default: '''3'''
+- name: Experiment mode
+  summary: Experiment mode Sinestream (default) | Superposition | PRBS *(since R2023a)*
+  group: ''
+  block_parameter: ExperimentMode
+  type: character vector, string
+  values: '''Sinestream'' | ''Superposition'' | ''PRBS'''
+  default: '''Sinestream'''
+- name: Number of settling periods
+  summary: Number of periods to wait for settling of transients 2 (default) | positive integer | vector of positive integers
+  group: ''
+  block_parameter: NumOfSetPeriod
+  type: integer, vector of integers
+  default: '''2'''
+- name: Number of estimation periods
+  summary: Number of periods after settling to use for estimation 4 (default) | integer ≥ 2 | vector of integers
+  group: ''
+  block_parameter: NumOfEstPeriod
+  type: integer, vector of integers
+  default: '''4'''
+- name: Number of periods of the lowest frequency used for estimation
+  summary: Duration of data-collection window 3 (default) | integer between 1 and 5
+  group: ''
+  block_parameter: NumOfSlowestPeriod
+  type: integer
+  default: '''3'''
+- name: Number of periods
+  summary: Number of periods in PRBS signal 1 (default) | positive integer
+  group: ''
+  block_parameter: NumOfPRBSPeriod
+  type: positive integer
+  default: '''1'''
+- name: Signal order
+  summary: PRBS signal order 12 (default) | positive integer ≤ 24
+  group: ''
+  block_parameter: PRBSSignalOrder
+  type: positive integer ≤ 24
+  default: '''12'''
+- name: Use Auto-Generated Value
+  summary: Set PRBS signal parameters automatically off (default) | on
+  group: ''
+- name: Estimation mode
+  summary: Whether block performs estimation or only collects response data Online (default) | Offline
+  group: ''
+  block_parameter: EstimationMode
+  type: character vector, string
+  values: '''Online'' | ''Offline'''
+  default: '''Online'''
+- name: Display Bode plot
+  summary: Plot estimated frequency response off (default) | on
+  group: ''
+  block_parameter: UseBodePlot
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Baseline plant model
+  summary: Baseline model for Bode plot [] (default) | LTI model
+  group: ''
+  block_parameter: BaselinePlant
+  type: LTI model
+  default: '''[]'''
+- name: Refresh plot every N\*Ts seconds where N is
+  summary: How often to update Bode plot 100 (default) | scalar
+  group: ''
+  block_parameter: PlotRefreshFactor
+  type: integer
+  default: '''100'''
+```
 
 ### **Sample time (Ts)** — Experiment sample time 0.1 (default) | positive scalar | –1
 
@@ -797,7 +955,6 @@ To enable this parameter, select **Display Bode plot**.
 | **Block Parameter:** `PlotRefreshFactor` |
 | **Type:** integer |
 | **Default:** `'100'` |
-
 ## Libraries
 
 Simulink Control Design / Frequency Response Estimation

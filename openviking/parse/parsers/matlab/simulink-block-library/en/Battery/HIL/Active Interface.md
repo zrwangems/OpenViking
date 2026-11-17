@@ -14,6 +14,42 @@ language: en
 # Active Interface
 
 ## Ports
+```yaml
+ports:
+- name: Vcsc_charge
+  summary: Charging voltage from cell supervisory circuit, V physical signal
+  direction: input
+- name: Icsc_discharge
+  summary: Discharge current from cell supervisory circuit, A physical signal
+  direction: input
+- name: SOC
+  summary: Battery state-of-charge, unitless physical signal
+  direction: input
+- name: Vbat
+  summary: Battery voltage, V physical signal
+  direction: output
+- name: Icsc
+  summary: Cell supervisory circuit current, A physical signal
+  direction: output
+- name: isCharging
+  summary: Charging status, unitless physical signal
+  direction: output
+- name: SOC
+  summary: Battery state-of-charge, unitless physical signal
+  direction: output
+- name: T
+  summary: Temperature measurement, K physical signal
+  direction: output
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -98,8 +134,25 @@ Thermal conserving port.
 
 To enable this port, set the **Thermal port**
 parameter to `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cell supervisory circuit resistance
+  summary: Cell supervisory circuit resistance 1e-6 Ohm (default)
+  group: ''
+- name: Expose SOC input port
+  summary: SOC input port visibility No (default) | Yes
+  group: ''
+- name: Expose SOC output port
+  summary: SOC output port visibility Yes (default) | No
+  group: ''
+- name: Thermal port
+  summary: Thermal port visibility Omit (default) | Model
+  group: ''
+- name: Expose temperature measurement port
+  summary: Temperature measurement port visibility Yes (default) | No
+  group: ''
+```
 
 ### **Cell supervisory circuit resistance** — Cell supervisory circuit resistance `1e-6` `Ohm` (default)
 
@@ -135,7 +188,6 @@ battery.
 
 To enable this parameter, set **Thermal port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Battery / HIL

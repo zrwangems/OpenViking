@@ -14,6 +14,17 @@ language: en
 # Difference
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output signal vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -39,8 +50,40 @@ For more details on how the output is computed, see the Difference along paramet
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Running difference
+  summary: Running difference No (default) | Yes
+  group: Main Tab
+- name: Difference along
+  summary: Difference dimension Columns (default) | Rows | Specified dimension
+  group: Main Tab
+- name: Dimension
+  summary: One-based dimension 1 (default) | 2 | 3
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum value that block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum value that block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -210,7 +253,6 @@ you specify in the block dialog box.
 Floating-point inheritance takes precedence over the data type settings defined on
 this pane. When inputs are floating point, the block ignores these settings, and all
 internal data types are floating point.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Math Operations

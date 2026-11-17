@@ -14,6 +14,21 @@ language: en
 # Write DDS Sample
 
 ## Ports
+```yaml
+ports:
+- name: Port_Enable
+  summary: External enable signal scalar
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: bus
+- name: Port_1
+  summary: Output DDS sample scalar | vector | matrix
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -44,8 +59,24 @@ the original signal.
 Sends samples into the DDS network.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show enable port
+  summary: Display the enable port off (default) | on
+  group: ''
+  block_parameter: ShowEnablePort
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Connect to live network
+  summary: Connect DDS simulation to live network off (default) | on
+  group: ''
+  block_parameter: ConnectToLive
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Show enable port** — Display the enable port `off` (default) | `on`
 
@@ -81,7 +112,6 @@ Select this parameter to connect to a live DDS network during simulation. When
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 DDS Blockset

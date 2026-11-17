@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # SOH Estimator
 
 ## 端口
+```yaml
+ports:
+- name: SOC
+  summary: 电池荷电状态，无量纲标量 | 向量
+  direction: input
+- name: Temperature
+  summary: 电芯温度 标量 | 向量
+  direction: input
+- name: R0
+  summary: 端子电阻，欧姆 标量 | 向量
+  direction: input
+- name: SOH
+  summary: 电池健康状态 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +49,27 @@ chinese_source: worker-translation
 ### **SOH** — 电池健康状态 标量 | 向量
 
 电池的健康状态，返回为范围 [0, 1] 内的标量或向量。此输出端口的尺寸等于输入端口处向量的尺寸。
-
 ## 参数
+```yaml
+parameters:
+- name: Vector of state-of-charge values, SOC (-)
+  summary: SOC 断点 [0, .1, .25, .5, .75, .9, 1]（默认）| 0 到 1 之间的非负标量向量
+  group: ''
+- name: Vector of temperatures, T
+  summary: 温度断点 [278, 293, 313]（默认）| 正标量向量
+  group: ''
+- name: Terminal resistance when battery cell is new, R0new(SOC,T), (ohm)
+  summary: 电池电芯全新时的端子电阻 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091;
+    .0113, .0085, .0089; .0116, .0085, .0089]（默认）| 非负标量矩阵
+  group: ''
+- name: Terminal resistance at end of life, R0eol(SOC,T), (ohm)
+  summary: 寿命终止时的端子电阻 [.0234,.017,.018;.022,.017,.018;.0228,.0174,.0184;.0214,.0164,.0176;.0214,.0166,.0182;.0226,.017,.0178;.0232,.017,.0178]（默认）|
+    非负标量矩阵
+  group: ''
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: ''
+```
 
 ### **Vector of state-of-charge values, SOC (-)** — SOC 断点 `[0, .1, .25, .5, .75, .9, 1]`（默认）| `0` 到 `1` 之间的非负标量向量
 
@@ -65,7 +99,6 @@ SOC 断点向量，定义您指定查找数据的点。此向量必须严格递�
 - `<data type expression>` — 模块算法将所有输入和参数转换为您指定的数据类型对象。
 
 点击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Estimators

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # General CRC Syndrome Detector
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 接收到的码字二进制列向量
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: 输出帧二进制列向量
+  direction: output
+- name: Err
+  summary: 校验和错误信号二进制列向量
+  direction: output
+```
 
 ### 输入
 
@@ -38,8 +51,31 @@ chinese_source: worker-translation
 ### **Err** — 校验和错误信号二进制列向量
 
 校验和错误信号，返回为继承输入信号数据类型的二进制列向量。`Err` 的长度等于 **Checksums per frame** 的值。对于每次校验和计算，`Err` 中元素值为 0 表示无校验和错误，`Err` 中元素值为 1 表示存在校验和错误。
-
 ## 参数
+```yaml
+parameters:
+- name: Generator polynomial
+  summary: 生成多项式 'z^16 + z^12 + z^5 + 1'（默认）| 多项式字符向量 | 二进制行向量 | 整数行向量
+  group: ''
+- name: Initial states
+  summary: 内部移位寄存器的初始状态 0（默认）| 1 | 二进制行向量
+  group: ''
+- name: Direct method
+  summary: 使用直接算法进行 CRC 校验和计算 off（默认）| on
+  group: ''
+- name: Reflect input bytes
+  summary: 反射输入字节 off（默认）| on
+  group: ''
+- name: Reflect checksums before final XOR
+  summary: 在最终 XOR 之前反射校验和 off（默认）| on
+  group: ''
+- name: Final XOR
+  summary: 最终 XOR 0（默认）| 1 | 二进制行向量
+  group: ''
+- name: Checksums per frame
+  summary: 每帧计算的校验和数量 1（默认）| 正整数
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -99,7 +135,6 @@ CRC 算法的生成多项式，指定为以下之一：
 ### **Checksums per frame** — 每帧计算的校验和数量 `1`（默认）| 正整数
 
 每帧计算的校验和数量，指定为正整数。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / CRC

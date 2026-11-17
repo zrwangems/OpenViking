@@ -14,6 +14,17 @@ language: en
 # Length Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Length scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Length scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -40,8 +51,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units ft (default) | m | km | in | mi | naut mi
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''m'' | ''ft'' | ''km'' | ''in'' | ''mi'' | ''naut mi'''
+  default: '''ft'''
+- name: Final unit
+  summary: Input units m (default) | ft | km | in | mi | naut mi
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''m'' | ''ft'' | ''km'' | ''in'' | ''mi'' | ''naut mi'''
+  default: '''m'''
+```
 
 ### **Initial unit** — Input units `ft` (default) | `m` | `km` | `in` | `mi` | `naut mi`
 
@@ -96,7 +123,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `'m'` | `'ft'` | `'km'` | `'in'` | `'mi'` | `'naut mi'` |
 | **Default**: `'m'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Gazebo Read
 
 ## 端口
+```yaml
+ports:
+- name: IsNew
+  summary: 上一时间步中消息的状态 0（默认）| 1
+  direction: output
+  data_types: Boolean
+- name: Msg
+  summary: Gazebo 消息总线
+  direction: output
+  data_types: bus
+```
 
 ### 输出
 
@@ -31,8 +42,26 @@ Gazebo 消息，以总线信号输出，其元素与特定的 `Topic` 和 `Messa
 `Msg` 输出始终输出最近接收到的消息。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Topic source
+  summary: 用于指定 topic 的来源 From Gazebo（默认）| Specify your own
+  group: ''
+- name: Topic
+  summary: 消息的 topic 名称 /my_topic（默认）| 字符串
+  group: ''
+- name: Message type
+  summary: Gazebo 消息类型 gazebo_msgs/Pose（默认）| gazebo_msgs/Image | gazebo_msgs/IMU | gazebo_msgs/LaserScan | gazebo_msgs/JointState
+    | gazebo_msgs/LinkState
+  group: ''
+- name: Sample time
+  summary: 输入的采样时间 0.001（默认）| 正标量
+  group: ''
+- name: Number of Joint Axis
+  summary: 关节轴数量 2（默认）| 范围 [1, 100] 内的正整数
+  group: ''
+```
 
 ### **Topic source** — 用于指定 topic 的来源 `From Gazebo`（默认）| `Specify your own`
 
@@ -63,7 +92,6 @@ Gazebo 消息，以总线信号输出，其元素与特定的 `Topic` 和 `Messa
 #### 依赖关系
 
 要启用此参数，请将 `Message type` 设置为 `gazebo_msgs/JointState`，并选中 `Make Joint Axis Related Bus Signal to Fixed Dimensions` 复选框。
-
 ## 所属库
 
 Robotics System Toolbox / Gazebo Co-Simulation

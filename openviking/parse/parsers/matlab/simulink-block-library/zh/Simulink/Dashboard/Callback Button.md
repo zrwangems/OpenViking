@@ -15,10 +15,131 @@ chinese_source: worker-translation
 # Callback Button
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Button Type
+  summary: 按钮对点击的响应 Momentary（默认）| Latch
+  group: 参数
+  block_parameter: ButtonType
+  type: string or character array
+  values: '''Momentary'' | ''Latch'''
+- name: Text
+  summary: 按钮标签文本 'Callback Button'（默认）| string | character array
+  group: 参数
+  block_parameter: ButtonText
+  type: character vector | string
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 参数
+- name: ClickFcn
+  summary: 响应点击而执行的 MATLAB 代码 MATLAB code
+  group: 参数
+  block_parameter: ClickFcn
+  type: character vector | string
+  values: MATLAB code
+- name: PressFcn
+  summary: 响应按下而执行的 MATLAB 代码 MATLAB code
+  group: 参数
+  block_parameter: PressFcn
+  type: character vector | string
+  values: MATLAB code
+- name: Press Delay (ms)
+  summary: 按住按钮以触发按下的时间 500（默认）| scalar
+  group: 参数
+  block_parameter: PressDelay
+  type: scalar
+- name: Repeat Interval (ms)
+  summary: 重复 PressFcn 代码的时间间隔 0（默认）| scalar
+  group: 参数
+  block_parameter: RepeatInterval
+  type: scalar
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: Design
+- name: Select State
+  summary: 选择要配置的状态 Default（默认）| Pressed | Latched | Latched and Pressed
+  group: Design
+- name: Text
+  summary: 按钮标签文本 'Callback Button'（默认）| string | character array
+  group: Design
+  block_parameter: ButtonText
+  type: character vector | string
+- name: Color
+  summary: 标签字体颜色 [r g b] vector
+  group: Design
+- name: Horizontal Alignment
+  summary: 标签和图标对与模块的水平对齐 Left（默认）| Center | Right
+  group: Design
+- name: Vertical Alignment
+  summary: 标签和图标对与模块的垂直对齐 Center（默认）| Bottom | Top
+  group: Design
+- name: Icon and Label X Offset
+  summary: 图标和标签对相对于模块的水平偏移 0（默认）| scalar
+  group: Design
+- name: Icon and Label Y Offset
+  summary: 图标和标签对相对于模块的垂直偏移 0（默认）| scalar
+  group: Design
+- name: Icon Placement
+  summary: 图标相对于标签的位置 Left（默认）| Top | Right | Bottom
+  group: Design
+- name: Icon Width
+  summary: 图标宽度 scalar
+  group: Design
+- name: Icon Height
+  summary: 图标高度 scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: 保持图像宽高比的选项 on（默认）| off
+  group: Design
+- name: Image X Offset
+  summary: 图像左边缘相对于模块左边缘的水平偏移 scalar
+  group: Design
+- name: Image Y Offset
+  summary: 图像顶边缘相对于模块顶边缘的垂直偏移 scalar
+  group: Design
+- name: Image Width
+  summary: 图像宽度 scalar
+  group: Design
+- name: Image Height
+  summary: 图像高度 scalar
+  group: Design
+- name: Use Background Color
+  summary: 为按钮指定纯色背景色的选项 on（默认）| off
+  group: Design
+- name: Color
+  summary: 按钮背景颜色 [r g b] 向量
+  group: Design
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Opacity
+  summary: 按钮背景不透明度 1（默认）| 标量
+  group: Design
+- name: Corner Radius
+  summary: 按钮背景颜色区域的圆角半径 标量
+  group: Design
+- name: X Offset
+  summary: 前景图像左边缘相对于模块左边缘的水平偏移 标量
+  group: Design
+- name: Y Offset
+  summary: 前景图像上边缘相对于模块上边缘的垂直偏移 标量
+  group: Design
+- name: Width
+  summary: 前景图像宽度 标量
+  group: Design
+- name: Height
+  summary: 前景图像高度 标量
+  group: Design
+- name: Lock Aspect Ratio
+  summary: 保持前景图像宽高比的选项 on（默认）| off
+  group: Design
+```
 
 使用属性检查器和模块参数对话框指定模块参数的值。要设置仪表板模块的核心参数，请使用模块参数对话框或属性检查器中的 **Parameters** 选项卡。要自定义模块，请使用属性检查器中的 **Design** 选项卡。要打开模块的模块参数对话框，请双击该模块。要打开属性检查器，请在 **Modeling** 选项卡上的 **Design** 下，选择 **Property Inspector**。
 
@@ -376,7 +497,6 @@ R2025b 中未记录。
 ### **Lock Aspect Ratio** — 保持前景图像宽高比的选项 `on`（默认）| `off`
 
 选择此参数可在使用属性检查器调整图像大小时保持宽高比。
-
 ## 所属库
 
 Simulink / Dashboard

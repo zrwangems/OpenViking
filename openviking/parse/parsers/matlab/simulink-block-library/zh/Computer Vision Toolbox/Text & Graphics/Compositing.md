@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Compositing
 
 ## 端口
+```yaml
+ports:
+- name: Image1
+  summary: 输入图像一 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Image2
+  summary: 输入图像二 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Mask
+  summary: 二值掩膜 标量 | 矩阵
+  direction: input
+  data_types: single | double | Boolean
+- name: Factor
+  summary: 不透明度因子 标量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Location
+  summary: 位置索引 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 输出图像 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -80,8 +107,31 @@ chinese_source: worker-translation
 输出图像，返回为 *M*×*N* 矩阵或 *M*×*N*×*P* 数组。如果输出为 *M*×*N*×*P* 数组，则 *P* 是图像中的颜色通道数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation
+  summary: 指定操作 Blend（默认） | Binary mask | Highlight selected pixels
+  group: 主要
+- name: Opacity factor(s) source
+  summary: 不透明度因子的来源 Specify via dialog（默认） | Input port
+  group: 主要
+- name: Opacity factor(s)
+  summary: 不透明度因子 0.75（默认） | 标量 | 矩阵
+  group: 主要
+- name: Location source
+  summary: 叠加位置的来源 Specify via dialog（默认） | Input port
+  group: 主要
+- name: Location [x y]
+  summary: 叠加位置索引 [1 1]（默认） | 二元素向量
+  group: 主要
+- name: Mask source
+  summary: 掩膜的来源 Specify via dialog（默认） | Input port
+  group: 主要
+- name: Mask
+  summary: 二值掩膜 0（默认） | 1 | 矩阵
+  group: 主要
+```
 
 ### 主要
 
@@ -140,7 +190,6 @@ chinese_source: worker-translation
 ### 数据类型
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Text & Graphics

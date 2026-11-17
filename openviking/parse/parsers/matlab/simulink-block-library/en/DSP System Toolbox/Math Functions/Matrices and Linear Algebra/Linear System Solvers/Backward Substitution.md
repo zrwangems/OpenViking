@@ -14,6 +14,21 @@ language: en
 # Backward Substitution
 
 ## Ports
+```yaml
+ports:
+- name: U
+  summary: Input upper triangular matrix *M*-by-*M* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: B
+  summary: '*B* matrix *M*-by-*N* matrix | *M*-by-1 vector'
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: X
+  summary: Solution of system of equations *M*-by-*N* matrix | *M*-by-1 matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -63,8 +78,41 @@ When the inputs are fixed-point, the output matrix
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Input U is unit-upper triangular
+  summary: Diagonal elements of input matrix have a value of 1 off (default) | on
+  group: Main Tab
+- name: Diagonal of complex input U is real
+  summary: Diagonal elements of complex input are real off (default) | on
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as product output | Inherit:
+    Same as first input | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as first input (default) | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum value the block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum value block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -220,7 +268,6 @@ Specify the maximum value the block can output. Simulink software uses this maxi
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

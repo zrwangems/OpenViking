@@ -14,6 +14,18 @@ language: en
 # Disc Brake
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Cylinder pressure physical signal
+  direction: input
+- name: S
+  summary: Shaft rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -41,8 +53,52 @@ Port** parameter is set to
 
 Exposing this port makes related parameters and variables
 visible.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mean pad radius
+  summary: Pad radius 150 mm (default) | positive scalar
+  group: Geometry
+- name: Cylinder bore
+  summary: Bore diameter 10 mm (default) | positive scalar
+  group: Geometry
+- name: Number of brake pads
+  summary: Pad quantity 2 (default) | positive scalar integer
+  group: Geometry
+- name: Thermal port
+  summary: Thermal model Omit (default) | Model
+  group: Friction
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | increasing vector
+  group: Friction
+- name: Static friction coefficient
+  summary: Static friction 0.9 (default) | scalar
+  group: Friction
+- name: Static friction coefficient vector
+  summary: Static friction [.9, .8, .7] | vector
+  group: Friction
+- name: Coulomb friction coefficient
+  summary: Contact friction 0.7 (default) | positive scalar
+  group: Friction
+- name: Coulomb friction coefficient vector
+  summary: Contact friction [.8, .7, .6] (default) | increasing vector of positive values
+  group: Friction
+- name: Breakaway friction velocity
+  summary: Friction threshold 0.1 rad/s (default) | scalar
+  group: Friction
+- name: Viscous friction coefficient
+  summary: Viscous friction 0 N*m/(rad/s) (default) | nonnegative scalar
+  group: Friction
+- name: Brake pressure fault
+  summary: Option to model brake pressure fault Add fault
+  group: Faults
+- name: Brake pressure when faulted
+  summary: Set faulted brake pressure 0 bar (default) | positive scalar
+  group: Faults
+- name: Thermal mass
+  summary: Resistance to temperature change 50 kJ/K (default) | scalar
+  group: Thermal Port
+```
 
 ### Geometry
 
@@ -193,7 +249,6 @@ This parameter is only visible when in the
 **Friction** settings, the **Thermal
 Port** parameter is set to
 `Model`.
-
 ## Libraries
 
 Simscape / Driveline / Brakes & Detents / Rotational

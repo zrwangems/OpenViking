@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Random Number
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,45 @@ chinese_source: worker-translation
 输出信号，即生成的服从正态高斯分布的随机数。对于给定的种子，输出是可重复的。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Mean
+  summary: 随机数的均值 0（默认）| 标量 | 数组
+  group: ''
+  block_parameter: Mean
+  type: 字符向量
+  values: 标量 | 数组
+  default: '''0'''
+- name: Variance
+  summary: 随机数的方差 1（默认）| 标量 | 数组
+  group: ''
+  block_parameter: Variance
+  type: 字符向量
+  values: 标量 | 数组
+  default: '''1'''
+- name: Seed
+  summary: 起始种子 0（默认）| 正整数 | 标量 | 数组
+  group: ''
+  block_parameter: Seed
+  type: 字符向量
+  values: 标量 | 数组
+  default: '''0'''
+- name: Sample time
+  summary: 间隔之间的时间 0.1（默认）| integer
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''0.1'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量视为一维 on（默认）| off
+  group: ''
+  block_parameter: VectorParams1D
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Mean** — 随机数的均值 `0`（默认）| 标量 | 数组
 
@@ -95,7 +139,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on' | 'off'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Sources

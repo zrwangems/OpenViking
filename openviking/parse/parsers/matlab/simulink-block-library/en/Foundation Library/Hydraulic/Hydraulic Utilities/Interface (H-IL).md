@@ -14,6 +14,15 @@ language: en
 # Interface (H-IL)
 
 ## Ports
+```yaml
+ports:
+- name: H
+  summary: Hydraulic port hydraulic
+  direction: conserving
+- name: IL
+  summary: Isothermal liquid port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,11 +35,12 @@ Connect this port to a block network built on the Simscape hydraulic domain.
 
 Isothermal liquid conserving port representing a passage point through the
 interface. Connect this port to a block network built on the Simscape isothermal liquid domain.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Hydraulic / Hydraulic Utilities

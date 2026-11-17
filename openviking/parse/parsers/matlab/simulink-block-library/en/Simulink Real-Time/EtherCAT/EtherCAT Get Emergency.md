@@ -14,6 +14,25 @@ language: en
 # EtherCAT Get Emergency
 
 ## Ports
+```yaml
+ports:
+- name: Err Code
+  summary: Error Code uint16
+  direction: output
+  data_types: uint16
+- name: Err Reg
+  summary: Error Register uint8
+  direction: output
+  data_types: uint8
+- name: Data
+  summary: Emergency data vector uint8
+  direction: output
+  data_types: uint8
+- name: Name
+  summary: Station address uint8
+  direction: output
+  data_types: uint8
+```
 
 ### Output
 
@@ -49,8 +68,22 @@ differ depending on the string that the TwinCAT® or EC-Engineer software uses t
 device.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT network identifier 0 (default) | 0-11
+  group: ''
+  block_parameter: device_id
+- name: Log messages to statusmonitor
+  summary: Enable message logging on (default) | off
+  group: ''
+  block_parameter: logmsg
+- name: Sample time
+  summary: Sample time of block .001 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT network identifier `0` (default) | `0-11`
 
@@ -85,7 +118,6 @@ EtherCAT task sample time.
 |  |
 | --- |
 | **Block Parameter:** `sample_time` |
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

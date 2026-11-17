@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # Current-Controlled Current Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块有四个电气守恒端口。模块左侧的连接 + 和 – 是控制端口。另外两个端口是提供输出电流的电气端子。每对端口之间的箭头指示电流流动的正方向。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **电流增益 K**
 :   两个输出端子之间的电流与两个控制端子之间流过的电流之比。默认值为 `1`。
-
 ## 所属库
 
 R2025b 中未记录。

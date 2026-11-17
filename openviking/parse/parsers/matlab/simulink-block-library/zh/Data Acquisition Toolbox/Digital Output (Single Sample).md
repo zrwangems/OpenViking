@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Digital Output (Single Sample)
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 生成的数字输出数据 boolean
+  direction: input
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -23,8 +30,22 @@ chinese_source: worker-translation
 生成的数字输出数据，指定为布尔值。如果所有线路仅使用一个输入端口，则提供 1×N 的数据向量。如果每条线路使用一个端口，则在每个端口上提供单个值。多个端口按线路名称或设备指定的线路 ID 命名。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: 用于生成数据的设备
+  group: ''
+- name: Lines
+  summary: 设备线路选择和配置选项取决于设备
+  group: ''
+- name: Number of ports
+  summary: 输入数据端口数 1 for all lines | 1 per line
+  group: ''
+- name: Sample time
+  summary: 模块执行速率 1（默认值）
+  group: ''
+```
 
 ### **Device** — 用于生成数据的设备
 
@@ -49,7 +70,6 @@ chinese_source: worker-translation
 ### **Sample time** — 模块执行速率 1（默认值）
 
 指定模块在仿真期间的采样时间。这是模块在仿真期间执行的速率。默认值为 1（仿真秒）。有关详细信息，请参阅 Timing in Hardware Interface Models 和 What Is Sample Time? (Simulink)。
-
 ## 所属库
 
 Data Acquisition Toolbox

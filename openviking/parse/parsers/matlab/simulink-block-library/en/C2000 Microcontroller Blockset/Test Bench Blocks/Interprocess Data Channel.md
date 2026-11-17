@@ -14,6 +14,29 @@ language: en
 # Interprocess Data Channel
 
 ## Ports
+```yaml
+ports:
+- name: datain
+  summary: Input data message scalar
+  direction: input
+  data_types: SoCData
+- name: dataout
+  summary: Output data message scalar
+  direction: output
+  data_types: SoCData
+- name: overwritten
+  summary: Output overwrite notification signal scalar
+  direction: output
+  data_types: Boolean
+- name: used
+  summary: Output number of buffers in use scalar
+  direction: output
+  data_types: Boolean
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Input
 
@@ -81,8 +104,25 @@ To enable this port, select the **Show event port**
 parameter.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters:
+- name: Circular FIFO depth
+  summary: Number of storage buffers 1 (default) | positive integer
+  group: ''
+- name: Propagation delay
+  summary: Propagation delay of data through the channel 1e-6 (default) | non-negative number
+  group: ''
+- name: Show event port
+  summary: Option to enable task event ports off (default) | on
+  group: ''
+- name: Show number of used circular FIFO
+  summary: Option to enable circular FIFO count ports off (default) | on
+  group: ''
+- name: Show when circular FIFO is overwritten
+  summary: Enable port that shows circular FIFO overwrites off (default) | on
+  group: ''
+```
 
 #### Main
 
@@ -113,7 +153,6 @@ Interprocess Data Channel block internal buffer queue.
 
 Enable an output port that signals when an overwrite of the Interprocess Data
 Channel block internal circular FIFO queue occurred.
-
 ## Libraries
 
 SoC Blockset / Processor Interconnect C2000 Microcontroller Blockset / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

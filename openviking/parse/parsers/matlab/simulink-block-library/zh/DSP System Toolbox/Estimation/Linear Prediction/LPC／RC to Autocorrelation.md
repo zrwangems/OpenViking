@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # LPC/RC to Autocorrelation
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: LPC 系数向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: K
+  summary: RC 系数向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: P
+  summary: 预测误差功率 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: AC
+  summary: 自相关系数 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -54,8 +73,19 @@ chinese_source: worker-translation
 自相关系数，以向量或矩阵形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Type of conversion
+  summary: 转换类型 LPC to autocorrelation（默认）| RC to autocorrelation
+  group: ''
+- name: Specify P
+  summary: 指定预测误差功率 *P* 的方法 Assume P = 1（默认）| Via input port
+  group: ''
+- name: If first input value is not 1
+  summary: 当第一个输入值不为 1 时采取的操作 Replace it with 1（默认）| Normalize | Normalize and warn | Error
+  group: ''
+```
 
 ### **Type of conversion** — 转换类型 `LPC to autocorrelation`（默认）| `RC to autocorrelation`
 
@@ -83,7 +113,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Type of conversion** 设置为 `LPC to autocorrelation`。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Linear Prediction

@@ -14,6 +14,18 @@ language: en
 # Pressure-Reducing Valve (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Fluid entry or exit two-phase fluid
+  direction: conserving
+- name: B
+  summary: Fluid entry or exit two-phase fluid
+  direction: conserving
+- name: Ps
+  summary: Set pressure, Pa physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -36,8 +48,110 @@ Input port for varying the set pressure signal.
 
 To enable this port, set **Set pressure control**
 to `Controlled`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Modeling option for fluid phase Liquid operating condition (default) | Vapor operating condition
+  group: ''
+- name: Valve parameterization
+  summary: Model for valve parameterization Linear - Area vs. pressure (default) | Linear - Nominal mass flow rate vs. pressure
+    | Tabulated data - Area vs. pressure | Cv flow coefficient | Kv flow coefficient | Orifice area
+  group: Parameters
+- name: Set pressure control
+  summary: Variable or constant set pressure Constant (default) | Controlled
+  group: Parameters
+- name: Set pressure (gauge)
+  summary: Set pressure 0.1 MPa (default) | positive scalar
+  group: Parameters
+- name: Pressure regulation range
+  summary: Valve operational range 0.1 MPa (default) | positive scalar
+  group: Parameters
+- name: Nominal mass flow rate at maximum valve opening
+  summary: Rated mass flow rate 0.1 kg/s (default) | positive scalar
+  group: Parameters
+- name: Nominal pressure drop at maximum valve opening
+  summary: Rated pressure drop 0.001 MPa (default) | positive scalar
+  group: Parameters
+- name: Nominal inlet condition specification
+  summary: Method of determining inlet fluid state Temperature (default) | Vapor quality | Vapor void fraction | Specific
+    enthalpy | Specific internal energy
+  group: Parameters
+- name: Nominal inlet pressure
+  summary: Inlet fluid pressure 0.101325 MPa (default) | positive scalar
+  group: Parameters
+- name: Nominal inlet temperature
+  summary: Fluid temperature 293.15 K (default) | positive scalar
+  group: Parameters
+- name: Nominal inlet vapor quality
+  summary: Inlet vapor quality mass fraction 0 (default) | positive scalar in the range [0,1]
+  group: Parameters
+- name: Nominal inlet vapor void fraction
+  summary: Inlet volume fraction 0 (default) | positive scalar in the range [0,1]
+  group: Parameters
+- name: Nominal inlet specific enthalpy
+  summary: Inlet fluid specific enthalpy 400 kJ/kg (default) | positive scalar
+  group: Parameters
+- name: Nominal inlet specific internal energy
+  summary: Inlet specific internal energy 400 kJ/kg (default) | positive scalar
+  group: Parameters
+- name: Maximum valve area
+  summary: Maximum valve opening area 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Pressure at port B (gauge) vector
+  summary: 'Vector of gauge pressures [0.2 : 0.2 : 1.2] MPa (default) | 1-by-*n* vector'
+  group: Parameters
+- name: Valve area vector
+  summary: Vector of valve opening area values [1e-10, 2e-06, 4e-06, 6e-06, 8e-06, 1e-05] m^2 (default) | 1-by-*n* vector
+  group: Parameters
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Parameters
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: Parameters
+- name: Opening characteristic
+  summary: Method to parameterize measure of flow capacity Linear (default) | Tabulated
+  group: Parameters
+- name: Maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: Parameters
+- name: Cv flow coefficient vector
+  summary: '*Cv* coefficients that correspond to values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default)
+    | 1-by-*n* vector'
+  group: Parameters
+- name: Maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: Parameters
+- name: Kv flow coefficient vector
+  summary: '*Kv* coefficients that correspond to values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default)
+    | 1-by-*n* vector'
+  group: Parameters
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: Parameters
+- name: Maximum orifice area
+  summary: Maximum valve opening area 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Orifice area vector
+  summary: Vector of valve opening area values [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: Parameters
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: Parameters
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: Parameters
+- name: Inlet phase change time constant
+  summary: Lag for liquid specific volume 0.1 s (default) | positive scalar
+  group: Parameters
+- name: Laminar flow pressure ratio
+  summary: Laminar-turbulent transition pressure ratio 0.999 (default) | positive scalar
+  group: Parameters
+- name: Cross-sectional area at ports A and B
+  summary: Valve port areas 0.01 m^2 (default) | positive scalar
+  group: Parameters
+```
 
 ### **Modeling option** — Modeling option for fluid phase `Liquid operating condition` (default) | `Vapor operating condition`
 
@@ -534,7 +648,6 @@ flows and quadratically in turbulent flows.
 
 Area of the ports **A** and
 **B**.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Valves & Orifices / Pressure Control Valves

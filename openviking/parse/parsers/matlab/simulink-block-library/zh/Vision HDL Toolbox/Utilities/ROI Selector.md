@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # ROI Selector
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量 | 矩阵
+  direction: input
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: region1,...,regionR
+  summary: 感兴趣区域 四元素行向量
+  direction: input
+  data_types: int | uint
+- name: pixel1,...,pixelR
+  summary: 输出像素流 标量 | 向量 | 矩阵
+  direction: output
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl1,...,ctrlR
+  summary: 控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -65,8 +88,22 @@ chinese_source: worker-translation
 当您选中 **Reuse output ports for vertically aligned regions** 时，该模块为每一列对齐的区域提供一个输出 **ctrl** 端口。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Reuse output ports for vertically aligned regions
+  summary: 为垂直对齐的区域返回单个像素流的选项 off（默认）| on
+  group: ''
+- name: Regions source
+  summary: 输出区域定义的位置 Property（默认）| Input port
+  group: ''
+- name: Regions
+  summary: 要从输入帧中选择的矩形 ROI *R*×4 矩阵
+  group: ''
+- name: Number of regions
+  summary: 区域输入端口数量 [1, 16] 范围内的整数
+  group: ''
+```
 
 ### **Reuse output ports for vertically aligned regions** — 为垂直对齐的区域返回单个像素流的选项 `off`（默认）| `on`
 
@@ -119,7 +156,6 @@ vSize]` 的形式。坐标从活动帧的左上角开始计数，定义为 [1,1]
 #### 依赖关系
 
 要启用此参数，请将 **Regions source** 参数设置为 `Input port`。
-
 ## 所属库
 
 Vision HDL Toolbox / Utilities

@@ -14,6 +14,17 @@ language: en
 # Float Extract Bits
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal containing floating-point data scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | bus
+- name: Port_1
+  summary: Binary representation of data scalar | vector | matrix
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,24 @@ Float Extract Bits calculates the fixed point output based on the **Output
 mode** parameter.
 
 **Data Types:** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output mode
+  summary: Parts of data to output All bits (default) | Range of bits | Sign | Mantissa | Exponent
+  group: ''
+  block_parameter: OutputMode
+  type: character vector
+  values: '''All bits'' | ''Range of bits'' | ''Sign'' | ''Mantissa'' | ''Exponent'''
+  default: '''All bits'''
+- name: Bit range ([start end], 0-based relative to LSB)
+  summary: Range of bits to return [0 15] (default) | vector
+  group: ''
+  block_parameter: BitRange
+  type: character vector
+  values: '''[0 15]'' | vector'
+  default: '''[0 15]'''
+```
 
 ### **Output mode** — Parts of data to output `All bits` (default) | `Range of bits` | `Sign` | `Mantissa` | `Exponent`
 
@@ -65,7 +92,6 @@ Range of bits of the signal to return, specified as a vector.
 | **Type**: character vector |
 | **Values**: `'[0 15]'` | vector |
 | **Default**: `'[0 15]'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations

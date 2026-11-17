@@ -14,6 +14,14 @@ language: en
 # Ground
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Ground signal scalar
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+```
 
 ### Output
 
@@ -23,11 +31,12 @@ The Ground block outputs a scalar signal with zero value, and the same
 data type as the port to which it connects.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Sources HDL Coder / Sources

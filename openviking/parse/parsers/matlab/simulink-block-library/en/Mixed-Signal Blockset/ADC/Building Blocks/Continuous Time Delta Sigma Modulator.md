@@ -14,6 +14,33 @@ language: en
 # Continuous Time Delta Sigma Modulator
 
 ## Ports
+```yaml
+ports:
+- name: input
+  summary: Analog input signal scalar
+  direction: input
+  data_types: double
+- name: reset
+  summary: Reset delta-sigma modulator scalar
+  direction: input
+  data_types: double
+- name: feedback
+  summary: Output from next stage scalar
+  direction: input
+  data_types: double
+- name: dsmOut
+  summary: Digital output signal scalar
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: filterOut
+  summary: Output of loop filter scalar
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: quantOut
+  summary: Output of quantizer scalar
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -66,8 +93,153 @@ values.
 Use this port to build cascaded DSM structures such as MASH and S-MASH.
 
 **Data Types:** `fixed point` | `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Delta Sigma Modulator architecture
+  summary: Architecture of delta-sigma modulator CIFB (default) | CIFF
+  group: ''
+  block_parameter: dsmArchitecture
+  type: character vector
+  values: CIFB | CIFF
+  default: CIFB
+- name: Delta Sigma Modulator order
+  summary: Order of delta-sigma modulator 2nd order (default) | 1st order | 3rd order | 4th order
+  group: ''
+  block_parameter: dsmOrder
+  type: character vector
+  values: 1st order | 2nd order | 3rd order | 4th order
+  default: 2nd order
+- name: System bandwidth (Hz)
+  summary: Bandwidth of delta-sigma modulator system 1000 (default) | nonnegative real scalar
+  group: Input Parameters
+  block_parameter: BandWidth
+  type: character vector
+  values: nonnegative real scalar
+  default: '1000'
+- name: OSR
+  summary: Ratio of delta-sigma modulator sampling rate to Nyquist rate 64 (default) | nonnegative real scalar
+  group: Input Parameters
+  block_parameter: OSR
+  type: character vector
+  values: nonnegative real scalar
+  default: '64'
+- name: Sampling frequency (Hz)
+  summary: Sampling frequency of delta-sigma modulator 128e3 (default) | positive real scalar
+  group: Input Parameters
+  block_parameter: SamplingFrequency
+  type: character vector
+  values: positive real scalar
+  default: 128e3
+- name: Quantizer levels
+  summary: Number of quantizer levels in delta-sigma modulator 2 (default) | positive real integer
+  group: Input Parameters
+  block_parameter: NumberLevels
+  type: character vector
+  values: positive real scalar
+  default: '2'
+- name: Quantizer output
+  summary: Range of quantizer output [-1,1] (default) | real-valued vector
+  group: Input Parameters
+  block_parameter: QuantizerOutput
+  type: character vector
+  values: real valued vector
+  default: '[-1;1]'
+- name: Use custom coefficient values
+  summary: Option to use custom values for coefficients 'a', 'g', 'b', and 'c' off (default) | on
+  group: Input Parameters
+- name: Coefficient 'a'
+  summary: Feedback/feed-forward coefficients from/to the quantizer [0.5714 0.1601] (default) | real-valued vector
+  group: Input Parameters
+  block_parameter: a
+  type: character vector
+  values: real valued vector
+  default: '[0.5714 0.1601]'
+- name: Coefficient 'g'
+  summary: Resonator coefficients [0.0000] (default) | real-valued vector
+  group: Input Parameters
+  block_parameter: g
+  type: character vector
+  values: real valued vector
+  default: '[0.0000]'
+- name: Coefficient 'b'
+  summary: Feed-in coefficients from the modulator input to each integrator [1.000 0.5714 0.1601] (default) | real-valued
+    vector
+  group: Input Parameters
+  block_parameter: b
+  type: character vector
+  values: real valued vector
+  default: '[1.000 0.5714 0.1601]'
+- name: Coefficient 'c'
+  summary: Integrator inter-stage coefficients [1.0000 1.0000] (default) | real-valued vector
+  group: Input Parameters
+  block_parameter: c
+  type: character vector
+  values: real valued vector
+  default: '[1.0000 1.0000]'
+- name: Integrator opamp gain
+  summary: Open loop gain of op-amp Inf (default) | positive real scalar
+  group: Impairment
+  block_parameter: OLgain
+  type: character vector
+  values: positive real scalar
+  default: Inf
+- name: Enable Noise Impairment
+  summary: Enable noise calculations in delta-sigma modulator ADC off (default) | on
+  group: Impairment
+- name: Thermal noise value
+  summary: Thermal noise density 200e-6 (default) | real scalar
+  group: Impairment
+  block_parameter: thermalNoiseValue
+  type: character vector
+  values: real scalar
+  default: '0.125'
+- name: Reference resistance (ohm)
+  summary: Reference resistance for power calculation 50 (default) | positive real scalar
+  group: Impairment
+  block_parameter: refResistance
+  type: character vector
+  values: positive real scalar
+  default: '50'
+- name: 1/f corner frequency (Hz)
+  summary: Corner frequency for flicker noise 1000 (default) | positive real scalar
+  group: Impairment
+  block_parameter: fcorner
+  type: character vector
+  values: positive real scalar
+  default: '1000'
+- name: NTF zeros opitimization flag
+  summary: Method to optimize zeros in NTF 2 (default) | 0 | 1
+  group: Advanced
+  block_parameter: ntfOptim
+  type: character vector
+  values: 0 | 1 | 2
+  default: '2'
+- name: Modulator passband
+  summary: Type of modulator passband Lowpass (default) | Bandpass
+  group: Advanced
+  block_parameter: passbandType
+  type: character vector
+  values: Lowpass | Bandpass
+  default: Lowpass
+- name: Center frequency
+  summary: Center frequency of modulator 0 (default) | scalar in the range [0 0.5]
+  group: Advanced
+  block_parameter: centerFrequency
+  type: character vector
+  values: scalar in the range [0 0.5]
+  default: '0'
+- name: Use custom value of H_inf
+  summary: Option to use custom value of H_inf off (default) | on
+  group: Advanced
+- name: Maximum out-of-band H_inf
+  summary: Maximum out-of-band gain of NTF 1.4 (default) | positive real scalar
+  group: Advanced
+  block_parameter: Hinf
+  type: character vector
+  values: positive real scalar
+  default: '1.4'
+```
 
 ### **Delta Sigma Modulator architecture** — Architecture of delta-sigma modulator `CIFB` (default) | `CIFF`
 
@@ -417,7 +589,6 @@ H\_inf** parameter.
 
 You need a Control System Toolbox™ license to use the parameters in the **Advanced**
 tab.
-
 ## Libraries
 
 Mixed-Signal Blockset / ADC / Building Blocks

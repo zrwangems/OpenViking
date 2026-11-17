@@ -14,6 +14,17 @@ language: en
 # Byte Unpack
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Packed data scalar | vector | matrix
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Port_1
+  summary: First of *N* output ports scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -32,8 +43,20 @@ parameter **Output port data types (cell
 array)**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output port dimensions (cell array)
+  summary: Dimensions of each output port (unpacked) {[1]} (default) | {[N], [M], ...}
+  group: ''
+- name: Output port data types (cell array)
+  summary: Data types for unpacked output signals double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | boolean
+  group: ''
+- name: Byte alignment
+  summary: Alignment of output signal data types before unpacking 1 (default) | 2 | 4 | 8
+  group: ''
+```
 
 ### **Output port dimensions (cell array)** — Dimensions of each output port (unpacked) `{[1]}` (default) | `{[N], [M], ...}`
 
@@ -180,7 +203,6 @@ The table lists the unpacked output signals. The `int8` and
 | –12 | FFF4 |
 | Scalar | 1 | `uint8` | 112 | 0070 |
 | Scalar | 1 | `uint32` | 5000 | 00001388 |
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Target Communication Simulink Support Package for Arduino Hardware / Utilities Embedded Coder / Embedded Targets / Host Communication Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Utilities Embedded Coder Support Package for STMicroelectronics STM32 Processors / Utilities Simulink Coder Support Package for STMicroelectronics Nucleo Boards / Utilities SoC Blockset Support Package for Infineon AURIX Microcontrollers / Utilities

@@ -14,6 +14,24 @@ language: en
 # Gate Driver
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Control signal, unitless physical signal
+  direction: input
+- name: PWM
+  summary: Pulse-width modulated signal electrical
+  direction: conserving
+- name: REF
+  summary: Floating zero volt reference electrical
+  direction: conserving
+- name: G
+  summary: Gate connection electrical
+  direction: conserving
+- name: S
+  summary: Source or emitter connection electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -56,8 +74,64 @@ to the gate of a MOSFET or IGBT block.
 
 Electrical conserving port associated with the source or emitter.
 Connect this port to the source of a MOSFET block or the emitter of an IGBT block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model electrical or physical signal input ports PS input (default) | Electrical input ports
+  group: ''
+- name: Logic 1 input value
+  summary: Signal value for logic 1 0.7 (default)
+  group: Input Logic
+- name: Logic 0 input value
+  summary: Signal value for logic 0 0.3 (default)
+  group: Input Logic
+- name: Logic 1 input voltage
+  summary: Voltage value for logic 1 2.0 V (default)
+  group: Input Logic
+- name: Logic 0 input voltage
+  summary: Voltage value for logic 0 0.8 V (default)
+  group: Input Logic
+- name: On-state gate-source voltage
+  summary: Demanded output voltage for on state 15 V (default)
+  group: Outputs
+- name: Off-state gate-source voltage
+  summary: Demanded output voltage for off state 0 V (default)
+  group: Outputs
+- name: Propagation delay (logic 0->logic 1)
+  summary: Turn-on propagation delay 50 ns (default)
+  group: Timing
+- name: Propagation delay (logic 1->logic 0)
+  summary: Turn-off propagation delay 50 ns (default)
+  group: Timing
+- name: Parameterization
+  summary: Select driver parameterization Output impedance (default) | Rise and fall times
+  group: Dynamics
+- name: On-state gate drive resistance
+  summary: Gate drive resistance for on state 2 Ω (default)
+  group: Dynamics
+- name: Off-state gate drive resistance
+  summary: Gate drive resistance for off state 2 Ω (default)
+  group: Dynamics
+- name: Rise time
+  summary: Driver rise time 20 ns (default)
+  group: Dynamics
+- name: Fall time
+  summary: Driver fall time 20 ns (default)
+  group: Dynamics
+- name: Load capacitance for rise and fall times
+  summary: Driver load capacitance 10 nF (default)
+  group: Dynamics
+- name: State fault
+  summary: Option to model faulty state in gate driver Add fault (default)
+  group: Faults
+- name: Failure mode
+  summary: State of driver after failure Fail off (default) | Fail on
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+```
 
 ### **Modeling option** — Whether to model electrical or physical signal input ports `PS input` (default) | `Electrical input ports`
 
@@ -214,7 +288,6 @@ Simulation time at which the block enters the faulted state.
 
 To enable this parameter, set **Trigger Type** to
 `Timed`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

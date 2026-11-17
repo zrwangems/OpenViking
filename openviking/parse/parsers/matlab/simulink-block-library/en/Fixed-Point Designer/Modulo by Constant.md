@@ -14,6 +14,17 @@ language: en
 # Modulo by Constant
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Dividend real-valued scalar | vector | matrix | multidimensional array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+- name: Y
+  summary: Result of modulus operation scalar | vector | matrix | multidimensional array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -34,8 +45,17 @@ Result of modulus operation, returned as a scalar, vector, matrix, or
 multidimensional array.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Denominator for Modulo Problem
+  summary: Divisor 10 (default) | real-valued scalar | vector | matrix | multidimensional array
+  group: ''
+  block_parameter: Denominator
+  type: character vector
+  values: MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value
+  default: '''10'''
+```
 
 ### **Denominator for Modulo Problem** — Divisor 10 (default) | real-valued scalar | vector | matrix | multidimensional array
 
@@ -51,7 +71,6 @@ finite scalar, vector, matrix, or multidimensional array.
 | **Values:** MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value |
 | **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` |
 | **Default:** `'10'` |
-
 ## Libraries
 
 Fixed-Point Designer

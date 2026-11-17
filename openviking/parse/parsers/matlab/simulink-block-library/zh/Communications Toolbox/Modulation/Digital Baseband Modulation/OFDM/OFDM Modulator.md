@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # OFDM Modulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 标量 | 列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: FFTLen
+  summary: FFT 长度 标量
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: CPLen
+  summary: 循环前缀长度 标量
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: numLgSc
+  summary: OFDM 符号左侧保护载波数量 标量
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: numRgSc
+  summary: OFDM 符号右侧保护载波数量 标量
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: winLen
+  summary: 窗口长度 标量
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | unsigned fixed point
+- name: data
+  summary: 调制输出数据 标量 | 列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已就绪 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -131,8 +178,49 @@ OFDM 符号的右侧保护载波数量，指定为范围从 0 到 (**FFTLen**/2)
 这是一个控制信号，用于指示模块何时准备好接收新的输入数据。当此值为 `1` 时，模块在下一个时间步接受输入数据。当此值为 `0` 时，模块在下一个时间步忽略输入数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: OFDM parameters source
+  summary: OFDM 参数来源 Property（默认）| Input port
+  group: 主
+- name: Maximum FFT length
+  summary: FFT 最大长度 长度 64（默认）| 范围从 8 到 65,536 的 2 的幂
+  group: 主
+- name: FFT length
+  summary: FFT 长度 64（默认）| 范围从 8 到 65, 536 的 2 的幂
+  group: 主
+- name: Cyclic prefix length
+  summary: 循环前缀长度 16（默认）| 范围从 0 到 *FFTLength* 的整数
+  group: 主
+- name: Number of left guard subcarriers
+  summary: OFDM 符号最左侧的保护频带子载波数量 6（默认）| 范围从 0 到 (*FFTLength*/2) – 1 的整数
+  group: 主
+- name: Number of right guard subcarriers
+  summary: OFDM 符号最右侧的保护频带子载波数量 5（默认）| 范围从 0 到 (*FFTLength*/2) – 1 的整数
+  group: 主
+- name: Insert DC Null
+  summary: 插入直流空值的选项 on（默认）| off
+  group: 主
+- name: Enable reset input port
+  summary: 复位信号 off（默认）| on
+  group: 主
+- name: Windowing
+  summary: 频谱增长抑制 off（默认）| on
+  group: 主
+- name: Window length
+  summary: 窗口长度 4（默认）| 范围从 1 到 Cyclic prefix length 的偶数整数
+  group: 主
+- name: Maximum window length
+  summary: 窗口最大长度 8（默认）| 范围从 1 到 CPLen 的整数
+  group: 主
+- name: Divide butterfly outputs by two
+  summary: 将 FFT 蝶形输出除以二 on（默认）| off
+  group: IFFT 参数
+- name: Rounding Method
+  summary: 内部定点计算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: IFFT 参数
+```
 
 ### 主
 
@@ -225,7 +313,6 @@ OFDM 符号的右侧保护载波数量，指定为范围从 0 到 (**FFTLen**/2)
 ### **Rounding Method** — 内部定点计算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Zero`
 
 此参数指定内部定点计算的舍入模式类型。有关舍入模式的详细信息，请参阅 Rounding Modes。当输入为任何整数数据类型或定点数据类型时，FFT 算法使用定点算术进行内部计算。当输入为 `single` 或 `double` 数据类型时，此参数不适用。舍入适用于旋转因子乘法和缩放操作。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

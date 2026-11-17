@@ -14,6 +14,35 @@ language: en
 # Resource Acquirer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: Output entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: Number of entities that have departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: Number of entities that have not yet departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: Average wait time for entities in the block scalar
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: Number of entities extracted scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -77,8 +106,52 @@ and select the box labeled **Number of entities extracted,
 ex**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum number of waiting entities
+  summary: Maximum number of entities that can wait for a resource 1 (default) | scalar
+  group: ''
+  block_parameter: NumberWaitingEntities
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Event actions
+  summary: Specify the behavior of the entity on certain events Entry (default) | Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities departed, d
+  summary: Outputs the number of entities that have departed the block off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: Outputs the number of entities present in the block, which have yet to depart off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average wait, w
+  summary: Outputs the average wait time off (default) | on
+  group: ''
+  block_parameter: AverageWait
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: Number of entities extracted from this block off (default) | on
+  group: ''
+  block_parameter: NumEntitiesExtracted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Maximum number of waiting entities** — Maximum number of entities that can wait for a resource `1` (default) | `scalar`
 
@@ -176,7 +249,6 @@ For more information about finding and extracting entities, see Find and Extract
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

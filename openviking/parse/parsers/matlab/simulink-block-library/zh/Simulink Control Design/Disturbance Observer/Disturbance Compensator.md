@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Disturbance Compensator
 
 ## 端口
+```yaml
+ports:
+- name: u0
+  summary: 标称控制器输入 标量 | 向量
+  direction: input
+- name: y
+  summary: 测量输出 标量 | 向量
+  direction: input
+- name: A
+  summary: 状态矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: Bu
+  summary: 输入矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: Cm
+  summary: 输出矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: Bd
+  summary: 扰动矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: S0
+  summary: 初始条件 标量 | 向量
+  direction: input
+- name: L
+  summary: 观测器矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: Kd
+  summary: 补偿增益矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: u
+  summary: 修正后的控制输入 标量
+  direction: output
+- name: dhat
+  summary: 估计扰动 向量
+  direction: output
+- name: xhat
+  summary: 估计状态 向量
+  direction: output
+```
 
 ### 输入
 
@@ -144,8 +183,76 @@ dhat**。
 
 要启用此端口，请选择 **Output estimated model states
 xhat**。
-
 ## 参数
+```yaml
+parameters:
+- name: Time domain
+  summary: 控制器时域 discrete-time（默认）| continuous-time
+  group: 参数选项卡
+- name: LTI state-space variable
+  summary: 已知被控对象动态 ss 对象 | idss 对象
+  group: 参数选项卡
+- name: Use external source for model matrices (A,Bu,Cm)
+  summary: 在模块输入端口指定模型矩阵 off（默认）| on
+  group: 参数选项卡
+- name: Number of states
+  summary: 模型中的状态数 1（默认）| 正整数
+  group: 参数选项卡
+- name: Number of inputs
+  summary: 模型中的输入数 1（默认）| 正整数
+  group: 参数选项卡
+- name: Number of outputs
+  summary: 模型中的输出数 1（默认）| 正整数
+  group: 参数选项卡
+- name: Specify gain k (such that Bd = k\*Bu)
+  summary: 用于计算扰动输入矩阵的增益值 1（默认）| 非零标量
+  group: 参数选项卡
+- name: Use external source for matrix Bd
+  summary: 在模块输入端口指定扰动矩阵 off（默认）| on
+  group: 参数选项卡
+- name: Number of disturbances
+  summary: 模型中的扰动数 1（默认）| 正整数
+  group: 参数选项卡
+- name: Initial conditions
+  summary: 扩展状态的初始条件 0（默认）| 标量 | 向量
+  group: 参数选项卡
+- name: Use external source for initial conditions S0 (x0,d0)
+  summary: 在模块输入端口指定初始条件 off（默认）| on
+  group: 参数选项卡
+- name: Bandwidth (rad/s)
+  summary: 观测器带宽 1（默认）| 正标量
+  group: Tuning Tab
+- name: Spacing (rad/s)
+  summary: 观测器带宽间距 0.01（默认）| 正标量
+  group: Tuning Tab
+- name: Use external source for matrix L
+  summary: 在模块输入端口指定观测器矩阵 off（默认）| on
+  group: Tuning Tab
+- name: Use external source for matrix Kd
+  summary: 在模块输入端口指定补偿增益矩阵 off（默认）| on
+  group: Tuning Tab
+- name: Limit output (u)
+  summary: 将模块输出限制在指定的饱和限值内 off（默认）| on
+  group: Block Tab
+- name: Upper limit
+  summary: 模块输出的饱和上限 inf（默认）| 标量
+  group: Block Tab
+- name: Lower limit
+  summary: 模块输出的饱和下限 –inf（默认）| 标量
+  group: Block Tab
+- name: Data type
+  summary: 浮点精度 double（默认）| single
+  group: Block Tab
+- name: Time delay
+  summary: 指定时间延迟 1（默认）| 正标量 | 向量
+  group: Block Tab
+- name: Output estimated model states xhat
+  summary: 在模块输出端口输出估计状态 off（默认）| on
+  group: Block Tab
+- name: Output estimated model states dhat
+  summary: 在模块输出端口输出估计扰动 off（默认）| on
+  group: Block Tab
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在
@@ -289,7 +396,6 @@ Inspector**。
 ### **Output estimated model states dhat** — 在模块输出端口输出估计扰动 `off`（默认）| `on`
 
 选择此选项可在模块输出 **dhat** 处输出估计的模型状态。
-
 ## 所属库
 
 Simulink Control Design / Disturbance Observer

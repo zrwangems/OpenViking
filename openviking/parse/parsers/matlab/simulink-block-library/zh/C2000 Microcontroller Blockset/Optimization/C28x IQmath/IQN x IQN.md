@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2000 IQN x IQN
 
 ## 端口
+```yaml
+ports: []
+```
 
 在 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **乘法选项**
 :   要执行的乘法类型：
@@ -33,7 +38,6 @@ chinese_source: worker-translation
     - `Multiply` — 将数字相乘。
     - `Multiply with Rounding` — 将数字相乘并对结果进行舍入。
     - `Multiply with Rounding and Saturation` — 将数字相乘，并将结果舍入和饱和到最大值。
-
 ## 所属库
 
 在 R2025b 中未记录。

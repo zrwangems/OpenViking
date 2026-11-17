@@ -14,6 +14,24 @@ language: en
 # PS Lookup Table (4D)
 
 ## Ports
+```yaml
+ports:
+- name: x1
+  summary: Input query point or N-D array of query points along the first axis, untyped physical signal
+  direction: input
+- name: x2
+  summary: Input query point or N-D array of query points along the second axis, untyped physical signal
+  direction: input
+- name: x3
+  summary: Input query point or N-D array of query points along the third axis, untyped physical signal
+  direction: input
+- name: x4
+  summary: Input query point or N-D array of query points along the fourth axis, untyped physical signal
+  direction: input
+- name: f
+  summary: Output function value, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -46,8 +64,31 @@ Output function value, based on applying the lookup table to the four
 input values. The output signal size matches the input signal size along
 the first axis. The output signal unit is determined by the unit of the
 **4D array of table values** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Table grid vector 1
+  summary: Vector of data values along the first axis [1, 2, 3] (default)
+  group: ''
+- name: Table grid vector 2
+  summary: Vector of data values along the second axis [1, 2, 3, 4] (default)
+  group: ''
+- name: Table grid vector 3
+  summary: Vector of data values along the third axis [1, 2, 3] (default)
+  group: ''
+- name: Table grid vector 4
+  summary: Vector of data values along the fourth axis [1, 2, 3, 4, 5] (default)
+  group: ''
+- name: 4D array of table values
+  summary: Four-dimensional array of function values at table grid vertices ones(3, 4, 3, 5) (default)
+  group: ''
+- name: Interpolation method
+  summary: Select the interpolation method Linear (default) | Smooth
+  group: ''
+- name: Extrapolation method
+  summary: Select the extrapolation method Linear (default) | Nearest | Error
+  group: ''
+```
 
 ### **Table grid vector 1** — Vector of data values along the first axis `[1, 2, 3]` (default)
 
@@ -161,7 +202,6 @@ argument list:
   of the input signals is outside the range of the table. Select this
   option to avoid going into the extrapolation mode when you want your
   data to be within the table range.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Lookup Tables

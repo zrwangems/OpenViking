@@ -14,6 +14,29 @@ language: en
 # LTE Turbo Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input sample three-element vector
+  direction: input
+  data_types: fixdt(1,WL,FL) | single | double
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: blockSize
+  summary: Turbo code block size integer
+  direction: input
+  data_types: single | double | uint16 | fixdt(0,13,0)
+- name: data
+  summary: Output sample scalar
+  direction: output
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -92,8 +115,19 @@ and the validity of the samples.
 For more details, see Sample Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Block size source
+  summary: How to specify the block size Input port (default) | Property
+  group: ''
+- name: Block size
+  summary: Turbo code block size 6144 (default)
+  group: ''
+- name: Number of decoding iterations
+  summary: How many MAX decoding iterations to perform 6 (default) | positive integer
+  group: ''
+```
 
 ### **Block size source** — How to specify the block size `Input port` (default) | `Property`
 
@@ -124,7 +158,6 @@ integer. The decoder implementation uses a single MAX decoder, with the
 output data of each half-iteration routed back to the input. A higher
 iteration count increases accuracy and adds latency. After about 15
 iterations, the algorithm does not provide further accuracy.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

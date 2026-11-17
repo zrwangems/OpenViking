@@ -14,6 +14,13 @@ language: en
 # Random Source
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal of randomly distributed values scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Output
 
@@ -32,8 +39,49 @@ complexity of the signal.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Distribution
+  summary: Uniform or Gaussian Uniform (default) | Gaussian
+  group: ''
+- name: Minimum
+  summary: Minimum value of uniform distribution 0 (default) | scalar | row vector
+  group: ''
+- name: Maximum
+  summary: Maximum value of uniform distribution 1 (default) | scalar | row vector
+  group: ''
+- name: Mean
+  summary: Mean value of Gaussian distribution 0 (default) | scalar | row vector
+  group: ''
+- name: Variance
+  summary: Variance of Gaussian distribution 1 (default) | scalar | row vector
+  group: ''
+- name: Repeatability
+  summary: Option to repeat block output Specify seed (default) | Not repeatable
+  group: ''
+- name: Initial seed
+  summary: Initial seed for random number generator 1 (default) | scalar
+  group: ''
+- name: Inherit via output port
+  summary: Inherit output port parameters from downstream block off (default) | on
+  group: ''
+- name: Sample time
+  summary: Output sample period 1 (default) | −1 | real positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Samples per output frame 1 (default) | positive integer
+  group: ''
+- name: Signal complexity
+  summary: Complexity of output Real (default) | Complex
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 #### Distribution Settings
 
@@ -340,7 +388,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Sources

@@ -14,6 +14,24 @@ language: en
 # Pipe (TL)
 
 ## Ports
+```yaml
+ports:
+- name: EL
+  summary: Port elevation difference, m physical signal
+  direction: input
+- name: G
+  summary: Gravitational acceleration, m/s^2 physical signal
+  direction: input
+- name: A
+  summary: Pipe opening thermal liquid
+  direction: conserving
+- name: B
+  summary: Pipe opening thermal liquid
+  direction: conserving
+- name: H
+  summary: Pipe wall thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -55,8 +73,232 @@ Liquid entry or exit port to the pipe.
 ### **H** — Pipe wall thermal
 
 Pipe wall temperature.
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable dynamic compressibility
+  summary: Whether to model fluid dynamic compressibility on (default) | off
+  group: Configuration
+- name: Enable fluid inertia
+  summary: Whether to model fluid acceleration off (default) | on
+  group: Configuration
+- name: Number of segments
+  summary: Pipe discretization 1 (default) | positive unitless scalar
+  group: Configuration
+- name: Pipe total length
+  summary: Total pipe length 5 m (default) | positive scalar in units of length
+  group: Configuration
+- name: Cross-sectional geometry
+  summary: Pipe geometry Circular (default) | Annular | Rectangular | Elliptical | Isosceles triangular | Custom
+  group: Configuration
+- name: Pipe diameter
+  summary: Pipe diameter 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe inner diameter
+  summary: Pipe inner diameter 0.05 m (default) | positive scalar
+  group: Configuration
+- name: Pipe outer diameter
+  summary: Pipe outer diameter 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe width
+  summary: Rectangular pipe width 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe height
+  summary: Rectangular pipe height 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe major axis
+  summary: Elliptical pipe major axis 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe minor axis
+  summary: Elliptical pipe minor axis 0.05 m (default) | positive scalar
+  group: Configuration
+- name: Pipe side length
+  summary: Triangular pipe side length 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe vertex angle
+  summary: Triangular pipe vertex angle 30 deg (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area
+  summary: Cross-sectional pipe area without deformation 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Hydraulic diameter
+  summary: Effective diameter of noncircular pipes 0.1128 m (default) | positive scalar in units of length
+  group: Configuration
+- name: Elevation gain specification
+  summary: Set pipe elevation property Constant (default) | Variable
+  group: Configuration
+- name: Elevation gain from port A to port B
+  summary: Change in elevation from port A to port B 0 m (default) | positive scalar in units of length
+  group: Configuration
+- name: Gravitational acceleration specification
+  summary: Acceleration specification Constant (default) | Variable
+  group: Configuration
+- name: Gravitational acceleration
+  summary: Acceleration due to gravity at mean pipe elevation 9.81 m/s^2 (default) | scalar
+  group: Configuration
+- name: Viscous friction parameterization
+  summary: Friction model Haaland correlation (default) | Nominal pressure drop vs. nominal mass flow rate | Tabulated data
+    - Darcy friction factor vs. Reynolds number
+  group: Viscous Friction
+- name: Local resistances specification
+  summary: Method for quantifying pressure losses in the Haaland correlation Aggregate equivalent length (default) | Local
+    loss coefficient
+  group: Viscous Friction
+- name: Total local loss coefficient
+  summary: Defines loss coefficient over the pipe 0.1 (default) | positive scalar
+  group: Viscous Friction
+- name: Aggregate equivalent length of local resistances
+  summary: Minor pressure loss in the pipe expressed as a length 1 m (default) | positive scalar
+  group: Viscous Friction
+- name: Surface roughness specification
+  summary: 'Pipe material for roughness specification Commercially smooth brass, lead, copper, or plastic pipe: 1.52 um (default)
+    | Steel and wrought iron : 46 um | Galvanized iron or steel : 152 um | Cast iron : 259 um | Custom'
+  group: Viscous Friction
+- name: Internal surface absolute roughness
+  summary: Pipe wall absolute roughness 1.5e-5 m (default) | positive scalar in units of length
+  group: Viscous Friction
+- name: Laminar friction constant for Darcy friction factor
+  summary: Friction constant for laminar flows 64 (default) | positive scalar
+  group: Viscous Friction
+- name: Laminar flow upper Reynolds number limit
+  summary: Reynolds number below which the flow is laminar 2e+3 (default) | positive scalar
+  group: Viscous Friction
+- name: Turbulent flow lower Reynolds number limit
+  summary: Reynolds number above which the flow is turbulent 4e+3 (default) | positive scalar
+  group: Viscous Friction
+- name: Nominal mass flow rate
+  summary: Pipe mass flow rate [0.1 1] kg/s (default) | scalar or vector of numbers in units of mass/time
+  group: Viscous Friction
+- name: Nominal pressure drop
+  summary: Pressure drop over the pipe [0.001 0.01] MPa (default) | scalar or vector of numbers in units of pressure
+  group: Viscous Friction
+- name: Mass flow rate threshold for flow reversal
+  summary: Threshold below which numerical smoothing is applied 1e-6 kg/s (default) | positive scalar in units of mass/time
+  group: Viscous Friction
+- name: Reynolds number vector for turbulent Darcy friction factor
+  summary: Reynolds numbers at which to tabulate the Darcy friction factor [ 400 1000 1.5e+3 3e+3 4e+3 6e+3 1e+4 2e+4 4e+4
+    6e+4 1e+5 1e+8 ] (default) | vector of positive numbers
+  group: Viscous Friction
+- name: Darcy friction factor vector
+  summary: Darcy friction factors at the tabulated Reynolds numbers [ 0.264 0.112 0.07099999999999999 0.0417 0.0387 0.0268
+    0.025 0.0232 0.0226 0.022 0.0214 0.0214 ] (default) | vector of positive numbers
+  group: Viscous Friction
+- name: Pipe wall specification
+  summary: Pipe wall flexibility Rigid (default) | Flexible
+  group: Pipe Wall
+- name: Volumetric expansion specification
+  summary: Linear expansion correlation Cross-sectional area vs. pressure (default) | Cross-sectional area vs. pressure -
+    Tabulated | Hydraulic diameter vs. pressure | Based on material properties
+  group: Pipe Wall
+- name: Static gauge pressure to cross-sectional area gain
+  summary: Coefficient for area-dependent pipe deformation 1e-6 m^2/MPa (default) | positive scalar
+  group: Pipe Wall
+- name: Static gauge pressure vector
+  summary: Vector of gauge pressures [.1,1] MPa (default) | vector
+  group: Pipe Wall
+- name: Cross sectional area gain vector
+  summary: Vector of pipe cross-sectional areas [1e-05, 1.1e-05] m^2 (default) | vector
+  group: Pipe Wall
+- name: Static gauge pressure to hydraulic diameter gain
+  summary: Coefficient for diameter-dependent pipe deformation 1e-6 m/MPa (default) | positive scalar
+  group: Pipe Wall
+- name: Material behavior
+  summary: Method to specify material behavior Linear Elastic (default) | Multilinear Elastic
+  group: Pipe Wall
+- name: Pipe wall thickness
+  summary: Width of pipe wall 0.05 m (default) | positive scalar
+  group: Pipe Wall
+- name: Young's modulus
+  summary: Young's modulus of pipe wall material 69 GPa (default) | positive scalar
+  group: Pipe Wall
+- name: Poisson's ratio
+  summary: Poisson's ratio of pipe wall material 0.33 (default) | positive scalar
+  group: Pipe Wall
+- name: Stress vector
+  summary: Stress vector of pipe wall material [276, 310] MPa (default) | vector
+  group: Pipe Wall
+- name: Strain vector
+  summary: Strain vector of pipe wall material [.004, .02] (default) | vector
+  group: Pipe Wall
+- name: Check if stress exceeds specified allowable level
+  summary: Notification when stress is above specified max None (default) | Warning | Error
+  group: Pipe Wall
+- name: Maximum allowable stress
+  summary: Maximum allowed stress on pipe wall 400 MPa (default) | positive scalar
+  group: Pipe Wall
+- name: Volumetric expansion time constant
+  summary: Pipe deformation time constant 0.01 s (default) | positive scalar
+  group: Pipe Wall
+- name: Pipe thermal expansion
+  summary: Whether to model thermal expansion off (default) | on
+  group: Pipe Wall
+- name: Coefficient of thermal expansion
+  summary: Pipe coefficient of thermal expansion 24 um/(deltaK*m) (default) | positive scalar
+  group: Pipe Wall
+- name: Thermal expansion reference temperature
+  summary: Reference temperature for pipe thermal expansion 293.15 K (default) | positive scalar
+  group: Pipe Wall
+- name: Heat transfer parameterization
+  summary: Method by which to capture the convective heat transfer with the pipe wall Gnielinski correlationNominal temperature
+    differential vs. nominal mass flow rate (default) | Dittus-Boelter correlation | Tabulated data - Colburn factor vs. Reynolds
+    number | Tabulated data - Nusselt number vs. Reynolds number & Prandtl number
+  group: Heat Transfer
+- name: Nusselt number for laminar flow heat transfer
+  summary: Nusselt number to use in the heat transfer calculations for laminar flows 3.66 (default)
+  group: Heat Transfer
+- name: Nominal mass flow rate
+  summary: Pipe mass flow rate [0.1 1] kg/s (default) | scalar or vector of numbers in units of mass/time
+  group: Heat Transfer
+- name: Nominal inflow temperature
+  summary: Pipe inlet temperature [293.15 293.15] K (default) | scalar or vector of numbers in units of temperature
+  group: Heat Transfer
+- name: Nominal outflow temperature
+  summary: Pipe outlet temperature [300 300] K (default) | scalar or vector of numbers in units of temperature
+  group: Heat Transfer
+- name: Nominal inflow pressure
+  summary: Pipe inlet pressure [0.101325 0.101325] MPa (default) | scalar or vector of numbers in units of pressure
+  group: Heat Transfer
+- name: Nominal wall temperature
+  summary: Pipe wall temperature [303.15 303.15] K (default) | scalar or vector of numbers in units of temperature
+  group: Heat Transfer
+- name: Coefficient a
+  summary: Empirical constant *a* of the Dittus-Boelter correlation 0.023 (default) | positive scalar
+  group: Heat Transfer
+- name: Exponent b
+  summary: Empirical constant *b* of the Dittus-Boelter correlation 0.8 (default) | positive scalar
+  group: Heat Transfer
+- name: Exponent c
+  summary: Empirical constant *c* of the Dittus-Boelter correlation 0.4 (default) | positive scalar
+  group: Heat Transfer
+- name: Reynolds number vector for Colburn factor
+  summary: Reynolds numbers at which to tabulate the Colburn factor [100 150 1000] (default) | vector of positive numbers
+  group: Heat Transfer
+- name: Colburn factor vector
+  summary: Colburn factors at which the tabulated Reynolds numbers [0.019 0.013 0.002] (default) | vector of positive numbers
+  group: Heat Transfer
+- name: Reynolds number vector for Nusselt number
+  summary: Reynolds number at which to tabulate the Nusselt number [100 150 100] (default) | vector of positive numbers
+  group: Heat Transfer
+- name: Prandtl number vector for Nusselt number
+  summary: Prandtl numbers at which to tabulate the Nusselt number [1 10] (default) | vector of positive numbers
+  group: Heat Transfer
+- name: Nusselt number table
+  summary: Nusselt numbers at the tabulated Reynolds and Prandtl numbers [ 3.72 4.21; 3.75 4.44; 4.21 7.15 ] (default) | matrix
+    of positive numbers
+  group: Heat Transfer
+- name: Initial liquid temperature
+  summary: Liquid temperature at start of simulation 293.15 K (default)
+  group: Initial Conditions
+- name: Initial liquid pressure
+  summary: Pipe pressure at beginning of simulation 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Nominal liquid temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Initial Conditions
+- name: Nominal liquid pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Initial Conditions
+```
 
 ### Configuration
 
@@ -943,7 +1185,6 @@ conservation equation when dynamic compressibility is disabled.
 
 To enable this parameter, clear the **Enable dynamic
 compressibility** checkbox.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Pipes & Fittings

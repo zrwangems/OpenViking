@@ -14,10 +14,15 @@ language: en
 # APP Decoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Trellis structure**
 :   MATLAB structure that contains the trellis description of the
@@ -42,7 +47,6 @@ Not documented in R2025b.
 
 **Disable L(c) output port**
 :   Select this check box to disable the secondary block output, L(c).
-
 ## Libraries
 
 Not documented in R2025b.

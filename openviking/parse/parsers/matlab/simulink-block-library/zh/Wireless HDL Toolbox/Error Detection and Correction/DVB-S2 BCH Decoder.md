@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # DVB-S2 BCH Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 码字数据比特 标量 | 向量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: frameType
+  summary: 帧类型 标量
+  direction: input
+  data_types: Boolean
+- name: codeRateIdx
+  summary: 码率索引 整数
+  direction: input
+  data_types: fixdt(0,4,0)
+- name: data
+  summary: 解码消息比特 标量 | 向量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: numCorrErr
+  summary: 已纠正错误数 标量
+  direction: output
+  data_types: fixdt(1,5,0)
+- name: nextFrame
+  summary: 模块就绪指示 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -116,8 +151,25 @@ chinese_source: worker-translation
 当模块准备好接受下一帧的开始时，模块将此信号设置为 `1`（`true`）。如果模块在 **nextFrame** 为 `0`（`false`）时接收到输入 **ctrl.start** 信号，模块将丢弃正在处理的帧并开始处理新数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: FEC frame type source
+  summary: FEC 帧类型来源 Property（默认）| Input port
+  group: ''
+- name: FEC frame type
+  summary: FEC 帧类型 Normal（默认）| Short
+  group: ''
+- name: Code rate source
+  summary: 码率来源 Property（默认）| Input port
+  group: ''
+- name: Code rate
+  summary: 码率 1/4（默认）| 1/3 | 2/5 | 1/2 | 3/5 | 2/3 | 3/4 | 4/5 | 5/6 | 8/9 | 9/10
+  group: ''
+- name: Output number of corrected errors
+  summary: 已纠正错误数 off（默认）| on
+  group: ''
+```
 
 ### **FEC frame type source** — FEC 帧类型来源 `Property`（默认）| `Input port`
 
@@ -154,7 +206,6 @@ chinese_source: worker-translation
 ### **Output number of corrected errors** — 已纠正错误数 `off`（默认）| `on`
 
 选择此参数以启用 **numCorrErr** 输出端口。此端口输出已纠正错误的数量。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

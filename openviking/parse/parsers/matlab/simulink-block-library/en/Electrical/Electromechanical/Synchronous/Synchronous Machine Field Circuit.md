@@ -14,6 +14,27 @@ language: en
 # Synchronous Machine Field Circuit
 
 ## Ports
+```yaml
+ports:
+- name: Efd
+  summary: Field voltage physical
+  direction: input
+- name: Efd_pu
+  summary: Per unit field voltage physical
+  direction: input
+- name: Ifd
+  summary: Field current physical
+  direction: output
+- name: Ifd_pu
+  summary: Per-unit field current physical
+  direction: output
+- name: fd+
+  summary: Field winding positive terminal electrical
+  direction: conserving
+- name: fd-
+  summary: Field winding negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -68,8 +89,65 @@ terminal.
 
 Electrical conserving port associated with the field winding negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: PS input and output unit
+  summary: Unit-system configuration SI (default) | Per unit
+  group: Main
+- name: Rated apparent power
+  summary: Rated apparent power 555e6 V*A (default)
+  group: Main
+- name: Rated electrical frequency
+  summary: Nominal electrical frequency 60 Hz (default)
+  group: Main
+- name: Specify field circuit input required to produce rated terminal voltage at no load by
+  summary: Specify field circuit input required to produce rated terminal voltage at no load by Field circuit current (default)
+    | Field circuit voltage
+  group: Main
+- name: Field circuit current
+  summary: Field circuit current 1300 A (default)
+  group: Main
+- name: Field circuit voltage
+  summary: Field circuit voltage 92.95 V (default)
+  group: Main
+- name: Specify parameterization by
+  summary: Machine parameterization Fundamental Parameters (default) | Standard Parameters
+  group: Machine Parameters
+- name: Stator d-axis mutual inductance (unsaturated), Ladu
+  summary: Stator d-axis mutual inductance (unsaturated) 1.66 (default)
+  group: Machine Parameters
+- name: Rotor field circuit resistance, Rfd
+  summary: Rotor field circuit resistance 0.0006 (default)
+  group: Machine Parameters
+- name: Stator leakage reactance, Xl
+  summary: Stator leakage reactance 0.15 (default)
+  group: Machine Parameters
+- name: d-axis synchronous reactance, Xd
+  summary: d-axis synchronous reactance 1.81 (default)
+  group: Machine Parameters
+- name: d-axis transient reactance, Xd'
+  summary: d-axis transient reactance 0.3 (default)
+  group: Machine Parameters
+- name: d-axis subtransient reactance, Xd''
+  summary: d-axis subtransient reactance 0.23 (default)
+  group: Machine Parameters
+- name: Specify d-axis time constant
+  summary: d-axis time constant specification Open-circuit value (default) | Short-circuit value
+  group: Machine Parameters
+- name: d-axis transient open-circuit, Td0'
+  summary: d-axis transient open-circuit 8 s (default)
+  group: Machine Parameters
+- name: d-axis transient short-circuit, Td'
+  summary: d-axis transient short-circuit 1.3260 s (default)
+  group: Machine Parameters
+- name: d-axis subtransient open-circuit, Td0''
+  summary: d-axis subtransient open-circuit 0.03 (default)
+  group: Machine Parameters
+- name: d-axis subtransient short-circuit, Td''
+  summary: d-axis subtransient short-circuit 0.0230 (default)
+  group: Machine Parameters
+```
 
 The additional parameters for this block are visibile only if you set the **PS
 input and output unit** parameter to `Per
@@ -256,7 +334,6 @@ parameterization by** parameter to
 `Standard Parameters` and the
 **Specify d-axis transient time constant** to
 `Short-circuit value`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Synchronous

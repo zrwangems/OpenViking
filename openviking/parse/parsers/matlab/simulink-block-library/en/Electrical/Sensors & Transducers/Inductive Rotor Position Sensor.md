@@ -14,6 +14,30 @@ language: en
 # Inductive Rotor Position Sensor
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rotational velocity for sensor positive probe mechanical rotational
+  direction: conserving
+- name: C
+  summary: Rotational velocity for the sensor negative probe mechanical rotational
+  direction: conserving
+- name: yp
+  summary: y-axis positive terminal electrical
+  direction: conserving
+- name: yn
+  summary: y-axis negative terminal electrical
+  direction: conserving
+- name: xp
+  summary: x-axis positive terminal electrical
+  direction: conserving
+- name: xn
+  summary: x-axis negative terminal electrical
+  direction: conserving
+- name: Angle
+  summary: Rotational angle physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -77,8 +101,34 @@ plane, returned as a physical signal.
 
 To enable this port, set **Output interface** to
 `Decoded angular position`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: Number of pole pairs 2 (default) | scalar
+  group: ''
+- name: X-axis voltage amplitude
+  summary: x-axis voltage 2.5 V (default) | scalar
+  group: ''
+- name: Y-axis voltage amplitude
+  summary: y-axis voltage 2.5 V (default) | scalar
+  group: ''
+- name: X-axis voltage offset
+  summary: x-axis voltage offset 0 V (default) | scalar
+  group: ''
+- name: Y-axis voltage offset
+  summary: y-axis voltage offset 0 V (default) | scalar
+  group: ''
+- name: Quadrature error
+  summary: Quadrature error 0 deg (default) | scalar
+  group: ''
+- name: Tumbling coefficient
+  summary: Tumbling coefficient 0 (default) | scalar
+  group: ''
+- name: Output interface
+  summary: Interface for decoded information Electrical connections (default) | Decoded angular position
+  group: ''
+```
 
 ### **Number of pole pairs** — Number of pole pairs `2` (default) | scalar
 
@@ -118,7 +168,6 @@ Tumbling coefficient, in degrees.
 Port interface for the decoded information, specified as either `Electrical
 connections` or `Decoded angular
 position`.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

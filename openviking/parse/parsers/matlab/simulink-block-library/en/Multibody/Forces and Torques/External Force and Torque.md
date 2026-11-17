@@ -14,6 +14,36 @@ language: en
 # External Force and Torque
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: fx
+  summary: External force along *x*-axis physical signal
+  direction: input
+- name: fy
+  summary: External force along *y*-axis physical signal
+  direction: input
+- name: fz
+  summary: External force along *z*-axis physical signal
+  direction: input
+- name: f
+  summary: External force vector physical signal
+  direction: input
+- name: tx
+  summary: External torque about *x*-axis physical signal
+  direction: input
+- name: ty
+  summary: External torque about *y*-axis physical signal
+  direction: input
+- name: tz
+  summary: External torque about *z*-axis physical signal
+  direction: input
+- name: t
+  summary: External torque vector physical signal
+  direction: input
+```
 
 ### Frame
 
@@ -135,8 +165,16 @@ Physical signal port that accepts the external torque. The input signal is a
 
 To enable this port, under **Torque**, select
 **Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Force Resolution Frame
+  summary: Frame to use to resolve each force input Attached Frame (default) | World
+  group: ''
+- name: Torque Resolution Frame
+  summary: Frame to use to resolve each torque input Attached Frame (default) | World
+  group: ''
+```
 
 #### Force
 
@@ -161,7 +199,6 @@ Frame used to resolve the torque inputs, specified as:
   Torque block.
 - `World` — The block resolves the inputs in the world
   frame of the model.
-
 ## Libraries
 
 Simscape / Multibody / Forces and Torques

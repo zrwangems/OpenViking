@@ -14,6 +14,30 @@ language: en
 # Torsional Compliance
 
 ## Ports
+```yaml
+ports:
+- name: RSpd
+  summary: Driveshaft R angular velocity scalar
+  direction: input
+- name: CSpd
+  summary: Driveshaft C angular velocity scalar
+  direction: input
+- name: R
+  summary: Angular velocity and torque two-way connector port
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: RTrq
+  summary: Driveshaft R torque scalar
+  direction: output
+- name: CTrq
+  summary: Driveshaft C torque scalar
+  direction: output
+- name: C
+  summary: Angular velocity and torque two-way connector port
+  direction: output
+```
 
 ### Input
 
@@ -93,8 +117,43 @@ Angular velocity in rad/s. Torque is in N·m.
 
 To enable this port, for **Port Configuration**,
 select `Two-way connection`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port Configuration
+  summary: Specify configuration Simulink (default) | Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink (default) | Two-way connection
+- name: Output Info bus
+  summary: Selection off (default) | on
+  group: ''
+- name: Torsional stiffness, k
+  summary: Inertia 1e4 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: k
+  values: 1e4 (default) | scalar greater than or equal to 0
+- name: Torsional damping, b
+  summary: Damping 1e2 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: b
+  values: 1e2 (default) | scalar greater than or equal to 0
+- name: Initial deflection, theta_o
+  summary: Angular 0 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: theta_o
+  values: 0 (default) | scalar greater than or equal to 0
+- name: Initial velocity difference, domega_o
+  summary: Angular 0 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: domega_o
+  values: 0 (default) | scalar greater than or equal to 0
+- name: Damping cut-off frequency, omega_c
+  summary: Frequency 3000 (default) | positive scalar
+  group: ''
+  block_parameter: omega_c
+  values: 3000 (default) | positive scalar
+```
 
 #### Block Options
 
@@ -223,7 +282,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `omega_c` |
 | **Values:** | `3000` (default) | positive scalar |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertrain / Drivetrain / Couplings

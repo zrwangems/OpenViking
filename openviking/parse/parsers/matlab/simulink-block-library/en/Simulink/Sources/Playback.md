@@ -14,6 +14,13 @@ language: en
 # Playback
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data loaded from workspace, file, or Simulation Data Inspector scalar | vector | matrix | array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### Output
 
@@ -31,8 +38,78 @@ floating-point `half`.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of Ports
+  summary: Number of output ports 0 (default) | integer in the range [0,100]
+  group: Port Parameters
+  block_parameter: NumPorts
+  values: 0 (default) | integer in the range [0,100]
+- name: Data Type
+  summary: 'Output data type for each port Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | string | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | ...'
+  group: Port Parameters
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto" (default) | "double" | "single" | "half" | "int8" |  "uint8"  | "int16" | "uint16" | "int32" |
+    "uint32" | "int64" | "uint64" | "string" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)"'
+- name: Complexity
+  summary: Complexity of each port "auto" (default) | "real" | "complex"
+  group: Port Parameters
+  block_parameter: PortComplexity
+  values: '"auto" (default) | "real" | "complex"'
+- name: Units
+  summary: Physical units for each port inherit (default) | supported physical unit
+  group: Port Parameters
+  block_parameter: PortUnits
+  values: '" " (default) | supported physical unit'
+- name: Sample time
+  summary: Output sample period and optional time offset -1 | scalar | vector
+  group: Port Parameters
+  block_parameter: PortSampleTimes
+  values: '"-1" (default) | scalar | vector'
+- name: Dimensions
+  summary: Dimensions of each port " " (default) | integer | integer array
+  group: Port Parameters
+  block_parameter: PortDimensions
+  values: empty 1×1 cell array (default) | cell array of positive integers | cell array of vectors
+- name: Dimension Mode
+  summary: Dimension mode of each port "auto" (default) | "Fixed" | "Variable"
+  group: Port Parameters
+  block_parameter: PortDimsModes
+  values: '"auto" (default) | "Fixed" | "Variable"'
+- name: Before first point
+  summary: Extrapolation method to determine block output before first data point in loaded data Linear (default) | Hold First
+    Value | Ground Value
+  group: Block Parameters
+  block_parameter: ExtrapolationBeforeFirstDataPoint
+  values: '"Linear extrapolation" (default) | "Hold first value" | "Ground value"'
+- name: After last point
+  summary: Extrapolation method to determine block output after final data point in loaded data Linear (default) | Hold Last
+    Value | Ground Value
+  group: Block Parameters
+  block_parameter: ExtrapolationAfterLastDataPoint
+  values: '"Linear extrapolation" (default) | "Hold last value" | "Ground value"'
+- name: Enable zero-crossing detection
+  summary: Zero-crossing detection 'off' (default) | 'on'
+  group: Block Parameters
+  block_parameter: ZeroCross
+  values: '"off" (default) | "on"'
+- name: Signals
+  summary: Information about signals added to Playback block Simulink.playback.Signal object
+  group: Block Parameters
+  block_parameter: Signals
+  values: Simulink.playback.Signal object
+- name: Table Placement
+  summary: Position of table visualization Bottom (default) | Top | Left | Right | Center
+  group: Table Parameters
+- name: Time Values
+  summary: Time-based column organization options Union Time (default) | Shared Time | Individual Time
+  group: Table Parameters
+- name: Use Signal Interpolation
+  summary: Option to interpolate missing data values off (default) | on
+  group: Table Parameters
+```
 
 ### Port Parameters
 
@@ -435,7 +512,6 @@ interpolate missing data values using the interpolation settings of each
 signal. To view or change the interpolation method for a selected
 signal, use the `Interp Method` property in the
 **Properties** pane.
-
 ## Libraries
 
 Simulink / Sources

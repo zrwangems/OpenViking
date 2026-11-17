@@ -14,6 +14,29 @@ language: en
 # Singular Value Decomposition
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input matrix matrix
+  direction: input
+  data_types: single | double
+- name: U
+  summary: '*U* component matrix'
+  direction: output
+  data_types: single | double
+- name: S
+  summary: '*S* component column vector'
+  direction: output
+  data_types: single | double
+- name: V
+  summary: '*V* component matrix'
+  direction: output
+  data_types: single | double
+- name: E
+  summary: Error port scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -131,8 +154,19 @@ To enable this port, select the **Show error status port
 (E)** check box.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show ports with U and V matrices
+  summary: Show ports with *U* and *V* matrices on (default) | off
+  group: ''
+- name: Show error status port (E)
+  summary: Show error status port off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Show ports with U and V matrices** — Show ports with *U* and *V* matrices on (default) | off
 
@@ -156,7 +190,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Factorizations

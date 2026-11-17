@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Peltier Device
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电气端口 electrical
+  direction: conserving
+- name: '-'
+  summary: 负电气端口 electrical
+  direction: conserving
+- name: A
+  summary: 热端口 thermal
+  direction: conserving
+- name: B
+  summary: 热端口 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,19 @@ chinese_source: worker-translation
 ### **B** — 热端口 thermal
 
 热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Seebeck coefficient
+  summary: 热电灵敏度系数 220e-6 V/K（默认值）
+  group: 电气
+- name: Total electrical resistance
+  summary: 电气端口之间的电阻 0.02 Ω（默认值）
+  group: 电气
+- name: Thermal conductance
+  summary: 热端口之间的热导 1.5e-3 W/K（默认值）
+  group: 热
+```
 
 ### 电气
 
@@ -51,7 +77,6 @@ chinese_source: worker-translation
 ### **Thermal conductance** — 热端口之间的热导 `1.5e-3` `W/K`（默认值）
 
 **A** 和 **B** 端口之间的热导。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

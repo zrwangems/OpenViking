@@ -15,15 +15,22 @@ chinese_source: worker-translation
 # State Control
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: State control
+  summary: 选择状态控制类型 Synchronous（默认）| Classic
+  group: ''
+```
 
 ### **State control** — 选择状态控制类型 `Synchronous`（默认）| `Classic`
 
 指定使用同步语义还是经典语义。默认值为 `Synchronous`。
-
 ## 所属库
 
 HDL Coder / HDL Subsystems

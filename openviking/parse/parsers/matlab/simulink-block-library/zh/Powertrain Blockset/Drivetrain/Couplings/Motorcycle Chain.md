@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Motorcycle Chain
 
 ## 端口
+```yaml
+ports:
+- name: MDshft
+  summary: 前链轮上的驱动轴力矩 scalar
+  direction: input
+- name: FCpR
+  summary: 后轮接地点处的纵向力和垂向力 vector
+  direction: input
+- name: ThetaFrm
+  summary: 主车架俯仰角 scalar
+  direction: input
+- name: ThetaArmR
+  summary: 后摇臂俯仰角 scalar
+  direction: input
+- name: MBrkR
+  summary: 后轮制动力矩 scalar
+  direction: input
+- name: AngAWhlR
+  summary: 后轮角加速度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: MDrvSprtR
+  summary: 后链轮处的车轮阻尼器力矩 scalar
+  direction: output
+- name: MDrvArmR
+  summary: 后摇臂处的驱动链条力矩 scalar
+  direction: output
+- name: MDrvFrm
+  summary: 车架处的驱动链条力矩 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -66,8 +99,49 @@ rad/s2。
 ### **MDrvFrm** — 车架处的驱动链条力矩 `scalar`
 
 车架 *OFrm* 上绕 *jFrm* 的驱动链条力矩，单位为 N·m。
-
 ## 参数
+```yaml
+parameters:
+- name: Coordinates, SprktFrPxz
+  summary: 前链轮位置 [0.05 -0.05]（默认）| vector
+  group: ''
+- name: Mass moment of inertia, SprktFrIyy
+  summary: 前链轮转动惯量 0.005（默认）| scalar
+  group: ''
+- name: Radius, SprktFrR
+  summary: 前链轮半径 0.04（默认）| scalar
+  group: ''
+- name: Mass moment of inertia, SprktRrIyy
+  summary: 后链轮转动惯量 0.01（默认）| scalar
+  group: ''
+- name: Radius, SprktRrR
+  summary: 后链轮半径 0.12（默认）| scalar
+  group: ''
+- name: Mass moment of inertia, WhlRrIyy
+  summary: 后轮转动惯量 0.66（默认）| scalar
+  group: ''
+- name: Radius, WhlRrR
+  summary: 后轮半径 0.33（默认）| scalar
+  group: ''
+- name: Arm length, ArmRrLen
+  summary: 摇臂长度 0.535（默认）| scalar
+  group: ''
+- name: Stiffness, WhlDmpK
+  summary: 车轮阻尼器刚度 1e4（默认）| scalar
+  group: ''
+- name: Damping, WhlDmpC
+  summary: 车轮阻尼 1e2（默认）| scalar
+  group: ''
+- name: Equilibrium angle
+  summary: 车轮阻尼器平衡角 -15e-3（默认）| scalar
+  group: ''
+- name: Rear sprocket angular velocity, SprktRrAngV0
+  summary: 角速度 0（默认）| scalar
+  group: ''
+- name: Rear wheel angular velocity, WhlRrAngV0
+  summary: 角速度 0（默认）| scalar
+  group: ''
+```
 
 该图展示了链条与摩托车车架、后摇臂和后轮之间的几何关系。
 
@@ -143,7 +217,6 @@ rad/s。
 
 后轮角速度 *WhlRrAngV0*，单位为
 rad/s。
-
 ## 所属库
 
 Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertrain / Drivetrain / Couplings

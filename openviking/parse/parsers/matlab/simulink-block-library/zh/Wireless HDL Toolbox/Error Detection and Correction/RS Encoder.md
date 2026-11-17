@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # RS Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入消息数据 标量
+  direction: input
+  data_types: double | single | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 编码码字数据 标量
+  direction: output
+  data_types: double | single | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 模块就绪指示符 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -84,8 +107,34 @@ chinese_source: worker-translation
 处理的帧并开始处理新数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length (N)
+  summary: 码字长度 7（默认值）| 范围从 7 到 65,535 的整数
+  group: ''
+- name: Message length (K)
+  summary: 消息长度 3（默认值）| 范围从 3 到（Codeword length (N) – 2）的整数
+  group: ''
+- name: Source of primitive polynomial
+  summary: 本原多项式来源 Auto（默认值）| Property
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 [1 0 1 1]（默认值）| 二进制行向量
+  group: ''
+- name: B 的源，原始多项式根的起始幂
+  summary: 原始多项式根的起始幂的来源 Auto（默认）| Property
+  group: ''
+- name: B 值
+  summary: 原始多项式根的起始幂 1（默认）| 正整数
+  group: ''
+- name: 启用删余
+  summary: 删余模式来源 off（默认）| on
+  group: ''
+- name: 删余模式向量
+  summary: 删余向量 [1; 1; 0; 0]（默认）| 二进制列向量
+  group: ''
+```
 
 ### **Codeword length (N)** — 码字长度 `7`（默认值）| 范围从 7 到 65,535 的整数
 
@@ -148,7 +197,6 @@ polynomial** 参数设置为 `Property`。
 #### 依赖关系
 
 要启用此参数，请选择 **启用删余** 参数。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

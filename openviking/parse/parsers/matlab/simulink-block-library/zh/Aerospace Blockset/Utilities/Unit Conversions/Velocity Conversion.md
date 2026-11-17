@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Velocity Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 速度 标量 | 数组
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 速度 标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -38,8 +49,24 @@ chinese_source: worker-translation
 输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial unit
+  summary: 输入单位 ft/s（默认）| m/s | km/s | in/s | km/h | mph | kts | ft/min
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''m/s'' | ''ft/s'' | ''km/s'' | ''in/s'' | ''km/h'' | ''mph'' | ''kts'' | ''ft/min'''
+  default: '''ft/s'''
+- name: Final unit
+  summary: 输出单位 m/s（默认）| ft/s | km/s | in/s | km/h | mph | kts | ft/min
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''m/s'' | ''ft/s'' | ''km/s'' | ''in/s'' | ''km/h'' | ''mph'' | ''kts'' | ''ft/min'''
+  default: '''m/s'''
+```
 
 ### **Initial unit** — 输入单位 `ft/s`（默认）| `m/s` | `km/s` | `in/s` | `km/h` | `mph` | `kts` | `ft/min`
 
@@ -96,7 +123,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'m/s'` | `'ft/s'` | `'km/s'` | `'in/s'` | `'km/h'` | `'mph'` | `'kts'` | `'ft/min'` |
 | **默认值**：`'m/s'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Unit Conversions

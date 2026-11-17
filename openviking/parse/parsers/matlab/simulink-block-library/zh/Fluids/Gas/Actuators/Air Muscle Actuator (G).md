@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Air Muscle Actuator (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 执行器入口气体
+  direction: conserving
+- name: R
+  summary: 执行器端盖机械平移
+  direction: conserving
+- name: C
+  summary: 执行器端盖机械平移
+  direction: conserving
+- name: H
+  summary: 执行器壁热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,52 @@ chinese_source: worker-translation
 ### **H** — 执行器壁热
 
 执行器气体体积与其周围环境之间的热边界条件。将此端口连接到热域中的模块，以捕获例如传导、对流或辐射的热传递，或将执行器与环境隔离。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial actuator length
+  summary: 空载且未加压时端盖之间的距离 0.575 m（默认）| 长度单位的正标量
+  group: ''
+- name: Unstretched braid length
+  summary: 空载时拉直编织网的长度 0.65 m（默认）| 长度单位的正标量
+  group: ''
+- name: Number of turns per braid
+  summary: 编织网围绕执行器长度轴的圈数 4.7（默认）| 正的无量纲标量
+  group: ''
+- name: Braid stretching
+  summary: 选择是否对编织网的拉伸进行建模 Inelastic braids（默认）| Elastic braids
+  group: ''
+- name: Thickness of braided shell and bladder
+  summary: 外壳和囊的合计厚度 0.075 m（默认）| 长度单位的正标量
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 气体端口处垂直于流动方向的面积 0.01 m（默认）| 长度单位的正标量
+  group: ''
+- name: Total number of braids
+  summary: 编织外壳中编织网的数量 80（默认）| 正的无量纲标量
+  group: ''
+- name: Number of strands per braid
+  summary: 一个编织网中单根股线的数量 3（默认）| 正的无量纲标量
+  group: ''
+- name: Strand diameter
+  summary: 股线的直径 0.25 m（默认）| 长度单位的正标量
+  group: ''
+- name: Young's modulus of strands
+  summary: 股线在压力下伸长的程度 3e9 GPA（默认）
+  group: ''
+- name: Environment pressure specification
+  summary: 执行器外部的压力条件 Atmospheric pressure（默认）| Specified pressure
+  group: ''
+- name: Environment pressure
+  summary: 执行器外部的绝对压力 0.101325（默认）| 压力单位的标量
+  group: ''
+- name: Contact stiffness of braids at full muscle contraction or extension
+  summary: 执行器运动极限处接触力的刚度系数 1e6 N/m（默认）
+  group: ''
+- name: Contact damping of braids at full muscle contraction or extension
+  summary: 执行器运动极限处接触力的阻尼系数 1e4 N/(m/s)（默认）
+  group: ''
+```
 
 ### **Initial actuator length** — 空载且未加压时端盖之间的距离 `0.575 m`（默认）| 长度单位的正标量
 
@@ -117,7 +176,6 @@ chinese_source: worker-translation
 执行器运动范围极限处接触力的阻尼系数。接触力防止执行器超出其物理极限伸展或收缩。此力使用弹簧-阻尼系统建模。阻尼器在端盖达到运动极限时为其添加粘性力，使其减速停止。
 
 有关力模型的更多信息，请参阅 Translational Hard Stop。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Actuators

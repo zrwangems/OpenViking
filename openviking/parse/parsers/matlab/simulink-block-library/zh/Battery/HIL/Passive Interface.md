@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Passive Interface
 
 ## 端口
+```yaml
+ports:
+- name: Icsc_discharge
+  summary: 电芯监控电路放电电流，A 物理信号 | 标量
+  direction: input
+- name: SOC
+  summary: 电池荷电状态，无量纲 物理信号 | 标量
+  direction: input
+- name: Vbat
+  summary: 电池电压，V 物理信号
+  direction: output
+- name: Icsc
+  summary: 电芯监控电路电流，A 物理信号
+  direction: output
+- name: SOC
+  summary: 电池荷电状态，无量纲 物理信号
+  direction: output
+- name: T
+  summary: 温度测量，K 物理信号
+  direction: output
+- name: +
+  summary: 正极端子 电气
+  direction: output
+- name: '-'
+  summary: 负极端子 电气
+  direction: output
+- name: H
+  summary: 热端口 热
+  direction: output
+```
 
 ### 输入
 
@@ -88,8 +118,25 @@ measurement port** 参数设置为
 
 要启用此端口，请将 **Thermal port**
 参数设置为 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Expose cell supervisory circuit current measurement port
+  summary: 电芯监控电路电流的测量端口可见性 Yes（默认）| No
+  group: ''
+- name: Expose SOC input port
+  summary: SOC 输入端口可见性 No（默认）| Yes
+  group: ''
+- name: Expose SOC output port
+  summary: SOC 输出端口可见性 Yes（默认）| No
+  group: ''
+- name: Thermal port
+  summary: 热端口可见性 Omit（默认）| Model
+  group: ''
+- name: Expose temperature measurement port
+  summary: 温度测量端口可见性 Yes（默认）| No
+  group: ''
+```
 
 ### **Expose cell supervisory circuit current measurement port** — 电芯监控电路电流的测量端口可见性 `Yes`（默认）| `No`
 
@@ -120,7 +167,6 @@ port** 设置为 `Yes`。
 
 要启用此参数，请将 **Thermal port** 设置为
 `Model`。
-
 ## 所属库
 
 Simscape / Battery / HIL

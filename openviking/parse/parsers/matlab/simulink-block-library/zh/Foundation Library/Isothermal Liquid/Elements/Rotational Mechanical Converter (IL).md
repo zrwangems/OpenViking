@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Rotational Mechanical Converter (IL)
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 端口 R 相对于端口 C 的旋转，rad 物理信号
+  direction: input
+- name: A
+  summary: 转换器入口等温液体
+  direction: input
+- name: R
+  summary: 杆机械旋转
+  direction: input
+- name: C
+  summary: 壳体机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -38,8 +53,45 @@ chinese_source: worker-translation
 ### **C** — 壳体机械旋转
 
 与转换器壳体关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: 选择转换器方向 Pressure at A causes positive rotation of R relative to C（默认）| Pressure at A causes negative rotation of
+    R relative to C
+  group: ''
+- name: Interface rotation
+  summary: 选择确定相对端口位置的方法 Calculate from angular velocity of port R relative to port C（默认）| Provide input signal from Multibody
+    joint
+  group: ''
+- name: Initial interface rotation
+  summary: 仿真开始时端口 R 相对于端口 C 的旋转偏移 0 rad（默认）| 标量
+  group: ''
+- name: Interface volume displacement
+  summary: 单位旋转的排液体积 0.001 m^3/rad（默认）| 正标量
+  group: ''
+- name: Dead volume
+  summary: 界面旋转为 0 时的液体体积 1e-5 m^3（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 转换器入口处垂直于流路的面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Environment pressure specification
+  summary: 选择环境压力 Atmospheric pressure（默认）| Specified pressure 的指定方法
+  group: ''
+- name: Environment pressure
+  summary: 转换器外部压力 0.101325 MPa（默认）| 正标量
+  group: ''
+- name: Enable dynamic compressibility
+  summary: 选择是否对流体动态可压缩性建模 On（默认）| Off
+  group: ''
+- name: Initial liquid pressure
+  summary: 时间为零时的液体压力 0.101325 MPa（默认）| 正标量
+  group: ''
+- name: Nominal liquid pressure
+  summary: 标称工况下的液体压力 0.101325 MPa（默认）
+  group: ''
+```
 
 ### **Mechanical orientation** — 选择转换器方向 `Pressure at A causes positive rotation of R relative to C`（默认）| `Pressure at A causes negative rotation of R relative to C`
 
@@ -119,7 +171,6 @@ C` 时启用。
 #### 依赖关系
 
 要启用此参数，请清除 **Enable dynamic compressibility** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

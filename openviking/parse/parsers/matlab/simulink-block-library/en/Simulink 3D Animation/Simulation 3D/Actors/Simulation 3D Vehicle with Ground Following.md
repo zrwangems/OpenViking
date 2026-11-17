@@ -14,6 +14,30 @@ language: en
 # Simulation 3D Vehicle with Ground Following
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Longitudinal position of vehicle scalar
+  direction: input
+- name: Y
+  summary: Lateral position of vehicle scalar
+  direction: input
+- name: Yaw
+  summary: Yaw orientation angle of vehicle scalar
+  direction: input
+- name: Light controls
+  summary: Vehicle light controls 1-by-6 vector
+  direction: input
+  data_types: Boolean
+- name: Location
+  summary: Location of vehicle real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+- name: Orientation
+  summary: Orientation of vehicle real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -95,8 +119,87 @@ To enable this port, on the **Ground Truth** tab, select
 orientation**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Type of vehicle Muscle car (default) | Sedan | Sport utility vehicle | Small pickup truck | Hatchback | Box truck
+    | Custom
+  group: Vehicle Parameters
+- name: Path to custom mesh
+  summary: Path to custom mesh /MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar (default) | valid path
+  group: Vehicle Parameters
+- name: Track width in custom mesh (m)
+  summary: Track width 1.9 (default) | scalar
+  group: Vehicle Parameters
+- name: Wheel base in custom mesh (m)
+  summary: Wheel base 3 (default) | scalar
+  group: Vehicle Parameters
+- name: Wheel radius in custom mesh (m)
+  summary: Wheel radius 0.35 (default) | scalar
+  group: Vehicle Parameters
+- name: Color
+  summary: Color of vehicle Red (default) | Orange | Yellow | Green | Blue | Black | White | Silver
+  group: Vehicle Parameters
+- name: Coordinate system
+  summary: Coordinate system for actor transformation ISO8855 (default) | Default | MATLAB | AERO | VRML | SAE
+  group: Vehicle Parameters
+- name: Initial position [X, Y, Z]
+  summary: Initial vehicle position [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Vehicle Parameters
+- name: Initial rotation [Roll, Pitch, Yaw]
+  summary: Initial angle of vehicle rotation [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Vehicle Parameters
+- name: Name
+  summary: Name of vehicle SimulinkVehicle1 (default) | vehicle name
+  group: Vehicle Parameters
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Vehicle Parameters
+- name: Enable light controls
+  summary: Control vehicle lights off (default) | on
+  group: Light Controls
+- name: Headlight color [R,G,B]
+  summary: Headlight color [1,1,1] (default) | 1-by-3 array of RGB triplet values
+  group: Light Controls
+- name: High beam intensity (cd)
+  summary: High beam intensity 100000 (default) | positive scalar
+  group: Light Controls
+- name: Low beam intensity (cd)
+  summary: Low beam intensity 60000 (default) | positive scalar
+  group: Light Controls
+- name: High beam cone half angle (deg)
+  summary: High beam cone half angle 70 (default) | positive scalar less than or equal to 90
+  group: Light Controls
+- name: Low beam cone half angle (deg)
+  summary: Low beam cone half angle 70 (default) | positive scalar less than or equal to 90
+  group: Light Controls
+- name: Left headlight beam orientation [Pitch, Yaw] (deg)
+  summary: Left headlight beam orientation [Pitch, Yaw] (deg) [0,0] (default) | 1-by-2 array with values between -180 and
+    180
+  group: Light Controls
+- name: Right headlight beam orientation [Pitch, Yaw] (deg)
+  summary: Right headlight beam orientation [0,0] (default) | 1-by-2 array with values between -180 and 180
+  group: Light Controls
+- name: Brake light intensity (cd/m^2)
+  summary: Intensity 500 (default) | positive scalar
+  group: Light Controls
+- name: Reverse light intensity (cd/m^2)
+  summary: Intensity 500 (default) | positive scalar
+  group: Light Controls
+- name: Turn signal light intensity (cd/m^2)
+  summary: Intensity 500 (default) | positive scalar
+  group: Light Controls
+- name: Period (s)
+  summary: Turn signal light period 1 (default) | positive scalar
+  group: Light Controls
+- name: Pulse width (% of period)
+  summary: Pulse width 50 (default) | positive scalar less than 100
+  group: Light Controls
+- name: Output location and orientation
+  summary: Output location and orientation of vehicle off (default) | on
+  group: Ground Truth
+```
 
 ### Vehicle Parameters
 
@@ -390,7 +493,6 @@ controls**.
 Select this parameter to output the location and orientation of the vehicle at the
 **Location** and **Orientation** ports,
 respectively.
-
 ## Libraries
 
 Automated Driving Toolbox / Simulation 3D Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Vehicle / Components Simulink 3D Animation / Simulation 3D / Actors

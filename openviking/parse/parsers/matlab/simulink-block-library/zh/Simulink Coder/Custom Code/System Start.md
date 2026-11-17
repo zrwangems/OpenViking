@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # System Start
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: System Start Function Declaration Code
+  summary: 要添加到所生成函数声明部分的代码 无默认值
+  group: ''
+- name: System Start Function Execution Code
+  summary: 要添加到所生成函数执行部分的代码 无默认值
+  group: ''
+- name: System Start Function Exit Code
+  summary: 要添加到所生成函数退出部分的代码 无默认值
+  group: ''
+```
 
 ### **System Start Function Declaration Code** — 要添加到所生成函数声明部分的代码 无默认值
 
@@ -31,7 +45,6 @@ R2025b 中未记录。
 ### **System Start Function Exit Code** — 要添加到所生成函数退出部分的代码 无默认值
 
 指定希望代码生成器添加到模型或子系统的 `SystemStart` 函数退出部分的代码。
-
 ## 所属库
 
 Simulink Coder / Custom Code

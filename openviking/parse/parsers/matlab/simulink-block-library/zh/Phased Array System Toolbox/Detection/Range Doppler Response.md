@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Range Doppler Response
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入复值 *K*×*L* 矩阵 | *K*×*N*×*L* 数组
+  direction: input
+  data_types: single | double
+- name: Coeff
+  summary: 匹配滤波器系数 列向量
+  direction: input
+  data_types: single | double
+- name: XRef
+  summary: 参考信号 向量
+  direction: input
+  data_types: double
+- name: PRF
+  summary: 脉冲重复频率 正标量
+  direction: input
+  data_types: double
+- name: Resp
+  summary: 距离-多普勒响应 复数
+  direction: output
+- name: Range
+  summary: 距离采样 向量
+  direction: output
+  data_types: double
+- name: Dop
+  summary: 多普勒或速度采样 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -74,8 +104,80 @@ chinese_source: worker-translation
 评估距离-多普勒响应时所对应的多普勒采样或速度采样。返回为长度为 *P* 的列向量。`Dop` 包含多普勒采样还是速度采样取决于**多普勒输出**参数。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement mode
+  summary: 测量模式 Monostatic（默认）| Bistatic
+  group: ''
+- name: Range processing method
+  summary: 距离处理方法 Matched filter（默认）| FFT
+  group: ''
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认）| 正实值标量
+  group: ''
+- name: Reference range (m)
+  summary: 参考距离 0（默认值）
+  group: ''
+- name: Source of pulse repetition frequency
+  summary: 脉冲重复频率来源 Auto（默认值）| Property | Input port
+  group: ''
+- name: Pulse repetition frequency of the input signal (Hz)
+  summary: 输入信号的脉冲重复频率 10e3（默认值）
+  group: ''
+- name: Source of FFT length in Doppler processing
+  summary: 多普勒处理中 FFT 长度的来源 Auto（默认值）| Property
+  group: ''
+- name: FFT length in Doppler processing
+  summary: 多普勒处理中的 FFT 长度 1024
+  group: ''
+- name: Doppler processing window
+  summary: 多普勒处理窗 None（默认值）| Hamming | Chebyshev | Hann | Kaiser | Taylor
+  group: ''
+- name: Doppler sidelobe attenuation level
+  summary: 多普勒旁瓣衰减电平 30（默认值）
+  group: ''
+- name: Doppler output
+  summary: 多普勒输出 Frequency（默认值）| Range rate | Speed
+  group: ''
+- name: 信号载波频率 (Hz)
+  summary: 信号载波频率 3e8（默认）| 正标量
+  group: ''
+- name: FM 扫频斜率 (Hz/s)
+  summary: FM 扫频斜率 1e9（默认）
+  group: ''
+- name: 去线性调频输入信号
+  summary: 去线性调频输入信号 关（默认）| 开
+  group: ''
+- name: 距离处理中 FFT 长度的来源
+  summary: 距离处理中 FFT 长度的来源 Auto（默认）| Property
+  group: ''
+- name: 距离处理中的 FFT 长度
+  summary: 距离处理中的 FFT 长度 1024（默认）
+  group: ''
+- name: 距离处理窗
+  summary: 距离处理窗 None（默认）| Hamming | Chebyshev | Hann | Kaiser | Taylor
+  group: ''
+- name: 在中心设置参考距离
+  summary: 在中心设置参考距离 开（默认）| 关
+  group: ''
+- name: 距离旁瓣衰减电平
+  summary: 距离旁瓣衰减电平 30（默认）
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Measurement mode** — 测量模式 `Monostatic`（默认）| `Bistatic`
 
@@ -315,7 +417,6 @@ Generation` 运行模块。长时间仿真使用生成代码比在
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

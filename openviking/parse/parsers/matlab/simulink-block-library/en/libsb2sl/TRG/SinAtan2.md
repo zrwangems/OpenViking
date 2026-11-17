@@ -14,6 +14,29 @@ language: en
 # Trigonometric Function
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: '*x*-axis or real part of the function argument for atan2 scalar | vector | matrix'
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Specified trigonometric function of input scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: sin
+  summary: Sine of input signal scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: cos
+  summary: Cosine of input signal scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -138,8 +161,99 @@ To enable this port, set **Function** to
 `sincos`.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: Trigonometric function sin (default) | cos | tan | asin | acos | atan | atan2 | sinh | cosh | tanh | asinh | acosh
+    | atanh | sincos | cos + jsin
+  group: Algorithm
+  block_parameter: Operator
+  type: character vector
+  values: '''sin'' | ''cos'' | ''tan'' | ''asin'' | ''acos'' | ''atan'' | ''atan2'' | ''sinh'' | ''cosh'' | ''tanh'' | ''asinh''
+    | ''acosh'' | ''atanh'' | ''sincos'' | ''cos + jsin'''
+  default: '''sin'''
+- name: Approximation method
+  summary: CORDIC, Lookup, or none None (default) | CORDIC | Lookup
+  group: Algorithm
+  block_parameter: ApproximationMethod
+  type: character vector
+  values: '''None'' | ''CORDIC'' | ''Lookup'''
+  default: '''None'''
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Linear point-slope (default) | Flat
+  group: Algorithm
+  block_parameter: InterpMethod
+  type: character vector
+  values: '''Linear point-slope'' | ''Flat'''
+  default: '''Linear point-slope'''
+- name: Number of iterations
+  summary: Number of iterations for CORDIC algorithm 11 (default) | positive integer, less than or equal to word length of
+    fixed-point input
+  group: Algorithm
+  block_parameter: NumberOfIterations
+  type: character vector
+  values: positive integer, less than or equal to word length of fixed-point input
+  default: '''11'''
+- name: Angle unit
+  summary: Angle unit radian (default) | revolution
+  group: Algorithm
+  block_parameter: AngleUnit
+  type: character vector
+  values: '''radian'' | ''revolution'''
+  default: '''radian'''
+- name: Number of data points
+  summary: Number of data points for lookup table 16 (default) | scalar
+  group: Algorithm
+  block_parameter: NumberOfDataPoints
+  type: character vector
+  values: scalar
+  default: '''16'''
+- name: Output signal type
+  summary: Complexity of output signal auto (default) | real | complex
+  group: Algorithm
+  block_parameter: OutputSignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Remove protection against out-of-range input
+  summary: Remove protection against out-of-range input off (default) | on
+  group: Algorithm
+  block_parameter: RemoveProtectionAgainstOutOfRangeInput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Algorithm
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Table data type
+  summary: 'Data type of table Inherit: Inherit via input (default) | double | single | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: TableDataTypeStr
+  type: string scalar or character vector
+  values: 'Inherit: Inherit via input | single | double | fixdt(1,16,0) | data type expression'
+  default: 'Inherit: Inherit via input'
+- name: Mode
+  summary: Category of data to specify Inherit (default) | Built in | Fixed point | Expression
+  group: Data Types
+- name: Signedness
+  summary: Specify signed or unsigned Signed (default) | Unsigned
+  group: Data Types
+- name: Scaling
+  summary: Method for scaling fixed-point data Binary point (default)
+  group: Data Types
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: Data Types
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: Data Types
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: Data Types
+```
 
 ### Algorithm
 
@@ -511,7 +625,6 @@ To enable this parameter, set:
   point`
 - **Scaling** to `Binary
   point`
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / Math Operations HDL Coder / HDL Floating Point Operations

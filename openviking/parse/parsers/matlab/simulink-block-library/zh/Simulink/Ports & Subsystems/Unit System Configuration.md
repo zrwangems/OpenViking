@@ -15,10 +15,32 @@ chinese_source: worker-translation
 # Unit System Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Disallowed unit systems
+  summary: 不允许的单位制 SI | English | SI (extended) | CGS
+  group: ''
+- name: Allowed unit systems
+  summary: 允许的单位制 SI | English | SI (extended) | CGS
+  group: ''
+  block_parameter: UnitSystems
+  type: 字符向量元胞数组
+  values: 以下字符向量的元胞数组：'SI' | 'English' | 'SI (extended)' | 'CGS'
+  default: '{''SI'', ''English'', ''SI (extended)'', ''CGS''}'
+- name: Allow all unit systems
+  summary: 允许所有单位制 on（默认）| off
+  group: ''
+  block_parameter: AllowAllUnitSystems
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Disallowed unit systems** — 不允许的单位制 `SI` | `English` | `SI (extended)` | `CGS`
 
@@ -65,7 +87,6 @@ R2025b 中未记录。
 | **类型：** 字符向量 |
 | **值：** `'on' | 'off'` |
 | **默认值：** `'on'` |
-
 ## 所属库
 
 Simulink / Ports & Subsystems

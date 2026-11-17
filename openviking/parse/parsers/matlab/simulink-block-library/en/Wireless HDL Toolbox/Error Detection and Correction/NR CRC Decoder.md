@@ -14,6 +14,33 @@ language: en
 # NR CRC Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: CRC-encoded data binary scalar | binary vector | unsigned integer scalar
+  direction: input
+  data_types: double | single | ufix1 | uint8 | uint16 | Boolean | ufixN
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: CRCMask
+  summary: CRC checksum mask nonnegative integer
+  direction: input
+  data_types: ufix24
+- name: data
+  summary: CRC-decoded data scalar | vector
+  direction: output
+  data_types: double | single | ufix1 | uint8 | uint16 | Boolean | ufixN
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: err
+  summary: Indication of corruption of received data binary or integer scalar
+  direction: output
+  data_types: Boolean | ufix24
+```
 
 ### Input
 
@@ -122,8 +149,19 @@ you specify a CRC mask, the block XORs the checksum with the specified CRC
 mask.
 
 **Data Types:** `Boolean` | `ufix24`
-
 ## Parameters
+```yaml
+parameters:
+- name: CRC type
+  summary: Type of CRC CRC16 (default) | CRC6 | CRC11 | CRC24A | CRC24B | CRC24C
+  group: ''
+- name: Full checksum mismatch
+  summary: Enable full checksum off (default) | on
+  group: ''
+- name: Enable CRC mask input port
+  summary: Enable CRC checksum mask input port off (default) | on
+  group: ''
+```
 
 ### **CRC type** — Type of CRC `CRC16` (default) | `CRC6` | `CRC11` | `CRC24A` | `CRC24B` | `CRC24C`
 
@@ -159,7 +197,6 @@ Select this parameter to enable the **CRCMask** input port.
 
 To enable this parameter, set the **CRC type** parameter to
 `CRC24C`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

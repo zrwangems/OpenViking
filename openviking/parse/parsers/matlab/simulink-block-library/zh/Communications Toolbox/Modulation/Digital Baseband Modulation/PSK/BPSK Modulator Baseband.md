@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # BPSK Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: BPSK 调制基带信号 标量 | 向量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,19 @@ chinese_source: worker-translation
 BPSK 调制基带信号，返回为复值标量或向量。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase offset (rad)
+  summary: 零点相位偏移 0（默认）| 标量
+  group: 主要
+- name: View constellation
+  summary: 绘制参考星座图的选项 按钮
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single | fixdt(1,16) | fixdt(1,16,0) | Inherit via back propagation | <data type expression>
+  group: 数据类型
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -61,7 +83,6 @@ BPSK 调制基带信号，返回为复值标量或向量。
 - `Inherit via back propagation` 会将输出数据类型和定标设置为与后续模块匹配。
 
 有关指定数据类型的信息，请参阅 Data Type Assistant。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

@@ -14,6 +14,66 @@ language: en
 # PMLSM
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: ~1
+  summary: Stator positive-end connections electrical
+  direction: conserving
+- name: ~2
+  summary: Stator negative-end connections electrical
+  direction: conserving
+- name: a1
+  summary: '*a* positive-end connection electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* positive-end connection electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* positive-end connection electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* negative-end connection electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* negative-end connection electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* negative-end connection electrical'
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: R
+  summary: Motor mover mechanical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: HA
+  summary: Winding A thermal port thermal
+  direction: conserving
+- name: HB
+  summary: Winding B thermal port thermal
+  direction: conserving
+- name: HC
+  summary: Winding C thermal port thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -238,8 +298,111 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Winding type
+  summary: Windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Main
+- name: Modeling fidelity
+  summary: Modeling fidelity Constant Ld, Lq and PM (default) | Tabulated Ld, Lq and PM
+  group: Main
+- name: Polar pitch
+  summary: Polar pitch 0.03 m (default) | scalar
+  group: Main
+- name: Permanent magnet flux linkage parameterization
+  summary: Permanent magnet flux linkage parameterization Specify flux linkage (default) | Specify force constant | Specify
+    back EMF constant
+  group: Main
+- name: Permanent magnet flux linkage
+  summary: Permanent magnet flux linkage 0.03 Wb (default) | scalar
+  group: Main
+- name: Force constant
+  summary: Force constant 0.18 N/A (default) | scalar
+  group: Main
+- name: Back EMF constant
+  summary: Back EMF constant 0.18 s*V/m (default) | scalar
+  group: Main
+- name: Stator parameterization
+  summary: Stator parameterization Specify Ld, Lq, and L0 (default) | Specify Ls, Lm, and Ms
+  group: Main
+- name: Stator d-axis inductance, Ld
+  summary: Stator d-axis inductance 0.00019 H (default) | scalar
+  group: Main
+- name: Stator q-axis inductance, Lq
+  summary: Stator q-axis inductance 0.00025 H (default) | scalar
+  group: Main
+- name: Stator zero-sequence inductance, L0
+  summary: Stator zero-sequence inductance 0.00016 H (default) | scalar
+  group: Main
+- name: Direct-axis current vector, iD
+  summary: Direct-axis current vector [-200, 0, 200] A (default) | vector
+  group: Main
+- name: Quadrature-axis current vector, iQ
+  summary: Quadrature-axis current vector [-200, 0, 200] A (default) | vector
+  group: Main
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld matrix 0.00019 * ones(3, 3) H (default) | matrix
+  group: Main
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq matrix 0.00025 * ones(3, 3) H (default) | matrix
+  group: Main
+- name: Permanent magnet flux linkage, PM(id,iq)
+  summary: Permanent magnet flux linkage 0.03 * ones(3, 3) Wb (default)
+  group: Main
+- name: Force constant matrix, kf(iD,iQ)
+  summary: Force constant matrix 0.18 * ones(3, 3) N/A (default) | matrix
+  group: Main
+- name: Back EMF constant matrix, ke(iD,iQ)
+  summary: Back EMF constant matrix 0.18 * ones(3, 3) s*V/m (default) | matrix
+  group: Main
+- name: Stator self-inductance per phase, Ls
+  summary: Stator self-inductance per phase 0.0002 H (default) | scalar
+  group: Main
+- name: Stator inductance fluctuation, Lm
+  summary: Stator inductance fluctuation -0.00002 H (default) | scalar
+  group: Main
+- name: Stator mutual inductance, Ms
+  summary: Stator mutual inductance 0.00002 H (default) | scalar
+  group: Main
+- name: Stator resistance per phase, Rs
+  summary: Stator resistance per phase 0.013 Ohm (default) | scalar
+  group: Main
+- name: Zero sequence
+  summary: Zero sequence option Include (default) | Exclude
+  group: Main
+- name: Angle definition
+  summary: Reference point for angle measurement Angle between the a-phase magnetic axis and the d-axis (default) | Angle
+    between the a-phase magnetic axis and the q-axis
+  group: Main
+- name: Mass of the mover
+  summary: Mass of the mover 0.01 kg (default)
+  group: Mechanical
+- name: Linear damping
+  summary: Linear damping 0 N/(m/s) (default)
+  group: Mechanical
+- name: Measurement temperature
+  summary: Measurement temperature 298.15 K (default)
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Thermal
+- name: Permanent magnet flux temperature coefficient
+  summary: Permanent magnet flux temperature coefficient -0.001 1/K (default)
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Thermal mass for each stator winding 100 J/K (default)
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default)
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -588,7 +751,6 @@ is the energy required to raise the temperature by one degree.
 
 The thermal mass of the rotor, that is, the energy required to raise
 the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

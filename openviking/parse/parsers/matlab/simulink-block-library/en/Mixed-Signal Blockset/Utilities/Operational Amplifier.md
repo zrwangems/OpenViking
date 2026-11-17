@@ -14,6 +14,25 @@ language: en
 # Operational Amplifier
 
 ## Ports
+```yaml
+ports:
+- name: InP
+  summary: Positive input terminal scalar
+  direction: input
+  data_types: single | double
+- name: InN
+  summary: Negative input terminal scalar
+  direction: input
+  data_types: single | double
+- name: OutP
+  summary: Positive output terminal scalar
+  direction: output
+  data_types: single | double
+- name: OutN
+  summary: Negative output terminal scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -41,8 +60,117 @@ Positive output terminal of the operational amplifier.
 Negative output terminal of the operational amplifier.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operational Amplifier Circuit
+  summary: Type of operational amplifier circuit Double-pole Circuit (default) | Multipole Circuit
+  group: ''
+  block_parameter: OpampType
+  type: character vector
+  values: Double-pole Circuit| Multipole Circuit
+  default: Double-pole Circuit
+- name: Inherit sample interval from input
+  summary: Inherit sample interval from input off (default) | on
+  group: ''
+- name: Sample interval (s)
+  summary: Sample interval value used in MATLAB analyses 1e-8 (default) | scalar
+  group: ''
+  block_parameter: SampleInterval
+  type: character vector
+  values: scalar
+  default: 1e-8
+- name: Simulate using
+  summary: Select simulation mode Code generation (default) | Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: character vector
+  values: Code generation| Interpreted execution
+  default: Code generation
+- name: Supply rail high (V)
+  summary: Maximum supply voltage 5 (default) | real scalar
+  group: Signal Parameters
+  block_parameter: VoltageSupplyPlus
+  type: character vector
+  values: real scalar
+  default: '5'
+- name: Supply rail low (V)
+  summary: Minimum supply voltage -5 (default) | real scalar
+  group: Signal Parameters
+  block_parameter: VoltageSupplyMinus
+  type: character vector
+  values: real scalar
+  default: '-5'
+- name: Input offset voltage (V)
+  summary: Offset voltage at input terminals 0 (default) | scalar
+  group: Signal Parameters
+  block_parameter: InputOffsetVoltage
+  type: character vector
+  values: scalar
+  default: '0'
+- name: Open loop gain (V/V)
+  summary: Operational amplifier gain without feedback 3e3 (default) | positive real scalar
+  group: Advanced Parameters
+  block_parameter: Gain
+  type: character vector
+  values: positive real scalar
+  default: 3e3
+- name: Unity gain bandwidth (Hz)
+  summary: Frequency at which operational amplifier gain equals unity 10e6 (default) | positive real scalar
+  group: Advanced Parameters
+  block_parameter: FrequencyUnityGain
+  type: character vector
+  values: positive real scalar
+  default: 10e6
+- name: Maximum tail current (A)
+  summary: Maximum current passing through tail MOSFET in operational amplifier circuit 100e-6 (default) | positive real scalar
+  group: Advanced Parameters
+  block_parameter: InputCurrentMax
+  type: character vector
+  values: positive real scalar
+  default: 100e-6
+- name: Slew rate (V/s)
+  summary: Rate of change of operational amplifier output voltage 10e6 (default) | positive real scalar
+  group: Advanced Parameters
+  block_parameter: SlewRate
+  type: character vector
+  values: positive real scalar
+  default: 10e6
+- name: Output resistance (Ohms)
+  summary: Resistance at output terminals 10e3 (default) | positive real scalar
+  group: Advanced Parameters
+  block_parameter: OutputResistance
+  type: character vector
+  values: positive real scalar
+  default: 10e3
+- name: Output Capacitance (F)
+  summary: Capacitance at output terminals 50e-12 (default) | positive real scalar
+  group: Advanced Parameters
+  block_parameter: OutputCapacitance
+  type: character vector
+  values: positive real scalar
+  default: 50e-12
+- name: Transfer function poles
+  summary: Poles in transfer function in Laplace domain [-2.09e+04 -8.62e+07] (default) | column vector
+  group: Advanced Parameters
+  block_parameter: Poles
+  type: character vector
+  values: column vector
+  default: '[-2.09e+04 -8.62e+07]'
+- name: Transfer function zeroes
+  summary: Zeros in transfer function in Laplace domain [-9.14e+07] (default) | column vector
+  group: Advanced Parameters
+  block_parameter: Zeros
+  type: character vector
+  values: column vector
+  default: '[-9.14e+07]'
+- name: Include Z-domain approximation
+  summary: Include *z*-domain approximation while plotting open loop response off (default) | on
+  group: Analysis
+- name: Plot open loop response
+  summary: Plot open loop response of op-amp button
+  group: Analysis
+```
 
 ### **Operational Amplifier Circuit** — Type of operational amplifier circuit `Double-pole Circuit` (default) | `Multipole Circuit`
 
@@ -322,7 +450,6 @@ Plot the *s*-domain transfer function of the open loop response
 of the operational amplifier. The plot also reports the unity gain bandwidth and phase
 margin. You can choose to include the *z*-domain
 approximation.
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

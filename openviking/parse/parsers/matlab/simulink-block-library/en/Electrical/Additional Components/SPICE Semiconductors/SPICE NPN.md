@@ -14,6 +14,21 @@ language: en
 # SPICE NPN
 
 ## Ports
+```yaml
+ports:
+- name: bx
+  summary: Base terminal electrical
+  direction: conserving
+- name: cx
+  summary: Collector terminal electrical
+  direction: conserving
+- name: ex
+  summary: Emitter terminal electrical
+  direction: conserving
+- name: sx
+  summary: Substrate terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,151 @@ terminal.
 
 Electrical conserving port associated with the transistor substrate
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Device area, AREA
+  summary: Device area 1.0 m^2 (default) | positive scalar
+  group: Main
+- name: Number of parallel devices, SCALE
+  summary: Number of parallel devices 1 (default) | positive scalar
+  group: Main
+- name: Transport saturation current, IS
+  summary: Saturation current magnitude 1e-16 A/m^2 (default) | positive scalar
+  group: Forward Gain
+- name: Forward beta, BF
+  summary: Ideal maximum forward beta 100 (default) | positive scalar
+  group: Forward Gain
+- name: Forward emission coefficient, NF
+  summary: Forward emission coefficient 1 (default) | positive scalar
+  group: Forward Gain
+- name: Forward Early voltage, VAF
+  summary: Forward Early voltage Inf V (default) | nonnegative scalar
+  group: Forward Gain
+- name: Forward knee current, IKF
+  summary: Forward-beta high-current roll-off current Inf A/m^2 (default) | nonnegative scalar
+  group: Forward Gain
+- name: B-E leakage current, ISE
+  summary: Base-emitter leakage current 0 A/m^2 (default) | nonnegative scalar
+  group: Forward Gain
+- name: B-E emission coefficient, NE
+  summary: Base-emitter emission coefficient 1.5 (default) | positive scalar
+  group: Forward Gain
+- name: Reverse beta, BR
+  summary: Ideal maximum reverse beta 1 (default) | positive scalar
+  group: Reverse Gain
+- name: Reverse emission coefficient, NR
+  summary: Reverse emission coefficient 1 (default) | positive scalar
+  group: Reverse Gain
+- name: Reverse Early voltage, VAR
+  summary: Reverse Early voltage Inf V (default) | nonnegative scalar
+  group: Reverse Gain
+- name: Reverse knee current, IKR
+  summary: Reverse-beta high-current roll-off current Inf A/m^2 (default) | nonnegative scalar
+  group: Reverse Gain
+- name: B-C leakage current, ISC
+  summary: Base-collector leakage current 0 A/m^2 (default) | nonnegative scalar
+  group: Reverse Gain
+- name: B-C emission coefficient, NC
+  summary: Base-collector emission coefficient 2 (default) | positive scalar
+  group: Reverse Gain
+- name: Zero-bias base resistance, RB
+  summary: Base resistance 1 m^2*Ohm (default) | nonnegative scalar
+  group: Resistors
+- name: Half base resistance cur, IRB
+  summary: Base resistance half zero-bias drop current Inf A/m^2 (default) | nonnegative scalar
+  group: Resistors
+- name: Minimum base resistance, RBM
+  summary: Minimum base resistance 0 m^2*Ohm (default) | scalar < *RB*
+  group: Resistors
+- name: Emitter resistance, RE
+  summary: Emitter resistance 1e-4 m^2*Ohm (default) | nonnegative scalar
+  group: Resistors
+- name: Collector resistance, RC
+  summary: Collector resistance 0.01 m^2*Ohm (default) | nonnegative scalar
+  group: Resistors
+- name: Model junction capacitance
+  summary: Junction capacitance model No (default) | Yes
+  group: Capacitance
+- name: Capacitance coefficient, FC
+  summary: Capacitance coefficient 0.5 (default) | 0 ≤ *FC* < 0.95 | scalar
+  group: Capacitance
+- name: Specify initial condition
+  summary: Initial condition model No (default) | Yes
+  group: Capacitance
+- name: Initial condition voltage ICVBE
+  summary: Initial base-emitter voltage 0 V (default) | scalar
+  group: Capacitance
+- name: Initial condition voltage ICVCE
+  summary: Initial base-collector voltage 0 V (default) | scalar
+  group: Capacitance
+- name: B-E depletion capacitance, CJE
+  summary: Base-emitter junction depletion capacitance 0 F/m^2 (default) | nonnegative scalar
+  group: B-E Capacitance
+- name: B-E built-in potential, VJE
+  summary: Base-emitter junction potential 0.75 V (default) | scalar | 0.01 ≤ *VJE*
+  group: B-E Capacitance
+- name: B-E exponential factor, MJE
+  summary: Base-emitter junction grading coefficient 0.33 (default) | scalar | 0 ≤ *MJC* ≤ 0.9
+  group: B-E Capacitance
+- name: Forward transit time, TF
+  summary: Minority carrier transit time 0 s (default) | nonnegative scalar
+  group: B-E Capacitance
+- name: Coefficient of TF, XTF
+  summary: Base-emitter transit time bias dependence coefficient 0 (default) | nonnegative scalar
+  group: B-E Capacitance
+- name: VBC dependence of TF, VTF
+  summary: Base-collector transit time bias dependence coefficient Inf V (default) | nonnegative scalar
+  group: B-E Capacitance
+- name: Coefficient of TF, ITF
+  summary: Collector current transit time dependence coefficient 0 A/m^2 (default) | nonnegative scalar
+  group: B-E Capacitance
+- name: B-C depletion capacitance, CJC
+  summary: base-collector junction depletion capacitance 0 F/m^2 (default) | positive scalar
+  group: B-C Capacitance
+- name: B-C built-in potential, VJC
+  summary: Base-collector junction potential 0.75 V (default) | scalar | 0.01 ≤ *VJC*
+  group: B-C Capacitance
+- name: B-C exponential factor, MJC
+  summary: Base-collector junction grading coefficient 0.33 (default) | 0 ≤ *MJC* ≤ 0.9
+  group: B-C Capacitance
+- name: B-C capacitance fraction, XCJC
+  summary: Base-collector depletion capacitance fraction 1 (default) | scalar | 0 ≤ *XCJC* ≤ 1
+  group: B-C Capacitance
+- name: Reverse transit time, TR
+  summary: Minority carrier transit time 0 s (default) | nonnegative scalar
+  group: B-C Capacitance
+- name: C-S junction capacitance, CJS
+  summary: Collector-substrate junction capacitance 0F/m^2 (default) | nonnegative scalar
+  group: C-S Capacitance
+- name: Substrate built-in potential, VJS
+  summary: Substrate potential 0.75 V (default) | scalar | 0.01 ≤ *VJC*
+  group: C-S Capacitance
+- name: Substrate exponential factor, MJS
+  summary: Collector-substrate junction grading coefficient 0 (default) | scalar | 0 ≤ *MJS* ≤ 0.9
+  group: C-S Capacitance
+- name: Model temperature dependence using
+  summary: Temperature dependence model Device temperature (default) | Fixed temperature
+  group: Temperature
+- name: Beta temperature exponent, XTB
+  summary: Forward and reverse beta temperature exponent 0 (default) | nonnegative scalar
+  group: Temperature
+- name: Energy gap, EG
+  summary: Energy gap 1.11 eV (default) | *EG* ≥ 0.1 | scalar
+  group: Temperature
+- name: Temperature exponent for IS, XTI
+  summary: Saturation current exponential increase order 3 (default) | nonnegative scalar
+  group: Temperature
+- name: Offset local circuit temperature, TOFFSET
+  summary: Local circuit temperature offset 0 K (default) | scalar
+  group: Temperature
+- name: Fixed circuit temperature, TFIXED
+  summary: Fixed circuit temperature 300.15 K (default) | positive scalar
+  group: Temperature
+- name: Parameter extraction temperature, TMEAS
+  summary: Parameter extraction temperature 300.15 K (default) | positive scalar
+  group: Temperature
+```
 
 ### Main
 
@@ -505,7 +663,6 @@ dependence using** parameter.
 Temperature at which the transistor parameters are measured. The value
 must be greater than `0`
 `K`.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

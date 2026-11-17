@@ -14,6 +14,21 @@ language: en
 # Wye-Connected Variable Load (lagging)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Real power physical signal
+  direction: input
+- name: Q
+  summary: Reactive power physical signal
+  direction: input
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -34,8 +49,29 @@ electrical conserving port.
 ### **n** — Neutral phase electrical
 
 Electrical conserving port associated with the neutral phase.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Rated voltage
+  summary: Rated line-line voltage 24e3 V (default)
+  group: Main
+- name: Rated electrical frequency
+  summary: Nominal AC electrical frequency 60 Hz (default)
+  group: Main
+- name: Minimum real power
+  summary: Minimum real power 1e3 W (default) | positive scalar
+  group: Main
+- name: Minimum reactive power
+  summary: Minimum reactive power 1e3 V*A (default) | positive scalar
+  group: Main
+- name: Parasitic parallel conductance
+  summary: Parasitic parallel conductance 1e-6 1/Ohm (default)
+  group: Parasitics
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -73,7 +109,6 @@ supplied at the rated voltage. The value must be greater than 0.
 ### **Parasitic parallel conductance** — Parasitic parallel conductance `1e-6` `1/Ohm` (default)
 
 Conductance that the block adds, in parallel, to the series RL.
-
 ## Libraries
 
 Simscape / Electrical / Passive / RLC Assemblies

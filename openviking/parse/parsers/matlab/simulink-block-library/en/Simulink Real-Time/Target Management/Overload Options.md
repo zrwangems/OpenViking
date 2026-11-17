@@ -14,6 +14,15 @@ language: en
 # SLRT Overload Options
 
 ## Ports
+```yaml
+ports:
+- name: TID
+  summary: Task ID int
+  direction: input
+- name: Count
+  summary: Overload count int
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +38,25 @@ the overload options to the model task in which the signal executes.
 ### **Count** — Overload count int
 
 The CPU overload count for the selected model rate.
-
 ## Parameters
+```yaml
+parameters:
+- name: Startup Duration
+  summary: Select startup steps for ignoring CPU overloads 1 (default) | int
+  group: ''
+- name: Source
+  summary: Selects CPU overload input during startup Tunable Parameter (default) | Input Port
+  group: ''
+- name: Max Overloads
+  summary: Select maximum CPU overloads 0 (default) | int
+  group: ''
+- name: Source
+  summary: Selects CPU overload input after startup Tunable Parameter (default) | Input Port
+  group: ''
+- name: Enable TET Output
+  summary: Enable output TET data off (default) | on
+  group: ''
+```
 
 ### **Startup Duration** — Select startup steps for ignoring CPU overloads `1` (default) | int
 
@@ -86,7 +112,6 @@ Simulation Data Inspector.
 ```
 TETFlag
 ```
-
 ## Libraries
 
 Simulink Real-Time / Target Management

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Audio Capture Interface
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 来自捕获音频的数据帧 *M* 元素向量 | *M*×*C* 矩阵
+  direction: input
+  data_types: int8 | int16 | int32
+- name: event
+  summary: 任务事件信号 标量
+  direction: output
+  data_types: rteEvent
+- name: msg
+  summary: SoC 消息数据 标量
+  direction: output
+  data_types: SoCData
+```
 
 ### 输入
 
@@ -44,8 +59,25 @@ chinese_source: worker-translation
 此端口将包含音频数据的数据消息输出到连接的 Audio Capture 模块。
 
 **数据类型：** `SoCData`
-
 ## 参数
+```yaml
+parameters:
+- name: Input
+  summary: 仿真音频数据的来源 From dialog（默认）| From input port | From timeseries object
+  group: ''
+- name: Value
+  summary: 要输出的音频数据 int16([1 2 3 4 5 6 7 8])（默认）| *CN* 长度向量
+  group: ''
+- name: Object name
+  summary: timeseries 对象 [ ]（默认）| MATLAB workspace variable
+  group: ''
+- name: Sample time
+  summary: 采样时间，以秒为单位 -1（默认）| 正标量
+  group: ''
+- name: Show event port
+  summary: 启用任务事件端口的选项 off（默认）| on
+  group: ''
+```
 
 ### **Input** — 仿真音频数据的来源 `From dialog`（默认）| `From input port` | `From timeseries object`
 
@@ -66,7 +98,6 @@ chinese_source: worker-translation
 ### **Show event port** — 启用任务事件端口的选项 `off`（默认）| `on`
 
 选择此参数以启用事件端口，当连接到 Task Manager 模块时，可以执行事件驱动任务。
-
 ## 所属库
 
 SoC Blockset / Peripherals

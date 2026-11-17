@@ -14,20 +14,24 @@ language: en
 # Current-Controlled Current Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has four electrical conserving ports. Connections
 + and – on the left side of the block are the control ports.
 The other two ports are the electrical terminals that provide the
 output current. The arrows between each pair of ports indicate the
 positive direction of the current flow.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Current gain K**
 :   Ratio of the current between the two output terminals to the
     current passing between the two control terminals. The default value
     is `1`.
-
 ## Libraries
 
 Not documented in R2025b.

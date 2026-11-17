@@ -14,10 +14,15 @@ language: en
 # General Multiplexed Interleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Interleaver delay (samples)**
 :   A column vector listing the number of symbols that fit into each shift
@@ -35,7 +40,6 @@ Not documented in R2025b.
     vector.) If a given shift register has zero delay, then the value of the
     corresponding entry in the **Initial conditions** vector is
     unimportant.
-
 ## Libraries
 
 Not documented in R2025b.

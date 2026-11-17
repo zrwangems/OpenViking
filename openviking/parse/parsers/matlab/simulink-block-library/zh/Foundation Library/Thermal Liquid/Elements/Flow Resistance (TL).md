@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Flow Resistance (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 热液体流阻端口
+  direction: conserving
+- name: B
+  summary: 热液体流阻端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **B** — 热液体流阻端口
 
 热液体进入或离开流阻的端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal pressure drop
+  summary: 已知工况下的压降 0.001 MPa（默认值）
+  group: ''
+- name: Nominal mass flow rate
+  summary: 已知工况下的质量流量 0.1 kg/s（默认值）
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 流阻端口的流通面积 0.01 m^2（默认值）
+  group: ''
+- name: Fraction of nominal mass flow rate for laminar flow
+  summary: 阈值与标称质量流量之比 1e-3（默认值）
+  group: ''
+```
 
 ### **Nominal pressure drop** — 已知工况下的压降 0.001 MPa（默认值）
 
@@ -43,7 +66,6 @@ chinese_source: worker-translation
 ### **Fraction of nominal mass flow rate for laminar flow** — 阈值与标称质量流量之比 1e-3（默认值）
 
 阈值质量流量与标称质量流量之比。该模块使用此参数计算阈值质量流量——并最终设定压降的线性化极限。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Elements

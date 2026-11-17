@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2802x/C2803x/C2806x/F28M3x AnalogIO Input
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **参数（输入引脚）**
 :   选择要采样的输入引脚。
@@ -51,7 +56,6 @@ R2025b 中未记录。
     `uint8`、`int16`、
     `uint16`、`int32`
     和 `uint32`。
-
 ## 所属库
 
 R2025b 中未记录。

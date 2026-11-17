@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Scikit-learn Model Predict
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 预测变量数据数值矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yfit
+  summary: 预测响应数值向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,46 @@ chinese_source: worker-translation
 预测响应，以数值向量形式返回。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Path to scikit-learn model file
+  summary: Python scikit-learn 模型文件的名称或路径 untitled（默认）| 字符向量
+  group: 指定模型文件
+  block_parameter: ModelFile
+  type: 字符向量
+  values: Python 文件 | Python 文件路径
+  default: '"untitled"'
+- name: Sample time (–1 for inherited)
+  summary: 用于指定采样时间的选项 –1（默认）| 标量
+  group: 指定模型文件
+  block_parameter: SampleTime
+  type: 字符串标量或字符向量
+  values: 标量
+  default: '"–1"'
+- name: Input
+  summary: 输入端口属性表
+  group: 输入
+  block_parameter: InputTable
+  type: 元胞数组
+- name: Output
+  summary: 输出端口属性表
+  group: 输出
+  block_parameter: OutputTable
+  type: 元胞数组
+- name: Path to Python file defining preprocess()
+  summary: 定义 preprocess() 的 Python 文件的名称或路径 字符向量
+  group: 预处理/后处理
+  block_parameter: PreprocessingFilePath
+  type: 字符向量
+  values: Python 文件 | Python 文件路径
+- name: Path to Python file defining postprocess()
+  summary: 定义 postprocess() 的 Python 文件的名称或路径 字符向量
+  group: 预处理/后处理
+  block_parameter: PostprocessingFilePath
+  type: 字符向量
+  values: Python 文件 | Python 文件路径
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的**仿真**选项卡上，在**准备**库中，选择**属性检查器**。
 
@@ -139,7 +188,6 @@ outputList = postprocess(model,inputList)
 | **模块参数：** `PostprocessingFilePath` |
 | **类型：** 字符向量 |
 | **值：** Python 文件 | Python 文件路径 |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Python Models

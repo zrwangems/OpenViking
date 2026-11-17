@@ -15,6 +15,66 @@ chinese_source: worker-translation
 # Split Torsional Compliance
 
 ## 端口
+```yaml
+ports:
+- name: RSpd
+  summary: 输入轴转速 scalar
+  direction: input
+- name: C1Spd
+  summary: 第一输出轴转速 scalar
+  direction: input
+- name: C2Spd
+  summary: 第二输出轴转速 scalar
+  direction: input
+- name: CSpd
+  summary: 输入转速 scalar
+  direction: input
+- name: R1Spd
+  summary: 第一输入轴转速 scalar
+  direction: input
+- name: R2Spd
+  summary: 第二输入轴转速 scalar
+  direction: input
+- name: R
+  summary: 输入轴角速度和扭矩双向连接端口
+  direction: input
+- name: R1
+  summary: 第一输入轴角速度和扭矩双向连接端口
+  direction: input
+- name: R2
+  summary: 第二输入轴角速度和扭矩双向连接端口
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: RTrq
+  summary: 输入轴扭矩 scalar
+  direction: output
+- name: C1Trq
+  summary: 第一输出轴扭矩 scalar
+  direction: output
+- name: C2Trq
+  summary: 第二输出轴扭矩 scalar
+  direction: output
+- name: CTrq
+  summary: 输出轴扭矩 scalar
+  direction: output
+- name: R1Trq
+  summary: 第一输入轴扭矩 scalar
+  direction: output
+- name: R2Trq
+  summary: 第二输入轴扭矩 scalar
+  direction: output
+- name: C1
+  summary: 第一输出轴角速度和扭矩双向连接端口
+  direction: output
+- name: C2
+  summary: 第二输出轴角速度和扭矩双向连接端口
+  direction: output
+- name: C
+  summary: 输出轴角速度和扭矩双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -296,8 +356,53 @@ N·m。
 
 - **端口配置**>`Two-way connection`
 - **耦合配置**>`Shaft merge`
-
 ## 参数
+```yaml
+parameters:
+- name: 端口配置
+  summary: 指定配置 Simulink（默认）| Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink（默认）| Two-way connection
+- name: 耦合配置
+  summary: 指定配置 Shaft split（默认）| Shaft merge
+  group: ''
+  block_parameter: CplrMode
+  values: Shaft split（默认）| Shaft merge
+- name: 输出信息总线
+  summary: 选择 off（默认）| on
+  group: ''
+- name: 扭转刚度，k1
+  summary: 刚度 5e4（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: k1
+  values: 5e4（默认）| 大于或等于 0 的标量
+- name: 扭转阻尼，b1
+  summary: 阻尼 1e2（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: b1
+  values: 1e2（默认）| 大于或等于 0 的标量
+- name: 阻尼截止频率，omega1_c
+  summary: 频率 3000（默认）| 正标量
+  group: ''
+  block_parameter: omega1_c
+  values: 3000（默认）| 正标量
+- name: 扭转刚度，k2
+  summary: 刚度 5e4（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: k2
+  values: 5e4（默认）| 大于或等于 0 的标量
+- name: 扭转阻尼，b2
+  summary: 阻尼 1e2（默认）| 标量
+  group: ''
+  block_parameter: b2
+  values: 1e2（默认）| 大于或等于 0 的标量
+- name: 阻尼截止频率，omega2_c
+  summary: 频率 3000（默认）| 正标量
+  group: ''
+  block_parameter: omega2_c
+  values: 3000（默认）| 正标量
+```
 
 #### 模块选项
 
@@ -456,7 +561,6 @@ s/rad。
 | **参数：** | `omega2_c` |
 | **值：** | `3000`（默认）| 正标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertrain / Drivetrain / Couplings

@@ -14,6 +14,18 @@ language: en
 # Local Restriction (MA)
 
 ## Ports
+```yaml
+ports:
+- name: AR
+  summary: Restriction area control signal, m^2 physical signal
+  direction: input
+- name: A
+  summary: Inlet or outlet moist air
+  direction: conserving
+- name: B
+  summary: Inlet or outlet moist air
+  direction: conserving
+```
 
 ### Input
 
@@ -39,8 +51,31 @@ local restriction. This block has no intrinsic directionality.
 
 Moist air conserving port associated with the inlet or outlet of the
 local restriction. This block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Restriction type
+  summary: Specify whether restriction area can change during simulation Variable (default) | Fixed
+  group: ''
+- name: Minimum restriction area
+  summary: Lower bound for the restriction cross-sectional area 1e-10 m^2 (default)
+  group: ''
+- name: Maximum restriction area
+  summary: Upper bound for the restriction cross-sectional area 0.005 m^2 (default)
+  group: ''
+- name: Restriction area
+  summary: Area normal to flow path at the restriction 1e-3 m^2 (default)
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area normal to flow path at the ports 0.01 m^2 (default)
+  group: ''
+- name: Discharge coefficient
+  summary: Ratio of actual mass flow rate to theoretical mass flow rate through the restriction 0.64 (default)
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which air flow transitions between laminar and turbulent regimes 0.999 (default)
+  group: ''
+```
 
 ### **Restriction type** — Specify whether restriction area can change during simulation `Variable` (default) | `Fixed`
 
@@ -107,7 +142,6 @@ Pressure ratio at which the moist air flow transitions between laminar and
 turbulent regimes. The pressure loss is linear with respect to mass flow
 rate in the laminar regime and quadratic with respect to mass flow rate in
 the turbulent regime.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Elements

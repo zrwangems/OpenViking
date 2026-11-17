@@ -14,6 +14,17 @@ language: en
 # Dyadic Analysis Filter Bank
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Data input column vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output 1
+  summary: Dyadic subband decomposition output column vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -96,8 +107,36 @@ Analysis Filter Bank**
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter
+  summary: Type of filter used in subband decomposition User-defined (default) | Haar | Daubechies | Symlets | Coiflets |
+    Biorthogonal | Reverse Biorthogonal | Discrete Meyer
+  group: ''
+- name: Filter order [synthesis / analysis]
+  summary: Analysis and synthesis filter orders for biorthogonal filters [1 / 1] (default) | [1 / 3] | [1 / 5] | [2 / 2] |
+    [2 / 4] | [2 / 6] | [2 / 8] | [3 / 1] | [3 / 3] | [3 / 5] | [3 / 7] | [3 / 9] | [4 / 4] | [5 / 5] | [6 / 8]
+  group: ''
+- name: Wavelet order
+  summary: Order for orthogonal wavelets 2 (default) | positive integer
+  group: ''
+- name: Lowpass FIR filter coefficients
+  summary: Lowpass FIR filter coefficients [0.0352 -0.0854 -0.1350 0.4599 0.8069 0.3327] (default) | row vector
+  group: ''
+- name: Highpass FIR filter coefficients
+  summary: Highpass FIR filter coefficients [-0.3327 0.8069 -0.4599 -0.1350 0.0854 0.0352] (default) | row vector
+  group: ''
+- name: Number of levels
+  summary: Number of filter bank levels used in analysis (decomposition) 2 (default) | integer greater than or equal to 1
+  group: ''
+- name: Tree structure
+  summary: Structure of filter bank Asymmetric (default) | Symmetric
+  group: ''
+- name: Output
+  summary: Single port or multiple ports Multiple ports (default) | Single port
+  group: ''
+```
 
 The parameters displayed in the block dialog box vary depending on the setting of the
 **Filter** parameter. Only some of the parameters described below
@@ -233,7 +272,6 @@ concatenated subbands on a single port. For more information, see the Output por
 The default setting of this parameter is `Multiple
 ports` for the Dyadic Analysis Filter Bank
 block and `Single port` for the DWT block.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

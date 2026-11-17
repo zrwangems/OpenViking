@@ -14,6 +14,17 @@ language: en
 # Cepstral Coefficients
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Spectrogram or auditory spectrogram matrix | 3-D array
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Cepstral Coefficients matrix | 3-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -44,8 +55,19 @@ matrix or *M*-by-*B*-by-*N* array, where:
   spectrogram.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of cepstral coefficients
+  summary: Number of cepstral coefficients returned 13 (default) | positive integer greater than 1
+  group: ''
+- name: Rectification
+  summary: Type of nonlinear rectification Logarithm (default) | Cubic root | None
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Number of cepstral coefficients** — Number of cepstral coefficients returned 13 (default) | positive integer greater than 1
 
@@ -69,7 +91,6 @@ root`, or `None`.
   simulations, as long as the model does not change. This option requires additional
   startup time, but the speed of the subsequent simulations is comparable to
   `Interpreted execution`.
-
 ## Libraries
 
 Audio Toolbox / Features

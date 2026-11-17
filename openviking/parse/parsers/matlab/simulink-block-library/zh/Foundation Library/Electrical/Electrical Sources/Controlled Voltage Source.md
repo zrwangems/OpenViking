@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Controlled Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: vT
+  summary: 电压控制信号，V 物理信号
+  direction: input
+- name: +
+  summary: 正极端子 电气
+  direction: input
+- name: '-'
+  summary: 负极端子 电气
+  direction: input
+```
 
 ### 输入
 
@@ -32,11 +44,12 @@ chinese_source: worker-translation
 ### **-** — 负极端子 电气
 
 与电源负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Sources

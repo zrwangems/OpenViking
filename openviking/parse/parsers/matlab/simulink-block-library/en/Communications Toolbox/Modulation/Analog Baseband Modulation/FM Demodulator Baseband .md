@@ -14,6 +14,17 @@ language: en
 # FM Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input data signal scalar | vector | matrix
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output data signal scalar | vector | matrix
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -30,8 +41,16 @@ Output signal, returned as a real scalar, vector, or matrix. The data
 at this port has the same data type and size as the input signal.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Frequency deviation (Hz)
+  summary: Frequency deviation of demodulator 75e3 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -62,7 +81,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Modulation / Analog Baseband Modulation

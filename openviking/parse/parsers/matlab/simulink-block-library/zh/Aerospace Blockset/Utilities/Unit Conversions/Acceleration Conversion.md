@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Acceleration Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 加速度 标量 | 数组
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 加速度 标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -38,8 +49,24 @@ chinese_source: worker-translation
 输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial unit
+  summary: 输入单位 ft/ss（默认）| m/s2 | km/s2 | in/s2 | km/h-s | mph/s | G's
+  group: ''
+  block_parameter: IU
+  type: 字符向量
+  values: '''ft/s^s | ''m/s^2'' | ''km/s^2'' | ''in/s^2'' | ''km/h-s'' | ''mph/s'' | ''G''s'''
+  default: '''ft/s2'''
+- name: Final unit
+  summary: 输出单位 ft/s^2'（默认）| m/s^2 | km/s^2 | in/s^2 | km/h-s | mph/s | G's
+  group: ''
+  block_parameter: OU
+  type: 字符向量
+  values: '''ft/s^2'' | ''m/s^2'' | ''km/s^2'' | ''in/s^2'' | ''km/h-s'' | ''mph/s'' | ''G''s'''
+  default: '''ft/s2'''
+```
 
 ### **Initial unit** — 输入单位 `ft/ss`（默认）| `m/s2` | `km/s2` | `in/s2` | `km/h-s` | `mph/s` | `G's`
 
@@ -94,7 +121,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'ft/s^2'` | `'m/s^2'` | `'km/s^2'` | `'in/s^2'` | `'km/h-s'` | `'mph/s'` | `'G's'` |
 | **默认值**：`'ft/s2'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Unit Conversions

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Heat Exchanger (G)
 
 ## 端口
+```yaml
+ports:
+- name: A1
+  summary: 气体端口 gas
+  direction: conserving
+- name: B1
+  summary: 气体端口 gas
+  direction: conserving
+- name: H2
+  summary: 受控流体 2 的入口温度 thermal
+  direction: conserving
+- name: C2
+  summary: 热容率 physical signal
+  direction: input
+- name: HC2
+  summary: 传热系数 physical signal
+  direction: input
+```
 
 ### 守恒端口
 
@@ -39,8 +57,148 @@ chinese_source: worker-translation
 ### **HC2** — 传热系数 physical signal
 
 受控流与壁面之间传热系数的瞬时值。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: 换热器中流体的排列方式 Parallel or counter flow（默认）| Shell and tube | Cross flow | Generic - effectiveness table
+  group: 通用
+- name: Number of shell passes
+  summary: 流体在离开之前穿过壳体的次数 1（默认）| 无量纲标量
+  group: 通用
+- name: Cross flow type
+  summary: 每个流动通道中的混合条件 Both fluids mixed（默认）| Both fluids unmixed | Gas mixed & Controlled Fluid unmixed | Gas unmixed &
+    Controlled Fluid mixed
+  group: 通用
+- name: Number of heat transfer units vector, NTU
+  summary: 换热器有效性查找表中每个断点处的传热单元数 无量纲数值数组
+  group: 通用
+- name: 热容比向量，CR
+  summary: 换热器效能查找表中每个断点处的热容比 无量纲数值数组
+  group: 通用
+- name: 效能表，E(NTU,CR)
+  summary: 换热器效能查找表中每个断点处基于传热单元数和热容比的效能 无量纲数值数组
+  group: 通用
+- name: 壁面热阻
+  summary: 壁面通过热传导对热流的阻力 0 K/W（默认）| 单位为温度除以功率的标量
+  group: 通用
+- name: 启用壁面热质量
+  summary: 用于建模壁面热质量的选项 off（默认）| on
+  group: 通用
+- name: 壁面质量
+  summary: 换热器壁面质量 1 kg（默认）| 正标量
+  group: 通用
+- name: 壁面比热
+  summary: 换热器壁面比热 490 J/(K*kg)（默认）| 正标量
+  group: 通用
+- name: 最小自由流通面积
+  summary: 流道在其最窄点处的横截面积 0.01 m^2（默认）| 带长度平方单位的标量
+  group: 气体
+- name: 气体体积
+  summary: 气体流道中流体的总体积 0.01 m^3（默认）| 带长度平方单位的标量
+  group: 气体
+- name: 用于压力损失的液压直径
+  summary: 流道在其最窄点处的有效直径 0.1 m（默认）| 带长度单位的标量
+  group: 气体
+- name: 层流上限雷诺数
+  summary: 层流区与湍流区之间过渡的起点 2000（默认）| 无量纲标量
+  group: 气体
+- name: 湍流下限雷诺数
+  summary: 层流区与湍流区之间过渡的终点 4000（默认）| 无量纲标量
+  group: 气体
+- name: 压力损失模型
+  summary: 黏性摩擦压力损失的数学模型 Pressure loss coefficient（默认）| Correlation for flow inside tubes | Tabulated data - Darcy friction
+    factor vs. Reynolds number | Tabulated data - Euler number vs. Reynolds number
+  group: 气体
+- name: 压力损失系数
+  summary: 端口之间所有流动阻力的总损失系数 0.1（默认）| 无量纲标量
+  group: 气体
+- name: 从入口到出口的流动路径长度
+  summary: 从端口到端口经过的距离 1 m（默认）| 带长度单位的标量
+  group: 气体
+- name: 局部阻力的总等效长度
+  summary: 以长度表示的局部压力损失总和 0.1 m（默认）| 带长度单位的标量
+  group: 气体
+- name: 内表面绝对粗糙度
+  summary: 壁面摩擦背后的表面凸起平均高度 15e-6 m（默认）| 带长度单位的标量
+  group: 气体
+- name: Darcy 摩擦因子的层流摩擦常数
+  summary: 层流条件下流动截面的压力损失修正 64（默认）| 无量纲标量
+  group: 气体
+- name: Darcy 摩擦因子的 Reynolds 数向量
+  summary: Darcy 摩擦因子查找表中每个断点处的 Reynolds 数 无量纲数值数组
+  group: 气体
+- name: Darcy friction factor vector
+  summary: 雷诺数查找表中每个断点处的 Darcy 摩擦因子，无量纲数值数组
+  group: 气体
+- name: Reynolds number vector for Euler number
+  summary: Euler 数查找表中每个断点处的雷诺数，无量纲数值数组
+  group: 气体
+- name: Euler number vector
+  summary: 雷诺数查找表中每个断点处的 Euler 数，无量纲数值数组
+  group: 气体
+- name: Heat transfer coefficient model
+  summary: 流体与壁面之间传热的数学模型 Constant heat transfer coefficient（默认）| Correlation for flow inside tubes | Tabulated data - Colburn
+    factor vs. Reynolds number | Tabulated data - Nusselt number vs. Reynolds number and Prandtl number
+  group: 气体
+- name: Heat transfer surface area
+  summary: 流体与壁面之间传热所用的有效表面积 0.4 m^2（默认）| 单位为长度平方的标量
+  group: 气体
+- name: Gas-wall heat transfer coefficient
+  summary: 流体与壁面之间对流传热的传热系数 100 W/(K*m^2)（默认）| 标量
+  group: 气体
+- name: Length of flow path for heat transfer
+  summary: 流体与壁面之间传热所经过的特征长度 1 m（默认）| 带长度单位的标量
+  group: 气体
+- name: Nusselt number for laminar flow heat transfer
+  summary: 层流传热中努塞尔数的假定常数值 3.66（默认）| 正的无量纲标量
+  group: 气体
+- name: Reynolds number vector for Colburn factor
+  summary: 指定 Colburn 因子数据时所对应的雷诺数值 无量纲数值数组
+  group: 气体
+- name: Colburn factor vector
+  summary: 查找表中每个断点处相对于雷诺数的 Colburn 因子 无量纲数值数组
+  group: 气体
+- name: Reynolds number vector for Nusselt number
+  summary: 努塞尔数查找表中每个断点处的雷诺数 无量纲数值数组
+  group: 气体
+- name: Prandtl number vector for Nusselt number
+  summary: 努塞尔数查找表中每个断点处的普朗特数 无量纲数值数组
+  group: 气体
+- name: Nusselt number table, Nu (Re,Pr)
+  summary: 雷诺数和普朗特数查找表中每个断点处的努塞尔数 无量纲数值数组
+  group: 气体
+- name: Fouling factor
+  summary: 由污垢沉积引起的热阻度量 1e-4 K*m^2/W（默认）| 单位为温度除以功率的标量
+  group: 气体
+- name: Minimum gas-wall heat transfer coefficient
+  summary: 传热系数的下界 1 W/(m^2 * K)（默认）| 单位为功率/面积/温度的标量
+  group: 气体
+- name: Heat transfer surface area
+  summary: 受控流体侧的总传热表面积 0.4 m^2（默认）| 单位为长度平方的标量
+  group: Controlled Fluid
+- name: Fouling factor
+  summary: 由污垢沉积引起的热阻度量 1e-4 K*m^2/W（默认）| 单位为长度平方乘以温度除以功率的标量
+  group: Controlled Fluid
+- name: Minimum fluid-wall heat transfer coefficient
+  summary: 流体-壁面传热系数的下界 1 W/(m^2 * K)（默认）| 具有功率/面积/温度单位的标量
+  group: Controlled Fluid
+- name: Enable Gas dynamic compressibility
+  summary: 对气体通道中压力动态进行建模的选项 On（默认）| Off
+  group: 效应与初始条件
+- name: Gas nominal temperature
+  summary: 标称工况下的温度 293.15 K（默认）| 标量
+  group: 效应与初始条件
+- name: Gas nominal pressure
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 效应与初始条件
+- name: Gas initial temperature
+  summary: 仿真开始时气体通道中的温度 293.15 K（默认）| 标量
+  group: 效应与初始条件
+- name: Gas initial pressure
+  summary: 仿真开始时气体通道中的压力 0.101325 MPa（默认）| 标量
+  group: 效应与初始条件
+```
 
 ### 通用
 
@@ -367,7 +525,6 @@ Colburn 因子不得为负值，并且必须按雷诺数递增的顺序从左到
 #### 依赖关系
 
 要启用此参数，请选择 **Enable Gas dynamic compressibility**。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Gas

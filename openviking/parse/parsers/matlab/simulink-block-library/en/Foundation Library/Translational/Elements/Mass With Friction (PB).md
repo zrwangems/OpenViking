@@ -14,6 +14,15 @@ language: en
 # Mass With Friction (PB)
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: External normal force control signal, N physical signal
+  direction: input
+- name: R
+  summary: Port that connects mass to the circuit position-based mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -36,8 +45,31 @@ specification** parameter to `Variable`.
 
 Position-based mechanical translational conserving port that connects the mass to
 the physical network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass
+  summary: Constant mass 1 kg (default) | positive scalar
+  group: ''
+- name: External normal force specification
+  summary: Whether external normal force is constant or variable Constant (default) | Variable
+  group: ''
+- name: Constant external normal force
+  summary: Force normal to motion 0 N (default) | nonnegative scalar
+  group: ''
+- name: Breakaway friction coefficient
+  summary: Proportionality coefficient between normal force and breakaway friction force 2.5 (default) | nonnegative scalar
+  group: ''
+- name: Breakaway friction velocity
+  summary: Peak velocity for Stribeck friction 0.1 m/s (default) | positive scalar
+  group: ''
+- name: Coulomb friction coefficient
+  summary: Proportionality coefficient between normal force and friction that opposes motion 2 (default) | nonnegative scalar
+  group: ''
+- name: Viscous friction coefficient
+  summary: Viscous losses proportionality coefficient 0 N/(m/s) (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Mass** — Constant mass `1 kg` (default) | positive scalar
 
@@ -89,7 +121,6 @@ opposes motion, based on the normal force.
 
 Proportionality coefficient between the friction force and the relative velocity.
 Viscous losses do not depend on the normal force.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

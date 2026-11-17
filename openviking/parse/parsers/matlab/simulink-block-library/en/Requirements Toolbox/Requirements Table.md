@@ -14,6 +14,19 @@ language: en
 # Requirements Table
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumerated | bus
+- name: Port_1
+  summary: Output data scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumerated | bus
+```
 
 ### Input
 
@@ -41,8 +54,28 @@ To create output ports, open the block and create output data in the
 **Symbols** pane. See Define Data in Requirements Table Blocks.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Update method
+  summary: Method used for activating block Inherited (default) | Discrete
+  group: ''
+- name: Sample time
+  summary: Time interval at which block activates up during simulation -1 (default) | scalar | vector
+  group: ''
+- name: Saturate on interger overflow
+  summary: Whether data saturates on integer overflow on (default) | off
+  group: ''
+- name: Support variable-size arrays
+  summary: Whether block supports variable-size data on (default) | off
+  group: ''
+- name: Enable outputs in preconditions
+  summary: Whether block supports output data in preconditions off (default) | on
+  group: ''
+- name: Requirements Table fimath
+  summary: Default fimath object properties Same as MATLAB (default) | Specify Other
+  group: Fixed-point properties
+```
 
 To edit the block parameters interactively:
 
@@ -172,7 +205,6 @@ Requirements Table block as one of these values:
     value. `fimath` settings not specified in the
     `fi` constructor use the specified properties in
     **Requirements Table fimath**.
-
 ## Libraries
 
 Requirements Toolbox

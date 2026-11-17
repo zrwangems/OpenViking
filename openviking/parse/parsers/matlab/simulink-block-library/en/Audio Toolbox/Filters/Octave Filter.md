@@ -14,6 +14,21 @@ language: en
 # Octave Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal matrix | 1-D vector
+  direction: input
+  data_types: single | double
+- name: CF
+  summary: Center frequency (Hz) scalar in the range 3 to 22,000 inclusive
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -53,8 +68,47 @@ size of the input:
   vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter order
+  summary: Order of octave filter 6 (default) | even integer
+  group: ''
+- name: Center frequency (Hz)
+  summary: Center frequency of octave filter 1000 (default) | scalar in the range 3 to 22,000 inclusive
+  group: ''
+- name: Bandwidth
+  summary: Filter bandwidth in octaves 1 octave (default) | 2/3 octave | 1/2 octave | 1/3 octave | 1/6 octave | 1/12 octave
+    | 1/24 octave | 1/48 octave
+  group: ''
+- name: Oversample the input by 2 for this filter
+  summary: Oversample toggle off (default) | on
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+- name: Mask for attenuation limits
+  summary: Create a mask for filter response visualization No mask (default) | Class 0 | Class 1 | Class 2
+  group: ''
+- name: Visualize filter response
+  summary: Open plot to visualize magnitude response and compliance mask button
+  group: ''
+- name: Variable name
+  summary: Variable name of exported filter myFilt (default) | valid variable name
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: Overwrite variable if it already exists on (default) | off
+  group: ''
+- name: Export filter to workspace
+  summary: Export filter to workspace button
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -174,7 +228,6 @@ Export the filter to the base workspace in the variable specified by the
   parameter and the model is not running.
 - You cannot export the filter if you are specifying filter
   characteristics from input ports.
-
 ## Libraries
 
 Audio Toolbox / Filters

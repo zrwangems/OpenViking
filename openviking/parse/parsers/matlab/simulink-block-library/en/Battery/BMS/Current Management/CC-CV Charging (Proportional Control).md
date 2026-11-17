@@ -14,6 +14,24 @@ language: en
 # CC-CV Charging (Proportional Control)
 
 ## Ports
+```yaml
+ports:
+- name: ChargingEnabled
+  summary: Whether to enable battery charging boolean
+  direction: input
+- name: CellVoltage
+  summary: Voltage of cells, V scalar | vector
+  direction: input
+- name: ChargeCurrentLimit
+  summary: Limit of charging current, A scalar
+  direction: input
+- name: CellVoltageThreshold
+  summary: Current for discharging, V scalar
+  direction: input
+- name: ChargeCurrentRequest
+  summary: Charging current scalar
+  direction: output
+```
 
 ### Input
 
@@ -44,8 +62,19 @@ Maximum allowable cell voltage, specified as a scalar.
 ### **ChargeCurrentRequest** — Charging current scalar
 
 Charging current command, returned as a scalar.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify CellVoltage input as [Min,Max]
+  summary: Option to specify CellVoltage input as minimum and maximum values off (default) | on
+  group: ''
+- name: Controller proportional gain
+  summary: Proportional gain of controller 0.02 (default) | scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time 1 (default) | -1 | positive integer
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -73,7 +102,6 @@ For more information, see What Is Sample Time? and Specify Sample Time.
 For inherited discrete-time operation, specify this parameter as
 `-1`. For discrete-time operation, specify this parameter as a
 positive integer.
-
 ## Libraries
 
 Simscape / Battery / BMS / Current Management

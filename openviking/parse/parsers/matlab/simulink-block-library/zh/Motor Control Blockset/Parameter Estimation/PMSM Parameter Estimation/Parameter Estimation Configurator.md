@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # PMSM Parameter Estimation Configurator
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 总线信号总线
+  direction: output
+  data_types: single
+```
 
 ### 输出
 
@@ -48,8 +55,73 @@ chinese_source: worker-translation
 配置元素与模块参数类似。有关这些元素的详细信息，请参阅。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: 电机极对数 4（默认）| scalar
+  group: ''
+- name: Rated speed (RPM)
+  summary: 电机额定转速 4000（默认）| scalar
+  group: ''
+- name: Rated motor current (A)
+  summary: 电机额定电流 7（默认）| scalar
+  group: ''
+- name: Maximum inverter current (A)
+  summary: 最大可测量电流 21（默认）| scalar
+  group: ''
+- name: Board resistance (ohm)
+  summary: 逆变器桥电阻 0.0043（默认）| scalar
+  group: ''
+- name: Current sense gain (A/ADC Count)
+  summary: 每个 ADC 计数的电流 0.0105（默认）| scalar
+  group: ''
+- name: Voltage sense gain (V/ADC Count)
+  summary: 每个 ADC 计数的电压 0.0098（默认）| scalar
+  group: ''
+- name: Maximum frequency (Hz)
+  summary: 频率扫描注入的最大频率 1000（默认）| scalar
+  group: ''
+- name: Minimum frequency (Hz)
+  summary: 频率扫描注入的最小频率 400（默认）| scalar
+  group: ''
+- name: Step for frequency sweep (Hz)
+  summary: 频率扫描的步长 100（默认）| scalar
+  group: ''
+- name: Frequency step size for estimation (Hz)
+  summary: '*Ld* 和 *Lq* 估计的频率步长 10（默认）| scalar'
+  group: ''
+- name: Number of frequencies for estimation
+  summary: 用于 *Ld* 和 *Lq* 估计的注入频率数量 10（默认）| scalar
+  group: ''
+- name: Current measurement delay (s)
+  summary: 电流测量延迟 2 * 50e-6（默认）| scalar
+  group: ''
+- name: Back EMF estimation time (s)
+  summary: 估计反电动势时的电机运行持续时间 5（默认）| scalar
+  group: ''
+- name: Back EMF estimation maximum speed limit (RPM)
+  summary: 估计反电动势时的电机转速 3500（默认）| scalar
+  group: ''
+- name: Iq reference current as a ratio of rated motor current
+  summary: 估计 *Ke*、*J* 和 *B* 时用于 FOC 的参考电流 0.2（默认）| scalar
+  group: ''
+- name: Specify current controller gains
+  summary: 指定 PI 电流控制器增益 off（默认）| on
+  group: ''
+- name: Proportional gain
+  summary: PI 控制器的比例增益 1（默认）| scalar
+  group: ''
+- name: Integral gain
+  summary: PI 控制器的积分增益 1000（默认）| scalar
+  group: ''
+- name: Speed lower limit for inertia estimation (RPM)
+  summary: 惯性估计期间的下限转速 1000（默认）| scalar
+  group: ''
+- name: 参数估计采样时间 (s)
+  summary: 参数估计的采样时间 50e-6（默认）| scalar
+  group: ''
+```
 
 #### 电机和逆变器
 
@@ -162,7 +234,6 @@ PMSM Mechanical Parameter Estimation 模块在降速期间记录用于估计电�
 - Ld Estimator
 - Lq Estimator
 - PMSM Mechanical Parameter Estimator
-
 ## 所属库
 
 Motor Control Blockset / Parameter Estimation / PMSM Parameter Estimation

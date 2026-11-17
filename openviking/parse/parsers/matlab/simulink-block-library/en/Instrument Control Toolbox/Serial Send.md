@@ -14,6 +14,13 @@ language: en
 # Serial Send
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data values to send vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -23,8 +30,41 @@ Data values to send from the block over your serial port, specified as a vector,
 matrix, or array. Set the parameters for this block before you send data.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Port
+  summary: Serial communication port available communication ports
+  group: ''
+  block_parameter: Port
+  type: character vector, string
+- name: Header
+  summary: Header numeric array | integer from 0 to 255, inclusive
+  group: ''
+  block_parameter: Header
+  type: character vector, string
+  values: integer array
+- name: Terminator
+  summary: Terminator <none> (default) | CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+  block_parameter: Terminator
+  type: character vector, string
+  values: '''<none>'' | ''CR (''\r'')'' | ''LF (''\n'')'' | ''CR/LF (''\r\n'')'' | ''NULL (''\0'')'' | ''Custom Terminator'''
+  default: '''<none>'''
+- name: Custom terminator
+  summary: Custom terminator numeric array | integer from 0 to 255, inclusive
+  group: ''
+  block_parameter: CustomTerminator
+  type: character vector, string
+  values: integer array
+- name: Enable blocking mode
+  summary: Simulation waits while sending data on (default) | off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Port** — Serial communication port available communication ports
 
@@ -134,7 +174,6 @@ not enable blocking mode, the simulation runs continuously.
 | **Type:** character vector, string |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Instrument Control Toolbox Motor Control Blockset / Protection and Diagnostics

@@ -15,14 +15,34 @@ chinese_source: worker-translation
 # Reservoir (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 储液器入口处的热液体
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 储液器入口处的热液体
 
 与储液器入口相关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: 储液器压力指定方式
+  summary: 储液器压力的指定方法 Atmospheric pressure (默认) | Specified pressure
+  group: ''
+- name: 储液器压力
+  summary: 储液器中的压力 0.101325 MPa (默认)
+  group: ''
+- name: 储液器温度
+  summary: 储液器中的温度 293.15 K (默认)
+  group: ''
+- name: 端口 A 处的横截面积
+  summary: 储液器入口处垂直于流动路径的面积 0.01 m^2 (默认)
+  group: ''
+```
 
 ### **储液器压力指定方式** — 储液器压力的指定方法 `Atmospheric pressure` (默认) | `Specified pressure`
 
@@ -47,7 +67,6 @@ chinese_source: worker-translation
 ### **端口 A 处的横截面积** — 储液器入口处垂直于流动路径的面积 `0.01 m^2` (默认)
 
 储液器入口管道的横截面积。该模块使用此面积来确定管道在热传导方向上的特征长度。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Elements

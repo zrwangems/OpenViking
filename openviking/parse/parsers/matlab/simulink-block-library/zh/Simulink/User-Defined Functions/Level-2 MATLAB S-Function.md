@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Level-2 MATLAB S-Function
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: Level-2 MATLAB S-Function 模块的信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: Level-2 MATLAB S-Function 模块的信号输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +42,24 @@ Level-2 MATLAB S-Function 模块接受模块特性表中列出的类型的输入
 Level-2 MATLAB S-Function 模块返回的信号输出。您可以使用 `setup` 回调函数配置输入端口。使用 `setup` 函数指定输入端口数量、输入信号的维度以及每个端口的采样时间。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: S-Function Name
+  summary: 指定 S-Function 名称 matlabfile（默认）| S-Function 名称
+  group: ''
+  block_parameter: FunctionName
+  type: character vector
+  values: '''matlabfile'' | S-Function 名称'
+  default: '''matlabfile'''
+- name: Parameters
+  summary: 指定此模块的参数值 无默认值（默认）
+  group: ''
+  block_parameter: Parameters
+  type: character vector
+  values: 模块参数的值
+  default: ''' '''
+```
 
 ### **S-Function Name** — 指定 S-Function 名称 `matlabfile`（默认）| S-Function 名称
 
@@ -58,7 +86,6 @@ Level-2 MATLAB S-Function 模块返回的信号输出。您可以使用 `setup` 
 | **类型**：character vector |
 | **值**：模块参数的值 |
 | **默认值**：`' '` |
-
 ## 所属库
 
 Simulink / User-Defined Functions

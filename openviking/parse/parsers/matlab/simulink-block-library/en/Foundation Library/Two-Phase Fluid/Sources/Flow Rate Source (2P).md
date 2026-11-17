@@ -14,6 +14,21 @@ language: en
 # Flow Rate Source (2P)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mass flow rate control signal, kg/s physical signal
+  direction: input
+- name: V
+  summary: Volumetric flow rate control signal, m^3/s physical signal
+  direction: input
+- name: A
+  summary: Source inlet two-phase fluid
+  direction: conserving
+- name: B
+  summary: Source outlet two-phase fluid
+  direction: conserving
+```
 
 ### Input
 
@@ -48,8 +63,31 @@ port **A** to port **B**.
 
 Two-phase fluid conserving port. A positive flow rate causes fluid to flow from
 port **A** to port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Select whether flow rate can change during simulation Controlled (default) | Constant
+  group: ''
+- name: Flow rate type
+  summary: Select whether source generates mass or volumetric flow rate Mass flow rate (default) | Volumetric flow rate
+  group: ''
+- name: Mass flow rate
+  summary: Constant mass flow rate through the source 0 kg/s (default)
+  group: ''
+- name: Volumetric flow rate
+  summary: Constant volumetric flow rate through the source 0 m^3/s (default)
+  group: ''
+- name: Power added
+  summary: Select whether the source performs work Isentropic (default) | None
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at port A 0.01 m^2 (default)
+  group: ''
+- name: Cross-sectional area at port B
+  summary: Area normal to flow path at port B 0.01 m^2 (default)
+  group: ''
+```
 
 ### **Source type** — Select whether flow rate can change during simulation `Controlled` (default) | `Constant`
 
@@ -111,7 +149,6 @@ Area normal to flow path at port **A**.
 ### **Cross-sectional area at port B** — Area normal to flow path at port B `0.01 m^2` (default)
 
 Area normal to flow path at port **B**.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Sources

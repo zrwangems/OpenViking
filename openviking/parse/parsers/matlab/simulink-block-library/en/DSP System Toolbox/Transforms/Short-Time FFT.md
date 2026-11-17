@@ -14,6 +14,21 @@ language: en
 # Short-Time FFT
 
 ## Ports
+```yaml
+ports:
+- name: x[n]
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: w[n]
+  summary: Analysis window vector vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: X[nL,k]
+  summary: Short-time FFT output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -53,8 +68,19 @@ this port.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Analysis window length
+  summary: Length of analysis window 512 (default) | positive integer greater than 1
+  group: ''
+- name: Overlap between consecutive windows (in samples)
+  summary: Overlap length 384 (default) | nonnegative integer
+  group: ''
+- name: FFT length
+  summary: FFT length 1024 (default) | positive integer greater than or equal to 2
+  group: ''
+```
 
 ### **Analysis window length** — Length of analysis window `512` (default) | positive integer greater than 1
 
@@ -76,7 +102,6 @@ greater than or equal to 2. After the block buffers and windows the signal,
 it zero-pads the signal before computing the FFT. This parameter determines
 the length of the short-time fast Fourier transform output (number of rows).
 The FFT length must be greater than or equal to the window length.
-
 ## Libraries
 
 DSP System Toolbox / Transforms

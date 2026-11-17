@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Apply Transform
 
 ## 端口
+```yaml
+ports:
+- name: TFMsg
+  summary: ROS 或 ROS 2 geometry_msgs/TransformStamped 消息非虚拟总线
+  direction: input
+- name: Entity
+  summary: ROS 或 ROS 2 实体消息非虚拟总线
+  direction: input
+- name: TFEntity
+  summary: 变换后的 ROS 或 ROS 2 实体消息非虚拟总线
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +43,13 @@ ROS 或 ROS 2 实体消息，指定为非虚拟总线。
 ### **TFEntity** — 变换后的 ROS 或 ROS 2 实体消息非虚拟总线
 
 变换后的 ROS 或 ROS 2 实体消息，返回为非虚拟总线。输出 `TFEntity` 消息与输入 `Entity` 消息具有相同的消息类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Entity message type
+  summary: 输入实体消息的类型 geometry_msgs/QuaternionStamped（默认）| geometry_msgs/Vector3Stamped | geometry_msgs/PointStamped | geometry_msgs/PoseStamped
+  group: ''
+```
 
 ### **Entity message type** — 输入实体消息的类型 `geometry_msgs/QuaternionStamped`（默认）| `geometry_msgs/Vector3Stamped` | `geometry_msgs/PointStamped` | `geometry_msgs/PoseStamped`
 
@@ -42,7 +59,6 @@ ROS 或 ROS 2 实体消息，指定为非虚拟总线。
 - `geometry_msgs/PoseStamped`
 - `geometry_msgs/QuaternionStamped`
 - `geometry_msgs/Vector3Stamped`
-
 ## 所属库
 
 ROS Toolbox / ROS ROS Toolbox / ROS 2

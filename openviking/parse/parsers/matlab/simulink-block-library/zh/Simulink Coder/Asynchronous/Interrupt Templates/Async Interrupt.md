@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Async Interrupt
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 模拟中断源 标量 | 向量
+  direction: input
+- name: Output
+  summary: 控制信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +39,34 @@ chinese_source: worker-translation
 - 函数调用子系统
 - Task Sync 模块
 - 配置为函数调用输入事件的 Stateflow 图
-
 ## 参数
+```yaml
+parameters:
+- name: VME interrupt number(s)
+  summary: 要安装的中断的 VME 中断号 [1 2]（默认）| 整数数组
+  group: ''
+- name: VME interrupt vector offset(s)
+  summary: 对应于 VME 中断号的中断向量偏移号 [192 193]（默认）| 整数数组
+  group: ''
+- name: Simulink task priority(s)
+  summary: 下游模块的优先级 [10 11]（默认）| 整数数组
+  group: ''
+- name: Preemption flag(s); preemptable-1; non-preemptable-0
+  summary: 选择抢占 [0 1]（默认）| 整数数组
+  group: ''
+- name: Manage own timer
+  summary: 选择定时器管理器 开（默认）| 关
+  group: ''
+- name: Timer resolution (seconds)
+  summary: ISR 定时器 1/60 的分辨率（默认值）
+  group: ''
+- name: Timer size
+  summary: 用于存储时钟节拍的位数 32bits（默认值）| 16bits | 8bits | auto
+  group: ''
+- name: Enable simulation input
+  summary: 选择添加仿真输入端口 on（默认值）| off
+  group: ''
+```
 
 ### **VME interrupt number(s)** — 要安装的中断的 VME 中断号 [1 2]（默认）| 整数数组
 
@@ -94,7 +129,6 @@ ISR 定时器的分辨率。由 Async Interrupt 模块生成的 ISR 维护自己
 **注意**
 
 在生成代码之前，请考虑移除驱动仿真输入的模块，以防止这些模块对生成的代码产生影响。或者，您可以使用 Variant Source 模块，并将 **Variant control mode** 参数设置为 `sim codegen switching`。如果使用 Variant Source 模块，驱动模块的采样时间将影响生成的代码中所支持的采样时间。
-
 ## 所属库
 
 Simulink Coder / Asynchronous / Interrupt Templates

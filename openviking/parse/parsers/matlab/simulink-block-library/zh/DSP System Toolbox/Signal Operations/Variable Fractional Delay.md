@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Variable Fractional Delay
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Delay
+  summary: 延迟输入 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 延迟输出 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -136,8 +151,74 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Interpolation mode
+  summary: 插值方法 Linear（默认）| FIR | Farrow
+  group: ''
+- name: Interpolation filter half-length (P)
+  summary: 插值滤波器半长度 4（默认）| 范围 [1 65535] 内的正整数
+  group: ''
+- name: Interpolation points per input sample
+  summary: 每个输入采样的插值点数 10（默认）| 范围 [2, 65,535] 内的正整数
+  group: ''
+- name: Normalized input bandwidth (0 to 1)
+  summary: 归一化输入带宽 1（默认）| 范围 (0, 1] 内的实标量
+  group: ''
+- name: Farrow filter length (N)
+  summary: Farrow 滤波器长度 4（默认）| 大于或等于 2 的整数
+  group: ''
+- name: Maximum delay (Dmax) in samples
+  summary: 最大延迟 100（默认）| 范围 [0 65535] 内的整数
+  group: ''
+- name: 输入处理
+  summary: 处理输入的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: InitialConditions
+  summary: 存储器中的初始值 0（默认）| 标量 | 1×*R*×*D* 数组 | 1×*R*×(*D*+*L*) 数组
+  group: ''
+- name: Disable direct feedthrough by increasing minimum possible delay by one
+  summary: 禁用直接馈通 off（默认）| on
+  group: ''
+- name: For small input delay values
+  summary: 对较小输入延迟值采取的操作 Clip to the minimum value necessary for centered kernel（默认）| Use off-centered kernel | Switch to
+    linear interpolation if kernel cannot be centered
+  group: ''
+- name: Valid delay range (in samples)
+  summary: 有效延迟值范围 只读：[0 100]（默认）| [*Dmin* *Dmax*]
+  group: ''
+- name: Rounding mode
+  summary: 定点运算的舍入方法 Zero（默认）| Ceiling | Convergent | Floor | Nearest | Round | Simplest
+  group: 定点属性
+- name: Saturate on integer overflow
+  summary: 溢出操作方法 off（默认）| on
+  group: 定点属性
+- name: Coefficients
+  summary: 系数的数据类型 Same word length as input（默认）| Specify word length
+  group: 定点属性
+- name: Product output
+  summary: 乘积输出的数据类型 Same as first input（默认）| Binary point scaling
+  group: 定点属性
+- name: Accumulator
+  summary: 累加运算的数据类型 Same as product output（默认）| Same as first input | Binary point scaling
+  group: 定点属性
+- name: Product output polyval
+  summary: 乘积多项式值的数据类型 Same as first input（默认）| Binary point scaling
+  group: 定点属性
+- name: Accumulator polyval
+  summary: 累加器多项式值的数据类型 Same as first input（默认）| Binary point scaling
+  group: 定点属性
+- name: Multiplicand polyval
+  summary: 被乘数多项式值的数据类型 Same as first input（默认）| Binary point scaling
+  group: 定点属性
+- name: Output
+  summary: 模块输出的数据类型 Same as accumulator（默认）| Same as first input | Binary point scaling
+  group: 定点属性
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 定点属性
+```
 
 ### **Interpolation mode** — 插值方法 `Linear`（默认）| `FIR` | `Farrow`
 
@@ -393,7 +474,6 @@ FIR 插值滤波器的半长度。对于周期信号，此属性的较大值（�
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

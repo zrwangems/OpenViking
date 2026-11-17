@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Execution Time
 
 ## 端口
+```yaml
+ports:
+- name: Total Exec Time
+  summary: 上一个基础速率节拍的总执行时间 double
+  direction: output
+- name: Task Exec Time
+  summary: 各个采样速率的任务执行时间（可选）double 向量
+  direction: output
+```
 
 ### 输出
 
@@ -29,8 +38,14 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当您选择 **Measure task execution times** 时，此端口可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Measure task execution times
+  summary: 显示各个任务的任务执行时间 ‘off’（默认）| ‘on’
+  group: ''
+  block_parameter: ShowTaskTimes
+```
 
 ### **Measure task execution times** — 显示各个任务的任务执行时间 `‘off’`（默认）| `‘on’`
 
@@ -41,7 +56,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `ShowTaskTimes` |
-
 ## 所属库
 
 Simulink Desktop Real-Time / Target Profiling

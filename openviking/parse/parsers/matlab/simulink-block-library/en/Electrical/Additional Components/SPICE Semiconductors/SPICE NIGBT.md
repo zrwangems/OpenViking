@@ -14,6 +14,18 @@ language: en
 # SPICE NIGBT
 
 ## Ports
+```yaml
+ports:
+- name: gx
+  summary: Gate terminal electrical
+  direction: conserving
+- name: cx
+  summary: Collector terminal electrical
+  direction: conserving
+- name: ex
+  summary: Emitter terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +40,85 @@ Electrical conserving port associated with the IGBT collector terminal.
 ### **ex** — Emitter terminal electrical
 
 Electrical conserving port associated with the IGBT emitter terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gate-drain overlap area, AGD
+  summary: Gate-drain overlap area 5.0e-6 m^2 (default) | positive scalar
+  group: Dimensions
+- name: Area of the device, AREA
+  summary: Device area 1.0e-5 m^2 (default) | positive scalar
+  group: Dimensions
+- name: Number of parallel devices, SCALE
+  summary: Number of parallel devices 1 (default) | positive integer
+  group: Dimensions
+- name: Electron mobility, MUN
+  summary: Mobility of electron 1.5e3 cm^2/s/V (default) | scalar
+  group: General
+- name: Hole mobility, MUP
+  summary: Mobility of hole 4.5e2 cm^2/s/V (default) | scalar
+  group: General
+- name: Base doping, NB
+  summary: Doping of base 2e14 1/cm^3 (default) | scalar
+  group: General
+- name: Triode region factor, KF
+  summary: Factor of triode region 1 (default)
+  group: MOSFET
+- name: MOS transconductance, KP
+  summary: MOS transconductance 0.38 A/V^2 (default) | scalar
+  group: MOSFET
+- name: Threshold voltage, VT
+  summary: Threshold voltage 4.7 V (default) | scalar
+  group: MOSFET
+- name: Transverse field factor, THETA
+  summary: Transverse field factor 0.02 1/V (default) | scalar
+  group: MOSFET
+- name: Ambipolar recombination lifetime, TAU
+  summary: Ambipolar recombination lifetime 7.1e-6 s (default) | scalar
+  group: BJT
+- name: Metallurgical base width, WB
+  summary: Width of metallurgical base 9.0e-5 m (default) | scalar
+  group: BJT
+- name: Emitter saturation current density, JSNE
+  summary: Density of emitter saturation current 6.5e-13 A/cm^2 (default) | scalar
+  group: BJT
+- name: Avalanche uniformity factor, BVF
+  summary: Avalanche uniformity factor 1 (default) | scalar
+  group: BJT
+- name: Avalanche multiplication exponent, BVN
+  summary: Avalanche multiplication exponent 4 (default) | scalar
+  group: BJT
+- name: Gate-source capacitance per unit area, CGS
+  summary: Gate-source capacitance per unit area 1.24e-8 F/cm^2 (default) | scalar
+  group: Capacitance
+- name: Gate-drain oxide capacitance per unit area, COXD
+  summary: Gate-drain oxide capacitance per unit area 3.5e-8 F/cm^2 (default) | scalar
+  group: Capacitance
+- name: Gate-drain overlap depletion threshold, VTD
+  summary: Gate-drain overlap depletion threshold 1e-3 V (default) | scalar
+  group: Capacitance
+- name: Specify initial condition
+  summary: Whether to specify initial condition No (default) | Yes
+  group: Capacitance
+- name: Initial condition voltage ICVGE
+  summary: Initial condition voltage ICVGE 0 V (default) | scalar
+  group: Capacitance
+- name: Initial condition voltage ICVCE
+  summary: Initial condition voltage ICVCE 0 V (default) | scalar
+  group: Capacitance
+- name: Model temperature dependence using
+  summary: Temperature dependence model Device temperature (default) | Fixed temperature
+  group: Temperature
+- name: Fixed circuit temperature, TFIXED
+  summary: Fixed circuit temperature 300.15 K (default) | positive scalar
+  group: Temperature
+- name: Parameter extraction temperature, TMEAS
+  summary: Parameter extraction temperature 300.15 K (default) | positive scalar
+  group: Temperature
+- name: Offset local circuit temperature, TOFFSET
+  summary: Local circuit temperature offset 0 K (default) | scalar
+  group: Temperature
+```
 
 ### Dimensions
 
@@ -181,7 +270,6 @@ Amount by which the transistor temperature differs from the circuit temperature.
 To enable this parameter, set **Model temperature
 dependence using** to `Device
 temperature`.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Software Trigger CPU<->CLA
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 事件触发信号 标量
+  direction: input
+  data_types: Boolean
+- name: event
+  summary: 任务事件信号 标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输入
 
@@ -34,8 +45,19 @@ chinese_source: worker-translation
 在包含 Software Trigger CPU<->CLA 模块的参考模型的顶层，连接到该 **event** 端口的 Outport 模块必须配置为非虚拟总线。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters:
+- name: Task number
+  summary: 任务标识号 1（默认）| 从 1 到 8 的整数
+  group: ''
+- name: Trigger condition
+  summary: 触发事件的条件 Rising edge（默认）| Input high
+  group: ''
+- name: Trigger type
+  summary: 触发类型 Trig（默认）| TrigAndWait(codegen)
+  group: ''
+```
 
 ### **Task number** — 任务标识号 `1`（默认）| 从 `1` 到 `8` 的整数
 
@@ -52,7 +74,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，模块必须位于 **Processing Unit** 设置为某个 CPU 的参考模型内。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Scheduling

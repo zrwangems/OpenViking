@@ -14,6 +14,25 @@ language: en
 # Autothreshold
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: BW
+  summary: Output binary image matrix
+  direction: output
+  data_types: Boolean
+- name: Th
+  summary: Threshold value scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: EMetric
+  summary: Effectiveness metric value scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -63,8 +82,40 @@ To enable this port, select the **Output effectiveness metric**
 parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Thresholding operator
+  summary: Specify thresholding operator > (default) | <=
+  group: Main
+- name: Output threshold
+  summary: Output threshold off (default) | on
+  group: Main
+- name: Output effectiveness metric
+  summary: Output effectiveness metric off (default) | on
+  group: Main
+- name: Specify data range
+  summary: Specify input pixel value range off (default) | on
+  group: Main
+- name: Minimum value of input
+  summary: Minimum input pixel value 0 (default) | scalar
+  group: Main
+- name: Maximum value of input
+  summary: Maximum input pixel value 255 (default) | scalar
+  group: Main
+- name: When data range is exceeded
+  summary: Operation to perform when data range is exceeded Ignore (default) | Saturate | Warn and saturate | Error
+  group: Main
+- name: Scale threshold
+  summary: Specify scale threshold off (default) | on
+  group: Main
+- name: Threshold scaling factor
+  summary: Scale factor for thresholding 1 (default) | scalar
+  group: Main
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Data type override off (default) | on
+  group: Data Types
+```
 
 **Main**
 
@@ -151,7 +202,6 @@ For details on fixed-point block parameters, see Specify Fixed-Point Attributes 
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Conversions

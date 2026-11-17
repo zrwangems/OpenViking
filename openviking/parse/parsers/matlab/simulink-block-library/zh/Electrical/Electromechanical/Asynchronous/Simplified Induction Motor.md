@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Simplified Induction Motor
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 有功功率物理信号
+  direction: output
+- name: wm
+  summary: 机械转速物理信号
+  direction: output
+- name: VAR
+  summary: 无功功率物理信号
+  direction: output
+- name: s
+  summary: 电机转差率物理信号
+  direction: output
+- name: R
+  summary: 转子机械
+  direction: output
+- name: C
+  summary: 机壳机械
+  direction: output
+- name: H1
+  summary: 转子热
+  direction: output
+- name: H2
+  summary: 转子热
+  direction: output
+```
 
 ### 输出
 
@@ -60,8 +87,94 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Model parameterization
+  summary: 模块参数化 By motor ratings（默认）| By equivalent circuit parameters
+  group: 电磁转矩
+- name: Stator resistance R1
+  summary: 定子绕组电阻 1 Ohm（默认）
+  group: 电磁转矩
+- name: Rotor resistance R2
+  summary: 转子电阻 1 Ohm（默认）
+  group: 电磁转矩
+- name: Stator inductance L1
+  summary: 定子绕组电感 0.02 H（默认）
+  group: 电磁转矩
+- name: Rotor inductance L2
+  summary: 转子电感 0.02 H（默认）
+  group: 电磁转矩
+- name: Magnetizing inductance Lm
+  summary: 定子励磁电感 0.5 H（默认）
+  group: 电磁转矩
+- name: Rated mechanical power
+  summary: 电机机械功率 825 W（默认）
+  group: 电磁转矩
+- name: Rated speed
+  summary: 电机额定转速 3500 rpm（默认）
+  group: 电磁转矩
+- name: Rated RMS line-to-line voltage
+  summary: 额定线电压 200 V（默认）
+  group: 电磁转矩
+- name: Rated supply frequency
+  summary: 交流电源电压频率 60 Hz（默认）
+  group: 电磁转矩
+- name: Rated RMS line current
+  summary: 额定线电流 2.7 A（默认）
+  group: 电磁转矩
+- name: R1 parameterization
+  summary: 等效电路电阻参数化 From motor efficiency（默认）| From power factor | Use measured stator resistance R1
+  group: 电磁转矩
+- name: Motor efficiency (percent)
+  summary: 电机效率 95（默认）
+  group: 电磁转矩
+- name: Motor power factor
+  summary: 电机功率因数 0.93（默认）
+  group: 电磁转矩
+- name: Measured stator resistance R1
+  summary: 测量的定子电阻 1 Ohm（默认）
+  group: 电磁转矩
+- name: Number of pole pairs
+  summary: 电机极对数 1（默认）
+  group: 电磁转矩
+- name: Number of phases
+  summary: 电源相数 3（默认）
+  group: 电磁转矩
+- name: Stator connections
+  summary: 电机定子配置 Delta configuration（默认）| Star configuration
+  group: 电磁转矩
+- name: Supply RMS line-to-line voltage
+  summary: 电源 RMS 线电压 200 V（默认）
+  group: 电源
+- name: Supply frequency
+  summary: 交流电源频率 60 Hz（默认）
+  group: 电源
+- name: Rotor inertia
+  summary: 转子惯量 1e-3 kg*m^2（默认）
+  group: 机械
+- name: Rotor damping
+  summary: 转子阻尼 1e-4 N*m/(rad/s)（默认）
+  group: 机械
+- name: Initial rotor speed
+  summary: 初始转子转速 0 rpm（默认）
+  group: 机械
+- name: Stator and rotor resistance temperature coefficients, [alpha_1 alpha_2]
+  summary: 定子和转子电阻温度系数 [.00393, .00393] 1/K（默认）
+  group: 温度依赖性
+- name: Measurement temperature
+  summary: 测量温度 25 C（默认）
+  group: 温度依赖性
+- name: Stator and rotor thermal masses, [M_1 M_2]
+  summary: 定子和转子热质量 [100, 100] J/K（默认）
+  group: 热端口
+- name: Stator and rotor initial temperatures, [T_1 T_2]
+  summary: 定子和转子初始温度 [25, 25] C（默认）
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -304,7 +417,6 @@ measured stator resistance R1` 时，此参数才可见。
 ### **Stator and rotor initial temperatures, [T\_1 T\_2]** — 定子和转子初始温度 `[25, 25]` `C`（默认）
 
 一个 1×2 行向量，定义仿真开始时定子和转子热端口的温度。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Asynchronous

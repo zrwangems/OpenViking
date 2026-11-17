@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # 3DOF Angular Acceleration
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 俯仰角速率标量
+  direction: input
+  data_types: double
+- name: I
+  summary: 惯性张量标量
+  direction: input
+  data_types: double
+- name: dI/dt coeff
+  summary: 惯性张量矩阵系数变化率 3×3 矩阵
+  direction: input
+  data_types: double
+- name: M
+  summary: 施加的俯仰力矩标量
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: 质量变化率标量
+  direction: input
+  data_types: double
+- name: dI/dt
+  summary: 惯性张量变化率标量
+  direction: input
+  data_types: double
+- name: dq/dt
+  summary: 俯仰角加速度标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -72,8 +103,22 @@ chinese_source: worker-translation
 俯仰角加速度，返回为标量，单位为弧度每二次方秒。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: Metric (MKS) | English (Velocity in ft/s) | English (Velocity in kts)
+- name: Mass type
+  summary: 质量类型 Fixed（默认）| Simple Variable | Custom Variable
+  group: ''
+  block_parameter: mtype
+  type: 字符向量
+  values: Fixed | Simple Variable | Custom Variable
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -114,7 +159,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `Fixed` | `Simple Variable` | `Custom Variable` |
 | **默认：** `'Fixed'` |
-
 ## 所属库
 
 Aerospace Blockset / Equations of Motion / Acceleration

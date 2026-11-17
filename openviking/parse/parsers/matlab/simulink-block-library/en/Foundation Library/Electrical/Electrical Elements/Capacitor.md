@@ -14,6 +14,15 @@ language: en
 # Capacitor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,19 @@ Electrical conserving port associated with the capacitor positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the capacitor negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacitance
+  summary: Capacitance of the capacitor 1e-6 F (default) | positive scalar
+  group: ''
+- name: Series resistance
+  summary: Small parasitic effects 1e-6 Ohm (default) | nonnegative scalar
+  group: ''
+- name: Parallel conductance
+  summary: Small parasitic effects 0 1/Ohm (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Capacitance** — Capacitance of the capacitor `1e-6 F` (default) | positive scalar
 
@@ -42,7 +62,6 @@ resistance.
 
 Represents small parasitic effects. The parallel conductance directly across the
 capacitor can be used to model dielectric losses, or leakage current per volt.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

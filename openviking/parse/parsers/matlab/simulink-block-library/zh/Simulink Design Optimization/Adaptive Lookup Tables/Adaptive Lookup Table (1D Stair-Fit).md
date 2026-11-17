@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Adaptive Lookup Table (1D Stair-Fit)
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **First input (row) breakpoint set**
 :   包含可能的模块输入值的向量。
@@ -77,7 +82,6 @@ R2025b 中未记录。
 **超出范围输入的操作**
 :   `Ignore` 或 `Adapt`，通过对
     极端断点之外进行外推来实现。
-
 ## 所属库
 
 R2025b 中未记录。

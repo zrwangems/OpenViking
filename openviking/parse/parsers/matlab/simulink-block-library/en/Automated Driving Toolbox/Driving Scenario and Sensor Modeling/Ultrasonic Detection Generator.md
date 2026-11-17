@@ -14,6 +14,15 @@ language: en
 # Ultrasonic Detection Generator
 
 ## Ports
+```yaml
+ports:
+- name: Actors
+  summary: Scenario actor poses Simulink bus containing MATLAB® structure
+  direction: input
+- name: Detections
+  summary: Object detections Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -90,8 +99,60 @@ the parent frame. The parent frame is the ego vehicle body.
 | `HasElevation` | Indicates whether measurements contain elevation components. Always `false` for Ultrasonic Detection Generator. |
 | `HasVelocity` | Indicates whether measurements contain velocity or range rate components. Always `false` for Ultrasonic Detection Generator. |
 | `FieldOfView` | 2-D vector containing the azimuth and elevation field of view values of the sensor. |
-
 ## Parameters
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: Unique sensor identifier 0 (default) | positive integer
+  group: Parameters
+- name: Translation [ X, Y, Z ] relative to ego origin (m)
+  summary: Sensor location on ego vehicle (m) [3.4, 0, 0.2] (default) | 1-by-3 real-valued vector of form [*x* *y* *z*]
+  group: Parameters
+- name: Rotation [Yaw, Pitch, Roll] relative to ego's frame (deg)
+  summary: Mounting rotation angles of radar [0 0 0] (default) | 1-by-3 real-valued vector of form [*z*yaw *y*pitch *x*roll]
+  group: Parameters
+- name: Field of view [horizontalFOV, verticalFOV] (deg)
+  summary: Angular field of view of ultrasonic sensor [70 35] (default) | 1-by-2 positive real-valued vector of form [horizontalFOV
+    verticalFOV]
+  group: Parameters
+- name: Detection ranges [minDetOnlyRange, minDistRange, maxDistRange] (m)
+  summary: Detection range vector of ultrasonic sensor (m) [0.03 0.15 5.5] (default) | 1-by-3 nonnegative real-valued vector
+    of form [minDetOnlyRange minDistRange maxDistRange]
+  group: Parameters
+- name: Update rate (Hz)
+  summary: Sensor update rate 10 (default) | positive real scalar
+  group: Parameters
+- name: Source of output bus name
+  summary: Source of output bus name Auto (default) | Property
+  group: Parameters
+- name: Specify an output bus name
+  summary: Name of output bus BusDrivingRadarDataGenerator (default) | valid bus name
+  group: Parameters
+- name: Target profiles definition
+  summary: Method to specify target profiles Parameters (default) | MATLAB expression | From Scenario Reader block
+  group: Actor Profiles
+- name: MATLAB expression for target profiles
+  summary: MATLAB expression for target profiles MATLAB structure | MATLAB structure array | valid MATLAB expression
+  group: Actor Profiles
+- name: Unique identifier for actors
+  summary: Scenario-defined actor identifier [] (default) | positive integer | length-*L* vector of unique positive integers
+  group: Actor Profiles
+- name: User-defined integer to classify actors
+  summary: User-defined classification identifier 0 (default) | integer | length-*L* vector of integers
+  group: Actor Profiles
+- name: Length of actors' cuboids (m)
+  summary: Length of actor cuboids 4.7 (default) | positive real scalar | length-*L* vector of positive values
+  group: Actor Profiles
+- name: Width of actors' cuboids (m)
+  summary: Width of actor cuboids 1.8 (default) | positive real scalar | length-*L* vector of positive values
+  group: Actor Profiles
+- name: Height of actors' cuboids (m)
+  summary: Height of actor cuboids 1.4 (default) | positive real scalar | length-*L* vector of positive values
+  group: Actor Profiles
+- name: Rotational center of actors from bottom center (m)
+  summary: Rotational center of actors {[-1.35, 0, 0]} (default) | length-*L* cell array of real-valued 1-by-3 vectors
+  group: Actor Profiles
+```
 
 ### Parameters
 
@@ -361,7 +422,6 @@ apply to all actors. Units are in meters.
 
 To enable this parameter, set the **Target profiles
 definition** parameter to `Parameters`.
-
 ## Libraries
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

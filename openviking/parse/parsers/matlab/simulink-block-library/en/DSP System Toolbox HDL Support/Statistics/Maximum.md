@@ -14,6 +14,25 @@ language: en
 # Maximum
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | Boolean
+- name: Val
+  summary: Maximum values along the specified dimension scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Idx
+  summary: Index of the maximum values along the specified dimension scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: double | uint32
+```
 
 ### Input
 
@@ -146,8 +165,45 @@ to either `Value and Index` or
 `Index`.
 
 **Data Types:** `double` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Mode in which the block operates Value and Index (default) | Value | Index | Running
+  group: Main Tab
+- name: Index base
+  summary: Base of the maximum value index One (default) | Zero
+  group: Main Tab
+- name: Find the maximum value over
+  summary: Dimension over which the block computes the maximum value Each column (default) | Each row | Entire input | Specified
+    dimension
+  group: Main Tab
+- name: Dimension
+  summary: Custom dimension 1 (default) | scalar
+  group: Main Tab
+- name: Input processing
+  summary: Method to process the input in running mode Columns as channels (frame based) (default) | Elements as channels
+    (sample based)
+  group: Main Tab
+- name: Reset port
+  summary: Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -596,7 +652,6 @@ For more information on the data type assistant, see Specify Data Types Using Da
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Statistics DSP System Toolbox HDL Support / Statistics

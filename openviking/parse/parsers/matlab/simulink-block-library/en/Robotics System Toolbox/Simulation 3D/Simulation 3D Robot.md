@@ -14,6 +14,48 @@ language: en
 # Simulation 3D Robot
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Robot input joint configuration vector
+  direction: input
+- name: Translation
+  summary: Robot base translation vector
+  direction: input
+- name: Rotation
+  summary: Robot base rotation vector
+  direction: input
+- name: TargetActor
+  summary: Name of target actor to grasp fixed-sized string scalar | variable-sized uint8 array
+  direction: input
+- name: ActivateTargetGrasp
+  summary: Grasp target actor boolean
+  direction: input
+- name: GraspRegionTranslation
+  summary: Translational distance needed to automatically grasp target actor vector
+  direction: input
+- name: GraspRegionRotation
+  summary: Rotational distance needed to automatically grasp target actor vector
+  direction: input
+- name: TargetEETranslation
+  summary: Translational difference between end effector and target actor vector
+  direction: input
+- name: TargetEERotation
+  summary: Rotational difference between end effector and target actor vector
+  direction: input
+- name: GroundTruthConfiguration
+  summary: Ground truth for robot configuration vector
+  direction: output
+- name: IsTargetGrasped
+  summary: Target actor grasped status boolean
+  direction: output
+- name: GroundTruthTranslation
+  summary: Robot input joint configuration vector
+  direction: output
+- name: GroundTruthRotation
+  summary: Robot input joint configuration vector
+  direction: output
+```
 
 ### Input
 
@@ -187,8 +229,89 @@ the rotations about the *z*, *y*, and
 
 To enable this port, select the **Enable ground
 truth translation and rotation output signal** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input type
+  summary: Robot model source RigidBodyTree Object (default) | Robot Library
+  group: Parameters
+- name: Rigid body tree
+  summary: Robot rigid body tree model twoJointRigidBodyTree (default) | rigidBodyTree object | Robot name in Robot Library
+  group: Parameters
+- name: Actor name
+  summary: Name of actor to represent robot in Unreal Engine scene SimulinkRobot1 (default) | string scalar
+  group: Parameters
+- name: Use existing Simulink 3D actor specified in the actor name prompt
+  summary: Use an existing actor in the Unreal Engine scene to represent the robot off (default) | on
+  group: Parameters
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Parameters
+- name: Initial base translation
+  summary: Initial translation of robot base [0 0 0] (default)
+  group: Initial Values
+- name: Initial base rotation
+  summary: Initial rotation of robot base [0 0 0] (default)
+  group: Initial Values
+- name: Initial joint configuration
+  summary: Initial joint configuration [0 0] (default) | *N*-element row vector
+  group: Initial Values
+- name: End effector
+  summary: End-effector body name tool (default)
+  group: Grasp Settings
+- name: End effector to target actor offset as an input signal
+  summary: off (default) | on
+  group: Grasp Settings
+- name: End effector to target actor translation
+  summary: '[0 0 0] (default) |'
+  group: Grasp Settings
+- name: End effector to target actor rotation
+  summary: '[0 0 0] (default) |'
+  group: Grasp Settings
+- name: Enable region-based target actor grasp approach
+  summary: Grasp target actors automatically when target actors are within specified bounds of end effector off (default)
+    | on
+  group: Grasp Settings
+- name: Enable target actor grasp region as an input signal
+  summary: Specify regions for grasping target actor at input ports off (default) | on
+  group: Grasp Settings
+- name: End effector to target actor grasp region translation difference
+  summary: Translation difference of grasp region [0.2 0.2 0.2] (default)
+  group: Grasp Settings
+- name: End effector to target actor grasp region rotation difference
+  summary: Rotation difference of grasp region [0 0 0] (default)
+  group: Grasp Settings
+- name: Enable visual geometry visualization in 3D scene
+  summary: Add rigid body tree visual geometry in 3D visualization environment on (default) | off
+  group: rigidBodyTree Geometry Settings
+- name: Enable collision geometry visualization in 3D scene
+  summary: Visualize rigid body tree collision geometry in 3D visualization environment off (default) | on
+  group: rigidBodyTree Geometry Settings
+- name: Collision geometry color
+  summary: Color of the rigid body tree collision geometry [0 1 0] (default) | vector
+  group: rigidBodyTree Geometry Settings
+- name: Collision geometry transparency
+  summary: Transparency of the rigid body tree collision geometry 0.1 (default) | scalar
+  group: rigidBodyTree Geometry Settings
+- name: Enable config input signal
+  summary: Specify desired robot configurations at input port on (default) | off
+  group: Inputs
+- name: Enable grasp settings input signals
+  summary: off (default) | on
+  group: Inputs
+- name: Enable translation and rotation input signals
+  summary: Specify translation and rotation of robot base at input ports off (default) | on
+  group: Inputs
+- name: Enable ground truth config output signal
+  summary: Output ground truth configuration off (default) | on
+  group: Outputs
+- name: Enable target grasped status output signal
+  summary: Output grasp status off (default) | on
+  group: Outputs
+- name: Enable ground truth translation and rotation output signal
+  summary: Output ground truth pose of robot base off (default) | on
+  group: Outputs
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -436,7 +559,6 @@ Select this parameter to output the grasping status of the end effector at the
 Select this parameter to output ground truth pose of robot base at the
 **GroundTruthTranslation** and **GroundTruthRotation** output
 ports.
-
 ## Libraries
 
 Robotics System Toolbox / Simulation 3D

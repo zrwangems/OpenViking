@@ -14,6 +14,21 @@ language: en
 # Allpass Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input data column vector | row vector | matrix
+  direction: input
+  data_types: single | double
+- name: coeffs
+  summary: Allpass filter coefficients column vector | row vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output of the allpass filter column vector | row vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -65,8 +80,35 @@ The size of the filtered output matches the size of the input.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Internal allpass structure
+  summary: Filter structure Minimum multiplier (default) | Wave Digital Filter | Lattice
+  group: ''
+- name: Specify coefficients from input port
+  summary: Flag to specify allpass polynomial coefficients off (default) | on
+  group: ''
+- name: Allpass polynomial coefficients
+  summary: Coefficients in minimum multiplier form [-2^(-1/2), 1/2] (default) | *N*-by-1 matrix | *N*-by-2 matrix | *N*-by-4
+    matrix
+  group: ''
+- name: Wave Digital Filter allpass coefficients
+  summary: Coefficients in wave digital filter form [1/2, -2^(1/2)/3] (default) | *N*-by-1 matrix | *N*-by-2 matrix
+  group: ''
+- name: Indicate if last section is first order
+  summary: Is last section first order off (default) | on
+  group: ''
+- name: Lattice allpass coefficients
+  summary: Coefficients in lattice form [-2^(1/2)/3, 1/2] (default) | *N*-by-1 column vector | 1-by-*N* row vector
+  group: ''
+- name: View Filter Response
+  summary: Visualize filter response button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -231,7 +273,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Implementations

@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM ST2C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 接管点定子电流限制（OEL）标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 接管点定子电流限制（UEL）标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -135,8 +182,97 @@ chinese_source: worker-translation
 要施加到同步电机励磁电路的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数
+  group: 常规
+- name: Initial terminal voltage, Vt0 (pu)
+  summary: 初始机端电压 1（默认）| 实数
+  group: 常规
+- name: Initial terminal current, It0 (pu)
+  summary: 初始机端电流 1（默认）| 实数
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认）| 正数
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认）| 正数
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0（默认）| 正数
+  group: 预控制
+- name: Voltage regulator proportional gain, K_PR (pu)
+  summary: 调节器比例增益 1（默认）| 正数
+  group: 控制
+- name: Voltage regulator integral gain, K_IR (pu/s)
+  summary: 调节器积分增益 0（默认）| 正数
+  group: 控制
+- name: Maximum voltage regulator output, V_PImax (pu)
+  summary: PI 控制调节器输出的上限 99（默认）| 实数
+  group: 控制
+- name: Minimum voltage regulator output, V_PImin (pu)
+  summary: PI 控制调节器输出的下限 -99（默认）| 实数
+  group: 控制
+- name: Voltage regulator gain, K_A (pu)
+  summary: 调节器增益 120（默认）| 正数
+  group: 控制
+- name: Voltage regulator time constant, T_A (s)
+  summary: 调节器时间常数 0.15（默认）| 正数
+  group: 控制
+- name: Rate feedback gain, K_F (pu)
+  summary: 速率反馈增益 0.05（默认）| 正数
+  group: 控制
+- name: Rate feedback time constant, T_F (s)
+  summary: 速率反馈时间常数 1（默认）| 正数
+  group: 控制
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: 调节器输出的上限 1（默认）| 实数
+  group: 控制
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: 调节器输出的下限 0（默认）| 实数
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: 整流器负载因数 0.1（默认）| 正数
+  group: 励磁机
+- name: Exciter field proportional constant, K_E (pu)
+  summary: 励磁机磁场增益 1（默认）| 正数
+  group: 励磁机
+- name: Exciter field time constant, T_E (s)
+  summary: 励磁机磁场时间常数 0.5（默认）| 正数
+  group: 励磁机
+- name: Maximum generator field voltage, E_FDmax (pu)
+  summary: 发电机励磁电压上限 4.4（默认）| 正数
+  group: 励磁机
+- name: Potential circuit (voltage) gain coefficient, K_P (pu)
+  summary: 电势电路电压增益系数 4.88（默认）| 正数
+  group: 励磁机
+- name: Compound circuit (current) gain coefficient, K_I (pu)
+  summary: 电势电路电流增益系数 0（默认）| 正数
+  group: 励磁机
+- name: Reactance associated with potential source, X_L (pu)
+  summary: 电势源电抗 0（默认）| 正数
+  group: 励磁机
+- name: Potential circuit phase angle (degrees)
+  summary: 电势电路相位角 0（默认）| 正数
+  group: 励磁机
+- name: Maximum available exciter voltage, V_Bmax (pu)
+  summary: 励磁机电压上限 5.2（默认）| 正数
+  group: 励磁机
+```
 
 ### 常规
 
@@ -270,7 +406,6 @@ chinese_source: worker-translation
 ### **Maximum available exciter voltage, V\_Bmax (pu)** — 励磁机电压上限 `5.2`（默认）| 正数
 
 最大可用标幺励磁机电压值。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

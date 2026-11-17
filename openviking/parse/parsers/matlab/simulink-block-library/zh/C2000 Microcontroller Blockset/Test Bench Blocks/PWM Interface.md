@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # PWM Interface
 
 ## 端口
+```yaml
+ports:
+- name: msg
+  summary: SoC 消息数据数值向量
+  direction: input
+  data_types: SoCData
+- name: PWM
+  summary: 脉宽调制信号标量
+  direction: output
+  data_types: double
+- name: ~PWM
+  summary: 互补脉宽调制信号标量
+  direction: output
+  data_types: double
+- name: dCycle
+  summary: 脉宽调制信号的模拟近似值标量
+  direction: output
+  data_types: double
+- name: event
+  summary: 每个 PWM 周期发出的事件标量
+  direction: output
+  data_types: rteEvent
+- name: event*n*
+  summary: 每个 PWM 周期发出的复制事件标量
+  direction: output
+  data_types: rteEvent
+- name: interrupt
+  summary: 每个 PWM 周期发出的中断事件标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输入
 
@@ -86,8 +117,60 @@ PWM 信号的近似波形。
 要启用此参数，请将 **Type** 参数设置为 `PWM interrupt` 或 `ADC start and PWM interrupt`。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters:
+- name: PWM waveform period (s)
+  summary: PWM 波形周期 50e-6（默认）| 正标量
+  group: 主
+- name: Output mode
+  summary: 输出模式 Switching（默认）| Average
+  group: 主
+- name: Counter mode
+  summary: 计数器波形 Up-Down（默认）| Up | Down
+  group: 主
+- name: Sampling mode
+  summary: 采样模式 End of PWM period（默认）| Mid or End of PWM period | Immediate (at compare matches)
+  group: 主
+- name: Dead time (s)
+  summary: 死区开关延迟 1e-6（默认）| 正标量
+  group: 主
+- name: At *position* of period
+  summary: 在周期中 *position* 处的信号变化 High | Low | Change | NoChange
+  group: PWM 输出
+- name: At compare *n*
+  summary: 比较器 n 触发时的信号变化 High | Low | Change | NoChange
+  group: PWM 输出
+- name: At compare *n* *direction* count
+  summary: 比较器 n 触发时的信号变化 High | Low | Change | NoChange
+  group: PWM 输出
+- name: Phase offset in degree (0-360)
+  summary: PWM 波形偏移标量，从 0 到 360
+  group: 相位
+- name: Type
+  summary: 要生成的事件类型 ADC start（默认）| PWM interrupt | ADC start and PWM interrupt
+  group: 事件
+- name: ADC start condition
+  summary: 相对于 PWM 波形的触发模式 End of PWM period（默认）| Mid of PWM period | Mid or End of PWM period | Compare 1 up count | Compare
+    1 down count | Compare 2 up count | Compare 2 down count
+  group: 事件
+- name: Generate on
+  summary: 在 PWM 更新的倍数上生成事件 1st event（默认）| nth event | 16th event
+  group: 事件
+- name: Number of replicas
+  summary: 生成复制事件端口 1（默认）| 从 1 到 16 的整数
+  group: 事件
+- name: PWM interrupt condition
+  summary: 相对于 PWM 波形的触发模式 End of PWM period（默认）| Mid of PWM period | Mid or End of PWM period | Compare 1 up count | Compare
+    1 down count | Compare 2 up count | Compare 2 down count
+  group: 事件
+- name: Interrupt latency (s)
+  summary: 中断生成延迟 0（默认）| 正数
+  group: 事件
+- name: Generate on
+  summary: 在 PWM 更新的倍数上生成事件 1st event（默认）| nth event | 16th event
+  group: 事件
+```
 
 ### 主
 
@@ -243,7 +326,6 @@ PWM 信号的近似波形。
 #### 依赖关系
 
 要启用此参数，**Type** 参数必须设置为 `PWM interrupt` 或 `ADC start and PWM interrupt`。
-
 ## 所属库
 
 SoC Blockset / Peripherals C2000 Microcontroller Blockset / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

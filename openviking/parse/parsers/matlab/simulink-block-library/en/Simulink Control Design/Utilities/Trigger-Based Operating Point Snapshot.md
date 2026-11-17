@@ -14,14 +14,29 @@ language: en
 # Trigger-Based Operating Point Snapshot
 
 ## Ports
+```yaml
+ports:
+- name: Trigger
+  summary: Trigger control signal scalar
+  direction: input
+```
 
 ### Input
 
 ### **Trigger** — Trigger control signal scalar
 
 Trigger control signal, specified as a scalar signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Trigger type
+  summary: Type of control signal rising (default) | falling | either | function-call
+  group: ''
+  block_parameter: '''TriggerType'''
+  type: character vector
+  values: '''rising''''falling''''either''''function-call'''
+  default: '''rising'''
+```
 
 ### **Trigger type** — Type of control signal `rising` (default) | `falling` | `either` | `function-call`
 
@@ -45,7 +60,6 @@ Type of control signal that triggers the operating point snapshot.
 | **Type:** `character vector` |
 | **Values:** `'rising'``'falling'``'either'``'function-call'` |
 | **Default:** `'rising'` |
-
 ## Libraries
 
 Simulink Control Design / Utilities

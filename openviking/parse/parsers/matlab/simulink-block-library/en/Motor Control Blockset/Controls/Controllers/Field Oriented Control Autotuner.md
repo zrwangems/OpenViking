@@ -14,6 +14,101 @@ language: en
 # Field Oriented Control Autotuner
 
 ## Ports
+```yaml
+ports:
+- name: PIDout daxis
+  summary: Signal from direct-axis current controller scalar
+  direction: input
+  data_types: single | double
+- name: measured feedback daxis
+  summary: Measured direct-axis current scalar
+  direction: input
+  data_types: single | double
+- name: PIDout qaxis
+  summary: Signal from quadrature-axis current controller scalar
+  direction: input
+  data_types: single | double
+- name: measured feedback qaxis
+  summary: Measured quadrature-axis current scalar
+  direction: input
+  data_types: single | double
+- name: PIDout spd
+  summary: Signal from speed controller scalar
+  direction: input
+  data_types: single | double
+- name: measured feedback spd
+  summary: Measured speed scalar
+  direction: input
+  data_types: single | double
+- name: PIDout flux
+  summary: Signal from flux controller scalar
+  direction: input
+  data_types: single | double
+- name: measured feedback flux
+  summary: Measured flux scalar
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: Start and stop autotuning experiment scalar
+  direction: input
+  data_types: single | double
+- name: ActiveLoop
+  summary: Specify active loop for autotuning experiment scalar
+  direction: input
+  data_types: single | double
+- name: bandwidth
+  summary: Target bandwidth for tuning scalar | vector | bus
+  direction: input
+  data_types: single | double
+- name: target PM
+  summary: Target phase margin for tuning scalar | vector | bus
+  direction: input
+  data_types: single | double
+- name: sine Amp
+  summary: Amplitudes of injected sinusoidal perturbation signals vector | matrix
+  direction: input
+  data_types: single | double
+- name: perturbation daxis
+  summary: Direct-axis current input perturbation scalar
+  direction: output
+  data_types: single | double
+- name: perturbation qaxis
+  summary: Quadrature-axis current input perturbation scalar
+  direction: output
+  data_types: single | double
+- name: perturbation spd
+  summary: Speed input perturbation scalar
+  direction: output
+  data_types: single | double
+- name: perturbation flux
+  summary: Flux input perturbation scalar
+  direction: output
+  data_types: single | double
+- name: pid gains
+  summary: Tuned PID coefficients bus
+  direction: output
+  data_types: single | double
+- name: convergence
+  summary: Convergence of FRD estimation during experiment scalar
+  direction: output
+  data_types: single | double
+- name: estimated PM
+  summary: Estimated phase margin for most recently tuned loop scalar
+  direction: output
+  data_types: single | double
+- name: frd
+  summary: Estimated frequency response for most recently tuned loop vector
+  direction: output
+  data_types: single | double
+- name: nominal
+  summary: Plant input and output at nominal operating point for most recently tuned loop vector
+  direction: output
+  data_types: single | double
+- name: loop startstops
+  summary: Active loop bus
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -566,8 +661,614 @@ start/stop of experiment** and select
 **Start/stop of autotuning process**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Tune D-axis current loop
+  summary: Enable d-axis current loop tuning on (default) | off
+  group: ''
+  block_parameter: TuneDaxisLoop
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Tune Q-axis current loop
+  summary: Enable q-axis current loop tuning on (default) | off
+  group: ''
+  block_parameter: TuneQaxisLoop
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Tune speed loop
+  summary: Enable speed loop tuning on (default) | off
+  group: ''
+  block_parameter: TuneSpeedLoop
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Tune flux loop
+  summary: Enable flux loop tuning on (default) | off
+  group: ''
+  block_parameter: TuneSpeedLoop
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Use same settings for current loop controllers (D-axis + Q-axis)
+  summary: Enable same tuning and experiment settings for direct-axis and quadrature-axis current loops off (default) | on
+  group: ''
+  block_parameter: UseSameSettingsInner
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use same settings for outer loop controllers (Speed + Flux)
+  summary: Enable same tuning and experiment settings for speed and flux loops off (default) | on
+  group: ''
+  block_parameter: UseSameSettingsOuter
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Experiment sample time
+  summary: Sample time of frequency response estimation experiment –1 (default) | positive scalar
+  group: ''
+  block_parameter: TsExperiment
+  type: scalar
+  values: positive scalar
+  default: –1 (inherited)
+- name: Use different sample time for tuning
+  summary: Enable tuning at different sample time from loop PID controller and experiment off (default) | on
+  group: Tuning Tab
+  block_parameter: UseTuningTs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Tuning sample time (sec)
+  summary: Sample time of tuning algorithm 0.2 (default) | positive scalar
+  group: Tuning Tab
+  block_parameter: TsTuning
+  type: scalar
+  values: positive scalar
+  default: '0.2'
+- name: Type
+  summary: D-axis current loop PID controller actions PI (default) | PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeDaxis
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: D-axis current loop PID controller form Parallel (default) | Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormDaxis
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: D-axis current loop PID controller sample time 0.001 (default) | positive scalar | –1
+  group: Tuning Tab
+  block_parameter: TsDaxis
+  type: scalar
+  values: positive scalar | –1
+  default: '0.001'
+- name: Integrator method
+  summary: D-axis current loop controller discrete integration formula for integrator term Forward Euler (default) | Backward
+    Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodDaxis
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: D-axis current loop controller discrete integration formula for derivative filter term Forward Euler (default)
+    | Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodDaxis
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: D-axis current loop target crossover frequency of tuned response 100 (default) | positive scalar
+  group: Tuning Tab
+  block_parameter: BandwidthDaxis
+  type: positive scalar
+  default: '100'
+- name: Target phase margin (degrees)
+  summary: D-axis current loop target minimum phase margin 60 (default) | scalar in range 0–90
+  group: Tuning Tab
+  block_parameter: TargetPMDaxis
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Type
+  summary: Q-axis current loop PID controller actions PI (default) | PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeQaxis
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: Q-axis current loop PID controller form Parallel (default) | Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormQaxis
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: Q-axis current loop PID controller sample time 0.001 (default) | positive scalar | –1
+  group: Tuning Tab
+  block_parameter: TsQaxis
+  type: scalar
+  values: positive scalar | –1
+  default: '0.001'
+- name: Integrator method
+  summary: Q-axis current loop controller discrete integration formula for integrator term Forward Euler (default) | Backward
+    Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodQaxis
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: Q-axis current loop controller discrete integration formula for derivative filter term Forward Euler (default)
+    | Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodQaxis
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: Q-axis current loop target crossover frequency of tuned response 100 (default) | positive scalar
+  group: Tuning Tab
+  block_parameter: BandwidthQaxis
+  type: positive scalar
+  default: '100'
+- name: Target phase margin (degrees)
+  summary: Q-axis current loop target minimum phase margin 60 (default) | scalar in range 0–90
+  group: Tuning Tab
+  block_parameter: TargetPMQaxis
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Type
+  summary: Speed loop PID controller actions PI (default) | PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeSpeed
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: Speed loop PID controller form Parallel (default) | Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormSpeed
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: Speed loop PID controller sample time 0.1 (default) | positive scalar | –1
+  group: Tuning Tab
+  block_parameter: TsSpeed
+  type: scalar
+  values: positive scalar | –1
+  default: '0.1'
+- name: Integrator method
+  summary: Speed loop controller discrete integration formula for integrator term Forward Euler (default) | Backward Euler
+    | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodSpeed
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: Speed loop controller discrete integration formula for derivative filter term Forward Euler (default) | Backward
+    Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodSpeed
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: Speed loop target crossover frequency of tuned response 1 (default) | positive scalar
+  group: Tuning Tab
+  block_parameter: BandwidthSpeed
+  type: positive scalar
+  default: '1'
+- name: Target phase margin (degrees)
+  summary: Speed loop target minimum phase margin 60 (default) | scalar in range 0–90
+  group: Tuning Tab
+  block_parameter: TargetPMSpeed
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Type
+  summary: Flux loop PID controller actions PI (default) | PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeFlux
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: Flux loop PID controller form Parallel (default) | Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormFlux
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: Flux loop PID controller sample time 0.1 (default) | positive scalar | –1
+  group: Tuning Tab
+  block_parameter: TsFlux
+  type: scalar
+  values: positive scalar | –1
+  default: '0.1'
+- name: Integrator method
+  summary: Flux loop controller discrete integration formula for integrator term Forward Euler (default) | Backward Euler
+    | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodFlux
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: Flux loop controller discrete integration formula for derivative filter term Forward Euler (default) | Backward
+    Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodFlux
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: Flux loop target crossover frequency of tuned response 1 (default) | positive scalar
+  group: Tuning Tab
+  block_parameter: BandwidthFlux
+  type: positive scalar
+  default: '1'
+- name: Target phase margin (degrees)
+  summary: Flux loop target minimum phase margin 60 (default) | scalar in range 0–90
+  group: Tuning Tab
+  block_parameter: TargetPMFlux
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Type
+  summary: Current loop PID controller actions PI (default) | PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeAllInner
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: Current loop PID controller form Parallel (default) | Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormAllInner
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: Current loop PID controller sample time 0.001 (default) | positive scalar | –1
+  group: Tuning Tab
+  block_parameter: TsAllInner
+  type: scalar
+  values: positive scalar | –1
+  default: '0.001'
+- name: Integrator method
+  summary: Current loop controller discrete integration formula for integrator term Forward Euler (default) | Backward Euler
+    | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodAllInner
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: Current loop controller discrete integration formula for derivative filter term Forward Euler (default) | Backward
+    Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodAllInner
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: Current loop target crossover frequency of tuned responses 100 (default) | positive scalar
+  group: Tuning Tab
+  block_parameter: BandwidthAllInner
+  type: positive scalar
+  default: '1'
+- name: Target phase margin (degrees)
+  summary: Current loop target minimum phase margins 60 (default) | scalar in range 0–90
+  group: Tuning Tab
+  block_parameter: TargetPMAllInner
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Type
+  summary: Outer loop PID controller actions PI (default) | PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeAllOuter
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: Outer loop PID controller form Parallel (default) | Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormAllOuter
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: Outer loop PID controller sample time 0.1 (default) | positive scalar | –1
+  group: Tuning Tab
+  block_parameter: TsAllOuter
+  type: scalar
+  values: positive scalar | –1
+  default: '0.1'
+- name: Integrator method
+  summary: Outer loop controller discrete integration formula for integrator term Forward Euler (default) | Backward Euler
+    | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodAllOuter
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: Outer loop controller discrete integration formula for derivative filter term Forward Euler (default) | Backward
+    Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodAllOuter
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: Outer loop target crossover frequency of tuned responses 1 (default) | positive scalar
+  group: Tuning Tab
+  block_parameter: BandwidthAllOuter
+  type: positive scalar
+  default: '1'
+- name: Target phase margin (degrees)
+  summary: Outer loop target minimum phase margins 60 (default) | scalar in range 0–90
+  group: Tuning Tab
+  block_parameter: TargetPMAllOuter
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: D-axis current loop start time (sec)
+  summary: Specify direct-axis current loop tuning experiment start time 1 (default)
+  group: Experiment Tab
+  block_parameter: StartTimeDaxis
+  type: positive scalar
+  default: '1'
+- name: D-axis current loop experiment duration (sec)
+  summary: Specify direct-axis current loop tuning experiment duration 0.05 (default)
+  group: Experiment Tab
+  block_parameter: DurationDaxis
+  type: positive scalar
+  default: '0.05'
+- name: Q-axis current loop start time (sec)
+  summary: Specify quadrature-axis current loop tuning experiment start time 1.1 (default)
+  group: Experiment Tab
+  block_parameter: StartTimeQaxis
+  type: positive scalar
+  default: '1.1'
+- name: Q-axis current loop experiment duration (sec)
+  summary: Specify quadrature-axis current loop tuning experiment duration 0.05 (default)
+  group: Experiment Tab
+  block_parameter: DurationQaxis
+  type: positive scalar
+  default: '0.05'
+- name: Speed loop start time (sec)
+  summary: Specify speed loop tuning experiment start time 2 (default)
+  group: Experiment Tab
+  block_parameter: StartTimeSpeed
+  type: positive scalar
+  default: '2'
+- name: Speed loop experiment duration (sec)
+  summary: Specify speed loop tuning experiment duration 3 (default)
+  group: Experiment Tab
+  block_parameter: DurationSpeed
+  type: positive scalar
+  default: '3'
+- name: Flux loop start time (sec)
+  summary: Specify flux loop tuning experiment start time 6 (default)
+  group: Experiment Tab
+  block_parameter: StartTimeFlux
+  type: positive scalar
+  default: '6'
+- name: Flux loop experiment duration (sec)
+  summary: Specify flux loop tuning experiment duration 3 (default)
+  group: Experiment Tab
+  block_parameter: DurationFlux
+  type: positive scalar
+  default: '3'
+- name: Experiment Mode
+  summary: Sinusoidal perturbation signal type Superposition (default) | Sinestream | PRBS *(since R2024a)*
+  group: Experiment Tab
+  block_parameter: ExperimentMode
+  type: character vector
+  values: '''Superposition'' | ''Sinestream'' | ''PRBS'''
+  default: '''Superposition'''
+- name: Plant Type
+  summary: Stability of direct-axis current plant Stable (default) | Integrating
+  group: Experiment Tab
+  block_parameter: PlantTypeDaxis
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: Sign of direct-axis current plant Positive (default) | Negative
+  group: Experiment Tab
+  block_parameter: PlantSignDaxis
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: Amplitude of sinusoidal perturbations in direct-axis current loop 1 (default) | scalar | vector of length 5
+  group: Experiment Tab
+  block_parameter: AmpSineDaxis
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: Stability of quadrature-axis current plant Stable (default) | Integrating
+  group: Experiment Tab
+  block_parameter: PlantTypeQaxis
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: Sign of quadrature-axis current plant Positive (default) | Negative
+  group: Experiment Tab
+  block_parameter: PlantSignQaxis
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: Amplitude of sinusoidal perturbations in quadrature-axis current loop 1 (default) | scalar | vector of length 5
+  group: Experiment Tab
+  block_parameter: AmpSineQaxis
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: Stability of speed loop plant Stable (default) | Integrating
+  group: Experiment Tab
+  block_parameter: PlantTypeSpeed
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: Sign of speed loop plant Positive (default) | Negative
+  group: Experiment Tab
+  block_parameter: PlantSignSpeed
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: Amplitude of sinusoidal perturbations in speed loop 1 (default) | scalar | vector of length 5
+  group: Experiment Tab
+  block_parameter: AmpSineSpeed
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: Stability of flux loop plant Stable (default) | Integrating
+  group: Experiment Tab
+  block_parameter: PlantTypeFlux
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: Sign of flux loop plant Positive (default) | Negative
+  group: Experiment Tab
+  block_parameter: PlantSignFlux
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: Amplitude of sinusoidal perturbations in flux loop 1 (default) | scalar | vector of length 5
+  group: Experiment Tab
+  block_parameter: AmpSineFlux
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: Stability of current loop plants Stable (default) | Integrating
+  group: Experiment Tab
+  block_parameter: PlantTypeAllInner
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: Sign of current loop plants Positive (default) | Negative
+  group: Experiment Tab
+  block_parameter: PlantSignAllInner
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: Amplitude of sinusoidal perturbations in current loops 1 (default) | scalar | vector of length 5
+  group: Experiment Tab
+  block_parameter: AmpSineAllInner
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: Stability of outer loop plants Stable (default) | Integrating
+  group: Experiment Tab
+  block_parameter: PlantTypeAllOuter
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: Sign of outer loop plants Positive (default) | Negative
+  group: Experiment Tab
+  block_parameter: PlantSignAllOuter
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: Amplitude of sinusoidal perturbations in outer loops 1 (default) | scalar | vector of length 5
+  group: Experiment Tab
+  block_parameter: AmpSineAllOuter
+  type: scalar, vector of length 5
+  default: '1'
+- name: Use external source for bandwidths
+  summary: Supply external signal for target bandwidths off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalWc
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use external source for target phase margins
+  summary: Supply external signal for target phase margin off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalPM
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use external source for start/stops of experiment
+  summary: Supply external signal for start and stop of tuning experiment off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalSourceStartStop
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use external source for sine amplitudes
+  summary: Supply external signal for sinusoidal perturbation amplitude off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalAmpSine
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Data Type
+  summary: Floating point precision double (default) | single
+  group: Block Tab
+  block_parameter: BlockDataType
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: Estimated phase margin achieved by tuned controllers
+  summary: Phase margin achieved by most recently tuned loop off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalAchievedPM
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Plant frequency responses near bandwidth
+  summary: Estimated frequency response for most recently tuned loop off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalFRD
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Plant nominal input and output
+  summary: Plant input and output at nominal operating point off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalU0
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Start/stop of autotuning process
+  summary: Signal indicating start and end of experiment for each tuned loop off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalActiveLoop
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Export to MATLAB
+  summary: Send experiment and tuning results to MATLAB workspace button
+  group: Block Tab
+```
 
 ### **Tune D-axis current loop** — Enable d-axis current loop tuning `on` (default) | `off`
 
@@ -3023,7 +3724,6 @@ fields:
 
 You can export to the MATLAB workspace while the simulation is running, including when
 running in external mode.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Controllers

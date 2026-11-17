@@ -14,6 +14,12 @@ language: en
 # PS Step
 
 ## Ports
+```yaml
+ports:
+- name: O
+  summary: Output physical signal, typed by the block parameter values and units physical signal
+  direction: output
+```
 
 ### Output
 
@@ -27,8 +33,19 @@ value** parameter units.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Step time
+  summary: Time when step occurs 1 s (default) | scalar
+  group: ''
+- name: Initial value
+  summary: Output before step 0 1 (default) | scalar | vector | matrix
+  group: ''
+- name: Final value
+  summary: Output after step 1 1 (default) | scalar | vector | matrix
+  group: ''
+```
 
 ### **Step time** — Time when step occurs `1 s` (default) | scalar
 
@@ -68,7 +85,6 @@ drop-down list or type the desired unit name, such as `Pa`, or a valid
 expression, such as `m^2`. For more information and a list of unit
 abbreviations, see How to Specify Units in Block Dialogs
 and Unit Definitions.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Sources

@@ -14,6 +14,41 @@ language: en
 # HDL FIFO
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input signal scalar
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Push
+  summary: Write control signal scalar
+  direction: input
+  data_types: Boolean
+- name: Pop
+  summary: Read control signal scalar
+  direction: input
+  data_types: Boolean
+- name: rst
+  summary: Reset control signal scalar
+  direction: input
+  data_types: Boolean
+- name: Out
+  summary: Data output signal scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Empty
+  summary: Data output signal scalar
+  direction: output
+  data_types: Boolean
+- name: Full
+  summary: Data output signal scalar
+  direction: output
+  data_types: Boolean
+- name: Num
+  summary: Number of entries scalar
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -108,8 +143,73 @@ To enable this port, **Show number of entries register
 port (Num)** must be selected.
 
 **Data Types:** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Register size
+  summary: Number of entries 10 (default)
+  group: ''
+  block_parameter: fifo_size
+  type: character vector
+  values: An integer greater than or equal to four
+  default: '''10'''
+- name: Mode
+  summary: Operation mode 'Classic' (default) | 'FWFT'
+  group: ''
+  block_parameter: mode
+  type: character vector
+  values: '''Classic'' | ''FWFT'' |'
+  default: '''Classic'''
+- name: The ratio of output sample time to input sample time
+  summary: Sample rate ratio 1 (default)
+  group: ''
+  block_parameter: ratio
+  type: character vector
+  values: An integer greater than or equal to one
+  default: '''1'''
+- name: Push onto full register
+  summary: Overflow condition 'Warning' (default) | 'Ignore' | 'Error'
+  group: ''
+  block_parameter: push_msg
+  type: character vector
+  values: '''Warning'' | ''Ignore'' | ''Error'''
+  default: '''Warning'''
+- name: Pop empty register
+  summary: Underflow condition 'Warning' (default) | 'Ignore' | 'Error'
+  group: ''
+  block_parameter: pop_msg
+  type: character vector
+  values: '''Warning'' | ''Ignore'' | ''Error'''
+  default: '''Warning'''
+- name: Show empty register indicator port (Empty)
+  summary: Optional empty port on (default) | off
+  group: ''
+  block_parameter: show_empty
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show full register indicator port (Full)
+  summary: Optional full port on (default) | off
+  group: ''
+  block_parameter: show_full
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show number of register entries port (Num)
+  summary: Optional num port on (default) | off
+  group: ''
+  block_parameter: show_num
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Local reset port
+  summary: Optional reset port off (default) | on
+  group: ''
+  block_parameter: rst_port
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Register size** — Number of entries `10` (default)
 
@@ -255,7 +355,6 @@ Specify whether to insert an additional `rst` input port.
 | **Type:** character vector |
 | **Value:** `'on'` | `'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 HDL Coder / HDL RAMs

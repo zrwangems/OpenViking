@@ -14,6 +14,18 @@ language: en
 # Swash Plate
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Mechanical port associated with actuator mechanical translational
+  direction: conserving
+- name: P
+  summary: Mechanical port associated with piston mechanical translational
+  direction: conserving
+- name: S
+  summary: Mechanical port associated with shaft mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -29,8 +41,22 @@ Piston end velocity and force.
 
 Drive shaft angular velocity and torque. Rotation is relative to the
 environment.
-
 ## Parameters
+```yaml
+parameters:
+- name: Swash plate actuator arm
+  summary: Length of actuator extension 0.065 m (default) | positive scalar
+  group: ''
+- name: Cylinder block pitch radius
+  summary: Cylinder pitch radius 0.05 m (default) | positive scalar
+  group: ''
+- name: Piston offset from the plate
+  summary: Resting piston offset 0 m (default) | scalar
+  group: ''
+- name: Viscous friction coefficient
+  summary: Torque viscous friction coefficient 50 N/(m/s) (default) | positive scalar
+  group: ''
+```
 
 ### **Swash plate actuator arm** — Length of actuator extension `0.065 m` (default) | positive scalar
 
@@ -51,7 +77,6 @@ during an initial actuator displacement away from the cylinder.
 
 Coefficient used in the equation for torque due to viscous
 friction.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors / Auxiliary Components

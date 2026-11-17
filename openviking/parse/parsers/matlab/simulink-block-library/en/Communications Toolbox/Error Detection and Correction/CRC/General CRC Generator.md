@@ -14,6 +14,16 @@ language: en
 # General CRC Generator
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal binary column vector
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: Output codeword frame binary column vector
+  direction: output
+```
 
 ### Input
 
@@ -38,8 +48,32 @@ The length of the output frame is *m* +
 *k* is the number of checksums per frame, and
 *r* is the degree of the generator
 polynomial.
-
 ## Parameters
+```yaml
+parameters:
+- name: Generator polynomial
+  summary: Generator polynomial 'z^16 + z^12 + z^5 + 1' (default) | polynomial character vector | binary row vector | integer
+    row vector
+  group: ''
+- name: Initial states
+  summary: Initial states of internal shift register 0 (default) | 1 | binary row vector
+  group: ''
+- name: Direct method
+  summary: Use direct algorithm for CRC checksum calculations off (default) | on
+  group: ''
+- name: Reflect input bytes
+  summary: Reflect input bytes off (default) | on
+  group: ''
+- name: Reflect checksums before final XOR
+  summary: Reflect checksums before final XOR off (default) | on
+  group: ''
+- name: Final XOR
+  summary: Final XOR 0 (default) | 1 | binary row vector
+  group: ''
+- name: Checksums per frame
+  summary: Number of checksums calculated for each frame 1 (default) | positive integer
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -133,7 +167,6 @@ operation.
 
 Number of checksums calculated for each frame, specified as a positive
 integer.
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / CRC

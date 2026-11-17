@@ -14,6 +14,13 @@ language: en
 # Gazebo Apply Command
 
 ## Ports
+```yaml
+ports:
+- name: Cmd
+  summary: Gazebo Command bus
+  direction: input
+  data_types: bus
+```
 
 ### Input
 
@@ -168,8 +175,17 @@ There are seven different command types with specific fields:
   as a bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Command type
+  summary: Type of command ApplyLinkWrench (default) | ApplyJointTorque | SetLinkWorldPose | SetLinkLinearVelocity | SetLinkAngularVelocity
+    | SetJointPosition | SetJointVelocity
+  group: ''
+- name: Sample time
+  summary: Sampling time of input 0.001 (default) | positive
+  group: ''
+```
 
 ### **Command type** — Type of command `ApplyLinkWrench` (default) | `ApplyJointTorque` | `SetLinkWorldPose` | `SetLinkLinearVelocity` | `SetLinkAngularVelocity` | `SetJointPosition` | `SetJointVelocity`
 
@@ -181,7 +197,6 @@ structure that matches this type.
 
 Sample time indicates the interval which commands are sent to the Gazebo
 simulator.
-
 ## Libraries
 
 Robotics System Toolbox / Gazebo Co-Simulation

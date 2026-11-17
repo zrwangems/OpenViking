@@ -14,6 +14,18 @@ language: en
 # Modem Status
 
 ## Ports
+```yaml
+ports:
+- name: CTS
+  summary: Status of clear to send line true | false
+  direction: output
+- name: DSR
+  summary: Status of data set ready line true | false
+  direction: output
+- name: DCD
+  summary: Status of data carrier detect line true | false
+  direction: output
+```
 
 ### Output
 
@@ -45,8 +57,27 @@ remote device.
 
 To make this output visible, select the **DCD**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: CTS
+  summary: Enables clear to send status output on (default) | off
+  group: ''
+- name: DSR
+  summary: Enables data set ready status output on (default) | off
+  group: ''
+- name: DCD
+  summary: Enables data carrier detect status output on (default) | off
+  group: ''
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+- name: Serial port
+  summary: Port that is being accessed Legacy Serial Port 1 (default) | .. | Legacy Serial Port 8 | USB Serial Port 1 | ..
+    | USB Serial Port 8
+  group: ''
+  block_parameter: port
+```
 
 ### **CTS** — Enables clear to send status output `on` (default) | `off`
 
@@ -114,7 +145,6 @@ computer or serial device if there is no change in the connections to the ports.
 |  |
 | --- |
 | **Block Parameter:** `port` |
-
 ## Libraries
 
 Simulink Real-Time / RS232 / Mainboard

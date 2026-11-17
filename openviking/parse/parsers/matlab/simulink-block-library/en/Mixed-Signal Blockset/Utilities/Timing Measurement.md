@@ -14,6 +14,41 @@ language: en
 # Timing Measurement
 
 ## Ports
+```yaml
+ports:
+- name: reference
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: test
+  summary: Test signal scalar
+  direction: input
+  data_types: double
+- name: period
+  summary: Period of input signal scalar
+  direction: output
+  data_types: double
+- name: frequency
+  summary: Frequency of input signal scalar
+  direction: output
+  data_types: double
+- name: rise time
+  summary: Rise time of input signal scalar
+  direction: output
+  data_types: double
+- name: fall time
+  summary: Fall time of input signal scalar
+  direction: output
+  data_types: double
+- name: duty cycle
+  summary: Duty cycle of input signal scalar
+  direction: output
+  data_types: double
+- name: delay
+  summary: Delay of input signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -97,8 +132,52 @@ To enable this port, select **Delay** as a measurement option
 in the **Selection** tab.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Period
+  summary: Measure period of input signal on (default) | off
+  group: Selection
+- name: Frequency
+  summary: Measure frequency of input signal off (default) | on
+  group: Selection
+- name: Rise Time
+  summary: Measure rise time of input signal off (default) | on
+  group: Selection
+- name: Fall Time
+  summary: Measure fall time of input signal off (default) | on
+  group: Selection
+- name: Duty Cycle
+  summary: Measure duty cycle of input signal off (default) | on
+  group: Selection
+- name: Delay
+  summary: Measure delay of input signal off (default) | on
+  group: Selection
+- name: Use same reference threshold for all measurements
+  summary: Use the same reference threshold for measuring all timing metrics on (default) | off
+  group: Configuration
+- name: Reference threshold (V)
+  summary: Reference threshold used for measuring timing metrics 0 (default) | scalar
+  group: Configuration
+- name: Reference threshold (V)
+  summary: Reference threshold voltage used to measure period and/or frequency 0 (default) | scalar
+  group: Configuration
+- name: Input range (V)
+  summary: Peak-to-peak value of input signal [-1 1] (default) | 2-element row vector
+  group: Configuration
+- name: Type
+  summary: Input threshold levels to measure rise/fall times 80%/20% (default) | 90%/10%
+  group: Configuration
+- name: Reference threshold (V)
+  summary: Reference threshold voltage used to measure duty cycle 0 (default) | scalar
+  group: Configuration
+- name: Reference threshold (V)
+  summary: Threshold voltage level in signal of interest used to measure delay 0 (default) | scalar
+  group: Configuration
+- name: Test threshold (V)
+  summary: Threshold voltage level in test signal used to measure delay 0 (default) | scalar
+  group: Configuration
+```
 
 ### Selection
 
@@ -290,7 +369,6 @@ select **Delay** in the **Selection** tab.
   current value of **Reference threshold (V)**.
 - Use `set_param(gcb,'DelayTstThreshold',value)` to set
   **Reference threshold (V)** to a specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

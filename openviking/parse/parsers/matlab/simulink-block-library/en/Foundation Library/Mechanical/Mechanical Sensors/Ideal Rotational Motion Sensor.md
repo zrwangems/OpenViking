@@ -14,6 +14,24 @@ language: en
 # Ideal Rotational Motion Sensor
 
 ## Ports
+```yaml
+ports:
+- name: α
+  summary: Acceleration, rad/s^2 physical signal
+  direction: output
+- name: W
+  summary: Angular velocity, rad/s physical signal
+  direction: output
+- name: A
+  summary: Position (angular displacement), rad physical signal
+  direction: output
+- name: R
+  summary: Rod (positive probe) mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case (reference probe) mechanical rotational
+  direction: conserving
+```
 
 ### Output
 
@@ -60,8 +78,28 @@ negative (reference) probe.
 To enable this port, set the **Measurement
 reference** parameter to
 `Difference`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement reference
+  summary: Select whether to perform absolute or relative measurements Difference (default) | Absolute
+  group: ''
+- name: Acceleration
+  summary: Control output port visibility to measure angular acceleration off (default) | on
+  group: ''
+- name: Velocity
+  summary: Control output port visibility to measure angular velocity on (default) | off
+  group: ''
+- name: Position
+  summary: Control output port visibility to measure angular displacement on (default) | off
+  group: ''
+- name: Wrap angle to [0, 2\*pi]
+  summary: Control output range for angular displacement off (default) | on
+  group: ''
+- name: Initial angle
+  summary: Sensor initial offset 0 rad (default)
+  group: ''
+```
 
 ### **Measurement reference** — Select whether to perform absolute or relative measurements `Difference` (default) | `Absolute`
 
@@ -117,7 +155,6 @@ Sensor initial angular position (offset).
 
 To enable this parameter, select the **Position**
 check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanical Sensors

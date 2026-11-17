@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Luenberger Observer
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 控制输入向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 系统输出向量
+  direction: input
+  data_types: single | double
+- name: xhat
+  summary: 状态估计向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +51,55 @@ chinese_source: worker-translation
 系统状态的估计值，指定为向量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: State-space parameterization
+  summary: 状态空间参数化 Discrete-time（默认）| Continuous-time
+  group: ''
+- name: Discrete A matrix
+  summary: 离散时间 A 矩阵 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Discrete B matrix
+  summary: 离散时间 B 矩阵 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Discrete C matrix
+  summary: 离散时间 C 矩阵 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Discrete D matrix
+  summary: 离散时间 D 矩阵 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Continuous A matrix
+  summary: 连续时间 A 矩阵 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Continuous B matrix
+  summary: 连续时间 B 矩阵 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Continuous C matrix
+  summary: 连续时间 C 矩阵 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Continuous D matrix
+  summary: 连续时间 D 矩阵 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Observer design
+  summary: 状态空间参数化 Desired eigenvalues（默认）| Observer gain
+  group: ''
+- name: Observer gain
+  summary: 观测器增益 1（默认）| 实数标量或矩阵
+  group: ''
+- name: Desired eigenvalues
+  summary: 观测器特征值 0（默认）| 实数向量
+  group: ''
+- name: Initial conditions
+  summary: 初始条件 0（默认）| 长度等于系统阶数的实数向量
+  group: ''
+- name: Discretization sample time
+  summary: 离散化采样时间 0.1（默认）| 正实数
+  group: ''
+- name: Sample time
+  summary: 采样时间 0.1（默认）| -1 或正实数
+  group: ''
+```
 
 ### **State-space parameterization** — 状态空间参数化 `Discrete-time`（默认）| `Continuous-time`
 
@@ -150,7 +212,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样时间 0.1（默认）| -1 或正实数
 
 用于仿真模型动态特性的值。请选择与 **Discretization sample time** 相同的值，除非该模块位于触发子系统内，此时必须将其设置为 -1。
-
 ## 所属库
 
 Simscape / Electrical / Control / Observers

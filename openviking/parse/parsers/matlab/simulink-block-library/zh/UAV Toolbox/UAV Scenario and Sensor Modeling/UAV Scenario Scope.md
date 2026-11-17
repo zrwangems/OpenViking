@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # UAV Scenario Scope
 
 ## 端口
+```yaml
+ports:
+- name: In_1, In_2, ..., In_N
+  summary: 激光雷达传感器的点云数据输入 *N*×*M*×3 双精度矩阵 | *N*×3 双精度矩阵
+  direction: input
+```
 
 ### 输入
 
@@ -23,8 +29,16 @@ chinese_source: worker-translation
 UAV Scenario 中传感器的输入点云数据。对于在 `Lidar Sensors` 表的 **Visualize** 列中勾选可视化的每个激光雷达传感器，都会创建一个输入端口。端口名称设置为传感器名称，其中包含传感器所属平台的名称。例如，名为 `EgoVehicle` 的平台上的激光雷达传感器的输入端口名称为 `EgoVehicle/Lidar`。
 
 如果激光雷达传感器的 `Organized point cloud locations` 参数设置为 `'on'`，则输入端口期望一个 *N*×*M*×3 双精度矩阵，其中 *N* 是垂直扫描数，*M* 是水平扫描数。如果激光雷达传感器的 `Organized point cloud locations` 设置为 `'off'`，则输入端口期望一个 *N*×3 双精度矩阵，其中 *N* 是点云中的点数。
-
 ## 参数
+```yaml
+parameters:
+- name: Lidar Sensors
+  summary: 激光雷达传感器列表及其可视化表
+  group: ''
+- name: Sample time
+  summary: 采样时间 0.1（默认）
+  group: ''
+```
 
 ### **Lidar Sensors** — 激光雷达传感器列表及其可视化表
 
@@ -39,7 +53,6 @@ UAV Scenario 中传感器的输入点云数据。对于在 `Lidar Sensors` 表�
 ### **Sample time** — 采样时间 `0.1`（默认）
 
 指定可视化的采样时间。如果 `Sample time` 设置为 `-1`，则此模块使用 UAV Scenario Configuration 模块中指定的采样时间。
-
 ## 所属库
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

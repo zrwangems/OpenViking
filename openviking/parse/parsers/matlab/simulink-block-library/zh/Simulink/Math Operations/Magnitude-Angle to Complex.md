@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Magnitude-Angle to Complex
 
 ## 端口
+```yaml
+ports:
+- name: '|u|'
+  summary: 幅值 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ∠u
+  summary: 弧度相位角 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 幅值或弧度相位角 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 复信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -102,8 +121,57 @@ chinese_source: worker-translation
 分量（幅值或角度）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input
+  summary: 输入类型 Magnitude（默认）| Angle | Magnitude and angle
+  group: ''
+  block_parameter: Input
+  type: 字符向量
+  values: '''Magnitude'' | ''Angle'' | ''Magnitude and angle'''
+  default: '''Magnitude and angle'''
+- name: Angle
+  summary: 输出的相位角 0（默认）| 实数值标量、向量或矩阵
+  group: ''
+  block_parameter: ConstantPart
+  type: 字符向量
+  values: 常量标量
+  default: '''0'''
+- name: Magnitude
+  summary: 输出的幅值 0（默认）| 实数值标量、向量或矩阵
+  group: ''
+  block_parameter: ConstantPart
+  type: 字符向量
+  values: 实数值标量、向量或矩阵
+  default: '''0'''
+- name: Approximation method
+  summary: CORDIC 或无 None（默认）| CORDIC
+  group: ''
+  block_parameter: ApproximationMethod
+  type: 字符向量
+  values: '''None'' | ''CORDIC'''
+  default: '''None'''
+- name: Number of iterations
+  summary: CORDIC 算法的迭代次数 11（默认）| 正整数，小于或等于定点输入的字长
+  group: ''
+  block_parameter: NumberOfIterations
+  type: 字符向量
+  values: 正整数，小于或等于定点输入的字长
+  default: '''11'''
+- name: Scale output by reciprocal of gain factor
+  summary: 按增益因子的倒数缩放复输出的实部和虚部 on（默认）| off
+  group: ''
+  block_parameter: ScaleReciprocalGainFactor
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+```
 
 ### **Input** — 输入类型 `Magnitude`（默认）| `Angle` | `Magnitude and angle`
 
@@ -260,7 +328,6 @@ method** 设置为 `CORDIC`。
 | --- | --- |
 | **参数：** | `SampleTime` |
 | **值：** | `"-1"`（默认）| 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations

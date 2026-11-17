@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Playback
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 从工作区、文件或仿真数据检查器加载的数据 标量 | 向量 | 矩阵 | 数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### 输出
 
@@ -28,8 +35,76 @@ Playback 模块支持加载具有固定或可变维度的实数或复数信号�
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Number of Ports
+  summary: 输出端口数量 0（默认）| [0,100] 范围内的整数
+  group: 端口参数
+  block_parameter: NumPorts
+  values: 0（默认）| [0,100] 范围内的整数
+- name: Data Type
+  summary: '每个端口的输出数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | string | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | ...'
+  group: 端口参数
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto"（默认）| "double" | "single" | "half" | "int8" |  "uint8"  | "int16" | "uint16" | "int32" | "uint32"
+    | "int64" | "uint64" | "string" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)"'
+- name: Complexity
+  summary: 每个端口的复数性 "auto"（默认）| "real" | "complex"
+  group: 端口参数
+  block_parameter: PortComplexity
+  values: '"auto"（默认）| "real" | "complex"'
+- name: Units
+  summary: 每个端口的物理单位 inherit（默认）| 支持的物理单位
+  group: 端口参数
+  block_parameter: PortUnits
+  values: '" "（默认）| 支持的物理单位'
+- name: Sample time
+  summary: 输出采样周期和可选时间偏移 -1 | 标量 | 向量
+  group: 端口参数
+  block_parameter: PortSampleTimes
+  values: '"-1"（默认）| 标量 | 向量'
+- name: Dimensions
+  summary: 每个端口的维度 " "（默认）| 整数 | 整数数组
+  group: 端口参数
+  block_parameter: PortDimensions
+  values: 空 1×1 元胞数组（默认）| 正整数元胞数组 | 向量元胞数组
+- name: Dimension Mode
+  summary: 每个端口的维度模式 "auto"（默认）| "Fixed" | "Variable"
+  group: 端口参数
+  block_parameter: PortDimsModes
+  values: '"auto"（默认）| "Fixed" | "Variable"'
+- name: Before first point
+  summary: 用于确定加载数据中第一个数据点之前模块输出的外推方法 Linear（默认）| Hold First Value | Ground Value
+  group: 模块参数
+  block_parameter: ExtrapolationBeforeFirstDataPoint
+  values: '"Linear extrapolation"（默认）| "Hold first value" | "Ground value"'
+- name: After last point
+  summary: 用于确定加载数据中最后一个数据点之后模块输出的外推方法 Linear（默认）| Hold Last Value | Ground Value
+  group: 模块参数
+  block_parameter: ExtrapolationAfterLastDataPoint
+  values: '"Linear extrapolation"（默认）| "Hold last value" | "Ground value"'
+- name: Enable zero-crossing detection
+  summary: 零交叉检测 'off'（默认）| 'on'
+  group: 模块参数
+  block_parameter: ZeroCross
+  values: '"off"（默认）| "on"'
+- name: Signals
+  summary: 有关添加到 Playback 模块的信号的信息 Simulink.playback.Signal 对象
+  group: 模块参数
+  block_parameter: Signals
+  values: Simulink.playback.Signal 对象
+- name: Table Placement
+  summary: 表格可视化的位置 Bottom（默认）| Top | Left | Right | Center
+  group: 表格参数
+- name: Time Values
+  summary: 基于时间的列组织选项 Union Time（默认）| Shared Time | Individual Time
+  group: 表格参数
+- name: Use Signal Interpolation
+  summary: 插值缺失数据值的选项 off（默认）| on
+  group: 表格参数
+```
 
 ### 端口参数
 
@@ -315,7 +390,6 @@ Playback 模块还可以根据您配置插值和外推的方式在输出中创�
 ### **Use Signal Interpolation** — 插值缺失数据值的选项 `off`（默认）| `on`
 
 当您使用 `Union Time` 列组织选项组织表格数据时，某些信号可能没有每个时间步的数据点。点击 **Use Signal Interpolation** 按钮，使用每个信号的插值设置来插值缺失的数据值。要查看或更改所选信号的插值方法，请使用 **Properties** 窗格中的 `Interp Method` 属性。
-
 ## 所属库
 
 Simulink / Sources

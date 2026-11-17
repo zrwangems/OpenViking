@@ -14,6 +14,24 @@ language: en
 # Constant Volume Chamber (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Chamber inlet gas
+  direction: conserving
+- name: B
+  summary: Chamber inlet gas
+  direction: conserving
+- name: C
+  summary: Chamber inlet gas
+  direction: conserving
+- name: D
+  summary: Chamber inlet gas
+  direction: conserving
+- name: H
+  summary: Temperature inside chamber thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -58,8 +76,28 @@ ports** parameter to
 
 Thermal conserving port associated with the temperature of the
 gas inside the chamber.
-
 ## Parameters
+```yaml
+parameters:
+- name: Chamber volume
+  summary: Volume of gas in the chamber 0.001 m^3 (default)
+  group: ''
+- name: Number of ports
+  summary: Number of inlet ports in the chamber 1 (default) | 2 | 3 | 4
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at the chamber inlet 0.01 m^2 (default)
+  group: ''
+- name: Cross-sectional area at port B
+  summary: Area normal to flow path at the chamber inlet 0.01 m^2 (default)
+  group: ''
+- name: Cross-sectional area at port C
+  summary: Area normal to flow path at the chamber inlet 0.01 m^2 (default)
+  group: ''
+- name: Cross-sectional area at port D
+  summary: Area normal to flow path at the chamber inlet 0.01 m^2 (default)
+  group: ''
+```
 
 ### **Chamber volume** — Volume of gas in the chamber 0.001 m^3 (default)
 
@@ -112,7 +150,6 @@ in the direction normal to gas flow path.
 Enabled when port **D** is visible, that is, when the
 **Number of ports** parameter is set to
 `4`.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Elements

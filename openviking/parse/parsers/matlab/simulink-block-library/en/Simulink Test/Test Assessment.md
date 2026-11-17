@@ -14,13 +14,17 @@ language: en
 # Test Assessment
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 For a description of block parameters, see Subsystem.
-
 ## Libraries
 
 Simulink Test

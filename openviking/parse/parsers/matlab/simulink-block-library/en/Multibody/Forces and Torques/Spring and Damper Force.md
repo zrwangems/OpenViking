@@ -14,14 +14,19 @@ language: en
 # Spring and Damper Force
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block contains frame ports B and F, representing base and
 follower frames, respectively.
 
 Selecting the **Sense Force** check box in
 the block dialog box adds a physical signal port, **fm**.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Natural Length**
 :   Enter the equilibrium distance between the base and follower
@@ -45,7 +50,6 @@ the block dialog box adds a physical signal port, **fm**.
     physical signal port to output the force signal. The output signal
     is a scalar value. This value is positive if the force is repulsive;
     it is negative if the force is attractive.
-
 ## Libraries
 
 Not documented in R2025b.

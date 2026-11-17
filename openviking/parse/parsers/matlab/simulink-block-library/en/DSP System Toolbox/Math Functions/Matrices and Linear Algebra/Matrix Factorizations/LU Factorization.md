@@ -14,6 +14,25 @@ language: en
 # LU Factorization
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input matrix *M*-by-*M* square matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: LU
+  summary: Lower and upper triangular factors *M*-by-*M* square matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: P
+  summary: Permutation vector vector
+  direction: output
+  data_types: single | double | uint32
+- name: S
+  summary: Singularity of input matrix logical scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -88,8 +107,38 @@ When *A* is nonsingular, the block outputs a
 `0`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show singularity status
+  summary: Show singularity status off (default) | on
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as
+    product output | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as input (default) | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum value the block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum value block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -217,7 +266,6 @@ Specify the maximum value the block can output. Simulink software uses this maxi
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Factorizations

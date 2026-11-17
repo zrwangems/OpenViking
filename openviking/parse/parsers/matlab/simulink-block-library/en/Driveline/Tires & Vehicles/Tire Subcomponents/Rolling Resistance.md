@@ -14,6 +14,18 @@ language: en
 # Rolling Resistance
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Normal force, N physical signal
+  direction: input
+- name: T
+  summary: Tread friction force, N physical signal
+  direction: input
+- name: H
+  summary: Wheel hub, m/s mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +49,53 @@ Formula)`.
 ### **H** — Wheel hub, m/s mechanical translational
 
 Mechanical translational conserving port associated with the wheel hub, in m/s.
-
 ## Parameters
+```yaml
+parameters:
+- name: Resistance model
+  summary: Rolling resistance computational modeling method Constant coefficient (default) | Pressure and velocity dependent
+    (SAE J2542) | Pressure and velocity dependent (Magic Formula)
+  group: ''
+- name: Constant coefficient
+  summary: Resistance coefficient for rolling tire 0.015 (default) | positive scalar
+  group: ''
+- name: Tire pressure
+  summary: Inflation pressure of rolling tire 250e3 Pa (default) | positive scalar
+  group: ''
+- name: Alpha
+  summary: Approximating coefficient α -0.003 (default) | scalar
+  group: ''
+- name: Beta
+  summary: Approximating coefficient β 0.97 (default) | scalar
+  group: ''
+- name: Coefficient A
+  summary: Approximating coefficient A 84e-4 (default) | positive scalar
+  group: ''
+- name: Coefficient B
+  summary: Approximating coefficient B 6.2e-4 s/m (default) | nonnegative scalar
+  group: ''
+- name: Coefficient C
+  summary: Approximating coefficient C 1.6e-4 s^2/m^2 (default) | nonnegative scalar
+  group: ''
+- name: Tire nominal pressure, NOMPRES
+  summary: Nominal tire pressure 240e3 Pa (default) | positive scalar
+  group: ''
+- name: Tire nominal vertical load, FNOMIN
+  summary: Normal force 4000 N (default) | positive scalar
+  group: ''
+- name: Nominal hub longitudinal speed, LONGVL
+  summary: Nominal hub longitudinal speed 16 m/s (default) | positive scalar
+  group: ''
+- name: Q-coefficient parameters [qsy1 qsy2 qsy3 qsy4 qsy5 qsy6 qsy7 qsy8]
+  summary: Magic Formula Q-coefficients [.0082, 0, .0014, .001, 0, 0, 1.08, -.5] 1 (default) | vector of length 8
+  group: ''
+- name: Scale factor of rolling resistance, LMY
+  summary: Rolling resistance 1 (default) | positive scalar
+  group: ''
+- name: Velocity threshold
+  summary: Velocity when full rolling resistance force is transmitted to rolling hub 0.001 m/s (default) | positive scalar
+  group: ''
+```
 
 ### **Resistance model** — Rolling resistance computational modeling method `Constant coefficient` (default) | `Pressure and velocity dependent (SAE J2542)` | `Pressure and velocity dependent (Magic Formula)`
 
@@ -186,7 +243,6 @@ Formula)`.
 
 Minimum velocity that attains the maximum amount of rolling
 resistance.
-
 ## Libraries
 
 Simscape / Driveline / Tires & Vehicles / Tire Subcomponents

@@ -14,6 +14,17 @@ language: en
 # Real Cepstrum
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Real cepstrum output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -53,8 +64,16 @@ cepstrum of the corresponding input column.
 The output port rate is the same as the input port rate.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit FFT length from input port dimensions
+  summary: Match the FFT length to the dimensions of the input port on (default) | off
+  group: ''
+- name: FFT length
+  summary: Compute FFT length 64 (default) | positive integer
+  group: ''
+```
 
 ### **Inherit FFT length from input port dimensions** — Match the FFT length to the dimensions of the input port `on` (default) | `off`
 
@@ -71,7 +90,6 @@ frame size *Mo*.
 
 To enable this parameter, clear the **Inherit FFT length from
 input port dimensions** parameter.
-
 ## Libraries
 
 DSP System Toolbox / Transforms

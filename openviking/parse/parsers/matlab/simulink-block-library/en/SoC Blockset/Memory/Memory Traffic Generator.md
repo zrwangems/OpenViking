@@ -14,6 +14,17 @@ language: en
 # Memory Traffic Generator
 
 ## Ports
+```yaml
+ports:
+- name: burstDone
+  summary: End of burst and access to memory scalar
+  direction: input
+  data_types: BurstRequest2BusObj
+- name: burstReq
+  summary: Request memory access from memory controller scalar
+  direction: output
+  data_types: BurstRequest2BusObj
+```
 
 ### Input
 
@@ -47,8 +58,46 @@ This port is visible when you select the **Show Memory
 Controller ports** parameter.
 
 **Data Types:** `BurstRequest2BusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show Memory Controller ports
+  summary: Show input and output ports on (default) | off
+  group: ''
+- name: Memory selection
+  summary: Choose between memory regions PS memory (default) | PL memory
+  group: ''
+- name: Request type
+  summary: Choose between write or read request Writer (default) | Reader
+  group: ''
+- name: Total burst requests
+  summary: Number of burst requests to generate 100 (default) | integer greater than 1
+  group: ''
+- name: Burst size (bytes)
+  summary: Size of generated burst transactions 256 (default) | scalar
+  group: ''
+- name: Time between bursts (s)
+  summary: Simulation time between burst requests 1e-6 (default) | time, in seconds
+  group: ''
+- name: Allow simulation only parameters
+  summary: Configure additional parameters for simulation only on (default) | off
+  group: ''
+- name: First burst time
+  summary: Simulation time for initial burst request 10e-6 (default) | time, in seconds
+  group: ''
+- name: Random time between bursts (s)
+  summary: Range of simulation time for recurring requests [1e-6 1e-6] (default) | vector of the form [*min* *max*]
+  group: ''
+- name: Wait for burst done
+  summary: Wait for burst-done signal before generating next request off (default) | on
+  group: ''
+- name: Enable assertion
+  summary: Enable verbose information off (default) | on
+  group: ''
+- name: View performance plots
+  summary: Display performance metrics button
+  group: ''
+```
 
 ### **Show Memory Controller ports** — Show input and output ports `on` (default) | `off`
 
@@ -190,7 +239,6 @@ Memory Controller Latency Plots.
 
 To enable this parameter, clear the **Show Memory Controller
 ports** parameter.
-
 ## Libraries
 
 SoC Blockset / Memory

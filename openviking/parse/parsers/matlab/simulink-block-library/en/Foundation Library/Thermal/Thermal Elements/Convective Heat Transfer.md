@@ -14,6 +14,18 @@ language: en
 # Convective Heat Transfer
 
 ## Ports
+```yaml
+ports:
+- name: K
+  summary: Heat transfer coefficient control signal, W/(K\*m^2) physical signal
+  direction: input
+- name: A
+  summary: Body A thermal
+  direction: conserving
+- name: B
+  summary: Body B thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -36,8 +48,22 @@ Thermal conserving port associated with body A.
 ### **B** — Body B thermal
 
 Thermal conserving port associated with body B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Convection type
+  summary: How to specify heat transfer coefficient Constant (default) | Variable
+  group: ''
+- name: Area
+  summary: Area of heat transfer 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Heat transfer coefficient
+  summary: Convection heat transfer coefficient 20 W/(K*m^2) (default) | positive scalar
+  group: ''
+- name: Minimum heat transfer coefficient
+  summary: Lower bound for heat transfer coefficient 1e-3 W/(K*m^2) (default) | positive scalar
+  group: ''
+```
 
 ### **Convection type** — How to specify heat transfer coefficient `Constant` (default) | `Variable`
 
@@ -75,7 +101,6 @@ coefficient from further decreasing.
 
 To enable this parameter, set **Convection type** to
 `Variable`.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Elements

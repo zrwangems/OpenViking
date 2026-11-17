@@ -14,6 +14,15 @@ language: en
 # Linear S-shaped MF
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input value scalar | vector
+  direction: input
+- name: MF
+  summary: Membership value scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +38,22 @@ Membership value, returned as a scalar or a vector. The dimensions of
 **MF** match the dimensions of **x**. Each element
 of **MF** is the membership value computed for the corresponding
 element of **x**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Left point a
+  summary: Leftmost point of transition area 4 (default) | scalar
+  group: ''
+  block_parameter: a
+  type: string, character vector
+  default: '"4"'
+- name: Right point b
+  summary: Rightmost point of transition area 6 (default) | scalar
+  group: ''
+  block_parameter: b
+  type: string, character vector
+  default: '"6"'
+```
 
 ### **Left point a** — Leftmost point of transition area `4` (default) | scalar
 
@@ -55,7 +78,6 @@ Rightmost point *b* of the transition area.
 | **Block Parameter:** `b` |
 | **Type:** string, character vector |
 | **Default:** `"6"` |
-
 ## Libraries
 
 Fuzzy Logic Toolbox / Membership Functions

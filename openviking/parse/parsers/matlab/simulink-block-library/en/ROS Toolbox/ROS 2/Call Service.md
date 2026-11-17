@@ -14,6 +14,21 @@ language: en
 # Call Service
 
 ## Ports
+```yaml
+ports:
+- name: Req
+  summary: Request message nonvirtual bus
+  direction: input
+  data_types: bus
+- name: Resp
+  summary: Response message nonvirtual bus
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: Error conditions for service call integer
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -57,8 +72,52 @@ This output is enabled when the **Show ErrorCode output port**
 check box is `on`.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source
+  summary: Source for specifying service name Select from ROS network | Specify your own
+  group: ''
+  type: . You must match a service name exactly.
+- name: Name
+  summary: Service name character vector
+  group: ''
+- name: Type
+  summary: Service type character vector
+  group: ''
+- name: Connection timeout
+  summary: Timeout for service server connection 5 (default) | positive numeric scalar
+  group: ''
+- name: Show ErrorCode output port
+  summary: Enable error code output port on (default) | off
+  group: ''
+- name: History
+  summary: Mode of storing requests in the queue Keep last (default) | Keep all
+  group: ''
+- name: Depth
+  summary: Size of the request queue 1 (default) | positive scalar
+  group: ''
+- name: Reliability
+  summary: Delivery guarantee of requests Reliable (default) | Best effort
+  group: ''
+- name: Durability
+  summary: Persistence of requests Volatile (default) | Transient local
+  group: ''
+- name: Deadline
+  summary: Maximum amount of time allowed between sending service request and receiving response Inf (default) | positive
+    scalar
+  group: ''
+- name: Lifespan
+  summary: Length of time a service request is considered valid Inf (default) | positive scalar
+  group: ''
+- name: Liveliness
+  summary: Level of liveliness reporting provided by the block and expected from service server automatic (default)
+  group: ''
+- name: Lease Duration
+  summary: Maximum amount of time before which connected service server has to assert liveliness Inf (default) | positive
+    scalar
+  group: ''
+```
 
 #### Main
 
@@ -183,7 +242,6 @@ connected to the client can assert liveliness for infinite period of time.
 
 The quality of service settings must be compatible between service servers and clients for
 a connection to be made.
-
 ## Libraries
 
 ROS Toolbox / ROS 2

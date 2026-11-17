@@ -14,6 +14,17 @@ language: en
 # 2-D IDCT
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data matrix | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output data matrix | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,16 @@ Output data containing the 2-D IDCT of the input, returned as a matrix or vector
 The size and data type of the output are the same as those of the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sine and cosine computation
+  summary: How the block computes sine and cosine terms Table lookup (default) | Trigonometric fcn
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Data type override off (default) | on
+  group: ''
+```
 
 **Main**
 
@@ -54,7 +73,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Transforms

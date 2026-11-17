@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Fixed-Displacement Motor (TL)
 
 ## 端口
+```yaml
+ports:
+- name: EV
+  summary: 容积效率，无量纲物理信号
+  direction: input
+- name: EM
+  summary: 机械效率，无量纲物理信号
+  direction: input
+- name: LV
+  summary: 容积损失，m^3/s 物理信号
+  direction: input
+- name: LM
+  summary: 机械损失，N\*m 物理信号
+  direction: input
+- name: A
+  summary: 电机入口热液体
+  direction: input
+- name: B
+  summary: 电机出口热液体
+  direction: input
+- name: C
+  summary: 电机壳体机械旋转
+  direction: input
+- name: R
+  summary: 电机轴机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -82,8 +109,119 @@ volumetric and mechanical losses`。
 ### **R** — 电机轴机械旋转
 
 与旋转电机轴关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: 泄漏流量和摩擦扭矩的参数化方法 Analytical（默认）| 表格数据 - 容积和机械 efficiencies | 表格数据 - 容积和机械 losses | Tabulated data - torque and speed
+    | Input signal - volumetric and mechanical efficiencies | Input signal - volumetric and mechanical losses
+  group: 参数
+- name: Displacement
+  summary: 每轴旋转排出的流体体积 30 cm^3/rev（默认）| 正标量
+  group: 参数
+- name: Nominal shaft angular velocity
+  summary: 给定容积效率下的轴角速度 1800 rpm（默认）| 标量
+  group: 参数
+- name: Nominal pressure drop
+  summary: 对应容积效率的压降 10 MPa（默认）| 标量
+  group: 参数
+- name: Nominal dynamic viscosity
+  summary: 指定容积效率时的动态粘度 0.9 cP（默认）| 标量
+  group: 参数
+- name: Volumetric efficiency at nominal conditions
+  summary: 指定标称工况下的容积效率 0.92（默认）| 正标量
+  group: 参数
+- name: Mechanical efficiency at nominal conditions
+  summary: 实际机械功率与理想机械功率之比 0.88（默认）| 正标量
+  group: 参数
+- name: No-load torque
+  summary: 引起轴旋转所需的最小扭矩 0 N*m（默认）| 标量
+  group: 参数
+- name: Pressure drop vector, dp
+  summary: 表格数据参数化的压力数据向量 [.1, 1, 2] MPa（默认）| 1×*n* 向量
+  group: 参数
+- name: Shaft angular velocity vector, w
+  summary: 用于指定容积效率和机械效率的角速度 [250, 500, 1000, 2000, 3000, 4000] rpm | vector
+  group: 参数
+- name: Flow rate vector, q
+  summary: 流量数据向量 [.125, .25, .5, 1, 1.5, 2] * 1e-3 m^3/s (default) | 1-by-*n* vector
+  group: 参数
+- name: Volumetric efficiency table, e_v(dp,w)
+  summary: 给定压降和角速度下的容积效率 [.816, .908, .954, .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568, .78, .892,
+    .893, .91] | matrix
+  group: 参数
+- name: Mechanical efficiency table, e_m(dp,w)
+  summary: 给定压降和角速度下的机械效率 [.996, .996, .996, .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981, .982, .982,
+    .983, .984] | matrix
+  group: 参数
+- name: Volumetric loss table, q_loss(dp,w)
+  summary: 对应压降和角速度下的内部泄漏流量 [.023, .023, .023, .023, .0285, .032; .0844, .0842, .0845, .084, .1125, .108; .1079, .108, .11,
+    .108, .1605, .18] * 1e-3 m^3/s
+  group: 参数
+- name: Mechanical loss table, torque_loss(dp,w)
+  summary: 对应压降和角速度下的摩擦力矩 [.002, .002, .002, .002, .002, .002; .0607, .0556, .0556, .0556, .0556, .0505; .1937, .1937, .1833,
+    .1833, .1729, .1626] N*m
+  group: 参数
+- name: Torque table, T(q,dp)
+  summary: 表格数据参数化的扭矩值 [.47, 4.72, 9.35; .47, 4.7, 9.36; .47, 4.7, 9.4; .47, 4.7, 9.41; .47, 4.7, 9.46; .47, 4.68, 9.5] N*m
+    (default) | *M*-by-*N* matrix
+  group: 参数
+- name: Shaft speed table, w(q,dp)
+  summary: 表格数据参数化的轴转速 [205, 80, 35; 455, 330, 285; 955, 831, 780; 1950, 1830, 1780; 2940, 2775, 2680; 3940, 3780, 3640] rpm
+    (default) | *M*-by-*N* matrix
+  group: 参数
+- name: Minimum volumetric efficiency
+  summary: 容积效率输入信号的下饱和边界 1e-3 (default) | scalar in the range (0,1)
+  group: 参数
+- name: Maximum volumetric efficiency
+  summary: 容积效率输入信号的上饱和边界 1 (default) | positive scalar
+  group: 参数
+- name: 最小机械效率
+  summary: 容积效率输入信号的下饱和边界 1e-3（默认）| (0,1) 范围内的标量
+  group: 参数
+- name: 最大机械效率
+  summary: 容积效率输入信号的上饱和边界 1（默认）| (0,1) 范围内的标量
+  group: 参数
+- name: 马达-泵转换的压降阈值
+  summary: 启动马达与泵模式之间平滑转换的压降 1e-3 MPa（默认）| 标量
+  group: 参数
+- name: 马达-泵转换的角速度阈值
+  summary: 启动泵与马达模式之间平滑转换的角速度 100 rpm（默认）| 标量
+  group: 参数
+- name: 端口 A 和 B 处的横截面积
+  summary: 组件入口和出口处的流通面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: 检查是否超出所提供表格数据的范围
+  summary: 是否在超出所提供数据范围时发出通知 None（默认）| Warning | Error
+  group: 参数
+- name: 检查是否在马达模式之外运行
+  summary: 在马达模式之外的运行条件下的仿真警告模式 None（默认）| Warning
+  group: 参数
+- name: 检查压力是否低于马达最低压力
+  summary: 是否在流体出口压力过低时发出通知 None（默认）| Warning | Error
+  group: 参数
+- name: 马达最低压力
+  summary: 马达出口可接受压力的下限阈值 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: 排量故障
+  summary: 用于对排量故障建模的选项 Add fault
+  group: 故障
+- name: 故障排量因子
+  summary: 用于缩放故障排量的因子 0.5（默认）| 正标量
+  group: 故障
+- name: 泄漏故障
+  summary: 用于对泄漏故障建模的选项 Add fault
+  group: 故障
+- name: 故障泄漏因子
+  summary: 用于缩放泄漏故障的因子 2.0（默认）| 正标量
+  group: 故障
+- name: 轴摩擦力矩故障
+  summary: 用于对轴摩擦力矩故障建模的选项 Add fault
+  group: 故障
+- name: 故障轴摩擦力矩因子
+  summary: 用于缩放轴摩擦力矩故障的因子 2.0（默认）| 正标量
+  group: 故障
+```
 
 ### 参数
 
@@ -412,7 +550,6 @@ parameterization** 设置为以下之一：
 #### 依赖关系
 
 要启用此参数，请单击 **轴摩擦力矩故障** 参数的 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Pumps & Motors

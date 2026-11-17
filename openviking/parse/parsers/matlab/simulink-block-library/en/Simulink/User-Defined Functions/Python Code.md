@@ -14,6 +14,17 @@ language: en
 # Python Code
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input port scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | bus | fixedpoint
+- name: Port_1
+  summary: Output port scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | bus | fixedpoint
+```
 
 ### Input
 
@@ -43,8 +54,44 @@ block dialog box.
 Python Code does not support array of buses as output.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `bus` | `fixedpoint`
-
 ## Parameters
+```yaml
+parameters:
+- name: Port and Parameter Symbols
+  summary: Symbols and symbol properties table
+  group: ''
+  block_parameter: SymbolSpec
+  type: SymbolSpec object
+  values: SymbolSpec object
+  default: Empty array of Symbol objects
+- name: Sample time
+  summary: Sample period -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  default: '"-1"'
+- name: Output
+  summary: Output code no default
+  group: ''
+  block_parameter: OutputCode
+  type: character vector or string scalar
+  values: '"" | Python code'
+  default: '""'
+- name: Start
+  summary: Initialization code no default
+  group: ''
+  block_parameter: StartCode
+  type: character vector or string scalar
+  values: '"" | Python code'
+  default: '""'
+- name: Terminate
+  summary: Termination code no default
+  group: ''
+  block_parameter: TerminateCode
+  type: character vector or string scalar
+  values: '"" | Python code'
+  default: '""'
+```
 
 ### **Port and Parameter Symbols** — Symbols and symbol properties table
 
@@ -157,7 +204,6 @@ Termination code that the block executes one time at the end of simulation.
 | **Type:** character vector or string scalar |
 | **Value:** `""` | `Python code` |
 | **Default:** `""` |
-
 ## Libraries
 
 Simulink / User-Defined Functions

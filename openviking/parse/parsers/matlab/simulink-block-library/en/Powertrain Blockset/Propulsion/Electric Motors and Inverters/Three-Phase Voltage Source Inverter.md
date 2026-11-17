@@ -14,6 +14,39 @@ language: en
 # Three-Phase Voltage Source Inverter
 
 ## Ports
+```yaml
+ports:
+- name: PhaseVoltCmd
+  summary: Phase a, b, c line-to-neutral voltage command 1-by-3 array
+  direction: input
+- name: SwitchCmd
+  summary: Switch commands 1-by-3 array
+  direction: input
+- name: BusVolt
+  summary: Power source bus voltage bus
+  direction: input
+- name: PhaseCurr
+  summary: Phase a, b, c current 1-by-3 array
+  direction: input
+- name: MtrTrq
+  summary: Motor torque scalar
+  direction: input
+- name: MtrSpd
+  summary: Motor speed scalar
+  direction: input
+- name: InvrtrTemp
+  summary: Inverter operating temperature scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: PhaseVolt
+  summary: Phase a, b, c line-to-neutral voltage 1-by-3 array
+  direction: output
+- name: BusCurr
+  summary: Power source bus current scalar
+  direction: output
+```
 
 ### Input
 
@@ -100,8 +133,84 @@ Phase a, b, c line-to-neutral voltage,
 
 Power source bus current,
 *ibus*, in A.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input inverter temperature
+  summary: Create input port off (default) | on
+  group: ''
+  block_parameter: InvrtrTmpInpEnbl
+  values: off (default) | on
+- name: Enable memory optimized 2D LUT
+  summary: Selection off (default) | on
+  group: ''
+  block_parameter: enable_hdl
+  values: off (default) | on
+- name: Calibrate Maps
+  summary: Calibrate tables with measured data selection
+  group: ''
+- name: Switching voltage function
+  summary: Selection Commanded phase voltage (default) | Switch inputs
+  group: ''
+  block_parameter: model_type
+  values: Commanded phase voltage (default) | Switch inputs
+- name: Breakpoints for speeds (w), w_eff_bp
+  summary: Speed breakpoints [-1000 -500 0 500 1000] (default) | 1-by-M vector
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[-1000 -500 0 500 1000] (default) | 1-by-M vector'
+- name: Resample storage size for w_eff_bp, n1
+  summary: Speed bit size 128 (default) | 2 | 4 | 8 | 16 | 32 | 64 | 256
+  group: ''
+  block_parameter: n1
+  values: 128 (default) | 2 | 4 | 8 | 16 | 32 | 64 | 256
+- name: Breakpoints for load input (T), T_eff_bp
+  summary: Torque breakpoints [-200 -100 0 100 200] (default) | 1-by-N vector
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[-200 -100 0 100 200] (default) | 1-by-N vector'
+- name: Resample storage size for T_eff_bp, n2
+  summary: Torque bit size 128 (default) | 2 | 4 | 8 | 16 | 32 | 64 | 256
+  group: ''
+  block_parameter: n2
+  values: 128 (default) | 2 | 4 | 8 | 16 | 32 | 64 | 256
+- name: Breakpoints for temperature input, Temp_eff_bp
+  summary: Temperature breakpoints [213.15 293.15 373.15] (default) | 1-by-L vector
+  group: ''
+  block_parameter: Temp_eff_bp
+  values: '[213.15 293.15 373.15] (default) | 1-by-L vector'
+- name: Corresponding power loss, ploss_table
+  summary: 2D lookup table [1 0.999 0.989 0.997 0.996;0.995 0.994 0.993 0.992 0.991;0.990 0.989 0.988 0.987 0.986;0.985 0.984
+    0.983 0.982 0.981;0.980 0.979 0.978 0.977 0.976] (default) | M-by-N array
+  group: ''
+  block_parameter: ploss_table
+  values: M-by-N array
+- name: Corresponding power loss, ploss_table_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: ploss_table_3d
+  values: M-by-N-by-L array
+- name: w_eff_bp max endpoint, u1max
+  summary: Speed breakpoint 1000 (default) | scalar
+  group: ''
+  block_parameter: u1max
+  values: 1000 (default) | scalar
+- name: w_eff_bp min endpoint, u1min
+  summary: Speed breakpoint -1000 (default) | scalar
+  group: ''
+  block_parameter: u1min
+  values: -1000 (default) | scalar
+- name: T_eff_bp max endpoint, u2max
+  summary: Torque breakpoint 200 (default) | scalar
+  group: ''
+  block_parameter: u2max
+  values: 200 (default) | scalar
+- name: T_eff_bp min endpoint, u2min
+  summary: Torque breakpoint -200 (default) | scalar
+  group: ''
+  block_parameter: u2min
+  values: -200 (default) | scalar
+```
 
 #### Block Options
 
@@ -489,7 +598,6 @@ programmatically, use the `get_param` function.
 
 To create this parameter, select **Enable memory optimized 2D LUT** and
 **Specify Extrapolation**.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters

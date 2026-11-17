@@ -15,6 +15,26 @@ chinese_source: worker-translation
 # Simulation 3D Ultrasonic Sensor
 
 ## 端口
+```yaml
+ports:
+- name: Has object
+  summary: 传感器视场内存在可检测对象 标量
+  direction: output
+- name: Has range
+  summary: 传感器视场内存在的对象可进行距离测量 标量
+  direction: output
+- name: Range
+  summary: 到最近对象的距离测量值 标量
+  direction: output
+- name: Translation
+  summary: 传感器位置 实值 1×3 向量
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: 传感器方向 实值 1×3 向量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -49,8 +69,43 @@ chinese_source: worker-translation
 要启用此端口，请在 **Ground Truth** 选项卡上，选择 **Output location (m) and orientation (rad)**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 安装
+- name: Parent name
+  summary: 父级载具名称 Scene Origin（默认）| 载具名称
+  group: 安装
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）| ...
+  group: 安装
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移 on（默认）| off
+  group: 安装
+- name: Relative translation [X, Y, Z] (m)
+  summary: 相对于安装位置的平移偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Relative rotation [Roll, Pitch, Yaw] (deg)
+  summary: 相对于安装位置的旋转偏移 [0, 90, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 安装
+- name: Detection ranges (m)
+  summary: 超声波传感器的检测范围向量（m） [0.03 0.15 5.5]（默认）| 形式为 [minDetOnlyRange minDistRange maxDistRange] 的 1×3 非负实值向量
+  group: Sensor Parameters
+- name: Horizontal field of view (deg)
+  summary: 超声波传感器的水平视场 70（默认）| 正实标量
+  group: Sensor Parameters
+- name: Vertical field of view (deg)
+  summary: 超声波传感器的垂直视场 35（默认）| 正实标量
+  group: Sensor Parameters
+- name: Output location (m) and orientation (rad)
+  summary: 传感器的输出位置和方向 off（默认）| on
+  group: Ground Truth
+```
 
 ### 安装
 
@@ -155,7 +210,6 @@ chinese_source: worker-translation
 ### **Output location (m) and orientation (rad)** — 传感器的输出位置和方向 `off`（默认）| `on`
 
 选择此参数以分别在 **Translation** 和 **Rotation** 端口输出传感器的平移和旋转。
-
 ## 所属库
 
 Automated Driving Toolbox / Simulation 3D Aerospace Blockset / Animation / Simulation 3D UAV Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors

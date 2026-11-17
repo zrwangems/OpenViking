@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # OpenL3 Preprocess
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 声音数据列向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 频谱图矩阵
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -36,8 +47,19 @@ chinese_source: worker-translation
 您可以将此频谱图用作具有相同 **Spectrum type** 的 OpenL3 模块的输入。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 48e3（默认）| 正标量
+  group: ''
+- name: Overlap percentage (%)
+  summary: 连续频谱图之间的重叠百分比 90（默认）| [0 100)
+  group: ''
+- name: Spectrum type
+  summary: 频谱类型 Mel (128 bands)（默认）| Mel (256 bands) | Linear
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（Hz） `48e3`（默认）| 正标量
 
@@ -50,7 +72,6 @@ chinese_source: worker-translation
 ### **Spectrum type** — 频谱类型 `Mel (128 bands)`（默认）| `Mel (256 bands)` | `Linear`
 
 从输入音频生成的频谱类型，指定为 `Mel (128 bands)`、`Mel (256 bands)` 或 `Linear`。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Id0 Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Iabc
+  summary: 三相电流响应 标量
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: '*Id0* 估计的控制信号 逻辑'
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: 总线信号输入 总线
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*、*b* 和 *c* 轴定子参考电压分量 标量'
+  direction: output
+  data_types: single
+- name: Id0
+  summary: 估计的励磁电流 标量
+  direction: output
+  data_types: single
+- name: Log
+  summary: 调试信号 总线
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -98,11 +125,12 @@ chinese_source: worker-translation
 | `1` | *Id0* 估计成功完成 | - |
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Motor Control Blockset / Parameter Estimation / ACIM Parameter Estimation

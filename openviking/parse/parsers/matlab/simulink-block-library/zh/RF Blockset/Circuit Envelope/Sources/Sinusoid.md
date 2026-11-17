@@ -15,10 +15,42 @@ chinese_source: worker-translation
 # Sinusoid
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 波形类型 Ideal voltage（默认）| Ideal current
+  group: ''
+- name: Offset in-phase
+  summary: 同相偏移 0 V（默认）| 0 A | 实数或复数向量 | V | mV | kV | A | mA | uA | kA
+  group: ''
+- name: Offset quadrature
+  summary: 正交偏移 0 V（默认）| 0 A | 实数或复数向量 | V | mV | kV | A | mA | uA | kA
+  group: ''
+- name: Sinusoidal amplitude in-phase
+  summary: 同相幅度 0（默认）| 实数或复数向量 | V | mV | kV | A | mA | uA | kA
+  group: ''
+- name: Sinusoidal amplitude quadrature
+  summary: 正交幅度 0（默认）| 实数或复数向量 | V | mV | kV | A | mA | uA | kA
+  group: ''
+- name: Sinusoidal modulation frequency
+  summary: 调制频率 0（默认）| 实数或复数向量 | Hz | kHz | MHz | GHz
+  group: ''
+- name: Time delay
+  summary: 调制的时间延迟 0（默认）| 实数向量 | s | ms | us | ns
+  group: ''
+- name: Carrier frequencies
+  summary: 载波频率 0（默认）| 正实数向量 | Hz | kHz | MHz | GHz
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地 RF 电路端子 on（默认）| off
+  group: ''
+```
 
 ### **Source type** — 波形类型 `Ideal voltage`（默认）| `Ideal current`
 
@@ -62,7 +94,6 @@ R2025b 中未记录。
 选择此参数以将负端子接地并隐藏。要暴露负端子，请清除该参数。通过暴露这些端子，您可以将它们连接到模型的其他部分。
 
 默认情况下，此选项处于选中状态。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Sources

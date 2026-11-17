@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Fixed-Displacement Motor (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: R
+  summary: 机械端口，机械旋转
+  direction: conserving
+- name: C
+  summary: 机械端口，机械旋转
+  direction: conserving
+- name: EV
+  summary: 容积效率，物理信号
+  direction: input
+- name: EM
+  summary: 机械效率，物理信号
+  direction: input
+- name: LV
+  summary: 泄漏流量，m^3/s，物理信号
+  direction: input
+- name: LM
+  summary: 摩擦力矩，N*m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -66,8 +93,113 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Leakage and friction parameterization** 设置为 `输入信号 - 体积和机械 losses`。
-
 ## 参数
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: 泄漏流量和摩擦力矩的计算方法 Analytical（默认）| Tabulated data - volumetric and mechanical efficiencies | Tabulated data - volumetric
+    and mechanical losses | Tabulated data - torque and speed | 输入信号 - 体积和机械 efficiencies | 输入信号 - 体积和机械 losses
+  group: 参数
+- name: Displacement
+  summary: 固定体积流体排量 30 cm^3/rev（默认）| 标量
+  group: 参数
+- name: Nominal shaft angular velocity
+  summary: 轴角速度 1800 rpm（默认）| 标量
+  group: 参数
+- name: Nominal pressure drop
+  summary: 流体入口和出口之间的压降 10 MPa（默认）| 标量
+  group: 参数
+- name: Volumetric efficiency at nominal conditions
+  summary: 额定工况下实际流量与理想流量的比值 0.92（默认）| 正标量
+  group: 参数
+- name: No-load torque
+  summary: 基线扭矩 0 N*m（默认）| 标量
+  group: 参数
+- name: Mechanical efficiency at nominal conditions
+  summary: 额定工况下实际扭矩与理想生成扭矩的比值 0.88（默认）| 正标量
+  group: 参数
+- name: Pressure drop vector, dp
+  summary: 表格数据参数化的压力数据向量 [.1, 1, 2] MPa（默认）| 1×*n* 向量
+  group: 参数
+- name: Shaft angular velocity vector, w
+  summary: 表格数据参数化的角速度数据向量 [250, 500, 1000, 2000, 3000, 4000] rpm（默认）| 1×*n* 向量
+  group: 参数
+- name: Flow rate vector, q
+  summary: 流量数据向量 [.125, .25, .5, 1, 1.5, 2] * 1e-3 m^3/s（默认）| 1×*n* 向量
+  group: 参数
+- name: Volumetric efficiency table, e_v(dp,w)
+  summary: 表格数据参数化的容积效率 [.816, .908, .954, .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568, .78, .892, .893,
+    .91]（默认）| *M*×*N* 矩阵
+  group: 参数
+- name: Mechanical efficiency table, e_m(dp,w)
+  summary: 表格数据参数化的机械效率 [.996, .996, .996, .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981, .982, .982, .983,
+    .984]（默认）| *M*×*N* 矩阵
+  group: 参数
+- name: Volumetric loss table, q_loss(dp,w)
+  summary: 表格数据参数化的容积损失 [.023, .023, .023, .023, .0285, .032; .0844, .0842, .0845, .084, .1125, .108; .1079, .108, .11, .108,
+    .1605, .18] * 1e-3 m^3/s（默认）| *M*×*N* 矩阵
+  group: 参数
+- name: Mechanical loss table, torque_loss(dp,w)
+  summary: 表格数据参数化的机械损失 [.002, .002, .002, .002, .002, .002; .0607, .0556, .0556, .0556, .0556, .0505; .1937, .1937, .1833,
+    .1833, .1729, .1626] N*m（默认）| *M*×*N* 矩阵
+  group: 参数
+- name: Torque table, T(q,dp)
+  summary: 表格数据参数化的扭矩值 [.47, 4.72, 9.35; .47, 4.7, 9.36; .47, 4.7, 9.4; .47, 4.7, 9.41; .47, 4.7, 9.46; .47, 4.68, 9.5] N*m（默认）|
+    *M*×*N* 矩阵
+  group: 参数
+- name: Shaft speed table, w(q,dp)
+  summary: 表格数据参数化的轴转速 [205, 80, 35; 455, 330, 285; 955, 831, 780; 1950, 1830, 1780; 2940, 2775, 2680; 3940, 3780, 3640] rpm（默认）|
+    *M*×*N* 矩阵
+  group: 参数
+- name: Minimum volumetric efficiency
+  summary: 容积效率的最小值 1e-3（默认）| (0,1] 范围内的正标量
+  group: 参数
+- name: Maximum volumetric efficiency
+  summary: 容积效率的最大值 1（默认）| 正标量
+  group: 参数
+- name: Minimum mechanical efficiency
+  summary: 机械效率的最小值 1e-3（默认）| (0,1] 范围内的正标量
+  group: 参数
+- name: Maximum mechanical efficiency
+  summary: 机械效率的最大值 1（默认）| (0,1] 范围内的正标量
+  group: 参数
+- name: Pressure drop threshold for motor-pump transition
+  summary: 模式转换的压力阈值 1e-3 MPa（默认）| 正标量
+  group: 参数
+- name: Angular velocity threshold for motor-pump transition
+  summary: 模式转换的角速度阈值 100 rpm（默认）| 正标量
+  group: 参数
+- name: 检查是否超出所提供表格数据的范围
+  summary: 是否在超出所提供数据范围时发出通知 None（默认）| Warning | Error
+  group: 参数
+- name: 检查是否在电机模式之外运行
+  summary: 是否在模块于电机模式功能之外运行时发出通知 None（默认）| Warning | Error
+  group: 参数
+- name: 检查压力是否低于电机最低压力
+  summary: 是否在流体出口压力过低时发出通知 None（默认）| Warning | Error
+  group: 参数
+- name: 电机最低压力
+  summary: 电机出口可接受压力的下限阈值 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: 排量故障
+  summary: 用于对排量故障建模的选项 Add fault
+  group: 故障
+- name: 故障排量系数
+  summary: 用于缩放故障排量的系数 0.5（默认）| 正标量
+  group: 故障
+- name: 泄漏故障
+  summary: 用于对泄漏故障建模的选项 Add fault
+  group: 故障
+- name: 故障泄漏系数
+  summary: 用于缩放泄漏故障的系数 2.0（默认）| 正标量
+  group: 故障
+- name: 轴摩擦扭矩故障
+  summary: 用于对轴摩擦扭矩故障建模的选项 Add fault
+  group: 故障
+- name: 故障轴摩擦扭矩系数
+  summary: 用于缩放轴摩擦扭矩故障的系数 2.0（默认）| 正标量
+  group: 故障
+```
 
 ### 参数
 
@@ -385,7 +517,6 @@ fault** 超链接。
 
 要启用此参数，请点击 **Shaft friction torque fault**
 参数的 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors

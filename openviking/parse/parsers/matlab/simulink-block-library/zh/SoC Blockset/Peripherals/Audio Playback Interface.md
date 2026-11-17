@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Audio Playback Interface
 
 ## 端口
+```yaml
+ports:
+- name: msg
+  summary: SoC 消息数据向量
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: 音频数据帧 *M* 元素向量 | *M*×*C* 矩阵
+  direction: output
+  data_types: int8 | int16 | int32
+```
 
 ### 输入
 
@@ -34,8 +45,22 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output** 参数设置为 `To output port`。
 
 **数据类型：** `int8` | `int16` | `int32`
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 输出类型 To terminator（默认）| To output port
+  group: ''
+- name: Number of channels
+  summary: 数据通道数 2（默认）| 正整数
+  group: ''
+- name: Samples per frame
+  summary: 从音频设备读取的数据向量大小 4410（默认）| 正标量整数
+  group: ''
+- name: Sample time
+  summary: 采样时间（秒） -1（默认）| 正标量
+  group: ''
+```
 
 ### **Output** — 输出类型 `To terminator`（默认）| `To output port`
 
@@ -52,7 +77,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样时间（秒） `-1`（默认）| 正标量
 
 当您清除 **Enable event-based execution** 参数时，输入定时器驱动任务子系统要使用的采样时间。
-
 ## 所属库
 
 SoC Blockset / Peripherals

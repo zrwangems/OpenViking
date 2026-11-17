@@ -14,6 +14,65 @@ language: en
 # Longitudinal Driver
 
 ## Ports
+```yaml
+ports:
+- name: VelRef
+  summary: Reference vehicle velocity scalar
+  direction: input
+- name: EnblAccelOvr
+  summary: Enable acceleration command override scalar
+  direction: input
+  data_types: Boolean
+- name: AccelOvrCmd
+  summary: Acceleration override command scalar
+  direction: input
+  data_types: double
+- name: AccelHld
+  summary: Acceleration hold scalar
+  direction: input
+  data_types: Boolean
+- name: AccelZero
+  summary: Disable acceleration command scalar
+  direction: input
+  data_types: Boolean
+- name: EnblDecelOvr
+  summary: Enable deceleration command override scalar
+  direction: input
+  data_types: Boolean
+- name: DecelOvrCmd
+  summary: Deceleration override command scalar
+  direction: input
+  data_types: double
+- name: DecelHld
+  summary: Deceleration hold scalar
+  direction: input
+  data_types: Boolean
+- name: DecelZero
+  summary: Disable deceleration command scalar
+  direction: input
+  data_types: Boolean
+- name: ExtGear
+  summary: Gear scalar
+  direction: input
+- name: VelFdbk
+  summary: Longitudinal vehicle velocity scalar
+  direction: input
+- name: Grade
+  summary: Road grade angle scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: AccelCmd
+  summary: Commanded vehicle acceleration scalar
+  direction: output
+- name: DecelCmd
+  summary: Commanded vehicle deceleration scalar
+  direction: output
+- name: GearCmd
+  summary: Commanded vehicle gear scalar
+  direction: output
+```
 
 ### Input
 
@@ -177,8 +236,127 @@ Integer value of commanded vehicle gear.
 #### Dependencies
 
 To enable this port, select **Output gear signal**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Accelerator override
+  summary: Override acceleration command off (default) | on
+  group: ''
+- name: Accelerator hold
+  summary: Hold acceleration command off (default) | on
+  group: ''
+- name: Accelerator disable
+  summary: Disable acceleration command off (default) | on
+  group: ''
+- name: Decelerator override
+  summary: Override deceleration command off (default) | on
+  group: ''
+- name: Decelerator hold
+  summary: Hold deceleration command off (default) | on
+  group: ''
+- name: Decelerator disable
+  summary: Disable deceleration command off (default) | on
+  group: ''
+- name: Control type, cntrlType
+  summary: Longitudinal control PI (default) | Scheduled PI | Predictive
+  group: ''
+- name: Shift type, shftType
+  summary: Shift type None (default) | Reverse, Neutral, Drive | Scheduled | External
+  group: ''
+- name: Reference and feedback units, velUnits
+  summary: Velocity units m/s (default)
+  group: ''
+- name: Output gear signal
+  summary: Create GearCmd output port off (default) | on
+  group: ''
+- name: Proportional gain, Kp
+  summary: Gain 10 (default) | scalar
+  group: Control
+- name: Integral gain, Ki
+  summary: Gain 5 (default) | scalar
+  group: Control
+- name: Velocity feed-forward, Kff
+  summary: Gain .1 (default) | scalar
+  group: Control
+- name: Grade angle feed-forward, Kg
+  summary: Gain 0 (default) | scalar
+  group: Control
+- name: Velocity gain breakpoints, VehVelVec
+  summary: Breakpoints [0 100] (default) | vector
+  group: Control
+- name: Velocity feed-forward gain values, KffVec
+  summary: Gain [.1 .1] (default) | vector
+  group: Control
+- name: Proportional gain values, KpVec
+  summary: Gain [10 10] (default) | vector
+  group: Control
+- name: Integral gain values, KiVec
+  summary: Gain [5 5] (default) | vector
+  group: Control
+- name: Grade angle feed-forward values, KgVec
+  summary: Grade gain [0 0] (default) | vector
+  group: Control
+- name: Nominal speed, vnom
+  summary: Nominal vehicle speed 5 (default) | scalar
+  group: Control
+- name: Anti-windup, Kaw
+  summary: Gain 1 (default) | scalar
+  group: Control
+- name: Error filter time constant, tauerr
+  summary: Filter .01 (default) | scalar
+  group: Control
+- name: Vehicle mass, m
+  summary: Mass 1500 (default) | scalar
+  group: Control
+- name: Effective vehicle total tractive force, Kpt
+  summary: Tractive force 3000 (default) | scalar
+  group: Control
+- name: Driver response time, tau
+  summary: Tau .1 (default) | scalar
+  group: Control
+- name: Preview distance, L
+  summary: Distance 2 (default) | scalar
+  group: Control
+- name: Rolling resistance coefficient, aR
+  summary: Resistance 200 (default) | scalar
+  group: Control
+- name: Rolling and driveline resistance coefficient, bR
+  summary: Resistance 2.5 (default) | scalar
+  group: Control
+- name: Aerodynamic drag coefficient, cR
+  summary: Drag .5 (default) | scalar
+  group: Control
+- name: Gravitational constant, g
+  summary: Gravitational constant 9.81 (default) | scalar
+  group: Control
+- name: Initial gear, GearInit
+  summary: Initial gear 0 (default) | scalar
+  group: Shift
+- name: Time required to shift, tShift
+  summary: Time .1 (default) | scalar
+  group: Shift
+- name: Initial gear, GearInit
+  summary: Initial gear 0 (default) | scalar
+  group: Shift
+- name: Up and down shift accelerator pedal positions, pdlVec
+  summary: Pedal position breakpoints [0.1 0.4 0.5 0.9] (default) | [1-by-m] vector
+  group: Shift
+- name: Upshift velocity data table, upShftTbl
+  summary: Table [m-by-n] array
+  group: Shift
+- name: Downshift velocity data table, dwnShftTbl
+  summary: Table [m-by-n] array
+  group: Shift
+- name: Time required to shift, tClutch
+  summary: Time .5 (default) | scalar
+  group: Shift
+- name: Time required to engage reverse from neutral, tRev
+  summary: Time .5 (default) | scalar
+  group: Shift
+- name: Time required to engage park from neutral, tPark
+  summary: Time 120 (default) | scalar
+  group: Shift
+```
 
 #### External Actions
 
@@ -635,7 +813,6 @@ Time required to engage park from neutral,
 
 To create this parameter, set **Shift type, shftType** to
 `Scheduled`.
-
 ## Libraries
 
 Powertrain Blockset / Vehicle Scenario Builder Vehicle Dynamics Blockset / Vehicle Scenarios / Driver

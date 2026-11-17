@@ -15,6 +15,62 @@ chinese_source: worker-translation
 # Closed-Loop PID Autotuner
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 来自控制器的信号 标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 被控对象输出 标量
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: 启动和停止自整定实验 标量
+  direction: input
+  data_types: single | double
+- name: bandwidth
+  summary: 用于整定的目标带宽 标量
+  direction: input
+  data_types: single | double
+- name: target PM
+  summary: 用于整定的目标相位裕度 标量
+  direction: input
+  data_types: single | double
+- name: signal Amp
+  summary: 注入扰动信号的幅值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: isExpGood
+  summary: 禁用扰动和整定 标量
+  direction: input
+  data_types: single | double
+- name: u+Δu
+  summary: 被控对象输入信号 标量
+  direction: output
+  data_types: single | double
+- name: Δu
+  summary: 被控对象输入扰动 标量
+  direction: output
+  data_types: single | double
+- name: '% conv'
+  summary: 实验期间 FRD 估计的收敛度 标量
+  direction: output
+  data_types: single | double
+- name: pid gains
+  summary: 整定后的 PID 系数 总线
+  direction: output
+  data_types: single | double
+- name: estimated PM
+  summary: 使用整定控制器得到的估计相位裕度标量
+  direction: output
+- name: frd
+  summary: 估计的频率响应向量
+  direction: output
+- name: nominal
+  summary: 标称工作点处的被控对象输入和输出向量
+  direction: output
+```
 
 ### 输入
 
@@ -172,8 +228,142 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 Experiment 选项卡中，选择 **Plant nominal input and output**。
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: PID 控制器动作 PI（默认）| PID | PIDF | ...
+  group: ''
+  block_parameter: PIDType
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: PID 控制器形式 Parallel（默认）| Ideal
+  group: ''
+  block_parameter: PIDForm
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Time Domain
+  summary: PID 控制器时域 discrete-time（默认）| continuous-time
+  group: ''
+  block_parameter: TimeDomain
+  type: character vector
+  values: '''discrete-time'' | ''continuous-time'''
+  default: '''discrete-time'''
+- name: Controller sample time (sec)
+  summary: PID 控制器的采样时间 0.1（默认）| 正标量 | –1
+  group: ''
+  block_parameter: DiscreteTs
+  type: scalar
+  values: positive scalar | –1
+  default: '0.1'
+- name: Tune at different sample time
+  summary: 启用从 PID 控制器以不同采样时间进行整定和实验 off（默认）| on
+  group: ''
+  block_parameter: UseTuningTs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Tuning sample time (sec)
+  summary: 整定算法的采样时间 0.2（默认）| 正标量
+  group: ''
+  block_parameter: TuningTs
+  type: scalar
+  values: positive scalar
+  default: '0.2'
+- name: Experiment sample time (sec)
+  summary: 实验的采样时间 0.02（默认）| 正标量
+  group: ''
+  block_parameter: ContinuousTs
+  type: positive scalar
+  default: '0.02'
+- name: Integrator method
+  summary: 积分项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: IntegratorFormula
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: 微分滤波项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: FilterFormula
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: 整定响应的目标穿越频率 1（默认）| 正标量
+  group: ''
+  block_parameter: Bandwidth
+  type: positive scalar
+  default: '1'
+- name: Target phase margin (degrees)
+  summary: 开环响应的目标最小相位裕度 60（默认）| 0–90 范围内的标量
+  group: ''
+  block_parameter: TargetPM
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Experiment Mode
+  summary: 扰动信号类型 Superposition（默认）| Sinestream | PRBS *（自 R2023b 起）*
+  group: ''
+  block_parameter: ExperimentMode
+  type: character vector
+  values: '''Sinestream'' | ''Superposition'' | ''PRBS'''
+  default: '''Superposition'''
+- name: Plant Type
+  summary: 被控对象的稳定性 Stable（默认）| Integrating
+  group: ''
+  block_parameter: PlantType
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: 被控对象的符号 Positive（默认）| Negative
+  group: ''
+  block_parameter: PlantSign
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Signal Amplitudes
+  summary: 扰动幅度 1（默认）| 标量 | 长度为 5 的向量
+  group: ''
+  block_parameter: AmpSine
+  type: scalar, vector of length 5
+  default: '1'
+- name: 减少内存并避免任务超限（仅外部模式）
+  summary: 仅部署整定算法 off（默认）| on
+  group: ''
+  block_parameter: DeployTuningModule
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 为 PLC Coder 配置模块
+  summary: 为使用 Simulink PLC Coder 进行代码生成配置模块 off（默认）| on
+  group: ''
+- name: 输出信号配置
+  summary: 提供控制信号加扰动或仅扰动 control action + perturbation（默认）| perturbation only
+  group: ''
+- name: 数据类型
+  summary: 浮点精度 double（默认）| single
+  group: ''
+  block_parameter: BlockDataType
+  type: 字符向量
+  values: '''double'' | ''single'''
+- name: 点击“Update PID Block”将整定后的增益写入连接到“u”端口的 PID 模块
+  summary: 自动检测用于写入整定后 PID 系数的目标 on（默认）| off
+  group: ''
+- name: 指定 PID 模块路径
+  summary: 用于写入整定后系数的目标 PID 控制器模块 []（默认）| 模块路径
+  group: ''
+- name: Update PID Block
+  summary: 将整定后的 PID 增益写入目标控制器模块 按钮
+  group: ''
+- name: 导出到 MATLAB
+  summary: 将实验和整定结果发送到 MATLAB® 工作区 按钮
+  group: ''
+```
 
 #### Tuning Tab
 
@@ -632,7 +822,6 @@ PID 增益计算比频率响应估计需要更大的计算负载。对于快速�
 - `PlantNominal` — 实验开始时的标称工作点处的被控对象输入和输出，指定为具有字段 `u`（输入）和 `y`（输出）的结构体。
 
 你可以在仿真运行时导出到 MATLAB 工作区，包括在外部模式下运行时。
-
 ## 所属库
 
 Simulink Control Design / Autotuning

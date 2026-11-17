@@ -14,6 +14,18 @@ language: en
 # Temperature Sensor
 
 ## Ports
+```yaml
+ports:
+- name: T
+  summary: Temperature measurement, K physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet thermal
+  direction: conserving
+- name: B
+  summary: Sensor outlet thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -36,8 +48,13 @@ Thermal conserving port. The measurement is positive when the value at port
 
 To enable this port, set the **Measurement reference**
 parameter to `Difference`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement reference
+  summary: Select between absolute and relative measurements Difference (default) | Absolute
+  group: ''
+```
 
 ### **Measurement reference** — Select between absolute and relative measurements `Difference` (default) | `Absolute`
 
@@ -51,7 +68,6 @@ Select between absolute and relative measurements:
   reference node, which means that you need only one port to make absolute
   measurements. Selecting this option hides port **B** on the block
   icon.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Sensors

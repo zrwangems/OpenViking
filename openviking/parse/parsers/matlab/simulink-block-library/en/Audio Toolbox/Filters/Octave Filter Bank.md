@@ -14,6 +14,17 @@ language: en
 # Octave Filter Bank
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal matrix | 3-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -52,8 +63,51 @@ When you enable the **Bands as separate output ports**
 parameter, each output is the same size as the input.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Bandwidth (octaves)
+  summary: Bandwidth of filters specified in octaves 1 octave (default) | 2/3 octave | 1/2 octave | 1/3 octave | 1/6 octave
+    | 1/12 octave | 1/24 octave | 1/48 octave
+  group: ''
+- name: Frequency range (Hz)
+  summary: Frequency range of filter bank (Hz) [22 22050] (default) | two-element row vector of positive monotonically increasing
+    values
+  group: ''
+- name: Reference frequency (Hz)
+  summary: Reference frequency of filter bank (Hz) 1000 (default) | positive integer scalar
+  group: ''
+- name: Filter order
+  summary: Order of octave filters 12 (default) | positive even integer
+  group: ''
+- name: Octave ratio
+  summary: Distance between filters Base ten (ANSI S1.11 preferred) (default) | Base two (musical scale)
+  group: ''
+- name: Inherit sample rate from input
+  summary: Allow sample rate to be set by input signal off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | positive scalar
+  group: ''
+- name: Bands as separate output ports
+  summary: One output port per filter band off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+- name: View filter response
+  summary: Open plot to visualize magnitude response button
+  group: ''
+- name: Variable name
+  summary: Variable name of exported filter bank myFilt (default) | valid variable name
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: Overwrite variable if it already exists on (default) | off
+  group: ''
+- name: Export filter to workspace
+  summary: Export filter bank to workspace button
+  group: ''
+```
 
 ### **Bandwidth (octaves)** — Bandwidth of filters specified in octaves `1 octave` (default) | `2/3 octave` | `1/2 octave` | `1/3 octave` | `1/6 octave` | `1/12 octave` | `1/24 octave` | `1/48 octave`
 
@@ -159,7 +213,6 @@ Export the filter bank to the base workspace in the variable specified by the
 
 You cannot export the filter bank if you have enabled the **Inherit sample
 rate from input** parameter and the model is not running.
-
 ## Libraries
 
 Audio Toolbox / Filters

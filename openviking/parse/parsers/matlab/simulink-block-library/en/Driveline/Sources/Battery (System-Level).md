@@ -14,6 +14,18 @@ language: en
 # Battery (System-Level)
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Heat transfer thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -35,8 +47,40 @@ Thermal conserving port associated with heat transfer.
 
 To expose this port, set **Thermal port** to
 `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal voltage, Vnom
+  summary: Output voltage when battery is fully charged 12 V (default) | positive scalar
+  group: Main
+- name: Internal resistance
+  summary: Battery internal resistance 2 Ohm (default) | positive scalar
+  group: Main
+- name: Battery charge capacity
+  summary: Option to simulate discharge Infinite (default) | Finite
+  group: Main
+- name: Cell capacity (Ah rating)
+  summary: Rated battery capacity 50 A*hr (default) | positive scalar
+  group: Main
+- name: Voltage V1 when charge is AH1
+  summary: Output voltage at charge level AH1 11.5 V (default) | positive scalar
+  group: Main
+- name: Charge AH1 when no-load voltage is V1
+  summary: Charge level when no-load output voltage is V1 25 A*hr (default) | positive scalar
+  group: Main
+- name: Self-discharge
+  summary: Option to simulate self-discharge resistance Disabled (default) | Enabled
+  group: Main
+- name: Self-discharge resistance
+  summary: Resistance that represents battery self-discharge 2000 Ohm (default) | positive scalar
+  group: Main
+- name: Thermal port
+  summary: Option to simulate thermal effects Omit (default) | Model
+  group: Thermal Port
+- name: Thermal mass
+  summary: Thermal mass of battery 30000 J/K (default)
+  group: Thermal Port
+```
 
 ### Main
 
@@ -118,7 +162,6 @@ model.
 Thermal energy required to change the component temperature by a
 single degree. The greater the thermal mass, the more resistant the
 component is to temperature change.
-
 ## Libraries
 
 Simscape / Driveline / Sources

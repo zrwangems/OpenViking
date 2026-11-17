@@ -14,6 +14,17 @@ language: en
 # Gaussian Pyramid
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image scalar | vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output image scalar | vector | matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -38,8 +49,26 @@ scalar or vector, you must set the **Operation** parameter to
 `Reduce`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation
+  summary: Select operation Reduce (default) | Expand
+  group: ''
+- name: Pyramid level
+  summary: Image scaling factor 1 (default) | positive integer
+  group: ''
+- name: Coefficient source
+  summary: Lowpass filter coefficient source Default separable filter [1/4-a/2 1/4 a 1/4 1/4-a/2] (default) | Specify via
+    dialog
+  group: ''
+- name: Coefficients for separable filter
+  summary: Separable filter coefficient [0.0625 0.25 0.375 0.25 0.0625] (default) | vector
+  group: ''
+- name: Hidden coefficients
+  summary: Hidden separable filter coefficients [1/4-0.375/2 1/4 0.375 1/4 1/4-0.375/2] (default) | vector
+  group: ''
+```
 
 ### **Operation** — Select operation `Reduce` (default) | `Expand`
 
@@ -81,7 +110,6 @@ Specify the separable filter coefficients as a vector.
 ### **Hidden coefficients** — Hidden separable filter coefficients `[1/4-0.375/2 1/4 0.375 1/4 1/4-0.375/2]` (default) | vector
 
 Specify the hidden separable filter coefficients as a vector.
-
 ## Libraries
 
 Computer Vision Toolbox / Transforms

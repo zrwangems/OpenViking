@@ -15,6 +15,101 @@ chinese_source: worker-translation
 # Field Oriented Control Autotuner
 
 ## 端口
+```yaml
+ports:
+- name: PIDout daxis
+  summary: 来自直轴电流控制器的信号 标量
+  direction: input
+  data_types: single | double
+- name: measured feedback daxis
+  summary: 测量的直轴电流 标量
+  direction: input
+  data_types: single | double
+- name: PIDout qaxis
+  summary: 来自交轴电流控制器的信号 标量
+  direction: input
+  data_types: single | double
+- name: measured feedback qaxis
+  summary: 测量的交轴电流 标量
+  direction: input
+  data_types: single | double
+- name: PIDout spd
+  summary: 来自速度控制器的信号 标量
+  direction: input
+  data_types: single | double
+- name: measured feedback spd
+  summary: 测量的速度 标量
+  direction: input
+  data_types: single | double
+- name: PIDout flux
+  summary: 来自磁通控制器的信号 标量
+  direction: input
+  data_types: single | double
+- name: measured feedback flux
+  summary: 测量的磁通 标量
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: 启动和停止自整定实验标量
+  direction: input
+  data_types: single | double
+- name: ActiveLoop
+  summary: 指定自整定实验的活动回路 标量
+  direction: input
+  data_types: single | double
+- name: bandwidth
+  summary: 用于整定的目标带宽 标量 | 向量 | 总线
+  direction: input
+  data_types: single | double
+- name: target PM
+  summary: 用于整定的目标相位裕度 标量 | 向量 | 总线
+  direction: input
+  data_types: single | double
+- name: sine Amp
+  summary: 注入正弦扰动信号的幅值 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: perturbation daxis
+  summary: 直轴电流输入扰动 标量
+  direction: output
+  data_types: single | double
+- name: perturbation qaxis
+  summary: 交轴电流输入扰动 标量
+  direction: output
+  data_types: single | double
+- name: perturbation spd
+  summary: 速度输入扰动 标量
+  direction: output
+  data_types: single | double
+- name: perturbation flux
+  summary: 磁通输入扰动 标量
+  direction: output
+  data_types: single | double
+- name: pid gains
+  summary: 整定后的 PID 系数总线
+  direction: output
+  data_types: single | double
+- name: convergence
+  summary: 实验期间 FRD 估计的收敛性 标量
+  direction: output
+  data_types: single | double
+- name: estimated PM
+  summary: 最近整定回路的估计相位裕度 标量
+  direction: output
+  data_types: single | double
+- name: frd
+  summary: 最近整定回路的估计频率响应 向量
+  direction: output
+  data_types: single | double
+- name: nominal
+  summary: 最近整定回路在标称工作点处的被控对象输入和输出 向量
+  direction: output
+  data_types: single | double
+- name: loop startstops
+  summary: 活动循环总线
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -352,8 +447,584 @@ start/stop of experiment**。
 要启用此端口，请在模块选项卡上，禁用 **Use external source for start/stop of experiment** 并选择 **Start/stop of autotuning process**。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Tune D-axis current loop
+  summary: 启用 d 轴电流环整定 on（默认）| off
+  group: ''
+  block_parameter: TuneDaxisLoop
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Tune Q-axis current loop
+  summary: 启用 q 轴电流环整定 on（默认）| off
+  group: ''
+  block_parameter: TuneQaxisLoop
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Tune speed loop
+  summary: 启用速度环整定 on（默认）| off
+  group: ''
+  block_parameter: TuneSpeedLoop
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Tune flux loop
+  summary: 启用磁通环整定 on（默认）| off
+  group: ''
+  block_parameter: TuneSpeedLoop
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Use same settings for current loop controllers (D-axis + Q-axis)
+  summary: 为直轴和交轴电流环启用相同的整定和实验设置 off（默认）| on
+  group: ''
+  block_parameter: UseSameSettingsInner
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Use same settings for outer loop controllers (Speed + Flux)
+  summary: 为速度环和磁通环启用相同的整定和实验设置 off（默认）| on
+  group: ''
+  block_parameter: UseSameSettingsOuter
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Experiment sample time
+  summary: 频率响应估计实验的采样时间 –1（默认）| 正标量
+  group: ''
+  block_parameter: TsExperiment
+  type: scalar
+  values: positive scalar
+  default: –1 (inherited)
+- name: Use different sample time for tuning
+  summary: 启用与回路 PID 控制器和实验不同的采样时间进行整定 off（默认）| on
+  group: Tuning Tab
+  block_parameter: UseTuningTs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Tuning sample time (sec)
+  summary: 整定算法的采样时间 0.2（默认）| 正标量
+  group: Tuning Tab
+  block_parameter: TsTuning
+  type: scalar
+  values: positive scalar
+  default: '0.2'
+- name: Type
+  summary: D 轴电流回路 PID 控制器动作 PI（默认）| PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeDaxis
+  type: 字符向量
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: d 轴电流环 PID 控制器形式 Parallel（默认）| Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormDaxis
+  type: 字符向量
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: d 轴电流环 PID 控制器采样时间 0.001（默认）| 正标量 | –1
+  group: Tuning Tab
+  block_parameter: TsDaxis
+  type: 标量
+  values: 正标量 | –1
+  default: '0.001'
+- name: Integrator method
+  summary: d 轴电流环控制器积分项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodDaxis
+  type: 字符向量
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: d 轴电流环控制器导数滤波项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodDaxis
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: d 轴电流环调谐响应的目标穿越频率 100（默认）| 正标量
+  group: Tuning Tab
+  block_parameter: BandwidthDaxis
+  type: positive scalar
+  default: '100'
+- name: Target phase margin (degrees)
+  summary: d 轴电流环目标最小相位裕度 60（默认）| 范围 0–90 的标量
+  group: Tuning Tab
+  block_parameter: TargetPMDaxis
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Type
+  summary: q 轴电流环 PID 控制器动作 PI（默认）| PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeQaxis
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: q 轴电流环 PID 控制器形式 Parallel（默认）| Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormQaxis
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: q 轴电流环 PID 控制器采样时间 0.001（默认）| 正标量 | –1
+  group: Tuning Tab
+  block_parameter: TsQaxis
+  type: scalar
+  values: positive scalar | –1
+  default: '0.001'
+- name: 积分器方法
+  summary: 用于积分项 Forward Euler（默认）| Backward Euler | Trapezoidal 的 q 轴电流环控制器离散积分公式
+  group: Tuning Tab
+  block_parameter: IntegratorMethodQaxis
+  type: 字符向量
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+- name: 滤波器方法
+  summary: 用于微分滤波器项 Forward Euler（默认）| Backward Euler | Trapezoidal 的 q 轴电流环控制器离散积分公式
+  group: Tuning Tab
+  block_parameter: FilterMethodQaxis
+  type: 字符向量
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+- name: 目标带宽 (rad/sec)
+  summary: 调优响应的 q 轴电流环目标穿越频率 100（默认）| 正标量
+  group: Tuning Tab
+  block_parameter: BandwidthQaxis
+  type: 正标量
+- name: 目标相位裕度（度）
+  summary: Q 轴电流环目标最小相位裕度 60（默认）| 0–90 范围内的标量
+  group: Tuning Tab
+  block_parameter: TargetPMQaxis
+  type: 标量
+  values: 0–90
+- name: 类型
+  summary: 速度环 PID 控制器动作 PI（默认）| PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeSpeed
+  type: 字符向量
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+- name: 形式
+  summary: 速度环 PID 控制器形式 Parallel（默认）| Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormSpeed
+  type: 字符向量
+  values: '''Parallel'' | ''Ideal'''
+- name: 控制器采样时间（秒）
+  summary: 速度环 PID 控制器采样时间 0.1（默认）| 正标量 | –1
+  group: Tuning Tab
+  block_parameter: TsSpeed
+  type: scalar
+  values: positive scalar | –1
+- name: Integrator method
+  summary: 速度环控制器积分项离散积分公式 Forward Euler（默认） | Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodSpeed
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+- name: Filter method
+  summary: 速度环控制器微分滤波项离散积分公式 Forward Euler（默认） | Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodSpeed
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+- name: 目标带宽 (rad/sec)
+  summary: 调谐响应 1 的速度环目标穿越频率（默认）| 正标量
+  group: Tuning Tab
+  block_parameter: BandwidthSpeed
+  type: positive scalar
+  default: '1'
+- name: 目标相位裕度 (degrees)
+  summary: 速度环目标最小相位裕度 60（默认）| 范围 0–90 的标量
+  group: Tuning Tab
+  block_parameter: TargetPMSpeed
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Type
+  summary: 磁通环 PID 控制器动作 PI（默认）| PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeFlux
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: 磁通环 PID 控制器形式 Parallel（默认）| Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormFlux
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: 磁通环 PID 控制器采样时间 0.1（默认）| 正标量 | –1
+  group: Tuning Tab
+  block_parameter: TsFlux
+  type: scalar
+  values: positive scalar | –1
+  default: '0.1'
+- name: Integrator method
+  summary: 磁通环控制器积分项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodFlux
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: 导数滤波器项的磁通环控制器离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodFlux
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: 磁通环整定响应的目标穿越频率 1（默认）| 正标量
+  group: Tuning Tab
+  block_parameter: BandwidthFlux
+  type: positive scalar
+  default: '1'
+- name: Target phase margin (degrees)
+  summary: 磁通环目标最小相位裕度 60（默认）| 0–90 范围内的标量
+  group: Tuning Tab
+  block_parameter: TargetPMFlux
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Type
+  summary: 电流环 PID 控制器动作 PI（默认）| PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeAllInner
+  type: character vector
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+  default: '''PI'''
+- name: Form
+  summary: 电流环 PID 控制器形式 Parallel（默认）| Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormAllInner
+  type: character vector
+  values: '''Parallel'' | ''Ideal'''
+  default: '''Parallel'''
+- name: Controller sample time (sec)
+  summary: 电流环 PID 控制器采样时间 0.001（默认）| 正标量 | –1
+  group: Tuning Tab
+  block_parameter: TsAllInner
+  type: scalar
+  values: positive scalar | –1
+  default: '0.001'
+- name: Integrator method
+  summary: 电流环控制器积分项离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodAllInner
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: 电流环控制器微分滤波项离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodAllInner
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: 电流环整定响应的目标穿越频率 100（默认）| 正标量
+  group: Tuning Tab
+  block_parameter: BandwidthAllInner
+  type: positive scalar
+  default: '1'
+- name: 目标相位裕度（度）
+  summary: 电流环目标最小相位裕度 60（默认）| 0–90 范围内的标量
+  group: Tuning Tab
+  block_parameter: TargetPMAllInner
+  type: 标量
+  values: 0–90
+- name: 类型
+  summary: 外环 PID 控制器动作 PI（默认）| PID | PIDF | ...
+  group: Tuning Tab
+  block_parameter: PIDTypeAllOuter
+  type: 字符向量
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+- name: 形式
+  summary: 外环 PID 控制器形式 Parallel（默认）| Ideal
+  group: Tuning Tab
+  block_parameter: PIDFormAllOuter
+  type: 字符向量
+  values: '''Parallel'' | ''Ideal'''
+- name: 控制器采样时间（秒）
+  summary: 外环 PID 控制器采样时间 0.1（默认）| 正标量 | –1
+  group: Tuning Tab
+  block_parameter: TsAllOuter
+  type: 标量
+  values: 正标量 | –1
+  default: '0.1'
+- name: Integrator method
+  summary: 外环控制器积分项离散积分公式 Forward Euler（默认） | Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: IntegratorMethodAllOuter
+  type: 字符向量
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Filter method
+  summary: 外环控制器微分滤波器项离散积分公式 Forward Euler（默认） | Backward Euler | Trapezoidal
+  group: Tuning Tab
+  block_parameter: FilterMethodAllOuter
+  type: 字符向量
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: 目标带宽 (rad/sec)
+  summary: 整定响应的外环目标穿越频率 1（默认）| 正标量
+  group: Tuning Tab
+  block_parameter: BandwidthAllOuter
+  type: positive scalar
+  default: '1'
+- name: 目标相位裕度 (degrees)
+  summary: 外环目标最小相位裕度 60（默认）| 范围 0–90 的标量
+  group: Tuning Tab
+  block_parameter: TargetPMAllOuter
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: D 轴电流环启动时间 (sec)
+  summary: 指定直轴电流环整定实验启动时间 1（默认）
+  group: 实验选项卡
+  block_parameter: StartTimeDaxis
+  type: positive scalar
+  default: '1'
+- name: D 轴电流环实验持续时间 (sec)
+  summary: 指定直轴电流环整定实验持续时间 0.05（默认）
+  group: 实验选项卡
+  block_parameter: DurationDaxis
+  type: positive scalar
+  default: '0.05'
+- name: Q 轴电流环启动时间 (sec)
+  summary: 指定交轴电流环整定实验启动时间 1.1（默认）
+  group: 实验选项卡
+  block_parameter: StartTimeQaxis
+  type: positive scalar
+  default: '1.1'
+- name: Q 轴电流环实验持续时间 (sec)
+  summary: 指定交轴电流环整定实验持续时间 0.05（默认）
+  group: 实验选项卡
+  block_parameter: DurationQaxis
+  type: positive scalar
+  default: '0.05'
+- name: 速度环启动时间 (sec)
+  summary: 指定速度环整定实验启动时间 2（默认）
+  group: 实验选项卡
+  block_parameter: StartTimeSpeed
+  type: positive scalar
+  default: '2'
+- name: Speed loop experiment duration (sec)
+  summary: 指定速度环整定实验持续时间 3（默认值）
+  group: 实验选项卡
+  block_parameter: DurationSpeed
+  type: positive scalar
+  default: '3'
+- name: Flux loop start time (sec)
+  summary: 指定磁链环整定实验开始时间 6（默认值）
+  group: 实验选项卡
+  block_parameter: StartTimeFlux
+  type: positive scalar
+  default: '6'
+- name: Flux loop experiment duration (sec)
+  summary: 指定磁链环整定实验持续时间 3（默认值）
+  group: 实验选项卡
+  block_parameter: DurationFlux
+  type: positive scalar
+  default: '3'
+- name: Experiment Mode
+  summary: 正弦扰动信号类型 Superposition（默认值）| Sinestream | PRBS *（自 R2024a 起）*
+  group: 实验选项卡
+  block_parameter: ExperimentMode
+  type: character vector
+  values: '''Superposition'' | ''Sinestream'' | ''PRBS'''
+  default: '''Superposition'''
+- name: Plant Type
+  summary: 直轴电流被控对象稳定性 Stable（默认值）| Integrating
+  group: 实验选项卡
+  block_parameter: PlantTypeDaxis
+  type: 字符向量
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: 被控对象符号
+  summary: 直轴电流被控对象符号 Positive（默认）| Negative
+  group: 实验选项卡
+  block_parameter: PlantSignDaxis
+  type: 字符向量
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: 正弦幅值
+  summary: 直轴电流环路中正弦扰动的幅值 1（默认）| 标量 | 长度为 5 的向量
+  group: 实验选项卡
+  block_parameter: AmpSineDaxis
+  type: 标量，长度为 5 的向量
+  default: '1'
+- name: 被控对象类型
+  summary: 交轴电流被控对象的稳定性 Stable（默认）| Integrating
+  group: 实验选项卡
+  block_parameter: PlantTypeQaxis
+  type: 字符向量
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: 被控对象符号
+  summary: 交轴电流被控对象符号 Positive（默认）| Negative
+  group: 实验选项卡
+  block_parameter: PlantSignQaxis
+  type: 字符向量
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: 交轴电流环 1 中正弦扰动的幅值（默认）| 标量 | 长度为 5 的向量
+  group: 实验选项卡
+  block_parameter: AmpSineQaxis
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: 速度环被控对象的稳定性 Stable（默认）| Integrating
+  group: 实验选项卡
+  block_parameter: PlantTypeSpeed
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: 速度环被控对象的符号 Positive（默认）| Negative
+  group: 实验选项卡
+  block_parameter: PlantSignSpeed
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: 速度环 1 中正弦扰动的幅值（默认）| 标量 | 长度为 5 的向量
+  group: 实验选项卡
+  block_parameter: AmpSineSpeed
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: 磁通环被控对象的稳定性 Stable（默认）| Integrating
+  group: 实验选项卡
+  block_parameter: PlantTypeFlux
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: 磁通环被控对象的符号 Positive（默认）| Negative
+  group: 实验选项卡
+  block_parameter: PlantSignFlux
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: 磁链环 1 中正弦扰动的幅值（默认）| 标量 | 长度为 5 的向量
+  group: 实验选项卡
+  block_parameter: AmpSineFlux
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: 电流环被控对象的稳定性 Stable（默认）| Integrating
+  group: 实验选项卡
+  block_parameter: PlantTypeAllInner
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: 电流环被控对象的符号 Positive（默认）| Negative
+  group: 实验选项卡
+  block_parameter: PlantSignAllInner
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: 电流环 1 中正弦扰动的幅值（默认）| 标量 | 长度为 5 的向量
+  group: 实验选项卡
+  block_parameter: AmpSineAllInner
+  type: scalar, vector of length 5
+  default: '1'
+- name: Plant Type
+  summary: 外环被控对象的稳定性 Stable（默认）| Integrating
+  group: 实验选项卡
+  block_parameter: PlantTypeAllOuter
+  type: character vector
+  values: '''Stable'' | ''Integrating'''
+  default: '''Stable'''
+- name: Plant Sign
+  summary: 外环被控对象的符号 Positive（默认）| Negative
+  group: 实验选项卡
+  block_parameter: PlantSignAllOuter
+  type: character vector
+  values: '''Positive'' | ''Negative'''
+  default: '''Positive'''
+- name: Sine Amplitudes
+  summary: 外环 1 中正弦扰动的幅值（默认）| 标量 | 长度为 5 的向量
+  group: 实验选项卡
+  block_parameter: AmpSineAllOuter
+  type: scalar, vector of length 5
+  default: '1'
+- name: Use external source for bandwidths
+  summary: 为目​​标带宽提供外部信号 off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalWc
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use external source for target phase margins
+  summary: 为目标相位裕度提供外部信号 off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalPM
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use external source for start/stops of experiment
+  summary: 为整定实验的开始和停止提供外部信号 off (default) | on
+  group: Block Tab
+  block_parameter: UseExternalSourceStartStop
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use external source for sine amplitudes
+  summary: 为正弦扰动幅值提供外部信号 off（默认）| on
+  group: Block Tab
+  block_parameter: UseExternalAmpSine
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Data Type
+  summary: 浮点精度 double（默认）| single
+  group: Block Tab
+  block_parameter: BlockDataType
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: Estimated phase margin achieved by tuned controllers
+  summary: 最近整定回路所达到的相位裕度 off（默认）| on
+  group: Block Tab
+  block_parameter: UseExternalAchievedPM
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Plant frequency responses near bandwidth
+  summary: 最近整定回路的估计频率响应 off（默认）| on
+  group: Block Tab
+  block_parameter: UseExternalFRD
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Plant nominal input and output
+  summary: 标称工作点处的被控对象输入和输出 off（默认）| on
+  group: Block Tab
+  block_parameter: UseExternalU0
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Start/stop of autotuning process
+  summary: 指示每个整定回路的实验开始和结束的信号 off（默认）| on
+  group: Block Tab
+  block_parameter: UseExternalActiveLoop
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Export to MATLAB
+  summary: 将实验和整定结果发送到 MATLAB 工作区按钮
+  group: Block Tab
+```
 
 ### **Tune D-axis current loop** — 启用 d 轴电流环整定 `on`（默认）| `off`
 
@@ -2268,7 +2939,6 @@ C=P[1+IFi(z)+D(N1+NFd(z))]。
 - `PlantNominal` — 实验开始时标称工作点处的被控对象输入和输出，以包含字段 `u`（输入）和 `y`（输出）的结构体形式指定。
 
 您可以在仿真运行期间导出到 MATLAB 工作区，包括在外部模式下运行时。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Controllers

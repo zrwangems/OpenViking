@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Trigger-Based Linearization
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -23,8 +30,24 @@ chinese_source: worker-translation
 输入触发信号，指定为标量。使用 **触发类型** 参数指定触发线性模型生成的事件类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 触发类型
+  summary: 触发线性模型生成的信号类型 rising | falling | either | function-call
+  group: ''
+  block_parameter: TriggerType
+  type: 字符向量
+  values: '''rising'' | ''falling'' | ''either'' | ''function-call'''
+  default: '''rising'''
+- name: 采样时间（线性化模型的）
+  summary: 采样时间 0（默认） | 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+```
 
 ### **触发类型** — 触发线性模型生成的信号类型 `rising` | `falling` | `either` | `function-call`
 
@@ -56,7 +79,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 标量 | 向量 |
 | **默认值：** `'0'` |
-
 ## 所属库
 
 Simulink / Model-Wide Utilities

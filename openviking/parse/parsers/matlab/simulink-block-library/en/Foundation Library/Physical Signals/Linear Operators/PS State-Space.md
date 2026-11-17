@@ -14,6 +14,15 @@ language: en
 # PS State-Space
 
 ## Ports
+```yaml
+ports:
+- name: U
+  summary: Input physical signal vector, *u*, untyped physical signal
+  direction: input
+- name: Y
+  summary: Output physical signal vector, *y*, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -25,8 +34,28 @@ Input physical signal.
 ### **Y** — Output physical signal vector, *y*, untyped physical signal
 
 Output physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: A
+  summary: State matrix [0, 1; -1, -2] (default) | scalar | matrix
+  group: ''
+- name: B
+  summary: Input matrix [0, 1] (default) | scalar | vector | matrix
+  group: ''
+- name: C
+  summary: Output matrix [1, 0] (default) | scalar | vector | matrix
+  group: ''
+- name: D
+  summary: Feedthrough, or direct transmission matrix 0 (default) | scalar | vector | matrix
+  group: ''
+- name: E
+  summary: Descriptor matrix [1, 0; 0, 1] (default) | scalar | matrix
+  group: ''
+- name: Initial state vector
+  summary: Initial condition of state vector [0; 0] (default) | scalar | vector | matrix
+  group: ''
+```
 
 ### **A** — State matrix `[0, 1; -1, -2]` (default) | scalar | matrix
 
@@ -61,7 +90,6 @@ have the same dimensions as the state matrix **A**.
 
 Dimensionless vector that represents the initial conditions of the state vector at
 time *t*=0.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Linear Operators

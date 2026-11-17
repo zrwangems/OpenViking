@@ -14,6 +14,21 @@ language: en
 # Dechirp Mixer
 
 ## Ports
+```yaml
+ports:
+- name: RefX
+  summary: Reference signal complex-valued *M*-by-1 vector
+  direction: input
+  data_types: single | double
+- name: X
+  summary: Input signal complex-valued *M*-by-*N* matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Dechirped output signal *M*-by-*N* matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -46,11 +61,12 @@ corresponding column of `X`.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

@@ -14,6 +14,33 @@ language: en
 # Vehicle Path Planner System
 
 ## Ports
+```yaml
+ports:
+- name: Pose
+  summary: Initial vehicle pose three-element row vector
+  direction: input
+- name: Target Pose
+  summary: Target vehicle pose three-element row vector
+  direction: input
+- name: Enable
+  summary: Enable planning logical scalar
+  direction: input
+- name: Obstacles
+  summary: List of obstacles five-column matrix
+  direction: input
+- name: Velocity range
+  summary: Velocity range two-element vector
+  direction: input
+- name: Steering angle range
+  summary: Front steering angle range two-element vector
+  direction: input
+- name: Path
+  summary: Planned vehicle path three-column matrix
+  direction: output
+- name: Exitflag
+  summary: Optimization status integer
+  direction: output
+```
 
 ### Input
 
@@ -144,8 +171,102 @@ follows:
 
 To enable this port, select the **Optimization status**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Length
+  summary: Vehicle length 4.7 (default) | nonnegative scalar
+  group: ''
+  block_parameter: egoLength
+  type: string, character vector
+  default: '"4.7"'
+- name: Width
+  summary: Vehicle width 1.8 (default) | nonnegative scalar
+  group: ''
+  block_parameter: egoWidth
+  type: string, character vector
+  default: '"1.8"'
+- name: Wheelbase
+  summary: Distance between front and rear axles 2.8 (default) | nonnegative scalar
+  group: ''
+  block_parameter: wheelbase
+  type: string, character vector
+  default: '"2.8"'
+- name: Center to rear axle
+  summary: Distance from center of vehicle to rear axle 1.4 (default) | nonnegative scalar
+  group: ''
+  block_parameter: dist2Center
+  type: string, character vector
+  default: '"1.4"'
+- name: Number of obstacles
+  summary: Number of obstacles in environment 0 (default) | nonnegative integer
+  group: ''
+  block_parameter: numObs
+  type: string, character vector
+  default: '"0"'
+- name: Obstacle list
+  summary: Obstacles in environment zeros(1,5) (default) | five-column matrix
+  group: ''
+  block_parameter: obs_ext
+  type: string, character vector
+  default: '"off"'
+  values: '"off" | "on"'
+- name: Minimum distance from ego vehicle to obstacles
+  summary: Minimum safe distance between vehicle and any obstacle 0.1 (default) | positive scalar
+  group: ''
+  block_parameter: minDist
+  type: string, character vector
+  default: '"0.1"'
+- name: Sample time
+  summary: Controller sample time 1 (default) | positive scalar
+  group: ''
+  block_parameter: Ts
+  type: string, character vector
+  default: '"1"'
+- name: Prediction horizon
+  summary: Prediction horizon 20 (default) | positive integer
+  group: ''
+  block_parameter: pPlanning
+  type: string, character vector
+  default: '"20"'
+- name: Velocity range
+  summary: Velocity range [-6.5 6.5] (default) | two-element row vector
+  group: ''
+  block_parameter: v_ext
+  type: string, character vector
+  default: '"off"'
+  values: '"off" | "on"'
+- name: Steering angle range
+  summary: Front steering angle range [-pi/4 pi/4] | two-element row vector
+  group: ''
+  block_parameter: steer_ext
+  type: string, character vector
+  default: '"off"'
+  values: '"off" | "on"'
+- name: Use suboptimal solution
+  summary: Apply suboptimal solution after specified number of iterations off (default) | on
+  group: ''
+  block_parameter: suboptimal
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Maximum iteration number
+  summary: Maximum optimization iterations 200 (default) | positive integer
+  group: ''
+  block_parameter: maxIter
+  type: string, character vector
+  default: '"200"'
+- name: Optimization status
+  summary: Add optimization status output port off (default) | on
+  group: ''
+  block_parameter: output_exitflag
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Create VPP subsystem
+  summary: Create custom planner button
+  group: ''
+```
 
 #### Parameters Tab
 
@@ -418,7 +539,6 @@ block.
 
 Generate a custom VPP subsystem, which you can modify for your application. The
 configuration data for the custom controller is exported to the MATLAB® workspace as a structure.
-
 ## Libraries
 
 Model Predictive Control Toolbox

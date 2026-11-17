@@ -14,6 +14,17 @@ language: en
 # Linear Second-Order Actuator
 
 ## Ports
+```yaml
+ports:
+- name: Ademand
+  summary: Demanded actuator position scalar | array
+  direction: input
+  data_types: double
+- name: Aactual
+  summary: Actual actuator position scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -29,8 +40,38 @@ Demanded actuator position, specified as a scalar or array.
 Actual actuator position, returned as a scalar or array.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Natural frequency
+  summary: Natural frequency 1 (default) | scalar
+  group: ''
+  block_parameter: wn_fin
+  type: character vector
+  values: scalar | double
+  default: '''1'''
+- name: Damping ratio
+  summary: Damping ratio 0.3 (default) | scalar
+  group: ''
+  block_parameter: z_fin
+  type: character vector
+  values: scalar | double
+  default: '''0.3'''
+- name: Initial position
+  summary: Initial position 0 (default) | scalar
+  group: ''
+  block_parameter: fin_act_0
+  type: character vector
+  values: scalar | double
+  default: '''0'''
+- name: Initial velocity
+  summary: Initial velocity 0 (default) | scalar
+  group: ''
+  block_parameter: fin_act_vel
+  type: character vector
+  values: scalar | double
+  default: '''0'''
+```
 
 ### **Natural frequency** — Natural frequency `1` (default) | scalar
 
@@ -88,7 +129,6 @@ velocity must be the same as the
 | **Type**: character vector |
 | **Values**: scalar | double |
 | **Default**: `'0'` |
-
 ## Libraries
 
 Aerospace Blockset / Actuators

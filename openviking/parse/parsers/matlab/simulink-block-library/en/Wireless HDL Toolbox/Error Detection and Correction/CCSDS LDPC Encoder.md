@@ -14,6 +14,29 @@ language: en
 # CCSDS LDPC Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data bits scalar | column vector
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Encoded output data bits scalar | vector
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: Block ready indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -77,11 +100,12 @@ accept the start of the next frame. If the block receives an input
 the new data.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

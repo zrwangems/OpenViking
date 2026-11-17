@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Track-To-Track Fuser
 
 ## 端口
+```yaml
+ports:
+- name: Tracks
+  summary: 航迹列表 包含 MATLAB® 结构的 Simulink 总线
+  direction: input
+- name: Prediction Time
+  summary: 航迹更新时间 实数标量
+  direction: input
+- name: Source Configurations
+  summary: 源配置列表 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: State Parameters
+  summary: 航迹状态参数 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Confirmed Tracks
+  summary: 确认航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Tentative Tracks
+  summary: 暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: All Tracks
+  summary: 确认航迹和暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Info
+  summary: 用于分析航迹更新的附加信息 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -166,8 +193,109 @@ chinese_source: worker-translation
 
 要启用此端口，请在 **Port Setting** 选项卡上选择
 **启用信息输出**。
-
 ## 参数
+```yaml
+parameters:
+- name: Fuser Index
+  summary: 跟踪融合器的唯一索引 1（默认）| 正整数
+  group: ''
+- name: Assignment algorithm name
+  summary: 关联算法 MatchPairs（默认）| Munkres | Jonker-Volgenant | Auction | Custom
+  group: ''
+- name: Name of 'Custom' assignment function
+  summary: '''Custom'' 关联函数的名称 函数名'
+  group: ''
+- name: Threshold for assigning source to central tracks
+  summary: 将源航迹关联到中心航迹的阈值 [1 Inf]*30.0（默认）| 正标量 | 1×2 正数值向量
+  group: ''
+- name: Maximum number of central tracks
+  summary: 中心航迹的最大数量 100（默认）| 正整数
+  group: ''
+- name: Maximum number of source configurations
+  summary: 源配置的最大数量 20（默认）| 正整数
+  group: ''
+- name: 源配置
+  summary: 源系统的配置 struct('SourceIndex',1)（默认）| 源配置结构体数组
+  group: ''
+- name: 随时间更新源配置
+  summary: 随时间更新源配置 off（默认）| on
+  group: ''
+- name: 航迹状态参数
+  summary: 航迹状态参考系的参数 结构体 | 结构体数组
+  group: ''
+- name: 随时间更新航迹状态参数
+  summary: 随时间更新航迹状态参数 off（默认）| on
+  group: ''
+- name: 仿真方式
+  summary: 要运行的仿真类型 解释执行（默认）| 代码生成
+  group: ''
+- name: Confirmation threshold [M N]
+  summary: 中心航迹确认阈值 [2 3]（默认）| 正整数 | 正整数的实值 1×2 向量
+  group: ''
+- name: Deletion threshold [P Q]
+  summary: 中心航迹删除阈值 [5 5]（默认）| 正整数 | 正整数的实值 1×2 向量
+  group: ''
+- name: Central track state size
+  summary: 中心航迹状态大小 6（默认）| 正整数
+  group: ''
+- name: Central track object attributes
+  summary: 中心航迹对象属性 struct（默认）| 结构体
+  group: ''
+- name: State transition function
+  summary: 状态转移函数 constvel（默认）| 函数名
+  group: ''
+- name: State transition Jacobian function
+  summary: 状态转移雅可比函数函数名称
+  group: ''
+- name: Process noise matrix
+  summary: 过程噪声矩阵 eye(3)（默认）| 正实标量 | 正定矩阵
+  group: ''
+- name: Enable additive process noise
+  summary: 启用加性过程噪声 off（默认）| on
+  group: ''
+- name: State fusion function
+  summary: 状态融合函数 Cross（默认）| Intersection | Custom
+  group: ''
+- name: Name of 'Custom' fusion function
+  summary: 自定义关联函数的名称 函数名
+  group: ''
+- name: State fusion parameters source
+  summary: 状态融合参数源 Auto（默认）| Property
+  group: ''
+- name: Cross covariance factor
+  summary: 互协方差因子 0.4（默认）| (0,1) 范围内的标量
+  group: ''
+- name: Optimize covariance based on
+  summary: 交集算法准则 det（默认）| trace
+  group: ''
+- name: State fusion custom algorithm parameters
+  summary: 状态融合自定义算法参数 MATLAB 变量
+  group: ''
+- name: Fuse only confirmed source tracks
+  summary: 仅融合已确认的源航迹 on（默认）| off
+  group: ''
+- name: Fuse coasted source tracks
+  summary: 仅融合已确认的源航迹 off（默认）| on
+  group: ''
+- name: Prediction time source
+  summary: 预测时间源 Auto（默认）| Input port
+  group: ''
+- name: Enable tentative tracks output
+  summary: 启用暂定航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable all tracks output
+  summary: 启用所有航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable information output
+  summary: 启用分析信息的输出端口 off（默认）| on
+  group: ''
+- name: Source of output bus name
+  summary: 输出航迹总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Source of output info bus name
+  summary: 输出信息总线名称的来源 Auto（默认）| Property
+  group: ''
+```
 
 #### Fuser Management
 
@@ -449,7 +577,6 @@ chinese_source: worker-translation
 
 - `Auto` — 模块自动创建输出信息总线名称。
 - `Property` — 通过 **Fuser info bus name** 参数指定输出信息总线名称。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

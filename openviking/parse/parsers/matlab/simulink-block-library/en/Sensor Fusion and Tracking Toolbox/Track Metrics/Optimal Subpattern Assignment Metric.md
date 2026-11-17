@@ -14,6 +14,30 @@ language: en
 # Optimal Subpattern Assignment Metric
 
 ## Ports
+```yaml
+ports:
+- name: Tracks
+  summary: Track list Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Truths
+  summary: Truth list Simulink bus containing MATLAB structure
+  direction: input
+- name: Assignments
+  summary: Known assignment *K*-by-2 matrix of nonnegative integers
+  direction: input
+- name: OSPA Metric
+  summary: OSPA metric nonnegative real scalar
+  direction: output
+- name: Localization Error
+  summary: Localization error component nonnegative real scalar
+  direction: output
+- name: Cardinality Error
+  summary: Cardinality error component nonnegative real scalar
+  direction: output
+- name: Labeling Error
+  summary: Labeling error component nonnegative real scalar
+  direction: output
+```
 
 ### Input
 
@@ -180,8 +204,73 @@ Labeling error component, returned as a nonnegative real scalar.
 
 To enable this port, on the **Port Setting** tab, select
 **Labeling error**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Metric
+  summary: Metric option OPSA (default) | OSPA(2)
+  group: ''
+- name: Cutoff distance
+  summary: Threshold for cutoff distance between track and truth 30 (default) | real positive scalar
+  group: ''
+- name: Order
+  summary: Order of OSPA metric 2 (default) | positive integer
+  group: ''
+- name: Distance type
+  summary: Distance type posnees (default) | velnees | posabserr | velabserr | custom
+  group: ''
+- name: Custom distance function
+  summary: Custom distance function function handle
+  group: ''
+- name: Motion model
+  summary: Desired platform motion model constvel (default) | constacc | constturn | singer
+  group: ''
+- name: Labeling error
+  summary: Penalty for incorrect assignment 0 (default) | nonnegative scalar
+  group: ''
+- name: Window length
+  summary: Sliding window length for OSPA(2) metric 100 (default) | positive integer
+  group: ''
+- name: Window sum order (q)
+  summary: Order of weighted sum for track and truth history 2 (default) | positive scalar
+  group: ''
+- name: Window weights
+  summary: Options for window weights auto (default) | custom
+  group: ''
+- name: Window weight exponent (r)
+  summary: Exponent for automatic weight calculation 1 (default) | nonnegative scalar
+  group: ''
+- name: Custom window weights
+  summary: Custom weights in time window *N*-element of vector of nonnegative values
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code Generation
+  group: ''
+- name: Assignments
+  summary: Enable assignment input off (default) | on
+  group: ''
+- name: Localization error
+  summary: Enable localization error component output off (default) | on
+  group: ''
+- name: Cardinality error
+  summary: Enable cardinality error component output off (default) | on
+  group: ''
+- name: Labeling error
+  summary: Enable labeling error component output off (default) | on
+  group: ''
+- name: Track bus
+  summary: Track bus selection objectTrack (default) | custom
+  group: ''
+- name: Truth bus
+  summary: Truth bus selection Platform (default) | Actor | custom
+  group: ''
+- name: Track extractor function
+  summary: Track extractor function function handle
+  group: ''
+- name: Truth extractor function
+  summary: Truth extractor function function handle
+  group: ''
+```
 
 #### Properties
 
@@ -470,7 +559,6 @@ where
 
 To enable this property, set the **Truth bus** parameter to
 `custom`.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Track Metrics

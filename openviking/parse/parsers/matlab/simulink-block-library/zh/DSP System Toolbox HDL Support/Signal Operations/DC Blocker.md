@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # DC Blocker
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output
+  summary: 去除直流分量后的输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -36,8 +47,28 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Algorithm for estimating DC offset
+  summary: 直流偏移估计算法 IIR（默认）| FIR | CIC | Subtract mean
+  group: ''
+- name: Normalized bandwidth of lowpass IIR or CIC filter
+  summary: 归一化带宽 0.001（默认）| 范围 (0 1) 内的实标量
+  group: ''
+- name: Order of lowpass IIR elliptic filter
+  summary: 低通 IIR 椭圆滤波器的阶数 6（默认）| 大于 3 的整数
+  group: ''
+- name: Number of past input samples for FIR algorithm
+  summary: FIR 算法的过去输入样本数 50（默认）| 正整数
+  group: ''
+- name: View Filter Response
+  summary: 可视化频率响应 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Algorithm for estimating DC offset** — 直流偏移估计算法 `IIR`（默认）| `FIR` | `CIC` | `Subtract mean`
 
@@ -90,7 +121,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，后续仿真将重用该 C 代码。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations Communications Toolbox / Comm Filters Communications Toolbox / RF Impairments Correction DSP System Toolbox HDL Support / Signal Operations

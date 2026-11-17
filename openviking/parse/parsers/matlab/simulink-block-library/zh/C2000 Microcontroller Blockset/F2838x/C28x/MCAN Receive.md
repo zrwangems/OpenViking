@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # MCAN Receive
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: CAN 消息 向量 | 标量
+  direction: output
+  data_types: CAN Msg
+- name: Data
+  summary: 消息数据 向量 | 标量
+  direction: output
+  data_types: uint8
+- name: Status
+  summary: 接收消息的状态 标量
+  direction: output
+  data_types: uint8
+- name: CAN identifier(ID)
+  summary: CAN 消息标识符 标量
+  direction: output
+  data_types: uint32
+- name: Length(LEN)
+  summary: CAN 消息长度 标量
+  direction: output
+  data_types: uint8
+- name: Remote transmission request(RTR)
+  summary: 远程帧状态 标量
+  direction: output
+  data_types: uint8
+- name: Bit rate switch(BRS)
+  summary: 位速率切换状态 标量
+  direction: output
+  data_types: uint8
+- name: Extended identifier(XTD)
+  summary: 扩展或标准标识符 标量
+  direction: output
+  data_types: uint8
+- name: Frame data format(FDF)
+  summary: CAN 帧数据格式 标量
+  direction: output
+  data_types: uint8
+```
 
 ### 输出
 
@@ -119,8 +158,28 @@ MCAN Receive 模块输出接收到的 CAN 消息（数据和报头）作为 Simu
 要启用此端口，请将 **Output type** 设置为 `Unpacked`。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: MCAN module
+  summary: CAN 模块 A（默认）| B
+  group: ''
+- name: Read source
+  summary: CAN 接收消息源 Buffers（默认）| FIFO 0 | FIFO 1
+  group: ''
+- name: Buffer number (0-63)
+  summary: 缓冲区编号 0（默认）| 1 | 2...
+  group: ''
+- name: Output Type
+  summary: 消息输出类型 Packed（默认）| Unpacked
+  group: ''
+- name: Output Status
+  summary: 启用输出状态 off（默认）| on
+  group: ''
+- name: Sample Time
+  summary: 读取消息的时间间隔 0.1（默认）| -1 | 非负实数值
+  group: ''
+```
 
 ### **MCAN module** — CAN 模块 `A`（默认）| `B`
 
@@ -155,7 +214,6 @@ MCAN Receive 模块的输出类型为 `Packed` 或 `Unpacked`。
 ### **Sample Time** — 读取消息的时间间隔 0.1（默认）| -1 | 非负实数值
 
 指定该模块接收消息的频率，以秒为单位。当您将此参数指定为 `-1` 时，Simulink 将根据模型中的模块上下文确定该模块的最佳采样时间。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F28p65x

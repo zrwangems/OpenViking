@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Battery Temperature Monitoring
 
 ## 端口
+```yaml
+ports:
+- name: CellTemperature
+  summary: 电芯温度，K 标量 | 向量
+  direction: input
+- name: UndertemperatureError
+  summary: 欠温错误指示，无单位 0 | 1
+  direction: output
+- name: OvertemperatureError
+  summary: 过温错误指示，无单位 0 | 1
+  direction: output
+```
 
 ### 输入
 
@@ -32,8 +44,37 @@ chinese_source: worker-translation
 ### **OvertemperatureError** — 过温错误指示，无单位 `0` | `1`
 
 过温错误的指示。如果此输出等于 `1`，则电池处于过温状态。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify input as [Min,Max]
+  summary: 将输入指定为最小值和最大值的选项 off（默认）| on
+  group: ''
+- name: Undertemperature limit
+  summary: 欠温限值 270（默认）| 非负标量
+  group: ''
+- name: Overtemperature limit
+  summary: 过温限值 320（默认）| 非负标量
+  group: ''
+- name: Qualification time undertemperature (s)
+  summary: 欠温确认时间 2（默认）| 正标量
+  group: ''
+- name: Disqualification time undertemperature (s)
+  summary: 欠温解除时间 0（默认）| 非负标量
+  group: ''
+- name: Qualification time overtemperature (s)
+  summary: 过温确认时间 2（默认）| 正标量
+  group: ''
+- name: Disqualification time overtemperature (s)
+  summary: 过温解除时间 0（默认）| 非负标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正整数
+  group: ''
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: ''
+```
 
 ### **Specify input as [Min,Max]** — 将输入指定为最小值和最大值的选项 `off`（默认）| `on`
 
@@ -86,7 +127,6 @@ chinese_source: worker-translation
 - `<data type expression>` — 模块算法将所有输入和参数转换为指定的数据类型对象。
 
 单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Protection

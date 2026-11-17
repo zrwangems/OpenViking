@@ -15,6 +15,35 @@ chinese_source: worker-translation
 # Variable Integer Delay
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 数据输入信号 标量 | 向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: d
+  summary: 延迟长度 标量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Enable
+  summary: 外部使能信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: External reset
+  summary: 外部复位信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: x0
+  summary: 初始条件 标量 | 向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -54,8 +83,94 @@ chinese_source: worker-translation
 输出信号，即输入信号延迟由 **Delay length** 参数指定的时间长度。输出信号的初始值取决于多种条件。请参阅初始模块输出。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Delay length
+  summary: 延迟长度 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: DelayLengthUpperLimit
+  type: character vector
+  values: scalar
+  default: '''100'''
+- name: Initial condition
+  summary: 初始条件 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: InitialCondition
+  type: character vector
+  values: scalar
+  default: '''0.0'''
+- name: Input processing
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: 主要
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Use circular buffer for state
+  summary: 用于存储状态的循环缓冲区 off（默认）| on
+  group: 主要
+  block_parameter: UseCircularBuffer
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Prevent direct feedthrough
+  summary: 防止直接馈通 off（默认）| on
+  group: 主要
+  block_parameter: PreventDirectFeedthrough
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Remove delay length check in generated code
+  summary: 移除延迟长度超出范围检查 off（默认）| on
+  group: 主要
+  block_parameter: RemoveDelayLengthCheckInGeneratedCode
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Diagnostic for delay length
+  summary: 延迟长度的诊断检查 None（默认）| Warning | Error
+  group: 主要
+  block_parameter: DiagnosticForDelayLength
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Show enable port
+  summary: 创建使能端口 off（默认）| on
+  group: 主要
+  block_parameter: ShowEnablePort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: External reset
+  summary: 外部状态复位 None（默认）| Rising | Falling | Either | Level | Level hold
+  group: 主要
+  block_parameter: ExternalReset
+  type: character vector
+  values: '''None'' | ''Rising'' | ''Falling'' | ''Either'' | ''Level'' | ''Level hold'''
+  default: '''None'''
+- name: Sample time (-1 for inherited)
+  summary: 采样时间命中之间的离散间隔 -1（默认）| scalar
+  group: 主要
+  block_parameter: SampleTime
+  type: character vector
+  values: real scalar
+  default: '''-1'''
+- name: State name
+  summary: 模块状态的唯一名称 ''（默认）| 字母数字字符串
+  group: 状态属性
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: 要求状态名称解析为信号对象 off（默认）| on
+  group: 状态属性
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -320,7 +435,6 @@ Simulink® 使用舍入到最近操作和饱和，将 **Initial condition** 的�
 | **类型**：character vector |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Discrete

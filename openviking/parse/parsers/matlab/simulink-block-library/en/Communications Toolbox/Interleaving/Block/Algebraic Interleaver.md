@@ -14,10 +14,15 @@ language: en
 # Algebraic Interleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Type**
 :   The type of permutation table that the block
@@ -45,7 +50,6 @@ Not documented in R2025b.
     the finite field GF(N+1). This field appears only
     if **Type** is set to
     `Welch-Costas`.
-
 ## Libraries
 
 Not documented in R2025b.

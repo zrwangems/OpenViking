@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Function Caller
 
 ## 端口
+```yaml
+ports:
+- name: Input argument
+  summary: 输入参数的输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Output argument
+  summary: 输出参数的输出信号或消息 标量 | 向量 | 矩阵 | 消息
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -38,8 +51,52 @@ chinese_source: worker-translation
 例如，`y = myfunction(u)` 在 Function Caller 模块上创建一个输出端口（`y`）。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Function prototype
+  summary: 指定函数原型 y=f(u)（默认）| 字符向量 | 字符串
+  group: ''
+  block_parameter: FunctionPrototype
+  type: character vector
+  values: '''y=f(u)'' | *function prototype*'
+  default: '''y=f(u)'''
+- name: Function name
+  summary: 限定函数名称 f（默认）| 字符向量 | 字符串
+  group: ''
+  block_parameter: ScopedFunctionName
+  type: character vector
+  values: '''f'' | ''Client.f'' | *function name*'
+  default: '''f'''
+- name: Input argument specifications
+  summary: 指定输入参数数据类型、维度和复数性 <Enter example>（默认）| MATLAB 表达式
+  group: ''
+  block_parameter: InputArgumentSpecifications
+  type: character vector
+  values: ''''' | *MATLAB expression*'
+  default: ''''''
+- name: Output argument specifications
+  summary: 指定输出参数数据类型、维度和复数性 <Enter example>（默认）| MATLAB 表达式
+  group: ''
+  block_parameter: OutputArgumentSpecifications
+  type: character vector
+  values: ''''' | *MATLAB expression*'
+  default: ''''''
+- name: Sample time
+  summary: 函数调用之间的时间间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: scalar | vector | *sample time*
+  default: '''-1'''
+- name: Execute function call asynchronously
+  summary: 异步执行函数调用的选项 off（默认）| on
+  group: ''
+  block_parameter: AsynchronousCaller
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Function prototype** — 指定函数原型 `y=f(u)`（默认）| 字符向量 | 字符串
 
@@ -157,7 +214,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / User-Defined Functions

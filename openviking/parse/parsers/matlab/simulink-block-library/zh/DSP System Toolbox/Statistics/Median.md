@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Median
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 数据输入 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 沿指定维度的中值 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -44,8 +55,43 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Sort algorithm
+  summary: 排序方法 Quick sort（默认）| Insertion sort
+  group: 主选项卡
+- name: Find the median value over
+  summary: 计算中值所沿的维度 Each column（默认）| Entire input | Each row | Specified dimension
+  group: 主选项卡
+- name: Dimension
+  summary: 自定义维度 1（默认）| 标量
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入操作的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Same as input（默认）| fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Same as product output（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 输出最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 输出最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -141,7 +187,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 off（默认）| on
 
 选中此参数可防止定点工具覆盖您在模块上指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Statistics

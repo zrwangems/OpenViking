@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pressure Transducer
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 压力测量 气体 | 液压 | 热液体 | 湿空气 | 两相流体 | 等温液体
+  direction: unspecified
+- name: +
+  summary: 正极端子 电气
+  direction: unspecified
+- name: '-'
+  summary: 负极端子 电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -29,8 +41,34 @@ chinese_source: worker-translation
 ### **-** — 负极端子 电气
 
 与负极端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Fluid port type
+  summary: 流体端口类型 Gas（默认）| Hydraulic | Thermal Liquid | Moist Air | Two-Phase Fluid | Isothermal Liquid
+  group: ''
+- name: Pressure range
+  summary: 最大压力 1e6 Pa（默认）| 正标量
+  group: ''
+- name: Operation mode
+  summary: 压力测量的参考点 Absolute（默认）| Gauge | Sealed-Gauge
+  group: ''
+- name: Reference pressure
+  summary: 参考压力 101325 Pa（默认）| 正标量
+  group: ''
+- name: Full-scale deflection
+  summary: 满量程偏转时的输出电压 5 V（默认）| 正标量
+  group: ''
+- name: Output resistance
+  summary: 传感器输出电阻 200 Ohm（默认）| 非负标量
+  group: ''
+- name: Dynamics
+  summary: 传感器动态特性选项 No dynamics — Suitable for HIL（默认）| Model transducer bandwidth
+  group: ''
+- name: Bandwidth
+  summary: 带宽 5 kHz（默认）| 正标量
+  group: ''
+```
 
 ### **Fluid port type** — 流体端口类型 `Gas`（默认）| `Hydraulic` | `Thermal Liquid` | `Moist Air` | `Two-Phase Fluid` | `Isothermal Liquid`
 
@@ -90,7 +128,6 @@ Hydraulics 库将在未来版本中移除。请改用 Isothermal Liquid 库，�
 #### 依赖关系
 
 要启用此参数，请将 **Dynamics** 设置为 `Model transducer bandwidth`。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

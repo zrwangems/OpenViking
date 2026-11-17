@@ -14,6 +14,37 @@ language: en
 # CCSDS RS Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input codeword data integer in the range from 0 to 255
+  direction: input
+  data_types: double | single | uint8 | fixdt(0,8,0)
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Decoded message data integer in the range from 0 to 255
+  direction: output
+  data_types: double | single | uint8 | fixdt(0,8,0)
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: err
+  summary: Indication of corruption in output data Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: nextFrame
+  summary: Block ready indicator Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: numCorrErr
+  summary: Number of corrected errors nonnegative scalar
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -152,8 +183,19 @@ To enable this port, select the **Output number of corrected symbol
 errors** parameter.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Message length (k)
+  summary: Length of message 223 (default) | 239
+  group: ''
+- name: Interleaving depth (I)
+  summary: Depth of interleaving 1 (default) | 2 | 3 | 4 | 5 | 8
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: Number of corrected symbol errors off (default) | on
+  group: ''
+```
 
 ### **Message length (k)** — Length of message `223` (default) | `239`
 
@@ -167,7 +209,6 @@ Select the interleaving depth.
 
 Select this parameter to enable the **numCorrErr** output port.
 This port outputs the number of corrected errors.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

@@ -14,6 +14,21 @@ language: en
 # Flow Rate Source (IL)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mass flow rate control signal, kg/s physical signal
+  direction: input
+- name: V
+  summary: Volumetric flow rate control signal, m^3/s physical signal
+  direction: input
+- name: A
+  summary: Source inlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Source outlet isothermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -47,8 +62,22 @@ from port **A** to port **B**.
 
 Isothermal liquid conserving port. A positive flow rate causes the fluid to flow
 from port **A** to port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Select whether flow rate can change during simulation Controlled (default) | Constant
+  group: ''
+- name: Flow rate type
+  summary: Select whether source generates mass or volumetric flow rate Mass flow rate (default) | Volumetric flow rate
+  group: ''
+- name: Mass flow rate
+  summary: Constant mass flow rate through the source 0 kg/s (default) | scalar
+  group: ''
+- name: Volumetric flow rate
+  summary: Constant volumetric flow rate through the source 0 m^3/s (default) | scalar
+  group: ''
+```
 
 ### **Source type** — Select whether flow rate can change during simulation `Controlled` (default) | `Constant`
 
@@ -89,7 +118,6 @@ Desired volumetric flow rate of fluid through the source.
 To enable this parameter, set **Source type** to
 `Constant` and **Flow rate type** to
 `Volumetric flow rate`.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Sources

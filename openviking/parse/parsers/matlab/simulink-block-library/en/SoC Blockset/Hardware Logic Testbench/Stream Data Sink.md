@@ -14,6 +14,21 @@ language: en
 # Stream Data Sink
 
 ## Ports
+```yaml
+ports:
+- name: rdData
+  summary: Input stream data scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rdCtrlIn
+  summary: Input control bus bus
+  direction: input
+  data_types: StreamM2SBusObj
+- name: rdCtrlOut
+  summary: Output control bus bus
+  direction: output
+  data_types: StreamS2MBusObj
+```
 
 ### Input
 
@@ -42,8 +57,16 @@ Output control bus to the data source, indicating that the block is ready to
 accept stream data. This control bus comprises a ready signal.
 
 **Data Types:** `StreamS2MBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Save data in workspace
+  summary: Save data in workspace off (default) | on
+  group: ''
+- name: Variable name
+  summary: Workspace variable name simOut (default) | any MATLAB-supported variable name
+  group: ''
+```
 
 ### **Save data in workspace** — Save data in workspace `off` (default) | `on`
 
@@ -58,7 +81,6 @@ can be any MATLAB-supported variable name.
 
 To enable this parameter, select the **Save data in workspace**
 parameter.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Testbench

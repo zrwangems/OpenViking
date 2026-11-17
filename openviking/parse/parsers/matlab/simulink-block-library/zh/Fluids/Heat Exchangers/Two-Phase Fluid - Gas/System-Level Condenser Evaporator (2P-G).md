@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # System-Level Condenser Evaporator (2P-G)
 
 ## 端口
+```yaml
+ports:
+- name: Q1
+  summary: 传递给两相流体的传热速率，W，物理信号
+  direction: output
+- name: Q2
+  summary: 传递给气体的传热速率，W，物理信号
+  direction: output
+- name: A1
+  summary: 两相流体端口，两相流体
+  direction: conserving
+- name: B1
+  summary: 两相流体端口，两相流体
+  direction: conserving
+- name: A2
+  summary: 气体端口，气体
+  direction: conserving
+- name: B2
+  summary: 气体端口，气体
+  direction: conserving
+```
 
 ### 输出
 
@@ -42,8 +63,172 @@ chinese_source: worker-translation
 ### **B2** — 气体端口，气体
 
 与气体相关的入口或出口端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement at nominal operating conditions
+  summary: 流路对齐方式 Counter flow - Two-Phase Fluid 1 flows from A to B, Gas 2 flows from B to A（默认）| Parallel flow - Both fluids
+    flow from A to B | Cross flow - Both fluids flow from A to B
+  group: 配置
+- name: Enable wall thermal mass
+  summary: 是否启用热质量对传热表面的影响 off（默认）| on
+  group: 配置
+- name: Wall mass
+  summary: 传热表面的质量 1 kg（默认）| 正标量
+  group: 配置
+- name: Wall specific heat
+  summary: 传热表面的比热 490 J/(K*kg)（默认）| 正标量
+  group: 配置
+- name: Initialize wall temperature to nominal operating conditions
+  summary: 壁面温度初始化选项 on（默认）| off
+  group: 配置
+- name: Initial wall temperature
+  summary: 壁面的初始温度 293.15 K（默认）| 正标量或二元素向量
+  group: 配置
+- name: Cross-sectional area at port A1
+  summary: 端口 A1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B1
+  summary: 端口 B1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A2
+  summary: 端口 A2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B2
+  summary: 端口 B2 处垂直于流动方向的面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Nominal operating condition
+  summary: 选择标称工况对应冷凝器还是蒸发器 Condenser - heat transfer from Two-Phase Fluid 1 to Gas 2（默认）| Evaporator - heat transfer from
+    Gas 2 to Two-Phase Fluid 1
+  group: 两相流体 1
+- name: Nominal mass flow rate
+  summary: 标称工况下两相端口之间的质量流量 0.001 kg/s（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal pressure drop
+  summary: 标称工况下两相端口之间的压降 0.01 MPa（默认）| 正标量
+  group: 两相流体 1
+- name: Pressure specification
+  summary: 选择压力指定方法 Inlet pressure（默认）| Saturation pressure at specified condensing temperature | Saturation pressure at specified
+    evaporating temperature
+  group: 两相流体 1
+- name: Nominal inlet pressure
+  summary: 两相流体侧入口处的压力 1 MPa（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal condensing temperature
+  summary: 使用标称冷凝温度指定压力 313.15 K（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal evaporating temperature
+  summary: 使用标称蒸发温度指定压力 243.15 K（默认）| 正标量
+  group: 两相流体 1
+- name: Inlet condition specification
+  summary: 选择用于描述两相流体入口条件的量 Specific enthalpy（默认）| Temperature | Vapor quality
+  group: 两相流体 1
+- name: Nominal inlet specific enthalpy
+  summary: 两相流体侧入口处的比焓 440 kJ/kg（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal inlet temperature
+  summary: 两相流体侧入口处的温度 313.15 K（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal inlet vapor quality
+  summary: 两相流体侧入口处的蒸气干度 1（默认）| 正标量
+  group: 两相流体 1
+- name: Heat transfer capacity specification
+  summary: 如何指定两相流体的传热能力 Rate of heat transfer（默认）| Outlet condition
+  group: 两相流体 1
+- name: Nominal rate of heat transfer
+  summary: 传热速率 0.1 kW（默认）| 正标量
+  group: 两相流体 1
+- name: Outlet condition specification
+  summary: 选择用于出口条件指定的量 Specific enthalpy（默认）| Subcooling | Superheating | Vapor quality
+  group: 两相流体 1
+- name: Nominal outlet specific enthalpy
+  summary: 两相流体侧出口处的比焓 250 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Nominal subcooling
+  summary: 两相流体侧出口处低于液体饱和温度的温度差 5 deltaK（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal superheating
+  summary: 两相流体侧出口处高于蒸气饱和温度的温度差 5 deltaK（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal outlet vapor quality
+  summary: 两相流体侧出口处的蒸气质量分数 0（默认）| [0,1] 范围内的标量
+  group: 两相流体 1
+- name: Two-phase fluid volume
+  summary: 两相流体的总体积 0.001 m^3（默认）| 正标量
+  group: 两相流体 1
+- name: Initialize two-phase fluid to nominal operating conditions
+  summary: 两相流体初始化选项 on（默认）| off
+  group: 两相流体 1
+- name: 初始流体能量规格
+  summary: 两相流体初始状态 比焓（默认）| 温度 | 蒸气干度 | 蒸气空隙率 | 比内能
+  group: 两相流体 1
+- name: 初始两相流体压力
+  summary: 仿真开始时的流体压力 0.101325 MPa（默认）| 正标量
+  group: 两相流体 1
+- name: 初始两相流体比焓
+  summary: 仿真开始时的单位质量焓 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: 初始两相流体温度
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: 初始两相流体蒸气干度
+  summary: 仿真开始时的蒸气质量分数 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: 两相流体 1
+- name: 初始两相流体蒸气空隙率
+  summary: 仿真开始时的蒸气体积分数 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: 两相流体 1
+- name: 初始两相流体比内能
+  summary: 仿真开始时的单位质量内能 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: 额定质量流量
+  summary: 额定工况下气体端口之间的质量流量 0.1 kg/s（默认）| 正标量
+  group: 气体 2
+- name: 额定压降
+  summary: 额定工况下气体端口之间的压降 0.01 MPa（默认）| 正标量
+  group: 气体 2
+- name: 额定入口压力
+  summary: 气体侧入口处的压力 0.101325 MPa（默认）| 正标量
+  group: 气体 2
+- name: 额定入口温度
+  summary: 气体侧入口处的温度 293.15 K（默认）| 正标量
+  group: 气体 2
+- name: 气体体积
+  summary: 热交换器中气体的总体积 0.1 m^3（默认）| 正标量
+  group: 气体 2
+- name: 将气体初始化为额定工况
+  summary: 气体初始化选项 on（默认）| off
+  group: 气体 2
+- name: 初始气体压力
+  summary: 仿真开始时的气体压力 0.101325 MPa（默认）| 正标量
+  group: 气体 2
+- name: 初始气体温度
+  summary: 仿真开始时的气体温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: 气体 2
+- name: 两相流体液相 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中过冷液体的关联系数 0.023（默认）| 正标量
+  group: 关联系数
+- name: 两相流体混合物 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中液-气混合物的关联系数 0.005（默认）| 正标量
+  group: 关联系数
+- name: 两相流体蒸气 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 两相流体中过热蒸气的关联系数 0.023（默认）| 正标量
+  group: 关联系数
+- name: 两相流体 Nu = a\*Re^b\*Pr^c 中的 b
+  summary: 两相流体关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: 关联系数
+- name: 两相流体 Nu = a\*Re^b\*Pr^c 中的 c
+  summary: 两相流体关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: 关联系数
+- name: 气体 Nu = a\*Re^b\*Pr^c 中的 a
+  summary: 气体的关联系数 0.005（默认）| 正标量
+  group: 关联系数
+- name: 气体 Nu = a\*Re^b\*Pr^c 中的 b
+  summary: 气体关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: 关联系数
+- name: 气体 Nu = a\*Re^b\*Pr^c 中的 c
+  summary: 气体关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: 关联系数
+```
 
 ### 配置
 
@@ -407,7 +592,6 @@ chinese_source: worker-translation
 ### **气体 Nu = a\*Re^b\*Pr^c 中的 c** — 气体关联式中的普朗特数指数 `0.33`（默认）| 正标量
 
 气体的努塞尔数作为雷诺数和普朗特数的函数关联式中的普朗特数指数。默认值基于 Colburn 方程。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Two-Phase Fluid - Gas

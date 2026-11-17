@@ -14,6 +14,13 @@ language: en
 # TCP/IP Send
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data values to send vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### Input
 
@@ -24,8 +31,53 @@ matrix, or array. The array size of this data must not change during simulation.
 the parameters for this block before you send data.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## Parameters
+```yaml
+parameters:
+- name: Remote address
+  summary: Remote host name or address remote host name or IP address
+  group: ''
+  block_parameter: Host
+  type: character vector, string
+- name: Port
+  summary: Remote host port 80 (default) | remote host port
+  group: ''
+  block_parameter: Port
+  type: character vector, string
+  values: 1 to 65,535
+  default: '''80'''
+- name: Verify address and port connectivity
+  summary: Remote machine connection verification button
+  group: ''
+- name: Byte order
+  summary: Sequential order of bytes big-endian (default) | little-endian
+  group: ''
+  block_parameter: ByteOrder
+  type: character vector, string
+  values: '''little-endian'' | ''big-endian'''
+  default: '''big-endian'''
+- name: Enable blocking mode
+  summary: Simulation waits while sending data on (default) | off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Timeout
+  summary: Allowed time to complete operations 10 (default) | positive scalar
+  group: ''
+  block_parameter: Timeout
+  type: character vector, string
+  values: positive scalar
+  default: '''10'''
+- name: Transfer Delay
+  summary: Enables delayed acknowledgment on (default) | off
+  group: ''
+  block_parameter: TransferDelay
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Remote address** — Remote host name or address remote host name or IP address
 
@@ -134,7 +186,6 @@ between enabling or disabling the transfer delay is negligible.
 | **Type:** character vector, string |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Instrument Control Toolbox

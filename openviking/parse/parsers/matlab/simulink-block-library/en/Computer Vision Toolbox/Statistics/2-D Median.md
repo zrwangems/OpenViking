@@ -14,6 +14,17 @@ language: en
 # 2-D Median
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input array scalar | vector | matrix | *N*-D array
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output median values scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -80,8 +91,22 @@ the **Find the median value over** parameter.
     input
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sort algorithm
+  summary: Algorithm to sort input array Quick sort (default) | Insertion sort
+  group: ''
+- name: Find the median value over
+  summary: Dimension in which to compute median Entire input (default) | Each row | Each column | Specified dimension
+  group: ''
+- name: Dimension
+  summary: Custom dimension 1 (default) | positive scalar
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+```
 
 **Main**
 
@@ -143,7 +168,6 @@ types you specify in this block. For more information, see Lock the Output Data 
 Floating-point inheritance takes precedence over the data type settings defined on this
 pane. When inputs are floating point, the block ignores these settings, and all internal
 data types are floating point.
-
 ## Libraries
 
 Computer Vision Toolbox / Statistics

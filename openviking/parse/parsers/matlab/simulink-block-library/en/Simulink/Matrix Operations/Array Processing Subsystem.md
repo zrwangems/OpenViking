@@ -14,6 +14,17 @@ language: en
 # Array Processing Subsystem
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Signal input to a subsystem matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: Signal output from a subsystem matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -39,8 +50,96 @@ Subsystem block adds an external output port from the subsystem. The port
 label matches the name of the Outport block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show port labels
+  summary: Display options for port labels FromPortIcon (default) | FromPortBlockName | SignalName | none
+  group: Main
+  block_parameter: ShowPortLabels
+  values: '''FromPortIcon'' (default) | ''FromPortBlockName'' | ''SignalName'' | ''none'''
+- name: Read/Write permissions
+  summary: Levels of access to contents of subsystem ReadWrite (default) | ReadOnly | NoReadOrWrite
+  group: Main
+  block_parameter: Permissions
+  values: '''ReadWrite'' (default) | ''ReadOnly'' | ''NoReadOrWrite'''
+- name: Name of error callback function
+  summary: Name of function to be called if error occurs no default
+  group: Main
+  block_parameter: ErrorFcn
+  values: ''''' (default) | function name in quotes'
+- name: Permit hierarchical resolution
+  summary: Resolution for workspace variable names All (default) | ExplicitOnly | None
+  group: Main
+  block_parameter: PermitHierarchicalResolution
+  values: '''All'' (default) | ''ExplicitOnly'' | ''None'''
+- name: Show subsystem reinitialize ports
+  summary: Option to display reinitialize event ports off (default) | on
+  group: Main
+  block_parameter: ShowSubsystemReinitializePorts
+  values: '''off'' (default) | ''on'''
+- name: Function packaging
+  summary: Code format Auto | Inline | Nonreusable function | Reusable function
+  group: Code Generation
+  block_parameter: RTWSystemCode
+  values: '''Auto'' | ''Inline'' | ''Nonreusable function'' | ''Reusable function'''
+- name: Function name options
+  summary: How to name generated function Auto | Use subsystem name | User specified
+  group: Code Generation
+  block_parameter: RTWFcnNameOpts
+  values: '''Auto'' | ''Use subsystem name'' | ''User specified'''
+- name: Function name
+  summary: Name of function for subsystem code no default
+  group: Code Generation
+  block_parameter: RTWFcnName
+  values: ''''' (default) | function name in quotes'
+- name: File name options
+  summary: How to name generated file Auto | Use subsystem name | Use function name | User specified
+  group: Code Generation
+  block_parameter: RTWFileNameOpts
+  values: '''Auto'' | ''Use subsystem name'' | ''Use function name'' | ''User specified'''
+- name: File name (no extension)
+  summary: Name of generated file no default
+  group: Code Generation
+  block_parameter: RTWFileName
+  values: ''''' (default) | filename in quotes'
+- name: Function interface
+  summary: How to use arguments with generated function void_void (default) | Allow arguments (Optimized) | Allow arguments
+    (Match graphical interface)
+  group: Code Generation
+  block_parameter: FunctionInterfaceSpec
+  values: '''void_void'' (default) | ''Allow arguments (Optimized)'' | ''Allow arguments (Match graphical interface)'''
+- name: Function with separate data
+  summary: Control code generation for subsystem off (default) | on
+  group: Code Generation
+  block_parameter: FunctionWithSeparateData
+  values: '''off'' (default) | ''on'''
+- name: Memory section for initialize/terminate functions
+  summary: How to apply memory sections Inherit from model (default) | Default | model memory section
+  group: Code Generation
+  block_parameter: RTWMemSecFuncInitTerm
+  values: '''Inherit from model'' (default) | ''Default'' | model memory section in quotes'
+- name: Memory section for execution functions
+  summary: How to apply memory sections Inherit from model (default) | Default | model memory section
+  group: Code Generation
+  block_parameter: RTWMemSecFuncExecute
+  values: '''Inherit from model'' (default) | ''Default'' | model memory section in quotes'
+- name: Memory section for constants
+  summary: How to apply memory sections Inherit from model (default) | Default | model memory section
+  group: Code Generation
+  block_parameter: RTWMemSecDataConstants
+  values: '''Inherit from model'' (default) | ''Default'' | model memory section in quotes'
+- name: Memory section for internal data
+  summary: How to apply memory sections Inherit from model (default) | Default | model memory section
+  group: Code Generation
+  block_parameter: RTWMemSecDataInternal
+  values: '''Inherit from model'' (default) | ''Default'' | model memory section in quotes'
+- name: Memory section for parameters
+  summary: How to apply memory sections Inherit from model (default) | Default | model memory section
+  group: Code Generation
+  block_parameter: RTWMemSecDataParameters
+  values: '''Inherit from model'' (default) | ''Default'' | model memory section in quotes'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -729,7 +828,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `RTWMemSecDataParameters` |
 | **Values:** | `'Inherit from model'` (default) | `'Default'` | model memory section in quotes |
-
 ## Libraries
 
 Simulink / Matrix Operations

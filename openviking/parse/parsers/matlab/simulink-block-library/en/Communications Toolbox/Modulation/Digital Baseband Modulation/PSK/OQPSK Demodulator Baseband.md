@@ -14,6 +14,16 @@ language: en
 # OQPSK Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input baseband waveform scalar | column vector
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output data integer column vector | bit column vector
+  direction: output
+```
 
 ### Input
 
@@ -32,8 +42,41 @@ setting.
 ### **Out** — Output data integer column vector | bit column vector
 
 Output data, returned as an integer or bit column vector.
-
 ## Parameters
+```yaml
+parameters:
+- name: Output type
+  summary: Output type Integer (default) | Bit
+  group: Modulation
+- name: Phase offset (rad)
+  summary: Phase of zeroth point of signal constellation 0 (default) | scalar
+  group: Modulation
+- name: Symbol mapping
+  summary: Signal constellation bit mapping Gray (default) | Binary | custom 4-element numeric vector of integers with values
+    from 0 to 3
+  group: Modulation
+- name: Pulse shape
+  summary: Filtering pulse shape Half sine (default) | Normal raised cosine | Root raised cosine | Custom
+  group: Filtering
+- name: Rolloff factor
+  summary: Raised cosine filter rolloff factor 0.2 (default) | scalar
+  group: Filtering
+- name: Filter span (in symbols)
+  summary: Filter length 10 (default) | scalar
+  group: Filtering
+- name: Filter numerator
+  summary: FIR filter numerator [0.7071 0.7071] (default) | row vector
+  group: Filtering
+- name: Samples per symbol
+  summary: Number of samples per symbol 4 (default) | positive even integer
+  group: Filtering
+- name: Rate options
+  summary: Processing rate option Enforce single-rate processing (default) | Allow multirate processing
+  group: Other Parameters
+- name: Output data type
+  summary: Output data type double (default) | single | uint8
+  group: Other Parameters
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -155,7 +198,6 @@ integer.
 Select the output data type: `double`,
 `single`, or
 `uint8`.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK

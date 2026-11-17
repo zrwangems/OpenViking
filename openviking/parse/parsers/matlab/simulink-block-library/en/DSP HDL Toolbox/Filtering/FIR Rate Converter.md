@@ -14,6 +14,29 @@ language: en
 # FIR Rate Converter
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data sample scalar | row vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Output data sample scalar | row vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready for new input data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -76,8 +99,34 @@ To enable this port, select the **Enable ready output port**
 check box.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Interpolation factor
+  summary: Interpolation factor 3 (default) | positive integer
+  group: Main
+- name: Decimation factor
+  summary: Decimation factor 2 (default) | positive integer
+  group: Main
+- name: FIR filter coefficients
+  summary: FIR filter coefficients firpm(70, [0 0.28 0.32 1],[1 1 0 0]) (default) | row vector
+  group: Main
+- name: Rounding mode
+  summary: Rounding mode for fixed-point operation Floor (default) | Ceiling | Convergent | Nearest | Round | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+- name: Coefficients
+  summary: FIR filter coefficients data type fixdt(1,16,16) (default)
+  group: Data Types
+- name: Output
+  summary: 'Data type of output data sample Inherit: Same word length as input (default) | Inherit via internal rule | fixdt(s,wl,fl)'
+  group: Data Types
+- name: Enable ready output port
+  summary: Option to enable ready control signal off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -146,7 +195,6 @@ ignores this parameter and returns output in the same data type as the input.
 ### **Enable ready output port** — Option to enable ready control signal `off` (default) | `on`
 
 Select this parameter to enable the **ready** port.
-
 ## Libraries
 
 DSP HDL Toolbox / Filtering

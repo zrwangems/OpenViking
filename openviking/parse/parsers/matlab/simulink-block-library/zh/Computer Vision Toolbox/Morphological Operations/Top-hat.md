@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Top-hat
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Nhood
+  summary: 邻域值向量 | 矩阵
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: 滤波后的图像矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -40,8 +55,19 @@ chinese_source: worker-translation
 返回顶帽滤波后的图像，为强度值矩阵。滤波后图像的大小和数据类型与输入图像相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 输入图像类型
+  summary: 输入图像的类型 Intensity（默认）| Binary
+  group: ''
+- name: 邻域或结构元素来源
+  summary: 邻域或结构元素的来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: 邻域或结构元素
+  summary: 邻域或结构元素 strel('square',4)（默认）| 向量 | 矩阵
+  group: ''
+```
 
 ### **输入图像类型** — 输入图像的类型 `Intensity`（默认）| `Binary`
 
@@ -66,7 +92,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将**邻域或结构元素来源**参数设置为 `Specify via dialog`。
-
 ## 所属库
 
 Computer Vision Toolbox / Morphological Operations

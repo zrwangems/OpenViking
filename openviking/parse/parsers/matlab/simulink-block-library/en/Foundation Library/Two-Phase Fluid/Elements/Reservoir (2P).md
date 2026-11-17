@@ -14,14 +14,63 @@ language: en
 # Reservoir (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Reservoir inlet two-phase fluid
+  direction: conserving
+```
 
 ### Conserving
 
 ### **A** — Reservoir inlet two-phase fluid
 
 Two-phase fluid conserving port associated with the reservoir inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Reservoir pressure specification
+  summary: Specification method for reservoir pressure Atmospheric pressure (default) | Specified pressure | Saturation pressure
+    at specified condensing temperature | Saturation pressure at specified evaporating temperature
+  group: ''
+- name: Reservoir pressure
+  summary: Pressure in reservoir 0.101325 MPa (default) | positive scalar
+  group: ''
+- name: Reservoir condensing temperature
+  summary: Specify saturation pressure in terms of condensing temperature 373.15 K (default) | positive scalar
+  group: ''
+- name: Reservoir evaporating temperature
+  summary: Specify saturation pressure in terms of evaporating temperature 373.15 K (default) | positive scalar
+  group: ''
+- name: Reservoir energy specification
+  summary: Thermodynamic variable to use to define reservoir conditions Temperature (default) | Vapor quality | Vapor void
+    fraction | Specific enthalpy | Specific internal energy | Degree of subcooling | Degree of superheating
+  group: ''
+- name: Reservoir temperature
+  summary: Temperature in reservoir 293.15 K (default) | positive scalar
+  group: ''
+- name: Reservoir vapor quality
+  summary: Mass fraction of vapor in reservoir 0.5 (default) | scalar in range [0 1]
+  group: ''
+- name: Reservoir vapor void fraction
+  summary: Volume fraction of vapor in reservoir 0.5 (default) | scalar in range [0 1]
+  group: ''
+- name: Reservoir specific enthalpy
+  summary: Specific enthalpy of fluid in reservoir 1500 kJ/kg (default) | positive scalar
+  group: ''
+- name: Reservoir specific internal energy
+  summary: Specific internal energy of fluid in reservoir 1500 kJ/kg (default) | positive scalar
+  group: ''
+- name: Reservoir subcooling
+  summary: Degree of subcooling in reservoir 5 deltaK (default) | positive scalar
+  group: ''
+- name: Reservoir superheating
+  summary: Degree of superheating in reservoir 5 deltaK (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at reservoir inlet 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Reservoir pressure specification** — Specification method for reservoir pressure `Atmospheric pressure` (default) | `Specified pressure` | `Saturation pressure at specified condensing temperature` | `Saturation pressure at specified evaporating temperature`
 
@@ -200,7 +249,6 @@ to `Degree of superheating`.
 ### **Cross-sectional area at port A** — Area normal to flow path at reservoir inlet `0.01 m^2` (default) | positive scalar
 
 Flow area of the reservoir inlet, represented by port **A**.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

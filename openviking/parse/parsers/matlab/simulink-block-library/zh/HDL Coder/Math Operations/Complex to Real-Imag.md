@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Complex to Real-Imag
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 作为输入信号实部和/或虚部的输出信号。要选择输出哪一部分，请设置 **Output** 参数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 实部和/或虚部输出指定 Real and imag（默认）| Real | Imag
+  group: ''
+  block_parameter: Output
+  type: string | character vector
+  values: '''Real and imag'' | ''Real'' | ''Imag'''
+  default: '''Real and imag'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+```
 
 ### **Output** — 实部和/或虚部输出指定 `Real and imag`（默认）| `Real` | `Imag`
 
@@ -62,7 +87,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **值**：| `"-1"`（默认）| 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / Math Operations

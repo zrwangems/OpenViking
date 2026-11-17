@@ -14,6 +14,18 @@ language: en
 # Pressure Source (IL)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Pressure differential control signal, Pa physical signal
+  direction: input
+- name: A
+  summary: Source inlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Source outlet isothermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -38,8 +50,16 @@ pressure at port **B** to be greater than the pressure at port
 Isothermal liquid conserving port. A positive pressure differential causes the
 pressure at port **B** to be greater than the pressure at port
 **A**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Select whether pressure differential can change during simulation Controlled (default) | Constant
+  group: ''
+- name: Pressure differential
+  summary: Constant pressure differential across the source 0 MPa (default) | scalar
+  group: ''
+```
 
 ### **Source type** — Select whether pressure differential can change during simulation `Controlled` (default) | `Constant`
 
@@ -61,7 +81,6 @@ Desired pressure differential across the source.
 
 Enabled when you set the **Source type** parameter to
 `Constant`.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Sources

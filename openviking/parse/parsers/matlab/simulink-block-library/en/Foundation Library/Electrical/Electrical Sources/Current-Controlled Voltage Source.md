@@ -14,20 +14,24 @@ language: en
 # Current-Controlled Voltage Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has four electrical conserving ports. Connections
 + and – on the left side of the block are the control ports.
 The arrow indicates the positive direction of the current flow. The
 other two ports are the electrical terminals that provide the output
 voltage. Polarity is indicated by the + and – signs.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Transresistance K**
 :   Ratio of the voltage between the two output terminals to the
     current passing between the two control terminals. The default value
     is `1` Ω.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Implies
 
 ## 端口
+```yaml
+ports:
+- name: Values
+  summary: 输入信号 标量 | 元胞数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -23,11 +31,12 @@ chinese_source: worker-translation
 Implies 模块接受 Simulink 软件支持的所有数值数据类型的信号。有关 Simulink 软件支持的数据类型的讨论，请参阅 Data Types Supported by Simulink。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Design Verifier / Verification Utilities

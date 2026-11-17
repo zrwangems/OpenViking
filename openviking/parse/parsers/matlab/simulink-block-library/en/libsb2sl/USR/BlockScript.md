@@ -14,6 +14,19 @@ language: en
 # MATLAB Function
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input variable scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumerated | bus
+- name: Port_1
+  summary: Output variable scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumerated | bus
+```
 
 ### Input
 
@@ -51,8 +64,55 @@ To create output ports, open the block and create output variables
 in the **Symbols** pane. See Create and Define MATLAB Function Block Variables.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Update method
+  summary: Method used for activating block Inherited (default) | Discrete | Continuous
+  group: ''
+  block_parameter: ChartUpdate
+  values: '"INHERITED" (default) | "CONTINUOUS" | "DISCRETE"'
+- name: Sample time
+  summary: Time interval at which block activates up during simulation -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar | vector'
+- name: Saturate on integer overflow
+  summary: Whether data saturates on integer overflow on (default) | off
+  group: Advanced
+  block_parameter: SaturateOnIntegerOverflow
+  values: true or 1 (default) | false or 0
+- name: Support variable-size arrays
+  summary: Whether block supports variable-size data on (default) | off
+  group: Advanced
+  block_parameter: SupportVariableSizing
+  values: true or 1 (default) | false or 0
+- name: Allow direct feedthrough
+  summary: Whether block supports direct feedthrough semantics on (default) | off
+  group: Advanced
+  block_parameter: AllowDirectFeedthrough
+  values: true or 1 (default) | false or 0
+- name: Interpret output column vectors as one-dimensional data
+  summary: Whether block treats output variables with dimension of length 1 as fixed size off (default) | on
+  group: Advanced
+  block_parameter: VectorOutputs1D
+  values: false or 0 (default) | true or 1
+- name: Treat dimensions of length 1 as fixed size
+  summary: Whether variables with at least one dimension of length 1 are fixed size on (default) | off
+  group: Advanced
+  block_parameter: TreatDimensionOfLengthOneAsFixedSize
+  values: true or 1 (default) | false or 0
+- name: Treat these inherited Simulink signal types as fi objects
+  summary: Inherited Simulink signals to treat as fi objects Fixed-point (default) | Fixed-point & Integer
+  group: Fixed-point properties
+  block_parameter: TreatAsFi
+  values: '"Fixed-point" (default) | "Fixed-point & Integer"'
+- name: MATLAB function fimath
+  summary: Default fimath properties Same as MATLAB (default) | Specify Other
+  group: Fixed-point properties
+  block_parameter: EmlDefaultFimath
+  values: '"Same as MATLAB Default" (default) | "Other:UserSpecified"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -412,7 +472,6 @@ the property using these options:
 | --- | --- |
 | **Parameter:** | `EmlDefaultFimath` |
 | **Values:** | `"Same as MATLAB Default"` (default) | `"Other:UserSpecified"` |
-
 ## Libraries
 
 Simulink / User-Defined Functions HDL Coder / User-Defined Functions

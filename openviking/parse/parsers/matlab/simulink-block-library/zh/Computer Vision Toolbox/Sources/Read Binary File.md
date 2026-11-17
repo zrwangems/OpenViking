@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Read Binary File
 
 ## 端口
+```yaml
+ports:
+- name: Y'
+  summary: 亮度分量三维数组
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cb
+  summary: 蓝色差分量三维数组
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cr
+  summary: 红色差分量三维数组
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: A
+  summary: Alpha 分量三维数组
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: T
+  summary: 透明度分量三维数组
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: EOF
+  summary: 最后一个视频帧指示标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -68,8 +95,105 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output end-of-file indicator** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 二进制文件名 vipmen.bin（默认）| 文件名
+  group: ''
+- name: Video format
+  summary: 视频数据格式 Four character codes（默认）| Custom
+  group: ''
+- name: Four character code
+  summary: 二进制文件格式 I420（默认）| AYUV | CLJR | cyuv | GREY | IF09 | IMC1 | IMC2 | IMC3 | IMC4 | IUYV | IY41 | IYU1 | IYU2 | IYUV
+    | NV12 | NV21 | UYNV | UYNY | V210 | Y411 | Y41P | Y41T | Y422 | Y42T | Y8 | Y800 | YUNV | YUY2 | YUYV | YV12 | YV16 |
+    YVU9 | YVYU | ...
+  group: ''
+- name: FrameSize Rows
+  summary: 输出数组中的行数 120（默认）| 正整数
+  group: ''
+- name: FrameSize Cols
+  summary: 输出数组中的列数 160（默认）| 正整数
+  group: ''
+- name: Line ordering
+  summary: 输出数组填充方向 Top line first（默认）| Bottom line first
+  group: ''
+- name: Number of times to play file
+  summary: 播放文件的次数 1（默认）| 正整数 | inf
+  group: ''
+- name: Output end-of-file indicator
+  summary: 指示模块输出何时到达最后一帧 off（默认）| on
+  group: ''
+- name: Sample time
+  summary: 输出的采样周期 1/30（默认）| 正标量 | -1
+  group: ''
+- name: Bit stream format
+  summary: 指定数据是平面格式还是打包格式 Planar（默认）| Packed
+  group: ''
+- name: Number of output components
+  summary: 二进制文件中的分量数 3（默认）| 1 | 2 | 4
+  group: ''
+- name: Component1
+  summary: 亮度分量的名称 Y'（默认）| 分量名称
+  group: ''
+- name: Component2
+  summary: 蓝色差分量的名称 Cb（默认）| 分量名称
+  group: ''
+- name: Component3
+  summary: 红色差分量的名称 Cr（默认）| 分量名称
+  group: ''
+- name: Component4
+  summary: Alpha 分量的名称 Alpha（默认）| 分量名称
+  group: ''
+- name: Bits1
+  summary: 亮度分量的大小 8（默认）| 16 | 24 | 32
+  group: ''
+- name: Bits2
+  summary: 蓝色差分量的大小 8（默认）| 16 | 24 | 32
+  group: ''
+- name: Bits3
+  summary: 红色差分量的大小 8（默认）| 16 | 24 | 32
+  group: ''
+- name: Bits4
+  summary: Alpha 分量的大小 8（默认）| 16 | 24 | 32
+  group: ''
+- name: Rows1
+  summary: 亮度分量的行数 120（默认）| 正整数
+  group: ''
+- name: Rows2
+  summary: 蓝色差分量的行数 60（默认）| 正整数
+  group: ''
+- name: Rows3
+  summary: 红色差分量的行数 60（默认）| 正整数
+  group: ''
+- name: Rows4
+  summary: Alpha 分量的行数 288（默认）| 正整数
+  group: ''
+- name: Cols1
+  summary: 亮度分量的列数 160（默认）| 正整数
+  group: ''
+- name: Cols2
+  summary: 蓝色差分量的列数 80（默认）| 正整数
+  group: ''
+- name: Cols3
+  summary: 红色差分量的列数 80（默认）| 正整数
+  group: ''
+- name: Cols4
+  summary: Alpha 分量的列数 352（默认）| 正整数
+  group: ''
+- name: Component order in binary file
+  summary: 二进制文件中分量的排列 [1 2 3]（默认）| 有效分量标识符向量
+  group: ''
+- name: Interlaced video
+  summary: 以隔行方式从文件读取视频数据 off（默认）| on
+  group: ''
+- name: Input file has signed data
+  summary: 文件包含有符号整数 off（默认）| on
+  group: ''
+- name: Byte order in binary file
+  summary: 二进制文件的字节顺序 Little endian（默认）| Big endian
+  group: ''
+```
 
 ### **File name** — 二进制文件名 `vipmen.bin`（默认）| 文件名
 
@@ -336,7 +460,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Video format** 参数设置为 `Custom`。
-
 ## 所属库
 
 Computer Vision Toolbox / Sinks

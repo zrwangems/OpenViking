@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Compare To Zero
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 0 | 1 | 标量 | 向量 | 矩阵
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### 输入
 
@@ -34,8 +45,31 @@ chinese_source: worker-translation
 模块输出为 `uint8` 或 `boolean`，取决于您对**输出数据类型**参数的选择。
 
 **数据类型：** `uint8` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Operator
+  summary: 逻辑运算符 <= （默认） | == | ~= | < | >= | >
+  group: ''
+  block_parameter: relop
+  type: 字符向量
+  values: '''=='' | ''~=''| ''<'' |''<=''| ''>=''| ''>'''
+  default: '''<='''
+- name: Output data type
+  summary: 输出的数据类型 boolean （默认） | uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+- name: Enable zero-crossing detection
+  summary: 选择以启用零交叉检测 on （默认） | off
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Operator** — 逻辑运算符 <= （默认） | == | ~= | < | >= | >
 
@@ -82,7 +116,6 @@ chinese_source: worker-translation
 | **类型**： 字符向量 |
 | **值**： `'off'` | `'on'` |
 | **默认值**： `'on'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

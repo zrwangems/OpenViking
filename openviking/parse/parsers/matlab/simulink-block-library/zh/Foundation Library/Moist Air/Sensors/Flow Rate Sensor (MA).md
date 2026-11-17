@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Flow Rate Sensor (MA)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 混合物流量质量流量，kg/s 物理信号
+  direction: output
+- name: V
+  summary: 混合物体积流量，m^3/s 物理信号
+  direction: output
+- name: φ
+  summary: 混合物能量流量，W 物理信号
+  direction: output
+- name: Mw
+  summary: 水蒸气质量流量，kg/s 物理信号
+  direction: output
+- name: Mg
+  summary: 微量气体质量流量，kg/s 物理信号
+  direction: output
+- name: Md
+  summary: 水滴质量流量，kg/s 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口湿空气
+  direction: output
+- name: B
+  summary: 传感器出口湿空气
+  direction: output
+```
 
 ### 输出
 
@@ -70,8 +97,40 @@ chinese_source: worker-translation
 ### **B** — 传感器出口湿空气
 
 湿空气守恒端口。如果空气从端口 **A** 流向端口 **B**，则流量为正。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass flow rate
+  summary: 控制用于测量质量流量的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Volumetric flow rate
+  summary: 控制用于测量体积流量的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Volumetric flow measurement conditions
+  summary: 指定测量体积流量的条件 Actual conditions（默认）| Standard conditions
+  group: ''
+- name: Standard pressure
+  summary: 标准条件下的湿空气压力 0.10132 MPa（默认）
+  group: ''
+- name: Standard temperature
+  summary: 标准条件下的湿空气温度 20 degC（默认）
+  group: ''
+- name: Standard relative humidity
+  summary: 标准条件下的湿空气相对湿度 0.65（默认）
+  group: ''
+- name: Energy flow rate
+  summary: 控制用于测量能量流量的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Water vapor mass flow rate
+  summary: 控制用于测量水蒸气质量流量的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Trace gas mass flow rate
+  summary: 控制用于测量微量气体质量流量的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Water droplets mass flow rate
+  summary: 控制用于测量水滴质量流量的输出端口可见性 Off（默认）| On
+  group: ''
+```
 
 ### **Mass flow rate** — 控制用于测量质量流量的输出端口可见性 `On`（默认）| `Off`
 
@@ -131,7 +190,6 @@ chinese_source: worker-translation
 ### **Water droplets mass flow rate** — 控制用于测量水滴质量流量的输出端口可见性 `Off`（默认）| `On`
 
 选中此复选框将暴露输出端口 **Md**，可用于测量水滴质量流量。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Sensors

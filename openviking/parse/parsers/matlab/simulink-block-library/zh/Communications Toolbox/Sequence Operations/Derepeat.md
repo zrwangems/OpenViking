@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Derepeat
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +45,22 @@ chinese_source: worker-translation
 **复数支持：** 是
 
 有关处理速率的详细信息，请参阅单速率处理和多速率处理。
-
 ## 参数
+```yaml
+parameters:
+- name: Derepeat factor, N
+  summary: 去重复因子 5（默认）| 整数
+  group: ''
+- name: Input processing
+  summary: 输入处理控制 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: 模块处理速率 Allow multirate processing（默认）| Enforce single-rate processing
+  group: ''
+- name: Initial condition
+  summary: 初始条件 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -60,7 +85,6 @@ chinese_source: worker-translation
 ### **Initial condition** — 初始条件 0（默认）| 标量 | 向量 | 矩阵
 
 初始条件，指定为标量、向量或矩阵。此参数指定当输入数据过早无法在输出中显示时输出的值。如果**Initial condition**参数的维度与输出维度匹配，则该参数表示初始输出值。如果**Initial condition**是标量，则它表示输出中每个元素的初始值。该模块不支持初始条件的空矩阵。
-
 ## 所属库
 
 Communications Toolbox / Sequence Operations

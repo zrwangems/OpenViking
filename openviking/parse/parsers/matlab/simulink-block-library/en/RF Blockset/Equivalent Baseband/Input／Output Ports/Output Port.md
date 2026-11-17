@@ -14,10 +14,58 @@ language: en
 # Output Port
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Load impedance(ohms)
+  summary: Load impedance of RF network 50 (default) | scalar
+  group: Main Tab
+- name: Source of frequency data
+  summary: Frequency data source Derived from Input Port parameter (default) | User-specified
+  group: Visualization Tab
+- name: Frequency data (Hz)
+  summary: Frequency data range 1e9:1e8:3e9 (default) | vector
+  group: Visualization Tab
+- name: Reference impedance (ohms)
+  summary: Reference impedance 50 (default) | scalar
+  group: Visualization Tab
+- name: Plot type
+  summary: Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith
+    chart
+  group: Visualization Tab
+- name: Y parameter1
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: Visualization Tab
+- name: Y parameter2
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: Visualization Tab
+- name: Y format1
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization Tab
+- name: Y format2
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization Tab
+- name: X parameter
+  summary: X parameter Freq (default)
+  group: Visualization Tab
+- name: X format
+  summary: Plot format Hz (default) | Auto | KHz | MHz | GHz | THz
+  group: Visualization Tab
+- name: Y scale
+  summary: Y-axis scale Linear (default) | Log
+  group: Visualization Tab
+- name: X scale
+  summary: X-axis scale Linear (default) | Log
+  group: Visualization Tab
+- name: Plot
+  summary: Plot specified data button
+  group: Visualization Tab
+```
 
 ### Main Tab
 
@@ -206,7 +254,6 @@ mask after you perform one or more of the following actions:
   block.
 
 For information about plotting, see Create Plots Using Equivalent Baseband Library Blocks.
-
 ## Libraries
 
 RF Blockset / Equivalent Baseband / Input / Output Ports

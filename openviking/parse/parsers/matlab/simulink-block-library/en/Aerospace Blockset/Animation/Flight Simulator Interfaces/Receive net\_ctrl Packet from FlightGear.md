@@ -14,6 +14,17 @@ language: en
 # Receive net_ctrl Packet from FlightGear
 
 ## Ports
+```yaml
+ports:
+- name: net_ctrl
+  summary: Controls information from FlightGear 744-by-1 vector
+  direction: output
+  data_types: uint8
+- name: Rx bytes
+  summary: Received FlightGear packet size 0 | 744
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -36,8 +47,38 @@ This port is enabled by the **Enable received flag
 port** check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Origin IP address
+  summary: Origin IP address 127.0.0.1 (default) | scalar
+  group: ''
+  block_parameter: ReceiveAddress
+  type: character vector
+  values: scalar
+  default: '''127.0.0.1'''
+- name: Origin port
+  summary: Origin port 5505 (default)
+  group: ''
+  block_parameter: ReceivePort
+  type: character vector
+  values: scalar
+  default: '''5505'''
+- name: Sample time
+  summary: Sample time 1/30 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''1/30'''
+- name: Enable received flag port
+  summary: Enable received flag output port off (default) | on
+  group: ''
+  block_parameter: packetFlag
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Origin IP address** — Origin IP address `127.0.0.1` (default) | scalar
 
@@ -151,7 +192,6 @@ port.
 | **Type**: character vector |
 | **Values:**`'off' | 'on'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Joint Space Motion Model
 
 ## 端口
+```yaml
+ports:
+- name: qRef
+  summary: 关节位置 *n* 元向量
+  direction: input
+- name: qRefDot
+  summary: 关节速度 *n* 元向量
+  direction: input
+- name: qRefDDot
+  summary: 关节加速度 *n* 元向量
+  direction: input
+- name: FExt
+  summary: 作用在系统上的外力 6×*m* 矩阵
+  direction: input
+- name: q
+  summary: 关节位置 *n* 元向量
+  direction: output
+- name: qd
+  summary: 关节速度 *n* 元向量
+  direction: output
+- name: qdd
+  summary: 关节加速度 *n* 元向量
+  direction: output
+```
 
 ### 输入
 
@@ -83,8 +107,49 @@ tree` 参数的 `rigidBodyTree` 对象中非固定关节的数量
 关节加速度输出，为 *n* 元向量，单位为弧度每二次方秒或米每二次方秒，其中 *n* 是
 `Rigid body
 tree` 参数的 `rigidBodyTree` 对象中非固定关节的数量
-
 ## 参数
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: 机器人模型 twoJointRigidBodyTree（默认）| RigidBodyTree 对象
+  group: ''
+- name: Motion Type
+  summary: 运动模型计算的运动类型 Computed Torque Control（默认）| Independent Joint Motion | PD Control | Open Loop Dynamics
+  group: ''
+- name: Specification format
+  summary: 用于控制机器人的输入 Damping Ratio / Natural Frequency（默认）| Step Response
+  group: ''
+- name: Damping ratio
+  summary: 系统阻尼比 1（默认）| 数值标量
+  group: ''
+- name: Natural frequency
+  summary: 系统自然频率 10（默认）| 数值标量
+  group: ''
+- name: Settling time
+  summary: 系统调节时间 0.59（默认）| 数值标量
+  group: ''
+- name: Overshoot
+  summary: 系统超调 0.0（默认）| 数值标量
+  group: ''
+- name: Proportional gain
+  summary: PD 控制的比例增益 100（默认）| *n*×*n* 矩阵 | 标量
+  group: ''
+- name: Derivative gain
+  summary: PD 控制的微分增益 10（默认）| *n*×*n* 矩阵 | 标量
+  group: ''
+- name: Show external force input
+  summary: 显示 FExt 端口 off（默认）| on
+  group: ''
+- name: Initial joint configuration
+  summary: 初始关节位置 0（默认）| *n* 元素向量 | 标量
+  group: ''
+- name: Initial joint velocities
+  summary: 初始关节速度 0（默认）| *n* 元素向量 | 标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — 机器人模型 `twoJointRigidBodyTree`（默认）| `RigidBodyTree` 对象
 
@@ -191,7 +256,6 @@ tree` 参数的 `rigidBodyTree` 对象中非固定关节的数量
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。
 
 **可调：** 否
-
 ## 所属库
 
 Robotics System Toolbox / Manipulator Algorithms

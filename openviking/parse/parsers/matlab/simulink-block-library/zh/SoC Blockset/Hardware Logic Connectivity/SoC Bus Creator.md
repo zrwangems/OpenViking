@@ -15,6 +15,74 @@ chinese_source: worker-translation
 # SoC Bus Creator
 
 ## 端口
+```yaml
+ports:
+- name: valid
+  summary: 有效控制信号 布尔标量
+  direction: input
+  data_types: Boolean
+- name: tlast
+  summary: 数据包结束指示 布尔标量
+  direction: input
+  data_types: Boolean
+- name: ready
+  summary: 就绪控制信号 布尔标量
+  direction: input
+  data_types: Boolean
+- name: hStart
+  summary: 帧水平行中的第一个像素 布尔标量
+  direction: input
+  data_types: Boolean
+- name: hEnd
+  summary: 帧水平行中的最后一个像素 布尔标量
+  direction: input
+  data_types: Boolean
+- name: vStart
+  summary: 帧第一（顶部）行中的第一个像素 布尔标量
+  direction: input
+  data_types: Boolean
+- name: vEnd
+  summary: 帧最后（底部）行中的最后一个像素 布尔标量
+  direction: input
+  data_types: Boolean
+- name: fsync
+  summary: 帧同步 布尔标量
+  direction: input
+  data_types: Boolean
+- name: rd_addr
+  summary: 读取器地址 标量
+  direction: input
+  data_types: uint32
+- name: rd_len
+  summary: 读取器数据长度 标量
+  direction: input
+  data_types: uint32
+- name: rd_avalid
+  summary: 读取器有效状态 布尔标量
+  direction: input
+  data_types: Boolean
+- name: rd_dready
+  summary: 读取器就绪状态 布尔标量
+  direction: input
+  data_types: Boolean
+- name: wr_addr
+  summary: 写入地址标量
+  direction: input
+  data_types: uint32
+- name: wr_len
+  summary: 写入数据长度标量
+  direction: input
+  data_types: uint32
+- name: wr_valid
+  summary: 写入有效数据布尔标量
+  direction: input
+  data_types: Boolean
+- name: ctrlBus
+  summary: 输出控制总线 总线
+  direction: output
+  data_types: StreamS2MBusObj | StreamM2SBusObj | StreamVideoS2MBusObj | pixelcontrol | StreamvideoFsyncS2MBusObj | ReadControlM2SBusObj
+    | WriteControlM2SBusObj
+```
 
 ### 输入
 
@@ -186,8 +254,16 @@ chinese_source: worker-translation
 | 将 **Control protocol** 设置为 `Random access write`，将 **Control type** 设置为 `Valid`。 | `WriteControlM2SBusObj` |
 
 **数据类型：** `StreamS2MBusObj` | `StreamM2SBusObj` | `StreamVideoS2MBusObj` | `pixelcontrol` | `StreamvideoFsyncS2MBusObj` | `ReadControlM2SBusObj` | `WriteControlM2SBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Control protocol
+  summary: 协议接口选择 Data stream（默认）| Pixel stream | Random access read | Random access write
+  group: ''
+- name: Control type
+  summary: 控制类型选择 Valid（默认）| Ready | Ready with frame sync
+  group: ''
+```
 
 ### **Control protocol** — 协议接口选择 `Data stream`（默认）| `Pixel stream` | `Random access read` | `Random access write`
 
@@ -207,7 +283,6 @@ chinese_source: worker-translation
 要启用 `Ready with frame sync` 选项，请将 **Control protocol** 参数设置为 `Pixel stream`。
 
 模块的输入端口因所选的 **Control protocol** 和 **Control type** 类型而异。有关更多详细信息，请参阅描述。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Connectivity

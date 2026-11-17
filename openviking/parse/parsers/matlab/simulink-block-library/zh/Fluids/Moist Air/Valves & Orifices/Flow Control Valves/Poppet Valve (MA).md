@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Poppet Valve (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 阀入口或出口湿空气
+  direction: conserving
+- name: B
+  summary: 阀入口或出口湿空气
+  direction: conserving
+- name: S
+  summary: 阀杆位移，m 物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -31,8 +43,73 @@ chinese_source: worker-translation
 ### **S** — 阀杆位移，m 物理信号
 
 阀控制部件的位移，单位为 m，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Poppet geometry
+  summary: 阀芯类型 Cylindrical stem（默认）| Round ball
+  group: ''
+- name: Valve seat geometry
+  summary: 阀座几何形状 Sharp-edged（默认）| Conical
+  group: ''
+- name: Ball diameter
+  summary: 球形控制部件直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Orifice diameter
+  summary: 阀座孔口直径 7e-3 m（默认）| 正标量
+  group: ''
+- name: Stem diameter
+  summary: 圆柱形阀杆直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Seat cone angle
+  summary: 阀座开口角度 120 deg（默认）| 正标量
+  group: ''
+- name: Control member position at closed orifice
+  summary: 控制部件偏移量 0 m（默认）| 正标量
+  group: ''
+- name: Valve parameterization
+  summary: 用于指定孔口流量特性的参数化方法 Orifice area based on geometry（默认）| Cv flow coefficient | Kv flow coefficient | Sonic conductance
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应组件最大开启状态的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应最大开度组件的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 对应最大开度组件的声速导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流流态之间过渡时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 湿空气端口处的流通面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Poppet geometry** — 阀芯类型 `Cylindrical stem`（默认）| `Round ball`
 
@@ -185,7 +262,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at ports A and B** — 湿空气端口处的流通面积 `0.01 m^2`（默认）| 正标量
 
 每个端口处垂直于流动路径的面积。各端口尺寸相同。此参数的值应与阻力元件所连接组件的入口面积相匹配。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Flow Control Valves

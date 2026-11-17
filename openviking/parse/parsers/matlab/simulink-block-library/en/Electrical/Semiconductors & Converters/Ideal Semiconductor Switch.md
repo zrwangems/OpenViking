@@ -14,6 +14,21 @@ language: en
 # Ideal Semiconductor Switch
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate terminal physical signal
+  direction: input
+- name: G
+  summary: Gate terminal electrical
+  direction: conserving
+- name: A
+  summary: Anode terminal electrical
+  direction: conserving
+- name: K
+  summary: Cathode terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -44,8 +59,57 @@ Electrical conserving port associated with the anode terminal.
 
 Electrical conserving port associated with the cathode
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gate-control port
+  summary: Whether to specify physical or electrical control port PS (default) | Electrical
+  group: Main
+- name: On-state resistance
+  summary: On-state resistance 0.001 Ohm (default)
+  group: Main
+- name: Off-state conductance
+  summary: Off-state conductance 1e-6 1/Ohm (default)
+  group: Main
+- name: Threshold voltage, Vth
+  summary: Threshold voltage 0.5 V (default)
+  group: Main
+- name: Integral protection diode
+  summary: Integral protection diode External diode (default) | Protection diode with no dynamics | Protection diode with
+    charge dynamics
+  group: Integral Diode
+- name: Forward voltage
+  summary: Forward voltage 0.8 V (default)
+  group: Integral Diode
+- name: On resistance
+  summary: On resistance 0.001 Ohm (default)
+  group: Integral Diode
+- name: Off conductance
+  summary: Off conductance 1e-5 1/Ohm (default)
+  group: Integral Diode
+- name: Junction capacitance
+  summary: Junction capacitance 50e-9 F (default)
+  group: Integral Diode
+- name: Initial forward current when measuring iRM
+  summary: Initial forward current when measuring iRM 300 A (default) | positive scalar
+  group: Integral Diode
+- name: Rate of change of current when measuring iRM
+  summary: Rate of change of current when measuring iRM -50A/μs (default) | negative scalar
+  group: Integral Diode
+- name: Reverse recovery time parameterization
+  summary: Reverse recovery time parameterization Specify reverse recovery time directly (default) | Specify stretch factor
+    | Specify reverse recovery charge
+  group: Integral Diode
+- name: Reverse recovery time, trr
+  summary: Reverse recovery time 15 μs (default) | scalar
+  group: Integral Diode
+- name: Reverse recovery time stretch factor
+  summary: Reverse recovery time stretch factor 3 (default) | scalar greater than 1
+  group: Integral Diode
+- name: Reverse recovery charge, Qrr
+  summary: Reverse recovery charge 1500 μAs (default)
+  group: Integral Diode
+```
 
 ### Main
 
@@ -206,7 +270,6 @@ parameter is set to `Diode with charge dynamics` and the
 `Specify reverse recovery charge`.
 
 For more information on these parameters, see Diode.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

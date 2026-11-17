@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Symbol Demodulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 数据符号 实值标量 | 复值标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 有效输入数据指示 标量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: modSel
+  summary: 调制选择 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+  direction: input
+  data_types: single | double | fixdt(0,3,0)
+- name: nVar
+  summary: 噪声方差 实值正标量
+  direction: input
+  data_types: single | double | uint8 | uint16 | unsigned fixed point
+- name: data
+  summary: 解调后的 LLR 值或数据比特 标量 | 实值列向量
+  direction: output
+  data_types: single | double | Boolean | signed fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: valid
+  summary: 有效输出数据指示 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已就绪 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -151,8 +190,43 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output type** 参数设置为 `Scalar`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation source
+  summary: 调制类型的来源 Property（默认） | Input port
+  group: ''
+- name: Modulation
+  summary: 调制类型 BPSK（默认） | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM | 256-QAM
+  group: ''
+- name: Maximum modulation
+  summary: 最大调制类型 256-QAM（默认）| BPSK | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM
+  group: ''
+- name: Constellation ordering
+  summary: 星座排序 Default（默认）| User-defined
+  group: ''
+- name: Constellation mapping
+  summary: 星座映射 [2, 3, 1, 0, 6, 7, 5, 4, 14, 15, 13, 12, 10, 11, 9, 8]（默认）| 唯一整数值格雷编码行向量
+  group: ''
+- name: Decision type
+  summary: 解映射类型 Approximate log-likelihood ratio（默认）| Hard
+  group: ''
+- name: Phase offset
+  summary: 星座点的相位偏移 pi/2（默认）| pi/4 | pi/8 | pi/16 | pi/32 | 0 | -pi/32 | -pi/16 | -pi/8 | -pi/4 | -pi/2
+  group: ''
+- name: Output type
+  summary: 输出类型 Vector（默认）| Scalar
+  group: ''
+- name: Normalization method
+  summary: 缩放信号星座 Unit average power（默认）| Custom
+  group: ''
+- name: Minimum distance between symbols
+  summary: 符号之间的最小距离 2（默认）| 范围从 1/32 到 2 的值
+  group: ''
+- name: Enable noise variance input port
+  summary: 启用噪声方差端口的选项 off（默认）| on
+  group: ''
+```
 
 ### **Modulation source** — 调制类型的来源 `Property`（默认） | `Input port`
 
@@ -254,7 +328,6 @@ chinese_source: worker-translation
 ### **Enable noise variance input port** — 启用噪声方差端口的选项 `off`（默认）| `on`
 
 选择此参数以启用噪声方差输入端口。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

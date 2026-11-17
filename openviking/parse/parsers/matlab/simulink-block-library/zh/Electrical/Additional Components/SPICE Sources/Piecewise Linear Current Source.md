@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Piecewise Linear Current Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子 electrical
+  direction: conserving
+- name: '-'
+  summary: 负极端子 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,25 @@ chinese_source: worker-translation
 ### **-** — 负极端子 electrical
 
 与分段线性电流源负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Time specification
+  summary: 时间值向量 [0, 1, 2, 3, 4] s（默认）
+  group: ''
+- name: Current at specified time
+  summary: 电流值向量 [0, 0, 0, 0, 0] A（默认）
+  group: ''
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: ''
+- name: Extrapolation method
+  summary: 外推方法 Nearest（默认）| Linear
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: 是否包含并联电导 Yes（默认）| No
+  group: ''
+```
 
 ### **Time specification** — 时间值向量 `[0, 1, 2, 3, 4]` `s`（默认）
 
@@ -63,7 +89,6 @@ chinese_source: worker-translation
 | *`Yes`* | | *`No`* | | |
 | **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且它不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
-
 ## 所属库
 
 Simscape / Electrical / Sources Simscape / Electrical / Additional Components / SPICE Sources

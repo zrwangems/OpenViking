@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Detrend
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入数据向量
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 输出数据列向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 输出数据，以列向量形式返回。该模块在去除最小二乘意义上最佳拟合数据的直线后，返回剩余数据。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 DSP System Toolbox / Statistics

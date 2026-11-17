@@ -14,6 +14,17 @@ language: en
 # SPI Receive
 
 ## Ports
+```yaml
+ports:
+- name: Rx
+  summary: SPI receive data vector
+  direction: output
+  data_types: uint8 | uint16 | uint32
+- name: Status
+  summary: SPI receive status 0 | 1 | 2
+  direction: output
+  data_types: uint8 | uint16 | uint32
+```
 
 ### Output
 
@@ -38,8 +49,46 @@ To enable this port, select **Enable status
 output** parameter.
 
 **Data Types:** `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: SPI module
+  summary: SPI module to read data SPI1 (default) | SPI2 | SPI3 | SPI4 | SPI5 | SPI6
+  group: Main
+- name: Clock polarity
+  summary: SPI clock polarity Low (default) | High
+  group: Main
+- name: Clock phase
+  summary: SPI clock phase 1 Edge (default) | 2 Edge
+  group: Main
+- name: Output data length
+  summary: SPI output data length 1 (default) | positive integer
+  group: Main
+- name: Enable status output
+  summary: Enable SPI status mode off (default) | on
+  group: Main
+- name: Enable blocking mode
+  summary: Enable SPI blocking mode off (default) | on
+  group: Main
+- name: Sample time
+  summary: SPI sample time selection –1 (default) | 0.1 | scalar
+  group: Main
+- name: Data bits
+  summary: Number of bits in SPI transfer 4 (default) | 5 to 32
+  group: Advanced
+- name: Chip select calling method
+  summary: Method to select SPI peripheral device Provided by the SPI peripheral (default) | Explicit GPIO calls
+  group: Advanced
+- name: Chip select pin polarity
+  summary: SPI chip select pin polarity Active low (default) | Active high
+  group: Advanced
+- name: Chip select port name
+  summary: SPI chip select port name GPIOA (default) | GPIOB | GPIOC
+  group: Advanced
+- name: Chip select pin
+  summary: SPI chip select pin 0 (default) | positive integer scalar
+  group: Advanced
+```
 
 ### Main
 
@@ -150,7 +199,6 @@ select for SPI.
 This option appears only when **Chip select calling
 method** is set to `Explicit GPIO
 calls`.
-
 ## Libraries
 
 Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F1xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F2xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F3xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F7xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32G0xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32G4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32H7xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32L4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32L5xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32U5xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32WBxx Based Boards

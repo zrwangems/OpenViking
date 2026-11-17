@@ -14,6 +14,41 @@ language: en
 # Stack
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Push
+  summary: Trigger event to push input scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Pop
+  summary: Trigger event to pop elements scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Rst
+  summary: Empty stack contents scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: Output scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Empty
+  summary: Empty stack indicator port scalar
+  direction: output
+  data_types: Boolean
+- name: Full
+  summary: Full stack indicator port scalar
+  direction: output
+  data_types: Boolean
+- name: Num
+  summary: Number of stack entries port scalar
+  direction: output
+  data_types: double | uint32
+```
 
 ### Input
 
@@ -128,8 +163,37 @@ To enable this port, select **Show number of stack entries
 port (Num)**.
 
 **Data Types:** `double` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Stack depth
+  summary: Number of entries stack can hold 8 (default) | positive integer
+  group: ''
+- name: Trigger type
+  summary: Trigger type Rising edge (default) | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Push full stack
+  summary: Push full stack Dynamic reallocation (default) | Ignore | Warning | Error
+  group: ''
+- name: Pop empty stack
+  summary: Pop empty stack Warning (default) | Ignore | Error
+  group: ''
+- name: Show empty stack indicator port (Empty)
+  summary: Enable empty stack indicator port off (default) | on
+  group: ''
+- name: Show full stack indicator port (Full)
+  summary: Enable full stack indicator port off (default) | on
+  group: ''
+- name: Show number of stack entries port (Num)
+  summary: Enable number of stack entries port off (default) | on
+  group: ''
+- name: Show reset port (Rst) to clear internal stack buffer
+  summary: Enable reset port off (default) | on
+  group: ''
+- name: Clear output port on reset
+  summary: Clear output port on reset off (default) | on
+  group: ''
+```
 
 ### **Stack depth** — Number of entries stack can hold `8` (default) | positive integer
 
@@ -268,7 +332,6 @@ type** parameter.
 
 Reset the **Out** port to 0 (in addition to clearing the stack) when the
 block receives a trigger at the **Rst** input port.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Buffers

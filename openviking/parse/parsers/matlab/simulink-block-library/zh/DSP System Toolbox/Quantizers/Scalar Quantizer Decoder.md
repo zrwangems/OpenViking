@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Scalar Quantizer Decoder
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 索引值向量
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: C
+  summary: 码本值向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Q(U)
+  summary: 量化输出值向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -42,8 +57,22 @@ chinese_source: worker-translation
 如果码本值通过 **C** 端口输入，则量化输出值的数据类型与输入码本值的数据类型相同。如果在模块对话框中指定码本值，则**码本和输出数据类型**参数决定量化输出值的数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 超出范围索引值的操作
+  summary: 超出范围索引值的操作 Clip（默认） | Clip and warn | Error
+  group: 主选项卡
+- name: 码本来源
+  summary: 码本来源 Specify via dialog（默认） | Input port
+  group: 主选项卡
+- name: 码本值
+  summary: 码本值 [1:10]（默认） | 向量 | 矩阵
+  group: 主选项卡
+- name: 码本和输出数据类型
+  summary: 码本和输出数据类型 double（默认） | Same as input | single | Inherit via back propagation | 数值类型
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -85,7 +114,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数仅在您将**码本来源**参数设置为 `Specify via dialog` 时可用。如果您将**码本来源**参数设置为 `Input port`，则量化输出值的数据类型与输入码本值的数据类型相同。
-
 ## 所属库
 
 DSP System Toolbox / Quantizers

@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Reverberator
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号矩阵 | 一维向量
+  direction: input
+  data_types: single | double
+- name: Delay
+  summary: 混响预延迟（秒），范围为 [0,1] 的标量
+  direction: input
+  data_types: single | double
+- name: HighCut
+  summary: 低通滤波器截止频率，范围为 [0, (Sample Rate)/2] 的正标量
+  direction: input
+  data_types: single | double
+- name: Diffusion
+  summary: 混响尾音密度，范围为 [0,1] 的标量
+  direction: input
+  data_types: single | double
+- name: Decay
+  summary: 混响尾音衰减因子，范围为 [0,1] 的标量
+  direction: input
+  data_types: single | double
+- name: Damping
+  summary: 高频阻尼，范围为 [0,1] 的标量
+  direction: input
+  data_types: single | double
+- name: WetDry
+  summary: 湿（混响）信号与干（原始）信号的比率，范围为 [0,1] 的标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -81,8 +116,37 @@ chinese_source: worker-translation
 Reverberator 模块将混响信号输出为两列矩阵。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Pre-delay (s)
+  summary: 混响预延迟 0（默认）| 范围为 [0, 1] 的标量
+  group: ''
+- name: Highcut frequency (Hz)
+  summary: 低通滤波器截止频率 20000（默认）| 范围为 [0, (Sample Rate)/2] 的标量
+  group: ''
+- name: Diffusion
+  summary: 混响尾音密度 0.50（默认）| 范围为 [0, 1] 的标量
+  group: ''
+- name: Decay factor
+  summary: 混响尾音衰减因子 0.50（默认）| 范围为 [0, 1] 的标量
+  group: ''
+- name: High frequency damping
+  summary: 高频阻尼 0.0005（默认）| 范围为 [0, 1] 的标量
+  group: ''
+- name: Wet/dry mix
+  summary: 湿（混响）信号与干（原始）信号的比率 0.3（默认）| 范围为 [0, 1] 的标量
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 on（默认）| off
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 如果参数列为可调，则您可以在仿真期间更改其值。
 
@@ -150,7 +214,6 @@ Reverberator 模块将混响信号输出为两列矩阵。
 
 - `Interpreted execution` – 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，仿真速度与 `Code generation` 相当。在此模式下，您可以调试模块的源代码。
 - `Code generation` – 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Audio Toolbox / Effects

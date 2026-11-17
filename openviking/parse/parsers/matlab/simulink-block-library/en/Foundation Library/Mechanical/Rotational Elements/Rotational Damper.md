@@ -14,6 +14,15 @@ language: en
 # Rotational Damper
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,13 +35,17 @@ body.
 
 Mechanical rotational conserving port associated with the case, that is, the
 stationary body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Damping coefficient
+  summary: Damping coefficient 0.001 N*m/(rad/s) (default) | scalar
+  group: ''
+```
 
 ### **Damping coefficient** — Damping coefficient `0.001 N*m/(rad/s)` (default) | scalar
 
 Damping coefficient, defined by viscous friction.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

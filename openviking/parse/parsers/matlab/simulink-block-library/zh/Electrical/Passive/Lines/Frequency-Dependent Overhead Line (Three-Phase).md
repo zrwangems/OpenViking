@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Frequency-Dependent Overhead Line (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 三相交流电压 1 electrical
+  direction: conserving
+- name: ~2
+  summary: 三相交流电压 2 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,34 @@ chinese_source: worker-translation
 ### **~2** — 三相交流电压 2 electrical
 
 与交流电压 2 关联的可扩展电气守恒三相端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是对复合三相端口还是扩展三相端口进行建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: X position of the line
+  summary: 线路水平位置 [-6, 0, 6] m（默认）| 三元素向量
+  group: ''
+- name: Y position of the line
+  summary: 线路垂直位置 [16, 26, 16] m（默认）| 三个正元素向量
+  group: ''
+- name: Resistivity of the conductor
+  summary: 导体电阻率 2.7e-8 m*Ohm（默认）| 正标量
+  group: ''
+- name: Resistivity of the earth
+  summary: 大地回流电阻率 100 m*Ohm（默认）| 正标量
+  group: ''
+- name: Radius of the conductor
+  summary: 导体半径 0.017 m（默认）| 正标量
+  group: ''
+- name: Length of the line
+  summary: 线路长度 150e3 m（默认）| 范围 [1, 300000] 内的标量
+  group: ''
+- name: Ground configuration
+  summary: 接地节点可访问性 Internally grounded（默认）| Accessible ground nodes
+  group: ''
+```
 
 ### **Modeling option** — 是对复合三相端口还是扩展三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -63,7 +98,6 @@ chinese_source: worker-translation
 ### **Ground configuration** — 接地节点可访问性 `Internally grounded`（默认）| `Accessible ground nodes`
 
 接地节点的配置。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Lines

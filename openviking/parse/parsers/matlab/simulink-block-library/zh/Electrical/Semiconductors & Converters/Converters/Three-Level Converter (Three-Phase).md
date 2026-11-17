@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Three-Level Converter (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 门极端子 electrical
+  direction: conserving
+- name: '~'
+  summary: 三相端口 electrical
+  direction: conserving
+- name: a
+  summary: '*a* 相 electrical'
+  direction: conserving
+- name: b
+  summary: '*b* 相 electrical'
+  direction: conserving
+- name: c
+  summary: '*c* 相 electrical'
+  direction: conserving
+- name: +
+  summary: 正极端子 electrical
+  direction: conserving
+- name: '0'
+  summary: 中性端子 electrical
+  direction: conserving
+- name: '-'
+  summary: 负极端子 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -65,8 +92,115 @@ chinese_source: worker-translation
 ### **-** — 负极端子 electrical
 
 与直流负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Switching device
+  summary: 开关器件 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Averaged Switch
+  group: ''
+- name: Forward voltage, Vf
+  summary: 正向电压 0.8 V（默认）
+  group: 'Switching Devices: GTO'
+- name: On-state resistance
+  summary: 导通电阻 0.001 Ohm（默认）
+  group: 'Switching Devices: GTO'
+- name: Off-state Conductance
+  summary: 关断电导 1e-6 1/Ohm（默认）
+  group: 'Switching Devices: GTO'
+- name: Gate trigger voltage, Vgt
+  summary: 门极触发电压 1 V（默认）
+  group: 'Switching Devices: GTO'
+- name: Gate turn-off voltage, Vgt_off
+  summary: 门极关断电压 -1 V（默认）
+  group: 'Switching Devices: GTO'
+- name: Holding current
+  summary: 维持电流 1 A（默认）
+  group: 'Switching Devices: GTO'
+- name: On-state resistance
+  summary: 导通电阻 0.001 Ohm（默认）
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Off-state Conductance
+  summary: 关断电导 1e-6 1/Ohm（默认）
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Threshold voltage, Vth
+  summary: 阈值电压 6 V（默认）
+  group: 'Switching Devices: Ideal Semiconductor Switch'
+- name: Forward voltage, Vf
+  summary: 正向电压 0.8 V（默认）
+  group: 'Switching Devices: IGBT'
+- name: On-state resistance
+  summary: 导通电阻 0.001 Ohm（默认）
+  group: 'Switching Devices: IGBT'
+- name: Off-state Conductance
+  summary: 关断电导 1e-6 1/Ohm（默认）
+  group: 'Switching Devices: IGBT'
+- name: Threshold voltage, Vth
+  summary: 阈值电压 6 V（默认）
+  group: 'Switching Devices: IGBT'
+- name: Drain-source on resistance, R_DS(on)
+  summary: 漏源导通电阻 0.001 Ohm（默认）
+  group: 'Switching Devices: MOSFET'
+- name: Off-state Conductance
+  summary: 关断电导 1e-6 1/Ohm（默认）
+  group: 'Switching Devices: MOSFET'
+- name: Threshold voltage, Vth
+  summary: 阈值电压 6 V（默认）
+  group: 'Switching Devices: MOSFET'
+- name: On-state resistance
+  summary: 导通电阻 0.001 Ohm（默认）
+  group: 'Switching Devices: Averaged Switch'
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: 用于 FPGA 部署的整数模式 0（默认）| 非负标量
+  group: 'Switching Devices: Averaged Switch'
+- name: Integral protection diode
+  summary: 集成保护二极管 Diode with no dynamics（默认）| Diode with charge dynamics
+  group: 集成二极管
+- name: Forward voltage
+  summary: 正向电压 0.8 V（默认）
+  group: 集成二极管
+- name: On resistance
+  summary: 导通电阻 0.001 Ohm（默认）
+  group: 集成二极管
+- name: Off conductance
+  summary: 关断电导 1e-5 1/Ohm（默认）
+  group: 集成二极管
+- name: Junction capacitance
+  summary: 结电容 50e-9 F（默认）
+  group: 集成二极管
+- name: Peak reverse current, iRM
+  summary: 峰值反向电流 -235 A（默认）| 负标量
+  group: 集成二极管
+- name: Initial forward current when measuring iRM
+  summary: 测量 iRM 时的初始正向电流 300 A（默认）| 正标量
+  group: 集成二极管
+- name: Rate of change of current when measuring iRM
+  summary: 测量 iRM 时的电流变化率 -50A/μs（默认）| 负标量
+  group: 集成二极管
+- name: Reverse recovery time parameterization
+  summary: 反向恢复时间参数化 Specify reverse recovery time directly（默认）| Specify stretch factor | Specify reverse recovery charge
+  group: 集成二极管
+- name: Reverse recovery time, trr
+  summary: 反向恢复时间 15 μs（默认）
+  group: 集成二极管
+- name: Reverse recovery time stretch factor
+  summary: 反向恢复时间拉伸因子 3（默认）
+  group: 集成二极管
+- name: Reverse recovery charge, Qrr
+  summary: 反向恢复电荷 1500 μAs（默认）
+  group: 集成二极管
+- name: Snubber
+  summary: 缓冲器 None（默认）| RC snubber
+  group: 缓冲器
+- name: Snubber resistance
+  summary: 缓冲电阻 0.1 Ohm（默认）
+  group: 缓冲器
+- name: Snubber capacitance
+  summary: 缓冲电容 1e-7 F（默认）
+  group: 缓冲器
+```
 
 ### **Electrical connection** — 电气连接 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -320,7 +454,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当 **Snubber** 参数设置为 `RC snubber` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

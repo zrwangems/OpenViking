@@ -14,6 +14,37 @@ language: en
 # Edge Detection
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Th
+  summary: Threshold scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Edge
+  summary: Edge detections matrix
+  direction: output
+  data_types: Boolean
+- name: Gv
+  summary: Gradient responses to vertical edges matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Gh
+  summary: Gradient responses to horizontal edges matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: G45
+  summary: Gradient responses to edges at 45 degrees matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: G135
+  summary: Gradient responses to edges at 135 degrees matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -135,8 +166,40 @@ To enable this port, set these parameters:
   components`
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Edge detection method Sobel (default) | Prewitt | Roberts | Canny
+  group: ''
+- name: Output Type
+  summary: Output image type Binary image (default) | Gradient components | Binary image and gradient components
+  group: ''
+- name: User-defined threshold
+  summary: User-defined threshold off (default) | on
+  group: ''
+- name: Threshold source
+  summary: Threshold source Input port (default) | Specify via dialog
+  group: ''
+- name: Threshold
+  summary: Threshold 20 (default) | scalar
+  group: ''
+- name: Threshold, [Low High]
+  summary: Threshold for Canny edge detection [0.25 0.60] (default) | vector
+  group: ''
+- name: Threshold scale factor:(used to automatically calculate threshold value)
+  summary: Threshold scale factor 4 (default) | scalar
+  group: ''
+- name: Edge Thinning
+  summary: Edge thinning off (default) | on
+  group: ''
+- name: Approximate percentage of weak edge and nonedge pixels (used to automatically calculate threshold values)
+  summary: Approximate percentage of weak edge and nonedge pixels 70 (default) | scalar
+  group: ''
+- name: Standard deviation of Gaussian filter
+  summary: Standard deviation of Gaussian filter 1 (default) | scalar
+  group: ''
+```
 
 **Main**
 
@@ -304,7 +367,6 @@ To enable this parameter, set the **Method** parameter to
 **Data Types**
 
 For information about the fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

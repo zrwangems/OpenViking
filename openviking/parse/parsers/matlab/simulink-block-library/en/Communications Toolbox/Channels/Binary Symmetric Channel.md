@@ -14,6 +14,18 @@ language: en
 # Binary Symmetric Channel
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal column vector | matrix
+  direction: input
+- name: Output
+  summary: Binary output signal column vector | matrix
+  direction: output
+- name: Err
+  summary: Error locations column vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -54,8 +66,25 @@ by Output data type.
 #### Dependencies
 
 To enable this port, select Output error vector.
-
 ## Parameters
+```yaml
+parameters:
+- name: Error probability
+  summary: Probability of error occurrence 0.05 (default) | scalar
+  group: ''
+- name: Output error vector
+  summary: Option to output error locations on (default) | off
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single | boolean
+  group: ''
+- name: Initial seed
+  summary: Initial seed 71 (default) | integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -100,7 +129,6 @@ Type of simulation to run, specified as:
   the model using the MATLAB® interpreter. This option shortens startup time. In
   `Interpreted execution` mode, you
   can debug the source code of the block.
-
 ## Libraries
 
 Communications Toolbox / Channels

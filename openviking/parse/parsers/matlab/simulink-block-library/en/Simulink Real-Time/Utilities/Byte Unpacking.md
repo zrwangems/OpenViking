@@ -14,6 +14,17 @@ language: en
 # Byte Unpacking
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input port containing packed data vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: Port_1
+  summary: First of *N* output ports scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -34,8 +45,23 @@ parameter **Output port (unpacked) data types (cell
 array)**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output port (unpacked) data types (cell array)
+  summary: Data types for the unpacked output signals uint8 (default) | double | single | int8 | int16 | uint16 | int32 |
+    uint32 | boolean
+  group: ''
+  block_parameter: MaskUnpackedDataTypes
+- name: Output port (unpacked) dimensions (cell array)
+  summary: Dimensions of each output port (unpacked) {[1]} (default) | {[N], [M], ...}
+  group: ''
+  block_parameter: MaskUnpackedDataSizes
+- name: Byte Alignment
+  summary: Alignment of the output signal data types before unpacking 1 (default) | 2 | 4 | 8
+  group: ''
+  block_parameter: MaskAlignment
+```
 
 ### **Output port (unpacked) data types (cell array)** — Data types for the unpacked output signals `uint8` (default) | `double` | `single` | `int8` | `int16` | `uint16` | `int32` | `uint32` | `boolean`
 
@@ -82,7 +108,6 @@ For example, if the alignment value is `4`:
 |  |
 | --- |
 | **Block Parameter:** `MaskAlignment` |
-
 ## Libraries
 
 Simulink Real-Time / Utilities

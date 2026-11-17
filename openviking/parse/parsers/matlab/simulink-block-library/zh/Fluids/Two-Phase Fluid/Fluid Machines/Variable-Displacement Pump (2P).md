@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Variable-Displacement Pump (2P)
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 排量，cm^3/rev 物理信号
+  direction: input
+- name: EV
+  summary: 容积效率，无量纲物理信号
+  direction: input
+- name: EM
+  summary: 机械效率，无量纲物理信号
+  direction: input
+- name: LV
+  summary: 容积损失，m^3/s 物理信号
+  direction: input
+- name: LM
+  summary: 机械损失，N\*m 物理信号
+  direction: input
+- name: A
+  summary: 泵入口两相流体
+  direction: input
+- name: B
+  summary: 泵出口两相流体
+  direction: input
+- name: C
+  summary: 泵壳体机械旋转
+  direction: input
+- name: R
+  summary: 泵轴机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -70,8 +100,91 @@ chinese_source: worker-translation
 ### **R** — 泵轴机械旋转
 
 与旋转泵轴相关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: 泄漏流量和摩擦扭矩的参数化方法 Analytical（默认）| Tabulated data - volumetric and mechanical efficiencies | Tabulated data - volumetric
+    and mechanical losses | Input signal - volumetric and mechanical efficiencies | Input signal - volumetric and mechanical
+    losses
+  group: ''
+- name: Nominal displacement
+  summary: 用于指定容积效率的排量 30 cm^3/rev（默认）| 正标量
+  group: ''
+- name: Nominal shaft angular velocity
+  summary: 给定容积效率下的轴角速度 1800 rpm（默认）| 标量
+  group: ''
+- name: Nominal pressure gain
+  summary: 对应容积效率的压力增益 10 MPa（默认）| 标量
+  group: ''
+- name: Nominal dynamic viscosity
+  summary: 用于指定容积效率的动力粘度 0.9 cP（默认）| 标量
+  group: ''
+- name: Volumetric efficiency at nominal conditions
+  summary: 指定标称工况下的容积效率 0.92（默认）| 范围 (0,1) 内的标量
+  group: ''
+- name: Mechanical efficiency at nominal conditions
+  summary: 理想机械功率与实际机械功率之比 0.88（默认）| 正标量
+  group: ''
+- name: No-load torque
+  summary: 引起轴旋转所需的最小扭矩 0 N*m（默认）| 标量
+  group: ''
+- name: Pressure gain vector, dp
+  summary: 给定容积效率和机械效率或损失对应的压力增益 [.1, 1, 2] MPa（默认）| 向量
+  group: ''
+- name: 轴角速度向量，w
+  summary: 用于指定容积效率和机械效率或损失时的角速度 [250, 500, 1000, 2000, 3000, 4000] rpm（默认）| 向量
+  group: ''
+- name: 排量向量，D
+  summary: 用于指定容积效率和机械效率或损失时的排量 [-30, -19, 19, 30] cm^3/rev（默认）| 向量
+  group: ''
+- name: 容积效率表，e_v(dp,w,D)
+  summary: 给定压力增益、角速度和排量下的容积效率 repmat([.816, .908, .954, .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568,
+    .78, .892, .893, .91], 1, 1, 4)（默认）| 矩阵
+  group: ''
+- name: 机械效率表，e_m(dp,w,D)
+  summary: 给定压力增益、角速度和排量下的机械效率 repmat([.996, .996, .996, .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981,
+    .982, .982, .983, .984], 1, 1, 4)（默认）| 矩阵
+  group: ''
+- name: 容积损失表，q_loss(dp,w,D)
+  summary: 对应压力增益、角速度和排量下的内部泄漏流量 repmat([.0282, .0253, .0241, .0235, .0291, .0325; .2596, .1271, .1017, .0917, .1216, .1142;
+    .7874, .1901, .141, .1211, .1797, .1978] * 1e-3, 1, 1, 4) m^3/s（默认）| 矩阵
+  group: ''
+- name: 机械损失表，torque_loss(dp,w,D)
+  summary: 对应压力增益、角速度和排量下的摩擦力矩 repmat([.002, .002, .002, .002, .002, .002; .06, .055, .055, .055, .055, .05; .19, .19, .18,
+    .18, .17, .16], 1, 1, 4) N*m（默认）| 矩阵
+  group: ''
+- name: 最小容积效率
+  summary: 容积效率输入信号的下饱和边界 1e-3（默认）| 范围 (0,1) 内的标量
+  group: ''
+- name: 最大容积效率
+  summary: 容积效率输入信号的上饱和边界 1（默认）| 范围 (0,1) 内的标量
+  group: ''
+- name: 最小机械效率
+  summary: 容积效率输入信号的下饱和边界 1e-3（默认）| 范围 (0,1) 内的标量
+  group: ''
+- name: 最大机械效率
+  summary: 容积效率输入信号的上饱和边界 1（默认）| 范围 (0,1) 内的标量
+  group: ''
+- name: Pressure gain threshold for motor-pump transition
+  summary: 启动电机与泵模式之间平滑过渡的压力增益 1e-3 MPa（默认）| 标量
+  group: ''
+- name: Angular velocity threshold for motor-pump transition
+  summary: 启动泵与电机模式之间平滑过渡的角速度 100 rpm（默认）| 标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 组件入口和出口处的流通面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Report when fluid is not fully liquid
+  summary: 当流体不是完全液体时的通知 None（默认）| Warning | Error
+  group: ''
+- name: Check if operating beyond the range of supplied tabulated data
+  summary: 工作条件超出表格数据范围时的仿真警告模式 None（默认）| Warning | Error
+  group: ''
+- name: Check if operating outside of pump mode
+  summary: 工作条件超出泵模式时的仿真警告模式 None（默认）| Warning | Error
+  group: ''
+```
 
 ### **Leakage and friction parameterization** — 泄漏流量和摩擦扭矩的参数化方法 `Analytical`（默认）| `Tabulated data - volumetric and mechanical efficiencies` | `Tabulated data - volumetric and mechanical losses` | `Input signal - volumetric and mechanical efficiencies` | `Input signal - volumetric and mechanical losses`
 
@@ -291,7 +404,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Leakage and friction parameterization** 设置为 `Input signal - volumetric and mechanical losses`。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Fluid Machines

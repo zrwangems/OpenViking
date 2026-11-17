@@ -14,6 +14,15 @@ language: en
 # Uncertain State Space
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: Input signal scalar | vector
+  direction: input
+- name: Port_1(Out1)
+  summary: Output signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -36,8 +45,34 @@ scalar signals, use blocks such as:
 
 - Demux (Simulink)
 - Bus Selector (Simulink)
-
 ## Parameters
+```yaml
+parameters:
+- name: Uncertain system variable (uss)
+  summary: Uncertain system ss(ureal('a',-5),5,1,1) (default) | uss model | model or element that can be converted to uss
+  group: ''
+  block_parameter: USystem
+  type: uss model, model that can be converted to uss
+  default: ss(ureal('a',-5),5,1,1)
+- name: Uncertainty value (struct or [] to use nominal value)
+  summary: Values to substitute for uncertain variables [] (default) | structure
+  group: ''
+  block_parameter: UValue
+  type: structure
+  default: '[]'
+- name: Initial states (nominal dynamics)
+  summary: Initial state values of nominal system [] (default) | vector
+  group: ''
+  block_parameter: X0
+  type: scalar, vector
+  default: '[]'
+- name: Initial states (uncertain dynamics)
+  summary: Initial state values for uncertain dynamics [] | vector
+  group: ''
+  block_parameter: uX0
+  type: scalar, vector
+  default: '[]'
+```
 
 ### **Uncertain system variable (uss)** — Uncertain system `ss(ureal('a',-5),5,1,1)` (default) | `uss` model | model or element that can be converted to `uss`
 
@@ -145,7 +180,6 @@ states to 0.
 | **Block Parameter:** `uX0` |
 | **Type:** scalar, vector |
 | **Default:** `[]` |
-
 ## Libraries
 
 Robust Control Toolbox

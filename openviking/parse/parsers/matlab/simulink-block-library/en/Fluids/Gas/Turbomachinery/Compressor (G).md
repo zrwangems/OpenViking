@@ -14,6 +14,24 @@ language: en
 # Compressor (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Gas inlet gas
+  direction: conserving
+- name: B
+  summary: Gas outlet gas
+  direction: conserving
+- name: C
+  summary: Compressor casing mechanical translational
+  direction: conserving
+- name: R
+  summary: Compressor shaft mechanical translational
+  direction: conserving
+- name: SM
+  summary: Surge margin physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -47,8 +65,96 @@ SM(m˙corr)=pr,surge(m˙corr)pr(m˙corr)−1.
 
 To enable this port, set **Parameterization** to
 `Tabulated`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Compressor performance parameterization Analytical (default) | Tabulated
+  group: Compressor Map
+- name: Corrected speed at design point
+  summary: Operational corrected shaft speed 10000 rpm (default) | positive scalar
+  group: Compressor Map
+- name: Pressure ratio at design point
+  summary: Operational outlet-to-inlet pressure ratio 7.5 (default) | positive scalar
+  group: Compressor Map
+- name: Corrected mass flow rate at design point
+  summary: Operational corrected mass flow rate 33 kg/s (default) | positive scalar
+  group: Compressor Map
+- name: Efficiency specification
+  summary: Isentropic efficiency model Analytical (default) | Constant
+  group: Compressor Map
+- name: Maximum isentropic efficiency
+  summary: Maximum compressor efficiency 0.887 (default) | positive scalar in the range (0,1]
+  group: Compressor Map
+- name: Minimum isentropic efficiency
+  summary: Minimum compressor efficiency 0.5 (default) | positive scalar in the range (0,1]
+  group: Compressor Map
+- name: Corrected mass flow rate at maximum efficiency point
+  summary: Corrected mass flow rate at compressor maximum efficiency 30 kg/s (default) | positive scalar
+  group: Compressor Map
+- name: Pressure ratio at maximum efficiency point
+  summary: Pressure ratio at compressor maximum efficiency 7 (default) | positive scalar
+  group: Compressor Map
+- name: Constant isentropic efficiency
+  summary: Constant isentropic efficiency value 0.8 (default) | positive scalar in the range (0,1]
+  group: Compressor Map
+- name: Corrected speed index vector, N
+  summary: Vector of corrected shaft speeds [5000, 6000, 7000, 7500, 8000, 8500, 9000, 9500, 10000, 11000] rpm (default) |
+    vector
+  group: Compressor Map
+- name: Beta index vector, beta
+  summary: 'Vector of corrected speed line intervals 0 : 1 / 6 : 1 (default) | vector of elements in the range [0,1]'
+  group: Compressor Map
+- name: Pressure ratio table, pr(N,beta)
+  summary: Compressor map pressure ratio data *M*-by-*N* matrix (default)
+  group: Compressor Map
+- name: Corrected mass flow rate table, mdot(N,beta)
+  summary: Compressor map corrected mass flow rate data *M*-by-*N* matrix (default)
+  group: Compressor Map
+- name: Isentropic efficiency table, eta(N,beta)
+  summary: Compressor map isentropic efficiency data *M*-by-*N* matrix (default)
+  group: Compressor Map
+- name: Report when surge margin is negative
+  summary: Whether to notify if pressure ratio exceeds surge pressure ratio None (default) | Warning | Error
+  group: Compressor Map
+- name: Spine shape, a
+  summary: Spine shape exponent 1.5 (default) | positive scalar
+  group: Map Coefficients
+- name: Speed line spread, b
+  summary: Constant speed line spacing exponent 5 (default) | positive scalar
+  group: Map Coefficients
+- name: Speed line roundness, k
+  summary: Constant speed line shape coefficient 0.03 (default) | positive scalar
+  group: Map Coefficients
+- name: Efficiency peak flatness orthogonal to spine, c
+  summary: Exponent characterizing shape of analytical isentropic efficiency 3 (default) | positive scalar
+  group: Map Coefficients
+- name: Efficiency peak flatness along spine, d
+  summary: Exponent characterizing shape of analytical isentropic efficiency 4 (default) | positive scalar
+  group: Map Coefficients
+- name: Efficiency contour gradient orthogonal to spine, C
+  summary: Coefficient characterizing shape of analytical isentropic efficiency 15 (default) | positive scalar
+  group: Map Coefficients
+- name: Efficiency contour gradient along spine, D
+  summary: Coefficient characterizing shape of analytical isentropic efficiency 1 (default) | positive scalar in the range
+    (0,1]
+  group: Map Coefficients
+- name: Reference pressure for corrected flow
+  summary: Correcting pressure 0.101325 MPa (default) | positive scalar
+  group: Parameters
+- name: Reference temperature for corrected flow
+  summary: Correcting temperature 288.15 K (default) | positive scalar
+  group: Parameters
+- name: Mechanical efficiency
+  summary: Efficiency of conversion to torque 0.9 (default) | positive scalar in the range [0,1]
+  group: Parameters
+- name: Inlet area at port A
+  summary: Compressor inlet area 1 m^2 (default) | positive scalar
+  group: Parameters
+- name: Outlet area at port B
+  summary: Compressor outlet area 1 m^2 (default) | positive scalar
+  group: Parameters
+```
 
 ### Compressor Map
 
@@ -434,7 +540,6 @@ Compressor inlet cross-sectional area.
 ### **Outlet area at port B** — Compressor outlet area `1` `m^2` (default) | positive scalar
 
 Compressor outlet cross-sectional area.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Turbomachinery

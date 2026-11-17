@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Derating Function
 
 ## 端口
+```yaml
+ports:
+- name: fmax
+  summary: 最大参考信号限值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ffeedback
+  summary: 参考反馈信号标量
+  direction: input
+  data_types: single | double | fixed point
+- name: y
+  summary: 降额因子标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -36,13 +51,17 @@ chinese_source: worker-translation
 当信号超过 **Derating threshold** 参数值时，模块根据参考信号的反馈值和最大限值生成的降额因子。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Derating threshold
+  summary: 必须进行降额的阈值 0.9（默认）| [0,1) 范围内的标量
+  group: ''
+```
 
 ### **Derating threshold** — 必须进行降额的阈值 `0.9`（默认）| [0,1) 范围内的标量
 
 参考信号值，超过该值时模块生成降额因子。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Controllers Motor Control Blockset HDL Support / Controls / Controllers

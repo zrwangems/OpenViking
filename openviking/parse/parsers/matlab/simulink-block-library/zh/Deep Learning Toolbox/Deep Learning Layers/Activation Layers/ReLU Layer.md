@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # ReLU Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出数据 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -31,8 +42,47 @@ chinese_source: worker-translation
 输入矩阵中小于零的值变为零。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 输出最小值
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: 输出最大值
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: 输出数据类型
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via back
+    propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 防止定点工具覆盖输出数据类型的选项 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: 整数舍入模式
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: 整数溢出时饱和
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: 采样时间
+  summary: 指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中，选择**属性检查器**。
 
@@ -172,7 +222,6 @@ chinese_source: worker-translation
 | **参数：** `SampleTime` |
 | **数据类型：** `char` |
 | **值：** `'-1'`（默认）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Activation Layers

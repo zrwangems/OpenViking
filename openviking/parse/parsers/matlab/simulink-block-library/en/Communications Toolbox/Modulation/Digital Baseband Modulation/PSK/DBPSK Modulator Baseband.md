@@ -14,6 +14,17 @@ language: en
 # DBPSK Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: DBPSK-modulated baseband signal scalar | column vector
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -36,8 +47,16 @@ or column vector.
 This port is unnamed on the block.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase rotation (rad)
+  summary: Additional phase shift 0 (default) | scalar
+  group: Main
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: Main
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -59,7 +78,6 @@ input is zero.
 
 Output data type, specified as `double` or
 `single`.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK

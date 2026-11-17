@@ -14,6 +14,24 @@ language: en
 # Flow Rate Sensor (G)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mass flow rate measurement, kg/s physical signal
+  direction: output
+- name: V
+  summary: Volumetric flow rate, m^3/s physical signal
+  direction: output
+- name: φ
+  summary: Energy flow rate measurement, W physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet gas
+  direction: conserving
+- name: B
+  summary: Sensor outlet gas
+  direction: conserving
+```
 
 ### Output
 
@@ -54,8 +72,28 @@ Gas conserving port. Flow rates are positive if gas flows from port
 
 Gas conserving port. Flow rates are positive if gas flows from port
 **A** to port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass flow rate
+  summary: Control output port visibility for measuring mass flow rate On (default) | Off
+  group: ''
+- name: Volumetric flow rate
+  summary: Control output port visibility for measuring volumetric flow rate Off (default) | On
+  group: ''
+- name: Volumetric flow measurement conditions
+  summary: Specify conditions for measuring volumetric flow rate Actual conditions (default) | Standard conditions
+  group: ''
+- name: Standard pressure
+  summary: Gas pressure at standard conditions 0.10132 MPa (default)
+  group: ''
+- name: Standard temperature
+  summary: Gas temperature at standard conditions 20 degC (default)
+  group: ''
+- name: Energy flow rate
+  summary: Control output port visibility for measuring energy flow rate On (default) | Off
+  group: ''
+```
 
 ### **Mass flow rate** — Control output port visibility for measuring mass flow rate `On` (default) | `Off`
 
@@ -107,7 +145,6 @@ conditions** to `Standard conditions`.
 
 Selecting this check box exposes the output port **φ**, which lets
 you measure energy flow rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Sensors

@@ -14,6 +14,25 @@ language: en
 # Chroma Resampling
 
 ## Ports
+```yaml
+ports:
+- name: Cb
+  summary: Blue-difference chrominance component of image matrix
+  direction: input
+  data_types: single | double | uint8
+- name: Cr
+  summary: Red-difference chrominance component of image matrix
+  direction: input
+  data_types: single | double | uint8
+- name: Cb
+  summary: Blue-difference chrominance component of image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: Cr
+  summary: Red-difference chrominance component of image matrix
+  direction: output
+  data_types: single | double | int8 | uint8
+```
 
 ### Input
 
@@ -53,8 +72,28 @@ the width of the resampled image. If you downsample the input image,
 image, *P* is greater than *D*
 
 **Data Types:** `single` | `double` | `int8` | `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Resampling
+  summary: Chrominance resampling method 4:4:4 to 4:2:2 (default) | 4:4:4 to 4:2:0 (MPEG1) | 4:4:4 to 4:2:0 (MPEG2) | ...
+  group: ''
+- name: Antialiasing filter
+  summary: Chroma downsampling antialiasing filter Default (default) | User-defined | None
+  group: ''
+- name: Horizontal filter coefficients
+  summary: Coefficients for horizontal lowpass filter [0.2 0.6 0.2] (default) | row vector
+  group: ''
+- name: Vertical filter coefficients
+  summary: Coefficients for vertical lowpass filter [0.5 0.5] (default) | row vector
+  group: ''
+- name: Interpolation
+  summary: Chrominance upsampling interpolation method linear (default) | pixel replication
+  group: ''
+- name: Input image is transposed (data order is row major)
+  summary: Read data row-wise off (default) | on
+  group: ''
+```
 
 ### **Resampling** — Chrominance resampling method `4:4:4 to 4:2:2` (default) | `4:4:4 to 4:2:0 (MPEG1)` | `4:4:4 to 4:2:0 (MPEG2)` | ...
 
@@ -172,7 +211,6 @@ of these options:
 ### **Input image is transposed (data order is row major)** — Read data row-wise `off` (default) | `on`
 
 Enable this parameter to read data elements row-wise.
-
 ## Libraries
 
 Computer Vision Toolbox / Conversions

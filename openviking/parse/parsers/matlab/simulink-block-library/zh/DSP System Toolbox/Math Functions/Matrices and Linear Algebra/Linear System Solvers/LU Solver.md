@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # LU Solver
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入 *A* 矩阵 *M*×*M* 矩阵
+  direction: input
+  data_types: single | double
+- name: B
+  summary: '*B* 矩阵 *M*×*N* 矩阵 | *M*×1 向量'
+  direction: input
+  data_types: single | double
+- name: X
+  summary: 方程组的解 *M*×*N* 矩阵 | *M*×1 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -53,11 +68,12 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

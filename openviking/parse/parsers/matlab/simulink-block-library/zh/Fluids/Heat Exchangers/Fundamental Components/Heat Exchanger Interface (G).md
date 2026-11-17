@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Heat Exchanger Interface (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 气体端口 gas
+  direction: conserving
+- name: B
+  summary: 气体端口 gas
+  direction: conserving
+- name: H
+  summary: 热边界 thermal
+  direction: conserving
+- name: C
+  summary: 热容率 physical signal
+  direction: input
+- name: HC
+  summary: 传热系数 physical signal
+  direction: input
+```
 
 ### 守恒端口
 
@@ -38,8 +56,111 @@ chinese_source: worker-translation
 ### **HC** — 传热系数 physical signal
 
 气体流量与壁面之间传热系数的瞬时值，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum free-flow area
+  summary: 流道最窄点处的横截面积 0.01 m^2（默认）| 具有长度平方单位的标量
+  group: 参数
+- name: Hydraulic diameter
+  summary: 圆形通道的直径或等效直径 0.1 m（默认）| 具有长度单位的标量
+  group: 参数
+- name: Gas volume
+  summary: 流道中包含的流体总体积 0.01 m^3（默认）| 具有长度平方单位的标量
+  group: 参数
+- name: Laminar flow upper Reynolds number limit
+  summary: 层流与湍流状态之间过渡的起点 2000（默认）| 标量
+  group: 参数
+- name: Turbulent flow lower Reynolds number limit
+  summary: 层流与湍流状态之间过渡的终点 4000（默认）| 标量
+  group: 参数
+- name: Pressure loss model
+  summary: 摩擦压降的数学模型 Pressure loss coefficient（默认）| Correlation for flow inside tubes | Tabulated data - Darcy friction factor
+    vs. Reynolds number | Tabulated data - Euler number vs. Reynolds number
+  group: 参数
+- name: Pressure loss coefficient
+  summary: 端口之间所有流动阻力的总损失系数 0.1（默认）| 标量
+  group: 参数
+- name: Length of flow path from inlet to outlet
+  summary: 从端口到端口行进的距离 1 m（默认）| 具有长度单位的标量
+  group: 参数
+- name: Aggregate equivalent length of local resistances
+  summary: 以长度表示的局部次要压降总和 0.1 m（默认）| 具有长度单位的标量
+  group: 参数
+- name: Internal surface absolute roughness
+  summary: 导致摩擦损失的壁面表面变化平均高度 15e-6 m（默认）| 具有长度单位的标量
+  group: 参数
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流条件下流动横截面的压降修正 64（默认）| 标量
+  group: 参数
+- name: Reynolds number vector for Darcy friction factor
+  summary: Darcy 摩擦因子查找表中每个断点处的 Reynolds 数 数值数组
+  group: 参数
+- name: Darcy friction factor vector
+  summary: 雷诺数查找表中每个断点处的 Darcy 摩擦因子 数值数组
+  group: 参数
+- name: Reynolds number vector for Euler number
+  summary: Euler 数查找表中每个断点处的雷诺数 数值数组
+  group: 参数
+- name: Euler number vector
+  summary: 雷诺数查找表中每个断点处的 Euler 数 数值数组
+  group: 参数
+- name: Heat transfer coefficient model
+  summary: 流体与壁面之间传热的数学模型 Constant heat transfer coefficient（默认）| Correlation for flow inside tubes | Tabulated data - Colburn
+    factor vs. Reynolds number | Tabulated data - Nusselt number vs. Reynolds number and Prandtl number
+  group: 参数
+- name: Gas-wall heat transfer coefficient
+  summary: 流体与壁面之间对流传热系数 100 W/(m^2 * K)（默认）| 标量
+  group: 参数
+- name: Heat transfer surface area
+  summary: 流体与壁面之间传热所用的有效表面积 0.4 m^2（默认）| 单位为长度平方的标量
+  group: 参数
+- name: Length of flow path for heat transfer
+  summary: 流体与壁面之间传热所经过的特征长度 1 m（默认）| 单位为长度的标量
+  group: 参数
+- name: Nusselt number for laminar flow heat transfer
+  summary: 层流中 Nusselt 数所采用的常数 3.66（默认）| 正标量
+  group: 参数
+- name: Reynolds number vector for Colburn factor
+  summary: Colburn 因子查找表中每个断点处的雷诺数 数值数组
+  group: 参数
+- name: Colburn factor vector
+  summary: 雷诺数查找表中每个断点处的 Colburn 因子 数值数组
+  group: 参数
+- name: Reynolds number vector for Nusselt number
+  summary: Nusselt 数查找表中每个断点处的雷诺数 数值数组
+  group: 参数
+- name: Nusselt 数对应的 Prandtl 数向量
+  summary: Nusselt 数查找表中每个断点处的 Prandtl 数数值数组
+  group: 参数
+- name: Nusselt 数表，Nu(Re,Pr)
+  summary: Reynolds-Prandtl 数查找表中每个断点处的 Nusselt 数数值数组
+  group: 参数
+- name: 流动反向的阈值质量流量
+  summary: 质量流量数值平滑区域的上界 1e-4 kg/s（默认）| 单位为质量每单位时间的标量
+  group: 参数
+- name: 启用动态可压缩性
+  summary: 用于对气体通道中的压力动态建模的选项 On（默认）| Off
+  group: 效应和初始条件
+- name: 标称温度
+  summary: 标称工况下的温度 293.15 K（默认）| 标量
+  group: 效应和初始条件
+- name: 标称压力
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 效应和初始条件
+- name: 初始压力
+  summary: 仿真开始时的压力 0.101325 MPa（默认）| 标量
+  group: 效应和初始条件
+- name: 初始压力优先级
+  summary: 压力参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: 初始温度
+  summary: 仿真开始时的温度 293.15 K（默认）| 标量
+  group: 效应和初始条件
+- name: 初始温度优先级
+  summary: 温度参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+```
 
 ### 参数
 
@@ -290,7 +411,6 @@ Nusselt 数必须大于零。每个值必须按 Reynolds 数递增的顺序从�
 求解器在初始化该模块时分配给 **初始温度** 参数的优先级。
 
 将此参数设置为 `High` 以定义初始条件。如果此初始条件与另一个模块的初始条件冲突，您可能需要将此参数设置为 `Low` 或 `None`。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

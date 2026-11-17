@@ -14,6 +14,18 @@ language: en
 # Discrete Varying Lowpass
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Filter input scalar
+  direction: input
+- name: freq
+  summary: Cutoff frequency scalar
+  direction: input
+- name: y
+  summary: Filter output scalar
+  direction: output
+```
 
 ### Input
 
@@ -30,8 +42,19 @@ rad/s.
 ### **y** — Filter output scalar
 
 Lowpass filter output signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter order
+  summary: Lowpass filter order 1 (default) | positive integer
+  group: ''
+- name: Pre-warping frequency w0 (rad/s)
+  summary: Pre-warping frequency 0 (default) | positive scalar
+  group: ''
+- name: Sample time Ts
+  summary: Sample time 1 (default) | positive scalar
+  group: ''
+```
 
 ### **Filter order** — Lowpass filter order 1 (default) | positive integer
 
@@ -58,7 +81,6 @@ parameter.
 Block sample time, specified as a positive scalar. This block does not
 support inherited sample time, because it requires a specified sample time
 to compute the discretization of the Butterworth filter.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Multiband Combiner
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 *N*samp-by-*N*chan 矩阵
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出信号 *N*out-by-1 向量
+  direction: output
+```
 
 ### 输入
 
@@ -36,8 +46,28 @@ chinese_source: worker-translation
 *N*out 是输出样本数。**Rate
 options** 参数指定单速率或多速率模式。有关
 更多信息，请参阅算法部分。
-
 ## 参数
+```yaml
+parameters:
+- name: Input sample rate (Hz)
+  summary: 输入信号采样率 1e6（默认）| 正标量
+  group: ''
+- name: Frequency offsets (Hz)
+  summary: 频率偏移 [0 1e6]（默认）| 标量 | 1-by-*N*chan 向量
+  group: ''
+- name: Rate options
+  summary: 处理速率选项 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Output sample rate options
+  summary: 输出采样率选项 Auto（默认）| Specify via property
+  group: ''
+- name: Output sample rate (Hz)
+  summary: 输出信号采样率 3e6（默认）| 正标量
+  group: ''
+- name: Output delay (samples)
+  summary: 输出延迟 只读：36（默认）| 正标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在
@@ -102,7 +132,6 @@ options** 参数设置为 `Specify via property`。
 此参数为只读。
 
 输出延迟，以样本为单位，指定为正标量。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments and Components

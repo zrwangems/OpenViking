@@ -14,6 +14,17 @@ language: en
 # Aperture Jitter Measurement
 
 ## Ports
+```yaml
+ports:
+- name: clk
+  summary: Clock signal input scalar
+  direction: input
+  data_types: double
+- name: jitter
+  summary: Jitter output scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -29,8 +40,25 @@ Clock signal input, specified as a scalar in volts.
 Aperture jitter output, returned as a scalar in seconds.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Frequency
+  summary: Input clock frequency 1e6 (default) | real positive scalar
+  group: ''
+- name: Recommended min. simulation stop time
+  summary: Minimum time the simulation must run for meaningful result 9.901e-05 (default) | scalar
+  group: ''
+- name: Min
+  summary: Minimum value of clock signal 0 (default) | real scalar
+  group: ''
+- name: Max
+  summary: Maximum value of clock signal 1 (default) | real scalar
+  group: ''
+- name: Hold off time (s)
+  summary: Delay before measurement analysis 0 (default) | nonnegative real scalar
+  group: ''
+```
 
 ### **Frequency** — Input clock frequency `1e6` (default) | real positive scalar
 
@@ -86,7 +114,6 @@ nonnegative real scalar in seconds.
   **Hold off time (s)** to a specific value.
 
 **Data Types:** `double`
-
 ## Libraries
 
 Mixed-Signal Blockset / ADC / Measurements & Testbenches

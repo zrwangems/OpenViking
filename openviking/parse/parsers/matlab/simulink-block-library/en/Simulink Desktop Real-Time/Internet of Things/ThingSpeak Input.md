@@ -14,6 +14,13 @@ language: en
 # ThingSpeak Input
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data read from channel numeric
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Output
 
@@ -29,8 +36,75 @@ The setting of the **Output data type** parameter
 determines the port data type.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Channel number
+  summary: 'ThingSpeak channel being accessed Read-only: 0 (default) | numeric'
+  group: ''
+  block_parameter: DrvAddress
+- name: Configure channel parameters
+  summary: Select and configure channel to access (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: ThingSpeak server
+  summary: Server for data transfer api.thingspeak.com (default) | character vector
+  group: ''
+  block_parameter: DrvOptions
+- name: Channel ID
+  summary: Unique channel 12397 (default) | numeric
+  group: ''
+  block_parameter: DrvOptions
+- name: Read API key
+  summary: Access key for reading from channel character vector
+  group: ''
+  block_parameter: DrvOptions
+- name: Update period (secs)
+  summary: Read update period, in seconds 20 (default) | numeric
+  group: ''
+  block_parameter: DrvOptions
+- name: View channel web page
+  summary: Access web page for channel (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Channel fields to read
+  summary: Define which parts of channel to read 1 (default) | [1–8]
+  group: ''
+  block_parameter: ChannelFields
+- name: Output data type
+  summary: Define data type of output port double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | <data
+    type expression>
+  group: ''
+  block_parameter: DataTypeStr
+- name: Mode
+  summary: Method of defining type Built in (default) | Expression
+  group: ''
+  block_parameter: OptParam
+- name: Type
+  summary: Data type selector double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataTypeStr
+- name: Data type override
+  summary: Policy on a signal type mismatch inherit (default) | off
+  group: ''
+  block_parameter: DataTypeStr
+```
 
 ### **Channel number** — ThingSpeak channel being accessed Read-only: `0` (default) | numeric
 
@@ -238,7 +312,6 @@ expressions.
 |  |
 | --- |
 | **Block Parameter:** `DataTypeStr` |
-
 ## Libraries
 
 Simulink Desktop Real-Time / Internet of Things

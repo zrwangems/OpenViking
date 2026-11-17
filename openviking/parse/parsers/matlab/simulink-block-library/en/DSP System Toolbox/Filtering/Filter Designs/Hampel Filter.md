@@ -14,6 +14,25 @@ language: en
 # Hampel Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double
+- name: T
+  summary: Threshold real scalar greater than or equal to 0
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Filtered output vector | matrix
+  direction: output
+  data_types: single | double
+- name: outlier
+  summary: Output the outlier status vector | matrix
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -69,8 +88,25 @@ To enable this port, select the **Output outlier
 status** check box.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Window length
+  summary: Length of sliding window 11 (default) | positive odd scalar integer
+  group: ''
+- name: Specify threshold from input port
+  summary: Flag to specify threshold off (default) | on
+  group: ''
+- name: Threshold for outlier detection (standard deviations)
+  summary: Threshold 3 (default) | real scalar greater than or equal to 0
+  group: ''
+- name: Output outlier status
+  summary: Flag to output the outlier status off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -119,7 +155,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Designs

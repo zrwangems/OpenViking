@@ -14,6 +14,30 @@ language: en
 # Weld Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: fc
+  summary: Constraint force, N physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total force, N physical signal
+  direction: output
+- name: tt
+  summary: Total torque, N\*m physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -114,8 +138,19 @@ Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque
 Sensing**, select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Joint mode Normal (default) | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -162,7 +197,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

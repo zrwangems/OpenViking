@@ -14,6 +14,17 @@ language: en
 # Transport Delay
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Delayed signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -37,8 +48,52 @@ Input signal, delayed by specified amount of time. Output has the same
 dimensions and data type as the input signal.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Time delay
+  summary: Time delay 1 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: DelayTime
+  type: character vector, string
+  values: nonnegative scalar, vector, or matrix
+  default: '''1'''
+- name: Initial output
+  summary: Initial output value 0 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: InitialOutput
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''0'''
+- name: Initial buffer size
+  summary: Initial memory allocation 1024 (default) | positive integer scalar
+  group: ''
+  block_parameter: BufferSize
+  type: character vector, string
+  values: positive integer scalar
+  default: '''1024'''
+- name: Use fixed buffer size
+  summary: Use fixed-size buffer off (default) | on
+  group: ''
+  block_parameter: FixedBuffer
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Direct feedthrough of input during linearization
+  summary: Enable direct feedthrough off (default) | on
+  group: ''
+  block_parameter: TransDelayFeedthrough
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Pade order (for linearization)
+  summary: Order of Pade approximation 0 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: PadeOrder
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''0'''
+```
 
 ### **Time delay** — Time delay `1` (default) | scalar | vector | matrix
 
@@ -197,7 +252,6 @@ scalar, vector, or matrix of nonnegative integers.
 | **Type:** character vector, string |
 | **Values:** scalar | vector | matrix |
 | **Default:** `'0'` |
-
 ## Libraries
 
 Simulink / Continuous

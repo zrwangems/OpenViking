@@ -14,6 +14,12 @@ language: en
 # XCP UDP Bypass
 
 ## Ports
+```yaml
+ports:
+- name: Function-call
+  summary: Function call for bypass function call
+  direction: output
+```
 
 ### Output
 
@@ -21,8 +27,16 @@ language: en
 
 Connects the function-call outport to a function-call subsystem containing one
 data acquisition list.
-
 ## Parameters
+```yaml
+parameters:
+- name: Task Priority
+  summary: Task priority in QNX Neutrino scheduler 191 (default) | integer
+  group: ''
+- name: Sample Time
+  summary: Sample time -1 (default) | double
+  group: ''
+```
 
 ### **Task Priority** — Task priority in QNX Neutrino scheduler 191 (default) | integer
 
@@ -31,7 +45,6 @@ Select the task priority for the QNX Neutrino scheduler.
 ### **Sample Time** — Sample time `-1` (default) | double
 
 Select the sample time. For more information, see Sample Times in Subsystems.
-
 ## Libraries
 
 Vehicle Network Toolbox / XCP Communication / UDP Simulink Real-Time / XCP / UDP

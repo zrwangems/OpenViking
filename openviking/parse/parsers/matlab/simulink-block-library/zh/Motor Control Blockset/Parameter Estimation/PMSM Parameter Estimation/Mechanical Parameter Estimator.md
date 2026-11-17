@@ -15,6 +15,69 @@ chinese_source: worker-translation
 # PMSM Mechanical Parameter Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Iabc
+  summary: 三相电流响应向量
+  direction: input
+  data_types: single
+- name: Vdc
+  summary: 直流母线电压标量
+  direction: input
+  data_types: single
+- name: Theta
+  summary: 转子位置标量
+  direction: input
+  data_types: single
+- name: Speed
+  summary: 转子速度标量
+  direction: input
+  data_types: single
+- name: Rs
+  summary: 估计的定子电阻标量
+  direction: input
+  data_types: single
+- name: Ld
+  summary: 估计的 *d* 轴定子电感标量
+  direction: input
+  data_types: single
+- name: StartFOC
+  summary: 启动闭环 FOC 逻辑
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: 机械参数估计的控制信号逻辑
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: 总线信号输入总线
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*、*b* 和 *c* 轴定子参考电压分量向量'
+  direction: output
+  data_types: single
+- name: Ke
+  summary: 估计的反电动势常数标量
+  direction: output
+  data_types: single
+- name: J
+  summary: 估计的转子惯量标量
+  direction: output
+  data_types: single
+- name: B
+  summary: 估计的粘性阻尼标量
+  direction: output
+  data_types: single
+- name: InverterEn
+  summary: 逆变器控制信号 逻辑
+  direction: output
+  data_types: single
+- name: Log
+  summary: 调试信号总线
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -157,13 +220,17 @@ PMSM 的估计粘性阻尼（单位：N.s/m）。
 | *VIAlphaBeta* | | | *α* 轴和 *β* 轴电压和电流 | 伏特，安培 |
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Slowdown factor for current PI controller gains [1,20]
+  summary: 估计反电动势时电流 PI 控制器的减速因子 5（默认）| scalar
+  group: ''
+```
 
 ### **Slowdown factor for current PI controller gains [1,20]** — 估计反电动势时电流 PI 控制器的减速因子 `5`（默认）| `scalar`
 
 反电动势估计期间电流 PI 控制器的减速因子（指定为 `1` 到 `20` 之间的整数）。较小的值会导致控制器更激进。
-
 ## 所属库
 
 Motor Control Blockset / Parameter Estimation / PMSM Parameter Estimation

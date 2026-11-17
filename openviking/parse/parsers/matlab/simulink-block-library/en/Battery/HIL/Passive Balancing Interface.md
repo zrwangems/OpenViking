@@ -14,6 +14,21 @@ language: en
 # Passive Balancing Interface
 
 ## Ports
+```yaml
+ports:
+- name: Ibat
+  summary: Current flowing through each balancing circuit, A physical signal | scalar or vector
+  direction: input
+- name: Vbat
+  summary: Voltage across each balancing circuit, V physical signal | scalar or vector
+  direction: output
+- name: +
+  summary: Positive terminal electrical array of nodes
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical array of nodes
+  direction: conserving
+```
 
 ### Input
 
@@ -58,8 +73,13 @@ If you create a block using the `ParallelAssembly`, `Module`,
 objects, set the `BalancingStrategy` property to
 `"External"` and connect this port to the **-BUS**
 port of the battery generated block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of balancing circuits
+  summary: Number of balancing circuits 1 (default) | positive scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -71,7 +91,6 @@ Inspector**.
 Number of balancing circuits that the interface connects to. The value of this
 parameter affects the size of all ports of this block and must be equal to the number of
 parallel assemblies in the battery or to the total number of series connections.
-
 ## Libraries
 
 Simscape / Battery / HIL

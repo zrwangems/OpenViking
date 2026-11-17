@@ -14,6 +14,17 @@ language: en
 # Rotation Angles to Direction Cosine Matrix
 
 ## Ports
+```yaml
+ports:
+- name: '[R1,R2,R3]'
+  summary: Rotation angles 3-by-1 vector
+  direction: input
+  data_types: double
+- name: DCM
+  summary: Direction cosine matrix 3-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -30,8 +41,17 @@ Direction cosine matrix that performs coordinate transformations based
 on rotation angles, returned as a 3-by-3 matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rotation Order
+  summary: Rotation order ZYX (default) | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX
+  group: ''
+  block_parameter: rotationOrder
+  type: character vector
+  values: '''ZYX'' | ''ZYZ'' |''ZXY'' | ''ZXZ'' | ''YXZ'' | ''YXY'' | ''YZX'' | ''YZY'' | ''XYZ'' | ''XYX'' | ''XZY'' | ''XZX'''
+  default: '''ZYX'''
+```
 
 ### **Rotation Order** — Rotation order `ZYX` (default) | `ZYZ` | `ZXY` | `ZXZ` | `YXZ` | `YXY` | `YZX` | `YZY` | `XYZ` | `XYX` | `XZY` | `XZX`
 
@@ -45,7 +65,6 @@ Input rotation order for the three rotation angles.
 | **Type**: character vector |
 | **Values**: `'ZYX'` | `'ZYZ'` |`'ZXY'` | `'ZXZ'` | `'YXZ'` | `'YXY'` | `'YZX'` | `'YZY'` | `'XYZ'` | `'XYX'` | `'XZY'` | `'XZX'` |
 | **Default**: `'ZYX'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Axes Transformations

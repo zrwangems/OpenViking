@@ -14,6 +14,23 @@ language: en
 # Descrambler
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input data signal vector
+  direction: input
+  data_types: double | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Rst
+  summary: Reset scrambler scalar
+  direction: input
+- name: ISt
+  summary: Initial states scalar
+  direction: input
+- name: Out
+  summary: Output descrambled data vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -63,8 +80,26 @@ Output descrambled data, returned as an
 samples in the input signal.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Calculation base
+  summary: Calculation base 4 (default) | nonnegative integer
+  group: ''
+- name: Scramble polynomial
+  summary: Polynomial that defines connections in descrambler '1 + x^-1 + x^-2 + x^-4' (default) | character vector | integer
+    vector | binary vector
+  group: ''
+- name: Initial states source
+  summary: Set the source for descrambler initial states Dialog Parameter (default) | Input port
+  group: ''
+- name: Initial states
+  summary: Initial states of descrambler registers [0 1 2 3] (default) | nonnegative integer vector
+  group: ''
+- name: Reset on nonzero input via port
+  summary: Reset descrambler via input port off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -146,7 +181,6 @@ Select this parameter to reset the Descrambler block via input port
 This parameter is available when `Initial states
 source` is set to `Dialog
 Parameter`.
-
 ## Libraries
 
 Communications Toolbox / Sequence Operations

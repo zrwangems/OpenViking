@@ -14,6 +14,17 @@ language: en
 # Detrend
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input data vector
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Output data column vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -32,11 +43,12 @@ remaining data after removing the straight line that best fits the data
 in the least squares sense.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

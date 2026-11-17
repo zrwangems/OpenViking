@@ -14,6 +14,19 @@ language: en
 # AGC
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal column vector
+  direction: input
+  data_types: single | double | int | uint
+- name: y
+  summary: Output signal *N*S-element column vector
+  direction: output
+- name: Px
+  summary: Power level estimate *N*S-element column vector
+  direction: output
+```
 
 ### Input
 
@@ -46,8 +59,28 @@ detector output.
 
 To enable this port, select the **Enable output of estimated input power**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Step size for gain updates
+  summary: Step size for gain updates 0.01 | positive scalar
+  group: ''
+- name: Target output power level
+  summary: Target output power level (W) 1 | positive scalar
+  group: ''
+- name: Length of averaging window
+  summary: Length of averaging window (samples) 100 | positive integer
+  group: ''
+- name: Maximum power gain
+  summary: Maximum power gain (dB) 60 (default) | positive scalar
+  group: ''
+- name: Enable output of estimated input power
+  summary: Option to output estimated input power off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -103,7 +136,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / RF Impairments Correction

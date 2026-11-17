@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Logic-Controlled Clutch
 
 ## 端口
+```yaml
+ports:
+- name: E
+  summary: 控制离合器接合的物理信号
+  direction: input
+- name: B
+  summary: 基座接口机械旋转
+  direction: input
+- name: F
+  summary: 从动接口机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -30,8 +42,28 @@ chinese_source: worker-translation
 ### **F** — 从动接口机械旋转
 
 与从动接口关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Transition model
+  summary: 离合器接合参数化 Instantaneous（默认）| First-order lag | Scaled by input
+  group: ''
+- name: Transition time constant
+  summary: 一阶滞后时间常数 0.1 s（默认）| 正标量
+  group: ''
+- name: Kinetic friction torque
+  summary: 动摩擦力矩阈值 10 N*m（默认）| 非负标量
+  group: ''
+- name: Static friction torque
+  summary: 静摩擦力矩阈值 20 N*m（默认）| 正标量
+  group: ''
+- name: Clutch velocity tolerance
+  summary: 运动边界条件 0.001 rad/s（默认）| 非负标量
+  group: ''
+- name: Initial State
+  summary: 仿真开始时的离合器状态 Unlocked（默认）| Locked
+  group: ''
+```
 
 ### **Transition model** — 离合器接合参数化 `Instantaneous`（默认）| `First-order lag` | `Scaled by input`
 
@@ -64,7 +96,6 @@ chinese_source: worker-translation
 ### **Initial State** — 仿真开始时的离合器状态 `Unlocked`（默认）| `Locked`
 
 选择以离合器解锁或锁定状态开始仿真。
-
 ## 所属库
 
 Simscape / Driveline / Clutches

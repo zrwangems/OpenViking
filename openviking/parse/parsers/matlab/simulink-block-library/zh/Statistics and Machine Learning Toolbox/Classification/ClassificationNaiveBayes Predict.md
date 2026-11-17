@@ -15,6 +15,26 @@ chinese_source: worker-translation
 # ClassificationNaiveBayes Predict
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 预测变量数据 行向量 | 列向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: label
+  summary: 预测类别标签 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: score
+  summary: 预测类别分数或后验概率 行向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: cost
+  summary: 预期分类代价 行向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -56,8 +76,191 @@ chinese_source: worker-translation
 要启用此端口，请在“模块参数”对话框的 **Main** 选项卡中选中 **Add output port for expected classification cost** 复选框。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Select trained machine learning model
+  summary: 朴素贝叶斯分类模型 nbMdl（默认）| ClassificationNaiveBayes 对象
+  group: 主要参数
+  block_parameter: TrainedLearner
+  type: 工作区变量
+  values: ClassificationNaiveBayes 对象
+- name: Add output port for predicted class scores
+  summary: 添加预测类别分数的可选输出端口 off（默认）| on
+  group: 主要参数
+  block_parameter: ShowOutputScore
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 添加预期分类代价的输出端口
+  summary: 添加预期分类代价的可选输出端口 off（默认）| on
+  group: 主要参数
+  block_parameter: ShowOutputCost
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 整数舍入模式
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: 整数溢出时饱和
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Label data type
+  summary: '标签输出数据类型 Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data
+    type expression>'
+  group: 数据类型
+  block_parameter: LabelDataTypeStr
+  type: character vector or string
+  values: '"Inherit: Inherit via back propagation" | "Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16"
+    | "uint16" | "int32" | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "Enum: <class
+    name>" | "<data type expression>"'
+  default: '"Inherit: Inherit via back propagation" (for numeric and logical labels) | "Inherit: auto" (for nonnumeric labels)'
+- name: Label data type Minimum
+  summary: 用于范围检查的标签输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LabelOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Label data type Maximum
+  summary: 用于范围检查的标签输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LabelOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Score data type
+  summary: '分数输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: ScoreDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Score data type Minimum
+  summary: 用于范围检查的分数输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: ScoreOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Score data type Maximum
+  summary: 用于范围检查的 score 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: ScoreOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Raw score data type
+  summary: '未变换的 score 数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: RawScoreDataTypeStr
+  type: 字符向量
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Raw score data type Minimum
+  summary: 用于范围检查的未变换分数最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: RawScoreOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Raw score data type Maximum
+  summary: 用于范围检查的未变换分数最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: RawScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Estimated cost data type
+  summary: '代价输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: CostDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Estimated cost data type Minimum
+  summary: 用于范围检查的 cost 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: CostOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Estimated cost data type Maximum
+  summary: 用于范围检查的 cost 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: CostOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Likelihood data type
+  summary: '似然输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: LikelihoodDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Likelihood data type Minimum
+  summary: 用于范围检查的 likelihood 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LikelihoodOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Likelihood data type Maximum
+  summary: 用于范围检查的 likelihood 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LikelihoodOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Posterior data type
+  summary: '后验概率输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: PosteriorDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Posterior data type Minimum
+  summary: 后验概率输出的最小值，用于范围检查 []（默认）| 标量
+  group: 数据类型
+  block_parameter: PosteriorOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Posterior data type Maximum
+  summary: 后验概率输出的最大值，用于范围检查 []（默认）| 标量
+  group: 数据类型
+  block_parameter: PosteriorOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 ### 主要参数
 
@@ -550,7 +753,6 @@ Simulink 使用最大值执行以下操作：
 | **类型**：character vector |
 | **值**：`"[]"` | scalar |
 | **默认值**：`"[]"` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Classification

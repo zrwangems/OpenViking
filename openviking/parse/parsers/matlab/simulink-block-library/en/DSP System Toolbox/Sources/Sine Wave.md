@@ -14,6 +14,13 @@ language: en
 # Sine Wave
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Sinusoidal signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Output
 
@@ -32,8 +39,62 @@ lookup`.
 
 **Data Types:** `single` | `double` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Amplitude
+  summary: Amplitude of sine waves 1 (default) | scalar | vector
+  group: Main
+- name: Frequency (Hz)
+  summary: Frequency of each sine wave 100 (default) | scalar | vector
+  group: Main
+- name: Phase offset (rad)
+  summary: Phase offset 0 (default) | scalar | vector
+  group: Main
+- name: Sample mode
+  summary: Continuous or discrete sampling mode Discrete (default) | Continuous
+  group: Main
+- name: Output complexity
+  summary: Real or complex waveform Real (default) | Complex
+  group: Main
+- name: Computation method
+  summary: Method for computing discrete-time sinusoids Trigonometric fcn (default) | Table lookup | Differential
+  group: Main
+- name: Optimize table for
+  summary: Optimize for speed or memory Speed (default) | Memory
+  group: Main
+- name: Sample time
+  summary: Sample period 1/1000 (default) | scalar
+  group: Main
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: Main
+- name: Resetting states when re-enabled
+  summary: State behavior inside enabled subsystems Restart at time zero (default) | Catch up to simulation time
+  group: Main
+- name: Output data type
+  summary: Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | <data type expression> | Inherit:Inherit
+    via back propagation
+  group: Data Types
+- name: Mode
+  summary: Data type mode Built in (default) | Inherit | Fixed point | Expression
+  group: Data Type Assistant
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default)
+  group: Data Type Assistant
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point
+  group: Data Type Assistant
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 2 to 128
+  group: Data Type Assistant
+- name: Fraction length
+  summary: Fraction length for fixed-point data type 0 (default) | integer scalar
+  group: Data Type Assistant
+- name: Data type override
+  summary: Data type override mode Inherit (default) | Off
+  group: Data Type Assistant
+```
 
 ### Main
 
@@ -324,7 +385,6 @@ select:
 To enable this parameter, set **Mode** to
 `Built in` or `Fixed
 point`. For more information, see Specify Data Types Using Data Type Assistant (Simulink).
-
 ## Libraries
 
 DSP System Toolbox / Sources DSP System Toolbox HDL Support / Sources

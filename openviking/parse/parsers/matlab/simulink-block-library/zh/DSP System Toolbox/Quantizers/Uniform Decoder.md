@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Uniform Decoder
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Output
+  summary: 解码输出向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +47,22 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Peak
+  summary: 编码输入中的最大幅度 1 （默认） | 非负标量
+  group: ''
+- name: Bits
+  summary: 位数 3 （默认） | 范围为 [2, 32] 的整数
+  group: ''
+- name: Overflow mode
+  summary: 溢出模式 Saturate （默认） | Wrap
+  group: ''
+- name: Output type
+  summary: 输出数据类型 Double （默认） | Single
+  group: ''
+```
 
 ### **Peak** — 编码输入中的最大幅度 `1` （默认） | 非负标量
 
@@ -70,7 +95,6 @@ u = (mod(u+2^B/2,2^B)-(2^B/2))
 ### **Output type** — 输出数据类型 `Double` （默认） | `Single`
 
 将解码后的浮点输出的精度指定为 `single` 或 `double`。您可以对六种整数输入数据类型中的任何一种使用任一输出精度级别。
-
 ## 所属库
 
 DSP System Toolbox / Quantizers

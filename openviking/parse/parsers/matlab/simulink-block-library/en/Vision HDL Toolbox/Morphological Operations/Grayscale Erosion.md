@@ -14,6 +14,24 @@ language: en
 # Grayscale Erosion
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | double | single | fi(0,N,0)
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream scalar
+  direction: output
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -51,8 +69,16 @@ The signals describe the validity of the pixel and its location in the frame. Fo
 information, see Pixel Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Neighborhood
+  summary: Pixel neighborhood ones(3,3) (default) | vector or matrix of 1s and 0s
+  group: ''
+- name: Line buffer size
+  summary: Size of line memory buffer 2048 (default) | positive integer
+  group: ''
+```
 
 ### **Neighborhood** — Pixel neighborhood `ones(3,3)` (default) | vector or matrix of `1`s and `0`s
 
@@ -78,7 +104,6 @@ The block allocates (*n* –
 1)-by-**Line buffer size** memory locations to store the pixels,
 where *n* is the number of lines in the
 **Neighborhood** parameter value.
-
 ## Libraries
 
 Vision HDL Toolbox / Morphological Operations

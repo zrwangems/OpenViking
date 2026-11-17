@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Tanh Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出数据 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 对输入矩阵执行双曲正切运算的结果。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Approximation method
+  summary: 用于计算层输出的近似方法 None（默认）| CORDIC | Lookup
+  group: 数据类型
+  block_parameter: ApproximationMethod
+  type: character vector
+  values: '''none'' | ''CORDIC'' | ''Lookup'''
+  default: '''none'''
+- name: Sample time
+  summary: 用于指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -75,7 +100,6 @@ chinese_source: worker-translation
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **值**：`'-1'`（默认）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Activation Layers

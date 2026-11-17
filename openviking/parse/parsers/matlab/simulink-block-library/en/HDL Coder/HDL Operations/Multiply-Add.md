@@ -14,6 +14,25 @@ language: en
 # Multiply-Add
 
 ## Ports
+```yaml
+ports:
+- name: a
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: b
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: c
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -45,8 +64,37 @@ Input signal that gets added or subtracted to the product of
 Output data from the multiply-add operation.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: Specify function c+(a.*b) (default) | c-(a.*b) | (a.*b)-c
+  group: ''
+  block_parameter: Function
+  type: string scalar | character vector
+  values: '"c+(a.*b)" | "c-(a.*b)" |"(a.*b)-c"'
+  default: '''c+(a.*b)'''
+- name: Output data type
+  summary: 'Specify output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation
+    | Inherit: Same as first input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: ''
+- name: Integer rounding mode
+  summary: Specify rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest
+    | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: string scalar | character vector
+  values: '"Ceiling" | "Convergent" |"Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Specify whether overflows saturate Off (default) | On
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: string scalar | character vector
+  values: '"off" | "on"'
+  default: '''off'''
+```
 
 ### **Function** — Specify function `c+(a.*b)` (default) | `c-(a.*b)` | `(a.*b)-c`
 
@@ -177,7 +225,6 @@ Off
 | **Type:**  string scalar | character vector |
 | **Value:**  `"off"` | `"on"` |
 | **Default:**  `'off'` |
-
 ## Libraries
 
 HDL Coder / HDL Operations

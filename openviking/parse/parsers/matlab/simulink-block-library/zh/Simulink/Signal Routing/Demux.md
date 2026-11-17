@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Demux
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 接受非总线向量信号，以从 Simulink® 软件支持的任何非总线数据类型的实数或复数值中提取并输出信号
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+- name: Port_1
+  summary: 从输入向量信号中提取的输出信号，为非总线信号，具有 Simulink 软件支持的任何数据类型的实数或复数值
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+```
 
 ### 输入
 
@@ -30,8 +43,20 @@ chinese_source: worker-translation
 从输入向量中提取的输出信号。输出信号端口从上到下排列。有关各种模块方向下端口顺序的说明，请参阅 Identify Port Location on Rotated or Flipped Block。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of outputs
+  summary: 输出数量 2 （默认） | 标量 | 向量
+  group: ''
+  block_parameter: Outputs
+  values: '''2'' （默认） | 带引号的标量 | 带引号的向量'
+- name: Display option
+  summary: 显示的模块图标 bar （默认） | none
+  group: ''
+  block_parameter: DisplayOption
+  values: '''bar'' （默认） | ''none'''
+```
 
 ### **Number of outputs** — 输出数量 2 （默认） | 标量 | 向量
 
@@ -83,7 +108,6 @@ chinese_source: worker-translation
 | **值**：| `'bar'` （默认） | `'none'` |
 
 **Example:** `set_param(gcb,'DisplayOption','none')`
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing

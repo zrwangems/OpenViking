@@ -14,6 +14,39 @@ language: en
 # Multiple Explicit MPC Controllers
 
 ## Ports
+```yaml
+ports:
+- name: switch
+  summary: Controller selection integer
+  direction: input
+- name: mo
+  summary: Measured output vector
+  direction: input
+- name: x[k|k]
+  summary: Custom state estimate vector
+  direction: input
+- name: ref
+  summary: Model reference output vector
+  direction: input
+- name: md
+  summary: Measured disturbances vector
+  direction: input
+- name: ext.mv
+  summary: Control signals used in plant at previous control interval vector
+  direction: input
+- name: mv
+  summary: Optimal manipulated variable control action column vector
+  direction: output
+- name: status
+  summary: Status of piecewise affine function evaluation 1 | 0 | -1
+  direction: output
+- name: region
+  summary: Region number of evaluated piecewise affine function nonnegative integer
+  direction: output
+- name: est.state
+  summary: Estimated controller states vector
+  direction: output
+```
 
 ### Input
 
@@ -187,8 +220,78 @@ estimation is used, this output signal has the same value as the
 
 To enable this port, select the **Estimated controller states**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cell Array of Explicit MPC Controllers
+  summary: Candidate controllers cell array of explicitMPC objects | cell array of strings | cell array of character vectors
+  group: ''
+  block_parameter: empcobjs
+  type: string, character vector, cell array of strings, cell array of character vectors
+  default: '""'
+- name: Cell Array of Initial Controller States
+  summary: Initial state cell array of mpcstate objects | cell array of strings | cell array of character vectors
+  group: ''
+  block_parameter: x0s
+  type: string, character vector, cell array of strings, cell array of character vectors
+  default: '""'
+- name: Measured disturbances
+  summary: Add measured disturbance input port on (default) | off
+  group: ''
+  block_parameter: md_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: External manipulated variable
+  summary: Add external manipulated variable input port off (default) | on
+  group: ''
+  block_parameter: mv_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Status of piecewise affine function evaluation
+  summary: Add evaluation status output port off (default) | on
+  group: ''
+  block_parameter: return_status_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Region number of evaluated piecewise affine function
+  summary: Add region number output port off (default) | on
+  group: ''
+  block_parameter: return_region_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Estimated controller states
+  summary: Add estimated states output port off (default) | on
+  group: ''
+  block_parameter: return_state_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Use custom state estimation instead of using the built-in Kalman filter
+  summary: Use custom state estimate input port off (default) | on
+  group: ''
+  block_parameter: state_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Block data type
+  summary: Specify data type of manipulated variables double (default) | single | data type expression
+  group: ''
+  block_parameter: BlockDataType_multiple
+  type: string, character vector
+  values: '"double", "single", data type expression'
+  default: '"double"'
+- name: Inherit sample time
+  summary: Inherit block sample time from parent subsystem off (default) | on
+  group: ''
+  block_parameter: SampleTimeInherited_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Cell Array of Explicit MPC Controllers** — Candidate controllers cell array of `explicitMPC` objects | cell array of strings | cell array of character vectors
 
@@ -385,7 +488,6 @@ information, see View Sample Time Information (Simulink).
 | **Type:** string, character vector |
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Model Predictive Control Toolbox

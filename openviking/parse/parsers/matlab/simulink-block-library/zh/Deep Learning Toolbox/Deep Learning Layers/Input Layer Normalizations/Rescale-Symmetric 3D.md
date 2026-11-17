@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Rescale-Symmetric 3D
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据，4 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 归一化后的输出数据，4 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,80 @@ chinese_source: worker-translation
 归一化后的输出数据。输出数据具有四个维度，按顺序分别对应三个空间维度和一个通道维度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Layer
+  summary: 对应的层对象 layerObject（默认值）| image3dInputLayer 对象
+  group: 主要
+  block_parameter: Layer
+  type: 工作区变量
+  values: image3dInputLayer 对象
+  default: '''layerObject'''
+- name: 数据格式
+  summary: 输入数据的格式 SSSC（默认值）
+  group: 主要
+  block_parameter: DataFormat
+  type: character vector
+  values: '''SSSC'''
+  default: '''SSSC'''
+- name: 输出最小值
+  summary: 用于范围检查的最小输出值 []（默认值）| scalar
+  group: 数据类型
+  block_parameter: OutMin
+  values: '''[]''（默认值）| 用引号括起来的 scalar'
+- name: 输出最大值
+  summary: 用于范围检查的最大输出值 []（默认） | 标量
+  group: 数据类型
+  block_parameter: OutMax
+  values: '''[]''（默认） | 带引号的标量'
+- name: 输出数据类型
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认） | Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via
+    back propagation | Inherit: Same as first input | Inherit: Same as accumulator | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (默认值) | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: 锁定数据类型设置以防止定点工具更改
+  summary: 防止定点工具覆盖数据类型 off (默认值) | on
+  group: 数据类型
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 整数舍入模式
+  summary: 定点运算的舍入模式 Floor (默认值) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor'' (默认值) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: 整数溢出时饱和
+  summary: 溢出处理方式 off（默认） | on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认） | ''on'''
+- name: Min
+  summary: '最小值的数据类型 Inherit: Inherit via back propagation（默认） | Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: MinDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认） | ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Max
+  summary: '最大值的数据类型 Inherit: Inherit via back propagation（默认） | Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: MaxDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认） | ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: 除法输出
+  summary: '除法输出的数据类型 Inherit: Inherit via internal rule（默认值）| Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit
+    via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: DivideOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认值）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: 采样时间
+  summary: 用于指定采样时间的选项 -1（默认值）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1''（默认值）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中，选择**属性检查器**。
 
@@ -258,7 +341,6 @@ Simulink 会选择一种数据类型来平衡数值精度、性能和生成代�
 | **参数：** `SampleTime` |
 | **数据类型：** `char` |
 | **值：** `'-1'`（默认值）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Input Layer Normalizations

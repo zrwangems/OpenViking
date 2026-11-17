@@ -14,6 +14,21 @@ language: en
 # Time Varying Gain
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix | array
+  direction: input
+  data_types: double | single
+- name: Port_2
+  summary: Range loss column vector
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: Range-compensated signal vector | matrix | array
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -54,8 +69,26 @@ Range-compensated signal, returned as a vector, matrix, or array. The range-comp
 signal has the same size as the input signal.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of range losses
+  summary: Source of range loss Property (default) | Input Port
+  group: ''
+- name: Range losses (dB)
+  summary: Loss at each input sample range 0 (default) | vector
+  group: ''
+- name: Reference range loss (dB)
+  summary: Loss at reference range 0 (default) | scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Source of range losses** — Source of range loss `Property` (default) | `Input Port`
 
@@ -130,7 +163,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

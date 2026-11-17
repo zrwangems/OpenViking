@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Mass With Friction (PB)
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 外部法向力控制信号，N 物理信号
+  direction: input
+- name: R
+  summary: 将质量块连接到基于位置的机械平移电路的端口
+  direction: input
+```
 
 ### 输入
 
@@ -33,8 +42,31 @@ chinese_source: worker-translation
 ### **R** — 将质量块连接到基于位置的机械平移电路的端口
 
 基于位置的机械平移守恒端口，用于将质量块连接到物理网络。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass
+  summary: 恒定质量 1 kg（默认）| 正标量
+  group: ''
+- name: External normal force specification
+  summary: 外部法向力是恒定还是可变 Constant（默认）| Variable
+  group: ''
+- name: Constant external normal force
+  summary: 垂直于运动的力 0 N（默认）| 非负标量
+  group: ''
+- name: Breakaway friction coefficient
+  summary: 法向力与分离摩擦力之间的比例系数 2.5（默认）| 非负标量
+  group: ''
+- name: Breakaway friction velocity
+  summary: Stribeck 摩擦的峰值速度 0.1 m/s（默认）| 正标量
+  group: ''
+- name: Coulomb friction coefficient
+  summary: 法向力与阻碍运动的摩擦力之间的比例系数 2（默认）| 非负标量
+  group: ''
+- name: Viscous friction coefficient
+  summary: 粘性损耗比例系数 0 N/(m/s)（默认）| 非负标量
+  group: ''
+```
 
 ### **Mass** — 恒定质量 `1 kg`（默认）| 正标量
 
@@ -70,7 +102,6 @@ Stribeck 摩擦达到峰值时的速度。此时，Stribeck 摩擦力和库仑�
 ### **Viscous friction coefficient** — 粘性损耗比例系数 `0 N/(m/s)`（默认）| 非负标量
 
 摩擦力与相对速度之间的比例系数。粘性损耗不依赖于法向力。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Elements

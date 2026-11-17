@@ -14,6 +14,15 @@ language: en
 # Synchronous Machine Measurement
 
 ## Ports
+```yaml
+ports:
+- name: pu
+  summary: Per-unit measurements from a connected synchronous machine physical
+  direction: input
+- name: o
+  summary: Per-unit measurement output port physical
+  direction: output
+```
 
 ### Input
 
@@ -38,15 +47,23 @@ a connected synchronous machine. The vector elements are:
 
 Physical signal output port associated with the per-unit
 measurement.
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Per-unit measurement from synchronous machine Field voltage (field circuit base, Efd) (default) | Field current
+    (field circuit base, Ifd) | Electrical torque | Rotor velocity | Stator d-axis voltage | Stator q-axis voltage | Stator
+    zero-sequence voltage | Stator d-axis current | Stator q-axis current | Stator zero-sequence current | Apparent power
+    | Real power | Reactive power | Terminal voltage | Terminal current | Power factor angle | Power factor | Load angle |
+    Rotor electrical angle
+  group: ''
+```
 
 ### **Output** — Per-unit measurement from synchronous machine `Field voltage (field circuit base, Efd)` (default) | `Field current (field circuit base, Ifd)` | `Electrical torque` | `Rotor velocity` | `Stator d-axis voltage` | `Stator q-axis voltage` | `Stator zero-sequence voltage` | `Stator d-axis current` | `Stator q-axis current` | `Stator zero-sequence current` | `Apparent power` | `Real power` | `Reactive power` | `Terminal voltage` | `Terminal current` | `Power factor angle` | `Power factor` | `Load angle` | `Rotor electrical angle`
 
 Per-unit measurement from synchronous machine. The default value is
 `Field voltage (field circuit base,
 Efd)`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Synchronous

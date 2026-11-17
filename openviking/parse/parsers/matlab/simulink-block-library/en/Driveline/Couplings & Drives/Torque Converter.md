@@ -14,6 +14,15 @@ language: en
 # Torque Converter
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Impeller mechanical rotational
+  direction: conserving
+- name: T
+  summary: Turbine mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,72 @@ Mechanical rotational conserving port associated with the impeller.
 ### **T** — Turbine mechanical rotational
 
 Mechanical rotational conserving port associated with turbine.
-
 ## Parameters
+```yaml
+parameters:
+- name: Coast mode modeling
+  summary: Coast transition simulation option Two-mode (default) | Continuous
+  group: Torque Characteristics
+- name: Drive mode speed ratio vector
+  summary: Turbine speed to impeller speed ratios [0, .5, .6, .7, .8, .87, .92, .94, .96, .97, 1] (default) | vector
+  group: Torque Characteristics
+- name: Drive mode torque ratio vector
+  summary: Turbine torque to impeller torque ratios [2.232, 1.5462, 1.4058, 1.2746, 1.1528, 1.0732, 1.0192, 1, 1, 1, 1] (default)
+    | vector
+  group: Torque Characteristics
+- name: Drive mode capacity factor vector
+  summary: Capacity factors of drive mode 1e-4 * [.72558, .66322, .63463, .59042, .51331, .4144, .29287, .22444, .12186, .04386,
+    0] m*N/rpm^2 (default) | vector
+  group: Torque Characteristics
+- name: Coast mode speed ratio vector
+  summary: Impeller speed to turbine speed ratios [0, .5, .6, .7, .8, .87, .92, .94, .96, .97, 1] (default) | vector
+  group: Torque Characteristics
+- name: Coast mode capacity factor vector
+  summary: Capacity factors of coast mode 1e-4 * [.5079, .4643, .4442, .4133, .3593, .2901, .205, .1571, .0853, .0307, 0]
+    m*N/rpm^2 (default) | vector
+  group: Torque Characteristics
+- name: Initial mode
+  summary: Initial mode of simulation Drive mode (default) | Coast mode
+  group: Torque Characteristics
+- name: Mode transition threshold
+  summary: Threshold of mode transition 1 rpm (default) | positive scalar
+  group: Torque Characteristics
+- name: Speed ratio vector
+  summary: Turbine speed to impeller speed ratios [0, .5, .6, .7, .8, .87, .92, .94, .96, .97] (default) | vector of ascending
+    nonnegative elements
+  group: Torque Characteristics
+- name: Torque ratio vector
+  summary: Turbine torque to impeller torque ratios [2.232, 1.5462, 1.4058, 1.2746, 1.1528, 1.0732, 1.0192, .9983, .9983,
+    .9983, .9983] (default) | vector of ascending positive elements
+  group: Torque Characteristics
+- name: Capacity factor parameterization
+  summary: Capacity factor definition Ratio of speed to square root of impeller torque (default) | Ratio of impeller torque
+    to square of speed
+  group: Torque Characteristics
+- name: Capacity factor reference speed
+  summary: Capacity factor reference speed option Always impeller speed (default) | Turbine speed for speed ratios greater
+    than one
+  group: Torque Characteristics
+- name: Capacity factor vector
+  summary: Capacity factors [12.2938, 12.8588, 13.1452, 13.6285, 14.6163, 16.2675, 19.3503, 22.1046, 29.9986, 50] rad/(N^(1/2)*m^(1/2)*s)
+    (default) | vector
+  group: Torque Characteristics
+- name: Model transmission lag
+  summary: Transmission lag setting No lag – Suitable for HIL simulation (default) | Specify time constant and initial value
+  group: Dynamics
+- name: Torque transmission time constant
+  summary: Time constant of torque transmission .02 s (default) | positive scalar
+  group: Dynamics
+- name: Initial turbine-to-impeller torque ratio
+  summary: Initial torque ratio of turbine to impeller 0 (default) | nonnegative scalar
+  group: Dynamics
+- name: Interpolation method
+  summary: Interpolation method of lookup function Linear (default) | Smooth
+  group: Dynamics
+- name: Extrapolation method
+  summary: Extrapolation method of lookup function Linear (default) | Nearest | Error
+  group: Dynamics
+```
 
 ### Torque Characteristics
 
@@ -253,7 +326,6 @@ Extrapolation method of the lookup function, specified as
 `Linear`, `Smooth`, or
 `Error`. The method extrapolates torque ratio and capacity
 factor functions. For more information about, see `tablelookup`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

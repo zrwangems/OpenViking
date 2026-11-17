@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Liquid Properties Sensor (IL)
 
 ## 端口
+```yaml
+ports:
+- name: rho
+  summary: 密度测量，kg/m^3 物理信号
+  direction: output
+- name: beta
+  summary: 等温体积模量测量，Pa 物理信号
+  direction: output
+- name: theta
+  summary: 夹带空气分数测量，无量纲物理信号
+  direction: output
+- name: A
+  summary: 传感器入口等温液体
+  direction: output
+```
 
 ### 输出
 
@@ -47,8 +62,19 @@ chinese_source: worker-translation
 ### **A** — 传感器入口等温液体
 
 等温液体守恒端口。将此端口连接到等温液体网络中您想要测量液体属性的节点。所有测量均相对于绝对零度进行。
-
 ## 参数
+```yaml
+parameters:
+- name: Density
+  summary: 控制输出端口可见性以测量密度 On（默认）| Off
+  group: ''
+- name: Isothermal bulk modulus
+  summary: 控制输出端口可见性以测量体积模量 Off（默认）| On
+  group: ''
+- name: Fraction of air that is entrained
+  summary: 控制输出端口可见性以测量夹带空气分数 Off（默认）| On
+  group: ''
+```
 
 ### **Density** — 控制输出端口可见性以测量密度 `On`（默认）| `Off`
 
@@ -61,7 +87,6 @@ chinese_source: worker-translation
 ### **Fraction of air that is entrained** — 控制输出端口可见性以测量夹带空气分数 `Off`（默认）| `On`
 
 选中此复选框可显示输出端口 **theta**，从而允许您测量未溶解空气的分数。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Sensors

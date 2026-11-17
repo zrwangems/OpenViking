@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Detect Rise Nonnegative
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### 输入
 
@@ -33,8 +44,31 @@ chinese_source: worker-translation
 - 当输入信号小于零，或者输入信号为非负且其前一值也为非负时，输出为假（等于 `0`）。
 
 **数据类型：** `uint8` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial condition
+  summary: 布尔表达式 U/z >= 0 的初始条件 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: vinit
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''0'''
+- name: Input processing
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: ''
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Output data type
+  summary: 输出数据类型 boolean（默认）| uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+```
 
 ### **Initial condition** — 布尔表达式 `U/z >= 0` 的初始条件 `0`（默认）| 标量 | 向量 | 矩阵
 
@@ -85,7 +119,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'boolean' | 'uint8'` |
 | **默认值**：`'boolean'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations

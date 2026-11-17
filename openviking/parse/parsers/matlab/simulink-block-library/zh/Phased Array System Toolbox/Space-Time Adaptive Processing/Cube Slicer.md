@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Data Cube Slicer
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据立方体 *M*-by-*Q*-by-*N* 复值数组
+  direction: input
+  data_types: double
+- name: Idx
+  summary: 切片平面索引 正整数
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出复值矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -54,8 +69,13 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Output Slice
+  summary: 输出切片 Angle-Doppler（默认）| Range-Doppler | Range-angle
+  group: ''
+```
 
 ### **Output Slice** — 输出切片 `Angle-Doppler`（默认）| `Range-Doppler` | `Range-angle`
 
@@ -69,7 +89,6 @@ chinese_source: worker-translation
 | `Angle-Doppler` | *Q*-by-*N* |
 | `Range-Doppler` | *M*-by-*N* |
 | `Range-angle` | *M*-by-*Q* |
-
 ## 所属库
 
 Phased Array System Toolbox / Space-Time Adaptive Processing

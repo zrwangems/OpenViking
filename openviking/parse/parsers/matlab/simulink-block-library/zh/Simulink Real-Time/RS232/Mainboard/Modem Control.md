@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Modem Control
 
 ## 端口
+```yaml
+ports:
+- name: RTS
+  summary: 用于设置请求发送线路的电平敏感信号 double
+  direction: input
+- name: DTR
+  summary: 用于设置数据终端就绪线路的电平敏感信号 double
+  direction: input
+```
 
 ### 输入
 
@@ -39,8 +48,20 @@ chinese_source: worker-translation
 #### 依赖关系
 
 如果 **DTR** 参数为 `off`，则该输入无效。
-
 ## 参数
+```yaml
+parameters:
+- name: RTS
+  summary: 启用对串行设备 RTS 线路的控制 on（默认）| off
+  group: ''
+- name: DTR
+  summary: 启用对串行设备 DTR 线路的控制 on（默认）| off
+  group: ''
+- name: Serial port
+  summary: 正在访问的端口 Legacy Serial Port 1（默认）| .. | Legacy Serial Port 8 | USB Serial Port 1 | .. | USB Serial Port 8
+  group: ''
+  block_parameter: port
+```
 
 ### **RTS** — 启用对串行设备 RTS 线路的控制 `on`（默认）| `off`
 
@@ -75,7 +96,6 @@ dtr
 |  |
 | --- |
 | **模块参数**：`port` |
-
 ## 所属库
 
 Simulink Real-Time / RS232 / Mainboard

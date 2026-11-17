@@ -15,6 +15,65 @@ chinese_source: worker-translation
 # Longitudinal Driver
 
 ## 端口
+```yaml
+ports:
+- name: VelRef
+  summary: 参考车辆速度 scalar
+  direction: input
+- name: EnblAccelOvr
+  summary: 启用加速指令覆盖 scalar
+  direction: input
+  data_types: Boolean
+- name: AccelOvrCmd
+  summary: 加速覆盖指令 scalar
+  direction: input
+  data_types: double
+- name: AccelHld
+  summary: 加速保持 scalar
+  direction: input
+  data_types: Boolean
+- name: AccelZero
+  summary: 禁用加速指令 scalar
+  direction: input
+  data_types: Boolean
+- name: EnblDecelOvr
+  summary: 启用减速指令覆盖 scalar
+  direction: input
+  data_types: Boolean
+- name: DecelOvrCmd
+  summary: 减速覆盖指令 scalar
+  direction: input
+  data_types: double
+- name: DecelHld
+  summary: 减速保持 scalar
+  direction: input
+  data_types: Boolean
+- name: DecelZero
+  summary: 禁用减速指令 scalar
+  direction: input
+  data_types: Boolean
+- name: ExtGear
+  summary: 挡位 scalar
+  direction: input
+- name: VelFdbk
+  summary: 纵向车辆速度 scalar
+  direction: input
+- name: Grade
+  summary: 道路坡度角 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: AccelCmd
+  summary: 指令车辆加速度 scalar
+  direction: output
+- name: DecelCmd
+  summary: 指令车辆减速度 scalar
+  direction: output
+- name: GearCmd
+  summary: 指令车辆挡位 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -177,8 +236,127 @@ m/s。
 #### 依赖关系
 
 要启用此端口，请选择 **Output gear signal**。
-
 ## 参数
+```yaml
+parameters:
+- name: Accelerator override
+  summary: 覆盖加速命令 off（默认）| on
+  group: ''
+- name: Accelerator hold
+  summary: 保持加速命令 off（默认）| on
+  group: ''
+- name: Accelerator disable
+  summary: 禁用加速命令 off（默认）| on
+  group: ''
+- name: Decelerator override
+  summary: 覆盖减速命令 off（默认）| on
+  group: ''
+- name: Decelerator hold
+  summary: 保持减速命令 off（默认）| on
+  group: ''
+- name: Decelerator disable
+  summary: 禁用减速命令 off（默认）| on
+  group: ''
+- name: Control type, cntrlType
+  summary: 纵向控制 PI（默认）| Scheduled PI | Predictive
+  group: ''
+- name: Shift type, shftType
+  summary: 换挡类型 None（默认）| Reverse, Neutral, Drive | Scheduled | External
+  group: ''
+- name: Reference and feedback units, velUnits
+  summary: 速度单位 m/s（默认）
+  group: ''
+- name: Output gear signal
+  summary: 创建 GearCmd 输出端口 off（默认）| on
+  group: ''
+- name: Proportional gain, Kp
+  summary: 增益 10（默认）| scalar
+  group: 控制
+- name: Integral gain, Ki
+  summary: 增益 5（默认）| scalar
+  group: 控制
+- name: Velocity feed-forward, Kff
+  summary: 增益 .1（默认）| scalar
+  group: 控制
+- name: Grade angle feed-forward, Kg
+  summary: 增益 0（默认）| scalar
+  group: 控制
+- name: Velocity gain breakpoints, VehVelVec
+  summary: 断点 [0 100]（默认）| vector
+  group: 控制
+- name: Velocity feed-forward gain values, KffVec
+  summary: 增益 [.1 .1]（默认）| vector
+  group: 控制
+- name: Proportional gain values, KpVec
+  summary: 增益 [10 10]（默认）| vector
+  group: 控制
+- name: Integral gain values, KiVec
+  summary: 增益 [5 5]（默认）| vector
+  group: 控制
+- name: Grade angle feed-forward values, KgVec
+  summary: 坡度增益 [0 0]（默认）| vector
+  group: 控制
+- name: Nominal speed, vnom
+  summary: 标称车速 5（默认）| scalar
+  group: 控制
+- name: Anti-windup, Kaw
+  summary: 增益 1（默认）| scalar
+  group: 控制
+- name: Error filter time constant, tauerr
+  summary: 滤波器 .01（默认）| scalar
+  group: 控制
+- name: Vehicle mass, m
+  summary: 质量 1500（默认）| scalar
+  group: 控制
+- name: Effective vehicle total tractive force, Kpt
+  summary: 牵引力 3000（默认）| scalar
+  group: 控制
+- name: Driver response time, tau
+  summary: Tau .1（默认）| scalar
+  group: 控制
+- name: Preview distance, L
+  summary: 距离 2（默认）| scalar
+  group: 控制
+- name: Rolling resistance coefficient, aR
+  summary: 阻力 200（默认）| scalar
+  group: 控制
+- name: Rolling and driveline resistance coefficient, bR
+  summary: 阻力 2.5（默认）| scalar
+  group: 控制
+- name: Aerodynamic drag coefficient, cR
+  summary: 阻力 .5（默认）| scalar
+  group: 控制
+- name: Gravitational constant, g
+  summary: 重力常数 9.81（默认）| scalar
+  group: 控制
+- name: Initial gear, GearInit
+  summary: 初始挡位 0（默认）| scalar
+  group: 换挡
+- name: Time required to shift, tShift
+  summary: 换挡所需时间 .1（默认）| scalar
+  group: 换挡
+- name: Initial gear, GearInit
+  summary: 初始挡位 0（默认）| scalar
+  group: 换挡
+- name: Up and down shift accelerator pedal positions, pdlVec
+  summary: 踏板位置断点 [0.1 0.4 0.5 0.9]（默认）| [1-by-m] vector
+  group: 换挡
+- name: Upshift velocity data table, upShftTbl
+  summary: 数据表 [m-by-n] array
+  group: 换挡
+- name: Downshift velocity data table, dwnShftTbl
+  summary: 数据表 [m-by-n] array
+  group: 换挡
+- name: Time required to shift, tClutch
+  summary: 换挡所需时间 .5（默认）| scalar
+  group: 换挡
+- name: Time required to engage reverse from neutral, tRev
+  summary: 从空挡接合倒挡所需时间 .5（默认）| scalar
+  group: 换挡
+- name: Time required to engage park from neutral, tPark
+  summary: 从空挡接合驻车挡所需时间 120（默认）| scalar
+  group: 换挡
+```
 
 #### 外部操作
 
@@ -584,7 +762,6 @@ s。
 
 要创建此参数，请将 **Shift type, shftType** 设置为
 `Scheduled`。
-
 ## 所属库
 
 Powertrain Blockset / Vehicle Scenario Builder Vehicle Dynamics Blockset / Vehicle Scenarios / Driver

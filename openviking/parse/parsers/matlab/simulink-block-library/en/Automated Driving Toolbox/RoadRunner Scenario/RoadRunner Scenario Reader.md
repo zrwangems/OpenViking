@@ -14,6 +14,16 @@ language: en
 # RoadRunner Scenario Reader
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Actor ID scalar
+  direction: input
+  data_types: uint64
+- name: Message
+  summary: State information from scenario Simulink message
+  direction: output
+```
 
 ### Input
 
@@ -38,8 +48,46 @@ To enable this port, set the **Filter** parameter to
 
 State information from scenario, returned as a Simulink message. To extract data from the Simulink message, connect the RoadRunner Scenario Reader block to
 the Receive (Simulink) block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic Category
+  summary: Topic category Actor (default) | Action | Sensor | Event
+  group: ''
+- name: Actor Type
+  summary: Type of actor in scenario All Types (default) | Vehicle | Traffic Signal | Traffic Signal Controller
+  group: ''
+- name: Action Type
+  summary: Type of action Path Following (default) | Change Parameter | Lane Change | Lateral Offset | Longitudinal Distance
+    | Speed Change | User Defined
+  group: ''
+- name: Sensor View
+  summary: Sensor data derived from scenario ground truth Target Poses (default) | Target Poses For Host | Lane Boundaries
+    | Target Poses And Lane Boundaries
+  group: ''
+- name: Event Type
+  summary: Type of event User-Defined
+  group: ''
+- name: Topic
+  summary: Actor data, or lane boundary data captured through sensor views Actor Specifications | Actor Pose | Actor Pose
+    (Driving Scenario compatible) | Actor Lane Location | Vehicle Specifications | ...
+  group: ''
+- name: Filter
+  summary: Filter criteria Self (default) | None | Actor ID (provided by input)
+  group: ''
+- name: Additional Relationship
+  summary: Relationship to filtered entity None (default) | Parent | Children
+  group: ''
+- name: Sensor ID
+  summary: Unique index of sensor 1 (default) | positive integer
+  group: ''
+- name: Sample Time
+  summary: Sample time of simulation positive real scalar
+  group: ''
+- name: Event Name
+  summary: Name of event string
+  group: ''
+```
 
 ### **Topic Category** — Topic category `Actor` (default) | `Action` | `Sensor` | `Event`
 
@@ -276,7 +324,6 @@ Name of the user-defined event to read from a scenario.
 To enable this parameter, set **Topic Category** to
 `Event` and **Event Type** to
 `User-Defined`.
-
 ## Libraries
 
 Automated Driving Toolbox / RoadRunner Scenario

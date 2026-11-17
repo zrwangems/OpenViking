@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Matrix 1-Norm
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 输出信号 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -35,8 +46,31 @@ Matrix 1-Norm 模块支持实数和复数浮点输入以及实数定点输入。
 输入的矩阵 1-范数或最大列和，以标量形式返回。输出 *y* 始终为标量。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 舍入模式
+  summary: 舍入操作的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+- name: 整数溢出时饱和
+  summary: 溢出处理方法 off（默认）| on
+  group: 数据类型
+- name: 累加器
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型
+- name: 输出
+  summary: '输出数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型
+- name: 输出最小值
+  summary: 模块可以输出的最小值 []（默认）| 标量
+  group: 数据类型
+- name: 输出最大值
+  summary: 模块可以输出的最大值 []（默认）| 标量
+  group: 数据类型
+- name: 锁定数据类型设置以防止定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主
 
@@ -129,7 +163,6 @@ Matrix 1-Norm 模块支持实数和复数浮点输入以及实数定点输入。
 **注意**
 
 浮点继承优先于此选项卡上定义的数据类型设置。当输入为浮点时，该模块忽略这些设置，所有内部数据类型均为浮点。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

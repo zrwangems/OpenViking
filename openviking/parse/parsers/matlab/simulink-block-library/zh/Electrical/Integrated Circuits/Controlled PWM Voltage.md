@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Controlled PWM Voltage
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 控制信号，无量纲物理信号
+  direction: input
+- name: ref+
+  summary: 正极端子电气
+  direction: input
+- name: ref-
+  summary: 负极端子电气
+  direction: input
+- name: PWM
+  summary: 脉宽调制信号电气
+  direction: input
+- name: REF
+  summary: 浮地零伏参考电气
+  direction: input
+```
 
 ### 输入
 
@@ -53,8 +71,49 @@ chinese_source: worker-translation
 ### **REF** — 浮地零伏参考电气
 
 与浮地零伏参考关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是对电气输入端口还是物理信号输入端口进行建模 Electrical input ports（默认）| PS input
+  group: ''
+- name: PWM frequency
+  summary: PWM 输出信号频率 1000 Hz（默认）
+  group: PWM
+- name: Pulse delay time
+  summary: 导通延迟 0 s（默认）
+  group: PWM
+- name: Pulse width offset
+  summary: 延长或缩短脉冲 0 s（默认）
+  group: PWM
+- name: Minimum pulse width
+  summary: 脉冲的最小长度 0 s（默认）
+  group: PWM
+- name: Simulation mode
+  summary: 选择输出电压类型 PWM（默认）| Averaged
+  group: PWM
+- name: Switching event type
+  summary: 选择开关事件类型 Asynchronous – Best for variable-step solvers（默认）| Discrete-time – Best for fixed-step solvers
+  group: PWM
+- name: Sample time
+  summary: 离散采样时间 1e-6 s（默认）
+  group: PWM
+- name: Input voltage for 0% duty cycle
+  summary: Vmin 0 V（默认）
+  group: 输入缩放
+- name: Input voltage for 100% duty cycle
+  summary: Vmax 5 V（默认）
+  group: 输入缩放
+- name: Input value for 0% duty cycle
+  summary: 最小信号值 0（默认）
+  group: 输入缩放
+- name: Input value for 100% duty cycle
+  summary: 最大信号值 1（默认）
+  group: 输入缩放
+- name: Output voltage amplitude
+  summary: 高电平输出时的信号幅值 5 V（默认）
+  group: 输出电压
+```
 
 ### **Modeling option** — 是对电气输入端口还是物理信号输入端口进行建模 `Electrical input ports`（默认）| `PS input`
 
@@ -158,7 +217,6 @@ PWM 信号具有 100% 占空比时的输入信号值
 ### **Output voltage amplitude** — 高电平输出时的信号幅值 5 V（默认）
 
 输出为高电平时 PWM 信号的幅值。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

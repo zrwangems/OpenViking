@@ -14,6 +14,19 @@ language: en
 # CAN FD Pack
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: CAN FD message signal input single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 |
+    boolean
+  direction: input
+- name: CAN Msg ID
+  summary: CAN message identifier single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+  direction: input
+- name: Msg
+  summary: CAN FD message output CAN_FD_MESSAGE_BUS
+  direction: output
+```
 
 ### Input
 
@@ -47,8 +60,92 @@ This block has one output port, Msg. The CAN FD Pack block takes
 the specified input signals and packs them into a CAN FD message, output as a
 Simulink
 `CAN_FD_MESSAGE_BUS` signal. For more information on Simulink bus objects, see Composite Interfaces.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data input as
+  summary: Select your data signal raw data (default) | manually specified signals | CANdb specified signals | ARXML specified
+    signals
+  group: ''
+  block_parameter: DataFormat
+  type: string | character vector
+  values: '''raw data'' | ''manually specified signals'' | ''CANdb specified signals'' ''ARXML specified signals'''
+  default: '''raw data'''
+- name: Database file
+  summary: ARXML or CAN database file character vector
+  group: ''
+  block_parameter: CANdbFile
+  type: string | character vector
+- name: Message list
+  summary: CAN message list array of character vectors
+  group: ''
+  block_parameter: MsgList
+  type: string | character vector
+- name: Name
+  summary: CAN FD message name CAN Msg (default) | character vector
+  group: ''
+  block_parameter: MsgName
+  type: string | character vector
+- name: Protocol mode
+  summary: CAN FD message protocol CAN FD (default) | CAN
+  group: ''
+  block_parameter: ProtocolMode
+  type: string | character vector
+  values: '''CAN FD'' | ''CAN'''
+  default: '''CAN FD'''
+- name: Identifier type
+  summary: CAN identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)
+  group: ''
+  block_parameter: MsgIDType
+  type: string | character vector
+  values: '''Standard (11-bit identifier)'' | ''Extended (29-bit identifier)'''
+  default: '''Standard (11-bit identifier)'''
+- name: Identifier
+  summary: Message identifier 0 (default) | 0 .. 536870911
+  group: ''
+  block_parameter: MsgIdentifier
+  type: string | character vector
+  values: '''0'' to ''536870911'''
+- name: Specify CAN identifier from input port
+  summary: CAN message ID value off (default) | on
+  group: ''
+  block_parameter: CANIDInput
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Length (bytes)
+  summary: CAN FD message length 8 (default) | 0 to 64
+  group: ''
+  block_parameter: MsgLength
+  type: string | character vector
+  values: '''0'' to ''8'', ''12'', ''16'', ''20'', ''24'', ''32'', ''48'', ''64'''
+  default: '''8'''
+- name: Remote frame
+  summary: CAN message as remote frame off (default) | on
+  group: ''
+  block_parameter: Remote
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Bit Rate Switch (BRS)
+  summary: Enable bit rate switch off (default) | on
+  group: ''
+  block_parameter: BRSSwitch
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Add signal
+  summary: Add CAN FD signal
+  group: ''
+- name: Delete signal
+  summary: Remove CAN FD signal
+  group: ''
+- name: Signals
+  summary: Signals table table
+  group: ''
+  block_parameter: SignalInfo
+  type: string | character vector
+```
 
 ### **Data input as** — Select your data signal `raw data` (default) | `manually specified signals` | `CANdb specified signals` | `ARXML specified signals`
 
@@ -391,7 +488,6 @@ Each signal that you create has these values:
 | --- |
 | **Block Parameter:** `SignalInfo` |
 | **Type:** `string` | `character vector` |
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN FD Communication C2000 Microcontroller Blockset / Target Communication Simulink Real-Time / CAN / CAN-FD MSG blocks

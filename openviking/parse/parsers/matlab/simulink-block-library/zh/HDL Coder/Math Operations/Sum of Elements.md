@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Sum
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 第一个输入操作数信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_n
+  summary: 第 *n* 个输入操作数信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -40,8 +55,97 @@ chinese_source: worker-translation
 由加法和/或减法运算产生的输出信号。输出信号与输入信号具有相同的维度。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Icon shape
+  summary: 模块图标形状 rectangular | round
+  group: 主要
+  block_parameter: IconShape
+  type: character vector
+  values: '''rectangular'' | ''round'''
+- name: List of signs
+  summary: 对输入执行的运算 + | - | | | integer
+  group: 主要
+  block_parameter: Inputs
+  type: character vector
+  values: '''+'' | ''-'' | | | integer'
+- name: Apply over
+  summary: 如何沿指定维度应用函数 All dimensions（默认）| Specified dimension
+  group: 主要
+  block_parameter: CollapseMode
+  type: character vector
+  values: '''All dimensions'' | ''Specified dimension'''
+  default: '''All dimensions'''
+- name: Dimension
+  summary: 应用求和的维度 1（默认）| 正整数
+  group: 主要
+  block_parameter: CollapseDim
+  type: character vector
+  values: integer
+  default: '''1'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '指定输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Keep LSB | Inherit: Inherit via
+    back propagation | Inherit: Same as first input | Inherit: Same as accumulator | double | single | half | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit via back
+    propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | ''double'' | ''single'' | ''half''
+    | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''|''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Accumulator data type
+  summary: '累加器的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | double | single | half | int8
+    | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type
+    expression>'
+  group: 信号属性
+  block_parameter: AccumDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as first input'' | ''double'' | ''single'' | ''half''
+    | ''int8'' | ''uint8'' | ''int16'' | ''uint16'', ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Require all inputs to have the same data type
+  summary: 要求所有输入具有相同的数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: InputSameDT
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 信号属性
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+```
 
 ### 主要
 
@@ -338,7 +442,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **值**：| `'off'`（默认）| `'on'` |
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Math Operations HDL Coder / Commonly Used Blocks HDL Coder / Math Operations

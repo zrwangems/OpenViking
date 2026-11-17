@@ -14,6 +14,15 @@ language: en
 # Permanent Magnet
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: North terminal magnetic
+  direction: conserving
+- name: S
+  summary: South terminal magnetic
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,29 @@ Magnetic conserving port associated with the north terminal.
 ### **S** — South terminal magnetic
 
 Magnetic conserving port associated with the south terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cross-sectional area
+  summary: Cross-sectional area of magnet 25 mm^2 (default) | positive scalar
+  group: ''
+- name: Length of magnet
+  summary: Length of magnet 0.02 m (default) | positive scalar
+  group: ''
+- name: Remanent field parameterization
+  summary: Method of remanent field parameterization Remanent flux density and relative permeability (default) | Remanent
+    flux density and coercivity | Relative permeability and coercivity
+  group: ''
+- name: Relative magnetic permeability of material
+  summary: Relative magnetic permeability 1.05 (default) | positive scalar
+  group: ''
+- name: Remanent flux density of magnet
+  summary: Remanent flux density 1.2 T (default) | positive scalar
+  group: ''
+- name: Coercivity of magnet
+  summary: Coercivity of magnet 1.2 / 1.05 / (4*pi*1e-7) A/m (default) | positive scalar
+  group: ''
+```
 
 ### **Cross-sectional area** — Cross-sectional area of magnet `25 mm^2` (default) | positive scalar
 
@@ -69,7 +99,6 @@ Coercivity of the magnet.
 To enable this parameter, set **Remanent field parameterization**
 to `Remanent flux density and coercivity` or `Relative
 permeability and coercivity`.
-
 ## Libraries
 
 Simscape / Foundation Library / Magnetic / Magnetic Elements

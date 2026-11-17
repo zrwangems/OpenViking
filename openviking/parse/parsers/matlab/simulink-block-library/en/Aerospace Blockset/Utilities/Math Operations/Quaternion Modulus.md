@@ -14,6 +14,17 @@ language: en
 # Quaternion Modulus
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Quaternion quaternion | vector of quaternions
+  direction: input
+  data_types: double
+- name: '|q|'
+  summary: Quaternion modulus quaternion modulus | vector of quaternion moduli
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -39,11 +50,12 @@ Quaternion modulus or vector of quaternion moduli in the form of [|
 *q* |, | *r* |, ...].
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

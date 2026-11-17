@@ -14,6 +14,33 @@ language: en
 # IO Data Sink
 
 ## Ports
+```yaml
+ports:
+- name: msg
+  summary: SoC message data numeric vector
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: Output data numeric vector
+  direction: output
+  data_types: uint32 | double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | Boolean | fixedpoint
+- name: length
+  summary: Length of output data nonnegative scalar
+  direction: output
+  data_types: double
+- name: valid
+  summary: Indication of valid data Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: done
+  summary: Completion of data streaming Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Input
 
@@ -90,8 +117,35 @@ To enable this port, set the **Show port** parameter to
 `Data and Event`.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Sink of output data from block To file (default) | To output port | To terminator
+  group: ''
+- name: Device type
+  summary: Device type selection UDP (default) | TCP | Register | Stream
+  group: ''
+- name: Show port
+  summary: Enable output ports Data (default) | Data and Event
+  group: ''
+- name: Number of buffers
+  summary: Number of data buffers 8 (default) | nonnegative scalar
+  group: ''
+- name: Sample time
+  summary: Time interval of sampling -1 (default) | nonnegative numeric scalar
+  group: ''
+- name: Dataset name
+  summary: Name of data file no default | file path
+  group: ''
+- name: Source name
+  summary: Name of dataset no default
+  group: ''
+- name: Data type
+  summary: Data type of output data uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64
+    | boolean | fixedpoint
+  group: ''
+```
 
 ### **Output** — Sink of output data from block `To file` (default) | `To output port` | `To terminator`
 
@@ -181,7 +235,6 @@ input data.
 To enable this parameter, set the **Output** parameter to
 `To file` or `To output
 port`.
-
 ## Libraries
 
 SoC Blockset / I/O Data Source and Sink

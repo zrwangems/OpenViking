@@ -15,6 +15,54 @@ chinese_source: worker-translation
 # Solid Axle Suspension - Coil Spring
 
 ## 端口
+```yaml
+ports:
+- name: WhlPz
+  summary: 车轮 z 轴位移数组
+  direction: input
+- name: WhlRe
+  summary: 车轮有效半径数组
+  direction: input
+- name: WhlVz
+  summary: 车轮 z 轴速度数组
+  direction: input
+- name: WhlFx
+  summary: 车辆上的纵向车轮力数组
+  direction: input
+- name: WhlFy
+  summary: 车辆上的横向车轮力数组
+  direction: input
+- name: WhlM
+  summary: 车轮阵列上的悬架力矩
+  direction: input
+- name: VehP
+  summary: 车辆位移阵列
+  direction: input
+- name: VehV
+  summary: 车辆速度数组
+  direction: input
+- name: StrgAng
+  summary: 转向角，可选数组
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: VehF
+  summary: 施加到车辆的悬架力 array
+  direction: output
+- name: VehM
+  summary: 作用在车辆上的悬架力矩 array
+  direction: output
+- name: WhlF
+  summary: 作用在车轮上的悬架力 array
+  direction: output
+- name: WhlV
+  summary: 车轮速度 array
+  direction: output
+- name: WhlAng
+  summary: 车轮外倾角、主销后倾角、前束角 array
+  direction: output
+```
 
 ### 输入
 
@@ -416,8 +464,130 @@ enable by axle, StrgEnByAxl** 向量的一个元素设置为 `1`。
   | 右前 | `WhlF(3,2)` | `1` | `2` |
   | 左后 | `WhlF(3,3)` | `2` | `1` |
   | 右后 | `WhlF(3,4)` | `2` | `2` |
-
 ## 参数
+```yaml
+parameters:
+- name: Number of axles, NumAxl
+  summary: 车轴数量 2（默认）| scalar
+  group: 车轴
+  block_parameter: NumAxl
+  values: 2（默认）| scalar
+- name: Number of wheels by axle, NumWhlsByAxl
+  summary: 每轴车轮数量 [2 2]（默认）| vector
+  group: 车轴
+  block_parameter: NumWhlsByAxl
+  values: '[2 2]（默认）| vector'
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: 用于启用车轴转向的布尔向量 [1 0]（默认）| vector
+  group: 车轴
+  block_parameter: StrgEnByAxl
+  values: '[1 0]（默认）| vector'
+- name: Axle and wheels lumped principal moments of inertia about longitudinal axis, AxlIxx
+  summary: 转动惯量 200（默认）| vector
+  group: 车轴
+  block_parameter: AxlIxx
+  values: 200（默认）| vector
+- name: Axle and wheels lumped mass, AxlM
+  summary: 质量 300（默认）| vector
+  group: 车轴
+  block_parameter: AxlM
+  values: 300（默认）| vector
+- name: Track hardpoint coordinates relative to axle center, TrackCoords
+  summary: 点 [0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）| array
+  group: 车轴
+  block_parameter: TrackCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）| array'
+- name: Suspension hardpoint coordinates relative to axle center, SuspCoords
+  summary: 点 [0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）| array
+  group: 车轴
+  block_parameter: SuspCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）| array'
+- name: Wheel and axle interface compliance constant, KzWhlAxl
+  summary: 弹簧刚度 6437000（默认）| scalar
+  group: 车轴
+  block_parameter: KzWhlAxl
+  values: 6437000（默认）| scalar
+- name: Wheel and axle interface compliance preload, F0zWhlAxl
+  summary: 弹簧刚度 9810（默认）| scalar
+  group: 车轴
+  block_parameter: F0zWhlAxl
+  values: 9810（默认）| scalar
+- name: Wheel and axle interface damping constant, CzWhlAxl
+  summary: 阻尼 10000（默认）| scalar
+  group: 车轴
+  block_parameter: CzWhlAxl
+  values: 10000（默认） | scalar
+- name: Suspension spring constant, Kz
+  summary: 悬架弹簧刚度 64370（默认） | scalar | vector
+  group: Suspension
+  block_parameter: Kz
+  values: 64370（默认） | scalar | vector
+- name: Suspension spring preload, F0z
+  summary: 悬架弹簧预紧力 9810（默认） | scalar | vector
+  group: Suspension
+  block_parameter: F0z
+  values: 9810（默认） | scalar | vector
+- name: Suspension shock damping constant, Cz
+  summary: 悬架减振器阻尼常数 10000（默认） | scalar | vector
+  group: Suspension
+  block_parameter: Cz
+  values: 10000（默认） | scalar | vector
+- name: Suspension maximum height, Hmax
+  summary: 高度 0.5（默认） | scalar | vector
+  group: Suspension
+  block_parameter: Hmax
+  values: 0.5（默认） | scalar | vector
+- name: Toe angle at steering center, Toe
+  summary: 前束角 0.0349（默认） | scalar
+  group: Suspension
+  block_parameter: Toe
+  values: 0.0349（默认） | scalar
+- name: Roll steer vs suspension height slope, RollStrgSlp
+  summary: 转向角悬架斜率 -0.2269（默认）| scalar | vector
+  group: Suspension
+  block_parameter: RollStrgSlp
+  values: -0.2269（默认）| scalar | vector
+- name: Toe angle vs steering angle slope, ToeStrgSlp
+  summary: 前束角转向斜率 0.01（默认）| scalar | vector
+  group: Suspension
+  block_parameter: ToeStrgSlp
+  values: 0.01（默认）| scalar | vector
+- name: Caster angle at steering center, Caster
+  summary: 转向中心处的后倾角 0.0698（默认）| scalar
+  group: Suspension
+  block_parameter: Caster
+  values: 0.0698（默认）| scalar
+- name: Caster angle vs suspension height slope, CasterHslp
+  summary: 后倾角与悬架高度斜率 -0.2269（默认）| scalar | vector
+  group: Suspension
+  block_parameter: CasterHslp
+  values: -0.2269（默认）| scalar | vector
+- name: Caster angle vs steering angle slope, CasterStrgSlp
+  summary: 后倾角与转向角斜率 0.01（默认）| scalar | vector
+  group: Suspension
+  block_parameter: CasterStrgSlp
+  values: 0.01（默认）| scalar | vector
+- name: Camber angle at steering center, Camber
+  summary: 转向中心处的外倾角 0.0698（默认）| scalar
+  group: Suspension
+  block_parameter: Camber
+  values: 0.0698（默认）| scalar
+- name: Camber angle vs suspension height slope, CamberHslp
+  summary: 车轮外倾角与悬架高度斜率 -0.2269（默认）| scalar | vector
+  group: Suspension
+  block_parameter: CamberHslp
+  values: -0.2269（默认）| scalar | vector
+- name: Camber angle vs steering angle slope, CamberStrgSlp
+  summary: 车轮外倾角与转向角斜率 0.01（默认）| scalar | vector
+  group: Suspension
+  block_parameter: CamberStrgSlp
+  values: 0.01（默认）| scalar | vector
+- name: Suspension height vs steering angle slope, StrgHgtSlp
+  summary: 悬架高度与转向角斜率 0.1432（默认）| scalar | vector
+  group: Suspension
+  block_parameter: StrgHgtSlp
+  values: 0.1432（默认）| scalar | vector
+```
 
 ### 车轴
 
@@ -1043,7 +1213,6 @@ enable by axle, StrgEnByAxl** 向量的一个元素设置为 `1`。
 | **参数：** | `StrgHgtSlp` |
 | **值：** | `0.1432`（默认）| `scalar` | `vector` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Suspension

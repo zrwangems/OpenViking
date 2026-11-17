@@ -14,6 +14,17 @@ language: en
 # Moving Minimum
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data input column vector | row vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Moving minimum output column vector | row vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -41,8 +52,19 @@ the data in the window. For more details, see Algorithms.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify window length
+  summary: Flag to specify window length on (default) | off
+  group: ''
+- name: Window length
+  summary: Length of the sliding window 4 (default) | positive scalar integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Specify window length** — Flag to specify window length on (default) | off
 
@@ -73,7 +95,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Baseband File Reader
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 基带信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+- name: EOF
+  summary: 文件结束指示符 逻辑标量
+  direction: output
+```
 
 ### 输出
 
@@ -28,8 +38,28 @@ chinese_source: worker-translation
 ### **EOF** — 文件结束指示符 逻辑标量
 
 文件结束指示符，以逻辑标量形式返回。当 **Repeatedly read the file** 参数为 `false` 且整个文件已读取完毕时，输出为 `true`。要启用此端口，请选择 **Output end-of-file indicator** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Baseband file name
+  summary: 要读取的基带文件名 example.bb（默认）| 字符向量
+  group: ''
+- name: Inherit sample time from file
+  summary: 选择采样时间来源 on（默认）| off
+  group: ''
+- name: Sample time (s)
+  summary: 模块采样时间 1（默认）| 正标量
+  group: ''
+- name: Samples per frame
+  summary: 每个输出帧的采样点数 100（默认）| 正整数标量
+  group: ''
+- name: Repeatedly read the file
+  summary: 连续循环读取文件数据 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -81,7 +111,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Comm Sources

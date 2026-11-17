@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # Voltage-Controlled Current Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块有四个电气守恒端口。模块左侧的连接 + 和 – 是控制端口。另外两个端口是提供输出电流的电气端子。箭头指示电流流动的正方向。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Transconductance K**
 :   跨导，即输出电流变化量除以引起该变化的输入电压变化量。默认值为 `1` 1/Ω。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # NOT
 
 ## 端口
+```yaml
+ports:
+- name: EnableIn
+  summary: 使能输入 off（默认）| on
+  direction: input
+- name: src
+  summary: 输入信号 标量
+  direction: input
+  data_types: int8 | int16 | int32 | single
+- name: EnableOut
+  summary: 使能输出 off（默认）| on
+  direction: output
+- name: dest
+  summary: 输出信号 标量
+  direction: output
+  data_types: int8 | int16 | int32 | single
+```
 
 ### 输入
 
@@ -38,11 +55,12 @@ chinese_source: worker-translation
 按位 NOT 运算产生的输出信号。如果数据类型为 `single`（`REAL`——梯形图逻辑等效类型），则结果 `int32`（`DINT`——梯形图逻辑等效类型）转换为 `REAL`（`single`——梯形图逻辑等效类型）。
 
 **数据类型：** `int8` | `int16` | `int32` | `single`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 R2025b 中未记录。

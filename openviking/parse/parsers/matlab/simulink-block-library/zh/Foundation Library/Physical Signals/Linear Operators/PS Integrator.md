@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # PS Integrator
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，*u*，无类型物理信号
+  direction: input
+- name: R
+  summary: 复位物理信号，*R*，无类型物理信号
+  direction: input
+- name: X0
+  summary: 初始条件物理信号，*XO*，无类型物理信号
+  direction: input
+- name: U
+  summary: 上限饱和边界物理信号，*U*，无类型物理信号
+  direction: input
+- name: L
+  summary: 下限饱和边界物理信号，*L*，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，*y*，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -62,8 +83,31 @@ chinese_source: worker-translation
 输出物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: 外部复位
+  summary: 模块是否基于外部复位信号复位到初始条件 None（默认）| Rising | Falling | Either
+  group: ''
+- name: 初始条件来源
+  summary: 是将初始条件指定为模块参数还是附加输入信号 Internal（默认）| External
+  group: ''
+- name: 限制输出
+  summary: 是否限制积分器输出 None（默认）| Upper | Lower | Both
+  group: ''
+- name: Limit output source
+  summary: 将饱和边界指定为模块参数还是输入信号 Internal（默认）| External
+  group: ''
+- name: Initial condition
+  summary: 积分的初始状态 0 s（默认）| 标量
+  group: ''
+- name: Upper limit
+  summary: 模块输出的饱和上限 inf s（默认）| 标量
+  group: ''
+- name: Lower limit
+  summary: 模块输出的饱和下限 -inf s（默认）| 标量
+  group: ''
+```
 
 ### **外部复位** — 模块是否基于外部复位信号复位到初始条件 `None`（默认）| `Rising` | `Falling` | `Either`
 
@@ -123,7 +167,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Limit output** 参数设置为 `Lower` 或 `Both`，并将 **Limit output source** 参数设置为 `Internal`。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Linear Operators

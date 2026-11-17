@@ -15,14 +15,53 @@ chinese_source: worker-translation
 # Passive Harmonic Filter (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相电压电气
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **~** — 三相电压电气
 
 与电压关联的可扩展三相端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Rated reactive power
+  summary: 无功功率 100e6 V*A（默认）
+  group: ''
+- name: Rated voltage (phase-to-phase RMS)
+  summary: 相间 RMS 电压 4160 V（默认）
+  group: ''
+- name: Rated frequency
+  summary: 额定频率 60 Hz（默认）
+  group: ''
+- name: Quality factor
+  summary: 品质因数 10（默认）
+  group: ''
+- name: Filter type
+  summary: 滤波器模型 Band-pass filter, single-tuned（默认）| Band-pass filter, double-tuned | High-pass filter, second-order | High-pass
+    filter, C-type
+  group: ''
+- name: Filter connection
+  summary: 连接类型 Wye with floating neutral（默认）| Wye with neutral port | Wye with grounded neutral | Delta
+  group: ''
+- name: Tuned frequency
+  summary: 调谐频率 5 * 60 Hz（默认）
+  group: ''
+- name: Tuned frequency 1
+  summary: 第一调谐频率 7 * 60 Hz（默认）
+  group: ''
+- name: Tuned frequency 2
+  summary: 第二调谐频率 11 * 60 Hz（默认）
+  group: ''
+```
 
 ### **Modeling option** — 对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -85,7 +124,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当您为 **Filter type** 参数选择 `Band-pass filter, double-tuned` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Passive

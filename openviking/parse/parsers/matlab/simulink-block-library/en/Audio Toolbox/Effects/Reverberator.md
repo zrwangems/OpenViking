@@ -14,6 +14,41 @@ language: en
 # Reverberator
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal matrix | 1-D vector
+  direction: input
+  data_types: single | double
+- name: Delay
+  summary: Pre-delay for reverberation (s) scalar in the range [0,1]
+  direction: input
+  data_types: single | double
+- name: HighCut
+  summary: Lowpass filter cutoff positive scalar in the range [0, (Sample Rate)/2]
+  direction: input
+  data_types: single | double
+- name: Diffusion
+  summary: Density of reverb tail scalar in the range [0,1]
+  direction: input
+  data_types: single | double
+- name: Decay
+  summary: Decay factor of reverb tail scalar in the range [0,1]
+  direction: input
+  data_types: single | double
+- name: Damping
+  summary: High-frequency damping scalar in the range [0,1]
+  direction: input
+  data_types: single | double
+- name: WetDry
+  summary: Ratio of wet (reverberated) signal to dry (original) signal scalar in the range [0,1]
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -91,8 +126,37 @@ The Reverberator block outputs the reverberated signal as a two-column
 matrix.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Pre-delay (s)
+  summary: Pre-delay for reverberation 0 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Highcut frequency (Hz)
+  summary: Lowpass filter cutoff 20000 (default) | scalar in the range [0, (Sample Rate)/2]
+  group: ''
+- name: Diffusion
+  summary: Density of reverb tail 0.50 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Decay factor
+  summary: Decay factor of reverb tail 0.50 (default) | scalar in the range [0, 1]
+  group: ''
+- name: High frequency damping
+  summary: High-frequency damping 0.0005 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Wet/dry mix
+  summary: Ratio of wet (reverberated) signal to dry (original) signal 0.3 (default) | scalar in the range [0, 1]
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate on (default) | off
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -200,7 +264,6 @@ input** parameter.
   This option requires additional startup time, but the speed of the
   subsequent simulations is comparable to `Interpreted
   execution`.
-
 ## Libraries
 
 Audio Toolbox / Effects

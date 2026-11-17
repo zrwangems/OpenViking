@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Entity Replicator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_1
+  summary: 输出副本实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: Port_2
+  summary: 输出被复制的实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+```
 
 ### 输入
 
@@ -36,8 +54,45 @@ chinese_source: worker-translation
 离开模块的原始实体的输出端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Replicas depart from
+  summary: 选择副本离开的方式 Separate output ports（默认）| Single output port
+  group: ''
+  block_parameter: ReplicasDepartFrom
+  type: character vector
+  values: '''Separate output ports'' | ''Single output port'''
+  default: '''Separate output ports'''
+- name: Replication amount source
+  summary: 指定副本数量的来源 Dialog（默认）| Attribute
+  group: ''
+  block_parameter: ReplicationAmountSource
+  type: character vector
+  values: '''Dialog'' | ''Attribute'''
+  default: '''Dialog'''
+- name: Number of replicas
+  summary: 指定副本数量 1（默认）| 标量
+  group: ''
+  block_parameter: NumberReplicas
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Replicate attribute name
+  summary: 指定确定副本数量的属性 ReplicateAttribute（默认）| character vector
+  group: ''
+  block_parameter: ReplicateAttributeName
+  type: character vector
+  values: '''ReplicateAttribute'' | character vector'
+  default: '''ReplicateAttribute'''
+- name: Hold original entity until all replicas depart
+  summary: 选择副本离开的方式 off（默认）| on
+  group: ''
+  block_parameter: HoldOriginalEntityUntilAllReplicasDepart
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Replicas depart from** — 选择副本离开的方式 `Separate output ports`（默认）| `Single output port`
 
@@ -119,7 +174,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

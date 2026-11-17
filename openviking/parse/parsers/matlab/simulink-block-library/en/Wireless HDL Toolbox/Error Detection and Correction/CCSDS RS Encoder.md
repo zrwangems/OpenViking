@@ -14,6 +14,29 @@ language: en
 # CCSDS RS Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input message symbols integer in the range 0 to 255
+  direction: input
+  data_types: double | single | uint8 | fixdt(0,8,0)
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Encoded codeword symbols integer in the range 0 to 255
+  direction: output
+  data_types: double | single | uint8 | fixdt(0,8,0)
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: Block ready indicator Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -97,8 +120,16 @@ input **ctrl.start** signal while **nextFrame** is
 progress and begins processing the new data.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Message length (k)
+  summary: Length of message 223 (default) | 239
+  group: ''
+- name: Interleaving depth (I)
+  summary: Depth of interleaving 1 (default) | 2 | 3 | 4 | 5 | 8
+  group: ''
+```
 
 ### **Message length (k)** — Length of message `223` (default) | `239`
 
@@ -107,7 +138,6 @@ Select the message length.
 ### **Interleaving depth (I)** — Depth of interleaving `1` (default) | `2` | `3` | `4` | `5` | `8`
 
 Select the interleaving depth.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

@@ -14,6 +14,12 @@ language: en
 # Function Element Call
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Selected input from external port function
+  direction: output
+```
 
 ### Output
 
@@ -21,8 +27,30 @@ language: en
 
 Select a function from the corresponding external input port of the
 parent model.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port name
+  summary: Name of invoking function port client (default) | port name
+  group: Block Label
+  block_parameter: PortName
+  values: '''client'' (default) | port name in quotes'
+- name: Element
+  summary: Optional function element specification f1 (default) | element path
+  group: Block Label
+  block_parameter: Element
+  values: '''f1'' (default) | element path in quotes'
+- name: Port number
+  summary: Position of port on parent block 1 (default) | real integer
+  group: Port Tab
+  block_parameter: Port
+  values: '''1'' (default) | real integer in quotes'
+- name: Data type
+  summary: 'Port data type Inherit: auto (default) | Bus: <object name> | ValueType: <object name>'
+  group: Signal Tab
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto" (default) | "Bus: <object name>" | "ValueType: <object name>"'
+```
 
 To edit the element associated with a
 Function Element Call
@@ -172,7 +200,6 @@ and the port name.
 **Example:** `set_param("mymodel/client",
 OutDataTypeStr="Bus:
 ServiceInterface")`
-
 ## Libraries
 
 Simulink / Ports & Subsystems

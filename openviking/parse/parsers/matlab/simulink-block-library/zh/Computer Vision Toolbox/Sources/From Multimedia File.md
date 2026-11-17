@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # From Multimedia File
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 彩色图像或视频帧数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Simulink.ImageType
+- name: I
+  summary: 灰度图像或视频帧矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: R
+  summary: 图像或视频帧的红色分量矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: G
+  summary: 图像或视频帧的绿色分量矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: B
+  summary: 图像或视频帧的蓝色分量矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Y
+  summary: 图像或视频帧的亮度分量矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cb
+  summary: 图像或视频帧的蓝色差色度分量矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cr
+  summary: 图像或视频帧的红色差色度分量矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Audio
+  summary: 音频信号向量 | 矩阵
+  direction: output
+  data_types: single | double | int16 | uint8
+- name: EOF
+  summary: 文件结束指示符标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -142,8 +185,46 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output end-of-file indicator** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 多媒体文件名称 vipmen.avi（默认）| 字符向量
+  group: ''
+- name: Inherit sample time from file
+  summary: 从文件继承采样时间 on（默认）| off
+  group: ''
+- name: Desired sample time
+  summary: 模块采样时间 1/30（默认）| 实正标量
+  group: ''
+- name: Number of times to play file
+  summary: 播放多媒体文件的次数 inf（默认）| 实正整数
+  group: ''
+- name: Output end-of-file indicator
+  summary: 文件结束指示符 off（默认）| on
+  group: ''
+- name: Multimedia outputs
+  summary: 媒体类型 Video only（默认）| Audio only | Video and audio
+  group: ''
+- name: Output color format
+  summary: 视频颜色格式 RGB（默认）| Intensity | YCbCr 4:2:2
+  group: ''
+- name: Image signal
+  summary: RGB 视频的输出端口配置 One multidimensional signal（默认）| Separate color signals | Simulink image signal
+  group: ''
+- name: Read range
+  summary: 音频采样范围 [1 Inf]（默认）| 二元素行向量
+  group: ''
+- name: Samples per audio channel
+  summary: 每个音频通道的采样数 1024（默认）| 实正整数
+  group: ''
+- name: Video output data type
+  summary: 视频输出数据类型 single（默认）| double | int8 | uint8 | int16 | uint16 | int32 | uint32 | Inherit from file
+  group: ''
+- name: Audio output data type
+  summary: 音频输出数据类型 int16（默认）| double | single | uint8
+  group: ''
+```
 
 ### **Main**
 
@@ -238,7 +319,6 @@ Windows® 平台上，此参数支持指向 Microsoft Media Server (MMS) 流的 
 #### 依赖关系
 
 要启用此参数，请将 **File name** 参数设置为包含音频数据的多媒体文件的名称。如果指定的文件同时包含音频和视频数据，请将 **Multimedia outputs** 参数设置为 `Audio only` 或 `Video and audio`。
-
 ## 所属库
 
 Computer Vision Toolbox / Sources

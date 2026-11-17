@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Tank (G-TL)
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 热液体体积，m^3 物理信号
+  direction: output
+- name: L
+  summary: 热液体液位，m 物理信号
+  direction: output
+- name: A1
+  summary: 气体入口 气体
+  direction: output
+- name: B1
+  summary: 气体入口 气体
+  direction: output
+- name: A2
+  summary: 热液体入口 热液体
+  direction: output
+- name: B2
+  summary: 热液体入口 热液体
+  direction: output
+- name: C2
+  summary: 热液体入口 热液体
+  direction: output
+- name: D2
+  summary: 热液体入口 热液体
+  direction: output
+- name: E2
+  summary: 热液体入口 热液体
+  direction: output
+- name: F2
+  summary: 热液体入口 热液体
+  direction: output
+- name: H1
+  summary: 气体温度 热
+  direction: output
+- name: H2
+  summary: 热液体温度 热
+  direction: output
+```
 
 ### 输出
 
@@ -97,8 +136,52 @@ chinese_source: worker-translation
 ### **H2** — 热液体温度 热
 
 与热液体体积内部温度相关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inlets
+  summary: 热液体端口数量 1（默认）| 2 | 3 | 4 | 5 | 6
+  group: ''
+- name: Total tank volume
+  summary: 气体和热液体体积之和 10 m^3（默认）| 正标量
+  group: ''
+- name: Tank volume parameterization
+  summary: 热液体体积的参数化方式 Constant cross-sectional area（默认）| Tabulated data — volume vs. level
+  group: ''
+- name: Tank cross-sectional area
+  summary: 恒定储罐横截面的面积 1 m^2（默认）| 正标量
+  group: ''
+- name: Liquid level vector
+  summary: 指定热液体体积所对应的热液体液位 [0, 3, 5] m（默认）| 向量
+  group: ''
+- name: Liquid volume vector
+  summary: 指定热液体液位下的热液体体积 [0, 4, 6] m^3（默认）| 向量
+  group: ''
+- name: Cross-sectional area vector for inlets A1 and B1
+  summary: 气体入口的流通面积 [.01, .01] m^2（默认）| 向量
+  group: ''
+- name: Inlet height at port A2
+  summary: 热液体入口的高度 0.1 m（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port A2
+  summary: 热液体入口的流通面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Height vector for inlets A2 and B2
+  summary: 端口高度向量 [.1, .1] m（默认）| 1×*n* 向量
+  group: ''
+- name: Cross-sectional area vector for inlets A2 and B2
+  summary: 端口入口面积向量 [.01, .01] m^2（默认）| 1×*n* 向量
+  group: ''
+- name: Liquid volume above max capacity
+  summary: 是否收到储罐体积过高的通知 None（默认）| Warning | Error
+  group: ''
+- name: Maximum tank liquid capacity
+  summary: 储罐的填充限值 10 m^3（默认）| 正标量
+  group: ''
+- name: Gravitational acceleration
+  summary: 重力加速度常数 9.81 m/s^2（默认）| 正标量
+  group: ''
+```
 
 ### **Number of inlets** — 热液体端口数量 `1`（默认）| `2` | `3` | `4` | `5` | `6`
 
@@ -218,7 +301,6 @@ capacity** 设置为 `Warning` 或
 ### **Gravitational acceleration** — 重力加速度常数 `9.81` m/s^2（默认）| 正标量
 
 储罐所在高度处的重力加速度值。模块假定该值在储罐高度范围内恒定。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Tanks & Accumulators

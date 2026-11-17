@@ -14,6 +14,21 @@ language: en
 # Voltage-Controlled Switch
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Positive input port electrical
+  direction: conserving
+- name: 1-
+  summary: Negative input port electrical
+  direction: conserving
+- name: 2+
+  summary: Positive output port electrical
+  direction: conserving
+- name: 2-
+  summary: Negative output port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,37 @@ switch positive output.
 
 Electrical conserving port associated with the voltage controlled
 switch negative output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Switch model
+  summary: Switch model Abrupt transition after delay (default) | Smooth transition between Ion and Ioff
+  group: ''
+- name: Threshold voltage, VT
+  summary: Threshold voltage 0 V (default)
+  group: ''
+- name: Hysteresis voltage, VH
+  summary: Hysteresis voltage 0 V (default)
+  group: ''
+- name: Control voltage for on state, VON
+  summary: Control voltage for on state 1e-3 V (default)
+  group: ''
+- name: Control voltage for off state, IOFF
+  summary: Control voltage for off state 0 V (default)
+  group: ''
+- name: On resistance, RON
+  summary: Closed switch resistance 1 Ohm (default)
+  group: ''
+- name: Use 1/GMIN as Off resistance
+  summary: Whether to use 1/GMIN as off resistance No (default) | Yes
+  group: ''
+- name: Off resistance, ROFF
+  summary: Open switch resistance 1e12 Ohm (default) | 1e6
+  group: ''
+- name: Time delay, TD
+  summary: Time delay 0 s (default)
+  group: ''
+```
 
 ### **Switch model** — Switch model `Abrupt transition after delay` (default) | `Smooth transition between Ion and Ioff`
 
@@ -148,7 +192,6 @@ Time delay after which the switch transition takes place.
 
 To enable this parameter, set **Switch model** to
 `Abrupt transition after delay`.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Passives

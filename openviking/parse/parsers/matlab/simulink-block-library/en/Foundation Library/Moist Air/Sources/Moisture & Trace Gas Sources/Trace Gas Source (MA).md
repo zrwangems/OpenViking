@@ -14,6 +14,18 @@ language: en
 # Trace Gas Source (MA)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mass flow rate control signal, kg/s physical signal
+  direction: input
+- name: T
+  summary: Temperature of added trace gas, K physical signal
+  direction: input
+- name: S
+  summary: Inject or extract trace gas moist air source
+  direction: conserving
+```
 
 ### Input
 
@@ -45,8 +57,23 @@ parameter to `Controlled`.
 Connect this port to port **S** of a block with
 finite moist air volume to add or remove trace gas through that
 block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Select whether trace gas mass flow rate and temperature can change during simulation Controlled (default) | Constant
+  group: ''
+- name: Rate of added trace gas
+  summary: Constant mass flow rate through the source 0 kg/s (default)
+  group: ''
+- name: Added trace gas temperature specification
+  summary: Select specification method for the temperature of added trace gas Atmospheric temperature (default) | Specified
+    temperature
+  group: ''
+- name: Temperature of added trace gas
+  summary: Trace gas temperature 293.15 K (default)
+  group: ''
+```
 
 ### **Source type** — Select whether trace gas mass flow rate and temperature can change during simulation `Controlled` (default) | `Constant`
 
@@ -102,7 +129,6 @@ volume.
 To enable this parameter, set **Added trace gas temperature
 specification** to `Specified
 temperature`.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Sources / Moisture & Trace Gas Sources

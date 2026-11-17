@@ -15,6 +15,77 @@ chinese_source: worker-translation
 # Scattering MIMO Channel
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 发射的窄带信号，*M*×*Nt* 复值矩阵
+  direction: input
+  data_types: double
+- name: XH
+  summary: 发射的窄带 H 极化信号，*M*×*Nt* 复值矩阵
+  direction: input
+  data_types: double
+- name: XV
+  summary: 发射的窄带 V 极化信号，*M*×*Nt* 复值矩阵
+  direction: input
+  data_types: double
+- name: TxPos
+  summary: 发射天线阵列的位置，3×1 实值列向量
+  direction: input
+  data_types: double
+- name: TxVel
+  summary: 发射天线阵列的速度，3×1 实值列向量
+  direction: input
+  data_types: double
+- name: TxAxes
+  summary: 发射天线阵列的轴方向，3×3 实正交矩阵
+  direction: input
+  data_types: double
+- name: RxPos
+  summary: 接收天线阵列的位置 3×1 实值列向量
+  direction: input
+  data_types: double
+- name: RxVel
+  summary: 接收天线阵列的速度 3×1 实值列向量
+  direction: input
+  data_types: double
+- name: RxAxes
+  summary: 接收天线阵列的轴方向 3×3 实正交矩阵
+  direction: input
+  data_types: double
+- name: ScatPos
+  summary: 散射体的位置 3×*Ns* 实值矩阵
+  direction: input
+  data_types: double
+- name: ScatVel
+  summary: 散射体的速度 3×*Ns* 实值矩阵
+  direction: input
+  data_types: double
+- name: ScatCoef
+  summary: 散射系数 1×*Ns* 复值行向量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 接收到的窄带信号 *M*×*Nr* 复值矩阵
+  direction: output
+  data_types: double
+- name: YH
+  summary: 接收到的窄带 H 极化信号 复值 *M*×*Nr* 矩阵
+  direction: output
+  data_types: double
+- name: YV
+  summary: 接收的窄带 V 极化信号复值 *M*×*Nr* 矩阵
+  direction: output
+  data_types: double
+- name: CS
+  summary: 信道响应 *Nt*×*Nr*×*Ns* 复值 MATLAB® 数组
+  direction: output
+  data_types: double
+- name: Tau
+  summary: 路径延迟 1×*Ns* 实值向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -206,8 +277,181 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output channel response** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: 信号载波频率 3e8（默认）| 正标量
+  group: ''
+- name: Polarization configuration
+  summary: 极化配置 None（默认）| Combined | Dual
+  group: ''
+- name: Specify atmospheric parameters
+  summary: 启用大气衰减模型 off（默认）| on
+  group: ''
+- name: Temperature (degrees Celsius)
+  summary: 环境温度 15（默认）| 实值标量
+  group: ''
+- name: Dry air pressure (Pa)
+  summary: 大气干空气压力 101.325e3（默认）| 正实值标量
+  group: ''
+- name: Water vapour density (g/m^3)
+  summary: 大气水蒸气密度 7.5（默认）| 正实值标量
+  group: ''
+- name: Liquid water density (g/m^3)
+  summary: 液态水密度 0.0（默认）| 非负实值标量
+  group: ''
+- name: Rain rate (mm/hr)
+  summary: 降雨率 0.0（默认）| 非负实值标量
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认）| 正实值标量
+  group: ''
+- name: Simulate direct path propagation
+  summary: 启用沿直接路径的传播 off（默认）| on
+  group: ''
+- name: Maximum delay (s)
+  summary: 最大信号延迟 10e-6（默认）| 正标量
+  group: ''
+- name: Output channel response
+  summary: 启用信道响应输出 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+- name: 将传感器阵列指定为
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| MATLAB expression
+  group: ''
+- name: 表达式
+  summary: 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System 对象
+  group: ''
+- name: 阵元类型
+  summary: 阵列阵元类型 Isotropic Antenna（默认）| Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone
+  group: ''
+- name: 工作频率范围 (Hz)
+  summary: 天线或麦克风阵元的工作频率范围 [0,1e20]（默认）| 实值 1×2 行向量
+  group: ''
+- name: 工作频率向量 (Hz)
+  summary: 自定义天线或麦克风阵元的工作频率范围 [0,1e20]（默认）| 实值行向量
+  group: ''
+- name: 阵元背面加障板
+  summary: 将 Isotropic Antenna 阵元或 Omni Microphone 阵元的背面响应设置为零 关（默认）| 开
+  group: ''
+- name: 余弦方向图指数
+  summary: 方位和俯仰余弦方向图的指数 [1.5 1.5]（默认）| 非负标量 | 非负实值 1×2 矩阵
+  group: ''
+- name: 频率响应 (dB)
+  summary: 天线和麦克风频率响应 [0,0]（默认）| 实值行向量
+  group: ''
+- name: Input Pattern Coordinate System
+  summary: 自定义天线方向图的坐标系 az-el（默认）| phi-theta
+  group: ''
+- name: Azimuth angles (deg)
+  summary: 天线辐射方向图的方位角 [-180:180]（默认）| 实值行向量
+  group: ''
+- name: Elevation angles (deg)
+  summary: 天线辐射方向图的仰角 [-90:90]（默认）| 实值行向量
+  group: ''
+- name: Phi Angles (deg)
+  summary: 自定义天线辐射方向图的 Phi 角坐标 0:360 | 实值 1×*P* 行向量
+  group: ''
+- name: Theta Angles (deg)
+  summary: 自定义天线辐射方向图的 Theta 角坐标 0:180 | 实值 1×*Q* 行向量
+  group: ''
+- name: Magnitude pattern (dB)
+  summary: 组合天线辐射方向图的幅度 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: ''
+- name: Phase pattern (deg)
+  summary: 自定义天线辐射相位方向图 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: ''
+- name: MatchArrayNormal
+  summary: 将天线阵子旋转至阵列法向 on（默认）| off
+  group: ''
+- name: Polar pattern frequencies (Hz)
+  summary: 极坐标方向图麦克风响应频率 1e3（默认）| 实标量 | 实值 1×*L* 行向量
+  group: ''
+- name: Polar pattern angles (deg)
+  summary: 极坐标方向图响应角度 [-180:180]（默认）| 实值 1×*P* 行向量
+  group: ''
+- name: Polar pattern (dB)
+  summary: 自定义麦克风极坐标响应 zeros(1,361)（默认）| 实值 *L*×*P* 矩阵
+  group: ''
+- name: Geometry
+  summary: 阵列几何结构 ULA（默认）| URA | UCA | Conformal Array
+  group: ''
+- name: Number of elements
+  summary: 阵列阵元数量 ULA 阵列为 2，UCA 阵列为 5（默认）| 大于或等于 2 的整数
+  group: ''
+- name: Element spacing (m)
+  summary: 阵列阵元之间的间距 ULA 阵列为 0.5，URA 阵列为 [0.5,0.5]（默认）| ULA 或 URA 阵列为正标量 | URA 阵列为由正值组成的 2 元素向量
+  group: ''
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认）| x | z
+  group: ''
+- name: Array size
+  summary: URA 阵列的维度 [2,2]（默认）| 正整数 | 1×2 正整数向量
+  group: ''
+- name: Element lattice
+  summary: URA 元素位置的晶格 Rectangular（默认）| Triangular
+  group: ''
+- name: Array normal
+  summary: 阵列法线方向 URA 阵列为 x 或 UCA 阵列为 z（默认）| y
+  group: ''
+- name: Radius of UCA (m)
+  summary: UCA 阵列半径 0.5（默认）| 正标量
+  group: ''
+- name: Element positions (m)
+  summary: 共形阵列元素的位置 [0;0;0]（默认）| 3×*N* 实数值矩阵
+  group: ''
+- name: Element normals (deg)
+  summary: 共形阵列单元法向量方向 [0;0] | 2×1 列向量 | 2×*N* 矩阵
+  group: ''
+- name: Taper
+  summary: 阵列单元锥削 1 (默认) | 复标量 | 复值行向量
+  group: ''
+- name: Source of transmit array motion
+  summary: 指定发射阵列运动参数的来源 Property (默认) | Input port
+  group: ''
+- name: Position of the transmit array (m)
+  summary: 发射阵列位置 [0;0;0] (默认) | 实值 3×1 向量
+  group: ''
+- name: Orientation of the transmit array
+  summary: 设置发射阵列轴的方向 eye(3,3) (默认) | 实值 3×3 正交矩阵
+  group: ''
+- name: 接收阵列运动源
+  summary: 指定接收阵列运动参数的来源 Property（默认）| Input port
+  group: ''
+- name: 接收阵列位置 (m)
+  summary: 接收阵列的位置 [physconst('LightSpeed' )/1e5; 0;0]（默认）| 实值 3×1 向量
+  group: ''
+- name: 接收阵列朝向
+  summary: 设置接收阵列轴的朝向 eye(3,3)（默认）| 实值 3×3 正交矩阵
+  group: ''
+- name: 散射体规格
+  summary: 指定散射体参数的来源 Auto（默认）| Property | Input port
+  group: ''
+- name: 散射体数量
+  summary: 散射体的数量 1（默认）| 非负整数
+  group: ''
+- name: 散射体位置边界
+  summary: 将散射体位置约束在边界内 [0,1000]（默认）| 1×2 实值向量 | 3×2 实值矩阵
+  group: ''
+- name: Positions of scatterers (m)
+  summary: 散射体位置 [physconst('LightSpeed' )*5e-6;0;0]（默认）| 实值 3×*Ns* 矩阵
+  group: ''
+- name: ScattererCoefficient
+  summary: 散射系数 1（默认）| 复值 1×*Ns* 矩阵
+  group: ''
+```
 
 #### 主选项卡
 
@@ -830,7 +1074,6 @@ Array`。
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## 所属库
 
 Phased Array System Toolbox / Environment and Target

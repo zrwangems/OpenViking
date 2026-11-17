@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Network Coupler (Voltage-Voltage)
 
 ## 端口
+```yaml
+ports:
+- name: '1'
+  summary: 将此端口连接到变步长网络，或连接到具有较小采样时间的定步长网络 electrical | three-phase electrical | electrical node array
+  direction: conserving
+- name: '2'
+  summary: 将此端口连接到具有较大采样时间的定步长网络 electrical | three-phase electrical | electrical node array
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,68 @@ chinese_source: worker-translation
 ### **2** — 将此端口连接到具有较大采样时间的定步长网络 electrical | three-phase electrical | electrical node array
 
 如果其中一个耦合网络以变步长运行，请将 Network Coupler (Voltage-Voltage) 模块的端口 **2** 连接到定步长网络。如果两个网络都以定步长运行，请将此端口连接到具有较大采样时间的网络。
-
 ## 参数
+```yaml
+parameters:
+- name: Use three-phase electrical connections
+  summary: 断开三相电气端口之间的连接 off (default) | on
+  group: 主要
+- name: Electrical node array size
+  summary: 指定电气节点数量 1 (default) | positive integer
+  group: 主要
+- name: Port 1 voltage source resistance (ohms)
+  summary: 指定连接到 Network 1 的端口的电压源电阻 0.1 (default) | positive scalar
+  group: 主要
+- name: Port 2 voltage source resistance (ohms)
+  summary: 指定连接到 Network 2 的端口的电压源电阻 0.1 (default) | positive scalar
+  group: 主要
+- name: Sampling type
+  summary: 为耦合网络选择采样类型场景 Variable step at ports 1 and 2 (default) | 端口 1 使用可变步长，端口处使用固定步长 2 | Fixed step both ports with common
+    sample time | 固定步长，两个端口，端口处采样更快 1
+  group: 主要
+- name: Port 1 network discrete sample time (s)
+  summary: 指定 Network 1 的采样时间 0.0002 (default) | positive scalar
+  group: 主要
+- name: Port 2 network discrete sample time (s)
+  summary: 指定 Network 2 的采样时间 0.001 (default) | positive scalar
+  group: 主要
+- name: 将定步长连接到变步长时使用预测
+  summary: 允许您启用预测（离散->连续）算法 关（默认）| 开
+  group: 主要
+- name: 将变步长连接到定步长时使用平滑
+  summary: 允许您启用平滑（连续->离散）算法 关（默认）| 开
+  group: 主要
+- name: 平滑时间常数 (s)
+  summary: 指定一阶滤波器的时间常数 0.01（默认）| 正标量
+  group: 主要
+- name: 将慢速连接到快速采样时间时使用预测
+  summary: 允许您启用预测（慢速->快速）算法 关（默认）| 开
+  group: 主要
+- name: 将快速连接到慢速采样时间时使用平滑
+  summary: 允许您启用平滑（快速->慢速）算法 关（默认）| 开
+  group: 主要
+- name: 用于平滑的采样数
+  summary: 指定用于求平均的采样数 1（默认）| 正标量
+  group: 主要
+- name: 端口 1 的近似串联电阻 (ohms)
+  summary: 指定端口 1 的近似串联电阻 0.1（默认）| 正标量
+  group: 分析
+- name: 端口 1 的近似串联电感 (H)
+  summary: 指定端口 1 的近似串联电感 1e-3（默认）| 正标量
+  group: 分析
+- name: 端口 2 的近似串联电阻 (ohms)
+  summary: 指定端口 2 的近似串联电阻 0.1（默认）| 正标量
+  group: 分析
+- name: 端口 2 的近似串联电感 (H)
+  summary: 指定端口 2 的近似串联电感 1e-3（默认）| 正标量
+  group: 分析
+- name: 端口 1 的初始电压 (V)
+  summary: 指定初始电压 0（默认）| 正标量
+  group: 初始条件
+- name: 流入端口 1 的初始电流 (A)
+  summary: 指定初始电流 0（默认）| 正标量
+  group: 初始条件
+```
 
 ### 主要
 
@@ -169,7 +238,6 @@ chinese_source: worker-translation
 ### **流入端口 1 的初始电流 (A)** — 指定初始电流 `0`（默认）| 正标量
 
 指定流入端口 **1** 的电流的初始条件，以 A 为单位。
-
 ## 所属库
 
 Simscape / Utilities / Network Couplers

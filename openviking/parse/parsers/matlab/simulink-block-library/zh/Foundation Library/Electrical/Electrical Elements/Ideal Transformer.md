@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Ideal Transformer
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 一次绕组正极端子 electrical
+  direction: conserving
+- name: 1-
+  summary: 一次绕组负极端子 electrical
+  direction: conserving
+- name: 2+
+  summary: 二次绕组正极端子 electrical
+  direction: conserving
+- name: 2-
+  summary: 二次绕组负极端子 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,13 +48,17 @@ chinese_source: worker-translation
 ### **2-** — 二次绕组负极端子 electrical
 
 与二次绕组负极端子关联的电学守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Winding ratio
+  summary: 一次线圈匝数与二次线圈匝数之比 1（默认）| 正标量
+  group: ''
+```
 
 ### **Winding ratio** — 一次线圈匝数与二次线圈匝数之比 `1`（默认）| 正标量
 
 变压器的绕组比，即一次线圈匝数与二次线圈匝数之比。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

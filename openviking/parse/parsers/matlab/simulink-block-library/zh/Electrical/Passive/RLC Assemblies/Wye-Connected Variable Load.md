@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Wye-Connected Variable Load
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 有功功率物理信号
+  direction: input
+- name: '~'
+  summary: 三相端口电气
+  direction: input
+- name: n
+  summary: 中性相电气
+  direction: input
+```
 
 ### 输入
 
@@ -31,8 +43,19 @@ chinese_source: worker-translation
 ### **n** — 中性相电气
 
 与中性相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Rated voltage
+  summary: 额定线电压 24e3 V（默认）
+  group: ''
+- name: Minimum real power
+  summary: 最小有功功率 1e3 W（默认）| 正标量
+  group: ''
+```
 
 ### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -49,7 +72,6 @@ chinese_source: worker-translation
 ### **Minimum real power** — 最小有功功率 `1e3` `W`（默认）| 正标量
 
 三相负载在额定电压供电时消耗的最小有功功率。该值必须大于 0。
-
 ## 所属库
 
 Simscape / Electrical / Passive / RLC Assemblies

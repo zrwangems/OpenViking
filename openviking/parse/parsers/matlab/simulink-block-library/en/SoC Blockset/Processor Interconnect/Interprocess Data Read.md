@@ -14,6 +14,20 @@ language: en
 # Interprocess Data Read
 
 ## Ports
+```yaml
+ports:
+- name: msg
+  summary: Data message from interprocess data channel scalar
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: Data frame read from another processor vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | bus
+- name: status
+  summary: Interprocess data read status 0 | 1 | 2 | 4 | 6
+  direction: output
+```
 
 ### Input
 
@@ -52,8 +66,32 @@ The status port outputs one of these values:
 
 This port appears when you disable the **Enable simulation
 port** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable simulation port
+  summary: Enable peripheral simulation port to block on (default) | off
+  group: ''
+- name: Data type
+  summary: Data type of interprocess data channel double (default) | single | int8 | int16 | int32 | int64 | int64 | uint8
+    | uint16 | uint32 | uint64 | uint64 | Boolean | bus
+  group: ''
+- name: Circular FIFO depth
+  summary: Number of storage buffers 1 (default) | positive integer
+  group: ''
+- name: Circular FIFO element size
+  summary: Size of data vector read from interprocess data channel 1 (default) | positive integer
+  group: ''
+- name: Channel number
+  summary: Select the channel number 0 (default) | 1 | 2 | ...
+  group: ''
+- name: Participating cores
+  summary: Select the participating cores of the processor The options vary based on the hardware board you select
+  group: ''
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Enable simulation port** — Enable peripheral simulation port to block `on` (default) | `off`
 
@@ -117,7 +155,6 @@ the model.
 
 Enter the sample time of the block to apply to the timer-driven task
 subsystem.
-
 ## Libraries
 
 SoC Blockset / Processor Interconnect C2000 Microcontroller Blockset / Target Communication Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Target Communication Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Target Communication

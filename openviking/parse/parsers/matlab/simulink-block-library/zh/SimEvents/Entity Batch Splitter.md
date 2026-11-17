@@ -15,6 +15,35 @@ chinese_source: worker-translation
 # Entity Batch Splitter
 
 ## 端口
+```yaml
+ports:
+- name: port_1
+  summary: 输入批次实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_1
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_a
+  summary: 已到达实体数量 标量
+  direction: output
+  data_types: double
+- name: port_d
+  summary: 已离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: port_rem
+  summary: 模块中剩余实体数量 标量
+  direction: output
+  data_types: double
+- name: port_pe
+  summary: 模块中的待处理实体 off（默认）| on
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -70,8 +99,45 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Statistics** > **Pending entity in block, pe**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Event actions
+  summary: 指定事件动作 Entry（默认）| Unbatch | Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, UnbatchAction, ExitAction, BlockedAction
+  type: 字符向量
+  values: MATLAB 代码
+  default: ''''''
+- name: Number of entities arrived, a
+  summary: 输出已到达模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberOfEntitiesArrived
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities departed, d
+  summary: 输出已离开模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberOfEntitiesDeparted
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities remaining to depart, rem
+  summary: 输出模块中剩余的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberOfEntitiesWaitingToDepart
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Pending entity in block, pe
+  summary: 待处理实体 off（默认）| on
+  group: ''
+  block_parameter: PendingEntity
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Event actions** — 指定事件动作 `Entry`（默认）| `Unbatch` | `Exit` | `Blocked`
 
@@ -137,7 +203,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

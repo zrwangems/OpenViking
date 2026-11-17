@@ -14,16 +14,23 @@ language: en
 # Ideal Transformer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Winding ratio n
+  summary: Winding ratio of ideal transformer 1 (default) | positive scalar
+  group: ''
+```
 
 ### **Winding ratio n** — Winding ratio of ideal transformer `1` (default) | positive scalar
 
 Winding ratio of the ideal transformer, specified as a positive
 scalar.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

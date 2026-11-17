@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Measurement Selector (MA)
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 包含压力、温度、湿度和微量气体水平数据的向量物理信号 物理信号向量
+  direction: input
+- name: P
+  summary: 压力测量值，Pa 物理信号
+  direction: output
+- name: T
+  summary: 温度测量值，K 物理信号
+  direction: output
+- name: W
+  summary: 湿度水平测量值，无量纲 物理信号
+  direction: output
+- name: G
+  summary: 微量气体水平测量值，无量纲 物理信号
+  direction: output
+- name: D
+  summary: 水滴与湿空气的质量比，无量纲 物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -42,8 +63,16 @@ chinese_source: worker-translation
 ### **D** — 水滴与湿空气的质量比，无量纲 物理信号
 
 水滴与湿空气质量比的物理信号输出端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Measured humidity specification
+  summary: 选择要测量的湿度属性 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio
+  group: ''
+- name: Measured trace gas specification
+  summary: 选择要测量的微量气体属性 Mass fraction（默认）| Mole fraction
+  group: ''
+```
 
 ### **Measured humidity specification** — 选择要测量的湿度属性 `Relative humidity`（默认）| `Specific humidity` | `Mole fraction` | `Humidity ratio`
 
@@ -60,7 +89,6 @@ chinese_source: worker-translation
 
 - `Mass fraction` ― 物理信号端口 **G** 报告微量气体质量分数。
 - `Mole fraction` ― 物理信号端口 **G** 报告微量气体摩尔分数。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Sensors

@@ -14,6 +14,13 @@ language: en
 # Range-Time Intensity Scope
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data real-valued length-*M* vector
+  direction: input
+  data_types: double | single
+```
 
 ### Input
 
@@ -25,8 +32,80 @@ precision data type input, but converts the data to double precision for
 display.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Range Offset (m)
+  summary: Range offset 0.0 (default) | positive scalar
+  group: ''
+  block_parameter: RangeOffset
+  type: double
+  values: scalar
+  default: '0'
+- name: Time Span (s)
+  summary: Time span of display 0.1 (default) | positive scalar
+  group: ''
+  block_parameter: TimeSpan
+  type: double
+  values: scalar
+  default: '1'
+- name: Range Resolution (m)
+  summary: Range difference between samples 1 (default) | positive scalar
+  group: ''
+  block_parameter: RangeResolution
+  type: double
+  values: positive scalar
+  default: '25'
+- name: Time Resolution (s)
+  summary: Time difference between rows 0.001 (default) | positive scalar
+  group: ''
+  block_parameter: TimeResolution
+  type: double
+  values: positive scalar
+  default: '0.00033356'
+- name: Show Grid
+  summary: Show Cartesian grid overlay on (default) | off
+  group: ''
+  block_parameter: ShowGrid
+  type: logical
+  values: 1 | 0
+  default: '1'
+- name: Show Ticks
+  summary: Show tick value labels on (default) | off
+  group: ''
+  block_parameter: ShowTicks
+  type: logical
+  values: 1 | 0
+  default: '1'
+- name: Range Label
+  summary: Range axis label 'Range (m)' (default) | string
+  group: ''
+  block_parameter: RangeLabel
+  type: string
+  values: string
+  default: '''Range (m)'''
+- name: Time Label
+  summary: Time axis label Time History (s)' (default) | string
+  group: ''
+  block_parameter: TimeLabel
+  type: string
+  values: string
+  default: '''Time History (s)'''
+- name: Title
+  summary: Window title 'Range vs. Time' (default) | string
+  group: ''
+  block_parameter: Title
+  type: string
+  values: string
+  default: Range vs. Time'
+- name: Colorbar Label
+  summary: Color bar 'mag' (default) | string
+  group: ''
+  block_parameter: ColorBarLabel
+  type: string
+  values: string
+  default: '''mag'''
+```
 
 #### Data and Axes
 
@@ -190,7 +269,6 @@ Color bar label, specified as a string.
 | **Default:**`'mag'` |
 
 **Data Types:** `string`
-
 ## Libraries
 
 Phased Array System Toolbox / Sinks

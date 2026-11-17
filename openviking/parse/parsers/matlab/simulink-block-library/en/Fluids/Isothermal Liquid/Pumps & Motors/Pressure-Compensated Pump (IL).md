@@ -14,6 +14,39 @@ language: en
 # Pressure-Compensated Pump (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: X
+  summary: Pressure reference *P*x, MPa isothermal liquid
+  direction: conserving
+- name: Y
+  summary: Pressure reference *P*y, MPa isothermal liquid
+  direction: conserving
+- name: R
+  summary: Mechanical port mechanical rotational
+  direction: conserving
+- name: C
+  summary: Mechanical port mechanical rotational
+  direction: conserving
+- name: EV
+  summary: Volumetric efficiency physical signal
+  direction: conserving
+- name: EM
+  summary: Mechanical efficiency physical signal
+  direction: conserving
+- name: LV
+  summary: Leakage flow rate, m^3/s physical signal
+  direction: conserving
+- name: LM
+  summary: Friction torque, N*m physical signal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -95,8 +128,108 @@ specified as a physical signal.
 To enable this port, set **Leakage and friction
 parameterization** to `Input signal -
 volumetric and mechanical losses`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: Method of calculating leakage flow rate and friction torque Analytical (default) | Tabulated data - volumetric
+    and mechanical efficiencies | Tabulated data - volumetric and mechanical losses | Input signal - volumetric and mechanical
+    efficiencies | Input signal - volumetric and mechanical losses
+  group: Pump
+- name: Nominal displacement
+  summary: Fixed-volume fluid displacement 30 cm^3/rev (default) | scalar
+  group: Pump
+- name: Nominal shaft angular velocity
+  summary: Shaft angular velocity 1800 rpm (default) | scalar
+  group: Pump
+- name: Nominal pressure gain
+  summary: Pressure gain between fluid entry and exit 10 MPa (default) | scalar
+  group: Pump
+- name: Volumetric efficiency at nominal conditions
+  summary: Ratio of actual flow rate to ideal flow rate 0.92 (default) | positive scalar in the range of (0,1]
+  group: Pump
+- name: No-load torque
+  summary: Baseline torque 0 N*m (default) | scalar
+  group: Pump
+- name: Mechanical efficiency at nominal conditions
+  summary: Ratio of actual to ideal mechanical power 0.88 (default) | positive scalar
+  group: Pump
+- name: Pressure gain vector, dp
+  summary: Vector of pressure data for tabulated data parameterization [.1, 1, 2] MPa (default) | 1-by-*n* vector
+  group: Pump
+- name: Shaft angular velocity vector, w
+  summary: Vector of angular velocity data for tabulated data parameterization [250, 500, 1000, 2000, 3000, 4000] rpm (default)
+    | 1-by-*n* vector
+  group: Pump
+- name: Displacement vector, D
+  summary: Vector of displacement volumes for tabulated data parameterization [-30, -19, 19, 30] cm^3/s (default) | 1-by-*n*
+    vector
+  group: Pump
+- name: Volumetric efficiency table, e_v(dp,w,D)
+  summary: Volumetric efficiency for tabulated data parameterization repmat([.816, .908, .954, .977, .981, .984; .325, .663,
+    .831, .916, .925, .946; .137, .568, .78, .892, .893, .91], 1, 1, 4) (default) | *M*-by-*N*-by-*P* matrix
+  group: Pump
+- name: Mechanical efficiency table, e_m(dp,w,D)
+  summary: Mechanical efficiency for tabulated data parameterization repmat([.996, .996, .996, .996, .996, .996; .988, .989,
+    .989, .989, .989, .99; .981, .981, .982, .982, .983, .984], 1, 1, 4) (default) | *M*-by-*N*-by-*P* matrix
+  group: Pump
+- name: Volumetric loss table, q_loss(dp,w,D)
+  summary: Volumetric losses for tabulated data parameterization repmat([.023, .023, .023, .023, .0285, .032; .0844, .0842,
+    .0845, .084, .1125, .108; .1079, .108, .11, .108, .1605, .18] * 1e-3, 1, 1, 4)m^3/s (default) | numerical array
+  group: Pump
+- name: Mechanical loss table, torque_loss(dp,w,D)
+  summary: Mechanical losses for tabulated data parameterization repmat([.002, .002, .002, .002, .002, .002; .0607, .0556,
+    .0556, .0556, .0556, .0505; .1937, .1937, .1833, .1833, .1729, .1626], 1, 1, 4) N*m (default) | numerical array
+  group: Pump
+- name: Minimum volumetric efficiency
+  summary: Minimum value of volumetric efficiency 1e-3 (default) | positive scalar in the range of (0,1]
+  group: Pump
+- name: Maximum volumetric efficiency
+  summary: Maximum value of volumetric efficiency 1 (default) | positive scalar in the range of (0,1]
+  group: Pump
+- name: Minimum mechanical efficiency
+  summary: Minimum value of mechanical efficiency 1e-3 (default) | positive scalar in the range of (0,1]
+  group: Pump
+- name: Maximum mechanical efficiency
+  summary: Maximum value of mechanical efficiency 1 (default) | positive scalar in the range of (0,1]
+  group: Pump
+- name: Pressure gain threshold for pump-motor transition
+  summary: Pressure threshold for mode transition 1e-3 MPa (default) | positive scalar
+  group: Pump
+- name: Angular velocity threshold for pump-motor transition
+  summary: Angular velocity threshold for mode transition 100 rpm (default) | positive scalar
+  group: Pump
+- name: Check if operating beyond the range of supplied tabulated data
+  summary: Whether to notify if extents of supplied data are surpassed None (default) | Warning | Error
+  group: Pump
+- name: Check if operating beyond pump mode
+  summary: Whether to notify if block operates outside of the pump mode functionality None (default) | Warning | Error
+  group: Pump
+- name: Check if pressures are less than pump minimum pressure
+  summary: Whether to notify if fluid exit pressure is low None (default) | Warning | Error
+  group: Pump
+- name: Pump minimum pressure
+  summary: Lower threshold of acceptable pressure at the pump outlet 0.101325 MPa (default) | positive scalar
+  group: Pump
+- name: Maximum displacement
+  summary: Upper limit to pump displacement 30 cm^3/rev (default) | scalar
+  group: Pressure Compensation
+- name: Minimum displacement
+  summary: Lower limit to pump displacement 0.1 cm^3/rev (default) | scalar
+  group: Pressure Compensation
+- name: Set pressure differential
+  summary: Threshold value for variable-displacement functionality 10 MPa (default) | positive scalar
+  group: Pressure Compensation
+- name: Pressure regulation range
+  summary: Variable-displacement operational range 0.6 MPa (default) | positive scalar
+  group: Pressure Compensation
+- name: Displacement dynamics
+  summary: Whether to account for flow response to displacement changes off (default) | on
+  group: Pressure Compensation
+- name: Time constant
+  summary: Flow response time constant 0.1 s (default) | positive scalar
+  group: Pressure Compensation
+```
 
 ### Pump
 
@@ -555,7 +688,6 @@ impacts the modeled displacement dynamics.
 
 To enable this parameter, select **Displacement
 dynamics**.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors

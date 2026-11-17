@@ -14,19 +14,29 @@ language: en
 # Constant Volume Chamber (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Chamber inlet isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
 ### **A** — Chamber inlet isothermal liquid
 
 Isothermal liquid conserving port associated with the chamber inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Chamber volume
+  summary: Volume of fluid inside the chamber 0.001 m^3 (default) | positive scalar
+  group: ''
+```
 
 ### **Chamber volume** — Volume of fluid inside the chamber `0.001 m^3` (default) | positive scalar
 
 Volume of fluid in the chamber. This volume is constant during simulation.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

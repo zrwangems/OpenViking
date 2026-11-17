@@ -14,10 +14,37 @@ language: en
 # Noise
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Noise type Ideal voltage (default) | Ideal current
+  group: ''
+- name: Noise distribution
+  summary: Noise distribution type White (default) | Piece-wise linear | Colored
+  group: ''
+- name: Noise power spectral density
+  summary: Single-sided noise power spectral distribution 0 (default) | scalar | vector
+  group: ''
+- name: Frequencies
+  summary: Frequencies for piece-wise linear noise distribution 0 Hz (default) | vector of non-negative frequencies | Hz |
+    kHz | MHz | GHz
+  group: ''
+- name: Automatically estimate impulse response duration
+  summary: Estimate impulse response duration on (default) | off
+  group: ''
+- name: Impulse response duration
+  summary: Impulse response duration to simulate colored noise 1e-10 s (default) | scalar | s | ms | us | ns
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Source type** — Noise type `Ideal voltage` (default) | `Ideal current`
 
@@ -109,7 +136,6 @@ exposing these terminals, you can connect them to other parts of your
 model.
 
 By default, this option is selected.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Sources

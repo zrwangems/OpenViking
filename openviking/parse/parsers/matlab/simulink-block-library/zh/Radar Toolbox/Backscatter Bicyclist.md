@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Backscatter Bicyclist
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 入射雷达信号 复值 *M*×*N* 矩阵
+  direction: input
+  data_types: double
+- name: AngH
+  summary: 骑行者航向 0.0 | 标量
+  direction: input
+  data_types: double
+- name: Ang
+  summary: 入射信号方向 实值 2×*N* 向量
+  direction: input
+  data_types: double
+- name: Speed
+  summary: 骑行者速度 非负标量
+  direction: input
+  data_types: double
+- name: Coast
+  summary: 骑行者滑行状态 false（默认）| true
+  direction: input
+  data_types: Boolean
+- name: Y
+  summary: 合并反射雷达信号 复值 *M*×1 列向量
+  direction: output
+  data_types: double
+- name: Pos
+  summary: 散射体位置 实值 3×*N* 矩阵
+  direction: output
+  data_types: double
+- name: Vel
+  summary: 散射体速度 实值 3×*N* 矩阵
+  direction: output
+  data_types: double
+- name: Ax
+  summary: 散射体方向 实值 3×3 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -82,8 +121,46 @@ chinese_source: worker-translation
 散射体的方向轴，返回为实值 3×3 矩阵。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of wheel spokes
+  summary: 每个车轮的辐条数量 20（默认）| 正整数
+  group: ''
+- name: Gear transmission ratio
+  summary: 车轮转数与踏板转数之比 1.5（默认）| 正标量
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: 载波频率 77e9（默认）| 正标量
+  group: ''
+- name: Initial position (m)
+  summary: 骑行者初始位置 [0;0;0]（默认）| 3×1 实值向量
+  group: ''
+- name: Initial heading direction (deg)
+  summary: 骑行者初始航向 0（默认）| 标量
+  group: ''
+- name: Initial bicyclist speed (m/s)
+  summary: 骑行者初始速度 4（默认）| 非负标量
+  group: ''
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: ''
+- name: RCS pattern
+  summary: RCS 方向图来源 Auto（默认）| Property
+  group: ''
+- name: Azimuth angles (deg)
+  summary: 方位角 [-180:180]（默认）| 1×*P* 实值行向量 | *P*×1 实值列向量
+  group: ''
+- name: Elevation angles (deg)
+  summary: 俯仰角 [-90:90]（默认）| 1×*Q* 实值行向量 | *Q*×1 实值列向量
+  group: ''
+- name: Radar cross section pattern (square meters)
+  summary: 雷达截面积方向图 1×361 实值矩阵（默认）| *Q*×*P* 实值矩阵 | 1×*P* 实值向量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+```
 
 ### **Number of wheel spokes** — 每个车轮的辐条数量 `20`（默认）| 正整数
 
@@ -191,7 +268,6 @@ RCS 方向图的来源，指定为 `Auto` 或 `Property`。当指定 `Auto` 时�
 | `Code Generation` | 模块被编译。 | 模型中的所有模块都被编译。 |
 
 有关详细信息，请参阅 Choosing a Simulation Mode (Simulink)。
-
 ## 所属库
 
 Radar Toolbox

@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Thermodynamic Properties Sensor (2P)
 
 ## 端口
+```yaml
+ports:
+- name: T
+  summary: 温度测量，K 物理信号
+  direction: output
+- name: h
+  summary: 比焓测量，kJ/kg 物理信号
+  direction: output
+- name: ρ
+  summary: 密度测量，kg/m^3 物理信号
+  direction: output
+- name: v
+  summary: 比体积测量，m^3/kg 物理信号
+  direction: output
+- name: s
+  summary: 比熵测量，kJ/(kg\*K) 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口两相流体
+  direction: output
+```
 
 ### 输出
 
@@ -62,8 +83,25 @@ chinese_source: worker-translation
 ### **A** — 传感器入口两相流体
 
 两相流体守恒端口。将此端口连接到两相流体网络中您想要测量热力学属性的节点。所有测量均相对于绝对零度进行。
-
 ## 参数
+```yaml
+parameters:
+- name: Temperature
+  summary: 控制用于测量温度的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Enthalpy
+  summary: 控制用于测量比焓的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Density
+  summary: 控制用于测量密度的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Specific volume
+  summary: 控制用于测量比体积的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Entropy
+  summary: 控制用于测量比熵的输出端口可见性 Off（默认）| On
+  group: ''
+```
 
 ### **Temperature** — 控制用于测量温度的输出端口可见性 `Off`（默认）| `On`
 
@@ -84,7 +122,6 @@ chinese_source: worker-translation
 ### **Entropy** — 控制用于测量比熵的输出端口可见性 `Off`（默认）| `On`
 
 选中此复选框将显示输出端口 **s**，使您可以测量两相流体的比熵。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Sensors

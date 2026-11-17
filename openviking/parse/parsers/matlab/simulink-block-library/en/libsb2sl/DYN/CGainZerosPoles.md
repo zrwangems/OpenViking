@@ -14,6 +14,17 @@ language: en
 # Transfer Fcn
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -40,8 +51,42 @@ Output signal, provided as a scalar or vector with data type
   system.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Numerator coefficients
+  summary: Vector or matrix of numerator coefficients [1] (default) | vector | matrix
+  group: ''
+  block_parameter: Numerator
+  type: character vector, string
+  values: vector | matrix
+  default: '''[1]'''
+- name: Denominator coefficients
+  summary: Row vector of denominator coefficients [1 1] (default) | vector
+  group: ''
+  block_parameter: Denominator
+  type: character vector | string
+  values: vector
+  default: '''[1 1]'''
+- name: Parameter tunability
+  summary: Tunable representation of block parameters in code Auto (default) | Optimized | Unconstrained
+  group: ''
+  block_parameter: ParameterTunability
+  type: character vector, string
+  values: '''Auto'' | ''Optimized'' | ''Unconstrained'''
+  default: '''Auto'''
+- name: Absolute tolerance
+  summary: Absolute tolerance for computing block states auto (default) | scalar | vector
+  group: ''
+  block_parameter: AbsoluteTolerance
+  values: '''auto'' (default) | ''-1'' | positive real scalar number | vector of positive real scalar numbers'
+- name: State Name (e.g., 'position')
+  summary: Option to assign unique names to states '' (default) | character vector | cell array of character vectors | MATLAB®
+    variable | ...
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  values: ''''' (default) | valid MATLAB variable name'
+```
 
 ### **Numerator coefficients** — Vector or matrix of numerator coefficients `[1]` (default) | vector | matrix
 
@@ -187,7 +232,6 @@ programmatically, use the `get_param` function.
 
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
-
 ## Libraries
 
 Simulink / Continuous

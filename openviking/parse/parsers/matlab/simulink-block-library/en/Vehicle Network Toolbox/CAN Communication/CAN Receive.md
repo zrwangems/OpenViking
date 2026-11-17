@@ -14,6 +14,17 @@ language: en
 # CAN Receive
 
 ## Ports
+```yaml
+ports:
+- name: CAN Msg
+  summary: Received CAN messages CAN_MESSAGE | bus
+  direction: output
+  data_types: CAN_MESSAGE | bus
+- name: f()
+  summary: Function-call event output function-call event
+  direction: output
+  data_types: function-call event
+```
 
 ### Output
 
@@ -35,8 +46,50 @@ can then connect to a Function-Call Subsystem (Simulink) to unpack and
 process a message.
 
 **Data Types:** `function-call event`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: CAN device and channel list option
+  group: ''
+  block_parameter: Device
+  type: character vector, string
+- name: Standard IDs Filter
+  summary: Limit or allow messages based on standard ID Allow all (default) | Allow only | Block all
+  group: ''
+  block_parameter: StandardIDs
+  type: character vector, string
+  values: integer scalar or row vector
+  default: '''Allow all'''
+- name: Extended IDs Filter
+  summary: Limit or allow messages based on extended ID Allow all (default) | Allow only | Block all
+  group: ''
+  block_parameter: ExtendedIDs
+  type: character vector, string
+  values: integer scalar or row vector
+  default: '''Allow all'''
+- name: Sample time
+  summary: Block execution rate 0.01 (default)
+  group: ''
+  block_parameter: SampleTime
+  type: character vector, string
+  values: double
+  default: '''0.01'''
+- name: Number of messages received at each timestep
+  summary: Receive one or all messages all (default) | 1
+  group: ''
+  block_parameter: MsgsPerTimestep
+  type: character vector, string
+  values: '''all'' | ''1'''
+  default: '''all'''
+- name: Output as bus
+  summary: Output Simulink bus signal off (default) | on
+  group: ''
+  block_parameter: BusOutput
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 **Tip**
 
@@ -172,7 +225,6 @@ Output a native Simulink bus signal. For more information on Simulink bus object
 | **Type:** character vector, string |
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN Communication

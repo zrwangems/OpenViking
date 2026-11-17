@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Eye Diagram
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,67 @@ chinese_source: worker-translation
 输入信号，指定为标量或列向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Samples per symbol
+  summary: 每符号采样数 8（默认）| 正整数
+  group: 显示与轨迹
+- name: Sample offset
+  summary: 采样偏移 0（默认）| 非负整数
+  group: 显示与轨迹
+- name: Symbols per trace
+  summary: 每轨迹符号数 2（默认）| 正整数
+  group: 显示与轨迹
+- name: Traces to display
+  summary: 要显示的轨迹数 40（默认）| 正整数
+  group: 显示与轨迹
+- name: Color fading
+  summary: 颜色渐隐 off（默认）| on
+  group: 显示与轨迹
+- name: Plot Imaginary Axes
+  summary: 绘制虚轴 on（默认）| off
+  group: 显示与轨迹
+- name: Real axes label
+  summary: 实轴标签 Real Amplitude（默认）
+  group: 坐标轴与标签
+- name: Title
+  summary: 标题标签 *None*（默认）
+  group: 坐标轴与标签
+- name: Imaginary axes label
+  summary: 虚轴标签 Imaginary Amplitude（默认）
+  group: 坐标轴与标签
+- name: Y-limits
+  summary: 上下限值 [-1.1,1 1]（默认）| 标量
+  group: 坐标轴与标签
+- name: Show grid
+  summary: 在绘图上显示网格 on（默认）| off
+  group: 坐标轴与标签
+- name: Preserve colors for copy to clipboard
+  summary: 复制到剪贴板时保留颜色 off（默认）| on
+  group: 颜色与样式
+- name: Background
+  summary: 背景颜色 black（默认）
+  group: 颜色与样式
+- name: Axes
+  summary: 坐标轴颜色 black（默认）
+  group: 颜色与样式
+- name: Labels
+  summary: 标签颜色 grey（默认）
+  group: 颜色与样式
+- name: Style
+  summary: 线型 continuous（默认）
+  group: 颜色与样式
+- name: Width
+  summary: 线图粗细 1.5（默认）
+  group: 颜色与样式
+- name: Marker
+  summary: 数据点标记 None（默认）| ...
+  group: 颜色与样式
+- name: Color
+  summary: 线条颜色 yellow（默认）
+  group: 颜色与样式
+```
 
 ### 显示与轨迹
 
@@ -144,7 +210,6 @@ chinese_source: worker-translation
 ### **Color** — 线条颜色 `yellow`（默认）
 
 指定所显示信号线条的颜色。
-
 ## 所属库
 
 Communications Toolbox / Comm Sinks Communications Toolbox HDL Support / Comm Sinks Mixed-Signal Blockset / Utilities SerDes Toolbox / Utilities

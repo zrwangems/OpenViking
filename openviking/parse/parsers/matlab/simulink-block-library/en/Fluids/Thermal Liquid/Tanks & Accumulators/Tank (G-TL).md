@@ -14,6 +14,45 @@ language: en
 # Tank (G-TL)
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Thermal liquid volume, m^3 physical signal
+  direction: output
+- name: L
+  summary: Thermal liquid level, m physical signal
+  direction: output
+- name: A1
+  summary: Gas inlet gas
+  direction: conserving
+- name: B1
+  summary: Gas inlet gas
+  direction: conserving
+- name: A2
+  summary: Thermal liquid inlet thermal liquid
+  direction: conserving
+- name: B2
+  summary: Thermal liquid inlet thermal liquid
+  direction: conserving
+- name: C2
+  summary: Thermal liquid inlet thermal liquid
+  direction: conserving
+- name: D2
+  summary: Thermal liquid inlet thermal liquid
+  direction: conserving
+- name: E2
+  summary: Thermal liquid inlet thermal liquid
+  direction: conserving
+- name: F2
+  summary: Thermal liquid inlet thermal liquid
+  direction: conserving
+- name: H1
+  summary: Gas temperature thermal
+  direction: conserving
+- name: H2
+  summary: Thermal liquid temperature thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -108,8 +147,53 @@ volume.
 
 Thermal conserving port associated with the temperature inside the
 thermal liquid volume.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inlets
+  summary: Number of thermal liquid ports 1 (default) | 2 | 3 | 4 | 5 | 6
+  group: ''
+- name: Total tank volume
+  summary: Combined gas and thermal liquid volume 10 m^3 (default) | positive scalar
+  group: ''
+- name: Tank volume parameterization
+  summary: Parameterization for thermal liquid volume Constant cross-sectional area (default) | Tabulated data — volume vs.
+    level
+  group: ''
+- name: Tank cross-sectional area
+  summary: Area of constant tank cross-section 1 m^2 (default) | positive scalar
+  group: ''
+- name: Liquid level vector
+  summary: Thermal liquid levels at which to specify thermal liquid volume [0, 3, 5] m (default) | vector
+  group: ''
+- name: Liquid volume vector
+  summary: Thermal liquid volume at specified thermal liquid levels [0, 4, 6] m^3 (default) | vector
+  group: ''
+- name: Cross-sectional area vector for inlets A1 and B1
+  summary: Flow areas of gas inlets [.01, .01] m^2 (default) | vector
+  group: ''
+- name: Inlet height at port A2
+  summary: Height of thermal liquid inlet 0.1 m (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port A2
+  summary: Flow area of thermal liquid inlet 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Height vector for inlets A2 and B2
+  summary: Vector of port heights for ports [.1, .1] m (default) | 1-by-*n* vector
+  group: ''
+- name: Cross-sectional area vector for inlets A2 and B2
+  summary: Vector of inlet areas for ports [.01, .01] m^2 (default) | 1-by-*n* vector
+  group: ''
+- name: Liquid volume above max capacity
+  summary: Whether to be notified of high tank volume None (default) | Warning | Error
+  group: ''
+- name: Maximum tank liquid capacity
+  summary: Fill limit of tank 10 m^3 (default) | positive scalar
+  group: ''
+- name: Gravitational acceleration
+  summary: Gravitational acceleration constant 9.81 m/s^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Number of inlets** — Number of thermal liquid ports `1` (default) | `2` | `3` | `4` | `5` | `6`
 
@@ -254,7 +338,6 @@ capacity** to either `Warning` or
 
 Value of the gravitational acceleration at the elevation of the tank. The
 block assumes this value is constant over the height of the tank.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Tanks & Accumulators

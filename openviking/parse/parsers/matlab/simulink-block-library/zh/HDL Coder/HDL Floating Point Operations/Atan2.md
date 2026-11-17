@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Atan2
 
 ## 端口
+```yaml
+ports:
+- name: y_dataIn
+  summary: '*y* 坐标数据 标量 | 向量'
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: x_dataIn
+  summary: '*x* 坐标数据 标量 | 向量'
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validIn
+  summary: 输入控制信号是否有效 标量
+  direction: input
+  data_types: Boolean
+- name: thetaOut
+  summary: 四象限反正切 标量 | 向量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validOut
+  summary: 输出控制信号是否有效 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -48,8 +71,38 @@ chinese_source: worker-translation
 输出控制信号，指示输出信号是否有效，以标量形式返回。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of iterations
+  summary: CORDIC 算法的迭代次数 11（默认）| positive integer
+  group: ''
+  block_parameter: iter
+  type: character vector
+  values: Integer values
+  default: '''11'''
+- name: Latency strategy
+  summary: 延迟策略 Max（默认）| Min | Custom | Custom(PerIteration) | Zero
+  group: ''
+  block_parameter: latencyMode
+  type: character vector
+  values: '''Max'' | ''Min'' | ''Custom'' | ''Custom(PerIteration)'' | ''Zero'''
+  default: '''Max'''
+- name: Custom latency
+  summary: 自定义延迟 0（默认）| positive integer
+  group: ''
+  block_parameter: customLatencyValue
+  type: Integer
+  values: 0 to Max latency
+  default: '0'
+- name: IterationsPerPipeline
+  summary: 每个流水线的迭代次数 1（默认）| positive integer
+  group: ''
+  block_parameter: iterationsPerPipelineValue
+  type: Integer
+  values: Positive integer
+  default: '1'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -118,7 +171,6 @@ chinese_source: worker-translation
 | **类型**：Integer |
 | **值**：`Positive integer` |
 | **默认值**：`1` |
-
 ## 所属库
 
 HDL Coder

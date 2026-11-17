@@ -14,6 +14,18 @@ language: en
 # Gate Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Gate displacement, m physical signal
+  direction: input
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -31,8 +43,34 @@ Isothermal liquid conserving port associated with valve inlet A.
 
 Isothermal liquid conserving port associated with valve inlet
 B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve orifice diameter
+  summary: Orifice diameter 5e-3 m^2 (default) | positive scalar
+  group: ''
+- name: Gate position when fully covering orifice
+  summary: Gate offset 0 m (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Orifice area at conserving ports inf m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: ''
+```
 
 ### **Valve orifice diameter** — Orifice diameter `5e-3` `m^2` (default) | positive scalar
 
@@ -76,7 +114,6 @@ when the valve is in near-open or near-closed positions.
 
 Whether to account for pressure increase when fluid flows from a region of smaller
 cross-sectional area to a region of larger cross-sectional area.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

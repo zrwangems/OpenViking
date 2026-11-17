@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # CAN FD Transmit
 
 ## 端口
+```yaml
+ports:
+- name: CAN Msg
+  summary: 要发送的 CAN FD 消息 CAN_FD_MESSAGE_BUS
+  direction: input
+  data_types: CAN_FD_MESSAGE_BUS
+```
 
 ### 输入
 
@@ -23,8 +30,33 @@ chinese_source: worker-translation
 要发送的 CAN FD 消息，由 CAN FD Pack 模块打包，作为类型为 `CAN_FD_MESSAGE_BUS` 的 Simulink 信号总线输入。
 
 **数据类型：** `CAN_FD_MESSAGE_BUS`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: CAN FD 设备和通道列表选项
+  group: ''
+  block_parameter: Device
+  type: 字符向量、字符串
+- name: On data change
+  summary: 数据变化时启用基于事件的发送 off（默认）| on
+  group: ''
+  block_parameter: EnableEventTransmit
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+- name: Periodic
+  summary: 启用周期性发送 off（默认）| on
+  group: ''
+  block_parameter: EnablePerioicTransmit
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+- name: 'Transmit Options: Message period (in seconds)'
+  summary: 消息发送速率周期 1.000（默认）| 正数值标量
+  group: ''
+  block_parameter: MessagePeriod
+  type: 字符向量、字符串
+  values: double
+```
 
 **提示**
 
@@ -87,7 +119,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量、字符串 |
 | **值：** double |
 | **默认：** `'1.000'` |
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN FD Communication

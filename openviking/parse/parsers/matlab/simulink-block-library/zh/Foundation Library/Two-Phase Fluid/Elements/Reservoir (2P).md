@@ -15,14 +15,63 @@ chinese_source: worker-translation
 # Reservoir (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 储液器入口两相流体
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **A** — 储液器入口两相流体
 
 与储液器入口关联的两相流体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Reservoir pressure specification
+  summary: 储液器压力的指定方法 Atmospheric pressure（默认）| Specified pressure | Saturation pressure at specified condensing temperature
+    | Saturation pressure at specified evaporating temperature
+  group: ''
+- name: Reservoir pressure
+  summary: 储液器中的压力 0.101325 MPa（默认）| 正标量
+  group: ''
+- name: Reservoir condensing temperature
+  summary: 以冷凝温度指定饱和压力 373.15 K（默认）| 正标量
+  group: ''
+- name: Reservoir evaporating temperature
+  summary: 以蒸发温度指定饱和压力 373.15 K（默认）| 正标量
+  group: ''
+- name: Reservoir energy specification
+  summary: 用于定义储液器条件的热力学变量 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+    | Degree of subcooling | Degree of superheating
+  group: ''
+- name: Reservoir temperature
+  summary: 储液器中的温度 293.15 K（默认）| 正标量
+  group: ''
+- name: Reservoir vapor quality
+  summary: 储液器中蒸气的质量分数 0.5（默认）| 范围 [0 1] 内的标量
+  group: ''
+- name: Reservoir vapor void fraction
+  summary: 储液器中蒸气的体积分数 0.5（默认）| 范围 [0 1] 内的标量
+  group: ''
+- name: 储液器比焓
+  summary: 储液器中流体的比焓 1500 kJ/kg（默认）| 正标量
+  group: ''
+- name: 储液器比内能
+  summary: 储液器中流体的比内能 1500 kJ/kg（默认）| 正标量
+  group: ''
+- name: 储液器过冷度
+  summary: 储液器中的过冷度 5 deltaK（默认）| 正标量
+  group: ''
+- name: 储液器过热度
+  summary: 储液器中的过热度 5 deltaK（默认）| 正标量
+  group: ''
+- name: 端口 A 处的横截面积
+  summary: 储液器入口处垂直于流路的面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Reservoir pressure specification** — 储液器压力的指定方法 `Atmospheric pressure`（默认）| `Specified pressure` | `Saturation pressure at specified condensing temperature` | `Saturation pressure at specified evaporating temperature`
 
@@ -128,7 +177,6 @@ chinese_source: worker-translation
 ### **端口 A 处的横截面积** — 储液器入口处垂直于流路的面积 `0.01 m^2`（默认）| 正标量
 
 储液器入口的流通面积，由端口 **A** 表示。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

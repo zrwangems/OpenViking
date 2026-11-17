@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Pixel Control Bus Creator
 
 ## 端口
+```yaml
+ports:
+- name: hStart
+  summary: 一帧中水平行的第一个像素 标量
+  direction: input
+  data_types: Boolean
+- name: hEnd
+  summary: 一帧中水平行的最后一个像素 标量
+  direction: input
+  data_types: Boolean
+- name: vStart
+  summary: 一帧中第一（顶部）行的第一个像素 标量
+  direction: input
+  data_types: Boolean
+- name: vEnd
+  summary: 一帧中最后（底部）行的最后一个像素 标量
+  direction: input
+  data_types: Boolean
+- name: valid
+  summary: 有效像素指示 标量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随像素流的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -54,11 +81,12 @@ chinese_source: worker-translation
 `pixelcontrol` 总线包含五个信号。这些信号描述像素的有效性及其在帧中的位置。有关详细信息，请参阅 Pixel Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Vision HDL Toolbox / Utilities

@@ -14,6 +14,21 @@ language: en
 # Coordinate Transform (Five-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: abcde
+  summary: '*a*-, *b*-, *c*-, *d*-, and *e*-phase components vector'
+  direction: input
+  data_types: single | double
+- name: θelec
+  summary: Rotational angle scalar
+  direction: input
+  data_types: single | double
+- name: dqxy0
+  summary: Direct, quadrature, *x*, *y*, and zero components vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -40,15 +55,19 @@ Direct, quadrature, *x*-axis,
 rotating reference frame, returned as a vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase-a axis alignment
+  summary: '*dqxy0* reference frame alignment Q-axis (default) | D-axis'
+  group: ''
+```
 
 ### **Phase-a axis alignment** — *dqxy0* reference frame alignment `Q-axis` (default) | `D-axis`
 
 Whether to align the *a*-phase vector of the *abcde*
 reference frame to the *d*-axis or
 *q*-axis of the rotating reference frame.
-
 ## Libraries
 
 Simscape / Electrical / Control / Mathematical Transforms

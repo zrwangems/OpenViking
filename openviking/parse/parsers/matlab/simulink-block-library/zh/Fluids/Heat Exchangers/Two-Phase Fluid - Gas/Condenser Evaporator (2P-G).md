@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Condenser Evaporator (2P-G)
 
 ## 端口
+```yaml
+ports:
+- name: A1
+  summary: 两相流体端口 两相流体
+  direction: conserving
+- name: B1
+  summary: 两相流体端口 两相流体
+  direction: conserving
+- name: A2
+  summary: 气体端口 气体
+  direction: conserving
+- name: B2
+  summary: 气体端口 气体
+  direction: conserving
+- name: Z
+  summary: 两相流体区域长度分数 物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -38,8 +56,267 @@ chinese_source: worker-translation
 ### **Z** — 两相流体区域长度分数 物理信号
 
 两相流体通道中各区域长度分数的三元素向量，以物理信号形式返回。该向量形式为 [L, M, V]，其中 L 为过冷液体，M 为液-汽混合物，V 为过热蒸汽。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: 流路排列 Cross flow（默认）| Parallel flow | Counter flow
+  group: 配置
+- name: Cross flow arrangement
+  summary: 每个流动通道中的热混合条件 Both fluids unmixed（默认）| Both fluids mixed | Two-Phase Fluid 1 mixed & Gas 2 unmixed | Two-Phase
+    Fluid 1 unmixed & Gas 2 mixed
+  group: 配置
+- name: Wall thermal resistance
+  summary: 壁面通过热传导对热流的阻力 0 K/W（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A1
+  summary: 端口 A1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B1
+  summary: 端口 B1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A2
+  summary: 端口 A2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B2
+  summary: 端口 B2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Enable wall thermal mass
+  summary: 用于对壁面热质量建模的选项 off（默认）| on
+  group: 配置
+- name: Wall mass
+  summary: 换热器壁面质量 1 kg（默认）| 正标量
+  group: 配置
+- name: Wall specific heat
+  summary: 换热器壁面比热 490 J/(K*kg)（默认）| 正标量
+  group: 配置
+- name: Number of tubes
+  summary: 两相流体管数量 25（默认）| 正标量
+  group: 两相流体 1
+- name: Total length of each tube
+  summary: 每根两相流体管的总长度 1 m（默认）| 正标量
+  group: 两相流体 1
+- name: Tube cross section
+  summary: 管的横截面形状 Circular（默认）| Rectangular | Annular | Generic
+  group: 两相流体 1
+- name: Tube inner diameter
+  summary: 单根管的内径 0.05 m（默认）| 正标量
+  group: 两相流体 1
+- name: Tube width
+  summary: 单根管的内部宽度 0.05 m（默认）| 正标量
+  group: 两相流体 1
+- name: Tube height
+  summary: 单根管的内部高度 0.05 m（默认）| 正标量
+  group: 两相流体 1
+- name: Annulus inner diameter (heat transfer surface)
+  summary: 环形横截面的较小直径 0.05 m（默认）| 正标量
+  group: 两相流体 1
+- name: Annulus outer diameter
+  summary: 环形横截面的较大直径 0.1 m（默认）| 正标量
+  group: 两相流体 1
+- name: Cross-sectional area per tube
+  summary: 单根管中垂直于流动的内部面积 0.002 m^2（默认）| 正标量
+  group: 两相流体 1
+- name: Wetted perimeter of tube cross-section for pressure loss
+  summary: 流体接触的管横截面周长 0.15 m（默认）| 正标量
+  group: 两相流体 1
+- name: Perimeter of tube cross-section for heat transfer
+  summary: 用于传热计算的单根管周长 0.15 m（默认）| 正标量
+  group: 两相流体 1
+- name: Pressure loss model
+  summary: 由黏性摩擦引起的压力损失计算方法 Correlation for flow inside tubes（默认）| Pressure loss coefficient
+  group: 两相流体 1
+- name: Pressure loss coefficient, delta_p/(0.5\*rho\*v^2)
+  summary: 通道中所有压力损失的经验损失系数 10（默认）
+  group: 两相流体 1
+- name: Local resistance specification
+  summary: 量化压力损失的方法 Aggregate equivalent length（默认） | Local loss coefficient
+  group: 两相流体 1
+- name: Aggregate equivalent length of local resistances
+  summary: 每根管中所有局部阻力的合计长度 0.1 m（默认） | 正标量
+  group: 两相流体 1
+- name: Total local loss coefficient
+  summary: 压力损失系数 0.1（默认） | 正标量
+  group: 两相流体 1
+- name: Internal surface absolute roughness
+  summary: 平均表面粗糙度高度 15e-6 m（默认） | 正标量
+  group: 两相流体 1
+- name: Laminar flow upper Reynolds number limit
+  summary: 表示层流的最大雷诺数 2000（默认） | 正标量
+  group: 两相流体 1
+- name: Turbulent flow lower Reynolds number limit
+  summary: 表示湍流的最小雷诺数 4000（默认） | 正标量
+  group: 两相流体 1
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流中由于黏性摩擦引起的压力损失系数 64（默认） | 正标量
+  group: 两相流体 1
+- name: Heat transfer coefficient model
+  summary: 计算流体与壁面之间传热系数的方法 Correlation for flow inside tubes（默认） | Colburn equation
+  group: 两相流体 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in liquid zone
+  summary: 液相区中 Colburn 方程系数 [.023, .8, .33]（默认） | 正标量的三元素向量
+  group: 两相流体 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in mixture zone
+  summary: 混合物区中 Cavallini-Zecchin 方程系数 [.05, .8, .33]（默认） | 正标量的三元素向量
+  group: 两相流体 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in vapor zone
+  summary: 气相区中 Colburn 方程系数 [.023, .8, .33]（默认） | 正标量的三元素向量
+  group: 两相流体 1
+- name: Laminar flow Nusselt number
+  summary: 层流流态中对流与导热传热之比 3.66（默认） | 正标量
+  group: 两相流体 1
+- name: Fouling factor
+  summary: 由于污垢沉积引起的附加热阻 0.1 m^2*K/kW（默认） | 正标量
+  group: 两相流体 1
+- name: Total fin surface area
+  summary: 翅片的总传热表面积 0 m^2（默认） | 正标量
+  group: 两相流体 1
+- name: Fin efficiency
+  summary: 翅片实际传热率与理想传热率之比 0.5（默认）| [0,1] 范围内的正标量
+  group: 两相流体 1
+- name: Initial fluid energy specification
+  summary: 两相流体的初始状态 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: 两相流体 1
+- name: Initial two-phase fluid pressure
+  summary: 仿真开始时的流体压力 0.101325 MPa（默认）| 正标量
+  group: 两相流体 1
+- name: Initial two-phase fluid temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid vapor quality
+  summary: 仿真开始时的蒸汽质量分数 0.5（默认）| [0,1] 范围内的正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid vapor void fraction
+  summary: 仿真开始时的蒸汽体积分数 0.5（默认）| [0,1] 范围内的正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid specific enthalpy
+  summary: 仿真开始时的单位质量焓 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid specific internal energy
+  summary: 仿真开始时的单位质量内能 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Flow geometry
+  summary: 气体流动配置 Flow inside one or more tubes（默认）| Flow perpendicular to bank of circular tubes | Generic
+  group: Gas 2
+- name: Number of tubes
+  summary: 气体管数量 25（默认）| 正标量
+  group: Gas 2
+- name: Total length of each tube
+  summary: 每根气体管的总长度 1 m（默认）| 正标量
+  group: Gas 2
+- name: Tube cross section
+  summary: 管的横截面形状 Circular（默认）| Rectangular | Annular | Generic
+  group: Gas 2
+- name: Tube inner diameter
+  summary: 单根管的内径 0.05 m（默认）| 正标量
+  group: Gas 2
+- name: Tube width
+  summary: 单根管的内部宽度 0.05 m（默认）| 正标量
+  group: Gas 2
+- name: Tube height
+  summary: 单根管的内高 0.05 m（默认）| 正标量
+  group: Gas 2
+- name: Annulus inner diameter (heat transfer surface)
+  summary: 环形横截面的较小直径 0.05 m（默认）| 正标量
+  group: Gas 2
+- name: Annulus outer diameter
+  summary: 环形横截面的较大直径 0.1 m（默认）| 正标量
+  group: Gas 2
+- name: Cross-sectional area per tube
+  summary: 每根管的内部流通面积 0.002 m^2（默认）| 正标量
+  group: Gas 2
+- name: Wetted perimeter of tube cross-section for pressure loss
+  summary: 流体接触的管横截面周长 0.15 m（默认）| 正标量
+  group: Gas 2
+- name: Perimeter of tube cross-section for heat transfer
+  summary: 用于传热计算的单根管周长 0.15 m（默认）| 正标量
+  group: Gas 2
+- name: Pressure loss model
+  summary: 由粘性摩擦引起的压力损失计算方法 Correlation for flow inside tubes（默认）| Euler number per tube row | Pressure loss coefficient |
+    Correlation for flow over tube bank
+  group: Gas 2
+- name: Pressure loss coefficient, delta_p/(0.5\*rho\*v^2)
+  summary: 通道中所有压力损失的经验损失系数 10（默认）| 正标量
+  group: Gas 2
+- name: Local resistance specification
+  summary: 量化压力损失的方法 Aggregate equivalent length（默认）| Local loss coefficient
+  group: Gas 2
+- name: Aggregate equivalent length of local resistances
+  summary: 每根管所有局部阻力的合计长度 0.1 m（默认）| 正标量
+  group: Gas 2
+- name: Total local loss coefficient
+  summary: 压力损失系数 0.1（默认）| 正标量
+  group: Gas 2
+- name: Internal surface absolute roughness
+  summary: 平均表面粗糙度高度 15e-6 m（默认）| 正标量
+  group: Gas 2
+- name: Laminar flow upper Reynolds number limit
+  summary: 表示层流的最大 Reynolds 数 2000（默认）| 正标量
+  group: Gas 2
+- name: Turbulent flow lower Reynolds number limit
+  summary: 指示湍流的最小雷诺数 4000（默认）| 正标量
+  group: Gas 2
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流中黏性摩擦导致压力损失的系数 64（默认）| 正标量
+  group: Gas 2
+- name: Heat transfer coefficient model
+  summary: 计算流体与壁面之间传热系数的方法 Correlation for flow over tube bank（默认）| Colburn equation | Correlation for flow inside tubes
+  group: Gas 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c
+  summary: Colburn 方程系数 [0.023, 0.8, 0.33]（默认）| 三元素向量
+  group: Gas 2
+- name: Laminar flow Nusselt number
+  summary: 层流流态中对流传热与导热传热之比 3.66（默认）| 正标量
+  group: Gas 2
+- name: Tube bank grid arrangement
+  summary: 管束中管排的几何布置 Inline（默认）| Staggered
+  group: Gas 2
+- name: Number of tube rows along flow direction
+  summary: 管束中两相流体管排的数量 5（默认）| 正标量
+  group: Gas 2
+- name: Number of tube segments in each tube row
+  summary: 管束每一排中两相流体管子的数量 5（默认）| 正标量
+  group: Gas 2
+- name: Length of each tube segment in a tube row
+  summary: 每根两相流体管子的长度 1 m（默认）| 正标量
+  group: Gas 2
+- name: Tube outer diameter
+  summary: 单根两相流体管子的外径 0.05 m（默认）| 正标量
+  group: Gas 2
+- name: Longitudinal tube pitch (along flow direction)
+  summary: 两相流体管排之间的中心到中心距离 0.15 m（默认）| 正标量
+  group: Gas 2
+- name: Transverse tube pitch (perpendicular to flow direction)
+  summary: 一排中两相流体管子之间的中心到中心距离 0.15 m（默认）| 正标量
+  group: Gas 2
+- name: Euler number per tube row, delta_p/(N\*0.5\*rho\*v^2)
+  summary: 管束每一排的 Euler 数 10（默认）| 正标量
+  group: Gas 2
+- name: Minimum free-flow area
+  summary: 入口与出口之间的最小总流通面积 0.01 m^2（默认）| 正标量
+  group: Gas 2
+- name: Heat transfer surface area without fins
+  summary: 不包括翅片的换热表面积总和 2 m^2（默认）| 正标量
+  group: Gas 2
+- name: Gas volume inside heat exchanger
+  summary: 换热器内气体的总体积 0.05 m^3（默认）| 正标量
+  group: Gas 2
+- name: Fouling factor
+  summary: 由污垢沉积引起的附加热阻 0.1 m^2*K/kW（默认）| 正标量
+  group: Gas 2
+- name: Total fin surface area
+  summary: 所有翅片的换热表面积总和 0 m^2（默认）| 正标量
+  group: Gas 2
+- name: Fin efficiency
+  summary: 翅片实际传热速率与理想传热速率之比 0.5（默认）| 范围 [0,1] 内的正标量
+  group: Gas 2
+- name: Initial gas pressure
+  summary: 仿真开始时的气体压力 0.101325 MPa（默认）| 正标量
+  group: Gas 2
+- name: Initial gas temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Gas 2
+```
 
 ### 配置
 
@@ -817,7 +1094,6 @@ Eu=ΔpN12ρv2，
 ### **Initial gas temperature** — 仿真开始时的温度 `293.15 K`（默认）| 正标量 | 二元素向量
 
 仿真开始时气体通道中的温度。该参数可以是标量或二元素向量。标量值表示通道中的平均初始温度。向量值以 [`inlet`, `outlet`] 的形式表示入口和出口处的初始温度。该模块计算两个端口之间的线性梯度。入口和出口端口根据初始流动方向确定。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Two-Phase Fluid - Gas

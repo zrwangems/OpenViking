@@ -14,6 +14,21 @@ language: en
 # Piston Engine
 
 ## Ports
+```yaml
+ports:
+- name: T
+  summary: Normalized engine throttle level, unitless nonnegative scalar
+  direction: input
+- name: FC
+  summary: Fuel consumption rate, kg/s physical signal
+  direction: output
+- name: B
+  summary: Base port associated with engine block mechanical rotational
+  direction: conserving
+- name: F
+  summary: Engine crankshaft mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +52,100 @@ block.
 Follower port of engine. The crankshaft transmits the power generated
 from the combustion process. Typically, this is where you would attach a
 clutch and transmission.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pistons
+  summary: Total displacement calculation 4 (default) | positive scalar
+  group: Pistons
+- name: Offset angle vector
+  summary: Top dead center offset for each piston [0, 180, 360, -180] (default) | vector
+  group: Pistons
+- name: Cylinder bore
+  summary: Inside diameter of piston cylinder wall .10 m (default) | positive scalar
+  group: Pistons
+- name: Piston stroke
+  summary: Length of translational piston travel .06 m (default) | positive scalar
+  group: Pistons
+- name: Piston rod length
+  summary: Length of piston-to-crankshaft connecting rod .1 m (default) | positive scalar
+  group: Pistons
+- name: Number of strokes per cycle
+  summary: Number of piston strokes to complete one combustion cycle 4 (default) | positive even scalar
+  group: Pistons
+- name: Pressure parameterization
+  summary: Determine pressure applied to piston By crank angle (default) | By crank angle and throttle | By crank angle, throttle,
+    and crank velocity
+  group: Pistons
+- name: Crank angle vector
+  summary: Different piston crank angles [-360, -90, -30, 10, 30, 90, 160, 360] deg (default) | vector
+  group: Pistons
+- name: Throttle vector
+  summary: Different throttle positions [0, .3, .8, 1] (default) | vector
+  group: Pistons
+- name: Crank velocity vector
+  summary: Different angular velocities [0, 1000, 6000] rpm (default) | vector
+  group: Pistons
+- name: Pressure vector (gauge)
+  summary: Crank angle parameterized pressures [0, 3, 20, 50, 20, 10, 8, 0] bar (default) | vector
+  group: Pistons
+- name: Pressure matrix (gauge)
+  summary: Crank angle and throttle parametrized pressures *M*-by-*N* matrix (default) | matrix
+  group: Pistons
+- name: Pressure 3D matrix (gauge)
+  summary: Crank angle, throttle, and crank velocity parameterized pressures *M*-by-*N*-by-*O* matrix (default) | 3-D matrix
+  group: Pistons
+- name: Shaft dynamics
+  summary: Enable shaft dynamics modeling parameters No shaft dynamics - Suitable for HIL simulation (default) | Specify shaft
+    stiffness, damping, and inertia
+  group: Crankshaft
+- name: Base and follower bearing viscous friction coefficients
+  summary: Characterize system friction [0, 0] deg (default) | vector
+  group: Crankshaft
+- name: Initial crank angle
+  summary: Starting crank position 90 deg (default) | scalar
+  group: Crankshaft
+- name: Stiffness
+  summary: Resistance to deformation 1e6 N*m/rad (default) | positive scalar
+  group: Crankshaft
+- name: Damping
+  summary: Tendency to drain energy from the system 1000 N*m/(rad/s) (default) | positive scalar
+  group: Crankshaft
+- name: Inertia
+  summary: Tendency to resist change in motion .02 kg*m^2 (default) | positive scalar
+  group: Crankshaft
+- name: Initial angular deflection
+  summary: Angular deflection initializing parameter 0 deg (default)
+  group: Crankshaft
+- name: Initial angular velocity
+  summary: Angular velocity initializing parameter 0 (default) | scalar
+  group: Crankshaft
+- name: Fuel consumption model
+  summary: Enable fuel consumption modeling parameters No fuel consumption (default) | Constant per revolution | Fuel consumption
+    by speed and torque | ...
+  group: Fuel Consumption
+- name: Fuel consumption per piston revolution
+  summary: Constant 25 mg/rev (default) | positive scalar
+  group: Fuel Consumption
+- name: Speed vector
+  summary: Engine speed data [1000, 2000, 3000, 4000, 5000, 6000] (default) | vector
+  group: Fuel Consumption
+- name: Torque vector
+  summary: Engine torque data [0, 80, 160, 200, 240, 320, 360, 400] (default) | vector
+  group: Fuel Consumption
+- name: Fuel consumption table
+  summary: Engine fuel consumption data *M*-by-*N* matrix (default) | matrix
+  group: Fuel Consumption
+- name: Brake mean effective pressure vector
+  summary: Piston pressure data [0, 250, 500, 625, 750, 1000, 1150, 1250] (default) | vector
+  group: Fuel Consumption
+- name: Brake specific fuel consumption table
+  summary: Brake specific fuel consumption data *M*-by-*N* matrix (default) | matrix
+  group: Fuel Consumption
+- name: Interpolation method
+  summary: Intermediate step behavior Linear (default) | Smooth
+  group: Fuel Consumption
+```
 
 ### Pistons
 
@@ -439,7 +546,6 @@ and torque`, `Brake specific fuel
 consumption by speed and torque`, or
 `Brake specific fuel consumption by speed and brake
 mean effective pressure`.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors

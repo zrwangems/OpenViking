@@ -14,6 +14,15 @@ language: en
 # Translational Detent
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,61 @@ case.
 
 Mechanical translational conserving port associated with the slider or
 rod.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Detent characterization parameters By peak force and notch width (default) | By table lookup | By geometry
+  group: Detent Characteristics
+- name: Peak force
+  summary: Maximum detent shear force 10 N (default) | positive scalar
+  group: Detent Characteristics
+- name: Notch width
+  summary: Shear force region 30 mm (default) | positive scalar
+  group: Detent Characteristics
+- name: Relative displacement vector
+  summary: Displacement lookup vector [-15 -12.3 -7.6 -1.1 1.1 7.6 12.3 15] mm | vector
+  group: Detent Characteristics
+- name: Force vector
+  summary: Force lookup vector [0, 0, -8.365, -5.87, 5.87, 8.365, 0, 0] N (default) | vector
+  group: Detent Characteristics
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values for table lookup Smooth (default) | Linear
+  group: Detent Characteristics
+- name: Ball diameter
+  summary: Ball diameter measurement for ball-notch geometry 12 mm (default) | positive scalar
+  group: Detent Characteristics
+- name: Notch angle
+  summary: Notch angle measurement for ball-notch geometry 120 deg (default) | positive scalar
+  group: Detent Characteristics
+- name: Notch depth
+  summary: Notch depth measurement for ball-notch geometry 4.5 mm (default) | nonnegative scalar
+  group: Detent Characteristics
+- name: Preload force
+  summary: Spring preload force measurement for ball-notch geometry 15 N (default) | nonnegative scalar
+  group: Detent Characteristics
+- name: Spring stiffness
+  summary: Spring stiffness measurement for ball-notch geometry 3000 N/m (default) | nonnegative scalar
+  group: Detent Characteristics
+- name: Shear reversal region
+  summary: Shear reversal region length measurement for ball-notch geometry 0.1 mm (default) | nonnegative scalar
+  group: Detent Characteristics
+- name: Initial relative position
+  summary: Starting location 0 mm (default) | scalar
+  group: Detent Characteristics
+- name: Viscous friction coefficient
+  summary: Proportional viscous friction 0.1 N/(m/s) (default) | nonnegative scalar
+  group: Friction
+- name: Friction to peak force ratio
+  summary: Kinetic friction ratio 0.01 (default) | positive scalar
+  group: Friction
+- name: Kinetic friction coefficient
+  summary: Proportional kinetic friction 0.1 (default) | positive scalar
+  group: Friction
+- name: Friction velocity threshold
+  summary: Velocity that relates to peak kinetic friction 0.05 m/s (default) | positive scalar
+  group: Friction
+```
 
 ### Detent Characteristics
 
@@ -205,7 +267,6 @@ geometry`.
 
 Relative velocity required for peak kinetic friction in the
 detent.
-
 ## Libraries
 
 Simscape / Driveline / Brakes & Detents / Translational

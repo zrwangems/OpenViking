@@ -14,6 +14,33 @@ language: en
 # Vehicle Body Total Road Load
 
 ## Ports
+```yaml
+ports:
+- name: xdot
+  summary: Vehicle longitudinal velocity scalar
+  direction: input
+- name: xddot
+  summary: Vehicle longitudinal acceleration scalar
+  direction: input
+- name: PwrTot
+  summary: Tractive input power scalar
+  direction: input
+- name: ForceTot
+  summary: Tractive input force scalar
+  direction: input
+- name: Grade
+  summary: Road grade angle scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: xdot
+  summary: Vehicle longitudinal velocity scalar
+  direction: output
+- name: ForceTot
+  summary: Tractive input force scalar
+  direction: output
+```
 
 ### Input
 
@@ -125,8 +152,34 @@ Tractive input force,
 
 To enable this port, for the **Input Mode**
 parameter, select `Kinematic`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input Mode
+  summary: Specify input mode Kinematic (default) | Force | Power
+  group: ''
+- name: Mass
+  summary: Vehicle body mass 1200 (default) | scalar
+  group: ''
+- name: Rolling resistance coefficient, a
+  summary: Rolling 196 (default) | scalar
+  group: ''
+- name: Rolling and driveline resistance coefficient, b
+  summary: Rolling and driveline 2.232 (default) | scalar
+  group: ''
+- name: Aerodynamic drag coefficient, c
+  summary: Drag 0.389 (default) | scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: Gravity 9.81 (default) | scalar
+  group: ''
+- name: Initial position, x_o
+  summary: Position 0 (default) | scalar
+  group: ''
+- name: Initial velocity, xdot_o
+  summary: Velocity 0 (default) | scalar
+  group: ''
+```
 
 ### **Input Mode** — Specify input mode `Kinematic` (default) | `Force` | `Power`
 
@@ -188,7 +241,6 @@ Vehicle longitudinal initial position, in m.
 
 Vehicle longitudinal initial velocity with respect to ground, in
 m/s.
-
 ## Libraries
 
 Powertrain Blockset / Vehicle Dynamics Vehicle Dynamics Blockset / Vehicle Body

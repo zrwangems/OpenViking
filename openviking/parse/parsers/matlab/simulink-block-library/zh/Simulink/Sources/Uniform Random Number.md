@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Uniform Random Number
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 随机数输出信号 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,45 @@ chinese_source: worker-translation
 在您指定的区间上生成的均匀分布随机数的输出信号。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum
+  summary: 最小间隔 0（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: Minimum
+  type: 字符向量
+  values: 标量
+  default: '''-1'''
+- name: Maximum
+  summary: 最大间隔 0（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: Maximum
+  type: 字符向量
+  values: 标量
+  default: '''1'''
+- name: Seed
+  summary: 随机数种子 0（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: Seed
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Sample time
+  summary: 采样时间 0.1（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''0.1'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量视为一维 on（默认）| off
+  group: ''
+  block_parameter: VectorParams1D
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Minimum** — 最小间隔 `0`（默认）| 标量 | 向量 | 矩阵 | N 维数组
 
@@ -95,7 +139,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on' | 'off'` |
 | **默认值：** `'on'` |
-
 ## 所属库
 
 Simulink / Sources

@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # E-NTU Heat Transfer
 
 ## 端口
+```yaml
+ports:
+- name: C1
+  summary: 流体 1 热容量的物理信号
+  direction: input
+- name: C2
+  summary: 流体 2 热容量的物理信号
+  direction: input
+- name: HC1
+  summary: 流体 1 传热系数的物理信号
+  direction: input
+- name: HC2
+  summary: 流体 2 传热系数的物理信号
+  direction: input
+- name: H1
+  summary: 流体 1 热入口温度的热学端口
+  direction: input
+- name: H2
+  summary: 流体 2 热入口温度的热学端口
+  direction: input
+```
 
 ### 输入
 
@@ -44,8 +65,60 @@ chinese_source: worker-translation
 ### **H2** — 流体 2 热入口温度的热学端口
 
 与流体入口温度关联的热学守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: 换热器中流动对齐的方式 Parallel or counter flow（默认）| Shell and tube | Cross flow | Generic — effectiveness table
+  group: ''
+- name: Wall thermal resistance
+  summary: 壁对热传导热流的阻力 0 K/W（默认）| 正标量
+  group: ''
+- name: Number of shell passes
+  summary: 流体在离开前穿过壳程的次数 1（默认）| 正标量
+  group: ''
+- name: Cross flow type
+  summary: 每个流道中的混合条件 Both fluids mixed（默认）| Both fluids unmixed | Controlled Fluid 1 mixed & Controlled Fluid 2 unmixed |
+    Controlled Fluid 1 unmixed & Controlled Fluid 2 mixed
+  group: ''
+- name: Number of heat transfer units vector, NTU
+  summary: 换热器效能查找表中每个断点处的传热单元数 [.5, 1, 2, 3, 4, 5]（默认）| 正标量向量
+  group: ''
+- name: Thermal capacity ratio vector, CR
+  summary: 换热器效能查找表中每个断点处的热容量比 [0, .25, .5, .75, 1]（默认）| 正标量向量
+  group: ''
+- name: Effectiveness table, E(NTU,CR)
+  summary: 换热器效能查找表中在传热单元数和热容量比上每个断点处的换热器效能 [.3, .3, .3, .3, .3; .6, .55, .5, .47, .43; .85, .76, .68, .61, .55; .94, .83,
+    .72, .65, .58; .98, .86, .75, .66, .58; .99, .86, .75, .66, .58]（默认）| 正标量表格
+  group: ''
+- name: Enable wall thermal mass
+  summary: 对壁热质量建模的选项 off（默认）| on
+  group: ''
+- name: Wall mass
+  summary: 换热器壁质量 1 kg（默认）| 正标量
+  group: ''
+- name: Wall specific heat
+  summary: 换热器壁比热 490 J/(K*kg)（默认）| 正标量
+  group: ''
+- name: Heat transfer surface area
+  summary: 受控流体 1 侧的聚合计热表面积 0.01 m^2（默认）| 正标量
+  group: Controlled Fluid 1
+- name: Fouling factor
+  summary: 由污垢沉积引起的热阻度量 1e-4 K*m^2/W（默认）| 正标量
+  group: Controlled Fluid 1
+- name: Minimum fluid-wall heat transfer coefficient
+  summary: 传热系数的下界 1 W/(m^2 * K)（默认）| 正标量
+  group: Controlled Fluid 1
+- name: Heat transfer surface area
+  summary: 受控流体 2 侧的聚合计热表面积 0.01 m^2（默认）| 正标量
+  group: Controlled Fluid 2
+- name: Fouling factor
+  summary: 由污垢沉积引起的热阻度量 1e-4 K*m^2/W（默认）| 正标量
+  group: Controlled Fluid 2
+- name: Minimum fluid-wall heat transfer coefficient
+  summary: 传热系数的下界 1 W/(m^2 * K)（默认）| 正标量
+  group: Controlled Fluid 2
+```
 
 ### **Flow arrangement** — 换热器中流动对齐的方式 `Parallel or counter flow`（默认）| `Shell and tube` | `Cross flow` | `Generic — effectiveness table`
 
@@ -170,7 +243,6 @@ mass**，模块会假定壁足够薄，以至于在传热的时间尺度上瞬�
 ### **Minimum fluid-wall heat transfer coefficient** — 传热系数的下界 `1 W/(m^2 * K)`（默认）| 正标量
 
 允许的最小传热系数值。通过物理信号端口 HC2 指定的传热系数在此值处饱和。模块使用传热系数计算流体 1 和流体 2 之间的传热速率，如传热速率中所述。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Charge Pump
 
 ## 端口
+```yaml
+ports:
+- name: up
+  summary: 输入端口 标量
+  direction: input
+  data_types: double
+- name: down
+  summary: 输入端口 标量
+  direction: input
+  data_types: double
+- name: out
+  summary: 输出端口 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,52 @@ chinese_source: worker-translation
 输出端口，连接到 PLL 系统中的 Loop Filter 模块。**out** 输出的电流与 **up** 和 **down** 输入端口之间的占空比差值成正比。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Output current (A)
+  summary: 设计输出电流 1e-3（默认）| 正实数标量
+  group: 配置
+- name: Input threshold (V)
+  summary: 输入端口的逻辑切换阈值 0.5（默认）| 实数标量
+  group: 配置
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: 配置
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 10（默认）| 正整数标量
+  group: 配置
+- name: Enable current impairments
+  summary: 将电流损伤添加到仿真 on（默认）| off
+  group: 损伤
+- name: Current imbalance (A)
+  summary: 满量程正电流与负电流之间的差值 1e-7（默认）| 正实数标量
+  group: 损伤
+- name: Leakage current (A)
+  summary: 无任何输入时的输出电流 1e-8（默认）| 非负实数标量
+  group: 损伤
+- name: Enable timing impairments
+  summary: 向仿真添加时序损伤 on（默认）| off
+  group: 损伤
+- name: Output step size calculation
+  summary: 确定如何计算输出步长 Default（默认）| Advanced
+  group: 损伤
+- name: Maximum frequency of interest (Hz)
+  summary: 输出端的最大关注频率 10e9（默认）| 正实数标量
+  group: 损伤
+- name: Rise/fall time (s)
+  summary: up 输入端口 20%-80% 上升/下降时间 5e-9（默认）| 正实数标量
+  group: 损伤
+- name: Up propagation delay
+  summary: up 输入端口的总传播延迟 6e-9（默认）| 正实数标量
+  group: 损伤
+- name: Rise/fall time
+  summary: down 输入端口 20%-80% 上升/下降时间 2e-9（默认）| 正实数标量
+  group: 损伤
+- name: Down propagation delay
+  summary: down 输入端口的总传播延迟 4e-9（默认）| 正实数标量
+  group: 损伤
+```
 
 ### 配置
 
@@ -251,7 +310,6 @@ Impairments**。
   `set_param(gcb,'PropDelayDown',value)` 将
   **Down propagation delay** 设置为
   特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Building Blocks

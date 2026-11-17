@@ -14,10 +14,15 @@ language: en
 # G711 Codec
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Mode**
 :   - When you choose `Encode PCM to A-law`,
@@ -51,7 +56,6 @@ Not documented in R2025b.
     This parameter is only visible if, for the **Mode**
     parameter, you select `Encode PCM to A-law` or
     `Encode PCM to mu-law`.
-
 ## Libraries
 
 Not documented in R2025b.

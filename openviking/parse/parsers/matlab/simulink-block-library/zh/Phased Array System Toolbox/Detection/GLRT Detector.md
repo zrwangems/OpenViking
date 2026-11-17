@@ -15,6 +15,40 @@ chinese_source: worker-translation
 # GLRT Detector
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据 实值 *N*×*1* 向量 | 复值 *N*×*1* 向量 | 实值 *N*×*M* 矩阵 | 复值 *N*×*M* 矩阵
+  direction: input
+  data_types: single | double
+- name: Hyp
+  summary: 增广线性等式约束矩阵 实值 *R*×(*P* + 1) 矩阵 | 复值 *R*×(*P* + 1) 矩阵
+  direction: input
+  data_types: single | double
+- name: Obs
+  summary: 观测矩阵 *N*×*P*×*D* 数组
+  direction: input
+  data_types: single | double
+- name: Ncov
+  summary: 已知噪声功率 正标量
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: 检测结果 *D*×*M* 逻辑值向量 | 1×*L* 整数值向量 | 2×*L* 整数值矩阵
+  direction: output
+- name: Stat
+  summary: 检测统计量 *N*×*M*（默认）| 1×*L*
+  direction: output
+- name: Th
+  summary: 检测阈值 标量
+  direction: output
+- name: Param
+  summary: 信号参数的最大似然估计 *P*×*M*×*D* 数组
+  direction: output
+- name: N
+  summary: 估计噪声功率 正标量
+  direction: output
+```
 
 ### 输入
 
@@ -107,8 +141,56 @@ AΘ=b
 #### 依赖关系
 
 要启用此端口，请选中 **Output estimated noise power** 复选框。
-
 ## 参数
+```yaml
+parameters:
+- name: Probability of false alarm
+  summary: 虚警概率 0.1（默认）| 非负标量
+  group: ''
+  block_parameter: ProbabilityFalseAlarm
+  type: double, single
+  values: scalar |
+- name: Output format
+  summary: 输出数据格式 Detection result（默认）| Detection index
+  group: ''
+  block_parameter: OutputFormat
+  type: char, string
+  values: Detection result | Detection index
+- name: Output detection statistics and threshold
+  summary: 输出检测统计量和阈值 0（默认）| 1
+  group: ''
+  block_parameter: ThresholdOutputPort
+  type: 复选框
+  values: 0 | 1
+- name: Enable known noise power input
+  summary: 启用已知噪声功率输入 1（默认）| 1
+  group: ''
+  block_parameter: NoiseInputPort
+  type: 复选框
+  values: 0 | 1
+  default: '0'
+- name: Output MLEs of unknown signal parameters
+  summary: 输出未知信号参数的 MLE 0（默认）| 1
+  group: ''
+  block_parameter: SignalParamterOutputPort
+  type: 复选框
+  values: 0 | 1
+  default: '0'
+- name: Output estimated noise power
+  summary: 输出估计噪声功率 0（默认）| 1
+  group: ''
+  block_parameter: NoisePowerOutputPort
+  type: 复选框
+  values: 0 | 1
+  default: '0'
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+  default: Interpreted Execution
+```
 
 ### **Probability of false alarm** — 虚警概率 `0.1`（默认）| 非负标量
 
@@ -227,7 +309,6 @@ AΘ=b
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认值：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

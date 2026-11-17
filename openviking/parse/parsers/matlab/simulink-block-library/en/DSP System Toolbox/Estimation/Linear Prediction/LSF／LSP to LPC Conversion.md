@@ -14,6 +14,25 @@ language: en
 # LSF/LSP to LPC Conversion
 
 ## Ports
+```yaml
+ports:
+- name: LSP
+  summary: Line spectral pairs vector | matrix
+  direction: input
+  data_types: single | double
+- name: LSFn
+  summary: Line spectral frequencies normalized in range (0 0.5) vector | matrix
+  direction: input
+  data_types: single | double
+- name: LSFr
+  summary: Line spectral frequencies in range (0 π) vector | matrix
+  direction: input
+  data_types: single | double
+- name: A
+  summary: Linear prediction coefficients vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -56,8 +75,14 @@ Linear prediction coefficients, returned as a vector or a
 matrix.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input
+  summary: Line spectral pairs or line spectral frequencies LSP in range (-1 1) (default) | LSF normalized in range (0 0.5)
+    | LSF in range (0 pi)
+  group: ''
+```
 
 ### **Input** — Line spectral pairs or line spectral frequencies `LSP in range (-1 1)` (default) | `LSF normalized in range (0 0.5)` | `LSF in range (0 pi)`
 
@@ -72,7 +97,6 @@ When you select this parameter to:
 - `LSF normalized in range (0 0.5)` ––
   The block converts the line spectral frequencies normalized in
   the range (0 0.5) to linear prediction coefficients.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Linear Prediction

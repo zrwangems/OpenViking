@@ -14,6 +14,36 @@ language: en
 # Stepper Motor Driver
 
 ## Ports
+```yaml
+ports:
+- name: A+
+  summary: '*A*-phase positive terminal electrical'
+  direction: conserving
+- name: A-
+  summary: '*A*-phase negative terminal electrical'
+  direction: conserving
+- name: B+
+  summary: '*B*-phase positive terminal electrical'
+  direction: conserving
+- name: B-
+  summary: '*B*-phase negative terminal electrical'
+  direction: conserving
+- name: ENA
+  summary: Triggering input step voltage electrical
+  direction: conserving
+- name: REF
+  summary: Input floating reference voltage electrical
+  direction: conserving
+- name: REV
+  summary: Input voltage that controls motor direction electrical
+  direction: conserving
+- name: VM
+  summary: Supply voltage electrical
+  direction: conserving
+- name: GND
+  summary: Supply ground reference electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -75,8 +105,40 @@ cannot put a series switch between supply and driver).
 
 To enable this port, set **Power supply** to
 `External`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulation mode
+  summary: Simulation mode Stepping (default) | Averaged
+  group: ''
+- name: Step rate sensitivity
+  summary: Step rate demand sensitivity 10 Hz/V (default) | positive number
+  group: ''
+- name: Enable threshold voltage
+  summary: Step voltage threshold 2.5 V (default) | positive number
+  group: ''
+- name: Reverse threshold voltage
+  summary: Reversal voltage threshold 2.5 V (default) | positive number
+  group: ''
+- name: Output voltage amplitude
+  summary: Pulse output amplitude 10 V (default) | positive number
+  group: ''
+- name: Supply voltage
+  summary: Supply voltage 10 V (default) | positive number
+  group: ''
+- name: Stepping mode (averaged)
+  summary: Step size for averaged simulation Full stepping (default) | Half stepping
+  group: ''
+- name: Stepping mode
+  summary: Step size for stepping simulation Full stepping (default) | Half stepping | Microstepping
+  group: ''
+- name: Number of microsteps per step
+  summary: Number of microsteps per step 4 (default) | positive number
+  group: ''
+- name: Maximum continuous current per phase
+  summary: Maximum continuous current per phase 1.2 A (default)
+  group: ''
+```
 
 ### **Simulation mode** — Simulation mode `Stepping` (default) | `Averaged`
 
@@ -176,7 +238,6 @@ Maximum continuous current per phase
 
 To enable this parameter, set **Stepping mode** to
 `Microstepping`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

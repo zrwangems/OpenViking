@@ -14,6 +14,19 @@ language: en
 # Zero-Order Hold
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -29,8 +42,15 @@ Input signal that the block holds by one sample period.
 Output signal that is the input held by one sample period.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (-1 for inherited)
+  summary: Discrete interval between sample time hits -1 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  values: -1 (default) | positive scalar number
+```
 
 ### **Sample time (-1 for inherited)** — Discrete interval between sample time hits `-1` (default) | `scalar`
 
@@ -62,7 +82,6 @@ Hold","SampleTime","0.1")` specifies a discrete sample
 time of `0.1` for the Zero-Order
 Hold block named `Zero-Order Hold` in
 the model named `mdl`.
-
 ## Libraries
 
 Simulink / Discrete HDL Coder / Discrete

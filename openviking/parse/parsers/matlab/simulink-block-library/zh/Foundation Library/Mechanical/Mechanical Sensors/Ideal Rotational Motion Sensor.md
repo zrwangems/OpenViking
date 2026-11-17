@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Ideal Rotational Motion Sensor
 
 ## 端口
+```yaml
+ports:
+- name: α
+  summary: 加速度，rad/s^2 物理信号
+  direction: output
+- name: W
+  summary: 角速度，rad/s 物理信号
+  direction: output
+- name: A
+  summary: 位置（角位移），rad 物理信号
+  direction: output
+- name: R
+  summary: 杆（正探头）机械旋转
+  direction: output
+- name: C
+  summary: 壳体（参考探头）机械旋转
+  direction: output
+```
 
 ### 输出
 
@@ -54,8 +72,28 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请将 **Measurement reference** 参数设置为 `Difference`。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement reference
+  summary: 选择执行绝对测量还是相对测量 Difference（默认）| Absolute
+  group: ''
+- name: Acceleration
+  summary: 控制输出端口可见性以测量角加速度 off（默认）| on
+  group: ''
+- name: Velocity
+  summary: 控制输出端口可见性以测量角速度 on（默认）| off
+  group: ''
+- name: Position
+  summary: 控制输出端口可见性以测量角位移 on（默认）| off
+  group: ''
+- name: Wrap angle to [0, 2\*pi]
+  summary: 控制角位移的输出范围 off（默认）| on
+  group: ''
+- name: Initial angle
+  summary: 传感器初始偏移 0 rad（默认）
+  group: ''
+```
 
 ### **Measurement reference** — 选择执行绝对测量还是相对测量 `Difference`（默认）| `Absolute`
 
@@ -93,7 +131,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请选中 **Position** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Mechanical Sensors

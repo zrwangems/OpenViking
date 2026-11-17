@@ -14,10 +14,81 @@ language: en
 # S-Parameter Testbench
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Use Internal Configuration block
+  summary: Use testbench internal configuration block on (default) | off
+  group: ''
+- name: Input power amplitude (dBm)
+  summary: Input power to DUT -30 (default) | real-valued scalar
+  group: ''
+- name: Number of ports
+  summary: Number of measured ports 2 (default) | scalar integer
+  group: ''
+- name: Measure all S-parameters
+  summary: Measure entire S-parameters matrix on (default) | off
+  group: ''
+- name: Export measurement results to sNp
+  summary: Save S-parameters data to Touchstone file button
+  group: ''
+- name: S-Parameter elements
+  summary: S-parameter elements to measure [1 1] (default) | two-column matrix
+  group: ''
+- name: Workspace variable name
+  summary: Variable name to store the measurement data in MATLAB workspace 'SparamObjOut' (default) | character vector
+  group: ''
+- name: Input frequency (Hz)
+  summary: Carrier frequency of DUT 2.1e9 (default) | scalar
+  group: ''
+- name: Baseband bandwidth (Hz)
+  summary: Baseband bandwidth of input signal 10e6 (default) | positive finite scalar
+  group: ''
+- name: Reference Impedance (Ohm)
+  summary: Impedance for S-parameter measurement 50 (default) | positive finite scalar
+  group: ''
+- name: Show S-Parameter spectrum
+  summary: View measured values of specified S-parameters over the specified frequency bandwidth off (default) | on
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Internally ground and hide RF circuit terminals on (default) | off
+  group: ''
+- name: FFT Length
+  summary: Number of FFT bins 128 (default) | scalar integer power of 2
+  group: ''
+- name: Measurement Time
+  summary: Total time duration 12.8 μs (default) | scalar integer
+  group: ''
+- name: Ratio of wait time to measurement time
+  summary: Intermission between sequential measurements 0 (default) | scalar integer
+  group: ''
+- name: Ratio of Envelope to Baseband bandwidths
+  summary: Ratio of internal solver envelope bandwidth to measured bandwidth 8 (default) | scalar integer power of 2
+  group: ''
+- name: Adjust for steady state external signals
+  summary: Adjust for large steady state signals off (default) | on
+  group: ''
+- name: Output frequency (Hz)
+  summary: Output carrier frequency 2.1e9 (default) | positive finite scalar
+  group: ''
+- name: Approximate transient as small signal
+  summary: Choose small subset of frequencies for transient small signal analysis off (default) | on
+  group: ''
+- name: Use all steady-state simulation frequencies for small signal analysis
+  summary: Use all frequencies automatically chosen for full-harmonic balance nonlinear solution on (default) | off
+  group: ''
+- name: Small signal frequencies (Hz)
+  summary: Frequencies that carry small signal transient 2.1e9 (default) | scalar | vector
+  group: ''
+- name: Populate Frequencies
+  summary: Tool to choose small signal transient frequencies button
+  group: ''
+```
 
 #### Main
 
@@ -282,7 +353,6 @@ Selecting small signal frequencices window
 
 To expose this parameter, clear **Use all steady-state
 simulation frequencies for small signal analysis**.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Testbenches

@@ -14,6 +14,14 @@ language: en
 # Implies
 
 ## Ports
+```yaml
+ports:
+- name: Values
+  summary: Input signal scalar | cell array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -24,11 +32,12 @@ types supported by the Simulink software. For a discussion on the data types sup
 the Simulink software, see Data Types Supported by Simulink.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Design Verifier / Verification Utilities

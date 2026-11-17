@@ -14,6 +14,9 @@ language: en
 # Hydraulic Constant Mass Flow Rate Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,13 +25,14 @@ The block has the following ports:
 
 `P`
 :   Hydraulic conserving port associated with the source outlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Mass flow rate**
 :   Specifies the mass flow rate through the source. The default value is
     `0.001` kg/s.
-
 ## Libraries
 
 Not documented in R2025b.

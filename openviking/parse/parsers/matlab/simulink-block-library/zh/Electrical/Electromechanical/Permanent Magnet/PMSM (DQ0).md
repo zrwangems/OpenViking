@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # PMSM (DQ0)
 
 ## 端口
+```yaml
+ports:
+- name: d
+  summary: '*d* 轴分量电气'
+  direction: unspecified
+- name: q
+  summary: '*q* 轴分量电气'
+  direction: unspecified
+- name: '0'
+  summary: 零序分量电气
+  direction: unspecified
+- name: R
+  summary: 电机转子机械
+  direction: unspecified
+- name: C
+  summary: 电机机壳机械
+  direction: unspecified
+- name: HR
+  summary: 转子热端口热
+  direction: unspecified
+- name: HS
+  summary: 定子绕组热端口热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -60,8 +84,121 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Modeling fidelity
+  summary: 建模保真度 Constant Ld, Lq and PM（默认）| Tabulated Ld, Lq and PM
+  group: 主
+- name: Number of pole pairs
+  summary: 转子上永磁极对数 6（默认）| 正标量
+  group: 主
+- name: Permanent magnet flux linkage parameterization
+  summary: 永磁磁链的参数化选项 Specify flux linkage（默认）| Specify torque constant | Specify back EMF constant
+  group: 主
+- name: Permanent magnet flux linkage
+  summary: 永磁磁链 0.03 Wb（默认）
+  group: 主
+- name: Torque constant
+  summary: 转矩常数 0.18 N*m/A（默认）
+  group: 主
+- name: Back EMF constant
+  summary: 反电动势常数 0.18 V*s/rad（默认）
+  group: 主
+- name: Stator parameterization
+  summary: 定子的参数化选项 Specify Ld, Lq, and L0（默认）| Specify Ls, Lm, and Ms
+  group: 主
+- name: Stator d-axis inductance, Ld
+  summary: 定子 *d* 轴电感 0.00022 H（默认）
+  group: 主
+- name: Stator q-axis inductance, Lq
+  summary: 定子 *q* 轴电感 0.00022 H（默认）
+  group: 主
+- name: Direct-axis current vector, iD
+  summary: 直轴电流向量 [-200, 0, 200] A（默认）| 包含两个或更多值的向量
+  group: 主
+- name: Quadrature-axis current vector, iQ
+  summary: 交轴电流向量 [-200, 0, 200] A（默认）| 包含两个或更多值的向量
+  group: 主
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld 矩阵 0.0002 * ones(3, 3) H（默认）| 标量矩阵
+  group: 主
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq 矩阵 0.0002 * ones(3, 3) H（默认）| 标量矩阵
+  group: 主
+- name: Permanent magnet flux linkage, PM(id,iq)
+  summary: 永磁体磁链 0.1 * ones(3, 3) Wb（默认）| 标量矩阵
+  group: 主
+- name: Torque constant matrix, kt(id,iq)
+  summary: 转矩常数矩阵 0.18 * ones(3, 3) N*m/A（默认）| 标量矩阵
+  group: 主
+- name: Back EMF constant matrix, ke(id,iq)
+  summary: 永磁体磁链 0.18 * ones(3, 3) V/(rad/s)（默认）| 标量矩阵
+  group: 主
+- name: Stator zero-sequence inductance, L0
+  summary: 定子零序电感 0.00016 H（默认）| 正标量
+  group: 主
+- name: Stator self-inductance per phase, Ls
+  summary: 每相定子自感 0.0002 H（默认）| 正标量
+  group: 主
+- name: Stator inductance fluctuation, Lm
+  summary: 定子电感波动 -0.0002 H（默认）| 标量
+  group: 主
+- name: Stator mutual inductance, Ms
+  summary: stator 绕组之间的平均互感 0.00002 H（默认）| 标量
+  group: 主
+- name: Stator resistance per phase, Rs
+  summary: 每个 stator 绕组的电阻 0.013 Ohm（默认）| 正标量
+  group: 主
+- name: Zero sequence
+  summary: 包含或排除零序项的选项 Include（默认）| Exclude
+  group: 主
+- name: Model
+  summary: 启用铁损计算的选项 None（默认）| Empirical
+  group: 铁损
+- name: Open-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: 由磁滞、涡流和附加损耗引起的开路铁损 [0, 0, 0] W（默认）| 包含三个非负元素的行向量
+  group: 铁损
+- name: Short-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: 短路铁损 [0, 0, 0] W（默认）| 包含三个非负元素的行向量
+  group: 铁损
+- name: Electrical frequency at which losses determined
+  summary: 确定损耗时的电气频率 60 Hz（默认）| 正标量
+  group: 铁损
+- name: Short-circuit RMS current for short-circuit iron losses
+  summary: 短路铁损对应的短路 RMS 电流 95 A（默认）| 正标量
+  group: 铁损
+- name: Rotor inertia
+  summary: 转子惯量 0.01 kg*m^2（默认）| 非负标量
+  group: 机械
+- name: Rotor damping
+  summary: 旋转阻尼 0 N*m/(rad/s)（默认）| 非负标量
+  group: 机械
+- name: Measurement temperature
+  summary: 模块引用电机参数时的温度 298.15 K（默认）| 正标量
+  group: 温度依赖性
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）| 非负标量
+  group: 温度依赖性
+- name: Permanent magnet flux temperature coefficient
+  summary: 永磁磁通密度随温度变化的分数变化率 -0.001 1/K（默认）| 非正标量
+  group: 温度依赖性
+- name: Thermal mass for each stator winding
+  summary: 每个 stator 绕组的热质量 100 J/K（默认）| 正标量
+  group: 热端口
+- name: Rotor thermal mass
+  summary: 转子的热质量 200 J/K（默认）| 正标量
+  group: 热端口
+- name: Percentage of main flux path iron losses associated with the rotor
+  summary: 主磁通路径上与转子相关的铁损百分比 90（默认）| 正标量
+  group: 热端口
+- name: Percentage of cross-tooth flux path iron losses associated with the rotor
+  summary: 跨齿磁通路径上与转子相关的铁损百分比 30（默认）| 正标量
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -430,7 +567,6 @@ Losses** 选项卡中将 **Model** 设置为
 `Show thermal port`，并在 **Iron
 Losses** 选项卡中将 **Model** 设置为
 `Empirical`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

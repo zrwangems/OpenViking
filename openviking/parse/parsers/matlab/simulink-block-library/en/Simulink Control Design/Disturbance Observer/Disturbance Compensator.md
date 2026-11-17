@@ -14,6 +14,45 @@ language: en
 # Disturbance Compensator
 
 ## Ports
+```yaml
+ports:
+- name: u0
+  summary: Nominal controller inputs scalar | vector
+  direction: input
+- name: y
+  summary: Measured outputs scalar | vector
+  direction: input
+- name: A
+  summary: State matrix scalar | vector | matrix
+  direction: input
+- name: Bu
+  summary: Input matrix scalar | vector | matrix
+  direction: input
+- name: Cm
+  summary: Output matrix scalar | vector | matrix
+  direction: input
+- name: Bd
+  summary: Disturbance matrix scalar | vector | matrix
+  direction: input
+- name: S0
+  summary: Initial conditions scalar | vector
+  direction: input
+- name: L
+  summary: Observer matrix scalar | vector | matrix
+  direction: input
+- name: Kd
+  summary: Compensation gain matrix scalar | vector | matrix
+  direction: input
+- name: u
+  summary: Modified control input scalar
+  direction: output
+- name: dhat
+  summary: Estimated disturbances vector
+  direction: output
+- name: xhat
+  summary: Estimated states vector
+  direction: output
+```
 
 ### Input
 
@@ -154,8 +193,76 @@ model.
 
 To enable this port, select **Output estimated model states
 xhat**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Time domain
+  summary: Controller time domain discrete-time (default) | continuous-time
+  group: Parameters Tab
+- name: LTI state-space variable
+  summary: Known plant dynamics ss object | idss object
+  group: Parameters Tab
+- name: Use external source for model matrices (A,Bu,Cm)
+  summary: Specify model matrices at block input ports off (default) | on
+  group: Parameters Tab
+- name: Number of states
+  summary: Number of states in the model 1 (default) | positive integer
+  group: Parameters Tab
+- name: Number of inputs
+  summary: Number of inputs in the model 1 (default) | positive integer
+  group: Parameters Tab
+- name: Number of outputs
+  summary: Number of outputs in the model 1 (default) | positive integer
+  group: Parameters Tab
+- name: Specify gain k (such that Bd = k\*Bu)
+  summary: Gain value for computing disturbance input matrix 1 (default) | nonzero scalar
+  group: Parameters Tab
+- name: Use external source for matrix Bd
+  summary: Specify disturbance matrix at block input port off (default) | on
+  group: Parameters Tab
+- name: Number of disturbances
+  summary: Number of disturbances in the model 1 (default) | positive integer
+  group: Parameters Tab
+- name: Initial conditions
+  summary: Initial conditions for the extended states 0 (default) | scalar | vector
+  group: Parameters Tab
+- name: Use external source for initial conditions S0 (x0,d0)
+  summary: Specify initial conditions at block input port off (default) | on
+  group: Parameters Tab
+- name: Bandwidth (rad/s)
+  summary: Observer bandwidth 1 (default) | positive scalar
+  group: Tuning Tab
+- name: Spacing (rad/s)
+  summary: Observer bandwidth spacing 0.01 (default) | positive scalar
+  group: Tuning Tab
+- name: Use external source for matrix L
+  summary: Specify observer matrix at block input port off (default) | on
+  group: Tuning Tab
+- name: Use external source for matrix Kd
+  summary: Specify compensation gain matrix at block input port off (default) | on
+  group: Tuning Tab
+- name: Limit output (u)
+  summary: Limit block output to specified saturation limits off (default) | on
+  group: Block Tab
+- name: Upper limit
+  summary: Upper saturation limit for block output inf (default) | scalar
+  group: Block Tab
+- name: Lower limit
+  summary: Lower saturation limit for block output –inf (default) | scalar
+  group: Block Tab
+- name: Data type
+  summary: Floating point precision double (default) | single
+  group: Block Tab
+- name: Time delay
+  summary: Specify time delays 1 (default) | positive scalar | vector
+  group: Block Tab
+- name: Output estimated model states xhat
+  summary: Output estimated states at block output port off (default) | on
+  group: Block Tab
+- name: Output estimated model states dhat
+  summary: Output estimated disturbances at block output port off (default) | on
+  group: Block Tab
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -349,7 +456,6 @@ Select this option to output estimated model states at the block output
 
 Select this option to output estimated model states at the block output
 **dhat**.
-
 ## Libraries
 
 Simulink Control Design / Disturbance Observer

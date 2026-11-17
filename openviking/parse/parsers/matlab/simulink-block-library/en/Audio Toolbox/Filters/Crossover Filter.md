@@ -14,6 +14,65 @@ language: en
 # Crossover Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal matrix | 1-D vector
+  direction: input
+  data_types: single | double
+- name: F1
+  summary: Crossover frequency (Hz) real scalar in the range 20 to 20000
+  direction: input
+  data_types: single | double
+- name: O1
+  summary: Crossover order integer in the range 0 to 8
+  direction: input
+  data_types: single | double
+- name: F2
+  summary: Crossover frequency (Hz) real scalar in the range 20 to 20000
+  direction: input
+  data_types: single | double
+- name: O2
+  summary: Crossover order integer in the range 0 to 8
+  direction: input
+  data_types: single | double
+- name: F3
+  summary: Crossover frequency (Hz) real scalar in the range 20 to 20000
+  direction: input
+  data_types: single | double
+- name: O3
+  summary: Crossover order integer in the range 0 to 8
+  direction: input
+  data_types: single | double
+- name: F4
+  summary: Crossover frequency (Hz) real scalar in the range 20 to 20000
+  direction: input
+  data_types: single | double
+- name: O4
+  summary: Crossover order integer in the range 0 to 8
+  direction: input
+  data_types: single | double
+- name: Y1
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+- name: Y2
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+- name: Y3
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+- name: Y4
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+- name: Y5
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -189,8 +248,40 @@ Available if **Number of crossovers** is set to
 `4`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of crossovers
+  summary: Number of magnitude response band crossings 1 (default) | 2 | 3 | 4
+  group: ''
+- name: Crossover frequency (Hz)
+  summary: Intersections of magnitude response bands 100 (default) | real scalar in the range 20 to 20000
+  group: ''
+- name: Crossover order
+  summary: Order of individual crossover filters 2 (default) | integer in the range [0, 8]
+  group: ''
+- name: View filter response
+  summary: Open plot of magnitude response of each filter band button
+  group: ''
+- name: Variable name
+  summary: Variable name of exported filter myFilt (default) | valid variable name
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: Overwrite variable if it already exists on (default) | off
+  group: ''
+- name: Export filter to workspace
+  summary: Export filter to workspace button
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -293,7 +384,6 @@ input** parameter.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Audio Toolbox / Filters

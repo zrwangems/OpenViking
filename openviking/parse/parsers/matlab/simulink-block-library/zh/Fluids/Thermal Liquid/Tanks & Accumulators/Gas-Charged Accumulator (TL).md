@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Gas-Charged Accumulator (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: H
+  summary: 热端口（热）
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -26,8 +35,31 @@ chinese_source: worker-translation
 ### **H** — 热端口（热）
 
 与液体体积热质量相关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Total accumulator volume
+  summary: 蓄能器体积 8e-3 m^3（默认）| 正标量
+  group: ''
+- name: Minimum gas volume
+  summary: 气体腔死区体积 4e-5 m^3（默认）| 正标量
+  group: ''
+- name: Precharge pressure (gauge)
+  summary: 气体腔压力 0 MPa（默认）| 非负标量
+  group: ''
+- name: Specific heat ratio
+  summary: 比热比 1.4（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 入口横截面积 0.01 m^2 正标量（默认）
+  group: ''
+- name: Hard stop stiffness coefficient
+  summary: 刚度系数 1e4 MPa/m^3（默认）| 正标量
+  group: ''
+- name: Hard-stop damping coefficient
+  summary: 阻尼系数 1e4 MPa*s/m^6（默认）| 正标量
+  group: ''
+```
 
 ### **Total accumulator volume** — 蓄能器体积 `8e-3` `m^3`（默认）| 正标量
 
@@ -56,7 +88,6 @@ chinese_source: worker-translation
 ### **Hard-stop damping coefficient** — 阻尼系数 `1e4` `MPa*s/m^6`（默认）| 正标量
 
 蓄能器顶部和底部硬限位的阻尼系数。硬限位将隔膜运动限制在零和最大液体腔液位之间。阻尼系数考虑了硬限位接触力的耗散部分。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Tanks & Accumulators

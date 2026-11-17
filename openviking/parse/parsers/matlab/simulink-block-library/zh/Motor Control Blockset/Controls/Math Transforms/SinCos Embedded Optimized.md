@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # SinCos Embedded Optimized
 
 ## 端口
+```yaml
+ports:
+- name: θe
+  summary: 参考电压位置标量
+  direction: input
+  data_types: single | double | fixed point
+- name: sin
+  summary: 正弦电压波形标量
+  direction: output
+  data_types: single | double | fixed point
+- name: cos
+  summary: 余弦电压波形标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -36,8 +51,31 @@ chinese_source: worker-translation
 余弦波形输出，其频率与位置或相位信号（`θe`）的频率相同。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Optimize for selected embedded target hardware
+  summary: 为所选硬件优化模块 off（默认）| on
+  group: ''
+- name: Approximation method
+  summary: 计算正弦和余弦信号的近似方法 Lookup（默认）| None | CORDIC | TI IQMATH
+  group: ''
+- name: Theta units
+  summary: θe 的单位 Per-unit（默认）| Radians | Degrees
+  group: ''
+- name: Number of data points for lookup table
+  summary: 查找表数组的大小 1024（默认）| 标量
+  group: ''
+- name: Table data type
+  summary: '查找表数组的数据类型 Inherit: Inherit via input（默认）| double | single | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Number of iterations
+  summary: CORDIC 算法的迭代次数 11（默认）| 正整数，小于或等于定点输入的位字长
+  group: ''
+- name: Theta data type
+  summary: 查找表数组的数据类型 fixdt([],16,0)（默认）| double | single | <data type expression>
+  group: ''
+```
 
 ### **Optimize for selected embedded target hardware** — 为所选硬件优化模块 `off`（默认）| on
 
@@ -127,7 +165,6 @@ chinese_source: worker-translation
 
 - 在包含此模块的 Simulink 模型的配置参数对话框的 **Hardware Implementation** 选项卡中，在 **Hardware board** 参数中选择任意 Texas Instruments 硬件目标。
 - 选择 **Optimize for selected embedded target hardware** 参数。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Math Transforms

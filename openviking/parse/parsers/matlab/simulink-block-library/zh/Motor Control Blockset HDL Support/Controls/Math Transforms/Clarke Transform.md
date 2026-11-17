@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Clarke Transform
 
 ## 端口
+```yaml
+ports:
+- name: a
+  summary: 相分量标量
+  direction: input
+  data_types: single | double | fixed point
+- name: b
+  summary: 相分量标量
+  direction: input
+  data_types: single | double | fixed point
+- name: abc
+  summary: 相分量标量
+  direction: input
+  data_types: single | double | fixed point
+- name: α
+  summary: 轴分量标量
+  direction: output
+  data_types: single | double | fixed point
+- name: β
+  summary: 轴分量标量
+  direction: output
+  data_types: single | double | fixed point
+- name: αβ0
+  summary: 轴分量标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -78,8 +105,16 @@ chinese_source: worker-translation
 要启用此端口，请将 **Number of inputs** 参数设置为 `Three inputs`。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inputs
+  summary: 模块输入数量 Two inputs（默认）| Three inputs
+  group: ''
+- name: Power invariant
+  summary: 启用功率不变性 off（默认）| on
+  group: ''
+```
 
 ### **Number of inputs** — 模块输入数量 `Two inputs`（默认）| `Three inputs`
 
@@ -91,7 +126,6 @@ chinese_source: worker-translation
 ### **Power invariant** — 启用功率不变性 `off`（默认）| `on`
 
 要在模块输出中启用功率不变性属性，请选中此参数。要在模块输出中禁用功率不变性（启用幅值不变性），请清除此参数。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

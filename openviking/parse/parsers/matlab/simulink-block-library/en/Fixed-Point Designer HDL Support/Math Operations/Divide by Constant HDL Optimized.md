@@ -14,6 +14,25 @@ language: en
 # Divide by Constant HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Dividend real scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: validIn
+  summary: Whether input is valid boolean scalar
+  direction: input
+  data_types: Boolean
+- name: Y
+  summary: Result of division and round operation scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: validOut
+  summary: Whether output data is valid boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -51,8 +70,24 @@ successfully computed the output **Y**. When this value is
 valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Denominator for rational division
+  summary: Divisor 10 (default) | scalar
+  group: ''
+  block_parameter: Denominator
+  type: character vector
+  values: MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value
+  default: '''10'''
+- name: Rounding Method
+  summary: Rounding method to use Floor (default) | Ceiling | Nearest | Zero | Convergent
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Floor'' | ''Ceiling'' | ''Nearest'' | ''Zero'' | ''Convergent'''
+  default: '''Floor'''
+```
 
 ### **Denominator for rational division** — Divisor 10 (default) | scalar
 
@@ -91,7 +126,6 @@ Rounding method to use, specified as one of these values:
 | **Type:** character vector |
 | **Values:** `'Floor'` | `'Ceiling'` | `'Nearest'` | `'Zero'` | `'Convergent'` |
 | **Default:** `'Floor'` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Math Operations

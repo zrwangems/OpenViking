@@ -14,6 +14,29 @@ language: en
 # LTE CRC Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input sample binary scalar | unsigned integer scalar | binary vector
+  direction: input
+  data_types: single | double | Boolean | ufix1 | uint8 | uint16 | uint32
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Output sample binary scalar | integer scalar | binary vector
+  direction: output
+  data_types: single | double | Boolean | ufix1 | uint8 | uint16 | uint32 | ufixN
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: err
+  summary: Indicator of checksum mismatch binary scalar | integer scalar
+  direction: output
+  data_types: single | double | Boolean | ufix1 | uint8 | uint16 | uint32 | ufixN
+```
 
 ### Input
 
@@ -91,8 +114,19 @@ calculated checksum against the appended checksum. The
 data type of the input samples.
 
 **Data Types:** `single` | `double` | `Boolean` | `ufix1` | `uint8` | `uint16` | `uint32` | `ufixN`
-
 ## Parameters
+```yaml
+parameters:
+- name: CRC Type
+  summary: Encode polynomial CRC16 (default) | CRC8 | CRC24A | CRC24B
+  group: ''
+- name: Full checksum mismatch
+  summary: Return bit-by-bit mismatch information off (default) | on
+  group: ''
+- name: CRC Mask
+  summary: Mask applied to checksum 0 (default) | integer from 0 to 2*CRCLength* – 1
+  group: ''
+```
 
 ### **CRC Type** — Encode polynomial `CRC16` (default) | `CRC8` | `CRC24A` | `CRC24B`
 
@@ -118,7 +152,6 @@ This mask is typically a Radio Network Temporary Identifier (RNTI).
 
 This parameter appears when **Full checksum
 mismatch** is cleared.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

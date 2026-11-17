@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Discrete Wind Gust Model
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 空速标量
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: 风速标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,59 @@ chinese_source: worker-translation
 风速，返回为标量，采用所选单位。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Gust in u-axis
+  summary: 作用于 *u* 轴的阵风 on（默认）| off
+  group: ''
+  block_parameter: Gx
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Gust in v-axis
+  summary: 作用于 *v* 轴的阵风 on（默认）| off
+  group: ''
+  block_parameter: Gy
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Gust in w-axis
+  summary: 作用于 *w* 轴的阵风 on（默认）| off
+  group: ''
+  block_parameter: Gz
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Gust start time (sec)
+  summary: 阵风开始时间 5（默认）| 标量
+  group: ''
+  block_parameter: t_0
+  type: 字符向量
+  values: 标量
+  default: '''5'''
+- name: Gust length [dx dy dz] (m)
+  summary: 阵风长度 [120 120 80]（默认）
+  group: ''
+  block_parameter: d_m
+  type: 字符向量
+  values: 向量
+  default: '''[120 120 80]'''
+- name: Gust amplitude [ug vg wg] (m/s)
+  summary: 阵风幅值 [3.5 3.5 3.0]（默认）
+  group: ''
+  block_parameter: d_m
+  type: 字符向量
+  values: 向量
+  default: '''[3.5 3.5 3.0]'''
+```
 
 ### **Units** — 单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -129,7 +191,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：向量 |
 | **默认值**：`'[3.5 3.5 3.0]'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Wind

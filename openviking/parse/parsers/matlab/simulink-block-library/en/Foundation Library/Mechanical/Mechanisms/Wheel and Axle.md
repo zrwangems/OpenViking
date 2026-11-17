@@ -14,6 +14,15 @@ language: en
 # Wheel and Axle
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Axle mechanical rotational
+  direction: conserving
+- name: P
+  summary: Wheel periphery mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,8 +34,17 @@ Mechanical rotational conserving port associated with the axle.
 
 Mechanical translational conserving port associated with the wheel
 periphery.
-
 ## Parameters
+```yaml
+parameters:
+- name: Wheel radius
+  summary: Radius of the wheel 0.05 m (default)
+  group: ''
+- name: Mechanism orientation
+  summary: Relationship between axle rotation and direction of translational motion Drives in positive direction (default)
+    | Drives in negative direction
+  group: ''
+```
 
 ### **Wheel radius** — Radius of the wheel `0.05 m` (default)
 
@@ -40,7 +58,6 @@ direction is converted into translational motion in positive direction. The
 value `Drives in negative direction` specifies a
 mechanism where axle rotation in the globally assigned positive direction is
 converted into translational motion in negative direction.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanisms

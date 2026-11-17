@@ -15,6 +15,31 @@ chinese_source: worker-translation
 # Resource Releaser
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 输出实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: 已离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: 尚未离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: 提取的实体数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -60,8 +85,45 @@ chinese_source: worker-translation
 要启用此端口，请点击 **Statistics** 选项卡，然后选中标记为 **Number of entities extracted, ex** 的复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Resource to release
+  summary: 选择要释放的资源 All（默认）| Selected
+  group: ''
+  block_parameter: ResourceToRelease
+  type: character vector
+  values: '''All'' | ''Selected'''
+  default: '''All'''
+- name: Event actions
+  summary: 指定实体在特定事件上的行为 Entry（默认）| Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB® code
+  default: ''''''
+- name: Number of entities departed, d
+  summary: 输出已离开模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: 输出模块中存在的、尚未离开的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: 从此模块提取的实体数量 off（默认）| on
+  group: ''
+  block_parameter: NumEntitiesExtracted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Resource to release** — 选择要释放的资源 `All`（默认）| `Selected`
 
@@ -134,7 +196,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

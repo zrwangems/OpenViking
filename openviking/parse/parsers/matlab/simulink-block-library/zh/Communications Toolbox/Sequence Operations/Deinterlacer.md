@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Deinterlacer
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号列向量
+  direction: input
+  data_types: double | single
+- name: O
+  summary: 奇数编号元素向量
+  direction: output
+- name: E
+  summary: 偶数编号元素向量
+  direction: output
+```
 
 ### 输入
 
@@ -33,11 +46,12 @@ chinese_source: worker-translation
 ### **E** — 偶数编号元素向量
 
 输入向量的偶数编号元素，以向量形式返回。如果输入是长度为 *N* 的向量，则输出长度为 *N*/2。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Communications Toolbox / Sequence Operations

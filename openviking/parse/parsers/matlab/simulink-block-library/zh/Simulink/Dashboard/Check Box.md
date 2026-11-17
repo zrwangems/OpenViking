@@ -15,10 +15,58 @@ chinese_source: worker-translation
 # Check Box
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未提供文档。
-
 ## 参数
+```yaml
+parameters:
+- name: 连接
+  summary: 要连接的模块参数值 参数值连接选项
+  group: 连接
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: 复选框标签
+  summary: 复选框操作的说明 Label (默认) | character vector
+  group: 主要
+  block_parameter: Label
+  type: character vector
+  default: '''Label'''
+- name: 选中/未选中值
+  summary: '为选中和未选中状态分配的值 Unchecked: 0 Checked: 1 (默认) | scalar'
+  group: 主要
+  block_parameter: Values
+  type: 2x1 vector
+  default: '[0 1]'
+- name: 标签
+  summary: 模块标签位置 Hide（默认）| Bottom | Top
+  group: 主要
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: 不透明度
+  summary: 模块背景不透明度 1（默认）| 标量
+  group: 格式
+  block_parameter: Opacity
+  type: 标量
+  default: '1'
+- name: 前景色
+  summary: 模块前景色 [r g b] 向量
+  group: 格式
+  block_parameter: ForegroundColor
+  type: 字符向量 | 字符串
+  values: '[r g b] 向量'
+- name: 背景色
+  summary: 模块背景色 [r g b] 向量
+  group: 格式
+  block_parameter: BackgroundColor
+  type: 字符向量 | 字符串
+  values: '[r g b] 向量'
+```
 
 ### 连接
 
@@ -144,7 +192,6 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 | **模块参数：** `BackgroundColor` |
 | **类型：** 字符向量 | 字符串 |
 | **值：** `[r g b]` 向量 |
-
 ## 所属库
 
 Simulink / Dashboard

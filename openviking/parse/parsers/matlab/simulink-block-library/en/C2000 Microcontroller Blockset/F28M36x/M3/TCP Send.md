@@ -14,6 +14,13 @@ language: en
 # TCP Send
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### Input
 
@@ -24,8 +31,22 @@ array. The block sends this data over a TCP/IP network to the receiving
 host.
 
 **Data Types:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection mode
+  summary: Set the block as server or client Server (default) | Client
+  group: ''
+- name: Remote IP Address
+  summary: Remote IP address of server to which to send data is sent 192.168.1.2 (default) | any valid IP address
+  group: ''
+- name: Remote IP Port
+  summary: Remote IP port of server to which data is sent 25000 (default) | [1 to 65,535]
+  group: ''
+- name: Local IP Port
+  summary: IP port of sending host from which to send data 25001 (default) | [1 to 65,535]
+  group: ''
+```
 
 ### **Connection mode** — Set the block as server or client `Server` (default) | `Client`
 
@@ -65,7 +86,6 @@ mode** parameter to
 
 Specify the port number of the application from which to send the data.
 This local port acts as the listening port of the sending host.
-
 ## Libraries
 
 Simulink Coder Support Package for NXP FRDM-K64F Board

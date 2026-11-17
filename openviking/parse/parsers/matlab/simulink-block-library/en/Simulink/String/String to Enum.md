@@ -14,6 +14,17 @@ language: en
 # String to Enum
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input string signal scalar
+  direction: input
+  data_types: string
+- name: Output 1
+  summary: Enumerated number scalar
+  direction: output
+  data_types: enumerated
+```
 
 ### Input
 
@@ -30,8 +41,20 @@ Enumerated number associated with the input string, specified as a
 scalar.
 
 **Data Types:** `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output data type
+  summary: Output data type SlDemoSign (default) | <data type expression>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Enum: SlDemoSign'' | *<data type expression>*'
+  default: '''Enum: SlDemoSign'''
+- name: Mode
+  summary: Category of data Enumerated (default) | <data type expression>
+  group: ''
+```
 
 ### **Output data type** — Output data type `SlDemoSign` (default) | `<data type expression>`
 
@@ -67,7 +90,6 @@ Use a data type object, for example,
 
 Clicking the **Show data type assistant** button
 enables this parameter.
-
 ## Libraries
 
 Simulink / String

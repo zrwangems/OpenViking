@@ -14,6 +14,17 @@ language: en
 # Induction Machine Scalar Control
 
 ## Ports
+```yaml
+ports:
+- name: fRef
+  summary: Frequency scalar
+  direction: input
+  data_types: single | double
+- name: Vabc
+  summary: Voltage vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -33,8 +44,22 @@ Reference phase voltages.
 **Example:** Example
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rated electrical frequency (Hz)
+  summary: Frequency 60 (default) | positive scalar
+  group: ''
+- name: Rated voltage (V)
+  summary: Voltage 550 (default) | positive and greater than the value of the Minimum voltage (V) parameter
+  group: ''
+- name: Minimum voltage (V)
+  summary: Voltage 10 (default) | zero or positive
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Rated electrical frequency (Hz)** — Frequency `60` (default) | positive scalar
 
@@ -58,7 +83,6 @@ If this block is inside a triggered subsystem, inherit the
 sample time by setting this parameter to `-1`. If this block is in a
 continuous variable-step model, specify the sample time explicitly using a positive
 scalar.
-
 ## Libraries
 
 Simscape / Electrical / Control / Induction Machine Control

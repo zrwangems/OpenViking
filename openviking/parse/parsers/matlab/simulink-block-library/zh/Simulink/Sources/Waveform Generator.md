@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Waveform Generator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 生成的输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+```
 
 ### 输出
 
@@ -23,8 +31,67 @@ chinese_source: worker-translation
 由 **Waveform Definition** 表中的条目指定的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Output Signal
+  summary: 输出信号 1 的波形（默认）| 整数
+  group: 主
+  block_parameter: SelectedSignal
+  type: 字符向量
+  values: 标量
+  default: '''1'''
+- name: Waveform Definition
+  summary: 波形信号表示法 constant | gaussian(mean,variance,seed) | pulse(amplitude,trigger_time,duration) | sawtooth(amplitude,frequence,phase_offset)
+    | sin(amplitude,frequence,phase_offset) | square(amplitude,frequence,phase_offset) | step(step_time,initial_value,final_value)
+  group: 主
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '指定输出数据类型 double（默认）| Inherit: Inherit via back propagation | single | int8 | int32 | uint32 | int64 | uint64 |
+    fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | int16 | ''uint16''
+    | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | fixdt(1,16,2^0,0) | fixdt(1,16,2^0,0) | ''<data type
+    expression>'''
+  default: '''double'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 指定定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 信号属性
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Sample time
+  summary: 采样之间的时间间隔 0.1（默认）| 标量
+  group: 信号属性
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''0.1'''
+```
 
 ### 主
 
@@ -201,7 +268,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 |
 | **默认值**：`'0.1'` |
-
 ## 所属库
 
 Simulink / Sources

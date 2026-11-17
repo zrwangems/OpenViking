@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Celsius to Fahrenheit
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 摄氏度输入 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 华氏度输出 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 指定华氏度的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Extras / Transformations

@@ -14,6 +14,29 @@ language: en
 # LPC to/from Cepstral Coefficients
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: LPC coefficients vector | matrix
+  direction: input
+  data_types: single | double
+- name: CC
+  summary: Cepstral coefficients vector | matrix
+  direction: input
+  data_types: single | double
+- name: P
+  summary: Prediction error power scalar | vector
+  direction: input
+  data_types: single | double
+- name: CC
+  summary: Cepstral coefficients vector | matrix
+  direction: output
+  data_types: single | double
+- name: P
+  summary: Prediction error power scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -82,8 +105,28 @@ must equal the number of channels in the input.
 To enable this port, select **Output P**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of conversion
+  summary: Type of conversion LPCs to cepstral coefficients (default) | Cepstral coefficients to LPCs
+  group: ''
+- name: Specify P
+  summary: Method of specifying prediction error power *P* assume P equals 1 (default) | via input port
+  group: ''
+- name: Output P
+  summary: Output prediction error power *P* off (default) | on
+  group: ''
+- name: Output size same as input size
+  summary: Output size same as input size off (default) | on
+  group: ''
+- name: Length of output cepstral coefficients vector
+  summary: Length of output cepstral coefficients 10 (default) | positive integer
+  group: ''
+- name: If first input value is not 1
+  summary: Action to take if first input value is not 1 Replace it with 1 (default) | Normalize | Normalize and warn | Error
+  group: ''
+```
 
 ### **Type of conversion** — Type of conversion `LPCs to cepstral coefficients` (default) | `Cepstral coefficients to LPCs`
 
@@ -168,7 +211,6 @@ vector is not 1. You can set this parameter to one of these options:
 
 To enable this parameter, set **Type of conversion**
 to `LPCs to cepstral coefficients`.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Linear Prediction

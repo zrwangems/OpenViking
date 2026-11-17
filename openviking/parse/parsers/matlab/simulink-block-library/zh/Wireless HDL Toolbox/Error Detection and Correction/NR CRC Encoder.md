@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # NR CRC Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 二进制标量 | 二进制向量 | 无符号整数标量
+  direction: input
+  data_types: double | single | ufix1 | uint8 | uint16 | Boolean | ufixN
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: CRCMask
+  summary: CRC 校验和掩码 非负整数
+  direction: input
+  data_types: ufix24
+- name: data
+  summary: CRC 编码数据 标量 | 向量
+  direction: output
+  data_types: double | single | ufix1 | uint8 | uint16 | Boolean | ufixN
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -77,8 +100,16 @@ CRC 校验和掩码，指定为表示从 0 到 2*CRCLength* – 1 的二进制�
 有关更多详细信息，请参阅 Sample Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: CRC type
+  summary: CRC 类型 CRC16（默认）| CRC6 | CRC11 | CRC24A | CRC24B | CRC24C
+  group: ''
+- name: Enable CRC mask input port
+  summary: 启用 CRC 校验和掩码输入端口 off（默认）| on
+  group: ''
+```
 
 ### **CRC type** — CRC 类型 `CRC16`（默认）| `CRC6` | `CRC11` | `CRC24A` | `CRC24B` | `CRC24C`
 
@@ -102,7 +133,6 @@ CRC 校验和掩码，指定为表示从 0 到 2*CRCLength* – 1 的二进制�
 #### 依赖关系
 
 要启用此参数，请将 **CRC type** 参数设置为 `CRC24C`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

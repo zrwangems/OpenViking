@@ -15,14 +15,50 @@ chinese_source: worker-translation
 # EtherCAT PDO Transmit
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 要传输到从站设备的数据 [double]
+  direction: input
+```
 
 ### 输入
 
 ### **D** — 要传输到从站设备的数据 [double]
 
 要传输到 EtherCAT 从站设备的数据向量。
-
 ## 参数
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT 网络标识符 0（默认）| 0-15
+  group: ''
+  block_parameter: device_id
+- name: Signal name
+  summary: EtherCAT 设备变量名称 字符向量
+  group: ''
+  block_parameter: sig_name
+- name: Signal Offset
+  summary: 信号数据在过程中的位置 只读：整数
+  group: ''
+  block_parameter: sig_offset
+- name: Signal Type
+  summary: EtherCAT 数据的数据类型 只读：字符向量
+  group: ''
+  block_parameter: sig_type
+- name: Type Size (bits)
+  summary: EtherCAT 数据类型的大小 只读：整数
+  group: ''
+  block_parameter: type_size
+- name: Signal Dimension
+  summary: 信号的维度 只读：整数
+  group: ''
+  block_parameter: sig_dim
+- name: Sample Time
+  summary: 此模块执行的速率 只读：数值
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT 网络标识符 `0`（默认）| `0-15`
 
@@ -109,7 +145,6 @@ EtherCAT 模块支持向量和标量（维度为 `1` 的向量）。
 |  |
 | --- |
 | **模块参数**：`sample_time` |
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

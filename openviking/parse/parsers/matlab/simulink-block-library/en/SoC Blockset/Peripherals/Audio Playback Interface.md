@@ -14,6 +14,17 @@ language: en
 # Audio Playback Interface
 
 ## Ports
+```yaml
+ports:
+- name: msg
+  summary: SoC message data vector
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: Audio data frame *M*-element vector | *M*-by-*C* matrix
+  direction: output
+  data_types: int8 | int16 | int32
+```
 
 ### Input
 
@@ -41,8 +52,22 @@ To enable this port, set the **Output** parameter to
 `To output port`.
 
 **Data Types:** `int8` | `int16` | `int32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Output type To terminator (default) | To output port
+  group: ''
+- name: Number of channels
+  summary: Number of data channels 2 (default) | positive integer
+  group: ''
+- name: Samples per frame
+  summary: Size of data vector read from audio device 4410 (default) | positive scalar integer
+  group: ''
+- name: Sample time
+  summary: Sample time in seconds -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Output** — Output type `To terminator` (default) | `To output port`
 
@@ -63,7 +88,6 @@ Specify the number of samples per frame, *M*, of audio data.
 
 Enter the sample time to be used by the timer-driven task subsystem when you clear
 the **Enable event-based execution** parameter.
-
 ## Libraries
 
 SoC Blockset / Peripherals

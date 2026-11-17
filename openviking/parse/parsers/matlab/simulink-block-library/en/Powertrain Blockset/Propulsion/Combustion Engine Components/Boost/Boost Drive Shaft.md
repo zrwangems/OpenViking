@@ -14,6 +14,27 @@ language: en
 # Boost Drive Shaft
 
 ## Ports
+```yaml
+ports:
+- name: Cmprs
+  summary: Compressor torque two-way connector port
+  direction: input
+- name: Turb
+  summary: Turbine torque two-way connector port
+  direction: input
+- name: ExtTrq
+  summary: Externally applied torque scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: Cmprs
+  summary: Compressor speed two-way connector port
+  direction: output
+- name: Turb
+  summary: Turbine speed two-way connector port
+  direction: output
+```
 
 ### Input
 
@@ -84,8 +105,45 @@ Turbine speed, *ω*, in N·m.
 To create this port, for the **Configuration** parameter,
 select `Turbocharger` or `Turbine
 only`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Configuration
+  summary: Specify configuration Turbocharger (default) | Turbine only | Compressor only
+  group: ''
+  block_parameter: ShaftConfigPopup
+  values: Turbocharger (default) | Turbine only | Compressor only
+- name: Additional torque input
+  summary: Specify external torque input External torque input (default) | No external torque
+  group: ''
+  block_parameter: AddTrqTypePopup
+  values: External torque input (default) | No external torque
+- name: Shaft inertia, J_shaft
+  summary: Inertia 1.55e-5 (default) | scalar
+  group: ''
+  block_parameter: J_shaft
+  values: 1.55e-5 (default) | scalar
+- name: Initial shaft speed, w_0
+  summary: Speed 1000 (default) | scalar
+  group: ''
+  block_parameter: w_0
+  values: 1000 (default) | scalar
+- name: Min shaft speed, w_min
+  summary: Speed 100 (default) | scalar
+  group: ''
+  block_parameter: w_min
+  values: 100 (default) | scalar
+- name: Max shaft speed, w_max
+  summary: Speed 20000 (default) | scalar
+  group: ''
+  block_parameter: w_max
+  values: 20000 (default) | scalar
+- name: Turbine mechanical efficiency, eta_mech
+  summary: Efficiency 0.95 (default) | scalar
+  group: ''
+  block_parameter: eta_mech
+  values: 0.95 (default) | scalar
+```
 
 #### Block Options
 
@@ -238,7 +296,6 @@ programmatically, use the `get_param` function.
 To enable this parameter, select the
 `Turbocharger` or `Turbine
 only` configuration.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Boost

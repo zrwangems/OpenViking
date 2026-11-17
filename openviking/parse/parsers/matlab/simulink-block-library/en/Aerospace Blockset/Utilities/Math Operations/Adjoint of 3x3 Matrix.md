@@ -14,6 +14,17 @@ language: en
 # Adjoint of 3x3 Matrix
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input matrix 3-by-3 matrix
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output acceleration 3-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -31,11 +42,12 @@ Output acceleration, returned as a 3-by-3 matrix, in final
 acceleration units.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

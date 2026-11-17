@@ -14,6 +14,21 @@ language: en
 # Variable Gap Capacitor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: R
+  summary: Follower plate mechanical translational
+  direction: conserving
+- name: C
+  summary: Base plate mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,25 @@ plate.
 
 Mechanical translational conserving port associated with the base
 plate.
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacitor plate area
+  summary: Capacitor plate area 1e-3 m^2 (default) | positive scalar
+  group: ''
+- name: Dielectric medium thickness
+  summary: Dielectric medium thickness 1e-4 m (default) | positive scalar
+  group: ''
+- name: Specify properties of dielectric medium
+  summary: Option to specify properties of dielectric medium Off (default) | On
+  group: ''
+- name: Relative permittivity of dielectric medium
+  summary: Relative permittivity of dielectric 1.0 (default) | positive scalar
+  group: ''
+- name: Young's modulus of dielectric material
+  summary: Young's modulus of dielectric material 0 Pa (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Capacitor plate area** — Capacitor plate area `1e-3` `m^2` (default) | positive scalar
 
@@ -71,7 +103,6 @@ Young's modulus of the dielectric material.
 
 To enable this parameter, select the **Specify properties of
 dielectric medium** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive

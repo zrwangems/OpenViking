@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # PS Ramp
 
 ## 端口
+```yaml
+ports:
+- name: O
+  summary: 输出物理信号，类型由模块参数值和单位决定 physical signal
+  direction: output
+```
 
 ### 输出
 
@@ -23,8 +29,22 @@ chinese_source: worker-translation
 输出物理信号。信号单位由 **Initial output** 参数的单位决定。信号大小与 **Initial output** 和 **Slope** 参数值的大小一致。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的 **Description** 选项卡中的 **Source code** 链接，在底层源文件中查看此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Slope
+  summary: 信号增加或减少速率 1 1/s（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Start time
+  summary: 时间偏移 0 s（默认）| 标量
+  group: ''
+- name: Initial output
+  summary: 初始信号值和单位 0 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Enable zero-crossing detection
+  summary: 是否启用过零检测 on（默认）| off
+  group: ''
+```
 
 ### **Slope** — 信号增加或减少速率 `1 1/s`（默认）| 标量 | 向量 | 矩阵
 
@@ -47,7 +67,6 @@ chinese_source: worker-translation
 ### **Enable zero-crossing detection** — 是否启用过零检测 `on`（默认）| `off`
 
 清除以禁用过零检测并提高仿真速度。有关更多信息，请参阅 Managing Zero Crossings in Simscape Models。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Sources

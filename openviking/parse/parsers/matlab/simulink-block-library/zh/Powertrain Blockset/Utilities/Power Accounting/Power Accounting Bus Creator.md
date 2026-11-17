@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Power Accounting Bus Creator
 
 ## 端口
+```yaml
+ports:
+- name: PwrTrnsfrd
+  summary: 模块之间传输的功率 bus
+  direction: input
+- name: PwrNotTrnsfrd
+  summary: 穿过模块边界但未传输的功率 bus
+  direction: input
+- name: PwrStored
+  summary: 存储能量的变化率 bus
+  direction: input
+- name: PwrInfo
+  summary: 功率信息总线 bus
+  direction: output
+```
 
 ### 输入
 
@@ -55,8 +70,56 @@ chinese_source: worker-translation
 ### **PwrInfo** — 功率信息总线 `bus`
 
 功率信息总线
-
 ## 参数
+```yaml
+parameters:
+- name: Associated block
+  summary: 关联模块 Parent（默认）| Parent reference block
+  group: ''
+  block_parameter: ParameterGroupVar
+  values: Parent（默认）| Parent reference block
+- name: Library block name
+  summary: 模块名称 Block name
+  group: ''
+  block_parameter: RefBlckName
+  values: Block name
+- name: Transferred power
+  summary: 模块之间传输的功率 on（默认）| off
+  group: ''
+  block_parameter: PwrTrnsfrdCheckBox
+  values: on（默认）| off
+- name: Not transferred power
+  summary: 穿过模块边界的功率 on（默认）| off
+  group: ''
+  block_parameter: PwrNotTrnsfrdCheckBox
+  values: on（默认）| off
+- name: Stored power
+  summary: 存储能量的变化率 on（默认）| off
+  group: ''
+  block_parameter: PwrStoredCheckBox
+  values: on（默认）| off
+- name: Signal name
+  summary: 信号名称 char
+  group: ''
+- name: Associated Port
+  summary: 传递功率的端口名称 {'PortA','PortB','PortC'}
+  group: ''
+- name: Description
+  summary: 信号描述 char
+  group: ''
+- name: Signal name
+  summary: 信号名称 char
+  group: ''
+- name: Description
+  summary: 信号描述 char
+  group: ''
+- name: Signal name
+  summary: 信号名称 char
+  group: ''
+- name: Description
+  summary: 信号描述 char
+  group: ''
+```
 
 #### 模块选项
 
@@ -292,7 +355,6 @@ Bus Creator 参数 **Transferred** 参数值。
 | Ideal Fixed Gear Transmission | `PwrStored.PwrStoredTrans` | `Rotational` |
 | Control Volume System | `PwrStored.PwrHeatStored` | `Stored heat` |
 | Datasheet Battery | `PwrStored.PwrStoredBatt` | `Battery stored` |
-
 ## 所属库
 
 Powertrain Blockset / Utilities / Power Accounting

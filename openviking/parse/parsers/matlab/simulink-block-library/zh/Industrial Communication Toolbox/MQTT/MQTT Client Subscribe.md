@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # MQTT Client Subscribe
 
 ## 端口
+```yaml
+ports:
+- name: Topic_*x*
+  summary: 来自已订阅主题的当前消息 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string
+- name: IsNew
+  summary: 指示读取的消息是否为新的标志 0 | 1 | 逻辑值向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -37,8 +48,25 @@ chinese_source: worker-translation
 要启用此端口，请在**要订阅的主题**参数中指定一个或多个主题。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Client
+  summary: 选择 MQTT 客户端 下拉列表
+  group: ''
+  block_parameter: ClientList
+  values: MQTT 客户端名称
+- name: Topics to subscribe
+  summary: MQTT 主题列表表格
+  group: ''
+  block_parameter: TopicsTable
+  values: MQTT 主题名称和信息
+- name: Block sample time
+  summary: 读取操作的采样时间 -1（默认）| 非负标量
+  group: ''
+  block_parameter: SampleTime
+  values: -1（默认）| 非负标量
+```
 
 ### **Client** — 选择 MQTT 客户端 下拉列表
 
@@ -108,7 +136,6 @@ chinese_source: worker-translation
 | **参数：** | `SampleTime` |
 | **值：** | -1（默认）| 非负标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Industrial Communication Toolbox / MQTT

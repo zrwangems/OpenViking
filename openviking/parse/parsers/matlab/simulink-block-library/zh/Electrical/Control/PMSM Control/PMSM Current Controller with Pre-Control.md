@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # PMSM Current Controller with Pre-Control
 
 ## 端口
+```yaml
+ports:
+- name: idqRef
+  summary: 参考电流向量
+  direction: input
+  data_types: single | double
+- name: idq
+  summary: 测量电流向量
+  direction: input
+  data_types: single | double
+- name: wElectrical
+  summary: 测量电角速度向量
+  direction: input
+  data_types: single | double
+- name: VphMax
+  summary: 最大相电压标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 外部复位标量
+  direction: input
+  data_types: single | double
+- name: vdqRef
+  summary: 参考电压向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -54,8 +81,55 @@ chinese_source: worker-translation
 用于控制 PMSM 的期望 *d* 轴和 *q* 轴电压，单位为 V。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: D-axis current proportional gain
+  summary: D 轴比例增益 1（默认）| 正数
+  group: ''
+- name: D-axis current integral gain
+  summary: D 轴积分增益 100（默认）| 正数
+  group: ''
+- name: D-axis current anti-windup gain
+  summary: D 轴抗饱和增益 1（默认）| 正数
+  group: ''
+- name: Q-axis current proportional gain
+  summary: Q 轴比例增益 1（默认）| 正数
+  group: ''
+- name: Q-axis current integral gain
+  summary: Q 轴积分增益 100（默认）| 正数
+  group: ''
+- name: Q-axis current anti-windup gain
+  summary: Q 轴抗饱和增益 1（默认）| 正数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| -1 或正数
+  group: ''
+- name: Axis prioritization
+  summary: 电压限制器的轴优先级 q-axis（默认）| d-axis | d-q equivalence
+  group: ''
+- name: Enable zero cancellation
+  summary: 前馈零点对消 off（默认）| on
+  group: ''
+- name: Enable pre-control voltage
+  summary: 预控制电压 on（默认）| off
+  group: ''
+- name: D-axis current vector, id (A)
+  summary: D 轴电流断点向量 [-200,0,200]A（默认）| 单调递增向量
+  group: ''
+- name: Q-axis current vector, iq (A)
+  summary: Q 轴电流断点向量 [-200,0,200]A（默认）| 单调递增向量
+  group: ''
+- name: Ld matrix, Ld(id,iq) (H)
+  summary: D 轴电感查找数据 0.0002 * ones(3, 3)H（默认）| 正矩阵
+  group: ''
+- name: Lq matrix, Lq(id,iq) (H)
+  summary: Q 轴电感查找数据 0.0002 * ones(3, 3)H（默认）| 正矩阵
+  group: ''
+- name: Permanent magnet flux linkage matrix, PM(id,iq) (Wb)
+  summary: 磁链查找数据 0.04 * ones(3, 3)Wb（默认）| 实数矩阵
+  group: ''
+```
 
 #### 控制参数
 
@@ -120,7 +194,6 @@ chinese_source: worker-translation
 ### **Permanent magnet flux linkage matrix, PM(id,iq) (Wb)** — 磁链查找数据 `0.04 * ones(3, 3)``Wb`（默认）| 实数矩阵
 
 用于查找表的永磁体磁链矩阵。对于恒定电机参数，仅更改常数因子，例如 *psim* \* `ones(3, 3)`。
-
 ## 所属库
 
 Simscape / Electrical / Control / PMSM Control

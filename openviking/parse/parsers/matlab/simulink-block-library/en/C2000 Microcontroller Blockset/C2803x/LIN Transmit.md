@@ -14,10 +14,15 @@ language: en
 # C2803x LIN Transmit
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Send checksum**
 :   Select this checkbox to include a checksum in the last data field of the
@@ -80,7 +85,6 @@ Not documented in R2025b.
     generating a checksum and setting the Transmitter buffer register ready flag.
 
     The default value is `Disabled`.
-
 ## Libraries
 
 Not documented in R2025b.

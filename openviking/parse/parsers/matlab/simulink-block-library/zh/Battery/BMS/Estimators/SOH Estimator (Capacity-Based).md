@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # SOH Estimator (Capacity-Based)
 
 ## 端口
+```yaml
+ports:
+- name: AH
+  summary: 电芯容量，A\*Hr 标量 | 向量
+  direction: input
+- name: SOH
+  summary: 电池健康状态 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,19 @@ chinese_source: worker-translation
 ### **SOH** — 电池健康状态 标量 | 向量
 
 电池的健康状态，以标量或向量形式返回，其元素范围为 [0, 1]。此输出端口的大小等于 **AH** 输入端口的大小。
-
 ## 参数
+```yaml
+parameters:
+- name: Cell capacity when battery is new, AH_new, (A\*Hr)
+  summary: 电池全新时的电芯容量 27（默认）| 非负标量
+  group: ''
+- name: Cell capacity at end of life, AH_eol, (A\*Hr)
+  summary: 寿命终止时的电芯容量 21.6（默认）| 非负标量
+  group: ''
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: ''
+```
 
 ### **Cell capacity when battery is new, AH\_new, (A\*Hr)** — 电池全新时的电芯容量 `27`（默认）| 非负标量
 
@@ -49,7 +69,6 @@ chinese_source: worker-translation
 - `<data type expression>` — 模块算法将所有输入和参数转换为您指定的数据类型对象。
 
 单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Estimators

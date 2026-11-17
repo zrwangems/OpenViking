@@ -14,6 +14,15 @@ language: en
 # TCP Client
 
 ## Ports
+```yaml
+ports:
+- name: Enable
+  summary: Connect block to remote Ethernet device integer
+  direction: input
+- name: Status
+  summary: Device returns a status of not connected or connected 0 | 1
+  direction: output
+```
 
 ### Input
 
@@ -34,8 +43,34 @@ The status value is one of:
 As a best practice, connect the `Status` output
 of a TCP configure block to the `Enable` input of
 the associated TCP Send and TCP Receive blocks.
-
 ## Parameters
+```yaml
+parameters:
+- name: Use host-target connection
+  summary: Use Ethernet connection between development and target computers 'off' (default) | 'on'
+  group: ''
+  block_parameter: useHostTargetConn
+- name: Remote server IP address
+  summary: IP address of the server device x.x.x.x
+  group: ''
+  block_parameter: remoteAddress
+- name: Remote server port
+  summary: Port number of the server device 1–65535
+  group: ''
+  block_parameter: remotePort
+- name: Use Nagle's algorithm
+  summary: Enable Nagle's algorithm to combine packets on (default) | off
+  group: ''
+  block_parameter: useNaglesAlgorithm
+- name: Client IP address
+  summary: IP address of the client device that is being configured no value (default) | x.x.x.x
+  group: Advanced Parameters
+  block_parameter: clientAddress
+- name: Client local port
+  summary: IP port of the client device that is being configured no value (default) | 0–65535
+  group: Advanced Parameters
+  block_parameter: clientPort
+```
 
 ### **Use host-target connection** — Use Ethernet connection between development and target computers `'off'` (default) | `'on'`
 
@@ -124,7 +159,6 @@ block transmits data by using any available port.
 |  |
 | --- |
 | **Block Parameter:** `clientPort` |
-
 ## Libraries
 
 Simulink Real-Time / IP

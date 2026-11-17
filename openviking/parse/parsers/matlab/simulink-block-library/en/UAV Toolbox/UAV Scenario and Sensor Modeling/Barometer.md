@@ -14,6 +14,17 @@ language: en
 # Barometer
 
 ## Ports
+```yaml
+ports:
+- name: True pressure
+  summary: True air pressure scalar | vector
+  direction: input
+  data_types: single | double
+- name: Measured pressure
+  summary: Measured air pressure scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -32,8 +43,28 @@ Measured air pressure in Pa, returned as a nonnegative scalar or
 length of True pressure.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant bias
+  summary: Constant measurement bias 0 (default) | finite scalar
+  group: ''
+- name: Noise density
+  summary: White noise standard variance 1 (default) | nonnegative finite scalar
+  group: ''
+- name: Bias instability
+  summary: Correlated noise standard variance 1 (default) | nonnegative finite scalar
+  group: ''
+- name: Decay factor
+  summary: Correlated noise decay factor 0.99 (default) | positive scalar in the range (0,1)
+  group: ''
+- name: Seed
+  summary: Random number initial seed 67 (default) | nonnegative integer scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Constant bias** — Constant measurement bias 0 (default) | finite scalar
 
@@ -71,7 +102,6 @@ Select the type of simulation to run from these options:
 - `Code generation` — Simulate the model using generated
   C code. The first time you run a simulation, Simulink® generates C code for the block. The C code is reused for subsequent
   simulations, as long as the model does not change.
-
 ## Libraries
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

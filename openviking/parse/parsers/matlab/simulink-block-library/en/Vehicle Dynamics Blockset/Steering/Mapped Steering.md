@@ -14,6 +14,24 @@ language: en
 # Mapped Steering
 
 ## Ports
+```yaml
+ports:
+- name: AngIn
+  summary: Steering angle scalar
+  direction: input
+- name: VehSpd
+  summary: Vehicle speed scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: AngLft
+  summary: Left wheel angle scalar
+  direction: output
+- name: AngRght
+  summary: Right wheel angle scalar
+  direction: output
+```
 
 ### Input
 
@@ -56,8 +74,60 @@ rad.
 
 Right wheel angle, *δR*, in
 rad.
-
 ## Parameters
+```yaml
+parameters:
+- name: Speed dependent
+  summary: Use speed-dependent tables on (default) | off
+  group: ''
+  block_parameter: SpdDpd
+  values: on (default) | off
+- name: Steering type
+  summary: Use speed-dependent tables Steering wheel angle (default) | Rack travel displacement
+  group: ''
+  block_parameter: IndexType
+  values: Steering wheel angle (default) | Rack travel displacement
+- name: Steering angle breakpoints, StrgAngBpts
+  summary: Steering angle breakpoints [-1.5*pi 1.5*pi] (default) | vector
+  group: ''
+  block_parameter: StrgAngBpts
+  values: '[-1.5*pi 1.5*pi] (default) | vector'
+- name: Rack travel displacement breakpoints, RackDispBpts
+  summary: Rack travel displacement breakpoints [-40 -19.2 -4.53 4.53 19.2 40] (default) | vector
+  group: ''
+  block_parameter: RackDispBpts
+  values: '[-40 -19.2 -4.53 4.53 19.2 40] (default) | vector'
+- name: Gear ratio table, GrTbl
+  summary: Gear ratio table [9.87 9.87 7.16 7.16 9.87 9.87]*2*pi (default) | vector
+  group: ''
+  block_parameter: GrTbl
+  values: '[9.87 9.87 7.16 7.16 9.87 9.87]*2*pi (default) | vector'
+- name: Gear ratio constant, Gr
+  summary: Gear ratio constant 8.28*2*pi (default) | scalar
+  group: ''
+  block_parameter: Gr
+  values: 8.28*2*pi (default) | scalar
+- name: Left wheel angle table, WhlLftTbl
+  summary: Left wheel angle table [-1.5*pi 1.5*pi]/13.5] (default) | vector
+  group: ''
+  block_parameter: WhlLftTbl
+  values: '[-1.5*pi 1.5*pi]/13.5] (default) | vector'
+- name: Right wheel angle table, WhlRghtTbl
+  summary: Right wheel angle table [-1.5*pi 1.5*pi]/13.5] (default) | vector
+  group: ''
+  block_parameter: WhlRghtTbl
+  values: '[-1.5*pi 1.5*pi]/13.5] (default) | vector'
+- name: Vehicle speed breakpoints, VehSpdBpts
+  summary: Vehicle speed breakpoints [-1 1] (default) | vector
+  group: ''
+  block_parameter: VehSpdBpts
+  values: '[-1 1] (default) | vector'
+- name: Superimposed speed factor table, SpdFctTbl
+  summary: Speed factor [1 1] (default) | vector
+  group: ''
+  block_parameter: SpdFctTbl
+  values: '[1 1] (default) | vector'
+```
 
 #### Options
 
@@ -302,7 +372,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `SpdFctTbl` |
 | **Values:** | `[1 1]` (default) | `vector` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Steering

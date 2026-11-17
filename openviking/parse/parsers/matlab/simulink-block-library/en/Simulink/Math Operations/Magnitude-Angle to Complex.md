@@ -14,6 +14,25 @@ language: en
 # Magnitude-Angle to Complex
 
 ## Ports
+```yaml
+ports:
+- name: '|u|'
+  summary: Magnitude scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ∠u
+  summary: Radian phase angle scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Magnitude or radian phase angle scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Complex signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -105,8 +124,58 @@ output elements. If one input is a scalar, it maps to the corresponding
 component (magnitude or angle) of all the complex output signals.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input
+  summary: Type of input Magnitude (default) | Angle | Magnitude and angle
+  group: ''
+  block_parameter: Input
+  type: character vector
+  values: '''Magnitude'' | ''Angle'' | ''Magnitude and angle'''
+  default: '''Magnitude and angle'''
+- name: Angle
+  summary: Phase angle of output 0 (default) | real-valued scalar, vector, or matrix
+  group: ''
+  block_parameter: ConstantPart
+  type: character vector
+  values: constant scalar
+  default: '''0'''
+- name: Magnitude
+  summary: Magnitude of output 0 (default) | real-valued scalar, vector, or matrix
+  group: ''
+  block_parameter: ConstantPart
+  type: character vector
+  values: real-valued scalar, vector, or matrix
+  default: '''0'''
+- name: Approximation method
+  summary: CORDIC or none None (default) | CORDIC
+  group: ''
+  block_parameter: ApproximationMethod
+  type: character vector
+  values: '''None'' | ''CORDIC'''
+  default: '''None'''
+- name: Number of iterations
+  summary: Number of iterations for CORDIC algorithm 11 (default) | positive integer, less than or equal to word length of
+    fixed-point input
+  group: ''
+  block_parameter: NumberOfIterations
+  type: character vector
+  values: positive integer, less than or equal to word length of fixed-point input
+  default: '''11'''
+- name: Scale output by reciprocal of gain factor
+  summary: Scale real and imaginary parts of complex output on (default) | off
+  group: ''
+  block_parameter: ScaleReciprocalGainFactor
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Input** — Type of input `Magnitude` (default) | `Angle` | `Magnitude and angle`
 
@@ -265,7 +334,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations

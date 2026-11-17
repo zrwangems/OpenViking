@@ -14,6 +14,12 @@ language: en
 # Negative Supply Rail
 
 ## Ports
+```yaml
+ports:
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,14 +27,18 @@ language: en
 
 Electrical conserving port associated to the negative supply rail
 negative voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant voltage
+  summary: Constant output voltage -1 V (default)
+  group: ''
+```
 
 ### **Constant voltage** — Constant output voltage `-1` `V` (default)
 
 The voltage at the output port relative to the Electrical
 Reference block ground port.
-
 ## Libraries
 
 Simscape / Electrical / Sources

@@ -15,10 +15,81 @@ chinese_source: worker-translation
 # S-Parameter Testbench
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Use Internal Configuration block
+  summary: 使用测试台内部配置模块 on（默认）| off
+  group: ''
+- name: Input power amplitude (dBm)
+  summary: 输入到 DUT 的功率 -30（默认）| 实值标量
+  group: ''
+- name: Number of ports
+  summary: 测量端口数 2（默认）| 标量整数
+  group: ''
+- name: Measure all S-parameters
+  summary: 测量整个 S 参数矩阵 on（默认）| off
+  group: ''
+- name: Export measurement results to sNp
+  summary: 将 S 参数数据保存到 Touchstone 文件 按钮
+  group: ''
+- name: S-Parameter elements
+  summary: 要测量的 S 参数元素 [1 1]（默认）| 两列矩阵
+  group: ''
+- name: Workspace variable name
+  summary: 用于将测量数据存储到 MATLAB 工作区的变量名 'SparamObjOut'（默认）| 字符向量
+  group: ''
+- name: Input frequency (Hz)
+  summary: DUT 的载波频率 2.1e9（默认）| 标量
+  group: ''
+- name: Baseband bandwidth (Hz)
+  summary: 输入信号的基带带宽 10e6（默认）| 正有限标量
+  group: ''
+- name: Reference Impedance (Ohm)
+  summary: 用于 S 参数测量的阻抗 50（默认）| 正有限标量
+  group: ''
+- name: Show S-Parameter spectrum
+  summary: 查看指定 S 参数在指定频率带宽上的测量值 off（默认）| on
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 在内部接地并隐藏 RF 电路端子 on（默认）| off
+  group: ''
+- name: FFT Length
+  summary: FFT  bin 数量 128（默认）| 标量整数，2 的幂
+  group: ''
+- name: Measurement Time
+  summary: 总时间持续时间 12.8 μs（默认）| 标量整数
+  group: ''
+- name: Ratio of wait time to measurement time
+  summary: 顺序测量之间的间歇 0（默认）| 标量整数
+  group: ''
+- name: Ratio of Envelope to Baseband bandwidths
+  summary: 内部求解器包络带宽与测量带宽的比值 8（默认）| 标量整数，2 的幂
+  group: ''
+- name: Adjust for steady state external signals
+  summary: 针对大稳态外部信号进行调整 关闭（默认）| 打开
+  group: ''
+- name: Output frequency (Hz)
+  summary: 输出载波频率 2.1e9（默认）| 正有限标量
+  group: ''
+- name: Approximate transient as small signal
+  summary: 为瞬态小信号分析选择一小部分频率 关闭（默认）| 打开
+  group: ''
+- name: Use all steady-state simulation frequencies for small signal analysis
+  summary: 使用为全谐波平衡非线性解自动选择的所有频率 打开（默认）| 关闭
+  group: ''
+- name: Small signal frequencies (Hz)
+  summary: 承载小信号瞬态的频率 2.1e9（默认）| 标量 | 向量
+  group: ''
+- name: Populate Frequencies
+  summary: 用于选择小信号瞬态频率的工具 按钮
+  group: ''
+```
 
 #### 主
 
@@ -173,7 +244,6 @@ DUT 不应包含任何在每个载波的包络上随时间变化的外部信号�
 #### 依赖关系
 
 要显示此参数，请清除 **Use all steady-state simulation frequencies for small signal analysis**。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Testbenches

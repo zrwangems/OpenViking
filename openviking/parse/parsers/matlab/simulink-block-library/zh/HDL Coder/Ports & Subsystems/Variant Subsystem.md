@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Variant Subsystem
 
 ## 端口
+```yaml
+ports:
+- name: In_1
+  summary: 与变体子系统中根级 Inport 模块对应的输入端口，接受与 Inport 模块相同的数据类型
+  direction: input
+- name: Out_1
+  summary: 与变体子系统中包含的根级 Outport 模块对应的输出端口，接受与 Outport 模块相同的数据类型
+  direction: output
+```
 
 ### 输入
 
@@ -28,8 +37,105 @@ Variant Subsystem 中包含的每个 Subsystem、Model 或 Subsystem Reference �
 Variant Subsystem 中包含的每个 Subsystem、Model 或 Subsystem Reference 模块代表一个变体选择。变体选择可以在其输出端包含 Outport 或 Connection Port（Simscape）模块。变体选择的输出端口数量可以与父 Variant Subsystem 模块的输出端口数量不同。但是，必须满足 Map Input and Output Ports of Variant Choices in Variant Subsystem 中描述的条件。
 
 Variant Subsystem 模块的未连接输出端口（非活动输出端口）输出接地值。要输出接地值以外的值，请选择 Outport 模块的 **Specify output when source is unconnected** 参数并指定一个值。
-
 ## 参数
+```yaml
+parameters:
+- name: Variant control mode
+  summary: 变体控制模式 expression（默认）| label | sim codegen switching
+  group: ''
+  block_parameter: VariantControlMode
+  type: character vector
+  values: '''expression'' | ''label'' | ''sim codegen switching'''
+  default: '''expression'''
+- name: Variant activation time
+  summary: 软件选择活动变体选择的时间 update diagram（默认）| update diagram analyze all choices | code compile | startup | runtime | inherit
+    from Simulink.VariantControl
+  group: ''
+  block_parameter: VariantActivationTime
+  type: character vector
+  values: '''update diagram'' | ''update diagram analyze all choices'' | ''code compile'' | ''startup''| ''runtime'''
+  default: '''update diagram'''
+- name: Variant control variable
+  summary: 用于确定活动变体选择的变量 Simulink.VariantControl 对象 | 标量变量 | Simulink.Parameter 对象 | struct
+  group: ''
+  block_parameter: VariantControlVariable
+  type: character vector
+  values: Simulink.VariantControl 对象、标量变量、Simulink.Parameter 对象、struct
+  default: ''''''
+- name: Variant choices enumeration
+  summary: 用于添加变体选择的枚举类，以模型或子系统文件名作为其成员
+  group: ''
+  block_parameter: VariantChoicesEnumeration
+  type: character vector
+  values: 使用 classdef 或 Simulink.defineIntEnumType 定义的枚举类
+  default: ''''''
+- name: Variant choices specifier
+  summary: 用于添加变体选项的 MATLAB 表达式，可以是任何求值为一维元胞数组的 MATLAB 表达式，该数组包含模型或子系统文件名，或与模型或子系统文件名匹配的文件名模式，也可以是字符串数组
+  group: ''
+  block_parameter: VariantChoicesSpecifier
+  type: character vector
+  values: 任何求值为一维文件名或文件名模式元胞数组的 MATLAB 表达式。
+  default: ''''''
+- name: Variant choices
+  summary: 变体选项、变体控制和条件表 空表（默认）
+  group: ''
+- name: Name (read-only)
+  summary: 变体选项名称 只读：Subsystem 和 Subsystem1（默认）| Variant Subsystem 中包含的选项名称
+  group: ''
+- name: Variant control label
+  summary: label 模式下的选项名称 true 或 false（默认）| 字符串
+  group: ''
+  block_parameter: VariantControl
+  values: 与变体选项关联的变体控制
+- name: Variant control switch
+  summary: 用于仿真和代码生成工作流的变体选项 (sim) | (codegen)
+  group: ''
+  block_parameter: VariantControl
+  values: 与变体选项关联的变体控制
+- name: Variant control expression
+  summary: 确定活动选项的条件表达式 true 或 false（默认）| 布尔条件表达式 | 表示布尔条件表达式的 Simulink.VariantExpression 对象 | (default)
+  group: ''
+  block_parameter: VariantControls
+  values: 与变体选项关联的变体控制
+- name: Condition (read-only)
+  summary: Simulink.VariantExpression 对象中的条件表达式 只读：N/A（默认）
+  group: ''
+- name: Label mode active choice
+  summary: label 模式下的活动选项名称 true (Subsystem)（默认）| false (Subsystem1)
+  group: ''
+  block_parameter: LabelModeActiveChoice
+  type: character vector
+  values: 如果未指定标签模式活动选项，则该值为空。如果指定了标签模式活动选项，则该值为活动选项的变体控制标签。
+  default: ''''''
+- name: Built-in empty choice
+  summary: 如果没有活动变体选项则输出零 off（默认）| on
+  group: ''
+  block_parameter: EmptyChoice
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Built-in passthrough choice
+  summary: 如果没有活动变体选项则将输入端口值赋给输出端口 off（默认）| on
+  group: ''
+  block_parameter: PassThrough
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Propagate conditions outside of variant subsystem
+  summary: 选择是否必须将变体子系统外部的组件告知底层模块的活动和非活动状态的选项 off（默认）| on
+  group: ''
+  block_parameter: PropagateVariantConditions
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Allow flexible interface
+  summary: 选择使变体子系统的接口灵活的选项 on（默认）| off
+  group: ''
+  block_parameter: AllowFlexibleInterface
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 要访问这些参数，请右键单击模块图标上的变体徽章，然后选择 **Block Parameters**。有关详细信息，请参阅 Variant Badges。
 
@@ -405,7 +511,6 @@ Variant Source 和 Variant Sink 模块：
 | **类型**：character vector |
 | **Value:** `'off'` | `'on'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Array-Vector Add
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入数组 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: V
+  summary: 要相加的向量 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output
+  summary: 输出 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -47,8 +62,43 @@ Array-Vector Add 模块的输出，以标量、向量、矩阵或 *N* 维数组�
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Add along dimension
+  summary: 沿其相加的维度 1（默认）| 正整数
+  group: 主选项卡
+- name: Vector (V) source
+  summary: 向量 *V* 的来源 Input port（默认）| Dialog parameter
+  group: 主选项卡
+- name: Vector (V)
+  summary: 要相加的向量 [0.5 0.25]（默认）| 向量
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认）| on
+  group: 数据类型选项卡
+- name: Vector (V)
+  summary: '向量数据类型 Inherit: Same word length as input（默认）| fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Inherit same as accumulator（默认）| Inherit: Inherit same as first input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 输出最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 输出最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -160,7 +210,6 @@ Array-Vector Add 模块的输出，以标量、向量、矩阵或 *N* 维数组�
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

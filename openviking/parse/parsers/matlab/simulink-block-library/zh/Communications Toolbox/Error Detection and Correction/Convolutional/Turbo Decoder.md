@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Turbo Decoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 并行级联码字列向量
+  direction: input
+  data_types: double | single
+- name: IntrInd
+  summary: 整数交织器索引列向量
+  direction: input
+  data_types: double
+- name: InInd
+  summary: 整数输入索引列向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 解码消息二进制列向量
+  direction: output
+```
 
 ### 输入
 
@@ -48,8 +66,52 @@ chinese_source: worker-translation
 ### **Out** — 解码消息二进制列向量
 
 解码消息，返回为长度为 *L* 的二进制列向量，其中 *L* 是解码二进制输出消息的长度。此输出继承 `In` 输入的数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Trellis structure
+  summary: 组成卷积码的网格描述 poly2trellis(4,[13 15],13)（默认）| 结构体
+  group: ''
+- name: numInputSymbols
+  summary: 编码器输入的符号数 2*K*
+  group: ''
+- name: numOutputSymbols
+  summary: 编码器输出的符号数 2*N*
+  group: ''
+- name: numStates
+  summary: 编码器中的状态数 2 的幂
+  group: ''
+- name: nextStates
+  summary: 下一状态整数矩阵
+  group: ''
+- name: outputs
+  summary: 输出八进制数矩阵
+  group: ''
+- name: Source of interleaver indices
+  summary: 交织器索引的来源 Property（默认）| Input port
+  group: ''
+- name: Interleaver indices
+  summary: 交织器索引 (64:-1:1).'（默认）| 整数列向量
+  group: ''
+- name: Source of input indices
+  summary: 输入索引的来源 Auto | Property | Input port
+  group: ''
+- name: Input indices
+  summary: 输入索引 getTurboIOIndices(64,2,3)（默认）| 整数列向量
+  group: ''
+- name: Decoding algorithm
+  summary: 解码算法 True APP（默认）| Max* | Max
+  group: ''
+- name: Number of scaling bits
+  summary: 缩放位数 3（默认）| 范围 [0, 8] 内的整数
+  group: ''
+- name: Number of decoding iterations
+  summary: 解码迭代次数 6（默认）| 正整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -140,7 +202,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 为模块生成 C 代码。除非模型发生变化，否则模型在后续仿真中重用 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Convolutional

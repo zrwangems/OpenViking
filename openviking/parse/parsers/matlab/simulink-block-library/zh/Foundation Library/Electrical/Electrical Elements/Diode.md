@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Diode
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,19 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与二极管负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Forward voltage
+  summary: 正向偏置二极管的最小电压 0.6 V（默认）| 正标量
+  group: ''
+- name: On resistance
+  summary: 正向偏置二极管的电阻 0.3 Ohm（默认）| 正标量
+  group: ''
+- name: Off conductance
+  summary: 反向偏置二极管的电导 1e-8 1/Ohm（默认）| 正标量
+  group: ''
+```
 
 ### **Forward voltage** — 正向偏置二极管的最小电压 `0.6 V`（默认）| 正标量
 
@@ -39,7 +59,6 @@ chinese_source: worker-translation
 ### **Off conductance** — 反向偏置二极管的电导 `1e-8 1/Ohm`（默认）| 正标量
 
 反向偏置二极管的电导。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

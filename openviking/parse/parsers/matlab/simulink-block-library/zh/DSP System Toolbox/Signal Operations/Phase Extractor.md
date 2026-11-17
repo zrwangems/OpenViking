@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Phase Extractor
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 输入信号向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output 1
+  summary: 解缠相位向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -33,8 +44,16 @@ chinese_source: worker-translation
 模块保持输入大小和维度不变，输出端口速率等于输入端口速率。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Unwrap phase only within the frame
+  summary: 仅在帧内解缠相位 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Unwrap phase only within the frame** — 仅在帧内解缠相位 `off`（默认）| `on`
 
@@ -46,7 +65,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Entity Transport Delay
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入实体 SimEvents 实体
+  direction: input
+- name: ti
+  summary: 瞬时延迟 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | bus
+- name: Port_1
+  summary: 延迟实体 SimEvents 实体
+  direction: output
+- name: n
+  summary: 延迟实体数量 实数标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -46,8 +63,24 @@ SimEvents 实体传输中的瞬时延迟。*ti* 是实体速度的倒数。有�
 要启用此端口，请启用 **Output number of entities in block, n** 参数
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Capacity
+  summary: 指定模块的容量 inf（默认） | 标量
+  group: ''
+  block_parameter: Capacity
+  type: 字符向量
+  values: '''inf'' | 实数标量'
+  default: '''inf'''
+- name: Output number of entities in block, n
+  summary: 输出模块中存在的延迟实体数量 off（默认） | on
+  group: ''
+  block_parameter: ShowNumberEntitiesInBlock
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Capacity** — 指定模块的容量 inf（默认） | 标量
 
@@ -74,7 +107,6 @@ SimEvents 实体传输中的瞬时延迟。*ti* 是实体速度的倒数。有�
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Continuous SimEvents

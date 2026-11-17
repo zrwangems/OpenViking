@@ -14,6 +14,14 @@ language: en
 # Outport
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Outport signal scalar | vector
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image | datetime
+```
 
 ### Input
 
@@ -26,8 +34,142 @@ the block is not a root-level output port. The complexity and data type
 of the block output are the same as its input.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image` | `datetime`
-
 ## Parameters
+```yaml
+parameters:
+- name: Port number
+  summary: Position of port on parent block 1 (default) | real integer
+  group: Main
+  block_parameter: Port
+  values: '"1" (default) | real integer in quotes'
+- name: Signal name
+  summary: Signal name ' ' (default) | character vector
+  group: Main
+  block_parameter: SignalName
+  type: character vector
+  values: character vector
+  default: ''' '''
+- name: Icon display
+  summary: Icon display Port number (default) | Signal name | Port number and signal name
+  group: Main
+  block_parameter: IconDisplay
+  type: character vector
+  values: '''Signal name'' | ''Port number'' | ''Port number and signal name'''
+  default: '''Port number'''
+- name: Specify output when source is unconnected
+  summary: Specify unconnected output value off (default) | on
+  group: Main
+  block_parameter: OutputWhenUnconnected
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Constant value
+  summary: Output value when the block is not connected 0 (default) | scalar | vector
+  group: Main
+  block_parameter: OutputWhenUnconnectedValue
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vectors as 1-D on (default) | off
+  group: Main
+  block_parameter: VectorParamsAs1DForOutWhenUnconnected
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Ensure outport is virtual
+  summary: Ensure that outport is virtual off (default) | on
+  group: Main
+  block_parameter: EnsureOutportIsVirtual
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Output when disabled
+  summary: Output when disabled held (default) | reset
+  group: Main
+  block_parameter: OutputWhenDisabled
+  type: character vector
+  values: '''held'' | ''reset'''
+  default: '''held'''
+- name: Initial output
+  summary: Initial output for conditionally executed subsystems [] (default) | scalar | structure
+  group: Main
+  block_parameter: InitialOutput
+  type: character vector
+  values: '''[]'' | scalar | structure'
+  default: '''[]'''
+- name: Minimum
+  summary: Minimum output value [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  type: character vector
+  values: '''[ ]''| scalar'
+  default: '''[ ]'''
+- name: Maximum
+  summary: Maximum output value [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  type: character vector
+  values: '''[ ]''| scalar'
+  default: '''[ ]'''
+- name: Data type
+  summary: 'Output data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string''
+    | ''Enum: <class name>'' | ''Bus: <object name>'' | ''ValueType: <object name>'' | ''<data type expression>'' | Simulink.ImageType(480,640,3)'
+  default: '''Inherit: auto'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output as nonvirtual bus in parent model
+  summary: Output as nonvirtual bus in parent model off (default) | on
+  group: Signal Attributes
+  block_parameter: BusOutputAsStruct
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Unit (e.g., m, m/s^2, N\*m)
+  summary: Physical unit of the input signal to the block inherit (default) | <Enter unit>
+  group: Signal Attributes
+  block_parameter: Unit
+  type: character vector
+  values: '''inherit'' | ''<Enter unit>'''
+  default: '''inherit'''
+- name: Port dimensions (-1 for inherited)
+  summary: Port dimensions -1 (default) | integer | [integer, integer]
+  group: Signal Attributes
+  block_parameter: PortDimensions
+  type: character vector
+  values: '''-1'' | integer | [integer, integer]'
+  default: '''-1'''
+- name: Variable-size signal
+  summary: Allow variable-size signals Inherit (default) | No | Yes
+  group: Signal Attributes
+  block_parameter: VarSizeSig
+  type: character vector
+  values: '''Inherit'' | ''No'' | ''Yes'''
+  default: '''Inherit'''
+- name: Signal type
+  summary: Output signal type auto (default) | real | complex
+  group: Signal Attributes
+  block_parameter: SignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Sample time (-1 for inherited)
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''-1'''
+```
 
 ### Main
 
@@ -613,7 +755,6 @@ within the model.
 | **Type:** character vector |
 | **Values:** scalar |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sinks

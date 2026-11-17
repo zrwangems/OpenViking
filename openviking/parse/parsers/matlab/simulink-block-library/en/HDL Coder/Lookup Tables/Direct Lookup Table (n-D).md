@@ -14,6 +14,29 @@ language: en
 # Direct Lookup Table (n-D)
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Index i1 input values scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_N
+  summary: Index N input values scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: T
+  summary: Table data vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: Output element, vector, or 2-D matrix scalar | vector | 2-D matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### Input
 
@@ -59,8 +82,89 @@ from table** parameter. The output data type is the same as
 the table data type.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of table dimensions
+  summary: Number of dimensions of table data 2 (default) | 1 | 3 | 4 | ...
+  group: Main
+  block_parameter: NumberOfTableDimensions
+  type: character vector
+  values: '''1'' | ''2'' | ''3'' | ''4'' | ... |''30'''
+  default: '''2'''
+- name: Make table an input
+  summary: Provide table data as a block input off (default) | on
+  group: Main
+  block_parameter: TableIsInput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Table data
+  summary: Table of output values [4 5 6; 16 19 20; 10 18 23] (default) | scalar | vector | matrix | N-D array
+  group: Main
+  block_parameter: Table
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''[4 5 6;16 19 20;10 18 23]'''
+- name: Inputs select this object from table
+  summary: Specify whether output is an element, vector, or 2-D matrix Element (default) | Vector | 2-D Matrix
+  group: Main
+  block_parameter: InputsSelectThisObjectFromTable
+  type: character vector
+  values: '''Element'' | ''Vector'' | ''2-D Matrix'''
+  default: '''Element'''
+- name: Diagnostic for out-of-range input
+  summary: Block action when input is out of range Warning (default) | None | Error
+  group: Main
+  block_parameter: DiagnosticForOutOfRangeInput
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Remove protection against out-of-range input in generated code
+  summary: Remove code that checks for out-of-range input values off (default) | on
+  group: Code generation
+  block_parameter: RemoveProtectionInput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Table minimum
+  summary: Minimum value table data can have [] (default) | finite, real, double, scalar
+  group: Table Attributes
+  block_parameter: TableMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Table maximum
+  summary: Maximum value table data can have [] (default) | finite, real, double, scalar
+  group: Table Attributes
+  block_parameter: TableMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Table data type
+  summary: 'Data type of table data Inherit: Inherit from ''Table data'' (default) | double | single | half | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum:
+    <class name> | <data type expression>'
+  group: Table Attributes
+  block_parameter: TableDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit from ''Table data'''' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''|''Enum:
+    <class name>''|''<data type expression>'''
+  default: '''Inherit: Inherit from ''Table data'''''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Table Attributes
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -386,7 +490,6 @@ Select this parameter to prevent the fixed-point tools from overriding the data 
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Lookup Tables HDL Coder / Lookup Tables

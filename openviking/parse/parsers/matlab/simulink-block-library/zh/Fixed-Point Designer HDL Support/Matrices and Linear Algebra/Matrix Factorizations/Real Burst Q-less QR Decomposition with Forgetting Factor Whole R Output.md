@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Real Burst Q-less QR Decomposition with Forgetting Factor Whole R Output
 
 ## 端口
+```yaml
+ports:
+- name: A(i,:)
+  summary: 实矩阵 *A* 的行 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: 是否清除内部状态 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: R
+  summary: 经济型 QR 分解矩阵 *R* 向量
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 模块是否就绪 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -91,8 +118,31 @@ chinese_source: worker-translation
 `validIn` 信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of columns in matrix A
+  summary: 输入矩阵 *A* 的列数 4（默认）| 正整数值标量
+  group: ''
+  block_parameter: n
+  type: character vector
+  values: positive integer-valued scalar
+  default: '4'
+- name: Forgetting factor
+  summary: 对矩阵每一行进行分解后应用的遗忘因子 0.99（默认）| 实正标量
+  group: ''
+  block_parameter: forgetting_factor
+  type: character vector
+  values: real positive scalar
+  default: '0'
+- name: Regularization parameter
+  summary: 正则化参数 0（默认）| 实非负标量
+  group: ''
+  block_parameter: regularizationParameter
+  type: character vector
+  values: real nonnegative scalar
+  default: '0'
+```
 
 ### **Number of columns in matrix A** — 输入矩阵 *A* 的列数 `4`（默认）| 正整数值标量
 
@@ -137,7 +187,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：real nonnegative scalar |
 | **默认值**：`0` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations

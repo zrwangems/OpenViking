@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Circuit Breaker (Three Phase)
 
 ## 端口
+```yaml
+ports:
+- name: vT
+  summary: 标量控制端口物理信号
+  direction: input
+- name: ~1
+  summary: 可扩展三相端口电气
+  direction: input
+- name: ~2
+  summary: 可扩展三相端口电气
+  direction: input
+- name: +
+  summary: 正端口电气
+  direction: input
+- name: '-'
+  summary: 负端口电气
+  direction: input
+```
 
 ### 输入
 
@@ -59,8 +77,26 @@ Electrical control port`。
 `Expanded three-phase ports| Electrical control
 port` 或 `Composite three-phase ports|
 Electrical control port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 连接和门极控制端口 Composite three-phase ports | PS control port（默认）| Composite three-phase ports| Electrical control port
+    | Expanded three-phase ports | PS control port | Expanded three-phase ports| Electrical control port
+  group: ''
+- name: Closed resistance
+  summary: 闭合电阻 0.001 Ohm（默认）
+  group: ''
+- name: Open conductance
+  summary: 断开电导 1e-6 1/Ohm（默认）
+  group: ''
+- name: Threshold
+  summary: 阈值电压 0.5 V（默认）
+  group: ''
+- name: Breaker Behavior
+  summary: '*vT* 升至阈值以上时的断路器行为 当电流在 vT >= 之后过零时打开 Threshold（默认）| Open when vT >= Threshold`'
+  group: ''
+```
 
 ### **Modeling option** — 连接和门极控制端口 `Composite three-phase ports | PS control port`（默认）| `Composite three-phase ports| Electrical control port` | `Expanded three-phase ports | PS control port` | `Expanded three-phase ports| Electrical control port`
 
@@ -88,7 +124,6 @@ Threshold`，断路器在电压升至阈值以上时立即断开每相。当控�
 
 当控制端口 **vT** 的值大于或等于
 **Threshold** 参数的值时的断路器行为。断路器可以在电压升至阈值以上时立即断开，也可以在其电流也过零时断开。
-
 ## 所属库
 
 Simscape / Electrical / Switches & Breakers

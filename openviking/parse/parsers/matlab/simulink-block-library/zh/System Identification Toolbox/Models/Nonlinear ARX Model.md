@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Nonlinear ARX Model
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: 仿真输入数据 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1(Out1)
+  summary: 仿真输出 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -40,8 +51,25 @@ Mux (Simulink) 模块来生成向量信号。
 对于具有 *Ny* 个输出的模型返回为 *Ny* 元素向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Model
+  summary: 要仿真的非线性 ARX 模型 idnlarx 对象
+  group: ''
+- name: Initial conditions
+  summary: 仿真的初始条件指定 Input and output values（默认）| State values
+  group: ''
+- name: Input level
+  summary: 稳态输入信号电平 0（默认）| 标量
+  group: ''
+- name: Output level
+  summary: 稳态输出信号电平 0（默认）| 标量
+  group: ''
+- name: 将初始状态指定为向量
+  summary: 初始状态值 0（默认）| 向量
+  group: ''
+```
 
 ### **Model** — 要仿真的非线性 ARX 模型 `idnlarx` 对象
 
@@ -114,7 +142,6 @@ values`。
 #### 依赖关系
 
 要启用此参数，请将 `Initial conditions` 指定为 `State values`。
-
 ## 所属库
 
 System Identification Toolbox / Models

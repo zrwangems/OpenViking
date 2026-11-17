@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Poppet Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 阀杆位移，m，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -31,8 +43,49 @@ chinese_source: worker-translation
 ### **S** — 阀杆位移，m，物理信号
 
 阀控制部件的位移，以 m 为单位，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Poppet geometry
+  summary: 阀芯类型 Cylindrical stem（默认）| Round ball
+  group: ''
+- name: Valve seat specification
+  summary: 阀座几何形状 Sharp-edged（默认）| Conical
+  group: ''
+- name: Ball diameter
+  summary: 球形控制部件直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Seat orifice diameter
+  summary: 阀座孔口直径 7e-3 m（默认）| 正标量
+  group: ''
+- name: Stem diameter
+  summary: 圆柱形阀杆直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Seat cone angle
+  summary: 阀座开口角度 120 deg（默认）| 正标量
+  group: ''
+- name: Poppet position when in the seat
+  summary: 控制部件偏移量 0 m（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的面积 inf m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 off（默认）| on
+  group: ''
+```
 
 ### **Poppet geometry** — 阀芯类型 `Cylindrical stem`（默认）| `Round ball`
 
@@ -108,7 +161,6 @@ chinese_source: worker-translation
 ### **Pressure recovery** — 是否考虑面积扩大时的压力增加 `off`（默认）| `on`
 
 是否考虑当流体从较小横截面积区域流向较大横截面积区域时的压力增加。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

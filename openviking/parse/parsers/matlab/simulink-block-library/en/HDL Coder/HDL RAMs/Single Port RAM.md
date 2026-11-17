@@ -14,6 +14,24 @@ language: en
 # Single Port RAM
 
 ## Ports
+```yaml
+ports:
+- name: din
+  summary: Write data input Scalar (default)
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | fixed point
+- name: addr
+  summary: Write address Scalar (default)
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: we
+  summary: Write enable Scalar (default)
+  direction: input
+  data_types: Boolean
+- name: dout
+  summary: Output data Scalar (default)
+  direction: output
+```
 
 ### Input
 
@@ -48,8 +66,24 @@ memory location that you specify.
 ### **dout** — Output data `Scalar` (default)
 
 Output data from address, `addr`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Address port width
+  summary: Address bit width 8 (default)
+  group: ''
+  block_parameter: ram_size
+  type: string scalar | character vector
+  values: A minimum value of 2 and maximum value of 29
+  default: '''8'''
+- name: Output data during write
+  summary: Controls output data New data (default) | Old data
+  group: ''
+  block_parameter: dout_type
+  type: string scalar | character vector
+  values: '"New data" | "Old data"'
+  default: '''New data'''
+```
 
 ### **Address port width** — Address bit width `8` (default)
 
@@ -82,7 +116,6 @@ Specified as either:
 | **Type:** string scalar | character vector |
 | **Value:** `"New data"` | `"Old data"` |
 | **Default:** `'New data'` |
-
 ## Libraries
 
 HDL Coder / HDL RAMs

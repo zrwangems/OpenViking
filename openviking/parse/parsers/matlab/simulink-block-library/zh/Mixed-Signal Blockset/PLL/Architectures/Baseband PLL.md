@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Baseband PLL
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 来自基带 VCO 的输入信号 标量
+  direction: input
+  data_types: double
+- name: Filt
+  summary: 环路滤波器输出 标量
+  direction: output
+  data_types: double
+- name: PD
+  summary: 鉴相器输出 标量
+  direction: output
+  data_types: double
+- name: VCO
+  summary: VCO 输出 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +61,75 @@ chinese_source: worker-translation
 VCO 在相位域中的输出，以标量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Loop filter type
+  summary: 确定如何定义环路滤波器 Transfer function（默认）| 2nd order passive | 3rd order passive | 4th order passive
+  group: ''
+  block_parameter: Ftype
+  type: double
+  values: Transfer function | 2nd order passive | 3rd order passive | 4th order passive
+  default: Transfer function
+- name: VCO input sensitivity (Hz/V)
+  summary: VCO 输出频率的变化量度量 100e6（默认）| 正实数标量
+  group: ''
+  block_parameter: Kvco
+  type: double
+  values: 正实数标量
+  default: 100e6
+- name: Charge pump current (A)
+  summary: 电荷泵输出电流 5e3（默认）| 正实数标量
+  group: ''
+  block_parameter: Icp
+  type: double
+  values: 正实数标量
+  default: 5e3
+- name: Min clock divider value
+  summary: 时钟分频器可对输入频率进行分频的最小值 100（默认）| 正实数标量
+  group: ''
+  block_parameter: Nmin
+  type: double
+  values: 正实数标量
+  default: '100'
+- name: Loop bandwidth (Hz)
+  summary: 开环传递函数幅值变为 1 时的频率 50e3（默认）| 正实数标量
+  group: ''
+  block_parameter: Fc
+  type: double
+  values: 正实数标量
+  default: 50e3
+- name: 相位裕度（度）
+  summary: 环路带宽处开环传递函数的相位与 180° 之差 45（默认）| 正实数标量
+  group: ''
+  block_parameter: phi
+  type: double
+  values: 正实数标量
+  default: '45'
+- name: 分子
+  summary: 环路滤波器传递函数的分子 [1.9212e-10, 5e-05]（默认）| 实数标量 | 实数值向量
+  group: ''
+  block_parameter: Fn
+  type: double
+  values: 实数标量 | 实数值标量
+  default: '[1.9212e-10, 5e-05]'
+- name: 分母
+  summary: 环路滤波器传递函数的分母 [2.0157e-15, 3.0576e-09, 0]（默认）| 实数值向量
+  group: ''
+  block_parameter: Fd
+  type: double
+  values: 实数值向量
+  default: '[2.0157e-15, 3.0576e-09, 0]'
+- name: 开环分析
+  summary: 绘制开环预仿真分析 on（默认）| off
+  group: ''
+- name: 闭环分析
+  summary: 绘制闭环预仿真分析 on（默认）| off
+  group: ''
+- name: 绘制环路动态
+  summary: 绘制 PLL 系统的环路动态 按钮
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -192,7 +278,6 @@ passive` 或 `4th order passive`。
 ### **绘制环路动态** — 绘制 PLL 系统的环路动态 按钮
 
 点击以绘制 PLL 系统的预仿真环路动态。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Architectures

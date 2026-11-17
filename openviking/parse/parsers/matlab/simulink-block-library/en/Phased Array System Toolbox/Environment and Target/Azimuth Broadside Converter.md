@@ -14,6 +14,29 @@ language: en
 # Azimuth Broadside Converter
 
 ## Ports
+```yaml
+ports:
+- name: az
+  summary: Azimuth angle scalar | vector of real-values
+  direction: input
+  data_types: double
+- name: bsd
+  summary: Broadside angle scalar | vector of real-values
+  direction: input
+  data_types: double
+- name: el
+  summary: Elevation angle scalar | vector of real-values
+  direction: input
+  data_types: double
+- name: az
+  summary: Azimuth angle scalar | vector of real-values
+  direction: output
+  data_types: double
+- name: bsd
+  summary: Broadside angle scalar | vector of real-values
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -78,8 +101,13 @@ To enable this port, set **Conversion Mode** to
 **azimuth -> broadside**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Conversion mode
+  summary: Angle conversion type broadside -> azimuth (default) | azimuth -> broadside
+  group: ''
+```
 
 ### **Conversion mode** — Angle conversion type **broadside -> azimuth** (default) | **azimuth -> broadside**
 
@@ -89,7 +117,6 @@ Angle conversion type, specified as
 | --- | --- |
 | **broadside -> azimuth** | Convert direction expressed in broadside and elevation angles to azimuth and elevation angles. |
 | **azimuth -> broadside** | Convert direction expressed in azimuth and elevation angles to broadside and elevation angles. |
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

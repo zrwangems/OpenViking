@@ -14,6 +14,13 @@ language: en
 # Frame Rate Display
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -26,8 +33,13 @@ array. *T* is the number of frames in a video or image sequence, and
 *C* is the number of color channels.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Update rate
+  summary: Frequency of updates 10 (default) | positive scalar
+  group: ''
+```
 
 ### **Update rate** — Frequency of updates `10` (default) | positive scalar
 
@@ -42,7 +54,6 @@ average video frame rate.
 
 If the input port of Frame Rate Display block is not connected to a
 signal, the block displays the base (fastest) rate of the Simulink® model.
-
 ## Libraries
 
 Computer Vision Toolbox / Sinks

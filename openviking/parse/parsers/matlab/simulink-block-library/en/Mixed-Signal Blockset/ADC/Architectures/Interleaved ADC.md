@@ -14,6 +14,33 @@ language: en
 # Interleaved ADC
 
 ## Ports
+```yaml
+ports:
+- name: analog
+  summary: Analog input signal scalar
+  direction: input
+  data_types: double
+- name: start
+  summary: External clock to start conversion scalar | vector
+  direction: input
+  data_types: double | Boolean
+- name: Offset calibration
+  summary: Offset error calibration at analog input scalar | vector
+  direction: input
+  data_types: double
+- name: Gain calibration
+  summary: Gain error calibration at analog input scalar | vector
+  direction: input
+  data_types: double
+- name: digital
+  summary: Converted digital output signal scalar | vector
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ready
+  summary: Determines whether analog to digital conversion is complete scalar | vector
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -76,8 +103,97 @@ fixed-point type or a 64-bit integer type, the data type of the
 **ready** signal defaults to Boolean.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of bits
+  summary: Number of physical output bits for all ADC cores 8 (default) | scalar | vector
+  group: Configuration
+  block_parameter: NBits
+  type: character vector
+  values: scalar | vector
+  default: '8'
+- name: Input range
+  summary: ADC dynamic range [-1 1] (default) | 2-element row vector | [NADCs x 2] matrix
+  group: Configuration
+  block_parameter: InputRange
+  type: character vector
+  values: 2-element row vector | [NADCs x 2] matrix
+  default: '[-1 1]'
+- name: Linearly interpolate analog input to find sampled value
+  summary: Sub-sample interpolation with sinusoidal conversion start signal off (default) | on
+  group: Configuration
+- name: Number of ADCs (N)
+  summary: Number of ADC cores to interleave 4 (default) | positive real integer
+  group: Configuration
+  block_parameter: NADCs
+  type: character vector
+  values: positive real integer
+  default: '4'
+- name: Match output to input scale
+  summary: Inherit output polarity and data type from input off (default) | on
+  group: Configuration
+- name: Output polarity
+  summary: Defines ADC output polarity Auto (default) | Bipolar | Unipolar
+  group: Configuration
+  block_parameter: OutputPolarity
+  type: character vector
+  values: Auto | Bipolar | Unipolar
+  default: Auto
+- name: Output data type
+  summary: Defines ADC output data type double (default) | single | (u)int8 | (u)int16 | (u)int32 | fixdt(OutputPolarity,NBits)
+  group: Configuration
+  block_parameter: OutDataType
+  type: character vector
+  values: double | single | (u)int8 | (u)int16 | (u)int32 | fixdt(OutputPolarity,NBits)
+  default: double
+- name: Convert the output to scalar
+  summary: Convert output to scalar on (default) | off
+  group: Configuration
+- name: Sample time
+  summary: Fixed-step sample rate 6.25e-12 (default) | positive real scalar
+  group: Configuration
+  block_parameter: SampleTime
+  type: character vector
+  values: positive real scalar
+  default: '6.25e-12'
+- name: Simulate using
+  summary: Define how to simulate ADC Code generation (default) | Interpreted execution
+  group: Configuration
+- name: Enable linearity impairments
+  summary: Enable linearity impairments in ADC simulation off (default) | on
+  group: Impairments
+- name: Offset error
+  summary: Shifts quantization steps by specific value 0 LSB (default) | real scalar
+  group: Impairments
+  block_parameter: OffsetError
+  type: character vector
+  values: real scalar
+  default: 0 LSB
+- name: Gain error
+  summary: Error on slope of ADC transfer curve 0 LSB (default) | real scalar
+  group: Impairments
+  block_parameter: GainError
+  type: character vector
+  values: real scalar
+  default: 0 LSB
+- name: Enable timing impairments
+  summary: Enable timing impairments in ADC simulation off (default) | on
+  group: Impairments
+- name: Conversion delay (seconds)
+  summary: Latency of ADC 0 (default) | nonnegative real scalar
+  group: Impairments
+  block_parameter: ConversionDelay
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Enable offset calibration port
+  summary: Enable offset calibration port off (default) | on
+  group: Impairments
+- name: Enable gain calibration port
+  summary: Enable gain calibration port off (default) | on
+  group: Impairments
+```
 
 ### Configuration
 
@@ -329,7 +445,6 @@ calibration is complete.
 
 Select to enable the **gain calibration** port. The value at this
 port is multiplied by the analog input to calibrate the gain error.
-
 ## Libraries
 
 Mixed-Signal Blockset / ADC / Architectures

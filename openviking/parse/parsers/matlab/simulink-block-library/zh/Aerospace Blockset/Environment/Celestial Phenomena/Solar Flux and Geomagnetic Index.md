@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Solar Flux and Geomagnetic Index
 
 ## 端口
+```yaml
+ports:
+- name: Year
+  summary: 年份标量
+  direction: input
+  data_types: double
+- name: DOY
+  summary: 年积日标量
+  direction: input
+  data_types: double
+- name: UTC (sec)
+  summary: 协调世界时 (UCT) 标量
+  direction: input
+  data_types: double
+- name: TJD
+  summary: 协调世界时 (UTC) 标量
+  direction: input
+  data_types: double
+- name: F107A
+  summary: F10.7 通量的 81 天平均值标量
+  direction: output
+  data_types: double
+- name: F107
+  summary: 前一日 F10.7 通量日值标量
+  direction: output
+  data_types: double
+- name: aph
+  summary: 磁指数信息 1×7 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -92,8 +123,52 @@ F10.7 通量的 81 天平均值，以年积日
   有关详细信息，请参阅局限性。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Space weather data file
+  summary: 空间天气数据的 MAT 文件 aeroSpaceWeatherData.mat（默认）| MAT 文件名
+  group: ''
+  block_parameter: SpaceWeatherDataFile
+  type: 字符向量
+  values: '''aeroSpaceWeatherData.mat'' | MAT 文件名'
+  default: '''aeroSpaceWeatherData.mat'''
+- name: Input time specification
+  summary: 输入时间格式 Year, day, sec（默认）| Julian date
+  group: ''
+  block_parameter: InputSpec
+  type: 字符向量
+  values: '''Year, day, sec.'' | ''Julian date'''
+  default: '''Year, day, sec.'''
+- name: F10.7 extrapolation method
+  summary: f107Average 和 f107Daily 的外推方法 None - clip（默认）| Constant | Least squares fit
+  group: ''
+  block_parameter: F107ExtrapMethod
+  type: 字符向量
+  values: '''None - clip'' | ''Constant'' | ''Least squares fit'''
+  default: '''None - clip'''
+- name: F10.7 extrapolation value
+  summary: 要分配给 f107Average 并用于计算 f107Daily 的外推值 150.0（默认）| 标量
+  group: ''
+  block_parameter: F107ExtrapValue
+  type: 字符向量
+  values: '''150.0'' | 标量'
+  default: '''150.0'''
+- name: Magnetic index extrapolation method
+  summary: 磁指数信息的外推方法 None - clip（默认）| Constant | IGRF
+  group: ''
+  block_parameter: MagneticIndexExtrapMethod
+  type: 字符向量
+  values: '''None - clip'' | ''Constant'' | ''IGRF'''
+  default: '''None - clip'''
+- name: Magnetic index extrapolation value
+  summary: 用于计算磁指数元素的外推值 4.0（默认）| 标量
+  group: ''
+  block_parameter: MagneticIndexExtrapValue
+  type: 字符向量
+  values: '''4.0'' | 标量'
+  default: '''4.0'''
+```
 
 ### **Space weather data file** — 空间天气数据的 MAT 文件 `aeroSpaceWeatherData.mat`（默认）| MAT 文件名
 
@@ -306,7 +381,6 @@ Geomagnetic Index 模块将使用重叠部分的实际日值。为计算非重�
 | **类型**：字符向量 |
 | **值**：`'4.0'` | 标量 |
 | **默认值**：`'4.0'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Celestial Phenomena

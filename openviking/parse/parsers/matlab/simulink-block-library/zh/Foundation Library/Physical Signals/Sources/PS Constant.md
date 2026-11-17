@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # PS Constant
 
 ## 端口
+```yaml
+ports:
+- name: O
+  summary: 输出物理信号，类型由模块参数值物理信号决定
+  direction: output
+```
 
 ### 输出
 
@@ -23,15 +29,19 @@ chinese_source: worker-translation
 输出物理信号。信号值和单位由 **Constant** 参数的值和单位决定。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Constant
+  summary: 信号值和单位 1 1（默认值）
+  group: ''
+```
 
 ### **Constant** — 信号值和单位 `1 1`（默认值）
 
 端口 **O** 处输出信号的值和单位。第一个编辑框表示信号值。您可以指定正值和负值。
 
 第二个组合框表示输出信号的单位。默认情况下，单位为 `1`（无单位）。您可以从下拉列表中选择单位，或键入所需的单位名称（如 `rpm`），或有效的表达式（如 `rad/s`）。有关更多信息以及单位缩写列表，请参阅如何在模块对话框中指定单位和单位定义。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Sources

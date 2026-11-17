@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Line Segment
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 局部参考坐标系 frame
+  direction: unspecified
+- name: G
+  summary: 几何 geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -26,8 +35,37 @@ chinese_source: worker-translation
 ### **G** — 几何 geometry
 
 表示线段的几何。您可以将此端口连接到 Planar Contact Force 模块，以对线段上的接触进行建模。
-
 ## 参数
+```yaml
+parameters:
+- name: Length
+  summary: 线段长度 1 m（默认）| 正标量
+  group: ''
+- name: Type
+  summary: 可视化设置 From Geometry（默认）| None
+  group: ''
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化设置 Simple（默认）| Advanced
+  group: ''
+- name: Diffuse Color
+  summary: 线段颜色 [0.5 0.5 0.5]（默认）| 三元素向量 | 四元素向量
+  group: ''
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: ''
+- name: Specular Color
+  summary: 镜面反射光颜色 [0.5 0.5 0.5 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: ''
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: ''
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: ''
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值范围约束在 0–128 的标量
+  group: ''
+```
 
 ### **Length** — 线段长度 1 `m`（默认）| 正标量
 
@@ -113,7 +151,6 @@ chinese_source: worker-translation
 
 1. **Type** 为 `From Geometry`
 2. **Visual Properties** 为 `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Curves and Surfaces

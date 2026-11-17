@@ -14,6 +14,14 @@ language: en
 # Waveform Generator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Generated output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+```
 
 ### Output
 
@@ -23,8 +31,68 @@ Output signal specified by an entry in the **Waveform Definition**
 table.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output Signal
+  summary: Waveform for output signal 1 (default) | integer
+  group: Main
+  block_parameter: SelectedSignal
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Waveform Definition
+  summary: Waveform signal notations constant | gaussian(mean,variance,seed) | pulse(amplitude,trigger_time,duration) | sawtooth(amplitude,frequence,phase_offset)
+    | sin(amplitude,frequence,phase_offset) | square(amplitude,frequence,phase_offset) | step(step_time,initial_value,final_value)
+  group: Main
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Specify the output data type double (default) | Inherit: Inherit via back propagation | single | int8 | int32
+    | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | int16 | ''uint16''
+    | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | fixdt(1,16,2^0,0) | fixdt(1,16,2^0,0) | ''<data type
+    expression>'''
+  default: '''double'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Sample time
+  summary: Time interval between samples 0.1 (default) | scalar
+  group: Signal Attributes
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''0.1'''
+```
 
 ### Main
 
@@ -264,7 +332,6 @@ for more information.
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'0.1'` |
-
 ## Libraries
 
 Simulink / Sources

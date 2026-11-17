@@ -14,6 +14,17 @@ language: en
 # Programmable Signal Generator (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: abc
+  summary: Three-phase sinusoidal signal vector
+  direction: output
+  data_types: single | double
+- name: m
+  summary: Signal measurements vector
+  direction: output
+  data_types: single | double
+```
 
 ### Output
 
@@ -29,8 +40,145 @@ Magnitude, frequency, phase, and angle of the sine wave of all three
 phases of the sinusoidal signal, returned as a vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Block sample time 1e-5 (default) | 0 | positive scalar
+  group: ''
+- name: Variation configuration
+  summary: Type of magnitude variation Constant (default) | Ramp | Step | Modulation | Table
+  group: Magnitude
+- name: Magnitude (value)
+  summary: Magnitude of generated three-phase sine wave 100 (default) | scalar
+  group: Magnitude
+- name: Rate of change (value/s)
+  summary: Magnitude rate of change 100 (default) | scalar
+  group: Magnitude
+- name: Step value (value)
+  summary: Magnitude step value 100 (default) | scalar
+  group: Magnitude
+- name: Modulation magnitude
+  summary: Modulation magnitude 50 (default) | scalar
+  group: Magnitude
+- name: Modulation frequency
+  summary: Modulation frequency 10 (default) | scalar
+  group: Magnitude
+- name: Start time
+  summary: Start time of magnitude variation 0.1 (default) | scalar
+  group: Magnitude
+- name: Stop time
+  summary: Stop time of magnitude variation 0.6 (default) | scalar
+  group: Magnitude
+- name: Table data
+  summary: Magnitude table values [0 30 60 90] (default) | vector
+  group: Magnitude
+- name: Time values
+  summary: Magnitude time values [0 0.3 0.6 0.9] (default) | vector
+  group: Magnitude
+- name: Variation configuration
+  summary: Type of frequency variation Constant (default) | Ramp | Step | Modulation | Table
+  group: Frequency
+- name: Frequency (Hz)
+  summary: Frequency of generated three-phase sine wave 100 (default) | scalar
+  group: Frequency
+- name: Rate of change (Hz/s)
+  summary: Frequency rate of change 100 (default) | scalar
+  group: Frequency
+- name: Step value (Hz)
+  summary: Frequency step value 100 (default) | scalar
+  group: Frequency
+- name: Modulation magnitude
+  summary: Frequency modulation magnitude 50 (default) | scalar
+  group: Frequency
+- name: Modulation frequency
+  summary: Frequency modulation frequency 10 (default) | scalar
+  group: Frequency
+- name: Start time
+  summary: Start time of frequency variation 0.1 (default) | scalar
+  group: Frequency
+- name: Stop time
+  summary: Stop time of frequency variation 0.6 (default) | scalar
+  group: Frequency
+- name: Table data
+  summary: Frequency table values [0 30 60 90] (default) | vector
+  group: Frequency
+- name: Time values
+  summary: Frequency time values [0 0.3 0.6 0.9] (default) | vector
+  group: Frequency
+- name: Variation configuration
+  summary: Type of phase variation Constant (default) | Ramp | Step | Modulation | Table
+  group: Phase
+- name: Phase shift (deg)
+  summary: Phase shift of generated three-phase sine wave 100 (default) | scalar
+  group: Phase
+- name: Rate of change (deg/s)
+  summary: Phase rate of change 100 (default) | scalar
+  group: Phase
+- name: Step value (deg)
+  summary: Phase step value 100 (default) | scalar
+  group: Phase
+- name: Modulation magnitude
+  summary: Phase modulation magnitude 50 (default) | scalar
+  group: Phase
+- name: Modulation frequency
+  summary: Phase modulation frequency 10 (default) | scalar
+  group: Phase
+- name: Start time
+  summary: Start time of phase variation 0.1 (default) | scalar
+  group: Phase
+- name: Stop time
+  summary: Stop time of phase variation 0.6 (default) | scalar
+  group: Phase
+- name: Table data
+  summary: Phase table values [0 30 60 90] (default) | vector
+  group: Phase
+- name: Time values
+  summary: Phase time values [0 0.3 0.6 0.9] (default) | vector
+  group: Phase
+- name: Enable harmonic A
+  summary: Harmonic A overlap off (default) | on
+  group: Harmonics
+- name: Harmonic sequence
+  summary: Type of harmonic A sequence Zero Sequence (default) | Positive Sequence | Negative Sequence
+  group: Harmonics
+- name: Harmonic order
+  summary: Order of harmonic A 3 (default) | scalar
+  group: Harmonics
+- name: Harmonic magnitude
+  summary: Magnitude of harmonic A 50 (default) | scalar
+  group: Harmonics
+- name: Harmonic phase shift
+  summary: Phase shift of harmonic A 180 (default) | scalar
+  group: Harmonics
+- name: Start time
+  summary: Start time of harmonic A overlap 0.1 (default) | scalar
+  group: Harmonics
+- name: Stop time
+  summary: Stop time of harmonic A overlap 0.6 (default) | scalar
+  group: Harmonics
+- name: Enable harmonic B
+  summary: Harmonic B overlap off (default) | on
+  group: Harmonics
+- name: Harmonic sequence
+  summary: Type of sequence of harmonic B Zero Sequence (default) | Positive Sequence | Negative Sequence
+  group: Harmonics
+- name: Harmonic order
+  summary: Order of harmonic B 3 (default) | scalar
+  group: Harmonics
+- name: Harmonic magnitude
+  summary: Magnitude of harmonic B 50 (default) | scalar
+  group: Harmonics
+- name: Harmonic phase shift
+  summary: Phase shift of harmonic B 180 (default) | scalar
+  group: Harmonics
+- name: Start time
+  summary: Start time of harmonic B overlap 0.1 (default) | scalar
+  group: Harmonics
+- name: Stop time
+  summary: Stop time of harmonic B overlap 0.6 (default) | scalar
+  group: Harmonics
+```
 
 ### **Sample time** — Block sample time `1e-5` (default) | 0 | positive scalar
 
@@ -480,7 +628,6 @@ frequency.
 
 To enable this parameter, select the **Enable harmonic
 B** check box.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

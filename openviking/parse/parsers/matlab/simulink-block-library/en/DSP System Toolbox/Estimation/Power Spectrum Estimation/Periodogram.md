@@ -14,6 +14,17 @@ language: en
 # Periodogram
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -54,8 +65,43 @@ channels and generates an
 matrix output.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement
+  summary: Measurement type Power spectral density (default) | Mean-square spectrum
+  group: ''
+- name: Window
+  summary: Window type Hamming (default) | Bartlett | Blackman | Boxcar | Chebyshev | Hann | Hanning | Kaiser | Triang
+  group: ''
+- name: Beta
+  summary: Beta 5 (default) | scalar
+  group: ''
+- name: Window sampling
+  summary: Window sampling Symmetric (default) | Periodic
+  group: ''
+- name: FFT implementation
+  summary: FFT implementation Auto (default) | Radix-2 | FFTW
+  group: ''
+- name: Stopband attenuation in dB
+  summary: Stopband attenuation in dB 50 (default) | scalar
+  group: ''
+- name: Inherit FFT length from input dimensions
+  summary: Inherit FFT length off (default) | on
+  group: ''
+- name: FFT length
+  summary: Number of data points 256 (default) | scalar
+  group: ''
+- name: Number of spectral averages
+  summary: Number of spectral averages 4 (default) | scalar
+  group: ''
+- name: Inherit sample time from input
+  summary: Inherit sample time from input on (default) | off
+  group: ''
+- name: Sample time of original time series
+  summary: Sample time of original time series 1 (default) | scalar
+  group: ''
+```
 
 ### **Measurement** — Measurement type `Power spectral density` (default) | `Mean-square spectrum`
 
@@ -247,7 +293,6 @@ time-domain signal.
 This parameter becomes visible only when you
 clear the `Inherit sample time from input` check
 box.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

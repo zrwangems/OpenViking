@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # To Multimedia File
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 彩色图像或视频帧数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: 图像或视频帧矩阵的红色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: 图像或视频帧矩阵的绿色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: 图像或视频帧矩阵的蓝色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Y
+  summary: 图像或视频帧矩阵的亮度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cb
+  summary: 图像或视频帧矩阵的蓝色差色度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cr
+  summary: 图像或视频帧矩阵的红色差色度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Audio
+  summary: 音频信号向量 | 矩阵
+  direction: input
+  data_types: single | double | int16 | int32 | uint8
+```
 
 ### 输入
 
@@ -124,8 +159,47 @@ chinese_source: worker-translation
 要启用此端口，将 **File name** 参数设置为包含音频数据的多媒体文件的名称。如果指定的文件同时包含音频和视频数据，将 **Write** 参数设置为 `Audio only` 或 `Video and audio`。
 
 **数据类型：** `single` | `double` | `int16` | `int32` | `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 文件名 output.wav（默认）| 字符向量
+  group: ''
+- name: File type
+  summary: 多媒体文件的文件类型 WAV（默认）| AVI | MJ2000 | WMA | WMV | MPEG4 | FLAC | MP3 | OGG | OPUS
+  group: ''
+- name: Write
+  summary: 多媒体类型 Audio only（默认）| Video and audio | Video only
+  group: ''
+- name: Audio Quality (0-100)
+  summary: 音频文件质量 75（默认）| [0 100] 范围内的整数
+  group: ''
+- name: Audio Bit Rate (kb/s)
+  summary: 音频压缩器 128（默认）| 64 | 96 | 160 | 192 | 256 | 320
+  group: ''
+- name: Audio compressor
+  summary: 音频压缩器 None (uncompressed)（默认）| 字符向量
+  group: ''
+- name: Audio data type
+  summary: 音频数据类型 16-bit integer（默认）| Determine from input data type | 8-bit integer | 24-bit integer | 32-bit integer | 32-bit
+    float | 64-bit float
+  group: ''
+- name: Video compressor
+  summary: 视频压缩器 None (uncompressed)（默认）| 字符向量
+  group: ''
+- name: Compression Factor (>1)
+  summary: 大于 1 的压缩因子 10（默认）| 大于 1 的整数
+  group: ''
+- name: File color format
+  summary: 文件颜色格式 RGB（默认）| YCbCr 4:2:2
+  group: ''
+- name: Image signal
+  summary: 图像信号 Separate color signals（默认）| One multidimensional signal
+  group: ''
+- name: Video Quality (0-100)
+  summary: 视频质量 75（默认）| [0 100] 范围内的整数
+  group: ''
+```
 
 ### **File name** — 文件名 `output.wav`（默认）| 字符向量
 
@@ -239,7 +313,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，将 **File type** 设置为 `MPEG4`，并将 **Write** 设置为 `Video only`。
-
 ## 所属库
 
 Audio System Toolbox / Sinks DSP System Toolbox / Sinks

@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # CCSDS LDPC Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据比特 标量 | 列向量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 编码输出数据比特 标量 | 向量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 模块就绪指示符 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -63,11 +86,12 @@ chinese_source: worker-translation
 当模块准备好接受下一帧的开始时，模块将此信号设置为 `1`。如果模块在 **nextFrame** 为 `0` 时接收到输入 **ctrl.start** 信号，模块将丢弃正在进行的帧并开始处理新数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

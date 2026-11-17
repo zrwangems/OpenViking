@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Filter Visualizer
 
 ## 端口
+```yaml
+ports:
+- name: Num
+  summary: 分子系数 列向量 | 行向量 | *L*×3 矩阵 | *L*×5 矩阵
+  direction: input
+  data_types: single | double
+- name: Den
+  summary: 分母系数 列向量 | 行向量 | *L*×3 矩阵 | *L*×5 矩阵
+  direction: input
+  data_types: single | double
+```
 
 ### 输入
 
@@ -39,8 +50,186 @@ chinese_source: worker-translation
 要启用此端口，请将 **Filter Type** 设置为 `IIR`。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Num Filters
+  summary: 要显示的滤波器数量 1（默认）| [1 20] 范围内的正整数
+  group: Scope 选项卡
+  block_parameter: NumFilters
+  type: 字符向量或字符串标量
+  values: '[1 20] 范围内的标量'
+- name: Filter Type
+  summary: 滤波器响应类型 FIR（默认）| IIR
+  group: Scope 选项卡
+  block_parameter: FilterType
+  type: 字符向量或字符串标量
+  values: '''FIR''、''IIR'''
+- name: Legend
+  summary: 显示信号图例 off（默认）| on
+  group: Scope 选项卡
+  block_parameter: ShowLegend
+  type: boolean
+- name: Magnitude Phase
+  summary: 绘制滤波器的幅值和相位响应 按钮
+  group: Scope 选项卡
+  block_parameter: PlotAsMagnitudePhase
+  type: boolean
+- name: FFT Length
+  summary: FFT 长度 2048（默认）| 正整数
+  group: Scope 选项卡
+  block_parameter: FFTLength
+  type: 字符向量或字符串标量
+  values: 标量
+- name: Normalized Frequency
+  summary: 以归一化单位显示频率响应 on（默认）| off
+  group: Scope 选项卡
+  block_parameter: NormalizedFrequency
+  type: boolean
+- name: Sample Rate (Hz)
+  summary: 采样率（Hz） 44100（默认）| 正标量
+  group: Scope 选项卡
+  block_parameter: SampleRate
+  type: 字符向量或字符串标量
+  values: 标量
+- name: Range
+  summary: 频率范围 [0,1]（默认）| 二元素数值向量
+  group: Scope 选项卡
+  block_parameter: FrequencyRange
+  type: 字符向量或字符串
+  values: 二元素数值向量
+- name: Display Unit
+  summary: 幅值单位 Magnitude (dB)（默认）| Magnitude | Magnitude squared
+  group: Scope 选项卡
+  block_parameter: MagnitudeDisplay
+  type: 字符向量或字符串标量
+  values: '''Magnitude (dB)''、''Magnitude''、''Magnitude squared'''
+- name: Display Precision
+  summary: 示波器显示中数据的精度 4（默认）| ≤ 15 的正整数
+  group: Scope 选项卡
+- name: Title
+  summary: 显示标题 字符向量 | 字符串
+  group: Scope 选项卡
+  block_parameter: Title
+  type: 字符向量或字符串
+- name: X-Scale
+  summary: 频率轴刻度 Linear（默认）| Log
+  group: Scope 选项卡
+  block_parameter: XScale
+  type: 字符向量或字符串
+  values: '''Linear''、''Log'''
+- name: Y-Limits
+  summary: '*y* 轴范围 [−25 25] | [ymin ymax]'
+  group: Scope 选项卡
+  block_parameter: YLimits
+  type: 字符向量或字符串
+  values: 二元素数值向量
+- name: Show Grid
+  summary: 显示内部网格线 on（默认）| off
+  group: Scope 选项卡
+  block_parameter: ShowGrid
+  type: logical
+- name: Plot Type
+  summary: 绘图类型 Line（默认）| Stairs | Stem
+  group: Scope 选项卡
+  block_parameter: PlotType
+  type: 字符向量或字符串标量
+  values: '''Stem''、''Line''、''Stairs'''
+- name: Font Size
+  summary: 标签字体大小 8.5（默认）| [1,100] 范围内的标量
+  group: Scope 选项卡
+  block_parameter: '-'
+  type: double
+- name: Background
+  summary: 窗口背景 黑色（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: Axes
+  summary: 坐标轴背景颜色 黑色（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: Labels
+  summary: 标签颜色 灰色（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: Line
+  summary: 用于线属性设置的滤波器 滤波器名称
+  group: Scope 选项卡
+- name: Visible
+  summary: 滤波器可见性 on（默认）| off
+  group: Scope 选项卡
+  block_parameter: Visible
+  type: logical
+- name: Style
+  summary: '线样式 -（默认）| : | -. | -- | None'
+  group: Scope 选项卡
+- name: Width
+  summary: 线宽 1.5（默认）| 0.5 | 1 | 2 | ...
+  group: Scope 选项卡
+- name: Marker
+  summary: 数据点标记 None（默认）| + | x | ...
+  group: Scope 选项卡
+- name: Color
+  summary: 线颜色 黄色（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: Copy to Clipboard
+  summary: 将显示发送到剪贴板 按钮
+  group: Scope 选项卡
+- name: Preserve Colors
+  summary: 复制到剪贴板时保留颜色 off（默认）| on
+  group: Scope 选项卡
+- name: Print
+  summary: 打印显示 按钮
+  group: Scope 选项卡
+- name: Channel
+  summary: 要获取测量的滤波器 Filter（默认）| 滤波器名称
+  group: Measurements 选项卡
+- name: Data Cursors
+  summary: 启用游标测量 按钮
+  group: Measurements 选项卡
+- name: Snap to data
+  summary: 将游标对齐到数据 off（默认）| on
+  group: Measurements 选项卡
+- name: Lock cursor spacing
+  summary: 锁定游标间距 off（默认）| on
+  group: Measurements 选项卡
+- name: Peak Finder
+  summary: 启用峰值查找器测量 按钮
+  group: Measurements 选项卡
+- name: Num Peaks
+  summary: 要显示的最大峰值数 3（默认）| 小于 100 的正整数
+  group: Measurements 选项卡
+- name: Min Height
+  summary: 示波器检测峰值的电平阈值 -Inf（默认）| 实标量值
+  group: Measurements 选项卡
+- name: Min Distance
+  summary: 相邻峰值之间的最小样本数 1（默认）| 正整数
+  group: Measurements 选项卡
+- name: Threshold
+  summary: 峰值与其相邻样本之间的最小高度差 0（默认）| 非负标量
+  group: Measurements 选项卡
+- name: Label Peaks
+  summary: 标记峰值 按钮
+  group: Measurements 选项卡
+- name: Filter Names
+  summary: 输入滤波器名称 []（默认）| 字符向量 | 字符串 | 字符串或字符向量数组
+  group: 仅属性检查器
+  block_parameter: FilterNames
+  type: 字符向量元胞数组或字符串数组
+- name: Maximize Axes
+  summary: 最大化绘图尺寸 Auto（默认）| Off | On
+  group: 仅属性检查器
+  block_parameter: MaximizeAxes
+  type: 字符向量或字符串标量
+- name: Axes Scaling
+  summary: Y 轴缩放模式 Auto（默认）| Manual | Updates | OnceAtStop
+  group: 仅属性检查器
+  block_parameter: AxesScaling
+  type: 字符向量或字符串标量
+- name: Number of Updates
+  summary: 缩放前的更新次数 100（默认）| 整数
+  group: 仅属性检查器
+  block_parameter: AxesScalingNumUpdates
+  type: 字符向量或字符串标量
+  values: 标量
+```
 
 ### Scope 选项卡
 
@@ -506,7 +695,6 @@ chinese_source: worker-translation
 | **模块参数：** `AxesScalingNumUpdates` |
 | **类型：** 字符向量或字符串标量 |
 | **值：** 标量 |
-
 ## 所属库
 
 DSP System Toolbox / Sinks

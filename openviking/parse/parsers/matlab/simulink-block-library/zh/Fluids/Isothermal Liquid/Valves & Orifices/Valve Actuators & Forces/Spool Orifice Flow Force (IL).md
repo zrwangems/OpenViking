@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Spool Orifice Flow Force (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 控制构件位移，m，物理信号
+  direction: input
+- name: F
+  summary: 液动力，N，物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -35,8 +50,37 @@ chinese_source: worker-translation
 ### **F** — 液动力，N，物理信号
 
 轴向液动力，单位为 N，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Orifice geometry
+  summary: 节流口几何形状 Round holes（默认）| Rectangular slot
+  group: ''
+- name: Diameter of round holes
+  summary: 圆孔直径 5e-3 m（默认）| 正标量
+  group: ''
+- name: Number of round holes
+  summary: 圆孔数量 6（默认）| 正整数
+  group: ''
+- name: Orifice width
+  summary: 矩形槽宽度 0.01 m（默认）| 正标量
+  group: ''
+- name: Spool travel between closed and open orifice
+  summary: 最大阀芯行程 1 m（默认）| 正标量
+  group: ''
+- name: Radial clearance
+  summary: 阀芯-阀套间隙 1e-5 m（默认）| 正标量
+  group: ''
+- name: Spool position at closed orifice
+  summary: 初始阀芯偏移 0 m（默认）| 标量
+  group: ''
+- name: Opening orientation
+  summary: 节流口面积变化方向 Positive spool displacement opens orifice（默认）| Negative spool displacement closes orifice
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+```
 
 ### **Orifice geometry** — 节流口几何形状 `Round holes`（默认）| `Rectangular slot`
 
@@ -89,7 +133,6 @@ chinese_source: worker-translation
 ### **Smoothing factor** — 数值平滑因子 `0.01`（默认）| 范围 [0,1] 内的正标量
 
 连续平滑因子，当阀处于接近打开或接近关闭位置时，为流量响应引入一层渐变。将此值设置为小于 1 的非零值，以提高这些工况下仿真的稳定性。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces

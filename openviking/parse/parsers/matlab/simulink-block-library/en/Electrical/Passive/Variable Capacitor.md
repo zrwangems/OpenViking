@@ -14,6 +14,18 @@ language: en
 # Variable Capacitor
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Capacitance physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -32,8 +44,25 @@ voltage.
 
 Electrical conserving port associated with the capacitor negative
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Equation
+  summary: Equation for block capacitance I = C*dV/dt (default) | I = C*dV/dt + dC/dt*V
+  group: ''
+- name: Minimum capacitance C>0
+  summary: Minimum capacitance 1e-9 F (default)
+  group: ''
+- name: Series resistance
+  summary: Series resistance 1e-6 Ohm (default)
+  group: ''
+- name: Initial voltage
+  summary: Initial output voltage 0 V (default)
+  group: ''
+- name: Initial charge
+  summary: Initial charge 0 C (default)
+  group: ''
+```
 
 ### **Equation** — Equation for block capacitance `I = C*dV/dt` (default) | `I = C*dV/dt + dC/dt*V`
 
@@ -77,7 +106,6 @@ The charge at the start of the simulation.
 This parameter is visible only when you select `I =
 C*dV/dt + dC/dt*V` for the
 **Equation** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive

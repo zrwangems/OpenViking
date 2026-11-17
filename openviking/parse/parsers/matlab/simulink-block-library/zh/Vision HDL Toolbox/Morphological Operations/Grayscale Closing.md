@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Grayscale Closing
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流标量
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | double | single | fi(0,N,0)
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 输出像素流标量
+  direction: output
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -45,8 +63,16 @@ chinese_source: worker-translation
 `pixelcontrol` 总线包含五个信号。这些信号描述像素的有效性及其在帧中的位置。有关详细信息，请参阅 Pixel Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Neighborhood
+  summary: 像素邻域 ones(3,3)（默认）| 由 1 和 0 组成的向量或矩阵
+  group: ''
+- name: Line buffer size
+  summary: 行存储器缓冲区大小 2048（默认）| 正整数
+  group: ''
+```
 
 ### **Neighborhood** — 像素邻域 `ones(3,3)`（默认）| 由 `1` 和 `0` 组成的向量或矩阵
 
@@ -59,7 +85,6 @@ chinese_source: worker-translation
 行存储器缓冲区大小，指定为正整数。请选择能够容纳水平行中有效像素数量的 2 的幂。如果指定的值不是 2 的幂，则缓冲区使用下一个最大的 2 的幂。
 
 该模块分配 (*n* – 1)×**Line buffer size** 个存储器位置来存储像素，其中 *n* 是 **Neighborhood** 参数值中的行数。
-
 ## 所属库
 
 Vision HDL Toolbox / Morphological Operations

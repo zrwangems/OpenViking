@@ -15,6 +15,103 @@ chinese_source: worker-translation
 # Simulation 3D Multirotor Pack
 
 ## 端口
+```yaml
+ports:
+- name: Body_T
+  summary: 机体平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor1_T
+  summary: 旋翼 1 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor2_T
+  summary: 旋翼 2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor3_T
+  summary: 旋翼 3 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor4_T
+  summary: 旋翼 4 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor5_T
+  summary: 旋翼 5 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor6_T
+  summary: 旋翼 6 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor7_T
+  summary: 旋翼 7 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor8_T
+  summary: 旋翼 8 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Sensor1_T
+  summary: 传感器 1 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Sensor2_T
+  summary: 传感器 2 平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: 机体旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor1_R
+  summary: 旋翼 1 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor2_R
+  summary: 旋翼 2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor3_R
+  summary: 旋翼 3 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor4_R
+  summary: 旋翼 4 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor5_R
+  summary: 旋翼 5 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor6_R
+  summary: 旋翼 6 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor7_R
+  summary: 旋翼 7 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rotor8_R
+  summary: 旋翼 8 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Sensor1_R
+  summary: 传感器 1 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Sensor2_R
+  summary: 传感器 2 旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: 多旋翼平移 11×3 数组
+  direction: output
+- name: Rotation
+  summary: 旋翼飞行器旋转 11×3 数组
+  direction: output
+```
 
 ### 输入
 
@@ -267,8 +364,155 @@ chinese_source: worker-translation
 
 该信号包含旋转 [roll、pitch、yaw]，单位为弧度，数组的每一行
 对应旋翼飞行器的一个骨骼。
-
 ## 参数
+```yaml
+parameters:
+- name: Rotor 1 translation
+  summary: 启用 Rotor1_T 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor1_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 2 translation
+  summary: 启用 Rotor2_T 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor2_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 3 translation
+  summary: 启用 Rotor3_T 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor3_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 4 translation
+  summary: 启用 Rotor4_T 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor4_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 5 translation
+  summary: 启用 Rotor5_T 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor5_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 6 translation
+  summary: 启用 Rotor6_T 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor6_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 7 translation
+  summary: 启用 Rotor7_T 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor7_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 8 translation
+  summary: 启用 Rotor8_T 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor8_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 1 rotation
+  summary: 启用 Rotor1_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor1_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 2 rotation
+  summary: 启用 Rotor2_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor2_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 3 rotation
+  summary: 启用 Rotor3_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor3_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 4 rotation
+  summary: 启用 Rotor4_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor4_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 5 rotation
+  summary: 启用 Rotor5_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor5_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 6 rotation
+  summary: 启用 Rotor6_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor6_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 7 rotation
+  summary: 启用 Rotor7_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor7_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 8 rotation
+  summary: 启用 Rotor8_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Rotor8_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sensor 1 translation
+  summary: 启用 Sensor1_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor1_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sensor 2 translation
+  summary: 启用 Sensor2_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor2_T
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sensor 1 rotation
+  summary: 启用 Sensor1_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor1_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sensor 2 rotation
+  summary: 启用 Sensor2_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor2_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Select input coordinate frame
+  summary: 输入坐标系 NED（默认）| Fixed-frame | ICRF
+  group: 输入
+  block_parameter: GeoRadioButton
+  values: '''NED''（默认）| ''Fixed-frame'' | ''ICRF'''
+```
 
 ### 推进
 
@@ -558,7 +802,6 @@ Simulation 3D Multirotor Pack 模块坐标系的详细信息，请参阅算法�
 | --- | --- |
 | **参数：** | `GeoRadioButton` |
 | **值：** | `'NED'`（默认）| `'Fixed-frame'` | `'ICRF'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Simulation 3D

@@ -15,6 +15,54 @@ chinese_source: worker-translation
 # Vehicle Body 3DOF Longitudinal
 
 ## 端口
+```yaml
+ports:
+- name: FExt
+  summary: 车辆质心处的外部力 array
+  direction: input
+- name: MExt
+  summary: 绕车辆质心的外部力矩 array
+  direction: input
+- name: FwF
+  summary: 前轴上的总纵向力 scalar
+  direction: input
+- name: FwR
+  summary: 后轴上的总纵向力 scalar
+  direction: input
+- name: Grade
+  summary: 道路坡度角 scalar
+  direction: input
+- name: FsF
+  summary: 前轴每轮的悬架力 vector
+  direction: input
+- name: FsR
+  summary: 后轴每轮的悬架力 vector
+  direction: input
+- name: WindXYZ
+  summary: 风速 array
+  direction: input
+- name: AirTemp
+  summary: 环境空气温度 scalar
+  direction: input
+- name: zF,R
+  summary: 前轴和后轴位置 vector
+  direction: input
+- name: zdotF,R
+  summary: 前轴和后轴速度 vector
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: xdot
+  summary: 车辆纵向速度 scalar
+  direction: output
+- name: FzF
+  summary: 前轮法向力 scalar
+  direction: output
+- name: FzR
+  summary: 后轮法向力 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -241,8 +289,106 @@ displacement, velocity`。
 ### **FzR** — 后轮法向力 `scalar`
 
 后轮单个车轮的法向力 *FzR*，沿车辆固定 *z* 轴方向，单位为 N。
-
 ## 参数
+```yaml
+parameters:
+- name: Ground interaction type
+  summary: 车轴与车辆的连接方式 Grade angle（默认）| Axle displacement, velocity | External suspension
+  group: ''
+- name: External forces
+  summary: FExt 输入端口 off（默认）| on
+  group: ''
+- name: External moments
+  summary: MExt 输入端口 off（默认）| on
+  group: ''
+- name: Air temperature
+  summary: AirTemp 输入端口 off（默认）| on
+  group: ''
+- name: Number of wheels on front axle, NF
+  summary: 前轮数量 2（默认）| scalar
+  group: ''
+- name: Number of wheels on rear axle, NR
+  summary: 后轮数量 2（默认）| scalar
+  group: ''
+- name: Mass, m
+  summary: 车辆质量 1200（默认）| scalar
+  group: ''
+- name: Horizontal distance from CG to front axle, a
+  summary: 前轴距离 1.4（默认）| scalar
+  group: ''
+- name: Horizontal distance from CG to rear axle, b
+  summary: 后轴距离 1.8（默认）| scalar
+  group: ''
+- name: CG height above axles, h
+  summary: 高度 0.35（默认）| scalar
+  group: ''
+- name: Longitudinal drag coefficient, Cd
+  summary: 阻力 .3（默认）| scalar
+  group: ''
+- name: Frontal area, Af
+  summary: 面积 2（默认）| scalar
+  group: ''
+- name: Initial position, x_o
+  summary: 位置 0（默认）| scalar
+  group: ''
+- name: Initial velocity, xdot_o
+  summary: 速度 0（默认）| scalar
+  group: ''
+- name: Longitudinal lift coefficient, Cl
+  summary: 升力 .1（默认）| scalar
+  group: ''
+- name: Initial vertical position, z_o
+  summary: 位置 -.35（默认）| scalar
+  group: ''
+- name: Initial vertical velocity, zdot_o
+  summary: 速度 0（默认）| scalar
+  group: ''
+- name: Inertia, Iyy
+  summary: 绕车身 y 轴 3500（默认）| scalar
+  group: ''
+- name: Longitudinal drag pitch moment, Cpm
+  summary: 阻力系数 .1（默认）| scalar
+  group: ''
+- name: Initial pitch angle, theta_o
+  summary: 俯仰角 0（默认）| scalar
+  group: ''
+- name: 初始角速度，q_o
+  summary: 俯仰速度 0（默认）| 标量
+  group: ''
+- name: 前轴刚度力数据，FskF
+  summary: 力 [-50, -1, 0, 2, 3, 52].*1.5e4（默认）| 向量
+  group: ''
+- name: 前轴位移数据，dzsF
+  summary: 位移 [-5e-3, -1e-4, 0, .2, .2001, .2051]（默认）| 向量
+  group: ''
+- name: 前轴阻尼力数据，FsbF
+  summary: 阻尼力 [-10000 -100 -10 0 10 100 10000]（默认）| 向量
+  group: ''
+- name: 前轴速度数据，dzdotsF
+  summary: 速度 [-10 -1 -.1 0 .1 1 10]（默认）| 向量
+  group: ''
+- name: 后轴刚度力数据，FskR
+  summary: 力 [-50, -1, 0, 2, 3, 52].*1e4（默认）| 向量
+  group: ''
+- name: 后轴位移数据，dzsR
+  summary: 位移 [-5e-3, -1e-4, 0, .2, .2001, .2051]（默认）| 向量
+  group: ''
+- name: 后轴阻尼力数据，FsbR
+  summary: 阻尼力 [-10000 -100 -10 0 10 100 10000]（默认）| 向量
+  group: ''
+- name: 后轴速度数据，dzdotsR
+  summary: 速度 [-10 -1 -.1 0 .1 1 10]（默认）| 向量
+  group: ''
+- name: 绝对气压，Pabs
+  summary: 压力 101325（默认）| 标量
+  group: ''
+- name: 空气温度，Tair
+  summary: 环境空气温度 273（默认）| 标量
+  group: ''
+- name: 重力加速度，g
+  summary: 重力 9.81（默认）
+  group: ''
+```
 
 #### 选项
 
@@ -423,7 +569,6 @@ displacement, velocity`。
 ### **重力加速度，g** — 重力 `9.81`（默认）
 
 重力加速度，*g*，单位为 m/s2。
-
 ## 所属库
 
 Powertrain Blockset / Vehicle Dynamics Vehicle Dynamics Blockset / Vehicle Body

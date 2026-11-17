@@ -14,6 +14,69 @@ language: en
 # Minimum Snap Polynomial Trajectory
 
 ## Ports
+```yaml
+ports:
+- name: Time
+  summary: Time point along trajectory scalar | vector
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: Waypoints positions along trajectory *n*-by-*p* matrix
+  direction: input
+  data_types: single | double
+- name: TimePoints
+  summary: Time points for waypoints of trajectory *p*-element row vector
+  direction: input
+  data_types: single | double
+- name: VelBC
+  summary: Velocity boundary conditions for waypoints *n*-by-*p* matrix
+  direction: input
+  data_types: single | double
+- name: AccelBC
+  summary: Acceleration boundary conditions for waypoints *n*-by-*p* matrix
+  direction: input
+  data_types: single | double
+- name: JerkBC
+  summary: Jerk boundary conditions for waypoints *n*-by-*p* matrix
+  direction: input
+  data_types: single | double
+- name: SnapBC
+  summary: Snap boundary conditions for waypoints *n*-by-*p* matrix
+  direction: input
+  data_types: single | double
+- name: q
+  summary: Positions of trajectory *n*-element vector | *n*-by-*m* matrix
+  direction: output
+  data_types: single | double
+- name: qd
+  summary: Velocities of trajectory *n*-element vector | *n*-by-*m* matrix
+  direction: output
+  data_types: single | double
+- name: qdd
+  summary: Accelerations of trajectory *n*-element vector | *n*-by-*m* matrix
+  direction: output
+  data_types: single | double
+- name: qddd
+  summary: Jerks of trajectory *n*-element vector | *n*-by-*m* matrix
+  direction: output
+  data_types: single | double
+- name: qdddd
+  summary: Snaps of trajectory *n*-element vector | *n*-by-*m* matrix
+  direction: output
+  data_types: single | double
+- name: TimeOfArrival
+  summary: Time of arrival at each waypoint *p*-element vector
+  direction: output
+  data_types: single | double
+- name: PolynomialCoefs
+  summary: Polynomial coefficients *n*(*p*–1)-by-10 matrix
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: Status of trajectory generation three-element vector of the form [SingularityStatus MaxIterStatus MaxTimeStatus]
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -224,8 +287,40 @@ exceeded `Maximum iterations`.
 To enable this output port, select `Show status output port`.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show boundary conditions input ports
+  summary: Accept boundary condition inputs off (default) | on
+  group: ''
+- name: Show polynomial coefficients output port
+  summary: Output polynomial coefficients off (default) | on
+  group: ''
+- name: Show status output port
+  summary: Output status off (default) | on
+  group: ''
+- name: Time allocation
+  summary: Enable time allocation off (default) | on
+  group: ''
+- name: Time weight
+  summary: Weight for time allocation 100 (default) | positive scalar
+  group: ''
+- name: Minimum segment time
+  summary: Minimum time segment length 0.1 (default) | positive scalar | (*p*–1)-element positive row vector
+  group: ''
+- name: Maximum segment time
+  summary: Maximum time segment length 1 (default) | positive scalar | (*p*–1)-element positive row vector
+  group: ''
+- name: Maximum iterations
+  summary: Maximum iterations for solver 1500 (default) | positive integer scalar
+  group: ''
+- name: Maximum time
+  summary: Maximum time for solver 10 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Show boundary conditions input ports** — Accept boundary condition inputs `off` (default) | `on`
 
@@ -321,7 +416,6 @@ Select the type of simulation to run from these options:
   `Interpreted execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 UAV Toolbox / Algorithms Robotics System Toolbox / Utilities

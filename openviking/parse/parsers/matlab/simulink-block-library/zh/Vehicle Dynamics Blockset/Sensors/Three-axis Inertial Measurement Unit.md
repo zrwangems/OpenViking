@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Three-axis Inertial Measurement Unit
 
 ## 端口
+```yaml
+ports:
+- name: A_b
+  summary: 实际加速度三元向量
+  direction: input
+  data_types: double
+- name: w
+  summary: 角速率三元向量
+  direction: input
+  data_types: double
+- name: w_dot
+  summary: 角加速度三元向量
+  direction: input
+  data_types: double
+- name: CG
+  summary: 重心位置三元向量
+  direction: input
+  data_types: double
+- name: g
+  summary: 重力三元向量
+  direction: input
+  data_types: double
+- name: A_meas
+  summary: 测量加速度三元向量
+  direction: output
+  data_types: double
+- name: w_meas
+  summary: 测量角速率三元向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -60,8 +91,134 @@ chinese_source: worker-translation
 来自陀螺仪的测量角速率，指定为三元向量，单位为弧度每秒。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: IMU location
+  summary: IMU 位置 [0 0 0]（默认）| 三元向量
+  group: ''
+  block_parameter: imu
+  type: 字符向量
+  values: 三元向量
+  default: '''[0 0 0]'''
+- name: Update rate
+  summary: 更新速率 0（默认）| 实数双精度标量
+  group: ''
+  block_parameter: a_Ts
+  type: 字符向量
+  values: 实数双精度标量
+  default: '''0'''
+- name: Second order dynamics for accelerometer
+  summary: 二阶动态特性 on（默认）| off
+  group: ''
+  block_parameter: dtype_a
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Accelerometer natural frequency (rad/sec)
+  summary: 加速度计自然频率 190（默认）| 实数双精度标量
+  group: ''
+  block_parameter: w_a
+  type: 字符向量
+  values: 实数双精度标量
+  default: '''190'''
+- name: Accelerometer damping ratio
+  summary: 加速度计阻尼比 0.707（默认）| 实数双精度标量
+  group: ''
+  block_parameter: z_a
+  type: 字符向量
+  values: 实数双精度标量
+- name: Accelerometer scale factor and cross-coupling
+  summary: 比例因子和交叉耦合 [1 0 0; 0 1 0; 0 0 1]（默认）| 3×3 矩阵
+  group: ''
+  block_parameter: a_sf_cc
+  type: 字符向量
+  values: 3×3 矩阵
+- name: Accelerometer measurement bias
+  summary: 加速度计测量偏置 [0 0 0]（默认）| 三元素向量
+  group: ''
+  block_parameter: a_bias
+  type: 字符向量
+  values: 三元素向量
+- name: Accelerometer upper and lower limits
+  summary: 加速度的最小值和最大值 [-inf -inf -inf inf inf inf]（默认）| 六元素向量
+  group: ''
+  block_parameter: a_sat
+  type: 字符向量
+  values: 六元素向量
+- name: Second-order dynamics for gyro
+  summary: 陀螺仪二阶动力学 on（默认）| off
+  group: ''
+  block_parameter: dtype_g
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Gyro natural frequency (rad/sec)
+  summary: 陀螺仪固有频率 190（默认）| 实数双精度标量
+  group: ''
+  block_parameter: w_g
+  type: 字符向量
+  values: 实数双精度标量
+- name: Gyro damping ratio
+  summary: 陀螺仪阻尼比 0.707（默认）| 实数双精度标量
+  group: ''
+  block_parameter: z_g
+  type: 字符向量
+  values: 实数双精度标量
+- name: Gyro scale factors and cross-coupling
+  summary: 陀螺仪比例因子和交叉耦合 [1 0 0; 0 1 0; 0 0 1]（默认）| 3×3 矩阵
+  group: ''
+  block_parameter: g_sf_cc
+  type: 字符向量
+  values: 3×3 矩阵
+- name: Gyro measurement bias
+  summary: 陀螺仪测量偏置 [0 0 0]（默认）| 三元素向量
+  group: ''
+  block_parameter: g_bias
+  type: 字符向量
+  values: 三元素向量
+- name: G-sensitive bias
+  summary: 速率的最大变化量 [0 0 0]（默认）| 三元素向量
+  group: ''
+  block_parameter: g_sens
+  type: 字符向量
+  values: 三元素向量
+  default: '''[0 0 0]'''
+- name: Gyro upper and lower limits
+  summary: 角速率的最小值和最大值 [-inf -inf -inf inf inf inf]（默认）| 六元素向量
+  group: ''
+  block_parameter: g_sat
+  type: 字符向量
+  values: 六元素向量
+  default: '''[-inf -inf -inf inf inf inf]'''
+- name: Noise on
+  summary: 白噪声 on（默认）| off
+  group: ''
+  block_parameter: a_rand
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Noise seeds
+  summary: 噪声种子 [23093 23094 23095 23096 23097 23098]（默认）| 六元素向量
+  group: ''
+  block_parameter: a_seeds
+  type: 字符向量
+  values: 六元素向量
+  default: '''[23093 23094 23095 23096 23097 23098]'''
+- name: Noise power
+  summary: 噪声功率 [0.001 0.001 0.001 0.0001 0.0001 0.0001]（默认）| 六元素向量
+  group: ''
+  block_parameter: a_pow
+  type: 字符向量
+  values: 六元素向量
+  default: '''[0.001 0.001 0.001 0.0001 0.0001 0.0001]'''
+```
 
 #### 主
 
@@ -358,7 +515,6 @@ IMU 的位置，同时也是加速度计组的位置，从载具重心沿载具�
 #### 依赖关系
 
 要启用此参数，请选中 **Noise on**。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Sensors

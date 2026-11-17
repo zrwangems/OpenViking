@@ -14,6 +14,21 @@ language: en
 # Dot Product
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First operand input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: Second operand input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Dot product output signal scalar | vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -38,8 +53,58 @@ Output signal resulting from the dot product calculation of the two input
 signals.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Require all inputs to have the same data type
+  summary: Require all inputs to have the same data type on (default) | off
+  group: ''
+  block_parameter: InputSameDT
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[ ]'''
+- name: Output data type
+  summary: 'Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation
+    | Inherit: Same as first input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Same as first input'' | ''Inherit: Inherit via back propagation''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+```
 
 ### **Require all inputs to have the same data type** — Require all inputs to have the same data type `on` (default) | `off`
 
@@ -267,7 +332,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / Math Operations

@@ -14,6 +14,25 @@ language: en
 # Horizontal Wind Model
 
 ## Ports
+```yaml
+ports:
+- name: DCM
+  summary: Direction cosine matrix 3-by-3 matrix
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: Wind speed 1-by-3 vector
+  direction: input
+  data_types: double
+- name: θwind
+  summary: Wind direction scalar
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: Wind velocity 3-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -56,8 +75,45 @@ Wind velocity, returned as a three-element signal in the same body coordinate re
 as the **DCM** input, in specified units.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in kts)'' | ''English (Velocity in ft/s)'''
+  default: '''Metric (MKS)'''
+- name: Wind speed source
+  summary: Wind speed source Internal (default) | External
+  group: ''
+  block_parameter: Vw_source
+  type: character vector
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Wind speed at altitude (m/s)
+  summary: Wind speed 15 (default) | scalar
+  group: ''
+  block_parameter: Vwind
+  type: character vector
+  values: scalar
+  default: '''15'''
+- name: Wind direction source
+  summary: Wind direction source Internal (default) | External
+  group: ''
+  block_parameter: W_source
+  type: character vector
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Wind direction at altitude (degrees clockwise from north)
+  summary: Wind direction 0 (default)
+  group: ''
+  block_parameter: Wdeg
+  type: character vector
+  values: scalar
+  default: '''0'''
+```
 
 ### **Units** — Input and output units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -169,7 +225,6 @@ source** to `Internal`.
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'0'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Wind

@@ -14,6 +14,25 @@ language: en
 # FIFO Read
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: FIFO from which to read data serialfifoptr
+  direction: input
+- name: MAX
+  summary: Maximum number of bytes to read from FIFO integer
+  direction: input
+- name: MIN
+  summary: Minimum number of bytes to read from FIFO integer
+  direction: input
+- name: D
+  summary: Parsed data read from FIFO vector
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: ENA
+  summary: Pass value of MAX through integer
+  direction: output
+```
 
 ### Input
 
@@ -62,8 +81,42 @@ that reads the `ENA` port.
 To make this port visible, set parameters **Max and Min
 read size ports** and **Enable
 passthrough**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum read size
+  summary: Maximum number of characters returned by block 1024 (default) | integer
+  group: ''
+  block_parameter: maxsize
+- name: Minimum read size
+  summary: Minimum number of characters returned by block 1 (default) | integer
+  group: ''
+  block_parameter: minsize
+- name: Read to delimiter
+  summary: Return delimited element sets on (default) | off
+  group: ''
+  block_parameter: usedelimiter
+- name: Delimiter
+  summary: Terminator value for delimited element sets 13 (default) | uint
+  group: ''
+  block_parameter: delimiter
+- name: Output vector type
+  summary: Specify output data type 8 bit uint null terminated (default) | count+32 bit int | count+32 bit uint | count+16
+    bit int | count+16 bit uint | 8 bit int null terminated
+  group: ''
+  block_parameter: outputtype
+- name: Max and Min read size ports
+  summary: Enable maximum and minimum input ports off (default) | on
+  group: ''
+  block_parameter: enable
+- name: Enable passthrough
+  summary: Enable passthrough of MAX value off (default) | on
+  group: ''
+  block_parameter: enableout
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+```
 
 ### **Maximum read size** — Maximum number of characters returned by block `1024` (default) | integer
 
@@ -201,7 +254,6 @@ that sample time is inherited.
 ```
 sampletime
 ```
-
 ## Libraries
 
 Simulink Real-Time / RS232

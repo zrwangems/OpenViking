@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # BLDC
 
 ## 端口
+```yaml
+ports:
+- name: LdTrq
+  summary: 电机上的负载转矩 标量
+  direction: input
+- name: Spd
+  summary: 电机轴转速 标量
+  direction: input
+- name: PhaseVolt
+  summary: 定子端电压 1×3 数组
+  direction: input
+- name: Info
+  summary: 总线信号 总线
+  direction: output
+- name: PhaseCurr
+  summary: a、b、c 相电流 1×3 数组
+  direction: output
+- name: MtrTrq
+  summary: 电机转矩 标量
+  direction: output
+- name: MtrSpd
+  summary: 电机转速 标量
+  direction: output
+```
 
 ### 输入
 
@@ -78,8 +102,57 @@ a、b、c 相电流，*ia*、*ib* 和 *ic*，单位为 A。
 #### 依赖
 
 要启用此端口，请将 **Mechanical input configuration** 参数设置为 `Torque`。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical input configuration
+  summary: 选择端口配置 Torque（默认）| Speed
+  group: 模块选项
+  block_parameter: port_config
+  values: Torque（默认）| Speed
+- name: Simulation type
+  summary: 选择仿真类型 Continuous（默认）| Discrete
+  group: 模块选项
+- name: Sample time (s)
+  summary: 离散积分采样时间 25e-6（默认）| 标量
+  group: 模块选项
+- name: Number of pole pairs
+  summary: 电机极对数 4（默认）| 标量
+  group: 参数
+- name: Stator resistance per phase (Ohm)
+  summary: 每相定子电阻 0.36（默认）| 标量
+  group: 参数
+- name: Stator d-axis inductance (H)
+  summary: d 轴定子电感 2e-4（默认）| 标量
+  group: 参数
+- name: Stator q-axis inductance (H)
+  summary: q 轴定子电感 2e-4（默认）| 标量
+  group: 参数
+- name: Permanent flux linkage constant (Wb)
+  summary: 磁链常数 0.0064（默认）| 标量
+  group: 参数
+- name: Inertia (kgm^2)
+  summary: 转子惯量 7.0616e-06（默认）| 标量
+  group: 参数
+- name: Viscous damping (Nm/rad/s)
+  summary: 粘性阻尼 2.6369e-06（默认）| 标量
+  group: 参数
+- name: Static friction (Nm)
+  summary: 静摩擦 0（默认）| scalar
+  group: 参数
+- name: Initial d-axis current (A)
+  summary: '*d''* 轴初始电流 0（默认）| scalar'
+  group: Initial Values
+- name: Initial q-axis current (A)
+  summary: '*q''* 轴初始电流 0（默认）| scalar'
+  group: Initial Values
+- name: Initial rotor mechanical position (rad)
+  summary: 转子初始机械位置 0（默认）| scalar
+  group: Initial Values
+- name: Initial rotor mechanical speed (rad/s)
+  summary: 转子初始机械速度 0（默认）| scalar
+  group: Initial Values
+```
 
 ### 模块选项
 
@@ -171,7 +244,6 @@ a、b、c 相电流，*ia*、*ib* 和 *ic*，单位为 A。
 #### 依赖关系
 
 要启用此参数，请将 **Mechanical input configuration** 设置为 `Torque`。
-
 ## 所属库
 
 Motor Control Blockset / Electrical Systems / Motors

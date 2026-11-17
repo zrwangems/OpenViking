@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Pulse Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电气
+  direction: unspecified
+- name: '-'
+  summary: 负电压电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,31 @@ chinese_source: worker-translation
 ### **-** — 负电压电气
 
 与脉冲电压源负电压相关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Initial value, V1
+  summary: 初始输出电压 0 V（默认）
+  group: ''
+- name: Pulse value, V2
+  summary: 高输出电压 0 V（默认）
+  group: ''
+- name: Pulse delay time, TD
+  summary: 脉冲延迟时间 0 s（默认）
+  group: ''
+- name: Pulse rise time, TR
+  summary: 脉冲上升时间 1e-9 s（默认）| 非负标量
+  group: ''
+- name: Pulse fall time, TF
+  summary: 脉冲下降时间 1e-9 s（默认）| 非负标量
+  group: ''
+- name: Pulse width, PW
+  summary: 输出脉冲时间宽度 Inf s（默认）| 正标量
+  group: ''
+- name: Pulse period, PER
+  summary: 输出脉冲周期 Inf s（默认）| 正标量
+  group: ''
+```
 
 ### **Initial value, V1** — 初始输出电压 `0` `V`（默认）
 
@@ -55,7 +87,6 @@ chinese_source: worker-translation
 ### **Pulse period, PER** — 输出脉冲周期 `Inf` `s`（默认）| 正标量
 
 输出脉冲的周期。对于默认值 `Inf` `s`，该模块产生一个具有无限周期的单脉冲。
-
 ## 所属库
 
 Simscape / Electrical / Sources Simscape / Electrical / Additional Components / SPICE Sources

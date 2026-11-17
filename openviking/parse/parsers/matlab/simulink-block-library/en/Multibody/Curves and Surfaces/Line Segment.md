@@ -14,6 +14,15 @@ language: en
 # Line Segment
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Local reference frame frame
+  direction: unspecified
+- name: G
+  summary: Geometry geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -28,8 +37,40 @@ specify the location and orientation of the line segment.
 Geometry that represents the line segment. You can connect this port to a
 Planar Contact Force block to model contacts on the
 line segment.
-
 ## Parameters
+```yaml
+parameters:
+- name: Length
+  summary: Line segment length 1 m (default) | positive scalar
+  group: ''
+- name: Type
+  summary: Visualization setting From Geometry (default) | None
+  group: ''
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: ''
+- name: Diffuse Color
+  summary: Line segment color [0.5 0.5 0.5] (default) | three-element vector | four-element vector
+  group: ''
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: ''
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: ''
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: ''
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: ''
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: ''
+```
 
 ### **Length** — Line segment length 1 `m` (default) | positive scalar
 
@@ -153,7 +194,6 @@ To enable this parameter, set:
 1. **Type** to `From Geometry`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Curves and Surfaces

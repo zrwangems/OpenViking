@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # TCP Send
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据向量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### 输入
 
@@ -23,8 +30,22 @@ chinese_source: worker-translation
 该模块接受指定为 *N*×1 数组的数据。该模块通过 TCP/IP 网络将此数据发送到接收主机。
 
 **数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Connection mode
+  summary: 将模块设置为服务器或客户端 Server（默认）| Client
+  group: ''
+- name: Remote IP Address
+  summary: 数据发送到的服务器的远程 IP 地址 192.168.1.2（默认）| 任何有效的 IP 地址
+  group: ''
+- name: Remote IP Port
+  summary: 数据发送到的服务器的远程 IP 端口 25000（默认）| [1 到 65,535]
+  group: ''
+- name: Local IP Port
+  summary: 发送主机的 IP 端口，数据从该端口发送 25001（默认）| [1 到 65,535]
+  group: ''
+```
 
 ### **Connection mode** — 将模块设置为服务器或客户端 `Server`（默认）| `Client`
 
@@ -53,7 +74,6 @@ chinese_source: worker-translation
 ### **Local IP Port** — 发送主机的 IP 端口，数据从该端口发送 `25001`（默认）| [1 到 65,535]
 
 指定发送数据的应用程序的端口号。此本地端口充当发送主机的监听端口。
-
 ## 所属库
 
 Simulink Coder Support Package for NXP FRDM-K64F Board

@@ -14,6 +14,33 @@ language: en
 # GMSK Modulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Data bits scalar
+  direction: input
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clear internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Modulated complex output data symbols complex scalar | complex column vector
+  direction: output
+  data_types: signed fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -92,8 +119,37 @@ To enable this port, set the **Output type** parameter to
 `Scalar`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Bandwidth time product
+  summary: Product of the bandwidth and symbol time for the Gaussian pulse shape 0.3 (default) | positive scalar value
+  group: Main
+- name: Pulse length
+  summary: Pulse length 8 (default) | positive integer in the range from 1 to 16
+  group: Main
+- name: Symbol prehistory
+  summary: Symbol prehistory 1 (default) | -1 | vector of –1s or 1s with length equal to *L* – 1
+  group: Main
+- name: Phase offset (rad)
+  summary: Phase offset of modulated waveform 0 (default) | numeric scalar in the range from -2\*π to 2\*π.
+  group: Main
+- name: Number of samples per symbol
+  summary: Number of samples per symbol 4 (default) | in the range 1 to 64
+  group: Main
+- name: Number of data points
+  summary: Number of data points 1024 (default) | positive integer within the range 65,536 and a power of 2
+  group: Main
+- name: Output type
+  summary: Output type Vector (default) | Scalar
+  group: Main
+- name: Output word length
+  summary: Output word length 16 (default) | positive scalar value with word length less than 16
+  group: Data Type
+- name: Enable reset input port
+  summary: Reset signal off (default) | on
+  group: Control Port
+```
 
 ### Main
 
@@ -163,7 +219,6 @@ Output word length, specified as a positive scalar with word length less than
 ### **Enable reset input port** — Reset signal `off` (default) | `on`
 
 Select this parameter to enable the **reset** input port.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

@@ -14,6 +14,27 @@ language: en
 # Longitudinal Controller Stanley
 
 ## Ports
+```yaml
+ports:
+- name: RefVelocity
+  summary: Reference velocity real scalar
+  direction: input
+- name: CurrVelocity
+  summary: Current velocity real scalar
+  direction: input
+- name: Direction
+  summary: Driving direction 1 (forward motion) | -1 (reverse motion)
+  direction: input
+- name: Reset
+  summary: Trigger to reset integral of velocity error 0 (hold steady) | nonzero scalar (reset)
+  direction: input
+- name: AccelCmd
+  summary: Acceleration command real scalar in the range [0, *M*A]
+  direction: output
+- name: DecelCmd
+  summary: Deceleration command real scalar in the range [0, *M*D]
+  direction: output
+```
 
 ### Input
 
@@ -52,8 +73,25 @@ Deceleration command, returned as a real scalar in the range [0,
 *M*D], where
 *M*D is the value of the **Maximum
 longitudinal deceleration (m/s^2)** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain, Kp
+  summary: Proportional gain 2.5 (default) | positive real scalar
+  group: ''
+- name: Integral gain, Ki
+  summary: Integral gain 1 (default) | positive real scalar
+  group: ''
+- name: Sample time (s)
+  summary: Sample time 0.05 (default) | positive real scalar
+  group: ''
+- name: Maximum longitudinal acceleration (m/s^2)
+  summary: Maximum longitudinal acceleration 3 (default) | positive real scalar
+  group: ''
+- name: Maximum longitudinal deceleration (m/s^2)
+  summary: Maximum longitudinal deceleration 6 (default) | positive real scalar
+  group: ''
+```
 
 ### **Proportional gain, Kp** — Proportional gain `2.5` (default) | positive real scalar
 
@@ -90,7 +128,6 @@ range [0, *M*D], where
 *M*D is the value of this parameter. Values
 above *M*D are set to
 *M*D.
-
 ## Libraries
 
 Automated Driving Toolbox / Vehicle Control

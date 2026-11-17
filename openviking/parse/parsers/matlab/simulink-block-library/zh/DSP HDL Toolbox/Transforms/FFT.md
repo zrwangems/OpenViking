@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # FFT
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 实数或复数值的标量或列向量
+  direction: input
+  data_types: fixed point | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | single | double
+- name: valid
+  summary: 指示输入数据有效 标量
+  direction: input
+  data_types: Boolean
+- name: log2FFTLen
+  summary: FFT 长度的 Log2 标量
+  direction: input
+  data_types: fixdt(0,M,0) where 1<M<6
+- name: loadFFTLen
+  summary: 指示有效 FFT 大小 标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 频率通道输出数据 实数或复数值的标量或列向量
+  direction: output
+  data_types: fixed point | double | single
+- name: valid
+  summary: 指示输出数据有效 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已准备好接收新输入数据 标量
+  direction: output
+  data_types: Boolean
+- name: start
+  summary: 指示输出帧的第一个有效周期 标量
+  direction: output
+  data_types: Boolean
+- name: end
+  summary: 指示输出帧的最后一个有效周期 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -189,8 +232,46 @@ butterfly outputs by two** 参数。
 **Enable end output port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Architecture
+  summary: 硬件实现 Streaming Radix 2^2（默认）| Burst Radix 2
+  group: 主要
+- name: FFT length source
+  summary: FFT 长度来源 Property（默认）| Input port
+  group: 主要
+- name: FFT length
+  summary: 用于一次 FFT 计算的数据点数 1024（默认）
+  group: 主要
+- name: Maximum FFT length
+  summary: 预期从输入端口获得的最高 FFT 长度 1024（默认）
+  group: 主要
+- name: Complex multiplication
+  summary: 复数乘法器的硬件实现 Use 4 multipliers and 2 adders（默认）| Use 3 multipliers and 5 adders
+  group: 主要
+- name: Output in bit-reversed order
+  summary: 输出数据的顺序 on（默认）| off
+  group: 主要
+- name: Input in bit-reversed order
+  summary: 输入数据的预期顺序 off（默认）| on
+  group: 主要
+- name: Divide butterfly outputs by two
+  summary: FFT 缩放 off（默认）| on
+  group: 主要
+- name: Rounding Method
+  summary: 内部定点计算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Enable reset input port
+  summary: 可选复位信号 off（默认）| on
+  group: 控制端口
+- name: Enable start output port
+  summary: 指示数据开始的可选控制信号 off（默认）| on
+  group: 控制端口
+- name: Enable end output port
+  summary: 指示数据结束的可选控制信号 off（默认）| on
+  group: 控制端口
+```
 
 ### 主要
 
@@ -332,7 +413,6 @@ order** 和 **Input in bit-reversed order** 参数
 
 启用模块上的输出 **end** 端口。此输出信号
 指示输出数据帧的最后一个样本。
-
 ## 所属库
 
 DSP HDL Toolbox / Transforms

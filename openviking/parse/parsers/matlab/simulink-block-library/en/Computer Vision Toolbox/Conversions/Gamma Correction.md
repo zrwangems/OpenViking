@@ -14,6 +14,25 @@ language: en
 # Gamma Correction
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: I'
+  summary: Gamma-corrected input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: I'
+  summary: Gamma-corrected output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: I
+  summary: Gamma-removed output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+```
 
 ### Input
 
@@ -72,8 +91,22 @@ To enable this port, set the **Operation** parameter to
 `De-gamma`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `uint8` | `uint16` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation
+  summary: Block operation Gamma (default) | De-gamma
+  group: ''
+- name: Gamma
+  summary: Gamma value 2.2 (default) | scalar
+  group: ''
+- name: Linear segment
+  summary: Linear segment on (default) | off
+  group: ''
+- name: Break point
+  summary: Break point value 0.018 (default) | scalar
+  group: ''
+```
 
 ### **Operation** — Block operation `Gamma` (default) | `De-gamma`
 
@@ -104,7 +137,6 @@ value at the end of the gamma curve linear segment. For more information, see Ga
 
 To enable this parameter, select the **Linear segment**
 parameter.
-
 ## Libraries
 
 Computer Vision Toolbox / Conversions

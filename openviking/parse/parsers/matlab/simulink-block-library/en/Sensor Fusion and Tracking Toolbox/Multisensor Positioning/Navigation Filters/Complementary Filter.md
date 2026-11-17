@@ -14,6 +14,29 @@ language: en
 # Complementary Filter
 
 ## Ports
+```yaml
+ports:
+- name: Accel
+  summary: Accelerometer readings in sensor body coordinate system (m/s2) matrix
+  direction: input
+  data_types: single | double
+- name: Gyro
+  summary: Gyroscope readings in sensor body coordinate system (rad/s) matrix
+  direction: input
+  data_types: single | double
+- name: Mag
+  summary: Magnetometer readings in sensor body coordinate system (µT) matrix
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: Orientation of sensor body frame relative to navigation frame matrix | array
+  direction: output
+  data_types: single | double
+- name: Angular Velocity
+  summary: Angular velocity in sensor body coordinate system (rad/s) matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -81,8 +104,28 @@ The number of input samples, *N*, determines the output size,
 *M*.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reference frame
+  summary: Navigation reference frame NED (default) | ENU
+  group: ''
+- name: Orientation format
+  summary: Orientation output format quaternion (default) | Rotation matrix
+  group: ''
+- name: Accelerometer gain
+  summary: Accelerometer gain 0.01 (default) | real scalar in range [0, 1]
+  group: ''
+- name: Enable Magnetometer input
+  summary: Accept magnetometer readings input on (default) | off
+  group: ''
+- name: Magnetometer gain
+  summary: Magnetometer gain 0.01 (default) | real scalar in range [0, 1]
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted Execution (default) | Code Generation
+  group: ''
+```
 
 ### **Reference frame** — Navigation reference frame `NED` (default) | `ENU`
 
@@ -142,7 +185,6 @@ Select the type of simulation to run from these options:
   does not change. This option requires additional startup time, but the speed of
   subsequent simulations is comparable to `Interpreted
   execution`.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Navigation Filters Navigation Toolbox / Multisensor Positioning / Navigation Filters

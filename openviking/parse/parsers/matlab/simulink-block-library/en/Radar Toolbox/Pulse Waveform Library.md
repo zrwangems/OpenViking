@@ -14,6 +14,17 @@ language: en
 # Pulse Waveform Library
 
 ## Ports
+```yaml
+ports:
+- name: Idx
+  summary: Waveform index positive integer
+  direction: input
+  data_types: double
+- name: Y
+  summary: Pulse waveform samples complex-valued column vector | complex-valued matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -34,8 +45,23 @@ complex-valued matrix.
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: Sample rate of the output waveform 1e6 (default) | positive scalar
+  group: ''
+- name: Specification of each waveform in the library
+  summary: Pulse waveforms in the library {{'Rectangular','PRF',1e4,'PulseWidth',50e-6},{'LinearFM','PRF',1e4,'PulseWidth',50e-6,'SweepBandwidth',1e5,'SweepDirection','Up','SweepInterval','Positive'}}
+    (default) | cell array
+  group: ''
+- name: Source of simulation sample time
+  summary: Source of simulation sample time Derive from waveform parameters (default) | Inherit from Simulink engine
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+```
 
 ### **Sample rate (Hz)** — Sample rate of the output waveform `1e6` (default) | positive scalar
 
@@ -129,7 +155,6 @@ using **Simulate using** overrides the simulation mode.
 | `Code Generation` | The block is compiled. | All blocks in the model are compiled. |
 
 For more information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Radar Toolbox

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # LDPC Encoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入消息二进制列向量
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: LDPC 码字列向量
+  direction: output
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,13 @@ chinese_source: worker-translation
 LDPC 码字，以 *N*×1 列向量形式返回。*N* 是 LDPC 码字中的比特数。输出信号的数据类型继承自输入信号。LDPC 码字输出是奇偶校验方程的解。输入消息构成 LDPC 码字输出的前 *K* 个比特，奇偶校验构成剩余的 (*N* – *K*) 个比特。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Parity-check matrix (sparse binary (N-K)-by-N matrix)
+  summary: 奇偶校验矩阵 ldpcEncoderConfig().ParityCheckMatrix（默认）| 稀疏二值矩阵 | 非稀疏索引矩阵
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -49,7 +65,6 @@ LDPC 码字，以 *N*×1 列向量形式返回。*N* 是 LDPC 码字中的比特
 - 当奇偶校验矩阵的最后 (*N* – *K*) 列不构成三角矩阵时，执行矩阵求逆以求解奇偶校验方程。如果需要求逆的矩阵很大，初始化或更新会花费更多时间。
 
 **示例：** `ldpcEncoderConfig().ParityCheckMatrix` 将二值矩阵配置为 108×648 稀疏逻辑矩阵。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

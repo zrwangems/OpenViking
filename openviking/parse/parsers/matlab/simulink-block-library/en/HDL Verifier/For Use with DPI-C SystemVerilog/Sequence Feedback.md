@@ -14,6 +14,17 @@ language: en
 # Sequence Feedback
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Feedback signal from scoreboard subsystem scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Feedback signal to sequence subsystem scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -31,11 +42,12 @@ The Sequence Feedback block outputs a signal directly to the
 sequence subsystem.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 HDL Verifier / For Use with DPI-C SystemVerilog

@@ -14,6 +14,37 @@ language: en
 # 3DOF Angular Acceleration
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Pitch angular rate scalar
+  direction: input
+  data_types: double
+- name: I
+  summary: Inertia tensor scalar
+  direction: input
+  data_types: double
+- name: dI/dt coeff
+  summary: Rate of change of inertia tensor matrix coefficient 3-by-3 matrix
+  direction: input
+  data_types: double
+- name: M
+  summary: Applied pitching moment scalar
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: Rate of change of mass scalar
+  direction: input
+  data_types: double
+- name: dI/dt
+  summary: Rate of change of inertia tensor scalar
+  direction: input
+  data_types: double
+- name: dq/dt
+  summary: Pitch angular acceleration scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -79,8 +110,24 @@ To enable this port, set **Mass type** to
 Pitch angular acceleration, returned as a scalar, in radians per second squared.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: Metric (MKS) | English (Velocity in ft/s) | English (Velocity in kts)
+  default: Metric (MKS)
+- name: Mass type
+  summary: Mass type Fixed (default) | Simple Variable | Custom Variable
+  group: ''
+  block_parameter: mtype
+  type: character vector
+  values: Fixed | Simple Variable | Custom Variable
+  default: '''Fixed'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -124,7 +171,6 @@ Mass type, specified according to the following table.
 | **Type:** character vector |
 | **Values:** `Fixed` | `Simple Variable` | `Custom Variable` |
 | **Default:** `'Fixed'` |
-
 ## Libraries
 
 Aerospace Blockset / Equations of Motion / Acceleration

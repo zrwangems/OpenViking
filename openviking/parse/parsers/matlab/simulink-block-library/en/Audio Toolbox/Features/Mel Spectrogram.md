@@ -14,6 +14,21 @@ language: en
 # Mel Spectrogram
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Audio input column vector | matrix
+  direction: input
+  data_types: single | double
+- name: spec
+  summary: Mel spectrogram matrix | 3-D array
+  direction: output
+  data_types: single | double
+- name: fvec
+  summary: Center frequencies row vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -58,8 +73,67 @@ To enable this port, select the **Output frequency vector**
 parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of bands
+  summary: Number of bandpass filters 32 (default) | positive integer
+  group: ''
+- name: Auto-determine frequency range
+  summary: Automatically determine frequency range on (default) | off
+  group: ''
+- name: Frequency range (Hz)
+  summary: Frequency range over which to design auditory filter bank [0,22050] (default) | two-element row vector
+  group: ''
+- name: Filter bank design domain
+  summary: Domain to design filter bank linear (default) | warped
+  group: ''
+- name: Filter bank normalization
+  summary: Normalization technique for filter bank bandwidth (default) | area | none
+  group: ''
+- name: Mel style
+  summary: Mel style oshaughnessy (default) | slaney
+  group: ''
+- name: Visualize filter bank
+  summary: Open plot to visualize filter bank button
+  group: ''
+- name: Output frequency vector
+  summary: Specify additional output port for center frequencies off (default) | on
+  group: ''
+- name: Window
+  summary: Analysis window hamming(1024,'periodic') (default) | real vector
+  group: ''
+- name: Normalize window
+  summary: Normalize analysis window on (default) | off
+  group: ''
+- name: Overlap length
+  summary: Overlap length of adjacent analysis windows 512 (default) | integer in the range [0, windowLength)
+  group: ''
+- name: Auto-determine FFT length
+  summary: Automatically determine FFT length on (default) | off
+  group: ''
+- name: FFT length
+  summary: Number of DFT points 1024 (default) | positive integer
+  group: ''
+- name: Spectrum type
+  summary: Type of spectrum magnitude (default) | power
+  group: ''
+- name: Number of spectra
+  summary: Number of spectra 1 (default) | positive integer
+  group: ''
+- name: Number of spectra overlap
+  summary: Number of overlapped spectra 0 (default) | integer in the range [0, Number of spectra).
+  group: ''
+- name: Apply logarithm
+  summary: Apply logarithm off (default) | on
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44.1e3 (default) | positive scalar
+  group: ''
+```
 
 #### Filter Bank Parameters
 
@@ -194,7 +268,6 @@ Input sample rate in Hz, specified as a real positive scalar.
 
 To enable this parameter, clear the **Inherit sample rate from
 input** parameter.
-
 ## Libraries
 
 Audio Toolbox / Features

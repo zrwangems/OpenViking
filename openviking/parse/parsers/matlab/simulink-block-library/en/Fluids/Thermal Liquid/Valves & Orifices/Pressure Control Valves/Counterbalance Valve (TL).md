@@ -14,6 +14,18 @@ language: en
 # Counterbalance Valve (TL)
 
 ## Ports
+```yaml
+ports:
+- name: L
+  summary: Fluid load thermal liquid
+  direction: conserving
+- name: B
+  summary: Back pressure thermal liquid
+  direction: conserving
+- name: P
+  summary: Pressure port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -29,8 +41,82 @@ valve.
 ### **P** — Pressure port thermal liquid
 
 Thermal liquid conserving port associated with the pilot pressure port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Opening parameterization
+  summary: Opening parameterization Linear - Area vs. pressure (default) | Tabulated data - Area vs. pressure | Tabulated
+    data - Volumetric flow rate vs. pressure
+  group: Model Parameterization
+- name: Set pressure differential
+  summary: Initial spring compression pressure 5 MPa (default) | nonnegative scalar
+  group: Model Parameterization
+- name: Pressure differential vector
+  summary: 'Relief stage pressure drop values 5 : 0.2 : 6 MPa (default) | 1-by-*n* vector'
+  group: Model Parameterization
+- name: Opening area vector
+  summary: Relief stage opening areas [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: Model Parameterization
+- name: Reference pressure differential vector
+  summary: 'Pressure drop across relief stage 5 : 0.2 : 6 MPa (default) | vector'
+  group: Model Parameterization
+- name: Reference volumetric flow rate vector
+  summary: Flow rate through relief stage [6.4e-09, .0013, .0027, .0041, .0055, .007] m^3/s (default) | vector
+  group: Model Parameterization
+- name: Maximum opening pressure differential
+  summary: Maximum relief valve pressure 6 MPa (default) | positive scalar
+  group: Model Parameterization
+- name: Maximum opening area
+  summary: Relief stage maximum open area 1e-4 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Leakage area
+  summary: Gap area when valve is in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Pilot ratio
+  summary: Pilot area ratio 3 (default) | positive scalar
+  group: Model Parameterization
+- name: Back pressure ratio
+  summary: Back pressure area ratio 4 (default) | positive scalar
+  group: Model Parameterization
+- name: Cross-sectional area at ports A and B
+  summary: Area at valve entry or exit 0.01 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Model Parameterization
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Model Parameterization
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar
+  group: Model Parameterization
+- name: Opening dynamics
+  summary: Whether to introduce flow lag due to orifice opening off (default) | on
+  group: Model Parameterization
+- name: Opening time constant
+  summary: Orifice opening time constant 0.1 s (default) | positive scalar
+  group: Model Parameterization
+- name: Cracking pressure differential
+  summary: Set pressure for check valve operation 0.01 MPa (default) | positive scalar
+  group: Check Valve
+- name: Maximum opening pressure differential
+  summary: Maximum pressure in valve 0.1 MPa (default) | positive scalar
+  group: Check Valve
+- name: Maximum opening area
+  summary: Maximum open area 1e-4 m^2 (default) | positive scalar
+  group: Check Valve
+- name: Pressure differential vector
+  summary: 'Pressure differential for check valve operation [0.01 : 0.01 : 0.1] MPa (default) | 1-by-*n* vector'
+  group: Check Valve
+- name: Opening area vector
+  summary: Check stage opening areas [1e-10, 1e-05, 2e-05, 3e-05, 4e-05, 5e-05, 6e-05, 7.5e-05, 8.5e-05, .0001] m^2 (default)
+    | 1-by-*n* vector
+  group: Check Valve
+- name: Volumetric flow rate vector
+  summary: Check stage volumetric flow rates [.000358, .045, .11, .191, .284, .39, .505, .63, .764, .905] .* 1e-3 m^3/s (default)
+    | 1-by-*n* vector
+  group: Check Valve
+```
 
 ### Model Parameterization
 
@@ -250,7 +336,6 @@ vector** parameter.
 To enable this parameter, set **Opening parameterization** to
 `Tabulated data - Volumetric flow rate vs.
 pressure`.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Pressure Control Valves

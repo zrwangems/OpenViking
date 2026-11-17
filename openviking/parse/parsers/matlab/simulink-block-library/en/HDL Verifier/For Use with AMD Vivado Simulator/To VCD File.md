@@ -14,6 +14,13 @@ language: en
 # To VCD File
 
 ## Ports
+```yaml
+ports:
+- name: Port_1, Port_2, ..., Port_N
+  summary: Signal to log to VCD file scalar | vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | Fixed-point
+```
 
 ### Input
 
@@ -22,8 +29,19 @@ language: en
 Multi-dimensional signals are flattened to 1-D vectors in the VCD file.
 
 **Data Types:** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `Fixed-point`
-
 ## Parameters
+```yaml
+parameters:
+- name: VCD file name
+  summary: Name of generated VCD file string
+  group: ''
+- name: Number of input ports
+  summary: Number of input signals to log integer
+  group: ''
+- name: Timescale
+  summary: Timing relationship between Simulink and the HDL simulator integer and time units
+  group: ''
+```
 
 ### **VCD file name** — Name of generated VCD file string
 
@@ -69,7 +87,6 @@ HDL simulator time in one of the following ways:
   **1 HDL Tick is defined as** parameter, set the value of the HDL simulator
   tick to `1`, `10`, or
   `100`, and choose a resolution unit.
-
 ## Libraries
 
 HDL Verifier / For Use with AMD Vivado Simulator HDL Verifier / For Use with Cadence Xcelium HDL Verifier / For Use with Siemens ModelSim/Questa HDL Verifier / For Use with Synopsys VCS

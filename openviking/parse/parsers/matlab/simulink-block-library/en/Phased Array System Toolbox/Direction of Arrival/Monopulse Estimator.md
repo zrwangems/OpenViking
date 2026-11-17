@@ -14,6 +14,49 @@ language: en
 # Monopulse Estimator
 
 ## Ports
+```yaml
+ports:
+- name: SIGMA
+  summary: Sum-channel signal complex-valued *N*-by-1 column vector
+  direction: input
+  data_types: double
+- name: DeltaAz
+  summary: Azimuth difference-channel signal complex-valued *N*-by-1 column vector
+  direction: input
+  data_types: double
+- name: DeltaEl
+  summary: Elevation difference-channel signal complex-valued *M*-by-1
+  direction: input
+  data_types: double
+- name: STEER
+  summary: Array steering direction scalar | real-valued 2-by-1 column vector
+  direction: input
+  data_types: double
+- name: Az
+  summary: Estimated azimuth direction of target real-valued 1-by-*N* vector
+  direction: output
+  data_types: double
+- name: dAz
+  summary: Estimated offset of azimuth direction of target real-valued 1-by-*N* vector
+  direction: output
+  data_types: double
+- name: AzEl
+  summary: Estimated direction of target real-valued 2-by-*N* matrix
+  direction: output
+  data_types: double
+- name: dAzEl
+  summary: Estimated offset of direction of target real-valued 2-by-*N* matrix
+  direction: output
+  data_types: double
+- name: AzRatio
+  summary: Ratio of sum and azimuth difference channels real-valued 1-by-*N* vector
+  direction: output
+  data_types: double
+- name: AzElRatio
+  summary: Ratio of sum channel to azimuth and elevation difference channels real-valued 2-by-*N* matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -173,8 +216,160 @@ the **Output sum difference ratio** check
 box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: Operating frequency (Hz)
+  summary: System operating frequency 3e8 (default) | positive real scalar
+  group: ''
+- name: Monopulse coverage
+  summary: Monopulse coverage directions 3D (default) | Azimuth
+  group: ''
+- name: Squint angle (degrees)
+  summary: Squint angle 10 (default) | scalar | real-valued 2-by-1 vector
+  group: ''
+- name: Output format
+  summary: Output direction format Angle (default) | Angle offset
+  group: ''
+- name: Output sum difference ratio
+  summary: Enable sum-difference ratio output port off (default) | on
+  group: ''
+- name: Generate Monopulse Feed
+  summary: Create monopulse feed block button
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: Method to specify array Array (no subarrays) (default) | Partitioned array | Replicated subarray | MATLAB expression
+  group: ''
+- name: Expression
+  summary: MATLAB expression used to create an array Phased Array System Toolbox™ array System object
+  group: ''
+- name: Element type
+  summary: Array element types Isotropic Antenna (default) | Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone
+  group: ''
+- name: Operating frequency range (Hz)
+  summary: Operating frequency range of the antenna or microphone element [0,1e20] (default) | real-valued 1-by-2 row vector
+  group: ''
+- name: Operating frequency vector (Hz)
+  summary: Operating frequency range of custom antenna or microphone elements [0,1e20] (default) | real-valued row vector
+  group: ''
+- name: Baffle the back of the element
+  summary: Set back response of an Isotropic Antenna element or an Omni Microphone element to zero off (default) | on
+  group: ''
+- name: Exponent of cosine pattern
+  summary: Exponents of azimuth and elevation cosine patterns [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2
+    matrix of nonnegative values
+  group: ''
+- name: Frequency responses (dB)
+  summary: Antenna and microphone frequency response [0,0] (default) | real-valued row vector
+  group: ''
+- name: Input Pattern Coordinate System
+  summary: Coordinate system of custom antenna pattern az-el (default) | phi-theta
+  group: ''
+- name: Azimuth angles (deg)
+  summary: Azimuth angles of antenna radiation pattern [-180:180] (default) | real-valued row vector
+  group: ''
+- name: Elevation angles (deg)
+  summary: Elevation angles of antenna radiation pattern [-90:90] (default) | real-valued row vector
+  group: ''
+- name: Phi Angles (deg)
+  summary: Phi angle coordinates of custom antenna radiation pattern 0:360 | real-valued 1-by-*P* row vector
+  group: ''
+- name: Theta Angles (deg)
+  summary: Theta angle coordinates of custom antenna radiation pattern 0:180 | real-valued 1-by-*Q* row vector
+  group: ''
+- name: Magnitude pattern (dB)
+  summary: Magnitude of combined antenna radiation pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued
+    *Q*-by-*P*-by-*L* array
+  group: ''
+- name: Phase pattern (deg)
+  summary: Custom antenna radiation phase pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued *Q*-by-*P*-by-*L*
+    array
+  group: ''
+- name: MatchArrayNormal
+  summary: Rotate antenna element to array normal on (default) | off
+  group: ''
+- name: Polar pattern frequencies (Hz)
+  summary: Polar pattern microphone response frequencies 1e3 (default) | real scalar | real-valued 1-by-*L* row vector
+  group: ''
+- name: Polar pattern angles (deg)
+  summary: Polar pattern response angles [-180:180] (default) | real-valued -by-*P* row vector
+  group: ''
+- name: Polar pattern (dB)
+  summary: Custom microphone polar response zeros(1,361) (default) | real-valued *L*-by-*P* matrix
+  group: ''
+- name: Geometry
+  summary: Array geometry ULA (default) | URA | UCA | Conformal Array
+  group: ''
+- name: Number of elements
+  summary: Number of array elements 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2
+  group: ''
+- name: Element spacing (m)
+  summary: Spacing between array elements 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for
+    ULA or URA arrays | 2-element vector of positive values for URA arrays
+  group: ''
+- name: Array axis
+  summary: Linear axis direction of ULA y (default) | x | z
+  group: ''
+- name: Array size
+  summary: Dimensions of URA array [2,2] (default) | positive integer | 1-by-2 vector of positive integers
+  group: ''
+- name: Element lattice
+  summary: Lattice of URA element positions Rectangular (default) | Triangular
+  group: ''
+- name: Array normal
+  summary: Array normal direction x for URA arrays or z for UCA arrays (default) | y
+  group: ''
+- name: Radius of UCA (m)
+  summary: UCA array radius 0.5 (default) | positive scalar
+  group: ''
+- name: Element positions (m)
+  summary: Positions of conformal array elements [0;0;0] (default) | 3-by-*N*matrix of real values
+  group: ''
+- name: Element normals (deg)
+  summary: Direction of conformal array element normal vectors [0;0] | 2-by-1 column vector | 2-by-*N* matrix
+  group: ''
+- name: Taper
+  summary: Array element tapers 1 (default) | complex-valued scalar | complex-valued row vector
+  group: ''
+- name: Subarray definition matrix
+  summary: Define elements belonging to subarrays logical matrix
+  group: ''
+- name: Subarray steering method
+  summary: Specify subarray steering method None (default) | Phase | Time
+  group: ''
+- name: Phase shifter frequency (Hz)
+  summary: Subarray phase shifting frequency 3.0e8 (default) | positive real-valued scalar
+  group: ''
+- name: Number of bits in phase shifters
+  summary: Subarray steering phase shift quantization bits 0 (default) | non-negative integer
+  group: ''
+- name: Subarrays layout
+  summary: Subarray position specification Rectangular (default) | Custom
+  group: ''
+- name: Grid size
+  summary: Dimensions of rectangular subarray grid [1,2] (default)
+  group: ''
+- name: Grid spacing (m)
+  summary: Spacing between subarrays on rectangular grid Auto (default) | positive real-valued scalar | 1-by-2 vector of positive
+    real-values
+  group: ''
+- name: Subarray positions (m)
+  summary: Positions of subarrays [0,0;0.5,0.5;0,0] (default) | 3-by-*N* real-valued matrix
+  group: ''
+- name: Subarray normals
+  summary: Direction of subarray normal vectors [0,0;0,0] (default) | 2-by-*N* real matrix
+  group: ''
+```
 
 #### Main Tab
 
@@ -975,7 +1170,6 @@ transformations that require rotation about the normal.
 To enable this parameter, set the **Sensor array** parameter to
 `Replicated subarray` and the **Subarrays
 layout** to `Custom`.
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

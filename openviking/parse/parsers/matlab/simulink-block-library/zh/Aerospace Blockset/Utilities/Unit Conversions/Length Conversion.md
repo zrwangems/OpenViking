@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Length Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 长度标量 | 数组
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 长度标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -38,8 +49,24 @@ chinese_source: worker-translation
 输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial unit
+  summary: 输入单位 ft（默认）| m | km | in | mi | naut mi
+  group: ''
+  block_parameter: IU
+  type: 字符向量
+  values: '''m'' | ''ft'' | ''km'' | ''in'' | ''mi'' | ''naut mi'''
+  default: '''ft'''
+- name: Final unit
+  summary: 输入单位 m（默认）| ft | km | in | mi | naut mi
+  group: ''
+  block_parameter: OU
+  type: 字符向量
+  values: '''m'' | ''ft'' | ''km'' | ''in'' | ''mi'' | ''naut mi'''
+  default: '''m'''
+```
 
 ### **Initial unit** — 输入单位 `ft`（默认）| `m` | `km` | `in` | `mi` | `naut mi`
 
@@ -92,7 +119,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'m'` | `'ft'` | `'km'` | `'in'` | `'mi'` | `'naut mi'` |
 | **默认值**：`'m'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Unit Conversions

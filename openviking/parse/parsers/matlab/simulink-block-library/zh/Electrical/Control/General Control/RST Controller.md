@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # RST Controller
 
 ## 端口
+```yaml
+ports:
+- name: r
+  summary: 被控对象参考标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 被控对象输出标量
+  direction: input
+  data_types: single | double
+- name: u
+  summary: 控制器输出标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +51,40 @@ chinese_source: worker-translation
 控制系统输出信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Controller parameterization
+  summary: 参数化方法 Controller polynomials（默认）| Generate polynomials
+  group: ''
+- name: R polynomial
+  summary: '*R* 多项式值 1（默认）| 正标量或向量'
+  group: ''
+- name: S polynomial
+  summary: '*S* 多项式值 1（默认）| 正标量或向量'
+  group: ''
+- name: T polynomial
+  summary: '*T* 多项式值 1（默认）| 正标量或向量'
+  group: ''
+- name: Model discrete transfer function numerator
+  summary: 传递函数分子 1（默认）| 标量或向量
+  group: ''
+- name: Model discrete transfer function denominator
+  summary: 传递函数分母 [1 0.5]（默认）| 向量
+  group: ''
+- name: Control horizon (samples)
+  summary: 控制时域采样数 5（默认）| 正整数
+  group: ''
+- name: Control weighting factor
+  summary: 加权因子 0.5（默认）| 正数
+  group: ''
+- name: System dead time (samples)
+  summary: 死区时间采样数 2（默认）| 0 或正整数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 采样间隔 -1（默认）| 默认值或正数
+  group: ''
+```
 
 ### **Controller parameterization** — 参数化方法 `Controller polynomials`（默认）| `Generate polynomials`
 
@@ -140,7 +187,6 @@ RST 控制器的加权因子。
 变步长模型中，请显式指定采样时间。有关更多
 信息，请参阅 What Is Sample Time? 和
 Specify Sample Time。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

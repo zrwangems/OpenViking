@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Battery (System-Level)
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: H
+  summary: 传热热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -34,8 +46,40 @@ chinese_source: worker-translation
 
 要显示此端口，请将 **Thermal port** 设置为
 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal voltage, Vnom
+  summary: 电池完全充电时的输出电压 12 V（默认）| 正标量
+  group: 主
+- name: Internal resistance
+  summary: 电池内阻 2 Ohm（默认）| 正标量
+  group: 主
+- name: Battery charge capacity
+  summary: 模拟放电的选项 Infinite（默认）| Finite
+  group: 主
+- name: Cell capacity (Ah rating)
+  summary: 额定电池容量 50 A*hr（默认）| 正标量
+  group: 主
+- name: Voltage V1 when charge is AH1
+  summary: 电荷水平为 AH1 时的输出电压 11.5 V（默认）| 正标量
+  group: 主
+- name: Charge AH1 when no-load voltage is V1
+  summary: 空载输出电压为 V1 时的电荷水平 25 A*hr（默认）| 正标量
+  group: 主
+- name: Self-discharge
+  summary: 模拟自放电电阻的选项 Disabled（默认）| Enabled
+  group: 主
+- name: Self-discharge resistance
+  summary: 表示电池自放电的电阻 2000 Ohm（默认）| 正标量
+  group: 主
+- name: Thermal port
+  summary: 模拟热效应的选项 Omit（默认）| Model
+  group: 热端口
+- name: Thermal mass
+  summary: 电池的热质量 30000 J/K（默认）
+  group: 热端口
+```
 
 ### 主
 
@@ -108,7 +152,6 @@ capacity** 设置为 `Finite`，并将
 ### **Thermal mass** — 电池的热质量 `30000` `J/K`（默认）
 
 使组件温度变化一度所需的热能。热质量越大，组件对温度变化的抵抗能力越强。
-
 ## 所属库
 
 Simscape / Driveline / Sources

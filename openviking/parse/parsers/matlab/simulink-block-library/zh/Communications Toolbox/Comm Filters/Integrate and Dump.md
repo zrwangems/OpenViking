@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Integrate and Dump
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Integration period**
 :   两次复位之间的输入采样数。
@@ -63,7 +68,6 @@ R2025b 中未记录。
     - 当选择 `Slope and bias scaling` 时，输入输出的字长（以位为单位）和斜率。
 
 有关定点应用相关参数的更多信息，请参阅 Specify Fixed-Point Attributes for Blocks。
-
 ## 所属库
 
 R2025b 中未记录。

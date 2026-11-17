@@ -14,6 +14,41 @@ language: en
 # OFDM Channel Estimator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data subcarriers scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: refData
+  summary: Reference data subcarriers scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: refValid
+  summary: Indicates valid reference data scalar
+  direction: input
+  data_types: Boolean
+- name: numScPerSym
+  summary: Number of valid subcarriers per OFDM symbol scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32 | unsigned fixed point
+- name: reset
+  summary: Clear internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Output channel estimates scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -126,8 +161,28 @@ output port is valid. The block sets this value to `1` when the data
 samples are available from the **data** output port.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable averaging
+  summary: Average LS estimates off (default) | on
+  group: ''
+- name: Number of symbols to be averaged
+  summary: Number of symbols to be averaged 2 (default) | integer in range from 2 to 14
+  group: ''
+- name: Enable interpolation
+  summary: Interpolate LS estimates off (default) | on
+  group: ''
+- name: Interpolation factor
+  summary: Interpolation factor 3 (default) | integer in range from 2 to 12
+  group: ''
+- name: Maximum number of subcarriers per symbol
+  summary: Maximum number of subcarriers per symbol 52 (default) | integer in range from 2 to 65, 536
+  group: ''
+- name: Enable reset input port
+  summary: Reset signal off (default) | on
+  group: ''
+```
 
 ### **Enable averaging** — Average LS estimates `off` (default) | `on`
 
@@ -168,7 +223,6 @@ parameter or **Enable interpolation** parameter.
 
 Select this parameter to enable the **reset** port on the block
 icon.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

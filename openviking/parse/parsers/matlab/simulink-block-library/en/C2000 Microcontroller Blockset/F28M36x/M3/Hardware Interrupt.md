@@ -14,6 +14,15 @@ language: en
 # Hardware Interrupt
 
 ## Ports
+```yaml
+ports:
+- name: '*name* Event Task'
+  summary: Function-call event input simulation scalar
+  direction: input
+- name: '*name* Event'
+  summary: Generate interrupt request Scalar
+  direction: output
+```
 
 ### Input
 
@@ -34,8 +43,22 @@ port** parameter.
 
 The output of this block is a function-call. The number of function
 call outputs will be same as events selected to serve in an ISR.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of events to serve
+  summary: Specify number of events to serve 1 (default) | 2 | 3 | <32
+  group: ''
+- name: Simulink task priority
+  summary: Set priority of selected ISR 50 (default) | positive integer or nonnegative integer
+  group: ''
+- name: Disable interrupt pre-emption
+  summary: Select to disable interrupt preemption off (default) | on
+  group: ''
+- name: Enable simulation port
+  summary: Enable simulation ports to block off (default) | on
+  group: ''
+```
 
 ### **Number of events to serve** — Specify number of events to serve `1` (default) | `2` | `3` | `<32`
 
@@ -67,7 +90,6 @@ execution without being preempted by other interrupts.
 ### **Enable simulation port** — Enable simulation ports to block `off` (default) | `on`
 
 Select this parameter to add an compatible simulation input port.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28M35x / M3 C2000 Microcontroller Blockset / F28M36x / M3 C2000 Microcontroller Blockset / Scheduling

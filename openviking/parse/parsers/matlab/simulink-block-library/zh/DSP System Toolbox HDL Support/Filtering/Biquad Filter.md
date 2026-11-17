@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Biquad Filter
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 实数标量或列向量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 滤波后的输出数据 实数标量或列向量
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已准备好接收新输入数据 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -60,8 +83,46 @@ chinese_source: worker-translation
 要启用此端口，请将 **Filter structure** 设置为 `Direct form I fully serial`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter structure
+  summary: HDL 滤波器架构 Direct form II（默认）| Direct form II transposed | Pipelined feedback form | Direct form I fully serial
+  group: 主要
+- name: Numerator coefficients of filter
+  summary: 分子系数 [1,2,1]（默认）| *NumSections*×3 矩阵
+  group: 主要
+- name: Denominator coefficients of filter
+  summary: 分母系数 [1,.1,.2]（默认）| *NumSections*×3 矩阵
+  group: 主要
+- name: Scale values of filter
+  summary: 在二阶滤波器节之前和之后施加的增益值 [1]（默认）| 1 到 *NumSections*+1 个值的向量
+  group: 主要
+- name: Rounding mode
+  summary: 用于对输出进行类型转换的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 用于对输出进行类型转换的溢出处理 off（默认）| on
+  group: 数据类型
+- name: Numerator
+  summary: '分子系数的数据类型 Inherit: Same word length as input（默认）| <data type expression>'
+  group: 数据类型
+- name: Denominator
+  summary: '分母系数的数据类型 Inherit: Same word length as input（默认）| <data type expression>'
+  group: 数据类型
+- name: ScaleValues
+  summary: '增益的数据类型 Inherit: Same word length as input（默认）| <data type expression>'
+  group: 数据类型
+- name: Coefficients
+  summary: '使用串行滤波器架构时系数存储器的数据类型 Inherit: Same word length as input（默认）| <data type expression>'
+  group: 数据类型
+- name: Accumulator
+  summary: '每个节内累加器信号的数据类型 Inherit: Same as first input（默认）| <data type expression>'
+  group: 数据类型
+- name: Output
+  summary: '滤波器输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+```
 
 ### 主要
 
@@ -140,7 +201,6 @@ chinese_source: worker-translation
 ### **Output** — 滤波器输出的数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Same as first input` | `<data type expression>`
 
 模块将滤波器的输出转换为此数据类型。量化使用 **Rounding mode** 和 **Saturate on integer overflow** 参数的设置。当输入数据类型为浮点时，模块忽略此参数。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

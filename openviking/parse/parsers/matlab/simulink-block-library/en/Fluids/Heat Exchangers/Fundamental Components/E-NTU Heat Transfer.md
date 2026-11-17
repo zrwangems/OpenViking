@@ -14,6 +14,27 @@ language: en
 # E-NTU Heat Transfer
 
 ## Ports
+```yaml
+ports:
+- name: C1
+  summary: Fluid 1 thermal capacity physical signal
+  direction: input
+- name: C2
+  summary: Fluid 2 thermal capacity physical signal
+  direction: input
+- name: HC1
+  summary: Fluid 1 heat transfer coefficient physical signal
+  direction: input
+- name: HC2
+  summary: Fluid 2 heat transfer coefficient physical signal
+  direction: input
+- name: H1
+  summary: Fluid 1 thermal inlet temperature thermal
+  direction: conserving
+- name: H2
+  summary: Fluid 2 thermal inlet temperature thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -49,8 +70,64 @@ Thermal conserving port associated with the inlet temperature of fluid
 
 Thermal conserving port associated with the inlet temperature of
 fluid.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: Manner in which the flows align in the heat exchanger Parallel or counter flow (default) | Shell and tube | Cross
+    flow | Generic — effectiveness table
+  group: ''
+- name: Wall thermal resistance
+  summary: Resistance of the wall to heat flow by thermal conduction 0 K/W (default) | positive scalar
+  group: ''
+- name: Number of shell passes
+  summary: Number of times the flow traverses the shell before exiting 1 (default) | positive scalar
+  group: ''
+- name: Cross flow type
+  summary: Mixing condition in each of the flow channels Both fluids mixed (default) | Both fluids unmixed | Controlled Fluid
+    1 mixed & Controlled Fluid 2 unmixed | Controlled Fluid 1 unmixed & Controlled Fluid 2 mixed
+  group: ''
+- name: Number of heat transfer units vector, NTU
+  summary: Number of transfer units at each breakpoint in lookup table for heat exchanger effectiveness [.5, 1, 2, 3, 4, 5]
+    (default) | vector of positive scalars
+  group: ''
+- name: Thermal capacity ratio vector, CR
+  summary: Thermal capacity ratio at each breakpoint in lookup table for heat exchanger effectiveness [0, .25, .5, .75, 1]
+    (default) | vector of positive scalars
+  group: ''
+- name: Effectiveness table, E(NTU,CR)
+  summary: Heat exchanger effectiveness at each breakpoint in lookup table over the number of transfer units and thermal capacity
+    ratio [.3, .3, .3, .3, .3; .6, .55, .5, .47, .43; .85, .76, .68, .61, .55; .94, .83, .72, .65, .58; .98, .86, .75, .66,
+    .58; .99, .86, .75, .66, .58] (default) | table of positive scalars
+  group: ''
+- name: Enable wall thermal mass
+  summary: Option to model wall thermal mass off (default) | on
+  group: ''
+- name: Wall mass
+  summary: Heat exchanger wall mass 1 kg (default) | positive scalar
+  group: ''
+- name: Wall specific heat
+  summary: Heat exchanger wall specific heat 490 J/(K*kg) (default) | positive scalar
+  group: ''
+- name: Heat transfer surface area
+  summary: Aggregate heat transfer surface area on the controlled fluid 1 side 0.01 m^2 (default) | positive scalar
+  group: Controlled Fluid 1
+- name: Fouling factor
+  summary: Measure of thermal resistance due to fouling deposits 1e-4 K*m^2/W (default) | positive scalar
+  group: Controlled Fluid 1
+- name: Minimum fluid-wall heat transfer coefficient
+  summary: Lower bound for the heat transfer coefficient 1 W/(m^2 * K) (default) | positive scalar
+  group: Controlled Fluid 1
+- name: Heat transfer surface area
+  summary: Aggregate heat transfer surface area on the controlled fluid 2 side 0.01 m^2 (default) | positive scalar
+  group: Controlled Fluid 2
+- name: Fouling factor
+  summary: Measure of thermal resistance due to fouling deposits 1e-4 K*m^2/W (default) | positive scalar
+  group: Controlled Fluid 2
+- name: Minimum fluid-wall heat transfer coefficient
+  summary: Lower bound for the heat transfer coefficient 1 W/(m^2 * K) (default) | positive scalar
+  group: Controlled Fluid 2
+```
 
 ### **Flow arrangement** — Manner in which the flows align in the heat exchanger `Parallel or counter flow` (default) | `Shell and tube` | `Cross flow` | `Generic — effectiveness table`
 
@@ -211,7 +288,6 @@ transfer coefficient specified through physical signal ports HC2
 saturates at this value. The block uses the heat transfer coefficient to
 calculate the heat transfer rate between fluids 1 and 2 as described in
 Heat Transfer Rate.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

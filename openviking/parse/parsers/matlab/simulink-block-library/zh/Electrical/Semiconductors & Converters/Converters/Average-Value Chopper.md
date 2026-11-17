@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Average-Value Chopper
 
 ## 端口
+```yaml
+ports:
+- name: DutyCycle
+  summary: 占空比 电气 | 标量
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: 正直流电压 1 电气 | 标量
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: 负直流电压 1 电气 | 标量
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: 正直流电压 2 电气 | 标量
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: 负直流电压 2 电气 | 标量
+  direction: conserving
+  data_types: double
+```
 
 ### 守恒端口
 
@@ -47,8 +70,26 @@ chinese_source: worker-translation
 与第二个直流电压负极端子关联的电气守恒端口。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Chopper type
+  summary: 斩波器类别 Class A - first quadrant（默认）| Class B - second quadrant | Class C - first and second quadrant | Class D -
+    first and fourth quadrant | Class E - four quadrant
+  group: ''
+- name: Converter efficiency
+  summary: 变换器效率参数化 Constant（默认）| Tabulated
+  group: ''
+- name: Efficiency (%)
+  summary: 变换器效率 100（默认）| 标量
+  group: ''
+- name: Output current vector
+  summary: 输出电流向量 [0, 2, 5] A（默认）| 至少包含两个元素的行向量
+  group: ''
+- name: Efficiency vector (%)
+  summary: 效率向量 [90, 95, 98]（默认）| 至少包含两个元素的行向量
+  group: ''
+```
 
 ### **Chopper type** — 斩波器类别 `Class A - first quadrant`（默认）| `Class B - second quadrant` | `Class C - first and second quadrant` | `Class D - first and fourth quadrant` | `Class E - four quadrant`
 
@@ -81,7 +122,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Converter efficiency** 设置为 `Tabulated`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

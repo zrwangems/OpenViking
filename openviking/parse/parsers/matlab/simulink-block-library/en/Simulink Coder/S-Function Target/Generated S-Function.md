@@ -14,6 +14,15 @@ language: en
 # Generated S-Function
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: S-function input varies
+  direction: input
+- name: Output
+  summary: S-function output varies
+  direction: input
+```
 
 ### Input
 
@@ -25,8 +34,16 @@ See requirements.
 ### **Output** — S-function output varies
 
 See requirements.
-
 ## Parameters
+```yaml
+parameters:
+- name: Generated S-function name (model_sf)
+  summary: Name of S-function model_sf (default) | character vector
+  group: ''
+- name: Show module list
+  summary: Select display module list off (default) | on
+  group: ''
+```
 
 ### **Generated S-function name (model\_sf)** — Name of S-function `model_sf` (default) | character vector
 
@@ -37,7 +54,6 @@ block is generated.
 ### **Show module list** — Select display module list off (default) | on
 
 If selected, displays modules generated for the S-function.
-
 ## Libraries
 
 Simulink Coder / S-Function Target

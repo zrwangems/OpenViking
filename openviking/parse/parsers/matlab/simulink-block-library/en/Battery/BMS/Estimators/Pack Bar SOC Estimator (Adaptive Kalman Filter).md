@@ -14,6 +14,36 @@ language: en
 # Pack Bar SOC Estimator (Adaptive Kalman Filter)
 
 ## Ports
+```yaml
+ports:
+- name: AverageCurrent
+  summary: Average current of battery pack, ampere scalar
+  direction: input
+- name: AverageVoltage
+  summary: Average voltage of battery pack, volt scalar
+  direction: input
+- name: AverageTemperature
+  summary: Average temperature of battery pack, K scalar
+  direction: input
+- name: AverageAH
+  summary: Average charge of battery pack, A\*Hr scalar
+  direction: input
+- name: InitialSOC
+  summary: Initial state of charge, unitless scalar in the range [0,1]
+  direction: input
+- name: InitialR0
+  summary: Initial terminal resistance, ohm scalar
+  direction: input
+- name: SOC
+  summary: Average state of charge of battery pack scalar
+  direction: output
+- name: R0
+  summary: Average terminal resistance of battery pack scalar
+  direction: output
+- name: Vdyn
+  summary: Average dynamic overpotential voltage of battery pack scalar
+  direction: output
+```
 
 ### Input
 
@@ -54,8 +84,73 @@ Average terminal resistance of the battery pack, returned as a scalar.
 
 Average dynamic overpotential voltage of the battery pack, returned as a
 scalar.
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter type
+  summary: Kalman filter type Extended Kalman filter (default) | Extended Kalman-Bucy filter | Unscented Kalman filter | Unscented
+    Kalman-Bucy filter
+  group: Main
+- name: Alpha
+  summary: Alpha coefficient 1 (default) | scalar in the range (0, 1]
+  group: Main
+- name: Beta
+  summary: Beta coefficient 2 (default) | nonnegative scalar
+  group: Main
+- name: Kappa
+  summary: Kappa coefficient 0 (default) | scalar in the range [0, 3]
+  group: Main
+- name: Covariance of the process noise, Q
+  summary: Covariance of process noise [1e-6 0 0;0 1e-6 0;0 0 1e-6] (default) | [1e-6 0 0 0;0 1e-6 0 0;0 0 1e-6 0;0 0 0 1e-6]
+    | matrix of scalars
+  group: Main
+- name: Covariance of the measurement noise, R
+  summary: Covariance of measurement noise 0.1 (default) | scalar
+  group: Main
+- name: Initial state error covariance, P0
+  summary: Initial state error covariance [1e-5 0 0; 0 1 0; 0 0 1e-5] (default) | [1e-5 0 0 0; 0 1 0 0;0 0 1 0; 0 0 0 1e-5]
+    | matrix of scalars
+  group: Main
+- name: Sample time (-1 for inherited)
+  summary: Block sample time 1 (default) | 0 | -1 | integer
+  group: Main
+- name: Charge dynamics
+  summary: Option to model battery charge dynamics One time-constant dynamics (default) | Two time-constant dynamics
+  group: System Model
+- name: Vector of state-of-charge values, SOC (-)
+  summary: SOC breakpoints [0, .1, .25, .5, .75, .9, 1] (default) | vector of scalars in the range [0, 1]
+  group: System Model
+- name: Vector of temperatures, T
+  summary: Temperature breakpoints [278, 293, 313] (default) | vector of positive scalars
+  group: System Model
+- name: Terminal resistance, R0(SOC,T), (ohm)
+  summary: R0 lookup table with temperature breakpoint [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107,
+    .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] (default) | matrix of positive entries
+  group: System Model
+- name: First polarization resistance, R1(SOC,T), (ohm)
+  summary: First RC resistance at temperature breakpoints [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013;
+    .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] (default) | matrix of positive entries
+  group: System Model
+- name: First time constant, tau1(SOC,T), (s)
+  summary: First RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] (default) | matrix of positive entries
+  group: System Model
+- name: Second polarization resistance, R2(SOC,T), (ohm)
+  summary: Second RC resistance at temperature breakpoints [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013;
+    .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] (default) | matrix of positive entries
+  group: System Model
+- name: Second time constant, tau2(SOC,T), (s)
+  summary: Second RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] (default) | matrix of positive entries
+  group: System Model
+- name: No-load voltage, V0(SOC,T), (V)
+  summary: '*V*0 lookup table [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07,
+    4.08, 4.08; 4.19, 4.19, 4.19] (default) | matrix of nonnegative entries'
+  group: System Model
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: Signal Attributes
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -260,7 +355,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Estimators

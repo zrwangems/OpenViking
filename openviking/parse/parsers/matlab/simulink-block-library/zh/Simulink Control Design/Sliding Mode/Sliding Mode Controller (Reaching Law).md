@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Sliding Mode Controller (Reaching Law)
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 系统状态向量
+  direction: input
+  data_types: single | double
+- name: f(x)
+  summary: 系统动态函数向量
+  direction: input
+  data_types: single | double
+- name: g(x)
+  summary: 输入函数向量
+  direction: input
+  data_types: single | double
+- name: x.ref
+  summary: 状态参考轨迹向量
+  direction: input
+- name: x.ref.dot
+  summary: 状态参考轨迹导数向量
+  direction: input
+- name: u
+  summary: 控制动作向量
+  direction: output
+- name: s(x)
+  summary: 滑动变量值向量
+  direction: output
+```
 
 ### 输入
 
@@ -73,8 +100,65 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请启用 **Output Switching Function** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Task Mode
+  summary: 模块运行模式 Regulation Mode（默认）| Tracking Mode
+  group: Sliding Surface Tab
+  block_parameter: TaskMode
+  values: '"Regulation Mode"（默认）| "Tracking Mode"'
+- name: Sliding Coefficient Matrix (C)
+  summary: 滑动系数矩阵 1（默认）| 标量 | 列向量 | 矩阵
+  group: Sliding Surface Tab
+  block_parameter: SlidingMatrix
+  values: 1（默认）| 带引号的标量 | 带引号的列向量 | 带引号的矩阵
+- name: Use externally sourced derivative
+  summary: 从外部指定状态参考的导数 off（默认）| on
+  group: Sliding Surface Tab
+  block_parameter: EnableTrackingDerivative
+  values: '"off"（默认） | "on"'
+- name: 输出切换函数
+  summary: 输出切换函数 off（默认） | on
+  group: Sliding Surface Tab
+  block_parameter: EnableSwitchingFunction
+  values: '"off"（默认） | "on"'
+- name: 趋近律
+  summary: 趋近律 Constant Rate（默认） | Exponential | Power Rate
+  group: 趋近律选项卡
+  block_parameter: ReachingLaw
+  values: '"Constant Rate"（默认） | "Exponential" | "Power Rate"'
+- name: 趋近速率 (Eta)
+  summary: 趋近速率 0.01（默认） | 正标量 | 列向量
+  group: 趋近律选项卡
+  block_parameter: ReachingRate
+  values: '"0.01"（默认） | 引号中的正标量 | 引号中的列向量'
+- name: 控制增益 (K)
+  summary: 控制增益 0.01（默认） | 正标量 | 列向量
+  group: 趋近律选项卡
+  block_parameter: ControlGain
+  values: '"0.01"（默认） | 引号中的正标量 | 引号中的列向量'
+- name: Power Rate Exponent (Alpha)
+  summary: 幂次趋近律指数 0.01（默认）| 0 到 1 之间的正标量 | 0 到 1 之间的正数列向量
+  group: 趋近律选项卡
+  block_parameter: PowerRate
+  values: '"0.01"（默认）| 带引号的 0 到 1 之间的正标量 | 带引号的 0 到 1 之间的正数列向量'
+- name: Select Boundary Layer
+  summary: 边界层函数 Sign（默认）| Relay | Hyperbolic Tangent | Saturation
+  group: 趋近律选项卡
+  block_parameter: BoundaryLayer
+  values: '"Sign"（默认）| "Relay" | "Hyperbolic Tangent" | "Saturation"'
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 off（默认）| on
+  group: 趋近律选项卡
+  block_parameter: ZeroCross
+  values: '"off"（默认）| "on"'
+- name: Phi
+  summary: 边界层厚度 0.01（默认）| 正标量 | 列向量
+  group: 趋近律选项卡
+  block_parameter: Phi
+  values: '"0.01"（默认）| 带引号的正标量 | 带引号的列向量'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -324,7 +408,6 @@ Rate")`
 | **值：** | `"0.01"`（默认）| 带引号的正标量 | 带引号的列向量 |
 
 **示例：** `set_param(gcb,"Phi","0.05")`
-
 ## 所属库
 
 Simulink Control Design / Sliding Mode

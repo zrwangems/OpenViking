@@ -14,6 +14,37 @@ language: en
 # PMSM Rs Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Iabc
+  summary: Three-phase current response vector
+  direction: input
+  data_types: single
+- name: Vdc
+  summary: DC link voltage scalar
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: Control signal for *Rs* estimation logical
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: Bus signal input bus
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*, *b*, and *c*-axis stator reference voltage components vector'
+  direction: output
+  data_types: single
+- name: Rs
+  summary: Estimated stator resistance scalar
+  direction: output
+  data_types: single
+- name: Log
+  summary: Debug signals bus
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -122,8 +153,28 @@ debug signals.
 | `8003` | *Rs3* estimation failed due to issues in the *Ic* phase current. Check if the motor is properly connected and that the ADC is correctly measuring *Ic*. | - |
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum current limit (A)
+  summary: Maximum allowed current during testing 15 (default) | scalar
+  group: ''
+- name: Step size during injected voltage ramp up (per-unit)
+  summary: Step size during injected voltage ramp up 0.0001 (default) | scalar
+  group: ''
+- name: Maximum voltage ramp up time limit (s)
+  summary: Maximum voltage ramp up duration 0.25 (default) | scalar
+  group: ''
+- name: Number of voltage and current samples per voltage injection instance
+  summary: Number of voltage and current samples considered for Rs estimation 1000 (default) | scalar
+  group: ''
+- name: Dwell time between voltage injections (s)
+  summary: Wait duration between voltage injections 0.25 (default) | scalar
+  group: ''
+- name: Threshold to determine imbalance in phase resistances (0,1)
+  summary: Threshold to determine phase resistance imbalance 0.2 (default) | scalar
+  group: ''
+```
 
 ### **Maximum current limit (A)** — Maximum allowed current during testing `15` (default) | `scalar`
 
@@ -151,7 +202,6 @@ Wait duration (in seconds) between successive voltage injections.
 Threshold (specified as a value between `0` and
 `1`) above which to determine the imbalance among the phase
 resistances.
-
 ## Libraries
 
 Motor Control Blockset / Parameter Estimation / PMSM Parameter Estimation

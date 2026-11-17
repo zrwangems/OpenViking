@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Complex Burst Matrix Solve Using QR Decomposition
 
 ## 端口
+```yaml
+ports:
+- name: A(i,:)
+  summary: 矩阵 *A* 的行 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: B(i,:)
+  summary: 矩阵 *B* 的行 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: 是否清除内部状态 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: X(i,:)
+  summary: 矩阵 *X* 的行 标量 | 向量
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 模块是否就绪 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -66,8 +97,40 @@ chinese_source: worker-translation
 在发送 `true` 的 `validIn` 信号后，`ready` 被设置为 `false` 之前可能会有一些延迟。为确保所有数据都被处理，您必须等待 `ready` 被设置为 `false` 后再发送另一个 `true` 的 `validIn` 信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of rows in matrices A and B
+  summary: 矩阵 *A* 和 *B* 的行数 4（默认）| 正整数值标量
+  group: ''
+  block_parameter: m
+  type: 字符向量
+  values: 正整数值标量
+- name: Number of columns in matrix A
+  summary: 矩阵 *A* 的列数 4（默认）| 正整数值标量
+  group: ''
+  block_parameter: n
+  type: 字符向量
+  values: 正整数值标量
+- name: Number of columns in matrix B
+  summary: 矩阵 *B* 的列数 1（默认）| 正整数值标量
+  group: ''
+  block_parameter: p
+  type: 字符向量
+  values: 正整数值标量
+- name: Regularization parameter
+  summary: 正则化参数 0（默认）| 非负标量
+  group: ''
+  block_parameter: regularizationParameter
+  type: 字符向量
+  values: 正整数值标量
+- name: Output datatype
+  summary: 输出矩阵 *X* 的数据类型 fixdt(1,18,14)（默认）| double | single | fixdt(1,16,0) | <data type expression>
+  group: ''
+  block_parameter: OutputType
+  type: 字符向量
+  values: '''fixdt(1,18,14)'' | ''double'' | ''single'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+```
 
 ### **Number of rows in matrices A and B** — 矩阵 *A* 和 *B* 的行数 `4`（默认）| 正整数值标量
 
@@ -133,7 +196,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'fixdt(1,18,14)'` | `'double'` | `'single'` | `'fixdt(1,16,0)'` | `'<data type expression>'` |
 | **默认：** `'fixdt(1,18,14)'` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Linear System Solvers

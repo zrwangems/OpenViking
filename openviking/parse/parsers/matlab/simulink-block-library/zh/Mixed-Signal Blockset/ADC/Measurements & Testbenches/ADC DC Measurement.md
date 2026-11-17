@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # ADC DC Measurement
 
 ## 端口
+```yaml
+ports:
+- name: analog
+  summary: 输入到 ADC 的模拟输入信号 标量
+  direction: input
+  data_types: double
+- name: start
+  summary: 外部转换启动时钟 标量
+  direction: input
+  data_types: double
+- name: digital
+  summary: 来自 ADC 的转换后数字信号 标量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ready
+  summary: 指示模数转换是否完成 标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -41,8 +60,43 @@ chinese_source: worker-translation
 指示模数转换是否完成，指定为标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input range (V)
+  summary: ADC 的动态范围 [-1 1]（默认）| 2 元素向量
+  group: ''
+- name: Hold off time (s)
+  summary: 延迟测量分析以避免瞬态干扰 0（默认）| 非负实数标量
+  group: ''
+- name: Number of bits
+  summary: ADC 中的物理位数 5（默认）| 正实数整数
+  group: ''
+- name: Start conversion frequency (Hz)
+  summary: ADC 启动转换时钟的频率 10e6（默认）| 正实数标量
+  group: ''
+- name: Recommended min. simulation stop time (s)
+  summary: 仿真必须运行以获得有意义结果的最短时间 3.2e-5（默认）| 正实数标量
+  group: ''
+- name: Set as model stop time
+  summary: 自动将推荐的最小仿真停止时间设置为模型停止时间按钮
+  group: ''
+- name: Endpoint
+  summary: 使用端点法测量 DNL、INL on（默认）| off
+  group: ''
+- name: Best fit
+  summary: 使用最佳拟合方法测量 DNL、INL on（默认）| off
+  group: ''
+- name: Output result to base workspace
+  summary: 将详细测试结果存储到基础工作区 off（默认）| on
+  group: ''
+- name: Workspace variable name
+  summary: 存储详细测试结果的变量名称 adc_dc_out（默认）| 字符字符串
+  group: ''
+- name: Plot
+  summary: 绘制测量结果按钮
+  group: ''
+```
 
 ### **Input range (V)** — ADC 的动态范围 `[-1 1]`（默认）| 2 元素向量
 
@@ -126,7 +180,6 @@ fanalog=StartFreq·ErrorTolerance2(Nbits+1)
 ### **Plot** — 绘制测量结果按钮
 
 点击以绘制测量结果以供进一步分析。
-
 ## 所属库
 
 Mixed-Signal Blockset / ADC / Measurements & Testbenches

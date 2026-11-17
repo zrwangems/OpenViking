@@ -14,6 +14,18 @@ language: en
 # Scenario To Platform
 
 ## Ports
+```yaml
+ports:
+- name: Platforms (Scenario Frame)
+  summary: Platform pose in scenario frame Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Reference Platform Pose (Scenario Frame)
+  summary: Reference platform pose in scenario frame Simulink bus containing MATLAB structure
+  direction: input
+- name: Platforms (Platform Body Frame)
+  summary: Target platform poses in body frame of reference platform Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -91,8 +103,25 @@ Each platform pose structure contains these fields.
 
 You can use this output as the input to the Fusion Radar
 Sensor block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Reference platform index
+  summary: Reference platform index 0 (default) | positive integer
+  group: ''
+- name: Enable reference platform pose input
+  summary: Enable reference platform pose input off (default) | on
+  group: ''
+- name: Source of output bus name
+  summary: Source of output bus name Auto (default) | Property
+  group: ''
+- name: Specify an output bus name
+  summary: Output port bus name BusPlatforms (default) | valid bus name
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Reference platform index** — Reference platform index `0` (default) | positive integer
 
@@ -138,7 +167,6 @@ Select the type of simulation to run as:
   C code. The first time you run a simulation, Simulink generates C code for the block. The C code is reused for subsequent
   simulations as long as the model does not change. This option requires additional
   startup time.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Tracking Scenario and Sensor Models

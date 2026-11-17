@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # From Video Device
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 视频输出信号 *m*-by-*n*-by-3 矩阵
+  direction: output
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: R, G, B
+  summary: RGB 视频输出信号 *m*-by-*n* 矩阵
+  direction: output
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Y, Cb, Cr
+  summary: YCbCr 视频输出信号 *m*-by-*n* 矩阵
+  direction: output
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### 输出
 
@@ -53,8 +68,49 @@ YCbCr 视频输出信号，指定为 *m*-by-*n* 矩阵，其中 *m* 表示视频
 - 要为此端口指定输出视频信号数据类型，请设置 **Data type**。
 
 **数据类型：** `single` | `double` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: 图像采集设备 可用设备
+  group: ''
+- name: Video format
+  summary: 设备支持的视频格式 可用视频格式
+  group: ''
+- name: Video source
+  summary: 设备支持的视频输入源 可用视频输入源
+  group: ''
+- name: Edit properties...
+  summary: 视频源属性 按钮
+  group: ''
+- name: Enable hardware triggering
+  summary: 硬件触发采集 off（默认）| on
+  group: ''
+- name: ROI position
+  summary: 视频图像中的感兴趣区域 [0, 0, maximum height, maximum width]（默认）| [row, column, height, width]
+  group: ''
+- name: Output color space
+  summary: 视频输出颜色空间 rgb（默认）| grayscale | YCbCr | bayer
+  group: ''
+- name: Preview...
+  summary: 实时视频数据预览 按钮
+  group: ''
+- name: Block sample time
+  summary: 模块采样率 1/30（默认）| 数值
+  group: ''
+- name: Ports mode
+  summary: 视频输出信号类型 One multidimensional signal | Separate color signals
+  group: ''
+- name: Data type
+  summary: 视频输出数据类型 single（默认）| double | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+- name: Read All Frames
+  summary: 捕获所有可用图像帧 off（默认）| on
+  group: ''
+- name: Metadata Output Ports
+  summary: Kinect® for Windows® 输出端口
+  group: ''
+```
 
 以下字段出现在“模块参数”对话框中。如果您选择的设备不支持某项功能，该功能将不会出现在对话框中。
 
@@ -147,7 +203,6 @@ file` 是列表中的选项之一。
 在上面的示例中可以看到，三个元数据项已被放入 **Selected Metadata** 列表。当您点击 **Apply** 时，模块上会为这些元数据创建输出端口，如下所示。第一个端口是深度帧。
 
 有关这些元数据字段的描述和信息，以及如何将 Kinect for Windows 与 Image Acquisition Toolbox 配合使用，请参阅 Acquire Image and Body Data Using Kinect V2。
-
 ## 所属库
 
 Image Acquisition Toolbox

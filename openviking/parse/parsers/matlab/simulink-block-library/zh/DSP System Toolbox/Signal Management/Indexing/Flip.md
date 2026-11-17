@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Flip
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Output
+  summary: 翻转后的输出矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### 输入
 
@@ -30,8 +41,13 @@ chinese_source: worker-translation
 翻转后的输出，以大小为 *M*-by-*N* 的矩阵形式返回。输出始终与输入具有相同的维度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Flip along
+  summary: 指定沿其翻转的维度 Columns（默认）| Rows
+  group: ''
+```
 
 ### **Flip along** — 指定沿其翻转的维度 `Columns`（默认）| `Rows`
 
@@ -56,7 +72,6 @@ y = fliplr(u) % Equivalent MATLAB code
 
 水平翻转输入时，模块将长度为 *N* 的无向向量输入视为
 1-by-*N* 行向量。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Indexing

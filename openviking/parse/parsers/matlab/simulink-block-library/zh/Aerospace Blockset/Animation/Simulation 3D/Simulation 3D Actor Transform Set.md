@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Simulation 3D Actor Transform Set
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: Actor 平移 array
+  direction: input
+- name: Rotation
+  summary: Actor 旋转 array
+  direction: input
+- name: Scale
+  summary: Actor 缩放 array
+  direction: input
+```
 
 ### 输入
 
@@ -125,8 +137,28 @@ Actor 缩放。数组维度为每个 actor 的部件数乘 `3`。
   | 右后轮，*XRRscale* | `Scale(5,1)` |
   | 右后轮，*YRRscale* | `Scale(5,2)` |
   | 右后轮，*ZRRscale* | `Scale(5,3)` |
-
 ## 参数
+```yaml
+parameters:
+- name: Tag for actor in 3D scene, ActorTag
+  summary: 名称 SimulinkActor1（默认）| 字符向量
+  group: ''
+- name: Number of parts per actor to set, NumberOfParts
+  summary: 名称 1（默认）| scalar
+  group: ''
+- name: Initial array values to translate actor per part, Translation
+  summary: Actor 初始位置 [0 0 0]（默认）| array
+  group: ''
+- name: Initial array values to rotate actor per part, Rotation
+  summary: Actor 初始旋转 [0 0 0]（默认）| array
+  group: ''
+- name: Initial array values to scale actor per part, Scale
+  summary: Actor 初始缩放 [1 1 1]（默认）| array
+  group: ''
+- name: Sample time
+  summary: 采样时间 -1（默认）| scalar
+  group: ''
+```
 
 #### Actor Setup
 
@@ -275,7 +307,6 @@ Actor 初始缩放。
 
 采样时间，*Ts*。图形帧率
 是采样时间的倒数。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blockset / Animation / Simulation 3D Simulink 3D Animation / Simulation 3D / Utilities

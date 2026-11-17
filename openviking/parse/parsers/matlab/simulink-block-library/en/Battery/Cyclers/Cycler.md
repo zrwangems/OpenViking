@@ -14,6 +14,24 @@ language: en
 # Cycler
 
 ## Ports
+```yaml
+ports:
+- name: i
+  summary: Current, A physical signal
+  direction: input
+- name: v
+  summary: Voltage, V physical signal
+  direction: input
+- name: c
+  summary: Control, unitless physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -62,8 +80,17 @@ the cycler.
 
 Electrical conserving port associated with the negative terminal of
 the cycler.
-
 ## Parameters
+```yaml
+parameters:
+- name: Current sign convention
+  summary: Sign convention option for current Positive for device discharge (IEC 62660) (default) | Positive for device charge
+  group: ''
+- name: Configuration
+  summary: Block configuration Cycler, specify current or voltage (default) | Galvanostat, specify current | Potentiostat,
+    specify voltage
+  group: ''
+```
 
 ### **Current sign convention** — Sign convention option for current `Positive for device discharge (IEC 62660)` (default) | `Positive for device charge`
 
@@ -72,7 +99,6 @@ Convention option for the sign of the current.
 ### **Configuration** — Block configuration `Cycler, specify current or voltage` (default) | `Galvanostat, specify current` | `Potentiostat, specify voltage`
 
 Option to configure the behavior of the block.
-
 ## Libraries
 
 Simscape / Battery / Cyclers

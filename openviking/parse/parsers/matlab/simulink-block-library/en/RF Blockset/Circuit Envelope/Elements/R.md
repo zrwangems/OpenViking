@@ -14,10 +14,21 @@ language: en
 # Resistor
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Resistance
+  summary: Resistance value 50 Ohm (default) | real number in ohms
+  group: ''
+- name: Simulate noise
+  summary: Simulate thermal noise on (default) | off
+  group: ''
+```
 
 ### **Resistance** — Resistance value `50 Ohm` (default) | real number in ohms
 
@@ -40,7 +51,6 @@ A2/Hz, where:
 - k is the Boltzmann constant
 - T is the value of the **Temperature** parameter,
   in degrees Kelvin. (Also located in the Configuration block.)
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

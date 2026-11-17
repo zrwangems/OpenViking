@@ -14,6 +14,17 @@ language: en
 # State-Space
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output vector scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -33,8 +44,70 @@ width equal to the number of rows in the **C** and
 **D** matrices. For more information, see Description.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: A
+  summary: Matrix coefficient, A 1 (default) | scalar | vector | matrix | sparse matrix
+  group: ''
+  block_parameter: A
+  type: character vector, string
+  values: scalar | vector | matrix | sparse matrix
+  default: '''1'''
+- name: B
+  summary: Matrix coefficient, B 1 (default) | scalar | vector | matrix | sparse matrix
+  group: ''
+  block_parameter: B
+  type: character vector, string
+  values: scalar | vector | matrix | sparse matrix
+  default: '''1'''
+- name: C
+  summary: Matrix coefficient, C 1 (default) | scalar | vector | matrix | sparse matrix
+  group: ''
+  block_parameter: C
+  type: character vector, string
+  values: scalar | vector | matrix | sparse matrix
+  default: '''1'''
+- name: D
+  summary: Matrix coefficient, D 1 (default) | scalar | vector | matrix | sparse matrix
+  group: ''
+  block_parameter: D
+  type: character vector, string
+  values: scalar | vector | matrix | sparse matrix
+  default: '''1'''
+- name: Initial conditions
+  summary: Initial state vector 0 (default) | scalar | vector
+  group: ''
+  block_parameter: InitialCondition
+  type: character vector, string
+  values: scalar | vector
+  default: '''0'''
+- name: Parameter tunability
+  summary: Choose tunable representation of block parameters Auto (default) | Optimized | Unconstrained
+  group: ''
+  block_parameter: ParameterTunability
+  type: character vector | string
+  values: '''Auto'' | ''Optimized'' | ''Unconstrained'''
+  default: '''Auto'''
+- name: Allow non-zero values for D matrix initially specified as zero
+  summary: Allow tunability of D matrix when D = 0 off (default) | on
+  group: ''
+  block_parameter: AllowTunableDMatrix
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Absolute tolerance
+  summary: Absolute tolerance for computing block states auto (default) | scalar | vector
+  group: ''
+  block_parameter: AbsoluteTolerance
+  values: '''auto'' (default) | ''-1'' | positive real scalar number | vector of positive real scalar numbers'
+- name: State Name (e.g., 'position')
+  summary: Option to assign unique names to states '' (default) | character vector | cell array of character vectors | MATLAB®
+    variable | ...
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  values: ''''' (default) | valid MATLAB variable name'
+```
 
 ### **A** — Matrix coefficient, A `1` (default) | scalar | vector | matrix | sparse matrix
 
@@ -255,7 +328,6 @@ programmatically, use the `get_param` function.
 
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
-
 ## Libraries
 
 Simulink / Continuous

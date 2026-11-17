@@ -14,6 +14,15 @@ language: en
 # Fuzzy Logic Controller with Ruleviewer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: Input signal scalar | vector
+  direction: input
+- name: Port_1(Out1)
+  summary: Defuzzified output signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -33,8 +42,20 @@ using blocks such as:
 For a single-output fuzzy inference system, the output is a
 scalar. For a multi-output fuzzy system, the output is a vector. To
 split system outputs into scalar signals, use the Demux (Simulink) block.
-
 ## Parameters
+```yaml
+parameters:
+- name: FIS structure
+  summary: Fuzzy inference system mamfisobject | sugfisobject
+  group: ''
+  block_parameter: fismatrix
+  values: '"fis" (default) | variable name in quotes'
+- name: Refresh rate
+  summary: Time between rule viewer updates positive scalar
+  group: ''
+  block_parameter: Ts
+  values: '"2" (default) | positive scalar in quotes'
+```
 
 ### **FIS structure** — Fuzzy inference system `mamfis`object | `sugfis`object
 
@@ -67,7 +88,6 @@ the `set_param` (Simulink) function.
 | --- | --- |
 | **Parameter:** | `Ts` |
 | **Values:** | `"2"` (default) | positive scalar in quotes |
-
 ## Libraries
 
 Fuzzy Logic Toolbox

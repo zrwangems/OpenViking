@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Audio Plugin
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 插件输入 列向量 | 矩阵
+  direction: input
+- name: y
+  summary: 插件输出 标量 | 列向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -36,8 +45,28 @@ chinese_source: worker-translation
 **注意**
 
 对于用 MATLAB 编写的音频插件，输出数量和每个输出的通道数由插件 `audioPluginInterface` 中的 `OutputChannels` 属性定义。
-
 ## 参数
+```yaml
+parameters:
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 正标量
+  group: ''
+- name: Samples per frame
+  summary: 每帧样本数 正整数
+  group: ''
+- name: Output data type
+  summary: 输出信号的数据类型 double（默认）| single
+  group: ''
+- name: Sample rate (Hz)
+  summary: 输出信号的采样率 正标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 **注意**
 
@@ -81,7 +110,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，可以调试模块的源代码。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。只要模型不变，后续仿真会重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Audio Toolbox / User-Defined Functions

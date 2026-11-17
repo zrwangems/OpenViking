@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Uniform Encoder
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 编码器输出 向量 | 矩阵
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -36,8 +47,19 @@ chinese_source: worker-translation
 
 **数据类型：** `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Peak
+  summary: 要编码的最大输入幅度 1（默认）| 非负标量
+  group: ''
+- name: Bits
+  summary: 位数 8（默认）| 范围 [2, 32] 内的整数
+  group: ''
+- name: Output type
+  summary: 模块输出的数据类型 Unsigned integer（默认）| Signed integer
+  group: ''
+```
 
 ### **Peak** — 要编码的最大输入幅度 `1`（默认）| 非负标量
 
@@ -89,7 +111,6 @@ chinese_source: worker-translation
 | `2` 到 `8` | `uint8` | `int8` |
 | `9` 到 `16` | `uint16` | `int16` |
 | `17` 到 `32` | `uint32` | `int32` |
-
 ## 所属库
 
 DSP System Toolbox / Quantizers

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Jet Pump (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: S
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: B
+  summary: 液体端口（热液体）
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,34 @@ chinese_source: worker-translation
 ### **B** — 液体端口（热液体）
 
 与混合流体出口端口关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Nozzle exit area
+  summary: 喷嘴出口面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Nozzle exit to throat area ratio
+  summary: 喷嘴出口与喉部面积比 0.25（默认）| 正标量
+  group: ''
+- name: Diffuser inlet to outlet area ratio
+  summary: 扩压器几何比 0.25（默认）| 正标量
+  group: ''
+- name: Primary flow nozzle loss coefficient
+  summary: 主流摩擦损失系数 0.05（默认）| 正标量
+  group: ''
+- name: Secondary flow entry loss coefficient
+  summary: 二次流摩擦损失系数 0.005（默认）| 正标量
+  group: ''
+- name: Throat loss coefficient
+  summary: 喉部摩擦损失系数 0.1（默认）| 正标量
+  group: ''
+- name: Diffuser loss coefficient
+  summary: 扩压器摩擦损失系数 0.1（默认）| 正标量
+  group: ''
+- name: Minimum allowable nozzle pressure
+  summary: 喷嘴出口最小压力 1 Pa（默认）| 正标量
+  group: ''
+```
 
 ### **Nozzle exit area** — 喷嘴出口面积 `1e-4` `m^2`（默认）| 正标量
 
@@ -63,7 +101,6 @@ chinese_source: worker-translation
 ### **Minimum allowable nozzle pressure** — 喷嘴出口最小压力 `1` `Pa`（默认）| 正标量
 
 喷射泵中允许的最小压力。如果喷嘴出口处的压力低于此值，模块将通过将流体速度限制为最小喷嘴压力下的速度来模拟空化效应。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Pumps & Motors

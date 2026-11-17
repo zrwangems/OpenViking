@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Modem Status
 
 ## 端口
+```yaml
+ports:
+- name: CTS
+  summary: 清除发送线路的状态 true | false
+  direction: output
+- name: DSR
+  summary: 数据装置就绪线路的状态 true | false
+  direction: output
+- name: DCD
+  summary: 数据载波检测线路的状态 true | false
+  direction: output
+```
 
 ### 输出
 
@@ -41,8 +53,26 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要使此输出可见，请选择 **DCD** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: CTS
+  summary: 启用清除发送状态输出 on（默认）| off
+  group: ''
+- name: DSR
+  summary: 启用数据装置就绪状态输出 on（默认）| off
+  group: ''
+- name: DCD
+  summary: 启用数据载波检测状态输出 on（默认）| off
+  group: ''
+- name: Sample time
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: ''
+- name: Serial port
+  summary: 正在访问的端口 Legacy Serial Port 1（默认）| .. | Legacy Serial Port 8 | USB Serial Port 1 | .. | USB Serial Port 8
+  group: ''
+  block_parameter: port
+```
 
 ### **CTS** — 启用清除发送状态输出 `on`（默认）| `off`
 
@@ -103,7 +133,6 @@ sampletime
 |  |
 | --- |
 | **模块参数**：`port` |
-
 ## 所属库
 
 Simulink Real-Time / RS232 / Mainboard

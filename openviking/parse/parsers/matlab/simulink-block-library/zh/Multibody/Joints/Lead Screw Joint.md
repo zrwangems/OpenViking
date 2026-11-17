@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Lead Screw Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础坐标系 坐标系
+  direction: input
+- name: F
+  summary: 从动坐标系 坐标系
+  direction: input
+- name: mode
+  summary: 关节模式控制 物理信号
+  direction: input
+- name: q
+  summary: 关节旋转 物理信号
+  direction: output
+- name: w
+  summary: 关节旋转的一阶导数 物理信号
+  direction: output
+- name: b
+  summary: 关节旋转的二阶导数 物理信号
+  direction: output
+- name: p
+  summary: 关节平移 物理信号
+  direction: output
+- name: v
+  summary: 关节平移的一阶导数 物理信号
+  direction: output
+- name: a
+  summary: 关节平移物理信号的二阶导数
+  direction: output
+- name: fc
+  summary: 约束力物理信号
+  direction: output
+- name: tc
+  summary: 约束力矩物理信号
+  direction: output
+- name: ft
+  summary: 总力物理信号
+  direction: output
+- name: tt
+  summary: 总力矩物理信号
+  direction: output
+```
 
 ### 坐标系
 
@@ -134,8 +176,55 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Composite Force/Torque Sensing** 下，选择 **Total Torque**。
-
 ## 参数
+```yaml
+parameters:
+- name: Direction
+  summary: 丝杠关节的旋向 Right-Hand（默认）| Left-Hand
+  group: Z Lead Screw Primitive (LSz)
+- name: Lead
+  summary: 丝杠关节的导程 1 mm/rev（默认）| 标量
+  group: Z Lead Screw Primitive (LSz)
+- name: Specify Position Target
+  summary: 是否指定位置目标 off（默认）| on
+  group: Z Lead Screw Primitive (LSz)
+- name: Priority
+  summary: 位置目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Z Lead Screw Primitive (LSz)
+- name: Based On
+  summary: 用于指定位置目标的运动类型 Translation（默认）| Rotation
+  group: Z Lead Screw Primitive (LSz)
+- name: Value
+  summary: 旋转位置目标 0 deg（默认）| 具有角度单位的标量
+  group: Z Lead Screw Primitive (LSz)
+- name: Value
+  summary: 平移位置目标 0 m（默认）| 具有长度单位的标量
+  group: Z Lead Screw Primitive (LSz)
+- name: 指定速度目标
+  summary: 是否指定速度目标 off（默认）| on
+  group: Z Lead Screw Primitive (LSz)
+- name: 优先级
+  summary: 速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Z Lead Screw Primitive (LSz)
+- name: 基于
+  summary: 用于指定速度目标的运动类型 Translation（默认）| Rotation
+  group: Z Lead Screw Primitive (LSz)
+- name: 值
+  summary: 角速度目标 0 deg/s（默认）| 具有角速度单位的标量
+  group: Z Lead Screw Primitive (LSz)
+- name: 值
+  summary: 线速度目标 0 m/s（默认）| 具有线速度单位的标量
+  group: Z Lead Screw Primitive (LSz)
+- name: 模式
+  summary: 关节模式 Normal（默认）| Locked | Disengaged | Provided by Input
+  group: 模式配置
+- name: 方向
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: 复合力/力矩感测
+- name: 解析坐标系
+  summary: 用于解析测量值的坐标系 Base（默认）| Follower
+  group: 复合力/力矩感测
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -255,7 +344,6 @@ chinese_source: worker-translation
 - `Follower` — 模块在从动坐标系的坐标中解析测量值。
 
 此参数仅影响 **复合力/力矩感测** 部分下的输出信号。
-
 ## 所属库
 
 Simscape / Multibody / Joints

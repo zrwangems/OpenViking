@@ -15,10 +15,137 @@ chinese_source: worker-translation
 # Generate Run Script
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Select target architecture
+  summary: 运行脚本的目标平台 Default（默认）| Win64 | Linux | Mac
+  group: ''
+  block_parameter: Architecture
+  type: 字符向量
+  values: '''Win64'' | ''Linux'' | ''Mac'''
+  default: '''Default'''
+- name: Select FlightGear data flow
+  summary: FlightGear 数据流 Send（默认）| Receive | Send-Receive
+  group: ''
+  block_parameter: dataFlow
+  type: 字符向量
+  values: '''Receive'' | ''Send-Receive'''
+  default: '''Send'''
+- name: FlightGear geometry model name
+  summary: 包含 FlightGear 几何模型的文件夹 HL20（默认）
+  group: ''
+  block_parameter: GeometryModelName
+  type: 字符向量
+  values: '''HL20'''
+  default: '''HL20'''
+- name: Airport ID
+  summary: 支持的机场 ID KSFO（默认）
+  group: ''
+  block_parameter: '''AirportId'''
+  type: 字符向量
+  values: '''KSFO'''
+  default: '''KSFO'''
+- name: Runway ID
+  summary: 支持的跑道 ID 10L（默认）
+  group: ''
+  block_parameter: RunwayId
+  type: 字符向量
+  values: '''10L'''
+  default: '''10L'''
+- name: Initial altitude (ft)\*
+  summary: 飞机初始高度 7224 | 数值
+  group: ''
+  block_parameter: InitialAltitude
+  type: 字符向量
+  values: '''7224'''
+  default: '''7224'''
+- name: Initial heading (deg)\*
+  summary: 飞机初始航向 113 | 数值
+  group: ''
+  block_parameter: InitialHeading
+  type: 字符向量
+  values: '''113'''
+  default: '''113'''
+- name: Offset distance (miles)\*
+  summary: 偏移距离 4.72 | 数值
+  group: ''
+  block_parameter: OffsetDistance
+  type: 字符向量
+  values: '''4.72'''
+  default: '''4.72'''
+- name: Offset azimuth (deg)\*
+  summary: 飞机偏移方位角 0 | 数值
+  group: ''
+  block_parameter: OffsetAzimuth
+  type: 字符向量
+  values: '''0'''
+  default: '''0'''
+- name: Install FlightGear scenery during simulation (requires Internet connection)
+  summary: 在仿真期间安装 FlightGear 场景 off（默认）| on
+  group: ''
+  block_parameter: InstallScenery
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Disable FlightGear shader options
+  summary: 禁用 FlightGear 着色器 off（默认）| on
+  group: ''
+  block_parameter: DisableShaders
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Destination/Origin IP address
+  summary: 运行 MATLAB 的机器的网络 IP 地址 127.0.0.1
+  group: ''
+  block_parameter: OriginAddress
+  type: 字符向量
+  values: '''127.0.0.1'''
+  default: '''127.0.0.1'''
+- name: Destination port
+  summary: FlightGear 机器的目标端口 5502
+  group: ''
+  block_parameter: DestinationPort
+  type: 字符向量
+  values: '''5502'''
+  default: '''5502'''
+- name: Origin port
+  summary: FlightGear 机器的源端口 5505
+  group: ''
+  block_parameter: OriginPort
+  type: 字符向量
+  values: '''5505'''
+  default: '''5505'''
+- name: Network IP address
+  summary: FlightGear 机器的网络 IP 地址 127.0.0.1
+  group: ''
+  block_parameter: LocalAddress
+  type: 字符向量
+  values: '''127.0.0.1'''
+  default: '''127.0.0.1'''
+- name: Output file name
+  summary: 输出文件 runfg.bat
+  group: ''
+  block_parameter: OutputFileName
+  type: 字符向量
+  values: '''runfg.bat'''
+  default: '''runfg.bat'''
+- name: FlightGear base directory
+  summary: FlightGear 基础目录 C:\Program Files\FlightGear
+  group: ''
+  block_parameter: FlightGearBaseDirectory
+  type: 字符向量
+  values: '''C:\Program Files\FlightGear'''
+  default: '''C:\Program Files\FlightGear'''
+- name: Generate Script
+  summary: Generate Script 按钮 按钮
+  group: ''
+```
 
 ### **Select target architecture** — 运行脚本的目标平台 `Default`（默认）| `Win64` | `Linux` | `Mac`
 
@@ -277,7 +404,6 @@ FlightGear 必须安装在由 ASCII 字符组成的文件夹路径名中。
 ### **Generate Script** — Generate Script 按钮 按钮
 
 点击 **Generate Script** 为 FlightGear 生成运行脚本。在对话框中输入正确的参数信息之前，请勿点击此按钮。
-
 ## 所属库
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

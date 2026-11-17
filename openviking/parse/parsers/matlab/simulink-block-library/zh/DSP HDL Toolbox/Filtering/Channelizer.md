@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Channelizer
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据，实数或复数值的标量或列向量
+  direction: input
+  data_types: fixed point | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | single | double
+- name: valid
+  summary: 指示有效输入数据，标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态，标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 频率信道输出数据，向量
+  direction: output
+- name: valid
+  summary: 指示有效输出数据，标量
+  direction: output
+  data_types: Boolean
+- name: start
+  summary: 指示输出帧的第一个有效周期，标量
+  direction: output
+  data_types: Boolean
+- name: end
+  summary: 指示输出帧的最后一个有效周期，标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -86,8 +116,49 @@ chinese_source: worker-translation
 要启用此端口，请在 **Control Ports** 中选择 **Enable end output port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter coefficients
+  summary: 多相滤波器系数 [ -0.032, 0.121, 0.318, 0.482, 0.546, 0.482, 0.318, 0.121, -0.032 ]（默认值）| 实数或复数数值向量
+  group: 主
+- name: Filter structure
+  summary: HDL 滤波器架构 Direct form transposed（默认值）| Direct form systolic
+  group: 主
+- name: Number of frequency bands (FFT length)
+  summary: FFT 长度 8（默认值）| 2 的整数次幂
+  group: 主
+- name: Complex multiplication
+  summary: 复数乘法器的 HDL 实现 Use 4 multipliers and 2 adders（默认值）| Use 3 multipliers and 5 adders
+  group: 主
+- name: Output vector size
+  summary: 输出数据大小 Same as number of frequency bands（默认值）| Same as input size
+  group: 主
+- name: Divide butterfly outputs by two
+  summary: FFT 缩放，开启（默认值）| 关闭
+  group: 主
+- name: Rounding mode
+  summary: 用于内部定点计算的舍入方法 Floor（默认值）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 内部定点计算的溢出处理，关闭（默认值）| 开启
+  group: 数据类型
+- name: Coefficients
+  summary: '滤波器系数的数据类型 Inherit: Same word length as input（默认值）| 数据类型表达式'
+  group: 数据类型
+- name: Filter output
+  summary: '多相滤波器输出的数据类型 Inherit: Same word length as input（默认值）| Inherit: via internal rule | 数据类型表达式'
+  group: 数据类型
+- name: Enable reset input port
+  summary: 可选复位信号，关闭（默认值）| 开启
+  group: 控制端口
+- name: Enable start output port
+  summary: 指示数据开始的可选控制信号，关闭（默认值）| 开启
+  group: 控制端口
+- name: Enable end output port
+  summary: 指示数据结束的可选控制信号，关闭（默认值）| 开启
+  group: 控制端口
+```
 
 ### 主
 
@@ -156,7 +227,6 @@ FFT 算法通过以下方式之一避免溢出：缩放每个级的输出（启�
 ### **Enable end output port** — 指示数据结束的可选控制信号，关闭（默认值）| 开启
 
 当您选择此参数时，**end** 端口会显示在模块图标上。**end** 信号在帧中输出数据的最后一个周期为 true。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

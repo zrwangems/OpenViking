@@ -14,6 +14,25 @@ language: en
 # Moments about CG due to Forces
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: Applied forces 3-element vector
+  direction: input
+  data_types: double
+- name: CG
+  summary: Center of gravity 3-element vector
+  direction: input
+  data_types: double
+- name: CP
+  summary: Application point of forces 3-element vector
+  direction: input
+  data_types: double | bus
+- name: M
+  summary: Moments at the center of gravity 3-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -43,11 +62,12 @@ Moments at the center of gravity in *x*-axis,
 a three-element vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Mass Properties

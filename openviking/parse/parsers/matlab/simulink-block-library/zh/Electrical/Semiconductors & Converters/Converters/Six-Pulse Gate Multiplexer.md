@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Six-Pulse Gate Multiplexer
 
 ## 端口
+```yaml
+ports:
+- name: Ga(H),Gb(H),Gc(H)
+  summary: Ga(H),Gb(H),Gc(H) 物理信号
+  direction: input
+- name: Ga(L),Gb(L),Gc(L)
+  summary: Ga(L),Gb(L),Gc(L) 物理信号
+  direction: input
+- name: Ga(H),Gb(H),Gc(H)
+  summary: Ga(H),Gb(H),Gc(H) 电气
+  direction: input
+- name: Ga(L),Gb(L),Gc(L)
+  summary: Ga(L),Gb(L),Gc(L) 电气
+  direction: input
+- name: G
+  summary: G 电气
+  direction: input
+- name: a
+  summary: '*A* 相交流参考点 电气'
+  direction: input
+- name: b
+  summary: '*B* 相交流参考点 电气'
+  direction: input
+- name: c
+  summary: '*C* 相交流参考点 电气'
+  direction: input
+- name: L
+  summary: L 电气
+  direction: input
+```
 
 ### 输入
 
@@ -86,13 +116,17 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Gate-control port** 设置为 `Electrical`。
-
 ## 参数
+```yaml
+parameters:
+- name: Gate-control port
+  summary: 栅极控制端口 PS（默认）| Electrical
+  group: ''
+```
 
 ### **Gate-control port** — 栅极控制端口 `PS`（默认）| `Electrical`
 
 选择暴露 PS 端口还是电气控制端口。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

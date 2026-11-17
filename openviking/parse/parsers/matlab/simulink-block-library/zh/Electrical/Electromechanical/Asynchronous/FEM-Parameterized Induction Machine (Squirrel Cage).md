@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # FEM-Parameterized Induction Machine (Squirrel Cage)
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 定子正端连接 electrical
+  direction: conserving
+- name: ~2
+  summary: 定子负端连接 electrical
+  direction: conserving
+- name: R
+  summary: 电机转子 mechanical rotational
+  direction: conserving
+- name: C
+  summary: 电机机壳 mechanical rotational
+  direction: conserving
+- name: HA
+  summary: '*a* 相端子 thermal'
+  direction: conserving
+- name: HB
+  summary: '*b* 相端子 thermal'
+  direction: conserving
+- name: HC
+  summary: '*c* 相端子 thermal'
+  direction: conserving
+- name: HR
+  summary: 转子 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -69,8 +96,73 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 启用热端口的选项 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Stator resistance, Rs
+  summary: 定子电阻 0.25 Ohm（默认）| 正标量
+  group: 电阻
+- name: Tabulate rotor resistance with frequency
+  summary: 将转子电阻随频率制表的选项 Off（默认）| On
+  group: 电阻
+- name: Referred rotor resistance, Rr_d
+  summary: 折算转子电阻 0.14 Ohm（默认）| 正标量
+  group: 电阻
+- name: Rotor AC frequency vector, fr
+  summary: 转子交流频率向量 [0, 5, 10, 15] Hz（默认）| 非负标量向量
+  group: 电阻
+- name: Referred rotor resistance table, Rr_d(fr)
+  summary: 折算转子电阻表 [.14, .14, .14, .14] Ohm（默认）| 正标量向量
+  group: 电阻
+- name: Number of pole pairs
+  summary: 电机极对数 1（默认）| 正整数
+  group: 磁通
+- name: Stator d-axis current vector, iDS
+  summary: 定子 D 轴电流向量 [0, 150, 350, 500] A（默认）| 非负标量向量
+  group: 磁通
+- name: Stator q-axis current vector, iQS
+  summary: 定子 Q 轴电流向量 [0, 250, 500] A（默认）| 非负标量向量
+  group: 磁通
+- name: Stator d-axis flux linkage table, λds(ids,iqs)
+  summary: 定子 D 轴磁链表 4.4e-2 * repmat([0, 150, 350, 500]', 1, 3) Wb（默认）| 标量矩阵
+  group: 磁通
+- name: Stator q-axis flux linkage table, λqs(ids,iqs)
+  summary: 定子 Q 轴磁链表 2.1e-3 * repmat([0, 250, 500], 4, 1) Wb（默认）| 标量矩阵
+  group: 磁通
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 磁通
+- name: Include rotor inertia
+  summary: 包含转子惯量的选项 On（默认）| Off
+  group: 机械
+- name: Rotor inertia
+  summary: 转子惯量 1e-3 kg*m^2（默认）| 正标量
+  group: 机械
+- name: Rotor damping
+  summary: 转子阻尼 0 N*m*s/rad（默认）| 非负标量
+  group: 机械
+- name: Measurement temperature
+  summary: 额定温度 298.15 K（默认）| 实标量
+  group: 温度依赖性
+- name: Stator resistance temperature coefficient
+  summary: 定子电阻温度系数 3.93e-3 1/K（默认）| 非负标量
+  group: 温度依赖性
+- name: Rotor resistance temperature coefficient
+  summary: 转子电阻温度系数 3.93e-3 1/K（默认）| 非负标量
+  group: 温度依赖性
+- name: Include stator and rotor thermal masses
+  summary: 包含定子和转子热质量的选项 On（默认）| Off
+  group: 热端口
+- name: Thermal mass for each stator winding
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热端口
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）| 正标量
+  group: 热端口
+```
 
 ### **Modeling option** — 启用热端口的选项 `No thermal port`（默认）| `Show thermal port`
 
@@ -216,7 +308,6 @@ rotor thermal masses** 参数。
 
 要启用此参数，请选择 **Include stator and
 rotor thermal masses** 参数。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Asynchronous

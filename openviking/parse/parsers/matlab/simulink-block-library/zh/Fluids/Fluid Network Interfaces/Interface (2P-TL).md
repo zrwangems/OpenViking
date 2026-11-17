@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Interface (2P-TL)
 
 ## 端口
+```yaml
+ports:
+- name: 2P
+  summary: 两相端口 两相流体
+  direction: unspecified
+- name: TL
+  summary: 流体端口 热液体
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,16 @@ chinese_source: worker-translation
 ### **TL** — 流体端口 热液体
 
 与接口处热液体相关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Cross-sectional area at ports 2P and TL
+  summary: 端口面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Two-phase fluid subcooled liquid check
+  summary: 两相流体过冷条件检查 None（默认）| Warning | Error
+  group: ''
+```
 
 ### **Cross-sectional area at ports 2P and TL** — 端口面积 `0.01` `m^2`（默认）| 正标量
 
@@ -35,7 +52,6 @@ chinese_source: worker-translation
 ### **Two-phase fluid subcooled liquid check** — 两相流体过冷条件检查 `None`（默认）| `Warning` | `Error`
 
 当端口 **2P** 处的流体不满足过冷条件时要执行的操作。
-
 ## 所属库
 
 Simscape / Fluids / Fluid Network Interfaces

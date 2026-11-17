@@ -14,10 +14,181 @@ language: en
 # Amplifier
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of amplifier gain
+  summary: Amplifier gain source Available power gain (default) | Open circuit voltage gain | Data source | Polynomial coefficients
+    | AM/AM-AM/PM table
+  group: Main
+- name: Available power gain
+  summary: Available power gain 0 dB (default) | scalar
+  group: Main
+- name: Open circuit voltage gain
+  summary: Open circuit voltage gain 0 dB (default) | scalar
+  group: Main
+- name: Data source
+  summary: Data source Data File (default) | Network-parameters | Rational Model
+  group: Main
+- name: Polynomial coefficients
+  summary: Polynomial coefficients [0 1] (default) | vector
+  group: Main
+- name: AM/AM-AM/PM table
+  summary: Lookup table [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ] (default) | *M*-by-3 real matrix
+  group: Main
+- name: Network-parameter object
+  summary: Network parameter objects as data source off (default) | on
+  group: Main
+- name: Network parameter type
+  summary: Network parameter type S-parameters (default) | Y-parameters | Z-parameters
+  group: Main
+- name: Input impedance (Ohm)
+  summary: Input impedance 50 (default) | positive scalar
+  group: Main
+- name: Output impedance (Ohm)
+  summary: Output impedance 50 (default) | positive scalar
+  group: Main
+- name: Data file
+  summary: Name of network parameter data file unitygain.s2p (default) | character vector
+  group: Main
+- name: Frequency (dB)
+  summary: Frequency of network parameters 1e9 Hz (default) | scalar | Hz | kHz | MHz | GHz
+  group: Main
+- name: Reference Impedance(Ohm)
+  summary: Reference impedance of network parameters 50 (default) | positive scalar | vector of positive scalars
+  group: Main
+- name: Use rational object
+  summary: Rational object as data source off (default) | on
+  group: Main
+- name: Residues
+  summary: Residues in order of rational model 0 (default) | vector
+  group: Main
+- name: Poles
+  summary: Residues in order of rational model 0 (default) | vector
+  group: Main
+- name: Direct feedthrough
+  summary: Direct feedthrough {0 0:1 0} (default) | array of vectors
+  group: Main
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: Main
+- name: Nonlinear polynomial type
+  summary: Type of nonlinearity Even and odd order (default) | Odd order
+  group: Nonlinearity
+- name: Intercept points convention
+  summary: Intercept points convention Output (default) | Input
+  group: Nonlinearity
+- name: IP2
+  summary: Second-order intercept point infdBm (default) | scalar | W | mW | dBW | dBm
+  group: Nonlinearity
+- name: IP3
+  summary: Third-order intercept point infdBm (default) | scalar | W | mW | dBW | dBm
+  group: Nonlinearity
+- name: 1-dB gain compression power
+  summary: 1-dB gain compression power inf dBm (default) | scalar | W | mW | dBW | dBm
+  group: Nonlinearity
+- name: Output saturation power
+  summary: Output saturation power inf dBm (default) | scalar | W | mW | dBW | dBm
+  group: Nonlinearity
+- name: Gain compression at saturation
+  summary: Gain compression at saturation inf dBm (default) | scalar | W | mW | dBW | dBm
+  group: Nonlinearity
+- name: Use operation frequency at maximum S21 magnitude
+  summary: Specify operation frequency off (default) | on
+  group: Nonlinearity
+- name: Operation frequency
+  summary: Operation frequency 1 GHz (default) | scalar | finite vector | Hz | KHz | MHz | GHz
+  group: Nonlinearity
+- name: Use constant S21 and nonlinearity
+  summary: Operation frequency off (default) | on
+  group: Nonlinearity
+- name: Plot Power Characteristics
+  summary: Amplifier nonlinear power curve visualization button (default)
+  group: Nonlinearity
+- name: Simulate noise
+  summary: Simulate thermal noise on (default) | off
+  group: Noise
+- name: Noise type
+  summary: Noise type Noise figure (default) | Spot noise data
+  group: Noise
+- name: Noise distribution
+  summary: Noise distribution White (default) | Piece-wise linear | Colored
+  group: Noise
+- name: Noise figure (dB)
+  summary: Noise figure 0 (default) | scalar
+  group: Noise
+- name: Frequencies
+  summary: Frequency data 0 Hz (default) | real scalar | finite vector
+  group: Noise
+- name: Minimum noise figure (dB)
+  summary: Minimum noise figure 0 (default) | scalar | finite vector
+  group: Noise
+- name: Optimal reflection coefficient
+  summary: Optimal reflection coefficient 0 (default) | scalar | finite vector
+  group: Noise
+- name: Equivalent normalized noise resistance
+  summary: Equivalent normalized noise resistance 0 (default) | scalar | finite vector
+  group: Noise
+- name: Automatically estimate impulse response duration
+  summary: Automatically estimate impulse response duration on (default) | off
+  group: Noise
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10s (default) | scalar
+  group: Noise
+- name: Modeling options
+  summary: Model S-parameters Time domain (default) | Frequency domain
+  group: Modeling
+- name: Fitting options
+  summary: Rationalfit fitting options Fit individually (default) | Share poles by column | Share all poles
+  group: Modeling
+- name: Relative error desired (dB)
+  summary: Relative error acceptable for the rational fit -40 (default) | scalar
+  group: Modeling
+- name: Automatically estimate impulse response duration
+  summary: Automatically calculate impulse response on | off
+  group: Modeling
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10 (default) | scalar
+  group: Modeling
+- name: Use only S-parameter magnitude with appropriate delay
+  summary: Use only S-parameter magnitude with appropriate delay off (default) | on
+  group: Modeling
+- name: Source of frequency data
+  summary: Frequency data source Extracted from data source (default) | User-defined
+  group: Visualization
+- name: Frequency data
+  summary: Frequency data range [1e9:1e6:3e9] (default) | finite vector | Hz | kHz | MHz | GHz
+  group: Visualization
+- name: Plot type
+  summary: Type of data plot X-Y plane (default) | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: Visualization
+- name: Parameter 1
+  summary: Type of S-Parameters to plot S11 (default) | S12 | S21 | S22 | NF
+  group: Visualization
+- name: Parameter 2
+  summary: Type of S-Parameters to plot None (default) | S11 | S12 | S21 | S22 | NF
+  group: Visualization
+- name: Format1
+  summary: Plot format Magnitude (decibels) (default) | Magnitude (linear) | Angle(degrees) | Real | Imaginary
+  group: Visualization
+- name: Format2
+  summary: Plot format Magnitude (decibels) (default) | Magnitude (linear) | Angle(degrees) | Real | Imaginary
+  group: Visualization
+- name: Y-axis scale
+  summary: Y-axis scale Linear (default) | Logarithmic
+  group: Visualization
+- name: X-axis scale
+  summary: X-axis scale Linear (default) | Logarithmic
+  group: Visualization
+- name: Plot
+  summary: Plot specified data button
+  group: Visualization
+```
 
 ### Main
 
@@ -828,7 +999,6 @@ To enable this parameter, set **Plot type** to
 ### **Plot** — Plot specified data button
 
 Plot specified data using plot button.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

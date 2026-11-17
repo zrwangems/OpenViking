@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Counter
 
 ## 端口
+```yaml
+ports:
+- name: T
+  summary: 计数器值 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输出
 
@@ -23,8 +30,25 @@ chinese_source: worker-translation
 计数器值。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Counter type
+  summary: 计数器策略 Up（默认）| Down | Up-Down
+  group: ''
+- name: Output range
+  summary: 范围 [0 1]（默认）| [-1 1]
+  group: ''
+- name: Timer period (s)
+  summary: 周期 0.001（默认）| 正标量
+  group: ''
+- name: Phase delay (s)
+  summary: 延迟 0（默认）| 0 或正标量
+  group: ''
+- name: Sample time
+  summary: 模块采样时间 0.0001（默认）| 0 或正标量
+  group: ''
+```
 
 ### **Counter type** — 计数器策略 `Up`（默认）| `Down` | `Up-Down`
 
@@ -47,7 +71,6 @@ chinese_source: worker-translation
 连续模块执行之间的时间。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 对于离散时间仿真，将采样时间设置为正标量。对于连续时间仿真，将采样时间设置为 `0`。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

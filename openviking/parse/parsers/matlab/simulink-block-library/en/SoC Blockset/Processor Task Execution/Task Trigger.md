@@ -14,6 +14,13 @@ language: en
 # Task Trigger
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output trigger scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Output
 
@@ -23,11 +30,12 @@ This port sends a task signal that triggers the Task Manager
 block to execute the associated task.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 SoC Blockset / Processor Task Execution

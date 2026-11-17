@@ -14,6 +14,33 @@ language: en
 # NR Symbol Demodulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data symbols complex scalar
+  direction: input
+  data_types: single | double | signed fixed point
+- name: valid
+  summary: Indicate valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: modSel
+  summary: Modulation selection integer from 0 to 5
+  direction: input
+  data_types: single | double | signed fixed point
+- name: data
+  summary: Demodulated data bits or LLR values scalar
+  direction: output
+  data_types: single | double | signed fixed point | Boolean
+- name: valid
+  summary: Valid output data indication scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -144,8 +171,23 @@ clock cycles, calculated as *NBPS* – 1 and then it changes to
 next time step.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation source
+  summary: Source for modulation type Property (default) | Input port
+  group: ''
+- name: Modulation
+  summary: Modulation type BPSK (default) | QPSK | 16-QAM | 64-QAM | 256-QAM | pi/2-BPSK
+  group: ''
+- name: Decision type
+  summary: Type of demapping Soft (default) | Hard
+  group: ''
+- name: Rounding Method
+  summary: Rounding mode for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Zero
+  group: ''
+```
 
 ### **Modulation source** — Source for modulation type `Property` (default) | `Input port`
 
@@ -178,7 +220,6 @@ Select the demapping type.
 This parameter specifies the type of rounding mode for internal fixed-point
 calculations. For more information about rounding modes, see Rounding Modes. This parameter does not apply when the
 input is of data type `double` or `single`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

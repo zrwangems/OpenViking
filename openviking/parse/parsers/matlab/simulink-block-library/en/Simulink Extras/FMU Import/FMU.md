@@ -14,6 +14,12 @@ language: en
 # FMU
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Placeholder port none | | string size limited to 255
+  direction: output
+```
 
 ### Output
 
@@ -22,8 +28,79 @@ language: en
 Placeholder port that produces no output as is. Input and output ports
 are configured when an actual FMU is imported into the block. Both input
 and output ports support numerical and string data types.
-
 ## Parameters
+```yaml
+parameters:
+- name: FMU name
+  summary: FMU name character vector
+  group: ''
+  block_parameter: FMUName
+  type: character vector
+  values: name of an FMU, with or without file extension
+  default: ''' '''
+- name: Enable FMU tolerance
+  summary: Enable FMU tolerance off (default) | on
+  group: Simulation
+  block_parameter: FMUIsToleranceUsed
+  type: character vector
+  values: on | off
+  default: '''off'''
+- name: Relative tolerance
+  summary: FMU relative tolerance 1E-3 (default) | scalar
+  group: Simulation
+  block_parameter: FMUToleranceValue
+  type: character vector
+  values: 1E-3 | scalar
+  default: '''1E-3'''
+- name: Simulate FMU using
+  summary: Select binary for simulation x86_64-windows (default) | x86-windows | x86_64-linux
+  group: Simulation
+  block_parameter: FMUSelectedBinary
+  type: character vector
+  values: x86_64-windows | x86-windows | linux64
+  default: '''win64'''
+- name: Enable event mode
+  summary: FMU in event mode on (default) | off
+  group: Simulation
+  block_parameter: CSEventModeEnabled
+  type: character vector
+  values: on | off
+  default: '''on'''
+- name: Communication Step Size
+  summary: Step size between co-simulation time instants -1 (default) | scalar positive
+  group: Simulation
+  block_parameter: FMUSampleTime
+  type: character vector
+  values: scalar
+  default: '''-1'''
+- name: Enable FMU debug logging
+  summary: Enable FMU logging display for debug purposes off (default) | on
+  group: Simulation
+  block_parameter: FMUDebugLogging
+  type: 1xN cell array of character vectors
+  values: on | off
+  default: '''off'''
+- name: Filter logs by return status
+  summary: Filter debug logs OK | Warning | Discard | Error | Fatal | Pending
+  group: Simulation
+  block_parameter: FMUDebugLoggingFilter
+  type: character vector
+  values: OK | Warning | Discard | Error | Fatal | Pending
+  default: '''OK'' | ''Warning'' | ''Discard'' | ''Error'' | ''Fatal'' | ''Pending'''
+- name: Redirect debug logs to
+  summary: Direct streaming debug logs File (default) | Display
+  group: Simulation
+  block_parameter: FMUDebugLoggingRedirect
+  type: character vector
+  values: File| Display
+  default: '''File'''
+- name: Call FMU functions using
+  summary: Specify source of FMI API for the generated code auto | source code | shared library
+  group: Code Generation
+  block_parameter: FMUCGType
+  type: character vector
+  values: source code | shared library | auto
+```
 
 ### **FMU name** — FMU name character vector
 
@@ -369,7 +446,6 @@ inactive and code generation uses the compiled binary.
 | **Block Parameter:** `FMUCGType` |
 | **Type:** character vector |
 | **Values:** `source code` | `shared library` | `auto` |
-
 ## Libraries
 
 Simulink Extras / FMU Import

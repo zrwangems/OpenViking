@@ -14,6 +14,19 @@ language: en
 # Bus to Vector
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Bus to convert to vector scalar | vector | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: Port_1
+  summary: Output vector vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+```
 
 ### Input
 
@@ -35,11 +48,12 @@ vector, respectively. Otherwise, the output is a 1-D vector.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

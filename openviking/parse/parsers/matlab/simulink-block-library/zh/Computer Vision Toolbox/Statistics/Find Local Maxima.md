@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Find Local Maxima
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Th
+  summary: 用于检测局部最大值的阈值 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Idx
+  summary: 局部最大值的坐标 *P*×2 矩阵
+  direction: output
+  data_types: single | double | uint8 | uint16 | uint32
+- name: Count
+  summary: 局部最大值的数量 标量
+  direction: output
+  data_types: single | double | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -51,8 +70,34 @@ chinese_source: worker-translation
 要启用此端口，请清除 **Output variable size signal** 参数的复选框。
 
 **数据类型：** `single` | `double` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum number of local maxima
+  summary: 要检测的局部最大值的最大数量 2 （默认） | 正整数
+  group: ''
+- name: Neighborhood size
+  summary: 邻域区域的大小 [5 7] （默认） | 二元素向量
+  group: ''
+- name: Source of threshold value
+  summary: 输入阈值值的来源 Specify via dialog （默认） | Input port
+  group: ''
+- name: Threshold
+  summary: 用于检测局部最大值的阈值 10 （默认） | 标量
+  group: ''
+- name: Input is Hough matrix spanning full theta range
+  summary: 输入是否为 Hough 矩阵 off （默认） | on
+  group: ''
+- name: Index output data type
+  summary: 局部最大值坐标的数据类型 uint32 （默认） | double | single | uint8 | uint16
+  group: ''
+- name: Output variable size signal
+  summary: 支持可变长度输入信号 on （默认） | off
+  group: ''
+- name: Count output data type
+  summary: 局部最大值数量的数据类型 uint32 （默认） | double | single | uint8 | uint16
+  group: ''
+```
 
 ### **Maximum number of local maxima** — 要检测的局部最大值的最大数量 2 （默认） | 正整数
 
@@ -94,7 +139,6 @@ c]` 形式的二元素向量指定邻域区域的大小。该向量指定窗口�
 #### 依赖关系
 
 要启用此参数，请清除 **Output variable size signal** 参数。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

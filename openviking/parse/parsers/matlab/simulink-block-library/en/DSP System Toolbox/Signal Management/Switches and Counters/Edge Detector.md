@@ -14,6 +14,17 @@ language: en
 # Edge Detector
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Output
+  summary: Output of edge detector vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### Input
 
@@ -33,8 +44,13 @@ The block might output Boolean values depending on the input data
 type, and whether Boolean support is enabled or disabled.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input processing
+  summary: Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+```
 
 ### **Input processing** — Input processing `Columns as channels (frame based)` (default) | `Elements as channels (sample based)`
 
@@ -47,7 +63,6 @@ the following options:
 - `Elements as channels (sample based)` — When you
   select this option, the block treats each element of the input as a separate
   channel.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Switches and Counters

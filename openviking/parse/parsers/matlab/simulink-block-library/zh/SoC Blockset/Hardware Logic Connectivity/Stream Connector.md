@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Stream Connector
 
 ## 端口
+```yaml
+ports:
+- name: wrData
+  summary: 输入流数据标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wrValid
+  summary: 有效输入流数据指示 布尔标量
+  direction: input
+  data_types: Boolean
+- name: wrLast
+  summary: 突发中最后一拍指示 布尔标量
+  direction: input
+  data_types: Boolean
+- name: rdReady
+  summary: 来自下游接口的就绪信号 布尔标量
+  direction: input
+  data_types: Boolean
+- name: rdData
+  summary: 输出流数据标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rdValid
+  summary: 有效输出流数据指示 布尔标量
+  direction: output
+  data_types: Boolean
+- name: rdLast
+  summary: 指示突发中最后一拍 布尔标量
+  direction: output
+  data_types: Boolean
+- name: wrReady
+  summary: 到上游接口的就绪信号 布尔标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -71,11 +106,12 @@ chinese_source: worker-translation
 控制信号，指示模块是否可以从上游接口接收流数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Connectivity

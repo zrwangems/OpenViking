@@ -14,6 +14,12 @@ language: en
 # Isothermal Liquid Properties (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Connection port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,11 +31,12 @@ When you connect the Isothermal Liquid Properties (IL)
 block to a connection line, the software automatically identifies the isothermal
 liquid blocks connected to the particular circuit and propagates the liquid properties
 to all the blocks in the circuit.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Utilities

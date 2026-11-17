@@ -14,6 +14,14 @@ language: en
 # From Workspace
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data loaded from workspace scalar | vector | matrix | array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Output
 
@@ -39,8 +47,44 @@ types.*
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Data
+  summary: Data to load from workspace timeseries object | timetable object | structure | 2-D array | MATLAB expression
+  group: ''
+  block_parameter: VariableName
+  values: '''simin'' (default) | MATLAB expression | timeseries object | timetable | structure | 2-D array'
+- name: Output data type
+  summary: 'Loaded workspace data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 |
+    int32 | uint32 | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: auto'' (default) | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16''
+    | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''string'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''Enum: <class name>'' | ''Bus: <object name>'' | data type expression'
+- name: Sample time
+  summary: Output sample period and optional time offset 0 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '''0'' (default) | scalar | vector'
+- name: Interpolate data
+  summary: Interpolation method on (default) | off
+  group: ''
+  block_parameter: Interpolate
+  values: '''on'' (default) | ''off'''
+- name: Enable zero-crossing detection
+  summary: Zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  values: '''on'' (default) | ''off'''
+- name: Form output after final data value by
+  summary: Method to determine block output after final data point Extrapolation (default) | Setting to zero | Holding final
+    value | Cyclic repetition
+  group: ''
+  block_parameter: OutputAfterFinalValue
+  values: '''Extrapolation'' (default) | ''Setting to zero'' | ''Holding final value'' | ''Cyclic repetition'''
+```
 
 ### **Data** — Data to load from workspace `timeseries` object | `timetable` object | structure | 2-D array | MATLAB expression
 
@@ -347,7 +391,6 @@ Workspace block named `From Workspace`
 in the model `myModel` to use the final input data
 value as the output value for time steps that occur after the last
 time value in the input data.
-
 ## Libraries
 
 Simulink / Sources

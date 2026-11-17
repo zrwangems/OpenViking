@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Translational Initial Spacer (PB)
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基于位置的机械平移基础端口
+  direction: conserving
+- name: F
+  summary: 基于位置的机械平移从动端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,11 +34,12 @@ chinese_source: worker-translation
 ### **F** — 基于位置的机械平移从动端口
 
 基于位置的机械平移守恒端口，表示从动连接。对于正长度，端口 **F** 的位置比端口 **B** 更正。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Elements

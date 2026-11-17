@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Signal Editor
 
 ## 端口
+```yaml
+ports:
+- name: Signal1
+  summary: 场景中的信号 标量 | 向量 | 矩阵 | 数组
+  direction: unspecified
+  data_types: single | double | half | int | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### 输出参数
 
@@ -27,8 +35,107 @@ chinese_source: worker-translation
 在快速加速模式下，当选中 **Interpolate data** 参数时，Signal Editor 模块不支持 `int64` 和 `uint64` 数据类型。有关详细信息，请参阅 Array of buses support。
 
 **数据类型：** `single` | `double` | `half` | `int` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: To create and edit scenarios, open Signal Editor user interface
+  summary: 打开 Signal Editor 工具的选项 按钮
+  group: ''
+- name: File name
+  summary: 数据集文件 untitled.mat（默认）| 字符向量
+  group: ''
+  block_parameter: Filename
+  type: character vector
+  values: character vector
+  default: '''untitled.mat'''
+- name: Active scenario
+  summary: 活动场景 Scenario（默认）| 字符向量
+  group: ''
+  block_parameter: ActiveScenario
+  type: character vector | numeric
+  values: character vector | index value
+  default: '''Scenario'''
+- name: Use properties from
+  summary: 信号属性来源 Dialog parameters（默认）| Signal data in MAT file
+  group: ''
+  block_parameter: '''SignalPropertySource'''
+  type: character vector
+  values: Dialog parameters | Signal data in MAT file
+  default: '''SignalPropertySource'''
+- name: Active signal
+  summary: 要配置的信号 Signal 1（默认）| 字符向量
+  group: ''
+  block_parameter: ActiveSignal
+  type: character vector | numeric
+  values: character vector | index vector
+  default: '''Signal 1'''
+- name: Apply signal properties to all scenarios
+  summary: 将指定信号属性应用于活动信号的选项 on（默认）| off
+  group: ''
+  block_parameter: ApplySigPropsToAllScenarios
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Apply signal properties to all signals
+  summary: 将信号属性应用于所有信号的选项 off（默认）| on
+  group: ''
+  block_parameter: ApplySigPropsToAllSignals
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output a bus signal
+  summary: 将信号配置为总线 off（默认）| on
+  group: ''
+  block_parameter: IsBus
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Select bus object
+  summary: '总线对象 Bus: BusObject（默认）| 总线对象名称'
+  group: ''
+  block_parameter: OutputBusObjectStr
+  type: character vector
+  values: bus object name
+  default: '''Bus: BusObject'''
+- name: Mode
+  summary: 总线对象模式 Bus object（默认）| 总线对象数据类型
+  group: ''
+- name: Unit
+  summary: 物理单位 inherit（默认）| 支持的物理单位
+  group: ''
+  block_parameter: Unit
+  type: character vector
+  values: '''inherit'' | supported physical unit'
+  default: '''inherit'''
+- name: Sample time
+  summary: 采样之间的时间间隔 0（默认）| -1 | 以秒为单位的采样时间
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: -1 | sample time in seconds
+  default: '''0'''
+- name: Interpolate data
+  summary: 线性插值数据 on（默认）| off
+  group: ''
+  block_parameter: Interpolate
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: 检测过零点 off（默认）| on
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Form output after final data value by
+  summary: 最后一个有数据可用的时间命中点之后的模块输出 Setting to zero（默认）| Extrapolation | Holding final value
+  group: ''
+  block_parameter: OutputAfterFinalValue
+  type: character vector
+  values: '''Setting to zero'' | ''Extrapolation'' | ''Holding final value'''
+  default: '''Setting to zero'''
+```
 
 ### **To create and edit scenarios, open Signal Editor user interface** — 打开 Signal Editor 工具的选项 按钮
 
@@ -351,7 +458,6 @@ signal:   2 3 4 5 6
 | **类型**：character vector |
 | **值**：`'Setting to zero' | 'Extrapolation' | 'Holding final value'` |
 | **默认值**：`'Setting to zero'` |
-
 ## 所属库
 
 Simulink / Sources

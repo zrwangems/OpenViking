@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Sinusoidal Translational Velocity Source
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座接口机械平移
+  direction: unspecified
+- name: F
+  summary: 从动接口机械平移
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **F** — 从动接口机械平移
 
 与从动接口关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Offset
+  summary: 输出平均值 0 m/s（默认）
+  group: ''
+- name: Sinusoid peak amplitude
+  summary: 输出峰值幅度 1 m/s（默认）
+  group: ''
+- name: Phase shift
+  summary: 输出相移 0 deg（默认）
+  group: ''
+- name: Frequency
+  summary: 输出频率 1 Hz（默认）
+  group: ''
+```
 
 ### **Offset** — 输出平均值 `0` `m/s`（默认）
 
@@ -43,7 +66,6 @@ chinese_source: worker-translation
 ### **Frequency** — 输出频率 `1` `Hz`（默认）
 
 输出正弦平移速度的频率。频率必须大于或等于 0。
-
 ## 所属库
 
 Simscape / Driveline / Sources

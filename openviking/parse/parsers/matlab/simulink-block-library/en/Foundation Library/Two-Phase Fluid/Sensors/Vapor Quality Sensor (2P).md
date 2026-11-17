@@ -14,6 +14,15 @@ language: en
 # Vapor Quality Sensor (2P)
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Vapor quality, unitless physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet two-phase fluid
+  direction: conserving
+```
 
 ### Output
 
@@ -28,8 +37,13 @@ the type of measurement.
 
 Two-phase fluid conserving port. Connect this port to the node in the two-phase
 fluid network where you want to measure the vapor quality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Vapor fraction specification
+  summary: Whether to express vapor fraction on a mass basis or on a volume basis Vapor quality (default) | Vapor void fraction
+  group: ''
+```
 
 ### **Vapor fraction specification** — Whether to express vapor fraction on a mass basis or on a volume basis `Vapor quality` (default) | `Vapor void fraction`
 
@@ -39,7 +53,6 @@ fluid. Select `Vapor void fraction` for the volume fraction
 instead. The measurement can range from `0` to `1` in
 both cases. For critical and supercritical fluids, the output is
 `-1`.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Sensors

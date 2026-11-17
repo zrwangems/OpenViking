@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # Stream Input
 
 ## 端口
+```yaml
+ports:
+- name: 输出数据
+  summary: 从通信通道接收的数据 数值向量 | 字符串
+  direction: output
+- name: 数据就绪
+  summary: 数据就绪端口（可选） 1 | 0
+  direction: output
+- name: 数据错误
+  summary: 数据错误端口（可选） 1 | 0
+  direction: output
+- name: 丢失节拍
+  summary: 丢失节拍计数（可选） double
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -47,8 +63,58 @@ chinese_source: worker-translation
 当您选中 **Show “Missed Ticks” port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: 安装新板卡
+  summary: 注册板卡 < no board selected >（默认）
+  group: ''
+  block_parameter: DrvName
+- name: 删除当前板卡
+  summary: 删除当前板卡（按钮）
+  group: ''
+  block_parameter: DrvName
+- name: 板卡设置
+  summary: 设置板卡（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: 采样时间
+  summary: 模块的采样时间 0.1（默认） | double
+  group: ''
+  block_parameter: SampleTime
+- name: 最大丢失节拍数
+  summary: 您的模型可以落后于内核的定时器节拍数 10（默认） | 整数
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: 显示“Missed Ticks”端口
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: 等待时让出 CPU
+  summary: 在内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: 模块输出数据类型
+  summary: 发送到模块输出的数据类型和分组 'double'（默认）| 字符向量 | 字符向量元胞数组
+  group: ''
+  block_parameter: DataTypes
+- name: 格式字符串
+  summary: 从流中读取的数据项的格式 '%f'（默认）| 字符向量
+  group: ''
+  block_parameter: FormatString
+- name: 消息终止
+  summary: 指定消息结束 {'\r', '\n'}（默认）| 字符向量 | 字符向量元胞数组 | 整数
+  group: ''
+  block_parameter: Terminator
+- name: Show “Data Ready” port
+  summary: 添加端口 Data Ready，当数据可用时发出信号 1 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowReady
+- name: Show “Data Error” port
+  summary: 添加端口 Data Error，如果发生错误则发出信号 1 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowError
+```
 
 ### **安装新板卡** — 注册板卡 `< no board selected >`（默认）
 
@@ -212,7 +278,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `ShowError` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

@@ -14,6 +14,9 @@ language: en
 # Hydraulic Flow Rate Sensor
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -28,11 +31,12 @@ The block has the following ports:
 
 `M`
 :   Physical signal port that outputs the mass flow rate value.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

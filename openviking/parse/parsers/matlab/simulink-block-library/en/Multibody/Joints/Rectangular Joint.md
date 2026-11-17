@@ -14,6 +14,78 @@ language: en
 # Rectangular Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: fx
+  summary: Actuation force physical signal
+  direction: input
+- name: px
+  summary: Motion profile physical signal
+  direction: input
+- name: fy
+  summary: Actuation force physical signal
+  direction: input
+- name: py
+  summary: Motion profile physical signal
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: px
+  summary: Position of primitive physical signal
+  direction: output
+- name: vx
+  summary: Velocity of primitive physical signal
+  direction: output
+- name: ax
+  summary: Acceleration of primitive physical signal
+  direction: output
+- name: fx
+  summary: Actuator force acting on joint primitive physical signal
+  direction: output
+- name: fllx
+  summary: Lower-limit force physical signal
+  direction: output
+- name: fulx
+  summary: Upper-limit force physical signal
+  direction: output
+- name: py
+  summary: Position of primitive physical signal
+  direction: output
+- name: vy
+  summary: Velocity of primitive physical signal
+  direction: output
+- name: ay
+  summary: Acceleration of primitive physical signal
+  direction: output
+- name: fy
+  summary: Actuator force acting on joint primitive physical signal
+  direction: output
+- name: flly
+  summary: Lower-limit force physical signal
+  direction: output
+- name: fuly
+  summary: Upper-limit force physical signal
+  direction: output
+- name: fc
+  summary: Constraint force, N physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total force, N physical signal
+  direction: output
+- name: tt
+  summary: Total torque, N\*m physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -289,8 +361,145 @@ Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque
 Sensing**, select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: X Prismatic Primitive (Px)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: X Prismatic Primitive (Px)
+- name: Value
+  summary: Position target 0 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Specify Velocity Target
+  summary: Whether to specify linear velocity target off (default) | on
+  group: X Prismatic Primitive (Px)
+- name: Priority
+  summary: Priority level of linear velocity target High (desired) (default) | Low (approximate)
+  group: X Prismatic Primitive (Px)
+- name: Value
+  summary: Velocity target 0 m/s (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Equilibrium Position
+  summary: Position where internal force is zero 0 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N/m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N(m/s) (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: X Prismatic Primitive (Px)
+- name: Bound
+  summary: Lower bound of free region -1 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e6 N/m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 1e3 N/(m/s) (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: X Prismatic Primitive (Px)
+- name: Bound
+  summary: Upper bound of free region 1 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e6 N/m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 1e3 N/(m/s) (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Force
+  summary: Option to provide actuator force None (default) | Provided by Input | Automatically Computed
+  group: X Prismatic Primitive (Px)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: X Prismatic Primitive (Px)
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Y Prismatic Primitive (Py)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Y Prismatic Primitive (Py)
+- name: Value
+  summary: Position target 0 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Specify Velocity Target
+  summary: Whether to specify linear velocity target off (default) | on
+  group: Y Prismatic Primitive (Py)
+- name: Priority
+  summary: Priority level of linear velocity target High (desired) (default) | Low (approximate)
+  group: Y Prismatic Primitive (Py)
+- name: Value
+  summary: Velocity target 0 m/s (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Equilibrium Position
+  summary: Position where internal force is zero 0 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N/m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N(m/s) (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Y Prismatic Primitive (Py)
+- name: Bound
+  summary: Lower bound of free region -1 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e6 N/m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 1e3 N/(m/s) (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Y Prismatic Primitive (Py)
+- name: Bound
+  summary: Upper bound of free region 1 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e6 N/m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 1e3 N/(m/s) (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Force
+  summary: Option to provide actuator force None (default) | Provided by Input | Automatically Computed
+  group: Y Prismatic Primitive (Py)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: Y Prismatic Primitive (Py)
+- name: Mode
+  summary: Joint mode Normal (default) | Locked | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -735,7 +944,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

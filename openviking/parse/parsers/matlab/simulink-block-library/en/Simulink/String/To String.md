@@ -14,6 +14,18 @@ language: en
 # To String
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: Output string scalar
+  direction: output
+  data_types: string
+```
 
 ### Input
 
@@ -46,11 +58,12 @@ a string, surrounded by double quotes.
   numeric value from the input port.
 
 **Data Types:** `string`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / String

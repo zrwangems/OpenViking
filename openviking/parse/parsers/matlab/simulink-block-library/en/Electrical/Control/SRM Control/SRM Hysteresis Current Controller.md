@@ -14,6 +14,37 @@ language: en
 # SRM Hysteresis Current Controller
 
 ## Ports
+```yaml
+ports:
+- name: IsRef
+  summary: Reference current scalar
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: Measured current vector
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Integrator reset scalar
+  direction: input
+  data_types: Boolean
+- name: theta
+  summary: Theta-rotor angle scalar
+  direction: input
+  data_types: single | double
+- name: thetaON
+  summary: Switch-on angle scalar
+  direction: input
+  data_types: single | double
+- name: thetaOFF
+  summary: Switch-off angle scalar
+  direction: input
+  data_types: single | double
+- name: Sabc
+  summary: Voltage switch signal vector | 0 or 1
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -59,8 +90,19 @@ Angle for switching on the phase supply.
 Signal for switching on and off the three-phase voltage.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Torque capability angle (rad)
+  summary: Torque capability angle pi/2 (default) | [0, 2\*pi/number of rotor poles]
+  group: ''
+- name: Hysteresis band (A)
+  summary: Hysteresis bandwidth 5 (default)
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Torque capability angle (rad)** — Torque capability angle pi/2 (default) | [0, 2\*pi/number of rotor poles]
 
@@ -82,7 +124,6 @@ If this block is inside a triggered subsystem, inherit the
 sample time by setting this parameter to `-1`. If this block is in a
 continuous variable-step model, specify the sample time explicitly using a positive
 scalar.
-
 ## Libraries
 
 Simscape / Electrical / Control / SRM Control

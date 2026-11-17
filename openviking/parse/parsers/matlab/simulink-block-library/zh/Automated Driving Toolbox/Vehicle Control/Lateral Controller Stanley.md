@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Lateral Controller Stanley
 
 ## 端口
+```yaml
+ports:
+- name: RefPose
+  summary: 参考位姿 [*x*, *y*, *Θ*] 向量
+  direction: input
+  data_types: single | double
+- name: CurrPose
+  summary: 当前位姿 [*x*, *y*, *Θ*] 向量
+  direction: input
+  data_types: single | double
+- name: CurrVelocity
+  summary: 当前纵向速度 实数标量
+  direction: input
+  data_types: single | double
+- name: Direction
+  summary: 车辆行驶方向 1（前向运动） | -1（倒车运动）
+  direction: input
+- name: Curvature
+  summary: 路径曲率 实数标量
+  direction: input
+- name: CurrYawRate
+  summary: 当前横摆角速度 实数标量
+  direction: input
+- name: CurrSteer
+  summary: 当前转向角 实数标量
+  direction: input
+- name: SteerCmd
+  summary: 转向角命令 实数标量
+  direction: output
+```
 
 ### 输入
 
@@ -106,8 +136,43 @@ chinese_source: worker-translation
 前轮转向的车辆，转向角已标记
 
 有关更多详细信息，请参阅 Automated Driving Toolbox 中的 Coordinate Systems。
-
 ## 参数
+```yaml
+parameters:
+- name: Vehicle model
+  summary: 车辆模型 Kinematic bicycle model（默认） | Dynamic bicycle model
+  group: ''
+- name: Position gain of forward motion
+  summary: 前向运动时的车辆位置增益 2.5（默认） | 正实数标量
+  group: ''
+- name: Position gain of reverse motion
+  summary: 倒车运动时的车辆位置增益 2.5（默认） | 正实数标量
+  group: ''
+- name: Yaw rate feedback gain
+  summary: 横摆角速度反馈增益 2.5（默认） | 非负实数标量
+  group: ''
+- name: Steering angle feedback gain
+  summary: 转向角反馈增益 2.5（默认） | 非负实数标量
+  group: ''
+- name: Wheelbase of vehicle (m)
+  summary: 前后轴之间的距离 2.8（默认） | 实数标量
+  group: ''
+- name: Vehicle mass (kg)
+  summary: 车辆质量 1575（默认） | 正实数标量
+  group: ''
+- name: Longitudinal distance from center of mass to front axle (m)
+  summary: 到前轴的距离 1.2（默认） | 正实数标量
+  group: ''
+- name: Longitudinal distance from center of mass to rear axle (m)
+  summary: 到后轴的距离 1.6（默认） | 正实数标量
+  group: ''
+- name: Front tire corner stiffness (N/rad)
+  summary: 前轮胎侧偏刚度 19000（默认） | 正实数标量
+  group: ''
+- name: Maximum steering angle (deg)
+  summary: 允许的最大转向角 35（默认） | 范围 (0, 180) 内的实数标量
+  group: ''
+```
 
 ### **Vehicle model** — 车辆模型 `Kinematic bicycle model`（默认） | `Dynamic bicycle model`
 
@@ -188,7 +253,6 @@ chinese_source: worker-translation
 
 - 低于 –*M* 的值被设置为 –*M*。
 - 高于 *M* 的值被设置为 *M*。
-
 ## 所属库
 
 Automated Driving Toolbox / Vehicle Control

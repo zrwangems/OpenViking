@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # System Disable
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: System Disable Function Declaration Code
+  summary: 添加到所生成函数声明部分的代码 无默认值
+  group: ''
+- name: System Disable Function Execution Code
+  summary: 添加到所生成函数执行部分的代码 无默认值
+  group: ''
+- name: System Disable Function Exit Code
+  summary: 添加到所生成函数退出部分的代码 无默认值
+  group: ''
+```
 
 ### **System Disable Function Declaration Code** — 添加到所生成函数声明部分的代码 无默认值
 
@@ -31,7 +45,6 @@ R2025b 中未记录。
 ### **System Disable Function Exit Code** — 添加到所生成函数退出部分的代码 无默认值
 
 指定希望代码生成器添加到模型或子系统的 `SystemDisable` 函数退出部分的代码。
-
 ## 所属库
 
 Simulink Coder / Custom Code

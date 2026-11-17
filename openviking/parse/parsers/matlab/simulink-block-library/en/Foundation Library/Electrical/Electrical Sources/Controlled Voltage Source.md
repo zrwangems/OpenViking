@@ -14,6 +14,18 @@ language: en
 # Controlled Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: vT
+  summary: Voltage control signal, V physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -33,11 +45,12 @@ Electrical conserving port associated with the source positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the source negative terminal.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Sources

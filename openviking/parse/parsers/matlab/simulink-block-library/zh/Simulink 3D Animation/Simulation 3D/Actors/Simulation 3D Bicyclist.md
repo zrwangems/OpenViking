@@ -15,6 +15,26 @@ chinese_source: worker-translation
 # Simulation 3D Bicyclist
 
 ## 端口
+```yaml
+ports:
+- name: Y
+  summary: 骑行者的横向位置 标量
+  direction: input
+- name: X
+  summary: 骑行者的纵向位置 标量
+  direction: input
+- name: Yaw
+  summary: 骑行者的偏航方向角 标量
+  direction: input
+- name: Location
+  summary: 骑行者的位置 实数值 1×3 向量
+  direction: output
+  data_types: double
+- name: Orientation
+  summary: 骑行者的方向 实数值 1×3 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -62,8 +82,31 @@ chinese_source: worker-translation
 要启用此端口，请在 **Ground Truth** 选项卡上，选择 **Output location and orientation**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Scale
+  summary: 骑行者的缩放因子 [1, 1, 1] （默认） | 实数值 1×3 向量
+  group: 骑行者参数
+- name: Coordinate system
+  summary: 用于参与者变换的坐标系 ISO8855 （默认） | Default | MATLAB | AERO | VRML | SAE
+  group: 骑行者参数
+- name: Initial position [X, Y, Z]
+  summary: 骑行者初始位置 [0, 0, 0] （默认） | 实数值 1×3 向量
+  group: 骑行者参数
+- name: Initial rotation [Roll, Pitch, Yaw]
+  summary: 骑行者旋转的初始角度 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 骑行者参数
+- name: Name
+  summary: 骑行者名称 SimulinkBicyclist1（默认）| 骑行者名称
+  group: 骑行者参数
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 骑行者参数
+- name: Output location and orientation
+  summary: 输出行人的位置和方向 off（默认）| on
+  group: Ground Truth
+```
 
 ### 骑行者参数
 
@@ -117,7 +160,6 @@ chinese_source: worker-translation
 ### **Output location and orientation** — 输出行人的位置和方向 `off`（默认）| `on`
 
 选择此参数可分别在 **Location** 和 **Orientation** 端口输出行人的位置和方向。
-
 ## 所属库
 
 Automated Driving Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Actors

@@ -14,6 +14,13 @@ language: en
 # ADC Type 3-5
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: ADC data vector
+  direction: output
+  data_types: uint16
+```
 
 ### Output
 
@@ -22,8 +29,52 @@ language: en
 The output of the ADC is a vector of `uint16` values.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: ADC Module
+  summary: Select module to use A (default) | B | A and B
+  group: SOC Trigger
+- name: ADC Resolution
+  summary: Select 12 bit or 16 bit resolution 12-bit (Single-ended input) (default) | 16-bit (Differential inputs)
+  group: SOC Trigger
+- name: ADC mode
+  summary: Select ADC mode Single-ended input (default) | Differential inputs
+  group: SOC Trigger
+- name: Sampling mode
+  summary: Select sampling type Single (default) | Simultaneous
+  group: SOC Trigger
+- name: SOC trigger number
+  summary: Start of conversion number SOC0 (default) | SOC1 | SOC2 | …
+  group: SOC Trigger
+- name: SOCx acquisition window
+  summary: Length of the acquisition period 7 (default) | 8 | ...
+  group: SOC Trigger
+- name: SOCx trigger source
+  summary: Source that triggers the start of conversion Software (default) | EVA | External pin
+  group: SOC Trigger
+- name: ADCINT will trigger SOCx
+  summary: Use ADC interrupt to trigger SOC No ADCINT (default) | ADCINT1 | ADCINT2
+  group: SOC Trigger
+- name: Sample time
+  summary: Interval at which block reads data 0.1 (default)
+  group: SOC Trigger
+- name: Data type
+  summary: Select the output data type uint16 (default) | double | single | int8 | uint8 | int16 | int32 | uint32
+  group: SOC Trigger
+- name: Post interrupt at EOC trigger
+  summary: Post interrupts when ADC triggers Off (default) | on
+  group: SOC Trigger
+- name: Interrupt selection
+  summary: ADC interrupt selection ADCINT1 (default) | ADCINT2
+  group: SOC Trigger
+- name: ADC# continuous mode
+  summary: Generate ADC interrupt ADCINT1 (default) | ADCINT2
+  group: SOC Trigger
+- name: Conversions channel
+  summary: Select ADC channel to which this ADC conversion applies ADCINA0 (default) | ADCINA1 | ADCINA2 | …
+  group: Input channels
+```
 
 ### SOC Trigger
 
@@ -171,7 +222,6 @@ trigger** parameter.
 Select the input channel to which this ADC conversion applies. For Type 4 ADC,
 if you select 16-bit (differential inputs) mode, the differential voltage between
 the two channels is converted.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F29H85x

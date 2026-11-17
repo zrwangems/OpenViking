@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Steering Vector
 
 ## 端口
+```yaml
+ports:
+- name: Freq
+  summary: 阵列工作频率，正标量
+  direction: input
+  data_types: double
+- name: Ang
+  summary: 导向矢量方向 [0;0]（默认）| 实值长度-*M* 向量 | 实值 2×*M* 矩阵
+  direction: input
+  data_types: double
+- name: SV
+  summary: 导向矢量，复值 *N*×*M*×*L* 数组 | struct
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -46,8 +61,141 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: ''
+- name: Source of operating frequency
+  summary: 工作频率来源 Input port（默认）| Property
+  group: ''
+  block_parameter: FrequencySource
+  type: char | string
+  values: Input port | Property
+- name: Operating frequency (Hz)
+  summary: 系统工作频率 3e8（默认）| 正实标量
+  group: ''
+  block_parameter: OperatingFrequency
+  type: double | single
+  values: float
+- name: Output conjugated steering vector
+  summary: 输出共轭导向矢量 on（默认）| off
+  group: ''
+  block_parameter: OutputConjugate
+  type: check box
+  values: 0 | 1
+- name: Number of bits in phase shifters
+  summary: 移相器相位量化位数 0（默认）| 非负整数
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| Partitioned array | Replicated subarray | MATLAB expression
+  group: ''
+- name: Expression
+  summary: 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
+  group: ''
+- name: Specify sensor array as
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| MATLAB expression
+  group: ''
+- name: Element type
+  summary: 阵列单元类型 Isotropic Antenna（默认）| Cardioid Antenna | Cosine Antenna | Custom Antenna | Gaussian Antenna | Sinc Antenna
+    | Omni Microphone | Custom Microphone
+  group: ''
+- name: Operating frequency range (Hz)
+  summary: 天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值 1×2 行向量
+  group: ''
+- name: Baffle the back of the element
+  summary: 将 Isotropic Antenna 元件或 Omni Microphone 元件的后向响应设置为零 off（默认）| on
+  group: ''
+- name: Null axis direction
+  summary: 零点轴方向 -x（默认）| +x | +y | -y | +z | -z
+  group: ''
+- name: Exponent of cosine pattern
+  summary: 方位角和仰角余弦方向图的指数 [1.5 1.5]（默认）| 非负标量 | 非负实数值 1×2 矩阵
+  group: ''
+- name: Operating frequency vector (Hz)
+  summary: 自定义天线或麦克风元件的工作频率范围 [0,1e20]（默认）| 实数值行向量
+  group: ''
+- name: Frequency responses (dB)
+  summary: 天线和麦克风频率响应 [0,0]（默认）| 实数值行向量
+  group: ''
+- name: Input Pattern Coordinate System
+  summary: 自定义天线方向图的坐标系 az-el（默认）| phi-theta
+  group: ''
+- name: Azimuth angles (deg)
+  summary: 天线辐射方向图的方位角 [-180:180]（默认）| 实数值行向量
+  group: ''
+- name: Elevation angles (deg)
+  summary: 天线辐射方向图的仰角 [-90:90]（默认）| 实值行向量
+  group: ''
+- name: Phi Angles (deg)
+  summary: 自定义天线辐射方向图的 Phi 角坐标 0:360 | 实值 1×*P* 行向量
+  group: ''
+- name: Theta Angles (deg)
+  summary: 自定义天线辐射方向图的 Theta 角坐标 0:180 | 实值 1×*Q* 行向量
+  group: ''
+- name: Magnitude pattern (dB)
+  summary: 组合天线辐射方向图的幅度 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: ''
+- name: 相位方向图 (deg)
+  summary: 自定义天线辐射相位方向图 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: ''
+- name: 将元件法线对齐到阵列法线
+  summary: 将元件法线对齐到阵列法线 开（默认）| 关
+  group: ''
+- name: 辐射方向图波束宽度 (deg)
+  summary: 辐射方向图波束宽度 [10,10]（默认）
+  group: ''
+- name: 极坐标方向图频率 (Hz)
+  summary: 极坐标方向图麦克风响应频率 1e3（默认）| 实标量 | 实值 1×*L* 行向量
+  group: ''
+- name: 极坐标方向图角度 (deg)
+  summary: 极坐标方向图响应角度 [-180:180]（默认）| 实值 1×*P* 行向量
+  group: ''
+- name: 极坐标方向图 (dB)
+  summary: 自定义麦克风极坐标响应 zeros(1,361)（默认）| 实值 *L*×*P* 矩阵
+  group: ''
+- name: 几何结构
+  summary: 阵列几何结构 ULA（默认）| URA | UCA | Conformal Array
+  group: ''
+- name: Number of elements
+  summary: ULA 阵列的阵元数为 2，UCA 阵列的阵元数为 5（默认）| 大于或等于 2 的整数
+  group: ''
+- name: Element spacing (m)
+  summary: 阵元间距，ULA 阵列为 0.5，URA 阵列为 [0.5,0.5]（默认）| ULA 或 URA 阵列为正标量 | URA 阵列为由正值组成的 2 元素向量
+  group: ''
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认）| x | z
+  group: ''
+- name: Array size
+  summary: URA 阵列的维度 [2,2]（默认）| 正整数 | 由正整数组成的 1×2 向量
+  group: ''
+- name: Element lattice
+  summary: URA 阵元位置的晶格 Rectangular（默认）| Triangular
+  group: ''
+- name: Array normal
+  summary: 阵列法线方向，URA 阵列为 x，UCA 阵列为 z（默认）| y
+  group: ''
+- name: Radius of UCA (m)
+  summary: UCA 阵列半径 0.5（默认）| 正标量
+  group: ''
+- name: Element positions (m)
+  summary: 共形阵列元素的位置 [0;0;0]（默认）| 3×*N* 实数值矩阵
+  group: ''
+- name: Element normals (deg)
+  summary: 共形阵列元素法向量的方向 [0;0] | 2×1 列向量 | 2×*N* 矩阵
+  group: ''
+- name: Taper
+  summary: 阵列元素加权 1（默认）| 复标量 | 复值行向量
+  group: ''
+```
 
 #### 主选项卡
 
@@ -524,7 +672,6 @@ UCA 阵列的半径，指定为正标量。
 如果 **Taper** 为标量，则对每个元素应用相同的权重。如果 **Taper** 为向量，则将向量中的权重应用于对应的传感器元素。权重数量必须与阵列的元素数量匹配。
 
 **数据类型：** `double`
-
 ## 所属库
 
 Phased Array System Toolbox / Transmitters and Receivers

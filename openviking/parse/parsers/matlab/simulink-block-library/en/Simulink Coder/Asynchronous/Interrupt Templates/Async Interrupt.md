@@ -14,6 +14,15 @@ language: en
 # Async Interrupt
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Simulated interrupt source scalar | vector
+  direction: input
+- name: Output
+  summary: Control signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +38,34 @@ Control signals for these model elements, specified as a scalar or vector:
 - Function-call subsystem
 - Task Sync block
 - Stateflow chart configured for a function call input event
-
 ## Parameters
+```yaml
+parameters:
+- name: VME interrupt number(s)
+  summary: VME interrupt numbers for the interrupts to be installed [1 2] (default) | integer array
+  group: ''
+- name: VME interrupt vector offset(s)
+  summary: Interrupt vector offset numbers corresponding to the VME interrupt numbers [192 193] (default) | integer array
+  group: ''
+- name: Simulink task priority(s)
+  summary: Priority of downstream blocks [10 11] (default) | integer array
+  group: ''
+- name: Preemption flag(s); preemptable-1; non-preemptable-0
+  summary: Selects preemption [0 1] (default) | integer array
+  group: ''
+- name: Manage own timer
+  summary: Select timer manager on (default) | off
+  group: ''
+- name: Timer resolution (seconds)
+  summary: Resolution of ISR timer 1/60 (default)
+  group: ''
+- name: Timer size
+  summary: Number of bits to store the clock tick 32bits (default) | 16bits | 8bits | auto
+  group: ''
+- name: Enable simulation input
+  summary: Select add simulation input port on (default) | off
+  group: ''
+```
 
 ### **VME interrupt number(s)** — VME interrupt numbers for the interrupts to be installed [1 2] (default) | integer array
 
@@ -146,7 +181,6 @@ Variant Source block with the **Variant control mode** parameter set to
 `sim codegen switching`. If you use the Variant Source block, the
 sample times of driving blocks contribute to the sample times supported in the generated
 code.
-
 ## Libraries
 
 Simulink Coder / Asynchronous / Interrupt Templates

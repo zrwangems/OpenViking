@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Real Cepstrum
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 实倒谱输出向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +47,16 @@ chinese_source: worker-translation
 输出端口速率与输入端口速率相同。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Inherit FFT length from input port dimensions
+  summary: 将 FFT 长度与输入端口维度匹配 on（默认）| off
+  group: ''
+- name: FFT length
+  summary: 计算 FFT 长度 64（默认）| 正整数
+  group: ''
+```
 
 ### **Inherit FFT length from input port dimensions** — 将 FFT 长度与输入端口维度匹配 `on`（默认）| `off`
 
@@ -50,7 +69,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请清除 **Inherit FFT length from input port dimensions** 参数。
-
 ## 所属库
 
 DSP System Toolbox / Transforms

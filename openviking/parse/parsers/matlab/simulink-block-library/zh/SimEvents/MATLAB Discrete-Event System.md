@@ -15,10 +15,32 @@ chinese_source: worker-translation
 # MATLAB Discrete-Event System
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: System object name
+  summary: 指定 System object™ 的完整名称 字符向量
+  group: ''
+  block_parameter: System
+  type: character vector
+  values: '''<Enter System Class Name>'' | character vector'
+  default: '''<Enter System Class Name>'''
+- name: New
+  summary: 从模板创建 SimEvents System object SimEvents System object
+  group: ''
+- name: Simulate using
+  summary: 指定仿真模式 Code generation（默认）| Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: character vector
+  values: '''Code generation'' | Interpreted execution'
+  default: '''Code generation'''
+```
 
 ### **System object name** — 指定 System object™ 的完整名称 字符向量
 
@@ -76,7 +98,6 @@ R2025b 中未记录。
 | **类型**：character vector |
 | **值**：`'Code generation'` | `Interpreted execution` |
 | **默认值**：`'Code generation'` |
-
 ## 所属库
 
 SimEvents

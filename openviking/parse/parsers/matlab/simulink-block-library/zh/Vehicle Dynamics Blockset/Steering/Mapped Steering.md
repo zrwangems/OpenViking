@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Mapped Steering
 
 ## 端口
+```yaml
+ports:
+- name: AngIn
+  summary: 转向角 scalar
+  direction: input
+- name: VehSpd
+  summary: 车速 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: AngLft
+  summary: 左轮转角 scalar
+  direction: output
+- name: AngRght
+  summary: 右轮转角 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -56,8 +74,60 @@ rad。
 
 右轮转角，*δR*，单位为
 rad。
-
 ## 参数
+```yaml
+parameters:
+- name: Speed dependent
+  summary: 使用车速相关表 on（默认）| off
+  group: ''
+  block_parameter: SpdDpd
+  values: on（默认）| off
+- name: Steering type
+  summary: 使用车速相关表 Steering wheel angle（默认）| Rack travel displacement
+  group: ''
+  block_parameter: IndexType
+  values: Steering wheel angle（默认）| Rack travel displacement
+- name: Steering angle breakpoints, StrgAngBpts
+  summary: 转向角断点 [-1.5*pi 1.5*pi]（默认）| vector
+  group: ''
+  block_parameter: StrgAngBpts
+  values: '[-1.5*pi 1.5*pi]（默认）| vector'
+- name: Rack travel displacement breakpoints, RackDispBpts
+  summary: 齿条行程位移断点 [-40 -19.2 -4.53 4.53 19.2 40]（默认）| vector
+  group: ''
+  block_parameter: RackDispBpts
+  values: '[-40 -19.2 -4.53 4.53 19.2 40]（默认） | vector'
+- name: Gear ratio table, GrTbl
+  summary: 传动比表 [9.87 9.87 7.16 7.16 9.87 9.87]*2*pi（默认） | vector
+  group: ''
+  block_parameter: GrTbl
+  values: '[9.87 9.87 7.16 7.16 9.87 9.87]*2*pi（默认） | vector'
+- name: Gear ratio constant, Gr
+  summary: 传动比常数 8.28*2*pi（默认） | scalar
+  group: ''
+  block_parameter: Gr
+  values: 8.28*2*pi（默认） | scalar
+- name: Left wheel angle table, WhlLftTbl
+  summary: 左车轮角度表 [-1.5*pi 1.5*pi]/13.5]（默认） | vector
+  group: ''
+  block_parameter: WhlLftTbl
+  values: '[-1.5*pi 1.5*pi]/13.5]（默认） | vector'
+- name: Right wheel angle table, WhlRghtTbl
+  summary: 右车轮角度表 [-1.5*pi 1.5*pi]/13.5]（默认） | vector
+  group: ''
+  block_parameter: WhlRghtTbl
+  values: '[-1.5*pi 1.5*pi]/13.5]（默认） | vector'
+- name: Vehicle speed breakpoints, VehSpdBpts
+  summary: 车速断点 [-1 1]（默认） | vector
+  group: ''
+  block_parameter: VehSpdBpts
+  values: '[-1 1]（默认） | vector'
+- name: Superimposed speed factor table, SpdFctTbl
+  summary: 速度因子 [1 1]（默认） | vector
+  group: ''
+  block_parameter: SpdFctTbl
+  values: '[1 1]（默认） | vector'
+```
 
 #### 选项
 
@@ -300,7 +370,6 @@ rad。
 | **参数：** | `SpdFctTbl` |
 | **值：** | `[1 1]`（默认） | `vector` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Steering

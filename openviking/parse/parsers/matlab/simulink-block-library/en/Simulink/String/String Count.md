@@ -14,6 +14,21 @@ language: en
 # String Count
 
 ## Ports
+```yaml
+ports:
+- name: str
+  summary: String to search scalar
+  direction: input
+  data_types: string
+- name: sub
+  summary: String pattern to search for scalar
+  direction: input
+  data_types: string
+- name: n
+  summary: Number of times pattern was found in string scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### Input
 
@@ -36,8 +51,29 @@ Number of times the string pattern was found in the string,
 `str`, returned as a scalar.
 
 **Data Types:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Case sensitive
+  summary: Case sensitivity on (default) | off
+  group: ''
+  block_parameter: CaseSensitive
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | int8 |
+    uint8 | int16 | uint16 | int32 | uint32 | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | *<data type expression>*'
+  default: '''Inherit: Inherit via internal rule'''
+- name: Mode
+  summary: Category of data type Inherit (default) | Built in | Expression
+  group: ''
+```
 
 ### **Case sensitive** — Case sensitivity on (default) | off
 
@@ -93,7 +129,6 @@ parameter, see Specify Data Types Using Data Type Assistant.
 
 Clicking the **Show data type assistant** button enables this
 parameter.
-
 ## Libraries
 
 Simulink / String

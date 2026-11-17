@@ -14,6 +14,18 @@ language: en
 # Pilot-Operated Check Valve (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Valve entrance thermal liquid
+  direction: conserving
+- name: B
+  summary: Valve entrance thermal liquid
+  direction: conserving
+- name: X
+  summary: Pilot port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -34,8 +46,43 @@ Opening through which the working fluid must, during normal operation
 Opening by which to actuate (by the application of a sufficient
 pressure) the pilot mechanism that opens the valve for reverse
 flow.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pressure control specification
+  summary: Choice of pressure measurement to use as valve control signal Pressure difference of port X relative to port A
+    (default) | Pressure at port X
+  group: ''
+- name: Cracking pressure differential
+  summary: Effective control pressure at which the valve first opens 0.01 MPa (default) | positive scalar in units of pressure
+  group: ''
+- name: Maximum opening pressure differential
+  summary: Effective control pressure at which the valve is fully open 0.02 MPa (default) | positive scalar in units of pressure
+  group: ''
+- name: Pilot ratio
+  summary: Ratio of pilot port area to inlet port area 1 (default) | positive unitless scalar
+  group: ''
+- name: Maximum opening area
+  summary: Opening area in the fully open position due to sealing imperfections 1e-4 m^2 (default) | positive scalar in units
+    of area
+  group: ''
+- name: Leakage area
+  summary: Opening area in the maximally closed position due to sealing imperfections 1e-10 m^2 (default) | positive scalar
+    in units of area
+  group: ''
+- name: Smoothing factor
+  summary: Amount of smoothing to apply to the valve opening area function 0 (default)
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area normal to the flow path at the valve ports 0.01 m^2 (default) | positive scalar in units of area
+  group: ''
+- name: Discharge coefficient
+  summary: Empirical factor defined as the ratio of actual to ideal mass flow rates 0.64 (default) | positive unitless scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Reynolds number at the boundary between laminar and turbulent flow regimes 150 (default) | positive unitless scalar
+  group: ''
+```
 
 ### **Pressure control specification** — Choice of pressure measurement to use as valve control signal `Pressure difference of port X relative to port A` (default) | `Pressure at port X`
 
@@ -120,7 +167,6 @@ parameter.
 
 Reynolds number at which the flow is assumed to transition between laminar
 and turbulent regimes.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Directional Control Valves

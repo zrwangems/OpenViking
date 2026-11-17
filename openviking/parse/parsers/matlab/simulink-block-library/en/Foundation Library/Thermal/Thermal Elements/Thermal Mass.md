@@ -14,6 +14,21 @@ language: en
 # Thermal Mass
 
 ## Ports
+```yaml
+ports:
+- name: Mdot
+  summary: Mass control signal, kg/s physical signal
+  direction: input
+- name: Tin
+  summary: Temperature of incoming mass, K physical signal
+  direction: input
+- name: M
+  summary: Port that connects mass to circuit thermal
+  direction: conserving
+- name: N
+  summary: Second graphical port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -63,8 +78,25 @@ underlying source file by clicking the **Source code** link in the
 
 To enable this port, set the **Number of graphical ports**
 parameter to `2`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass type
+  summary: Specify whether thermal mass can change during simulation Constant (default) | Variable
+  group: ''
+- name: Mass
+  summary: Constant mass 1 kg (default) | positive scalar
+  group: ''
+- name: Specific heat
+  summary: Specific heat of the material 447 J/(K*kg) (default) | positive scalar
+  group: ''
+- name: Minimum mass
+  summary: Minimum acceptable mass 1e-6 kg (default) | positive scalar
+  group: ''
+- name: Number of graphical ports
+  summary: Number of visible ports 1 (default) | 2
+  group: ''
+```
 
 ### **Mass type** — Specify whether thermal mass can change during simulation `Constant` (default) | `Variable`
 
@@ -111,7 +143,6 @@ How to connect the block to the rest of the circuit:
   port, which lets you connect the block in series with other blocks in the circuit.
   Because the two ports have the same temperature, the block functions the same as if
   it had one port.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Elements

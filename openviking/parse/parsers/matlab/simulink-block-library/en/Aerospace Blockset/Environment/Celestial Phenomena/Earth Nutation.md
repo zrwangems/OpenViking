@@ -14,6 +14,29 @@ language: en
 # Earth Nutation
 
 ## Ports
+```yaml
+ports:
+- name: TJD
+  summary: Julian date scalar | positive | between minimum and maximum Julian dates
+  direction: input
+  data_types: double
+- name: T0JD
+  summary: Fixed Julian date scalar | positive
+  direction: input
+  data_types: double
+- name: ΔTJD
+  summary: Elapsed Julian time scalar | positive
+  direction: input
+  data_types: double
+- name: Δψ Δε (rad)
+  summary: Earth nutation vector
+  direction: output
+  data_types: double
+- name: Δψ dot Δεdot (rad/day)
+  summary: Earth nutation angular rate scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -87,8 +110,38 @@ This port displays if the **Calculate rates** parameter is
 selected.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Epoch
+  summary: Epoch Julian date (default) | T0 and elapsed Julian time
+  group: ''
+  block_parameter: epochflag
+  type: character vector
+  values: Julian date | T0 and elapsed Julian time
+  default: '''Julian date'''
+- name: Ephemeris model
+  summary: Ephemeris model DE405 (default) | DE421 | DE423 | DE430
+  group: ''
+  block_parameter: de
+  type: character vector
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: errorflag
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+- name: Calculate rates
+  summary: Calculate rate of Earth nutation on (default) | off
+  group: ''
+  block_parameter: velflag
+  type: character vector
+  values: '''off'' | ''on'' |'
+  default: '''on'''
+```
 
 ### **Epoch** — Epoch `Julian date` (default) | `T0 and elapsed Julian time`
 
@@ -183,7 +236,6 @@ dot
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` | |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Celestial Phenomena

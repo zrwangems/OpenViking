@@ -14,10 +14,15 @@ language: en
 # General QAM Modulator Baseband
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Signal constellation**
 :   A real or complex vector that lists the constellation points.
@@ -47,7 +52,6 @@ Not documented in R2025b.
       block.
 
     For information about specifying data types, see Data Type Assistant.
-
 ## Libraries
 
 Not documented in R2025b.

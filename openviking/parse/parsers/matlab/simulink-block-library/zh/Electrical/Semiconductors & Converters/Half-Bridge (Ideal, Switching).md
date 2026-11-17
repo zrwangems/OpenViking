@@ -15,6 +15,42 @@ chinese_source: worker-translation
 # Half-Bridge (Ideal, Switching)
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 栅极端子矢量物理信号
+  direction: input
+- name: +
+  summary: 正极端子电气
+  direction: input
+- name: '-'
+  summary: 负极端子电气
+  direction: input
+- name: O
+  summary: 输出节点电气
+  direction: input
+- name: G1
+  summary: 栅极端子 1 电气
+  direction: input
+- name: G2
+  summary: 栅极端子 2 电气
+  direction: input
+- name: H
+  summary: 热端口热
+  direction: input
+- name: H1Switch
+  summary: 上侧开关器件热端口热
+  direction: input
+- name: H2Switch
+  summary: 下侧开关器件热端口热
+  direction: input
+- name: H1Diode
+  summary: 上侧二极管热端口热
+  direction: input
+- name: H2Diode
+  summary: 下侧二极管热端口热
+  direction: input
+```
 
 ### 输入
 
@@ -104,8 +140,280 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Separate thermal ports for upper and lower devices** 和 **Separate thermal ports for integral diodes** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: 栅极控制端口
+  summary: 栅极控制端口 PS（默认）| Electrical
+  group: 主要
+- name: 开关器件
+  summary: 开关器件选项 MOSFET（默认）| IGBT | GTO
+  group: 主要
+- name: 阈值电压，Vth
+  summary: 阈值电压 2 V | 6 V | 正标量
+  group: 主要
+- name: 栅极触发电压，Vgt
+  summary: 栅极触发电压 6 V（默认）| 正标量
+  group: 主要
+- name: 栅极关断电压，Vgt_off
+  summary: 栅极关断电压 -1 V（默认）| 标量
+  group: 主要
+- name: 维持电流
+  summary: 电流阈值 1 A（默认）| 正标量
+  group: 主要
+- name: 导通行为与损耗
+  summary: 导通行为与损耗 指定常量值（默认）| 制表
+  group: 主要
+- name: 漏源导通电阻，R_DS(on)
+  summary: 漏源导通电阻 0.01 Ohm（默认）| 正标量
+  group: 主要
+- name: 导通状态电压，Vds(Tj,Ids)
+  summary: 导通状态电压 [0, 1.1, 1.3, 1.45, 1.75, 2.25, 2.7; 0, 1, 1.15, 1.35, 1.7, 2.35, 3] V（默认）| 非负标量矩阵
+  group: 主要
+- name: 漏源电流向量，Ids
+  summary: 漏源电流向量 [0 10 50 100 200 400 600] A（默认）| 正标量向量
+  group: 主要
+- name: 正向电压，Vf
+  summary: 正向电压 0.8 V（默认）| 正标量
+  group: 主要
+- name: 导通状态电阻
+  summary: 导通状态集电极-发射极电阻 0.001 Ohm（默认）| 正标量
+  group: 主要
+- name: 导通状态电压，Vds(Tj,Ice)
+  summary: 导通状态电压 [0, .1, .6, .8, 1, 1.3, 1.6, 2, 2.4; 0, .1, .7, 1, 1.2, 1.5, 1.9, 2.4, 2.8] V（默认）| 非负标量矩阵
+  group: 主要
+- name: 集电极-发射极电流向量，Ice
+  summary: 集电极-发射极电流向量 [0, .1, 1, 5, 10, 20, 40, 70, 100] A（默认）| 正标量向量
+  group: 主要
+- name: 导通状态电压，Vak(Tj,Iak)
+  summary: 导通状态电压 [0, .1, .6, .8, 1, 1.3, 1.6, 2, 2.4; 0, .1, .7, 1, 1.2, 1.5, 1.9, 2.4, 2.8] V（默认）| 非负标量矩阵
+  group: 主要
+- name: 阳极-阴极电流向量，Iak
+  summary: 阳极-阴极电流向量 [0, .1, 1, 5, 10, 20, 40, 70, 100] A（默认）| 正标量向量
+  group: 主要
+- name: 温度向量，Tj
+  summary: 温度值 [298.15, 398.15] K（默认）| 向量
+  group: 主要
+- name: 断态电导
+  summary: 断态集电极-发射极电导 1e-6 1/Ohm（默认）| 正标量
+  group: 主要
+- name: 开通损耗
+  summary: 开通损耗 22.86e-3 J（默认）| 正标量
+  group: 损耗
+- name: 关断损耗
+  summary: 关断损耗 17.14e-3 J（默认）| 正标量
+  group: 损耗
+- name: 二极管反向恢复损耗
+  summary: 二极管反向恢复引起的损耗 5.70e-3 J（默认）| 正标量
+  group: 损耗
+- name: 损耗数据的通态电流
+  summary: 输出电流 600 A（默认）| 正标量
+  group: 损耗
+- name: 损耗数据的断态电压
+  summary: 断态电压 300 V（默认）| 正标量
+  group: 损耗
+- name: 将开关损耗施加到电源
+  summary: 将开关损耗施加到电源的选项 关（默认）| 开
+  group: 损耗
+- name: 开通损耗，Eon(Tj,Ids)
+  summary: 开通损耗 [0, .29, 1.43, 2.86, 5.71, 13.14, 22.86; 0, .57, 2.63, 5.14, 10.29, 20.57, 30.29] * 1e-3 J（默认）| 正标量向量
+  group: 损耗
+- name: 关断损耗，Eoff(Tj,Ids)
+  summary: 关断损耗 [0, .21, 1.07, 2.14, 4.29, 9.86, 17.14; 0, .43, 1.97, 3.86, 7.71, 15.43, 22.71] * 1e-3 J（默认）| 正标量向量
+  group: 损耗
+- name: Diode reverse recovery loss, Erec(Tj,Ids)
+  summary: 二极管反向恢复损耗 [0, .0031, .021, .11, .21, .43, .99, 1.71, 3.078; 0, .0041, .043, .2, .39, .77, 1.54, 2.27, 4.08] * 1e-3
+    J（默认）| 正标量向量
+  group: 损耗
+- name: Temperature vector for losses, Tj
+  summary: 损耗对应的温度 [298.15, 398.15] K（默认）| 向量
+  group: 损耗
+- name: Drain-source current vector for losses, Ids
+  summary: 开关损耗对应的漏源电流 [0, 10, 50, 100, 200, 400, 600] A（默认）| 正标量向量
+  group: 损耗
+- name: Include switching loss tabulation with off-state Vds voltage
+  summary: 使用关断状态 Vds 电压对开关损耗进行制表的选项 Off（默认）| On
+  group: 损耗
+- name: Switch-on loss, Eon(Tj,Ids,Vds)
+  summary: 开通损耗 [zeros(2, 7, 3)] J（默认）| 非负标量的三维数组
+  group: 损耗
+- name: Switch-off loss, Eoff(Tj,Ids,Vds)
+  summary: 关断损耗 [zeros(2, 7, 3)] J（默认）| 非负标量的三维数组
+  group: 损耗
+- name: Switch-on loss, Eon(Tj,Ice)
+  summary: 开通损耗 [0, .0024, .024, .12, .2, .48, 1.04, 2.16, 3.24; 0, .003, .03, .15, .25, .6, 1.3, 2.7, 4.05] * 1e-3 J（默认）|
+    正标量向量
+  group: 损耗
+- name: Switch-off loss, Eoff(Tj,Ice)
+  summary: 关断损耗 [0, .0007, .0066, .033, .066, .17, .33, .83, 1.5; 0, .001, .01, .05, .1, .25, .5, 1.2, 2.2] * 1e-3 J（默认）|
+    正标量向量
+  group: 损耗
+- name: Diode reverse recovery loss, Erec(Tj,Ice)
+  summary: 二极管反向恢复损耗 [0, .0031, .021, .11, .21, .43, .99, 1.71, 3.078; 0, .0041, .043, .2, .39, .77, 1.54, 2.27, 4.08] * 1e-3
+    J（默认）| 正标量向量
+  group: 损耗
+- name: Collector-emitter current vector for losses, Ice
+  summary: 损耗对应的集电极-发射极电流 [0, .1, 1, 5, 10, 20, 40, 70, 100] A（默认）| 正标量向量
+  group: 损耗
+- name: Include switching loss tabulation with off-state voltage
+  summary: 使用断态电压对开关损耗进行表格化的选项 Off（默认）| On
+  group: 损耗
+- name: Switch-on loss, Eon(Tj,Ice,Vce)
+  summary: 开通损耗 [zeros(2, 9, 3)] J（默认）| 非负标量的三维数组
+  group: 损耗
+- name: Switch-off loss, Eoff(Tj,Ice,Vce)
+  summary: 关断损耗 [zeros(2, 9, 3)] J（默认）| 非负标量的三维数组
+  group: 损耗
+- name: Off-state voltage vector for switching losses, Vce
+  summary: 开关损耗的断态电压向量 [0, 150, 300] V（默认）| 向量
+  group: 损耗
+- name: Forced commutation switch-off loss
+  summary: 强制换相关断损耗 17.14e-3 J（默认）| 正标量
+  group: 损耗
+- name: Natural commutation rectification loss
+  summary: 自然换相整流损耗 10e-3 J（默认）| 正标量
+  group: 损耗
+- name: Switch-on loss, Eon(Tj,Iak)
+  summary: 开通损耗 [0, .0024, .024, .12, .2, .48, 1.04, 2.16, 3.24; 0, .003, .03, .15, .25, .6, 1.3, 2.7, 4.05] * 1e-3 J（默认）|
+    非负标量矩阵
+  group: 损耗
+- name: Switch-off loss, Eoff(Tj,Iak)
+  summary: 关断损耗 [0, .0007, .0066, .033, .066, .17, .33, .83, 1.5; 0, .001, .01, .05, .1, .25, .5, 1.2, 2.2] * 1e-3 J（默认）|
+    正标量向量
+  group: 损耗
+- name: Diode reverse recovery loss, Erec(Tj,Iak)
+  summary: 二极管反向恢复损耗 [0, .0031, .021, .11, .21, .43, .99, 1.71, 3.078; 0, .0041, .043, .2, .39, .77, 1.54, 2.27, 4.08] * 1e-3
+    J（默认）| 正标量向量
+  group: 损耗
+- name: Anode-cathode current vector for losses, Iak
+  summary: 损耗对应的阳极-阴极电流 [0, .1, 1, 5, 10, 20, 40, 70, 100] A（默认）| 正标量向量
+  group: 损耗
+- name: Averaging period for switching losses
+  summary: 开关损耗平均周期 1e-3 s（默认）| 正标量
+  group: 损耗
+- name: Integral protection diode
+  summary: 保护二极管 No（默认）| Yes
+  group: Integral Diode
+- name: Diode model
+  summary: 二极管模型 Piecewise Linear（默认）| Tabulated I-V curve
+  group: Integral Diode
+- name: Forward voltage
+  summary: 正向电压 0.8 V（默认）| 正标量
+  group: Integral Diode
+- name: On resistance
+  summary: 导通电阻 0.001 Ohm（默认）| 正标量
+  group: Integral Diode
+- name: Off conductance
+  summary: 关断电导 1e-5 1/Ohm（默认）| 正标量
+  group: Integral Diode
+- name: Table type
+  summary: 表格函数 Table in If(Tj,Vf) form（默认）| Table in Vf(Tj,If) form
+  group: Integral Diode
+- name: Reverse I-V characteristics type
+  summary: 反向 I-V 特性类型 Specify off conductance（默认）| Tabulate
+  group: Integral Diode
+- name: Forward currents, If(Tj,Vf)
+  summary: 正向电流 [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02, 6.35, 9.12] A（默认）| 非负向量
+  group: Integral Diode
+- name: Junction temperatures, Tj
+  summary: 结温 [25, 125] degC（默认）| 正标量向量
+  group: Integral Diode
+- name: Forward voltages, Vf
+  summary: 正向电压 [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V（默认）| 非负向量
+  group: Integral Diode
+- name: Forward voltages, Vf(Tj,If)
+  summary: 正向电压 [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38, 1.77, 2.27, 2.7] V（默认）| 非负向量
+  group: Integral Diode
+- name: Forward currents, If
+  summary: 正向电流 [.1, .2, .5, 1, 2, 4, 7, 10] A（默认）| 非负向量
+  group: Integral Diode
+- name: 反向电流，Ir(Tj,Vr)
+  summary: 反向电流向量 [1e-06, 2e-06, 5e-06, 1e-05, 2.5e-05, 5e-05, .0001; 2e-06, 5e-06, 1e-05, 4e-05, 8e-05, .0002, .0005] A（默认）|
+    非负向量
+  group: Integral Diode
+- name: 反向电压，Vr
+  summary: 反向电压向量 [10, 20, 40, 50, 70, 80, 100] V（默认）| 非负向量
+  group: Integral Diode
+- name: 反向电压，Vr(Tj,Ir)
+  summary: 反向电压向量 [10, 100, 200, 250, 300, 325, 350; 10, 70, 160, 220, 270, 300, 320] V（默认）| 非负向量
+  group: Integral Diode
+- name: 反向电流，Ir
+  summary: 反向电流向量 [1e-06, 2e-06, 5e-06, 1e-05, 2e-05, 5e-05, .0001] A（默认）| 非负向量
+  group: Integral Diode
+- name: Separate thermal ports for upper and lower devices
+  summary: 分离上下管热端口选项 off（默认）| on
+  group: 热端口
+- name: Separate thermal ports for integral diodes
+  summary: 分离体二极管热端口选项 off（默认）| on
+  group: 热端口
+- name: Thermal network
+  summary: 热网络建模选项 External（默认）| Specify junction and case thermal parameters | Cauer model | Cauer model parameterized with
+    Foster coefficients
+  group: 热端口
+- name: Thermal mass parameterization
+  summary: 热质量参数化选项 By thermal time constants（默认）| By thermal mass
+  group: 热端口
+- name: Junction case and case-ambient (or case-heatsink) thermal resistances, [R_JC R_CA]
+  summary: 结-壳与壳-环境（或壳-散热器）热阻 [.03, .2] K/W（默认）| 正值向量
+  group: 热端口
+- name: Junction and case thermal time constants, [t_J t_C]
+  summary: 结与壳热时间常数 [.1, 5] s（默认）| 正值向量
+  group: 热端口
+- name: Junction and case thermal masses, [M_J M_C]
+  summary: 结与壳热质量 [3, 25] J/K（默认）| 正值向量
+  group: 热端口
+- name: Junction and case initial temperatures, [T_J T_C]
+  summary: 结与壳初始温度 [25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Diode junction case and case-ambient (or case-heatsink) thermal resistances, [R_JC R_CA]
+  summary: 集成二极管结-壳与壳-环境（或壳-散热器）热阻 [.03, .2] K/W（默认）| 正值向量
+  group: 热端口
+- name: Thermal time constants of diode junction and case, [t_J t_C]
+  summary: 集成二极管结与壳热时间常数 [.1, 5] s（默认）| 正值向量
+  group: 热端口
+- name: Thermal masses of diode junction and case, [M_J M_C]
+  summary: 二极管结和壳的热质量 [3, 25] J/K（默认）| 正值向量
+  group: 热端口
+- name: Initial temperatures of diode junction and case, [T_J T_C]
+  summary: 二极管结和壳的初始温度 [25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Thermal resistances, [R1 R2 … Rn]
+  summary: 热阻 [.03, .1, .2]K/W（默认）| [.03, .2] K/W | 正值向量
+  group: 热端口
+- name: Thermal time constants, [t1 t2 … tn]
+  summary: 热时间常数 [.1, 1, 5] s（默认）| [1, 10] s | 正值向量
+  group: 热端口
+- name: Thermal masses, [M1 M2 … Mn]
+  summary: 热质量 [3, 10, 25] J/K（默认）| [33, 50] J/K | 正值向量
+  group: 热端口
+- name: Thermal masses initial temperatures, [T1 T2 … Tn]
+  summary: 热质量初始温度 [25, 25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Diode thermal resistances, [R1 R2 … Rn]
+  summary: 集成二极管的热阻 [.03, .1, .2]K/W（默认）| [.03, .2] K/W | 正值向量
+  group: 热端口
+- name: Diode thermal time constants, [t1 t2 … tn]
+  summary: 集成二极管的热时间常数 [.1, 1, 5] s（默认）| [1, 10] s | 正值向量
+  group: 热端口
+- name: Diode thermal masses, [M1 M2 … Mn]
+  summary: 积分二极管的热质量 [3, 10, 25] J/K（默认）| [33, 50] J/K | 正值向量
+  group: 热端口
+- name: Initial temperatures of diode thermal masses, [T1 T2 … Tn]
+  summary: 二极管热质量的初始温度 [25, 25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Initial node temperatures, [T1 T2 ... Tn]
+  summary: 初始节点温度 [25, 25, 25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Diode initial node temperatures, [T1 T2 ... Tn]
+  summary: 积分二极管的初始节点温度 [25, 25, 25, 25] degC（默认）| 正值向量
+  group: 热端口
+- name: Junction thermal mass
+  summary: 结点的热质量 0.1 J/K（默认）| 正标量
+  group: 热端口
+- name: Diode junction thermal mass
+  summary: 二极管结点的热质量 0.1 J/K（默认）| 正标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -1134,7 +1442,6 @@ ports for upper and lower devices** 参数，并在
   - 将 **Thermal network** 设置为 `External`。
 
 有关使用热端口的更多信息以及其他 **Thermal Port** 参数，请参阅 Simulating Thermal Effects in Semiconductors。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

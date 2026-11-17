@@ -14,6 +14,24 @@ language: en
 # Controlled PWM Voltage
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Control signal, unitless physical signal
+  direction: input
+- name: ref+
+  summary: Positive terminal electrical
+  direction: conserving
+- name: ref-
+  summary: Negative terminal electrical
+  direction: conserving
+- name: PWM
+  summary: Pulse-width modulated signal electrical
+  direction: conserving
+- name: REF
+  summary: Floating zero volt reference electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -54,8 +72,50 @@ signal.
 
 Electrical conserving port associated with the floating zero volt
 reference.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model electrical or physical signal input ports Electrical input ports (default) | PS input
+  group: ''
+- name: PWM frequency
+  summary: PWM output signal frequency 1000 Hz (default)
+  group: PWM
+- name: Pulse delay time
+  summary: Turn-on delay 0 s (default)
+  group: PWM
+- name: Pulse width offset
+  summary: Lengthens or shortens the pulse 0 s (default)
+  group: PWM
+- name: Minimum pulse width
+  summary: Minimum length of pulse 0 s (default)
+  group: PWM
+- name: Simulation mode
+  summary: Select type of output voltage PWM (default) | Averaged
+  group: PWM
+- name: Switching event type
+  summary: Select type of switching event Asynchronous – Best for variable-step solvers (default) | Discrete-time – Best for
+    fixed-step solvers
+  group: PWM
+- name: Sample time
+  summary: Discrete sampling time 1e-6 s (default)
+  group: PWM
+- name: Input voltage for 0% duty cycle
+  summary: Vmin 0 V (default)
+  group: Input Scaling
+- name: Input voltage for 100% duty cycle
+  summary: Vmax 5 V (default)
+  group: Input Scaling
+- name: Input value for 0% duty cycle
+  summary: Minimum signal value 0 (default)
+  group: Input Scaling
+- name: Input value for 100% duty cycle
+  summary: Maximum signal value 1 (default)
+  group: Input Scaling
+- name: Output voltage amplitude
+  summary: Signal amplitude for high output 5 V (default)
+  group: Output Voltage
+```
 
 ### **Modeling option** — Whether to model electrical or physical signal input ports `Electrical input ports` (default) | `PS input`
 
@@ -199,7 +259,6 @@ to `PS input`.
 ### **Output voltage amplitude** — Signal amplitude for high output 5 V (default)
 
 Amplitude of the PWM signal when the output is high.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

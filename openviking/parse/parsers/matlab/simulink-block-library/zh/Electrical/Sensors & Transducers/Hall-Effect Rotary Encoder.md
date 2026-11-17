@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Hall-Effect Rotary Encoder
 
 ## 端口
+```yaml
+ports:
+- name: Angle
+  summary: 旋转角度物理信号
+  direction: output
+- name: R
+  summary: 传感器正探头的旋转速度机械旋转
+  direction: output
+- name: C
+  summary: 传感器负探头的旋转速度机械旋转
+  direction: output
+- name: yp
+  summary: y 轴正霍尔场电气
+  direction: output
+- name: yn
+  summary: y 轴负霍尔场电气
+  direction: output
+- name: xp
+  summary: x 轴正霍尔场电气
+  direction: output
+- name: xn
+  summary: x 轴负霍尔场电气
+  direction: output
+```
 
 ### 输出
 
@@ -74,8 +98,28 @@ connections`。
 要启用此端口，请将 **Output interface**
 参数设置为 `Electrical
 connections`。
-
 ## 参数
+```yaml
+parameters:
+- name: X-axis voltage amplitude
+  summary: x 轴电压 2.5 V（默认值）
+  group: ''
+- name: Y-axis voltage amplitude
+  summary: y 轴电压 2.5 V（默认值）
+  group: ''
+- name: X-axis voltage offset
+  summary: x 轴电压偏移 0 V（默认值）
+  group: ''
+- name: Y-axis voltage offset
+  summary: Y 轴电压偏移 0 V（默认值）
+  group: ''
+- name: Quadrature error
+  summary: 正交误差 0 deg（默认值）
+  group: ''
+- name: Output interface
+  summary: 解码信息的接口 Electrical connections（默认值）| Decoded angular position
+  group: ''
+```
 
 ### **X-axis voltage amplitude** — x 轴电压 `2.5` `V`（默认值）
 
@@ -104,7 +148,6 @@ y 轴电压幅值，以伏特为单位。
 将此参数设置为 `Electrical connections` 以在每个传感器处输出霍尔电压。选择此选项会启用 **yp**、**yn**、**xp** 和 **xn** 守恒端口。
 
 将此参数设置为 `Decoded angular position` 以输出磁场在 x-y 平面中的旋转角度。选择此选项会启用 **Angle** 物理信号端口。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Gaussian2 MF
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入值 标量 | 向量
+  direction: input
+- name: MF
+  summary: 隶属度值 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +40,34 @@ chinese_source: worker-translation
 当 *c*1 ≤ *c*2 时，隶属函数在区间 [*c*1, *c*2] 上达到最大值 `1`。
 
 否则，当 *c*1 > *c*2 时，最大值小于一。
-
 ## 参数
+```yaml
+parameters:
+- name: Standard deviation for left curve sigma1
+  summary: 左侧高斯标准差 3（默认）| 标量
+  group: ''
+  block_parameter: sigma1
+  type: string, character vector
+  default: '"3"'
+- name: Mean for left curve c1
+  summary: 左侧高斯均值 -1（默认）| 标量
+  group: ''
+  block_parameter: mu1
+  type: string, character vector
+  default: '"-1"'
+- name: Standard deviation for right curve sigma2
+  summary: 右侧高斯标准差 1（默认）| 标量
+  group: ''
+  block_parameter: sigma2
+  type: string, character vector
+  default: '"1"'
+- name: Mean for right curve c2
+  summary: 右侧高斯均值 5（默认）| 标量
+  group: ''
+  block_parameter: mu2
+  type: string, character vector
+  default: '"5"'
+```
 
 ### **Standard deviation for left curve sigma1** — 左侧高斯标准差 `3`（默认）| 标量
 
@@ -81,7 +116,6 @@ chinese_source: worker-translation
 | **模块参数**：`mu2` |
 | **类型**：string, character vector |
 | **默认值**：`"5"` |
-
 ## 所属库
 
 Fuzzy Logic Toolbox / Membership Functions

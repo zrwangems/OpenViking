@@ -14,6 +14,19 @@ language: en
 # Entity Multicast
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+- name: send
+  summary: Broadcast entities scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string | fixed point
+```
 
 ### Input
 
@@ -34,8 +47,17 @@ type
 Output broadcasted entities.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Multicast tag
+  summary: Specify the tag with which to broadcast the entities A (default) | character vector
+  group: ''
+  block_parameter: MulticastTag
+  type: character vector
+  values: '''A'' | character vector'
+  default: '''A'''
+```
 
 ### **Multicast tag** — Specify the tag with which to broadcast the entities `A` (default) | character vector
 
@@ -53,7 +75,6 @@ tag** is set as `A` receives a copy.
 | **Type**: character vector |
 | **Values**: `'A'` | character vector |
 | **Default**: `'A'` |
-
 ## Libraries
 
 SimEvents

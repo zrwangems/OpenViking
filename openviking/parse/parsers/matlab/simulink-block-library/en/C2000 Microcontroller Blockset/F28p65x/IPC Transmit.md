@@ -14,6 +14,12 @@ language: en
 # F2837xD/F2838x/F2838x-M4 IPC Transmit
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data to be send to the other Core uint16 | single | int8 | uint8 | int16 | int32 | uint32 | boolean
+  direction: input
+```
 
 ### Input
 
@@ -21,8 +27,19 @@ language: en
 
 The port accepts data to be transmitted to the other Core as a vector or
 scalar.
-
 ## Parameters
+```yaml
+parameters:
+- name: Destination
+  summary: Destination selected to send data C28x (CPU1/CPU2)/CPU1 (default) | ARM Cortex-M4 (CM)/CPU2
+  group: ''
+- name: Channel
+  summary: Channel selected to transmit data 0 (default) | 0–31
+  group: ''
+- name: Enable blocking
+  summary: Specify if Core must wait until sent data is read off (default) | on
+  group: ''
+```
 
 ### **Destination** — Destination selected to send data `C28x (CPU1/CPU2)/CPU1` (default) | `ARM Cortex-M4 (CM)/CPU2`
 
@@ -58,7 +75,6 @@ same channel number.
 
 When enabled, after sending data, the Core waits until the other Core reads the
 data.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28p65x

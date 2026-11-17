@@ -15,10 +15,27 @@ chinese_source: worker-translation
 # J1939 CAN Transport Layer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: J1939 网络配置名称 配置列表选项
+  group: ''
+- name: Device
+  summary: CAN 设备 设备列表选项
+  group: ''
+- name: Bus speed
+  summary: CAN 总线速度 250000（默认）| 500000
+  group: ''
+- name: Sample time
+  summary: 仿真刷新率 0.01（默认）| 数值
+  group: ''
+```
 
 ### **Config name** — J1939 网络配置名称 配置列表选项
 
@@ -35,7 +52,6 @@ CAN 总线的速度，以每秒位数表示，指定为 J1939 协议支持的两
 ### **Sample time** — 仿真刷新率 `0.01`（默认）| 数值
 
 仿真刷新率，指定为模块在仿真期间的采样时间。此值定义了 J1939 CAN Transport Layer 模块在仿真期间运行的频率。有关仿真采样时序的信息，请参阅 Timing in Hardware Interface Models。如果该模块位于触发子系统内或继承采样时间，请指定值为 `-1`。您也可以为采样时间指定一个 MATLAB® 变量。默认值为 `0.01` 仿真秒。
-
 ## 所属库
 
 Vehicle Network Toolbox / J1939 Communication

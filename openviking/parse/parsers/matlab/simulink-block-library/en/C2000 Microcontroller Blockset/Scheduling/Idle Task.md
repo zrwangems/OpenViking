@@ -14,6 +14,17 @@ language: en
 # Idle Task
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Simulation only port scalar
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: Idle task data vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | bus
+```
 
 ### Input
 
@@ -35,8 +46,20 @@ parameter is enabled.
 The output of the Idle task is a vector of uint16 values.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Task numbers
+  summary: Identifies created tasks by numbers double (default) | single | int8 | int16 | int32 | int64 | int64 | uint8 |
+    uint16 | uint32 | uint64 | uint64 | Boolean | bus
+  group: ''
+- name: Preemption flags
+  summary: Number of storage buffers 1 (default) | positive integer
+  group: ''
+- name: Enable simulation port
+  summary: Enable peripheral simulation port to block off (default) | on
+  group: ''
+```
 
 ### **Task numbers** — Identifies created tasks by numbers `double` (default) | `single` | `int8` | `int16` | `int32` | `int64` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `uint64` | `Boolean` | `bus`
 
@@ -92,7 +115,6 @@ interrupt sources to the simulation input.
 
 Select this check box to test asynchronous interrupt processing behavior
 in Simulink software.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Scheduling

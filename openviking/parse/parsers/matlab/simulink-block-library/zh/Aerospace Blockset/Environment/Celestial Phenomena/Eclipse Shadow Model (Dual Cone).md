@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Eclipse Shadow Model (Dual Cone)
 
 ## 端口
+```yaml
+ports:
+- name: Xicrf
+  summary: 航天器位置 三元素向量 | *M*×3 数组
+  direction: input
+  data_types: double
+- name: TJD
+  summary: 儒略日 标量
+  direction: input
+  data_types: double
+- name: T0JD
+  summary: 儒略日历元 标量
+  direction: input
+  data_types: double
+- name: ΔTJD
+  summary: 相对于 T0JD 的经过儒略时间 标量
+  direction: input
+  data_types: double
+- name: Rssbary,cb
+  summary: 自定义中心天体位置 3×1 数组
+  direction: input
+  data_types: double
+- name: Fraction
+  summary: 可见太阳比例 标量 | *M* 元素向量
+  direction: output
+  data_types: double
+- name: Region
+  summary: 区域 标量 | *M* 元素向量 | 整数
+  direction: output
+  data_types: int32
+- name: Secondary Region
+  summary: 次要区域 标量 | *M* 元素向量 | 整数
+  direction: output
+  data_types: int32
+```
 
 ### 输入
 
@@ -111,8 +146,116 @@ chinese_source: worker-translation
   - 选中 **Include Earth**。
 
 **数据类型：** `int32`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 位置端口单位 Metric (m)（默认）| Metric (km) | English (ft) | English (M)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (m)'' | ''Metric (km)'' | ''English (ft)'' | ''English (M)'''
+  default: '''Metric (m)'''
+- name: Shadow model
+  summary: 阴影模型 Dual cone（默认）| Cylindrical
+  group: ''
+  block_parameter: shadowModel
+  type: character vector
+  values: '''Dual cone'' | ''Cylindrical'''
+  default: '''Dual cone'''
+- name: Output index of shadow region
+  summary: 阴影区域索引输出 on（默认）| off
+  group: ''
+  block_parameter: outputShadowRegion
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Time source
+  summary: 时间源方法 Dialog（默认）| Port (Julian date) | Port (T0 and elapsed Julian time)
+  group: ''
+  block_parameter: timeSource
+  type: character vector
+  values: '''Dialog'' | ''Port (Julian date)'' | ''Port (T0 and elapsed Julian time)'''
+  default: '''Dialog'''
+- name: Start date/time (JD)
+  summary: 仿真的初始开始日期和时间 juliandate(2020, 1, 1)（默认）| 有效标量儒略日
+  group: ''
+  block_parameter: startDate
+  type: character vector
+  values: '''juliandate(2020, 1, 1)'' | valid scalar Julian date'
+  default: '''juliandate(2020, 1, 1)'''
+- name: Central body
+  summary: 用于食计算的遮蔽天体 Earth（默认）| Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Custom
+  group: ''
+  block_parameter: centralBody
+  type: character vector
+  values: '''Earth'' | ''Moon'' |''Mercury'' | ''Venus'' | ''Mars'' | ''Jupiter'' | ''Saturn'' | ''Uranus'' | ''Neptune''
+    | ''Custom'' |'
+  default: '''Earth'''
+- name: Equatorial radius
+  summary: 自定义中心天体半径 3396200（默认）| double 标量
+  group: ''
+  block_parameter: customR
+  type: character vector
+  values: '''3396200'' | double scalar'
+  default: '''3396200'''
+- name: Include Moon
+  summary: 包含 Moon 的选项 on（默认）| off
+  group: ''
+  block_parameter: includeMoon
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Include Earth
+  summary: 包含 Earth 的选项 on（默认）| off
+  group: ''
+  block_parameter: includeEarth
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Ephemeris model
+  summary: 星历模型 DE405（默认）| DE421 | DE423 | DE430 | DE432t
+  group: ''
+  block_parameter: ephemerisModel
+  type: character vector
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Limit ephemerides date range
+  summary: 打开以启用星历数据的范围开始和结束 on（默认）| off
+  group: ''
+  block_parameter: useDateRange
+  type: character vector
+  values: '''off'' | ''on'' |'
+  default: '''on'''
+- name: Start date (JD)
+  summary: 星历日期范围的开始日期 juliandate(2020, 1, 1)（默认）| 儒略日
+  group: ''
+  block_parameter: startDate
+  type: character vector
+  values: '''juliandate(2020, 1, 1)'' | Julian date'
+  default: '''juliandate(2020, 1, 1)'''
+- name: End date (JD)
+  summary: 星历日期范围的结束日期 juliandate(2050, 1, 1)（默认）| 儒略日
+  group: ''
+  block_parameter: endDate
+  type: character vector
+  values: '''juliandate(2050, 1, 1)'' | Julian format date'
+  default: '''juliandate(2050, 1, 1)'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 Error（默认）| Warning | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+- name: Enable zero-crossing detection
+  summary: 启用零交叉检测 off（默认）| on
+  group: ''
+  block_parameter: zeroCrossing
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Units** — 位置端口单位 `Metric (m)`（默认）| `Metric (km)` | `English (ft)` | `English (M)`
 
@@ -383,7 +526,6 @@ chinese_source: worker-translation
 | **类型**：character vector, string |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Celestial Phenomena

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Dynamic Pressure
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 速度三元向量
+  direction: input
+  data_types: double
+- name: ρ
+  summary: 空气密度标量
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: 动压标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,11 +51,12 @@ chinese_source: worker-translation
 动压，以标量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Flight Parameters

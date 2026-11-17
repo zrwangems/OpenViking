@@ -14,6 +14,42 @@ language: en
 # Half-Bridge (Ideal, Switching)
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate terminals vector physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: O
+  summary: Output node electrical
+  direction: conserving
+- name: G1
+  summary: Gate terminal 1 electrical
+  direction: conserving
+- name: G2
+  summary: Gate terminal 2 electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+- name: H1Switch
+  summary: Thermal port for upper switching device thermal
+  direction: conserving
+- name: H2Switch
+  summary: Thermal port for lower switching device thermal
+  direction: conserving
+- name: H1Diode
+  summary: Thermal port for upper diode thermal
+  direction: conserving
+- name: H2Diode
+  summary: Thermal port for lower diode thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -124,8 +160,290 @@ Thermal conserving port associated with the lower diode.
 To enable this port, select the **Separate thermal ports
 for upper and lower devices** and **Separate
 thermal ports for integral diodes** parameters.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gate-control port
+  summary: Gate-control port PS (default) | Electrical
+  group: Main
+- name: Switching device
+  summary: Switching device option MOSFET (default) | IGBT | GTO
+  group: Main
+- name: Threshold voltage, Vth
+  summary: Threshold voltage 2 V | 6 V | positive scalar
+  group: Main
+- name: Gate trigger voltage, Vgt
+  summary: Gate trigger voltage 6 V (default) | positive scalar
+  group: Main
+- name: Gate turn-off voltage, Vgt_off
+  summary: Gate turn-off voltage -1 V (default) | scalar
+  group: Main
+- name: Holding current
+  summary: Current threshold 1 A (default) | positive scalar
+  group: Main
+- name: On-state behavior and losses
+  summary: On-state behavior and losses Specify constant values (default) | Tabulate
+  group: Main
+- name: Drain-source on resistance, R_DS(on)
+  summary: Drain-source on resistance 0.01 Ohm (default) | positive scalar
+  group: Main
+- name: On-state voltage, Vds(Tj,Ids)
+  summary: On-state voltage [0, 1.1, 1.3, 1.45, 1.75, 2.25, 2.7; 0, 1, 1.15, 1.35, 1.7, 2.35, 3] V (default) | matrix of nonnegative
+    scalars
+  group: Main
+- name: Drain-source current vector, Ids
+  summary: Drain-source current vector [0 10 50 100 200 400 600] A (default) | vector of positive scalars
+  group: Main
+- name: Forward voltage, Vf
+  summary: Forward voltage 0.8 V (default) | positive scalar
+  group: Main
+- name: On-state resistance
+  summary: On-state collector-emitter resistance 0.001 Ohm (default) | positive scalar
+  group: Main
+- name: On-state voltage, Vds(Tj,Ice)
+  summary: On-state voltage [0, .1, .6, .8, 1, 1.3, 1.6, 2, 2.4; 0, .1, .7, 1, 1.2, 1.5, 1.9, 2.4, 2.8] V (default) | matrix
+    of nonnegative scalars
+  group: Main
+- name: Collector-emitter current vector, Ice
+  summary: Collector-emitter current vector [0, .1, 1, 5, 10, 20, 40, 70, 100] A (default) | vector of positive scalars
+  group: Main
+- name: On-state voltage, Vak(Tj,Iak)
+  summary: On-state voltage [0, .1, .6, .8, 1, 1.3, 1.6, 2, 2.4; 0, .1, .7, 1, 1.2, 1.5, 1.9, 2.4, 2.8] V (default) | matrix
+    of nonnegative scalars
+  group: Main
+- name: Anode-cathode current vector, Iak
+  summary: Anode-cathode current vector [0, .1, 1, 5, 10, 20, 40, 70, 100] A (default) | vector of positive scalars
+  group: Main
+- name: Temperature vector, Tj
+  summary: Temperature values [298.15, 398.15] K (default) | vector
+  group: Main
+- name: Off-state conductance
+  summary: Off-state collector-emitter conductance 1e-6 1/Ohm (default) | positive scalar
+  group: Main
+- name: Switch-on loss
+  summary: Switch-on loss 22.86e-3 J (default) | positive scalar
+  group: Losses
+- name: Switch-off loss
+  summary: Switch-off loss 17.14e-3 J (default) | positive scalar
+  group: Losses
+- name: Diode reverse recovery loss
+  summary: Loss from diode-reverse recovery 5.70e-3 J (default) | positive scalar
+  group: Losses
+- name: On-state current for loss data
+  summary: Output current 600 A (default) | positive scalar
+  group: Losses
+- name: Off-state voltage for loss data
+  summary: Off-state voltage 300 V (default) | positive scalar
+  group: Losses
+- name: Apply switching losses to electrical supply
+  summary: Option to apply switching losses to electrical supply Off (default) | On
+  group: Losses
+- name: Switch-on loss, Eon(Tj,Ids)
+  summary: Switch-on loss [0, .29, 1.43, 2.86, 5.71, 13.14, 22.86; 0, .57, 2.63, 5.14, 10.29, 20.57, 30.29] * 1e-3 J (default)
+    | vector of positive scalars
+  group: Losses
+- name: Switch-off loss, Eoff(Tj,Ids)
+  summary: Switch-off loss [0, .21, 1.07, 2.14, 4.29, 9.86, 17.14; 0, .43, 1.97, 3.86, 7.71, 15.43, 22.71] * 1e-3 J (default)
+    | vector of positive scalars
+  group: Losses
+- name: Diode reverse recovery loss, Erec(Tj,Ids)
+  summary: Loss from diode-reverse recovery [0, .0031, .021, .11, .21, .43, .99, 1.71, 3.078; 0, .0041, .043, .2, .39, .77,
+    1.54, 2.27, 4.08] * 1e-3 J (default) | vector of positive scalars
+  group: Losses
+- name: Temperature vector for losses, Tj
+  summary: Temperature for losses [298.15, 398.15] K (default) | vector
+  group: Losses
+- name: Drain-source current vector for losses, Ids
+  summary: Drain-source current for switching losses [0, 10, 50, 100, 200, 400, 600] A (default) | vector of positive scalars
+  group: Losses
+- name: Include switching loss tabulation with off-state Vds voltage
+  summary: Option to tabulate switching losses with off-state Vds voltage Off (default) | On
+  group: Losses
+- name: Switch-on loss, Eon(Tj,Ids,Vds)
+  summary: Switch-on loss [zeros(2, 7, 3)] J (default) | 3-D array of nonnegative scalars
+  group: Losses
+- name: Switch-off loss, Eoff(Tj,Ids,Vds)
+  summary: Switch-off loss [zeros(2, 7, 3)] J (default) | 3-D array of nonnegative scalars
+  group: Losses
+- name: Switch-on loss, Eon(Tj,Ice)
+  summary: Switch-on loss [0, .0024, .024, .12, .2, .48, 1.04, 2.16, 3.24; 0, .003, .03, .15, .25, .6, 1.3, 2.7, 4.05] * 1e-3
+    J (default) | vector of positive scalars
+  group: Losses
+- name: Switch-off loss, Eoff(Tj,Ice)
+  summary: Switch-off loss [0, .0007, .0066, .033, .066, .17, .33, .83, 1.5; 0, .001, .01, .05, .1, .25, .5, 1.2, 2.2] * 1e-3
+    J (default) | vector of positive scalars
+  group: Losses
+- name: Diode reverse recovery loss, Erec(Tj,Ice)
+  summary: Loss from diode-reverse recovery loss [0, .0031, .021, .11, .21, .43, .99, 1.71, 3.078; 0, .0041, .043, .2, .39,
+    .77, 1.54, 2.27, 4.08] * 1e-3 J (default) | vector of positive scalars
+  group: Losses
+- name: Collector-emitter current vector for losses, Ice
+  summary: Collector-emitter current for losses [0, .1, 1, 5, 10, 20, 40, 70, 100] A (default) | vector of positive scalars
+  group: Losses
+- name: Include switching loss tabulation with off-state voltage
+  summary: Option to tabulate switching losses with off-state voltage Off (default) | On
+  group: Losses
+- name: Switch-on loss, Eon(Tj,Ice,Vce)
+  summary: Switch-on loss [zeros(2, 9, 3)] J (default) | 3-D array of nonnegative scalars
+  group: Losses
+- name: Switch-off loss, Eoff(Tj,Ice,Vce)
+  summary: Switch-off loss [zeros(2, 9, 3)] J (default) | 3-D array of nonnegative scalars
+  group: Losses
+- name: Off-state voltage vector for switching losses, Vce
+  summary: Off-state voltage vector for switching loss data [0, 150, 300] V (default) | vector
+  group: Losses
+- name: Forced commutation switch-off loss
+  summary: Forced commutation switch-off loss 17.14e-3 J (default) | positive scalar
+  group: Losses
+- name: Natural commutation rectification loss
+  summary: Natural commutation rectification loss 10e-3 J (default) | positive scalar
+  group: Losses
+- name: Switch-on loss, Eon(Tj,Iak)
+  summary: Switch-on loss [0, .0024, .024, .12, .2, .48, 1.04, 2.16, 3.24; 0, .003, .03, .15, .25, .6, 1.3, 2.7, 4.05] * 1e-3
+    J (default) | matrix of nonnegative scalars
+  group: Losses
+- name: Switch-off loss, Eoff(Tj,Iak)
+  summary: Switch-off loss [0, .0007, .0066, .033, .066, .17, .33, .83, 1.5; 0, .001, .01, .05, .1, .25, .5, 1.2, 2.2] * 1e-3
+    J (default) | vector of positive scalars
+  group: Losses
+- name: Diode reverse recovery loss, Erec(Tj,Iak)
+  summary: Loss from diode-reverse recovery loss [0, .0031, .021, .11, .21, .43, .99, 1.71, 3.078; 0, .0041, .043, .2, .39,
+    .77, 1.54, 2.27, 4.08] * 1e-3 J (default) | vector of positive scalars
+  group: Losses
+- name: Anode-cathode current vector for losses, Iak
+  summary: Anode-cathode current for losses [0, .1, 1, 5, 10, 20, 40, 70, 100] A (default) | vector of positive scalars
+  group: Losses
+- name: Averaging period for switching losses
+  summary: Averaging period for switching losses 1e-3 s (default) | positive scalar
+  group: Losses
+- name: Integral protection diode
+  summary: Protection diode No (default) | Yes
+  group: Integral Diode
+- name: Diode model
+  summary: Diode model Piecewise Linear (default) | Tabulated I-V curve
+  group: Integral Diode
+- name: Forward voltage
+  summary: Forward voltage 0.8 V (default) | positive scalar
+  group: Integral Diode
+- name: On resistance
+  summary: On resistance 0.001 Ohm (default) | positive scalar
+  group: Integral Diode
+- name: Off conductance
+  summary: Off conductance 1e-5 1/Ohm (default) | positive scalar
+  group: Integral Diode
+- name: Table type
+  summary: Tabulated function Table in If(Tj,Vf) form (default) | Table in Vf(Tj,If) form
+  group: Integral Diode
+- name: Reverse I-V characteristics type
+  summary: Type of reverse I-V characteristics Specify off conductance (default) | Tabulate
+  group: Integral Diode
+- name: Forward currents, If(Tj,Vf)
+  summary: Forward currents [.07, .12, .19, 1.75, 4.24, 7.32, 11.2; .16, .3, .72, 2.14, 4.02, 6.35, 9.12] A (default) | nonnegative
+    vector
+  group: Integral Diode
+- name: Junction temperatures, Tj
+  summary: Junction temperatures [25, 125] degC (default) | vector of positive scalars
+  group: Integral Diode
+- name: Forward voltages, Vf
+  summary: Forward voltages [.5, .7, .9, 1.3, 1.7, 2.1, 2.5] V (default) | nonnegative vector
+  group: Integral Diode
+- name: Forward voltages, Vf(Tj,If)
+  summary: Forward voltages [.9, 1.15, 1.25, 1.5, 1.75, 2.17, 2.6, 2.85; .58, .68, .75, 1.1, 1.38, 1.77, 2.27, 2.7] V (default)
+    | nonnegative vector
+  group: Integral Diode
+- name: Forward currents, If
+  summary: Forward currents [.1, .2, .5, 1, 2, 4, 7, 10] A (default) | nonnegative vector
+  group: Integral Diode
+- name: Reverse currents, Ir(Tj,Vr)
+  summary: Vector of reverse currents [1e-06, 2e-06, 5e-06, 1e-05, 2.5e-05, 5e-05, .0001; 2e-06, 5e-06, 1e-05, 4e-05, 8e-05,
+    .0002, .0005] A (default) | nonnegative vector
+  group: Integral Diode
+- name: Reverse voltages, Vr
+  summary: Vector of reverse voltages [10, 20, 40, 50, 70, 80, 100] V (default) | nonnegative vector
+  group: Integral Diode
+- name: Reverse voltages, Vr(Tj,Ir)
+  summary: Vector of reverse voltages [10, 100, 200, 250, 300, 325, 350; 10, 70, 160, 220, 270, 300, 320] V (default) | nonnegative
+    vector
+  group: Integral Diode
+- name: Reverse currents, Ir
+  summary: Vector of reverse currents [1e-06, 2e-06, 5e-06, 1e-05, 2e-05, 5e-05, .0001] A (default) | nonnegative vector
+  group: Integral Diode
+- name: Separate thermal ports for upper and lower devices
+  summary: Option to separate thermal ports for upper and lower devices off (default) | on
+  group: Thermal Port
+- name: Separate thermal ports for integral diodes
+  summary: Option to separate thermal ports for integral diodes off (default) | on
+  group: Thermal Port
+- name: Thermal network
+  summary: Options for thermal network modeling External (default) | Specify junction and case thermal parameters | Cauer
+    model | Cauer model parameterized with Foster coefficients
+  group: Thermal Port
+- name: Thermal mass parameterization
+  summary: Option to parameterize thermal mass By thermal time constants (default) | By thermal mass
+  group: Thermal Port
+- name: Junction case and case-ambient (or case-heatsink) thermal resistances, [R_JC R_CA]
+  summary: Junction case and case-ambient (or case-heatsink) thermal resistances [.03, .2] K/W (default) | vector of positive
+    values
+  group: Thermal Port
+- name: Junction and case thermal time constants, [t_J t_C]
+  summary: Junction and case thermal time constants [.1, 5] s (default) | vector of positive values
+  group: Thermal Port
+- name: Junction and case thermal masses, [M_J M_C]
+  summary: Junction and case thermal masses [3, 25] J/K (default) | vector of positive values
+  group: Thermal Port
+- name: Junction and case initial temperatures, [T_J T_C]
+  summary: Junction and case initial temperatures [25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Diode junction case and case-ambient (or case-heatsink) thermal resistances, [R_JC R_CA]
+  summary: Junction case and case-ambient (or case-heatsink) thermal resistances for integral diode [.03, .2] K/W (default)
+    | vector of positive values
+  group: Thermal Port
+- name: Thermal time constants of diode junction and case, [t_J t_C]
+  summary: Junction and case thermal time constants for integral diode [.1, 5] s (default) | vector of positive values
+  group: Thermal Port
+- name: Thermal masses of diode junction and case, [M_J M_C]
+  summary: Thermal masses of diode junction and case [3, 25] J/K (default) | vector of positive values
+  group: Thermal Port
+- name: Initial temperatures of diode junction and case, [T_J T_C]
+  summary: Initial temperatures of diode junction and case [25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Thermal resistances, [R1 R2 … Rn]
+  summary: Thermal resistances [.03, .1, .2]K/W (default) | [.03, .2] K/W | vector of positive values
+  group: Thermal Port
+- name: Thermal time constants, [t1 t2 … tn]
+  summary: Thermal time constants [.1, 1, 5] s (default) | [1, 10] s | vector of positive values
+  group: Thermal Port
+- name: Thermal masses, [M1 M2 … Mn]
+  summary: Thermal masses [3, 10, 25] J/K (default) | [33, 50] J/K | vector of positive values
+  group: Thermal Port
+- name: Thermal masses initial temperatures, [T1 T2 … Tn]
+  summary: Thermal masses initial temperatures [25, 25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Diode thermal resistances, [R1 R2 … Rn]
+  summary: Thermal resistances for integral diode [.03, .1, .2]K/W (default) | [.03, .2] K/W | vector of positive values
+  group: Thermal Port
+- name: Diode thermal time constants, [t1 t2 … tn]
+  summary: Thermal time constants for integral diode [.1, 1, 5] s (default) | [1, 10] s | vector of positive values
+  group: Thermal Port
+- name: Diode thermal masses, [M1 M2 … Mn]
+  summary: Thermal masses for integral diode [3, 10, 25] J/K (default) | [33, 50] J/K | vector of positive values
+  group: Thermal Port
+- name: Initial temperatures of diode thermal masses, [T1 T2 … Tn]
+  summary: Initial temperatures of diode thermal masses [25, 25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Initial node temperatures, [T1 T2 ... Tn]
+  summary: Initial node temperatures [25, 25, 25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Diode initial node temperatures, [T1 T2 ... Tn]
+  summary: Initial node temperatures for integral diode [25, 25, 25, 25] degC (default) | vector of positive values
+  group: Thermal Port
+- name: Junction thermal mass
+  summary: Thermal mass of junction 0.1 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Diode junction thermal mass
+  summary: Thermal mass of diode junction 0.1 J/K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -1552,7 +1870,6 @@ To enable this parameter:
 
 For more information about using thermal ports and for the other **Thermal
 Port** parameters, see Simulating Thermal Effects in Semiconductors.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

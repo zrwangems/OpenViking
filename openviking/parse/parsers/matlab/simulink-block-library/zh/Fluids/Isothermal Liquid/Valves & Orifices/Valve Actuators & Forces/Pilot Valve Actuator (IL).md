@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pilot Valve Actuator (IL)
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 压力端口 *P*X 等温液体
+  direction: conserving
+- name: Y
+  summary: 压力端口 *P*Y 等温液体
+  direction: conserving
+- name: S
+  summary: 活塞位移，m 物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -34,8 +46,59 @@ chinese_source: worker-translation
 ### **S** — 活塞位移，m 物理信号
 
 活塞位移，指定为物理信号。位移符号对应于 **Mechanical orientation** 参数中指定的方向。
-
 ## 参数
+```yaml
+parameters:
+- name: Actuator configuration
+  summary: 建模的执行器类型 Single-acting（默认）| Double-acting
+  group: ''
+- name: Piston area at port X
+  summary: 端口 X 处活塞杆的横截面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Piston area at port Y
+  summary: 端口 Y 处活塞杆的横截面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Spring preload force
+  summary: 中立位置处的力 20 N（默认）| 标量
+  group: ''
+- name: Spring preload force at port X
+  summary: 中立位置处端口 X 的力 20 N（默认）| 标量
+  group: ''
+- name: Spring preload force at port Y
+  summary: 中立位置处端口 Y 的力 20 N（默认）| 标量
+  group: ''
+- name: Spring stiffness
+  summary: 刚度系数 15e3 N/m（默认）| 正标量
+  group: ''
+- name: Spring stiffness at port X
+  summary: 端口 X 处的刚度系数 15e3 N/m（默认）| 正标量
+  group: ''
+- name: Spring stiffness at port Y
+  summary: 端口 Y 处的刚度系数 15e3 N/m（默认）| 正标量
+  group: ''
+- name: Piston stroke
+  summary: 最大活塞行程距离 5e-3 m（默认）| 正标量
+  group: ''
+- name: Piston stroke from port X
+  summary: 端口 X 处的最大活塞行程距离 5e-3 m（默认）| 正标量
+  group: ''
+- name: Piston stroke from port Y
+  summary: 端口 Y 处的最大活塞行程距离 5e-3 m（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Actuator dynamics
+  summary: 是否考虑驱动过程中的瞬态 Off（默认）| On
+  group: ''
+- name: Actuator time constant
+  summary: 活塞位移时间常数 0.1 s（默认）| 正标量
+  group: ''
+- name: Mechanical orientation
+  summary: 活塞位移方向 Pilot pressure at port X causes positive piston displacement（默认）| Pilot pressure at port X causes negative
+    piston displacement
+  group: ''
+```
 
 ### **Actuator configuration** — 建模的执行器类型 `Single-acting`（默认）| `Double-acting`
 
@@ -144,7 +207,6 @@ chinese_source: worker-translation
 ### **Mechanical orientation** — 活塞位移方向 `Pilot pressure at port X causes positive piston displacement`（默认）| `Pilot pressure at port X causes negative piston displacement`
 
 根据端口 **X** 处的配置设置活塞位移方向。如果 **Actuator configuration** 设置为 `Double-acting`，则端口 **Y** 处的位移力方向与端口 **X** 处的力方向相反。`Pilot pressure at port X causes positive piston displacement` 对应于当 **X** 处的压力将活塞推向端口 **Y** 时的正位移。`Pilot pressure at port X causes negative piston displacement` 对应于当 **X** 处的压力将活塞推向端口 **Y** 时的负位移。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces

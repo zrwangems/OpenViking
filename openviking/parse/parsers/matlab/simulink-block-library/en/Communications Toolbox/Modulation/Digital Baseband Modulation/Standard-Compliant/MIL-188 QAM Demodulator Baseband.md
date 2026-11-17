@@ -14,6 +14,19 @@ language: en
 # MIL-188 QAM Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: MIL-STD-188 standard-specific QAM modulated signal scalar | vector | matrix
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: Noise variance positive scalar | vector of positive values
+  direction: input
+- name: Out
+  summary: Demodulated signal scalar | vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -57,8 +70,34 @@ the block.
 
 Use **Output
 data type** to specify the output data type.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation order
+  summary: Modulation order 16 (default) | 32 | 64 | 256
+  group: ''
+- name: Constellation scaling
+  summary: Constellation scaling As specified in standard (default) | Unit average power
+  group: ''
+- name: Output type
+  summary: Input type Integer (default) | Bit
+  group: ''
+- name: Decision type
+  summary: Demodulation decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio
+  group: ''
+- name: Noise variance source
+  summary: Noise variance source Property (default) | Input port
+  group: ''
+- name: Noise variance
+  summary: Noise variance 1 (default) | positive scalar | vector of positive values
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | ...
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -185,7 +224,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM Communications Toolbox / Modulation / Digital Baseband Modulation / Standard-Compliant

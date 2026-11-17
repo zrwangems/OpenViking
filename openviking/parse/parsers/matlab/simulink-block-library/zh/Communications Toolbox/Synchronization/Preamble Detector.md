@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Preamble Detector
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据 [ ] | 标量 | 列向量
+  direction: input
+  data_types: single | double | Boolean | int8 | uint8
+- name: Idx
+  summary: 最后一个前导码符号的索引 [ ] | 标量 | 列向量
+  direction: output
+- name: DtMt
+  summary: 检测度量 标量 | 列向量
+  direction: output
+```
 
 ### 输入
 
@@ -45,8 +58,28 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Input** 参数设置为 `Symbol`，并选中 **Output detection metric** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Input
+  summary: 输入类型 Symbol（默认）| Bit
+  group: ''
+- name: Preamble
+  summary: 前导码序列 [1 + 1i; 1 - 1i]（默认）| 列向量
+  group: ''
+- name: Detection threshold
+  summary: 检测阈值 3（默认）| 非负标量
+  group: ''
+- name: Output detection metric
+  summary: 输出检测度量的选项 off（默认）| on
+  group: ''
+- name: Detections
+  summary: 返回的检测结果 All（默认）| First
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -98,7 +131,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短了启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Synchronization

@@ -14,19 +14,23 @@ language: en
 # Voltage-Controlled Current Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has four electrical conserving ports. Connections
 + and – on the left side of the block are the control ports.
 The other two ports are the electrical terminals that provide the
 output current. The arrow indicates the positive direction of the
 current flow.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Transconductance K**
 :   Transconductance, or the change in output current divided by
     the change in input voltage that causes it. The default value is `1` 1/Ω.
-
 ## Libraries
 
 Not documented in R2025b.

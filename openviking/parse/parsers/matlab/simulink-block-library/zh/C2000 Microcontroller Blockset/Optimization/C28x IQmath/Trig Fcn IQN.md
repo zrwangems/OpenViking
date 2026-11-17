@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2000 Trig Fcn IQN
 
 ## 端口
+```yaml
+ports: []
+```
 
 在 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Function**
 :   要计算的三角函数类型：
@@ -43,7 +48,6 @@ chinese_source: worker-translation
       `(cos(A))`，其中 A 以弧度为单位。
     - `_IQcosPU` — 计算每单位余弦
       `(cos(2*pi*A))`，其中 A 以每单位弧度为单位。
-
 ## 所属库
 
 在 R2025b 中未记录。

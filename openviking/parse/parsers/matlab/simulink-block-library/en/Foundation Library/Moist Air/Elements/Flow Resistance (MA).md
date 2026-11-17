@@ -14,6 +14,15 @@ language: en
 # Flow Resistance (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet or outlet moist air
+  direction: conserving
+- name: B
+  summary: Inlet or outlet moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,25 @@ flow resistance. This block has no intrinsic directionality.
 
 Moist air conserving port associated with the inlet or outlet of the
 flow resistance. This block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal pressure drop
+  summary: Pressure drop at a known operating condition 0.001 MPa (default)
+  group: ''
+- name: Nominal mixture mass flow rate
+  summary: Mass flow rate at a known operating condition 0.1 kg/s (default)
+  group: ''
+- name: Nominal mixture density
+  summary: Density at a known operating condition 0 kg/m^3 (default)
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at the ports of the flow resistance 0.01 m^2 (default)
+  group: ''
+- name: Fraction of nominal mixture mass flow rate for laminar flow transition
+  summary: Ratio of threshold to nominal mass flow rates 1e-3 (default)
+  group: ''
+```
 
 ### **Nominal pressure drop** — Pressure drop at a known operating condition `0.001 MPa` (default)
 
@@ -59,7 +85,6 @@ identical in size.
 Ratio of the threshold mass flow rate to the nominal mass flow rate of the
 air mixture. The block uses this parameter to set the threshold for the
 linearization of the pressure drop.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Elements

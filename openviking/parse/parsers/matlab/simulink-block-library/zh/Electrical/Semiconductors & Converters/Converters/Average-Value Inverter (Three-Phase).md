@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Average-Value Inverter (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子 electrical
+  direction: conserving
+- name: '-'
+  summary: 负极端子 electrical
+  direction: conserving
+- name: '~'
+  summary: 三相端口 electrical
+  direction: conserving
+- name: a
+  summary: '*a* 相 electrical'
+  direction: conserving
+- name: b
+  summary: '*b* 相 electrical'
+  direction: conserving
+- name: c
+  summary: '*c* 相 electrical'
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -57,8 +78,31 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Rated AC frequency
+  summary: 交流频率，单位为 Hz 60Hz（默认）
+  group: ''
+- name: Phase shift
+  summary: 相移 0deg（默认）
+  group: ''
+- name: Ratio of rated AC voltage to rated DC voltage
+  summary: 额定交流电压与额定直流电压之比 sqrt(6) / pi（默认）
+  group: ''
+- name: Fixed power loss
+  summary: 固定功率损耗 1e3W（默认）
+  group: ''
+- name: DC voltage for turn on
+  summary: 导通直流电压 100V（默认）
+  group: ''
+- name: DC voltage for turn off
+  summary: 关断直流电压 75V（默认）
+  group: ''
+```
 
 ### **Electrical connection** — 电气连接 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -101,7 +145,6 @@ chinese_source: worker-translation
 ### **DC voltage for turn off** — 关断直流电压 `75``V`（默认）
 
 当直流电源电压降至该值以下时，逆变器关断，模块将输出交流电流设置为零。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # EtherCAT Get Scanbus Error Data
 
 ## 端口
+```yaml
+ports:
+- name: Values
+  summary: 来自 EtherCAT Get Notifications 模块的输入 [Length 20 * Notification]
+  direction: input
+- name: Error
+  summary: 指示 scanbus 错误 false（默认）| true
+  direction: output
+```
 
 ### 输入
 
@@ -26,11 +35,12 @@ chinese_source: worker-translation
 ### **Error** — 指示 scanbus 错误 false（默认）| true
 
 一个布尔输出，在收到 scanbus 错误通知后的一个周期内为 true。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

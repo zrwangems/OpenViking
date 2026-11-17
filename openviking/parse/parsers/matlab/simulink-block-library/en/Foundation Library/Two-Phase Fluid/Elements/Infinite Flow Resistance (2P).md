@@ -14,14 +14,18 @@ language: en
 # Infinite Flow Resistance (2P)
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has a pair of two-phase fluid conserving ports, A
 and B, representing branches of adjacent two-phase fluid networks.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

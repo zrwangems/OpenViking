@@ -14,6 +14,17 @@ language: en
 # CAN FD Replay
 
 ## Ports
+```yaml
+ports:
+- name: CAN Msg
+  summary: Replayed CAN FD messages CAN_FD_MESSAGE_BUS
+  direction: output
+  data_types: CAN_FD_MESSAGE_BUS
+- name: f()
+  summary: Function-call event output function-call event
+  direction: output
+  data_types: function-call event
+```
 
 ### Output
 
@@ -30,8 +41,28 @@ This port provides a trigger to a Function-Call subsystem when the block receive
 a new message. You can connect it to a Function-Call Subsystem (Simulink) to unpack and process the message.
 
 **Data Types:** `function-call event`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Path and name of MAT-file with messages untitled.mat (default) | file name
+  group: ''
+- name: Variable name
+  summary: Variable in MAT-file holding messages ans (default) | variable
+  group: ''
+- name: Number of times to replay messages
+  summary: Repeat value Inf (default) | integer
+  group: ''
+- name: Replay messages to
+  summary: Specify output location CAN FD Bus (default) | Output port
+  group: ''
+- name: Device
+  summary: CAN FD device and channel device list option
+  group: ''
+- name: Sample time
+  summary: Block execution rate 0.01 (default) | numeric
+  group: ''
+```
 
 **Tip**
 
@@ -72,7 +103,6 @@ frequency at which the CAN FD Replay block runs during simulation. If the
 block is inside a triggered subsystem or to inherit sample time, you can specify
 `–1` as the sample time. You can also specify a MATLAB variable for sample time. The default value is `0.01`
 simulation seconds. For more information, see Timing in Hardware Interface Models.
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN FD Communication

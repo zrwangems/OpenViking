@@ -14,6 +14,24 @@ language: en
 # Ravigneaux Gear
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Planet gear carrier rotational mechanical
+  direction: conserving
+- name: R
+  summary: Ring gear rotational mechanical
+  direction: conserving
+- name: SL
+  summary: Large sun gear rotational mechanical
+  direction: conserving
+- name: SS
+  summary: Small sun gear rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,8 +64,84 @@ transmission efficiency by altering the gear temperatures.
 
 To enable this port, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ring (R) to large sun (SL) teeth ratio (NR/NSL)
+  summary: Ring to large sun gear rotation ratio 2 (default) | positive scalar
+  group: Main
+- name: Ring (R) to small sun (SS) teeth ratio (NR/NSS)
+  summary: Ring to small sun gear rotation ratio 3 (default) | positive scalar greater than (NR/NSL)
+  group: Main
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Large sun-planet, small sun-planet, ring-planet and planet-planet ordinary efficiencies
+  summary: Torque transfer efficiencies [.98, .98, .98, .99] (default) | vector
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Large sun-planet efficiency
+  summary: Torque transfer efficiency from the large sun gears to the planet gears [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Small sun-planet efficiency
+  summary: Torque transfer efficiency from the small sun gears to the planet gears [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Ring-planet efficiency
+  summary: Torque transfer efficiency from the ring gear to the planet gears [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Planet-planet efficiency
+  summary: Planet-planet efficiency [.95, .9, .85] (default) | vector
+  group: Meshing Losses
+- name: Large sun-carrier, small sun-carrier, large sun planet-carrier and small sun planet-carrier power thresholds
+  summary: Minimum efficiency power threshold for the large sun-carrier, small sun-carrier, large sun planet-carrier, and
+    small sun planet-carrier gear couplings [.001, .001, .001, .001] W (default) | vector
+  group: Meshing Losses
+- name: Large sun-carrier, small sun-carrier, large sun planet-carrier and small sun planet-carrier viscous friction coefficients
+  summary: Gear viscous friction [0, 0, 0, 0] N*m/(rad/s) (default) | vector
+  group: Viscous Losses
+- name: Inertia
+  summary: Inertia option off (default) | on
+  group: Inertia
+- name: Small sun gear inertia
+  summary: Small sun gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Large sun gear inertia
+  summary: Large sun gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Ring gear inertia
+  summary: Ring gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Carrier gear inertia
+  summary: Carrier gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Carrier gear inner radius
+  summary: Carrier gear inner radius 0.01 m (default) | positive scalar
+  group: Inertia
+- name: Carrier gear outer radius
+  summary: Carrier gear outer radius 0.02 m (default) | positive scalar
+  group: Inertia
+- name: Inner planet gear spin inertia
+  summary: Inner planet gear spin inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Inner planet gear mass
+  summary: Inner planet gear mass 0.001 kg (default) | positive scalar
+  group: Inertia
+- name: Outer planet gear inertia
+  summary: Outer planet gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Outer planet gear mass
+  summary: Outer planet gear mass 0.001 kg (default) | positive scalar
+  group: Inertia
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -343,7 +437,6 @@ component efficiencies according to their respective efficiency vectors.
 
 To enable this parameter, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears

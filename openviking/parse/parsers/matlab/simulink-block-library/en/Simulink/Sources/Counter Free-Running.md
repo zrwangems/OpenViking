@@ -14,6 +14,13 @@ language: en
 # Counter Free-Running
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Count value scalar
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Output
 
@@ -25,8 +32,24 @@ of bits is anything other than 8, 16, 32, or 64, the output type is an
 unsigned fixed-point data type.
 
 **Data Types:** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of Bits
+  summary: Number of bits 16 (default) | scalar
+  group: ''
+  block_parameter: NumBits
+  type: character vector
+  values: scalar
+  default: '''16'''
+- name: Sample time
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: tsamp
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+```
 
 ### **Number of Bits** — Number of bits `16` (default) | scalar
 
@@ -65,7 +88,6 @@ parameter to `-1`. For more information, see Specify Sample Time.
 | **Type:** character vector |
 | **Values:** scalar | vector |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 Simulink / Sources HDL Coder / Sources

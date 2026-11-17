@@ -14,6 +14,33 @@ language: en
 # IO Data Source
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data numeric vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: length
+  summary: Length of input data nonnegative scalar
+  direction: input
+  data_types: uint32
+- name: valid
+  summary: Valid data signal Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: done
+  summary: Notification of freed buffer in memory False (default) | True
+  direction: input
+  data_types: Boolean
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+- name: msg
+  summary: SoC message data numeric vector
+  direction: output
+  data_types: SoCData
+```
 
 ### Input
 
@@ -100,8 +127,44 @@ To enable this port, set the **Show port** parameter to
 Event`.
 
 **Data Types:** `SoCData`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input
+  summary: Source of input data From file (default) | From dialog | From input port | From timeseries object
+  group: ''
+- name: Value
+  summary: Value of source data uint32(1:1024) (default) | function to generate input data
+  group: ''
+- name: Data type
+  summary: Data type of input data uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64
+    | boolean | fixed point
+  group: ''
+- name: Device type
+  summary: Device type of input data source UDP (default) | TCP | Register | Stream
+  group: ''
+- name: Sample time
+  summary: Time interval of sampling -1 (default) | nonnegative scalar
+  group: ''
+- name: Dimensions
+  summary: Samples per frame 1024 (default) | nonnegative scalar
+  group: ''
+- name: Dataset name
+  summary: Name of recorded file no default | file path
+  group: ''
+- name: Source name
+  summary: Name of dataset no default
+  group: ''
+- name: Number of buffers
+  summary: Number of data buffers 1024 (default) | nonnegative scalar
+  group: ''
+- name: Show port
+  summary: Enable output ports Data (default) | Event | Data and event
+  group: ''
+- name: Object name
+  summary: Name of timeseries object [] (default) | timeseries object
+  group: ''
+```
 
 ### **Input** — Source of input data `From file` (default) | `From dialog` | `From input port` | `From timeseries object`
 
@@ -229,7 +292,6 @@ objects, see Time Series Objects and Collections.
 
 To enable this parameter, set the **Input** parameter to
 `From timeseries object`.
-
 ## Libraries
 
 SoC Blockset / I/O Data Source and Sink

@@ -14,6 +14,27 @@ language: en
 # System-Level Condenser Evaporator (2P-G)
 
 ## Ports
+```yaml
+ports:
+- name: Q1
+  summary: Rate of heat transfer to two-phase fluid, W physical signal
+  direction: output
+- name: Q2
+  summary: Rate of heat transfer to gas, W physical signal
+  direction: output
+- name: A1
+  summary: Two-phase fluid port two-phase fluid
+  direction: conserving
+- name: B1
+  summary: Two-phase fluid port two-phase fluid
+  direction: conserving
+- name: A2
+  summary: Gas port gas
+  direction: conserving
+- name: B2
+  summary: Gas port gas
+  direction: conserving
+```
 
 ### Output
 
@@ -52,8 +73,177 @@ Inlet or outlet port associated with the gas.
 ### **B2** — Gas port gas
 
 Inlet or outlet port associated with the gas.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement at nominal operating conditions
+  summary: Flow path alignment Counter flow - Two-Phase Fluid 1 flows from A to B, Gas 2 flows from B to A (default) | Parallel
+    flow - Both fluids flow from A to B | Cross flow - Both fluids flow from A to B
+  group: Configuration
+- name: Enable wall thermal mass
+  summary: Whether to enable effect of thermal mass on heat transfer surface off (default) | on
+  group: Configuration
+- name: Wall mass
+  summary: Mass of heat transfer surface 1 kg (default) | positive scalar
+  group: Configuration
+- name: Wall specific heat
+  summary: Specific heat of heat transfer surface 490 J/(K*kg) (default) | positive scalar
+  group: Configuration
+- name: Initialize wall temperature to nominal operating conditions
+  summary: Option for initializing wall temperature on (default) | off
+  group: Configuration
+- name: Initial wall temperature
+  summary: Initial temperature of wall 293.15 K (default) | positive scalar or two-element vector
+  group: Configuration
+- name: Cross-sectional area at port A1
+  summary: Flow area at port A1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B1
+  summary: Flow area at port B1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port A2
+  summary: Flow area at port A2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B2
+  summary: Area normal to flow at port B2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Nominal operating condition
+  summary: Select whether nominal operating condition corresponds to condenser or evaporator Condenser - heat transfer from
+    Two-Phase Fluid 1 to Gas 2 (default) | Evaporator - heat transfer from Gas 2 to Two-Phase Fluid 1
+  group: Two-Phase Fluid 1
+- name: Nominal mass flow rate
+  summary: Mass flow rate between two-phase ports during nominal operating condition 0.001 kg/s (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal pressure drop
+  summary: Pressure drop between two-phase ports during nominal operating condition 0.01 MPa (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Pressure specification
+  summary: Select method of pressure specification Inlet pressure (default) | Saturation pressure at specified condensing
+    temperature | Saturation pressure at specified evaporating temperature
+  group: Two-Phase Fluid 1
+- name: Nominal inlet pressure
+  summary: Pressure at the two-phase fluid side inlet 1 MPa (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal condensing temperature
+  summary: Use nominal condensing temperature to specify pressure 313.15 K (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal evaporating temperature
+  summary: Use nominal evaporating temperature to specify pressure 243.15 K (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Inlet condition specification
+  summary: Select quantity to describe the inlet condition of the two-phase fluid Specific enthalpy (default) | Temperature
+    | Vapor quality
+  group: Two-Phase Fluid 1
+- name: Nominal inlet specific enthalpy
+  summary: Specific enthalpy at the two-phase fluid side inlet 440 kJ/kg (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal inlet temperature
+  summary: Temperature at the two-phase fluid side inlet 313.15 K (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal inlet vapor quality
+  summary: Vapor quality at the two-phase fluid side inlet 1 (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Heat transfer capacity specification
+  summary: How to specify heat transfer capacity of the two-phase fluid Rate of heat transfer (default) | Outlet condition
+  group: Two-Phase Fluid 1
+- name: Nominal rate of heat transfer
+  summary: Rate of heat transfer 0.1 kW (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Outlet condition specification
+  summary: Select quantity for outlet condition specification Specific enthalpy (default) | Subcooling | Superheating | Vapor
+    quality
+  group: Two-Phase Fluid 1
+- name: Nominal outlet specific enthalpy
+  summary: Specific enthalpy at the two-phase fluid side outlet 250 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 1
+- name: Nominal subcooling
+  summary: Degree of temperature below the liquid saturation temperature at the two-phase fluid side outlet 5 deltaK (default)
+    | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal superheating
+  summary: Degree of temperature above the vapor saturation temperature at the two-phase fluid side outlet 5 deltaK (default)
+    | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal outlet vapor quality
+  summary: Vapor mass fraction at the two-phase fluid side outlet 0 (default) | scalar in the range [0,1]
+  group: Two-Phase Fluid 1
+- name: Two-phase fluid volume
+  summary: Total volume of two-phase fluid 0.001 m^3 (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Initialize two-phase fluid to nominal operating conditions
+  summary: Option for initializing two-phase fluid on (default) | off
+  group: Two-Phase Fluid 1
+- name: Initial fluid energy specification
+  summary: Initial state of the two-phase fluid Specific enthalpy (default) | Temperature | Vapor quality | Vapor void fraction
+    | Specific internal energy
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid pressure
+  summary: Fluid pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid specific enthalpy
+  summary: Enthalpy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid temperature
+  summary: Temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid vapor quality
+  summary: Vapor mass fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid vapor void fraction
+  summary: Vapor volume fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid specific internal energy
+  summary: Internal energy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 1
+- name: Nominal mass flow rate
+  summary: Mass flow rate between gas ports during nominal operating condition 0.1 kg/s (default) | positive scalar
+  group: Gas 2
+- name: Nominal pressure drop
+  summary: Pressure drop between gas ports during nominal operating condition 0.01 MPa (default) | positive scalar
+  group: Gas 2
+- name: Nominal inlet pressure
+  summary: Pressure at the gas side inlet 0.101325 MPa (default) | positive scalar
+  group: Gas 2
+- name: Nominal inlet temperature
+  summary: Temperature at the gas side inlet 293.15 K (default) | positive scalar
+  group: Gas 2
+- name: Gas volume
+  summary: Total volume of gas in the heat exchanger 0.1 m^3 (default) | positive scalar
+  group: Gas 2
+- name: Initialize gas to nominal operating conditions
+  summary: Option for initializing gas on (default) | off
+  group: Gas 2
+- name: Initial gas pressure
+  summary: Gas pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Gas 2
+- name: Initial gas temperature
+  summary: Gas temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Gas 2
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid liquid
+  summary: Correlation coefficient for subcooled liquid in two-phase fluid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid mixture
+  summary: Correlation coefficient for liquid-vapor mixture in two-phase fluid 0.005 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid vapor
+  summary: Correlation coefficient for superheated vapor in two-phase fluid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for two-phase fluid
+  summary: Reynolds number exponent in correlation for two-phase fluid 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for two-phase fluid
+  summary: Prandtl number exponent in correlation for two-phase fluid 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for gas
+  summary: Correlation coefficient for gas 0.005 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for gas
+  summary: Reynolds number exponent in correlation for gas 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for gas
+  summary: Prandtl number exponent in correlation for gas 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+```
 
 ### Configuration
 
@@ -668,7 +858,6 @@ value is based on the Colburn equation.
 Prandtl number exponent in the correlation of the Nusselt number as a
 function of the Reynolds number and Prandtl number for gas. The default
 value is based on the Colburn equation.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Two-Phase Fluid - Gas

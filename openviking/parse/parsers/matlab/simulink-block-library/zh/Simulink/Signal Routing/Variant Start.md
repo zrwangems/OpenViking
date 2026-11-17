@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Variant Start
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | struct
+- name: Port_1
+  summary: 输出分支 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_N
+  summary: 第 *N* 个分支的输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -36,8 +54,64 @@ chinese_source: worker-translation
 来自第 *N* 个分支的输出信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Variant Start End Tag
+  summary: 有界区域的唯一标识符 A（默认）| 有效的 MATLAB® 标识符
+  group: ''
+  block_parameter: VariantStartEndTag
+  type: 字符向量
+  values: '''A'' | 有效的 MATLAB 标识符'
+  default: '''A'''
+- name: Variant control mode
+  summary: 变体控制模式 expression（默认）| label | sim codegen switching
+  group: ''
+  block_parameter: VariantControlMode
+  type: 字符向量
+  values: '''expression'' | ''label'' | ''sim codegen switching'''
+  default: '''expression'''
+- name: Variant activation time
+  summary: 软件选择活动变体选项的时间 update diagram（默认）| update diagram analyze all choices | code compile | startup | inherit from Simulink.VariantControl
+  group: ''
+  block_parameter: VariantActivationTime
+  type: 字符向量
+  values: '''update diagram'' | ''update diagram analyze all choices'' | ''code compile'' | ''startup'''
+  default: '''update diagram'''
+- name: Port and associated conditions
+  summary: 变体选项、变体控制和条件的表格 空表格（默认）
+  group: ''
+- name: Port
+  summary: 已连接的输出端口编号 只读：无默认值
+  group: ''
+- name: Variant control label
+  summary: label 模式下选项的名称 true 或 false（默认）| 字符串
+  group: ''
+  block_parameter: VariantControl
+  values: 与变体选项关联的变体控制
+- name: Variant control expression
+  summary: 确定活动选项的条件表达式 true 或 false（默认）| 布尔条件表达式 | 表示布尔条件表达式的 Simulink.VariantExpression 对象 | (default)
+  group: ''
+  block_parameter: VariantControls
+  values: 与变体选项关联的变体控制
+- name: Condition (read-only)
+  summary: Simulink.VariantExpression 对象中的条件表达式 只读：N/A（默认）
+  group: ''
+- name: Label mode active choice
+  summary: label 模式下活动选项的名称 true (Subsystem)（默认）| false (Subsystem1)
+  group: ''
+  block_parameter: LabelModeActiveChoice
+  type: 字符向量
+  values: 如果未指定标签模式活动选项，则该值为空。如果指定了标签模式活动选项，则该值为活动选项的变体控制标签。
+  default: ''''''
+- name: Show variant condition on block
+  summary: 在模块端口上标注 off（默认）| on
+  group: ''
+  block_parameter: ShowConditionOnBlock
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Variant Start End Tag** — 有界区域的唯一标识符 `A`（默认）| 有效的 MATLAB® 标识符
 
@@ -241,7 +315,6 @@ Variant Source 和 Variant Sink 模块：
 | **类型：** 字符向量 |
 | **值：** `'off'` | `'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Signal Routing

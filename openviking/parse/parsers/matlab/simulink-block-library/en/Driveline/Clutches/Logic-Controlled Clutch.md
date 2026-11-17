@@ -14,6 +14,18 @@ language: en
 # Logic-Controlled Clutch
 
 ## Ports
+```yaml
+ports:
+- name: E
+  summary: Control clutch engagement physical signal
+  direction: input
+- name: B
+  summary: Base interface mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower interface mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -31,8 +43,28 @@ interface.
 
 Mechanical rotational conserving port associated with the follower
 interface.
-
 ## Parameters
+```yaml
+parameters:
+- name: Transition model
+  summary: Clutch engagement parameterization Instantaneous (default) | First-order lag | Scaled by input
+  group: ''
+- name: Transition time constant
+  summary: First-order lag time constant 0.1 s (default) | positive scalar
+  group: ''
+- name: Kinetic friction torque
+  summary: Kinetic friction torque threshold 10 N*m (default) | nonnegative scalar
+  group: ''
+- name: Static friction torque
+  summary: Static friction torque threshold 20 N*m (default) | positive scalar
+  group: ''
+- name: Clutch velocity tolerance
+  summary: Motion boundary condition 0.001 rad/s (default) | nonnegative scalar
+  group: ''
+- name: Initial State
+  summary: Clutch condition at simulation start Unlocked (default) | Locked
+  group: ''
+```
 
 ### **Transition model** — Clutch engagement parameterization `Instantaneous` (default) | `First-order lag` | `Scaled by input`
 
@@ -81,7 +113,6 @@ Clutch minimum angular velocity.
 ### **Initial State** — Clutch condition at simulation start `Unlocked` (default) | `Locked`
 
 Option to start the simulation with the clutch unlocked or locked.
-
 ## Libraries
 
 Simscape / Driveline / Clutches

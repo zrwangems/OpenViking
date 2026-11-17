@@ -14,6 +14,37 @@ language: en
 # Protocol Decoder
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: uint8 byte stream packet vector
+  direction: input
+  data_types: uint8
+- name: Length
+  summary: Length of data stream packet at Data input port numeric scalar
+  direction: input
+  data_types: uint16
+- name: Field1
+  summary: First field decoded by the block scalar
+  direction: output
+  data_types: string
+- name: IsNew
+  summary: New data indicator 0 | 1
+  direction: output
+  data_types: Boolean
+- name: IsValid
+  summary: Checksum validation indicator 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Variable field length
+  summary: Actual data length of the last field that is variable-sized numeric scalar
+  direction: output
+  data_types: double
+- name: Variable field lengths
+  summary: Actual data lengths of comma separated variables array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -139,8 +170,63 @@ This output port appears only if you select the **Parse comma separated
 variables** parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Parse comma separated variables
+  summary: Parse input data that contains comma separated variables array
+  group: ''
+  block_parameter: IsParseCSV
+- name: Header
+  summary: Header of the packet character array | array of numeric values less than 255
+  group: ''
+  block_parameter: Header
+- name: Field name
+  summary: Name of the field in the packet structure Field1 (default) | string
+  group: ''
+  block_parameter: FieldNames
+- name: Output field length
+  summary: Length of the field in the packet structure as per the data type 1 (default) | numeric scalar
+  group: ''
+  block_parameter: FixedSizeFieldLength
+- name: Output field data type
+  summary: Data type of the field uint8 (default) | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | single | double
+  group: ''
+  block_parameter: FixedFieldDataTypes
+- name: Byte order
+  summary: Endianess of the field in the packet Little endian (default) | Big endian
+  group: ''
+  block_parameter: IsLittleEndian
+- name: Specify maximum length if last field has variable size
+  summary: Enable last field to output variable-sized data and specify maximum length of the field numeric scalar
+  group: ''
+  block_parameter: MaxVariableSizeFieldLength
+- name: Specify logic for checksum validation
+  summary: Enable the logic for checksum validation and select the logic XOR of bytes | 2's complement of sum of bytes | Custom
+    algorithm
+  group: ''
+  block_parameter: ChecksumAlgorithm
+- name: Checksum size
+  summary: Number of bytes of checksum data numeric scalar
+  group: ''
+  block_parameter: ChecksumSize
+- name: File path
+  summary: Path of the function (.m) used for custom checksum logic MATLAB path
+  group: ''
+  block_parameter: ChecksumFilepath
+- name: Terminator
+  summary: Terminator of the packet <none> (default) | CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+  block_parameter: TerminatorOption
+- name: Custom terminator
+  summary: Custom terminator of the packet character array
+  group: ''
+  block_parameter: CustomTerminatorVal
+- name: Is input data stream length available
+  summary: Enable additional input for data stream length off (default) | on
+  group: ''
+  block_parameter: IsInputLengthAvailable
+```
 
 ### **Parse comma separated variables** — Parse input data that contains comma separated variables array
 
@@ -371,7 +457,6 @@ Enable optional input port to include the exact length of valid data stream.
 |  |
 | --- |
 | **Block Parameter:** `IsInputLengthAvailable` |
-
 ## Libraries
 
 Simulink Real-Time / Utilities

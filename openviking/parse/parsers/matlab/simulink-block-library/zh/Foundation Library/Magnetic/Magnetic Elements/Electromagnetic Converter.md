@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Electromagnetic Converter
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -29,12 +32,13 @@ chinese_source: worker-translation
 
 `-`
 :   负电守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Number of winding turns**
 :   电气绕组匝数。默认值为 `1`。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Rotational Power Sensor
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 旋转功率变化量，W 物理信号
+  direction: unspecified
+- name: C
+  summary: 跟随端口 机械旋转
+  direction: unspecified
+- name: R
+  summary: 基座端口 机械旋转
+  direction: unspecified
+- name: S
+  summary: 源端口 机械旋转
+  direction: unspecified
+```
 
 ### 物理信号
 
@@ -34,8 +49,23 @@ chinese_source: worker-translation
 ### **S** — 源端口 机械旋转
 
 与驱动源关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement type
+  summary: 功率测量方法 Instantaneous power（默认）| Average power over a specified period | Average power over a vibration | Average
+    power over a revolution
+  group: ''
+- name: Averaging period
+  summary: 指定时间段内功率平均的时间跨度 1 s（默认）| 正标量
+  group: ''
+- name: Maximum vibration frequency
+  summary: 对振动进行功率平均时使用的最高频率 1000 Hz（默认）| 正标量
+  group: ''
+- name: Maximum rotational speed
+  summary: 对旋转进行功率平均时使用的最高角速度 1000 rpm（默认）| 正标量
+  group: ''
+```
 
 ### **Measurement type** — 功率测量方法 `Instantaneous power`（默认）| `Average power over a specified period` | `Average power over a vibration` | `Average power over a revolution`
 
@@ -69,7 +99,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Measurement type** 设置为 `Average power over a revolution`。
-
 ## 所属库
 
 Simscape / Driveline / Sensors

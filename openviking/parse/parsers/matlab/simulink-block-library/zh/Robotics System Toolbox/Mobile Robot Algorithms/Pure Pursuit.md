@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # Pure Pursuit
 
 ## 端口
+```yaml
+ports:
+- name: Pose
+  summary: 当前车辆位姿 [x y theta] 向量
+  direction: input
+- name: Waypoints
+  summary: 路点 [ ]（默认）| *n*×2 数组
+  direction: input
+- name: Desired Linear Velocity
+  summary: 期望线速度，标量，单位为米每秒
+  direction: input
+- name: Lookahead Distance
+  summary: 前视距离，标量，单位为米每秒
+  direction: input
+- name: Linear Velocity
+  summary: 线速度，标量，单位为米每秒
+  direction: output
+  data_types: double
+- name: Angular Velocity
+  summary: 角速度，标量，单位为弧度每秒
+  direction: output
+  data_types: double
+- name: Target Direction
+  summary: 车辆目标方向，标量，单位为弧度
+  direction: output
+```
 
 ### 输入
 
@@ -62,8 +88,31 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Show Target Direction output port** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify desired linear velocity from input port
+  summary: 启用期望线速度输入端口 off（默认）| on
+  group: ''
+- name: Desired linear velocity (m/s)
+  summary: 线速度 0.1（默认）| 标量
+  group: ''
+- name: Maximum angular velocity (rad/s)
+  summary: 角速度 1.0（默认）| 标量
+  group: ''
+- name: Specify lookahead distance from input port
+  summary: 启用前视距离输入端口 off（默认）| on
+  group: ''
+- name: Lookahead distance (m)
+  summary: 前视距离 1.0（默认）| 标量
+  group: ''
+- name: Show Target Direction output port
+  summary: 目标方向指示 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 ### **Specify desired linear velocity from input port** — 启用期望线速度输入端口 `off`（默认）| `on`
 
@@ -107,7 +156,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，后续仿真将复用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 Robotics System Toolbox / Mobile Robot Algorithms Navigation Toolbox / Control Algorithms

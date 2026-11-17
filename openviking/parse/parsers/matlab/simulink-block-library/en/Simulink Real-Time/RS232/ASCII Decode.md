@@ -14,6 +14,17 @@ language: en
 # ASCII Decode
 
 ## Ports
+```yaml
+ports:
+- name: D
+  summary: Input vector to parse character vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16
+- name: '1'
+  summary: Numbered ports that send Simulink® values numeric
+  direction: output
+  data_types: double | int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### Input
 
@@ -37,8 +48,23 @@ string**.
 output ports.
 
 **Data Types:** `double` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Format string
+  summary: Format specifier for parsing input vector %d\r (default) | %c | %i | %o | %u | %x | %e | %f | %g
+  group: ''
+  block_parameter: format
+- name: Number of variables
+  summary: Number of output ports for this block 1 (default) | integer
+  group: ''
+  block_parameter: nvars
+- name: Variable types
+  summary: Simulink data types allowed for output ports {'double'} (default) | {'int8'} | {'uint8'} | {'int16} | {'uint16'}
+    | {'int32'} | {'uint32'}
+  group: ''
+  block_parameter: varids
+```
 
 ### **Format string** — Format specifier for parsing input vector `%d\r` (default) | `%c` | `%i` | `%o` | `%u` | `%x` | `%e` | `%f` | `%g`
 
@@ -115,7 +141,6 @@ is a `uint16`, the second output is a
 |  |
 | --- |
 | **Block Parameter:** `varids` |
-
 ## Libraries
 
 Simulink Real-Time / RS232

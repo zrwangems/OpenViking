@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Per Observation Loss
 
 ## 端口
+```yaml
+ports:
+- name: mdl
+  summary: 增量学习模型总线信号
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: x
+  summary: 预测变量数据块 数值矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: y
+  summary: 响应（标签）块 数值向量 | 逻辑向量 | 枚举向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: IsWarm
+  summary: 指示模型是否跟踪性能指标的标志 逻辑值
+  direction: output
+- name: loss
+  summary: 逐观测误差 数值矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -63,8 +85,143 @@ chinese_source: worker-translation
 使用 **x** 中的预测变量和 **y** 中的真实观测值计算的模型预测的逐观测回归或分类误差，返回为数值矩阵。该矩阵的大小为 *nchunk*×*nobs*，其中 *nchunk* 是块的总数，*nobs* 是 **x** 的一个块中的观测值数量。如果 **IsWarm** 为 `false`，则损失为 `-1`。
 
 使用 **Loss function** 指定用于计算误差的损失函数。
-
 ## 参数
+```yaml
+parameters:
+- name: 选择初始机器学习模型
+  summary: 初始增量学习模型 initMdl（默认）
+  group: ''
+  block_parameter: InitialLearner
+  type: 字符向量或字符串
+  values: 工作区模型对象名称
+- name: 损失函数
+  summary: 用于计算逐观测损失的损失函数 classiferror（默认） | binodeviance | exponential | hinge | logit | quadratic | squarederror | epsiloninsensitive
+  group: ''
+  block_parameter: LossFun
+  type: 字符向量或字符串
+  values: '"classiferror" | "binodeviance" | "exponential" | "hinge" | "logit" | "quadratic" | "squarederror" | "epsiloninsensitive"'
+- name: 预测变量数据观测维度
+  summary: 预测变量数据的观测维度 rows（默认） | columns
+  group: ''
+  block_parameter: ObservationsIn
+  type: 字符向量
+  values: '"rows" | "columns"'
+- name: 采样时间（–1 表示继承）
+  summary: 用于指定采样时间的选项 –1（默认） | 标量
+  group: ''
+  block_parameter: SystemSampleTime
+  type: 字符串标量或字符向量
+  values: 标量
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '"off" | "on"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '"off" | "on"'
+- name: Loss data type
+  summary: 损失输出的数据类型 double（默认）| single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean
+    | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>
+  group: 数据类型
+  block_parameter: LossDataTypeStr
+  type: 字符向量或字符串
+  values: '"double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64" | "uint64"
+    | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+- name: Loss data type Minimum
+  summary: 用于范围检查的损失输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LossOutMin
+  type: 字符串或数值标量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Loss data type Maximum
+  summary: 用于范围检查的损失输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LossOutMax
+  type: 字符串或数值标量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Predict response data type
+  summary: '预测响应的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: PredictResponseDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Predict response data type Minimum
+  summary: 用于范围检查的 predict response 最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: PredictResponseOutMin
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Predict response data type Maximum
+  summary: 用于范围检查的 predict response 最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: PredictResponseOutMax
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Additional predict data type
+  summary: '附加 predict 数据类型 Inherit: Inherit via internal rule（默认）| double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: AdditionalPredictDataTypeStr
+  type: 字符向量
+  values: '"Inherit: Inherit via internal rule" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32"
+    | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: Inherit via internal rule"'
+- name: Additional predict data type Minimum
+  summary: 用于范围检查的附加预测最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: AdditionalPredictOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Additional predict data type Maximum
+  summary: 用于范围检查的附加预测最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: AdditionalPredictOutMax
+  type: 字符串或数值标量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Linear sum data type
+  summary: '线性求和的数据类型 Inherit: Inherit via internal rule（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: LinearSumDataTypeStr
+  type: 字符向量或字符串
+  values: 'Inherit: Inherit via internal rule | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32"
+    | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: 'Inherit: Inherit via internal rule'
+- name: Linear sum data type Minimum
+  summary: 用于范围检查的线性求和最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LinearSumOutMin
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Linear sum data type Maximum
+  summary: 用于范围检查的线性求和最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LinearSumOutMax
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -458,7 +615,6 @@ Simulink 使用最大值执行：
 | **类型**：string or numeric scalar |
 | **值**：`"[]"` | scalar |
 | **默认值**：`"[]"` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Drift Detection

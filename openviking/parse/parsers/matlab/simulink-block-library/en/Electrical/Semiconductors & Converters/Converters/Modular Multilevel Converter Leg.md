@@ -14,6 +14,27 @@ language: en
 # Modular Multilevel Converter Leg
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Submodule gate control vector of physical signals
+  direction: input
+- name: ref
+  summary: Submodules reference waveform vector of physical signals
+  direction: input
+- name: vc
+  summary: Capacitor voltages vector of physical signals
+  direction: output
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: a
+  summary: Phase *a* terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -77,8 +98,114 @@ the modular multilevel converter leg.
 
 Electrical conserving port associated with the single-phase terminal
 of the modular multilevel converter leg.
-
 ## Parameters
+```yaml
+parameters:
+- name: Converter topology
+  summary: Converter topology Half-bridge (default) | Full-bridge
+  group: Main
+- name: Fidelity level
+  summary: Model fidelity Detailed model - switching devices (default) | Equivalent model - PWM-controlled | Equivalent model
+    - waveform-controlled
+  group: Main
+- name: Capacitor voltages
+  summary: Capacitor voltage instrumentation Instrumented (default) | Uninstrumented
+  group: Main
+- name: Number of power submodules
+  summary: Number of submodules 1 (default) | positive scalar
+  group: Main
+- name: Capacitance
+  summary: Submodule capacitance 1e-7 F (default) | scalar | vector
+  group: Main
+- name: Capacitor effective series resistance
+  summary: Capacitor effective series resistance 1e-6 Ohm (default) | scalar | vector
+  group: Main
+- name: Arm inductance
+  summary: Arm inductance 1e-6 H (default) | scalar
+  group: Main
+- name: Arm inductance series resistance
+  summary: Arm inductance series resistance 0 Ohm (default) | scalar
+  group: Main
+- name: Capacitor initial voltage
+  summary: Capacitor initial voltage 500 V (default) | scalar | vector
+  group: Main
+- name: Switching device
+  summary: Switch type Ideal Semiconductor Switch (default) | GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: Switching Devices
+- name: Forward voltage
+  summary: Voltage 0.8 V (default) | scalar
+  group: Switching Devices
+- name: On-state resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Drain-source on resistance
+  summary: Resistance 0.001 Ohm (default) | scalar
+  group: Switching Devices
+- name: Off-state conductance
+  summary: Conductance when device is off 1e-5 1/Ohm (default) | scalar
+  group: Switching Devices
+- name: Threshold voltage
+  summary: Voltage threshold 6 V (default) | scalar
+  group: Switching Devices
+- name: Gate trigger voltage, Vgt
+  summary: Gate-cathode activation voltage threshold 1 V (default) | scalar
+  group: Switching Devices
+- name: Gate turn-off voltage, Vgt_off
+  summary: Gate-cathode deactivation voltage threshold -1 V (default) | scalar
+  group: Switching Devices
+- name: Holding current
+  summary: Current threshold 1 A (default) | scalar
+  group: Switching Devices
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: Integer mode for FPGA deployment 0 (default) | nonnegative scalar
+  group: Switching Devices
+- name: Model dynamics
+  summary: Diode model Diode with no dynamics (default) | Diode with charge dynamics | None
+  group: Protection Diodes
+- name: Forward voltage
+  summary: Forward voltage 0.8 V (default) | scalar
+  group: Protection Diodes
+- name: On resistance
+  summary: On resistance 0.001 Ohm (default) | scalar
+  group: Protection Diodes
+- name: Off conductance
+  summary: Off conductance 1e-5 1/Ohm (default) | scalar
+  group: Protection Diodes
+- name: Junction capacitance
+  summary: Junction capacitance 50 nF (default) | scalar
+  group: Protection Diodes
+- name: Peak reverse current, iRM
+  summary: Peak reverse current -235 A (default) | negative scalar
+  group: Protection Diodes
+- name: Initial forward current when measuring iRM
+  summary: Initial forward current when measuring iRM 300 A (default) | positive scalar
+  group: Protection Diodes
+- name: Rate of change of current when measuring iRM
+  summary: Rate of change of current when measuring iRM -50 A/μs (default) | negative scalar
+  group: Protection Diodes
+- name: Reverse recovery time parameterization
+  summary: Reverse recovery time option Specify stretch factor (default) | Specify reverse recovery time directly | Specify
+    reverse recovery charge
+  group: Protection Diodes
+- name: Reverse recovery time, trr
+  summary: Reverse recovery time 15 μs (default) | scalar
+  group: Protection Diodes
+- name: Reverse recovery time stretch factor
+  summary: Reverse recovery time stretch factor 3 (default) | scalar
+  group: Protection Diodes
+- name: Reverse recovery charge, Qrr
+  summary: Reverse recovery charge 1500 s*μA (default) | scalar
+  group: Protection Diodes
+- name: Snubber
+  summary: Snubber None (default) | RC snubber
+  group: Snubbers
+- name: Snubber resistance
+  summary: Snubber resistance 0.1 Ohm (default) | scalar
+  group: Snubbers
+- name: Snubber capacitance
+  summary: Snubber capacitance 1e-7 F (default) | scalar
+  group: Snubbers
+```
 
 ### Main
 
@@ -501,7 +628,6 @@ Snubber capacitance.
 
 To enable this parameter, set **Snubber** to
 `RC snubber`.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

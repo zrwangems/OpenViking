@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Expand Scalar
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 标量扩展矩阵 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | bus | Boolean | fixed
+    point
+```
 
 ### 输出
 
@@ -23,8 +31,50 @@ chinese_source: worker-translation
 标量扩展矩阵，以标量、向量或矩阵形式返回。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `bus` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Element value
+  summary: 矩阵元素值 1（默认）| 标量
+  group: ''
+  block_parameter: ElementValue
+  values: 1（默认）| 标量
+- name: Output dimensions
+  summary: 输出矩阵的维度 5（默认）| 标量 | 二元素向量
+  group: ''
+  block_parameter: OutputDimensions
+  values: '''5''（默认）| 标量 | 二元素向量'
+- name: Output data type
+  summary: '输出数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0)
+    | Inherit: Inherit via back propagation | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '''double''（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0)
+    | Inherit: Inherit via back propagation | <data type expression>'
+- name: Mode
+  summary: 数据类型模式 Inherit（默认）| Built in | Fixed point | Expression
+  group: ''
+- name: Signedness
+  summary: 定点数据的符号性 Signed（默认）| Unsigned
+  group: ''
+- name: Scaling
+  summary: 定点数据定标方法 Best precision（默认）| Binary point
+  group: ''
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认）| 从 2 到 65,535 的整数
+  group: ''
+- name: Fraction length
+  summary: 定点数据类型的小数长度 0（默认）| 整数标量
+  group: ''
+- name: Data type override
+  summary: 数据类型覆盖模式 Inherit（默认）| Off
+  group: ''
+- name: Sample time
+  summary: 输出采样周期 1（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  values: '''1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -158,7 +208,6 @@ chinese_source: worker-translation
 | **参数：** | `SampleTime` |
 | **值：** | `'1'`（默认）| 标量 |
 | **数据类型：** | `char` |
-
 ## 所属库
 
 Simulink / Matrix Operations

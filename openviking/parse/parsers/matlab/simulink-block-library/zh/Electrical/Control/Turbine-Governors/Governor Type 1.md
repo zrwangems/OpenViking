@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Governor Type 1
 
 ## 端口
+```yaml
+ports:
+- name: speed_pu
+  summary: 涡轮转速标量
+  direction: input
+  data_types: single | double
+- name: Pref
+  summary: 转速参考偏置标量
+  direction: input
+  data_types: single | double
+- name: Pmech(HP)
+  summary: 高压机械功率标量
+  direction: output
+  data_types: single | double
+- name: Pmech(LP)
+  summary: 低压机械功率标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,82 @@ chinese_source: worker-translation
 低压机械功率，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Speed reference (pu)
+  summary: 转速参考 1（默认）| 标量
+  group: 常规
+- name: Initial torque (pu)
+  summary: 初始转矩 0.45（默认）| 标量
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Governor gain (1/droop), K (pu)
+  summary: 调速器增益 20（默认）| 标量
+  group: 调速器
+- name: Lag time constant, T_1 (s)
+  summary: 调速器滞后时间常数 0.2（默认）| 标量
+  group: 调速器
+- name: Lead time constant, T_2 (s)
+  summary: 调速器超前时间常数 0（默认）| 标量
+  group: 调速器
+- name: Valve position time constant, T_3 (s)
+  summary: 阀门位置时间常数 0.1（默认）| 标量
+  group: 调速器
+- name: Maximum valve opening rate, U_o (pu/s)
+  summary: 阀门最大开启速率 0.1（默认）| 标量
+  group: 调速器
+- name: Maximum valve closing rate, U_c (pu/s)
+  summary: 阀门最大关闭速率 -0.1（默认）| 标量
+  group: 调速器
+- name: Maximum valve opening, on MW capability, P_max (pu)
+  summary: 基于 MW 能力的阀门最大开度 0.98（默认）| 标量
+  group: 调速器
+- name: Minimum valve opening, on MW capability, P_min (pu)
+  summary: 基于 MW 能力的阀门最小开度 0（默认）| 标量
+  group: 调速器
+- name: Time constant for steam inlet, T_4 (s)
+  summary: 进汽时间常数 0.25（默认）| 标量
+  group: 调速器
+- name: HP fraction, K_1
+  summary: 高压轴功率占比 0.22（默认）| 标量
+  group: 调速器
+- name: LP fraction, K2
+  summary: 低压轴功率占比 0（默认）| 标量
+  group: 调速器
+- name: Time constant for second boiler pass, T_5 (s)
+  summary: 第二次锅炉通道时间常数 4（默认）| 标量
+  group: 调速器
+- name: HP fraction, K_3
+  summary: 高压轴功率占比 0.22（默认）| 标量
+  group: 调速器
+- name: LP fraction, K_4
+  summary: 低压轴功率占比 0（默认）| 标量
+  group: 调速器
+- name: Time constant for third boiler pass, T_6 (s)
+  summary: 第三次锅炉通道时间常数 4（默认）| 标量
+  group: 调速器
+- name: HP fraction, K_5
+  summary: 高压轴功率占比 0.3（默认）| 标量
+  group: 调速器
+- name: LP fraction, K_6
+  summary: 低压轴功率占比 0（默认）| 标量
+  group: 调速器
+- name: Time constant for fourth boiler pass, T_7 (s)
+  summary: 第四次锅炉通道时间常数 0.4（默认）| 标量
+  group: 调速器
+- name: HP fraction, K_7
+  summary: 高压轴功率占比 0.26（默认）| 标量
+  group: 调速器
+- name: LP fraction, K_8
+  summary: 低压轴功率占比 0（默认）| 标量
+  group: 调速器
+- name: Deadband
+  summary: 死区宽度 0.02（默认）| 标量
+  group: 调速器
+```
 
 ### 常规
 
@@ -148,7 +241,6 @@ chinese_source: worker-translation
 ### **Deadband** — 死区宽度 `0.02`（默认）| 标量
 
 有意设置的死区宽度。
-
 ## 所属库
 
 Simscape / Electrical / Control / Turbine-Governors

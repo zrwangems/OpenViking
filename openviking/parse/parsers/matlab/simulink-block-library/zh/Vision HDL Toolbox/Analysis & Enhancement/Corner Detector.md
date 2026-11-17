@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Corner Detector
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流标量
+  direction: input
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: minC
+  summary: 指示 FAST 算法角点的阈值 非负整数
+  direction: input
+  data_types: single | double | uint | fixed point
+- name: thresh
+  summary: 指示 Harris 算法角点的阈值 非负整数
+  direction: input
+  data_types: single | double | uint | fixed point
+- name: corner
+  summary: 指示像素是否为角点的度量 标量
+  direction: output
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -74,8 +101,40 @@ chinese_source: worker-translation
 `pixelcontrol` 总线包含五个信号。这些信号描述像素的有效性及其在帧中的位置。有关更多信息，请参阅 Pixel Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 检测方法 FAST 5 of 8（默认）| FAST 7 of 12 | FAST 9 of 16 | Harris
+  group: 主要
+- name: Source of minimum contrast value
+  summary: FAST 算法中指示角点的阈值来源 Property（默认）| Input port
+  group: 主要
+- name: MinContrast value
+  summary: FAST 算法中指示角点的阈值 20（默认）| 非负整数
+  group: 主要
+- name: Source of threshold value
+  summary: Harris 算法中指示角点的阈值来源 Property（默认）| Input port
+  group: 主要
+- name: Threshold value
+  summary: Harris 算法中指示角点的阈值 2000（默认）| 非负整数
+  group: 主要
+- name: Line buffer size
+  summary: 行缓冲区大小 2048（默认）| 整数
+  group: 主要
+- name: Padding method
+  summary: 边界填充方法 Symmetric（默认）| Replicate | Reflection | None
+  group: 主要
+- name: Rounding mode
+  summary: 内部定点计算的舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 内部定点计算的溢出操作 off（默认）| on
+  group: 数据类型
+- name: Output
+  summary: corner 输出端口的数据类型 Inherit same as first input（默认）| 数据类型表达式 | Inherit via internal rule
+  group: 数据类型
+```
 
 ### 主要
 
@@ -151,7 +210,6 @@ Harris 算法中使用的圆形窗口滤波器使用 `Replicate` 填充来填充
 ### **Output** — **corner** 输出端口的数据类型 `Inherit same as first input`（默认）| 数据类型表达式 | `Inherit via internal rule`
 
 指定输出 **corner** 端口的数据类型。默认情况下，模块使用与输入 **pixel** 端口相同的数据类型返回角点度量。
-
 ## 所属库
 
 Vision HDL Toolbox / Analysis & Enhancement

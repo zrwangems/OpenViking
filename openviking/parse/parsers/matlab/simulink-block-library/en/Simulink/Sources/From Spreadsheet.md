@@ -14,6 +14,14 @@ language: en
 # From Spreadsheet
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data from spreadsheet scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### Output
 
@@ -39,8 +47,117 @@ sends to ports that have int8 and Boolean data types. With back
 propagation, the block recasts In1 as int8 and In2 as Boolean.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Full path and file name untitled.xlsx (default) | full path | relative path
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: full path and file name
+  default: '''untitled.xlsx'''
+- name: Sheet name
+  summary: Name of sheet in spreadsheet Sheet1 (default) | sheet name
+  group: ''
+  block_parameter: SheetName
+  type: character vector
+  values: Sheet name
+  default: '''Sheet1'''
+- name: Range
+  summary: Cell range entire range of used cells in sheet (default) | comma-separated list of column:row
+  group: ''
+  block_parameter: Range
+  type: character vector
+  values: entire range of used cells in sheet | comma-separated list of column:row
+  default: ''''''
+- name: Output data type
+  summary: 'Output data type Inherit: auto (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 |
+    int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class_name> | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''
+    | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''<data
+    type expression>'''
+  default: '''Inherit: auto'''
+- name: Treat first column as
+  summary: Time or data Time (default) | Data
+  group: ''
+  block_parameter: TreatFirstColumnAs
+  type: character vector
+  values: '''Time'' | ''Data'''
+  default: '''Time'''
+- name: Sample time
+  summary: Sampling period and offset 0 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Data extrapolation before first data point
+  summary: Extrapolation method for simulation times before initial time stamp in spreadsheet Linear extrapolation (default)
+    | Hold first value | Ground value
+  group: ''
+  block_parameter: ExtrapolationBeforeFirstDataPoint
+  type: character vector
+  values: '''Linear extrapolation'' | ''Hold first value'' | ''Ground value'''
+  default: '''Linear extrapolation'''
+- name: Data interpolation within time range
+  summary: Interpolation method for simulation times that fall between two time stamps in spreadsheet Linear interpolation
+    (default) | Zero order hold
+  group: ''
+  block_parameter: InterpolationWithinTimeRange
+  type: character vector
+  values: '''Linear interpolation'' | ''Zero order hold'''
+  default: '''Linear interpolation'''
+- name: Data extrapolation after last data point
+  summary: Extrapolation method for simulation times after last time stamp in spreadsheet Linear extrapolation (default) |
+    Hold last value | Ground value
+  group: ''
+  block_parameter: ExtrapolationAfterLastDataPoint
+  type: character vector
+  values: '''Linear extrapolation'' | ''Hold last value'' | ''Ground value'''
+  default: '''Linear extrapolation'''
+- name: Output after last data point
+  summary: Action after last data point Repeating sequence (default) | Hold final value | Ground value
+  group: ''
+  block_parameter: OutputAfterLastPoint
+  type: character vector
+  values: '''Repeating sequence'' | ''Hold final value'' | ''Ground value'''
+  default: '''Repeating sequence'''
+- name: Enable zero-crossing detection
+  summary: Option to enable zero-crossing detection off (default) | on
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Mode
+  summary: Category of data to specify Inherit (default) | Built in | Fixed point | Enumerated | Expression
+  group: ''
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: ''
+- name: Signedness
+  summary: Specify signed or unsigned Signed (default) | Unsigned
+  group: ''
+- name: Scaling
+  summary: Method for scaling fixed-point data Binary point (default) | Best precision | Slope and bias
+  group: ''
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: ''
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: ''
+- name: Slope
+  summary: Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar
+  group: ''
+- name: Bias
+  summary: Specify bias for the fixed-point data type 0 (default) | real-valued scalar
+  group: ''
+```
 
 ### **File name** — Full path and file name `untitled.xlsx` (default) | full path | relative path
 
@@ -556,7 +673,6 @@ information, see Specifying a Fixed-Point Data Type.
 
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
-
 ## Libraries
 
 Simulink / Sources

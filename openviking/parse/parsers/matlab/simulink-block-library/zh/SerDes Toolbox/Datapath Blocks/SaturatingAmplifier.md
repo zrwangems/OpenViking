@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # SaturatingAmplifier
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入基带信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 限幅输出电压 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,37 @@ chinese_source: worker-translation
 由 SaturatingAmplifier 模块指定的限幅输出电压。如果输入信号是按样本指定的标量信号，则输出也是标量。如果输入信号是冲激响应向量信号，则输出也是向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 放大器工作模式 On（默认）| Off
+  group: ''
+- name: Specification
+  summary: 限幅放大器输出的输入规格 'Limit and Linear Gain'（默认）| 'VinVout'
+  group: ''
+- name: Limit
+  summary: 限幅放大器的限幅电压 1.2（默认）| 实正标量
+  group: ''
+- name: LinearGain
+  summary: 线性区域的放大器增益 1（默认）| 实正标量
+  group: ''
+- name: VinVout
+  summary: 输入及对应的输出电压响应 *N*×2 矩阵 | *N*×2×*M* 矩阵
+  group: ''
+- name: Slice select
+  summary: 选择要使用的 3D GPZ 矩阵的哪个角 0（默认）| 非负标量整数
+  group: ''
+- name: Visualize Response
+  summary: 绘制输入与输出电压响应按钮
+  group: ''
+- name: Mode
+  summary: 在 IBIS-AMI 模型中包含 Mode 参数 on（默认）| off
+  group: ''
+- name: Slice select
+  summary: 在 IBIS-AMI 模型中包含 Slice select 参数 on（默认）| off
+  group: ''
+```
 
 ### **Mode** — 放大器工作模式 `On`（默认）| `Off`
 
@@ -132,7 +172,6 @@ chinese_source: worker-translation
 ### **Slice select** — 在 IBIS-AMI 模型中包含 Slice select 参数 on（默认）| off
 
 选择以在 IBIS-AMI 文件中将 **Slice select** 作为参数包含。如果你取消选择 **Slice select**，它将从 AMI 文件中移除，实际上会将 **Slice select** 硬编码为其当前值。
-
 ## 所属库
 
 SerDes Toolbox / Datapath Blocks

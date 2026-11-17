@@ -14,6 +14,24 @@ language: en
 # Variant Source
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input port associated with first variant control scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_N
+  summary: Input port associated with *N*th variant control scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: Output of active variant scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -49,8 +67,79 @@ the block boundary. You can delete the port by either clicking delete on
 the keyboard or with a mouse click.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Variant control mode
+  summary: Variant control mode expression (default) | label | sim codegen switching
+  group: ''
+  block_parameter: VariantControlMode
+  type: character vector
+  values: '''expression'' | ''label'' | ''sim codegen switching'''
+  default: '''expression'''
+- name: Variant activation time
+  summary: Time when software chooses active variant choice update diagram (default) | update diagram analyze all choices
+    | code compile | startup | inherit from Simulink.VariantControl
+  group: ''
+  block_parameter: VariantActivationTime
+  type: character vector
+  values: '''update diagram'' | ''update diagram analyze all choices'' | ''code compile'' | ''startup'''
+  default: '''update diagram'''
+- name: Port and associated conditions
+  summary: Table of variant choices, variant controls, and conditions empty table (default)
+  group: ''
+- name: Port
+  summary: Number of connected input port no default
+  group: ''
+- name: Variant control label
+  summary: Name of choice in label mode true or false (default) | string
+  group: ''
+  block_parameter: VariantControls
+  values: variant controls that are associated with variant choices
+- name: Variant control switch
+  summary: Variant choices for simulation and code generation workflows (sim) | (codegen)
+  group: ''
+  block_parameter: VariantControls
+  values: variant controls that are associated with variant choices
+- name: Variant control expression
+  summary: Condition expression that determines the active choice true or false (default) | boolean condition expression |
+    a Simulink.VariantExpression object representing a boolean condition expression | (default)
+  group: ''
+  block_parameter: VariantControls
+  values: variant controls that are associated with variant choices
+- name: Condition (read-only)
+  summary: 'Condition expression in Simulink.VariantExpression object Read-only: N/A (default)'
+  group: ''
+- name: Label mode active choice
+  summary: Name of active choice in label mode true (Subsystem) (default) | false (Subsystem1)
+  group: ''
+  block_parameter: LabelModeActiveChoice
+  type: character vector
+  values: If no label mode active choice is specified, the value is empty. If a label mode active choice is specified, the
+    value is the variant control label for the active choice.
+  default: ''''''
+- name: Allow zero active variant controls
+  summary: Simulate model without active variant choice off (default) | on
+  group: ''
+  block_parameter: AllowZeroVariantControls
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output function call
+  summary: Receive and output function-call signals off (default) | on
+  group: ''
+  block_parameter: OutputFunctionCall
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show variant condition on block
+  summary: Annotate block ports off (default) | on
+  group: ''
+  block_parameter: ShowConditionOnBlock
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Variant control mode** — Variant control mode `expression` (default) | `label` | `sim codegen switching`
 
@@ -449,7 +538,6 @@ Variant Source block.
 | **Type:** character vector |
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Signal Routing

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Battery Power Estimator
 
 ## 端口
+```yaml
+ports:
+- name: CellSOC
+  summary: 单体荷电状态，无量纲标量 | 向量
+  direction: input
+- name: CellTemperature
+  summary: 单体温度，K 标量 | 向量
+  direction: input
+- name: MaxPowerDischarging
+  summary: 电池放电最大功率，W 标量
+  direction: output
+- name: MaxPowerCharging
+  summary: 电池充电最大功率，W 标量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +49,70 @@ chinese_source: worker-translation
 ### **MaxPowerCharging** — 电池充电最大功率，W 标量
 
 在预测时域内电池充电的最大功率。
-
 ## 参数
+```yaml
+parameters:
+- name: Vector of state-of-charge values, SOC (-)
+  summary: SOC 断点 [0, .1, .25, .5, .75, .9, 1]（默认）| 范围在 [0, 1] 内的标量向量
+  group: 电池
+- name: Vector of temperatures, T
+  summary: 温度断点 [278, 293, 313]（默认）| 正标量向量
+  group: 电池
+- name: No-load voltage, V0(SOC,T), (V)
+  summary: '*V*0 查找表 [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07, 4.08,
+    4.08; 4.19, 4.19, 4.19]（默认）| 非负元素矩阵'
+  group: 电池
+- name: Charging pulse test resistance, R0Dt(SOC,T), (ohm)
+  summary: Δt 秒脉冲期间的充电电阻 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091;
+    .0113, .0085, .0089; .0116, .0085, .0089]（默认）| 非负元素矩阵
+  group: 电池
+- name: Discharging pulse test resistance, R0Dt(SOC,T), (ohm)
+  summary: Δt 秒脉冲期间的放电电阻 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091;
+    .0113, .0085, .0089; .0116, .0085, .0089]（默认）| 非负元素矩阵
+  group: 电池
+- name: Cell capacity, AH (A\*Hr)
+  summary: 完全充电时的电池容量 27（默认）| 非负标量
+  group: 电池
+- name: Number of series modules, Ns
+  summary: 串联模块数 10（默认）| 正标量
+  group: 电池
+- name: Number of parallel modules, Np
+  summary: 并联模块数 1（默认）| 正标量
+  group: 电池
+- name: Charging efficiency ratio
+  summary: 充电效率比 1（默认）| 范围在 (0,1] 内的非负标量
+  group: 电池
+- name: Minimum cell voltage (V)
+  summary: 单体最小电压 2.5（默认）| 正标量
+  group: 限值
+- name: Maximum cell voltage (V)
+  summary: 单体最大电压 4.5（默认）| 正标量
+  group: 限值
+- name: Minimum state of charge, SOCmin(-)
+  summary: 最小荷电状态 0.1（默认）| 范围在 [0,1] 内的非负标量
+  group: 限值
+- name: Maximum state of charge, SOCmax(-)
+  summary: 最大荷电状态 0.9（默认）| 范围在 [0,1] 内的非负标量
+  group: 限值
+- name: Minimum pack current (A)
+  summary: 电池组最小电流 -200（默认）| 负标量
+  group: 限值
+- name: Maximum pack current (A)
+  summary: 电池组最大电流 200（默认）| 正标量
+  group: 限值
+- name: Minimum cell power (W)
+  summary: 电池单体最小功率 -inf（默认）| 负标量
+  group: 限值
+- name: Maximum cell power (W)
+  summary: 电池单体最大功率 inf（默认）| 正标量
+  group: 限值
+- name: Time horizon (s)
+  summary: 时间范围 10（默认）| 正标量
+  group: 限值
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: 信号属性
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -131,7 +208,6 @@ SOC=qbatteryqnom(T,n)  for N=1  and  δAH(n,Tfade)=0,  qnom(T,
 - `<data type expression>` — 模块算法将所有输入和参数转换为您指定的数据类型对象。
 
 单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Estimators

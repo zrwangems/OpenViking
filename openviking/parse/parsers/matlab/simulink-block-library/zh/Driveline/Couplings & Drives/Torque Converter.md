@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Torque Converter
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 泵轮机械旋转
+  direction: conserving
+- name: T
+  summary: 涡轮机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,66 @@ chinese_source: worker-translation
 ### **T** — 涡轮机械旋转
 
 与涡轮关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Coast mode modeling
+  summary: 滑行过渡仿真选项 Two-mode（默认）| Continuous
+  group: 扭矩特性
+- name: Drive mode speed ratio vector
+  summary: 涡轮转速与泵轮转速之比 [0, .5, .6, .7, .8, .87, .92, .94, .96, .97, 1]（默认）| 向量
+  group: 扭矩特性
+- name: Drive mode torque ratio vector
+  summary: 涡轮扭矩与泵轮扭矩之比 [2.232, 1.5462, 1.4058, 1.2746, 1.1528, 1.0732, 1.0192, 1, 1, 1, 1]（默认）| 向量
+  group: 扭矩特性
+- name: Drive mode capacity factor vector
+  summary: 驱动模式的容量系数 1e-4 * [.72558, .66322, .63463, .59042, .51331, .4144, .29287, .22444, .12186, .04386, 0] m*N/rpm^2（默认）|
+    向量
+  group: 扭矩特性
+- name: Coast mode speed ratio vector
+  summary: 泵轮转速与涡轮转速之比 [0, .5, .6, .7, .8, .87, .92, .94, .96, .97, 1]（默认）| 向量
+  group: 扭矩特性
+- name: Coast mode capacity factor vector
+  summary: 滑行模式的容量系数 1e-4 * [.5079, .4643, .4442, .4133, .3593, .2901, .205, .1571, .0853, .0307, 0] m*N/rpm^2（默认）| 向量
+  group: 扭矩特性
+- name: Initial mode
+  summary: 仿真的初始模式 Drive mode（默认）| Coast mode
+  group: 扭矩特性
+- name: Mode transition threshold
+  summary: 模式过渡阈值 1 rpm（默认）| 正标量
+  group: 扭矩特性
+- name: Speed ratio vector
+  summary: 涡轮转速与泵轮转速之比 [0, .5, .6, .7, .8, .87, .92, .94, .96, .97]（默认）| 升序非负元素向量
+  group: 扭矩特性
+- name: Torque ratio vector
+  summary: 涡轮扭矩与泵轮扭矩之比 [2.232, 1.5462, 1.4058, 1.2746, 1.1528, 1.0732, 1.0192, .9983, .9983, .9983, .9983]（默认）| 升序正元素向量
+  group: 扭矩特性
+- name: Capacity factor parameterization
+  summary: 容量系数定义 Ratio of speed to square root of impeller torque（默认）| Ratio of impeller torque to square of speed
+  group: 扭矩特性
+- name: Capacity factor reference speed
+  summary: 容量系数参考转速选项 Always impeller speed（默认）| Turbine speed for speed ratios greater than one
+  group: 扭矩特性
+- name: Capacity factor vector
+  summary: 容量系数 [12.2938, 12.8588, 13.1452, 13.6285, 14.6163, 16.2675, 19.3503, 22.1046, 29.9986, 50] rad/(N^(1/2)*m^(1/2)*s)（默认）|
+    向量
+  group: 扭矩特性
+- name: Model transmission lag
+  summary: 传动滞后设置 No lag – Suitable for HIL simulation（默认）| Specify time constant and initial value
+  group: 动力学
+- name: Torque transmission time constant
+  summary: 扭矩传递时间常数 .02 s（默认）| 正标量
+  group: 动力学
+- name: Initial turbine-to-impeller torque ratio
+  summary: 涡轮与泵轮的初始扭矩比 0（默认）| 非负标量
+  group: 动力学
+- name: Interpolation method
+  summary: 查找函数的插值方法 Linear（默认）| Smooth
+  group: 动力学
+- name: Extrapolation method
+  summary: 查找函数的外推方法 Linear（默认）| Nearest | Error
+  group: 动力学
+```
 
 ### 扭矩特性
 
@@ -191,7 +258,6 @@ K^\*=τT/ωT2
 ### **Extrapolation method** — 查找函数的外推方法 `Linear`（默认）| `Nearest` | `Error`
 
 查找函数的外推方法，指定为 `Linear`、`Smooth` 或 `Error`。该方法外推扭矩比和容量系数函数。有关详细信息，请参阅 `tablelookup`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

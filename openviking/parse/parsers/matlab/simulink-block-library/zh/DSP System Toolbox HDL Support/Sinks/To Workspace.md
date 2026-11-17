@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # To Workspace
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要记录到工作区的数据 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string
+    | fixed point | enumerated | bus | image | datetime
+```
 
 ### 输入
 
@@ -28,8 +36,45 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumerated` | `bus` | `image` | `datetime`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Variable name
+  summary: 保存数据的变量名称 simout（默认）| 字符串 | 字符向量
+  group: ''
+  block_parameter: VariableName
+  values: '"simout"（默认）| 有效的 MATLAB 变量名'
+- name: Limit data points to last
+  summary: 要记录的样本数 inf（默认）| 标量 | 向量
+  group: ''
+  block_parameter: MaxDataPoints
+  values: '"inf"（默认）| 正整数'
+- name: Decimation
+  summary: 抽取因子 1（默认）| 正整数
+  group: ''
+  block_parameter: Decimation
+  values: '"1"（默认）| 正整数'
+- name: Save format
+  summary: 记录到工作区的数据格式 Timeseries（默认）| Structure With Time | Structure | Array
+  group: ''
+  block_parameter: SaveFormat
+  values: '"Timeseries"（默认）| "Structure with Time" | "Structure" | "Array"'
+- name: Save 2-D signals as
+  summary: 所记录数据中二维样本值的排列方式 3-D array (concatenate along third dimension)（默认）| 2-D array (concatenate along first dimension)
+  group: ''
+  block_parameter: Save2DSignal
+  values: '"3-D array (concatenate along third dimension)"（默认）| "2-D array (concatenate along first dimension)"'
+- name: Log fixed-point data as a fi object
+  summary: 所记录定点数据的数据类型 on（默认）| off
+  group: ''
+  block_parameter: FixptAsFi
+  values: '"on"（默认）| "off"'
+- name: Sample time
+  summary: 采样间隔和可选时间偏移 -1（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -188,7 +233,6 @@ chinese_source: worker-translation
 | **数据类型：** | `character vector` | `string` |
 
 **示例：** `set_param(gcb,"SampleTime","0")`
-
 ## 所属库
 
 Simulink / Sinks DSP System Toolbox / Sinks HDL Coder / Sinks

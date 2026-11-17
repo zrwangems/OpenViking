@@ -14,6 +14,38 @@ language: en
 # Decision Feedback Equalizer
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input signal column vector
+  direction: input
+  data_types: double
+- name: Desired
+  summary: Training symbols column vector
+  direction: input
+  data_types: double
+- name: Train
+  summary: Train equalizer flag boolean scalar
+  direction: input
+  data_types: Boolean
+- name: Update
+  summary: Update tap weights flag 1 | 0
+  direction: input
+  data_types: Boolean
+- name: Reset
+  summary: Reset equalizer flag 1 | 0
+  direction: input
+  data_types: Boolean
+- name: Out
+  summary: Equalized symbols column vector
+  direction: output
+- name: Err
+  summary: Error signal column vector
+  direction: output
+- name: w
+  summary: Tap weights column vector
+  direction: output
+```
 
 ### Input
 
@@ -123,8 +155,76 @@ from the last tap weight update.
 
 To enable this port, select the **Output taps
 weights** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of forward taps
+  summary: Number of forward equalizer taps 5 (default) | positive integer
+  group: ''
+- name: Number of feedback taps
+  summary: Number of feedback equalizer taps 3 (default) | positive integer
+  group: ''
+- name: Signal constellation
+  summary: Signal constellation pskmod(0:3,4,pi/4) (default) | vector
+  group: ''
+- name: Number of input samples per symbol
+  summary: Number of input samples per symbol 1 (default) | positive integer
+  group: ''
+- name: Adaptive algorithm
+  summary: Adaptive algorithm LMS (default) | RLS | CMA
+  group: ''
+- name: Step size
+  summary: Step size 0.01 (default) | positive scalar
+  group: ''
+- name: Forgetting factor
+  summary: Forgetting factor 0.99 (default) | scalar in the range (0, 1]
+  group: ''
+- name: Initial inverse correlation matrix
+  summary: Initial inverse correlation matrix 0.1 (default) | scalar | matrix
+  group: ''
+- name: Reference tap
+  summary: Reference tap 3 (default) | positive integer
+  group: ''
+- name: Input signal delay (samples)
+  summary: Input signal delay 0 (default) | nonnegative integer
+  group: ''
+- name: Source of adapt weights flag
+  summary: Source of adapt tap weights request Property (default) | Input port
+  group: ''
+- name: Adapt tap weights
+  summary: Adapt tap weights on (default) | off
+  group: ''
+- name: Initial tap weights source
+  summary: Source for initial tap weights Auto (default) | Property
+  group: ''
+- name: Initial weights
+  summary: Initial tap weights 0 or [0;0;1;0;0] (default) | scalar | column vector
+  group: ''
+- name: Tap weight update period (symbols)
+  summary: Tap weight update period 1 (default) | positive integer
+  group: ''
+- name: Enable training control input
+  summary: Enable training control input off (default) | on
+  group: ''
+- name: Update tap weights when not training
+  summary: Update tap weights when not training on (default) | off
+  group: ''
+- name: Enable reset input
+  summary: Enable reset input off (default) | on
+  group: ''
+- name: Info
+  summary: Decision feedback equalizer information button
+  group: ''
+- name: Output error signal
+  summary: Enable error signal output off (default) | on
+  group: ''
+- name: Output taps weights
+  summary: Enable tap weights output off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -360,7 +460,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Equalizers

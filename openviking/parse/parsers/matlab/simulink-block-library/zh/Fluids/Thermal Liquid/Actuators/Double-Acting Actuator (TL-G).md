@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Double-Acting Actuator (TL-G)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 活塞位置，m 物理信号
+  direction: output
+- name: A
+  summary: 腔室 A 热流体入口
+  direction: output
+- name: B
+  summary: 腔室 B 气体入口
+  direction: output
+- name: R
+  summary: 执行器活塞机械平移
+  direction: output
+- name: C
+  summary: 执行器壳体机械平移
+  direction: output
+- name: HA
+  summary: 腔室 A 热流热端口
+  direction: output
+- name: HB
+  summary: 腔室 B 热流热端口
+  direction: output
+```
 
 ### 输出
 
@@ -46,8 +70,90 @@ chinese_source: worker-translation
 ### **HB** — 腔室 B 热流热端口
 
 与气体体积和执行器周围环境之间可发生热交换的表面关联的热守恒端口。该端口处的热过程影响气体腔室中的温度，从而影响端口 **A** 处的温度。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: 活塞运动方向相对于流体流动方向 Positive | Negative
+  group: 热流体侧
+- name: Piston cross-sectional area in chamber A
+  summary: 热流体腔室中流体体积的横截面积 0.01 m^2（默认）| 面积单位的标量
+  group: 热流体侧
+- name: Piston stroke
+  summary: 活塞从一个硬限位到另一个硬限位的行程距离 0.2 m（默认）| 长度单位的标量
+  group: 热流体侧
+- name: Piston initial displacement
+  summary: 仿真开始时活塞的位置 0 m（默认）| 长度单位的标量
+  group: 热流体侧
+- name: Dead volume in chamber A
+  summary: 活塞处于底部位置时热流体腔室中的流体体积 1e-4 m^3（默认）| 体积单位的标量
+  group: 热流体侧
+- name: Enable dynamic compressibility
+  summary: 选择是否对热流体腔室内的动态可压缩性效应进行建模 On（默认）| Off
+  group: 热流体侧
+- name: Initial liquid pressure in chamber A (absolute)
+  summary: 热流体腔室中的绝对压力 0.101325 Pa（默认）| 压力单位的标量
+  group: 热流体侧
+- name: Initial liquid temperature in chamber A
+  summary: 仿真开始时热流体腔室中的温度 293.15 K（默认）| 温度单位的标量
+  group: 热流体侧
+- name: Nominal liquid pressure in chamber A (absolute)
+  summary: 腔室 A 中额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: 热流体侧
+- name: Nominal liquid temperature in chamber A
+  summary: 腔室 A 中额定工况下的温度 293.15 K（默认）| 标量
+  group: 热流体侧
+- name: Environment pressure specification
+  summary: 热流体侧大气压或自定义环境压力的选择 Atmospheric pressure（默认）| Specified pressure
+  group: 热流体侧
+- name: Environment pressure
+  summary: 热流体腔室外部环境的绝对压力 0.101325 MPa（默认）| 压力单位的标量
+  group: 热流体侧
+- name: Piston cross-sectional area in chamber B
+  summary: 气体腔室中流体体积的横截面积 1e-3 m^2（默认）| 面积单位的正标量
+  group: 气体侧
+- name: Cross-sectional area at port B
+  summary: 气体腔室入口的横截面积 1e-3 m^2（默认）| 面积单位的正标量
+  group: 气体侧
+- name: B 腔死区容积
+  summary: 在完全压缩状态下气腔中的流体体积 1e-4 m^3（默认）| 以体积为单位的正标量
+  group: 气体侧
+- name: B 腔初始气体压力（绝对）
+  summary: 仿真开始时气腔内的绝对压力 0.101325 MPa（默认）| 以压力为单位的标量
+  group: 气体侧
+- name: B 腔初始气体温度
+  summary: 仿真开始时气腔内的温度 293.15 K（默认）| 以温度为单位的标量
+  group: 气体侧
+- name: 环境压力设定
+  summary: 气体侧大气压或自定义环境压力的选择 Atmospheric pressure（默认）| Specified pressure
+  group: 气体侧
+- name: 环境压力
+  summary: 气腔外部环境的绝对压力 0.101325 MPa（默认）| 以压力为单位的标量
+  group: 气体侧
+- name: 硬限位模型
+  summary: 选择硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 硬限位
+- name: 硬限位刚度系数
+  summary: 刚度系数 1e6 N/m（默认）| 正标量
+  group: 硬限位
+- name: 硬限位阻尼系数
+  summary: 阻尼系数 150 N*s/m（默认）| 正标量
+  group: 硬限位
+- name: 过渡区域
+  summary: 硬限位力模型的应用范围 0.1 mm（默认）| 正标量
+  group: 硬限位
+- name: 恢复系数
+  summary: 碰撞后滑块与限位之间的最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无量纲值
+  group: 硬限位
+- name: 静态接触速度阈值
+  summary: 碰撞前滑块与限位之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 硬限位
+- name: 静态接触释放力阈值
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N（默认）| 正标量
+  group: 硬限位
+```
 
 ### 热流体侧
 
@@ -218,7 +324,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Hard stop model** 设置为 `Based on coefficient of restitution`。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Actuators

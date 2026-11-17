@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Slowly Increasing Steer
 
 ## 端口
+```yaml
+ports:
+- name: xdot
+  summary: 车辆纵向速度标量
+  direction: input
+  data_types: single | double
+- name: ay
+  summary: 车辆侧向加速度阈值标量
+  direction: input
+  data_types: single | double
+- name: DrvRef
+  summary: 驾驶员参考数据总线
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: 驾驶员指令数据总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -88,8 +107,55 @@ Bus Assignment 模块覆盖
 Bus Assignment 模块覆盖 Slowly Increasing Steer 模块的 TransModeCmd 输出的框图。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: 开始时间 2（默认）| 正标量
+  group: 机动参数
+  block_parameter: tStart
+  values: 2（默认）| 正标量
+- name: Longitudinal velocity setpoint, velRef
+  summary: 目标速度 50（默认）| 正标量
+  group: 机动参数
+  block_parameter: velRef
+  values: 50（默认）| 正标量
+- name: 纵向速度设定点单位，velRefUnit []
+  summary: 单位 mph（默认）
+  group: 机动参数
+  block_parameter: velRefUnit
+  values: mph（默认）| 字符向量
+- name: 转向和反向转向速度，steerRate [deg/s]
+  summary: 转向和反向转向速率 13.5（默认）| 正标量
+  group: 机动参数
+  block_parameter: steerRate
+  values: 13.5（默认）| 正标量
+- name: 转向幅值，steerAmp [deg]
+  summary: 方向盘转向幅值 270（默认）| 正标量
+  group: 机动参数
+  block_parameter: steerAmp
+  values: 270（默认）| 正标量
+- name: 达到最大角度后的转向保持时间，tStop [s]
+  summary: 转向保持时间 2（默认）| 正标量
+  group: 机动参数
+  block_parameter: tStop
+  values: 2（默认）| 正标量
+- name: 横向加速度绝对阈值，ay_max [g]
+  summary: 横向加速度阈值 0.5（默认）| 正标量
+  group: 机动参数
+  block_parameter: ay_max
+  values: 0.5（默认）| 正标量
+- name: 初始转向方向
+  summary: 初始转向方向 Right（默认）| Left
+  group: 机动参数
+  block_parameter: steerDir
+  values: Right（默认）| Left
+- name: 在横向加速度阈值处停止仿真
+  summary: 在横向加速度阈值处停止仿真的选项 off（默认）| on
+  group: 机动参数
+  block_parameter: ayStop
+  values: off（默认）| on
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -247,7 +313,6 @@ Inspector**。
 | **参数：** | `ayStop` |
 | **值：** | `off`（默认）| `on` |
 | **数据类型：** | `character vector` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

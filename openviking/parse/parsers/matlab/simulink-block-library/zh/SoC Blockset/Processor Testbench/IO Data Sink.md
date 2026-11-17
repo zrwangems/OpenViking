@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # IO Data Sink
 
 ## 端口
+```yaml
+ports:
+- name: msg
+  summary: SoC 消息数据数值向量
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: 输出数据数值向量
+  direction: output
+  data_types: uint32 | double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | Boolean | fixedpoint
+- name: length
+  summary: 输出数据长度 非负标量
+  direction: output
+  data_types: double
+- name: valid
+  summary: 有效数据指示 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: done
+  summary: 数据流完成 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: event
+  summary: 任务事件信号 标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输入
 
@@ -74,8 +101,34 @@ chinese_source: worker-translation
 要启用此端口，请将 **Show port** 参数设置为 `Data and Event`。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 模块输出数据的接收端 To file（默认）| To output port | To terminator
+  group: ''
+- name: Device type
+  summary: 设备类型选择 UDP（默认）| TCP | Register | Stream
+  group: ''
+- name: Show port
+  summary: 启用输出端口 Data（默认）| Data and Event
+  group: ''
+- name: Number of buffers
+  summary: 数据缓冲区数量 8（默认）| 非负标量
+  group: ''
+- name: Sample time
+  summary: 采样时间间隔 -1（默认）| 非负数值标量
+  group: ''
+- name: Dataset name
+  summary: 数据文件的名称 无默认值 | 文件路径
+  group: ''
+- name: Source name
+  summary: 数据集名称 无默认值
+  group: ''
+- name: Data type
+  summary: 输出数据的数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | boolean | fixedpoint
+  group: ''
+```
 
 ### **Output** — 模块输出数据的接收端 `To file`（默认）| `To output port` | `To terminator`
 
@@ -136,7 +189,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output** 参数设置为 `To file` 或 `To output port`。
-
 ## 所属库
 
 SoC Blockset / I/O Data Source and Sink

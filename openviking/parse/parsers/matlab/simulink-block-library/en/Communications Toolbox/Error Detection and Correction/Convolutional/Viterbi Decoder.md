@@ -14,6 +14,25 @@ language: en
 # Viterbi Decoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Convolutionally encoded codeword column vector
+  direction: input
+  data_types: double | single | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32 | ufixn
+- name: Era
+  summary: Erasure bits in codeword binary-valued vector
+  direction: input
+  data_types: double | Boolean
+- name: Rst
+  summary: Option to reset state of decoder registers scalar
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: Output message binary column vector
+  direction: output
+  data_types: double | single | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32 | ufix1
+```
 
 ### Input
 
@@ -80,8 +99,65 @@ output vector length is *L*×*K* for some positive integer *L*. For more informa
 This port is unnamed on the block icon.
 
 **Data Types:** `double` | `single` | `Boolean` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `ufix1`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trellis structure
+  summary: Trellis description of convolutional code poly2trellis(7,[171 133]) (default)
+  group: ''
+- name: numInputSymbols
+  summary: Number of symbols input to encoder 2*K*
+  group: ''
+- name: numOutputSymbols
+  summary: Number of symbols output from encoder 2*N*
+  group: ''
+- name: numStates
+  summary: Number of states in encoder power of 2
+  group: ''
+- name: nextStates
+  summary: Next states matrix of integers
+  group: ''
+- name: outputs
+  summary: Outputs matrix of octal numbers
+  group: ''
+- name: Punctured code
+  summary: Option to enable specification of code puncturing off (default) | on
+  group: ''
+- name: Puncture vector
+  summary: Puncture pattern vector [1; 1; 0; 1; 0; 1] (default) | vector
+  group: ''
+- name: Enable erasures input port
+  summary: Option to enable erasures input port off (default) | on
+  group: ''
+- name: Decision type
+  summary: Decoder decision type Unquantized (default) | Hard decision | Soft decision
+  group: ''
+- name: Number of soft decision bits
+  summary: Soft input word length 4 (default) | positive integer
+  group: ''
+- name: Error if quantized input values are out of range
+  summary: Option to error if quantized input values are out of range off (default) | on
+  group: ''
+- name: Traceback depth
+  summary: Traceback depth 34 (default) | positive integer
+  group: ''
+- name: Operation mode
+  summary: Termination method of encoded frame Continuous (default) | Truncated | Terminated
+  group: ''
+- name: Enable reset input port
+  summary: Option to add reset input port off (default) | on
+  group: ''
+- name: Delay reset action to next time step
+  summary: Option to delay reset action until next time step off (default) | on
+  group: ''
+- name: State metric word length
+  summary: State metric word length 16 (default) | positive integer
+  group: ''
+- name: Output data type
+  summary: Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -354,7 +430,6 @@ unsigned integer'`.
   - Behaves similar to the `'Smallest unsigned
     integer'` option for all other data type
     inputs
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Convolutional Communications Toolbox HDL Support / Error Detection and Correction / Convolutional

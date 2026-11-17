@@ -14,6 +14,30 @@ language: en
 # Surface Mount PMSM
 
 ## Ports
+```yaml
+ports:
+- name: LdTrq
+  summary: Load torque on motor scalar
+  direction: input
+- name: Spd
+  summary: Motor shaft speed scalar
+  direction: input
+- name: PhaseVolt
+  summary: Stator terminal voltages 1-by-3 array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: PhaseCurr
+  summary: Phase a, b, c current 1-by-3 array
+  direction: output
+- name: MtrTrq
+  summary: Motor torque scalar
+  direction: output
+- name: MtrSpd
+  summary: Motor speed scalar
+  direction: output
+```
 
 ### Input
 
@@ -96,8 +120,75 @@ Angular speed of the motor,
 To create this port, select `Torque` for
 the **Mechanical input configuration**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical input configuration
+  summary: Select port configuration Torque (default) | Speed
+  group: ''
+  block_parameter: port_config
+  values: Torque (default) | Speed
+- name: Simulation type
+  summary: Select simulation type Continuous (default) | Discrete
+  group: ''
+  block_parameter: sim_type
+  values: Continuous (default) | Discrete
+- name: Sample Time (Ts)
+  summary: Sample time for discrete integration 0.001 (default) | scalar
+  group: ''
+  block_parameter: Ts
+  values: 0.001 (default) | scalar
+- name: Number of pole pairs (P)
+  summary: Pole pairs 4 (default) | scalar
+  group: ''
+  block_parameter: P
+  values: 4 (default) | scalar
+- name: Stator resistance per phase (Rs)
+  summary: Resistance .2 (default) | scalar
+  group: ''
+  block_parameter: Rs
+  values: .2 (default) | scalar
+- name: Stator d-axis inductance (Ldq_)
+  summary: Inductance 3.752e-4 (default) | scalar
+  group: ''
+  block_parameter: Ldq_
+  values: 3.752e-4 (default) | scalar
+- name: Permanent flux linkage constant (lambda_pm)
+  summary: Flux 0.1194 (default) | scalar
+  group: ''
+  block_parameter: lambda_pm
+  values: 0.1194 (default) | scalar
+- name: Back-emf constant (Ke)
+  summary: Back electromotive force 159.9771 (default) | scalar
+  group: ''
+  block_parameter: Ke
+  values: 159.9771 (default) | scalar
+- name: Torque constant (Kt)
+  summary: Torque constant 1.323 (default) | scalar
+  group: ''
+  block_parameter: Kt
+  values: 1.323 (default) | scalar
+- name: Physical inertia, viscous damping, static friction (mechanical)
+  summary: Inertia, damping, friction [0.002700,4.924e-4,0] (default) | vector
+  group: ''
+  block_parameter: mechanical
+  values: '[0.002700,4.924e-4,0] (default) | vector'
+- name: Initial d-axis and q-axis current (idq0)
+  summary: Current [0 0] (default) | vector
+  group: ''
+  block_parameter: idq0
+  values: '[0 0] (default) | vector'
+- name: Initial mechanical position (theta_init)
+  summary: Angle 0 (default) | scalar
+  group: ''
+  block_parameter: theta_init
+  values: 0 (default) | scalar
+- name: Initial mechanical speed (omega_init)
+  summary: Speed 0 (default) | scalar
+  group: ''
+  block_parameter: omega_init
+  values: 0 (default) | scalar
+```
 
 #### Block Options
 
@@ -417,7 +508,6 @@ function.
 To enable this parameter, set the **Mechanical input
 configuration** parameter to
 `Torque`.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters Motor Control Blockset / Electrical Systems / Motors

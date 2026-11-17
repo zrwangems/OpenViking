@@ -14,6 +14,21 @@ language: en
 # Loaded-Contact Rotational Friction
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Normal force physical signal
+  direction: input
+- name: B
+  summary: Base mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -50,8 +65,77 @@ coefficients` or
 `Temperature and velocity-dependent
 friction coefficients`. For more
 information, see Friction model and Friction Parameter Dependencies.
-
 ## Parameters
+```yaml
+parameters:
+- name: Geometry model
+  summary: Parameterization method Define effective radius (default) | Define annular region
+  group: Geometry
+- name: Effective torque radius
+  summary: Effective friction surface radius 130 mm (default) | positive scalar
+  group: Geometry
+- name: Friction surface outside diameter
+  summary: Friction surface outer diameter 150 mm (default) | positive scalar
+  group: Geometry
+- name: Friction surface inside diameter
+  summary: Friction surface inner diameter 100 mm (default) | positive scalar less than outer diameter
+  group: Geometry
+- name: Friction model
+  summary: Friction model Fixed kinetic friction coefficient (default) | Velocity-dependent kinetic friction coefficient |
+    Temperature-dependent friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: Friction
+- name: Relative velocity vector
+  summary: Relative velocity [0, 100, 1000] rad/s (default) | vector
+  group: Friction
+- name: Temperature vector
+  summary: Temperature [280, 300, 320] K (default) | increasing vector
+  group: Friction
+- name: Static friction coefficient
+  summary: Static friction coefficient 0.35 (default) | scalar
+  group: Friction
+- name: Static friction coefficient vector
+  summary: Static friction coefficient [.4, .38, .36] (default) | vector
+  group: Friction
+- name: Kinetic friction coefficient
+  summary: Kinetic friction coefficient 0.3 (default) | positve scalar
+  group: Friction
+- name: Kinetic friction coefficient vector
+  summary: Kinetic friction coefficient [.3, .22, .19] (default) | [.3, .28, .25] | vector
+  group: Friction
+- name: Kinetic friction coefficient matrix
+  summary: Kinetic friction coefficient [.34, .32, .3; .3, .28, .25; .25, .2, .15] (default) | matrix
+  group: Friction
+- name: Friction coefficient interpolation method
+  summary: Extrapolation method Linear (default) | Smooth
+  group: Friction
+- name: Friction coefficient extrapolation method
+  summary: Interpolation method Linear (default) | Nearest | Error
+  group: Friction
+- name: Velocity tolerance
+  summary: Relative velocity locking threshold 0.001 rad/s (default) | scalar
+  group: Friction
+- name: Threshold force
+  summary: Normal contact force threshold 1 N (default) | scalar
+  group: Friction
+- name: Viscous drag torque coefficient
+  summary: Viscous drag torque 0 N*m/(rad/s) (default) | nonnegative scalar
+  group: Viscous Losses
+- name: Initial state
+  summary: Initial clutch state Unlocked (default) | Locked
+  group: Initial Conditions
+- name: Friction fault
+  summary: Option to model friction fault Add fault
+  group: Faults
+- name: Behavior when faulted
+  summary: Response to fault trigger Cannot transmit power (default) | Cannot unlock
+  group: Faults
+- name: Thermal mass
+  summary: Thermal mass 50 kJ/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Geometry
 
@@ -495,7 +579,6 @@ To enable this parameter, set
 coefficients` or
 `Temperature and velocity-dependent
 friction coefficients`.
-
 ## Libraries
 
 Simscape / Driveline / Brakes & Detents / Rotational

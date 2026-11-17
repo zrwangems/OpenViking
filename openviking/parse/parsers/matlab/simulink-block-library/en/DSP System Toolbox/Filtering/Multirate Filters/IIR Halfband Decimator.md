@@ -14,6 +14,29 @@ language: en
 # IIR Halfband Decimator
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal column vector | matrix
+  direction: input
+  data_types: single | double
+- name: coeffs1
+  summary: Branch 1 allpass polynomial coefficients *N*-by-1 vector | *N*-by-2 matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: coeffs2
+  summary: Branch 2 allpass polynomial coefficients *N*-by-1 vector | *N*-by-2 matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: LP
+  summary: Lowpass subband of decimator output column vector | matrix
+  direction: output
+  data_types: single | double
+- name: HP
+  summary: Highpass subband of decimator output column vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -174,8 +197,73 @@ subband** parameter.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter specification
+  summary: Filter design parameters Transition width and stopband attenuation (default) | Filter order and transition width
+    | Filter order and stopband attenuation | Coefficients
+  group: ''
+- name: Transition width (Hz)
+  summary: Transition width in Hz 4.1e3 (default) | positive real scalar
+  group: ''
+- name: Filter order
+  summary: Order of the IIR halfband filter 9 (default) | positive integer
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: Minimum attenuation needed in stopband 80 (default) | positive real scalar
+  group: ''
+- name: Design method
+  summary: Design method Elliptic (default) | Quasi-linear phase
+  group: ''
+- name: Internal allpass structure
+  summary: Internal allpass filter implementation structure Minimum multiplier (default) | Wave Digital Filter
+  group: ''
+- name: Make the first branch a pure delay
+  summary: Make first branch a pure delay off (default) | on
+  group: ''
+- name: Delay length in samples for branch 1
+  summary: Length of delay 1 (default) | positive scalar
+  group: ''
+- name: Specify coefficients from input port
+  summary: Specify coefficients from input port off (default) | on
+  group: ''
+- name: Branch 1 allpass polynomial coefficients
+  summary: Allpass polynomial filter coefficients of first branch [0.1284563; 0.7906755] (default) | *N*-by-1 | *N*-by-2
+  group: ''
+- name: Branch 2 allpass polynomial coefficients
+  summary: Allpass polynomial filter coefficients of second branch [0.4295667] (default) | *N*-by-1 | *N*-by-2
+  group: ''
+- name: Branch 1 Wave Digital coefficients
+  summary: Allpass filter coefficients of first branch in wave digital filter form [0.1284563; 0.7906755] (default) | *N*-by-1
+    | *N*-by-2
+  group: ''
+- name: Branch 2 Wave Digital coefficients
+  summary: Allpass filter coefficients of second branch in wave digital filter form [0.4295667] (default) | *N*-by-1 | *N*-by-2
+  group: ''
+- name: Last section of branch 2 is first order
+  summary: Last section of branch 2 is first order off (default) | on
+  group: ''
+- name: Output highpass subband
+  summary: Output highpass subband off (default) | on
+  group: ''
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input signal 44100 (default) | positive real scalar
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: ''
+- name: View Filter Response
+  summary: View Filter Response button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Filter specification** — Filter design parameters `Transition width and stopband attenuation` (default) | `Filter order and transition width` | `Filter order and stopband attenuation` | `Coefficients`
 
@@ -538,7 +626,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

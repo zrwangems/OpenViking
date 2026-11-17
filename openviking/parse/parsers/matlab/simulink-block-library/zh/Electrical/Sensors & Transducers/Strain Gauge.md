@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Strain Gauge
 
 ## 端口
+```yaml
+ports:
+- name: E
+  summary: 应变输入物理信号
+  direction: input
+- name: +
+  summary: 正端口电气
+  direction: input
+- name: '-'
+  summary: 负端口电气
+  direction: input
+```
 
 ### 输入
 
@@ -30,8 +42,16 @@ chinese_source: worker-translation
 ### **-** — 负端口电气
 
 与应变计负端口关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Gauge resistance
+  summary: 无应力应变计电阻 100 Ohm（默认值）
+  group: ''
+- name: Gauge factor
+  summary: 应变计因子 2（默认值）
+  group: ''
+```
 
 ### **Gauge resistance** — 无应力应变计电阻 `100` `Ohm`（默认值）
 
@@ -40,7 +60,6 @@ chinese_source: worker-translation
 ### **Gauge factor** — 应变计因子 `2`（默认值）
 
 电阻相对变化与长度相对变化之比 *K*。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

@@ -14,6 +14,17 @@ language: en
 # OpenL3 Preprocess
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Sound data column vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Spectrogram matrix
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -49,8 +60,19 @@ You can use this spectrogram as input to an OpenL3 block
 that has the same **Spectrum type**.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: Sample rate of input signal in Hz 48e3 (default) | positive scalar
+  group: ''
+- name: Overlap percentage (%)
+  summary: Overlap percentage between consecutive spectrograms 90 (default) | [0 100)
+  group: ''
+- name: Spectrum type
+  summary: Type of spectrum Mel (128 bands) (default) | Mel (256 bands) | Linear
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — Sample rate of input signal in Hz `48e3` (default) | positive scalar
 
@@ -66,7 +88,6 @@ range [0 100).
 Type of spectrum generated from input audio, specified as `Mel (128
 bands)`, `Mel (256 bands)`, or
 `Linear`.
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

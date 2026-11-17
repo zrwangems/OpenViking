@@ -14,6 +14,21 @@ language: en
 # Rotate
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Image to rotate matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Angle
+  summary: Rotation angle scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output
+  summary: Rotated image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -51,8 +66,41 @@ Rotated image, returned as 2-D numeric matrix if the input image is a grayscale
 image and a 3-D numeric array if the input image is a color image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output size
+  summary: Size of rotated image Expanded to fit rotated input image (default) | Same as input image
+  group: Main
+- name: Rotation angle source
+  summary: Rotation angle source Specify via dialog (default) | Input port
+  group: Main
+- name: Angle (radians)
+  summary: Rotation angle pi/6 (default) | numeric scalar
+  group: Main
+- name: Maximum angle (enter pi radians to accommodate all positive and negative angles)
+  summary: Maximum angle of rotation pi (default) | nonnegative scalar less than or equal to pi
+  group: Main
+- name: Display rotated image in
+  summary: Position of output image Top-left corner (default) | Center
+  group: Main
+- name: Sine value computation method
+  summary: Sine value computation method Table lookup (default) | Trigonometric function
+  group: Main
+- name: Background fill value
+  summary: Background fill value numeric scalar | three-element numeric vector
+  group: Main
+- name: Interpolation method
+  summary: Interpolation method Bilinear (default) | Nearest neighbor | Bicubic
+  group: Main
+- name: Angle values
+  summary: Fixed-point parameter for angle values Same word length as input (default) | Specify word length | Binary point
+    scaling
+  group: Data Types
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -181,7 +229,6 @@ parameter to `Specify via dialog`.
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Geometric Transformations

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Battery Voltage Monitoring
 
 ## 端口
+```yaml
+ports:
+- name: CellVoltage
+  summary: 电芯电压，V 标量 | 向量
+  direction: input
+- name: PackVoltage
+  summary: 电池包电压，V 标量
+  direction: input
+- name: UndervoltageError
+  summary: 欠压错误指示 0 | 1
+  direction: output
+- name: OvervoltageError
+  summary: 过压错误指示 0 | 1
+  direction: output
+- name: SensoryFaultyError
+  summary: 传感器故障错误指示 0 | 1
+  direction: output
+```
 
 ### 输入
 
@@ -42,8 +60,43 @@ chinese_source: worker-translation
 
 传感器故障错误指示。如果此输出等于
 `1`，则传感器发生故障。
-
 ## 参数
+```yaml
+parameters:
+- name: Undervoltage limit (V)
+  summary: 欠压限值 2.5（默认值）| 正标量
+  group: ''
+- name: Overvoltage limit (V)
+  summary: 过压限值 4.5（默认值）| 正标量
+  group: ''
+- name: Voltage sensor fault threshold (V)
+  summary: 电压传感器故障阈值 0.25（默认值）| 正标量
+  group: ''
+- name: Qualification time undervoltage (s)
+  summary: 欠压确认时间 2（默认值）| 正标量
+  group: ''
+- name: Disqualification time undervoltage (s)
+  summary: 欠压取消确认时间 0（默认值）| 非负标量
+  group: ''
+- name: Qualification time overvoltage (s)
+  summary: 过压确认时间 2（默认值）| 正标量
+  group: ''
+- name: Disqualification time overvoltage (s)
+  summary: 过压取消确认时间 0（默认值）| 非负标量
+  group: ''
+- name: Qualification time faulty sensor (s)
+  summary: 故障传感器确认时间 2（默认值）| 正标量
+  group: ''
+- name: Disqualification time faulty sensor (s)
+  summary: 故障传感器取消确认时间 0（默认值）| 非负标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认值）| 0 | 正整数
+  group: ''
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认值）| double | single | <data type expression>'
+  group: ''
+```
 
 ### **Undervoltage limit (V)** — 欠压限值 `2.5`（默认值）| 正标量
 
@@ -122,7 +175,6 @@ Specify Sample Time。
   算法将所有输入和参数转换为您指定的数据类型对象。
 
 单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Protection

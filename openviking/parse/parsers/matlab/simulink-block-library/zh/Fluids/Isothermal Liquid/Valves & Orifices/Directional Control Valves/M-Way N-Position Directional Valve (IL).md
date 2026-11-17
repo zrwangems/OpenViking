@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # M-Way N-Position Directional Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 阀芯位移，m 物理信号
+  direction: input
+- name: '1'
+  summary: 端口 1 等温液体
+  direction: input
+- name: 2,...,10
+  summary: 具有参数依赖关系的端口 等温液体
+  direction: input
+```
 
 ### 输入
 
@@ -35,8 +47,92 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用端口 2 至 10，请将 **Number of ports** 设置为所需的端口数量。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of ports
+  summary: 阀端口数量 2（默认）| 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+  group: 阀配置
+- name: Number of spool positions
+  summary: 阀芯位置数量 2（默认）| 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+  group: 阀配置
+- name: Spool travel at each spool position index
+  summary: 阀芯行程 [-2, 0, 2, 4] mm（默认）| 长度为 *N* 的向量
+  group: 阀配置
+- name: Number of orifices
+  summary: 节流口数量 1（默认）| 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20
+  group: 阀配置
+- name: Area characteristics
+  summary: 面积特性参数化选项 Identical for all flow paths（默认）| Different for each flow path
+  group: 阀配置
+- name: Orifice parameterization
+  summary: 节流口参数化 Linear – Area vs. spool travel（默认）| Tabulated data – Volumetric flow rate vs. pressure drop (linear with
+    spool travel) | Tabulated data – Area vs. spool travel
+  group: 阀配置
+- name: Inter-position spool travel fraction for which orifices remain fully open
+  summary: 阀芯位置之间节流口保持全开的行程比例 0.5（默认）| [0,1) 范围内的标量
+  group: 阀配置
+- name: Inter-position spool travel fraction for which orifices transition between open-closed
+  summary: 节流口在开-闭之间过渡的阀芯行程 0.1（默认）| 非负标量
+  group: 阀配置
+- name: Maximum orifice area
+  summary: 最大节流口面积 1e-4 m^2（默认）| 正标量
+  group: 阀配置
+- name: Leakage area fraction
+  summary: 泄漏面积比例 0.01（默认）| 正标量
+  group: 阀配置
+- name: Cross-sectional area at ports
+  summary: 所有端口的横截面积 inf m^2（默认）| 正标量
+  group: 阀配置
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 阀配置
+- name: Critical Reynolds number
+  summary: 临界雷诺数 150（默认）| 正标量
+  group: 阀配置
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 正标量
+  group: 阀配置
+- name: Pressure recovery
+  summary: 考虑面积扩大时压力增加的选项 Off（默认）| On
+  group: 阀配置
+- name: Pressure drop vector
+  summary: 表格化压降 [-.1, .3, .5, .7] MPa（默认）| 长度为 *X* 的向量
+  group: 阀配置
+- name: Fully open volumetric flow rate vector
+  summary: 表格化体积流量 [-.0009, .0016, .002, .0024] m^3/s（默认）| 长度为 *X* 的向量
+  group: 阀配置
+- name: Leakage flow rate fraction
+  summary: 泄漏流量分数 0.01（默认）| 正标量
+  group: 阀配置
+- name: Ports connected by orifice 1
+  summary: 由节流口 1 连接的端口 [3, 2]（默认）| 长度为 2 的向量
+  group: Orifice 1
+- name: Spool position indices where orifice 1 is open
+  summary: 节流口 1 打开的阀芯位置 [1, 4]（默认）| 长度为 1 到 *N* 的向量
+  group: Orifice 1
+- name: Spool travel for which orifice 1 remains fully open
+  summary: 保持完全打开的阀芯行程 1 mm（默认）| 非负标量
+  group: Orifice 1
+- name: Spool travel for which orifice 1 transitions between open-closed
+  summary: 节流口 1 在开-闭之间过渡的阀芯行程 0.2 mm（默认）| 正标量
+  group: Orifice 1
+- name: Maximum area of orifice 1
+  summary: 完全打开时的节流口面积 1e-4 m^2（默认）| 正标量
+  group: Orifice 1
+- name: Pressure drop vector of orifice 1
+  summary: 节流口 1 压降 [-.1, .3, .5, .7] MPa（默认）| 长度为 *X* 的向量
+  group: Orifice 1
+- name: Fully open volumetric flow rate vector of orifice 1
+  summary: 节流口 1 全开体积流量 [-.0009, .0016, .002, .0024] m^3/s（默认）| 长度为 *X* 的向量
+  group: Orifice 1
+- name: Vector of spool travel relative to discrete spool position for orifice 1
+  summary: 阀芯位移向量 [-.7, -.4, -.35, -.3, -.25, 0] mm（默认）| 向量
+  group: Orifice 1
+- name: Area vector for orifice 1
+  summary: 节流口开口面积向量 [1e-10, 1e-05, 4e-05, 8e-05, .0001, .0001] m^2（默认）| 向量
+  group: Orifice 1
+```
 
 ### 阀配置
 
@@ -260,7 +356,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **面积特性** 设置为 `每条流路不同`，并将 **节流孔参数化** 设置为 `表格数据 – 面积与阀芯行程`。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

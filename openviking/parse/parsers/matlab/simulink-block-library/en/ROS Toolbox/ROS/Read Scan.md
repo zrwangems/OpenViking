@@ -14,6 +14,29 @@ language: en
 # Read Scan
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: ROS or ROS 2 laser scan message nonvirtual bus
+  direction: input
+  data_types: bus
+- name: Ranges
+  summary: Range values for each point array
+  direction: output
+  data_types: single
+- name: Angles
+  summary: Angle values for each point array
+  direction: output
+  data_types: single
+- name: Intensities
+  summary: Intensity value for each point array
+  direction: output
+  data_types: single
+- name: ErrorCode
+  summary: Error code for message parsing scalar
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -68,8 +91,25 @@ Error code for message parsing, returned as a scalar. The error code values are:
 Enable `Show ErrorCode output port` parameter.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum array length
+  summary: Maximum length of the laser scan array 100 (default) | positive scalar
+  group: ''
+- name: Show Angles output port
+  summary: RGB port toggle off (default) | on
+  group: ''
+- name: Show Intensity output port
+  summary: Intensity port toggle off (default) | on
+  group: ''
+- name: Show ErrorCode output port
+  summary: ErrorCode port toggle on (default) | off
+  group: ''
+- name: Output variable-size signals
+  summary: Variable-size signal output toggle off (default) | on
+  group: ''
+```
 
 ### **Maximum array length** — Maximum length of the laser scan array `100` (default) | positive scalar
 
@@ -101,7 +141,6 @@ and monitor errors.
 Toggle whether to output a variable-size signal. Use variable-sized signals only if
 you expect the image size to change over time. For more information about variable-size
 signals, see Variable-Size Signal Basics (Simulink).
-
 ## Libraries
 
 ROS Toolbox / ROS ROS Toolbox / ROS 2

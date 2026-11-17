@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Translational Electromechanical Converter
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -29,13 +32,14 @@ chinese_source: worker-translation
 
 `R`
 :   机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Constant of proportionality K**
 :   机电转换的比例常数。
     默认值为 `0.1` V/(m/s)。
-
 ## 所属库
 
 R2025b 中未记录。

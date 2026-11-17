@@ -14,6 +14,18 @@ language: en
 # Cartridge Valve Insert (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: X
+  summary: Pressure port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -29,8 +41,72 @@ Liquid entry or exit port.
 
 Pilot pressure port. There is no mass flow rate through port
 **X**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve seat specification
+  summary: Geometry of valve seat Conical (default) | Custom
+  group: ''
+- name: Poppet diameter
+  summary: Diameter of the valve control member 0.01 m (default) | positive scalar
+  group: ''
+- name: Seat cone angle
+  summary: Angle of the seat opening 120 deg (default) | positive scalar
+  group: ''
+- name: Orifice parameterization
+  summary: Method of calculating orifice area Linear - area vs. control member position (default) | Tabulated data - Area
+    vs. control member position | Tabulated data - Volumetric flow rate vs. control member position and pressure drop
+  group: ''
+- name: Poppet stroke
+  summary: Maximum poppet extension 5e-3 m (default) | positive scalar
+  group: ''
+- name: Maximum orifice area
+  summary: Maximum orifice cross-sectional area 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Poppet position vector
+  summary: Vector of opening positions [0, .002, .004, .007, .017] m (default) | 1-by-*n* vector
+  group: ''
+- name: Orifice area vector
+  summary: Vector of opening areas [1e-09, 2.0352e-07, 4.0736e-05, .00011438, .00034356] m^2 (default) | 1-by-*n* vector
+  group: ''
+- name: Poppet position vector, s
+  summary: Vector of control member positions [0, .002, .004, .007, .017] m (default) | 1-by-*n* vector
+  group: ''
+- name: Pressure drop vector, dp
+  summary: Vector of pressure differential values [.3, .5, .7] MPa (default) | 1-by-*n* vector
+  group: ''
+- name: Volumetric flow rate table, q(s,dp)
+  summary: Array of volumetric flow rate values [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7, .9, 1.06; 1.96, 2.5, 3;
+    6, 7.7, 9.13] .* 1e-3 m^3/s (default) | *M*-by-*N* array
+  group: ''
+- name: Port A poppet area
+  summary: Cross-sectional area of port A 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Port A poppet to port X pilot area ratio
+  summary: Ratio of inlet to pilot port area 0.5 (default) | positive scalar
+  group: ''
+- name: Spring preload force
+  summary: Spring force in neutral poppet position 25 N (default) | positive scalar
+  group: ''
+- name: Spring stiffness
+  summary: Stiffness constant 15e3 N/m (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Valve opening time constant
+  summary: Valve time constant 0.1 s (default) | positive scalar
+  group: ''
+```
 
 ### **Valve seat specification** — Geometry of valve seat `Conical` (default) | `Custom`
 
@@ -290,7 +366,6 @@ To enable this parameter, set either:
 Constant that captures the time required for the fluid to reach
 steady-state conditions when opening or closing the valve from one position
 to another. This parameter impacts the modeled opening dynamics.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

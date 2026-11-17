@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Symbol Modulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 数据位 标量 | 列向量
+  direction: input
+  data_types: Boolean | unsigned fixed point
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: modArrIdx
+  summary: 调制数组索引 整数
+  direction: input
+  data_types: double | single | fixdt(0,4,0)
+- name: load
+  summary: 调制控制 标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 调制后的复数据符号 复标量
+  direction: output
+  data_types: single | double | fixed point
+- name: valid
+  summary: 有效输出数据指示 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -101,8 +132,55 @@ chinese_source: worker-translation
 控制信号，用于指示 **data** 输出端口的数据是否有效。当该值为 `1`（真）时，模块在 **data** 输出端口返回有效数据。当该值为 `0`（假）时，**data** 输出端口上的值无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation source
+  summary: 调制类型的来源 Property（默认）| Input port
+  group: 主要
+- name: Modulation
+  summary: 调制类型 BPSK（默认）| QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM | 256-QAM | 1024-QAM | 4096-QAM
+  group: 主要
+- name: Modulation array
+  summary: 调制数组 {"BPSK", "QPSK"}（默认）| 所有支持的调制类型
+  group: 主要
+- name: Constellation ordering type
+  summary: 星座排序类型 Default（默认）| User-defined
+  group: 主要
+- name: Constellation mapping
+  summary: 星座映射 [0 1]（默认）| 行向量
+  group: 主要
+- name: Constellation mapping array
+  summary: 星座映射数组 {[0 1],[0 1 3 2]}（默认）| 元胞数组中的行向量
+  group: 主要
+- name: Phase offset (rad)
+  summary: 相位偏移 0（默认）| pi | pi/2 | pi/4 | pi/8 | pi/16 | pi/32 | -pi/32 | -pi/16 | -pi/8 | -pi/4 | -pi/2
+  group: 主要
+- name: Phase offset type
+  summary: 相位偏移类型 Default（默认）| User-defined
+  group: 主要
+- name: Phase offset array (rad)
+  summary: 相位偏移数组 [0 pi/4]（默认）| 标量 | 支持的相位偏移值的行向量
+  group: 主要
+- name: Normalization method
+  summary: 缩放信号星座图 Minimum distance between symbols（默认）| Average power
+  group: 主要
+- name: Minimum distance
+  summary: 符号之间的最小距离 0.125（默认）| 范围从 1/32 到 1/8 的正标量
+  group: 主要
+- name: Average power, referenced to 1 ohm (watts)
+  summary: 星座图中符号的平均功率 1（默认）| 范围从 1/32 到 10 的正标量
+  group: 主要
+- name: Enable reset input port
+  summary: 复位输入端口 off（默认）| on
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型选择 Custom（默认）| double | single
+  group: 数据类型
+- name: Word length
+  summary: 输出字长 16（默认）| 3 到 32 范围内的整数
+  group: 数据类型
+```
 
 ### 主要
 
@@ -241,7 +319,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output data type** 参数设置为 `Custom`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

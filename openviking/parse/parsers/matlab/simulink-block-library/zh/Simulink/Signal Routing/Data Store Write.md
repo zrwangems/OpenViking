@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Data Store Write
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要写入数据存储的值 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: IdxN
+  summary: 第 *N* 个索引信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16
+```
 
 ### 输入
 
@@ -37,8 +49,87 @@ chinese_source: worker-translation
 要启用外部索引端口，请在 **Element Assignment** 选项卡上选中 **Enable indexing**。然后，在 **Index Option** 表的第 *N* 行中，将 **Index Option** 设置为 `Index vector (port)` 或 `Starting index (port)`。
 
 **数据类型：** `int8` | `int16` | `int32` | `uint8` | `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Data store name
+  summary: 模块写入的数据存储的名称 A（默认）| 数据存储的名称
+  group: 参数
+  block_parameter: DataStoreName
+  type: 字符串 | 字符向量
+  values: 数据存储名称
+  default: '''A'''
+- name: Data store memory block
+  summary: Data Store Memory 模块名称 只读：模块路径
+  group: 参数
+- name: Corresponding Data Store Read blocks
+  summary: 对应的 Data Store Read 模块列表 只读：模块路径
+  group: 参数
+- name: Sample time
+  summary: 采样时间 -1（默认）| 标量 | 向量
+  group: 参数
+  block_parameter: SampleTime
+  type: 字符串 | 字符向量
+  values: 标量 | 向量
+  default: '''-1'''
+- name: Elements in the array (Signals in the bus)
+  summary: 关联数据存储中的元素 字符串 | 字符向量
+  group: Element Assignment
+  block_parameter: DataStoreElements
+  type: 字符串 | 字符向量
+  values: 以井号分隔的元素列表（请参阅 Specification using the command line。）
+  default: ''''''
+- name: Specify element(s) to assign
+  summary: 定义要赋值元素的 MATLAB 表达式 字符串 | 字符向量
+  group: Element Assignment
+  block_parameter: DataStoreElements
+  type: 字符串 | 字符向量
+  values: 以井号分隔的元素列表（请参阅 Specification using the command line。）
+  default: ''''''
+- name: Assigned element(s)
+  summary: 所选元素的列表 字符串 | 字符向量
+  group: Element Assignment
+  block_parameter: DataStoreElements
+  type: 字符串 | 字符向量
+  values: 以井号分隔的元素列表（请参阅 Specification using the command line。）
+  default: ''''''
+- name: Enable indexing
+  summary: 启用索引以指定要写入的数据存储元素的子元素 off（默认）| on
+  group: Element Assignment
+  block_parameter: EnableIndexing
+  type: 字符串 | 字符向量
+  values: '"off" | "on"'
+  default: '''off'''
+- name: Number of dimensions
+  summary: 数据存储元素的维度数 1（默认）| 正整数
+  group: Element Assignment
+  block_parameter: NumberOfDimensions
+  type: 字符串 | 字符向量
+  values: 正整数
+  default: '''1'''
+- name: Index mode
+  summary: 索引模式 One-based（默认）| Zero-based
+  group: Element Assignment
+  block_parameter: IndexMode
+  type: 字符串 | 字符向量
+  values: '"Zero-based" | "One-based"'
+  default: '''One-based'''
+- name: Index Option
+  summary: 子元素的索引方法 Index vector (dialog)（默认）| Select all | Index vector (port) | Starting index (dialog) | Starting index
+    (port)
+  group: Element Assignment
+  block_parameter: IndexOptionArray
+  type: 字符串 | 字符向量
+  values: '"Select all" | "Index vector (dialog)" | "Index vector (port)" | "Starting index (dialog)" | "Starting index (port)"'
+  default: '''Index vector (dialog)'''
+- name: Index
+  summary: 子元素的索引或起始索引 1（默认）| 整数 | 整数向量
+  group: Element Assignment
+  block_parameter: IndexParamArray
+  type: 字符向量
+  values: 元胞数组
+  default: '''{ }'''
+```
 
 ### 参数
 
@@ -252,7 +343,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 元胞数组 |
 | **默认值：** `'{ }'` |
-
 ## 所属库
 
 Simulink / Signal Routing

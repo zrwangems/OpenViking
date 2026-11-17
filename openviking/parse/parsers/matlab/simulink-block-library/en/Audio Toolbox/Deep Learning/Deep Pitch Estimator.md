@@ -14,6 +14,17 @@ language: en
 # Deep Pitch Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Audio input vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Estimated fundamental frequency column vector
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -37,8 +48,25 @@ Estimated fundamental frequency in Hz, returned as an
 number of pitch estimations specified by **Number of buffered pitch estimations**.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: Sample rate of input signal in Hz 16e3 (default) | positive scalar
+  group: ''
+- name: Overlap percentage (%)
+  summary: Overlap percentage between consecutive frames 85 (default) | [0, 100)
+  group: ''
+- name: Number of buffered pitch estimations
+  summary: Number of pitch estimations in output 1 (default) | positive integer
+  group: ''
+- name: Confidence threshold
+  summary: Pitch confidence threshold 0.5 (default) | scalar in the range [0, 1)
+  group: ''
+- name: Model capacity
+  summary: Size of trained neural network Full (default) | Large | Medium | Small | Tiny
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — Sample rate of input signal in Hz `16e3` (default) | positive scalar
 
@@ -79,7 +107,6 @@ Model capacity, specified as `Full`,
 `Small`, or `Tiny`.
 The smaller sizes correspond to fewer parameters in the model, leading to
 faster computation but lower accuracy.
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

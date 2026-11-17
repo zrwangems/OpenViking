@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Center-Tapped Transformer
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 一次绕组正极性电气端口
+  direction: conserving
+- name: 1-
+  summary: 一次绕组负极性电气端口
+  direction: conserving
+- name: 2+
+  summary: 二次绕组正极性电气端口
+  direction: conserving
+- name: 2-
+  summary: 二次绕组负极性电气端口
+  direction: conserving
+- name: c
+  summary: 二次绕组中心抽头电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -37,8 +55,37 @@ chinese_source: worker-translation
 ### **c** — 二次绕组中心抽头电气端口
 
 与二次绕组中心抽头相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 用于选择对理想或非理想中心抽头变压器进行建模的选项 Ideal（默认）| Non-Ideal
+  group: ''
+- name: Winding ratio
+  summary: 变压器的绕组比 1（默认）| 正标量
+  group: ''
+- name: Center tap position (0~1)
+  summary: 中心抽头在二次绕组上的位置 0.5（默认）| 范围 (0, 1) 内的标量
+  group: ''
+- name: Primary winding resistance
+  summary: 一次绕组的串联电阻 0.01 Ohm（默认）| 正标量
+  group: ''
+- name: Primary leakage inductance
+  summary: 一次绕组的漏电感 0.0001 H（默认）| 正标量
+  group: ''
+- name: Secondary winding resistance
+  summary: 二次绕组的串联电阻 0.01 Ohm（默认）| 正标量
+  group: ''
+- name: Secondary leakage inductance
+  summary: 二次绕组的漏电感 0.0001 H（默认）| 正标量
+  group: ''
+- name: Magnetization resistance
+  summary: 变压器的磁化电阻 100 Ohm（默认）| 正标量
+  group: ''
+- name: Magnetization inductance
+  summary: 变压器的磁化电感 0.04 H（默认）| 正标量
+  group: ''
+```
 
 ### **Modeling option** — 用于选择对理想或非理想中心抽头变压器进行建模的选项 `Ideal`（默认）| `Non-Ideal`
 
@@ -99,7 +146,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Modeling option** 设置为 `Non-Ideal`。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Transformers

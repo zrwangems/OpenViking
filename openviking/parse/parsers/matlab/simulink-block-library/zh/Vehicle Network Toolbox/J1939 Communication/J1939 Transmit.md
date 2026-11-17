@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # J1939 Transmit
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 输入数据信号
+  direction: input
+- name: Trigger
+  summary: 使能报文发送 0 | 1
+  direction: input
+```
 
 ### 输入
 
@@ -25,8 +34,31 @@ chinese_source: worker-translation
 ### **Trigger** — 使能报文发送 0 | 1
 
 使能该采样点的报文发送。值为 `1` 表示发送，值为 `0` 表示不发送。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 要关联的 J1939 网络配置名称 ConfigX（默认）| 字符向量
+  group: ''
+- name: Node name
+  summary: J1939 节点名称 NodeX（默认）| 字符向量
+  group: ''
+- name: Parameter Group
+  summary: 组编号（PGN）和名称 int8
+  group: ''
+- name: Signals
+  summary: 参数组中定义的信号 字符向量数组
+  group: ''
+- name: PG Priority
+  summary: 参数组优先级 int8
+  group: ''
+- name: Destination Address
+  summary: 目标节点名称 int8
+  group: ''
+- name: Sample time
+  summary: 仿真发送速率 -1（默认）| double
+  group: ''
+```
 
 ### **Config name** — 要关联的 J1939 网络配置名称 `ConfigX`（默认）| 字符向量
 
@@ -59,7 +91,6 @@ J1939 节点的名称。下拉列表包含模型中的所有节点，包括自�
 ### **Sample time** — 仿真发送速率 `-1`（默认）| double
 
 仿真发送速率，指定为仿真期间模块的采样时间。该值定义了 J1939 Transmit 模块发送报文的频率。当模块位于触发子系统内或继承采样时间时，使用默认值 `-1`。您也可以为采样时间指定 MATLAB® 变量。有关仿真采样时序的信息，请参阅 Timing in Hardware Interface Models。
-
 ## 所属库
 
 Simulink Real-Time / J1939 Communication Vehicle Network Toolbox / J1939 Communication

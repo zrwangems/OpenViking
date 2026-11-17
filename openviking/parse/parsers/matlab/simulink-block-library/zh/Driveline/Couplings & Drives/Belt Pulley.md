@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Belt Pulley
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 带轮轴角速度 机械旋转
+  direction: conserving
+- name: A
+  summary: 皮带端 A 线速度 机械平移
+  direction: conserving
+- name: B
+  summary: 皮带端 B 线速度 机械平移
+  direction: conserving
+- name: C
+  summary: 带轮中心线速度 机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -37,8 +52,85 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Pulley translation**。
-
 ## 参数
+```yaml
+parameters:
+- name: Belt type
+  summary: 皮带参数化 Ideal - No slip（默认）| Flat belt | V-belt
+  group: 皮带
+- name: V-belt sheave angle
+  summary: 带轮槽角 30 deg（默认）| 正标量
+  group: 皮带
+- name: Number of V-belts
+  summary: 皮带数量 1（默认）| 正整数标量
+  group: 皮带
+- name: Centrifugal force
+  summary: 离心力选项 Do not model centrifugal force - Suitable for HIL simulation（默认）| Model centrifugal force
+  group: 皮带
+- name: Belt mass per unit length
+  summary: 单位长度质量 0.6 kg/m（默认）| 正标量
+  group: 皮带
+- name: Belt direction
+  summary: 皮带端的初始相对运动方向 Ends move in opposite direction（默认）| Ends move in same direction
+  group: 皮带
+- name: Maximum tension
+  summary: 张力阈值选项 No maximum tension（默认）| Specify maximum tension
+  group: 皮带
+- name: Belt maximum tension
+  summary: 最大张力阈值 1e5 N（默认）| 正标量
+  group: 皮带
+- name: Tension warning
+  summary: 松弛阈值报告 Do not check tension（默认）| Warn if leading end loses tension
+  group: 皮带
+- name: Pulley translation
+  summary: 允许线性运动的选项 off（默认）| on
+  group: 带轮
+- name: Pulley radius
+  summary: 带轮半径 .15 m（默认）| 正标量
+  group: 带轮
+- name: Bearing viscous friction coefficient
+  summary: 轴承粘性摩擦 0.001 N*m/(rad/s)（默认）| 标量
+  group: 带轮
+- name: Inertia
+  summary: 转动惯量 No inertia（默认）| Specify inertia and initial velocity
+  group: 带轮
+- name: Pulley inertia
+  summary: 带轮惯量 0.01 kg*m^2（默认）| 正标量
+  group: 带轮
+- name: Pulley initial rotational velocity
+  summary: 带轮初始角速度 0 rad/s（默认）| 标量
+  group: 带轮
+- name: Pulley mass
+  summary: 带轮质量 0.01 kg（默认）| 正标量
+  group: 带轮
+- name: Pulley initial translational velocity
+  summary: 带轮初始角速度 0 m/s（默认）| 标量
+  group: 带轮
+- name: Friction model
+  summary: 摩擦方法选择 Modal（默认）| Continuous
+  group: 接触
+- name: Initial state
+  summary: 带轮初始状态 Unlocked（默认）| Locked
+  group: 接触
+- name: Static friction coefficient
+  summary: 静摩擦系数 0.5（默认）| 正标量
+  group: 接触
+- name: Kinetic friction coefficient
+  summary: 动摩擦系数 0.42（默认）| 正标量
+  group: 接触
+- name: Contact friction coefficient
+  summary: 接触摩擦系数 0.5（默认）| 正标量
+  group: 接触
+- name: Wrap angle
+  summary: 皮带与带轮接触角 180 deg（默认）| 正标量
+  group: 接触
+- name: Velocity threshold
+  summary: 速度阈值 0.001 m/s（默认）| 正标量
+  group: 接触
+- name: Force threshold
+  summary: 力阈值 0.01 N（默认）| 正标量
+  group: 接触
+```
 
 ### 皮带
 
@@ -226,7 +318,6 @@ V 形皮带的数量。
 #### 依赖关系
 
 要启用此参数，请将 **Belt type** 设置为 `Flat belt` 或 `V-belt`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

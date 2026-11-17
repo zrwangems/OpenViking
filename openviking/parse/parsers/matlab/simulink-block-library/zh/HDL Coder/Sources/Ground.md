@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Ground
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 接地信号 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+```
 
 ### 输出
 
@@ -23,11 +31,12 @@ chinese_source: worker-translation
 Ground 模块输出一个值为零的标量信号，其数据类型与它所连接的端口相同。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Sources HDL Coder / Sources

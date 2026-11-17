@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # ThingSpeak Input
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 从通道读取的数据 numeric
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输出
 
@@ -29,8 +36,74 @@ chinese_source: worker-translation
 **Output data type** 参数的设置决定端口数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Channel number
+  summary: 正在访问的 ThingSpeak 通道 只读：0（默认）| numeric
+  group: ''
+  block_parameter: DrvAddress
+- name: Configure channel parameters
+  summary: 选择并配置要访问的通道（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: ThingSpeak server
+  summary: 用于数据传输的服务器 api.thingspeak.com（默认）| 字符向量
+  group: ''
+  block_parameter: DrvOptions
+- name: Channel ID
+  summary: 唯一通道 12397（默认）| numeric
+  group: ''
+  block_parameter: DrvOptions
+- name: Read API key
+  summary: 用于从通道读取的访问密钥 字符向量
+  group: ''
+  block_parameter: DrvOptions
+- name: Update period (secs)
+  summary: 读取更新周期，以秒为单位 20（默认）| numeric
+  group: ''
+  block_parameter: DrvOptions
+- name: View channel web page
+  summary: 访问通道的网页（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认）| double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器节拍数 10（默认）| 整数
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: 等待时让出 CPU
+  summary: 内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: 要读取的通道字段
+  summary: 定义要读取通道的哪些部分 1（默认）| [1–8]
+  group: ''
+  block_parameter: ChannelFields
+- name: 输出数据类型
+  summary: 定义输出端口的数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | <data type expression>
+  group: ''
+  block_parameter: DataTypeStr
+- name: 模式
+  summary: 定义类型的方法 Built in（默认）| Expression
+  group: ''
+  block_parameter: OptParam
+- name: 类型
+  summary: 数据类型选择器 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataTypeStr
+- name: 数据类型覆盖
+  summary: 信号类型不匹配时的策略 inherit（默认）| off
+  group: ''
+  block_parameter: DataTypeStr
+```
 
 ### **Channel number** — 正在访问的 ThingSpeak 通道 只读：`0`（默认）| numeric
 
@@ -210,7 +283,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `DataTypeStr` |
-
 ## 所属库
 
 Simulink Desktop Real-Time / Internet of Things

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Mechanism Configuration
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 用于连接机构框架的端口
+  direction: input
+- name: g
+  summary: 均匀重力物理信号
+  direction: input
+```
 
 ### Frame
 
@@ -31,8 +40,22 @@ Mechanism Configuration 模块所连接机构的均匀重力。
 #### 依赖关系
 
 要启用此端口，请将 **Uniform Gravity** 设置为 `Time-Varying`。
-
 ## 参数
+```yaml
+parameters:
+- name: Uniform Gravity
+  summary: 指定重力加速度矢量的方法 Constant（默认）| Time-Varying | None
+  group: ''
+- name: Gravity
+  summary: 恒定重力加速度矢量 [0 0 –9.80665] m/s^2（默认）| 1×3 矢量
+  group: ''
+- name: Linearization Delta
+  summary: 用于线性化的扰动值 0.001（默认）| 正标量
+  group: ''
+- name: Nonlinear Iterations
+  summary: 关节从分离模式过渡到正常模式时的牛顿迭代次数 2（默认）| 正整数
+  group: ''
+```
 
 #### Uniform Gravity
 
@@ -65,7 +88,6 @@ Mechanism Configuration 模块所连接机构的均匀重力。
 当机构具有一个或多个从分离模式过渡到正常模式的关节时，用于求解机构中所有关节位置的牛顿迭代次数，指定为正整数。
 
 当关节从分离模式过渡到正常模式时，如果该关节的位置和方向存在较大偏差，Simscape Multibody 网络可能需要更多的迭代次数来计算机构中所有关节的所需位置，以满足该过渡关节的运动学约束。
-
 ## 所属库
 
 Simscape / Multibody / Utilities

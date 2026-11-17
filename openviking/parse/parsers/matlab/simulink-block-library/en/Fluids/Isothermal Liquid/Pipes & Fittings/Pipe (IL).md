@@ -14,6 +14,21 @@ language: en
 # Pipe (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: EL
+  summary: Elevation physical signal
+  direction: input
+- name: G
+  summary: Gravitational acceleration physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -50,8 +65,169 @@ signal.
 To enable this port, set **Gravitational acceleration
 specification** to
 `Variable`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable dynamic compressibility
+  summary: Whether to model fluid compressibility on (default) | off
+  group: Configuration
+- name: Enable fluid inertia
+  summary: Fluid acceleration off (default) | on
+  group: Configuration
+- name: Number of segments
+  summary: Number of pipe divisions 1 (default) | positive integer
+  group: Configuration
+- name: Pipe length
+  summary: Pipe length 5 m (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional geometry
+  summary: Pipe geometry Circular (default) | Annular | Rectangular | Elliptical | Isosceles triangular | Custom
+  group: Configuration
+- name: Pipe diameter
+  summary: Pipe diameter 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe inner diameter
+  summary: Pipe inner diameter 0.05 m (default) | positive scalar
+  group: Configuration
+- name: Pipe outer diameter
+  summary: Pipe outer diameter 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe width
+  summary: Rectangular pipe width 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe height
+  summary: Rectangular pipe height 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe major axis
+  summary: Ellipsoidal pipe major axis 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe minor axis
+  summary: Ellipsoidal pipe minor axis 0.05 m (default) | positive scalar
+  group: Configuration
+- name: Pipe side length
+  summary: Triangular pipe side length 0.1 m (default) | positive scalar
+  group: Configuration
+- name: Pipe vertex angle
+  summary: Triangular pipe vertex angle 30 deg (default) | positive scalar
+  group: Configuration
+- name: Hydraulic diameter
+  summary: Hydraulic diameter 0.1128 m (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area
+  summary: Pipe cross-sectional area 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Elevation gain specification
+  summary: Pipe elevation specification Constant (default) | Variable
+  group: Configuration
+- name: Elevation gain from port A to port B
+  summary: Constant pipe elevation differential 0 m (default) | scalar
+  group: Configuration
+- name: Gravitational acceleration specification
+  summary: Acceleration specification Constant (default) | Variable
+  group: Configuration
+- name: Gravitational acceleration
+  summary: Gravitational acceleration 9.81 m/s^2 (default) | scalar
+  group: Configuration
+- name: Viscous friction parameterization
+  summary: Method of calculating pressure loss due to wall friction Haaland correlation (default) | Nominal pressure drop
+    vs. nominal mass flow rate | Tabulated data - Darcy friction factor vs. Reynolds number
+  group: Viscous Friction
+- name: Local resistances specification
+  summary: Method for quantifying pressure losses in the Haaland correlation Aggregate equivalent length (default) | Local
+    loss coefficient
+  group: Viscous Friction
+- name: Total local loss coefficient
+  summary: Defines loss coefficient over the pipe 0.1 (default) | positive scalar
+  group: Viscous Friction
+- name: Aggregate equivalent length of local resistances
+  summary: Contribution of pipe geometry to hydraulic losses 1 m (default) | positive scalar
+  group: Viscous Friction
+- name: Surface roughness specification
+  summary: 'Pipe material for roughness specification Commercially smooth brass, lead, copper, or plastic pipe: 1.52 um (default)
+    | Steel and wrought iron : 46 um | Galvanized iron or steel : 152 um | Cast iron : 259 um | Custom'
+  group: Viscous Friction
+- name: Internal surface absolute roughness
+  summary: Pipe wall roughness 15e-6 m (default) | positive scalar
+  group: Viscous Friction
+- name: Laminar flow upper Reynolds number limit
+  summary: Laminar flow upper threshold 2000 (default) | positive scalar
+  group: Viscous Friction
+- name: Turbulent flow lower Reynolds number limit
+  summary: Turbulent flow lower threshold 4000 (default) | positive scalar
+  group: Viscous Friction
+- name: Nominal mass flow rate
+  summary: Mass flow rate for calculating loss coefficient [.1, 1] kg/s (default) | positive scalar | 1-by-*n* vector
+  group: Viscous Friction
+- name: Nominal pressure drop
+  summary: Pressure drop for calculating loss coefficient [.001, .01] MPa (default) | positive scalar | 1-by-*n* vector
+  group: Viscous Friction
+- name: Mass flow rate threshold for flow reversal
+  summary: Mass flow rate threshold 1e-6 kg/s (default) | positive scalar
+  group: Viscous Friction
+- name: Reynolds number vector for turbulent Darcy friction factor
+  summary: Vector of Reynolds numbers for tabular parameterization [400, 1000, 1500, 3000, 4000, 6000, 10000, 20000, 40000,
+    60000, 100000, 100000000] (default) | 1-by-*n* vector
+  group: Viscous Friction
+- name: Darcy friction factor vector
+  summary: Vector of friction factors for tabular parameterization [.264, .112, .071, .0417, .0387, .0268, .025, .0232, .0226,
+    .022, .0214, .0214] (default) | 1-by-*n* vector
+  group: Viscous Friction
+- name: Laminar friction constant for Darcy friction factor
+  summary: Friction constant for laminar flows 64 (default) | positive scalar
+  group: Viscous Friction
+- name: Pipe wall specification
+  summary: Specifies wall flexibility Rigid (default) | Flexible
+  group: Pipe Wall
+- name: Volumetric expansion specification
+  summary: Linear expansion correlation Cross-sectional area vs. pressure (default) | Cross-sectional area vs. pressure -
+    Tabulated | Hydraulic diameter vs. pressure | Based on material properties
+  group: Pipe Wall
+- name: Static gauge pressure to cross-sectional area gain
+  summary: Coefficient for area-dependent pipe deformation 1e-6 m^2/MPa (default) | positive scalar
+  group: Pipe Wall
+- name: Static gauge pressure vector
+  summary: Vector of gauge pressures [.1,1] MPa (default) | vector
+  group: Pipe Wall
+- name: Cross sectional area gain vector
+  summary: Vector of pipe cross-sectional areas [1e-05, 1.1e-05] m^2 (default) | vector
+  group: Pipe Wall
+- name: Static gauge pressure to hydraulic diameter gain
+  summary: Coefficient for diameter-dependent pipe deformation 1e-6 m/MPa (default) | positive scalar
+  group: Pipe Wall
+- name: Material behavior
+  summary: Method used to specify material behavior Linear Elastic (default) | Multilinear Elastic
+  group: Pipe Wall
+- name: Pipe wall thickness
+  summary: Width of pipe wall 0.05 m (default) | positive scalar
+  group: Pipe Wall
+- name: Young's modulus
+  summary: Young's modulus of pipe wall material 69 GPa (default) | positive scalar
+  group: Pipe Wall
+- name: Poisson's ratio
+  summary: Poisson's ratio of pipe wall material 0.33 (default) | positive scalar
+  group: Pipe Wall
+- name: Stress vector
+  summary: Stress vector of pipe wall material [276, 310] MPa (default) | vector
+  group: Pipe Wall
+- name: Strain vector
+  summary: Strain vector of pipe wall material [.004, .02] (default) | vector
+  group: Pipe Wall
+- name: Check if stress exceeds specified allowable level
+  summary: Notification when stress is above specified max None (default) | Warning | Error
+  group: Pipe Wall
+- name: Maximum allowable stress
+  summary: Maximum allowed stress on pipe wall 400 MPa (default) | positive scalar
+  group: Pipe Wall
+- name: Volumetric expansion time constant
+  summary: Pipe deformation time constant 0.01 s (default) | positive scalar
+  group: Pipe Wall
+- name: Initial liquid pressure
+  summary: Initial pressure in pipe or pipe segment 0.101325 MPa (default) | positive scalar | 1-by-*n* vector
+  group: Initial Conditions
+- name: Initial mass flow rate from port A to port B
+  summary: Initial mass flow rate for inertia calculation 0 kg/s (default) | scalar
+  group: Initial Conditions
+```
 
 ### Configuration
 
@@ -682,7 +858,6 @@ Initial mass flow rate for pipes with simulated fluid inertia.
 
 To enable this parameter, select **Enable dynamic compressibility**
 and **Enable fluid inertia**.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

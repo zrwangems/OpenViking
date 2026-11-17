@@ -14,6 +14,53 @@ language: en
 # Discrete FIR Filter
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar | column vector | row vector
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: coeff
+  summary: Filter coefficients (Parallel interface) real or complex row vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: coeff
+  summary: Filter coefficients (Memory interface) real or complex scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: caddr
+  summary: Filter coefficient address (Memory interface) scalar
+  direction: input
+  data_types: fixdt(0,N,0)
+- name: cwren
+  summary: Filter coefficients write enable (Memory interface) scalar
+  direction: input
+  data_types: Boolean
+- name: cdone
+  summary: Filter coefficient write complete (Memory interface) scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Filtered output data scalar | column vector | row vector
+  direction: output
+  data_types: fixed point | single | double
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready for new input data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -341,8 +388,60 @@ structure** to `Partly serial
 systolic`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: Source of filter coefficients Property (default) | Input port (Parallel interface) | Input port (Memory interface)
+  group: Main
+- name: Coefficients
+  summary: Discrete FIR filter coefficients [0.5, 0.5] (default) | row vector | multichannel matrix
+  group: Main
+- name: Coefficients prototype
+  summary: Prototype filter coefficients [] (default) | real or complex vector
+  group: Main
+- name: Filter structure
+  summary: HDL filter architecture Direct form systolic (default) | Direct form transposed | Partly serial systolic
+  group: Main
+- name: Specify serialization factor as
+  summary: Rule to define serial implementation Minimum number of cycles between valid input samples (default) | Maximum number
+    of multipliers
+  group: Main
+- name: Number of cycles
+  summary: Serialization requirement for input timing 2 (default) | positive integer
+  group: Main
+- name: Number of multipliers
+  summary: Serialization requirement for resource usage 2 (default) | positive integer
+  group: Main
+- name: Optimize symmetric coefficients
+  summary: Share multipliers for symmetric coefficients with frame-based input on (default) | off
+  group: Main
+- name: Rounding mode
+  summary: Rounding mode for type-casting the output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow handling for type-casting the output off (default) | on
+  group: Data Types
+- name: Coefficients
+  summary: 'Data type of discrete FIR filter coefficients Inherit: Same word length as input (default) | <data type expression>'
+  group: Data Types
+- name: Output
+  summary: 'Data type of filter output Inherit: Inherit via internal rule (default) | Inherit: Same word length as input |
+    <data type expression>'
+  group: Data Types
+- name: Enable reset input port
+  summary: Option to enable reset input port off (default) | on
+  group: Control Ports
+- name: Use HDL global reset
+  summary: Option to connect data path registers to generated HDL global reset signal off (default) | on
+  group: Control Ports
+- name: Coefficient multiplication
+  summary: Coefficient multiplier implementation in hardware Multiplier (default) | CSD/Factored-CSD
+  group: Implementation
+- name: Use multiplier for +/- 1 and power of 2 coefficients
+  summary: Special-value coefficient multiplier implementation in hardware on (default) | off
+  group: Implementation
+```
 
 ### Main
 
@@ -882,7 +981,6 @@ systolic`.
 
 CSD implementations are not supported for
 multichannel or programmable filters.
-
 ## Libraries
 
 DSP HDL Toolbox / Filtering

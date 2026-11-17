@@ -14,6 +14,25 @@ language: en
 # Incidence, Sideslip, & Airspeed
 
 ## Ports
+```yaml
+ports:
+- name: Vb
+  summary: Velocity of body three-element vector
+  direction: input
+  data_types: double
+- name: ɑ
+  summary: Incidence angle scalar
+  direction: output
+  data_types: double
+- name: β
+  summary: Sideslip angle scalar
+  direction: output
+  data_types: double
+- name: V
+  summary: Airspeed scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -42,11 +61,12 @@ Sideslip angle, returned as a scalar, in radians.
 Airspeed of the body, returned as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Flight Parameters

@@ -15,6 +15,26 @@ chinese_source: worker-translation
 # Simulation 3D Ultrasonic Array
 
 ## 端口
+```yaml
+ports:
+- name: Has object
+  summary: 指示传感器视场内是否存在任何可检测对象的标志 true | false
+  direction: output
+- name: Has range
+  summary: 指示传感器视场内存在的任何对象是否可以进行距离测量的标志 true | false
+  direction: output
+- name: Range
+  summary: 到最近对象的距离测量值 非负标量
+  direction: output
+- name: Translation
+  summary: 传感器位置 实值 1×3 向量
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: 传感器方向 实值 1×3 向量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -49,8 +69,68 @@ chinese_source: worker-translation
 要启用此端口，请在 **Ground Truth** 选项卡上，选择 **Output location and orientation**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 安装
+- name: Parent name
+  summary: 父级车辆名称 Scene Origin（默认）| 车辆名称
+  group: 安装
+- name: Coordinate system
+  summary: 用于 actor 变换的坐标系 Default（默认）| MATLAB | ISO8855 | AERO | VRML | SAE
+  group: 安装
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）| Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof
+    center | ...
+  group: 安装
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移 off（默认）| on
+  group: 安装
+- name: Relative translation [X, Y, Z]
+  summary: 相对于安装位置的平移偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: 相对于安装位置 [0, 0, 0]（默认）的旋转偏移 | 实值 1×3 向量
+  group: 安装
+- name: Sample time
+  summary: 采样时间 -1（默认） | 正标量
+  group: 安装
+- name: Relative mounting locations
+  summary: 超声波阵列中各个传感器的相对安装位置 [[0, -0.67, 0]; [0, -0.22, 0]; [0, 0.22, 0]; [0, 0.67, 0]]（默认） | 实值 *N*×3 数组
+  group: 传感器参数
+- name: Relative mounting rotations
+  summary: 超声波阵列中各个传感器的相对安装旋转 zeros(4,3)（默认） | 实值 *N*×3 数组
+  group: 传感器参数
+- name: Horizontal Field of view (deg)
+  summary: 超声波阵列的水平视场 70（默认） | 正实标量
+  group: 传感器参数
+- name: Vertical field of view (deg)
+  summary: 超声波阵列的垂直视场 35（默认） | 正实标量
+  group: 传感器参数
+- name: Detection ranges (m)
+  summary: 超声波阵列的检测范围向量（m）[0.03 0.15 5.5]（默认）| 形式为 [minDetOnlyRange minDistRange maxDistRange] 的 1×3 非负实值向量
+  group: 传感器参数
+- name: Acoustic frequency (kHz)
+  summary: 超声波阵列中所有传感器发射器使用的声波频率 50（默认）| 正实标量
+  group: 传感器参数
+- name: Sampling frequency (kHz)
+  summary: 超声波阵列中所有传感器接收器的采样频率 500（默认）| 正实标量
+  group: 传感器参数
+- name: Pulse width (s)
+  summary: 超声波阵列中所有传感器使用的超声波脉冲宽度 1e-6（默认）| 正实标量
+  group: 传感器参数
+- name: Gain
+  summary: 超声波阵列中传感器使用的声音信号向量增益 [1, 0]（默认）| 实值标量 | 实值 1×2 向量
+  group: 传感器参数
+- name: Sound speed (m/s)
+  summary: 环境中的声速 330（默认）| 正实标量
+  group: 传感器参数
+- name: Output location and orientation
+  summary: 输出传感器的位置和方向 off（默认）| on
+  group: Ground Truth
+```
 
 ### 安装
 
@@ -198,7 +278,6 @@ chinese_source: worker-translation
 ### **Output location and orientation** — 输出传感器的位置和方向 `off`（默认）| `on`
 
 选择此参数以分别在 **Translation** 和 **Rotation** 端口输出传感器的平移和旋转。
-
 ## 所属库
 
 Automated Driving Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors

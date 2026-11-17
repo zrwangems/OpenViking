@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Neural State-Space Model
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 神经状态空间模型的输入 标量 | 向量
+  direction: input
+- name: x0
+  summary: 神经状态空间模型的初始状态 标量 | 向量
+  direction: input
+- name: y
+  summary: 神经状态空间模型的输出 标量 | 向量
+  direction: output
+- name: x
+  summary: 神经状态空间模型的状态 标量 | 向量
+  direction: output
+- name: dx
+  summary: 神经状态空间模型的状态导数/差分 标量 | 向量
+  direction: output
+- name: z
+  summary: 神经状态空间模型的潜在状态 标量 | 向量
+  direction: output
+- name: dz
+  summary: 神经状态空间模型的潜在状态导数/差分 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -71,8 +95,43 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此输出端口，请将 `idNeuralStateSpace` 对象的 `LatentDim` 属性值指定为有限正标量，并选择 **Output state derivative/difference** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Model
+  summary: 神经状态空间对象 idNeuralStateSpace(1,'NumInputs',1,'NumOutputs',2)（默认）| idNeuralStateSpace 对象
+  group: ''
+  block_parameter: sys
+  type: string, character vector
+  default: '"idNeuralStateSpace(1,''NumInputs'',1,''NumOutputs'',2)"'
+- name: Initial state source
+  summary: 初始状态来源 internal（默认）| external
+  group: ''
+  block_parameter: x0type
+  type: character vector
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial state
+  summary: 初始状态 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: ic
+  type: string, character vector
+  default: '"0"'
+- name: Output state
+  summary: 添加外部输出状态端口 off（默认）| on
+  group: ''
+  block_parameter: returnx
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Output state derivative/difference
+  summary: 添加外部输出状态导数端口 off（默认）| on
+  group: ''
+  block_parameter: returndx
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Model** — 神经状态空间对象 `idNeuralStateSpace(1,'NumInputs',1,'NumOutputs',2)`（默认）| `idNeuralStateSpace` 对象
 
@@ -147,7 +206,6 @@ chinese_source: worker-translation
 | **类型**：string, character vector |
 | **值**：`"off"`, `"on"` |
 | **默认值**：`"off"` |
-
 ## 所属库
 
 System Identification Toolbox / Models

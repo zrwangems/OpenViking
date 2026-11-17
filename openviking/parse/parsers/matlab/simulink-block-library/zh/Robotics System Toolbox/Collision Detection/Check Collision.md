@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Check Collision
 
 ## 端口
+```yaml
+ports:
+- name: Geom1
+  summary: 要检查的第一个碰撞几何体 bus
+  direction: input
+- name: Geom2
+  summary: 要检查的第二个碰撞几何体 bus
+  direction: input
+- name: CollStatus
+  summary: 碰撞状态 标量
+  direction: output
+- name: SepDist
+  summary: 碰撞几何体之间的最小距离 标量
+  direction: output
+- name: WitnessPts
+  summary: 每个几何体上的见证点 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -65,8 +83,13 @@ chinese_source: worker-translation
 
 每个几何体上的见证点，返回为 3×2 矩阵。第一列是几何体 **Geom1** 上见证点的位置，第二列是另一个几何体 **Geom2** 上见证点的位置。连接两个见证点的线段长度决定了 **SepDist** 端口的值。当两个几何体发生碰撞时，
 **WitnessPts** 的每个元素均为 `NaN`。
-
 ## 参数
+```yaml
+parameters:
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -77,7 +100,6 @@ Inspector**。
 
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，该模块会在后续仿真中重用该 C 代码。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Robotics System Toolbox / Collision Detection

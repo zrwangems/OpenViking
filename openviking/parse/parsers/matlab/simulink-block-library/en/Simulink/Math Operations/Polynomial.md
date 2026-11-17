@@ -14,6 +14,17 @@ language: en
 # Polynomial
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal real scalar or vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Evaluated polynomial value real scalar or vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -30,8 +41,18 @@ Value of the polynomial *P(u)* evaluated at the input
 signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Polynomial coefficients
+  summary: Coefficients of polynomial to be evaluated [ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006,
+    +1.621573104e-001, -8.087801117e+001 ] (default) | real array
+  group: ''
+  block_parameter: coefs
+  type: real array
+  default: '[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001
+    ]'
+```
 
 ### **Polynomial coefficients** — Coefficients of polynomial to be evaluated `[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ]` (default) | real array
 
@@ -48,7 +69,6 @@ the constant for the polynomial.
 | **Block Parameter:** `coefs` |
 | **Type:** real array |
 | **Default:** `[ +2.081618890e-019, -1.441693666e-014, +4.719686976e-010, -8.536869453e-006, +1.621573104e-001, -8.087801117e+001 ]` |
-
 ## Libraries
 
 Simulink / Math Operations

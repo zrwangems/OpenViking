@@ -14,6 +14,17 @@ language: en
 # VGA
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Estimated channel output scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -30,8 +41,22 @@ Estimated channel output, returned as a scalar or vector corresponding to the
 input signal.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: VGA operating mode On (default) | Off
+  group: ''
+- name: Gain
+  summary: Multiplicative gain used to scale the input waveform 1 (default) | scalar
+  group: ''
+- name: Mode
+  summary: Include Mode parameter in IBIS-AMI model on (default) | off
+  group: ''
+- name: Gain
+  summary: Include Gain parameter in IBIS-AMI model on (default) | off
+  group: ''
+```
 
 ### **Mode** — VGA operating mode `On` (default) | `Off`
 
@@ -76,7 +101,6 @@ hard-coding **Mode** to its current value.
 Select to include **Gain** as a parameter in the IBIS-AMI file. If
 you deselect **Gain**, it is removed from the AMI files, effectively
 hard-coding **Gain** to its current value.
-
 ## Libraries
 
 SerDes Toolbox / Datapath Blocks

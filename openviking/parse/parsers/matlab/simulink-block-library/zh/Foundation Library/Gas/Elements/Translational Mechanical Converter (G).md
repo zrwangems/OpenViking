@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Translational Mechanical Converter (G)
 
 ## 端口
+```yaml
+ports:
+- name: p
+  summary: 端口 R 相对于端口 C 的位移，m 物理信号
+  direction: input
+- name: A
+  summary: 转换器入口气体
+  direction: input
+- name: H
+  summary: 转换器内部温度热
+  direction: input
+- name: R
+  summary: 杆机械平移
+  direction: input
+- name: C
+  summary: 壳体机械平移
+  direction: input
+```
 
 ### 输入
 
@@ -43,8 +61,35 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 与转换器壳体关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: 选择转换器方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: ''
+- name: Interface displacement
+  summary: 选择确定相对端口位置的方法 Calculate from velocity of port R relative to port C（默认）| Provide input signal from Multibody joint
+  group: ''
+- name: Initial interface displacement
+  summary: 仿真开始时端口 R 相对于端口 C 的平移偏移量 0 m（默认）
+  group: ''
+- name: Interface cross-sectional area
+  summary: 气体施加压力以产生平移力的面积 0.01 m^2（默认）
+  group: ''
+- name: Dead volume
+  summary: 界面位移为 0 时的气体体积 1e-5 m^3（默认）
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 转换器入口处垂直于流动路径的面积 0.01 m^2（默认）
+  group: ''
+- name: Environment pressure specification
+  summary: 选择环境压力 Atmospheric pressure（默认）| Specified pressure 的指定方法
+  group: ''
+- name: Environment pressure
+  summary: 转换器外部压力 0.101325 MPa（默认）
+  group: ''
+```
 
 ### **Mechanical orientation** — 选择转换器方向 `Pressure at A causes positive displacement of R relative to C`（默认）| `Pressure at A causes negative displacement of R relative to C`
 
@@ -97,7 +142,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Environment pressure specification** 参数设置为 `Specified pressure` 时启用。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

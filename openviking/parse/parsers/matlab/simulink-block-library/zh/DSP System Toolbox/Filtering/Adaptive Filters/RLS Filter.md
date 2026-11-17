@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # RLS Filter
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: single | double
+- name: Desired
+  summary: 期望信号 标量 | 列向量
+  direction: input
+  data_types: single | double
+- name: Lambda
+  summary: 遗忘因子 范围 [0,1] 内的标量
+  direction: input
+  data_types: single | double
+- name: Adapt
+  summary: 更新滤波器权重的选项 标量 | 列向量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 复位信号 标量
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 滤波后的信号 标量 | 列向量
+  direction: output
+  data_types: single | double
+- name: Error
+  summary: 输出与期望信号之间的差值 标量 | 列向量
+  direction: output
+  data_types: single | double
+- name: Wts
+  summary: 自适应滤波器权重 标量 | 列向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -116,8 +151,34 @@ RLS 滤波器的权重，以长度等于您在 **Filter length** 参数中指定
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter length
+  summary: FIR 滤波器系数向量的长度 向量 32（默认）| 正整数
+  group: ''
+- name: Specify forgetting factor via
+  summary: 指定遗忘因子 Dialog（默认）| Input port
+  group: ''
+- name: Forgetting factor (0 to 1)
+  summary: RLS 遗忘因子 1.0（默认）| 范围 [0,1] 内的标量
+  group: ''
+- name: Initial value of filter weights
+  summary: FIR 滤波器权重的初始值 0（默认）| 向量
+  group: ''
+- name: Initial input variance estimate
+  summary: 初始输入协方差估计 0.1（默认）| 标量 | 方阵
+  group: ''
+- name: Adapt port
+  summary: 启用 Adapt 端口 off（默认）| on
+  group: ''
+- name: Reset port
+  summary: 启用 Reset 端口 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Output filter weights
+  summary: 输出滤波器权重 on（默认）| off
+  group: ''
+```
 
 ### **Filter length** — FIR 滤波器系数向量的长度 向量 `32`（默认）| 正整数
 
@@ -164,7 +225,6 @@ RLS 滤波器的权重，以长度等于您在 **Filter length** 参数中指定
 ### **Output filter weights** — 输出滤波器权重 `on`（默认）| `off`
 
 选中此参数以从 **Wts** 端口导出滤波器权重。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Adaptive Filters

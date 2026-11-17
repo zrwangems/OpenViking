@@ -14,6 +14,24 @@ language: en
 # Condenser Evaporator (TL-2P)
 
 ## Ports
+```yaml
+ports:
+- name: A1
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+- name: B1
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+- name: A2
+  summary: Two-phase fluid port two-phase fluid
+  direction: conserving
+- name: B2
+  summary: Two-phase fluid port two-phase fluid
+  direction: conserving
+- name: Z
+  summary: Two-phase fluid zone length fractions physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -40,8 +58,275 @@ Three-element vector of the zone length fractions in the two-phase
 fluid channel, returned as a physical signal. The vector takes the form
 [L, M, V], where L is the sub-cooled liquid, M is the liquid-vapor
 mixture, and V is the superheated vapor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: Flow path alignment Cross flow (default) | Parallel flow | Counter flow
+  group: Configuration
+- name: Cross flow arrangement
+  summary: Thermal mixing condition in each of the flow channels Both fluids unmixed (default) | Both fluids mixed | Thermal
+    Liquid 1 mixed & Two-Phase Fluid 2 unmixed | Thermal Liquid 1 unmixed & Two-Phase Fluid 2 mixed
+  group: Configuration
+- name: Wall thermal resistance
+  summary: Resistance of the wall to heat flow by thermal conduction 0 K/W (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port A1
+  summary: Flow area at port A1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B1
+  summary: Flow area at port B1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port A2
+  summary: Flow area at port A2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B2
+  summary: Flow area at port B2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Enable wall thermal mass
+  summary: Option to model wall thermal mass off (default) | on
+  group: Configuration
+- name: Wall mass
+  summary: Heat exchanger wall mass 1 kg (default) | positive scalar
+  group: Configuration
+- name: Wall specific heat
+  summary: Heat exchanger wall specific heat 490 J/(K*kg) (default) | positive scalar
+  group: Configuration
+- name: Flow geometry
+  summary: Thermal liquid flow configuration Flow inside one or more tubes (default) | Flow perpendicular to bank of circular
+    tubes | Generic
+  group: Thermal Liquid 1
+- name: Number of tubes
+  summary: Number of thermal liquid tubes 25 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Total length of each tube
+  summary: Total length of each thermal liquid tube 1 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Tube cross section
+  summary: Cross-sectional shape of a tube Circular (default) | Rectangular | Annular | Generic
+  group: Thermal Liquid 1
+- name: Tube inner diameter
+  summary: Internal diameter of a single tube 0.05 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Tube width
+  summary: Internal width of a single tube 0.05 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Tube height
+  summary: Internal height of a single tube 0.05 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Annulus inner diameter (heat transfer surface)
+  summary: Smaller diameter of annular cross-section 0.05 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Annulus outer diameter
+  summary: Larger diameter of annular cross-section 0.1 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Cross-sectional area per tube
+  summary: Internal flow area in each tube 0.002 m^2 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Wetted perimeter of tube cross-section for pressure loss
+  summary: Perimeter of tube cross-section that fluid touches 0.15 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Perimeter of tube cross-section for heat transfer
+  summary: Perimeter of a single tube for heat transfer calculations 0.15 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Pressure loss model
+  summary: Method of pressure loss calculation due to viscous friction Correlation for flow inside tubes (default) | Euler
+    number per tube row | Pressure loss coefficient | Correlation for flow over tube bank
+  group: Thermal Liquid 1
+- name: Pressure loss coefficient, delta_p/(0.5\*rho\*v^2)
+  summary: Empirical loss coefficient for all pressure losses in the channel 10 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Local resistance specification
+  summary: Method for quantifying pressure losses Aggregate equivalent length (default) | Local loss coefficient
+  group: Thermal Liquid 1
+- name: Aggregate equivalent length of local resistances
+  summary: Combined length of all local resistances per tube 0.1 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Total local loss coefficient
+  summary: Pressure loss coefficient 0.1 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Internal surface absolute roughness
+  summary: Mean surface roughness height 15e-6 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Laminar flow upper Reynolds number limit
+  summary: Largest Reynolds number that indicates laminar flow 2000 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Turbulent flow lower Reynolds number limit
+  summary: Smallest Reynolds number that indicates turbulent flow 4000 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Laminar friction constant for Darcy friction factor
+  summary: Coefficient of pressure loss due to viscous friction in laminar flows 64 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Heat transfer coefficient model
+  summary: Method of calculating heat transfer coefficient between fluid and wall Correlation for flow over tube bank (default)
+    | Colburn equation | Correlation for flow inside tubes
+  group: Thermal Liquid 1
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c
+  summary: Colburn equation coefficients [0.023, 0.8, 0.33] (default) | three-element vector
+  group: Thermal Liquid 1
+- name: Laminar flow Nusselt number
+  summary: Ratio of convective to conductive heat transfer in the laminar flow regime 3.66 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Tube bank grid arrangement
+  summary: Geometrical placement of tube rows in the bank Inline (default) | Staggered
+  group: Thermal Liquid 1
+- name: Number of tube rows along flow direction
+  summary: Number of two-phase fluid tube rows in the tube bank 5 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Number of tube segments in each tube row
+  summary: Number of two-phase fluid tubes in each row of the tube bank 5 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Length of each tube segment in a tube row
+  summary: Length of each two-phase fluid tube 1 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Tube outer diameter
+  summary: External diameter of a single two-phase fluid tube 0.05 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Longitudinal tube pitch (along flow direction)
+  summary: Center-to-center distance between two-phase fluid tube rows 0.15 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Transverse tube pitch (perpendicular to flow direction)
+  summary: Center-to-center distance between two-phase fluid tubes in a row 0.15 m (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Euler number per tube row, delta_p/(N\*0.5\*rho\*v^2)
+  summary: Euler number for each row of the tube bank 10 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Minimum free-flow area
+  summary: Smallest total flow area between inlet and outlet 0.01 m^2 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Heat transfer surface area without fins
+  summary: Total area of the heat transfer surface excluding fins 2 m^2 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Thermal liquid volume inside heat exchanger
+  summary: Total volume of thermal liquid in the heat exchanger 0.05 m^3 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Fouling factor
+  summary: Additional thermal resistance due to fouling deposits 0.1 m^2*K/kW (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Total fin surface area
+  summary: Total heat transfer surface area of all fins 0 m^2 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Fin efficiency
+  summary: Ratio of actual-to-ideal transfer rates for fin 0.5 (default) | positive scalar in the range [0,1]
+  group: Thermal Liquid 1
+- name: Initial thermal liquid pressure
+  summary: Moist air pressure at the start of simulation 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initial thermal liquid temperature
+  summary: Temperature at the start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Thermal Liquid 1
+- name: Number of tubes
+  summary: Number of two-phase fluid tubes 25 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Total length of each tube
+  summary: Total length of each two-phase fluid tube 1 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Tube cross section
+  summary: Cross-sectional shape of a tube Circular (default) | Rectangular | Annular | Generic
+  group: Two-Phase Fluid 2
+- name: Tube inner diameter
+  summary: Internal diameter of a single tube 0.05 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Tube width
+  summary: Internal width of a single tube 0.05 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Tube height
+  summary: Internal height of a single tube 0.05 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Annulus inner diameter (heat transfer surface)
+  summary: Smaller diameter of annular cross-section 0.05 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Annulus outer diameter
+  summary: Larger diameter of annular cross-section 0.1 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Cross-sectional area per tube
+  summary: Internal area normal to flow in a single tube 0.002 m^2 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Wetted perimeter of tube cross-section for pressure loss
+  summary: Perimeter of tube cross-section that fluid touches 0.15 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Perimeter of tube cross-section for heat transfer
+  summary: Perimeter of a single tube for heat transfer calculations 0.15 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Pressure loss model
+  summary: Method of pressure loss calculation due to viscous friction Correlation for flow inside tubes (default) | Pressure
+    loss coefficient
+  group: Two-Phase Fluid 2
+- name: Pressure loss coefficient, delta_p/(0.5\*rho\*v^2)
+  summary: Empirical loss coefficient for all pressure losses in the channel 10 (default)
+  group: Two-Phase Fluid 2
+- name: Local resistance specification
+  summary: Method for quantifying pressure losses Aggregate equivalent length (default) | Local loss coefficient
+  group: Two-Phase Fluid 2
+- name: Aggregate equivalent length of local resistances
+  summary: Combined length of all local resistances per tube 0.1 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Total local loss coefficient
+  summary: Pressure loss coefficient 0.1 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Internal surface absolute roughness
+  summary: Mean surface roughness height 15e-6 m (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Laminar flow upper Reynolds number limit
+  summary: Largest Reynolds number that indicates laminar flow 2000 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Turbulent flow lower Reynolds number limit
+  summary: Smallest Reynolds number that indicates turbulent flow 4000 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Laminar friction constant for Darcy friction factor
+  summary: Coefficient of pressure loss due to viscous friction in laminar flows 64 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Heat transfer coefficient model
+  summary: Method of calculating heat transfer coefficient between fluid and wall Correlation for flow inside tubes (default)
+    | Colburn equation
+  group: Two-Phase Fluid 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in liquid zone
+  summary: Colburn equation coefficients in liquid zone [.023, .8, .33] (default) | three-element vector of positive scalars
+  group: Two-Phase Fluid 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in mixture zone
+  summary: Cavallini-Zecchin equation coefficients in mixture zone [.05, .8, .33] (default) | three-element vector of positive
+    scalars
+  group: Two-Phase Fluid 2
+- name: Coefficients [a, b, c] for a\*Re^b\*Pr^c in vapor zone
+  summary: Colburn equation coefficients in vapor zone [.023, .8, .33] (default) | three-element vector of positive scalars
+  group: Two-Phase Fluid 2
+- name: Laminar flow Nusselt number
+  summary: Ratio of convective to conductive heat transfer in the laminar flow regime 3.66 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Fouling factor
+  summary: Additional thermal resistance due to fouling deposits 0.1 m^2*K/kW (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Total fin surface area
+  summary: Total heat transfer surface area of fins 0 m^2 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Fin efficiency
+  summary: Ratio of actual-to-ideal transfer rates for fin 0.5 (default) | positive scalar in the range [0,1]
+  group: Two-Phase Fluid 2
+- name: Initial fluid energy specification
+  summary: Initial state of the two-phase fluid Temperature (default) | Vapor quality | Vapor void fraction | Specific enthalpy
+    | Specific internal energy
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid pressure
+  summary: Fluid pressure at the start of simulation 0.101325 MPa (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid temperature
+  summary: Temperature at the start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid vapor quality
+  summary: Vapor mass fraction at the start of simulation 0.5 (default) | positive scalar in the range [0,1] | two-element
+    vector
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid vapor void fraction
+  summary: Vapor volume fraction at the start of simulation 0.5 (default) | positive scalar in the range [0,1] | two-element
+    vector
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid specific enthalpy
+  summary: Enthalpy per unit mass at the start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid specific internal energy
+  summary: Internal energy per unit mass at the start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 2
+```
 
 ### Configuration
 
@@ -1175,7 +1460,6 @@ direction.
 To enable this parameter, set **Initial fluid energy
 specification** to `Specific internal
 energy`.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Two-Phase Fluid - Thermal Liquid

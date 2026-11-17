@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Generalized Optimal Subpattern Assignment Metric
 
 ## 端口
+```yaml
+ports:
+- name: Tracks
+  summary: 航迹列表 Simulink® 总线，包含 MATLAB® 结构体
+  direction: input
+- name: Truths
+  summary: 真值列表 Simulink 总线，包含 MATLAB 结构体
+  direction: input
+- name: Assignments
+  summary: 已知分配 *K*×2 非负整数矩阵
+  direction: input
+- name: GOSPA Metric
+  summary: 包含切换误差分量的 GOSPA 度量 非负实数标量
+  direction: output
+- name: GOSPA Metric Without Switching
+  summary: 不包含切换误差分量的 GOSPA 度量 非负实数标量
+  direction: output
+- name: Switching Error
+  summary: 切换误差分量 非负实数标量
+  direction: output
+- name: Localization Error
+  summary: 定位误差分量 非负实数标量
+  direction: output
+- name: Missed Target Error
+  summary: 漏检目标误差分量 非负实数标量
+  direction: output
+- name: False Track Error
+  summary: 虚假航迹误差分量 非负实数标量
+  direction: output
+```
 
 ### 输入
 
@@ -153,8 +183,64 @@ tracks = trackExtractorFcn(trackInputFromBus)
 #### 依赖关系
 
 要启用此端口，请在 **Port Setting** 选项卡上选择 **False track error**。
-
 ## 参数
+```yaml
+parameters:
+- name: Cutoff distance
+  summary: 航迹与真值之间截断距离的阈值 30（默认）| 正实数标量
+  group: ''
+- name: Order
+  summary: GOSPA 度量的阶数 2（默认）| 正整数
+  group: ''
+- name: Alpha
+  summary: GOSPA 度量的 Alpha 参数 2（默认）| 范围 [0, 2] 内的正标量
+  group: ''
+- name: Distance type
+  summary: 距离类型 posnees（默认）| velnees | posabserr | velabserr | custom
+  group: ''
+- name: Custom distance function
+  summary: 自定义距离函数函数句柄
+  group: ''
+- name: Motion model
+  summary: 期望的平台运动模型 constvel（默认）| constacc | constturn | singer
+  group: ''
+- name: Switching penalty
+  summary: 分配切换的惩罚 0（默认）| 非负实数标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code Generation
+  group: ''
+- name: Assignments
+  summary: 启用分配输入 off（默认）| on
+  group: ''
+- name: GOSPA metric without switching error
+  summary: 启用不含切换误差的 GOSPA 度量输出 off（默认）| on
+  group: ''
+- name: Switching error
+  summary: 启用切换误差分量输出 off（默认）| on
+  group: ''
+- name: Localization error
+  summary: 启用定位误差分量输出 off（默认）| on
+  group: ''
+- name: Missed target error
+  summary: 启用漏检目标误差分量输出 off（默认）| on
+  group: ''
+- name: False track error
+  summary: 启用虚假航迹误差分量输出 off（默认）| on
+  group: ''
+- name: Track bus
+  summary: 航迹总线选择 objectTrack（默认）| custom
+  group: ''
+- name: Truth bus
+  summary: 真值总线选择 Platform（默认）| Actor | custom
+  group: ''
+- name: Track extractor function
+  summary: 航迹提取函数 函数句柄
+  group: ''
+- name: Truth extractor function
+  summary: 真值提取函数 函数句柄
+  group: ''
+```
 
 #### 属性
 
@@ -336,7 +422,6 @@ tracks = trackExtractorFcn(trackInputFromBus)
 
 要启用此属性，请将 **Truth bus** 参数设置为
 `custom`。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Track Metrics

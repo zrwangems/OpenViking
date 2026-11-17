@@ -15,6 +15,26 @@ chinese_source: worker-translation
 # Simulation 3D Pedestrian
 
 ## 端口
+```yaml
+ports:
+- name: Y
+  summary: 行人的横向位置 标量
+  direction: input
+- name: X
+  summary: 行人的纵向位置 标量
+  direction: input
+- name: Yaw
+  summary: 行人的偏航方向角 标量
+  direction: input
+- name: Location
+  summary: 行人的位置 实数值 1×3 向量
+  direction: output
+  data_types: double
+- name: Orientation
+  summary: 行人的方向 实数值 1×3 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -62,8 +82,34 @@ chinese_source: worker-translation
 要启用此端口，请在 **Ground Truth** 选项卡上选择 **Output location and orientation**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 行人类型 Male 1（默认）| Male 2 | Male 3 | Female 1 | Female 2 | Female 3 | Child
+  group: 行人参数
+- name: Scale
+  summary: 行人的缩放因子 [1, 1, 1]（默认）| 实数值 1×3 向量
+  group: 行人参数
+- name: Coordinate system
+  summary: 用于 actor 变换的坐标系 ISO8855（默认）| Default | MATLAB | AERO | VRML | SAE
+  group: 行人参数
+- name: Initial position [X, Y, Z]
+  summary: 初始行人位置 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 行人参数
+- name: Initial yaw
+  summary: 行人旋转的初始角度 0（默认）| 实值标量
+  group: 行人参数
+- name: Name
+  summary: 行人名称 SimulinkPedestrian1（默认）| 行人名称
+  group: 行人参数
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 行人参数
+- name: Output location and orientation
+  summary: 输出行人的位置和方向 off（默认）| on
+  group: Ground Truth
+```
 
 ### 行人参数
 
@@ -129,7 +175,6 @@ chinese_source: worker-translation
 ### **Output location and orientation** — 输出行人的位置和方向 `off`（默认）| `on`
 
 选择此参数以分别在 **Location** 和 **Orientation** 端口输出行人的位置和方向。
-
 ## 所属库
 
 Automated Driving Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Actors

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Flow Rate Sensor (IL)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量，kg/s 物理信号
+  direction: output
+- name: V
+  summary: 体积流量，m^3/s 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口等温液体
+  direction: output
+- name: B
+  summary: 传感器出口等温液体
+  direction: output
+```
 
 ### 输出
 
@@ -42,8 +57,13 @@ chinese_source: worker-translation
 ### **B** — 传感器出口等温液体
 
 等温液体守恒端口。如果流体从端口 **A** 流向端口 **B**，则流量为正。
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor Measurements
+  summary: 选择传感器测量质量流量、体积流量还是两者 Mass flow rate（默认）| Volumetric flow rate | Mass and volumetric flow rate
+  group: ''
+```
 
 ### **Sensor Measurements** — 选择传感器测量质量流量、体积流量还是两者 `Mass flow rate`（默认）| `Volumetric flow rate` | `Mass and volumetric flow rate`
 
@@ -52,7 +72,6 @@ chinese_source: worker-translation
 - `Mass flow rate` — 传感器测量质量流量。选择此选项将显示输出端口 **M**。
 - `Volumetric flow rate` — 传感器测量体积流量。选择此选项将显示输出端口 **V**。
 - `Mass and volumetric flow rate` — 传感器同时测量质量流量和体积流量。选择此选项将显示输出端口 **M** 和 **V**。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Sensors

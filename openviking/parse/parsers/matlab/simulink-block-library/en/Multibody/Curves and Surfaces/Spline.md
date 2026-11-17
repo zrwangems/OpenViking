@@ -14,6 +14,15 @@ language: en
 # Spline
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+- name: G
+  summary: Spline curve representation geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -30,8 +39,50 @@ Geometry data associated with the representation of a 2-D or 3-D
 continuous spline curve. It provides the spline curve specification to
 other blocks to which it connects, such as the Point on Curve
 Constraint block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Interpolation Points
+  summary: Coordinates of interpolation points for specifying spline curve [6 -2 9; -6 5 -4; -6 -7 9; 6 0 -4; -3 6 9; -3 -8
+    -4] m (default) | *N*-by-2 matrix | *N*-by-3 matrix
+  group: ''
+- name: End Conditions
+  summary: Treatment of the curve endpoints Periodic (Closed) (default) | Natural (Open)
+  group: ''
+- name: Type
+  summary: Spline visualization setting From Geometry (default) | Marker | None
+  group: ''
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: ''
+- name: Diffuse Color
+  summary: True color as [R,G,B,A] [0.0 0.0 0.0] (default) | three-element vector | four-element vector
+  group: ''
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: ''
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: ''
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: ''
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: ''
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: ''
+- name: Shape
+  summary: Shape of graphic marker Sphere (default) | Cube | Frame
+  group: ''
+- name: Size
+  summary: Width of the marker in pixels 10 pixels (default) | scalar
+  group: ''
+```
 
 ### **Interpolation Points** — Coordinates of interpolation points for specifying spline curve [6 -2 9; -6 5 -4; -6 -7 9; 6 0 -4; -3 6 9; -3 -8 -4] m (default) | *N*-by-2 matrix | *N*-by-3 matrix
 
@@ -205,7 +256,6 @@ Width of the marker in pixels. This width does not scale with zoom level. Note t
 #### Dependencies
 
 To enable this parameter, set **Type** to `Marker`.
-
 ## Libraries
 
 Simscape / Multibody / Curves and Surfaces

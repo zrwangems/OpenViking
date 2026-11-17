@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Persistent Variable Read
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 持久变量输出数据 变量数据
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输出
 
@@ -25,8 +32,18 @@ Persistent Variable Read 模块输出端口的数据类型和维度由 `Default 
 该模块可以接受复数。Persistent Variable Read 模块输出端口的复数性由 `Default value` 参数设置。如果此属性与目标计算机上存储的变量的复数性不匹配，则在实时应用程序加载期间发生错误。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Variable name
+  summary: 持久变量的名称 Variable1（默认）| 字符向量 | 字符串
+  group: ''
+  block_parameter: varName
+- name: Default value
+  summary: 当目标计算机上不存在变量时持久变量的起始值 0（默认）| 支持与 Data 端口相同的数据类型
+  group: ''
+  block_parameter: defaultValue
+```
 
 ### **Variable name** — 持久变量的名称 `Variable1`（默认）| 字符向量 | 字符串
 
@@ -47,7 +64,6 @@ Persistent Variable Read 模块输出端口的数据类型和维度由 `Default 
 |  |
 | --- |
 | **模块参数**：`defaultValue` |
-
 ## 所属库
 
 Simulink Real-Time / Target Management

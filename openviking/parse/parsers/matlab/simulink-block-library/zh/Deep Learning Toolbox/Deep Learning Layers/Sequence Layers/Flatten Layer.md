@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Flatten Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 展平后的输出数据数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 展平后的输出数据。输出数据将输入数据的空间维度折叠到通道维度中。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Flattened output size
+  summary: 展平后输出矩阵的大小 [1 1 1]（默认）| 正标量数组
+  group: 主
+  block_parameter: FlattenedOutputSize
+  type: 数组
+  values: '[1 1 1] | ''<array>'''
+  default: '''[1 1 1]'''
+- name: Sample time
+  summary: 用于指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -69,7 +94,6 @@ chinese_source: worker-translation
 | **参数：** `SampleTime` |
 | **数据类型：** `char` |
 | **值：** `'-1'`（默认）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Sequence Layers

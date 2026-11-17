@@ -14,6 +14,25 @@ language: en
 # Estimate Inertia Tensor
 
 ## Ports
+```yaml
+ports:
+- name: mass
+  summary: Mass scalar
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: Rate of change scalar
+  direction: input
+  data_types: double
+- name: I
+  summary: Inertia tensor 3-by-3 matrix
+  direction: output
+  data_types: double
+- name: dI/dt
+  summary: Rate of change 3-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -41,8 +60,38 @@ Inertia tensor, returned as a 3-by-3 matrix.
 Rate of change of inertia tensor, returned as a 3-by-3 matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Full mass
+  summary: Mass 2 (default) | scalar
+  group: ''
+  block_parameter: fmass
+  type: character vector
+  values: double scalar
+  default: '''2'''
+- name: Empty mass
+  summary: Empty mass 1 (default) | scalar
+  group: ''
+  block_parameter: emass
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Full inertia matrix
+  summary: Full inertia matrix eye(3) (default) | 3-element matrix
+  group: ''
+  block_parameter: fI
+  type: character vector
+  values: double scalar
+  default: '''eye(3)'''
+- name: Empty inertia matrix
+  summary: Empty inertia matrix eye(3)/2 (default) | scalar
+  group: ''
+  block_parameter: eI
+  type: character vector
+  values: scalar
+  default: '''eye(3)/2'''
+```
 
 ### **Full mass** — Mass `2` (default) | scalar
 
@@ -95,7 +144,6 @@ Inertia tensor at empty mass of the vehicle, specified as a scalar.
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'eye(3)/2'` |
-
 ## Libraries
 
 Aerospace Blockset / Mass Properties

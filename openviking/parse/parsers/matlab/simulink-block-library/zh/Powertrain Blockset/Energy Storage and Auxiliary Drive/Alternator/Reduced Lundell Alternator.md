@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Reduced Lundell Alternator
 
 ## 端口
+```yaml
+ports:
+- name: RefVolt
+  summary: 交流发电机输出电压指令 scalar
+  direction: input
+- name: AltSpd
+  summary: 角速度 scalar
+  direction: input
+- name: LdCurr
+  summary: 交流发电机负载电流 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: AltVolt
+  summary: 交流发电机输出电压 scalar
+  direction: output
+- name: LdTrq
+  summary: 电机轴转矩 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -53,8 +74,70 @@ chinese_source: worker-translation
 ### **LdTrq** — 电机轴转矩 `scalar`
 
 电机轴转矩，单位为 N·m。
-
 ## 参数
+```yaml
+parameters:
+- name: Voltage constant, Kv
+  summary: 常数 .1（默认）| scalar
+  group: ''
+  block_parameter: Kv
+  values: .1（默认）| scalar
+- name: Field winding resistance, Rf
+  summary: 电阻 0.2（默认）| scalar
+  group: ''
+  block_parameter: Rf
+  values: 0.2（默认）| scalar
+- name: Field winding inductance, Lf
+  summary: 电感 0.002（默认）| scalar
+  group: ''
+  block_parameter: Lf
+  values: 0.002（默认）| scalar
+- name: Stator winding resistance, Rs
+  summary: 电阻 0.01（默认）| scalar
+  group: ''
+  block_parameter: Rs
+  values: 0.01（默认）| scalar
+- name: Diode voltage drop, Vd
+  summary: 电压 0.7（默认）| scalar
+  group: ''
+  block_parameter: Vd
+  values: 0.7（默认）| scalar
+- name: Regulator bandwidth, Fv
+  summary: 带宽 2000（默认）| scalar
+  group: ''
+  block_parameter: Fv
+  values: 2000（默认）| scalar
+- name: 电流滤波器带宽，Fc
+  summary: 带宽 1000（默认）| scalar
+  group: ''
+  block_parameter: Fc
+  values: 1000（默认）| scalar
+- name: 励磁电压最大值，Vfmax
+  summary: 最大励磁电压 100（默认）| scalar
+  group: ''
+  block_parameter: Vfmax
+  values: 100（默认）| scalar
+- name: 励磁电压最小值，Vfmin
+  summary: 最小励磁电压 -100（默认）| scalar
+  group: ''
+  block_parameter: Vfmin
+  values: -100（默认）| scalar
+- name: 库仑摩擦，Kc
+  summary: 摩擦 0（默认）| scalar
+  group: ''
+  block_parameter: Kc
+  values: 0（默认）| scalar
+- name: 粘性摩擦，Kb
+  summary: 摩擦 0（默认）| scalar
+  group: ''
+  block_parameter: Kb
+  values: 0（默认）| scalar
+- name: 风阻，Kw
+  summary: 风阻 0（默认）| scalar
+  group: ''
+  block_parameter: Kw
+  values: 0（默认）| scalar
+```
 
 #### 电机配置
 
@@ -266,7 +349,6 @@ N·m/rad2/s2。
 | **参数：** | `Kw` |
 | **值：** | `0`（默认）| `scalar` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Energy Storage and Auxiliary Drive / Alternator

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Gyro
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 平移机械端口
+  direction: unspecified
+- name: +
+  summary: 正极端口电气
+  direction: unspecified
+- name: '-'
+  summary: 负极端口电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -29,8 +41,28 @@ chinese_source: worker-translation
 ### **-** — 负极端口电气
 
 与陀螺仪负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Sensitivity
+  summary: 灵敏度 12.5 s*mV/deg（默认值）
+  group: ''
+- name: Output voltage for zero rotation
+  summary: 零旋转时的输出电压 2.5 V（默认值）
+  group: ''
+- name: Maximum output voltage
+  summary: 最大输出电压 4 V（默认值）
+  group: ''
+- name: Minimum output voltage
+  summary: 最小输出电压 1 V（默认值）
+  group: ''
+- name: Dynamics
+  summary: 动力学建模选项 No dynamics — Suitable for HIL（默认值）| Model sensor bandwidth
+  group: ''
+- name: Bandwidth
+  summary: 带宽 3 kHz（默认值）
+  group: ''
+```
 
 ### **Sensitivity** — 灵敏度 `12.5` `s*mV/deg`（默认值）
 
@@ -62,7 +94,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当为 **Dynamics** 参数选择 `Model sensor bandwidth` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

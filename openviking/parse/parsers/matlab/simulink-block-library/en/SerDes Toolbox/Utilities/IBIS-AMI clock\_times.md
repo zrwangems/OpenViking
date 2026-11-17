@@ -14,6 +14,17 @@ language: en
 # IBIS-AMI clock_times
 
 ## Ports
+```yaml
+ports:
+- name: clockValid
+  summary: Update input at clockTime port scalar | vector
+  direction: input
+  data_types: double | int8
+- name: clockTime
+  summary: Clock time data array
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -38,13 +49,17 @@ The time value at the **clockTime** port must be half UI before
 the actual data sample times.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable IBIS-AMI Offset
+  summary: Offset clock time values by half UI on (default) | off
+  group: ''
+```
 
 ### **Enable IBIS-AMI Offset** — Offset clock time values by half UI on (default) | off
 
 Offset clock time values by half UI, according to IBIS-AMI specifications.
-
 ## Libraries
 
 SerDes Toolbox / Utilities

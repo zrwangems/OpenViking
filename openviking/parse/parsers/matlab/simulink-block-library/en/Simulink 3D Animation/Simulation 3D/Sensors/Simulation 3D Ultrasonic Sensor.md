@@ -14,6 +14,26 @@ language: en
 # Simulation 3D Ultrasonic Sensor
 
 ## Ports
+```yaml
+ports:
+- name: Has object
+  summary: Detectable object present in sensor field-of-view scalar
+  direction: output
+- name: Has range
+  summary: Range measurement possible for object present in sensor field-of-view scalar
+  direction: output
+- name: Range
+  summary: Distance measurement to closest object scalar
+  direction: output
+- name: Translation
+  summary: Sensor location real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: Sensor orientation real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -63,8 +83,48 @@ select **Output location and
 orientation**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Mounting
+- name: Parent name
+  summary: Name of parent vehicle Scene Origin (default) | vehicle name
+  group: Mounting
+- name: Coordinate system
+  summary: Coordinate system for actor transformation Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE
+  group: Mounting
+- name: Mounting location
+  summary: Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview
+    mirror | Hood center | Roof center | ...
+  group: Mounting
+- name: Specify offset
+  summary: Specify offset from mounting location
+  group: Mounting
+- name: Relative translation [X, Y, Z]
+  summary: Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: Rotational offset relative to mounting location real-valued 1-by-3 vector
+  group: Mounting
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Mounting
+- name: Detection ranges (m)
+  summary: Detection range vector of ultrasonic sensor (m) [0.03 0.15 5.5] (default) | 1-by-3 nonnegative real-valued vector
+    of form [minDetOnlyRange minDistRange maxDistRange]
+  group: Sensor Parameters
+- name: Horizontal field of view (deg)
+  summary: Horizontal field of view of ultrasonic sensor 70 (default) | positive real scalar
+  group: Sensor Parameters
+- name: Vertical field of view (deg)
+  summary: Vertical field of view of ultrasonic sensor 35 (default) | positive real scalar
+  group: Sensor Parameters
+- name: Output location and orientation
+  summary: Output location and orientation of sensor off (default) | on
+  group: Ground Truth
+```
 
 ### Mounting
 
@@ -247,7 +307,6 @@ Select this parameter to output the translation and rotation of the
 sensor at the **Translation** and
 **Rotation** ports,
 respectively.
-
 ## Libraries
 
 Automated Driving Toolbox / Simulation 3D Aerospace Blockset / Animation / Simulation 3D UAV Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors

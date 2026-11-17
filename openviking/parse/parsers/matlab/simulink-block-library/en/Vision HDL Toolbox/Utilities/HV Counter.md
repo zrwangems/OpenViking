@@ -14,6 +14,25 @@ language: en
 # HV Counter
 
 ## Ports
+```yaml
+ports:
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: hCount
+  summary: Pixel location in line positive integer
+  direction: output
+  data_types: fixdt(0,ceil(log2(ActiveVideoLines)),0)
+- name: vCount
+  summary: Line location in frame positive integer
+  direction: output
+  data_types: fixdt(0,ceil(log2(ActiveVideoLines)),0)
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -51,8 +70,16 @@ The signals describe the validity of the pixel and its location in the frame. Fo
 information, see Pixel Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Active pixels per line
+  summary: Maximum pixels per line 320 (default) | positive integer
+  group: ''
+- name: Active video lines
+  summary: Maximum lines per frame 240 (default) | positive integer
+  group: ''
+```
 
 ### **Active pixels per line** — Maximum pixels per line `320` (default) | positive integer
 
@@ -69,7 +96,6 @@ implements a line counter that has
 `ceil(log2(ActiveVideoLines))`
 bits. For example, for a frame with 240 pixels per line, the counter has 8
 bits. For a frame with 1080 pixels per line, the counter has 11 bits.
-
 ## Libraries
 
 Vision HDL Toolbox / Utilities

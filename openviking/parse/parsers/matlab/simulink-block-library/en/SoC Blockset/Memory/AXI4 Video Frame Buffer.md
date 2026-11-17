@@ -14,6 +14,34 @@ language: en
 # AXI4 Video Frame Buffer
 
 ## Ports
+```yaml
+ports:
+- name: wrData
+  summary: Writer data bus signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: wrCtrlIn
+  summary: Writer input control signal bus
+  direction: input
+  data_types: pixelcontrol
+- name: rdCtrlIn
+  summary: Reader input control signal bus
+  direction: input
+  data_types: StreamVideoFSyncS2MBusObj
+- name: rdData
+  summary: Output data signal to data consumer scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    SoCData
+- name: rdCtrlOut
+  summary: Reader control signal from memory channel to data consumer bus
+  direction: output
+  data_types: pixelcontrol
+- name: wrCtrlOut
+  summary: Writer control signal from memory channel to data producer bus
+  direction: output
+  data_types: StreamVideoS2MBusObj
+```
 
 ### Input
 
@@ -60,8 +88,64 @@ This bus represents the protocol bus from the memory channel to the data produce
 To separate the signal from the bus, use the SoC Bus Selector block.
 
 **Data Types:** `StreamVideoS2MBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Memory simulation
+  summary: Set simulation timing accuracy Burst accurate (default) | Protocol accurate | Behavioral
+  group: ''
+- name: Memory selection
+  summary: Choose between memory regions PS memory (default) | PL memory
+  group: Main
+- name: Region size (bytes)
+  summary: 'Size of the allocated memory region, in bytes Read-only: calculated'
+  group: Main
+- name: Frame size
+  summary: Frame dimensions 1080p HDTV (1920x1080p) (default)
+  group: Main
+- name: Number of Frames
+  summary: Number of buffers in region 3 (default) | integer
+  group: Main
+- name: Burst length
+  summary: Burst length for memory transactions 256 (default) | scalar
+  group: Main
+- name: FIFO depth (number of bursts)
+  summary: Depth of FIFO for data 8 (default) | scalar
+  group: Main
+- name: FIFO almost-full depth (number of bursts)
+  summary: Depth of FIFO when backpressure is asserted 6 (default) | scalar
+  group: Main
+- name: Clock frequency (MHz)
+  summary: Interconnect frequency of manager datapath 100 (default)
+  group: Main
+- name: Data width (bits)
+  summary: Data width of manager datapath 64 (default) | scalar
+  group: Main
+- name: Dimensions
+  summary: Dimensions of video data [1 3] (default) | scalar | vector
+  group: Signal Attributes
+- name: Data type
+  summary: Data type of video pixel uint8 (default) | uint16 | uint32 | uint64 | fixdt(1,16,0)
+  group: Signal Attributes
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: Signal Attributes
+- name: Enable sample packing (last signal dimension as channel)
+  summary: Pack data on last dimension of signal on (default) | off
+  group: Signal Attributes
+- name: Inherit sample time offset
+  summary: Make reader inherit sample time from writer on (default) | off
+  group: Signal Attributes
+- name: Use pixel clock sample times
+  summary: Use pixel clock sample time off (default) | on
+  group: Signal Attributes
+- name: View performance plots
+  summary: Display performance metrics button
+  group: Performance
+- name: View performance plots
+  summary: Display performance metrics button
+  group: Performance
+```
 
 ### **Memory simulation** — Set simulation timing accuracy `Burst accurate` (default) | `Protocol accurate` | `Behavioral`
 
@@ -298,7 +382,6 @@ latencies. For more information about performance graphs, see Memory Controller 
 
 To enable this parameter, select **Burst accurate** under
 **Memory simulation**.
-
 ## Libraries
 
 SoC Blockset / Memory

@@ -14,6 +14,30 @@ language: en
 # Double-Sided Synchronizer
 
 ## Ports
+```yaml
+ports:
+- name: X1
+  summary: Dog clutch translation physical signal
+  direction: output
+- name: X2
+  summary: Cone clutch translation physical signal
+  direction: output
+- name: HA
+  summary: Clutch hub *A* mechanical rotational
+  direction: conserving
+- name: HB
+  summary: Clutch hub *B* mechanical rotational
+  direction: conserving
+- name: R
+  summary: Clutch ring mechanical rotational
+  direction: conserving
+- name: S
+  summary: Shift linkage mechanical rotational
+  direction: conserving
+- name: T
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -59,8 +83,178 @@ section, set **Friction model** to
 `Temperature-dependent friction
 coefficients` or `Temperature and
 velocity-dependent friction coefficients`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Contact surface maximum diameter
+  summary: Outer diameter 150 mm (default) | positive scalar
+  group: Cone Clutch
+- name: Contact surface minimum diameter
+  summary: Inner diameter 100 mm (default) | positive scalar
+  group: Cone Clutch
+- name: Cone half angle
+  summary: Cone half angle 12 deg (default) | positive scalar
+  group: Cone Clutch
+- name: Friction model
+  summary: Friction model Fixed kinetic friction coefficient (default) | Velocity-dependent kinetic friction coefficient |
+    Temperature-dependent friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: Cone Clutch
+- name: Relative velocity vector
+  summary: Relative velocity [0, 100, 1000] rad/s (default) | vector
+  group: Cone Clutch
+- name: Temperature vector
+  summary: Temperature [280, 300, 320] K (default) | increasing vector
+  group: Cone Clutch
+- name: Static friction coefficient
+  summary: Static friction coefficient 0.35 (default) | scalar
+  group: Cone Clutch
+- name: Static friction coefficient vector
+  summary: Static friction coefficient [.4, .38, .36] (default) | vector
+  group: Cone Clutch
+- name: Kinetic friction coefficient
+  summary: Kinetic friction coefficient 0.3 (default) | positive scalar
+  group: Cone Clutch
+- name: Kinetic friction coefficient vector
+  summary: Kinetic friction coefficient [.3, .22, .19] (default) | [.3, .28, .25] | vector
+  group: Cone Clutch
+- name: Kinetic friction coefficient matrix
+  summary: Kinetic friction coefficient [.34, .32, .3; .3, .28, .25; .25, .2, .15] (default) | matrix
+  group: Cone Clutch
+- name: Friction coefficient interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Cone Clutch
+- name: Friction coefficient extrapolation method
+  summary: Extrapolation method Linear (default) | Nearest | Error
+  group: Cone Clutch
+- name: Velocity tolerance
+  summary: Relative velocity locking threshold 0.001 rad/s (default) | scalar
+  group: Cone Clutch
+- name: Threshold force
+  summary: Normal contact force threshold 1 N (default) | scalar
+  group: Cone Clutch
+- name: Torque transmission model
+  summary: Torque transmission model Friction clutch approximation — Suitable for HIL and linearization (default) | Dynamic
+    with backlash | Dynamic modal
+  group: Dog Clutch
+- name: Temperature vector
+  summary: Temperature [280, 300, 320] K (default) | vector of increasing values
+  group: Dog Clutch
+- name: Maximum transmitted torque
+  summary: Maximum transmitted torque 1000 N*m (default) | positive scalar
+  group: Dog Clutch
+- name: Maximum transmitted torque vector
+  summary: Maximum transmitted torque [1000, 1050, 1000] N*m (default) | vector
+  group: Dog Clutch
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Dog Clutch
+- name: Extrapolation method
+  summary: Extrapolation method Linear (default) | Nearest | Error
+  group: Dog Clutch
+- name: Clutch teeth mean radius
+  summary: Clutch teeth mean radius 50 mm (default) | positive scalar
+  group: Dog Clutch
+- name: Number of teeth
+  summary: Number of ring or hub teeth 6 (default) | positive nonzero scalar integer
+  group: Dog Clutch
+- name: Rotational backlash
+  summary: Rotational backlash 10 deg (default) | positive scalar
+  group: Dog Clutch
+- name: Torsional stiffness
+  summary: Torsional stiffness 10e6 N*m/rad (default) | positive scalar
+  group: Dog Clutch
+- name: Torsional damping
+  summary: Torsional damping 100 N*m/(rad/s) (default) | positive scalar
+  group: Dog Clutch
+- name: Peak force
+  summary: Peak shear force 500 N (default) | nonnegative scalar
+  group: Detent
+- name: Notch width
+  summary: Notch width 3 mm (default) | nonnegative scalar
+  group: Detent
+- name: Viscous friction coefficient
+  summary: Viscous friction coefficient 0.1 N/(m/s) (default) | nonnegative scalar
+  group: Detent
+- name: Friction to peak force ratio
+  summary: Friction to peak force ratio 0.01 (default) | nonnegative scalar
+  group: Detent
+- name: Friction velocity threshold
+  summary: Kinetic friction velocity threshold 0.05 m/s (default)
+  group: Detent
+- name: Maximum engagement speed
+  summary: Engagement speed upper velocity threshold inf (default) | positive scalar
+  group: Shift Linkage
+- name: Tooth overlap to engage
+  summary: Tooth overlap engagement threshold 3 mm (default) | positive scalar
+  group: Shift Linkage
+- name: Tooth height
+  summary: Tooth height 10 mm (default) | positive scalar
+  group: Shift Linkage
+- name: Ring-hub clearance when disengaged
+  summary: Ring-hub clearance when disengaged 3 mm (default) | positive scalar
+  group: Shift Linkage
+- name: Hard stop at back of shift linkage
+  summary: Hard stop model On (default) | Off
+  group: Shift Linkage
+- name: Dog clutch ring stop stiffness
+  summary: Dog clutch ring stop stiffness 10e5 N/m (default) | positive scalar
+  group: Shift Linkage
+- name: Cone clutch ring stop stiffness
+  summary: Cone clutch ring stop stiffness 10e5 N/m (default) | positive scalar
+  group: Shift Linkage
+- name: Dog clutch ring stop damping
+  summary: Dog clutch ring stop damping 1e3 N/(m/s) (default) | nonegative scalar
+  group: Shift Linkage
+- name: Cone clutch ring stop damping
+  summary: Cone clutch ring stop damping 1e3 N/(m/s) (default) | nonegative scalar
+  group: Shift Linkage
+- name: Shift linkage viscous friction coefficient
+  summary: Shift linkage viscous friction coefficient 100 N/(m/s) (default) | positive scalar
+  group: Shift Linkage
+- name: Engagement block stiffness
+  summary: Engagement blocking stiffness coefficient 10e6 N/m (default) | positive scalar
+  group: Shift Linkage
+- name: Engagement block damping
+  summary: Engagement blocking damping coefficient 300 N*s/m (default) | positive scalar
+  group: Shift Linkage
+- name: Shift linkage engaged friction coefficient
+  summary: Engaged friction coefficient 100 N*s/m (default) | positive scalar
+  group: Shift Linkage
+- name: Shift linkage disengaged friction coefficient
+  summary: Disengaged friction coefficient 50 N*s/m (default) | positive scalar
+  group: Shift Linkage
+- name: Static contact speed threshold
+  summary: Static contact speed threshold 0.1 m/s (default) | positive scalar
+  group: Shift Linkage
+- name: Static contact release force threshold
+  summary: Release force threshold 0.001 N (default) | positive scalar
+  group: Shift Linkage
+- name: Tooth-tooth friction coefficient
+  summary: Tooth-tooth contact kinetic friction coefficient 0.05 (default) | positive scalar
+  group: Shift Linkage
+- name: Initial state
+  summary: Initial clutch state All clutches unlocked (default) | Cone clutch A and dog clutch A locked | Cone clutch A locked
+    | Cone clutch B locked | Cone clutch B and dog clutch B locked
+  group: Initial Conditions
+- name: Dog clutch initial shift linkage position
+  summary: Dog clutch initial shift linkage position 0 mm (default) | scalar
+  group: Initial Conditions
+- name: Cone clutch initial shift linkage position
+  summary: Cone clutch initial shift linkage position 0 mm (default) | scalar
+  group: Initial Conditions
+- name: Initial dog clutch A ring-hub offset angle
+  summary: Initial dog clutch *B* ring-hub offset angle 0 deg (default) | scalar
+  group: Initial Conditions
+- name: Initial dog clutch B ring-hub offset angle
+  summary: Initial dog clutch *A* ring-hub offset angle 0 deg (default) | scalar
+  group: Initial Conditions
+- name: Thermal mass
+  summary: Thermal mass 50 kJ/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 The table shows how the specified options for parameters in both the **Cone
 Clutch** and **Dog Clutch** settings affect the visibility of:
@@ -859,7 +1053,6 @@ Clutch** settings, the **Friction model** parameter is set to `Temperature-depen
 friction coefficients` or `Temperature
 and velocity-dependent friction
 coefficients`.
-
 ## Libraries
 
 Simscape / Driveline / Clutches

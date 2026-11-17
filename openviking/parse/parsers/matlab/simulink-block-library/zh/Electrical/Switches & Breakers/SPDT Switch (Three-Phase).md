@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # SPDT Switch (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: vT
+  summary: 控制端口物理信号
+  direction: input
+- name: ~1
+  summary: 可扩展三相端口电气
+  direction: input
+- name: ~2
+  summary: 可扩展三相端口电气
+  direction: input
+- name: ~3
+  summary: 可扩展三相端口电气
+  direction: input
+- name: vT
+  summary: 控制端口电气
+  direction: input
+```
 
 ### 输入
 
@@ -52,8 +70,23 @@ PS control port`。
 `Expanded three-phase ports| Electrical control
 port` 或 `Composite three-phase ports|
 Electrical control port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 连接和门控端口 Composite three-phase ports | PS control port（默认）| Composite three-phase ports| Electrical control port
+    | Expanded three-phase ports | PS control port | Expanded three-phase ports| Electrical control port
+  group: ''
+- name: Closed resistance
+  summary: 闭合电阻 0.001 Ohm（默认）
+  group: ''
+- name: Open conductance
+  summary: 断开电导 1e-6 1/Ohm（默认）
+  group: ''
+- name: Threshold
+  summary: 阈值 0.5 V（默认）
+  group: ''
+```
 
 ### **Modeling option** — 连接和门控端口 `Composite three-phase ports | PS control port`（默认）| `Composite three-phase ports| Electrical control port` | `Expanded three-phase ports | PS control port` | `Expanded three-phase ports| Electrical control port`
 
@@ -72,7 +105,6 @@ Electrical control port`。
 ### **Threshold** — 阈值 `0.5` `V`（默认）
 
 控制端口 *vT* 的阈值电压。当电压高于阈值时，开关闭合。
-
 ## 所属库
 
 Simscape / Electrical / Switches & Breakers

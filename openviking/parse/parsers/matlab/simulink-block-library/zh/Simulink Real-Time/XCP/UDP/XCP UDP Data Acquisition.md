@@ -15,10 +15,40 @@ chinese_source: worker-translation
 # XCP UDP Data Acquisition
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 从列表中选择指定的 XCP UDP 会话名称
+  group: ''
+- name: Event name
+  summary: 从列表中选择一个事件
+  group: ''
+- name: All Measurements
+  summary: 列出该事件可用的所有测量量 测量量列表
+  group: ''
+- name: Selected Measurements
+  summary: 列出已选测量量 测量量名称
+  group: ''
+- name: Block Output Settings
+  summary: 将端口输出设置为 Compu 方法转换值或原始值 Raw values as double (no Compu method conversion)（默认）| Raw values (no Compu method conversion)
+    | Physical values (apply Compu method conversion)
+  group: ''
+- name: DAQ List Priority
+  summary: 为服务器设备驱动程序优先级值指定优先级值
+  group: ''
+- name: Sample time
+  summary: 指定模块的采样时间 -1（默认）
+  group: ''
+- name: Enable Timestamp
+  summary: 启用从传入 DTO 数据包读取时间戳 off（默认）| on
+  group: ''
+```
 
 ### **Config name** — 从列表中选择指定的 XCP UDP 会话名称
 
@@ -99,7 +129,6 @@ R2025b 中未记录。
 ### **Enable Timestamp** — 启用从传入 DTO 数据包读取时间戳 `off`（默认）| `on`
 
 当启用 Timestamp 时，模块从传入的 DTO 数据包读取时间戳，并将时间戳输出到 Simulink。当 A2L 文件中支持该参数时，**Enable Timestamp** 复选框会出现在模块参数对话框中。
-
 ## 所属库
 
 Vehicle Network Toolbox / XCP Communication / UDP Simulink Real-Time / XCP / UDP

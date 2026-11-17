@@ -14,6 +14,23 @@ language: en
 # Message Send
 
 ## Ports
+```yaml
+ports:
+- name: Port_Enable
+  summary: External enable signal scalar
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: Output message scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+```
 
 ### Input
 
@@ -44,8 +61,17 @@ The block outputs a message with constant priority
 `20`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show enable port
+  summary: Display the enable port off (default) | on
+  group: ''
+  block_parameter: ShowEnablePort
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Show enable port** — Display the enable port `off` (default) | `on`
 
@@ -61,7 +87,6 @@ or equal to `0`, the send is disabled.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Messages & Events SimEvents

@@ -14,6 +14,37 @@ language: en
 # HDL Counter
 
 ## Ports
+```yaml
+ports:
+- name: rst
+  summary: Local reset port scalar
+  direction: input
+  data_types: Boolean
+- name: load
+  summary: Load port scalar
+  direction: input
+  data_types: Boolean
+- name: load_val
+  summary: Load port value scalar
+  direction: input
+  data_types: Boolean
+- name: enb
+  summary: Count enable port scalar
+  direction: input
+  data_types: Boolean
+- name: dir
+  summary: Count direction port scalar
+  direction: input
+  data_types: Boolean
+- name: count
+  summary: Counter value scalar
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: count_hit
+  summary: Counter limit indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -111,8 +142,115 @@ To enable this port, select the **Count hit output
 port** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Counter type
+  summary: Counter behavior Free running (default) | Count limited | Modulo
+  group: ''
+  block_parameter: CountType
+  type: character vector
+  values: '''Free running'' | ''Count limited'' | ''Modulo'''
+  default: '''Free running'''
+- name: Initial value
+  summary: Counter value after reset 0 (default)
+  group: ''
+  block_parameter: CountInit
+  type: character vector
+  values: An integer greater than or equal to zero
+  default: '''0'''
+- name: Step value
+  summary: Step value for count 1 (default)
+  group: ''
+  block_parameter: CountStep
+  type: character vector
+  values: An integer greater than or equal to zero
+  default: '''1'''
+- name: Count to value
+  summary: Threshold count value 25 (default)
+  group: ''
+  block_parameter: CountMax
+  type: character vector
+  values: An integer greater than or equal to zero
+  default: '''25'''
+- name: Count from
+  summary: Criteria for count from value Initial value (default) | Specify
+  group: ''
+  block_parameter: CountFromType
+  type: character vector
+  values: '''Initial value'' | ''Specify'''
+  default: '''Initial value'''
+- name: Count from value
+  summary: Initial value to count from 0 (default)
+  group: ''
+  block_parameter: CountFrom
+  type: character vector
+  values: '''Initial value'' | ''Specify'''
+  default: '''Initial value'''
+- name: Local reset port
+  summary: Local port to reset counter off (default) | on
+  group: ''
+  block_parameter: CountResetPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Load ports
+  summary: Port for load value off (default) | on
+  group: ''
+  block_parameter: CountLoadPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Count enable port
+  summary: Port to enable counting off (default) | on
+  group: ''
+  block_parameter: CountEnbPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Count direction port
+  summary: Port for count direction off (default) | on
+  group: ''
+  block_parameter: CountDirPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Count hit output port
+  summary: Port for count limit off (default) | on
+  group: ''
+  block_parameter: CountHitOutputPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Counter output data is
+  summary: Output data type signedness Unsigned (default) | Signed
+  group: ''
+  block_parameter: CountDataType
+  type: character vector
+  values: '''Unsigned'' | ''Signed'''
+  default: '''off'''
+- name: Word length
+  summary: Counter word length 8 (default)
+  group: ''
+  block_parameter: CountWordLen
+  type: character vector
+  values: An integer greater than or equal to one
+  default: '''8'''
+- name: Fraction length
+  summary: Counter fraction length 0 (default)
+  group: ''
+  block_parameter: CountFracLen
+  type: character vector
+  values: An integer greater than or equal to zero
+  default: '''0'''
+- name: Sample time
+  summary: Counter sample time 1 (default)
+  group: ''
+  block_parameter: CountSampTime
+  type: character vector
+  values: An integer greater than or equal to one
+  default: '''1'''
+```
 
 ### **Counter type** — Counter behavior `Free running` (default) | `Count limited` | `Modulo`
 
@@ -373,7 +511,6 @@ any of these parameters is selected:
 | **Type:** character vector |
 | **Value:** An integer greater than or equal to one |
 | **Default:** `'1'` |
-
 ## Libraries
 
 HDL Coder / Sources

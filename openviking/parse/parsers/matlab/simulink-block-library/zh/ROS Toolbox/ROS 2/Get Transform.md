@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Get Transform
 
 ## 端口
+```yaml
+ports:
+- name: IsAvail
+  summary: 变换可用性指示 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Value
+  summary: 源坐标系和目标坐标系之间的齐次变换值 geometry_msgs/TransformStamped 非虚拟总线（默认）| double
+  direction: output
+```
 
 ### 输出
 
@@ -27,8 +37,25 @@ chinese_source: worker-translation
 ### **Value** — 源坐标系和目标坐标系之间的齐次变换值 `geometry_msgs/TransformStamped` 非虚拟总线（默认）| double
 
 源坐标系和目标坐标系之间的齐次变换值，以非虚拟总线或 *4*×*4* double 矩阵形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Frame source
+  summary: 用于指定坐标系的来源 Select from ROS network | Specify your own
+  group: ''
+- name: Target
+  summary: 目标坐标系 字符串
+  group: ''
+- name: Source
+  summary: 源坐标系 字符串
+  group: ''
+- name: Output format
+  summary: 输出变换值的格式 bus（默认）| double
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 –1（默认）| 标量
+  group: ''
+```
 
 #### 主
 
@@ -59,7 +86,6 @@ chinese_source: worker-translation
 输出之间的间隔，指定为标量。在仿真中，采样时间遵循仿真时间，而不是实际的挂钟时间。
 
 此默认值表示模块采样时间为*继承*。有关继承采样时间类型的详细信息，请参阅 Specify Sample Time (Simulink)。
-
 ## 所属库
 
 ROS Toolbox / ROS

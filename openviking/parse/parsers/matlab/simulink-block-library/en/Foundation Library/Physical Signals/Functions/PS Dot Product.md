@@ -14,6 +14,18 @@ language: en
 # PS Dot Product
 
 ## Ports
+```yaml
+ports:
+- name: I1
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: I2
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -43,11 +55,12 @@ Output physical signal, scalar.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Functions

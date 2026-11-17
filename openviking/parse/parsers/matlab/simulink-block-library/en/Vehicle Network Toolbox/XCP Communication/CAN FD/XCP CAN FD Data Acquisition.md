@@ -14,6 +14,12 @@ language: en
 # XCP CAN FD Data Acquisition
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Output measurement samples defined by A2L file
+  direction: output
+```
 
 ### Output
 
@@ -23,8 +29,35 @@ Output measurement samples, with names and types defined by the A2L file.
 Each entry in the Selected
 Measurements parameter defines an output port. A sample is available
 at every port for every step of the simulation.
-
 ## Parameters
+```yaml
+parameters:
+- name: Config name
+  summary: Specify XCP CAN FD session name select from list
+  group: ''
+- name: Event name
+  summary: Select an event select from list
+  group: ''
+- name: All Measurements
+  summary: List all measurements available for event measurements list
+  group: ''
+- name: Selected Measurements
+  summary: List selected measurements measurement names
+  group: ''
+- name: Block Output Settings
+  summary: Set the port output as Compu method conversion values or raw values Raw values as double (no Compu method conversion)
+    (default) | Raw values (no Compu method conversion) | Physical values (apply Compu method conversion)
+  group: ''
+- name: DAQ List Priority
+  summary: Specify a priority value for server device driver priority value
+  group: ''
+- name: Sample time
+  summary: Specify sampling time of block -1 (default)
+  group: ''
+- name: Enable Timestamp
+  summary: Enable reading timestamp from incoming DTO packets off (default) | on
+  group: ''
+```
 
 ### **Config name** — Specify XCP CAN FD session name select from list
 
@@ -151,7 +184,6 @@ When the Timestamp is enabled, the block reads the timestamp from incoming DTO
 packets and outputs the timestamp to Simulink. The **Enable
 Timestamp** check box appears in the block parameters dialog box when
 the parameter is supported in the A2L file.
-
 ## Libraries
 
 Vehicle Network Toolbox / XCP Communication / CAN FD Simulink Real-Time / XCP / CAN FD

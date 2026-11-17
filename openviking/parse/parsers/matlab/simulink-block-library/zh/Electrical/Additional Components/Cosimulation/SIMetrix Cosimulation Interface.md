@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # SIMetrix Cosimulation Interface
 
 ## 端口
+```yaml
+ports:
+- name: Uk
+  summary: 输入电压或电流 标量 | 向量
+  direction: input
+- name: Uk
+  summary: 输出电压或电流 标量 | 向量
+  direction: output
+- name: UkI
+  summary: 用于接收电流值的单端端子 electrical | electrical array-of-nodes
+  direction: output
+- name: UkI+
+  summary: 用于接收电流值的正端子 electrical | electrical array-of-nodes
+  direction: output
+- name: UkI-
+  summary: 用于接收电流值的负端子 electrical | electrical array-of-nodes
+  direction: output
+- name: UkV
+  summary: 用于接收电压值的单端端子 electrical | electrical array-of-nodes
+  direction: output
+- name: UkV+
+  summary: 用于接收电压值的正端子 electrical | electrical array-of-nodes
+  direction: output
+- name: UkV-
+  summary: 用于接收电压值的负端子 electrical | electrical array-of-nodes
+  direction: output
+```
 
 ### 输入
 
@@ -99,8 +126,22 @@ Simulink 输出端口，用于测量 SIMetrix 发送到 Simulink 的电压或电
 #### 依赖关系
 
 要启用此端口，请在 SIMetrix 的 Cosimulation Interface 中将 **Configuration** 参数设置为 `Combined Input Output V/I or I/V`，并将 **Output Connections** 设置为 `Differential voltage`。
-
 ## 参数
+```yaml
+parameters:
+- name: Netlist file path
+  summary: SPICE 网表 net.net（默认值）| 文本的文件路径
+  group: ''
+- name: Browse
+  summary: 使用系统浏览器按钮选择网表
+  group: ''
+- name: Build I/O
+  summary: 构建输入/输出设备按钮
+  group: ''
+- name: Sample time (s)
+  summary: 采样时间 2e-5（默认值）| 正标量
+  group: ''
+```
 
 ### **Netlist file path** — SPICE 网表 `net.net`（默认值）| 文本的文件路径
 
@@ -117,7 +158,6 @@ SPICE 网表的文件路径。
 ### **Sample time (s)** — 采样时间 `2e-5`（默认值）| 正标量
 
 采样时间，以秒为单位。此值描述 SIMetrix 向 Simulink 提供输出的固定速率。必须将此参数设置为足够小的值，以便 Simulink 能够从 SIMetrix 仿真中捕获重要的动态特性。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / Cosimulation

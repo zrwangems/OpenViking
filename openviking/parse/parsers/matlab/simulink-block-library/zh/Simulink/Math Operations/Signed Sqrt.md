@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Sqrt
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -44,8 +55,96 @@ chinese_source: worker-translation
 输出信号，为输入信号的平方根、带符号平方根或平方根的倒数。当输入为整数或定点类型时，输出必须为浮点。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Function
+  summary: 模块执行的函数 sqrt | signedSqrt | rSqrt
+  group: 主要
+  block_parameter: Operator
+  type: character vector
+  values: '''sqrt'' | ''signedSqrt'' | ''rSqrt'''
+- name: Output signal type
+  summary: 输出信号类型 auto (默认) | real | complex
+  group: 主要
+  block_parameter: OutputSignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1 (默认) | 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1" (默认) | 带引号的标量或向量'
+- name: Method
+  summary: 计算平方根倒数的方法 Exact (默认) | Newton-Raphson
+  group: 算法
+  block_parameter: AlgorithmType
+  type: character vector
+  values: '''Exact'' | ''Newton-Raphson'''
+  default: '''Exact'''
+- name: Number of iterations
+  summary: 用于 Newton Raphson 算法的迭代次数 3 (默认) | 整数
+  group: 算法
+  block_parameter: Iterations
+  type: character vector
+  values: integer
+  default: '''3'''
+- name: Intermediate results data type
+  summary: '中间结果的数据类型 Inherit: Inherit via internal rule (默认) | Inherit: Inherit from input | Inherit: Inherit from output
+    | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: 数据类型
+  block_parameter: IntermediateResultsDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit from input'' | ''Inherit: Inherit from output'' | ''double''
+    | ''single'', ''int8'', ''uint8'', int16, ''uint16'', ''int32'', ''uint32'', ''int64'', ''uint64'', fixdt(1,16,0), fixdt(1,16,2^0,0).
+    ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output
+  summary: '输出数据类型 Inherit: Same as first input (默认) | Inherit: Inherit via internal rule | Inherit: Inherit via back propagation
+    | double | single | half | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | fixdt(1,16,0) | fixdt(1,16,2^0,0) | fixdt(1,16,2^0,0) | ''<data type expression>'''
+  default: '''Inherit: Same as first input'''
+- name: Minimum
+  summary: 用于范围检查的最小输出值 [] (默认) | 标量
+  group: 数据类型
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Maximum
+  summary: 用于范围检查的最大输出值 [] (默认) | 标量
+  group: 数据类型
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor (默认) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off (默认) | on
+  group: 数据类型
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 on (默认) | off
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''on'' (默认) | ''off'''
+```
 
 ### 主要
 
@@ -331,7 +430,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **值**：| `'on'` (默认) | `'off'` |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

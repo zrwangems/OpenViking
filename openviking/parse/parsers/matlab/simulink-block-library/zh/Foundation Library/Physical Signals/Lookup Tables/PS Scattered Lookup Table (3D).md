@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PS Scattered Lookup Table (3D)
 
 ## 端口
+```yaml
+ports:
+- name: x1
+  summary: 沿第一个方向的输入查询点或查询点的 N 维数组，无类型物理信号
+  direction: input
+- name: x2
+  summary: 沿第二个方向的输入查询点或查询点的 N 维数组，无类型物理信号
+  direction: input
+- name: x3
+  summary: 沿第三个方向的输入查询点或查询点的 N 维数组，无类型物理信号
+  direction: input
+- name: f
+  summary: 输出函数值，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +49,25 @@ chinese_source: worker-translation
 ### **f** — 输出函数值，无类型物理信号
 
 输出函数值，基于对两个输入值应用散点查找方法得到。输出信号大小与沿第一个方向的输入信号大小一致。输出信号单位由 **Data points function value** 参数的单位决定。
-
 ## 参数
+```yaml
+parameters:
+- name: Data points coordinate 1
+  summary: 沿第一个方向的输入值数据集 [1, 2, 3, 4, 5] 1（默认）
+  group: ''
+- name: Data points coordinate 2
+  summary: 沿第二个方向的输入值数据集 [5, 4, 3, 3, 1] 1（默认）
+  group: ''
+- name: Data points coordinate 3
+  summary: 沿第三个方向的输入值数据集 [8, 2, 5, 7, 0] 1（默认）
+  group: ''
+- name: Data points function value
+  summary: 用于查找的函数值数据集 [1, 2, 3, 4, 5] 1（默认）
+  group: ''
+- name: Extrapolation method
+  summary: 选择外推方法 Linear（默认）| Nearest
+  group: ''
+```
 
 ### **Data points coordinate 1** — 沿第一个方向的输入值数据集 `[1, 2, 3, 4, 5] 1`（默认）
 
@@ -67,7 +99,6 @@ chinese_source: worker-translation
 
 - `Linear` — 基于边界梯度的线性外推。
 - `Nearest` — 最近邻外推。此方法计算为边界上最近邻的值。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Lookup Tables

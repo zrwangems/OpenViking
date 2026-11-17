@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # PFD
 
 ## 端口
+```yaml
+ports:
+- name: reference
+  summary: 参考频率标量
+  direction: input
+  data_types: double
+- name: feedback
+  summary: 反馈频率标量
+  direction: input
+  data_types: double
+- name: up
+  summary: 传输参考频率标量
+  direction: output
+  data_types: double
+- name: down
+  summary: 传输反馈频率标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +61,34 @@ chinese_source: worker-translation
 输出端口，用于将反馈频率传输至电荷泵，以将相位误差转换为电流。**up** 和 **down** 端口信号的占空比之差与 **reference** 和 **feedback** 端口信号之间的相位差成正比。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Deadband compensation (s)
+  summary: 为零相位偏移附近的有效输出添加的延迟 30e-12（默认）| 正实数标量
+  group: 配置
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: 配置
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 10（默认）| 正整数标量
+  group: 配置
+- name: Enable impairments
+  summary: 将电路损伤添加到仿真 on（默认）| off
+  group: 损伤
+- name: Output step size calculation
+  summary: 确定如何计算输出步长 Default（默认）| Advanced
+  group: 损伤
+- name: Maximum frequency of interest (Hz)
+  summary: 输出端最大关注频率 10e9（默认）| 正实数标量
+  group: 损伤
+- name: Rise/fall time (s)
+  summary: PFD 的 up 输出端口 20% – 80% 上升/下降时间 3e-11（默认）| 正实数标量
+  group: 损伤
+- name: Propagation Delay (s)
+  summary: 从 PFD 输入端口到输出端口的延迟 50e-12（默认）| 正实数标量
+  group: 损伤
+```
 
 ### 配置
 
@@ -158,7 +203,6 @@ Impairments**。
   将 **Propagation Delay (s)** 设置为特定值。
 
 **数据类型：** `double`
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Building Blocks

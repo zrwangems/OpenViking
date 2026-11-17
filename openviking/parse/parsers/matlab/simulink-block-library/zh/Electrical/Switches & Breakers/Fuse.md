@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Fuse
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: output
+- name: '-'
+  summary: 负极端子电气
+  direction: output
+- name: x
+  summary: 保险丝状态物理信号
+  direction: output
+```
 
 ### 守恒
 
@@ -36,8 +48,40 @@ chinese_source: worker-translation
 
 当 **PS output for fuse state**
 参数设置为 `Visible` 时暴露。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 开路时间对电流的模型依赖性 Opening time is independent of current（默认）| Opening time depends on I^2*t | Opening time is tabulated
+  group: ''
+- name: Rated current, I_rated
+  summary: 额定工作电流 1 A（默认）
+  group: ''
+- name: Ratio of minimum melting current to rated current, I_melt/I_rated
+  summary: 定义的熔断阈值电流 1（默认）
+  group: ''
+- name: Time to fuse
+  summary: 保险丝熔断所需时间 0 s（默认）
+  group: ''
+- name: Nominal melting, I^2\*t
+  summary: 保险丝熔断所需的耗散能量 1 s\*A^2（默认）
+  group: ''
+- name: Tabulated currents
+  summary: 来自时间-电流曲线的电流数据 [1.9, 2, 2.5, 30] A（默认）
+  group: ''
+- name: Tabulated opening times
+  summary: 来自时间-电流曲线的时间数据 [10000, 1, 0.3, 0.001] s（默认）
+  group: ''
+- name: Fuse resistance R
+  summary: 保险丝电阻 0.01 Ω（默认）
+  group: ''
+- name: Open-circuit conductance G
+  summary: 开路保险丝电导 1e-8 1/Ω（默认）
+  group: ''
+- name: PS output for fuse state
+  summary: 控制保险丝状态输出端口的可见性 Hidden（默认）| Visible
+  group: ''
+```
 
 ### **Parameterization** — 开路时间对电流的模型依赖性 `Opening time is independent of current`（默认）| `Opening time depends on I^2*t` | `Opening time is tabulated`
 
@@ -140,7 +184,6 @@ current` 时启用。
 当设置为 `Visible` 时，模块图标上会出现一个 PS 输出端口
 **x**。如果保险丝完好，该端口输出 0；
 如果保险丝已熔断，则输出 1。
-
 ## 所属库
 
 Simscape / Electrical / Switches & Breakers

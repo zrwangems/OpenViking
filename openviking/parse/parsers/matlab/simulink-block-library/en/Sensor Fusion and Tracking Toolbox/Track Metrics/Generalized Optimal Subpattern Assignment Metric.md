@@ -14,6 +14,36 @@ language: en
 # Generalized Optimal Subpattern Assignment Metric
 
 ## Ports
+```yaml
+ports:
+- name: Tracks
+  summary: Track list Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Truths
+  summary: Truth list Simulink bus containing MATLAB structure
+  direction: input
+- name: Assignments
+  summary: Known assignment *K*-by-2 matrix of nonnegative integers
+  direction: input
+- name: GOSPA Metric
+  summary: GOSPA metric including switching error component nonnegative real scalar
+  direction: output
+- name: GOSPA Metric Without Switching
+  summary: GOSPA metric without switching error component nonnegative real scalar
+  direction: output
+- name: Switching Error
+  summary: Switching error component nonnegative real scalar
+  direction: output
+- name: Localization Error
+  summary: Localization error component nonnegative real scalar
+  direction: output
+- name: Missed Target Error
+  summary: Missed target error component nonnegative real scalar
+  direction: output
+- name: False Track Error
+  summary: False track error component nonnegative real scalar
+  direction: output
+```
 
 ### Input
 
@@ -193,8 +223,64 @@ False track error component, returned as a nonnegative real scalar.
 
 To enable this port, on the **Port Setting** tab, select
 **False track error**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cutoff distance
+  summary: Threshold for cutoff distance between track and truth 30 (default) | real positive scalar
+  group: ''
+- name: Order
+  summary: Order of GOSPA metric 2 (default) | positive integer
+  group: ''
+- name: Alpha
+  summary: Alpha parameter of GOSPA metric 2 (default) | positive scalar in range [0, 2]
+  group: ''
+- name: Distance type
+  summary: Distance type posnees (default) | velnees | posabserr | velabserr | custom
+  group: ''
+- name: Custom distance function
+  summary: Custom distance function function handle
+  group: ''
+- name: Motion model
+  summary: Desired platform motion model constvel (default) | constacc | constturn | singer
+  group: ''
+- name: Switching penalty
+  summary: Penalty for assignment switching 0 (default) | nonnegative real scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code Generation
+  group: ''
+- name: Assignments
+  summary: Enable assignment input off (default) | on
+  group: ''
+- name: GOSPA metric without switching error
+  summary: Enable GOSPA metric without switching error output off (default) | on
+  group: ''
+- name: Switching error
+  summary: Enable switching error component output off (default) | on
+  group: ''
+- name: Localization error
+  summary: Enable localization error component output off (default) | on
+  group: ''
+- name: Missed target error
+  summary: Enable missed target error component output off (default) | on
+  group: ''
+- name: False track error
+  summary: Enable false track error component output off (default) | on
+  group: ''
+- name: Track bus
+  summary: Track bus selection objectTrack (default) | custom
+  group: ''
+- name: Truth bus
+  summary: Truth bus selection Platform (default) | Actor | custom
+  group: ''
+- name: Track extractor function
+  summary: Track extractor function function handle
+  group: ''
+- name: Truth extractor function
+  summary: Truth extractor function function handle
+  group: ''
+```
 
 #### Properties
 
@@ -391,7 +477,6 @@ where
 
 To enable this property, set the **Truth bus** parameter to
 `custom`.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Track Metrics

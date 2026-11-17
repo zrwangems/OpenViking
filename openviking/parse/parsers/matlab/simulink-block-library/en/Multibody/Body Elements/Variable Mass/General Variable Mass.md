@@ -14,6 +14,21 @@ language: en
 # General Variable Mass
 
 ## Ports
+```yaml
+ports:
+- name: m
+  summary: Mass physical signal specified as a scalar with units of mass
+  direction: input
+- name: com
+  summary: Center of mass physical signal specified as a 3-by-1 or 1-by-3 vector with units of length
+  direction: input
+- name: I
+  summary: Inertia physical signal specified as a 3-by-3 matrix with units of mass × length^2
+  direction: input
+- name: R
+  summary: Reference frame frame
+  direction: input
+```
 
 ### Input
 
@@ -57,8 +72,69 @@ This port is enabled when the **Inertia** > **Type** parameter is set to
 Local reference frame of the variable mass element. Connect the port
 to a frame line or another frame port to define the relative position
 and orientation of the variable mass.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Choice of point or distributed mass Custom (default) | Point Mass
+  group: Inertia
+- name: Mass
+  summary: Mass parameterization Time-Varying (default) | Constant
+  group: Inertia
+- name: 'Mass: Value'
+  summary: Aggregate mass of the mass element 1 kg (default) | scalar with units of mass
+  group: Inertia
+- name: Center of Mass
+  summary: Center-of-mass parameterization Time-Varying (default) | Constant
+  group: Inertia
+- name: 'Center of Mass: Value'
+  summary: Center-of-mass coordinates [0 0 0] m (default) | three-element vector with units of length
+  group: Inertia
+- name: Inertia Matrix
+  summary: Inertia-matrix parameterization Time-Varying (default) | Constant
+  group: Inertia
+- name: 'Inertia Matrix: Moments of Inertia'
+  summary: Diagonal elements of the inertia matrix [1 1 1] kg * m^2 (default) | three-element vector with units of mass\*length^2
+  group: Inertia
+- name: 'Inertia Matrix: Products of Inertia'
+  summary: Off-diagonal elements of the inertia matrix [0 0 0] kg * m^2 (default) | 3-element array with units of mass \*
+    length^2
+  group: Inertia
+- name: Type
+  summary: Geometry type to use in model visualizations Equivalent Inertia Ellipsoid (default) | Marker | None
+  group: Graphic
+- name: Shape
+  summary: Shape of marker to represent to variable mass Sphere (default) | Cube | Frame
+  group: Graphic
+- name: Size
+  summary: Width of the marker in pixels 10 pixels (default) | scalar
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: Graphic
+```
 
 ### Inertia
 
@@ -340,7 +416,6 @@ To enable this parameter, set:
    `Marker`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Body Elements / Variable Mass

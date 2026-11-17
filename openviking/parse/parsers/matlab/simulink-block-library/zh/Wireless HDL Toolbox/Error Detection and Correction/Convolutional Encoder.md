@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Convolutional Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据位 标量
+  direction: input
+  data_types: Boolean | fixed point
+- name: valid
+  summary: 输入数据的有效性 标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: ISt
+  summary: 每个帧开始时的初始状态 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: data
+  summary: 编码输出数据 列向量
+  direction: output
+  data_types: Boolean
+- name: valid
+  summary: 输出样本的有效性 标量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: FSt
+  summary: 每个帧结束时的最终状态 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -112,8 +151,31 @@ chinese_source: worker-translation
 要启用此端口，请将 **Operation mode** 参数设置为 `Truncated`，并选中 **Enable final state output port** 参数。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Constraint length
+  summary: 模块的约束长度 7（默认）| [3, 9] 范围内的整数
+  group: 主要
+- name: Code generator
+  summary: 码生成多项式 [171 133]（默认）| 八进制值向量
+  group: 主要
+- name: Feedback connection
+  summary: 反馈连接多项式 0（默认）| 标量八进制数
+  group: 主要
+- name: Operation mode
+  summary: 操作模式 Continuous（默认）| Terminated | Truncated
+  group: 主要
+- name: Enable reset input port
+  summary: 复位输入信号 off（默认）| on
+  group: 控制端口
+- name: Enable initial state input port
+  summary: 初始状态输入信号 Off（默认）| On
+  group: 控制端口
+- name: Enable final state output port
+  summary: 最终状态输出信号 Off（默认）| On
+  group: 控制端口
+```
 
 ### 主要
 
@@ -168,7 +230,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Operation mode** 参数设置为 `Truncated`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

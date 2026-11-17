@@ -14,6 +14,18 @@ language: en
 # Byte Pack
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signals to convert signal of type double (default) | array of signal data
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: Converted signal data vector
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -30,8 +42,16 @@ Converted block input, returned as a vector of `uint8`
 data.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input port data types (cell array)
+  summary: Data types of block input signals {'double'} (default) | cell array of Simulink® data types
+  group: ''
+- name: Byte alignment
+  summary: Byte boundary for data type alignment 1 (default) | 2 | 4 | 8
+  group: ''
+```
 
 ### **Input port data types (cell array)** — Data types of block input signals {'double'} (default) | cell array of Simulink® data types
 
@@ -89,7 +109,6 @@ boundary. When the signals are scalar values, the:
 
 The packing algorithm leaves a 1-byte gap between the `uint8`
 data value and the double value.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management C2000 Microcontroller Blockset / Target Communication

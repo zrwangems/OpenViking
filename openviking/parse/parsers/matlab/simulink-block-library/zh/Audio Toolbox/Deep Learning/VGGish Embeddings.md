@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # VGGish Embeddings
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 声音数据列向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 长度为 128 的嵌入行向量
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -30,8 +41,16 @@ chinese_source: worker-translation
 VGGish 特征嵌入，以长度为 128 的行向量形式返回。特征嵌入是音频数据的紧凑表示。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 16e3（默认）| 正标量
+  group: ''
+- name: Overlap percentage (%)
+  summary: 连续梅尔频谱图之间的重叠百分比 50（默认）| [0 100)
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（Hz） `16e3`（默认）| 正标量
 
@@ -40,7 +59,6 @@ VGGish 特征嵌入，以长度为 128 的行向量形式返回。特征嵌入�
 ### **Overlap percentage (%)** — 连续梅尔频谱图之间的重叠百分比 `50`（默认）| [0 100)
 
 将连续梅尔频谱图之间的重叠百分比指定为范围 [0 100) 内的标量。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

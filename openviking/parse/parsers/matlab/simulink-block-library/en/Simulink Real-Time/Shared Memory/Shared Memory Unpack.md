@@ -14,10 +14,19 @@ language: en
 # Shared Memory Unpack
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Partition struct
+  summary: Name of structure [] (default)
+  group: ''
+  block_parameter: partition
+```
 
 ### **Partition struct** — Name of structure `[]` (default)
 
@@ -29,7 +38,6 @@ unpacks the double word array vector into this structure.
 |  |
 | --- |
 | **Block Parameter:** `partition` |
-
 ## Libraries
 
 Simulink Real-Time / Shared Memory

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Quaternion Conjugate
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 输入四元数 四元数 | 四元数向量
+  direction: input
+  data_types: double | bus
+- name: q'
+  summary: 四元数共轭 四元数共轭 | 四元数共轭向量
+  direction: output
+  data_types: double | bus
+```
 
 ### 输入
 
@@ -48,11 +59,12 @@ chinese_source: worker-translation
 四元数或向量形式返回。
 
 **数据类型：** `double` | `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

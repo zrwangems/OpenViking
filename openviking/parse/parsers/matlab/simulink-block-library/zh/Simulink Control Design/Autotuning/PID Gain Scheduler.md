@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # PID Gain Scheduler
 
 ## 端口
+```yaml
+ports:
+- name: scheduling Variable
+  summary: 调度变量标量
+  direction: input
+- name: Breakpoints
+  summary: 断点数据向量
+  direction: input
+- name: PID Gains
+  summary: PID 增益数组总线
+  direction: input
+- name: P
+  summary: 比例增益向量
+  direction: output
+- name: I
+  summary: 积分增益向量
+  direction: output
+- name: D
+  summary: 微分增益向量
+  direction: output
+- name: N
+  summary: 微分滤波器增益向量
+  direction: output
+```
 
 ### 输入
 
@@ -75,8 +99,130 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Controller type** 设置为具有滤波微分作用的控制器类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Controller type
+  summary: PID 控制器类型 P（默认）| I | PI | PD | PDN | PID | PIDN
+  group: ''
+  block_parameter: ControllerType
+  type: string
+  values: '"P" | "I" | "PI" | "PD" | "PDN" | "PID" | "PIDN"'
+  default: '"PID"'
+- name: Breakpoints saved in gain array
+  summary: 读取保存在增益数组中的断点 off（默认）| on
+  group: ''
+  block_parameter: BPsInGainArray
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Breakpoints
+  summary: 增益调度断点 [1 2 3]（默认）| 向量
+  group: ''
+  block_parameter: GainArrayBreakpoints
+  type: string
+  values: 至少包含两个元素的向量
+  default: '"[1 2 3]"'
+- name: Use external signal
+  summary: 从输入端口指定断点 off（默认）| on
+  group: ''
+  block_parameter: UseExternalBreakpoints
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Method of obtaining gains
+  summary: 获取增益的方法 Data store memory（默认）| Goto/from | Input to block
+  group: ''
+  block_parameter: GainSourceMethod
+  type: string
+  values: '"Data store memory" | "Goto/from" | "Input to block"'
+  default: '"Data store memory"'
+- name: P Gain Parameter Name
+  summary: 比例增益数据名称 PGain（默认）| string
+  group: ''
+  block_parameter: StoreGainsPParamName
+  type: string
+  default: '"PGain"'
+- name: I Gain Parameter Name
+  summary: 积分增益数据名称 IGain（默认）| string
+  group: ''
+  block_parameter: StoreGainsIParamName
+  type: string
+  default: '"IGain"'
+- name: D Gain Parameter Name
+  summary: 微分增益数据名称 DGain（默认）| string
+  group: ''
+  block_parameter: StoreGainsDParamName
+  type: string
+  default: '"DGain"'
+- name: N Gain Parameter Name
+  summary: 滤波器增益数据名称 NGain（默认）| string
+  group: ''
+  block_parameter: StoreGainsNParamName
+  type: string
+  default: '"NGain"'
+- name: Data type
+  summary: 浮点精度 Double（默认）| Single
+  group: ''
+  block_parameter: BlockDataType
+  type: string
+  values: '"Double" | "Single"'
+  default: '"Double"'
+- name: P gain lookup method
+  summary: 比例增益查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below |
+    Use Input Above
+  group: ''
+  block_parameter: PGainLookUpMeth
+  type: string
+  values: '"Interpolation-Use End Values" | "Interpolation-Extrapolation" | "Use Input Nearest" | "Use Input Below" | "Input
+    to block"'
+  default: '"Use Input Above"'
+- name: I gain lookup method
+  summary: 积分增益查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below |
+    Use Input Above
+  group: ''
+  block_parameter: IGainLookUpMeth
+  type: string
+  values: '"Interpolation-Use End Values" | "Interpolation-Extrapolation" | "Use Input Nearest" | "Use Input Below" | "Input
+    to block"'
+  default: '"Use Input Above"'
+- name: D gain lookup method
+  summary: 微分增益查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below |
+    Use Input Above
+  group: ''
+  block_parameter: DGainLookUpMeth
+  type: string
+  values: '"Interpolation-Use End Values" | "Interpolation-Extrapolation" | "Use Input Nearest" | "Use Input Below" | "Input
+    to block"'
+  default: '"Use Input Above"'
+- name: N gain lookup method
+  summary: 微分滤波器增益查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below
+    | Use Input Above
+  group: ''
+  block_parameter: NGainLookUpMeth
+  type: string
+  values: '"Interpolation-Use End Values" | "Interpolation-Extrapolation" | "Use Input Nearest" | "Use Input Below" | "Input
+    to block"'
+  default: '"Use Input Above"'
+- name: 发生溢出时饱和至最大值或最小值
+  summary: 溢出操作方式 off（默认）| on
+  group: ''
+  block_parameter: DoSatur
+  type: string
+  values: '"off" | "on"'
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 用于防止定点工具覆盖输出数据类型的选项 off（默认）| on
+  group: ''
+  block_parameter: LockScale
+  type: string
+  values: '"off" | "on"'
+- name: 整数舍入模式
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+```
 
 ### **Controller type** — PID 控制器类型 `P`（默认）| `I` | `PI` | `PD` | `PDN` | `PID` | `PIDN`
 
@@ -383,7 +529,6 @@ array**。
 | **类型：** character vector |
 | **值：** `"Ceiling"` | `"Convergent"` | `"Floor"` | `"Nearest"` | `"Round"` | `"Simplest"` | `"Zero"` |
 | **默认：** `"Floor"` |
-
 ## 所属库
 
 Simulink Control Design / Autotuning

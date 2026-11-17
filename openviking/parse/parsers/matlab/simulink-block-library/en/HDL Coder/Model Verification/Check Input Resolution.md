@@ -14,6 +14,17 @@ language: en
 # Check Input Resolution
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal checked against resolution scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Assertion output signal scalar
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -41,8 +52,43 @@ is `double`.
 To enable this port, select **Output assertion signal**.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Resolution
+  summary: Resolution value to compare to input signal scalar | vector
+  group: ''
+  block_parameter: resolution
+  type: string scalar or character vector
+  default: '"1"'
+- name: Enable assertion
+  summary: Enable or disable check on (default) | off
+  group: ''
+  block_parameter: enabled
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Simulation callback when assertion fails (optional)
+  summary: Expression to evaluate when assertion fails "" (default) | MATLAB expression
+  group: ''
+  block_parameter: callback
+  type: string scalar or character vector
+  default: '""'
+- name: Stop simulation when assertion fails
+  summary: Whether to stop simulation when check fails on (default) | off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Output assertion signal
+  summary: Create output signal off (default) | on
+  group: ''
+  block_parameter: export
+  type: string scalar or character vector
+  values: '"on" | "off"'
+  default: '"off"'
+```
 
 ### **Resolution** — Resolution value to compare to input signal scalar | vector
 
@@ -117,7 +163,6 @@ Select this parameter to enable the output port.
 | **Type:** string scalar or character vector |
 | **Values:** `"on"` | `"off"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Simulink / Model Verification HDL Coder / Model Verification

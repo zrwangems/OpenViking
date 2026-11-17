@@ -14,6 +14,14 @@ language: en
 # Fault Data Inport
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data from model signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumeration | bus
+```
 
 ### Output
 
@@ -25,11 +33,12 @@ model must contain the fault assigned to the behavior. The signal that you map t
 block determines the output data type.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumeration` | `bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Fault Analyzer / Fault Port Blocks

@@ -14,6 +14,9 @@ language: en
 # Hydraulic Constant Pressure Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,13 +25,14 @@ The block has the following ports:
 
 `P`
 :   Hydraulic conserving port associated with the source outlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Pressure**
 :   Specifies the pressure difference between the source inlet and outlet. The
     default value is `1e6` Pa.
-
 ## Libraries
 
 Not documented in R2025b.

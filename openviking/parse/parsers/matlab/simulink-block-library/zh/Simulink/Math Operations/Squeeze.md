@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Squeeze
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 多维输入信号 多维信号
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: 无单一维度的输出信号 多维信号
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -30,11 +43,12 @@ chinese_source: worker-translation
 无单一维度的输出信号。例如，大小为 3×1×2 的多维数组变为 3×2 的信号。如果输入中没有单一维度，则输入信号原样传递到输出。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Math Operations

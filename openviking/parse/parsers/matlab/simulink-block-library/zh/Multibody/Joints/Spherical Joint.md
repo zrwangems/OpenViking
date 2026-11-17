@@ -15,6 +15,75 @@ chinese_source: worker-translation
 # Spherical Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础坐标系 坐标系
+  direction: input
+- name: F
+  summary: 从动坐标系 坐标系
+  direction: input
+- name: tx
+  summary: 关于解算坐标系 *x* 轴的驱动力矩 物理信号
+  direction: input
+- name: ty
+  summary: 关于解算坐标系 *y* 轴的驱动力矩 物理信号
+  direction: input
+- name: tz
+  summary: 关于解算坐标系 *z* 轴的驱动力矩 物理信号
+  direction: input
+- name: t
+  summary: 驱动力矩向量 物理信号
+  direction: input
+- name: mode
+  summary: 关节模式控制物理信号
+  direction: input
+- name: Q
+  summary: 四元数参数化下的相对姿态物理信号
+  direction: output
+- name: wx
+  summary: 相对角速度的 x 坐标物理信号
+  direction: output
+- name: wy
+  summary: 相对角速度的 y 坐标物理信号
+  direction: output
+- name: wz
+  summary: 相对角速度的 z 坐标物理信号
+  direction: output
+- name: w
+  summary: 角速度向量物理信号
+  direction: output
+- name: bx
+  summary: 相对角加速度的 x 坐标物理信号
+  direction: output
+- name: by
+  summary: 相对角加速度的 y 坐标物理信号
+  direction: output
+- name: bz
+  summary: 相对角加速度的 z 坐标物理信号
+  direction: output
+- name: b
+  summary: 角加速度矢量物理信号
+  direction: output
+- name: tll
+  summary: 下限力矩幅值物理信号
+  direction: output
+- name: tul
+  summary: 上限力矩幅值物理信号
+  direction: output
+- name: fc
+  summary: 约束力，N 物理信号
+  direction: output
+- name: tc
+  summary: 约束力矩，N\*m 物理信号
+  direction: output
+- name: ft
+  summary: 总力，N 物理信号
+  direction: output
+- name: tt
+  summary: 总力矩，N\*m 物理信号
+  direction: output
+```
 
 ### 坐标系
 
@@ -212,8 +281,166 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在**复合力/力矩传感**下，选择**总力矩**。
-
 ## 参数
+```yaml
+parameters:
+- name: 指定位置目标
+  summary: 是否指定相对方向目标 off（默认）| on
+  group: 球形基元 (S)
+- name: 优先级
+  summary: 相对方向目标的优先级 High (desired)（默认）| Low (approximate)
+  group: 球形基元 (S)
+- name: 值 > 方法
+  summary: 指定相对方向目标的方法 None（默认）| Aligned Axes | Standard Axis | Arbitrary Axis | Rotation Sequence | Rotation Matrix | Quaternion
+  group: 球形基元 (S)
+- name: 配对 1：从动
+  summary: 用于与指定基座坐标系轴对齐的从动坐标系轴 +X（默认）| -X | +Y | -Y | +Z | -Z
+  group: 球形基元 (S)
+- name: 配对 1：基座
+  summary: 基座坐标系轴 +Y（默认）| +X | -X | -Y | +Z | -Z
+  group: 球形基元 (S)
+- name: 配对 2：从动
+  summary: 用于与指定基座坐标系轴对齐的从动坐标系轴 +Y | +X | -X | -Y | +Z | -Z
+  group: 球形基元 (S)
+- name: 'Pair2: Base'
+  summary: 基座坐标系轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: 球形基元 (S)
+- name: Axis
+  summary: 相对旋转的标准轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: 球形基元 (S)
+- name: Angle
+  summary: 相对旋转的角度 0.0 deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Axis
+  summary: 相对旋转的轴 [0 0 1]（默认）| 3×1 向量
+  group: 球形基元 (S)
+- name: Angle
+  summary: 相对旋转的角度 0.0 deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Rotation About
+  summary: 绕其轴旋转跟随坐标系的坐标系 Follower Axes（默认）| Base Axes
+  group: 球形基元 (S)
+- name: Sequence
+  summary: 旋转轴序列 X-Y-X（默认）| X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z | Z-Y-X | Z-Y-Z
+  group: 球形基元 (S)
+- name: Angles
+  summary: 旋转序列参数化的角度 [0 0 0] deg（默认）| 1×3 向量
+  group: 球形基元 (S)
+- name: Rotation Matrix
+  summary: 使用旋转矩阵的相对旋转 [1 0 0; 0 1 0; 0 0 1]（默认）| 3×3 矩阵
+  group: 球形基元 (S)
+- name: Quaternion
+  summary: 使用四元数的相对旋转 [1 0 0 0]（默认）| 单位四元数向量
+  group: 球形基元 (S)
+- name: Specify Velocity Target
+  summary: 是否指定角速度目标 off（默认）| on
+  group: 球形基元 (S)
+- name: Priority
+  summary: 角速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: 球形基元 (S)
+- name: Value
+  summary: 球面基元的角速度目标 [0 0 0] deg/s（默认）| 1×3 向量
+  group: 球形基元 (S)
+- name: Resolution Frame
+  summary: 用于解算指定角速度目标的坐标系 Base（默认）| Follower
+  group: 球形基元 (S)
+- name: Equilibrium Position > Method
+  summary: 指定平衡坐标系的方法 None（默认）| Aligned Axes | Standard Axis | Arbitrary Axis | Rotation Sequence | Rotation Matrix | Quaternion
+  group: 球形基元 (S)
+- name: 'Pair 1: Follower'
+  summary: 用于与指定基座坐标系轴对齐的平衡坐标系轴 +X（默认）| -X | +Y | -Y | +Z | -Z
+  group: 球形基元 (S)
+- name: 'Pair 1: Base'
+  summary: 基座坐标系轴 +Y（默认）| +X | -X | -Y | +Z | -Z
+  group: 球形基元 (S)
+- name: 'Pair 2: Follower'
+  summary: 用于与指定基座坐标系轴对齐的平衡坐标系轴 +Y | +X | -X | -Y | +Z | -Z
+  group: 球形基元 (S)
+- name: 'Pair2: Base'
+  summary: 基座坐标系轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: 球形基元 (S)
+- name: Axis
+  summary: 相对旋转的标准轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: 球形基元 (S)
+- name: Angle
+  summary: 相对旋转的角度 0.0 deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Axis
+  summary: 相对旋转的轴 [0 0 1]（默认）| 3×1 向量
+  group: 球形基元 (S)
+- name: Angle
+  summary: 相对旋转的角度 0.0 deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Rotation About
+  summary: 绕其轴旋转平衡坐标系的坐标系 Follower Axes（默认）| Base Axes
+  group: 球形基元 (S)
+- name: Sequence
+  summary: 旋转轴序列 X-Y-X（默认）| X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z | Z-Y-X | Z-Y-Z
+  group: 球形基元 (S)
+- name: Angles
+  summary: 基本旋转的角度 [0 0 0] deg（默认）| 1×3 向量
+  group: 球形基元 (S)
+- name: Matrix
+  summary: 使用旋转矩阵的相对旋转 [1 0 0; 0 1 0; 0 0 1]（默认）| 3×3 矩阵
+  group: 球形基元 (S)
+- name: Quaternion
+  summary: 使用四元数的相对旋转 [1 0 0 0]（默认）| 单位四元数向量
+  group: 球形基元 (S)
+- name: Spring Stiffness
+  summary: 力律的刚度 0 N*m/deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Damping Coefficient
+  summary: 力律的阻尼系数 0 N*m/(deg/s)（默认）| 标量
+  group: 球形基元 (S)
+- name: Specify Lower Limit
+  summary: 是否指定下位置限制 off（默认）| on
+  group: 球形基元 (S)
+- name: Bound
+  summary: 自由区域的下界 15 deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Spring Stiffness
+  summary: 下界处弹簧的刚度 1e4 N*m/deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Damping Coefficient
+  summary: 下界处的阻尼系数 10 N*m/(deg/s)（默认）| 标量
+  group: 球形基元 (S)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼器扭矩的区域 0.1 deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Specify Upper Limit
+  summary: 是否指定上位置限制 off（默认）| on
+  group: 球形基元 (S)
+- name: Bound
+  summary: 自由区域的上界 45 deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Spring Stiffness
+  summary: 上界处弹簧的刚度 1e4 N*m/deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Damping Coefficient
+  summary: 上界处的阻尼系数 10 N*m/(deg/s)（默认）| 标量
+  group: 球形基元 (S)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼力矩的区域 0.1 deg（默认）| 标量
+  group: 球形基元 (S)
+- name: Torque
+  summary: 提供驱动力矩的选项 None（默认）| Provided by Input
+  group: 球形基元 (S)
+- name: Resolution Frame
+  summary: 用于分解驱动力矩的坐标系 Base（默认）| Follower
+  group: 球形基元 (S)
+- name: Resolution Frame
+  summary: 用于分解传感输出的坐标系 Base（默认）| Follower
+  group: 球形基元 (S)
+- name: Mode
+  summary: 关节模式 Normal（默认）| Locked | Disengaged | Provided by Input
+  group: 模式配置
+- name: Direction
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: 复合力/力矩传感
+- name: Resolution Frame
+  summary: 用于解析测量的坐标系 Base（默认）| Follower
+  group: 复合力/力矩传感
+```
 
 ### 球形基元 (S)
 
@@ -623,7 +850,6 @@ chinese_source: worker-translation
 - `Follower` — 该模块在从动坐标系的坐标中解析测量值。
 
 该参数仅影响 **Composite Force/Torque Sensing** 部分下的输出信号。
-
 ## 所属库
 
 Simscape / Multibody / Joints

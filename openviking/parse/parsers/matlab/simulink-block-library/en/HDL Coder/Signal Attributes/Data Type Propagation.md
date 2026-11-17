@@ -14,6 +14,21 @@ language: en
 # Data Type Propagation
 
 ## Ports
+```yaml
+ports:
+- name: Ref1
+  summary: First reference signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Ref2
+  summary: Second reference signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Prop
+  summary: Propagated data type and scaling data type and scaling
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -40,8 +55,143 @@ so, specify individual multiplicative and additive adjustments in the
 block dialog box.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: 1. Propagated data type
+  summary: Mode of specifying propagated data type Inherit via propagation rule (default) | Specify via dialog
+  group: Propagated Type
+  block_parameter: PropDataTypeMode
+  type: character vector
+  values: '''Specify via dialog'' | ''Inherit via propagation rule'''
+  default: '''Inherit via propagation rule'''
+- name: 1.1. Propagated data type (e.g. fixdt(1,16), fixdt('single'))
+  summary: Propagated data type fixdt(1,16) (default) | data type string
+  group: Propagated Type
+  block_parameter: PropDataType
+  type: character vector
+  values: '''fixdt(1, 16)'' | data type string in quotes'
+  default: '''fixdt(1, 16)'''
+- name: 1.1 If any reference input is double, output is
+  summary: Output data type when a reference input is double double (default) | single
+  group: Propagated Type
+  block_parameter: IfRefDouble
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: 1.2 If any reference input is single, output is
+  summary: Output data type when a reference input is single single (default) | double
+  group: Propagated Type
+  block_parameter: IfRefSingle
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''single'''
+- name: 1.3 Is-Signed
+  summary: Signedness of propagated data type IsSigned1 or IsSigned2 (default) | IsSigned1 | IsSigned2 | TRUE | FALSE
+  group: Propagated Type
+  block_parameter: IsSigned
+  type: character vector
+  values: '''IsSigned1'' | ''IsSigned2'' | ''IsSigned1 or IsSigned2'' | ''TRUE'' | ''FALSE'''
+  default: '''IsSigned1 or IsSigned2'''
+- name: '1.4.1 Number-of-bits: Base'
+  summary: Number of bits for the base of the propagated data type max([NumBits1 NumBits2]) (default) | NumBits1 | NumBits2
+    | min([NumBits1 NumBits2]) | NumBits1+NumBits2
+  group: Propagated Type
+  block_parameter: NumBitsBase
+  type: character vector
+  values: '''NumBits1'' | ''NumBits2'' | ''max([NumBits1 NumBits2])'' | ''min([NumBits1 NumBits2])'' | ''NumBits1+NumBits2'''
+  default: '''max([NumBits1 NumBits2])'''
+- name: '1.4.2 Number-of-bits: Multiplicative adjustment'
+  summary: Number of bits for multiplicative adjustment of propagated data type 1 (default) | positive integer
+  group: Propagated Type
+  block_parameter: NumBitsMult
+  type: character vector
+  values: positive integer
+  default: '''1'''
+- name: '1.4.3 Number-of-bits: Additive adjustment'
+  summary: Number of bits for additive adjustment of propagated data type 0 (default) | positive integer
+  group: Propagated Type
+  block_parameter: NumBitsAdd
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: '1.4.4 Number-of-bits: Allowable final values'
+  summary: Allowable number of bits in propagated data type '-1' (default) | scalar or vector of positive integers
+  group: Propagated Type
+  block_parameter: NumBitsAllowFinal
+  type: character vector
+  values: scalar or vector of positive integers
+  default: '''-1'''
+- name: 2. Propagated scaling
+  summary: Propagated scaling mode Inherit via propagation rule (default) | Specify via dialog | Obtain via best precision
+  group: Propagated Scaling
+  block_parameter: PropScalingMode
+  type: character vector
+  values: '''Inherit via propagation rule'' | ''Specify via dialog'' | ''Obtain via best precision'''
+  default: '''Inherit via propagation rule'''
+- name: 2.1. Propagated scaling (Slope, e.g. 2^-9 or [Slope Bias], e.g. [1.25 3])
+  summary: Slope or slope and bias 2^-10 | slope | slope and bias in square brackets
+  group: Propagated Scaling
+  block_parameter: PropScaling
+  type: character vector
+  values: slope | slope and bias in square brackets
+  default: '''2^-10'''
+- name: 2.1. Values used to determine best precision scaling
+  summary: Values to constrain precision [5 -7] (default)
+  group: Propagated Scaling
+  block_parameter: ValuesUsedBestPrec
+  type: character vector
+  values: vector of values
+  default: '''[5 -7]'''
+- name: '2.1.1. Slope: Base'
+  summary: Slope for base of the propagated data type min([Slope1 Slope2]) (default) | Slope1 | Slope2 | min([Slope1 Slope2])
+    | max([Bias1 Bias2]) | Slope1*Slope2 | Slope1/Slope2 | PosRange1 | PosRange2 | max([PosRange1 PosRange2]) | min([PosRange1
+    PosRange2]) | PosRange1*PosRange2 | PosRange1/PosRange2
+  group: Propagated Scaling
+  block_parameter: SlopeBase
+  type: character vector
+  values: '''Slope1'' | ''Slope2'' | ''max([Slope1 Slope2])'' | ''min([Slope1 Slope2])'' | ''Slope1*Slope2'' | ''Slope1/Slope2''
+    | ''PosRange1'' | ''PosRange2'' | ''max([PosRange1 PosRange2])'' | ''min([PosRange1 PosRange2])'' | ''PosRange1*PosRange2''
+    | ''PosRange1/PosRange2'''
+  default: '''min([Slope1 Slope2])'''
+- name: '2.1.2. Slope: Multiplicative adjustment'
+  summary: Slope of multiplicative adjustment of propagated data type 1 (default) | scalar
+  group: Propagated Scaling
+  block_parameter: SlopeMult
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: '2.1.3. Slope: Additive adjustment'
+  summary: Slope of additive adjustment of propagated data type 0 (default) | scalar
+  group: Propagated Scaling
+  block_parameter: SlopeAdd
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: '2.2.1. Bias: Base'
+  summary: Base bias for Prop Bias1 (default) | Bias2 | max([Bias1 Bias2]) | min([Bias1 Bias2]) | Bias1*Bias2 | Bias1/Bias2
+    | Bias1+Bias2 | Bias1-Bias2
+  group: Propagated Scaling
+  block_parameter: BiasBase
+  type: character vector
+  values: '''Bias1'' | ''Bias2'' | ''max([Bias1 Bias2])'' | ''min([Bias1 Bias2])'' | ''Bias1*Bias2'' | ''Bias1/Bias2'' | ''Bias1+Bias2''
+    | ''Bias1-Bias2'''
+  default: '''Bias1'''
+- name: '2.2.2. Bias: Multiplicative adjustment'
+  summary: Multiplicative bias for propagated data type 1 (default) | scalar
+  group: Propagated Scaling
+  block_parameter: BiasMult
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: '2.3.2. Bias: Additive adjustment'
+  summary: Additive bias for propagated data type 0 (default) | scalar
+  group: Propagated Scaling
+  block_parameter: BiasAdd
+  type: character vector
+  values: scalar
+  default: '''0'''
+```
 
 ### Propagated Type
 
@@ -481,7 +631,6 @@ rule`.
 | **Type:** character vector |
 | **Values:** scalar |
 | **Default:** `'0'` |
-
 ## Libraries
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

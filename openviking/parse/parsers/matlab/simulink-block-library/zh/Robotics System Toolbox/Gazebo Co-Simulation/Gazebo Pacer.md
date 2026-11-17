@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Gazebo Pacer
 
 ## 端口
+```yaml
+ports:
+- name: Status
+  summary: 同步状态 0 | 1
+  direction: output
+  data_types: uint8
+```
 
 ### 输出
 
@@ -23,8 +30,16 @@ chinese_source: worker-translation
 同步状态，输出为 `0` 或 `1`。值为 `0` 表示时间同步成功。值为 `1` 表示仿真不同步。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Reset behavior
+  summary: 重置仿真时间或场景 Reset Gazebo simulation time（默认）| Reset Gazebo simulation time and scene
+  group: ''
+- name: Sample time
+  summary: 输入的采样时间 0.001（默认）| 正值
+  group: ''
+```
 
 ### **Reset behavior** — 重置仿真时间或场景 `Reset Gazebo simulation time`（默认）| `Reset Gazebo simulation time and scene`
 
@@ -36,7 +51,6 @@ chinese_source: worker-translation
 ### **Sample time** — 输入的采样时间 `0.001`（默认）| 正值
 
 将 Sample time 参数设置为按给定速率步进 Gazebo 仿真。该参数必须是 Gazebo 求解器最大步长的整数倍。
-
 ## 所属库
 
 Robotics System Toolbox / Gazebo Co-Simulation

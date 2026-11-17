@@ -14,6 +14,21 @@ language: en
 # FIR Interpolation
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Num
+  summary: Numerator coefficients vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Out
+  summary: Interpolator output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -99,8 +114,69 @@ source** to **Input port**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: FIR filter coefficient source Auto (default) | Dialog parameters | Input port | Filter object
+  group: ''
+- name: FIR filter coefficients
+  summary: Lowpass FIR filter coefficients designMultirateFIR(3,1) (default) | vector
+  group: ''
+- name: Interpolation factor
+  summary: Interpolation factor 3 (default) | positive scalar
+  group: ''
+- name: Filter object
+  summary: Filter object dsp.FIRInterpolator
+  group: ''
+- name: Input processing
+  summary: Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: Method by which block interpolates input Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Output buffer initial conditions
+  summary: Initial conditions 0 (default) | scalar | matrix
+  group: ''
+- name: View Filter Response
+  summary: View filter response button
+  group: ''
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: ''
+- name: Coefficients Data Type
+  summary: 'Coefficients data type Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)'
+  group: ''
+- name: Coefficients Minimum
+  summary: Minimum value of filter coefficients [] (default) | scalar
+  group: ''
+- name: Coefficients Maximum
+  summary: Maximum value of filter coefficients [] (default) | scalar
+  group: ''
+- name: Product output Data Type
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: ''
+- name: Accumulator Data Type
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as
+    product output | fixdt(1,16,0)'
+  group: ''
+- name: Output Data Type
+  summary: 'Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output
+    | fixdt(1,16,0)'
+  group: ''
+- name: Output Minimum
+  summary: Minimum value of block output [] (default) | scalar
+  group: ''
+- name: Output Maximum
+  summary: Maximum value of block output [] (default) | scalar
+  group: ''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+```
 
 #### Coefficient source
 
@@ -491,7 +567,6 @@ source** to `Dialog parameters`,
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters DSP System Toolbox HDL Support / Filtering

@@ -14,6 +14,12 @@ language: en
 # XCP CAN FD Data Stimulation
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Input samples for data stimulation defined by A2L file
+  direction: input
+```
 
 ### Input
 
@@ -23,8 +29,29 @@ Input data stimulation samples, with names and types defined by the
 A2L file. Each entry in the Selected
 Measurements parameter defines an input port. A sample is
 written at every port for every step of the simulation.
-
 ## Parameters
+```yaml
+parameters:
+- name: Config name
+  summary: Specify XCP CAN FD session name select from list
+  group: ''
+- name: Event name
+  summary: Select an event select from list
+  group: ''
+- name: All Measurements
+  summary: List all measurements available for event measurements list
+  group: ''
+- name: Selected Measurements
+  summary: List selected measurements measurement names
+  group: ''
+- name: Block Input Settings
+  summary: Set the port input as Compu method conversion values or raw values Raw values as double (no Compu method conversion)
+    (default) | Raw values (no Compu method conversion) | Physical values (apply Compu method conversion)
+  group: ''
+- name: Enable Timestamp
+  summary: Enable sending Simulink timestamp in STIM DTO packets off (default) | on
+  group: ''
+```
 
 ### **Config name** — Specify XCP CAN FD session name select from list
 
@@ -143,7 +170,6 @@ When the Timestamp is enabled, the block inputs a timestamp from Simulink
 and sends the timestamp in the STIM DTO packets. The **Enable
 Timestamp** check box appears in the block parameters dialog
 box when the parameter is supported in the A2L file.
-
 ## Libraries
 
 Vehicle Network Toolbox / XCP Communication / CAN FD Simulink Real-Time / XCP / CAN FD

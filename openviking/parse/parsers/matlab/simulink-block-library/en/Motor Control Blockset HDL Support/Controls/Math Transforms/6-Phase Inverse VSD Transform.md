@@ -14,6 +14,21 @@ language: en
 # 6-Phase Inverse VSD Transform
 
 ## Ports
+```yaml
+ports:
+- name: αβxyz+z-
+  summary: Six axis orthogonal components in three different subspaces scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: a1b1c1
+  summary: First set of three-phase outputs scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: a2b2c2
+  summary: Second set of three-phase outputs scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -52,8 +67,16 @@ the three-phase stator voltages or currents belonging to the second three-phase
 winding set.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Power invariant
+  summary: Option to enable power invariant transformation off (default) | on
+  group: ''
+- name: Motor type
+  summary: Type of six-phase PMSM Asymmetric (30 degree offset) (default) | Symmetric (60 degree offset)
+  group: ''
+```
 
 ### **Power invariant** — Option to enable power invariant transformation `off` (default) | on
 
@@ -65,7 +88,6 @@ transformation.
 
 Select the type of six-phase PMSM for which you want to compute the inverse VSD
 transformation.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

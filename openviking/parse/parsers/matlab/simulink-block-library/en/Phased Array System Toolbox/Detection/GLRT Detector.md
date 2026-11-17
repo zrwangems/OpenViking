@@ -14,6 +14,42 @@ language: en
 # GLRT Detector
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data real-valued *N*-by-*1* vector | complex-valued *N*-by-*1* vector | real-valued *N*-by-*M* matrix | complex-valued
+    *N*-by-*M* matrix
+  direction: input
+  data_types: single | double
+- name: Hyp
+  summary: Augmented linear equality constraint matrix real-valued *R*-by-(*P* + 1) matrix | complex-valued *R*-by-(*P* +
+    1) matrix
+  direction: input
+  data_types: single | double
+- name: Obs
+  summary: Observation matrix *N*-by-*P*-by-*D* array
+  direction: input
+  data_types: single | double
+- name: Ncov
+  summary: Known noise power positive scalar
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: Detection results *D*-by-*M* logical-valued vector | 1-by-*L* integer-valued vector | 2-by-*L* integer-valued matrix
+  direction: output
+- name: Stat
+  summary: detection statistic *N*-by-*M* (default) | 1-by-*L*
+  direction: output
+- name: Th
+  summary: Detection threshold scalar
+  direction: output
+- name: Param
+  summary: Maximum likelihood estimates of signal parameters *P*-by-*M*-by-*D* array
+  direction: output
+- name: N
+  summary: Estimated noise power positive scalar
+  direction: output
+```
 
 ### Input
 
@@ -183,8 +219,59 @@ Estimated noise power, returned as a positive scalar. When the
 
 To enable this port, select the **Output estimated noise
 power** check box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Probability of false alarm
+  summary: Probability of false alarm 0.1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: ProbabilityFalseAlarm
+  type: double, single
+  values: scalar |
+  default: '0.1'
+- name: Output format
+  summary: Format of output data Detection result (default) | Detection index
+  group: ''
+  block_parameter: OutputFormat
+  type: char, string
+  values: Detection result | Detection index
+  default: Detection result
+- name: Output detection statistics and threshold
+  summary: Output detection statistics and threshold 0 (default) | 1
+  group: ''
+  block_parameter: ThresholdOutputPort
+  type: check box
+  values: 0 | 1
+  default: '0'
+- name: Enable known noise power input
+  summary: Enable known noise power input 1 (default) | 1
+  group: ''
+  block_parameter: NoiseInputPort
+  type: check box
+  values: 0 | 1
+  default: '0'
+- name: Output MLEs of unknown signal parameters
+  summary: Output MLEs of unknown signal parameters 0 (default) | 1
+  group: ''
+  block_parameter: SignalParamterOutputPort
+  type: check box
+  values: 0 | 1
+  default: '0'
+- name: Output estimated noise power
+  summary: Output estimated noise power 0 (default) | 1
+  group: ''
+  block_parameter: NoisePowerOutputPort
+  type: check box
+  values: 0 | 1
+  default: '0'
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Probability of false alarm** — Probability of false alarm `0.1` (default) | nonnegative scalar
 
@@ -324,7 +411,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

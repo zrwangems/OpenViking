@@ -14,6 +14,16 @@ language: en
 # UDP Send
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data to transmit vector
+  direction: input
+  data_types: uint8 | UDP_Packet
+- name: Length
+  summary: Number of bytes of data to transmit double
+  direction: input
+```
 
 ### Input
 
@@ -46,8 +56,38 @@ messages** parameter. The Length determines the number of
 bytes of data to transmit. Specify the width of the
 `Data` vector as the maximum number of bytes that
 you expect to transmit.
-
 ## Parameters
+```yaml
+parameters:
+- name: Use host-target connection
+  summary: Use Ethernet connection between development and target computers 'off' (default) | 'on'
+  group: ''
+  block_parameter: useHostTargetConn
+- name: To IP address
+  summary: IP address of target device 10.10.10.10 (default) | x.x.x.x
+  group: ''
+  block_parameter: toAddress
+- name: To port
+  summary: UDP port of target device 34 (default) | 1–65535
+  group: ''
+  block_parameter: toPort
+- name: Sample time (-1 for inherited)
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sampleTime
+- name: Enable Simulink messages
+  summary: Data as messages off (default) | on
+  group: ''
+  block_parameter: MessageIn
+- name: Local IP address
+  summary: Source IP address for sending data no value (default) | x.x.x.x
+  group: Advanced Parameters
+  block_parameter: ipAddress
+- name: Local port
+  summary: Source UDP port to transmit data no value (default) | 0–65535 | -1
+  group: Advanced Parameters
+  block_parameter: localPort
+```
 
 ### **Use host-target connection** — Use Ethernet connection between development and target computers `'off'` (default) | `'on'`
 
@@ -150,7 +190,6 @@ port.
 |  |
 | --- |
 | **Block Parameter:** `localPort` |
-
 ## Libraries
 
 Simulink Real-Time / IP

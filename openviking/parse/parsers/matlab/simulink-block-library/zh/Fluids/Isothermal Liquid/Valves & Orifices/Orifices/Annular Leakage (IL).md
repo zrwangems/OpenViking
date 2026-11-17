@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Annular Leakage (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: L
+  summary: 可变重叠长度，物理信号
+  direction: input
+- name: E
+  summary: 可变偏心距，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -44,8 +59,31 @@ chinese_source: worker-translation
 
 要显示此端口，请将 **Eccentricity specification** 设置为
 `Variable`。
-
 ## 参数
+```yaml
+parameters:
+- name: Overlap length specification
+  summary: 插入件-套筒重叠类型 Constant（默认）| Variable
+  group: ''
+- name: Overlap length
+  summary: 管与插入件之间的重叠 1e-3 m（默认）| 正标量
+  group: ''
+- name: Minimum overlap length
+  summary: 管与插入件之间的最小重叠 1e-6 m（默认）| 正标量
+  group: ''
+- name: Eccentricity specification
+  summary: 偏心距可变性 Constant（默认）| Variable
+  group: ''
+- name: Eccentricity
+  summary: 插入件中心相对于套筒中心的偏移 0 m（默认）| 正标量
+  group: ''
+- name: Inner radius
+  summary: 插入件半径 9.8e-3 m（默认）| 正标量
+  group: ''
+- name: Outer radius
+  summary: 管半径 1e-2 m（默认）| 正标量
+  group: ''
+```
 
 ### **Overlap length specification** — 插入件-套筒重叠类型 `Constant`（默认）| `Variable`
 
@@ -89,7 +127,6 @@ chinese_source: worker-translation
 ### **Outer radius** — 管半径 `1e-2 m`（默认）| 正标量
 
 管半径 *R*，从管中心测量到内壁。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Orifices

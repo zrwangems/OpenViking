@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Eye Measurement
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 标量
+  direction: input
+  data_types: double
+- name: clock
+  summary: 输入数据的采样时钟 标量
+  direction: input
+  data_types: double
+- name: thresholds
+  summary: 用于分离符号的符号阈值 向量 | 矩阵
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -47,8 +62,216 @@ chinese_source: worker-translation
 要启用此端口，请在 **Configuration** 选项卡中选中 **Enable threshold input port**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable threshold input port
+  summary: 启用阈值输入端口 on（默认）| off
+  group: 配置
+- name: Modulation
+  summary: 眼图中的符号电平数 2（默认）| 非负整数标量
+  group: 配置
+  block_parameter: Modulation
+  type: character vector
+  values: nonnegative integer scalar
+  default: '2'
+- name: Symbol thresholds
+  summary: 符号阈值 auto（默认）| 实值向量
+  group: 配置
+  block_parameter: SymbolThresholds
+  type: character vector
+  values: real valued vector
+  default: auto
+- name: Enable clock input port
+  summary: 启用时钟输入端口 on（默认）| off
+  group: 配置
+- name: Clock type
+  summary: 确定如何对波形时钟信号进行采样 Rising（默认）| Falling | Both | Times
+  group: 配置
+  block_parameter: ClockType
+  type: character vector
+  values: Rising | Falling | Both | Times
+  default: Rising
+- name: Clock threshold
+  summary: 波形时钟的边沿检测阈值 0（默认）| 实标量
+  group: 配置
+  block_parameter: ClockThreshold
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Clock mode
+  summary: 表示数据如何由恢复时钟捕获 Clocked（默认）| Ideal | Convolved
+  group: 配置
+  block_parameter: ClockMode
+  type: character vector
+  values: Clocked | Ideal | Convolved
+  default: Clocked
+- name: Clock phase offset
+  summary: 移动时钟 PDF 的相位延迟 0（默认）| 非负实数标量
+  group: 配置
+  block_parameter: ClockPhaseOffset
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Window phase offset
+  summary: 理想时钟边沿与定时原点之间的延迟 0（默认）| 非负实数标量
+  group: 配置
+  block_parameter: WindowPhaseOffset
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Symbols per diagram
+  summary: 眼图的宽度（以符号为单位） 2（默认）| 标量
+  group: 配置
+  block_parameter: SymbolsperDiagram
+  type: character vector
+  values: scalar
+  default: '2'
+- name: Amplitude range
+  summary: 眼图中的最小和最大眼幅度 []（默认）| 二元素向量
+  group: 配置
+  block_parameter: AmplitudeRange
+  type: character vector
+  values: two-element vector
+  default: '[]'
+- name: Amplitude bins
+  summary: 眼图中的幅度 bin 数量 257（默认）| 正整数标量
+  group: 配置
+  block_parameter: AmplitudeBins
+  type: character vector
+  values: positive integer scalar
+  default: '257'
+- name: Time bins
+  summary: 眼图中的时间 bin 数量 256（默认）| 正整数标量
+  group: 配置
+  block_parameter: TimeBins
+  type: character vector
+  values: positive integer scalar
+  default: '256'
+- name: Hold off time
+  summary: 测量分析前的延迟 0（默认）| 非负实数标量
+  group: 配置
+  block_parameter: HoldOffTime
+  type: 字符向量
+  values: 非负实数标量
+  default: '0'
+- name: Symbol time
+  summary: 一个符号的时间 16e-9（默认）| 正实数标量
+  group: 配置
+  block_parameter: SymbolTime
+  type: 字符向量
+  values: 正实数标量
+  default: 16e-9
+- name: Sample time
+  summary: 一个采样点的时间 [1e-9, 0]（默认）| 二元素向量 | 标量
+  group: 配置
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 二元素向量 | 标量
+  default: '[1e-9, 0]'
+- name: Add Metric
+  summary: 添加新指标以进行计算 按钮
+  group: 指标设置
+- name: Remove Selected Metrics
+  summary: 移除所选指标 按钮
+  group: 指标设置
+- name: Store results in base workspace
+  summary: 将指标结果存储到基础工作区 关（默认）| 开
+  group: 指标设置
+- name: Metrics variable name
+  summary: 存储测量结果的指标变量名称 ans（默认）| 字符串
+  group: 指标设置
+  block_parameter: MetricsVariableName
+  type: 字符向量
+  values: 字符串
+  default: ans
+- name: Export to file
+  summary: 将仿真结果导出到文件 按钮
+  group: 指标设置
+- name: Export to base workspace
+  summary: 将仿真结果导出到基础工作区 按钮
+  group: 指标设置
+- name: Eye mask type
+  summary: 眼罩的形状 Off（默认）| Rectangle | Diamond | Hexagon | Custom
+  group: 眼罩
+- name: W1 (UI)
+  summary: 矩形、菱形和六边形眼罩中心的宽度 0.2（默认）| 正实数标量
+  group: 眼罩
+  block_parameter: W1
+  type: 字符向量
+  values: 正实数标量
+  default: '0.2'
+- name: W2 (UI)
+  summary: 六边形眼罩顶部和底部的宽度 0.1（默认）| 正实数标量
+  group: 眼罩
+  block_parameter: W2
+  type: 字符向量
+  values: 正实数标量
+  default: '0.1'
+- name: H
+  summary: 矩形、菱形或六边形眼罩的高度 0.1（默认）| 正实数标量
+  group: 眼罩
+  block_parameter: H
+  type: 字符向量
+  values: 正实数标量
+  default: '0.1'
+- name: Position mask in eye
+  summary: 眼图中掩模形状原点的位置 At clock（默认）| For best height margin | For best width margin
+  group: 眼罩
+  block_parameter: PositionMaskInEye
+  type: 字符向量
+  values: At clock | For best height margin | For best width margin
+  default: At clock
+- name: Custom eye mask
+  summary: 从眼图掩模对象定义自定义眼图掩模 []（默认）| 对象
+  group: 眼罩
+  block_parameter: CustomEyeMask
+  type: 字符向量
+  values: 对象
+  default: '[]'
+- name: Margin SER
+  summary: 用于测量眼图掩模裕度的符号错误率 1e-5 | [0,1] 范围内的非负实数标量
+  group: 眼罩
+  block_parameter: MarginSER
+  type: 字符向量
+  values: '[0,1] 范围内的非负实数标量'
+  default: 1e-5
+- name: Margin extrapolation
+  summary: 用于生成眼图轮廓的外推方法 none（默认）| dualdirac | gaussian | linear | spline | pchip | makima
+  group: 眼罩
+  block_parameter: MarginExtrapolation
+  type: 字符向量
+  values: none | dualdirac | gaussian | linear | spline | pchip | makima
+  default: none
+- name: Mask variable name
+  summary: 要导出掩模的掩模变量名称 ans（默认）| 字符串
+  group: 眼罩
+  block_parameter: MaskVariableName
+  type: 字符向量
+  values: 字符串
+  default: ans
+- name: Export mask to file
+  summary: 将掩模导出到文件按钮
+  group: 眼罩
+- name: Export mask to base workspace
+  summary: 将掩模导出到基础工作区按钮
+  group: 眼罩
+- name: Show plots at end of simulation
+  summary: 在仿真结束时自动显示绘图 on（默认）| off
+  group: 绘图设置
+- name: Plot grouping
+  summary: 定义绘图如何分组 Subplot on same figure（默认）| One figure per plot
+  group: 绘图设置
+- name: Add Plot
+  summary: 添加新绘图以显示按钮
+  group: 绘图设置
+- name: Remove Selected Plots
+  summary: 移除所选绘图按钮
+  group: 绘图设置
+- name: Show Plots
+  summary: 显示绘图按钮
+  group: 绘图设置
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -493,7 +716,6 @@ chinese_source: worker-translation
 ### **Show Plots** — 显示绘图按钮
 
 点击以显示绘图。
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities SerDes Toolbox / Utilities Signal Integrity Toolbox / Utilities

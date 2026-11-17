@@ -14,6 +14,27 @@ language: en
 # Pressure & Temperature Sensor (G)
 
 ## Ports
+```yaml
+ports:
+- name: Pa
+  summary: Absolute pressure measurement, in Pascal (Pa) physical signal
+  direction: output
+- name: Pg
+  summary: Gauge pressure measurement, Pa physical signal
+  direction: output
+- name: P
+  summary: Pressure difference measurement, Pa physical signal
+  direction: output
+- name: T
+  summary: Temperature measurement, K physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet gas
+  direction: conserving
+- name: B
+  summary: Sensor outlet gas
+  direction: conserving
+```
 
 ### Output
 
@@ -83,8 +104,22 @@ the values at port **B**.
 To enable this port, set the **Measurement
 reference** parameter to
 `Difference`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement reference
+  summary: Select between absolute and relative measurements Absolute (default) | Difference
+  group: ''
+- name: Pressure
+  summary: Control output port visibility for measuring pressure On (default) | Off
+  group: ''
+- name: Pressure type
+  summary: Select between absolute and gauge pressure Absolute pressure (default) | Gauge pressure
+  group: ''
+- name: Temperature
+  summary: Control output port visibility for measuring temperature Off (default) | On
+  group: ''
+```
 
 ### **Measurement reference** — Select between absolute and relative measurements `Absolute` (default) | `Difference`
 
@@ -127,7 +162,6 @@ select the **Pressure** check box.
 
 Selecting this check box exposes the output port **T**,
 which lets you measure temperature.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Sensors

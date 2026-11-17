@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # CCSDS RS Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入消息符号，范围为 0 到 255 的整数
+  direction: input
+  data_types: double | single | uint8 | fixdt(0,8,0)
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 编码码字符号，范围为 0 到 255 的整数
+  direction: output
+  data_types: double | single | uint8 | fixdt(0,8,0)
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 模块就绪指示符，布尔标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -70,8 +93,16 @@ chinese_source: worker-translation
 当模块准备好接受下一帧的开始时，模块将此信号设置为 `1`（`true`）。如果模块在 **nextFrame** 为 `0`（`false`）时接收到输入 **ctrl.start** 信号，模块将丢弃正在进行的帧并开始处理新数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Message length (k)
+  summary: 消息长度 223（默认）| 239
+  group: ''
+- name: Interleaving depth (I)
+  summary: 交织深度 1（默认）| 2 | 3 | 4 | 5 | 8
+  group: ''
+```
 
 ### **Message length (k)** — 消息长度 `223`（默认）| `239`
 
@@ -80,7 +111,6 @@ chinese_source: worker-translation
 ### **Interleaving depth (I)** — 交织深度 `1`（默认）| `2` | `3` | `4` | `5` | `8`
 
 选择交织深度。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

@@ -14,6 +14,26 @@ language: en
 # Rate Limiter Dynamic
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: lo
+  summary: Limit of derivative for decreasing input scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: up
+  summary: Limit of derivative for increasing input scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Y
+  summary: Output signal scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+```
 
 ### Input
 
@@ -45,11 +65,12 @@ type of the input signal `u`.
 Output signal from the rate limiter algorithm.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / Discontinuities

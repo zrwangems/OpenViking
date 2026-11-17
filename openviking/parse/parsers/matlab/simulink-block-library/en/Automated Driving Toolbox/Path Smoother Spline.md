@@ -14,6 +14,29 @@ language: en
 # Path Smoother Spline
 
 ## Ports
+```yaml
+ports:
+- name: RefPoses
+  summary: Reference poses *M*-by-3 matrix of [*x*, *y*, *Θ*] vectors
+  direction: input
+  data_types: single | double
+- name: RefDirections
+  summary: Reference directions *M*-by-1 column vector of 1s (forward motion) and –1s (reverse motion)
+  direction: input
+  data_types: single | double
+- name: Poses
+  summary: Discretized poses of smoothed path *N*-by-3 matrix of [*x*, *y*, *Θ*] vectors
+  direction: output
+- name: Directions
+  summary: Driving directions at each output pose *N*-by-1 column vector of 1s (forward motion) and –1s (reverse motion)
+  direction: output
+- name: CumLengths
+  summary: Cumulative path lengths *N*-by-1 real-valued column vector
+  direction: output
+- name: Curvatures
+  summary: Signed path curvatures *N*-by-1 real-valued column vector
+  direction: output
+```
 
 ### Input
 
@@ -104,8 +127,25 @@ example.
 
 To enable this port, select the **Show CumLengths and Curvatures output
 ports** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of output poses
+  summary: Number of smooth poses to return 100 (default) | positive integer
+  group: ''
+- name: Minimum separation of input poses
+  summary: Minimum separation between poses 1e-3 (default) | positive real scalar
+  group: ''
+- name: Sample time
+  summary: Sample time -1 (default) | positive real scalar
+  group: ''
+- name: Show CumLengths and Curvatures output ports
+  summary: Output cumulative path lengths and curvatures off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code Generation (default) | Interpreted Execution
+  group: ''
+```
 
 ### **Number of output poses** — Number of smooth poses to return `100` (default) | positive integer
 
@@ -140,7 +180,6 @@ Select this parameter to enable the **CumLengths** and
 - `Interpreted execution` — Simulate the model using the
   MATLAB® interpreter. This option shortens startup time. In `Interpreted
   execution` mode, you can debug the source code of the block.
-
 ## Libraries
 
 Automated Driving Toolbox

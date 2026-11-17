@@ -14,6 +14,21 @@ language: en
 # AXI4 Master Sink
 
 ## Ports
+```yaml
+ports:
+- name: rdData
+  summary: Input data scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rdCtrlIn
+  summary: Input control bus bus
+  direction: input
+  data_types: ReadControlS2MBusObj
+- name: rdCtrlOut
+  summary: Output control bus bus
+  direction: output
+  data_types: ReadControlM2SBusObj
+```
 
 ### Input
 
@@ -54,8 +69,38 @@ data, returned as a scalar. This control bus comprises these control signals:
   block can read data
 
 **Data Types:** `ReadControlM2SBusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Data type
+  summary: Input data type uint8 (default) | double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | fixed
+    point
+  group: ''
+- name: Dimensions
+  summary: Input data dimensions 1 (default) | positive integer | array
+  group: ''
+- name: Enable sample packing (last signal dimension as channel)
+  summary: Pack data on the last dimension of the signal off (default) | on
+  group: ''
+- name: Number of transfers
+  summary: Number of read requests to send 1 (default) | positive integer
+  group: ''
+- name: Initial address
+  summary: Start address 0 (default) | nonnegative scalar integer
+  group: ''
+- name: Initial delay
+  summary: Initial delay 0 (default) | nonnegative scalar
+  group: ''
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: ''
+- name: Save data in workspace
+  summary: Save to workspace off (default) | on
+  group: ''
+- name: Variable name
+  summary: Workspace variable name simOut (default) | any MATLAB-supported variable name
+  group: ''
+```
 
 ### **Data type** — Input data type `uint8` (default) | `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint16` | `uint32` | `uint64` | `fixed point`
 
@@ -137,7 +182,6 @@ any MATLAB-supported variable name.
 
 To enable this parameter, select the **Save data in workspace**
 parameter.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Testbench

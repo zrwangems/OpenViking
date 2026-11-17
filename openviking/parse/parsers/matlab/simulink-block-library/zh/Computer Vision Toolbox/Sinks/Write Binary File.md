@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Write Binary File
 
 ## 端口
+```yaml
+ports:
+- name: Y'
+  summary: 输入视频流的亮度分量 标量 | 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cb
+  summary: 输入视频流的蓝色差分量 标量 | 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cr
+  summary: 输入视频流的红色差分量 标量 | 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: A
+  summary: 输入视频流的 Alpha 分量 标量 | 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: T
+  summary: 输入视频流的透明度分量 标量 | 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -58,8 +81,69 @@ chinese_source: worker-translation
 要启用此端口，请将 **Video format** 参数设置为 `Four character codes`，并将 **Four character code** 参数设置为 `Y41T` 或 `Y42T`。
 
 **数据类型：** `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 二进制文件的名称 output.bin（默认）| 文件名
+  group: ''
+- name: Video format
+  summary: 视频数据的格式 Four character codes（默认）| Custom
+  group: ''
+- name: Four character code
+  summary: 二进制文件的格式 I420（默认）| AYUV | CLJR | cyuv | GREY | IF09 | IMC1 | IMC2 | IMC3 | IMC4 | IUYV | IY41 | IYU1 | IYU2 | IYUV
+    | NV12 | NV21 | UYNV | UYNY | V210 | Y411 | Y41P | Y41T | Y422 | Y42T | Y8 | Y800 | YUNV | YUY2 | YUYV | YV12 | YV16 |
+    YVU9 | YVYU | ...
+  group: ''
+- name: Line ordering
+  summary: 二进制文件填充方向 Top line first（默认）| Bottom line first
+  group: ''
+- name: Bit stream format
+  summary: 二进制文件的数据格式 Planar（默认）| Packed
+  group: ''
+- name: Number of inputs
+  summary: 输入视频流中的分量数量 3（默认）| 1 | 2 | 4
+  group: ''
+- name: Inherit size of components from input data type
+  summary: 所有分量具有相同的位数 on（默认）| off
+  group: ''
+- name: Component1
+  summary: 亮度分量输入端口的名称 Y'（默认）| 分量名称
+  group: ''
+- name: Component2
+  summary: 蓝色差分量的名称 Cb（默认）| 分量名称
+  group: ''
+- name: Component3
+  summary: 红色差分量的名称 Cr（默认）| 分量名称
+  group: ''
+- name: Component4
+  summary: Alpha 分量的名称 Alpha（默认）| 分量名称
+  group: ''
+- name: Bits1
+  summary: 亮度分量的大小 8（默认）| 0 | 16 | 24 | 32
+  group: ''
+- name: Bits2
+  summary: 蓝色差分量的大小 8（默认）| 0 | 16 | 24 | 32
+  group: ''
+- name: Bits3
+  summary: 红色差分量的大小 8（默认）| 0 | 16 | 24 | 32
+  group: ''
+- name: Bits4
+  summary: Alpha 分量的大小 8（默认）| 0 | 16 | 24 | 32
+  group: ''
+- name: Component order in binary file
+  summary: 二进制文件中分量的排列顺序 [1 2 3]（默认）| 有效分量标识符的向量
+  group: ''
+- name: Interlaced video
+  summary: 将视频数据读取为隔行扫描 off（默认）| on
+  group: ''
+- name: Write signed data to output file
+  summary: 将有符号数据写入输出二进制文件 off（默认）| on
+  group: ''
+- name: Byte order in binary file
+  summary: 输出二进制文件中的字节顺序 Little endian（默认）| Big endian
+  group: ''
+```
 
 ### **File name** — 二进制文件的名称 `output.bin`（默认）| 文件名
 
@@ -242,7 +326,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Video format** 参数设置为 `Custom`。
-
 ## 所属库
 
 Computer Vision Toolbox / Sinks

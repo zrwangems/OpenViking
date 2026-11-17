@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Barrage Jammer
 
 ## 端口
+```yaml
+ports: []
+```
 
 **注意**
 
@@ -24,8 +27,10 @@ chinese_source: worker-translation
 | --- | --- | --- |
 | `Ref` | 参考信号输入 | 双精度浮点 |
 | `Out` | 干扰机输出 | 双精度浮点 |
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Effective radiated power (W)**
 :   以正标量形式指定干扰信号的有效辐射功率（ERP），单位为瓦特。
@@ -55,7 +60,6 @@ chinese_source: worker-translation
     | `Code Generation` | 模块被编译。 | 模型中的所有模块被编译。 |
 
     有关更多信息，请参阅 Choosing a Simulation Mode (Simulink)。
-
 ## 所属库
 
 R2025b 中未记录。

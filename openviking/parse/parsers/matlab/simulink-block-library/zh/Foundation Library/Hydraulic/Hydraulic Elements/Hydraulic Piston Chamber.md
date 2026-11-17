@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Hydraulic Piston Chamber
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,8 +26,10 @@ chinese_source: worker-translation
 
 `P`
 :   控制活塞位移的物理信号端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Piston area**
 :   有效活塞面积。默认值为 `5e-4` m^2。
@@ -48,7 +53,6 @@ chinese_source: worker-translation
 - **Chamber orientation**
 
 所有其他模块参数均可修改。
-
 ## 所属库
 
 R2025b 中未记录。

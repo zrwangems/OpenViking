@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # MCAN Transmit
 
 ## 端口
+```yaml
+ports:
+- name: TX
+  summary: 输入数据端口 向量 | 标量
+  direction: input
+  data_types: uint8 | CAN Msg
+- name: Status
+  summary: CAN 消息传输状态 标量
+  direction: output
+```
 
 ### 输入
 
@@ -38,8 +48,34 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Output Status** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Data format
+  summary: 数据输出类型 Raw data（默认） | CAN Msg
+  group: ''
+- name: Frame format
+  summary: 帧格式类型 CAN-FD（默认） | Classic CAN
+  group: ''
+- name: Identifier Type
+  summary: 消息标识符类型 Standard (11-bit identifier)（默认） | Extended (29-bit identifier)
+  group: ''
+- name: Identifier
+  summary: 消息标识符 100（默认） | 长度为 11 位或 29 位的数字标识符
+  group: ''
+- name: Length (bytes)
+  summary: 消息长度 64（默认） | 小于或等于 64 的正整数（CAN-FD） | 小于或等于 8 的正整数（Classic CAN）
+  group: ''
+- name: Remote Frame
+  summary: 启用远程消息 off（默认） | on
+  group: ''
+- name: Enable bit rate switching
+  summary: 启用位速率切换消息 off（默认） | on
+  group: ''
+- name: Output Status
+  summary: 启用输出状态 off（默认） | on
+  group: ''
+```
 
 ### **Data format** — 数据输出类型 `Raw data`（默认） | `CAN Msg`
 
@@ -105,7 +141,6 @@ CAN 消息中数据的长度（以字节为单位）。
 ### **Output Status** — 启用输出状态 `off`（默认） | `on`
 
 当您选择 **Output Status** 参数时，模块将配置端口的 **Status**。该端口输出 CAN 消息传输状态。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F28p65x

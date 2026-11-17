@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Identity Matrix
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 单位矩阵 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -37,8 +48,58 @@ input port** 复选框。
 单位矩阵，指定为标量、向量或矩阵。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Inherit output port attributes from input port
+  summary: 输出端口从输入端口继承属性的选项 关闭（默认） | 打开
+  group: ''
+  block_parameter: InheritOutputPortAttributes
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Output dimensions
+  summary: 输出矩阵的大小 5（默认） | 标量 | 二元素向量
+  group: ''
+  block_parameter: OutputDimensions
+  type: 字符向量
+  values: 标量 | 二元素向量
+  default: '''5'''
+- name: Output data type
+  summary: '输出数据类型 double（默认） | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0)
+    | Inherit: Inherit via back propagation | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''double'''
+- name: Mode
+  summary: 数据类型模式 Inherit（默认） | Built in | Fixed point | Expression
+  group: ''
+- name: Signedness
+  summary: 定点数据的有符号性 Signed（默认） | Unsigned
+  group: ''
+- name: Scaling
+  summary: 定点数据的定标方法 Best precision（默认） | Binary point
+  group: ''
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认） | 2 到 65,535 之间的整数
+  group: ''
+- name: Fraction length
+  summary: 定点数据类型的小数长度 0（默认） | 整数标量
+  group: ''
+- name: Data type override
+  summary: 数据类型覆盖模式 Inherit（默认） | Off
+  group: ''
+- name: Sample time
+  summary: 输出采样周期 1（默认） | 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量或向量
+  default: '''1'''
+```
 
 ### **Inherit output port attributes from input port** — 输出端口从输入端口继承属性的选项 关闭（默认） | 打开
 
@@ -164,7 +225,6 @@ input port** 复选框。
 | **类型：** 字符向量 |
 | **值：** 标量或向量 |
 | **默认值：** `'1'` |
-
 ## 所属库
 
 Simulink / Matrix Operations

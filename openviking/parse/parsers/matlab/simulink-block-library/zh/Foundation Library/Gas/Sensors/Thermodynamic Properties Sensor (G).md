@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Thermodynamic Properties Sensor (G)
 
 ## 端口
+```yaml
+ports:
+- name: h
+  summary: 比焓测量，kJ/kg 物理信号
+  direction: output
+- name: ρ
+  summary: 密度测量，kg/m^3 物理信号
+  direction: output
+- name: cp
+  summary: 定压比热测量，kJ/(kg\*K) 物理信号
+  direction: output
+- name: s
+  summary: 比熵测量，kJ/(kg\*K) 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口气体
+  direction: output
+```
 
 ### 输出
 
@@ -54,8 +72,31 @@ chinese_source: worker-translation
 ### **A** — 传感器入口气体
 
 气体守恒端口。将此端口连接到气体网络中您想要测量热力学属性的节点。所有测量均相对于绝对零度进行。
-
 ## 参数
+```yaml
+parameters:
+- name: Enthalpy
+  summary: 控制用于测量比焓的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Density
+  summary: 控制用于测量密度的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Specific heat
+  summary: 控制用于测量比热的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Entropy
+  summary: 控制用于测量比熵的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Specific entropy at reference pressure and temperature
+  summary: 用于传感器校准的参考比熵 3.8635 kJ/kg/K（默认）
+  group: ''
+- name: Reference pressure for specific entropy
+  summary: 用于传感器校准的参考压力 0.101325 MPa（默认）
+  group: ''
+- name: Reference temperature for specific entropy
+  summary: 用于传感器校准的参考温度 293.15 K（默认）
+  group: ''
+```
 
 ### **Enthalpy** — 控制用于测量比焓的输出端口可见性 `Off`（默认）| `On`
 
@@ -96,7 +137,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请选中 **Entropy** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Sensors

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Mutual Inductor
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 一次绕组正极端子 electrical
+  direction: conserving
+- name: 1-
+  summary: 一次绕组负极端子 electrical
+  direction: conserving
+- name: 2+
+  summary: 二次绕组正极端子 electrical
+  direction: conserving
+- name: 2-
+  summary: 二次绕组负极端子 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,22 @@ chinese_source: worker-translation
 ### **2-** — 二次绕组负极端子 electrical
 
 与二次绕组负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Inductance L1
+  summary: 一次绕组的自感 10 H（默认）| 正标量
+  group: ''
+- name: Inductance L2
+  summary: 二次绕组的自感 0.1 H（默认）| 正标量
+  group: ''
+- name: Perfect coupling – no leakage
+  summary: 使用理想互感 Off（默认）| On
+  group: ''
+- name: Coefficient of coupling
+  summary: 互感的耦合系数 0.9（默认）| (0,1) 范围内的标量
+  group: ''
+```
 
 ### **Inductance L1** — 一次绕组的自感 `10 H`（默认）| 正标量
 
@@ -55,7 +84,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请清除 **Perfect coupling – no leakage** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

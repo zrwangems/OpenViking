@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # SAR ADC
 
 ## 端口
+```yaml
+ports:
+- name: analog
+  summary: 模拟输入信号 标量
+  direction: input
+  data_types: double
+- name: start
+  summary: 用于启动转换的外部时钟 标量
+  direction: input
+  data_types: double
+- name: digital
+  summary: 转换后的数字输出信号 标量
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: ready
+  summary: 确定模数转换是否完成 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +61,60 @@ chinese_source: worker-translation
 确定模数转换是否完成，以标量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of bits
+  summary: 物理输出位数 8（默认）| [1, 26] 范围内的正实数整数
+  group: 配置
+- name: Input range (V)
+  summary: ADC 动态范围 [-1 1]（默认）| 2 元素行向量
+  group: 配置
+  block_parameter: InputRange
+  type: 字符向量
+  values: 2 元素行向量
+- name: Use external start clock
+  summary: 连接到外部启动转换时钟 on（默认）| off
+  group: 配置
+- name: Conversion start frequency (Hz)
+  summary: 内部启动转换时钟的频率 10e3（默认）| 正实数标量
+  group: 配置
+- name: RMS aperture jitter (s)
+  summary: 添加到启动转换时钟的 RMS 孔径抖动 0（默认）| 实数非负标量
+  group: 配置
+- name: SAR Frequency (Hz)
+  summary: SAR 时钟的频率 2e7（默认）| 实数标量
+  group: 配置
+- name: Match input scale
+  summary: 从输入继承输出极性和数据类型 off（默认）| on
+  group: 配置
+- name: Output polarity
+  summary: 定义 ADC 输出极性 Auto（默认）| Bipolar | Unipolar
+  group: 配置
+  block_parameter: OutputPolarity
+  type: 字符向量
+  values: Auto | Bipolar | Unipolar
+- name: Output data type
+  summary: '定义 ADC 输出数据类型 fixdt(1,Nbits)（默认）| fixdt(0,Nbits) | double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+    | Inherit: Inherit via back propagation'
+  group: 配置
+  block_parameter: OutDataType
+  type: 字符向量
+  values: 'double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixdt(0,Nbits) | fixdt(1,Nbits) | Inherit: Inherit
+    via back propagation'
+- name: Enable Linearity Impairments
+  summary: 在 ADC 仿真中启用线性度非理想特性 off（默认）| on
+  group: 非理想特性
+- name: Offset error
+  summary: 将量化步长偏移特定值 1 LSB（默认）| 实数标量
+  group: 非理想特性
+- name: Gain error
+  summary: ADC 转换曲线斜率的误差 2 LSB（默认）| 实数标量
+  group: 非理想特性
+  block_parameter: GainError
+  type: 字符向量
+  values: 实数标量
+```
 
 ### 配置
 
@@ -219,7 +290,6 @@ LSB 由方程 LSB = 转换器满量程范围2NBits 计算。
 | **默认：** `2 LSB` |
 
 **数据类型：** `double`
-
 ## 所属库
 
 Mixed-Signal Blockset / ADC / Architectures

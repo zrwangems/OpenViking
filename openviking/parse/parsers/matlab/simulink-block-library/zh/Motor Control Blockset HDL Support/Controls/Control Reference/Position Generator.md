@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Position Generator
 
 ## 端口
+```yaml
+ports:
+- name: ∆θ
+  summary: 位置增量值 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θ0
+  summary: 初始位置信号 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Reset
+  summary: 外部复位信号 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: 参考电压位置 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -58,8 +77,22 @@ chinese_source: worker-translation
 参考电压信号的位置或相位值（以标幺值、弧度或度为单位）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Theta Units
+  summary: '*θ* 的单位 Per-unit（默认）| Radians | Degrees'
+  group: ''
+- name: Initial state
+  summary: 指定如何提供 *θ* 的初始值 Specify via dialog（默认）| Input port
+  group: ''
+- name: Initial theta value
+  summary: θe 的初始值 0（默认）| 标量
+  group: ''
+- name: External reset
+  summary: 复位时的输出值 none（默认）| active high resets to zero | active high resets to initial condition
+  group: ''
+```
 
 ### **Theta Units** — *θ* 的单位 `Per-unit`（默认）| `Radians` | `Degrees`
 
@@ -85,7 +118,6 @@ chinese_source: worker-translation
 ### **External reset** — 复位时的输出值 `none`（默认）| `active high resets to zero` | `active high resets to initial condition`
 
 当模块接收到高电平有效外部复位脉冲时的输出位置斜坡值（以标幺值、弧度或度为单位）。您可以将输出复位为零或复位为等于 **Initial theta output** 参数的值。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

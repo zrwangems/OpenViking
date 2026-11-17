@@ -14,6 +14,21 @@ language: en
 # Hit Scheduler
 
 ## Ports
+```yaml
+ports:
+- name: En
+  summary: Enable signal for scheduling time step scalar | vector
+  direction: input
+  data_types: Boolean
+- name: Δt
+  summary: Interval between current simulation time and time step to schedule scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Indication of scheduled time step scalar | vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -74,8 +89,31 @@ hits that affect when the block executes, the output has variable sample time fo
 output types. For more information about variable sample time, see Types of Sample Time.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output type
+  summary: Type of block output Signal (default) | Function Call
+  group: ''
+  block_parameter: HitSchedulerOutputType
+  type: string | character vector
+  values: '''Signal'' | ''Function-Call'''
+  default: '''Signal'''
+- name: Initial buffer size
+  summary: Initial size of buffer for scheduled time steps 256 (default) | integer
+  group: ''
+  block_parameter: InitialBufferSize
+  type: string | character vector
+  values: positive, whole, numeric scalar
+  default: '''256'''
+- name: Use fixed buffer size
+  summary: Option to use fixed-size buffer off (default) | on
+  group: ''
+  block_parameter: FixedBuffer
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Output type** — Type of block output `Signal` (default) | `Function Call`
 
@@ -137,7 +175,6 @@ needed.
 | **Type:** string | character vector |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Messages & Events

@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # External Force and Torque
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: fx
+  summary: 沿 *x* 轴的外力物理信号
+  direction: input
+- name: fy
+  summary: 沿 *y* 轴的外力物理信号
+  direction: input
+- name: fz
+  summary: 沿 *z* 轴的外力物理信号
+  direction: input
+- name: f
+  summary: 外力向量物理信号
+  direction: input
+- name: tx
+  summary: 绕 *x* 轴的外力矩物理信号
+  direction: input
+- name: ty
+  summary: 绕 *y* 轴的外力矩物理信号
+  direction: input
+- name: tz
+  summary: 绕 *z* 轴的外力矩物理信号
+  direction: input
+- name: t
+  summary: 外力矩向量物理信号
+  direction: input
+```
 
 ### Frame
 
@@ -97,8 +127,16 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用该端口，请在 **Torque** 下选择 **Torque**。
-
 ## 参数
+```yaml
+parameters:
+- name: Force Resolution Frame
+  summary: 用于解析每个力输入的坐标系 Attached Frame（默认）| World
+  group: ''
+- name: Torque Resolution Frame
+  summary: 用于解析每个扭矩输入的坐标系 Attached Frame（默认）| World
+  group: ''
+```
 
 #### Force
 
@@ -117,7 +155,6 @@ chinese_source: worker-translation
 
 - `Attached Frame` — 该模块在连接到 External Force and Torque 模块的 follower frame 的坐标系中解析输入。
 - `World` — 该模块在模型的世界坐标系中解析输入。
-
 ## 所属库
 
 Simscape / Multibody / Forces and Torques

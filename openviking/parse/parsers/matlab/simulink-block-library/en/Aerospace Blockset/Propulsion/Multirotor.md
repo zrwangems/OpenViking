@@ -14,6 +14,59 @@ language: en
 # Multirotor
 
 ## Ports
+```yaml
+ports:
+- name: Ω (rad/sec)
+  summary: Rotor speed *N*-element vector
+  direction: input
+  data_types: double
+- name: ρ
+  summary: Air density positive scalar
+  direction: input
+  data_types: double
+- name: Vb
+  summary: Body velocity of rotor 3-by-1 vector | 1-by-3 vector
+  direction: input
+  data_types: double
+- name: ωb
+  summary: Angular velocity 3-by-1 vector | 1-by-3 vector
+  direction: input
+  data_types: double
+- name: θ0
+  summary: Collective blade pitch angle N-by-1 vector | 1-by-N vector
+  direction: input
+  data_types: double
+- name: θc
+  summary: Lateral cyclic pitch angle N-by-1 vector | 1-by-N vector
+  direction: input
+  data_types: double
+- name: θs
+  summary: Longitudinal cyclic pitch angle N-by-1 vector | 1-by-N vector
+  direction: input
+  data_types: double
+- name: CT
+  summary: Input thrust coefficient nonzero positive scalar | N-by-1 vector
+  direction: input
+  data_types: double
+- name: CQ
+  summary: Input torque coefficient nonzero positive scalar | N-by-1 vector
+  direction: input
+  data_types: double
+- name: Fxyz(N)
+  summary: Total force three-element vector
+  direction: output
+  data_types: double
+- name: Mxyz(Nm)
+  summary: Net moment three-element vector
+  direction: output
+  data_types: double
+- name: CT
+  summary: Computed thrust coefficient positive vector
+  direction: output
+- name: CQ
+  summary: Computed torque coefficient positive vector
+  direction: output
+```
 
 ### Input
 
@@ -166,8 +219,158 @@ Computed torque coefficient, returned as a positive vector of *N* elements.
 To enable this output port, select the **Output computed CT and
 CQ** check box and set the **CT and CQ Source**
 dropdown to `Compute using BEMT`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: Main
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Modeling
+  summary: Rotor thrust calculation method Without flap effects (default) | With flap effects
+  group: Main
+  block_parameter: modelMode
+  type: character vector
+  values: '''Without flap effects'' | ''With flap effects'''
+  default: '''Without flap effects'''
+- name: Include pitch angle inputs
+  summary: Enable pitch angle inputs off (default) | on
+  group: Main
+  block_parameter: controlInput
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Configuration
+  summary: Vehicle configuration Quadcopter X (default) | Quadcopter +
+  group: Vehicle
+  block_parameter: config
+  type: character vector
+  values: '''Quadcopter X'' | ''Quadcopter +'''
+  default: '''Quadcopter X'''
+- name: Arm length (m)
+  summary: Vehicle arm length 0.0624 (default) | nonzero positive scalar
+  group: Vehicle
+  block_parameter: armLength
+  type: character vector
+  values: '''0.0624'' | nonzero positive scalar'
+  default: '''0.0624'''
+- name: Height (m)
+  summary: Vertical offset from vehicle center of gravity -0.0159 (default) | nonzero scalar
+  group: Vehicle
+  block_parameter: rotorHeight
+  type: character vector
+  values: '''-0.0159'' | nonzero positive scalar'
+  default: '''-0.0159'''
+- name: CT and CQ Source
+  summary: Dropdown to select the source of thrust and torque coefficient values 'Dialog' (default) | 'Compute using BEMT'
+    | 'Ports'
+  group: Rotor
+  block_parameter: CTCQMode
+  type: character vector
+  values: '''Dialog'' | ''Compute using BEMT'''
+  default: '''Dialog'''
+- name: Thrust coefficient (CT)
+  summary: Thrust coefficient 0.0107 (default) | nonzero positive scalar | nonzero positive N-by-1 vector
+  group: Rotor
+  block_parameter: CT
+  type: character vector
+  values: '''0.0107'' | nonzero positive scalar'
+  default: '''0.0107'''
+- name: Torque coefficient (CQ)
+  summary: Torque coefficient 7.8263e-4 (default) | nonzero positive scalar | nonzero positive N-by-1 vector
+  group: Rotor
+  block_parameter: CQ
+  type: character vector
+  values: '''7.8263e-4'' | nonzero positive scalar'
+  default: '''7.8263e-4'''
+- name: Number of blades
+  summary: Number of blades per rotor 2 (default) | nonzero positive scalar
+  group: Rotor
+  block_parameter: Nb
+  type: character vector
+  values: '''2'' | nonzero positive scalar'
+  default: '''2'''
+- name: Output computed CT and CQ
+  summary: Output computed thrust coefficient and torque coefficient off (default) | on
+  group: Rotor
+  block_parameter: CTout
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Radius (m)
+  summary: Rotor radius 0.0330 (default) | nonzero positive scalar
+  group: Rotor
+  block_parameter: radius
+  type: character vector
+  values: '''0.0330'' | nonzero positive scalar'
+  default: '''0.0330'''
+- name: Chord (m)
+  summary: Blade chord 0.0080 (default) | nonzero positive scalar
+  group: Rotor
+  block_parameter: chord
+  type: character vector
+  values: '''0.0080'' | nonzero positive scalar'
+  default: '''0.0080'''
+- name: Hinge offset (m)
+  summary: Hinge offset 0 (default) | positive scalar
+  group: Rotor
+  block_parameter: hingeOffset
+  type: character vector
+  values: '''0'' | positive scalar'
+  default: '''0'''
+- name: Lift curve slope (per rad)
+  summary: Lift curve slope 5.5 (default) | nonzero positive scalar
+  group: Rotor
+  block_parameter: clalpha
+  type: character vector
+  values: '''5.5'' | nonzero positive scalar'
+  default: '''5.5'''
+- name: Mean drag coefficient
+  summary: Mean drag coefficient 0 (default) | positive scalar
+  group: Rotor
+  block_parameter: cd0
+  type: character vector
+  values: '''0'' | positive scalar'
+  default: '''0'''
+- name: Lock number
+  summary: Lock number 0.6051 (default) | nonzero positive scalar
+  group: Rotor
+  block_parameter: gamma
+  type: character vector
+  values: '''0.6051'' | nonzero positive scalar'
+  default: '''0.6051'''
+- name: Twist distribution
+  summary: Rotor blade twist distribution Linear (default) | Ideal
+  group: Rotor
+  block_parameter: twistType
+  type: character vector
+  values: '''Linear'' | ''Ideal'''
+  default: '''Linear'''
+- name: Blade root angle (rad)
+  summary: Blade root pitch angle 0.2548 (default) | real scalar
+  group: Rotor
+  block_parameter: thetaRoot
+  type: real scalar
+  values: '''0.2548'' | nonzero positive scalar'
+  default: '''0.2548'''
+- name: Blade twist angle (rad)
+  summary: Blade twist angle -0.1361 (default) | real scalar
+  group: Rotor
+  block_parameter: thetaTwist
+  type: real scalar
+  values: '''0.1018'' | positive scalar'
+  default: '''0.1018'''
+- name: Blade tip angle (rad)
+  summary: Blade tip pitch angle 0.1018 (default) | real scalar
+  group: Rotor
+  block_parameter: thetaTip
+  type: real scalar
+  values: '''0.06'' | nonzero positive scalar'
+  default: '''0.06'''
+```
 
 ### Main
 
@@ -657,7 +860,6 @@ and/or
 | **Type**: real scalar |
 | **Values**: `'0.06'` | nonzero positive scalar |
 | **Default**: `'0.06'` |
-
 ## Libraries
 
 Aerospace Blockset / Propulsion

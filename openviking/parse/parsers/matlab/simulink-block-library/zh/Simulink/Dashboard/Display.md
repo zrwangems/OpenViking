@@ -15,10 +15,87 @@ chinese_source: worker-translation
 # Display
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的信号及显示信号连接选项
+  group: 连接
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Format
+  summary: 显示信号值的格式 short（默认）| long | shortE | longE | ...
+  group: 主要
+  block_parameter: Format
+  type: character array | string
+  values: '''short'' | ''long'' | ''shortE'' | ''longE'' | ''shortG'' | ''longG'' | ''shortEng'' | ''longEng'' | ''bank''
+    | ''+'' | ''hex'' | ''rat'' | ''Custom'' | ''Integer'''
+  default: '''short'''
+- name: Format String
+  summary: 用于格式化数据的自定义字符串 '%d'（默认）| string
+  group: 主要
+  block_parameter: FormatString
+  type: character array | string
+  default: '''%d'''
+- name: Alignment
+  summary: 模块中的文本对齐方式 Center（默认）| Left | Right
+  group: 主要
+  block_parameter: Alignment
+  type: character array
+  values: '''Left'' | ''Center'' | ''Right'''
+  default: '''Center'''
+- name: Label
+  summary: 模块标签位置 Hide（默认）| Bottom | Top
+  group: 主要
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Layout
+  summary: 如何排列非标量数据的元素 Preserve dimensions（默认）| Fill available space
+  group: 主要
+  block_parameter: Layout
+  type: character array | string
+  values: '''Preserve dimensions'' | ''Fill available space'''
+  default: '''Preserve dimensions'''
+- name: Show grid for non-scalar signals
+  summary: 是否显示网格 on（默认）| off
+  group: 格式
+  block_parameter: ShowGrid
+  type: character array | string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| scalar
+  group: 格式
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+- name: Foreground Color
+  summary: 模块前景色 [r g b] 向量
+  group: 格式
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Background Color
+  summary: 模块背景色 [r g b] 向量
+  group: 格式
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Grid Color
+  summary: 模块网格颜色 [r g b] 向量
+  group: 格式
+  block_parameter: GridColor
+  type: '[r g b] vector'
+  default: '[0.502 0.502 0.502]'
+```
 
 ### 连接
 
@@ -212,7 +289,6 @@ Display 模块中的文本对齐方式。
 | **模块参数**：`GridColor` |
 | **类型**：`[r g b]` vector |
 | **默认值**：`[0.502 0.502 0.502]` |
-
 ## 所属库
 
 Simulink / Dashboard

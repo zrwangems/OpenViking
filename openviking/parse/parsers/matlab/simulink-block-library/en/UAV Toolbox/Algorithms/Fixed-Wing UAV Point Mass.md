@@ -14,6 +14,85 @@ language: en
 # Fixed-Wing UAV Point Mass
 
 ## Ports
+```yaml
+ports:
+- name: Lift
+  summary: Lift scalar
+  direction: input
+  data_types: double
+- name: Drag
+  summary: Drag scalar
+  direction: input
+  data_types: double
+- name: Weight
+  summary: Weight scalar
+  direction: input
+  data_types: double
+- name: Thrust
+  summary: Thrust scalar
+  direction: input
+  data_types: double
+- name: ɣa
+  summary: Flight path angle relative to the air mass scalar
+  direction: input
+  data_types: double
+- name: μ
+  summary: Bank angle scalar
+  direction: input
+  data_types: double
+- name: ɑ
+  summary: Angle of attack scalar
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: Wind vector three-element vector
+  direction: input
+  data_types: double
+- name: V
+  summary: Airspeed scalar
+  direction: output
+  data_types: double
+- name: G
+  summary: Ground speed projection scalar
+  direction: output
+  data_types: double
+- name: Va
+  summary: Velocity vector relative to air mass three-element vector
+  direction: output
+  data_types: double
+- name: Ve
+  summary: Velocity vector relative to Earth with [North East Down] orientation three-element vector
+  direction: output
+  data_types: double
+- name: VENU
+  summary: Velocity vector relative to Earth three-element vector
+  direction: output
+  data_types: double
+- name: Xe
+  summary: Position vector relative to Earth three-element vector
+  direction: output
+  data_types: double
+- name: XENU
+  summary: Position vector relative to Earth three-element vector
+  direction: output
+  data_types: double
+- name: γa
+  summary: Flight path angle relative to air mass scalar
+  direction: output
+  data_types: double
+- name: γ
+  summary: Flight path angle relative to Earth scalar
+  direction: output
+  data_types: double
+- name: χa
+  summary: Heading angle relative to air mass scalar
+  direction: output
+  data_types: double
+- name: χ
+  summary: Heading angle relative to Earth scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -168,8 +247,80 @@ To enable this port, set **Degrees of Freedom** to `6th
 Order (Coordinated Flight)`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Units Metric (MKS) (default) | English (velocity in ft/s) | English (velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (velocity in ft/s)'' | ''English (velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Reference frame orientation
+  summary: Reference frames [North East Down] (default) | [East North Up]
+  group: ''
+  block_parameter: frame
+  type: character vector
+  values: '''[East North Up]'' | ''[North East Down]'''
+  default: '''[North East Down]'''
+- name: Degrees of freedom
+  summary: Degrees of freedom 6th Order (Coordinated Flight) (default) | 4th Order (Longitudinal)
+  group: ''
+  block_parameter: order
+  type: character vector
+  values: '''4th Order (Longitudinal)'' | ''6th Order (Coordinated Flight)'''
+  default: '''6th Order (Coordinated Flight)'''
+- name: Initial crossrange
+  summary: Initial East (Earth) crossrange location 0 (default) | scalar
+  group: ''
+  block_parameter: east
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Initial downrange
+  summary: Initial North (Earth) downrange 0 (default) | scalar
+  group: ''
+  block_parameter: north
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Initial altitude
+  summary: Initial altitude 0 (default) | scalar
+  group: ''
+  block_parameter: altitude
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Initial airspeed
+  summary: Initial airspeed 50 (default) | scalar
+  group: ''
+  block_parameter: '''airspeed'''
+  type: character vector
+  values: scalar
+  default: '''50'''
+- name: Initial flight path angle
+  summary: Initial flight path angle 0 (default) | scalar
+  group: ''
+  block_parameter: gamma
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Initial heading angle
+  summary: Initial heading angle 0 (default) | scalar
+  group: ''
+  block_parameter: chi
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Mass
+  summary: Point mass 10 (default) | scalar
+  group: ''
+  block_parameter: mass
+  type: character vector
+  values: scalar
+  default: '''10'''
+```
 
 ### **Units** — Units `Metric (MKS)` (default) | `English (velocity in ft/s)` | `English (velocity in kts)`
 
@@ -341,7 +492,6 @@ Mass of the point mass, specified as a scalar.
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'10'` |
-
 ## Libraries
 
 UAV Toolbox / Algorithms Aerospace Blockset / Equations of Motion / Point Mass

@@ -14,6 +14,27 @@ language: en
 # DC-DC Converter
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Input positive terminal electrical
+  direction: conserving
+- name: 1-
+  summary: Input negative terminal electrical
+  direction: conserving
+- name: 2+
+  summary: Output positive terminal electrical
+  direction: conserving
+- name: 2-
+  summary: Output negative terminal electrical
+  direction: conserving
+- name: Vref
+  summary: Voltage reference physical
+  direction: conserving
+- name: H
+  summary: Thermal mass thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -57,8 +78,110 @@ behavior at a second temperature. For more information, see the Thermal paramete
 
 To enable this port, set **Modeling option** to `Show
 thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Voltage reference
+  summary: Voltage reference Internal (default) | External
+  group: Main
+- name: Output voltage reference demand
+  summary: Voltage set point 10 V (default)
+  group: Main
+- name: Rated output power
+  summary: Rated power 10 W (default)
+  group: Main
+- name: Enable droop
+  summary: Droop option On (default) | Off
+  group: Main
+- name: Droop parameterization
+  summary: Droop model By voltage droop with output current (default) | By percent voltage droop at rated load
+  group: Main
+- name: Output voltage droop with output current
+  summary: Voltage droop at 1 A 0.1 V/A (default)
+  group: Main
+- name: Voltage droop percent at rated load
+  summary: Voltage droop percent at rated load 2 (default)
+  group: Main
+- name: Voltage reference used to calculate droop percent
+  summary: Voltage droop percent at rated load 10 V (default)
+  group: Main
+- name: Power direction
+  summary: Power flow direction Unidirectional power flow from supply to regulated side (default) | Bidirectional power flow
+  group: Main
+- name: Diode off-state conductance
+  summary: Unidirectional diode 1e-8 1/Ohm (default)
+  group: Main
+- name: Converter losses at zero output power
+  summary: Constant losses 1 W (default)
+  group: Losses
+- name: Converter losses
+  summary: Converter losses Assume proportional to square of output current (default) | Tabulate efficiency
+  group: Losses
+- name: Percentage efficiency at rated output power
+  summary: Rated efficiency 80 (default)
+  group: Losses
+- name: Variables for tabulation
+  summary: Tabulation variables Output current (default) | Output current and input voltage | Output current and temperature
+    | Output current, input voltage, and temperature
+  group: Losses
+- name: Vector of output currents for tabulated efficiencies, I2
+  summary: Output currents for tabulated efficiencies [-2, -1, 1, 2] A (default) | vector of positive ascending scalars
+  group: Losses
+- name: Percentage efficiency table, eff(I2)
+  summary: Efficiency table in function of current [66, 76, 80, 74] (default) | vector of positive scalars
+  group: Losses
+- name: Vector of input voltages for tabulated efficiencies, V1
+  summary: Input voltages for tabulated efficiencies [15, 30, 45] V (default) | vector of positive ascending scalars
+  group: Losses
+- name: Percentage efficiency table, eff(I2,V1)
+  summary: Efficiency table in function of current and voltage [66, 66, 66; 76, 76, 76; 80, 80, 80; 74, 74, 74] (default)
+    | vector of positive scalars
+  group: Losses
+- name: Vector of temperatures for tabulated efficiencies, T
+  summary: Temperatures for tabulated efficiencies [280, 300, 320] K (default) | vector of positive ascending scalars
+  group: Losses
+- name: Percentage efficiency table, eff(I2,T)
+  summary: Efficiency table in function of current and temperature [66, 66, 66; 76, 76, 76; 80, 80, 80; 74, 74, 74] (default)
+    | vector of scalars
+  group: Losses
+- name: Percentage efficiency table, eff(I2,V1,T)
+  summary: Efficiency table in function of current, voltage, and temperature repmat([66; 76; 80; 74], 1, 3, 3) (default) |
+    vector of scalars
+  group: Losses
+- name: Dynamics
+  summary: Dynamics model No dynamics (default) | Specify voltage regulation time constant
+  group: Dynamics
+- name: Voltage regulation time constant
+  summary: Dynamics time constant 0.02 s (default)
+  group: Dynamics
+- name: Initial output voltage demand
+  summary: Initial demand voltage 10 V (default)
+  group: Dynamics
+- name: Minimum supply voltage to function
+  summary: Minimum supply voltage to operate 1 V (default)
+  group: Off State
+- name: Input resistance if not functioning
+  summary: Input resistance if not functioning 1000 Ohm (default)
+  group: Off State
+- name: Output resistance if not functioning
+  summary: Output resistance if not functioning 1000 Ohm (default)
+  group: Off State
+- name: Open circuit fault
+  summary: Option to add open circuit fault Add fault (default)
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Thermal mass
+  summary: Thermal mass associated with the thermal port 100 J/K (default)
+  group: Thermal
+- name: Initial temperature
+  summary: Initial temperature at the thermal port 298.15 K (default)
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -397,7 +520,6 @@ degree.
 ### **Initial temperature** — Initial temperature at the thermal port `298.15` `K` (default)
 
 Initial temperature associated with thermal port **H**.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

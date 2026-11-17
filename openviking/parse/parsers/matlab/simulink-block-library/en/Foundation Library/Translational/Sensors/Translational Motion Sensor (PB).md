@@ -14,6 +14,24 @@ language: en
 # Translational Motion Sensor (PB)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Acceleration, m/s^2 physical signal
+  direction: output
+- name: V
+  summary: Velocity, m/s physical signal
+  direction: output
+- name: P
+  summary: Position, m physical signal
+  direction: output
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Output
 
@@ -57,8 +75,22 @@ follower connection.
 
 To enable this port, set the **Measurement reference**
 parameter to `Difference`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement reference
+  summary: Select whether to perform absolute or relative measurements Difference (default) | Absolute
+  group: ''
+- name: Acceleration
+  summary: Control output port visibility to measure acceleration off (default) | on
+  group: ''
+- name: Velocity
+  summary: Control output port visibility to measure velocity on (default) | off
+  group: ''
+- name: Position
+  summary: Control output port visibility to measure position on (default) | off
+  group: ''
+```
 
 ### **Measurement reference** — Select whether to perform absolute or relative measurements `Difference` (default) | `Absolute`
 
@@ -87,7 +119,6 @@ measure velocity.
 
 Selecting this check box exposes output port **P**, which lets you
 measure position.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Sensors

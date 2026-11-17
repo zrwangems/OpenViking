@@ -14,6 +14,21 @@ language: en
 # Point on Surface Constraint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: output
+- name: F
+  summary: Follower frame frame
+  direction: output
+- name: f
+  summary: Constraint force vector
+  direction: output
+- name: t
+  summary: Constraint torque vector
+  direction: output
+```
 
 ### Geometry
 
@@ -60,8 +75,22 @@ to the reference frame of the surface that connects to the port
 
 To enable this port, under **Constraint Force/Torque Sensing**, select
 **Torque Vector**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: ''
+- name: Resolution Frame
+  summary: Frame to resolve measurements Base (default) | Follower
+  group: ''
+- name: Force Vector
+  summary: Whether to sense constraint force off (default) | on
+  group: ''
+- name: Torque Vector
+  summary: Whether to sense constraint torque off (default) | on
+  group: ''
+```
 
 ### **Direction** — Measurement direction `Follower on Base` (default) | `Base on Follower`
 
@@ -83,7 +112,6 @@ outputs the constraint force vector between **B** and
 Select this parameter to expose the port **t**, which
 outputs the constraint torque vector between **B** and
 **F** frames.
-
 ## Libraries
 
 Simscape / Multibody / Constraints

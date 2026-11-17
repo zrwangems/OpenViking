@@ -15,6 +15,141 @@ chinese_source: worker-translation
 # Color Space Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入图像数组
+  direction: input
+  data_types: single | double | uint8
+- name: R'
+  summary: 图像矩阵的红色分量
+  direction: input
+  data_types: single | double | uint8
+- name: G'
+  summary: 图像矩阵的绿色分量
+  direction: input
+  data_types: single | double | uint8
+- name: B'
+  summary: 图像矩阵的蓝色分量
+  direction: input
+  data_types: single | double | uint8
+- name: Y'
+  summary: 图像矩阵的亮度分量
+  direction: input
+  data_types: single | double | uint8
+- name: Cb
+  summary: 图像矩阵的蓝色差色度分量
+  direction: input
+  data_types: single | double | uint8
+- name: Cr
+  summary: 图像矩阵的红色差色度分量
+  direction: input
+  data_types: single | double | uint8
+- name: H
+  summary: 图像矩阵的色调分量
+  direction: input
+  data_types: single | double
+- name: S
+  summary: 图像矩阵的饱和度分量
+  direction: input
+  data_types: single | double
+- name: V
+  summary: 图像矩阵的亮度分量
+  direction: input
+  data_types: single | double
+- name: X
+  summary: 图像矩阵的 X 分量
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: 图像矩阵的 Y 分量
+  direction: input
+  data_types: single | double
+- name: Z
+  summary: 图像矩阵的 Z 分量
+  direction: input
+  data_types: single | double
+- name: L\*
+  summary: 图像矩阵的明度分量
+  direction: input
+  data_types: single | double
+- name: a\*
+  summary: 图像 *M*×*N* 矩阵的红绿色分量
+  direction: input
+  data_types: single | double
+- name: b\*
+  summary: 图像 *M*×*N* 矩阵的黄蓝色分量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出图像数组
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: R'
+  summary: 图像矩阵的红色分量
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: G'
+  summary: 图像矩阵的绿色分量
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: B'
+  summary: 图像矩阵的蓝色分量
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: Y'
+  summary: 图像矩阵的亮度分量
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: Cb
+  summary: 图像矩阵的蓝色差色度分量
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: Cr
+  summary: 图像矩阵的红色差色度分量
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: I'
+  summary: 强度图像矩阵
+  direction: output
+  data_types: single | double | int8 | uint8
+- name: H
+  summary: 图像矩阵的色调分量
+  direction: output
+  data_types: single | double
+- name: S
+  summary: 图像矩阵的饱和度分量
+  direction: output
+  data_types: single | double
+- name: V
+  summary: 图像矩阵的亮度分量
+  direction: output
+  data_types: single | double
+- name: X
+  summary: 图像矩阵的 X 分量
+  direction: output
+  data_types: single | double
+- name: Y
+  summary: 图像矩阵的 Y 分量
+  direction: output
+  data_types: single | double
+- name: Z
+  summary: 图像矩阵的 Z 分量
+  direction: output
+  data_types: single | double
+- name: L\*
+  summary: 图像矩阵的明度分量
+  direction: output
+  data_types: single | double
+- name: a\*
+  summary: 图像矩阵的红绿色分量
+  direction: output
+  data_types: single | double
+- name: b\*
+  summary: 图像矩阵的黄蓝色分量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -428,8 +563,25 @@ chinese_source: worker-translation
 要启用此端口，请将 **Image signal** 参数设置为 `Separate color signals`，并将 **Conversion** 参数设置为 `sR'G'B' to L*a*b*`。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Conversion
+  summary: 颜色空间转换 R'G'B' to Y'CbCr（默认）| Y'CbCr to R'G'B' | R'G'B' to intensity | ...
+  group: ''
+- name: Use conversion specified by
+  summary: 颜色转换标准 Rec. 601 (SDTV)（默认）| Rec. 709 (HDTV)
+  group: ''
+- name: Scanning standard
+  summary: 扫描标准 1125/60/2:1（默认）| 1250/50/2:1
+  group: ''
+- name: White point
+  summary: 白点 D50（默认）| D55 | D65
+  group: ''
+- name: Image signal
+  summary: 图像信号输入 One multidimensional signal（默认）| Separate color signals
+  group: ''
+```
 
 ### **Conversion** — 颜色空间转换 `R'G'B' to Y'CbCr`（默认）| `Y'CbCr to R'G'B'` | `R'G'B' to intensity` | ...
 
@@ -482,7 +634,6 @@ chinese_source: worker-translation
 
 - `One multidimensional signal` — 该模块将输入图像的所有颜色通道作为多维数组接收到单个输入端口，并将转换后的图像作为单个矩阵或数组从单个输出端口输出。
 - `Separate color signals` — 该模块将输入图像的每个颜色通道接收到单独的输入端口，并将转换后图像的每个颜色通道从单独的输出端口输出。
-
 ## 所属库
 
 Computer Vision Toolbox / Conversions

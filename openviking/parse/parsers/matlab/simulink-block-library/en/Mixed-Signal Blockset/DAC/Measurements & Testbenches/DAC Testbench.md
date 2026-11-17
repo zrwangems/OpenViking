@@ -14,6 +14,21 @@ language: en
 # DAC Testbench
 
 ## Ports
+```yaml
+ports:
+- name: from dac analog
+  summary: Analog signal from DAC output scalar
+  direction: input
+  data_types: double
+- name: to dac digital
+  summary: Digital stimulus signal for DAC input scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: to dac start
+  summary: External start conversion clock for DAC scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -36,8 +51,121 @@ External start conversion clock for DAC, returned as a scalar. The rising edge o
 this signal starts the conversion process in the DAC block.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement
+  summary: Select whether to measure DC or AC performance metrics DC (default) | AC
+  group: ''
+- name: Recommended min. simulation stop time (s)
+  summary: Minimum time simulation must run for meaningful result 2.048e-02 (default) | positive real scalar
+  group: ''
+- name: Set as model stop time
+  summary: Automatically set recommended min. simulation stop time as model stop time button
+  group: ''
+- name: Endpoint
+  summary: Measure DNL, INL using endpoint method on (default) | off
+  group: ''
+- name: Best fit
+  summary: Measure DNL, INL using best fit method on (default) | off
+  group: ''
+- name: Plot DC analysis result
+  summary: Plot DC analysis result button
+  group: ''
+- name: Export measurement result
+  summary: Store detailed test results to base workspace button
+  group: ''
+- name: Digital input frequency (Hz)
+  summary: Frequency of digital input signal to DAC 1e4 (default) | positive real scalar
+  group: Stimulus
+  block_parameter: InputFrequency
+  type: character vector
+  values: positive real scalar
+  default: 1e3
+- name: Start conversion frequency (Hz)
+  summary: Frequency of internal start-conversion clock 1e6 (default) | positive real scalar
+  group: Stimulus
+  block_parameter: StartFreq
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Error tolerance (LSB)
+  summary: Maximum difference between successive samples of digital signal 0.1 (default) | positive scalar in the range (0,
+    1]
+  group: Stimulus
+  block_parameter: ErrorTolerance
+  type: character vector
+  values: positive scalar in the range (0, 1]
+  default: '0.1'
+- name: Autofill setup parameters
+  summary: Automatically propagate setup parameters from DAC button
+  group: Setup
+- name: Number of bits
+  summary: Number of bits in input word 10 (default) | positive real integer
+  group: Setup
+  block_parameter: NBits
+  type: character vector
+  values: positive real integer
+  default: '10'
+- name: Input polarity
+  summary: Polarity of input signal to DAC Bipolar (default) | Unipolar
+  group: Setup
+  block_parameter: Polarity
+  type: character vector
+  values: Bipolar|Unipolar
+  default: Bipolar
+- name: Reference (V)
+  summary: Reference voltage 1 (default) | real scalar
+  group: Setup
+  block_parameter: Ref
+  type: character vector
+  values: real scalar
+  default: '1'
+- name: Bias (V)
+  summary: Bias voltage added to output 0 (default) | real scalar
+  group: Setup
+  block_parameter: Bias
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Settling time (s)
+  summary: Time required for output to settle 0.25/1e-6 (default) | nonnegative real scalar
+  group: Setup
+  block_parameter: SettlingTime
+  type: character vector
+  values: real scalar
+  default: 0.25/1e-6
+- name: Settling time tolerance (LSB)
+  summary: Tolerance for calculating settling time 0.5 (default) | positive real scalar
+  group: Setup
+  block_parameter: SettlingTimeTolerance
+  type: character vector
+  values: positive real scalar
+  default: '0.5'
+- name: Hold off time (s)
+  summary: Delay before measurement analysis 0 (default) | nonnegative real scalar
+  group: Setup
+- name: Show spectrum analyzer during simulation
+  summary: Displays Spectrum Analyzer during simulation off (default) | on
+  group: Setup
+- name: Autofill target metric
+  summary: Automatically propagate target metrics from DAC button
+  group: Target Metric
+- name: Offset error
+  summary: Shifts quantization steps by specific value 0 LSB (default) | real scalar
+  group: Target Metric
+  block_parameter: TargetOffsetError
+  type: character vector
+  values: real scalar
+  default: 0 LSB
+- name: Gain error
+  summary: Error in slope of DAC transfer curve 0 LSB (default) | real scalar
+  group: Target Metric
+  block_parameter: TargetGainError
+  type: character vector
+  values: real scalar
+  default: 0 LSB
+```
 
 ### **Measurement** — Select whether to measure DC or AC performance metrics `DC` (default) | `AC`
 
@@ -434,7 +562,6 @@ To enable this parameter, set **Measurement** to
 | **Default:** `0 LSB` |
 
 **Data Types:** `double`
-
 ## Libraries
 
 Mixed-Signal Blockset / DAC / Measurements & Testbenches

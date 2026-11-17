@@ -15,14 +15,29 @@ chinese_source: worker-translation
 # Trigger-Based Operating Point Snapshot
 
 ## 端口
+```yaml
+ports:
+- name: Trigger
+  summary: 触发控制信号 标量
+  direction: input
+```
 
 ### 输入
 
 ### **Trigger** — 触发控制信号 标量
 
 触发控制信号，指定为标量信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Trigger type
+  summary: 控制信号类型 rising（默认）| falling | either | function-call
+  group: ''
+  block_parameter: '''TriggerType'''
+  type: character vector
+  values: '''rising''''falling''''either''''function-call'''
+  default: '''rising'''
+```
 
 ### **Trigger type** — 控制信号类型 `rising`（默认）| `falling` | `either` | `function-call`
 
@@ -41,7 +56,6 @@ chinese_source: worker-translation
 | **类型**：`character vector` |
 | **值**：`'rising'``'falling'``'either'``'function-call'` |
 | **默认值**：`'rising'` |
-
 ## 所属库
 
 Simulink Control Design / Utilities

@@ -14,6 +14,18 @@ language: en
 # UAV Scenario Motion Read
 
 ## Ports
+```yaml
+ports:
+- name: Motion
+  summary: UAV motion data bus
+  direction: output
+- name: SampledWind
+  summary: Resultant wind translational and angular velocity 1-by-6 vector
+  direction: output
+- name: SampledWindByComponent
+  summary: Wind translational and angular velocities from each wind model objects *N*-by-6 matrix
+  direction: output
+```
 
 ### Output
 
@@ -84,8 +96,19 @@ z- directions in rad/s.
 
 This port is only visible if **Generate wind velocity and angular
 velocity samples** is checked.
-
 ## Parameters
+```yaml
+parameters:
+- name: Platform or sensor name
+  summary: Platform or sensor name 'UAV' (default) | string
+  group: ''
+- name: Coordinate frame of output motion
+  summary: Coordinate frame of output motion 'ENU' (default) | 'NED' | string
+  group: ''
+- name: Generate wind velocity and angular velocity samples
+  summary: Generate wind velocity and angular velocities samples off (default) | on
+  group: ''
+```
 
 ### **Platform or sensor name** — Platform or sensor name `'UAV'` (default) | string
 
@@ -109,7 +132,6 @@ Output wind velocity from the **SampledWind** and
 
 This parameter is only enabled if you have selected a platform and the Aerospace Blockset™ license is available. Simulating with this parameter turned on checks
 out the Aerospace Blockset license
-
 ## Libraries
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Cumulative Sum
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Rst
+  summary: 复位端口标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: Out
+  summary: 累积和向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -41,8 +56,40 @@ chinese_source: worker-translation
 输入的累积和，指定为向量或矩阵。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Sum input along
+  summary: 沿其求和的维度 Channels (running sum)（默认）| Columns | Rows
+  group: 主要
+- name: Input processing
+  summary: 处理输入的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: 主要
+- name: Reset port
+  summary: 复位类型 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: 主要
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 定点运算饱和 off（默认）| on
+  group: 数据类型
+- name: Accumulator
+  summary: '累加器的数据类型 Inherit: Same as first input（默认）| fixdt([],16,0)'
+  group: 数据类型
+- name: Output
+  summary: '输出的数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型
+- name: Output Minimum
+  summary: 模块可以输出的最小值 []（默认）| 标量
+  group: 数据类型
+- name: Output Maximum
+  summary: 模块可以输出的最大值 []（默认）| 标量
+  group: 数据类型
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主要
 
@@ -140,7 +187,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Math Operations

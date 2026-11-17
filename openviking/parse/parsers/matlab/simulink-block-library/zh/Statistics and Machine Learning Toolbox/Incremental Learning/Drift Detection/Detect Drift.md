@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Detect Drift
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入数据 n×1 数值向量 | 逻辑向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: reset
+  summary: 重置信号 数值或 | 0 (false) | 1(true)
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: w
+  summary: 观测权重 n×1 数值向量
+  direction: input
+  data_types: single | double
+- name: IsWarm
+  summary: 指示模块是否跟踪漂移状态的标志 0 (false) | 1(true)
+  direction: output
+  data_types: Boolean
+- name: status
+  summary: 当前漂移状态 0（稳定） | 1（警告） | 2（漂移）
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -62,8 +85,144 @@ chinese_source: worker-translation
 当前漂移状态，指定为 `0`（稳定，或无漂移）、`1`（漂移警告）或 `2`（检测到漂移）。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Select concept drift detector
+  summary: 初始增量概念漂移检测器 IncCDDetector（默认） | incrementalConceptDriftDetector 对象
+  group: 主要参数
+  block_parameter: DriftDetector
+  type: character vector or string
+  values: incrementalConceptDriftDetector object name
+  default: '"IncCDDetector"'
+- name: Add input port for observation weights
+  summary: 添加用于观测权重的第三个输入端口 off（默认） | on
+  group: 主要参数
+  block_parameter: ShowInputWeights
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 采样时间（–1 表示继承）
+  summary: 用于指定采样时间的选项 –1（默认）| 标量
+  group: 主要参数
+  block_parameter: SystemSampleTime
+  type: 字符串标量或字符向量
+  values: 标量
+  default: '"–1"'
+- name: 整数舍入模式
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: 整数溢出时饱和
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 锁定输出数据类型设置以防止被定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Drift status data type
+  summary: '漂移状态输出 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression> 的数据类型'
+  group: 数据类型
+  block_parameter: DriftStatusDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Drift status data type Minimum
+  summary: 用于范围检查的漂移状态输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: DriftStatusOutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Drift status data type Maximum
+  summary: 用于范围检查的漂移状态输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: DriftStatusOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Mean data type
+  summary: '均值 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression> 的数据类型'
+  group: 数据类型
+  block_parameter: MeanDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: 均值数据类型最小值
+  summary: 用于范围检查的均值最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: MeanOutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: 均值数据类型最大值
+  summary: 用于范围检查的均值最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: MeanOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: 方差数据类型
+  summary: '方差的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: VarianceDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Variance data type Minimum
+  summary: 用于范围检查的方差最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: VarianceOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Variance data type Maximum
+  summary: 用于范围检查的方差最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: VarianceOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Weights sum data type
+  summary: '权重和的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: WeightsSumDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Weights sum data type Minimum
+  summary: 用于范围检查的权重和最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: WeightsSumOutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: 权重和数据类型最大值
+  summary: 用于范围检查的权重和最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: WeightsSumOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -383,7 +542,6 @@ Simulink 使用最大值来执行：
 | **类型**: 字符向量 |
 | **值**: `'[]'` | 标量 |
 | **默认值**: `'[]'` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Drift Detection

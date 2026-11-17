@@ -14,6 +14,54 @@ language: en
 # Solid Axle Suspension - Leaf Spring
 
 ## Ports
+```yaml
+ports:
+- name: WhlPz
+  summary: Wheel z-axis displacement array
+  direction: input
+- name: WhlRe
+  summary: Wheel effective radius array
+  direction: input
+- name: WhlVz
+  summary: Wheel z-axis velocity array
+  direction: input
+- name: WhlFx
+  summary: Longitudinal wheel force on vehicle array
+  direction: input
+- name: WhlFy
+  summary: Lateral wheel force on vehicle array
+  direction: input
+- name: WhlM
+  summary: Suspension moment on wheel array
+  direction: input
+- name: VehP
+  summary: Vehicle displacement array
+  direction: input
+- name: VehV
+  summary: Vehicle velocity array
+  direction: input
+- name: StrgAng
+  summary: Steering angle, optional array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: VehF
+  summary: Suspension force on vehicle array
+  direction: output
+- name: VehM
+  summary: Suspension moment on vehicle array
+  direction: output
+- name: WhlF
+  summary: Suspension force on wheel array
+  direction: output
+- name: WhlV
+  summary: Wheel velocity array
+  direction: output
+- name: WhlAng
+  summary: Wheel camber, caster, toe angles array
+  direction: output
+```
 
 ### Input
 
@@ -513,8 +561,130 @@ For example, for a two-axle vehicle with two wheels per axle, the
   | Front right | `WhlF(3,2)` | `1` | `2` |
   | Rear left | `WhlF(3,3)` | `2` | `1` |
   | Rear right | `WhlF(3,4)` | `2` | `2` |
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of axles, NumAxl
+  summary: Number of axles 2 (default) | scalar
+  group: Axles
+  block_parameter: NumAxl
+  values: 2 (default) | scalar
+- name: Number of wheels by axle, NumWhlsByAxl
+  summary: Number of wheels per axle [2 2] (default) | vector
+  group: Axles
+  block_parameter: NumWhlsByAxl
+  values: '[2 2] (default) | vector'
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: Boolean vector to enable axle steering [1 0] (default) | vector
+  group: Axles
+  block_parameter: StrgEnByAxl
+  values: '[1 0] (default) | vector'
+- name: Axle and wheels lumped principal moments of inertia about longitudinal axis, AxlIxx
+  summary: Inertia 200 (default) | vector
+  group: Axles
+  block_parameter: AxlIxx
+  values: 200 (default) | vector
+- name: Axle and wheels lumped mass, AxlM
+  summary: Mass 300 (default) | vector
+  group: Axles
+  block_parameter: AxlM
+  values: 300 (default) | vector
+- name: Track hardpoint coordinates relative to axle center, TrackCoords
+  summary: Point [0 0 0 0;-1 1 -1 1;0 0 0 0] (default) | array
+  group: Axles
+  block_parameter: TrackCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0] (default) | array'
+- name: Suspension hardpoint coordinates relative to axle center, SuspCoords
+  summary: Point [0 0 0 0;-1 1 -1 1;0 0 0 0] (default) | array
+  group: Axles
+  block_parameter: SuspCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0] (default) | array'
+- name: Wheel and axle interface compliance constant, KzWhlAxl
+  summary: Spring rate 6437000 (default) | scalar
+  group: Axles
+  block_parameter: KzWhlAxl
+  values: 6437000 (default) | scalar
+- name: Wheel and axle interface compliance preload, F0zWhlAxl
+  summary: Spring rate 9810 (default) | scalar
+  group: Axles
+  block_parameter: F0zWhlAxl
+  values: 9810 (default) | scalar
+- name: Wheel and axle interface damping constant, CzWhlAxl
+  summary: Damping 10000 (default) | scalar
+  group: Axles
+  block_parameter: CzWhlAxl
+  values: 10000 (default) | scalar
+- name: Suspension spring constant, Kz
+  summary: Suspension spring constant 64370 (default) | scalar | vector
+  group: Suspension
+  block_parameter: Kz
+  values: 64370 (default) | scalar | vector
+- name: Suspension spring preload, F0z
+  summary: Suspension spring preload 9810 (default) | scalar | vector
+  group: Suspension
+  block_parameter: F0z
+  values: 9810 (default) | scalar | vector
+- name: Suspension shock damping constant, Cz
+  summary: Suspension shock damping constant 10000 (default) | scalar | vector
+  group: Suspension
+  block_parameter: Cz
+  values: 10000 (default) | scalar | vector
+- name: Suspension maximum height, Hmax
+  summary: Height 0.5 (default) | scalar | vector
+  group: Suspension
+  block_parameter: Hmax
+  values: 0.5 (default) | scalar | vector
+- name: Toe angle at steering center, Toe
+  summary: Toe angle 0.0349 (default) | scalar
+  group: Suspension
+  block_parameter: Toe
+  values: 0.0349 (default) | scalar
+- name: Roll steer vs suspension height slope, RollStrgSlp
+  summary: Steer angle suspension slope -0.2269 (default) | scalar | vector
+  group: Suspension
+  block_parameter: RollStrgSlp
+  values: -0.2269 (default) | scalar | vector
+- name: Toe angle vs steering angle slope, ToeStrgSlp
+  summary: Toe angle steering slope 0.01 (default) | scalar | vector
+  group: Suspension
+  block_parameter: ToeStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Caster angle at steering center, Caster
+  summary: Caster angle at steering center 0.0698 (default) | scalar
+  group: Suspension
+  block_parameter: Caster
+  values: 0.0698 (default) | scalar
+- name: Caster angle vs suspension height slope, CasterHslp
+  summary: Caster angle versus suspension height slope -0.2269 (default) | scalar | vector
+  group: Suspension
+  block_parameter: CasterHslp
+  values: -0.2269 (default) | scalar | vector
+- name: Caster angle vs steering angle slope, CasterStrgSlp
+  summary: Caster angle versus steering angle slope 0.01 (default) | scalar | vector
+  group: Suspension
+  block_parameter: CasterStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Camber angle at steering center, Camber
+  summary: Camber angle at steering center 0.0698 (default) | scalar
+  group: Suspension
+  block_parameter: Camber
+  values: 0.0698 (default) | scalar
+- name: Camber angle vs suspension height slope, CamberHslp
+  summary: Camber angle versus suspension height slope -0.2269 (default) | scalar | vector
+  group: Suspension
+  block_parameter: CamberHslp
+  values: -0.2269 (default) | scalar | vector
+- name: Camber angle vs steering angle slope, CamberStrgSlp
+  summary: Camber angle versus steering angle slope 0.01 (default) | scalar | vector
+  group: Suspension
+  block_parameter: CamberStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Suspension height vs steering angle slope, StrgHgtSlp
+  summary: Suspension height versus steering angle slope 0.1432 (default) | scalar | vector
+  group: Suspension
+  block_parameter: StrgHgtSlp
+  values: 0.1432 (default) | scalar | vector
+```
 
 ### Axles
 
@@ -1164,7 +1334,6 @@ value programmatically, use the `get_param` function.
 | **Parameter:** | `StrgHgtSlp` |
 | **Values:** | `0.1432` (default) | `scalar` | `vector` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Suspension

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # AMI
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 修改后的输出数据 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 修改后的输出数据，包含有损印刷电路板传输线模型的影响，依据 [1] 中概述的方法。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: DLL File
+  summary: 可执行文件 DLL 文件 | SO 文件
+  group: ''
+- name: AMI File
+  summary: AMI 设置文件 文本文件
+  group: ''
+- name: Operation
+  summary: 定义模块用作发射器还是接收器 Tx（默认）| Rx
+  group: ''
+- name: Correlation Flow
+  summary: 定义模块是否与另一个发射器或接收器并行运行 off（默认）| on
+  group: ''
+```
 
 ### **DLL File** — 可执行文件 DLL 文件 | SO 文件
 
@@ -50,7 +75,6 @@ AMI 树的简短摘要由 **Input String** 参数报告。如果您对树参数�
 ### **Correlation Flow** — 定义模块是否与另一个发射器或接收器并行运行 off（默认）| on
 
 选择此选项可使 AMI 模块与另一个发射器（Tx）或接收器（Rx）并行运行。
-
 ## 所属库
 
 SerDes Toolbox / Utilities

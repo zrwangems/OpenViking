@@ -14,6 +14,19 @@ language: en
 # Deinterlacer
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal column vector
+  direction: input
+  data_types: double | single
+- name: O
+  summary: Odd-numbered elements vector
+  direction: output
+- name: E
+  summary: Even-numbered elements vector
+  direction: output
+```
 
 ### Input
 
@@ -36,11 +49,12 @@ is *N*/2.
 Even-numbered elements of the input vector, returned as a vector. If
 the input is a vector of length *N*, the output length
 is *N*/2.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Communications Toolbox / Sequence Operations

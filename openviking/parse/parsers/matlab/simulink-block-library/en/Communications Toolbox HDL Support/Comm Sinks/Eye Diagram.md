@@ -14,6 +14,13 @@ language: en
 # Eye Diagram
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -22,8 +29,67 @@ language: en
 Input signal, specified as a scalar or column vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Samples per symbol
+  summary: Samples per symbol 8 (default) | positive integer
+  group: Display and Traces
+- name: Sample offset
+  summary: Sample offset 0 (default) | nonnegative integer
+  group: Display and Traces
+- name: Symbols per trace
+  summary: Symbols per trace 2 (default) | positive integer
+  group: Display and Traces
+- name: Traces to display
+  summary: Number of traces to display 40 (default) | positive integer
+  group: Display and Traces
+- name: Color fading
+  summary: Color fading off (default) | on
+  group: Display and Traces
+- name: Plot Imaginary Axes
+  summary: Plot imaginary axes on (default) | off
+  group: Display and Traces
+- name: Real axes label
+  summary: Real axis label Real Amplitude (default)
+  group: Axes and Labels
+- name: Title
+  summary: Title label *None* (default)
+  group: Axes and Labels
+- name: Imaginary axes label
+  summary: Imaginary axis label Imaginary Amplitude (default)
+  group: Axes and Labels
+- name: Y-limits
+  summary: Lower and upper limit values [-1.1,1 1] (default) | scalar
+  group: Axes and Labels
+- name: Show grid
+  summary: Show grid on plot on (default) | off
+  group: Axes and Labels
+- name: Preserve colors for copy to clipboard
+  summary: Preserve colors for copy to clipboard off (default) | on
+  group: COLOR AND STYLING
+- name: Background
+  summary: Background colors black (default)
+  group: COLOR AND STYLING
+- name: Axes
+  summary: Axes colors black (default)
+  group: COLOR AND STYLING
+- name: Labels
+  summary: Label colors grey (default)
+  group: COLOR AND STYLING
+- name: Style
+  summary: Line style continuous (default)
+  group: COLOR AND STYLING
+- name: Width
+  summary: Thickness for line plots 1.5 (default)
+  group: COLOR AND STYLING
+- name: Marker
+  summary: Data point marker None (default) | ...
+  group: COLOR AND STYLING
+- name: Color
+  summary: Color for lines yellow (default)
+  group: COLOR AND STYLING
+```
 
 ### Display and Traces
 
@@ -157,7 +223,6 @@ Handle Graphics® plot objects.
 ### **Color** — Color for lines `yellow` (default)
 
 Specify the color for the lines on displayed signal.
-
 ## Libraries
 
 Communications Toolbox / Comm Sinks Communications Toolbox HDL Support / Comm Sinks Mixed-Signal Blockset / Utilities SerDes Toolbox / Utilities

@@ -14,6 +14,69 @@ language: en
 # PMSM Mechanical Parameter Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Iabc
+  summary: Three-phase current response vector
+  direction: input
+  data_types: single
+- name: Vdc
+  summary: DC link voltage scalar
+  direction: input
+  data_types: single
+- name: Theta
+  summary: Rotor position scalar
+  direction: input
+  data_types: single
+- name: Speed
+  summary: Rotor speed scalar
+  direction: input
+  data_types: single
+- name: Rs
+  summary: Estimated stator resistance scalar
+  direction: input
+  data_types: single
+- name: Ld
+  summary: Estimated *d*-axis stator inductance scalar
+  direction: input
+  data_types: single
+- name: StartFOC
+  summary: Begin closed loop FOC logical
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: Control signal for mechanical parameter estimation logical
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: Bus signal input bus
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*, *b*, and *c*-axis stator reference voltage components vector'
+  direction: output
+  data_types: single
+- name: Ke
+  summary: Estimated back EMF constant scalar
+  direction: output
+  data_types: single
+- name: J
+  summary: Estimated rotor inertia scalar
+  direction: output
+  data_types: single
+- name: B
+  summary: Estimated viscous damping scalar
+  direction: output
+  data_types: single
+- name: InverterEn
+  summary: Inverter control signal logical
+  direction: output
+  data_types: single
+- name: Log
+  summary: Debug signals bus
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -181,15 +244,19 @@ debug signals.
 | *VIAlphaBeta* | | | Voltages and currents across *α* and *β* axes | volts, amperes |
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Slowdown factor for current PI controller gains [1,20]
+  summary: Slowdown factor for current PI controllers when estimating back-EMF 5 (default) | scalar
+  group: ''
+```
 
 ### **Slowdown factor for current PI controller gains [1,20]** — Slowdown factor for current PI controllers when estimating back-EMF `5` (default) | `scalar`
 
 Slowdown factor (specified as an integer between `1` and
 `20`) for the current PI controllers during back-EMF estimation. A
 smaller value results in more aggressive controllers.
-
 ## Libraries
 
 Motor Control Blockset / Parameter Estimation / PMSM Parameter Estimation

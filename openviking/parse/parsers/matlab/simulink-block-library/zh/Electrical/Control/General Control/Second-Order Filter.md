@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Second-Order Filter
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 滤波器输入标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 滤波后输出标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,34 @@ chinese_source: worker-translation
 滤波后输出。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter type
+  summary: 滤波器类型 Low-pass（默认）| High-pass | Band-pass | Band-stop
+  group: 主
+- name: Natural frequency (Hz)
+  summary: 自然频率 60（默认）| 正标量
+  group: 主
+- name: Damping factor
+  summary: 阻尼因子 0.707（默认）| 非负标量
+  group: 初始条件
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 初始条件
+- name: Initial amplitude
+  summary: 初始幅值 0（默认）| 非负标量
+  group: 初始条件
+- name: Initial phase (rad)
+  summary: 初始相位 0（默认）| 非负标量
+  group: 初始条件
+- name: Initial frequency (Hz)
+  summary: 初始频率 0（默认）| 标量
+  group: 初始条件
+- name: Initial bias
+  summary: 初始偏置 0（默认）| 非负标量
+  group: 初始条件
+```
 
 ### 主
 
@@ -72,7 +109,6 @@ chinese_source: worker-translation
 ### **Initial bias** — 初始偏置 `0`（默认）| 非负标量
 
 仿真开始时的偏置。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

@@ -14,6 +14,37 @@ language: en
 # Histogram
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint | fixdt(0,W,0) | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: binAddr
+  summary: Bin number for reading histogram values integer
+  direction: input
+  data_types: fixdt(0,W,0)
+- name: binReset
+  summary: Reset histogram bin values scalar
+  direction: input
+  data_types: Boolean
+- name: readRdy
+  summary: Indicates histogram bins available for read scalar
+  direction: output
+  data_types: Boolean
+- name: hist
+  summary: Bin value corresponding to requested address integer
+  direction: output
+  data_types: fixed point
+- name: validOut
+  summary: Indicates that histogram value is valid scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -94,8 +125,19 @@ When **validOut** is 1 (`true`), the
 histogram bin value, **hist**, is valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of bins
+  summary: Number of histogram bins 256 (default) | power of 2 between 32 and 4096
+  group: ''
+- name: Data type
+  summary: Data type of histogram bin values Unsigned fixed point (default) | double | single
+  group: ''
+- name: Word length
+  summary: Word length of histogram bins 16 (default) | integer
+  group: ''
+```
 
 ### **Number of bins** — Number of histogram bins `256` (default) | power of 2 between `32` and `4096`
 
@@ -122,7 +164,6 @@ and the block shows a warning.
 
 This parameter applies when you set **Data type** to
 `Unsigned fixed point`.
-
 ## Libraries
 
 Vision HDL Toolbox / Statistics

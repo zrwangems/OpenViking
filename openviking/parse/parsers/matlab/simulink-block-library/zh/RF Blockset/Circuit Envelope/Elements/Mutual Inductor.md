@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # Mutual Inductor
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Inductance L1
+  summary: 第一个电感器的电感 1e-6 H（默认）| 正标量
+  group: ''
+- name: Inductance L2
+  summary: 第二个电感器的电感 1e-6 H（默认）| 正标量
+  group: ''
+- name: Coefficient of coupling
+  summary: 互感系数的耦合系数 0.9（默认）| 标量
+  group: ''
+```
 
 ### **Inductance L1** — 第一个电感器的电感 `1e-6 H`（默认）| 正标量
 
@@ -31,7 +45,6 @@ R2025b 中未记录。
 ### **Coefficient of coupling** — 互感系数的耦合系数 `0.9`（默认）| 标量
 
 两个电感器互感的耦合系数，指定为从 0 到 1 的标量值。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

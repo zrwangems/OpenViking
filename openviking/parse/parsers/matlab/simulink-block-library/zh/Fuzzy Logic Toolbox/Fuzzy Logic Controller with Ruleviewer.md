@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Fuzzy Logic Controller with Ruleviewer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: 输入信号 标量 | 向量
+  direction: input
+- name: Port_1(Out1)
+  summary: 去模糊化输出信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +40,20 @@ chinese_source: worker-translation
 ### **Port\_1(Out1)** — 去模糊化输出信号 标量 | 向量
 
 对于单输出模糊推理系统，输出为标量。对于多输出模糊系统，输出为向量。要将系统输出拆分为标量信号，请使用 Demux (Simulink) 模块。
-
 ## 参数
+```yaml
+parameters:
+- name: FIS structure
+  summary: 模糊推理系统 mamfis对象 | sugfis对象
+  group: ''
+  block_parameter: fismatrix
+  values: '"fis" (default) | variable name in quotes'
+- name: Refresh rate
+  summary: 规则查看器更新之间的时间 正标量
+  group: ''
+  block_parameter: Ts
+  values: '"2" (default) | positive scalar in quotes'
+```
 
 ### **FIS structure** — 模糊推理系统 `mamfis`对象 | `sugfis`对象
 
@@ -59,7 +80,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **Parameter:** | `Ts` |
 | **值**：| `"2"` (default) | positive scalar in quotes |
-
 ## 所属库
 
 Fuzzy Logic Toolbox

@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Entity Selector
 
 ## 端口
+```yaml
+ports:
+- name: Key
+  summary: 传入的参考实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 传入的实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 离开的参考实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_2
+  summary: 离开的匹配实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: 已离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: 尚未离开模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: 提取的实体数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -74,8 +109,73 @@ chinese_source: worker-translation
 ex** 的复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of matching streams
+  summary: 确定模块接受的输入实体流数量 1（默认）| 数值
+  group: ''
+  block_parameter: mNumberOfStreams
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Key entity attribute Name
+  summary: 指定参考属性的名称 {'ID'}（默认）| 字符向量
+  group: ''
+  block_parameter: mKeyEntityAttributeName
+  type: character vector
+  values: '''{''ID''}'' | character vector'
+  default: '''{''ID''}'''
+- name: Matching entity attribute name(s)
+  summary: 指定所选属性的名称 {'Type'}（默认）| 字符向量
+  group: ''
+  block_parameter: mEntityAttributeName
+  type: character vector
+  values: '''{''Type''}'' | character vector'
+  default: '''{''Type''}'''
+- name: Number of entities source
+  summary: 确定要匹配的实体数量的来源 Dialog（默认）| Attribute
+  group: ''
+  block_parameter: mMatchingNumberSource
+  type: character vector
+  values: '''Dialog'' | ''Attribute'''
+  default: '''Dialog'''
+- name: Number of entities to select
+  summary: 从每个传入实体流中选择的实体数量 1（默认）| 标量
+  group: ''
+  block_parameter: mNumberOfMatches
+  type: 字符向量
+  values: '''1'' | 标量'
+  default: '''1'''
+- name: Key attribute for number of entities
+  summary: 确定要匹配的实体数量的键属性名称 Name（默认）| 字符向量
+  group: ''
+  block_parameter: mNumberOfMatchesAttribute
+  type: 字符向量
+  values: '''Name'' | 字符向量'
+  default: '''Name'''
+- name: Number of entities departed, d
+  summary: 输出已离开该模块的实体数量 off（默认）| on
+  group: ''
+  block_parameter: mNumEntitiesDepOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: 输出该模块中存在的、尚未离开的实体数量 off（默认）| on
+  group: ''
+  block_parameter: mNumEntitiesInBlockOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: 输出从该模块中提取的实体数量 off（默认）| on
+  group: ''
+  block_parameter: mNumEntitiesExtractedOpt
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Number of matching streams** — 确定模块接受的输入实体流数量 `1`（默认）| 数值
 
@@ -203,7 +303,6 @@ ex** 的复选框。
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

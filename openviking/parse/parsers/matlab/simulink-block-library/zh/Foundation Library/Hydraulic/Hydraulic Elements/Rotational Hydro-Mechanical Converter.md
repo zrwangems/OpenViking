@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Rotational Hydro-Mechanical Converter
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -29,8 +32,10 @@ chinese_source: worker-translation
 
 `P`
 :   物理信号输入端口，用于传递来自 Simscape™ Multibody™ 关节的位置信息。将此端口连接到关节的位置传感端口 **q**。有关详细信息，请参阅 Connecting Simscape Networks to Simscape Multibody Joints。要启用此端口，请将 **Interface rotation** 参数设置为 `Provide input signal from Multibody joint`。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Displacement**
 :   有效转换器排量。默认值为 `1.2e-4` m^3/rad。
@@ -63,7 +68,6 @@ chinese_source: worker-translation
 
 **Initial pressure**
 :   腔室中的初始压力。此参数指定用于在仿真运行开始时计算模块初始状态的初始条件。当 **Compressibility** 为 `On` 时，此参数启用。默认值为 `0`。
-
 ## 所属库
 
 R2025b 中未记录。

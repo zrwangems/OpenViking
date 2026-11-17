@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Image Complement
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: Port_1
+  summary: 输出图像矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 二值或强度输入图像的补集以强度值矩阵的形式返回。输出图像的尺寸和数据类型与输入图像相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Computer Vision Toolbox / Conversions

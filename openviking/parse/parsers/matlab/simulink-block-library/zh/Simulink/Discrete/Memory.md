@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Memory
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: 延迟一个主积分时间步的输入 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,46 @@ chinese_source: worker-translation
 输出是上一个时间步的输入。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: 初始条件
+  summary: 初始条件 0（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: 主要
+  block_parameter: InitialCondition
+  type: 字符向量
+  values: 标量 | 向量
+- name: 继承采样时间
+  summary: 继承采样时间 off（默认）| on
+  group: 主要
+  block_parameter: InheritSampleTime
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 线性化期间输入的直接馈通
+  summary: 在线性化和配平期间输出输入 off（默认）| on
+  group: 主要
+  block_parameter: LinearizeMemory
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 使用离散采样时间线性化时视为单位延迟
+  summary: 对离散输入线性化为单位延迟 off（默认）| on
+  group: 主要
+  block_parameter: LinearizeAsDelay
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 状态名称
+  summary: 模块状态的唯一名称 ''（默认）| 字母数字字符串
+  group: 状态属性
+  block_parameter: StateName
+  type: 字符向量
+  values: 唯一名称
+- name: 状态名称必须解析为 Simulink 信号对象
+  summary: 要求状态名称解析为信号对象 off（默认）| on
+  group: 状态属性
+  block_parameter: StateMustResolveToSignalObject
+  type: 字符向量
+  values: '''off'' | ''on'''
+```
 
 ### 主要
 
@@ -149,7 +200,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
 | **默认：** `'off'` |
-
 ## 所属库
 
 Simulink / Discrete HDL Coder / Discrete

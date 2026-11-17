@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # SI Core Engine
 
 ## 端口
+```yaml
+ports:
+- name: InjPw
+  summary: 燃油喷射器脉冲宽度 scalar
+  direction: input
+- name: SpkAdv
+  summary: 点火提前角 scalar
+  direction: input
+- name: ICP
+  summary: 进气凸轮相位角指令 scalar
+  direction: input
+- name: ECP
+  summary: 排气凸轮相位角指令 scalar
+  direction: input
+- name: AmbPrs
+  summary: 环境压力 scalar
+  direction: input
+- name: EngSpd
+  summary: 发动机转速 scalar
+  direction: input
+- name: Ect
+  summary: 发动机冷却液温度 scalar
+  direction: input
+- name: Intk
+  summary: 进气口压力、温度、焓、质量分数双向连接端口
+  direction: input
+- name: Exh
+  summary: 排气口压力、温度、焓、质量分数双向连接端口
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: EngTrq
+  summary: 发动机制动扭矩 scalar
+  direction: output
+- name: Intk
+  summary: 进气道质量流量、热流量、温度、质量分数双向连接端口
+  direction: output
+- name: Exh
+  summary: 排气口质量流量、热流量、温度、质量分数双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -208,8 +250,252 @@ chinese_source: worker-translation
   - `PmMassFrac` — 颗粒物
   - `AirMassFrac` — 空气
   - `BrndGasMassFrac` — 已燃气体
-
 ## 参数
+```yaml
+parameters:
+- name: Air mass flow model
+  summary: 选择空气质量流量模型 Dual-Independent Variable Cam Phasing（默认）| Simple Speed-Density
+  group: ''
+  block_parameter: AirMassFlowOptionPopup
+  values: Dual-Independent Variable Cam Phasing（默认）| Simple Speed-Density
+- name: Torque model
+  summary: 选择扭矩模型 Torque Structure（默认）| Simple Torque Lookup
+  group: ''
+  block_parameter: TrqOptionPopup
+  values: Torque Structure（默认）| Simple Torque Lookup
+- name: Number of cylinders, NCyl
+  summary: 发动机气缸数 4（默认）| scalar
+  group: ''
+  block_parameter: NCyl
+  values: 4（默认）| scalar
+- name: Crank revolutions per power stroke, Cps
+  summary: 每冲程转数 2（默认）| scalar
+  group: ''
+  block_parameter: Cps
+  values: 2（默认）| scalar
+- name: Total displaced volume, Vd
+  summary: 体积 0.0015（默认）| scalar
+  group: ''
+  block_parameter: Vd
+  values: 0.0015（默认） | scalar
+- name: Ideal gas constant air, Rair
+  summary: 常量 287（默认） | scalar
+  group: ''
+  block_parameter: Rair
+  values: 287（默认） | scalar
+- name: Air standard pressure, Pstd
+  summary: 压力 101325（默认） | scalar
+  group: ''
+  block_parameter: Pstd
+  values: 101325（默认） | scalar
+- name: Air standard temperature, Tstd
+  summary: 温度 293.15（默认） | scalar
+  group: ''
+  block_parameter: Tstd
+  values: 293.15（默认） | scalar
+- name: Speed-density volumetric efficiency, f_nv
+  summary: 查找表 array
+  group: ''
+  block_parameter: f_nv
+  values: array
+- name: Speed-density intake manifold pressure breakpoints, f_nv_prs_bpt
+  summary: 断点 [31 40.6428571428571 50.2857142857143 59.9285714285714 69.5714285714286 79.2142857142857 88.8571428571429 98.5
+    108.142857142857 117.785714285714 127.428571428571 137.071428571429 146.714285714286 156.357142857143 166]（默认） | array
+  group: ''
+  block_parameter: f_nv_prs_bpt
+  values: array
+- name: Speed-density engine speed breakpoints, f_nv_n_bpt
+  summary: 断点 [750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875
+    3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000]（默认） | array
+  group: ''
+  block_parameter: f_nv_n_bpt
+  values: array
+- name: Cylinder volume at intake valve close table, f_vivc
+  summary: 二维查找表 array
+  group: ''
+  block_parameter: f_vivc
+  values: array
+- name: Cylinder volume intake cam phase breakpoints, f_vivc_icp_bpt
+  summary: 断点 [0 2.6316 5.2632 7.8947 10.5263 13.1579 15.7895 18.4211 21.0526 23.6842 26.3158 28.9474 31.5789 34.2105 36.8421
+    39.4737 42.1053 44.7368 47.3684 50]（默认）| vector
+  group: ''
+  block_parameter: f_vivc_icp_bpt
+  values: vector
+- name: Cylinder trapped mass correction factor, f_tm_corr
+  summary: 查找表 array
+  group: ''
+  block_parameter: f_tm_corr
+  values: array
+- name: Normalized density breakpoints, f_tm_corr_nd_bpt
+  summary: 断点 [0.3 0.38947 0.47895 0.56842 0.65789 0.74737 0.83684 0.92632 1.0158 1.1053 1.1947 1.2842 1.3737 1.4632 1.5526
+    1.6421 1.7316 1.8211 1.9105 2]（默认）| vector
+  group: ''
+  block_parameter: f_tm_corr_nd_bpt
+  values: vector
+- name: Engine speed breakpoints, f_tm_corr_n_bpt
+  summary: 断点 [750 973.6842 1197.3684 1421.0526 1644.7368 1868.4211 2092.1053 2315.7895 2539.4737 2763.1579 2986.8421 3210.5263
+    3434.2105 3657.8947 3881.5789 4105.2632 4328.9474 4552.6316 4776.3158 5000]（默认）| vector
+  group: ''
+  block_parameter: f_tm_corr_n_bpt
+  values: vector
+- name: Intake mass flow, f_mdot_intk
+  summary: 查找表 array
+  group: ''
+  block_parameter: f_mdot_intk
+  values: array
+- name: Exhaust cam phase breakpoints, f_mdot_air_ecp_bpt
+  summary: 断点 [0 2.6316 5.2632 7.8947 10.5263 13.1579 15.7895 18.4211 21.0526 23.6842 26.3158 28.9474 31.5789 34.2105 36.8421
+    39.4737 42.1053 44.7368 47.3684 50]（默认）| vector
+  group: ''
+  block_parameter: f_mdot_air_ecp_bpt
+  values: vector
+- name: Trapped mass flow breakpoints, f_mdot_trpd_bpt
+  summary: 断点 [0 5.7895 11.5789 17.3684 23.1579 28.9474 34.7368 40.5263 46.3158 52.1053 57.8947 63.6842 69.4737 75.2632 81.0526
+    86.8421 92.6316 98.4211 104.2105 110]（默认）| vector
+  group: ''
+  block_parameter: f_mdot_trpd_bpt
+  values: vector
+- name: Air mass flow correction factor, f_mdot_air_corr
+  summary: 查找表 array
+  group: ''
+  block_parameter: f_mdot_air_corr
+  values: array
+- name: Engine load breakpoints for air mass flow correction, f_mdot_air_corr_ld_bpt
+  summary: 断点 vector
+  group: ''
+  block_parameter: f_mdot_air_corr_ld_bpt
+  values: vector
+- name: Engine speed breakpoints for air mass flow correction, f_mdot_air_n_bpt
+  summary: 断点 vector
+  group: ''
+  block_parameter: f_mdot_air_n_bpt
+  values: vector
+- name: Torque table, f_tq_nl
+  summary: 查找表 [L x N] array
+  group: ''
+- name: Torque table load breakpoints, f_tq_nl_l_bpt
+  summary: 断点 [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25]（默认） | vector | [1 x L] vector
+  group: ''
+- name: Torque table speed breakpoints, f_tq_nl_n_bpt
+  summary: 断点 [750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875
+    3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000]（默认） | vector
+    | [1 x N] vector
+  group: ''
+- name: Crank angle pressure and torque
+  summary: 启用曲轴转角信号 off（默认）| on
+  group: ''
+- name: Cylinder pressure, f_crk_prs
+  summary: 气缸压力表 L x M x N 数组
+  group: ''
+- name: Brake torque, f_crk_btq
+  summary: 制动扭矩表 L x M x N 数组
+  group: ''
+- name: Speed breakpoints, f_crk_n_bpt
+  summary: 转速断点 [750 5000]（默认）| 1 x N 向量
+  group: ''
+- name: Load breakpoints, f_crk_l_bpt
+  summary: 负载断点 [0.2 1.4]（默认）| 1 x L 向量
+  group: ''
+- name: Crank angle breakpoints, f_crk_ang_bpt
+  summary: 曲轴转角断点 [60 660]（默认）| 1 x M 向量
+  group: ''
+- name: TDC compression angles by cylinder, f_crk_tdc_ang
+  summary: 按气缸的上止点压缩角 [0 540 180 360]（默认）| 向量
+  group: ''
+- name: Inner torque table, f_tq_inr
+  summary: 查找表 array
+  group: ''
+- name: Friction torque table, f_tq_fric
+  summary: Lookup table array
+  group: ''
+- name: 摩擦扭矩的发动机温度修正量，f_fric_temp_mod
+  summary: 查找表 [3.96 3.22 2.56 2.26 2.11 2 1.9 1.83 1.76 1.7 1.65 1.6 1.55 1.49 1.44 1.41 1.38 1.35 1.32 1.3 1.27 1.25 1.24
+    1.21 1.2 1.18 1.16 1.15 1.13 1.12 1.11 1.1 1.09 1.08 1.07 1.06 1.05 1.05 1.04 1.03 1.02 1.02 1.01 1.01 1 1 1 0.999 0.997
+    0.995 0.993 0.991 0.989 0.987]（默认） | vector | vector
+  group: ''
+- name: Engine temperature modifier breakpoints, f_fric_temp_bpt
+  summary: Breakpoints [274 276 278 280 282 284 286 288 290 292 294 296 298 300 302 304 306 308 310 312 314 316 318 320 322
+    324 326 328 330 332 334 336 338 340 342 344 346 348 350 352 354 356 358 360 362 364 366 368 370 372 374 376 378 380] (default)
+    | vector | vector
+  group: ''
+- name: Pumping torque table, f_tq_pump
+  summary: Lookup table array
+  group: ''
+- name: Optimal spark table, f_sa_opt
+  summary: Lookup table array
+  group: ''
+- name: Inner torque load breakpoints, f_tq_inr_l_bpt
+  summary: Breakpoints [0.2 0.28571 0.37143 0.45714 0.54286 0.62857 0.71429 0.8 0.88571 0.97143 1.0571 1.1429 1.2286 1.3143
+    1.4] (default) | vector
+  group: ''
+- name: Inner torque speed breakpoints, f_tq_inr_n_bpt
+  summary: Breakpoints [750 1053.5714 1357.1429 1660.7143 1964.2857 2267.8571 2571.4286 2875 3178.5714 3482.1429 3785.7143
+    4089.2857 4392.8571 4696.4286 5000] (default) | vector
+  group: ''
+- name: Spark efficiency table, f_m_sa
+  summary: Lookup table array
+  group: ''
+- name: 相对最佳值的点火延迟，f_del_sa_bpt
+  summary: 断点 [0 0.75 1.5 2.25 3 3.75 4.5 5.25 6 6.75 7.5 8.25 9 9.75 10.5 11.25 12 12.75 13.5 14.25 15 15.75 16.5 17.25 18
+    18.75 19.5 20.25 21 21.75 22.5 23.25 24 24.75 25.5 26.25 27 27.75 28.5 29.25 30 30.75 31.5 32.25 33 33.75 34.5 35.25 36
+    36.75 37.5 38.25 39 39.75 40.5 41.25 42 42.75 43.5 44.25 45 45.75 46.5 47.25 48]（默认） | vector
+  group: ''
+- name: Lambda efficiency, f_m_lam
+  summary: Lookup table array
+  group: ''
+- name: Lambda breakpoints, f_m_lam_bpt
+  summary: Breakpoints [0.65 0.7 0.75 0.8 0.85 0.9 0.95 1 1.05 1.1] (default) | vector
+  group: ''
+- name: Exhaust temperature table, f_t_exh
+  summary: Lookup table array
+  group: ''
+- name: Load breakpoints, f_t_exh_l_bpt
+  summary: Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+  group: ''
+- name: Speed breakpoints, f_t_exh_n_bpt
+  summary: Breakpoints [750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857
+    2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default)
+    | vector
+  group: ''
+- name: Exhaust gas specific heat at constant pressure, cp_exh
+  summary: Specific heat 1005 (default) | scalar
+  group: ''
+- name: CO2 mass fraction table, f_CO2_frac
+  summary: Carbon dioxide (CO2) emission lookup table array
+  group: ''
+- name: CO mass fraction table, f_CO_frac
+  summary: 一氧化碳（CO）排放查找表 array
+  group: ''
+- name: HC mass fraction table, f_HC_frac
+  summary: 碳氢化合物（HC）排放查找表 array
+  group: ''
+- name: NOx mass fraction table, f_NOx_frac
+  summary: 一氧化氮和二氧化氮（NOx）排放查找表 array
+  group: ''
+- name: PM mass fraction table, f_PM_frac
+  summary: 颗粒物（PM）排放查找表 array
+  group: ''
+- name: Engine speed breakpoints, f_exhfrac_n_bpt
+  summary: 断点 [750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857 2875
+    3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000]（默认）| vector
+  group: ''
+- name: Engine torque breakpoints, f_exhfrac_trq_bpt
+  summary: 断点 [0 15 26.4285714285714 37.8571428571429 49.2857142857143 60.7142857142857 72.1428571428571 83.5714285714286
+    95 106.428571428571 117.857142857143 129.285714285714 140.714285714286 152.142857142857 163.571428571429 175]（默认）| vector
+  group: ''
+- name: Injector slope, Sinj
+  summary: 斜率 6.45161290322581（默认）| scalar
+  group: ''
+- name: Stoichiometric air-fuel ratio, afr_stoich
+  summary: 空燃比 14.6（默认）| scalar
+  group: ''
+- name: Fuel lower heating value, fuel_lhv
+  summary: 热值 46e6（默认）| scalar
+  group: ''
+- name: Fuel specific gravity, fuel_sg
+  summary: 比重 0.745（默认）| scalar
+  group: ''
+```
 
 #### 模块选项
 
@@ -1109,7 +1395,6 @@ SI Core Engine PM 排放质量
 
 燃油比重，
 *Sgfuel*，无量纲。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Core Engine

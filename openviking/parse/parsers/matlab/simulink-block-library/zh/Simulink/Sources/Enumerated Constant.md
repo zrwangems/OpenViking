@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Enumerated Constant
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 枚举常量标量 | 向量 | 矩阵
+  direction: output
+  data_types: enumerated
+```
 
 ### 输出
 
@@ -23,8 +30,34 @@ chinese_source: worker-translation
 枚举常量值，指定为标量、向量或矩阵。
 
 **数据类型：** `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Output data type
+  summary: '输出数据类型 Enum: SlDemoSign（默认）| Enum:<ClassName>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Enum:<ClassName>'''
+  default: '''Enum: SlDemoSign'''
+- name: Mode
+  summary: 要指定的数据类别 Enumerated（默认）
+  group: ''
+- name: Value
+  summary: 枚举值 SlDemoSign.Positive（默认）| Enum:<ClassName.Value>
+  group: ''
+  block_parameter: Value
+  type: character vector
+  values: '''SlDemoSign.Positive'' | ''SlDemoSign.Zero'' | ''SlDemoSign.Negative'' | ''Enum:<ClassName.Value>'''
+  default: '''SlDemoSign.Positive'''
+- name: Sample time
+  summary: 采样时间 inf（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''inf'''
+```
 
 ### **Output data type** — 输出数据类型 `Enum: SlDemoSign`（默认）| `Enum:<ClassName>`
 
@@ -73,7 +106,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：scalar | vector |
 | **默认值**：`'inf'` |
-
 ## 所属库
 
 Simulink / Sources HDL Coder / Sources

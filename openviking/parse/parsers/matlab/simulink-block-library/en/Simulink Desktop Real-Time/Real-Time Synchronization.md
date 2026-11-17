@@ -14,6 +14,13 @@ language: en
 # Real-Time Sync
 
 ## Ports
+```yaml
+ports:
+- name: Missed Ticks
+  summary: Missed tick count (optional) double
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -29,8 +36,26 @@ When you select **Show “Missed Ticks”
 port**, this port is visible.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+```
 
 ### **Sample time** — Sample time of block `0.1` (default) | double
 
@@ -91,7 +116,6 @@ In **Run in Kernel** mode, the software ignores this value.
 |  |
 | --- |
 | **Block Parameter:** `YieldWhenWaiting` |
-
 ## Libraries
 
 Simulink Desktop Real-Time

@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # LTE Turbo Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入样本三元向量
+  direction: input
+  data_types: fixdt(1,WL,FL) | single | double
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: blockSize
+  summary: Turbo 码块大小 整数
+  direction: input
+  data_types: single | double | uint16 | fixdt(0,13,0)
+- name: data
+  summary: 输出样本 标量
+  direction: output
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -66,8 +89,19 @@ Turbo 码块大小，指定为整数。此值必须是 LTE 标准中指定的 18
 有关更多详细信息，请参阅 Sample Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Block size source
+  summary: 如何指定块大小 Input port（默认）| Property
+  group: ''
+- name: Block size
+  summary: Turbo 码块大小 6144（默认）
+  group: ''
+- name: Number of decoding iterations
+  summary: 要执行的 MAX 解码迭代次数 6（默认）| 正整数
+  group: ''
+```
 
 ### **Block size source** — 如何指定块大小 `Input port`（默认）| `Property`
 
@@ -84,7 +118,6 @@ Turbo 码块大小，指定为整数。此值必须是 LTE 标准中指定的 18
 ### **Number of decoding iterations** — 要执行的 MAX 解码迭代次数 `6`（默认）| 正整数
 
 要执行的 MAX 解码迭代次数，指定为正整数。解码器实现使用单个 MAX 解码器，每次半迭代的输出数据被路由回输入。更高的迭代次数会提高精度并增加延迟。大约 15 次迭代后，该算法不再提供进一步的精度提升。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

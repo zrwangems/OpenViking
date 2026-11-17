@@ -14,10 +14,15 @@ language: en
 # M-PSK TCM Decoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Trellis structure**
 :   MATLAB® structure that contains the trellis description of the
@@ -48,7 +53,6 @@ Not documented in R2025b.
 :   The output type of the block can be specified as a
     `boolean` or `double`. By default, the
     block sets this to `double`.
-
 ## Libraries
 
 Not documented in R2025b.

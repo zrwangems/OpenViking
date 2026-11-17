@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # SPDT Relay
 
 ## 端口
+```yaml
+ports:
+- name: PS
+  summary: 物理信号控制物理信号
+  direction: input
+- name: x
+  summary: 继电器状态物理信号
+  direction: output
+- name: S1
+  summary: 常闭触点电气
+  direction: output
+- name: C
+  summary: 公共触点电气
+  direction: output
+- name: S2
+  summary: 常开触点电气
+  direction: output
+- name: +
+  summary: 绕组正极端子电气
+  direction: output
+- name: '-'
+  summary: 绕组负极端子电气
+  direction: output
+```
 
 ### 输入
 
@@ -66,8 +90,115 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在**主**设置中，将**控制端口**参数设置为 `Electrical`。
-
 ## 参数
+```yaml
+parameters:
+- name: 控制端口
+  summary: 输入端口选择 PS（默认）| Electrical
+  group: 主
+- name: 闭合电阻
+  summary: 连接触点电阻 0.01 Ohm（默认）| 正标量
+  group: 主
+- name: 断开电导
+  summary: 开路电导 1e-8 1/Ohm（默认）| 正标量
+  group: 主
+- name: 阈值
+  summary: 继电器阈值 0（默认）| 非负标量
+  group: 主
+- name: 状态端口
+  summary: 继电器状态输出端口可见性 Hidden（默认）| Visible
+  group: 主
+- name: 公共端口
+  summary: 公共端口位置 Adjacent to switch ports（默认）| Across from switch ports
+  group: 主
+- name: 额定电压
+  summary: 额定电压 5 V（默认）| 正标量
+  group: 绕组
+- name: 通电额定电压百分比
+  summary: 通电额定电压百分比 75（默认）| 正标量
+  group: 绕组
+- name: 断电额定电压百分比
+  summary: 断电额定电压百分比 25（默认）| 正标量
+  group: 绕组
+- name: 绕组电感
+  summary: 绕组电感 0.08 H（默认）| 正标量
+  group: 绕组
+- name: 绕组串联电阻
+  summary: 绕组串联电阻 12.5 Ohm（默认）| 正标量
+  group: 绕组
+- name: 绕组并联电导
+  summary: 绕组并联电导 1e-9 1/Ohm（默认）| 正标量
+  group: 绕组
+- name: 断开 C-S1 连接的时间
+  summary: 断开连接 C–S1 的延迟时间 0 s（默认）| 非负标量
+  group: 机械
+- name: 接通 C-S1 连接的时间
+  summary: 接通连接 C–S1 的延迟时间 0 s（默认）| 非负标量
+  group: 机械
+- name: 断开 C-S2 连接的时间
+  summary: 断开连接 C–S2 的延迟时间 0 s（默认）| 非负标量
+  group: 机械
+- name: 接通 C-S2 连接的时间
+  summary: 接通连接 C–S2 的延迟时间 0 s（默认）| 非负标量
+  group: 机械
+- name: 开关故障
+  summary: 添加开关故障的选项 Add fault
+  group: 故障
+- name: 开关故障
+  summary: 开关故障模型 C-S1 stuck closed（默认）| C-S2 stuck closed | C open circuit (no path to S1 or S2) | Degraded contact resistance
+  group: 故障
+- name: 触发类型
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: 在以下时间触发故障
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: 最大允许负载电流
+  summary: 最大允许负载电流 inf A（默认）| 正标量
+  group: 故障
+- name: 超过电流时失效时间
+  summary: 超过电流时失效时间 1 s（默认）| 正标量
+  group: 故障
+- name: 触发配置
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: 降级触点电阻 C-S1
+  summary: 降级触点电阻 C–S1 1e-9 Ohm（默认）| 正标量
+  group: 故障
+- name: 降级触点电阻 C-S2
+  summary: 降级触点电阻 C–S2 1e-9 Ohm（默认）| 正标量
+  group: 故障
+- name: 降级触点电阻的时间常数
+  summary: 降级触点电阻的时间常数 1e-3（默认）| 正标量
+  group: 故障
+- name: 绕组故障
+  summary: 添加绕组故障的选项 Add fault
+  group: 故障
+- name: 绕组开路转换的时间常数
+  summary: 绕组失效的时间常数 1e-3 s（默认）| 正标量
+  group: 故障
+- name: 触发类型
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: 在以下时间触发故障
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: 最大允许绕组电压
+  summary: 最大允许绕组电压 inf V（默认）| 正标量
+  group: 故障
+- name: 超过电压时失效的事件数
+  summary: 超过电压时失效的事件数 1（默认）| 正标量整数
+  group: 故障
+- name: 最大允许绕组电流
+  summary: 最大允许绕组电流 inf A（默认）| 正标量
+  group: 故障
+- name: 超过绕组电流时失效时间
+  summary: 超过绕组电流时失效时间 1 s（默认）| 正标量
+  group: 故障
+- name: 触发配置
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 ### 主
 
@@ -358,7 +489,6 @@ chinese_source: worker-translation
 - 将 **Control port** 设置为 `Electrical`。
 - 点击 **Winding fault** 参数的 **Add fault** 超链接。
 - 将 **Trigger type** 设置为 `Additional triggers`。
-
 ## 所属库
 
 Simscape / Electrical / Switches & Breakers / Relays

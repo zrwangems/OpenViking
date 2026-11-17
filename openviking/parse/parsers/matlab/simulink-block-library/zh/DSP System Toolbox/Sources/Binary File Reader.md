@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Binary File Reader
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 二进制文件数据 列向量 | 行向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: EOF
+  summary: 文件结束指示符 布尔标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -34,8 +45,40 @@ chinese_source: worker-translation
 在您选择 **Output end-of-file indicator** 参数之前，此端口没有名称。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 文件名 'Untitled.bin'（默认）| 字符向量
+  group: ''
+- name: File header
+  summary: 文件头大小 struct([])（默认）| 结构体
+  group: ''
+- name: Export header to base workspace
+  summary: 检索文件头 按钮
+  group: ''
+- name: Storage data type
+  summary: 文件中数据的存储类别 'double'（默认）| 'single' | 'int8' | 'int16' | 'int32' | 'int64' | 'uint8' | 'uint16' | 'uint32' | 'uint64'
+  group: ''
+- name: Samples per frame
+  summary: 每个输出帧的采样数 1024（默认）| 正整数
+  group: ''
+- name: Data is complex
+  summary: 指定数据复数性 关（默认）| 开
+  group: ''
+- name: Number of channels
+  summary: 通道数 1（默认）| 正整数
+  group: ''
+- name: Output end-of-file indicator
+  summary: 文件结束指示符 关（默认）| 开
+  group: ''
+- name: Sample time (s)
+  summary: 采样时间 1（默认）| 非负标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **File name** — 文件名 `'Untitled.bin'`（默认）| 字符向量
 
@@ -79,7 +122,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Sources

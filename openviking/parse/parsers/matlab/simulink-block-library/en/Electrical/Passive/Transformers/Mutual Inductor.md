@@ -14,6 +14,21 @@ language: en
 # Mutual Inductor
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Positive terminal of the primary winding electrical
+  direction: conserving
+- name: 1-
+  summary: Negative terminal of the primary winding electrical
+  direction: conserving
+- name: 2+
+  summary: Positive terminal of the secondary winding electrical
+  direction: conserving
+- name: 2-
+  summary: Negative terminal of the secondary winding electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,102 @@ positive terminal.
 
 Electrical conserving port associated with the secondary winding
 negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inductance L1
+  summary: Nominal inductance value in the primary winding 10 H (default) | positive scalar
+  group: Main
+- name: Inductance L2
+  summary: Nominal inductance value in the secondary winding 0.1 H (default) | positive scalar
+  group: Main
+- name: Coefficient of coupling
+  summary: Mutual inductance coupling between windings 0.9 (default) | scalar in the range [-1,1]
+  group: Main
+- name: Tolerance (%)
+  summary: Inductor tolerance, in percent 20 (default)
+  group: Main
+- name: L1 tolerance application
+  summary: Select how to apply tolerance to primary winding None — use nominal value (default) | Random tolerance | Apply
+    maximum tolerance value | Apply minimum tolerance value
+  group: Main
+- name: L1 tolerance distribution
+  summary: Select the distribution type for primary winding Uniform (default) | Gaussian
+  group: Main
+- name: L1 number of standard deviations for quoted tolerance
+  summary: Used for calculating the Gaussian random number for primary winding 4 (default)
+  group: Main
+- name: L2 tolerance application
+  summary: Select how to apply tolerance to secondary winding None — use nominal value (default) | Random tolerance | Apply
+    maximum tolerance value | Apply minimum tolerance value
+  group: Main
+- name: L2 tolerance distribution
+  summary: Select the distribution type for secondary winding Uniform (default) | Gaussian
+  group: Main
+- name: L2 number of standard deviations for quoted tolerance
+  summary: Used for calculating the Gaussian random number for secondary winding 4 (default)
+  group: Main
+- name: Series resistance, [R_primary R_secondary]
+  summary: Equivalent series resistance of the primary and secondary winding [0.001, 0.001] Ohm (default)
+  group: Resistance
+- name: Parallel conductance, [G_primary G_secondary]
+  summary: Parallel leakage path associated with the primary and secondary winding [1e-9,1e-9] 1/Ohm (default)
+  group: Resistance
+- name: Enable operating limits
+  summary: Select Yes to enable reporting when the operational limits are exceeded No (default) | Yes
+  group: Operating Limits
+- name: Reporting when operating limits exceeded
+  summary: Select the reporting method Warn (default) | Error
+  group: Operating Limits
+- name: Saturation current
+  summary: Inductor saturation current 1 A (default)
+  group: Operating Limits
+- name: Power rating
+  summary: Maximum power dissipation in the inductor 1 A (default)
+  group: Operating Limits
+- name: Mutual inductor fault
+  summary: Option to model fault in mutual inductor Add fault (default)
+  group: Faults
+- name: Faulted winding
+  summary: Select winding to use for fault modeling Primary (default) | Secondary
+  group: Faults
+- name: Location of fault node (% of total turns from - terminal)
+  summary: Percentage of turns in the subinductor that is in contact with the – port of the faulted winding 50 (default) |
+    scalar in the range (0,100)
+  group: Faults
+- name: Short-circuit turns
+  summary: Select whether fault results in one of the segments being short-circuited No (default) | To negative terminal |
+    To positive terminal
+  group: Faults
+- name: Open-circuit at fault node
+  summary: Select whether to apply an open-circuit fault between the segments No (default) | Yes
+  group: Faults
+- name: Ground fault
+  summary: Select whether fault results in one of the segments being short-circuited No (default) | Negative terminal side
+    of fault node | Positive terminal side of fault node
+  group: Faults
+- name: Conductance of faulted ground path
+  summary: Mutual coupling between the two subinductors 0 1/Ohm (default) | nonnegative scalar
+  group: Faults
+- name: Fault transition time constant
+  summary: Time constant for the transition to faulted state 1e-3 s (default) | positive scalar
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible voltage
+  summary: Voltage threshold to fault transition 100 V (default) | positive scalar
+  group: Faults
+- name: Number of events to fail when exceeding voltage
+  summary: Maximum number of times the voltage can exceed the threshold 1 (default) | positive scalar
+  group: Faults
+- name: Maximum permissible current
+  summary: Current threshold to fault transition 1 A (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding current
+  summary: Maximum length of time the current exceeds the threshold 1 s (default) | nonnegative scalar
+  group: Faults
+```
 
 ### Main
 
@@ -452,7 +561,6 @@ permissible value without triggering the fault.
 
 To enable this parameter, set **Trigger Type** to
 `Behavioral`.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Translational Hard Stop (PB)
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基于位置的机械平移基础端口
+  direction: conserving
+- name: F
+  summary: 基于位置的机械平移从动端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,36 @@ chinese_source: worker-translation
 ### **F** — 基于位置的机械平移从动端口
 
 基于位置的机械平移守恒端口，表示从动连接。当硬限位未接合时，端口 **F** 的位置比端口 **B** 更正。
-
 ## 参数
+```yaml
+parameters:
+- name: Hard stop model
+  summary: 选择硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: ''
+- name: Contact stiffness
+  summary: 碰撞的弹性 1e6 N/m（默认）| 正标量
+  group: ''
+- name: Contact damping
+  summary: 碰撞期间的耗散属性 150 N/(m/s)（默认）| 正标量
+  group: ''
+- name: Transition region
+  summary: 力逐渐增大的区域 0.1 mm（默认）| 正标量
+  group: ''
+- name: Coefficient of restitution
+  summary: 碰撞后两物体间最终相对速度与初始相对速度之比 0.7（默认值）| 0 到 1 之间的无单位值
+  group: ''
+- name: Initial state
+  summary: 硬限位初始状态是自由还是接触 Free（默认值）| In contact
+  group: ''
+- name: Static contact speed threshold
+  summary: 碰撞前两物体间的阈值相对速度 0.001 m/s（默认值）| 非负标量
+  group: ''
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N（默认值）| 正标量
+  group: ''
+```
 
 ### **Hard stop model** — 选择硬限位模型 `Stiffness and damping applied smoothly through transition region, damped rebound`（默认）| `Full stiffness and damping applied at bounds, undamped rebound` | `Full stiffness and damping applied at bounds, damped rebound` | `Based on coefficient of restitution`
 
@@ -114,7 +151,6 @@ damped rebound`。
 #### 依赖关系
 
 要启用此参数，请将 **Hard stop model** 设置为 `Based on coefficient of restitution`。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Elements

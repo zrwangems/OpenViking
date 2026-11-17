@@ -14,6 +14,75 @@ language: en
 # Motorcycle Body Longitudinal In-Plane
 
 ## Ports
+```yaml
+ports:
+- name: FCpF
+  summary: Longitudinal and vertical forces at front wheel contact patch vector
+  direction: input
+- name: FCpR
+  summary: Longitudinal and vertical forces at rear wheel contact patch vector
+  direction: input
+- name: MDrvArmR
+  summary: Drive chain moment at rear arm scalar
+  direction: input
+- name: MDrvFrm
+  summary: Drive chain moment at frame scalar
+  direction: input
+- name: FExt
+  summary: External longitudinal and vertical forces at frame vector
+  direction: input
+- name: MExt
+  summary: External moment about frame scalar
+  direction: input
+- name: MBrkF
+  summary: Brake moment at front wheel scalar
+  direction: input
+- name: MBrkR
+  summary: Brake moment at rear wheel scalar
+  direction: input
+- name: MWhlF
+  summary: External moment at front wheel scalar
+  direction: input
+- name: MWhlR
+  summary: External moment at rear wheel scalar
+  direction: input
+- name: FSuspF
+  summary: External suspension force at upper fork scalar
+  direction: input
+- name: MSuspR
+  summary: External suspension moment at rear arm scalar
+  direction: input
+- name: Grade
+  summary: Road grade angle scalar
+  direction: input
+- name: WindXYZ
+  summary: Wind speed array
+  direction: input
+- name: Temp
+  summary: Ambient air temperature scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: VCpF
+  summary: Longitudinal, lateral, and vertical velocity at front wheel contact patch vector
+  direction: output
+- name: PCpF
+  summary: Longitudinal, lateral, and vertical position at front wheel contact patch vector
+  direction: output
+- name: VCpR
+  summary: Longitudinal, lateral, and vertical velocity at rear wheel contact patch vector
+  direction: output
+- name: PCpR
+  summary: Longitudinal, lateral, and vertical position at rear wheel contact patch vector
+  direction: output
+- name: ThetaFrm
+  summary: Main frame pitch angle scalar
+  direction: output
+- name: ThetaArmR
+  summary: Rear arm pitch angle scalar
+  direction: output
+```
 
 ### Input
 
@@ -293,8 +362,190 @@ Main frame pitch angle, *ϴfrm*, in rad.
 ### **ThetaArmR** — Rear arm pitch angle `scalar`
 
 Rear arm pitch angle, *ϴra*, in rad.
-
 ## Parameters
+```yaml
+parameters:
+- name: Suspension type
+  summary: Type of suspension Simple (default) | User-defined
+  group: Options
+- name: External forces
+  summary: FExt input port off (default) | on
+  group: Options
+- name: External moments
+  summary: MExt input port off (default) | on
+  group: Options
+- name: External front wheel moment
+  summary: MWhlF input port off (default) | on
+  group: Options
+- name: External rear wheel moment
+  summary: MWhlR input port off (default) | on
+  group: Options
+- name: Grade angle
+  summary: Grade input port on (default) | off
+  group: Options
+- name: Wind velocity
+  summary: WindXYZ input port on (default) | off
+  group: Options
+- name: Ambient temperature
+  summary: Temp input port off (default) | on
+  group: Options
+- name: Center of mass location, FrmCmPxz
+  summary: Frame location [0.255, -0.02] (default) | vector
+  group: Layout
+- name: Mass, FrmMass
+  summary: Frame mass 223 (default) | scalar
+  group: Layout
+- name: Mass moment of inertia, FrmIyy
+  summary: Frame inertia 26.2 (default) | scalar
+  group: Layout
+- name: Length, FrmLen
+  summary: Frame length 0.730 (default) | scalar
+  group: Layout
+- name: Center of mass location, RdrCmPxz
+  summary: Rider location [0.275, -0.61] (default) | vector
+  group: Layout
+- name: Mass, RdrMass
+  summary: Rider mass 78 (default) | scalar
+  group: Layout
+- name: Mass moment of inertia, RdrIyy
+  summary: Rider inertia 26.2 (default) | scalar
+  group: Layout
+- name: Position, FrkUpCmPxz
+  summary: Upper fork location [0.023, -0.098] (default) | vector
+  group: Layout
+- name: Mass, FrkUpMass
+  summary: Upper fork mass 8.8 (default) | scalar
+  group: Layout
+- name: Mass moment of inertia, FrkUpIyy
+  summary: Upper fork inertia 0.14 (default) | scalar
+  group: Layout
+- name: Offset, FrkOfs
+  summary: Upper fork offset 0.034 (default) | scalar
+  group: Layout
+- name: Position, FrkLwCmPxz
+  summary: Lower fork location [-0.029, -0.189] (default) | vector
+  group: Layout
+- name: Mass, FrkLwMass
+  summary: Lower fork mass 7.0 (default) | scalar
+  group: Layout
+- name: Mass moment of inertia, FrkLwIyy
+  summary: Lower fork inertia 0.18 (default) | scalar
+  group: Layout
+- name: Position, ArmRrCmPxz
+  summary: Rear arm location [0.275, -0.052] (default) | vector
+  group: Layout
+- name: Mass, ArmRrMass
+  summary: Rear arm mass 10 (default) | scalar
+  group: Layout
+- name: Mass moment of inertia, ArmRrIyy
+  summary: Rear arm inertia 0.8 (default) | scalar
+  group: Layout
+- name: Length, ArmRrLen
+  summary: Rear arm length 0.535 (default) | scalar
+  group: Layout
+- name: Mass, WhlFrMass
+  summary: Front wheel mass 12 (default) | scalar
+  group: Layout
+- name: Radius, WhlFrR
+  summary: Front wheel radius 0.3 (default) | scalar
+  group: Layout
+- name: Mass, WhlRrMass
+  summary: Rear wheel mass 16.2 (default) | scalar
+  group: Layout
+- name: Radius, WhlRrR
+  summary: Rear wheel radius 0.33 (default) | scalar
+  group: Layout
+- name: Stiffness, SuspFrK
+  summary: Front suspension stiffness 25e3 (default) | scalar
+  group: Layout
+- name: Damping, SuspFrC
+  summary: Front suspension damping 1250 (default) | scalar
+  group: Layout
+- name: Equilibrium length, FrkLwL0
+  summary: Front suspension equilibrium length 0.473 (default) | scalar
+  group: Layout
+- name: Stiffness, SuspRrK
+  summary: Rear arm suspension stiffness 1500 (default) | scalar
+  group: Layout
+- name: Damping, SuspRrC
+  summary: Rear arm suspension damping 150 (default) | scalar
+  group: Layout
+- name: Equilibrium angle, ShkRrAng0
+  summary: Rear suspension equilibrium angle 0 (default) | scalar
+  group: Layout
+- name: Longitudinal drag area, Af
+  summary: Area 2 (default) | scalar
+  group: Aerodynamic
+- name: Longitudinal drag coefficient, Cd
+  summary: Drag .2 (default) | scalar
+  group: Aerodynamic
+- name: Longitudinal lift coefficient, Cl
+  summary: Lift .1 (default) | scalar
+  group: Aerodynamic
+- name: Longitudinal drag pitch moment, Cpm
+  summary: Pitch drag .1 (default) | scalar
+  group: Aerodynamic
+- name: Pitch moment length, Lcpm
+  summary: Pitch drag 2 (default) | scalar
+  group: Aerodynamic
+- name: Gravitational acceleration, g
+  summary: Gravity 9.80665 (default) | scalar
+  group: Environment
+- name: Absolute air pressure, Pabs
+  summary: Pressure 101325 (default) | scalar
+  group: Environment
+- name: Air temperature, Tair
+  summary: Ambient air temperature 273 (default) | scalar
+  group: Environment
+- name: Rear contact patch longitudinal coordinate, CpRrX0
+  summary: Longitudinal coordinate 0 (default) | scalar
+  group: Initial conditions
+- name: Rear contact patch vertical coordinate, CpRrZ0
+  summary: Vertical coordinate 0 (default) | scalar
+  group: Initial conditions
+- name: Pitch angle of rear arm, ArmRrAng0
+  summary: Rear arm angle 0.0590379 (default) | scalar
+  group: Initial conditions
+- name: Pitch angle of main frame, FrmAng0
+  summary: Angle length 0.377024 (default) | scalar
+  group: Initial conditions
+- name: Fork length, FrkFrL0
+  summary: Fork length 0.4262193 (default) | scalar
+  group: Initial conditions
+- name: Longitudinal velocity of rear contact patch
+  summary: Longitudinal velocity 0 (default) | scalar
+  group: Initial conditions
+- name: Vertical velocity of rear contact patch, CpRrVz0
+  summary: Vertical velocity 0 (default) | scalar
+  group: Initial conditions
+- name: Pitch rate of rear arm, ArmRrAngV0
+  summary: Pitch rate 0 (default) | scalar
+  group: Initial conditions
+- name: Pitch rate of main frame, FrmAngV0
+  summary: Pitch rate 0 (default) | scalar
+  group: Initial conditions
+- name: Lower fork deformation velocity, FrkLwV0
+  summary: Deformation velocity 0 (default) | scalar
+  group: Initial conditions
+- name: Longitudinal offset, longOff
+  summary: Longitudinal offset 0 (default) | scalar
+  group: Coordinate Offsets
+- name: Lateral offset, latOff
+  summary: Lateral offset 0 (default) | scalar
+  group: Coordinate Offsets
+- name: Vertical offset, vertOff
+  summary: Vertical offset 0 (default) | scalar
+  group: Coordinate Offsets
+- name: Roll offset, pitchOff
+  summary: Roll offset 0 (default) | scalar
+  group: Coordinate Offsets
+- name: Pitch offset, pitchOff
+  summary: Pitch offset 0 (default) | scalar
+  group: Coordinate Offsets
+- name: Yaw offset, pitchOff
+  summary: Yaw offset 0 (default) | scalar
+  group: Coordinate Offsets
+```
 
 ### Options
 
@@ -678,7 +929,6 @@ Vehicle main frame offset about the earth-fixed
 
 Vehicle main frame offset about the earth-fixed
 *Z*-axis, in rad.
-
 ## Libraries
 
 Powertrain Blockset / Vehicle Dynamics Vehicle Dynamics Blockset / Vehicle Body

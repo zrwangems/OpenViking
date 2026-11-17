@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Pulse Waveform Library
 
 ## 端口
+```yaml
+ports:
+- name: Idx
+  summary: 波形索引 正整数
+  direction: input
+  data_types: double
+- name: Y
+  summary: 脉冲波形采样 复值列向量 | 复值矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -31,8 +42,23 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: 输出波形的采样率 1e6（默认）| 正标量
+  group: ''
+- name: Specification of each waveform in the library
+  summary: 库中的脉冲波形 {{'Rectangular','PRF',1e4,'PulseWidth',50e-6},{'LinearFM','PRF',1e4,'PulseWidth',50e-6,'SweepBandwidth',1e5,'SweepDirection','Up','SweepInterval','Positive'}}（默认）|
+    元胞数组
+  group: ''
+- name: Source of simulation sample time
+  summary: 仿真采样时间来源 Derive from waveform parameters（默认）| Inherit from Simulink engine
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+```
 
 ### **Sample rate (Hz)** — 输出波形的采样率 `1e6`（默认）| 正标量
 
@@ -90,7 +116,6 @@ Generation` 运行模块。长时间仿真使用生成代码比解释执行运�
 | `Code Generation` | 模块被编译。 | 模型中的所有模块都被编译。 |
 
 有关详细信息，请参阅 Choosing a Simulation Mode (Simulink)。
-
 ## 所属库
 
 Radar Toolbox

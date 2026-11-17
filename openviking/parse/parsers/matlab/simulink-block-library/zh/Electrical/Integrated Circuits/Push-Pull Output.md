@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Push-Pull Output
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入端口物理信号
+  direction: input
+- name: J
+  summary: 输出端口电气
+  direction: input
+```
 
 ### 输入
 
@@ -26,8 +35,58 @@ chinese_source: worker-translation
 ### **J** — 输出端口电气
 
 与模块输出关联的电气守恒端口。该端口名称在模块图标上隐藏，但可以在仿真数据日志中看到。
-
 ## 参数
+```yaml
+parameters:
+- name: Input signal scaling, k
+  summary: 输入信号缩放 1 V（默认）
+  group: 输入缩放
+- name: Input signal offset, c
+  summary: 输入信号偏移 0（默认）
+  group: 输入缩放
+- name: Output current-voltage relationship
+  summary: 输出模型 Linear（默认）| Quadratic
+  group: 输出特性
+- name: Output resistance
+  summary: 输出电阻 25 Ohm（默认）
+  group: 输出特性
+- name: Power rail voltages, [V- V+], used for measurements
+  summary: 用于测量的电源轨电压 [0, 5] V（默认）
+  group: 输出特性
+- name: Output resistance values at zero output current and at I_OH when Vg=V-
+  summary: 零输出电流时以及 Vg=V- 时 I_OH 处的输出电阻值 [25, 250] Ohm（默认）
+  group: 输出特性
+- name: Output current I_OH when output is shorted to V- and Vg=V-
+  summary: 输出短接到 V- 且 Vg=V- 时的输出电流 I_OH 63 mA（默认）
+  group: 输出特性
+- name: Output resistance values at zero output current and at I_OL when Vg=V+
+  summary: 零输出电流时以及 Vg=V+ 时 I_OL 处的输出电阻值 [30, 800] Ohm（默认）
+  group: 输出特性
+- name: Output current I_OL when output is shorted to V+ and Vg=V+
+  summary: 输出短接到 V+ 且 Vg=V+ 时的输出电流 I_OL -45 mA（默认）
+  group: 输出特性
+- name: Propagation delay
+  summary: 传播延迟 25 ns（默认）
+  group: 输出特性
+- name: Protection diode on resistance
+  summary: 保护二极管导通电阻 5 Ohm（默认）
+  group: 输出特性
+- name: Protection diode forward voltage
+  summary: 保护二极管正向电压 0.6 V（默认）
+  group: 输出特性
+- name: Negative power rail voltage, V-
+  summary: 负电源轨电压 0 V（默认）
+  group: 电源电压
+- name: Positive power rail voltage, V+
+  summary: 正电源轨电压 5 V（默认）
+  group: 电源电压
+- name: Initial output voltage
+  summary: 初始输出电压 0 V（默认）
+  group: 初始条件
+- name: Initial input signal
+  summary: 初始输入信号 0 V（默认）
+  group: 初始条件
+```
 
 ### 输入缩放
 
@@ -135,7 +194,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数仅在 **Output Characteristics** 选项卡上的 **Output current-voltage relationship** 参数设置为 `Quadratic` 时可见。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

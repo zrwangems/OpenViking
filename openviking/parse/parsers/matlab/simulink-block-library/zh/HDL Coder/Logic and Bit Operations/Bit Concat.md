@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Bit Concat
 
 ## 端口
+```yaml
+ports:
+- name: H
+  summary: 最高位输入字 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: L
+  summary: 最低位输入字 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Output
+  summary: 拼接后的字 标量 | 向量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -36,8 +51,17 @@ chinese_source: worker-translation
 输出是按输入字从低到高顺序拼接后的字。拼接后的输出字最大大小为 65535 位。
 
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of Inputs
+  summary: 输入信号的数量 2（默认）| 小于或等于 128 的正整数值
+  group: ''
+  block_parameter: numInputs
+  type: string scalar | character vector
+  values: A positive integer value less than or equal to 128
+  default: '''2'''
+```
 
 ### **Number of Inputs** — 输入信号的数量 2（默认）| 小于或等于 128 的正整数值
 
@@ -59,7 +83,6 @@ chinese_source: worker-translation
 | **类型**：string scalar | character vector |
 | **Value:** A positive integer value less than or equal to 128 |
 | **默认值**：`'2'` |
-
 ## 所属库
 
 HDL Coder / Logic and Bit Operations

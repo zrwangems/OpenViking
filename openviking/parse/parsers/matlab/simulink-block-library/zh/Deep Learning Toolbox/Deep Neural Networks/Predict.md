@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Predict
 
 ## 端口
+```yaml
+ports:
+- name: input
+  summary: 图像、特征、序列或时间序列数据 数值数组
+  direction: input
+- name: output
+  summary: 预测得分、响应或激活值 数值数组
+  direction: output
+```
 
 ### 输入
 
@@ -51,8 +60,60 @@ Predict 模块的输出端口采用所加载网络的输出层名称。例如，
 对于包含向量数据的多个时间步，激活值为一个 *c*×*n*×*s* 矩阵，其中 *c* 为序列中的特征数，*n* 为序列数量，*s* 为序列长度。
 
 对于包含二维图像数据的单个时间步，激活值为一个 *h*×*w*×*c*×*n* 数组，其中 *n* 为序列数量，*h*、*w* 和 *c* 分别为图像的高度、宽度和通道数。
-
 ## 参数
+```yaml
+parameters:
+- name: Network
+  summary: 训练网络的来源 Network from MAT file（默认）| Network from MATLAB function
+  group: ''
+  block_parameter: Network
+  type: 字符向量、字符串
+  values: '''Network from MAT file'' | ''Network from MATLAB function'''
+  default: '''Network from MAT file'''
+- name: File path
+  summary: 包含训练网络的 MAT 文件 untitled.mat（默认）| MAT 文件路径或名称
+  group: ''
+  block_parameter: NetworkFilePath
+  type: 字符向量、字符串
+  values: MAT 文件路径或名称
+  default: '''untitled.mat'''
+- name: MATLAB function
+  summary: MATLAB 函数名称 squeezenet（默认）| MATLAB 函数名称
+  group: ''
+  block_parameter: NetworkFunction
+  type: 字符向量、字符串
+  values: MATLAB 函数名称
+  default: '''squeezenet'''
+- name: Mini-batch size
+  summary: 小批量大小 128（默认）| 正整数
+  group: ''
+  block_parameter: MiniBatchSize
+  type: 字符向量、字符串
+  values: 正整数
+  default: '''128'''
+- name: Predictions
+  summary: 输出预测得分或响应 on（默认）| off
+  group: ''
+  block_parameter: Predictions
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Input data formats
+  summary: dlnetwork 的输入数据格式 字符向量 | 字符串
+  group: ''
+  block_parameter: InputDataFormats
+  type: 字符向量、字符串
+  values: 对于具有一个或多个输入的网络，以如下形式指定文本："{'inputlayerName1', 'SSC'; 'inputlayerName2', 'SSCB'; ...}"。对于没有输入层且具有多个输入端口的网络，以如下形式指定文本："{'inputportName1/inport1,
+    'SSC'; 'inputportName2/inport2, 'SSCB'; ...}"。
+  default: 网络所期望的数据格式。有关详细信息，请参阅 Deep Learning Data Formats。
+- name: Activations
+  summary: 输出特定层的网络激活值 网络的层
+  group: ''
+  block_parameter: Activations
+  type: 字符向量、字符串
+  values: 形式为 '{'layerName1',layerName2',...}' 的字符向量
+  default: ''''''
+```
 
 ### **Network** — 训练网络的来源 `Network from MAT file`（默认）| `Network from MATLAB function`
 
@@ -187,7 +248,6 @@ end
 | **类型：** 字符向量、字符串 |
 | **值：** 形式为 `'{'layerName1',layerName2',...}'` 的字符向量 |
 | **默认值：** `''` |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Neural Networks

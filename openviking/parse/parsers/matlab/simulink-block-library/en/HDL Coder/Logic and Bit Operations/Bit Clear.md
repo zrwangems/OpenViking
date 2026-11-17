@@ -14,6 +14,18 @@ language: en
 # Bit Clear
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -29,8 +41,17 @@ The input signal is the specified bit of the stored integer.
 The output consists of the specified bit set to zero.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Index of bit
+  summary: Index of bit 0 (default) | scalar | vector
+  group: ''
+  block_parameter: iBit
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+```
 
 ### **Index of bit** — Index of bit 0 (default) | scalar | vector
 
@@ -44,7 +65,6 @@ Index of bit where bit 0 is the least significant bit.
 | **Type**: character vector |
 | **Values**: scalar | vector |
 | **Default**: `'0'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

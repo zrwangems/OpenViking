@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Lane Change
 
 ## 端口
+```yaml
+ports:
+- name: xdot
+  summary: 车辆纵向速度标量
+  direction: input
+  data_types: double
+- name: X
+  summary: 车辆质心纵向位置标量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 车辆质心横向位置标量
+  direction: input
+  data_types: double
+- name: psi
+  summary: 车辆横摆角标量
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: 驾驶员参考数据总线
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: 驾驶员指令数据总线
+  direction: output
+  data_types: bus
+- name: Info
+  summary: 信息数据总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -109,8 +140,84 @@ Bus Assignment 模块覆盖 Lane Change 模块的 TransModeCmd 输出的框图�
 要启用此参数，请选择 **Output info bus**。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Lane change type, changeType
+  summary: 要执行的换道类型 Double lane change (ISO 3888-1)（默认）| Obstacle avoidance (ISO 3888-2) | Obstacle avoidance truck-trailer
+    (SAE J2179)
+  group: ''
+  block_parameter: changeType
+  values: Double lane change (ISO 3888-1)（默认）| Obstacle avoidance (ISO 3888-2) | Obstacle avoidance truck-trailer (SAE J2179)
+- name: Maneuver start time, tStart [s]
+  summary: 开始时间 3（默认）| 正标量
+  group: ''
+  block_parameter: tStart
+  values: 3（默认）| 正标量
+- name: Inertial longitudinal position of gate extrance, XGate [m]
+  summary: 门入口起点的全局纵向位置 176（默认）| 标量
+  group: ''
+  block_parameter: XGate
+  values: 176（默认）| 标量
+- name: Longitudinal entrance velocity setpoint, velRef
+  summary: 目标速度 35（默认）| 正标量
+  group: ''
+  block_parameter: velRef
+  values: 35（默认）| 正标量
+- name: Longitudinal entrance velocity setpoint units, velRefUnit []
+  summary: 单位 mph（默认）
+  group: ''
+  block_parameter: velRefUnit
+  values: mph（默认）| 字符向量
+- name: Distance after target speed to begin reference, xStart [m]
+  summary: 纵向偏移 2（默认）| 标量
+  group: ''
+  block_parameter: xStart
+  values: 2（默认）| 标量
+- name: Vehicle width, vehWidth [m]
+  summary: 标称车辆宽度 2（默认）| 正标量
+  group: ''
+  block_parameter: vehWidth
+  values: 2（默认） | 正标量
+- name: 横向偏移，nomLatOffset [m]
+  summary: 标称横向偏移 0（默认） | 标量
+  group: ''
+  block_parameter: nomLatOffset
+  values: 0（默认） | 标量
+- name: 横向参考位置断点，latRefbp [m]
+  summary: 纵向路径断点 1×*n* 向量（默认）
+  group: ''
+  block_parameter: latRefbp
+  values: 1×7 向量（默认）
+- name: 横向参考数据，latRef [m]
+  summary: 横向路径参考点 1×7 向量（默认）
+  group: ''
+  block_parameter: latRef
+  values: 1×7 向量（默认）
+- name: 使用参考数据
+  summary: 使用参考数据的选项 on（默认） | off
+  group: ''
+  block_parameter: centerSwitch
+  values: on（默认） | off
+- name: 驶出路线时停止仿真
+  summary: 驶出路线时停止仿真的选项 off（默认） | on
+  group: ''
+  block_parameter: xSimStop
+  values: off（默认） | on
+- name: 输出信息总线
+  summary: 输出信息总线的选项 off（默认） | on
+  group: ''
+  block_parameter: extInfo
+  values: off（默认） | on
+- name: Instantiate 3D cones (Simulation 3D Scene Configuration required)
+  summary: 实例化 3D 锥桶的选项 off（默认）| on
+  group: ''
+  block_parameter: use3DCones
+  values: off（默认）| on
+- name: Show Maneuver Plot
+  summary: 可视化机动按钮的选项
+  group: ''
+```
 
 要交互式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -374,7 +481,6 @@ Bus Assignment 模块覆盖 Lane Change 模块的 TransModeCmd 输出的框图�
 ### **Show Maneuver Plot** — 可视化机动按钮的选项
 
 点击 **Show Maneuver Plot** 以可视化由 **Lane change type, changeType** 指定的机动。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

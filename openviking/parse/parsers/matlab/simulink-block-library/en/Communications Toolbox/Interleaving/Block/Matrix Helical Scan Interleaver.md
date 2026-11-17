@@ -14,10 +14,15 @@ language: en
 # Matrix Helical Scan Interleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Number of rows**
 :   The number of rows in the matrix that the block uses for its
@@ -29,7 +34,6 @@ Not documented in R2025b.
 
 **Array step size**
 :   The slope of the diagonals that the block reads.
-
 ## Libraries
 
 Not documented in R2025b.

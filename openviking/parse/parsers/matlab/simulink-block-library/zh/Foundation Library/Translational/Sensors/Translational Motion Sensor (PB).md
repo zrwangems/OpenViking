@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Translational Motion Sensor (PB)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 加速度，m/s^2 物理信号
+  direction: output
+- name: V
+  summary: 速度，m/s 物理信号
+  direction: output
+- name: P
+  summary: 位置，m 物理信号
+  direction: output
+- name: B
+  summary: 基座端口，基于位置的机械平移
+  direction: output
+- name: F
+  summary: 从动端口，基于位置的机械平移
+  direction: output
+```
 
 ### 输出
 
@@ -55,8 +73,22 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Measurement reference** 参数设置为 `Difference`。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement reference
+  summary: 选择执行绝对测量还是相对测量 Difference（默认）| Absolute
+  group: ''
+- name: Acceleration
+  summary: 控制输出端口可见性以测量加速度 off（默认）| on
+  group: ''
+- name: Velocity
+  summary: 控制输出端口可见性以测量速度 on（默认）| off
+  group: ''
+- name: Position
+  summary: 控制输出端口可见性以测量位置 on（默认）| off
+  group: ''
+```
 
 ### **Measurement reference** — 选择执行绝对测量还是相对测量 `Difference`（默认）| `Absolute`
 
@@ -76,7 +108,6 @@ chinese_source: worker-translation
 ### **Position** — 控制输出端口可见性以测量位置 on（默认）| off
 
 选中此复选框将显示输出端口 **P**，可用于测量位置。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Sensors

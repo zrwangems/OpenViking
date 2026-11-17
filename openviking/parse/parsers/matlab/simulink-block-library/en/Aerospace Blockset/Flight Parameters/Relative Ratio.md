@@ -14,6 +14,45 @@ language: en
 # Relative Ratio
 
 ## Ports
+```yaml
+ports:
+- name: Mach
+  summary: Mach number scalar
+  direction: input
+  data_types: double
+- name: γ
+  summary: Ratio scalar
+  direction: input
+  data_types: double
+- name: To
+  summary: Static temperature scalar
+  direction: input
+  data_types: double
+- name: Po
+  summary: Static pressure scalar
+  direction: input
+  data_types: double
+- name: ρo
+  summary: Static density scalar
+  direction: input
+  data_types: double
+- name: θ
+  summary: Relative temperature ratio scalar
+  direction: output
+  data_types: double
+- name: sqrt(θ)
+  summary: Square root of relative temperature ratio scalar
+  direction: output
+  data_types: double
+- name: δ
+  summary: Relative pressure ratio scalar
+  direction: output
+  data_types: double
+- name: σ
+  summary: Relative density ratio scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -92,8 +131,45 @@ Relative density ratio, (*σ*), returned as a scalar.
 To enable this port, select **Sigma**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Theta
+  summary: Relative temperature ratio on (default) | off
+  group: ''
+  block_parameter: theta
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Square root of theta
+  summary: Square root of relative temperature ratio on (default) | off
+  group: ''
+  block_parameter: sq_theta
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Delta
+  summary: Relative pressure ratio on (default) | off
+  group: ''
+  block_parameter: delta
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Sigma
+  summary: Relative density ratio on (default) | off
+  group: ''
+  block_parameter: sigma
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Units** — Units `Metric (MKS)` (default) | `English`
 
@@ -173,7 +249,6 @@ and static density is a required input.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Aerospace Blockset / Flight Parameters

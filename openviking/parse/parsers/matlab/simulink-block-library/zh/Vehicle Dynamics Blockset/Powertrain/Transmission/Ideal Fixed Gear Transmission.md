@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Ideal Fixed Gear Transmission
 
 ## 端口
+```yaml
+ports:
+- name: Gear
+  summary: 要接合的挡位编号 scalar
+  direction: input
+- name: EngTrq
+  summary: 施加的输入扭矩 scalar
+  direction: input
+- name: DiffTrq
+  summary: 施加的负载扭矩 scalar
+  direction: input
+- name: Temp
+  summary: 油温 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: EngSpd
+  summary: 角速度 scalar
+  direction: output
+- name: DiffSpd
+  summary: 角速度 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -80,8 +104,85 @@ temperature`。
 
 驱动轴角速度输出，
 *ωo*，单位为 rad/s。
-
 ## 参数
+```yaml
+parameters:
+- name: Efficiency factors
+  summary: 指定效率计算 Gear only (default) | Gear, input torque, input speed, and temperature
+  group: ''
+  block_parameter: TransEffModelPopup
+  values: Gear only (default) | Gear, input torque, input speed, and temperature
+- name: Gear property interpolation method
+  summary: 插值 Nearest (default) | Linear | Flat | Cubic spline
+  group: ''
+  block_parameter: gearInterp
+  values: Nearest (default) | Linear | Flat | Cubic spline
+- name: Gear number vector, G
+  summary: 指定变速器速度数量 [-1,0,1,2,3,4,5]（默认）| vector
+  group: ''
+  block_parameter: G
+  values: '[-1,0,1,2,3,4,5]（默认）| vector'
+- name: Efficiency torque breakpoints, Trq_bpts
+  summary: 断点 [25,50,75,100,150,200,250]（默认）| vector
+  group: ''
+  block_parameter: Trq_bpts
+  values: '[25,50,75,100,150,200,250]（默认）| vector'
+- name: Efficiency speed breakpoints, omega_bpts
+  summary: 断点 [52.4 78.5 105 131 157 183 209 262 314 419 524]（默认）| vector
+  group: ''
+  block_parameter: omega_bpts
+  values: '[52.4 78.5 105 131 157 183 209 262 314 419 524]（默认）| vector'
+- name: Efficiency temperature breakpoints, Temp_bpts
+  summary: 断点 [313 358]（默认）| vector
+  group: ''
+  block_parameter: Temp_bpts
+  values: '[313 358]（默认）| vector'
+- name: Gear ratio vector, N
+  summary: 输入速度与输出速度之比 [-4.47,4.47,4.47,2.47,1.47,1,0.8]（默认）| vector
+  group: ''
+  block_parameter: N
+  values: '[-4.47,4.47,4.47,2.47,1.47,1,0.8]（默认） | vector'
+- name: 惯性向量，Jout
+  summary: 齿轮转动惯量 [0.128 0.01 0.128 0.1 0.062 0.028 0.01]（默认） | vector
+  group: ''
+  block_parameter: Jout
+  values: '[0.128 0.01 0.128 0.1 0.062 0.028 0.01]（默认） | vector'
+- name: 阻尼向量，bout
+  summary: 齿轮粘性阻尼系数 [.003 .001 .003 .0025 .002 .001 .001]（默认） | vector
+  group: ''
+  block_parameter: bout
+  values: '[.003 .001 .003 .0025 .002 .001 .001]（默认） | vector'
+- name: 效率向量，eta
+  summary: 齿轮效率 [0.9,0.9,0.9,0.9,0.9,0.95,0.95]（默认） | vector
+  group: ''
+  block_parameter: eta
+  values: '[0.9,0.9,0.9,0.9,0.9,0.95,0.95]（默认） | vector'
+- name: 效率查找表，eta_tbl
+  summary: 齿轮效率 array
+  group: ''
+  block_parameter: eta_tbl
+  values: array
+- name: 初始挡位编号，G_o
+  summary: 挡位 0（默认）| scalar
+  group: ''
+  block_parameter: G_o
+  values: 0（默认）| scalar
+- name: 初始输出速度，omega_o
+  summary: 输出转速 0（默认）| scalar
+  group: ''
+  block_parameter: omega_o
+  values: 0（默认）| scalar
+- name: 初始空挡输入速度，omegainN_o
+  summary: 空挡输入转速 0（默认）| scalar
+  group: ''
+  block_parameter: omegainN_o
+  values: 0（默认）| scalar
+- name: 换挡时间常数，tau_s
+  summary: 时间 .01（默认）| scalar
+  group: ''
+  block_parameter: tau_s
+  values: .01（默认）| scalar
+```
 
 ### **Efficiency factors** — 指定效率计算 `Gear only` (default) | `Gear, input torque, input speed, and temperature`
 
@@ -428,7 +529,6 @@ vector** 参数的向量维度必须相等。
 | **参数：** | `tau_s` |
 | **值：** | `.01`（默认）| `scalar` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Transmission / Transmission Systems Vehicle Dynamics Blockset / Powertrain / Transmission

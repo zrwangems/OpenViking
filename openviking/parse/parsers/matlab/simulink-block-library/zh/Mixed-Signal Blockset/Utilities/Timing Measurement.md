@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Timing Measurement
 
 ## 端口
+```yaml
+ports:
+- name: reference
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: test
+  summary: 测试信号 标量
+  direction: input
+  data_types: double
+- name: period
+  summary: 输入信号的周期 标量
+  direction: output
+  data_types: double
+- name: frequency
+  summary: 输入信号的频率 标量
+  direction: output
+  data_types: double
+- name: rise time
+  summary: 输入信号的上升时间 标量
+  direction: output
+  data_types: double
+- name: fall time
+  summary: 输入信号的下降时间 标量
+  direction: output
+  data_types: double
+- name: duty cycle
+  summary: 输入信号的占空比 标量
+  direction: output
+  data_types: double
+- name: delay
+  summary: 输入信号的延迟 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -90,8 +125,52 @@ chinese_source: worker-translation
 要启用此端口，请在**选择**选项卡中选择 **Delay** 作为测量选项。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Period
+  summary: 测量输入信号的周期 on（默认）| off
+  group: 选择
+- name: Frequency
+  summary: 测量输入信号的频率 off（默认）| on
+  group: 选择
+- name: Rise Time
+  summary: 测量输入信号的上升时间 off（默认）| on
+  group: 选择
+- name: Fall Time
+  summary: 测量输入信号的下降时间 off（默认）| on
+  group: 选择
+- name: Duty Cycle
+  summary: 测量输入信号的占空比 off（默认）| on
+  group: 选择
+- name: Delay
+  summary: 测量输入信号的延迟 off（默认）| on
+  group: 选择
+- name: Use same reference threshold for all measurements
+  summary: 使用相同的参考阈值测量所有时序指标 on（默认）| off
+  group: 配置
+- name: Reference threshold (V)
+  summary: 用于测量时序指标的参考阈值 0（默认）| 标量
+  group: 配置
+- name: 参考阈值 (V)
+  summary: 用于测量周期和/或频率的参考阈值电压 0（默认）| 标量
+  group: 配置
+- name: 输入范围 (V)
+  summary: 输入信号的峰峰值 [-1 1]（默认）| 2 元素行向量
+  group: 配置
+- name: 类型
+  summary: 用于测量上升/下降时间的输入阈值电平 80%/20%（默认）| 90%/10%
+  group: 配置
+- name: 参考阈值 (V)
+  summary: 用于测量占空比的参考阈值电压 0（默认）| 标量
+  group: 配置
+- name: 参考阈值 (V)
+  summary: 目标信号中用于测量延迟的阈值电压电平 0（默认）| 标量
+  group: 配置
+- name: Test threshold (V)
+  summary: 测试信号中用于测量延迟的阈值电压电平 0（默认）| 标量
+  group: 配置
+```
 
 ### 选择
 
@@ -235,7 +314,6 @@ chinese_source: worker-translation
 
 - 使用 `get_param(gcb,'DelayTstThreshold')` 查看 **Reference threshold (V)** 的当前值。
 - 使用 `set_param(gcb,'DelayTstThreshold',value)` 将 **Reference threshold (V)** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

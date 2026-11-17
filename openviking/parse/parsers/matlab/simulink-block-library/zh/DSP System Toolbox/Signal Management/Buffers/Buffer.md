@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Buffer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -61,8 +72,19 @@ Tso=(Mo−L)TsiMi
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Output buffer size (per channel)
+  summary: 缓冲区大小 64（默认）| 正整数
+  group: ''
+- name: Buffer overlap
+  summary: 缓冲区重叠 0（默认）| 整数
+  group: ''
+- name: Initial conditions
+  summary: 初始输出 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+```
 
 ### **Output buffer size (per channel)** — 缓冲区大小 `64`（默认）| 正整数
 
@@ -115,7 +137,6 @@ D={Mo+L(L≥0)Mo(L<0)
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Buffers

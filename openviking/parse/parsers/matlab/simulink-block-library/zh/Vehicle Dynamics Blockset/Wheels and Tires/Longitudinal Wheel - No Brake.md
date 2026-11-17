@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Longitudinal Wheel
 
 ## 端口
+```yaml
+ports:
+- name: BrkPrs
+  summary: 制动压力 scalar
+  direction: input
+- name: AxlTrq
+  summary: 车轴扭矩 scalar
+  direction: input
+- name: Vx
+  summary: 速度 scalar
+  direction: input
+- name: Fz
+  summary: 法向力 scalar
+  direction: input
+- name: Gnd
+  summary: 地面位移 scalar
+  direction: input
+- name: lam_mux
+  summary: 摩擦缩放因子 scalar
+  direction: input
+- name: TirePrs
+  summary: 轮胎压力 scalar
+  direction: input
+- name: Tamb
+  summary: 环境温度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: Fx
+  summary: 纵向轴力 scalar
+  direction: output
+- name: Omega
+  summary: 车轮角速度 scalar
+  direction: output
+- name: z
+  summary: 车轮垂向变形 scalar
+  direction: output
+- name: zdot
+  summary: 车轮垂向速度 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -157,8 +199,525 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Vertical Motion** 设置为 `Mapped stiffness and damping`。
-
 ## 参数
+```yaml
+parameters:
+- name: Longitudinal Force
+  summary: 选择类型 Magic Formula constant value（默认）| Magic Formula pure longitudinal slip | Mapped force
+  group: Block Options
+  block_parameter: FxType
+  values: Magic Formula constant value（默认） | Magic Formula pure longitudinal slip | Mapped force
+- name: 滚动阻力
+  summary: 滚动阻力扭矩 None（默认） | Pressure and velocity | ISO 28580 | Magic Formula | Mapped torque
+  group: Block Options
+  block_parameter: rollingType
+  values: None（默认） | Pressure and velocity | ISO 28580 | Magic Formula | Mapped torque
+- name: Brake Type
+  summary: 选择类型 None | Disc | Drum | Mapped
+  group: Block Options
+  block_parameter: BrakeType
+  values: None | Disc | Drum | Mapped
+- name: Vertical Motion
+  summary: 选择类型 None（默认）| Mapped stiffness and damping
+  group: Block Options
+  block_parameter: vertType
+  values: None（默认）| Mapped stiffness and damping
+- name: 纵向缩放因子，lam_x
+  summary: 摩擦缩放因子 1（默认）
+  group: Block Options
+  block_parameter: lam_x
+  values: 1（默认）
+- name: 输入摩擦缩放因子
+  summary: 选择 off（默认） | on
+  group: Block Options
+  block_parameter: extMu
+  values: off（默认） | on
+- name: 车轴粘性阻尼系数，br
+  summary: 阻尼 0.001（默认） | scalar
+  group: 车轮动力学
+  block_parameter: br
+  values: 0.001（默认） | scalar
+- name: 车轮转动惯量，Iyy
+  summary: 转动惯量 0.8（默认） | scalar
+  group: 车轮动力学
+  block_parameter: Iyy
+  values: 0.8（默认） | scalar
+- name: 车轮初始角速度，omegao
+  summary: 车轮速度 0（默认） | scalar
+  group: 车轮动力学
+  block_parameter: omegao
+  values: 0（默认） | scalar
+- name: 松弛长度，Lrel
+  summary: 松弛长度 0.5（默认） | scalar
+  group: 车轮动力学
+  block_parameter: Lrel
+  values: 0.5（默认） | scalar
+- name: 负载半径，Re
+  summary: 负载半径 0.3（默认） | scalar
+  group: 车轮动力学
+  block_parameter: Re
+  values: 0.3（默认） | scalar
+- name: 空载半径，UNLOADED_RADIUS
+  summary: 空载半径 0.4（默认） | scalar
+  group: 车轮动力学
+  block_parameter: UNLOADED_RADIUS
+  values: 0.4（默认） | scalar
+- name: 标称纵向速度，LONGVL
+  summary: 速度 16（默认）| scalar
+  group: 车轮动力学
+  block_parameter: LONGVL
+  values: 16（默认）| scalar
+- name: 标称外倾角，gamma
+  summary: 外倾角 0（默认）| scalar
+  group: 车轮动力学
+  block_parameter: gamma
+  values: 0（默认）| scalar
+- name: 标称压力，NOMPRES
+  summary: 压力 220000（默认）| scalar
+  group: 车轮动力学
+  block_parameter: NOMPRES
+  values: 220000（默认）| scalar
+- name: 压力，press
+  summary: 压力 220000（默认）| scalar
+  group: 车轮动力学
+  block_parameter: press
+  values: 220000（默认）| scalar
+- name: 纯纵向峰值因子，Dx
+  summary: 因子 1（默认）| scalar
+  group: 纵向
+  block_parameter: Dx
+  values: 1（默认）| scalar
+- name: 纯纵向形状因子，Cx
+  summary: 因子 1.65（默认）| scalar
+  group: 纵向
+  block_parameter: Cx
+  values: 1.65（默认） | scalar
+- name: Pure longitudinal stiffness factor, Bx
+  summary: 因子 10（默认） | scalar
+  group: 纵向
+  block_parameter: Bx
+  values: 10（默认） | scalar
+- name: Pure longitudinal curvature factor, Ex
+  summary: 因子 0.01（默认） | scalar
+  group: 纵向
+  block_parameter: Ex
+  values: 0.01（默认） | scalar
+- name: Cfx shape factor, PCX1
+  summary: 因子 1.6（默认） | scalar
+  group: 纵向
+  block_parameter: PCX1
+  values: 1.6（默认） | scalar
+- name: Longitudinal friction at nominal normal load, PDX1
+  summary: 因子 1（默认） | scalar
+  group: 纵向
+  block_parameter: PDX1
+  values: 1（默认） | scalar
+- name: Frictional variation with load, PDX2
+  summary: 因子 -0.08（默认） | scalar
+  group: 纵向
+  block_parameter: PDX2
+  values: -0.08（默认） | scalar
+- name: 随外倾角的摩擦力变化，PDX3
+  summary: 因子 0（默认）| scalar
+  group: 纵向
+  block_parameter: PDX3
+  values: 0（默认）| scalar
+- name: 额定法向载荷下的纵向曲率，PEX1
+  summary: 因子 0.112（默认）| scalar
+  group: 纵向
+  block_parameter: PEX1
+  values: 0.112（默认）| scalar
+- name: 曲率因子随载荷的变化，PEX2
+  summary: 因子 0.313（默认）| scalar
+  group: 纵向
+  block_parameter: PEX2
+  values: 0.313（默认）| scalar
+- name: 曲率因子随载荷平方的变化，PEX3
+  summary: 因子 0（默认）| scalar
+  group: 纵向
+  block_parameter: PEX3
+  values: 0（默认）| scalar
+- name: 纵向曲率因子随滑移的变化，PEX4
+  summary: 因子 0.0016（默认）| scalar
+  group: 纵向
+  block_parameter: PEX4
+  values: 0.0016（默认）| scalar
+- name: 额定法向载荷下的纵向滑移刚度，PKX1
+  summary: 因子 21.7（默认）| scalar
+  group: 纵向
+  block_parameter: PKX1
+  values: 21.7（默认）| scalar
+- name: 滑移刚度随载荷的变化，PKX2
+  summary: 因子 13.77（默认）| scalar
+  group: 纵向
+  block_parameter: PKX2
+  values: 13.77（默认） | scalar
+- name: Slip stiffness exponent factor, PKX3
+  summary: Factor -0.412（默认） | scalar
+  group: 纵向
+  block_parameter: PKX3
+  values: -0.412（默认） | scalar
+- name: Horizontal shift in slip ratio at nominal normal load, PHX1
+  summary: Factor 2.1585E-4（默认） | scalar
+  group: 纵向
+  block_parameter: PHX1
+  values: 2.1585E-4（默认） | scalar
+- name: Variation of horizontal slip ratio with load, PHX2
+  summary: Factor 0.00115（默认） | scalar
+  group: 纵向
+  block_parameter: PHX2
+  values: 0.00115（默认） | scalar
+- name: Vertical shift in load at nominal normal load, PVX1
+  summary: Factor 1.5973E-5（默认） | scalar
+  group: 纵向
+  block_parameter: PVX1
+  values: 1.5973E-5（默认） | scalar
+- name: Variation of vertical shift with load, PVX2
+  summary: Factor 1.043E-4（默认） | scalar
+  group: 纵向
+  block_parameter: PVX2
+  values: 1.043E-4（默认） | scalar
+- name: Linear variation of longitudinal slip stiffness with tire pressure, PPX1
+  summary: Factor -0.3489（默认） | scalar
+  group: 纵向
+  block_parameter: PPX1
+  values: -0.3489（默认） | scalar
+- name: 纵向滑移刚度随胎压的二次变化，PPX2
+  summary: 因子 0.382（默认） | scalar
+  group: 纵向
+  block_parameter: PPX2
+  values: 0.382（默认） | scalar
+- name: 峰值纵向摩擦随胎压的线性变化，PPX3
+  summary: 因子 -0.09634（默认） | scalar
+  group: 纵向
+  block_parameter: PPX3
+  values: -0.09634（默认） | scalar
+- name: 峰值纵向摩擦随胎压的二次变化，PPX4
+  summary: 因子 0.06447（默认） | scalar
+  group: 纵向
+  block_parameter: PPX4
+  values: 0.06447（默认） | scalar
+- name: 滑移速度衰减函数缩放因子，lam_muV
+  summary: 因子 1（默认） | scalar
+  group: 纵向
+  block_parameter: lam_muV
+  values: 1（默认） | scalar
+- name: 制动滑移刚度缩放因子，lam_Kxkappa
+  summary: 因子 1（默认） | scalar
+  group: 纵向
+  block_parameter: lam_Kxkappa
+  values: 1（默认） | scalar
+- name: 纵向形状缩放因子，lam_Cx
+  summary: 因子 1（默认） | scalar
+  group: 纵向
+  block_parameter: lam_Cx
+  values: 1（默认）| scalar
+- name: Longitudinal curvature scaling factor, lam_Ex
+  summary: 因子 0（默认）| scalar
+  group: 纵向
+  block_parameter: lam_Ex
+  values: 0（默认）| scalar
+- name: Longitudinal horizontal shift scaling factor, lam_Hx
+  summary: 因子 1（默认）| scalar
+  group: 纵向
+  block_parameter: lam_Hx
+  values: 1（默认）| scalar
+- name: Longitudinal vertical shift scaling factor, lam_Vx
+  summary: 因子 1（默认）| scalar
+  group: 纵向
+  block_parameter: lam_Vx
+  values: 1（默认）| scalar
+- name: Slip ratio breakpoints, kappaFx
+  summary: 断点 vector
+  group: 纵向
+  block_parameter: kappaFx
+  values: vector
+- name: Normal force breakpoints, FzFx
+  summary: 断点 vector
+  group: 纵向
+  block_parameter: FzFx
+  values: vector
+- name: Longitudinal force map, FxMap
+  summary: 查找表 array
+  group: 纵向
+  block_parameter: FxMap
+  values: array
+- name: Velocity independent force coefficient, aMy
+  summary: 速度无关力系数 84e-4（默认）| 标量
+  group: 滚动阻力
+  block_parameter: aMy
+  values: 84e-4（默认）| 标量
+- name: Linear velocity force component, bMy
+  summary: 线速度力分量 6.2e-4（默认）| 标量
+  group: 滚动阻力
+  block_parameter: bMy
+  values: 6.2e-4（默认）| 标量
+- name: Quadratic velocity force component, cMy
+  summary: 二次速度力分量 1.6e-4（默认）| 标量
+  group: 滚动阻力
+  block_parameter: cMy
+  values: 1.6e-4（默认）| 标量
+- name: Tire pressure exponent, alphaMy
+  summary: 轮胎压力指数 -0.003（默认）| 标量
+  group: 滚动阻力
+  block_parameter: alphaMy
+  values: -0.003（默认）| 标量
+- name: Normal force exponent, betaMy
+  summary: 法向力指数 0.97（默认）| 标量
+  group: 滚动阻力
+  block_parameter: betaMy
+  values: 0.97（默认）| 标量
+- name: Parasitic losses force, Fpl
+  summary: 寄生损耗力 10（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Fpl
+  values: 10（默认）| 标量
+- name: Rolling resistance constant, Cr
+  summary: 滚动阻力常数 1e-3（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Cr
+  values: 1e-3（默认）| 标量
+- name: Thermal correction factor, Kt
+  summary: 热修正系数 0.008（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Kt
+  values: 0.008（默认）| 标量
+- name: Measured temperature, Tmeas
+  summary: 测试期间的温度 298.15（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Tmeas
+  values: 298.15（默认）| 标量
+- name: Ambient temperature, Tamb
+  summary: 应用环境中的温度 298.15（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Tamb
+  values: 298.15（默认）| 标量
+- name: Input ambient temperature
+  summary: 输入环境温度的选项 off（默认）| on
+  group: 滚动阻力
+  block_parameter: Tamb
+  values: off（默认）| on
+- name: Rolling resistance torque coefficient, QSY1
+  summary: 力矩系数 0.007（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY1
+  values: 0.007（默认）| 标量
+- name: Longitudinal force rolling resistance coefficient, QSY2
+  summary: 力阻力系数 0（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY2
+  values: 0（默认）| 标量
+- name: Linear rotational speed rolling resistance coefficient, QSY3
+  summary: 线性速度系数 0.0015（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY3
+  values: 0.0015（默认）| 标量
+- name: Quartic rotational speed rolling resistance coefficient, QSY4
+  summary: 四次速度系数 8.5e-05（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY4
+  values: 8.5e-05（默认）| 标量
+- name: Camber squared rolling resistance torque, QSY5
+  summary: 外倾阻力矩 0（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY5
+  values: 0（默认）| 标量
+- name: Load based camber squared rolling resistance torque, QSY6
+  summary: 载荷阻力矩 0（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY6
+  values: 0（默认）| 标量
+- name: Normal load rolling resistance coefficient, QSY8
+  summary: 法向阻力系数 0.9（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY8
+  values: 0.9（默认）| 标量
+- name: Pressure load rolling resistance coefficient, QSY8
+  summary: 压力阻力系数 -0.4（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY8
+  values: -0.4（默认）| 标量
+- name: Rolling resistance scaling factor, lam_My
+  summary: 缩放因子 1（默认）| 标量
+  group: 滚动阻力
+  block_parameter: lam_My
+  values: 1（默认）| 标量
+- name: 自旋轴速度断点，VxMy
+  summary: 自旋轴速度断点 -20:1:20（默认）| 向量
+  group: 滚动阻力
+  block_parameter: VxMy
+  values: -20:1:20（默认）| 向量
+- name: 法向力断点，FzMy
+  summary: 法向力断点 0:200:1e4（默认）| 向量
+  group: 滚动阻力
+  block_parameter: FzMy
+  values: 0:200:1e4（默认）| 向量
+- name: 滚动阻力扭矩映射，MyMap
+  summary: 滚动阻力扭矩映射数组
+  group: 滚动阻力
+  block_parameter: MyMap
+  values: 数组
+- name: 静摩擦系数，mu_static
+  summary: 静摩擦 .3（默认）| scalar
+  group: Brake
+  block_parameter: mu_static
+  values: .3（默认）| scalar
+- name: 动摩擦系数，mu_kinetic
+  summary: 动摩擦 .2（默认）| scalar
+  group: Brake
+  block_parameter: mu_kinetic
+  values: .2（默认）| scalar
+- name: 盘式制动器执行器孔径，disc_abore
+  summary: 孔径距离 .05（默认）| scalar
+  group: Brake
+  block_parameter: disc_abore
+  values: .05（默认）| scalar
+- name: 制动片平均半径，Rm
+  summary: 半径 .177（默认）| scalar
+  group: Brake
+  block_parameter: Rm
+  values: .177（默认） | scalar
+- name: Number of brake pads, num_pads
+  summary: 计数 2（默认） | scalar
+  group: Brake
+  block_parameter: num_pads
+  values: 2（默认） | scalar
+- name: Drum brake actuator bore, disc_abore
+  summary: 孔径 0.0508（默认） | scalar
+  group: Brake
+  block_parameter: disc_abore
+  values: 0.0508（默认） | scalar
+- name: Shoe pin to drum center distance, drum_a
+  summary: 距离 0.123（默认） | scalar
+  group: Brake
+  block_parameter: drum_a
+  values: 0.123（默认） | scalar
+- name: Shoe pin center to force application point distance, drum_c
+  summary: 距离 0.212（默认） | scalar
+  group: Brake
+  block_parameter: drum_c
+  values: 0.212（默认） | scalar
+- name: Drum internal radius, drum_r
+  summary: 半径 0.15（默认） | scalar
+  group: Brake
+  block_parameter: drum_r
+  values: 0.15（默认） | scalar
+- name: Shoe pin to pad start angle, drum_theta1
+  summary: 角度 0（默认） | scalar
+  group: Brake
+  block_parameter: drum_theta1
+  values: 0（默认） | scalar
+- name: Shoe pin to pad end angle, drum_theta2
+  summary: 角度 126（默认） | scalar
+  group: Brake
+  block_parameter: drum_theta2
+  values: 126（默认） | scalar
+- name: 制动执行器压力断点，brake_p_bpt
+  summary: 断点 vector
+  group: Brake
+  block_parameter: brake_p_bpt
+  values: vector
+- name: 车轮速度断点，brake_n_bpt
+  summary: 断点 vector
+  group: Brake
+  block_parameter: brake_n_bpt
+  values: vector
+- name: 制动力矩映射，f_brake_t
+  summary: 查找表 array
+  group: Brake
+  block_parameter: f_brake_t
+  values: array
+- name: 标称法向力，FNOMIN
+  summary: 力 2000（默认） | scalar
+  group: 垂直
+  block_parameter: FNOMIN
+  values: 2000（默认） | scalar
+- name: 标称额定载荷缩放因子，lam_Fzo
+  summary: 因子 1（默认） | scalar
+  group: 垂直
+  block_parameter: lam_Fzo
+  values: 1（默认） | scalar
+- name: 车轮和非簧载质量，m
+  summary: 质量 10（默认） | scalar
+  group: 垂直
+  block_parameter: m
+  values: 10（默认）| scalar
+- name: Initial deflection, zo
+  summary: 挠度 0（默认）| scalar
+  group: 垂直
+  block_parameter: zo
+  values: 0（默认）| scalar
+- name: Initial velocity, zdoto
+  summary: 速度 0（默认）| scalar
+  group: 垂直
+  block_parameter: zdoto
+  values: 0（默认）| scalar
+- name: Gravitational acceleration, g
+  summary: 重力 9.81（默认）| scalar
+  group: 垂直
+  block_parameter: g
+  values: 9.81（默认）| scalar
+- name: Ground displacement, Gndz
+  summary: 位移 0（默认）| scalar
+  group: 垂直
+  block_parameter: Gndz
+  values: 0（默认）| scalar
+- name: Vertical deflection breakpoints, zFz
+  summary: 断点 [0 .01 .1]（默认）| vector
+  group: 垂直
+  block_parameter: zFz
+  values: '[0 .01 .1]（默认）| vector'
+- name: Pressure breakpoints, pFz
+  summary: 断点 [10000 1000000]（默认）| vector
+  group: 垂直
+  block_parameter: pFz
+  values: '[10000 1000000]（默认）| vector'
+- name: 侧偏引起的力，Fzz
+  summary: 力 [0 1e3 1e4; 0 1e4 1e5]（默认）| vector
+  group: 垂直
+  block_parameter: Fzz
+  values: '[0 1e3 1e4; 0 1e4 1e5]（默认）| vector'
+- name: 垂直速度断点，zdotFz
+  summary: 断点 [-20 0 20]（默认）| scalar
+  group: 垂直
+  block_parameter: zdotFz
+  values: '[-20 0 20]（默认）| scalar'
+- name: 速度引起的力，Fzzdot
+  summary: 力 [500 0 -500;250 0 -250]（默认）| array
+  group: 垂直
+  block_parameter: Fzzdot
+  values: '[500 0 -500;250 0 -250]（默认）| array'
+- name: 最小法向力，FZMIN
+  summary: 最小法向力 0（默认）| scalar
+  group: 仿真设置
+  block_parameter: FZMIN
+  values: 0（默认）| scalar
+- name: 最大法向力，FZMAX
+  summary: 最大法向力 10000（默认）| scalar
+  group: 仿真设置
+  block_parameter: FZMAX
+  values: 10000（默认）| scalar
+- name: 最大允许滑移率（绝对值），kappamax
+  summary: 比率 1.5（默认）| scalar
+  group: 仿真设置
+  block_parameter: kappamax
+  values: 1.5（默认）| scalar
+- name: 用于处理低速情况的速度容差，VXLOW
+  summary: 容差 1（默认）| scalar
+  group: 仿真设置
+  block_parameter: VXLOW
+  values: 1（默认）| scalar
+- name: 最低环境温度，TMIN
+  summary: 最低环境温度 0（默认）| scalar
+  group: 仿真设置
+  block_parameter: TMIN
+  values: 0（默认）| 标量
+- name: 最高环境温度，TMAX
+  summary: 最高环境温度 400（默认）| 标量
+  group: 仿真设置
+  block_parameter: TMAX
+  values: 400（默认）| 标量
+```
 
 ### Block Options
 
@@ -2392,7 +2951,6 @@ stiffness and damping`。
 #### 依赖关系
 
 要启用此参数，请将 **滚动阻力** 设置为 `ISO 28580`。
-
 ## 所属库
 
 Powertrain Blockset / Drivetrain / Wheels Vehicle Dynamics Blockset / Wheels and Tires

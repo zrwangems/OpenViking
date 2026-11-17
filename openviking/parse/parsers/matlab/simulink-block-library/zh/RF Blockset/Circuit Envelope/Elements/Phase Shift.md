@@ -15,10 +15,18 @@ chinese_source: worker-translation
 # Phase Shift
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Phase shift
+  summary: 相移角度 90 deg（默认）| 非负标量整数
+  group: ''
+```
 
 ### **Phase shift** — 相移角度 `90 deg`（默认）| 非负标量整数
 
@@ -27,7 +35,6 @@ R2025b 中未记录。
 （DC）频率，相移始终为零。
 
 **数据类型：** `double`
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

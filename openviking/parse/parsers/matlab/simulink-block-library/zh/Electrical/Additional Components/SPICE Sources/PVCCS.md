@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PVCCS
 
 ## 端口
+```yaml
+ports:
+- name: p1
+  summary: 控制输入电气的正电压
+  direction: conserving
+- name: n1
+  summary: 控制输入电气的负电压
+  direction: conserving
+- name: p2
+  summary: 正输出电压电气
+  direction: conserving
+- name: n2
+  summary: 负输出电压电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,16 @@ chinese_source: worker-translation
 ### **n2** — 负输出电压电气
 
 与 PVCCS 负输出电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Polynomial coefficients
+  summary: 多项式系数 [0, 1]（默认）
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: 是否包含并联电导 Yes（默认）| No
+  group: ''
+```
 
 ### **Polynomial coefficients** — 多项式系数 `[0, 1]`（默认）
 
@@ -53,7 +76,6 @@ chinese_source: worker-translation
 | *`Yes`* | | *`No`* | | |
 | **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且它不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

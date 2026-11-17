@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # Differential Decoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Initial conditions**
 :   该值与初始输入值的逻辑异或构成初始输出值。
-
 ## 所属库
 
 R2025b 中未记录。

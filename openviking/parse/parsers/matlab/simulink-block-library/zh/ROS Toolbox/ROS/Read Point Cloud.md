@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Read Point Cloud
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: ROS sensor_msgs/PointCloud2 消息非虚拟总线
+  direction: input
+  data_types: bus
+- name: XYZ
+  summary: XYZ 坐标矩阵 | 数组
+  direction: output
+  data_types: single
+- name: RGB
+  summary: 每个点的 RGB 值矩阵 | 数组
+  direction: output
+  data_types: double
+- name: Intensity
+  summary: 每个点的强度值数组 | 矩阵
+  direction: output
+  data_types: single
+- name: ErrorCode
+  summary: 图像转换的错误代码标量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -61,8 +84,28 @@ ROS `sensor_msgs/PointCloud2` 消息，指定为非虚拟总线。您可以使�
 对于某些错误代码，模块会截断数据或在适当位置填充 `NaN` 值。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum point cloud size
+  summary: 最大点云图像大小 [480 640]（默认）| 二元素向量
+  group: ''
+- name: Preserve point cloud structure
+  summary: 点云数据输出形状保持 off（默认）| on
+  group: ''
+- name: Show RGB output port
+  summary: RGB 端口切换 off（默认）| on
+  group: ''
+- name: Show Intensity output port
+  summary: Intensity 端口切换 off（默认）| on
+  group: ''
+- name: 显示 ErrorCode 输出端口
+  summary: ErrorCode 端口切换 on（默认）| off
+  group: ''
+- name: 输出可变大小信号
+  summary: 可变大小信号输出切换 off（默认）| on
+  group: ''
+```
 
 ### **Maximum point cloud size** — 最大点云图像大小 `[480 640]`（默认）| 二元素向量
 
@@ -89,7 +132,6 @@ ROS `sensor_msgs/PointCloud2` 消息，指定为非虚拟总线。您可以使�
 ### **输出可变大小信号** — 可变大小信号输出切换 `off`（默认）| `on`
 
 切换是否输出可变大小信号。仅当您预期图像大小会随时间变化时，才使用可变大小信号。有关可变大小信号的详细信息，请参阅 Variable-Size Signal Basics (Simulink)。
-
 ## 所属库
 
 ROS Toolbox / ROS

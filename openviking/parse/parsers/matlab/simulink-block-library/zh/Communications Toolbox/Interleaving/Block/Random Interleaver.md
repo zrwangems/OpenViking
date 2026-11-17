@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # Random Interleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Number of elements**
 :   输入向量中的元素数量。
 
 **Initial seed**
 :   随机数生成器的初始种子值。
-
 ## 所属库
 
 R2025b 中未记录。

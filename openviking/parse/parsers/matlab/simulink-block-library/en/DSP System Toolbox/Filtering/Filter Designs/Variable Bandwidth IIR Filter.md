@@ -14,6 +14,29 @@ language: en
 # Variable Bandwidth IIR Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double
+- name: Fp
+  summary: Filter passband frequency positive scalar
+  direction: input
+  data_types: single | double
+- name: Fc
+  summary: Filter center frequency positive scalar
+  direction: input
+  data_types: single | double
+- name: BW
+  summary: Filter bandwidth positive scalar
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Filtered output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -90,8 +113,53 @@ signal.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter type
+  summary: Filter type Lowpass (default) | Highpass | Bandpass | Bandstop
+  group: ''
+- name: IIR filter order
+  summary: IIR filter order 8 (default) | positive integer
+  group: ''
+- name: Specify passband frequency from input port
+  summary: Specify passband frequency from input port off (default) | on
+  group: ''
+- name: Filter passband frequency
+  summary: Filter passband frequency 512 (default) | positive scalar
+  group: ''
+- name: Specify center frequency from input port
+  summary: Specify center frequency from input port off (default) | on
+  group: ''
+- name: Filter center frequency
+  summary: Filter center frequency 44100/4 (default) | positive scalar
+  group: ''
+- name: Specify bandwidth from input port
+  summary: Specify bandwidth from input port off (default) | on
+  group: ''
+- name: Filter bandwidth
+  summary: Filter bandwidth 7680 (default) | positive scalar
+  group: ''
+- name: Filter passband ripple (dB)
+  summary: Filter passband ripple 1 (default) | positive scalar
+  group: ''
+- name: Filter Stopband attenuation (dB)
+  summary: Filter Stopband attenuation 60 (default) | positive scalar
+  group: ''
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Input sample rate 44100 (default) | positive scalar
+  group: ''
+- name: View Filter Response
+  summary: View Filter Response button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Filter type** — Filter type `Lowpass` (default) | `Highpass` | `Bandpass` | `Bandstop`
 
@@ -315,7 +383,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Designs

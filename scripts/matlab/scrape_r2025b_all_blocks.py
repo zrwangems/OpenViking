@@ -28,6 +28,8 @@ from extract_r2025b_block_manifest import (
 )
 from scrape_simulink_blocks import localized_content, official_topic_content
 
+from openviking.parse.parsers.matlab.structure import structure_block_document
+
 _PRINT_LOCK = threading.Lock()
 
 
@@ -74,9 +76,7 @@ def fetch(
 
 def has_chinese_documentation_body(markdown: str) -> bool:
     """Exclude the localized site-selection footer on English fallback pages."""
-    body = re.split(
-        r"(?m)^(?:选择网站|Select a Web Site)\s*$", markdown, maxsplit=1
-    )[0]
+    body = re.split(r"(?m)^(?:选择网站|Select a Web Site)\s*$", markdown, maxsplit=1)[0]
     return len(re.findall(r"[\u4e00-\u9fff]", body)) >= 2
 
 
@@ -90,8 +90,10 @@ def render_page(html: bytes, entry: dict, product: dict, language: str) -> tuple
     else:
         subtitle, sections = localized_content(html, entry, "zh-CN" if language == "zh" else "en")
         topic_markdown = ""
-    localized_body = topic_markdown if topic else "\n".join(
-        [subtitle, *(content for _title, content in sections)]
+    localized_body = (
+        topic_markdown
+        if topic
+        else "\n".join([subtitle, *(content for _title, content in sections)])
     )
     # MathWorks serves an English fallback with a Chinese site-selection footer
     # for some untranslated topics. Footer Chinese is not a Chinese block page.
@@ -118,10 +120,12 @@ def render_page(html: bytes, entry: dict, product: dict, language: str) -> tuple
     lines = [*metadata, "---", "", f"# {entry['name']}", "", subtitle, ""]
     if topic:
         lines.extend([topic_markdown, ""])
-        return "\n".join(lines).rstrip() + "\n", official_chinese
+        document = "\n".join(lines).rstrip() + "\n"
+        return structure_block_document(document), official_chinese
     for title, content in sections:
         lines.extend([f"## {title}", "", content, ""])
-    return normalize_block_document("\n".join(lines), language=language), official_chinese
+    document = normalize_block_document("\n".join(lines), language=language)
+    return structure_block_document(document), official_chinese
 
 
 def unique_entries(product: dict) -> list[dict]:

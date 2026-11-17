@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Baseband File Writer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 基带信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+```
 
 ### 输入
 
@@ -24,8 +31,25 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Baseband file name
+  summary: 要写入的基带文件名 untitled.bb（默认）| 字符向量
+  group: ''
+- name: Center frequency (Hz)
+  summary: 基带信号的中心频率 1e8（默认）| 非负标量
+  group: ''
+- name: Metadata (structure or object)
+  summary: 描述基带信号的数据 空结构体（struct()）（默认）| 结构体 | 对象
+  group: ''
+- name: Number of latest samples to write
+  summary: 要写入的样本数 inf（默认）| 正整数
+  group: ''
+- name: Simulate using
+  summary: 选择仿真模式 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -59,7 +83,6 @@ chinese_source: worker-translation
 
 `Interpreted execution`
 :   使用所有支持的 MATLAB 函数对模型进行仿真。选择此选项可能会降低仿真性能。
-
 ## 所属库
 
 Communications Toolbox / Comm Sinks

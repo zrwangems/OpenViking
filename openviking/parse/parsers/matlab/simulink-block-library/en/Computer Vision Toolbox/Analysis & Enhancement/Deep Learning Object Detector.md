@@ -14,6 +14,21 @@ language: en
 # Deep Learning Object Detector
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Image data array
+  direction: input
+- name: Bboxes
+  summary: Locations of objects detected matrix
+  direction: output
+- name: Labels
+  summary: Labels for bounding boxes vector
+  direction: output
+- name: Scores
+  summary: Detection scores vector
+  direction: output
+```
 
 ### Input
 
@@ -54,8 +69,73 @@ Detection confidence scores for each label, returned as an
 *M*-by-1 vector. *M* is the number of bounding boxes
 detected in the image. A higher score indicates higher confidence in the
 detection.
-
 ## Parameters
+```yaml
+parameters:
+- name: Detector
+  summary: Source for trained detector object Detector from MAT file (default) | Detector from MATLAB function
+  group: ''
+  block_parameter: Detector
+  type: character vector, string
+  values: Detector from MAT file' | 'Detector from MATLAB function'
+  default: Detector from MAT file'
+- name: File path
+  summary: MAT file containing detector object untitled.mat (default) | MAT file name
+  group: ''
+  block_parameter: DetectorFilePath
+  type: character vector, string
+  values: MAT file path or name
+  default: '''untitled.mat'''
+- name: MATLAB function
+  summary: MATLAB function name untitled (default) | MATLAB function name
+  group: ''
+  block_parameter: DetectorFunction
+  type: character vector, string
+  values: MATLAB function name
+  default: '''untitled'''
+- name: Region of interest
+  summary: Search region of interest vector of the form [*x* *y* *width* *height*]
+  group: ''
+  block_parameter: ROI
+  type: character vector, string
+  values: character vector specified as '[x y width height]'
+  default: '''[1 1 100 100]'''
+- name: Detection threshold
+  summary: Detection threshold scalar in the range [0, 1]
+  group: ''
+  block_parameter: Threshold
+  type: character vector, string
+  values: scalar
+  default: '''0.5'''
+- name: Number of Strongest Regions
+  summary: Maximum number of strongest region proposals 2000 (default) | positive integer
+  group: ''
+  block_parameter: NumStrongestRegions
+  type: character vector, string
+  values: integer
+  default: '''2000'''
+- name: Maximum Region Size
+  summary: Maximum region size vector of the form [*height* *width*]
+  group: ''
+  block_parameter: MaxSize
+  type: character vector, string
+  values: character vector specified as '[height width]'
+  default: '''[50 50]'''
+- name: Minimum Region Size
+  summary: Minimum region size vector of the form [*height* *width*]
+  group: ''
+  block_parameter: MinSize
+  type: character vector, string
+  values: character vector specified as '[height width]'
+  default: '''[1 1]'''
+- name: Maximum Number of Detections
+  summary: Maximum number of detections 500 (default) | positive integer
+  group: ''
+  block_parameter: MaxDetections
+  type: character vector, string
+  values: integer
+  default: '''500'''
+```
 
 ### **Detector** — Source for trained detector object `Detector from MAT file` (default) | `Detector from MATLAB function`
 
@@ -260,7 +340,6 @@ upper bound for the number of detections and must be greater than or equal to 2.
 | **Type:** character vector, string |
 | **Values:** integer |
 | **Default:** `'500'` |
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

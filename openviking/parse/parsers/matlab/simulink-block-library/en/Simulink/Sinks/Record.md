@@ -14,6 +14,14 @@ language: en
 # Record, XY Graph
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal to record scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image | datetime
+```
 
 ### Input
 
@@ -42,8 +50,94 @@ and the second input port provides the *y* data.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image` | `datetime`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input ports
+  summary: Number of input ports 1 (default) | integer in the range [1,100]
+  group: Main
+  block_parameter: NumPorts
+  values: 1 (default) | integer in the range [1, 100]
+- name: Decimation
+  summary: Decimation factor 1 (default) | positive integer
+  group: Main
+  block_parameter: Decimation
+  values: '"1" (default) | positive integer in quotes'
+- name: Limit data points to last
+  summary: Number of samples to log inf (default) | scalar | vector
+  group: Main
+  block_parameter: MaxDataPoints
+  values: '"inf" (default) | positive integer in quotes'
+- name: Select port
+  summary: Port for which to specify input processing mode 1 (default) | integer
+  group: Main
+  block_parameter: FrameSettings
+  values: false (default) | 1-by-n row vector of logical values, where n is equal to the number of ports
+- name: Input processing
+  summary: Input processing mode for selected port Elements as channels (sample-based) (default) | Columns as channels (frame-based)
+  group: Main
+  block_parameter: FrameSettings
+  values: false (default) | 1-by-n row vector of logical values, where n is equal to the number of ports
+- name: Record to workspace
+  summary: Workspace logging option off (default) | on
+  group: Record
+  block_parameter: RecordToWorkspace
+  values: '"off" (default) | "on" | false or 0 | true or 1'
+- name: Workspace variable name
+  summary: Name for workspace variable that contains logged block data recordout (default) | character vector | string
+  group: Record
+  block_parameter: VariableName
+  values: '"recordout" (default) | valid MATLAB variable name'
+- name: Record to file
+  summary: Log to file option off (default) | on
+  group: Record
+  block_parameter: RecordToFile
+  values: '"off" (default) | "on" | false or 0 | true or 1'
+- name: File name
+  summary: Name of file with logged data recording.mldatx (default) | character vector | string
+  group: Record
+  block_parameter: FileName
+  values: '"recording.mldatx" (default) | valid filename'
+- name: File type
+  summary: Type of file for logged data *.mldatx (default) | *.mat | *.xslx | *.parquet
+  group: Record
+  block_parameter: FileName
+  values: '"recording.mldatx" (default) | valid filename'
+- name: File location
+  summary: Path to file with logged data working directory (default) | character vector | string
+  group: Record
+  block_parameter: FileName
+  values: '"recording.mldatx" (default) | valid filename'
+- name: Time
+  summary: Options for exporting time data to Excel or Parquet file Shared Time Columns (default) | Individual Time Columns
+  group: Record
+  block_parameter: SharedTimeColumn
+  values: '"on" (default) | "off"'
+- name: Signal Attributes
+  summary: Signal attributes to export to Excel file Data Type | Units | Port Index | Block Path | Interpolation
+  group: Record
+- name: Compression Type
+  summary: Compression options Fastest (snappy) (default) | Balanced for Size and Speed (gzip) | Compact (brotli) | None (uncompressed)
+  group: Record
+  block_parameter: ParquetCompression
+  values: '"fastest" (default) | "balanced" | "compact" | "none"'
+- name: Generate Sidecar
+  summary: Option to generate JSON sidecar on (default) | off
+  group: Record
+  block_parameter: ParquetMetaData
+  values: '"on" (default) | "off"'
+- name: Row Group Policy
+  summary: Options for grouping rows in Parquet file Row Group Height (default) | Row Group Size (MB)
+  group: Record
+  block_parameter: ParquetRowGroupPolicy
+  values: '"height" (default) | "sizeinmb"'
+- name: Row Group Policy Value
+  summary: Height or size of row group auto (default when Row Group Policy is Row Group Height) | 512 (default when Row Group
+    Policy is Row Group Size (MB) | number of rows | size of row group
+  group: Record
+  block_parameter: ParquetRowGroupSize
+  values: '"512" (default) | positive number in the range (0, 1000] in quotes'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -586,7 +680,6 @@ the `set_param` function.
 | **Data Types:** | `character vector` | `string` |
 
 **Example:** `set_param("myModel/Record","ParquetRowGroupPolicy","sizeinmb","ParquetRowGroupsize","450")`
-
 ## Libraries
 
 Simulink / Sinks

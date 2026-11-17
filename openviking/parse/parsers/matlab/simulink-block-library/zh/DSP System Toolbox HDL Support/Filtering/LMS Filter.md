@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # LMS Filter
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 实数或复数值的标量或列向量
+  direction: input
+  data_types: single | double | fixed point
+- name: desired
+  summary: 期望输入数据 实数或复数值的标量或列向量
+  direction: input
+  data_types: single | double | fixed point
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: stepSize
+  summary: 滤波器的收敛性和稳定性 实数标量
+  direction: input
+  data_types: double | single | fixed point
+- name: adapt
+  summary: 更新滤波器权重 标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 滤波后的输出数据 实数或复数值的标量或列向量
+  direction: output
+  data_types: single | double | fixed point
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+- name: error
+  summary: 输出信号与期望信号之间的误差 实数或复数标量或列向量
+  direction: output
+  data_types: Boolean
+- name: weights
+  summary: 更新后的滤波器权重 行向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -113,8 +156,53 @@ chinese_source: worker-translation
 要启用此端口，请在 **Main** 选项卡上选中 **Enable filter weights output port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter length
+  summary: 滤波器长度 32（默认）| 小于或等于 2048 的正整数
+  group: 主要参数
+- name: Step-size source
+  summary: 步长来源 Property（默认）| Input port
+  group: 主要参数
+- name: Step size (mu)
+  summary: 步长 0.01（默认）| 正标量数值
+  group: 主要参数
+- name: Initial value of filter weights
+  summary: 滤波器权重初始值 0（默认）| 标量 | 行向量
+  group: 主要参数
+- name: Enable adapt input port
+  summary: 启用 adapt 输入端口的选项 off（默认）| on
+  group: 主要参数
+- name: Enable filter weights output port
+  summary: 启用 weights 输出端口的选项 on（默认）| off
+  group: 主要参数
+- name: Enable filter error output port
+  summary: 启用 error 输出端口的选项 off（默认）| on
+  group: 主要参数
+- name: Rounding mode
+  summary: 用于对输出进行类型转换的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 用于对输出进行类型转换的溢出处理 off（默认）| on
+  group: 数据类型
+- name: Step size
+  summary: '步长类型 Inherit: Same word length as input（默认）| fixdt(0,16,16) | <data type expression>'
+  group: 数据类型
+- name: Weights
+  summary: '滤波器权重类型 fixdt(1,16,15)（默认）| Inherit: Same as input | <data type expression>'
+  group: 数据类型
+- name: Step-size error product
+  summary: '步长误差乘积类型 Inherit: Same word length as input（默认）| Inherit: Inherit via internal rule | fixdt(1,16,15) | <data type
+    expression>'
+  group: 数据类型
+- name: Enable reset input port
+  summary: 启用 reset 输入端口的选项 off（默认）| on
+  group: Control Ports
+- name: Use HDL global reset
+  summary: 将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off（默认）| on
+  group: Control Ports
+```
 
 ### 主要参数
 
@@ -196,7 +284,6 @@ chinese_source: worker-translation
 选中此复选框以将生成的 HDL 全局复位信号连接到数据路径寄存器。此参数不会更改模块的外观或修改 Simulink 中的仿真行为。当您清除此复选框时，生成的 HDL 全局复位仅清除控制路径寄存器。生成的 HDL 全局复位可以是同步或异步的，具体取决于模型配置参数中的 **HDL Code Generation** > **Global Settings** > **Reset type** 参数。
 
 有关更多复位注意事项，请参阅 Hardware Control Signals 页面上的 Reset Signal 部分。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

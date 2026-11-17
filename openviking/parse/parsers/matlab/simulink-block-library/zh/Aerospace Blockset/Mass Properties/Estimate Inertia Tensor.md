@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Estimate Inertia Tensor
 
 ## 端口
+```yaml
+ports:
+- name: mass
+  summary: 质量标量
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: 变化率标量
+  direction: input
+  data_types: double
+- name: I
+  summary: 惯性张量 3×3 矩阵
+  direction: output
+  data_types: double
+- name: dI/dt
+  summary: 变化率 3×3 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +61,38 @@ chinese_source: worker-translation
 惯性张量变化率，以 3×3 矩阵形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Full mass
+  summary: 满载质量 2（默认）| 标量
+  group: ''
+  block_parameter: fmass
+  type: character vector
+  values: double scalar
+  default: '''2'''
+- name: Empty mass
+  summary: 空载质量 1（默认）| 标量
+  group: ''
+  block_parameter: emass
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Full inertia matrix
+  summary: 满载惯性矩阵 eye(3)（默认）| 3 元素矩阵
+  group: ''
+  block_parameter: fI
+  type: character vector
+  values: double scalar
+  default: '''eye(3)'''
+- name: Empty inertia matrix
+  summary: 空载惯性矩阵 eye(3)/2（默认）| 标量
+  group: ''
+  block_parameter: eI
+  type: character vector
+  values: scalar
+  default: '''eye(3)/2'''
+```
 
 ### **Full mass** — 满载质量 `2`（默认）| 标量
 
@@ -96,7 +145,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：scalar |
 | **默认值**：`'eye(3)/2'` |
-
 ## 所属库
 
 Aerospace Blockset / Mass Properties

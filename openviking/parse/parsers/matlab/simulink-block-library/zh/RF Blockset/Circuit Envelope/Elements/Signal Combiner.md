@@ -15,15 +15,22 @@ chinese_source: worker-translation
 # Signal Combiner
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Ground and hide negative terminals
+  summary: 将射频电路端子接地 on（默认）| off
+  group: ''
+```
 
 ### **Ground and hide negative terminals** — 将射频电路端子接地 on（默认）| off
 
 选择此参数可将负极端子接地并隐藏。要暴露负极端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其他部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

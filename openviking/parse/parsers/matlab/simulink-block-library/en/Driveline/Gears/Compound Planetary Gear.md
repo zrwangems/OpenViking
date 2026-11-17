@@ -14,6 +14,21 @@ language: en
 # Compound Planetary Gear
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Planet gear carrier rotational mechanical
+  direction: conserving
+- name: R
+  summary: Ring gear rotational mechanical
+  direction: conserving
+- name: S
+  summary: Sun gear rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +56,66 @@ transmission efficiency by altering the gear temperatures.
 
 To enable this port, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ring (R) to planet (P) teeth ratio (NR/NP)
+  summary: Ring to planet gear rotation ratio 2 (default) | scalar greater than 1
+  group: Main
+- name: Planet (P) to sun (S) teeth ratio (NP/NS)
+  summary: Planet to sun gear rotation ratio 1 (default) | positive scalar
+  group: Main
+- name: Friction model
+  summary: Friction model No meshing losses - Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Sun-planet and ring-planet ordinary efficiencies
+  summary: Torque transfer efficiencies [.96 .98] (default) | vector
+  group: Meshing Losses
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Meshing Losses
+- name: Sun-planet efficiency
+  summary: Sun-planet efficiency [.95, .9, .85] (default) | vector | rot
+  group: Meshing Losses
+- name: Ring-planet efficiency
+  summary: Ring-planet efficiency [.95 .9 .85] (default) | vector
+  group: Meshing Losses
+- name: Sun-carrier and planet-carrier power thresholds
+  summary: Minimum efficiency power threshold for the sun-carrier and planet carrier gear couplings [.001, .001] W (default)
+    | vector
+  group: Meshing Losses
+- name: Sun-carrier and planet-carrier viscous friction coefficients
+  summary: Gear viscous friction [0 0] N*m/(rad/s) (default) | vector
+  group: Viscous Losses
+- name: Inertia
+  summary: Inertia option off (default) | on
+  group: Inertia
+- name: Sun gear inertia
+  summary: Sun gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Ring gear inertia
+  summary: Ring gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Carrier gear inertia
+  summary: Carrier gear inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Carrier gear radius
+  summary: Carrier gear radius 0.01 m (default) | positive scalar
+  group: Inertia
+- name: Planet gear spin inertia
+  summary: Planet gear spin inertia 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Planet gear mass
+  summary: Planet gear mass 0.001 kg*m^2 (default) | positive scalar
+  group: Inertia
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -255,7 +328,6 @@ component efficiencies according to their respective efficiency vectors.
 
 To enable this parameter, set **Friction model** to
 `Temperature-dependent efficiency`.
-
 ## Libraries
 
 Simscape / Driveline / Gears

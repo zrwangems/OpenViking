@@ -15,10 +15,36 @@ chinese_source: worker-translation
 # Three-Winding Transformer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Inductance L1
+  summary: 第一个电感器的电感值 1e-6 H（默认）| 非负标量整数
+  group: ''
+- name: Inductance L2
+  summary: 第二个电感器的电感值 1e-6 H（默认）| 非负标量整数
+  group: ''
+- name: Inductance L3
+  summary: 第三个电感器的电感值 1e-6 H（默认）| 非负标量整数
+  group: ''
+- name: Inductance L3
+  summary: 第三个电感器的电感值 1e-6 H（默认）| 非负标量整数
+  group: ''
+- name: Coefficient of coupling K12
+  summary: 第一个和第二个电感器的耦合系数 0.9（默认）| 非负标量整数
+  group: ''
+- name: Coefficient of coupling K13
+  summary: 第一个和第三个电感器的耦合系数 0.9（默认）| 非负标量整数
+  group: ''
+- name: Coefficient of coupling K23
+  summary: 第二个和第三个电感器的耦合系数 0.9（默认）| 非负标量整数
+  group: ''
+```
 
 ### **Inductance L1** — 第一个电感器的电感值 `1e-6 H`（默认）| 非负标量整数
 
@@ -65,7 +91,6 @@ R2025b 中未记录。
 **注意**
 
 RF Blockset 环境可识别的最小非零电感值为 `1e-18` `H`。在仿真期间，对于指定在 `0` 和 `1e-18` `H` 之间的任何电感值和互感值，模块将使用 `1e-18` `H` 的值。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

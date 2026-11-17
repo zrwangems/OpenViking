@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Simple Engine
 
 ## 端口
+```yaml
+ports:
+- name: TrqCmd
+  summary: 指令扭矩 scalar
+  direction: input
+- name: EngSpd
+  summary: 发动机转速 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: EngTrq
+  summary: 发动机制动扭矩 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -56,8 +71,38 @@ chinese_source: worker-translation
 ### **EngTrq** — 发动机制动扭矩 `scalar`
 
 发动机制动扭矩，单位为 N·m。
-
 ## 参数
+```yaml
+parameters:
+- name: Engine maximum torque, f_tqmax
+  summary: 断点 [75.679776480773256 75.679776480773256 97.173658538143172 116.84042599160529 152.21029882684542 175 174.99889520597083
+    174.99996520122858 175 175 175 175 175 175 175 175]（默认）| vector
+  group: ''
+  block_parameter: f_tqmax
+  values: vector
+- name: Breakpoints for engine speed input, f_tqmax_n_bpt
+  summary: 断点 [0 750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857
+    2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000]（默认）|
+    vector
+  group: ''
+  block_parameter: f_tqmax_n_bpt
+  values: vector
+- name: Fuel lower heating value, Lhv
+  summary: 热值 4.6E+7（默认）| scalar
+  group: ''
+  block_parameter: Lhv
+  values: 4.6E+7（默认）| scalar
+- name: Fuel specific gravity, Sg
+  summary: 比重 0.745（默认）| scalar
+  group: ''
+  block_parameter: Sg
+  values: 0.745（默认）| scalar
+- name: 平均制动比油耗，BsfcAvg
+  summary: 平均制动比油耗 350（默认）| scalar
+  group: ''
+  block_parameter: BsfcAvg
+  values: 350（默认）| scalar
+```
 
 ### **Engine maximum torque, f\_tqmax** — 断点 `[75.679776480773256 75.679776480773256 97.173658538143172 116.84042599160529 152.21029882684542 175 174.99889520597083 174.99996520122858 175 175 175 175 175 175 175 175]`（默认）| `vector`
 
@@ -148,7 +193,6 @@ chinese_source: worker-translation
 | **参数：** | `BsfcAvg` |
 | **值：** | `350`（默认）| `scalar` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engines Vehicle Dynamics Blockset / Powertrain / Propulsion

@@ -14,6 +14,77 @@ language: en
 # PI Controller
 
 ## Ports
+```yaml
+ports:
+- name: Port_1( u )
+  summary: Error signal input scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ydot
+  summary: Externally sourced derivative scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: P
+  summary: Proportional gain scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I\*Ts
+  summary: Integral gain multiplied by sample time scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I
+  summary: Integral gain scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: D
+  summary: Derivative gain scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: N
+  summary: Filter coefficient scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Reset
+  summary: External reset trigger scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | Boolean
+- name: I0
+  summary: Integrator initial condition scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: D0
+  summary: Filter initial condition scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: up
+  summary: Output saturation upper limit scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: lo
+  summary: Output saturation lower limit scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: TR
+  summary: Tracking signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: TDTI
+  summary: Discrete-integrator time scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: extAW
+  summary: External anti-windup algorithm scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1( y )
+  summary: Controller output scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: preInt
+  summary: Pre-integrator signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -365,8 +436,289 @@ select **Limit output** and set
 `external`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Controller
+  summary: Controller type PI (default) | PID | PD | P | I
+  group: ''
+  block_parameter: Controller
+  type: string, character vector
+  values: '"PID", "PI", "PD", "P", "I"'
+  default: '"PI"'
+- name: Form
+  summary: Controller structure Parallel (default) | Ideal
+  group: ''
+  block_parameter: Controller
+  type: string, character vector
+  values: '"Parallel", "Ideal"'
+  default: '"Parallel"'
+- name: Time domain
+  summary: Specify discrete-time or continuous-time controller Discrete-time (default) | Continuous-time
+  group: ''
+  block_parameter: TimeDomain
+  type: string, character vector
+  values: '"Continuous-time", "Discrete-time"'
+  default: '"Discrete-time"'
+- name: PID Controller is inside a conditionally executed subsystem
+  summary: Enable the discrete-integrator time port off (default) | on
+  group: ''
+  block_parameter: UseExternalTs
+  type: string, character vector
+  values: '"on", "off"'
+  default: '"off"'
+- name: Sample time (-1 for inherited)
+  summary: Discrete interval between samples –1 (default) | positive scalar
+  group: ''
+  block_parameter: SampleTime
+  type: scalar
+  values: -1, positive scalar
+  default: '-1'
+- name: Integrator method
+  summary: Method for computing integral in discrete-time controller Forward Euler (default) | Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: IntegratorMethod
+  type: string, character vector
+  values: '"Forward Euler", "Backward Euler", "Trapezoidal"'
+  default: '"Forward Euler"'
+- name: Filter method
+  summary: Method for computing derivative in discrete-time controller Forward Euler (default) | Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: FilterMethod
+  type: string, character vector
+  values: '"Forward Euler", "Backward Euler", "Trapezoidal"'
+  default: '"Forward Euler"'
+- name: Source
+  summary: Source for controller gains and filter coefficient external (default) | internal
+  group: Main
+  block_parameter: ControllerParametersSource
+  type: string, character vector
+  values: '"internal", "external"'
+  default: '"external"'
+- name: Proportional (P)
+  summary: Proportional gain 1 (default) | scalar | vector
+  group: Main
+  block_parameter: P
+  type: scalar, vector
+  default: '1'
+- name: Integral (I)
+  summary: Integral gain 1 (default) | scalar | vector
+  group: Main
+  block_parameter: I
+  type: scalar, vector
+  default: '1'
+- name: Integral (I\*Ts)
+  summary: Integral gain multiplied by sample time 1 (default) | scalar | vector
+  group: Main
+  block_parameter: I
+  type: scalar, vector
+  default: '1'
+- name: Use I\*Ts
+  summary: Use integral gain multiplied by sample time on (default) | off
+  group: Main
+  block_parameter: UseKiTs
+  type: string, character vector
+  values: '"on", "off"'
+  default: '"on"'
+- name: Derivative (D)
+  summary: Derivative gain 0 (default) | scalar | vector
+  group: Main
+  block_parameter: D
+  type: scalar, vector
+  default: '0'
+- name: Use externally sourced derivative
+  summary: Specify derivative at block input port off (default) | on
+  group: Main
+- name: Use filtered derivative
+  summary: Apply filter to derivative term on (default) | off
+  group: Main
+  block_parameter: UseFilter
+  type: string, character vector
+  values: '"on", "off"'
+  default: '"on"'
+- name: Filter coefficient (N)
+  summary: Derivative filter coefficient 100 (default) | scalar | vector
+  group: Main
+  block_parameter: N
+  type: scalar, vector
+  default: '100'
+- name: Select tuning method
+  summary: Tool for automatic tuning of controller coefficients Transfer Function Based (PID Tuner App) (default) | Frequency
+    Response Based
+  group: Main
+- name: Enable zero-crossing detection
+  summary: Detect zero crossings on reset and on entering or leaving a saturation state on (default) | off
+  group: Main
+  block_parameter: ZeroCross
+  type: string, character vector
+  values: '"on", "off"'
+  default: '"on"'
+- name: Source
+  summary: Source for integrator and derivative initial conditions external (default) | internal
+  group: Initialization
+  block_parameter: InitialConditionSource
+  type: string, character vector
+  values: '"internal", "external"'
+  default: '"external"'
+- name: Integrator
+  summary: Integrator initial condition 0 (default) | scalar | vector
+  group: Initialization
+  block_parameter: InitialConditionForIntegrator
+  type: scalar, vector
+  default: '0'
+- name: Filter
+  summary: Filter initial condition 0 (default) | scalar | vector
+  group: Initialization
+  block_parameter: InitialConditionForFilter
+  type: scalar, vector
+  default: '0'
+- name: Differentiator
+  summary: Initial condition for unfiltered derivative 0 (default) | scalar | vector
+  group: Initialization
+  block_parameter: DifferentiatorICPrevScaledInput
+  type: scalar, vector
+  default: '0'
+- name: Initial condition setting
+  summary: Location at which initial condition is applied Auto (default) | Output
+  group: Initialization
+  block_parameter: InitialConditionSetting
+  type: string, character vector
+  values: '"Auto", "Output"'
+  default: '"Auto"'
+- name: External reset
+  summary: Trigger for resetting integrator and filter values level (default) | none | rising | falling | either
+  group: Initialization
+  block_parameter: ExternalReset
+  type: string, character vector
+  values: '"none", "rising", "falling", "either", "level"'
+  default: '"level"'
+- name: Ignore reset when linearizing
+  summary: Force linearization to ignore reset off (default) | on
+  group: Initialization
+  block_parameter: IgnoreLimit
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Enable tracking mode
+  summary: Activate signal tracking off (default) | on
+  group: Initialization
+  block_parameter: TrackingMode
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Tracking coefficient (Kt)
+  summary: Gain of signal-tracking feedback loop 1 (default) | scalar
+  group: Initialization
+  block_parameter: Kt
+  type: scalar
+  default: '1'
+- name: Limit Output
+  summary: Limit block output to specified saturation values on (default) | off
+  group: Saturation
+  block_parameter: LimitOutput
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Source
+  summary: Source for output saturation limits internal (default) | external
+  group: Saturation
+  block_parameter: SatLimitsSource
+  type: string, character vector
+  values: '"internal", "external"'
+  default: '"internal"'
+- name: Upper limit
+  summary: Upper saturation limit for block output 1 (default) | scalar
+  group: Saturation
+  block_parameter: UpperSaturationLimit
+  type: scalar
+  default: '1'
+- name: Lower limit
+  summary: Lower saturation limit for block output –1 (default) | scalar
+  group: Saturation
+  block_parameter: LowerSaturationLimit
+  type: scalar
+  default: –1
+- name: Ignore saturation when linearizing
+  summary: Force linearization to ignore output limits on (default) | off
+  group: Saturation
+  block_parameter: LinearizeAsGain
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Anti-windup method
+  summary: Integrator anti-windup method clamping (default) | none | back-calculation | external
+  group: Saturation
+  block_parameter: AntiWindupMode
+  type: string, character vector
+  values: '"none", "back-calculation", "clamping"'
+  default: '"clamping"'
+- name: Back-calculation coefficient (Kb)
+  summary: Gain coefficient of anti-windup feedback loop 1 (default) | scalar
+  group: Saturation
+  block_parameter: Kb
+  type: scalar
+  default: '1'
+- name: Limit Output
+  summary: Limit integrator output to specified saturation limits off (default) | on
+  group: Saturation
+  block_parameter: LimitIntegratorOutput
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper limit
+  summary: Upper saturation limit for integrator Inf (default) | scalar
+  group: Saturation
+  block_parameter: UpperIntegratorSaturationLimit
+  type: scalar
+  default: Inf
+- name: Lower limit
+  summary: Lower saturation limit for integrator -Inf (default) | scalar
+  group: Saturation
+  block_parameter: LowerIntegratorSaturationLimit
+  type: scalar
+  default: -Inf
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Simplest (default) | Floor | Ceiling | Convergent | Nearest | Round |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Simplest'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: State name (e.g., 'position')
+  summary: Name for continuous-time filter and integrator states '' (default) | character vector
+  group: State Attributes
+  block_parameter: IntegratorContinuousStateAttributes, FilterContinuousStateAttributes
+  type: character vector
+  default: ''''''
+- name: State name
+  summary: Names for discrete-time filter and integrator states empty string (default) | string | character vector
+  group: State Attributes
+  block_parameter: IntegratorStateIdentifier, FilterStateIdentifier
+  type: string, character vector
+  default: '""'
+- name: State name must resolve to Simulink signal object
+  summary: Require that state name resolve to a signal object off (default) | on
+  group: State Attributes
+  block_parameter: IntegratorStateMustResolveToSignalObject, FilterStateMustResolveToSignalObject
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Controller** — Controller type `PI` (default) | `PID` | `PD` | `P` | `I`
 
@@ -1896,7 +2248,6 @@ filter state:
 | **Type:** string, character vector |
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Motor Control Blockset / Controls / Controllers Motor Control Blockset HDL Support / Controls / Controllers

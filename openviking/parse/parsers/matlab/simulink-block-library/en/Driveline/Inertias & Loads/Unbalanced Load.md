@@ -14,6 +14,12 @@ language: en
 # Unbalanced Load
 
 ## Ports
+```yaml
+ports:
+- name: LConn 1
+  summary: Shaft connection mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,37 @@ language: en
 
 Mechanical rotational conserving port associated with the shaft
 connection to the unbalanced load.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Option to model moment of inertia Circular rotation (default) | Elliptical rotation | By table lookup
+  group: ''
+- name: Moment of inertia about own axis
+  summary: Moment of inertia 1 kg*m^2 (default) | positive scalar
+  group: ''
+- name: Mass
+  summary: Load mass 1 kg (default) | positive scalar
+  group: ''
+- name: Distance from axis to center of rotation
+  summary: Offset radius .01 m (default) | positive scalar
+  group: ''
+- name: Radius of rotation
+  summary: Radius of rotation .01 m (default) | positive scalar
+  group: ''
+- name: Radius of rotation inline with distance from axis
+  summary: Semimajor radius .01 m (default) | positive scalar
+  group: ''
+- name: Radius of rotation perpendicular to distance from axis
+  summary: Semiminor radius .005 m (default) | positive scalar
+  group: ''
+- name: Angle vector
+  summary: Angle [0, pi, 3 * pi / 2] rad (default) | vector
+  group: ''
+- name: Inertia vector
+  summary: Inertia [1, 10, 1] kg*m^2 (default) | vector
+  group: ''
+```
 
 ### **Parameterization** — Option to model moment of inertia `Circular rotation` (default) | `Elliptical rotation` | `By table lookup`
 
@@ -115,7 +150,6 @@ vector** parameter.
 
 To enable this parameter, set **Parameterization** to
 `By table lookup`.
-
 ## Libraries
 
 Simscape / Driveline / Inertias & Loads

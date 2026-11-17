@@ -14,6 +14,27 @@ language: en
 # Average-Value Rectifier (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -70,8 +91,25 @@ terminal.
 
 Electrical conserving port associated with the negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: ''
+- name: AC frequency
+  summary: AC frequency Variable (default) | Constant
+  group: ''
+- name: Rated AC voltage
+  summary: Rated AC voltage 4160V (default)
+  group: ''
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz | scalar
+  group: ''
+- name: Fixed power loss
+  summary: Fixed power loss 1e3W (default)
+  group: ''
+```
 
 ### **Electrical connection** — Electrical connection `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -110,7 +148,6 @@ instantaneous AC voltage is equal to the value you specify for the
 **Rated AC voltage**, the AC power demand equals the
 value you specify for the **Fixed power loss** plus DC
 power demand.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

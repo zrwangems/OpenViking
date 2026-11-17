@@ -14,6 +14,29 @@ language: en
 # Resolver-to-Digital Converter
 
 ## Ports
+```yaml
+ports:
+- name: Vp
+  summary: Voltage phase angle scalar
+  direction: input
+  data_types: single | double
+- name: Vx
+  summary: x-axis voltage scalar
+  direction: input
+  data_types: single | double
+- name: Vy
+  summary: y-axis voltage scalar
+  direction: input
+  data_types: single | double
+- name: Velocity
+  summary: Rotational velocity scalar
+  direction: output
+  data_types: single | double
+- name: Angle
+  summary: Rotational angle scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -49,8 +72,25 @@ Simulink signal that corresponds to the rotational velocity.
 Simulink signal that corresponds to the rotational angle.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: Pole pairs in the attached machine 4 (default) | positive scalar integer
+  group: ''
+- name: Phase-looked loop proportional gain
+  summary: PLL proportional gain 15 (default) | positive scalar
+  group: ''
+- name: Phase-looked loop integral gain
+  summary: PLL integral gain 2.5e5 (default) | positive scalar
+  group: ''
+- name: Initial position (rad)
+  summary: Initial phase angle 0 rad (default) | scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Number of pole pairs** — Pole pairs in the attached machine `4` (default) | positive scalar integer
 
@@ -93,7 +133,6 @@ that allows you to switch between continuous operation or discrete
 operation, promote the sample time parameter to ensure correct switching
 between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / Observers

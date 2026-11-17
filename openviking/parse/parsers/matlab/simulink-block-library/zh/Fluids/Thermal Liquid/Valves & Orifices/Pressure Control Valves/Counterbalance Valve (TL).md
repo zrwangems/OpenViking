@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Counterbalance Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: L
+  summary: 流体负载热液体
+  direction: conserving
+- name: B
+  summary: 背压热液体
+  direction: conserving
+- name: P
+  summary: 先导压力端口热液体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,80 @@ chinese_source: worker-translation
 ### **P** — 先导压力端口热液体
 
 与先导压力端口相关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Opening parameterization
+  summary: 开度参数化 Linear - Area vs. pressure（默认）| Tabulated data - Area vs. pressure | Tabulated data - Volumetric flow rate
+    vs. pressure
+  group: 模型参数化
+- name: Set pressure differential
+  summary: 初始弹簧压缩压力 5 MPa（默认）| 非负标量
+  group: 模型参数化
+- name: Pressure differential vector
+  summary: '溢流级压降值 5 : 0.2 : 6 MPa（默认）| 1×*n* 向量'
+  group: 模型参数化
+- name: Opening area vector
+  summary: 溢流级开度面积 [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: Reference pressure differential vector
+  summary: '溢流级压降 5 : 0.2 : 6 MPa（默认）| 向量'
+  group: 模型参数化
+- name: Reference volumetric flow rate vector
+  summary: 通过溢流级的流量 [6.4e-09, .0013, .0027, .0041, .0055, .007] m^3/s（默认）| 向量
+  group: 模型参数化
+- name: Maximum opening pressure differential
+  summary: 溢流阀最大压力 6 MPa（默认）| 正标量
+  group: 模型参数化
+- name: Maximum opening area
+  summary: 溢流级最大开度面积 1e-4 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Leakage area
+  summary: 阀门完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Pilot ratio
+  summary: 先导面积比 3（默认）| 正标量
+  group: 模型参数化
+- name: Back pressure ratio
+  summary: 背压面积比 4（默认）| 正标量
+  group: 模型参数化
+- name: Cross-sectional area at ports A and B
+  summary: 阀门入口或出口面积 0.01 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 模型参数化
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 模型参数化
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 正标量
+  group: 模型参数化
+- name: Opening dynamics
+  summary: 是否引入节流孔开启导致的流量滞后 off（默认）| on
+  group: 模型参数化
+- name: Opening time constant
+  summary: 节流孔开启时间常数 0.1 s（默认）| 正标量
+  group: 模型参数化
+- name: Cracking pressure differential
+  summary: 单向阀操作的设定压力 0.01 MPa（默认）| 正标量
+  group: 单向阀
+- name: Maximum opening pressure differential
+  summary: 阀门中的最大压力 0.1 MPa（默认）| 正标量
+  group: 单向阀
+- name: Maximum opening area
+  summary: 最大开度面积 1e-4 m^2（默认）| 正标量
+  group: 单向阀
+- name: Pressure differential vector
+  summary: '单向阀操作的压差 [0.01 : 0.01 : 0.1] MPa（默认）| 1×*n* 向量'
+  group: 单向阀
+- name: Opening area vector
+  summary: 单向阀级开启面积 [1e-10, 1e-05, 2e-05, 3e-05, 4e-05, 5e-05, 6e-05, 7.5e-05, 8.5e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 单向阀
+- name: Volumetric flow rate vector
+  summary: 单向阀级体积流量 [.000358, .045, .11, .191, .284, .39, .505, .63, .764, .905] .* 1e-3 m^3/s（默认）| 1×*n* 向量
+  group: 单向阀
+```
 
 ### 模型参数化
 
@@ -197,7 +281,6 @@ vector** 参数中的元素对应。
 要启用此参数，请将 **Opening parameterization** 设置为
 `Tabulated data - Volumetric flow rate vs.
 pressure`。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Pressure Control Valves

@@ -14,6 +14,12 @@ language: en
 # Two-Phase Fluid Properties (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Connection port two-phase fluid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,8 +31,87 @@ you connect the Two-Phase Fluid Properties (2P) block
 to a connection line, the software automatically identifies the two-phase fluid blocks
 connected to the particular circuit and propagates the properties to all these
 blocks.
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum valid specific internal energy
+  summary: Lowest specific internal energy allowed 0 kJ/kg (default) | nonnegative scalar
+  group: Parameters
+- name: Maximum valid specific internal energy
+  summary: Highest specific internal energy allowed 4000 kJ/kg (default) | nonnegative scalar
+  group: Parameters
+- name: Pressure vector
+  summary: Vector of pressure values for table lookup vector
+  group: Parameters
+- name: Critical pressure
+  summary: Pressure at which liquid and vapor cease to exist as distinct phases 22.0640 MPa (default) | positive scalar
+  group: Parameters
+- name: Thermal transport properties near critical point
+  summary: Whether to clip peaks of thermal transport properties near critical point Clip peak values (default) | Do not clip
+    peak values
+  group: Parameters
+- name: Fraction above and below Critical pressure for clipping
+  summary: Pressure range for clipping peaks of thermal transport properties 0.12 (default) | positive scalar
+  group: Parameters
+- name: Atmospheric pressure
+  summary: Absolute pressure of the environment 0.101325 MPa (default) | positive scalar
+  group: Parameters
+- name: Pressure and specific internal energy outside valid range
+  summary: Whether to notify when pressure or specific internal energy are outside valid range Error (default) | Warning |
+    None
+  group: Parameters
+- name: Dynamic pressure threshold for flow reversal
+  summary: Dynamic pressure at which the flow begins to reverse direction 0.01 Pa (default) | positive scalar
+  group: Parameters
+- name: Normalized liquid internal energy vector
+  summary: Vector of normalized liquid internal energy values for table lookup vector
+  group: Liquid Properties
+- name: Liquid specific volume table
+  summary: Matrix of liquid specific volume values for table lookup matrix
+  group: Liquid Properties
+- name: Liquid specific entropy table
+  summary: Matrix of liquid specific entropy values for table lookup matrix
+  group: Liquid Properties
+- name: Liquid temperature table
+  summary: Matrix of liquid temperature values for table lookup matrix
+  group: Liquid Properties
+- name: Liquid kinematic viscosity table
+  summary: Matrix of liquid kinematic viscosity values for table lookup matrix
+  group: Liquid Properties
+- name: Liquid thermal conductivity table
+  summary: Matrix of liquid thermal conductivity values for table lookup matrix
+  group: Liquid Properties
+- name: Liquid Prandtl number table
+  summary: Matrix of liquid Prandtl number values for table lookup matrix
+  group: Liquid Properties
+- name: Saturated liquid internal energy vector
+  summary: Vector of saturated liquid internal energy values for table lookup vector
+  group: Liquid Properties
+- name: Normalized vapor internal energy vector
+  summary: Vector of normalized vapor internal energy values for table lookup vector
+  group: Vapor Properties
+- name: Vapor specific volume table
+  summary: Matrix of vapor specific volume values for table lookup matrix
+  group: Vapor Properties
+- name: Vapor specific entropy table
+  summary: Matrix of vapor specific entropy values for table lookup matrix
+  group: Vapor Properties
+- name: Vapor temperature table
+  summary: Matrix of vapor temperature values for table lookup matrix
+  group: Vapor Properties
+- name: Vapor kinematic viscosity table
+  summary: Matrix of vapor kinematic viscosity values for table lookup matrix
+  group: Vapor Properties
+- name: Vapor thermal conductivity table
+  summary: Matrix of vapor thermal conductivity values for table lookup matrix
+  group: Vapor Properties
+- name: Vapor Prandtl number table
+  summary: Matrix of vapor Prandtl number values for table lookup matrix
+  group: Vapor Properties
+- name: Saturated vapor internal energy vector
+  summary: Vector of saturated vapor internal energy values for table lookup vector
+  group: Vapor Properties
+```
 
 ### Parameters
 
@@ -263,7 +348,6 @@ critical pressure must equal their counterparts in the **Saturated liquid
 specific internal energy vector** block parameter.
 
 The default is a 100-element vector for water.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Utilities

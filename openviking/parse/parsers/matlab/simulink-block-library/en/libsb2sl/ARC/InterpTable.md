@@ -14,6 +14,43 @@ language: en
 # n-D Lookup Table
 
 ## Ports
+```yaml
+ports:
+- name: u1
+  summary: First-dimension (row) inputs scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: uN
+  summary: n-th dimension input values scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: T
+  summary: Define the table of output values matrix of values with dimensions that match the Number of table dimensions and
+    the breakpoint lengths for each dimension of the table
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: bp1
+  summary: Explicit breakpoint values 1-by-n or n-by-1 vector of monotonically increasing values
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: bp2
+  summary: Explicit breakpoint values 1-by-n or n-by-1 vector of monotonically increasing values
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: bp3
+  summary: Explicit breakpoint values 1-by-n or n-by-1 vector of monotonically increasing values
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | enumerated | fixed
+    point
+- name: Port_1
+  summary: Output computed by looking up or estimating table values scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -180,8 +217,297 @@ values:
 | Do not match the values of indices in breakpoint vectors, and are out of range | Extrapolates the output value, using the **Extrapolation method** you select |
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of table dimensions
+  summary: Number of lookup table dimensions 3 (default) | 1 | 2 | 4 | ... | 30
+  group: Table and Breakpoints
+  block_parameter: NumberOfTableDimensions
+  type: character vector
+  values: '''1'' | ''2'' | ''3'' | ''4'' | ... | 30'
+  default: '''3'''
+- name: Data specification
+  summary: Method of table and breakpoint specification Table and breakpoints (default) | Lookup table object
+  group: Table and Breakpoints
+  block_parameter: DataSpecification
+  type: character vector
+  values: '''Table and breakpoints'' | ''Lookup table object'''
+  default: '''Table and breakpoints'''
+- name: Name
+  summary: Name of the lookup table object [] (default) | Simulink.LookupTable object
+  group: Table and Breakpoints
+  block_parameter: LookupTableObject
+  type: character vector
+  values: name of a Simulink.LookupTable object
+  default: ''''''
+- name: Breakpoints specification
+  summary: Method of breakpoint specification Explicit values (default) | Even spacing
+  group: Table and Breakpoints
+  block_parameter: BreakpointsSpecification
+  type: character vector
+  values: '''Explicit values'' | ''Even spacing'''
+  default: '''Explicit values'''
+- name: Support tunable size
+  summary: Option to enable tunable table size off (default) | on
+  group: Table and Breakpoints
+  block_parameter: SupportTunableSize
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Source
+  summary: Source of table and breakpoint data Dialog (default) | Input port
+  group: Table and Breakpoints
+  values: Dialog | Input port
+  block_parameter: TableSource | BreakpointsForDimension1Source | BreakpointsForDimension2Source | BreakpointsForDimension3Source
+  type: character vector
+  default: '''Dialog'''
+- name: Tunable size
+  summary: Maximum number of elements for each array -1 (default) | real integer scalar
+  group: Table and Breakpoints
+  block_parameter: N1 to N31
+  type: character vector
+  values: -1 | real integer scalar
+  default: '-1'
+- name: Table data
+  summary: Define the table of output values reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2]) (default) | matrix of
+    values with dimensions that match the Number of table dimensions
+  group: Table and Breakpoints
+  values: matrix of table values
+  block_parameter: Table
+  type: character vector
+  default: '''reshape(repmat([4 5 6;16 19 20;10 18 23],1,2),[3,3,2])'''
+- name: Breakpoints
+  summary: Explicit breakpoint values or first point and spacing of breakpoints [10,22,31] (default) | 1-by-n or n-by-1 vector
+    of monotonically increasing values
+  group: Table and Breakpoints
+  block_parameter: BreakpointsForDimension1 | BreakpointsForDimension2 | ... | BreakpointsForDimension30
+  type: character vector
+  values: 1-by-n or n-by-1 vector of monotonically increasing values
+  default: '''[10, 22, 31]'' | ''[10, 22, 31]'' | … | ''[1:3]'''
+- name: First point
+  summary: First point in evenly spaced breakpoint data 1 (default) | scalar
+  group: Table and Breakpoints
+  block_parameter: BreakpointsForDimension1FirstPoint | BreakpointsForDimension2FirstPoint | ... | BreakpointsForDimension30FirstPoint
+  type: character vector
+  values: real-valued, finite, scalar
+  default: '''1'''
+- name: Spacing
+  summary: Spacing between evenly spaced breakpoints 1 (default) | scalar
+  group: Table and Breakpoints
+  block_parameter: BreakpointsForDimension1Spacing | BreakpointsForDimension2Spacing | ... | BreakpointsForDimension30Spacing
+  type: character vector
+  values: positive, real-valued, finite, scalar
+  default: '''1'''
+- name: Edit table and breakpoints
+  summary: Open Lookup Table Editor dialog box button
+  group: Table and Breakpoints
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Linear point-slope (default) | Flat | Nearest | Linear Lagrange
+    | Cubic spline | Akima spline
+  group: Algorithm
+  block_parameter: InterpMethod
+  type: character vector
+  values: '''Linear point-slope'' | ''Flat'' | ''Nearest'' | ''Linear Lagrange'' | ''Cubic spline'' | ''Akima spline'''
+  default: '''Linear point-slope'''
+- name: Extrapolation method
+  summary: Method of handling input values that fall outside the range of a breakpoint vector Linear (default) | Clip | Cubic
+    spline | Akima spline
+  group: Algorithm
+  block_parameter: ExtrapMethod
+  type: character vector
+  values: '''Linear'' | ''Clip'' | ''Cubic spline'' | ''Akima spline'''
+  default: '''Linear'''
+- name: Index search method
+  summary: Method of calculating table indices Binary search (default) | Linear search | Evenly spaced points
+  group: Algorithm
+  block_parameter: IndexSearchMethod
+  type: character vector
+  values: '''Binary search'' | ''Evenly spaced points'' | ''Linear search'''
+  default: '''Binary search'''
+- name: Apply more accurate and efficient rounding when possible
+  summary: More accurate fixed-point table lookup using efficient round to nearest off (default) | on
+  group: Algorithm
+  block_parameter: ApplyAccurateEfficientRounding
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Begin index search using previous index result
+  summary: Start using the index from the previous time step off (default) | on
+  group: Algorithm
+  block_parameter: BeginIndexSearchUsingPreviousIndexResult
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Assume input is within range
+  summary: Option to check for out-of-range input values off (default) | on
+  group: Algorithm
+  block_parameter: RemoveProtectionInput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Diagnostic for out-of-range input
+  summary: Block action when input is out of range None (default) | Warning | Error
+  group: Algorithm
+  block_parameter: DiagnosticForOutOfRangeInput
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Apply full precision fixed-point algorithm when possible
+  summary: More accurate fixed-point table lookup off (default) | on
+  group: Algorithm
+  block_parameter: ApplyFullPrecisionForLinearInterpolation
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use last table value for inputs at or above last breakpoint
+  summary: Method for computing output for inputs at or above last breakpoint off (default) | on
+  group: Algorithm
+  block_parameter: UseLastTableValue
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Algorithm
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Use one input port for all input data
+  summary: Use only one input port off (default) | on
+  group: Algorithm
+  block_parameter: UseOneInputPortForAllInputData
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Table data
+  summary: 'Data type of table data Inherit: Same as output (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: TableDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit from ''Table data'''' | ''Inherit: Same as output'' | ''double'' | ''single'' | ''half'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)''|''<data type expression>'''
+  default: '''Inherit: Same as output'''
+- name: Table data Minimum
+  summary: Minimum value of the table data [] | scalar
+  group: Data Types
+  block_parameter: TableMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Table data Maximum
+  summary: Maximum value of the table data [] | scalar
+  group: Data Types
+  block_parameter: TableMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Breakpoints
+  summary: 'Breakpoint data type Inherit: Same as corresponding input (default) | double | single | half | int8 | uint8 |
+    int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name>
+    | <data type expression>'
+  group: Data Types
+  block_parameter: BreakpointsForDimension1DataTypeStr | BreakpointsForDimension2DataTypeStr| ... | BreakpointsForDimension30DataTypeStr
+  type: character vector
+  values: '''Inherit: Same as corresponding input'' | ''Inherit: Inherit from ''Breakpoint data'''' | ''double'' | ''single''
+    | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)''
+    | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''|''<data type expression>'''
+  default: '''Inherit: Same as corresponding input'''
+- name: Breakpoints Minimum
+  summary: Minimum value breakpoint data can have [] | scalar
+  group: Data Types
+  block_parameter: BreakpointsForDimension1Min | BreakpointsForDimension2Min | ... | BreakpointsForDimension30Min
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Breakpoints Maximum
+  summary: Maximum value breakpoint data can have [] | scalar
+  group: Data Types
+  block_parameter: BreakpointsForDimension1Max | BreakpointsForDimension2Max | ... | BreakpointsForDimension30Max
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Fraction
+  summary: 'Fraction data type Inherit: Inherit via internal rule (default) | double | single | fixdt(1,16,0) | <data type
+    expression>'
+  group: Data Types
+  block_parameter: FractionDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | ''fixdt(1,16,0)''|''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Intermediate results
+  summary: 'Intermediate results data type Inherit: Same as output (default) | Inherit: Inherit via internal rule | double
+    | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data
+    type expression>'
+  group: Data Types
+  block_parameter: IntermediateResultsDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as output'' | ''double'' | ''single'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''|''<data
+    type expression>'''
+  default: '''Inherit: Same as output'''
+- name: Output
+  summary: 'Output data type Inherit: Same as input (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''Inherit: Inherit from table data'' | ''Inherit: Same as first input''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''|''<data type expression'''
+  default: '''Inherit: Same as first input'''
+- name: Output Minimum
+  summary: Minimum value for range checking [] | scalar
+  group: Data Types
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Output Maximum
+  summary: Maximum value for range checking [] | scalar
+  group: Data Types
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Internal rule priority
+  summary: Internal rule for intermediate calculations Speed (default) | Precision
+  group: Data Types
+  block_parameter: InternalRulePriority
+  type: character vector
+  values: '''Speed'' | ''Precision'''
+  default: '''Speed'''
+- name: Require all inputs to have the same data type
+  summary: Require all inputs to have the same data type on (default) | off
+  group: Data Types
+  block_parameter: InputSameDT
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Simplest (default) | Ceiling | Convergent | Floor | Nearest | Round |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Simplest'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Table and Breakpoints
 
@@ -1308,7 +1634,6 @@ When you select this check box, saturation applies to every internal operation o
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Lookup Tables HDL Coder / Lookup Tables

@@ -14,6 +14,34 @@ language: en
 # Earth Orientation Parameters
 
 ## Ports
+```yaml
+ports:
+- name: UTCMJD
+  summary: UTC scalar
+  direction: input
+  data_types: double
+- name: ΔUT1
+  summary: Difference between UT1 and UTC scalar
+  direction: output
+  data_types: double
+- name: '[xp,yp]'
+  summary: Polar displacement of Earth vector
+  direction: output
+  data_types: double
+- name: '[dX,dY]'
+  summary: Adjustment to location of Celestial Intermediate Pole (CIP) vector
+  direction: output
+  data_types: double
+- name: ΔUT1err
+  summary: Return errors for the measured and predicted values in the IERS data vector
+  direction: output
+- name: '[xp,yp]err'
+  summary: Return errors for the measured and predicted values in the IERS data vector
+  direction: output
+- name: '[dX,dY]err'
+  summary: Return errors for the measured and predicted values in the IERS data vector
+  direction: output
+```
 
 ### Input
 
@@ -82,8 +110,46 @@ specified as a vector, in radians.
 
 This port is enabled when the **Output parameter
 error** is selected.
-
 ## Parameters
+```yaml
+parameters:
+- name: IERS data file
+  summary: Earth orientation data aeroiersdata.mat (default) | MAT-file
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: scalar
+  default: '''aeroiersdata.mat'''
+- name: Output parameter error
+  summary: Enable output ports to return errors off (default) | on
+  group: ''
+  block_parameter: OutputError
+  type: character vector
+  values: scalar
+  default: '''off'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: IERS data URL
+  summary: Web site or Earth orientation data file http://maia.usno.navy.mil/ser7/finals2000A.data (default) | web site address
+    | file name
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: scalar
+  default: '''aeroiersdata.mat'''
+- name: Destination folder
+  summary: Folder for IERS data file current Folder (default)
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: scalar
+  default: '''aeroiersdata.mat'''
+```
 
 ### **IERS data file** — Earth orientation data `aeroiersdata.mat` (default) | MAT-file
 
@@ -183,7 +249,6 @@ To create the IERS data file in the destination folder, click the
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'aeroiersdata.mat'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Celestial Phenomena

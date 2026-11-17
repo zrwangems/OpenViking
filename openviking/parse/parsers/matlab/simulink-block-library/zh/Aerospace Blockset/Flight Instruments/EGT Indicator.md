@@ -15,10 +15,45 @@ chinese_source: worker-translation
 # Exhaust Gas Temperature (EGT) Indicator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 连接到信号 信号名称
+  group: ''
+- name: Minimum
+  summary: 最小刻度值 0（默认）| 有限值 | double | 标量
+  group: ''
+  block_parameter: Limits
+  type: double
+  values: double 标量
+  default: '[0 1000]，其中 0 为最小值'
+- name: Maximum
+  summary: 最大刻度值 1000（默认）| 有限值 | double | 标量
+  group: ''
+  block_parameter: Limits
+  type: double
+  values: double 标量
+  default: '[0 1000]，其中 1000 为最大值'
+- name: Scale Colors
+  summary: 色带范围 0（默认）| double | 标量
+  group: ''
+  block_parameter: ScaleColors
+  type: '*n*×1 结构体数组'
+  values: 包含 Min、Max 和 Color 元素的结构体数组
+- name: Label
+  summary: 模块标签位置 Top（默认）| Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — 连接到信号 信号名称
 
@@ -98,7 +133,6 @@ R2025b 中未记录。
 | **类型**：字符向量 |
 | **值**：`'Top'` | `'Bottom'` | `'Hide'` |
 | **默认值**：`'Top'` |
-
 ## 所属库
 
 Aerospace Blockset / Flight Instruments

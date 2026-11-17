@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Translational Friction (PB)
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 法向力控制信号，N 物理信号
+  direction: input
+- name: B
+  summary: 基座端口 基于位置的机械平移
+  direction: input
+- name: F
+  summary: 从动端口 基于位置的机械平移
+  direction: input
+```
 
 ### 输入
 
@@ -39,8 +51,28 @@ chinese_source: worker-translation
 基于位置的机械平移守恒端口，表示
 从动连接。对于正长度，端口 **F** 的位置
 比端口 **B** 更正。
-
 ## 参数
+```yaml
+parameters:
+- name: Normal force specification
+  summary: 法向力是恒定的还是可变的 Constant（默认）| Variable
+  group: ''
+- name: Normal force
+  summary: 垂直于运动方向的力 10 N（默认）| 非负标量
+  group: ''
+- name: Breakaway friction coefficient
+  summary: 法向力与分离摩擦力之间的比例系数 2.5（默认）| 正标量
+  group: ''
+- name: Breakaway friction velocity
+  summary: Stribeck 摩擦的峰值速度 0.1 m/s（默认）| 正标量
+  group: ''
+- name: Coulomb friction coefficient
+  summary: 法向力与阻碍运动的摩擦力之间的比例系数 2（默认）| 非负标量
+  group: ''
+- name: Viscous friction coefficient
+  summary: 粘性损耗比例系数 0 N/(m/s)（默认）| 非负标量
+  group: ''
+```
 
 ### **Normal force specification** — 法向力是恒定的还是可变的 `Constant`（默认）| `Variable`
 
@@ -85,7 +117,6 @@ Stribeck 摩擦达到峰值时的速度。此时，Stribeck
 
 摩擦力与相对速度之间的比例系数。
 粘性损耗不依赖于法向力。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Elements

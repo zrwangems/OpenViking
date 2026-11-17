@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # LCMV Beamformer
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入信号 *M*×*N* 复值矩阵
+  direction: input
+  data_types: double
+- name: XT
+  summary: 训练信号 *P*×*N* 复值矩阵
+  direction: input
+  data_types: double
+- name: Y
+  summary: 波束形成输出 *M*×1 复值列向量
+  direction: output
+  data_types: double
+- name: W
+  summary: 波束形成器权重输出 *N*×1 复值列向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -59,8 +78,31 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Constraint matrix
+  summary: LCMV 波束形成器约束矩阵 complex([1;1])（默认）| *N*×*K* 复值矩阵
+  group: ''
+- name: Desired response vector
+  summary: LCMV 波束形成的期望响应 1（默认）| 实值 *K*×1 列向量
+  group: ''
+- name: Diagonal loading factor
+  summary: 对角加载因子 正标量
+  group: ''
+- name: Enable training data input
+  summary: 启用训练数据输入端口 off（默认）| on
+  group: ''
+- name: Enable weights output
+  summary: 启用波束形成器权重输出 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 ### **Constraint matrix** — LCMV 波束形成器约束矩阵 `complex([1;1])`（默认）| *N*×*K* 复值矩阵
 
@@ -123,7 +165,6 @@ Generation` 运行模块。长时间仿真使用生成代码比在
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Beamforming

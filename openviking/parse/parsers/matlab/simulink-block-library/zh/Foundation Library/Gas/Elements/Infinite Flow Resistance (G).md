@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Infinite Flow Resistance (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 质量流量和能量流量为零的气体
+  direction: unspecified
+- name: B
+  summary: 质量流量和能量流量为零的气体
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,11 +34,12 @@ chinese_source: worker-translation
 ### **B** — 质量流量和能量流量为零的气体
 
 气体守恒端口，其质量流量和能量流量均等于零。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

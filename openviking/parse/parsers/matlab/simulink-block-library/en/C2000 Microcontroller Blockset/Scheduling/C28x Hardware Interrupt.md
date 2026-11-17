@@ -14,6 +14,16 @@ language: en
 # C28x Hardware Interrupt
 
 ## Ports
+```yaml
+ports:
+- name: SimIRQ
+  summary: Simulation interrupt input port scalar
+  direction: input
+  data_types: Boolean
+- name: IRQ
+  summary: Generate interrupt request Scalar
+  direction: output
+```
 
 ### Input
 
@@ -35,8 +45,25 @@ To enable the **SimIRQ** port, select the
 
 The output of this block is a function call. The size of the function call
 line equals the number of interrupts the block is set to handle.
-
 ## Parameters
+```yaml
+parameters:
+- name: CPU interrupt number
+  summary: Specify vector of CPU interrupt [1 1] (default) | integer in [1, 8]
+  group: ''
+- name: PIE interrupt number
+  summary: Specify a vector of PIE interrupt [1 2] (default)
+  group: ''
+- name: Simulink task priorities
+  summary: Provides relative importance of tasks associated with the asynchronous interrupts [30 26] (default)
+  group: ''
+- name: 'Preemption flags: preemptable-1, non-preemptable-0'
+  summary: Specify a vector of preemption flags for the interrupts 0 0 (default)
+  group: ''
+- name: Enable simulation input
+  summary: Enable simulation ports to block off (default) | on
+  group: ''
+```
 
 ### **CPU interrupt number** — Specify vector of CPU interrupt `[1 1]` (default) | integer in [1, 8]
 
@@ -283,7 +310,6 @@ The PIE and CPU interrupt numbers for the c281x processors are:
 | 10 | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved |
 | 11 | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved |
 | 12 | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved | Reserved |
-
 ## Libraries
 
 C2000 Microcontroller Blockset / Scheduling

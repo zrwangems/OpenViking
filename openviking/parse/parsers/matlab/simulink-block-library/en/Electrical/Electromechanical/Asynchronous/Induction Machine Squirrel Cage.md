@@ -14,6 +14,54 @@ language: en
 # Induction Machine Squirrel Cage
 
 ## Ports
+```yaml
+ports:
+- name: pu
+  summary: Per-unit measurements output port physical
+  direction: input
+- name: R
+  summary: Machine rotor mechanical
+  direction: conserving
+- name: C
+  summary: Machine case mechanical
+  direction: conserving
+- name: ~1
+  summary: Stator positive-end connections electrical
+  direction: conserving
+- name: ~2
+  summary: Stator negative-end connections electrical
+  direction: conserving
+- name: a1
+  summary: '*a* positive-end connection electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* positive-end connection electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* positive-end connection electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* negative-end connection electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* negative-end connection electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* negative-end connection electrical'
+  direction: conserving
+- name: HA
+  summary: '*a*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HB
+  summary: '*b*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HC
+  summary: '*c*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -170,8 +218,130 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Rated apparent power
+  summary: Rated apparent power 15e3 V*A (default)
+  group: Main
+- name: Rated voltage
+  summary: RMS voltage 220 V (default)
+  group: Main
+- name: Rated electrical frequency
+  summary: Nominal electrical frequency 60 Hz (default)
+  group: Main
+- name: Number of pole pairs
+  summary: Machine pole pairs 1 (default)
+  group: Main
+- name: Parameterization unit
+  summary: Unit system for block parameterization SI (default) | Per unit
+  group: Main
+- name: Squirrel cage
+  summary: Squirrel cage specification option Single squirrel cage (default) | Double squirrel cage
+  group: Main
+- name: Zero sequence
+  summary: Zero sequence Include (default) | Exclude
+  group: Main
+- name: Initialization option
+  summary: Initialization method Set targets for flux variables (default) | Set targets for load flow variables
+  group: Main
+- name: Stator resistance, Rs
+  summary: Stator resistance 0.25 Ohm (default)
+  group: Impedances
+- name: Stator leakage reactance, Xls
+  summary: Stator leakage reactance 0.4 Ohm (default)
+  group: Impedances
+- name: Referred rotor resistance, Rr'
+  summary: Referred rotor resistance 0.14 Ohm (default)
+  group: Impedances
+- name: Referred rotor leakage reactance, Xlr'
+  summary: Referred rotor leakage reactance 0.41 Ohm (default)
+  group: Impedances
+- name: Referred rotor resistance in cage 1, Rr1'
+  summary: Referred rotor resistance in the first cage 0.28 Ohm (default)
+  group: Impedances
+- name: Referred rotor leakage reactance in cage 1, Xlr1'
+  summary: Referred rotor leakage reactance in the first cage 0.82 Ohm (default)
+  group: Impedances
+- name: Referred rotor resistance in cage 2, Rr2'
+  summary: Referred rotor resistance in the second cage 0.28 Ohm (default)
+  group: Impedances
+- name: Referred rotor leakage reactance in cage 2, Xlr2'
+  summary: Referred rotor leakage reactance in the first cage 0.82 Ohm (default)
+  group: Impedances
+- name: Magnetizing reactance, Xm
+  summary: Magnetizing reactance 17 Ohm (default)
+  group: Impedances
+- name: Stator zero-sequence reactance, X0
+  summary: Stator zero-sequence reactance 0.4 Ohm (default)
+  group: Impedances
+- name: Stator resistance, Rs (pu)
+  summary: Per-unit stator resistance 0.0258 (default)
+  group: Impedances
+- name: Stator leakage inductance, Lls (pu)
+  summary: Per-unit stator leakage inductance 0.0413 (default)
+  group: Impedances
+- name: Referred rotor resistance, Rr' (pu)
+  summary: Per-unit referred rotor resistance 0.0145 (default)
+  group: Impedances
+- name: Referred rotor leakage inductance, Llr' (pu)
+  summary: Per-unit referred rotor leakage inductance 0.0424 (default)
+  group: Impedances
+- name: Referred rotor resistance in cage 1, Rr1' (pu)
+  summary: Per-unit referred rotor resistance in cage 1 0.0290 (default)
+  group: Impedances
+- name: Referred rotor leakage inductance in cage 1, Llr1' (pu)
+  summary: Per-unit referred rotor leakage inductance 0.0848 (default)
+  group: Impedances
+- name: Referred rotor resistance in cage 2, Rr2' (pu)
+  summary: Per-unit referred rotor resistance in cage 2 0.0290 (default)
+  group: Impedances
+- name: Referred rotor leakage inductance in cage 2, Llr2' (pu)
+  summary: Per-unit referred rotor leakage inductance 0.0848 (default)
+  group: Impedances
+- name: Magnetizing inductance, Lm (pu)
+  summary: Per-unit magnetizing inductance 1.7562 (default)
+  group: Impedances
+- name: Stator zero-sequence inductance, L0 (pu)
+  summary: Per-unit stator zero-sequence inductance 0.0413 (default)
+  group: Impedances
+- name: Magnetic saturation representation
+  summary: Magnetic saturation representation None (default) | Open-circuit lookup table (v versus i)
+  group: Saturation
+- name: No-load line current saturation data, i (rms)
+  summary: No-load line RMS current saturation data [0, 4, 9, 18, 25, 34, 50, 68, 95, 120] A (default)
+  group: Saturation
+- name: Terminal voltage saturation data, v (phase-phase, rms)
+  summary: Terminal RMS voltage saturation data [0, 88, 154, 198, 220, 242, 264, 286, 308, 327] V (default)
+  group: Saturation
+- name: Per-unit no-load line current saturation data, i
+  summary: Per-unit no-load line current saturation data [0, .176, .396, .792, 1.1, 1.496, 2.2, 2.992, 4.18, 5.28] (default)
+  group: Saturation
+- name: Per-unit terminal voltage saturation data, v
+  summary: Per-unit terminal voltage saturation data [0, .4, .7, .9, 1, 1.1, 1.2, 1.3, 1.4, 1.4864] (default)
+  group: Saturation
+- name: Measurement temperature
+  summary: Rated temperature 298.15 K (default) | real scalar
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Cage resistance temperature coefficient
+  summary: Rotor temperature coefficient 4.4e-3 (default) | 1/K | scalar
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal
+```
 
 All default parameter values are based on a machine delta-winding
 configuration.
@@ -660,7 +830,6 @@ energy required to raise the temperature by one degree.
 
 Thermal mass of the rotor. The thermal mass is the energy required to
 raise the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Asynchronous

@@ -14,6 +14,17 @@ language: en
 # Transpose
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Matrix *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Transposed matrix *N*-by-*M* matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -31,11 +42,12 @@ Transposed matrix, returned as an *N*-by-*M*
 matrix.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / Matrix Operations

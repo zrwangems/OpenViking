@@ -15,19 +15,29 @@ chinese_source: worker-translation
 # Temperature Source
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 源出口热
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 源出口热
 
 与源出口关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Temperature
+  summary: 源出口处的绝对温度 293.15 K（默认值）
+  group: ''
+```
 
 ### **Temperature** — 源出口处的绝对温度 293.15 K（默认值）
 
 源出口端口处的恒定绝对温度。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Sources

@@ -14,6 +14,21 @@ language: en
 # SOH Estimator
 
 ## Ports
+```yaml
+ports:
+- name: SOC
+  summary: State of charge of battery, unitless scalar | vector
+  direction: input
+- name: Temperature
+  summary: Cell temperature scalar | vector
+  direction: input
+- name: R0
+  summary: Terminal resistance, ohm scalar | vector
+  direction: input
+- name: SOH
+  summary: State of health of battery scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -44,8 +59,27 @@ the size of the **SOC** and
 State of health of the battery, returned as a scalar or vector of
 entries in the range [0, 1]. The size of this output port is equal to
 the size of the vectors at the input ports.
-
 ## Parameters
+```yaml
+parameters:
+- name: Vector of state-of-charge values, SOC (-)
+  summary: SOC breakpoints [0, .1, .25, .5, .75, .9, 1] (default) | vector of nonnegative scalars between 0 and 1
+  group: ''
+- name: Vector of temperatures, T
+  summary: Temperature breakpoints [278, 293, 313] (default) | vector of positive scalars
+  group: ''
+- name: Terminal resistance when battery cell is new, R0new(SOC,T), (ohm)
+  summary: Terminal resistance when battery cell is new [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107,
+    .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] (default) | matrix of nonnegative scalars
+  group: ''
+- name: Terminal resistance at end of life, R0eol(SOC,T), (ohm)
+  summary: Terminal resistance at end of life [.0234,.017,.018;.022,.017,.018;.0228,.0174,.0184;.0214,.0164,.0176;.0214,.0166,.0182;.0226,.017,.0178;.0232,.017,.0178]
+    (default) | matrix of nonnegative scalar
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 ### **Vector of state-of-charge values, SOC (-)** — SOC breakpoints `[0, .1, .25, .5, .75, .9, 1]` (default) | vector of nonnegative scalars between `0` and `1`
 
@@ -97,7 +131,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Estimators

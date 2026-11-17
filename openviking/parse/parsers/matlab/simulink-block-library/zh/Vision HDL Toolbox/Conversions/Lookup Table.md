@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Lookup Table
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint8 | uint16 | fixdt(0,N,F), N <= 16 | Boolean
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 输出像素流 标量 | 向量
+  direction: output
+  data_types: uint8 | uint16 | int8 | int16 | fixed point | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -50,8 +69,13 @@ chinese_source: worker-translation
 对于多像素流，每个像素值向量有一组控制信号。由于该向量只有一个 `valid` 信号，向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Table data
+  summary: 输入像素与输出像素之间的映射 uint8(0:1:255)（默认）| 向量
+  group: ''
+```
 
 ### **Table data** — 输入像素与输出像素之间的映射 `uint8(0:1:255)`（默认）| 向量
 
@@ -67,7 +91,6 @@ chinese_source: worker-translation
 **示例：** `uint8(linspace(255,0,256))`
 
 **数据类型：** `uint8` | `uint16` | `int8` | `int16` | `fixed point` | `Boolean` | `double` | `single`
-
 ## 所属库
 
 Vision HDL Toolbox / Conversions

@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # APP Decoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Trellis structure**
 :   包含卷积编码器网格描述的 MATLAB 结构体。
@@ -34,7 +39,6 @@ R2025b 中未记录。
 
 **禁用 L(c) 输出端口**
 :   选中此复选框可禁用次级模块输出 L(c)。
-
 ## 所属库
 
 R2025b 中未记录。

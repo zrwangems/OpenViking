@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Integrator Limited
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 被积信号 实数标量或数组
+  direction: input
+  data_types: double
+- name: External Reset
+  summary: 将状态重置为初始条件 实数标量或数组
+  direction: input
+  data_types: Boolean
+- name: x0
+  summary: 初始条件 实数标量或数组
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出信号 实数标量或数组
+  direction: output
+  data_types: double
+- name: Port_2
+  summary: 显示输出饱和 -1 | 0 | 1
+  direction: output
+  data_types: double
+- name: Port_3
+  summary: 状态 实数标量或数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -66,8 +93,114 @@ chinese_source: worker-translation
 通过启用 **Show state port** 参数来启用此端口。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: External reset
+  summary: 将状态重置为初始条件 none（默认）| rising | falling | either | level | level hold
+  group: ''
+  block_parameter: ExternalReset
+  type: character vector , string
+  values: '''none'' | ''rising'' | ''falling'' | ''either'' | ''level'' | ''level hold'''
+  default: '''none'''
+- name: Initial condition source
+  summary: 使用外部信号设置初始条件的选项 internal（默认）| external
+  group: ''
+  block_parameter: InitialConditionSource
+  type: character vector, string
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial condition
+  summary: 初始状态 0（默认）| 实数标量或数组
+  group: ''
+  block_parameter: InitialCondition
+  type: scalar or vector
+  default: '''0'''
+- name: Limit output
+  summary: 将模块输出值限制在指定范围内 off（Integrator 的默认值）| on（Integrator Limited 的默认值）
+  group: ''
+  block_parameter: LimitOutput
+  type: character vector , string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Upper saturation limit
+  summary: 积分的上限 inf（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: UpperSaturationLimit
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''inf'''
+- name: Lower saturation limit
+  summary: 积分的下限 -inf（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: LowerSaturationLimit
+  type: character vector , string
+  values: scalar | vector | matrix
+  default: '''-inf'''
+- name: Wrap state
+  summary: 启用状态环绕 off（默认）| on
+  group: ''
+  block_parameter: WrapState
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Wrapped state upper value
+  summary: 指定环绕状态的上限值 pi（默认）| 标量 | 向量
+  group: ''
+  block_parameter: WrappedStateUpperValue
+  type: scalar or vector
+  values: '''2*pi'''
+  default: '''pi'''
+- name: Wrapped state lower value
+  summary: 指定环绕状态的下限值 -pi（默认）| 标量 | 向量
+  group: ''
+  block_parameter: WrappedStateLowerValue
+  type: scalar or vector
+  values: '''0'''
+  default: '''-pi'''
+- name: Show saturation port
+  summary: 启用饱和输出端口 off（默认）| on
+  group: ''
+  block_parameter: ShowSaturationPort
+  type: character vector , string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show state port
+  summary: 启用状态输出端口 off（默认）| on
+  group: ''
+  block_parameter: ShowStatePort
+  type: character vector , string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Absolute tolerance
+  summary: 模块状态的绝对容差 auto（默认）| 实数标量或向量
+  group: ''
+  block_parameter: AbsoluteTolerance
+  type: character vector, string, scalar, or vector
+  values: '''auto'' | ''-1'' | any positive real scalar or vector'
+  default: '''auto'''
+- name: Ignore limit and reset when linearizing
+  summary: 线性化期间对模块使用默认复位和限制行为的选项 off（默认）| on
+  group: ''
+  block_parameter: IgnoreLimit
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: State Name (e.g., 'position')
+  summary: 为每个状态分配唯一名称 ' '（默认）| 字符向量 | 字符串
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  type: character vector, string
+  values: ''' '' | user-defined'
+  default: ''' '''
+```
 
 ### **External reset** — 将状态重置为初始条件 `none`（默认）| `rising` | `falling` | `either` | `level` | `level hold`
 
@@ -331,7 +464,6 @@ Simulink 软件不允许此模块的初始条件为 `inf` 或 `NaN`。
 | **类型**：character vector, string |
 | **值**：`' '` | user-defined |
 | **默认值**：`' '` |
-
 ## 所属库
 
 Simulink / Continuous

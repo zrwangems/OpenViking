@@ -14,6 +14,15 @@ language: en
 # PS Saturation
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -33,8 +42,19 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Upper limit
+  summary: Signal upper bound 0.5 1 (default)
+  group: ''
+- name: Lower limit
+  summary: Signal lower bound -0.5 1 (default)
+  group: ''
+- name: Enable zero-crossing detection
+  summary: Whether to enable zero-crossing detection on (default) | off
+  group: ''
+```
 
 ### **Upper limit** — Signal upper bound `0.5 1` (default)
 
@@ -62,7 +82,6 @@ more information and a list of unit abbreviations, see How to Specify Units in B
 
 Clear to disable zero-crossing detection and increase simulation speed. For more
 information, see Managing Zero Crossings in Simscape Models.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Nonlinear Operators

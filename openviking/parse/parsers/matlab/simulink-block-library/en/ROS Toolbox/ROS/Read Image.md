@@ -14,6 +14,25 @@ language: en
 # Read Image
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: ROS sensor_msgs/Image or sensor_msgs/CompressedImage message nonvirtual bus
+  direction: input
+  data_types: bus
+- name: Image
+  summary: Extracted image signal *M*-by-*N*-by-3 matrix | *M*-by-*N* matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16
+- name: AlphaChannel
+  summary: Alpha channel for image *M*-by-*N* matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16
+- name: ErrorCode
+  summary: Error code for image conversion scalar
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -68,8 +87,25 @@ values are:
   failed.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum Image Size
+  summary: Maximum image size [2000 2000] (default) | two-element vector
+  group: ''
+- name: Image Encoding
+  summary: Image encoding rgb8 (default) | rgba8 | ...
+  group: ''
+- name: Show Alpha output port
+  summary: Toggle AlphaChannel port off (default) | on
+  group: ''
+- name: Show ErrorCode output port
+  summary: Toggle ErrorCode port on (default) | off
+  group: ''
+- name: Output variable-size signals
+  summary: Toggle variable-size signal output off (default) | on
+  group: ''
+```
 
 ### **Maximum Image Size** — Maximum image size `[2000 2000]` (default) | two-element vector
 
@@ -103,7 +139,6 @@ errors.
 ### **Output variable-size signals** — Toggle variable-size signal output off (default) | on
 
 Toggle variable-size signal output. Variable-sized signals should only be used if the image size is expected to change over time. For more information about variable sized signals, see Variable-Size Signal Basics (Simulink).
-
 ## Libraries
 
 ROS Toolbox / ROS

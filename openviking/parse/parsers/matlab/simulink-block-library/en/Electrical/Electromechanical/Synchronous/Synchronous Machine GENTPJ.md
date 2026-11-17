@@ -14,6 +14,33 @@ language: en
 # Synchronous Machine GENTPJ
 
 ## Ports
+```yaml
+ports:
+- name: Efd
+  summary: Per-unit field voltage physical
+  direction: input
+- name: pu
+  summary: Machine per-unit measurements physical
+  direction: output
+- name: R
+  summary: Machine rotor mechanical
+  direction: conserving
+- name: C
+  summary: Machine case mechanical
+  direction: conserving
+- name: '~'
+  summary: Stator windings electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+```
 
 ### Input
 
@@ -87,8 +114,112 @@ Electrical conserving port associated with the *c*-phase.
 
 To enable this port, set **Electrical connection** to
 `Expanded three-phase ports`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Rated apparent power
+  summary: Rated apparent power 555e6 A*V (default)
+  group: Main
+- name: Rated voltage
+  summary: RMS rated line-line voltage 24e3 V (default)
+  group: Main
+- name: Rated electrical frequency
+  summary: Nominal electrical frequency 60 Hz (default)
+  group: Main
+- name: Number of pole pairs
+  summary: Number of machine pole pairs 1 (default)
+  group: Main
+- name: Rotor angle definition
+  summary: Reference point for the rotor angle measurement Angle between the a-phase magnetic axis and the d-axis (default)
+    | Angle between the a-phase magnetic axis and the q-axis
+  group: Main
+- name: Stator resistance, Ra
+  summary: Resistance of stator 0.003 (default) | positive scalar
+  group: Impedances
+- name: Stator leakage reactance, Xl
+  summary: Leakage reactance of stator 0.15 (default) | positive scalar
+  group: Impedances
+- name: d-axis synchronous reactance, Xd
+  summary: '*d*-axis synchronous reactance 1.81 (default) | positive scalar'
+  group: Impedances
+- name: q-axis synchronous reactance, Xq
+  summary: '*q*-axis synchronous reactance 1.76 (default) | positive scalar'
+  group: Impedances
+- name: d-axis transient reactance, Xd'
+  summary: '*d*-axis transient reactance 0.3 (default) | positive scalar'
+  group: Impedances
+- name: q-axis transient reactance, Xq'
+  summary: '*q*-axis transient reactance 0.65 (default) | positive scalar'
+  group: Impedances
+- name: d-axis subtransient reactance, Xd''
+  summary: '*d*-axis subtransient reactance 0.23 (default) | positive scalar'
+  group: Impedances
+- name: q-axis subtransient reactance, Xq''
+  summary: '*q*-axis subtransient reactance 0.25 (default) | positive scalar'
+  group: Impedances
+- name: d-axis transient open-circuit, Td0'
+  summary: '*d*-axis transient open-circuit 8 s (default) | positive scalar'
+  group: Time Constants
+- name: d-axis subtransient open-circuit, Td0''
+  summary: '*d*-axis subtransient open-circuit 0.03 s (default) | positive scalar'
+  group: Time Constants
+- name: q-axis transient open-circuit, Tq0'
+  summary: '*q*-axis transient open-circuit 1 s (default) | positive scalar'
+  group: Time Constants
+- name: q-axis subtransient open-circuit, Tq0''
+  summary: '*q*-axis subtransient open-circuit 0.07 s (default) | positive scalar'
+  group: Time Constants
+- name: Magnetic saturation representation
+  summary: Magnetic saturation representation None (default) | Quadratic | Scaled quadratic | Exponential | Open-circuit lookup
+    table
+  group: Saturation
+- name: Saturation factor, S10
+  summary: Saturation factor, S10 0.005 (default) | positive scalar
+  group: Saturation
+- name: Saturation factor, S12
+  summary: Saturation factor, S12 0.08 (default) | positive scalar
+  group: Saturation
+- name: Non-reciprocal per-unit field current saturation data, ifd
+  summary: Per-unit field current saturation data [0, .8, 1.26, 2.29, 2.97] (default) | vector of nonnegative values
+  group: Saturation
+- name: Per-unit air-gap voltage saturation data, Vag
+  summary: Per-unit air-gap voltage saturation data [0, .8, 1.08, 1.31, 1.4] (default) | vector of nonnegative values
+  group: Saturation
+- name: Kis
+  summary: Effect of stator current on saturation 0.05 (default) | nonnegative scalar
+  group: Saturation
+- name: Initialization option
+  summary: Option for specifying values at start of simulation Set real power, reactive power, terminal voltage, and terminal
+    phase (default) | Set targets for rotor angle and Park's transform variables | Set targets for load flow variables
+  group: Initial Conditions
+- name: Source type
+  summary: Voltage source model Swing bus (default) | PV bus | PQ bus
+  group: Initial Conditions
+- name: Terminal voltage magnitude
+  summary: Terminal voltage magnitude 24e3 V (default) | positive scalar
+  group: Initial Conditions
+- name: Terminal voltage angle
+  summary: Terminal voltage angle 0 deg (default) | scalar
+  group: Initial Conditions
+- name: Active power generated
+  summary: Generated active power 500e6 V*A (default) | scalar
+  group: Initial Conditions
+- name: Reactive power generated
+  summary: Generated reactive power 0 V*A (default) | scalar
+  group: Initial Conditions
+- name: Minimum terminal voltage magnitude (pu)
+  summary: Minimum terminal voltage magnitude 0.95 (default) | positive scalar
+  group: Initial Conditions
+- name: Phase search range at terminals
+  summary: Phase search range at terminals [-inf, inf] deg (default) | vector of two elements
+  group: Initial Conditions
+- name: Parasitic conductance to electrical reference
+  summary: Parasitic conductance to electrical reference 1e-6 S (default) | positive scalar
+  group: Initial Conditions
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -367,7 +498,6 @@ Parasitic conductance to the electrical reference.
 
 To enable this parameter, set **Initialization option** to
 `Set targets for load flow variables`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Synchronous

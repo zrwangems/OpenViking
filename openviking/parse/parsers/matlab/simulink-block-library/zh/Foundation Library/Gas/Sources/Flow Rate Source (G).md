@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Flow Rate Source (G)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量控制信号，kg/s 物理信号
+  direction: input
+- name: V
+  summary: 体积流量控制信号，m^3/s 物理信号
+  direction: input
+- name: A
+  summary: 源入口气体
+  direction: conserving
+- name: B
+  summary: 源出口气体
+  direction: conserving
+```
 
 ### 输入
 
@@ -48,8 +63,40 @@ chinese_source: worker-translation
 
 气体守恒端口。正流量使气体从端口
 **A** 流向端口 **B**。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 选择流量在仿真期间是否可以变化 Controlled（默认）| Constant
+  group: ''
+- name: Flow rate type
+  summary: 选择源产生质量流量还是体积流量 Mass flow rate（默认）| Volumetric flow rate
+  group: ''
+- name: Mass flow rate
+  summary: 通过源的恒定质量流量 0 kg/s（默认）
+  group: ''
+- name: Volumetric flow rate
+  summary: 通过源的恒定体积流量 0 m^3/s（默认）
+  group: ''
+- name: Specified flow rate conditions
+  summary: 选择在标准工况还是实际工况下计算体积流量 Actual conditions（默认）| Standard conditions
+  group: ''
+- name: Standard pressure
+  summary: 标准工况下的气体压力 0.10132 MPa（默认）
+  group: ''
+- name: Standard temperature
+  summary: 标准工况下的气体温度 20 degC（默认）
+  group: ''
+- name: Power added
+  summary: 选择源是否对气体做功 Isentropic（默认）| None
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 端口 A 处垂直于流动路径的面积 0.01 m^2（默认）
+  group: ''
+- name: Cross-sectional area at port B
+  summary: 端口 B 处垂直于流动路径的面积 0.01 m^2（默认）
+  group: ''
+```
 
 ### **Source type** — 选择流量在仿真期间是否可以变化 `Controlled`（默认）| `Constant`
 
@@ -138,7 +185,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at port B** — 端口 B 处垂直于流动路径的面积 `0.01 m^2`（默认）
 
 端口 **B** 处垂直于流动路径的面积。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Sources

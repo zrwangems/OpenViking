@@ -14,6 +14,21 @@ language: en
 # Variable Resistor
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Resistance control signal, Ohm physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -38,8 +53,19 @@ Thermal conserving port that provides the resistor temperature.
 
 To enable this port, select the **Add thermal port** check
 box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum resistance R>=0
+  summary: Minimum acceptable resistance 0 Ohm (default) | nonnegative scalar
+  group: ''
+- name: Add thermal port
+  summary: Control thermal port visibility Off (default) | On
+  group: ''
+- name: Thermal mass
+  summary: Thermal mass of resistor 1 J/K (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Minimum resistance R>=0** — Minimum acceptable resistance `0 Ohm` (default) | nonnegative scalar
 
@@ -63,7 +89,6 @@ Thermal mass of the resistor.
 
 To enable this parameter, select the **Add thermal port** check
 box.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

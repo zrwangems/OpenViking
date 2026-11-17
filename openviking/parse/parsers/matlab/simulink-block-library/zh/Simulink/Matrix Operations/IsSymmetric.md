@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # IsSymmetric
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入矩阵 matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 对称或反对称矩阵 real scalar boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,17 @@ chinese_source: worker-translation
 对称或反对称矩阵，返回为实数标量布尔值。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 矩阵是对称还是反对称 Symmetric (默认) | Skew-Symmetric
+  group: ''
+  block_parameter: Mode
+  type: character vector
+  values: '''Symmetric'' | ''Skew-Symmetric'''
+  default: '''Symmetric'''
+```
 
 ### **Mode** — 矩阵是对称还是反对称 `Symmetric` (默认) | `Skew-Symmetric`
 
@@ -46,7 +66,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Symmetric'` | `'Skew-Symmetric'` |
 | **默认值**：`'Symmetric'` |
-
 ## 所属库
 
 Simulink / Matrix Operations

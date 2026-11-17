@@ -14,6 +14,21 @@ language: en
 # Channelizer
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Broadband signal *L*-by-1 column vector | *L*-by-*N* matrix
+  direction: input
+  data_types: single | double
+- name: coeffs
+  summary: Prototype lowpass filter coefficients row vector
+  direction: input
+  data_types: single | double
+- name: Output(s)
+  summary: Multiple narrowband signals vector | matrix | 3-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -116,8 +131,40 @@ size changes during simulation).
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of frequency bands
+  summary: Number of frequency bands 8 (default) | positive integer greater than 1
+  group: ''
+- name: DecimationFactor
+  summary: Decimation factor Number of frequency bands (default) | positive integer
+  group: ''
+- name: Polyphase filter specification
+  summary: Filter design parameters or coefficients Number of taps per band and stopband attenuation (default) | Coefficients
+  group: ''
+- name: Number of filter taps per frequency band
+  summary: Number of filter coefficients per frequency band 12 (default) | positive integer
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation 80 (default) | positive real scalar
+  group: ''
+- name: Specify coefficients from input port
+  summary: Flag to specify lowpass filter coefficients off (default) | on
+  group: ''
+- name: Prototype lowpass filter coefficients
+  summary: Coefficients of prototype lowpass filter rcosdesign(0.25,6,8,'sqrt') (default) | row vector
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: ''
+- name: Bands as separate output ports (Max. of 16 bands)
+  summary: Output frequency bands on separate output ports off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -291,7 +338,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

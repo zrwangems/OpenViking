@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # SM Governor with Droop
 
 ## 端口
+```yaml
+ports:
+- name: P_ref
+  summary: 期望的标幺值发电机负载标量
+  direction: input
+  data_types: single | double
+- name: speed_ref
+  summary: 期望的标幺值发电机转速标量
+  direction: input
+  data_types: single | double
+- name: speed
+  summary: 实际标幺值发电机转速标量
+  direction: input
+  data_types: single | double
+- name: throttle
+  summary: 节气门位置标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,19 @@ chinese_source: worker-translation
 调速器的节气门位置，以标幺值表示。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Percentage droop, (%)
+  summary: 下垂率 5 %（默认值）
+  group: ''
+- name: Time constant of governor, (s)
+  summary: 一阶滞后时间常数 0.2（默认值）
+  group: ''
+- name: Initial throttle position, (pu)
+  summary: 初始节气门输出 0.5（默认值）
+  group: ''
+```
 
 ### **Percentage droop, (%)** — 下垂率 `5` `%`（默认值）
 
@@ -56,7 +86,6 @@ chinese_source: worker-translation
 ### **Initial throttle position, (pu)** — 初始节气门输出 `0.5`（默认值）
 
 节气门的初始状态。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # Floating Neutral (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -23,8 +29,16 @@ chinese_source: worker-translation
 可扩展复合（**a**、**b**、
 **c**）三相
 端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Parasitic ground conductance
+  summary: 寄生对地电导 1e-12 1/Ohm（默认）
+  group: ''
+```
 
 ### **Modeling option** — 对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -37,7 +51,6 @@ chinese_source: worker-translation
 ### **Parasitic ground conductance** — 寄生对地电导 `1e-12` `1/Ohm`（默认）
 
 寄生对地电导。某些电路拓扑的仿真需要非零值。
-
 ## 所属库
 
 Simscape / Electrical / Connectors & References

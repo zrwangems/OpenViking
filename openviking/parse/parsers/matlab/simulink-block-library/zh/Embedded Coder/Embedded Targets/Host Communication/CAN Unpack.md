@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # CAN Unpack
 
 ## 端口
+```yaml
+ports:
+- name: CAN Msg
+  summary: CAN 消息输入 CAN_MESSAGE | CAN_MESSAGE_BUS
+  direction: input
+- name: Data
+  summary: CAN 信号输出 single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean
+  direction: output
+```
 
 ### 输入
 
@@ -32,8 +41,105 @@ chinese_source: worker-translation
 对于手动指定或由数据库指定的信号，CAN 信号的默认输出数据类型为 double。要指定其他类型，请使用 Signal Specification 模块。这允许该模块支持以下输出信号数据类型：single、double、int8、int16、int32、int64、uint8、uint16、uint32、uint64 和 boolean。该模块不支持定点类型。
 
 可以通过在参数 **Output ports** 窗格中选择选项来添加额外的输出端口。有关详细信息，请参阅参数 `Output identifier`、`Output timestamp`、`Output error`、`Output remote`、`Output length` 和 `Output status`。
-
 ## 参数
+```yaml
+parameters:
+- name: Data to output as
+  summary: 选择您的数据信号 raw data（默认）| manually specify signals | CANdb specified signals | ARXML specified signals
+  group: ''
+  block_parameter: DataFormat
+  type: string | character vector
+  values: '''raw data'' | ''manually specified signals'' | ''CANdb specified signals'' | ''ARXML specified signals'''
+  default: '''raw data'''
+- name: Database file
+  summary: ARXML 或 CAN 数据库文件 character vector
+  group: ''
+  block_parameter: CANdbFile
+  type: string | character vector
+- name: Message list
+  summary: CAN 消息列表 array of character vectors
+  group: ''
+  block_parameter: MsgList
+  type: string | character vector
+- name: Name
+  summary: CAN 消息名称 CAN Msg（默认）| character vector
+  group: ''
+  block_parameter: MsgName
+  type: string | character vector
+- name: Identifier type
+  summary: CAN 标识符类型 Standard (11-bit identifier)（默认）| Extended (29-bit identifier)
+  group: ''
+  block_parameter: MsgIDType
+  type: string | character vector
+  values: '''Standard (11-bit identifier)'' | ''Extended (29-bit identifier)'''
+  default: '''Standard (11-bit identifier)'''
+- name: CAN Identifier
+  summary: CAN 消息标识符 0（默认）| 0 到 536870911
+  group: ''
+  block_parameter: MsgIdentifier
+  type: string | character vector
+  values: '''0'' 到 ''536870911'''
+- name: Length (bytes)
+  summary: CAN 消息长度 8（默认）| 0 到 8
+  group: ''
+  block_parameter: MsgLength
+  type: string | character vector
+  values: '''0'' 到 ''8'''
+  default: '''8'''
+- name: Add signal
+  summary: 添加 CAN 信号
+  group: ''
+- name: Delete signal
+  summary: 删除 CAN 信号
+  group: ''
+- name: Signals
+  summary: 信号表 table
+  group: ''
+  block_parameter: SignalInfo
+  type: string | character vector
+- name: Output identifier
+  summary: 添加 CAN ID 输出端口 off（默认）
+  group: ''
+  block_parameter: IDPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output timestamp
+  summary: 添加 Timestamp 输出端口 off（默认）| on
+  group: ''
+  block_parameter: TimestampPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output error
+  summary: 添加 Error 输出端口 off（默认）| on
+  group: ''
+  block_parameter: ErrorPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output remote
+  summary: 添加 Remote 输出端口 off（默认）| on
+  group: ''
+  block_parameter: RemotePort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output length
+  summary: 添加 Length 输出端口 off（默认）| on
+  group: ''
+  block_parameter: LengthPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output status
+  summary: 添加 Status 输出端口 off（默认）| on
+  group: ''
+  block_parameter: StatusPort
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Data to output as** — 选择您的数据信号 `raw data`（默认）| `manually specify signals` | `CANdb specified signals` | `ARXML specified signals`
 
@@ -304,7 +410,6 @@ None
 | **类型**：`string` | `character vector` |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN Communication C2000 Microcontroller Blockset / Target Communication Embedded Coder / Embedded Targets / Host Communication Simulink Real-Time / CAN / CAN MSG blocks

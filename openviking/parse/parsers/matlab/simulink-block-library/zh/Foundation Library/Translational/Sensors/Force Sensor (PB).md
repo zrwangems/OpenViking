@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Force Sensor (PB)
 
 ## 端口
+```yaml
+ports:
+- name: f
+  summary: 力，N 物理信号
+  direction: output
+- name: B
+  summary: 基座端口 基于位置的机械平移
+  direction: output
+- name: F
+  summary: 从动端口 基于位置的机械平移
+  direction: output
+```
 
 ### 输出
 
@@ -30,11 +42,12 @@ chinese_source: worker-translation
 ### **F** — 从动端口 基于位置的机械平移
 
 基于位置的机械平移守恒端口，表示从动连接。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Sensors

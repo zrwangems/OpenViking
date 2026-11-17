@@ -14,6 +14,16 @@ language: en
 # Phase Noise
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output signal vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -34,8 +44,28 @@ channels.
 
 Output signal, returned as a complex-valued signal with the same data
 type and size as the input signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase noise level (dBc/Hz)
+  summary: Phase noise level [-80 -100] (default) | vector of negative scalars
+  group: ''
+- name: Frequency offset (Hz)
+  summary: Frequency offset [2000 20000] (default) | vector of positive increasing values
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate 1e6 (default) | positive scalar
+  group: ''
+- name: Initial seed
+  summary: Initial seed of noise generator 2137 (default) | positive scalar
+  group: ''
+- name: View Filter Response
+  summary: Display magnitude response of filter button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -98,7 +128,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / RF Impairments and Components

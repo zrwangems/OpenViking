@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Cable
 
 ## 端口
+```yaml
+ports:
+- name: L
+  summary: 长度物理信号
+  direction: input
+- name: B
+  summary: 线缆机械平动的基础接触位置
+  direction: input
+- name: F
+  summary: 线缆机械平动的从动接触位置
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,86 @@ chinese_source: worker-translation
 ### **F** — 线缆机械平动的从动接触位置
 
 与线缆段的从动瞬时接触位置相关联的机械平动守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Model variable rest length
+  summary: 可变静止长度选项 off（默认）| on
+  group: ''
+- name: Minimum rest length
+  summary: 最小静止长度 0.01 m（默认）| 正标量
+  group: ''
+- name: Stretch parameterization
+  summary: 常量或表格化参数化 Constant stiffness and damping（默认）| Tabulated stiffness and damping
+  group: ''
+- name: Rigidity
+  summary: 线缆刚性 1000 N（默认）| 正标量
+  group: ''
+- name: Stiffness
+  summary: 抗变形能力 1000 N/m（默认）| 正标量
+  group: ''
+- name: Damping
+  summary: 耗散能量的倾向 100 N/(m/s)（默认）| 正标量
+  group: ''
+- name: Stretch vector
+  summary: 拉伸位移 [.1, .2, .5, 1] m（默认）| 向量
+  group: ''
+- name: Stiffness vector
+  summary: 表格化能量耗散 [500, 520, 540, 540] N/m（默认）| 非负值向量
+  group: ''
+- name: Damping vector
+  summary: 表格化阻尼 [50, 60, 80, 80] N*s/m（默认）| 非负值向量
+  group: ''
+- name: Rest length vector, Lr
+  summary: 表格化静止长度 [.25, .5, 1] m（默认）| 长度为 *M* 的向量
+  group: ''
+- name: Stretch per rest length vector, s/Lr
+  summary: 表格化每静止长度拉伸量 [.01, .02, .1, .25]（默认）| 长度为 *N* 的向量
+  group: ''
+- name: Stiffness table (Lr, s/Lr)
+  summary: 表格化刚度 [500, 600, 600, 500; 250, 300, 300, 250; 125, 150, 150, 125] N/m（默认）| *M*x*N* 矩阵
+  group: ''
+- name: Damping table (Lr, s/Lr)
+  summary: 表格化阻尼 [50, 60, 60, 50; 50, 60, 60, 50; 50, 60, 60, 50] N*s/m（默认）| *M*x*N* 矩阵
+  group: ''
+- name: Model slack
+  summary: 松弛参数化选项 off（默认）| on
+  group: ''
+- name: Slack model
+  summary: 松弛过渡行为 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | ...
+  group: ''
+- name: Linear density
+  summary: 线密度 0.2 kg/m（默认）| 正标量
+  group: ''
+- name: Transition region
+  summary: 部分松弛效应区域 0.1 mm（默认）| 正标量
+  group: ''
+- name: Model mass
+  summary: 质量参数化选项 Off（默认）| On
+  group: ''
+- name: Mass
+  summary: 缆索段质量 1 kg（默认）| 正标量
+  group: ''
+- name: Model gravity
+  summary: 重力选项 off（默认）| on
+  group: ''
+- name: Gravitational acceleration, g
+  summary: 重力加速度 9.81 m/s^2（默认）| 正标量
+  group: ''
+- name: Angle of gravity relative to positive direction, θ
+  summary: 正重力角度 0 deg（默认）| 标量
+  group: ''
+- name: Warn if cable loses tension
+  summary: 张力丢失警告选项 off（默认）| on
+  group: ''
+- name: Error if cable exceeds maximum tension
+  summary: 最大张力错误选项 off（默认）| on
+  group: ''
+- name: Cable maximum tension
+  summary: 缆索段中允许的最大张力 1e5 N（默认）| 正标量
+  group: ''
+```
 
 ### **Model variable rest length** — 可变静止长度选项 `off`（默认）| `on`
 
@@ -220,7 +310,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Error if cable exceeds maximum tension**。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

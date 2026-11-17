@@ -14,10 +14,15 @@ language: en
 # Helical Deinterleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Number of columns in helical array**
 :   The number of columns, *C*, in the helical array.
@@ -33,7 +38,6 @@ Not documented in R2025b.
 
 **Initial conditions**
 :   A scalar that fills the array before the first input is placed.
-
 ## Libraries
 
 Not documented in R2025b.

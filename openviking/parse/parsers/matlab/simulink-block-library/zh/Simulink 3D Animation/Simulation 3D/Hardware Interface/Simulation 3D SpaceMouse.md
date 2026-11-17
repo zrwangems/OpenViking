@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Simulation 3D Space Mouse
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: 对象平移状态 1 或 true | 0 或 false
+  direction: output
+  data_types: Boolean
+- name: Rotation
+  summary: 对象旋转状态 1 或 true | 0 或 false
+  direction: output
+  data_types: Boolean
+- name: Buttons
+  summary: 按钮状态 1 或 true | 0 或 false
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -35,8 +50,49 @@ chinese_source: worker-translation
 按钮状态，未按下时返回 `0` 或 `false`，按下时返回 `1` 或 `true`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Port
+  summary: 鼠标连接的串口 COM1（默认）| COM2 | COM3 | COM4 | USB1 | USB2 | USB3 | USB4
+  group: ''
+- name: Output type
+  summary: 输出类型 Speed（默认）| Position | Viewpoint coordinates
+  group: ''
+- name: Dominant mode
+  summary: 仅接受主导运动和旋转的选项 off（默认）| on
+  group: ''
+- name: Disable position movement
+  summary: 将旋转固定为初始值的选项 off（默认）| on
+  group: ''
+- name: Disable rotation movement
+  summary: 将位置固定为初始值的选项 off（默认）| on
+  group: ''
+- name: Normalize output angle
+  summary: 确定旋转角度是否应在整圆内环绕的选项 off（默认）| on
+  group: ''
+- name: Limit position
+  summary: 限制鼠标位置的选项 off（默认）| on
+  group: ''
+- name: Position sensitivity
+  summary: 平移的鼠标灵敏度 0.0001（默认）
+  group: ''
+- name: Rotation sensitivity
+  summary: 旋转的鼠标灵敏度 0.00001（默认）
+  group: ''
+- name: Initial position
+  summary: 平移的初始条件 [0 0 0]（默认）
+  group: ''
+- name: Initial rotation
+  summary: 旋转的初始条件 [0 0 0]（默认）
+  group: ''
+- name: Lower position limit
+  summary: 鼠标的下限 [-100 -100 -100]（默认）
+  group: ''
+- name: 位置上限
+  summary: 鼠标上限 [100 100 100]（默认值）
+  group: ''
+```
 
 ### **Port** — 鼠标连接的串口 `COM1`（默认）| `COM2` | `COM3` | `COM4` | `USB1` | `USB2` | `USB3` | `USB4`
 
@@ -127,7 +183,6 @@ chinese_source: worker-translation
   `Position`。
 - 选中 **限制位置**
   参数。
-
 ## 所属库
 
 Simulink 3D Animation / Simulation 3D / Hardware Interface

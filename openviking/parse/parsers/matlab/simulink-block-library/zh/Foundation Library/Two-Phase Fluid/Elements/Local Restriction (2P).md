@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Local Restriction (2P)
 
 ## 端口
+```yaml
+ports:
+- name: AR
+  summary: 节流面积控制信号，m^2 物理信号
+  direction: input
+- name: A
+  summary: 入口或出口两相流体
+  direction: input
+- name: B
+  summary: 入口或出口两相流体
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,34 @@ chinese_source: worker-translation
 ### **B** — 入口或出口两相流体
 
 与局部节流入口或出口相关联的两相流体守恒端口。该模块没有固有方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: 节流类型
+  summary: 节流面积是否可以在仿真过程中变化 Variable（默认）| Fixed
+  group: ''
+- name: 最小节流面积
+  summary: 节流横截面积的下限 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: 最大节流面积
+  summary: 节流横截面积的上限 0.005 m^2（默认）| 正标量
+  group: ''
+- name: 节流面积
+  summary: 节流处垂直于流动路径的面积 1e-3 m^2（默认）| 正标量
+  group: ''
+- name: 压力损失模型
+  summary: 动量平衡计算是否假设均匀流体密度 Bernoulli（默认）| Control volume
+  group: ''
+- name: 端口 A 和 B 处的横截面积
+  summary: 端口处垂直于流动路径的面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: 流量系数
+  summary: 通过节流的实际质量流量与理论质量流量之比 0.64（默认）| 0 到 1 之间的无量纲标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 用于在层流和湍流状态之间切换的压力比 0.999（默认值）| 0 到 1 之间的无量纲标量
+  group: ''
+```
 
 ### **节流类型** — 节流面积是否可以在仿真过程中变化 `Variable`（默认）| `Fixed`
 
@@ -86,7 +124,6 @@ chinese_source: worker-translation
 ### **Laminar flow pressure ratio** — 用于在层流和湍流状态之间切换的压力比 `0.999`（默认值）| 0 到 1 之间的无量纲标量
 
 出口压力与入口端口压力之比，在该比值下假定流态从层流切换为湍流。当前流态决定仿真中使用的方程。如果流动为层流，则通过限流口的压降与质量流量成线性关系。如果流动为湍流，则通过限流口的压降与质量流量成二次关系。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

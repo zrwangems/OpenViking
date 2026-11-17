@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Temperature Sensor
 
 ## 端口
+```yaml
+ports:
+- name: T
+  summary: 温度测量值，K 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口热
+  direction: output
+- name: B
+  summary: 传感器出口热
+  direction: output
+```
 
 ### 输出
 
@@ -34,8 +46,13 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Measurement reference** 参数设置为 `Difference`。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement reference
+  summary: 在绝对测量和相对测量之间选择 Difference（默认）| Absolute
+  group: ''
+```
 
 ### **Measurement reference** — 在绝对测量和相对测量之间选择 `Difference`（默认）| `Absolute`
 
@@ -43,7 +60,6 @@ chinese_source: worker-translation
 
 - `Difference` — 传感器测量模型中两个节点之间的温差。选择此选项会在模块图标上显示端口 **B**。
 - `Absolute` — 传感器测量端口 **A** 处的绝对温度。传感器包含一个隐式参考节点，这意味着只需一个端口即可进行绝对测量。选择此选项会隐藏模块图标上的端口 **B**。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Sensors

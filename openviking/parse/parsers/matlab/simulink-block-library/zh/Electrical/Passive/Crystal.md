@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Crystal
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: unspecified
+- name: '-'
+  summary: 负极端子电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,43 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与晶体负电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 模块参数化 Series resonance data（默认）| Parallel resonance data | Equivalent circuit parameters
+  group: ''
+- name: Series resonance, fs
+  summary: 晶体串联谐振频率 32.764 kHz（默认）
+  group: ''
+- name: Parallel resonance, fa
+  summary: 晶体并联谐振频率 32.768 kHz（默认）
+  group: ''
+- name: Motional inductance, L1
+  summary: 动态电感 6742 H（默认）
+  group: ''
+- name: R1 parameterization
+  summary: 串联电阻参数化 Equivalent series resistance R1（默认）| Quality factor Q
+  group: ''
+- name: Quality factor, Q
+  summary: 晶体品质因数 90000（默认）
+  group: ''
+- name: Equivalent series resistance, R1
+  summary: 动态阻尼 15 kOhm（默认）
+  group: ''
+- name: Motional capacitance, C1
+  summary: 动态电容 0.0035 pF（默认）
+  group: ''
+- name: Load capacitance, CL
+  summary: 负载电容 12.5 pF（默认）
+  group: ''
+- name: Shunt capacitance, C0
+  summary: 并联电容 1.6 pF（默认）| 正标量
+  group: ''
+- name: Initial voltage
+  summary: 初始输出电压 0 V（默认）
+  group: ''
+```
 
 ### **Parameterization** — 模块参数化 `Series resonance data`（默认）| `Parallel resonance data` | `Equivalent circuit parameters`
 
@@ -152,7 +196,6 @@ resonance data` 时，此参数才可见。
 ### **Initial voltage** — 初始输出电压 `0` `V`（默认）
 
 当输出电流为零时，仿真开始时的输出电压。
-
 ## 所属库
 
 Simscape / Electrical / Passive

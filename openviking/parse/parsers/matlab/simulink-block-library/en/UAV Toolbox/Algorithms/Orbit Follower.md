@@ -14,6 +14,60 @@ language: en
 # Orbit Follower
 
 ## Ports
+```yaml
+ports:
+- name: Pose
+  summary: Current UAV pose [x y z course] vector
+  direction: input
+  data_types: single | double
+- name: Center
+  summary: Center of orbit [x y z] vector
+  direction: input
+  data_types: single | double
+- name: Radius
+  summary: Radius of orbit positive scalar
+  direction: input
+  data_types: single | double
+- name: TurnDirection
+  summary: Direction of orbit scalar
+  direction: input
+  data_types: single | double
+- name: LookaheadDistance
+  summary: Lookahead distance for tracking orbit positive scalar
+  direction: input
+  data_types: single | double
+- name: ResetNumTurns
+  summary: Reset for counting turns numeric signal
+  direction: input
+  data_types: single | double
+- name: LookaheadPoint
+  summary: Lookahead point on path [x y z] position vector
+  direction: output
+  data_types: double
+- name: DesiredCourse
+  summary: Desired course numeric scalar
+  direction: output
+  data_types: double
+- name: DesiredYaw
+  summary: Desired yaw numeric scalar
+  direction: output
+  data_types: double
+- name: OrbitRadiusFlag
+  summary: Orbit radius flag 0 (default) | 1
+  direction: output
+  data_types: uint8
+- name: LookaheadDistFlag
+  summary: Lookahead distance flag 0 (default) | 1
+  direction: output
+  data_types: uint8
+- name: CrossTrackError
+  summary: Cross track error from UAV position to path positive numeric scalar
+  direction: output
+  data_types: double
+- name: NumTurns
+  summary: Number of times the UAV has completed the orbit numeric scalar
+  direction: output
+```
 
 ### Input
 
@@ -159,8 +213,28 @@ can also use the **ResetNumTurns** input.
 
 This port is only visible if **Show NumTurns output port** is
 checked.
-
 ## Parameters
+```yaml
+parameters:
+- name: UAV type
+  summary: Type of UAV fixed-wing (default) | multirotor
+  group: ''
+- name: Minimum orbit radius (m)
+  summary: Minimum orbit radius 1 (default) | positive numeric scalar
+  group: ''
+- name: Minimum lookahead distance (m)
+  summary: Minimum lookahead distance 0.1 (default) | positive numeric scalar
+  group: ''
+- name: External reset
+  summary: Reset trigger source none (default) | rising
+  group: ''
+- name: Show CrossTrackError output port
+  summary: Output cross track error off (default) | on
+  group: ''
+- name: Show NumTurns output port
+  summary: Output UAV waypoint status off (default) | on
+  group: ''
+```
 
 ### **UAV type** — Type of UAV `fixed-wing` (default) | `multirotor`
 
@@ -209,7 +283,6 @@ This parameter is non-tunable.
 Output UAV waypoint status from the **Status** port.
 
 This parameter is non-tunable.
-
 ## Libraries
 
 UAV Toolbox / Algorithms

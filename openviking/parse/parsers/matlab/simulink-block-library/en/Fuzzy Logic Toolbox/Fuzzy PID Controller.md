@@ -14,6 +14,21 @@ language: en
 # Fuzzy PID Controller
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Reference scalar
+  direction: input
+- name: y
+  summary: Plant output scalar
+  direction: input
+- name: u
+  summary: Controller output scalar
+  direction: output
+- name: e
+  summary: Error scalar
+  direction: output
+```
 
 ### Input
 
@@ -41,8 +56,96 @@ integral of absolute (IAE).
 
 - To enable this port, select the **Add error (e) output**
   parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Time Domain
+  summary: Controller time domain Discrete-time (default) | Continuous-time
+  group: Controller Options
+  block_parameter: TimeDomainType
+  values: '"Discrete-time" (default) | "Continuous-time"'
+- name: Ce
+  summary: Gain for error 1 (default) | scalar
+  group: Controller Options
+  block_parameter: CE
+  values: '"1" (default) | nonnegative scalar in quotes'
+- name: Cd
+  summary: Gain for derivative signal 1 (default) | scalar
+  group: Controller Options
+  block_parameter: CD
+  values: '"1" | nonnegative scalar in quotes'
+- name: C0
+  summary: Gain for change in FIS output 1 (default) | scalar
+  group: Controller Options
+  block_parameter: C0
+  values: '"1" | nonnegative scalar in quotes'
+- name: C1
+  summary: Gain for FIS output 1 (default) | scalar
+  group: Controller Options
+  block_parameter: C1
+  values: '"1" | nonnegative scalar in quotes'
+- name: Integrator method
+  summary: Method for computing integral in discrete-time controller Forward Euler (default) | Backward Euler | Trapezoidal
+  group: Controller Options
+  block_parameter: IntegratorMethod
+  values: '"Forward Euler" (default) | "Backward Euler" | "Trapezoidal"'
+- name: Use accumulator
+  summary: Accumulate signal in integrator off (default) | on
+  group: Controller Options
+  block_parameter: UseAccumulator
+  values: '"off" (default) | "on"'
+- name: Derivative signal
+  summary: Signal used for computing derivative Error (e) (default) | Process output (y)
+  group: Controller Options
+  block_parameter: DerivativeSignal
+  values: '"Error (e)" (default) | "Process output (y)"'
+- name: Use filtered derivative
+  summary: Apply filter to derivative term on (default) | off
+  group: Controller Options
+  block_parameter: UseFilter
+  values: '"on" (default) | "off"'
+- name: Filter coefficient
+  summary: Derivative filter coefficient 100 (default) | positive scalar
+  group: Controller Options
+  block_parameter: N
+  values: '"100" (default) | positive scalar in quotes'
+- name: Filter method
+  summary: Method for computing derivative in discrete-time controller Forward Euler (default) | Backward Euler | Trapezoidal
+  group: Controller Options
+  block_parameter: DerivativeFilterMethod
+  values: '"Forward Euler" (default) | "Backward Euler" | "Trapezoidal"'
+- name: Add error (e) output
+  summary: Enable e output port off (default) | on
+  group: Controller Options
+  block_parameter: E
+  values: '"off" (default) | "on"'
+- name: Sample time (–1 for inherited)
+  summary: Sample time -1 (default) | positive scalar
+  group: Controller Options
+  block_parameter: SampleTime
+  values: '"-1" (default) | positive scalar in quotes'
+- name: FIS name
+  summary: Fuzzy inference system mamfis object | sugfis object | mamfistype2 object | sugfistype2 object | FIS file name
+    in quotes | MAT file name in quotes
+  group: Fuzzy Inference System
+  block_parameter: FIS
+  values: '''"fuzzycontroller"'' (default) | variable name in quotes | file name in quotes'
+- name: Number of samples for output discretization
+  summary: Number of points in output fuzzy sets 101 (default) | integer greater than 1
+  group: Fuzzy Inference System
+  block_parameter: OutputSampleNumber
+  values: '"101" (default) | integer greater than 1 in quotes'
+- name: Implement FIS as lookup table
+  summary: Convert FIS to lookup table off (default) | on
+  group: Fuzzy Inference System
+  block_parameter: UseLookupTable
+  values: '"off" (default) | "on"'
+- name: Number of input breakpoints (samples)
+  summary: Number of lookup table breakpoints 10 (default) | positive integer
+  group: Fuzzy Inference System
+  block_parameter: NumBreakpoints
+  values: '"10" (default) | positive integer in quotes'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -459,7 +562,6 @@ programmatically, use the `set_param` (Simulink) function.
 | --- | --- |
 | **Parameter:** | `NumBreakpoints` |
 | **Values:** | `"10"` (default) | positive integer in quotes |
-
 ## Libraries
 
 Fuzzy Logic Toolbox

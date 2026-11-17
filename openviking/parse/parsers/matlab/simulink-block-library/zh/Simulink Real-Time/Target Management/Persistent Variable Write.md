@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Persistent Variable Write
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 持久变量输入数据 variable data
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输入
 
@@ -27,8 +34,14 @@ Persistent Variable Write 模块输入端口的
 Variable Write 模块输入端口的复杂性继承自其输入信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Variable name
+  summary: 持久变量的名称 Variable1（默认）| 字符向量 | 字符串
+  group: ''
+  block_parameter: varName
+```
 
 ### **Variable name** — 持久变量的名称 `Variable1`（默认）| 字符向量 | 字符串
 
@@ -39,7 +52,6 @@ Variable Write 模块输入端口的复杂性继承自其输入信号。
 |  |
 | --- |
 | **模块参数：** `varName` |
-
 ## 所属库
 
 Simulink Real-Time / Target Management

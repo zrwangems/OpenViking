@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # System-Level Heat Exchanger (TL-MA)
 
 ## 端口
+```yaml
+ports:
+- name: Q1
+  summary: 传递至热液的热流率，W 物理信号
+  direction: output
+- name: Q2
+  summary: 传递至湿空气的热流率，W 物理信号
+  direction: output
+- name: W
+  summary: 湿空气冷凝率，kg/s 物理信号
+  direction: output
+- name: A1
+  summary: 热液端口 热液
+  direction: output
+- name: B1
+  summary: 热液端口 热液
+  direction: output
+- name: A2
+  summary: 湿空气端口 湿空气
+  direction: output
+- name: B2
+  summary: 湿空气端口 湿空气
+  direction: output
+```
 
 ### 输出
 
@@ -46,8 +70,188 @@ chinese_source: worker-translation
 ### **B2** — 湿空气端口 湿空气
 
 与湿空气相关的入口或出口端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement at nominal operating conditions
+  summary: 流路对齐方式 Counter flow - Thermal Liquid 1 flows from A to B, Moist Air 2 flows from B to A（默认）| Parallel flow - Both
+    fluids flow from A to B | Cross flow - Both fluids flow from A to B
+  group: 配置
+- name: Enable wall thermal mass
+  summary: 是否启用热质量对传热表面的影响 off（默认）| on
+  group: 配置
+- name: Wall mass
+  summary: 传热表面的质量 1 kg（默认）| 正标量
+  group: 配置
+- name: Wall specific heat
+  summary: 传热表面的比热 490 J/(K*kg)（默认）| 正标量
+  group: 配置
+- name: Initialize wall temperature to nominal operating conditions
+  summary: 初始化壁面温度的选项 on（默认）| off
+  group: 配置
+- name: Initial wall temperature
+  summary: 壁面的初始温度 293.15 K（默认）| 正标量或二元素向量
+  group: 配置
+- name: Cross-sectional area at port A1
+  summary: 端口 A1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B1
+  summary: 端口 B1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A2
+  summary: 端口 A2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B2
+  summary: 端口 B2 处垂直于流动方向的面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Nominal operating condition
+  summary: 标称工况 Heat transfer from Thermal Liquid 1 to Moist Air 2（默认）| Heat transfer from Moist Air 2 to Thermal Liquid 1
+  group: Thermal Liquid 1
+- name: Nominal mass flow rate
+  summary: 标称工况下热液端口之间的质量流量 0.1 kg/s（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal pressure drop
+  summary: 标称工况下热液端口之间的压降 0.01 MPa（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal inlet pressure
+  summary: 热液入口处的压力 0.101325 MPa（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal inlet temperature
+  summary: 热液体入口处的温度 333.15 K（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Heat transfer capacity specification
+  summary: 如何指定热液体的换热能力 Rate of heat transfer（默认）| Outlet condition
+  group: Thermal Liquid 1
+- name: Nominal rate of heat transfer
+  summary: 换热速率 1 kW（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal outlet temperature
+  summary: 出口温度 323.15 K（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Thermal liquid volume
+  summary: 热液体总体积 0.001 m^3（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Initialize thermal liquid to nominal operating conditions
+  summary: 初始化热液体的选项 on（默认）| off
+  group: Thermal Liquid 1
+- name: Initial thermal liquid pressure
+  summary: 仿真开始时的热液体压力 0.101325 MPa（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Initial thermal liquid temperature
+  summary: 仿真开始时的热液体温度 293.15 K（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal mass flow rate
+  summary: 额定工况下湿空气端口之间的质量流量 0.1 kg/s（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal pressure drop
+  summary: 额定工况下湿空气端口之间的压降 0.001 MPa（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal inlet pressure
+  summary: 湿空气侧入口处的压力 0.101325 MPa（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal inlet temperature
+  summary: 湿空气侧入口处的温度 293.15 K（默认）| 正标量
+  group: Moist Air 2
+- name: Inlet humidity specification
+  summary: 用于描述湿空气侧入口湿度水平的量 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Moist Air 2
+- name: Nominal inlet relative humidity
+  summary: 入口处的相对湿度 0.5（默认）| 范围 [0,1] 内的标量
+  group: Moist Air 2
+- name: Nominal inlet specific humidity
+  summary: 入口处的比湿 0.01（默认）| 范围 [0,1] 内的标量
+  group: Moist Air 2
+- name: Nominal inlet water vapor mole fraction
+  summary: 入口处水蒸气的摩尔分数 0.01（默认）| 范围 [0,1] 内的标量
+  group: Moist Air 2
+- name: Nominal inlet humidity ratio
+  summary: 入口处的湿度比 0.01（默认）| 范围 [0,1] 内的正标量
+  group: Moist Air 2
+- name: Nominal inlet wet-bulb temperature
+  summary: 仿真开始时的湿球温度 287 K（默认）| 范围 [0,1] 内的正标量
+  group: Moist Air 2
+- name: Inlet trace gas specification
+  summary: 用于描述入口微量气体水平的量 Mass fraction（默认）| Mole fraction
+  group: Moist Air 2
+- name: Nominal inlet trace gas mass fraction
+  summary: 入口处微量气体的质量分数 0.001（默认）| 范围 [0,1] 内的标量
+  group: Moist Air 2
+- name: Nominal inlet trace gas mole fraction
+  summary: 入口处微量气体的摩尔分数 0.001（默认）| 范围 [0,1] 内的标量
+  group: Moist Air 2
+- name: Moist air volume
+  summary: 换热器中湿空气的总体积 0.1 m^3（默认）| 正标量
+  group: Moist Air 2
+- name: Initialize moist air to nominal operating conditions
+  summary: 初始化湿空气的选项 on（默认）| off
+  group: Moist Air 2
+- name: 初始湿空气压力
+  summary: 仿真开始时的湿空气压力 0.101325 MPa（默认）| 正标量
+  group: Moist Air 2
+- name: 初始湿空气温度
+  summary: 仿真开始时的湿空气温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Moist Air 2
+- name: 初始湿度设定
+  summary: 用于描述初始湿度水平的量 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Moist Air 2
+- name: 初始湿空气相对湿度
+  summary: 仿真开始时的相对湿度 0.5（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Moist Air 2
+- name: 初始湿空气比湿度
+  summary: 仿真开始时的比湿度 0.01（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Moist Air 2
+- name: 初始湿空气水蒸气摩尔分数
+  summary: 仿真开始时的水蒸气摩尔分数 0.01（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Moist Air 2
+- name: 初始湿空气湿度比
+  summary: 仿真开始时的湿度比 0.01（默认）| 范围 [0,1] 内的正标量 | 二元素向量
+  group: Moist Air 2
+- name: 初始湿空气湿球温度
+  summary: 仿真开始时的湿球温度 287 K（默认）| 范围 [0,1] 内的正标量
+  group: Moist Air 2
+- name: 初始微量气体设定
+  summary: 用于描述初始微量气体水平的量 Mass fraction（默认）| Mole fraction
+  group: Moist Air 2
+- name: 初始湿空气微量气体质量分数
+  summary: 仿真开始时的微量气体质量分数 0.001（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Moist Air 2
+- name: 初始湿空气微量气体摩尔分数
+  summary: 仿真开始时的微量气体摩尔分数 0.001（默认）| 范围 [0,1] 内的标量 | 二元素向量
+  group: Moist Air 2
+- name: 水滴与湿空气的初始质量比
+  summary: 水滴与湿空气的比值 0（默认）| 正标量
+  group: Moist Air 2
+- name: Relative humidity at saturation
+  summary: 冷凝相对湿度 1（默认）| 非负标量
+  group: Moist Air 2
+- name: Water vapor condensation time constant
+  summary: 冷凝时间尺度 1e-3 s（默认）| 正标量
+  group: Moist Air 2
+- name: Water droplets evaporation time constant
+  summary: 蒸发时间尺度 1e-3 s（默认）| 正标量
+  group: Moist Air 2
+- name: Fraction of condensate entrained as water droplets
+  summary: 水滴中冷凝物的比例 1（默认）| 范围 [0,1] 内的标量
+  group: Moist Air 2
+- name: a in Nu = a\*Re^b\*Pr^c for thermal liquid
+  summary: 热液体相关系数 0.023（默认）| 正标量
+  group: 相关系数
+- name: b in Nu = a\*Re^b\*Pr^c for thermal liquid
+  summary: 热液体关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: 相关系数
+- name: c in Nu = a\*Re^b\*Pr^c for thermal liquid
+  summary: 热液体关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: 相关系数
+- name: a in Nu = a\*Re^b\*Pr^c for moist air
+  summary: 湿空气相关系数 0.023（默认）| 正标量
+  group: 相关系数
+- name: b in Nu = a\*Re^b\*Pr^c for moist air
+  summary: 湿空气关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: 相关系数
+- name: c in Nu = a\*Re^b\*Pr^c for moist air
+  summary: 湿空气关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: 相关系数
+```
 
 ### 配置
 
@@ -457,7 +661,6 @@ nominal operating conditions** 复选框。
 ### **c in Nu = a\*Re^b\*Pr^c for moist air** — 湿空气关联式中的普朗特数指数 `0.33`（默认）| 正标量
 
 湿空气努塞尔数作为雷诺数和普朗特数函数的关联式中的普朗特数指数。默认值基于 Colburn 方程。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid - Moist Air

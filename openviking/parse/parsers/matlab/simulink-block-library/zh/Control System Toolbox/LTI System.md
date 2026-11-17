@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # LTI System
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: 输入信号 标量 | 向量
+  direction: input
+- name: Port_1(Out1)
+  summary: 输出信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -36,8 +45,19 @@ chinese_source: worker-translation
 - Demux (Simulink)
 - Bus
   Selector (Simulink)
-
 ## 参数
+```yaml
+parameters:
+- name: LTI system variable
+  summary: 线性系统动态系统模型
+  group: ''
+- name: Initial states (state-space only)
+  summary: 状态空间模型的初始状态值 []（默认）| 向量 | 标量
+  group: ''
+- name: Pade order (for linearization)
+  summary: Pade 近似阶数 0（默认）| 正整数 | 向量
+  group: ''
+```
 
 ### **LTI system variable** — 线性系统动态系统模型
 
@@ -72,7 +92,6 @@ Simulink 在初始化仿真之前会将模型转换为其状态空间等价形�
   `n` 个状态，但会得到更精确的延迟线性模型。
 
 使用正整数向量为每个输入通道指定不同的阶数。
-
 ## 所属库
 
 Control System Toolbox

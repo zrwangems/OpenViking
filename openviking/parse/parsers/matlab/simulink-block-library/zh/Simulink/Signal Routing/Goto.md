@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Goto
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -23,8 +31,37 @@ chinese_source: worker-translation
 要传递给对应 From 模块的输入信号，指定为标量、向量、矩阵或 N 维数组。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Goto tag
+  summary: 模块标识符 A（默认）| ...
+  group: ''
+  block_parameter: GotoTag
+  type: 字符向量
+  values: '''A'' | ...'
+  default: '''A'''
+- name: Tag visibility
+  summary: Goto 模块标签的作用域 local（默认）| scoped | global
+  group: ''
+  block_parameter: TagVisibility
+  type: 字符向量
+  values: '''local'' | ''scoped'' | ''global'''
+  default: '''local'''
+- name: Icon display
+  summary: 在模块图标上显示的文本 Tag（默认）| Signal name | Tag and signal name
+  group: ''
+  block_parameter: IconDisplay
+  type: 字符向量
+  values: '''Signal name'' | ''Tag'' | ''Tag and signal name'''
+  default: '''Tag'''
+- name: Rename All
+  summary: 在整个模型中传播名称 按钮
+  group: ''
+- name: Corresponding blocks
+  summary: 连接到此 Goto 模块的模块 模块路径 | ...
+  group: ''
+```
 
 ### **Goto tag** — 模块标识符 `A`（默认）| ...
 
@@ -99,7 +136,6 @@ From-Goto 模块连接不能跨越非虚拟子系统边界的规则有以下例�
 当对应的 From 或 Goto Tag Visibility 模块不在当前框中时，包含该模块的 Subsystem 模块将被高亮显示。
 
 要在打开的框图或新选项卡中显示对应的模块，请选择 Goto 模块并暂停在省略号上。然后，从操作栏中选择 **Related Blocks** Related Blocks 按钮。当多个模块对应于所选模块时，将打开相关模块列表。您可以通过在文本框中输入搜索词来筛选相关模块列表。从列表中选择相关模块后，窗口焦点将转到显示该相关模块的已打开框图或新选项卡。
-
 ## 所属库
 
 Simulink / Signal Routing HDL Coder / Signal Routing

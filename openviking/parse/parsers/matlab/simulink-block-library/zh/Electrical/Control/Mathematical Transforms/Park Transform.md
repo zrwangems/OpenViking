@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Park Transform
 
 ## 端口
+```yaml
+ports:
+- name: abc
+  summary: '*a*、*b* 和 *c* 相分量向量'
+  direction: input
+  data_types: single | double
+- name: θelec
+  summary: 旋转角度，弧度标量
+  direction: input
+  data_types: single | double
+- name: dq0
+  summary: '*d*-*q* 轴和零分量向量'
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +51,16 @@ chinese_source: worker-translation
 旋转参考坐标系中系统的直轴分量、交轴分量和零分量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Power Invariant
+  summary: 功率不变变换 off（默认）| on
+  group: ''
+- name: Phase-a axis alignment
+  summary: '*dq0* 参考坐标系对齐 Q-axis（默认）| D-axis'
+  group: ''
+```
 
 ### **Power Invariant** — 功率不变变换 off（默认）| on
 
@@ -46,7 +69,6 @@ chinese_source: worker-translation
 ### **Phase-a axis alignment** — *dq0* 参考坐标系对齐 `Q-axis`（默认）| `D-axis`
 
 将 *abc* 参考坐标系的 *a* 相向量对齐到旋转参考坐标系的 *d* 轴或 *q* 轴。
-
 ## 所属库
 
 Simscape / Electrical / Control / Mathematical Transforms

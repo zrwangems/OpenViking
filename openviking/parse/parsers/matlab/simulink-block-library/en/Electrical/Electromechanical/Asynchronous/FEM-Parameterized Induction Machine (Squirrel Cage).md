@@ -14,6 +14,33 @@ language: en
 # FEM-Parameterized Induction Machine (Squirrel Cage)
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Stator positive-end connections electrical
+  direction: conserving
+- name: ~2
+  summary: Stator negative-end connections electrical
+  direction: conserving
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+- name: HA
+  summary: '*a*-phase terminal thermal'
+  direction: conserving
+- name: HB
+  summary: '*b*-phase terminal thermal'
+  direction: conserving
+- name: HC
+  summary: '*c*-phase terminal thermal'
+  direction: conserving
+- name: HR
+  summary: Rotor thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -73,8 +100,73 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Option to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Stator resistance, Rs
+  summary: Stator resistance 0.25 Ohm (default) | positive scalar
+  group: Resistance
+- name: Tabulate rotor resistance with frequency
+  summary: Option to tabulate rotor resistance with frequency Off (default) | On
+  group: Resistance
+- name: Referred rotor resistance, Rr_d
+  summary: Referred rotor resistance 0.14 Ohm (default) | positive scalar
+  group: Resistance
+- name: Rotor AC frequency vector, fr
+  summary: Rotor AC frequency vector [0, 5, 10, 15] Hz (default) | vector of nonnegative scalars
+  group: Resistance
+- name: Referred rotor resistance table, Rr_d(fr)
+  summary: Referred rotor resistance table [.14, .14, .14, .14] Ohm (default) | vector of positive scalars
+  group: Resistance
+- name: Number of pole pairs
+  summary: Machine pole pairs 1 (default) | positive integer
+  group: Flux
+- name: Stator d-axis current vector, iDS
+  summary: Stator D-axis current vector [0, 150, 350, 500] A (default) | vector of nonnegative scalars
+  group: Flux
+- name: Stator q-axis current vector, iQS
+  summary: Stator Q-axis current vector [0, 250, 500] A (default) | vector of nonnegative scalars
+  group: Flux
+- name: Stator d-axis flux linkage table, λds(ids,iqs)
+  summary: Stator D-axis flux linkage table 4.4e-2 * repmat([0, 150, 350, 500]', 1, 3) Wb (default) | matrix of scalars
+  group: Flux
+- name: Stator q-axis flux linkage table, λqs(ids,iqs)
+  summary: Stator Q-axis flux linkage table 2.1e-3 * repmat([0, 250, 500], 4, 1) Wb (default) | matrix of scalars
+  group: Flux
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Flux
+- name: Include rotor inertia
+  summary: Option to include rotor inertia On (default) | Off
+  group: Mechanical
+- name: Rotor inertia
+  summary: Rotor inertia 1e-3 kg*m^2 (default) | positive scalar
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 0 N*m*s/rad (default) | nonnegative scalar
+  group: Mechanical
+- name: Measurement temperature
+  summary: Rated temperature 298.15 K (default) | real scalar
+  group: Temperature Dependence
+- name: Stator resistance temperature coefficient
+  summary: Stator resistance temperature coefficient 3.93e-3 1/K (default) | nonnegative scalar
+  group: Temperature Dependence
+- name: Rotor resistance temperature coefficient
+  summary: Rotor resistance temperature coefficient 3.93e-3 1/K (default) | nonnegative scalar
+  group: Temperature Dependence
+- name: Include stator and rotor thermal masses
+  summary: Option to include stator and rotor thermal masses On (default) | Off
+  group: Thermal Port
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### **Modeling option** — Option to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -238,7 +330,6 @@ raise the temperature of the rotor by one degree.
 
 To enable this parameter, select the **Include stator and
 rotor thermal masses** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Asynchronous

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Single-Band Parametric EQ
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号矩阵 | 一维向量
+  direction: input
+  data_types: single | double
+- name: Fc
+  summary: 中心频率 (Hz) 标量
+  direction: input
+  data_types: single | double
+- name: BW
+  summary: 带宽 (Hz) 标量
+  direction: input
+  data_types: single | double
+- name: GdB
+  summary: 峰值或谷值增益 (dB) 标量
+  direction: input
+  data_types: single | double
+- name: Q
+  summary: 品质因数标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -76,8 +103,37 @@ Single-Band Parametric EQ 模块输出的信号与输入信号具有相同的数
 - 一维向量输入 –– 模块输出一个 *N*×1 矩阵（列向量），其中 *N* 是一维向量中的元素数量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter order
+  summary: 滤波器阶数 2（默认）| 正偶标量
+  group: ''
+- name: Filter specification
+  summary: 指定用于设计滤波器的参数 Bandwidth and center frequency（默认）| Quality factor and center frequency
+  group: ''
+- name: Center Frequency (Hz)
+  summary: 滤波器的中心频率 11025（默认）| 正标量
+  group: ''
+- name: Filter Bandwidth (Hz)
+  summary: 滤波器带宽 2205（默认）| 范围 [0, max(fs/2, 20,000)] 内的正标量
+  group: ''
+- name: Quality Factor
+  summary: 品质因数 5（默认）| 范围 [0.1, 20] 内的标量
+  group: ''
+- name: Peak Gain (dB)
+  summary: 滤波器的峰值或谷值增益 6.0206（默认）| 范围 [−30, 30] 内的标量
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 on（默认）| off
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 如果某个参数被列为可调，则您可以在仿真期间更改其值。
 
@@ -150,7 +206,6 @@ Single-Band Parametric EQ 模块输出的信号与输入信号具有相同的数
 - `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为模块生成 C 代码。只要模型不更改，C 代码将在后续仿真中重用。此选项需要额外的启动时间，但与 `Interpreted execution` 相比，后续仿真的速度更快。
 
 **可调：** 否
-
 ## 所属库
 
 Audio Toolbox / Filters

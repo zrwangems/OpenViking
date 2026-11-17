@@ -14,6 +14,18 @@ language: en
 # Pulley
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Local reference frame frame
+  direction: unspecified
+- name: A
+  summary: Pulley cord tangency point belt-cable
+  direction: unspecified
+- name: B
+  summary: Pulley cord tangency point belt-cable
+  direction: unspecified
+```
 
 ### Frame
 
@@ -34,8 +46,20 @@ from port **A** to port **B**.
 Point of tangency between the center line of the cord and the pitch
 circle of the pulley. The cord wraps around the pulley counterclockwise
 from port **A** to port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pitch Radius
+  summary: Distance from the center of the pulley to the center line of the cord 10 cm (default) | positive scalar in units
+    of length
+  group: ''
+- name: Initial Wrap Angle
+  summary: Minimum wrap angle of a pulley at the start of simulation 0.0 deg (default) | positive scalar in degrees
+  group: ''
+- name: Sensing
+  summary: Selection of kinematic variables to sense Unchecked (default) | Checked
+  group: ''
+```
 
 ### **Pitch Radius** — Distance from the center of the pulley to the center line of the cord `10 cm` (default) | positive scalar in units of length
 
@@ -164,7 +188,6 @@ for sensing are:
   `Unrestricted`.
 
   Use port **qfb** for this measurement.
-
 ## Libraries
 
 Simscape / Multibody / Belts and Cables

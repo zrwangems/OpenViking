@@ -15,6 +15,66 @@ chinese_source: worker-translation
 # Path Following Control System
 
 ## 端口
+```yaml
+ports:
+- name: Set velocity
+  summary: 自车速度设定值 非负标量
+  direction: input
+- name: Time gap
+  summary: 安全时间间隔 非负标量
+  direction: input
+- name: Relative distance
+  summary: 前车与自车之间的距离 正标量
+  direction: input
+- name: Relative velocity
+  summary: 前车与自车之间的速度差 标量
+  direction: input
+- name: Longitudinal velocity
+  summary: 自车速度 非负标量
+  direction: input
+- name: Curvature
+  summary: 道路曲率 标量 | 向量
+  direction: input
+- name: Lateral deviation
+  summary: 自车横向偏差 标量
+  direction: input
+- name: Relative yaw angle
+  summary: 相对于车道中心线的角度 标量
+  direction: input
+- name: Minimum longitudinal acceleration
+  summary: 自车最小加速度 标量
+  direction: input
+- name: Maximum longitudinal acceleration
+  summary: 自车最大加速度 标量
+  direction: input
+- name: Minimum steering angle
+  summary: 最小前轮转向角 标量
+  direction: input
+- name: Maximum steering angle
+  summary: 最大前轮转向角 标量
+  direction: input
+- name: Enable optimization
+  summary: 控制器优化启用信号标量
+  direction: input
+- name: External control signal
+  summary: 应用于自车的控制信号，长度为二的向量
+  direction: input
+- name: Vehicle dynamics matrix A
+  summary: 自车预测模型的状态矩阵，方阵
+  direction: input
+- name: Vehicle dynamics matrix B
+  summary: 自车预测模型的输入到状态矩阵，具有两列的矩阵
+  direction: input
+- name: Vehicle dynamics matrix C
+  summary: 自车预测模型的状态到输出矩阵，具有三行的矩阵
+  direction: input
+- name: Longitudinal acceleration
+  summary: 加速度控制信号标量
+  direction: output
+- name: Steering angle
+  summary: 前轮转向角控制信号标量
+  direction: output
+```
 
 ### 输入
 
@@ -157,8 +217,199 @@ e2=θe−θc
 ### **Steering angle** — 前轮转向角控制信号标量
 
 由控制器生成的前轮转向角控制信号，单位为弧度。前轮转向角是前轮相对于车辆纵轴的角度。转向角朝向自车横轴正方向时为正。
-
 ## 参数
+```yaml
+parameters:
+- name: Use vehicle parameters
+  summary: 使用车辆属性定义自车模型 on（默认）| off
+  group: 参数选项卡
+  block_parameter: ModelType
+  type: string, character vector
+  default: '"Use vehicle parameters"'
+- name: Use vehicle model
+  summary: 使用状态空间矩阵定义自车模型 off（默认）| on
+  group: 参数选项卡
+  block_parameter: ModelType
+  type: string, character vector
+  default: '"Use vehicle parameters"'
+- name: Total mass
+  summary: 自车质量 1575（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: VehicleMass
+  type: string, character vector
+  default: '"1575"'
+- name: Yaw moment of inertia
+  summary: 绕自车垂直轴的转动惯量 2875（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: VehicleYawInertia
+  type: string, character vector
+  default: '"2875"'
+- name: Longitudinal distance from center of gravity to front tires
+  summary: 从自车质心到前轮的距离 1.2（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: LengthToFront
+  type: string, character vector
+  default: '"1.2"'
+- name: Longitudinal distance from center of gravity to rear tires
+  summary: 从自车质心到后轮的距离 1.6（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: LengthToRear
+  type: string, character vector
+  default: '"1.6"'
+- name: 前轮侧偏刚度
+  summary: 前轮刚度 19000（默认值）| 正标量
+  group: 参数选项卡
+  block_parameter: FrontTireStiffness
+  type: string, character vector
+  default: '"19000"'
+- name: 后轮侧偏刚度
+  summary: 后轮刚度 33000（默认值）| 正标量
+  group: 参数选项卡
+  block_parameter: RearTireStiffness
+  type: string, character vector
+  default: '"33000"'
+- name: 纵向加速度跟踪时间常数
+  summary: 加速度跟踪的时间常数 0.5（默认值）| 正标量
+  group: 参数选项卡
+  block_parameter: AccelTimeConstant
+  type: string, character vector
+  default: '"0.5"'
+- name: A
+  summary: 自车预测模型的初始状态矩阵 方阵
+  group: 参数选项卡
+  block_parameter: EgoModelMatrixA
+  type: string, character vector
+  default: '"[-4.4021 ,-12.4603;1.3913,-5.1868]"'
+- name: B
+  summary: 自车预测模型的初始输入到状态矩阵 具有两列的矩阵
+  group: 参数选项卡
+  block_parameter: EgoModelMatrixB
+  type: string, character vector
+  default: '"[24.1270;15.8609]"'
+- name: C
+  summary: 自车预测模型的初始状态到输出矩阵 具有三行的矩阵
+  group: 参数选项卡
+  block_parameter: EgoModelMatrixC
+  type: string, character vector
+  default: '"[1,0;0,1]"'
+- name: Initial longitudinal velocity
+  summary: 自车模型的初始速度 15（默认）| 非负标量
+  group: 参数选项卡
+  block_parameter: InitialLongVel
+  type: string, character vector
+  default: '"15"'
+- name: Transport lag between model inputs and outputs
+  summary: 自车模型中的总传输延迟 0（默认）| 非负标量
+  group: 参数选项卡
+  block_parameter: TransportLag
+  type: string, character vector
+  default: '"0"'
+- name: Maintain safe distance between lead vehicle and ego vehicle
+  summary: 启用间距控制 on（默认）| off
+  group: 参数选项卡
+  block_parameter: spaceCtrl
+  type: string, character vector
+  default: '"on"'
+- name: Default spacing
+  summary: 与前方车辆的最小间距 10（默认）| 非负标量
+  group: 参数选项卡
+  block_parameter: DefaultSpacing
+  type: string, character vector
+  default: '"10"'
+- name: Minimum steering angle
+  summary: 最小前轮转向角 -0.26（默认）| -pi/2 和 pi/2 之间的标量
+  group: 控制器选项卡
+  block_parameter: MinSteering
+  type: string, character vector
+  default: '"-0.26"'
+- name: Maximum steering angle
+  summary: 最大前轮转向角 0.26（默认）| -pi/2 和 pi/2 之间的标量
+  group: 控制器选项卡
+  block_parameter: MaxSteering
+  type: string, character vector
+  default: '"0.26"'
+- name: Minimum longitudinal acceleration
+  summary: 最小自车加速度 -3（默认）| 标量
+  group: 控制器选项卡
+  block_parameter: MinAcceleration
+  type: string, character vector
+  default: '"-3"'
+- name: 最大纵向加速度
+  summary: 自车最大加速度 2（默认）| 标量
+  group: 控制器选项卡
+  block_parameter: MaxAcceleration
+  type: string, character vector
+  default: '"2"'
+- name: 采样时间
+  summary: 控制器采样时间 0.1（默认）| 正标量
+  group: 控制器选项卡
+  block_parameter: Ts
+  type: string, character vector
+  default: '"0.1"'
+- name: 预测时域
+  summary: 控制器预测时域 10（默认）| 正整数
+  group: 控制器选项卡
+  block_parameter: PredictionHorizon
+  type: string, character vector
+  default: '"30"'
+- name: 控制时域
+  summary: 控制器控制时域 3（默认）| 正整数 | 正整数向量
+  group: 控制器选项卡
+  block_parameter: ControlHorizon
+  type: string, character vector
+  default: '"3"'
+- name: 速度跟踪权重
+  summary: 纵向速度跟踪的整定权重 0.1（默认）| 正标量
+  group: 控制器选项卡
+  block_parameter: LongWeight
+  type: string, character vector
+  default: '"0.1"'
+- name: 横向误差权重
+  summary: 横向误差的整定权重 1（默认）| 正标量
+  group: 控制器选项卡
+  block_parameter: LateralWeight
+  type: string, character vector
+  default: '"1"'
+- name: 纵向加速度变化权重
+  summary: 纵向加速度变化的整定权重 0.1（默认）| 正标量
+  group: 控制器选项卡
+  block_parameter: AccelRateWeight
+  type: string, character vector
+  default: '"0.1"'
+- name: 转向角变化权重
+  summary: 转向角变化的整定权重 0.1（默认）| 正标量
+  group: 控制器选项卡
+  block_parameter: SteerRateWeight
+  type: string, character vector
+  default: '"0.1"'
+- name: Use suboptimal solution
+  summary: 在指定迭代次数后应用次优解 off（默认）| on
+  group: Block Tab
+  block_parameter: suboptimal
+  type: string, character vector
+  default: '"off"'
+- name: Maximum iteration number
+  summary: 最大优化迭代次数 10（默认）| 正整数
+  group: Block Tab
+  block_parameter: maxiter
+  type: string, character vector
+  default: '"10"'
+- name: Use external signal to enable or disable optimization
+  summary: 添加用于启用优化的端口 off（默认）| on
+  group: Block Tab
+  block_parameter: optmode
+  type: string, character vector
+  default: '"off"'
+- name: Use external signal for bumpless transfer between PFC and other controllers
+  summary: 添加外部控制信号输入端口 off（默认）| on
+  group: Block Tab
+  block_parameter: trackmode
+  type: string, character vector
+  default: '"off"'
+- name: Create PFC subsystem
+  summary: 创建自定义控制器按钮
+  group: Block Tab
+```
 
 ### 参数选项卡
 
@@ -679,7 +930,6 @@ e2=θe−θc
 - 修改默认 MPC 设置或使用高级 MPC 功能。
 - 修改默认控制器初始条件。
 - 使用不同的应用设置，例如自定义安全跟车距离定义。
-
 ## 所属库
 
 Model Predictive Control Toolbox / Automated Driving

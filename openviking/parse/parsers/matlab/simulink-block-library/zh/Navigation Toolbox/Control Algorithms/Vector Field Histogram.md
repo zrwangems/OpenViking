@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Vector Field Histogram
 
 ## 端口
+```yaml
+ports:
+- name: Ranges
+  summary: 来自扫描数据的距离值，标量向量
+  direction: input
+- name: Angles
+  summary: 来自扫描数据的角度值，标量向量
+  direction: input
+- name: TargetDir
+  summary: 车辆的目标方向，标量
+  direction: input
+- name: SteerDir
+  summary: 车辆的转向方向，标量
+  direction: output
+```
 
 ### 输入
 
@@ -35,8 +50,40 @@ chinese_source: worker-translation
 ### **SteerDir** — 车辆的转向方向，标量
 
 车辆的转向方向，指定为以弧度表示的标量。该无障碍方向基于 VFH+ 算法计算。车辆的前进方向视为零弧度，正角度按逆时针方向测量。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of angular sectors
+  summary: 用于创建直方图的分箱数量 180（默认）| 标量
+  group: ''
+- name: Range distance limits (m)
+  summary: 距离读数的限值 [0.05 2]（默认）| 由标量组成的二元素向量
+  group: ''
+- name: Histogram thresholds
+  summary: 用于计算二值直方图的阈值 [3 10]（默认）| 由标量组成的二元素向量
+  group: ''
+- name: vehicle radius (m)
+  summary: 车辆的半径 0.1（默认）| 标量
+  group: ''
+- name: Safety distance (m)
+  summary: 车辆周围的安全距离 0.1（默认）| 标量
+  group: ''
+- name: Minimum turning radius (m)
+  summary: 当前速度下的最小转弯半径 0.1（默认）| 标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+- name: Target direction weight
+  summary: 目标方向的代价函数权重 5（默认）| 标量
+  group: ''
+- name: Current direction weight
+  summary: 当前方向的代价函数权重 2（默认）| 标量
+  group: ''
+- name: Previous direction weight
+  summary: 前一方向的代价函数权重 2（默认）| 标量
+  group: ''
+```
 
 #### 主
 
@@ -84,7 +131,6 @@ chinese_source: worker-translation
 ### **Previous direction weight** — 前一方向的代价函数权重 `2`（默认）| 标量
 
 沿先前选定的转向方向移动的代价函数权重，指定为标量。此权重值越高，生成的路径越平滑。要忽略前一方向代价，请将此权重设置为 `0`。
-
 ## 所属库
 
 Navigation Toolbox / Control Algorithms

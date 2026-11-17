@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # Simulation 3D Rotorcraft
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: 旋翼机平移 6-by-3 数组 | 19-by-3 数组 | 11-by-3 数组
+  direction: input
+  data_types: single | double
+- name: Rotation
+  summary: 旋翼机和车轮旋转 6-by-3 数组 | 19-by-3 数组 | 11-by-3 数组
+  direction: input
+  data_types: single | double
+- name: LightStates
+  summary: 旋翼机灯光控制 1-by-7 double 值向量
+  direction: input
+  data_types: single | double
+- name: Scale
+  summary: 网格缩放 [1 1 1]（默认）| 1-by-3 数组
+  direction: input
+- name: Altitude
+  summary: 旋翼机姿态 1-by-5 向量
+  direction: output
+  data_types: double
+- name: WoW
+  summary: 轮载 true | false
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -160,8 +186,327 @@ sensors** 复选框。
 sensors** 复选框。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 采样时间 -1（默认）| 实数标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 实数标量
+  default: '''-1'''
+- name: Type
+  summary: 旋翼机类型 Light helicopter（默认）| Helicopter | Multirotor
+  group: Rotorcraft
+  block_parameter: Mesh
+  type: 字符向量
+  values: '''Light helicopter'' | ''Helicopter'' | ''Multiroter'''
+  default: '''Light helicopter'''
+- name: Path to light helicopter mesh
+  summary: 轻型直升机网格路径 '/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter'（默认）|
+    字符向量
+  group: Rotorcraft
+  block_parameter: MeshPathLight
+  type: 字符向量
+  values: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter'''
+- name: Path to helicopter mesh
+  summary: 直升机网格路径 '/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter'（默认）| 字符向量
+  group: Rotorcraft
+  block_parameter: MeshPath
+  type: 字符向量
+  values: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter'''
+- name: Path to multirotor mesh
+  summary: 多旋翼网格路径 '/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter'（默认）| '/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_QuadcopterMini.SK_QuadcopterMini'
+    | 字符向量
+  group: Rotorcraft
+  block_parameter: MeshPathMulti
+  type: 字符向量
+  values: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter'' | ''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_QuadcopterMini.SK_QuadcopterMini'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter'''
+- name: Color
+  summary: 旋翼机颜色 Red（默认）| Orange | Yellow | Green | Cyan | Blue | Black | White | Silver | Metal
+  group: Rotorcraft
+  block_parameter: AircraftColor
+  type: 字符向量
+  values: '''Red'' | ''Orange'' | ''Yellow'' | ''Green'' | ''Cyan'' | ''Blue'' | ''Black'' | ''White'' | ''Silver'' | ''Metal'''
+  default: '''Red'''
+- name: Name
+  summary: 旋翼机名称 SimulinkVehicle1（默认）| 字符向量
+  group: Rotorcraft
+  block_parameter: ActorName
+  type: 字符向量
+  values: 标量
+  default: '''SimulinkVehicle1'''
+- name: Initial translation (m)
+  summary: 旋翼机初始平移 zeros(6,3)（默认）| 19-by-3 数组 | 11-by-3 数组
+  group: Rotorcraft
+  block_parameter: Translation
+  type: 字符向量
+  values: 6-by-3 数组 | 19-by-3 数组 | 11-by-3 数组
+  default: '''zeros(6,3)'''
+- name: Initial rotation (rad)
+  summary: 旋翼机旋转 zeros(6,3)（默认）| 19-by-3 数组 | 11-by-3 数组
+  group: Rotorcraft
+  block_parameter: Rotation
+  type: 字符向量
+  values: 6-by-3 数组 | 19-by-3 数组 | 11-by-3 数组
+  default: '''zeros(6,3)'''
+- name: Scale source
+  summary: 缩放源 Dialog（默认）| Port
+  group: Rotorcraft
+  block_parameter: ScaleInputPort
+  type: 字符向量
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Initial scale
+  summary: 初始网格缩放 [1 1 1]（默认）| 1-by-3 数组
+  group: Rotorcraft
+  block_parameter: InitialScale
+  type: 字符向量
+  values: 1-by-3 数组
+  default: '''[1 1 1]'''
+- name: Scale
+  summary: 网格缩放 [1 1 1]（默认）| 1-by-3 数组
+  group: Rotorcraft
+  block_parameter: Scale
+  type: 字符向量
+  values: 1-by-3 数组
+  default: '''[1 1 1]'''
+- name: Enable altitude and WoW sensors
+  summary: 高度和 WoW 传感器开启（默认）| 关闭
+  group: Altitude Sensor
+  block_parameter: IsGHSensorEnabled
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show sensor rays in viewer
+  summary: 在查看器中显示传感器射线 关闭（默认）| 开启
+  group: Altitude Sensor
+  block_parameter: AreGHRaysVisible
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Interpret vector outputs as 1-D
+  summary: 控制传感器输出端口上的重塑 关闭（默认）| 开启
+  group: Altitude Sensor
+  block_parameter: IsOutputReshapeEnabled
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Length of rays (m)
+  summary: 射线长度 1524（默认）| 实数标量
+  group: Altitude Sensor
+  block_parameter: GHRayLength
+  type: 字符向量
+  values: 实数标量
+  default: '''1524'''
+- name: Rotorcraft body Z offset (m)
+  summary: 旋翼机机体 *Z* 偏移 1.169（默认）| 实数标量
+  group: Altitude Sensor
+  block_parameter: GHBodyOffset
+  type: 字符向量
+  values: 实数标量
+  default: '''1.169'''
+- name: Ground-contact location 1 (m)
+  summary: 第一地面接触位置 [1.47 -1.04 1.169]（默认）| 3 元素向量
+  group: Altitude Sensor
+  block_parameter: GHContactLocation1
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[1.47 -1.04 1.169]'''
+- name: Ground-contact location 2 (m)
+  summary: 第二地面接触位置 [-1.24 -1.04 1.169]（默认）| 3 元素向量
+  group: Altitude Sensor
+  block_parameter: GHContactLocation2
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[-1.24 -1.04 1.169]'''
+- name: Ground-contact location 3 (m)
+  summary: 第三地面接触位置 [-1.24 1.04 1.169] | 3 元素向量
+  group: Altitude Sensor
+  block_parameter: GHContactLocation3
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[-1.24 1.04 1.169]'''
+- name: Ground-contact location 4 (m)
+  summary: 第四地面接触位置 [1.47 1.04 1.169] | 3 元素向量
+  group: Altitude Sensor
+  block_parameter: GHContactLocation4
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[1.47 1.04 1.169]'''
+- name: Front tire radius (m)
+  summary: 前起落架轮胎半径 0.196（默认）| 实数标量
+  group: Altitude Sensor
+  block_parameter: GHFrontTireRadius
+  type: 字符向量
+  values: 实数标量
+  default: '''0.196'''
+- name: Left tire radius (m)
+  summary: 左起落架轮胎半径 0.203（默认）| 实数标量
+  group: Altitude Sensor
+  block_parameter: GHLeftTireRadius
+  type: 字符向量
+  values: 实数标量
+  default: '''0.203'''
+- name: Right tire radius (m)
+  summary: 右起落架轮胎半径 0.203（默认）| 实数标量
+  group: Altitude Sensor
+  block_parameter: GHRightTireRadius
+  type: 字符向量
+  values: 实数标量
+  default: '''0.203'''
+- name: WoW sensor tolerance (m)
+  summary: WoW 传感器容差 0.05（默认）| 实数标量
+  group: Altitude Sensor
+  block_parameter: WoWSensorTolerance
+  type: 字符向量
+  values: 实数标量
+  default: '''0.05'''
+- name: Light configuration
+  summary: 灯光配置选项 Automatic lights（默认）| Configurable lights | Lights off
+  group: Light Configuration
+  block_parameter: LightsConfig
+  type: 字符向量
+  values: '''Automatic lights'' | ''Configurable lights'' | ''Lights off'''
+  default: '''Automatic lights'''
+- name: Landing light intensity (cd)
+  summary: 着陆灯强度 300000（默认）| 正标量
+  group: Light Configuration
+  block_parameter: LandingLightIntensity
+  type: 字符向量
+  values: 正标量
+  default: '''300000'''
+- name: Landing light cone half angle (deg)
+  summary: 着陆灯锥形半角 15（默认）| 正标量
+  group: Light Configuration
+  block_parameter: LandingLightConeAngle
+  type: 字符向量
+  values: 正标量
+  default: '''15'''
+- name: Landing light color [r g b]
+  summary: 着陆灯颜色 [1 1 1]（默认）| 3 元素向量
+  group: Light Configuration
+  block_parameter: LandingLightColor
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[1 1 1]'''
+- name: Landing light location
+  summary: 着陆灯位置 [0 0 0]（默认）| 3 元素向量
+  group: Light Configuration
+  block_parameter: HelicopterLeftLandingLightLocation
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[0 0 0]'''
+- name: Landing light orientation (deg)
+  summary: 着陆灯方向 [0 0 0]（默认）| 3 元素向量
+  group: Light Configuration
+  block_parameter: HelicopterLeftLandingLightOrientation
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[0 0 0]'''
+- name: Nose light intensity (cd)
+  summary: 机鼻灯强度 150000（默认）| 正标量
+  group: Light Configuration
+  block_parameter: NoseLightIntensity
+  type: 字符向量
+  values: 正标量
+  default: '''150000'''
+- name: Nose light cone half angle (deg)
+  summary: 机鼻灯锥形半角 36（默认）| 正标量
+  group: Light Configuration
+  block_parameter: NoseLightConeAngle
+  type: 字符向量
+  values: 正标量
+  default: '''36'''
+- name: Nose light location
+  summary: 机鼻灯位置 [0 0 0]（默认）| 3 元素向量
+  group: Light Configuration
+  block_parameter: HelicopterNoseLightLocation
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[0 0 0]'''
+- name: Nose light orientation (deg)
+  summary: 机鼻灯方向 [0 0 0]（默认）| 3 元素向量
+  group: Light Configuration
+  block_parameter: HelicopterNoseLightOrientation
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[0 0 0]'''
+- name: Navigation lights intensity
+  summary: 导航灯强度 500（默认）| 正标量
+  group: Light Configuration
+  block_parameter: NavLightIntensity
+  type: 字符向量
+  values: 正标量
+  default: '''500'''
+- name: Position light intensity
+  summary: 位置灯强度 500（默认）| 正标量
+  group: Light Configuration
+  block_parameter: PositionLightIntensity
+  type: 字符向量
+  values: 正标量
+  default: '''500'''
+- name: Strobe light intensity
+  summary: 频闪灯强度 5000（默认）| 正标量
+  group: Light Configuration
+  block_parameter: StrobeLightIntensity
+  type: 字符向量
+  values: 正标量
+  default: '''5000'''
+- name: Strobe color [r g b]
+  summary: 频闪灯颜色 [1 1 1]（默认）| 3 元素向量
+  group: Light Configuration
+  block_parameter: StrobeLightColor
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[1 1 1]'''
+- name: Strobe period (s)
+  summary: 频闪周期 1.5（默认）| 正标量
+  group: Light Configuration
+  block_parameter: StrobePeriod
+  type: 字符向量
+  values: 正标量
+  default: '''1.5'''
+- name: Strobe pulse width (% of period)
+  summary: 频闪脉冲宽度 6（默认）| 正标量
+  group: Light Configuration
+  block_parameter: StrobePulseWidth
+  type: 字符向量
+  values: 正标量
+  default: '''6'''
+- name: Beacon light intensity
+  summary: 信标灯强度 4000（默认）| 正标量
+  group: Light Configuration
+  block_parameter: BeaconLightIntensity
+  type: 字符向量
+  values: 正标量
+  default: '''4000'''
+- name: Beacon color [r g b]
+  summary: 信标颜色 [1 0 0]（默认）| 3 元素向量
+  group: Light Configuration
+  block_parameter: BeaconLightColor
+  type: 字符向量
+  values: 3 元素向量
+  default: '''[1 0 0]'''
+- name: Beacon period (s)
+  summary: 信标周期 1.5（默认）| 正标量
+  group: Light Configuration
+  block_parameter: BeaconPeriod
+  type: 字符向量
+  values: 正标量
+  default: '''1.5'''
+- name: Beacon pulse width (% of period)
+  summary: 信标脉冲宽度 10（默认）| 正标量
+  group: Light Configuration
+  block_parameter: BeaconPulseWidth
+  type: 字符向量
+  values: 正标量
+  default: '''10'''
+```
 
 ### **Sample time** — 采样时间 `-1`（默认）| 实数标量
 
@@ -980,7 +1325,6 @@ WoW 传感器容差，指定为实数标量。
 | **类型**：字符向量 |
 | **值**：正标量 |
 | **默认值**：`'10'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Simulation 3D

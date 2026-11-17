@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Specific Dissipation Heat Exchanger Interface (G)
 
 ## 端口
+```yaml
+ports:
+- name: CP
+  summary: 气体的等压比热，kJ/(kg*K) 物理信号
+  direction: output
+- name: M
+  summary: 热液体的质量流量，kg/s 物理信号
+  direction: output
+- name: A
+  summary: 流体开口 气体
+  direction: output
+- name: B
+  summary: 流体开口 气体
+  direction: output
+- name: H
+  summary: 流体入口处的热条件 热
+  direction: output
+```
 
 ### 输出
 
@@ -39,8 +57,52 @@ chinese_source: worker-translation
 ### **H** — 流体入口处的热条件 热
 
 用于设置作为气体入口的气体端口处热条件的热端口。
-
 ## 参数
+```yaml
+parameters:
+- name: 质量流量向量
+  summary: 用于指定压降数据的质量流量 [.3, .5, 1, 1.5, 2, 2.5] kg/s（默认）| 单位为质量/时间的 *K* 元素数组
+  group: ''
+- name: 压降向量
+  summary: 对应于指定质量流量的压降数据 [3, 5, 10, 25, 35, 50] * 1e-3 MPa（默认）| 单位为压力的 *K* 元素数组
+  group: ''
+- name: 参考流入温度
+  summary: 指定压降数据时的温度 293.15 K（默认）| 单位为温度的标量
+  group: ''
+- name: 参考流入压力
+  summary: 指定压降表格数据时的压力 0.101325 MPa（默认）| 单位为压力的标量
+  group: ''
+- name: 用于流动反向的质量流量阈值
+  summary: 低于此值对数值数据进行平滑的质量流量 1e-6 kg/s（默认）| 单位为质量/时间的标量
+  group: ''
+- name: 气体体积
+  summary: 热交换器内部的气体体积 0.01 m^3（默认）| 单位为体积的标量
+  group: ''
+- name: 端口 A1 和 B1 处的横截面积
+  summary: 气体入口处的流通面积 0.01 m^2（默认）| 单位为面积的标量
+  group: ''
+- name: 启用动态可压缩性
+  summary: 对气体通道中的压力动态进行建模的选项 On（默认）| Off
+  group: ''
+- name: 标称温度
+  summary: 标称工况下的温度 293.15 K（默认）| 标量
+  group: ''
+- name: 标称压力
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: ''
+- name: Initial pressure
+  summary: 仿真开始时的压力 0.101325 MPa（默认）| 标量
+  group: ''
+- name: Initial pressure priority
+  summary: 压力参数优先级 High（默认）| Low | None
+  group: ''
+- name: Initial temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 标量
+  group: ''
+- name: Initial temperature priority
+  summary: 温度参数优先级 High（默认）| Low | None
+  group: ''
+```
 
 #### 压力损失
 
@@ -121,7 +183,6 @@ chinese_source: worker-translation
 求解器在初始化模块时分配给 **Initial temperature** 参数的优先级。
 
 将此参数设置为 `High` 以定义初始条件。如果此初始条件与另一个模块的初始条件冲突，您可能需要将此参数设置为 `Low` 或 `None`。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

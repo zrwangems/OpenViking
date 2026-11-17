@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Binary Weighted DAC
 
 ## 端口
+```yaml
+ports:
+- name: digital
+  summary: 输入到 DAC 的数字输入信号 整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: start
+  summary: 用于启动转换的外部时钟 标量
+  direction: input
+  data_types: double
+- name: analog
+  summary: 转换后的模拟输出信号 标量
+  direction: output
+  data_types: double
+- name: ready
+  summary: 指示数模转换是否完成 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -62,8 +81,96 @@ chinese_source: worker-translation
 **General** 选项卡中选择 **Show ready port**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of bits
+  summary: 输入字中的位数 5（默认）| 正实数整数
+  group: 常规
+  block_parameter: NBits
+  type: character vector
+  values: positive real integer
+  default: '5'
+- name: Input polarity
+  summary: 输入到 DAC 的信号的极性 Bipolar（默认）| Unipolar
+  group: 常规
+  block_parameter: Polarity
+  type: character vector
+  values: Bipolar|Unipolar
+  default: Bipolar
+- name: Use external start clock
+  summary: 连接到外部启动转换时钟 on（默认）| off
+  group: 常规
+- name: Conversion start frequency (Hz)
+  summary: 内部启动转换时钟的频率 1e6（默认）| 正实数标量
+  group: 常规
+  block_parameter: StartFreq
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Reference (V)
+  summary: 参考电压 2（默认）| 实数标量
+  group: 常规
+  block_parameter: Ref
+  type: character vector
+  values: real scalar
+  default: '2'
+- name: Bias (V)
+  summary: 添加到输出的偏置电压 0（默认）| 实数标量
+  group: 常规
+  block_parameter: Bias
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Show ready port
+  summary: 在模块上启用 ready 端口 off（默认）| on
+  group: 常规
+- name: Enable linearity impairments
+  summary: 在 DAC 仿真中启用偏移和增益误差 on（默认）| off
+  group: impairments
+- name: Offset error
+  summary: 将量化步长偏移特定值 0 LSB（默认）| 实数标量
+  group: impairments
+  block_parameter: OffsetError
+  type: 字符向量
+  values: 实数标量
+- name: Gain error
+  summary: DAC 传输曲线斜率误差 0 LSB（默认）| 实数标量
+  group: impairments
+  block_parameter: GainError
+  type: 字符向量
+  values: 实数标量
+- name: Enable timing impairments
+  summary: 在 DAC 仿真中启用时序损伤 on（默认）| off
+  group: impairments
+- name: Specify switch timing using
+  summary: 指定 DAC 如何计算开关时序 Settling time（默认）| Slew rate
+  group: impairments
+- name: Settling time (s)
+  summary: 输出建立所需时间 2e-7（默认）| 非负实数标量
+  group: impairments
+  block_parameter: SettlingTime
+  type: 字符向量
+  values: 实数标量
+- name: Settling time tolerance (LSB)
+  summary: 用于计算建立时间的容差 0.5（默认）| 正实数标量
+  group: impairments
+  block_parameter: SettlingTimeTolerance
+  type: 字符向量
+  values: 正实数标量
+- name: Rising slew rate
+  summary: DAC 的开关上升压摆率 5015625（默认）| 正实数标量 | 正实数向量
+  group: impairments
+  block_parameter: RisingSlewRate
+  type: 字符向量
+  values: 正实数标量 | 正实数向量
+- name: Falling slew rate
+  summary: DAC 的开关下降压摆率 -5015625（默认）| 负实数标量 | 负实数向量
+  group: impairments
+  block_parameter: FallingSlewRate
+  type: 字符向量
+  values: 负实数标量 | 负实数向量
+```
 
 ### 常规
 
@@ -312,7 +419,6 @@ DAC 的开关下降压摆率，指定为正实数标量或向量。如果 **Fall
 | **类型：** 字符向量 |
 | **值：** 负实数标量 | 负实数向量 |
 | **默认：** `-5015625` |
-
 ## 所属库
 
 Mixed-Signal Blockset / DAC / Architectures

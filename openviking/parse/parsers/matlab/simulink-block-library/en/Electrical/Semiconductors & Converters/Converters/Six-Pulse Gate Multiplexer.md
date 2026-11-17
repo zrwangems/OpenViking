@@ -14,6 +14,36 @@ language: en
 # Six-Pulse Gate Multiplexer
 
 ## Ports
+```yaml
+ports:
+- name: Ga(H),Gb(H),Gc(H)
+  summary: Ga(H),Gb(H),Gc(H) physical signal
+  direction: input
+- name: Ga(L),Gb(L),Gc(L)
+  summary: Ga(L),Gb(L),Gc(L) physical signal
+  direction: input
+- name: Ga(H),Gb(H),Gc(H)
+  summary: Ga(H),Gb(H),Gc(H) electrical
+  direction: conserving
+- name: Ga(L),Gb(L),Gc(L)
+  summary: Ga(L),Gb(L),Gc(L) electrical
+  direction: conserving
+- name: G
+  summary: G electrical
+  direction: conserving
+- name: a
+  summary: '*A*-phase AC reference point electrical'
+  direction: conserving
+- name: b
+  summary: '*B*-phase AC reference point electrical'
+  direction: conserving
+- name: c
+  summary: '*C*-phase AC reference point electrical'
+  direction: conserving
+- name: L
+  summary: L electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -129,14 +159,18 @@ switching device in the Converter
 To enable this port, set
 **Gate-control port** to
 `Electrical`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gate-control port
+  summary: Gate control port PS (default) | Electrical
+  group: ''
+```
 
 ### **Gate-control port** — Gate control port `PS` (default) | `Electrical`
 
 Whether to expose PS or electrical control
 ports.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

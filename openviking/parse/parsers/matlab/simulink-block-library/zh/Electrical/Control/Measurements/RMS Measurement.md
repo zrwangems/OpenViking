@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # RMS Measurement
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 标量
+  direction: input
+  data_types: single | double
+- name: RMS
+  summary: 均方根 标量或向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 输入信号的估计均方根值。如果选择 **Specify harmonics**，则输出为一个向量，其中每个元素对应一个指定的谐波。否则，输出为一个表示总均方根的标量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Base frequency (Hz)
+  summary: 基频 60 Hz（默认）| 标量
+  group: ''
+- name: Specify harmonics
+  summary: 均方根输出模式 off（默认）| on
+  group: ''
+- name: Harmonic numbers
+  summary: 谐波指定 [0 1 2]（默认）| 向量
+  group: ''
+- name: Sample time
+  summary: 模块采样时间 0（默认）| 正数
+  group: ''
+```
 
 ### **Base frequency (Hz)** — 基频 `60 Hz`（默认）| 标量
 
@@ -56,7 +81,6 @@ chinese_source: worker-translation
 对于连续操作，将此属性设置为 `0`。对于离散操作，将采样时间显式指定为正数。此模块不支持继承采样时间。
 
 如果此模块位于掩码子系统或其他允许连续和离散操作的变体子系统中，请提升采样时间参数。提升采样时间参数可确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / Measurements

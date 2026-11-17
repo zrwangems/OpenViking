@@ -14,14 +14,19 @@ language: en
 # Nonlinear Rotational Spring
 
 ## Ports
+```yaml
+ports: []
+```
 
 `C`
 :   Rotational conserving port
 
 `R`
 :   Rotational conserving port
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Parameterization**
 :   Select spring parameterization. Options are `By
@@ -125,7 +130,6 @@ language: en
         For more information on extrapolation algorithms, see the
         PS Lookup Table
         (1D) block reference page.
-
 ## Libraries
 
 Not documented in R2025b.

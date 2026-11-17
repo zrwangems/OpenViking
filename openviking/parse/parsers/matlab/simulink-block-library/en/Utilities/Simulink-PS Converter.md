@@ -14,6 +14,24 @@ language: en
 # Simulink-PS Converter
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input Simulink signal scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: Port_2
+  summary: First derivative of the input Simulink signal, provided as a separate Simulink signal scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: Port_3
+  summary: Second derivative of the input Simulink signal, provided as a separate Simulink signal scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: PS
+  summary: Output physical signal, typed by the input signal, the destination port, and block parameter values physical signal
+  direction: output
+```
 
 ### Input
 
@@ -56,8 +74,32 @@ Output physical signal. The signal size matches the size of the input signal at
 The **Input signal unit** parameter and **Apply affine
 conversion** check box let you apply scaling and linear offset to the input
 signal value to calculate the correct value of the output signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input signal unit
+  summary: Specify scaling factor for signal value conversion 1 (default) | V | A | m^3/s | Pa | N | m | m/s | N*m | rad/s
+    | rad | K | kg/s | J/s | kg | Wb | <unit expression>
+  group: Units
+- name: Apply affine conversion
+  summary: Select conversion method for affine temperature units off (default) | on
+  group: Units
+- name: Filtering and derivatives
+  summary: Specify how to provide time derivatives of the input signal Provide signals (default) | Filter input, derivatives
+    calculated | Zero derivatives (piecewise constant)
+  group: Input Handling
+- name: Provided signals
+  summary: Enable additional input ports to provide time derivatives of the input signal Input only (default) | Input and
+    first derivative | Input and first two derivatives
+  group: Input Handling
+- name: Input filtering order
+  summary: Specify number of time derivatives of the input signal provided by filtering First-order filtering (default) |
+    Second-order filtering
+  group: Input Handling
+- name: Input filtering time constant (in seconds)
+  summary: Time constant that controls the filtering of the input signal 0.001 (default) | positive scalar
+  group: Input Handling
+```
 
 ### Units
 
@@ -157,7 +199,6 @@ simulation.
 
 To enable this parameter, set **Filtering and derivatives** to
 `Filter input, derivatives calculated`.
-
 ## Libraries
 
 Simscape / Utilities

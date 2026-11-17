@@ -15,6 +15,60 @@ chinese_source: worker-translation
 # Gain-Scheduled PID Autotuner
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 来自控制器的信号 标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 被控对象输出 标量
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: 启动和停止自整定实验 标量
+  direction: input
+  data_types: single | double
+- name: bandwidth
+  summary: 整定目标带宽 标量
+  direction: input
+  data_types: single | double
+- name: target PM
+  summary: 整定目标相位裕度 标量
+  direction: input
+  data_types: single | double
+- name: signal Amp
+  summary: 注入扰动信号的幅值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: scheduling Variable
+  summary: 调度变量 标量
+  direction: input
+- name: Breakpoints
+  summary: 断点数据向量
+  direction: input
+- name: Update Trigger
+  summary: 触发控制信号标量
+  direction: input
+- name: u+Δu
+  summary: 被控对象输入信号标量
+  direction: output
+  data_types: single | double
+- name: Δu
+  summary: 被控对象输入扰动标量
+  direction: output
+  data_types: single | double
+- name: pid gains
+  summary: 整定后的 PID 系数总线
+  direction: output
+  data_types: single | double
+- name: estimated PM
+  summary: 使用整定后控制器的估计相位裕度标量
+  direction: output
+- name: frd
+  summary: 估计的频率响应向量
+  direction: output
+```
 
 ### 输入
 
@@ -172,8 +226,140 @@ margin achieved by tuned controller**。
 #### 依赖关系
 
 要启用此端口，请在实验选项卡中，选择 **Plant frequency responses near bandwidth**。
-
 ## 参数
+```yaml
+parameters:
+- name: Controller type
+  summary: PID 控制器动作 PIDN（默认）| P | I | PI | PD | PDN | PID | ...
+  group: 控制器设置
+- name: Form
+  summary: PID 控制器形式 Parallel（默认）| Ideal
+  group: 控制器设置
+- name: Sample time (-1 for inherited)
+  summary: PID 控制器的采样时间 0.1（默认）| 正标量 | –1
+  group: 控制器设置
+- name: Data Type
+  summary: 浮点精度 double（默认）| single
+  group: 控制器设置
+- name: Tune at different sample time
+  summary: 启用与 PID 控制器不同的采样时间下的整定和实验 off（默认）| on
+  group: Autotuner 选项卡
+- name: Tuning sample time (sec)
+  summary: 整定算法的采样时间 0.2（默认）| 正标量
+  group: Autotuner 选项卡
+- name: Integrator method
+  summary: 积分项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: Autotuner 选项卡
+- name: Filter method
+  summary: 微分滤波器项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: Autotuner 选项卡
+- name: 目标带宽 (rad/sec)
+  summary: 整定后响应的目标穿越频率 1（默认）| 正标量
+  group: Autotuner 选项卡
+- name: 目标相位裕度 (degrees)
+  summary: 开环响应的目标最小相位裕度 60（默认）| 范围 0–90 内的标量
+  group: Autotuner 选项卡
+- name: Experiment Mode
+  summary: 扰动信号类型 Superposition（默认）| Sinestream | PRBS
+  group: Autotuner 选项卡
+- name: Plant Type
+  summary: 被控对象稳定性 Stable（默认）| Integrating
+  group: Autotuner 选项卡
+- name: Plant Sign
+  summary: 被控对象符号 Positive（默认）| Negative
+  group: Autotuner 选项卡
+- name: Signal Amplitudes
+  summary: 扰动幅度 1（默认）| 标量 | 长度为 5 的向量
+  group: Autotuner 选项卡
+- name: Breakpoints
+  summary: 增益调度断点 [1 2 3]（默认）| 向量
+  group: Gain Scheduling Tab
+- name: Use external signal
+  summary: 从输入端口指定断点 off（默认）| on
+  group: Gain Scheduling Tab
+- name: Number of breakpoints
+  summary: 断点数量 3（默认）| 正标量
+  group: Gain Scheduling Tab
+- name: Gain index tolerance
+  summary: 增益索引容差 1e-3（默认）| 非负标量
+  group: Gain Scheduling Tab
+- name: Use y as scheduling variable
+  summary: 使用被控对象输出调度断点 on（默认）| off
+  group: Gain Scheduling Tab
+- name: Method of storing gains
+  summary: 存储增益的方法 Internal to block（默认）| Data store memory
+  group: Gain Scheduling Tab
+- name: P Gain initial conditions
+  summary: 比例增益初始值 0（默认）| 标量 | 向量
+  group: Gain Scheduling Tab
+- name: P Gain Parameter Name
+  summary: 比例增益数据名称 PGain（默认）| 字符串
+  group: Gain Scheduling Tab
+- name: I Gain initial conditions
+  summary: 积分增益初始值 0（默认）| 标量 | 向量
+  group: Gain Scheduling Tab
+- name: I Gain Parameter Name
+  summary: 积分增益数据名称 IGain（默认）| 字符串
+  group: Gain Scheduling Tab
+- name: D Gain initial conditions
+  summary: 微分增益初始值 0（默认）| 标量 | 向量
+  group: Gain Scheduling Tab
+- name: D Gain Parameter Name
+  summary: 微分增益数据名称 DGain（默认）| 字符串
+  group: Gain Scheduling Tab
+- name: N Gain initial conditions
+  summary: 滤波器增益初始值 100（默认）| 标量 | 向量
+  group: Gain Scheduling Tab
+- name: N Gain Parameter Name
+  summary: 滤波器增益数据名称 NGain（默认）| 字符串
+  group: Gain Scheduling Tab
+- name: Save breakpoints in gain array
+  summary: 将断点与 PID 增益一起保存 off（默认）| on
+  group: Gain Scheduling Tab
+- name: Method to trigger gain update
+  summary: 更新触发方法 Detect change in PID gains（默认）| External trigger
+  group: Gain Scheduling Tab
+- name: Number of samples to delay update
+  summary: 延迟更新的采样数 1（默认）| 非负标量
+  group: Gain Scheduling Tab
+- name: P gain lookup method
+  summary: 比例增益查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below |
+    Use Input Above
+  group: Gain Scheduling Tab
+- name: I gain lookup method
+  summary: 积分增益查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below |
+    Use Input Above
+  group: Gain Scheduling Tab
+- name: D gain lookup method
+  summary: 微分增益查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below |
+    Use Input Above
+  group: Gain Scheduling Tab
+- name: N gain lookup method
+  summary: 微分滤波器增益查找方法 Interpolation-Use End Values（默认）| Interpolation-Extrapolation | Use Input Nearest | Use Input Below
+    | Use Input Above
+  group: Gain Scheduling Tab
+- name: Saturate to max or min when overflows occur
+  summary: 溢出时的处理方式 off（默认）| on
+  group: Gain Scheduling Tab
+- name: 锁定输出数据类型设置以防止定点工具更改
+  summary: 防止定点工具覆盖输出数据类型 off（默认）| on
+  group: Gain Scheduling Tab
+- name: 整数舍入模式
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Gain Scheduling Tab
+- name: 输出信号配置
+  summary: 提供控制信号加扰动或仅扰动 control action + perturbation（默认）| perturbation only
+  group: 模块选项卡
+- name: 显示 Bode 图
+  summary: 绘制估计频率响应 off（默认）| on
+  group: 可视化选项卡
+- name: 基线被控对象模型
+  summary: Bode 图的基线模型 []（默认）| LTI 模型
+  group: 可视化选项卡
+- name: 显示增益曲面图
+  summary: 显示增益曲面图 off（默认）| on
+  group: 可视化选项卡
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -598,7 +784,6 @@ C=P[1+IFi(z)+D(N1+NFd(z))]。
 要在调节前绘制初始增益值，请选择 **Plot baseline gain array using gain initial conditions**。您在 **Gain scheduling** 选项卡上指定基线增益值。
 
 有关示例，请参阅 Tune and Validate Gain-Scheduled PID Autotuning Results。
-
 ## 所属库
 
 Simulink Control Design / Autotuning

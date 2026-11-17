@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Variable FIR Decimation
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: M
+  summary: 抽取因子输入端口 正整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: coeffs
+  summary: 原型滤波器系数 向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 抽取输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -93,8 +112,37 @@ H(z)=b0+b1z−1+...+bNz−N，
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Specification
+  summary: 指定控制抽取因子的模式 Decimation factor（默认）| Output frame length
+  group: ''
+- name: Maximum decimation factor
+  summary: 最大抽取因子 24（默认）| 正整数
+  group: ''
+- name: Specify decimation factor from input port
+  summary: 从输入端口指定抽取因子 on（默认）| off
+  group: ''
+- name: Decimation factor
+  summary: 抽取因子 24（默认）| 正整数
+  group: ''
+- name: Output frame length
+  summary: 输出帧长度 48（默认）| 正整数
+  group: ''
+- name: Numerator source
+  summary: FIR 滤波器系数来源 Auto（默认）| Dialog parameter | Input port
+  group: ''
+- name: Prototype filter numerator coefficients
+  summary: 原型低通 FIR 滤波器系数 designMultirateFIR(1,24)（默认）| 向量
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Specification** — 指定控制抽取因子的模式 `Decimation factor`（默认）| `Output frame length`
 
@@ -212,7 +260,6 @@ H(z)=b0+b1z−1+...+bNz−N，
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

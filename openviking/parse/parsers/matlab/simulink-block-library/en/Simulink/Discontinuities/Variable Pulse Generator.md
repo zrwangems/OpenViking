@@ -14,6 +14,21 @@ language: en
 # Variable Pulse Generator
 
 ## Ports
+```yaml
+ports:
+- name: D
+  summary: Duty Cycle scalar
+  direction: input
+  data_types: double
+- name: P
+  summary: Period scalar
+  direction: input
+  data_types: double
+- name: Port 1
+  summary: Modulated pulse signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -37,8 +52,19 @@ Modulated output pulse signal corresponding to input duty
 cycle.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Allow zero pulse width
+  summary: Allow zero magnitude of output signal off (default) | on
+  group: ''
+- name: Run at fixed time intervals
+  summary: Choose continuous or discrete-time behavior continuous (default) | discrete
+  group: ''
+- name: Sampling rate
+  summary: Set pulse resolution 0.1 (default) | scalar
+  group: ''
+```
 
 ### **Allow zero pulse width** — Allow zero magnitude of output signal off (default) | on
 
@@ -72,7 +98,6 @@ rate becomes the resolution of the output pulse signal.
 
 This parameter requires that **Sampling mode** is set to
 `discrete`
-
 ## Libraries
 
 Simulink / Discontinuities

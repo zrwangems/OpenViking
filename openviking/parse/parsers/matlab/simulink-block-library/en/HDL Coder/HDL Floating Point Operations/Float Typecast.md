@@ -14,6 +14,17 @@ language: en
 # Float Typecast
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(u)
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: singledouble | uint32 | fixed point
+- name: Port_1(y)
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | uint32 | fixed point
+```
 
 ### Input
 
@@ -29,11 +40,12 @@ Port to provide input to the block.
 Port to obtain calculated output from the block.
 
 **Data Types:** `single` | `double` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 HDL Coder / HDL Floating Point Operations

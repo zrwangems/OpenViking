@@ -14,6 +14,17 @@ language: en
 # Design Auditory Filter Bank
 
 ## Ports
+```yaml
+ports:
+- name: fb
+  summary: Filter bank column vector | matrix
+  direction: output
+  data_types: single | double
+- name: fvec
+  summary: Center frequencies row vector
+  direction: output
+  data_types: single | double
+```
 
 ### Output
 
@@ -52,8 +63,52 @@ To enable this port, select the **Output center
 frequencies** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Frequency scale
+  summary: Frequency scale of filter bank mel (default) | bark | erb
+  group: ''
+- name: Mel style
+  summary: Mel style oshaughnessy (default) | slaney
+  group: ''
+- name: FFT length
+  summary: Number of DFT points 1024 (default) | positive integer
+  group: ''
+- name: Design one-sided filter bank
+  summary: Design one-sided or two-sided filter bank on (default) | off
+  group: ''
+- name: Auto-determine number of bands
+  summary: Automatically determine number of bandpass filters on (default) | off
+  group: ''
+- name: Number of bands
+  summary: Number of bandpass filters 32 (default) | positive integer
+  group: ''
+- name: Auto-determine frequency range
+  summary: Automatically determine frequency range on (default) | off
+  group: ''
+- name: Frequency range (Hz)
+  summary: Frequency range over which to design auditory filter bank [0,22050] (default) | two-element row vector
+  group: ''
+- name: Filter bank design domain
+  summary: Domain to design filter bank linear (default) | warped
+  group: ''
+- name: Filter bank normalization
+  summary: Normalization technique for filter bank bandwidth (default) | area | none
+  group: ''
+- name: Output data type
+  summary: Data type of output double (default) | single
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate 44.1e3 (default) | positive scalar
+  group: ''
+- name: Visualize filter bank
+  summary: Open plot to visualize filter bank button
+  group: ''
+- name: Output center frequencies
+  summary: Specify additional output port for center frequencies off (default) | on
+  group: ''
+```
 
 ### **Frequency scale** — Frequency scale of filter bank `mel` (default) | `bark` | `erb`
 
@@ -179,7 +234,6 @@ Open plot to visualize the filters in the frequency domain.
 When you select this parameter, the block displays an additional output port,
 **fvec**. This port outputs the center frequencies of
 the bandpass filters.
-
 ## Libraries
 
 Audio Toolbox / Features

@@ -14,17 +14,24 @@ language: en
 # Mechanical Translational Reference
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Velocity is zero mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
 ### **V** — Velocity is zero mechanical translational
 
 Mechanical translational conserving port where velocity is equal to zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Translational Elements

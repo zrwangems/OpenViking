@@ -14,6 +14,21 @@ language: en
 # Centrifugal Effect Model
 
 ## Ports
+```yaml
+ports:
+- name: Xecef
+  summary: Planet-centered planet-fixed coordinates m-by-3 matrix
+  direction: input
+  data_types: double
+- name: ω
+  summary: Planetary rotation rate scalar
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: Gravity values m-by-3 array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -47,8 +62,32 @@ planet-centered planet-fixed coordinates, in input distance units per
 second squared.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Planet model
+  summary: Planetary model Earth (default) | Venus | Mercury | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Custom
+  group: ''
+  block_parameter: ptype
+  type: character vector
+  values: '''Mercury'' | ''Venus'' | ''Earth'' | ''Moon'' | ''Mars'' | ''Jupiter'' | ''Saturn'' | ''Uranus'' | ''Neptune''
+    | ''Custom'''
+  default: '''Earth'''
+- name: Planetary rotational rate (rad/sec)
+  summary: Planetary rotational rate 7.2921150e-05 (default) | scalar
+  group: ''
+  block_parameter: omega
+  type: character vector
+  values: '''7.2921150e-05'' | scalar'
+  default: '''7.2921150e-05'''
+- name: Input planetary rotation rate
+  summary: Planetary rotation rate port off (default) | on
+  group: ''
+  block_parameter: rate_loc
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Planet model** — Planetary model `Earth` (default) | `Venus` | `Mercury` | `Moon` | `Mars` | `Jupiter` | `Saturn` | `Uranus` | `Neptune` | `Custom`
 
@@ -118,7 +157,6 @@ parameter.
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Gravity

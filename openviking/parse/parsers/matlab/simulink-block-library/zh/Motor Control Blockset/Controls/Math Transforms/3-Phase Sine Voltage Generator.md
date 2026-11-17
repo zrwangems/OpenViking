@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # 3-Phase Sine Voltage Generator
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 参考电压幅值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: 参考电压位置标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Va
+  summary: 平衡三相电压的 *a* 轴分量标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Vb
+  summary: 平衡三相电压的 *b* 轴分量标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Vc
+  summary: 平衡三相电压的 *c* 轴分量标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -48,8 +71,16 @@ chinese_source: worker-translation
 平衡三相电压信号沿 *abc* 参考坐标系 *c* 轴的分量。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Theta units
+  summary: θe 的单位 Per-unit（默认）| Radians | Degrees
+  group: ''
+- name: Number of data points for lookup table
+  summary: 查找表的大小 1024（默认）| 标量
+  group: ''
+```
 
 ### **Theta units** — `θe` 的单位 `Per-unit`（默认）| `Radians` | `Degrees`
 
@@ -58,7 +89,6 @@ chinese_source: worker-translation
 ### **Number of data points for lookup table** — 查找表的大小 `1024`（默认）| 标量
 
 查找表的大小。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Math Transforms

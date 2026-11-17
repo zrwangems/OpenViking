@@ -14,6 +14,33 @@ language: en
 # Second-Order Integrator
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal u scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: x0
+  summary: Initial condition x0 scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: dx0
+  summary: Initial condition dx0 scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: External Reset
+  summary: Signal for resetting states to initial conditions scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: x
+  summary: Output signal x scalar | vector | matrix
+  direction: output
+  data_types: double
+- name: dx
+  summary: Output signal dx scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -77,8 +104,164 @@ parameter to `rising`,
 `dx` state output signal, specified as a scalar, vector, or matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition source x
+  summary: Source of initial condition for state *x* internal (default) | external
+  group: x
+  block_parameter: ICSourceX
+  type: character vector, string
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial condition x
+  summary: Initial condition of state *x* 0.0 (default) | scalar | vector | matrix
+  group: x
+  block_parameter: ICX
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''0.0'''
+- name: Limit x
+  summary: Limit values of state *x* off | on
+  group: x
+  block_parameter: LimitX
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'' (Second-Order Integrator) | ''on'' (Second-Order Integrator Limited)'
+- name: Upper limit x
+  summary: Upper limit of state *x* 1 | inf | scalar | vector | matrix
+  group: x
+  block_parameter: UpperLimitX
+  type: character vector, string
+  values: '''1'' | ''inf'' | scalar | vector | matrix'
+  default: '''1'' (Second-Order Integrator Limited) | ''inf'' (Second-Order Integrator)'
+- name: Lower limit x
+  summary: Lower limit of state *x* 0 (default) | -inf | scalar | vector | matrix
+  group: x
+  block_parameter: LowerLimitX
+  type: character vector, string
+  values: '''0'' | ''-inf'' | scalar | vector | matrix'
+  default: '''0'' (Second-Order Integrator Limited) | ''-inf'' (Second-Order Integrator)'
+- name: Wrap x
+  summary: Enable wrapping of x off (default) | on
+  group: x
+  block_parameter: WrapX
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Wrapped upper value x
+  summary: Upper value for wrapping x pi (default) | scalar | vector | matrix
+  group: x
+  block_parameter: WrappedUpperValueX
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''pi'''
+- name: Wrapped lower value x
+  summary: Lower value for wrapping x -pi (default) | scalar | vector | matrix
+  group: x
+  block_parameter: WrappedLowerValueX
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''-pi'''
+- name: Absolute tolerance x
+  summary: Absolute tolerance for computing state *x* auto (default) | -1 | scalar | vector
+  group: x
+  block_parameter: AbsoluteToleranceX
+  type: character vector, string
+  values: '''auto'' | ''-1'' | any positive real scalar or vector'
+  default: '''auto'''
+- name: State name x
+  summary: Name for state *x* '' (default) | character vector | string
+  group: x
+  block_parameter: StateNameX
+  type: character vector, string
+  values: ''' '' | user-defined'
+  default: ''' '''
+- name: Initial condition source dx/dt
+  summary: Source of initial condition for state *dx/dt* internal (default) | external
+  group: dx/dt
+  block_parameter: ICSourceDXDT
+  type: character vector
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial condition dx/dt
+  summary: Initial condition of state *dx/dt* 0.0 (default) | scalar | vector | matrix
+  group: dx/dt
+  block_parameter: ICDXDT
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''0.0'''
+- name: Limit dx/dt
+  summary: Limit values of state *dx/dt* off | on
+  group: dx/dt
+  block_parameter: LimitDXDT
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'' (Second-Order Integrator) | ''on'' (Second-Order Integrator Limited)'
+- name: Upper limit dx/dt
+  summary: Upper limit of state *dx/dt* inf (default) | scalar | vector | matrix
+  group: dx/dt
+  block_parameter: UpperLimitDXDT
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''inf'''
+- name: Lower limit dx/dt
+  summary: Lower limit of state *dx/dt* -inf (default) | scalar | vector | matrix
+  group: dx/dt
+  block_parameter: LowerLimitDXDT
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''-inf'''
+- name: Absolute tolerance dx/dt
+  summary: Absolute tolerance for computing state *dx/dt* auto (default) | -1 | scalar | vector
+  group: dx/dt
+  block_parameter: AbsoluteToleranceDXDT
+  type: character vector, string, scalar, or vector
+  values: '''auto'' | ''-1'' | any positive real scalar or vector'
+  default: '''auto'''
+- name: State name dx/dt
+  summary: Name for state *dx/dt* ' ' (default) | character vector | string
+  group: dx/dt
+  block_parameter: StateNameDXDT
+  type: character vector, string
+  values: ''' '' | user-defined'
+  default: ''' '''
+- name: External reset
+  summary: Reset states to their initial conditions none (default) | rising | falling | either
+  group: Attributes
+  block_parameter: ExternalReset
+  type: character vector, string
+  values: '''none'' | ''rising'' | ''falling'' | ''either'''
+  default: '''none'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: Attributes
+  block_parameter: ZeroCross
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Reinitialize dx/dt when x reaches saturation
+  summary: Reset *dx/dt* when *x* reaches saturation off (default) | on
+  group: Attributes
+  block_parameter: ReinitDXDTwhenXreachesSaturation
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Ignore state limits and the reset for linearization
+  summary: Ignore state limits and external reset for linearization off (default) | on
+  group: Attributes
+  block_parameter: IgnoreStateLimitsAndResetForLinearization
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show output
+  summary: Output ports to display both (default) | x | dxdt
+  group: Attributes
+  block_parameter: ShowOutput
+  type: character vector, string
+  values: '''both'' | ''x'' | ''dxdt'''
+  default: '''both'''
+```
 
 ### x
 
@@ -515,7 +698,6 @@ Specify the output ports on the block.
 | **Type:** character vector, string |
 | **Values:** `'both'` | `'x'` | `'dxdt'` |
 | **Default:** `'both'` |
-
 ## Libraries
 
 Simulink / Continuous

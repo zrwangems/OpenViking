@@ -14,6 +14,14 @@ language: en
 # In Bus Element
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Selected input from external port scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### Output
 
@@ -27,8 +35,107 @@ arrays of buses.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Port name
+  summary: Name of input port InBus (default) | port name
+  group: Block Label
+  block_parameter: PortName
+  values: '"InBus" (default) | port name in quotes'
+- name: Element
+  summary: Optional bus element specification signal1 (default) | element path
+  group: Block Label
+  block_parameter: Element
+  values: '"signal1" (default) | element path in quotes'
+- name: Port number
+  summary: Position of port on parent block 1 (default) | real integer
+  group: Port Tab
+  block_parameter: Port
+  values: '"1" (default) | real integer in quotes'
+- name: Data type
+  summary: 'Data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: Signal Tab
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto" (default) | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32"
+    | "int64" | "uint64" | "boolean" | "fixdt(1,16)" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "string" | "Enum: <class name>"
+    | "Bus: <object name>" | "ValueType: <object name>" | data type expression in quotes'
+- name: Bus virtuality
+  summary: Virtual or nonvirtual bus inherit (default) | virtual | nonvirtual
+  group: Signal Tab
+  block_parameter: BusVirtuality
+  values: '"inherit" (default) | "virtual" | "nonvirtual"'
+- name: Data mode
+  summary: Data mode of input element inherit (default) | signal | message
+  group: Signal Tab
+  block_parameter: DataMode
+  values: '"inherit" (default) | "signal" | "message"'
+- name: Dimensions
+  summary: Signal dimensions -1 (default) | integer | 1-by-2 vector of integers
+  group: Signal Tab
+  block_parameter: PortDimensions
+  values: '"-1" (default) | integer in quotes | 1-by-2 vector of integers in quotes'
+- name: Dimensions mode
+  summary: Option to allow only variable-size or fixed-size signals Inherit (default) | Fixed | Variable
+  group: Signal Tab
+  block_parameter: VarSizeSig
+  values: '"Inherit" (default) | "No" | "Yes"'
+- name: Unit
+  summary: Physical unit inherit (default) | unit supported by Simulink software
+  group: Signal Tab
+  block_parameter: Unit
+  values: '"inherit" (default) | unit supported by Simulink software in quotes'
+- name: Complexity
+  summary: Numeric type auto (default) | real | complex
+  group: Signal Tab
+  block_parameter: SignalType
+  values: '"auto" (default) | "real" | "complex"'
+- name: Minimum
+  summary: Minimum value [] (default) | scalar
+  group: Signal Tab
+  block_parameter: OutMin
+  values: '"[]" (default) | scalar in quotes'
+- name: Maximum
+  summary: Maximum value [] (default) | scalar
+  group: Signal Tab
+  block_parameter: OutMax
+  values: '"[]" (default) | scalar in quotes'
+- name: Description
+  summary: Description of bus, signal, or message no default
+  group: Signal Tab
+  block_parameter: Description
+  values: '"" (default) | description in quotes'
+- name: Sample time
+  summary: Sample time -1 (default) | scalar
+  group: Execution Tab
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar in quotes'
+- name: Events
+  summary: Option to trigger model partition based on flow of data into port cell array of event trigger objects
+  group: Execution Tab
+  block_parameter: EventTriggers
+  values: '[] (default) | 1-by-1 cell array | 2-by-1 cell array | 3-by-1 cell array'
+- name: Use default queue attributes
+  summary: Default or custom queue specifications on (default) | off
+  group: Queue Attributes
+  block_parameter: MessageQueueUseDefaultAttributes
+  values: '"on" (default) | "off"'
+- name: Queue capacity
+  summary: Message storage capacity 1 (default) | scalar
+  group: Queue Attributes
+  block_parameter: MessageQueueCapacity
+  values: '"1" (default) | scalar in quotes'
+- name: Queue type
+  summary: Choose FIFO or LIFO queue LIFO (default) | FIFO
+  group: Queue Attributes
+  block_parameter: MessageQueueType
+  values: '"LIFO" (default) | "FIFO"'
+- name: Queue overwriting
+  summary: Queue message overwriting policy on (default) | off
+  group: Queue Attributes
+  block_parameter: MessageQueueOverwriting
+  values: '"on" (default) | "off"'
+```
 
 To edit the element associated with an
 In Bus Element
@@ -770,7 +877,6 @@ separating each name in the hierarchy with a dot.
 | **Values:** | `"on"` (default) | `"off"` |
 
 **Example:** `set_param("mymodel/InBus.message1",MessageQueueOverwriting="off")`
-
 ## Libraries
 
 Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Ports & Subsystems HDL Coder / Sources

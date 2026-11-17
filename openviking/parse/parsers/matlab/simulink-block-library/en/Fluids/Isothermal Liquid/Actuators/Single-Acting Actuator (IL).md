@@ -14,6 +14,24 @@ language: en
 # Single-Acting Actuator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Multibody piston position input, m physical signal
+  direction: input
+- name: p
+  summary: Piston position, m physical signal
+  direction: output
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: C
+  summary: Actuator casing translational mechanical
+  direction: conserving
+- name: R
+  summary: Actuator piston translational mechanical
+  direction: conserving
+```
 
 ### Input
 
@@ -54,8 +72,126 @@ casing.
 
 Translational mechanical conserving port associated with the actuator
 piston.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Actuator
+- name: Piston cross-sectional area
+  summary: Cross-sectional area of piston rod 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston stroke
+  summary: Maximum piston travel distance 0.1m (default) | positive scalar
+  group: Actuator
+- name: Dead volume
+  summary: Fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Actuator
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Actuator
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+- name: Cylinder end cushioning
+  summary: Whether to model piston slow-down at maximum extension off (default) | on
+  group: Cushion
+- name: Cushion plunger cross-sectional area
+  summary: Cylinder cushion plunger area 1e-4 m^2 (default) | positive scalar
+  group: Cushion
+- name: Cushion plunger length
+  summary: Length of cushion plunger 1e-3 m (default) | positive scalar
+  group: Cushion
+- name: Cushion orifice area
+  summary: Area of orifice between cushion chambers 1e-6 m^2 (default) | positive scalar
+  group: Cushion
+- name: Leakage area between plunger and cushion sleeve
+  summary: Gap between cushion plunger and sleeve 1e-7 m^2 (default) | positive scalar
+  group: Cushion
+- name: Check valve cracking pressure differential
+  summary: Cushion threshold pressure 0.01 MPa (default) | positive scalar
+  group: Cushion
+- name: Check valve maximum pressure differential
+  summary: Cushion differential pressure maximum 0.1 MPa (default) | positive scalar
+  group: Cushion
+- name: Check valve maximum area
+  summary: Area of fully opened cushion valve 1e-4 m^2 (default) | positive scalar
+  group: Cushion
+- name: Check valve leakage area
+  summary: Cushion valve gap area in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Cushion
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar
+  group: Cushion
+- name: Cylinder friction
+  summary: Whether to model friction against piston motion off (default) | on
+  group: Friction
+- name: Breakaway to Coulomb friction force ratio
+  summary: Ratio of breakaway force to Coulomb friction force 1.2 (default) | positive scalar
+  group: Friction
+- name: Breakaway friction velocity
+  summary: Threshold for motion 0.1 m/s (default) | positive scalar
+  group: Friction
+- name: Preload force
+  summary: Initial force in cylinder due to seal assembly 20 N (default) | scalar
+  group: Friction
+- name: Coulomb friction force coefficient
+  summary: Coulomb friction force coefficient 1e-6 N/Pa (default) | positive scalar
+  group: Friction
+- name: Viscous friction coefficient
+  summary: Viscous friction coefficient 100 N*s/m (default) | positive scalar
+  group: Friction
+- name: Leakage
+  summary: Whether to model annular leakage off (default) | on
+  group: Leakage
+- name: Piston-cylinder clearance
+  summary: Radial clearance 1e-4 m (default) | positive scalar
+  group: Leakage
+- name: Piston head length
+  summary: Annular length of piston mounting 0.01 m (default) | positive scalar
+  group: Leakage
+- name: Piston displacement
+  summary: Method for determining piston position Calculate from velocity of port R relative to port C (default) | Provide
+    input signal from Multibody joint
+  group: Initial conditions
+- name: Initial piston displacement
+  summary: Piston position at start of simulation 0 m (default) | scalar
+  group: Initial conditions
+- name: Enable dynamic compressibility
+  summary: Whether to model fluid compressibility on (default) | off
+  group: Initial conditions
+- name: Initial liquid pressure
+  summary: Starting liquid pressure for compressible fluids 0.101325 MPa (default) | positive scalar
+  group: Initial conditions
+- name: Nominal liquid pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Initial conditions
+```
 
 ### Actuator
 
@@ -424,7 +560,6 @@ dynamic compressibility is disabled.
 
 To enable this parameter, clear the **Enable dynamic
 compressibility** checkbox.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Actuators

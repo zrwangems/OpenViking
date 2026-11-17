@@ -15,10 +15,54 @@ chinese_source: worker-translation
 # Memory Allocate
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Variable name
+  summary: 变量名称 myVariable（默认）| string | 字符向量
+  group: Memory
+- name: Specify variable alignment
+  summary: 变量对齐标志 off（默认）| on
+  group: Memory
+- name: Memory alignment boundary
+  summary: 变量的内存对齐 4（默认）| 1 | 2 | 8
+  group: Memory
+- name: Data type
+  summary: 变量的数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | boolean
+  group: Memory
+- name: Specify data type qualifier
+  summary: 数据类型限定符标志 off（默认）| on
+  group: Memory
+- name: Data type qualifier
+  summary: 变量的数据类型限定符 volatile（默认）| sting | 字符向量
+  group: Memory
+- name: Data dimension
+  summary: 变量数据类型的元素数 64（默认）| 正整数
+  group: Memory
+- name: Initialize memory
+  summary: 内存初始化标志 off（默认）| on
+  group: Memory
+- name: Initial value
+  summary: 变量的初始值 0（默认）| 标量 | 向量 | 矩阵
+  group: Memory
+- name: Specify memory section
+  summary: 内存段标志 off（默认）| on
+  group: Section
+- name: Memory section
+  summary: 变量的内存段 mySEC1（默认）| string | 字符向量
+  group: Section
+- name: Bind memory section
+  summary: 将内存段绑定到起始地址标志 off（默认）| on
+  group: Section
+- name: Section start address
+  summary: 变量的内存段起始地址 hex2dec('8000')（默认）| 十进制或十六进制形式的内存地址
+  group: Section
+```
 
 ### Memory
 
@@ -122,7 +166,6 @@ R2025b 中未记录。
 
 - 通过选择参数 **Bind memory section** 启用此参数。
 - 如果要将变量与现有内存段关联，请不要为此参数指定值。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Memory Operations

@@ -14,6 +14,15 @@ language: en
 # Rotational Inerter
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,14 +35,19 @@ body.
 
 Mechanical rotational conserving port associated with the case, that is, the
 stationary body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rotational inertance
+  summary: Proportionality coefficient between torque and rate of change of relative velocity across ports 1 kg*m^2 (default)
+    | scalar
+  group: ''
+```
 
 ### **Rotational inertance** — Proportionality coefficient between torque and rate of change of relative velocity across ports `1 kg*m^2` (default) | scalar
 
 Proportionality coefficient between the torque and the rate of change of the
 relative angular velocity across the ports.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

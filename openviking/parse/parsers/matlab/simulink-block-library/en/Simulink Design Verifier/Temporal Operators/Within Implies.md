@@ -14,16 +14,23 @@ language: en
 # Within Implies
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: External reset
+  summary: specify whether the block can be reset off (default) | on
+  group: ''
+```
 
 ### **External reset** — specify whether the block can be reset off (default) | on
 
 Specify whether the block observation of `Obs` can be
 reset by an external Boolean reset signal.
-
 ## Libraries
 
 Simulink Design Verifier / Temporal Operators

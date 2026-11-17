@@ -14,6 +14,36 @@ language: en
 # Range Doppler Response
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input complex-valued *K*-by-*L* matrix | *K*-by-*N*-by-*L* array
+  direction: input
+  data_types: single | double
+- name: Coeff
+  summary: Matched filter coefficients column vector
+  direction: input
+  data_types: single | double
+- name: XRef
+  summary: Reference signal vector
+  direction: input
+  data_types: double
+- name: PRF
+  summary: Pulse repetition frequency positive scalar
+  direction: input
+  data_types: double
+- name: Resp
+  summary: Range-Doppler response complex
+  direction: output
+- name: Range
+  summary: Range samples vector
+  direction: output
+  data_types: double
+- name: Dop
+  summary: Doppler or speed samples vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -98,8 +128,80 @@ returned as a column vector of length *P*. Whether
 on the **Doppler output** parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement mode
+  summary: Measurement mode Monostatic (default) | Bistatic
+  group: ''
+- name: Range processing method
+  summary: Range processing method Matched filter (default) | FFT
+  group: ''
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Reference range (m)
+  summary: Reference range 0 (default)
+  group: ''
+- name: Source of pulse repetition frequency
+  summary: Source of pulse repetition frequency Auto (default) | Property | Input port
+  group: ''
+- name: Pulse repetition frequency of the input signal (Hz)
+  summary: Pulse repetition frequency of the input signal 10e3 (default)
+  group: ''
+- name: Source of FFT length in Doppler processing
+  summary: Source of FFT length in Doppler processing Auto (default) | Property
+  group: ''
+- name: FFT length in Doppler processing
+  summary: FFT length in Doppler processing 1024
+  group: ''
+- name: Doppler processing window
+  summary: Doppler processing window None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor
+  group: ''
+- name: Doppler sidelobe attenuation level
+  summary: Doppler sidelobe attenuation level 30 (default)
+  group: ''
+- name: Doppler output
+  summary: Doppler output Frequency (default) | Range rate | Speed
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: Signal carrier frequency 3e8 (default) | positive scalar
+  group: ''
+- name: FM sweep slope (Hz/s)
+  summary: FM sweep slope 1e9 (default)
+  group: ''
+- name: Dechirp input signal
+  summary: Dechirp input signal off (default) | on
+  group: ''
+- name: Source of FFT length in range processing
+  summary: Source of FFT length in range processing Auto (default) | Property
+  group: ''
+- name: FFT length in range processing
+  summary: FFT length in range processing 1024 (default)
+  group: ''
+- name: Range processing window
+  summary: Range processing window None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor
+  group: ''
+- name: Set reference range at center
+  summary: Set reference range at center on (default) | off
+  group: ''
+- name: Range sidelobe attenuation level
+  summary: Range sidelobe attenuation level 30 (default)
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Measurement mode** — Measurement mode `Monostatic` (default) | `Bistatic`
 
@@ -408,7 +510,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

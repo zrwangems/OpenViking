@@ -14,6 +14,17 @@ language: en
 # Hammerstein-Wiener Model
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: Simulation input data scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1(Out1)
+  summary: Simulated output scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -42,8 +53,16 @@ for a single-output model and as an *Ny*-element vector
 for a model with *Ny* outputs.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Model
+  summary: Hammerstein-Wiener model to be simulated idnlhw object
+  group: ''
+- name: Initial conditions
+  summary: Initial condition specification for simulation Zero (default) | State values
+  group: ''
+```
 
 ### **Model** — Hammerstein-Wiener model to be simulated `idnlhw` object
 
@@ -97,7 +116,6 @@ following:
     ```
     X0 = findstates(M,z)
     ```
-
 ## Libraries
 
 System Identification Toolbox / Models

@@ -14,6 +14,40 @@ language: en
 # Pulsating High Freq Observer
 
 ## Ports
+```yaml
+ports:
+- name: Iab hf
+  summary: PHF current response vector
+  direction: input
+  data_types: single | double | fixed point
+- name: Enable
+  summary: Input to trigger block operation scalar
+  direction: input
+  data_types: Boolean
+- name: θin
+  summary: Initial rotor position scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: IPEEn
+  summary: Enable stage 1 initial position estimation (IPE) operation scalar
+  direction: input
+  data_types: Boolean
+- name: Vαβ hf
+  summary: PHF output scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: θest
+  summary: Estimated rotor position scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: PosEn
+  summary: Status of *θest* port scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Info
+  summary: Bus signal bus
+  direction: output
+```
 
 ### Input
 
@@ -104,8 +138,94 @@ The bus signal contains these block calculations.
 | 3 | Block is running the DP method (stage 1 part C) | - |
 | 4 | Block has successfully completed stage 1 and has started stage 2 closed-loop PHF injection | - |
 | 5 | Stage 1 part B failed due to a large error in the estimated rotor position | - |
-
 ## Parameters
+```yaml
+parameters:
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: ''
+- name: Input units
+  summary: Unit of block inputs Per-unit (default) | SI
+  group: ''
+- name: Datatype
+  summary: Input and output data type single (default) | double | fixed point
+  group: ''
+- name: Compute PHF parameters automatically using motor parameters
+  summary: Automatically compute PHF parameters off (default) | on
+  group: ''
+- name: Compute DP parameters automatically using motor parameters
+  summary: Automatically compute DP parameters off (default) | on
+  group: ''
+- name: Stator resistance (ohm)
+  summary: Motor resistance 0.1458 (default) | scalar
+  group: Motor Parameters
+- name: Stator d-axis inductance (H)
+  summary: Motor inductance 0.00013016 (default) | scalar
+  group: Motor Parameters
+- name: Stator q-axis inductance (H)
+  summary: Motor inductance 0.00014098 (default) | scalar
+  group: Motor Parameters
+- name: Base voltage (V)
+  summary: Rated voltage 13.8564 (default) | scalar
+  group: Motor Parameters
+- name: Base current (A)
+  summary: Rated current 21.4286 (default) | scalar
+  group: Motor Parameters
+- name: Compute PHF parameters
+  summary: Compute PHF parameters manually button
+  group: Motor Parameters
+- name: Compute DP parameters
+  summary: Compute DP parameters manually button
+  group: Motor Parameters
+- name: PHF peak voltage (PU)
+  summary: Peak voltage of PHF 0.2 (default) | scalar
+  group: PHF Parameters
+- name: PHF frequency (Hz)
+  summary: PHF voltage frequency 2000 (default) | scalar
+  group: PHF Parameters
+- name: LP filter cutoff frequency (Hz)
+  summary: Cutoff frequency for lowpass filter of PHF 131.9037 (default) | scalar
+  group: PHF Parameters
+- name: Select tuning parameters
+  summary: Select control parameters for manual tuning Controller gains (default) | Time response variables
+  group: PHF Parameters
+- name: Proportional gain
+  summary: Proportional gain for PI controller of PHF 1954.6647 (default) | scalar
+  group: PHF Parameters
+- name: Integral gain
+  summary: Integral gain for PI controller of PHF 7392.5303 (default) | scalar
+  group: PHF Parameters
+- name: Expected settling time (s)
+  summary: Expected settling time of estimated position 0.66794 (default) | scalar
+  group: PHF Parameters
+- name: Expected damping ratio
+  summary: Expected damping ratio of block output *θest* 0.99 (default) | scalar
+  group: PHF Parameters
+- name: Compute Control Parameters
+  summary: Compute disabled control parameters button
+  group: PHF Parameters
+- name: Open loop duration (s)
+  summary: Duration of open-loop PHF injection during stage 1 part A 0.0066794 (default) | scalar
+  group: PHF Parameters
+- name: Closed loop duration (s)
+  summary: Duration of closed-loop PHF injection during stage 1 part B 0.66794 (default) | scalar
+  group: PHF Parameters
+- name: Idle time (s)
+  summary: Duration between algorithm steps 0.0066794 (default) | scalar
+  group: PHF Parameters
+- name: Error threshold (rad)
+  summary: Minimum error threshold for *θerr* 4e-4 (default) | scalar
+  group: PHF Parameters
+- name: Pulse voltage (PU)
+  summary: Amplitude of injected pulses 0.5 (default) | scalar
+  group: DP Parameters
+- name: Pulse duration (s)
+  summary: Duration of injected pulses 0.00066955 (default) | scalar
+  group: DP Parameters
+- name: Idle time (s)
+  summary: Duration between two pulses during dual-pulse injection 50e-3 (default) | scalar
+  group: DP Parameters
+```
 
 ### **Discrete step size (s)** — Sample time after which block executes again `50e-6` (default) | scalar
 
@@ -362,7 +482,6 @@ Duration of the injected pulses, in seconds.
 
 Duration (in seconds) between two pulses during the dual-pulse injection (stage 1
 part C).
-
 ## Libraries
 
 Motor Control Blockset / Sensorless Estimators

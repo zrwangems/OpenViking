@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # PID Gains Store and Update
 
 ## 端口
+```yaml
+ports:
+- name: tuned Gains
+  summary: 整定后的 PID 增益总线
+  direction: input
+- name: scheduling Variable
+  summary: 调度变量标量
+  direction: input
+- name: Breakpoints
+  summary: 断点数据向量
+  direction: input
+- name: Update Trigger
+  summary: 触发控制信号标量
+  direction: input
+- name: PID Gains Out
+  summary: PID 增益数组总线
+  direction: output
+```
 
 ### 输入
 
@@ -59,8 +77,142 @@ chinese_source: worker-translation
 使用此端口可指定自定义逻辑来路由增益数组。
 
 要启用此端口，请将 **Method of storing gains** 设置为 `Output from block`。
-
 ## 参数
+```yaml
+parameters:
+- name: Controller type
+  summary: PID 控制器类型 P（默认）| I | PI | PD | PDN | PID | PIDN
+  group: ''
+  block_parameter: ControllerType
+  type: string
+  values: '"P" | "I" | "PI" | "PD" | "PDN" | "PID" | "PIDN"'
+  default: '"PID"'
+- name: Use for gain scheduling
+  summary: 启用模块以进行增益调度 on（默认）| off
+  group: ''
+  block_parameter: UseGainScheduling
+  type: string
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Save breakpoints in gain array
+  summary: 将断点与 PID 增益一起保存 off（默认）| on
+  group: ''
+  block_parameter: SaveBreakpoints
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Breakpoints
+  summary: 增益调度断点 [1 2 3]（默认）| 向量
+  group: ''
+  block_parameter: NumBreakpoints
+  type: vector
+  values: vector of at least two elements
+  default: '"[1 2 3]"'
+- name: Number of breakpoints
+  summary: 断点数量 3（默认）| 正标量
+  group: ''
+  block_parameter: NumBreakpoints
+  type: 标量
+  values: 正标量
+  default: '3'
+- name: Use external signal
+  summary: 从输入端口指定断点 off（默认）| on
+  group: ''
+  block_parameter: UseExternalBreakpoints
+  type: 字符串
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Gain index tolerance
+  summary: 增益索引容差 1e-3（默认）| 非负标量
+  group: ''
+  block_parameter: GainIndexTolerance
+  type: 标量
+  values: 非负标量
+  default: 1e-3
+- name: Method of storing gains
+  summary: 增益存储方法 Data store memory（默认）| Goto/from | Output from block
+  group: ''
+  block_parameter: TriggerUpdateMethod
+  type: 字符串
+  values: '"Data store memory" | "Goto/from" | "Output from block"'
+  default: '"Data store memory"'
+- name: P Gain Parameter Name
+  summary: 比例增益数据名称 PGain（默认）| 字符串
+  group: ''
+  block_parameter: StoreGainsPParamName
+  type: 字符串
+  default: '"PGain"'
+- name: P Gain initial conditions
+  summary: 比例增益初始值 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: PGainInitialConditions
+  type: scalar | vector
+  default: '0'
+- name: I Gain Parameter Name
+  summary: 积分增益数据名称 IGain（默认）| string
+  group: ''
+  block_parameter: StoreGainsIParamName
+  type: string
+  default: '"IGain"'
+- name: I Gain initial conditions
+  summary: 积分增益初始值 0（默认）| scalar | vector
+  group: ''
+  block_parameter: IGainInitialConditions
+  type: scalar | vector
+  default: '0'
+- name: D Gain Parameter Name
+  summary: 微分增益数据名称 DGain（默认）| string
+  group: ''
+  block_parameter: StoreGainsDParamName
+  type: string
+  default: '"DGain"'
+- name: D Gain initial conditions
+  summary: 微分增益初始值 0（默认）| scalar | vector
+  group: ''
+  block_parameter: DGainInitialConditions
+  type: scalar | vector
+  default: '0'
+- name: N Gain Parameter Name
+  summary: 滤波器增益数据名称 NGain（默认）| string
+  group: ''
+  block_parameter: StoreGainsNParamName
+  type: string
+  default: '"NGain"'
+- name: N Gain initial conditions
+  summary: 滤波器增益初始值 100（默认）| scalar | vector
+  group: ''
+  block_parameter: NGainInitialConditions
+  type: scalar | vector
+  default: '100'
+- name: 触发增益更新的方法
+  summary: 更新触发方法 检测 PID 增益变化（默认）| 外部触发
+  group: ''
+  block_parameter: TriggerUpdateMethod
+  type: string
+  values: '"Detect change in PID gains" | "External trigger"'
+  default: '"Detect change in PID gains"'
+- name: 延迟更新的采样数
+  summary: 延迟更新的采样数 1（默认）| 非负标量
+  group: ''
+  block_parameter: NumUpdateDelays
+  type: scalar
+  values: 非负标量
+  default: '1'
+- name: 采样时间（-1 表示继承）
+  summary: 采样时间 -1（默认）| 正标量
+  group: ''
+  block_parameter: SampleTime
+  type: scalar
+  values: 正标量 | –1
+  default: –1
+- name: 数据类型
+  summary: 浮点精度 Double（默认）| Single
+  group: ''
+  block_parameter: BlockDataType
+  type: string
+  values: '"Double" | "Single"'
+  default: '"Double"'
+```
 
 ### **Controller type** — PID 控制器类型 `P`（默认）| `I` | `PI` | `PD` | `PDN` | `PID` | `PIDN`
 
@@ -419,7 +571,6 @@ chinese_source: worker-translation
 | **类型：** string |
 | **值：** `"Double"` | `"Single"` |
 | **默认值：** `"Double"` |
-
 ## 所属库
 
 Simulink Control Design / Autotuning

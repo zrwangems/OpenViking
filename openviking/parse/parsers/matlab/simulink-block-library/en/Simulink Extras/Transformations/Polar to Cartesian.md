@@ -14,6 +14,25 @@ language: en
 # Polar to Cartesian
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: '*r* polar coordinate input scalar'
+  direction: input
+  data_types: single | double
+- name: Port_2
+  summary: '*theta* polar coordinate input scalar'
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: '*x* coordinate output scalar'
+  direction: output
+  data_types: single | double
+- name: Port_2
+  summary: '*y* Cartesian coordinate output scalar'
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -47,11 +66,12 @@ Output signal specifying the *y* value in the
 Cartesian coordinates *(x,y)*.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Extras / Transformations

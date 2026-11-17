@@ -14,6 +14,17 @@ language: en
 # Multiband Parametric EQ
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Audio input to equalizer matrix | vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Audio output from equalizer matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -36,8 +47,130 @@ a matrix, the block returns the output with the same size as matrix input. If yo
 specify the input as a vector then the output is N-by-1 matrix.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: EQ order
+  summary: Order of individual equalizer bands 2 (default) | even positive integer
+  group: Main
+- name: Number of bands
+  summary: Number of equalizer bands 3 (default) | integer in the range [1,10]
+  group: Main
+- name: Specify frequencies from input port
+  summary: Specify frequencies from input port off (default) | on
+  group: Main
+- name: Frequencies (Hz)
+  summary: Center frequencies of equalizer bands [100,181,325] (default) | row vector of length equal to Number of bands
+  group: Main
+- name: Specify peak gains from input port
+  summary: Specify peak gains from input port off (default) | on
+  group: Main
+- name: Peak Gains (dB)
+  summary: Peak or dip filter gains [0,0,0] (default) | row vector of length equal to Number of bands
+  group: Main
+- name: Specify quality factors from input port
+  summary: Specify quality factors from input port off (default) | on
+  group: Main
+- name: Quality factors
+  summary: Quality factors of equalizer bands [1.6,1.6,1.6] (default) | row vector
+  group: Main
+- name: Inherit sample rate from input
+  summary: Specify sample rate from input port off (default) | on
+  group: Main
+- name: Input sample rate (Hz)
+  summary: Input sample rate 44100 (default) | positive scalar
+  group: Main
+- name: Visualize filter response
+  summary: Visualize magnitude response of equalizer button
+  group: Main
+- name: Variable name
+  summary: Variable name of exported filter myFilt (default) | valid variable name
+  group: Main
+- name: Overwrite variable if it already exists
+  summary: Overwrite variable if it already exists on (default) | off
+  group: Main
+- name: Export filter to workspace
+  summary: Export filter to workspace button
+  group: Main
+- name: Add low-shelf filter
+  summary: Add low-shelf filter to equalizer off (default) | on
+  group: Advanced
+- name: Specify low-shelf cutoff from input port
+  summary: Specify low-shelf cutoff frequency from input port off (default) | on
+  group: Advanced
+- name: Low-shelf cutoff frequency (Hz)
+  summary: Low-shelf cutoff frequency 200 (default) | scalar
+  group: Advanced
+- name: Specify low-shelf slope from input port
+  summary: Specify low-shelf slope off (default) | on
+  group: Advanced
+- name: Low-shelf filter slope
+  summary: Low-shelf slope 1.5 (default) | positive scalar
+  group: Advanced
+- name: Specify low-shelf gain from input port
+  summary: Specify low-shelf gain from input port off (default) | on
+  group: Advanced
+- name: Low-shelf filter gain (dB)
+  summary: Low-shelf gain 0 (default) | real scalar
+  group: Advanced
+- name: Add high-shelf filter
+  summary: Add high-shelf filter to equalizer off (default) | on
+  group: Advanced
+- name: Specify high-shelf cutoff from input port
+  summary: Specify high-shelf cutoff frequency from input port off (default) | on
+  group: Advanced
+- name: High-shelf cutoff frequency (Hz)
+  summary: High-shelf cutoff frequency 15e3 (default) | scalar
+  group: Advanced
+- name: Specify high-shelf slope from input port
+  summary: Specify high-shelf slope from input port off (default) | on
+  group: Advanced
+- name: High-shelf filter slope
+  summary: High-shelf slope 1.5 (default) | positive scalar
+  group: Advanced
+- name: Specify high-shelf gain from input port
+  summary: Specify high-shelf gain from input port off (default) | on
+  group: Advanced
+- name: High-shelf filter gain (dB)
+  summary: High-shelf gain 0 (default) | real scalar
+  group: Advanced
+- name: Add lowpass filter
+  summary: Add lowpass filter to equalizer off (default) | on
+  group: Advanced
+- name: Specify lowpass cutoff from input port
+  summary: Specify lowpass cutoff frequency from input port off (default) | on
+  group: Advanced
+- name: Lowpass cutoff frequency (Hz)
+  summary: Lowpass cutoff frequency 18e3 (default) | scalar
+  group: Advanced
+- name: Specify lowpass slope from input port
+  summary: Specify lowpass slope from input port off (default) | on
+  group: Advanced
+- name: Lowpass filter slope
+  summary: Lowpass slope 12 (default) | real scalar in the range [0:6:48]
+  group: Advanced
+- name: Add highpass filter
+  summary: Add highpass filter to equalizer off (default) | on
+  group: Advanced
+- name: Specify highpass cutoff from input port
+  summary: Specify highpass cutoff frequency from input port off (default) | on
+  group: Advanced
+- name: Highpass cutoff frequency (Hz)
+  summary: Highpass cutoff frequency 20 (default) | nonnegative real scalar
+  group: Advanced
+- name: Specify highpass slope from input port
+  summary: Specify highpass slope from input port off (default) | on
+  group: Advanced
+- name: Highpass filter slope
+  summary: Highpass slope 30 (default) | real scalar in the range [0:6:48]
+  group: Advanced
+- name: Oversample
+  summary: Oversample toggle off (default) | on
+  group: Advanced
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: Advanced
+```
 
 ### Main
 
@@ -432,7 +565,6 @@ Type of simulation to run, specified as one of the following:
   `Interpreted execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Audio Toolbox / Filters

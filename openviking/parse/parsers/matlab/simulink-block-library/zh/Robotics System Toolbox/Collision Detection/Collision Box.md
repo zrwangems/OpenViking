@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Collision Box
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 沿 *x* 轴的盒几何体长度 标量
+  direction: input
+- name: Y
+  summary: 沿 *y* 轴的盒几何体长度 标量
+  direction: input
+- name: Z
+  summary: 沿 *z* 轴的盒几何体长度 标量
+  direction: input
+- name: Pose
+  summary: 碰撞几何体的位姿 矩阵
+  direction: input
+- name: CollGeom
+  summary: 碰撞几何体 总线
+  direction: output
+- name: ExitFlag
+  summary: 碰撞盒尺寸的有效性 标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输入
 
@@ -63,8 +85,16 @@ chinese_source: worker-translation
 要在运行时验证维度，请选择 **Enable Runtime Input Dimensions Error** 参数。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable Runtime Input Dimensions Error
+  summary: 碰撞盒尺寸的验证 on（默认）| off
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -78,7 +108,6 @@ chinese_source: worker-translation
 
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，该模块会在后续仿真中重用该 C 代码。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Robotics System Toolbox / Collision Detection

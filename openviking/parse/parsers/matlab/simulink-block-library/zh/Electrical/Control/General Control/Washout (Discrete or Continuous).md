@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Washout (Discrete or Continuous)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: Washout 输入向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Washout 输出向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ Washout 输入信号。该模块使用输入初始值来确定状态初始值。
 Washout 输出信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Time constant
+  summary: Washout 时间常数 0.1（默认）| 正数
+  group: ''
+- name: Initialization
+  summary: 初始状态指定 Inherited from block input（默认）| Specify as parameter
+  group: ''
+- name: Initial state
+  summary: 初始状态 0（默认）| 实数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Time constant** — Washout 时间常数 `0.1`（默认）| 正数
 
@@ -56,7 +81,6 @@ Washout 时间常数。将此值设置为小于 **Sample time** 以绕过滤波�
 对于继承的离散时间操作，将此参数设置为 `-1`。对于离散时间操作，将此参数设置为正整数。对于连续时间操作，将此参数设置为 `0`。
 
 如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续和离散实现之间正确切换。有关详细信息，请参阅提升掩码上的模块参数。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

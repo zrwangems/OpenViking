@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Density Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 密度 标量 | 数组
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 密度 标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -38,8 +49,24 @@ chinese_source: worker-translation
 输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial unit
+  summary: 输入单位 lbm/ft^3（默认）| kg/m^3 | slug/ft^3 | lbm/in^3
+  group: ''
+  block_parameter: IU
+  type: 字符向量
+  values: '''lbm/ft^3'' | ''kg/m^3'' | ''slug/ft^3'' | ''lbm/in^3'''
+  default: '''lbm/ft^3'''
+- name: Final unit
+  summary: 输出单位 kg/m^3（默认）| lbm/ft^3 | slug/ft^3 | lbm/in^3
+  group: ''
+  block_parameter: OU
+  type: 字符向量
+  values: '''lbm/ft^3'' | ''kg/m^3'' | ''slug/ft^3'' | ''lbm/in^3'''
+  default: '''kg/m^3'''
+```
 
 ### **Initial unit** — 输入单位 `lbm/ft^3`（默认）| `kg/m^3` | `slug/ft^3` | `lbm/in^3`
 
@@ -88,7 +115,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'lbm/ft^3'` | `'kg/m^3'` | `'slug/ft^3'` | `'lbm/in^3'` |
 | **默认值**：`'kg/m^3'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Unit Conversions

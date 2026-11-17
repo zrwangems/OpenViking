@@ -14,6 +14,45 @@ language: en
 # Convolutional Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data bits scalar
+  direction: input
+  data_types: Boolean | fixed point
+- name: valid
+  summary: Validity of input data scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: ISt
+  summary: Initial state at every start of frame scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: data
+  summary: Encoded output data column vector
+  direction: output
+  data_types: Boolean
+- name: valid
+  summary: Validity of output samples scalar
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: FSt
+  summary: Final state of frame at every frame end scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -150,8 +189,31 @@ To enable this port, set the **Operation mode** parameter to
 output port** parameter.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Constraint length
+  summary: Constraint length of block 7 (default) | integer in the range [3, 9]
+  group: Main
+- name: Code generator
+  summary: Code generation polynomial [171 133] (default) | vector of octal values
+  group: Main
+- name: Feedback connection
+  summary: Feedback connection polynomial 0 (default) | scalar octal number
+  group: Main
+- name: Operation mode
+  summary: Mode of operation Continuous (default) | Terminated | Truncated
+  group: Main
+- name: Enable reset input port
+  summary: Reset input signal off (default) | on
+  group: Control Ports
+- name: Enable initial state input port
+  summary: Initial state input signal Off (default) | On
+  group: Control Ports
+- name: Enable final state output port
+  summary: Final state output signal Off (default) | On
+  group: Control Ports
+```
 
 ### Main
 
@@ -227,7 +289,6 @@ Select this parameter to enable the **FSt** port.
 
 To enable this parameter, set the **Operation mode** parameter
 to `Truncated`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

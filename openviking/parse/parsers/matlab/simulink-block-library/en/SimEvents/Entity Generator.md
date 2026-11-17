@@ -14,6 +14,36 @@ language: en
 # Entity Generator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input to trigger entity generation upon arrival of events scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_2
+  summary: Input for the signal that determines the intergeneration time value for the next entity generation scalar | vector
+    | matrix
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output generated entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: Number of entities that have departed the block scalar
+  direction: output
+  data_types: double
+- name: Port_pe
+  summary: Pending entity in block off (default) | on
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: Average intergeneration time off (default) | on
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -80,8 +110,115 @@ Outputs the average time between generation of entities.
 To enable this port, select the **Statistics** > **Average intergeneration time, w**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Generation method
+  summary: Select the method of entity generation Time-based (default) | Event-based
+  group: ''
+  block_parameter: GenerationMethod
+  type: character vector
+  values: '''Time-based'' | ''Event-based'''
+  default: '''Time-based'''
+- name: Time source
+  summary: Select the source of the intergeneration time Dialog (default) | Signal port | MATLAB action
+  group: ''
+  block_parameter: TimeSource
+  type: character vector
+  values: '''Dialog'' | ''Signal port'' | ''MATLAB action'''
+  default: '''Dialog'''
+- name: Period
+  summary: Define the period between the generation of entities 1 (default) | scalar
+  group: ''
+  block_parameter: Period
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Intergeneration time action
+  summary: Specify the time between entity generations dt = rand(1,1) (default) | MATLAB code
+  group: ''
+  block_parameter: IntergenerationTimeAction
+  type: character vector
+  values: MATLAB code
+  default: '''dt = rand(1,1);'''
+- name: Generate entity at simulation start
+  summary: Generate an entity at the start of the simulation on (default) | off
+  group: ''
+  block_parameter: GenerateEntityAtSimulationStart
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Entity type
+  summary: Choose the type of entity to generate Structured (default) | Anonymous | Bus object
+  group: ''
+  block_parameter: EntityType
+  type: character vector
+  values: '''Structured'' | ''Anonymous'' | ''Bus object'''
+  default: '''Structured'''
+- name: Entity priority
+  summary: Specify the priority of the generated entity 300 (default) | scalar
+  group: ''
+  block_parameter: EntityPriority
+  type: character vector
+  values: '''300'' | scalar'
+  default: '''300'''
+- name: Entity type name
+  summary: Specify the name of the generated entity Entity (default) | character vector
+  group: ''
+  block_parameter: EntityTypeName
+  type: character vector
+  values: '''Entity'' | character vector'
+  default: '''Entity'''
+- name: Data initial value
+  summary: Specify the initial value of anonymous entity data 0 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: DataInitialValue
+  type: character vector
+  values: '''0'' | scalar | vector | matrix'
+  default: '''0'''
+- name: Attribute Name
+  summary: Define the name of the generated entity attribute Attribute1 (default) | character vector
+  group: ''
+  block_parameter: AttributeName
+  type: character vector
+  values: '''Attribute1'' | character vector'
+  default: '''Attribute1'''
+- name: Attribute Initial Value
+  summary: Define the generated entity attribute initial value 1 (default) | scalar
+  group: ''
+  block_parameter: AttributeInitialValue
+  type: character vector
+  values: 1 | scalar
+  default: '''1'''
+- name: Event actions
+  summary: Specify the behavior of the entity on certain events Generate (default) | Exit
+  group: ''
+  block_parameter: GenerateAction, ExitAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities departed, d
+  summary: Outputs the number of entities that have departed the block off (default) | on
+  group: ''
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Pending entity present in block, pe
+  summary: Pending entities off (default) | on
+  group: ''
+  block_parameter: PendingEntityInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average intergeneration time, w
+  summary: Average time between generation of entities off (default) | on
+  group: ''
+  block_parameter: AverageIntergenerationTime
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Generation method** — Select the method of entity generation `Time-based` (default) | `Event-based`
 
@@ -388,7 +525,6 @@ time to the total number of generated entities.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

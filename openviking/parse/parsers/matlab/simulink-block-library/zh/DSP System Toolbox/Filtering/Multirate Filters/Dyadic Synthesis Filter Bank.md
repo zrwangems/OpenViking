@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Dyadic Synthesis Filter Bank
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 数据输入 列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output 1
+  summary: 重构信号 列向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -80,8 +91,36 @@ Dyadic Analysis Filter Bank 模块的任何输出，只要其参数设置与此�
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter
+  summary: 滤波器组中使用的滤波器类型 User-defined（默认）| Haar | Daubechies | Symlets | Coiflets | Biorthogonal | Reverse Biorthogonal |
+    Discrete Meyer
+  group: ''
+- name: Filter order [synthesis / analysis]
+  summary: 合成滤波器级的小波阶数 [1 / 1]（默认）| [1 / 3] | [1 / 5] | [2 / 2] | [2 / 4] | [2 / 6] | [2 / 8] | [3 / 1] | [3 / 3] | [3 / 5]
+    | [3 / 7] | [3 / 9] | [4 / 4] | [5 / 5] | [6 / 8]
+  group: ''
+- name: Wavelet order
+  summary: 小波阶数 2（默认）| 正整数
+  group: ''
+- name: Lowpass FIR filter coefficients
+  summary: 低通 FIR 滤波器系数 [0.3327 0.8069 0.4599 -0.1350 -0.0854 0.0352]（默认）
+  group: ''
+- name: Highpass FIR filter coefficients
+  summary: 高通 FIR 滤波器系数 [0.0352 0.0854 -0.1350 -0.4599 0.8069 -0.3327]（默认）
+  group: ''
+- name: Number of levels
+  summary: 滤波器组级数 2（默认）| 正整数
+  group: ''
+- name: Tree structure
+  summary: 滤波器组结构 Asymmetric（默认）| Symmetric
+  group: ''
+- name: Input
+  summary: 输入 Multiple ports（默认）| Single port
+  group: ''
+```
 
 模块对话框中显示的参数因 **Filter** 参数的设置而异。下面描述的参数中只有一部分在任何时候都可见于对话框中。
 
@@ -163,7 +202,6 @@ Dyadic Analysis Filter Bank 模块的任何输出，只要其参数设置与此�
 此参数的默认设置为：Dyadic Synthesis Filter Bank 模块为 `Multiple ports`，IDWT 模块为 `Single port`。
 
 当您将 **Input** 参数设置为 `Multiple ports` 时，必须通过不同的输入端口将每个子带以向量或矩阵的形式提供给模块。您应该通过最顶部的端口输入最高频带。当您将 **Input** 参数设置为 `Single port` 时，模块输入必须是拼接子带的向量或矩阵。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

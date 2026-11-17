@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Sine Wave
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 正弦信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输出
 
@@ -28,8 +35,61 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Amplitude
+  summary: 正弦波的幅度 1（默认）| 标量 | 向量
+  group: 主要
+- name: Frequency (Hz)
+  summary: 每个正弦波的频率 100（默认）| 标量 | 向量
+  group: 主要
+- name: Phase offset (rad)
+  summary: 相位偏移 0（默认）| 标量 | 向量
+  group: 主要
+- name: Sample mode
+  summary: 连续或离散采样模式 Discrete（默认）| Continuous
+  group: 主要
+- name: Output complexity
+  summary: 实数或复数波形 Real（默认）| Complex
+  group: 主要
+- name: Computation method
+  summary: 计算离散时间正弦波的方法 Trigonometric fcn（默认）| Table lookup | Differential
+  group: 主要
+- name: Optimize table for
+  summary: 优化速度或内存 Speed（默认）| Memory
+  group: 主要
+- name: Sample time
+  summary: 采样周期 1/1000（默认）| 标量
+  group: 主要
+- name: Samples per frame
+  summary: 每帧样本数 1（默认）| 正整数
+  group: 主要
+- name: Resetting states when re-enabled
+  summary: 使能子系统内部的状态行为 Restart at time zero（默认）| Catch up to simulation time
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single | fixdt(1,16) | fixdt(1,16,0) | <data type expression> | Inherit:Inherit via back propagation
+  group: 数据类型
+- name: Mode
+  summary: 数据类型模式 Built in（默认）| Inherit | Fixed point | Expression
+  group: 数据类型助手
+- name: Signedness
+  summary: 定点数据的有符号性 Signed（默认）
+  group: 数据类型助手
+- name: Scaling
+  summary: 定点数据的定标方法 Best precision（默认）| Binary point
+  group: 数据类型助手
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认）| 2 到 128 的整数
+  group: 数据类型助手
+- name: Fraction length
+  summary: 定点数据类型的小数长度 0（默认）| 整数标量
+  group: 数据类型助手
+- name: Data type override
+  summary: 数据类型覆盖模式 Inherit（默认）| Off
+  group: 数据类型助手
+```
 
 ### 主要
 
@@ -204,7 +264,6 @@ Sine Wave 仅支持 `Signed` 数据类型。
 #### 依赖关系
 
 要启用此参数，请将**Mode**设置为 `Built in` 或 `Fixed point`。有关更多信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
-
 ## 所属库
 
 DSP System Toolbox / Sources DSP System Toolbox HDL Support / Sources

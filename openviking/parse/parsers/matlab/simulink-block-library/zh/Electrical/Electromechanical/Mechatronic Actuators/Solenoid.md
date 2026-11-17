@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Solenoid
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 壳体机械
+  direction: conserving
+- name: R
+  summary: 柱塞机械
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -42,8 +60,58 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Motion direction under excitation
+  summary: 激励下的运动方向 Port R moves towards port C（默认）| Port R moves away from port C
+  group: 磁力
+- name: Pull-in forces [F1 F2]
+  summary: 吸合力向量 [7.5, .75] N（默认）
+  group: 磁力
+- name: Stroke (air gap) [X1 X2]
+  summary: 行程向量 [1, 5] mm（默认）
+  group: 磁力
+- name: Rated voltage Vdc
+  summary: 额定电压 50 V（默认）
+  group: 磁力
+- name: Rated current Idc
+  summary: 额定电流 0.05 A（默认）
+  group: 磁力
+- name: Spring constant
+  summary: 弹簧刚度 200 N/m（默认）
+  group: 机械
+- name: Stroke for zero spring force
+  summary: 零弹簧力时的行程 5 mm（默认）
+  group: 机械
+- name: Damping
+  summary: 阻尼 1 N/(m/s)（默认）
+  group: 机械
+- name: Plunger mass
+  summary: 柱塞质量 0.05 kg（默认）
+  group: 机械
+- name: Maximum stroke
+  summary: 最大行程 Inf mm（默认）
+  group: 机械
+- name: Contact stiffness
+  summary: 接触刚度 1e6 N/m（默认）
+  group: 机械
+- name: Contact damping
+  summary: 接触阻尼 500 N/(m/s)（默认）
+  group: 机械
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 热
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: 热
+- name: Thermal mass
+  summary: 热质量 100 J/K（默认）
+  group: 热
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -129,7 +197,6 @@ force** 参数值时，力为零。如果没有弹簧，请将弹簧刚度设置
 ### **Thermal mass** — 热质量 `100` `J/K`（默认）
 
 热质量是使温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

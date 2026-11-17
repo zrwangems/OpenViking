@@ -15,6 +15,57 @@ chinese_source: worker-translation
 # NR LDPC Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入 LLR 值 标量 | 列向量
+  direction: input
+  data_types: int8 | int16 | fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: bgn
+  summary: 基图编号 标量
+  direction: input
+  data_types: Boolean
+- name: liftingSize
+  summary: 输入提升大小 标量
+  direction: input
+  data_types: uint16
+- name: iter
+  summary: 迭代次数 标量
+  direction: input
+  data_types: uint8
+- name: numRows
+  summary: 行数 标量
+  direction: input
+  data_types: fixdt(0,6,0)
+- name: data
+  summary: 解码输出数据位 标量 | 列向量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: liftingSize
+  summary: 输出提升大小 标量
+  direction: output
+  data_types: uint16
+- name: nextFrame
+  summary: 模块就绪指示符 布尔标量
+  direction: output
+  data_types: Boolean
+- name: actIter
+  summary: 实际迭代次数 标量
+  direction: output
+  data_types: uint8
+- name: parityCheck
+  summary: 奇偶校验状态指示标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -133,8 +184,34 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Enable parity check output port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Algorithm
+  summary: 算法类型 Min-sum（默认）| Normalized min-sum
+  group: ''
+- name: Scaling factor
+  summary: 缩放因子 0.75（默认）| 范围从 0.5 到 1 的值，以 0.0625 递增
+  group: ''
+- name: Decoding termination criteria
+  summary: 终止条件 Max（默认）| Early
+  group: ''
+- name: Source for number of iterations
+  summary: 迭代次数来源选择 Property（默认）| Input port
+  group: ''
+- name: Number of iterations
+  summary: 迭代次数 8（默认）| 范围从 1 到 63 的整数
+  group: ''
+- name: Maximum number of iterations
+  summary: 最大迭代次数 8（默认）| 范围从 1 到 63 的整数
+  group: ''
+- name: Enable multiple code rates
+  summary: 多码率 off（默认）| on
+  group: ''
+- name: Enable parity check output port
+  summary: 奇偶校验状态 off（默认）| on
+  group: ''
+```
 
 ### **Algorithm** — 算法类型 `Min-sum`（默认）| `Normalized min-sum`
 
@@ -187,7 +264,6 @@ chinese_source: worker-translation
 ### **Enable parity check output port** — 奇偶校验状态 `off`（默认）| `on`
 
 选中此参数以启用 **parityCheck** 输出端口以查看奇偶校验的状态。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

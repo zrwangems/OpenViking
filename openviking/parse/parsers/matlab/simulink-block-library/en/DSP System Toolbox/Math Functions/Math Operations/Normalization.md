@@ -14,6 +14,17 @@ language: en
 # Normalization
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal scalar | vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Output
+  summary: Normalization output scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -38,8 +49,47 @@ For more information on how the block normalizes the signal, see Algorithms.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Norm
+  summary: Normalization type Squared 2-norm (default) | 2-norm
+  group: Main Tab
+- name: Normalization bias
+  summary: Normalization bias 1e-10 (default) | nonnegative scalar
+  group: Main Tab
+- name: Normalize over
+  summary: Dimension over which to normalize Each column (default) | Each row | Specified dimension
+  group: Main Tab
+- name: Dimension
+  summary: Specify dimension 1 (default) | positive integer
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as product output (default) | Inherit: Same as input | Inherit: Same as accumulator
+    | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Output Minimum [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Output Maximum [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -197,7 +247,6 @@ value is `[]` (unspecified). Simulink software uses this value to perform:
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Math Operations

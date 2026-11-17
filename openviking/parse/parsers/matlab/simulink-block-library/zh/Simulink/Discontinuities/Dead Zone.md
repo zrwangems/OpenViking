@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Dead Zone
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,48 @@ chinese_source: worker-translation
 对输入信号应用死区算法后的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Start of dead zone
+  summary: 指定死区的下界 '-0.5'（默认）| 标量 | 向量
+  group: ''
+  block_parameter: LowerValue
+  type: 字符向量
+  values: 小于或等于 UpperValue 的标量或向量。
+  default: '''-0.5'''
+- name: End of dead zone
+  summary: 指定死区的上限 '0.5'（默认）| 标量 | 向量
+  group: ''
+  block_parameter: UpperValue
+  type: 字符向量
+  values: 大于或等于 LowerValue 的标量或向量。
+  default: '''0.5'''
+- name: Saturate on integer overflow
+  summary: 溢出操作方式 on（默认）| off
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''on''（默认）| ''off'''
+- name: Treat as gain when linearizing
+  summary: 指定增益值 on（默认）| off
+  group: ''
+  block_parameter: LinearizeAsGain
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量 | 字符串
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+```
 
 ### **Start of dead zone** — 指定死区的下界 `'-0.5'`（默认）| 标量 | 向量
 
@@ -129,7 +180,6 @@ Simulink® 软件中的线性化命令在状态空间中将此模块视为增益
 | --- | --- |
 | **Parameter：** | `SampleTime` |
 | **值**：| `"-1"`（默认）| 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Discontinuities HDL Coder / Discontinuities

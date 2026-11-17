@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Waypoint Follower
 
 ## 端口
+```yaml
+ports:
+- name: Pose
+  summary: 当前无人机位姿 [x y z chi] 向量
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: 航点集合 *n*×3 矩阵 | *n*×4 矩阵 | *n*×5 矩阵
+  direction: input
+  data_types: single | double
+- name: LookaheadDistance
+  summary: 前视距离 正数值标量
+  direction: input
+  data_types: single | double
+- name: LookaheadPoint
+  summary: 路径上的前视点 [x y z] 位置向量
+  direction: output
+  data_types: single | double
+- name: DesiredCourse
+  summary: 期望航向 数值标量
+  direction: output
+  data_types: single | double
+- name: DesiredYaw
+  summary: 期望偏航角 数值标量
+  direction: output
+  data_types: single | double
+- name: LookaheadDistFlag
+  summary: 前视距离标志 0（默认）| 1
+  direction: output
+  data_types: uint8
+- name: CrossTrackError
+  summary: 从无人机位置到路径的横向跟踪误差 正数值标量
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: 航点导航状态 0 | 1
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -93,8 +132,40 @@ chinese_source: worker-translation
 仅当选中 **Show UAV Status output port** 时，此端口才可见。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: UAV type
+  summary: 无人机类型 fixed-wing（默认）| multirotor
+  group: ''
+- name: StartFrom
+  summary: Waypoint start behavior first (default) | closest
+  group: ''
+- name: Transition radius source
+  summary: Source of transition radius internal (default) | external
+  group: ''
+- name: Transition radius (r)
+  summary: 航点的过渡半径 10（默认）| 正数值标量
+  group: ''
+- name: Minimum lookahead distance (m)
+  summary: Minimum lookahead distance 0.1 (default) | positive numeric scalar
+  group: ''
+- name: Hover at last waypoint
+  summary: Lookahead point location at last waypoint off (default) | on
+  group: ''
+- name: Show Yaw input variable
+  summary: 接受航点的偏航角输入 off（默认）| on
+  group: ''
+- name: Show CrossTrackError output port
+  summary: 输出横向轨迹误差 off（默认）| on
+  group: ''
+- name: Show UAV Status output port
+  summary: 输出无人机航点状态 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **UAV type** — 无人机类型 `fixed-wing`（默认）| `multirotor`
 
@@ -170,7 +241,6 @@ UAV 类型，指定为 `fixed-wing` 或 `multirotor`。
 此参数不可调。
 
 **Tunable:** No
-
 ## 所属库
 
 UAV Toolbox / Algorithms

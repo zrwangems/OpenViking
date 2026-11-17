@@ -14,6 +14,30 @@ language: en
 # Grid-Based Multi Object Tracker
 
 ## Ports
+```yaml
+ports:
+- name: Sensor Data
+  summary: Sensor data Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Prediction Time
+  summary: Track update time real scalar
+  direction: input
+- name: Sensor Configurations
+  summary: Configurations of tracking sensors Simulink bus containing MATLAB structure
+  direction: input
+- name: State Parameters
+  summary: Track state parameters Simulink bus containing MATLAB structure
+  direction: input
+- name: Confirmed Tracks
+  summary: Confirmed tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Tentative Tracks
+  summary: Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: All Tracks
+  summary: Confirmed and Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -152,8 +176,135 @@ tracking** parameter.
 
 To enable this port, in the **Port Setting** tab, select
 **Enable all tracks output**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: Unique tracker identifier 0 (default) | nonnegative integer
+  group: ''
+- name: Maximum number of tracks
+  summary: Maximum number of tracks 100 (default) | positive integer
+  group: ''
+- name: Maximum number of sensors
+  summary: Maximum number of sensors 20 (default) | positive integer
+  group: ''
+- name: Sensor configurations
+  summary: Configurations of tracking sensors struct('SensorIndex',1,'IsValidTime',true,'SensorLimits',[-180 180; 0 100])
+    (default) | structure | structure array
+  group: ''
+- name: Update sensor configurations with time
+  summary: Update sensor configurations with time off (default) | on
+  group: ''
+- name: Track state parameters
+  summary: Parameters of track state reference frame structure
+  group: ''
+- name: Update track state parameters with time
+  summary: Update track state parameters with time off (default) | on
+  group: ''
+- name: Enable GPU computation
+  summary: Enable GPU computation off (default) | on
+  group: ''
+- name: X-dimension of grid
+  summary: X-dimension of grid 100 (default) | positive scalar
+  group: ''
+- name: Y-dimension of grid
+  summary: Y-dimension of grid 100 (default) | positive scalar
+  group: ''
+- name: Resolution of grid
+  summary: Resolution of grid 1 (default) | positive scalar
+  group: ''
+- name: Grid origin
+  summary: Origin of grid [-50 -50] (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted Execution (default) | Code Generation
+  group: ''
+- name: Motion model for tracking
+  summary: Motion model for tracking constant-velocity (default) | constant-acceleration | constant-turnrate
+  group: ''
+- name: Minimum and maximum velocity of objects (m/s)
+  summary: Minimum and maximum velocities of objects (m/s) [-10 10; -10 10] (default) | 2-by-2 matrix of scalar
+  group: ''
+- name: Enable additive process noise
+  summary: Enable additive process noise false (default) | true
+  group: ''
+- name: Process noise covariance matrix
+  summary: Process noise covariance matrix eye(2) (default) | *N*-by-*N* matrix
+  group: ''
+- name: Number of persistent particles
+  summary: Number of persistent particles 1e5 (default) | positive integer
+  group: ''
+- name: Number of new-born particles per step
+  summary: Number of new-born particles per step 1e4 (default) | positive scalar
+  group: ''
+- name: Probability of birth in a cell per step
+  summary: Probability of birth in a cell per step 0.01 (default) | scalar in range [0, 1)
+  group: ''
+- name: Death rate of targets per unit time
+  summary: Death rate of targets per unit time 1e-3 (default) | positive scalar
+  group: ''
+- name: Confidence in free space prediction
+  summary: Confidence in free space prediction 0.8 (default) | scalar
+  group: ''
+- name: Random number generation
+  summary: Method of random number seed generation Repeatable (default) | Not repeatable | Specify seed
+  group: ''
+- name: Initial Seed
+  summary: Initial seed for randomization 0 (default) | nonnegative integer
+  group: ''
+- name: Clustering method for new object extraction
+  summary: Clustering method for new object extraction DBSCAN (default) | Custom
+  group: ''
+- name: Threshold for DBSCAN clustering
+  summary: Threshold for DBSCAN clustering 5 (default) | positive scalar
+  group: ''
+- name: Minimum number of cells per cluster for DBSCAN
+  summary: Minimum number of cells per cluster for DBSCAN 2 (default) | positive integer
+  group: ''
+- name: Name of 'Custom' clustering function
+  summary: Name of custom clustering function function name
+  group: ''
+- name: Function to initialize tracks from grid cell sets
+  summary: Function to initialize tracks from grid cell sets trackerGridRFS.defaultTrackInitialization (default) | function
+    name
+  group: ''
+- name: Function to update existing tracks
+  summary: Function to update existing tracks trackerGridRFS.defaultTrackUpdate (default) | function name
+  group: ''
+- name: Threshold for assigning dynamic grid cells to tracks
+  summary: Threshold for assigning dynamic grid cells to tracks 30 (default) | positive scalar
+  group: ''
+- name: Confirmation threshold [M N]
+  summary: Threshold for track confirmation [2 3] (default) | 1-by-2 vector of positive integers
+  group: ''
+- name: Deletion threshold [P Q]
+  summary: Threshold for track deletion [5 5] (default) | 1-by-2 vector of positive integers
+  group: ''
+- name: Enable dynamic grid map visualization
+  summary: Enable dynamic grid map visualization on (default) | off
+  group: ''
+- name: Plot velocity
+  summary: Enable velocity plotting off (default) | on
+  group: ''
+- name: Fast update
+  summary: Enable updating from previous map on (default) | off
+  group: ''
+- name: Invert colors
+  summary: Enable inverted colors off (default) | on
+  group: ''
+- name: Prediction time source
+  summary: Source of prediction time Input port (default) | Auto
+  group: ''
+- name: Enable tentative tracks output
+  summary: Enable output port for tentative tracks off (default) | on
+  group: ''
+- name: Enable all tracks output
+  summary: Enable output port for all tracks off (default) | on
+  group: ''
+- name: Source of output bus name
+  summary: Source of output track bus name Auto (default) | Property
+  group: ''
+```
 
 #### Tracker Configuration
 
@@ -658,7 +809,6 @@ Source of the output track bus name, specified as:
   track bus name.
 - `Property` — Specify the output track bus name by
   using the **Specify an output bus name** parameter.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

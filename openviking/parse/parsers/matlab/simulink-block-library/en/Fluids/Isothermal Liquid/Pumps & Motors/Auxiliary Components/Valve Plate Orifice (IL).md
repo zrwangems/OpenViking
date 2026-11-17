@@ -14,6 +14,18 @@ language: en
 # Valve Plate Orifice (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: G
+  summary: Cylinder rotation angle, rad physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -30,8 +42,34 @@ Exit point from the orifice.
 
 Cylinder rotation angle in radians, specified as a physical
 signal..
-
 ## Parameters
+```yaml
+parameters:
+- name: Cylinder block pitch radius
+  summary: Cylinder pitch radius 0.05 m (default) | positive scalar
+  group: ''
+- name: Cylinder orifice diameter
+  summary: Diameter of the cylinder slot 2.5e-3 m (default) | positive scalar
+  group: ''
+- name: Pressure carryover angle
+  summary: Pressure transition distance 0.06 rad (default) | scalar
+  group: ''
+- name: Phase angle
+  summary: Initial plate offset angle 0 rad (default) | scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+```
 
 ### **Cylinder block pitch radius** — Cylinder pitch radius `0.05 m` (default) | positive scalar
 
@@ -74,7 +112,6 @@ Continuous smoothing factor that introduces a layer of gradual change to
 the flow response when the valve is in near-open or near-closed positions.
 Set this value to a nonzero value less than one to increase the stability of
 your simulation in these regimes.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors / Auxiliary Components

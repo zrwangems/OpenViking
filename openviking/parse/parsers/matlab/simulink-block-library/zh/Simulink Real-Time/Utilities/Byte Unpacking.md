@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Byte Unpacking
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 包含打包数据向量的输入端口
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: Port_1
+  summary: '*N* 个输出端口中的第一个 标量 | 向量'
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 该模块显示从 `1` 到 *N* 个输出端口，具体数量由参数 **Output port (unpacked) data types (cell array)** 中元胞数组的元素指定。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Output port (unpacked) data types (cell array)
+  summary: 解包输出信号的数据类型 uint8（默认） | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+  block_parameter: MaskUnpackedDataTypes
+- name: Output port (unpacked) dimensions (cell array)
+  summary: 每个输出端口（解包）的维度 {[1]}（默认） | {[N], [M], ...}
+  group: ''
+  block_parameter: MaskUnpackedDataSizes
+- name: Byte Alignment
+  summary: 解包前输出信号数据类型的对齐方式 1（默认） | 2 | 4 | 8
+  group: ''
+  block_parameter: MaskAlignment
+```
 
 ### **Output port (unpacked) data types (cell array)** — 解包输出信号的数据类型 `uint8`（默认） | `double` | `single` | `int8` | `int16` | `uint16` | `int32` | `uint32` | `boolean`
 
@@ -68,7 +93,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `MaskAlignment` |
-
 ## 所属库
 
 Simulink Real-Time / Utilities

@@ -15,14 +15,31 @@ chinese_source: worker-translation
 # F2837xD/F2838x/F2838x-M4 IPC Transmit
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 要发送到另一个核的数据 uint16 | single | int8 | uint8 | int16 | int32 | uint32 | boolean
+  direction: input
+```
 
 ### 输入
 
 ### **Input** — 要发送到另一个核的数据 uint16 | single | int8 | uint8 | int16 | int32 | uint32 | boolean
 
 该端口接收要以向量或标量形式传输到另一个核的数据。
-
 ## 参数
+```yaml
+parameters:
+- name: Destination
+  summary: 选择用于发送数据的目标 C28x (CPU1/CPU2)/CPU1（默认）| ARM Cortex-M4 (CM)/CPU2
+  group: ''
+- name: Channel
+  summary: 选择用于传输数据的通道 0（默认）| 0–31
+  group: ''
+- name: Enable blocking
+  summary: 指定核是否必须等待直到发送的数据被读取 off（默认）| on
+  group: ''
+```
 
 ### **Destination** — 选择用于发送数据的目标 `C28x (CPU1/CPU2)/CPU1`（默认）| `ARM Cortex-M4 (CM)/CPU2`
 
@@ -45,7 +62,6 @@ IPC Transmit 模块掩码显示当前目标和所选通道。例如，如果模�
 ### **Enable blocking** — 指定核是否必须等待直到发送的数据被读取 `off`（默认）| on
 
 启用后，发送数据后，核会等待直到另一个核读取该数据。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28p65x

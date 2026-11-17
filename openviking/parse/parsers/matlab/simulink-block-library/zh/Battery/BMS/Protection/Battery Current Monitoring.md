@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Battery Current Monitoring
 
 ## 端口
+```yaml
+ports:
+- name: PackCurrent
+  summary: 电池组电流，A 标量
+  direction: input
+- name: ChargingLimit
+  summary: 充电电流限值，A 标量
+  direction: input
+- name: DischargingLimit
+  summary: 放电电流限值，A 标量
+  direction: input
+- name: OvercurrentError
+  summary: 过流错误指示 0 | 1
+  direction: output
+```
 
 ### 输入
 
@@ -35,8 +50,25 @@ chinese_source: worker-translation
 ### **OvercurrentError** — 过流错误指示 `0` | `1`
 
 过流错误的指示。如果此输出等于 `1`，则电池处于过流状态。
-
 ## 参数
+```yaml
+parameters:
+- name: Current error limit (A)
+  summary: 电流误差限值 0（默认值）| 非负标量
+  group: ''
+- name: Qualification time (s)
+  summary: 错误确认时间 2（默认值）| 正标量
+  group: ''
+- name: Disqualification time (s)
+  summary: 错误取消确认时间 0（默认值）| 非负标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认值）| 0 | 正整数
+  group: ''
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认值）| double | single | <data type expression>'
+  group: ''
+```
 
 ### **Current error limit (A)** — 电流误差限值 `0`（默认值）| 非负标量
 
@@ -70,7 +102,6 @@ chinese_source: worker-translation
 - `<data type expression>` — 模块算法将所有输入和参数转换为您指定的数据类型对象。
 
 单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Protection

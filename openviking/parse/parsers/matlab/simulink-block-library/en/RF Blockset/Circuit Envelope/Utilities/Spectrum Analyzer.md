@@ -14,6 +14,17 @@ language: en
 # Spectrum Analyzer
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Signals to visualize scalar | vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: RBW
+  summary: RBW Value positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -61,8 +72,231 @@ on the **Estimation** tab to `Input
 port`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Spectrum
+  summary: Type of spectrum to display Power (default) | Power Density | RMS
+  group: Scope Tab
+  block_parameter: SpectrumType
+  type: character vector or string scalar
+- name: Sample Rate (Hz)
+  summary: Sample rate the scope uses in Hz Inherited (default) | positive scalar
+  group: Scope Tab
+  block_parameter: SampleRate, SampleRateSource
+  type: double
+- name: Offset (Hz)
+  summary: Offset to apply to frequency axis 0 (default) | scalar | vector
+  group: Scope Tab
+  block_parameter: FrequencyOffset
+  type: double
+- name: Num Inputs
+  summary: Number of input ports 1 (default) | integer between 1 and 96
+  group: Scope Tab
+  block_parameter: NumInputPorts
+  type: character vector or string scalar
+  values: scalar between 1 and 96
+- name: Open at Simulation Start
+  summary: Automatically open scope when simulation starts on (default) | off
+  group: Scope Tab
+  block_parameter: OpenAtSimulationStart
+  type: logical
+- name: Display Precision
+  summary: Precision of data in scope display 4 (default) | positive integer ≤ 15
+  group: Scope Tab
+- name: Y-Label
+  summary: '*y*-axis label character vector | string scalar'
+  group: Scope Tab
+  block_parameter: YLabel
+  type: character vector or string scalar
+- name: Y-Limits
+  summary: '*y*-axis limits [−80 20] | [ymin ymax]'
+  group: Scope Tab
+  block_parameter: YLimits
+  type: double
+- name: Title
+  summary: Display title character vector | string
+  group: Scope Tab
+  block_parameter: Title
+  type: character vector or string
+- name: Show Grid
+  summary: Show internal grid lines on (default) | off
+  group: Scope Tab
+  block_parameter: ShowGrid
+  type: logical
+- name: Plot Type
+  summary: Plot type Line (default) | Stem
+  group: Scope Tab
+  block_parameter: PlotType
+  type: character vector or string scalar
+- name: Font Size
+  summary: Font size of labels 8.5 (default) | positive scalar
+  group: Scope Tab
+  block_parameter: '-'
+  type: double
+- name: Background
+  summary: Window background black (default) | color picker
+  group: Scope Tab
+- name: Axes
+  summary: Axes background color black (default) | color picker
+  group: Scope Tab
+- name: Labels
+  summary: Color of labels gray (default) | color picker
+  group: Scope Tab
+- name: Line
+  summary: Channel for line property settings channel names
+  group: Scope Tab
+- name: Visible
+  summary: Channel visibility on (default) | off
+  group: Scope Tab
+- name: Style
+  summary: 'Line style - (default) | : | -. | -- | None'
+  group: Scope Tab
+- name: Width
+  summary: Line width 1.5 (default) | 0.5 | 1 | 2 | ...
+  group: Scope Tab
+- name: Marker
+  summary: Data point markers None (default) | + | x | ...
+  group: Scope Tab
+- name: Color
+  summary: Line color yellow (default) | color picker
+  group: Scope Tab
+- name: Legend
+  summary: Show or hide signal legend button
+  group: Scope Tab
+  block_parameter: ShowLegend
+  type: logical
+- name: Copy to Clipboard
+  summary: Send display to clipboard button
+  group: Scope Tab
+- name: Preserve Colors
+  summary: Preserve colors when copying to clipboard off (default) | on
+  group: Scope Tab
+- name: Print
+  summary: Print display button
+  group: Scope Tab
+- name: RBW (Hz)
+  summary: Resolution bandwidth in Hz Auto (default) | Input port | positive scalar
+  group: Estimation Tab
+  block_parameter: RBWSource, RBW
+  type: character vector, string scalar, double
+- name: Averaging Method
+  summary: Smoothing method Exponential (default) | VBW | Running
+  group: Estimation Tab
+  block_parameter: AveragingMethod
+  type: character vector or string scalar
+- name: VBW (Hz)
+  summary: Video bandwidth Auto (default) | Input port | positive scalar
+  group: Estimation Tab
+  block_parameter: VBWSource, VBW
+  type: double
+- name: Forgetting Factor
+  summary: Forgetting factor of weighted average method 0.9 (default) | scalar in the range [0,1]
+  group: Estimation Tab
+  block_parameter: ForgettingFactor
+  type: double
+- name: Spectral Averages
+  summary: Number of spectral averages 1 (default) | positive integer
+  group: Estimation Tab
+  block_parameter: SpectralAverages
+  type: double
+- name: Window
+  summary: Windowing method Hann (default) | Rectangular
+  group: Estimation Tab
+  block_parameter: Window
+  type: character vector or string scalar
+- name: Overlap (%)
+  summary: Percentage of overlap 0 (default) | scalar in the range [0 100)
+  group: Estimation Tab
+  block_parameter: OverlapPercent
+  type: double
+- name: Channel
+  summary: Channel for which to obtain measurements 1 (default) | positive integer
+  group: Measurements Tab
+- name: Data Cursors
+  summary: Enable cursor measurements button
+  group: Measurements Tab
+- name: Snap to data
+  summary: Snap cursors to data off (default) | on
+  group: Measurements Tab
+- name: Lock cursor spacing
+  summary: Lock cursor spacing off (default) | on
+  group: Measurements Tab
+- name: Peak Finder
+  summary: Enable peak finder measurements button
+  group: Measurements Tab
+- name: Num Peaks
+  summary: Maximum number of peaks to show 3 (default) | positive integer less than 100
+  group: Measurements Tab
+- name: Min Height
+  summary: Level above which scope detects peaks -Inf (default) | real scalar value
+  group: Measurements Tab
+- name: Min Distance
+  summary: Minimum number of samples between adjacent peaks 1 (default) | positive integer
+  group: Measurements Tab
+- name: Threshold
+  summary: Minimum difference between height of peak and its neighboring samples 0 (default) | nonnegative scalar
+  group: Measurements Tab
+- name: Label Peaks
+  summary: Label peaks button
+  group: Measurements Tab
+- name: Distortion
+  summary: Enable distortion measurements button
+  group: Measurements Tab
+- name: Distortion Type
+  summary: Type of measurement to display Harmonic (default) | Intermodulation
+  group: Measurements Tab
+- name: Num Harmonics
+  summary: Number of harmonics to measure 6 (default) | positive integer
+  group: Measurements Tab
+- name: Label Harmonics
+  summary: Label harmonics off (default) | on
+  group: Measurements Tab
+- name: Label Frequencies
+  summary: Label frequencies off (default) | on
+  group: Measurements Tab
+- name: Two-Sided Spectrum
+  summary: Enable two-sided spectrum view on (default) | off
+  group: Spectrum Tab
+  block_parameter: PlotAsTwoSidedSpectrum
+  type: logical
+- name: Frequency Scale
+  summary: Scale of frequency axis Linear (default) | Log
+  group: Spectrum Tab
+  block_parameter: FrequencyScale
+  type: character vector or string scalar
+- name: Reference load (Ω)
+  summary: Reference load in Ω 1 (default) | positive real scalar
+  group: Spectrum Tab
+  block_parameter: ReferenceLoad
+  type: double
+- name: Spectrum Unit
+  summary: Units of the spectrum dBm (default) | dBm/Hz | dBV | dBuV *(since R2023b)* | Vrms
+  group: Spectrum Tab
+  block_parameter: SpectrumUnits
+  type: character vector or string scalar
+- name: Channel Names
+  summary: Input channel names [] (default) | character vector | string | array of strings or character vectors.
+  group: Property Inspector Only
+  block_parameter: ChannelNames
+  type: cell array of character vectors or string array
+- name: Maximize Axes
+  summary: Maximize size of plots Auto (default) | Off | On
+  group: Property Inspector Only
+  block_parameter: MaximizeAxes
+  type: character vector or string scalar
+- name: Axes Scaling
+  summary: Y-axis scaling mode OnceAtStop (default) | Manual | Auto | Updates
+  group: Property Inspector Only
+  block_parameter: AxesScaling
+  type: character vector or string scalar
+- name: Number of Updates
+  summary: Number of updates before scaling 100 (default) | integer
+  group: Property Inspector Only
+  block_parameter: AxesScalingNumUpdates
+  type: character vector or string scalar
+  values: scalar
+```
 
 This section lists the block parameters for the Spectrum Analyzer block in Simscape™ and RF Blockset. For a complete list of parameters, see Spectrum
 Analyzer (DSP System Toolbox).
@@ -951,7 +1185,6 @@ To enable this property, set Axes Scaling to `Updates`.
 | **Block Parameter:** `AxesScalingNumUpdates` |
 | **Type:** character vector or string scalar |
 | **Values:** scalar |
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Utilities

@@ -14,6 +14,21 @@ language: en
 # Covariance AR Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input column vector | unoriented vector
+  direction: input
+  data_types: single | double
+- name: A
+  summary: Normalized estimate of the AR model polynomial coefficients column vector
+  direction: output
+  data_types: single | double
+- name: G
+  summary: Model gain scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -64,8 +79,13 @@ where,
   coefficients of the AR model
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Estimation order
+  summary: Order of AR model 4 (default) | positive integer
+  group: ''
+```
 
 ### **Estimation order** — Order of AR model `4` (default) | positive integer
 
@@ -73,7 +93,6 @@ Specify the estimation order *p* of the all-pole AR model as a positive
 integer. To guarantee a nonsingular output, you must set
 *p* to be less than or equal to half the input vector
 length. Otherwise, the output can be singular.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Parametric Estimation

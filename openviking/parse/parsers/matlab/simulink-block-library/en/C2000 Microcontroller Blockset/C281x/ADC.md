@@ -14,6 +14,13 @@ language: en
 # ADC Type 0
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: ADC data vector
+  direction: output
+  data_types: ''
+```
 
 ### Output
 
@@ -24,8 +31,37 @@ values. The output values are in the range 0 to 4095 because the C281x ADC is 12
 converter.
 
 **Data Types:**
-
 ## Parameters
+```yaml
+parameters:
+- name: Module
+  summary: Select module to use A (default) | B | A and B
+  group: ADC Control
+- name: Conversion mode
+  summary: Select conversion type Sequential (default) | Simultaneous
+  group: ADC Control
+- name: Start of conversion
+  summary: Select start of conversion Software (default) | EVA | External pin
+  group: ADC Control
+- name: Sample time
+  summary: Interval at which block reads data 0.1 (default)
+  group: ADC Control
+- name: Data type
+  summary: Select the output data type uint16 (default) | double | single | int8 | uint8 | int16 | int32 | uint32
+  group: ADC Control
+- name: Post interrupt at end of conversion
+  summary: Enable to post an asynchronous interrupt Off (default) | on
+  group: ADC Control
+- name: Number of conversions
+  summary: Select number of ADC channels for conversion 1 (default) | 2 | 3 | …
+  group: Input channels
+- name: 'Conversions no. #'
+  summary: Select ADC channel for each conversion number 1 (default) | 2 | 3 | …
+  group: Input channels
+- name: Use multiple output ports
+  summary: Enable to output multiple ports off (default) | on
+  group: Input channels
+```
 
 ### ADC Control
 
@@ -105,7 +141,6 @@ If more than one ADC channel is used for conversion, you can use separate ports
 for each output and show the output ports on the block. If you use more than one
 channel and do not use multiple output ports, the data is output in a single
 vector.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C281x

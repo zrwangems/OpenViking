@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Constellation Diagram
 
 ## 端口
+```yaml
+ports:
+- name: In_1, ..., In_N
+  summary: 信号（作为单独端口）列向量 | 矩阵
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -28,8 +35,73 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Settings
+  summary: 星座图设置按钮
+  group: 绘图
+- name: Number of input ports
+  summary: 示波器模块上的输入端口数 1（默认）| [1, 20] 范围内的整数
+  group: 绘图
+- name: Samples per symbol
+  summary: 用于表示每个符号的样本数 1（默认）| 正整数
+  group: 绘图
+- name: Offset
+  summary: 绘制点之前跳过的样本数 0（默认）| 非负整数
+  group: 绘图
+- name: Symbols to display
+  summary: 要显示的最大符号数 Input frame length（默认）| 正整数
+  group: 绘图
+- name: AxesLimits
+  summary: '*x* 和 *y* 轴范围 [-1.375 1.375]（默认）| 二元素行向量'
+  group: 绘图
+- name: Reference Constellation
+  summary: 参考星座配置按钮
+  group: 绘图
+- name: Show reference constellations
+  summary: 显示参考星座的选项 on（默认）| off
+  group: 绘图
+- name: Input
+  summary: 选择输入端口 1（默认）| 正整数
+  group: 绘图
+- name: Reference constellation
+  summary: 参考星座 Custom（默认）| BPSK | 8-PSK | 16-QAM | 64-QAM | 256-QAM
+  group: 绘图
+- name: Custom value
+  summary: 输入参考星座 [0.7071+0.7071i -0.7071+0.7071i -0.7071-0.7071i 0.7070-0.7071i]（默认）| 向量
+  group: 绘图
+- name: Constellation normalization
+  summary: 归一化方法 Average power（默认）| Minimum distance | Peak power
+  group: 绘图
+- name: Average reference power
+  summary: 参考星座的平均功率 1（默认）| 正标量
+  group: 绘图
+- name: Reference phase offset (rad)
+  summary: 参考星座的相位偏移 标量
+  group: 绘图
+- name: Legend
+  summary: 显示图例的选项 按钮
+  group: 绘图
+- name: Trajectory
+  summary: 显示信号轨迹的选项 按钮
+  group: 绘图
+- name: Channel
+  summary: 活动输入通道 第一个端口中第一个通道的名称（默认）| 通道列表
+  group: 测量
+- name: Measurement Interval
+  summary: EVM 和 MER 测量的持续时间 Current display（默认）| All displays | 正整数
+  group: 测量
+- name: EVM Normalization
+  summary: 归一化方法 Average constellation power（默认）| Peak constellation power
+  group: 测量
+- name: Reference Constellation
+  summary: 参考星座配置按钮
+  group: 测量
+- name: EVM/MER
+  summary: 显示信号质量测量窗格的选项 按钮
+  group: 测量
+```
 
 要交互式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -169,7 +241,6 @@ EVM/MER 测量使用指定的参考星座来计算调制输入信号的信号质
 ### **EVM/MER** — 显示信号质量测量窗格的选项 按钮
 
 在 **Measurements** 选项卡上，点击 **EVM/MER** 切换信号质量测量窗格的显示。有关更多信息，请参阅 EVM and MER Measurements。
-
 ## 所属库
 
 Communications Toolbox / Comm Sinks Communications Toolbox HDL Support / Comm Sinks

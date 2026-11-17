@@ -15,14 +15,28 @@ chinese_source: worker-translation
 # XCP UDP Bypass
 
 ## 端口
+```yaml
+ports:
+- name: Function-call
+  summary: 用于旁路函数调用的函数调用
+  direction: output
+```
 
 ### 输出
 
 ### **Function-call** — 用于旁路函数调用的函数调用
 
 将函数调用输出端口连接到一个包含一个数据采集列表的函数调用子系统。
-
 ## 参数
+```yaml
+parameters:
+- name: Task Priority
+  summary: QNX Neutrino 调度器中的任务优先级 191（默认）| 整数
+  group: ''
+- name: Sample Time
+  summary: 采样时间 -1（默认）| double
+  group: ''
+```
 
 ### **Task Priority** — QNX Neutrino 调度器中的任务优先级 191（默认）| 整数
 
@@ -31,7 +45,6 @@ chinese_source: worker-translation
 ### **Sample Time** — 采样时间 `-1`（默认）| double
 
 选择采样时间。有关详细信息，请参阅 Subsystems 中的 Sample Times（Simulink）。
-
 ## 所属库
 
 Vehicle Network Toolbox / XCP Communication / UDP Simulink Real-Time / XCP / UDP

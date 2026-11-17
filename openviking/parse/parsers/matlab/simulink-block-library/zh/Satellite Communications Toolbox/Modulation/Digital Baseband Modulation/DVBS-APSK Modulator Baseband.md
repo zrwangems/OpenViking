@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # DVBS-APSK Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: DVB-S2/S2X/SH 标准特定 APSK 调制信号 标量 | 向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +49,37 @@ DVB-S2/S2X/SH 标准特定 APSK 调制信号，返回为复标量、向量或矩
 | `Bit` | 输出信号的行数等于输入信号的行数除以 log2(*M*)，其中 *M* 是**调制阶数**。 |
 
 使用**输出数据类型**指定输出数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: DVB standard suffix
+  summary: 标准后缀 S2（默认）| S2X | SH
+  group: ''
+- name: Frame length
+  summary: 帧长度 Normal（默认）| Short
+  group: ''
+- name: Modulation order
+  summary: 调制阶数 16（默认）| 8 | 32 | 64 | 256
+  group: ''
+- name: Code identifier
+  summary: 码标识符 2/3 | 字符向量
+  group: ''
+- name: Constellation scaling
+  summary: 星座缩放 Outer radius as 1（默认）| Unit average power
+  group: ''
+- name: Input type
+  summary: 输入类型 Integer（默认）| Bit
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single
+  group: ''
+- name: View Constellation
+  summary: 绘制参考星座 button
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -118,7 +157,6 @@ DVB 调制变体的标准后缀，指定为 `S2`、`S2X` 或 `SH`。
 
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间。
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
-
 ## 所属库
 
 Satellite Communications Toolbox / Modulation / Digital Baseband Modulation

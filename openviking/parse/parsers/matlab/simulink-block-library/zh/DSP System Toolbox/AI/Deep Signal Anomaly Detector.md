@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Deep Signal Anomaly Detector
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Threshold
+  summary: 检测阈值 非负标量
+  direction: input
+  data_types: single | double
+- name: Anomaly flag
+  summary: 异常标志 逻辑标量
+  direction: output
+  data_types: Boolean
+- name: Window loss
+  summary: 聚合窗口损失 标量
+  direction: output
+  data_types: single
+- name: Delay
+  summary: 延迟估计 标量
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -76,8 +99,37 @@ chinese_source: worker-translation
 要启用此端口，请在模块对话框中选中 **Enable delay port** 复选框。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Detector MAT-file path
+  summary: 检测器 MAT 文件的路径 untitled.mat（默认）| MAT 文件名
+  group: ''
+- name: Parameters for post-processing
+  summary: 后处理参数的来源 Read from MAT-file（默认）| Specify on dialog
+  group: ''
+- name: Window length
+  summary: 窗口长度 1（默认）| 正整数
+  group: ''
+- name: Overlap length
+  summary: 相邻窗口之间的重叠长度 0（默认）| 非负整数
+  group: ''
+- name: Threshold source
+  summary: 检测阈值的来源 Dialog（默认）| Input port
+  group: ''
+- name: Threshold
+  summary: 检测阈值 0.01（默认）| 非负标量
+  group: ''
+- name: Window loss aggregation
+  summary: 聚合窗口损失的统计方法 Mean（默认）| Max | Min | Median
+  group: ''
+- name: Parameter values from MAT-file
+  summary: 显示来自 MAT 文件的后处理参数值 只读：文本框
+  group: ''
+- name: Enable delay port
+  summary: 输出估计延迟 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -167,7 +219,6 @@ chinese_source: worker-translation
 ### **Enable delay port** — 输出估计延迟 `off`（默认）| `on`
 
 选中此复选框以启用 **Delay** 输出端口。该模块通过此端口输出输入信号和重建信号之间以采样为单位的估计延迟。
-
 ## 所属库
 
 DSP System Toolbox / AI

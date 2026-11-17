@@ -14,6 +14,17 @@ language: en
 # To Simulink Image
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal matrix
+  direction: input
+  data_types: integer | single | double | Boolean
+- name: Port_1
+  summary: Output signal Simulink.ImageType
+  direction: output
+  data_types: Simulink.ImageType
+```
 
 ### Input
 
@@ -30,8 +41,17 @@ Output signal from the To Simulink Image block. The output is an image of
 `Simulink.ImageType` data type.
 
 **Data Types:** `Simulink.ImageType`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output data type
+  summary: 'Data type of output signal values Inherit: auto (default) | Simulink.ImageType(480,640,3)'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: 'Inherit: auto | Simulink.ImageType(480,640,3) | <data type expression>'
+  default: 'Inherit: auto'
+```
 
 ### **Output data type** — Data type of output signal values `Inherit: auto` (default) | `Simulink.ImageType(480,640,3)`
 
@@ -59,7 +79,6 @@ You can specify any of these options:
 | **Type:** character vector |
 | **Value:** `Inherit: auto` | `Simulink.ImageType(480,640,3)` | `<data type expression>` |
 | **Default:** `Inherit: auto` |
-
 ## Libraries
 
 Computer Vision Toolbox / Utilities

@@ -14,6 +14,21 @@ language: en
 # Crossover Pilot Model
 
 ## Ports
+```yaml
+ports:
+- name: x com
+  summary: Signal command scalar
+  direction: input
+  data_types: double
+- name: x
+  summary: Signal scalar
+  direction: input
+  data_types: double
+- name: u
+  summary: Aircraft command scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +50,68 @@ Signal that the pilot model controls, specified as a scalar.
 Aircraft command, returned as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of control
+  summary: Dynamics control Proportional (default) | Rate or velocity | Spiral divergence | Second order - Short period |
+    Acceleration(*) | Roll attitude(*) | Unstable short period(*) | Second order - Phugoid(*)
+  group: ''
+  block_parameter: sw_popup
+  type: character vector
+  values: '''Proportion'' | ''Rate or velocity'' |''Spiral divergence'' | ''Second order - Short period'' | ''Acceleration(*)''
+    | ''Roll attitude(*)'' | ''Unstable short period(*)'' | ''Second order - Phugoid(*)'''
+  default: '''Proportion'''
+- name: Calculated value
+  summary: Crossover frequency or pilot gain Crossover frequency (default) | Pilot gain
+  group: ''
+  block_parameter: freq_gain_popup
+  type: character vector
+  values: '''Crossover frequency'' | ''Pilot gain'''
+  default: '''Crossover frequency'''
+- name: Controlled element gain
+  summary: Controlled element gain 1 (default) | scalar
+  group: ''
+  block_parameter: Kc
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Pilot gain
+  summary: Pilot gain 3 (default) | scalar
+  group: ''
+  block_parameter: Kp
+  type: character vector
+  values: double scalar
+  default: '''3'''
+- name: Crossover frequency (rad/s)
+  summary: Crossover frequency 3 (default) | scalar in the range of 1 and 10
+  group: ''
+  block_parameter: omega_c
+  type: character vector
+  values: double scalar
+  default: '''3'''
+- name: Pilot time delay(s)
+  summary: Pilot time delay 0.1 (default) | scalar
+  group: ''
+  block_parameter: time_delay
+  type: character vector
+  values: double scalar
+  default: '''0.1'''
+- name: Pilot lead constant
+  summary: Pilot lead constant 1 (default) | scalar
+  group: ''
+  block_parameter: T
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Pilot lag constant
+  summary: Pilot lag constant 5 (default) | scalar
+  group: ''
+  block_parameter: Ti
+  type: character vector
+  values: double scalar
+  default: '''5'''
+```
 
 ### **Type of control** — Dynamics control `Proportional` (default) | `Rate or velocity` | `Spiral divergence` | `Second order - Short period` | `Acceleration(*)` | `Roll attitude(*)` | `Unstable short period(*)` | `Second order - Phugoid(*)`
 
@@ -215,7 +290,6 @@ To enable this parameter, set **Type of control** to
 | **Type**: character vector |
 | **Values**: double scalar |
 | **Default**: `'5'` |
-
 ## Libraries
 
 Aerospace Blockset / Pilot Models

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Differential
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 传动轴旋转机械
+  direction: unspecified
+- name: S1
+  summary: 太阳轮 1 旋转机械
+  direction: unspecified
+- name: S2
+  summary: 太阳轮 2 旋转机械
+  direction: unspecified
+- name: H
+  summary: 热流热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -38,8 +53,61 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Friction model** 设置为
 `Temperature-dependent efficiency`。
-
 ## 参数
+```yaml
+parameters:
+- name: Crown gear located
+  summary: 冠齿轮位置 To the right of centerline（默认）| To the left of centerline
+  group: 主要
+- name: Carrier (C) to driveshaft (D) teeth ratio (NC/ND)
+  summary: 行星架与传动轴齿轮旋转比 4（默认）| 正标量
+  group: 主要
+- name: Friction model
+  summary: 摩擦模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Temperature-dependent efficiency
+  group: 啮合损失
+- name: Sun-sun and carrier-driveshaft ordinary efficiencies
+  summary: 扭矩传递效率 [.85, .92]（默认）| 向量
+  group: 啮合损失
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 向量
+  group: 啮合损失
+- name: Sun-sun efficiency
+  summary: 主动太阳轮到从动太阳轮扭矩传递效率 [.95, .9, .85]（默认）| 向量
+  group: 啮合损失
+- name: Carrier-driveshaft efficiency
+  summary: 行星架到传动轴齿轮扭矩传递效率 [.95, .9, .85]（默认）| 向量
+  group: 啮合损失
+- name: Sun-carrier and driveshaft-casing power thresholds
+  summary: 太阳轮-行星架和传动轴-壳体齿轮耦合的最小效率功率阈值 [0.001, 0.001] W（默认）| 向量
+  group: 啮合损失
+- name: Sun-carrier and driveshaft-casing viscous friction coefficients
+  summary: 粘性摩擦系数 [0, 0] N*m/(rad/s)（默认）| 向量
+  group: 粘性损失
+- name: Inertia
+  summary: 惯量选项 off（默认）| on
+  group: 惯量
+- name: Sun gear inertia
+  summary: 太阳轮惯量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Sun gear radius
+  summary: 太阳轮半径 0.01 m（默认）| 正标量
+  group: 惯量
+- name: Carrier inertia
+  summary: 行星架齿轮惯量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Planet gear spin inertia
+  summary: 行星齿轮自旋惯量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Planet gear mass
+  summary: 行星齿轮质量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 标量
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -213,7 +281,6 @@ efficiency`。
 
 要启用此参数，请将 **Friction model** 设置为
 `Temperature-dependent efficiency`。
-
 ## 所属库
 
 Simscape / Driveline / Gears

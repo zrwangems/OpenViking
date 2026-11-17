@@ -14,6 +14,17 @@ language: en
 # Custom Python Model Predict
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Input data numeric array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Out1
+  summary: Predicted responses numeric array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -34,8 +45,40 @@ of the output data returned by the Python model by specifying a permutation vect
 the **Outputs** tab of the Block Parameters dialog box (see Outputs).
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Path to Python file defining load_model() and predict()
+  summary: Name or path of custom Python model file untitled (default) | character vector
+  group: Specify model file
+  block_parameter: PythonModulePath
+  type: character vector
+  values: Python file | path to Python file
+  default: '"untitled"'
+- name: Arguments to load_model()
+  summary: Arguments for Python load_model() function list of strings or numeric arrays
+  group: Specify model file
+  block_parameter: LoadModelArgs
+  type: comma-separated list
+  values: string | numeric array
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: Specify model file
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Inputs
+  summary: Input port properties table
+  group: Inputs
+  block_parameter: InputTable
+  type: cell array
+- name: Outputs
+  summary: Output port properties table
+  group: Outputs
+  block_parameter: OutputTable
+  type: cell array
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -218,7 +261,6 @@ The table has the following columns:
 | --- |
 | **Block Parameter:** `OutputTable` |
 | **Type:** cell array |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Deep Learning Toolbox / Python Models / Python Neural Networks

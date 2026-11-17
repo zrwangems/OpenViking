@@ -14,6 +14,19 @@ language: en
 # Submatrix
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: Selected submatrix vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### Input
 
@@ -35,8 +48,70 @@ is the same as the input.
 This block supports Simulink virtual buses.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Row span
+  summary: Range of rows All rows (default) | One row | Range of rows
+  group: ''
+- name: Row
+  summary: First row of output First (default) | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Starting row
+  summary: First row of output First (default) | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Row index
+  summary: Index of first row 1 (default) | positive integer
+  group: ''
+- name: Starting row index
+  summary: Index of first row 1 (default) | positive integer
+  group: ''
+- name: Row offset
+  summary: Offset of first row 1 (default) | positive integer
+  group: ''
+- name: Starting row offset
+  summary: Offset of first row 1 (default) | positive integer
+  group: ''
+- name: Ending row
+  summary: Last row Last (default) | Index | Offset from last | Offset from middle | Middle
+  group: ''
+- name: Ending row index
+  summary: Index of last row 1 (default) | positive integer
+  group: ''
+- name: Ending row offset
+  summary: Offset of last row 1 (default) | positive integer
+  group: ''
+- name: Column span
+  summary: Range of input columns All columns (default) | One column | Range of columns
+  group: ''
+- name: Column
+  summary: First column First (default) | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Starting column
+  summary: First column First (default) | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Starting column index
+  summary: Index of first column 1 (default) | positive integer
+  group: ''
+- name: Column index
+  summary: Index of first column 1 (default) | positive integer
+  group: ''
+- name: Column offset
+  summary: Offset of first column 1 (default) | positive integer
+  group: ''
+- name: Starting column offset
+  summary: Offset of first column 1 (default) | positive integer
+  group: ''
+- name: Ending column
+  summary: Last column Last (default) | Index | Offset from last | Offset from middle | Middle
+  group: ''
+- name: Ending column index
+  summary: Index of last column 1 (default) | positive integer
+  group: ''
+- name: Ending column offset
+  summary: Offset of last column 1 (default) | positive integer
+  group: ''
+```
 
 For more information about selecting the subset of elements to form the submatrix, see Range Specification Options.
 
@@ -241,7 +316,6 @@ output.
 To enable this parameter, set **Ending column** to
 `Offset from middle` or `Offset
 from last`.
-
 ## Libraries
 
 Simulink / Matrix Operations

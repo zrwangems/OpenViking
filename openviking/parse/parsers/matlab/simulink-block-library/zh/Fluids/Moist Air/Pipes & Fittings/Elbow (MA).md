@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Elbow (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口或出口湿空气
+  direction: unspecified
+- name: B
+  summary: 入口或出口湿空气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **B** — 入口或出口湿空气
 
 与管道入口或出口相关联的湿空气守恒端口。该模块没有固有的方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: Elbow type
+  summary: 弯头几何形状 Smoothly curved（默认）| Sharp-edged (Miter)
+  group: ''
+- name: Elbow internal diameter
+  summary: 管道内径 0.01 m（默认）| 正标量
+  group: ''
+- name: Elbow angle
+  summary: 管道弯曲角度 90 deg（默认）| 正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流状态之间转换时的压力比 0.999（默认）| 正标量
+  group: ''
+```
 
 ### **Elbow type** — 弯头几何形状 `Smoothly curved`（默认）| `Sharp-edged (Miter)`
 
@@ -43,7 +66,6 @@ chinese_source: worker-translation
 ### **Laminar flow pressure ratio** — 流动在层流和湍流状态之间转换时的压力比 `0.999`（默认）| 正标量
 
 湿空气流动在层流和湍流状态之间转换时的压力比。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

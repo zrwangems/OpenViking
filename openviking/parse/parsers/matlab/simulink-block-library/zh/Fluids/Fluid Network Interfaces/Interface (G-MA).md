@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Interface (G-MA)
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 湿度，无量纲物理信号
+  direction: input
+- name: Tw
+  summary: 温度，K 物理信号
+  direction: input
+- name: TG
+  summary: 示踪气体，无量纲物理信号
+  direction: input
+- name: D
+  summary: 水滴质量比，无量纲物理信号
+  direction: input
+- name: G
+  summary: 流体端口气体
+  direction: input
+- name: MA
+  summary: 湿空气端口湿空气
+  direction: input
+```
 
 ### 输入
 
@@ -58,8 +79,58 @@ chinese_source: worker-translation
 ### **MA** — 湿空气端口湿空气
 
 与界面处湿空气相关的湿空气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Provide input signal for interface humidity
+  summary: 界面湿度控制选项 off（默认）| on
+  group: ''
+- name: Interface humidity specification
+  summary: 湿度参数化选项 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: ''
+- name: Interface relative humidity
+  summary: 界面处相对湿度 0.5（默认）| 正标量
+  group: ''
+- name: Interface specific humidity
+  summary: 界面处比湿度 0.01（默认）| 正标量
+  group: ''
+- name: Interface water vapor mole fraction
+  summary: 界面处水蒸气摩尔分数 0.01（默认）| 正标量
+  group: ''
+- name: Interface humidity ratio
+  summary: 界面处湿度比 0.01（默认）| 正标量
+  group: ''
+- name: Interface wet-bulb temperature
+  summary: 界面处湿球温度 287 K（默认）| 正标量
+  group: ''
+- name: Provide input signal for interface trace gas
+  summary: 界面示踪气体控制选项 off（默认）| on
+  group: ''
+- name: Interface trace gas specification
+  summary: 示踪气体参数化 Mass fraction（默认）| Mole fraction
+  group: ''
+- name: Interface trace gas mass fraction
+  summary: 界面处示踪气体质量分数 0.001（默认）| 正标量
+  group: ''
+- name: Interface trace gas mole fraction
+  summary: 界面处示踪气体摩尔分数 0.001（默认）| 正标量
+  group: ''
+- name: Provide input signal for interface water droplets
+  summary: 界面水滴控制选项 off（默认）| on
+  group: ''
+- name: Interface mass ratio of water droplets to moist air
+  summary: 界面处水滴与湿空气的比率 0（默认）| 正标量
+  group: ''
+- name: Relative humidity at saturation
+  summary: 饱和点相对湿度 1（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports G and MA
+  summary: 端口面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Inputs outside valid range
+  summary: 监测或控制无效输入的选项 Limit to valid values（默认）| Warn and limit to valid values | Error
+  group: ''
+```
 
 ### **Provide input signal for interface humidity** — 界面湿度控制选项 `off`（默认）| `on`
 
@@ -156,7 +227,6 @@ chinese_source: worker-translation
 ### **Inputs outside valid range** — 监测或控制无效输入的选项 `Limit to valid values`（默认）| `Warn and limit to valid values` | `Error`
 
 监测或控制无效输入。当选择 `Limit to valid values` 时，模块将输入饱和在边界内。您可以选择让模块在限制输入时发出警告，方法是选择 `Warn and limit to valid values`；或者您可以选择 `Error`，在模块接收到无效输入时停止仿真。
-
 ## 所属库
 
 Simscape / Fluids / Fluid Network Interfaces

@@ -14,6 +14,14 @@ language: en
 # Scope
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal or signals to visualize scalar | vector | matrix | array | bus | nonvirtual bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -59,8 +67,168 @@ signals.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Open at simulation start
+  summary: Specify when scope opens off (default for Scope) | on (default for Time Scope)
+  group: Scope Tab
+- name: Display the full path
+  summary: Display block path on scope title bar off (default) | on
+  group: Scope Tab
+- name: Number of input ports
+  summary: Number of input ports on scope 1 (default) | positive integer in the range [1 96]
+  group: Scope Tab
+- name: Display grid
+  summary: Dimensions of display grid [1, 1] (default) | two-element numeric vector
+  group: Scope Tab
+- name: Input processing
+  summary: Sample- or frame-based processing Elements as channels (sample based) (default for Scope) | Columns as channels
+    (frame based) (default for Time Scope)
+  group: Scope Tab
+- name: Maximize axes
+  summary: Maximize size of plots Off (default for Scope) | Auto (default for Time Scope) | On
+  group: Scope Tab
+- name: Sample time
+  summary: Simulation interval between scope updates -1 (for inherited) (default) | positive real number
+  group: Scope Tab
+- name: Time span
+  summary: Length of *x*-axis to display Auto (default) | One frame period | <user-defined>
+  group: Scope Tab
+- name: Overrun action
+  summary: Display data beyond visible *x*-axis Wrap (default) | Scroll
+  group: Scope Tab
+- name: Time units
+  summary: '*x*-axis units None (default for Scope) | Metric (based on Time Span) (default for Time Scope) | Seconds'
+  group: Scope Tab
+- name: Time display offset
+  summary: '*x*-axis offset 0 (default) | scalar | vector'
+  group: Scope Tab
+- name: T-axis and ticks labels
+  summary: Display of *x*-axis (time) and tick labels Bottom displays only (default for Scope) | All (default for Time Scope)
+    | None
+  group: Scope Tab
+- name: Time offset view
+  summary: Show time offset on status bar on (default) | off
+  group: Scope Tab
+- name: Show time-axis label
+  summary: Display or hide *x*-axis labels off (default for Scope) | on (default for Time Scope)
+  group: Scope Tab
+- name: Scale Y-axis limits
+  summary: '*y*-axis scaling mode Manual (default) | Auto | After N Updates'
+  group: Scope Tab
+- name: Y-axis limits do not shrink
+  summary: Allow *y*-axis range limits to increase on (default) | off
+  group: Scope Tab
+- name: Number of updates
+  summary: Number of updates before scaling 10 (default) | integer
+  group: Scope Tab
+- name: Scale Y-axis limits at stop
+  summary: Scale *y*-axis limits when simulation stops on (default) | off
+  group: Scope Tab
+- name: Y-axis data range (%)
+  summary: Percent of *y*-axis to use for plotting 80 (default) | integer between [1,100]
+  group: Scope Tab
+- name: Y-axis align
+  summary: Alignment along *y*-axis Center (default) | Top | Bottom
+  group: Scope Tab
+- name: Scale X-axis limits
+  summary: Scale *x*-axis range limits off (default) | on
+  group: Scope Tab
+- name: X-axis data range (%)
+  summary: Percent of *x*-axis to use for plotting 100 (default) | integer in the range [1,100]
+  group: Scope Tab
+- name: X-axis align
+  summary: Alignment along *x*-axis Center (default) | Left | Right
+  group: Scope Tab
+- name: Limit data points to last, Limit frames to last
+  summary: Limit buffered data points or frames off (default) | on
+  group: Scope Tab
+- name: Max points
+  summary: Maximum number of data points to save 5000 | positive integer
+  group: Scope Tab
+- name: Decimation, Decimate frames
+  summary: Reduce amount of scope data to display and save off (default) | on
+  group: Scope Tab
+- name: Decimation value
+  summary: Decimation value 2 (default) | positive integer
+  group: Scope Tab
+- name: Log data to workspace
+  summary: Save data to MATLAB workspace off (default) | on
+  group: Scope Tab
+- name: Variable name
+  summary: Name of saved data variable ScopeData (default) | character vector | string scalar
+  group: Scope Tab
+- name: Save format
+  summary: MATLAB variable format Dataset (default) | Structure With Time | Structure | Array
+  group: Scope Tab
+- name: Plot type
+  summary: Type of plot Auto (default for Scope) | Line (default for Time Scope) | Stairs | Stem
+  group: Scope Tab
+- name: Axes background
+  summary: Background color for individual displays black (default) | color
+  group: Scope Tab
+- name: Axes and grid
+  summary: Axes, grid, and label color for individual displays gray (default) | color
+  group: Scope Tab
+- name: Scope background
+  summary: Background color for scope window black (default) | color
+  group: Scope Tab
+- name: Preserve colors for copy
+  summary: Preserve colors when copying scope off (default) | on
+  group: Scope Tab
+- name: Active Display
+  summary: Active display 1 (default) | positive integer
+  group: Scope Tab
+- name: Line
+  summary: Line to change Channel 1 (default) | channel name
+  group: Scope Tab
+- name: Style
+  summary: 'Line style - (default) | : | -. | -- | None'
+  group: Scope Tab
+- name: Width
+  summary: Line width 1.5 (default) | 0.5 | 1 | 2 | 3 | 4 | 6 | ...
+  group: Scope Tab
+- name: Marker
+  summary: Data point marker style none (default) | o | + | x | ...
+  group: Scope Tab
+- name: Color
+  summary: Line color yellow (default) | color picker
+  group: Scope Tab
+- name: Line visible
+  summary: Line visibility on (default) | off
+  group: Scope Tab
+- name: Y-axis label
+  summary: Y-axis label none (default for Scope) | Amplitude (default for Time Scope) | character vector | string scalar
+  group: Scope Tab
+- name: Y-axis limits
+  summary: Y-axis limits [-10 10] (default) | two-element numeric vector
+  group: Scope Tab
+- name: Title
+  summary: Display name %<SignalLabel> (default) | character vector | string scalar
+  group: Scope Tab
+- name: Show legend
+  summary: Display signal legend off (default) | on
+  group: Scope Tab
+- name: Show grid
+  summary: Show internal grid lines on (default) | off
+  group: Scope Tab
+- name: Plot as magnitude-phase
+  summary: Split display into magnitude and phase plots off (default) | on
+  group: Scope Tab
+- name: Display Grid
+  summary: Display layout 1-by-1 display (default) | an arrangement of m-by-n axes
+  group: Scope Tab
+- name: Dock
+  summary: Dock the scope into scope container Dock Scope (default) | Dock All Scopes
+  group: Scope Tab
+- name: Undock
+  summary: Undock the scope from the scope container Undock (default) | Undock All
+  group: Scope Tab
+- name: Dock New Scopes on Open
+  summary: Add new scopes to the container on open off (default) | on
+  group: Scope Tab
+```
 
 ### Scope Tab
 
@@ -864,7 +1032,6 @@ For more information on the measurements, see these pages:
 - Bilevel
   Measurements — Measure transitions, overshoots, undershoots, and
   cycles.
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Sinks

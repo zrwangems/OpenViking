@@ -14,6 +14,21 @@ language: en
 # Translational Power Sensor
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Translational power, W physical signal
+  direction: input
+- name: S
+  summary: Driving source mechanical translational
+  direction: conserving
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +52,20 @@ shaft.
 
 Mechanical translational conserving port associated with the
 case.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement type
+  summary: Option to measure power Instantaneous power (default) | Average power over a specified period | Average power over
+    a vibration
+  group: ''
+- name: Averaging period
+  summary: Power averaging period 1 s (default) | positive scalar
+  group: ''
+- name: Maximum vibration frequency
+  summary: Maximum vibration frequency 1000 Hz (default) | positive scalar
+  group: ''
+```
 
 ### **Measurement type** — Option to measure power `Instantaneous power` (default) | `Average power over a specified period` | `Average power over a vibration`
 
@@ -62,7 +89,6 @@ cycle length of a reciprocating device or the actuation force.
 Maximum vibration frequency over which to average the power. Very high
 values tend to reduce simulation speed. Very low values tend to result in
 lower power measurements.
-
 ## Libraries
 
 Simscape / Driveline / Sensors

@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Hyperbolic Tangent HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 弧度角 实数有限标量
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: x 的双曲正切 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 模块是否就绪 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -48,11 +71,12 @@ chinese_source: worker-translation
 模块是否就绪，以布尔标量形式返回。此控制信号指示模块何时准备好接收新的输入数据。当此值为 1（`true`）且 **validIn** 值为 1（`true`）时，模块在下一个时间步接受输入数据。当此值为 0（`false`）时，模块在下一个时间步忽略输入数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Math Operations

@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # General Multiplexed Interleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Interleaver delay (samples)**
 :   一个列向量，列出每个移位寄存器可容纳的符号数。该向量的长度即为移位寄存器的数量。（在基于样本的模式下，它也可以是行向量。）
@@ -27,7 +32,6 @@ R2025b 中未记录。
 :   仿真开始时填充每个移位寄存器的值。
 
     如果 **Initial conditions** 是标量，则其值填充所有移位寄存器。如果 **Initial conditions** 是列向量，则每个条目填充对应的移位寄存器。（在基于样本的模式下，**Initial conditions** 也可以是行向量。）如果某个给定的移位寄存器具有零延迟，则 **Initial conditions** 向量中对应条目的值无关紧要。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -14,6 +14,37 @@ language: en
 # SM Current Controller
 
 ## Ports
+```yaml
+ports:
+- name: idqfRef
+  summary: Reference currents, A vector
+  direction: input
+  data_types: single | double
+- name: idqf
+  summary: Measured currents, A vector
+  direction: input
+  data_types: single | double
+- name: vdqFF
+  summary: Purpose, V vector
+  direction: input
+  data_types: single | double
+- name: VphMax
+  summary: Maximum phase voltage, V scalar
+  direction: input
+  data_types: single | double
+- name: VfMax
+  summary: Maximum field voltage, V scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: External reset scalar
+  direction: input
+  data_types: single | double
+- name: vdqfRef
+  summary: Reference voltages, V vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -62,8 +93,52 @@ Reference d-q and field voltages for control of synchronous
 motor.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+- name: Discretization sample time
+  summary: Block discretization sample time 0.001 (default) | -1 or positive number
+  group: ''
+- name: Axis prioritization
+  summary: Axis prioritization for voltage limiter q-axis (default) | d-axis | d-q equivalence
+  group: ''
+- name: Enable zero cancellation
+  summary: Feedforward zero-cancellation off (default) | on
+  group: ''
+- name: Enable pre-control voltage
+  summary: Pre-control voltage on (default) | off
+  group: ''
+- name: D-axis current proportional gain
+  summary: D-axis proportional gain 1 (default) | positive number
+  group: ''
+- name: D-axis current integral gain
+  summary: D-axis integral gain 100 (default) | positive number
+  group: ''
+- name: D-axis current anti-windup gain
+  summary: D-axis anti-windup gain 1 (default) | positive number
+  group: ''
+- name: Q-axis current proportional gain
+  summary: Q-axis proportional gain 1 (default) | positive number
+  group: ''
+- name: Q-axis current integral gain
+  summary: Q-axis integral gain 100 (default) | positive number
+  group: ''
+- name: Q-axis current anti-windup gain
+  summary: Q-axis anti-windup gain 1 (default) | positive number
+  group: ''
+- name: Field current proportional gain
+  summary: Field current proportional gain 9 (default) | positive number
+  group: ''
+- name: Field current integral gain
+  summary: Field current integral gain 350 (default) | positive number
+  group: ''
+- name: Field current anti-windup gain
+  summary: Field current anti-windup gain 1 (default) | positive number
+  group: ''
+```
 
 #### General
 
@@ -142,7 +217,6 @@ Integrator gain of PI controller used for field current control.
 ### **Field current anti-windup gain** — Field current anti-windup gain `1` (default) | positive number
 
 Anti-windup gain of PI controller used for field current control.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

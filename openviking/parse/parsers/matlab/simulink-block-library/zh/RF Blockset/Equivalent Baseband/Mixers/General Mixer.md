@@ -15,10 +15,126 @@ chinese_source: worker-translation
 # General Mixer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: 数据源
+  summary: 描述混频器行为的数据源 Data file（默认）| RFDATA 对象
+  group: 主
+- name: 数据文件
+  summary: 包含混频器数据的文件名 default.s2d（默认）| 字符串 | 字符向量
+  group: 主
+- name: RFDATA 对象
+  summary: 包含混频器数据的 RF 数据对象 read(rfdata.data, 'default.s2p')（默认）| rfdata.data 对象
+  group: 主
+- name: 插值方法
+  summary: 插值网络参数的方法 Linear（默认）| Spline | Cubic
+  group: 主
+- name: 混频器类型
+  summary: 混频器类型 Downconverter（默认）| Upconverter
+  group: 主
+- name: 本振频率 (Hz)
+  summary: 本地振荡器频率 0.9e9（默认）| *M* 元素向量
+  group: 主
+- name: 相位噪声频率偏移 (Hz)
+  summary: 相位噪声频率偏移 [0.1 1 10 100]*1e3（默认）| 数值向量
+  group: 噪声数据
+- name: 相位噪声电平 (dBc/Hz)
+  summary: 相位噪声电平 [-70 -120 -140 -150]（默认）| 数值向量
+  group: 噪声数据
+- name: 噪声类型
+  summary: 噪声数据类型 Noise figure（默认）| Spot noise data | Noise factor | Noise temperature
+  group: 噪声数据
+- name: 噪声系数 (dB)
+  summary: 输入端的可用信噪比与输出端的可用信噪比之比 0（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Minimum noise figure
+  summary: 输入端可用信噪比与输出端可用信噪比的最小比值 0（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Optimal reflection coefficient
+  summary: 最佳源阻抗 1+0i（默认）| 复标量 | 复向量
+  group: 噪声数据
+- name: Equivalent normalized noise resistance
+  summary: 用于进行噪声测量的归一化电阻值 1（默认）| 正标量 | 正向量
+  group: 噪声数据
+- name: Noise factor
+  summary: 输入端可用信噪功率与输出端可用信噪功率的比值 1（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Noise temperature (K)
+  summary: 与混频器产生相同噪声量的等效温度 0（默认）| 非负标量 | 非负向量
+  group: 噪声数据
+- name: Frequency (Hz)
+  summary: 用于表示噪声数据的频率范围 2.0e9（默认）| 非负标量 | 非负向量
+  group: 噪声数据
+- name: IP3 type
+  summary: 三阶截点的类型 OIP3（默认）| IIP3
+  group: Nonlinearity Data
+- name: IP3 (dBm)
+  summary: IP3 值 inf（默认）| 标量 | 向量
+  group: Nonlinearity Data
+- name: 1dB gain compression power (dBm)
+  summary: 增益下降 1 dB 时的输出功率值 inf（默认）| 标量 | 向量
+  group: Nonlinearity Data
+- name: 输出饱和功率 (dBm)
+  summary: 混频器完全饱和时产生的输出功率值 inf（默认）| 标量 | 向量
+  group: Nonlinearity Data
+- name: 饱和时的增益压缩 (dB)
+  summary: 增益值的减少量 3（默认）| 标量 | 向量
+  group: Nonlinearity Data
+- name: 频率 (Hz)
+  summary: 对应于三阶截点或功率数据的频率点 2.0e9（默认）| 正标量 | 正向量
+  group: Nonlinearity Data
+- name: 频率数据源
+  summary: 频率数据来源 从数据源提取（默认）| 用户指定
+  group: 可视化
+- name: 频率数据 (Hz)
+  summary: 频率数据范围 [1e9:1e8:2.9e9]（默认）| 向量
+  group: 可视化
+- name: 输入功率数据源
+  summary: 输入功率数据来源 从数据源提取（默认）
+  group: 可视化
+- name: 输入功率数据 (dBm)
+  summary: 输入功率数据 [0:19]（默认）| 向量
+  group: 可视化
+- name: 参考阻抗 (欧姆)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: 绘图类型
+  summary: 数据绘图类型 X-Y 平面（默认）| 复合数据 | 极坐标平面 | Z 史密斯圆图 | Y 史密斯圆图 | ZY 史密斯圆图
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11 | S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Magnitude (linear) | Angle(degrees) | Angle(radians) | Real | Imaginary | ...
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Magnitude (linear) | Angle(degrees) | Angle(radians) | Real | Imaginary | ...
+  group: 可视化
+- name: X parameter
+  summary: 频率图 Freq（默认）
+  group: 可视化
+- name: X format
+  summary: 频率图格式 Hz（默认）| Auto | kHz | MHz | GHz | THz
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主
 
@@ -314,7 +430,6 @@ X 轴刻度，指定为 `Linear` 或 `Log`。
 ### 工作条件
 
 Agilent® P2D 和 S2D 文件为若干工作条件定义了模块参数。工作条件是创建文件数据时使用的独立参数设置。默认情况下，模块集使用与文件中首先出现的工作条件相对应的参数值来定义模块行为。要使用其他属性值，必须在 General Mixer 模块对话框中选取不同的工作条件。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Mixers

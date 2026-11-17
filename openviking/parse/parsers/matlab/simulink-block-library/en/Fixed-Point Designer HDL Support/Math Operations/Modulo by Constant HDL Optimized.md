@@ -14,6 +14,25 @@ language: en
 # Modulo by Constant HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Dividend real-valued scalar | vector | matrix | multidimensional array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+- name: validIn
+  summary: Whether input is valid boolean scalar
+  direction: input
+  data_types: Boolean
+- name: Y
+  summary: Result of modulus operation scalar | vector | matrix | multidimensional array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+- name: validOut
+  summary: Whether output data is valid boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -54,8 +73,17 @@ successfully computed the output **Y**. When this value is
 valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Denominator
+  summary: Divisor 10 (default) | real-valued scalar | vector | matrix | multidimensional array
+  group: ''
+  block_parameter: Denominator
+  type: character vector
+  values: MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value
+  default: '''10'''
+```
 
 ### **Denominator** — Divisor 10 (default) | real-valued scalar | vector | matrix | multidimensional array
 
@@ -71,7 +99,6 @@ finite scalar, vector, matrix, or multidimensional array.
 | **Values:** MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value |
 | **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` |
 | **Default:** `'10'` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Math Operations

@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Shunt Motor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 电机外壳机械
+  direction: conserving
+- name: R
+  summary: 电机转子机械
+  direction: conserving
+- name: Hf
+  summary: 励磁绕组热端口热
+  direction: conserving
+- name: Ha
+  summary: 电枢绕组热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -51,8 +72,67 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Model parameterization
+  summary: 模块参数化 By equivalent circuit parameters（默认）| By rated power, rated speed & no-load speed
+  group: 电气转矩
+- name: Armature resistance
+  summary: 电枢电阻 110 Ohm（默认）
+  group: 电气转矩
+- name: Field winding resistance
+  summary: 励磁绕组电阻 2500 Ohm（默认）
+  group: 电气转矩
+- name: Back-emf constant
+  summary: 反电动势常数 5.11 s*V/rad/A（默认）
+  group: 电气转矩
+- name: Armature inductance
+  summary: 电枢电感 0.1 H（默认）
+  group: 电气转矩
+- name: Field winding inductance
+  summary: 励磁绕组电感 0.1 H（默认）
+  group: 电气转矩
+- name: No-load speed
+  summary: 空载转速 4600 rpm（默认）
+  group: 电气转矩
+- name: Rated speed (at rated load)
+  summary: 额定转速 4000 rpm（默认）
+  group: 电气转矩
+- name: Rated load (mechanical power)
+  summary: 额定负载 50 W（默认）
+  group: 电气转矩
+- name: Rated DC supply voltage
+  summary: 额定直流电源电压 220 V（默认）
+  group: 电气转矩
+- name: Starting current at rated DC supply voltage
+  summary: 额定直流电源电压下的启动电流 2.09 A（默认）
+  group: 电气转矩
+- name: Rotor inertia
+  summary: 转子惯量 2e-4 kg*m^2（默认）
+  group: 机械
+- name: Rotor damping
+  summary: 转子耗散能量 1e-6 N*m/(rad/s)（默认）
+  group: 机械
+- name: Initial rotor speed
+  summary: 初始转子转速 0 rpm（默认）
+  group: 机械
+- name: Resistance temperature coefficients, [alpha_f alpha_a]
+  summary: 定子和转子电阻温度系数 [.00393, .00393] 1/K（默认）
+  group: 温度依赖性
+- name: Measurement temperature
+  summary: 测量温度 25 C（默认）
+  group: 温度依赖性
+- name: Thermal masses, [Mf Ma]
+  summary: 热质量 [100, 100] J/K（默认）
+  group: 热端口
+- name: Initial temperatures
+  summary: 初始温度 [25, 25] C（默认）
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -188,7 +268,6 @@ power, rated speed & no-load speed` 时，此参数才可见。
 ### **Initial temperatures** — 初始温度 `[25, 25]` `C`（默认）
 
 一个 1×2 行向量，定义仿真开始时励磁绕组和电枢热端口的温度。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Brushed Motors

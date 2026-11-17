@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Capacitor
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Capacitance
+  summary: 电容值 1e-12 F（默认）| 实数
+  group: ''
+```
 
 ### **Capacitance** — 电容值 `1e-12 F`（默认）| 实数
 
 电容值，指定为实数。从相应的下拉菜单中指定电容的单位。
 
 如果将此参数值设置为 `0` 到 `1e-18` `F` 之间，模块在仿真期间将使用等于 `1e-18` `F` 的值。默认情况下，该值为 `1e-12` `F`。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

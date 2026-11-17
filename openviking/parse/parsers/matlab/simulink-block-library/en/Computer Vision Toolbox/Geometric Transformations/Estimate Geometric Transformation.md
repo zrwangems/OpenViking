@@ -14,6 +14,29 @@ language: en
 # Estimate Geometric Transformation
 
 ## Ports
+```yaml
+ports:
+- name: Pts1
+  summary: Point coordinates *M*-by-2 matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Pts2
+  summary: Point coordinates *M*-by-2 matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Num
+  summary: Number of valid points scalar
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: TForm
+  summary: Transformation 3-by-2 matrix | 3-by-3 matrix
+  direction: output
+  data_types: single | double
+- name: Inlier
+  summary: Points used *M*-by-1 vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -79,8 +102,52 @@ Points used to calculate `TForm`, returned as an
   inliers** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Transformation type
+  summary: Transformation type Affine (default) | Nonreflective similarity | Projective
+  group: ''
+- name: Find and exclude outliers
+  summary: Find and exclude outliers on (default) | off
+  group: ''
+- name: Method
+  summary: Method to find outliers RANdom SAmple Consensus (RANSAC) (default) | Least Median of Squares
+  group: ''
+- name: Algebraic distance threshold for determining inliers
+  summary: Algebraic distance threshold for determining inliers 1.5 (default) | scalar
+  group: ''
+- name: Distance threshold for determining inliers (in pixels)
+  summary: Distance threshold for determining inliers (in pixels) 1.5 (default) | scalar
+  group: ''
+- name: Determine number of random samplings using
+  summary: Determine number of random samplings using Specified value (default) | Desired confidence
+  group: ''
+- name: Number of random samplings
+  summary: Number of random samplings 500 (default) | scalar
+  group: ''
+- name: Desired confidence (in %)
+  summary: Desired confidence (in %) 99 (default) | scalar
+  group: ''
+- name: Maximum number of random samplings
+  summary: Maximum number of random samplings 1000 (default) | integer
+  group: ''
+- name: Stop sampling earlier when a specified percentage of point pairs are determined to be inlier
+  summary: Stop sampling off (default) | on
+  group: ''
+- name: Perform additional iterative refinement of the transformation matrix
+  summary: Perform additional iterative refinement off (default) | on
+  group: ''
+- name: Output Boolean signal indicating which point pairs are inliers
+  summary: Output Boolean signal off (default) | on
+  group: ''
+- name: When Pts1 and Pts2 are built-in integers, set transformation matrix date type to
+  summary: Set transformation matrix date type Single (default) | Double
+  group: ''
+- name: Allow variable-sized signal input
+  summary: Allow variable-sized signal input on (default) | off
+  group: ''
+```
 
 ### **Transformation type** — Transformation type `Affine` (default) | `Nonreflective similarity` | `Projective`
 
@@ -232,7 +299,6 @@ points.
 Enable this parameter to allow variable-sized signal input.
 
 #### Dependencies
-
 ## Libraries
 
 Computer Vision Toolbox / Geometric Transformations

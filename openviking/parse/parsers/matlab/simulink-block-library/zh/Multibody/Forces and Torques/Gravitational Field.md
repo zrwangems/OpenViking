@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # Gravitational Field
 
 ## 端口
+```yaml
+ports: []
+```
 
 Frame port B 表示一个坐标系，其原点位于产生引力场的质点处。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Mass**
 :   产生引力场的总质量。由此产生的引力与该质量成正比。该质量不会为模型增加惯性。质量参数的默认值为 `1.0` kg。
-
 ## 所属库
 
 R2025b 中未记录。

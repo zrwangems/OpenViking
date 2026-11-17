@@ -14,6 +14,18 @@ language: en
 # Sequence Analyzer
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Periodic input signal vector
+  direction: input
+- name: mag
+  summary: Magnitude scalar | vector
+  direction: output
+- name: angle
+  summary: Phase shift scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -31,8 +43,22 @@ numbers, this output is a scalar or a vector.
 
 Phase shift, in degrees, of the positive, negative, or zero sequence. Depending on the
 harmonic numbers, this output is a scalar or a vector.
-
 ## Parameters
+```yaml
+parameters:
+- name: Base frequency (Hz)
+  summary: Base frequency 60 (default)
+  group: ''
+- name: Harmonic numbers
+  summary: Harmonic numbers [1 2] (default) | scalar or vector
+  group: ''
+- name: Sequence
+  summary: Sequence selection Positive (default) | Negative | Zero
+  group: ''
+- name: Sample Time (s)
+  summary: Block sample time 0 (default)
+  group: ''
+```
 
 ### **Base frequency (Hz)** — Base frequency `60` (default)
 
@@ -64,7 +90,6 @@ allows you to switch between continuous operation and discrete operation,
 promote the sample time parameter. Promoting the sample time parameter
 ensures correct switching between the continuous and discrete
 implementations of the block. For more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / Measurements

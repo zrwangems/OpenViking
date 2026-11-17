@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Packet Input
 
 ## 端口
+```yaml
+ports:
+- name: Output Data
+  summary: 从通信通道接收的数据向量
+  direction: output
+- name: Data Ready
+  summary: 数据就绪端口（可选） 1 | 0
+  direction: output
+- name: Data Error
+  summary: 数据错误端口（可选） 1 | 0
+  direction: output
+- name: Timestamp
+  summary: 数据包时间戳端口（可选） double
+  direction: output
+- name: Missed Ticks
+  summary: 丢失节拍计数（可选） double
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -59,8 +78,70 @@ chinese_source: worker-translation
 当您选中 **Show “Missed Ticks” port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Install new board
+  summary: 注册板卡 < no board selected >（默认）
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: 删除当前板卡（按钮）
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: 设置板卡（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认） | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器节拍数 10（默认）| 整数
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: 在内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Packet identifier
+  summary: 数据包的标识符 1（默认）| 向量
+  group: ''
+  block_parameter: PacketID
+- name: Extended identifier
+  summary: 数据包的扩展标识符（仅限 CAN 板） 'off'（默认）| 'on'
+  group: ''
+  block_parameter: PacketID
+- name: Input packet size
+  summary: 每个输入数据包包含的字节数 32（默认）| 整数
+  group: ''
+  block_parameter: PacketSize
+- name: Block output data types
+  summary: 数据包中数据的输出类型和分组 '4*double'（默认）| 字符向量 | 字符向量元胞数组
+  group: ''
+  block_parameter: DataTypes
+- name: Input packet field byte order
+  summary: 从设备获取的数据包的字节序 Little Endian（默认）| Big Endian
+  group: ''
+  block_parameter: ByteOrder
+- name: 显示 “Data Ready” 端口
+  summary: 添加端口 Data Ready，当数据可用时发出 1 信号 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowReady
+- name: 显示 “Data Error” 端口
+  summary: 添加端口 Data Error，如果发生错误则发出 1 信号 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowError
+- name: 显示数据包时间戳端口
+  summary: 添加端口 Timestamp，输出 CAN 消息时间戳 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowTimestamp
+```
 
 ### **Install new board** — 注册板卡 `< no board selected >`（默认）
 
@@ -251,7 +332,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `ShowTimestamp` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

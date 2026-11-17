@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Mechanical to Electrical Position
 
 ## 端口
+```yaml
+ports:
+- name: θm
+  summary: 转子机械位置 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Npp
+  summary: 电机中可用的极对数 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Offset
+  summary: 机械位置偏移 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: 转子电位置 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -54,8 +73,28 @@ chinese_source: worker-translation
 转子的电位置，其范围与机械位置输入的范围相同。电位置的数据类型与输入的数据类型相同。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Pole pairs input
+  summary: 指定电机中可用极对数的方法 Specify via dialog（默认）| Input port
+  group: ''
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 4（默认）| 标量
+  group: ''
+- name: Input mechanical angle unit
+  summary: 转子机械位置的单位 Per unit（默认）| Radians | Degrees
+  group: ''
+- name: Offset input type
+  summary: 指定偏移的方法 Input port（默认）| Specify via dialog
+  group: ''
+- name: Mechanical offset
+  summary: 机械位置偏移的值 0（默认）| 标量
+  group: ''
+- name: Input data type
+  summary: 输入端口的数据类型 single（默认）| double | fixed point
+  group: ''
+```
 
 ### **Pole pairs input** — 指定电机中可用极对数的方法 `Specify via dialog`（默认）| `Input port`
 
@@ -95,7 +134,6 @@ chinese_source: worker-translation
 **注意**
 
 如果选择定点输入数据类型并向输入端口提供定点值，则该模块在硬件上部署时运行更快。
-
 ## 所属库
 
 Motor Control Blockset / Sensor Decoders Motor Control Blockset HDL Support / Sensor Decoders

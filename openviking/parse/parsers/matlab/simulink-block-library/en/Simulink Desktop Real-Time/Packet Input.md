@@ -14,6 +14,25 @@ language: en
 # Packet Input
 
 ## Ports
+```yaml
+ports:
+- name: Output Data
+  summary: Data received from communication channel vector
+  direction: output
+- name: Data Ready
+  summary: Data ready port (optional) 1 | 0
+  direction: output
+- name: Data Error
+  summary: Data error port (optional) 1 | 0
+  direction: output
+- name: Timestamp
+  summary: Packet timestamp port (optional) double
+  direction: output
+- name: Missed Ticks
+  summary: Missed tick count (optional) double
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -69,8 +88,71 @@ When you select **Show “Missed Ticks”
 port**, this port is visible.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Install new board
+  summary: Register a board < no board selected > (default)
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: Delete the current board (button)
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: Set up the board (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Packet identifier
+  summary: Identifier of the packet 1 (default) | vector
+  group: ''
+  block_parameter: PacketID
+- name: Extended identifier
+  summary: Extended identifier of the packet (CAN boards only) 'off' (default) | 'on'
+  group: ''
+  block_parameter: PacketID
+- name: Input packet size
+  summary: Number of bytes that each input packet contains 32 (default) | integer
+  group: ''
+  block_parameter: PacketSize
+- name: Block output data types
+  summary: Output type and grouping of data from the packet '4*double' (default) | character vector | cell array of character
+    vector
+  group: ''
+  block_parameter: DataTypes
+- name: Input packet field byte order
+  summary: Byte order of packet acquired from device Little Endian (default) | Big Endian
+  group: ''
+  block_parameter: ByteOrder
+- name: Show “Data Ready” port
+  summary: Add port Data Ready that signals 1 when data is available 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowReady
+- name: Show “Data Error” port
+  summary: Add port Data Error that signals 1 if error occurs 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowError
+- name: Show packet timestamp port
+  summary: Add port Timestamp that outputs CAN message timestamps 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowTimestamp
+```
 
 ### **Install new board** — Register a board `< no board selected >` (default)
 
@@ -321,7 +403,6 @@ ignores this value.
 |  |
 | --- |
 | **Block Parameter:** `ShowTimestamp` |
-
 ## Libraries
 
 Simulink Desktop Real-Time

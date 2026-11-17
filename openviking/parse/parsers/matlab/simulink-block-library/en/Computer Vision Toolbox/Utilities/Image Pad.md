@@ -14,6 +14,21 @@ language: en
 # Image Pad
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: PVal
+  summary: Pad value scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: Output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -45,8 +60,49 @@ Output image, returned as a padded matrix or an array. The dimensions of the
 output image are specified by the **Specify** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Padding method Constant (default) | Replicate | Symmetric | Circular
+  group: ''
+- name: Pad value source
+  summary: Source of constant pad value Specify via dialog (default) | Input port
+  group: ''
+- name: Pad value
+  summary: Pad value 0 (default) | scalar
+  group: ''
+- name: Specify
+  summary: Padding size specification format Pad size (default) | Output size
+  group: ''
+- name: Add columns to
+  summary: Column padding location Left (default) | Right | Both left and right | No padding
+  group: ''
+- name: Output column mode
+  summary: Output column sizing method User-specified (default) | Next power of two
+  group: ''
+- name: Number of output columns
+  summary: Number of columns in output image 10 (default) | positive integer
+  group: ''
+- name: Number of added columns
+  summary: Number of columns added to input image 2 (default) | positive integer | two-element vector of positive integers
+  group: ''
+- name: Add rows to
+  summary: Row padding location Top (default) | Bottom | Both top and bottom | No padding
+  group: ''
+- name: Output row mode
+  summary: Output row sizing method User-specified (default) | Next power of two
+  group: ''
+- name: Number of output rows
+  summary: Number of rows in output image 12 (default) | positive integer
+  group: ''
+- name: Number of added rows
+  summary: Number of rows added to input image [2 3] (default) | positive integer | two-element vector of positive integers
+  group: ''
+- name: Action when truncation occurs
+  summary: Action when input signal is truncated None (default) | Warning | Error
+  group: ''
+```
 
 ### **Method** — Padding method `Constant` (default) | `Replicate` | `Symmetric` | `Circular`
 
@@ -236,7 +292,6 @@ these options:
 
 To enable this parameter, set the **Specify** parameter to
 `Output size`.
-
 ## Libraries
 
 Computer Vision Toolbox / Utilities

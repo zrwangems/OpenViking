@@ -14,6 +14,36 @@ language: en
 # Tracking Scenario Reader
 
 ## Ports
+```yaml
+ports:
+- name: Platform Poses
+  summary: Platform pose information Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Platforms
+  summary: Information of platforms in the scenario Simulink bus containing MATLAB structure
+  direction: output
+- name: Simulation Time
+  summary: Current simulation time nonnegative scalar
+  direction: output
+- name: Coverage Configurations
+  summary: Coverage configurations in the scenario Simulink bus containing MATLAB structure
+  direction: output
+- name: Detections
+  summary: Detection list Simulink bus containing MATLAB structure
+  direction: output
+- name: Sensor Configuratons
+  summary: Sensor configurations in the scenario Simulink bus containing MATLAB structure
+  direction: output
+- name: Emissions
+  summary: Radar and sonar emissions in the scenario Simulink bus containing MATLAB structure
+  direction: output
+- name: Emitter Configurations
+  summary: Emitter configurations in the scenario Simulink bus containing MATLAB structure
+  direction: output
+- name: Point Clouds
+  summary: Point clouds Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -257,8 +287,136 @@ See `monostaticLidarSensor` for more information.
 
 To enable this port, in the **Output Settings** tab, select the
 **Point clouds** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of scenario
+  summary: Source of tracking scenario trackingScenario (default) | Tracking Scenario Designer session file
+  group: Scenario
+- name: Workspace variable name
+  summary: Workspace variable name trackingScenario variable name
+  group: Scenario
+- name: Session file
+  summary: Session file Tracking Scenario Designer session file name
+  group: Scenario
+- name: Source of platform pose
+  summary: Source of platform pose Scenario (default) | Input port
+  group: Scenario
+- name: Sample time (s)
+  summary: Sample time of simulation 0.1 (default) | positive real scalar
+  group: Scenario
+- name: Coordinate system to report platform poses
+  summary: Coordinate system to report platform poses Cartesian (default) | Geodetic
+  group: Scenario
+- name: Include profiles information with platforms
+  summary: Include profiles information with platforms off (default) | on
+  group: Output Settings
+- name: Detections
+  summary: Enable detections output port off (default) | on
+  group: Output Settings
+- name: Point clouds
+  summary: Enable port clouds output port off (default) | on
+  group: Output Settings
+- name: Emissions
+  summary: Enable emission output port off (default) | on
+  group: Output Settings
+- name: Enable occlusion in emission propagation
+  summary: Enable occlusion in emission propagation on (default) | off
+  group: Output Settings
+- name: Coverage
+  summary: Enable coverage configurations output port off (default) | on
+  group: Output Settings
+- name: Sensor
+  summary: Enable sensor configurations output port off (default) | on
+  group: Output Settings
+- name: Emitter
+  summary: Enable emitter configurations output port off (default) | on
+  group: Output Settings
+- name: Random number generation
+  summary: Method to generate random number seed Repeatable (default) | Not repeatable | Specify seed
+  group: Output Settings
+- name: Initial seed
+  summary: Initial seed for randomization 0 (default) | nonnegative integer
+  group: Output Settings
+- name: Source of platform bus name
+  summary: Source of name for platform poses bus Auto (default) | Property
+  group: Bus Settings
+- name: Specify platform bus name
+  summary: Specify platform bus name BusPlatforms (default) | valid bus name
+  group: Bus Settings
+- name: Source of maximum number of platforms
+  summary: Source of maximum number of platforms Auto (default) | Property
+  group: Bus Settings
+- name: Maximum number of platforms
+  summary: Maximum number of platforms 50 (default) | positive integer
+  group: Bus Settings
+- name: Source of detection bus name
+  summary: Source of name for detection bus Auto (default) | Property
+  group: Bus Settings
+- name: Specify detection bus name
+  summary: Specify detection bus name BusDetection (default) | valid bus name
+  group: Bus Settings
+- name: Source of maximum number of detections
+  summary: Source of maximum number of platforms Auto (default) | Property
+  group: Bus Settings
+- name: Maximum number of detections
+  summary: Maximum number of detections 50 (default) | positive integer
+  group: Bus Settings
+- name: Source of point cloud bus name
+  summary: Source of name for point cloud bus Auto (default) | Property
+  group: Bus Settings
+- name: Specify point cloud bus name
+  summary: Specify point cloud bus name BusPointCloud (default) | valid bus name
+  group: Bus Settings
+- name: Maximum number of lidar sensors
+  summary: Maximum number of lidar sensors 10 (default) | positive integer
+  group: Bus Settings
+- name: Source of maximum number of lidar sensors
+  summary: Source of maximum number of lidar sensors Auto (default) | Property
+  group: Bus Settings
+- name: Source of emission bus name
+  summary: Source of name for emission bus Auto (default) | Property
+  group: Bus Settings
+- name: Specify emission bus name
+  summary: Specify emission bus name BusEmission (default) | valid bus name
+  group: Bus Settings
+- name: Source of maximum number of emissions
+  summary: Source of maximum number of emissions Auto (default) | Property
+  group: Bus Settings
+- name: Maximum number of emissions
+  summary: Maximum number of emissions 50 (default) | positive integer
+  group: Bus Settings
+- name: Source of coverage configuration bus name
+  summary: Source of name for coverage configuration bus Auto (default) | Property
+  group: Bus Settings
+- name: Specify coverage configuration bus name
+  summary: Specify coverage configuration bus name BusCovConf (default) | valid bus name
+  group: Bus Settings
+- name: Source of sensor configuration bus name
+  summary: Source of name for sensor configuration bus Auto (default) | Property
+  group: Bus Settings
+- name: Specify sensor configuration bus name
+  summary: Specify sensor configuration bus name BusSensorConf (default) | valid bus name
+  group: Bus Settings
+- name: Source of emitter configuration bus name
+  summary: Source of name for emitter configuration bus Auto (default) | Property
+  group: Bus Settings
+- name: Specify emitter configuration bus name
+  summary: Specify emitter configuration bus name BusEmitterConf (default) | valid bus name
+  group: Bus Settings
+- name: Source of maximum number of sensors
+  summary: Source of maximum number of sensors Auto (default) | Property
+  group: Bus Settings
+- name: Maximum number of sensors
+  summary: Maximum number of sensors 10 (default) | positive integer
+  group: Bus Settings
+- name: Source of maximum number of emitters
+  summary: Source of maximum number of emitters Auto (default) | Property
+  group: Bus Settings
+- name: Maximum number of emitters
+  summary: Maximum number of emitters 10 (default) | positive integer
+  group: Bus Settings
+```
 
 ### Scenario
 
@@ -783,7 +941,6 @@ Specify the maximum number of emitters as a positive integer.
 
 To enable this parameter, set the **Source of maximum number of
 emitters** parameter to `Property`.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Tracking Scenario and Sensor Models

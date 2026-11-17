@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Quaternion Interpolation
 
 ## 端口
+```yaml
+ports:
+- name: q0
+  summary: 第一个归一化四元数 4×1 向量 | 1×4 向量
+  direction: input
+  data_types: double
+- name: q1
+  summary: 第二个归一化四元数 4×1 向量 | 1×4 向量
+  direction: input
+  data_types: double
+- name: f
+  summary: 区间分数 标量
+  direction: input
+  data_types: double
+- name: qf
+  summary: 自然对数 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -54,8 +73,24 @@ chinese_source: worker-translation
 四元数的自然对数，以向量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Methods
+  summary: 四元数插值方法 SLERP（默认）| LERP | NLERP
+  group: ''
+  block_parameter: method
+  type: 字符向量
+  values: '''SLERP'' | ''LERP'' | ''NLERP'''
+  default: '''SLERP'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Methods** — 四元数插值方法 `SLERP`（默认）| `LERP` | `NLERP`
 
@@ -106,7 +141,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'Warning'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

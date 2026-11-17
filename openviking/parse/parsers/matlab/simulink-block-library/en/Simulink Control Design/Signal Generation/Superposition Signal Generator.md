@@ -14,6 +14,29 @@ language: en
 # Superposition Signal Generator
 
 ## Ports
+```yaml
+ports:
+- name: start/stop
+  summary: Start and stop the signal generation scalar
+  direction: input
+  data_types: single | double
+- name: w
+  summary: Frequencies for estimation experiment vector
+  direction: input
+  data_types: single | double
+- name: amp
+  summary: Perturbation amplitudes scalar | vector
+  direction: input
+  data_types: single | double
+- name: sin, cos, sincos
+  summary: Superposition perturbation signal scalar | vector
+  direction: output
+  data_types: single | double
+- name: 3ϕ-sin, 3ϕ-cos, 3ϕ-sincos
+  summary: Three-phase superposition perturbation signal vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -92,8 +115,37 @@ To enable this port, select **Generate three-phase
 perturbation signal**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: Sample time 0.1 (default) | positive scalar | –1
+  group: ''
+- name: Data Type
+  summary: Floating point precision double (default) | single
+  group: ''
+- name: Excitation signal source
+  summary: Excitation signal source Block parameters (default) | External ports
+  group: ''
+- name: Frequencies
+  summary: Frequencies for estimation [0.5 1 2] (default) | vector
+  group: ''
+- name: Amplitudes
+  summary: Amplitudes of injected perturbations 1 (default) | scalar | vector
+  group: ''
+- name: Number of frequencies
+  summary: Number of externally supplied frequencies 3 (default) | positive integer
+  group: ''
+- name: Waveform Type
+  summary: Waveform type sine (default) | cosine | both
+  group: Advanced Settings
+- name: Phase Shift
+  summary: Phase shift of the wave 0 (default) | scalar | vector
+  group: Advanced Settings
+- name: Generate three-phase perturbation signal
+  summary: Generate three-phase perturbation signal off (default) | on
+  group: Advanced Settings
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -238,7 +290,6 @@ Specify the phase shift in the waveform.
 Generate a balanced three-phase perturbation signal with a phase
 difference of 120° between waves. Three-phase signals are helpful when
 you want to identify frequency response of three-phase AC power systems.
-
 ## Libraries
 
 Simulink Control Design / Signal Generation

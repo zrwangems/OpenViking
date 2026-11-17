@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Capacitor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,19 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与电容负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Capacitance
+  summary: 电容的电容值 1e-6 F（默认）| 正标量
+  group: ''
+- name: Series resistance
+  summary: 小寄生效应 1e-6 Ohm（默认）| 非负标量
+  group: ''
+- name: Parallel conductance
+  summary: 小寄生效应 0 1/Ohm（默认）| 非负标量
+  group: ''
+```
 
 ### **Capacitance** — 电容的电容值 `1e-6 F`（默认）| 正标量
 
@@ -39,7 +59,6 @@ chinese_source: worker-translation
 ### **Parallel conductance** — 小寄生效应 `0 1/Ohm`（默认）| 非负标量
 
 表示小寄生效应。直接跨接在电容两端的并联电导可用于建模介质损耗，或每伏特的泄漏电流。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

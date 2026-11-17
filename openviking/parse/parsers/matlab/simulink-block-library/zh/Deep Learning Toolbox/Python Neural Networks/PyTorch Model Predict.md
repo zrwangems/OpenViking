@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # PyTorch Model Predict
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 输入数据数值数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Out1
+  summary: 预测响应数值数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### 输入
 
@@ -34,8 +45,66 @@ chinese_source: worker-translation
 当您单击 **Specify model file** 选项卡上的 **Autofill Fields From Model File** 按钮时，软件会尝试自动填充 **Outputs** 选项卡上的表格。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Load command
+  summary: Python 模型的加载命令 torch.load()（默认）| torch.jit.load() | load_state_dict()
+  group: 指定模型文件
+  block_parameter: LoadCommandPopup
+  type: 字符向量
+  values: '"torch.load()" | "torch.jit.load()" | "load_state_dict()"'
+  default: '"torch.load()"'
+- name: Path to model file or state_dict file
+  summary: Python PyTorch 模型文件或 state_dict 文件的名称或路径 untitled（默认）| 字符向量
+  group: 指定模型文件
+  block_parameter: ModelFile
+  type: 字符向量
+  values: PyTorch 模型文件的路径 | state_dict 文件的路径
+  default: '"untitled"'
+- name: Model class name and optional arguments (if using load_state_dict)
+  summary: 模型类名称和可选参数 字符向量
+  group: 指定模型文件
+  block_parameter: ModelClassName
+  type: 字符向量
+  values: PyTorch 模型类名称 | 对 PyTorch 模型类的函数调用
+- name: Execution device
+  summary: Python 模型的执行设备 cpu（默认）| cuda | 设备名称
+  group: 指定模型文件
+  block_parameter: DeviceComboBox
+  type: 不带引号的文本
+  values: cpu |cuda | 设备名称
+  default: cpu
+- name: Sample time (–1 for inherited)
+  summary: 用于指定采样时间的选项 –1（默认）| 标量
+  group: 指定模型文件
+  block_parameter: SampleTime
+  type: 字符串标量或字符向量
+  values: 标量
+  default: '"–1"'
+- name: Inputs
+  summary: 输入端口属性表
+  group: 输入
+  block_parameter: InputTable
+  type: 元胞数组
+- name: Outputs
+  summary: 输出端口属性表
+  group: 输出
+  block_parameter: OutputTable
+  type: 元胞数组
+- name: Path to Python file defining preprocess()
+  summary: 定义 Python 预处理函数的文件的名称或路径 字符向量
+  group: 预处理/后处理
+  block_parameter: PreprocessingFilePath
+  type: 字符向量
+  values: Python 文件 | Python 文件的路径
+- name: Path to Python file defining postprocess()
+  summary: 定义 Python 后处理函数的文件的名称或路径 字符向量
+  group: 预处理/后处理
+  block_parameter: PostprocessingFilePath
+  type: 字符向量
+  values: Python 文件 | Python 文件的路径
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -197,7 +266,6 @@ outputList = postprocess(model,inputList)
 | **模块参数：** `PostprocessingFilePath` |
 | **类型：** 字符向量 |
 | **值：** Python 文件 | Python 文件的路径 |
-
 ## 所属库
 
 Deep Learning Toolbox / Python Neural Networks

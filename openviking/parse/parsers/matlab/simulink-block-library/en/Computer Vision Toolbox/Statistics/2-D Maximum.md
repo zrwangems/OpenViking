@@ -14,6 +14,41 @@ language: en
 # 2-D Maximum
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input array vector | matrix | *N-D*- array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: ROI
+  summary: Region of interest four-element vector | *m*-by-4 matrix | *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Label
+  summary: Label matrix matrix of nonnegative integers
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Label Numbers
+  summary: Label values of ROIs *M*-element vector
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Val
+  summary: Output maximum value scalar | vector | matrix | *N-D*-array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Idx
+  summary: Indices of maximum values in the input array scalar | vector | matrix | *N-D*-array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Flag
+  summary: Validation for ROI 0 | 1
+  direction: output
+```
 
 ### Input
 
@@ -237,8 +272,44 @@ within image bounds** parameter and set the value of **ROI
 type** parameter to `Rectangle`,
 `Lines`, or `Label
 Matrix`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Output mode Value and Index (default) | Value | Index | Running
+  group: ''
+- name: Index Base
+  summary: Index origin One (default) | Zero
+  group: ''
+- name: Find the maximum value over
+  summary: Dimension along which maximum is computed Entire input (default) | Each row | Each column | Specified dimension
+  group: ''
+- name: Dimension
+  summary: Custom dimension 1 (default) | scalar
+  group: ''
+- name: Reset port
+  summary: Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Enable ROI processing
+  summary: Compute maximum value within a particular region off (default) | on
+  group: ''
+- name: ROI type
+  summary: Type of ROI Rectangles (default) | Lines | Label matrix | Binary mask
+  group: ''
+- name: ROI portion to process
+  summary: Portion of ROI in which to calculate maximum Entire ROI (default) | ROI perimeter
+  group: ''
+- name: Output
+  summary: Calculate maximum for individual or entire ROI Individual statistics for each ROI (default) | Single statistic
+    for all ROIs
+  group: ''
+- name: Output flag indicating if ROI is within image bounds
+  summary: Enable Flag port off (default) | on
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+```
 
 **Main Tab**
 
@@ -429,7 +500,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Statistics

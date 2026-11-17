@@ -14,6 +14,29 @@ language: en
 # Hyperbolic Tangent HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Angle in radians real finite scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: Whether input is valid Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: Hyperbolic tangent of x scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: Whether output data is valid Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Whether block is ready Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -67,11 +90,12 @@ this value is 0 (`false`), the block ignores input data in the next
 time step.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Math Operations

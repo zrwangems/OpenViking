@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Bit Shift
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +44,24 @@ chinese_source: worker-translation
 
 - 最小位宽：2
 - 最大位宽：65535
-
 ## 参数
+```yaml
+parameters:
+- name: Shift Mode
+  summary: 移位的类型和方向 Shift Left Logical（默认）| Shift Right Logical | Shift Right Arithmetic
+  group: ''
+  block_parameter: mode
+  type: string scalar | character vector
+  values: '"Shift Left Logical" | "Shift Right Logical" | "Shift Right Arithmetic"'
+  default: '''Shift Left Logical'''
+- name: Shift Length
+  summary: 要移位的位数 0（默认）
+  group: ''
+  block_parameter: N
+  type: string scalar | character vector
+  values: A value greater than or equal to zero
+  default: '''0'''
+```
 
 ### **Shift Mode** — 移位的类型和方向 `Shift Left Logical`（默认）| `Shift Right Logical` | `Shift Right Arithmetic`
 
@@ -62,7 +88,6 @@ chinese_source: worker-translation
 | **类型**：string scalar | character vector |
 | **Value:** A value greater than or equal to zero |
 | **默认值**：`'0'` |
-
 ## 所属库
 
 HDL Coder / Logic and Bit Operations

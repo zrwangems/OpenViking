@@ -14,6 +14,24 @@ language: en
 # Translational Mechanical Converter (TL)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Displacement of port R relative to port C, m physical signal
+  direction: input
+- name: A
+  summary: Converter inlet thermal liquid
+  direction: conserving
+- name: H
+  summary: Temperature inside converter thermal
+  direction: conserving
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -48,8 +66,48 @@ interface.
 
 Mechanical translational conserving port associated with the converter
 casing.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: Select the converter orientation Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Main
+- name: Interface displacement
+  summary: Select method to determine relative port positions Calculate from velocity of port R relative to port C (default)
+    | Provide input signal from Multibody joint
+  group: Main
+- name: Initial interface displacement
+  summary: Translational offset of port R relative to port C at the start of simulation 0 m (default)
+  group: Main
+- name: Interface cross-sectional area
+  summary: The area on which the liquid exerts pressure to generate the translational force 0.01 m^2 (default)
+  group: Main
+- name: Dead volume
+  summary: Volume of liquid when the interface displacement is 0 1e-5 m^3 (default)
+  group: Main
+- name: Environment pressure specification
+  summary: Select a specification method for the environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Main
+- name: Environment pressure
+  summary: Pressure outside the converter 0.101325 MPa (default)
+  group: Main
+- name: Enable dynamic compressibility
+  summary: Select whether to model fluid dynamic compressibility On (default) | Off
+  group: Effects and Initial Conditions
+- name: Initial liquid pressure
+  summary: Liquid pressure at time zero 0.101325 MPa (default)
+  group: Effects and Initial Conditions
+- name: Initial liquid temperature
+  summary: Liquid temperature at time zero 293.15 K (default)
+  group: Effects and Initial Conditions
+- name: Nominal liquid pressure
+  summary: Liquid pressure at nominal operating conditions 0.101325 MPa (default)
+  group: Effects and Initial Conditions
+- name: Nominal liquid temperature
+  summary: Liquid temperature at nominal operating conditions 293.15 K (default)
+  group: Effects and Initial Conditions
+```
 
 ### Main
 
@@ -171,7 +229,6 @@ equation when dynamic compressibility is disabled.
 
 To enable this parameter, clear the **Enable dynamic
 compressibility** check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Elements

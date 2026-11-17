@@ -14,6 +14,18 @@ language: en
 # Pilot-Operated Check Valve (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Valve entrance or exit moist air
+  direction: conserving
+- name: B
+  summary: Valve entrance or exit moist air
+  direction: conserving
+- name: X
+  summary: Pilot port moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -35,8 +47,73 @@ mechanism is disabled.
 Moist air conserving port associated that actuates, by the application
 of a sufficient pressure, the pilot mechanism that opens the valve for
 reverse flow. There is no mass flow through this port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: Parameterization used to specify flow characteristics of orifice Cv flow coefficient (default) | Kv flow coefficient
+    | Sonic conductance | Orifice area
+  group: ''
+- name: Pilot configuration
+  summary: Method for handling negative pilot pressure forces Rigidly connected pilot spool and poppet (default) | Disconnected
+    pilot spool and poppet
+  group: ''
+- name: Pilot pressure specification
+  summary: Choice of pressure measurement to use as valve control signal Pressure difference of port X relative to port A
+    (default) | Gauge pressure at port X
+  group: ''
+- name: Cracking pressure differential
+  summary: Effective control pressure at which the valve first opens 0.01 MPa (default) | positive scalar
+  group: ''
+- name: Maximum opening pressure differential
+  summary: Effective control pressure at which the valve is fully open 0.02 MPa (default) | positive scalar
+  group: ''
+- name: Pilot ratio
+  summary: Ratio of pilot port area to inlet port area 1 (default) | positive scalar
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: Cv coefficient that corresponds to maximally open component 4 (default) | positive scalar
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: Kv coefficient that corresponds to maximally open component 3.6 (default) | positive scalar
+  group: ''
+- name: Maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open component 12 l/(bar*s) (default) | positive scalar
+  group: ''
+- name: Critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: ''
+- name: Subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Maximum orifice area
+  summary: Flow area corresponding to maximally open component 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar in the range of [0,1]
+  group: ''
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at moist air ports 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve parameterization** — Parameterization used to specify flow characteristics of orifice `Cv flow coefficient` (default) | `Kv flow coefficient` | `Sonic conductance` | `Orifice area`
 
@@ -253,7 +330,6 @@ pressure. Typical values range from `0.995` to
 Area normal to the flow path at each port. The ports are equal in size.
 The value of this parameter should match the inlet area of the components to
 which the resistive element connects.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Directional Control Valves

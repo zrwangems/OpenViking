@@ -14,6 +14,13 @@ language: en
 # Modbus Client Read
 
 ## Ports
+```yaml
+ports:
+- name: Reg_*x*
+  summary: Current values of registers vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -34,8 +41,30 @@ To enable this port, specify one or more registers in the
 **Registers** parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Client
+  summary: Select Modbus client drop-down list
+  group: ''
+  block_parameter: ClientList
+  values: Modbus client name
+- name: Server ID
+  summary: Address of the server 1 (default) | nonnegative integer in the range [0, 255]
+  group: ''
+  block_parameter: ServerId
+  values: 1 (default) | nonnegative integer in the range [0, 255]
+- name: Registers
+  summary: List of Modbus registers table
+  group: ''
+  block_parameter: RegisterTable
+  values: register name and information
+- name: Block sample time
+  summary: Sample time for read operation -1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: SampleTime
+  values: -1 (default) | nonnegative scalar
+```
 
 ### **Client** — Select Modbus client drop-down list
 
@@ -176,7 +205,6 @@ programmatically, use the `get_param` (Simulink) function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | -1 (default) | nonnegative scalar |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Industrial Communication Toolbox / Modbus

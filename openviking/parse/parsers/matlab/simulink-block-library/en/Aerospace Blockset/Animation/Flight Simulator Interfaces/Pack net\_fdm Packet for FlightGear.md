@@ -14,6 +14,237 @@ language: en
 # Pack net_fdm Packet for FlightGear
 
 ## Ports
+```yaml
+ports:
+- name: l
+  summary: Longitude scalar
+  direction: input
+  data_types: double
+- name: μ
+  summary: Latitude scalar
+  direction: input
+  data_types: double
+- name: h
+  summary: Altitude scalar
+  direction: input
+  data_types: double
+- name: ϕ
+  summary: Roll scalar
+  direction: input
+  data_types: single
+- name: θ
+  summary: Pitch scalar
+  direction: input
+  data_types: single
+- name: ψ
+  summary: Yaw scalar
+  direction: input
+  data_types: single
+- name: α
+  summary: Angle of attack scalar
+  direction: input
+  data_types: single
+- name: β
+  summary: Sideslip angle scalar
+  direction: input
+  data_types: single
+- name: dφ/dt
+  summary: Roll rate scalar
+  direction: input
+  data_types: single
+- name: dθ/dt
+  summary: Pitch rate scalar
+  direction: input
+  data_types: single
+- name: dψ/dt
+  summary: Yaw rate scalar
+  direction: input
+  data_types: single
+- name: Vcas
+  summary: Calibrated airspeed scalar
+  direction: input
+  data_types: single
+- name: climb_rate
+  summary: Rate of climb scalar
+  direction: input
+  data_types: single
+- name: vnorth
+  summary: North velocity in body frame scalar
+  direction: input
+  data_types: single
+- name: veast
+  summary: East velocity in body frame scalar
+  direction: input
+  data_types: single
+- name: vdown
+  summary: Down velocity scalar
+  direction: input
+  data_types: single
+- name: vwind body north
+  summary: North velocity in body frame relative to local airmass scalar
+  direction: input
+  data_types: single
+- name: vwind body east
+  summary: East velocity in body frame relative to local airmass scalar
+  direction: input
+  data_types: single
+- name: vwind body down
+  summary: Down velocity in body frame relative to airmass scalar
+  direction: input
+  data_types: single
+- name: AX pilot
+  summary: '*X* acceleration in body frame scalar'
+  direction: input
+  data_types: single
+- name: AY pilot
+  summary: '*Y* acceleration in body frame scalar'
+  direction: input
+  data_types: single
+- name: AZ pilot
+  summary: '*Z* acceleration in body frame scalar'
+  direction: input
+  data_types: single
+- name: stall_warning
+  summary: Amount of stall scalar
+  direction: input
+  data_types: single
+- name: slip_degree
+  summary: Slip ball deflection scalar
+  direction: input
+  data_types: single
+- name: elevator
+  summary: Normalized elevator position scalar
+  direction: input
+  data_types: single
+- name: elevator_trim_tab
+  summary: Normalized elevator trim tab position scalar
+  direction: input
+  data_types: single
+- name: left_flap
+  summary: Normalized left flap position scalar
+  direction: input
+  data_types: single
+- name: right_flap
+  summary: Normalized right flap position scalar
+  direction: input
+  data_types: single
+- name: left_aileron
+  summary: Normalized left aileron position scalar
+  direction: input
+  data_types: single
+- name: right_aileron
+  summary: Normalized right aileron position scalar
+  direction: input
+  data_types: single
+- name: rudder
+  summary: Normalized rudder position scalar
+  direction: input
+  data_types: single
+- name: nose_wheel
+  summary: Normalized nose wheel position scalar
+  direction: input
+  data_types: single
+- name: speedbrake
+  summary: Normalized speedbrake position scalar
+  direction: input
+  data_types: single
+- name: spoilers
+  summary: Normalized spoilers position scalar
+  direction: input
+  data_types: single
+- name: num_engines
+  summary: Number of engines scalar
+  direction: input
+  data_types: uint32
+- name: eng_state
+  summary: Engine state vector
+  direction: input
+  data_types: uint32
+- name: rpm
+  summary: Engine RPM vector
+  direction: input
+  data_types: single
+- name: fuel_flow
+  summary: Fuel flow vector
+  direction: input
+  data_types: single
+- name: fuel_px
+  summary: Fuel pressure vector
+  direction: input
+  data_types: single
+- name: egt
+  summary: Exhaust gas temperature vector
+  direction: input
+  data_types: single
+- name: cht
+  summary: Cylinder head temperature scalar
+  direction: input
+  data_types: single
+- name: mp_osi
+  summary: Manifold pressure vector
+  direction: input
+  data_types: single
+- name: tit
+  summary: Turbine inlet temperature vector
+  direction: input
+  data_types: single
+- name: oil_temp
+  summary: Oil temperature vector
+  direction: input
+  data_types: single
+- name: oil_px
+  summary: Oil pressure vector
+  direction: input
+  data_types: single
+- name: num_tanks
+  summary: Number of fuel tanks scalar
+  direction: input
+  data_types: uin32
+- name: fuel_quantity
+  summary: Fuel quantity per tank vector
+  direction: input
+  data_types: single
+- name: num_wheels
+  summary: Number of wheels scalar
+  direction: input
+  data_types: uint32
+- name: wow
+  summary: Weight on wheels switch vector
+  direction: input
+  data_types: uint32
+- name: gear_pos
+  summary: Landing gear normalized position vector
+  direction: input
+  data_types: single
+- name: gear_steer
+  summary: Landing gear normalized steering vector
+  direction: input
+  data_types: single
+- name: gear_compression
+  summary: Landing gear normalized compression vector
+  direction: input
+  data_types: single
+- name: agl
+  summary: Altitude above ground level scalar
+  direction: input
+  data_types: single
+- name: cur_time
+  summary: Current UNIX® time scalar
+  direction: input
+  data_types: uint32
+- name: warp
+  summary: Offset in seconds to UNIX time scalar
+  direction: input
+  data_types: int32
+- name: visibility
+  summary: Visibility scalar
+  direction: input
+  data_types: single
+- name: net_fdm
+  summary: Packet generated for FlightGear array
+  direction: output
+  data_types: single | double | uint32
+```
 
 ### Input
 
@@ -655,8 +886,59 @@ inputs** check box.
 Packet generated for FlightGear, specified as an array.
 
 **Data Types:** `single` | `double` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show position/altitude inputs
+  summary: Position and altitude inputs on (default) | off
+  group: ''
+  block_parameter: ShowPositionAttitudeInputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Show velocity/acceleration inputs
+  summary: Velocity and acceleration inputs off (default) | on
+  group: ''
+  block_parameter: ShowVelocityAccelerationInputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show control surface position inputs
+  summary: Control surface position inputs off (default) | on
+  group: ''
+  block_parameter: ShowControlSurfacePositionInputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show engine/fuel inputs
+  summary: Engine and fuel inputs off (default) | on
+  group: ''
+  block_parameter: ShowEngineFuelInputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show landing gear inputs
+  summary: Landing gear inputs off (default) | on
+  group: ''
+  block_parameter: ShowLandingGearInputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show environment inputs
+  summary: Environment inputs off (default) | on
+  group: ''
+  block_parameter: ShowEnvironmentInputs
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time
+  summary: Sample time 1/30 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''1/30'''
+```
 
 ### **Show position/altitude inputs** — Position and altitude inputs `on` (default) | `off`
 
@@ -864,7 +1146,6 @@ Specify the sample time (-1 for inherited).
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'1/30'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

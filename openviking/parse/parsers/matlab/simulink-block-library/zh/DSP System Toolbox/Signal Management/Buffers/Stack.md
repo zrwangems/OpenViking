@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Stack
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Push
+  summary: 将输入标量推入栈的触发事件
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Pop
+  summary: 弹出元素的触发事件 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Rst
+  summary: 清空栈内容 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: 输出标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Empty
+  summary: 空栈指示端口 标量
+  direction: output
+  data_types: Boolean
+- name: Full
+  summary: 满栈指示端口 标量
+  direction: output
+  data_types: Boolean
+- name: Num
+  summary: 栈条目数端口 标量
+  direction: output
+  data_types: double | uint32
+```
 
 ### 输入
 
@@ -92,8 +127,37 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Show number of stack entries port (Num)**。
 
 **数据类型：** `double` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Stack depth
+  summary: 栈可容纳的条目数 8（默认）| 正整数
+  group: ''
+- name: Trigger type
+  summary: 触发类型 Rising edge（默认）| Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Push full stack
+  summary: 满栈时推入 Dynamic reallocation（默认）| Ignore | Warning | Error
+  group: ''
+- name: Pop empty stack
+  summary: 空栈时弹出 Warning（默认）| Ignore | Error
+  group: ''
+- name: Show empty stack indicator port (Empty)
+  summary: 启用空栈指示端口 off（默认）| on
+  group: ''
+- name: Show full stack indicator port (Full)
+  summary: 启用满栈指示端口 off（默认）| on
+  group: ''
+- name: Show number of stack entries port (Num)
+  summary: 启用栈条目数端口 off（默认）| on
+  group: ''
+- name: Show reset port (Rst) to clear internal stack buffer
+  summary: 启用复位端口 off（默认）| on
+  group: ''
+- name: Clear output port on reset
+  summary: 复位时清除输出端口 off（默认）| on
+  group: ''
+```
 
 ### **Stack depth** — 栈可容纳的条目数 `8`（默认）| 正整数
 
@@ -167,7 +231,6 @@ chinese_source: worker-translation
 ### **Clear output port on reset** — 复位时清除输出端口 `off`（默认）| `on`
 
 当模块在 **Rst** 输入端口接收到触发时，将 **Out** 端口重置为 0（除清空栈之外）。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Buffers

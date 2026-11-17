@@ -15,10 +15,105 @@ chinese_source: worker-translation
 # Y-Parameters Amplifier
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Y-Parameters
+  summary: 非线性放大器的 Y 参数 [0.0200,0;-0.0400, 0.0200]（默认）| 2×2×*M* 数组
+  group: 主
+- name: Frequency (Hz)
+  summary: Y 参数的频率 2.0e9（默认）| *M* 元素向量
+  group: 主
+- name: Interpolation method
+  summary: 插值网络参数的方法 Linear（默认）| Spline | Cubic
+  group: 主
+- name: Noise type
+  summary: 噪声数据的类型 Noise figure（默认）| Spot noise data | Noise factor | Noise temperature
+  group: 噪声数据
+- name: Noise figure (dB)
+  summary: 输入端的可用信噪比与输出端的可用信噪比之比 0（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Minimum noise figure
+  summary: 输入端的可用信噪比与输出端的可用信噪比之比的最小值 0（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Optimal reflection coefficient
+  summary: 最佳源阻抗 1+0i（默认）| 复标量 | 复向量
+  group: 噪声数据
+- name: Equivalent normalized noise resistance
+  summary: 用于进行噪声测量的归一化电阻值 1（默认）| 正标量 | 正向量
+  group: 噪声数据
+- name: Noise factor
+  summary: 输入端的可用信噪功率与输出端的可用信噪功率之比 1（默认）| 标量比值 | 比值向量
+  group: 噪声数据
+- name: Noise temperature (K)
+  summary: 与放大器产生相同噪声量的等效温度 0（默认）| 非负标量 | 非负向量
+  group: 噪声数据
+- name: Frequency (Hz)
+  summary: 用于表示噪声数据的频率范围 2.0e9（默认）| 非负标量 | 非负向量
+  group: 噪声数据
+- name: IP3 type
+  summary: 三阶截点的类型 OIP3（默认）| IIP3
+  group: 非线性数据
+- name: IP3 (dBm)
+  summary: IP3 值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: 1dB gain compression power (dBm)
+  summary: 增益下降 1 dB 时的输出功率值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: Output saturation power (dBm)
+  summary: 放大器完全饱和时产生的输出功率值 inf（默认）| 标量 | 向量
+  group: 非线性数据
+- name: Gain compression at saturation (dB)
+  summary: 增益下降值 3（默认）| 标量 | 向量
+  group: 非线性数据
+- name: Frequency (Hz)
+  summary: 对应于三阶截点或功率数据的频率点 2.0e9（默认）| 正标量 | 正向量
+  group: 非线性数据
+- name: Source of frequency data
+  summary: 频率数据源 Same as the Y-Parameters（默认）| User-specified
+  group: 可视化
+- name: Frequency data (Hz)
+  summary: 频率数据范围 [1.9e9:1.0e8:2.2e9]（默认）| 向量
+  group: 可视化
+- name: Reference impedance (ohms)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: X parameter
+  summary: 频率图 Freq（默认值）
+  group: 可视化
+- name: X format
+  summary: 频率图格式 Hz（默认值）| Auto | kHz | MHz | GHz | THz
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认值）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认值）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主
 
@@ -269,7 +364,6 @@ X 轴刻度，指定为 `Linear` 或 `Log`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘制按钮绘制指定数据。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Amplifiers

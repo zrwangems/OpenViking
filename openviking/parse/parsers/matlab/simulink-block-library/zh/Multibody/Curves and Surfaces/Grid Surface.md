@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Grid Surface
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 局部参考坐标系 frame
+  direction: unspecified
+- name: G
+  summary: 几何体 geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -28,8 +37,43 @@ Grid surface 参考坐标系。将此 frame 连接到另一个模块，以指定
 表示由此模块定义的 grid surface 的几何体。将此端口连接到
 Spatial
 Contact Force 模块，以对与支持的几何体的接触进行建模。
-
 ## 参数
+```yaml
+parameters:
+- name: X Grid Vector
+  summary: '*x* 方向坐标 [0 1 2 3] m（默认）| *1-by-m* 向量'
+  group: ''
+- name: Y Grid Vector
+  summary: '*y* 方向坐标 [0 1 2 3] m（默认）| *1-by-n* 向量'
+  group: ''
+- name: Z Heights
+  summary: 网格点的高程 [0 0 .5 .5; 0 0 .5 .5; 0 0 0 0; 0 0 0 0] m（默认）| *m-by-n* 矩阵
+  group: ''
+- name: Type
+  summary: grid surface 的可视化表示 From Geometry（默认）| None
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: 图形颜色 [0.5 0.5 0.5]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: Graphic
+- name: Specular Color
+  summary: 高光颜色 [0.5 0.5 0.5 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Ambient Color
+  summary: 阴影颜色 [0.15 0.15 0.15 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Shininess
+  summary: 高光锐度 75（默认）| 1 到 128 范围内的标量
+  group: Graphic
+```
 
 ### **X Grid Vector** — *x* 方向坐标 [0 1 2 3] `m`（默认）| *1-by-m* 向量
 
@@ -129,7 +173,6 @@ grid surface 的可视化表示。将此参数设置为 `From Geometry` 可显�
    Geometry`
 2. **Visual Properties** 为
    `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Curves and Surfaces

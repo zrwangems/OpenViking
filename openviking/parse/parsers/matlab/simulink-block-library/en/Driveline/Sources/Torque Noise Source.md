@@ -14,6 +14,18 @@ language: en
 # Torque Noise Source
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Single-sided noise power spectral density physical signal
+  direction: input
+- name: B
+  summary: Base interface mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower interface mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -33,8 +45,19 @@ interface.
 
 Mechanical rotational conserving port associated with the follower
 interface.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Time step period and offset 1e-3 s (default) | [step, offset] s
+  group: ''
+- name: Repeatability
+  summary: Random number seed control Not repeatable (default) | Repeatable | Specify seed
+  group: ''
+- name: Seed
+  summary: Random number generation seed value 0 (default)
+  group: ''
+```
 
 ### **Sample time** — Time step period and offset `1e-3` `s` (default) | `[step, offset]` `s`
 
@@ -85,7 +108,6 @@ The seed must be `0` or a positive integer. This
 parameter is only available when you select `Specify
 seed` for the **Repeatability**
 parameter.
-
 ## Libraries
 
 Simscape / Driveline / Sources

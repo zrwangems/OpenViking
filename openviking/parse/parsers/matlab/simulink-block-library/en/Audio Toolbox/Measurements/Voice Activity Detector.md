@@ -14,6 +14,29 @@ language: en
 # Voice Activity Detector
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal matrix | 1-D vector
+  direction: input
+  data_types: single | double
+- name: SilenceToSpeech
+  summary: Threshold (dB) scalar in the range [0, 1]
+  direction: input
+  data_types: single | double
+- name: SpeechToSilence
+  summary: Threshold (dB) scalar in the range [0, 1]
+  direction: input
+  data_types: single | double
+- name: P
+  summary: Probability that speech is present scalar | row vector
+  direction: output
+  data_types: single | double
+- name: N
+  summary: Estimate of noise variance per frequency bin column vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -70,8 +93,37 @@ To enable this port, select the **Output noise
 variance** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Domain of the input
+  summary: Domain of the input Time (default) | Frequency
+  group: ''
+- name: Window
+  summary: Windowing function applied before FFT Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular
+  group: ''
+- name: Sidelobe attenuation of the window (dB)
+  summary: Sidelobe attenuation of the window (dB) 60 (default) | positive finite scalar
+  group: ''
+- name: Inherit FFT length from input dimensions
+  summary: Set FFT length to number of input samples on (default) | off
+  group: ''
+- name: FFT length
+  summary: Number of bins in frequency domain 1024 (default) | positive integer
+  group: ''
+- name: Probability of transition from a silence frame to a speech frame
+  summary: Probability that a speech frame follows a silence frame 0.2 (default) | scalar in the range [0,1]
+  group: ''
+- name: Probability of transition from a speech frame to a silence frame
+  summary: Probability that a silence frame follows a speech frame 0.1 (default) | scalar in the range [0,1]
+  group: ''
+- name: Output noise variance
+  summary: Output estimate of noise variance per frequency bin off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -168,7 +220,6 @@ When you select this parameter, an additional output port,
   code of the block.
 
 **Tunable:** No
-
 ## Libraries
 
 Audio Toolbox / Measurements

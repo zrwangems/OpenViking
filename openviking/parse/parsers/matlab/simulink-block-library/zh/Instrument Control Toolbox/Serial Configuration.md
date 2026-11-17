@@ -15,10 +15,69 @@ chinese_source: worker-translation
 # Serial Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Port
+  summary: 串行通信端口 可用的通信端口
+  group: ''
+  block_parameter: Port
+  type: 字符向量、字符串
+- name: Baud rate
+  summary: 通信速度 9600（默认）| 正整数
+  group: ''
+  block_parameter: BaudRate
+  type: 字符向量、字符串
+  values: 正整数
+  default: '''9600'''
+- name: Data bits
+  summary: 表示一个数据字符的位数 8（默认）| 5 | 6 | 7
+  group: ''
+  block_parameter: DataBits
+  type: 字符向量、字符串
+  values: '''5'' | ''6'' | ''7'' | ''8'''
+  default: '''8'''
+- name: Parity
+  summary: 奇偶校验位类型 none（默认）| even | odd
+  group: ''
+  block_parameter: Parity
+  type: 字符向量、字符串
+  values: '''none'' | ''even'' | ''odd'''
+  default: '''none'''
+- name: Stop bits
+  summary: 指示字符结束的位模式 1（默认）| 正标量
+  group: ''
+  block_parameter: StopBits
+  type: 字符向量、字符串
+  values: 正标量
+  default: '''1'''
+- name: Byte order
+  summary: 字节的顺序 little-endian（默认）| big-endian
+  group: ''
+  block_parameter: ByteOrder
+  type: 字符向量、字符串
+  values: '''little-endian'' | ''big-endian'''
+  default: '''little-endian'''
+- name: Flow control
+  summary: 用于管理数据传输速率的模式 none（默认）| hardware
+  group: ''
+  block_parameter: FlowControl
+  type: 字符向量、字符串
+  values: '''none'' | ''hardware'''
+  default: none
+- name: Timeout
+  summary: 完成操作所允许的时间 10（默认）| 正标量
+  group: ''
+  block_parameter: Timeout
+  type: 字符向量、字符串
+  values: 正标量
+  default: '''10'''
+```
 
 ### **Port** — 串行通信端口 可用的通信端口
 
@@ -142,7 +201,6 @@ R2025b 中未记录。
 | **类型：** 字符向量、字符串 |
 | **值：** 正标量 |
 | **默认值：** `'10'` |
-
 ## 所属库
 
 Instrument Control Toolbox Motor Control Blockset / Protection and Diagnostics

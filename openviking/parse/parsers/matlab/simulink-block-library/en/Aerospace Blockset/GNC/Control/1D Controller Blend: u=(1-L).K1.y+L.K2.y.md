@@ -14,6 +14,21 @@ language: en
 # 1D Controller Blend u=(1-L).K1.y+L.K2.y
 
 ## Ports
+```yaml
+ports:
+- name: y
+  summary: Aircraft measurements vector
+  direction: input
+  data_types: double
+- name: v
+  summary: Scheduling variable vector
+  direction: input
+  data_types: double
+- name: u
+  summary: Actuator demands vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -36,8 +51,59 @@ dimensions of the state-space matrices.
 Actuator demands, specified as a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: A-matrix(v)
+  summary: '*A*-matrix of the state-space implementation A1 (default) | array'
+  group: ''
+  block_parameter: A
+  type: character vector
+  values: vector
+  default: '''A1'''
+- name: B-matrix(v)
+  summary: '*B*-matrix of the state-space implementation B1 (default) | array'
+  group: ''
+  block_parameter: B
+  type: character vector
+  values: vector
+  default: '''B1'''
+- name: C-matrix(v)
+  summary: '*C*-matrix of the state-space implementation C1 (default) | array'
+  group: ''
+  block_parameter: C
+  type: character vector
+  values: vector
+  default: '''C1'''
+- name: D-matrix(v)
+  summary: '*D*-matrix of the state-space implementation D1 (default) | array'
+  group: ''
+  block_parameter: D
+  type: character vector
+  values: vector
+  default: '''D1'''
+- name: Scheduling variable breakpoints
+  summary: Breakpoints for scheduling variable [1 1.5 2] (default) | vector
+  group: ''
+  block_parameter: breakpoints_v
+  type: character vector
+  values: vector
+  default: '''[1 1.5 2]'''
+- name: Initial state, x_initial
+  summary: Initial states 0 (default) | vector
+  group: ''
+  block_parameter: x_initial
+  type: character vector
+  values: vector
+  default: '''0'''
+- name: Poles of A(v)-H(v)\*C(v) = [w1 ... wn])
+  summary: Poles of observer [-5 -2] (default) | vector
+  group: ''
+  block_parameter: vec_w
+  type: character vector
+  values: vector
+  default: '''[-5 -2]'''
+```
 
 ### **A-matrix(v)** — *A*-matrix of the state-space implementation `A1` (default) | array
 
@@ -159,7 +225,6 @@ failure of the controller output to track *u*.
 | **Type**: character vector |
 | **Values**: vector |
 | **Default**: `'[-5 -2]'` |
-
 ## Libraries
 
 Aerospace Blockset / GNC / Control

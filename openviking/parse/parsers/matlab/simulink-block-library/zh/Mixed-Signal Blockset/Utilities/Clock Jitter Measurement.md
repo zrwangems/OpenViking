@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Clock Jitter Measurement
 
 ## 端口
+```yaml
+ports:
+- name: clock
+  summary: 输入时钟信号 标量
+  direction: input
+  data_types: double
+- name: Period Jitter
+  summary: 周期抖动的运行 RMS 值 标量
+  direction: output
+  data_types: double
+- name: C2C
+  summary: 周期间抖动的运行 RMS 值 标量
+  direction: output
+  data_types: double
+- name: DCD
+  summary: 实际占空比与 50% 值之间的差值 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -50,8 +69,34 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Duty Cycle Distortion (DCD)**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Clock Frequency
+  summary: 输入时钟信号的频率 1e6（默认）| 正实数标量
+  group: ''
+  block_parameter: Frequency
+  type: 字符向量
+  values: 正实数标量
+- name: Threshold
+  summary: 阈值信号电平 0（默认）| 实数标量
+  group: ''
+  block_parameter: Threshold
+  type: 字符向量
+  values: 实数标量
+- name: Period Jitter
+  summary: RMS 周期抖动 开（默认）| 关
+  group: ''
+- name: Cycle-2-Cycle (C2C) Jitter
+  summary: RMS 周期间抖动 关（默认）| 开
+  group: ''
+- name: Duty Cycle Distortion (DCD)
+  summary: 每个周期的占空比失真 关（默认）| 开
+  group: ''
+- name: Simulate using
+  summary: 选择仿真模式 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 ### **Clock Frequency** — 输入时钟信号的频率 `1e6`（默认）| 正实数标量
 
@@ -102,7 +147,6 @@ chinese_source: worker-translation
 选择仿真模式。此选择会影响仿真性能。
 
 使用 `Code generation` 方法仿真模型需要额外的启动时间，但后续仿真运行更快。使用 `Interpreted execution` 方法仿真模型可能会减少启动时间，但后续仿真运行更慢。有关详细信息，请参阅 Interpreted Execution vs. Code Generation。
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

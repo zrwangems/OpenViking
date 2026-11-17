@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Extract Triangular Matrix
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: U
+  summary: 下三角或上三角输出向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -35,8 +46,16 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Extract
+  summary: 要提取的矩阵分量 Upper（默认值）| Lower
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认值）| Code generation
+  group: ''
+```
 
 ### **Extract** — 要提取的矩阵分量 `Upper`（默认值）| `Lower`
 
@@ -58,7 +77,6 @@ chinese_source: worker-translation
 - `Code generation` –– 使用生成的 C 代码对模型进行仿真。首次运行仿真时，Simulink®
   会为模块生成 C 代码。只要模型不发生更改，后续仿真就会重用该 C 代码。
   此选项需要额外的启动时间，但后续仿真速度更快。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

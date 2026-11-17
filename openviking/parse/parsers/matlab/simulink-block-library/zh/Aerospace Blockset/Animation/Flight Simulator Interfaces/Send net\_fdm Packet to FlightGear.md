@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Send net_fdm Packet to FlightGear
 
 ## 端口
+```yaml
+ports:
+- name: net_fdm
+  summary: FlightGear net_fdm 数据包标量
+  direction: input
+  data_types: uint8
+```
 
 ### 输入
 
@@ -23,8 +30,31 @@ chinese_source: worker-translation
 FlightGear `net_fdm` 数据包，指定为标量。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Destination IP address
+  summary: 远程计算机的目标 IP 地址 127.0.0.1（默认）| 标量
+  group: ''
+  block_parameter: DestinationIpAddress
+  type: 字符向量
+  values: 标量
+  default: 127.0.0.1
+- name: Destination port
+  summary: 远程计算机的目标端口 5502（默认）| 标量
+  group: ''
+  block_parameter: DestinationPort
+  type: 字符向量
+  values: 标量
+  default: '5502'
+- name: Sample time
+  summary: 采样时间 1/30（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: 1/30
+```
 
 ### **Destination IP address** — 远程计算机的目标 IP 地址 `127.0.0.1`（默认）| 标量
 
@@ -99,7 +129,6 @@ FlightGear `net_fdm` 数据包，指定为标量。
 | **类型**：字符向量 |
 | **值**：标量 |
 | **默认值**：`1/30` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

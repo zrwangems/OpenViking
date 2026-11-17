@@ -14,6 +14,25 @@ language: en
 # Real-Imag to Complex
 
 ## Ports
+```yaml
+ports:
+- name: Re
+  summary: Real part of complex output scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Im
+  summary: Imaginary part of complex output scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Port_1
+  summary: Real or imaginary part of complex output scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Port_1
+  summary: Complex signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -44,8 +63,36 @@ as a finite scalar, vector, or matrix.
 Complex signal, formed from real and imaginary values.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input
+  summary: Real, imaginary, or both Real (default) | Imag | Real and imag
+  group: ''
+  block_parameter: Input
+  type: character vector
+  values: '''Real and imag'' | ''Real'' | ''Imag'''
+  default: '''Real and imag'''
+- name: Imag part
+  summary: Imaginary part of complex output 0 (default) | finite scalar, vector, or matrix
+  group: ''
+  block_parameter: ConstantPart
+  type: character vector
+  values: imaginary value
+  default: '''0'''
+- name: Real part
+  summary: Real part of complex output 0 (default) | finite scalar, vector, or matrix
+  group: ''
+  block_parameter: ConstantPart
+  type: character vector
+  values: finite, real-valued scalar, vector, or matrix
+  default: '''0'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Input** — Real, imaginary, or both `Real` (default) | `Imag` | `Real and imag`
 
@@ -117,7 +164,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / Math Operations

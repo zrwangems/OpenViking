@@ -14,6 +14,18 @@ language: en
 # Get Parameter
 
 ## Ports
+```yaml
+ports:
+- name: Value
+  summary: Parameter value scalar | logical | uint8 array
+  direction: output
+- name: ErrorCode
+  summary: Status of ROS parameter 0 | 1 | 2 | 3
+  direction: output
+- name: Length
+  summary: Length of string parameter integer
+  direction: output
+```
 
 ### Output
 
@@ -41,8 +53,31 @@ When getting string parameters from the ROS network, an ASCII value of 13 return
 #### Dependencies
 
 To enable this port, set the **Data type** to `uint8[] (string)`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source
+  summary: Source for specifying the parameter name Select from ROS network | Specify your own
+  group: ''
+- name: Name
+  summary: Parameter name string
+  group: ''
+- name: Data type
+  summary: Data type of your parameter double | int32 | boolean | uint8[] (string)
+  group: ''
+- name: Maximum length
+  summary: Maximum length of the uint8 array scalar
+  group: ''
+- name: Initial value
+  summary: Default parameter value output double | int32 | boolean | uint8
+  group: ''
+- name: Sample time
+  summary: Interval between outputs inf (default) | scalar
+  group: ''
+- name: Show ErrorCode output port
+  summary: Display error code output on | off
+  group: ''
+```
 
 ### **Source** — Source for specifying the parameter name `Select from ROS network` | `Specify your own`
 
@@ -98,7 +133,6 @@ To enable error code output, select this parameter. When you clear this paramete
 - **1 —** No ROS parameter with specified name found. If there is no known value, **Value** is set to the last received value or to **Initial value**.
 - **2 —** ROS parameter retrieved, but its type is different than the specified **Data type**. If there is no known value, Value is set to the last received value or to **Initial value**.
 - **3 —** For string parameters, the incoming string has been truncated based on the specified length.
-
 ## Libraries
 
 ROS Toolbox / ROS

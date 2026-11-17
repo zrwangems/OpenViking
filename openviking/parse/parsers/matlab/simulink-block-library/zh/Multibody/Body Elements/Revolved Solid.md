@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Revolved Solid
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+- name: CH
+  summary: 凸包表示 geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -30,8 +39,88 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Geometry** 下展开 **Export** 并选择 **Convex Hull**。
-
 ## 参数
+```yaml
+parameters:
+- name: 'Revolution: Cross-section'
+  summary: 在 XZ 平面上指定的横截面坐标 [1 1; 1 -1; 2 -1; 2 1] m（默认）| 单位为长度的两列矩阵
+  group: Geometry
+- name: 'Revolution: Extent of Revolution'
+  summary: 选择完整或部分旋转 Full（默认）| Custom
+  group: Geometry
+- name: 'Revolution: Revolution Angle'
+  summary: 部分旋转的扫掠角度 180（默认）| 正标量
+  group: Geometry
+- name: Convex Hull
+  summary: 生成真实几何的凸包表示 off（默认）| on
+  group: Geometry
+- name: Type
+  summary: 要使用的惯性参数化 Calculate from Geometry（默认）| Point Mass | Custom
+  group: Inertia
+- name: Based on
+  summary: 惯性计算所基于的参数 Density（默认）| Mass
+  group: Inertia
+- name: Density
+  summary: 单位体积材料质量 1000 kg/m^3（默认）
+  group: Inertia
+- name: Mass
+  summary: 实体元素的总质量 1 kg（默认）| 单位为质量的标量
+  group: Inertia
+- name: 'Custom: Center of Mass'
+  summary: 质心坐标 [0 0 0] m（默认）| 单位为长度的三元素向量
+  group: Inertia
+- name: 'Custom: Moments of Inertia'
+  summary: 惯性张量的对角元素 [1 1 1] kg*m^2（默认）| 单位为质量\*长度^2 的三元素向量
+  group: Inertia
+- name: 'Custom: Products of Inertia'
+  summary: 惯性张量的非对角元素 [0 0 0] kg*m^2（默认）| 单位为质量\*长度^2 的三元素向量
+  group: Inertia
+- name: 'Calculate from Geometry: Derived Values'
+  summary: 显示计算得到的质量属性值按钮
+  group: Inertia
+- name: Type
+  summary: 用于可视化的图形 From Geometry（默认）| Marker | None
+  group: 图形
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化方式 Simple（默认）| Advanced
+  group: 图形
+- name: Shape
+  summary: 用于表示实体的标记形状 Sphere（默认）| Cube | Frame
+  group: 图形
+- name: Size
+  summary: 标记的宽度（以像素为单位）10 pixels（默认）| 标量
+  group: 图形
+- name: Color
+  summary: 漫反射光的颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 范围在 0 到 1 之间的标量
+  group: 图形
+- name: Diffuse Color
+  summary: 漫反射光颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Specular Color
+  summary: 镜面反射光颜色 [0.5 0.5 0.5 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: 图形
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量
+  group: 图形
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值范围约束为 0–128 的标量
+  group: 图形
+- name: Show Port R
+  summary: 显示参考坐标系端口以连接到其他模块 开（默认）| 关
+  group: Frames
+- name: New Frame
+  summary: 创建自定义坐标系以连接到其他模块 按钮
+  group: Frames
+- name: FrameN
+  summary: 编辑或删除现有的自定义坐标系 坐标系名称
+  group: Frames
+```
 
 ### Geometry
 
@@ -308,7 +397,6 @@ Geometry` 或
 #### 依赖关系
 
 要启用此参数，请单击 **New Frame** 创建一个坐标系。
-
 ## 所属库
 
 Simscape / Multibody / Body Elements

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Burg AR Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入列向量 | 无定向向量
+  direction: input
+  data_types: single | double
+- name: A
+  summary: AR 模型多项式系数的归一化估计 列向量
+  direction: output
+  data_types: single | double
+- name: K
+  summary: 反射系数 列向量
+  direction: output
+  data_types: single | double
+- name: G
+  summary: 模型增益 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -68,8 +87,19 @@ H(z)=GA(z)=G1+a(2)z−1+…+a(p+1)z−p
 - *A*(*z*) —— AR 模型的多项式系数
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Output(s)
+  summary: 输出 A（默认）| A and K | K
+  group: ''
+- name: Inherit estimation order from input dimensions
+  summary: 从输入维度继承估计阶数 on（默认）| off
+  group: ''
+- name: Estimation order
+  summary: AR 模型的阶数 4（默认）| 非负整数
+  group: ''
+```
 
 ### **Output(s)** — 输出 `A`（默认）| `A and K` | `K`
 
@@ -86,7 +116,6 @@ H(z)=GA(z)=G1+a(2)z−1+…+a(p+1)z−p
 #### 依赖
 
 要启用此参数，请清除 **Inherit estimation order from input dimensions** 参数。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Parametric Estimation

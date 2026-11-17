@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # KNN Search
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 查询点行向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Idx
+  summary: 最近邻的索引 数值行向量 | 1×1 元胞数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: D
+  summary: 最近邻的距离 数值行向量 | 1×1 元胞数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -46,8 +61,132 @@ chinese_source: worker-translation
 要启用此端口，请在 KNN Search 模块中选中 **Add output port for nearest neighbor distances**。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Select nearest neighbor searcher
+  summary: 最近邻搜索方法 searcher（默认） | ExhaustiveSearcher 对象 | KDTreeSearcher 对象
+  group: 主要参数
+  block_parameter: NeighborhoodSearcher
+  type: 工作区变量
+  values: ExhaustiveSearcher 对象 | KDTreeSearcher 对象
+  default: '"searcher"'
+- name: Add output port for nearest neighbor distances
+  summary: 添加用于最近邻距离的第二个输出端口 off（默认） | on
+  group: 主要参数
+  block_parameter: ShowOutputDistances
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Number of nearest neighbors
+  summary: 最近邻数量 1（默认）| 正整数
+  group: 主要参数
+  block_parameter: NumNeighbors
+  type: 正整数
+  values: single | double
+- name: Include ties
+  summary: 包含所有最近邻的标志 off（默认）| on
+  group: 主要参数
+  block_parameter: IncludeTies
+  type: 字符向量
+  values: '"off" | "on"'
+- name: Distance metric
+  summary: 距离度量 euclidean（默认）| chebychev | cityblock | minkowski | correlation | cosine | hamming | jaccard | mahalanobis
+    | seuclidean | spearman
+  group: 主要参数
+  block_parameter: DistanceMetric
+  type: 字符向量
+  values: '"euclidean" | "chebychev" | "cityblock" | "minkowski" | "correlation" | "cosine" | "hamming" | "jaccard" | "mahalanobis"
+    | "seuclidean" | "spearman"'
+- name: Covariance matrix
+  summary: 马哈拉诺比斯距离度量的协方差矩阵 Computed using data in searcher（默认）| Customized
+  group: 主要参数
+  block_parameter: CovarianceMatrix
+  type: positive definite matrix
+  values: '"Computed using data in searcher" | "Customized"'
+  default: '"Computed using data in searcher"'
+- name: Scale
+  summary: 标准化欧几里得距离度量的尺度参数值 Standard deviation of data in searcher（默认）| Customized
+  group: 主要参数
+  block_parameter: Scale
+  type: nonnegative numeric row vector
+  values: '"Standard deviation of data in searcher" | "Customized"'
+  default: '"Standard deviation of data in searcher"'
+- name: P
+  summary: 闵可夫斯基距离度量的指数 2（默认）| 正整数
+  group: 主要参数
+  block_parameter: MinkExp
+  type: positive integer
+  values: positive integer
+  default: '2'
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Index data type
+  summary: '索引输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: IndicesDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: 索引数据类型最小值
+  summary: 索引输出的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: IndicesOutMin
+  type: 标量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: 索引数据类型最大值
+  summary: 索引输出的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: IndicesOutMax
+  type: 标量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: 距离数据类型
+  summary: '距离输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 |
+    uint64 | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: DistanceDataTypeStr
+  type: 字符向量
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Distance data type Minimum
+  summary: 距离输出的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: DistanceOutMin
+  type: scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Distance data type Maximum
+  summary: 距离输出的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: DistanceOutMax
+  type: scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 ### 主要参数
 
@@ -403,7 +542,6 @@ Simulink 使用最大值来执行：
 #### 依赖关系
 
 要启用此参数，请在 Block Parameters 对话框的 **Main** 选项卡上选择 **Add output port for nearest neighbor distances**。
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Neighborhood Searcher

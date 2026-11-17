@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Coulomb and Viscous Friction
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,24 @@ Coulomb and Viscous Friction 模型的输入信号。
 通过对输入应用摩擦模型计算得到的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Coulomb friction value
+  summary: 静摩擦偏移量 [1320]（默认）| 实数值
+  group: ''
+  block_parameter: offset
+  type: 字符向量
+  values: 实数值
+  default: '''[1 3 2 0]'''
+- name: Coefficient of viscous friction
+  summary: 动摩擦系数 1（默认）| 实数值
+  group: ''
+  block_parameter: gain
+  type: 字符向量
+  values: 实数值
+  default: '''1'''
+```
 
 要编辑 Coulomb and Viscous Friction 模块的参数，请双击模块图标。
 
@@ -60,7 +87,6 @@ Coulomb and Viscous Friction 模型的输入信号。
 | **类型**：字符向量 |
 | **Value**：实数值 |
 | **默认值**：`'1'` |
-
 ## 所属库
 
 Simulink / Discontinuities HDL Coder / Discontinuities

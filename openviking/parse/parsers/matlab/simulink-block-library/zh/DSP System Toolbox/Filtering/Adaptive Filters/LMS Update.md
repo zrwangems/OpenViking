@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # LMS Update
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 数据输入 标量 | 列向量
+  direction: input
+  data_types: single | double
+- name: Error
+  summary: 误差 标量 | 列向量
+  direction: input
+  data_types: single | double
+- name: Mu
+  summary: 滤波器自适应步长 0.1（默认）| 范围 [0,1] 内的标量
+  direction: input
+  data_types: single | double
+- name: Adapt
+  summary: 更新滤波器权重 实数标量 | 向量
+  direction: input
+  data_types: single | double | Boolean | int16 | int32 | int64 | int8 | uint16 | uint32 | uint64 | uint8
+- name: Reset
+  summary: 重置滤波器权重 实数标量
+  direction: input
+  data_types: single | double | Boolean | int16 | int32 | int64 | int8 | uint16 | uint32 | uint64 | uint8
+- name: Wts
+  summary: 滤波器权重 行向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -87,8 +114,43 @@ chinese_source: worker-translation
 模块将滤波器权重输出为 1×*L* 行向量或 *N*×*L* 矩阵，其中 *N* 是自适应滤波器数量，*L* 是每个滤波器的长度。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Algorithm
+  summary: LMS 自适应算法 LMS（默认）| Normalized LMS | Sign—Error LMS | Sign—Data LMS | Sign—Sign LMS
+  group: ''
+- name: Filter length
+  summary: 滤波器长度 32（默认）| 正整数
+  group: ''
+- name: Number of adaptive filters
+  summary: 自适应滤波器数量 1（默认）| 正整数
+  group: ''
+- name: Step size source
+  summary: 指定步长的方法 Property（默认）| Input port
+  group: ''
+- name: Step size (mu)
+  summary: 自适应步长的大小 0.1（默认）| 非负标量
+  group: ''
+- name: Leakage factor (0 to 1)
+  summary: 泄漏因子 1.0（默认）| 范围 [0,1] 内的实数标量
+  group: ''
+- name: Initial value of filter weights
+  summary: 滤波器权重的初始值 0（默认）| 实数标量 | 向量 | 矩阵
+  group: ''
+- name: Adaptive filter mode
+  summary: 自适应滤波器模式 Tapped delay-line FIR filter（默认）| Adaptive linear combiner
+  group: ''
+- name: Enable adapt input
+  summary: 更新滤波器权重 off（默认）| on
+  group: ''
+- name: Enable reset input
+  summary: 重置滤波器权重 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Algorithm** — LMS 自适应算法 `LMS`（默认）| `Normalized LMS` | `Sign—Error LMS` | `Sign—Data LMS` | `Sign—Sign LMS`
 
@@ -176,7 +238,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间。
 - `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 为模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重用。此选项需要额外的启动时间，但提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Adaptive Filters

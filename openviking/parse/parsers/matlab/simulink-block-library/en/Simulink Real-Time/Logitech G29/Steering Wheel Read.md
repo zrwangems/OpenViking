@@ -14,6 +14,29 @@ language: en
 # Logitech G29 Steering Wheel
 
 ## Ports
+```yaml
+ports:
+- name: Buttons
+  summary: Status of steering wheel buttons 0 (= unpressed) | 1 (= pressed)
+  direction: output
+  data_types: Boolean
+- name: Steering
+  summary: Value of steering wheel position 0 (= left most) | 65535 (= right most)
+  direction: output
+  data_types: uint16
+- name: Pedals
+  summary: Status of throttle, brake, and clutch pedals 0 (= not engaged) | 255 (= fully engaged)
+  direction: output
+  data_types: uint8
+- name: Direction
+  summary: Status of direction pad buttons on steering wheel 0 (= UP) | 2 (= RIGHT) | 4 (= DOWN) | 6 (= LEFT) | 8 (= UNPRESSED)
+  direction: output
+  data_types: uint8
+- name: Status
+  summary: Status of communications with steering wheel 0 (default) | negative value
+  direction: output
+  data_types: int32
+```
 
 ### Output
 
@@ -72,8 +95,14 @@ The `Status` output value indicates successful communications
 with the steering wheel (0) or unsuccessful communications (negative value).
 
 **Data Types:** `int32`
-
 ## Parameters
+```yaml
+parameters:
+- name: sampleTime
+  summary: Sample time for steering wheel data -1 (inherited) (default)
+  group: ''
+  block_parameter: sampleTime
+```
 
 ### **sampleTime** — Sample time for steering wheel data -1 (inherited) (default)
 
@@ -85,7 +114,6 @@ Select the sample time for steering wheel data. The recommended
 |  |
 | --- |
 | **Block Parameter:** `sampleTime` |
-
 ## Libraries
 
 Simulink Real-Time / Logitech G29

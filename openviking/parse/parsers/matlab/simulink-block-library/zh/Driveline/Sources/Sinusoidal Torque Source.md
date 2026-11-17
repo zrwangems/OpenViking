@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Sinusoidal Torque Source
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座接口机械旋转
+  direction: conserving
+- name: F
+  summary: 从动接口机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **F** — 从动接口机械旋转
 
 与从动接口关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Offset
+  summary: 输出平均值 0 N*m（默认值）
+  group: ''
+- name: Sinusoid peak amplitude
+  summary: 输出峰值幅度 1 N*m（默认值）
+  group: ''
+- name: Phase shift
+  summary: 输出相移 0 deg（默认值）
+  group: ''
+- name: Frequency
+  summary: 输出频率 1 Hz（默认值）
+  group: ''
+```
 
 ### **Offset** — 输出平均值 `0` `N*m`（默认值）
 
@@ -43,7 +66,6 @@ chinese_source: worker-translation
 ### **Frequency** — 输出频率 `1` `Hz`（默认值）
 
 正弦输出转矩的频率。频率必须大于或等于 0。
-
 ## 所属库
 
 Simscape / Driveline / Sources

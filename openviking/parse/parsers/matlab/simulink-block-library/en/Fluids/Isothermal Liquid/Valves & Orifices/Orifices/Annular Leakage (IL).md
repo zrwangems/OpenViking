@@ -14,6 +14,21 @@ language: en
 # Annular Leakage (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: L
+  summary: Variable overlap length physical signal
+  direction: input
+- name: E
+  summary: Variable eccentricity physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -47,8 +62,31 @@ the annular insert to the sleeve.
 To expose this port, set **Eccentricity
 specification** to
 `Variable`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Overlap length specification
+  summary: Type of insert-sleeve overlap Constant (default) | Variable
+  group: ''
+- name: Overlap length
+  summary: Overlap between tube and insert 1e-3 m (default) | positive scalar
+  group: ''
+- name: Minimum overlap length
+  summary: Minimum overlap between tube and insert 1e-6 m (default) | positive scalar
+  group: ''
+- name: Eccentricity specification
+  summary: Eccentricity variability Constant (default) | Variable
+  group: ''
+- name: Eccentricity
+  summary: Center of insert offset with respect to sleeve center 0 m (default) | positive scalar
+  group: ''
+- name: Inner radius
+  summary: Radius of insert 9.8e-3 m (default) | positive scalar
+  group: ''
+- name: Outer radius
+  summary: Radius of tube 1e-2 m (default) | positive scalar
+  group: ''
+```
 
 ### **Overlap length specification** — Type of insert-sleeve overlap `Constant` (default) | `Variable`
 
@@ -97,7 +135,6 @@ Insert radius *r*.
 ### **Outer radius** — Radius of tube `1e-2 m` (default) | positive scalar
 
 Tube radius *R*, measured from the tube center to the inner wall.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Orifices

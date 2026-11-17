@@ -14,6 +14,13 @@ language: en
 # Simulation Pace
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Pace error scalar
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -38,8 +45,38 @@ To enable this port, select the **Output pace error
 (sec)** check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulation pace
+  summary: Ratio of simulation time to clock time 1 (default) | scalar
+  group: ''
+  block_parameter: OutputPaceError
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Sleep mode
+  summary: Control simulation pace Auto (default) | MATLAB Thread | Off | Busy-Wait
+  group: ''
+  block_parameter: SleepMode
+  type: character vector
+  values: '''MATLAB Thread'' | ''Off'' | ''Busy-Wait'' | ''Auto'''
+  default: '''Auto'''
+- name: Output pace error
+  summary: Display pace error off (default) | on
+  group: ''
+  block_parameter: OutputPaceError
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time
+  summary: Sample time 1/30 (default) | -1 | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''1/30'''
+```
 
 ### **Simulation pace** — Ratio of simulation time to clock time `1` (default) | scalar
 
@@ -136,7 +173,6 @@ jumpiness. Undersampling can also potentially block the MATLAB® main thread on 
 | **Type**: character vector |
 | **Values**: scalar | vector |
 | **Default**: `'1/30'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Animation Support Utilities

@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # MMF Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有两个与其端子关联的磁守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Constant mmf**
 :   输出磁动势。您可以指定任意实数值。默认值为 `1` A。
-
 ## 所属库
 
 R2025b 中未记录。

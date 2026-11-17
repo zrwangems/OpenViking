@@ -15,6 +15,42 @@ chinese_source: worker-translation
 # Controlled Reservoir (2P)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 压力控制信号，MPa 物理信号
+  direction: input
+- name: Tc
+  summary: 储液器冷凝温度控制信号，K 物理信号
+  direction: input
+- name: Te
+  summary: 储液器蒸发温度控制信号，K 物理信号
+  direction: input
+- name: T
+  summary: 温度控制信号，K 物理信号
+  direction: input
+- name: X
+  summary: 蒸气质量分数控制信号，无量纲物理信号
+  direction: input
+- name: a
+  summary: 蒸气体积分数控制信号，无量纲物理信号
+  direction: input
+- name: H
+  summary: 流体比焓控制信号，kJ/kg 物理信号
+  direction: input
+- name: U
+  summary: 流体比内能控制信号，kJ/kg 物理信号
+  direction: input
+- name: SC
+  summary: 流体过冷度控制信号，deltaK 物理信号
+  direction: input
+- name: SH
+  summary: 流体过热度控制信号，deltaK 物理信号
+  direction: input
+- name: A
+  summary: 储液器入口两相流体
+  direction: input
+```
 
 ### 输入
 
@@ -106,8 +142,24 @@ chinese_source: worker-translation
 ### **A** — 储液器入口两相流体
 
 与储液器入口相关联的两相流体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Reservoir pressure specification
+  summary: 储液器压力指定方式 Specified pressure（默认）| Saturation pressure at specified condensing temperature | Saturation pressure
+    at specified evaporating temperature
+  group: ''
+- name: Reservoir energy specification
+  summary: 用于定义储液器条件的热力学变量 Subcooled liquid temperature（默认）| Superheated vapor temperature | Vapor quality | Vapor void fraction
+    | Specific enthalpy | Specific internal energy | Degree of subcooling | Degree of superheating
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 储液器入口处垂直于流路的面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Reservoir pressure above critical
+  summary: 定义当储液器压力超过临界压力时的操作 Warn and limit to critical pressure（默认）| Limit to critical pressure | Error
+  group: ''
+```
 
 ### **Reservoir pressure specification** — 储液器压力指定方式 `Specified pressure`（默认）| `Saturation pressure at specified condensing temperature` | `Saturation pressure at specified evaporating temperature`
 
@@ -145,7 +197,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当您选择的压力指定和能量指定选项组合要求储液器内部压力低于临界压力时，此参数会自动显示。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

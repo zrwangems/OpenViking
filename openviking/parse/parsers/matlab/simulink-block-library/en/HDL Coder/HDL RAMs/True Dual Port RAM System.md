@@ -14,6 +14,39 @@ language: en
 # True Dual Port RAM System
 
 ## Ports
+```yaml
+ports:
+- name: din_a
+  summary: Data to write scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: addr_a
+  summary: Address to write scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: we_a
+  summary: Write enable scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: din_b
+  summary: Data to write scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | fixed point
+- name: addr_b
+  summary: Address to write scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | fixed point
+- name: we_b
+  summary: Write enable scalar | vector
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: dout_a
+  summary: Write data output scalar | vector
+  direction: output
+- name: dout_b
+  summary: Write data output scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -117,8 +150,45 @@ new or old output data from the memory location specified by the
 Write data output, returned as a scalar or vector. The block reads the
 new or old data from the memory location specified by the
 **addr\_b** port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of RAM
+  summary: RAM type True dual port (default) | Simple dual port | Single port | Dual port | Simple tri port
+  group: Main
+  block_parameter: RAMType
+  type: character vector, string
+  values: Dual port | Simple dual port | Single port | True dual port | Simple tri port
+  default: True dual port
+- name: Behavior for write output
+  summary: Write output behavior New data (default) | Old data
+  group: Main
+  block_parameter: WriteOutputValue
+  type: character vector, string
+  values: New data | Old data
+  default: New data
+- name: Initial output of RAM
+  summary: Initial simulation output of RAM '0.0' (default) | Scalar | Vector
+  group: Main
+  block_parameter: RAMInitialValue
+  type: integer, floating point
+  values: 0.0 | Scalar | Vector
+  default: '0.0'
+- name: Model RAM with one cycle of delay
+  summary: Model RAM with one cycle of delay on (default) | off
+  group: Advanced
+  block_parameter: ModelRAMDelay
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Specify vector input access
+  summary: Specify vector input access as serial or parallel serial (default) | parallel
+  group: Advanced
+  block_parameter: VectorAccess
+  type: character vector, string
+  values: '''serial'' | ''parallel'''
+  default: '''serial'''
+```
 
 ### Main
 
@@ -266,7 +336,6 @@ feature in target hardware** parameter.
 | **Type:**  character vector, string |
 | **Values:**  `'serial'` | `'parallel'` |
 | **Default:**  `'serial'` |
-
 ## Libraries
 
 HDL Coder / HDL RAMs

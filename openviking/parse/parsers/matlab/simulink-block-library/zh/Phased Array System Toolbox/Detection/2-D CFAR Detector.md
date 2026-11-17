@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # 2-D CFAR Detector
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入图像 实数 *M*×*N* 矩阵 | 实数 *M*×*N*×*P* 数组
+  direction: input
+  data_types: double
+- name: idx
+  summary: 测试单元的位置 *2*×*L* 正整数矩阵
+  direction: input
+  data_types: double
+- name: K
+  summary: 检测阈值因子 正标量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 检测结果 逻辑矩阵（默认）| 实值矩阵
+  direction: output
+  data_types: double
+- name: Th
+  summary: 计算的检测阈值 实值矩阵
+  direction: output
+  data_types: double
+- name: N
+  summary: 估计的噪声功率实值矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -85,8 +112,46 @@ Format` 属性
 要启用此端口，请选中 **Output estimated noise power** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: CFAR algorithm
+  summary: 噪声功率估计算法 CA（默认）| GOCA | SOCA | OS
+  group: ''
+- name: Rank of order statistic
+  summary: 有序统计的秩 1（默认）| 正整数
+  group: ''
+- name: Size in cells of the guard region band
+  summary: 保护带的宽度 [1,1]（默认）| 非负整数标量 | 2 元素正整数向量
+  group: ''
+- name: Size in cells of the training region band
+  summary: 训练带的宽度 [1,1]（默认）| 非负整数标量 | 2 元素正整数向量
+  group: ''
+- name: Threshold factor method
+  summary: 确定阈值因子的方法 Auto（默认）| Input port | Custom
+  group: ''
+- name: Custom threshold factor
+  summary: 自定义阈值因子 1（默认）| 正标量
+  group: ''
+- name: Probability of false alarm
+  summary: 虚警概率 0.1（默认）| 0 到 1 之间的实标量
+  group: ''
+- name: OutputFormat
+  summary: 检测结果的格式 CUT result（默认）| Detection index
+  group: ''
+- name: Output threshold detection
+  summary: 启用检测阈值输出 off（默认）| on
+  group: ''
+- name: Output estimated noise power
+  summary: 启用检测阈值输出 off（默认）| on
+  group: ''
+- name: Source of the number of detections
+  summary: 要报告的检测数量的来源 Auto（默认）| Property
+  group: ''
+- name: Maximum number of detections
+  summary: 要报告的检测索引的最大数量 1（默认）| 正整数
+  group: ''
+```
 
 ### **CFAR algorithm** — 噪声功率估计算法 `CA`（默认）| `GOCA` | `SOCA` | `OS`
 
@@ -173,7 +238,6 @@ Format` 属性
 要启用此参数，请将 **Output format** 参数设置为 `Detection index`，并将 **Source of the number of detections** 参数设置为 `Property`。
 
 **数据类型：** `double`
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

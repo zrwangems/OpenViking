@@ -15,10 +15,36 @@ chinese_source: worker-translation
 # Diagnostic Service Component
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: ID (RTE 选项卡)
+  summary: 用于标识服务事件、操作循环或带抑制条件的函数的 ID 1（默认值）| 标量
+  group: ''
+- name: Increment step size
+  summary: 当 PREFAIL 事件到达时递增事件 ID 计数器的固定步长值 1（默认值）| 标量（1 到 32767）
+  group: ''
+- name: Decrement step size
+  summary: 当 PREPASS 事件到达时递减事件 ID 计数器的固定步长值 1（默认值）| 标量（1 到 32767）
+  group: ''
+- name: Failed threshold
+  summary: 表示失败状态的 Dem 事件 ID 计数器阈值 2（默认值）| 标量（1 到 32767）
+  group: ''
+- name: Passed threshold
+  summary: 表示通过状态的 Dem 事件 ID 计数器阈值 -1（默认值）| 标量（-32768 到 -1）
+  group: ''
+- name: ID (FiM 选项卡)
+  summary: 抑制条件 ID 1（默认值）| 标量
+  group: ''
+- name: Mask
+  summary: 抑制条件掩码 LAST_FAILED | NOT_TESTED | TESTED | TESTED_AND_FAILED
+  group: ''
+```
 
 ### **ID (RTE 选项卡)** — 用于标识服务事件、操作循环或带抑制条件的函数的 ID 1（默认值）| 标量
 
@@ -47,7 +73,6 @@ RTE 选项卡表格中的每一行表示从基础软件调用方模块对 Dem �
 ### **Mask** — 抑制条件掩码 LAST\_FAILED | NOT\_TESTED | TESTED | TESTED\_AND\_FAILED
 
 在 FiM 选项卡表格中，分组在某个 FID 下的每一行表示一个抑制条件，包含一个 ID、一个或多个与该 ID 关联的组件客户端端口以及一个掩码。对于每个抑制条件，您可以修改掩码值。有关抑制条件配置的示例，请参阅 Configure and Simulate AUTOSAR Function Inhibition Service Calls。
-
 ## 所属库
 
 AUTOSAR Blockset / Classic Platform / Basic Software / Diagnostic Event Manager (Dem)

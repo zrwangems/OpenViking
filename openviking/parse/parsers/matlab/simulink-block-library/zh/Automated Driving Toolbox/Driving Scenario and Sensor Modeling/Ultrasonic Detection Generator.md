@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Ultrasonic Detection Generator
 
 ## 端口
+```yaml
+ports:
+- name: Actors
+  summary: 场景参与者位姿 包含 MATLAB® 结构的 Simulink 总线
+  direction: input
+- name: Detections
+  summary: 目标检测 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -86,8 +95,58 @@ chinese_source: worker-translation
 | `HasElevation` | 指示测量值是否包含俯仰角分量。对于 Ultrasonic Detection Generator 始终为 `false`。 |
 | `HasVelocity` | 指示测量值是否包含速度或距离变化率分量。对于 Ultrasonic Detection Generator 始终为 `false`。 |
 | `FieldOfView` | 包含传感器方位角和俯仰角视场值的二维向量。 |
-
 ## 参数
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: 传感器唯一标识符 0（默认）| 正整数
+  group: 参数
+- name: Translation [ X, Y, Z ] relative to ego origin (m)
+  summary: 传感器在自车上的位置 (m) [3.4, 0, 0.2]（默认）| 形式为 [*x* *y* *z*] 的 1×3 实值向量
+  group: 参数
+- name: Rotation [Yaw, Pitch, Roll] relative to ego's frame (deg)
+  summary: 雷达的安装旋转角度 [0 0 0]（默认）| 形式为 [*z*yaw *y*pitch *x*roll] 的 1×3 实值向量
+  group: 参数
+- name: Field of view [horizontalFOV, verticalFOV] (deg)
+  summary: 超声波传感器的角度视场 [70 35]（默认）| 形式为 [horizontalFOV verticalFOV] 的 1×2 正实值向量
+  group: 参数
+- name: Detection ranges [minDetOnlyRange, minDistRange, maxDistRange] (m)
+  summary: 超声波传感器的检测距离向量 (m) [0.03 0.15 5.5]（默认）| 形式为 [minDetOnlyRange minDistRange maxDistRange] 的 1×3 非负实值向量
+  group: 参数
+- name: Update rate (Hz)
+  summary: 传感器更新率 10（默认）| 正实标量
+  group: 参数
+- name: Source of output bus name
+  summary: 输出总线名称的来源 Auto（默认）| Property
+  group: 参数
+- name: Specify an output bus name
+  summary: 输出总线名称 BusDrivingRadarDataGenerator（默认）| 有效总线名称
+  group: 参数
+- name: Target profiles definition
+  summary: 指定目标配置文件的方法 Parameters（默认）| MATLAB expression | From Scenario Reader block
+  group: 参与者配置文件
+- name: MATLAB expression for target profiles
+  summary: 目标配置文件的 MATLAB 表达式 MATLAB 结构 | MATLAB 结构数组 | 有效 MATLAB 表达式
+  group: 参与者配置文件
+- name: Unique identifier for actors
+  summary: 场景定义的参与者标识符 []（默认）| 正整数 | 长度为 *L* 的唯一正整数向量
+  group: 参与者配置文件
+- name: User-defined integer to classify actors
+  summary: 用户定义的分分类标识符 0（默认）| 整数 | 长度为 *L* 的整数向量
+  group: 参与者配置文件
+- name: Length of actors' cuboids (m)
+  summary: 参与者长方体的长度 4.7（默认）| 正实标量 | 长度为 *L* 的正值向量
+  group: 参与者配置文件
+- name: Width of actors' cuboids (m)
+  summary: 参与者长方体的宽度 1.8（默认）| 正实标量 | 长度为 *L* 的正值向量
+  group: 参与者配置文件
+- name: Height of actors' cuboids (m)
+  summary: 参与者长方体的高度 1.4（默认）| 正实标量 | 长度为 *L* 的正值向量
+  group: 参与者配置文件
+- name: Rotational center of actors from bottom center (m)
+  summary: 执行器旋转中心 {[-1.35, 0, 0]}（默认）| 长度为 *L* 的元胞数组，包含实值 1×3 向量
+  group: 参与者配置文件
+```
 
 ### 参数
 
@@ -243,7 +302,6 @@ struct('ClassID',0,'Length',4.7,'Width',1.8,'Height',1.4, ...
 #### 依赖关系
 
 要启用此参数，请将 **Target profiles definition** 参数设置为 `Parameters`。
-
 ## 所属库
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

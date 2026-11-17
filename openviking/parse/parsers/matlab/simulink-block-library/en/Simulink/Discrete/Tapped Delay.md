@@ -14,6 +14,17 @@ language: en
 # Tapped Delay
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Delayed versions of input signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -32,8 +43,45 @@ output vector starting with** parameter to specify the
 order of delayed signals in the output vector.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition
+  summary: Initial output 0.0 (default) | scalar
+  group: ''
+  block_parameter: vinit
+  type: character vector
+  values: scalar
+  default: '''0.0'''
+- name: Sample time
+  summary: Time between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: samptime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: Number of delays
+  summary: Number of discrete-time operators 4 (default) | positive scalar | -1 (for inherited)
+  group: ''
+  block_parameter: NumDelays
+  type: character vector
+  values: positive scalar | -1 (inherited)
+  default: '''4'''
+- name: Order output vector starting with
+  summary: Order of output Oldest (default) | Newest
+  group: ''
+  block_parameter: DelayOrder
+  type: character vector
+  values: '''Oldest'' | ''Newest'''
+  default: '''Oldest'''
+- name: Include current input in output vector
+  summary: Include current input in output vector off (default) | on
+  group: ''
+  block_parameter: includeCurrent
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Initial condition** — Initial output `0.0` (default) | scalar
 
@@ -110,7 +158,6 @@ vector.
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discrete HDL Coder / Discrete

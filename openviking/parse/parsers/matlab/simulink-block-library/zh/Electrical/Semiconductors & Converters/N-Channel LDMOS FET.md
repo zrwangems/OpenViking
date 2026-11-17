@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # N-Channel LDMOS FET
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 栅极端子电气
+  direction: conserving
+- name: D
+  summary: 漏极端子电气
+  direction: conserving
+- name: S
+  summary: 源极端子电气
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -37,8 +52,109 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Gain, [channel drift_region]
+  summary: 增益 [11.6, .01] A/V（默认）| 正向量
+  group: 主
+- name: Flatband voltage, [channel drift_region]
+  summary: 平带电压 [-1.05, -.1] V（默认）
+  group: 主
+- name: Body factor, [channel drift_region]
+  summary: 体因子 [3.4, 2.5] V1/2（默认）
+  group: 主
+- name: Surface potential at strong inversion, [channel drift_region]
+  summary: 强反型时的表面电位 [.95, .95] V（默认）
+  group: 主
+- name: Velocity saturation factor, [channel drift_region]
+  summary: 速度饱和因子 [0, .1] 1/V（默认）
+  group: 主
+- name: Drift region surface scattering factor
+  summary: 漂移区表面散射因子 0 V（默认）
+  group: 主
+- name: Channel-length modulation factor
+  summary: 沟道长度调制因子 0（默认）
+  group: 主
+- name: Channel-length modulation voltage
+  summary: 沟道长度调制电压 5e-2 V（默认）
+  group: 主
+- name: Linear-to-saturation transition coefficient
+  summary: 线性到饱和过渡系数 8（默认）
+  group: 主
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: 主
+- name: Source ohmic resistance
+  summary: 源极欧姆电阻 1e-4 Ohm（默认）| 非负标量
+  group: 欧姆电阻
+- name: Drain ohmic resistance
+  summary: 漏极欧姆电阻 0.07 Ohm（默认）| 非负标量
+  group: 欧姆电阻
+- name: Gate ohmic resistance
+  summary: 栅极欧姆电阻 8.4 Ohm（默认）| 非负标量
+  group: 欧姆电阻
+- name: Drift region low-bias resistance for gated region
+  summary: 栅控区漂移区低偏压电阻 0.1 Ohm（默认）| 非负标量
+  group: 欧姆电阻
+- name: Drift region depletion layer thickness factor
+  summary: 漂移区耗尽层厚度因子 0.2（默认）
+  group: 欧姆电阻
+- name: Oxide capacitance, [channel drift_region]
+  summary: 氧化层电容 [1600, 1000] pF（默认）
+  group: 电容
+- name: Gate-source overlap capacitance
+  summary: 栅源交叠电容 15 pF（默认）
+  group: 电容
+- name: Gate-drain overlap capacitance
+  summary: 栅漏交叠电容 15 pF（默认）
+  group: 电容
+- name: Reverse saturation current
+  summary: 反向饱和电流 1e-13 A（默认）
+  group: 体二极管
+- name: Built-in voltage
+  summary: 内建电压 0.6 V（默认）
+  group: 体二极管
+- name: Ideality factor
+  summary: 理想因子 1（默认）
+  group: 体二极管
+- name: Zero-bias junction capacitance
+  summary: 零偏压结电容 1800 pF（默认）
+  group: 体二极管
+- name: Transit time
+  summary: 渡越时间 50e-9 s（默认）
+  group: 体二极管
+- name: Parameterization
+  summary: 温度依赖性参数化 None — Simulate at parameter measurement temperature（默认）| Model temperature dependence
+  group: 温度依赖性
+- name: Device simulation temperature
+  summary: 器件仿真温度 25 degC（默认）
+  group: 温度依赖性
+- name: Gain temperature exponent, [channel drift_region]
+  summary: 增益温度指数 [1.3, 1.3]（默认）
+  group: 温度依赖性
+- name: Flatband voltage temperature coefficient, [channel drift_region]
+  summary: 平带电压温度系数 [.0005, .0005] V/K（默认）
+  group: 温度依赖性
+- name: Surface potential at strong inversion temperature coefficient
+  summary: 表面电位 -8.5e-4 V/K（默认）
+  group: 温度依赖性
+- name: Velocity saturation temperature exponent, [channel drift_region]
+  summary: 速度饱和温度指数 [1.04, 1.04]（默认）
+  group: 温度依赖性
+- name: Ohmic resistance temperature exponent
+  summary: 欧姆电阻温度指数 0.95（默认）
+  group: 温度依赖性
+- name: Drift region low-bias resistance temperature exponent for gated portion
+  summary: 栅控部分漂移区低偏压电阻温度指数 0.95（默认）
+  group: 温度依赖性
+- name: Body diode reverse saturation current temperature exponent
+  summary: 体二极管反向饱和电流温度指数 3（默认）
+  group: 温度依赖性
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -207,7 +323,6 @@ VT=VFB+2ϕB+2ϕT+γ2ϕB+2ϕT
 Is=Is,m1(TsTm1)ηIs⋅exp(EGkB⋅(1Tm1−1Ts)).
 
 *Is,m1* 是 **Body Diode** 选项卡中 **Reverse saturation current** 参数的值，*kB* 是玻尔兹曼常数（8.617x10-5eV/K），*ηIs* 是 **Body diode reverse saturation current temperature exponent**。默认值为 `3`，因为硅的 *NC* 大致与 *T3/2* 成正比。您可以通过务实地选择 *ηIs* 来弥补忽略带隙温度依赖性的影响。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

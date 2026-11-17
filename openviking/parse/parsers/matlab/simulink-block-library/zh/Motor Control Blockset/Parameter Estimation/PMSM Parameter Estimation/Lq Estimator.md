@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Lq Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Iabc
+  summary: 三相电流响应向量
+  direction: input
+  data_types: single
+- name: Rs
+  summary: 估算的定子电阻标量
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: '*Lq* 估算的逻辑控制信号'
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: 总线信号输入总线
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*、*b* 和 *c* 轴定子参考电压分量向量'
+  direction: output
+  data_types: single
+- name: Lq
+  summary: 估算的 *q* 轴定子电感标量
+  direction: output
+  data_types: single
+- name: Log
+  summary: 调试信号总线
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -104,8 +135,22 @@ PMSM 的估算定子电阻（单位为欧姆）。您可以将此输入端口连
 | *PhaseDiff\_rad* | | | 注入电压与电流响应之间的相位差 | radians |
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum current limit (A)
+  summary: 测试期间允许的最大电流 15（默认值）| scalar
+  group: ''
+- name: Step size during injected voltage ramp up (per-unit)
+  summary: 注入电压斜坡上升期间的步长 0.0001（默认值）| scalar
+  group: ''
+- name: Number of sinusoidal voltage injections per frequency sweep step
+  summary: 频率扫描期间每个频率的正弦电压注入次数 5（默认值）| scalar
+  group: ''
+- name: Number of sinusoidal voltage injections per frequency during Lq estimation
+  summary: Lq 估计期间每个频率的正弦电压注入次数 5（默认值）| scalar
+  group: ''
+```
 
 ### **Maximum current limit (A)** — 测试期间允许的最大电流 `15`（默认值）| `scalar`
 
@@ -122,7 +167,6 @@ PMSM 的估算定子电阻（单位为欧姆）。您可以将此输入端口连
 ### **Number of sinusoidal voltage injections per frequency during Lq estimation** — Lq 估计期间每个频率的正弦电压注入次数 `5`（默认值）| `scalar`
 
 每个 Lq 估计步长中每个频率的正弦电压注入次数。
-
 ## 所属库
 
 Motor Control Blockset / Parameter Estimation / PMSM Parameter Estimation

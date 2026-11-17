@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Floating Scope and Scope Viewer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要可视化的信号 scalar | vector | matrix | array | bus | nonvirtual bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -42,11 +50,12 @@ chinese_source: worker-translation
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Sinks HDL Coder / Sinks

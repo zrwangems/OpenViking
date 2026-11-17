@@ -14,6 +14,13 @@ language: en
 # IP Core Register Read
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Data output vector
+  direction: output
+  data_types: single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Output
 
@@ -25,8 +32,23 @@ Hardware Mapping
 tool.
 
 **Data Types:** `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Register name
+  summary: Name of register RegA (default) | character vector
+  group: ''
+- name: Output data type
+  summary: Data type of output data uint16 (default) | single | int8 | uint8 | int16 | int32 | uint32 | boolean | fixed point
+    data type
+  group: ''
+- name: Output vector size
+  summary: Vector size of output data 1 (default) | positive integer
+  group: ''
+- name: Sample time
+  summary: Simulation interval of sampling -1 (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Register name** — Name of register `RegA` (default) | character vector
 
@@ -53,7 +75,6 @@ block.
 Specify a discrete time interval, in seconds, at which the block outputs data. If
 this value is `-1` (default), the sample time is inherited from the
 model.
-
 ## Libraries
 
 SoC Blockset / Memory

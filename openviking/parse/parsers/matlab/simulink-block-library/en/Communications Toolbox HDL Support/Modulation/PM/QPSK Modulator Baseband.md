@@ -14,6 +14,17 @@ language: en
 # QPSK Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Out
+  summary: QPSK-modulated baseband signal scalar | vector
+  direction: output
+  data_types: double | single | fixed point
+```
 
 ### Input
 
@@ -42,8 +53,26 @@ output is the complex baseband representation of the QPSK-modulated signal.
 This port in unnamed on the block.
 
 **Data Types:** `double` | `single` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input type
+  summary: Integer or bit pair input indicator Integer (default) | Bit
+  group: Main
+- name: Constellation ordering
+  summary: Symbol mapping Gray (default) | Binary
+  group: Main
+- name: Phase offset (rad)
+  summary: Phase offset of zeroth point pi/4 (default) | scalar
+  group: Main
+- name: View constellation
+  summary: Option to plot reference constellation button
+  group: Main
+- name: Output data type
+  summary: Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit via back propagation | <data
+    type expression>
+  group: Data Types
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -99,7 +128,6 @@ expression>`.
   type and scaling to match the following block.
 
 For information about specifying data types, see Data Type Assistant.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

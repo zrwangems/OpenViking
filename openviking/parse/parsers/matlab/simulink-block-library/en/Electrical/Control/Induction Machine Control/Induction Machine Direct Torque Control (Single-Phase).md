@@ -14,6 +14,33 @@ language: en
 # Induction Machine Direct Torque Control (Single-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: Reference
+  summary: Torque or angular velocity reference scalar
+  direction: input
+  data_types: single | double
+- name: iab
+  summary: Stator currents scalar
+  direction: input
+  data_types: single | double
+- name: vab
+  summary: Stator voltages scalar
+  direction: input
+  data_types: single | double
+- name: wr
+  summary: Rotor angular speed scalar
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Inverter gate pulses 0 | 1
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: Internal signals for visualization Reference | Rotor velocity | TqRef | FluxRef | Torque | Flux
+  direction: output
+  data_types: single | double | bus
+```
 
 ### Input
 
@@ -62,8 +89,55 @@ Bus containing internal signals for visualization. The signals are:
 - Flux, in Wb
 
 **Data Types:** `single` | `double` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Control mode
+  summary: Specify control mode Speed control (default) | Torque control
+  group: General
+- name: Rated electrical frequency (Hz)
+  summary: Specify rated electrical frequency 60 (default) | positive scalar
+  group: General
+- name: Number of pole pairs
+  summary: Specify pole pairs 2 (default) | positive scalar
+  group: General
+- name: Main winding stator resistance, Ras (Ohm)
+  summary: Specify main winding stator resistance 1.8180 (default) | positive scalar
+  group: General
+- name: Auxiliary winding stator resistance, Rbs (Ohm)
+  summary: Specify auxiliary winding stator resistance 6.4260 (default) | positive scalar
+  group: General
+- name: Auxiliary/main windings turn ratio
+  summary: Specify the auxiliary-to-main windings turn ratio 1.1 (default) | positive scalar
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: General
+- name: Speed controller proportional gain
+  summary: Specify the speed controller proportional gain 1 (default) | positive scalar
+  group: Outer Loop
+- name: Speed controller integral gain
+  summary: Specify the speed controller integral gain 10 (default) | positive scalar
+  group: Outer Loop
+- name: Speed controller integral anti-windup gain
+  summary: Specify the speed controller integral anti-windup gain 1000 (default) | positive scalar
+  group: Outer Loop
+- name: Maximum torque (Nm)
+  summary: Specify the maximum torque 5 (default) | positive scalar
+  group: Outer Loop
+- name: Minimum torque (Nm)
+  summary: Specify the minimum torque -5 (default) | scalar
+  group: Outer Loop
+- name: Rated flux (Wb)
+  summary: Specify the rated flux 0.5 (default) | positive scalar
+  group: Outer Loop
+- name: Flux hysteresis band (Wb)
+  summary: Specify the flux hysteresis band 0.02 (default) | positive scalar
+  group: Inner Loop
+- name: Torque hysteresis band (Nm)
+  summary: Specify the torque hysteresis band 0.1 (default) | positive scalar
+  group: Inner Loop
+```
 
 ### General
 
@@ -153,7 +227,6 @@ Flux hysteresis band for the controller, in Wb.
 ### **Torque hysteresis band (Nm)** — Specify the torque hysteresis band `0.1` (default) | positive scalar
 
 Torque hysteresis band for the controller, in Nm.
-
 ## Libraries
 
 Simscape / Electrical / Control / Induction Machine Control

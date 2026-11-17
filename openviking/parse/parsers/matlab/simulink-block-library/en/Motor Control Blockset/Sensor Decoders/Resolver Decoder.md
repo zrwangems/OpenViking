@@ -14,6 +14,41 @@ language: en
 # Resolver Decoder
 
 ## Ports
+```yaml
+ports:
+- name: V Sin
+  summary: Sampled secondary sine signal vector
+  direction: input
+  data_types: single | double | fixed point
+- name: V Cos
+  summary: Sampled secondary cosine signal vector
+  direction: input
+  data_types: single | double | fixed point
+- name: Reset
+  summary: Reset PLL scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θm
+  summary: Motor mechanical position scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: sinθe
+  summary: Sine of electrical motor position scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: cosθe
+  summary: Cosine of electrical motor position scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: ωm
+  summary: Motor mechanical speed scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: PLLEn
+  summary: PLL status scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -87,8 +122,79 @@ To enable this port, set the **Computation method** parameter
 to `PLL`.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Computation method
+  summary: Computation method used by block Arithmetic (default) | PLL
+  group: ''
+- name: Block Output
+  summary: Output of block Mechanical position (default) | Sine and Cosine electrical position | Mechanical speed
+  group: ''
+- name: Number of pole-pairs for resolver
+  summary: Resolver pole pair count 1 (default) | scalar
+  group: Input Parameters
+- name: Type of excitation method
+  summary: Resolver excitation method Sinusoidal Excitation (default) | Square Pulse Excitation
+  group: Input Parameters
+- name: Enable input normalization
+  summary: Enable block to normalize inputs off (default) | on
+  group: Input Parameters
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: Input Parameters
+- name: Number of pole-pairs for motor
+  summary: Motor pole pair count 3 (default) | scalar
+  group: Inputs for Sine and Cosine electrical position
+- name: Position offset (mechanical radians)
+  summary: Resolver mechanical position offset (in radians) 0 (default) | scalar
+  group: Inputs for Sine and Cosine electrical position
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Zero (default) | Simplest
+  group: Inputs for Sine and Cosine electrical position
+- name: Phase delay (electrical radians)
+  summary: Phase delay for input signals 0.1746 (default) | scalar
+  group: Inputs for sinusoidal excitation method
+- name: Number of samples per excitation cycle
+  summary: Samples per cycle of input signal 16 (default) | even scalar greater than zero
+  group: Inputs for sinusoidal excitation method
+- name: Maximum application frequency (Hz)
+  summary: Maximum applicable input frequency 7500 (default) | scalar
+  group: PLL Parameters
+- name: Speed filter cutoff frequency (Hz)
+  summary: Cutoff frequency of lowpass filter 10 (default) | scalar
+  group: PLL Parameters
+- name: Number of data points for lookup table
+  summary: Size of lookup table array 1024 (default) | scalar
+  group: PLL Parameters
+- name: Proportional (P)
+  summary: Proportional controller gain 942.4778 (default) | scalar
+  group: PLL Parameters
+- name: Integral (I)
+  summary: Integral controller gain 222066.099 (default) | scalar
+  group: PLL Parameters
+- name: Error threshold (Hz)
+  summary: PLL error threshold 2e-2 (default) | scalar
+  group: PLL Parameters
+- name: Position unit
+  summary: Unit of position output Radians (default) | Degrees | Per-unit
+  group: Output Parameters
+- name: Position data type
+  summary: Data type of angular position output single (default) | double | fixed point
+  group: Output Parameters
+- name: Table data type
+  summary: Data type of sine-cosine lookup table single (default) | double | fixed point
+  group: Output Parameters
+- name: Speed unit
+  summary: Unit of speed output Degrees/Sec (default) | Radians/Sec | RPM | Per-unit
+  group: Output Parameters
+- name: Speed data type
+  summary: Data type of angular speed output single (default) | double | fixed point
+  group: Output Parameters
+- name: Base speed (RPM)
+  summary: Base speed of the motor (RPM) 2000 (default) | scalar
+  group: Output Parameters
+```
 
 ### **Computation method** — Computation method used by block `Arithmetic` (default) | `PLL`
 
@@ -356,7 +462,6 @@ For both arithmetic and PLL computation methods, the block enables this
 parameter only if you select the **Mechanical speed** parameter
 available in the **Block Output** section and then set
 **Speed unit** to `Per-Unit`.
-
 ## Libraries
 
 Motor Control Blockset / Sensor Decoders

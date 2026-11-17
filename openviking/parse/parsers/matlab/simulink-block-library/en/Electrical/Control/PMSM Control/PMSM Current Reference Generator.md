@@ -14,6 +14,33 @@ language: en
 # PMSM Current Reference Generator
 
 ## Ports
+```yaml
+ports:
+- name: TqRef
+  summary: Reference torque, N\*m scalar
+  direction: input
+  data_types: single | double
+- name: wMechanical
+  summary: Rotor mechanical speed, rad/s scalar
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: DC-link voltage, V scalar
+  direction: input
+  data_types: single | double
+- name: idqRef
+  summary: Reference currents, A vector
+  direction: output
+  data_types: single | double
+- name: TqRefSat
+  summary: Reference torque, N\*m scalar
+  direction: output
+  data_types: single | double
+- name: TqLim
+  summary: Torque limit, N\*m scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -60,8 +87,61 @@ Torque limit imposed by both the electrical and mechanical constraints
 of the system, in N\*m.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal dc-link voltage (V)
+  summary: Rated DC voltage 300V (default) | positive number
+  group: ''
+- name: Maximum power (W)
+  summary: Rated power 30000W (default) | positive number
+  group: ''
+- name: Maximum torque (N\*m)
+  summary: Rated torque 250N*m (default) | positive number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | -1 or positive number
+  group: ''
+- name: Current references
+  summary: Current reference strategy Zero d-axis control (default) | Lookup-table based | Automatically generated lookup-table
+  group: ''
+- name: Mechanical speed vector, wMechanical (rpm)
+  summary: Rotor speed lookup vector [0, 3000]rpm (default) | positive monotonically increasing vector
+  group: ''
+- name: Torque reference vector, TqRef (N\*m)
+  summary: Torque reference lookup vector [-100, 0, 100]N*m (default) | positive monotonically increasing vector
+  group: ''
+- name: DC-link voltage vector, Vdc (V)
+  summary: DC-link voltage lookup vector [300, 350]V (default) | positive monotonically increasing vector
+  group: ''
+- name: D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)
+  summary: Reference d-axis current values zeros(2,3,2)A (default) | real matrix
+  group: ''
+- name: Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)
+  summary: Reference q-axis current values zeros(2,3,2)A (default) | real matrix
+  group: ''
+- name: PWM method
+  summary: 'Pulse width modulation method SVM: space vector modulation (default) | SPWM: sinusoidal PWM'
+  group: ''
+- name: Modulation factor
+  summary: Modulation factor 1 (default) | positive scalar
+  group: ''
+- name: Number of pole pairs
+  summary: Pole pairs 8 (default) | positive integer
+  group: ''
+- name: Permanent magnet flux linkage (Wb)
+  summary: PM Flux Linkage 0.04Wb (default) | positive scalar
+  group: ''
+- name: D-axis inductance (H)
+  summary: Inductance of d-axis 0.00024 (default) | positive scalar
+  group: ''
+- name: Q-axis inductance (H)
+  summary: Inductance of q-axis 0.00029 (default) | positive scalar
+  group: ''
+- name: Stator resistance (Ohm)
+  summary: Resistance of stator 0.01 (default) | positive scalar
+  group: ''
+```
 
 #### General Parameters
 
@@ -153,7 +233,6 @@ Quadrature-axis inductance.
 ### **Stator resistance (Ohm)** — Resistance of stator `0.01` (default) | positive scalar
 
 Stator resistance per phase.
-
 ## Libraries
 
 Simscape / Electrical / Control / PMSM Control

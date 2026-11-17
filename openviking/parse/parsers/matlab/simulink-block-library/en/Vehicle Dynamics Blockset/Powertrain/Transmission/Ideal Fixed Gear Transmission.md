@@ -14,6 +14,30 @@ language: en
 # Ideal Fixed Gear Transmission
 
 ## Ports
+```yaml
+ports:
+- name: Gear
+  summary: Gear number to engage scalar
+  direction: input
+- name: EngTrq
+  summary: Applied input torque scalar
+  direction: input
+- name: DiffTrq
+  summary: Applied load torque scalar
+  direction: input
+- name: Temp
+  summary: Oil temperature scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: EngSpd
+  summary: Angular speed scalar
+  direction: output
+- name: DiffSpd
+  summary: Angular speed scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -79,8 +103,85 @@ Applied drive shaft angular speed input,
 
 Drive shaft angular speed output,
 *ωo*, in rad/s.
-
 ## Parameters
+```yaml
+parameters:
+- name: Efficiency factors
+  summary: Specify efficiency calculation Gear only (default) | Gear, input torque, input speed, and temperature
+  group: ''
+  block_parameter: TransEffModelPopup
+  values: Gear only (default) | Gear, input torque, input speed, and temperature
+- name: Gear property interpolation method
+  summary: Interpolation Nearest (default) | Linear | Flat | Cubic spline
+  group: ''
+  block_parameter: gearInterp
+  values: Nearest (default) | Linear | Flat | Cubic spline
+- name: Gear number vector, G
+  summary: Specify number of transmission speeds [-1,0,1,2,3,4,5] (default) | vector
+  group: ''
+  block_parameter: G
+  values: '[-1,0,1,2,3,4,5] (default) | vector'
+- name: Efficiency torque breakpoints, Trq_bpts
+  summary: Breakpoints [25,50,75,100,150,200,250] (default) | vector
+  group: ''
+  block_parameter: Trq_bpts
+  values: '[25,50,75,100,150,200,250] (default) | vector'
+- name: Efficiency speed breakpoints, omega_bpts
+  summary: Breakpoints [52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | vector
+  group: ''
+  block_parameter: omega_bpts
+  values: '[52.4 78.5 105 131 157 183 209 262 314 419 524] (default) | vector'
+- name: Efficiency temperature breakpoints, Temp_bpts
+  summary: Breakpoints [313 358] (default) | vector
+  group: ''
+  block_parameter: Temp_bpts
+  values: '[313 358] (default) | vector'
+- name: Gear ratio vector, N
+  summary: Ratio of input speed to output speed [-4.47,4.47,4.47,2.47,1.47,1,0.8] (default) | vector
+  group: ''
+  block_parameter: N
+  values: '[-4.47,4.47,4.47,2.47,1.47,1,0.8] (default) | vector'
+- name: Inertia vector, Jout
+  summary: Gear rotational inertia [0.128 0.01 0.128 0.1 0.062 0.028 0.01] (default) | vector
+  group: ''
+  block_parameter: Jout
+  values: '[0.128 0.01 0.128 0.1 0.062 0.028 0.01] (default) | vector'
+- name: Damping vector, bout
+  summary: Gear viscous damping coefficient [.003 .001 .003 .0025 .002 .001 .001] (default) | vector
+  group: ''
+  block_parameter: bout
+  values: '[.003 .001 .003 .0025 .002 .001 .001] (default) | vector'
+- name: Efficiency vector, eta
+  summary: Gear efficiency [0.9,0.9,0.9,0.9,0.9,0.95,0.95] (default) | vector
+  group: ''
+  block_parameter: eta
+  values: '[0.9,0.9,0.9,0.9,0.9,0.95,0.95] (default) | vector'
+- name: Efficiency lookup table, eta_tbl
+  summary: Gear efficiency array
+  group: ''
+  block_parameter: eta_tbl
+  values: array
+- name: Initial gear number, G_o
+  summary: Gear 0 (default) | scalar
+  group: ''
+  block_parameter: G_o
+  values: 0 (default) | scalar
+- name: Initial output velocity, omega_o
+  summary: Output speed 0 (default) | scalar
+  group: ''
+  block_parameter: omega_o
+  values: 0 (default) | scalar
+- name: Initial neutral input velocity, omegainN_o
+  summary: Neutral gear input speed 0 (default) | scalar
+  group: ''
+  block_parameter: omegainN_o
+  values: 0 (default) | scalar
+- name: Shift time constant, tau_s
+  summary: Time .01 (default) | scalar
+  group: ''
+  block_parameter: tau_s
+  values: .01 (default) | scalar
+```
 
 ### **Efficiency factors** — Specify efficiency calculation `Gear only` (default) | `Gear, input torque, input speed, and temperature`
 
@@ -469,7 +570,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `tau_s` |
 | **Values:** | `.01` (default) | `scalar` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Transmission / Transmission Systems Vehicle Dynamics Blockset / Powertrain / Transmission

@@ -14,6 +14,15 @@ language: en
 # SFFM Current Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,28 @@ positive terminal.
 
 Electrical conserving port associated with the SFFM current source
 negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Current offset, IO
+  summary: Current offset 0 A (default)
+  group: ''
+- name: Current amplitude, IA
+  summary: Current amplitude 0 A (default)
+  group: ''
+- name: Carrier frequency, FC
+  summary: Carrier frequency 0 Hz (default) | nonnegative scalar
+  group: ''
+- name: Modulation index, MI
+  summary: Modulation index 0 (default) | nonnegative scalar
+  group: ''
+- name: Signal frequency, FS
+  summary: Signal frequency 0 Hz (default) | nonnegative scalar
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: Whether to include parallel conductance Yes (default) | No
+  group: ''
+```
 
 ### **Current offset, IO** — Current offset `0` `A` (default)
 
@@ -66,7 +95,6 @@ This table shows the possible values of the parallel conductance,
 | *`Yes`* | | *`No`* | | |
 | **Model contains Environment Parameters block** | **Model does not contain Environment Parameters block** | Parallel conductance, *GMIN*, is not included and it does not affect the current source. | | |
 | *GMIN* is equal to the value of the **GMIN** parameter in the Environment Parameters block. | *GMIN* = `1e-12` `Ohm` |
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

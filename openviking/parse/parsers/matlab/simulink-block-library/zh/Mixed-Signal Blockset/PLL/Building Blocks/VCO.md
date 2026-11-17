@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # VCO
 
 ## 端口
+```yaml
+ports:
+- name: vctrl
+  summary: 用于控制 VCO 输出频率的电压 标量 | 向量
+  direction: input
+  data_types: double
+- name: vco out
+  summary: 由 vctrl 端口决定的输出方波信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,74 @@ chinese_source: worker-translation
 VCO 的输出方波信号。在 PLL 系统中，**vco out** 是 PLL 生成的输出时钟。它 also 通过时钟分频器反馈到 PFD 模块，以完成控制环路。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Specify using
+  summary: 定义 VCO 输出频率的指定方式 Voltage sensitivity（默认）| Output frequency vs. control voltage
+  group: 参数
+  block_parameter: SpecifyUsing
+  type: 字符向量
+  values: Voltage sensitivity | Output frequency vs. control voltage
+- name: Voltage sensitivity (Hz/V)
+  summary: VCO 输出频率的变化量度 100e6（默认）| 正实数标量
+  group: 参数
+  block_parameter: Kvco
+  type: 字符向量
+  values: 正实数标量
+- name: Free running frequency (Hz)
+  summary: 无控制电压时的 VCO 输出频率 2.5e9（默认）| 正实数标量
+  group: 参数
+  block_parameter: Fo
+  type: 字符向量
+  values: 正实数标量
+- name: Control voltage (V)
+  summary: 控制电压值 [-5 0 5]（默认）| 实数值向量
+  group: 参数
+  block_parameter: ControlVoltage
+  type: 字符向量
+  values: 实数值向量
+- name: Output frequency (Hz)
+  summary: VCO 输出频率值 [2e9 2.5e9 3e9]（默认）| 正实数值向量
+  group: 参数
+  block_parameter: OutputFrequency
+  type: 字符向量
+  values: 正实数值向量
+- name: Output amplitude (V)
+  summary: VCO 输出电压的最大幅度 1（默认）| 正实数标量
+  group: 参数
+  block_parameter: Amplitude
+  type: 字符向量
+  values: 正实数标量
+  default: '1'
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: 参数
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 10（默认）| 正整数标量
+  group: 参数
+  block_parameter: NBuffer
+  type: 字符向量
+  values: 正整数标量
+  default: '10'
+- name: Add phase noise
+  summary: 添加随频率变化的相位噪声 on（默认）| off
+  group: 损伤
+- name: Phase noise frequency offset (Hz)
+  summary: 相位噪声相对于载波频率的频率偏移 [10e3 100e3 1e6 3e6 10e6]（默认）| 正实数值向量
+  group: 损伤
+  block_parameter: Foffset
+  type: 字符向量
+  values: 正实数值向量
+  default: '[10e3 100e3 1e6 3e6 10e6]'
+- name: Phase noise level (dBc/Hz)
+  summary: 在指定频率偏移处相对于载波的相位噪声功率 [-77 -108 -134 -145 -154]（默认）| 负实数值向量
+  group: 损伤
+  block_parameter: PhaseNoise
+  type: 字符向量
+  values: 负实数值向量
+  default: '[-77 -108 -134 -145 -154]'
+```
 
 ### 参数
 
@@ -210,7 +287,6 @@ VCO 输出电压的最大幅度，指定为正实数标量。
 | **默认值：** `[-77 -108 -134 -145 -154]` |
 
 **数据类型：** `double`
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Building Blocks

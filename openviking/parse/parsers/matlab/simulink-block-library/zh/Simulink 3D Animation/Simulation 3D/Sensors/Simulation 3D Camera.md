@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Simulation 3D Camera
 
 ## 端口
+```yaml
+ports:
+- name: Rel Translation
+  summary: 传感器相对于安装点的相对平移 [0 0 0]（默认）| 形式为 [*X* *Y* *Z*] 的实值 1×3 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Rel Rotation
+  summary: 传感器相对于安装点的相对旋转 [0 0 0]（默认）| 形式为 [*Roll* *Pitch* *Yaw*] 的实值 1×3 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Image
+  summary: 3D 输出相机图像 *m*×*n*×3 的 RGB 三元组值数组
+  direction: output
+  data_types: int8 | uint8
+- name: Depth
+  summary: 从 0 m 到 1000 m 的物体深度 *m*×*n* 的物体深度数组
+  direction: output
+  data_types: double
+- name: Labels
+  summary: 标签标识符 *m*×*n* 的标签标识符数组
+  direction: output
+  data_types: uint8
+- name: Translation
+  summary: 传感器位置 实值 1×3 向量
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: 传感器方向 实值 1×3 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -149,8 +180,68 @@ translation [X, Y, Z]** 参数旁边的 **Input** 参数。有关更多详细信
 要启用此端口，请在 **Ground Truth** 选项卡上，选择 **Output location and orientation**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 安装
+- name: Parent name
+  summary: 父级车辆名称 Scene Origin（默认）| 车辆名称
+  group: 安装
+- name: Coordinate system
+  summary: 用于 actor 变换的坐标系 Default（默认）| MATLAB | ISO8855 | AERO | VRML | SAE
+  group: 安装
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）| Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof
+    center | ...
+  group: 安装
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移 off（默认）| on
+  group: 安装
+- name: Relative translation [X, Y, Z]
+  summary: 相对于安装位置的平移偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: 相对于安装位置的旋转偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 安装
+- name: Focal length (pixels)
+  summary: 相机的焦距 [1109, 1109]（默认）| 1×2 正整数向量
+  group: 参数
+- name: Optical center (pixels)
+  summary: 相机的光学中心 [640, 360]（默认）| 1×2 正整数向量
+  group: 参数
+- name: Image size (pixels)
+  summary: 相机生成的图像大小 [720, 1280]（默认）| 1×2 正整数向量
+  group: 参数
+- name: Radial distortion coefficients
+  summary: 径向畸变系数 [0, 0]（默认）| 实数值 2 元素向量 | 实数值 3 元素向量 | 实数值 6 元素向量
+  group: 参数
+- name: Tangential distortion coefficients
+  summary: 切向畸变系数 [0, 0]（默认）| 实数值 2 元素向量
+  group: 参数
+- name: Axis skew
+  summary: 相机轴的倾斜角 0（默认）| 非负实数值标量
+  group: 参数
+- name: Visualize field of view
+  summary: 用于可视化相机视场的选项 off（默认）| on
+  group: 参数
+- name: Field of view range (m)
+  summary: 可视化范围 61（默认）| 正实数标量
+  group: 参数
+- name: Output depth
+  summary: 输出深度图 off（默认）| on
+  group: Ground Truth
+- name: Output semantic segmentation
+  summary: 输出标签 ID 的语义分割图 off（默认）| on
+  group: Ground Truth
+- name: Output location and orientation
+  summary: 输出传感器的位置和方向 off（默认）| on
+  group: Ground Truth
+```
 
 ### 安装
 
@@ -361,7 +452,6 @@ translation [X, Y, Z]** 参数旁边的 **Input** 参数。有关更多详细信
 ### **Output location and orientation** — 输出传感器的位置和方向 `off`（默认）| `on`
 
 选择此参数可分别在 **Translation** 和 **Rotation** 端口输出传感器的平移和旋转。
-
 ## 所属库
 
 Offroad Autonomy Library / Simulation 3D Automated Driving Toolbox / Simulation 3D Robotics System Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors UAV Toolbox / Simulation 3D

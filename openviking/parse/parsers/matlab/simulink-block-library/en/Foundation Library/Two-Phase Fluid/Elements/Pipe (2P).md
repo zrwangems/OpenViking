@@ -14,6 +14,18 @@ language: en
 # Pipe (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet or outlet two-phase fluid
+  direction: conserving
+- name: B
+  summary: Inlet or outlet two-phase fluid
+  direction: conserving
+- name: H
+  summary: Temperature of pipe wall thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -30,8 +42,65 @@ The block has no intrinsic directionality.
 ### **H** — Temperature of pipe wall thermal
 
 Thermal conserving port representing the temperature of the pipe wall.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe length
+  summary: The length of the pipe 5 m (default) | positive scalar
+  group: Geometry
+- name: Cross-sectional area
+  summary: The internal area of the pipe 0.01 m^2 (default) | positive scalar
+  group: Geometry
+- name: Hydraulic diameter
+  summary: Diameter of an equivalent cylindrical pipe with the same cross-sectional area 0.1 m (default) | positive scalar
+  group: Geometry
+- name: Aggregate equivalent length of local resistances
+  summary: The combined length of all local resistances present in the pipe 0.1 m (default) | positive scalar
+  group: Friction and Heat Transfer
+- name: Internal surface absolute roughness
+  summary: Average depth of all surface defects on the internal surface of the pipe 15e-6 m (default) | positive scalar
+  group: Friction and Heat Transfer
+- name: Laminar flow upper Reynolds number limit
+  summary: The Reynolds number above which flow begins to transition from laminar to turbulent 2000 (default) | positive scalar
+  group: Friction and Heat Transfer
+- name: Turbulent flow lower Reynolds number limit
+  summary: The Reynolds number below which flow begins to transition from turbulent to laminar 4000 (default) | positive scalar
+  group: Friction and Heat Transfer
+- name: Shape factor for laminar flow viscous friction
+  summary: Effect of pipe geometry on the viscous friction losses 64 (default) | positive scalar
+  group: Friction and Heat Transfer
+- name: Nusselt number for laminar flow heat transfer
+  summary: Ratio of convective to conductive heat transfer 3.66 (default) | positive scalar
+  group: Friction and Heat Transfer
+- name: Enable fluid inertia
+  summary: Whether to model fluid inertia off (default) | on
+  group: Effects and Initial Conditions
+- name: Initial fluid energy specification
+  summary: Thermodynamic variable to use in defining initial conditions Temperature (default) | Vapor quality | Vapor void
+    fraction | Specific enthalpy | Specific internal energy
+  group: Effects and Initial Conditions
+- name: Initial pressure
+  summary: Absolute pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial temperature
+  summary: Absolute temperature at start of simulation 293.15 K (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial vapor quality
+  summary: Mass fraction of vapor at start of simulation 0.5 (default) | unitless scalar between 0 and 1
+  group: Effects and Initial Conditions
+- name: Initial vapor void fraction
+  summary: Volume fraction of vapor at start of simulation 0.5 (default) | unitless scalar between 0 and 1
+  group: Effects and Initial Conditions
+- name: Initial specific enthalpy
+  summary: Specific enthalpy at start of simulation 1500 kJ/kg (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial specific internal energy
+  summary: Specific internal energy at start of simulation 1500 kJ/kg (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Phase change time constant
+  summary: Characteristic duration of a phase-change event 0.1 s (default) | positive scalar
+  group: Effects and Initial Conditions
+```
 
 ### Geometry
 
@@ -185,7 +254,6 @@ Characteristic time to equilibrium of a phase-change event taking place in the
 pipe. This constant introduces a time lag into the transition between phases. Increase
 this parameter value to slow the rate of phase change or decrease it to speed the
 rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

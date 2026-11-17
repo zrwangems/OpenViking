@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # MLSE Equalizer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Specify channel via**
 :   指定信道估计的方法。如果选择 `Input port`，模块会显示第二个输入端口，用于接收信道估计。如果选择 `Dialog`，可以在 **Channel coefficients** 字段中将信道估计指定为 FIR 滤波器的系数向量。
@@ -52,7 +57,6 @@ R2025b 中未记录。
 
 **启用复位输入端口**
 :   选中此框后，模块会有一个标记为 `Rst` 的第二个输入端口。向此端口提供非零输入值会使模块在处理输入数据之前将其内部存储器设置为初始状态。仅当将 **Operation mode** 设置为 `Continuous with reset option` 时，此选项才会出现。
-
 ## 所属库
 
 R2025b 中未记录。

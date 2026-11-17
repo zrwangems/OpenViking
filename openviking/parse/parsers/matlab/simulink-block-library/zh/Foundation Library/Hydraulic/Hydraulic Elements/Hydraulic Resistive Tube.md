@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Hydraulic Resistive Tube
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,8 +26,10 @@ chinese_source: worker-translation
 
 `B`
 :   与管道出口关联的液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Tube cross section type**
 :   管道横截面类型：`Circular` 或 `Noncircular`。对于圆形管道，需指定其内径。对于非圆形管道，需指定其水力直径和管道横截面积。该参数的默认值为 `Circular`。
@@ -63,7 +68,6 @@ chinese_source: worker-translation
 - **Tube cross section type**
 
 所有其他模块参数均可修改。实际可修改的模块参数集取决于模型进入受限模式时 **Tube cross section type** 参数的值。
-
 ## 所属库
 
 R2025b 中未记录。

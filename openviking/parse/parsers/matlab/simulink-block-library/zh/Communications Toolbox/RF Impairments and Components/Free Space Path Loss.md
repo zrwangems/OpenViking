@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Free Space Path Loss
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 复信号 标量 | 列向量
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: 输出信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +39,22 @@ chinese_source: worker-translation
 ### **Out1** — 输出信号 标量 | 向量
 
 输出信号，以标量或列向量形式返回。此输出的维度和数据类型与输入信号相同。
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 损耗计算模式 Decibels（默认）| Distance and Frequency
+  group: ''
+- name: Loss (dB)
+  summary: 功率损耗 10（默认）| 标量
+  group: ''
+- name: Distance (km)
+  summary: 发射机与接收机之间的距离 0.100（默认）| 标量
+  group: ''
+- name: Carrier frequency (MHz)
+  summary: 载波频率 1920（默认）| 标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -64,7 +88,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Mode** 参数设置为 `Distance and Frequency`。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments and Components

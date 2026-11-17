@@ -14,10 +14,46 @@ language: en
 # Lamp
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Signal to connect and display signal connection options
+  group: ''
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: States
+  summary: Signal value and color pairs scalar and RGB vector
+  group: ''
+  block_parameter: ColorDefault
+  type: '[r g b] vector'
+  default: '[0.7529 0.7529 0.7529]'
+- name: Icon
+  summary: Lamp block appearance SVG image
+  group: ''
+  block_parameter: Icon
+  type: string | character vector
+  default: '''Default'''
+- name: Label
+  summary: Block label position Top (default) | Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+- name: Opacity
+  summary: Block opacity 1 (default) | scalar
+  group: ''
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+```
 
 ### **Connection** — Signal to connect and display signal connection options
 
@@ -254,7 +290,6 @@ Block opacity, specified as a scalar value between 0 and 1.
 | **Block Parameter:** `Opacity` |
 | **Type:** scalar |
 | **Default:** `1` |
-
 ## Libraries
 
 Simulink / Dashboard

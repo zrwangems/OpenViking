@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # DRMS
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+- name: Port_1
+  summary: DRMS 值 标量
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,16 @@ chinese_source: worker-translation
 ### **Port\_1** — DRMS 值 标量
 
 计算得到的离散时间均方根值，输出为标量信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Sampling interval
+  summary: 采样时间 1（默认）| 正标量
+  group: ''
+  block_parameter: Ts
+  values: 带引号的正标量
+  default: '''1'''
+```
 
 ### **Sampling interval** — 采样时间 `1`（默认）| 正标量
 
@@ -40,7 +57,6 @@ chinese_source: worker-translation
 | **Parameter:** `Ts` |
 | **Value:** 带引号的正标量 |
 | **默认值**：`'1'` |
-
 ## 所属库
 
 Simulink Design Optimization / RMS Blocks

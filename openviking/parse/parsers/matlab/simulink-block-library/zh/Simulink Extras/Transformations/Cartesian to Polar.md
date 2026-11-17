@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Cartesian to Polar
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: '*x* 笛卡尔坐标输入标量'
+  direction: input
+  data_types: single | double
+- name: Port_2
+  summary: '*y* 笛卡尔坐标输入标量'
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: '*r* 极坐标输出标量'
+  direction: output
+  data_types: single | double
+- name: Output 2
+  summary: '*theta* 极坐标输出标量'
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,11 +61,12 @@ chinese_source: worker-translation
 指定极坐标 *(r,theta)* 中 *theta* 坐标的输出信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Extras / Transformations

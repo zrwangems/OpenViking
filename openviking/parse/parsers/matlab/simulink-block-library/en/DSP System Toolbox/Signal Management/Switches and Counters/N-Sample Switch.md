@@ -14,6 +14,25 @@ language: en
 # N-Sample Switch
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: First input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Input 2
+  summary: Second input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Rst
+  summary: Reset signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Output
+  summary: Output of the switch scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -79,8 +98,22 @@ periods *N*.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Switch count, N
+  summary: Switch count 8 (default) | nonnegative integer
+  group: ''
+- name: Reset input
+  summary: Reset input off (default) | on
+  group: ''
+- name: Trigger type
+  summary: Trigger type Rising edge (default) | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Sample time
+  summary: Sample time 0.1 (default) | positive scalar
+  group: ''
+```
 
 ### **Switch count, N** — Switch count `8` (default) | nonnegative integer
 
@@ -154,7 +187,6 @@ inherited from the sample period of either input.
 The block applies a zero-order hold at the input ports, so the value the
 block reads from a given port between input sample times is the value of the
 most recent input to that port.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Switches and Counters

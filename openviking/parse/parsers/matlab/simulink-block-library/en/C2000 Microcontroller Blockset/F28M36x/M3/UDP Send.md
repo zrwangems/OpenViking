@@ -14,6 +14,13 @@ language: en
 # UDP Send
 
 ## Ports
+```yaml
+ports:
+- name: Port1
+  summary: Send UDP messages to another UDP host vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### Input
 
@@ -23,8 +30,19 @@ The port accepts an array and sends it as UDP messages over an IP
 network port to the receiving host.
 
 **Data Types:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Remote IP address
+  summary: IP address of receiving UDP host 192.168.3.2 (default)
+  group: ''
+- name: Remote IP Port
+  summary: IP port on the receiving UDP host 25000 (default) | [1, 65535]
+  group: ''
+- name: Local IP Port
+  summary: IP port on the sending UDP host 2048 (default) | [1, 65535]
+  group: ''
+```
 
 ### **Remote IP address** — IP address of receiving UDP host `192.168.3.2` (default)
 
@@ -50,7 +68,6 @@ This parameter appears if you select the `Specify via
 dialog` option for **Local IP port
 source**. Specify the port number of the application from which
 you want to send the messages.
-
 ## Libraries
 
 Simulink Support Package for Parrot Minidrones

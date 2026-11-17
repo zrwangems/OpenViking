@@ -14,6 +14,25 @@ language: en
 # Demosaic Interpolator
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint | fixdt(0,W,F) | single | double
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream vector | matrix
+  direction: output
+  data_types: uint | fixdt(0,W,F) | single | double
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -77,8 +96,19 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Interpolation algorithm
+  summary: Algorithm used to calculate missing pixel values Gradient-corrected linear (default) | Bilinear
+  group: ''
+- name: Sensor alignment
+  summary: Color sequence of the pixels in the input stream RGGB (default) | GBRG | GRBG | BGGR
+  group: ''
+- name: Line buffer size
+  summary: Size of line memory buffer 2048 (default) | integer
+  group: ''
+```
 
 ### **Interpolation algorithm** — Algorithm used to calculate missing pixel values `Gradient-corrected linear` (default) | `Bilinear`
 
@@ -116,7 +146,6 @@ The total memory size allocated depends on your selection of
 - `Gradient-corrected linear`:
   4-by-**Line buffer size** memory
   locations
-
 ## Libraries
 
 Vision HDL Toolbox / Conversions

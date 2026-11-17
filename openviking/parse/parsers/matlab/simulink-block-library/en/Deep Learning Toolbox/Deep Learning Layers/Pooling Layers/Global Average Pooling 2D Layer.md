@@ -14,6 +14,17 @@ language: en
 # Global Average Pooling 2D Layer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data 3-dimensional array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Downsampled output data 3-dimensional array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -32,8 +43,93 @@ corresponding to two spatial dimensions and one channel dimension, in that
 order.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Layer
+  summary: Corresponding layer object layerObject (default) | globalAveragePooling2dLayer object
+  group: Main
+  block_parameter: Layer
+  type: workspace variable
+  values: globalAveragePooling2dLayer object
+  default: '''layerObject'''
+- name: Data format
+  summary: Format of input data SSC (default)
+  group: Main
+  block_parameter: DataFormat
+  type: character vector
+  values: '''SSC'''
+  default: '''SSC'''
+- name: Input size
+  summary: Size of input data [10 10 64] (default) | array of positive scalars
+  group: Main
+  block_parameter: InputSize
+  type: array
+  values: '[10 10 64] | ''<array>'''
+  default: '''[10 10 64]'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Data type of output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling
+    | Inherit: Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Output integer rounding mode
+  summary: Rounding mode for fixed-point output cast operation Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: Data Types
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Output saturate on integer overflow
+  summary: Method of overflow action for output cast operation off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Accumulator
+  summary: 'Data type of accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input | <data type
+    expression>'
+  group: Data Types
+  block_parameter: AccumDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Same as first input'' | <data type expression>'
+- name: Number of pooling elements
+  summary: 'Data type of standard deviation Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant
+    value'' | <data type expression>'
+  group: Data Types
+  block_parameter: NumPoolingElementsDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Internal integer rounding mode
+  summary: Rounding mode for internal fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest
+    | Zero
+  group: Data Types
+  block_parameter: InternalRndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Internal saturate on integer overflow
+  summary: Method of overflow action for internal block operations off (default) | on
+  group: Data Types
+  block_parameter: InternalSaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Sample time
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -375,7 +471,6 @@ programmatically, use the `set_param` (Simulink) function.
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **Values:** `'-1'` (default) | scalar |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Learning Layers / Pooling Layers

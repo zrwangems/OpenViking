@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # GPS
 
 ## 端口
+```yaml
+ports:
+- name: Position
+  summary: GPS 接收机在导航坐标系中的位置 矩阵
+  direction: input
+  data_types: single | double
+- name: Velocity
+  summary: 本地导航坐标系中的速度 (m/s) 矩阵
+  direction: input
+  data_types: single | double
+- name: LLA
+  summary: LLA 坐标系中的位置 矩阵
+  direction: output
+  data_types: single | double
+- name: Velocity
+  summary: 本地导航坐标系中的速度 (m/s) 矩阵
+  direction: output
+  data_types: single | double
+- name: Groundspeed
+  summary: 本地导航坐标系中水平速度的幅值 (m/s) 向量
+  direction: output
+  data_types: single | double
+- name: Course
+  summary: 本地导航坐标系中水平速度的方向（°）向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -69,8 +96,37 @@ GPS 接收机在本地导航坐标系中水平速度的方向，以度为单位�
 *N* 是当前帧中的样本数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Reference frame
+  summary: 参考坐标系 NED（默认）| ENU
+  group: ''
+- name: Position input format
+  summary: 位置坐标输入格式 Local（默认）| Geodetic
+  group: ''
+- name: Reference location
+  summary: 本地导航参考坐标系的原点 [0,0,0]（默认）| 三元素向量
+  group: ''
+- name: Horizontal position accuracy
+  summary: 水平位置精度（m） 1.6（默认）| 非负实数标量
+  group: ''
+- name: Vertical position accuracy
+  summary: 垂直位置精度（m） 3（默认）| 非负实数标量
+  group: ''
+- name: Velocity accuracy
+  summary: 速度精度（m/s） 0.1（默认）| 非负实数标量
+  group: ''
+- name: Decay factor
+  summary: 全局位置噪声衰减因子 0.999（默认）| 范围 [0, 1] 内的标量
+  group: ''
+- name: Seed
+  summary: 初始种子 67（默认）| 非负整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Reference frame** — 参考坐标系 `NED`（默认）| `ENU`
 
@@ -125,7 +181,6 @@ GPS 接收机在本地导航坐标系中水平速度的方向，以度为单位�
 
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，后续仿真将复用该 C 代码。
-
 ## 所属库
 
 UAV Toolbox / UAV Scenario and Sensor Modeling Navigation Toolbox / Multisensor Positioning / Sensor Models Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Sensor Models

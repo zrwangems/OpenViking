@@ -14,6 +14,13 @@ language: en
 # Blank Message
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: Blank ROS message nonvirtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -25,8 +32,19 @@ elements of the bus are initialized to 0. The lengths of the
 variable-length arrays are also initialized to 0.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Class
+  summary: Class of ROS message Message (default) | Service Request | Service Response
+  group: ''
+- name: Type
+  summary: ROS message type 'geometry_msgs/Point' (default) | character vector | dialog box selection
+  group: ''
+- name: Sample time
+  summary: Interval between outputs Inf (default) | numeric scalar
+  group: ''
+```
 
 ### **Class** — Class of ROS message `Message` (default) | `Service Request` | `Service Response`
 
@@ -45,7 +63,6 @@ the block outputs a new blank message at each interval of **Sample
 time**.
 
 For more information, see Specify Sample Time (Simulink).
-
 ## Libraries
 
 ROS Toolbox / ROS

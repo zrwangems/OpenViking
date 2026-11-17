@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Image Filter
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: coeff
+  summary: 滤波器系数矩阵
+  direction: input
+  data_types: int | uint | fixed point | single | double
+- name: pixel
+  summary: 输出像素流 标量 | 向量
+  direction: output
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -66,8 +89,40 @@ chinese_source: worker-translation
 对于多像素流，每个像素值向量都有一组控制信号。由于该向量只有一个 `valid` 信号，因此向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter coefficients source
+  summary: 提供滤波器系数的来源 Property（默认）| Input port
+  group: 主要
+- name: Filter coefficients
+  summary: 滤波器系数 [ 1, 0; 0, -1 ]（默认）| 矩阵
+  group: 主要
+- name: 填充方法
+  summary: 填充方法 Constant（默认）| Replicate | Symmetric | Reflection | None
+  group: 主要
+- name: 填充值
+  summary: 用于填充输入图像边界的值 0（默认）| 整数
+  group: 主要
+- name: 行缓冲区大小
+  summary: 行缓冲区大小 2048（默认）| 整数
+  group: 主要
+- name: 舍入模式
+  summary: 内部定点计算的舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: 整数溢出时饱和
+  summary: 内部定点计算的溢出操作 off（默认）| on
+  group: 数据类型
+- name: 系数
+  summary: '滤波器系数数据类型 Inherit: Same as first input（默认）| fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+- name: Output
+  summary: '输出数据类型 Inherit: Same as first input（默认）| Inherit: Inherit via internal rule | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 锁定数据类型设置 off（默认）| on
+  group: 数据类型
+```
 
 ### 主要
 
@@ -143,7 +198,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 锁定数据类型设置 `off`（默认）| `on`
 
 选择此参数以锁定此模块的所有数据类型设置，使其不受 Fixed-Point Tool 和 Fixed-Point Advisor 的更改。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Vision HDL Toolbox / Filtering

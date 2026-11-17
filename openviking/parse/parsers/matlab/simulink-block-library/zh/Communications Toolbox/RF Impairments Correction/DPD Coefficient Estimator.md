@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # DPD Coefficient Estimator
 
 ## 端口
+```yaml
+ports:
+- name: PA In
+  summary: 功率放大器基带等效输入列向量
+  direction: input
+  data_types: double
+- name: PA Out
+  summary: 功率放大器基带等效输出列向量
+  direction: input
+  data_types: double
+- name: Forgetting Factor
+  summary: 范围在 (0, 1] 内的遗忘因子标量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 记忆多项式系数矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -48,8 +66,37 @@ chinese_source: worker-translation
 记忆多项式系数，以矩阵形式返回。有关详细信息，请参阅 Digital Predistortion。
 
 此端口在模块上未命名。
-
 ## 参数
+```yaml
+parameters:
+- name: Desired amplitude gain (dB)
+  summary: 期望幅度增益，以 dB 为单位 10（默认）| 标量
+  group: ''
+- name: Polynomial type
+  summary: 多项式类型 Memory polynomial（默认）| Cross-term memory polynomial
+  group: ''
+- name: Degree
+  summary: 记忆多项式阶数 5（默认）| 正整数
+  group: ''
+- name: Memory depth
+  summary: 记忆多项式深度 3（默认）| 正整数
+  group: ''
+- name: Algorithm
+  summary: 估计算法 Least squares（默认）| Recursive least squares
+  group: ''
+- name: Forgetting factor source
+  summary: 遗忘因子来源 Property（默认）| Input port
+  group: ''
+- name: Forgetting factor
+  summary: 遗忘因子 0.99（默认）| 范围在 (0, 1] 内的标量
+  group: ''
+- name: Initial coefficient estimate
+  summary: 初始系数估计 []（默认）| 矩阵
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -130,7 +177,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments Correction

@@ -14,6 +14,54 @@ language: en
 # Independent Suspension - MacPherson
 
 ## Ports
+```yaml
+ports:
+- name: WhlPz
+  summary: Wheel z-axis displacement array
+  direction: input
+- name: WhlRe
+  summary: Wheel effective radius array
+  direction: input
+- name: WhlVz
+  summary: Wheel z-axis velocity array
+  direction: input
+- name: WhlFx
+  summary: Longitudinal wheel force on vehicle array
+  direction: input
+- name: WhlFy
+  summary: Lateral wheel force on vehicle array
+  direction: input
+- name: WhlM
+  summary: Suspension moment on wheel array
+  direction: input
+- name: VehP
+  summary: Vehicle displacement array
+  direction: input
+- name: VehV
+  summary: Vehicle velocity array
+  direction: input
+- name: StrgAng
+  summary: Steering angle, optional array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: VehF
+  summary: Suspension force on vehicle array
+  direction: output
+- name: VehM
+  summary: Suspension moment on vehicle array
+  direction: output
+- name: WhlF
+  summary: Suspension force on wheel array
+  direction: output
+- name: WhlV
+  summary: Wheel velocity array
+  direction: output
+- name: WhlAng
+  summary: Wheel camber, caster, toe angles array
+  direction: output
+```
 
 ### Input
 
@@ -513,8 +561,135 @@ For example, for a two-axle vehicle with two wheels per axle, the
   | Front right | `WhlF(3,2)` | `1` | `2` |
   | Rear left | `WhlF(3,3)` | `2` | `1` |
   | Rear right | `WhlF(3,4)` | `2` | `2` |
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable active damping
+  summary: Include damping off (default) | on
+  group: ''
+  block_parameter: ActiveDampEn
+  values: off (default) | on
+- name: Number of axles, NumAxl
+  summary: Number of axles 2 (default) | scalar
+  group: ''
+  block_parameter: NumAxl
+  values: 2 (default) | scalar
+- name: Number of wheels by axle, NumWhlsByAxl
+  summary: Number of wheels per axle [2 2] (default) | vector
+  group: ''
+  block_parameter: NumWhlsByAxl
+  values: '[2 2] (default) | vector'
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: Boolean vector to enable axle steering [1 0] (default) | vector
+  group: ''
+  block_parameter: StrgEnByAxl
+  values: '[1 0] (default) | vector'
+- name: Anti-sway axle enable by axle, AntiSwayEnByAxl
+  summary: Boolean vector to enable axle anti-sway [0 0] (default) | vector
+  group: ''
+  block_parameter: AntiSwayEnByAxl
+  values: '[0 0] (default) | vector'
+- name: Suspension spring constant, Kz
+  summary: Suspension spring constant 64370 (default) | scalar | vector
+  group: Suspension
+  block_parameter: Kz
+  values: 64370 (default) | scalar | vector
+- name: Suspension spring preload, F0z
+  summary: Suspension spring preload 9810 (default) | scalar | vector
+  group: Suspension
+  block_parameter: F0z
+  values: 9810 (default) | scalar | vector
+- name: Suspension shock damping constant, Cz
+  summary: Suspension shock damping constant 10000 (default) | scalar | vector
+  group: Suspension
+  block_parameter: Cz
+  values: 10000 (default) | scalar | vector
+- name: Suspension maximum height, Hmax
+  summary: Height 0.5 (default) | scalar | vector
+  group: Suspension
+  block_parameter: Hmax
+  values: 0.5 (default) | scalar | vector
+- name: Damping coefficient map, f_act_susp_cz
+  summary: Lookup table [10000 10000;10000 10000] (default) | M-by-N array
+  group: Suspension
+  block_parameter: f_act_susp_cz
+  values: '[10000 10000;10000 10000] (default) | M-by-N array'
+- name: Damping actuator duty cycle breakpoints, f_act_susp_duty_bpt
+  summary: Duty cycle breakpoints [0 1] (default) | 1-by-M vector
+  group: Suspension
+  block_parameter: f_act_susp_duty_bpt
+  values: '[0 1] (default) | 1-by-M vector'
+- name: Damping actuator velocity breakpoints, f_act_susp_zdot_bpt
+  summary: Velocity breakpoints [-1 1] (default) | 1-by-N vector
+  group: Suspension
+  block_parameter: f_act_susp_zdot_bpt
+  values: '[-1 1] (default) | 1-by-N vector'
+- name: Toe angle at steering center, Toe
+  summary: Toe angle 0.0349 (default) | scalar
+  group: Suspension
+  block_parameter: Toe
+  values: 0.0349 (default) | scalar
+- name: Roll steer vs suspension height slope, RollStrgSlp
+  summary: Steer angle suspension slope -0.2269 (default) | scalar | vector
+  group: Suspension
+  block_parameter: RollStrgSlp
+  values: -0.2269 (default) | scalar | vector
+- name: Toe angle vs steering angle slope, ToeStrgSlp
+  summary: Toe angle steering slope 0.01 (default) | scalar | vector
+  group: Suspension
+  block_parameter: ToeStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Caster angle at steering center, Caster
+  summary: Caster angle at steering center 0.0698 (default) | scalar
+  group: Suspension
+  block_parameter: Caster
+  values: 0.0698 (default) | scalar
+- name: Caster angle vs suspension height slope, CasterHslp
+  summary: Caster angle versus suspension height slope -0.2269 (default) | scalar | vector
+  group: Suspension
+  block_parameter: CasterHslp
+  values: -0.2269 (default) | scalar | vector
+- name: Caster angle vs steering angle slope, CasterStrgSlp
+  summary: Caster angle versus steering angle slope 0.01 (default) | scalar | vector
+  group: Suspension
+  block_parameter: CasterStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Camber angle at steering center, Camber
+  summary: Camber angle at steering center 0.0698 (default) | scalar
+  group: Suspension
+  block_parameter: Camber
+  values: 0.0698 (default) | scalar
+- name: Camber angle vs suspension height slope, CamberHslp
+  summary: Camber angle versus suspension height slope -0.2269 (default) | scalar | vector
+  group: Suspension
+  block_parameter: CamberHslp
+  values: -0.2269 (default) | scalar | vector
+- name: Camber angle vs steering angle slope, CamberStrgSlp
+  summary: Camber angle versus steering angle slope 0.01 (default) | scalar | vector
+  group: Suspension
+  block_parameter: CamberStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Suspension height vs steering angle slope, StrgHgtSlp
+  summary: Suspension height versus steering angle slope 0.1432 (default) | scalar | vector
+  group: Suspension
+  block_parameter: StrgHgtSlp
+  values: 0.1432 (default) | scalar | vector
+- name: Anti-sway arm radius, AntiSwayR
+  summary: Anti-sway arm radius 0.2 (default) | scalar | vector
+  group: Anti-Sway
+  block_parameter: AntiSwayR
+  values: 0.2 (default) | scalar | vector
+- name: Anti-sway arm neutral angle, AntiSwayNtrlAng
+  summary: Anti-sway arm neutral angle 0.5236 (default) | scalar | vector
+  group: Anti-Sway
+  block_parameter: AntiSwayNtrlAng
+  values: 0.5236 (default) | scalar | vector
+- name: Anti-sway torsion spring constant, AntiSwayTrsK
+  summary: Anti-sway torsion spring constant 5.7296e+03 (default) | scalar | vector
+  group: Anti-Sway
+  block_parameter: AntiSwayTrsK
+  values: 5.7296e+03 (default) | scalar | vector
+```
 
 ### **Enable active damping** — Include damping `off` (default) | `on`
 
@@ -1199,7 +1374,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `AntiSwayTrsK` |
 | **Values:** | `5.7296e+03` (default) | `scalar` | `vector` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Suspension

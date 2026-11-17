@@ -14,6 +14,21 @@ language: en
 # F2807x/F2837xD/F2837xS/F28004x/F28003x/F2838x/F28p65x SDFM
 
 ## Ports
+```yaml
+ports:
+- name: DFSTS
+  summary: Data filter status 0 | 1 | -1
+  direction: output
+- name: DFLTX
+  summary: Data filter scalar
+  direction: output
+- name: CFSTS
+  summary: Comparator Status 0 | 1 | 2 | 3 | 4 | 5 | -1
+  direction: output
+- name: CFLTX
+  summary: Comparator filter scalar
+  direction: output
+```
 
 ### Output
 
@@ -64,8 +79,25 @@ This comparator filter is available only for specific processors.
 
 To enable this port, select the **Enable comparator filter
 output** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: SDFM module
+  summary: Indicates which register to use 1 (default) | 2
+  group: ''
+- name: Filter channel
+  summary: Select filter module Filter1 (default) | Filter2 | Filter3 | Filter4
+  group: ''
+- name: Data representation
+  summary: Source of internal DAC 16-bit (default) | 32-bit
+  group: ''
+- name: Sample time
+  summary: Frequency at which data is read 0.1 (default)
+  group: ''
+- name: Enable comparator filter output
+  summary: Enables comparator output ports off (default) | on
+  group: ''
+```
 
 ### **SDFM module** — Indicates which register to use `1` (default) | `2`
 
@@ -98,7 +130,6 @@ time from an upstream block, set this parameter to `-1`.
 
 Select this option to enable the comparator status (CFSTS) and comparator filter
 (CFLTX) output ports.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x

@@ -14,6 +14,17 @@ language: en
 # Loop Filter
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input current scalar
+  direction: input
+  data_types: double
+- name: out
+  summary: Output voltage scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -33,8 +44,46 @@ Output voltage, specified as a scalar. In a PLL system, the
 VCO block and provides the control voltage to VCO.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Loop filter type
+  summary: Order of the loop filter 3rd Order passive (default) | 2nd Order passive | 4th Order passive
+  group: Configuration
+- name: C1 (F)
+  summary: Capacitance 1 14.5661e-15 (default) | positive real scalar
+  group: Configuration
+- name: C2 (F)
+  summary: Capacitance 2 160.276e-15 (default) | positive real scalar
+  group: Configuration
+- name: C3 (F)
+  summary: Capacitance 3 1.0452e-15 (default) | positive real scalar
+  group: Configuration
+- name: C4 (F)
+  summary: Capacitance 4 1e-12 (default) | positive real scalar
+  group: Configuration
+- name: R2 (ohms)
+  summary: Resistance 2 3.9955e6 (default) | positive real scalar
+  group: Configuration
+- name: R3 (ohms)
+  summary: Resistance 3 51.0435e6 (default) | positive real scalar
+  group: Configuration
+- name: R4 (ohms)
+  summary: Resistance 4 12e3 (default) | positive real scalar
+  group: Configuration
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: Configuration
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 1000 (default) | positive integer scalar
+  group: Configuration
+- name: Enable impairments
+  summary: Add circuit impairments to simulation off (default) | on
+  group: Impairments
+- name: Operating temperature (℃)
+  summary: Temperature to determine the level of thermal noise 30 (default) | scalar
+  group: Impairments
+```
 
 ### Configuration
 
@@ -242,7 +291,6 @@ tab.
   specific value.
 
 **Data Types:** `double`
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Building Blocks

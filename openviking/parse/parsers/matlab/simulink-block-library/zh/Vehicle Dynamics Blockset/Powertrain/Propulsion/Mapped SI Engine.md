@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Mapped SI Engine
 
 ## 端口
+```yaml
+ports:
+- name: TrqCmd
+  summary: 指令扭矩 scalar
+  direction: input
+- name: EngSpd
+  summary: 发动机转速 scalar
+  direction: input
+- name: EngTemp
+  summary: 发动机温度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: EngTrq
+  summary: 发动机制动扭矩 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -64,8 +82,228 @@ chinese_source: worker-translation
 ### **EngTrq** — 发动机制动扭矩 `scalar`
 
 发动机制动扭矩，Tbrake，单位为 N·m。
-
 ## 参数
+```yaml
+parameters:
+- name: Include turbocharger lag effect
+  summary: 增加时间常数 off (default) | on
+  group: ''
+  block_parameter: TurboLagCheckbox
+  values: off (default) | on
+- name: Input engine temperature
+  summary: 创建输入端口 off（默认）| on
+  group: ''
+  block_parameter: EngTmpInpEnbl
+  values: off（默认）| on
+- name: Calibrate Maps
+  summary: 使用测量数据校准表 selection
+  group: ''
+- name: Breakpoints for commanded torque, f_tbrake_t_bpt
+  summary: 断点 1×M 向量
+  group: ''
+  block_parameter: f_tbrake_f_bpt
+  values: 1×M 向量
+- name: 发动机转速输入的断点，f_tbrake_n_bpt
+  summary: 断点 1×N 向量
+  group: ''
+  block_parameter: f_tbrake_t_bpt
+  values: 1×M 向量
+- name: 温度输入的断点，f_tbrake_engtmp_bpt
+  summary: 断点 [233.15 273.15 373.15]（默认）| 1×L 向量
+  group: ''
+  block_parameter: f_tbrake_engtmp_bpt
+  values: 1×L 向量
+- name: 气缸数，NCyl
+  summary: 数量 4（默认）| 标量
+  group: ''
+  block_parameter: NCyl
+  values: 4（默认）| 标量
+- name: 每动力冲程的曲轴转数，Cps
+  summary: 曲轴转数 2（默认）| 标量
+  group: ''
+  block_parameter: Cps
+  values: 2（默认）| 标量
+- name: 总排量，Vd
+  summary: 体积 0.0015（默认）| 标量
+  group: ''
+  block_parameter: Vd
+  values: 0.0015（默认）| 标量
+- name: 燃料低热值，Lhv
+  summary: 热值 45e6（默认）| 标量
+  group: ''
+  block_parameter: Lhv
+  values: 45e6（默认）| 标量
+- name: 燃料比重，Sg
+  summary: 比重 0.745（默认）| 标量
+  group: ''
+  block_parameter: Sg
+  values: 0.832（默认）| 标量
+- name: 空气理想气体常数，Rair
+  summary: 常数 287（默认）| 标量
+  group: ''
+  block_parameter: Rair
+  values: 287（默认）| 标量
+- name: Air standard pressure, Pstd
+  summary: 压力 101325（默认）| scalar
+  group: ''
+  block_parameter: Pstd
+  values: 101325（默认）| scalar
+- name: Air standard temperature, Tstd
+  summary: 温度 293.15（默认）| scalar
+  group: ''
+  block_parameter: Tstd
+  values: 293.15（默认）| scalar
+- name: Boost torque line, f_tbrake_bst
+  summary: 增压滞后 1×M 向量
+  group: ''
+  block_parameter: f_tbrake_bst
+  values: 1×M 向量
+- name: Time constant below boost line, tau_thr
+  summary: 增压线以下时间常数 0.2（默认）| scalar
+  group: ''
+  block_parameter: tau_thr
+  values: 0.1（默认）| scalar
+- name: Rising torque boost time constant, tau_bst_rising
+  summary: 上升时间常数 1.5（默认）| scalar
+  group: ''
+  block_parameter: tau_bst_rising
+  values: 1.0（默认）| scalar
+- name: Falling torque boost time constant, tau_bst_falling
+  summary: 下降时间常数 1（默认）| scalar
+  group: ''
+  block_parameter: tau_bst_falling
+  values: 0.7（默认）| scalar
+- name: Brake torque map, f_tbrake
+  summary: 二维查找表 M×N 矩阵
+  group: ''
+  block_parameter: f_tbrake
+  values: M×N 矩阵
+- name: Plot brake torque map
+  summary: 绘制表按钮
+  group: ''
+- name: Brake torque map, f_tbrake_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_tbrake_3d
+  values: M-by-N-by-L array
+- name: Air mass flow map, f_air
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_air
+  values: M-by-N matrix
+- name: Plot air mass map
+  summary: Plot table button
+  group: ''
+- name: Air mass flow map, f_air_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_air_3d
+  values: M-by-N-by-L array
+- name: Fuel flow map, f_fuel
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_fuel
+  values: M-by-N matrix
+- name: Plot fuel flow map
+  summary: Plot table button
+  group: ''
+- name: Fuel flow map, f_fuel_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_fuel_3d
+  values: M×N×L 数组
+- name: 排气温度脉谱图，f_texh
+  summary: 二维查找表 M×N 矩阵
+  group: ''
+  block_parameter: f_texh
+  values: M×N 矩阵
+- name: 绘制排气温度脉谱图
+  summary: 绘制表按钮
+  group: ''
+- name: 排气温度脉谱图，f_texh_3d
+  summary: 三维查找表 array
+  group: ''
+  block_parameter: f_texh_3d
+  values: M×N×L 数组
+- name: BSFC 脉谱图，f_eff
+  summary: 二维查找表 M×N×L 数组
+  group: ''
+  block_parameter: f_eff
+  values: M×N 矩阵
+- name: 绘制 BSFC 脉谱图
+  summary: 绘制表按钮
+  group: ''
+- name: BSFC 脉谱图，f_eff_3d
+  summary: 三维查找表 M×N×L 数组
+  group: ''
+  block_parameter: f_eff_3d
+  values: M×N×L 数组
+- name: EO HC map, f_hc
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_hc
+  values: M-by-N matrix
+- name: Plot EO HC map
+  summary: Plot table button
+  group: ''
+- name: EO HC map, f_hc_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_hc_3d
+  values: M-by-N-by-L array
+- name: EO CO map, f_co
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_co
+  values: M-by-N matrix
+- name: Plot EO CO map
+  summary: Plot table button
+  group: ''
+- name: EO HC map, f_hc_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_co_3d
+  values: M-by-N-by-L array
+- name: EO NOx map, f_nox
+  summary: 2D lookup table M-by-N matrix
+  group: ''
+  block_parameter: f_nox
+  values: M×N 矩阵
+- name: Plot EO NOx map
+  summary: 绘制表格按钮
+  group: ''
+- name: EO NOx map, f_nox_3d
+  summary: 3D 查找表 M×N×L 数组
+  group: ''
+  block_parameter: f_nox_3d
+  values: M×N×L 数组
+- name: EO CO2 map, f_co2
+  summary: 2D 查找表 M×N 矩阵
+  group: ''
+  block_parameter: f_co2
+  values: M×N 矩阵
+- name: Plot CO2 map
+  summary: 绘制表格按钮
+  group: ''
+- name: EO CO2 map, f_co2_3d
+  summary: 3D 查找表 M×N×L 数组
+  group: ''
+  block_parameter: f_co2_3d
+  values: M×N×L 数组
+- name: EO PM map, f_pm
+  summary: 2D 查找表 M×N 矩阵
+  group: ''
+  block_parameter: f_pm
+  values: M×N 矩阵
+- name: Plot EO PM map
+  summary: 绘制表格按钮
+  group: ''
+- name: EO PM map, f_pm_3d
+  summary: 3D lookup table M-by-N-by-L array
+  group: ''
+  block_parameter: f_pm_3d
+  values: M-by-N-by-L array
+```
 
 #### 模块选项
 
@@ -1128,7 +1366,6 @@ effect**。
 #### 依赖关系
 
 要启用此参数，请选择 **Input engine temperature**。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engines Vehicle Dynamics Blockset / Powertrain / Propulsion

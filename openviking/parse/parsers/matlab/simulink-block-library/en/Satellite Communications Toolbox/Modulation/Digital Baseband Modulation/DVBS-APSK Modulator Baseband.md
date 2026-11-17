@@ -14,6 +14,16 @@ language: en
 # DVBS-APSK Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: DVB-S2/S2X/SH standard-specific APSK modulated signal scalar | vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -52,8 +62,37 @@ block.
 
 Use **Output data type** to specify the output data
 type.
-
 ## Parameters
+```yaml
+parameters:
+- name: DVB standard suffix
+  summary: Standard suffix S2 (default) | S2X | SH
+  group: ''
+- name: Frame length
+  summary: Frame length Normal (default) | Short
+  group: ''
+- name: Modulation order
+  summary: Modulation order 16 (default) | 8 | 32 | 64 | 256
+  group: ''
+- name: Code identifier
+  summary: Code identifier 2/3 | character vector
+  group: ''
+- name: Constellation scaling
+  summary: Constellation scaling Outer radius as 1 (default) | Unit average power
+  group: ''
+- name: Input type
+  summary: Input type Integer (default) | Bit
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: ''
+- name: View Constellation
+  summary: Plot reference constellation button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -171,7 +210,6 @@ Type of simulation to run, specified as:
   the model using the MATLAB® interpreter. This option shortens startup time. In
   `Interpreted execution` mode, you
   can debug the source code of the block.
-
 ## Libraries
 
 Satellite Communications Toolbox / Modulation / Digital Baseband Modulation

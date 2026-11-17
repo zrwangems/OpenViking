@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # PM Modulator Passband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +45,19 @@ chinese_source: worker-translation
 此端口在模块上未命名。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: 载波频率，单位为 Hz 300（默认）| 正标量
+  group: ''
+- name: Initial phase (rad)
+  summary: 初始相位偏移，单位为弧度 0（默认）| 标量
+  group: ''
+- name: Phase deviation (rad)
+  summary: 载波频率的相位偏移，单位为弧度 pi/2（默认）| 标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中选择**属性检查器**。
 
@@ -52,7 +74,6 @@ chinese_source: worker-translation
 ### **Phase deviation (rad)** — 载波频率的相位偏移，单位为弧度 `pi/2`（默认）| 标量
 
 载波频率的相位偏移，单位为弧度，指定为标量。也称为相位的*变化量*。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Analog Passband Modulation

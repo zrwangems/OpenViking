@@ -14,6 +14,27 @@ language: en
 # Reduced Lundell Alternator
 
 ## Ports
+```yaml
+ports:
+- name: RefVolt
+  summary: Alternator output voltage command scalar
+  direction: input
+- name: AltSpd
+  summary: Angular speed scalar
+  direction: input
+- name: LdCurr
+  summary: Alternator load current scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: AltVolt
+  summary: Alternator output voltage scalar
+  direction: output
+- name: LdTrq
+  summary: Motor shaft torque scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -58,8 +79,70 @@ Alternator output voltage, in V.
 ### **LdTrq** — Motor shaft torque `scalar`
 
 Motor shaft torque, in N·m.
-
 ## Parameters
+```yaml
+parameters:
+- name: Voltage constant, Kv
+  summary: Constant .1 (default) | scalar
+  group: ''
+  block_parameter: Kv
+  values: .1 (default) | scalar
+- name: Field winding resistance, Rf
+  summary: Resistance 0.2 (default) | scalar
+  group: ''
+  block_parameter: Rf
+  values: 0.2 (default) | scalar
+- name: Field winding inductance, Lf
+  summary: Inductance 0.002 (default) | scalar
+  group: ''
+  block_parameter: Lf
+  values: 0.002 (default) | scalar
+- name: Stator winding resistance, Rs
+  summary: Resistance 0.01 (default) | scalar
+  group: ''
+  block_parameter: Rs
+  values: 0.01 (default) | scalar
+- name: Diode voltage drop, Vd
+  summary: Voltage 0.7 (default) | scalar
+  group: ''
+  block_parameter: Vd
+  values: 0.7 (default) | scalar
+- name: Regulator bandwidth, Fv
+  summary: Bandwidth 2000 (default) | scalar
+  group: ''
+  block_parameter: Fv
+  values: 2000 (default) | scalar
+- name: Current filter bandwidth, Fc
+  summary: Bandwidth 1000 (default) | scalar
+  group: ''
+  block_parameter: Fc
+  values: 1000 (default) | scalar
+- name: Field voltage max, Vfmax
+  summary: Maximum field voltage 100 (default) | scalar
+  group: ''
+  block_parameter: Vfmax
+  values: 100 (default) | scalar
+- name: Field voltage min, Vfmin
+  summary: Minimum field voltage -100 (default) | scalar
+  group: ''
+  block_parameter: Vfmin
+  values: -100 (default) | scalar
+- name: Coulomb friction, Kc
+  summary: Friction 0 (default) | scalar
+  group: ''
+  block_parameter: Kc
+  values: 0 (default) | scalar
+- name: Viscous friction, Kb
+  summary: Friction 0 (default) | scalar
+  group: ''
+  block_parameter: Kb
+  values: 0 (default) | scalar
+- name: Windage, Kw
+  summary: Windage 0 (default) | scalar
+  group: ''
+  block_parameter: Kw
+  values: 0 (default) | scalar
+```
 
 #### Machine Configuration
 
@@ -283,7 +366,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `Kw` |
 | **Values:** | `0` (default) | `scalar` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Energy Storage and Auxiliary Drive / Alternator

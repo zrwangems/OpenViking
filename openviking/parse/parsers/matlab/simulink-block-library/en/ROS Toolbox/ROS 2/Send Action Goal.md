@@ -14,6 +14,25 @@ language: en
 # Send Action Goal
 
 ## Ports
+```yaml
+ports:
+- name: Goal
+  summary: ROS 2 action goal message input non-virtual bus
+  direction: input
+  data_types: bus
+- name: Enable
+  summary: Boolean value to send action goal if there is no goal running true | false
+  direction: input
+  data_types: Boolean
+- name: UUID
+  summary: Unique ID dedicated to any goal message non-virtual bus
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: Error conditions for send action goal request integer
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -60,8 +79,51 @@ This output is enabled when the **Show ErrorCode output
 port** is checked.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source
+  summary: Source for specifying action name Select from ROS network | Specify your own
+  group: Main
+  type: parameters are set automatically. You must be
+- name: Name
+  summary: ROS 2 action name character vector
+  group: Main
+- name: Type
+  summary: ROS 2 action type character vector
+  group: Main
+- name: Paired Monitor Action Goal Block
+  summary: Path to paired Monitor Action Goal block block path
+  group: Main
+- name: Show ErrorCode output port
+  summary: Enable error code output port off (default) | on
+  group: Main
+- name: History
+  summary: Mode of storing goal requests in the queue Keep last (default) | Keep all
+  group: QoS
+- name: Depth
+  summary: Size of the goal request queue 1 (default) | non-negative scalar integer
+  group: QoS
+- name: Reliability
+  summary: Delivery guarantee of goal requests Reliable (default) | Best effort
+  group: QoS
+- name: Durability
+  summary: Persistence of action goal requests Volatile (default) | Transient local
+  group: QoS
+- name: Deadline
+  summary: Maximum amount of time allowed between receiving a goal request and sending goal result Inf (default) | positive
+    scalar
+  group: QoS
+- name: Lifespan
+  summary: Length of time a goal request is considered valid Inf (default) | positive scalar
+  group: QoS
+- name: Liveliness
+  summary: Liveliness check of action server by action client automatic (default)
+  group: QoS
+- name: Lease Duration
+  summary: Maximum amount of time before an action client has to assert liveliness Inf (default) | positive scalar
+  group: QoS
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -188,7 +250,6 @@ liveliness for infinite amount of time.
 
 The quality of service (QoS) settings must be compatible between action servers and
 action clients for a connection to be made.
-
 ## Libraries
 
 ROS Toolbox / ROS 2

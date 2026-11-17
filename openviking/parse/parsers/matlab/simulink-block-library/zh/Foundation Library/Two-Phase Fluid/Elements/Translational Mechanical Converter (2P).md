@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Translational Mechanical Converter (2P)
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -32,8 +35,10 @@ chinese_source: worker-translation
 
 `P`
 :   物理信号输入端口，用于传递来自 Simscape Multibody™ 关节的位置信息。将此端口连接到关节的位置传感端口 **p**。有关详细信息，请参阅 Connecting Simscape Networks to Simscape Multibody Joints。要启用此端口，请将 **Interface displacement** 参数设置为 `Provide input signal from Multibody joint`。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 ### 参数选项卡
 
@@ -97,7 +102,6 @@ chinese_source: worker-translation
 
 **相变时间常数**
 :   相变事件的特性持续时间。此常数在相之间的过渡中引入时间滞后。默认值为 `0.1` s。
-
 ## 所属库
 
 R2025b 中未记录。

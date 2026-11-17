@@ -14,6 +14,33 @@ language: en
 # Dead-Time Compensator
 
 ## Ports
+```yaml
+ports:
+- name: Vabc
+  summary: Reference voltages scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Iab
+  summary: Measured motor currents scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: fPWM
+  summary: PWM frequency scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vdc
+  summary: Inverter DC voltage scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Enable
+  summary: Signal to enable block outputs scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vabc ± Δ
+  summary: Compensated three-phase voltages scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -66,8 +93,25 @@ Motor three-phase voltages (in volts) that is compensated for inverter
 dead-time effect.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Dead time (s)
+  summary: Inverter switching dead-time 1e-6 (default) | scalar
+  group: ''
+- name: Enable hysteresis for currents near zero-crossing
+  summary: Option to enable hysteresis algorithm for currents near zero-crossing off (default) | on
+  group: ''
+- name: Current hysteresis band (A)
+  summary: Current hysteresis band around zero-crossing 0.1 (default) | scalar
+  group: ''
+- name: Motor current input
+  summary: Type of motor current input Two currents (Ia,Ib) (default) | Three currents (Ia,Ib,Ic)
+  group: ''
+- name: Show enable port
+  summary: Option to enable input port off (default) | on
+  group: Inputs
+```
 
 ### **Dead time (s)** — Inverter switching dead-time `1e-6` (default) | scalar
 
@@ -107,7 +151,6 @@ options:
 
 Select this parameter to show the input port
 **Enable**.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management Motor Control Blockset HDL Support / Signal Management

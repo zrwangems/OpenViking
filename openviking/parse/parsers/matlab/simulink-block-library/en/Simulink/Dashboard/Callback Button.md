@@ -14,10 +14,131 @@ language: en
 # Callback Button
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Button Type
+  summary: Button response to click Momentary (default) | Latch
+  group: Parameters
+  block_parameter: ButtonType
+  type: string or character array
+  values: '''Momentary'' | ''Latch'''
+- name: Text
+  summary: Button label text 'Callback Button' (default) | string | character array
+  group: Parameters
+  block_parameter: ButtonText
+  type: character vector | string
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Parameters
+- name: ClickFcn
+  summary: MATLAB code that executes in response to click MATLAB code
+  group: Parameters
+  block_parameter: ClickFcn
+  type: character vector | string
+  values: MATLAB code
+- name: PressFcn
+  summary: MATLAB code that executes in response to press MATLAB code
+  group: Parameters
+  block_parameter: PressFcn
+  type: character vector | string
+  values: MATLAB code
+- name: Press Delay (ms)
+  summary: Time to hold button for press 500 (default) | scalar
+  group: Parameters
+  block_parameter: PressDelay
+  type: scalar
+- name: Repeat Interval (ms)
+  summary: Time interval to repeat PressFcn code 0 (default) | scalar
+  group: Parameters
+  block_parameter: RepeatInterval
+  type: scalar
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Design
+- name: Select State
+  summary: Selection of state to configure Default (default) | Pressed | Latched | Latched and Pressed
+  group: Design
+- name: Text
+  summary: Button label text 'Callback Button' (default) | string | character array
+  group: Design
+  block_parameter: ButtonText
+  type: character vector | string
+- name: Color
+  summary: Label font color [r g b] vector
+  group: Design
+- name: Horizontal Alignment
+  summary: Horizontal alignment of label and icon pair with block Left (default) | Center | Right
+  group: Design
+- name: Vertical Alignment
+  summary: Vertical alignment of label and icon pair with block Center (default) | Bottom | Top
+  group: Design
+- name: Icon and Label X Offset
+  summary: Horizontal offset of icon and label pair from block 0 (default) | scalar
+  group: Design
+- name: Icon and Label Y Offset
+  summary: Vertical offset of icon and label pair from block 0 (default) | scalar
+  group: Design
+- name: Icon Placement
+  summary: Placement of icon relative to label Left (default) | Top | Right | Bottom
+  group: Design
+- name: Icon Width
+  summary: Icon width scalar
+  group: Design
+- name: Icon Height
+  summary: Icon height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain image aspect ratio on (default) | off
+  group: Design
+- name: Image X Offset
+  summary: Horizontal offset of left edge of image from left edge of block scalar
+  group: Design
+- name: Image Y Offset
+  summary: Vertical offset of top edge of image from top edge of block scalar
+  group: Design
+- name: Image Width
+  summary: Image width scalar
+  group: Design
+- name: Image Height
+  summary: Image height scalar
+  group: Design
+- name: Use Background Color
+  summary: Option to specify solid background color for button on (default) | off
+  group: Design
+- name: Color
+  summary: Button background color [r g b] vector
+  group: Design
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Opacity
+  summary: Button background opacity 1 (default) | scalar
+  group: Design
+- name: Corner Radius
+  summary: Corner radius of area with button background color scalar
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of left edge of foreground image from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of foreground image from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Foreground image width scalar
+  group: Design
+- name: Height
+  summary: Foreground image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain foreground image aspect ratio on (default) | off
+  group: Design
+```
 
 Use the Property Inspector and the Block Parameters dialog box
 to specify the values of the block parameters. To set the core parameters of the dashboard
@@ -520,7 +641,6 @@ Specify the height of the foreground image as a ratio of the block height.
 
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
-
 ## Libraries
 
 Simulink / Dashboard

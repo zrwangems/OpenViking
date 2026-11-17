@@ -14,6 +14,25 @@ language: en
 # Optical Flow
 
 ## Ports
+```yaml
+ports:
+- name: I/I1
+  summary: Image or video frame scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I2
+  summary: Image scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: '|V|^2'
+  summary: Velocity magnitudes scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: V
+  summary: Velocity components in complex form scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -51,8 +70,53 @@ To enable this port, set the **Velocity output** parameter to
 form`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Optical flow calculation method Horn-Schunck (default) | Lucas-Kanade
+  group: ''
+- name: Compute optical flow between
+  summary: Compute optical flow Current frame and N-th frame back (default) | Two images
+  group: ''
+- name: N
+  summary: Number of frames 1 (default) | scalar
+  group: ''
+- name: Smoothness factor
+  summary: Smoothness factor 1 (default) | positive scalar
+  group: ''
+- name: Stop iterative solution
+  summary: Stop iterative solution When maximum number of iterations is reached (default) | When velocity difference falls
+    below threshold | Whichever comes first
+  group: ''
+- name: Maximum number of iterations
+  summary: Maximum number of iterations 10 (default) | scalar
+  group: ''
+- name: Velocity output
+  summary: Optical flow output Magnitude-squared (default) | Horizontal and vertical components in complex form
+  group: ''
+- name: Temporal gradient filter
+  summary: Filter used for temporal gradient Difference filter [-1 1] (default) | Derivative of Gaussian
+  group: ''
+- name: Number of input frames to buffer
+  summary: Number of input frames to buffer for smoothing 3 (default) | scalar
+  group: ''
+- name: Standard deviation for image smoothing filter
+  summary: Standard deviation for image smoothing filter 1.5 (default) | scalar
+  group: ''
+- name: Standard deviation for gradient smoothing filter
+  summary: Standard deviation for gradient smoothing filter 1 (default) | scalar
+  group: ''
+- name: Discard normal flow estimates when constraint equation is ill-conditioned
+  summary: Discard normal flow estimates off (default) | on
+  group: ''
+- name: Output image corresponding to motion vectors (accounts for block delay)
+  summary: Output image corresponding to motion vectors off (default) | on
+  group: ''
+- name: Threshold for noise reduction
+  summary: Threshold for noise reduction 0.0039 (default) | scalar
+  group: ''
+```
 
 **Main Tab**
 
@@ -208,7 +272,6 @@ To enable this parameter, set the **Method** parameter to
 **Data Types Tab**
 
 For details on the fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

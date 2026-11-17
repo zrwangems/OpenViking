@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Solar Cell
 
 ## 端口
+```yaml
+ports:
+- name: Ir
+  summary: 入射辐照度物理信号
+  direction: input
+- name: +
+  summary: 正电压电学
+  direction: input
+- name: '-'
+  summary: 负电压电学
+  direction: input
+- name: H
+  summary: 热端口热学
+  direction: input
+```
 
 ### 输入
 
@@ -39,8 +54,86 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Selected part
+  summary: 预定义参数化选项 <click to select>（默认）
+  group: ''
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Parameterize by
+  summary: 模块参数化 By s/c current and o/c voltage, 5 parameter（默认）| By equivalent circuit parameters, 5 parameter | By equivalent
+    circuit parameters, 8 parameter
+  group: 电池特性
+- name: Short-circuit current, Isc
+  summary: 短路电流 7.34 A（默认）
+  group: 电池特性
+- name: Open-circuit voltage, Voc
+  summary: 开路电压 0.6 V（默认）
+  group: 电池特性
+- name: Diode saturation current, Is
+  summary: 第一个二极管饱和电流 1e-6 A（默认）
+  group: 电池特性
+- name: Diode saturation current, Is2
+  summary: 第二个二极管饱和电流 0 A（默认）
+  group: 电池特性
+- name: Solar-generated current for measurements, Iph0
+  summary: 用于测量的太阳能生成电流 7.34 A（默认）
+  group: 电池特性
+- name: Irradiance used for measurements, Ir0
+  summary: 用于测量的辐照度 1000 W/m2（默认）
+  group: 电池特性
+- name: Quality factor, N
+  summary: 第一个二极管发射系数 1.5（默认）
+  group: 电池特性
+- name: Quality factor, N2
+  summary: 第二个二极管发射系数 2（默认）
+  group: 电池特性
+- name: Series resistance, Rs
+  summary: 串联电阻 0 Ohm（默认）
+  group: 电池特性
+- name: Parallel resistance, Rp
+  summary: 并联电阻 inf Ohm（默认）
+  group: 电池特性
+- name: Number of series-connected cells per string
+  summary: 每串串联太阳能电池数 1（默认）| 正标量
+  group: 面板配置
+- name: Number of parallel-connected strings
+  summary: 并联串数 1（默认）| 正标量
+  group: 面板配置
+- name: First order temperature coefficient for Iph, TIPH1
+  summary: Iph 的一阶温度系数 0 1/K（默认）| 非负标量
+  group: 温度依赖性
+- name: Energy gap, EG
+  summary: 能隙 1.11 eV（默认）
+  group: 温度依赖性
+- name: Temperature exponent for Is, TXIS1
+  summary: Is 的温度指数 3（默认）| 正标量
+  group: 温度依赖性
+- name: Temperature exponent for Is2, TXIS2
+  summary: Is2 的温度指数 3（默认）| 非负标量
+  group: 温度依赖性
+- name: Temperature exponent for Rs, TRS1
+  summary: Rs 的温度指数 0（默认）
+  group: 温度依赖性
+- name: Temperature exponent for Rp, TRP1
+  summary: Rp 的温度指数 0（默认）| 非负标量
+  group: 温度依赖性
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）| 正标量
+  group: 温度依赖性
+- name: Device simulation temperature
+  summary: 设备仿真温度 25 degC（默认）| 正标量
+  group: 温度依赖性
+- name: Thermal mass per cell
+  summary: 每个电池的热质量 100 J/K（默认）
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 25 degC（默认）
+  group: 热端口
+```
 
 ### **Selected part** — 预定义参数化选项 `<click to select>`（默认）
 
@@ -223,7 +316,6 @@ equivalent circuit parameters, 8 parameter` 时，此参数才可见。
 ### **Initial temperature** — 初始温度 `25` `degC`（默认）
 
 仿真开始时太阳能电池的温度。
-
 ## 所属库
 
 Simscape / Electrical / Sources

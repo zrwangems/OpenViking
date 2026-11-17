@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # T-Junction (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口湿空气
+  direction: conserving
+- name: B
+  summary: 湿空气端口湿空气
+  direction: conserving
+- name: C
+  summary: 湿空气端口湿空气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,61 @@ chinese_source: worker-translation
 ### **C** — 湿空气端口湿空气
 
 与交汇处液体入口或出口相关联的湿空气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Main branch area (A-B)
+  summary: 端口 A 和 B 之间的横截面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Side branch area (A-C, B-C)
+  summary: 侧支路的横截面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Loss coefficient model
+  summary: 损失系数类型 Crane correlation（默认）| Rennels correlation | Custom | Constant Coefficients
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流状态之间过渡时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Zero-flow threshold pressure ratio
+  summary: 对应于停滞流动的压力比 0.999999（默认）| 正标量
+  group: ''
+- name: Loss coefficient configuration change time constant
+  summary: 平滑函数的时间尺度 0.0001 s（默认）| 正标量
+  group: ''
+- name: Junction radius of curvature
+  summary: 交汇处的曲率半径 0.001 m（默认）| 正标量
+  group: ''
+- name: Minimum valid flow ratio for coefficient calculation
+  summary: 系数计算的流量比限制 0.2（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 0 到 1 之间的标量
+  group: ''
+- name: Fluid inertia
+  summary: 模拟流体惯性的选项 off（默认）| on
+  group: ''
+- name: Main branch converging loss coefficient
+  summary: A 和 B 之间的汇流损失系数 1.12（默认）| 正标量
+  group: ''
+- name: Main branch diverging loss coefficient
+  summary: A 和 B 之间的分流损失系数 1.12（默认）| 正标量
+  group: ''
+- name: Side branch converging loss coefficient
+  summary: C 和主管线之间的汇流损失系数 1.12（默认）| 正标量
+  group: ''
+- name: Side branch diverging loss coefficient
+  summary: C 和主管线之间的分流损失系数 1.12（默认）| 正标量
+  group: ''
+- name: Loss coefficient A
+  summary: 支路 A 的损失系数 1（默认）| 正标量
+  group: ''
+- name: Loss coefficient B
+  summary: 支路 B 的损失系数 1（默认）| 正标量
+  group: ''
+- name: Loss coefficient C
+  summary: 支路 C 的损失系数 1（默认）| 正标量
+  group: ''
+```
 
 ### **Main branch area (A-B)** — 端口 A 和 B 之间的横截面积 `0.01 m^2`（默认）| 正标量
 
@@ -155,7 +220,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Loss coefficient model** 设置为 `Constant Coefficients`。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

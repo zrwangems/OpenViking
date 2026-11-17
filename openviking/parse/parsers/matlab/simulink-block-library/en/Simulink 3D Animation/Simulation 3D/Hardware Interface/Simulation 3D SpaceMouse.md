@@ -14,6 +14,21 @@ language: en
 # Simulation 3D Space Mouse
 
 ## Ports
+```yaml
+ports:
+- name: Translation
+  summary: Status of object translation 1 or true | 0 or false
+  direction: output
+  data_types: Boolean
+- name: Rotation
+  summary: Status of object rotation 1 or true | 0 or false
+  direction: output
+  data_types: Boolean
+- name: Buttons
+  summary: Status of button 1 or true | 0 or false
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -40,8 +55,49 @@ Status of button, returned as `0` or
 `true` if pressed.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Port
+  summary: Serial port where mouse is connected COM1 (default) | COM2 | COM3 | COM4 | USB1 | USB2 | USB3 | USB4
+  group: ''
+- name: Output type
+  summary: Type of output Speed (default) | Position | Viewpoint coordinates
+  group: ''
+- name: Dominant mode
+  summary: Option to accept only prevailing movement and rotation off (default) | on
+  group: ''
+- name: Disable position movement
+  summary: Option to fix rotations at initial values off (default) | on
+  group: ''
+- name: Disable rotation movement
+  summary: Option to fix positions at initial values off (default) | on
+  group: ''
+- name: Normalize output angle
+  summary: Option to determine whether rotation angles should wrap in full circle off (default) | on
+  group: ''
+- name: Limit position
+  summary: Option to limit position of mouse off (default) | on
+  group: ''
+- name: Position sensitivity
+  summary: Mouse sensitivity for translations 0.0001 (default)
+  group: ''
+- name: Rotation sensitivity
+  summary: Mouse sensitivity for rotations 0.00001 (default)
+  group: ''
+- name: Initial position
+  summary: Initial condition for translations [0 0 0] (default)
+  group: ''
+- name: Initial rotation
+  summary: Initial condition for rotations [0 0 0] (default)
+  group: ''
+- name: Lower position limit
+  summary: Lower limit of mouse [-100 -100 -100] (default)
+  group: ''
+- name: Upper position limit
+  summary: Upper limit of mouse [100 100 100] (default)
+  group: ''
+```
 
 ### **Port** — Serial port where mouse is connected `COM1` (default) | `COM2` | `COM3` | `COM4` | `USB1` | `USB2` | `USB3` | `USB4`
 
@@ -158,7 +214,6 @@ To enable this parameter:
   `Position`.
 - Select **Limit position**
   parameter.
-
 ## Libraries
 
 Simulink 3D Animation / Simulation 3D / Hardware Interface

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Gazebo Select Entity
 
 ## 端口
+```yaml
+ports:
+- name: model
+  summary: 实体的模型名称 model1（默认）| 字符串（uint8[]）
+  direction: output
+  data_types: uint8
+- name: Joint/Link
+  summary: 实体关联的关节或连杆名称 joint1（默认）| 字符串（uint8[]）
+  direction: output
+  data_types: uint8
+```
 
 ### 输出
 
@@ -29,8 +40,16 @@ chinese_source: worker-translation
 关联的关节或连杆，以字符串标量形式输出。对于 Gazebo，字符串以 `uint8` 数组形式输出。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Model Name
+  summary: 选择模型名称 'model1/joint1'（默认）| 字符串标量
+  group: ''
+- name: Output vector size upper bound
+  summary: 输出数组的上限 128（默认）
+  group: ''
+```
 
 ### **Model Name** — 选择模型名称 `'model1/joint1'`（默认）| 字符串标量
 
@@ -39,7 +58,6 @@ chinese_source: worker-translation
 ### **Output vector size upper bound** — 输出数组的上限 `128`（默认）
 
 输出 `uint8` 数组 `Model Name` 和 `Joint/Link` 的大小上限。当名称长度超过默认值 `128` 时，请增大该上限。
-
 ## 所属库
 
 Robotics System Toolbox / Gazebo Co-Simulation

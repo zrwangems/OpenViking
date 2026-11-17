@@ -14,6 +14,17 @@ language: en
 # Interpreted MATLAB Function
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input of a Interpreted MATLAB function scalar | vector | matrix
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output of a Interpreted MATLAB function scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +46,25 @@ complex output of type `double`, depending on the
 setting of the **Output signal type** parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: MATLAB Function
+  summary: Specify the function or expression function (default)
+  group: ''
+- name: Output dimensions
+  summary: Specify the dimensions of the block output signal scalar | matrix | vector | inherited
+  group: ''
+- name: Output signal type
+  summary: Specify the block output signal type auto (default) | real | complex
+  group: ''
+- name: Collapse 2-D results to 1-D
+  summary: Output a 2-D array as a 1-D array off (default) | on
+  group: ''
+- name: Sample time
+  summary: Specify sample time in the block scalar
+  group: ''
+```
 
 ### **MATLAB Function** — Specify the function or expression function (default)
 
@@ -80,7 +108,6 @@ Select this check box to output a 2-D array as a 1-D array containing the
 
 This parameter is not visible in the block dialog box unless it is explicitly set
 to a value other than `-1`. To learn more, see Blocks for Which Sample Time Is Not Recommended.
-
 ## Libraries
 
 Simulink / User-Defined Functions

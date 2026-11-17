@@ -14,6 +14,15 @@ language: en
 # Exhaust Manifold Thermal
 
 ## Ports
+```yaml
+ports:
+- name: Qeng
+  summary: Gas energy flow, W physical signal
+  direction: input
+- name: Texh
+  summary: Exhaust manifold temperature, K physical signal
+  direction: output
+```
 
 ### Input
 
@@ -28,8 +37,37 @@ SI Combustion Cylinder block.
 
 Physical signal output port associated with the lumped-parameter exhaust manifold
 temperature, in K.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of exhaust ports
+  summary: Number of exhaust ports 1 (default) | positive scalar
+  group: ''
+- name: Ambient temperature
+  summary: Reference temperature 298.15 K (default) | positive scalar
+  group: ''
+- name: Surface area of exhaust wall
+  summary: Exhaust wall surface area pi * ((1.5 / 2) ^ 2) m^2 (default) | positive scalar
+  group: ''
+- name: Mass of exhaust wall
+  summary: Exhaust wall total mass 5 kg (default) | positive scalar
+  group: ''
+- name: Heat capacity of exhaust wall
+  summary: Exhaust wall heat capacity 100 J/(K*kg) (default) | positive scalar
+  group: ''
+- name: Time constant of exhaust heat flow
+  summary: Exhaust heat flow time constant 10 s (default) | positive scalar
+  group: ''
+- name: Convective heat transfer coefficient for the outer side of exhaust
+  summary: Exhaust external convective heat transfer coefficient 100 W/(K*m^2) (default) | positive scalar
+  group: ''
+- name: Radiation constant
+  summary: Exhaust radiation constant 0.3 (default) | positive scalar
+  group: ''
+- name: Stefan-Boltzmann constant
+  summary: Stefan-Boltzmann constant of exhaust 5.7e-8 W/(K^4*m^2) (default) | positive scalar
+  group: ''
+```
 
 ### **Number of exhaust ports** — Number of exhaust ports `1` (default) | positive scalar
 
@@ -71,7 +109,6 @@ Radiation constant of the exhaust.
 ### **Stefan-Boltzmann constant** — Stefan-Boltzmann constant of exhaust `5.7e-8` `W/(K^4*m^2)` (default) | positive scalar
 
 Stefan-Boltzmann constant for the total exhaust.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

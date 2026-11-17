@@ -14,6 +14,17 @@ language: en
 # Quaternion Conjugate
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Input quaternion quaternion | vector of quaternions
+  direction: input
+  data_types: double | bus
+- name: q'
+  summary: Quaternion conjugate quaternion conjugate | vector of quaternion conjugates
+  direction: output
+  data_types: double | bus
+```
 
 ### Input
 
@@ -47,11 +58,12 @@ Quaternion conjugates in the form of
 quaternion or vector.
 
 **Data Types:** `double` | `bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Multiband Parametric EQ
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 均衡器音频输入 矩阵 | 向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 均衡器音频输出 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -33,8 +44,130 @@ chinese_source: worker-translation
 均衡器的音频输出，以矩阵形式返回。如果将输入指定为矩阵，则该模块返回与矩阵输入大小相同的输出。如果将输入指定为向量，则输出为 N×1 矩阵。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: EQ order
+  summary: 各均衡器频段的阶数 2（默认）| 偶数正整数
+  group: 主要
+- name: Number of bands
+  summary: 均衡器频段的数量 3（默认）| 范围 [1,10] 内的整数
+  group: 主要
+- name: Specify frequencies from input port
+  summary: 从输入端口指定频率 off（默认）| on
+  group: 主要
+- name: Frequencies (Hz)
+  summary: 均衡器频段的中心频率 [100,181,325]（默认）| 长度等于 Number of bands 的行向量
+  group: 主要
+- name: Specify peak gains from input port
+  summary: 从输入端口指定峰值增益 off（默认）| on
+  group: 主要
+- name: Peak Gains (dB)
+  summary: 峰值或陷波滤波器增益 [0,0,0]（默认）| 长度等于 Number of bands 的行向量
+  group: 主要
+- name: Specify quality factors from input port
+  summary: 从输入端口指定品质因数 off（默认）| on
+  group: 主要
+- name: Quality factors
+  summary: 均衡器频段的品质因数 [1.6,1.6,1.6]（默认）| 行向量
+  group: 主要
+- name: Inherit sample rate from input
+  summary: 从输入端口指定采样率 off（默认）| on
+  group: 主要
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 正标量
+  group: 主要
+- name: Visualize filter response
+  summary: 可视化均衡器的幅值响应 按钮
+  group: 主要
+- name: Variable name
+  summary: 导出滤波器的变量名 myFilt（默认）| 有效变量名
+  group: 主要
+- name: Overwrite variable if it already exists
+  summary: 如果变量已存在则覆盖 on（默认）| off
+  group: 主要
+- name: Export filter to workspace
+  summary: 将滤波器导出到工作区 按钮
+  group: 主要
+- name: Add low-shelf filter
+  summary: 向均衡器添加低搁架滤波器 off（默认）| on
+  group: 高级
+- name: Specify low-shelf cutoff from input port
+  summary: 从输入端口指定低搁架截止频率 off（默认）| on
+  group: 高级
+- name: Low-shelf cutoff frequency (Hz)
+  summary: 低搁架截止频率 200（默认）| 标量
+  group: 高级
+- name: Specify low-shelf slope from input port
+  summary: 指定低搁架斜率 off（默认）| on
+  group: 高级
+- name: Low-shelf filter slope
+  summary: 低搁架斜率 1.5（默认）| 正标量
+  group: 高级
+- name: Specify low-shelf gain from input port
+  summary: 从输入端口指定低搁架增益 off（默认）| on
+  group: 高级
+- name: Low-shelf filter gain (dB)
+  summary: 低搁架增益 0（默认）| 实标量
+  group: 高级
+- name: Add high-shelf filter
+  summary: 向均衡器添加高搁架滤波器 off（默认）| on
+  group: 高级
+- name: Specify high-shelf cutoff from input port
+  summary: 从输入端口指定高搁架截止频率 off（默认）| on
+  group: 高级
+- name: High-shelf cutoff frequency (Hz)
+  summary: 高搁架截止频率 15e3（默认）| 标量
+  group: 高级
+- name: Specify high-shelf slope from input port
+  summary: 从输入端口指定高搁架斜率 off（默认）| on
+  group: 高级
+- name: High-shelf filter slope
+  summary: 高搁架斜率 1.5（默认）| 正标量
+  group: 高级
+- name: Specify high-shelf gain from input port
+  summary: 从输入端口指定高搁架增益 off（默认）| on
+  group: 高级
+- name: High-shelf filter gain (dB)
+  summary: 高搁架增益 0（默认）| 实标量
+  group: 高级
+- name: Add lowpass filter
+  summary: 向均衡器添加低通滤波器 off（默认）| on
+  group: 高级
+- name: Specify lowpass cutoff from input port
+  summary: 从输入端口指定低通截止频率 off（默认）| on
+  group: 高级
+- name: Lowpass cutoff frequency (Hz)
+  summary: 低通截止频率 18e3（默认）| 标量
+  group: 高级
+- name: Specify lowpass slope from input port
+  summary: 从输入端口指定低通斜率 off（默认）| on
+  group: 高级
+- name: Lowpass filter slope
+  summary: 低通斜率 12（默认）| 范围 [0:6:48] 内的实标量
+  group: 高级
+- name: Add highpass filter
+  summary: 向均衡器添加高通滤波器 off（默认）| on
+  group: 高级
+- name: Specify highpass cutoff from input port
+  summary: 从输入端口指定高通截止频率 off（默认）| on
+  group: 高级
+- name: Highpass cutoff frequency (Hz)
+  summary: 高通截止频率 20（默认）| 非负实标量
+  group: 高级
+- name: Specify highpass slope from input port
+  summary: 从输入端口指定高通斜率 off（默认）| on
+  group: 高级
+- name: Highpass filter slope
+  summary: 高通斜率 30（默认）| 范围 [0:6:48] 内的实标量
+  group: 高级
+- name: Oversample
+  summary: 过采样开关 off（默认）| on
+  group: 高级
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: 高级
+```
 
 ### 主要
 
@@ -342,7 +475,6 @@ chinese_source: worker-translation
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码将在后续仿真中重用。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution`。
 
 **可调：** 否
-
 ## 所属库
 
 Audio Toolbox / Filters

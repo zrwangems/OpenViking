@@ -14,10 +14,29 @@ language: en
 # Sequence Viewer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Time Precision for Variable Step
+  summary: Digits for time increment precision 3 (default) | scalar
+  group: ''
+  block_parameter: VariableStepTimePrecision
+  type: string scalar or character vector
+  values: '"3" | scalar'
+  default: '"3"'
+- name: History
+  summary: Maximum number of previous events to display 5000 (default) | scalar
+  group: ''
+  block_parameter: History
+  type: string scalar or character vector
+  values: '"1000" | scalar'
+  default: '"1000"'
+```
 
 ### **Time Precision for Variable Step** — Digits for time increment precision `3` (default) | scalar
 
@@ -63,7 +82,6 @@ even if they occur at the same simulation time.
 | **Type**: string scalar or character vector |
 | **Values**: `"1000"` | scalar |
 | **Default**: `"1000"` |
-
 ## Libraries
 
 Simulink / Messages & Events Simulink Test SimEvents Stateflow

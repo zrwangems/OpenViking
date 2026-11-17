@@ -14,6 +14,17 @@ language: en
 # Raised Cosine Transmit Filter
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector | matrix
+  direction: input
+  data_types: double | single | fixed point
+- name: Out
+  summary: Output signal scalar | column vector | matrix
+  direction: output
+  data_types: double | single | fixed point
+```
 
 ### Input
 
@@ -46,8 +57,64 @@ output matrix. The output signal is the same data type as the input signal.
   **Output samples per symbol** parameter.
 
 **Data Types:** `double` | `single` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter shape
+  summary: Filter shape Square root (default) | Normal
+  group: ''
+- name: Rolloff factor
+  summary: Roll-off factor 0.2 (default) | scalar
+  group: ''
+- name: Filter span in symbols
+  summary: Filter span in symbols 10 (default) | even positive integer
+  group: ''
+- name: Output samples per symbol
+  summary: Number of output samples per symbol 8 (default) | integer greater than 1
+  group: ''
+- name: Linear amplitude filter gain
+  summary: Linear filter gain 1 (default) | positive scalar
+  group: ''
+- name: Input processing
+  summary: Input processing control Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: Block processing rate Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Export filter coefficients to workspace
+  summary: Export filter coefficients off (default) | on
+  group: ''
+- name: Coefficient variable name
+  summary: Name of coefficient variable rcTxFilt (default)
+  group: ''
+- name: View Filter Response
+  summary: Open Filter Visualization Tool button
+  group: ''
+- name: Rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: Overflow mode for fixed-point operations off (default) | on
+  group: ''
+- name: Coefficients
+  summary: 'Coefficient data type Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)'
+  group: ''
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: ''
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as
+    product output | fixdt(1,16,0)'
+  group: ''
+- name: Output
+  summary: 'Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output
+    | fixdt(1,16,0)'
+  group: ''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -232,7 +299,6 @@ For information about specifying data types, see Data Type Assistant.
 Select this parameter to prevent the fixed-point tools from overriding the
 data types that you specify in the block dialog box. For more information,
 see the Fixed-Point Tool (Fixed-Point Designer).
-
 ## Libraries
 
 Communications Toolbox / Comm Filters Communications Toolbox HDL Support / Comm Filters

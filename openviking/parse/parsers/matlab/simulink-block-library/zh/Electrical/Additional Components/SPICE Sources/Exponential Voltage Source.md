@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Exponential Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电气
+  direction: unspecified
+- name: '-'
+  summary: 负电压电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,28 @@ chinese_source: worker-translation
 ### **-** — 负电压电气
 
 与直流电流源负电压相关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Initial value, V1
+  summary: 输出电压初始值 0 V（默认）
+  group: ''
+- name: Pulse value, V2
+  summary: 输出电压渐近值 0 V（默认）
+  group: ''
+- name: Rise delay time, TDR
+  summary: 上升延迟时间 0 s（默认）
+  group: ''
+- name: Rise time, TR
+  summary: 上升时间 1e-9 s（默认） | 正标量
+  group: ''
+- name: Fall delay time, TDF
+  summary: 下降延迟时间 0 s（默认）
+  group: ''
+- name: Fall time, TF
+  summary: 下降时间 1e-9 s（默认） | 正标量
+  group: ''
+```
 
 ### **Initial value, V1** — 输出电压初始值 `0` `V`（默认）
 
@@ -51,7 +80,6 @@ chinese_source: worker-translation
 ### **Fall time, TF** — 下降时间 `1e-9` `s`（默认） | 正标量
 
 输出电流从 **Pulse value, V2** 值下降到 **Initial value, V1** 值所需的时间。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

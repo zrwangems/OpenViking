@@ -14,6 +14,18 @@ language: en
 # Cable
 
 ## Ports
+```yaml
+ports:
+- name: L
+  summary: Length physical signal
+  direction: input
+- name: B
+  summary: Base contact location of cable mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower contact location of cable mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +49,86 @@ instantaneous contact location of the cable segment.
 
 Mechanical translational conserving port associated with the follower
 instantaneous contact location of the cable segment.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model variable rest length
+  summary: Variable rest length option off (default) | on
+  group: ''
+- name: Minimum rest length
+  summary: Minimum rest length 0.01 m (default) | positive scalar
+  group: ''
+- name: Stretch parameterization
+  summary: Constant or tabulated parameterization Constant stiffness and damping (default) | Tabulated stiffness and damping
+  group: ''
+- name: Rigidity
+  summary: Cable rigidity 1000 N (default) | positive scalar
+  group: ''
+- name: Stiffness
+  summary: Resistance to deformation 1000 N/m (default) | positive scalar
+  group: ''
+- name: Damping
+  summary: Tendency to dissipate energy 100 N/(m/s) (default) | positive scalar
+  group: ''
+- name: Stretch vector
+  summary: Stretch displacement [.1, .2, .5, 1] m (default) | vector
+  group: ''
+- name: Stiffness vector
+  summary: Tabular energy dissipation [500, 520, 540, 540] N/m (default) | vector of nonnegative values
+  group: ''
+- name: Damping vector
+  summary: Tabular damping [50, 60, 80, 80] N*s/m (default) | vector of nonnegative values
+  group: ''
+- name: Rest length vector, Lr
+  summary: Tabulated rest length [.25, .5, 1] m (default) | vector of length *M*
+  group: ''
+- name: Stretch per rest length vector, s/Lr
+  summary: Tabulated stretch per rest length [.01, .02, .1, .25] (default) | vector of length *N*
+  group: ''
+- name: Stiffness table (Lr, s/Lr)
+  summary: Tabulated stiffness [500, 600, 600, 500; 250, 300, 300, 250; 125, 150, 150, 125] N/m (default) | *M*x*N* matrix
+  group: ''
+- name: Damping table (Lr, s/Lr)
+  summary: Tabulated damping [50, 60, 60, 50; 50, 60, 60, 50; 50, 60, 60, 50] N*s/m (default) | *M*x*N* matrix
+  group: ''
+- name: Model slack
+  summary: Slack parameterization option off (default) | on
+  group: ''
+- name: Slack model
+  summary: Slack transition behavior Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | ...
+  group: ''
+- name: Linear density
+  summary: Linear density 0.2 kg/m (default) | positive scalar
+  group: ''
+- name: Transition region
+  summary: Region of partial slack effects 0.1 mm (default) | positive scalar
+  group: ''
+- name: Model mass
+  summary: Mass parameterization option Off (default) | On
+  group: ''
+- name: Mass
+  summary: Cable segment mass 1 kg (default) | positive scalar
+  group: ''
+- name: Model gravity
+  summary: Gravity option off (default) | on
+  group: ''
+- name: Gravitational acceleration, g
+  summary: Gravitational acceleration 9.81 m/s^2 (default) | positive scalar
+  group: ''
+- name: Angle of gravity relative to positive direction, θ
+  summary: Positive gravity angle 0 deg (default) | scalar
+  group: ''
+- name: Warn if cable loses tension
+  summary: Lost tension warning option off (default) | on
+  group: ''
+- name: Error if cable exceeds maximum tension
+  summary: Maximum tension error option off (default) | on
+  group: ''
+- name: Cable maximum tension
+  summary: Maximum allowable tension force in cable segment 1e5 N (default) | positive scalar
+  group: ''
+```
 
 ### **Model variable rest length** — Variable rest length option `off` (default) | `on`
 
@@ -319,7 +409,6 @@ this parameter, the block generates an error.
 
 To enable this parameter, select **Error if cable exceeds
 maximum tension**.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

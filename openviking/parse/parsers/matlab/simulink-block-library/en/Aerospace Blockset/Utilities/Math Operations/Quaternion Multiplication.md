@@ -14,6 +14,21 @@ language: en
 # Quaternion Multiplication
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: First quaternion quaternion | vector of quaternions
+  direction: input
+  data_types: double
+- name: r
+  summary: Second quaternion quaternion | vector of quaternions
+  direction: input
+  data_types: double
+- name: q\*r
+  summary: Product vector | vector of quaternion products
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -60,11 +75,12 @@ Product of two quaternions, output as a vector or vector of quaternion
 products.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

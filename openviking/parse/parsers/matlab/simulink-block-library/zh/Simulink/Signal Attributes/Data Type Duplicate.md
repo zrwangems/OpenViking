@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Data Type Duplicate
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 第一个输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | uint8 | uint16 | uint32 | string | Boolean | fixed point | enumerated
+- name: Port_N
+  summary: 第 N 个输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | uint8 | uint16 | uint32 | string | Boolean | fixed point | enumerated
+```
 
 ### 输入
 
@@ -29,8 +40,17 @@ chinese_source: worker-translation
 第 N 个输入信号，指定为标量、向量、矩阵或 N 维数组。如果所有信号的数据类型不相同，模块将返回错误消息。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `string` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input ports
+  summary: 模块输入端口数 2（默认）| 实数值正整数
+  group: ''
+  block_parameter: NumInputPorts
+  type: 字符向量
+  values: 实数值正整数
+  default: '''2'''
+```
 
 ### **Number of input ports** — 模块输入端口数 `2`（默认）| 实数值正整数
 
@@ -44,7 +64,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 实数值正整数 |
 | **默认值：** `'2'` |
-
 ## 所属库
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

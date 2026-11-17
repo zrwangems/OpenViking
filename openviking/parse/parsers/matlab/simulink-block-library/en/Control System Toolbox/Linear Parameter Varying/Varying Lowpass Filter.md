@@ -14,6 +14,18 @@ language: en
 # Varying Lowpass Filter
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Filter input scalar
+  direction: input
+- name: freq
+  summary: Cutoff frequency scalar
+  direction: input
+- name: y
+  summary: Filter output scalar
+  direction: output
+```
 
 ### Input
 
@@ -29,13 +41,17 @@ Filter cutoff frequency, specified in rad/s.
 ### **y** — Filter output scalar
 
 Lowpass filter output signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter order
+  summary: Lowpass filter order 1 (default) | positive integer
+  group: ''
+```
 
 ### **Filter order** — Lowpass filter order 1 (default) | positive integer
 
 Lowpass filter order, specified as a positive integer.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

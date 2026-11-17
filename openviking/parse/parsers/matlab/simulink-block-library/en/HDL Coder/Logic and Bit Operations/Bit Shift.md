@@ -14,6 +14,16 @@ language: en
 # Bit Shift
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input Signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output Signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -34,8 +44,24 @@ signal has the same data type and bit width as the input signal.
 
 - Minimum bit width: 2
 - Maximum bit width: 65535
-
 ## Parameters
+```yaml
+parameters:
+- name: Shift Mode
+  summary: Type and direction of shift Shift Left Logical (default) | Shift Right Logical | Shift Right Arithmetic
+  group: ''
+  block_parameter: mode
+  type: string scalar | character vector
+  values: '"Shift Left Logical" | "Shift Right Logical" | "Shift Right Arithmetic"'
+  default: '''Shift Left Logical'''
+- name: Shift Length
+  summary: Number of bits to be shifted 0 (default)
+  group: ''
+  block_parameter: N
+  type: string scalar | character vector
+  values: A value greater than or equal to zero
+  default: '''0'''
+```
 
 ### **Shift Mode** — Type and direction of shift `Shift Left Logical` (default) | `Shift Right Logical` | `Shift Right Arithmetic`
 
@@ -63,7 +89,6 @@ or equal to zero.
 | **Type:** string scalar | character vector |
 | **Value:** A value greater than or equal to zero |
 | **Default:** `'0'` |
-
 ## Libraries
 
 HDL Coder / Logic and Bit Operations

@@ -14,6 +14,29 @@ language: en
 # Discrete FIR Filter
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Num
+  summary: Filter coefficients scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: External reset
+  summary: External reset signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ⎍
+  summary: Enable signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Filtered output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -105,8 +128,167 @@ When you set **Sample time** to
 sample time of the input signal **In**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: Source of coefficients Dialog parameters (default) | Input port
+  group: Main
+  block_parameter: CoefSource
+  type: character vector
+  values: '''Dialog parameters'' | ''Input port'''
+  default: '''Dialog parameters'''
+- name: Filter structure
+  summary: Filter structure Direct form (default) | Direct form symmetric | Direct form antisymmetric | Direct form transposed
+    | Lattice MA
+  group: Main
+  block_parameter: FilterStructure
+  type: character vector
+  values: '''Direct form'' | ''Direct form symmetric'' | ''Direct form antisymmetric'' | ''Direct form transposed'' | ''Lattice
+    MA'''
+  default: '''Direct form'''
+- name: Coefficients
+  summary: Filter coefficients [0.5 0.5] (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: Coefficients
+  type: character vector
+  values: vector
+  default: '''[0.5 0.5]'''
+- name: Input processing
+  summary: Sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)
+  group: Main
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Initial states
+  summary: Initial conditions of filter states 0 (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: InitialStates
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''0'''
+- name: Show enable port
+  summary: Create enable port off (default) | on
+  group: Main
+  block_parameter: ShowEnablePort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: External reset
+  summary: External state reset None (default) | Rising | Falling | Either | Level | Level hold
+  group: Main
+  block_parameter: ExternalReset
+  type: character vector
+  values: '''None'' | ''Rising'' | ''Falling'' | ''Either'' | ''Level'' | ''Level hold'''
+  default: '''None'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: View Filter Response
+  summary: View filter response button
+  group: Main
+- name: Tap sum
+  summary: 'Tap sum data type Inherit: Same as input (default) | Inherit: Inherit via internal rule | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: TapSumDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as input'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Same as input'''
+- name: Coefficients
+  summary: 'Coefficient data type Inherit: Same wordlength as input (default) | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: CoefDataTypeStr
+  type: character vector
+  values: '''Inherit: Same word length as input''| ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''
+    | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Same wordlength as input'''
+- name: Coefficients minimum
+  summary: Minimum value of coefficients [] (default) | scalar
+  group: Data Types
+  block_parameter: CoeffMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Coefficients maximum
+  summary: Maximum value of coefficients [] (default) | scalar
+  group: Data Types
+  block_parameter: CoeffMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: ProductDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16''
+    | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as
+    product output | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: AccumDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''Inherit: Same as product output'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' | ''<data type
+    expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: State
+  summary: 'State data type Inherit: Same as accumulator (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: StateDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as accumulator'' | ''Inherit: Same as input'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' |
+    ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Same as accumulator'''
+- name: Output
+  summary: 'Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as accumulator'' | ''Inherit: Same as input'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' |
+    ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Same as accumulator'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+```
 
 ### Main
 
@@ -624,7 +806,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
-
 ## Libraries
 
 Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations

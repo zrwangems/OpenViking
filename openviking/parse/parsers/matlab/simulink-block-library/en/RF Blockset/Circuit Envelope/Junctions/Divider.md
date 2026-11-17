@@ -14,10 +14,28 @@ language: en
 # Divider
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Select component
+  summary: Divider type T power divider (default) | Resistive power divider | Wilkinson power divider | Tee H-plane (S33=0)
+    | Tee E-plane
+  group: ''
+- name: Number of divider outports
+  summary: Number of Wilkinson power divider outports 2 (default) | nonnegative integer in the range (1, 65]
+  group: ''
+- name: Reference impedances (Ohm)
+  summary: Reference impedance of divider 50 (default) | positive scalar | three-tuple vector
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Select component** — Divider type `T power divider` (default) | `Resistive power divider` | `Wilkinson power divider` | `Tee H-plane (S33=0)` | `Tee E-plane`
 
@@ -116,7 +134,6 @@ To expose the negative terminals, clear the parameter. By exposing
 these terminals, you can connect them to other parts of your model.
 
 By default, this option is selected.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Junctions

@@ -15,10 +15,151 @@ chinese_source: worker-translation
 # Push Button
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的模块参数值 参数值连接选项
+  group: 参数
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Button Type
+  summary: 按钮对点击的响应 Momentary（默认）| Latch
+  group: 参数
+  block_parameter: ButtonType
+  type: string or character array
+  values: '''Momentary'' | ''Latch'''
+- name: Button Text
+  summary: 按钮标签文本 'Button'（默认）| string | character array
+  group: 参数
+  block_parameter: ButtonText
+  type: character vector | string
+- name: On value
+  summary: 按钮按下或锁存时分配给已连接参数的值 1（默认）| scalar
+  group: 参数
+  block_parameter: OnValue
+  type: string or character array
+  values: scalar
+  default: '''1'''
+- name: Label
+  summary: 显示已连接元素名称的标签位置 Hide（默认）| Bottom | Top
+  group: 参数
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 参数
+- name: ClickFcn
+  summary: 响应点击而执行的 MATLAB 代码 MATLAB 代码
+  group: 参数
+  block_parameter: ClickFcn
+  type: character vector | string
+  values: MATLAB code
+- name: PressFcn
+  summary: 响应按下而执行的 MATLAB 代码 MATLAB 代码
+  group: 参数
+  block_parameter: PressFcn
+  type: character vector | string
+  values: MATLAB code
+- name: Press Delay (ms)
+  summary: 按下按钮所需保持的时间 500（默认）| scalar
+  group: 参数
+  block_parameter: PressDelay
+  type: scalar
+- name: Repeat Interval (ms)
+  summary: 重复 PressFcn 代码的时间间隔 0（默认）| scalar
+  group: 参数
+  block_parameter: RepeatInterval
+  type: scalar
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 设计
+- name: Select State
+  summary: 选择要配置的状态 Default（默认）| Pressed | Latched | Latched and Pressed
+  group: 设计
+- name: Text
+  summary: 按钮标签文本 'Button'（默认）| string | character array
+  group: 设计
+  block_parameter: ButtonText
+  type: character vector | string
+- name: Color
+  summary: 标签字体颜色 [r g b] 向量
+  group: 设计
+- name: Horizontal Alignment
+  summary: 标签和图标对与模块的水平对齐 Left（默认）| Center | Right
+  group: 设计
+- name: Vertical Alignment
+  summary: 标签和图标对与模块的垂直对齐 Center（默认）| Bottom | Top
+  group: 设计
+- name: Icon and Label X Offset
+  summary: 图标和标签对相对于模块的水平偏移 0（默认）| scalar
+  group: 设计
+- name: Icon and Label Y Offset
+  summary: 图标和标签对相对于模块的垂直偏移 0（默认）| scalar
+  group: 设计
+- name: Icon Placement
+  summary: 图标相对于标签的位置 Left（默认）| Top | Right | Bottom
+  group: 设计
+- name: Icon Width
+  summary: 图标宽度 scalar
+  group: 设计
+- name: Icon Height
+  summary: 图标高度 scalar
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持图像宽高比的选项 on（默认）| off
+  group: 设计
+- name: Image X Offset
+  summary: 图像左边缘相对于模块左边缘的水平偏移 scalar
+  group: 设计
+- name: Image Y Offset
+  summary: 图像顶边相对于模块顶边的垂直偏移 scalar
+  group: 设计
+- name: Image Width
+  summary: 图像宽度 scalar
+  group: 设计
+- name: Image Height
+  summary: 图像高度 scalar
+  group: 设计
+- name: Use Background Color
+  summary: 指定纯色模块背景色的选项 off（默认）| on
+  group: 设计
+- name: Color
+  summary: 模块背景颜色 [r g b] 向量
+  group: 设计
+  block_parameter: BackgroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| scalar
+  group: 设计
+- name: Corner Radius
+  summary: 模块背景色区域的圆角半径 scalar
+  group: 设计
+- name: X Offset
+  summary: 前景图像左边缘相对于模块左边缘的水平偏移 scalar
+  group: 设计
+- name: Y Offset
+  summary: 前景图像顶边相对于模块顶边的垂直偏移 scalar
+  group: 设计
+- name: Width
+  summary: 前景图像宽度 scalar
+  group: 设计
+- name: Height
+  summary: 前景图像高度 scalar
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持前景图像宽高比的选项 on（默认）| off
+  group: 设计
+```
 
 使用属性检查器和模块参数对话框指定模块参数的值。要设置仪表板模块的核心参数，请使用模块参数对话框或属性检查器中的**参数**选项卡。要自定义模块，请使用属性检查器中的**设计**选项卡。要打开模块的模块参数对话框，请双击该模块。要打开属性检查器，请在**建模**选项卡上的**设计**下，选择**属性检查器**。
 
@@ -438,7 +579,6 @@ R2025b 中未记录。
 ### **Lock Aspect Ratio** — 保持前景图像宽高比的选项 `on`（默认）| `off`
 
 选择此参数可在使用属性检查器调整图像大小时保持宽高比。
-
 ## 所属库
 
 Simulink / Dashboard / Customizable Blocks

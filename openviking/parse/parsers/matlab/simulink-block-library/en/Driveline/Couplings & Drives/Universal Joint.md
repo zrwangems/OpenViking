@@ -14,6 +14,18 @@ language: en
 # Universal Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base shaft mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower shaft mechanical rotational
+  direction: conserving
+- name: A
+  summary: Intersection angle physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -29,8 +41,28 @@ Conserving rotational port associated with the follower shaft.
 ### **A** — Intersection angle physical signal
 
 Physical signal input port for the intersection angle.
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum joint angle
+  summary: Maximum joint intersection angle, *A* pi/4 rad (default) | 0 ≤ *A* < pi/2 | scalar
+  group: ''
+- name: Joint compliance
+  summary: Compliance model off (default) | on
+  group: ''
+- name: Joint stiffness
+  summary: Stiffness coefficient, k 1e6 N*m/rad (default) | scalar
+  group: ''
+- name: Joint damping
+  summary: Damping coefficient, b 1e3 N*m/(rad/s) (default) | scalar
+  group: ''
+- name: Initial base shaft angle
+  summary: Initial base shaft angle 0 rad (default) | scalar
+  group: ''
+- name: Initial torque from base to follower shaft
+  summary: Initial torque 0 N*m (default) | scalar
+  group: ''
+```
 
 j
 
@@ -88,7 +120,6 @@ transient response due to material compliance.
 
 To enable this parameter, select **Joint
 compliance**.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # DC-DC Converter
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 输入正极端口 electrical
+  direction: conserving
+- name: 1-
+  summary: 输入负极端口 electrical
+  direction: conserving
+- name: 2+
+  summary: 输出正极端口 electrical
+  direction: conserving
+- name: 2-
+  summary: 输出负极端口 electrical
+  direction: conserving
+- name: Vref
+  summary: 电压参考 physical
+  direction: conserving
+- name: H
+  summary: 热质量 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -49,8 +70,107 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Voltage reference
+  summary: 电压参考 Internal（默认）| External
+  group: 主参数
+- name: Output voltage reference demand
+  summary: 电压设定点 10 V（默认）
+  group: 主参数
+- name: Rated output power
+  summary: 额定功率 10 W（默认）
+  group: 主参数
+- name: Enable droop
+  summary: 下垂选项 On（默认）| Off
+  group: 主参数
+- name: Droop parameterization
+  summary: 下垂模型 By voltage droop with output current（默认）| By percent voltage droop at rated load
+  group: 主参数
+- name: Output voltage droop with output current
+  summary: 1 A 时的电压下垂 0.1 V/A（默认）
+  group: 主参数
+- name: Voltage droop percent at rated load
+  summary: 额定负载下的电压下垂百分比 2（默认）
+  group: 主参数
+- name: Voltage reference used to calculate droop percent
+  summary: 额定负载下的电压下垂百分比 10 V（默认）
+  group: 主参数
+- name: Power direction
+  summary: 功率流向 Unidirectional power flow from supply to regulated side（默认）| Bidirectional power flow
+  group: 主参数
+- name: Diode off-state conductance
+  summary: 单向二极管 1e-8 1/Ohm（默认）
+  group: 主参数
+- name: Converter losses at zero output power
+  summary: 恒定损耗 1 W（默认）
+  group: 损耗
+- name: Converter losses
+  summary: 转换器损耗 Assume proportional to square of output current（默认）| Tabulate efficiency
+  group: 损耗
+- name: Percentage efficiency at rated output power
+  summary: 额定效率 80（默认）
+  group: 损耗
+- name: Variables for tabulation
+  summary: 制表变量 Output current（默认）| Output current and input voltage | Output current and temperature | Output current, input
+    voltage, and temperature
+  group: 损耗
+- name: Vector of output currents for tabulated efficiencies, I2
+  summary: 制表效率的输出电流 [-2, -1, 1, 2] A（默认）| 正递增标量向量
+  group: 损耗
+- name: Percentage efficiency table, eff(I2)
+  summary: 电流函数形式的效率表 [66, 76, 80, 74]（默认）| 正标量向量
+  group: 损耗
+- name: Vector of input voltages for tabulated efficiencies, V1
+  summary: 制表效率的输入电压 [15, 30, 45] V（默认）| 正递增标量向量
+  group: 损耗
+- name: Percentage efficiency table, eff(I2,V1)
+  summary: 电流和电压函数形式的效率表 [66, 66, 66; 76, 76, 76; 80, 80, 80; 74, 74, 74]（默认）| 正标量向量
+  group: 损耗
+- name: Vector of temperatures for tabulated efficiencies, T
+  summary: 制表效率的温度 [280, 300, 320] K（默认）| 正递增标量向量
+  group: 损耗
+- name: Percentage efficiency table, eff(I2,T)
+  summary: 电流和温度函数形式的效率表 [66, 66, 66; 76, 76, 76; 80, 80, 80; 74, 74, 74]（默认）| 标量向量
+  group: 损耗
+- name: Percentage efficiency table, eff(I2,V1,T)
+  summary: 电流、电压和温度函数形式的效率表 repmat([66; 76; 80; 74], 1, 3, 3)（默认）| 标量向量
+  group: 损耗
+- name: Dynamics
+  summary: 动态模型 No dynamics（默认）| Specify voltage regulation time constant
+  group: 动态特性
+- name: Voltage regulation time constant
+  summary: 动态时间常数 0.02 s（默认）
+  group: 动态特性
+- name: Initial output voltage demand
+  summary: 初始需求电压 10 V（默认）
+  group: 动态特性
+- name: Minimum supply voltage to function
+  summary: 最低工作电源电压 1 V（默认）
+  group: 关断状态
+- name: Input resistance if not functioning
+  summary: 不工作时的输入电阻 1000 Ohm（默认）
+  group: 关断状态
+- name: Output resistance if not functioning
+  summary: 不工作时的输出电阻 1000 Ohm（默认）
+  group: 关断状态
+- name: Open circuit fault
+  summary: 添加开路故障的选项 Add fault（默认）
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Thermal mass
+  summary: 与热端口关联的热质量 100 J/K（默认）
+  group: 热参数
+- name: Initial temperature
+  summary: 热端口的初始温度 298.15 K（默认）
+  group: 热参数
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -272,7 +392,6 @@ chinese_source: worker-translation
 ### **Initial temperature** — 热端口的初始温度 `298.15` `K`（默认）
 
 与热端口 **H** 关联的初始温度。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

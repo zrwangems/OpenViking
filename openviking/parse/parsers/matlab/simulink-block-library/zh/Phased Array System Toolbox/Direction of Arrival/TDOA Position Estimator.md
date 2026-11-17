@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # TDOA Position Estimator
 
 ## 端口
+```yaml
+ports:
+- name: TDOAEst
+  summary: 估计的到达时间差（秒），(*L*–1) 元实值向量
+  direction: input
+  data_types: single | double
+- name: TDOAVar
+  summary: 估计的到达时间差方差（秒的平方），(*L*–1) 元实值向量
+  direction: input
+  data_types: single | double
+- name: AnchorPos
+  summary: 锚点位置（米），2×*L* 实值矩阵 | 3×*L* 实值矩阵
+  direction: input
+  data_types: single | double
+- name: TgtPosEst
+  summary: 目标位置估计，实值 *Q*×1 向量
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: 目标位置协方差矩阵，实值半正定 *Q*×*Q* 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -52,8 +75,23 @@ chinese_source: worker-translation
 要启用此输出端口，请选中 **Output covariance of TDOA position estimate** 复选框。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst("LightSpeed")（默认）| 正实标量
+  group: ''
+- name: Output covariances of TDOA position estimates
+  summary: 输出 TDOA 位置估计的协方差 false (0)（默认）| true (1)
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -98,7 +136,6 @@ chinese_source: worker-translation
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

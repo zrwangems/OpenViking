@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 3x3 Cross Product
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 第一个叉积输入 3×1 向量
+  direction: input
+  data_types: double
+- name: B
+  summary: 第二个叉积输入 3×1 向量
+  direction: input
+  data_types: double
+- name: C
+  summary: 叉积 3×1 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -40,11 +55,12 @@ chinese_source: worker-translation
 叉积，以向量形式输出。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

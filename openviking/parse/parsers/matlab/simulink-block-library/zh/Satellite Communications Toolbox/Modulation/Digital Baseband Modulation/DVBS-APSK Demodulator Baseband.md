@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # DVBS-APSK Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: DVB-S2/S2X/SH 标准特定的 APSK 调制信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: 噪声方差 正标量 | 正值向量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 解调信号 标量 | 向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -49,8 +63,43 @@ DVB-S2/S2X/SH 标准特定的 APSK 调制信号，指定为标量、向量或矩
 | *M* 是 **Modulation order** 的值。 | | | |
 
 使用 **Output data type** 指定输出数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: DVB standard suffix
+  summary: 标准后缀 S2 | S2X | SH
+  group: ''
+- name: Frame length
+  summary: 帧长度 Normal（默认）| Short
+  group: ''
+- name: Modulation order
+  summary: 调制阶数 16（默认）| 整数
+  group: ''
+- name: Code identifier
+  summary: 码标识符 2/3 | 字符向量
+  group: ''
+- name: Constellation scaling
+  summary: 星座图缩放 Outer radius as 1（默认）| Unit average power
+  group: ''
+- name: Output type
+  summary: 输出类型 Integer（默认）| Bit
+  group: ''
+- name: Decision type
+  summary: 解调判决类型 Hard decision（默认）| Log-likelihood ratio | Approximate log-likelihood ratio
+  group: ''
+- name: Noise variance source
+  summary: 噪声方差来源 Property（默认）| Input port
+  group: ''
+- name: Noise variance
+  summary: 噪声方差 1（默认）| 正标量 | 正值向量
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| ...
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -162,7 +211,6 @@ DVB 调制变体的标准后缀，指定为 `S2`、`S2X` 或 `SH`。
 
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution` 选项。
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
-
 ## 所属库
 
 Satellite Communications Toolbox / Modulation / Digital Baseband Modulation

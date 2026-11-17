@@ -14,6 +14,29 @@ language: en
 # Counter
 
 ## Ports
+```yaml
+ports:
+- name: Inc/Dec
+  summary: Input signal to trigger count event scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Rst
+  summary: Reset signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Max
+  summary: Maximum counter size scalar
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Cnt
+  summary: Current value of counter scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Hit
+  summary: Hit status scalar | vector
+  direction: output
+  data_types: Boolean | Logical
+```
 
 ### Input
 
@@ -117,8 +140,47 @@ to `Hit` or `Count and
 Hit`.
 
 **Data Types:** `Boolean` | `Logical`
-
 ## Parameters
+```yaml
+parameters:
+- name: Count direction
+  summary: Count up or down Up (default) | Down
+  group: ''
+- name: Count event
+  summary: Type of trigger event Rising edge (default) | Falling edge | Either edge | Non-zero sample | Free running
+  group: ''
+- name: Counter size
+  summary: Range of integer values to count through 8 bits (default) | 16 bits | 32 bits | User defined | Specify via input
+    port
+  group: ''
+- name: Maximum count
+  summary: Maximum value of counter 255 (default) | positive integer
+  group: ''
+- name: Initial count
+  summary: Initial value of counter 0 (default) | integer ≥ 0
+  group: ''
+- name: Output
+  summary: Output count value, hit value, or both Count (default) | Hit | Count and Hit
+  group: ''
+- name: Hit values
+  summary: Count values to flag 32 (default) | scalar | vector
+  group: ''
+- name: Reset input
+  summary: Enable Rst input port on (default) | off
+  group: ''
+- name: Samples per output frame
+  summary: Number of samples in each output vector 1 (default) | positive integer
+  group: ''
+- name: Sample time
+  summary: Sample time in Free Running mode 1 (default) | -1 | scalar ≥ 0
+  group: ''
+- name: Count data type
+  summary: Data type of Cnt port double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+- name: Hit data type
+  summary: Data type of Hit port Logical (default) | Boolean
+  group: ''
+```
 
 ### **Count direction** — Count up or down `Up` (default) | `Down`
 
@@ -346,7 +408,6 @@ parameter to `Hit` or set it to
 `Count and Hit` with the **Count
 data type** parameter set to
 `Double`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Switches and Counters

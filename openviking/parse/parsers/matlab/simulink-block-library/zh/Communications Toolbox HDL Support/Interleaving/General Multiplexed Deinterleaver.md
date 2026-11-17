@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # General Multiplexed Deinterleaver
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Interleaver delay (samples)**
 :   一个向量，列出对应交织器的每个移位寄存器中可容纳的符号数量。该向量的长度即为移位寄存器的数量。
 
 **Initial conditions**
 :   仿真开始时填充每个移位寄存器的值。
-
 ## 所属库
 
 R2025b 中未记录。

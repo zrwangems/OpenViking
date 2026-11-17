@@ -15,6 +15,60 @@ chinese_source: worker-translation
 # Trailer Body 6DOF
 
 ## 端口
+```yaml
+ports:
+- name: FSusp
+  summary: 作用在挂车上的悬架力 3-by-4 数组（默认）| 3-by-2 数组 | 3-by-6 数组
+  direction: input
+- name: MSusp
+  summary: 作用在挂车上的悬架力矩 3-by-4 array（默认）| 3-by-2 array | 3-by-6 array
+  direction: input
+- name: FExt
+  summary: 作用在车辆上的外部力 vector
+  direction: input
+- name: MExt
+  summary: 作用在车辆上的外部力矩 vector
+  direction: input
+- name: FhF
+  summary: 作用在车身上的前挂钩力 array
+  direction: input
+- name: MhF
+  summary: 绕车体的前挂钩力矩 array
+  direction: input
+- name: FhR
+  summary: 作用在车身上的后挂钩力 array
+  direction: input
+- name: MhR
+  summary: 绕车体的后挂钩力矩 array
+  direction: input
+- name: WindXYZ
+  summary: 风速 array
+  direction: input
+- name: AirTemp
+  summary: 环境空气温度 scalar
+  direction: input
+- name: Info
+  summary: 挂车车身信息总线
+  direction: output
+- name: Vb
+  summary: 车辆固定坐标系下的车辆速度 vector
+  direction: output
+- name: pqr
+  summary: 车辆固定坐标系下的车辆角速度 vector
+  direction: output
+- name: DCM
+  summary: 方向余弦矩阵 array
+  direction: output
+- name: Euler
+  summary: 欧拉角 array
+  direction: output
+- name: Xe
+  summary: 惯性参考坐标系下的车辆位置 vector
+  direction: output
+- name: Ve
+  summary: 惯性参考坐标系下的车辆速度 vector
+  direction: output
+```
 
 ### 输入
 
@@ -397,8 +451,193 @@ temperature**。
 ### **Ve** — 惯性参考坐标系下的车辆速度 `vector`
 
 车辆质心分别沿惯性固定 *X*、*Y*、*Z* 轴的速度，单位为 m/s，以向量形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of axles
+  summary: 创建牵引力输入端口 2（默认）| 1 | 3
+  group: 模块选项
+- name: Front hitch forces
+  summary: FhF 输入端口 on（默认）| off
+  group: 模块选项
+- name: Front hitch moments
+  summary: MhF 输入端口 on（默认）| off
+  group: 模块选项
+- name: Rear hitch forces
+  summary: FhR 输入端口 off（默认）| on
+  group: 模块选项
+- name: Rear hitch moments
+  summary: MhR 输入端口 off（默认）| on
+  group: 模块选项
+- name: Vehicle mass, m
+  summary: 质量 2000（默认）| scalar
+  group: 底盘
+- name: Longitudinal distance from center of mass to front axle, a
+  summary: 质心到前轴的距离 1.4（默认）| scalar
+  group: 底盘
+- name: Longitudinal distance from center of mass to middle axle, b
+  summary: 质心到中轴的距离 1.6（默认）| scalar
+  group: 底盘
+- name: Longitudinal distance from center of mass to rear axle, c
+  summary: 质心到后轴的距离 1.9（默认）| scalar
+  group: 底盘
+- name: Lateral distance from geometric centerline to center of mass, d
+  summary: 几何中心线到质心的横向距离 0（默认）| scalar
+  group: 底盘
+- name: Vertical distance from center of mass to axle plane, h
+  summary: 质心到车轴平面的垂直距离 .35（默认）| scalar
+  group: 底盘
+- name: Longitudinal distance from center of mass to front hitch, dh_f
+  summary: 质心到牵引装置的纵向距离 1（默认）| scalar
+  group: 底盘
+- name: 几何中心线到前挂钩的横向距离，hl_f
+  summary: 从中心线到前挂钩的距离 0（默认）| scalar
+  group: 底盘
+- name: 前挂钩到车轴平面的垂直距离，hh_f
+  summary: 从前挂钩到车轴平面的距离 0.1（默认）| scalar
+  group: 底盘
+- name: 从质心到后挂钩的纵向距离，dh_r
+  summary: 到前挂钩的距离 1（默认）| scalar
+  group: 底盘
+- name: 几何中心线到后挂钩的横向距离，hl_r
+  summary: 从中心线到后挂钩的距离 0（默认）| scalar
+  group: 底盘
+- name: 后挂钩到车轴平面的垂直距离，hh_r
+  summary: 从后挂钩到车轴平面的距离 0.1（默认）| scalar
+  group: 底盘
+- name: 惯性坐标系中的初始位置 [Xeo,Yeo,Zeo]，Xe_o
+  summary: 初始位置 [0,0,0]（默认）| vector
+  group: 底盘
+- name: 车体坐标系中的初始速度 [xdot_o,ydot_o,zdot_o]，xbdot_o
+  summary: 初始速度 [0,0,0]（默认）| vector
+  group: 底盘
+- name: 初始欧拉姿态 [roll, pitch, yaw]，eul_o
+  summary: 旋转 [0,0,0]（默认）| vector
+  group: 底盘
+- name: 初始车体旋转速率 [p,q,r]，p_o
+  summary: 初始旋转速率 [0,0,0]（默认）| vector
+  group: 底盘
+- name: 底盘惯性张量，Iveh
+  summary: 惯性 [430 0 0; 0 1900 0; 0 0 2100]（默认）| array
+  group: 底盘
+- name: 前轮距，w_f
+  summary: 前轮距 1.9（默认）| scalar
+  group: 底盘
+- name: 中轮距，w_m
+  summary: 中轮距 1.9（默认）| scalar
+  group: 底盘
+- name: 后轮距，w_r
+  summary: 后轮距 1.9（默认）| scalar
+  group: 底盘
+- name: 质量，z1m
+  summary: 质量 0（默认）| scalar
+  group: 惯性载荷
+- name: 距前轴的距离向量，z1R
+  summary: 距离 [-.25,.125,.15]（默认）| vector
+  group: 惯性载荷
+- name: 惯性张量，z1I
+  summary: 惯性 [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0（默认）| array
+  group: 惯性载荷
+- name: 质量，z2m
+  summary: 质量 0（默认）| scalar
+  group: 惯性载荷
+- name: 距前轴的距离向量，z2R
+  summary: 距离 [1.4,0,.8]（默认）| vector
+  group: 惯性载荷
+- name: 惯性张量，z2I
+  summary: 惯性 [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0（默认）| array
+  group: 惯性载荷
+- name: 质量，z3m
+  summary: 质量 0（默认）| scalar
+  group: 惯性载荷
+- name: 距前轴的距离向量，z3R
+  summary: 距离 [.75,-.5,.4]（默认）| vector
+  group: 惯性载荷
+- name: 惯性张量，z3I
+  summary: 惯性 [5,-.1,-2;-2,9,.1;-.1,.1,6].*0（默认）| array
+  group: 惯性载荷
+- name: Mass, z4m
+  summary: 质量 0（默认）| scalar
+  group: 惯性载荷
+- name: Distance vector from front axle, z4R
+  summary: 距离 [.75,.5,.4]（默认）| vector
+  group: 惯性载荷
+- name: Inertia tensor, z4I
+  summary: 惯性 [5,-.1,-2;-2,9,.1;-.1,.1,6].*0（默认）| array
+  group: 惯性载荷
+- name: Mass, z5m
+  summary: 质量 0（默认）| scalar
+  group: 惯性载荷
+- name: Distance vector from front axle, z5R
+  summary: 距离 [1.25,-.5,.4]（默认）| vector
+  group: 惯性载荷
+- name: Inertia tensor, z5I
+  summary: 惯性 [5,-.1,-2;-2,9,.1;-.1,.1,6].*0（默认）| array
+  group: 惯性载荷
+- name: Mass, z6m
+  summary: 质量 0（默认）| scalar
+  group: 惯性载荷
+- name: Distance vector from front axle, z6R
+  summary: 距离 [1.25,-.5,.4]（默认）| vector
+  group: 惯性载荷
+- name: Inertia tensor, z6I
+  summary: 惯性 [5,-.1,-2;-2,9,.1;-.1,.1,6].*0（默认）| array
+  group: 惯性载荷
+- name: Mass, z7m
+  summary: 质量 0（默认）| scalar
+  group: 惯性载荷
+- name: Distance vector from front axle, z7R
+  summary: 距离 [2,0,.25]（默认）| vector
+  group: 惯性载荷
+- name: Inertia tensor, z7I
+  summary: 惯性 [1.4,-.2,.1;-.2,1.4,.1;.1,.1,2.25].*0（默认）| array
+  group: 惯性载荷
+- name: Longitudinal drag area, Af
+  summary: 阻力面积 2（默认）| scalar
+  group: Aerodynamic
+- name: Longitudinal drag coefficient, Cd
+  summary: 阻力系数 .3（默认）| scalar
+  group: Aerodynamic
+- name: Longitudinal lift coefficient, Cl
+  summary: 升力 .1（默认）| scalar
+  group: Aerodynamic
+- name: Longitudinal drag pitch moment, Cpm
+  summary: 俯仰阻力 .1（默认）| scalar
+  group: Aerodynamic
+- name: Relative wind angle vector, beta_w
+  summary: 风角 [0:0.001:0.01]（默认）| vector
+  group: Aerodynamic
+- name: Side force coefficient vector, Cs
+  summary: 侧向力阻力 [0:0.01:0.1]（默认）| vector
+  group: Aerodynamic
+- name: Yaw moment coefficient vector, Cym
+  summary: 横摆力矩阻力 [0:0.001:0.01]（默认）| vector
+  group: Aerodynamic
+- name: Absolute air pressure, Pabs
+  summary: 压力 101325（默认）| scalar
+  group: Environment
+- name: Air temperature, Tair
+  summary: 环境空气温度 273（默认）| scalar
+  group: Environment
+- name: Gravitational acceleration, g
+  summary: 重力 9.81（默认）| scalar
+  group: Environment
+- name: Longitudinal velocity tolerance, xdot_tol
+  summary: 容差 .1（默认）| scalar
+  group: 仿真
+- name: Geometric longitudinal offset from axle plane, longOff
+  summary: 纵向偏移 0（默认）| scalar
+  group: 仿真
+- name: Geometric lateral offset from center plane, latOff
+  summary: 横向偏移 0（默认）| scalar
+  group: 仿真
+- name: Geometric vertical offset from axle plane, vertOff
+  summary: 垂直偏移 0（默认）| scalar
+  group: 仿真
+- name: Wrap Euler angles, wrapAng
+  summary: Selection on (default) | off
+  group: 仿真
+```
 
 ### 模块选项
 
@@ -957,7 +1196,6 @@ m/s。
 - 避免车辆状态估计器中的不连续性。
 
 请考虑清除该参数。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Body

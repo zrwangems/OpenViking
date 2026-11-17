@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Cepstral Coefficients
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 频谱图或听觉频谱图矩阵 | 三维数组
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 倒谱系数矩阵 | 三维数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -38,8 +49,19 @@ chinese_source: worker-translation
 - *N* 是输入频谱图中的通道数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of cepstral coefficients
+  summary: 返回的倒谱系数数量 13（默认）| 大于 1 的正整数
+  group: ''
+- name: Rectification
+  summary: 非线性整流类型 Logarithm（默认）| Cubic root | None
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Number of cepstral coefficients** — 返回的倒谱系数数量 13（默认）| 大于 1 的正整数
 
@@ -53,7 +75,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Audio Toolbox / Features

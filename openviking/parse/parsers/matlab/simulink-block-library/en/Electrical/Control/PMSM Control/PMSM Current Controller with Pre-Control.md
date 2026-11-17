@@ -14,6 +14,33 @@ language: en
 # PMSM Current Controller with Pre-Control
 
 ## Ports
+```yaml
+ports:
+- name: idqRef
+  summary: Reference currents vector
+  direction: input
+  data_types: single | double
+- name: idq
+  summary: Measured currents vector
+  direction: input
+  data_types: single | double
+- name: wElectrical
+  summary: Measured electrical velocity vector
+  direction: input
+  data_types: single | double
+- name: VphMax
+  summary: Maximum phase voltage scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: External reset scalar
+  direction: input
+  data_types: single | double
+- name: vdqRef
+  summary: Reference voltages vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -57,8 +84,55 @@ Desired *d*- and *q*-axis
 voltages for control of a PMSM, in V.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: D-axis current proportional gain
+  summary: D-axis proportional gain 1 (default) | positive number
+  group: ''
+- name: D-axis current integral gain
+  summary: D-axis integral gain 100 (default) | positive number
+  group: ''
+- name: D-axis current anti-windup gain
+  summary: D-axis anti-windup gain 1 (default) | positive number
+  group: ''
+- name: Q-axis current proportional gain
+  summary: Q-axis proportional gain 1 (default) | positive number
+  group: ''
+- name: Q-axis current integral gain
+  summary: Q-axis integral gain 100 (default) | positive number
+  group: ''
+- name: Q-axis current anti-windup gain
+  summary: Q-axis anti-windup gain 1 (default) | positive number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | -1 or positive number
+  group: ''
+- name: Axis prioritization
+  summary: Axis prioritization for voltage limiter q-axis (default) | d-axis | d-q equivalence
+  group: ''
+- name: Enable zero cancellation
+  summary: Feedforward zero-cancellation off (default) | on
+  group: ''
+- name: Enable pre-control voltage
+  summary: Pre-control voltage on (default) | off
+  group: ''
+- name: D-axis current vector, id (A)
+  summary: D-axis current breakpoint vector [-200,0,200]A (default) | monotonically increasing vector
+  group: ''
+- name: Q-axis current vector, iq (A)
+  summary: Q-axis current breakpoint vector [-200,0,200]A (default) | monotonically increasing vector
+  group: ''
+- name: Ld matrix, Ld(id,iq) (H)
+  summary: D-axis inductance lookup data 0.0002 * ones(3, 3)H (default) | positive matrix
+  group: ''
+- name: Lq matrix, Lq(id,iq) (H)
+  summary: Q-axis inductance lookup data 0.0002 * ones(3, 3)H (default) | positive matrix
+  group: ''
+- name: Permanent magnet flux linkage matrix, PM(id,iq) (Wb)
+  summary: Flux linkage lookup data 0.04 * ones(3, 3)Wb (default) | real matrix
+  group: ''
+```
 
 #### Control Parameters
 
@@ -145,7 +219,6 @@ data. For constant machine parameters change only the constant factor, e.g.,
 Permanent magnet flux linkage matrix used in the lookup table. For
 constant machine parameters change only the constant factor, for example
 *psim* \* `ones(3, 3)`.
-
 ## Libraries
 
 Simscape / Electrical / Control / PMSM Control

@@ -14,6 +14,13 @@ language: en
 # PMSM Parameter Estimation Configurator
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Bus signal bus
+  direction: output
+  data_types: single
+```
 
 ### Output
 
@@ -48,8 +55,73 @@ The configuration elements are analogous to the block parameters. For more
 information about these elements, see .
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: Number of motor pole pairs 4 (default) | scalar
+  group: ''
+- name: Rated speed (RPM)
+  summary: Motor rated speed 4000 (default) | scalar
+  group: ''
+- name: Rated motor current (A)
+  summary: Motor rated current 7 (default) | scalar
+  group: ''
+- name: Maximum inverter current (A)
+  summary: Maximum measurable current 21 (default) | scalar
+  group: ''
+- name: Board resistance (ohm)
+  summary: Inverter bridge resistance 0.0043 (default) | scalar
+  group: ''
+- name: Current sense gain (A/ADC Count)
+  summary: Current per ADC count 0.0105 (default) | scalar
+  group: ''
+- name: Voltage sense gain (V/ADC Count)
+  summary: Voltage per ADC count 0.0098 (default) | scalar
+  group: ''
+- name: Maximum frequency (Hz)
+  summary: Maximum frequency injected for frequency sweep 1000 (default) | scalar
+  group: ''
+- name: Minimum frequency (Hz)
+  summary: Minimum frequency injected for frequency sweep 400 (default) | scalar
+  group: ''
+- name: Step for frequency sweep (Hz)
+  summary: Step size for frequency sweep 100 (default) | scalar
+  group: ''
+- name: Frequency step size for estimation (Hz)
+  summary: Frequency step size for *Ld* and *Lq* estimation 10 (default) | scalar
+  group: ''
+- name: Number of frequencies for estimation
+  summary: Number of injected frequencies for *Ld* and *Lq* estimation 10 (default) | scalar
+  group: ''
+- name: Current measurement delay (s)
+  summary: Delay in current measurement 2 * 50e-6 (default) | scalar
+  group: ''
+- name: Back EMF estimation time (s)
+  summary: Motor run duration when estimating back-EMF 5 (default) | scalar
+  group: ''
+- name: Back EMF estimation maximum speed limit (RPM)
+  summary: Motor speed when estimating back-EMF 3500 (default) | scalar
+  group: ''
+- name: Iq reference current as a ratio of rated motor current
+  summary: Reference current for FOC when estimating *Ke*, *J*, and *B* 0.2 (default) | scalar
+  group: ''
+- name: Specify current controller gains
+  summary: Specify PI current controller gains off (default) | on
+  group: ''
+- name: Proportional gain
+  summary: Proportional gain of PI controller 1 (default) | scalar
+  group: ''
+- name: Integral gain
+  summary: Integral gain of PI controller 1000 (default) | scalar
+  group: ''
+- name: Speed lower limit for inertia estimation (RPM)
+  summary: Lower speed limit during coast-down 1000 (default) | scalar
+  group: ''
+- name: Parameter estimation sample time (s)
+  summary: Sample time for parameter estimation 50e-6 (default) | scalar
+  group: ''
+```
 
 #### Motor and Inverter
 
@@ -231,7 +303,6 @@ estimation blocks for PMSMs:
 - Ld Estimator
 - Lq Estimator
 - PMSM Mechanical Parameter Estimator
-
 ## Libraries
 
 Motor Control Blockset / Parameter Estimation / PMSM Parameter Estimation

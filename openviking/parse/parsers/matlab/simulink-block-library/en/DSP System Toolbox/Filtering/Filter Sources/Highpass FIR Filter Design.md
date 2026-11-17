@@ -14,6 +14,29 @@ language: en
 # Highpass FIR Filter Design
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Filter order even positive integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Fcut
+  summary: Filter cutoff frequency positive scalar ≤ 1
+  direction: input
+  data_types: single | double
+- name: r
+  summary: Sidelobe attenuation in dB positive scalar
+  direction: input
+  data_types: single | double
+- name: beta
+  summary: Kaiser window parameter nonnegative scalar
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: Numerator coefficients row vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -105,8 +128,55 @@ The data type of this port depends on the value of the **Output data
 type** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Smooth tuned filter parameters
+  summary: Smooth tuned filter parameters off (default) | on
+  group: ''
+- name: Smoothing factor
+  summary: Smoothing factor 0.6 (default) | nonnegative scalar less than 1
+  group: ''
+- name: Specify filter order from input port
+  summary: Flag to specify filter order from input port off (default) | on
+  group: ''
+- name: Filter order (must be even)
+  summary: Filter order 100 (default) | even positive integer
+  group: ''
+- name: Filter maximum order (must be even)
+  summary: Maximum order of filter 100 (default) | even positive integer
+  group: ''
+- name: Specify cutoff frequency from input port
+  summary: Flag to specify cutoff frequency from input port off (default) | on
+  group: ''
+- name: Cutoff frequency
+  summary: Cutoff frequency 0.5 (default) | positive scalar ≤ 1
+  group: ''
+- name: Window function
+  summary: Window function Hann (default) | Hamming | Blackman | Blackman-Harris | Chebyshev | Kaiser
+  group: ''
+- name: Specify sidelobe attenuation from input port
+  summary: Flag to specify sidelobe attenuation from input port off (default) | on
+  group: ''
+- name: Sidelobe attenuation (dB)
+  summary: Sidelobe attenuation in dB 60 (default) | positive scalar
+  group: ''
+- name: Specify kaiser window parameter from input port
+  summary: Flag to specify Kaiser window parameter from input port off (default) | on
+  group: ''
+- name: Kaiser window parameter
+  summary: Kaiser window parameter 0.5 (default) | nonnegative scalar
+  group: ''
+- name: Sample time (−1 for inherited)
+  summary: Sample time in seconds -1 (default) | positive scalar | Inf
+  group: ''
+- name: Output data type
+  summary: Data type of filter coefficients double (default) | single
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Smooth tuned filter parameters** — Smooth tuned filter parameters `off` (default) | `on`
 
@@ -285,7 +355,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Sources

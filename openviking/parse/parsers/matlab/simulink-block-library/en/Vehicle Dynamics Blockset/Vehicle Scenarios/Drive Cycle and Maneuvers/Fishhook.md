@@ -14,6 +14,25 @@ language: en
 # Fishhook
 
 ## Ports
+```yaml
+ports:
+- name: xdot
+  summary: Vehicle longitudinal velocity scalar
+  direction: input
+  data_types: double
+- name: p
+  summary: Vehicle roll rate scalar
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: Driver reference data bus
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: Driver command data bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -86,8 +105,65 @@ Bus Assignment block to override the
 Block diagram where the Bus Assignment block overrides the TransModeCmd output from the Fishhook block.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: Start time 2 (default) | positive scalar
+  group: ''
+  block_parameter: tStart
+  values: 2 (default) | positive scalar
+- name: Longitudinal velocity setpoint, velRef
+  summary: Target velocity 30 (default) | positive scalar
+  group: ''
+  block_parameter: velRef
+  values: 30 (default) | positive scalar
+- name: Longitudinal velocity setpoint units, velRefUnit []
+  summary: Units mph (default)
+  group: ''
+  block_parameter: velRefUnit
+  values: mph (default) | character vector
+- name: Steer and countersteer speed, steerRate [deg/s]
+  summary: Steer and countersteer rate 720 (default) | positive scalar
+  group: ''
+  block_parameter: steerRate
+  values: 720 (default) | positive scalar
+- name: Steer amplitude, steerAmp [deg]
+  summary: Handwheel steer amplitude 540 (default) | positive scalar
+  group: ''
+  block_parameter: steerAmp
+  values: 540 (default) | positive scalar
+- name: Use roll rate to determine initial steer dwell time
+  summary: Option to use roll rate to determine initial steer dwell time off (default) | on
+  group: ''
+  block_parameter: pFdbk
+  values: off (default) | on
+- name: Initial dwell time, tDwellSteer [s]
+  summary: Initial dwell time 0.5 (default) | positive scalar
+  group: ''
+  block_parameter: tDwellSteer
+  values: 0.5 (default) | positive scalar
+- name: Countersteer dwell time, tDwellCntrSteer [s]
+  summary: Countersteer dwell time 3 (default) | positive scalar
+  group: ''
+  block_parameter: tDwellCntrSteer
+  values: 3 (default) | positive scalar
+- name: Return to center time, tZero [s]
+  summary: Time to return countersteer amplitude to zero steer 2 (default) | positive scalar
+  group: ''
+  block_parameter: tZero
+  values: 2 (default) | positive scalar
+- name: Roll rate countersteer initiation zero crossing threshold, pZero [deg/s]
+  summary: Roll rate tolerance 1.5 (default) | positive scalar
+  group: ''
+  block_parameter: pZero
+  values: 1.5 (default) | positive scalar
+- name: Initial steer direction
+  summary: Initial steer direction Right (default) | Left
+  group: ''
+  block_parameter: steerDir
+  values: Right (default) | Left
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -300,7 +376,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `steerDir` |
 | **Values:** | `Right` (default) | `Left` |
 | **Data Types:** | `character vector` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

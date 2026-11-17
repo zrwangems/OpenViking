@@ -15,6 +15,72 @@ chinese_source: worker-translation
 # FEM-Parameterized Synchronous Machine
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相复合电气
+  direction: conserving
+- name: a
+  summary: '*A* 相电气'
+  direction: conserving
+- name: b
+  summary: '*B* 相电气'
+  direction: conserving
+- name: c
+  summary: '*C* 相电气'
+  direction: conserving
+- name: ~1
+  summary: 定子正端连接电气
+  direction: conserving
+- name: ~2
+  summary: 定子负端连接电气
+  direction: conserving
+- name: a1
+  summary: '*a* 正端连接电气'
+  direction: conserving
+- name: b1
+  summary: '*b* 正端连接电气'
+  direction: conserving
+- name: c1
+  summary: '*c* 正端连接电气'
+  direction: conserving
+- name: a2
+  summary: '*a* 负端连接电气'
+  direction: conserving
+- name: b2
+  summary: '*b* 负端连接电气'
+  direction: conserving
+- name: c2
+  summary: '*c* 负端连接电气'
+  direction: conserving
+- name: n
+  summary: 中性相电气
+  direction: conserving
+- name: fd+
+  summary: 励磁绕组正极端子电气
+  direction: conserving
+- name: fd-
+  summary: 励磁绕组负极端子电气
+  direction: conserving
+- name: R
+  summary: 电机转子机械旋转
+  direction: conserving
+- name: C
+  summary: 电机机壳机械旋转
+  direction: conserving
+- name: HA
+  summary: 绕组 *A* 热端口热
+  direction: conserving
+- name: HB
+  summary: 绕组 *B* 热端口热
+  direction: conserving
+- name: HC
+  summary: 绕组 *C* 热端口热
+  direction: conserving
+- name: HR
+  summary: 转子热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -196,8 +262,96 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Thermal Ports** 部分中启用 **Model thermal effects** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 磁通与转矩
+- name: Winding type
+  summary: 定子绕组配置 Wye-wound（默认）| Delta-wound | Open-end
+  group: 磁通与转矩
+- name: Number of pole pairs
+  summary: 转子极对数 4（默认）| 正整数
+  group: 磁通与转矩
+- name: Park's convention for tabulated data
+  summary: 表格数据的 Park 约定 Q leads D, rotor angle measured from A-phase to D-axis（默认）| Q leads D, rotor angle measured from
+    A-phase to Q-axis | D leads Q, rotor angle measured from A-phase to D-axis | D leads Q, rotor angle measured from A-phase
+    to Q-axis
+  group: 磁通与转矩
+- name: Peak current magnitude vector, I
+  summary: 峰值电流幅值 [0, 100, 200] A（默认）| 非负值的行向量
+  group: 磁通与转矩
+- name: Current advance angle vector, B
+  summary: 电流超前角 [-180, -90, 0, 90, 180] deg（默认）| 实数值的行向量
+  group: 磁通与转矩
+- name: Field current vector, If
+  summary: 励磁电流 [0, 2, 4, 6, 8, 10] A（默认）| 非负值的行向量
+  group: 磁通与转矩
+- name: Rotor angle vector, theta
+  summary: 转子角度 [0, 15, 30, 45, 60, 75, 90] deg（默认）| 非负值的行向量
+  group: 磁通与转矩
+- name: A-phase flux linkage, F(I,B,If,theta)
+  summary: '*A* 相磁链 zeros(3, 5, 6, 7) Wb（默认）| 4-D 数组'
+  group: 磁通与转矩
+- name: Torque matrix, T(I,B,If,theta)
+  summary: 转矩 zeros(3, 5, 6, 7) N*m（默认）| 4-D 数组
+  group: 磁通与转矩
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 磁通与转矩
+- name: Expose neutral port
+  summary: 中性端口可见性 Off（默认）| On
+  group: 磁通与转矩
+- name: Stator zero-sequence inductance, L0
+  summary: 定子零序电感 0.00016 H（默认）| 正标量
+  group: 磁通与转矩
+- name: Stator resistance per phase
+  summary: 每相定子电阻 0.013 Ohm（默认）| 正标量
+  group: 电阻
+- name: Field winding resistance
+  summary: 励磁绕组电阻 0.1 Ohm（默认）| 正标量
+  group: 电阻
+- name: Resistance temperature coefficient
+  summary: 温度系数 3.93e-3 1/K（默认）| 正标量
+  group: 电阻
+- name: Measurement temperature
+  summary: 电阻测量温度 298.15 k（默认）| 非负标量
+  group: 电阻
+- name: Rotor hysteresis loss coefficient, k_hr(I,B,If)
+  summary: 转子磁滞损耗系数 zeros(3, 5, 6) W/Hz（默认）| 实数值的 3-D 数组
+  group: 铁耗
+- name: Rotor eddy current loss coefficient, k_Jr(I,B,If)
+  summary: 转子涡流损耗系数 zeros(3, 5, 6) W/Hz^2（默认）| 实数值的 3-D 数组
+  group: 铁耗
+- name: Rotor excess current loss coefficient, k_er(I,B,If)
+  summary: 转子 excess current 损耗系数 zeros(3, 5, 6) W/Hz^(3/2)（默认）| 实数值的 3-D 数组
+  group: 铁耗
+- name: Stator hysteresis loss coefficient, k_hs(I,B,If)
+  summary: 定子磁滞损耗系数 zeros(3, 5, 6) W/Hz（默认）| 实数值的 3-D 数组
+  group: 铁耗
+- name: Stator eddy current loss coefficient, k_Js(I,B,If)
+  summary: 定子涡流损耗系数 zeros(3, 5, 6) W/Hz^2（默认）| 实数值的 3-D 数组
+  group: 铁耗
+- name: Stator excess current loss coefficient, k_es(I,B,If)
+  summary: 定子 excess current 损耗系数 zeros(3, 5, 6) W/Hz^(3/2)（默认）| 实数值的 3-D 数组
+  group: 铁耗
+- name: Rotor inertia
+  summary: 惯量 0 kg*m^2（默认）| 非负标量
+  group: 机械
+- name: Rotor Damping
+  summary: 阻尼 0 N*m*s/rad（默认）| 非负标量
+  group: 机械
+- name: Model thermal effects
+  summary: 用于对热效应建模的选项 Off（默认）| On
+  group: 热端口
+- name: Thermal mass for each stator winding
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热端口
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）| 正标量
+  group: 热端口
+```
 
 ### 磁通与转矩
 
@@ -356,7 +510,6 @@ chinese_source: worker-translation
 ### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认）| 正标量
 
 转子的热质量。热质量是将转子温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Synchronous

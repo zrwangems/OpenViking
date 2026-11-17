@@ -14,6 +14,18 @@ language: en
 # Leadscrew
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Screw mechanical rotational
+  direction: conserving
+- name: N
+  summary: Nut mechanical translational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -30,8 +42,60 @@ nut.
 ### **H** — Heat flow thermal
 
 Thermal conserving port associated with heat flow.
-
 ## Parameters
+```yaml
+parameters:
+- name: Screw lead
+  summary: Nut displacement per revolution 0.015 m (default) | positive scalar
+  group: Main
+- name: Screw helix type
+  summary: Rotational directional sense Right-hand (default) | Left-hand
+  group: Main
+- name: Friction model
+  summary: Screw friction model No meshing losses — Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Friction parametrization
+  summary: Friction losses from nonideal meshing of gear threads Friction coefficient and geometrical parameters (default)
+    | Efficiencies
+  group: Meshing Losses
+- name: Lead angle
+  summary: Thread helix angle 15 deg (default) | positive scalar
+  group: Meshing Losses
+- name: Acme thread half angle
+  summary: Thread half-angle 14.5 deg (default) | positive scalar
+  group: Meshing Losses
+- name: Friction coefficient
+  summary: Thread friction coefficient 0.08 (default) | positive scalar
+  group: Meshing Losses
+- name: Screw-nut efficiency
+  summary: Efficiency from screw to nut 0.75 (default) | positive scalar in the range of (0,1]
+  group: Meshing Losses
+- name: Nut-screw efficiency
+  summary: Efficiency from nut to screw 0.45 (default) | positive scalar in the range of (0,1]
+  group: Meshing Losses
+- name: Temperature
+  summary: Array for tabular parameterization of efficiency [280 300 320] K (default) | vector
+  group: Meshing Losses
+- name: Screw-nut efficiency
+  summary: Array of screw-to-nut efficiencies [0.75 0.7 0.65] (default) | vector
+  group: Meshing Losses
+- name: Nut-screw efficiency
+  summary: Array of nut-to-screw efficiencies [0.5 0.45 0.4] (default) | vector
+  group: Meshing Losses
+- name: Power threshold
+  summary: Power below which numerical smoothing is applied 0.001 W (default) | positive scalar
+  group: Meshing Losses
+- name: Viscous friction coefficient
+  summary: Fluid dynamic friction coefficient 0 N\*m/(rad/s) (default) | positive scalar
+  group: Viscous Losses
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -210,7 +274,6 @@ temperature change.
 Component temperature at the start of simulation. The initial temperature
 alters the component efficiency according to an efficiency vector that you
 specify, affecting the starting meshing or friction losses.
-
 ## Libraries
 
 Simscape / Driveline / Gears / Rotational- Translational

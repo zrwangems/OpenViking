@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Fuel Cell
 
 ## 端口
+```yaml
+ports:
+- name: pfuel
+  summary: 燃料供应绝对压力，bar 物理信号
+  direction: input
+- name: pair
+  summary: 空气供应表压，bar 物理信号
+  direction: input
+- name: qfuel
+  summary: 燃料流量，l/min 物理信号
+  direction: input
+- name: qair
+  summary: 空气流量，l/min 物理信号
+  direction: input
+- name: +
+  summary: 正极端子 电气
+  direction: input
+- name: '-'
+  summary: 负极端子 电气
+  direction: input
+- name: H
+  summary: 热端口 热
+  direction: input
+```
 
 ### 输入
 
@@ -66,8 +90,64 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Model fidelity** 设置为 `Detailed with physical inputs`。
-
 ## 参数
+```yaml
+parameters:
+- name: Model fidelity
+  summary: 燃料电池保真度 Detailed with physical inputs（默认）| Simplified - nominal conditions
+  group: 主要
+- name: Open-circuit voltage
+  summary: 开路电压 65 V（默认）| 正标量
+  group: 主要
+- name: Tafel slope
+  summary: Tafel 斜率 0.23 V（默认）| 正标量
+  group: 主要
+- name: Internal resistance
+  summary: 内阻 0.05 Ohm（默认）| 正标量
+  group: 主要
+- name: Nominal exchange current
+  summary: 额定交换电流 80 A（默认）| 正标量
+  group: 主要
+- name: Collapse current
+  summary: 崩溃电流 200 A（默认）| 正标量
+  group: 主要
+- name: Number of cells per module
+  summary: 每个模块的电池数 65（默认）| 正标量
+  group: 主要
+- name: Module units (Series)
+  summary: 串联模块单元堆栈 10（默认）| 正标量
+  group: 主要
+- name: Nominal H2 pressure
+  summary: 额定氢气压力 1.5e5 Pa（默认）| 正标量
+  group: 供应
+- name: Nominal O2 pressure
+  summary: 额定氧气压力 1.0e5 Pa（默认）| 正标量
+  group: 供应
+- name: Concentration H2 in fuel (%)
+  summary: 燃料中的氢气浓度 99（默认）| 0 到 100 之间的整数
+  group: 供应
+- name: Concentration O2 in air (%)
+  summary: 燃料中的氧气浓度 21（默认）| 0 到 100 之间的整数
+  group: 供应
+- name: Concentration vapor in air (%)
+  summary: 空气中的蒸汽浓度 1（默认）| 0 到 100 之间的整数
+  group: 供应
+- name: Model activation delay
+  summary: 活化延迟建模选项 No（默认）| Yes
+  group: 动态
+- name: Sum of activation and concentration resistance
+  summary: 活化电阻与浓差电阻之和 0.005 Ohm（默认）| 正标量
+  group: 动态
+- name: Time constant
+  summary: 时间常数 10 s（默认）| 正标量
+  group: 动态
+- name: Nominal temperature
+  summary: 额定温度 293.15 K（默认）| 标量
+  group: 热
+- name: Thermal mass
+  summary: 与热端口 H 关联的热质量 30000 J/K（默认）| 正标量
+  group: 热
+```
 
 ### 主要
 
@@ -200,7 +280,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Model fidelity** 设置为 `Detailed with physical inputs`。
-
 ## 所属库
 
 Simscape / Electrical / Sources

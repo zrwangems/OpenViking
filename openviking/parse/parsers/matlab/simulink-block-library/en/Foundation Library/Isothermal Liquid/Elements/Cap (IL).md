@@ -14,6 +14,12 @@ language: en
 # Cap (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Mass flow rate is zero isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,11 +27,12 @@ language: en
 
 Isothermal liquid conserving port where the mass flow rate is equal to
 zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

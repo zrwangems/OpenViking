@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Disc Clutch
 
 ## 端口
+```yaml
+ports:
+- name: Press
+  summary: 施加的离合器压力 scalar
+  direction: input
+- name: BTrq
+  summary: 施加的输入扭矩 scalar
+  direction: input
+- name: FTrq
+  summary: 施加的负载扭矩 scalar
+  direction: input
+- name: B
+  summary: 施加的驱动轴角速度和扭矩双向连接端口
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: BSpd
+  summary: 角速度 scalar
+  direction: output
+- name: FSpd
+  summary: 角速度 scalar
+  direction: output
+- name: F
+  summary: 输出速度和扭矩双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -107,8 +134,85 @@ N·m。
 
 要创建此端口，请将 **Port Configuration** 设置为
 `Two-way connection`。
-
 ## 参数
+```yaml
+parameters:
+- name: Port Configuration
+  summary: 指定配置 Simulink（默认）| Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink（默认）| Two-way connection
+- name: Clutch force equivalent net radius, Reff
+  summary: 半径 1（默认）| 正标量
+  group: ''
+  block_parameter: Reff
+  values: 1（默认）| 正标量
+- name: Number of disks, Ndisk
+  summary: 比值 1（默认）| 正标量
+  group: ''
+  block_parameter: Ndisk
+  values: 1（默认）| 正标量
+- name: 有效施加压力面积，Aeff
+  summary: 压力面积 .01（默认）| 正标量
+  group: ''
+  block_parameter: Aeff
+  values: .01（默认）| 正标量
+- name: 接合压力阈值，Peng
+  summary: 压力阈值 0（默认）| 标量
+  group: ''
+  block_parameter: Peng
+  values: 0（默认）| 标量
+- name: 输入轴惯量，Jin
+  summary: 惯量 .1（默认）| 正标量
+  group: ''
+  block_parameter: Jin
+  values: .1（默认）| 正标量
+- name: 输出轴惯量，Jout
+  summary: 惯量 .1（默认）| 正标量
+  group: ''
+  block_parameter: Jout
+  values: .1（默认）| 正标量
+- name: 动摩擦系数，muk
+  summary: 系数 .3（默认）| 正标量
+  group: ''
+  block_parameter: muk
+  values: .3（默认）| 正标量
+- name: 静摩擦系数，mus
+  summary: 系数 .5（默认）| 正标量
+  group: ''
+  block_parameter: mus
+  values: .5（默认）| 正标量
+- name: 输入轴粘性阻尼，bin
+  summary: 阻尼 .001（默认）| 正标量
+  group: ''
+  block_parameter: bin
+  values: .001（默认）| 正标量
+- name: 输出轴粘性阻尼，bout
+  summary: 阻尼 .001（默认）| 正标量
+  group: ''
+  block_parameter: bout
+  values: .001（默认）| 正标量
+- name: 初始输入轴速度，win_o
+  summary: 初始速度 0（默认）| scalar
+  group: ''
+  block_parameter: win_o
+  values: 0（默认）| scalar
+- name: 初始输出轴速度，wout_o
+  summary: 初始速度 0（默认）| scalar
+  group: ''
+  block_parameter: wout_o
+  values: 0（默认）| scalar
+- name: 离合器致动时间常数，tauC
+  summary: 常数 .01（默认）| scalar
+  group: ''
+  block_parameter: tauC
+  values: .01（默认）| scalar
+- name: 以离合器锁止状态开始仿真
+  summary: 选择以初始锁止离合器 off（默认）| on
+  group: ''
+  block_parameter: InitiallyLocked
+  values: off（默认）| on
+```
 
 #### 模块选项
 
@@ -395,7 +499,6 @@ N·m。
 | **参数：** | `InitiallyLocked` |
 | **值：** | `off`（默认）| `on` |
 | **数据类型：** | `character vector` |
-
 ## 所属库
 
 Powertrain Blockset / Drivetrain / Couplings

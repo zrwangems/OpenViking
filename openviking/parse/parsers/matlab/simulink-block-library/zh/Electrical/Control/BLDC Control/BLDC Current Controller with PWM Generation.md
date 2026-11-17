@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # BLDC Current Controller with PWM Generation
 
 ## 端口
+```yaml
+ports:
+- name: IsRef
+  summary: 参考电流标量
+  direction: input
+  data_types: single | double
+- name: Is
+  summary: 测量电流标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 外部复位标量
+  direction: input
+  data_types: single | double
+- name: Hall
+  summary: 霍尔传感器向量
+  direction: input
+  data_types: single | double
+- name: Direction
+  summary: 电机方向标量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 门极脉冲向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -54,8 +81,37 @@ chinese_source: worker-translation
 确定所连接模块中开关行为的脉冲波形。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain
+  summary: 控制器比例增益，*Kp* 1（默认）| 正标量
+  group: 控制参数
+- name: Integral gain
+  summary: 积分增益，*Ki* 5（默认）| 正标量
+  group: 控制参数
+- name: Anti-windup gain
+  summary: 抗积分饱和增益，*Kaw* 1（默认）| 正标量
+  group: 控制参数
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: 控制参数
+- name: Discretization sample time
+  summary: 离散化采样时间 0.001（默认）| 正标量
+  group: 控制参数
+- name: Enable zero cancellation
+  summary: 前馈零点对消 off（默认）| on
+  group: 控制参数
+- name: Carrier counter
+  summary: 载波计数器模型 Up（默认）| Down | Up-Down
+  group: PWM Generator
+- name: Timer period (s)
+  summary: PWM 定时器周期 0.001（默认）| 正标量
+  group: PWM Generator
+- name: Fundamental sample time (s)
+  summary: PWM 生成采样时间 0.0001（默认）| 正标量
+  group: PWM Generator
+```
 
 ### 控制参数
 
@@ -122,7 +178,6 @@ chinese_source: worker-translation
 
 - *Ts\_pwm* 是 **Fundamental sample time (s)**。
 - *Tper* 是 **Timer period (s)**。
-
 ## 所属库
 
 Simscape / Electrical / Control / BLDC Control

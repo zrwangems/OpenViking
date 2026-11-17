@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Complex Bandpass Decimator
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入数据向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Fc
+  summary: 中心频率实数标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 滤波后的输出向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -74,8 +89,58 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter specification
+  summary: 滤波器设计参数 Decimation factor（默认）| Bandwidth | Decimation factor and bandwidth
+  group: ''
+- name: Decimation factor
+  summary: 抽取因子 2（默认）| 正整数
+  group: ''
+- name: Bandwidth
+  summary: 感兴趣频带的宽度 0.2268（默认）| 实数正标量
+  group: ''
+- name: Specify center frequency from input port
+  summary: 指定中心频率的来源 off（默认）| on
+  group: ''
+- name: Center frequency
+  summary: 所需频带的中心频率 0（默认）| 实数标量
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: 以 dB 表示的阻带衰减 80（默认）| 正标量
+  group: ''
+- name: Passband ripple (dB)
+  summary: 以 dB 表示的通带纹波 1（默认）| 正标量
+  group: ''
+- name: Transition width
+  summary: 过渡宽度 0.0045（默认）| 正标量
+  group: ''
+- name: Reduce number of complex coefficients
+  summary: 最小化复数系数的数量 on（默认）| off
+  group: ''
+- name: Mix signal to baseband
+  summary: 将信号混频到基带 on（默认）| off
+  group: ''
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 以 Hz 表示的输入采样率 44100（默认）| 实数正标量
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号的任意帧长度 off（默认）| on
+  group: ''
+- name: View Filter Response
+  summary: 可视化频率响应 按钮
+  group: ''
+- name: View Info
+  summary: 查看滤波器信息 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Filter specification** — 滤波器设计参数 `Decimation factor`（默认）| `Bandwidth` | `Decimation factor and bandwidth`
 
@@ -231,7 +296,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码就会在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

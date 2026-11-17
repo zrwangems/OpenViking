@@ -14,6 +14,12 @@ language: en
 # PS Ramp
 
 ## Ports
+```yaml
+ports:
+- name: O
+  summary: Output physical signal, typed by the block parameter values and units physical signal
+  direction: output
+```
 
 ### Output
 
@@ -27,8 +33,22 @@ values.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Slope
+  summary: Signal increase or decrease rate 1 1/s (default) | scalar | vector | matrix
+  group: ''
+- name: Start time
+  summary: Time offset 0 s (default) | scalar
+  group: ''
+- name: Initial output
+  summary: Initial signal value and unit 0 1 (default) | scalar | vector | matrix
+  group: ''
+- name: Enable zero-crossing detection
+  summary: Whether to enable zero-crossing detection on (default) | off
+  group: ''
+```
 
 ### **Slope** — Signal increase or decrease rate `1 1/s` (default) | scalar | vector | matrix
 
@@ -76,7 +96,6 @@ and Unit Definitions.
 
 Clear to disable zero-crossing detection and increase simulation speed. For more
 information, see Managing Zero Crossings in Simscape Models.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Sources

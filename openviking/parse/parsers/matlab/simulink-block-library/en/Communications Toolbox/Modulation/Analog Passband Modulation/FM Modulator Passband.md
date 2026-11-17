@@ -14,6 +14,17 @@ language: en
 # FM Modulator Passband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -34,8 +45,19 @@ modulated signal.
 This port is unnamed on the block.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: Carrier frequency in Hz 300 (default) | positive scalar
+  group: ''
+- name: Initial phase (rad)
+  summary: Initial phase offset in radians 0 (default) | scalar
+  group: ''
+- name: Frequency deviation (Hz)
+  summary: Frequency deviation of carrier frequency in Hz 50 (default) | scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -61,7 +83,6 @@ Initial phase offset of the carrier in radians, specified as a scalar.
 
 Frequency deviation of the carrier frequency in Hz, specified as a scalar. Also known as
 the *variation* in the frequency.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Analog Baseband Modulation

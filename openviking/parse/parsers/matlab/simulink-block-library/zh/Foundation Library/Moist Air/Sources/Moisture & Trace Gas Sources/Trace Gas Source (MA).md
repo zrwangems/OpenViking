@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Trace Gas Source (MA)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量控制信号，kg/s 物理信号
+  direction: input
+- name: T
+  summary: 添加的示踪气体温度，K 物理信号
+  direction: input
+- name: S
+  summary: 注入或提取示踪气体湿空气源
+  direction: input
+```
 
 ### 输入
 
@@ -39,8 +51,22 @@ chinese_source: worker-translation
 ### **S** — 注入或提取示踪气体湿空气源
 
 将此端口连接到具有有限湿空气容积的模块的端口 **S**，以通过该模块添加或移除示踪气体。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 选择示踪气体质量流量和温度是否可以在仿真期间变化 Controlled（默认）| Constant
+  group: ''
+- name: Rate of added trace gas
+  summary: 通过源的恒定质量流量 0 kg/s（默认）
+  group: ''
+- name: Added trace gas temperature specification
+  summary: 选择添加的示踪气体温度的指定方法 Atmospheric temperature（默认）| Specified temperature
+  group: ''
+- name: Temperature of added trace gas
+  summary: 示踪气体温度 293.15 K（默认）
+  group: ''
+```
 
 ### **Source type** — 选择示踪气体质量流量和温度是否可以在仿真期间变化 `Controlled`（默认）| `Constant`
 
@@ -75,7 +101,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Added trace gas temperature specification** 设置为 `Specified temperature`。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Sources / Moisture & Trace Gas Sources

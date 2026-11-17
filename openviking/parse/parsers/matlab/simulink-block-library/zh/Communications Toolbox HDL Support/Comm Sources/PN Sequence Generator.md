@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # PN Sequence Generator
 
 ## 端口
+```yaml
+ports:
+- name: Mask
+  summary: 输出掩码二进制向量
+  direction: input
+  data_types: double | uint8 | ufix1
+- name: oSiz
+  summary: 输出大小整数
+  direction: input
+  data_types: double
+- name: Ref
+  summary: 参考输入列向量
+  direction: input
+  data_types: double
+- name: Rst
+  summary: 复位序列生成器 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Out
+  summary: 伪随机噪声序列二进制向量
+  direction: output
+```
 
 ### 输入
 
@@ -62,8 +84,52 @@ chinese_source: worker-translation
 ### **Out** — 伪随机噪声序列二进制向量
 
 PN 序列，以二进制向量形式返回。输出的数据类型由 **Output data type** 指定。
-
 ## 参数
+```yaml
+parameters:
+- name: Generator polynomial
+  summary: 生成多项式 'z^6 + z + 1'（默认）| 字符向量 | 字符串标量 | 二进制行向量 | 整数向量
+  group: ''
+- name: Initial states
+  summary: 初始移位寄存器状态 [0 0 0 0 0 1]（默认）| 二进制行向量
+  group: ''
+- name: Output mask source
+  summary: 输出掩码来源 Dialog parameter（默认）| Input port
+  group: ''
+- name: Output mask vector (or scalar shift value)
+  summary: 输出掩码向量或标量移位值 0（默认）| 整数标量 | 二进制向量
+  group: ''
+- name: Output variable-size signals
+  summary: 输出可变长度信号的选项 off（默认）| on
+  group: ''
+- name: Sample time
+  summary: 输出采样时间 1（默认）| -1 | 正标量
+  group: ''
+- name: Samples per frame
+  summary: 每帧采样数 1（默认）| 正整数
+  group: ''
+- name: Maximum output size source
+  summary: 最大输出大小来源 Dialog parameter（默认）| Inherit from reference port
+  group: ''
+- name: Maximum output size
+  summary: 最大输出大小 [10 1]（默认）| 形式为 [*n* 1] 的向量
+  group: ''
+- name: Reset on nonzero input
+  summary: 非零输入时复位 off（默认）| on
+  group: ''
+- name: Enable bit-packed outputs
+  summary: 启用位打包输出 off（默认）| on
+  group: ''
+- name: Number of packed bits
+  summary: 打包位数 8（默认）| [1, 32] 范围内的整数
+  group: ''
+- name: Interpret bit-packed values as signed
+  summary: 将位打包值解释为有符号 off（默认）| on
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| boolean | Smallest unsigned integer
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -184,7 +250,6 @@ Sample Timing。
 
 - 清除 **Enable bit-packed outputs** 时，输出数据类型可以指定为 `double`、`boolean` 或 `Smallest unsigned integer`。当 **Output data type** 参数设置为 `Smallest unsigned integer` 时，输出数据类型根据模型 Configuration Parameters 对话框的 **Hardware Implementation** 窗格中使用的设置进行选择。如果在 **Hardware Implementation** 窗格中选择 `ASIC/FPGA`，则输出数据类型为 `ufix(1)` = 理想最小一位大小。对于所有其他选择，它是具有足够容纳一位的最小可用字长的无符号整数，通常对应于 char 的大小（例如 `uint8`）。
 - 选择 **Enable bit-packed outputs** 时，输出数据类型可以指定为 `double` 或 `Smallest unsigned integer`。当 **Output data type** 参数设置为 `Smallest unsigned integer` 时，输出数据类型根据 **Interpret bit-packed values as signed** 和 **Number of packed bits** 参数以及模型 Configuration Parameters 对话框的 **Hardware Implementation** 窗格中使用的设置进行选择。如果在 **Hardware Implementation** 窗格中选择 `ASIC/FPGA`，则输出数据类型是基于 **Interpret bit-packed values as signed** 参数的理想最小 *n* 位大小，例如 `sfix(n)` 或 `ufix(n)`。对于所有其他选择，它是具有足够容纳 *n* 位的最小可用字长的有符号或无符号整数。
-
 ## 所属库
 
 Communications Toolbox / Comm Sources / Sequence Generators Communications Toolbox HDL Support / Comm Sources

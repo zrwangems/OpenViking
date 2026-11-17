@@ -14,6 +14,17 @@ language: en
 # Polynomial Stability Test
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input polynomial vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Polynomial stability test output scalar | 1-by-*N* matrix
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -56,8 +67,13 @@ magnitude of at least one solution to
 or equal to 1.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Simulate using** — Type of simulation to run `Interpreted execution` (default) | `Code generation`
 
@@ -70,7 +86,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Polynomial Functions

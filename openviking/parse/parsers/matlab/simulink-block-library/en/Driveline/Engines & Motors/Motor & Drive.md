@@ -14,6 +14,30 @@ language: en
 # Motor & Drive
 
 ## Ports
+```yaml
+ports:
+- name: Tr
+  summary: Reference torque demand, N\*m physical signal
+  direction: input
+- name: W
+  summary: Mechanical rotational speed, rad/s physical signal
+  direction: output
+- name: +
+  summary: Positive electrical DC supply electrical
+  direction: conserving
+- name: '-'
+  summary: Negative electrical DC supply electrical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical rotational
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical rotational
+  direction: conserving
+- name: H
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -58,8 +82,34 @@ contribute to the heat flow through this port.
 
 To enable this port, set **Thermal port** to
 `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum torque
+  summary: Torque to define torque-speed envelope boundary 400 N*m (default) | positive scalar
+  group: ''
+- name: Maximum power
+  summary: Power to define torque-speed envelope boundary 200 kW (default) | positive scalar
+  group: ''
+- name: Torque control time constant, Tc
+  summary: Output torque time step 0.02 s (default) | positive scalar
+  group: ''
+- name: Motor and driver overall efficiency (percent)
+  summary: Energy efficiency for given speed and torque 100 (default) | scalar in the range (0,100]
+  group: ''
+- name: Speed at which efficiency is measured
+  summary: Given speed for efficiency measurement 3750 rpm (default) | positive scalar
+  group: ''
+- name: Torque at which efficiency is measured
+  summary: Given torque for efficiency measurement 100 N*m (default) | positive scalar
+  group: ''
+- name: Thermal port
+  summary: Simulate thermal losses in the mass of the electrical wiring Omit (default) | Model
+  group: ''
+- name: Thermal mass
+  summary: Tendency of the wiring to retain heat 100 J/K (default) | positive scalar
+  group: ''
+```
 
 ### **Maximum torque** — Torque to define torque-speed envelope boundary `400` `N*m` (default) | positive scalar
 
@@ -107,7 +157,6 @@ raise the temperature by one temperature unit.
 
 To enable this parameter, set **Thermal port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors

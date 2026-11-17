@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Constant Volume Chamber (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 腔室入口两相流体
+  direction: conserving
+- name: B
+  summary: 腔室入口两相流体
+  direction: conserving
+- name: C
+  summary: 腔室入口两相流体
+  direction: conserving
+- name: D
+  summary: 腔室入口两相流体
+  direction: conserving
+- name: H
+  summary: 热端口 热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -53,8 +71,52 @@ chinese_source: worker-translation
 ### **H** — 热端口 热
 
 热守恒端口，腔室中的流体通过该端口与热网络交换热量。
-
 ## 参数
+```yaml
+parameters:
+- name: Chamber volume
+  summary: 腔室内流体体积 0.001 m^3（默认）| 正标量
+  group: 主要
+- name: Number of ports
+  summary: 腔室中的入口端口数 1（默认）| 2 | 3 | 4
+  group: 主要
+- name: Cross-sectional area at port A
+  summary: 垂直于流动方向的入口面积 0.01 m^2（默认）| 正标量
+  group: 主要
+- name: Cross-sectional area at port B
+  summary: 垂直于流动方向的入口面积 0.01 m^2（默认）| 正标量
+  group: 主要
+- name: Cross-sectional area at port C
+  summary: 垂直于流动方向的入口面积 0.01 m^2（默认）| 正标量
+  group: 主要
+- name: Cross-sectional area at port D
+  summary: 垂直于流动方向的入口面积 0.01 m^2（默认）| 正标量
+  group: 主要
+- name: 初始流体能量设定
+  summary: 用于定义初始条件的热力学变量 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: 效应和初始条件
+- name: 初始压力
+  summary: 仿真开始时的绝对压力 0.101325 MPa（默认）| 正标量
+  group: 效应和初始条件
+- name: 初始温度
+  summary: 仿真开始时的绝对温度 293.15 K（默认）| 正标量
+  group: 效应和初始条件
+- name: 初始蒸汽干度
+  summary: 仿真开始时蒸汽的质量分数 0.5（默认）| 0 到 1 之间的无量纲标量
+  group: 效应和初始条件
+- name: 初始蒸汽空隙率
+  summary: 仿真开始时蒸汽的体积分数 0.5（默认）| 0 到 1 之间的无量纲标量
+  group: 效应和初始条件
+- name: 初始比焓
+  summary: 仿真开始时的比焓 1500 kJ/kg（默认）| 正标量
+  group: 效应和初始条件
+- name: 初始比内能
+  summary: 仿真开始时的比内能 1500 kJ/kg（默认）| 正标量
+  group: 效应和初始条件
+- name: 相变时间常数
+  summary: 相变事件的特征持续时间 0.1 s（默认）| 正标量
+  group: 效应和初始条件
+```
 
 ### 主要
 
@@ -159,7 +221,6 @@ chinese_source: worker-translation
 ### **相变时间常数** — 相变事件的特征持续时间 `0.1 s`（默认）| 正标量
 
 腔室内发生的相变事件达到平衡的特征时间。增大此参数可减慢相变速率，减小此参数可加快相变速率。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

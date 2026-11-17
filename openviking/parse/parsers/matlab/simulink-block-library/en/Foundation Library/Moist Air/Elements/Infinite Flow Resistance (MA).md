@@ -14,6 +14,15 @@ language: en
 # Infinite Flow Resistance (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Mass flow rate and energy flow rate are zero moist air
+  direction: conserving
+- name: B
+  summary: Mass flow rate and energy flow rate are zero moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,11 +35,12 @@ rate are both equal to zero.
 
 Moist air conserving port where the mass flow rate and energy flow
 rate are both equal to zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Elements

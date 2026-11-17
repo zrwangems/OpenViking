@@ -14,6 +14,21 @@ language: en
 # Median Filter
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: PVal
+  summary: Pad value scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: Output image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -49,8 +64,25 @@ Output image, returned as a matrix. The dimensions of the median-filtered output
 image are specified by the **Output size** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Neighborhood size
+  summary: Neighborhood window size [3 3] (default) | positive integer | two-element vector of positive integers
+  group: ''
+- name: Output size
+  summary: Output sizing method Same as input port I (default) | Valid
+  group: ''
+- name: Padding options
+  summary: Padding method Symmetric (default) | Constant | Replicate | Circular
+  group: ''
+- name: Pad value source
+  summary: Source of constant padding value Specify via dialog (default) | Input port
+  group: ''
+- name: Pad value
+  summary: Pad value 0 (default) | scalar
+  group: ''
+```
 
 ### **Neighborhood size** — Neighborhood window size `[3 3]` (default) | positive integer | two-element vector of positive integers
 
@@ -124,7 +156,6 @@ To enable this port:
   `Constant`.
 - Set the **Pad value source** parameter to
   `Specify via dialog`.
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement Computer Vision Toolbox / Filtering

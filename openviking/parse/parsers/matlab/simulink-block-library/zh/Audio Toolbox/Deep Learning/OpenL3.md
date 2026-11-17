@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # OpenL3
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 频谱图矩阵 | 4 维数组
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 嵌入矩阵
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -35,8 +46,22 @@ chinese_source: worker-translation
 输出嵌入，以 *K*×*L* 矩阵形式返回，其中 *K* 是输入频谱图的数量，*L* 由 **Embedding length** 参数指定。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Spectrum type
+  summary: 频谱类型 Mel (128 bands)（默认）| Mel (256 bands) | Linear
+  group: ''
+- name: Content type
+  summary: 音频内容类型 Environmental sounds（默认）| Musical sounds
+  group: ''
+- name: Embedding length
+  summary: 输出嵌入长度 512（默认）| 6144
+  group: ''
+- name: Mini-batch size
+  summary: 小批量大小 128（默认）| 正整数
+  group: ''
+```
 
 ### **Spectrum type** — 频谱类型 `Mel (128 bands)`（默认）| `Mel (256 bands)` | `Linear`
 
@@ -53,7 +78,6 @@ chinese_source: worker-translation
 ### **Mini-batch size** — 小批量大小 `128`（默认）| 正整数
 
 用于预测的小批量大小，指定为正整数。较大的小批量大小需要更多内存，但可以加快预测速度。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

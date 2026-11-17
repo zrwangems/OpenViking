@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Network Coupler (Flexible Shaft)
 
 ## 端口
+```yaml
+ports:
+- name: '1'
+  summary: 将此端口连接到变步长网络，或连接到具有较小采样时间的定步长网络 机械旋转
+  direction: unspecified
+- name: '2'
+  summary: 将此端口连接到具有较大采样时间的定步长网络 机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -26,8 +35,59 @@ chinese_source: worker-translation
 ### **2** — 将此端口连接到具有较大采样时间的定步长网络 机械旋转
 
 如果其中一个耦合网络以变步长运行，请将 Network Coupler (Flexible Shaft) 模块的端口 **2** 连接到定步长网络。如果两个网络都以定步长运行，请将此端口连接到具有较大采样时间的网络。
-
 ## 参数
+```yaml
+parameters:
+- name: Separate using
+  summary: 选择分离类型 an actual shaft compliance（默认）| an added numerical compliance
+  group: 主要
+- name: Shaft stiffness (Nm/rad)
+  summary: 指定柔性轴的刚度 250（默认）| 正标量
+  group: 主要
+- name: Shaft damping (Nm/(rad/s))
+  summary: 指定柔性轴的阻尼系数 20（默认）| 正标量
+  group: 主要
+- name: Sampling type
+  summary: 选择耦合网络的采样类型场景 Variable step at ports 1 and 2（默认）| 端口 1 为可变步长，端口处为固定步长 2 | Fixed step both ports with common sample
+    time | 两个端口均为固定步长，且在端口处采样更快 1
+  group: 主要
+- name: Separator time constant (s)
+  summary: 指定滤波器时间常数 0.001（默认）| 正标量
+  group: 主要
+- name: Port 1 network discrete sample time (s)
+  summary: 指定网络 1 的采样时间 0.001（默认）| 正标量
+  group: 主要
+- name: Port 2 network discrete sample time (s)
+  summary: 指定网络 2 的采样时间 0.01（默认）| 正标量
+  group: 主要
+- name: Use prediction when connecting fixed step to variable step
+  summary: 允许您启用预测（离散->连续）算法 关（默认）| 开
+  group: 主要
+- name: Use smoothing when connecting variable step to fixed step
+  summary: 允许您启用平滑（连续->离散）算法 关（默认）| 开
+  group: 主要
+- name: Smoothing time constant (s)
+  summary: 指定一阶滤波器的时间常数 0.01（默认）| 正标量
+  group: 主要
+- name: Use prediction when connecting slow to fast sample times
+  summary: 允许您启用预测（慢->快）算法 关（默认）| 开
+  group: 主要
+- name: Use smoothing when connecting fast to slow sample times
+  summary: 允许您启用平滑（快->慢）算法 关（默认）| 开
+  group: 主要
+- name: Number of samples over which to smooth
+  summary: 指定用于求平均的样本数 1（默认）| 正标量
+  group: 主要
+- name: Approximate inertia at port 1 (kg\*m^2)
+  summary: 指定端口 1 处的近似惯量 1（默认）| 正标量
+  group: 分析
+- name: Approximate inertia at port 2 (kg\*m^2)
+  summary: 指定端口 2 处的近似惯量 1（默认）| 正标量
+  group: 分析
+- name: Initial transmitted torque (Nm)
+  summary: 指定轴传递的初始扭矩 0（默认）| 正标量
+  group: 初始条件
+```
 
 ### 主要
 
@@ -170,7 +230,6 @@ fast to slow sample times** 复选框。
 ### **Initial transmitted torque (Nm)** — 指定轴传递的初始扭矩 `0`（默认）| 正标量
 
 指定轴传递的扭矩的初始条件，以 N\*m 为单位。
-
 ## 所属库
 
 Simscape / Utilities / Network Couplers

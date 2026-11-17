@@ -14,6 +14,25 @@ language: en
 # Gain Scheduled Lead-Lag
 
 ## Ports
+```yaml
+ports:
+- name: e
+  summary: Filter input scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: a
+  summary: Numerator coefficient scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: b
+  summary: Denominator coefficient positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: u
+  summary: Filter output scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -41,8 +60,17 @@ Denominator coefficient, specified as a positive scalar.
 Filter output, specified as a scalar.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial state, x_initial
+  summary: Initial internal state 0 (default) | vector
+  group: ''
+  block_parameter: initial state, x_initial
+  type: character vector
+  values: vector
+  default: '''0'''
+```
 
 ### **Initial state, x\_initial** — Initial internal state `0` (default) | vector
 
@@ -60,7 +88,6 @@ u|t=0=x\_initial+aeb
 | **Type**: character vector |
 | **Values**: vector |
 | **Default**: `'0'` |
-
 ## Libraries
 
 Aerospace Blockset / GNC / Control

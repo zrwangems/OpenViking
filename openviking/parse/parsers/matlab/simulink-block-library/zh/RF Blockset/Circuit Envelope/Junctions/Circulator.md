@@ -15,10 +15,30 @@ chinese_source: worker-translation
 # Circulator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Select component
+  summary: 环行器方向 Circulator clockwise（默认）| Circulator counter clockwise | Tee H-plane (S11=0) | Reciprocal phase shifter
+  group: ''
+- name: Reference impedances (Ohm)
+  summary: 环行器的参考阻抗 50（默认）| 正标量 | 三元组向量
+  group: ''
+- name: Phase shift, ports 1 and 2 (rad)
+  summary: 端口 1 和端口 2 中信号的相位偏移角度 0（默认）| 正标量
+  group: ''
+- name: Phase shift, ports 3 (rad)
+  summary: 端口 3 中信号的相位偏移角度 0（默认）| 正标量
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 将 RF 电路端子接地 on（默认）| off
+  group: ''
+```
 
 ### **Select component** — 环行器方向 `Circulator clockwise`（默认）| `Circulator counter clockwise` | `Tee H-plane (S11=0)` | `Reciprocal phase shifter`
 
@@ -69,7 +89,6 @@ R2025b 中未记录。
 要暴露负极端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其它部分。
 
 默认情况下，此选项处于选中状态。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Junctions

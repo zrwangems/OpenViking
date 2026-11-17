@@ -14,6 +14,33 @@ language: en
 # LMS Update
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data input scalar | column vector
+  direction: input
+  data_types: single | double
+- name: Error
+  summary: Error scalar | column vector
+  direction: input
+  data_types: single | double
+- name: Mu
+  summary: Filter adaptation step size 0.1 (default) | scalar in the range [0,1]
+  direction: input
+  data_types: single | double
+- name: Adapt
+  summary: Update filter weights real scalar | vector
+  direction: input
+  data_types: single | double | Boolean | int16 | int32 | int64 | int8 | uint16 | uint32 | uint64 | uint8
+- name: Reset
+  summary: Reset filter weights real scalar
+  direction: input
+  data_types: single | double | Boolean | int16 | int32 | int64 | int8 | uint16 | uint32 | uint64 | uint8
+- name: Wts
+  summary: Filter weights row vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -132,8 +159,43 @@ where *N* is the number of adaptive filters, and
 *L* is the length of each filter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Algorithm
+  summary: LMS adaptive algorithm LMS (default) | Normalized LMS | Sign—Error LMS | Sign—Data LMS | Sign—Sign LMS
+  group: ''
+- name: Filter length
+  summary: Length of the filter 32 (default) | positive integer
+  group: ''
+- name: Number of adaptive filters
+  summary: Number of adaptive filters 1 (default) | positive integer
+  group: ''
+- name: Step size source
+  summary: Method to specify the step size Property (default) | Input port
+  group: ''
+- name: Step size (mu)
+  summary: Size of the adaptation step 0.1 (default) | nonnegative scalar
+  group: ''
+- name: Leakage factor (0 to 1)
+  summary: Leakage factor 1.0 (default) | real scalar in the range [0,1]
+  group: ''
+- name: Initial value of filter weights
+  summary: Initial value of filter weights 0 (default) | real scalar | vector | matrix
+  group: ''
+- name: Adaptive filter mode
+  summary: Adaptive filter mode Tapped delay-line FIR filter (default) | Adaptive linear combiner
+  group: ''
+- name: Enable adapt input
+  summary: Update the filter weights off (default) | on
+  group: ''
+- name: Enable reset input
+  summary: Reset the filter weights off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Algorithm** — LMS adaptive algorithm `LMS` (default) | `Normalized LMS` | `Sign—Error LMS` | `Sign—Data LMS` | `Sign—Sign LMS`
 
@@ -275,7 +337,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Adaptive Filters

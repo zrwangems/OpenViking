@@ -14,16 +14,20 @@ language: en
 # Flux Source
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has two magnetic conserving ports associated with
 its terminals.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Constant flux**
 :   Output flux. You can specify any real value. The default value
     is `0.001` Wb.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -14,6 +14,23 @@ language: en
 # Entity Transport Delay
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity SimEvents entity
+  direction: input
+- name: ti
+  summary: Instantaneous delay scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | bus
+- name: Port_1
+  summary: Delayed entity SimEvents entity
+  direction: output
+- name: n
+  summary: Number of delayed entities real scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -52,8 +69,24 @@ To enable this port, enable the **Output number of entities in block,
 n** parameter
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacity
+  summary: Specify the capacity of the block inf (default) | scalar
+  group: ''
+  block_parameter: Capacity
+  type: character vector
+  values: '''inf'' | real scalar'
+  default: '''inf'''
+- name: Output number of entities in block, n
+  summary: Outputs the number of delayed entities present in the block off (default) | on
+  group: ''
+  block_parameter: ShowNumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Capacity** — Specify the capacity of the block inf (default) | scalar
 
@@ -80,7 +113,6 @@ Number of entities present in the block that are being delayed.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Continuous SimEvents

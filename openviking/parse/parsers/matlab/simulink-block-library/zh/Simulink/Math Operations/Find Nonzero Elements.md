@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Find Nonzero Elements
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 非零元素的索引 可变大小信号
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: 非零元素的值 可变大小信号
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -44,8 +59,67 @@ Find 模块可以选择性地将所有非零元素的值输出为可变大小信
 要启用此端口，请选择 **Show output port for nonzero input values**。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Index output format
+  summary: 非零元素索引的格式 Linear indices（默认）| Subscripts
+  group: 主要
+  block_parameter: IndexOutputFormat
+  type: 字符向量
+  values: '''Linear indices'' | ''Subscripts'''
+  default: '''Linear indices'''
+- name: Number of input dimensions
+  summary: 输入信号的维度数 1（默认）| 标量
+  group: 主要
+  block_parameter: NumberOfInputDimensions
+  type: 字符向量
+  values: 标量
+  default: '''1'''
+- name: Index mode
+  summary: 指定从零开始或从一开始的索引 Zero-based（默认）| One-based
+  group: 主要
+  block_parameter: IndexMode
+  type: 字符向量
+  values: '''Zero-based'' | ''One-based'''
+  default: '''Zero-based'''
+- name: Show output port for nonzero input values
+  summary: 启用非零值的输出端口 off（默认）| on
+  group: 主要
+  block_parameter: ShowOutputPortForNonzeroInputValues
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | fixdt(1,16) | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''
+    | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Mode
+  summary: 选择数据类型模式 Inherit（默认）| Built in | Fixed Point
+  group: 数据类型
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 数据类型
+- name: Signedness
+  summary: 指定有符号或无符号 Signed（默认）| Unsigned
+  group: 数据类型
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认）| 0 到 32 的整数
+  group: 数据类型
+- name: Scaling
+  summary: 缩放定点数据的方法 Integer（默认）
+  group: 数据类型
+```
 
 ### 主要
 
@@ -208,7 +282,6 @@ Find 模块可以选择性地将所有非零元素的值输出为可变大小信
 #### 依赖关系
 
 要启用此参数，请将 **Mode** 设置为 `Fixed point`。
-
 ## 所属库
 
 Simulink / Math Operations

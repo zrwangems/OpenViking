@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Open Circuit
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 零电流电气
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **V** — 零电流电气
 
 不消耗电流的电气守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements Simscape / Electrical / Connectors & References

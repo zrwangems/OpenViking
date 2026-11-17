@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # GPU Constant Gamma Clutter
 
 ## 端口
+```yaml
+ports:
+- name: PRFIdx
+  summary: PRF 索引 正整数
+  direction: input
+  data_types: double
+- name: W
+  summary: 阵元权重 长度为 *N* 的复值向量
+  direction: input
+  data_types: double
+- name: WS
+  summary: 子阵元权重 *N*E×*N*S 复值矩阵
+  direction: input
+  data_types: double
+- name: Steer
+  summary: 导向角输入 标量 | 2×1 实值向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 模拟杂波 *N*×*M* 复值矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -79,8 +102,196 @@ chinese_source: worker-translation
 - 如果传感器阵列不包含子阵，则为辐射或收集阵元的数量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Terrain gamma value (dB)
+  summary: 杂波模型参数 0（默认）| 标量
+  group: 主选项卡
+- name: Earth model
+  summary: 地球形状 Flat（默认）| Curved
+  group: 主选项卡
+- name: Minimum range of clutter region (m)
+  summary: 杂波区域最小距离 0 | 非负标量
+  group: 主选项卡
+- name: Maximum range of clutter region (m)
+  summary: 杂波区域最大距离 5000 | 非负标量
+  group: 主选项卡
+- name: Azimuth center of clutter region (deg)
+  summary: 杂波区域方位中心 0 | 标量
+  group: 主选项卡
+- name: Azimuth span of clutter region (deg)
+  summary: 杂波区域方位跨度 60（默认）| 正标量
+  group: 主选项卡
+- name: Azimuth span of clutter patches (deg)
+  summary: 杂波块方位跨度 1（默认）| 正标量
+  group: 主选项卡
+- name: Clutter coherence time (s)
+  summary: 杂波仿真相干时间 Inf（默认）| 正标量
+  group: 主选项卡
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: 主选项卡
+- name: Sample rate (Hz)
+  summary: 杂波采样率 1e6（默认）| 正标量
+  group: 主选项卡
+- name: Pulse repetition frequency (Hz)
+  summary: 脉冲重复频率 1e4（默认）| 正标量 | 正数值行向量
+  group: 主选项卡
+- name: Enable PRF selection input
+  summary: 选择预定义 PRF off（默认）| on
+  group: 主选项卡
+- name: Output signal format
+  summary: 输出信号格式 Pulses（默认）| Samples
+  group: 主选项卡
+- name: Number of samples in output
+  summary: 输出中的样本数 100（默认）| 正整数
+  group: 主选项卡
+- name: Number of pulses in output
+  summary: 输出中的脉冲数 1（默认）| 正整数
+  group: 主选项卡
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: 主选项卡
+- name: Operating frequency (Hz)
+  summary: 系统工作频率 3.0e8（默认）| 正实数标量
+  group: 主选项卡
+- name: Effective transmitted power (W)
+  summary: 雷达系统有效发射功率 5000（默认）| 正标量
+  group: 主选项卡
+- name: Radar height (m)
+  summary: 雷达离地面高度 0（默认）| 非负标量
+  group: 主选项卡
+- name: Radar speed (m/s)
+  summary: 雷达平台速度 0（默认）| 非负标量
+  group: 主选项卡
+- name: Radar motion direction (deg)
+  summary: 雷达平台运动方向 [90;0]（默认）| 2×1 实向量
+  group: 主选项卡
+- name: Sensor mounting angles sensor (deg)
+  summary: 传感器安装角度 [0 0 0]（默认）| 长度为 3 的正值向量
+  group: 主选项卡
+- name: Enable weights input
+  summary: 启用天线阵元权重输入端口 未选中（默认）| 选中
+  group: 主选项卡
+- name: Specify sensor array as
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| Partitioned array | Replicated subarray | MATLAB expression
+  group: Sensor Array Tab
+- name: Expression
+  summary: 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
+  group: Sensor Array Tab
+- name: Element type
+  summary: 阵列阵元类型 Isotropic Antenna（默认）| Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone
+  group: Sensor Array Tab
+- name: Operating frequency range (Hz)
+  summary: 天线或麦克风阵元的工作频率范围 [0,1.0e20]（默认）| 实值 1×2 行向量
+  group: Sensor Array Tab
+- name: Operating frequency vector (Hz)
+  summary: 自定义天线或麦克风阵元的工作频率范围 [0,1.0e20]（默认）| 实值行向量
+  group: Sensor Array Tab
+- name: Baffle the back of the element
+  summary: 将 Isotropic Antenna 阵元或 Omni Microphone 阵元的背面响应设置为零 关闭（默认）| 开启
+  group: Sensor Array Tab
+- name: Exponent of cosine pattern
+  summary: 方位角和俯仰角余弦方向图的指数 [1.5 1.5]（默认）| 非负标量 | 非负实值 1×2 矩阵
+  group: Sensor Array Tab
+- name: Frequency responses (dB)
+  summary: 天线和麦克风频率响应 [0,0]（默认）| 实值行向量
+  group: Sensor Array Tab
+- name: Input Pattern Coordinate System
+  summary: 自定义天线方向图的坐标系 az-el（默认）| phi-theta
+  group: Sensor Array Tab
+- name: Azimuth angles (deg)
+  summary: 天线辐射方向图的方位角 [-180:180]（默认）| 实值行向量
+  group: Sensor Array Tab
+- name: Elevation angles (deg)
+  summary: 天线辐射方向图的俯仰角 [-90:90]（默认）| 实值行向量
+  group: Sensor Array Tab
+- name: Phi Angles (deg)
+  summary: 自定义天线辐射方向图的 Phi 角坐标 0:360 | 实值 1×*P* 行向量
+  group: Sensor Array Tab
+- name: Theta Angles (deg)
+  summary: 自定义天线辐射方向图的 Theta 角坐标 0:180 | 实值 1×*Q* 行向量
+  group: Sensor Array Tab
+- name: Magnitude pattern (dB)
+  summary: 组合天线辐射方向图的幅度 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: Sensor Array Tab
+- name: Phase pattern (deg)
+  summary: 自定义天线辐射相位方向图 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: Sensor Array Tab
+- name: MatchArrayNormal
+  summary: 将天线阵元旋转至阵列法向 on（默认）| off
+  group: Sensor Array Tab
+- name: Polar pattern frequencies (Hz)
+  summary: 极坐标方向图麦克风响应频率 1e3（默认）| 实数标量 | 实值 1×*L* 行向量
+  group: Sensor Array Tab
+- name: Polar pattern angles (deg)
+  summary: 极坐标方向图响应角度 [-180:180]（默认）| 实值 1×*P* 行向量
+  group: Sensor Array Tab
+- name: Polar pattern (dB)
+  summary: 自定义麦克风极坐标响应 zeros(1,361)（默认）| 实值 *L*×*P* 矩阵
+  group: Sensor Array Tab
+- name: Geometry
+  summary: 阵列几何结构 ULA（默认）| URA | UCA | Conformal Array
+  group: Sensor Array Tab
+- name: Number of elements
+  summary: 阵列阵元数量 ULA 阵列为 2，UCA 阵列为 5（默认）| 大于或等于 2 的整数
+  group: Sensor Array Tab
+- name: Element spacing (m)
+  summary: 阵列阵元间距 ULA 阵列为 0.5，URA 阵列为 [0.5,0.5]（默认）| ULA 或 URA 阵列为正标量 | URA 阵列为由正值组成的 2 元素向量
+  group: Sensor Array Tab
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认）| x | z
+  group: Sensor Array Tab
+- name: Array size
+  summary: URA 阵列的维度 [2,2]（默认）| 正整数 | 1×2 正整数向量
+  group: Sensor Array Tab
+- name: Element lattice
+  summary: URA 元素位置的晶格 Rectangular（默认）| Triangular
+  group: Sensor Array Tab
+- name: Array normal
+  summary: 阵列法线方向 URA 阵列为 x 或 UCA 阵列为 z（默认）| y
+  group: Sensor Array Tab
+- name: Radius of UCA (m)
+  summary: UCA 阵列半径 0.5（默认）| 正标量
+  group: Sensor Array Tab
+- name: Element positions (m)
+  summary: 共形阵列元素的位置 [0;0;0]（默认）| 3×*N* 实数矩阵
+  group: Sensor Array Tab
+- name: Element normals (deg)
+  summary: 共形阵列单元法向量方向 [0;0] | 2×1 列向量 | 2×*N* 矩阵
+  group: Sensor Array Tab
+- name: Taper
+  summary: 阵列单元加权 1 (默认) | 复值标量 | 复值行向量
+  group: Sensor Array Tab
+- name: Subarray definition matrix
+  summary: 定义属于子阵的单元 逻辑矩阵
+  group: Sensor Array Tab
+- name: Subarray steering method
+  summary: 指定子阵导向方法 None (默认) | Phase | Time
+  group: Sensor Array Tab
+- name: Phase shifter frequency (Hz)
+  summary: 子阵移相频率 3.0e8 (默认) | 正实值标量
+  group: Sensor Array Tab
+- name: Number of bits in phase shifters
+  summary: 子阵导向相移量化位数 0（默认）| 非负整数
+  group: Sensor Array Tab
+- name: Subarrays layout
+  summary: 子阵位置指定 Rectangular（默认）| Custom
+  group: Sensor Array Tab
+- name: Grid size
+  summary: 矩形子阵网格的维度 [1,2]（默认）
+  group: Sensor Array Tab
+- name: Grid spacing (m)
+  summary: 矩形网格上子阵之间的间距 Auto（默认）| 正实值标量 | 由正实值组成的 1×2 向量
+  group: Sensor Array Tab
+- name: Subarray positions (m)
+  summary: 子阵的位置 [0,0;0.5,0.5;0,0]（默认）| 3×*N* 实值矩阵
+  group: Sensor Array Tab
+- name: Subarray normals
+  summary: 子阵法向量方向 [0,0;0,0]（默认）| 2×*N* 实矩阵
+  group: Sensor Array Tab
+```
 
 ### 主选项卡
 
@@ -723,7 +934,6 @@ subarray`，并将 **Subarrays layout** 设置为 `Custom`。
 #### 依赖关系
 
 要启用此参数，请将 **Sensor array** 参数设置为 `Replicated subarray`，并将 **Subarrays layout** 设置为 `Custom`。
-
 ## 所属库
 
 Radar Toolbox

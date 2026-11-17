@@ -14,6 +14,15 @@ language: en
 # Phase Splitter
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Expandable three-phase port electrical
+  direction: conserving
+- name: a,b,c
+  summary: Constituent phases electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,11 +35,12 @@ port
 ### **a,b,c** — Constituent phases electrical
 
 Constituent phases of the expanded three-phase port
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Electrical / Connectors & References

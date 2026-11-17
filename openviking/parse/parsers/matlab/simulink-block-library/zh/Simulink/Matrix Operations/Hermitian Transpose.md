@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Hermitian Transpose
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 矩阵 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 转置矩阵 *N*×*M* 矩阵
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 转置矩阵，返回为 *N*×*M* 矩阵。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Matrix Operations

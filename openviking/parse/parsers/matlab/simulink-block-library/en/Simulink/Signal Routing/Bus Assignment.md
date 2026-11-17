@@ -14,6 +14,24 @@ language: en
 # Bus Assignment
 
 ## Ports
+```yaml
+ports:
+- name: Bus
+  summary: Input bus with elements to reassign bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | string
+- name: :=
+  summary: New value to assign to bus element scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | string
+- name: Bus
+  summary: Output bus bus
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | string
+```
 
 ### Input
 
@@ -51,8 +69,20 @@ selected elements and the unmodified bus element values for the other elements.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `string`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Elements in the bus
+  summary: 'Elements of input bus Read-only: list of element names'
+  group: ''
+  block_parameter: InputSignals
+  values: 'Read-only: list of element names in a cell array or cell array of cell arrays'
+- name: Elements that are being assigned
+  summary: Bus elements to be assigned new values list of element names
+  group: ''
+  block_parameter: AssignedSignals
+  values: '''signal1'' (default) | comma-separated list of element names in quotes'
+```
 
 To edit Bus Assignment block parameters interactively, double-click the
 block.
@@ -151,7 +181,6 @@ the `set_param` function.
 | **Data Types:** | `char` | `string` |
 
 **Example:** `set_param(gcb,'AssignedSignals','sine,chirp')`
-
 ## Libraries
 
 Simulink / Signal Routing HDL Coder / Signal Routing

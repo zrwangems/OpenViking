@@ -14,6 +14,16 @@ language: en
 # MCAN Transmit
 
 ## Ports
+```yaml
+ports:
+- name: TX
+  summary: Input data port vector | scalar
+  direction: input
+  data_types: uint8 | CAN Msg
+- name: Status
+  summary: Status of CAN message transmission scalar
+  direction: output
+```
 
 ### Input
 
@@ -46,8 +56,35 @@ Output port to display the CAN message transmission status. The status port outp
 
 To enable this port, select the **Output Status**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data format
+  summary: Data output type Raw data (default) | CAN Msg
+  group: ''
+- name: Frame format
+  summary: Frame format type CAN-FD (default) | Classic CAN
+  group: ''
+- name: Identifier Type
+  summary: Message identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)
+  group: ''
+- name: Identifier
+  summary: Message identifier 100 (default) | numeric identifier of length 11 or 29 bits
+  group: ''
+- name: Length (bytes)
+  summary: Length of message 64 (default) | positive integer less than or equal to 64(CAN-FD) | positive integer less than
+    or equal to 8(Classic CAN)
+  group: ''
+- name: Remote Frame
+  summary: Enable remote message off (default) | on
+  group: ''
+- name: Enable bit rate switching
+  summary: Enable bit rate switch message off (default) | on
+  group: ''
+- name: Output Status
+  summary: Enable output status off (default) | on
+  group: ''
+```
 
 ### **Data format** — Data output type `Raw data` (default) | `CAN Msg`
 
@@ -145,7 +182,6 @@ To enable this parameter, set **Data format** to
 When you select the **Output Status** parameter, the block
 configures the **Status** of the port. The port outputs CAN message
 transmission status.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F28p65x

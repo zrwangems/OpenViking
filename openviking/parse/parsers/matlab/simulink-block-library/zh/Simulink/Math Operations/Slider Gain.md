@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Slider Gain
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输入乘以增益 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,31 @@ Slider Gain 模块接受实数或复数值的标量、向量或矩阵输入。�
 Slider Gain 模块输出输入乘以常量增益值的结果。当模块的输入为实数且增益为复数时，输出为复数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Slider gain
+  summary: 增益值 0（默认）| 实数值
+  group: ''
+  block_parameter: gain
+  type: 字符向量
+  values: 实数标量
+  default: '''1'''
+- name: Low
+  summary: 滑块范围的下限 0（默认）| 实数值
+  group: ''
+  block_parameter: low
+  type: 字符向量
+  values: 实数标量
+  default: '''0'''
+- name: High
+  summary: 滑块范围的上限 2（默认）| 实数值
+  group: ''
+  block_parameter: high
+  type: 字符向量
+  values: 实数标量
+  default: '''2'''
+```
 
 ### **Slider gain** — 增益值 `0`（默认）| 实数值
 
@@ -71,7 +105,6 @@ Slider Gain 模块输出输入乘以常量增益值的结果。当模块的输�
 | **类型**：字符向量 |
 | **值**：实数标量 |
 | **默认值**：`'2'` |
-
 ## 所属库
 
 Simulink / Math Operations

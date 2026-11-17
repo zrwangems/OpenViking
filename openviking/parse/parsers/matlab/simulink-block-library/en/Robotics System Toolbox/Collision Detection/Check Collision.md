@@ -14,6 +14,24 @@ language: en
 # Check Collision
 
 ## Ports
+```yaml
+ports:
+- name: Geom1
+  summary: First collision geometry to check bus
+  direction: input
+- name: Geom2
+  summary: Second collision geometry to check bus
+  direction: input
+- name: CollStatus
+  summary: Collision status scalar
+  direction: output
+- name: SepDist
+  summary: Minimum distance between collision geometries scalar
+  direction: output
+- name: WitnessPts
+  summary: Witness points on each geometry matrix
+  direction: output
+```
 
 ### Input
 
@@ -72,8 +90,13 @@ column is the location of the witness point on the other geometry **Geom2**.
 The length of the line segment that connects the two witness points determines the
 value from the **SepDist** port. When the two geometries are in collision,
 every element of **WitnessPts** is `NaN`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -87,7 +110,6 @@ Inspector**.
   subsequent simulations, as long as the model does not change.
 - `Interpreted execution` — Simulate model using
   the MATLAB® interpreter. For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Robotics System Toolbox / Collision Detection

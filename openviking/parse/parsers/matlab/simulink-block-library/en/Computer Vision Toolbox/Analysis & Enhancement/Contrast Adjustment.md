@@ -14,6 +14,17 @@ language: en
 # Contrast Adjustment
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: Port_1
+  summary: Output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+```
 
 ### Input
 
@@ -33,8 +44,35 @@ or an *M*-by-*N*-by-*C* array,
 where *C* is the number of color channels.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `uint8` | `uint16` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Adjust pixel values from
+  summary: Input pixel value range definition Full input data range [min max] (default) | User-defined range | Range determined
+    by saturating outlier pixels
+  group: Main
+- name: Range [low high]
+  summary: Input pixel value range [0 255] (default) | two-element vector of nonnegative numbers
+  group: Main
+- name: Percentage of pixels to saturate [low high]
+  summary: Maximum percentages of pixels to saturate [1 1] (default) | two-element vector of nonnegative numbers
+  group: Main
+- name: Specify number of histogram bins (used to calculate the range when outliers are eliminated)
+  summary: Custom number of histogram bins on (default) | off
+  group: Main
+- name: Number of histogram bins
+  summary: Number of histogram bins 256 (default) | positive integer
+  group: Main
+- name: Adjust pixel values to
+  summary: Output pixel value range definition Full data type range (default) | User-defined range
+  group: Main
+- name: Range [low high]
+  summary: Output pixel value range [0 255] (default) | two-element vector of nonnegative numbers
+  group: Main
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Data type override off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -144,7 +182,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

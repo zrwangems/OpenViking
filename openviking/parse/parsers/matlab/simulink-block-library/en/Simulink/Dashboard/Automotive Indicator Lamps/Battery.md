@@ -14,6 +14,13 @@ language: en
 # Battery
 
 ## Ports
+```yaml
+ports:
+- name: voltage
+  summary: EV3 brick battery voltage scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Output
 
@@ -23,8 +30,13 @@ The block outputs the battery voltage from the LEGO
 MINDSTORMS EV3 brick in millivolts.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Time interval at which block reads EV3 brick battery voltage 0.1 (default) | positive integer
+  group: ''
+```
 
 ### **Sample time** — Time interval at which block reads EV3 brick battery voltage `0.1` (default) | positive integer
 
@@ -34,7 +46,6 @@ measurements.
 
 Smaller sample times require the processor to complete the same number of
 instructions in less time, which can cause task overruns.
-
 ## Libraries
 
 Simulink Support Package for LEGO MINDSTORMS EV3 Hardware

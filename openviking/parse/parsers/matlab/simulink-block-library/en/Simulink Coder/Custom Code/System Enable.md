@@ -14,10 +14,24 @@ language: en
 # System Enable
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: System Enable Function Declaration Code
+  summary: Code to add to the declaration section of the generated function no default
+  group: ''
+- name: System Enable Function Execution Code
+  summary: Code to add to the execution section of the generated function no default
+  group: ''
+- name: System Enable Function Exit Code
+  summary: Code to add to the exit section of the generated function no default
+  group: ''
+```
 
 ### **System Enable Function Declaration Code** — Code to add to the declaration section of the generated function no default
 
@@ -33,7 +47,6 @@ Specify code that you want the code generator to add to the execution section of
 
 Specify code that you want the code generator to add to the exit section of the
 `SystemEnable` function for the model or subsystem.
-
 ## Libraries
 
 Simulink Coder / Custom Code

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # DBPSK Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: DBPSK 调制基带信号 标量 | 列向量
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: 噪声方差 正标量 | 正值向量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出信号 标量 | 列向量
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -45,8 +60,26 @@ DBPSK 调制基带信号，指定为复值标量或向量。有关详细信息�
 此端口在模块上未命名。
 
 **数据类型：** `double` | `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase rotation (rad)
+  summary: 附加相移 0（默认）| 标量
+  group: 主要
+- name: Decision type
+  summary: 解调判决方法 Hard decision（默认）| Approximate log-likelihood ratio
+  group: 主要
+- name: Noise variance source
+  summary: 噪声方差的来源 Property（默认）| Input port
+  group: 主要
+- name: Noise variance
+  summary: 噪声的方差 1（默认）| 非负标量
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型 Inherit via internal（默认）| Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16 |
+    int32 | uint32 | boolean
+  group: 主要
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -93,7 +126,6 @@ DBPSK 调制基带信号，指定为复值标量或向量。有关详细信息�
 当您将 `Decision type` 参数设置为 `Approximate log-likelihood ratio` 时，输出数据类型与输入数据类型匹配。输入数据类型必须为 double 或 single。
 
 有关详细信息，请参阅支持的数据类型。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK

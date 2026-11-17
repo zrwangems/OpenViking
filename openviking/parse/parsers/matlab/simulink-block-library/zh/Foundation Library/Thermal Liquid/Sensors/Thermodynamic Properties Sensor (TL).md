@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Thermodynamic Properties Sensor (TL)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 比内能测量，kJ/kg 物理信号
+  direction: output
+- name: ρ
+  summary: 密度测量，kg/m^3 物理信号
+  direction: output
+- name: cp
+  summary: 定压比热测量，kJ/(kg\*K) 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口热液体
+  direction: output
+```
 
 ### 输出
 
@@ -46,8 +61,19 @@ chinese_source: worker-translation
 ### **A** — 传感器入口热液体
 
 热液体守恒端口。将此端口连接到热液体网络中您想要测量热力学属性的节点。所有测量均相对于绝对零度进行。
-
 ## 参数
+```yaml
+parameters:
+- name: Internal energy
+  summary: 控制用于测量比内能的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Density
+  summary: 控制用于测量密度的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Specific heat
+  summary: 控制用于测量比热的输出端口可见性 Off（默认）| On
+  group: ''
+```
 
 ### **Internal energy** — 控制用于测量比内能的输出端口可见性 `Off`（默认）| `On`
 
@@ -60,7 +86,6 @@ chinese_source: worker-translation
 ### **Specific heat** — 控制用于测量比热的输出端口可见性 `Off`（默认）| `On`
 
 选中此复选框将显示输出端口 **cp**，可用于测量热液体的定压比热。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Sensors

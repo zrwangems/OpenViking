@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Monostable Flip-Flop
 
 ## 端口
+```yaml
+ports:
+- name: Trigger
+  summary: 触发器触发信号 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Q
+  summary: 触发器输出信号 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 触发器输出信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Change detection
+  summary: 触发信号的变化 Rising edge（默认）| Falling edge | Either edge
+  group: ''
+- name: Initial output
+  summary: 触发器初始输出 0（默认）| 标量
+  group: ''
+- name: Pulse duration (s)
+  summary: 输出脉冲持续时间 0.01（默认）| 正标量
+  group: ''
+- name: Sample time
+  summary: 模块采样时间 0.001（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Change detection** — 触发信号的变化 `Rising edge`（默认）| `Falling edge` | `Either edge`
 
@@ -59,7 +84,6 @@ Specify Sample Time。
 变体子系统中，请提升采样时间
 参数。提升采样时间参数可确保在模块的连续实现和离散实现之间正确切换。有关
 详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

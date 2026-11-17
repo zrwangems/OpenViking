@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Battery (Table-Based)
 
 ## 端口
+```yaml
+ports:
+- name: SOC
+  summary: 电池荷电水平，C 物理信号
+  direction: output
+- name: +
+  summary: 正极端子电气
+  direction: output
+- name: '-'
+  summary: 负极端子电气
+  direction: output
+- name: H
+  summary: 电池热质量热
+  direction: output
+```
 
 ### 输出
 
@@ -42,8 +57,353 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请在 **Thermal** 设置中将 **Thermal port** 参数设置为 `Yes`。
-
 ## 参数
+```yaml
+parameters:
+- name: Selected part
+  summary: 预定义参数化选项 <click to select>（默认）
+  group: ''
+- name: Vector of state-of-charge values, SOC
+  summary: SOC 断点 [0, .1, .25, .5, .75, .9, 1]（默认）| 范围 [0,1] 内的标量向量
+  group: 主要参数
+- name: Tabulate parameters over temperature
+  summary: 选择是否按温度制表电池参数 Yes（默认）| No
+  group: 主要参数
+  block_parameter: T_dependence
+  values: '"yes"（默认）| "no"'
+- name: Current directionality
+  summary: 启用电流方向性 Disabled（默认）| Enabled
+  group: 主要参数
+  block_parameter: prm_dir
+  values: '"currentDirectionality"（默认）| "noCurrentDirectionality"'
+- name: Terminal voltage operating range [Min Max]
+  summary: 端子电压工作范围 [0, inf] V（默认）| 正数向量
+  group: 主要参数
+- name: Vector of temperatures, T
+  summary: '*T* 断点 [278, 293, 313] K（默认）| 正数向量'
+  group: 主要参数
+- name: Open-circuit voltage, V0(SOC,T)
+  summary: 带温度断点的 *V0* 查找表 [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07,
+    4.08, 4.08; 4.19, 4.19, 4.19] V（默认）| 非负数矩阵
+  group: 主要参数
+- name: Open-circuit voltage, V0(SOC)
+  summary: '*V0* 查找表 [3.5057, 3.566, 3.6337, 3.7127, 3.9259, 4.0777, 4.1928] V（默认）| 非负数矩阵'
+  group: 主要参数
+- name: Terminal resistance, R0(SOC,T)
+  summary: 带温度断点的 R0 查找表 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091;
+    .0113, .0085, .0089; .0116, .0085, .0089] Ohm（默认）| 非负数矩阵
+  group: 主要参数
+- name: Terminal resistance during discharging, R0(SOC,T)
+  summary: 放电阶段带温度断点的 R0 查找表 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083,
+    .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm（默认）| 非负数矩阵
+  group: 主要参数
+- name: Terminal resistance during charging, R0(SOC,T)
+  summary: 充电阶段带温度断点的 R0 查找表 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083,
+    .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm（默认）| 非负数矩阵
+  group: 主要参数
+- name: Terminal resistance, R0(SOC)
+  summary: R0 查找表 [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm（默认）| 非负数矩阵
+  group: 主要参数
+- name: Terminal resistance during discharging, R0(SOC)
+  summary: 放电阶段 R0 查找表 [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm（默认）| 非负数矩阵
+  group: 主要参数
+- name: Terminal resistance during charging, R0(SOC)
+  summary: 充电阶段 R0 查找表 [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm（默认）| 非负数矩阵
+  group: 主要参数
+- name: Cell capacity, AH
+  summary: 完全充电时的电池容量 27 hr*A（默认）| 非负标量
+  group: 主要参数
+- name: Self-discharge
+  summary: 选择是否对电池的自放电电阻建模 Disabled（默认）| Enabled
+  group: 主要参数
+  block_parameter: prm_leak
+  values: '"disabled"（默认）| "enabled"'
+- name: Self-discharge resistance, Rleak(T)
+  summary: 表示温度断点处电池自放电的电阻 [8000, 7000, 6000] Ohm（默认）| 正数向量
+  group: 主要参数
+- name: Self-discharge resistance, Rleak
+  summary: 表示电池自放电的电阻 7e3 Ohm（默认）| 正标量
+  group: 主要参数
+- name: Extrapolation method for all tables
+  summary: 所有表格的外推方法 Nearest（默认）| Linear | Error
+  group: 主要参数
+  block_parameter: extrapolation_option
+  values: '"nearest"（默认）| "linear" | "error"'
+- name: Expose SOC measurement port
+  summary: 表格外推方法 No（默认）| Yes
+  group: 主要参数
+  block_parameter: SOC_port
+  values: '"no"（默认）| "yes" | "error"'
+- name: Charge dynamics
+  summary: 电池电荷动态模型 No dynamics（默认）| One time-constant dynamics | Two time-constant dynamics | Three time-constant dynamics
+    | Four time-constant dynamics | Five time-constant dynamics
+  group: Dynamics
+  block_parameter: prm_dyn
+  values: '"off"（默认）| "rc1" | "rc2" | "rc3" | "rc4" | "rc5"'
+- name: First polarization resistance, R1(SOC,T)
+  summary: 温度断点处的第一 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023,
+    .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: First polarization resistance, R1(SOC)
+  summary: 第一 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: First time constant, tau1(SOC,T)
+  summary: 温度断点处的第一 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s（默认）|
+    正数矩阵
+  group: Dynamics
+- name: First time constant, tau1(SOC)
+  summary: 第一 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正数矩阵
+  group: Dynamics
+- name: Second polarization resistance, R2(SOC,T)
+  summary: 温度断点处的第二 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023,
+    .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: Second polarization resistance, R2(SOC)
+  summary: 第二 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: Second time constant, tau2(SOC,T)
+  summary: 温度断点处的第二 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s（默认）|
+    正数矩阵
+  group: Dynamics
+- name: Second time constant, tau2(SOC)
+  summary: 第二 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正数矩阵
+  group: Dynamics
+- name: Third polarization resistance, R3(SOC,T)
+  summary: 温度断点处的第三 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023,
+    .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: Third polarization resistance, R3(SOC)
+  summary: 第三 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: Third time constant, tau3(SOC,T)
+  summary: 温度断点处的第三 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s（默认）|
+    正数矩阵
+  group: Dynamics
+- name: Third time constant, tau3(SOC)
+  summary: 第三 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正数矩阵
+  group: Dynamics
+- name: Fourth polarization resistance, R4(SOC,T)
+  summary: 温度断点处的第四 RC 电阻 [.014, .382, .407; .028, .006, .007; .014, .007, .006; .333, .956, .912] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: Fourth polarization resistance, R4(SOC)
+  summary: 第四 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014;
+    .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: Fourth time constant, tau4(SOC,T)
+  summary: 温度断点处的第四 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s（默认）|
+    正数矩阵
+  group: Dynamics
+- name: Fourth time constant, tau4(SOC)
+  summary: 第四 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正数矩阵
+  group: Dynamics
+- name: Fifth polarization resistance, R5(SOC,T)
+  summary: 温度断点处的第五 RC 电阻 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023,
+    .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: Fifth polarization resistance, R5(SOC)
+  summary: 第五 RC 电阻 [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm（默认）| 正数矩阵
+  group: Dynamics
+- name: Fifth time constant, tau5(SOC,T)
+  summary: 温度断点处的第五 RC 时间常数 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s（默认）|
+    正数矩阵
+  group: Dynamics
+- name: Fifth time constant, tau5(SOC)
+  summary: 第五 RC 时间常数 [36, 45, 105, 29, 77, 33, 39] s（默认）| 正数矩阵
+  group: Dynamics
+- name: Fade characteristic
+  summary: 选择如何定义衰减特性 Disabled（默认）| Equations | Lookup tables (temperature independent) | Lookup tables (constant temperature
+    dependent)
+  group: Fade
+  block_parameter: prm_fade
+  values: '"disabled"（默认）| "equations" | "tableN" | "tableNandT"'
+- name: Number of discharge cycles, N
+  summary: 用于百分比变化计算的参考循环数 100（默认）| 从 1 到 Inf 的数字
+  group: Fade
+- name: Change in open-circuit voltage after N discharge cycles (%)
+  summary: '*N* 次循环后开路电压的百分比变化 0（默认）| 标量'
+  group: Fade
+- name: Change in terminal resistance after N discharge cycles (%)
+  summary: '*N* 次循环后串联电阻的百分比变化 0（默认）| 标量'
+  group: Fade
+- name: Change in cell capacity after N discharge cycles (%)
+  summary: '*N* 次循环后电芯容量的百分比变化 0（默认）| 标量'
+  group: Fade
+- name: Change in self-discharge resistance after N discharge cycles (%)
+  summary: '*N* 次循环后自放电电阻的百分比变化 0（默认）| 标量'
+  group: Fade
+- name: Change in first polarization resistance after N discharge cycles (%)
+  summary: '*N* 次循环后第一 RC 电阻的百分比变化 0（默认）| 标量'
+  group: Fade
+- name: Change in second polarization resistance after N discharge cycles (%)
+  summary: '*N* 次循环后第二 RC 电阻的百分比变化 0（默认）| 标量'
+  group: Fade
+- name: Change in third polarization resistance after N discharge cycles (%)
+  summary: '*N* 次循环后第三 RC 电阻的百分比变化 0（默认）| 标量'
+  group: Fade
+- name: Change in fourth polarization resistance after N discharge cycles (%)
+  summary: '*N* 次循环后第四 RC 电阻的百分比变化 0（默认）| 标量'
+  group: Fade
+- name: Change in fifth polarization resistance after N discharge cycles (%)
+  summary: 经过 *N* 次循环后第五 RC 电阻的百分比变化 0（默认）| 标量
+  group: Fade
+- name: Vector of discharge cycle values, N
+  summary: 用于百分比变化计算的循环次数参考向量或数值 [0, 100, 200, 300]（默认）| 从 0 到 Inf 的数值
+  group: Fade
+- name: Vector of temperatures for fade data, Tfade
+  summary: 提取衰减查找表时的温度向量 [298.15, 323.15] K（默认）| 从 1 到 Inf 的数值
+  group: Fade
+- name: Percentage change in open-circuit voltage, dV0(N)
+  summary: 经过 *N* 次循环后开路电压的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percentage change in terminal resistance, dR0(N)
+  summary: 经过 *N* 次循环后串联电阻的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percentage change in cell capacity, dAH(N)
+  summary: 经过 *N* 次循环后电池容量的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percentage change in self-discharge resistance, dRleak(N)
+  summary: 经过 *N* 次循环后自放电电阻的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percentage change in first polarization resistance, dR1(N)
+  summary: 经过 *N* 次循环后第一 RC 电阻的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percent change in second polarization resistance, dR2(N)
+  summary: 经过 *N* 次循环后第二 RC 电阻的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percent change in third polarization resistance, dR3(N)
+  summary: 经过 *N* 次循环后第三 RC 电阻的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percent change in fourth polarization resistance, dR4(N)
+  summary: 经过 *N* 次循环后第四 RC 电阻的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percent change in fifth polarization resistance, dR5(N)
+  summary: 经过 *N* 次循环后第五 RC 电阻的百分比变化向量 [0, 0, 0, 0]（默认）| 标量向量
+  group: Fade
+- name: Percentage change in open-circuit voltage, dV0(N, Tfade)
+  summary: 经过 *N* 次循环后开路电压的百分比变化矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Fade
+- name: Percentage change in terminal resistance, dR0(N, Tfade)
+  summary: 经过 *N* 次循环后串联电阻的百分比变化矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Fade
+- name: Percentage change in cell capacity, dAH(N, Tfade)
+  summary: 经过 *N* 次循环后电池容量的百分比变化矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Fade
+- name: Percentage change in self-discharge resistance, dRleak(N, Tfade)
+  summary: 经过 *N* 次循环后自放电电阻的百分比变化矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Fade
+- name: Percentage change in first polarization resistance, dR1(N, Tfade)
+  summary: 经过 *N* 次循环后第一 RC 电阻的百分比变化矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Fade
+- name: Percent change in second polarization resistance, dR2(N, Tfade)
+  summary: 经过 *N* 次循环后第二 RC 电阻的百分比变化矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵
+  group: Fade
+- name: 第三次极化电阻百分比变化，dR3(N, Tfade)
+  summary: '*N* 次循环后第三次 RC 电阻百分比变化的矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵'
+  group: Fade
+- name: 第四次极化电阻百分比变化，dR4(N, Tfade)
+  summary: '*N* 次循环后第四次 RC 电阻百分比变化的矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵'
+  group: Fade
+- name: 第五次极化电阻百分比变化，dR5(N, Tfade)
+  summary: '*N* 次循环后第五次 RC 电阻百分比变化的矩阵 [0, 0; 0, 0; 0, 0; 0, 0]（默认）| 标量矩阵'
+  group: Fade
+- name: 内阻日历老化
+  summary: 内阻的日历老化 Disabled（默认）| Enabled
+  group: 日历老化
+  block_parameter: prm_age_resistance
+  values: '"disabled"（默认）| "enabled"'
+- name: 容量日历老化
+  summary: 容量的日历老化 Disabled（默认）| Enabled
+  group: 日历老化
+  block_parameter: prm_age_capacity
+  values: '"disabled"（默认）| "enabled"'
+- name: 建模选项
+  summary: '日历老化选项 Equation-based（默认）| Tabulated: temperature | Tabulated: time and temperature'
+  group: 日历老化
+  block_parameter: prm_age_modeling
+  values: '"equation"（默认）| "tableT" | "tableTandTime"'
+- name: 时间间隔向量
+  summary: 时间间隔 [0] d（默认）| 标量向量
+  group: 日历老化
+- name: 存储温度向量
+  summary: 存储温度 [273] K（默认）| 标量向量
+  group: 日历老化
+- name: 存储条件
+  summary: 存储条件 Specify open-circuit voltage during storage（默认）| Specify state-of-charge during storage
+  group: 日历老化
+  block_parameter: prm_age_OCV
+  values: '"OCV"（默认）| "SOC"'
+- name: 存储期间归一化开路电压，V/Vnom
+  summary: 存储期间归一化开路电压 0.9（默认）| 标量
+  group: 日历老化
+- name: 存储期间荷电状态
+  summary: 存储期间荷电状态百分比 60（默认）| 正数
+  group: 日历老化
+- name: 端子电阻随电压的线性缩放，b
+  summary: 端子电阻中的电压线性缩放 2.2134e6（默认）| 标量
+  group: 日历老化
+- name: 端子电阻随电压的常数偏移，c
+  summary: 端子电阻中的电压常数偏移 1.632e6（默认）| 标量
+  group: 日历老化
+- name: 端子电阻的温度相关指数增长，d
+  summary: 端子电阻的温度相关指数增长 0.515833569 V（默认）| 标量
+  group: 日历老化
+- name: 端子电阻时间指数，a
+  summary: 端子电阻中的时间指数 0.75（默认）| 标量
+  group: 日历老化
+- name: 容量随电压的线性缩放，b
+  summary: 容量中的电压线性缩放 1.5097e07（默认）| 标量
+  group: 日历老化
+- name: 容量随电压的常数偏移，c
+  summary: 容量中的电压常数偏移 8.3625e06（默认）| 标量
+  group: 日历老化
+- name: 容量的温度相关指数增长，d
+  summary: 容量的温度相关指数增长 0.6011 V（默认）| 标量
+  group: 日历老化
+- name: 容量时间指数，a
+  summary: 容量中的时间指数 0.75（默认）| 标量
+  group: 日历老化
+- name: 端子电阻日历老化的采样温度向量，T_ar
+  summary: 端子电阻日历老化的采样温度 [273.15, 298.15, 323.15] K（默认）| 标量向量
+  group: 日历老化
+- name: 日历老化导致的端子电阻百分比变化，dR0(T_ar)
+  summary: 日历老化导致的端子电阻百分比变化 [0,0,0]（默认）| 标量向量
+  group: 日历老化
+- name: 端子电阻寿命起点与 dR(T_ar) 测量之间的时间
+  summary: 端子电阻寿命起点与 dR(T_ar) 测量之间的时间 100 d（默认）| 标量
+  group: 日历老化
+- name: 容量日历老化的采样温度向量，T_ac
+  summary: 容量日历老化的采样温度 [273.15, 298.15, 323.15] K（默认）| 标量向量
+  group: 日历老化
+- name: 日历老化导致的容量百分比变化，dAH(T_ac)
+  summary: 日历老化导致的容量百分比变化 [0,0,0]（默认）| 标量向量
+  group: 日历老化
+- name: 容量寿命起点与 dAH(T_ac) 测量之间的时间
+  summary: 容量寿命起点与 dAH(T_ac) 测量之间的时间 100 d（默认）| 标量
+  group: 日历老化
+- name: 端子电阻日历老化的采样存储时间间隔向量，t_ar
+  summary: 端子电阻日历老化的采样存储时间间隔 [0, 90, 180, 270, 360] d（默认）| 标量向量
+  group: 日历老化
+- name: 日历老化导致的端子电阻百分比变化，dR0(t_ar,T_ar)
+  summary: 日历老化导致的端子电阻百分比变化 [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0]（默认）| 标量矩阵
+  group: 日历老化
+- name: 容量日历老化的采样存储时间间隔向量，t_ac
+  summary: 容量日历老化的采样存储时间间隔 [0, 90, 180, 270, 360] d（默认）| 标量向量
+  group: 日历老化
+- name: 日历老化导致的容量百分比变化，dAH(t_ac,T_ac)
+  summary: 日历老化导致的容量百分比变化 [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0]（默认）| 标量矩阵
+  group: 日历老化
+- name: 热端口
+  summary: 热端口可见性 Omit（默认）| Model
+  group: 热
+  block_parameter: thermal_port
+  values: '"omit"（默认）| "model"'
+- name: 仿真温度
+  summary: 电池温度 298.15 K（默认）| 正数
+  group: 热
+- name: 热质量
+  summary: 与热端口相关的热质量 100 J/K（默认）
+  group: 热
+```
 
 ### **Selected part** — 预定义参数化选项 `<click to select>`（默认）
 
@@ -1228,7 +1588,6 @@ characteristic** 设置为 `Lookup tables
 #### 依赖关系
 
 要启用此参数，请将 **Thermal port** 设置为 `Model`。有关详细信息，请参阅 Modeling Thermal Effects。
-
 ## 所属库
 
 Simscape / Electrical / Sources Simscape / Battery / Cells

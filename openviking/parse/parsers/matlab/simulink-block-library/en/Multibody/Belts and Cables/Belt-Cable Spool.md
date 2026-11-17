@@ -14,6 +14,15 @@ language: en
 # Belt-Cable Spool
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Local reference frame frame
+  direction: unspecified
+- name: A
+  summary: Spool cable attachment point belt-cable
+  direction: unspecified
+```
 
 ### Frame
 
@@ -27,8 +36,17 @@ multibody model.
 
 Point of tangency between the center line of the cord and pitch circle
 of the spool.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pitch Radius
+  summary: Distance from the center of the spool to the center line of the cord 10 cm (default) | positive scalar in units
+    of length
+  group: ''
+- name: Sensing
+  summary: Selection of kinematic variables to sense Unchecked (default) | Checked
+  group: ''
+```
 
 ### **Pitch Radius** — Distance from the center of the spool to the center line of the cord `10 cm` (default) | positive scalar in units of length
 
@@ -88,7 +106,6 @@ for sensing are:
   `Unrestricted`.
 
   Use port **qfa** for this measurement.
-
 ## Libraries
 
 Simscape / Multibody / Belts and Cables

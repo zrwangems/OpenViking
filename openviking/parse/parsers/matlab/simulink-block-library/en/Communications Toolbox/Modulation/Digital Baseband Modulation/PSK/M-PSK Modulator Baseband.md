@@ -14,6 +14,17 @@ language: en
 # M-PSK Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -39,8 +50,32 @@ Output signal, returned as a complex scalar or vector. The output is
 the complex baseband representation of the PSK-modulated signal.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: M-ary number
+  summary: Modulation order of the PSK constellation 8 (default) | scalar
+  group: Main
+- name: Input type
+  summary: Type of input signal Integer (default) | Bit
+  group: Main
+- name: Constellation ordering
+  summary: Symbol mapping Gray (default) | Binary | User-defined
+  group: Main
+- name: Constellation mapping
+  summary: User-defined symbol mapping [0:7] (default) | vector
+  group: Main
+- name: Phase offset (rad)
+  summary: Phase offset in radians pi/8 (default) | scalar
+  group: Main
+- name: View constellation
+  summary: Option to plot reference constellation button
+  group: Main
+- name: Output data type
+  summary: Output data type double (default) | single | Inherit via back propagation | fixdt(1,16) | fixdt(1,16,0) | <data
+    type expression>
+  group: Data Types
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -134,7 +169,6 @@ via back propagation`, to match the output data type
 and scaling to the following block in the model.
 
 For information about specifying data types, see Data Type Assistant.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

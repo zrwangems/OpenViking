@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Rope Drum
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 卷筒轴机械旋转
+  direction: conserving
+- name: A
+  summary: 绳索端 A 机械平移
+  direction: conserving
+- name: B
+  summary: 绳索端 B 机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,31 @@ chinese_source: worker-translation
 ### **B** — 绳索端 B 机械平移
 
 与绳索端 B 关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Drum radius
+  summary: 卷筒尺寸 0.10 m（默认）| 正标量
+  group: 绳索缠绕
+- name: Rope windup type
+  summary: B 绳索端相对于 A 绳索端的方向 Ends move in same direction（默认）| Ends move in opposite direction
+  group: 绳索缠绕
+- name: Tension warning
+  summary: 可选的张力丢失警告 Do not check tension（默认）| Warn if either end loses tension
+  group: 绳索缠绕
+- name: Bearing viscous friction coefficient
+  summary: 卷筒旋转的粘性摩擦 0.001 N*m/(rad/s)（默认）| 非负标量
+  group: 卷筒动力学
+- name: Inertia
+  summary: 对角加速度的阻力 No inertia（默认）| Specify inertia and initial velocity
+  group: 卷筒动力学
+- name: Drum inertia
+  summary: 卷筒保持运动的趋势 0.01 kg*m^2（默认）| 正标量
+  group: 卷筒动力学
+- name: Drum initial velocity
+  summary: 卷筒初始状态 0 rad/s（默认）| 标量
+  group: 卷筒动力学
+```
 
 ### 绳索缠绕
 
@@ -78,7 +113,6 @@ I=12MR2，
 #### 依赖关系
 
 要启用此参数，请将 **Inertia** 设置为 `Specify inertia and initial velocity`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

@@ -15,6 +15,77 @@ chinese_source: worker-translation
 # PI Controller
 
 ## 端口
+```yaml
+ports:
+- name: Port_1( u )
+  summary: 误差信号输入 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ydot
+  summary: 外部提供的微分 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: P
+  summary: 比例增益 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I\*Ts
+  summary: 积分增益乘以采样时间 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I
+  summary: 积分增益 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: D
+  summary: 微分增益 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: N
+  summary: 滤波器系数 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Reset
+  summary: 外部复位触发 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | Boolean
+- name: I0
+  summary: 积分器初始条件 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: D0
+  summary: 滤波器初始条件 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: up
+  summary: 输出饱和上限 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: lo
+  summary: 输出饱和下限 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: TR
+  summary: 跟踪信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: TDTI
+  summary: 离散积分器时间 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: extAW
+  summary: 外部抗积分饱和算法 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1( y )
+  summary: 控制器输出 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: preInt
+  summary: 积分器前信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -257,8 +328,284 @@ D[N1+Nα(z)]，
 要启用此端口，请在**饱和**选项卡上，选择**限制输出**，并将**抗积分饱和方法**设置为 `external`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Controller
+  summary: 控制器类型 PI（默认）| PID | PD | P | I
+  group: ''
+  block_parameter: Controller
+  type: 字符串、字符向量
+  values: '"PID"、"PI"、"PD"、"P"、"I"'
+  default: '"PI"'
+- name: Form
+  summary: 控制器结构 Parallel（默认）| Ideal
+  group: ''
+  block_parameter: Controller
+  type: string, character vector
+  values: '"Parallel", "Ideal"'
+  default: '"Parallel"'
+- name: Time domain
+  summary: 指定离散时间或连续时间控制器 Discrete-time（默认）| Continuous-time
+  group: ''
+  block_parameter: TimeDomain
+  type: string, character vector
+  values: '"Continuous-time", "Discrete-time"'
+  default: '"Discrete-time"'
+- name: PID Controller is inside a conditionally executed subsystem
+  summary: 启用离散积分器时间端口 off（默认）| on
+  group: ''
+  block_parameter: UseExternalTs
+  type: string, character vector
+  values: '"on", "off"'
+  default: '"off"'
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的离散间隔 –1（默认）| 正标量
+  group: ''
+  block_parameter: SampleTime
+  type: scalar
+  values: -1, positive scalar
+  default: '-1'
+- name: Integrator method
+  summary: 离散时间控制器中积分的计算方法 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: IntegratorMethod
+  type: string, character vector
+  values: '"Forward Euler", "Backward Euler", "Trapezoidal"'
+  default: '"Forward Euler"'
+- name: Filter method
+  summary: 离散时间控制器中用于计算导数的方法 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: FilterMethod
+  type: string, character vector
+  values: '"Forward Euler", "Backward Euler", "Trapezoidal"'
+  default: '"Forward Euler"'
+- name: Source
+  summary: 控制器增益和滤波器系数的来源 external（默认）| internal
+  group: 主要参数
+  block_parameter: ControllerParametersSource
+  type: string, character vector
+  values: '"internal", "external"'
+  default: '"external"'
+- name: Proportional (P)
+  summary: 比例增益 1（默认）| 标量 | 向量
+  group: 主要参数
+  block_parameter: P
+  type: scalar, vector
+  default: '1'
+- name: Integral (I)
+  summary: 积分增益 1（默认）| 标量 | 向量
+  group: 主要参数
+  block_parameter: I
+  type: scalar, vector
+  default: '1'
+- name: Integral (I\*Ts)
+  summary: 积分增益乘以采样时间 1（默认）| 标量 | 向量
+  group: 主要参数
+  block_parameter: I
+  type: scalar, vector
+  default: '1'
+- name: Use I\*Ts
+  summary: 使用积分增益乘以采样时间 on（默认）| off
+  group: 主要参数
+  block_parameter: UseKiTs
+  type: string, character vector
+  values: '"on", "off"'
+  default: '"on"'
+- name: Derivative (D)
+  summary: 微分增益 0（默认）| 标量 | 向量
+  group: 主要参数
+  block_parameter: D
+  type: 标量、向量
+  default: '0'
+- name: 使用外部来源的微分
+  summary: 在模块输入端口指定微分 off（默认）| on
+  group: 主要参数
+- name: 使用滤波微分
+  summary: 对微分项应用滤波器 on（默认）| off
+  group: 主要参数
+  block_parameter: UseFilter
+  type: 字符串、字符向量
+  values: '"on"、"off"'
+  default: '"on"'
+- name: 滤波器系数 (N)
+  summary: 微分滤波器系数 100（默认）| 标量 | 向量
+  group: 主要参数
+  block_parameter: N
+  type: 标量、向量
+  default: '100'
+- name: Select tuning method
+  summary: 控制器系数自动整定工具 Transfer Function Based (PID Tuner App)（默认）| Frequency Response Based
+  group: 主要参数
+- name: Enable zero-crossing detection
+  summary: 在复位时以及进入或离开饱和状态时检测过零点 on（默认）| off
+  group: 主要参数
+  block_parameter: ZeroCross
+  type: string, character vector
+  values: '"on", "off"'
+  default: '"on"'
+- name: Source
+  summary: 积分器和微分器初始条件的来源 external（默认）| internal
+  group: Initialization
+  block_parameter: InitialConditionSource
+  type: string, character vector
+  values: '"internal", "external"'
+  default: '"external"'
+- name: Integrator
+  summary: 积分器初始条件 0（默认）| 标量 | 向量
+  group: Initialization
+  block_parameter: InitialConditionForIntegrator
+  type: 标量、向量
+  default: '0'
+- name: Filter
+  summary: 滤波器初始条件 0（默认）| 标量 | 向量
+  group: Initialization
+  block_parameter: InitialConditionForFilter
+  type: 标量、向量
+  default: '0'
+- name: Differentiator
+  summary: 未滤波微分的初始条件 0（默认）| 标量 | 向量
+  group: Initialization
+  block_parameter: DifferentiatorICPrevScaledInput
+  type: 标量、向量
+  default: '0'
+- name: Initial condition setting
+  summary: 应用初始条件的位置 Auto（默认）| Output
+  group: Initialization
+  block_parameter: InitialConditionSetting
+  type: 字符串、字符向量
+  values: '"Auto"、"Output"'
+  default: '"Auto"'
+- name: External reset
+  summary: 用于重置积分器和滤波器值的触发条件 level（默认）| none | rising | falling | either
+  group: Initialization
+  block_parameter: ExternalReset
+  type: 字符串、字符向量
+  values: '"none"、"rising"、"falling"、"either"、"level"'
+  default: '"level"'
+- name: Ignore reset when linearizing
+  summary: 强制线性化忽略重置 off（默认）| on
+  group: Initialization
+  block_parameter: IgnoreLimit
+  type: 字符串、字符向量
+  values: '"off"、"on"'
+  default: '"off"'
+- name: Enable tracking mode
+  summary: 激活信号跟踪 off（默认）| on
+  group: Initialization
+  block_parameter: TrackingMode
+  type: 字符串、字符向量
+  values: '"off"、"on"'
+  default: '"off"'
+- name: Tracking coefficient (Kt)
+  summary: 信号跟踪反馈环路的增益 1（默认）| 标量
+  group: Initialization
+  block_parameter: Kt
+  type: scalar
+  default: '1'
+- name: Limit Output
+  summary: 将模块输出限制为指定的饱和值 on（默认）| off
+  group: 饱和
+  block_parameter: LimitOutput
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Source
+  summary: 输出饱和限值的来源 internal（默认）| external
+  group: 饱和
+  block_parameter: SatLimitsSource
+  type: string, character vector
+  values: '"internal", "external"'
+  default: '"internal"'
+- name: Upper limit
+  summary: 模块输出的上限饱和限值 1（默认）| scalar
+  group: 饱和
+  block_parameter: UpperSaturationLimit
+  type: scalar
+  default: '1'
+- name: Lower limit
+  summary: 模块输出的下限饱和限值 –1（默认）| scalar
+  group: 饱和
+  block_parameter: LowerSaturationLimit
+  type: scalar
+  default: –1
+- name: Ignore saturation when linearizing
+  summary: 强制线性化忽略输出限值 on（默认）| off
+  group: 饱和
+  block_parameter: LinearizeAsGain
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Anti-windup method
+  summary: 积分器抗饱和方法 clamping（默认）| none | back-calculation | external
+  group: 饱和
+  block_parameter: AntiWindupMode
+  type: string, character vector
+  values: '"none", "back-calculation", "clamping"'
+  default: '"clamping"'
+- name: Back-calculation coefficient (Kb)
+  summary: 抗积分饱和反馈环路的增益系数 1（默认）| 标量
+  group: 饱和
+  block_parameter: Kb
+  type: 标量
+  default: '1'
+- name: Limit Output
+  summary: 将积分器输出限制在指定的饱和限值内 off（默认）| on
+  group: 饱和
+  block_parameter: LimitIntegratorOutput
+  type: 字符串、字符向量
+  values: '"off"、"on"'
+  default: '"off"'
+- name: Upper limit
+  summary: 积分器上限饱和值 Inf（默认）| 标量
+  group: 饱和
+  block_parameter: UpperIntegratorSaturationLimit
+  type: 标量
+  default: Inf
+- name: Lower limit
+  summary: 积分器下限饱和值 -Inf（默认）| 标量
+  group: 饱和
+  block_parameter: LowerIntegratorSaturationLimit
+  type: 标量
+  default: -Inf
+- name: 整数舍入模式
+  summary: 定点运算的舍入模式 Simplest（默认）| Floor | Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: 整数溢出时饱和
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 锁定数据类型设置以防止定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 状态名称（例如 'position'）
+  summary: 连续时间滤波器和积分器状态的名称 ''（默认）| 字符向量
+  group: 状态属性
+  block_parameter: IntegratorContinuousStateAttributes, FilterContinuousStateAttributes
+  type: 字符向量
+  default: ''''''
+- name: 状态名称
+  summary: 离散时间滤波器和积分器状态的名称 空字符串（默认）| 字符串 | 字符向量
+  group: 状态属性
+  block_parameter: IntegratorStateIdentifier, FilterStateIdentifier
+  type: 字符串、字符向量
+  default: '""'
+- name: 状态名称必须解析为 Simulink 信号对象
+  summary: 要求状态名称解析为信号对象 off（默认）| on
+  group: 状态属性
+  block_parameter: IntegratorStateMustResolveToSignalObject, FilterStateMustResolveToSignalObject
+  type: 字符串、字符向量
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Controller** — 控制器类型 `PI`（默认）| `PID` | `PD` | `P` | `I`
 
@@ -1343,7 +1690,6 @@ Data Types 选项卡中列出的具体量因 PID 控制器模块的配置方式�
 | **类型：** 字符串、字符向量 |
 | **值：** `"off"`, `"on"` |
 | **默认值：** `"off"` |
-
 ## 所属库
 
 Motor Control Blockset / Controls / Controllers Motor Control Blockset HDL Support / Controls / Controllers

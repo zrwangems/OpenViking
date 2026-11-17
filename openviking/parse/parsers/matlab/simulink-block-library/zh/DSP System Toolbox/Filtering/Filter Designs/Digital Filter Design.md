@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Digital Filter Design
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -32,13 +43,14 @@ chinese_source: worker-translation
 滤波后的信号，以实数向量或矩阵形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 ### 对话框
 
 有关此对话框中参数的详细信息，请参阅 Using Filter Designer。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs

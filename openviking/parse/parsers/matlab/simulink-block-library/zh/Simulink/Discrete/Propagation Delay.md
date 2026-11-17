@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Propagation Delay
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 要延迟的信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: dt
+  summary: 延迟信号 标量
+  direction: input
+  data_types: double
+- name: y
+  summary: 延迟信号 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -44,8 +59,31 @@ Propagation Delay 模块支持具有连续或离散采样时间的实数标量�
 输出信号与输入信号具有相同的数据类型。默认情况下，输出信号具有 fixed-in-minor-step 采样时间。当您选择 **Run at fixed time intervals** 时，输出信号具有您为 **Sample time** 参数指定的离散采样时间。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial output
+  summary: 输出信号的初始值 0（默认）| 标量
+  group: ''
+  block_parameter: InitialOutput
+  type: string | character vector
+  values: numeric scalar
+  default: '0'
+- name: Run at fixed time intervals
+  summary: 以固定速率执行模块的选项 off（默认）| on
+  group: ''
+  block_parameter: RunAtFixedTimeIntervals
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sample time
+  summary: 输出采样时间 0.1（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: numeric scalar
+  default: '0.1'
+```
 
 ### **Initial output** — 输出信号的初始值 `0`（默认）| 标量
 
@@ -101,7 +139,6 @@ Propagation Delay 模块支持具有连续或离散采样时间的实数标量�
 | **类型**：string | character vector |
 | **值**：numeric scalar |
 | **默认值**：`0.1` |
-
 ## 所属库
 
 Simulink / Discrete

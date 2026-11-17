@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # FIR Halfband Decimator
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 列向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: LP
+  summary: 抽取器输出的低通子带 列向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: HP
+  summary: 抽取器输出的高通子带 列向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### 输入
 
@@ -95,8 +110,53 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter specification
+  summary: 滤波器设计参数 Transition width and stopband attenuation（默认）| Filter order and transition width | Filter order and stopband
+    attenuation | Coefficients
+  group: 主选项卡
+- name: Filter order
+  summary: 滤波器阶数 52（默认）| 偶数正整数
+  group: 主选项卡
+- name: Transition width (Hz)
+  summary: 过渡带宽 4.1e3（默认）| 正标量
+  group: 主选项卡
+- name: Stopband attenuation (dB)
+  summary: 阻带衰减 80（默认）| 正实标量
+  group: 主选项卡
+- name: Numerator
+  summary: FIR 半带滤波器系数 designHalfbandFIR('TransitionWidth',0.186, 'StopbandAttenuation',80, 'Structure','decim')（默认）| 行向量
+  group: 主选项卡
+- name: Design method
+  summary: 滤波器设计方法 Auto（默认）| Equiripple | Kaiser
+  group: 主选项卡
+- name: Output highpass subband
+  summary: 输出高通子带 off（默认）| on
+  group: 主选项卡
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: 主选项卡
+- name: Input sample rate (Hz)
+  summary: 输入信号的采样率 44100（默认）| 正实标量
+  group: 主选项卡
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号的任意帧长度 off（默认）| on
+  group: 主选项卡
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: 主选项卡
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 主选项卡
+- name: Rounding mode
+  summary: 输出定点运算的舍入模式 Floor（默认）| Ceiling | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Coefficients
+  summary: 系数的字长和小数长度 fixdt(1,16)（默认）| fixdt(1,16,0)
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -245,7 +305,6 @@ chinese_source: worker-translation
 - `Refresh Data Type` —— 刷新为默认数据类型。
 
 点击 **Show data type assistant** 按钮以显示数据类型助手，它可帮助您设置系数数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

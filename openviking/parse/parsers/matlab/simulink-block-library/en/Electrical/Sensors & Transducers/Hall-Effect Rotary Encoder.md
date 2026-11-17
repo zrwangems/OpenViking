@@ -14,6 +14,30 @@ language: en
 # Hall-Effect Rotary Encoder
 
 ## Ports
+```yaml
+ports:
+- name: Angle
+  summary: Rotational angle physical signal
+  direction: output
+- name: R
+  summary: Rotational velocity for the sensor positive probe mechanical rotational
+  direction: conserving
+- name: C
+  summary: Rotational velocity for the sensor negative probe mechanical rotational
+  direction: conserving
+- name: yp
+  summary: y-axis positive Hall field electrical
+  direction: conserving
+- name: yn
+  summary: y-axis negative Hall field electrical
+  direction: conserving
+- name: xp
+  summary: x-axis positive Hall field electrical
+  direction: conserving
+- name: xn
+  summary: x-axis negative Hall field electrical
+  direction: conserving
+```
 
 ### Output
 
@@ -81,8 +105,28 @@ field.
 To enable this port, set the **Output interface**
 parameter to `Electrical
 connections`.
-
 ## Parameters
+```yaml
+parameters:
+- name: X-axis voltage amplitude
+  summary: x-axis voltage 2.5 V (default)
+  group: ''
+- name: Y-axis voltage amplitude
+  summary: y-axis voltage 2.5 V (default)
+  group: ''
+- name: X-axis voltage offset
+  summary: x-axis voltage offset 0 V (default)
+  group: ''
+- name: Y-axis voltage offset
+  summary: Y-axis voltage offset 0 V (default)
+  group: ''
+- name: Quadrature error
+  summary: Quadrature error 0 deg (default)
+  group: ''
+- name: Output interface
+  summary: Interface for decoded information Electrical connections (default) | Decoded angular position
+  group: ''
+```
 
 ### **X-axis voltage amplitude** — x-axis voltage `2.5` `V` (default)
 
@@ -121,7 +165,6 @@ Set this parameter to `Decoded angular position`
 to output the rotational angle of the magnetic field in the x-y plane.
 Choosing this option enables the **Angle** physical signal
 port.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

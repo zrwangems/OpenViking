@@ -14,6 +14,25 @@ language: en
 # Burg AR Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input column vector | unoriented vector
+  direction: input
+  data_types: single | double
+- name: A
+  summary: Normalized estimate of the AR model polynomial coefficients column vector
+  direction: output
+  data_types: single | double
+- name: K
+  summary: Reflection coefficients column vector
+  direction: output
+  data_types: single | double
+- name: G
+  summary: Model gain scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -84,8 +103,19 @@ where,
   coefficients of the AR model
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output(s)
+  summary: Output A (default) | A and K | K
+  group: ''
+- name: Inherit estimation order from input dimensions
+  summary: Inherit estimation order from input dimensions on (default) | off
+  group: ''
+- name: Estimation order
+  summary: Order of AR model 4 (default) | nonnegative integer
+  group: ''
+```
 
 ### **Output(s)** — Output `A` (default) | `A and K` | `K`
 
@@ -110,7 +140,6 @@ integer.
 
 To enable this parameter, clear the **Inherit estimation order
 from input dimensions** parameter.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Parametric Estimation

@@ -14,6 +14,18 @@ language: en
 # Discrete Varying Delay
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Data input signal scalar | vector
+  direction: input
+- name: d
+  summary: Delay length scalar | vector
+  direction: input
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -38,8 +50,28 @@ the nearest integer.
 ### **Port\_1** — Output signal scalar | vector
 
 Output signal specified as a scalar or vector.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal delay (number of samples)
+  summary: Nominal value of delay 1 (default) | nonnegative integer | vector of nonnegative integer values
+  group: ''
+- name: Maximum delay
+  summary: Maximum value of delay length input 10 (default) | nonnegative integer | vector of nonnegative integer values
+  group: ''
+- name: Fixed delays (indices)
+  summary: Signal indices with fixed delays [] (default) | positive scalar | vector of positive values
+  group: ''
+- name: Initial output
+  summary: Initial output 0 (default) | scalar | vector
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Sample time -1 (default) | positive scalar
+  group: ''
+- name: Prevent direct feedthrough with minimum delay of 1
+  summary: Prevent direct feedthrough off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -84,7 +116,6 @@ Select to increase the minimum delay length from zero to 1.
 
 Selecting this check box prevents direct feedthrough from the input port,
 **u**, to the output port.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

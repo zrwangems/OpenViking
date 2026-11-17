@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Saturation Properties Sensor (2P)
 
 ## 端口
+```yaml
+ports:
+- name: TL
+  summary: 饱和液体温度，K 物理信号
+  direction: output
+- name: TV
+  summary: 饱和蒸气温度，K 物理信号
+  direction: output
+- name: PL
+  summary: 饱和液体压力，MPa 物理信号
+  direction: output
+- name: PV
+  summary: 饱和蒸气压力，MPa 物理信号
+  direction: output
+- name: UL
+  summary: 饱和液体比内能，kJ/kg 物理信号
+  direction: output
+- name: UV
+  summary: 饱和蒸气比内能，kJ/kg 物理信号
+  direction: output
+- name: HL
+  summary: 饱和液体比焓，kJ/kg 物理信号
+  direction: output
+- name: HV
+  summary: 饱和蒸气比焓，kJ/kg 物理信号
+  direction: output
+- name: VL
+  summary: 饱和液体比体积，m^3/kg 物理信号
+  direction: output
+- name: VV
+  summary: 饱和蒸气比体积，m^3/kg 物理信号
+  direction: output
+- name: rhoL
+  summary: 饱和液体密度，kg/m^3 物理信号
+  direction: output
+- name: rhoV
+  summary: 饱和蒸气密度，kg/m^3 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口两相流体
+  direction: output
+```
 
 ### 输出
 
@@ -122,8 +164,25 @@ measurement** 复选框。
 ### **A** — 传感器入口两相流体
 
 与传感器入口相关联的两相流体守恒端口。将此端口连接到两相流体网络中您想要测量液体和蒸气饱和特性的节点。
-
 ## 参数
+```yaml
+parameters:
+- name: 饱和温度测量
+  summary: 基于压力测量饱和液体和蒸气温度 On（默认）| Off
+  group: ''
+- name: 饱和压力测量
+  summary: 基于温度测量饱和液体和蒸气压力 Off（默认）| On
+  group: ''
+- name: 超出最小和最大压力的饱和压力
+  summary: 越界饱和压力的报告偏好 Error（默认）| Warning | None
+  group: ''
+- name: 能量测量
+  summary: 基于压力测量饱和比内能或饱和比焓 Off（默认）| Saturated specific internal energy | Saturated specific enthalpy
+  group: ''
+- name: 密度测量
+  summary: 基于压力测量饱和比体积或饱和密度 Off（默认）| Saturated specific volume | Saturated density
+  group: ''
+```
 
 ### **饱和温度测量** — 基于压力测量饱和液体和蒸气温度 `On`（默认）| `Off`
 
@@ -158,7 +217,6 @@ measurement** 复选框。
 
 - `Saturated specific volume` — 显示输出端口 **VL** 和 **VV**，它们分别基于端口 **A** 处的压力测量液体和蒸气的饱和比体积。
 - `Saturated density` — 显示输出端口 **rhoL** 和 **rhoV**，它们分别基于端口 **A** 处的压力测量液体和蒸气的饱和密度。
-
 ## 所属库
 
 Simscape / Foundation Library / Two-Phase Fluid / Sensors

@@ -14,6 +14,24 @@ language: en
 # Fully Differential Op-Amp
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Non-inverting input electrical
+  direction: conserving
+- name: '-'
+  summary: Inverting input electrical
+  direction: conserving
+- name: cm
+  summary: Common-mode port electrical
+  direction: conserving
+- name: Vout+
+  summary: Non-inverting output electrical
+  direction: conserving
+- name: Vout-
+  summary: Inverting output electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -43,8 +61,52 @@ output.
 
 Electrical conserving port associated with the op-amp inverting
 output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Differential gain
+  summary: Differential gain 1e3 (default)
+  group: Gain
+- name: Bandwidth
+  summary: Bandwidth 1.5 GHz (default)
+  group: Gain
+- name: Differential input resistance
+  summary: Differential input resistance 1.3 MOhm (default)
+  group: Input Impedance
+- name: Differential input capacitance
+  summary: Differential input capacitance 1.8 pF (default)
+  group: Input Impedance
+- name: Common-mode input resistance
+  summary: Common-mode input resistance 1.0 MOhm (default)
+  group: Input Impedance
+- name: Common-mode input capacitance
+  summary: Common-mode input capacitance 2.3 pF (default)
+  group: Input Impedance
+- name: Output resistance
+  summary: Output resistance 1 Ohm (default)
+  group: Output Limits
+- name: Minimum output voltage low
+  summary: Minimum output voltage low -1.4 V (default)
+  group: Output Limits
+- name: Maximum output voltage low
+  summary: Maximum output voltage low 1.4 V (default)
+  group: Output Limits
+- name: Differential maximum slew rate
+  summary: Differential maximum slew rate 5000 V/us (default)
+  group: Output Limits
+- name: Common-mode port input resistance
+  summary: Common-mode port input resistance 23.0 kOhm (default)
+  group: Output Bias
+- name: Negative supply voltage
+  summary: Negative supply voltage -5 V (default)
+  group: Output Bias
+- name: Positive supply voltage
+  summary: Positive supply voltage 5 V (default)
+  group: Output Bias
+- name: Initial differential output voltage
+  summary: Initial differential output voltage 0 V (default)
+  group: Initial Conditions
+```
 
 ### Gain
 
@@ -125,7 +187,6 @@ resistor R3a (see diagram).
 
 The initial differential voltage across the two outputs if the output
 current is zero.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

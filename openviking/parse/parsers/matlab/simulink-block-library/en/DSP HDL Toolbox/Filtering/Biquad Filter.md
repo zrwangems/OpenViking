@@ -14,6 +14,29 @@ language: en
 # Biquad Filter
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar or column vector of real values
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Filtered output data scalar or column vector of real values
+  direction: output
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready for new input data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -100,8 +123,50 @@ To enable this port, set **Filter structure** to
 `Direct form I fully serial`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter structure
+  summary: HDL filter architecture Direct form II (default) | Direct form II transposed | Pipelined feedback form | Direct
+    form I fully serial
+  group: Main
+- name: Numerator coefficients of filter
+  summary: Coefficients for numerator [1,2,1] (default) | *NumSections*-by-3 matrix
+  group: Main
+- name: Denominator coefficients of filter
+  summary: Coefficients for denominator [1,.1,.2] (default) | *NumSections*-by-3 matrix
+  group: Main
+- name: Scale values of filter
+  summary: Gain values applied before and after second-order filter sections [1] (default) | vector of 1 to *NumSections*+1
+    values
+  group: Main
+- name: Rounding mode
+  summary: Rounding mode for type-casting the output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow handling for type-casting the output off (default) | on
+  group: Data Types
+- name: Numerator
+  summary: 'Data type of numerator coefficients Inherit: Same word length as input (default) | <data type expression>'
+  group: Data Types
+- name: Denominator
+  summary: 'Data type of denominator coefficients Inherit: Same word length as input (default) | <data type expression>'
+  group: Data Types
+- name: ScaleValues
+  summary: 'Data type of gain Inherit: Same word length as input (default) | <data type expression>'
+  group: Data Types
+- name: Coefficients
+  summary: 'Data type of coefficient memory when using serial filter architecture Inherit: Same word length as input (default)
+    | <data type expression>'
+  group: Data Types
+- name: Accumulator
+  summary: 'Data type of accumulator signals within each section Inherit: Same as first input (default) | <data type expression>'
+  group: Data Types
+- name: Output
+  summary: 'Data type of filter output Inherit: Inherit via internal rule (default) | Inherit: Same as first input | <data
+    type expression>'
+  group: Data Types
+```
 
 ### Main
 
@@ -249,7 +314,6 @@ The block casts the output of the filter to this data type. The quantization use
 the settings of the **Rounding mode** and **Saturate on
 integer overflow** parameters. When the input data type is floating point,
 the block ignores this parameter.
-
 ## Libraries
 
 DSP HDL Toolbox / Filtering

@@ -14,6 +14,30 @@ language: en
 # Compound Motor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: Hs
+  summary: Series field winding thermal port thermal
+  direction: conserving
+- name: Hp
+  summary: Shunt field winding thermal port thermal
+  direction: conserving
+- name: Ha
+  summary: Armature thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -65,8 +89,153 @@ Thermal conserving port associated with the armature. For more information, see 
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical circuit topology
+  summary: Topology of electrical circuit Long-shunt (default) | Short-shunt
+  group: Configuration
+- name: Shunt winding polarity
+  summary: Shunt winding polarity Cumulative (default) | Differential
+  group: Configuration
+- name: Steady-state parameterization
+  summary: Block parameterization By equivalent circuit parameters (default) | By rated, stall, and no-load datasheet parameters
+  group: Steady-State
+- name: Armature resistance, Ra
+  summary: Armature resistance 1.68 Ohm (default) | positive scalar
+  group: Steady-State
+- name: Series field winding resistance, Rs
+  summary: Series field winding resistance 1.68 Ohm (default) | positive scalar
+  group: Steady-State
+- name: Shunt field winding resistance, Rp
+  summary: Shunt field winding resistance 303 Ohm (default) | positive scalar
+  group: Steady-State
+- name: Series field winding to armature back EMF constant, Lsa
+  summary: Series field winding to armature back EMF constant 0.69 H (default) | positive scalar
+  group: Steady-State
+- name: Shunt field winding to armature back EMF constant, Lpa
+  summary: Shunt field winding to armature back EMF constant 0.64 H (default) | positive scalar
+  group: Steady-State
+- name: Rated voltage
+  summary: Rated voltage 100 V (default) | positive scalar
+  group: Steady-State
+- name: Rated speed
+  summary: Rated speed 1000 rpm (default) | positive scalar
+  group: Steady-State
+- name: Rated electrical power
+  summary: Rated electrical power 136 W (default) | positive scalar
+  group: Steady-State
+- name: Rated efficiency (percent)
+  summary: Rated efficiency 85 (default) | positive scalar
+  group: Steady-State
+- name: Stall current
+  summary: Zero speed current 30 A (default) | positive scalar
+  group: Steady-State
+- name: No-load speed
+  summary: No-load speed 4500 rpm (default) | positive scalar
+  group: Steady-State
+- name: No-load current
+  summary: No-load current 0.33 A (default) | positive scalar
+  group: Steady-State
+- name: Ratio of shunt field winding resistance divided by series field winding resistance
+  summary: Ratio of shunt field winding resistance divided by series field winding resistance 190 (default) | nonnegative
+    scalar
+  group: Steady-State
+- name: Ratio of armature resistance divided by series field winding resistance
+  summary: Ratio of armature resistance divided by series field winding resistance 1.0 (default) | nonnegative scalar
+  group: Steady-State
+- name: Rotor inertia
+  summary: Rotor inertia 1e-4 kg*m^2 (default) | scalar
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor dissipated energy 1e-6 N*m/(rad/s) (default) | scalar
+  group: Mechanical
+- name: Series field winding inductance, Ls
+  summary: Series field winding inductance 0.9 H (default) | positive scalar
+  group: Electrical Dynamics
+- name: Shunt field winding inductance, Lp
+  summary: Shunt field winding inductance 0.85 H (default) | positive scalar
+  group: Electrical Dynamics
+- name: Coefficient of mutual inductance between shunt-series windings, k_sp
+  summary: Coefficient of mutual inductance between shunt-series windings 0.8 (default) | nonnegative scalar between 0 and
+    1
+  group: Electrical Dynamics
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default) | scalar
+  group: Thermal
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default) | scalar
+  group: Thermal
+- name: Thermal masses, [Ms Mp Ma]
+  summary: Thermal masses [100, 100, 100] J/K (default) | vector
+  group: Thermal
+- name: Armature winding fault
+  summary: Option to add armature winding fault Add fault (default)
+  group: Faults
+- name: Fraction of revolution during which armature is open-circuit
+  summary: Fraction of revolution during which armature is open-circuit 1/3 (default) | scalar
+  group: Faults
+- name: Faulted armature winding open-circuit conductance
+  summary: Open-circuit conductance of faulted armature winding 1e-5 S (default) | scalar
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible armature winding current
+  summary: Maximum permissible armature winding current inf A (default)
+  group: Faults
+- name: Time to fail when exceeding armature winding current
+  summary: Time to fail when exceeding armature winding current 1 s (default) | scalar
+  group: Faults
+- name: Series field winding fault
+  summary: Option to add series field winding fault Add fault (default)
+  group: Faults
+- name: Faulted series field winding open-circuit conductance
+  summary: Open-circuit conductance of faulted field winding 1e-5 S (default) | scalar
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible series field winding current
+  summary: Maximum permissible series field winding current inf A (default)
+  group: Faults
+- name: Time to fail when exceeding series field winding current
+  summary: Time to fail when exceeding series field winding current 1 s (default) | scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+- name: Shunt field winding fault
+  summary: Option to add shunt field winding fault Add fault (default)
+  group: Faults
+- name: Faulted shunt field winding open-circuit conductance
+  summary: Open-circuit conductance of faulted shunt winding 1e-5 S (default) | scalar
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible shunt field winding current
+  summary: Maximum permissible shunt field winding current inf A (default)
+  group: Faults
+- name: Time to fail when exceeding shunt field winding current
+  summary: Time to fail when exceeding shunt field winding current 1 s (default) | scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -647,7 +816,6 @@ To enable this parameter, click the **Add fault** hyperlink for the
 **Shunt field winding fault** parameter and set
 **Trigger type** to
 `Additional triggers`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Brushed Motors

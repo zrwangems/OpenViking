@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Grayscale Dilation
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | fi(0,N,0) | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 输出像素流 标量 | 向量
+  direction: output
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -48,8 +66,16 @@ chinese_source: worker-translation
 对于多像素流，每个像素值向量有一组控制信号。由于该向量只有一个 `valid` 信号，向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Neighborhood
+  summary: 像素邻域 ones(3,3)（默认）| 由 1 和 0 组成的向量或矩阵
+  group: ''
+- name: Line buffer size
+  summary: 行内存缓冲区大小 2048（默认）| 正整数
+  group: ''
+```
 
 ### **Neighborhood** — 像素邻域 `ones(3,3)`（默认）| 由 `1` 和 `0` 组成的向量或矩阵
 
@@ -64,7 +90,6 @@ chinese_source: worker-translation
 使用多像素输入时，此值必须容纳（**Active pixels per line**）/（**Number of pixels**）+ 2。
 
 该模块分配 (*n* – 1)×**Line buffer size** 个内存位置来存储像素，其中 *n* 是 **Neighborhood** 参数值中的行数。
-
 ## 所属库
 
 Vision HDL Toolbox / Morphological Operations

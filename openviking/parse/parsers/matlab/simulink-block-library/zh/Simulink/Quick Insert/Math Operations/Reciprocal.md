@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Reciprocal
 
 ## 端口
+```yaml
+ports:
+- name: dataIn
+  summary: 数据输入信号 标量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: validIn
+  summary: 输入控制信号是否有效 标量
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: 输出数据信号 标量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: validOut
+  summary: 输出控制信号是否有效 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -42,8 +61,48 @@ chinese_source: worker-translation
 输出控制信号，用于指示输出信号是否有效，以标量形式返回。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Latency strategy
+  summary: 延迟策略 Max（默认）| Min | Custom | Custom(PerIteration) | Zero
+  group: ''
+  block_parameter: latencyMode
+  type: character vector
+  values: '''Max'' | ''Min'' | ''Custom'' | ''Custom(PerIteration)'' | ''Zero'''
+  default: '''Max'''
+- name: Custom latency
+  summary: 自定义延迟 0（默认）
+  group: ''
+  block_parameter: customLatencyValue
+  type: Integer
+  values: 0 to Max latency
+  default: '0'
+- name: IterationsPerPipeline
+  summary: 每次流水线的迭代次数 1（默认）| positive integer
+  group: ''
+  block_parameter: iterationsPerPipelineValue
+  type: Integer
+  values: Positive integer
+  default: '1'
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | Inherit: Inherit via back propagation
+    | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''
+    | ''int8'' | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | ''<data
+    type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Zero（默认）| Ceiling | Convergent | Floor | Nearest | Round | Simplest
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Zero'' | ''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''ROund'' | ''Simplest'''
+  default: '''Zero'''
+```
 
 ### **Latency strategy** — 延迟策略 `Max`（默认）| `Min` | `Custom` | `Custom(PerIteration)` | `Zero`
 
@@ -123,7 +182,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Zero' | 'Ceiling' | 'Convergent' | 'Floor' | 'Nearest' | 'ROund' | 'Simplest'` |
 | **默认值**：`'Zero'` |
-
 ## 所属库
 
 HDL Coder

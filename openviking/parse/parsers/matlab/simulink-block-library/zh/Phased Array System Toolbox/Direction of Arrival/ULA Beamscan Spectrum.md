@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # ULA Beamscan Spectrum
 
 ## 端口
+```yaml
+ports:
+- name: 端口 1
+  summary: 接收信号 *M*×*N* 复值矩阵
+  direction: input
+  data_types: double
+- name: Y
+  summary: Beamscan 空间谱 非负实值列向量
+  direction: output
+  data_types: double
+- name: Ang
+  summary: 到达方向 非负实值列向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -43,8 +58,104 @@ Beamscan 空间谱，返回为非负实值列向量，表示估计的 beamscan �
 要启用此输出端口，请选中 **Enable DOA output** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: ''
+- name: Operating frequency (Hz)
+  summary: 系统工作频率 3e8（默认）| 正实标量
+  group: ''
+- name: Number of bits in phase shifters
+  summary: 移相器中的相位量化位数 0（默认）| 非负整数
+  group: ''
+- name: Forward-backward averaging
+  summary: 启用前向-后向平均 off（默认）| on
+  group: ''
+- name: Spatial smoothing
+  summary: 启用空间平滑 0（默认）| 非负整数
+  group: ''
+- name: Scan angles (deg)
+  summary: 频谱峰值的搜索角度 -90:90（默认）| 实值行向量
+  group: ''
+- name: Enable DOA output
+  summary: 通过输出端口输出到达方向 off（默认）| on
+  group: ''
+- name: Number of signals
+  summary: 预期到达信号数量 1（默认）| 正整数
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: 指定阵列的方法 Array (no subarrays)（默认）| MATLAB expression
+  group: ''
+- name: Expression
+  summary: 用于创建阵列的 MATLAB 表达式 Phased Array System Toolbox™ 阵列 System object
+  group: ''
+- name: Element type
+  summary: 阵列单元类型 Isotropic Antenna（默认）| Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone
+  group: ''
+- name: Operating frequency range (Hz)
+  summary: 天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值 1×2 行向量
+  group: ''
+- name: Operating frequency vector (Hz)
+  summary: 自定义天线或麦克风单元的工作频率范围 [0,1e20]（默认）| 实值行向量
+  group: ''
+- name: Baffle the back of the element
+  summary: 将 Isotropic Antenna 元件或 Omni Microphone 元件的后向响应设置为零 off（默认）| on
+  group: ''
+- name: Exponent of cosine pattern
+  summary: 方位角和仰角余弦方向图的指数 [1.5 1.5]（默认）| 非负标量 | 非负实数值 1×2 矩阵
+  group: ''
+- name: Frequency responses (dB)
+  summary: 天线和麦克风频率响应 [0,0]（默认）| 实数值行向量
+  group: ''
+- name: Input Pattern Coordinate System
+  summary: 自定义天线方向图的坐标系 az-el（默认）| phi-theta
+  group: ''
+- name: Azimuth angles (deg)
+  summary: 天线辐射方向图的方位角 [-180:180]（默认）| 实数值行向量
+  group: ''
+- name: Elevation angles (deg)
+  summary: 天线辐射方向图的仰角 [-90:90]（默认）| 实数值行向量
+  group: ''
+- name: Phi Angles (deg)
+  summary: 自定义天线辐射方向图的 Phi 角坐标 0:360 | 实数值 1×*P* 行向量
+  group: ''
+- name: Theta Angles (deg)
+  summary: 自定义天线辐射方向图的 Theta 角度坐标 0:180 | 实值 1×*Q* 行向量
+  group: ''
+- name: Radiation pattern (dB)
+  summary: 自定义天线辐射方向图 zeros(181,361) | 复值矩阵 | 复值 MATLAB 数组
+  group: ''
+- name: Polar pattern frequencies (Hz)
+  summary: 极坐标方向图麦克风响应频率 1e3（默认值）| 实标量 | 实值 1×*L* 行向量
+  group: ''
+- name: Polar pattern angles (deg)
+  summary: 极坐标方向图响应角度 [-180:180]（默认值）| 实值 1×*P* 行向量
+  group: ''
+- name: Polar pattern (dB)
+  summary: 自定义麦克风极坐标响应 zeros(1,361)（默认值）| 实值 *L*×*P* 矩阵
+  group: ''
+- name: Number of elements
+  summary: U 中的阵列阵元数量 2（默认值）| 大于或等于 2 的正整数
+  group: ''
+- name: Element spacing
+  summary: ULA 阵元之间的距离 0.5（默认值）| 正标量
+  group: ''
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认值）| x | z
+  group: ''
+- name: Taper
+  summary: 阵元锥削 1（默认）| 复标量 | 复值行向量
+  group: ''
+```
 
 ### **Signal propagation speed (m/s)** — 信号传播速度 `physconst('LightSpeed')`（默认）| 实值正标量
 
@@ -338,7 +449,6 @@ ULA 的线性轴方向，指定为 `y`、`x` 或 `z`。然后，所有 ULA 阵�
 如果 **Taper** 是标量，则对每个阵元应用相同的权重。如果 **Taper** 是向量，则将向量中的权重应用于对应的传感器阵元。权重数量必须与阵列的阵元数量匹配。
 
 **数据类型：** `double`
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

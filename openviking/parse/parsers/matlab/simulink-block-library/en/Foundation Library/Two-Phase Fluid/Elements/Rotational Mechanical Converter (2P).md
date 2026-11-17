@@ -14,6 +14,9 @@ language: en
 # Rotational Mechanical Converter (2P)
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -41,8 +44,10 @@ The block has the following ports:
     enable this port, set the **Interface rotation** parameter
     to `Provide input signal from Multibody
     joint`.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 ### Parameters Tab
 
@@ -180,7 +185,6 @@ The block has the following ports:
 :   Characteristic duration of a phase-change event. This constant
     introduces a time lag into the transition between phases. The default
     value is `0.1` s.
-
 ## Libraries
 
 Not documented in R2025b.

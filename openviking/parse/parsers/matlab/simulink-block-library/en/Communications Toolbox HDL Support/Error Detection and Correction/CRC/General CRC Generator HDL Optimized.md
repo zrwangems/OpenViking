@@ -14,6 +14,41 @@ language: en
 # General CRC Generator HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: dataIn
+  summary: Input data scalar | vector
+  direction: input
+  data_types: double | uint8 | uint16 | uint32 | fixed point | Boolean
+- name: startIn
+  summary: Start of input frame indicator Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: endIn
+  summary: End of input frame indicator Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: validIn
+  summary: Valid input data indicator Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: Output data scalar | vector
+  direction: output
+  data_types: double | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: startOut
+  summary: Start of output frame indicator scalar
+  direction: output
+  data_types: Boolean
+- name: endOut
+  summary: End of output frame indicator scalar
+  direction: output
+  data_types: Boolean
+- name: validOut
+  summary: Valid output data indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -84,8 +119,28 @@ Valid output data indicator, returned as a Boolean scalar.
 This port is a control signal that indicates if the data on the **dataOut** port is valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Polynomial
+  summary: Generator polynomial [1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1] (default) | binary vector
+  group: ''
+- name: Initial state
+  summary: Initial conditions of shift register 0 (default) | binary scalar | binary vector
+  group: ''
+- name: Direct method
+  summary: Method of calculating checksum off (default) | on
+  group: ''
+- name: Reflect input
+  summary: Input byte order off (default) | on
+  group: ''
+- name: Reflect CRC checksum
+  summary: Checksum byte order off (default) | on
+  group: ''
+- name: Final XOR value
+  summary: Checksum 0 (default) | binary scalar | binary vector
+  group: ''
+```
 
 ### **Polynomial** — Generator polynomial `[1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1]` (default) | binary vector
 
@@ -140,7 +195,6 @@ before appending it to the input data.
 
 If you specify a vector input, the vector length must be equal to the degree of the
 generator polynomial.
-
 ## Libraries
 
 Communications Toolbox HDL Support / Error Detection and Correction / CRC

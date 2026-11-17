@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Joint Space Mass Matrix
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 机器人配置向量
+  direction: input
+- name: MassMatrix
+  summary: 配置对应的关节空间质量矩阵 正定对称矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,16 @@ chinese_source: worker-translation
 ### **MassMatrix** — 配置对应的关节空间质量矩阵 正定对称矩阵
 
 给定机器人配置对应的关节空间质量矩阵，返回为正定对称矩阵。
-
 ## 参数
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: 机器人模型 twoJointRigidBodyTree（默认）| RigidBodyTree 对象
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — 机器人模型 `twoJointRigidBodyTree`（默认）| `RigidBodyTree` 对象
 
@@ -42,7 +59,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，后续仿真会复用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 Robotics System Toolbox / Manipulator Algorithms

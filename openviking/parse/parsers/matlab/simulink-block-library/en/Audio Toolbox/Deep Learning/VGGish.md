@@ -14,6 +14,17 @@ language: en
 # VGGish
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Mel spectrograms 96-by-64 matrix | 96-by-64-by-1-by-*N* array
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Embeddings *N*-by-128 matrix
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -43,15 +54,19 @@ The feature embeddings are a compact representation of audio
 data.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mini-batch size
+  summary: Size of mini-batches 128 (default) | positive integer
+  group: ''
+```
 
 ### **Mini-batch size** — Size of mini-batches `128` (default) | positive integer
 
 Size of mini-batches to use for prediction specified as a positive integer. Larger
 mini-batch sizes require more memory but can lead to faster
 predictions.
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

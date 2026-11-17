@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Hydraulic Constant Mass Flow Rate Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,13 +26,14 @@ chinese_source: worker-translation
 
 `P`
 :   与源出口关联的液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Mass flow rate**
 :   指定通过源的 mass flow rate。默认值为
     `0.001` kg/s。
-
 ## 所属库
 
 R2025b 中未记录。

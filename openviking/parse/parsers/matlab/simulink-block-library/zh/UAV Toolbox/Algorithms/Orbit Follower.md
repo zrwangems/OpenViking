@@ -15,6 +15,60 @@ chinese_source: worker-translation
 # Orbit Follower
 
 ## 端口
+```yaml
+ports:
+- name: Pose
+  summary: 当前无人机位姿 [x y z course] 向量
+  direction: input
+  data_types: single | double
+- name: Center
+  summary: 环绕中心 [x y z] 向量
+  direction: input
+  data_types: single | double
+- name: Radius
+  summary: 环绕半径 正标量
+  direction: input
+  data_types: single | double
+- name: TurnDirection
+  summary: 环绕方向 标量
+  direction: input
+  data_types: single | double
+- name: LookaheadDistance
+  summary: 跟踪环绕的前视距离 正标量
+  direction: input
+  data_types: single | double
+- name: ResetNumTurns
+  summary: 圈数计数复位 数值信号
+  direction: input
+  data_types: single | double
+- name: LookaheadPoint
+  summary: 路径上的前视点 [x y z] 位置向量
+  direction: output
+  data_types: double
+- name: DesiredCourse
+  summary: 期望航向 数值标量
+  direction: output
+  data_types: double
+- name: DesiredYaw
+  summary: 期望偏航 数值标量
+  direction: output
+  data_types: double
+- name: OrbitRadiusFlag
+  summary: 环绕半径标志 0（默认）| 1
+  direction: output
+  data_types: uint8
+- name: LookaheadDistFlag
+  summary: 前视距离标志 0（默认）| 1
+  direction: output
+  data_types: uint8
+- name: CrossTrackError
+  summary: 从无人机位置到路径的横向跟踪误差 正数值标量
+  direction: output
+  data_types: double
+- name: NumTurns
+  summary: 无人机完成环绕轨道的次数 数值标量
+  direction: output
+```
 
 ### 输入
 
@@ -129,8 +183,28 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当选中 **Show NumTurns output port** 时，此端口才可见。
-
 ## 参数
+```yaml
+parameters:
+- name: UAV type
+  summary: 无人机类型 fixed-wing（默认）| multirotor
+  group: ''
+- name: Minimum orbit radius (m)
+  summary: 最小环绕半径 1（默认）| 正数值标量
+  group: ''
+- name: Minimum lookahead distance (m)
+  summary: 最小前视距离 0.1（默认）| 正数值标量
+  group: ''
+- name: External reset
+  summary: 重置触发源 none（默认）| rising
+  group: ''
+- name: Show CrossTrackError output port
+  summary: 输出横向偏差 off（默认）| on
+  group: ''
+- name: Show NumTurns output port
+  summary: 输出无人机航点状态 off（默认）| on
+  group: ''
+```
 
 ### **UAV type** — 无人机类型 `fixed-wing`（默认）| `multirotor`
 
@@ -171,7 +245,6 @@ chinese_source: worker-translation
 从 **Status** 端口输出无人机航点状态。
 
 此参数不可调。
-
 ## 所属库
 
 UAV Toolbox / Algorithms

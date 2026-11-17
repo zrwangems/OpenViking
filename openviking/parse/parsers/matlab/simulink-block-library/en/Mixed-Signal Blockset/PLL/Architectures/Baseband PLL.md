@@ -14,6 +14,25 @@ language: en
 # Baseband PLL
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal from baseband VCO scalar
+  direction: input
+  data_types: double
+- name: Filt
+  summary: Output of loop filter scalar
+  direction: output
+  data_types: double
+- name: PD
+  summary: Output of phase detector scalar
+  direction: output
+  data_types: double
+- name: VCO
+  summary: Output of VCO scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -42,8 +61,76 @@ Output of the phase detector in the phase domain, returned as a scalar.
 Output of the VCO in the phase domain, returned as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Loop filter type
+  summary: Determine how to define loop filter Transfer function (default) | 2nd order passive | 3rd order passive | 4th order
+    passive
+  group: ''
+  block_parameter: Ftype
+  type: double
+  values: Transfer function | 2nd order passive | 3rd order passive | 4th order passive
+  default: Transfer function
+- name: VCO input sensitivity (Hz/V)
+  summary: Measure of change in output frequency of VCO 100e6 (default) | positive real scalar
+  group: ''
+  block_parameter: Kvco
+  type: double
+  values: positive real scalar
+  default: 100e6
+- name: Charge pump current (A)
+  summary: Charge pump output current 5e3 (default) | positive real scalar
+  group: ''
+  block_parameter: Icp
+  type: double
+  values: positive real scalar
+  default: 5e3
+- name: Min clock divider value
+  summary: Minimum value by which the clock divider can divide input frequency 100 (default) | positive real scalar
+  group: ''
+  block_parameter: Nmin
+  type: double
+  values: positive real scalar
+  default: '100'
+- name: Loop bandwidth (Hz)
+  summary: Frequency at which magnitude of open loop transfer function becomes 1 50e3 (default) | positive real scalar
+  group: ''
+  block_parameter: Fc
+  type: double
+  values: positive real scalar
+  default: 50e3
+- name: Phase margin (degrees)
+  summary: Phase of open loop transfer function at loop bandwidth subtracted from 180° 45 (default) | positive real scalar
+  group: ''
+  block_parameter: phi
+  type: double
+  values: positive real scalar
+  default: '45'
+- name: Numerator
+  summary: Numerator of loop filter transfer function [1.9212e-10, 5e-05] (default) | real scalar | real valued vector
+  group: ''
+  block_parameter: Fn
+  type: double
+  values: real scalar | real valued scalar
+  default: '[1.9212e-10, 5e-05]'
+- name: Denominator
+  summary: Denominator of loop filter transfer function [2.0157e-15, 3.0576e-09, 0] (default) | real valued vector
+  group: ''
+  block_parameter: Fd
+  type: double
+  values: real valued vector
+  default: '[2.0157e-15, 3.0576e-09, 0]'
+- name: Open loop analysis
+  summary: Plot open loop presimulation analysis on (default) | off
+  group: ''
+- name: Close loop analysis
+  summary: Plot closed loop presimulation analysis on (default) | off
+  group: ''
+- name: Plot loop dynamic
+  summary: Plot loop dynamics of PLL system button
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -221,7 +308,6 @@ default, this option is selected.
 ### **Plot loop dynamic** — Plot loop dynamics of PLL system button
 
 Click to plot the presimulation loop dynamics of the PLL system.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Architectures

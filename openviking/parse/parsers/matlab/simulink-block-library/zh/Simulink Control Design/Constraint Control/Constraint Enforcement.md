@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Constraint Enforcement
 
 ## 端口
+```yaml
+ports:
+- name: u0
+  summary: 控制动作 标量 | 向量
+  direction: input
+- name: fx
+  summary: 约束函数偏移系数 标量 | 向量
+  direction: input
+- name: gx
+  summary: 约束函数线性系数 标量 | 向量 | 矩阵
+  direction: input
+- name: c
+  summary: 约束边界 标量 | 向量
+  direction: input
+- name: umax
+  summary: 动作信号上界 标量 | 向量
+  direction: input
+- name: umin
+  summary: 动作信号下界 标量 | 向量
+  direction: input
+- name: u\*
+  summary: 修改后的控制动作 标量 | 向量
+  direction: output
+- name: exitflag
+  summary: 优化状态 1 | 2 | 3 | 4 | 0 | 负整数
+  direction: output
+```
 
 ### 输入
 
@@ -103,8 +130,88 @@ QP 求解器的优化状态。下表显示了可能的状态值。
 #### 依赖关系
 
 要启用此输出端口，请选择 **Optimization status** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of constraints
+  summary: 约束数量 1 （默认） | 正整数
+  group: ''
+  block_parameter: nc
+  type: 字符向量
+  default: '''1'''
+- name: Number of actions
+  summary: 动作数量 1 （默认） | 正整数
+  group: ''
+  block_parameter: nu
+  type: 字符向量
+  default: '''1'''
+- name: Constraint bound
+  summary: 约束边界 0 （默认） | 有限标量 | 向量
+  group: ''
+  block_parameter: c
+  type: 字符向量
+  default: '''0'''
+- name: Use external source
+  summary: 添加外部约束边界输入端口 off （默认） | on
+  group: ''
+  block_parameter: external_c
+  type: 字符向量
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Use external source for upper bound
+  summary: 添加上动作边界输入端口 off （默认） | on
+  group: ''
+  block_parameter: external_umax
+  type: 字符向量
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Use external source for lower bound
+  summary: 添加下动作边界输入端口 off （默认） | on
+  group: ''
+  block_parameter: external_umin
+  type: 字符向量
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Sample time
+  summary: 优化采样时间 0.1（默认）| 正标量
+  group: ''
+  block_parameter: Ts
+  type: 字符向量
+  default: '''0.1'''
+- name: Maximum iterations
+  summary: 最大优化迭代次数 200（默认）| 正整数
+  group: ''
+  block_parameter: maxiter
+  type: 字符向量
+  default: '''200'''
+- name: Constraint tolerance
+  summary: 约束违反容差 1e-6（默认）| 非负标量
+  group: ''
+  block_parameter: tol
+  type: 字符向量
+  default: '''1e-6'''
+- name: Optimization status
+  summary: 添加退出标志输出端口 off（默认）| on
+  group: ''
+  block_parameter: exitflag
+  type: 字符向量
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Ignore constraints when QP is infeasible
+  summary: 当优化不可行时禁用约束 off（默认）| on
+  group: ''
+  block_parameter: relax_c
+  type: 字符向量
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Ignore action bounds when QP is infeasible
+  summary: 当优化不可行时禁用动作边界 off（默认）| on
+  group: ''
+  block_parameter: relax_u
+  type: 字符向量
+  values: '''off''|''on'''
+  default: '''off'''
+```
 
 #### 参数选项卡
 
@@ -269,7 +376,6 @@ QP 求解器的优化状态。下表显示了可能的状态值。
 | **类型：** 字符向量 |
 | **值：** `'off'`|`'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink Control Design / Constraint Control

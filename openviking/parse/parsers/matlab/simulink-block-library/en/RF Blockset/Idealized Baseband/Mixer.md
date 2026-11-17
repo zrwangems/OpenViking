@@ -14,6 +14,17 @@ language: en
 # Mixer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Time-dependent input signal real scalar | real column | complex scalar | complex column
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: Time-dependent output signal complex scalar | complex column
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -32,8 +43,106 @@ size of the output time dependent signal is equal in size to the input time depe
 signal.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mixer type
+  summary: Type of mixer mod (default) | demod | iqmod | iqdemod
+  group: Main Tab
+- name: Sideband
+  summary: Sidebands of mixer upper (default) | lower
+  group: Main Tab
+- name: RF (Hz)
+  summary: RF carrier frequency 1e9 (default) | real number
+  group: Main Tab
+- name: LO (Hz)
+  summary: Local oscillator frequency 1e8 (default) | real number
+  group: Main Tab
+- name: Gain (dB)
+  summary: Conversion gain for mixer 0 (default) | real number
+  group: Main Tab
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: LO phase offset (deg)
+  summary: LO phase offset 0 (default) | real number
+  group: Impairments Tab
+- name: I/Q gain imbalance (dB)
+  summary: IQ gain imbalance 0 (default) | nonnegative real numbers
+  group: Impairments Tab
+- name: I/Q phase imbalance (deg)
+  summary: IQ phase imbalance 0 (default) | real numbers
+  group: Impairments Tab
+- name: Non-Linearity
+  summary: Third-order nonlinearity type OIP3 (default) | IIP3 | IP1dB | OP1dB | IPsat | OPsat
+  group: Impairments Tab
+- name: IIP3 (dBm)
+  summary: Input third-order intercept point Inf (default) | real positive number
+  group: Impairments Tab
+- name: OIP3 (dBm)
+  summary: Output third-order intercept point Inf (default) | real positive number
+  group: Impairments Tab
+- name: IP1dB (dBm)
+  summary: Input 1 dB compression point Inf (default) | real positive number
+  group: Impairments Tab
+- name: OP1dB (dBm)
+  summary: Output 1 dB compression point Inf (default) | real positive number
+  group: Impairments Tab
+- name: IPsat (dBm)
+  summary: Input saturation point Inf (default) | real positive number
+  group: Impairments Tab
+- name: OPsat (dBm)
+  summary: Output saturation point Inf (default) | real positive number
+  group: Impairments Tab
+- name: Plot power characteristics
+  summary: Plot power characteristics button
+  group: Impairments Tab
+- name: Include mixer noise
+  summary: Add mixer noise to system off (default) | on
+  group: Noise Tab
+- name: Mixer noise type
+  summary: Noise representation NF (default) | noise-temperature | noise-factor
+  group: Noise Tab
+- name: Noise temperature (K)
+  summary: Noise temperature to model mixer noise 290 (default) | nonnegative real number
+  group: Noise Tab
+- name: Noise figure (dB)
+  summary: Noise figure to model mixer noise 10 * log10( 2 ) (default) | nonnegative real number
+  group: Noise Tab
+- name: Noise factor
+  summary: Noise factor to model mixer noise 2 (default) | positive integer scalar greater than or equal to 1
+  group: Noise Tab
+- name: Seed source, mixer noise
+  summary: Source of initial seed auto (default) | user
+  group: Noise Tab
+- name: Seed for mixer noise
+  summary: Seed for random number generator 67987 (default) | nonnegative integer less than 232
+  group: Noise Tab
+- name: Include phase noise
+  summary: Add LO phase noise to LO signal off (default) | on
+  group: Noise Tab
+- name: Phase noise level (dBc/Hz)
+  summary: Phase noise level relative to carrier [-145 -150] (default) | negative real scalar | negative real vector
+  group: Noise Tab
+- name: Frequency offset (Hz)
+  summary: Phase frequency offset [2000 20000] (default) | positive real scalar | vector of positive increasing real values
+  group: Noise Tab
+- name: Automatic frequency resolution
+  summary: Automatically determine number of frequency bins on (default) | off
+  group: Noise Tab
+- name: Number of signal samples
+  summary: Number of samples in time-domain signal 0 (default) | real nonnegative integer less than or equaled to 65536
+  group: Noise Tab
+- name: Seed source, phase noise
+  summary: Source of initial seed auto (default) | user
+  group: Noise Tab
+- name: Seed for phase noise
+  summary: Seed for random number generator 67987 (default) | nonnegative integer less than 232
+  group: Noise Tab
+- name: Plot phase characteristics
+  summary: Plot phase characteristics button
+  group: Noise Tab
+```
 
 ### Main Tab
 
@@ -417,7 +526,6 @@ has been performed or estimated from the Frequency offset (Hz) parameter
 values.
 
 For more information, see Plot Phase Noise Characteristics.
-
 ## Libraries
 
 RF Blockset / Idealized Baseband

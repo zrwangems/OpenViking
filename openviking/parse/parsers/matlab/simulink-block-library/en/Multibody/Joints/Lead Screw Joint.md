@@ -14,6 +14,48 @@ language: en
 # Lead Screw Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: q
+  summary: Joint rotation physical signal
+  direction: output
+- name: w
+  summary: First derivative of joint rotation physical signal
+  direction: output
+- name: b
+  summary: Second derivative of joint rotation physical signal
+  direction: output
+- name: p
+  summary: Joint translation physical signal
+  direction: output
+- name: v
+  summary: First derivative of joint translation physical signal
+  direction: output
+- name: a
+  summary: Second derivative of joint translation physical signal
+  direction: output
+- name: fc
+  summary: Constraint force physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque physical signal
+  direction: output
+- name: ft
+  summary: Total force physical signal
+  direction: output
+- name: tt
+  summary: Total torque physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -156,8 +198,55 @@ the joint. For more information, see Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque Sensing**,
 select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Direction
+  summary: Handedness of lead screw joint Right-Hand (default) | Left-Hand
+  group: Z Lead Screw Primitive (LSz)
+- name: Lead
+  summary: Lead of lead screw joint 1 mm/rev (default) | scalar
+  group: Z Lead Screw Primitive (LSz)
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Z Lead Screw Primitive (LSz)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Z Lead Screw Primitive (LSz)
+- name: Based On
+  summary: Motion type to use to specify position target Translation (default) | Rotation
+  group: Z Lead Screw Primitive (LSz)
+- name: Value
+  summary: Rotational position target 0 deg (default) | scalar with a unit of angle
+  group: Z Lead Screw Primitive (LSz)
+- name: Value
+  summary: Translational position target 0 m (default) | scalar with a unit of length
+  group: Z Lead Screw Primitive (LSz)
+- name: Specify Velocity Target
+  summary: Whether to specify velocity target off (default) | on
+  group: Z Lead Screw Primitive (LSz)
+- name: Priority
+  summary: Priority level of velocity target High (desired) (default) | Low (approximate)
+  group: Z Lead Screw Primitive (LSz)
+- name: Based On
+  summary: Motion type to use to specify velocity target Translation (default) | Rotation
+  group: Z Lead Screw Primitive (LSz)
+- name: Value
+  summary: Angular velocity target 0 deg/s (default) | scalar with unit of angular velocity
+  group: Z Lead Screw Primitive (LSz)
+- name: Value
+  summary: Linear velocity target 0 m/s (default) | scalar with unit of linear velocity
+  group: Z Lead Screw Primitive (LSz)
+- name: Mode
+  summary: Joint mode Normal (default) | Locked | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -306,7 +395,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

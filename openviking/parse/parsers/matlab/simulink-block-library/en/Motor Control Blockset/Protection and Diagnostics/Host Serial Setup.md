@@ -14,10 +14,33 @@ language: en
 # Host Serial Setup
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port name
+  summary: Port that you want to configure 'Please_select_a_port' (default) | 'COM3'
+  group: ''
+- name: Baud rate
+  summary: Baud rate for serial communication 115200 (default) | scalar
+  group: ''
+- name: Number of stop bits
+  summary: Number of stop bits 1 (default) | 2
+  group: ''
+- name: Parity mode
+  summary: Method used to check parity bits none (default) | odd | even
+  group: ''
+- name: Timeout
+  summary: Time interval before a one-way communication times out 1.0 (default) | scalar
+  group: ''
+- name: Byte order
+  summary: Byte order for serial communication LittleEndian (default) | BigEndian
+  group: ''
+```
 
 ### **Port name** — Port that you want to configure `'Please_select_a_port'` (default) | `'COM3'`
 
@@ -66,7 +89,6 @@ Specify the byte order as either `LittleEndian` or
 memory address. If byte order is `BigEndian`, the model stores
 the last byte in the first memory address. You should configure the byte order to an
 appropriate value before performing a read or write operation.
-
 ## Libraries
 
 Motor Control Blockset / Protection and Diagnostics

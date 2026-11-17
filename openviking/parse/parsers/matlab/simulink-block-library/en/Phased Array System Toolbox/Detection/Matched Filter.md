@@ -14,6 +14,25 @@ language: en
 # Matched Filter
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input signal *M*-by-*N* complex valued matrix
+  direction: input
+  data_types: double
+- name: Coeff
+  summary: Matched filter coefficients *M*-length complex column vector
+  direction: input
+  data_types: double
+- name: Y
+  summary: Matched filter output *M*-by-*N* complex valued matrix
+  direction: output
+  data_types: double
+- name: G
+  summary: Matched-filter gain *N*-length real-valued
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -67,8 +86,51 @@ To enable this port, select the **Enable SNR gain
 output** check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of coefficients
+  summary: Source of matched filter coefficients Property (default) | Input port
+  group: ''
+- name: Coefficients
+  summary: Matched filter coefficients [1;1] (default)
+  group: ''
+- name: Spectrum window
+  summary: Window for spectrum weighting None (default) | Hamming | Chebyshev | Hann | Kaiser | Taylor
+  group: ''
+- name: Spectrum window range (Hz)
+  summary: Spectrum window coverage region [0, 1e5] (default)
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate of the output waveform 1e6 (default) | positive scalar
+  group: ''
+  block_parameter: SampleRate
+  type: double
+  values: positive scalar
+  default: 1e6
+- name: Sidelobe attenuation level
+  summary: Window sidelobe attenuation level 30 (default)
+  group: ''
+- name: Kaiser shape parameter
+  summary: Kaiser shape parameter 0.5 (default)
+  group: ''
+- name: Number of constant level sidelobes
+  summary: Number of nearly constant sidelobes in Taylor window 4 (default)
+  group: ''
+- name: Enable SNR gain output
+  summary: Enable SNR gain output off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Source of coefficients** — Source of matched filter coefficients `Property` (default) | `Input port`
 
@@ -229,7 +291,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

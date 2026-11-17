@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Radius at Geocentric Latitude
 
 ## 端口
+```yaml
+ports:
+- name: λs
+  summary: 地心纬度 标量 | 向量
+  direction: input
+  data_types: double
+- name: rs
+  summary: 半径 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,38 @@ chinese_source: worker-translation
 行星在地心纬度处的半径，返回为标量或向量，单位与扁率相同。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输出单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Planet model
+  summary: 行星模型 Earth (WGS84)（默认）| Custom
+  group: ''
+  block_parameter: ptype
+  type: 字符向量
+  values: '''Earth (WGS84)'' | ''Custom'''
+  default: '''Earth (WGS84)'''
+- name: Flattening
+  summary: 行星扁率 1/298.257223563（默认）| 标量
+  group: ''
+  block_parameter: F
+  type: 字符向量
+  values: 双精度标量
+  default: 1/298.257223563
+- name: Equatorial radius of planet
+  summary: 行星赤道半径 6378137（默认）| 标量
+  group: ''
+  block_parameter: R
+  type: 字符向量
+  values: 双精度标量
+  default: '6378137'
+```
 
 ### **Units** — 输出单位 `Metric (MKS)`（默认）| `English`
 
@@ -101,7 +142,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：双精度标量 |
 | **默认值**：`6378137` |
-
 ## 所属库
 
 Aerospace Blockset / Flight Parameters

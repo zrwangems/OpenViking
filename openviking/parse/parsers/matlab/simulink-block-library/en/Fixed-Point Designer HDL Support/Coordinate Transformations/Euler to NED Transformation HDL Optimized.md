@@ -14,6 +14,37 @@ language: en
 # Euler to NED Transformation HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: U In
+  summary: Input array 3-by-1 vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Angle In
+  summary: Angles to rotate by 3-by-1 vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Valid In
+  summary: Whether input is valid Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: Restart
+  summary: Whether to clear internal states Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: U Out
+  summary: Rotated array 3-by-1 vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Valid Out
+  summary: Whether output data is valid boolean scalar
+  direction: output
+  data_types: Boolean
+- name: Ready
+  summary: Whether block is ready for input Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -88,8 +119,17 @@ this value is 0 (`false`), the block ignores input data in the next
 time step.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Architecture
+  summary: Architecture type Pipelined (default) | Burst
+  group: ''
+  block_parameter: Architecture
+  type: character vector
+  values: '''Pipelined'' | ''Burst'''
+  default: '''Pipelined'''
+```
 
 ### **Architecture** — Architecture type `Pipelined` (default) | `Burst`
 
@@ -108,7 +148,6 @@ This parameter specifies the type of architecture.
 | **Type:** character vector |
 | **Values:** `'Pipelined'` | `'Burst'` |
 | **Default:** `'Pipelined'` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Coordinate Transformations

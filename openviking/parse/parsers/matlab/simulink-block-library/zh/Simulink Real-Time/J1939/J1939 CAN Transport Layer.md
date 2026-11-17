@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # J1939 CAN Transport Layer
 
 ## 端口
+```yaml
+ports:
+- name: CAN Msg
+  summary: 被消费的 CAN MESSAGE 结构体 向量
+  direction: input
+- name: N
+  summary: 消息数量 整数
+  direction: input
+- name: CAN Msg
+  summary: 生成的 CAN MESSAGE 结构体 向量
+  direction: output
+- name: N
+  summary: 消息数量 整数
+  direction: output
+```
 
 ### 输入
 
@@ -34,11 +49,12 @@ chinese_source: worker-translation
 ### **N** — 消息数量 整数
 
 向量中的消息数量。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Real-Time / J1939

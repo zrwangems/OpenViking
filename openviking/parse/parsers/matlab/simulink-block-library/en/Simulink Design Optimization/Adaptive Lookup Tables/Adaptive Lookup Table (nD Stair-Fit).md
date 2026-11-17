@@ -14,10 +14,15 @@ language: en
 # Adaptive Lookup Table (nD Stair-Fit)
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Number of table dimensions**
 :   The number of dimensions for the adaptive lookup table.
@@ -88,7 +93,6 @@ Not documented in R2025b.
 **Action for out-of-range input**
 :   `Ignore` or `Adapt` by extrapolating
     beyond the extreme breakpoints.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -14,6 +14,15 @@ language: en
 # Check Valve (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Fluid entry moist air
+  direction: conserving
+- name: B
+  summary: Fluid exit moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,99 @@ Moist air conserving port associated with the fluid entry port.
 ### **B** — Fluid exit moist air
 
 Moist air conserving port associated with the fluid exit port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: Model for valve parameterization Cv flow coefficient (default) | Kv flow coefficient | Sonic conductance | Orifice
+    area
+  group: ''
+- name: Opening characteristic
+  summary: Method to convert from control signal to measure of flow capacity Linear (default) | Tabulated
+  group: ''
+- name: Opening pressure specification
+  summary: Control pressure Pressure differential (default) | Gauge pressure at port A
+  group: ''
+- name: Cracking pressure (gauge)
+  summary: Cracking pressure 0.1 MPa (default) | positive scalar
+  group: ''
+- name: Maximum opening pressure (gauge)
+  summary: Pressure that fully opens the valve 0.2 MPa (default) | positive scalar
+  group: ''
+- name: Cracking pressure differential
+  summary: Cracking pressure 0.01 MPa (default) | positive scalar
+  group: ''
+- name: Maximum opening pressure differential
+  summary: Maximum valve operational pressure 0.1 MPa (default) | positive scalar
+  group: ''
+- name: Opening pressure differential vector
+  summary: 'Vector of pressure differentials [0.2 : 0.2 : 1.2] MPa (default) | 1-by-*n* vector'
+  group: ''
+- name: Opening pressure (gauge) vector
+  summary: 'Vector of gauge pressures [0.2 : 0.2 : 1.2] MPa (default) | 1-by-*n* vector'
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: ''
+- name: Cv flow coefficient vector
+  summary: '*Cv* coefficients that correspond to values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default)
+    | 1-by-*n* vector'
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: ''
+- name: Kv flow coefficient vector
+  summary: '*Kv* coefficients that correspond to values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default)
+    | 1-by-*n* vector'
+  group: ''
+- name: Maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open component 12 l/(bar*s) (default) | positive scalar
+  group: ''
+- name: Critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: ''
+- name: Subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Sonic conductance vector
+  summary: Sonic conductances corresponding to values in control member position vector [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)
+    (default) | vector of positive values
+  group: ''
+- name: Critical pressure ratio vector
+  summary: Critical pressure ratios corresponding to values in control member position vector 0.3 * ones(1,6) (default) |
+    vector of positive numbers
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: ''
+- name: Maximum orifice area
+  summary: Maximum valve opening area 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Orifice area vector
+  summary: Vector of valve opening area values [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: ''
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Laminar-turbulent transition pressure ratio 0.999 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Valve port areas 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve parameterization** — Model for valve parameterization `Cv flow coefficient` (default) | `Kv flow coefficient` | `Sonic conductance` | `Orifice area`
 
@@ -379,7 +479,6 @@ quadratically in turbulent flows.
 
 Area of the ports **A** and
 **B**.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Directional Control Valves

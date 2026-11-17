@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Radar Detection Generator
 
 ## 端口
+```yaml
+ports:
+- name: Actors
+  summary: 场景参与者位姿 包含 MATLAB® 结构的 Simulink 总线
+  direction: input
+- name: Detections
+  summary: 检测结果 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -95,8 +104,146 @@ chinese_source: worker-translation
 | --- | --- |
 | `TargetIndex` | 生成该检测结果的参与者标识符 `ActorID`。对于虚警，该值为负数。 |
 | `SNR` | 检测结果的信噪比。单位为 dB。 |
-
 ## 参数
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 参数
+- name: Required interval between sensor updates (s)
+  summary: 传感器更新之间的所需时间间隔 0.1（默认）| 正实值标量
+  group: 参数
+- name: Sensor's (x,y) position (m)
+  summary: 雷达传感器中心的位置 [3.4 0]（默认）| 实值 1×2 向量
+  group: 参数
+- name: Sensor's height (m)
+  summary: 雷达传感器离地平面的高度 0.2（默认）| 正实值标量
+  group: 参数
+- name: Yaw angle of sensor mounted on ego vehicle (deg)
+  summary: 传感器的偏航角 0（默认）| 实值标量
+  group: 参数
+- name: Pitch angle of sensor mounted on ego vehicle (deg)
+  summary: 传感器的俯仰角 0（默认）| 实值标量
+  group: 参数
+- name: Roll angle of sensor mounted on ego vehicle (deg)
+  summary: 传感器的横滚角 0（默认）| 实值标量
+  group: 参数
+- name: Source of output bus name
+  summary: 输出总线名称的来源 Auto（默认）| Property
+  group: 参数
+- name: Specify an output bus name
+  summary: 输出总线名称 无默认值
+  group: 参数
+- name: Maximum number of reported detections
+  summary: 报告的最大检测数量 50（默认）| 正整数
+  group: 参数
+- name: Coordinate system used to report detections
+  summary: 报告检测结果的坐标系 Ego Cartesian（默认）| Sensor Cartesian | Sensor Spherical
+  group: 参数
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 参数
+- name: Azimuthal resolution of radar (deg)
+  summary: 雷达的方位角分辨率 4.0（默认）| 正实值标量
+  group: 测量值
+- name: Elevation resolution of radar (deg)
+  summary: 雷达的仰角分辨率 10.0（默认）| 正实值标量
+  group: 测量值
+- name: Range resolution of radar (m)
+  summary: 雷达的距离分辨率 2.5（默认）| 正实值标量
+  group: 测量值
+- name: Range rate resolution of radar (m/s)
+  summary: 雷达的距离变化率分辨率 0.5（默认）| 正实值标量
+  group: 测量值
+- name: Fractional azimuthal bias component of radar
+  summary: 方位角偏置比例 0.1（默认）| 非负实值标量
+  group: 测量值
+- name: Fractional elevation bias component of radar
+  summary: 仰角偏置比例 0.1（默认）| 非负实值标量
+  group: 测量值
+- name: Fractional range bias component of radar
+  summary: 距离偏置比例 0.05（默认）| 非负实值标量
+  group: 测量值
+- name: Fractional range rate bias component of radar
+  summary: 雷达的距离变化率偏置比例 0.05（默认）| 非负实值标量
+  group: 测量值
+- name: Total angular field of view for radar (deg)
+  summary: 雷达传感器的视场 [20 5]（默认）| 正实值 1×2 向量
+  group: 测量值
+- name: Maximum detection range (m)
+  summary: 最大检测距离 150（默认）| 正实值标量
+  group: 测量值
+- name: Minimum and maximum range rates that can be reported
+  summary: 最小和最大检测距离变化率 [-100 100]（默认）| 实值 1×2 向量
+  group: 测量值
+- name: Detection probability
+  summary: 检测目标的概率 0.9（默认）| 小于或等于 1 的正实数标量
+  group: 测量值
+- name: Rate at which false alarms are reported
+  summary: 虚警率 1e-6（默认）| 正实数标量
+  group: 测量值
+- name: 'Range where detection probability is achieved (m):'
+  summary: 给定检测概率的参考距离 100（默认）| 正实数标量
+  group: 测量值
+- name: Radar cross section at which detection probability is achieved (dBsm)
+  summary: 给定检测概率的参考雷达截面 0.0（默认）| 非负实数标量
+  group: 测量值
+- name: Enable elevation angle measurements
+  summary: 使雷达能够测量仰角 off（默认）| on
+  group: 测量值
+- name: Enable range rate measurements
+  summary: 使雷达能够测量距离变化率 on（默认）| off | on
+  group: 测量值
+- name: Add noise to measurements
+  summary: 启用向雷达传感器测量值添加噪声 on（默认）| off
+  group: 测量值
+- name: Enable false detections
+  summary: 启用生成虚警雷达检测 on（默认）| off
+  group: 测量值
+- name: Enable occlusion
+  summary: 启用视线遮挡 on（默认）| off
+  group: 测量值
+- name: Select method to specify initial seed
+  summary: 指定随机数生成器种子的方法 Repeatable（默认）| Specify seed | Not repeatable
+  group: 测量值
+- name: Initial seed
+  summary: 随机数生成器种子 0（默认）| 小于 232 的非负整数
+  group: 测量值
+- name: Select method to specify actor profiles
+  summary: 指定参与者配置文件的方法 From Scenario Reader block（默认）| Parameters | MATLAB expression
+  group: Actor Profiles
+- name: MATLAB expression for actor profiles
+  summary: 参与者配置文件的 MATLAB 表达式 struct('ClassID',0,'Length',4.7,'Width',1.8,'Height',1.4,'OriginOffset',[-1.35,0,0])（默认）| MATLAB
+    结构体 | MATLAB 结构体数组 | 有效的 MATLAB 表达式
+  group: Actor Profiles
+- name: Unique identifier for actors
+  summary: 场景定义的参与者标识符 []（默认）| 正整数 | 长度为 *L* 的唯一正整数向量
+  group: Actor Profiles
+- name: User-defined integer to classify actors
+  summary: 用户定义的分类标识符 0（默认）| 整数 | 长度为 *L* 的整数向量
+  group: Actor Profiles
+- name: Length of actors cuboids (m)
+  summary: 长方体的长度 4.7（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: Actor Profiles
+- name: Width of actors cuboids (m)
+  summary: 长方体的宽度 4.7（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: Actor Profiles
+- name: Height of actors cuboids (m)
+  summary: 长方体的高度 4.7（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: Actor Profiles
+- name: Rotational center of actors from bottom center (m)
+  summary: 参与者的旋转中心 { [ -1.35, 0, 0 ] }（默认）| 长度为 *L* 的实值 1×3 向量元胞数组
+  group: Actor Profiles
+- name: Radar cross section pattern (dBsm)
+  summary: 雷达截面 {[10,10;10,10]}（默认）| 实值 *Q*×*P* 矩阵 | 长度为 *L* 的实值 *Q*×*P* 矩阵元胞数组
+  group: Actor Profiles
+- name: Azimuth angles defining RCSPattern (deg)
+  summary: 雷达截面图案的方位角 {[-180 180]}（默认）| 长度为 *L* 的实值 *P* 长度向量元胞数组
+  group: Actor Profiles
+- name: Elevation angles defining RCSPattern (deg)
+  summary: 雷达截面图案的仰角 {[-90 90]}（默认）| 长度为 *L* 的实值 *Q* 长度向量元胞数组
+  group: Actor Profiles
+```
 
 ### 参数
 
@@ -454,7 +601,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Select method to specify actor profiles** 参数设置为 `Parameters`。
-
 ## 所属库
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

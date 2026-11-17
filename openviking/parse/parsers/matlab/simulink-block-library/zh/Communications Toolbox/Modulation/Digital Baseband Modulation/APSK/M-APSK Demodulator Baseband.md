@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # M-APSK Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: APSK 调制信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: 噪声方差 正标量 | 正值向量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 解调信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -51,8 +66,43 @@ APSK 调制信号，指定为标量、向量或矩阵。当此输入为矩阵时
 使用 **Output data type** 指定输出数据类型。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Constellation points per circle
+  summary: 每个 PSK 环的星座点数 [4,12]（默认）| 向量
+  group: ''
+- name: Radius of each circle
+  summary: 每个 PSK 环的半径 [0.5,1]（默认）| 向量
+  group: ''
+- name: Phase offset of each circle (rad)
+  summary: 每个 PSK 环的相位偏移 [pi/4,pi/12]（默认）| 标量 | 向量
+  group: ''
+- name: Symbol mapping
+  summary: 符号映射 Auto（默认）| Contourwise-gray | Gray | User-defined
+  group: ''
+- name: Custom symbol mapping
+  summary: 自定义符号映射 [0,4,12,8,1,3,2,6,7,5,13,15,14,10,11,9]（默认）| 整数向量
+  group: ''
+- name: Output type
+  summary: 输出类型 Integer（默认）| Bit
+  group: ''
+- name: Decision type
+  summary: 解调判决类型 Hard decision（默认）| Log-likelihood ratio | Approximate log-likelihood ratio
+  group: ''
+- name: Noise variance source
+  summary: 噪声方差来源 Property（默认）| Input port
+  group: ''
+- name: Noise variance
+  summary: 噪声方差 1（默认）| 正标量 | 正值向量
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| ...
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -152,7 +202,6 @@ APSK 调制信号，指定为标量、向量或矩阵。当此输入为矩阵时
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 为模块生成 C 代码。除非模型发生变化，否则模型在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / APM

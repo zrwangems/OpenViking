@@ -14,6 +14,13 @@ language: en
 # Current Time
 
 ## Ports
+```yaml
+ports:
+- name: Time
+  summary: ROS 2 time bus | scalar
+  direction: output
+  data_types: bus | double
+```
 
 ### Output
 
@@ -27,8 +34,16 @@ ROS 2 time in seconds. If the block does not receive a time from the
 `/clock` topic, this output is `0`.
 
 **Data Types:** `bus` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output format
+  summary: Format of ROS 2 time bus (default) | double
+  group: ''
+- name: Sample time
+  summary: Interval between outputs -1 (default) | numeric scalar
+  group: ''
+```
 
 ### **Output format** — Format of ROS 2 time `bus` (default) | `double`
 
@@ -40,7 +55,6 @@ Format of ROS 2 `Time` output, specified as either
 Interval between outputs, specified as a numeric scalar.
 
 For more information, see Specify Sample Time (Simulink).
-
 ## Libraries
 
 ROS Toolbox / ROS 2

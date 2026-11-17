@@ -14,6 +14,21 @@ language: en
 # Vector Quantizer Decoder
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Index values scalar | row vector
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: C
+  summary: Codebook values vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Q(U)
+  summary: Quantized output values row vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -46,8 +61,23 @@ specify the data type of the **Q(U)** output
 port.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Action for out of range index value
+  summary: Action for out of range index value Clip (default) | Clip and warn | Error
+  group: Main Tab
+- name: Source of codebook
+  summary: Source of codebook Specify via dialog (default) | Input port
+  group: Main Tab
+- name: Codebook values
+  summary: Codebook values [1.5 13.3 136.4 6.8; 2.5 14.3 137.4 7.8; 3.5 15.3 138.4 8.8] (default)
+  group: Main Tab
+- name: Codebook and output data type
+  summary: 'Codebook and output data type double (default) | Inherit: Inherit via back propagation | Inherit: Same as input
+    | single | fixdt(1,16) | fixdt(1,16,0)'
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -121,7 +151,6 @@ dialog`. If you set the **Source of
 codebook** parameter to `Input
 port`, the output values have the same data type as
 the input codebook values.
-
 ## Libraries
 
 DSP System Toolbox / Quantizers

@@ -14,19 +14,29 @@ language: en
 # Temperature Source
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Source outlet thermal
+  direction: conserving
+```
 
 ### Conserving
 
 ### **A** — Source outlet thermal
 
 Thermal conserving port associated with the source outlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Temperature
+  summary: Absolute temperature at source outlet 293.15 K (default)
+  group: ''
+```
 
 ### **Temperature** — Absolute temperature at source outlet 293.15 K (default)
 
 Constant absolute temperature at the source outlet port.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Sources

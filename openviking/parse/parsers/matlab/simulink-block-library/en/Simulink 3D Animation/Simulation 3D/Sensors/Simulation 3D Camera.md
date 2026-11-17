@@ -14,6 +14,39 @@ language: en
 # Simulation 3D Camera
 
 ## Ports
+```yaml
+ports:
+- name: Rel Translation
+  summary: Relative translation of sensor from mounting point [0 0 0] (default) | real-valued 1-by-3 vector of form [*X* *Y*
+    *Z*]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Rel Rotation
+  summary: Relative rotation of sensor from mounting point [0 0 0] (default) | real-valued 1-by-3 vector of form [*Roll* *Pitch*
+    *Yaw*]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Image
+  summary: 3D output camera image *m*-by-*n*-by-3 array of RGB triplet values
+  direction: output
+  data_types: int8 | uint8
+- name: Depth
+  summary: Object depth from 0 m to 1000 m *m*-by-*n* array of object depths
+  direction: output
+  data_types: double
+- name: Labels
+  summary: Label identifiers *m*-by-*n* array of label identifiers
+  direction: output
+  data_types: uint8
+- name: Translation
+  summary: Sensor location real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: Sensor orientation real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -177,8 +210,69 @@ select **Output location and
 orientation**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Mounting
+- name: Parent name
+  summary: Name of parent vehicle Scene Origin (default) | vehicle name
+  group: Mounting
+- name: Coordinate system
+  summary: Coordinate system for actor transformation Default (default) | MATLAB | ISO8855 | AERO | VRML | SAE
+  group: Mounting
+- name: Mounting location
+  summary: Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview
+    mirror | Hood center | Roof center | ...
+  group: Mounting
+- name: Specify offset
+  summary: Specify offset from mounting location off (default) | on
+  group: Mounting
+- name: Relative translation [X, Y, Z]
+  summary: Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Mounting
+- name: Focal length (pixels)
+  summary: Focal length of camera [1109, 1109] (default) | 1-by-2 positive integer vector
+  group: Parameters
+- name: Optical center (pixels)
+  summary: Optical center of camera [640, 360] (default) | 1-by-2 positive integer vector
+  group: Parameters
+- name: Image size (pixels)
+  summary: Image size produced by camera [720, 1280] (default) | 1-by-2 positive integer vector
+  group: Parameters
+- name: Radial distortion coefficients
+  summary: Radial distortion coefficients [0, 0] (default) | real-valued 2-element vector | real-valued 3-element vector |
+    real-valued 6-element vector
+  group: Parameters
+- name: Tangential distortion coefficients
+  summary: Tangential distortion coefficients [0, 0] (default) | real-valued 2-element vector
+  group: Parameters
+- name: Axis skew
+  summary: Skew angle of camera axes 0 (default) | nonnegative real-valued scalar
+  group: Parameters
+- name: Visualize field of view
+  summary: Option to visualize camera field of view off (default) | on
+  group: Parameters
+- name: Field of view range (m)
+  summary: Visualization range 61 (default) | positive real scalar
+  group: Parameters
+- name: Output depth
+  summary: Output depth map off (default) | on
+  group: Ground Truth
+- name: Output semantic segmentation
+  summary: Output semantic segmentation map of label IDs off (default) | on
+  group: Ground Truth
+- name: Output location and orientation
+  summary: Output location and orientation of sensor off (default) | on
+  group: Ground Truth
+```
 
 ### Mounting
 
@@ -472,7 +566,6 @@ Select this parameter to output the translation and rotation of the
 sensor at the **Translation** and
 **Rotation** ports,
 respectively.
-
 ## Libraries
 
 Offroad Autonomy Library / Simulation 3D Automated Driving Toolbox / Simulation 3D Robotics System Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Sensors UAV Toolbox / Simulation 3D

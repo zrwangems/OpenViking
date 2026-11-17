@@ -14,6 +14,29 @@ language: en
 # Detect Drift
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input data n-by-1 numeric vector | logical vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: reset
+  summary: Reset signal numeric or | 0 (false) | 1(true)
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: w
+  summary: Observation weights n-by-1 numeric vector
+  direction: input
+  data_types: single | double
+- name: IsWarm
+  summary: Flag indicating whether block tracks drift status 0 (false) | 1(true)
+  direction: output
+  data_types: Boolean
+- name: status
+  summary: Current drift status 0 (stable) | 1 (warning) | 2 (drift)
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -86,8 +109,145 @@ Current drift status, specified as `0` (stable, or no drift),
 detected).
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select concept drift detector
+  summary: Initial incremental concept drift detector IncCDDetector (default) | incrementalConceptDriftDetector object
+  group: Main
+  block_parameter: DriftDetector
+  type: character vector or string
+  values: incrementalConceptDriftDetector object name
+  default: '"IncCDDetector"'
+- name: Add input port for observation weights
+  summary: Add third input port for observation weights off (default) | on
+  group: Main
+  block_parameter: ShowInputWeights
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: Main
+  block_parameter: SystemSampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Drift status data type
+  summary: 'Data type of drift status output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: DriftStatusDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Drift status data type Minimum
+  summary: Minimum value of drift status output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: DriftStatusOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Drift status data type Maximum
+  summary: Maximum value of drift status output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: DriftStatusOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Mean data type
+  summary: 'Data type of mean Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: MeanDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Mean data type Minimum
+  summary: Minimum value of mean for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: MeanOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Mean data type Maximum
+  summary: Maximum value of mean for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: MeanOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Variance data type
+  summary: 'Data type of variance Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: VarianceDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Variance data type Minimum
+  summary: Minimum value of variance for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: VarianceOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Variance data type Maximum
+  summary: Maximum value of variance for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: VarianceOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Weights sum data type
+  summary: 'Data type of weights sum Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: WeightsSumDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Weights sum data type Minimum
+  summary: Minimum value of weights sum for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: WeightsSumOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Weights sum data type Maximum
+  summary: Maximum value of weights sum for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: WeightsSumOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -464,7 +624,6 @@ Simulink uses the maximum value to perform:
 | **Type**: character vector |
 | **Values**: `'[]'` | scalar |
 | **Default**: `'[]'` |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Drift Detection

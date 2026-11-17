@@ -15,14 +15,41 @@ chinese_source: worker-translation
 # XCP CAN FD Data Stimulation
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 由 A2L 文件定义的数据激励输入样本
+  direction: input
+```
 
 ### 输入
 
 ### **Data** — 由 A2L 文件定义的数据激励输入样本
 
 数据激励输入样本，其名称和类型由 A2L 文件定义。Selected Measurements 参数中的每个条目定义一个输入端口。在仿真的每一步，每个端口都会写入一个样本。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 从列表中指定要选择的 XCP CAN FD 会话名称
+  group: ''
+- name: Event name
+  summary: 从列表中选择一个事件
+  group: ''
+- name: All Measurements
+  summary: 列出该事件可用的所有测量量 测量量列表
+  group: ''
+- name: Selected Measurements
+  summary: 列出已选测量量 测量量名称
+  group: ''
+- name: 模块输入设置
+  summary: 将端口输入设置为 Compu 方法转换值或原始值 Raw values as double (no Compu method conversion)（默认）| Raw values (no Compu method conversion)
+    | Physical values (apply Compu method conversion)
+  group: ''
+- name: 启用时间戳
+  summary: 启用发送 Simulink 时间戳到 STIM DTO 数据包 off（默认）| on
+  group: ''
+```
 
 ### **Config name** — 从列表中指定要选择的 XCP CAN FD 会话名称
 
@@ -84,7 +111,6 @@ chinese_source: worker-translation
 ### **启用时间戳** — 启用发送 Simulink 时间戳到 STIM DTO 数据包 `off`（默认）| `on`
 
 当启用时间戳时，模块从 Simulink 输入时间戳，并在 STIM DTO 数据包中发送该时间戳。当 A2L 文件支持该参数时，**启用时间戳**复选框会出现在模块参数对话框中。
-
 ## 所属库
 
 Vehicle Network Toolbox / XCP Communication / CAN FD Simulink Real-Time / XCP / CAN FD

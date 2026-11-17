@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Frequency Response Estimator
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 扰动前的被控对象输入 标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 被控对象输出 标量
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: 启动和停止估计实验 标量
+  direction: input
+  data_types: single | double
+- name: w
+  summary: 估计实验的频率 向量
+  direction: input
+  data_types: single | double
+- name: amp
+  summary: 扰动幅值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: u + Δu
+  summary: 受扰对象输入 标量
+  direction: output
+  data_types: single | double
+- name: Δu
+  summary: 对象输入扰动 标量
+  direction: output
+  data_types: single | double
+- name: data
+  summary: 实验数据总线
+  direction: output
+  data_types: single | double
+- name: frd
+  summary: 估计的频率响应向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -165,8 +204,122 @@ chinese_source: worker-translation
 要启用此端口，请将 **Estimation Mode** 设置为 **Online**。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: 实验采样时间 0.1（默认）| 正标量 | –1
+  group: ''
+  block_parameter: DiscreteTs
+  type: scalar
+  values: positive scalar | –1
+  default: '0.1'
+- name: Output Signal Configuration
+  summary: 提供控制信号加扰动或仅扰动 control action + perturbation（默认）| perturbation only
+  group: ''
+- name: Data Type
+  summary: 浮点精度 double（默认）| single
+  group: ''
+  block_parameter: BlockDataType
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: Excitation signal source
+  summary: 激励信号源 Block parameters（默认）| External ports
+  group: ''
+  block_parameter: SineSource
+  type: character vector, string
+  values: '''Block parameters'' | ''External ports'''
+  default: '''Block parameters'''
+- name: Frequencies
+  summary: 用于估计的频率 [0.5 1 2]（默认）| 向量
+  group: ''
+  block_parameter: Frequencies
+  type: vector
+  values: positive real values
+  default: '''[0.5 1 2]'''
+- name: Frequency units
+  summary: 频率单位 rad/s（默认）| Hz
+  group: ''
+  block_parameter: FreqUnits
+  type: string, character vector
+  values: '''rad/s'',''Hz'''
+  default: '''rad/s'''
+- name: Amplitudes
+  summary: 注入扰动信号的幅值 1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: Amplitudes
+  type: 标量、向量
+  default: '''1'''
+- name: Number of frequencies in the excitation signal
+  summary: 外部提供的频率数量 3（默认）| 正整数
+  group: ''
+  block_parameter: NumOfFreq
+  type: 标量
+  default: '''3'''
+- name: Experiment mode
+  summary: 实验模式 Sinestream（默认）| Superposition | PRBS *（自 R2023a 起）*
+  group: ''
+  block_parameter: ExperimentMode
+  type: character vector, string
+  values: '''Sinestream'' | ''Superposition'' | ''PRBS'''
+  default: '''Sinestream'''
+- name: Number of settling periods
+  summary: 等待瞬态稳定的周期数 2（默认）| 正整数 | 正整数向量
+  group: ''
+  block_parameter: NumOfSetPeriod
+  type: integer, vector of integers
+- name: Number of estimation periods
+  summary: 稳定后用于估计的周期数 4（默认）| 整数 ≥ 2 | 整数向量
+  group: ''
+  block_parameter: NumOfEstPeriod
+  type: integer, vector of integers
+- name: Number of periods of the lowest frequency used for estimation
+  summary: 数据收集窗口的持续时间 3（默认）| 1 到 5 之间的整数
+  group: ''
+  block_parameter: NumOfSlowestPeriod
+  type: integer
+- name: Number of periods
+  summary: PRBS 信号中的周期数 1（默认）| 正整数
+  group: ''
+  block_parameter: NumOfPRBSPeriod
+  type: positive integer
+- name: Signal order
+  summary: PRBS 信号阶数 12（默认）| 小于等于 24 的正整数
+  group: ''
+  block_parameter: PRBSSignalOrder
+  type: 小于等于 24 的正整数
+  default: '''12'''
+- name: Use Auto-Generated Value
+  summary: 自动设置 PRBS 信号参数 off（默认）| on
+  group: ''
+- name: Estimation mode
+  summary: 模块执行估计还是仅收集响应数据 Online（默认）| Offline
+  group: ''
+  block_parameter: EstimationMode
+  type: 字符向量、字符串
+  values: '''Online'' | ''Offline'''
+  default: '''Online'''
+- name: Display Bode plot
+  summary: 绘制估计的频率响应 off（默认）| on
+  group: ''
+  block_parameter: UseBodePlot
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Baseline plant model
+  summary: Bode 图的基线模型 []（默认）| LTI 模型
+  group: ''
+  block_parameter: BaselinePlant
+  type: LTI model
+  default: '''[]'''
+- name: Refresh plot every N\*Ts seconds where N is
+  summary: 更新 Bode 图的频率 100（默认）| 标量
+  group: ''
+  block_parameter: PlotRefreshFactor
+  type: integer
+  default: '''100'''
+```
 
 ### **Sample time (Ts)** — 实验采样时间 0.1（默认）| 正标量 | –1
 
@@ -532,7 +685,6 @@ PRBS 信号中的周期数，指定为正整数。
 | **模块参数：** `PlotRefreshFactor` |
 | **类型：** integer |
 | **默认值：** `'100'` |
-
 ## 所属库
 
 Simulink Control Design / Frequency Response Estimation

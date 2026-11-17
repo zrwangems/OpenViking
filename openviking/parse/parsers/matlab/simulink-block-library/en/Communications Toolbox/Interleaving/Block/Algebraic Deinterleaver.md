@@ -14,10 +14,15 @@ language: en
 # Algebraic Deinterleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Type**
 :   The type of permutation table that the block uses for deinterleaving.
@@ -42,7 +47,6 @@ Not documented in R2025b.
 :   An element of order *N* in the finite field GF(N+1). This
     field appears only if **Type** is set to
     `Welch-Costas`.
-
 ## Libraries
 
 Not documented in R2025b.

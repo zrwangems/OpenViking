@@ -14,6 +14,30 @@ language: en
 # Multiplier
 
 ## Ports
+```yaml
+ports:
+- name: X1
+  summary: X-input non-inverting input electrical
+  direction: conserving
+- name: X2
+  summary: X-input inverting input electrical
+  direction: conserving
+- name: Y1
+  summary: Y-input non-inverting input electrical
+  direction: conserving
+- name: Y2
+  summary: Y-input inverting input electrical
+  direction: conserving
+- name: Z1
+  summary: Z-input non-inverting input electrical
+  direction: conserving
+- name: Z2
+  summary: Z-input inverting input electrical
+  direction: conserving
+- name: '~'
+  summary: Multiplied output signal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -51,8 +75,40 @@ input.
 
 Electrical conserving port associated with the multiplier output
 port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Scaling factor, K
+  summary: Scaling factor 10 V (default)
+  group: Main
+- name: Gain, A
+  summary: Gain 3000 (default)
+  group: Main
+- name: Differential resistance, Rin
+  summary: Differential resistance 10e6 Ohm (default)
+  group: Inputs
+- name: Differential signal voltage range
+  summary: Differential signal voltage range 10 V (default)
+  group: Inputs
+- name: Output resistance, Rout
+  summary: Output resistance 0.1 Ohm (default)
+  group: Outputs
+- name: Minimum output, Vmin
+  summary: Minimum output -11 V (default)
+  group: Outputs
+- name: Maximum output, Vmax
+  summary: Maximum output 11 V (default)
+  group: Outputs
+- name: Maximum slew rate, Vdot
+  summary: Maximum slew rate 20 V/us (default)
+  group: Outputs
+- name: Bandwidth, f
+  summary: Bandwidth 1 MHz (default)
+  group: Outputs
+- name: Initial output voltage, V0
+  summary: Initial output voltage 0 V (default)
+  group: Outputs
+```
 
 ### Main
 
@@ -113,7 +169,6 @@ The bandwidth of the Band-Limited Op-Amp block.
 The value of the initial Multiplier block output if the
 **Start simulation from steady-state** option is
 not selected in the Solver block.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Receiver Thermal Noise
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 基带信号 标量 | 列向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: 输出信号 标量 | 列向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +39,37 @@ chinese_source: worker-translation
 ### **Out1** — 输出信号 标量 | 列向量 | 矩阵
 
 输出信号，返回为复值标量、列向量或矩阵，其长度和数据类型与输入信号相同。
-
 ## 参数
+```yaml
+parameters:
+- name: Specification method
+  summary: 热噪声指定方法 Noise temperature（默认）| Noise figure | Noise factor
+  group: ''
+- name: Noise temperature (K)
+  summary: 噪声温度 290（默认）| 标量
+  group: ''
+- name: Noise figure (dB)
+  summary: 接收机噪声系数 3.0103（默认）| 标量
+  group: ''
+- name: Noise factor
+  summary: 接收机噪声因子 2（默认）| 标量
+  group: ''
+- name: Add 290K antenna noise
+  summary: 添加 290 K 天线噪声的选项 off（默认）| on
+  group: ''
+- name: Reference load (ohm)
+  summary: 参考负载 1（默认）| 标量
+  group: ''
+- name: Random number source
+  summary: 随机数流来源 Global stream（默认）| mt19937ar with seed
+  group: ''
+- name: Initial seed
+  summary: 初始种子值 67987（默认）| 标量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -124,7 +163,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments and Components

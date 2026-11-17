@@ -15,6 +15,66 @@ chinese_source: worker-translation
 # BLDC
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: conserving
+- name: a
+  summary: '*a* 相电气'
+  direction: conserving
+- name: b
+  summary: '*b* 相电气'
+  direction: conserving
+- name: c
+  summary: '*c* 相电气'
+  direction: conserving
+- name: ~1
+  summary: 定子正端连接电气
+  direction: conserving
+- name: ~2
+  summary: 定子负端连接电气
+  direction: conserving
+- name: a1
+  summary: '*a* 正端连接电气'
+  direction: conserving
+- name: b1
+  summary: '*b* 正端连接电气'
+  direction: conserving
+- name: c1
+  summary: '*c* 正端连接电气'
+  direction: conserving
+- name: a2
+  summary: '*a* 负端连接电气'
+  direction: conserving
+- name: b2
+  summary: '*b* 负端连接电气'
+  direction: conserving
+- name: c2
+  summary: '*c* 负端连接电气'
+  direction: conserving
+- name: n
+  summary: 中性相电气
+  direction: conserving
+- name: R
+  summary: 电机转子机械
+  direction: conserving
+- name: C
+  summary: 电机壳体机械
+  direction: conserving
+- name: HA
+  summary: 绕组 A 热端口热
+  direction: conserving
+- name: HB
+  summary: 绕组 B 热端口热
+  direction: conserving
+- name: HC
+  summary: 绕组 C 热端口热
+  direction: conserving
+- name: HR
+  summary: 转子热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -177,8 +237,139 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Selected part
+  summary: 预定义参数化选项 <click to select>（默认）
+  group: ''
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 转子
+- name: Back EMF profile
+  summary: 反电动势曲线 Perfect trapezoid - specify maximum flux linkage（默认）| Perfect trapezoid - specify maximum rotor-induced
+    back emf | Tabulated - specify flux partial derivative with respect to rotor angle | Tabulated - specify rotor-induced
+    back emf as a function of rotor angle
+  group: 转子
+- name: Maximum permanent magnet flux linkage
+  summary: 最大永磁磁链 0.03 Wb（默认）
+  group: 转子
+- name: Rotor angle over which back emf is constant
+  summary: 反电动势恒定的转子角度 pi / 12 rad（默认）
+  group: 转子
+- name: Maximum rotor-induced back emf
+  summary: 最大转子感应反电动势 9.6 V（默认）
+  group: 转子
+- name: Rotor-induced back emf
+  summary: 转子感应反电动势 [0, -9.6, -9.6, 9.6, 9.6, 0] V（默认）
+  group: 转子
+- name: Flux linkage partial derivative with respect to rotor angle
+  summary: 磁链对转子角度的偏导数 [0, -.1528, -.1528, .1528, .1528, 0] Wb/rad（默认）
+  group: 转子
+- name: Corresponding rotor angles
+  summary: 对应转子角度 [0, 7.5, 22.5, 37.5, 52.5, 60] deg（默认）
+  group: 转子
+- name: Rotor speed used for back emf measurement
+  summary: 用于反电动势测量的转子速度 600 rpm（默认）
+  group: 转子
+- name: Number of pole pairs
+  summary: 极对数 6（默认）
+  group: 转子
+- name: Rotor angle definition
+  summary: 转子角度测量的参考点 Angle between the a-phase magnetic axis and the d-axis（默认）| Angle between the a-phase magnetic axis
+    and the q-axis
+  group: 转子
+- name: Winding type
+  summary: 绕组配置 Wye-wound（默认）| Delta-wound | Open-end
+  group: 定子
+- name: Modeling fidelity
+  summary: 建模保真度 Constant Ld and Lq（默认）| Tabulated Ld and Lq
+  group: 定子
+- name: Stator parameterization
+  summary: 定子参数化 Specify Ld, Lq, and L0（默认）| Specify Ls, Lm, and Ms
+  group: 定子
+- name: Stator d-axis inductance, Ld
+  summary: 定子 d 轴电感 0.00022 H（默认）
+  group: 定子
+- name: Stator q-axis inductance, Lq
+  summary: 定子 q 轴电感 0.00022 H（默认）
+  group: 定子
+- name: Direct-axis current vector, iD
+  summary: 直轴电流向量 [-200, 0, 200] A（默认）
+  group: 定子
+- name: Quadrature-axis current vector, iQ
+  summary: 交轴电流向量 [-200, 0, 200] A（默认）
+  group: 定子
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld 矩阵 0.00022 * ones(3, 3) H（默认）
+  group: 定子
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq 矩阵 0.00022 * ones(3, 3) H（默认）
+  group: 定子
+- name: Stator zero-sequence inductance, L0
+  summary: 定子零序电感 0.00016 H（默认）
+  group: 定子
+- name: Stator self-inductance per phase, Ls
+  summary: 每相定子自感 0.0002 H（默认）
+  group: 定子
+- name: Stator inductance fluctuation, Lm
+  summary: 定子电感波动 0 H（默认）
+  group: 定子
+- name: Stator mutual inductance, Ms
+  summary: 定子互感 0.00002 H（默认）
+  group: 定子
+- name: Stator resistance per phase, Rs
+  summary: 每相定子电阻 0.013 Ohm（默认）
+  group: 定子
+- name: Zero sequence
+  summary: 零序选项 Include（默认）| Exclude
+  group: 定子
+- name: Model
+  summary: 启用铁损计算 None（默认）| Empirical
+  group: 铁损
+- name: Open-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: 开路铁耗 [0, 0, 0] W（默认）
+  group: 铁损
+- name: Short-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: 短路铁耗 [0, 0, 0] W（默认）
+  group: 铁损
+- name: Electrical frequency at which losses determined
+  summary: 确定损耗时的电气频率 60 Hz（默认）
+  group: 铁损
+- name: Short-circuit RMS current for short-circuit iron losses
+  summary: 短路铁耗对应的短路 RMS 电流 95 A（默认）
+  group: 铁损
+- name: Rotor inertia
+  summary: 转子惯量 0.01 kg*m^2（默认）
+  group: 机械
+- name: Rotor damping
+  summary: 转子阻尼 0 N*m/(rad/s)（默认）
+  group: 机械
+- name: Measurement temperature
+  summary: 测量温度 298.15 K（默认）
+  group: 温度依赖性
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 温度依赖性
+- name: Permanent magnet flux temperature coefficient
+  summary: 永磁体磁通温度系数 -0.001 1/K（默认）
+  group: 温度依赖性
+- name: Thermal mass for each stator winding
+  summary: 每个定子绕组的热质量 100 J/K（默认）
+  group: 热端口
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）
+  group: 热端口
+- name: Percentage of main flux path iron losses associated with the rotor
+  summary: 与转子相关的主磁通路径铁耗百分比 90（默认）
+  group: 热端口
+- name: Percentage of cross-tooth flux path iron losses associated with the rotor
+  summary: 与转子相关的跨齿磁通路径铁耗百分比 30（默认）
+  group: 热端口
+```
 
 ### **Selected part** — 预定义参数化选项 `<click to select>`（默认）
 
@@ -486,7 +677,6 @@ A、B 和 C 绕组的热质量值。热质量是使温度升高一度所需的�
 #### 依赖关系
 
 要启用此参数，请将 **Model** 设置为 `Empirical`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

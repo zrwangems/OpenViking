@@ -14,6 +14,41 @@ language: en
 # Template Matching
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Image image
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: T
+  summary: Template *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | uint8 | Boolean | fixed point
+- name: ROI
+  summary: Region of interest four-element vector
+  direction: input
+  data_types: single | double | uint8 | Boolean | fixed point
+- name: Metric
+  summary: Match metric values matrix
+  direction: output
+  data_types: single | double | uint8 | Boolean | fixed point
+- name: Loc
+  summary: Best match locations two-element vector
+  direction: output
+  data_types: uint32
+- name: NMetric
+  summary: Metric values in neighborhood of best match *N*-by-*N* matrix
+  direction: output
+  data_types: single | double | uint8 | Boolean | fixed point
+- name: NValid
+  summary: Valid neighborhood off | on
+  direction: output
+  data_types: Boolean
+- name: ROIValid
+  summary: Valid region of interest off | on
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -140,8 +175,31 @@ This port appears when you enable the **Output flag indicating if ROI is
 valid** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Match metric
+  summary: Match metric Sum of absolute differences (default) | Sum of squared differences | Maximum absolute difference
+  group: ''
+- name: Output
+  summary: Match metric Match metric (default) | Best match location
+  group: ''
+- name: Search method
+  summary: Search method Exhaustive (default) | Three-step
+  group: ''
+- name: Output NxN matrix of metric values around best match
+  summary: Output *N*-by-*N* matrix on (default) | off
+  group: ''
+- name: N
+  summary: Size of output matrix 3 (default) | integer
+  group: ''
+- name: Enable ROI processing
+  summary: Enable ROI processing on (default) | off
+  group: ''
+- name: Output flag indicating if ROI is valid
+  summary: Valid ROI off (default) | on
+  group: ''
+```
 
 **Main Tab**
 
@@ -252,7 +310,6 @@ processing** parameter.
 **Data Types Tab**
 
 For details on the fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

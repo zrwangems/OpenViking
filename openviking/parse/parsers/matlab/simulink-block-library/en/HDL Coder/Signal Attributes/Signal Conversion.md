@@ -14,6 +14,19 @@ language: en
 # Signal Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal to convert scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+- name: Port_1
+  summary: Converted signal scalar | vector | matrix | array | bus
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -30,8 +43,25 @@ another type.
 The output signal is the input signal converted to the specified type.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Type of conversion Signal copy | Virtual bus | Nonvirtual bus
+  group: ''
+  block_parameter: ConversionOutput
+  values: '''Signal copy'' (default) | ''Virtual bus'' | ''Nonvirtual bus'''
+- name: Data type
+  summary: 'Nonvirtual bus data type Inherit: auto (default) | Bus: <object name> | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: auto'' (default) | ''Bus: <object name>'' | ''<data type expression>'''
+- name: Exclude this block from 'Block reduction' optimization
+  summary: Option to exclude block from block reduction optimization off (default) | on
+  group: ''
+  block_parameter: OverrideOpt
+  values: '''off'' (default) | ''on'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -148,7 +178,6 @@ the `set_param` function.
 | **Values:** | `'off'` (default) | `'on'` |
 
 **Example:** `set_param(gcb,'OverrideOpt','on')`
-
 ## Libraries
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

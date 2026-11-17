@@ -14,6 +14,21 @@ language: en
 # 2-D Convolution
 
 ## Ports
+```yaml
+ports:
+- name: I1
+  summary: Input matrix matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I2
+  summary: Input matrix matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Output
+  summary: Convolution matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -46,8 +61,16 @@ Convolution of the input matrices, returned as a matrix.
   error.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output size
+  summary: Output size matrix
+  group: ''
+- name: Normalized output
+  summary: Normalized output matrix
+  group: ''
+```
 
 **Main Tab**
 
@@ -82,7 +105,6 @@ input cannot be fixed point.
 **Data Types Tab**
 
 For details on the fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Filtering

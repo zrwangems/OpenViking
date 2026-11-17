@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # PFD and Charge Pump Testbench
 
 ## 端口
+```yaml
+ports:
+- name: from PFD up
+  summary: 测量 PFD 参考频率标量
+  direction: input
+  data_types: double
+- name: from PFD down
+  summary: 测量 PFD 反馈频率标量
+  direction: input
+  data_types: double
+- name: from charge pump
+  summary: 测量电荷泵输出电流标量
+  direction: input
+  data_types: double
+- name: to PFD reference
+  summary: 向 PFD 提供参考频率标量
+  direction: output
+  data_types: double
+- name: to PFD feedback
+  summary: 向 PFD 提供反馈频率标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -48,8 +71,64 @@ chinese_source: worker-translation
 向 PFD 模块提供反馈频率。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase sweep (°)
+  summary: 相对于相位偏移的最大相位偏移量 300（默认）| 实正标量
+  group: 激励
+- name: Phase offset (°)
+  summary: 相位扫描中心的相对相位值 0（默认）| 实标量
+  group: 激励
+- name: Clock frequency (Hz)
+  summary: 期望的参考时钟频率 2.5e9 Hz（默认）| 实正标量
+  group: 激励
+- name: Number of phases in sweep
+  summary: 要仿真的均匀间隔相位偏移总数 2000（默认）| 实正标量
+  group: 激励
+- name: Duty cycle (%)
+  summary: 激励时钟的占空比 50（默认）| 实正标量
+  group: 激励
+- name: Plot figures on top after simulation
+  summary: 仿真后将图形绘制在最上层 on（默认）| off
+  group: 设置
+- name: Report PFD metrics
+  summary: 报告 PFD 指标 on（默认）| off
+  group: 设置
+- name: Report Charge Pump metrics
+  summary: 报告 Charge Pump 指标 on（默认）| off
+  group: 设置
+- name: Logic Threshold (V)
+  summary: 电荷泵输入端的开关阈值 0.5（默认）| 实数标量
+  group: 设置
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: 设置
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 5（默认）| 正整数标量
+  group: 设置
+- name: Target deadband (°)
+  summary: 零相位偏移附近降低灵敏度区域的最大可接受大小 0（默认）| 实数非负标量
+  group: Target Metrics
+- name: Target linear range (°)
+  summary: 输出保持近似等于输入偏移的最大相位偏移 290（默认）| 实数正标量
+  group: Target Metrics
+- name: Target propagation delay (s)
+  summary: 从输入到输出的最大可接受延迟 60e-12（默认）| 实数正标量
+  group: Target Metrics
+- name: Target rise/fall time (s)
+  summary: 最大可接受 20% – 80% 上升/下降时间 30e-12（默认）| 实数正标量
+  group: Target Metrics
+- name: 目标灵敏度 (A/°)
+  summary: 最大可接受电荷泵灵敏度 1e-9（默认）| 实正标量
+  group: Target Metrics
+- name: 目标相位偏移 (°)
+  summary: 电荷泵输出端最大可接受相位偏移 10（默认）| 实正标量
+  group: Target Metrics
+- name: 目标杂散电流 (A)
+  summary: 电荷泵输出电流幅度 1e-7（默认）
+  group: Target Metrics
+```
 
 ### 激励
 
@@ -245,7 +324,6 @@ chinese_source: worker-translation
   将**目标杂散电流**设置为特定值。
 
 **数据类型：** `double`
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

@@ -14,6 +14,21 @@ language: en
 # Belt Pulley
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Pulley shaft angular velocity mechanical rotational
+  direction: conserving
+- name: A
+  summary: Belt end A linear velocity mechanical translational
+  direction: conserving
+- name: B
+  summary: Belt end B linear velocity mechanical translational
+  direction: conserving
+- name: C
+  summary: Pulley center linear velocity mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +56,87 @@ the relative velocity is positive, the pulley center moves.
 #### Dependencies
 
 To enable this port, select **Pulley translation**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Belt type
+  summary: Belt parameterization Ideal - No slip (default) | Flat belt | V-belt
+  group: Belt
+- name: V-belt sheave angle
+  summary: Sheave angle 30 deg (default) | positive scalar
+  group: Belt
+- name: Number of V-belts
+  summary: Number of belts 1 (default) | positive scalar integer
+  group: Belt
+- name: Centrifugal force
+  summary: Centrifugal force option Do not model centrifugal force - Suitable for HIL simulation (default) | Model centrifugal
+    force
+  group: Belt
+- name: Belt mass per unit length
+  summary: Mass per unit length 0.6 kg/m (default) | positive scalar
+  group: Belt
+- name: Belt direction
+  summary: Initial relative motion direction of the belt end Ends move in opposite direction (default) | Ends move in same
+    direction
+  group: Belt
+- name: Maximum tension
+  summary: Tension threshold option No maximum tension (default) | Specify maximum tension
+  group: Belt
+- name: Belt maximum tension
+  summary: Maximal tension threshold 1e5 N (default) | positive scalar
+  group: Belt
+- name: Tension warning
+  summary: Slack threshold reporting Do not check tension (default) | Warn if leading end loses tension
+  group: Belt
+- name: Pulley translation
+  summary: Option to allow linear motion off (default) | on
+  group: Pulley
+- name: Pulley radius
+  summary: Pulley radius .15 m (default) | positive scalar
+  group: Pulley
+- name: Bearing viscous friction coefficient
+  summary: Bearing viscous friction 0.001 N*m/(rad/s) (default) | scalar
+  group: Pulley
+- name: Inertia
+  summary: Rotational inertia No inertia (default) | Specify inertia and initial velocity
+  group: Pulley
+- name: Pulley inertia
+  summary: Pulley inertia 0.01 kg*m^2 (default) | positive scalar
+  group: Pulley
+- name: Pulley initial rotational velocity
+  summary: Initial pulley rotational velocity 0 rad/s (default) | scalar
+  group: Pulley
+- name: Pulley mass
+  summary: Pulley mass 0.01 kg (default) | positive scalar
+  group: Pulley
+- name: Pulley initial translational velocity
+  summary: Initial pulley rotational velocity 0 m/s (default) | scalar
+  group: Pulley
+- name: Friction model
+  summary: Friction method selection Modal (default) | Continuous
+  group: Contact
+- name: Initial state
+  summary: Initial state of pulley Unlocked (default) | Locked
+  group: Contact
+- name: Static friction coefficient
+  summary: Static friction coefficient 0.5 (default) | positive scalar
+  group: Contact
+- name: Kinetic friction coefficient
+  summary: Kinetic friction coefficient 0.42 (default) | positive scalar
+  group: Contact
+- name: Contact friction coefficient
+  summary: Contact friction coefficient 0.5 (default) | positive scalar
+  group: Contact
+- name: Wrap angle
+  summary: Belt-to-pulley contact angle 180 deg (default) | positive scalar
+  group: Contact
+- name: Velocity threshold
+  summary: Velocity threshold 0.001 m/s (default) | positive scalar
+  group: Contact
+- name: Force threshold
+  summary: Force threshold 0.01 N (default) | positive scalar
+  group: Contact
+```
 
 ### Belt
 
@@ -286,7 +380,6 @@ contact.
 To enable this parameter, set **Belt type** to
 `Flat belt` or
 `V-belt`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

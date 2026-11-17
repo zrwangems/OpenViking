@@ -14,6 +14,18 @@ language: en
 # Extremum Seeking Control
 
 ## Ports
+```yaml
+ports:
+- name: J
+  summary: Objective function scalar
+  direction: input
+- name: theta
+  summary: Perturbed parameters scalar | vector
+  direction: output
+- name: theta_hat
+  summary: Estimated parameters scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -48,8 +60,121 @@ If **Number of parameters** is `1`,
 
 To enable this output port, select **Output estimated
 parameters**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Time Domain
+  summary: Filter and integrator time domain Continuous time (default) | Discrete time
+  group: ''
+  block_parameter: '''timeDomainStatus'''
+  type: character vector
+  values: '''Continuous Time'' | ''Discrete Time'''
+  default: '''Continuous Time'''
+- name: Sample time
+  summary: Discrete-time filter and integrator sample time 0.1 (default) | finite positive scalar
+  group: ''
+  block_parameter: '''SampleTime'''
+  type: character vector
+  values: finite positive scalar
+  default: '''0.1'''
+- name: Integrator method
+  summary: Discrete-time integration method Forward Euler (default) | Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: '''IntegratorMethods'''
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Number of parameters
+  summary: Number of parameters 1 (default) | positive integer less than or equal to 5
+  group: ''
+  block_parameter: '''paramCount'''
+  type: character vector
+  values: positive integer less than 5
+  default: '''1'''
+- name: Initial condition x0
+  summary: Initial parameter values 0 (default) | finite scalar | vector
+  group: ''
+  block_parameter: '''initialVal'''
+  type: character vector
+  values: finite scalar | vector
+  default: '''0'''
+- name: Forcing frequency omega (rad/s)
+  summary: Forcing frequency 1 (default) | positive finite scalar | vector
+  group: ''
+  block_parameter: '''omega'''
+  type: character vector
+  values: positive finite scalar | vector
+  default: '''1'''
+- name: Learning rate k
+  summary: Parameter update rate 1 (default) | positive finite scalar | vector
+  group: ''
+  block_parameter: '''gain'''
+  type: character vector
+  values: positive finite scalar | vector
+  default: '''1'''
+- name: Demodulation amplitude a
+  summary: Demodulation signal amplitude 1 (default) | positive finite scalar | vector
+  group: ''
+  block_parameter: '''demodAmp'''
+  type: character vector
+  default: '''1'''
+- name: Demodulation phase phi_1 (rad)
+  summary: Demodulation signal phase 0 (default) | positive finite scalar | vector
+  group: ''
+  block_parameter: '''demodPhase'''
+  type: character vector
+  values: positive finite scalar | vector
+  default: '''0'''
+- name: Modulation amplitude b
+  summary: Modulation signal amplitude 0.1 (default) | positive finite scalar | vector
+  group: ''
+  block_parameter: '''modAmp'''
+  type: character vector
+  values: positive finite scalar | vector
+  default: '''0.1'''
+- name: Modulation phase phi_2 (rad)
+  summary: Modulation signal phase 0 (default) | positive finite scalar | vector
+  group: ''
+  block_parameter: '''modPhase'''
+  type: character vector
+  values: positive finite scalar | vector
+  default: '''0'''
+- name: Enable HPF
+  summary: Enable high-pass filtering of objective function signal off (default) | on
+  group: ''
+  block_parameter: '''highPassEnable'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: HPF frequency omega_h (rad/s)
+  summary: High-pass filter cutoff frequency 1 (default) | positive finite scalar | vector
+  group: ''
+  block_parameter: '''highPassCutoff'''
+  type: character vector
+  values: positive finite scalar | vector
+  default: '''1'''
+- name: Enable LPF
+  summary: Enable low-pass filtering of demodulated signal off (default) | on
+  group: ''
+  block_parameter: '''lowPassEnable'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: LPF frequency omega_l (rad/s)
+  summary: Low-pass filter cutoff frequency *ωl* 1 (default) | positive finite scalar | vector
+  group: ''
+  block_parameter: '''lowPassCutoff'''
+  type: character vector
+  values: positive finite scalar | vector
+  default: '''1'''
+- name: Output estimated parameters
+  summary: Add estimated parameters output port off (default) | on
+  group: ''
+  block_parameter: estimatedVarOn
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Time Domain** — Filter and integrator time domain **Continuous time** (default) | **Discrete time**
 
@@ -428,7 +553,6 @@ Select this parameter to add the **theta\_hat** output port.
 | **Type:** character vector |
 | **Values:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink Control Design / Adaptive Control

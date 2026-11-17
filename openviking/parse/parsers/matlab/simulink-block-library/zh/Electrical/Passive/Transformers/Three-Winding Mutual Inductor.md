@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Three-Winding Mutual Inductor
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 第一个电感正电压电气端口
+  direction: conserving
+- name: 1-
+  summary: 第一个电感负电压电气端口
+  direction: conserving
+- name: 2+
+  summary: 第二个电感正电压电气端口
+  direction: conserving
+- name: 2-
+  summary: 第二个电感负电压电气端口
+  direction: conserving
+- name: 3+
+  summary: 第三个电感正电压电气端口
+  direction: conserving
+- name: 3-
+  summary: 第三个电感负电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +62,31 @@ chinese_source: worker-translation
 ### **3-** — 第三个电感负电压电气端口
 
 与第三个互感负电压相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Inductance L1
+  summary: 第一个绕组自感 0.001 H（默认）| 正标量
+  group: ''
+- name: Inductance L2
+  summary: 第二个绕组自感 0.001 H（默认）| 正标量
+  group: ''
+- name: Inductance L3
+  summary: 第三个绕组自感 0.001 H（默认）| 正标量
+  group: ''
+- name: Perfect coupling - no leakage
+  summary: 启用完美耦合的选项 Off（默认）| On
+  group: ''
+- name: Coefficient of coupling, K12
+  summary: 第一个和第二个绕组之间的耦合系数 0.9（默认）| 范围 [-1,1] 内的标量
+  group: ''
+- name: Coefficient of coupling, K13
+  summary: 第一个和第三个绕组之间的耦合系数 0.9（默认）| 范围 [-1,1] 内的标量
+  group: ''
+- name: Coefficient of coupling, K23
+  summary: 第二个和第三个绕组之间的耦合系数 0.9（默认）| 范围 [-1,1] 内的标量
+  group: ''
+```
 
 ### **Inductance L1** — 第一个绕组自感 `0.001` `H`（默认）| 正标量
 
@@ -85,7 +129,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请清除 **Perfect coupling - no leakage** 参数。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Transformers

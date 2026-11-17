@@ -14,6 +14,36 @@ language: en
 # Electrolyzer
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: purge
+  summary: Purge logic input, unitless physical signal
+  direction: input
+- name: vol
+  summary: Water volume, m^3 physical signal
+  direction: input
+- name: T
+  summary: Water temperature, K physical signal
+  direction: input
+- name: volPurging
+  summary: Purged water volume, m^3 physical signal
+  direction: output
+- name: pH
+  summary: Water pH, unitless physical signal
+  direction: output
+- name: mdotH2
+  summary: Mass flow rate of hydrogen, g/s physical signal
+  direction: output
+- name: mdotH2O
+  summary: Mass flow rate of consumed water, g/s physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -63,8 +93,43 @@ signal.
 
 Mass flow rate of the consumed water, in g/s, specified as a physical
 signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Assumption pH
+  summary: Constant or dynamic pH Constant (default) | Dynamic
+  group: ''
+- name: Resistance
+  summary: External resistance 10 Ohm (default) | nonnegative scalar
+  group: ''
+- name: Cross-sectional transport area
+  summary: Cross-sectional transport area 0.04 m^2 (default) | positive scalar
+  group: ''
+- name: Distance anode-cathode
+  summary: Distance between anode and cathode 0.01 m (default) | positive scalar
+  group: ''
+- name: Number of cells
+  summary: Number of cells 50 (default) | positive scalar
+  group: ''
+- name: Initial pH
+  summary: Initial pH 0 (default) | scalar
+  group: ''
+- name: Constant pH
+  summary: Constant pH 6 (default) | scalar
+  group: ''
+- name: pH vector, pH_vec
+  summary: pH vector [5, 5.5, 6, 6.5, 7] (default) | row vector of positive scalars
+  group: ''
+- name: Electrical resistivity vector, rho_vec
+  summary: Electrical resistivity vector [.2, .75, 2.5, 8, 18.2] MOhm*cm (default) | vector of scalars
+  group: ''
+- name: Temperature vector for efficiency, T_vec
+  summary: Efficiency temperature vector [273, 298, 323, 348, 373] K (default) | vector of scalars
+  group: ''
+- name: Electrolysis efficiency vector, efficiency(T)
+  summary: Electrolysis efficiency vector ones(5, 1) (default) | vector of scalars
+  group: ''
+```
 
 ### **Assumption pH** — Constant or dynamic pH `Constant` (default) | `Dynamic`
 
@@ -135,7 +200,6 @@ efficiency(T)** parameter.
 Vector of electrolysis efficiency values. This parameter must have the
 same number of elements as the **Temperature vector for efficiency,
 T\_vec** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Sources

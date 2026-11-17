@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # SM Current Reference Generator
 
 ## 端口
+```yaml
+ports:
+- name: TqRef
+  summary: 参考转矩，N\*m 标量
+  direction: input
+  data_types: single | double
+- name: wMechanical
+  summary: 转子机械转速，rad/s 标量
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: 直流母线电压，V 标量
+  direction: input
+  data_types: single | double
+- name: idqfRef
+  summary: 参考电流，A 向量
+  direction: output
+  data_types: single | double
+- name: TqRefSat
+  summary: 参考转矩，N\*m 标量
+  direction: output
+  data_types: single | double
+- name: TqLim
+  summary: 转矩限值，N\*m 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -54,8 +81,49 @@ chinese_source: worker-translation
 由系统电气和机械约束共同施加的转矩限值。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal dc-link voltage (V)
+  summary: 额定直流电压 300V（默认）| 正数
+  group: ''
+- name: Maximum power (W)
+  summary: 最大功率 30000W（默认）| 正数
+  group: ''
+- name: Maximum torque (N\*m)
+  summary: 最大转矩 250N*m（默认）| 正数
+  group: ''
+- name: Maximum field current (A)
+  summary: 最大励磁电流 25A（默认）| 正数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| -1 或正数
+  group: ''
+- name: Current references
+  summary: 电流参考策略 Zero d-axis control（默认）| Lookup-table based
+  group: ''
+- name: Torque constant (N\*m/A)
+  summary: 转矩常数 0.0375（默认）| 正数
+  group: ''
+- name: Mechanical speed vector, wMechanical (rpm)
+  summary: 转子转速查找向量 [0, 3000]（默认）| 正单调递增向量
+  group: ''
+- name: Torque reference vector, TqRef (N\*m)
+  summary: 转矩参考查找向量 [-100, 0, 100]（默认）| 正单调递增向量
+  group: ''
+- name: DC-link voltage vector, Vdc (V)
+  summary: 直流母线电压查找向量 [300, 350]（默认）| 正单调递增向量
+  group: ''
+- name: D-axis current reference matrix, id(wMechanical,TqRef,Vdc), (A)
+  summary: 参考 d 轴电流值 zeros(2,3,2)（默认）| 实数矩阵
+  group: ''
+- name: Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc), (A)
+  summary: 参考 q 轴电流值 zeros(2,3,2)（默认）| 实数矩阵
+  group: ''
+- name: Field current reference matrix, iq(wMechanical,TqRef,Vdc), (A)
+  summary: 参考励磁电流值 zeros(2,3,2)（默认）| 实数矩阵
+  group: ''
+```
 
 #### 通用参数
 
@@ -112,7 +180,6 @@ chinese_source: worker-translation
 ### **Field current reference matrix, iq(wMechanical,TqRef,Vdc), (A)** — 参考励磁电流值 `zeros(2,3,2)`（默认）| 实数矩阵
 
 励磁电流参考查找数据。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

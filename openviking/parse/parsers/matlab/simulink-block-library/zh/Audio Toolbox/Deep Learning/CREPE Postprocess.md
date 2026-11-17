@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CREPE Postprocess
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: CREPE 网络激活矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 估计的基频列向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,13 @@ CREPE 网络激活，指定为 *N*×360 矩阵，其中 *N* 是 CREPE 神经网�
 估计的基频，以 Hz 为单位返回，为 *N*×1 向量，其中 *N* 是输入中的帧数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Confidence threshold
+  summary: 音高置信度阈值 0.5（默认值） | 范围 [0, 1) 内的标量
+  group: ''
+```
 
 ### **Confidence threshold** — 音高置信度阈值 `0.5`（默认值） | 范围 [0, 1) 内的标量
 
@@ -42,7 +58,6 @@ CREPE 网络激活，指定为 *N*×360 矩阵，其中 *N* 是 CREPE 神经网�
 如果网络输出的最大值小于置信度阈值，该模块返回 `NaN`。
 
 **可调：** 是
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

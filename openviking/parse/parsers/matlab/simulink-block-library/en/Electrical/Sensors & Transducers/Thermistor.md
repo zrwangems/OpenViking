@@ -14,6 +14,18 @@ language: en
 # Thermistor
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Thermal port thermal
+  direction: conserving
+- name: +
+  summary: Positive port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -30,8 +42,25 @@ port.
 
 Electrical conserving port associated with the thermistor negative
 port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal resistance R0 at reference temperature T0
+  summary: Nominal resistance at reference temperature 1000 Ohm (default)
+  group: Electrical
+- name: Characteristic temperature constant B
+  summary: Characteristic temperature constant 3500 K (default)
+  group: Electrical
+- name: Reference temperature T0
+  summary: Reference temperature 298.15 K (default)
+  group: Electrical
+- name: Thermal time constant
+  summary: Thermal time constant 5.0 s (default)
+  group: Thermal
+- name: Dissipation factor
+  summary: Dissipation factor 0.75e-3 W/K (default)
+  group: Thermal
+```
 
 ### Electrical
 
@@ -62,7 +91,6 @@ occurs.
 
 Thermal power required to raise the thermistor temperature by one
 K.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

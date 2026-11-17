@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Pipe (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口或出口等温液体
+  direction: conserving
+- name: B
+  summary: 入口或出口等温液体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -27,8 +36,46 @@ chinese_source: worker-translation
 
 与管道入口或出口相关联的等温液体守恒端口。
 该模块没有固有方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: Pipe length
+  summary: 管道长度 5 m（默认）| 正标量
+  group: 几何
+- name: Cross-sectional area
+  summary: 管道内部面积 0.01 m^2（默认）| 正标量
+  group: 几何
+- name: Hydraulic diameter
+  summary: 具有相同横截面积的等效圆柱形管道直径 0.1128 m（默认）| 正标量
+  group: 几何
+- name: Aggregate equivalent length of local resistances
+  summary: 管道中所有局部阻力的总长度 1 m（默认）| 正标量
+  group: 摩擦
+- name: Internal surface absolute roughness
+  summary: 管道内表面所有表面缺陷的平均深度 15e-6 m（默认）| 正标量
+  group: 摩擦
+- name: Laminar flow upper Reynolds number limit
+  summary: 流动开始从层流过渡到湍流的上限雷诺数 2000（默认）| 大于 1 的标量
+  group: 摩擦
+- name: Turbulent flow lower Reynolds number limit
+  summary: 流动开始从湍流过渡到层流的下限雷诺数 4000（默认）| 大于 Laminar flow upper Reynolds number limit 值的标量
+  group: 摩擦
+- name: Laminar friction constant for Darcy friction factor
+  summary: 管道几何形状对粘性摩擦损失的影响 64（默认）| 正标量
+  group: 摩擦
+- name: Enable dynamic compressibility
+  summary: 选择是否对流体动态可压缩性建模 On（默认）| Off
+  group: 效应和初始条件
+- name: Enable fluid inertia
+  summary: 选择是否对流体惯性建模 Off（默认）| On
+  group: 效应和初始条件
+- name: Initial liquid pressure
+  summary: 零时刻的液体压力 0.101325 MPa（默认）| 正标量
+  group: 效应和初始条件
+- name: Initial mass flow rate from port A to port B
+  summary: 零时刻的质量流量 0 kg/s（默认）| 标量
+  group: 效应和初始条件
+```
 
 ### 几何
 
@@ -95,7 +142,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Enable fluid inertia** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

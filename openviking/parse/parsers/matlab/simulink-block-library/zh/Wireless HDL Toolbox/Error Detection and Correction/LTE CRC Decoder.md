@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # LTE CRC Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入样本 二值标量 | 无符号整数标量 | 二值向量
+  direction: input
+  data_types: single | double | Boolean | ufix1 | uint8 | uint16 | uint32
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 输出样本 二值标量 | 整数标量 | 二值向量
+  direction: output
+  data_types: single | double | Boolean | ufix1 | uint8 | uint16 | uint32 | ufixN
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: err
+  summary: 校验和不匹配指示 二值标量 | 整数标量
+  direction: output
+  data_types: single | double | Boolean | ufix1 | uint8 | uint16 | uint32 | ufixN
+```
 
 ### 输入
 
@@ -64,8 +87,19 @@ chinese_source: worker-translation
 校验和不匹配指示，返回为二值标量或整数标量。如果选择 **Full checksum mismatch**，此端口返回计算出的校验和与附加校验和的整数 XOR 结果。当 **ctrl**.`end` 为 1（`true`）时，**err** 值有效。此端口的数据类型与输入样本的数据类型匹配。
 
 **数据类型：** `single` | `double` | `Boolean` | `ufix1` | `uint8` | `uint16` | `uint32` | `ufixN`
-
 ## 参数
+```yaml
+parameters:
+- name: CRC Type
+  summary: 编码多项式 CRC16（默认）| CRC8 | CRC24A | CRC24B
+  group: ''
+- name: Full checksum mismatch
+  summary: 返回逐位不匹配信息 off（默认）| on
+  group: ''
+- name: CRC Mask
+  summary: 应用于校验和的掩码 0（默认）| 从 0 到 2*CRCLength* – 1 的整数
+  group: ''
+```
 
 ### **CRC Type** — 编码多项式 `CRC16`（默认）| `CRC8` | `CRC24A` | `CRC24B`
 
@@ -82,7 +116,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Full checksum mismatch** 被清除时，此参数出现。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

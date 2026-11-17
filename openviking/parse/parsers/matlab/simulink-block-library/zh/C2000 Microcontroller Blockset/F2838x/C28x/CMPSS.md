@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS
 
 ## 端口
+```yaml
+ports:
+- name: DAC
+  summary: DAC 模块 scalar
+  direction: input
+- name: REF
+  summary: 斜坡参考值 scalar
+  direction: input
+- name: DEC
+  summary: RAMP 递减值 scalar
+  direction: input
+- name: DLY
+  summary: RAMP 延迟值 scalar
+  direction: input
+- name: LCLR
+  summary: 锁存清除 scalar
+  direction: input
+- name: STS
+  summary: 比较器状态输出 scalar
+  direction: output
+- name: LTH
+  summary: 比较器锁存 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -113,8 +137,55 @@ clear** 参数时出现。
 
 要启用此端口，请选中 **Enable latch output**
 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Comparator module
+  summary: 指示要使用的模块 CMPSS1_COMPH（默认）| CMPSSx_COMPL | CMPSSx_COMPH | 其中 x 的范围为 1 到 8
+  group: ''
+- name: Second input
+  summary: 第二个输入引脚的来源 External pin（默认）| Internal DAC
+  group: ''
+- name: DAC source select
+  summary: 内部 DAC 的来源 DAC module（默认）| RAMP module
+  group: ''
+- name: Specify DAC/RAMP parameter(s) via
+  summary: 配置源 DAC/RAMP 值来源 Dialog（默认）| Input port
+  group: ''
+- name: DAC value (DACH)
+  summary: 指定 DAC 值 0（默认）
+  group: ''
+- name: DAC initial value
+  summary: 指定 DAC 初始值 0（默认）
+  group: ''
+- name: RAMP reference value
+  summary: 指定 RAMP 参考值 0（默认）
+  group: ''
+- name: RAMP decrement value
+  summary: 指定 RAMP 递减值 0（默认）
+  group: ''
+- name: RAMP delay value
+  summary: 指定 RAMP 延迟值 0（默认）
+  group: ''
+- name: RAMP initial reference value
+  summary: 指定 RAMP 初始参考值 0（默认）
+  group: ''
+- name: RAMP initial decrement value
+  summary: 指定 RAMP 递减值 0（默认）
+  group: ''
+- name: RAMP initial delay value
+  summary: 指定 RAMP 延迟值 0（默认）
+  group: ''
+- name: Enable latch output
+  summary: 比较器锁存输出 off（默认）| on
+  group: ''
+- name: Enable latch clear
+  summary: 清除比较器锁存值 off（默认）| on
+  group: ''
+- name: Sample time
+  summary: 从比较器读取数据的频率 0.1（默认）
+  group: ''
+```
 
 ### **Comparator module** — 指示要使用的模块 `CMPSS1_COMPH`（默认）| `CMPSSx_COMPL` | `CMPSSx_COMPH` | `其中 x 的范围为 1 到 8`
 
@@ -293,7 +364,6 @@ DLY 端口仅在以下参数设置时出现：
 ### **Sample time** — 从比较器读取数据的频率 `0.1`（默认）
 
 使用此参数指定采样之间的时间间隔。要从上游模块继承采样时间，请将此参数设置为 -1。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

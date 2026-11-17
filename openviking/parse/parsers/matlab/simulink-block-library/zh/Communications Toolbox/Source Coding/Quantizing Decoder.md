@@ -15,17 +15,21 @@ chinese_source: worker-translation
 # Quantizing Decoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Quantization codebook**
 :   一个实数向量，指定与输入的每个非负整数对应的输出值。
 
 **量化输出数据类型**
 :   选择输出数据类型。
-
 ## 所属库
 
 R2025b 中未记录。

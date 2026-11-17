@@ -15,6 +15,84 @@ chinese_source: worker-translation
 # Induction Machine Wound Rotor
 
 ## 端口
+```yaml
+ports:
+- name: pu
+  summary: 标幺值测量输出端口 physical
+  direction: output
+- name: R
+  summary: 电机转子机械
+  direction: output
+- name: C
+  summary: 电机机壳机械
+  direction: output
+- name: ~1
+  summary: 定子正端连接 electrical
+  direction: output
+- name: ~2
+  summary: 定子负端连接 electrical
+  direction: output
+- name: ~1r'
+  summary: 转子正端连接 electrical
+  direction: output
+- name: ~2r'
+  summary: 转子负端连接 electrical
+  direction: output
+- name: a1
+  summary: '*a* 定子正端连接 electrical'
+  direction: output
+- name: b1
+  summary: '*b* 定子正端连接 electrical'
+  direction: output
+- name: c1
+  summary: '*c* 定子正端连接 electrical'
+  direction: output
+- name: a2
+  summary: '*a* 定子负端连接 electrical'
+  direction: output
+- name: b2
+  summary: '*b* 定子负端连接 electrical'
+  direction: output
+- name: c2
+  summary: '*c* 负端连接 electrical'
+  direction: output
+- name: a1r'
+  summary: '*a* 转子正端连接 electrical'
+  direction: output
+- name: b1r'
+  summary: '*b* 转子正端连接 electrical'
+  direction: output
+- name: c1r'
+  summary: '*c* 转子正端连接 electrical'
+  direction: output
+- name: a2r'
+  summary: '*a* 转子负端连接 electrical'
+  direction: output
+- name: b2r'
+  summary: '*b* 转子负端连接 electrical'
+  direction: output
+- name: c2r'
+  summary: '*c* 转子端连接 electrical'
+  direction: output
+- name: HA
+  summary: '*a* 相端子热端口 thermal'
+  direction: output
+- name: HB
+  summary: '*b* 相端子热端口 thermal'
+  direction: output
+- name: HC
+  summary: '*c* 相端子热端口 thermal'
+  direction: output
+- name: HAr
+  summary: '*a* 相端子热端口 thermal'
+  direction: output
+- name: HBr
+  summary: '*b* 相端子热端口 thermal'
+  direction: output
+- name: HCr
+  summary: '*c* 相端子热端口 thermal'
+  direction: output
+```
 
 ### 输出
 
@@ -253,8 +331,100 @@ ports`。
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主
+- name: Rated apparent power
+  summary: 额定视在功率 15e3 V*A（默认）
+  group: 主
+- name: Rated voltage
+  summary: RMS 电压 220 V（默认）
+  group: 主
+- name: Rated electrical frequency
+  summary: 标称电气频率 60 Hz（默认）
+  group: 主
+- name: Number of pole pairs
+  summary: 电机极对数 1（默认）
+  group: 主
+- name: Parameterization unit
+  summary: 模块参数化的单位制 SI（默认）| Per unit
+  group: 主
+- name: Zero sequence
+  summary: 零序 Include（默认）| Exclude
+  group: 主
+- name: Initialization option
+  summary: 初始化方法 Set targets for flux variables（默认）| Set targets for load flow variables
+  group: 主
+- name: Stator resistance, Rs
+  summary: 定子电阻 0.25 Ohm（默认）
+  group: 阻抗
+- name: Stator leakage reactance, Xls
+  summary: 定子漏电抗 0.4 Ohm（默认）
+  group: 阻抗
+- name: Referred rotor resistance, Rr'
+  summary: 折算转子电阻 0.14 Ohm（默认）
+  group: 阻抗
+- name: Referred rotor leakage reactance, Xlr'
+  summary: 折算转子漏电抗 0.41 Ohm（默认）
+  group: 阻抗
+- name: Magnetizing reactance, Xm
+  summary: 励磁电抗 17 Ohm（默认）
+  group: 阻抗
+- name: Stator zero-sequence reactance, X0
+  summary: 定子零序电抗 0.4 Ohm（默认）
+  group: 阻抗
+- name: Stator resistance, Rs (pu)
+  summary: 标幺值定子电阻 0.0258（默认）
+  group: 阻抗
+- name: Stator leakage inductance, Lls (pu)
+  summary: 标幺值定子漏电感 0.0413（默认）
+  group: 阻抗
+- name: Referred rotor resistance, Rr' (pu)
+  summary: 标幺值折算转子电阻 0.0145（默认）
+  group: 阻抗
+- name: Referred rotor leakage inductance, Llr' (pu)
+  summary: 标幺值折算转子漏电感 0.0424（默认）
+  group: 阻抗
+- name: Magnetizing inductance, Lm (pu)
+  summary: 标幺值励磁电感 1.7562（默认）
+  group: 阻抗
+- name: Stator zero-sequence inductance, L0 (pu)
+  summary: 标幺值定子零序电感 0.0413（默认）
+  group: 阻抗
+- name: Magnetic saturation representation
+  summary: 磁饱和表示 None（默认）| Open-circuit lookup table (v versus i)
+  group: 饱和
+- name: No-load line current saturation data, i (rms)
+  summary: 空载线电流 RMS 饱和数据 [0, 4, 9, 18, 25, 34, 50, 68, 95, 120] A（默认）
+  group: 饱和
+- name: Terminal voltage saturation data, v (phase-phase, rms)
+  summary: 端子 RMS 电压饱和数据 [0, 88, 154, 198, 220, 242, 264, 286, 308, 327] V（默认）
+  group: 饱和
+- name: Per-unit no-load line current saturation data, i
+  summary: 标幺值空载线电流饱和数据 [0, .176, .396, .792, 1.1, 1.496, 2.2, 2.992, 4.18, 5.28]（默认）
+  group: 饱和
+- name: Per-unit terminal voltage saturation data, v
+  summary: 标幺值端子电压饱和数据 [0, .4, .7, .9, 1, 1.1, 1.2, 1.3, 1.4, 1.4864]（默认）
+  group: 饱和
+- name: 测量温度
+  summary: 额定温度 298.15 k（默认）| 实数标量
+  group: 热
+- name: 电阻温度系数
+  summary: 温度系数 3.93e-3 1/K（默认）| 正标量
+  group: 热
+- name: 每个定子绕组的热质量
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热
+- name: 转子热质量
+  summary: 转子热质量 200 J/K（默认）| 正标量
+  group: 热
+```
 
 所有默认参数值均基于电机三角形绕组配置。
 
@@ -499,7 +669,6 @@ unit` 时，此参数才可见。
 ### **转子热质量** — 转子热质量 `200` `J/K`（默认）| 正标量
 
 转子的热质量。热质量是将转子温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Asynchronous

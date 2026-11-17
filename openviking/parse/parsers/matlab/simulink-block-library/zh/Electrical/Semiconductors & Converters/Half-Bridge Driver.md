@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Half-Bridge Driver
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 控制信号，无量纲物理信号
+  direction: input
+- name: PWM
+  summary: 脉宽调制信号电气
+  direction: input
+- name: REF
+  summary: 浮地零伏参考电气
+  direction: input
+- name: HO
+  summary: 高侧栅极连接电气
+  direction: input
+- name: HS
+  summary: 高侧源极或发射极连接电气
+  direction: input
+- name: LO
+  summary: 低侧栅极连接电气
+  direction: input
+- name: LS
+  summary: 低侧源极或发射极连接电气
+  direction: input
+```
 
 ### 输入
 
@@ -65,8 +89,71 @@ MOSFET 模块的源极或 IGBT 模块的发射极。
 
 与半桥低侧源极或发射极关联的电气守恒端口。将此端口连接到
 MOSFET 模块的源极或 IGBT 模块的发射极。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 建模为电气输入端口还是物理信号输入端口 PS input（默认）| Electrical input ports
+  group: ''
+- name: Logic 1 input value
+  summary: 逻辑 1 的信号值 0.7（默认）
+  group: 输入逻辑
+- name: Logic 0 input value
+  summary: 逻辑 0 的信号值 0.3（默认）
+  group: 输入逻辑
+- name: Logic 1 input voltage
+  summary: 逻辑 1 的电压值 2.0 V（默认）
+  group: 输入逻辑
+- name: Logic 0 input voltage
+  summary: 逻辑 0 的电压值 0.8 V（默认）
+  group: 输入逻辑
+- name: On-state gate-source voltage
+  summary: 导通状态所需输出电压 15 V（默认）
+  group: 输出
+- name: Off-state gate-source voltage
+  summary: 关断状态所需输出电压 0 V（默认）
+  group: 输出
+- name: Low-side propagation delay (logic 0->logic 1)
+  summary: 时序图中的 *t*pLH 50 ns（默认）
+  group: 时序
+- name: High-side dead time (logic 0->logic 1)
+  summary: 时序图中的 *t*dLH 100 ns（默认）
+  group: 时序
+- name: High-side propagation delay (logic 1->logic 0)
+  summary: 时序图中的 *t*pHL 50 ns（默认）
+  group: 时序
+- name: Low-side dead time (logic 1->logic 0)
+  summary: 时序图中的 *t*dHL 100 ns（默认）
+  group: 时序
+- name: Parameterization
+  summary: 选择驱动器参数化方式 Output impedance（默认）| Rise and fall times
+  group: 动态特性
+- name: On-state gate drive resistance
+  summary: 导通状态所需输出电压 2 Ω（默认）
+  group: 动态特性
+- name: Off-state gate drive resistance
+  summary: 关断状态所需输出电压 2 Ω（默认）
+  group: 动态特性
+- name: Rise time
+  summary: 驱动器上升时间 20 ns（默认）
+  group: 动态特性
+- name: Fall time
+  summary: 驱动器下降时间 20 ns（默认）
+  group: 动态特性
+- name: Load capacitance for rise and fall times
+  summary: 驱动器负载电容 10 nF（默认）
+  group: 动态特性
+- name: State fault
+  summary: 在半桥驱动器中建模故障状态的选项 Add fault（默认）
+  group: 故障
+- name: Failure mode
+  summary: 故障后驱动器的状态 Fail input fixed at logic 0（默认）| Fail input fixed at logic 1 | Fail high side off | Fail high side on
+    | Fail low side off | Fail low side on | Fail high and low sides off | Fail high and low sides on
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+```
 
 ### **Modeling option** — 建模为电气输入端口还是物理信号输入端口 `PS input`（默认）| `Electrical input ports`
 
@@ -225,7 +312,6 @@ fault** 超链接出现。有关如何包含故障的示例，请参阅 Analyze 
 
 要启用此参数，请将 **Trigger Type** 设置为
 `Timed`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

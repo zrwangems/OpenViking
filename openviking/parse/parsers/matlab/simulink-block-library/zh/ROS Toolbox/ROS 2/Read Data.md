@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Read Data
 
 ## 端口
+```yaml
+ports:
+- name: IsNew
+  summary: 新消息指示符 逻辑标量
+  direction: output
+  data_types: Boolean
+- name: Msg
+  summary: ROS 2 消息 非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输出
 
@@ -29,8 +40,16 @@ chinese_source: worker-translation
 ROS 2 消息，以非虚拟总线形式返回。消息按照其在 ROS 2 bag 文件中存储的顺序返回，并与仿真时间同步。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Topic
+  summary: 要从日志文件中提取的话题名称 字符串标量 | 字符向量
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 -1（默认）| 标量
+  group: ''
+```
 
 ### **Topic** — 要从日志文件中提取的话题名称 字符串标量 | 字符向量
 
@@ -41,7 +60,6 @@ ROS 2 消息，以非虚拟总线形式返回。消息按照其在 ROS 2 bag 文
 指定输出之间的间隔。在仿真中，采样时间遵循仿真时间而非挂钟时间。
 
 默认值表示模块采样时间为继承采样时间。有关继承采样时间类型的详细信息，请参阅 Specify Sample Time (Simulink)。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

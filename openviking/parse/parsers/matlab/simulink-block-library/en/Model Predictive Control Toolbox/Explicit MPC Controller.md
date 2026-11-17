@@ -14,6 +14,39 @@ language: en
 # Explicit MPC Controller
 
 ## Ports
+```yaml
+ports:
+- name: mo
+  summary: Measured outputs vector
+  direction: input
+- name: x[k|k]
+  summary: Custom state estimate vector
+  direction: input
+- name: ref
+  summary: Model reference output vector
+  direction: input
+- name: md
+  summary: Measured disturbances vector
+  direction: input
+- name: ext.mv
+  summary: Control signals used in plant at previous control interval vector
+  direction: input
+- name: switch
+  summary: Disable evaluation scalar
+  direction: input
+- name: mv
+  summary: Optimal manipulated variable control action column vector
+  direction: output
+- name: status
+  summary: Status of piecewise affine function evaluation 1 | 0 | -1
+  direction: output
+- name: region
+  summary: Region number of evaluated piecewise affine function nonnegative integer
+  direction: output
+- name: est.state
+  summary: Estimated controller states vector
+  direction: output
+```
 
 ### Input
 
@@ -201,8 +234,85 @@ estimation is used, this output signal has the same value as the
 
 To enable this port, select the **Estimated controller states**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Explicit MPC Controller
+  summary: Explicit controller object explicitMPC object name
+  group: ''
+  block_parameter: empcobj
+  type: string, character vector
+  default: '""'
+- name: Initial Controller State
+  summary: Initial state mpcstate object name
+  group: ''
+  block_parameter: x0
+  type: string, character vector
+  default: '""'
+- name: Measured disturbance
+  summary: Add measured disturbance input port on (default) | off
+  group: ''
+  block_parameter: md_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: External manipulated variable
+  summary: Add external manipulated variable input port off (default) | on
+  group: ''
+  block_parameter: mv_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Status of piecewise affine function evaluation
+  summary: Add evaluation status output port off (default) | on
+  group: ''
+  block_parameter: return_status
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: Region number of evaluated piecewise affine function
+  summary: Add region number output port off (default) | on
+  group: ''
+  block_parameter: return_region
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Estimated controller states
+  summary: Add estimated states output port off (default) | on
+  group: ''
+  block_parameter: return_state
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Use custom state estimation instead of using the built-in Kalman filter
+  summary: Use custom state estimate input port off (default) | on
+  group: ''
+  block_parameter: state_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Block data type
+  summary: Specify data type of manipulated variables double (default) | single | data type expression
+  group: ''
+  block_parameter: BlockDataType
+  type: string, character vector
+  values: '"double", "single", data type expression'
+  default: '"double"'
+- name: Inherit sample time
+  summary: Inherit block sample time from parent subsystem off (default) | on
+  group: ''
+  block_parameter: SampleTimeInherited
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Use external signal to enable controller evaluation
+  summary: Add a switch-off input port off (default) | on
+  group: ''
+  block_parameter: switch_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Explicit MPC Controller** — Explicit controller object `explicitMPC` object name
 
@@ -397,7 +507,6 @@ details.
 | **Type:** string, character vector |
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Model Predictive Control Toolbox

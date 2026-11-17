@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Radiative Heat Transfer
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: Body A thermal
+  direction: conserving
+- name: B
+  summary: Body B thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,16 @@ chinese_source: worker-translation
 ### **B** — Body B thermal
 
 与 body B 关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Area
+  summary: Area of heat transfer 0.0001 m^2 (default) | positive scalar
+  group: ''
+- name: Radiation coefficient
+  summary: Radiation heat transfer coefficient 4e-8 W/m^2/K^4 (default) | positive scalar
+  group: ''
+```
 
 ### **Area** — Area of heat transfer `0.0001 m^2` (default) | positive scalar
 
@@ -35,7 +52,6 @@ chinese_source: worker-translation
 ### **Radiation coefficient** — Radiation heat transfer coefficient `4e-8 W/m^2/K^4` (default) | positive scalar
 
 两个物体的辐射系数，基于其几何形状、尺寸和表面发射率。有关详细信息，请参阅 [1]。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Elements

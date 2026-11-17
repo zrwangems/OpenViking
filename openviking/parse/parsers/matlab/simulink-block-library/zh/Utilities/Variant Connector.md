@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Variant Connector
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 条件端口 无类型 conserving 端口
+  direction: conserving
+- name: Port_2
+  summary: 连接端口 无类型 conserving 端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +38,31 @@ chinese_source: worker-translation
 Conserving 连接端口。默认情况下，此端口为无类型。
 
 您可以通过将端口连接到另一个模块的 conserving 端口、网络中的组件或 Simscape Bus 端口来定义该端口的类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Connector Type
+  summary: 连接器模块的类型 Leaf（默认）| Primary | Nonprimary
+  group: ''
+- name: Connector Tag
+  summary: 有界区域的唯一标识符 A（默认）| 以字母开头、不包含空格或特殊字符且长度最多为 2048 个字符的有效 MATLAB® 标识符
+  group: ''
+- name: 变体控制表达式
+  summary: 全局工作区中可用的变体控制 true（默认）| 布尔条件表达式
+  group: ''
+  block_parameter: VariantControls
+  type: 字符向量元胞数组
+  values: 与变体选择关联的变体控制
+- name: 条件（只读）
+  summary: 变体控制的条件 无默认值
+  group: ''
+- name: 在模块上显示变体条件
+  summary: 在模块图标上显示变体条件 关（默认）| 开
+  group: ''
+- name: 在变体管理器中打开模块
+  summary: 打开变体管理器窗口 无默认值
+  group: ''
+```
 
 ### **Connector Type** — 连接器模块的类型 `Leaf`（默认）| `Primary` | `Nonprimary`
 
@@ -93,7 +125,6 @@ Conserving 连接端口。默认情况下，此端口为无类型。
 ### **在变体管理器中打开模块** — 打开变体管理器窗口 无默认值
 
 点击 **在变体管理器中打开模块** 以打开变体管理器。
-
 ## 所属库
 
 Simscape / Utilities

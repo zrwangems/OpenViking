@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Send
 
 ## 端口
+```yaml
+ports:
+- name: Port_Enable
+  summary: 外部使能信号 标量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 输出消息 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+```
 
 ### 输入
 
@@ -40,8 +57,17 @@ chinese_source: worker-translation
 该模块输出具有常量优先级 `20` 的消息。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Show enable port
+  summary: 显示使能端口 off（默认）| on
+  group: ''
+  block_parameter: ShowEnablePort
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Show enable port** — 显示使能端口 `off`（默认）| `on`
 
@@ -55,7 +81,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Messages & Events SimEvents

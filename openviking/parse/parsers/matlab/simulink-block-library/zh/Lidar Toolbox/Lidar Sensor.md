@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Lidar Sensor
 
 ## 端口
+```yaml
+ports:
+- name: ActorPoses
+  summary: 参与者位姿 包含 MATLAB® 结构的 Simulink 总线
+  direction: input
+- name: IsValid
+  summary: 有效仿真时间 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Location
+  summary: 点的位置值 *M*×*N*×3 矩阵
+  direction: output
+- name: Intensity
+  summary: 点的强度值 *M*×*N* 矩阵
+  direction: output
+- name: Clusters
+  summary: 参与者的分类数据 *M*×*N*×3 数组
+  direction: output
+```
 
 ### 输入
 
@@ -57,8 +76,86 @@ chinese_source: worker-translation
 ### **Clusters** — 参与者的分类数据 *M*×*N*×3 数组
 
 场景中参与者的分类数据，返回为 *M*×*N*×3 数组。*M*、*N* 分别为组织化点云中的行数和列数。数组的第一个维度包含 `ActorID`，第二个维度包含目标参与者的 `ClassID`，第三个维度包含表示 **Material attribute information in JSON format** 索引的材质 ID。
-
 ## 参数
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 参数
+- name: Required interval between sensor updates (s)
+  summary: 传感器更新之间的所需时间间隔 0.1（默认）| 正标量
+  group: 参数
+- name: Sensor model to choose typical values
+  summary: 传感器模型名称 Custom（默认）| HDL64E | HDL32E | VLP16 | VLP32C | VLS128 | PuckLITE | PuckHiRes | OS0-32 | OS0-64 | OS0-128
+    | OS1Gen1-32 | OS1Gen1-64 | OS1Gen1-128 | OS1Gen2-32 | OS1Gen2-64 | OS1Gen2-128 | OS2-32 | OS2-64 | OS2-128
+  group: 参数
+- name: Position [X Y Height] (m)
+  summary: 传感器中心位置 [1.5 0 1.6]（默认）| 形式为 [*X* *Y* *Height*] 的三元素向量
+  group: 参数
+- name: Orientation [Roll Pitch Yaw] (deg)
+  summary: 传感器方向 [0 0 0]（默认）| 三元素向量
+  group: 参数
+- name: MATLAB or Model workspace Actor profiles variable name
+  summary: actor profiles 的变量名称 actor_profiles（默认）| 有效变量名
+  group: 参数
+- name: ActorID of the host vehicle
+  summary: 自车的 Actor ID 1（默认）| 正整数
+  group: 参数
+- name: Coordinate system to report point cloud data
+  summary: 报告检测结果的坐标系 World（默认）| Sensor | Host
+  group: 参数
+- name: Maximum detection range of sensor (m)
+  summary: 最大检测范围 120（默认）| 正标量
+  group: 传感器视场
+- name: Azimuth limits (deg)
+  summary: 激光雷达传感器的方位角限制 [-180 180]（默认）| 二元素向量
+  group: 传感器视场
+- name: Azimuth resolution (deg)
+  summary: 激光雷达传感器的方位角分辨率 0.16（默认）| 正标量
+  group: 传感器视场
+- name: Use elevation angles
+  summary: 使用自定义仰角 off（默认）| on
+  group: 传感器视场
+- name: Elevation angles (deg)
+  summary: 激光雷达传感器的仰角 *N* 元素实值向量
+  group: 传感器视场
+- name: Elevation limits (deg)
+  summary: 激光雷达传感器的仰角限制 [-20 20]（默认）| [*min*, *max*] 形式的二元素向量
+  group: 传感器视场
+- name: Elevation resolution (deg)
+  summary: 激光雷达传感器的仰角分辨率 1.25（默认）| 正标量
+  group: 传感器视场
+- name: Add noise to measurements
+  summary: 向测量添加噪声 on（默认）| off
+  group: Advance Settings
+- name: Range accuracy (m)
+  summary: 传感器距离测量的精度 0.002（默认）| 正标量
+  group: Advance Settings
+- name: Fog visibility in meters
+  summary: 雾中可见距离 1000（默认）| 正标量
+  group: Advance Settings
+- name: Rainrate in mm/hour
+  summary: 降雨速率 0（默认）| 正标量
+  group: Advance Settings
+- name: Simulate Motion Distortion
+  summary: 模拟运动畸变 off（默认）| on
+  group: Advance Settings
+- name: Laser firing time (s)
+  summary: 激光雷达传感器中激光器的发射时间 []（默认）| 正标量 | 正数值向量
+  group: Advance Settings
+- name: Material attribute information in JSON format
+  summary: JSON 格式的材质属性信息 字符串标量 | 字符向量
+  group: 场景材质属性
+- name: Edit JSON text to add, remove, or modify material attributes
+  summary: 编辑 JSON 文本以添加、删除或修改材质属性 off（默认）| on
+  group: 场景材质属性
+- name: Output intensity port
+  summary: 输出点的强度值 on（默认）| off
+  group: 输出端口设置
+- name: Output clusters port
+  summary: 输出点的分割值 on（默认）| off
+  group: 输出端口设置
+```
 
 ### 参数
 
@@ -332,7 +429,6 @@ Actor profiles 是场景中 actors 的物理特征，
 ### **Output clusters port** — 输出点的分割值 `on`（默认）| `off`
 
 选择此参数以启用 **Clusters** 输出端口。
-
 ## 所属库
 
 Lidar Toolbox

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Nonlinear Rotational Damper
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 轴机械平动
+  direction: unspecified
+- name: C
+  summary: 壳体机械平动
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,37 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平动
 
 与壳体关联的机械平动守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 阻尼参数化选项 By polynomial（默认）| By table lookup
+  group: ''
+- name: Symmetry
+  summary: 阻尼对称性参数化选项 Symmetric（默认）| Two-sided
+  group: ''
+- name: Vector of damping coefficients
+  summary: 多项式阻尼系数 [.0001, 0, 1e-05, 0, 1e-06] N*m*s/rad（默认）| 长度为 5 的向量
+  group: ''
+- name: Vector of positive rotation damping coefficients
+  summary: 多项式正转阻尼系数 [.0001, 0, 1e-05, 0, 1e-06] N*m*s/rad（默认）| 长度为 5 的向量
+  group: ''
+- name: Vector of negative rotation damping coefficients
+  summary: 多项式反转阻尼系数 [.001, -1e-05, .0001, 0, 0] N*m*s/rad（默认）| 长度为 5 的向量
+  group: ''
+- name: Angular velocity vector
+  summary: 角速度 [-1, -.5, -.3, -.1, .1, .3, .5, 1] rad/s（默认）| 向量
+  group: ''
+- name: Torque vector
+  summary: 阻尼力矩 [-.0001, -4e-05, -2e-05, -5e-06, 5e-06, 2e-05, 4e-05, .0001] N*m（默认）
+  group: ''
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Linear（默认）| Smooth
+  group: ''
+- name: Extrapolation method
+  summary: 处理超出断点数据集范围的输入值的方法 Linear（默认）| Nearest | Error
+  group: ''
+```
 
 ### **Parameterization** — 阻尼参数化选项 `By polynomial`（默认）| `By table lookup`
 
@@ -106,7 +144,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Parameterization** 设置为 `By table lookup`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

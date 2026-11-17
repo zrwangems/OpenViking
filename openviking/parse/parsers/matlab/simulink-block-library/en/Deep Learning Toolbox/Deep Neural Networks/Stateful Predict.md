@@ -14,6 +14,15 @@ language: en
 # Stateful Predict
 
 ## Ports
+```yaml
+ports:
+- name: input
+  summary: Sequence or time series data numeric array
+  direction: input
+- name: output
+  summary: Predicted scores or responses numeric array
+  direction: output
+```
 
 ### Input
 
@@ -46,8 +55,47 @@ For sequence-to-sequence classification problems, the output is a
 *K*-by-*S* matrix of scores, where
 *K* is the number of classes, and *S* is the total
 number of time steps in the corresponding input sequence.
-
 ## Parameters
+```yaml
+parameters:
+- name: Network
+  summary: Source for trained recurrent neural network Network from MAT-file (default) | Network from MATLAB function
+  group: ''
+  block_parameter: Network
+  type: character vector, string
+  values: '''Network from MAT-file'' | ''Network from MATLAB function'''
+  default: '''Network from MAT-file'''
+- name: File path
+  summary: MAT file containing trained recurrent neural network untitled.mat (default) | MAT file name
+  group: ''
+  block_parameter: NetworkFilePath
+  type: character vector, string
+  values: MAT file path or name
+  default: '''untitled.mat'''
+- name: MATLAB function
+  summary: MATLAB function name untitled (default) | MATLAB function name
+  group: ''
+  block_parameter: NetworkFunction
+  type: character vector, string
+  values: MATLAB function name
+  default: '''untitled'''
+- name: Sample time
+  summary: Output sample period and optional time offset -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: Input data formats
+  summary: Input data format of dlnetwork character vector | string
+  group: ''
+  block_parameter: InputDataFormats
+  type: character vector, string
+  values: 'For a network with one or more inputs, use character vector in the form of: {''inputlayerName1'', ''SSC''; ''inputlayerName2'',
+    ''SSCB''; ...}''. For a network with no input layer and multiple input ports, use character vector in the form of: ''{''inputportName1/inport1,
+    ''SSC''; ''inputportName2/inport2, ''SSCB''; ...}''.'
+  default: Data format that the network expects. For more information, see Deep Learning Data Formats.
+```
 
 ### **Network** — Source for trained recurrent neural network `Network from MAT-file` (default) | `Network from MATLAB function`
 
@@ -165,7 +213,6 @@ MAT-file.
 | **Type:** character vector, string |
 | **Values:** For a network with one or more inputs, use character vector in the form of: `{'inputlayerName1', 'SSC'; 'inputlayerName2', 'SSCB'; ...}'`. For a network with no input layer and multiple input ports, use character vector in the form of: `'{'inputportName1/inport1, 'SSC'; 'inputportName2/inport2, 'SSCB'; ...}'`. |
 | **Default:** Data format that the network expects. For more information, see Deep Learning Data Formats. |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Neural Networks

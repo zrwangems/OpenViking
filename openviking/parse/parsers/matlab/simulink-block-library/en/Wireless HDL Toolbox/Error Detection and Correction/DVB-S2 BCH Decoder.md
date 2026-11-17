@@ -14,6 +14,41 @@ language: en
 # DVB-S2 BCH Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Codeword data bits scalar | vector
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: frameType
+  summary: Frame type scalar
+  direction: input
+  data_types: Boolean
+- name: codeRateIdx
+  summary: Code rate index integer
+  direction: input
+  data_types: fixdt(0,4,0)
+- name: data
+  summary: Decoded message bits scalar | vector
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: numCorrErr
+  summary: Number of corrected errors scalar
+  direction: output
+  data_types: fixdt(1,5,0)
+- name: nextFrame
+  summary: Block ready indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -146,8 +181,25 @@ input **ctrl.start** signal while **nextFrame** is
 progress and begins processing the new data.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: FEC frame type source
+  summary: FEC frame type source Property (default) | Input port
+  group: ''
+- name: FEC frame type
+  summary: FEC frame type Normal (default) | Short
+  group: ''
+- name: Code rate source
+  summary: Source for code rate Property (default) | Input port
+  group: ''
+- name: Code rate
+  summary: Code rate 1/4 (default) | 1/3 | 2/5 | 1/2 | 3/5 | 2/3 | 3/4 | 4/5 | 5/6 | 8/9 | 9/10
+  group: ''
+- name: Output number of corrected errors
+  summary: Number of corrected errors off (default) | on
+  group: ''
+```
 
 ### **FEC frame type source** — FEC frame type source `Property` (default) | `Input port`
 
@@ -193,7 +245,6 @@ to `Property`.
 
 Select this parameter to enable the **numCorrErr** output port.
 This port outputs the number of corrected errors.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

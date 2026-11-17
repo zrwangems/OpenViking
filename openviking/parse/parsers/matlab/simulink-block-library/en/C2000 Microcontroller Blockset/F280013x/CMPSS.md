@@ -14,6 +14,30 @@ language: en
 # F2807x/F2837xD/F2837xS/F28004x/F2838x/F2800xx CMPSS
 
 ## Ports
+```yaml
+ports:
+- name: DAC
+  summary: DAC module scalar
+  direction: input
+- name: REF
+  summary: Ramp reference value scalar
+  direction: input
+- name: DEC
+  summary: RAMP decrement value scalar
+  direction: input
+- name: DLY
+  summary: RAMP delay value scalar
+  direction: input
+- name: LCLR
+  summary: Latch clear scalar
+  direction: input
+- name: STS
+  summary: Comparator status output scalar
+  direction: output
+- name: LTH
+  summary: Comparator latch scalar
+  direction: output
+```
 
 ### Input
 
@@ -121,8 +145,55 @@ The latched value can either be cleared by the software or PWMSYNC.
 
 To enable this port, select the **Enable latch output**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Comparator module
+  summary: Indicates which module to use CMPSS1_COMPH (default) | CMPSSx_COMPL | CMPSSx_COMPH | where x ranges from 1 to 8
+  group: ''
+- name: Second input
+  summary: Source of second input pin External pin (default) | Internal DAC
+  group: ''
+- name: DAC source select
+  summary: Source of internal DAC DAC module (default) | RAMP module
+  group: ''
+- name: Specify DAC/RAMP parameter(s) via
+  summary: Configure source DAC/RAMP value source Dialog (default) | Input port
+  group: ''
+- name: DAC value (DACH)
+  summary: Specify DAC value 0 (default)
+  group: ''
+- name: DAC initial value
+  summary: Specify DAC initial value 0 (default)
+  group: ''
+- name: RAMP reference value
+  summary: Specify RAMP reference value 0 (default)
+  group: ''
+- name: RAMP decrement value
+  summary: Specify RAMP decrement value 0 (default)
+  group: ''
+- name: RAMP delay value
+  summary: Specify RAMP delay value 0 (default)
+  group: ''
+- name: RAMP initial reference value
+  summary: Specify RAMP initial reference value 0 (default)
+  group: ''
+- name: RAMP initial decrement value
+  summary: Specify RAMP decrement value 0 (default)
+  group: ''
+- name: RAMP initial delay value
+  summary: Specify RAMP delay value 0 (default)
+  group: ''
+- name: Enable latch output
+  summary: Comparator latch output off (default) | on
+  group: ''
+- name: Enable latch clear
+  summary: Clear comparator latch value off (default) | on
+  group: ''
+- name: Sample time
+  summary: Frequency at which data is read from comparator 0.1 (default)
+  group: ''
+```
 
 ### **Comparator module** — Indicates which module to use `CMPSS1_COMPH` (default) | `CMPSSx_COMPL` | `CMPSSx_COMPH` | `where x ranges from 1 to 8`
 
@@ -319,7 +390,6 @@ Select this parameter to enable the LCLR port.
 
 Use this parameter to specify the time interval between samples. To inherit sample
 time from an upstream block, set this parameter to -1.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

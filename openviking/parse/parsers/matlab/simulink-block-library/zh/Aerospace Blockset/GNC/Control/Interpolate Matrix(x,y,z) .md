@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Interpolate Matrix(x,y,z)
 
 ## 端口
+```yaml
+ports:
+- name: x_k
+  summary: 第一个插值索引 标量
+  direction: input
+  data_types: double
+- name: x_f
+  summary: 第一个插值分数 标量
+  direction: input
+  data_types: double
+- name: y_k
+  summary: 第二个插值索引 标量
+  direction: input
+  data_types: double
+- name: y_f
+  summary: 第二个插值分数 标量
+  direction: input
+  data_types: double
+- name: z_k
+  summary: 第三个插值索引 标量
+  direction: input
+  data_types: double
+- name: z_f
+  summary: 第三个插值分数 标量
+  direction: input
+  data_types: double
+- name: Matrix(x,y,z)
+  summary: 插值后的矩阵 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -60,8 +91,17 @@ chinese_source: worker-translation
 插值后的矩阵，指定为矩阵。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Matrix to interpolate
+  summary: 要插值的矩阵 matrix（默认值）
+  group: ''
+  block_parameter: matrix
+  type: character vector
+  values: matrix
+  default: '''matrix'''
+```
 
 ### **Matrix to interpolate** — 要插值的矩阵 `matrix`（默认值）
 
@@ -75,7 +115,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：matrix |
 | **默认值**：`'matrix'` |
-
 ## 所属库
 
 Aerospace Blockset / GNC / Control

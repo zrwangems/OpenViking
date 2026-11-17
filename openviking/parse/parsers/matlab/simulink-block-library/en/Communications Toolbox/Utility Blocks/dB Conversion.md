@@ -14,6 +14,17 @@ language: en
 # dB Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -87,8 +98,22 @@ converting the `(abs(u)^2/R)` result to milliwatts. The
 scale factor, R, is specified in Ohms.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Convert to
+  summary: Signal to convert dB (default) | dBm
+  group: ''
+- name: Input signal
+  summary: Type of signal Amplitude (default) | Power
+  group: ''
+- name: Load resistance (ohms)
+  summary: Scale factor 1 (default) | positive scalar | positive integer
+  group: ''
+- name: Add eps to input to protect against "log(0) = -inf"
+  summary: Add eps off (default) | on
+  group: ''
+```
 
 ### **Convert to** — Signal to convert `dB` (default) | `dBm`
 
@@ -185,7 +210,6 @@ Select this parameter to add `eps` to all input values
 (power or voltage).
 
 **Tunable:** Yes
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Math Operations Communications Toolbox / Utility Blocks

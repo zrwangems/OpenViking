@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Orifice (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流体入口或出口两相流体
+  direction: conserving
+- name: B
+  summary: 流体入口或出口两相流体
+  direction: conserving
+- name: S
+  summary: 控制构件位置，m 物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -35,8 +47,120 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Orifice type** 设置为 `Variable`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 流体相的建模选项 Liquid operating condition（默认）| Vapor operating condition
+  group: ''
+- name: Orifice type
+  summary: 恒定或可变节流孔 Variable（默认）| Constant
+  group: 参数
+- name: Orifice parameterization
+  summary: 可变或恒定节流孔参数化 Linear - Area vs. control member position（默认）| Orifice area | Nominal mass flow rate | Linear - Nominal
+    mass flow rate vs. control member position | Tabulated data - Area vs. control member position | Cv flow coefficient |
+    Kv flow coefficient
+  group: 参数
+- name: Nominal mass flow rate
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: 参数
+- name: Nominal pressure drop
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: 参数
+- name: Nominal inlet condition specification
+  summary: 确定入口流体状态的方法 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: 参数
+- name: Nominal inlet pressure
+  summary: 入口流体压力 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: Nominal inlet temperature
+  summary: 流体温度 293.15 K（默认）| 正标量
+  group: 参数
+- name: Nominal inlet vapor quality
+  summary: 入口蒸汽质量分数 0（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Nominal inlet vapor void fraction
+  summary: 入口体积分数 0（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Nominal inlet specific enthalpy
+  summary: 入口流体比焓 400 kJ/kg（默认）| 正标量
+  group: 参数
+- name: Nominal inlet specific internal energy
+  summary: 入口比内能 400 kJ/kg（默认）| 正标量
+  group: 参数
+- name: Orifice area
+  summary: 孔口开口面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Control member position at closed orifice
+  summary: 控制构件偏移量 0 m（默认）| 正标量
+  group: 参数
+- name: Control member travel between closed and open orifice
+  summary: 控制构件行程 5e-3 m（默认）| 正标量
+  group: 参数
+- name: Opening orientation
+  summary: 打开孔口的位移方向 Positive control member displacement opens orifice（默认）| Negative control member displacement opens orifice
+  group: 参数
+- name: Nominal mass flow rate at maximum orifice opening
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: 参数
+- name: 最大孔口开度下的额定压降
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: 参数
+- name: 最大孔口面积
+  summary: 最大孔口开度面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: 控制构件位置向量
+  summary: 控制构件位置向量 [0, .002, .004, .007, .017] m（默认）| 1×*n* 向量
+  group: 参数
+- name: 孔口面积向量
+  summary: 孔口开度面积值向量 [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: 流量系数
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: 压力恢复
+  summary: 是否考虑面积扩张中的压力升高 off（默认）| on
+  group: 参数
+- name: Opening characteristic
+  summary: 将控制信号转换为流量能力度量的方法 Linear（默认）| Tabulated
+  group: 参数
+- name: Cv flow coefficient
+  summary: 流量系数 4（默认）| 正标量
+  group: 参数
+- name: Maximum Cv flow coefficient
+  summary: 对应组件最大开启状态的 *Cv* 系数 4（默认）| 正标量
+  group: 参数
+- name: Cv flow coefficient vector
+  summary: 对应控制构件位置向量中各值的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: 参数
+- name: Kv flow coefficient
+  summary: 流量系数 3.6（默认）| 正标量
+  group: 参数
+- name: Maximum Kv flow coefficient
+  summary: 对应组件最大开启状态的 *Kv* 系数 3.6（默认）| 正标量
+  group: 参数
+- name: Kv flow coefficient vector
+  summary: 与成员位置向量 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）中的值对应的 *Kv* 系数 | 1×*n* 向量
+  group: 参数
+- name: xT pressure differential ratio factor at choked flow
+  summary: 阻塞流时的压差比系数 0.7（默认） | 正标量
+  group: 参数
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认） | 正标量
+  group: 参数
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认） | 范围 [0,1] 内的正标量
+  group: 参数
+- name: Inlet phase change time constant
+  summary: 液体比容的滞后 0.1 s（默认） | 正标量
+  group: 参数
+- name: Laminar flow pressure ratio
+  summary: 层流-湍流过渡压力比 0.999（默认） | 正标量
+  group: 参数
+- name: Cross-sectional area at ports A and B
+  summary: 阀端口面积 0.01 m^2（默认） | 正标量
+  group: 参数
+```
 
 ### **Modeling option** — 流体相的建模选项 `Liquid operating condition`（默认）| `Vapor operating condition`
 
@@ -376,7 +500,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at ports A and B** — 阀端口面积 `0.01` m^2（默认） | 正标量
 
 孔口端口 **A** 和 **B** 的面积。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Valves & Orifices

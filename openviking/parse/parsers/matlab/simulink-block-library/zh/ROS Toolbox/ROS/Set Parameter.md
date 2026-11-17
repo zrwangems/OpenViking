@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Set Parameter
 
 ## 端口
+```yaml
+ports:
+- name: Value
+  summary: 参数值 标量 | 逻辑值 | uint8 数组
+  direction: input
+- name: Length
+  summary: 字符串参数的长度 整数
+  direction: input
+```
 
 ### 输入
 
@@ -33,8 +42,19 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Data type** 设置为 `uint8[] (string)`。
-
 ## 参数
+```yaml
+parameters:
+- name: Source
+  summary: 用于指定参数名的来源 Select from ROS network | Specify your own
+  group: ''
+- name: Name
+  summary: 参数名 字符串
+  group: ''
+- name: Data type
+  summary: 参数的数据类型 double | int32 | boolean | uint8[] (string)
+  group: ''
+```
 
 ### **Source** — 用于指定参数名的来源 `Select from ROS network` | `Specify your own`
 
@@ -63,7 +83,6 @@ chinese_source: worker-translation
 `uint8[] (string)` 数据类型是与字符串中字符对应的 ASCII 值数组。在获取字符串参数时，您可以创建一个 MATLAB Function (Simulink) 模块，将字符串与所需的参数值进行比较。有关详细信息，请参阅 Simulink 中的 ROS 参数。
 
 **数据类型：** `double` | `int32` | `Boolean` | `uint8`
-
 ## 所属库
 
 ROS Toolbox / ROS

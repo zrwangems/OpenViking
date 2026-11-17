@@ -14,10 +14,27 @@ language: en
 # Potentiometer
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum resistance
+  summary: Minimum input resistance of potentiometer 10 Ohm (default) | positive scalar
+  group: ''
+- name: Maximum resistance
+  summary: Maximum input resistance of potentiometer 1e6 Ohm (default) | positive scalar
+  group: ''
+- name: Potentiometer type
+  summary: Curve type of potentiometer Linear (default) | Logarithmic | Antilog
+  group: ''
+- name: Percentage of resistance at half wiper
+  summary: Maximum input resistance of potentiometer positive scalar
+  group: ''
+```
 
 ### **Minimum resistance** — Minimum input resistance of potentiometer `10 Ohm` (default) | positive scalar
 
@@ -61,7 +78,6 @@ To enable this parameter, select
 type**.
 
 **Data Types:** `double`
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Junctions

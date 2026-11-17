@@ -14,6 +14,18 @@ language: en
 # PWM Gate Signal Generator (Five-phase, Two-level)
 
 ## Ports
+```yaml
+ports:
+- name: TgabcdeON
+  summary: Switch-on gating time vector
+  direction: input
+- name: TgabcdeOFF
+  summary: Switch-off gating time vector
+  direction: input
+- name: g
+  summary: Gate control vector
+  direction: output
+```
 
 ### Input
 
@@ -32,8 +44,19 @@ phase.
 
 Ten pulse waveforms that determine the switching behavior in the
 attached power converter, returned as a vector.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sampling mode
+  summary: Wave-sampling method Natural (default) | Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: Switching rate 1e3 (default) | positive scalar
+  group: ''
+- name: Sample time (s)
+  summary: Block sample time 5e-5 (default) | positive scalar
+  group: ''
+```
 
 ### **Sampling mode** — Wave-sampling method `Natural` (default) | `Asymmetric` | `Symmetric`
 
@@ -52,7 +75,6 @@ resolution in the generated signal, set this value to be less than or equal
 to `1/(50*Fsw)`,
 where *F*sw is the value of the
 **Switching frequency (Hz)** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Control / Pulse Width Modulation

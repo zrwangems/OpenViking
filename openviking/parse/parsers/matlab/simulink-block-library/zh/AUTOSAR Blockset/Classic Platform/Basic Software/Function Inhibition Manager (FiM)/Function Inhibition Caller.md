@@ -15,10 +15,36 @@ chinese_source: worker-translation
 # Function Inhibition Caller
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Client port name
+  summary: AUTOSAR 组件用于调用 FiM 服务接口 FunctionInhibition 的客户端端口名称 FunctionInhibition（默认）| 字符向量
+  group: ''
+  block_parameter: PortName
+  type: character vector
+  values: '''FunctionInhibition'''
+  default: '''FunctionInhibition'''
+- name: Operation
+  summary: 指定 FiM 服务接口 FunctionInhibition 中定义的操作 GetFunctionPermission（默认）
+  group: ''
+  block_parameter: Operation
+  type: character vector
+  values: '''GetFunctionPermission'''
+  default: '''GetFunctionPermission'''
+- name: Sample time
+  summary: 模块采样时间 -1（默认）| 标量
+  group: ''
+  block_parameter: st
+  type: character vector
+  values: -1 | scalar
+  default: '-1'
+```
 
 ### **Client port name** — AUTOSAR 组件用于调用 FiM 服务接口 `FunctionInhibition` 的客户端端口名称 `FunctionInhibition`（默认）| 字符向量
 
@@ -58,7 +84,6 @@ R2025b 中未记录。
 | **类型**：character vector |
 | **值**：`-1 |` scalar |
 | **默认值**：`-1` |
-
 ## 所属库
 
 AUTOSAR Blockset / Classic Platform / Basic Software / Function Inhibition Manager (FiM)

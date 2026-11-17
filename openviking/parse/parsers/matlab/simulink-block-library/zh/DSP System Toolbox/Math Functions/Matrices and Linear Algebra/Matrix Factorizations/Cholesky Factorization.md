@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Cholesky Factorization
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 输入矩阵 方阵
+  direction: input
+  data_types: single | double
+- name: LL'
+  summary: 下三角和上三角因子 方阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -65,8 +76,13 @@ MATLAB 结果不完全相同。
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Non-positive definite input
+  summary: 非正定输入 Warning（默认）| Ignore | Error
+  group: ''
+```
 
 ### **Non-positive definite input** — 非正定输入 `Warning`（默认）| `Ignore` | `Error`
 
@@ -93,7 +109,6 @@ MATLAB 结果不完全相同。
 在 Simulink®
 Coder™ 代码生成软件为此模块生成的代码中，它被设置为
 `Ignore`。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Factorizations

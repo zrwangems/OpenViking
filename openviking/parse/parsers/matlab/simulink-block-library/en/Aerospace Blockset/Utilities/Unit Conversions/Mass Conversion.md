@@ -14,6 +14,17 @@ language: en
 # Mass Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Mass scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Mass scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -39,8 +50,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units lbm (default) | kg | slug
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''lbm'' | ''kg'' | ''slug'''
+  default: '''lbm'''
+- name: Final unit
+  summary: Output units kg (default) | lbm | slug
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''lbm'' | ''kg'' | ''slug'''
+  default: '''kg'''
+```
 
 ### **Initial unit** — Input units `lbm` (default) | `kg` | `slug`
 
@@ -89,7 +116,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `'lbm'` | `'kg'` | `'slug'` |
 | **Default**: `'kg'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

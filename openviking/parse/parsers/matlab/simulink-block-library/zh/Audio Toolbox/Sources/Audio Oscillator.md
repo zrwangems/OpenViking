@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Audio Oscillator
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 频率 (Hz) 非负标量 | 非负值向量
+  direction: input
+  data_types: single | double
+- name: A
+  summary: 幅值 非负标量 | 非负值向量
+  direction: input
+  data_types: single | double
+- name: DC
+  summary: 直流偏移 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -51,8 +70,43 @@ port**。
 Audio Oscillator 模块输出由模块参数定义的周期信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal type
+  summary: 生成波形的类型 sine（默认）| square | sawtooth
+  group: ''
+- name: Frequency (Hz)
+  summary: 生成波形的频率 100（默认）| 非负标量 | 非负值向量
+  group: ''
+- name: Amplitude
+  summary: 生成波形的幅值 1（默认）| 非负标量 | 非负值向量
+  group: ''
+- name: Phase offset
+  summary: 生成波形的归一化相位偏移 0（默认）| 范围 [0, 1] 内的标量 | 值在范围 [0, 1] 内的向量
+  group: ''
+- name: DC offset
+  summary: 添加到生成波形每个元素的值 0（默认）| 标量 | 向量
+  group: ''
+- name: Duty cycle
+  summary: 方波占空比 0.5（默认）| 范围 [0, 1] 内的标量
+  group: ''
+- name: Width
+  summary: 锯齿波宽度 1（默认）| 范围 [0, 1] 内的标量
+  group: ''
+- name: Samples per frame
+  summary: 每帧样本数 512（默认）| 正整数
+  group: ''
+- name: Sample rate (Hz)
+  summary: 生成波形的采样率 44100（默认）| 正标量
+  group: ''
+- name: Output data type
+  summary: 生成波形的数据类型 double（默认）| single
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 如果某个参数被列为可调，则可以在仿真期间更改其值。
 
@@ -180,7 +234,6 @@ Audio Oscillator 模块输出由模块参数定义的周期信号。
   MATLAB® 解释器仿真模型。此选项可减少启动时间，并且仿真的
   速度与 `Code generation` 相当。在此模式下，
   您可以调试模块的源代码。
-
 ## 所属库
 
 Audio Toolbox / Sources

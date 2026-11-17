@@ -14,6 +14,15 @@ language: en
 # Probabilistic OR
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Input values array | row vector
+  direction: input
+- name: Out1
+  summary: Probabilistic OR values row vector
+  direction: output
+```
 
 ### Input
 
@@ -50,11 +59,12 @@ y(i) = A(i) + B(i) - A(i)*B(i);
 y(i) = y(i) + C(i) - y(i)*C(i);
 y(i) = y(i) + D(i) - y(i)*D(i);
 ```
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Fuzzy Logic Toolbox / Membership Functions

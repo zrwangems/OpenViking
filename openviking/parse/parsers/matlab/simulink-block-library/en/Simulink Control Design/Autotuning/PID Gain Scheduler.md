@@ -14,6 +14,30 @@ language: en
 # PID Gain Scheduler
 
 ## Ports
+```yaml
+ports:
+- name: scheduling Variable
+  summary: Scheduling variable scalar
+  direction: input
+- name: Breakpoints
+  summary: Breakpoint data vector
+  direction: input
+- name: PID Gains
+  summary: PID gain array bus
+  direction: input
+- name: P
+  summary: Proportional gain vector
+  direction: output
+- name: I
+  summary: Integral gain vector
+  direction: output
+- name: D
+  summary: Derivative gain vector
+  direction: output
+- name: N
+  summary: Derivative filter gain vector
+  direction: output
+```
 
 ### Input
 
@@ -98,8 +122,134 @@ the original values of the input gains.
 
 To enable this port, set **Controller type** to a
 controller type that has a filtered derivative.
-
 ## Parameters
+```yaml
+parameters:
+- name: Controller type
+  summary: PID controller type P (default) | I | PI | PD | PDN | PID | PIDN
+  group: ''
+  block_parameter: ControllerType
+  type: string
+  values: '"P" | "I" | "PI" | "PD" | "PDN" | "PID" | "PIDN"'
+  default: '"PID"'
+- name: Breakpoints saved in gain array
+  summary: Read breakpoints saved in gain array off (default) | on
+  group: ''
+  block_parameter: BPsInGainArray
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Breakpoints
+  summary: Gain scheduling breakpoints [1 2 3] (default) | vector
+  group: ''
+  block_parameter: GainArrayBreakpoints
+  type: string
+  values: vector of at least two elements
+  default: '"[1 2 3]"'
+- name: Use external signal
+  summary: Specify breakpoints from input port off (default) | on
+  group: ''
+  block_parameter: UseExternalBreakpoints
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Method of obtaining gains
+  summary: Method of obtaining gains Data store memory (default) | Goto/from | Input to block
+  group: ''
+  block_parameter: GainSourceMethod
+  type: string
+  values: '"Data store memory" | "Goto/from" | "Input to block"'
+  default: '"Data store memory"'
+- name: P Gain Parameter Name
+  summary: Proportional gain data name PGain (default) | string
+  group: ''
+  block_parameter: StoreGainsPParamName
+  type: string
+  default: '"PGain"'
+- name: I Gain Parameter Name
+  summary: Integral gain data name IGain (default) | string
+  group: ''
+  block_parameter: StoreGainsIParamName
+  type: string
+  default: '"IGain"'
+- name: D Gain Parameter Name
+  summary: Derivative gain data name DGain (default) | string
+  group: ''
+  block_parameter: StoreGainsDParamName
+  type: string
+  default: '"DGain"'
+- name: N Gain Parameter Name
+  summary: Filter gain data name NGain (default) | string
+  group: ''
+  block_parameter: StoreGainsNParamName
+  type: string
+  default: '"NGain"'
+- name: Data type
+  summary: Floating point precision Double (default) | Single
+  group: ''
+  block_parameter: BlockDataType
+  type: string
+  values: '"Double" | "Single"'
+  default: '"Double"'
+- name: P gain lookup method
+  summary: Proportional gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input
+    Nearest | Use Input Below | Use Input Above
+  group: ''
+  block_parameter: PGainLookUpMeth
+  type: string
+  values: '"Interpolation-Use End Values" | "Interpolation-Extrapolation" | "Use Input Nearest" | "Use Input Below" | "Input
+    to block"'
+  default: '"Use Input Above"'
+- name: I gain lookup method
+  summary: Integral gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest
+    | Use Input Below | Use Input Above
+  group: ''
+  block_parameter: IGainLookUpMeth
+  type: string
+  values: '"Interpolation-Use End Values" | "Interpolation-Extrapolation" | "Use Input Nearest" | "Use Input Below" | "Input
+    to block"'
+  default: '"Use Input Above"'
+- name: D gain lookup method
+  summary: Derivative gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input
+    Nearest | Use Input Below | Use Input Above
+  group: ''
+  block_parameter: DGainLookUpMeth
+  type: string
+  values: '"Interpolation-Use End Values" | "Interpolation-Extrapolation" | "Use Input Nearest" | "Use Input Below" | "Input
+    to block"'
+  default: '"Use Input Above"'
+- name: N gain lookup method
+  summary: Derivative filter gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use
+    Input Nearest | Use Input Below | Use Input Above
+  group: ''
+  block_parameter: NGainLookUpMeth
+  type: string
+  values: '"Interpolation-Use End Values" | "Interpolation-Extrapolation" | "Use Input Nearest" | "Use Input Below" | "Input
+    to block"'
+  default: '"Use Input Above"'
+- name: Saturate to max or min when overflows occur
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: DoSatur
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: ''
+  block_parameter: LockScale
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+```
 
 ### **Controller type** — PID controller type `P` (default) | `I` | `PI` | `PD` | `PDN` | `PID` | `PIDN`
 
@@ -449,7 +599,6 @@ MATLAB® rounding function into the mask field.
 | **Type:** character vector |
 | **Values:** `"Ceiling"` | `"Convergent"` | `"Floor"` | `"Nearest"` | `"Round"` | `"Simplest"` | `"Zero"` |
 | **Default:** `"Floor"` |
-
 ## Libraries
 
 Simulink Control Design / Autotuning

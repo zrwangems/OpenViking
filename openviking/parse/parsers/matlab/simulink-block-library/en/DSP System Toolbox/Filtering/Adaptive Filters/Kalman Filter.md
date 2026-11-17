@@ -14,10 +14,15 @@ language: en
 # Kalman Filter
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Number of filters**
 :   Specify the number of filters to use to predict or estimate the current
@@ -86,7 +91,6 @@ Not documented in R2025b.
 **Output MSE of predicted state <MSE\_prb>**
 :   Select this check box if you want the block to output the mean-squared
     error of the predicted state.
-
 ## Libraries
 
 Not documented in R2025b.

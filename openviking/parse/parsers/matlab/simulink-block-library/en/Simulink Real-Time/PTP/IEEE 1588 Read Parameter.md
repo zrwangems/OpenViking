@@ -14,14 +14,31 @@ language: en
 # IEEE 1588 Read Parameter
 
 ## Ports
+```yaml
+ports:
+- name: Output
+  summary: Output selected by Parameter to read parameter double | [uint32]
+  direction: output
+```
 
 ### Output
 
 ### **Output** — Output selected by Parameter to read parameter `double` | `[uint32]`
 
 The current parameter to read.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameter to read
+  summary: Parameter to display at output System time (nanosecond) (default) | Calendar time (time_t) | Offset from Client
+    | Client to Server Delay | One Way Delay
+  group: ''
+  block_parameter: param
+- name: Sample time (-1 for inherited)
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Parameter to read** — Parameter to display at output `System time (nanosecond)` (default) | `Calendar time (time_t)` | `Offset from Client` | `Client to Server Delay` | `One Way Delay`
 
@@ -75,7 +92,6 @@ time.
 |  |
 | --- |
 | **Block Parameter:** `sample_time` |
-
 ## Libraries
 
 Simulink Real-Time / PTP

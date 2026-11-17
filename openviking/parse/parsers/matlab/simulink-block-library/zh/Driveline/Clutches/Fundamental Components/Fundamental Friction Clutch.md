@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Fundamental Friction Clutch
 
 ## 端口
+```yaml
+ports:
+- name: tK
+  summary: 动摩擦力矩，N\*m 物理信号
+  direction: input
+- name: t+
+  summary: 静摩擦力矩上限，N\*m 物理信号
+  direction: input
+- name: t-
+  summary: 静摩擦力矩下限，N\*m 物理信号
+  direction: input
+- name: S
+  summary: 离合器滑移速度，rad/sec 物理信号
+  direction: output
+- name: M
+  summary: 离合器状态 物理信号
+  direction: output
+- name: B
+  summary: 旋转速度，rad/sec 机械旋转
+  direction: output
+- name: F
+  summary: 旋转速度，rad/sec 机械旋转
+  direction: output
+- name: H
+  summary: 热流 热
+  direction: output
+```
 
 ### 输入
 
@@ -55,8 +82,25 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用这些设置，请将 **Thermal Port** 设置为 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Directionality
+  summary: 允许的板间滑移方向 Bidirectional（默认）| Unidirectional
+  group: ''
+- name: Thermal port
+  summary: 热模型 Omit（默认）| Model
+  group: ''
+- name: Thermal mass
+  summary: 对温度变化的阻力 50 kJ/K（默认）| 标量
+  group: ''
+- name: Clutch velocity tolerance
+  summary: 滑移速度阈值 0.001 rad/s（默认）| 标量
+  group: ''
+- name: Initial state
+  summary: 初始离合器状态 Unlocked（默认）| Locked
+  group: ''
+```
 
 ### **Directionality** — 允许的板间滑移方向 `Bidirectional`（默认）| `Unidirectional`
 
@@ -88,7 +132,6 @@ chinese_source: worker-translation
 仿真开始时的离合器状态。离合器可以处于两种状态之一：锁止和未锁止。锁止的离合器约束主动轴和从动轴以相同速度旋转，即作为一个整体旋转。未锁止的离合器允许两个轴以不同速度旋转，从而导致离合器板之间发生滑移。
 
 以未锁止状态开始仿真的离合器缺少运动方向。因此，在检查未锁止状态有效后，模块会根据传动系统动态自动确定适当的运动方向。然后，根据运动方向，离合器转换为未锁止反向或未锁止正向状态。
-
 ## 所属库
 
 Simscape / Driveline / Clutches / Fundamental Components

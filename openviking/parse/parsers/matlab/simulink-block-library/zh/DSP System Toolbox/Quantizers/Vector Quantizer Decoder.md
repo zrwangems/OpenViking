@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Vector Quantizer Decoder
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 索引值 标量 | 行向量
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: C
+  summary: 码本值 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Q(U)
+  summary: 量化输出值 行向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -38,8 +53,23 @@ chinese_source: worker-translation
 这些量化输出值始终与码本值具有相同的数据类型。当您通过输入端口指定码本值时，模块会为 **Q(U)** 输出端口分配相同的数据类型。当您通过对话框指定码本值时，使用 **Codebook and output data type** 参数来指定 **Q(U)** 输出端口的数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Action for out of range index value
+  summary: 超出范围索引值的操作 Clip（默认）| Clip and warn | Error
+  group: 主选项卡
+- name: Source of codebook
+  summary: 码本来源 Specify via dialog（默认）| Input port
+  group: 主选项卡
+- name: Codebook values
+  summary: 码本值 [1.5 13.3 136.4 6.8; 2.5 14.3 137.4 7.8; 3.5 15.3 138.4 8.8]（默认）
+  group: 主选项卡
+- name: Codebook and output data type
+  summary: '码本和输出数据类型 double（默认）| Inherit: Inherit via back propagation | Inherit: Same as input | single | fixdt(1,16) |
+    fixdt(1,16,0)'
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -81,7 +111,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Source of codebook** 参数设置为 `Specify via dialog`。如果您将 **Source of codebook** 参数设置为 `Input port`，则输出值具有与输入码本值相同的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Quantizers

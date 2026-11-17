@@ -15,10 +15,36 @@ chinese_source: worker-translation
 # NvMAdminCaller
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Client port name
+  summary: AUTOSAR 组件用于调用 NvM 服务接口 NvMAdmin 的客户端端口名称 NvMAdmin（默认）| 字符向量
+  group: ''
+  block_parameter: PortName
+  type: character vector
+  values: '''NvMAdmin'' | unique name'
+  default: '''NvMAdmin'''
+- name: Operation
+  summary: 在 NvM 服务接口 NvMAdmin 中定义的操作 SetBlockProtection（默认）
+  group: ''
+  block_parameter: Operation
+  type: character vector
+  values: '''SetBlockProtection'''
+  default: '''SetBlockProtection'''
+- name: Sample time
+  summary: 模块采样时间 -1（默认）| 标量
+  group: ''
+  block_parameter: st
+  type: scalar
+  values: '''-1'' | scalar'
+  default: '''-1'''
+```
 
 ### **Client port name** — AUTOSAR 组件用于调用 NvM 服务接口 `NvMAdmin` 的客户端端口名称 `NvMAdmin`（默认）| 字符向量
 
@@ -58,7 +84,6 @@ R2025b 中未记录。
 | **类型**：scalar |
 | **值**：`'-1' |` scalar |
 | **默认值**：`'-1'` |
-
 ## 所属库
 
 AUTOSAR Blockset / Classic Platform / Basic Software / NVRAM Manager (NvM)

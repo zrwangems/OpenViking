@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Supercapacitor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电气端子 electrical
+  direction: unspecified
+- name: '-'
+  summary: 负电气端子 electrical
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,31 @@ chinese_source: worker-translation
 ### **-** — 负电气端子 electrical
 
 与负端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Fixed resistances, [R1 R2 R3]
+  summary: 每个支路的固定电阻值 [0.2, 90.0, 1000.0] Ohm（默认值）
+  group: ''
+- name: Fixed capacitances, [C1 C2 C3]
+  summary: 每个支路的固定电容值 [2.5, 1.5, 4.0] F（默认值）
+  group: ''
+- name: Voltage-dependent capacitor gain
+  summary: 第一个支路的可变电容系数 0.95 F/V（默认值）
+  group: ''
+- name: Self-discharge resistance
+  summary: 自放电电阻 inf（默认值）
+  group: ''
+- name: Number of series cells
+  summary: 串联的超级电容器电池数 1（默认值）
+  group: ''
+- name: Number of parallel cells
+  summary: 并联的超级电容器电池数 1（默认值）
+  group: ''
+- name: Beginning Value
+  summary: 初始目标值 0（默认值）
+  group: ''
+```
 
 #### 电池特性
 
@@ -61,7 +93,6 @@ chinese_source: worker-translation
 ### **Beginning Value** — 初始目标值 `0`（默认值）
 
 使用 **Variables** 选项卡在仿真前设置模块变量的优先级和初始目标值。有关详细信息，请参阅 Set Priority and Initial Target for Block Variables。
-
 ## 所属库
 
 Simscape / Electrical / Passive

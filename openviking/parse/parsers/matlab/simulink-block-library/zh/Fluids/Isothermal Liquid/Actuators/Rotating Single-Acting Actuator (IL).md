@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Rotating Single-Acting Actuator (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体腔入口端口 等温液体
+  direction: conserving
+- name: C
+  summary: 执行器壳体 机械平移
+  direction: conserving
+- name: R
+  summary: 活塞杆速度 机械平移
+  direction: conserving
+- name: W
+  summary: 执行器旋转速度 物理信号
+  direction: input
+- name: p
+  summary: 活塞位置，m 物理信号
+  direction: input
+- name: p
+  summary: 活塞位置，m 物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -57,8 +78,82 @@ joint`。
 要显示此端口，请将 **Piston displacement**
 设置为 `Calculate from velocity of port R relative to port
 C`。
-
 ## 参数
+```yaml
+parameters:
+- name: Piston outer radius
+  summary: 活塞外半径 0.1 m（默认）| 正标量
+  group: 执行器
+- name: Piston inner radius
+  summary: 活塞内半径 0.05 m（默认）| 正标量
+  group: 执行器
+- name: Mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 执行器
+- name: Piston stroke
+  summary: 最大活塞行程距离 0.1 m（默认）| 正标量
+  group: 执行器
+- name: Dead volume
+  summary: 活塞完全缩回时的流体体积 1e-5 m^3（默认）| 正标量
+  group: 执行器
+- name: Environment pressure specification
+  summary: 参考环境压力 Atmospheric pressure（默认）| Specified pressure
+  group: 执行器
+- name: Environment pressure
+  summary: 用户定义的环境压力 0.101325 MPa（默认）| 正标量
+  group: 执行器
+- name: Fluid entry radius
+  summary: 流体通道半径 0.06 m（默认）| 正标量
+  group: 流体通道
+- name: Fluid channel cross-sectional area
+  summary: 流体横截面积 1e-3 m^2（默认）| 正标量
+  group: 流体通道
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 流体通道
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 流体通道
+- name: Hard stop model
+  summary: 选择硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 硬限位
+- name: Hard-stop stiffness coefficient
+  summary: 刚度系数 1e10 N/m（默认）| 正标量
+  group: 硬限位
+- name: Hard-stop damping coefficient
+  summary: 阻尼系数 150 N*s/m（默认）| 正标量
+  group: 硬限位
+- name: Transition region
+  summary: 硬限位力模型的应用范围 0.1 mm（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位之间的最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N（默认）| 正标量
+  group: 硬限位
+- name: Piston displacement
+  summary: 确定活塞位置的方法 Calculate from velocity of port R relative to port C（默认）| Provide input signal from Multibody joint
+  group: 初始条件
+- name: Initial piston displacement
+  summary: 仿真开始时的活塞位置 0 m（默认）| 标量
+  group: 初始条件
+- name: Enable dynamic compressibility
+  summary: 是否对流体可压缩性进行建模 on（默认）| off
+  group: 初始条件
+- name: Initial liquid pressure
+  summary: 可压缩流体的起始液体压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: Nominal liquid pressure
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 初始条件
+```
 
 ### 执行器
 
@@ -261,7 +356,6 @@ compressibility**。
 
 要启用此参数，请清除 **Enable dynamic
 compressibility** 复选框。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Actuators

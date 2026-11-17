@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # QR Factorization
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Q
+  summary: QR 分解的正交分量 *Q* 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: R
+  summary: QR 分解的上三角分量 *R* 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: E
+  summary: 列置换向量 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -79,8 +98,16 @@ QR 分解的上三角分量 *R*，以向量或矩阵形式返回。
 有关该模块如何使用此向量的更多详细信息，请参阅算法。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Output size
+  summary: 输出大小 Economy（默认） | Full
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认） | Code generation
+  group: ''
+```
 
 ### **Output size** — 输出大小 `Economy`（默认） | `Full`
 
@@ -95,7 +122,6 @@ QR 分解的上三角分量 *R*，以向量或矩阵形式返回。
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Factorizations

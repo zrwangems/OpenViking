@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Fluid Inertia
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,8 +26,10 @@ chinese_source: worker-translation
 
 `B`
 :   与通道出口关联的液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Passage area**
 :   流体通道横截面积。默认值为 `8e-5` m^2。
@@ -34,7 +39,6 @@ chinese_source: worker-translation
 
 **Initial flow rate**
 :   通过通道的初始流量。该参数指定用于在仿真运行开始时计算模块初始状态的初始条件。有关详细信息，请参阅 Initial Conditions Computation。默认值为 `0`。
-
 ## 所属库
 
 R2025b 中未记录。

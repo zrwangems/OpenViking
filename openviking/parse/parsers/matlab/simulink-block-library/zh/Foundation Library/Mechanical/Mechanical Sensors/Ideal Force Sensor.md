@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Ideal Force Sensor
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 力，N，物理信号
+  direction: output
+- name: R
+  summary: 杆（正探头）机械平移
+  direction: output
+- name: C
+  summary: 壳体（参考探头）机械平移
+  direction: output
+```
 
 ### 输出
 
@@ -30,11 +42,12 @@ chinese_source: worker-translation
 ### **C** — 壳体（参考探头）机械平移
 
 与传感器负（参考）探头关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Mechanical Sensors

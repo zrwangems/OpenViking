@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # LTE OFDM Demodulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输入数据 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: NDLRB
+  summary: 下行资源块数量 6 | 15 | 25 | 50 | 75 | 100
+  direction: input
+  data_types: uint8 | uint16 | uint32 | fixdt(0,K,0), K >= 7 | single | double
+- name: cyclicPrefixType
+  summary: CP 类型 标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 输出数据 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已就绪 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -86,8 +121,40 @@ CP 类型，指定为 `Boolean` 标量。当该值为 `0`（false）时，模块
 要启用此端口，请将 **Input data sample rate** 参数设置为 `Match input data sample rate to NDLRB`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: NDLRB source
+  summary: NDLRB 的来源 Property（默认）| Input port
+  group: 主要
+- name: NDLRB
+  summary: 下行资源块数量 6（默认）| 15 | 25 | 50 | 75 | 100
+  group: 主要
+- name: Cyclic prefix source
+  summary: 循环前缀类型的来源 Property（默认）| Input port
+  group: 主要
+- name: Cyclic prefix type
+  summary: 循环前缀的类型 Normal（默认）| Extended
+  group: 主要
+- name: CP fraction
+  summary: 要移除的循环前缀百分比 0.55（默认）| 0 到 1 之间的值
+  group: 主要
+- name: Remove DC subcarrier
+  summary: 排除或包含 DC 子载波 off（默认）| on
+  group: 主要
+- name: Enable reset input port
+  summary: 复位信号 off（默认）| on
+  group: 主要
+- name: Input data sample rate
+  summary: 输入采样率 Use maximum input data sample rate（默认）| Match input data sample rate to NDLRB
+  group: 主要
+- name: Divide butterfly outputs by two
+  summary: 将 FFT 蝶形输出除以二 off（默认）| on
+  group: FFT 参数
+- name: Rounding Method
+  summary: 内部定点计算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: FFT 参数
+```
 
 ### 主要
 
@@ -151,7 +218,6 @@ CP 类型，指定为 `Boolean` 标量。当该值为 `0`（false）时，模块
 ### **Rounding Method** — 内部定点计算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Zero`
 
 此参数指定内部定点计算的舍入模式类型。有关舍入模式的详细信息，请参阅舍入模式。当输入为任意整数数据类型或定点数据类型时，FFT 算法在内部计算中使用定点运算。当输入的数据类型为 `single` 或 `double` 时，此参数不适用。舍入适用于旋转因子乘法和缩放运算。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

@@ -14,6 +14,21 @@ language: en
 # C28x I2C Transmit
 
 ## Ports
+```yaml
+ports:
+- name: SAR
+  summary: Peripheral address register value scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: WD
+  summary: Data written to I2C bus scalar | vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: status
+  summary: I2C communication status scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Input
 
@@ -47,8 +62,34 @@ This port appears only when **Output transmitting
 status** is selected.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Module
+  summary: Module for communication I2C_A (default) | I2C_B
+  group: ''
+- name: Addressing format
+  summary: Address format for communication 7–Bit addressing (default) | 10–Bit addressing | Free data format
+  group: ''
+- name: peripheral address source
+  summary: peripheral address source of I2C peripheral Specify via dialog (default) | Input port
+  group: ''
+- name: Peripheral address register
+  summary: Peripheral address register value 80 (default) | scalar
+  group: ''
+- name: Bit count
+  summary: Bit count for communication 8 (default) | integer in [1 8]
+  group: ''
+- name: Enable stop condition
+  summary: Send stop bit to indicate that data transmission is complete off (default) | on
+  group: ''
+- name: Enable repeat mode
+  summary: Retransmit data until stop or start condition is detected off (default) | on
+  group: ''
+- name: Output transmitting status
+  summary: Indicates when I2C transmit block transmits message off (default) | on
+  group: ''
+```
 
 ### **Module** — Module for communication `I2C_A` (default) | `I2C_B`
 
@@ -115,7 +156,6 @@ sending a specific number of data values once.
 
 Enables the status output port, which indicates when the I2C transmit
 block transmits a message.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

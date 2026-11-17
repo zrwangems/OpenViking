@@ -14,6 +14,12 @@ language: en
 # Translational World (PB)
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Absolute zero position and velocity position-based mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,11 +27,12 @@ language: en
 
 Position-based mechanical translational conserving port that sets absolute zero
 position and velocity for the connected circuit.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

@@ -14,6 +14,60 @@ language: en
 # Gain-Scheduled PID Autotuner
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Signal from controller scalar
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Plant output scalar
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: Start and stop the autotuning experiment scalar
+  direction: input
+  data_types: single | double
+- name: bandwidth
+  summary: Target bandwidth for tuning scalar
+  direction: input
+  data_types: single | double
+- name: target PM
+  summary: Target phase margin for tuning scalar
+  direction: input
+  data_types: single | double
+- name: signal Amp
+  summary: Amplitudes of injected perturbation signals scalar | vector
+  direction: input
+  data_types: single | double
+- name: scheduling Variable
+  summary: Scheduling variable scalar
+  direction: input
+- name: Breakpoints
+  summary: Breakpoint data vector
+  direction: input
+- name: Update Trigger
+  summary: Trigger control signal scalar
+  direction: input
+- name: u+Δu
+  summary: Signal for plant input scalar
+  direction: output
+  data_types: single | double
+- name: Δu
+  summary: Plant input perturbation scalar
+  direction: output
+  data_types: single | double
+- name: pid gains
+  summary: Tuned PID coefficients bus
+  direction: output
+  data_types: single | double
+- name: estimated PM
+  summary: Estimated phase margin with tuned controller scalar
+  direction: output
+- name: frd
+  summary: Estimated frequency response vector
+  direction: output
+```
 
 ### Input
 
@@ -240,8 +294,142 @@ only after the estimation experiment has finished.
 
 To enable this port, in the Experiment tab, select **Plant frequency
 responses near bandwidth**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Controller type
+  summary: PID controller actions PIDN (default) | P | I | PI | PD | PDN | PID | ...
+  group: Controller Settings
+- name: Form
+  summary: PID controller form Parallel (default) | Ideal
+  group: Controller Settings
+- name: Sample time (-1 for inherited)
+  summary: Sample time of PID controller 0.1 (default) | positive scalar | –1
+  group: Controller Settings
+- name: Data Type
+  summary: Floating point precision double (default) | single
+  group: Controller Settings
+- name: Tune at different sample time
+  summary: Enable tuning at different sample time from PID controller and experiment off (default) | on
+  group: Autotuner Tab
+- name: Tuning sample time (sec)
+  summary: Sample time of tuning algorithm 0.2 (default) | positive scalar
+  group: Autotuner Tab
+- name: Integrator method
+  summary: Discrete integration formula for integrator term Forward Euler (default) | Backward Euler | Trapezoidal
+  group: Autotuner Tab
+- name: Filter method
+  summary: Discrete integration formula for derivative filter term Forward Euler (default) | Backward Euler | Trapezoidal
+  group: Autotuner Tab
+- name: Target bandwidth (rad/sec)
+  summary: Target crossover frequency of tuned response 1 (default) | positive scalar
+  group: Autotuner Tab
+- name: Target phase margin (degrees)
+  summary: Target minimum phase margin of open-loop response 60 (default) | scalar in range 0–90
+  group: Autotuner Tab
+- name: Experiment Mode
+  summary: Perturbation signal type Superposition (default) | Sinestream | PRBS
+  group: Autotuner Tab
+- name: Plant Type
+  summary: Stability of plant Stable (default) | Integrating
+  group: Autotuner Tab
+- name: Plant Sign
+  summary: Sign of plant Positive (default) | Negative
+  group: Autotuner Tab
+- name: Signal Amplitudes
+  summary: Amplitude of perturbations 1 (default) | scalar | vector of length 5
+  group: Autotuner Tab
+- name: Breakpoints
+  summary: Gain scheduling breakpoints [1 2 3] (default) | vector
+  group: Gain Scheduling Tab
+- name: Use external signal
+  summary: Specify breakpoints from input port off (default) | on
+  group: Gain Scheduling Tab
+- name: Number of breakpoints
+  summary: Number of breakpoints 3 (default) | positive scalar
+  group: Gain Scheduling Tab
+- name: Gain index tolerance
+  summary: Gain index tolerance 1e-3 (default) | nonegative scalar
+  group: Gain Scheduling Tab
+- name: Use y as scheduling variable
+  summary: Schedule breakpoints using plant output on (default) | off
+  group: Gain Scheduling Tab
+- name: Method of storing gains
+  summary: Method of storing gains Internal to block (default) | Data store memory
+  group: Gain Scheduling Tab
+- name: P Gain initial conditions
+  summary: Proportional gain initial value 0 (default) | scalar | vector
+  group: Gain Scheduling Tab
+- name: P Gain Parameter Name
+  summary: Proportional gain data name PGain (default) | string
+  group: Gain Scheduling Tab
+- name: I Gain initial conditions
+  summary: Integral gain initial value 0 (default) | scalar | vector
+  group: Gain Scheduling Tab
+- name: I Gain Parameter Name
+  summary: Integral gain data name IGain (default) | string
+  group: Gain Scheduling Tab
+- name: D Gain initial conditions
+  summary: Derivative gain initial value 0 (default) | scalar | vector
+  group: Gain Scheduling Tab
+- name: D Gain Parameter Name
+  summary: Derivative gain data name DGain (default) | string
+  group: Gain Scheduling Tab
+- name: N Gain initial conditions
+  summary: Filter gain initial value 100 (default) | scalar | vector
+  group: Gain Scheduling Tab
+- name: N Gain Parameter Name
+  summary: Filter gain data name NGain (default) | string
+  group: Gain Scheduling Tab
+- name: Save breakpoints in gain array
+  summary: Save breakpoints along with PID gains off (default) | on
+  group: Gain Scheduling Tab
+- name: Method to trigger gain update
+  summary: Update trigger method Detect change in PID gains (default) | External trigger
+  group: Gain Scheduling Tab
+- name: Number of samples to delay update
+  summary: Number of samples to delay update 1 (default) | nonnegative scalar
+  group: Gain Scheduling Tab
+- name: P gain lookup method
+  summary: Proportional gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input
+    Nearest | Use Input Below | Use Input Above
+  group: Gain Scheduling Tab
+- name: I gain lookup method
+  summary: Integral gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest
+    | Use Input Below | Use Input Above
+  group: Gain Scheduling Tab
+- name: D gain lookup method
+  summary: Derivative gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input
+    Nearest | Use Input Below | Use Input Above
+  group: Gain Scheduling Tab
+- name: N gain lookup method
+  summary: Derivative filter gain lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use
+    Input Nearest | Use Input Below | Use Input Above
+  group: Gain Scheduling Tab
+- name: Saturate to max or min when overflows occur
+  summary: Method of overflow action off (default) | on
+  group: Gain Scheduling Tab
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Gain Scheduling Tab
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Gain Scheduling Tab
+- name: Output Signal Configuration
+  summary: Provide control signal plus perturbation or perturbation only control action + perturbation (default) | perturbation
+    only
+  group: Block Tab
+- name: Display Bode plot
+  summary: Plot estimated frequency response off (default) | on
+  group: Visualization Tab
+- name: Baseline plant model
+  summary: Baseline model for Bode plot [] (default) | LTI model
+  group: Visualization Tab
+- name: Display gain surface plot
+  summary: Display gain surface plot off (default) | on
+  group: Visualization Tab
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -876,7 +1064,6 @@ array using gain initial conditions**. You specify the base line gain
 values on the **Gain scheduling** tab.
 
 For an example, see Tune and Validate Gain-Scheduled PID Autotuning Results.
-
 ## Libraries
 
 Simulink Control Design / Autotuning

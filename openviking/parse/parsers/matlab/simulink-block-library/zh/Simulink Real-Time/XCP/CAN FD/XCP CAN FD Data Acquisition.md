@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # XCP CAN FD Data Acquisition
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 由 A2L 文件定义的输出测量样本
+  direction: output
+```
 
 ### 输出
 
@@ -22,8 +28,35 @@ chinese_source: worker-translation
 
 输出测量样本，其名称和类型由 A2L 文件定义。
 Selected Measurements 参数中的每个条目定义一个输出端口。在仿真的每一步，每个端口都会有一个样本可用。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 指定 XCP CAN FD 会话名称，从列表中选择
+  group: ''
+- name: Event name
+  summary: 选择一个事件，从列表中选择
+  group: ''
+- name: All Measurements
+  summary: 列出该事件可用的所有测量，测量列表
+  group: ''
+- name: Selected Measurements
+  summary: 列出已选测量，测量名称
+  group: ''
+- name: Block Output Settings
+  summary: 将端口输出设置为 Compu method 转换值或原始值 Raw values as double (no Compu method conversion)（默认）| Raw values (no Compu method
+    conversion) | Physical values (apply Compu method conversion)
+  group: ''
+- name: DAQ List Priority
+  summary: 为服务器设备驱动程序优先级指定优先级值
+  group: ''
+- name: Sample time
+  summary: 指定模块的采样时间 -1（默认）
+  group: ''
+- name: Enable Timestamp
+  summary: 启用从传入 DTO 数据包读取时间戳 off（默认）| on
+  group: ''
+```
 
 ### **Config name** — 指定 XCP CAN FD 会话名称，从列表中选择
 
@@ -98,7 +131,6 @@ Selected Measurements 参数中的每个条目定义一个输出端口。在仿�
 ### **Enable Timestamp** — 启用从传入 DTO 数据包读取时间戳 `off`（默认）| `on`
 
 当启用 Timestamp 时，该模块从传入的 DTO 数据包中读取时间戳，并将时间戳输出到 Simulink。当 A2L 文件支持该参数时，**Enable Timestamp** 复选框会出现在模块参数对话框中。
-
 ## 所属库
 
 Vehicle Network Toolbox / XCP Communication / CAN FD Simulink Real-Time / XCP / CAN FD

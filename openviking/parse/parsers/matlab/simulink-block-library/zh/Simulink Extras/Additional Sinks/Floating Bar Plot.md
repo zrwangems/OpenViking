@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Scope
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要可视化的信号 scalar | vector | matrix | array | bus | nonvirtual bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -42,8 +50,166 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Open at simulation start
+  summary: 指定示波器何时打开 off（Scope 的默认值） | on（Time Scope 的默认值）
+  group: Scope 选项卡
+- name: Display the full path
+  summary: 在示波器标题栏上显示模块路径 off（默认） | on
+  group: Scope 选项卡
+- name: Number of input ports
+  summary: 示波器上的输入端口数 1（默认） | [1 96] 范围内的正整数
+  group: Scope 选项卡
+- name: Display grid
+  summary: 显示网格的维度 [1, 1]（默认） | 双元素数值向量
+  group: Scope 选项卡
+- name: Input processing
+  summary: 基于采样或基于帧的处理 Elements as channels (sample based)（Scope 的默认值） | Columns as channels (frame based)（Time Scope 的默认值）
+  group: Scope 选项卡
+- name: Maximize axes
+  summary: 最大化绘图大小 Off（Scope 的默认值） | Auto（Time Scope 的默认值） | On
+  group: Scope 选项卡
+- name: Sample time
+  summary: 示波器更新之间的仿真间隔 -1（表示继承）（默认） | 正实数
+  group: Scope 选项卡
+- name: Time span
+  summary: 要显示的 *x* 轴长度 Auto（默认） | One frame period | <user-defined>
+  group: Scope 选项卡
+- name: Overrun action
+  summary: 显示超出可见 *x* 轴的数据 Wrap（默认） | Scroll
+  group: Scope 选项卡
+- name: Time units
+  summary: '*x* 轴单位 None（Scope 的默认值） | Metric (based on Time Span)（Time Scope 的默认值） | Seconds'
+  group: Scope 选项卡
+- name: Time display offset
+  summary: '*x* 轴偏移 0（默认） | 标量 | 向量'
+  group: Scope 选项卡
+- name: T-axis and ticks labels
+  summary: '*x* 轴（时间）和刻度标签的显示 Bottom displays only（Scope 的默认值） | All（Time Scope 的默认值） | None'
+  group: Scope 选项卡
+- name: Time offset view
+  summary: 在状态栏上显示时间偏移 on（默认） | off
+  group: Scope 选项卡
+- name: Show time-axis label
+  summary: 显示或隐藏 *x* 轴标签 off（Scope 的默认值） | on（Time Scope 的默认值）
+  group: Scope 选项卡
+- name: Scale Y-axis limits
+  summary: '*y* 轴缩放模式 Manual（默认） | Auto | After N Updates'
+  group: Scope 选项卡
+- name: Y-axis limits do not shrink
+  summary: 允许 *y* 轴范围限制增大 on（默认） | off
+  group: Scope 选项卡
+- name: Number of updates
+  summary: 缩放前的更新次数 10（默认） | 整数
+  group: Scope 选项卡
+- name: Scale Y-axis limits at stop
+  summary: 仿真停止时缩放 *y* 轴限制 on（默认） | off
+  group: Scope 选项卡
+- name: Y-axis data range (%)
+  summary: 用于绘图的 *y* 轴百分比 80（默认） | [1,100] 之间的整数
+  group: Scope 选项卡
+- name: Y-axis align
+  summary: 沿 *y* 轴的对齐方式 Center（默认） | Top | Bottom
+  group: Scope 选项卡
+- name: Scale X-axis limits
+  summary: 缩放 *x* 轴范围限制 off（默认） | on
+  group: Scope 选项卡
+- name: X-axis data range (%)
+  summary: 用于绘图的 *x* 轴百分比 100（默认） | [1,100] 范围内的整数
+  group: Scope 选项卡
+- name: X-axis align
+  summary: 沿 *x* 轴的对齐方式 Center（默认） | Left | Right
+  group: Scope 选项卡
+- name: Limit data points to last、Limit frames to last
+  summary: 限制缓冲的数据点或帧 off（默认） | on
+  group: Scope 选项卡
+- name: Max points
+  summary: 要保存的最大数据点数 5000 | 正整数
+  group: Scope 选项卡
+- name: Decimation、Decimate frames
+  summary: 减少要显示和保存的示波器数据量 off（默认） | on
+  group: Scope 选项卡
+- name: Decimation value
+  summary: 抽取值 2（默认） | 正整数
+  group: Scope 选项卡
+- name: Log data to workspace
+  summary: 将数据保存到 MATLAB 工作区 off（默认） | on
+  group: Scope 选项卡
+- name: Variable name
+  summary: 保存的数据变量名称 ScopeData（默认） | 字符向量 | 字符串标量
+  group: Scope 选项卡
+- name: Save format
+  summary: MATLAB 变量格式 Dataset（默认）| Structure With Time | Structure | Array
+  group: Scope 选项卡
+- name: 绘图类型
+  summary: 绘图类型 Auto（Scope 的默认值）| Line（Time Scope 的默认值）| Stairs | Stem
+  group: Scope 选项卡
+- name: 坐标轴背景
+  summary: 各个显示器的背景颜色 黑色（默认）| 颜色
+  group: Scope 选项卡
+- name: 坐标轴和网格
+  summary: 各个显示器的坐标轴、网格和标签颜色 灰色（默认）| 颜色
+  group: Scope 选项卡
+- name: 示波器背景
+  summary: 示波器窗口的背景颜色 黑色（默认）| 颜色
+  group: Scope 选项卡
+- name: 复制时保留颜色
+  summary: 复制示波器时保留颜色 关闭（默认）| 开启
+  group: Scope 选项卡
+- name: 活动显示器
+  summary: 活动显示器 1（默认）| 正整数
+  group: Scope 选项卡
+- name: 线条
+  summary: 要更改的线条 Channel 1（默认）| 通道名称
+  group: Scope 选项卡
+- name: 样式
+  summary: '线型 -（默认）| : | -. | -- | None'
+  group: Scope 选项卡
+- name: 宽度
+  summary: 线宽 1.5（默认）| 0.5 | 1 | 2 | 3 | 4 | 6 | ...
+  group: Scope 选项卡
+- name: 标记
+  summary: 数据点标记样式 none（默认）| o | + | x | ...
+  group: Scope 选项卡
+- name: 颜色
+  summary: 线条颜色 黄色（默认）| 颜色选择器
+  group: Scope 选项卡
+- name: 线条可见
+  summary: 线条可见性 开启（默认）| 关闭
+  group: Scope 选项卡
+- name: Y 轴标签
+  summary: Y 轴标签 无（Scope 的默认值）| Amplitude（Time Scope 的默认值）| 字符向量 | 字符串标量
+  group: Scope 选项卡
+- name: Y 轴范围
+  summary: Y 轴范围 [-10 10]（默认）| 双元素数值向量
+  group: Scope 选项卡
+- name: 标题
+  summary: 显示名称 %<SignalLabel>（默认）| 字符向量 | 字符串标量
+  group: Scope 选项卡
+- name: 显示图例
+  summary: 显示信号图例 关闭（默认）| 开启
+  group: Scope 选项卡
+- name: 显示网格
+  summary: 显示内部网格线 开启（默认）| 关闭
+  group: Scope 选项卡
+- name: 绘制为幅值-相位
+  summary: 将显示器拆分为幅值图和相位图 关闭（默认）| 开启
+  group: Scope 选项卡
+- name: 显示器网格
+  summary: 显示器布局 1×1 显示器（默认）| m×n 坐标轴排列
+  group: Scope 选项卡
+- name: 停靠
+  summary: 将示波器停靠到示波器容器 Dock Scope（默认）| Dock All Scopes
+  group: Scope 选项卡
+- name: 取消停靠
+  summary: 将示波器从示波器容器中取消停靠 Undock（默认）| Undock All
+  group: Scope 选项卡
+- name: 打开时停靠新示波器
+  summary: 打开时将新示波器添加到容器 关闭（默认）| 开启
+  group: Scope 选项卡
+```
 
 ### Scope 选项卡
 
@@ -598,7 +764,6 @@ Scope 模块和 Time Scope 模块的测量选项卡。
 - 信号统计 — 显示所选信号的最大值、最小值、峰峰值差、均值、中位数和 RMS 值。
 - 峰值查找器 — 查找最大值，显示其出现的 *x* 轴值。
 - 双电平测量 — 测量转换、过冲、下冲和周期。
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Sinks HDL Coder / Commonly Used Blocks HDL Coder / Sinks

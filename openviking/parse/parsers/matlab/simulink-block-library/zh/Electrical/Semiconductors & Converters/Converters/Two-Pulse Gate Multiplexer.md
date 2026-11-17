@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Two-Pulse Gate Multiplexer
 
 ## 端口
+```yaml
+ports:
+- name: G1
+  summary: 门极控制电压信号 1 物理信号
+  direction: input
+  data_types: double
+- name: G2
+  summary: 门极控制电压信号 2 物理信号
+  direction: input
+  data_types: double
+- name: G1
+  summary: 门极控制电压信号 1 电气
+  direction: input
+- name: a
+  summary: '*A* 相交流参考点 电气'
+  direction: input
+- name: G2
+  summary: 门极控制电压信号 2 电气
+  direction: input
+- name: L
+  summary: 直流参考点 电气
+  direction: input
+```
 
 ### 输入
 
@@ -76,13 +99,17 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Gate-control port** 设置为
 `Electrical`。
-
 ## 参数
+```yaml
+parameters:
+- name: Gate-control port
+  summary: 门极控制端口 PS（默认）| Electrical
+  group: ''
+```
 
 ### **Gate-control port** — 门极控制端口 `PS`（默认）| `Electrical`
 
 选择暴露物理信号端口还是电气控制端口。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

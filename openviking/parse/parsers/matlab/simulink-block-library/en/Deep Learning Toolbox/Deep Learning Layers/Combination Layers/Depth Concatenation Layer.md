@@ -14,6 +14,25 @@ language: en
 # Depth Concatenation Layer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input data array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: Second input data scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_N
+  summary: '*N*th input data scalar | vector | matrix'
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Concatenated output data array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -49,8 +68,29 @@ format that you specify with the **Data format** block
 parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Layer
+  summary: Corresponding layer object layerObject (default) | depthConcatenationLayer object
+  group: Main
+  block_parameter: Layer
+  type: workspace variable
+  values: depthConcatenationLayer object
+  default: '''layerObject'''
+- name: Data format
+  summary: Format of input data SSC (default) | C | CT | SC | SSSC
+  group: Main
+  block_parameter: DataFormat
+  type: character vector
+  values: '''SSC'' | ''C'' | ''CT'' | ''SC'' | ''SSSC'''
+  default: '''SSC'''
+- name: Sample time
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -111,7 +151,6 @@ programmatically, use the `set_param` (Simulink) function.
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **Values:** `'-1'` (default) | scalar |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Learning Layers / Combination Layers

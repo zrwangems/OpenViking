@@ -15,14 +15,28 @@ chinese_source: worker-translation
 # Mechanical Translational Properties (PB)
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 将模块连接到基于位置的机械平移电路的端口
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **R** — 将模块连接到基于位置的机械平移电路的端口
 
 基于位置的机械平移守恒端口，用于将模块连接到物理网络。
-
 ## 参数
+```yaml
+parameters:
+- name: Downward gravitational acceleration, g
+  summary: 作用在网络上的重力加速度 9.81 m/s^2（默认）| 非负标量
+  group: ''
+- name: Positive direction incline angle, θ
+  summary: 导轨的倾斜角 0 deg（默认）| 标量
+  group: ''
+```
 
 ### **Downward gravitational acceleration, g** — 作用在网络上的重力加速度 `9.81 m/s^2`（默认）| 非负标量
 
@@ -31,7 +45,6 @@ chinese_source: worker-translation
 ### **Positive direction incline angle, θ** — 导轨的倾斜角 `0 deg`（默认）| 标量
 
 导轨正方向与水平正方向之间的夹角。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Utilities

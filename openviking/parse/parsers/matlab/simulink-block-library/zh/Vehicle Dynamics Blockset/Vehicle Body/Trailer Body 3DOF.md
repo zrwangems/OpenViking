@@ -15,6 +15,102 @@ chinese_source: worker-translation
 # Trailer Body 3DOF
 
 ## 端口
+```yaml
+ports:
+- name: WhlAngF
+  summary: 前轮转向角 scalar | array
+  direction: input
+- name: WhlAngM
+  summary: 中轮转向角 scalar | array
+  direction: input
+- name: WhlAngR
+  summary: 后轮转向角 scalar | array
+  direction: input
+- name: xdotin
+  summary: 纵向速度 scalar
+  direction: input
+- name: FwF
+  summary: 前轮上的总力 scalar | array
+  direction: input
+- name: FwM
+  summary: 中轮上的总力 scalar | array
+  direction: input
+- name: FwR
+  summary: 后轮上的总力 scalar | array
+  direction: input
+- name: FExt
+  summary: 车辆 CG 上的外力 array
+  direction: input
+- name: MExt
+  summary: 绕车辆 CG 的外力矩 array
+  direction: input
+- name: FhF
+  summary: 作用在车体上的前挂钩力 array
+  direction: input
+- name: MhF
+  summary: 绕车体的前挂钩力矩 array
+  direction: input
+- name: FhR
+  summary: 作用在车体上的后挂钩力 array
+  direction: input
+- name: MhR
+  summary: 绕车体的后挂钩力矩 array
+  direction: input
+- name: WindXYZ
+  summary: 风速 array
+  direction: input
+- name: Mu
+  summary: 轮胎摩擦系数 array
+  direction: input
+- name: AirTemp
+  summary: 环境空气温度 scalar
+  direction: input
+- name: X_o
+  summary: 初始纵向位置 scalar
+  direction: input
+- name: Y_o
+  summary: 初始横向位置 scalar
+  direction: input
+- name: xdot_o
+  summary: 初始纵向位置 scalar
+  direction: input
+- name: ydot_o
+  summary: 初始横向位置 scalar
+  direction: input
+- name: psi_o
+  summary: 初始横摆角 scalar
+  direction: input
+- name: r_o
+  summary: 初始横摆角速度 scalar
+  direction: input
+- name: Info
+  summary: 挂车数据总线
+  direction: output
+- name: xdot
+  summary: 挂车纵向速度 scalar
+  direction: output
+- name: ydot
+  summary: 挂车横向速度 scalar
+  direction: output
+- name: psi
+  summary: 横摆 scalar
+  direction: output
+- name: r
+  summary: 横摆角速度 scalar
+  direction: output
+- name: FzF
+  summary: 前轮法向力 scalar | array
+  direction: output
+- name: FzM
+  summary: 中轮法向力 scalar | array
+  direction: output
+- name: FzR
+  summary: 后轮法向力 scalar | array
+  direction: output
+- name: Fhz
+  summary: 作用在车身上的牵引力的法向分量 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -632,8 +728,238 @@ N，指定为 `1-by-3` 或 `3-by-1` 数组。
 模块将法向牵引力
 *Fhz* 与 *Fh* 输入端口沿车辆固定
 *z* 轴的分量值进行偏置。
-
 ## 参数
+```yaml
+parameters:
+- name: Vehicle track
+  summary: 车辆轨迹类型 Dual 2-axle（默认）| Single 1-axle | Dual 1-axle | Single 2-axle | Dual 3-axle
+  group: ''
+- name: Axle forces
+  summary: 车轴力类型 External forces（默认）| External longitudinal velocity | External longitudinal forces
+  group: ''
+- name: Front wheel steering
+  summary: WhlAngF 输入端口 off（默认）| on
+  group: ''
+- name: Middle wheel steering
+  summary: WhlAngM 输入端口 off（默认）| on
+  group: ''
+- name: Rear wheel steering
+  summary: WhlAngR 输入端口 off（默认）| on
+  group: ''
+- name: External wind
+  summary: WindXYZ 输入端口 off（默认）| on
+  group: ''
+- name: External friction
+  summary: Mu 输入端口 off（默认）| on
+  group: ''
+- name: External forces
+  summary: FExt 输入端口 off（默认）| on
+  group: ''
+- name: External moments
+  summary: MExt 输入端口 off（默认）| on
+  group: ''
+- name: Front hitch forces
+  summary: FhF 输入端口 on（默认）| off
+  group: ''
+- name: Front hitch moments
+  summary: MhF 输入端口 on（默认）| off
+  group: ''
+- name: Rear hitch forces
+  summary: FhR 输入端口 off（默认）| on
+  group: ''
+- name: Rear hitch moments
+  summary: MhR 输入端口 off（默认）| on
+  group: ''
+- name: Initial longitudinal position
+  summary: X_o 输入端口 off（默认）| on
+  group: ''
+- name: Initial yaw angle
+  summary: psi_o 输入端口 off（默认）| on
+  group: ''
+- name: Initial longitudinal velocity
+  summary: xdot_o 输入端口 off（默认）| on
+  group: ''
+- name: Initial yaw rate
+  summary: r_o 输入端口 off（默认）| on
+  group: ''
+- name: Initial lateral position
+  summary: Y_o 输入端口 off（默认）| on
+  group: ''
+- name: Air temperature
+  summary: AirTemp 输入端口 off（默认）| on
+  group: ''
+- name: Initial lateral velocity
+  summary: ydot_o 输入端口 off（默认）| on
+  group: ''
+- name: Number of wheels on front axle, NF
+  summary: 前轮数量 2（默认）| scalar
+  group: ''
+- name: Number of wheels on middle axle, NM
+  summary: 中轮数量 2（默认）| scalar
+  group: ''
+- name: Number of wheels on rear axle, NR
+  summary: 后轮数量 2（默认）| scalar
+  group: ''
+- name: Vehicle mass, m
+  summary: 车辆质量 26000（默认）| scalar
+  group: ''
+- name: Longitudinal distance from center of mass to front axle, a
+  summary: 从质心到前轴的距离 4（默认）| scalar
+  group: ''
+- name: Longitudinal distance from center of mass to middle axle, b
+  summary: 从质心到中轴的距离 4.5（默认）| scalar
+  group: ''
+- name: Longitudinal distance from center of mass to rear axle, c
+  summary: 从质心到后轴的距离 5（默认）| scalar
+  group: ''
+- name: Vertical distance from center of mass to axle plane, h
+  summary: 从质心到车轴平面的距离 2（默认）| scalar
+  group: ''
+- name: 从质心到前挂钩的纵向距离，dh_f
+  summary: 到前挂钩的距离 7.5（默认）| scalar
+  group: ''
+- name: 从前挂钩到车轴平面的垂直距离，hh_f
+  summary: 从前挂钩到车轴平面的距离 0.6（默认）| scalar
+  group: ''
+- name: 从质心到后挂钩的纵向距离，dh_r
+  summary: 到前挂钩的距离 7.5（默认）| scalar
+  group: ''
+- name: 从前挂钩到车轴平面的垂直距离，hh_r
+  summary: 从后挂钩到车轴平面的距离 0.6（默认）| scalar
+  group: ''
+- name: 初始惯性坐标系纵向位置，X_o
+  summary: 初始惯性 X 位置 0（默认）| scalar
+  group: ''
+- name: 初始纵向速度，xdot_o
+  summary: 初始速度 0（默认）| scalar
+  group: ''
+- name: 映射侧偏刚度
+  summary: 选择 off（默认）| on
+  group: ''
+- name: 包含松弛长度动力学
+  summary: 启用松弛长度动力学 on（默认）| off
+  group: ''
+- name: 从几何中心线到质心的横向距离，d
+  summary: 从中心线到质心的距离 0（默认）| scalar
+  group: ''
+- name: 从几何中心线到前挂钩的横向距离，hl_f
+  summary: 从中心线到前挂钩的距离 0（默认）| scalar
+  group: ''
+- name: 从几何中心线到后牵引装置的距离，hl_r
+  summary: 从中心线到后牵引装置的距离 0（默认）| scalar
+  group: ''
+- name: 前轮距，w_f
+  summary: 前轮距 1.82（默认）| scalar
+  group: ''
+- name: 中轮距，w_m
+  summary: 中轮距 1.82（默认）| scalar
+  group: ''
+- name: 后轮距，w_r
+  summary: 后轮距 1.82（默认）| scalar
+  group: ''
+- name: 前轴轮胎侧偏刚度，Cy_f
+  summary: 前轴轮胎刚度 12.3（默认）| scalar
+  group: ''
+- name: 中轴轮胎侧偏刚度，Cy_m
+  summary: 中轴轮胎刚度 11.3（默认）| scalar
+  group: ''
+- name: 后轴轮胎侧偏刚度，Cy_r
+  summary: 后轴轮胎刚度 11.3（默认）| scalar
+  group: ''
+- name: 前轮胎松弛长度，sigma_f
+  summary: 松弛长度 .1（默认）| scalar
+  group: ''
+- name: 中轮胎松弛长度，sigma_m
+  summary: 松弛长度 .1（默认）| scalar
+  group: ''
+- name: 后轮胎松弛长度，sigma_r
+  summary: 松弛长度 .1（默认）| scalar
+  group: ''
+- name: 前轴侧偏角断点，alpha_f_brk
+  summary: 断点 [-.1 .1]（默认）| vector
+  group: ''
+- name: 前轴侧偏数据，Cy_f_data
+  summary: 断点 [-9e3 9e3]（默认）| vector
+  group: ''
+- name: 中轴侧偏角断点，alpha_m_brk
+  summary: 断点 [-.1 .1]（默认）| vector
+  group: ''
+- name: 中轴侧偏数据，Cy_m_data
+  summary: 断点 [-9e3 9e3]（默认）| vector
+  group: ''
+- name: 后轴侧偏角断点，alpha_r_brk
+  summary: 断点 [-.1 .1]（默认）| vector
+  group: ''
+- name: 后轴侧偏数据，Cy_r_data
+  summary: 数据 [-9e3 9e3]（默认）| vector
+  group: ''
+- name: 初始惯性坐标系横向位移，Y_o
+  summary: 位置 0（默认）| scalar
+  group: ''
+- name: 初始横向速度，ydot_o
+  summary: 速度 0（默认）| scalar
+  group: ''
+- name: 横摆极惯性，Izz
+  summary: 惯性 4000（默认）| scalar
+  group: ''
+- name: 初始横摆角，psi_o
+  summary: Psi 旋转 0（默认）| scalar
+  group: ''
+- name: 初始横摆角速度，r_o
+  summary: 横摆角速度 0（默认）| scalar
+  group: ''
+- name: 纵向阻力面积，Af
+  summary: 有效车辆迎风面积 2（默认）| scalar
+  group: ''
+- name: 纵向阻力系数，Cd
+  summary: 空气阻力系数 .3（默认）| scalar
+  group: ''
+- name: 纵向升力系数，Cl
+  summary: 空气升力系数 .1（默认）| scalar
+  group: ''
+- name: Longitudinal drag pitch moment, Cpm
+  summary: 俯仰阻力 .1（默认）| scalar
+  group: ''
+- name: Relative wind angle vector, beta_w
+  summary: 风角 [0:0.01:0.3]（默认）| vector
+  group: ''
+- name: Side force coefficient vector, Cs
+  summary: 侧向力系数 [0:0.03:0.9]（默认）| vector
+  group: ''
+- name: Yaw moment coefficient vector, Cym
+  summary: 横摆力矩阻力 [0:0.01:0.3]（默认）| vector
+  group: ''
+- name: Absolute air pressure, Pabs
+  summary: 压力 101325（默认）| scalar
+  group: ''
+- name: Air temperature, Tair
+  summary: 温度 273（默认）| scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: 重力 9.81（默认）| scalar
+  group: ''
+- name: Nominal friction scaling factor, mu
+  summary: 摩擦比例因子 1（默认）| scalar
+  group: ''
+- name: Longitudinal velocity tolerance, xdot_tol
+  summary: 容差 .01（默认）| scalar
+  group: ''
+- name: Nominal normal force, Fznom
+  summary: 法向力 5000（默认）| scalar
+  group: ''
+- name: Geometric longitudinal offset from axle plane, longOff
+  summary: 纵向偏移 0（默认）| scalar
+  group: ''
+- name: Geometric lateral offset from center plane, latOff
+  summary: 侧向偏移 0（默认）| scalar
+  group: ''
+- name: Geometric vertical offset from axle plane, vertOff
+  summary: 垂直偏移 0（默认）| scalar
+  group: ''
+- name: Wrap Euler angles, wrapAng
+  summary: 将欧拉角包裹到区间 [-pi, pi] off（默认）| on
+  group: ''
+```
 
 #### 选项
 
@@ -1382,7 +1708,6 @@ rad。
 - 避免车辆状态估计器中的不连续性。
 
 可考虑清除该参数。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Body

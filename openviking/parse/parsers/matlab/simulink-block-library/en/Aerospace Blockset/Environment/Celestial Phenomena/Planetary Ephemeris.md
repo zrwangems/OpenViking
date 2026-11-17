@@ -14,6 +14,29 @@ language: en
 # Planetary Ephemeris
 
 ## Ports
+```yaml
+ports:
+- name: TJD
+  summary: Julian date scalar | positive | between minimum and maximum Julian dates
+  direction: input
+  data_types: double
+- name: T0JD
+  summary: Fixed Julian date scalar | positive
+  direction: input
+  data_types: double
+- name: ΔTJD
+  summary: Elapsed Julian time scalar | positive
+  direction: input
+  data_types: double
+- name: Xicrf1
+  summary: Barycenter position vector
+  direction: output
+  data_types: double
+- name: Vicrf
+  summary: Velocity vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -96,8 +119,91 @@ barycenter of the **Center** object, specified as a
 vector, in km/s or astronomical units (AU)/day.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Output units km,km/s (default) | AU,AU/day
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: m,m/s | km,km/s | AU,AU/day
+  default: '''km,km/s'''
+- name: Epoch
+  summary: Epoch Julian date (default) | T0 and elapsed Julian time
+  group: ''
+  block_parameter: epochFormat
+  type: character vector
+  values: Julian date | T0 and elapsed Julian time
+  default: '''Julian date'''
+- name: Ephemeris model
+  summary: Ephemeris model DE405 (default) | DE421 | DE423 | DE430 | DE432t
+  group: ''
+  block_parameter: ephemerisModel
+  type: character vector
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Ephemeris model
+  summary: Ephemeris model DE405 (default) | DE421 | DE423 | DE430 | DE432t
+  group: ''
+  block_parameter: ephemerisModel
+  type: character vector
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Center
+  summary: Center body Sun (default) | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto
+    | Solar system barycenter | Earth-Moon barycenter
+  group: ''
+  block_parameter: center
+  type: character vector
+  values: Sun | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system barycenter
+    | Earth-Moon barycenter
+  default: '''Sun'''
+- name: Target
+  summary: Target body Sun (default) | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto
+    | Solar system barycenter | Earth-Moon barycenter
+  group: ''
+  block_parameter: target
+  type: character vector
+  values: Sun | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Solar system barycenter
+    | Earth-Moon barycenter
+  default: '''Moon'''
+- name: Limit ephemerides date range
+  summary: Option to enable start and end of range of ephemeris data off (default) | on
+  group: ''
+  block_parameter: useDateRange
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Start date (JD)
+  summary: Start date of ephemerides date range juliandate(2020, 1, 1) (default) | Julian date
+  group: ''
+  block_parameter: startDate
+  type: character vector
+  values: '''juliandate(2020, 1, 1)'' | Julian date'
+  default: '''juliandate(2020, 1, 1)'''
+- name: End date (JD)
+  summary: End date of ephemerides date range juliandate(2050, 1, 1) (default) | Julian date
+  group: ''
+  block_parameter: endDate
+  type: character vector
+  values: '''juliandate(2050, 1, 1)'' | Julian format date'
+  default: '''juliandate(2050, 1, 1)'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Calculate velocity
+  summary: Calculate rate of target barycenter on (default) | off
+  group: ''
+  block_parameter: outputVelocity
+  type: character vector
+  values: '''off'' | ''on'' |'
+  default: '''on'''
+```
 
 ### **Units** — Output units `km,km/s` (default) | `AU,AU/day`
 
@@ -347,7 +453,6 @@ Select this check box to calculate the velocity of the
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` | |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Celestial Phenomena

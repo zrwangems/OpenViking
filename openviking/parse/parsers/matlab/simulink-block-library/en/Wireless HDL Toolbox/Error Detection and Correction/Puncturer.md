@@ -14,6 +14,41 @@ language: en
 # Puncturer
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data sample scalar | column vector of size from 2 to 7
+  direction: input
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: Indicates valid input data samples scalar
+  direction: input
+  data_types: Boolean
+- name: puncVector
+  summary: Puncture vector column vector of binary values
+  direction: input
+  data_types: Boolean
+- name: syncPunc
+  summary: Puncture synchronization signal scalar
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Punctured output data n-by-1 column vector
+  direction: output
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: Validity of output data samples scalar
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -165,8 +200,22 @@ To enable this port, set the **Operation mode** parameter to
 `Frame`.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation mode
+  summary: Mode of operation Continuous (default) | Frame
+  group: ''
+- name: Encoder rate
+  summary: Rate of encoder 1/2 (default) | range from 1/2 to 1/7
+  group: ''
+- name: Puncture vector source
+  summary: Source of puncture vector Input port (default) | Property
+  group: ''
+- name: Puncture vector
+  summary: Location of data to be punctured [1;1;1;0;0;1] (default) | column vector of binary values
+  group: ''
+```
 
 ### **Operation mode** — Mode of operation `Continuous` (default) | `Frame`
 
@@ -205,7 +254,6 @@ puncture vector is 28.
 
 To enable this port, set the **Puncture vector source** parameter
 to `Property`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

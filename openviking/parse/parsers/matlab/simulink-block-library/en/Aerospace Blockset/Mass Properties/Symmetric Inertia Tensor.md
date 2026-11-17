@@ -14,6 +14,37 @@ language: en
 # Symmetric Inertia Tensor
 
 ## Ports
+```yaml
+ports:
+- name: Ixx
+  summary: Moment of inertia scalar
+  direction: input
+  data_types: double
+- name: Ixy
+  summary: Product of inertia in *xy* plane scalar
+  direction: input
+  data_types: double
+- name: Ixz
+  summary: Product of inertia in *xz* plane scalar
+  direction: input
+  data_types: double
+- name: Iyy
+  summary: Moment of inertia about *y*-axis scalar
+  direction: input
+  data_types: double
+- name: Iyz
+  summary: Product of inertia in *yz* plane scalar
+  direction: input
+  data_types: double
+- name: Izz
+  summary: Moment of inertia about *z*-axis scalar
+  direction: input
+  data_types: double
+- name: I
+  summary: Inertia tensor 3-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -65,11 +96,12 @@ scalar.
 Symmetric inertia tensor, returned as a 3-by-3 matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Mass Properties

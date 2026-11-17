@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Function-Call Split
 
 ## 端口
+```yaml
+ports:
+- name: Function Call
+  summary: 函数调用线标量
+  direction: input
+- name: Function Call
+  summary: 函数调用信号标量
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,31 @@ Function-Call Generator 模块、S-Function 模块、Hit Crossing 模块或 Stat
 ### **Function Call** — 函数调用信号标量
 
 连接到函数调用子系统或函数调用模型的函数调用线。
-
 ## 参数
+```yaml
+parameters:
+- name: Icon shape
+  summary: 选择模块图标形状 distinctive（默认）| round
+  group: ''
+  block_parameter: IconShape
+  type: character vector
+  values: '''distinctive'' | ''round'''
+  default: '''distinctive'''
+- name: Number of output ports
+  summary: 指定输出端口数量 2（默认）| 整数
+  group: ''
+  block_parameter: NumOutputPorts
+  type: character vector
+  values: '''2'' | ''<integer>'''
+  default: '''2'''
+- name: Output port layout
+  summary: 选择输出端口的顺序 default（默认）| reverse
+  group: ''
+  block_parameter: OutputPortLayout
+  type: character vector
+  values: '''default'' | ''reverse'''
+  default: '''default'''
+```
 
 ### **Icon shape** — 选择模块图标形状 `distinctive`（默认）| `round`
 
@@ -92,7 +124,6 @@ Function-Call Generator 模块、S-Function 模块、Hit Crossing 模块或 Stat
 | **类型**：character vector |
 | **值**：`'default'` | `'reverse'` |
 | **默认值**：`'default'` |
-
 ## 所属库
 
 Simulink / Ports & Subsystems

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Accelerometer
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 平移端口 mechanical
+  direction: unspecified
+- name: +
+  summary: 正端口 electrical
+  direction: unspecified
+- name: '-'
+  summary: 负端口 electrical
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -29,8 +41,49 @@ chinese_source: worker-translation
 ### **-** — 负端口 electrical
 
 与加速度计负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Output type
+  summary: 模块输出类型 Voltage level（默认）| PWM duty cycle
+  group: ''
+- name: Sensitivity
+  summary: 灵敏度 1000 mV/gee（默认）
+  group: ''
+- name: Output voltage for zero acceleration
+  summary: 零加速度时的输出电压 2.5 V（默认）
+  group: ''
+- name: Maximum output voltage
+  summary: 最大输出电压 4 V（默认）
+  group: ''
+- name: Minimum output voltage
+  summary: 最小输出电压 1 V（默认）
+  group: ''
+- name: Duty cycle sensitivity (percent per unit acceleration)
+  summary: 占空比灵敏度 10 1/gee（默认）
+  group: ''
+- name: Duty cycle for zero acceleration (percent)
+  summary: 零加速度时的占空比 50（默认）
+  group: ''
+- name: Maximum duty cycle (percent)
+  summary: 最大占空比 75（默认）
+  group: ''
+- name: Minimum duty cycle (percent)
+  summary: 最小占空比 25（默认）
+  group: ''
+- name: PWM frequency
+  summary: PWM 频率 1000 Hz（默认）
+  group: ''
+- name: Output voltage amplitude
+  summary: 输出电压幅值 5 V（默认）
+  group: ''
+- name: Dynamics
+  summary: 动态特性 No dynamics — Suitable for HIL（默认）| Model sensor bandwidth
+  group: ''
+- name: Bandwidth
+  summary: 带宽 3 kHz（默认）
+  group: ''
+```
 
 ### **Output type** — 模块输出类型 `Voltage level`（默认）| `PWM duty cycle`
 
@@ -129,7 +182,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当为 **Dynamics** 参数选择 `Model sensor bandwidth` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

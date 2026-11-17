@@ -14,6 +14,25 @@ language: en
 # MAVLink Deserializer
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: MAVLink data stream vector
+  direction: input
+  data_types: uint8
+- name: Length
+  summary: Length of valid MAVLink data at Data input port scalar
+  direction: input
+  data_types: uint16
+- name: IsNew
+  summary: New message indicator 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Msg
+  summary: MAVLink packet nonvirtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -66,8 +85,44 @@ message. If a message has not been received since the start of the simulation,
 **Msg** port outputs a blank MAVLink message.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: MAVLink dialect source
+  summary: Source for specifying the MAVLink message definition Select from standard MAVLink dialects (default) | Specify
+    your own
+  group: ''
+- name: MAVLink dialect
+  summary: Message definition to parse for MAVLink messages common.xml (default) | string
+  group: ''
+- name: MAVLink version
+  summary: MAVLink protocol version 2 (default) | 1
+  group: ''
+- name: MAVLink Message type
+  summary: MAVLink message HEARTBEAT (default)
+  group: ''
+- name: Input data stream length is available
+  summary: Length of valid MAVLink data in the input byte stream is known off (default) | on
+  group: ''
+- name: Filter output MAVLink messages by System ID
+  summary: Filter received messages by System ID off (default) | on
+  group: ''
+- name: System ID
+  summary: System ID value 1 (default) | scalar in the range [0,255]
+  group: ''
+- name: Filter output MAVLink messages by Component ID
+  summary: Filter received messages by System ID and Component ID off (default) | on
+  group: ''
+- name: Component ID
+  summary: Component ID value 1 (default) | [0,255]
+  group: ''
+- name: Queue MAVLink messages in output
+  summary: Enable queuing of the received MAVLink messages off (default) | on
+  group: ''
+- name: Number of messages to be queued
+  summary: Size of MAVLink message queue 50 (default) | scalar in the range (0,65535]
+  group: ''
+```
 
 #### Main
 
@@ -204,7 +259,6 @@ matching the desired parameters.
 
 To enable this parameter, select **Queue MAVLink messages in
 output**.
-
 ## Libraries
 
 UAV Toolbox / MAVLink

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Call Service
 
 ## 端口
+```yaml
+ports:
+- name: Req
+  summary: 请求消息 非虚拟总线
+  direction: input
+  data_types: bus
+- name: Resp
+  summary: 响应消息 非虚拟总线
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: 服务调用的错误条件 整数
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -46,8 +61,49 @@ chinese_source: worker-translation
 当 **Show ErrorCode output port** 复选框为 `on` 时，此输出启用。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Source
+  summary: 指定服务名称的来源 Select from ROS network | Specify your own
+  group: ''
+- name: Name
+  summary: 服务名称 字符向量
+  group: ''
+- name: Type
+  summary: 服务类型 字符向量
+  group: ''
+- name: Connection timeout
+  summary: 服务服务器连接超时 5（默认）| 正数值标量
+  group: ''
+- name: Show ErrorCode output port
+  summary: 启用错误代码输出端口 on（默认）| off
+  group: ''
+- name: History
+  summary: 队列中存储请求的模式 Keep last（默认）| Keep all
+  group: ''
+- name: Depth
+  summary: 请求队列的大小 1（默认）| 正标量
+  group: ''
+- name: Reliability
+  summary: 请求的传递保证 Reliable（默认）| Best effort
+  group: ''
+- name: Durability
+  summary: 请求的持久性 Volatile（默认）| Transient local
+  group: ''
+- name: Deadline
+  summary: 发送服务请求与接收响应之间允许的最大时间量 Inf（默认）| 正标量
+  group: ''
+- name: Lifespan
+  summary: 服务请求被视为有效的时间长度 Inf（默认）| 正标量
+  group: ''
+- name: Liveliness
+  summary: 该模块提供的以及期望从服务服务器获得的活跃性报告级别 automatic（默认）
+  group: ''
+- name: Lease Duration
+  summary: 所连接的服务服务器必须断言活跃性之前的最长时间量 Inf（默认）| 正标量
+  group: ''
+```
 
 #### 主要
 
@@ -131,7 +187,6 @@ Liveliness 设置为 `automatic` 意味着，在该模块从所连接的服务�
 **注意**
 
 服务质量设置必须在服务服务器和客户端之间兼容，才能建立连接。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Induction Machine Direct Torque Control (Single-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: Reference
+  summary: 转矩或角速度参考标量
+  direction: input
+  data_types: single | double
+- name: iab
+  summary: 定子电流标量
+  direction: input
+  data_types: single | double
+- name: vab
+  summary: 定子电压标量
+  direction: input
+  data_types: single | double
+- name: wr
+  summary: 转子角速度标量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 逆变器门极脉冲 0 | 1
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: 用于可视化的内部信号 Reference | Rotor velocity | TqRef | FluxRef | Torque | Flux
+  direction: output
+  data_types: single | double | bus
+```
 
 ### 输入
 
@@ -61,8 +88,55 @@ chinese_source: worker-translation
 - 磁链，单位为 Wb
 
 **数据类型：** `single` | `double` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Control mode
+  summary: 指定控制模式 Speed control（默认）| Torque control
+  group: 常规
+- name: Rated electrical frequency (Hz)
+  summary: 指定额定电频率 60（默认）| 正标量
+  group: 常规
+- name: Number of pole pairs
+  summary: 指定极对数 2（默认）| 正标量
+  group: 常规
+- name: Main winding stator resistance, Ras (Ohm)
+  summary: 指定主绕组定子电阻 1.8180（默认）| 正标量
+  group: 常规
+- name: Auxiliary winding stator resistance, Rbs (Ohm)
+  summary: 指定辅助绕组定子电阻 6.4260（默认）| 正标量
+  group: 常规
+- name: Auxiliary/main windings turn ratio
+  summary: 指定辅助绕组与主绕组的匝数比 1.1（默认）| 正标量
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: 常规
+- name: Speed controller proportional gain
+  summary: 指定速度控制器比例增益 1（默认）| 正标量
+  group: 外环
+- name: Speed controller integral gain
+  summary: 指定速度控制器积分增益 10（默认）| 正标量
+  group: 外环
+- name: Speed controller integral anti-windup gain
+  summary: 指定速度控制器积分抗饱和增益 1000（默认）| 正标量
+  group: 外环
+- name: Maximum torque (Nm)
+  summary: 指定最大转矩 5（默认）| 正标量
+  group: 外环
+- name: Minimum torque (Nm)
+  summary: 指定最小转矩 -5（默认）| 标量
+  group: 外环
+- name: Rated flux (Wb)
+  summary: 指定额定磁链 0.5（默认）| 正标量
+  group: 外环
+- name: Flux hysteresis band (Wb)
+  summary: 指定磁链滞环带宽 0.02（默认）| 正标量
+  group: 内环
+- name: Torque hysteresis band (Nm)
+  summary: 指定转矩滞环带宽 0.1（默认）| 正标量
+  group: 内环
+```
 
 ### 常规
 
@@ -143,7 +217,6 @@ PI 速度控制器的积分增益。
 ### **Torque hysteresis band (Nm)** — 指定转矩滞环带宽 `0.1`（默认）| 正标量
 
 控制器的转矩滞环带宽，单位为 Nm。
-
 ## 所属库
 
 Simscape / Electrical / Control / Induction Machine Control

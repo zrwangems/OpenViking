@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Wideband Transmit Array
 
 ## 端口
+```yaml
+ports: []
+```
 
 **注意**
 
@@ -28,8 +31,10 @@ chinese_source: worker-translation
 | `WS` | 子阵列阵元权重输入端口。要启用此端口，请从 **Subarray steering method** 下拉菜单中选择 `Custom`。 |  |
 | `Steer` | 转向角输入端口。要启用此端口，请从 **Subarray steering method** 下拉菜单中选择 `Phase` 或 `Time`。 |  |
 | `Out` | 辐射信号。 | 双精度浮点 |
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Signal Propagation speed (m/s)**
 :   将信号的传播速度指定为正标量，单位为米每秒。你可以使用函数 `physconst` 来指定光速。
@@ -366,7 +371,6 @@ chinese_source: worker-translation
 :   仅当 **Element type** 参数设置为 `Isotropic Antenna` 或 `Omni Microphone` 时，此复选框才会出现。
 
     选中此复选框以对天线单元背面加障板。在这种情况下，天线对偏离*正侧*方向 ±90° 以外的所有方位角的响应均设置为零。将正侧方向定义为 0° 方位角和 0° 仰角。
-
 ## 所属库
 
 R2025b 中未记录。

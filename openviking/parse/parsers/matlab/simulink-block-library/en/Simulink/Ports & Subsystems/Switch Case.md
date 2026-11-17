@@ -14,6 +14,16 @@ language: en
 # Switch Case
 
 ## Ports
+```yaml
+ports:
+- name: u1 (logical operator)
+  summary: Value for case selection scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | enumerated
+- name: case
+  summary: Action signal for a Switch Case Action Subsystem block scalar
+  direction: output
+```
 
 ### Input
 
@@ -35,8 +45,31 @@ Case block can be:
 Output from the **Case** and
 **default** ports are action signals connected to
 Switch Case Action Subsystem blocks.
-
 ## Parameters
+```yaml
+parameters:
+- name: Case conditions
+  summary: Specify case values {1} (default) | list of cases
+  group: ''
+  block_parameter: CaseConditions
+  type: character vector
+  values: '''{1}'' | list of cases in quotes'
+  default: '''{1}'''
+- name: Show default case
+  summary: Control display of default output port on (default) | off
+  group: ''
+  block_parameter: ShowDefaultCase
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: Control zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Case conditions** — Specify case values `{1}` (default) | list of cases
 
@@ -121,7 +154,6 @@ off
 | **Type:** character vector |
 | **Values:** `'on'` | `'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

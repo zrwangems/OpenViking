@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Tire-Road Interaction (Magic Formula)
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 法向力，N 物理信号
+  direction: input
+- name: M
+  summary: Magic Formula 系数，无量纲物理信号 | 向量
+  direction: input
+- name: S
+  summary: 滑移物理信号
+  direction: output
+- name: T
+  summary: 轮胎胎面机械旋转
+  direction: output
+- name: H
+  summary: 轮毂机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -43,8 +61,95 @@ chinese_source: worker-translation
 ### **H** — 轮毂机械旋转
 
 与轮毂关联的机械旋转端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterize by
+  summary: 参数化方法 Peak longitudinal force and corresponding slip（默认）| Constant Magic Formula coefficients | Load-dependent
+    Magic Formula coefficients | Physical signal Magic Formula coefficients
+  group: 主要
+- name: Rated vertical load
+  summary: 额定载荷力 3000 N（默认）| 正标量
+  group: 主要
+- name: Peak longitudinal force at rated load
+  summary: 额定载荷下的最大纵向力 3500 N（默认）| 正标量
+  group: 主要
+- name: Slip at peak force at rated load (percent)
+  summary: 最大纵向力和额定载荷下的滑移百分比 10（默认）| 正标量
+  group: 主要
+- name: Magic Formula B coefficient
+  summary: 常数 Magic Formula *B* 系数 10（默认）| 正标量
+  group: 主要
+- name: Magic Formula C coefficient
+  summary: 常数 Magic Formula *C* 系数 1.9（默认）| 正标量
+  group: 主要
+- name: Magic Formula D coefficient
+  summary: 常数 Magic Formula *D* 系数 1（默认）| 正标量
+  group: 主要
+- name: Magic Formula E coefficient
+  summary: 常数 Magic Formula *E* 系数 0.97（默认）| 正标量
+  group: 主要
+- name: Tire nominal vertical load, FNOMIN
+  summary: 法向力 4000 N（默认）| 正标量
+  group: 主要
+- name: Magic Formula C-coefficient parameter, p_Cx1
+  summary: 可变 Magic Formula *C* 系数 1.685（默认）| 标量
+  group: 主要
+- name: Magic Formula D-coefficient parameters, [p_Dx1 p_Dx2]
+  summary: 可变 Magic Formula *D* 系数 [1.21, -.037]（默认）| 向量
+  group: 主要
+- name: Magic Formula E-coefficient parameters, [p_Ex1 p_Ex2 p_Ex3 p_Ex4]
+  summary: 可变 Magic Formula *E* 系数 [.344, .095, -.02, 0]（默认）| 向量
+  group: 主要
+- name: Magic Formula BCD-coefficient parameters, [p_Kx1 p_Kx2 p_Kx3]
+  summary: 可变 Magic Formula *K* 系数 [21.51, -.163, .245]（默认）| 向量
+  group: 主要
+- name: Magic Formula H-coefficient parameters, [p_Hx1 p_Hx2]
+  summary: 可变 Magic Formula *H* 系数 [-.002, .002]（默认）| 向量
+  group: 主要
+- name: Magic Formula V-coefficient parameters, [p_Vx1 p_Vx2]
+  summary: 可变 Magic Formula *V* 系数 [0, 0]（默认）| 向量
+  group: 主要
+- name: Enable scaling coefficients
+  summary: 缩放选项 off（默认）| on
+  group: 缩放
+- name: Scale factor of Fx nominal vertical load, LFZO
+  summary: '*Fx* 标称垂直载荷 1（默认）| 正标量'
+  group: 缩放
+- name: Scale factor of Fx shape factor, LCX
+  summary: '*Fx* 形状因子 1（默认）| 正标量'
+  group: 缩放
+- name: Scale factor of Fx peak friction coefficient, LMUX
+  summary: '*Fx* 峰值摩擦系数 1（默认）| 正标量'
+  group: 缩放
+- name: Scale factor of Fx curvature factor, LEX
+  summary: '*Fx* 曲率因子 1（默认）| 正标量'
+  group: 缩放
+- name: Scale factor of Fx slip stiffness, LKX
+  summary: '*Fx* 滑移刚度 1（默认）| 正标量'
+  group: 缩放
+- name: Scale factor of Fx horizontal shift, LHX
+  summary: '*Fx* 水平偏移 1（默认）| 正标量'
+  group: 缩放
+- name: Scale factor of Fx vertical shift, LVX
+  summary: '*Fx* 垂直偏移 1（默认）| 正标量'
+  group: 缩放
+- name: Scale factor of rolling resistance, LMY
+  summary: 滚动阻力 1（默认）| 正标量
+  group: 缩放
+- name: Lower boundary of slip denominator, VXLOW
+  summary: 滑移分母下边界 1 m/s（默认）| 正标量
+  group: 高级
+- name: Velocity threshold
+  summary: 数学滑移模型的轮毂速度阈值 0.1 m/s（默认）| 正标量
+  group: 高级
+- name: Minimum valid wheel slip, KPUMIN
+  summary: 最小车轮滑移阈值 -1.5（默认）| 标量
+  group: 高级
+- name: Maximum valid wheel slip, KPUMAX
+  summary: 最大车轮滑移阈值 1.5（默认）| 标量
+  group: 高级
+```
 
 ### 主要
 
@@ -260,7 +365,6 @@ Magic Formula 轮胎仿真选项。选择模块使用 Magic Formula 对轮胎进
 ### **Maximum valid wheel slip, KPUMAX** — 最大车轮滑移阈值 `1.5`（默认）| 标量
 
 最大有效车轮滑移。
-
 ## 所属库
 
 Simscape / Driveline / Tires & Vehicles / Tire Subcomponents

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Start-Stop Generator
 
 ## 端口
+```yaml
+ports:
+- name: enable
+  summary: 启用和禁用启停信号生成 标量
+  direction: input
+  data_types: single | double
+- name: start times
+  summary: 启动时间 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 稳态值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: 启停信号 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -49,8 +68,34 @@ chinese_source: worker-translation
 通常，您使用此信号来启动和停止频率响应估计、信号生成或自动整定过程。当 **enable** 端口设置为 0 时，模块不生成启停信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: 采样时间 0.1（默认）| 正标量
+  group: ''
+- name: Data Type
+  summary: 浮点精度 double（默认）| single
+  group: ''
+- name: Source of start time points
+  summary: 启动时间点来源 External time vector（默认）| Time after reaching steady-state
+  group: ''
+- name: Duration (sec)
+  summary: 启停信号持续时间 10（默认）| 标量
+  group: ''
+- name: Number of samples after reaching steady-state to generate start-stop signal
+  summary: 开始信号生成的延迟 2（默认）| 非负整数
+  group: ''
+- name: Settling time upper bounds
+  summary: 调节时间上界 [1.1 2.1 3.1]（默认）| 向量
+  group: ''
+- name: Settling time lower bounds
+  summary: 调节时间下界 [0.9 1.9 2.9]（默认）| 向量
+  group: ''
+- name: Settling time interval
+  summary: 调节时间间隔 5（默认）| 标量 | 向量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -94,7 +139,6 @@ chinese_source: worker-translation
 指定运行条件保持稳态的时间间隔。
 
 使用向量为不同工作点指定不同的时间间隔。
-
 ## 所属库
 
 Simulink Control Design / Signal Generation

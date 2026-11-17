@@ -14,10 +14,26 @@ language: en
 # Simulation 3D Probabilistic Radar Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Radar targets
+  summary: Identifiers corresponding to radar targets [] (default) | positive integer | *L*-length vector of unique positive
+    integers
+  group: ''
+- name: Radar cross sections (dBsm)
+  summary: Radar cross sections {} (default) | real-valued *Q*-by-*P* matrix | *L*-length cell array of real-valued *Q*1-by-*P*1,
+    …, *Q*L-by-*P*L matrices
+  group: ''
+- name: Default radar cross section (dBsm)
+  summary: Default radar cross section -20 (default) | real scalar
+  group: ''
+```
 
 ### **Radar targets** — Identifiers corresponding to radar targets `[]` (default) | positive integer | *L*-length vector of unique positive integers
 
@@ -144,7 +160,6 @@ Simulation 3D Scene Configuration block, then the default RCS assigned
 to actors in an Unreal Engine scenario is –20 dBsm.
 
 **Example:** `-10`
-
 ## Libraries
 
 Automated Driving Toolbox / Simulation 3D

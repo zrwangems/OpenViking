@@ -14,6 +14,19 @@ language: en
 # Rate Transition
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### Input
 
@@ -35,8 +48,52 @@ parameters that enable you to trade data integrity and deterministic transfer fo
 faster response or lower memory requirements, see Transition Handling Behaviors.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Ensure data integrity during data transfer
+  summary: Ensure data integrity on (default) | off
+  group: ''
+  block_parameter: Integrity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Ensure deterministic data transfer (maximum delay)
+  summary: Ensure deterministic data transfer on (default) | off
+  group: ''
+  block_parameter: Deterministic
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Initial conditions
+  summary: Initial conditions 0 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: InitialCondition
+  type: character vector
+  values: finite scalar
+  default: '''0'''
+- name: Output port sample time options
+  summary: Mode for specifying output port sample time Specify (default) | Inherit | Multiple of input port sample time
+  group: ''
+  block_parameter: OutPortSampleTimeOpt
+  type: character vector
+  values: '''Specify'' | ''Inherit'' | ''Multiple of input port sample time'''
+  default: '''Specify'''
+- name: Output port sample time
+  summary: Output rate -1 (default) | scalar | vector
+  group: ''
+  block_parameter: OutPortSampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: Sample time multiple (>0)
+  summary: Sample time multiple 1 (default) | positive scalar
+  group: ''
+  block_parameter: OutPortSampleTimeMultiple
+  type: character vector
+  values: scalar
+  default: '''1'''
+```
 
 ### **Ensure data integrity during data transfer** — Ensure data integrity `on` (default) | `off`
 
@@ -168,7 +225,6 @@ to `Multiple of input port sample time`.
 | **Type:** character vector |
 | **Values:** scalar |
 | **Default:** `'1'` |
-
 ## Libraries
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

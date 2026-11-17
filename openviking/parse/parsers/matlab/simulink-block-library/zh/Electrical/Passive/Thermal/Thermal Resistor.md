@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Thermal Resistor
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 表面 A 热端口
+  direction: conserving
+- name: B
+  summary: 表面 B 热端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,14 +34,18 @@ chinese_source: worker-translation
 ### **B** — 表面 B 热端口
 
 与热量流经材料的表面 B 相关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermal resistance
+  summary: 热阻 1e-3 K/W（默认值）
+  group: ''
+```
 
 ### **Thermal resistance** — 热阻 `1e-3` `K/W`（默认值）
 
 热阻，
 *Rthermal*。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Thermal

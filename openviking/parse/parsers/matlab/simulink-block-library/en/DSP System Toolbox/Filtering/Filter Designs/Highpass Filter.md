@@ -14,6 +14,17 @@ language: en
 # Highpass Filter
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal to filter column vector | matrix
+  direction: input
+  data_types: single | double | fixed point
+- name: Port_1
+  summary: Filtered signal vector | matrix
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -36,8 +47,50 @@ a fixed-point data type, it is always signed.
 
 **Data Types:** `single` | `double` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter type
+  summary: FIR or IIR filter FIR (default) | IIR
+  group: Main
+- name: Design minimum order filter
+  summary: Design filter with minimum order on (default) | off
+  group: Main
+- name: Filter order
+  summary: Order of highpass filter 50 (default) | positive integer
+  group: Main
+- name: Stopband edge frequency (Hz)
+  summary: Stopband edge frequency 8e3 (default) | real positive scalar
+  group: Main
+- name: Passband edge frequency (Hz)
+  summary: Passband edge frequency 12e3 (default) | real positive scalar
+  group: Main
+- name: Minimum stopband attenuation (dB)
+  summary: Minimum stopband attenuation 80 (default) | real positive scalar
+  group: Main
+- name: Maximum passband ripple (dB)
+  summary: Maximum passband ripple 0.1 (default) | real positive scalar
+  group: Main
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: Main
+- name: Input sample rate (Hz)
+  summary: Input sample rate 44100 (default) | scalar
+  group: Main
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Main
+- name: View Filter Response
+  summary: Open Filter Visualization Tool button
+  group: Main
+- name: Rounding mode
+  summary: Rounding method Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types
+- name: Coefficients
+  summary: Coefficient data type fixdt(1,16) (default) | fixdt(1,16,0) | <data type expression>
+  group: Data Types
+```
 
 ### Main
 
@@ -209,7 +262,6 @@ following:
 Click the **Show data type assistant**
 button  to display the data type assistant,
 which helps you set the data type. For more information, see Specify Data Types Using Data Type Assistant (Simulink).
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Designs

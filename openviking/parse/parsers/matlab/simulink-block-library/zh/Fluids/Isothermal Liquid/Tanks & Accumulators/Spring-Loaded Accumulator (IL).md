@@ -15,14 +15,37 @@ chinese_source: worker-translation
 # Spring-Loaded Accumulator (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液压守恒端口 hydraulic conserving
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **A** — 液压守恒端口 hydraulic conserving
 
 与蓄能器入口相关联的液压守恒端口。如果液体流入蓄能器，则流量为正。
-
 ## 参数
+```yaml
+parameters:
+- name: Liquid capacity
+  summary: 液体容量 8e-3 m^3（默认）| 正标量
+  group: ''
+- name: Preload pressure
+  summary: 弹簧压力 1.01325 MPa（默认）| 正标量
+  group: ''
+- name: Pressure at full capacity
+  summary: 弹簧压力 3.01325 MPa（默认）| 正标量
+  group: ''
+- name: Hard stop stiffness coefficient
+  summary: 比例常数 1e4 MPa/m^3（默认）| 正标量
+  group: ''
+- name: Enable dynamic compressibility
+  summary: 流体可压缩性 on（默认）| off
+  group: ''
+```
 
 ### **Liquid capacity** — 液体容量 `8e-3 m^3`（默认）| 正标量
 
@@ -43,7 +66,6 @@ chinese_source: worker-translation
 ### **Enable dynamic compressibility** — 流体可压缩性 `on`（默认）| `off`
 
 是否对由流体可压缩性引起的流体密度变化进行建模。当您选择 **Enable dynamic compressibility** 时，除了由压力变化引起的密度变化外，还会计算由流入模块的质量流量引起的变化。在 Isothermal Liquid 库中，所有模块都将密度计算为压力的函数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Tanks & Accumulators

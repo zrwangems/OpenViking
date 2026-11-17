@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Rotational Detent
 
 ## 端口
+```yaml
+ports: []
+```
 
 **R** 和 **C** 分别是与杆和壳体相关联的旋转守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 ### Detent Characteristics
 
@@ -156,7 +161,6 @@ chinese_source: worker-translation
 
     从下拉列表中选择单位。默认值为
     转/分钟 (`rpm`)。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -14,6 +14,17 @@ language: en
 # SSB AM Demodulator Passband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+- name: Out
+  summary: Demodulated output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -34,8 +45,31 @@ Demodulated output signal, returned as a scalar.
 This port is unnamed on the block.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: Carrier frequency in Hz 300 (default) | positive scalar
+  group: ''
+- name: Initial phase (rad)
+  summary: Initial phase offset in radians 0 (default) | scalar
+  group: ''
+- name: Lowpass filter design method
+  summary: Design method for lowpass filter Butterworth (default) | Chebyshev type I | Chebyshev type II | Elliptic
+  group: ''
+- name: Filter order
+  summary: Order of lowpass filter 4 (default) | positive scalar
+  group: ''
+- name: Cutoff frequency
+  summary: Cutoff frequency in Hz 300 (default) | positive scalar
+  group: ''
+- name: Passband ripple (dB)
+  summary: Peak-to-peak passband ripple in dB 0.1 (default) | positive scalar
+  group: ''
+- name: Stopband ripple (dB)
+  summary: Peak-to-peak stopband ripple in dB 0.1 (default) | positive scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -96,7 +130,6 @@ Peak-to-peak stopband ripple in dB, specified as a positive scalar.
 To enable this parameter, set **Lowpass filter design
 method** or `Chebyshev type II` or
 `Elliptic`.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Analog Passband Modulation

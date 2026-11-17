@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Filtered Derivative (Discrete or Continuous)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 微分输入向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 微分输出向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,34 @@ chinese_source: worker-translation
 滤波微分输出信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Gain
+  summary: 微分增益 1（默认）| 正数
+  group: ''
+- name: Time constant
+  summary: 微分时间常数 0.1（默认）| 正数
+  group: ''
+- name: Upper saturation limit
+  summary: 输出上限 inf（默认）| 实数
+  group: ''
+- name: Lower saturation limit
+  summary: 输出下限 -inf（默认）| 实数
+  group: ''
+- name: Minimum sample time to time constant ratio
+  summary: 离散比值 10（默认）| 实数
+  group: ''
+- name: Initialization
+  summary: 初始状态指定 Inherited from block input（默认）| Specify as parameter
+  group: ''
+- name: Initial state
+  summary: 初始状态 0（默认）| 实数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正数
+  group: ''
+```
 
 ### **Gain** — 微分增益 `1`（默认）| 正数
 
@@ -74,7 +111,6 @@ chinese_source: worker-translation
 为获得可接受的精度，请将此值设置为至少比 **Time constant** 参数小 10 倍。
 
 如果此模块位于掩码子系统或其他允许连续和离散操作的变体子系统中，请提升采样时间参数。提升采样时间参数可确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅提升掩码上的模块参数。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

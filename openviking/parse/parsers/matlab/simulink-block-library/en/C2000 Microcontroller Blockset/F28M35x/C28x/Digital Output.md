@@ -14,6 +14,17 @@ language: en
 # Digital Output
 
 ## Ports
+```yaml
+ports:
+- name: Digital Data
+  summary: Digital data to write to output channels vector
+  direction: input
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Missed Ticks
+  summary: Missed tick count (optional) double
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -37,8 +48,54 @@ When you select **Show “Missed Ticks”
 port**, this port is visible.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Install new board
+  summary: Register a board < no board selected > (default)
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: Delete the current board (button)
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: Set up the board (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Output channels
+  summary: Select digital output channels vector
+  group: ''
+  block_parameter: Channels
+- name: Channel mode
+  summary: Mode of representing the output lines Bit (default) | Byte
+  group: ''
+  block_parameter: BitMode
+- name: Initial value
+  summary: Initial value for output channels vector
+  group: ''
+  block_parameter: InitialValue
+- name: Final value
+  summary: Final value for output channels vector
+  group: ''
+  block_parameter: FinalValue
+```
 
 ### **Install new board** — Register a board `< no board selected >` (default)
 
@@ -265,7 +322,6 @@ each digital output channel.
 |  |
 | --- |
 | **Block Parameter:** `FinalValue` |
-
 ## Libraries
 
 Simulink Desktop Real-Time

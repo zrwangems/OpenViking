@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Thyristor
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 门极端口电气
+  direction: conserving
+- name: A
+  summary: 阳极端口电气
+  direction: conserving
+- name: K
+  summary: 阴极端口电气
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -38,8 +53,94 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: I-V characteristics defined by
+  summary: 晶闸管表示方式 Fundamental nonlinear equations（默认）| Lookup table
+  group: 主
+- name: On-state voltage, V_T
+  summary: 导通状态阳极-阴极静态电压 1.2 V（默认）
+  group: 主
+- name: On-state current, I_T
+  summary: 导通状态静态负载电流 1 A（默认）
+  group: 主
+- name: Vector of on-state voltages, V_T
+  summary: 导通状态电压向量 [.75, 1, 1.25, 1.5, 1.75, 2, 2.25] V（默认）
+  group: 主
+- name: Vector of corresponding currents, I_T
+  summary: 对应电流向量 [.015, .22, .75, 1.4, 2, 2.75, 3.45] A（默认）
+  group: 主
+- name: Off-state current, I_DRM
+  summary: 断态阳极电流 0.01 mA（默认）
+  group: 主
+- name: Corresponding off-state voltage, V_DRM
+  summary: 断态阳极-阴极电压 400 V（默认）
+  group: 主
+- name: Holding current
+  summary: 维持电流 1 mA（默认）
+  group: 主
+- name: Measurement temperature
+  summary: 器件仿真温度 25 degC（默认）
+  group: 主
+- name: Gate trigger current, I_GT
+  summary: 临界门极电流 3 uA（默认）
+  group: 门极触发
+- name: Corresponding gate voltage, V_GT
+  summary: 门极-阴极电压 0.6 V（默认）
+  group: 门极触发
+- name: Test voltage, V_D
+  summary: 测试电源电压 12 V（默认）
+  group: 门极触发
+- name: Test load resistor
+  summary: 测试负载电阻 120 Ohm（默认）
+  group: 门极触发
+- name: Critical rate of rise of off-state voltage, dV/dt
+  summary: 断态电压临界上升率 150 V/us（默认）
+  group: dV/dt 触发
+- name: Test gate-cathode resistor, R_GK
+  summary: 测试门极-阴极电阻 1000 Ohm（默认）
+  group: dV/dt 触发
+- name: NPN device forward transit time parameterization
+  summary: NPN 器件正向渡越时间参数化 Derive approximate value from gate-controlled turn-on time（默认）| Specify directly
+  group: 时间常数
+- name: Gate-controlled turn-on time
+  summary: 门极控制导通时间 2 us（默认）
+  group: 时间常数
+- name: Corresponding gate current
+  summary: 测试门极电流 10 mA（默认）
+  group: 时间常数
+- name: NPN device forward transit time
+  summary: 平均正向渡越时间 0.3 us（默认）
+  group: 时间常数
+- name: PNP device forward transit time parameterization
+  summary: PNP 器件正向渡越时间参数化 Set equal to NPN device forward transit time（默认）| Specify directly
+  group: 时间常数
+- name: PNP device forward transit time
+  summary: 平均正向渡越时间 0.3 us（默认）
+  group: 时间常数
+- name: Turn-on delay time
+  summary: 时间延迟 0 s（默认）
+  group: 时间常数
+- name: Gate current for turn-on delay time
+  summary: 导通延迟时间的门极电流 1 mA（默认）
+  group: 时间常数
+- name: Turn-on rise time
+  summary: 导通上升时间 0 s（默认）
+  group: 时间常数
+- name: Internal shunt resistor, Rs
+  summary: 门极-阴极分流电阻 87 kOhm（默认）
+  group: 高级
+- name: Internal series gate resistor, Rg
+  summary: 与门极连接关联的电阻 10 Ohm（默认）
+  group: 高级
+- name: Product of NPN and PNP forward current gains
+  summary: NPN 和 PNP 正向电流增益的乘积 10（默认）
+  group: 高级
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -301,7 +402,6 @@ RGK 的电路中使用晶闸管，则通常 Rs 的影响很小，可以将其设
 
 仅当为 **I-V characteristics defined by**
 参数选择 `Fundamental nonlinear equations` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

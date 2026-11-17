@@ -14,6 +14,17 @@ language: en
 # 2-D IFFT
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Output data vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -32,8 +43,25 @@ The size and data type of the output are the same as those of the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: FFT implementation
+  summary: FFT implementation Auto (default) | Radix-2 | FFTW
+  group: Main
+- name: Input is in bit-reversed order
+  summary: Bit-reversed input off (default) | on
+  group: Main
+- name: Input is conjugate symmetric
+  summary: Conjugate symmetric input on (default) | off
+  group: Main
+- name: Divide output by product of FFT length in each input dimension
+  summary: Scale output data on (default) | off
+  group: Main
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Data type override off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -111,7 +139,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Transforms

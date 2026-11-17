@@ -14,6 +14,17 @@ language: en
 # Extender
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal specified as boolean boolean
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: Output signal returns as boolean boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -31,8 +42,19 @@ The outputs of the Extender block are of boolean
 type.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: External reset
+  summary: specify whether the block can be reset off (default) | on
+  group: ''
+- name: Extension Period
+  summary: specify a fixed number of time steps for extension Finite (default) | Infinite
+  group: ''
+- name: Time steps for extension
+  summary: specify the number of time steps for extending the true duration 3 (default) | boolean
+  group: ''
+```
 
 ### **External reset** — specify whether the block can be reset off (default) | on
 
@@ -52,7 +74,6 @@ extension.
 
 For finite extension, specify the number of time steps for extending the
 true duration (minimum is `1`).
-
 ## Libraries
 
 Simulink Design Verifier / Temporal Operators

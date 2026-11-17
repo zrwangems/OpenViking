@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM AC7C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_OELscl
+  summary: 过励限制器接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: V_UELscl
+  summary: 欠励限制器接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 磁场电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -142,8 +189,143 @@ chinese_source: worker-translation
 施加到同步电机磁场电路的标幺磁场电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: 初始磁场电压，Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数
+  group: 常规
+- name: 采样时间（-1 表示继承）
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: 负载补偿电阻分量，R_C (pu)
+  summary: 补偿电阻 0（默认）| 正数
+  group: 预控制
+- name: 负载补偿电抗分量，X_C (pu)
+  summary: 补偿电抗 0（默认）| 正数
+  group: 预控制
+- name: 调节器输入滤波器时间常数，T_R (s)
+  summary: 调节器时间常数 0（默认）| 正数
+  group: 预控制
+- name: 电压调节器比例增益，K_PR (pu)
+  summary: 电压调节器的比例增益 40（默认）
+  group: 控制
+- name: 电压调节器积分增益，K_IR (pu/s)
+  summary: 电压调节器的积分增益 5.6（默认）
+  group: 控制
+- name: 电压调节器微分增益，K_DR (pu.s)
+  summary: 电压调节器的微分增益 0（默认）
+  group: 控制
+- name: PID 控制器微分通道的滞后时间常数，T_DR (s)
+  summary: PID 微分通道的滞后时间常数 1（默认）| 正数
+  group: 控制
+- name: 调节器最大输出，V_Rmax (pu)
+  summary: 调节器输出上限 3.2（默认）| 实数
+  group: 控制
+- name: 调节器最小输出，V_Rmin (pu)
+  summary: 调节器输出下限 -3.2（默认）| 实数
+  group: 控制
+- name: 励磁电流调节器比例增益，K_PA (pu)
+  summary: 励磁电流调节器的比例增益 112（默认）| 实数
+  group: 控制
+- name: 励磁电流调节器积分增益，K_IA (pu/s)
+  summary: 励磁电流调节器的积分增益 0（默认）| 实数
+  group: 控制
+- name: 励磁电流调节器最大输出，V_Amax (pu)
+  summary: 励磁电流调节器最大输出 65.2（默认）| 实数
+  group: 控制
+- name: 励磁电流调节器最小输出，V_Amin (pu)
+  summary: 励磁电流调节器最小输出 -54（默认）| 实数
+  group: 控制
+- name: 发电机磁场电压反馈增益，K_F1 (pu)
+  summary: 发电机磁场电压反馈增益 0（默认）| 实数
+  group: 控制
+- name: 励磁机磁场电流反馈增益，K_F2 (pu)
+  summary: 励磁机磁场电流反馈增益 0.08（默认）| 实数
+  group: 控制
+- name: 速率反馈增益，K_F3 (pu)
+  summary: 速率反馈增益 0.01（默认）| 实数
+  group: 控制
+- name: 速率反馈时间常数，T_F (s)
+  summary: 速率反馈时间常数 1（默认）| 正数
+  group: 控制
+- name: 备用 PSS 输入位置 (V_S)
+  summary: PSS 输入位置 Voltage error calculation（默认）| After take-over UEL
+  group: 控制
+- name: 备用 OEL 输入位置 (V_OEL)
+  summary: OEL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator
+    output | Take-over at output of inner loop regulator
+  group: 控制
+- name: 备用 UEL 输入位置 (V_UEL)
+  summary: UEL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator
+    output
+  group: 控制
+- name: 备用 SCL 输入位置 (V_SCL)
+  summary: SCL 输入位置 Unused（默认）| Summation point at voltage error | Take-over at voltage error | Take-over at voltage regulator
+    output
+  group: 控制
+- name: 励磁机磁场比例常数，K_E (pu)
+  summary: 励磁机磁场增益 1（默认）| 正数
+  group: 励磁机
+- name: 励磁机磁场时间常数，T_E (s)
+  summary: 励磁机磁场时间常数 1.2（默认）| 正数
+  group: 励磁机
+- name: 与换相电抗成比例的整流器负载因子，K_C (pu)
+  summary: 整流器负载因子 0.12（默认）| 正数
+  group: 励磁机
+- name: 去磁因子，励磁机交流电机电抗的函数，K_D (pu)
+  summary: 去磁因子 3.3（默认）| 正数
+  group: 励磁机
+- name: 饱和因子 S_E(E_1) 对应的励磁机输出电压，E_1 (pu)
+  summary: 第一饱和输出电压 13.6（默认）| 正数
+  group: 励磁机
+- name: 励磁机输出电压 E_1 处的励磁机饱和因子，S_E(E_1) (1)
+  summary: 第一饱和查找电压 3.74（默认）| 正数
+  group: 励磁机
+- name: 饱和因子 S_E(E_2) 对应的励磁机输出电压，E_2 (pu)
+  summary: 第二饱和输出电压 10.2（默认）| 正数
+  group: 励磁机
+- name: 励磁机输出电压 E_2 处的励磁机饱和因子，S_E(E_2) (1)
+  summary: 第二饱和查找电压 0.32（默认）| 正数
+  group: 励磁机
+- name: 最大励磁机磁场电流限制参考值，V_FEmax (pu)
+  summary: 励磁机上限 23.2（默认）| 实数
+  group: 励磁机
+- name: 最小励磁机电压输出，V_Emin (pu)
+  summary: 励磁机下限 0（默认）| 实数
+  group: 励磁机
+- name: 电势电路增益系数，K_P (pu)
+  summary: 电势电路增益系数 1（默认）| 实数
+  group: 励磁机
+- name: 电势电路相位角（度）
+  summary: 电势电路相位角 0（默认）| 实数
+  group: 励磁机
+- name: 电势电路（电流）增益系数，K_I (pu)
+  summary: 电势电路电流增益系数 0（默认）| 实数
+  group: 励磁机
+- name: 与电势源相关的电抗，X_L (pu)
+  summary: 与电势源相关的电抗 0（默认）| 实数
+  group: 励磁机
+- name: 与调节器和交流电机磁场电源相关的增益，K_R (pu)
+  summary: 与调节器和交流电机磁场电源相关的增益 0（默认）| 实数
+  group: 励磁机
+- name: 与负励磁机磁场电流能力相关的增益，K_L (pu)
+  summary: 与负励磁机磁场电流能力相关的增益 0（默认）| 实数
+  group: 励磁机
+- name: 与换相电抗成比例的整流器负载因子，K_C1 (pu)
+  summary: 与换相电抗成比例的整流器负载因子 0（默认）| 实数
+  group: 励磁机
+- name: 最大可用励磁机磁场电压，V_Bmax (pu)
+  summary: 励磁机最大可用磁场电压 999（默认）| 实数
+  group: 励磁机
+- name: 电源选择器 SW1
+  summary: '电源选择器 Position A: power source derived from terminal voltage（默认）| Position B: power source independent of terminal
+    conditions'
+  group: 励磁机
+- name: 电源选择器 SW2
+  summary: '电源选择器 Position A: use variable V_B（默认）| 位置 B：不使用变量 V_B'
+  group: 励磁机
+```
 
 ### 常规
 
@@ -437,7 +619,6 @@ V_B`。
 ### **电源选择器 SW2** — 电源选择器 `Position A: use variable V_B`（默认）| `位置 B：不使用变量 V_B`
 
 电源选择器 SW2 的位置。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

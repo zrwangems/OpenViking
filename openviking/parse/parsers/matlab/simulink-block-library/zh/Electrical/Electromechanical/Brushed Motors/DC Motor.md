@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # DC Motor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 电机外壳机械
+  direction: conserving
+- name: R
+  summary: 电机转子机械
+  direction: conserving
+- name: F+
+  summary: 正励磁电气
+  direction: conserving
+- name: F-
+  summary: 负励磁电气
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -57,8 +81,139 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Selected part
+  summary: 预定义参数化选项 <click to select>（默认）
+  group: ''
+- name: Field type
+  summary: 励磁类型 Permanent Magnet（默认）| Wound
+  group: 电磁转矩
+- name: Model parameterization
+  summary: 模块参数化 By equivalent circuit parameters（默认）| By stall torque & no-load speed | By rated load and speed
+  group: 电磁转矩
+- name: Field resistance
+  summary: 励磁电阻 100 Ohm（默认）
+  group: 电磁转矩
+- name: Field inductance
+  summary: 励磁电感 1 H（默认）
+  group: 电磁转矩
+- name: Field-armature mutual inductance
+  summary: 励磁-电枢互感 0.15 H（默认）
+  group: 电磁转矩
+- name: Initial field current
+  summary: 初始励磁电流 0 A（默认）
+  group: 电磁转矩
+- name: Armature resistance
+  summary: 电枢电阻 3.9 Ohm（默认）
+  group: 电磁转矩
+- name: Armature inductance
+  summary: 电枢电感 12e-6 H（默认）
+  group: 电磁转矩
+- name: Define back-emf or torque constant
+  summary: 常数指定 Specify back-emf constant（默认）| Specify torque constant
+  group: 电磁转矩
+- name: Back-emf constant
+  summary: 反电动势常数 0.072e-3（默认）| V/rpm
+  group: 电磁转矩
+- name: Torque constant
+  summary: 转矩常数 6.876e-4 N*m/A（默认）
+  group: 电磁转矩
+- name: Stall torque
+  summary: 堵转转矩 0.24e-3 N*m（默认）
+  group: 电磁转矩
+- name: No-load speed
+  summary: 空载转速 19100 rpm（默认）
+  group: 电磁转矩
+- name: Rated speed (at rated load)
+  summary: 额定转速 15000 rpm（默认）
+  group: 电磁转矩
+- name: Rated load (mechanical power)
+  summary: 额定负载 0.08 W（默认）
+  group: 电磁转矩
+- name: Rated DC supply voltage
+  summary: 额定直流电源电压 1.5 V（默认）
+  group: 电磁转矩
+- name: Rotor damping parameterization
+  summary: 转子阻尼参数化 By damping value（默认）| By no-load current
+  group: 电磁转矩
+- name: No-load current
+  summary: 空载电流 0 A（默认）
+  group: 电磁转矩
+- name: DC supply voltage when measuring no-load current
+  summary: 测量空载电流时的直流电源电压 1.5 V（默认）
+  group: 电磁转矩
+- name: Rotor inertia
+  summary: 转子惯量 0.01 g*cm^2（默认）
+  group: 机械
+- name: Rotor damping
+  summary: 转子耗散能量 0 N*m/(rad/s)（默认）
+  group: 机械
+- name: Initial rotor speed
+  summary: 初始转子速度 0 rpm（默认）
+  group: 机械
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 温度依赖性
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: 温度依赖性
+- name: Thermal mass
+  summary: 热质量 100 J/K（默认）
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 25 degC（默认）
+  group: 热端口
+- name: Armature winding fault
+  summary: 添加电枢绕组故障的选项 Add fault（默认）
+  group: 故障
+- name: Fraction of revolution during which armature is open-circuit
+  summary: 电枢开路期间的旋转比例 1/3（默认）
+  group: 故障
+- name: Faulted armature winding open-circuit conductance
+  summary: 故障电枢绕组的开路电导 1e-5 S（默认）
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible armature winding current
+  summary: 最大允许电枢绕组电流 inf A（默认）
+  group: 故障
+- name: Time to fail when exceeding armature winding current
+  summary: 超过电枢绕组电流时的故障时间 1 s（默认）
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: Field winding fault
+  summary: 添加励磁绕组故障的选项 Add fault（默认）
+  group: 故障
+- name: Faulted field winding open-circuit conductance
+  summary: 故障励磁绕组的开路电导 1e-5 S（默认）
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible field winding current
+  summary: 最大允许励磁绕组电流 inf A（默认）
+  group: 故障
+- name: Time to fail when exceeding field winding current
+  summary: 超过励磁绕组电流时的失效时间 1 s（默认）
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -419,7 +574,6 @@ DC Motor 旋转过程中电枢绕组发生故障且电压源观察到开路的�
 - 在 **Electrical Torque** 设置中，将 **Field type** 设置为 `Wound`。
 - 点击 **Field winding fault** 参数的 **Add fault** 超链接。
 - 将 **Trigger type** 设置为 `Additional triggers`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Brushed Motors

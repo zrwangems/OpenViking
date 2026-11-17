@@ -14,6 +14,54 @@ language: en
 # Prismatic Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: f
+  summary: Actuation force physical signal
+  direction: input
+- name: p
+  summary: Motion profile physical signal
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: p
+  summary: Position of primitive physical signal
+  direction: output
+- name: v
+  summary: Velocity of primitive physical signal
+  direction: output
+- name: a
+  summary: Acceleration of primitive physical signal
+  direction: output
+- name: f
+  summary: Actuator force acting on joint primitive physical signal
+  direction: output
+- name: fll
+  summary: Lower-limit force physical signal
+  direction: output
+- name: ful
+  summary: Upper-limit force physical signal
+  direction: output
+- name: fc
+  summary: Constraint force, N physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total force, N physical signal
+  direction: output
+- name: tt
+  summary: Total torque, N\*m physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -203,8 +251,100 @@ Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque
 Sensing**, select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: State Targets > Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Position Target > Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Position Target > Value
+  summary: Position target 0 m (default) | scalar in units of length
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Velocity Target
+  summary: Whether to specify velocity target off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Velocity Target > Priority
+  summary: Priority level of velocity target High (desired) (default) | Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: State Targets > Specify Velocity Target > Value
+  summary: Velocity target of joint primitive 0 m/s (default) | scalar in units of linear velocity
+  group: Z Prismatic Primitive (Pz)
+- name: Internal Mechanics > Equilibrium Position
+  summary: Position where internal force is zero 0 m (default) | scalar in units of length
+  group: Z Prismatic Primitive (Pz)
+- name: Internal Mechanics > Spring Stiffness
+  summary: Stiffness of force law 0 N/m (default) | scalar in units of linear stiffness
+  group: Z Prismatic Primitive (Pz)
+- name: Internal Mechanics > Damping Coefficient
+  summary: Damping coefficient of force law 0 N(m/s) (default) | scalar in units of linear damping coefficient
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit > Bound
+  summary: Lower bound of free region -1 m (default) | scalar in units of length
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit > Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e6 N/m (default) | scalar in units of linear stiffness
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit > Damping Coefficient
+  summary: Damping coefficient at lower bound 1e3 N/(m/s) (default) | scalar in units of linear damping coefficient
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Lower Limit > Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar in units of length
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit > Bound
+  summary: Upper bound of free region 1 m (default) | scalar in units of length
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit > Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e6 N/m (default) | scalar in units of linear stiffness
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit > Damping Coefficient
+  summary: Damping coefficient at upper bound 1e3 N/(m/s) (default) | scalar in units of linear damping coefficient
+  group: Z Prismatic Primitive (Pz)
+- name: Limits > Specify Upper Limit > Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar in units of length
+  group: Z Prismatic Primitive (Pz)
+- name: Actuation > Force
+  summary: Option to provide actuation force None (default) | Provided by Input | Automatically Computed
+  group: Z Prismatic Primitive (Pz)
+- name: Actuation > Motion
+  summary: Option to provide actuation motion Automatically Computed (default) | Provided by Input
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Position
+  summary: Whether to sense joint primitive position off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Velocity
+  summary: Whether to sense joint primitive velocity off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Acceleration
+  summary: Whether to sense joint primitive acceleration off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Actuator Force
+  summary: Whether to sense joint actuator force off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Lower-Limit force
+  summary: Whether sense to lower-limit force off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Sensing > Upper-Limit force
+  summary: Whether sense to upper-limit force off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Mode
+  summary: Joint mode Normal (default) | Locked | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 ### Z Prismatic Primitive (Pz)
 
@@ -468,7 +608,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

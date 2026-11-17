@@ -14,6 +14,18 @@ language: en
 # Worm Gear
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Worm mechanical rotational
+  direction: conserving
+- name: G
+  summary: Gear mechanical rotational
+  direction: conserving
+- name: H
+  summary: Optional heat transfer port mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -42,8 +54,60 @@ either:
   efficiency`
 
 .
-
 ## Parameters
+```yaml
+parameters:
+- name: Gear ratio
+  summary: Ratio of angular velocities 25 (default) | positive scalar greater than 1
+  group: Main
+- name: Worm thread type
+  summary: Rotational orientation Right-hand (default) | Left-hand
+  group: Main
+- name: Friction model
+  summary: Gear friction model No meshing losses — Suitable for HIL simulation (default) | Constant efficiency | Temperature-dependent
+    efficiency
+  group: Meshing Losses
+- name: Friction parametrization
+  summary: Friction losses from nonideal meshing of gear threads Friction coefficient and geometrical parameters (default)
+    | Efficiencies
+  group: Meshing Losses
+- name: Normal pressure angle
+  summary: Thread pressure angle 17.5 deg (default) | positive scalar
+  group: Meshing Losses
+- name: Lead angle
+  summary: Thread helix angle 20 deg (default) | positive scalar
+  group: Meshing Losses
+- name: Friction coefficient
+  summary: Thread friction coefficient 0.08 (default) | positive scalar
+  group: Meshing Losses
+- name: Worm-gear efficiency
+  summary: Efficiency from worm to gear 0.74 (default) | positive scalar in the range of (0,1]
+  group: Meshing Losses
+- name: Gear-worm efficiency
+  summary: Efficiency from gear to worm 0.65 (default) | positive scalar in the range of (0,1]
+  group: Meshing Losses
+- name: Temperature
+  summary: Array for tabular parameterization of efficiency [280 300 320] K (default) | vector
+  group: Meshing Losses
+- name: Worm-gear efficiency
+  summary: Array of worm-to-gear efficiencies [0.75 0.7 0.65] (default) | vector
+  group: Meshing Losses
+- name: Gear-worm efficiency
+  summary: Array of gear-to-worm efficiencies [0.5 0.45 0.4] (default) | vector
+  group: Meshing Losses
+- name: Power threshold
+  summary: Power below which numerical smoothing is applied 0.001 W (default) | positive scalar
+  group: Meshing Losses
+- name: Viscous friction coefficients at worm (W) and gear (G)
+  summary: Fluid dynamic friction coefficient [0 0] N\*m/(rad/s) (default) | positive two-element vector
+  group: Viscous Losses
+- name: Thermal mass
+  summary: Thermal mass 50 J/K (default) | positive scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | positive scalar
+  group: Thermal Port
+```
 
 ### Main
 
@@ -226,7 +290,6 @@ temperature change.
 Component temperature at the start of simulation. The initial temperature
 alters the component efficiency according to an efficiency vector that you
 specify, affecting the starting meshing or friction losses.
-
 ## Libraries
 
 Simscape / Driveline / Gears

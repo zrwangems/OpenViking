@@ -14,6 +14,17 @@ language: en
 # Interrupt Channel
 
 ## Ports
+```yaml
+ports:
+- name: '*interruptN*'
+  summary: Interrupt request from hardware True | False
+  direction: input
+  data_types: rteEvent | Boolean
+- name: '*interruptN*'
+  summary: Interrupt request signal to processor scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Input
 
@@ -52,8 +63,16 @@ The number of output ports depends on the number of interrupts in the interrupt
 table.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters:
+- name: Interrupts
+  summary: Interrupt name, trigger type, and priority table
+  group: ''
+- name: Interrupt processing time
+  summary: Processing time for interrupt access 100e-6 (default) | positive scalar
+  group: ''
+```
 
 ### **Interrupts** — Interrupt name, trigger type, and priority table
 
@@ -87,7 +106,6 @@ Controller arbitration, Kernel ISR execution, and additional delay for the devic
 driver.
 
 Specify the processing time by entering a number, in seconds.
-
 ## Libraries
 
 SoC Blockset / Memory

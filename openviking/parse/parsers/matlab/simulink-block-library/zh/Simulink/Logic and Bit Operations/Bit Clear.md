@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Bit Clear
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +42,17 @@ chinese_source: worker-translation
 输出由设置为零的指定位组成。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Index of bit
+  summary: 位索引 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: iBit
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+```
 
 ### **Index of bit** — 位索引 0（默认）| 标量 | 向量
 
@@ -45,7 +66,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 | 向量 |
 | **默认值**：`'0'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

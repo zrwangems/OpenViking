@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # ADXL34x Accelerometer
 
 ## 端口
+```yaml
+ports:
+- name: Acceleration
+  summary: ADXL34x 传感器测得的线性加速度向量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -27,8 +34,35 @@ chinese_source: worker-translation
 **注意**
 
 据观察，市场上有许多有故障的克隆 ADXL345 传感器，其 Z 轴原始输出变得无响应。请从正规分销商处购买传感器以避免此问题。
-
 ## 参数
+```yaml
+parameters:
+- name: I2C module
+  summary: 用于通信的模块 I2C_A（默认）
+  group: ''
+- name: I2C address
+  summary: ADXL34x 传感器的 I2C 地址 0x53（默认）| 0x1D
+  group: ''
+- name: Data type
+  summary: ADXL34x 传感器值的输出数据类型 single（默认）| double
+  group: ''
+- name: Sample time
+  summary: 读取数据的时间间隔 -1（默认）| 正整数
+  group: ''
+- name: Accelerometer range
+  summary: 测量线性加速度的满量程 ±4g（默认）| ±2g | ±8g | ±16g
+  group: 高级设置
+- name: Accelerometer output data rate
+  summary: 加速度计数据的采样速率 12.5 Hz（默认）| 0.1 Hz | 0.2 Hz | 0.39 Hz | 0.78 Hz | 1.56 Hz | 3.13 Hz | 6.25 Hz | 25 Hz | 50 Hz | 100
+    Hz | 200 Hz | 400 Hz | 800 Hz | 1600 Hz
+  group: 高级设置
+- name: Enable data ready interrupt
+  summary: 数据就绪时使能中断 off（默认）| on
+  group: 高级设置
+- name: Interrupt generate pin
+  summary: 用于生成数据就绪中断的引脚 INT1（默认）| INT2
+  group: 高级设置
+```
 
 ### **I2C module** — 用于通信的模块 `I2C_A`（默认）
 
@@ -76,7 +110,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Enable data ready interrupt** 参数。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Sensors Simulink Coder Support Package for STMicroelectronics Nucleo Boards / Sensors Simulink Support Package for Arduino Hardware / Sensors

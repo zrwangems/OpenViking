@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Semiconductor Switch Selector
 
 ## 端口
+```yaml
+ports:
+- name: Control
+  summary: 栅极端子物理信号
+  direction: input
+- name: Control
+  summary: 栅极端子电气
+  direction: input
+- name: A
+  summary: 阳极端子电气
+  direction: input
+- name: K
+  summary: 阴极端子电气
+  direction: input
+- name: B
+  summary: 体端子电气
+  direction: input
+- name: H
+  summary: 热质量热
+  direction: input
+```
 
 ### 输入
 
@@ -104,8 +125,31 @@ chinese_source: worker-translation
   - `GTO`
 - 将 **Library block** 设置为 `N-Channel MOSFET` 或 `P-Channel MOSFET`，并将 **Modeling option** 设置为 `threshold-based with thermal` 或 `surface-potential-based with thermal`。
 - 将 **Library block** 设置为 `N-Channel IGBT`，并将 **Modeling option** 设置为 `Full I-V and capacitance characteristics | Show thermal port` 或 `Simplified I-V characteristics and event-based timing | Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Switching device
+  summary: 半导体开关器件类型 MOSFET（默认）| IGBT | Thyristor | GTO
+  group: ''
+- name: Library block
+  summary: 底层库模块 Ideal Semiconductor Switch（默认）| MOSFET (Ideal, Switching) | N-Channel MOSFET | P-Channel MOSFET | ...
+  group: ''
+- name: Gate-control port
+  summary: 指定物理或电气控制端口的选项 PS（默认）| Electrical
+  group: ''
+- name: Modeling option
+  summary: 建模选项 No thermal port（默认）| Show thermal port | Threshold-based | Surface-potential based | ...
+  group: ''
+- name: Number of terminals
+  summary: 端子数量 Three（默认）| Four
+  group: ''
+- name: Edit parameters
+  summary: 编辑库模块参数的选项 按钮
+  group: ''
+- name: Remove Semiconductor Switch Selector block mask
+  summary: 移除 Semiconductor Switch Selector 模块封装的选项 按钮
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -160,7 +204,6 @@ N-Channel MOSFET、P-Channel MOSFET 或 N-Channel IGBT 模块的端子数量。
 ### **Remove Semiconductor Switch Selector block mask** — 移除 Semiconductor Switch Selector 模块封装的选项 按钮
 
 用于移除 Semiconductor Switch Selector 模块封装的选项。单击此按钮可仅保留底层库模块。如果双击模块封装，此时将打开底层库模块的对话框，并且模块图标上的端口名称与底层库模块匹配。此操作还会启用底层模块中仅在 Semiconductor Switch Selector 模块对话框中启用的参数。此操作不可逆。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

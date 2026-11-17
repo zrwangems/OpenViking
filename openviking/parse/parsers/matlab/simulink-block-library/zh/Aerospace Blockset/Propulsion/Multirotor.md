@@ -15,6 +15,59 @@ chinese_source: worker-translation
 # Multirotor
 
 ## 端口
+```yaml
+ports:
+- name: Ω (rad/sec)
+  summary: 旋翼转速 *N* 元向量
+  direction: input
+  data_types: double
+- name: ρ
+  summary: 空气密度 正标量
+  direction: input
+  data_types: double
+- name: Vb
+  summary: 旋翼机体速度 3×1 向量 | 1×3 向量
+  direction: input
+  data_types: double
+- name: ωb
+  summary: 角速度 3×1 向量 | 1×3 向量
+  direction: input
+  data_types: double
+- name: θ0
+  summary: 总距桨距角 N×1 向量 | 1×N 向量
+  direction: input
+  data_types: double
+- name: θc
+  summary: 横向周期变距桨距角 N×1 向量 | 1×N 向量
+  direction: input
+  data_types: double
+- name: θs
+  summary: 纵向周期变距桨距角 N×1 向量 | 1×N 向量
+  direction: input
+  data_types: double
+- name: CT
+  summary: 输入推力系数 非零正标量 | N×1 向量
+  direction: input
+  data_types: double
+- name: CQ
+  summary: 输入扭矩系数 非零正标量 | N×1 向量
+  direction: input
+  data_types: double
+- name: Fxyz(N)
+  summary: 总力 三元向量
+  direction: output
+  data_types: double
+- name: Mxyz(Nm)
+  summary: 净力矩 三元向量
+  direction: output
+  data_types: double
+- name: CT
+  summary: 计算的推力系数 正向量
+  direction: output
+- name: CQ
+  summary: 计算的扭矩系数 正向量
+  direction: output
+```
 
 ### 输入
 
@@ -140,8 +193,157 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此输出端口，请选中 **Output computed CT and CQ** 复选框，并将 **CT and CQ Source** 下拉菜单设置为 `Compute using BEMT`。
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: 主要
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Modeling
+  summary: 旋翼推力计算方法 Without flap effects（默认）| With flap effects
+  group: 主要
+  block_parameter: modelMode
+  type: 字符向量
+  values: '''Without flap effects'' | ''With flap effects'''
+  default: '''Without flap effects'''
+- name: Include pitch angle inputs
+  summary: 启用桨距角输入 off（默认）| on
+  group: 主要
+  block_parameter: controlInput
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Configuration
+  summary: 飞行器配置 Quadcopter X（默认）| Quadcopter +
+  group: 飞行器
+  block_parameter: config
+  type: 字符向量
+  values: '''Quadcopter X'' | ''Quadcopter +'''
+  default: '''Quadcopter X'''
+- name: Arm length (m)
+  summary: 飞行器臂长 0.0624（默认）| 非零正标量
+  group: 飞行器
+  block_parameter: armLength
+  type: 字符向量
+  values: '''0.0624'' | 非零正标量'
+  default: '''0.0624'''
+- name: Height (m)
+  summary: 距飞行器重心的垂直偏移 -0.0159（默认）| 非零标量
+  group: 飞行器
+  block_parameter: rotorHeight
+  type: 字符向量
+  values: '''-0.0159'' | 非零正标量'
+  default: '''-0.0159'''
+- name: CT and CQ Source
+  summary: 用于选择推力和扭矩系数值来源的下拉菜单 'Dialog'（默认）| 'Compute using BEMT' | 'Ports'
+  group: 旋翼
+  block_parameter: CTCQMode
+  type: 字符向量
+  values: '''Dialog'' | ''Compute using BEMT'''
+  default: '''Dialog'''
+- name: Thrust coefficient (CT)
+  summary: 推力系数 0.0107（默认）| 非零正标量 | 非零正 N×1 向量
+  group: 旋翼
+  block_parameter: CT
+  type: 字符向量
+  values: '''0.0107'' | 非零正标量'
+  default: '''0.0107'''
+- name: Torque coefficient (CQ)
+  summary: 扭矩系数 7.8263e-4（默认）| 非零正标量 | 非零正 N×1 向量
+  group: 旋翼
+  block_parameter: CQ
+  type: 字符向量
+  values: '''7.8263e-4'' | 非零正标量'
+  default: '''7.8263e-4'''
+- name: Number of blades
+  summary: 每个旋翼的桨叶数 2（默认）| 非零正标量
+  group: 旋翼
+  block_parameter: Nb
+  type: 字符向量
+  values: '''2'' | 非零正标量'
+  default: '''2'''
+- name: Output computed CT and CQ
+  summary: 输出计算的推力系数和扭矩系数 off（默认）| on
+  group: 旋翼
+  block_parameter: CTout
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Radius (m)
+  summary: 旋翼半径 0.0330（默认）| 非零正标量
+  group: 旋翼
+  block_parameter: radius
+  type: 字符向量
+  values: '''0.0330'' | 非零正标量'
+  default: '''0.0330'''
+- name: Chord (m)
+  summary: 桨叶弦长 0.0080（默认）| 非零正标量
+  group: 旋翼
+  block_parameter: chord
+  type: 字符向量
+  values: '''0.0080'' | 非零正标量'
+  default: '''0.0080'''
+- name: Hinge offset (m)
+  summary: 铰链偏移 0（默认）| 正标量
+  group: 旋翼
+  block_parameter: hingeOffset
+  type: 字符向量
+  values: '''0'' | 正标量'
+  default: '''0'''
+- name: Lift curve slope (per rad)
+  summary: 升力曲线斜率 5.5（默认）| 非零正标量
+  group: 旋翼
+  block_parameter: clalpha
+  type: 字符向量
+  values: '''5.5'' | 非零正标量'
+  default: '''5.5'''
+- name: Mean drag coefficient
+  summary: 平均阻力系数 0（默认）| 正标量
+  group: 旋翼
+  block_parameter: cd0
+  type: 字符向量
+  values: '''0'' | 正标量'
+  default: '''0'''
+- name: Lock number
+  summary: 洛克数 0.6051（默认）| 非零正标量
+  group: 旋翼
+  block_parameter: gamma
+  type: 字符向量
+  values: '''0.6051'' | 非零正标量'
+  default: '''0.6051'''
+- name: Twist distribution
+  summary: 旋翼桨叶扭转分布 Linear（默认）| Ideal
+  group: 旋翼
+  block_parameter: twistType
+  type: 字符向量
+  values: '''Linear'' | ''Ideal'''
+  default: '''Linear'''
+- name: Blade root angle (rad)
+  summary: 桨叶根部桨距角 0.2548（默认）| 实标量
+  group: 旋翼
+  block_parameter: thetaRoot
+  type: 实标量
+  values: '''0.2548'' | 非零正标量'
+  default: '''0.2548'''
+- name: Blade twist angle (rad)
+  summary: 桨叶扭转角 -0.1361（默认）| 实标量
+  group: 旋翼
+  block_parameter: thetaTwist
+  type: 实标量
+  values: '''0.1018'' | 正标量'
+  default: '''0.1018'''
+- name: Blade tip angle (rad)
+  summary: 桨叶尖部桨距角 0.1018（默认）| 实标量
+  group: 旋翼
+  block_parameter: thetaTip
+  type: 实标量
+  values: '''0.06'' | 非零正标量'
+  default: '''0.06'''
+```
 
 ### 主要
 
@@ -570,7 +772,6 @@ chinese_source: worker-translation
 | **类型**：实标量 |
 | **值**：`'0.06'` | 非零正标量 |
 | **默认值**：`'0.06'` |
-
 ## 所属库
 
 Aerospace Blockset / Propulsion

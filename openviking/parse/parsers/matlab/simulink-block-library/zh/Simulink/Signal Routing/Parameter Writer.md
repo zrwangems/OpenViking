@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Parameter Writer
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 参数值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -23,8 +31,30 @@ chinese_source: worker-translation
 由该模块写入的参数值。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Validate parameter
+  summary: 在正常模式仿真期间验证参数的选项 on（默认）| off
+  group: ''
+  block_parameter: IsParameterValidationOn
+  values: '''on''（默认）| ''off'''
+- name: Destination
+  summary: 写入变量和参数的选项 Block parameter（默认）| Model workspace variable | Base workspace variable
+  group: ''
+  block_parameter: Destination
+  values: '''Block parameter''（默认）| ''Model workspace variable'' | ''Base workspace variable'''
+- name: Workspace variable name
+  summary: 工作区变量的名称 无默认值
+  group: ''
+  block_parameter: WorkspaceVariableName
+  values: '''''（默认）| 字符向量 | 字符串标量'
+- name: Parameter owner block
+  summary: 参数所有者模块的模块路径和模块参数的名称 无默认值
+  group: ''
+  block_parameter: ParameterName
+  values: '''''（默认）| 字符向量 | 字符串标量'
+```
 
 ### **Validate parameter** — 在正常模式仿真期间验证参数的选项 `on`（默认）| `off`
 
@@ -138,7 +168,6 @@ chinese_source: worker-translation
 | **值：** | `''`（默认）| 字符向量 | 字符串标量 |
 
 **示例：** `set_param(gcb,'ParameterName','Gain')`
-
 ## 所属库
 
 Simulink / Signal Routing

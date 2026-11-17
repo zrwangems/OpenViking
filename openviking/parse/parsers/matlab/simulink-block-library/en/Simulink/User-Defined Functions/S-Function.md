@@ -14,6 +14,18 @@ language: en
 # S-Function
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Signal input to an S-function block scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Out
+  summary: Signal output of an S-function block scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -35,8 +47,25 @@ function to specify number of output ports, dimension of output signals,
 and sample time of each port.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: S-function name
+  summary: Name of the S-function system (default) | S-function name
+  group: ''
+  block_parameter: FunctionName
+  values: '''system'' (default) | S-function name in quotes'
+- name: S-function parameters
+  summary: Additional S-function parameters MATLAB expressions | comma-separated variables
+  group: ''
+  block_parameter: Parameters
+  values: ''''' (default) | S-function parameters in quotes'
+- name: S-function modules
+  summary: Additional files for code generation '' (default) | filenames
+  group: ''
+  block_parameter: SFunctionModules
+  values: ''''' (default) | filenames in quotes'
+```
 
 ### **S-function name** — Name of the S-function `system` (default) | S-function name
 
@@ -89,7 +118,6 @@ For more information on using this parameter, see Specify Additional Source File
 | --- | --- |
 | **Parameter:** | `SFunctionModules` |
 | **Values:** | `''` (default) | filenames in quotes |
-
 ## Libraries
 
 Simulink / User-Defined Functions

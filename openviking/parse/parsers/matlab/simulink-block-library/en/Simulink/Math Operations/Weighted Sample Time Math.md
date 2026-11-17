@@ -14,6 +14,17 @@ language: en
 # Weighted Sample Time Math
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -59,8 +70,80 @@ the block is used within a periodic or aperiodic
 | Aperiodic or triggered | Elapsed time since the last execution | - Data type is unsigned. - Word length is large enough to account for   the setting of model configuration parameter   **Application lifespan**. - Scaling is best precision scaling of the   setting of model configuration parameter   **Clock resolution**. |
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation
+  summary: Math operation + (default) | - | * | / | Ts Only | 1/Ts Only
+  group: Main
+  block_parameter: TsampMathOp
+  type: character vector
+  values: '''+'' | ''-'' | ''*'' | ''/'' | ''Ts Only'' | ''1/Ts Only'''
+  default: '''+'''
+- name: Weight value
+  summary: Weight for sample time 1.0 (default) | real-valued scalar
+  group: Main
+  block_parameter: weightValue
+  type: character vector
+  values: real-valued scalar
+  default: '1.0'
+- name: Implement using
+  summary: Method for adjusting sample time Online Calculations (default) | Offline Scaling Adjustment
+  group: Main
+  block_parameter: TsampMathImp
+  type: character vector
+  values: '''Online Calculations'' | ''Offline Scaling Adjustment'''
+  default: '''Online Calculations'''
+- name: Output data type
+  summary: 'Data type of output signal Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation
+    | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,20,0)
+    | <data type expression>'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | double | single | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | fixdt(1,16,20,0) | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Mode
+  summary: Data type mode Inherit (default) | Built in | Fixed point | Expression
+  group: Signal Attributes
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default) | Unsigned
+  group: Signal Attributes
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point
+  group: Signal Attributes
+- name: Word length
+  summary: Bit size of word that holds quantized integer 16 (default) | integer from 2 to 128
+  group: Signal Attributes
+- name: Fraction length
+  summary: Fraction length for fixed-point data type 0 (default) | integer scalar
+  group: Signal Attributes
+- name: Slope
+  summary: Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar
+  group: Signal Attributes
+- name: Bias
+  summary: Specify bias for the fixed-point data type 0 (default) | real-valued scalar
+  group: Signal Attributes
+- name: Data type override
+  summary: Data type override mode Inherit (default) | Off
+  group: Signal Attributes
+```
 
 ### Main
 
@@ -269,7 +352,6 @@ Select the data type override mode for this signal. You can select:
 #### Dependencies
 
 To enable this parameter, set **Mode** to `Built in` or `Fixed point`. For more information, see Specify Data Types Using Data Type Assistant.
-
 ## Libraries
 
 Simulink / Math Operations

@@ -14,6 +14,17 @@ language: en
 # Complex to Real-Imag
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -32,8 +43,22 @@ signal. To choose which part is output, set the
 **Output** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Real and/or imaginary output specification Real and imag (default) | Real | Imag
+  group: ''
+  block_parameter: Output
+  type: string | character vector
+  values: '''Real and imag'' | ''Real'' | ''Imag'''
+  default: '''Real and imag'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Output** — Real and/or imaginary output specification `Real and imag` (default) | `Real` | `Imag`
 
@@ -68,7 +93,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / Math Operations

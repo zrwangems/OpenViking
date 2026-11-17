@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Pipe Bend (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口气体
+  direction: conserving
+- name: B
+  summary: 液体端口气体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,43 @@ chinese_source: worker-translation
 ### **B** — 液体端口气体
 
 与液体入口或出口端口关联的气体守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Pipe diameter
+  summary: 管道直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Bend radius
+  summary: 弯曲圆半径 0.04 m（默认）| 正标量
+  group: ''
+- name: Bend angle
+  summary: 弯曲角度 90 deg（默认）| 正标量
+  group: ''
+- name: Internal surface absolute roughness
+  summary: 管壁粗糙度 15e-6 m（默认）| 正标量
+  group: ''
+- name: Enable dynamic compressibility
+  summary: 对气体通道中的压力动态建模的选项 On（默认）| Off
+  group: ''
+- name: Nominal temperature
+  summary: 额定工况下的温度 293.15 K（默认）| 标量
+  group: ''
+- name: Nominal pressure
+  summary: 额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: ''
+- name: Initial pressure
+  summary: 仿真开始时的压力 0.101325 MPa（默认）| 标量
+  group: ''
+- name: Initial pressure priority
+  summary: 压力参数优先级 High（默认）| Low | None
+  group: ''
+- name: Initial temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 标量
+  group: ''
+- name: Initial temperature priority
+  summary: 温度参数优先级 High（默认）| Low | None
+  group: ''
+```
 
 ### **Pipe diameter** — 管道直径 `0.01 m`（默认）| 正标量
 
@@ -91,7 +135,6 @@ chinese_source: worker-translation
 求解器在初始化模块时分配给 **Initial temperature** 参数的优先级。
 
 将此参数设置为 `High` 以定义初始条件。如果此初始条件与另一个模块的初始条件冲突，您可能需要将此参数设置为 `Low` 或 `None`。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Pipes & Fittings

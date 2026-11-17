@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Interface (2P-G)
 
 ## 端口
+```yaml
+ports:
+- name: 2P
+  summary: 两相端口 两相流体
+  direction: conserving
+- name: G
+  summary: 流体端口 气体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,16 @@ chinese_source: worker-translation
 ### **G** — 流体端口 气体
 
 与界面处气体相关联的气体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: 端口 2P 和 G 的横截面积
+  summary: 端口面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: 两相流体过热蒸汽检查
+  summary: 两相流体过热条件检查 None（默认）| Warning | Error
+  group: ''
+```
 
 ### **端口 2P 和 G 的横截面积** — 端口面积 `0.01` `m^2`（默认）| 正标量
 
@@ -35,7 +52,6 @@ chinese_source: worker-translation
 ### **两相流体过热蒸汽检查** — 两相流体过热条件检查 `None`（默认）| `Warning` | `Error`
 
 当端口 **2P** 处的流体不满足过热条件时要执行的操作。
-
 ## 所属库
 
 Simscape / Fluids / Fluid Network Interfaces

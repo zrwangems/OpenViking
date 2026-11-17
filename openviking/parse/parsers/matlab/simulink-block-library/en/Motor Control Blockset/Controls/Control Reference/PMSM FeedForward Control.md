@@ -14,6 +14,45 @@ language: en
 # PMSM Feed Forward Control
 
 ## Ports
+```yaml
+ports:
+- name: Id
+  summary: D-axis current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Iq
+  summary: Q-axis current scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm
+  summary: Mechanical speed of rotor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Ld
+  summary: D-axis inductance scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Lq
+  summary: Q-axis inductance scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: FluxPM
+  summary: Permanent magnet flux linkage scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vsat
+  summary: Output voltage saturation limit scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: VdFF
+  summary: D-axis feedforward voltage gain scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: VqFF
+  summary: Q-axis feedforward voltage gain scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -97,8 +136,69 @@ Feedforward voltage gain (in volts) along the *q*-axis of the
 rotating *dq* reference frame.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 4 (default) | scalar
+  group: Motor Parameters
+- name: Motor parameter input method
+  summary: Type of motor parameters Linear model with lumped parameters (default) | Non-linear model with D,Q-flux linkage
+    LUTs | Non-linear model with Ld, Lq, and FluxPM LUTs | Input port based Ld, Lq, and FluxPM
+  group: Motor Parameters
+- name: Vsat input method
+  summary: Input method for Vsat Specify via dialog (default) | Input port
+  group: Motor Parameters
+- name: Output saturation (V)
+  summary: Saturation limit for output values 24/sqrt(3) (default) | scalar
+  group: Motor Parameters
+- name: D-axis current breakpoint vector (A)
+  summary: D-axis current lookup vector [-40, -20, 0, 20] (default) | vector
+  group: Motor Parameters
+- name: Q-axis current breakpoint vector (A)
+  summary: Q-axis current lookup vector [-40, -20, 0, 20, 40] (default) | vector
+  group: Motor Parameters
+- name: Stator d-axis inductance (H)
+  summary: D-axis stator winding inductance 0.2e-3 (default) | scalar
+  group: Linear Model with Lumped Parameters
+- name: Stator q-axis inductance (H)
+  summary: Q-axis stator winding inductance 0.2e-3 (default) | scalar
+  group: Linear Model with Lumped Parameters
+- name: Permanent magnet flux linkage (Wb)
+  summary: PM flux linkage 6.4e-3 (default) | scalar
+  group: Linear Model with Lumped Parameters
+- name: D-axis flux linkage LUT, FluxD(id,iq) (Wb)
+  summary: D-axis flux linkage lookup data [-1.6,-1.6,-1.6,-1.6,-1.6;2.4,2.4,2.4,2.4,2.4;6.4,6.4,6.4,6.4,6.4;10.4,10.4,10.4,10.4,10.4]*1e-3
+    (default) | matrix
+  group: Non-Linear Model with D,Q-Flux Linkage LUTs
+- name: Q-axis flux linkage LUT, FluxQ(id,iq) (Wb)
+  summary: Q-axis flux linkage lookup data [-8,-4,0,4,8;-8,-4,0,4,8;-8,-4,0,4,8;-8,-4,0,4,8]*1e-3 (default) | matrix
+  group: Non-Linear Model with D,Q-Flux Linkage LUTs
+- name: Ld LUT, Ld(id,iq) (H)
+  summary: D-axis inductance lookup data 0.2e-3 * ones(4, 5) (default) | matrix
+  group: Non-Linear Model with *Ld* , *Lq*, and *FluxPM* LUTs
+- name: Lq LUT, Lq(id,iq) (H)
+  summary: Q-axis inductance lookup data 0.2e-3 * ones(4, 5) (default) | matrix
+  group: Non-Linear Model with *Ld* , *Lq*, and *FluxPM* LUTs
+- name: PM flux linkage LUT, FluxPM(id,iq) (Wb)
+  summary: PM flux linkage lookup data 6.4e-3 * ones(4, 5) (default) | matrix
+  group: Non-Linear Model with *Ld* , *Lq*, and *FluxPM* LUTs
+- name: Input units
+  summary: Unit of input values Per-Unit (PU) (default) | SI Units
+  group: Input Units
+- name: Base voltage (V)
+  summary: Nominal voltage limit 24/sqrt(3) (default) | scalar
+  group: Input Units
+- name: Base current (A)
+  summary: Nominal current limit 19.3 (default) | scalar
+  group: Input Units
+- name: Base speed (rpm)
+  summary: Nominal speed limit 4107 (default) | scalar
+  group: Input Units
+- name: Allow scaled-down motor parameters with CodeGen (higher precision with Fixed-Point data type)
+  summary: Scale down internal parameters to match per-unit scale on (default) | off
+  group: Input Units
+```
 
 ### Motor Parameters
 
@@ -333,7 +433,6 @@ generating code.
 
 To enable this parameter, set **Input units** to
 `Per-Unit (PU)`.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference

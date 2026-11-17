@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # UDP Send
 
 ## 端口
+```yaml
+ports:
+- name: Port1
+  summary: 向另一个 UDP 主机发送 UDP 消息 向量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### 输入
 
@@ -23,8 +30,19 @@ chinese_source: worker-translation
 该端口接受一个数组，并将其作为 UDP 消息通过 IP 网络端口发送到接收主机。
 
 **数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Remote IP address
+  summary: 接收 UDP 主机的 IP 地址 192.168.3.2（默认值）
+  group: ''
+- name: Remote IP Port
+  summary: 接收 UDP 主机上的 IP 端口 25000（默认值）| [1, 65535]
+  group: ''
+- name: Local IP Port
+  summary: 发送 UDP 主机上的 IP 端口 2048（默认值）| [1, 65535]
+  group: ''
+```
 
 ### **Remote IP address** — 接收 UDP 主机的 IP 地址 `192.168.3.2`（默认值）
 
@@ -41,7 +59,6 @@ chinese_source: worker-translation
 ### **Local IP Port** — 发送 UDP 主机上的 IP 端口 `2048`（默认值）| [1, 65535]
 
 如果为 **Local IP port source** 选择 `Specify via dialog` 选项，则显示此参数。指定要从中发送消息的应用程序的端口号。
-
 ## 所属库
 
 Simulink Support Package for Parrot Minidrones

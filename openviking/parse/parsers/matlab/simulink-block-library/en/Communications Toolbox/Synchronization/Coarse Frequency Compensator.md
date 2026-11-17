@@ -14,6 +14,21 @@ language: en
 # Coarse Frequency Compensator
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal column vector
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: Compensated output signal complex column vector
+  direction: output
+  data_types: single | double
+- name: FreqEst
+  summary: Estimate of frequency offset scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -47,8 +62,31 @@ estimate is an integer multiple of the **Frequency resolution (Hz)** parameter.
 To add this port, select **Estimated frequency offset output port**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation type of input signal
+  summary: Modulation type QAM (default) | 8PSK | BPSK | OQPSK | PAM | QPSK
+  group: ''
+- name: Estimation algorithm
+  summary: Algorithm used to estimate frequency offset FFT-based (default) | Correlation-based
+  group: ''
+- name: Frequency resolution (Hz)
+  summary: Frequency resolution 100 (default) | positive scalar
+  group: ''
+- name: Samples per symbol
+  summary: Number of samples per symbol 4 (default) | even integer greater than or equal to 4
+  group: ''
+- name: Maximum frequency offset (Hz)
+  summary: Maximum measurable frequency offset 5e3 (default) | positive scalar
+  group: ''
+- name: Estimated frequency offset output port
+  summary: Option to add estimated frequency offset output port on (default) | off
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -135,7 +173,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / RF Impairments Correction Communications Toolbox / Synchronization

@@ -14,6 +14,15 @@ language: en
 # Disk
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+- name: G
+  summary: Geometry geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -27,8 +36,41 @@ and orientation of the disk.
 
 Geometry that represents the disk. Connect this port to a Spatial Contact
 Force block to model contacts on the disk.
-
 ## Parameters
+```yaml
+parameters:
+- name: Radius
+  summary: Radius of disk 1 m (default) | positive integer
+  group: ''
+- name: Type
+  summary: Visual representation of disk From Geometry (default) | None
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Opacity of rendered object 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0 0 0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to 1 | 4-by-1
+    or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Shininess
+  summary: Shininess of rendered object 75 (default) | scalar in the range of 0 to 128
+  group: Graphic
+```
 
 ### **Radius** — Radius of disk 1 `m` (default) | positive integer
 
@@ -151,7 +193,6 @@ To enable this parameter, set:
 1. **Type** to `From Geometry`
 2. **Visual Properties** to
    `Advanced`
-
 ## Libraries
 
 Simscape / Multibody / Curves and Surfaces

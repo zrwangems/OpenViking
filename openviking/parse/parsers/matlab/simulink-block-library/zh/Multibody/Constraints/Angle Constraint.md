@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Angle Constraint
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块提供两个坐标系端口：
 
@@ -25,8 +28,10 @@ chinese_source: worker-translation
 
 - t — 角度约束力矩向量
 - tm — 角度约束力矩的带符号幅值
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **类型**：角度约束类型。默认设置为
     `General`。
@@ -82,7 +87,6 @@ chinese_source: worker-translation
 **Signed Torque Magnitude**
 :   计算并输出角度约束力矩的幅值，
     包括其符号。
-
 ## 所属库
 
 R2025b 中未记录。

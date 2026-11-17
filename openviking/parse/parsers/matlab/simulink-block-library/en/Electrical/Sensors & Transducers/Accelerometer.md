@@ -14,6 +14,18 @@ language: en
 # Accelerometer
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Translational port mechanical
+  direction: conserving
+- name: +
+  summary: Positive port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,49 @@ terminal.
 
 Electrical conserving port associated with the accelerometer negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Output type
+  summary: Block output type Voltage level (default) | PWM duty cycle
+  group: ''
+- name: Sensitivity
+  summary: Sensitivity 1000 mV/gee (default)
+  group: ''
+- name: Output voltage for zero acceleration
+  summary: Output voltage for zero acceleration 2.5 V (default)
+  group: ''
+- name: Maximum output voltage
+  summary: Maximum output voltage 4 V (default)
+  group: ''
+- name: Minimum output voltage
+  summary: Minimum output voltage 1 V (default)
+  group: ''
+- name: Duty cycle sensitivity (percent per unit acceleration)
+  summary: Duty cycle sensitivity 10 1/gee (default)
+  group: ''
+- name: Duty cycle for zero acceleration (percent)
+  summary: Duty cycle for zero acceleration 50 (default)
+  group: ''
+- name: Maximum duty cycle (percent)
+  summary: Maximum duty cycle 75 (default)
+  group: ''
+- name: Minimum duty cycle (percent)
+  summary: Minimum duty cycle 25 (default)
+  group: ''
+- name: PWM frequency
+  summary: PWM frequency 1000 Hz (default)
+  group: ''
+- name: Output voltage amplitude
+  summary: Output voltage amplitude 5 V (default)
+  group: ''
+- name: Dynamics
+  summary: Dynamics No dynamics — Suitable for HIL (default) | Model sensor bandwidth
+  group: ''
+- name: Bandwidth
+  summary: Bandwidth 3 kHz (default)
+  group: ''
+```
 
 ### **Output type** — Block output type `Voltage level` (default) | `PWM duty cycle`
 
@@ -175,7 +228,6 @@ first-order time constant.
 This parameter is visible only when you select `Model
 sensor bandwidth` for the **Dynamics**
 parameter.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

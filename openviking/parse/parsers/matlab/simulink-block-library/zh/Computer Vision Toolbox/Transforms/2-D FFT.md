@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # 2-D FFT
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 输出数据 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -33,8 +44,22 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: FFT implementation
+  summary: FFT 实现方式 Auto（默认） | Radix-2 | FFTW
+  group: 主
+- name: Output in bit-reversed order
+  summary: 位反转输出 off（默认） | on
+  group: 主
+- name: Scale result by FFT length
+  summary: 缩放输出数据 off（默认） | on
+  group: 主
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 数据类型覆盖 off（默认） | on
+  group: 数据类型
+```
 
 ### 主
 
@@ -74,7 +99,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against change by the fixed-point tools** — 数据类型覆盖 `off`（默认） | `on`
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关更多信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Transforms

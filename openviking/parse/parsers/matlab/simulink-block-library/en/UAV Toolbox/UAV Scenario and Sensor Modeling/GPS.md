@@ -14,6 +14,33 @@ language: en
 # GPS
 
 ## Ports
+```yaml
+ports:
+- name: Position
+  summary: Position of GPS receiver in navigation coordinate system matrix
+  direction: input
+  data_types: single | double
+- name: Velocity
+  summary: Velocity in local navigation coordinate system (m/s) matrix
+  direction: input
+  data_types: single | double
+- name: LLA
+  summary: Position in LLA coordinate system matrix
+  direction: output
+  data_types: single | double
+- name: Velocity
+  summary: Velocity in local navigation coordinate system (m/s) matrix
+  direction: output
+  data_types: single | double
+- name: Groundspeed
+  summary: Magnitude of horizontal velocity in local navigation coordinate system (m/s) vector
+  direction: output
+  data_types: single | double
+- name: Course
+  summary: Direction of horizontal velocity in local navigation coordinate system (°) vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -114,8 +141,37 @@ corresponds to 90 degrees.
 *N* is the number of samples in the current frame.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reference frame
+  summary: Reference frame NED (default) | ENU
+  group: ''
+- name: Position input format
+  summary: Position coordinate input format Local (default) | Geodetic
+  group: ''
+- name: Reference location
+  summary: Origin of local navigation reference frame [0,0,0] (default) | three-element vector
+  group: ''
+- name: Horizontal position accuracy
+  summary: Horizontal position accuracy (m) 1.6 (default) | nonnegative real scaler
+  group: ''
+- name: Vertical position accuracy
+  summary: Vertical position accuracy (m) 3 (default) | nonnegative real scaler
+  group: ''
+- name: Velocity accuracy
+  summary: Velocity accuracy (m/s) 0.1 (default) | nonnegative real scalar
+  group: ''
+- name: Decay factor
+  summary: Global position noise decay factor 0.999 (default) | scalar in range [0, 1]
+  group: ''
+- name: Seed
+  summary: Initial seed 67 (default) | nonnegative integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Reference frame** — Reference frame `NED` (default) | `ENU`
 
@@ -204,7 +260,6 @@ Select the type of simulation to run from these options:
 - `Code generation` — Simulate the model using generated
   C code. The first time you run a simulation, Simulink® generates C code for the block. The C code is reused for subsequent
   simulations, as long as the model does not change.
-
 ## Libraries
 
 UAV Toolbox / UAV Scenario and Sensor Modeling Navigation Toolbox / Multisensor Positioning / Sensor Models Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Sensor Models

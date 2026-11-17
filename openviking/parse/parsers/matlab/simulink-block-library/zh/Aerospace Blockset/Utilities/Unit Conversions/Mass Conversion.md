@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Mass Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 质量标量 | 数组
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 质量标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -38,8 +49,22 @@ chinese_source: worker-translation
 输出端口标签取决于 **Final unit** 设置。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial unit
+  summary: 输入单位 lbm（默认）| kg | slug
+  group: ''
+  block_parameter: IU
+  type: 字符向量
+  values: '''lbm'' | ''kg'' | ''slug'''
+- name: Final unit
+  summary: 输出单位 kg（默认）| lbm | slug
+  group: ''
+  block_parameter: OU
+  type: 字符向量
+  values: '''lbm'' | ''kg'' | ''slug'''
+```
 
 ### **Initial unit** — 输入单位 `lbm`（默认）| `kg` | `slug`
 
@@ -86,7 +111,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'lbm'` | `'kg'` | `'slug'` |
 | **默认**：`'kg'` |
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Unit Conversions

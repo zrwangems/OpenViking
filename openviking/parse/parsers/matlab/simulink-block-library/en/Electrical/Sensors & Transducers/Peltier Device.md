@@ -14,6 +14,21 @@ language: en
 # Peltier Device
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive electrical port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative electrical port electrical
+  direction: conserving
+- name: A
+  summary: Thermal port thermal
+  direction: conserving
+- name: B
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -35,8 +50,19 @@ current causes heat to flow from port **A** to port
 ### **B** — Thermal port thermal
 
 Thermal conserving port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Seebeck coefficient
+  summary: Thermoelectric sensitivity coefficient 220e-6 V/K (default)
+  group: Electrical
+- name: Total electrical resistance
+  summary: Resistance between the electrical ports 0.02 Ω (default)
+  group: Electrical
+- name: Thermal conductance
+  summary: Conductance between the thermal ports 1.5e-3 W/K (default)
+  group: Thermal
+```
 
 ### Electrical
 
@@ -56,7 +82,6 @@ Total electrical resistance between the **+** and
 
 Thermal conductance between the **A** and **B**
 ports.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

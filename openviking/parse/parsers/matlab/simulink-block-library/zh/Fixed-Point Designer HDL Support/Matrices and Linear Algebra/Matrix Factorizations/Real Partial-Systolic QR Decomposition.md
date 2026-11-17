@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Real Partial-Systolic QR Decomposition
 
 ## 端口
+```yaml
+ports:
+- name: A(i,:)
+  summary: 矩阵 *A* 的行 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: B(i,:)
+  summary: 矩阵 *B* 的行 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: 是否清除内部状态 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: R
+  summary: 矩阵 *R* 标量 | 向量
+  direction: output
+  data_types: single | double | fixed point
+- name: C
+  summary: 矩阵 *C = Q'B* 标量 | 向量
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 模块是否就绪 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -113,8 +148,38 @@ chinese_source: worker-translation
 `validIn` 信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of rows in input matrices A and B
+  summary: 矩阵 *A* 和 *B* 的行数 4（默认）| 正整数值标量
+  group: ''
+  block_parameter: m
+  type: character vector
+  values: positive integer-valued scalar
+  default: '4'
+- name: Number of columns in matrix A
+  summary: 输入矩阵 *A* 的列数 4（默认）| 正整数值标量
+  group: ''
+  block_parameter: n
+  type: character vector
+  values: positive integer-valued scalar
+  default: '4'
+- name: Number of columns in matrix B
+  summary: 输入矩阵 *B* 的列数 1（默认）| 正整数值标量
+  group: ''
+  block_parameter: p
+  type: character vector
+  values: positive integer-valued scalar
+  default: '1'
+- name: Regularization parameter
+  summary: 正则化参数 0（默认）| 实数非负标量
+  group: ''
+  block_parameter: regularizationParameter
+  type: character vector
+  values: real nonnegative scalar
+  default: '0'
+```
 
 ### **Number of rows in input matrices A and B** — 矩阵 *A* 和 *B* 的行数 `4`（默认）| 正整数值标量
 
@@ -173,7 +238,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：real nonnegative scalar |
 | **默认值**：`0` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations

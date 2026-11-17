@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Block Matching
 
 ## 端口
+```yaml
+ports:
+- name: I/I1
+  summary: 图像或视频帧 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I2
+  summary: 图像或视频帧 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: '|V|^2'
+  summary: 速度幅值 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: V
+  summary: 复数形式的速度分量 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -50,8 +69,34 @@ chinese_source: worker-translation
 要显示此端口，请将 **Velocity output** 参数设置为 `Horizontal and vertical components in complex form`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Estimate motion between
+  summary: 估计图像或帧之间的运动 Current frame and N-th frame back（默认）| Two images
+  group: ''
+- name: N
+  summary: 帧数 1（默认）| 标量
+  group: ''
+- name: Search method
+  summary: 块匹配搜索方法 Exhaustive（默认）| Three-step
+  group: ''
+- name: Block matching criteria
+  summary: 块匹配准则 Mean square error (MSE)（默认）| Mean absolute difference (MAD)
+  group: ''
+- name: Block size [height width]
+  summary: 块大小 [17 17]（默认）| 二元素向量
+  group: ''
+- name: Overlap size [r c]
+  summary: 块重叠 [0 0]（默认）| 二元素向量
+  group: ''
+- name: Maximum displacement [r c]
+  summary: 最大位移 [7 7]（默认）| 二元素向量
+  group: ''
+- name: Velocity output
+  summary: 速度输出 Magnitude-squared（默认）| Horizontal and vertical components in complex form
+  group: ''
+```
 
 **主选项卡**
 
@@ -111,7 +156,6 @@ MAD(d1,d2)=1N1×N2∑(n1,n2),∑∈B|s(n1,n2,k)−s(n1+d1,n2+d2,k+1)|
 **数据类型选项卡**
 
 有关定点块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

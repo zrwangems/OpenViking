@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Cell Delta SOC Estimator (Kalman Filter, Variable Resistance)
 
 ## 端口
+```yaml
+ports:
+- name: Current
+  summary: 电池电流，安培标量 | 向量
+  direction: input
+- name: CellVoltage
+  summary: 电芯电压，伏特标量 | 向量
+  direction: input
+- name: CellTemperature
+  summary: 电芯温度，K 标量 | 向量
+  direction: input
+- name: dInvCellAH
+  summary: 逆增量电芯容量，A\*Hr 标量 | 向量
+  direction: input
+- name: CellR0
+  summary: 电芯端子电阻，欧姆标量 | 向量
+  direction: input
+- name: PackSOC
+  summary: 电池包平均 SOC，无量纲标量
+  direction: input
+- name: Vdyn
+  summary: 电池包平均动态过电位电压，伏特标量
+  direction: input
+- name: CellSOC
+  summary: 电池电芯 SOC 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -50,8 +77,55 @@ chinese_source: worker-translation
 ### **CellSOC** — 电池电芯 SOC 标量 | 向量
 
 电池电芯的 SOC，返回为标量或向量。此输出端口的大小等于 **CellVoltage**、**CellTemperature** 和 **dInvCellAH** 输入端口的大小。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify Current input as cell current(s)
+  summary: 将电流输入端口指定为向量的选项 off（默认）| on
+  group: 主
+- name: Filter type
+  summary: 卡尔曼滤波器类型 Extended Kalman filter（默认）| Extended Kalman-Bucy filter | Unscented Kalman filter | Unscented Kalman-Bucy
+    filter
+  group: 主
+- name: Alpha
+  summary: Alpha 系数 1（默认）| 范围 (0,1] 内的标量
+  group: 主
+- name: Beta
+  summary: Beta 系数 2（默认）| 非负标量
+  group: 主
+- name: Kappa
+  summary: Kappa 系数 0（默认）| 范围 [0, 3] 内的标量
+  group: 主
+- name: Covariance of the process noise, Q
+  summary: 过程噪声协方差 0.0001（默认）| 标量
+  group: 主
+- name: Covariance of the measurement noise, R
+  summary: 测量噪声协方差 0.7（默认）| 标量
+  group: 主
+- name: Initial state error covariance, P0
+  summary: 初始状态误差协方差 1e-3（默认）| 标量
+  group: 主
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 1（默认）| 0 | -1 | 整数
+  group: 主
+- name: Vector of state-of-charge values, SOC (-)
+  summary: SOC 断点 [0, .1, .25, .5, .75, .9, 1]（默认）| 范围 [0, 1] 内的标量向量
+  group: 系统模型
+- name: Vector of temperatures, T
+  summary: 温度断点 [278, 293, 313]（默认）| 正标量向量
+  group: 系统模型
+- name: Terminal resistance, R0(SOC,T), (ohm)
+  summary: 带温度断点的 R0 查找表 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091;
+    .0113, .0085, .0089; .0116, .0085, .0089]（默认）| 正元素矩阵
+  group: 系统模型
+- name: No-load voltage, V0(SOC,T), (V)
+  summary: '*V*0 查找表 [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07, 4.08,
+    4.08; 4.19, 4.19, 4.19]（默认）| 非负元素矩阵'
+  group: 系统模型
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: 信号属性
+```
 
 ### 主
 
@@ -143,7 +217,6 @@ chinese_source: worker-translation
 - `<data type expression>` — 模块算法将所有输入和参数转换为您指定的数据类型对象。
 
 单击 **Show data type assistant** 按钮 以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Estimators

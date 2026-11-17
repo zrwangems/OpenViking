@@ -14,6 +14,21 @@ language: en
 # QPSK Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input QPSK-modulated signal scalar | vector
+  direction: input
+  data_types: double | single | fixed point
+- name: Var
+  summary: Noise variance estimate positive scalar
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output signal scalar | column vector
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -61,8 +76,35 @@ demodulated version of the PSK-modulated input signal, **In**.
 This port in unnamed on the block.
 
 **Data Types:** `double` | `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output type
+  summary: Integer or bit pair output indicator Integer (default) | Bit
+  group: Main
+- name: Decision type
+  summary: Demodulator output Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio
+  group: Main
+- name: Noise variance source
+  summary: Source of noise variance estimate Dialog (default) | Port
+  group: Main
+- name: Noise variance
+  summary: Noise variance estimate 1 (default) | positive scalar
+  group: Main
+- name: Constellation ordering
+  summary: Symbol mapping Gray (default) | Binary
+  group: Main
+- name: Phase offset (rad)
+  summary: Phase offset of zeroth point pi/4 (default) | scalar
+  group: Main
+- name: Output
+  summary: Output data type Same as input
+  group: Data Types
+- name: Output data type
+  summary: Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | boolean
+  group: Data Types
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -244,7 +286,6 @@ This parameter applies when you set **Output type** to `Integer`
 or **Output type** to
 `Bit` and **Decision type** to `Hard
 decision`.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

@@ -15,14 +15,59 @@ chinese_source: worker-translation
 # Thermal Liquid Properties (TL)
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 用于定义工作流体热液的热液网络
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **R** — 用于定义工作流体热液的热液网络
 
 用于标识要为其定义必要流体属性的热液网络的节点。此模块中选择的流体应用于整个网络。不得将其他 Thermal Liquid Properties (TL) 或 Thermal Liquid Settings (TL) 模块连接到同一网络。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermal liquid fluid list
+  summary: 可用工作流体 Water（默认）| Seawater (MIT model) | Ethylene glycol and water mixture | Propylene glycol and water mixture
+    | Glycerol and water mixture | Diesel Fuel | Aviation fuel Jet-A | SAE 5W-30
+  group: ''
+- name: Dissolved salt mass fraction (salinity)
+  summary: 盐的质量除以盐水混合物的总质量 3.5e-3（默认）| 0 到 1 之间的正无量纲标量
+  group: ''
+- name: Concentration type
+  summary: 定义混合物浓度所依据的量 Volume fraction（默认）| Mass fraction
+  group: ''
+- name: Ethylene glycol volume fraction
+  summary: 乙二醇的体积除以水溶液混合物的体积 0.1（默认）| 0 到 1 之间的正无量纲标量
+  group: ''
+- name: Ethylene glycol mass fraction
+  summary: 乙二醇的质量除以水溶液混合物的质量 0.1（默认）| 0 到 1 之间的正无量纲标量
+  group: ''
+- name: Propylene glycol volume fraction
+  summary: 丙二醇的质量除以水溶液混合物的质量 0.1（默认）| 0 到 1 之间的正无量纲标量
+  group: ''
+- name: Propylene glycol mass fraction
+  summary: 丙二醇的质量除以水溶液混合物的质量 0.1（默认）| 0 到 1 之间的正无量纲标量
+  group: ''
+- name: Isothermal bulk modulus
+  summary: 在恒定温度下指定的流体可压缩性度量 2.1791 GPa（默认）| 带压力单位的正标量
+  group: ''
+- name: Minimum valid pressure
+  summary: 热液网络允许压力范围的下界 0.01 MPa（默认）| 带压力单位的正标量
+  group: ''
+- name: Maximum valid pressure
+  summary: 热液网络允许压力范围的上界 50 MPa（默认）| 带压力单位的正标量
+  group: ''
+- name: Atmospheric pressure
+  summary: 热液网络环境中的绝对压力 0.101325 MPa（默认）| 带压力单位的正标量
+  group: ''
+- name: Pressure and temperature outside valid range
+  summary: 当压力或温度超出有效范围时是否通知 Error（默认）| Warning | None
+  group: ''
+```
 
 ### **Thermal liquid fluid list** — 可用工作流体 `Water`（默认）| `Seawater (MIT model)` | `Ethylene glycol and water mixture` | `Propylene glycol and water mixture` | `Glycerol and water mixture` | `Diesel Fuel` | `Aviation fuel Jet-A` | `SAE 5W-30`
 
@@ -107,7 +152,6 @@ chinese_source: worker-translation
 - `None` ― 如果属性超出范围，模块不返回错误。
 - `Warning` ― 模块发出警告，但继续仿真。
 - `Error` ― 模块返回错误并停止仿真。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Utilities

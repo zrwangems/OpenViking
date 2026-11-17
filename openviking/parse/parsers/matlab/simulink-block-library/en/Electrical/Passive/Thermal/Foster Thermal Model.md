@@ -14,6 +14,15 @@ language: en
 # Foster Thermal Model
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Left junction thermal
+  direction: conserving
+- name: B
+  summary: Right junction thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,19 @@ Thermal conserving port associated with the left junction.
 ### **B** — Right junction thermal
 
 Thermal conserving port associated with the right junction.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermal resistance data
+  summary: Thermal resistance values [ 0.0016 0.0043 0.0013 0.0014 ] K/W (default)
+  group: ''
+- name: Thermal time constant data
+  summary: Thermal time constant data [ 0.0068 0.064 0.32 2 ] s (default)
+  group: ''
+- name: Start from steady state
+  summary: Thermal time constant data On (default) | Off
+  group: ''
+```
 
 ### **Thermal resistance data** — Thermal resistance values `[ 0.0016 0.0043 0.0013 0.0014 ]` `K/W` (default)
 
@@ -41,7 +61,6 @@ module, specified as a vector.
 ### **Start from steady state** — Thermal time constant data `On` (default) | `Off`
 
 Whether to initialize the block in steady state.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Thermal

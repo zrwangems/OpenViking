@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # CIC Decimator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 标量 | 列向量
+  direction: input
+  data_types: int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示输入数据有效 标量
+  direction: input
+  data_types: Boolean
+- name: R
+  summary: 可变抽取率 标量
+  direction: input
+  data_types: fixdt(0,12,0)
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: CIC 抽取输出数据 标量 | 列向量
+  direction: output
+  data_types: int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示输出数据有效 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -71,8 +98,40 @@ chinese_source: worker-translation
 控制信号，指示来自输出 **data** 端口的数据是否有效。当 **valid** 为 `1`（`true`）时，模块从输出 **data** 端口返回有效数据。当 **valid** 为 `0`（`false`）时，输出 **data** 端口的值无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Decimation factor source
+  summary: 抽取因子的来源 Property（默认）| Input port
+  group: 主要参数
+- name: Decimation factor (R)
+  summary: 抽取因子 2（默认）| 从 1 到 2048 的整数
+  group: 主要参数
+- name: Decimation factor (Rmax)
+  summary: 可变抽取因子的上界 2（默认）| 从 1 到 2048 的整数
+  group: 主要参数
+- name: Differential delay (M)
+  summary: 差分延迟 1（默认）| 2
+  group: 主要参数
+- name: Number of sections (N)
+  summary: 积分器和梳状部分的节数 2（默认）| 1 | 3 | 4 | 5 | 6
+  group: 主要参数
+- name: Gain correction
+  summary: 输出增益补偿 off（默认）| on
+  group: 主要参数
+- name: Output data type
+  summary: 输出的数据类型 Full precision（默认）| Same word length as input | Minimum section word lengths
+  group: 数据类型
+- name: Output word length
+  summary: 输出的字长 16（默认）| 从 2 到 104 的整数
+  group: 数据类型
+- name: Enable reset input port
+  summary: 复位信号 off（默认）| on
+  group: Control Ports
+- name: Use HDL global reset
+  summary: 将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off（默认）| on
+  group: Control Ports
+```
 
 ### 主要参数
 
@@ -156,7 +215,6 @@ chinese_source: worker-translation
 选择此参数以将生成的 HDL 全局复位信号连接到数据路径寄存器。此参数不会改变模块的外观，也不会修改 Simulink 中的仿真行为。当您清除此参数时，生成的 HDL 全局复位仅清除控制路径寄存器。生成的 HDL 全局复位可以是同步或异步的，具体取决于模型配置参数中的 **HDL Code Generation** > **Global Settings** > **Reset type** 参数。
 
 有关更多复位注意事项，请参阅提示。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

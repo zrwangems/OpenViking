@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Marine Propeller
 
 ## 端口
+```yaml
+ports:
+- name: Va
+  summary: 进速，m/s 物理信号
+  direction: input
+- name: PR
+  summary: 叶距直径比，无量纲物理信号
+  direction: input
+- name: Rho
+  summary: 可变密度，kg/m^3 物理信号
+  direction: input
+- name: w
+  summary: 螺旋桨转速，rad/s 物理信号
+  direction: input
+- name: Th
+  summary: 螺旋桨推力，N 物理信号
+  direction: output
+- name: E
+  summary: 效率，无量纲物理信号
+  direction: output
+- name: Q
+  summary: 螺旋桨阻力矩，N\*m 物理信号
+  direction: output
+- name: R1
+  summary: 杆接口 机械旋转
+  direction: output
+- name: R2
+  summary: 船舶速度和推力 机械平移
+  direction: output
+- name: C2
+  summary: 参考水流 机械平移
+  direction: output
+```
 
 ### 输入
 
@@ -99,8 +132,121 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请将 **Translational connections** 设置为 `Conserving`。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 螺旋桨参数化 Constant coefficients（默认）| Polynomial fit | Tabulated data for advance ratio | Tabulated data for advance
+    angle
+  group: 螺旋桨
+- name: Propeller direction
+  summary: 正推力方向 Negative rotational velocity generates positive thrust for positive thrust coefficients（默认）| Positive rotational
+    velocity generates positive thrust for positive thrust coefficients
+  group: 螺旋桨
+- name: Propeller diameter
+  summary: 螺旋桨直径 0.2 m（默认）| 正标量
+  group: 螺旋桨
+- name: Thrust coefficient, kT
+  summary: 推力系数 0.25（默认）| 正标量
+  group: 螺旋桨
+- name: Resistive torque coefficient, kQ
+  summary: 扭矩系数 0.05（默认）| 正标量
+  group: 螺旋桨
+- name: Blade pitch type
+  summary: 恒定或可控叶片螺距 Constant（默认）| Controlled
+  group: 螺旋桨
+- name: kT polynomial coefficients (pN...p0)
+  summary: 推力系数多项式系数 [.063, -.19, -.25, .37]（默认）| 向量
+  group: 螺旋桨
+- name: kQ polynomial coefficients (pN...p0)
+  summary: 扭矩系数多项式系数 [.0043, -.021, -.03, .05]（默认）| 向量
+  group: 螺旋桨
+- name: Pitch-diameter ratio vector, P/D
+  summary: 推力和扭矩系数的叶距直径比值 [-.5, .5, .7, .9, 1.1, 1.4]（默认）| 向量
+  group: 螺旋桨
+- name: Table of kT polynomial coefficients (P/D, pN...p0)
+  summary: 可控螺距螺旋桨的多项式推力系数 [.04, -.1, -.24, .12; .118, -.24, -.24, .19; .082, -.21, -.25, .28; .063, -.19, -.25, .37; .055,
+    -.17, -.25, .45; .064, -.21, -.19, .55]（默认）| 矩阵
+  group: 螺旋桨
+- name: Table of kQ polynomial coefficients (P/D, pN...p0)
+  summary: 可控螺距螺旋桨的多项式扭矩系数 [.02, -.06, -.02, .02; .04, -.034, -.016, .018; .0076, -.02, -.023, .031; .0043, -.021, -.03, .05;
+    .0047, -.024, -.036, .073; .0045, -.025, -.044, .11]（默认）| 矩阵
+  group: 螺旋桨
+- name: Advance ratio vector, J
+  summary: 表格化推力和扭矩系数的进速比范围 [0, .3, .5, .7, .9, 1.2, 1.5]（默认）| 向量
+  group: 螺旋桨
+- name: Thrust coefficient vector, kT(J)
+  summary: 给定进速比的表格化推力系数值 [.37, .28, .21, .12, .033, -.098, -.23]（默认）| 向量
+  group: 螺旋桨
+- name: Resistive torque coefficient vector, kQ(J)
+  summary: 给定进速比的表格化扭矩系数值 [.049, .039, .03, .02, .0096, -.0093, -.028]（默认）| 向量
+  group: 螺旋桨
+- name: Thrust coefficient table, kT(P/D, J)
+  summary: 给定叶距直径比和进速比的表格化推力系数值 [.12, .04, -.02, -.083, -.15, -.24, -.33;（默认）| 矩阵 | ...
+  group: 螺旋桨
+- name: Resistive torque coefficient table, kQ(P/D, J)
+  summary: 给定叶距直径比和进速比的表格化扭矩系数值 [.02, .0091, -.0025, -.017, -.032, -.056, -.078;（默认）| 矩阵 | ...
+  group: 螺旋桨
+- name: Advance angle vector, β
+  summary: 递增进速角 linspace(0, 360, 10) deg（默认）| 长度为 *N* 的向量
+  group: 螺旋桨
+- name: Thrust coefficient vector, Ct(β)
+  summary: 给定进速角的表格化推力系数 0.2 * sind(linspace(0, 360, 10) - 200)（默认）| 长度为 *N* 的向量
+  group: 螺旋桨
+- name: Torque coefficient vector, Cq(β)
+  summary: 给定进速角的表格化扭矩系数 0.015 * sind(linspace(0, 360, 10) - 200)（默认）| 长度为 *N* 的向量
+  group: 螺旋桨
+- name: Thrust coefficient table, Ct(P/D, β)
+  summary: 给定叶距直径比和进速角的表格化推力系数 [0.15 * sind(linspace(0, 360, 10) - 200); 0.20 * sind(linspace(0, 360, 10) - 200);（默认）| *M*×*N*
+    矩阵
+  group: 螺旋桨
+- name: Torque coefficient table, Cq(P/D, β)
+  summary: 给定叶距直径比和进速角的表格化扭矩系数 [0.010 * sind(linspace(0, 360, 10) - 200); 0.015 * sind(linspace(0, 360, 10) - 200);（默认）| *M*×*N*
+    矩阵 | ...
+  group: 螺旋桨
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Linear（默认）| Smooth
+  group: 螺旋桨
+- name: Extrapolation method
+  summary: 处理超出断点数据集范围的输入值的方法 Linear（默认）| Nearest | Error
+  group: 螺旋桨
+- name: Fluid density specification
+  summary: 流体密度选择 Constant（默认）| Variable
+  group: 环境与动力学
+- name: Fluid density
+  summary: 恒定流体密度值 1000 kg/m^3（默认）| 正标量
+  group: 环境与动力学
+- name: Rotational connections
+  summary: 旋转运动输入选项 Physical signals（默认）| Conserving
+  group: 环境与动力学
+- name: Translational connections
+  summary: 平移运动输入选项 Conserving（默认）| Physical signals
+  group: 环境与动力学
+- name: Wake fraction
+  summary: 伴流调整后的船舶速度百分比 0.2（默认）| 非负标量
+  group: 环境与动力学
+- name: Model inertia
+  summary: 惯性选项 off（默认）| on
+  group: 环境与动力学
+- name: Propeller inertia
+  summary: 螺旋桨惯性 0.1 kg*m^2（默认）| 正标量
+  group: 环境与动力学
+- name: Propeller mass
+  summary: 螺旋桨质量 10 kg（默认）| 正标量
+  group: 环境与动力学
+- name: Efficiency sensor
+  summary: 运行效率输出选项 off（默认）| on
+  group: 高级
+- name: Rotational speed threshold
+  summary: 转速平滑点 0.001 Hz（默认）| 正标量
+  group: 高级
+- name: Saturation threshold for nondimensional coefficients
+  summary: 无量纲系数平滑点 0.001（默认）| 正标量
+  group: 高级
+- name: Check if operating beyond normal propeller operation
+  summary: 运行边界容差 Warning（默认）| None | Error
+  group: 高级
+```
 
 ### 螺旋桨
 
@@ -435,7 +581,6 @@ inertia**。
 **Parameterization** 设置为 `Polynomial
 fit` 或 `Tabulated data for advance
 ratio`。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors

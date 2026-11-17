@@ -14,6 +14,18 @@ language: en
 # CMOS NOR
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input port electrical
+  direction: conserving
+- name: B
+  summary: Input port electrical
+  direction: conserving
+- name: J
+  summary: Output port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +40,61 @@ Electrical conserving port associated with the CMOS NOR input.
 ### **J** — Output port electrical
 
 Electrical conserving port associated with the CMOS NOR output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Low level input voltage
+  summary: Low level input voltage 2 V (default)
+  group: Inputs
+- name: High level input voltage
+  summary: High level input voltage 3 V (default)
+  group: Inputs
+- name: Average input capacitance
+  summary: Average input capacitance 5 pF (default)
+  group: Inputs
+- name: Output current-voltage relationship
+  summary: Output current-voltage relationship Linear (default) | Quadratic
+  group: Outputs
+- name: Low level output voltage
+  summary: Low level output voltage 0 V (default)
+  group: Outputs
+- name: High level output voltage
+  summary: High level output voltage 5 V (default)
+  group: Outputs
+- name: Output resistance
+  summary: Output resistance 25 Ohm (default)
+  group: Outputs
+- name: Supply voltage
+  summary: Supply voltage 5 V (default)
+  group: Outputs
+- name: Measurement voltage
+  summary: Measurement voltage 5 V (default)
+  group: Outputs
+- name: Logic HIGH output resistance at zero current and at I_OH
+  summary: Logic HIGH output resistance at zero current and at I_OH [25, 250] Ohm
+  group: Outputs
+- name: Logic HIGH output current I_OH when shorted to ground
+  summary: Logic HIGH output current I_OH when shorted to ground 63 mA (default)
+  group: Outputs
+- name: Logic LOW output resistance at zero current and at I_OL
+  summary: Logic LOW output resistance at zero current and at I_OL [30, 800] Ohm (default)
+  group: Outputs
+- name: Logic LOW output current I_OL when shorted to Vcc
+  summary: Logic LOW output current I_OL when shorted to Vcc -45 mA (default)
+  group: Outputs
+- name: Propagation delay
+  summary: Propagation delay 25 ns (default)
+  group: Outputs
+- name: Protection diode on resistance
+  summary: Protection diode on resistance 5 Ohm (default)
+  group: Outputs
+- name: Protection diode forward voltage
+  summary: Protection diode forward voltage 0.6 V (default)
+  group: Outputs
+- name: Output initial state
+  summary: Output initial state Low (default) | High
+  group: Initial Conditions
+```
 
 ### Inputs
 
@@ -212,7 +277,6 @@ greater than zero and the Solver
 Configuration block does not have the
 **Start simulation from steady state** option
 selected.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits / Logic

@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Digital IO Interface
 
 ## 端口
+```yaml
+ports:
+- name: msg
+  summary: SoC 消息数据标量
+  direction: input
+  data_types: SoCData
+- name: in
+  summary: 输入数字信号标量
+  direction: input
+  data_types: single | double
+- name: out
+  summary: 输出数字信号标量
+  direction: output
+  data_types: single | double
+- name: event
+  summary: 任务事件信号标量
+  direction: output
+  data_types: rteEvent
+- name: message
+  summary: SoC 消息数据标量
+  direction: output
+  data_types: SoCData
+```
 
 ### 输入
 
@@ -68,8 +91,28 @@ chinese_source: worker-translation
 要启用此端口，请将 **IO direction** 参数设置为 `Input`。
 
 **数据类型：** `SoCData`
-
 ## 参数
+```yaml
+parameters:
+- name: IO direction
+  summary: 将模块配置为数字输入或输出 Input（默认）| Output
+  group: ''
+- name: Low input voltage
+  summary: 低输入电压阈值 0.2（默认）| 非负标量
+  group: ''
+- name: High input voltage
+  summary: 高输入电压阈值 2.5（默认）| 非负标量
+  group: ''
+- name: Enable event
+  summary: 启用事件生成的选项 on（默认）| off
+  group: ''
+- name: Condition
+  summary: 触发事件的条件 Rising edge（默认）| Falling edge | Both
+  group: ''
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 ### **IO direction** — 将模块配置为数字输入或输出 `Input`（默认）| `Output`
 
@@ -104,7 +147,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样时间 `-1`（默认）| 正标量
 
 指定采样时间（以秒为单位），以定义输出包含数字输入数据的消息的速率。
-
 ## 所属库
 
 SoC Blockset / Peripherals Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

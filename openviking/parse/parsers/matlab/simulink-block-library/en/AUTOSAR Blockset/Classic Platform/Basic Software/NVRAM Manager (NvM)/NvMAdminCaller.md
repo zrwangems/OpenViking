@@ -14,10 +14,37 @@ language: en
 # NvMAdminCaller
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Client port name
+  summary: Name of client port AUTOSAR component uses to call NvM service interface NvMAdmin NvMAdmin (default) | character
+    vector
+  group: ''
+  block_parameter: PortName
+  type: character vector
+  values: '''NvMAdmin'' | unique name'
+  default: '''NvMAdmin'''
+- name: Operation
+  summary: Operation defined in NvM service interface NvMAdmin SetBlockProtection (default)
+  group: ''
+  block_parameter: Operation
+  type: character vector
+  values: '''SetBlockProtection'''
+  default: '''SetBlockProtection'''
+- name: Sample time
+  summary: Block sample time -1 (default) | scalar
+  group: ''
+  block_parameter: st
+  type: scalar
+  values: '''-1'' | scalar'
+  default: '''-1'''
+```
 
 ### **Client port name** — Name of client port AUTOSAR component uses to call NvM service interface `NvMAdmin` `NvMAdmin` (default) | character vector
 
@@ -67,7 +94,6 @@ inherit its sample time from the model.
 | **Type:** scalar |
 | **Values:** `'-1' |` scalar |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 AUTOSAR Blockset / Classic Platform / Basic Software / NVRAM Manager (NvM)

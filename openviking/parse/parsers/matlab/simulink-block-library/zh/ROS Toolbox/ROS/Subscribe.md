@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Subscribe
 
 ## 端口
+```yaml
+ports:
+- name: IsNew
+  summary: 新消息指示符 0 | 1
+  direction: output
+- name: Msg
+  summary: ROS 消息非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输出
 
@@ -27,8 +37,25 @@ chinese_source: worker-translation
 ROS 消息，以非虚拟总线形式返回。ROS 消息的类型在 **Message type** 参数中指定。Subscribe 模块在接收到您指定的主题名称上的消息之前，会输出空白消息。这些空白消息允许您在网络的其余部分设置完成之前创建并测试完整模型。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Topic source
+  summary: 用于指定主题名称的来源 Select from ROS network | Specify your own
+  group: ''
+- name: Topic
+  summary: 要订阅的主题名称 string
+  group: ''
+- name: Message type
+  summary: ROS 消息类型 string
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 –1（默认）| 标量
+  group: ''
+- name: Length of subscribe callback queue
+  summary: 消息队列长度 1（默认）| 整数
+  group: ''
+```
 
 ### **Topic source** — 用于指定主题名称的来源 `Select from ROS network` | `Specify your own`
 
@@ -58,7 +85,6 @@ ROS 消息类型，指定为字符串。使用 **Select** 从受支持的 ROS �
 ### **Length of subscribe callback queue** — 消息队列长度 `1`（默认）| 整数
 
 代码生成中的消息队列长度，指定为整数。在仿真中，消息队列始终为 1，且无法调整。为确保捕获每条消息，请使用较小的模型步长，或仅在 `IsNew` 返回 `1` 时执行模型。
-
 ## 所属库
 
 ROS Toolbox / ROS

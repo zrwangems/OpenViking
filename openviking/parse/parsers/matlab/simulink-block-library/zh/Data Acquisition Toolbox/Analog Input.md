@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Analog Input
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 采集的模拟输入 double
+  direction: output
+  data_types: double
+- name: Relative timestamp
+  summary: 扫描的相对时间戳
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -29,8 +40,31 @@ chinese_source: worker-translation
 每次扫描的相对时间戳，以 double 形式返回。当您选中 Output relative timestamps 参数时，此端口可用。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: 要从中采集数据的设备
+  group: ''
+- name: Acquisition Mode
+  summary: 同步设置 Asynchronous | Synchronous
+  group: ''
+- name: Channels
+  summary: 设备通道选择和配置选项取决于设备
+  group: ''
+- name: Number of ports
+  summary: 输出数据端口数 1 for all channels | 1 per channel
+  group: ''
+- name: Input sample rate
+  summary: 设备采样率 数值
+  group: ''
+- name: Block size
+  summary: 每个时间步的扫描数 整数值
+  group: ''
+- name: Output relative timestamps
+  summary: 添加时间戳输出端口
+  group: ''
+```
 
 使用“模块参数”对话框选择采集模式并设置其他配置选项。
 
@@ -107,7 +141,6 @@ chinese_source: worker-translation
 ### **Output relative timestamps** — 添加时间戳输出端口
 
 选择此选项以输出相对数据时间戳，每个样本一个。此选项为模块添加一个新的输出端口。此端口的数据类型为 double，对应于样本相对于采集开始的时间偏移（以秒为单位）。对于异步采集，采集在模型执行开始时启动一次，相对时间戳是相对于仿真开始的单调递增值。对于同步采集，每个时间步都会启动一次采集；因此，每次启动采集时相对时间戳都会重置为零。
-
 ## 所属库
 
 Data Acquisition Toolbox

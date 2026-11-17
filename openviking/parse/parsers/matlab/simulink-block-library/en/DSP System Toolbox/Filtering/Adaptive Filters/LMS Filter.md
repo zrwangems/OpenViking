@@ -14,6 +14,41 @@ language: en
 # LMS Filter
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: single | double | fixed point
+- name: Desired
+  summary: Desired signal scalar | column vector
+  direction: input
+  data_types: single | double | fixed point
+- name: Step-size
+  summary: Step-size scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Adapt
+  summary: Update filter weights scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | Boolean
+- name: Reset
+  summary: Reset filter weights scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | Boolean
+- name: Output
+  summary: Estimate of desired signal scalar | column vector
+  direction: output
+  data_types: single | double | fixed point
+- name: Error
+  summary: Error between output and desired signals scalar | column vector
+  direction: output
+  data_types: single | double | fixed point
+- name: Wts
+  summary: Filter weights scalar | column vector
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -132,8 +167,58 @@ This port appears only when you set the `Output filter weights` parameter to
 `On`.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Algorithm
+  summary: Select algorithm LMS (default) | Normalized LMS | Sign-Error LMS | Sign-Data LMS | Sign-Sign LMS
+  group: Main Tab
+- name: Filter length
+  summary: Filter length 32 (default) | scalar
+  group: Main Tab
+- name: Specify step size via
+  summary: Specify step size via Dialog (default) | Input port
+  group: Main Tab
+- name: Step size (mu)
+  summary: Step size 0.1 (default) | positive scalar
+  group: Main Tab
+- name: Leakage factor (0 to 1)
+  summary: Leakage factor 1.0 (default) | scalar
+  group: Main Tab
+- name: Initial value of filter weights
+  summary: Initial value of filter weights 0 (default) | vector | scalar
+  group: Main Tab
+- name: Adapt port
+  summary: Enable Adapt port off (default) | on
+  group: Main Tab
+- name: Reset port
+  summary: Reset port None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: Main Tab
+- name: Output filter weights
+  summary: Output filter weights on (default) | off
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Type Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Type Tab
+- name: Parameters
+  summary: Parameters Same word length as first input (default) | Specify word length | Binary point scaling
+  group: Data Type Tab
+- name: Weights
+  summary: Word and fraction length of filter weights Same as first input (default) | Binary point scaling
+  group: Data Type Tab
+- name: Product and quotient
+  summary: Word and fraction length of product and quotient Same as first input (default) | Binary point scaling
+  group: Data Type Tab
+- name: Accumulator
+  summary: Word and fraction lengths of accumulators Same as first input (default) | Binary point scaling
+  group: Data Type Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Type Tab
+```
 
 ### Main Tab
 
@@ -344,7 +429,6 @@ Multiplication Data Types.
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Adaptive Filters DSP System Toolbox HDL Support / Filtering

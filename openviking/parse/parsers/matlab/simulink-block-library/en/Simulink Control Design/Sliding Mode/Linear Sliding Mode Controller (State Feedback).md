@@ -14,6 +14,29 @@ language: en
 # Linear Sliding Mode Controller (State Feedback)
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: System states scalar | vector
+  direction: input
+  data_types: single | double
+- name: r
+  summary: Reference signal scalar | vector
+  direction: input
+  data_types: single | double
+- name: r.dot
+  summary: Derivative of reference signal scalar | vector
+  direction: input
+  data_types: single | double
+- name: u
+  summary: Control action scalar | vector
+  direction: output
+  data_types: single | double
+- name: s(x)
+  summary: Switching function value scalar | vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -88,8 +111,130 @@ To enable this port, enable the **Output Switching
 Function** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: A
+  summary: State matrix [0 1; 0 0] (default) | square matrix
+  group: Model Parameters
+  block_parameter: A
+  values: '"[0 1; 0 0]" (default) | square matrix'
+- name: B
+  summary: Input matrix [0; 1] (default) | matrix
+  group: Model Parameters
+  block_parameter: B
+  values: '"[0; 1]" (default) | matrix'
+- name: C
+  summary: Output matrix [1 0] (default) | matrix
+  group: Model Parameters
+  block_parameter: C
+  values: '"[1 0]" (default) | matrix'
+- name: Am
+  summary: Reference model state matrix [0 1; 0 0] (default) | matrix
+  group: Reference Model Parameters
+  block_parameter: Am
+  values: '"[0 1; 0 0]" (default) | square matrix'
+- name: Bm
+  summary: Reference model input matrix [0; 1] (default) | matrix
+  group: Reference Model Parameters
+  block_parameter: Bm
+  values: '"[0; 1]" (default) | matrix'
+- name: Task Mode
+  summary: Mode of operation Regulation (default) | Reference Tracking | Model-Reference Tracking
+  group: Sliding Surface Tab
+  block_parameter: TaskMode
+  values: '"Regulation" (default) | "Reference Tracking" | "Model-Reference Tracking"'
+- name: Output Switching Function
+  summary: Output switching function off (default) | on
+  group: Sliding Surface Tab
+  block_parameter: EnableSwitchingFunction
+  values: '"off" (default) | "on"'
+- name: Include derivative reference signal
+  summary: Specify derivative of reference signal externally off (default) | on
+  group: Sliding Surface Tab
+  block_parameter: EnableTrackingDerivative
+  values: '"off" (default) | "on"'
+- name: Sr
+  summary: Design matrix for reference tracking 0.1 (default) | scalar | matrix
+  group: Sliding Surface Tab
+  block_parameter: Sr
+  values: '"0.1" (default) | scalar or matrix in quotes'
+- name: Tuning Method
+  summary: Sliding surface design method Pole Placement (default) | Quadratic Minimization | User-Defined Matrix (S)
+  group: Sliding Surface Tab
+  block_parameter: Tuning
+  values: '"Pole Placement" (default) | "Quadratic Minimization" | "User-defined Matrix (S)"'
+- name: Pole Location
+  summary: Pole location for pole placement method -1 (default) | column vector
+  group: Sliding Surface Tab
+  block_parameter: PoleLocation
+  values: '"-1" (default) | column vector in quotes'
+- name: Weighted Matrix
+  summary: Weighted matrix for quadratic performance index eye(2) (default) | square matrix
+  group: Sliding Surface Tab
+  block_parameter: WeightedMatrix
+  values: '"eye(2)" (default) | matrix in quotes'
+- name: Export Hyperplane Matrix S
+  summary: Send designed hyperplane matrix to MATLAB® workspace button
+  group: Sliding Surface Tab
+- name: S
+  summary: User-defined hyperplane matrix [1 1] (default) | matrix
+  group: Sliding Surface Tab
+  block_parameter: S
+  values: '"[0; 1]" (default) | matrix'
+- name: Reaching Law
+  summary: Reaching law Constant Rate (default) | Exponential | Power Rate | Unit Vector
+  group: Reaching Law Tab
+  block_parameter: ReachingLaw
+  values: '"Constant Rate" (default) | "Exponential" | "Power Rate" | "Unit Vector"'
+- name: Reaching Rate (η)
+  summary: Reaching rate 0.01 (default) | positive scalar | column vector
+  group: Reaching Law Tab
+  block_parameter: ReachingRate
+  values: '"0.01" (default) | positive scalar in quotes | column vector in quotes'
+- name: Control Gain (K)
+  summary: Control gain 0.01 (default) | positive scalar | column vector
+  group: Reaching Law Tab
+  block_parameter: ControlGain
+  values: '"0.01" (default) | positive scalar in quotes | column vector in quotes'
+- name: Power Rate Exponent (α)
+  summary: Power rate exponent 0.01 (default) | positive scalar between 0 and 1 | column vector of positive values between
+    0 and 1
+  group: Reaching Law Tab
+  block_parameter: PowerRate
+  values: '"0.01" (default) | positive scalar between 0 and 1 in quotes | column vector of positive values between 0 and 1
+    in quotes'
+- name: Select Boundary Layer
+  summary: Boundary layer function Sign (default) | Relay | Hyperbolic Tangent | Saturation
+  group: Reaching Law Tab
+  block_parameter: BoundaryLayer
+  values: '"Sign" (default) | "Relay" | "Hyperbolic Tangent" | "Saturation"'
+- name: Phi
+  summary: Boundary layer thickness 0.01 (default) | positive scalar | column vector
+  group: Reaching Law Tab
+  block_parameter: Phi
+  values: '"0.01" (default) | positive scalar in quotes | column vector in quotes'
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection off (default) | on
+  group: Reaching Law Tab
+  block_parameter: ZeroCross
+  values: '"off" (default) | "on"'
+- name: Time domain
+  summary: Controller time domain Continuous-Time (default) | Discrete-Time
+  group: Block Tab
+  block_parameter: TimeDomain
+  values: '"Continuous-Time" (default) | "Discrete-Time"'
+- name: Sample time
+  summary: Sample time -1 (default) | finite positive scalar
+  group: Block Tab
+  block_parameter: SampleTime
+  values: '"-1" (default) | positive scalar in quotes'
+- name: Integrator method
+  summary: Discrete-time integration method Forward Euler (default) | Backward Euler | Trapezoidal
+  group: Block Tab
+  block_parameter: IntegratorMethod
+  values: '"Forward Euler" (default) | "Backward Euler" | "Trapezoidal"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -816,7 +961,6 @@ the `set_param` function.
 | **Values:** | `"Forward Euler"` (default) | `"Backward Euler"` | `"Trapezoidal"` |
 
 **Example:** `set_param(gcb,"IntegratorMethod","Trapezoidal")`
-
 ## Libraries
 
 Simulink Control Design / Sliding Mode

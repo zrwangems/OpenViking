@@ -14,6 +14,17 @@ language: en
 # CIC Compensation Decimator
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Output
+  summary: Filtered and downsampled signal vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### Input
 
@@ -59,8 +70,63 @@ input a fixed-size input signal and a variable-size input signal.
 | Variable | *P*-by-*Q* | `ceil`(*P*/*M*)-by-*Q*  **Allow arbitrary frame length for fixed-size input signals** parameter appears in the block dialog box but does not have any impact on the input frame length. You can input a variable-size signal of any frame length even if you do not select the **Allow arbitrary frame length for fixed-size input signals** parameter. |
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rate change factor
+  summary: Rate-change factor of the CIC filter 2 (default) | positive integer
+  group: Main Tab
+- name: Number of sections
+  summary: Number of sections in the CIC filter 2 (default) | positive integer
+  group: Main Tab
+- name: Differential delay
+  summary: Differential delay of the CIC filter 1 (default) | positive integer
+  group: Main Tab
+- name: Decimation factor
+  summary: Decimation factor of compensation filter 2 (default) | positive integer scalar
+  group: Main Tab
+- name: Minimum order filter design
+  summary: Design compensation filter of minimum order or of specified order on (default) | off
+  group: Main Tab
+- name: Filter order
+  summary: Order of compensation filter 12 (default) | positive integer
+  group: Main Tab
+- name: Passband edge frequency (Hz)
+  summary: Passband edge frequency of compensation filter 100000 (default) | positive scalar
+  group: Main Tab
+- name: Stopband edge frequency (Hz)
+  summary: Stopband edge frequency of compensation filter 400000 (default) | positive scalar
+  group: Main Tab
+- name: Passband ripple (dB)
+  summary: Passband ripple of compensation filter 0.1 (default) | positive real scalar
+  group: Main Tab
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation of compensation filter 60 (default) | positive real scalar
+  group: Main Tab
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: Main Tab
+- name: Input sample rate (Hz)
+  summary: Sample rate of input signal 1200000 (default) | positive real scalar
+  group: Main Tab
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: Main Tab
+- name: View Filter Response
+  summary: View Filter Response button (default)
+  group: Main Tab
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode for output fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest
+    | Zero
+  group: Data Types Tab
+- name: Coefficients
+  summary: Word and fraction lengths of coefficients fixdt(1,16) (default) | fixdt(1,16,0)
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -300,7 +366,6 @@ button  to display the data type assistant,
 which helps you set the coefficients data type.
 
 See Specify Data Types Using Data Type Assistant (Simulink) for more information.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

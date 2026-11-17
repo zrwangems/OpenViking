@@ -14,6 +14,32 @@ language: en
 # Simulation 3D Rotorcraft
 
 ## Ports
+```yaml
+ports:
+- name: Translation
+  summary: Rotorcraft translation 6-by-3 array | 19-by-3 array | 11-by-3 array
+  direction: input
+  data_types: single | double
+- name: Rotation
+  summary: Rotorcraft and wheel rotation 6-by-3 array | 19-by-3 array | 11-by-3 array
+  direction: input
+  data_types: single | double
+- name: LightStates
+  summary: Rotorcraft light control 1-by-7 vector of double values
+  direction: input
+  data_types: single | double
+- name: Scale
+  summary: Mesh scale [1 1 1] (default) | 1-by-3 array
+  direction: input
+- name: Altitude
+  summary: Rotorcraft attitude 1-by-5 vector
+  direction: output
+  data_types: double
+- name: WoW
+  summary: Weight on wheels true | false
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -167,8 +193,329 @@ To enable this port, select the **Enable altitude and Wow
 sensors** check box.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Sample time -1 (default) | real scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: real scalar
+  default: '''-1'''
+- name: Type
+  summary: Rotorcraft type Light helicopter (default) | Helicopter | Multirotor
+  group: Rotorcraft
+  block_parameter: Mesh
+  type: character vector
+  values: '''Light helicopter'' | ''Helicopter'' | ''Multiroter'''
+  default: '''Light helicopter'''
+- name: Path to light helicopter mesh
+  summary: Path to light helicopter mesh '/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter'
+    (default) | character vector
+  group: Rotorcraft
+  block_parameter: MeshPathLight
+  type: character vector
+  values: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/LightHelicopter/Mesh/SK_LightHelicopter.SK_LightHelicopter'''
+- name: Path to helicopter mesh
+  summary: Path to helicopter mesh '/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter'
+    (default) | character vector
+  group: Rotorcraft
+  block_parameter: MeshPath
+  type: character vector
+  values: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Helicopter/Mesh/SK_Helicopter.SK_Helicopter'''
+- name: Path to multirotor mesh
+  summary: Path to multirotor mesh '/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter'
+    (default) | '/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_QuadcopterMini.SK_QuadcopterMini' | character
+    vector
+  group: Rotorcraft
+  block_parameter: MeshPathMulti
+  type: character vector
+  values: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter'' | ''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_QuadcopterMini.SK_QuadcopterMini'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Rotorcraft/Multirotor/Mesh/SK_Quadcopter.SK_Quadcopter'''
+- name: Color
+  summary: Rotorcraft color Red (default) | Orange | Yellow | Green | Cyan | Blue | Black | White | Silver | Metal
+  group: Rotorcraft
+  block_parameter: AircraftColor
+  type: character vector
+  values: '''Red'' | ''Orange'' | ''Yellow'' | ''Green'' | ''Cyan'' | ''Blue'' | ''Black'' | ''White'' | ''Silver'' | ''Metal'''
+  default: '''Red'''
+- name: Name
+  summary: Rotorcraft name SimulinkVehicle1 (default) | character vector
+  group: Rotorcraft
+  block_parameter: ActorName
+  type: character vector
+  values: scalar
+  default: '''SimulinkVehicle1'''
+- name: Initial translation (m)
+  summary: Initial translation of rotorcraft zeros(6,3) (default) | 19-by-3 array | 11-by-3 array
+  group: Rotorcraft
+  type: character vector
+  block_parameter: Translation
+  values: 6-by-3 array | 19-by-3 array | 11-by-3 array
+  default: '''zeros(6,3)'''
+- name: Initial rotation (rad)
+  summary: Rotorcraft rotation zeros(6,3) (default) | 19-by-3 array | 11-by-3 array
+  group: Rotorcraft
+  type: character vector
+  block_parameter: Rotation
+  values: 6-by-3 array | 19-by-3 array | 11-by-3 array
+  default: '''zeros(6,3)'''
+- name: Scale source
+  summary: Scale source Dialog (default) | Port
+  group: Rotorcraft
+  block_parameter: ScaleInputPort
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Initial scale
+  summary: Initial mesh scale [1 1 1] (default) | 1-by-3 array
+  group: Rotorcraft
+  block_parameter: InitialScale
+  type: character vector
+  values: 1-by-3 array
+  default: '''[1 1 1]'''
+- name: Scale
+  summary: Mesh scale [1 1 1] (default) | 1-by-3 array
+  group: Rotorcraft
+  block_parameter: Scale
+  type: character vector
+  values: 1-by-3 array
+  default: '''[1 1 1]'''
+- name: Enable altitude and WoW sensors
+  summary: Altitude and WoW sensors on (default) | off
+  group: Altitude Sensor
+  block_parameter: IsGHSensorEnabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show sensor rays in viewer
+  summary: Option to show sensor rays off (default) | on
+  group: Altitude Sensor
+  block_parameter: AreGHRaysVisible
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Interpret vector outputs as 1-D
+  summary: Control reshaping on sensor output ports off (default) | on
+  group: Altitude Sensor
+  block_parameter: IsOutputReshapeEnabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Length of rays (m)
+  summary: Length of rays 1524 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHRayLength
+  type: character vector
+  values: real scalar
+  default: '''1524'''
+- name: Rotorcraft body Z offset (m)
+  summary: Rotorcraft body *Z* offset 1.169 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHBodyOffset
+  type: character vector
+  values: real scalar
+  default: '''1.169'''
+- name: Ground-contact location 1 (m)
+  summary: First ground contact location [1.47 -1.04 1.169] (default) | 3-element vector
+  group: Altitude Sensor
+  block_parameter: GHContactLocation1
+  type: character vector
+  values: 3-element vector
+  default: '''[1.47 -1.04 1.169]'''
+- name: Ground-contact location 2 (m)
+  summary: Second ground contact location [-1.24 -1.04 1.169] (default) | 3-element vector
+  group: Altitude Sensor
+  block_parameter: GHContactLocation2
+  type: character vector
+  values: 3-element vector
+  default: '''[-1.24 -1.04 1.169]'''
+- name: Ground-contact location 3 (m)
+  summary: Third ground contact location [-1.24 1.04 1.169] | 3-element vector
+  group: Altitude Sensor
+  block_parameter: GHContactLocation3
+  type: character vector
+  values: 3-element vector
+  default: '''[-1.24 1.04 1.169]'''
+- name: Ground-contact location 4 (m)
+  summary: Fourth ground contact location [1.47 1.04 1.169] | 3-element vector
+  group: Altitude Sensor
+  block_parameter: GHContactLocation4
+  type: character vector
+  values: 3-element vector
+  default: '''[1.47 1.04 1.169]'''
+- name: Front tire radius (m)
+  summary: Front gear tire radius 0.196 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHFrontTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.196'''
+- name: Left tire radius (m)
+  summary: Left gear tire radius 0.203 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHLeftTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.203'''
+- name: Right tire radius (m)
+  summary: Right gear tire radius 0.203 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHRightTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.203'''
+- name: WoW sensor tolerance (m)
+  summary: Wow sensor tolerance 0.05 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: WoWSensorTolerance
+  type: character vector
+  values: real scalar
+  default: '''0.05'''
+- name: Light configuration
+  summary: Light configurations options Automatic lights (default) | Configurable lights | Lights off
+  group: Light Configuration
+  block_parameter: LightsConfig
+  type: character vector
+  values: '''Automatic lights'' | ''Configurable lights'' | ''Lights off'''
+  default: '''Automatic lights'''
+- name: Landing light intensity (cd)
+  summary: Landing lights intensity 300000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: LandingLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''300000'''
+- name: Landing light cone half angle (deg)
+  summary: Landing lights cone half angle 15 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: LandingLightConeAngle
+  type: character vector
+  values: positive scalar
+  default: '''15'''
+- name: Landing light color [r g b]
+  summary: Landing light color [1 1 1] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: LandingLightColor
+  type: character vector
+  values: 3-element vector
+  default: '''[1 1 1]'''
+- name: Landing light location
+  summary: Landing light location [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: HelicopterLeftLandingLightLocation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Landing light orientation (deg)
+  summary: Landing light orientation [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: HelicopterLeftLandingLightOrientation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Nose light intensity (cd)
+  summary: Nose lights intensity 150000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: NoseLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''150000'''
+- name: Nose light cone half angle (deg)
+  summary: Nose light cone half angle 36 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: NoseLightConeAngle
+  type: character vector
+  values: positive scalar
+  default: '''36'''
+- name: Nose light location
+  summary: Nose light location [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: HelicopterNoseLightLocation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Nose light orientation (deg)
+  summary: Nose light orientation [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: HelicopterNoseLightOrientation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Navigation lights intensity
+  summary: Navigation lights intensity 500 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: NavLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''500'''
+- name: Position light intensity
+  summary: Position light intensity 500 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: PositionLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''500'''
+- name: Strobe light intensity
+  summary: Strobe light intensity 5000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: StrobeLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''5000'''
+- name: Strobe color [r g b]
+  summary: Strobe color [1 1 1] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: StrobeLightColor
+  type: character vector
+  values: 3-element vector
+  default: '''[1 1 1]'''
+- name: Strobe period (s)
+  summary: Strobe period 1.5 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: StrobePeriod
+  type: character vector
+  values: positive scalar
+  default: '''1.5'''
+- name: Strobe pulse width (% of period)
+  summary: Strobe pulse width 6 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: StrobePulseWidth
+  type: character vector
+  values: positive scalar
+  default: '''6'''
+- name: Beacon light intensity
+  summary: Beacon light intensity 4000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''4000'''
+- name: Beacon color [r g b]
+  summary: Beacon color [1 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: BeaconLightColor
+  type: character vector
+  values: 3-element vector
+  default: '''[1 0 0]'''
+- name: Beacon period (s)
+  summary: Beacon period 1.5 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconPeriod
+  type: character vector
+  values: positive scalar
+  default: '''1.5'''
+- name: Beacon pulse width (% of period)
+  summary: Beacon pulse width 10 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconPulseWidth
+  type: character vector
+  values: positive scalar
+  default: '''10'''
+```
 
 ### **Sample time** — Sample time `-1` (default) | real scalar
 
@@ -1054,7 +1401,6 @@ To enable this parameter, set **Light configuration** to
 | **Type**: character vector |
 | **Values**: positive scalar |
 | **Default**: `'10'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Simulation 3D

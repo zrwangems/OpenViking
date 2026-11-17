@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Timestamp
 
 ## 端口
+```yaml
+ports:
+- name: Signals
+  summary: 要捕获时间戳的信号 向量
+  direction: input
+- name: Timestamps
+  summary: 信号的时间戳 双精度向量
+  direction: output
+```
 
 ### 输入
 
@@ -26,11 +35,12 @@ chinese_source: worker-translation
 ### **Timestamps** — 信号的时间戳 双精度向量
 
 对于连接到 `Signals` 的每个信号，该模块返回从模型执行开始测量的信号时间戳。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Desktop Real-Time / Target Profiling

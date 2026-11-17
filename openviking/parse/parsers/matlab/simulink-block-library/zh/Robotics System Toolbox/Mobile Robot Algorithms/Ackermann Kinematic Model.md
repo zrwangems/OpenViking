@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Ackermann Kinematic Model
 
 ## 端口
+```yaml
+ports:
+- name: v
+  summary: 车辆速度 数值标量
+  direction: input
+- name: dψ/dt
+  summary: 转向角速度 数值标量
+  direction: input
+- name: state
+  summary: 车辆状态 四元向量
+  direction: output
+- name: stateDot
+  summary: state 输出的导数 四元向量
+  direction: output
+```
 
 ### 输入
 
@@ -36,8 +51,25 @@ chinese_source: worker-translation
 车辆的线速度和角速度，指定为 [*xDot yDot thetaDot psiDot*] 向量，以米每秒和弧度每秒为单位。
 线速度和角速度通过对 `state`
 输出求时间导数来计算。
-
 ## 参数
+```yaml
+parameters:
+- name: Wheel base
+  summary: 前后轴之间的距离 1（默认）| 正数值标量
+  group: ''
+- name: Vehicle speed range
+  summary: 最小和最大车辆速度 [-Inf Inf]（默认）| 二元向量
+  group: ''
+- name: Maximum steering angle
+  summary: 最大转向角 pi/4（默认）| 正数值标量
+  group: ''
+- name: Initial state
+  summary: 车辆初始状态 [0;0;0;0]（默认）| 四元向量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Wheel base** — 前后轴之间的距离 `1`（默认）| 正数值标量
 
@@ -70,7 +102,6 @@ chinese_source: worker-translation
   仿真中重用。
 
 **Tunable:** No
-
 ## 所属库
 
 Robotics System Toolbox / Mobile Robot Algorithms

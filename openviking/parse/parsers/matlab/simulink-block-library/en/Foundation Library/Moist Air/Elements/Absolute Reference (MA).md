@@ -14,6 +14,12 @@ language: en
 # Absolute Reference (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Pressure, temperature, specific humidity, and trace gas mass fraction are zero moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -22,11 +28,12 @@ language: en
 Moist air conserving port where the pressure and temperature are equal
 to absolute zero, and specific humidity and trace gas mass fraction are
 equal to zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Elements

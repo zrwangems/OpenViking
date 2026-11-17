@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Thermocouple
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 热端口 thermal
+  direction: conserving
+- name: +
+  summary: 正端口 electrical
+  direction: conserving
+- name: '-'
+  summary: 负端口 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,31 @@ Thermocouple 热端口。
 ### **-** — 负端口 electrical
 
 与 thermocouple 负端口关联的电学守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermocouple type
+  summary: Thermocouple 类型 Type B, E, J, K (t<=0 degC), N, R, S or T（默认）| Type K (t>=0 degC)
+  group: 电气
+- name: Coefficients [c0 c1 ... cn]
+  summary: 系数 [c0 c1 ... cn] [0, 0, 0, 0, 0, 0, 0, 0, 0]（默认）
+  group: 电气
+- name: Coefficients [a0 a1 a2]
+  summary: 系数 [a0 a1 a2] [0, 0, 0]（默认）
+  group: 电气
+- name: Reference temperature
+  summary: 参考温度 0 degC（默认）
+  group: 热
+- name: Thermal time constant
+  summary: 热时间常数 1 s（默认）
+  group: 热
+- name: Dissipation factor
+  summary: 耗散系数 1e-3 W/K（默认）
+  group: 热
+- name: Initial temperature
+  summary: 初始温度 25 degC（默认）
+  group: 热
+```
 
 ### 电气
 
@@ -90,7 +125,6 @@ K 所需的热功率。
 ### **Initial temperature** — 初始温度 `25` `degC`（默认）
 
 仿真开始时 thermocouple 的温度。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

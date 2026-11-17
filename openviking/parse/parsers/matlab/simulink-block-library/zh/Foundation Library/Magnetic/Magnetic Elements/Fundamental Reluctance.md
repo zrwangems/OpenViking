@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Fundamental Reluctance
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,12 +26,13 @@ chinese_source: worker-translation
 
 `S`
 :   与模块 South 端子关联的磁守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Reluctance**
 :   组件两端的磁动势（mmf）与流过组件的所得磁通之比。默认值为 `8e4` 1/H。
-
 ## 所属库
 
 R2025b 中未记录。

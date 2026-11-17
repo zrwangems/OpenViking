@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Analytic Signal
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 解析信号输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -35,8 +46,16 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter order (must be even)
+  summary: 滤波器阶数 100（默认）| 偶数正整数
+  group: ''
+- name: Input processing
+  summary: 处理输入信号的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+```
 
 ### **Filter order (must be even)** — 滤波器阶数 `100`（默认）| 偶数正整数
 
@@ -56,7 +75,6 @@ chinese_source: worker-translation
   — 模块执行基于采样的处理。在此模式下，模块将 *M*×*N*
   矩阵输入视为 *M*\**N*
   个独立通道，并对每个通道（矩阵元素）随时间计算解析信号。
-
 ## 所属库
 
 DSP System Toolbox / Transforms

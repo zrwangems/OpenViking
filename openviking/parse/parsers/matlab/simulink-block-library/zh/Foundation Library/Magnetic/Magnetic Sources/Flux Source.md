@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # Flux Source
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块有两个与其端子关联的磁守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Constant flux**
 :   输出磁通。您可以指定任意实数值。默认值为 `0.001` Wb。
-
 ## 所属库
 
 R2025b 中未记录。

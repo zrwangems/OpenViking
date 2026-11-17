@@ -14,6 +14,15 @@ language: en
 # Detection Concatenation
 
 ## Ports
+```yaml
+ports:
+- name: In1, In2, ..., InN
+  summary: Sensor detections to combine Simulink buses containing MATLAB® structures
+  direction: input
+- name: Out
+  summary: Combined sensor detections Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -78,8 +87,22 @@ detections is the sum of the number of actual detections in each input
 port. The `ObjectAttributes` fields in the detection
 structure are the union of the `ObjectAttributes`
 fields in each input port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input sensors to combine
+  summary: Number of input sensor ports 2 (default) | positive integer
+  group: ''
+- name: Source of output bus name
+  summary: Source of output bus name Auto (default) | Property
+  group: ''
+- name: Specify an output bus name
+  summary: Name of output bus no default
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Number of input sensors to combine** — Number of input sensor ports 2 (default) | positive integer
 
@@ -119,7 +142,6 @@ name** parameter to `Property`.
   Simulink generates C/C++ code for the block. The C code is
   reused for subsequent simulations as long as the model does not
   change. This option requires additional startup time.
-
 ## Libraries
 
 Automated Driving Toolbox Sensor Fusion and Tracking Toolbox / Utilities

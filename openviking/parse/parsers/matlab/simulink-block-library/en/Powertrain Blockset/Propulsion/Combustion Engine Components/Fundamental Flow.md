@@ -14,6 +14,30 @@ language: en
 # Flow Restriction
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet orifice pressure, temperature, enthalpy, mass fractions two-way connector port
+  direction: input
+- name: B
+  summary: Outlet orifice pressure, temperature, enthalpy, mass fractions two-way connector port
+  direction: input
+- name: Area
+  summary: Orifice area scalar
+  direction: input
+- name: ThrPct
+  summary: Throttle body percent open scalar
+  direction: input
+- name: A
+  summary: Inlet mass flow rate, heat flow rate, temperature two-way connector port
+  direction: output
+- name: B
+  summary: Outlet mass flow rate, heat flow rate, temperature two-way connector port
+  direction: output
+- name: Info
+  summary: Bus signal bus
+  direction: output
+```
 
 ### Input
 
@@ -171,8 +195,65 @@ Bus signal containing these block calculations.
 | `Area` | `FlwArea` | | | Cross-sectional flow area | m^2 |
 | `EffctArea` | | | Effective orifice cross-sectional area | m^2 |
 | `ThrAng` | | | Throttle area, if applicable | deg |
-
 ## Parameters
+```yaml
+parameters:
+- name: Orifice area model
+  summary: Select model Constant (default) | External input | Throttle body geometry
+  group: ''
+  block_parameter: AreaPopup
+  values: Constant (default) | External input | Throttle body geometry
+- name: Image type
+  summary: Icon color Cold (default) | Hot
+  group: ''
+  block_parameter: ImageTypePopup
+  values: Cold (default) | Hot
+- name: Ratio of specific heats, gamma
+  summary: Ratio 1.3998 (default) | scalar
+  group: ''
+  block_parameter: gamma
+  values: 1.3998 (default) | scalar
+- name: Ideal gas constant, R
+  summary: Constant 287.05 (default) | scalar
+  group: ''
+  block_parameter: R
+  values: 287.05 (default) | scalar
+- name: Pressure ratio linearize limit, Plim
+  summary: Limit 0.95 (default) | scalar
+  group: ''
+  block_parameter: Plim
+  values: 0.95 (default) | scalar
+- name: Constant area value, Aorf_cnst
+  summary: Area .1 (default) | scalar
+  group: ''
+  block_parameter: Aorf_cnst
+  values: .1 (default) | scalar
+- name: Discharge coefficient, Cd_cnst
+  summary: Coefficient 1 (default) | scalar
+  group: ''
+  block_parameter: Cd_cnst
+  values: 1 (default) | scalar
+- name: Discharge coefficient, Cd_ext
+  summary: Coefficient 1 (default) | scalar
+  group: ''
+  block_parameter: Cd_ext
+  values: 1 (default) | scalar
+- name: Throttle diameter, Dthr
+  summary: Diameter 50 (default) | scalar
+  group: ''
+  block_parameter: Dthr
+  values: 50 (default) | scalar
+- name: Discharge coefficient table, ThrCd
+  summary: Coefficient [0.001; 0.735] (default) | vector
+  group: ''
+  block_parameter: ThrCd
+  values: '[0.001; 0.735] (default) | vector'
+- name: Angle breakpoints, ThrAngBpts
+  summary: Angle [0; 90] (default) | vector
+  group: ''
+  block_parameter: ThrAngBpts
+  values: '[0; 90] (default) | vector'
+```
 
 #### Block Options
 
@@ -421,7 +502,6 @@ programmatically, use the `get_param` function.
 To enable this parameter, select `Throttle body
 geometry` for the **Orifice area
 model** parameter.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Fundamental Flow

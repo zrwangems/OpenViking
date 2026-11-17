@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Sample-Rate Converter
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 重采样信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -65,8 +76,37 @@ Sample-Rate Converter 模块输出的信号与输入信号具有相同的数据�
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 48e3（默认）| 正标量
+  group: ''
+- name: Sample rate of output signal (Hz)
+  summary: 输出信号的采样率（Hz） 96e3（默认）| 正标量
+  group: ''
+- name: Tolerance for output sample rate
+  summary: 输出采样率的最大容差 0（默认）| 范围 [0,0.5] 内的正标量
+  group: ''
+- name: Two-sided bandwidth of interest (Hz)
+  summary: 感兴趣的双边带宽（Hz） 40e3（默认）| 正标量
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: 混叠分量的最小衰减（dB） 80（默认）| 正标量
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号的任意帧长度 off（默认）| on
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: ''
+- name: View Info
+  summary: 显示滤波器相关信息 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（Hz） `48e3`（默认）| 正标量
 
@@ -128,7 +168,6 @@ Sample-Rate Converter 模块输出的信号与输入信号具有相同的数据�
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations DSP System Toolbox / Filtering / Multirate Filters

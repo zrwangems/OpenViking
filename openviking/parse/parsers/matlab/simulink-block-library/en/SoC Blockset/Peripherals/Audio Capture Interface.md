@@ -14,6 +14,21 @@ language: en
 # Audio Capture Interface
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Data frame from captured audio *M*-element vector | *M*-by-*C* matrix
+  direction: input
+  data_types: int8 | int16 | int32
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+- name: msg
+  summary: SoC message data scalar
+  direction: output
+  data_types: SoCData
+```
 
 ### Input
 
@@ -52,8 +67,25 @@ This port outputs data messages containing audio data to a connected Audio Captu
 block.
 
 **Data Types:** `SoCData`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input
+  summary: Source of simulated audio data From dialog (default) | From input port | From timeseries object
+  group: ''
+- name: Value
+  summary: Audio data to be output int16([1 2 3 4 5 6 7 8]) (default) | *CN*-length vector
+  group: ''
+- name: Object name
+  summary: Timeseries object [ ] (default) | MATLAB workspace variable
+  group: ''
+- name: Sample time
+  summary: Sample time in seconds -1 (default) | positive scalar
+  group: ''
+- name: Show event port
+  summary: Option to enable task event ports off (default) | on
+  group: ''
+```
 
 ### **Input** — Source of simulated audio data `From dialog` (default) | `From input port` | `From timeseries object`
 
@@ -79,7 +111,6 @@ audio data.
 
 Select this parameter to enable an event port that, when connected to the Task Manager
 block, can execute event-driven tasks.
-
 ## Libraries
 
 SoC Blockset / Peripherals

@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Average-Value Rectifier (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: unspecified
+- name: a
+  summary: '*a* 相电气'
+  direction: unspecified
+- name: b
+  summary: '*b* 相电气'
+  direction: unspecified
+- name: c
+  summary: '*c* 相电气'
+  direction: unspecified
+- name: +
+  summary: 正极端子电气
+  direction: unspecified
+- name: '-'
+  summary: 负极端子电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -57,8 +78,25 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与负极端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: AC frequency
+  summary: 交流频率 Variable（默认）| Constant
+  group: ''
+- name: Rated AC voltage
+  summary: 额定交流电压 4160 V（默认）
+  group: ''
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz | 标量
+  group: ''
+- name: Fixed power loss
+  summary: 固定功率损耗 1e3 W（默认）
+  group: ''
+```
 
 ### **Electrical connection** — 电气连接 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -86,7 +124,6 @@ chinese_source: worker-translation
 ### **Fixed power loss** — 固定功率损耗 `1e3` `W`（默认）
 
 在额定交流电压下交流侧汲取的最小功率。当瞬时交流电压等于 **Rated AC voltage** 指定的值时，交流功率需求等于 **Fixed power loss** 指定的值加上直流功率需求。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

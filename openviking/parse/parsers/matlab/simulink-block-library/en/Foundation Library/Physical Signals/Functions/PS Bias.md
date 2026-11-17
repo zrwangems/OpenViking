@@ -14,6 +14,15 @@ language: en
 # PS Bias
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input physical signal, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -33,8 +42,13 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Bias
+  summary: Constant bias to add to input signal 1 1 (default)
+  group: ''
+```
 
 ### **Bias** — Constant bias to add to input signal `1 1` (default)
 
@@ -49,7 +63,6 @@ with the unit of the input signal. By default, the unit is `1`
 (unitless). You can select a unit from the drop-down list or type the desired unit name,
 such as `rpm`, or a valid expression, such as `rad/s`.
 For more information and a list of unit abbreviations, see How to Specify Units in Block Dialogs and Unit Definitions.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Functions

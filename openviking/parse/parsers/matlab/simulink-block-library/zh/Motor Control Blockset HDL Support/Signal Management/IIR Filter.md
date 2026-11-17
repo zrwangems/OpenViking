@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # IIR Filter
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 采样输入信号 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: a
+  summary: 滤波器系数 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: x0
+  summary: 初始状态信号 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Reset
+  summary: 外部复位信号 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: y
+  summary: 滤波后的输出信号 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -60,8 +83,37 @@ IIR 滤波器状态信号的初始值。
 IIR Filter 模块在时域中返回的滤波后的输出信号。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter type
+  summary: IIR 滤波器类型 Low-pass（默认）| High-pass
+  group: ''
+- name: Filter coefficient
+  summary: 滤波器系数输入方法 Specify via dialog（默认）| Input port
+  group: ''
+- name: Filter coefficient value
+  summary: IIR 滤波器的滤波器系数 0.01（默认）| 范围 (0,1] 内的标量
+  group: ''
+- name: Initial state
+  summary: 指定如何提供初始状态值 Specify via dialog（默认）| Input port
+  group: ''
+- name: Initial state value
+  summary: 状态的初始值 0（默认）| 标量
+  group: ''
+- name: External reset
+  summary: 指定是否提供外部复位信号 none（默认）| active high resets to initial condition
+  group: ''
+- name: Display cutoff frequency
+  summary: 显示截止频率参数 off（默认）| on
+  group: ''
+- name: Discrete step size (s)
+  summary: 模块再次执行前的采样时间 50e-6（默认）| 标量
+  group: ''
+- name: Theoretical cutoff frequency (Hz)
+  summary: IIR 滤波器的理论截止频率 32.1525 | 标量
+  group: ''
+```
 
 ### **Filter type** — IIR 滤波器类型 `Low-pass`（默认）| `High-pass`
 
@@ -141,7 +193,6 @@ IIR 滤波器状态的初始值。
 
 - 将 **Filter coefficient** 参数设置为 `Specify via dialog`。
 - 选择 **Display cutoff frequency** 参数。
-
 ## 所属库
 
 Motor Control Blockset / Signal Management Motor Control Blockset HDL Support / Signal Management

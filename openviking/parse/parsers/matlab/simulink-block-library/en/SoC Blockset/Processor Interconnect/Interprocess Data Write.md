@@ -14,6 +14,17 @@ language: en
 # Interprocess Data Write
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Data input vector
+  direction: input
+  data_types: single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: msg
+  summary: Output data message scalar
+  direction: output
+  data_types: SoCData
+```
 
 ### Input
 
@@ -36,8 +47,22 @@ This port appears only when **Enable simulation port**
 parameter is enabled.
 
 **Data Types:** `SoCData`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable simulation port
+  summary: Enable peripheral simulation port to block on (default) | off
+  group: ''
+- name: Channels number
+  summary: Select the channel number 0 (default) | 1 | 2 | ...
+  group: ''
+- name: Circular FIFO depth
+  summary: Number of storage buffers 1 (default) | positive integer
+  group: ''
+- name: Participating cores
+  summary: Select the participating cores of the processor The options vary based on the hardware board you select
+  group: ''
+```
 
 ### **Enable simulation port** — Enable peripheral simulation port to block `on` (default) | `off`
 
@@ -83,7 +108,6 @@ Ensure that **Channel number**, **Number of
 buffers** and **Participating cores** parameters match
 for the corresponding Interprocess Data Read and Interprocess Data Write blocks of
 the model.
-
 ## Libraries
 
 SoC Blockset / Processor Interconnect C2000 Microcontroller Blockset / Target Communication Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Target Communication Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Target Communication

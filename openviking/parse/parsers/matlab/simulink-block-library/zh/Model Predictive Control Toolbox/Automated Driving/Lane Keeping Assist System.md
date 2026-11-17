@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Lane Keeping Assist System
 
 ## 端口
+```yaml
+ports:
+- name: Curvature
+  summary: 道路曲率 标量 | 向量
+  direction: input
+- name: Longitudinal velocity
+  summary: 自车速度 非负标量
+  direction: input
+- name: Lateral deviation
+  summary: 自车横向偏差 标量
+  direction: input
+- name: Relative yaw angle
+  summary: 相对于车道中心线的角度 标量
+  direction: input
+- name: Minimum steering angle
+  summary: 最小前轮转向角 标量
+  direction: input
+- name: Maximum steering angle
+  summary: 最大前轮转向角 标量
+  direction: input
+- name: Enable optimization
+  summary: 控制器优化使能信号 标量
+  direction: input
+- name: External control signal
+  summary: 施加到自车的转向角 标量
+  direction: input
+- name: Vehicle dynamics matrix A
+  summary: 自车预测模型的状态矩阵 方阵
+  direction: input
+- name: Vehicle dynamics matrix B
+  summary: 自车预测模型的输入到状态矩阵 列向量
+  direction: input
+- name: Vehicle dynamics matrix C
+  summary: 自车预测模型的状态到输出矩阵 具有两行的矩阵
+  direction: input
+- name: Steering angle
+  summary: 前轮转向角控制信号 标量
+  direction: output
+```
 
 ### 输入
 
@@ -121,8 +160,145 @@ e2=θe−θc
 ### **Steering angle** — 前轮转向角控制信号 标量
 
 由控制器生成的前轮转向角控制信号，单位为弧度。前轮转向角是前轮相对于车辆纵轴的角度。转向角朝向自车横轴正方向时为正。
-
 ## 参数
+```yaml
+parameters:
+- name: Use vehicle parameters
+  summary: 使用车辆属性定义自车模型 on（默认）| off
+  group: 参数选项卡
+  block_parameter: ModelType
+  type: string, character vector
+  default: '"Use vehicle parameters"'
+- name: Use vehicle model
+  summary: 使用状态空间矩阵定义自车模型 off（默认）| on
+  group: 参数选项卡
+  block_parameter: ModelType
+  type: string, character vector
+  default: '"Use vehicle parameters"'
+- name: Total mass
+  summary: 自车质量 1575（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: VehicleMass
+  type: string, character vector
+  default: '"1575"'
+- name: Yaw moment of inertia
+  summary: 绕自车垂直轴的转动惯量 2875（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: VehicleYawInertia
+  type: string, character vector
+  default: '"2875"'
+- name: Longitudinal distance from center of gravity to front tires
+  summary: 自车质心到前轮的距离 1.2（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: LengthToFront
+  type: string, character vector
+  default: '"1.2"'
+- name: Longitudinal distance from center of gravity to rear tires
+  summary: 自车质心到后轮的距离 1.6（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: LengthToRear
+  type: string, character vector
+  default: '"1.6"'
+- name: Cornering stiffness of front tires
+  summary: 前轮侧偏刚度 19000（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: FrontTireStiffness
+  type: string, character vector
+  default: '"19000"'
+- name: Cornering stiffness of rear tires
+  summary: 后轮侧偏刚度 33000（默认）| 正标量
+  group: 参数选项卡
+  block_parameter: RearTireStiffness
+  type: string, character vector
+  default: '"33000"'
+- name: A
+  summary: 自车预测模型的初始状态矩阵 方阵
+  group: 参数选项卡
+  block_parameter: EgoModelMatrixA
+  type: string, character vector
+  default: '"[-4.4021 ,-12.4603;1.3913,-5.1868]"'
+- name: B
+  summary: 自车预测模型的初始输入到状态矩阵 列向量
+  group: 参数选项卡
+  block_parameter: EgoModelMatrixB
+  type: string, character vector
+  default: '"[24.1270;15.8609]"'
+- name: C
+  summary: 自车预测模型的初始状态到输出矩阵 具有两行的矩阵
+  group: 参数选项卡
+  block_parameter: EgoModelMatrixC
+  type: string, character vector
+  default: '"[1,0;0,1]"'
+- name: Initial longitudinal velocity
+  summary: 自车的初始速度 15（默认值） | 正标量
+  group: 参数选项卡
+  block_parameter: InitialLongVel
+  type: string, character vector
+  default: '"15"'
+- name: Transport lag between model inputs and outputs
+  summary: 自车模型中的总传输延迟 0（默认值） | 非负标量
+  group: 参数选项卡
+  block_parameter: TransportLag
+  type: string, character vector
+  default: '"0"'
+- name: Minimum steering angle
+  summary: 最小前轮转向角 -0.26（默认值） | -pi/2 和 pi/2 之间的标量
+  group: 参数选项卡
+  block_parameter: MinSteering
+  type: string, character vector
+  default: '"-0.26"'
+- name: Maximum steering angle
+  summary: 最大前轮转向角 0.26（默认值） | -pi/2 和 pi/2 之间的标量
+  group: 参数选项卡
+  block_parameter: MaxSteering
+  type: string, character vector
+  default: '"0.26"'
+- name: Sample time
+  summary: 控制器采样时间 0.1（默认值） | 正标量
+  group: 参数选项卡
+  block_parameter: Ts
+  type: string, character vector
+  default: '"0.1"'
+- name: Prediction horizon
+  summary: 控制器预测时域 10（默认）| 正整数
+  group: 参数选项卡
+  block_parameter: PredictionHorizon
+  type: string, character vector
+  default: '"30"'
+- name: Controller behavior
+  summary: 闭环控制器性能 0.5（默认）| 0 到 1 之间的标量
+  group: 参数选项卡
+  block_parameter: ControllerBehavior
+  type: string, character vector
+  default: '"0.5"'
+- name: Use suboptimal solution
+  summary: 在指定迭代次数后应用次优解 off（默认）| on
+  group: Block Tab
+  block_parameter: suboptimal
+  type: string, character vector
+  default: '"off"'
+- name: Maximum iteration number
+  summary: 最大优化迭代次数 10（默认）| 正整数
+  group: Block Tab
+  block_parameter: maxiter
+  type: string, character vector
+  default: '"10"'
+- name: Use external signal to enable or disable optimization
+  summary: 添加用于启用优化的端口 off（默认）| on
+  group: Block Tab
+  block_parameter: optmode
+  type: string, character vector
+  default: '"off"'
+- name: Use external signal for bumpless transfer between LKA and other controllers
+  summary: 添加外部控制信号输入端口 off（默认）| on
+  group: Block Tab
+  block_parameter: trackmode
+  type: string, character vector
+  default: '"off"'
+- name: Create LKA subsystem
+  summary: 创建自定义控制器按钮
+  group: Block Tab
+```
 
 ### 参数选项卡
 
@@ -509,7 +685,6 @@ Kg·m2。
 
 - 修改默认 MPC 设置或使用高级 MPC 功能。
 - 修改默认控制器初始条件。
-
 ## 所属库
 
 Model Predictive Control Toolbox / Automated Driving

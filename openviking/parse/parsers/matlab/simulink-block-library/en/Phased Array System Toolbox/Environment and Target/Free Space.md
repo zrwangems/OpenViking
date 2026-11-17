@@ -14,6 +14,31 @@ language: en
 # Free Space
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Narrowband signal *M*-element complex-valued column vector, *M*-by-*N* complex-valued matrix.
+  direction: input
+- name: Pos1
+  summary: Signal origin 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Pos2
+  summary: Signal destination 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Vel1
+  summary: Signal origin velocity 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Vel2
+  summary: Signal destination velocity 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Propagated narrowband signal *M*-element complex-valued column vector, *M*-by-*N* complex-valued matrix.
+  direction: output
+```
 
 ### Input
 
@@ -114,8 +139,35 @@ frame is defined as the time spanned by the current input. Whenever it
 takes longer than the current time frame for the signal to propagate
 from the origin to the destination, the output contains no contribution
 from the input of the current time frame.
-
 ## Parameters
+```yaml
+parameters:
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: Signal carrier frequency 3e8 (default) | positive scalar
+  group: ''
+- name: Perform two-way propagation
+  summary: Perform two-way propagation off (default) | on
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Maximum one-way propagation distance (m)
+  summary: Maximum one-way propagation distance 10e3 (default)
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Propagation speed (m/s)** — Signal propagation speed `physconst('LightSpeed')` (default) | positive scalar
 
@@ -204,7 +256,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

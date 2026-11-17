@@ -14,6 +14,29 @@ language: en
 # State-Feedback Controller
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Plant reference scalar
+  direction: input
+  data_types: single | double
+- name: x
+  summary: State vector vector
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Integrator reset scalar
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: Plant output scalar
+  direction: input
+  data_types: single | double
+- name: u
+  summary: Controller output scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -47,8 +70,58 @@ Plant system output signal.
 Control system output signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: State-feedback design
+  summary: Controller generation State-feedback gain (default) | Desired eigenvalues
+  group: ''
+- name: State-feedback parameterization
+  summary: State-feedback parameterization Discrete-time (default) | Continuous-time
+  group: ''
+- name: Controller matrix
+  summary: Controller matrix [1 1] (default) | matrix
+  group: ''
+- name: Discrete-time A matrix
+  summary: A matrix in discrete time 1 (default) | real scalar or matrix
+  group: ''
+- name: Discrete-time B matrix
+  summary: B matrix in discrete time 1 (default) | real scalar or matrix
+  group: ''
+- name: Discrete-time C matrix
+  summary: C matrix in discrete time 1 (default) | real scalar or matrix
+  group: ''
+- name: Discrete-time D matrix
+  summary: D matrix in discrete time 1 (default) | real scalar or matrix
+  group: ''
+- name: Continuous-time A matrix
+  summary: A matrix in continuous time 1 (default) | real scalar or matrix
+  group: ''
+- name: Continuous-time B matrix
+  summary: B matrix in continuous time 1 (default) | real scalar or matrix
+  group: ''
+- name: Continuous-time C matrix
+  summary: C matrix in continuous time 1 (default) | real scalar or matrix
+  group: ''
+- name: Continuous-time D matrix
+  summary: D matrix in continuous time 1 (default) | real scalar or matrix
+  group: ''
+- name: Discretization sample time
+  summary: Discretization sample time 0.1 (default) | positive real number
+  group: ''
+- name: Desired eigenvalues (discrete)
+  summary: Observer eigenvalues 0 (default) | real vector
+  group: ''
+- name: Control action upper limit
+  summary: '*umax* 5 (default) | scalar greater than the value of the Control action lower limit parameter'
+  group: ''
+- name: Control action lower limit
+  summary: '*umin* 0 (default) | scalar'
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Sampling interval -1 (default) | default value or a positive number
+  group: ''
+```
 
 ### **State-feedback design** — Controller generation `State-feedback gain` (default) | `Desired eigenvalues`
 
@@ -215,7 +288,6 @@ parameter to `-1`. If this block is in a continuous
 variable-step model, specify the sample time explicitly. For more
 information, see What Is Sample Time? and
 Specify Sample Time.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

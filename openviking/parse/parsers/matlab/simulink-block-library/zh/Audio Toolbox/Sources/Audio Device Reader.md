@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Audio Device Reader
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int16 | int32 | uint8
+- name: O
+  summary: 采样溢出数量 标量
+  direction: output
+  data_types: uint32
+```
 
 ### 输出
 
@@ -33,8 +44,43 @@ Audio Device Reader 模块的输出由模块参数决定。如果模块输出为
 要启用此端口，请选择 **Output number of samples overrun** 参数。
 
 **数据类型：** `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Driver
+  summary: 用于访问音频设备的驱动程序 DirectSound（默认）| ASIO | WASAPI
+  group: ''
+- name: Device
+  summary: 用于采集音频采样的设备 默认音频设备（默认）
+  group: ''
+- name: Info
+  summary: 查看有关音频输入配置的信息 按钮
+  group: ''
+- name: Sample rate (Hz)
+  summary: 设备用于采集音频数据的采样率 44100（默认）| 整数
+  group: ''
+- name: Number of channels
+  summary: 音频设备采集的通道数 1（默认）| 整数
+  group: ''
+- name: Samples per frame
+  summary: 从音频设备读取的帧大小 1024（默认）| 整数
+  group: ''
+- name: Device bit depth
+  summary: 设备用于采集音频数据的数据类型 16-bit integer（默认）| 8-bit integer | 16-bit integer | 24-bit integer | 32-bit integer
+  group: ''
+- name: Use default channel mapping
+  summary: 切换通道映射来源 开（默认）| 关
+  group: ''
+- name: Device input channels
+  summary: 指定非默认通道映射 [1:MaximumInputChannels]（默认）| 标量 | 向量
+  group: ''
+- name: Output number of samples overrun
+  summary: 为采样溢出数量指定附加输出端口 关（默认）| 开
+  group: ''
+- name: Output data type
+  summary: 模块输出的数据类型 double（默认）| single | int32 | int16 | uint8
+  group: ''
+```
 
 #### 主选项卡
 
@@ -116,7 +162,6 @@ ASIO 和 WASAPI 驱动程序不提供采样率转换。对于 ASIO 和 WASAPI �
 **注意**
 
 如果此参数指定为 `double` 或 `single`，模块输出的数据范围为 [–1, 1]。对于其他数据类型，范围为指定数据类型的 [min, max]。
-
 ## 所属库
 
 Audio Toolbox / Sources

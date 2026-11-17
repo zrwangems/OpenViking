@@ -14,6 +14,12 @@ language: en
 # Absolute Reference (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Pressure and temperature are zero thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,11 +27,12 @@ language: en
 
 Thermal liquid conserving port where the pressure and temperature are both equal
 to zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Elements

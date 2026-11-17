@@ -14,6 +14,15 @@ language: en
 # Mechanism Configuration
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Port to connect mechanism frame
+  direction: input
+- name: g
+  summary: Uniform gravity physical signal
+  direction: input
+```
 
 ### Frame
 
@@ -33,8 +42,22 @@ Configuration block connects.
 
 To enable this port, set **Uniform Gravity** to
 `Time-Varying`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Uniform Gravity
+  summary: Method to specify gravitational acceleration vector Constant (default) | Time-Varying | None
+  group: ''
+- name: Gravity
+  summary: Constant gravitational acceleration vector [0 0 –9.80665] m/s^2 (default) | 1-by-3 vector
+  group: ''
+- name: Linearization Delta
+  summary: Perturbation value for linearization 0.001 (default) | positive scalar
+  group: ''
+- name: Nonlinear Iterations
+  summary: Number of Newton iterations for joints transitioning from disengaged to normal mode 2 (default) | positive integer
+  group: ''
+```
 
 #### Uniform Gravity
 
@@ -82,7 +105,6 @@ discrepancies in its location and orientation, the Simscape
 Multibody network may need a larger number of iterations to compute the required
 positions of all joints in the mechanism that satisfy the kinematic constraints of that
 transitioning joint.
-
 ## Libraries
 
 Simscape / Multibody / Utilities

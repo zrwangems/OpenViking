@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # OFDM Equalizer
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入信号 三维数组 | 二维数组
+  direction: input
+  data_types: double | single
+- name: hEst
+  summary: 信道估计 三维数组
+  direction: input
+  data_types: double | single
+- name: noiseVar
+  summary: 噪声方差 0（默认）| 非负标量
+  direction: input
+  data_types: double | single
+- name: out
+  summary: 均衡后的符号 三维数组 | 二维数组
+  direction: output
+- name: csi
+  summary: 软信道状态信息矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -125,8 +146,28 @@ port` 且 **Algorithm** 设置为
 
 要启用此输出端口，请选择 **Output soft
 channel state information** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Data format
+  summary: 信号格式 3-D（默认）| 2-D
+  group: ''
+- name: Algorithm
+  summary: 均衡算法 Minimum mean squared error（默认）| Zero-forcing
+  group: ''
+- name: Noise variance source
+  summary: 噪声方差来源 Input port（默认）| Property
+  group: ''
+- name: Noise variance
+  summary: 噪声方差 0（默认）| 非负标量
+  group: ''
+- name: Output soft channel state information
+  summary: 启用软信道状态信息输出 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -215,7 +256,6 @@ execution` 或 `Code generation`。
   选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Equalizers

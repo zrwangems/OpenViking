@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Blob Analysis
 
 ## 端口
+```yaml
+ports:
+- name: BW
+  summary: 二值图像 向量 | 矩阵
+  direction: input
+  data_types: Boolean
+- name: Area
+  summary: 标记区域中的像素数 向量
+  direction: output
+  data_types: int32
+- name: Centroid
+  summary: 质心坐标 *M*×2 矩阵
+  direction: output
+  data_types: double | single | fixed point
+- name: BBox
+  summary: 边界框坐标 *M*×4 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -78,8 +96,76 @@ chinese_source: worker-translation
 
 要启用此端口，请选中 **Bounding Box**
 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Area
+  summary: 标记区域中的像素数 向量
+  group: ''
+- name: Centroid
+  summary: 质心坐标 *M*×2 矩阵
+  group: ''
+- name: BBox
+  summary: 边界框坐标 *M*×4 矩阵
+  group: ''
+- name: Major axis length
+  summary: 椭圆长轴的长度 off（默认） | on
+  group: ''
+- name: Minor axis length
+  summary: 椭圆短轴的长度 off（默认） | on
+  group: ''
+- name: Orientation
+  summary: 方向 off（默认）| on
+  group: ''
+- name: Eccentricity
+  summary: 离心率 off（默认）| on
+  group: ''
+- name: Equivalent diameter squared
+  summary: 等效直径平方 off（默认）| on
+  group: ''
+- name: Extent
+  summary: 延展度 off（默认）| on
+  group: ''
+- name: Perimeter
+  summary: 周长 off（默认）| on
+  group: ''
+- name: Statistics output data type
+  summary: 输出数据类型 double（默认）| single | 通过 Data Types 选项卡指定
+  group: ''
+- name: 连通性
+  summary: 标记区域数 8（默认） | 4
+  group: ''
+- name: 输出标签矩阵
+  summary: 输出标签矩阵 off（默认） | on
+  group: ''
+- name: 最大团块数
+  summary: 最大团块数 scalar
+  group: ''
+- name: 超过最大团块数时发出警告
+  summary: 超过最大团块数时发出警告 on（默认） | off
+  group: ''
+- name: 输出实际斑点数
+  summary: 斑点数 off (默认值) | on
+  group: ''
+- name: 以像素为单位指定最小斑点面积
+  summary: 以像素为单位的最小斑点面积 0 (默认值) | 标量
+  group: ''
+- name: 以像素为单位指定最大斑点面积
+  summary: 以像素为单位的最大斑点面积 intmax('uint32') (默认值) | 标量
+  group: ''
+- name: 排除接触图像边界的斑点
+  summary: 排除接触图像边界的斑点 off (默认值) | on
+  group: ''
+- name: 将斑点统计信息作为可变大小信号输出
+  summary: 将斑点统计信息作为可变大小信号输出 off (默认值) | on
+  group: ''
+- name: 填充输出中的空白
+  summary: 填充输出中的空白 off (默认值) | on
+  group: ''
+- name: 填充值
+  summary: 用于填充输出中空白位置的标量 -1（默认） | scalar | vector
+  group: ''
+```
 
 **主选项卡**
 
@@ -232,7 +318,6 @@ chinese_source: worker-translation
 **数据类型选项卡**
 
 要启用 **数据类型** 选项卡上的选项，请在 **主** 选项卡中，将 **统计量输出数据类型** 参数设置为 `Specify via Data Types tab`。有关定点模块参数的详细信息，请参阅为模块指定定点属性 (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

@@ -14,6 +14,13 @@ language: en
 # Variable Attenuator
 
 ## Ports
+```yaml
+ports:
+- name: Att
+  summary: Simulink control signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -23,8 +30,28 @@ Simulink control signal, specified as a
 scalar. This control signal is an *Insertion Loss*  in dB.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum attenuation (dB)
+  summary: Lowest value for insertion loss or attenuation 0.001 (default) | scalar
+  group: ''
+- name: Maximum attenuation (dB)
+  summary: Highest value of insertion loss or attenuation 1000 (default) | scalar
+  group: ''
+- name: Input impedance (Ohm)
+  summary: Input impedance 50 (default) | scalar
+  group: ''
+- name: Output impedance (Ohm)
+  summary: Output impedance 50 (default) | scalar
+  group: ''
+- name: Simulate noise
+  summary: Simulate thermal noise on (default) | off
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Minimum attenuation (dB)** — Lowest value for insertion loss or attenuation `0.001` (default) | scalar
 
@@ -65,7 +92,6 @@ A2/Hz, where:
 Select this parameter to ground and hide the negative terminals.
 To expose the negative terminals, clear this parameter. By exposing
 these terminals, you can connect them to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

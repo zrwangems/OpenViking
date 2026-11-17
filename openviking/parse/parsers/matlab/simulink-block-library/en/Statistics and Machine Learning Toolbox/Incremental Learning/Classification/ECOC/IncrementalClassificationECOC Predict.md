@@ -14,6 +14,29 @@ language: en
 # IncrementalClassificationECOC Predict
 
 ## Ports
+```yaml
+ports:
+- name: mdl
+  summary: Incremental learning model bus signal
+  direction: input
+- name: x
+  summary: Chunk of predictor data numeric matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: label
+  summary: Chunk of predicted class labels column vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: score
+  summary: Predicted class scores or posterior probabilities matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: pbscore
+  summary: Positive-class scores of binary learners matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -79,8 +102,198 @@ positive-class scores of binary learners** on the
 **Main** tab of the Block Parameters dialog box.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select initial machine learning model
+  summary: Initial incremental classification ECOC model ecocMdl (default) | incrementalClassificationECOC model object
+  group: Main
+  block_parameter: InitialLearner
+  type: workspace variable
+  values: incrementalClassificationECOC model object
+  default: '"ecocMdl"'
+- name: Add output port for predicted class scores
+  summary: Add second output port off (default) | on
+  group: Main
+  block_parameter: ShowOutputScore
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Add output port for positive-class scores of binary learners
+  summary: Add third output port off (default) | on
+  group: Main
+  block_parameter: ShowOutputPBScore
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Binary learner loss function
+  summary: Binary learner loss function hinge (default) | binodeviance | exponential | hamming | linear | logit | quadratic
+  group: Main
+  block_parameter: BinaryLoss
+  type: character vector
+  values: '"binodeviance" | "exponential" | "hamming" | "hinge" | "linear" | "logit" | "quadratic"'
+  default: '"hinge"'
+- name: Decoding scheme
+  summary: Decoding scheme lossweighted (default) | lossbased
+  group: Main
+  block_parameter: Decoding
+  type: character vector
+  values: '"lossweighted" | "lossbased"'
+  default: '"lossweighted"'
+- name: Predictor data observation dimension
+  summary: Observation dimension of predictor data rows (default) | columns
+  group: Main
+  block_parameter: ObservationsIn
+  type: character vector
+  values: '"rows" | "columns"'
+  default: '"rows"'
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: Main
+  block_parameter: SystemSampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Label data type
+  summary: 'Data type of label output Inherit: Inherit via back propagation | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data
+    type expression>'
+  group: Data Types
+  block_parameter: LabelDataTypeStr
+  type: character vector
+  values: '"Inherit: Inherit via back propagation" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16"
+    | "int32" | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "Enum: <class name>" |
+    "<data type expression>"'
+  default: '"Inherit: Inherit via back propagation"'
+- name: Label data type Minimum
+  summary: Minimum value of label output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LabelOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Label data type Maximum
+  summary: Maximum value of label output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LabelOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Score data type
+  summary: 'Data type of score output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: ScoreDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Score data type Minimum
+  summary: Minimum value of score output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: ScoreOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Score data type Maximum
+  summary: Maximum value of score output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: ScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Positive-class score data type
+  summary: 'Positive-class score data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: PBScoreDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Positive-class score data type Minimum
+  summary: Minimum value of pbscore output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: PBScoreOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Positive-class score data type Maximum
+  summary: Maximum value of pbscore output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: PBScoreOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Binary learner score data type
+  summary: 'Binary learner score data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: BinaryScoreDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Binary learner score data type Minimum
+  summary: Minimum value of binary learner score for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: BinaryScoreOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Binary learner score data type Maximum
+  summary: Maximum value of binary learner score for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: BinaryScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Binary learner kernel data type
+  summary: Binary learner kernel computation data type double (default) | single | half | int8 | uint8 | int16 | uint16 |
+    int32 | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>
+  group: Data Types
+  block_parameter: BinaryKernelDataTypeStr
+  type: character vector
+  values: '"double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "uint64" | "int64"
+    | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"double"'
+- name: Binary learner kernel data type Minimum
+  summary: Minimum kernel computation value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: BinaryKernelOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Binary learner kernel data type Maximum
+  summary: Maximum kernel computation value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: BinaryKernelOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 ### Main
 
@@ -697,7 +910,6 @@ does not saturate or clip the actual kernel computation value signal.
 | **Type**: character vector |
 | **Values**: `"[]"` | scalar |
 | **Default**: `"[]"` |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Classification / ECOC

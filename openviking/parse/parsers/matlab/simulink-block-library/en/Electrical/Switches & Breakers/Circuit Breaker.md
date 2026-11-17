@@ -14,6 +14,24 @@ language: en
 # Circuit Breaker
 
 ## Ports
+```yaml
+ports:
+- name: vT
+  summary: Scalar control port physical signal
+  direction: input
+- name: '1'
+  summary: Port 1 electrical
+  direction: conserving
+- name: '2'
+  summary: Port 2 electrical
+  direction: conserving
+- name: +
+  summary: Positive port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative port electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -52,8 +70,26 @@ Negative electrical conserving port.
 
 To enable this port, set **Modeling option** to
 `Electrical control port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to specify physical or electrical control port PS control port (default) | Electrical control port
+  group: ''
+- name: Closed resistance
+  summary: Closed resistance 0.001 Ohm (default)
+  group: ''
+- name: Open conductance
+  summary: Open conductance 1e-6 1/Ohm (default)
+  group: ''
+- name: Threshold
+  summary: Threshold voltage 0.5 V (default)
+  group: ''
+- name: Breaker Behavior
+  summary: Breaker Behavior when *vT* rises above threshold Open when current crosses zero after vT >= Threshold (default)
+    | Open when vT >= Threshold
+  group: ''
+```
 
 ### **Modeling option** — Whether to specify physical or electrical control port `PS control port` (default) | `Electrical control port`
 
@@ -90,7 +126,6 @@ Breaker Behavior when the value at the control port
 **Threshold** parameter. The breaker can open either as
 soon as the voltage rises above the threshold, or when its current also
 crosses zero.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers

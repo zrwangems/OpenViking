@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Current-Controlled Switch
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 正输入端口（电气）
+  direction: conserving
+- name: 1-
+  summary: 负输入端口（电气）
+  direction: conserving
+- name: 2+
+  summary: 正输出端口（电气）
+  direction: conserving
+- name: 2-
+  summary: 负输出端口（电气）
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,37 @@ chinese_source: worker-translation
 ### **2-** — 负输出端口（电气）
 
 与电流控制开关负输出关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Switch model
+  summary: 开关模型 Abrupt transition after delay（默认）| Smooth transition between Ion and Ioff
+  group: ''
+- name: Threshold current, IT
+  summary: 阈值电流 0 A（默认）
+  group: ''
+- name: Hysteresis current, IH
+  summary: 迟滞电流 0 A（默认）
+  group: ''
+- name: Control current for on state, ION
+  summary: 导通状态的控制电流 1e-3 A（默认）
+  group: ''
+- name: Control current for off state, IOFF
+  summary: 关断状态的控制电流 0 A（默认）
+  group: ''
+- name: On resistance, RON
+  summary: 闭合开关电阻 1 Ohm（默认）
+  group: ''
+- name: Use 1/GMIN as Off resistance
+  summary: 是否使用 1/GMIN 作为关断电阻 No（默认）| Yes
+  group: ''
+- name: Off resistance, ROFF
+  summary: 断开开关电阻 1e12 Ohm（默认）| 1e6
+  group: ''
+- name: Time delay, TD
+  summary: 时间延迟 0 s（默认）
+  group: ''
+```
 
 ### **Switch model** — 开关模型 `Abrupt transition after delay`（默认）| `Smooth transition between Ion and Ioff`
 
@@ -112,7 +156,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Switch model** 设置为 `Abrupt transition after delay`。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Passives

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Elbow (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 isothermal liquid
+  direction: conserving
+- name: B
+  summary: 液体端口 isothermal liquid
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **B** — 液体端口 isothermal liquid
 
 管段的液体入口或出口端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Elbow type
+  summary: 弯头几何形状 Smoothly curved（默认）| Sharp-edged (Miter)
+  group: ''
+- name: Elbow internal diameter
+  summary: 管道内径 0.01 m（默认）| 正标量
+  group: ''
+- name: Elbow angle
+  summary: 管道弯曲角度 90 deg（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Elbow type** — 弯头几何形状 `Smoothly curved`（默认）| `Sharp-edged (Miter)`
 
@@ -43,7 +66,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过管段的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

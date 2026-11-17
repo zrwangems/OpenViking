@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Constant Power Load (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相电压电气
+  direction: conserving
+- name: a
+  summary: A 相电压电气
+  direction: conserving
+- name: b
+  summary: B 相电压电气
+  direction: conserving
+- name: c
+  summary: C 相电压电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -49,8 +64,46 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主要
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz（默认）| 正标量
+  group: 主要
+- name: Active power consumed
+  summary: 消耗的有功功率 1 kW（默认）| 标量
+  group: 主要
+- name: Reactive power consumed
+  summary: 消耗的无功功率 0 A*kV（默认）| 标量
+  group: 主要
+- name: Minimum supply voltage (phase-to-phase RMS)
+  summary: 最低电源电压 100 V（默认）| 正标量
+  group: 主要
+- name: Voltage time constant
+  summary: 电压动态时间常数 0.01 s（默认）| 正标量
+  group: 主要
+- name: Initial supply voltage (phase-to-phase RMS)
+  summary: 初始端子电压 200 V（默认）| 正标量
+  group: 主要
+- name: Initial supply voltage angle
+  summary: 时间为零时 A 相的端子电压角度 0 deg（默认）| 标量
+  group: 主要
+- name: Parasitic conductance to electrical reference
+  summary: 到电气参考的寄生电导 1e-6 S（默认）| 非负标量
+  group: 主要
+- name: Open circuit fault
+  summary: 添加开路故障的选项 Add fault（默认）
+  group: 故障
+- name: Open-circuit conductance
+  summary: 开路电导 1e-4 S（默认）| 标量
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+```
 
 ### 主要
 
@@ -129,7 +182,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Timed`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

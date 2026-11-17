@@ -14,6 +14,21 @@ language: en
 # BPSK Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: BPSK-modulated baseband signal scalar | vector | matrix
+  direction: input
+  data_types: double | single | fixed point
+- name: Var
+  summary: Noise Variance positive scalar | vector of positive values
+  direction: input
+  data_types: double
+- name: Out
+  summary: Demodulated signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -53,8 +68,28 @@ scalar, the value is an integer. If the output is a vector, it is an
 integer-valued or binary-valued vector.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Decision type
+  summary: Decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio
+  group: Main
+- name: Noise variance source
+  summary: Noise variance source Dialog (default) | Port
+  group: Main
+- name: Noise variance
+  summary: Noise Variance 1 (default) | positive scalar | vector of positive values
+  group: Main
+- name: Phase offset (rad)
+  summary: Phase of zeroth point 0 (default) | real-valued scalar
+  group: Main
+- name: Output data type
+  summary: Output data type Inherit via internal rule (default) | Smallest unsigned integer | double | single | ...
+  group: Data Types
+- name: Derotate factor
+  summary: Derotate factor Same word length as input (default) | Specify word length
+  group: Data Types
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -186,7 +221,6 @@ length`.
 This parameter applies only when the input is fixed-point and the
 **Phase offset (rad)** parameter is not a
 multiple of π/2.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

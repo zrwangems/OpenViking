@@ -14,6 +14,24 @@ language: en
 # Tire-Road Interaction (Magic Formula)
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Normal force, N physical signal
+  direction: input
+- name: M
+  summary: Magic formula coefficients, unitless physical signal | vector
+  direction: input
+- name: S
+  summary: Slip physical signal
+  direction: output
+- name: T
+  summary: Tire tread mechanical rotational
+  direction: conserving
+- name: H
+  summary: Hub mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -50,8 +68,95 @@ Mechanical rotational port associated with the tire tread.
 ### **H** — Hub mechanical rotational
 
 Mechanical rotational port associated with the wheel hub.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterize by
+  summary: Parameterization method Peak longitudinal force and corresponding slip (default) | Constant Magic Formula coefficients
+    | Load-dependent Magic Formula coefficients | Physical signal Magic Formula coefficients
+  group: Main
+- name: Rated vertical load
+  summary: Rated load force 3000 N (default) | positive scalar
+  group: Main
+- name: Peak longitudinal force at rated load
+  summary: Maximum longitudinal force at rated load 3500 N (default) | positive scalar
+  group: Main
+- name: Slip at peak force at rated load (percent)
+  summary: Percent slip at maximum longitudinal force and rated load 10 (default) | positive scalar
+  group: Main
+- name: Magic Formula B coefficient
+  summary: Constant Magic Formula *B* coefficient 10 (default) | positive scalar
+  group: Main
+- name: Magic Formula C coefficient
+  summary: Constant Magic Formula *C* coefficient 1.9 (default) | positive scalar
+  group: Main
+- name: Magic Formula D coefficient
+  summary: Constant Magic Formula *D* coefficient 1 (default) | positive scalar
+  group: Main
+- name: Magic Formula E coefficient
+  summary: Constant Magic Formula *E* coefficient 0.97 (default) | positive scalar
+  group: Main
+- name: Tire nominal vertical load, FNOMIN
+  summary: Normal force 4000 N (default) | positive scalar
+  group: Main
+- name: Magic Formula C-coefficient parameter, p_Cx1
+  summary: Variable Magic Formula *C* coefficient 1.685 (default) | scalar
+  group: Main
+- name: Magic Formula D-coefficient parameters, [p_Dx1 p_Dx2]
+  summary: Variable Magic Formula *D* coefficient [1.21, -.037] (default) | vector
+  group: Main
+- name: Magic Formula E-coefficient parameters, [p_Ex1 p_Ex2 p_Ex3 p_Ex4]
+  summary: Variable Magic Formula *E* coefficient [.344, .095, -.02, 0] (default) | vector
+  group: Main
+- name: Magic Formula BCD-coefficient parameters, [p_Kx1 p_Kx2 p_Kx3]
+  summary: Variable Magic Formula *K* coefficient [21.51, -.163, .245] (default) | vector
+  group: Main
+- name: Magic Formula H-coefficient parameters, [p_Hx1 p_Hx2]
+  summary: Variable Magic Formula *H* coefficient [-.002, .002] (default) | vector
+  group: Main
+- name: Magic Formula V-coefficient parameters, [p_Vx1 p_Vx2]
+  summary: Variable Magic Formula *V* coefficient [0, 0] (default) | vector
+  group: Main
+- name: Enable scaling coefficients
+  summary: Scaling option off (default) | on
+  group: Scaling
+- name: Scale factor of Fx nominal vertical load, LFZO
+  summary: '*Fx* nominal vertical load 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx shape factor, LCX
+  summary: '*Fx* shape factor 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx peak friction coefficient, LMUX
+  summary: '*Fx* peak friction coefficient 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx curvature factor, LEX
+  summary: '*Fx* curvature factor 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx slip stiffness, LKX
+  summary: '*Fx* slip stiffness 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx horizontal shift, LHX
+  summary: '*Fx* horizontal shift 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of Fx vertical shift, LVX
+  summary: '*Fx* vertical shift 1 (default) | positive scalar'
+  group: Scaling
+- name: Scale factor of rolling resistance, LMY
+  summary: Rolling resistance 1 (default) | positive scalar
+  group: Scaling
+- name: Lower boundary of slip denominator, VXLOW
+  summary: Lower boundary of slip denominator 1 m/s (default) | positive scalar
+  group: Advanced
+- name: Velocity threshold
+  summary: Wheel hub velocity threshold for mathematical slip model 0.1 m/s (default) | positive scalar
+  group: Advanced
+- name: Minimum valid wheel slip, KPUMIN
+  summary: Minimum wheel slip threshold -1.5 (default) | scalar
+  group: Advanced
+- name: Maximum valid wheel slip, KPUMAX
+  summary: Maximum wheel slip threshold 1.5 (default) | scalar
+  group: Advanced
+```
 
 ### Main
 
@@ -375,7 +480,6 @@ direction.
 ### **Maximum valid wheel slip, KPUMAX** — Maximum wheel slip threshold `1.5` (default) | scalar
 
 Maximum valid wheel slip.
-
 ## Libraries
 
 Simscape / Driveline / Tires & Vehicles / Tire Subcomponents

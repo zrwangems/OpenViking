@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Busbar
 
 ## 端口
+```yaml
+ports:
+- name: Vt
+  summary: 电压物理信号
+  direction: output
+- name: ph
+  summary: 相位物理信号
+  direction: output
+- name: P
+  summary: 有功功率物理信号
+  direction: output
+- name: Q
+  summary: 无功功率物理信号
+  direction: output
+- name: ~1
+  summary: 三相连接 1 电气
+  direction: output
+- name: ~2
+  summary: 三相连接 2 电气
+  direction: output
+- name: ~3
+  summary: 三相连接 3 电气
+  direction: output
+- name: ~4
+  summary: 三相连接 4 电气
+  direction: output
+```
 
 ### 输出
 
@@ -78,8 +105,22 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当在**参数**设置中将 **Number of connections** 参数设置为 `4` 时，此端口才可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of connections
+  summary: 端口连接数 2（默认）| 1 | 3 | 4
+  group: ''
+- name: Rated busbar voltage (phase-to-phase RMS)
+  summary: 母线额定电压 sqrt(3) * 100 / sqrt(2) V（默认）
+  group: ''
+- name: Network frequency
+  summary: 网络频率 60 Hz（默认）
+  group: ''
+- name: Measurement ports
+  summary: 测量端口暴露 No（默认）| Yes
+  group: ''
+```
 
 ### **Number of connections** — 端口连接数 `2`（默认）| `1` | `3` | `4`
 
@@ -104,7 +145,6 @@ chinese_source: worker-translation
 端口 **Vt** 和 **ph** 仅当此参数设置为 `Yes` 时才可见。
 
 端口 **P** 和 **Q** 仅当此参数设置为 `Yes`，且在**参数**设置中将 **Number of connections** 参数设置为 `2`、`3` 或 `4` 时才可见。
-
 ## 所属库
 
 Simscape / Electrical / Connectors & References

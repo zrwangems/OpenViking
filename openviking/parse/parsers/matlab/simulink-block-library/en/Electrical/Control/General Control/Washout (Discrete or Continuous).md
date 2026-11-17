@@ -14,6 +14,17 @@ language: en
 # Washout (Discrete or Continuous)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Washout input vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Washout output vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -30,8 +41,22 @@ determine the state initial value.
 Washout output signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Time constant
+  summary: Washout time constant 0.1 (default) | positive number
+  group: ''
+- name: Initialization
+  summary: Initial state specification Inherited from block input (default) | Specify as parameter
+  group: ''
+- name: Initial state
+  summary: Initial state 0 (default) | real number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Time constant** — Washout time constant `0.1` (default) | positive number
 
@@ -66,7 +91,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

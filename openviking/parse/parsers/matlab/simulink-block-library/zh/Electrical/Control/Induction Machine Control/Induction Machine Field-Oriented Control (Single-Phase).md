@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Induction Machine Field-Oriented Control (Single-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: Reference
+  summary: 转矩或角速度参考值标量
+  direction: input
+  data_types: single | double
+- name: iab
+  summary: 定子电流标量
+  direction: input
+  data_types: single | double
+- name: wr
+  summary: 转子角速度标量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 逆变器门极脉冲 0 | 1
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: 用于可视化的内部信号 Reference | Rotor velocity | θ | iab | iabRef | TqRef | FluxRef
+  direction: output
+  data_types: single | double | bus
+```
 
 ### 输入
 
@@ -56,8 +79,79 @@ chinese_source: worker-translation
 - 磁链参考值（*FluxRef*），单位为 Wb
 
 **数据类型：** `single` | `double` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Control mode
+  summary: 指定控制模式 Speed control（默认） | Torque control
+  group: 常规
+- name: Rated electrical frequency (Hz)
+  summary: 指定额定电频率 60（默认） | 正标量
+  group: 常规
+- name: Number of pole pairs
+  summary: 指定极对数 2（默认） | 正标量
+  group: 常规
+- name: Main winding rotor resistance, Rar' (Ohm)
+  summary: 指定主绕组转子电阻 3.7080（默认） | 正标量
+  group: 常规
+- name: Main winding rotor leakage inductance, Llar' (H)
+  summary: 指定主绕组转子漏电感 0.0050（默认） | 正标量
+  group: 常规
+- name: Main winding mutual inductance, Lms (H)
+  summary: 指定主绕组互感 0.1595（默认） | 正标量
+  group: 常规
+- name: Auxiliary/main windings turn ratio
+  summary: 指定辅助绕组与主绕组的匝数比 1.1（默认） | 正标量
+  group: 常规
+- name: Fundamental sample time (s)
+  summary: 指定模块采样时间 5e-6（默认） | 正标量
+  group: 常规
+- name: Control sample time (s)
+  summary: 指定控制采样时间 5e-5（默认） | 正标量
+  group: 常规
+- name: Speed controller proportional gain
+  summary: 指定速度控制器比例增益 1（默认） | 正标量
+  group: 外环
+- name: Speed controller integral gain
+  summary: 指定速度控制器积分增益 10（默认） | 正标量
+  group: 外环
+- name: Speed controller integral anti-windup gain
+  summary: 指定速度控制器积分抗饱和增益 1000（默认） | 正标量
+  group: 外环
+- name: Maximum torque (Nm)
+  summary: 指定最大转矩 5（默认） | 正标量
+  group: 外环
+- name: Minimum torque (Nm)
+  summary: 指定最小转矩 -5（默认） | 标量
+  group: 外环
+- name: Rated flux (Wb)
+  summary: 指定额定磁链 0.5（默认） | 正标量
+  group: 外环
+- name: Control type
+  summary: 指定控制类型 Hysteresis control（默认） | PI control
+  group: 内环
+- name: Current hysteresis band (A)
+  summary: 指定电流滞环带宽 0.5（默认） | 正标量
+  group: 内环
+- name: A-phase current proportional gain
+  summary: 主绕组电流比例增益 1（默认） | 正标量
+  group: 内环
+- name: A-phase current integral gain
+  summary: 主绕组电流积分增益 500（默认）
+  group: 内环
+- name: A-phase current anti-windup gain
+  summary: 主绕组电流抗饱和增益 1000（默认）
+  group: 内环
+- name: B-phase current proportional gain
+  summary: 辅助绕组电流比例增益 1（默认）
+  group: 内环
+- name: B-phase current integral gain
+  summary: 辅助绕组电流积分增益 500（默认）
+  group: 内环
+- name: B-phase current anti-windup gain
+  summary: 辅助绕组电流抗饱和增益 1000（默认）
+  group: 内环
+```
 
 ### 常规
 
@@ -180,7 +274,6 @@ B 相（辅助绕组）控制器电流的积分增益。
 ### **B-phase current anti-windup gain** — 辅助绕组电流抗饱和增益 `1000`（默认）
 
 B 相（辅助绕组）控制器电流的抗饱和增益。
-
 ## 所属库
 
 Simscape / Electrical / Control / Induction Machine Control

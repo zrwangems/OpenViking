@@ -14,6 +14,17 @@ language: en
 # Differentiator Filter
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Output
+  summary: Differentiator filter output vector | matrix
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -39,8 +50,34 @@ dimension are identical to the input port properties.
 
 **Data Types:** `single` | `double` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Design minimum order filter
+  summary: Design minimum order filter on (default) | off
+  group: Main Tab
+- name: Filter order
+  summary: Order of differentiator filter 31 (default) | odd positive integer
+  group: Main Tab
+- name: Maximum passband ripple (dB)
+  summary: Maximum passband ripple 0.1 (default) | positive scalar
+  group: Main Tab
+- name: Scale filter coefficients
+  summary: Scale filter coefficients off (default) | on
+  group: Main Tab
+- name: View Filter Response
+  summary: View filter response button (default)
+  group: Main Tab
+- name: Simulate using
+  summary: Simulate using Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Coefficients
+  summary: Coefficients fixdt(1,16) (default) | fixdt(1,16,0) | <data type expression>
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -151,7 +188,6 @@ The word length of the output is same as the word length of the input.
 The fraction length of the output is computed such that the entire
 dynamic range of the output can be represented without overflow. For
 details on how the block computes the fraction length, see Fixed-Point Precision Rules for Avoiding Overflow in FIR Filters.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Designs

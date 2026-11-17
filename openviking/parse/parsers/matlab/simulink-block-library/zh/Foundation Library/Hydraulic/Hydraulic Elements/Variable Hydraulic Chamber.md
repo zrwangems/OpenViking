@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Variable Hydraulic Chamber
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -23,8 +26,10 @@ chinese_source: worker-translation
 
 `V`
 :   提供腔室体积变化的物理信号端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Chamber dead volume**
 :   腔室中流体的最小体积。默认值为
@@ -41,7 +46,6 @@ chinese_source: worker-translation
 - **Chamber orientation**
 
 所有其他模块参数均可修改。
-
 ## 所属库
 
 R2025b 中未记录。

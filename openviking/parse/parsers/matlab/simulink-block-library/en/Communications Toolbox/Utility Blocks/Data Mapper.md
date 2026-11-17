@@ -14,6 +14,17 @@ language: en
 # Data Mapper
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector | matrix
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Out
+  summary: Output signal scalar | column vector | matrix
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -33,8 +44,19 @@ Output signal, returned as a scalar, column vector, or matrix. The
 dimensions of the output signal match those of the input signal.
 
 **Data Types:** `double` | `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mapping mode
+  summary: Mapping mode Binary to Gray (default) | Gray to Binary | User Defined | Straight through
+  group: ''
+- name: Symbol set size (M)
+  summary: Symbol set size 8 (default) | positive integer
+  group: ''
+- name: Mapping vector
+  summary: Maps input elements to the output elements [0 1 3 2 7 6 4 5] (default) | vector
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -81,7 +103,6 @@ vector `[1 5 0 4 2 3]` defines the following
 mapping:
 
 0→11→52→03→44→25→3
-
 ## Libraries
 
 Communications Toolbox / Utility Blocks

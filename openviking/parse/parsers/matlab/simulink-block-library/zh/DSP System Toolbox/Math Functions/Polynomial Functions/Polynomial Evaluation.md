@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Polynomial Evaluation
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Coeffs
+  summary: 多项式系数向量
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: 多项式求值的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -43,8 +58,16 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Use constant coefficients
+  summary: 使用常量系数 off（默认）| on
+  group: ''
+- name: Constant coefficients
+  summary: 常量系数 [5 4 3 2 1]（默认）| 向量
+  group: ''
+```
 
 ### **Use constant coefficients** — 使用常量系数 `off`（默认）| `on`
 
@@ -67,7 +90,6 @@ chinese_source: worker-translation
 要启用此参数，请选中**使用常量系数**复选框。
 
 **复数支持：** 是
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Polynomial Functions

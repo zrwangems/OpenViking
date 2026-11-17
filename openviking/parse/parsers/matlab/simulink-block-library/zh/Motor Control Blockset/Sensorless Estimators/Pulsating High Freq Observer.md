@@ -15,6 +15,40 @@ chinese_source: worker-translation
 # Pulsating High Freq Observer
 
 ## 端口
+```yaml
+ports:
+- name: Iab hf
+  summary: PHF 电流响应向量
+  direction: input
+  data_types: single | double | fixed point
+- name: Enable
+  summary: 触发模块操作的输入标量
+  direction: input
+  data_types: Boolean
+- name: θin
+  summary: 初始转子位置标量
+  direction: input
+  data_types: single | double | fixed point
+- name: IPEEn
+  summary: 启用阶段 1 初始位置估计（IPE）操作的标量
+  direction: input
+  data_types: Boolean
+- name: Vαβ hf
+  summary: PHF 输出标量
+  direction: output
+  data_types: single | double | fixed point
+- name: θest
+  summary: 估计转子位置标量
+  direction: output
+  data_types: single | double | fixed point
+- name: PosEn
+  summary: '*θest* 端口状态标量'
+  direction: output
+  data_types: single | double | fixed point
+- name: Info
+  summary: 总线信号 总线
+  direction: output
+```
 
 ### 输入
 
@@ -91,8 +125,94 @@ chinese_source: worker-translation
 | 3 | 模块正在运行 DP 方法（阶段 1 部分 C） | - |
 | 4 | 模块已成功完成阶段 1，并已开始阶段 2 闭环 PHF 注入 | - |
 | 5 | 阶段 1 部分 B 因估计转子位置误差过大而失败 | - |
-
 ## 参数
+```yaml
+parameters:
+- name: Discrete step size (s)
+  summary: 模块再次执行的采样时间 50e-6（默认）| 标量
+  group: ''
+- name: Input units
+  summary: 模块输入的单位 Per-unit（默认）| SI
+  group: ''
+- name: Datatype
+  summary: 输入和输出数据类型 single（默认）| double | fixed point
+  group: ''
+- name: 使用电机参数自动计算 PHF 参数
+  summary: 自动计算 PHF 参数 off（默认）| on
+  group: ''
+- name: 使用电机参数自动计算 DP 参数
+  summary: 自动计算 DP 参数 off（默认）| on
+  group: ''
+- name: Stator resistance (ohm)
+  summary: 电机电阻 0.1458（默认）| 标量
+  group: 电机参数
+- name: Stator d-axis inductance (H)
+  summary: 电机电感 0.00013016（默认）| 标量
+  group: 电机参数
+- name: Stator q-axis inductance (H)
+  summary: 电机电感 0.00014098（默认）| 标量
+  group: 电机参数
+- name: Base voltage (V)
+  summary: 额定电压 13.8564（默认）| 标量
+  group: 电机参数
+- name: Base current (A)
+  summary: 额定电流 21.4286（默认）| 标量
+  group: 电机参数
+- name: Compute PHF parameters
+  summary: 手动计算 PHF 参数 button
+  group: 电机参数
+- name: Compute DP parameters
+  summary: 手动计算 DP 参数 button
+  group: 电机参数
+- name: PHF peak voltage (PU)
+  summary: PHF 峰值电压 0.2（默认）| 标量
+  group: PHF 参数
+- name: PHF frequency (Hz)
+  summary: PHF 电压频率 2000（默认）| 标量
+  group: PHF 参数
+- name: LP filter cutoff frequency (Hz)
+  summary: PHF 低通滤波器截止频率 131.9037（默认）| 标量
+  group: PHF 参数
+- name: Select tuning parameters
+  summary: 为手动整定选择控制参数 Controller gains（默认）| Time response variables
+  group: PHF 参数
+- name: Proportional gain
+  summary: PHF 的 PI 控制器比例增益 1954.6647（默认）| 标量
+  group: PHF 参数
+- name: Integral gain
+  summary: PHF 的 PI 控制器积分增益 7392.5303（默认）| 标量
+  group: PHF 参数
+- name: Expected settling time (s)
+  summary: 估计位置的预期调节时间 0.66794（默认）| 标量
+  group: PHF 参数
+- name: Expected damping ratio
+  summary: 模块输出 *θest* 的预期阻尼比 0.99（默认）| 标量
+  group: PHF 参数
+- name: Compute Control Parameters
+  summary: 计算已禁用控制参数按钮
+  group: PHF 参数
+- name: Open loop duration (s)
+  summary: 阶段 1 部分 A 期间开环 PHF 注入的持续时间 0.0066794（默认）| 标量
+  group: PHF 参数
+- name: Closed loop duration (s)
+  summary: 阶段 1 部分 B 期间闭环 PHF 注入的持续时间 0.66794（默认）| 标量
+  group: PHF 参数
+- name: Idle time (s)
+  summary: 算法步之间的持续时间 0.0066794（默认）| 标量
+  group: PHF 参数
+- name: Error threshold (rad)
+  summary: '*θerr* 的最小误差阈值 4e-4（默认）| 标量'
+  group: PHF 参数
+- name: Pulse voltage (PU)
+  summary: 注入脉冲的幅值 0.5（默认）| 标量
+  group: DP Parameters
+- name: Pulse duration (s)
+  summary: 注入脉冲的持续时间 0.00066955（默认）| 标量
+  group: DP Parameters
+- name: Idle time (s)
+  summary: 双脉冲注入期间两个脉冲之间的持续时间 50e-3（默认）| 标量
+  group: DP Parameters
+```
 
 ### **Discrete step size (s)** — 模块再次执行的采样时间 `50e-6`（默认）| 标量
 
@@ -304,7 +424,6 @@ chinese_source: worker-translation
 ### **Idle time (s)** — 双脉冲注入期间两个脉冲之间的持续时间 `50e-3`（默认）| 标量
 
 双脉冲注入（stage 1 part C）期间两个脉冲之间的持续时间（以秒为单位）。
-
 ## 所属库
 
 Motor Control Blockset / Sensorless Estimators

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Descriptor State-Space
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -35,8 +46,60 @@ chinese_source: worker-translation
 隐式系统的输出信号。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: E
+  summary: 隐式系统的质量矩阵 *E* 1（默认）| 标量 | 矩阵
+  group: ''
+  block_parameter: E
+  values: '''1''（默认）| 标量 | 矩阵'
+- name: A
+  summary: 隐式系统的 *A* 矩阵 1（默认）| 标量 | 矩阵
+  group: ''
+  block_parameter: A
+  values: '''1''（默认）| 标量 | 矩阵'
+- name: B
+  summary: 隐式系统的 *B* 矩阵 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: B
+  values: '''1''（默认）| 标量 | 向量 | 矩阵'
+- name: C
+  summary: 隐式系统的 *C* 矩阵 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: C
+  values: '''1''（默认）| 标量 | 向量 | 矩阵'
+- name: D
+  summary: 隐式系统的 *D* 矩阵 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: D
+  values: '''1''（默认）| 标量 | 向量 | 矩阵'
+- name: Initial condition
+  summary: 初始状态值 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+  block_parameter: InitialCondition
+  values: '''0''（默认）| 标量 | 向量 | 矩阵'
+- name: Direct feedthrough
+  summary: 输出信号值是否取决于输入信号值 True（默认）| False | Auto
+  group: ''
+  block_parameter: DirectFeedthrough
+  values: '''True''（默认）| ''False'' | ''Auto'''
+- name: Linearize to sparse model
+  summary: 将状态线性化为稀疏矩阵 on（默认）| off
+  group: ''
+  block_parameter: LinearizeToSparse
+  values: '''off''（默认）| ''on'''
+- name: Absolute tolerance
+  summary: 用于计算模块状态的绝对容差 auto（默认）| 标量 | 向量
+  group: ''
+  block_parameter: AbsoluteTolerance
+  values: '''auto''（默认）| ''-1'' | 正实标量数值 | 正实标量数值向量'
+- name: State Name (e.g., 'position')
+  summary: 为状态分配唯一名称的选项 ''（默认）| 字符向量 | 字符向量元胞数组 | MATLAB® 变量 | ...
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  values: '''''（默认）| 有效的 MATLAB 变量名称'
+```
 
 ### **E** — 隐式系统的质量矩阵 *E* `1`（默认）| 标量 | 矩阵
 
@@ -249,7 +312,6 @@ State-Space",AbsoluteTolerance="-1")`
 
 **示例：** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
-
 ## 所属库
 
 Simulink / Continuous

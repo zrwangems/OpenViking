@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Assertion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要检查非零值的信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -23,8 +30,28 @@ chinese_source: worker-translation
 Assertion 模块接受 Simulink 支持的任何维度和数值数据类型的输入信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable assertion
+  summary: 启用或禁用断言 on（默认）| off
+  group: ''
+- name: Simulation callback when assertion fails
+  summary: 断言失败时要求值的表达式 MATLAB 表达式
+  group: ''
+- name: Stop simulation when assertion fails
+  summary: 断言失败时停止 Simulink 仿真 off（默认）| on
+  group: ''
+- name: Severity
+  summary: 断言失败的严重性 error（默认）| warning | custom
+  group: DPI-C 断言选项
+- name: Assertion fail message
+  summary: 断言失败时的自定义消息 无默认值
+  group: DPI-C 断言选项
+- name: Assertion custom command
+  summary: 断言失败时要执行的自定义命令 SystemVerilog 命令
+  group: DPI-C 断言选项
+```
 
 ### **Enable assertion** — 启用或禁用断言 on（默认）| off
 
@@ -78,7 +105,6 @@ $time);`
 #### 依赖关系
 
 要启用此参数，请将 **Severity** 设置为 `custom`。
-
 ## 所属库
 
 HDL Verifier / For Use with DPI-C SystemVerilog

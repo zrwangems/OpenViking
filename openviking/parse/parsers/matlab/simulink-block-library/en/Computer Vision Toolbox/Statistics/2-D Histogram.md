@@ -14,6 +14,21 @@ language: en
 # 2-D Histogram
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input image vector | matrix | 3-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rst
+  summary: Reset value scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Port_1
+  summary: Histogram output vector | matrix | 3-D array
+  direction: output
+  data_types: single | double | uint32
+```
 
 ### Input
 
@@ -51,8 +66,34 @@ column`, then the output has the same number of dimension as the
 input.
 
 **Data Types:** `single` | `double` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Lower limit of histogram
+  summary: Lower limit of lowest-valued bin 0 (default) | real-valued scalar
+  group: ''
+- name: Upper limit of histogram
+  summary: Upper limit of highest-valued bin 1 (default) | real-valued scalar
+  group: ''
+- name: Number of bins
+  summary: Number of bins in histogram 256 (default) | real-valued scalar
+  group: ''
+- name: Find the histogram over
+  summary: Dimension along which to compute histogram Entire input (default) | Each column
+  group: ''
+- name: Normalized
+  summary: Normalize histogram output off (default) | on
+  group: ''
+- name: Running histogram
+  summary: Frequency distribution for successive inputs off (default) | on
+  group: ''
+- name: Trigger type
+  summary: Reset condition of running histogram None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+```
 
 **Main**
 
@@ -185,7 +226,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Statistics

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Rotational Spring
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 杆机械旋转
+  direction: conserving
+- name: C
+  summary: 壳体机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **C** — 壳体机械旋转
 
 与壳体（即静止体）关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Spring rate
+  summary: 弹簧刚度 10 N*m/rad（默认）| 标量
+  group: ''
+```
 
 ### **Spring rate** — 弹簧刚度 `10 N*m/rad`（默认）| 标量
 
 弹簧刚度。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

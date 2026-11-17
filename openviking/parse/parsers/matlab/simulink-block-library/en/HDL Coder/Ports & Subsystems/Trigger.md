@@ -14,6 +14,13 @@ language: en
 # Trigger
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Value that describes control signal or message payload scalar | vector | matrix
+  direction: output
+  data_types: double | int8
+```
 
 ### Output
 
@@ -46,8 +53,191 @@ or set **Trigger type** to
 `message`.
 
 **Data Types:** `double` | `int8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trigger type
+  summary: Select the type of control signal rising (default) | falling | either | function-call | message
+  group: Main
+  block_parameter: TriggerType
+  type: character vector
+  values: '''rising'' | ''falling'' | ''either'' | ''function-call'' | ''message'''
+  default: '''rising'''
+- name: Treat as Simulink function
+  summary: Create Simulink Function block off (default) | on
+  group: Main
+  block_parameter: IsSimulinkFunction
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Execute function call asynchronously
+  summary: Whether caller request to call function can wait for service execution off (default) | on
+  group: Main
+  block_parameter: AsynchronousFunction
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Function name
+  summary: Specify function name for Simulink Function block f (default) | function name
+  group: Main
+  block_parameter: FunctionName
+  type: character vector
+  values: '''f'' | function name in quotes'
+  default: '''f'''
+- name: Function visibility
+  summary: Select scope visibility of function scoped (default) | global | port
+  group: Main
+  block_parameter: FunctionVisibility
+  type: character vector
+  values: '''scoped'' | ''global'' | ''port'''
+  default: '''scoped'''
+- name: Scope to port
+  summary: Specify name of exporting function port '' (default) | character vector
+  group: Main
+  block_parameter: ScopeName
+  type: character vector
+  values: port name in quotes
+  default: ''''''
+- name: Enable variant condition
+  summary: Controls activating the variant control (condition) off (default) | on
+  group: Main
+  block_parameter: Variant
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Variant control
+  summary: Specify variant control (condition) expression (inherit) (default) | logical expression
+  group: Main
+  block_parameter: VariantControl
+  type: character vector
+  values: '''(inherit)'' | logical expression | Simulink.VariantExpression object'
+  default: '''(inherit)'''
+- name: Generate preprocessor conditionals
+  summary: Control enclosing variant choices off (default) | on
+  group: Main
+  block_parameter: GeneratePreprocessorConditionals
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: States when enabling
+  summary: Select how to set block state values held (default) | reset | inherit
+  group: Main
+  block_parameter: StatesWhenEnabling
+  type: character vector
+  values: '''held'' | ''reset''| ''inherit'''
+  default: '''held'''
+- name: Propagate sizes of variable-size signals
+  summary: Select when to propagate variable-size signals During execution (default) | Only when enabling
+  group: Main
+  block_parameter: PropagateVarSize
+  type: character vector
+  values: '''During execution'' | ''Only when enabling'''
+  default: '''During execution'''
+- name: Show output port
+  summary: Control display of output port off (default) | on
+  group: Main
+  block_parameter: ShowOutputPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output data type
+  summary: Select output port data type auto (default) | double | int8
+  group: Main
+  block_parameter: OutputDataType
+  type: character vector
+  values: '''auto'' | ''double'' | ''int8'''
+  default: '''auto'''
+- name: Sample time type
+  summary: Select calling rate triggered (default) | periodic
+  group: Main
+  block_parameter: SampleTimeType
+  type: character vector
+  values: '''triggered'' | ''periodic'''
+  default: '''triggered'''
+- name: Sample time
+  summary: Specify time interval 1 (default) | Ts | [Ts, To] | -1
+  group: Main
+  block_parameter: SampleTime
+  type: character vector
+  values: '''1'' | ''Ts''| ''[Ts, To]'' | ''-1'''
+  default: '''1'''
+- name: Enable zero-crossing detection
+  summary: Control zero-crossing detection on (default) | off
+  group: Main
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Initial trigger signal state
+  summary: Select the initial state of the trigger signal compatibility (no trigger on first evaluation) (default) | zero
+    | positive | negative
+  group: Main
+  block_parameter: InitialTriggerSignalState
+  type: character vector
+  values: '''compatibility (no trigger on first evaluation)'' | ''zero'' | ''positive'' | ''negative'''
+  default: '''compatibility (no trigger on first evaluation)'''
+- name: Trigger time
+  summary: Specify when message input triggers execution of subsystem on message available (default) | on sample time hit
+  group: Main
+  block_parameter: TriggerTime
+  type: character vector
+  values: '''on message available'' | ''on sample time hit'''
+  default: '''on message available'''
+- name: Schedule as aperiodic partition
+  summary: Specify immediate mode or scheduled mode for execution on (default) | off
+  group: Main
+  block_parameter: ScheduleAsAperiodic
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Port dimensions
+  summary: Specify dimensions for the trigger signal 1 (default) | [n] | [m n] | -1
+  group: Signal Attributes
+  block_parameter: PortDimensions
+  type: character vector
+  values: '''1'' | ''[n]'' | ''[m n]'' | -1'
+  default: '''1'''
+- name: Trigger signal sample time
+  summary: Specify time interval -1 (default) | Ts | [Ts, To]
+  group: Signal Attributes
+  block_parameter: TriggerSignalSampleTime
+  type: character vector
+  values: '''-1'' | ''Ts''| ''[Ts, To]'''
+  default: '''-1'''
+- name: Minimum
+  summary: Specify minimum output value for the trigger signal [] (default) | real scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  type: character vector
+  values: '''[]'' | real scalar in quotes'
+  default: '''[]'''
+- name: Maximum
+  summary: Specify maximum output value for the trigger signal [] (default) | real scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  type: character vector
+  values: '''[]'' | real scalar in quotes'
+  default: '''[]'''
+- name: Data type
+  summary: 'Select output data type for the trigger signal Inherit: auto (default) | double | single | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^,0) | <data type expression>'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''
+    | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Mode
+  summary: Select data type category Built in (default) | Fixed point | Expression
+  group: Signal Attributes
+- name: Interpolate data
+  summary: Control how missing workspace data is estimated on (default) | off
+  group: Signal Attributes
+  block_parameter: Interpolate
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### Main
 
@@ -860,7 +1050,6 @@ type** to `rising`,
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

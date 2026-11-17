@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Subscribe
 
 ## 端口
+```yaml
+ports:
+- name: IsNew
+  summary: 新消息指示符 0 | 1
+  direction: output
+- name: Msg
+  summary: ROS 2 消息非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输出
 
@@ -27,8 +37,46 @@ chinese_source: worker-translation
 ROS 2 消息，以非虚拟总线形式返回。ROS 消息的类型在 **Message type** 参数中指定。Subscribe ROS 2 模块在收到您指定的主题名称上的消息之前，会输出空白消息。这些空白消息允许您在网络的其余部分设置完成之前创建并测试完整模型。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Topic source
+  summary: 用于指定主题名称的来源 Select from ROS network | Specify your own
+  group: ''
+- name: Topic
+  summary: 要订阅的主题名称 string
+  group: ''
+- name: Message type
+  summary: ROS 2 消息类型 string
+  group: ''
+- name: Sample time
+  summary: 输出之间的间隔 –1 (默认) | scalar
+  group: ''
+- name: History
+  summary: 在队列中存储消息的模式 Keep last (默认) | Keep all
+  group: ''
+- name: Depth
+  summary: 消息队列的大小 10 (默认) | positive scalar
+  group: ''
+- name: Reliability
+  summary: 消息的传递保证 Reliable (默认) | Best effort
+  group: ''
+- name: Durability
+  summary: 消息的持久性 Volatile (默认) | Transient local
+  group: ''
+- name: Deadline
+  summary: 连续消息接收之间的预期间隔 Inf（默认）| 正标量
+  group: ''
+- name: Lifespan
+  summary: 发布与接收之间的消息有效窗口 Inf（默认）| 正标量
+  group: ''
+- name: Liveliness
+  summary: 发布者存活断言协议 "automatic"（默认）
+  group: ''
+- name: Lease Duration
+  summary: 存活断言之间的最大时间窗口 Inf（默认）| 正标量
+  group: ''
+```
 
 #### 主
 
@@ -98,7 +146,6 @@ ROS 2 消息类型，指定为字符串。使用 **Select** 从受支持的 ROS 
 定义订阅者期望发布者证明其存活的最长持续时间，超过该时间后系统将认为其已失去存活状态，指定为正标量。失去存活状态可作为故障的指示。
 
 默认值为 `Inf`，这意味着发布者可以在无限时间段内断言其存活状态。如果将 `Lease Duration` 设置为 5，则表示订阅者可以期望发布者在最多 5 秒内证明其存活状态。如果发布者未在该时间范围内发送任何消息或明确断言其存活状态，则被视为已失去存活状态。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

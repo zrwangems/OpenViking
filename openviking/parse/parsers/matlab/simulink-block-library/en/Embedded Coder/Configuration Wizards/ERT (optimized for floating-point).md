@@ -14,10 +14,25 @@ language: en
 # ERT (optimized for floating-point)
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Configure the model for
+  summary: Configuration objective ERT (optimized for floating-point) (default) | ERT (optimized for fixed-point) | GRT (optimized
+    for fixed/floating-point) | GRT (debug for fixed/floating-point) | Custom
+  group: ''
+- name: Configuration function
+  summary: Custom MATLAB script rtwsampleconfig (default)
+  group: ''
+- name: Invoke build process after configuration
+  summary: Initiate build process off (default) | on
+  group: ''
+```
 
 ### **Configure the model for** — Configuration objective `ERT (optimized for floating-point)` (default) | `ERT (optimized for fixed-point)` | `GRT (optimized for fixed/floating-point)` | `GRT (debug for fixed/floating-point)` | `Custom`
 
@@ -39,7 +54,6 @@ to `Custom`.
 
 If selected, the predefined script initiates the code generation and build
 process after updating the configuration parameters.
-
 ## Libraries
 
 Embedded Coder / Configuration Wizards

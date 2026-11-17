@@ -14,6 +14,21 @@ language: en
 # Battery (Table-Based)
 
 ## Ports
+```yaml
+ports:
+- name: SOC
+  summary: Battery charge level, C physical signal
+  direction: output
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Battery thermal mass thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -41,8 +56,376 @@ Thermal conserving port that represents the battery thermal mass.
 #### Dependencies
 
 To enable this port, in the **Thermal** setting, set the **Thermal port** parameter to `Yes`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Selected part
+  summary: Predefined parameterization option <click to select> (default)
+  group: ''
+- name: Vector of state-of-charge values, SOC
+  summary: SOC breakpoints [0, .1, .25, .5, .75, .9, 1] (default) | vector of scalars in the range [0,1]
+  group: Main
+- name: Tabulate parameters over temperature
+  summary: Select whether to tabulate battery parameters over temperature Yes (default) | No
+  group: Main
+  block_parameter: T_dependence
+  values: '"yes" (default) | "no"'
+- name: Current directionality
+  summary: Enable direction of current Disabled (default) | Enabled
+  group: Main
+  block_parameter: prm_dir
+  values: '"currentDirectionality" (default) | "noCurrentDirectionality"'
+- name: Terminal voltage operating range [Min Max]
+  summary: Terminal voltage operating range [0, inf] V (default) | vector of positive numbers
+  group: Main
+- name: Vector of temperatures, T
+  summary: '*T* breakpoints [278, 293, 313] K (default) | vector of positive numbers'
+  group: Main
+- name: Open-circuit voltage, V0(SOC,T)
+  summary: '*V0* lookup table with temperature breakpoint [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71,
+    3.72; 3.91, 3.93, 3.94; 4.07, 4.08, 4.08; 4.19, 4.19, 4.19] V (default) | matrix of nonnegative numbers'
+  group: Main
+- name: Open-circuit voltage, V0(SOC)
+  summary: '*V0* lookup table [3.5057, 3.566, 3.6337, 3.7127, 3.9259, 4.0777, 4.1928] V (default) | matrix of nonnegative
+    numbers'
+  group: Main
+- name: Terminal resistance, R0(SOC,T)
+  summary: R0 lookup table with temperature breakpoint [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107,
+    .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm (default) | matrix of nonnegative numbers
+  group: Main
+- name: Terminal resistance during discharging, R0(SOC,T)
+  summary: R0 lookup table with temperature breakpoint during discharging phase [.0117, .0085, .009; .011, .0085, .009; .0114,
+    .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm (default) | matrix
+    of nonnegative numbers
+  group: Main
+- name: Terminal resistance during charging, R0(SOC,T)
+  summary: R0 lookup table with temperature breakpoint during charging phase [.0117, .0085, .009; .011, .0085, .009; .0114,
+    .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm (default) | matrix
+    of nonnegative numbers
+  group: Main
+- name: Terminal resistance, R0(SOC)
+  summary: R0 lookup table [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm (default) | matrix of nonnegative numbers
+  group: Main
+- name: Terminal resistance during discharging, R0(SOC)
+  summary: R0 lookup table during discharging phase [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm (default) | matrix
+    of nonnegative numbers
+  group: Main
+- name: Terminal resistance during charging, R0(SOC)
+  summary: R0 lookup table during charging phase [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm (default) | matrix
+    of nonnegative numbers
+  group: Main
+- name: Cell capacity, AH
+  summary: Battery capacity when fully charged 27 hr*A (default) | nonnegative scalar
+  group: Main
+- name: Self-discharge
+  summary: Select whether to model the self-discharge resistance of the battery Disabled (default) | Enabled
+  group: Main
+  block_parameter: prm_leak
+  values: '"disabled" (default) | "enabled"'
+- name: Self-discharge resistance, Rleak(T)
+  summary: Resistance that represents battery self-discharge at temperature breakpoints [8000, 7000, 6000] Ohm (default) |
+    vector of positive numbers
+  group: Main
+- name: Self-discharge resistance, Rleak
+  summary: Resistance that represents battery self-discharge 7e3 Ohm (default) | positive scalar
+  group: Main
+- name: Extrapolation method for all tables
+  summary: Method of extrapolation for tables Nearest (default) | Linear | Error
+  group: Main
+  block_parameter: extrapolation_option
+  values: '"nearest" (default) | "linear" | "error"'
+- name: Expose SOC measurement port
+  summary: Method of extrapolation for tables No (default) | Yes
+  group: Main
+  block_parameter: SOC_port
+  values: '"no" (default) | "yes" | "error"'
+- name: Charge dynamics
+  summary: Battery charge dynamics model No dynamics (default) | One time-constant dynamics | Two time-constant dynamics |
+    Three time-constant dynamics | Four time-constant dynamics | Five time-constant dynamics
+  group: Dynamics
+  block_parameter: prm_dyn
+  values: '"off" (default) | "rc1" | "rc2" | "rc3" | "rc4" | "rc5"'
+- name: First polarization resistance, R1(SOC,T)
+  summary: First RC resistance at temperature breakpoints [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013;
+    .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix of positive
+    numbers
+  group: Dynamics
+- name: First polarization resistance, R1(SOC)
+  summary: First RC resistance [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm (default) | matrix of positive numbers
+  group: Dynamics
+- name: First time constant, tau1(SOC,T)
+  summary: First RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: First time constant, tau1(SOC)
+  summary: First RC time constant [36, 45, 105, 29, 77, 33, 39] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Second polarization resistance, R2(SOC,T)
+  summary: Second RC resistance at temperature breakpoints [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013;
+    .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix of positive
+    numbers
+  group: Dynamics
+- name: Second polarization resistance, R2(SOC)
+  summary: Second RC resistance [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm (default) | matrix of positive numbers
+  group: Dynamics
+- name: Second time constant, tau2(SOC,T)
+  summary: Second RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Second time constant, tau2(SOC)
+  summary: Second RC time constant [36, 45, 105, 29, 77, 33, 39] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Third polarization resistance, R3(SOC,T)
+  summary: Third RC resistance at temperature breakpoints [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013;
+    .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix of positive
+    numbers
+  group: Dynamics
+- name: Third polarization resistance, R3(SOC)
+  summary: Third RC resistance [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm (default) | matrix of positive numbers
+  group: Dynamics
+- name: Third time constant, tau3(SOC,T)
+  summary: Third RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Third time constant, tau3(SOC)
+  summary: Third RC time constant [36, 45, 105, 29, 77, 33, 39] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Fourth polarization resistance, R4(SOC,T)
+  summary: Fourth RC resistance at temperature breakpoints [.014, .382, .407; .028, .006, .007; .014, .007, .006; .333, .956,
+    .912] Ohm (default) | matrix of positive numbers
+  group: Dynamics
+- name: Fourth polarization resistance, R4(SOC)
+  summary: Fourth RC resistance [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033,
+    .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix of positive numbers
+  group: Dynamics
+- name: Fourth time constant, tau4(SOC,T)
+  summary: Fourth RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Fourth time constant, tau4(SOC)
+  summary: Fourth RC time constant [36, 45, 105, 29, 77, 33, 39] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Fifth polarization resistance, R5(SOC,T)
+  summary: Fifth RC resistance at temperature breakpoints [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013;
+    .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix of positive
+    numbers
+  group: Dynamics
+- name: Fifth polarization resistance, R5(SOC)
+  summary: Fifth RC resistance [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm (default) | matrix of positive numbers
+  group: Dynamics
+- name: Fifth time constant, tau5(SOC,T)
+  summary: Fifth RC time constant at temperature breakpoints [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67;
+    40, 33, 29; 25, 39, 33] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Fifth time constant, tau5(SOC)
+  summary: Fifth RC time constant [36, 45, 105, 29, 77, 33, 39] s (default) | matrix of positive numbers
+  group: Dynamics
+- name: Fade characteristic
+  summary: Select how to define fade characteristic Disabled (default) | Equations | Lookup tables (temperature independent)
+    | Lookup tables (constant temperature dependent)
+  group: Fade
+  block_parameter: prm_fade
+  values: '"disabled" (default) | "equations" | "tableN" | "tableNandT"'
+- name: Number of discharge cycles, N
+  summary: Reference number of cycles for percent change calculations 100 (default) | number from 1 to Inf
+  group: Fade
+- name: Change in open-circuit voltage after N discharge cycles (%)
+  summary: Percent change in open-circuit voltage after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Change in terminal resistance after N discharge cycles (%)
+  summary: Percent change in series resistance after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Change in cell capacity after N discharge cycles (%)
+  summary: Percent change in cell capacity after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Change in self-discharge resistance after N discharge cycles (%)
+  summary: Percent change in self-discharge resistance after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Change in first polarization resistance after N discharge cycles (%)
+  summary: Percent change in first RC resistance after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Change in second polarization resistance after N discharge cycles (%)
+  summary: Percent change in second RC resistance after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Change in third polarization resistance after N discharge cycles (%)
+  summary: Percent change in third RC resistance after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Change in fourth polarization resistance after N discharge cycles (%)
+  summary: Percent change in fourth RC resistance after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Change in fifth polarization resistance after N discharge cycles (%)
+  summary: Percent change in fifth RC resistance after *N* cycles 0 (default) | scalar
+  group: Fade
+- name: Vector of discharge cycle values, N
+  summary: Reference vector or numbers of cycles for percent change calculations [0, 100, 200, 300] (default) | number from
+    0 to Inf
+  group: Fade
+- name: Vector of temperatures for fade data, Tfade
+  summary: Vector temperatures at which fade lookup tables has been extracted [298.15, 323.15] K (default) | number from 1
+    to Inf
+  group: Fade
+- name: Percentage change in open-circuit voltage, dV0(N)
+  summary: Vector of percent change in open-circuit voltage after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percentage change in terminal resistance, dR0(N)
+  summary: Vector of percent change in series resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percentage change in cell capacity, dAH(N)
+  summary: Vector of percent change in cell capacity after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percentage change in self-discharge resistance, dRleak(N)
+  summary: Vector of percent change in self-discharge resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percentage change in first polarization resistance, dR1(N)
+  summary: Vector of percent change in first RC resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percent change in second polarization resistance, dR2(N)
+  summary: Vector of percent change in second RC resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percent change in third polarization resistance, dR3(N)
+  summary: Vector of percent change in third RC resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percent change in fourth polarization resistance, dR4(N)
+  summary: Vector of percent change in fourth RC resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percent change in fifth polarization resistance, dR5(N)
+  summary: Vector of percent change in fifth RC resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Fade
+- name: Percentage change in open-circuit voltage, dV0(N, Tfade)
+  summary: Matrix of percent change in open-circuit voltage after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix of
+    scalars
+  group: Fade
+- name: Percentage change in terminal resistance, dR0(N, Tfade)
+  summary: Matrix of percent change in series resistance after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix of scalars
+  group: Fade
+- name: Percentage change in cell capacity, dAH(N, Tfade)
+  summary: Matrix of percent change in cell capacity after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix of scalars
+  group: Fade
+- name: Percentage change in self-discharge resistance, dRleak(N, Tfade)
+  summary: Matrix of percent change in self-discharge resistance after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix
+    of scalars
+  group: Fade
+- name: Percentage change in first polarization resistance, dR1(N, Tfade)
+  summary: Matrix of percent change in first RC resistance after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix of
+    scalars
+  group: Fade
+- name: Percent change in second polarization resistance, dR2(N, Tfade)
+  summary: Matrix of percent change in second RC resistance after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix of
+    scalars
+  group: Fade
+- name: Percent change in third polarization resistance, dR3(N, Tfade)
+  summary: Matrix of percent change in third RC resistance after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix of
+    scalars
+  group: Fade
+- name: Percent change in fourth polarization resistance, dR4(N, Tfade)
+  summary: Matrix of percent change in fourth RC resistance after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix of
+    scalars
+  group: Fade
+- name: Percent change in fifth polarization resistance, dR5(N, Tfade)
+  summary: Matrix of percent change in fifth RC resistance after *N* cycles [0, 0; 0, 0; 0, 0; 0, 0] (default) | matrix of
+    scalars
+  group: Fade
+- name: Internal resistance calendar aging
+  summary: Calendar aging for internal resistance Disabled (default) | Enabled
+  group: Calendar Aging
+  block_parameter: prm_age_resistance
+  values: '"disabled" (default) | "enabled"'
+- name: Capacity calendar aging
+  summary: Calendar aging for capacity Disabled (default) | Enabled
+  group: Calendar Aging
+  block_parameter: prm_age_capacity
+  values: '"disabled" (default) | "enabled"'
+- name: Modeling option
+  summary: 'Calendar aging option Equation-based (default) | Tabulated: temperature | Tabulated: time and temperature'
+  group: Calendar Aging
+  block_parameter: prm_age_modeling
+  values: '"equation" (default) | "tableT" | "tableTandTime"'
+- name: Vector of time intervals
+  summary: Time intervals [0] d (default) | vector of scalars
+  group: Calendar Aging
+- name: Vector of storage temperatures
+  summary: Storage temperatures [273] K (default) | vector of scalars
+  group: Calendar Aging
+- name: Storage condition
+  summary: Storage condition Specify open-circuit voltage during storage (default) | Specify state-of-charge during storage
+  group: Calendar Aging
+  block_parameter: prm_age_OCV
+  values: '"OCV" (default) | "SOC"'
+- name: Normalized open-circuit voltage during storage, V/Vnom
+  summary: Normalized open-circuit voltage during storage 0.9 (default) | scalar
+  group: Calendar Aging
+- name: State of charge during storage
+  summary: Percentage state of charge during storage 60 (default) | positive number
+  group: Calendar Aging
+- name: Terminal resistance linear scaling for voltage, b
+  summary: Voltage linear scaling in terminal resistance 2.2134e6 (default) | scalar
+  group: Calendar Aging
+- name: Terminal resistance constant offset for voltage, c
+  summary: Voltage constant offset in terminal resistance 1.632e6 (default) | scalar
+  group: Calendar Aging
+- name: Terminal resistance temperature-dependent exponential increase, d
+  summary: Temperature-dependent exponential increase in terminal resistance 0.515833569 V (default) | scalar
+  group: Calendar Aging
+- name: Terminal resistance time exponent, a
+  summary: Time exponent in terminal resistance 0.75 (default) | scalar
+  group: Calendar Aging
+- name: Capacity linear scaling for voltage, b
+  summary: Voltage linear scaling in capacity 1.5097e07 (default) | scalar
+  group: Calendar Aging
+- name: Capacity constant offset for voltage, c
+  summary: Voltage constant offset in capacity 8.3625e06 (default) | scalar
+  group: Calendar Aging
+- name: Capacity temperature-dependent exponential increase, d
+  summary: Temperature-dependent exponential increase in capacity 0.6011 V (default) | scalar
+  group: Calendar Aging
+- name: Capacity time exponent, a
+  summary: Time exponent in capacity 0.75 (default) | scalar
+  group: Calendar Aging
+- name: Vector of sampled temperatures for terminal resistance calendar aging, T_ar
+  summary: Sampled temperatures for terminal resistance calendar aging [273.15, 298.15, 323.15] K (default) | vector of scalars
+  group: Calendar Aging
+- name: Percentage change in terminal resistance due to calendar aging, dR0(T_ar)
+  summary: Percentage change in terminal resistance due to calendar aging [0,0,0] (default) | vector of scalars
+  group: Calendar Aging
+- name: Time between terminal resistance beginning of life and dR(T_ar) measurement
+  summary: Time between terminal resistance beginning of life and dR(T_ar) measurement 100 d (default) | scalar
+  group: Calendar Aging
+- name: Vector of sampled temperatures for capacity calendar aging, T_ac
+  summary: Sampled temperatures for capacity calendar aging [273.15, 298.15, 323.15] K (default) | vector of scalars
+  group: Calendar Aging
+- name: Percentage change in capacity due to calendar aging, dAH(T_ac)
+  summary: Percentage change in capacity due to calendar aging [0,0,0] (default) | vector of scalars
+  group: Calendar Aging
+- name: Time between capacity beginning of life and dAH(T_ac) measurement
+  summary: Time between capacity beginning of life and dAH(T_ac) measurement 100 d (default) | scalar
+  group: Calendar Aging
+- name: Vector of sampled storage time intervals for terminal resistance calendar aging, t_ar
+  summary: Sampled storage time intervals for terminal resistance calendar aging [0, 90, 180, 270, 360] d (default) | vector
+    of scalars
+  group: Calendar Aging
+- name: Percentage change in terminal resistance due to calendar aging, dR0(t_ar,T_ar)
+  summary: Percentage change in terminal resistance due to calendar aging [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0] (default) |
+    matrix of scalars
+  group: Calendar Aging
+- name: Vector of sampled storage time intervals for capacity calendar aging, t_ac
+  summary: Sampled storage time intervals for capacity calendar aging [0, 90, 180, 270, 360] d (default) | vector of scalars
+  group: Calendar Aging
+- name: Percentage change in capacity due to calendar aging, dAH(t_ac,T_ac)
+  summary: Percentage change in capacity due to calendar aging [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0] (default) | matrix of
+    scalars
+  group: Calendar Aging
+- name: Thermal port
+  summary: Thermal port visibility Omit (default) | Model
+  group: Thermal
+  block_parameter: thermal_port
+  values: '"omit" (default) | "model"'
+- name: Simulation temperature
+  summary: Battery temperature 298.15 K (default) | positive number
+  group: Thermal
+- name: Thermal mass
+  summary: Thermal mass associated with thermal port 100 J/K (default)
+  group: Thermal
+```
 
 ### **Selected part** — Predefined parameterization option `<click to select>` (default)
 
@@ -1423,7 +1806,6 @@ degree.
 To enable this parameter, set **Thermal port** to
 `Model`. For more information, see
 Modeling Thermal Effects.
-
 ## Libraries
 
 Simscape / Electrical / Sources Simscape / Battery / Cells

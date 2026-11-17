@@ -14,6 +14,21 @@ language: en
 # Cumulative Product
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: Cumulative product vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -54,8 +69,46 @@ matrix.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Multiply input along
+  summary: Dimension to multiply input along Channels (running product) (default) | Columns | Rows
+  group: Main Tab
+- name: Input processing
+  summary: Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: Main Tab
+- name: Reset port
+  summary: Reset type None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+- name: Intermediate product
+  summary: 'Intermediate product Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output Inherit: Same as input (default) | Inherit: Same as product output | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum [] (default)
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum [] (default)
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -249,7 +302,6 @@ Specify the maximum value that the block must output. The default value is
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Math Operations

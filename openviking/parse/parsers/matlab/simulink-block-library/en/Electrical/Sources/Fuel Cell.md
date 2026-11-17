@@ -14,6 +14,30 @@ language: en
 # Fuel Cell
 
 ## Ports
+```yaml
+ports:
+- name: pfuel
+  summary: Supply absolute pressure of fuel, bar physical signal
+  direction: input
+- name: pair
+  summary: Supply gauge pressure of air, bar physical signal
+  direction: input
+- name: qfuel
+  summary: Fuel flow rate, l/min physical signal
+  direction: input
+- name: qair
+  summary: Air flow rate, l/min physical signal
+  direction: input
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -78,8 +102,64 @@ Thermal conserving port.
 
 To enable this port, set **Model fidelity** to
 `Detailed with physical inputs`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model fidelity
+  summary: Fuel cell fidelity Detailed with physical inputs (default) | Simplified - nominal conditions
+  group: Main
+- name: Open-circuit voltage
+  summary: Open-circuit voltage 65 V (default) | positive scalar
+  group: Main
+- name: Tafel slope
+  summary: Tafel slope 0.23 V (default) | positive scalar
+  group: Main
+- name: Internal resistance
+  summary: Internal resistance 0.05 Ohm (default) | positive scalar
+  group: Main
+- name: Nominal exchange current
+  summary: Nominal exchange current 80 A (default) | positive scalar
+  group: Main
+- name: Collapse current
+  summary: Collapse current 200 A (default) | positive scalar
+  group: Main
+- name: Number of cells per module
+  summary: Number of cells per module 65 (default) | positive scalar
+  group: Main
+- name: Module units (Series)
+  summary: Stack of module units in series 10 (default) | positive scalar
+  group: Main
+- name: Nominal H2 pressure
+  summary: Nominal hydrogen pressure 1.5e5 Pa (default) | positive scalar
+  group: Supply
+- name: Nominal O2 pressure
+  summary: Nominal oxygen pressure 1.0e5 Pa (default) | positive scalar
+  group: Supply
+- name: Concentration H2 in fuel (%)
+  summary: Hydrogen concentration in fuel 99 (default) | integer between 0 and 100
+  group: Supply
+- name: Concentration O2 in air (%)
+  summary: Oxygen concentration in fuel 21 (default) | integer between 0 and 100
+  group: Supply
+- name: Concentration vapor in air (%)
+  summary: Vapor concentration in air 1 (default) | integer between 0 and 100
+  group: Supply
+- name: Model activation delay
+  summary: Activation delay modeling option No (default) | Yes
+  group: Dynamics
+- name: Sum of activation and concentration resistance
+  summary: Sum of activation and concentration resistance 0.005 Ohm (default) | positive scalar
+  group: Dynamics
+- name: Time constant
+  summary: Time constant 10 s (default) | positive scalar
+  group: Dynamics
+- name: Nominal temperature
+  summary: Nominal temperature 293.15 K (default) | scalar
+  group: Thermal
+- name: Thermal mass
+  summary: Thermal mass associated with thermal port H 30000 J/K (default) | positive scalar
+  group: Thermal
+```
 
 ### Main
 
@@ -240,7 +320,6 @@ the thermal port by one degree.
 
 To enable this parameter, set **Model fidelity**
 to `Detailed with physical inputs`.
-
 ## Libraries
 
 Simscape / Electrical / Sources

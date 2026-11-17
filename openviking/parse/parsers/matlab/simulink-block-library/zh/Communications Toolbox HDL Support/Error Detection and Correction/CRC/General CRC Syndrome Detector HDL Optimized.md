@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # General CRC Syndrome Detector HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: dataIn
+  summary: 输入数据 标量 | 向量
+  direction: input
+  data_types: double | uint8 | uint16 | uint32 | fixed point | Boolean
+- name: startIn
+  summary: 输入帧起始指示 标量
+  direction: input
+  data_types: Boolean
+- name: endIn
+  summary: 输入帧结束指示 标量
+  direction: input
+  data_types: Boolean
+- name: validIn
+  summary: 有效输入数据指示 标量
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: 输出数据 标量 | 向量
+  direction: output
+  data_types: double | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: startOut
+  summary: 输出帧起始指示 标量
+  direction: output
+  data_types: Boolean
+- name: endOut
+  summary: 输出帧结束指示 标量
+  direction: output
+  data_types: Boolean
+- name: validOut
+  summary: 有效输出数据指示 标量
+  direction: output
+  data_types: Boolean
+- name: err
+  summary: 错误指示 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -86,8 +125,28 @@ chinese_source: worker-translation
 当该值为 `0` 时，消息包含零个错误。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Polynomial
+  summary: 生成多项式 [1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1]（默认）| 二进制向量
+  group: ''
+- name: Initial state
+  summary: 移位寄存器初始条件 0（默认）| 二进制标量 | 二进制向量
+  group: ''
+- name: Direct method
+  summary: 校验和计算方法 off（默认）| on
+  group: ''
+- name: Reflect input
+  summary: 输入字节顺序 off（默认）| on
+  group: ''
+- name: Reflect CRC checksum
+  summary: 校验和字节顺序 off（默认）| on
+  group: ''
+- name: Final XOR value
+  summary: 校验和 0（默认）| 二进制标量 | 二进制向量
+  group: ''
+```
 
 ### **Polynomial** — 生成多项式 `[1 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1]`（默认）| 二进制向量
 
@@ -129,7 +188,6 @@ chinese_source: worker-translation
 将校验和指定为二进制、双精度或单精度数据类型的标量或向量。该模块在将 CRC 校验和附加到输入数据之前，使用此值对 CRC 校验和执行 XOR 运算。
 
 如果指定向量输入，向量长度必须等于生成多项式的阶数。
-
 ## 所属库
 
 Communications Toolbox HDL Support / Error Detection and Correction / CRC

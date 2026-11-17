@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Concatenation Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 第一个输入数据数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: 第二个输入数据 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_N
+  summary: 第 *N* 个输入数据 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 拼接后的输出数据数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -42,8 +61,29 @@ chinese_source: worker-translation
 拼接后的输出数据。输出数据的维度对应于通过 **Data format** 模块参数指定的格式。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Layer
+  summary: 对应的层对象 layerObject（默认）| concatenationLayer 对象
+  group: 主要
+  block_parameter: Layer
+  type: workspace variable
+  values: concatenationLayer object
+  default: '''layerObject'''
+- name: Data format
+  summary: 输入数据的格式 SSC（默认）| C | CT | SC | SSSC
+  group: 主要
+  block_parameter: DataFormat
+  type: character vector
+  values: '''SSC'' | ''C'' | ''CT'' | ''SC'' | ''SSSC'''
+  default: '''SSC'''
+- name: Sample time
+  summary: 用于指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -92,7 +132,6 @@ chinese_source: worker-translation
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **值**：`'-1'` (default) | scalar |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Combination Layers

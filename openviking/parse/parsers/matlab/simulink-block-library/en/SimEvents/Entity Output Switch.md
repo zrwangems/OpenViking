@@ -14,6 +14,28 @@ language: en
 # Entity Output Switch
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: control
+  summary: Incoming control entity scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_2
+  summary: Output entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+```
 
 ### Input
 
@@ -42,8 +64,46 @@ Output entity port for entities exiting the block.
 Output entity port for entities exiting the block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of output ports
+  summary: Specify the number of output ports 2 (default) | scalar
+  group: ''
+  block_parameter: NumberOutputPorts
+  type: character vector
+  values: '''2'' | scalar'
+  default: '''2'''
+- name: Switching criterion
+  summary: Choose the switching criterion First port that is not blocked (default) | Round robin | From control port | From
+    attribute | Equiprobable
+  group: ''
+  block_parameter: SwitchingCriterion
+  type: character vector
+  values: '''First port that is not blocked'' | ''Round robin'' | ''From control port'' | ''From attribute'' | ''Equiprobable'''
+  default: '''First port that is not blocked'''
+- name: Initial port selection
+  summary: Specify the output port at the start of the simulation 1 (default) | scalar
+  group: ''
+  block_parameter: InitialPortSelection
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Switch Attribute name
+  summary: Specify the attribute that determines the output port Attribute1 (default) | character vector
+  group: ''
+  block_parameter: SwitchAttributeName
+  type: character vector
+  values: '''Attribute1'' | character vector'
+  default: '''Attribute1'''
+- name: Seed
+  summary: Specify the seed 34567 (default) | scalar
+  group: ''
+  block_parameter: Seed
+  type: character vector
+  values: '''34567'' | scalar'
+  default: '''34567'''
+```
 
 ### **Number of output ports** — Specify the number of output ports 2 (default) | scalar
 
@@ -163,7 +223,6 @@ This parameter is visible when **Switching criterion** is set to
 | **Type**: character vector |
 | **Values**: `'34567'` | scalar |
 | **Default**: `'34567'` |
-
 ## Libraries
 
 SimEvents

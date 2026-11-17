@@ -14,6 +14,21 @@ language: en
 # Inverse Park Transform
 
 ## Ports
+```yaml
+ports:
+- name: dq0
+  summary: '*d*-*q* axis and zero components vector'
+  direction: input
+  data_types: single | double
+- name: θelec
+  summary: Rotational angle, radians scalar
+  direction: input
+  data_types: single | double
+- name: abc
+  summary: '*a*-, *b*-, and *c*-phase components vector'
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -41,8 +56,16 @@ Components of the three-phase system in the *abc*
 reference frame.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Power Invariant
+  summary: Power invariant transform off (default) | on
+  group: ''
+- name: Phase-a axis alignment
+  summary: '*dq0* reference frame alignment Q-axis (default) | D-axis'
+  group: ''
+```
 
 ### **Power Invariant** — Power invariant transform off (default) | on
 
@@ -55,7 +78,6 @@ frame.
 Align the *a*-phase vector of the *abc*
 reference frame to the *d*- or *q*-axis of
 the rotating reference frame.
-
 ## Libraries
 
 Simscape / Electrical / Control / Mathematical Transforms

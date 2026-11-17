@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Selector
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -30,13 +39,17 @@ chinese_source: worker-translation
 输出物理信号，包含输入信号中所选元素。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Indices
+  summary: 所选信号元素的索引 1（默认）| 大于 1 的整数标量或向量
+  group: ''
+```
 
 ### **Indices** — 所选信号元素的索引 `1`（默认）| 大于 1 的整数标量或向量
 
 通过指定索引来选择输入信号的元素。参数值可以是整数标量或向量，范围为 1 到输入信号中的元素数量。索引可以按任意顺序排列，以便构造排列和重复。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Nonlinear Operators

@@ -14,6 +14,19 @@ language: en
 # Memory
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: Input delayed by one major integration time step scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -31,8 +44,52 @@ type Simulink® supports.
 Output is the input from the previous time step.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition
+  summary: Initial condition 0 (default) | scalar | vector | matrix | N-D array
+  group: Main
+  block_parameter: InitialCondition
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Inherit sample time
+  summary: Inherit sample time off (default) | on
+  group: Main
+  block_parameter: InheritSampleTime
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Direct feedthrough of input during linearization
+  summary: Output the input during linearization and trim off (default) | on
+  group: Main
+  block_parameter: LinearizeMemory
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Treat as a unit delay when linearizing with discrete sample time
+  summary: Linearize to unit delay for discrete inputs off (default) | on
+  group: Main
+  block_parameter: LinearizeAsDelay
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: State name
+  summary: Unique name for block state '' (default) | alphanumeric string
+  group: State Attributes
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: Require state name resolve to a signal object off (default) | on
+  group: State Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -170,7 +227,6 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discrete HDL Coder / Discrete

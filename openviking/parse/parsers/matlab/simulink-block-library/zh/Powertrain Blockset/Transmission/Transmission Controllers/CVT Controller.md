@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # CVT Controller
 
 ## 端口
+```yaml
+ports:
+- name: DirReq
+  summary: 方向请求 scalar
+  direction: input
+- name: PllyRatioReq
+  summary: 带轮比请求 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: Dir
+  summary: 方向请求 scalar
+  direction: output
+- name: PriDispCmd
+  summary: 主带轮位移 scalar
+  direction: output
+- name: SecDispCmd
+  summary: 副带轮位移 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -66,8 +87,40 @@ Dir={1   当 Dirreq≥0−1  当 Dirreq<0
 
 变速器副带轮位移，
 *xsec*，单位为 m。
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum variator primary pulley radius, rp_max
+  summary: 半径 .08（默认）| scalar
+  group: ''
+  block_parameter: rp_max
+  values: .08（默认）| scalar
+- name: Maximum variator secondary pulley radius, rs_max
+  summary: 半径 .07（默认）| scalar
+  group: ''
+  block_parameter: rs_max
+  values: .07（默认）| scalar
+- name: Minimum variator primary pulley radius, rp_min
+  summary: 半径 .03（默认）| scalar
+  group: ''
+  block_parameter: rp_min
+  values: .03（默认）| scalar
+- name: Minimum variator secondary pulley radius, rs_min
+  summary: 半径 .03（默认）| scalar
+  group: ''
+  block_parameter: rs_min
+  values: .03（默认）| scalar
+- name: 变速器带轮之间的间隙距离，rgap
+  summary: 指定冠轮连接 .025（默认）| scalar
+  group: ''
+  block_parameter: rgap
+  values: .025（默认）| scalar
+- name: 变速器楔角，thetawedge
+  summary: 指定冠轮连接 11（默认）| scalar
+  group: ''
+  block_parameter: thetaWedge
+  values: 11（默认）| scalar
+```
 
 #### 运动学
 
@@ -188,7 +241,6 @@ Dir={1   当 Dirreq≥0−1  当 Dirreq<0
 | **参数：** | `thetaWedge` |
 | **值：** | `11`（默认）| `scalar` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Transmission / Transmission Controllers

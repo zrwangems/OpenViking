@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Global Nearest Neighbor Multi Object Tracker
 
 ## 端口
+```yaml
+ports:
+- name: Detections
+  summary: 检测列表 Simulink® 总线，包含 MATLAB® 结构体
+  direction: input
+- name: Prediction Time
+  summary: 航迹更新时间 实数标量
+  direction: input
+- name: Cost Matrix
+  summary: 代价矩阵 实值 *N*t×*N*d 矩阵
+  direction: input
+- name: Detectable TrackIDs
+  summary: 可检测航迹 ID 实值 *M*×1 向量 | 实值 *M*×2 矩阵
+  direction: input
+- name: State Parameters
+  summary: 航迹状态参数 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Confirmed Tracks
+  summary: 确认航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Tentative Tracks
+  summary: 暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: All Tracks
+  summary: 确认和暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Info
+  summary: 用于分析航迹更新的附加信息 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+```
 
 ### 输入
 
@@ -176,8 +206,115 @@ chinese_source: worker-translation
 
 要启用此端口，请在 **Port Setting** 选项卡中，选择
 **启用信息输出**。
-
 ## 参数
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: 唯一跟踪器标识符 0（默认）| 非负整数
+  group: ''
+- name: 滤波器初始化函数
+  summary: 滤波器初始化函数 initcvekf（默认）| 函数名
+  group: ''
+- name: 最大航迹数
+  summary: 最大航迹数 200（默认）| 正整数
+  group: ''
+- name: 最大传感器数
+  summary: 最大传感器数 20（默认）| 正整数
+  group: ''
+- name: 乱序测量处理
+  summary: 乱序测量处理 Terminate（默认）| Neglect | Retrodiction
+  group: ''
+- name: 最大 OOSM 步数
+  summary: 最大 OOSM 步数 3（默认）| 正整数
+  group: ''
+- name: 航迹状态参数
+  summary: 航迹状态参考坐标系参数 结构体 | 结构体数组
+  group: ''
+- name: Update track state parameters with time
+  summary: 使用时间更新航迹状态参数 off（默认）| on
+  group: ''
+- name: Enable memory management
+  summary: 启用内存管理 off（默认）| on
+  group: ''
+- name: Assignment algorithm name
+  summary: 关联算法名称 'MatchPairs'（默认）| 'Munkres' | 'Jonker-Volgenant' | 'Auction' | 'Custom'
+  group: ''
+- name: Name of 'Custom' assignment function
+  summary: 自定义关联函数名称 字符向量
+  group: ''
+- name: Threshold for assigning detections to tracks
+  summary: 将检测关联到航迹的阈值 30*[1 Inf]（默认）| 正标量 | 1×2 正值向量
+  group: ''
+- name: Cluster tracks and detections for assignment
+  summary: 为关联聚类航迹和检测 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted Execution（默认）| Code Generation
+  group: ''
+- name: Type of track confirmation and deletion logic
+  summary: 航迹确认和删除逻辑类型 History（默认）| Score
+  group: ''
+- name: Confirmation threshold [M N]
+  summary: 历史逻辑的航迹确认阈值 [2 3]（默认）| 正整数的实值 1×2 向量
+  group: ''
+- name: Deletion threshold [P Q]
+  summary: 历史逻辑的航迹删除阈值 [5 5]（默认）| 正整数的实值 1×2 向量
+  group: ''
+- name: Confirmation threshold [positive scalar]
+  summary: 得分逻辑的航迹确认阈值 20（默认）| 正标量
+  group: ''
+- name: Deletion threshold [negative scalar]
+  summary: 得分逻辑的航迹删除阈值 -7（默认）| 标量 | 负标量
+  group: ''
+- name: Probability of detection used for track score
+  summary: 用于航迹得分的检测概率 0.9（默认）| (0,1) 范围内的标量
+  group: ''
+- name: Rate of false positives used for track score
+  summary: 用于航迹得分的虚警概率 1e-6（默认）| (0,1) 范围内的标量
+  group: ''
+- name: Volume of the sensor's detection bin
+  summary: 传感器检测波位的体积 1（默认）| 正标量
+  group: ''
+- name: Rate of new tracks per unit volume
+  summary: 每单位体积的新航迹率 1（默认）| 正标量
+  group: ''
+- name: Prediction time source
+  summary: 预测时间源 Auto（默认）| Input port
+  group: ''
+- name: Enable cost matrix input
+  summary: 启用代价矩阵输入端口 off（默认）| on
+  group: ''
+- name: Enable detectable track IDs input
+  summary: 启用可检测航迹 ID 输入 off（默认）| on
+  group: ''
+- name: Enable tentative tracks output
+  summary: 启用暂定航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable all tracks output
+  summary: 启用所有航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable information output
+  summary: 启用分析信息输出端口 off（默认）| on
+  group: ''
+- name: 输出总线名称的来源
+  summary: 输出航迹总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: 输出信息总线名称的来源
+  summary: 输出信息总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: 每个传感器的最大检测数
+  summary: 每个传感器的最大检测数 100（默认）| 正整数
+  group: ''
+- name: 每个聚类的最大检测数
+  summary: 每个聚类的最大检测数 5（默认）| 正整数
+  group: ''
+- name: 每个聚类的最大航迹数
+  summary: 每个聚类的最大航迹数 5（默认）| 正整数
+  group: ''
+- name: Handle run-time violation of cluster size
+  summary: 处理簇大小的运行时违规 Auto（默认）| Property
+  group: ''
+```
 
 #### Tracker Management
 
@@ -529,7 +666,6 @@ type initcvekf
 #### 依赖关系
 
 要启用此参数，请将 **Cluster tracks and detections for assignment** 指定为 `on`，并在 **Tracker Management** 选项卡中选择 **Enable Memory Management**。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

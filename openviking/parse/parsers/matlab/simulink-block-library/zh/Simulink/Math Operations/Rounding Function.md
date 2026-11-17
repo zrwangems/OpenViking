@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Rounding Function
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 对输入信号应用舍入函数后的输出信号。输出信号具有与输入相同的维度和数据类型。输出信号的每个元素是将所选舍入函数应用于输入信号对应元素的结果。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Function
+  summary: 舍入函数 floor（默认） | ceil | round | fix
+  group: ''
+  block_parameter: Operator
+  type: 字符向量
+  values: '''floor'' | ''ceil'' | ''round'' | ''fix'''
+  default: '''floor'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认） | 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认） | 带引号的标量或向量'
+```
 
 ### **Function** — 舍入函数 `floor`（默认） | `ceil` | `round` | `fix`
 
@@ -69,7 +94,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `SampleTime` |
 | **值：** | `"-1"`（默认） | 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Math Operations

@@ -14,10 +14,42 @@ language: en
 # Inport
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Inport block interpretation of Simulink signal Ideal voltage (default) | Ideal current | Power
+  group: ''
+- name: Source impedance (Ohm)
+  summary: Source impedance for available power match 50 (default) | vector of positive integers
+  group: ''
+- name: Carrier frequencies
+  summary: Carrier frequencies 0 Hz (default) | vector | scalar
+  group: ''
+- name: Use Square Wave
+  summary: Use square carrier wave off (default) | on
+  group: ''
+- name: View
+  summary: Plot square wave button
+  group: ''
+- name: Number of Fourier Coefficients
+  summary: Number of Fourier coefficients 10 (default) | integer greater than or equal to 1
+  group: ''
+- name: DC Bias
+  summary: DC bias 0 (default) | real number
+  group: ''
+- name: Duty Cycle (%)
+  summary: Duty cycle of square carrier wave 50 (default) | positive integer between 0 and 100
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Source type** — Inport block interpretation of Simulink signal `Ideal voltage` (default) | `Ideal current` | `Power`
 
@@ -142,7 +174,6 @@ Square Wave**.
 Select this parameter to ground and hide the negative terminals. Clear the parameter to expose
 the negative terminals. By exposing these terminals, you can connect them to
 other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Utilities

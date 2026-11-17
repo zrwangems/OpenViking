@@ -14,6 +14,15 @@ language: en
 # Flow Resistance (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Flow resistance port two-phase fluid
+  direction: conserving
+- name: B
+  summary: Flow resistance port two-phase fluid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,28 @@ resistance.
 
 Port through which the two-phase fluid enters or exits the flow
 resistance.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal pressure drop
+  summary: Pressure drop at a known operating condition 0.001 MPa (default) | scalar with units of pressure
+  group: ''
+- name: Nominal mass flow rate
+  summary: Mass flow rate at a known operating condition 0.1 kg/s (default) | scalar with units of mass/time
+  group: ''
+- name: Nominal specific volume
+  summary: Specific volume at a known operating condition 0 m^3/kg (default) | scalar with units of volume/mass
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at the ports of the flow resistance 0.01 m^2 (default) | scalar with units of area
+  group: ''
+- name: Fraction of nominal mass flow rate for laminar flow
+  summary: Ratio of threshold to nominal mass flow rates 1e-3 (default) | unitless scalar
+  group: ''
+- name: Mass flow rate into port A
+  summary: Mass flow rate into the resistance through port A 293.15 K (default) | positive scalar with units of temperature
+  group: Variables
+```
 
 ### **Nominal pressure drop** — Pressure drop at a known operating condition 0.001 MPa (default) | scalar with units of pressure
 
@@ -65,7 +94,6 @@ ultimately to set the limits of linearization for the pressure drop.
 ### **Mass flow rate into port A** — Mass flow rate into the resistance through port A 293.15 K (default) | positive scalar with units of temperature
 
 Mass flow rate into the resistance through port **A** at the start of simulation.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

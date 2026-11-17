@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Real-Time Sync
 
 ## 端口
+```yaml
+ports:
+- name: Missed Ticks
+  summary: 错过的节拍计数（可选）double
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -27,8 +34,26 @@ chinese_source: worker-translation
 当您选中 **Show “Missed Ticks” port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认）| double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器节拍数 10（默认）| integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: 在内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+```
 
 ### **Sample time** — 模块的采样时间 `0.1`（默认）| double
 
@@ -77,7 +102,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`YieldWhenWaiting` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

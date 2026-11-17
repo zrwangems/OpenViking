@@ -14,6 +14,29 @@ language: en
 # Von Karman Wind Turbulence Model (Continuous)
 
 ## Ports
+```yaml
+ports:
+- name: h
+  summary: Altitude scalar
+  direction: input
+  data_types: double
+- name: V
+  summary: Aircraft speed scalar
+  direction: input
+  data_types: double
+- name: DCM
+  summary: Direction cosine matrix 3-by-3 matrix
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: Turbulence velocities three-element vector
+  direction: output
+  data_types: double
+- name: ωwind
+  summary: Turbulence angular rates three-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -50,8 +73,91 @@ units.
 Turbulence angular rates, specified as a three-element vector, in radians per second.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Wind speed units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Specification
+  summary: Military reference MIL-F-8785C (default) | MIL-HDBK-1797 | MIL-HDBK-1797B
+  group: ''
+  block_parameter: spec
+  type: character vector
+  values: '''MIL-F-8785C'' | ''MIL-HDBK-1797'' | ''MIL-HDBK-1797B'''
+  default: '''MIL-F-8785C'''
+- name: Model type
+  summary: Turbulence model Continuous Von Karman (+q -r) (default) | Continuous Von Karman (+q +r) | Continuous Von Karman
+    (-q +r) | Continuous Dryden (+q -r) | Continuous Dryden (+q +r) | Continuous Dryden (-q +r) | Discrete Dryden (+q -r)
+    | Discrete Dryden (+q +r) | Discrete Dryden (-q +r)
+  group: ''
+  block_parameter: model
+  type: character vector
+  values: '''Continuous Von Karman (+q +r)'' | ''Continuous Von Karman (-q +r)'' | ''Continuous Dryden (+q -r)'' | ''Continuous
+    Dryden (+q +r)'' | ''Continuous Dryden (-q +r)'' | ''Discrete Dryden (+q -r)'' | ''Discrete Dryden (+q +r)'' | ''Discrete
+    Dryden (-q +r)'''
+  default: '''Continuous Von Karman (+q +r)'''
+- name: Wind speed at 6 m defines the low altitude intensity
+  summary: Measured wind speed 15 (default) | real scalar
+  group: ''
+  block_parameter: W20
+  type: character vector
+  values: real scalar
+  default: '''15'''
+- name: Wind direction at 6 m (degrees clockwise from north)
+  summary: Measured wind direction 0 (default) | real scalar
+  group: ''
+  block_parameter: Wdeg
+  type: character vector
+  values: real scalar
+  default: '''0'''
+- name: Probability of exceedance of high-altitude intensity
+  summary: Turbulence intensity 10^-2 - Light (default) | 10^-1 | 2x10^-1 | 10^-3 - Moderate | 10^-4 | 10^-5 - Severe | 10^-6
+  group: ''
+  block_parameter: TurbProb
+  type: character vector
+  values: '''2x10^-1'' | ''10^-1'' | ''10^-2 - Light'' | ''10^-3 - Moderate'' | ''10^-4'' | ''10^-5 - Severe'' | ''10^-6'''
+  default: '''10^-2 - Light'''
+- name: Scale length at medium/high altitudes
+  summary: Turbulence scale length 762 (default) | real scalar
+  group: ''
+  block_parameter: L_high
+  type: character vector
+  values: real scalar
+  default: '''762'''
+- name: Wingspan
+  summary: Wingspan 10 (default) | real scalar
+  group: ''
+  block_parameter: Wingspan
+  type: character vector
+  values: real scalar
+  default: '''10'''
+- name: Band limited noise sample time (seconds)
+  summary: Noise sample time 0.1 (default) | real scalar
+  group: ''
+  block_parameter: ts
+  type: character vector
+  values: real scalar
+  default: '''0.1'''
+- name: Random noise seeds
+  summary: Noise seeds [ug vg wg pg] [23341 23342 23343 23344] (default) | four-element vector
+  group: ''
+  block_parameter: Seed
+  type: character vector
+  values: four-element vector
+  default: '''[23341 23342 23343 23344]'''
+- name: Turbulence on
+  summary: Turbulence signals on (default) | off
+  group: ''
+  block_parameter: T_on
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Units** — Wind speed units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -233,7 +339,6 @@ To generate the turbulence signals, select this check box.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Wind

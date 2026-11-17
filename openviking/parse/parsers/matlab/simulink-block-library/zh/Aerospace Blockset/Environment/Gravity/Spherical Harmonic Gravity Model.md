@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Spherical Harmonic Gravity Model
 
 ## 端口
+```yaml
+ports:
+- name: Xff
+  summary: 固定坐标系坐标 N×3 矩阵
+  direction: input
+  data_types: double
+- name: gff
+  summary: 重力值 N×3 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -35,8 +46,45 @@ chinese_source: worker-translation
 固定坐标系 *x* 轴、*y* 轴和 *z* 轴方向上的重力值数组，单位为所选长度单位每秒平方。矩阵的每一行返回输入矩阵中对应行的计算重力矢量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Action for out-of-range input
+  summary: 超出范围输入的行为 Warning（默认）| Error | None
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Central body model
+  summary: 行星模型 EGM2008（默认）| EGM96 | LP100K | LP165P | GMM2B | Custom | EIGENGL04C
+  group: ''
+  block_parameter: ptype
+  type: 字符向量
+  values: '''EGM2008'' | ''EGM96'' | ''LP100K'' | ''LP165P'' | ''GMM2B'' | ''Custom'' | ''EIGENGL04C'''
+  default: '''EGM2008'''
+- name: Degree
+  summary: 谐波模型的阶数 120（默认）| 标量
+  group: ''
+  block_parameter: degree
+  type: 字符向量
+  values: scalar
+  default: '''120'''
+- name: Central body MAT-file
+  summary: 中心天体 MAT 文件 'aerogmm2b.mat'（默认）
+  group: ''
+  block_parameter: datafile
+  type: 字符向量
+  values: '''aerogmm2b.mat'' | MAT-file'
+  default: '''aerogmm2b.mat'''
+```
 
 ### **Units** — 输入和输出单位 `Metric (MKS)`（默认）| `English`
 
@@ -158,7 +206,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'aerogmm2b.mat'` | MAT-file |
 | **默认值**：`'aerogmm2b.mat'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Gravity

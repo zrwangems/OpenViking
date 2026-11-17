@@ -14,6 +14,25 @@ language: en
 # Color Space Converter
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream vector | matrix
+  direction: input
+  data_types: uint8 | uint16 | fi(0,N,0), where N = 8,9,...,16 | single | double
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream in new colorspace scalar | vector | matrix
+  direction: output
+  data_types: single | double | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -78,8 +97,19 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Conversion
+  summary: Type of color space conversion RGB to YCbCr (default) | YCbCr to RGB | RGB to intensity
+  group: ''
+- name: Use conversion specified by
+  summary: Conversion equation Rec. 601 (SDTV) (default) | Rec. 709 (HDTV)
+  group: ''
+- name: Scanning standard
+  summary: HDTV scanning standard 1250/50/2:1 (default) | 1125/60/2:1
+  group: ''
+```
 
 ### **Conversion** — Type of color space conversion `RGB to YCbCr` (default) | `YCbCr to RGB` | `RGB to intensity`
 
@@ -107,7 +137,6 @@ in HDTV format.
 
 This parameter applies when you set **Use conversion specified
 by** to `Rec. 709 (HDTV)`.
-
 ## Libraries
 
 Vision HDL Toolbox / Conversions

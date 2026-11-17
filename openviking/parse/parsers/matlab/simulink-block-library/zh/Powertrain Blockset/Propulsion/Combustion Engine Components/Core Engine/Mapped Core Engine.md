@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Mapped Core Engine
 
 ## 端口
+```yaml
+ports:
+- name: '*<TrqCmd>*'
+  summary: 发动机负载 TrqCmd（默认）
+  direction: input
+- name: '*<EngSpd>*'
+  summary: 发动机转速 EngSpd（默认）
+  direction: input
+- name: '*<EngTemp>*'
+  summary: 发动机温度 EngTemp（默认）
+  direction: input
+- name: '*<EngTrq>*'
+  summary: 功率 EngTrq（默认）
+  direction: output
+- name: '*<IntkAirMassFlw>*'
+  summary: 空气质量流量 IntkAirMassFlw（默认）
+  direction: output
+- name: '*<FuelMassFlw>*'
+  summary: 燃料流量 FuelMassFlw（默认）
+  direction: output
+- name: '*<ExhManGasTemp>*'
+  summary: 排气温度 ExhManGasTemp（默认）
+  direction: output
+- name: '*<Bsfc>*'
+  summary: 效率 Bsfc（默认）
+  direction: output
+- name: '*<EoHC>*'
+  summary: 碳氢化合物排放 EoHC（默认）
+  direction: output
+- name: '*<EoCO>*'
+  summary: 一氧化碳排放 EoCO（默认）
+  direction: output
+- name: '*<EoNOx>*'
+  summary: 一氧化氮和二氧化氮排放 EoNOx（默认）
+  direction: output
+- name: '*<EoCO2>*'
+  summary: 二氧化碳排放 EoCO2（默认）
+  direction: output
+- name: '*<EoPm>*'
+  summary: 颗粒物排放 EoPm（默认）
+  direction: output
+```
 
 ### 输入
 
@@ -142,8 +184,148 @@ chinese_source: worker-translation
 
 - 要创建此端口，请在 **Configuration** 选项卡上选择 **PM**。
 - 要指定端口名称，请在 **PM** 选项卡上，在 **PM output port name** 参数字段中输入名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Engine Type
+  summary: 发动机类型图像 Compression-ignition (CI)（默认）| Spark-ignition (SI)
+  group: ''
+  block_parameter: EngineType
+  values: Compression-ignition (CI)（默认）| Spark-ignition (SI)
+- name: Load input port name
+  summary: 名称 TrqCmd（默认）
+  group: ''
+  block_parameter: rowVarName
+  values: TrqCmd（默认）
+- name: Breakpoints for load input
+  summary: 断点 vector
+  group: ''
+  block_parameter: rowbreakpoints
+  values: vector
+- name: Speed input port name
+  summary: 名称 EngSpd（默认）
+  group: ''
+  block_parameter: colVarName
+  values: EngSpd（默认）
+- name: Breakpoints for speed input
+  summary: 断点 vector
+  group: ''
+  block_parameter: colbreakpoints
+  values: vector
+- name: Temperature input port name
+  summary: 名称 EngTemp（默认）
+  group: ''
+  block_parameter: TmpVarName
+  values: EngTemp（默认）
+- name: Breakpoints for temperature input
+  summary: 断点 [233.15 273.15 373.15]（默认）| vector
+  group: ''
+  block_parameter: Tmpbreakpoints
+  values: '[233.15 273.15 373.15]（默认）| vector'
+- name: Output Configuration
+  summary: 创建输出端口 on（默认）| off
+  group: ''
+- name: Power 输出端口名称
+  summary: Power EngTrq（默认）
+  group: ''
+  block_parameter: Name1
+  values: EngTrq（默认）
+- name: Power 表
+  summary: Power array
+  group: ''
+  block_parameter: Name1_z
+  values: array
+- name: Air 输出端口名称
+  summary: Air IntkAirMassFlw（默认）
+  group: ''
+  block_parameter: Name2
+  values: IntkAirMassFlw（默认）
+- name: Air 表
+  summary: Air array
+  group: ''
+  block_parameter: Name2_z
+  values: array
+- name: Fuel 输出端口名称
+  summary: Fuel FuelMassFlw（默认）
+  group: ''
+  block_parameter: Name3
+  values: FuelMassFlw（默认）
+- name: Fuel 表
+  summary: Fuel array
+  group: ''
+  block_parameter: Name3_z
+  values: array
+- name: Temperature 输出端口名称
+  summary: Temperature ExhManGasTemp（默认）
+  group: ''
+  block_parameter: Name4
+  values: ExhManGasTemp（默认）
+- name: Temperature table
+  summary: Temperature array
+  group: ''
+  block_parameter: Name4_z
+  values: array
+- name: 效率输出端口名称
+  summary: 效率 Bsfc（默认）
+  group: ''
+  block_parameter: Name5
+  values: Bsfc (default)
+- name: Efficiency table
+  summary: Efficiency array
+  group: ''
+  block_parameter: Name5_z
+  values: array
+- name: HC 输出端口名称
+  summary: 碳氢化合物 EoHC（默认）
+  group: ''
+  block_parameter: Name6
+  values: EoHC (default)
+- name: HC table
+  summary: Hydrocarbon array
+  group: ''
+  block_parameter: Name6_z
+  values: array
+- name: CO 输出端口名称
+  summary: 二氧化碳 EoCO（默认）
+  group: ''
+  block_parameter: Name7
+  values: EoCO (default)
+- name: CO table
+  summary: Carbon dioxide array
+  group: ''
+  block_parameter: Name7_z
+  values: array
+- name: NOx 输出端口名称
+  summary: 一氧化氮 *NO* 和二氧化氮 *NO2* EoNOx（默认）
+  group: ''
+  block_parameter: Name8
+  values: EoNOx (default)
+- name: NOx table
+  summary: 一氧化氮 *NO* 和二氧化氮 *NO2* array
+  group: ''
+  block_parameter: Name8_z
+  values: array
+- name: CO2 输出端口名称
+  summary: 二氧化碳 EoCO2（默认）
+  group: ''
+  block_parameter: Name9
+  values: EoCO2（默认）
+- name: CO2 表
+  summary: 二氧化碳 array
+  group: ''
+  block_parameter: Name9_z
+  values: array
+- name: PM 输出端口名称
+  summary: 颗粒物 EoPm（默认）
+  group: ''
+  block_parameter: Name10
+  values: EoPm（默认）
+- name: PM 表
+  summary: 颗粒物 array
+  group: ''
+  block_parameter: Name10_z
+  values: array
+```
 
 #### 配置
 
@@ -708,7 +890,6 @@ NOx 排放表。NOx 是一氧化氮 *NO* 和二氧化氮 *NO2*。
 #### 依赖关系
 
 要创建此参数，请在**配置**选项卡上选择 **PM**。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Core Engine

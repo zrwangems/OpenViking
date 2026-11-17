@@ -14,6 +14,29 @@ language: en
 # LUT based SynRM Control Reference
 
 ## Ports
+```yaml
+ports:
+- name: Tref
+  summary: Reference torque value scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: Mechanical speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vdc
+  summary: DC bus voltage scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Id ref
+  summary: Reference *d*-axis current scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Iq ref
+  summary: Reference *q*-axis current scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -56,8 +79,160 @@ Reference *d*-axis phase current (in amperes).
 Reference *q*-axis phase current (in amperes).
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Motor topology
+  summary: Synchronous reluctance motor topology Synchronous reluctance motor (default) | PM-assisted synchronous reluctance
+    motor
+  group: Motor Parameters
+- name: Definition of d-axis and q-axis
+  summary: Alignment of *d*- and *q*-axes Ld > Lq (different from PMSM) (default) | Lq > Ld (same as PMSM)
+  group: Motor Parameters
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 4 (default) | scalar
+  group: Motor Parameters
+- name: Stator resistance per phase, Rs (Ohm)
+  summary: Resistance of stator phase winding (ohms) 0.8 (default) | scalar
+  group: Motor Parameters
+- name: Vdc input method
+  summary: Input method for Vdc Specify via dialog (default) | Input port - use 3D LUT (voltage slice based) | Input port
+    - use 2D LUT (scaled-w based)
+  group: Motor Parameters
+- name: DC voltage to compute LUTs (V)
+  summary: DC bus voltage (volts) 24 (default) | scalar
+  group: Motor Parameters
+- name: DC voltage breakpoint vector, VdcVec (V)
+  summary: DC bus voltage lookup vector (volts) [18,30] (default) | vector
+  group: Motor Parameters
+- name: Motor parameter input method
+  summary: Type of motor parameters Linear model with lumped parameters (default) | Non-linear model with D,Q-flux linkage
+    LUTs | Non-linear model with Ld and Lq LUTs | Non-linear model with Ld, Lq, and FluxPM LUTs | Non-linear model with id
+    and iq LUTs
+  group: Motor Parameters
+- name: Enable percentages for torque breakpoint vector
+  summary: Enable percentage values for torque breakpoint vector off (default) | on
+  group: Motor Parameters
+- name: Enable custom breakpoint vectors for torque and speed
+  summary: Use custom breakpoints for torque and speed off (default) | on
+  group: Motor Parameters
+- name: Reference percentage torque breakpoint vector, Trefpct (%)
+  summary: Torque reference lookup vector (in percentage) [0,50,100] (default) | vector
+  group: Motor Parameters
+- name: Torque envelope for speed breakpoint vector, wrpm (rpm)
+  summary: Torque envelope values for speed breakpoint vector [0.3 0.3 0.15 0.05] (default) | vector
+  group: Motor Parameters
+- name: Reference torque breakpoint vector, Tref (Nm)
+  summary: Torque reference lookup vector [0,0.15,0.3] (default) | vector
+  group: Motor Parameters
+- name: Mechanical speed breakpoint vector, wrpm (rpm)
+  summary: Rotor speed lookup vector [0,1000,2000,6000] (default) | vector
+  group: Motor Parameters
+- name: Current Limit, I_limit (A)
+  summary: Maximum phase current limit for motor (amperes) 7.1 (default) | scalar
+  group: Motor Parameters
+- name: Viscous damping coefficient, Bv (Nm-s/rad)
+  summary: Viscous damping coefficient 1e-6 (default) | scalar
+  group: Motor Parameters
+- name: D-axis current breakpoint vector, id (A)
+  summary: D-axis current lookup vector [0,10,20,30] (default) | vector
+  group: Motor Parameters
+- name: Q-axis current breakpoint vector, iq (A)
+  summary: Q-axis current lookup vector [0, 10, 20, 30, 40] (default) | vector
+  group: Motor Parameters
+- name: Use measured (instead of computed) torque
+  summary: Use measured value of torque off (default) | on
+  group: Motor Parameters
+- name: Measured torque LUT, T(id,iq) (Nm)
+  summary: Measured lookup data [0,0,0,0,0;0,0.4500,0.9000,1.3500,1.8000;0,0.9000,1.8000,2.7000,3.6000;0,1.3500,2.7000,4.0500,5.4000]
+    (default) | vector
+  group: Motor Parameters
+- name: Stator d-axis inductance, Ld (H)
+  summary: D-axis stator winding inductance 0.9e-3 (default) | scalar
+  group: Linear Model with Lumped Parameters
+- name: Stator q-axis inductance, Lq (H)
+  summary: Q-axis stator winding inductance 0.15e-3 (default) | scalar
+  group: Linear Model with Lumped Parameters
+- name: Permanent magnet flux linkage (Wb)
+  summary: Permanent magnet flux linkage 0.4e-3 (default) | scalar
+  group: Linear Model with Lumped Parameters
+- name: D-axis flux linkage LUT, FluxD (id,iq) (Wb)
+  summary: Reference d-axis flux linkage lookup data [0,0,0,0,0;0.009,0.009,0.009,0.009,0.0090;0.018,0.018,0.018,0.018,0.0180;0.027,0.027,0.027,0.027,0.0270]
+    (default) | vector
+  group: Non-Linear Model with D,Q-Flux Linkage LUTs
+- name: Q-axis flux linkage LUT, FluxQ (id,iq) (Wb)
+  summary: Reference q-axis flux linkage lookup data [0,0.0015,0.003,0.0045,0.0060;0,0.0015,0.003,0.0045,0.0060;0,0.0015,0.003,0.0045,0.0060;0,0.0015,0.003,0.0045,0.0060]
+    (default) | vector
+  group: Non-Linear Model with D,Q-Flux Linkage LUTs
+- name: Ld LUT, Ld(id,iq) (H)
+  summary: D-axis inductance lookup data 0.9e-3 * ones(4, 5) (default) | matrix
+  group: Non-Linear Model with *Ld* and *Lq* (as well as *Ld*, *Lq*, and *FluxPM*) LUTs
+- name: Lq LUT, Lq(id,iq) (H)
+  summary: Q-axis inductance lookup data 0.15e-3 * ones(4, 5) (default) | matrix
+  group: Non-Linear Model with *Ld* and *Lq* (as well as *Ld*, *Lq*, and *FluxPM*) LUTs
+- name: PM flux linkage LUT, FluxPM(id,iq) (Wb)
+  summary: Permanent magnet flux linkage lookup data 0.4e-4 * ones(4, 5) (default) | matrix
+  group: Non-Linear Model with *Ld* and *Lq* (as well as *Ld*, *Lq*, and *FluxPM*) LUTs
+- name: Reference id LUT, id(Tref,wrpm) (A)
+  summary: Reference d-axis current lookup data [0,0,0,0;3.9091,3.9091,3.9091,0;7.1,7.1,7.1,0] (default) | matrix
+  group: Non-Linear Model with *id* and *iq* LUTs
+- name: Reference id LUT, id(Tref,wrpm,Vdc) (A)
+  summary: Reference d-axis current lookup data cat(3,[0,0,0,0;3.8539,3.8539,3.8539,0;6.9513,6.9513,6.9513,0],[0,0,0,0;3.8539,3.8539,3.8539,3.7611;6.9513,6.9513,6.9513,5.4848])
+    (default) | matrix
+  group: Non-Linear Model with *id* and *iq* LUTs
+- name: Reference iq LUT, iq(Tref,wrpm) (A)
+  summary: Reference q-axis current lookup data -1*[0,0,0,-7.1;0,0,0,-7.1;0,0,0,-7.1] (default) | matrix
+  group: Non-Linear Model with *id* and *iq* LUTs
+- name: Reference iq LUT, iq(Tref,wrpm,Vdc) (A)
+  summary: Reference q-axis current lookup data -1*cat(3,[0,0,0,-7.1;-0.4579,-0.4579,-0.4579,-7.1;-1.4457,-1.4457,-1.4457,-7.1],[0,0,0,0;-0.4579,-0.4579,-0.4579,-1.2581;-1.4457,-1.4457,-1.4457,-4.5085])
+    (default) | matrix
+  group: Non-Linear Model with *id* and *iq* LUTs
+- name: Input units
+  summary: Unit of measure of block input values Per-Unit (PU) (default) | SI Units
+  group: Input Units
+- name: Base voltage (V)
+  summary: Nominal voltage limit 24/sqrt(3) (default) | scalar
+  group: Input Units
+- name: Base current (A)
+  summary: Nominal current limit 19.3 (default) | scalar
+  group: Input Units
+- name: Base speed (rpm)
+  summary: Nominal speed limit 4107 (default) | scalar
+  group: Input Units
+- name: Base torque (Nm)
+  summary: Nominal torque limit 0.74112 (default)
+  group: Input Units
+- name: Allow scaled-down motor parameters with CodeGen (higher precision with Fixed-Point data type)
+  summary: Scale down internal parameters to match per-unit scale on (default) | off
+  group: Input Units
+- name: Enable saving the computed LUTs
+  summary: Enable block to save computed LUTs off (default) | on
+  group: Plotting Options
+- name: Compute (and plot) id and iq LUTs
+  summary: Compute (and plot) *id* and *iq* lookup data button
+  group: Plotting Options
+- name: Use default options for plotting
+  summary: Use default options to plot constraint curves on (default) | off
+  group: Plotting Options
+- name: Motor speed (RPM)
+  summary: Motor speed for plotting constraint curves 3000 (default) | scalar
+  group: Plotting Options
+- name: Motor torque (Nm)
+  summary: Motor torque for plotting constraint curves 0.1 (default) | scalar
+  group: Plotting Options
+- name: Enable plotting the drive characteristics
+  summary: Enable block to plot drive characteristics off (default) | on
+  group: Plotting Options
+- name: Include the drive characteristics for an increased motor current
+  summary: Enable block to plot drive characteristics for an increased motor current off (default) | on
+  group: Plotting Options
+- name: Plot constraint curves
+  summary: Plot constraint curves of motor button
+  group: Plotting Options
+- name: Compute and show
+  summary: Compute and show characteristic torque and speed button
+  group: Plotting Options
+```
 
 ### Motor Parameters
 
@@ -680,7 +855,6 @@ torque and speed characteristics:
 - Maximum speed — Maximum speed of motor (in RPM).
 
 For more details, see Plot Constraint Curves and Drive Characteristics for PMSM and SynRM Directly from Block Parameters Dialog Box.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference

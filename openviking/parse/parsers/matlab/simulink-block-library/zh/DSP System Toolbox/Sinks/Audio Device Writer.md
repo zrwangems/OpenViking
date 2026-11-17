@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Audio Device Writer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int16 | int32 | uint8
+- name: Port_1
+  summary: 欠载样本数 标量
+  direction: output
+  data_types: uint32
+```
 
 ### 输入
 
@@ -34,8 +45,37 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output number of samples underrun** 参数。
 
 **数据类型：** `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Driver
+  summary: 用于访问音频设备的驱动程序 DirectSound（默认）| ASIO | WASAPI
+  group: ''
+- name: Device
+  summary: 用于播放音频样本的设备 默认音频设备（默认）
+  group: ''
+- name: Info
+  summary: 查看有关音频输出配置的信息 按钮
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 设备用于播放音频数据的采样率 44100（默认）| 正标量
+  group: ''
+- name: Device bit depth
+  summary: 设备用于执行数模转换的数据类型 16-bit integer（默认）| 8-bit integer | 24-bit integer | 32-bit float
+  group: ''
+- name: Use default channel mapping
+  summary: 切换通道映射来源 on（默认）| off
+  group: ''
+- name: Device output channels
+  summary: 指定非默认通道映射 [1:MaximumOutputChannels]（默认）| 标量 | 向量
+  group: ''
+- name: Output number of samples underrun
+  summary: 指定欠载样本数的输出端口 off（默认）| on
+  group: ''
+```
 
 #### 主选项卡
 
@@ -115,7 +155,6 @@ ASIO 和 WASAPI 驱动程序不提供采样率转换。对于 ASIO 和 WASAPI �
 ### **Output number of samples underrun** — 指定欠载样本数的输出端口 off（默认）| on
 
 选中此参数时，会向模块添加一个输出端口。该端口输出写入一帧数据（一个输入矩阵）时欠载的样本数。
-
 ## 所属库
 
 Audio Toolbox / Sinks DSP System Toolbox / Sinks

@@ -14,6 +14,21 @@ language: en
 # Repeat
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: L
+  summary: Repetition count positive integer ≤ *Lmax*
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -91,8 +106,28 @@ The output is a variable-size signal when one or both of these conditions are me
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Repetition count source
+  summary: Mode of specifying repetition count Dialog parameter (default) | Input port
+  group: ''
+- name: Repetition count, L
+  summary: Repetition count 5 (default) | positive integer
+  group: ''
+- name: Maximum repetition factor, Lmax
+  summary: Maximum repetition count 16 (default) | positive integer ≥ 1
+  group: ''
+- name: Input processing
+  summary: Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: Method by which block upsamples input Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Initial conditions
+  summary: Initial conditions 0 (default) | scalar | matrix
+  group: ''
+```
 
 ### **Repetition count source** — Mode of specifying repetition count `Dialog parameter` (default) | `Input port`
 
@@ -198,7 +233,6 @@ latency as a scalar or a matrix.
 
 To enable this parameter, set **Rate options** to `Allow
 multirate processing`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations Communications Toolbox / Sequence Operations DSP System Toolbox HDL Support / Signal Operations

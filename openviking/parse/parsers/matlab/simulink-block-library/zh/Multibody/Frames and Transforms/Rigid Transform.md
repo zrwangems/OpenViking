@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Rigid Transform
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础坐标系 frame
+  direction: unspecified
+- name: F
+  summary: 从动坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -25,8 +34,55 @@ chinese_source: worker-translation
 ### **F** — 从动坐标系 frame
 
 应用变换的坐标系。
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 指定相对旋转的方法 None（默认）| Aligned Axes | Standard Axis | Arbitrary Axis | Rotation Sequence | Rotation Matrix | Quaternion
+  group: Rotation
+- name: 'Pair 1: Follower'
+  summary: 用于与指定基础坐标系轴对齐的从动坐标系轴 +X（默认）| -X | +Y | -Y | +Z | -Z
+  group: Rotation
+- name: 'Pair 1: Base'
+  summary: 基础坐标系轴 +Y（默认）| +X | -X | -Y | +Z | -Z
+  group: Rotation
+- name: 'Pair 2: Follower'
+  summary: 用于与指定基础坐标系轴对齐的从动坐标系轴 +Y | +X | -X | -Y | +Z | -Z
+  group: Rotation
+- name: 'Pair2: Base'
+  summary: 基础坐标系轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: Rotation
+- name: Axis
+  summary: 相对旋转的标准轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: Rotation
+- name: Angle
+  summary: 相对旋转的角度 0.0 deg（默认）| 标量
+  group: Rotation
+- name: Axis
+  summary: 相对旋转的轴 [0 0 1]（默认）| 3×1 向量
+  group: Rotation
+- name: Angle
+  summary: 相对旋转的角度 0.0 deg（默认）| 标量
+  group: Rotation
+- name: Rotation About
+  summary: 要绕其轴旋转从坐标系的坐标系 Follower Axes（默认）| Base Axes
+  group: Rotation
+- name: Sequence
+  summary: 旋转轴序列 X-Y-X（默认）| X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z | Z-Y-X | Z-Y-Z
+  group: Rotation
+- name: Angles
+  summary: 基本旋转的角度 [0 0 0] deg（默认）| 3×1 向量
+  group: Rotation
+- name: Matrix
+  summary: 旋转矩阵 [1 0 0; 0 1 0; 0 0 1]（默认）| 3×3 矩阵
+  group: Rotation
+- name: Quaternion
+  summary: 使用四元数的相对旋转 [1 0 0 0]（默认）| 单位四元数向量
+  group: Rotation
+- name: Method
+  summary: 用于指定平移的方法 None（默认）| Cartesian | Standard Axis | Cylindrical
+  group: Translation
+```
 
 ### Rotation
 
@@ -185,7 +241,6 @@ Matrix`。
     | **Radius** | 从动坐标系原点与基座坐标系 *z* 轴之间的距离。这是柱坐标的半径坐标。 |
     | **Theta** | 连接基座坐标系与从动坐标系原点的直线相对于基座坐标系 *x* 轴的旋转角度。这是柱坐标的方位角坐标。 |
     | **Z Offset** | 基座坐标系与从动坐标系原点之间沿基座坐标系 *z* 轴的距离。这是柱坐标的长度坐标。 |
-
 ## 所属库
 
 Simscape / Multibody / Frames and Transforms

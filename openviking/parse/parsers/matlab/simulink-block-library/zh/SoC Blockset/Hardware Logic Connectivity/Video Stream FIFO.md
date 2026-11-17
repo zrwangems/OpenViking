@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Video Stream FIFO
 
 ## 端口
+```yaml
+ports:
+- name: pixelIn
+  summary: 输入像素数据 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ctrlIn
+  summary: 伴随输入像素数据的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: pixelcontrol
+- name: rdyFromDown
+  summary: 来自下游接口的准备好信号 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: pixelOut
+  summary: 输出像素数据 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ctrlOut
+  summary: 伴随输出像素数据的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: pixelcontrol
+- name: rdyToUp
+  summary: 到上游接口的准备好信号 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -54,8 +81,16 @@ chinese_source: worker-translation
 控制信号，指示模块是否已准备好从上游接口接收像素数据。当此值为 `1`（true）时，模块已准备好接受来自上游接口的像素数据。当此值为 `0`（false）时，模块未准备好接受来自上游接口的像素数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Depth of FIFO
+  summary: FIFO 深度 16（默认）| 正整数
+  group: ''
+- name: Almost full threshold
+  summary: 几乎满阈值 8（默认）| 正整数
+  group: ''
+```
 
 ### **Depth of FIFO** — FIFO 深度 `16`（默认）| 正整数
 
@@ -66,7 +101,6 @@ chinese_source: worker-translation
 指定一个值，该值从模块向数据源断言反压信号。
 
 为避免丢弃数据，请设置一个允许数据源有足够时间对反压做出反应的值。此值必须为正整数且小于 FIFO 深度。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Connectivity

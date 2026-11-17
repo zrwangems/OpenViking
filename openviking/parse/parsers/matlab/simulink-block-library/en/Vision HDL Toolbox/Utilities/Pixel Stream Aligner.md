@@ -14,6 +14,37 @@ language: en
 # Pixel Stream Aligner
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector | matrix
+  direction: input
+  data_types: fixed point | uint | int | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: refPixel
+  summary: Reference pixel stream scalar | vector | matrix
+  direction: input
+  data_types: fixed point | uint | int | Boolean | double | single
+- name: refCtrl
+  summary: Reference pixel stream control signals pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Aligned pixel stream scalar | vector | matrix
+  direction: output
+  data_types: fixed point | uint | int | Boolean | double | single
+- name: refPixel
+  summary: Reference pixel stream scalar | vector | matrix
+  direction: output
+  data_types: fixed point | uint | int | Boolean | double | single
+- name: refCtrl
+  summary: Reference control signals pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -154,8 +185,16 @@ The block passes the input **refCtrl** signals through the block with a small
 delay.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Line buffer size
+  summary: Size of the line memory buffer 2048 (default) | positive integer
+  group: ''
+- name: Maximum number of lines
+  summary: Buffer depth that accommodates the timing offset between input streams 10 (default) | positive integer
+  group: ''
+```
 
 ### **Line buffer size** — Size of the line memory buffer `2048` (default) | positive integer
 
@@ -193,7 +232,6 @@ streaming, the block adjusts the line buffer size to store
 4-by-3 input stream, each buffer stores ¼ of the pixels for a line, and the
 buffer is 12×2*m-2* locations.
 The line address buffer remains the same size.
-
 ## Libraries
 
 Vision HDL Toolbox / Utilities

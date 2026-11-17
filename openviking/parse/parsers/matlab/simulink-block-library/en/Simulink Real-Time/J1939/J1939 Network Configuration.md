@@ -14,10 +14,24 @@ language: en
 # J1939 Network Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Configuration name
+  summary: Define a name for this J1939 network configuration ConfigX (default) | character vector
+  group: ''
+- name: Database File
+  summary: Specify the J1939 database file name relative to the current folder not set (default) | character vector
+  group: ''
+- name: Enable address claiming
+  summary: Enable standard address claim procedure on (default) | off
+  group: ''
+```
 
 ### **Configuration name** — Define a name for this J1939 network configuration `ConfigX` (default) | character vector
 
@@ -39,7 +53,6 @@ be in the DBC file format defined by Vector Informatik GmbH.
 When selected (checked on), this parameter allows J1939 Node Configuration
 blocks to use a standard address claim procedure to dynamically assign addresses
 of nodes on the bus.
-
 ## Libraries
 
 Simulink Real-Time / J1939 Communication Vehicle Network Toolbox / J1939 Communication

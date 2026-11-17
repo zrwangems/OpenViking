@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Isothermal Liquid Properties (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 等温液体连接端口
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 等温液体连接端口
 
 等温液体守恒端口，用于将模块连接到网络。您可以将其连接到框图中等温液体连接线上的任意点。当您将 Isothermal Liquid Properties (IL) 模块连接到连接线时，软件会自动识别连接到特定回路的等温液体模块，并将液体属性传播到回路中的所有模块。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Utilities

@@ -15,6 +15,40 @@ chinese_source: worker-translation
 # Induction Machine Direct Torque Control with Space Vector Modulator
 
 ## 端口
+```yaml
+ports:
+- name: FluxRef
+  summary: 磁链标量
+  direction: input
+  data_types: single | double
+- name: TqRef
+  summary: 转矩标量
+  direction: input
+  data_types: single | double
+- name: vabc
+  summary: 电压矢量
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: 电流矢量
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: 直流母线电压信号标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 控制器复位标量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 门极脉冲矢量 | 0 或 1
+  direction: output
+  data_types: single | double
+- name: ModWave
+  summary: 调制波矢量
+  direction: output
+```
 
 ### 输入
 
@@ -64,8 +98,49 @@ PI 控制器积分器的复位。
 ### **ModWave** — 调制波矢量
 
 如果为具有 PWM 能力的硬件平台生成代码，则部署到硬件的调制波。否则，此数据仅供您参考。
-
 ## 参数
+```yaml
+parameters:
+- name: Stator resistance (Ohm)
+  summary: 电阻 0.25（默认）| 正标量
+  group: 常规
+- name: Number of pole pairs
+  summary: 极对数 1（默认）| 正整数
+  group: 常规
+- name: Inverter dc-link voltage threshold (V)
+  summary: 电压 300（默认）| 正标量
+  group: 常规
+- name: Fundamental sample time (s)
+  summary: SVM 采样时间 5e-6（默认）| 小于控制采样时间的正标量
+  group: 常规
+- name: Control sample time (s)
+  summary: PI 采样时间 5e-5（默认）| 大于基本采样时间的正标量
+  group: 常规
+- name: Switching frequency (Hz)
+  summary: 开关频率 1000（默认）| 正标量
+  group: 常规
+- name: Flux controller proportional gain
+  summary: 磁链 PI 比例增益 150（默认）| 正标量
+  group: 控制参数
+- name: Flux controller integral gain
+  summary: 磁链 PI 积分增益 3000（默认）| 正标量
+  group: 控制参数
+- name: Flux controller anti-windup gain
+  summary: 磁链 PI 抗饱和增益 1（默认）| 正标量
+  group: 控制参数
+- name: Torque controller proportional gain
+  summary: 转矩 PI 比例增益 1（默认）| 正标量
+  group: 控制参数
+- name: Torque controller integral gain
+  summary: 转矩 PI 积分增益 50（默认）| 正标量
+  group: 控制参数
+- name: Torque controller anti-windup gain
+  summary: 转矩 PI 抗饱和增益 1（默认）| 正标量
+  group: 控制参数
+- name: Axis prioritization
+  summary: 电压限制器的轴优先级 Q-axis（默认）| D-axis | D-Q equivalence
+  group: 控制参数
+```
 
 ### 常规
 
@@ -122,7 +197,6 @@ PI 控制器的采样时间。控制采样时间必须大于基本采样时间�
 ### **Axis prioritization** — 电压限制器的轴优先级 `Q-axis`（默认）| `D-axis` | `D-Q equivalence`
 
 当模块限制电压时，优先处理或维持 *d* 轴和 *q* 轴之间的比例。
-
 ## 所属库
 
 Simscape / Electrical / Control / Induction Machine Control

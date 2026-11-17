@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # PWM Generator (Three-phase, Three-level)
 
 ## 端口
+```yaml
+ports:
+- name: Vabc
+  summary: 三相正弦参考信号向量
+  direction: input
+- name: vdc
+  summary: 直流母线电压信号标量
+  direction: input
+- name: vneutral
+  summary: 直流母线中性点平衡控制标量
+  direction: input
+- name: g
+  summary: 门极控制向量
+  direction: output
+- name: ModWave
+  summary: 调制波向量
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +57,22 @@ chinese_source: worker-translation
 ### **ModWave** — 调制波向量
 
 如果您正在为具有 PWM 功能的硬件平台生成代码，则可以将调制波部署到硬件。否则，此数据仅供参考。
-
 ## 参数
+```yaml
+parameters:
+- name: Continuous PWM
+  summary: '连续脉宽调制方法 SPWM: sinusoidal PWM（默认）| SVM: space vector modulation'
+  group: ''
+- name: Sampling mode
+  summary: 波形采样方法 Natural（默认）| Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: 开关频率 1e3（默认）| 正数
+  group: ''
+- name: Sample time (s)
+  summary: 模块采样时间 5e-5（默认）| 正数
+  group: ''
+```
 
 ### **Continuous PWM** — 连续脉宽调制方法 `SPWM: sinusoidal PWM`（默认）| `SVM: space vector modulation`
 
@@ -57,7 +89,6 @@ chinese_source: worker-translation
 ### **Sample time (s)** — 模块采样时间 `5e-5`（默认）| 正数
 
 指定连续模块执行（输出计算）之间的时间间隔。为确保生成信号具有足够的分辨率，请将此值设置为小于或等于 `1/(10*Fsw)`，其中 *F*sw 为 **Switching frequency (Hz)**。
-
 ## 所属库
 
 Simscape / Electrical / Control / Pulse Width Modulation

@@ -14,6 +14,21 @@ language: en
 # Battery Current Monitoring
 
 ## Ports
+```yaml
+ports:
+- name: PackCurrent
+  summary: Battery pack current, A scalar
+  direction: input
+- name: ChargingLimit
+  summary: Charging current limit, A scalar
+  direction: input
+- name: DischargingLimit
+  summary: Discharging current limit, A scalar
+  direction: input
+- name: OvercurrentError
+  summary: Indication of overcurrent error 0 | 1
+  direction: output
+```
 
 ### Input
 
@@ -36,8 +51,25 @@ scalar.
 
 Indication of an overcurrent error. If this output is equal to
 `1`, the battery is in an overcurrent state.
-
 ## Parameters
+```yaml
+parameters:
+- name: Current error limit (A)
+  summary: Current error limit 0 (default) | nonnegative scalar
+  group: ''
+- name: Qualification time (s)
+  summary: Error qualification time 2 (default) | positive scalar
+  group: ''
+- name: Disqualification time (s)
+  summary: Error disqualification time 0 (default) | nonnegative scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive integer
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 ### **Current error limit (A)** — Current error limit `0` (default) | nonnegative scalar
 
@@ -92,7 +124,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Protection

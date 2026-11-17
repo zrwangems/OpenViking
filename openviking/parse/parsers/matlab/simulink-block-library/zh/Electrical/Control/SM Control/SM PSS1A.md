@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # SM PSS1A
 
 ## 端口
+```yaml
+ports:
+- name: V_SI
+  summary: 转速、频率或功率标量
+  direction: input
+  data_types: single | double
+- name: V_ST
+  summary: 稳定转速、频率或功率标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -32,8 +43,46 @@ chinese_source: worker-translation
 *VST\_max* 限制，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Power system stabilizer (PSS) gain, K_S (pu)
+  summary: 电力系统稳定器增益 3.15（默认）| 标量
+  group: ''
+- name: PSS denominator constant for second-order block, A_1
+  summary: 滤波器常数 1 0（默认）| 标量
+  group: ''
+- name: PSS denominator constant for second-order block, A_2
+  summary: 滤波器常数 2 0（默认）| 标量
+  group: ''
+- name: PSS numerator (lead) compensating time constant, T_1 (s)
+  summary: 超前时间常数 1 0.76（默认）| 标量
+  group: ''
+- name: PSS denominator (lag) compensating time constant, T_2 (s)
+  summary: 滞后时间常数 2 0.01（默认）| 标量
+  group: ''
+- name: PSS numerator (lead) compensating time constant, T_3 (s)
+  summary: 超前时间常数 3 0.76（默认）| 标量
+  group: ''
+- name: PSS denominator (lag) compensating time constant, T_4 (s)
+  summary: 滞后时间常数 4 0.01（默认）| 标量
+  group: ''
+- name: PSS washout time constant, T_5 (s)
+  summary: 洗出时间常数 10（默认）| 标量
+  group: ''
+- name: PSS transducer time constant, T_6 (s)
+  summary: 传感器时间常数 0（默认）| 标量
+  group: ''
+- name: Maximum PSS output, V_STmax (pu)
+  summary: 最大稳定信号 0.09（默认）| 标量
+  group: ''
+- name: Minimum PSS output, V_STmin (pu)
+  summary: 最小稳定信号 -0.09（默认）| 标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Power system stabilizer (PSS) gain, K\_S (pu)** — 电力系统稳定器增益 3.15（默认）| 标量
 
@@ -87,7 +136,6 @@ chinese_source: worker-translation
 对于继承的离散时间操作，将采样时间设置为 `-1`。
 对于离散时间操作，将采样时间设置为正标量。对于
 连续时间操作，将采样时间设置为 `0`。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

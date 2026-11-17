@@ -14,6 +14,73 @@ language: en
 # 3DOF Acceleration
 
 ## Ports
+```yaml
+ports:
+- name: θ
+  summary: Pitch altitude scalar
+  direction: input
+  data_types: double
+- name: γ
+  summary: Flight path angle scalar
+  direction: input
+  data_types: double
+- name: q
+  summary: Pitch angular rate scalar
+  direction: input
+  data_types: double
+- name: Vw
+  summary: Velocity in wind-fixed frame two-element vector
+  direction: input
+  data_types: double
+- name: U w
+  summary: Velocity of body two-element vector
+  direction: input
+  data_types: double
+- name: α
+  summary: Angle of attack scalar
+  direction: input
+  data_types: double
+- name: g
+  summary: Gravity scalar
+  direction: input
+  data_types: double
+- name: Fuel
+  summary: Fuel tank status scalar
+  direction: input
+  data_types: double
+- name: m
+  summary: Mass scalar
+  direction: input
+  data_types: double
+- name: Fx
+  summary: Applied force along *x*-axis scalar
+  direction: input
+  data_types: double
+- name: Fz
+  summary: Applied force along *z*-axis scalar
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: Rate of change of mass scalar
+  direction: input
+  data_types: double
+- name: I
+  summary: Inertia tensor scalar
+  direction: input
+  data_types: double
+- name: Vre
+  summary: Relative velocity two-element vector
+  direction: input
+  data_types: double
+- name: AxbAzb
+  summary: Acceleration of body two-element vector
+  direction: output
+  data_types: double
+- name: AxeAze
+  summary: Acceleration of body two-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -184,8 +251,31 @@ frame, returned as a two-element vector, in the units selected in
 accelerometer.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: Metric (MKS) | English (Velocity in ft/s) | English (Velocity in kts)
+  default: Metric (MKS)
+- name: Mass type
+  summary: Mass type Fixed (default) | Simple Variable | Custom Variable
+  group: ''
+  block_parameter: mtype
+  type: character vector
+  values: Fixed | Simple Variable | Custom Variable
+  default: '''Fixed'''
+- name: Axes
+  summary: Body or wind axes Body (default) | Wind
+  group: ''
+  block_parameter: axes
+  type: character vector
+  values: Wind | Body
+  default: Body
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -242,7 +332,6 @@ Body or wind axes, specified as `Wind` or `Body`.
 | **Type:** character vector |
 | **Values:** `Wind` | `Body` |
 | **Default:** `Body` |
-
 ## Libraries
 
 Aerospace Blockset / Equations of Motion / Acceleration

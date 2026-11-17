@@ -15,6 +15,43 @@ chinese_source: worker-translation
 # Entity Find
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 用于触发查找实体的输入实体 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_1
+  summary: 输出的已找到实体 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_f
+  summary: 已找到的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_d
+  summary: 已离开该模块的实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: 尚未离开该模块的已找到实体数量 标量
+  direction: output
+  data_types: double
+- name: Port_w
+  summary: 该模块中已找到实体的平均等待时间 标量
+  direction: output
+  data_types: double
+- name: Port_l
+  summary: 已找到实体队列的平均长度 标量
+  direction: output
+  data_types: double
+- name: Port_ex
+  summary: 已提取的实体数量 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -94,8 +131,87 @@ chinese_source: worker-translation
 要启用此端口，请点击 **Statistics** 选项卡，然后选中标记为 **Number of entities extracted, ex** 的框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Resource
+  summary: 指定实体使用的引用资源名称 Resource1（默认）| 字符向量
+  group: 主要
+  block_parameter: ResourceName
+  type: 字符向量
+  values: 资源名称
+  default: '''Resource1'''
+- name: Extract found entities
+  summary: 提取并重新路由已找到的实体 off（默认）| on
+  group: 主要
+  block_parameter: EnableOutput
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Additional filtering condition
+  summary: 添加可选的过滤条件 off（默认）| on
+  group: 主要
+  block_parameter: EntityFilter
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Matching condition
+  summary: 定义匹配条件 match = true;（默认）
+  group: 主要
+  block_parameter: MatchingCondition
+  type: character vector
+  values: MATLAB code
+  default: '''% match = isequal(trigger.Attribute1, entity.Attribute1);match = true;'''
+- name: Event actions
+  summary: 指定事件动作 OnFound（默认）| Entry | Exit | Blocked
+  group: Event Actions
+  block_parameter: EntryAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities found, f
+  summary: 输出被找到的实体数量 off（默认）| on
+  group: Statistics
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities departed, d
+  summary: 输出已离开该模块的实体数量 off（默认）| on
+  group: Statistics
+  block_parameter: NumberEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of found entities in block, n
+  summary: 输出模块中尚未离开的被找到实体数量 off（默认）| on
+  group: Statistics
+  block_parameter: NumberEntitiesInBlock
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Average wait, w
+  summary: 输出平均等待时间 off（默认）| on
+  group: Statistics
+  block_parameter: AverageWait
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 平均队列长度，l
+  summary: 输出实体队列的平均长度 off（默认）| on
+  group: Statistics
+  block_parameter: AverageStoreSize
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: 提取的实体数量，ex
+  summary: 从此模块提取的实体数量 off（默认）| on
+  group: Statistics
+  block_parameter: NumEntitiesExtracted
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -292,7 +408,6 @@ match = isequal(trigger.Attribute1, entity.Attribute1);
 | **类型**：字符向量 |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 SimEvents

@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Equivalent Consumption Minimization Strategy
 
 ## 端口
+```yaml
+ports:
+- name: WhlTrqCmd
+  summary: 车轮扭矩指令 scalar
+  direction: input
+  data_types: double
+- name: BattSoc
+  summary: 电池荷电状态 scalar
+  direction: input
+  data_types: double
+- name: BattVolt
+  summary: 电池电压 scalar
+  direction: input
+  data_types: double
+- name: Gear
+  summary: 变速器挡位 scalar
+  direction: input
+  data_types: double
+- name: MtrSpd
+  summary: 电机转速 scalar
+  direction: input
+  data_types: double
+- name: VehSpd
+  summary: 车速 scalar
+  direction: input
+  data_types: double
+- name: TransTemp
+  summary: 变速器温度 scalar
+  direction: input
+  data_types: double
+- name: Info
+  summary: 模块数据总线
+  direction: output
+- name: EngTrqCmd
+  summary: 发动机扭矩指令 scalar
+  direction: output
+  data_types: double
+- name: MtrTrqCmd
+  summary: 电机扭矩指令 scalar
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -83,8 +125,222 @@ chinese_source: worker-translation
 电机扭矩指令，单位为 N·m。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Motor location
+  summary: 电机位置 P0 (default) | P1 | P2 | P3 | P4
+  group: ''
+- name: ECMS method
+  summary: ECMS 方法 Non-adaptive (default) | Adaptive
+  group: ''
+  block_parameter: EcmsMethod
+  values: Non-adaptive (default) | Adaptive
+- name: Differential gear ratio, N_diff
+  summary: 差速器传动比 3.32 (default) | scalar
+  group: ''
+  block_parameter: N_diff
+  values: 3.32 (default) | scalar
+- name: Differential efficiency factor, eta_diff
+  summary: 差速器效率因子 0.98 (default) | scalar
+  group: ''
+  block_parameter: eta_diff
+  values: 0.98（默认） | scalar
+- name: Loaded wheel radius, Re
+  summary: 加载车轮半径 0.327（默认） | scalar
+  group: ''
+  block_parameter: Re
+  values: 0.327（默认） | scalar
+- name: Transmission efficiency factors
+  summary: 变速器效率因子 Gear, input torque, input speed, and temperature（默认） | Gear only
+  group: ''
+  block_parameter: TransEffFactors
+  values: Gear, input torque, input speed, and temperature（默认） | Gear only
+- name: Transmission gear number vector, G_trans
+  summary: 变速器挡位编号向量 [0 1 2 3 4 5 6]（默认） | vector
+  group: ''
+  block_parameter: G_trans
+  values: '[0 1 2 3 4 5 6]（默认） | vector'
+- name: Transmission gear ratio vector, N_trans
+  summary: 变速器传动比向量 [1 4.212 2.637 1.8 1.386 1 0.772]（默认） | vector
+  group: ''
+  block_parameter: N_trans
+  values: '[1 4.212 2.637 1.8 1.386 1 0.772]（默认） | vector'
+- name: Transmission efficiency vector, eta_trans
+  summary: 变速器效率向量 [1 1 1 1 1 1 1]（默认） | vector
+  group: ''
+  block_parameter: eta_trans
+  values: '[1 1 1 1 1 1 1]（默认） | vector'
+- name: Transmission efficiency torque breakpoints, Trq_trans_bpts
+  summary: 变速器效率扭矩断点 [25 50 75 100 150 200 250]（默认） | vector
+  group: ''
+  block_parameter: Trq_trans_bpts
+  values: '[25 50 75 100 150 200 250]（默认） | vector'
+- name: Transmission efficiency speed breakpoints, omega_trans_bpts
+  summary: 传动效率转速断点 [500.383141080919 749.619781962827 1002.676141478941 1250.957852702297 1499.239563925654 1747.521275149011
+    1995.802986372368 2501.915705404595 2998.479127851308 4001.155269330249 5003.83141080919]（默认）| vector
+  group: ''
+  block_parameter: omega_trans_bpts
+  values: vector
+- name: Transmission efficiency temperature breakpoints, Temp_trans_bpts
+  summary: 传动效率温度断点 [313 358]（默认）| vector
+  group: ''
+  block_parameter: Temp_trans_bpts
+  values: '[313 358]（默认）| vector'
+- name: Transmission efficiency vector, eta_trans_tbl
+  summary: 传动效率向量 array
+  group: ''
+  block_parameter: eta_trans_tbl
+  values: array
+- name: Speed breakpoints, f_tbrake_n_bpt
+  summary: 转速断点 [0 750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857
+    2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000]（默认）|
+    vector
+  group: ''
+  block_parameter: f_tbrake_n_bpt
+  values: vector
+- name: Commanded torque breakpoints, f_tbrake_t_bpt
+  summary: 指令扭矩断点 [0 15 26.4285714285714 37.8571428571429 49.2857142857143 60.7142857142857 72.1428571428571 83.5714285714286
+    95 106.428571428571 117.857142857143 129.285714285714 140.714285714286 152.142857142857 163.571428571429 175]（默认）| vector
+  group: ''
+  block_parameter: f_tbrake_t_bpt
+  values: vector
+- name: Brake torque map, f_tbrake
+  summary: 制动扭矩映射 array
+  group: ''
+  block_parameter: f_tbrake
+  values: array
+- name: Minimum engine torque command table, f_tbrake_min
+  summary: 最小发动机扭矩指令表 vector
+  group: ''
+  block_parameter: f_tbrake_min
+  values: vector
+- name: Fuel flow map, f_fuel
+  summary: 燃油流量映射 array
+  group: ''
+  block_parameter: f_fuel
+  values: array
+- name: Minimum engine torque command, HEVEngTrq_min
+  summary: 最小发动机扭矩命令 16.18610438796213（默认）| scalar
+  group: ''
+  block_parameter: HEVEngTrq_min
+  values: 16.18610438796213（默认）| scalar
+- name: Fuel lower heating value, LHV
+  summary: 燃料低热值 46000000（默认）| scalar
+  group: ''
+  block_parameter: LHV
+  values: 46000000（默认）| scalar
+- name: Engine idle speed, N_idle
+  summary: 发动机怠速转速 750（默认）| scalar
+  group: ''
+  block_parameter: N_idle
+  values: 750（默认）| scalar
+- name: Battery state-of-charge breakpoints, SOC_bpt
+  summary: 电池荷电状态断点 [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1]（默认）| vector
+  group: ''
+  block_parameter: SOC_bpt
+  values: '[0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1]（默认）| vector'
+- name: Battery charge limit table, ChrgLmt
+  summary: 电池充电限值表 [1 1 1 1 1 1 1 0.9 0.7 0.5 0]（默认）| vector
+  group: ''
+  block_parameter: ChrgLmt
+  values: '[1 1 1 1 1 1 1 0.9 0.7 0.5 0]（默认）| vector'
+- name: Battery discharge limit table, DischrgLmt
+  summary: 电池放电限值表 [0 0.5 0.7 0.9 1 1 1 1 1 1 1]（默认）| vector
+  group: ''
+  block_parameter: DischrgLmt
+  values: '[0 0.5 0.7 0.9 1 1 1 1 1 1 1]（默认）| vector'
+- name: Maximum battery current, BattCurrMax
+  summary: 最大电池电流 150（默认）| scalar
+  group: ''
+  block_parameter: BattCurrMax
+  values: 150（默认） | scalar
+- name: DC/DC converter efficiency, eta_dcdc
+  summary: DC/DC 变换器效率 1（默认） | scalar
+  group: ''
+  block_parameter: eta_dcdc
+  values: 1（默认） | scalar
+- name: Maximum battery charge power, BattChrgPwrMax
+  summary: 最大电池充电功率 -30000（默认） | scalar
+  group: ''
+  block_parameter: BattChrgPwrMax
+  values: -30000（默认） | scalar
+- name: Maximum battery discharge power, BattDischrgPwrMax
+  summary: 最大电池放电功率 46000（默认） | scalar
+  group: ''
+  block_parameter: BattDischrgPwrMax
+  values: 46000（默认） | scalar
+- name: Motor maximum torque table, f_tmtr_max
+  summary: 电机最大转矩表 vector
+  group: ''
+  block_parameter: f_tmtr_max
+  values: vector
+- name: Motor speed breakpoints, f_mtr_w_bpt
+  summary: 电机转速断点 vector
+  group: ''
+  block_parameter: f_mtr_w_bpt
+  values: vector
+- name: Motor torque breakpoints, f_mtr_t_bpt
+  summary: 电机转矩断点 vector
+  group: ''
+  block_parameter: f_mtr_t_bpt
+  values: vector
+- name: Motor efficiency map, f_mtr_eta
+  summary: 电机效率 map array
+  group: ''
+  block_parameter: f_mtr_eta
+  values: array
+- name: Number of motor torque calculation points, Ngrid
+  summary: 电机转矩计算点数 200（默认） | scalar
+  group: ''
+  block_parameter: Ngrid
+  values: 200（默认） | scalar
+- name: P0 belt ratio, N_P0
+  summary: P0 皮带传动比 3（默认）| scalar
+  group: ''
+  block_parameter: N_P0
+  values: 3（默认）| scalar
+- name: ECMS weighting factor, ECMS_s
+  summary: ECMS 权重因子 3.385（默认）| scalar
+  group: ''
+  block_parameter: ECMS_s
+  values: 3.385（默认）| scalar
+- name: Penalty factor power, a
+  summary: 惩罚因子幂 3（默认）| scalar
+  group: ''
+  block_parameter: PenaltyFctrPwr
+  values: array
+- name: Adaptive ECMS proportional gain, ECMS_Kp
+  summary: 自适应 ECMS 比例增益 0（默认）| scalar
+  group: ''
+  block_parameter: ECMS_Kp
+  values: 0（默认）| scalar
+- name: Adaptive ECMS integral gain, ECMS_Ki
+  summary: 自适应 ECMS 积分增益 0（默认）| scalar
+  group: ''
+  block_parameter: ECMS_Ki
+  values: 0（默认）| scalar
+- name: Constraint penalty factor, PenaltyFctr
+  summary: 约束惩罚因子 10000000（默认）| scalar
+  group: ''
+  block_parameter: PenaltyFctr
+  values: 10000000（默认）| scalar
+- name: Target battery state-of-charge, SOCTrgt
+  summary: 目标电池荷电状态 60（默认）| scalar
+  group: ''
+  block_parameter: SOCTrgt
+  values: 60（默认）| scalar
+- name: Minimum battery state-of-charge, SOCmin
+  summary: 最小电池荷电状态 40（默认）| scalar
+  group: ''
+  block_parameter: SOCmin
+  values: 40（默认）| scalar
+- name: 最大电池荷电状态，SOCmax
+  summary: 最大电池荷电状态 80（默认）| scalar
+  group: ''
+  block_parameter: SOCmax
+  values: 80（默认）| scalar
+```
 
 #### 模块选项
 
@@ -800,7 +1056,6 @@ ECMS 权重因子。无量纲。
 ### 致谢
 
 MathWorks® 感谢 Simona Onori 博士对本模块中实现的 ECMS 最优控制算法所做的贡献。Onori 博士是斯坦福大学能源资源工程教授。她的研究兴趣包括电化学建模、汽车和电网级应用储能设备的估计与优化、混合动力和电动汽车建模与控制、PDE 建模，以及排放缓解系统的模型降阶与估计。她是 IEEE® 高级会员。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Supervisory Controllers

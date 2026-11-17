@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Flow Rate Sensor (G)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量测量，kg/s 物理信号
+  direction: output
+- name: V
+  summary: 体积流量，m^3/s 物理信号
+  direction: output
+- name: φ
+  summary: 能量流量测量，W 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口气体
+  direction: output
+- name: B
+  summary: 传感器出口气体
+  direction: output
+```
 
 ### 输出
 
@@ -50,8 +68,28 @@ chinese_source: worker-translation
 ### **B** — 传感器出口气体
 
 气体守恒端口。如果气体从端口 **A** 流向端口 **B**，则流量为正。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass flow rate
+  summary: 控制用于测量质量流量的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Volumetric flow rate
+  summary: 控制用于测量体积流量的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Volumetric flow measurement conditions
+  summary: 指定测量体积流量的条件 Actual conditions（默认）| Standard conditions
+  group: ''
+- name: Standard pressure
+  summary: 标准条件下的气体压力 0.10132 MPa（默认）
+  group: ''
+- name: Standard temperature
+  summary: 标准条件下的气体温度 20 degC（默认）
+  group: ''
+- name: Energy flow rate
+  summary: 控制用于测量能量流量的输出端口可见性 On（默认）| Off
+  group: ''
+```
 
 ### **Mass flow rate** — 控制用于测量质量流量的输出端口可见性 `On`（默认）| `Off`
 
@@ -91,7 +129,6 @@ chinese_source: worker-translation
 ### **Energy flow rate** — 控制用于测量能量流量的输出端口可见性 `On`（默认）| `Off`
 
 选中此复选框将显示输出端口 **φ**，可用于测量能量流量。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Sensors

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Gate Valve (G)
 
 ## 端口
+```yaml
+ports:
+- name: L
+  summary: 阀门控制信号，unitless 物理信号
+  direction: input
+- name: A
+  summary: 阀门入口气体
+  direction: input
+- name: B
+  summary: 阀门入口气体
+  direction: input
+```
 
 ### 输入
 
@@ -30,8 +42,55 @@ chinese_source: worker-translation
 ### **B** — 阀门入口气体
 
 与开口关联的气体守恒端口，流体通过该开口进入或离开阀门。流动方向取决于阀门两端建立的压差。该模块允许正向和反向两个方向。
-
 ## 参数
+```yaml
+parameters:
+- name: Orifice diameter
+  summary: 阀门孔径的直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Valve parameterization
+  summary: 用于指定孔口流动特性的参数化方法 Orifice area based on geometry（默认）| Cv flow coefficient | Kv flow coefficient | Sonic conductance
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应于组件最大开启状态的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应于组件最大开启状态的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 对应于组件最大开启状态的声速导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次发生阻塞时的下游与上游压力之比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流流态之间过渡时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 气体端口处的流动面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Orifice diameter** — 阀门孔径的直径 `0.01 m`（默认）| 正标量
 
@@ -177,7 +236,6 @@ conductance`。
 
 每个端口处垂直于流动路径的面积。端口尺寸相等。
 该参数的值应与阻性元件所连接的组件的入口面积相匹配。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Valves & Orifices / Flow Control Valves

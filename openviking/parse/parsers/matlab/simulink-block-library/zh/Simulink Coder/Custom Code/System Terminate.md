@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # System Terminate
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: System Terminate Function Declaration Code
+  summary: 添加到所生成函数声明部分的代码 无默认值
+  group: ''
+- name: System Disable Terminate Execution Code
+  summary: 添加到所生成函数执行部分的代码 无默认值
+  group: ''
+- name: System Disable Terminate Exit Code
+  summary: 添加到所生成函数退出部分的代码 无默认值
+  group: ''
+```
 
 ### **System Terminate Function Declaration Code** — 添加到所生成函数声明部分的代码 无默认值
 
@@ -31,7 +45,6 @@ R2025b 中未记录。
 ### **System Disable Terminate Exit Code** — 添加到所生成函数退出部分的代码 无默认值
 
 指定希望代码生成器添加到模型或子系统的 `SystemTerminate` 函数退出部分的代码。
-
 ## 所属库
 
 Simulink Coder / Custom Code

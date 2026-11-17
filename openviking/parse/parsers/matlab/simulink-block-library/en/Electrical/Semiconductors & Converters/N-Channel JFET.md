@@ -14,6 +14,21 @@ language: en
 # N-Channel JFET
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate terminal electrical
+  direction: conserving
+- name: D
+  summary: Drain terminal electrical
+  direction: conserving
+- name: S
+  summary: Source terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -40,8 +55,95 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Parameterization
+  summary: Block parameterization Specify from a datasheet (default) | Specify using equation parameters directly
+  group: Main
+- name: Gate reverse current, I_gss
+  summary: Gate reverse current -1 nA (default)
+  group: Main
+- name: Saturated drain current, I_dss
+  summary: Saturated drain current 3 mA (default)
+  group: Main
+- name: I_dss measurement point, [V_gs V_ds]
+  summary: I_dss measurement point [0, 15] V (default)
+  group: Main
+- name: Small-signal parameters, [g_fs g_os]
+  summary: Small-signal parameters [3000, 10] uSuS (default)
+  group: Main
+- name: Small-signal measurement point, [V_gs V_ds]
+  summary: Small-signal measurement point [0, 15] V (default)
+  group: Main
+- name: Transconductance parameter
+  summary: Transconductance parameter 6.2e-4 AV2 (default)
+  group: Main
+- name: Saturation current
+  summary: Saturation current 5e-10 A (default)
+  group: Main
+- name: Threshold voltage
+  summary: Threshold voltage -2.3 V (default)
+  group: Main
+- name: Channel-length modulation
+  summary: Channel-length modulation 0.003 1/V (default)
+  group: Main
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Main
+- name: Source ohmic resistance
+  summary: Source ohmic resistance 0.0001 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Drain ohmic resistance
+  summary: Drain ohmic resistance 0.01 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Parameterization
+  summary: Junction capacitance parameterization Specify from a datasheet (default) | Specify using equation parameters directly
+  group: Junction Capacitance
+- name: Input capacitance, Ciss
+  summary: Input capacitance 4.5 pF (default)
+  group: Junction Capacitance
+- name: Reverse transfer capacitance, Crss
+  summary: Reverse transfer capacitance 1.5 pF (default)
+  group: Junction Capacitance
+- name: Gate-source junction capacitance
+  summary: Gate-source junction capacitance 3 pF (default)
+  group: Junction Capacitance
+- name: Gate-drain junction capacitance
+  summary: Gate-drain junction capacitance 1.5 pF (default)
+  group: Junction Capacitance
+- name: Parameterization
+  summary: Temperature dependence parameterization None — Simulate at parameter measurement temperature (default) | Model
+    temperature dependence
+  group: Temperature Dependance
+- name: Gate reverse current, I_gss, at second measurement temperature
+  summary: Gate reverse current at second measurement temperature -200 nA (default)
+  group: Temperature Dependance
+- name: Saturated drain current, I_dss, at second measurement temperature
+  summary: Saturated drain current at second measurement temperature 2.5 mA (default)
+  group: Temperature Dependance
+- name: Second measurement temperature
+  summary: Second measurement temperature 125 degC (default)
+  group: Temperature Dependance
+- name: Energy gap, EG
+  summary: Energy gap 1.11 eV (default)
+  group: Temperature Dependance
+- name: Saturation current temperature exponent, XTI
+  summary: Saturation current temperature exponent 3 (default)
+  group: Temperature Dependance
+- name: Gate threshold voltage temperature coefficient, dVt0/dT
+  summary: Gate threshold voltage temperature coefficient -2 mV/K (default)
+  group: Temperature Dependance
+- name: Mobility temperature exponent, BEX
+  summary: Mobility temperature exponent -1.5 (default)
+  group: Temperature Dependance
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 degC (default)
+  group: Temperature Dependance
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -374,7 +476,6 @@ section for additional considerations.
 
 Temperature *Ts* at which the
 device is simulated.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

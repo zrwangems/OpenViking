@@ -14,6 +14,12 @@ language: en
 # MFSK Waveform
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: MFSK Waveform complex-valued column vector
+  direction: output
+```
 
 ### Output
 
@@ -36,8 +42,48 @@ the waveform samples.
   is set to `Sweeps`, the output of the port
   consists of the number of sweeps set by the **Number
   of sweeps in output** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: Sample rate 151e6 (default) | positive scalar
+  group: ''
+- name: Sweep bandwidth (Hz)
+  summary: MFSK sweep bandwidth 150e6 (default) | positive scalar
+  group: ''
+- name: Frequency step burst time (s)
+  summary: Frequency step burst time 5e-6 (default) | positive scalar
+  group: ''
+- name: Number of steps per sweep
+  summary: Total number of frequency steps 512 (default) | even positive scalar
+  group: ''
+- name: Chirp offset frequency (Hz)
+  summary: Chirp offset frequency -294e3 (default) | real scalar
+  group: ''
+- name: Output signal format
+  summary: Output signal format Steps (default) | Samples | Sweeps
+  group: ''
+- name: Number of sweeps in output
+  summary: Number of sweeps in output 1 (default) | positive integer
+  group: ''
+- name: Number of frequency steps in output
+  summary: Number of frequency steps in output 1 (default) | positive integer
+  group: ''
+- name: Number of samples in output
+  summary: Number of samples in output 100 (default) | positive integer
+  group: ''
+  block_parameter: NumSamples
+  type: double
+  values: positive scalar
+  default: '100'
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Sample rate (Hz)** — Sample rate `151e6` (default) | positive scalar
 
@@ -165,7 +211,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Waveforms

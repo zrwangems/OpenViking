@@ -14,6 +14,21 @@ language: en
 # Delay Line
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: En_Out
+  summary: Linearize the block output true | false
+  direction: input
+  data_types: Boolean
+- name: Out
+  summary: Rebuffered output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -97,8 +112,25 @@ This port is unnamed until you select the **Show En\_Out port
 for selectively enabling output** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Delay line size
+  summary: Delay line size 64 (default) | positive integer
+  group: ''
+- name: Initial conditions
+  summary: Initial conditions 0 (default) | scalar | vector | matrix
+  group: ''
+- name: Allow directfeedthrough
+  summary: Allow direct feed through off (default) | on
+  group: ''
+- name: Show En_Out port for selectively enabling output
+  summary: Show En_Out port for selectively enabling output off (default) | on
+  group: ''
+- name: Hold previous value when the output is disabled
+  summary: Hold previous value when the output is disabled off (default) | on
+  group: ''
+```
 
 ### **Delay line size** — Delay line size `64` (default) | positive integer
 
@@ -162,7 +194,6 @@ output port, and slightly more memory is used by the block.
 
 To enable this parameter, select **Show En\_Out port for
 selectively enabling output**.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Buffers

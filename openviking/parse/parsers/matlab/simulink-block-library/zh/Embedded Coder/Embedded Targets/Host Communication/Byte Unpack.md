@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Byte Unpack
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要转换的信号向量
+  direction: input
+  data_types: uint8
+- name: Port_1
+  summary: 转换后的信号数据，类型为 double（默认）| 信号数据数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +42,19 @@ chinese_source: worker-translation
 一个或多个数据类型的输入信号数组。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Output port dimensions (cell array)
+  summary: 模块输出信号的维度 {[1]}（默认）| 数据维度规范的元胞数组
+  group: ''
+- name: Output port data types (cell array)
+  summary: 模块输出信号的数据类型 {'double'}（默认）| Simulink 数据类型的元胞数组
+  group: ''
+- name: Byte Alignment
+  summary: 数据类型对齐的字节边界 1（默认）| 2 | 4 | 8
+  group: ''
+```
 
 ### **Output port dimensions (cell array)** — 模块输出信号的维度 {[1]}（默认）| 数据维度规范的元胞数组
 
@@ -70,7 +93,6 @@ chinese_source: worker-translation
 指定如何对齐输出数据的数据类型，以按字节形成 `uint8` 向量输入。指定的对齐值应与模型中对应 Byte Pack 模块指定的值一致。
 
 例如，如果对应的 Byte Pack 模块将字节对齐设置为 2，请将此参数设置为 2。
-
 ## 所属库
 
 Embedded Coder / Embedded Targets / Host Communication

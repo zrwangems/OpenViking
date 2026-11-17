@@ -14,6 +14,14 @@ language: en
 # Parameter Writer
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Parameter value scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -22,8 +30,31 @@ language: en
 Parameter value written by the block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Validate parameter
+  summary: Option to validate parameter during normal mode simulation on (default) | off
+  group: ''
+  block_parameter: IsParameterValidationOn
+  values: '''on'' (default) | ''off'''
+- name: Destination
+  summary: Option to write to variables and parameters Block parameter (default) | Model workspace variable | Base workspace
+    variable
+  group: ''
+  block_parameter: Destination
+  values: '''Block parameter'' (default) | ''Model workspace variable'' | ''Base workspace variable'''
+- name: Workspace variable name
+  summary: Name of the workspace variable no default
+  group: ''
+  block_parameter: WorkspaceVariableName
+  values: ''''' (default) | character vector | string scalar'
+- name: Parameter owner block
+  summary: Block path of parameter owner block and name of block parameter no default
+  group: ''
+  block_parameter: ParameterName
+  values: ''''' (default) | character vector | string scalar'
+```
 
 ### **Validate parameter** — Option to validate parameter during normal mode simulation `on` (default) | `off`
 
@@ -183,7 +214,6 @@ parameter.
 | **Values:** | `''` (default) | character vector | string scalar |
 
 **Example:** `set_param(gcb,'ParameterName','Gain')`
-
 ## Libraries
 
 Simulink / Signal Routing

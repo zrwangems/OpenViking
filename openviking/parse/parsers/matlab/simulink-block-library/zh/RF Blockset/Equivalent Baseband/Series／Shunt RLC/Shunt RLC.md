@@ -15,10 +15,63 @@ chinese_source: worker-translation
 # Shunt RLC
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Resistance (Ohms)
+  summary: 并联 RLC 网络的电阻 1（默认）| 标量
+  group: 主
+- name: Inductance (H)
+  summary: 并联 RLC 网络的电感 1e-9（默认）| 标量
+  group: 主
+- name: Capacitance (F)
+  summary: 并联 RLC 网络的电容 1e-12（默认）| 标量
+  group: 主
+- name: Source of frequency data
+  summary: 频率数据源 User-specified（默认）
+  group: 可视化
+- name: Frequency data (Hz)
+  summary: 频率数据范围 [1:1.0e5:4e6]（默认）| 向量
+  group: 可视化
+- name: Reference impedance (ohms)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: X parameter
+  summary: 频率绘图 Freq（默认）
+  group: 可视化
+- name: X format
+  summary: 频率绘图格式 Auto（默认）| Hz | kHz | MHz | GHz | THz
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主
 
@@ -151,7 +204,6 @@ plane`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘制按钮绘制指定数据。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Series / Shunt RLC

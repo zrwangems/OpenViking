@@ -14,6 +14,41 @@ language: en
 # C28x eCAP
 
 ## Ports
+```yaml
+ports:
+- name: SI
+  summary: Synchronization input from software scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: RA
+  summary: One-Shot capture sequence scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: T
+  summary: APWM period scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: W
+  summary: APWM width scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: TS
+  summary: Output timestamps of capture events vector
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: CF
+  summary: Status of capture event vector
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: OF
+  summary: Status of overflow scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: Scale factor
+  summary: Scale factor of HRCLK cycles scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -136,8 +171,110 @@ type** to **HRCLK/ SYSCLK cycles** on
 the **eCAP** tab.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operating mode
+  summary: Select eCAP or APWM mode eCAP (default) | APWM
+  group: General
+- name: eCAPx pin
+  summary: Select capture unit pin eCAP1 (default) | eCAP2 | eCAP3 | eCAP4 | eCAP5 | eCAP6 | eCAP7
+  group: General
+- name: Counter phase offset value (0 ~ 4294967295)
+  summary: Time base for event captures 0 (default) | integer in [0 4294967295]
+  group: General
+- name: Enable counter Sync-In mode
+  summary: Enable TSCTR counter to load from CTRPHS register off (default) | on
+  group: General
+- name: Enable software-forced counter synchronizing input
+  summary: Synchronize one or more eCAP time bases off (default) | on
+  group: General
+- name: Sync output selection
+  summary: Synchronize eCAP counter with other eCAP counters Disabled (default) | Pass through | CTR=PRD
+  group: General
+- name: Sample time
+  summary: Frequency at which block reads input pin value 0.001 (default)
+  group: General
+- name: Event prescaler (integer from 0 to 31)
+  summary: Prescales input signal in multiples of 2 0 (default) | scalar integer in [0 31]
+  group: eCAP
+- name: Enable high resolution capture
+  summary: Select to enable high resolution capture or HRCAP mode off (default) | on
+  group: eCAP
+- name: Enable continuous calibration mode
+  summary: Select to enable continuous calibration mode off (default) | on
+  group: eCAP
+- name: Calibration period in seconds
+  summary: Specify calibration period 0.0016 (default) | on
+  group: eCAP
+- name: Select mode control
+  summary: Mode of capture Continuous (default) | One-Shot
+  group: eCAP
+- name: Enable One-Shot rearming control via input port
+  summary: Re-arms a One-Shot capture sequence off (default) | on
+  group: eCAP
+- name: Stop value after
+  summary: Number of capture events after which capture stops Capture Event 1 (default) | Capture Event 2 | Capture Event
+    3 | Capture Event 4
+  group: eCAP
+- name: 'Enable reset counter after capture event # time-stamp'
+  summary: Resets counter after capture event off (default) | on
+  group: eCAP
+- name: 'Select capture event # polarity'
+  summary: Start capture event on rising edge or falling edge Rising Edge (default) | Falling Edge
+  group: eCAP
+- name: Output type
+  summary: Select output type for eCAP HRCLK/SYSCLK cycles (default) | Microseconds
+  group: eCAP
+- name: Time-Stamp counter data type
+  summary: Data type of counter uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: eCAP
+- name: Enable capture event status flag output
+  summary: Output capture event status off (default) | on
+  group: eCAP
+- name: Capture flag data type
+  summary: Data type of output port CF uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: eCAP
+- name: Enable overflow status flag output
+  summary: Output status of elements of FIFO buffer off (default) | on
+  group: eCAP
+- name: Overflow flag data type
+  summary: Data type of output port OF uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: eCAP
+- name: Waveform period units
+  summary: Units for measuring waveform period Seconds (default) | Clock cycles
+  group: APWM
+- name: Waveform period source
+  summary: Source from which waveform period value is obtained Specify via dialog (default) | Input port
+  group: APWM
+- name: Waveform period
+  summary: Period of PWM waveform 0.001 (default)
+  group: APWM
+- name: Duty cycle units
+  summary: Units for measuring duty cycle Percentages (default) | Clock cycles
+  group: APWM
+- name: Duty cycle source
+  summary: Source from which duty cycle for PWM waveform is obtained Specify via dialog (default) | Input port
+  group: APWM
+- name: Duty cycle
+  summary: Ratio of PWM waveform pulse duration to PWM waveform period 50 (default)
+  group: APWM
+- name: Output polarity select
+  summary: Set active level for output Active High (default) | Active Low
+  group: APWM
+- name: 'Post interrupt on capture event #'
+  summary: Set interrupt source to capture event off (default) | on
+  group: Interrupt
+- name: Post interrupt on counter overflow
+  summary: Trigger interrupt on counter overflow off (default) | on
+  group: Interrupt
+- name: Post interrupt on counter equal period match
+  summary: Post interrupt when counter equals period register off (default) | on
+  group: Interrupt
+- name: Post interrupt on counter equal compare match
+  summary: Post interrupt when counter equals compare register off (default) | on
+  group: Interrupt
+```
 
 ### General
 
@@ -462,7 +599,6 @@ the compare register (CTR = CMP).
 This parameter appears only when you set **Operating
 mode** to `APWM` in the
 **General** tab.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

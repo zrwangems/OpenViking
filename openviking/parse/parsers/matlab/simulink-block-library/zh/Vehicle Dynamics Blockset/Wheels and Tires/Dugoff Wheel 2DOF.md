@@ -15,6 +15,66 @@ chinese_source: worker-translation
 # Dugoff Wheel 2DOF
 
 ## 端口
+```yaml
+ports:
+- name: BrkPrs
+  summary: 制动压力标量 | *N*×1 向量
+  direction: input
+- name: AxlTrq
+  summary: 车轴扭矩标量 | *N*×1 向量
+  direction: input
+- name: Vx
+  summary: 纵向速度标量 | *N*×1 向量
+  direction: input
+- name: Vy
+  summary: 侧向速度标量 | *N*×1 向量
+  direction: input
+- name: Camber
+  summary: 倾角标量 | *N*×1 向量
+  direction: input
+- name: YawRate
+  summary: 轮胎角速度标量 | *N*×1 向量
+  direction: input
+- name: Prs
+  summary: 轮胎充气压力标量 | *N*×1 向量
+  direction: input
+- name: Gnd
+  summary: 地面位移标量 | *N*×1 向量
+  direction: input
+- name: Fext
+  summary: 施加到轮胎的车轴力标量 | *N*×1 向量
+  direction: input
+- name: RadialDeflct
+  summary: 轮胎径向变形标量 | *N*×1 向量
+  direction: input
+- name: ScaleFctrs
+  summary: 比例因子标量 | *N*×1 向量
+  direction: input
+- name: Info
+  summary: 模块数据总线
+  direction: output
+- name: Omega
+  summary: 车轮角速度 标量 | *N*×1 向量
+  direction: output
+- name: Fx
+  summary: 纵向轴力 标量 | *N*×1 向量
+  direction: output
+- name: Fy
+  summary: 侧向轴力 标量 | *N*×1 向量
+  direction: output
+- name: Fz
+  summary: 垂向轴力 标量 | *N*×1 向量
+  direction: output
+- name: Mx
+  summary: 侧倾力矩 标量 | *N*×1 向量
+  direction: output
+- name: My
+  summary: 滚动阻力矩 标量 | *N*×1 向量
+  direction: output
+- name: Mz
+  summary: 回正力矩 标量 | *N*×1 向量
+  direction: output
+```
 
 ### 输入
 
@@ -176,8 +236,433 @@ chinese_source: worker-translation
 绕轮胎固定 *z* 轴作用在轴上的垂向力矩，*Mz*，单位为 N·m。
 
 向量为车轮数量，*N*，× `1`。如果提供标量值，模块假定车轮数量为一。
-
 ## 参数
+```yaml
+parameters:
+- name: Tire type
+  summary: 选择类型 User defined（默认）| Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car 235/45R18
+    | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5
+  group: 模块选项
+  block_parameter: tireType
+  values: External file（默认）| Light passenger car 205/60R15 | Light passenger car 245/60R16 | Mid-size passenger car 235/45R18
+    | Performance car 225/40R19 | SUV 265/50R20 | Light truck 275/65R18 | Commercial truck 295/75R22.5
+- name: Model slip type
+  summary: 模型滑移类型 Nominal slip | Extended slip
+  group: 模块选项
+  block_parameter: slipType
+  values: Nominal slip | Extended slip
+- name: Brake type
+  summary: 制动器类型 None | Disc | Drum | Mapped
+  group: 模块选项
+  block_parameter: BrakeType
+  values: None | Disc | Drum | Mapped
+- name: 滚动阻力
+  summary: 滚动阻力扭矩 None（默认）| Pressure and velocity | ISO 28580 | Magic Formula | Mapped torque
+  group: 模块选项
+  block_parameter: rollingType
+  values: None（默认）| Pressure and velocity | ISO 28580 | Magic Formula | Mapped torque
+- name: 垂向运动
+  summary: 垂向运动模型 None（默认）| Mapped stiffness and damping | External deflection
+  group: 模块选项
+  block_parameter: vertType
+  values: None（默认） | Mapped stiffness and damping | External deflection
+- name: Longitudinal stiffness, Ckappa
+  summary: 纵向刚度 1e7（默认） | 标量 | *N*×1 向量
+  group: 纵向和横向
+  block_parameter: Ckappa
+  values: 1e7（默认） | 标量 | *N*×1 向量
+- name: Lateral stiffness per slip angle, Calpha
+  summary: 每侧偏角的横向刚度 4.5e4（默认） | 标量 | *N*×1 向量
+  group: 纵向和横向
+  block_parameter: Calpha
+  values: 4.5e4（默认） | 标量 | *N*×1 向量
+- name: Camber stiffness, Cgamma
+  summary: 外倾刚度 1e3（默认） | 标量 | *N*×1 向量
+  group: 纵向和横向
+  block_parameter: Cgamma
+  values: 1e3（默认） | 标量 | *N*×1 向量
+- name: Maximum friction scaling coefficient, mu0
+  summary: 最大摩擦缩放系数 0.8（默认） | 标量 | *N*×1 向量
+  group: 纵向和横向
+  block_parameter: mu0
+  values: 0.8（默认）| 标量 | *N*×1 向量
+- name: 摩擦力减小因子，As
+  summary: 摩擦力减小因子 0.01（默认）| 标量 | *N*×1 向量
+  group: 纵向和横向
+  block_parameter: As
+  values: 0.01（默认）| 标量 | *N*×1 向量
+- name: 纵向松弛长度，Lrelx
+  summary: 纵向松弛长度 0.05（默认）| 标量 | *N*×1 向量
+  group: 纵向和横向
+  block_parameter: Lrelx
+  values: 0.05（默认）| 标量 | *N*×1 向量
+- name: 侧向松弛长度，Lrely
+  summary: 侧向松弛长度 0.15（默认）| 标量 | *N*×1 向量
+  group: 纵向和横向
+  block_parameter: Lrely
+  values: 0.15（默认）| 标量 | *N*×1 向量
+- name: 纵向平方滑移修正因子，gx1
+  summary: 纵向平方滑移修正因子 1.14（默认）| 标量
+  group: 纵向和横向
+  block_parameter: gx1
+  values: 1.14（默认）| 标量
+- name: 纵向平方滑移摩擦修正因子，gx2
+  summary: 纵向平方滑移摩擦修正因子 -0.75（默认）| 标量
+  group: 纵向和横向
+  block_parameter: gx2
+  values: -0.75（默认） | 标量
+- name: 纵向线性滑移修正因子，gx3
+  summary: 纵向线性滑移修正因子 1.63（默认） | 标量
+  group: 纵向和横向
+  block_parameter: gx3
+  values: 1.63（默认） | 标量
+- name: 纵向线性滑移摩擦修正因子，gx4
+  summary: 纵向线性滑移摩擦修正因子 -0.75（默认） | 标量
+  group: 纵向和横向
+  block_parameter: gx4
+  values: -0.75（默认） | 标量
+- name: 纵向偏移修正因子，gx5
+  summary: 纵向偏移修正因子 1.5（默认） | 标量
+  group: 纵向和横向
+  block_parameter: gx5
+  values: 1.5（默认） | 标量
+- name: 侧向最大摩擦修正因子，gy1
+  summary: 侧向最大摩擦修正因子 -1.6（默认） | 标量
+  group: 纵向和横向
+  block_parameter: gy1
+  values: -1.6（默认） | 标量
+- name: 侧向偏移修正因子，gy2
+  summary: 侧向偏移修正因子 1.5（默认） | 标量
+  group: 纵向和横向
+  block_parameter: gy2
+  values: 1.5（默认） | 标量
+- name: 速度无关力系数，aMy
+  summary: 速度无关力系数 84e-4（默认） | 标量
+  group: 滚动阻力
+  block_parameter: aMy
+  values: 84e-4（默认）| 标量
+- name: 线速度力分量，bMy
+  summary: 线速度力分量 6.2e-4（默认）| 标量
+  group: 滚动阻力
+  block_parameter: bMy
+  values: 6.2e-4（默认）| 标量
+- name: 二次速度力分量，cMy
+  summary: 二次速度力分量 1.6e-4（默认）| 标量
+  group: 滚动阻力
+  block_parameter: cMy
+  values: 1.6e-4（默认）| 标量
+- name: 轮胎压力指数，alphaMy
+  summary: 轮胎压力指数 -0.003（默认）| 标量
+  group: 滚动阻力
+  block_parameter: alphaMy
+  values: -0.003（默认）| 标量
+- name: 法向力指数，betaMy
+  summary: 法向力指数 0.97（默认）| 标量
+  group: 滚动阻力
+  block_parameter: betaMy
+  values: 0.97（默认）| 标量
+- name: 寄生损耗力，Fpl
+  summary: 寄生力损耗 10（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Fpl
+  values: 10（默认）| 标量
+- name: 滚动阻力常数，Cr
+  summary: 滚动阻力常数 1e-3（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Cr
+  values: 1e-3（默认）| 标量
+- name: Thermal correction factor, Kt
+  summary: 热修正系数 0.008（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Kt
+  values: 0.008（默认）| 标量
+- name: Measured temperature, Tmeas
+  summary: 测试期间的温度 298.15（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Tmeas
+  values: 298.15（默认）| 标量
+- name: Ambient temperature, Tamb
+  summary: 应用环境中的温度 298.15（默认）| 标量
+  group: 滚动阻力
+  block_parameter: Tamb
+  values: 298.15（默认）| 标量
+- name: Input ambient temperature
+  summary: 输入环境温度的选项 off（默认）| on
+  group: 滚动阻力
+  block_parameter: Tamb
+  values: off（默认）| on
+- name: Rolling resistance torque coefficient, QSY1
+  summary: 力矩系数 0.007（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY1
+  values: 0.007（默认）| 标量
+- name: Longitudinal force rolling resistance coefficient, QSY2
+  summary: 力阻力系数 0（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY2
+  values: 0（默认）| 标量
+- name: Linear rotational speed rolling resistance coefficient, QSY3
+  summary: 线性速度系数 0.0015（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY3
+  values: 0.0015（默认）| 标量
+- name: Quartic rotational speed rolling resistance coefficient, QSY4
+  summary: 四次速度系数 8.5e-05（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY4
+  values: 8.5e-05（默认）| 标量
+- name: Camber squared rolling resistance torque, QSY5
+  summary: 外倾阻力矩 0（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY5
+  values: 0（默认）| 标量
+- name: Load based camber squared rolling resistance torque, QSY6
+  summary: 载荷阻力矩 0（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY6
+  values: 0（默认）| 标量
+- name: Normal load rolling resistance coefficient, QSY8
+  summary: 法向阻力系数 0.9（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY8
+  values: 0.9（默认）| 标量
+- name: Pressure load rolling resistance coefficient, QSY8
+  summary: 压力阻力系数 -0.4（默认）| 标量
+  group: 滚动阻力
+  block_parameter: QSY8
+  values: -0.4（默认）| 标量
+- name: Rolling resistance scaling factor, lam_My
+  summary: 缩放因子 1（默认）| 标量
+  group: 滚动阻力
+  block_parameter: lam_My
+  values: 1（默认）| 标量
+- name: 自旋轴速度断点，VxMy
+  summary: 自旋轴速度断点 -20:1:20（默认）| 向量
+  group: 滚动阻力
+  block_parameter: VxMy
+  values: -20:1:20（默认）| 向量
+- name: 法向力断点，FzMy
+  summary: 法向力断点 0:200:1e4（默认）| 向量
+  group: 滚动阻力
+  block_parameter: FzMy
+  values: 0:200:1e4（默认）| 向量
+- name: 滚动阻力矩映射，MyMap
+  summary: 滚动阻力矩映射数组
+  group: 滚动阻力
+  block_parameter: MyMap
+  values: 数组
+- name: 轮胎名义断面宽度，WIDTH
+  summary: 轮胎名义断面宽度 标量
+  group: 回正
+  block_parameter: WIDTH
+  values: 标量
+- name: 线性横摆角速度阻力，bMz
+  summary: 线性横摆角速度阻力 0 | 标量
+  group: 回正
+  block_parameter: bMz
+  values: 0 | 标量
+- name: 静摩擦系数，mu_static
+  summary: 静摩擦系数 0.3（默认）| 标量 | *N*×1 向量
+  group: 制动
+  block_parameter: mu_static
+  values: 0.3（默认）| 标量 | *N*×1 向量
+- name: 动摩擦系数，mu_kinetic
+  summary: 动摩擦 0.2（默认）| 标量 | *N*×1 向量
+  group: 制动
+  block_parameter: mu_kinetic
+  values: 0.2（默认） | 标量 | *N*×1 向量
+- name: Disc brake actuator bore, disc_abore
+  summary: 孔径距离 0.05（默认） | 标量 | *N*×1 向量
+  group: 制动
+  block_parameter: disc_abore
+  values: 0.05（默认） | 标量 | *N*×1 向量
+- name: Brake pad mean radius, Rm
+  summary: 半径 0.177（默认） | 标量 | *N*×1 向量
+  group: 制动
+  block_parameter: Rm
+  values: 0.177（默认） | 标量 | *N*×1 向量
+- name: Number of brake pads, num_pads
+  summary: 制动衬块数量 2（默认） | 标量 | *N*×1 向量
+  group: 制动
+  block_parameter: num_pads
+  values: 2（默认） | 标量 | *N*×1 向量
+- name: Drum brake actuator bore, drum_abore
+  summary: 孔径距离 0.0508（默认） | 标量 | *N*×1 向量
+  group: 制动
+  block_parameter: drum_abore
+  values: 0.0508（默认） | 标量 | *N*×1 向量
+- name: Shoe pin to drum center distance, drum_a
+  summary: 制动蹄销到制动鼓中心的距离 0.123（默认） | 标量
+  group: 制动
+  block_parameter: drum_a
+  values: 0.123（默认）| 标量
+- name: 制动蹄销中心到力作用点距离，drum_c
+  summary: 制动蹄销中心到力作用点距离 0.212（默认）| 标量
+  group: 制动
+  block_parameter: drum_c
+  values: 0.212（默认）| 标量
+- name: 制动鼓内半径，drum_r
+  summary: 制动鼓内半径 0.15（默认）| 标量
+  group: 制动
+  block_parameter: drum_r
+  values: 0.15（默认）| 标量
+- name: 制动蹄销到衬片起始角度，drum_theta1
+  summary: 制动蹄销到衬片起始角度 0（默认）| 标量
+  group: 制动
+  block_parameter: drum_theta1
+  values: 0（默认）| 标量
+- name: 制动蹄销到衬片终止角度，drum_theta2
+  summary: 制动蹄销到衬片终止角度 126（默认）| 标量
+  group: 制动
+  block_parameter: drum_theta2
+  values: 126（默认）| 标量
+- name: 制动执行器压力断点，brake_p_bpt
+  summary: 制动执行器压力断点向量
+  group: 制动
+  block_parameter: brake_p_bpt
+  values: 向量
+- name: 车轮速度断点，brake_n_bpt
+  summary: 车轮速度断点向量
+  group: 制动
+  block_parameter: brake_n_bpt
+  values: 向量
+- name: 制动力矩映射，f_brake_t
+  summary: 制动力矩查找表数组
+  group: 制动
+  block_parameter: f_brake_t
+  values: 向量
+- name: Rotational damping, br
+  summary: 旋转阻尼标量 | *N*×1 向量
+  group: Wheel
+  block_parameter: br
+  values: 标量 | *N*×1 向量
+- name: Tire rotational inertia (rolling axis), IYY
+  summary: 轮胎转动惯量标量 | *N*×1 向量
+  group: Wheel
+  block_parameter: IYY
+  values: 标量 | *N*×1 向量
+- name: Initial wheel rotational velocity, omegao
+  summary: 初始车轮旋转速度标量 | *N*×1 向量
+  group: Wheel
+  block_parameter: omegao
+  values: 标量 | *N*×1 向量
+- name: Tire unloaded radius, UNLOADED_RADIUS
+  summary: 轮胎无载半径 0.309384029954441（默认）| 标量
+  group: Wheel
+  block_parameter: UNLOADED_RADIUS
+  values: 0.309384029954441（默认）| 标量
+- name: Tire mass, MASS
+  summary: 轮胎质量 9.46491996974568（默认）| 标量 | *N*×1 向量
+  group: Vertical
+  block_parameter: MASS
+  values: 9.46491996974568（默认）| 标量 | *N*×1 向量
+- name: 初始轮胎位移，zo
+  summary: 初始轮胎位移 0（默认）| 标量 | *N*×1 向量
+  group: Vertical
+  block_parameter: zo
+  values: 0（默认）| 标量 | *N*×1 向量
+- name: 初始车轮垂向速度（车轮固定坐标系），zdoto
+  summary: 初始车轮垂向速度 0（默认）| 标量 | *N*×1 向量
+  group: Vertical
+  block_parameter: zdoto
+  values: 0（默认）| 标量 | *N*×1 向量
+- name: 重力加速度，GRAVITY
+  summary: 重力加速度 -9.81（默认）| 标量
+  group: Vertical
+  block_parameter: GRAVITY
+  values: -9.81（默认）| 标量
+- name: 垂向变形断点，zFz
+  summary: 垂向变形断点 [0 .01 .1]（默认）| 向量
+  group: Vertical
+  block_parameter: zFz
+  values: '[0 .01 .1]（默认）| 向量'
+- name: 压力断点，pFz
+  summary: 压力断点 [10000 1000000]（默认）| 向量
+  group: Vertical
+  block_parameter: pFz
+  values: '[10000 1000000]（默认）| 向量'
+- name: 由变形引起的力，Fzz
+  summary: 由变形引起的力 [0 1e3 1e4; 0 1e4 1e5]（默认）| 向量
+  group: Vertical
+  block_parameter: Fzz
+  values: '[0 1e3 1e4; 0 1e4 1e5]（默认）| 向量'
+- name: 垂直速度断点，zdotFz
+  summary: 垂直速度断点 [-20 0 20]（默认）| 向量
+  group: Vertical
+  block_parameter: zdotFz
+  values: '[-20 0 20]（默认）| 向量'
+- name: 速度力，Fzzdot
+  summary: 速度力 [500 0 -500;250 0 -250]（默认）| 数组
+  group: Vertical
+  block_parameter: Fzzdot
+  values: '[500 0 -500;250 0 -250]（默认）| 数组'
+- name: 最大法向力，FZMAX
+  summary: 最大法向力 10000（默认）| 标量
+  group: 仿真设置
+  block_parameter: FZMAX
+  values: 10000（默认）| 标量
+- name: 最小法向力，FZMIN
+  summary: 最小法向力 0（默认）| 标量
+  group: 仿真设置
+  block_parameter: FZMIN
+  values: 0（默认）| 标量
+- name: 最大压力，PRESMAX
+  summary: 最大压力 1003118（默认）| 标量
+  group: 仿真设置
+  block_parameter: PRESMAX
+  values: 1003118（默认）| 标量
+- name: 最小压力，PRESMIN
+  summary: 最小压力 9982（默认）| 标量
+  group: 仿真设置
+  block_parameter: PRESMIN
+  values: 9982（默认）| 标量
+- name: 最大允许滑移率（绝对值），KPUMAX
+  summary: 最大允许滑移率 0.999（默认）| 标量
+  group: 仿真设置
+  block_parameter: KPUMAX
+  values: 0.999（默认）| 标量
+- name: Minimum allowable slip ratio (absolute), KPUMIN
+  summary: 最小允许滑移率 -0.999（默认）| 标量
+  group: 仿真设置
+  block_parameter: KPUMIN
+  values: -0.999（默认）| 标量
+- name: Max allowable slip angle (absolute), ALPMAX
+  summary: 最大允许滑移角 1.5708（默认）| 标量
+  group: 仿真设置
+  block_parameter: ALPMAX
+  values: 1.5708（默认）| 标量
+- name: Minimum allowable slip angle (absolute), ALPMIN
+  summary: 最小允许滑移角 -1.5708（默认）| 标量
+  group: 仿真设置
+  block_parameter: ALPMIN
+  values: -1.5708（默认）| 标量
+- name: Maximum allowable camber angle, CAMMAX
+  summary: 最大允许外倾角 0.173 | 标量
+  group: 仿真设置
+  block_parameter: CAMMAX
+  values: 0.173 | 标量
+- name: Minimum allowable camber angle, CAMMIN
+  summary: 最小允许外倾角 -0.173 | 标量
+  group: 仿真设置
+  block_parameter: CAMMIN
+  values: -0.173 | 标量
+- name: Minimum ambient temperature, TMIN
+  summary: 最低环境温度 0（默认）| 标量
+  group: 仿真设置
+  block_parameter: TMIN
+  values: 0（默认）| 标量
+- name: Maximum ambient temperature, TMAX
+  summary: 最高环境温度 400（默认）| 标量
+  group: 仿真设置
+  block_parameter: TMAX
+  values: 400（默认）| 标量
+- name: Install Extended Tire Features
+  summary: 用于安装 Extended Tire Features for Vehicle Dynamics Blockset™ 支持包的选项 按钮
+  group: Plotting
+- name: 绘制稳态力、力矩响应
+  summary: 用于绘制稳态力和力矩轮胎响应的选项按钮
+  group: Plotting
+```
 
 ### 模块选项
 
@@ -1988,7 +2473,6 @@ stiffness and damping`。
 #### 依赖关系
 
 要启用此参数，请点击 **安装扩展轮胎功能**。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Wheels and Tires

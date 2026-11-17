@@ -14,6 +14,141 @@ language: en
 # Transform Sensor
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: output
+- name: F
+  summary: Follower frame frame
+  direction: output
+- name: q
+  summary: Angle of rotation, rad physical signal
+  direction: output
+- name: axs
+  summary: Axis of rotation, unitless physical signal
+  direction: output
+- name: Q
+  summary: Quaternion, unitless physical signal
+  direction: output
+- name: R
+  summary: Rotation matrix, unitless physical signal
+  direction: output
+- name: seq
+  summary: Angles of three successive rotations, rad physical signal
+  direction: output
+- name: wx
+  summary: '*X*-component of relative angular velocity, rad/s physical signal'
+  direction: output
+- name: wy
+  summary: '*Y*-component of relative angular velocity, rad/s physical signal'
+  direction: output
+- name: wz
+  summary: '*Z*-component of relative angular velocity, rad/s physical signal'
+  direction: output
+- name: w
+  summary: Relative angular velocity, rad/s physical signal
+  direction: output
+- name: Qd
+  summary: Relative angular velocity expressed as time derivative of quaternion, unitless physical signal
+  direction: output
+- name: Rd
+  summary: Relative angular velocity expressed as time derivative of rotation matrix, unitless physical signal
+  direction: output
+- name: seqd
+  summary: Relative angular velocity expressed as time derivative of rotation sequence angles, rad/s physical signal
+  direction: output
+- name: bx
+  summary: '*X*-component of relative angular acceleration, rad/s^2 physical signal'
+  direction: output
+- name: by
+  summary: '*Y*-component of relative angular acceleration, rad/s^2 physical signal'
+  direction: output
+- name: bz
+  summary: '*Z*-component of relative angular acceleration, rad/s^2 physical signal'
+  direction: output
+- name: b
+  summary: Relative angular acceleration, rad/s^2 physical signal
+  direction: output
+- name: Qdd
+  summary: Relative angular acceleration expressed as second time derivative of quaternion, unitless physical signal
+  direction: output
+- name: Rdd
+  summary: Relative angular acceleration expressed as second time derivative of rotation matrix, unitless physical signal
+  direction: output
+- name: x
+  summary: '*X*-component of relative translation, m physical signal'
+  direction: output
+- name: y
+  summary: '*Y*-component of relative translation, m physical signal'
+  direction: output
+- name: z
+  summary: '*Z*-component of relative translation, m physical signal'
+  direction: output
+- name: p
+  summary: Relative translation, m physical signal
+  direction: output
+- name: rad
+  summary: Cylindrical radius coordinate of relative translation, m physical signal
+  direction: output
+- name: azm
+  summary: Azimuth of relative translation, rad physical signal
+  direction: output
+- name: dst
+  summary: Spherical radius coordinate of relative translation, m physical signal
+  direction: output
+- name: inc
+  summary: Inclination of relative translation, rad physical signal
+  direction: output
+- name: vx
+  summary: '*X*-coordinate of relative linear velocity, m/s physical signal'
+  direction: output
+- name: vy
+  summary: '*Y*-coordinate of relative linear velocity, m/s physical signal'
+  direction: output
+- name: vz
+  summary: '*Z*-coordinate of relative linear velocity, m/s physical signal'
+  direction: output
+- name: v
+  summary: Relative linear velocity, m/s physical signal
+  direction: output
+- name: vrad
+  summary: Cylindrical radius coordinate of relative linear velocity, m/s physical signal
+  direction: output
+- name: vazm
+  summary: Azimuth coordinate of relative linear velocity, rad/s physical signal
+  direction: output
+- name: vdst
+  summary: Spherical radius coordinate of relative linear velocity, m/s physical signal
+  direction: output
+- name: vinc
+  summary: Inclination coordinate of relative linear velocity, rad/s physical signal
+  direction: output
+- name: ax
+  summary: '*X*-component of relative linear acceleration, m/s^2 physical signal'
+  direction: output
+- name: ay
+  summary: '*Y*-component of relative linear acceleration, m/s^2 physical signal'
+  direction: output
+- name: az
+  summary: '*Z*-component of relative linear acceleration, m/s^2 physical signal'
+  direction: output
+- name: a
+  summary: Relative linear acceleration, m/s^2 physical signal
+  direction: output
+- name: arad
+  summary: Cylindrical radius coordinate of relative linear acceleration, m/s^2 physical signal
+  direction: output
+- name: aazm
+  summary: Azimuth coordinate of relative linear acceleration, rad/s^2 physical signal
+  direction: output
+- name: adst
+  summary: Spherical radius coordinate of relative linear acceleration, m/s^2 physical signal
+  direction: output
+- name: ainc
+  summary: Inclination coordinate of relative linear acceleration, rad/s^2 physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -536,8 +671,17 @@ signal.
 
 To enable this port, under **Acceleration**, select
 **Inclination**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement Frame
+  summary: Frame to use to express measurements World (default) | Base | Follower | Non-Rotating Base | Non-Rotating Follower
+  group: ''
+- name: Sequence for Rotation Sequence
+  summary: Sequence of rotation axis X-Y-X (default) | X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z
+    | Z-Y-X | Z-Y-Z
+  group: ''
+```
 
 ### **Measurement Frame** — Frame to use to express measurements `World` (default) | `Base` | `Follower` | `Non-Rotating Base` | `Non-Rotating Follower`
 
@@ -569,7 +713,6 @@ information.
 
 To enable this parameter, under **Rotation**, select
 **Rotation Sequence**.
-
 ## Libraries
 
 Simscape / Multibody / Frames and Transforms

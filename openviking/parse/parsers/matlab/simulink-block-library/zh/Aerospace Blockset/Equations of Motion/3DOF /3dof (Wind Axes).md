@@ -15,6 +15,57 @@ chinese_source: worker-translation
 # 3DOF (Wind Axes)
 
 ## 端口
+```yaml
+ports:
+- name: Fx
+  summary: 沿风轴 *x* 方向施加的力 标量
+  direction: input
+  data_types: double
+- name: Fz
+  summary: 沿风轴 *z* 方向施加的力 标量
+  direction: input
+  data_types: double
+- name: M
+  summary: 施加的俯仰力矩 标量
+  direction: input
+  data_types: double
+- name: g
+  summary: 重力 标量
+  direction: input
+  data_types: double
+- name: γ
+  summary: 航迹角 标量
+  direction: output
+  data_types: double
+- name: q
+  summary: 俯仰角速率 标量
+  direction: output
+  data_types: double
+- name: dq/dt
+  summary: 俯仰角加速度 标量
+  direction: output
+  data_types: double
+- name: XeZe
+  summary: 刚体位置 二元向量
+  direction: output
+  data_types: double
+- name: Vw
+  summary: 风固定坐标系中的速度 二元向量
+  direction: output
+  data_types: double
+- name: AxbAzb
+  summary: 刚体加速度 二元向量
+  direction: output
+  data_types: double
+- name: α
+  summary: 迎角 标量
+  direction: output
+  data_types: double
+- name: AxeAze
+  summary: 刚体加速度 二元向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -98,8 +149,136 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Include inertial acceleration** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: 主要
+  block_parameter: units
+  type: 字符向量
+  values: Metric (MKS) | English (Velocity in ft/s) | English (Velocity in kts)
+  default: Metric (MKS)
+- name: Axes
+  summary: 体轴或风轴 Wind（默认）| Body
+  group: 主要
+  block_parameter: axes
+  type: 字符向量
+  values: Wind | Body
+  default: Wind
+- name: Mass type
+  summary: 质量类型 Fixed（默认）| Simple Variable | Custom Variable
+  group: 主要
+  block_parameter: mtype
+  type: 字符向量
+  values: Fixed | Simple Variable | Custom Variable
+  default: '''Fixed'''
+- name: Initial airspeed
+  summary: 初始速度 100（默认）| 大于 0 的标量
+  group: 主要
+  block_parameter: V_ini
+  type: 字符向量
+  values: '''100'' | 标量'
+  default: '''100'''
+- name: Initial flight path angle
+  summary: 初始航迹角 0（默认）| 标量
+  group: 主要
+  block_parameter: gamma_ini
+  type: 字符向量
+  values: '''0'' | 标量'
+  default: '''0'''
+- name: Initial body rotation rate
+  summary: 初始俯仰角速率 0（默认）| 标量
+  group: 主要
+  block_parameter: q_ini
+  type: 字符向量
+  values: '''0'' | 标量'
+  default: '''0'''
+- name: Initial incidence
+  summary: 初始角度 0（默认）| 标量
+  group: 主要
+  block_parameter: alpha_ini
+  type: 字符向量
+  values: '''0'' | 标量'
+  default: '''0'''
+- name: Initial position (x,z)
+  summary: 初始位置 [0 0]（默认）| 二元向量
+  group: 主要
+  block_parameter: pos_ini
+  type: 字符向量
+  values: '''[0 0]'' | 二元向量'
+  default: '''[0 0]'''
+- name: Initial mass
+  summary: 初始质量 1.0（默认）| 标量
+  group: 主要
+  block_parameter: mass
+  type: 字符向量
+  values: '''1.0'' | 标量'
+  default: '''1.0'''
+- name: Inertia body axes
+  summary: 刚体惯量 1.0（默认）| 标量
+  group: 主要
+  block_parameter: Iyy
+  type: 字符向量
+  values: '''1.0'' | 标量'
+  default: '''1.0'''
+- name: Gravity Source
+  summary: 重力源 Internal（默认）| External
+  group: 主要
+  block_parameter: g_in
+  type: 字符向量
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Acceleration due to gravity
+  summary: 重力源 9.81（默认）| 标量
+  group: 主要
+  block_parameter: g
+  type: 字符向量
+  values: '''9.81'' | 标量'
+  default: '''9.81'''
+- name: Include inertial acceleration
+  summary: 包含惯性加速度端口 off（默认）| on
+  group: 主要
+  block_parameter: abi_flag
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 'Velocity: e.g., ''V'''
+  summary: 速度状态名称 ''（默认）| 字符向量
+  group: 状态属性
+  block_parameter: V_statename
+  type: 字符向量 | 字符串
+  values: ''''' | 标量'
+  default: ''''''
+- name: 'Position: e.g., {''Xe'', ''Ze''}'
+  summary: 位置状态名称 ''（默认）| 用花括号括起来的逗号分隔列表
+  group: 状态属性
+  block_parameter: pos_statename
+  type: 字符向量
+  values: ''''' | 用花括号括起来的逗号分隔列表'
+  default: ''''''
+- name: 'Body rotation rate: e.g., ''q'''
+  summary: 体旋转状态名称 ''（默认）| 标量
+  group: 状态属性
+  block_parameter: q_statename
+  type: 字符向量 | 字符串
+  values: ''''' | 标量'
+  default: ''''''
+- name: 'Flight path angle: e.g., ''gamma'''
+  summary: 航迹角状态名称 ''（默认）
+  group: 状态属性
+  block_parameter: gamma_statename
+  type: 字符向量 | 字符串
+  values: ''''' | 标量'
+  default: ''''''
+- name: Incidence angle e.g., 'alpha'
+  summary: 迎角状态名称 ''（默认）| 标量
+  group: 状态属性
+  block_parameter: alpha_statename
+  type: 字符向量 | 字符串
+  values: ''''' | 标量'
+  default: ''''''
+```
 
 ### 主要
 
@@ -377,7 +556,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 | 字符串 |
 | **值：** `''` | 标量 |
 | **默认值：** `''` |
-
 ## 所属库
 
 Aerospace Blockset / Equations of Motion / 3DOF

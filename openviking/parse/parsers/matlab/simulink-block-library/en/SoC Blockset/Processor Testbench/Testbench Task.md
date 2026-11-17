@@ -14,6 +14,12 @@ language: en
 # Testbench Task
 
 ## Ports
+```yaml
+ports:
+- name: Timer Task Function Call
+  summary: Function-call input port from a timer-driven task scalar
+  direction: input
+```
 
 ### Input
 
@@ -22,11 +28,12 @@ language: en
 This port accepts a function-call event signal from a timer-driven task event port
 of the Task Manager
 block.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 SoC Blockset / Processor Testbench

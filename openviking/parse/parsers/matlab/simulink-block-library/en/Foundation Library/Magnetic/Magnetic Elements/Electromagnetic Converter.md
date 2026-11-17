@@ -14,6 +14,9 @@ language: en
 # Electromagnetic Converter
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -28,12 +31,13 @@ The block has the following ports:
 
 `-`
 :   Negative electrical conserving port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Number of winding turns**
 :   Number of electrical winding turns. The default value is `1`.
-
 ## Libraries
 
 Not documented in R2025b.

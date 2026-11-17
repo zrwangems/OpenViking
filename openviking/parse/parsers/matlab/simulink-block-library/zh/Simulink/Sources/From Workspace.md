@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # From Workspace
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 从工作区加载的数据 标量 | 向量 | 矩阵 | 数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输出
 
@@ -32,8 +40,42 @@ From Workspace 模块支持加载所有内置数值数据类型和自定义定�
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Data
+  summary: 要从工作区加载的数据 timeseries 对象 | timetable 对象 | 结构体 | 二维数组 | MATLAB 表达式
+  group: ''
+  block_parameter: VariableName
+  values: '''simin''（默认）| MATLAB 表达式 | timeseries 对象 | timetable | 结构体 | 二维数组'
+- name: Output data type
+  summary: '加载的工作区数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: auto''（默认）| ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''string'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''Enum:
+    <class name>'' | ''Bus: <object name>'' | 数据类型表达式'
+- name: Sample time
+  summary: 输出采样周期和可选时间偏移 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '''0''（默认）| 标量 | 向量'
+- name: Interpolate data
+  summary: 插值方法 on（默认）| off
+  group: ''
+  block_parameter: Interpolate
+  values: '''on''（默认）| ''off'''
+- name: Enable zero-crossing detection
+  summary: 过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  values: '''on''（默认）| ''off'''
+- name: Form output after final data value by
+  summary: 确定最终数据点之后模块输出的方法 Extrapolation（默认）| Setting to zero | Holding final value | Cyclic repetition
+  group: ''
+  block_parameter: OutputAfterFinalValue
+  values: '''Extrapolation''（默认）| ''Setting to zero'' | ''Holding final value'' | ''Cyclic repetition'''
+```
 
 ### **Data** — 要从工作区加载的数据 `timeseries` 对象 | `timetable` 对象 | 结构体 | 二维数组 | MATLAB 表达式
 
@@ -216,7 +258,6 @@ From Workspace 模块使用 **Interpolate data** 和 **Form output after final d
 | **数据类型：** | `char` | `string` |
 
 **示例：** `set_param("myModel/From Workspace","OutputAfterFinalValue","Holding final value")` 将模型 `myModel` 中名为 `From Workspace` 的 From Workspace 模块配置为使用最终输入数据值作为输入数据中最后一个时间值之后的时间步的输出值。
-
 ## 所属库
 
 Simulink / Sources

@@ -14,6 +14,21 @@ language: en
 # C28x I2C Receive
 
 ## Ports
+```yaml
+ports:
+- name: SAR
+  summary: Peripheral address register value scalar
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: RD
+  summary: Received data from I2C bus scalar | vector
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: status
+  summary: I2C communication status scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Input
 
@@ -47,8 +62,46 @@ This port appears only when **Output receiving
 status** is selected.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Module
+  summary: Module for communication I2C_A (default) | I2C_B
+  group: ''
+- name: Addressing format
+  summary: Address format for communication 7–Bit addressing (default) | 10–Bit addressing | Free data format
+  group: ''
+- name: Peripheral address source
+  summary: Peripheral address source of I2C peripheral Specify via dialog (default) | Input port
+  group: ''
+- name: Peripheral address register
+  summary: Peripheral address register value 80 (default) | scalar
+  group: ''
+- name: Bit count
+  summary: Bit count for communication 8 (default) | integer in [1 8]
+  group: ''
+- name: Read data length
+  summary: Length of received data 1 (default) | scalar
+  group: ''
+- name: Initial output
+  summary: Value of I2C node output to model 0 (default) | scalar | vector
+  group: ''
+- name: Set NACK bit
+  summary: NACK bit during I2C acknowledge cycle off (default) | on
+  group: ''
+- name: Enable stop condition
+  summary: Stop message to I2C Transmit block off (default) | on
+  group: ''
+- name: Output receiving status
+  summary: Indicates when I2C Receive block receives message off (default) | on
+  group: ''
+- name: Sample time
+  summary: Frequency at which data is read from I2C device 0.001 (default) | –1 | scalar
+  group: ''
+- name: Data type
+  summary: Type of data in data vector int8 (default) | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+```
 
 ### **Module** — Module for communication `I2C_A` (default) | `I2C_B`
 
@@ -131,7 +184,6 @@ asynchronously, set this parameter to `-1`.
 
 Sets the data type of the data received. If the size of the received data
 is less than 8 bits, then the data is right-justified.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

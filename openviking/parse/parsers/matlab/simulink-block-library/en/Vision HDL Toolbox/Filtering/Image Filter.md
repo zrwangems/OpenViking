@@ -14,6 +14,29 @@ language: en
 # Image Filter
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: coeff
+  summary: Filter coefficients matrix
+  direction: input
+  data_types: int | uint | fixed point | single | double
+- name: pixel
+  summary: Output pixel stream scalar | vector
+  direction: output
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -94,8 +117,42 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter coefficients source
+  summary: Source to provide filter coefficients Property (default) | Input port
+  group: Main
+- name: Filter coefficients
+  summary: Coefficients of filter [ 1, 0; 0, -1 ] (default) | matrix
+  group: Main
+- name: Padding method
+  summary: Method for padding Constant (default) | Replicate | Symmetric | Reflection | None
+  group: Main
+- name: Padding value
+  summary: Value used to pad boundary of input image 0 (default) | integer
+  group: Main
+- name: Line buffer size
+  summary: Size of line buffer 2048 (default) | integer
+  group: Main
+- name: Rounding mode
+  summary: Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round
+    | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow action for internal fixed-point calculations off (default) | on
+  group: Data Types
+- name: Coefficients
+  summary: 'Filter coefficients data type Inherit: Same as first input (default) | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+- name: Output
+  summary: 'Output data type Inherit: Same as first input (default) | Inherit: Inherit via internal rule | fixdt(1,16,0) |
+    <data type expression>'
+  group: Data Types
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Lock data type settings off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -204,7 +261,6 @@ Assistant**, which helps you to set the data type of the
 
 Select this parameter to lock all data type settings of this block against changes
 by the Fixed-Point Tool and the Fixed-Point Advisor. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Vision HDL Toolbox / Filtering

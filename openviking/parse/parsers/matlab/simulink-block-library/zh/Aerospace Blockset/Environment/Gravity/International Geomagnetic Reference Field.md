@@ -15,6 +15,65 @@ chinese_source: worker-translation
 # International Geomagnetic Reference Field
 
 ## 端口
+```yaml
+ports:
+- name: h
+  summary: 高度标量
+  direction: input
+  data_types: double
+- name: μ (deg)
+  summary: 纬度标量
+  direction: input
+  data_types: double
+- name: l (deg)
+  summary: 经度标量
+  direction: input
+  data_types: double
+- name: dyear
+  summary: 期望年份标量
+  direction: input
+  data_types: double
+- name: XYZ
+  summary: 磁场矢量
+  direction: output
+  data_types: double
+- name: H
+  summary: 水平强度标量
+  direction: output
+  data_types: double
+- name: D
+  summary: 磁偏角标量
+  direction: output
+  data_types: double
+- name: l
+  summary: 磁倾角标量
+  direction: output
+  data_types: double
+- name: F
+  summary: 总强度标量
+  direction: output
+  data_types: double
+- name: DXDYDZ
+  summary: 磁场长期变化矢量
+  direction: output
+  data_types: double
+- name: DH
+  summary: 水平强度长期变化标量
+  direction: output
+  data_types: double
+- name: DD
+  summary: 磁偏角长期变化标量
+  direction: output
+  data_types: double
+- name: DI
+  summary: 磁倾角长期变化标量
+  direction: output
+  data_types: double
+- name: DF
+  summary: 总强度长期变化标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -130,8 +189,59 @@ dyear=decyear('21-March-2015','dd-mmm-yyyy')
 要启用此端口，请选择 **Output secular variation**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Generation
+  summary: International Geomagnetic Reference Field 代 IGRF-14（默认）| IGRF-13 | IGRF-11 | IGRF-12
+  group: ''
+  block_parameter: generation
+  type: 字符向量
+  values: '''IGRF-14'' | ''IGRF-13'' | ''IGRF-12'' | ''IGRF-11'' |'
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+- name: Input decimal year
+  summary: 期望年份 on（默认）| off
+  group: ''
+  block_parameter: time_in
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Month
+  summary: 输入月份 January（默认）| February | March | April | May | June | July | August | September | October | November | December
+  group: ''
+  block_parameter: month
+  type: 字符向量
+  values: '''January'' | ''February'' | ''March'' | ''April'' | ''May'' | ''June'' | ''July'' | ''August'' | ''September''
+    | ''October'' | ''November'' | ''December'''
+- name: Day
+  summary: 输入日期 1（默认）| 1 到 31
+  group: ''
+  block_parameter: day
+  type: 字符向量
+  values: '''1'' 到 ''31'''
+- name: Year
+  summary: 输入年份 2025（默认）| 1900 到 2030
+  group: ''
+  block_parameter: year
+  type: 字符向量
+  values: 任意年份
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+- name: Output secular variance
+  summary: 长期变化 on（默认）| off
+  group: ''
+  block_parameter: sv_out
+  type: 字符向量
+  values: '''on'' | ''off'''
+```
 
 ### **Generation** — International Geomagnetic Reference Field 代 `IGRF-14`（默认）| `IGRF-13` | `IGRF-11` | `IGRF-12`
 
@@ -287,7 +397,6 @@ International Geomagnetic Reference Field 代，从 `IGRF-14`、`IGRF-13`、`IGR
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认：** `'on'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Gravity

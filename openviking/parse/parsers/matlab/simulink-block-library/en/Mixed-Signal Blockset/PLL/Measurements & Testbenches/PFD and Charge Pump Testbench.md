@@ -14,6 +14,29 @@ language: en
 # PFD and Charge Pump Testbench
 
 ## Ports
+```yaml
+ports:
+- name: from PFD up
+  summary: Measures PFD reference frequency scalar
+  direction: input
+  data_types: double
+- name: from PFD down
+  summary: Measures PFD feedback frequency scalar
+  direction: input
+  data_types: double
+- name: from charge pump
+  summary: Measures charge pump output current scalar
+  direction: input
+  data_types: double
+- name: to PFD reference
+  summary: Provides reference frequency to PFD scalar
+  direction: output
+  data_types: double
+- name: to PFD feedback
+  summary: Provides feedback frequency to PFD scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -47,8 +70,65 @@ Provides reference frequency to the PFD to determine phase error.
 Provides feedback frequency to the PFD block.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase sweep (°)
+  summary: Maximum phase excursion from phase offset 300 (default) | real positive scalar
+  group: Stimulus
+- name: Phase offset (°)
+  summary: Relative phase value at center of phase sweep 0 (default) | real scalar
+  group: Stimulus
+- name: Clock frequency (Hz)
+  summary: Desired reference clock frequency 2.5e9 Hz (default) | real positive scalar
+  group: Stimulus
+- name: Number of phases in sweep
+  summary: Total number of evenly spaced phase offsets to simulate 2000 (default) | real positive scalar
+  group: Stimulus
+- name: Duty cycle (%)
+  summary: Duty cycle of stimulus clock 50 (default) | real positive scalar
+  group: Stimulus
+- name: Plot figures on top after simulation
+  summary: Plot figures on top after simulation on (default) | off
+  group: Setup
+- name: Report PFD metrics
+  summary: Report PFD metrics on (default) | off
+  group: Setup
+- name: Report Charge Pump metrics
+  summary: Report Charge Pump metrics on (default) | off
+  group: Setup
+- name: Logic Threshold (V)
+  summary: Switching threshold at input of charge pump 0.5 (default) | real scalar
+  group: Setup
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: Setup
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 5 (default) | positive integer scalar
+  group: Setup
+- name: Target deadband (°)
+  summary: Maximum acceptable size of reduced sensitivity region near zero phase offset 0 (default) | real nonnegative scalar
+  group: Target Metrics
+- name: Target linear range (°)
+  summary: Maximum phase offset at which the output remains approximately equal to the input offset 290 (default) | real positive
+    scalar
+  group: Target Metrics
+- name: Target propagation delay (s)
+  summary: Maximum acceptable delay from input to output 60e-12 (default) | real positive scalar
+  group: Target Metrics
+- name: Target rise/fall time (s)
+  summary: Maximum acceptable 20% – 80% rise/fall time 30e-12 (default) | real positive scalar
+  group: Target Metrics
+- name: Target sensitivity (A/°)
+  summary: Maximum acceptable charge pump sensitivity 1e-9 (default) | real positive scalar
+  group: Target Metrics
+- name: Target phase offset (°)
+  summary: Maximum acceptable phase offset at output of charge pump 10 (default) | real positive scalar
+  group: Target Metrics
+- name: Target spur current (A)
+  summary: Charge pump output current magnitude 1e-7 (default)
+  group: Target Metrics
+```
 
 ### Stimulus
 
@@ -330,7 +410,6 @@ frequency.
   specific value.
 
 **Data Types:** `double`
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

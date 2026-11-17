@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # RL Agent
 
 ## 端口
+```yaml
+ports:
+- name: observation
+  summary: 环境观测值 标量 | 向量 | 非虚拟总线
+  direction: input
+- name: reward
+  summary: 来自环境的奖励 标量
+  direction: input
+- name: isdone
+  summary: 终止回合模拟的标志 逻辑值
+  direction: input
+- name: external action
+  summary: 外部动作信号 标量 | 向量
+  direction: input
+- name: last action
+  summary: 应用于环境的上一动作 信号 标量 | 向量
+  direction: input
+- name: use external action
+  summary: 使用外部动作信号 0 | 1
+  direction: input
+- name: action
+  summary: 智能体动作 标量 | 向量 | 非虚拟总线
+  direction: output
+- name: cumulative reward
+  summary: 累积未折扣奖励标量
+  direction: output
+```
 
 ### 输入
 
@@ -81,8 +108,47 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Cumulative reward output** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Agent object
+  summary: 要训练的智能体 agentObj（默认）| 智能体对象
+  group: ''
+  block_parameter: Agent
+  type: string, character vector
+  default: '"agentObj"'
+- name: Generate greedy policy block
+  summary: 生成贪婪策略模块控制器按钮
+  group: ''
+- name: External action inputs
+  summary: 为外部动作添加输入端口 off（默认）| on
+  group: ''
+  block_parameter: ExternalActionAsInput
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Last action input
+  summary: 为应用于环境的上一动作添加输入端口 off（默认）| on
+  group: ''
+  block_parameter: ProvideLastAction
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Cumulative reward output
+  summary: 添加累积奖励输出端口 off（默认）| on
+  group: ''
+  block_parameter: ProvideCumRwd
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Use strict observation data types
+  summary: 强制观测使用严格数据类型 off（默认）| on
+  group: ''
+  block_parameter: UseStrictObservationDataTypes
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+```
 
 ### **Agent object** — 要训练的智能体 `agentObj`（默认）| 智能体对象
 
@@ -160,7 +226,6 @@ chinese_source: worker-translation
 | **类型**：string, character vector |
 | **值**：`"off"` | `"on"` |
 | **默认值**：`"off"` |
-
 ## 所属库
 
 Reinforcement Learning Toolbox

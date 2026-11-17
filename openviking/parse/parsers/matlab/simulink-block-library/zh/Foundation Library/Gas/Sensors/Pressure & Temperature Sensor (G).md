@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Pressure & Temperature Sensor (G)
 
 ## 端口
+```yaml
+ports:
+- name: Pa
+  summary: 绝对压力测量值，单位为帕斯卡 (Pa) 的物理信号
+  direction: output
+- name: Pg
+  summary: 表压测量值，单位为 Pa 的物理信号
+  direction: output
+- name: P
+  summary: 压差测量值，单位为 Pa 的物理信号
+  direction: output
+- name: T
+  summary: 温度测量值，单位为 K 的物理信号
+  direction: output
+- name: A
+  summary: 传感器入口气体
+  direction: output
+- name: B
+  summary: 传感器出口气体
+  direction: output
+```
 
 ### 输出
 
@@ -78,8 +99,22 @@ reference** 参数设置为
 要启用此端口，请将 **Measurement
 reference** 参数设置为
 `Difference`。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement reference
+  summary: 在绝对测量和相对测量之间选择 Absolute（默认）| Difference
+  group: ''
+- name: Pressure
+  summary: 控制用于测量压力的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Pressure type
+  summary: 在绝对压力和表压之间选择 Absolute pressure（默认）| Gauge pressure
+  group: ''
+- name: Temperature
+  summary: 控制用于测量温度的输出端口可见性 Off（默认）| On
+  group: ''
+```
 
 ### **Measurement reference** — 在绝对测量和相对测量之间选择 `Absolute`（默认）| `Difference`
 
@@ -107,7 +142,6 @@ reference** 设置为 `Absolute` 并选中 **Pressure** 复选框。
 ### **Temperature** — 控制用于测量温度的输出端口可见性 `Off`（默认）| `On`
 
 选中此复选框会显示输出端口 **T**，以便测量温度。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Sensors

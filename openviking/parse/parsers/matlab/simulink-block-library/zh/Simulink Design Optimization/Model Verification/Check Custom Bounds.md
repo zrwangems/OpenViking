@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Check Custom Bounds
 
 ## 端口
+```yaml
+ports:
+- name: Port_1 (u)
+  summary: 要对照指定边界检查的信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+- name: Port_1 (out)
+  summary: 输出断言信号 1 | 0
+  direction: output
+  data_types: Boolean | double
+```
 
 ### 输入
 
@@ -39,8 +51,99 @@ chinese_source: worker-translation
 要启用此端口，请在 **Assertion** 选项卡上选择 **Output assertion signal** 参数。
 
 **数据类型：** `Boolean` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Show Plot
+  summary: 打开绘图窗口 button
+  group: ''
+- name: Show plot on block open
+  summary: 双击模块以打开绘图 off (默认) | on
+  group: ''
+  block_parameter: LaunchViewOnOpen
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Response Optimization
+  summary: 打开 Response Optimizer button
+  group: ''
+- name: Include upper bound in assertion
+  summary: 检查信号是否满足上界 on（默认）| off
+  group: Bounds 选项卡
+  block_parameter: EnableUpperBound
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Times
+  summary: 上界时间向量 [0 5; 5 10]（默认）| 二元素向量 | 两列矩阵 | 元胞数组
+  group: Bounds 选项卡
+  block_parameter: UpperBoundTimes
+  type: character vector
+  values: two-element vector | two-column matrix | cell array
+  default: '[0 5; 5 10]'
+- name: Amplitudes
+  summary: 上界幅值 [1.1 1.1; 1.01 1.01]（默认）| 二元素向量 | 两列矩阵 | 元胞数组
+  group: Bounds 选项卡
+  block_parameter: UpperBoundAmplitudes
+  type: character vector
+  values: two-element vector | two-column matrix | cell array
+  default: '[1.1 1.1; 1.01 1.01]'
+- name: Include lower bound in assertion
+  summary: 检查信号是否满足下界 off（默认）| on
+  group: Bounds 选项卡
+  block_parameter: EnableLowerBound
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Times
+  summary: 下界时间向量 []（默认）| 二元素向量 | 二列矩阵 | 元胞数组
+  group: Bounds 选项卡
+  block_parameter: LowerBoundTimes
+  type: character vector
+  values: two-element vector | two-column matrix | cell array
+  default: '[]'
+- name: Amplitudes
+  summary: 下界幅值 []（默认）| 二元素向量 | 两列矩阵 | 元胞数组
+  group: Bounds 选项卡
+  block_parameter: LowerBoundAmplitudes
+  type: character vector
+  values: two-element vector | two-column matrix | cell array
+  default: '[]'
+- name: Enable zero-crossing detection
+  summary: 在边界边处评估模型 on（默认）| off
+  group: Bounds 选项卡
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable assertion
+  summary: 启用或禁用检查 on（默认）| off
+  group: Assertion Tab
+  block_parameter: enabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Simulation callback when assertion fails (optional)
+  summary: 断言失败时要计算的表达式 ''（默认）| MATLAB 表达式
+  group: Assertion Tab
+  block_parameter: callback
+  type: character vector
+  values: MATLAB expression
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: 断言失败时停止仿真 off（默认）| on
+  group: Assertion Tab
+  block_parameter: stopWhenAssertionFail
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Output assertion signal
+  summary: 创建输出信号 off（默认）| on
+  group: Assertion Tab
+  block_parameter: export
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Show Plot** — 打开绘图窗口 `button`
 
@@ -404,7 +507,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **Value:** `'on'` | `'off'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink Design Optimization / Model Verification Simulink Design Optimization / Signal Constraints

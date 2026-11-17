@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # From File
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 使用 MAT 文件数据创建的输出 标量 | 向量 | 矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### 输出
 
@@ -26,8 +33,50 @@ From File 模块不支持为总线数组加载数据。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: MAT 文件名或 MAT 文件路径 untitled.mat（默认）| MAT 文件名 | MAT 文件路径
+  group: ''
+  block_parameter: FileName
+  values: '''untitled.mat''（默认）| MAT 文件名 | MAT 文件路径'
+- name: Output data type
+  summary: 'MAT 文件中数据的数据类型 Inherit: auto（默认）| double | single | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class_name> | Bus:
+    <bus_object> | <data type expression> | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '''Inherit (auto)''（默认）| ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''
+    | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''Bus: <object name>'' | ''<data
+    type expression>'''
+- name: Sample time
+  summary: 输出采样周期和可选时间偏移 0 | 标量 | 1×2 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '''0''（默认）| 标量 | 1×2 向量'
+- name: Data extrapolation before first data point
+  summary: 确定 MAT 文件中第一个数据点之前模块输出的方法 Linear extrapolation（默认）| Hold first value | Ground value
+  group: ''
+  block_parameter: ExtrapolationBeforeFirstDataPoint
+  values: '''Linear extrapolation''（默认）| ''Hold first value'' | ''Ground value'''
+- name: Data interpolation within time range
+  summary: 插值方法 Linear interpolation（默认）| Zero order hold
+  group: ''
+  block_parameter: InterpolationWithinTimeRange
+  values: '''Linear interpolation''（默认）| ''Zero order hold'''
+- name: Data extrapolation after last data point
+  summary: 确定 MAT 文件中最后一个数据点之后模块输出的方法 Linear extrapolation（默认）| Hold last value | Ground value
+  group: ''
+  block_parameter: ExtrapolationAfterLastDataPoint
+  values: '''Linear extrapolation''（默认）| ''Hold last value'' | ''Ground value'''
+- name: Enable zero-crossing detection
+  summary: 用于为此模块启用零交叉检测的选项 off（默认）| on
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on''（默认）| ''off'''
+  default: '''on'''
+```
 
 ### **File name** — MAT 文件名或 MAT 文件路径 `untitled.mat`（默认）| MAT 文件名 | MAT 文件路径
 
@@ -244,7 +293,6 @@ From File 模块还可以根据您配置插值和外推的方式来在输出中�
 | **Data Types:** | `char` | `string` |
 
 **Example:** `set_param("mdl/From File","ZeroCross","off")` 将模型 `mdl` 中名为 `From File` 的 From File 模块配置为禁用零交叉检测。
-
 ## 所属库
 
 Simulink / Sources

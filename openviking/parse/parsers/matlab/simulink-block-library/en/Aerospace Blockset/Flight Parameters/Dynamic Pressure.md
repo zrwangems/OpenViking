@@ -14,6 +14,21 @@ language: en
 # Dynamic Pressure
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Velocity three-element vector
+  direction: input
+  data_types: double
+- name: ρ
+  summary: Air density scalar
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: Dynamic pressure scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,11 +50,12 @@ Air density, specified as a scalar.
 Dynamic pressure, returned as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Flight Parameters

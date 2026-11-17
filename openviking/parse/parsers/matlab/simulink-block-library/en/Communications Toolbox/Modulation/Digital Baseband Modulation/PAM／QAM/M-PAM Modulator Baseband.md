@@ -14,6 +14,17 @@ language: en
 # M-PAM Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: '*M*-PAM-modulated baseband signal scalar | column vector'
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -36,8 +47,38 @@ data type** parameter to specify the output data type.
 This port is unnamed on the block.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: M-ary number
+  summary: Modulation order 4 (default) | positive, even integer
+  group: Main
+- name: Input type
+  summary: Type of input value Integer (default) | Bit
+  group: Main
+- name: Constellation ordering
+  summary: Mapping order of symbols Binary (default) | Gray
+  group: Main
+- name: Normalization method
+  summary: Scaling method for constellation Min. distance between symbols (default) | Average Power | Peak Power
+  group: Main
+- name: Minimum distance
+  summary: Distance between two nearest constellation points 2 (default) | positive scalar
+  group: Main
+- name: Average power, referenced to 1 ohm (watts)
+  summary: Average power 1 (default) | positive scalar
+  group: Main
+- name: Peak power, referenced to 1 ohm (watts)
+  summary: Maximum power 1 (default) | positive scalar
+  group: Main
+- name: View Constellation
+  summary: Option to plot reference constellation button
+  group: Main
+- name: Output data type
+  summary: 'Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit: Inherit via back propagation
+    | <data type expression>'
+  group: Data Types
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -144,7 +185,6 @@ type expression>`.
   scaling to match the following block.
 
 For information about specifying data types, see Data Type Assistant.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM

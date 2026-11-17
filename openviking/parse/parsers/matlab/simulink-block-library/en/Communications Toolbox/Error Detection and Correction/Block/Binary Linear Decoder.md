@@ -14,10 +14,15 @@ language: en
 # Binary Linear Decoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Generator matrix**
 :   Generator matrix for the code; same as in Binary Linear Encoder
@@ -28,7 +33,6 @@ Not documented in R2025b.
     vectors for each codeword's syndrome; or the scalar 0, in which case the
     block defaults to the table corresponding to the **Generator
     matrix** parameter.
-
 ## Libraries
 
 Not documented in R2025b.

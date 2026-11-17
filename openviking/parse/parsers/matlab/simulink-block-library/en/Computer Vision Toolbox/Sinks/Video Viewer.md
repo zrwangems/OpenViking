@@ -14,6 +14,25 @@ language: en
 # Video Viewer
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image or video matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | Simulink.ImageType
+- name: R
+  summary: Red color component of image or video matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: Green color component of image or video matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: Blue color component of image or video matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -87,8 +106,40 @@ type.
 To enable this port, select the  **Separate Color Signals** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Open at Start of Simulation
+  summary: Open video viewer window at start of simulation on (default) | off
+  group: File
+- name: Separate Color Signals
+  summary: Enable separate R, G, and B color channels as input off (default) | on
+  group: File
+- name: One Multi-Dimensional Signal
+  summary: Enable one multi-dimensional signal as input on (default) | off
+  group: File
+- name: Display the full path
+  summary: Display full path of source data in the title bar off (default) | on
+  group: File > Configuration > Edit > Core
+- name: Open new Image Viewer window for each export
+  summary: Open new Image Viewer window for each exported video frame on (default) | off
+  group: File > Configuration > Edit > Tools
+- name: Colormap
+  summary: Set colormap gray(256) (default) | parula(256) | jet(256) | hot(256) | bone(256) | cool(256) | copper(256)
+  group: Tools > Colormap
+- name: Specify range of displayed pixel values [-Inf to Inf]
+  summary: Specify range of intensity value to display off (default) | on
+  group: Tools > Colormap
+- name: Min
+  summary: Minimum intensity value 0 (default) | numeric scalar
+  group: Tools > Colormap
+- name: Max
+  summary: Maximum intensity value 255 (default) | numeric scalar
+  group: Tools > Colormap
+- name: Drop Frames to Improve Performance
+  summary: Drop frame rate of input video signal on (default) | off
+  group: Simulation
+```
 
 ### File
 
@@ -222,7 +273,6 @@ Viewer window.
 Select this parameter to reduce the frame rate of the input video signal to
 improve performance of the simulation. If you unselect this parameter, the block
 displays all the frames in the input video signal during simulation.
-
 ## Libraries
 
 Computer Vision Toolbox / Sinks

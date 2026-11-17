@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # AC Cable (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: ~S1
+  summary: 护套电气
+  direction: conserving
+- name: ~N1
+  summary: 相电气
+  direction: conserving
+- name: g1
+  summary: 接地电气
+  direction: conserving
+- name: ~S2
+  summary: 护套电气
+  direction: conserving
+- name: ~N2
+  summary: 相电气
+  direction: conserving
+- name: g2
+  summary: 接地电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +62,58 @@ chinese_source: worker-translation
 ### **g2** — 接地电气
 
 与接地 2 关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是对复合三相端口还是扩展三相端口进行建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Cable length
+  summary: 长度 120 km（默认）
+  group: ''
+- name: Geometric mean radius of conductor
+  summary: 半径 5 mm（默认）
+  group: ''
+- name: Sheath radius
+  summary: 半径 10 mm（默认）
+  group: ''
+- name: Outer cable radius
+  summary: 外半径 20 mm（默认）
+  group: ''
+- name: Line-line spacing (center-to-center)
+  summary: 距离 25 mm（默认）
+  group: ''
+- name: Line formation
+  summary: 线路配置 Trefoil（默认）| Flat
+  group: ''
+- name: Conductor resistance per length
+  summary: 电阻 1 Ohm/km（默认）
+  group: ''
+- name: Sheath resistance per length
+  summary: 电阻 10 Ohm/km（默认）
+  group: ''
+- name: Insulation relative permittivity
+  summary: 介电常数 2.4（默认）
+  group: ''
+- name: Relative permittivity between lines and return path
+  summary: 相对介电常数 1（默认）
+  group: ''
+- name: Return parameterization
+  summary: 模型 Use frequency and Earth resistivity（默认）| Use distance and resistance
+  group: ''
+- name: Frequency for Earth-return impedance
+  summary: 频率 60 Hz（默认）
+  group: ''
+- name: Earth resistivity
+  summary: 电阻 100 m*Ohm（默认）
+  group: ''
+- name: Effective distance to return path
+  summary: 回路距离 1 km（默认）
+  group: ''
+- name: Return path resistance per length
+  summary: 回路单位电阻 0.1 Ohm/km（默认）
+  group: ''
+```
 
 ### **Modeling option** — 是对复合三相端口还是扩展三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -131,7 +202,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 为 **Return parameterization** 参数选择 `Use distance and resistance` 会启用此参数。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Lines

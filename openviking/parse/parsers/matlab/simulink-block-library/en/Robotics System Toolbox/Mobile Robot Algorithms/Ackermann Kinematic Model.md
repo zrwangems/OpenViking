@@ -14,6 +14,21 @@ language: en
 # Ackermann Kinematic Model
 
 ## Ports
+```yaml
+ports:
+- name: v
+  summary: Vehicle speed numeric scalar
+  direction: input
+- name: dψ/dt
+  summary: Steering angular velocity numeric scalar
+  direction: input
+- name: state
+  summary: State of vehicle four-element vector
+  direction: output
+- name: stateDot
+  summary: Derivatives of state output four-element vector
+  direction: output
+```
 
 ### Input
 
@@ -38,8 +53,25 @@ yDot thetaDot psiDot*] vector in meters per second and radians per second.
 The linear and angular velocities are calculated by taking the time derivatives of the
 `state`
 output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Wheel base
+  summary: Distance between front and rear axles 1 (default) | positive numeric scalar
+  group: ''
+- name: Vehicle speed range
+  summary: Minimum and maximum vehicle speeds [-Inf Inf] (default) | two-element vector
+  group: ''
+- name: Maximum steering angle
+  summary: Maximum steering angle pi/4 (default) | positive numeric scalar
+  group: ''
+- name: Initial state
+  summary: Initial state of vehicle [0;0;0;0] (default) | four-element vector
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Wheel base** — Distance between front and rear axles `1` (default) | positive numeric scalar
 
@@ -73,7 +105,6 @@ the vehicle.
   simulations, as long as the model does not change.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Mobile Robot Algorithms

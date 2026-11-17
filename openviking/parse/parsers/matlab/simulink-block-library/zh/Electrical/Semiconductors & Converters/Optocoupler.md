@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Optocoupler
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 晶体管集电极端子电气
+  direction: conserving
+- name: E
+  summary: 晶体管发射极端子电气
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -42,8 +60,96 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为 `Show
 thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Current transfer ratio
+  summary: 电流传输比 0.2（默认）
+  group: 主
+- name: Diode parameterization
+  summary: 模型参数化 Use I-V curve data points（默认）| Use parameters IS and N
+  group: 主
+- name: Currents [I1 I2]
+  summary: 两个点处的电流值向量 [.001, .015] A（默认）
+  group: 主
+- name: Voltages [V1 V2]
+  summary: 两个点处的电压值向量 [.9, 1.05] V（默认）
+  group: 主
+- name: Ohmic resistance, RS
+  summary: 欧姆电阻 0.1 Ohm（默认）
+  group: 主
+- name: Saturation current, IS
+  summary: 饱和电流 1e-10 A（默认）
+  group: 主
+- name: Measurement temperature
+  summary: 测量温度 25 °C（默认）
+  group: 主
+- name: Emission coefficient, N
+  summary: 二极管发射系数 2（默认）
+  group: 主
+- name: Capacitance
+  summary: 二极管结电容建模 Fixed or zero junction capacitance（默认）| Use C-V curve data points | Use parameters CJ0, VJ, M & FC
+  group: 结电容
+- name: Junction capacitance
+  summary: 二极管结电容 5 pF（默认）
+  group: 结电容
+- name: Zero-bias junction capacitance, CJ0
+  summary: 零偏结电容 5 pF（默认）
+  group: 结电容
+- name: Junction potential, VJ
+  summary: 结电势 1 V（默认）
+  group: 结电容
+- name: Grading coefficient, M
+  summary: 梯度系数 0.5（默认）
+  group: 结电容
+- name: Reverse bias voltages [VR1 VR2 VR3]
+  summary: 反向偏置电压向量 [.1, 10, 100] V（默认）
+  group: 结电容
+- name: Corresponding capacitances [C1 C2 C3]
+  summary: 对应电容向量 [3.5, 1, .4] pF（默认）
+  group: 结电容
+- name: Capacitance coefficient, FC
+  summary: 拟合电容系数 0.5（默认）
+  group: 结电容
+- name: Parameterization
+  summary: 温度依赖性参数化 None — Simulate at parameter measurement temperature（默认）| Use an I-V data point at second measurement
+    temperature T2 | Specify saturation current at second measurement temperature T2 | Specify the energy gap EG
+  group: 温度依赖性
+- name: Current I1 at second measurement temperature
+  summary: 第二测量温度下的电流 I1 0.029 A（默认）
+  group: 温度依赖性
+- name: Voltage V1 at second measurement temperature
+  summary: 第二测量温度下的电压 V1 1.05 V（默认）
+  group: 温度依赖性
+- name: Saturation current, IS, at second measurement temperature
+  summary: 第二测量温度下的饱和电流 IS 1.8e-8 A（默认）
+  group: 温度依赖性
+- name: Second measurement temperature
+  summary: 第二测量温度 125 °C（默认）
+  group: 温度依赖性
+- name: Energy gap parameterization
+  summary: 能隙参数化 Use nominal value for silicon (EG=1.11eV)（默认）| Use nominal value for 4H-SiC silicon carbide (EG=3.23eV) |
+    Use nominal value for 6H-SiC silicon carbide (EG=3.00eV) | Use nominal value for germanium (EG=0.67eV) | Use nominal value
+    for gallium arsenide (EG=1.43eV) | Use nominal value for selenium (EG=1.74eV) | Use nominal value for Schottky barrier
+    diodes (EG=0.69eV) | Specify a custom value
+  group: 温度依赖性
+- name: Energy gap, EG
+  summary: 能隙 1.11 eV（默认）
+  group: 温度依赖性
+- name: Saturation current temperature exponent parameterization
+  summary: 饱和电流温度指数参数化 Use nominal value for pn-junction diode (XTI=3)（默认）| Use nominal value for Schottky barrier diode (XTI=2)
+    | Specify a custom value
+  group: 温度依赖性
+- name: Saturation current temperature exponent, XTI
+  summary: 饱和电流温度指数 3（默认）
+  group: 温度依赖性
+- name: Device simulation temperature
+  summary: 器件仿真温度 25 °C（默认）
+  group: 温度依赖性
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -278,7 +384,6 @@ value` 时，此参数才可见。
 ### **Device simulation temperature** — 器件仿真温度 `25` `°C`（默认）
 
 指定器件仿真温度 *T*s 的值。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

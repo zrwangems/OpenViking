@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Unbuffer
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Output
+  summary: 解缓冲后的信号 标量 | 行向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,13 @@ Unbuffer 模块将 *M*i×*N* 的输入解缓冲为 `1`×*N* 的输出。该模�
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Initial conditions
+  summary: 初始条件 0（默认） | 标量 | 向量 | 矩阵
+  group: ''
+```
 
 ### **Initial conditions** — 初始条件 `0`（默认） | 标量 | 向量 | 矩阵
 
@@ -46,7 +62,6 @@ Unbuffer 模块将 *M*i×*N* 的输入解缓冲为 `1`×*N* 的输出。该模�
 **注意**
 
 有关延迟和 Simulink® 任务模式的详细信息，请参阅 Excess Algorithmic Delay (Tasking Latency) 和 Time-Based Scheduling and Code Generation (Simulink Coder)。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Buffers

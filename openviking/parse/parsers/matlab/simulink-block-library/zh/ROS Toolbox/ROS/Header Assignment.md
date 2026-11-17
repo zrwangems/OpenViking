@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Header Assignment
 
 ## 端口
+```yaml
+ports:
+- name: InputMsg
+  summary: 要更新非虚拟总线的 ROS 消息
+  direction: input
+  data_types: bus
+- name: OutputMsg
+  summary: 带有更新后 header 的 ROS 消息非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -30,8 +41,19 @@ chinese_source: worker-translation
 带有更新后 header 的 ROS 消息，以非虚拟总线形式返回。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Set Frame ID
+  summary: 指定与消息数据关联的坐标系 off（默认）| on
+  group: ''
+- name: Set Timestamp
+  summary: 在 header 中设置时间戳 off（默认）| on
+  group: ''
+- name: Header field name
+  summary: 指定 Header 字段名称 Use the default Header field name（默认）| Specify your own
+  group: ''
+```
 
 ### **Set Frame ID** — 指定与消息数据关联的坐标系 `off`（默认）| `on`
 
@@ -51,7 +73,6 @@ chinese_source: worker-translation
 - `Specify your own` — 启用一个文本框，您可以在其中为 ROS 消息中的 header 字段指定自定义名称。
 
 **示例：** `my_custom_header`
-
 ## 所属库
 
 ROS Toolbox / ROS

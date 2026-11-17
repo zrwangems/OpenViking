@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Find Delay
 
 ## 端口
+```yaml
+ports:
+- name: sRef
+  summary: 参考信号 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: sDel
+  summary: 延迟信号 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: delay
+  summary: 延迟输出 标量 | 向量
+  direction: output
+  data_types: double
+- name: chg
+  summary: 延迟标志 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -51,8 +70,22 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Include "change signal" output port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Correlation window length (samples)
+  summary: 采样数 200（默认）| 正整数
+  group: ''
+- name: Include "change signal" output port
+  summary: 向模块添加 chg 端口 off（默认）| on
+  group: ''
+- name: Disable recurring updates
+  summary: 选择以设置延迟计算的停止条件 off（默认）| on
+  group: ''
+- name: Number of constant delay outputs to disable updates
+  summary: 在此数量的不变延迟值计算后禁用更新 3（默认）| 正整数
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -75,7 +108,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Disable recurring updates** 参数。
-
 ## 所属库
 
 Communications Toolbox / Utility Blocks

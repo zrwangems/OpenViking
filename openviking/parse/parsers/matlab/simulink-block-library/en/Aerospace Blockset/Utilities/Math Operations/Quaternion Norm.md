@@ -14,6 +14,17 @@ language: en
 # Quaternion Norm
 
 ## Ports
+```yaml
+ports:
+- name: q
+  summary: Quaternion norm quaternion norm | vector of quaternion norms
+  direction: input
+  data_types: double
+- name: norm(q)
+  summary: Quaternion norm quaternion norm | vector of quaternion norms
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -39,11 +50,12 @@ Quaternion norm or vector of quaternion norms in the form of [
 *norm* (q), *norm* (r), ...].
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

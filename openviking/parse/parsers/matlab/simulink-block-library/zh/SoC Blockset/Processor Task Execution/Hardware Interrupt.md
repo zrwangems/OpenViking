@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Hardware Interrupt
 
 ## 端口
+```yaml
+ports:
+- name: event1 Task
+  summary: 仿真中断触发 scalar
+  direction: input
+- name: event1
+  summary: 中断请求 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +39,22 @@ chinese_source: worker-translation
 ### **event1** — 中断请求 `scalar`
 
 此端口将中断触发与软件任务关联。输出为函数调用。
-
 ## 参数
+```yaml
+parameters:
+- name: Task priority
+  summary: 所选中断的优先级 50（默认值）| 正整数
+  group: ''
+- name: Processor core
+  summary: 核心编号 0（默认值）| 整数 | -1
+  group: ''
+- name: Enable simulation port
+  summary: 在模块中启用仿真端口 off（默认值）| on
+  group: ''
+- name: Hardware Mapping
+  summary: 用于打开硬件映射工具的按钮
+  group: ''
+```
 
 要交互式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -52,7 +75,6 @@ chinese_source: worker-translation
 ### **Hardware Mapping** — 用于打开硬件映射工具的按钮
 
 点击此参数可打开硬件映射工具。
-
 ## 所属库
 
 SoC Blockset / Processor Task Execution

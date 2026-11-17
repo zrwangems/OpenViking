@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Interior PMSM
 
 ## 端口
+```yaml
+ports:
+- name: LdTrq
+  summary: 电机负载转矩 scalar
+  direction: input
+- name: Spd
+  summary: 电机轴转速 scalar
+  direction: input
+- name: PhaseVolt
+  summary: 定子端电压 1-by-3 array
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: PhaseCurr
+  summary: a、b、c 相电流 1-by-3 array
+  direction: output
+- name: MtrTrq
+  summary: 电机转矩 scalar
+  direction: output
+- name: MtrSpd
+  summary: 电机转速 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -103,8 +127,70 @@ N·m。
 要创建此端口，请为
 **Mechanical input configuration**
 参数选择 `Torque`。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical input configuration
+  summary: 选择端口配置 Torque (default) | Speed
+  group: ''
+  block_parameter: port_config
+  values: Torque (default) | Speed
+- name: Simulation type
+  summary: 选择仿真类型 Continuous (default) | Discrete
+  group: ''
+  block_parameter: sim_type
+  values: Continuous (default) | Discrete
+- name: Sample Time (Ts)
+  summary: 离散积分采样时间 0.001 (default) | scalar
+  group: ''
+  block_parameter: Ts
+  values: 0.001（默认） | scalar
+- name: Number of pole pairs (P)
+  summary: 极对数 4（默认） | scalar
+  group: ''
+  block_parameter: P
+  values: 4（默认） | scalar
+- name: Stator resistance per phase (Rs)
+  summary: 电阻 .2（默认） | scalar
+  group: ''
+  block_parameter: Rs
+  values: .2（默认） | scalar
+- name: Stator d-axis and q-axis inductance (Ldq)
+  summary: 电感 [3.752e-4 4.148e-4]（默认） | vector
+  group: ''
+  block_parameter: Ldq
+  values: 0.001（默认） | scalar
+- name: Permanent flux linkage constant (lambda_pm)
+  summary: 磁链 [3.752e-4 4.148e-4]（默认） | vector
+  group: ''
+  block_parameter: lambda_pm
+  values: 0.1194（默认） | scalar
+- name: Back-emf constant (Ke)
+  summary: 反电动势 159.9771（默认） | scalar
+  group: ''
+  block_parameter: Ke
+  values: 0.001（默认） | scalar
+- name: Physical inertia, viscous damping, static friction (mechanical)
+  summary: 惯量、阻尼、摩擦 [0.002700,4.924e-4,0]（默认） | vector
+  group: ''
+  block_parameter: mechanical
+  values: '[0.002700,4.924e-4,0]（默认） | vector'
+- name: Initial d-axis and q-axis current (idq0)
+  summary: 电流 [0 0]（默认） | vector
+  group: ''
+  block_parameter: idq0
+  values: '[0 0]（默认）| vector'
+- name: 初始机械位置 (theta_init)
+  summary: 角度 0（默认）| scalar
+  group: ''
+  block_parameter: theta_init
+  values: 0（默认）| scalar
+- name: 初始机械转速 (omega_init)
+  summary: 转速 0（默认）| scalar
+  group: ''
+  block_parameter: omega_init
+  values: 0（默认）| scalar
+```
 
 #### 模块选项
 
@@ -346,7 +432,6 @@ N·m。
 要启用此参数，请将 **Mechanical input
 configuration** 参数设置为
 `Torque`。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters Motor Control Blockset / Electrical Systems / Motors

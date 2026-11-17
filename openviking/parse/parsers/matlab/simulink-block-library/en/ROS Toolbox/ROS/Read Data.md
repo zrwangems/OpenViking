@@ -14,6 +14,16 @@ language: en
 # Read Data
 
 ## Ports
+```yaml
+ports:
+- name: IsNew
+  summary: New message indicator 0 | 1
+  direction: output
+- name: Msg
+  summary: ROS message nonvirtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -26,8 +36,16 @@ New message indicator, returned as a logical. If the output is `1`, then a new m
 ROS message, returned as a nonvirtual bus. Messages are output in the order they are stored in the rosbag and synced with the simulation time.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic
+  summary: Topic name to extract from log file string
+  group: ''
+- name: Sample time
+  summary: Interval between outputs –1 (default) | scalar
+  group: ''
+```
 
 ### **Topic** — Topic name to extract from log file string
 
@@ -40,7 +58,6 @@ Interval between outputs, specified as a scalar. In simulation, the sample time 
 This default value indicates that the block sample time is *inherited*.
 
 For more information about the inherited sample time type, see Specify Sample Time (Simulink).
-
 ## Libraries
 
 ROS Toolbox / ROS

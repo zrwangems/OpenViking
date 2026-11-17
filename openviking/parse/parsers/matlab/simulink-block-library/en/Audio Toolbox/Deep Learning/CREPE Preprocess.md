@@ -14,6 +14,17 @@ language: en
 # CREPE Preprocess
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Audio input vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Preprocessed audio frames 4-D array
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -38,8 +49,19 @@ Preprocessed audio frames for the CREPE neural network, returned as a
 **Number of output frames**.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: Sample rate of input signal in Hz 16e3 (default) | positive scalar
+  group: ''
+- name: Overlap percentage (%)
+  summary: Overlap percentage between consecutive frames 85 (default) | [0, 100)
+  group: ''
+- name: Number of output frames
+  summary: Number of generated frames 1 (default) | positive integer
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — Sample rate of input signal in Hz `16e3` (default) | positive scalar
 
@@ -54,7 +76,6 @@ the range [0, 100).
 ### **Number of output frames** — Number of generated frames `1` (default) | positive integer
 
 Number of generated frames in the output, specified as a positive integer.
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

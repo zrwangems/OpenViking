@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Thermistor
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 热端口 thermal
+  direction: conserving
+- name: +
+  summary: 正端口 electrical
+  direction: conserving
+- name: '-'
+  summary: 负端口 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,25 @@ chinese_source: worker-translation
 ### **-** — 负端口 electrical
 
 与热敏电阻负端口关联的电学守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal resistance R0 at reference temperature T0
+  summary: 参考温度下的标称电阻 1000 Ohm（默认值）
+  group: 电气
+- name: Characteristic temperature constant B
+  summary: 特征温度常数 3500 K（默认值）
+  group: 电气
+- name: Reference temperature T0
+  summary: 参考温度 298.15 K（默认值）
+  group: 电气
+- name: Thermal time constant
+  summary: 热时间常数 5.0 s（默认值）
+  group: 热
+- name: Dissipation factor
+  summary: 耗散系数 0.75e-3 W/K（默认值）
+  group: 热
+```
 
 ### 电气
 
@@ -55,7 +84,6 @@ chinese_source: worker-translation
 ### **Dissipation factor** — 耗散系数 `0.75e-3` `W/K`（默认值）
 
 使热敏电阻温度升高一 K 所需的热功率。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

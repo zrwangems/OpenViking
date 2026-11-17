@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Second-Order Integrator
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 u 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: x0
+  summary: 初始条件 x0 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: dx0
+  summary: 初始条件 dx0 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: External Reset
+  summary: 用于将状态重置为初始条件的信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double
+- name: x
+  summary: 输出信号 x 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+- name: dx
+  summary: 输出信号 dx 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -74,8 +101,164 @@ chinese_source: worker-translation
 `dx` 状态输出信号，指定为标量、向量或矩阵。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial condition source x
+  summary: 状态 *x* 的初始条件来源 internal（默认）| external
+  group: x
+  block_parameter: ICSourceX
+  type: character vector, string
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial condition x
+  summary: 状态 *x* 的初始条件 0.0（默认）| 标量 | 向量 | 矩阵
+  group: x
+  block_parameter: ICX
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''0.0'''
+- name: Limit x
+  summary: 限制状态 *x* 的值 off | on
+  group: x
+  block_parameter: LimitX
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'' (Second-Order Integrator) | ''on'' (Second-Order Integrator Limited)'
+- name: Upper limit x
+  summary: 状态 *x* 的上限 1 | inf | 标量 | 向量 | 矩阵
+  group: x
+  block_parameter: UpperLimitX
+  type: character vector, string
+  values: '''1'' | ''inf'' | scalar | vector | matrix'
+  default: '''1'' (Second-Order Integrator Limited) | ''inf'' (Second-Order Integrator)'
+- name: Lower limit x
+  summary: 状态 *x* 的下限 0（默认）| -inf | 标量 | 向量 | 矩阵
+  group: x
+  block_parameter: LowerLimitX
+  type: character vector, string
+  values: '''0'' | ''-inf'' | scalar | vector | matrix'
+  default: '''0'' (Second-Order Integrator Limited) | ''-inf'' (Second-Order Integrator)'
+- name: Wrap x
+  summary: 启用 x 的环绕 off（默认）| on
+  group: x
+  block_parameter: WrapX
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Wrapped upper value x
+  summary: 环绕 x 的上限值 pi（默认）| 标量 | 向量 | 矩阵
+  group: x
+  block_parameter: WrappedUpperValueX
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''pi'''
+- name: Wrapped lower value x
+  summary: 环绕 x 的下限值 -pi（默认）| 标量 | 向量 | 矩阵
+  group: x
+  block_parameter: WrappedLowerValueX
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''-pi'''
+- name: Absolute tolerance x
+  summary: 计算状态 *x* 的绝对容差 auto（默认）| -1 | 标量 | 向量
+  group: x
+  block_parameter: AbsoluteToleranceX
+  type: character vector, string
+  values: '''auto'' | ''-1'' | any positive real scalar or vector'
+  default: '''auto'''
+- name: State name x
+  summary: 状态 *x* 的名称 ''（默认）| 字符向量 | 字符串
+  group: x
+  block_parameter: StateNameX
+  type: character vector, string
+  values: ''' '' | user-defined'
+  default: ''' '''
+- name: Initial condition source dx/dt
+  summary: 状态 *dx/dt* 的初始条件来源 internal（默认）| external
+  group: dx/dt
+  block_parameter: ICSourceDXDT
+  type: character vector
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial condition dx/dt
+  summary: 状态 *dx/dt* 的初始条件 0.0（默认）| 标量 | 向量 | 矩阵
+  group: dx/dt
+  block_parameter: ICDXDT
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''0.0'''
+- name: Limit dx/dt
+  summary: 限制状态 *dx/dt* 的值 off | on
+  group: dx/dt
+  block_parameter: LimitDXDT
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'' (Second-Order Integrator) | ''on'' (Second-Order Integrator Limited)'
+- name: Upper limit dx/dt
+  summary: 状态 *dx/dt* 的上限 inf（默认）| 标量 | 向量 | 矩阵
+  group: dx/dt
+  block_parameter: UpperLimitDXDT
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''inf'''
+- name: Lower limit dx/dt
+  summary: 状态 *dx/dt* 的下限 -inf（默认）| 标量 | 向量 | 矩阵
+  group: dx/dt
+  block_parameter: LowerLimitDXDT
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''-inf'''
+- name: Absolute tolerance dx/dt
+  summary: 计算状态 *dx/dt* 的绝对容差 auto（默认）| -1 | 标量 | 向量
+  group: dx/dt
+  block_parameter: AbsoluteToleranceDXDT
+  type: character vector, string, scalar, or vector
+  values: '''auto'' | ''-1'' | any positive real scalar or vector'
+  default: '''auto'''
+- name: State name dx/dt
+  summary: 状态 *dx/dt* 的名称 ' '（默认）| 字符向量 | 字符串
+  group: dx/dt
+  block_parameter: StateNameDXDT
+  type: character vector, string
+  values: ''' '' | user-defined'
+  default: ''' '''
+- name: External reset
+  summary: 将状态重置为初始条件 none（默认）| rising | falling | either
+  group: 属性
+  block_parameter: ExternalReset
+  type: character vector, string
+  values: '''none'' | ''rising'' | ''falling'' | ''either'''
+  default: '''none'''
+- name: Enable zero-crossing detection
+  summary: 启用零交叉检测 on（默认）| off
+  group: 属性
+  block_parameter: ZeroCross
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 当 x 达到饱和时重新初始化 dx/dt
+  summary: 当 *x* 达到饱和时重置 *dx/dt* off（默认）| on
+  group: 属性
+  block_parameter: ReinitDXDTwhenXreachesSaturation
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 忽略状态限值和线性化重置
+  summary: 线性化时忽略状态限值和外部重置 off（默认）| on
+  group: 属性
+  block_parameter: IgnoreStateLimitsAndResetForLinearization
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 显示输出
+  summary: 要显示的输出端口 both（默认）| x | dxdt
+  group: 属性
+  block_parameter: ShowOutput
+  type: 字符向量、字符串
+  values: '''both'' | ''x'' | ''dxdt'''
+  default: '''both'''
+```
 
 ### x
 
@@ -508,7 +691,6 @@ Simulink 软件不允许此模块的初始条件为 `inf` 或 `NaN`。
 | **类型：** 字符向量、字符串 |
 | **值：** `'both'` | `'x'` | `'dxdt'` |
 | **默认值：** `'both'` |
-
 ## 所属库
 
 Simulink / Continuous

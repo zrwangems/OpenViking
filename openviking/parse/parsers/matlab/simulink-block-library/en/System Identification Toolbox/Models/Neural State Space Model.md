@@ -14,6 +14,30 @@ language: en
 # Neural State-Space Model
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input of the neural state-space model scalar | vector
+  direction: input
+- name: x0
+  summary: Initial state of the neural state-space model scalar | vector
+  direction: input
+- name: y
+  summary: Output of the neural state-space model scalar | vector
+  direction: output
+- name: x
+  summary: State of the neural state-space model scalar | vector
+  direction: output
+- name: dx
+  summary: State derivative/difference of the neural state-space model scalar | vector
+  direction: output
+- name: z
+  summary: Latent state of the neural state-space model scalar | vector
+  direction: output
+- name: dz
+  summary: Latent state derivative/difference of the neural state-space model scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -104,8 +128,43 @@ To enable this output port, specify the value of the
 `LatentDim` property of the `idNeuralStateSpace`
 object as a finite positive scalar and select the **Output state
 derivative/difference** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model
+  summary: Neural state space object idNeuralStateSpace(1,'NumInputs',1,'NumOutputs',2) (default) | idNeuralStateSpace object
+  group: ''
+  block_parameter: sys
+  type: string, character vector
+  default: '"idNeuralStateSpace(1,''NumInputs'',1,''NumOutputs'',2)"'
+- name: Initial state source
+  summary: Initial state source internal (default) | external
+  group: ''
+  block_parameter: x0type
+  type: character vector
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial state
+  summary: Initial state 0 (default) | scalar | vector
+  group: ''
+  block_parameter: ic
+  type: string, character vector
+  default: '"0"'
+- name: Output state
+  summary: Add external output state port off (default) | on
+  group: ''
+  block_parameter: returnx
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Output state derivative/difference
+  summary: Add external output state derivative port off (default) | on
+  group: ''
+  block_parameter: returndx
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Model** — Neural state space object `idNeuralStateSpace(1,'NumInputs',1,'NumOutputs',2)` (default) | `idNeuralStateSpace` object
 
@@ -201,7 +260,6 @@ During simulation this port outputs the time derivative of the internal state of
 | **Type:** string, character vector |
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 System Identification Toolbox / Models

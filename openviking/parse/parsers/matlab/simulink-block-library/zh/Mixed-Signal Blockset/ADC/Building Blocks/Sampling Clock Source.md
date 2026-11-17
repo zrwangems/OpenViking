@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Sampling Clock Source
 
 ## 端口
+```yaml
+ports:
+- name: clk
+  summary: 带孔径抖动的输出时钟 标量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,68 @@ chinese_source: worker-translation
 带孔径抖动的输出时钟信号，以标量形式返回。该时钟是周期性脉冲序列，根据 **Clock type** 参数可以是正弦波或方波。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Clock type
+  summary: 输出时钟信号形状 Square wave（默认）| Sine wave
+  group: ''
+  block_parameter: SignalType
+  type: 字符向量
+  values: Square wave | Sine wave
+- name: Clock frequency (Hz)
+  summary: 输出时钟信号的期望频率 1e6（默认）| 标量
+  group: ''
+  block_parameter: Freq
+  type: 字符向量
+  values: 标量
+- name: Min (V)
+  summary: 最小时钟输出电压 0（默认）| 实标量
+  group: ''
+  block_parameter: Min
+  type: 字符向量
+  values: 实标量
+- name: Max (V)
+  summary: 最大时钟输出电压 1（默认）| 实标量
+  group: ''
+  block_parameter: Max
+  type: 字符向量
+  values: 实标量
+- name: RMS aperture jitter (s)
+  summary: 时钟边沿位置的标准差 1e-12（默认）| 实非负标量
+  group: ''
+  block_parameter: RMSJitt
+  type: 字符向量
+  values: 非负实标量
+- name: Specify custom seed
+  summary: 指定种子 off（默认）| on
+  group: ''
+- name: Seed
+  summary: 用于生成时钟信号的种子 0（默认）| 非负实标量
+  group: ''
+  block_parameter: Seed
+  type: 字符向量
+  values: 非负实标量
+- name: Specify custom initial output
+  summary: 指定初始输出 off（默认）| on
+  group: ''
+- name: Initial output
+  summary: 采样时钟的初始输出 1（默认）| 实标量
+  group: ''
+  block_parameter: InitialOutput
+  type: 字符向量
+  values: 实标量
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: ''
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 50（默认）| 正整数标量
+  group: ''
+  block_parameter: NBuffer
+  type: character vector
+  values: positive integer scalar
+  default: '50'
+```
 
 ### **Clock type** — 输出时钟信号形状 `Square wave`（默认）| `Sine wave`
 
@@ -162,7 +229,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：positive integer scalar |
 | **默认值**：`50` |
-
 ## 所属库
 
 Mixed-Signal Blockset / ADC / Building Blocks

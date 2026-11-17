@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Thread Trigger
 
 ## 端口
+```yaml
+ports:
+- name: T
+  summary: 针对所选跳变进行测试的触发输入 boolean
+  direction: input
+- name: F
+  summary: 任务函数调用的函数调用输出
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +38,18 @@ chinese_source: worker-translation
 ### **F** — 任务函数调用的函数调用输出
 
 输出对下游函数的调用，并提供该任务的线程调度优先级
-
 ## 参数
+```yaml
+parameters:
+- name: Trigger Edge
+  summary: 选择触发边沿类型 Rising Edge（默认）| Falling Edge | Both Edges
+  group: ''
+  block_parameter: edge
+- name: ISR Task Priority
+  summary: 选择函数的 ISR 任务优先级 245（高优先级）（默认）| 235（中优先级）| 225（低优先级）
+  group: ''
+  block_parameter: taskpri
+```
 
 ### **Trigger Edge** — 选择触发边沿类型 `Rising Edge`（默认）| `Falling Edge` | `Both Edges`
 
@@ -53,7 +72,6 @@ Thread Trigger 模块提供了调用 Function-Call Subsystem 模块或 Triggered
 |  |
 | --- |
 | **模块参数**：`taskpri` |
-
 ## 所属库
 
 Simulink Real-Time / Async

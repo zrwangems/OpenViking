@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Selector
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | 多维
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: IndxN
+  summary: 第 N 个索引信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵 | 多维
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -42,8 +59,66 @@ chinese_source: worker-translation
 由输入信号的选定或重排元素生成的输出信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input dimensions
+  summary: 输入信号的维度数 1（默认）| 整数
+  group: ''
+  block_parameter: NumberOfDimensions
+  type: character vector
+  values: integer
+  default: '''1'''
+- name: Index mode
+  summary: 索引模式 One-based（默认）| Zero-based
+  group: ''
+  block_parameter: IndexMode
+  type: character vector
+  values: '''One-based'' | ''Zero-based'''
+  default: '''One-based'''
+- name: Index Option
+  summary: 元素的索引方法 Index vector (dialog)（默认）| Select all | Index vector (port) | Starting index (dialog) | Starting index
+    (port) | Starting and ending indices (port)
+  group: ''
+  block_parameter: IndexOptionArray
+  type: cell array of character vectors
+  values: '{''Select all''} | {''Index vector (dialog)''} | {''Index vector (port)''} | {''Starting index (dialog)''} | {''Starting
+    index (port)''} | {''Starting and ending indices (port)''}'
+  default: '{''Index vector (dialog)''}'
+- name: Index
+  summary: 元素的索引 [1 3]（默认）| 整数
+  group: ''
+  block_parameter: IndexParamArray
+  type: cell array of character vectors
+  values: integers
+  default: '{''[1 3]''}'
+- name: Output Size
+  summary: 模块输出信号的宽度 1（默认）| 整数
+  group: ''
+  block_parameter: OutputSizeArray
+  type: cell array of character vectors
+  values: integers
+  default: '{''1''}'
+- name: Input port size
+  summary: 输入信号的宽度 3（默认）| 整数
+  group: ''
+  block_parameter: InputPortWidth
+  type: character vector
+  values: integer
+  default: '''3'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Check for out-of-range index in accelerated simulation
+  summary: 在加速器和快速加速器仿真模式下检查越界索引值的选项 off（默认）| on
+  group: ''
+  block_parameter: RuntimeRangeChecks
+  type: character vector
+  values: '''Off'' | ''On'''
+  default: '''Off'''
+```
 
 ### **Number of input dimensions** — 输入信号的维度数 `1`（默认）| 整数
 
@@ -192,7 +267,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Off'` | `'On'` |
 | **默认值**：`'Off'` |
-
 ## 所属库
 
 Simulink / Signal Routing HDL Coder / Signal Routing

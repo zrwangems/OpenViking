@@ -14,6 +14,49 @@ language: en
 # LMS Filter
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data scalar or column vector of real or complex values
+  direction: input
+  data_types: single | double | fixed point
+- name: desired
+  summary: Desired input data scalar or column vector of real or complex values
+  direction: input
+  data_types: single | double | fixed point
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: stepSize
+  summary: Convergence and stability of filter real scalar
+  direction: input
+  data_types: double | single | fixed point
+- name: adapt
+  summary: Update filter weights scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Filtered output data scalar or column vector of real or complex values
+  direction: output
+  data_types: single | double | fixed point
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+- name: error
+  summary: Error between output and desired signals real or complex scalar or column vector
+  direction: output
+  data_types: Boolean
+- name: weights
+  summary: Updated filter weights row vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -166,8 +209,53 @@ To enable this port, on the **Main** tab, select the
 **Enable filter weights output port** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter length
+  summary: Filter length 32 (default) | positive integer less than or equal to 2048
+  group: Main
+- name: Step-size source
+  summary: Step size source Property (default) | Input port
+  group: Main
+- name: Step size (mu)
+  summary: Step size 0.01 (default) | positive scalar numeric value
+  group: Main
+- name: Initial value of filter weights
+  summary: Initial value of filter weights 0 (default) | scalar | row vector
+  group: Main
+- name: Enable adapt input port
+  summary: Option to enable adapt input port off (default) | on
+  group: Main
+- name: Enable filter weights output port
+  summary: Option to enable weights output port on (default) | off
+  group: Main
+- name: Enable filter error output port
+  summary: Option to enable error output port off (default) | on
+  group: Main
+- name: Rounding mode
+  summary: Rounding mode for type-casting the output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow handling for type-casting the output off (default) | on
+  group: Data Types
+- name: Step size
+  summary: 'Step size type Inherit: Same word length as input (default) | fixdt(0,16,16) | <data type expression>'
+  group: Data Types
+- name: Weights
+  summary: 'Filter weights type fixdt(1,16,15) (default) | Inherit: Same as input | <data type expression>'
+  group: Data Types
+- name: Step-size error product
+  summary: 'Step size error product type Inherit: Same word length as input (default) | Inherit: Inherit via internal rule
+    | fixdt(1,16,15) | <data type expression>'
+  group: Data Types
+- name: Enable reset input port
+  summary: Option to enable reset input port off (default) | on
+  group: Control Ports
+- name: Use HDL global reset
+  summary: Option to connect data path registers to generated HDL global reset signal off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -275,7 +363,6 @@ synchronous or asynchronous depending on the **HDL Code Generation** > **Global 
 For more reset considerations, see the Reset Signal section on
 the Hardware Control Signals
 page.
-
 ## Libraries
 
 DSP HDL Toolbox / Filtering

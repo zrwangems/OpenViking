@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2000 Square Root IQN
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Function**
 :   是计算平方根还是逆平方根
@@ -31,7 +36,6 @@ R2025b 中未记录。
 
     - `Square root (_sqrt)` — 计算平方根。
     - `Inverse square root (_isqrt)` — 计算逆平方根。
-
 ## 所属库
 
 R2025b 中未记录。

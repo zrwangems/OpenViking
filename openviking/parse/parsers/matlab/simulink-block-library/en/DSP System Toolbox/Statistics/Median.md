@@ -14,6 +14,17 @@ language: en
 # Median
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data input vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Median value along specified dimension vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -86,8 +97,44 @@ When you set **Find the median value over** to:
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Sort algorithm
+  summary: Sort method Quick sort (default) | Insertion sort
+  group: Main Tab
+- name: Find the median value over
+  summary: Dimension over which the median is computed Each column (default) | Entire input | Each row | Specified dimension
+  group: Main Tab
+- name: Dimension
+  summary: Custom dimension 1 (default) | scalar
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output
+    | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum output value [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum output value [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -239,7 +286,6 @@ is `[]` (unspecified). Simulink uses this value to perform:
 
 Select this parameter to prevent the fixed-point tools from overriding
 the data types you specify on the block.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

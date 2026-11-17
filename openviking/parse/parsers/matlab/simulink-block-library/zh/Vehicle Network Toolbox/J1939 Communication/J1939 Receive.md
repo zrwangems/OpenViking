@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # J1939 Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 数据输出 double
+  direction: output
+- name: Msg Status
+  summary: 消息接收状态 0 | 1
+  direction: output
+```
 
 ### 输出
 
@@ -25,8 +34,34 @@ chinese_source: worker-translation
 ### **Msg Status** — 消息接收状态 0 | 1
 
 当您在参数对话框中选择 **Output New Message Received status** 复选框时，当从 CAN 总线接收到新消息时，此端口输出 `1`。否则，此端口输出 `0`。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 要关联的 J1939 网络配置名称 ConfigX（默认）| 字符向量
+  group: ''
+- name: Node name
+  summary: J1939 节点名称 NodeX（默认）| 字符向量
+  group: ''
+- name: Parameter Group
+  summary: 来自数据库的参数组编号（PGN）和名称 字符向量
+  group: ''
+- name: Signals
+  summary: 参数组中定义的信号 字符向量数组
+  group: ''
+- name: Source Address Filter
+  summary: 基于源地址过滤消息 Allow all（默认）| Allow only
+  group: ''
+- name: Destination Address Filter
+  summary: 基于目标地址过滤消息 global and node specific（默认）| global only | node specific only
+  group: ''
+- name: Sample time
+  summary: 仿真刷新率 0.01（默认）| double
+  group: ''
+- name: Output New Message Received status
+  summary: 创建 Msg Status 输出 0（默认）| 1
+  group: ''
+```
 
 ### **Config name** — 要关联的 J1939 网络配置名称 `ConfigX`（默认）| 字符向量
 
@@ -68,7 +103,6 @@ J1939 节点名称。下拉列表包含模型中的所有节点，包括自定�
 ### **Output New Message Received status** — 创建 Msg Status 输出 0（默认）| 1
 
 选中此复选框以创建 **Msg Status** 输出端口。其输出信号指示新的传入消息，接收到新消息时显示 1，没有新消息时显示 0。
-
 ## 所属库
 
 Simulink Real-Time / J1939 Communication Vehicle Network Toolbox / J1939 Communication

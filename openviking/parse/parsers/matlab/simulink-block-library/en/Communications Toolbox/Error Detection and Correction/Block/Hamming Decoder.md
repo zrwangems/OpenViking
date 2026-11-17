@@ -14,10 +14,15 @@ language: en
 # Hamming Decoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Codeword length N**
 :   The codeword length *N*, which is also the input vector
@@ -27,7 +32,6 @@ Not documented in R2025b.
 :   The message length, which is also the input vector length or a binary
     vector that represents a primitive polynomial for
     GF(2M) or a polynomial character vector.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -14,6 +14,13 @@ language: en
 # SPST
 
 ## Ports
+```yaml
+ports:
+- name: Vctl
+  summary: Simulink control signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -22,8 +29,37 @@ language: en
 Simulink control signal, specified as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Threshold voltage
+  summary: Threshold voltage 0 (default) | positive scalar
+  group: ''
+- name: Characterization
+  summary: Characterization Resistance (default) | Insertion loss
+  group: ''
+- name: On resistance
+  summary: On resistance 10 (default) | positive scalar
+  group: ''
+- name: Off resistance
+  summary: Off resistance 1e-6 (default) | positive scalar
+  group: ''
+- name: Insertion loss (dB)
+  summary: Insertion loss 1 (default) | scalar
+  group: ''
+- name: Isolation (dB)
+  summary: Isolation value 70 (default) | scalar
+  group: ''
+- name: Loading type
+  summary: Loading type Reflective (default) | Absorptive
+  group: ''
+- name: Port terminations (Ohm)
+  summary: Port terminations 50 (default) | scalar | vector of size 1-by-2
+  group: ''
+- name: Ground and hide reference terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Threshold voltage** — Threshold voltage `0` (default) | positive scalar
 
@@ -86,7 +122,6 @@ type** to `Absorptive`.
 Select this parameter to internally ground and hide the reference terminals. To
 expose the reference terminals, clear this parameter. By exposing these terminal, you
 can connect them to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Junctions

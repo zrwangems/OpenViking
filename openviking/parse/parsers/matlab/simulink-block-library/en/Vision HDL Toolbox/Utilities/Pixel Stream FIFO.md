@@ -14,6 +14,25 @@ language: en
 # Pixel Stream FIFO
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector | matrix
+  direction: input
+  data_types: uint | int | fixed point | Boolean | single | double
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream scalar | vector | matrix
+  direction: output
+  data_types: uint | int | fixed point | Boolean | single | double
+- name: ctrl
+  summary: Control signals accompanying pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -80,8 +99,13 @@ continuously `true` between
 the entire input line before it returns the modified line.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Line buffer size
+  summary: Size of line memory buffer 2048 (default) | positive integer
+  group: ''
+```
 
 ### **Line buffer size** — Size of line memory buffer `2048` (default) | positive integer
 
@@ -90,7 +114,6 @@ single horizontal line. If you specify a value that is not a power of two,
 the block uses the next largest power of two.
 
 When you use multipixel input, this value must accommodate (**Active pixels per line**)/(**Number of pixels**) + 2.
-
 ## Libraries
 
 Vision HDL Toolbox / Utilities

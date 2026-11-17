@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Protection Relay
 
 ## 端口
+```yaml
+ports:
+- name: Imax
+  summary: 电流上限标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Ifb
+  summary: 反馈回路中的实际电流标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m max
+  summary: 用于超速保护的转子速度限值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m fb
+  summary: 实际转子速度标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vmax
+  summary: 用于过压保护的电压上限标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vmin
+  summary: 用于欠压保护的电压下限标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vfb
+  summary: 反馈回路两端的实际电压标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Reset
+  summary: 外部复位脉冲标量
+  direction: input
+  data_types: single | double | fixed point
+- name: y
+  summary: 锁存的故障信号标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -100,8 +139,22 @@ chinese_source: worker-translation
 该模块在过流、超速、过压和欠压条件下生成的锁存故障信号，用于保护硬件和电机。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Select Protection
+  summary: 保护继电器类型 Overcurrent（默认）| Overspeed | Overvoltage | Undervoltage
+  group: ''
+- name: Maximum count input type
+  summary: 最大计数的输入方法 Specify via dialog（默认）| Input port
+  group: ''
+- name: Maximum count
+  summary: 计数器限值 100（默认）| 标量
+  group: ''
+- name: Samples for debounce filter
+  summary: 去抖滤波器采样数 3（默认）| 标量
+  group: ''
+```
 
 ### **Select Protection** — 保护继电器类型 `Overcurrent`（默认）| `Overspeed` | `Overvoltage` | `Undervoltage`
 
@@ -121,7 +174,6 @@ chinese_source: worker-translation
 ### **Samples for debounce filter** — 去抖滤波器采样数 `3`（默认）| 标量
 
 去抖算法用于测试每次阈值违反是否停止所使用的模块采样数。此值决定去抖周期。
-
 ## 所属库
 
 Motor Control Blockset HDL Support / Protection and Diagnostics Motor Control Blockset / Protection and Diagnostics

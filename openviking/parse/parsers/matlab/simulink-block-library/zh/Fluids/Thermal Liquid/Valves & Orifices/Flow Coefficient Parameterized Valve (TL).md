@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Flow Coefficient Parameterized Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: L
+  summary: 阀门控制信号，unitless 物理信号
+  direction: input
+- name: A
+  summary: 流动通道热液体
+  direction: input
+- name: B
+  summary: 流动通道热液体
+  direction: input
+```
 
 ### 输入
 
@@ -37,8 +49,40 @@ chinese_source: worker-translation
 流体可以进入或离开流阻的开口。
 哪个端口用作入口、哪个用作出口取决于
 流动方向。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow coefficient specification
+  summary: 用于指定阀门流量系数的参数化方式 Cv coefficient (USG/min)（默认）| Kv coefficient (m^3/h)
+  group: ''
+- name: Cv coefficient at maximum flow
+  summary: 以英制单位表示的、阀门最大开度时的流量系数 1（默认）| 以 USG/min 为单位的正标量
+  group: ''
+- name: Kv coefficient at maximum flow
+  summary: 以 SI 单位表示的、阀门最大开度时的流量系数 1（默认）| 以 m^3/h 为单位的正标量
+  group: ''
+- name: Cv coefficient at minimum flow
+  summary: 以英制单位表示的、阀门最大关闭时的流量系数 1e-4（默认）| 以 USG/min 为单位的正标量
+  group: ''
+- name: Kv coefficient at minimum flow
+  summary: 以 SI 单位表示的、阀门最大关闭时的流量系数 1e-4（默认）| 以 m^3/h 为单位的正标量
+  group: ''
+- name: Valve opening characteristics
+  summary: 用于计算阀门开度分数的参数化方式 Linear（默认）| Quick openingEqual percentages
+  group: ''
+- name: Exponent number
+  summary: 快开参数化中指数的分母 2（默认）| 正的无单位标量
+  group: ''
+- name: Valve rangeability
+  summary: 等百分比参数化中指数的底数 50（默认）| 正的无单位标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 阀门入口和出口处的流通面积 0.01 m^2（默认）| 以面积单位为单位的正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 流动在层流和湍流之间切换时的雷诺数 150（默认）| 正的无单位标量
+  group: ''
+```
 
 ### **Flow coefficient specification** — 用于指定阀门流量系数的参数化方式 `Cv coefficient (USG/min)`（默认）| `Kv coefficient (m^3/h)`
 
@@ -107,7 +151,6 @@ chinese_source: worker-translation
 阀门中的流体预计在其层流和湍流流态之间切换时的
 雷诺数。假定该切换立即发生：通常存在于两种
 流态之间的过渡区域被忽略。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices

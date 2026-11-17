@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Variable Pulse Delay
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入样本数据 固定步长离散样本 | 可变步长离散样本
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | floating point
+- name: delay
+  summary: 向输入信号引入延迟 非负标量
+  direction: input
+  data_types: floating point
+- name: out
+  summary: 延迟后的输出样本 固定步长离散样本 | 可变步长离散样本
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | floating point
+```
 
 ### 输入
 
@@ -36,8 +51,16 @@ chinese_source: worker-translation
 延迟后的输出样本数据，其类型和宽度与输入信号相同。输入信号到达时 **delay** 端口的值决定了 **out** 端口所引入的延迟量。输入和输出信号必须保持相同的顺序。
 
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `floating point`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial Input
+  summary: 仿真前输出端口的值 0（默认）| 标量
+  group: ''
+- name: Buffer Size
+  summary: 仿真期间可用的输入缓冲样本数 1（默认）| 正标量整数
+  group: ''
+```
 
 ### **Initial Input** — 仿真前输出端口的值 `0`（默认）| 标量
 
@@ -58,7 +81,6 @@ chinese_source: worker-translation
 
 - 使用 `get_param(gcb,'BufferSize')` 查看 **Buffer Size** 的当前值。
 - 使用 `set_param(gcb,'BufferSize',value)` 将 **Buffer Size** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

@@ -14,6 +14,17 @@ language: en
 # Audio Device Reader
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int16 | int32 | uint8
+- name: O
+  summary: Number of samples overrun scalar
+  direction: output
+  data_types: uint32
+```
 
 ### Output
 
@@ -39,8 +50,44 @@ To enable this port, select the
 overrun** parameter.
 
 **Data Types:** `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Driver
+  summary: Driver used to access your audio device DirectSound (default) | ASIO | WASAPI
+  group: ''
+- name: Device
+  summary: Device used to acquire audio samples default audio device (default)
+  group: ''
+- name: Info
+  summary: View information about your audio input configuration button
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate your device uses to acquire audio data 44100 (default) | integer
+  group: ''
+- name: Number of channels
+  summary: Number of channels acquired by your audio device 1 (default) | integer
+  group: ''
+- name: Samples per frame
+  summary: Frame size read from audio device 1024 (default) | integer
+  group: ''
+- name: Device bit depth
+  summary: Data type used by device to acquire audio data 16-bit integer (default) | 8-bit integer | 16-bit integer | 24-bit
+    integer | 32-bit integer
+  group: ''
+- name: Use default channel mapping
+  summary: Toggle channel mapping source on (default) | off
+  group: ''
+- name: Device input channels
+  summary: Specify nondefault channel mapping [1:MaximumInputChannels] (default) | scalar | vector
+  group: ''
+- name: Output number of samples overrun
+  summary: Specify additional output port for number of samples overrun off (default) | on
+  group: ''
+- name: Output data type
+  summary: Data type output from block double (default) | single | int32 | int16 | uint8
+  group: ''
+```
 
 #### Main Tab
 
@@ -185,7 +232,6 @@ If this parameter is specified as
 in the range [–1, 1]. For other data types, the
 range is [min, max] of the specified data
 type.
-
 ## Libraries
 
 Audio Toolbox / Sources

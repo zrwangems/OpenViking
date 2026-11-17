@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Delta UT1
 
 ## 端口
+```yaml
+ports:
+- name: UTC
+  summary: UTC 的 UT1 修正儒略日
+  direction: input
+  data_types: double
+- name: ΔUT1
+  summary: UT1 与 UTC 之间的差值 double
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,38 @@ UTC 的 UT1，指定为修正儒略日。使用 `mjuliandate` 函数将 UTC 日�
 UT1 与 UTC 之间的差值。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: IERS data file
+  summary: 地球定向数据 aeroiersdata.mat（默认）| MAT 文件
+  group: ''
+  block_parameter: FileName
+  type: 字符向量
+  values: '''aeroiersdata.mat'' | MAT 文件'
+  default: '''aeroiersdata.mat'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: IERS data URL
+  summary: 网站或地球定向数据文件 https://maia.usno.navy.mil/ser7/finals2000A.data（默认）| 网站地址 | 文件名
+  group: ''
+  block_parameter: iersurl
+  type: 字符向量
+  values: '''https://maia.usno.navy.mil/ser7/finals2000A.data'' | 网站地址 | 文件名'
+  default: '''https://maia.usno.navy.mil/ser7/finals2000A.data'''
+- name: Destination folder
+  summary: IERS 数据文件的文件夹 Current Folder（默认）
+  group: ''
+  block_parameter: folder
+  type: 字符向量
+  values: '''Current Folder'' | 文件夹名称'
+  default: '''Current Folder'''
+```
 
 ### **IERS data file** — 地球定向数据 `aeroiersdata.mat`（默认）| MAT 文件
 
@@ -100,7 +141,6 @@ IERS 数据文件的文件夹，指定为字符数组或字符串。
 | **类型**：字符向量 |
 | **值**：`'Current Folder'` | 文件夹名称 |
 | **默认值**：`'Current Folder'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Celestial Phenomena Aerospace Blockset / Utilities / Axes Transformations

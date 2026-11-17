@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Planet-Planet
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 行星齿轮架旋转机械
+  direction: conserving
+- name: Po
+  summary: 外行星齿轮旋转机械
+  direction: conserving
+- name: Pi
+  summary: 内行星齿轮旋转机械
+  direction: conserving
+- name: H
+  summary: 热流热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -38,8 +53,34 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Friction model** 设置为
 `Temperature-dependent efficiency`。
-
 ## 参数
+```yaml
+parameters:
+- name: Outer planet (Po) to inner planet (Pi) teeth ratio (NPo/NPi)
+  summary: 外行星齿轮与内行星齿轮旋转比 2（默认）| 正标量
+  group: 主要
+- name: Friction model
+  summary: 摩擦模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Temperature-dependent efficiency
+  group: 啮合损耗
+- name: Ordinary efficiency
+  summary: 扭矩传递效率 0.98（默认）| 标量
+  group: 啮合损耗
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 向量
+  group: 啮合损耗
+- name: Efficiency
+  summary: 齿轮效率 [.95, .9, .85]（默认）| 向量
+  group: 啮合损耗
+- name: Inner planet-carrier power threshold
+  summary: 内行星-行星架齿轮耦合的最小效率功率阈值 0.001 W（默认）| 标量
+  group: 啮合损耗
+- name: Inner planet-carrier viscous friction coefficient
+  summary: 齿轮粘性摩擦 0 N*m/(rad/s)（默认）| 标量
+  group: 粘性损耗
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -133,7 +174,6 @@ efficiency`。
 要启用此参数，请将 **Friction model** 设置为
 `Temperature-dependent
 efficiency`。
-
 ## 所属库
 
 Simscape / Driveline / Gears / Planetary Subcomponents

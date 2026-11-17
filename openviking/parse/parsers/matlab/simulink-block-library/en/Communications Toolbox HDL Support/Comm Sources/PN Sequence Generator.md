@@ -14,6 +14,28 @@ language: en
 # PN Sequence Generator
 
 ## Ports
+```yaml
+ports:
+- name: Mask
+  summary: Output mask binary vector
+  direction: input
+  data_types: double | uint8 | ufix1
+- name: oSiz
+  summary: Output size integer
+  direction: input
+  data_types: double
+- name: Ref
+  summary: Reference input column vector
+  direction: input
+  data_types: double
+- name: Rst
+  summary: Reset sequence generator 0 | 1
+  direction: input
+  data_types: Boolean
+- name: Out
+  summary: Pseudorandom noise sequence binary vector
+  direction: output
+```
 
 ### Input
 
@@ -77,8 +99,52 @@ input**.
 PN sequence, returned as a binary vector. The data type of the output is specified
 by **Output data
 type**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Generator polynomial
+  summary: Generator polynomial 'z^6 + z + 1' (default) | character vector | string scalar | binary row vector | integer vector
+  group: ''
+- name: Initial states
+  summary: Initial shift register states [0 0 0 0 0 1] (default) | binary row vector
+  group: ''
+- name: Output mask source
+  summary: Output mask source Dialog parameter (default) | Input port
+  group: ''
+- name: Output mask vector (or scalar shift value)
+  summary: Output mask vector or scalar shift value 0 (default) | integer scalar | binary vector
+  group: ''
+- name: Output variable-size signals
+  summary: Option to output variable-length signals off (default) | on
+  group: ''
+- name: Sample time
+  summary: Output sample time 1 (default) | -1 | positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: ''
+- name: Maximum output size source
+  summary: Maximum output size source Dialog parameter (default) | Inherit from reference port
+  group: ''
+- name: Maximum output size
+  summary: Maximum output size [10 1] (default) | vector of the form [*n* 1]
+  group: ''
+- name: Reset on nonzero input
+  summary: Reset on nonzero input off (default) | on
+  group: ''
+- name: Enable bit-packed outputs
+  summary: Enable bit-packed outputs off (default) | on
+  group: ''
+- name: Number of packed bits
+  summary: Number of packed bits 8 (default) | integer in the range [1, 32]
+  group: ''
+- name: Interpret bit-packed values as signed
+  summary: Interpret bit-packed values as signed off (default) | on
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | boolean | Smallest unsigned integer
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -295,7 +361,6 @@ integer`.
   as signed** parameter. For all other selections, it is a signed or
   unsigned integer with the smallest available word length large enough to fit
   *n* bits.
-
 ## Libraries
 
 Communications Toolbox / Comm Sources / Sequence Generators Communications Toolbox HDL Support / Comm Sources

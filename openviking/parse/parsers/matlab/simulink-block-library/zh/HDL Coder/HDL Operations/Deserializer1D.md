@@ -15,6 +15,31 @@ chinese_source: worker-translation
 # Deserializer1D
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 串行输入数据信号 标量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: ValidIn
+  summary: 有效输入控制信号 标量
+  direction: input
+  data_types: Boolean
+- name: StartIn
+  summary: 启动输入控制信号 标量
+  direction: input
+  data_types: Boolean
+- name: P
+  summary: 反序列化（并行）数据输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: ValidOut
+  summary: 有效输出控制信号 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -50,8 +75,37 @@ chinese_source: worker-translation
 指示有效输出信号。当您选中 **ValidOut** 复选框时，此端口可用。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Ratio (Output Vector Size/Input Vector Size)
+  summary: 输出向量大小与输入向量大小之比 1（默认）
+  group: ''
+- name: Idle Cycles
+  summary: 空闲周期数 0（默认）
+  group: ''
+- name: Initial condition
+  summary: 初始输出数据信号值 0（默认）
+  group: ''
+- name: StartIn
+  summary: 启用 StartIn 控制端口 off（默认）| on
+  group: ''
+- name: ValidIn
+  summary: 启用 ValidIn 控制端口 off（默认）| on
+  group: ''
+- name: ValidOut
+  summary: 启用 ValidOut 控制端口 off（默认）| on
+  group: ''
+- name: Input data port dimensions (-1 for inherited)
+  summary: 输入数据信号的大小 0（默认）
+  group: ''
+- name: Input sample time (-1 for inherited)
+  summary: 输入采样时间 -1（默认）
+  group: ''
+- name: Input signal type
+  summary: 输入信号类型 auto（默认）| real | complex
+  group: ''
+```
 
 ### **Ratio (Output Vector Size/Input Vector Size)** — 输出向量大小与输入向量大小之比 1（默认）
 
@@ -94,7 +148,6 @@ chinese_source: worker-translation
 ### **Input signal type** — 输入信号类型 auto（默认）| real | complex
 
 将模块的输入信号类型指定为 `auto`、`real` 或 `complex`。
-
 ## 所属库
 
 HDL Coder / HDL Operations

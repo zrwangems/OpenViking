@@ -14,6 +14,16 @@ language: en
 # Receiver Thermal Noise
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Baseband signal scalar | column vector | matrix
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: Output signal scalar | column vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -36,8 +46,37 @@ of channels.
 Output signal, returned as a scalar, column vector, or matrix of
 complex values with the same length and data type as the input
 signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specification method
+  summary: Thermal noise specification method Noise temperature (default) | Noise figure | Noise factor
+  group: ''
+- name: Noise temperature (K)
+  summary: Noise temperature 290 (default) | scalar
+  group: ''
+- name: Noise figure (dB)
+  summary: Receiver noise figure 3.0103 (default) | scalar
+  group: ''
+- name: Noise factor
+  summary: Receiver noise factor 2 (default) | scalar
+  group: ''
+- name: Add 290K antenna noise
+  summary: Option to add 290 K antenna noise off (default) | on
+  group: ''
+- name: Reference load (ohm)
+  summary: Reference load 1 (default) | scalar
+  group: ''
+- name: Random number source
+  summary: Source for random number stream Global stream (default) | mt19937ar with seed
+  group: ''
+- name: Initial seed
+  summary: Initial seed value 67987 (default) | scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -169,7 +208,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / RF Impairments and Components

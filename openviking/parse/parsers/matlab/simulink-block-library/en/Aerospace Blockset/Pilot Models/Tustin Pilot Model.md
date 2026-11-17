@@ -14,6 +14,21 @@ language: en
 # Tustin Pilot Model
 
 ## Ports
+```yaml
+ports:
+- name: x com
+  summary: Signal command scalar
+  direction: input
+  data_types: double
+- name: x
+  summary: Signal controlled by pilot scalar
+  direction: input
+  data_types: double
+- name: u
+  summary: Aircraft command scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +50,31 @@ Signal controlled by pilot, specified as a scalar.
 Aircraft command, returned as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Pilot gain
+  summary: Pilot gain 1 (default) | scalar
+  group: ''
+  block_parameter: Kp
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Pilot time delay(s)
+  summary: Pilot time delay 0.1 (default) | scalar
+  group: ''
+  block_parameter: time_delay
+  type: character vector
+  values: double scalar
+  default: '''0.1'''
+- name: Pilot lead constant
+  summary: Pilot lead constant 5 (default) | scalar
+  group: ''
+  block_parameter: T
+  type: character vector
+  values: double scalar
+  default: '''5'''
+```
 
 ### **Pilot gain** — Pilot gain `1` (default) | scalar
 
@@ -77,7 +115,6 @@ Pilot lead constant, specified as a double scalar.
 | **Type**: character vector |
 | **Values**: double scalar |
 | **Default**: `'5'` |
-
 ## Libraries
 
 Aerospace Blockset / Pilot Models

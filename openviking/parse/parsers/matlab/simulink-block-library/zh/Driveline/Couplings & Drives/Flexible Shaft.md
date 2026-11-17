@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Flexible Shaft
 
 ## 端口
+```yaml
+ports:
+- name: Fr
+  summary: 轴承支撑上的力物理信号
+  direction: output
+- name: M
+  summary: 轴承支撑上的力矩物理信号
+  direction: output
+- name: V
+  summary: 轴平移速度物理信号
+  direction: output
+- name: W
+  summary: 轴角速度物理信号
+  direction: output
+- name: B
+  summary: 基座旋转机械
+  direction: output
+- name: F
+  summary: 从动旋转机械
+  direction: output
+```
 
 ### 输出
 
@@ -62,8 +83,295 @@ chinese_source: worker-translation
 ### **F** — 从动旋转机械
 
 与轴从动端相关联的旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Model torsional flexibility
+  summary: 扭转柔度选项 on（默认）| off
+  group: 轴
+- name: Model bending flexibility
+  summary: 弯曲柔度选项 off（默认）| on
+  group: 轴
+- name: Minimum number of flexible elements
+  summary: 最小柔性单元数 1（默认）| 正整数
+  group: 轴
+- name: Parameterization
+  summary: 参数化方法 By stiffness and inertia（默认）| By material and geometry | By segment stiffness and inertia | By material and
+    segment geometry
+  group: 轴
+- name: Shaft length
+  summary: 轴长度 1 m（默认）| 正标量
+  group: 轴
+- name: Segment lengths [B,...,F]
+  summary: 每个轴分段的长度 [1, .5, .25]（默认）| 向量
+  group: 轴
+- name: Torsional stiffness
+  summary: 材料刚度 2e5 N*m/rad（默认）| 正标量
+  group: 轴
+- name: Torsional Inertia
+  summary: 极惯性矩 0.02 kg*m^2（默认）| 正标量
+  group: 轴
+- name: Segment torsional stiffness [B,...,F]
+  summary: 每个轴分段的材料刚度 [400000, 200000, 100000] N*m/rad（默认）| 正向量
+  group: 轴
+- name: Segment torsional inertia [B,...,F]
+  summary: 每个轴分段的极惯性矩 [.025, .02, .015] kg*m^2（默认）| 正向量
+  group: 轴
+- name: Bending rigidity
+  summary: 弯曲刚度 5e5 m^4*Pa（默认）| 正标量
+  group: 轴
+- name: Linear density
+  summary: 单位长度密度 19 kg/m（默认）| 正标量
+  group: 轴
+- name: Segment bending rigidity [B,...,F]
+  summary: 每个分段的弯曲刚度 [600000, 500000, 400000] m^4*Pa（默认）| 正元素向量
+  group: 轴
+- name: Segment linear density [B,...,F]
+  summary: 每个分段的单位长度密度 [20, 19, 18] kg/m（默认）| 正向量
+  group: 轴
+- name: Material density
+  summary: 材料密度 7.8e3 kg/m^3（默认）| 正标量
+  group: 轴
+- name: Shear modulus
+  summary: 剪切模量 7.93e9 Pa（默认）| 正标量
+  group: 轴
+- name: Shaft geometry
+  summary: 横截面几何形状 Solid（默认）| Annular
+  group: 轴
+- name: Young's modulus
+  summary: 杨氏模量 200e9 Pa（默认）| 正标量
+  group: 轴
+- name: Shaft outer diameter
+  summary: 轴的外径 0.075 m（默认）| 正标量
+  group: 轴
+- name: Shaft inner diameter
+  summary: 轴的内径 0.05 m（默认）| 正标量
+  group: 轴
+- name: Segment outer diameters [B,...,F]
+  summary: 每个轴分段的外径 [.085, .075, .065] m（默认）| 正向量
+  group: 轴
+- name: Segment inner diameters [B,...,F]
+  summary: 每个轴分段的内径 [.055, .05, .045] m（默认）| 向量
+  group: 轴
+- name: Damping ratio from internal losses
+  summary: 材料阻尼比 0.01（默认）| 正标量
+  group: 扭转
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: 粘性摩擦系数 [0, 0] N*m/(rad/s)（默认）| 非负向量
+  group: 扭转
+- name: Viscous friction coefficients at each support [B1,...,F1]
+  summary: 粘性摩擦系数 [0, 0] N*m/(rad/s)（默认）| 非负向量
+  group: 扭转
+- name: Initial shaft torsional deflection
+  summary: 初始轴扭转偏转 0 rad（默认）| 非负标量
+  group: 扭转
+- name: Initial shaft rotational velocity
+  summary: 初始角速度 0 rpm（默认）| 非负标量
+  group: 扭转
+- name: Number of supports
+  summary: 支撑数量 2（默认）| 3 | 4
+  group: 支撑
+- name: Support locations relative to base (B)
+  summary: 支撑位置 [0, 1] m（默认）| 非负递增向量
+  group: 支撑
+- name: Base (B1) mounting type
+  summary: 支撑 *B1* 安装类型 Clamped（默认）| Pinned | Free | Bearing matrix | Speed-dependent bearing matrix
+  group: 支撑
+- name: Base (B1) rotational damping [xx,yy]
+  summary: 支撑 *B1* 旋转阻尼 [1e3, 1e3] N*m/(rad/s)（默认）| 向量
+  group: 支撑
+- name: Base (B1) translational damping [xx,xy,yx,yy]
+  summary: 支撑 *B1* 平移阻尼 [2e4, -4.4e4, -4.4e4, 3.5e5] N/(m/s)（默认）| 向量
+  group: 支撑
+- name: Base (B1) speed-dependent translational damping [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: 支撑 *B1* 速度相关平移阻尼 [2e4, -4.4e4, -4.4e4, 3.5e5; 1e4, -2.5e4, -2.5e4, 1.4e5; 5e3, -1.0e4, -1.0e4, 2.0e4] N/(m/s)（默认）|
+    矩阵
+  group: 支撑
+- name: Base (B1) rotational stiffness [xx,yy]
+  summary: 支撑 *B1* 旋转刚度 [1e4, 1e4] N*m/rad（默认）| 非负向量
+  group: 支撑
+- name: Base (B1) translational stiffness [xx,xy,yx,yy]
+  summary: 支撑 *B1* 平移刚度 [1e6, -2e5, -3e5, 5e] N/m（默认）| 向量
+  group: 支撑
+- name: Base (B1) speed-dependent translational stiffness [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: 支撑 *B1* 速度相关平移刚度 [1e6, -6e5, -3.5e6, 8e6; 1e6, -2e5, -3.0e6, 5e6; 1e6, -5e4, -2.5e6, 3e6] N/m（默认）| 矩阵
+  group: 支撑
+- name: Intermediate (I1) mounting type
+  summary: 支撑 *I1* 安装类型 Clamped（默认）| Pinned | Free | Bearing matrix | Speed-dependent bearing matrix
+  group: 支撑
+- name: Intermediate (I1) rotational damping [xx,yy]
+  summary: 支撑 *I1* 旋转阻尼 [1e3, 1e3] N*m/(rad/s)（默认）| 向量
+  group: 支撑
+- name: Intermediate (I1) translational damping [xx,xy,yx,yy]
+  summary: 支撑 *I1* 平移阻尼 [2e4, -4.4e4, -4.4e4, 3.5e5] N/(m/s)（默认）| 向量
+  group: 支撑
+- name: Intermediate (I1) speed-dependent translational damping [xx1,xy1,yx1,yy1;...xxsS,xyS,yxS,yyS]
+  summary: 支撑 *I1* 速度相关平移阻尼 [2e4, -4.4e4, -4.4e4, 3.5e5; 1e4, -2.5e4, -2.5e4, 1.4e5; 5e3, -1.0e4, -1.0e4, 2.0e4] N/(m/s)（默认）|
+    矩阵
+  group: 支撑
+- name: Intermediate (I1) rotational stiffness [xx,yy]
+  summary: 支撑 *I1* 旋转刚度 [1e4, 1e4] N*m/rad（默认）| 非负向量
+  group: 支撑
+- name: Intermediate (I1) translational stiffness [xx,xy,yx,yy]
+  summary: 支撑 *I1* 平移刚度 [1e6, -2e5, -3e5, 5e] N/m（默认）| 向量
+  group: 支撑
+- name: Intermediate (I1) speed-dependent translational stiffness [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: 支撑 *I1* 速度相关平移刚度 [1e6, -6e5, -3.5e6, 8e6; 1e6, -2e5, -3.0e6, 5e6; 1e6, -5e4, -2.5e6, 3e6] N/m（默认）| 矩阵
+  group: 支撑
+- name: Intermediate (I2) mounting type
+  summary: 支撑 *I2* 安装类型 Clamped（默认）| Pinned | Free | Bearing matrix | Speed-dependent bearing matrix
+  group: 支撑
+- name: Intermediate (I2) rotational damping [xx,yy]
+  summary: 支撑 *I2* 旋转阻尼 [1e3, 1e3] N*m/(rad/s)（默认）| 向量
+  group: 支撑
+- name: Intermediate (I2) translational damping [xx,xy,yx,yy]
+  summary: 支撑 *I2* 平移阻尼 [2e4, -4.4e4, -4.4e4, 3.5e5] N/(m/s)（默认）| 向量
+  group: 支撑
+- name: Intermediate (I2) speed-dependent translational damping [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: 支撑 *I2* 速度相关平移阻尼 [2e4, -4.4e4, -4.4e4, 3.5e5; 1e4, -2.5e4, -2.5e4, 1.4e5; 5e3, -1.0e4, -1.0e4, 2.0e4] N/(m/s)（默认）|
+    矩阵
+  group: 支撑
+- name: Intermediate (I2) rotational stiffness [xx,yy]
+  summary: 支撑 *I2* 旋转刚度 [1e4, 1e4] N*m/rad（默认）| 非负向量
+  group: 支撑
+- name: Intermediate (I2) translational stiffness [xx,xy,yx,yy]
+  summary: 支撑 *I2* 平移刚度 [1e6, -2e5, -3e5, 5e] N/m（默认）| 向量
+  group: 支撑
+- name: Intermediate (I2) speed-dependent translational stiffness [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: 支撑 *I2* 速度相关平移刚度 [1e6, -6e5, -3.5e6, 8e6; 1e6, -2e5, -3.0e6, 5e6; 1e6, -5e4, -2.5e6, 3e6] N/m（默认）| 向量
+  group: 支撑
+- name: Follower (F1) mounting type
+  summary: 支撑 *F1* 安装类型 Clamped（默认）| Pinned | Free | Bearing matrix | Speed-dependent bearing matrix
+  group: 支撑
+- name: Follower (F1) rotational damping [xx,yy]
+  summary: 支撑 *F1* 旋转阻尼 [1e3, 1e3] N*m/(rad/s)（默认）| 向量
+  group: 支撑
+- name: Follower (F1) translational damping [xx,xy,yx,yy]
+  summary: 支撑 *F1* 平动阻尼 [2e4, -4.4e4, -4.4e4, 3.5e5] N/(m/s)（默认）| 向量
+  group: 支撑
+- name: Follower (F1) speed-dependent translational damping [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: 支撑 *F1* 转速相关平动阻尼 [2e4, -4.4e4, -4.4e4, 3.5e5; 1e4, -2.5e4, -2.5e4, 1.4e5; 5e3, -1.0e4, -1.0e4, 2.0e4] N/(m/s)（默认）|
+    矩阵
+  group: 支撑
+- name: Follower (F1) rotational stiffness [xx,yy]
+  summary: 支撑 *F1* 转动刚度 [1e4, 1e4] N*m/rad（默认）| 非负向量
+  group: 支撑
+- name: Follower (F1) translational stiffness [xx,xy,yx,yy]
+  summary: 支撑 *F1* 平动刚度 [1e6, -2e5, -3e5, 5e] N/m（默认）| 向量
+  group: 支撑
+- name: Follower (F1) speed-dependent translational stiffness [xx1,xy1,yx1,yy1;...xxS,xyS,yxS,yyS]
+  summary: 支撑 *F1* 转速相关平动刚度 [1e6, -6e5, -3.5e6, 8e6; 1e6, -2e5, -3.0e6, 5e6; 1e6, -5e4, -2.5e6, 3e6] N/m（默认）| 矩阵
+  group: 支撑
+- name: Bearing speed [s1,...,sS]
+  summary: 支撑轴承转速 [200, 500, 1500] rpm（默认）| 非负向量
+  group: 支撑
+- name: Damping constant proportional to mass
+  summary: 与质量成正比的阻尼常数 *α* 10 1/s（默认）| 正标量
+  group: Bending
+- name: Damping constant proportional to stiffness
+  summary: 与刚度成正比的阻尼常数 β 1e-8 s（默认）| 正标量
+  group: Bending
+- name: Rigid masses concentrically attached to shaft
+  summary: 同心附着于轴的刚性质量类型 None（默认）| Point mass | Disk
+  group: Bending
+- name: Rigid mass distances from base (B)
+  summary: 刚性质量沿轴距基座节点的距离 0.5 m（默认）| 非负标量或向量
+  group: Bending
+- name: Rigid masses
+  summary: 同心附着于轴的刚性质量的质量 2 kg（默认）| 正标量或向量
+  group: Bending
+- name: Rigid mass diametric moments of inertia about axis perpendicular to shaft
+  summary: 绕垂直于轴的轴线的刚性质量直径转动惯量 0.025 kg*m^2（默认）| 正标量或向量
+  group: Bending
+- name: Rigid mass polar moments of inertia about shaft axis
+  summary: 绕轴线的刚性质量极转动惯量 0.050 kg*m^2（默认）| 正标量或向量
+  group: Bending
+- name: Enable static unbalances that excite bending
+  summary: 静态不平衡激励弯曲选项 on（默认）| off
+  group: Bending
+- name: Static unbalances
+  summary: 激励静态不平衡 [.01, .01] m*kg（默认）| 非负向量
+  group: Bending
+- name: Static unbalance distances from base (B)
+  summary: 静态不平衡距基座的距离 [.33, .67] m（默认）| 非负向量
+  group: Bending
+- name: Static unbalance offset angles
+  summary: 静态不平衡偏移角 [0, pi] rad（默认）| 非负向量
+  group: Bending
+- name: Enable external forces that excite bending
+  summary: 外部力激励选项 off（默认）| on
+  group: Bending
+- name: External force magnitudes
+  summary: 外部力大小 [1, 2] N（默认）| 向量
+  group: Bending
+- name: External force distances from base (B)
+  summary: 外部力位置 [.25, .75] m（默认）
+  group: Bending
+- name: External force frequency harmonic of rotor speed
+  summary: 外部力频率谐波 [.5, 2]（默认）| 向量
+  group: Bending
+- name: External force offset angles
+  summary: 外部力偏移角 [pi / 2, 3 * pi / 4] rad（默认）
+  group: Bending
+- name: Bending vibration analysis method
+  summary: 弯曲振动分析方法 Lumped mass（默认）| Eigenmodes
+  group: Advanced Bending
+- name: Bending mode determination
+  summary: 弯曲模态确定方法 Simscape determined（默认）| User defined
+  group: Advanced Bending
+- name: Limit number of modes
+  summary: 最大模态数 6（默认）| 正整数标量
+  group: Advanced Bending
+- name: Simulated eigenmode dependency on rotation speed
+  summary: 特征模态依赖性 Static（默认）| Dynamic
+  group: Advanced Bending
+- name: Nominal shaft speed for bending modes
+  summary: 弯曲模态的标称轴转速 5000 rpm（默认）| 标量
+  group: Advanced Bending
+- name: Eigenfrequency upper limit
+  summary: 特征频率上限 1e8 rpm（默认）| 正整数标量
+  group: Advanced Bending
+- name: Shaft length increments for mode shape computations
+  summary: 模态振型计算的轴长增量 0.01 m（默认）| 正标量
+  group: Advanced Bending
+- name: Modal frequencies [m]
+  summary: 轴承转速无关的模态频率 [280, 644, 615, 1285] rad/s（默认）| 非负向量
+  group: Advanced Bending
+- name: Modal frequencies [s,m]
+  summary: 轴承转速相关模态频率 [257, 780, 580, 1560; 280, 644, 615, 1285; 294, 513, 636, 1020] rad/s（默认）| 非负矩阵
+  group: Advanced Bending
+- name: Shaft position [z]
+  summary: 轴位置 [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]（默认）| 递增非负向量
+  group: Advanced Bending
+- name: X-direction mode shapes [z,m]
+  summary: 轴承转速无关的 *X* 方向模态振型 [.1648, .0086, -.2759, .0162; .1671, .0093, -.2231, .0133; .1691, .01, -.1689, .0102; .1707,
+    .0105, -.1135, .007; .1717, .0108, -.057, .0035; .1721, .0109, 0, 0; .1717, .0108, .057, -.0035; .1707, .0105, .1135,
+    -.007; .1691, .01, .1689, -.0102; .1671, .0093, .2231, -.0133; .1648, .0086, .2759, -.0162]（默认）| 矩阵
+  group: Advanced Bending
+- name: X-direction mode shapes [z,m,s]
+  summary: 轴承转速相关的 *X* 方向模态振型 *z*×*m*×*s* 矩阵（默认）| ...
+  group: Advanced Bending
+- name: Y-direction mode shapes [z,m]
+  summary: 轴承转速无关的 *Y* 方向模态振型 [.1193, -.1784, -.1997, -.3348; .1209, -.1933, -.1615, -.2751; .1224, -.2068, -.1223, -.2119;
+    .1235, -.2176, -.0821, -.1445; .1243, -.2245, -.0413, -.0734; .1246, -.2269, 0, 0; .1243, -.2245, .0413, .0734; .1235,
+    -.2176, .0821, .1445; .1224, -.2068, .1223, .2119; .1209, -.1933, .1615, .2751; .1193, -.1784, .1997, .3348]（默认）| 矩阵
+  group: Advanced Bending
+- name: Y-direction mode shapes [z,m,s]
+  summary: 轴承转速相关的 *y* 方向模态振型 *z*×*m*×*s* 矩阵
+  group: Advanced Bending
+- name: Bending node displacements (units of m and rad)
+  summary: 标称弯曲节点位移 1（默认）| 正标量
+  group: 标称值
+- name: Bending node velocities (units of m/s and rad/s)
+  summary: 标称弯曲节点速度 1（默认）| 正标量
+  group: 标称值
+- name: Bending mode displacements (units of 1)
+  summary: 标称弯曲模态位移 1（默认）| 正标量
+  group: 标称值
+- name: Bending mode velocities nominal value (units of 1/s)
+  summary: 标称弯曲模态速度 1（默认）| 正标量
+  group: 标称值
+```
 
 ### 轴
 
@@ -1216,7 +1524,6 @@ Simscape 求解器确定的最大模态数。
 #### 依赖关系
 
 要启用此参数，请选择 **Model bending flexibility** 并将 **Bending vibration analysis method** 设置为 `Eigenmodes`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

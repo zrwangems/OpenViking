@@ -15,6 +15,69 @@ chinese_source: worker-translation
 # C28x eQEP
 
 ## 端口
+```yaml
+ports:
+- name: swi
+  summary: 动态更新位置计数器初始化值 标量
+  direction: input
+  data_types: Boolean
+- name: cmp
+  summary: 用于比较位置的值 标量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: iel
+  summary: 软件索引标记 标量
+  direction: input
+  data_types: Boolean
+- name: qposcnt
+  summary: 位置计数器信号 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: pcef
+  summary: 错误时的位置计数器错误标志 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qdf
+  summary: 正交模块方向标志 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qctmr
+  summary: 捕获定时器信号 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qcprd
+  summary: 捕获周期信号 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: coef
+  summary: eQEP 溢出错误标志 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: cdef
+  summary: 方向变化错误标志 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qctmrlat
+  summary: 捕获定时器锁存值 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qcprdlat
+  summary: 捕获定时器周期锁存值 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qposlat
+  summary: 位置计数器锁存值 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qposilat
+  summary: 在索引事件上锁存位置计数器 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: qposslat
+  summary: 在选通事件上锁存位置计数器 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### 输入
 
@@ -197,8 +260,176 @@ eQEP 选通输入可配置为在该引脚上发生确定事件时锁存位置计
 - 选择 **Output latch position counter on strobe event**。
 
 **数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Module
+  summary: 用于获取位置、方向和速度的 eQEP 模块 eQEP1（默认）| eQEP2 | eQEP3
+  group: 常规
+- name: Position counter mode
+  summary: 与 eQEP 外设输入编码方式匹配的模式 Quadrature-count（默认）| Direction-count | Up-count | Down-count
+  group: 常规
+- name: Positive rotation
+  summary: 旋转方向 Clockwise（默认）| Counterclockwise
+  group: 常规
+- name: External clock rate
+  summary: '测量分辨率 2x resolution: Count the rising/falling edge（默认）| 1x resolution: Count the rising edge only'
+  group: 常规
+- name: Quadrature direction flag output port
+  summary: 为方向标志创建端口 off（默认）| on
+  group: 常规
+- name: Invert input QEPxX polarity
+  summary: 反转 eQEP 输入极性 off（默认）| on
+  group: 常规
+- name: Index pulse gating option
+  summary: 使能索引脉冲与选通输入的门控 off（默认）| on
+  group: 常规
+- name: Sample time
+  summary: 模块读取位置计数器的频率 0.0001（默认）| -1 | 标量
+  group: 常规
+- name: Output position counter
+  summary: 输出位置计数器信号 on（默认）| off
+  group: Position counter
+- name: Maximum position counter value (0~4294967295)
+  summary: 指定最大位置计数器值 4294967295（默认）| [0, 4,294,967,295] 范围内的整数
+  group: Position counter
+- name: Enable set to init value on index event
+  summary: 使能在索引事件上将位置计数器设置为初始化值的选项 off（默认）| on
+  group: Position counter
+- name: Set to init value on index event
+  summary: 位置计数器的初始化值 Rising edge（默认）| Falling edge
+  group: Position counter
+- name: Enable set to init value on strobe event
+  summary: 使能在选通事件上将位置计数器设置为初始化值的选项 off（默认）| on
+  group: Position counter
+- name: Set to init value on strobe event
+  summary: 设置位置计数器的初始化值 Rising edge（默认）| Depending on direction
+  group: Position counter
+- name: Enable software initialization
+  summary: 使能通过软件设置位置计数器初始化值的选项 off（默认）| on
+  group: Position counter
+- name: Software initialization source
+  summary: 指定位置计数器的初始化来源 Input port（默认）| Set to init value at start up
+  group: Position counter
+- name: Initialization value (0~4294967295)
+  summary: 位置计数器的初始化值 2147483648 | [0, 4,294,967,295] 范围内的整数
+  group: Position counter
+- name: Position counter reset mode
+  summary: 复位位置计数器 Reset on an index event（默认）| Reset on the maximum position | Reset on the first index event | Reset on
+    a time unit event
+  group: Position counter
+- name: Output position counter error flag
+  summary: 在错误时输出位置计数器错误标志 off（默认）| on
+  group: Position counter
+- name: Output latch position counter on index event
+  summary: 在索引事件时锁存位置计数器 off（默认）| on
+  group: Position counter
+- name: Index event latch of position counter
+  summary: 配置位置计数器在事件时锁存 Rising edge（默认）| Falling edge | Software index marker via input port
+  group: Position counter
+- name: Output latch position counter on strobe event
+  summary: 在选通事件时锁存位置计数器 off（默认）| on
+  group: Position counter
+- name: Strobe event of latched position counter
+  summary: 配置位置计数器在选通时锁存 Rising edge（默认）| Depending on direction
+  group: Position counter
+- name: Enable QEP capture
+  summary: 启用边沿捕获单元 off（默认）| on
+  group: Speed calculation
+- name: Output capture timer
+  summary: 输出捕获定时器 off（默认）| on
+  group: Speed calculation
+- name: Output capture period timer
+  summary: 输出捕获周期 off（默认）| on
+  group: Speed calculation
+- name: eQEP capture timer prescaler
+  summary: 预分频捕获定时器时钟频率 128（默认）| 1 | 2 | 4 | 8 | 16 | 32 | 64
+  group: Speed calculation
+- name: Unit position event prescaler
+  summary: 预分频正交时钟 128（默认）| 1 | 2 | 4 | 8 | 16 | 32 | 64 | 256 | 512 | 1024 | 2048
+  group: Speed calculation
+- name: Enable and output overflow error flag
+  summary: 当捕获定时器溢出时输出溢出错误标志 off（默认）| on
+  group: Speed calculation
+- name: Enable and output direction change error flag
+  summary: 输出方向变化错误标志 off（默认）| on
+  group: Speed calculation
+- name: Capture timer and position
+  summary: QEP 捕获锁存模式 On position counter read（默认）| On unit time-out event
+  group: Speed calculation
+- name: Unit timer period (0~4294967295)
+  summary: 设置单位定时器周期 100000000（默认）| 范围 [0, 4,294,967,295] 内的值
+  group: Speed calculation
+- name: Output capture timer latched value
+  summary: 输出捕获定时器锁存值 off（默认）| on
+  group: Speed calculation
+- name: Output capture timer period latched value
+  summary: 输出捕获定时器周期锁存值 off（默认）| on
+  group: Speed calculation
+- name: Output position counter latched value
+  summary: 输出位置计数器锁存值 off（默认）| on
+  group: Speed calculation
+- name: Enable position-compare sync signal output
+  summary: 启用位置比较同步信号输出 off（默认）| on
+  group: Compare output
+- name: Sync output pin selection
+  summary: 用于同步信号的 GPIO 引脚 Index pin is used for sync output（默认）| Strobe pin is used for sync output
+  group: Compare output
+- name: Compare value source
+  summary: 位置比较值的来源 Specify via dialog（默认）| Input port
+  group: Compare output
+- name: Position compare shadow load mode
+  summary: 生成位置比较同步信号的影子模式 Load on QPOSCNT=0（默认）| Shadow disabled(load immediate) | Load on QPOSCNT=QPOSCMP
+  group: Compare output
+- name: Position compare value (0~4294967295)
+  summary: 用于比较位置的值 4294967295（默认）| 范围 [0, 4,294,967,295] 内的值
+  group: Compare output
+- name: Sync output pulse width (1~4096)
+  summary: 位置比较同步输出信号的脉冲宽度 1（默认）| 范围 [0, 4,096] 内的值
+  group: Compare output
+- name: Polarity of sync output
+  summary: 同步输出的极性 Active high（默认）| Active low
+  group: Compare output
+- name: Watchdog timer enable
+  summary: 启用看门狗超时标志 off（默认）| on
+  group: Watchdog unit
+- name: Watchdog timer
+  summary: 看门狗定时器的超时值 65535（默认）| 范围 [0, 65,535] 内的值
+  group: Watchdog unit
+- name: Position counter error interrupt enable
+  summary: 启用位置计数器错误中断 off（默认）| on
+  group: Interrupt
+- name: Quadrature phase error interrupt enable
+  summary: 启用正交相位错误中断 off（默认）| on
+  group: Interrupt
+- name: Quadrature direction change interrupt enable
+  summary: 启用正交方向变化中断 off（默认）| on
+  group: Interrupt
+- name: Watchdog timeout interrupt enable
+  summary: 启用看门狗超时中断 off（默认）| on
+  group: Interrupt
+- name: Position counter underflow interrupt enable
+  summary: 启用位置计数器下溢中断 off（默认）| on
+  group: Interrupt
+- name: Position counter overflow interrupt enable
+  summary: 启用位置计数器溢出中断 off（默认）| on
+  group: Interrupt
+- name: Position-compare ready interrupt enable
+  summary: 启用位置比较就绪中断 off（默认）| on
+  group: Interrupt
+- name: Position-compare match interrupt enable
+  summary: 启用位置比较匹配中断 off（默认）| on
+  group: Interrupt
+- name: Strobe event latch interrupt enable
+  summary: 启用选通事件锁存中断 off（默认）| on
+  group: Interrupt
+- name: 索引事件锁存中断使能
+  summary: 使能索引事件锁存中断 off（默认）| on
+  group: Interrupt
+- name: 单元超时中断使能
+  summary: 使能单元超时中断 off（默认）| on
+  group: Interrupt
+```
 
 ### 常规
 
@@ -552,7 +783,6 @@ eQEP 外设包含一个监视正交时钟的看门狗定时器。如果在看门
 ### **单元超时中断使能** — 使能单元超时中断 `off`（默认）| `on`
 
 使能单元超时中断。当单元定时器与单元周期匹配时，将生成单元超时中断。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

@@ -14,6 +14,13 @@ language: en
 # Random Number
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -23,8 +30,45 @@ Output signal that is the generated random numbers falling within a normal Gauss
 distribution. The output is repeatable for a given seed.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mean
+  summary: Mean of random numbers 0 (default) | scalar | array
+  group: ''
+  block_parameter: Mean
+  type: character vector
+  values: scalar | array
+  default: '''0'''
+- name: Variance
+  summary: Variance of random numbers 1 (default) | scalar | array
+  group: ''
+  block_parameter: Variance
+  type: character vector
+  values: scalar | array
+  default: '''1'''
+- name: Seed
+  summary: Starting seed 0 (default) | positive integer | scalar | array
+  group: ''
+  block_parameter: Seed
+  type: character vector
+  values: scalar | array
+  default: '''0'''
+- name: Sample time
+  summary: Time between intervals 0.1 (default) | integer
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''0.1'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vectors as 1-D on (default) | off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Mean** — Mean of random numbers `0` (default) | scalar | array
 
@@ -110,7 +154,6 @@ the **Mean**, **Variance**, and
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Sources

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Cauer Thermal Model
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 半导体各层第一个表面的热端口
+  direction: conserving
+- name: B
+  summary: 半导体最后一层第二个表面的热端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,25 @@ chinese_source: worker-translation
 ### **B** — 半导体最后一层第二个表面的热端口
 
 与半导体最后一层第二个表面相关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterize Cauer model using Foster coefficient data
+  summary: 使用 Foster 系数数据参数化 Cauer 模型 Off（默认）| On
+  group: ''
+- name: Thermal resistance data
+  summary: 热阻 1e-3 * [2.6468, 3.8701, 1.2007, .8824] K/W（默认）
+  group: ''
+- name: Thermal time constant data
+  summary: 热时间常数 [.0086, .054, .3624, 1.651] s（默认）
+  group: ''
+- name: Thermal resistance data (Foster)
+  summary: 从 Foster 数据参数化的热阻 [.0016, .0043, .0013, .0014] K/W（默认）
+  group: ''
+- name: Thermal time constant data (Foster)
+  summary: 从 Foster 数据参数化的热时间常数 [.0068, .064, .32, 2] s（默认）
+  group: ''
+```
 
 ### **Parameterize Cauer model using Foster coefficient data** — 使用 Foster 系数数据参数化 Cauer 模型 `Off`（默认）| `On`
 
@@ -63,7 +89,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Parameterize Cauer model using Foster coefficient data** 参数。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Thermal

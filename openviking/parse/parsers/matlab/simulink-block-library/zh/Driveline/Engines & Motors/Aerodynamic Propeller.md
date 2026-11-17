@@ -15,6 +15,60 @@ chinese_source: worker-translation
 # Aerodynamic Propeller
 
 ## 端口
+```yaml
+ports:
+- name: Va
+  summary: 前进速度，m/s，物理信号
+  direction: input
+- name: θ
+  summary: 桨叶桨距，deg，物理信号
+  direction: input
+- name: θ_1c
+  summary: 横向周期变距，deg，物理信号
+  direction: input
+- name: θ_1s
+  summary: 纵向周期变距，deg，物理信号
+  direction: input
+- name: ξ
+  summary: 入流角，deg，物理信号
+  direction: input
+- name: Rho
+  summary: 可变密度，kg/m^3，物理信号
+  direction: input
+- name: w
+  summary: 螺旋桨转速，rad/s，物理信号
+  direction: input
+- name: Th
+  summary: 螺旋桨推力，N，物理信号
+  direction: output
+- name: E
+  summary: 效率，无量纲，物理信号
+  direction: output
+- name: Q
+  summary: 螺旋桨阻力矩，N\*m，物理信号
+  direction: output
+- name: Fx
+  summary: '*x* 方向力，N，物理信号'
+  direction: output
+- name: Fy
+  summary: '*y* 方向力，N，物理信号'
+  direction: output
+- name: Mx
+  summary: '*x* 方向力矩，N\*m，物理信号'
+  direction: output
+- name: My
+  summary: '*y* 方向力矩，N\*m，物理信号'
+  direction: output
+- name: R1
+  summary: 杆接口，机械旋转
+  direction: conserving
+- name: R2
+  summary: 飞行器速度和推力，机械平移
+  direction: conserving
+- name: C2
+  summary: 参考流，机械平移
+  direction: conserving
+```
 
 ### 输入
 
@@ -155,8 +209,153 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Translational connections** 设置为 `Conserving`。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 螺旋桨参数化 Constant coefficients（默认）| Polynomial fit | 推进角度的表格数据 ratio | 推进角度的表格数据 angle | 翼型升力和 drag coefficients
+  group: 螺旋桨
+- name: Propeller direction
+  summary: 螺旋桨方向 Negative rotational velocity generates positive thrust for positive thrust coefficients（默认）| Positive rotational
+    velocity generates positive thrust for positive thrust coefficients
+  group: 螺旋桨
+- name: Propeller diameter
+  summary: 螺旋桨直径 0.254 m（默认）| 正标量
+  group: 螺旋桨
+- name: Enable collective pitch control
+  summary: 总距桨叶控制选项 off（默认）| on
+  group: 螺旋桨
+- name: Enable transverse flow and cyclic pitch controls
+  summary: 周期变距控制选项 off（默认）| on
+  group: 螺旋桨
+- name: Thrust coefficient, kT
+  summary: 推力系数 0.25（默认）| 正标量
+  group: 螺旋桨
+- name: Power coefficient, kP
+  summary: 功率系数 0.13（默认）| 正标量
+  group: 螺旋桨
+- name: kT polynomial coefficients (pN...p0)
+  summary: 推力多项式系数 [.002, .0006, -.0509, .0617]（默认）| 向量
+  group: 螺旋桨
+- name: kP polynomial coefficients (pN...p0)
+  summary: 功率多项式系数 [-.0752, .0577, -.0622, .16]（默认）| 向量
+  group: 螺旋桨
+- name: Pitch angle vector, θ
+  summary: 桨距角 [-15, 15, 25, 35, 45] deg（默认）| 范围在 [-360,360] 内的元素向量
+  group: 螺旋桨
+- name: Table of kT polynomial coefficients (θ, pN...p0)
+  summary: 可控桨距螺旋桨的推力多项式系数 [.0002, -.00041, -.036, .03; .00026, -.00056, -.048, .04; .002, .00063, -.051, .062; .0014, -.0016,
+    -.048, .087; .00087, -.0036, -.041, .12]（默认）| 矩阵
+  group: 螺旋桨
+- name: Table of kP polynomial coefficients (θ, pN...p0)
+  summary: 可控桨距螺旋桨的功率多项式系数 [-.1, .031, .0055, .088; -.081, -.025, .0044, .07; -.075, .058, -.062, .16; -.052, .065, -.08,
+    .3; -.031, .057, -.069, .4]（默认）| 矩阵
+  group: 螺旋桨
+- name: Advance ratio vector, J
+  summary: 表格化推力和功率系数对应的前进比范围 [.01, .3, .625, 1.55, 2, 2.6]（默认）| 向量
+  group: 螺旋桨
+- name: Thrust coefficient vector, kT(J)
+  summary: 给定前进比下的表格化推力系数值 [.0614, .0473, .0318, -.0127, -.0343, -.063]（默认）| 向量
+  group: 螺旋桨
+- name: Power coefficient vector, kP(J)
+  summary: 给定前进比下的表格化功率系数值 [.1496, .1314, .116, -.0521, -.1503, -.2813]（默认）| 向量
+  group: 螺旋桨
+- name: Thrust coefficient table, kT(θ, J)
+  summary: 给定桨距角和前进比下的表格化推力系数值 [.00019, .013, .0048, -.017, -.03, -.045;（默认）| 矩阵 | ...
+  group: 螺旋桨
+- name: Power coefficient table, kP(θ, J)
+  summary: 给定桨距角和前进比下的表格化功率系数值 [.029, .029, .016, .06, .009, -.16;（默认）| 矩阵 | ...
+  group: 螺旋桨
+- name: Advance angle vector, β
+  summary: 递增的入流角 linspace(0, 360, 10) deg（默认）| 长度为 *N* 的向量
+  group: 螺旋桨
+- name: Thrust coefficient vector, Ct(β)
+  summary: 给定入流角下的表格化推力系数 0.035 * sind(linspace(0, 360, 10) - 200)（默认）| 长度为 *N* 的向量
+  group: 螺旋桨
+- name: Torque coefficient vector, Cq(β)
+  summary: 给定入流角下的表格化力矩系数 0.010 * sind(linspace(0, 360, 10) - 200)（默认）| 长度为 *N* 的向量
+  group: 螺旋桨
+- name: Thrust coefficient table, Ct(θ, β)
+  summary: 给定桨距角和入流角下的表格化推力系数 [0.01 * sind(linspace(0, 360, 10) - 200); 0.020 * sind(linspace(0, 360, 10) - 200);（默认）| 矩阵
+    | ...
+  group: 螺旋桨
+- name: Torque coefficient table, Cq(θ, β)
+  summary: 给定桨距角和前进角下的表格化扭矩系数 [0.0005 * sind(linspace(0, 360, 10) - 200); 0.0015 * sind(linspace(0, 360, 10) - 200);（默认）|
+    矩阵 | ...
+  group: 螺旋桨
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Linear（默认）| Smooth
+  group: 螺旋桨
+- name: Extrapolation method
+  summary: 处理超出断点数据集范围的输入值的方法 Linear（默认）| Nearest | Error
+  group: 螺旋桨
+- name: Root pitch angle
+  summary: 根部桨距角 20 deg（默认）| 标量
+  group: 螺旋桨
+- name: Number of blades
+  summary: 叶片数量 2（默认）| 正标量
+  group: 螺旋桨
+- name: Number of blade elements
+  summary: 叶片单元数量 10（默认）| 正标量
+  group: 螺旋桨
+- name: Number of azimuthal locations
+  summary: 方位位置数量 10（默认）| 正标量
+  group: 螺旋桨
+- name: Nondimensional radial location vector, r
+  summary: 径向位置 [.1, .12, .2, .4, .6, .8, 1]（默认）| 向量
+  group: 螺旋桨
+- name: Blade twist vector, θ_tw(r)
+  summary: 叶片单元扭转 [30, 35, 50, 30, 20, 15, 10] deg（默认）| 向量
+  group: 螺旋桨
+- name: Normalized chord length vector, c(r)/D
+  summary: 叶片单元弦长 [.0676, .0666, .0824, .1025, .0885, .0598, .0133]（默认）| 长度为 *N* 的向量
+  group: 螺旋桨
+- name: Airfoil angle of attack vector, α
+  summary: '攻角 -180 : 10 : 180 deg（默认）| 长度为 *M* 的向量'
+  group: 螺旋桨
+- name: Airfoil lift coefficient table, Cl(α,r)
+  summary: 翼型升力系数 *M* x *N* 矩阵 | ...
+  group: 螺旋桨
+- name: Airfoil drag coefficient table, Cd(α,r)
+  summary: 翼型阻力系数 *M* x *N* 矩阵 | ...
+  group: 螺旋桨
+- name: Fluid density specification
+  summary: 流体密度选择 Constant（默认）| Variable
+  group: 环境与动力学
+- name: Fluid density
+  summary: 恒定流体密度值 1.225 kg/m^3（默认）
+  group: 环境与动力学
+- name: Rotational connections
+  summary: 旋转运动输入选项 Physical signals（默认）| Conserving
+  group: 环境与动力学
+- name: Translational connections
+  summary: 平移运动输入选项 Conserving（默认）| Physical signals
+  group: 环境与动力学
+- name: Model inertia
+  summary: 惯性选项 off（默认）| on
+  group: 环境与动力学
+- name: Propeller inertia
+  summary: 螺旋桨惯性 1 kg*m^2（默认）| 正标量
+  group: 环境与动力学
+- name: Propeller mass
+  summary: 螺旋桨质量 10 kg（默认）| 正标量
+  group: 环境与动力学
+- name: Efficiency sensor
+  summary: 运行效率输出选项 off（默认）| on
+  group: 高级
+- name: Rotational speed threshold
+  summary: 转速平滑点 0.001 Hz（默认）| 正标量
+  group: 高级
+- name: Saturation threshold for nondimensional coefficients
+  summary: 无量纲系数平滑点 0.001（默认）| 正标量
+  group: 高级
+- name: Check if operating beyond normal propeller operation
+  summary: 运行边界容差 Warning（默认）| None | Error
+  group: 高级
+- name: Power threshold for efficiency calculation
+  summary: 功率阈值 100 W（默认）
+  group: 高级
+```
 
 ### 螺旋桨
 
@@ -714,7 +913,6 @@ ratio`。
 `翼型升力和 drag
 coefficients`，并选中 **Efficiency
 sensor**。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors

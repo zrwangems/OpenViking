@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Idle Task
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 仅用于仿真的端口 标量
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: 空闲任务数据向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | bus
+```
 
 ### 输入
 
@@ -34,8 +45,20 @@ chinese_source: worker-translation
 空闲任务的输出是一个 uint16 值向量。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Task numbers
+  summary: 通过编号标识所创建的任务 double（默认）| single | int8 | int16 | int32 | int64 | int64 | uint8 | uint16 | uint32 | uint64 | uint64
+    | Boolean | bus
+  group: ''
+- name: Preemption flags
+  summary: 存储缓冲区数量 1（默认）| 正整数
+  group: ''
+- name: Enable simulation port
+  summary: 启用外设仿真端口以进行阻塞 off（默认）| on
+  group: ''
+```
 
 ### **Task numbers** — 通过编号标识所创建的任务 `double`（默认）| `single` | `int8` | `int16` | `int32` | `int64` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `uint64` | `Boolean` | `bus`
 
@@ -64,7 +87,6 @@ chinese_source: worker-translation
 **注意**
 
 选中此复选框可在 Simulink 软件中测试异步中断处理行为。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Scheduling

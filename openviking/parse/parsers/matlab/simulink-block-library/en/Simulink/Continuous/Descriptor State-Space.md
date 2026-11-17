@@ -14,6 +14,17 @@ language: en
 # Descriptor State-Space
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -42,8 +53,61 @@ This port has direct feedthrough when:
 Output signal of implicit system.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: E
+  summary: Mass matrix *E* of implicit system 1 (default) | scalar | matrix
+  group: ''
+  block_parameter: E
+  values: '''1'' (default) | scalar | matrix'
+- name: A
+  summary: '*A* matrix of implicit system 1 (default) | scalar | matrix'
+  group: ''
+  block_parameter: A
+  values: '''1'' (default) | scalar | matrix'
+- name: B
+  summary: '*B* matrix of implicit system 1 (default) | scalar | vector | matrix'
+  group: ''
+  block_parameter: B
+  values: '''1'' (default) | scalar | vector | matrix'
+- name: C
+  summary: '*C* matrix of implicit system 1 (default) | scalar | vector | matrix'
+  group: ''
+  block_parameter: C
+  values: '''1'' (default) | scalar | vector | matrix'
+- name: D
+  summary: '*D* matrix of implicit system 1 (default) | scalar | vector | matrix'
+  group: ''
+  block_parameter: D
+  values: '''1'' (default) | scalar | vector | matrix'
+- name: Initial condition
+  summary: Initial state values 0 (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: InitialCondition
+  values: '''0'' (default) | scalar | vector | matrix'
+- name: Direct feedthrough
+  summary: Whether output signal value depends on input signal value True (default) | False | Auto
+  group: ''
+  block_parameter: DirectFeedthrough
+  values: '''True'' (default) | ''False'' | ''Auto'''
+- name: Linearize to sparse model
+  summary: Linearize states to sparse matrices on (default) | off
+  group: ''
+  block_parameter: LinearizeToSparse
+  values: '''off'' (default) | ''on'''
+- name: Absolute tolerance
+  summary: Absolute tolerance for computing block states auto (default) | scalar | vector
+  group: ''
+  block_parameter: AbsoluteTolerance
+  values: '''auto'' (default) | ''-1'' | positive real scalar number | vector of positive real scalar numbers'
+- name: State Name (e.g., 'position')
+  summary: Option to assign unique names to states '' (default) | character vector | cell array of character vectors | MATLAB®
+    variable | ...
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  values: ''''' (default) | valid MATLAB variable name'
+```
 
 ### **E** — Mass matrix *E* of implicit system `1` (default) | scalar | matrix
 
@@ -331,7 +395,6 @@ programmatically, use the `get_param` function.
 
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
-
 ## Libraries
 
 Simulink / Continuous

@@ -14,6 +14,21 @@ language: en
 # Two-Channel Synthesis Subband Filter
 
 ## Ports
+```yaml
+ports:
+- name: Hi band
+  summary: High-frequency subband vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Lo band
+  summary: Low-frequency subband vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output 1
+  summary: Synthesized output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -49,8 +64,57 @@ the output is the sum of the number of rows of the input signals.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Lowpass FIR filter coefficients
+  summary: Lowpass FIR filter coefficients [0.3327 0.8069 0.4599 -0.1350 -0.0854 0.0352] (default)
+  group: Main Tab
+- name: Highpass FIR filter coefficients
+  summary: Highpass FIR filter coefficients [0.0352 0.0854 -0.1350 -0.4599 0.8069 -0.3327] (default)
+  group: Main Tab
+- name: Input processing
+  summary: Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: Main Tab
+- name: Rate options
+  summary: Rate options Enforce single-rate processing (default) | Allow multirate processing
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+- name: Coefficients
+  summary: 'Data type of the coefficients Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Coefficients Minimum
+  summary: Minimum value of filter coefficients [] (default) | scalar
+  group: Data Types Tab
+- name: Coefficients Maximum
+  summary: Maximum value of filter coefficients [] (default) | scalar
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Data type of accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same
+    as product output | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Data type of output Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product
+    output | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Output Minimum [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Output Maximum [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -282,7 +346,6 @@ value is `[]` (unspecified). Simulink software uses this value to perform:
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

@@ -14,14 +14,31 @@ language: en
 # F2838x-M4 UART Transmit
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: UART send data vector | scalar
+  direction: input
+```
 
 ### Input
 
 ### **Data** — UART send data vector | scalar
 
 The port sends the data to the UART port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Additional package header
+  summary: Prefix header S (default)
+  group: ''
+- name: Additional package terminator
+  summary: Suffix terminator E (default)
+  group: ''
+- name: Enable blocking mode
+  summary: Enable blocking mode for data transmission off (default) | on
+  group: ''
+```
 
 ### **Additional package header** — Prefix header `S` (default)
 
@@ -37,7 +54,6 @@ packet to synchronize the data packets.
 
 Enabling this option ensures that the FIFO buffer is checked for data availability
 before sending the data.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / F2838x / M4 C2000 Microcontroller Blockset / F28M35x / M3 C2000 Microcontroller Blockset / F28M36x / M3

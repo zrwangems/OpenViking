@@ -14,17 +14,24 @@ language: en
 # Perfect Insulator
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Zero heat flow thermal
+  direction: conserving
+```
 
 ### Conserving
 
 ### **A** — Zero heat flow thermal
 
 Thermal conserving port with zero heat flow.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Elements

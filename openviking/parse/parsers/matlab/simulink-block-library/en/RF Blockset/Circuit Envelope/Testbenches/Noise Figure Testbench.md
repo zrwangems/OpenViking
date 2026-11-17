@@ -14,10 +14,45 @@ language: en
 # Noise Figure Testbench
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Use Internal Configuration block
+  summary: Use testbench internal configuration block on (default) | off
+  group: ''
+- name: Simulate noise (both stimulus and DUT internal)
+  summary: Enable noise modeling in stimulus signal on (default) | off
+  group: ''
+- name: Input power amplitude (dBm)
+  summary: Input power to DUT -30 (default) | scalar
+  group: ''
+- name: Input frequency (Hz)
+  summary: Carrier frequency of DUT 2.1e9 (default) | scalar
+  group: ''
+- name: Output frequency (Hz)
+  summary: Output frequency of DUT 2.1e9 (default) | scalar
+  group: ''
+- name: Baseband bandwidth (Hz)
+  summary: Baseband bandwidth of input signal 10e6 (default) | scalar
+  group: ''
+- name: Source impedance (Ohm)
+  summary: Source impedance to measure DUT 50 (default) | complex finite scalar
+  group: ''
+- name: Clear noise history
+  summary: Clear noise history button (default)
+  group: ''
+- name: Show Response spectrum
+  summary: View response spectrum using a spectrum scope during simulation on (default) | off
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Internally ground and hide RF circuit terminals on (default) | off
+  group: ''
+```
 
 #### Parameters
 
@@ -88,7 +123,6 @@ Select to view response spectrum using a spectrum scope during simulation.
 Select to internally ground and hide the negative terminals. Clear to
 expose the negative terminals. By exposing these terminals, you can connect
 them to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Testbenches

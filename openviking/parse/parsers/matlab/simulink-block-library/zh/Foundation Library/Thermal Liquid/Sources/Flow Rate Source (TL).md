@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Flow Rate Source (TL)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量控制信号，kg/s 物理信号
+  direction: input
+- name: V
+  summary: 体积流量控制信号，m^3/s 物理信号
+  direction: input
+- name: A
+  summary: 源入口热液体
+  direction: conserving
+- name: B
+  summary: 源出口热液体
+  direction: conserving
+```
 
 ### 输入
 
@@ -46,8 +61,28 @@ chinese_source: worker-translation
 ### **B** — 源出口热液体
 
 热液体守恒端口。正流量使流体从端口 **A** 流向端口 **B**。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 选择流量在仿真期间是否可以变化 Controlled（默认）| Constant
+  group: ''
+- name: Flow rate type
+  summary: 选择源产生质量流量还是体积流量 Mass flow rate（默认）| Volumetric flow rate
+  group: ''
+- name: Mass flow rate
+  summary: 通过源的恒定质量流量 0 kg/s（默认）
+  group: ''
+- name: Volumetric flow rate
+  summary: 通过源的恒定体积流量 0 m^3/s（默认）
+  group: ''
+- name: Power added
+  summary: 选择源是否做功 Isentropic（默认）| None
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 入口和出口处垂直于流动路径的面积 0.01 m^2（默认）
+  group: ''
+```
 
 ### **Source type** — 选择流量在仿真期间是否可以变化 `Controlled`（默认）| `Constant`
 
@@ -105,7 +140,6 @@ chinese_source: worker-translation
 
 源入口和出口处垂直于流动路径的面积。假设两个横截
 面积相同。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Sources

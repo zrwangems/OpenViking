@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Serial-In Parallel-Out Shift Register
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 串行输入 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 并行输出 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,19 @@ chinese_source: worker-translation
 并行输出信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of samples
+  summary: 输入采样数 4（默认）| 正整数
+  group: ''
+- name: Initial condition
+  summary: 输入采样的初始值 0（默认）| 实数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Number of samples** — 输入采样数 `4`（默认）| 正整数
 
@@ -46,7 +68,6 @@ chinese_source: worker-translation
 连续模块执行之间的时间。在执行期间，模块产生输出，并在适当时更新其内部状态。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
 
 对于继承的离散时间，指定 `-1`。对于离散时间，指定正整数。对于连续时间，指定 `0`。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

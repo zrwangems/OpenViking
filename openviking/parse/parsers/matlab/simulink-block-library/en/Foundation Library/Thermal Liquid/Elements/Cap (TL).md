@@ -14,6 +14,12 @@ language: en
 # Cap (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Mass flow rate and energy flow rate are zero thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,11 +27,12 @@ language: en
 
 Thermal liquid conserving port where the mass flow rate and energy
 flow rate are both equal to zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Elements

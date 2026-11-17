@@ -14,6 +14,21 @@ language: en
 # Beamscan Spectrum
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Received signal *M*-by-*N* complex-valued matrix
+  direction: input
+  data_types: double
+- name: Y
+  summary: Beamscan 2-D spatial spectrum non-negative real-valued *P*-by-*Q* matrix
+  direction: output
+  data_types: double
+- name: Ang
+  summary: Directions of arrival non-negative, real-valued 2-by-*L* matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -61,8 +76,81 @@ To enable this output port, select the **Enable DOA output**
 check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: Operating frequency (Hz)
+  summary: System operating frequency 3e8 (default) | positive real scalar
+  group: ''
+- name: Number of bits in phase shifters
+  summary: Number of phase shift quantization bits 0 (default) | nonnegative integer
+  group: ''
+- name: Forward-backward averaging
+  summary: Enable forward-backward averaging off (default) | on
+  group: ''
+- name: Azimuth scan angles (deg)
+  summary: Scan angles in azimuth direction -180:180 (default) | real-valued vector
+  group: ''
+- name: Elevation scan angles (deg)
+  summary: Scan angles in elevation direction -90:90 (default) | real-valued vector
+  group: ''
+- name: Enable DOA output
+  summary: Output directions of arrival through output port off (default) | on
+  group: ''
+- name: Number of signals
+  summary: Expected number of arriving signals 1 (default) | positive integer
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: Method to specify array Array (no subarrays) (default) | MATLAB expression
+  group: ''
+- name: Expression
+  summary: MATLAB expression used to create an array Phased Array System Toolbox™ array System object
+  group: ''
+- name: Geometry
+  summary: Array geometry ULA (default) | URA | UCA | Conformal Array
+  group: ''
+- name: Number of elements
+  summary: Number of array elements 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2
+  group: ''
+- name: Element spacing (m)
+  summary: Spacing between array elements 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for
+    ULA or URA arrays | 2-element vector of positive values for URA arrays
+  group: ''
+- name: Array axis
+  summary: Linear axis direction of ULA y (default) | x | z
+  group: ''
+- name: Array size
+  summary: Dimensions of URA array [2,2] (default) | positive integer | 1-by-2 vector of positive integers
+  group: ''
+- name: Element lattice
+  summary: Lattice of URA element positions Rectangular (default) | Triangular
+  group: ''
+- name: Array normal
+  summary: Array normal direction x for URA arrays or z for UCA arrays (default) | y
+  group: ''
+- name: Radius of UCA (m)
+  summary: UCA array radius 0.5 (default) | positive scalar
+  group: ''
+- name: Element positions (m)
+  summary: Positions of conformal array elements [0;0;0] (default) | 3-by-*N*matrix of real values
+  group: ''
+- name: Element normals (deg)
+  summary: Direction of conformal array element normal vectors [0;0] | 2-by-1 column vector | 2-by-*N* matrix
+  group: ''
+- name: Taper
+  summary: Array element tapers 1 (default) | complex scalar | complex-valued row vector
+  group: ''
+```
 
 ### **Signal propagation speed (m/s)** — Signal propagation speed `physconst('LightSpeed')` (default) | real-valued positive scalar
 
@@ -369,7 +457,6 @@ element. The number of weights must match the number of elements
 of the array.
 
 **Data Types:** `double`
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

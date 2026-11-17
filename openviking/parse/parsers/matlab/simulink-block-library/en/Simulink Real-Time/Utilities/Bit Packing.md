@@ -14,10 +14,27 @@ language: en
 # Bit Packing
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Bit Patterns
+  summary: Packed data bit pattern {[0:31]} (default)
+  group: ''
+  block_parameter: BitPatterns
+- name: Output port (packed) data type
+  summary: Packed data type uint32 (default) | double | single | int8 | uint8 | int16 | uint16 | int32 | boolean
+  group: ''
+  block_parameter: PackDataType
+- name: Output port (packed) dimensions
+  summary: Packed data dimensions [1] (default)
+  group: ''
+  block_parameter: PackDataSize
+```
 
 ### **Bit Patterns** — Packed data bit pattern {[0:31]} (default)
 
@@ -55,7 +72,6 @@ Specify the size of the port by using a format compatible with the MATLAB
 |  |
 | --- |
 | **Block Parameter:** `PackDataSize` |
-
 ## Libraries
 
 Simulink Real-Time / Utilities

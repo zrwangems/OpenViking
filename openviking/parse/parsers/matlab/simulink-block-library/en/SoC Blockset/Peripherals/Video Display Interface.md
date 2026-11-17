@@ -14,6 +14,17 @@ language: en
 # Video Display Interface
 
 ## Ports
+```yaml
+ports:
+- name: msg
+  summary: SoC message data vector
+  direction: input
+  data_types: SoCData
+- name: data
+  summary: Image data 3\height*\width*-element vector
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -40,8 +51,25 @@ To enable this port, set the **Output** parameter to
 `To output port`.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Output type To terminator (default) | To output port
+  group: ''
+- name: Image size
+  summary: Image size 160x120 (default) | 320x240 | 640x480 | 800x600 | custom
+  group: ''
+- name: Image size ([width, height])
+  summary: Image size [320, 240] (default) | two-element vector of positive integers
+  group: ''
+- name: Pixel format
+  summary: Format of the pixel data RGB (default) | YCbCr 4:2:2
+  group: ''
+- name: Sample time
+  summary: Sample time in seconds -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Output** — Output type `To terminator` (default) | `To output port`
 
@@ -77,7 +105,6 @@ To enable this parameter, set the **Image size** parameter to
 
 Enter the sample time defining the rate at which to receive the message containing
 video data.
-
 ## Libraries
 
 SoC Blockset / Peripherals

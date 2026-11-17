@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # OPC UA Read
 
 ## 端口
+```yaml
+ports:
+- name: Value
+  summary: 所选节点的当前数据值 标量 | 总线
+  direction: output
+  data_types: Boolean | single | double | datetime | int8 | int16 | int32 | int64 | uint8 | uint8 vector | uint16 | uint32
+    | uint64 | struct | char vector | bus
+- name: Timestamp
+  summary: 所选节点数据的时间戳 秒（默认）| 日期数字
+  direction: output
+  data_types: double
+- name: Quality
+  summary: 从所选节点读取的数据的质量 布尔值
+  direction: output
+  data_types: Boolean
+```
 
 ### 输出
 
@@ -55,8 +71,47 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Show quality port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Server
+  summary: 为模块定义 OPC UA 服务器 下拉列表
+  group: ''
+  block_parameter: ServerList
+  type: string | character vector
+- name: Nodes
+  summary: OPC UA 服务器节点列表 表格
+  group: ''
+  block_parameter: NodeList
+  type: string | character vector
+- name: Show quality port
+  summary: 向模块添加质量输出 on（默认）| off
+  group: ''
+  block_parameter: ShowQualityPort
+  type: string | character vector
+  values: '''on'' | ''off'''
+- name: Show timestamp port
+  summary: 向模块添加时间戳输出 on（默认）| off
+  group: ''
+  block_parameter: ShowTimestampPort
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 将时间戳端口显示为
+  summary: 设置时间戳基准 Seconds since start（默认）| Serial date number
+  group: ''
+  block_parameter: ShowTimestampPortAs
+  type: string | character vector
+  values: '''Seconds since start'' | ''Serial date number'''
+  default: '''Seconds since start'''
+- name: 采样时间
+  summary: 读取操作的采样时间 -1（默认）| 非负标量
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: 非负标量
+  default: '''-1'''
+```
 
 ### **Server** — 为模块定义 OPC UA 服务器 下拉列表
 
@@ -140,7 +195,6 @@ number`。
 | **类型：** `string` | `character vector` |
 | **值：** 非负标量 |
 | **默认值：** `'-1'` |
-
 ## 所属库
 
 Industrial Communication Toolbox / OPC Unified Architecture

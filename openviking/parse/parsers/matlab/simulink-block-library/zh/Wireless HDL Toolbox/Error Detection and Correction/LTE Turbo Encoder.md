@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # LTE Turbo Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入样本标量
+  direction: input
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: blockSize
+  summary: Turbo 码块大小 整数
+  direction: input
+  data_types: single | double | uint16 | fixdt(0,13,0)
+- name: data
+  summary: 编码样本流 3×1 列向量
+  direction: output
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: tail1, tail2
+  summary: 指示网格终止周期 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -84,8 +111,19 @@ Turbo 码块大小，指定为整数。该值必须是 LTE 标准中指定的 18
 通过选择 **Enable trellis termination valid ports** 来启用这些端口。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Block size source
+  summary: 如何指定块大小 Input port（默认）| Property
+  group: ''
+- name: Block size
+  summary: Turbo 码块大小 6144（默认）
+  group: ''
+- name: Enable trellis termination valid ports
+  summary: 启用指示尾比特输出样本的端口 off（默认）| on
+  group: ''
+```
 
 ### **Block size source** — 如何指定块大小 `Input port`（默认）| `Property`
 
@@ -102,7 +140,6 @@ Turbo 码块大小，指定为整数。该值必须是 LTE 标准中指定的 18
 ### **Enable trellis termination valid ports** — 启用指示尾比特输出样本的端口 off（默认）| on
 
 当您选择此参数时，模块上会出现 **tail1** 和 **tail2** 端口。这些端口返回控制信号，用于指示输出样本为每个编码器尾比特的周期。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

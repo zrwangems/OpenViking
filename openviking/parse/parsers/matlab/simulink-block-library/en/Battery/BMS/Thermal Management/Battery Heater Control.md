@@ -14,6 +14,18 @@ language: en
 # Battery Heater Control
 
 ## Ports
+```yaml
+ports:
+- name: AmbientTemperature
+  summary: Ambient temperature scalar
+  direction: input
+- name: CoolantTemperature
+  summary: Coolant temperature scalar
+  direction: input
+- name: Command
+  summary: Heater command scalar
+  direction: output
+```
 
 ### Input
 
@@ -31,8 +43,22 @@ Temperature of the coolant, specified as a scalar.
 Heater command, returned as a scalar. If this value is equal to `0`,
 the heater switches off. If this value is equal to `1`,
 the heater switches on.
-
 ## Parameters
+```yaml
+parameters:
+- name: Ambient temperature threshold for heater
+  summary: Ambient temperature threshold for heater 278.15 (default) | positive scalar
+  group: ''
+- name: Switch-on coolant temperature
+  summary: Switch-on coolant temperature 278.15 (default) | positive scalar
+  group: ''
+- name: Switch-off coolant temperature
+  summary: Switch-off coolant temperature 290.15 (default) | positive scalar
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 ### **Ambient temperature threshold for heater** — Ambient temperature threshold for heater `278.15` (default) | positive scalar
 
@@ -68,7 +94,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Thermal Management

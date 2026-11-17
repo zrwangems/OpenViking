@@ -14,6 +14,18 @@ language: en
 # Ideal Torque Sensor
 
 ## Ports
+```yaml
+ports:
+- name: T
+  summary: Torque, N\*m physical signal
+  direction: output
+- name: R
+  summary: Rod (positive probe) mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case (reference probe) mechanical rotational
+  direction: conserving
+```
 
 ### Output
 
@@ -31,11 +43,12 @@ positive probe.
 
 Mechanical rotational conserving port associated with the sensor
 negative (reference) probe.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanical Sensors

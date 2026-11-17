@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Piezo Bender
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: unspecified
+- name: '-'
+  summary: 负极端子电气
+  direction: unspecified
+- name: Ctr
+  summary: 平移壳体机械
+  direction: unspecified
+- name: Cro
+  summary: 旋转壳体机械
+  direction: unspecified
+- name: Rtr
+  summary: 平移转子机械
+  direction: unspecified
+- name: Rro
+  summary: 旋转转子机械
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -41,8 +62,64 @@ chinese_source: worker-translation
 ### **Rro** — 旋转转子机械
 
 与转子关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of elements
+  summary: 单元数量 1（默认）| 大于或等于 1 的正整数
+  group: 尺寸
+- name: Total beam length
+  summary: 梁总长度 3.175E-2 m（默认）| 正标量
+  group: 尺寸
+- name: Beam width
+  summary: 梁宽度 1.27E-2 m（默认）| 正标量
+  group: 尺寸
+- name: Beam thickness
+  summary: 梁厚度 5.08E-4 m（默认）| 正标量
+  group: 尺寸
+- name: Parameterization
+  summary: 稳态参数化 Specify from a datasheet for clamped-free configuration（默认）| Specify from material properties
+  group: 稳态
+- name: Capacitance
+  summary: 压电弯曲器电容 15 nF（默认）| 正标量
+  group: 稳态
+- name: Rated drive voltage, Vrated
+  summary: 额定驱动电压 180 V（默认）| 正标量
+  group: 稳态
+- name: Free deflection at Vrated
+  summary: Vrated 下的自由偏转 +0.233 mm（默认）| 非零值
+  group: 稳态
+- name: Blocking force at Vrated
+  summary: Vrated 下的阻塞力 -0.414 N（默认）| 标量
+  group: 稳态
+- name: Young modulus, E
+  summary: 杨氏模量 1.36628e11 N/m^2（默认）| 正标量
+  group: 稳态
+- name: Piezoelectric stress coefficient, e31
+  summary: 压电应力系数 7.5459 C/m^2（默认）| 非零标量
+  group: 稳态
+- name: Dielectric constant
+  summary: 介电常数 1.38965e-08 F/m（默认）| 正标量
+  group: 稳态
+- name: Inertial effects
+  summary: 惯性效应建模选项 On（默认）| Off
+  group: 动力学
+- name: Parameterization
+  summary: 惯性参数化 Specify from a datasheet for clamped-free configuration（默认）| Specify from material properties
+  group: 动力学
+- name: Beam mass
+  summary: 梁质量 1.6 g（默认）| 正标量
+  group: 动力学
+- name: First natural frequency
+  summary: 第一阶固有频率 391 Hz（默认）| 正标量
+  group: 动力学
+- name: Rayleigh damping constant proportional to stiffness
+  summary: 与刚度成比例的 Rayleigh 阻尼常数 1e-5 s（默认）| 非负标量
+  group: 动力学
+- name: Rayleigh damping constant proportional to mass
+  summary: 与质量成比例的 Rayleigh 阻尼常数 0 1/s（默认）| 非负标量
+  group: 动力学
+```
 
 ### 尺寸
 
@@ -165,7 +242,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Inertial effects** 设置为 `On`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

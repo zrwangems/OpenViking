@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Solenoid Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 控制阀门的信号，无量纲物理信号
+  direction: input
+- name: A
+  summary: 液体端口，等温液体
+  direction: input
+- name: B
+  summary: 液体端口，等温液体
+  direction: input
+- name: +
+  summary: 正极端子，电气
+  direction: input
+- name: '-'
+  summary: 负极端子，电气
+  direction: input
+```
 
 ### 输入
 
@@ -50,8 +68,55 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Solenoid control** 设置为 `Electrical ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Solenoid control
+  summary: 选择阀门控制方法 Physical signal（默认）| Electrical ports
+  group: ''
+- name: Valve initial position
+  summary: 阀门的初始位置 Closed（默认）| Open
+  group: ''
+- name: Opening switching time
+  summary: 打开时流量上升的时间 0.05 s（默认）| 正标量
+  group: ''
+- name: Closing switching time
+  summary: 关闭时流量下降的时间 0.1 s（默认）| 正标量
+  group: ''
+- name: Maximum opening area
+  summary: 完全打开阀门的面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的阀门间隙面积 1e-10 m^2（默认）
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 阀门入口或出口处的面积 inf m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Pressure recovery
+  summary: 是否考虑面积扩大中的压力增加 off（默认）| on
+  group: ''
+- name: Rated voltage
+  summary: 电磁铁额定电压 12 V（默认）| 正标量
+  group: ''
+- name: Nominal current
+  summary: 稳态电流 2e-4 A（默认）| 正标量
+  group: ''
+- name: Solenoid inductance
+  summary: 线性电磁铁电感 1e-6 H（默认）| 正标量
+  group: ''
+- name: Plunger distance of travel
+  summary: 柱塞行程距离 1.8e-3 m（默认）| 正标量
+  group: ''
+- name: Initial current
+  summary: 电磁铁初始电流 0 A（默认）| 正标量
+  group: ''
+```
 
 ### **Solenoid control** — 选择阀门控制方法 `Physical signal`（默认）| `Electrical ports`
 
@@ -136,7 +201,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Solenoid control** 设置为 `Electrical ports`。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

@@ -14,6 +14,17 @@ language: en
 # FFE
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input baseband signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Estimated channel output scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -32,8 +43,43 @@ specified as a scalar, the output is also scalar. If the input signal is an impu
 response vector signal, the output is also a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: FFE operating mode Fixed (default) | Off
+  group: ''
+  block_parameter: Mode
+  type: character vector
+  values: Fixed | Off
+  default: Fixed
+- name: Tap Spacing
+  summary: Fractional taps for sub-symbol equalization control T-spaced (default) | T/2-spaced | T/4-spaced
+  group: ''
+  block_parameter: TapSpacing
+  type: character vector
+  values: T-spaced | T/2-spaced | T/4-spaced
+  default: T-spaced
+- name: Tap weights
+  summary: FFE tap weights [0,1,0,0,0] (default) | row vector
+  group: ''
+  block_parameter: TapWeights
+  type: character vector
+  values: row vector
+  default: '[0,1,0,0,0]'
+- name: Normalize
+  summary: Normalize tap weights on (default) | fff
+  group: ''
+- name: Visualize Response
+  summary: Plot FFE FIR filter response button
+  group: ''
+- name: Mode
+  summary: Include Mode parameter in IBIS-AMI model on (default) | off
+  group: ''
+- name: Tap weights
+  summary: Include Tap weights parameter in IBIS-AMI model on (default) | off
+  group: ''
+```
 
 ### **Mode** — FFE operating mode `Fixed` (default) | `Off`
 
@@ -121,7 +167,6 @@ Select to include **Tap weights** as a parameter in the IBIS-AMI
 file. If you deselect **Tap weights**, it is removed from the AMI
 files, effectively hard-coding **Tap weights** to its current
 value.
-
 ## Libraries
 
 SerDes Toolbox / Datapath Blocks

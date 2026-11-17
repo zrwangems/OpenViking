@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Write DDS Sample
 
 ## 端口
+```yaml
+ports:
+- name: Port_Enable
+  summary: 外部使能信号 标量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: bus
+- name: Port_1
+  summary: 输出 DDS 样本 标量 | 向量 | 矩阵
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -40,8 +55,22 @@ Simulink 环境中的信号。信号被转换为应用程序用于向 DDS 网络
 向 DDS 网络发送样本。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Show enable port
+  summary: 显示使能端口 off（默认）| on
+  group: ''
+  block_parameter: ShowEnablePort
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Connect to live network
+  summary: 将 DDS 仿真连接到实时网络 off（默认）| on
+  group: ''
+  block_parameter: ConnectToLive
+  type: 字符向量
+  values: '''on'' | ''off'''
+```
 
 ### **Show enable port** — 显示使能端口 `off`（默认）| `on`
 
@@ -75,7 +104,6 @@ Simulink 环境中的信号。信号被转换为应用程序用于向 DDS 网络
 | **类型：** 字符向量 |
 | **值：** `'on' | 'off'` |
 | **默认：** `'off'` |
-
 ## 所属库
 
 DDS Blockset

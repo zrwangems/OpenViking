@@ -14,6 +14,21 @@ language: en
 # Cross-Spectrum Estimator
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: First data input vector | matrix
+  direction: input
+  data_types: double | single
+- name: y
+  summary: Second data input vector | matrix
+  direction: input
+  data_types: double | single
+- name: Output
+  summary: Cross-power spectrum density vector | matrix
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -56,8 +71,55 @@ input signals.
 
 **Data Types:** `double` | `single`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Window length source
+  summary: Window length source Same as input frame length (default) | Specify on dialog
+  group: ''
+- name: Window length
+  summary: Length of window in samples 1024 (default) | positive integer
+  group: ''
+- name: Window overlap (%)
+  summary: Percentage of overlap between windows 0 (default) | scalar in the range [0,100)
+  group: ''
+- name: Averaging method
+  summary: Averaging method Running (default) | Exponential
+  group: ''
+- name: Specify forgetting factor from input port
+  summary: Specify forgetting factor from input port off (default) | on
+  group: ''
+- name: Forgetting factor
+  summary: Exponential weighting forgetting factor 0.9 (default) | scalar in the range (0,1]
+  group: ''
+- name: Number of spectral averages
+  summary: Number of spectral averages 1 (default) | positive integer
+  group: ''
+- name: FFT length source
+  summary: Source of FFT length value Auto (default) | Property
+  group: ''
+- name: FFT length
+  summary: FFT length 128 (default) | positive integer
+  group: ''
+- name: Window function
+  summary: Window function Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular
+  group: ''
+- name: Sidelobe attenuation of window (dB)
+  summary: Sidelobe attenuation of window in dB 60 (default) | positive scalar
+  group: ''
+- name: Frequency range
+  summary: Frequency range of the cross-spectrum estimate Centered (default) | One-sided | Two-sided
+  group: ''
+- name: Inherit sample rate from input
+  summary: Inherit sample rate from input on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Window length source** — Window length source `Same as input frame length` (default) | `Specify on dialog`
 
@@ -241,7 +303,6 @@ Specify the type of simulation to run as one of these:
   reused for subsequent simulations, as long as the model does not
   change. This option requires additional startup time but
   provides faster subsequent simulations.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

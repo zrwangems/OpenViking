@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Range Response
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据立方体 复值 *K*×1 列向量 | 复值 *K*×*L* 矩阵 | 复值 *K*×*N*×*L* 数组
+  direction: input
+  data_types: double
+- name: Coeff
+  summary: 匹配滤波器系数 复值列向量
+  direction: input
+  data_types: double
+- name: XRef
+  summary: 参考信号 复值 *K*×1 列向量
+  direction: input
+  data_types: double
+- name: Resp
+  summary: 距离响应数据立方体 复值 *M* 元素列向量 | 复值 *M*×*L* 矩阵 | 复值 *M*×*N*×*L* 数组
+  direction: output
+  data_types: double
+- name: Range
+  summary: 沿距离维度的距离值 实值 *M*×1 列向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -87,8 +110,56 @@ chinese_source: worker-translation
 沿 **Resp** 输出数据端口第一维度的距离值，指定为实值 *M*×1 列向量。此量定义了 `Resp` 输出端口数据第一维度的距离值。单位为米。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement mode
+  summary: 测量模式 Monostatic（默认）| Bistatic
+  group: ''
+- name: Range processing method
+  summary: 距离处理方法 Matched filter（默认）| FFT
+  group: ''
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认）| 正实值标量
+  group: ''
+- name: FM sweep slope (Hz/s)
+  summary: FM 扫频斜率 1e9（默认）| 标量
+  group: ''
+- name: Dechirp input signal
+  summary: 启用输入信号去啁啾 on（默认）| off
+  group: ''
+- name: Source of FFT length in range processing
+  summary: 距离处理中 FFT 长度的来源 Auto（默认）| Property
+  group: ''
+- name: FFT length in range processing
+  summary: 距离处理 FFT 长度 1024（默认）| 正整数
+  group: ''
+- name: Range processing window
+  summary: 距离 FFT 加权窗 None（默认）| Hamming | Chebyshev | Hann | Kaiser | Taylor
+  group: ''
+- name: Range sidelobe attenuation level
+  summary: 距离处理旁瓣衰减 30（默认）| 正标量
+  group: ''
+- name: Set reference range at center
+  summary: 在距离网格中心设置参考距离 on（默认）| off
+  group: ''
+- name: Reference range (m)
+  summary: 距离网格的参考距离 0.0（默认）| 非负标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Measurement mode** — 测量模式 `Monostatic`（默认）| `Bistatic`
 
@@ -251,7 +322,6 @@ chinese_source: worker-translation
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

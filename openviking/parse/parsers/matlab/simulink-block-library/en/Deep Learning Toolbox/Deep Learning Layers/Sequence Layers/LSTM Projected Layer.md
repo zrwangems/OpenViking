@@ -14,6 +14,17 @@ language: en
 # LSTM Projected Layer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data 2-dimensional array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output data 2-dimensional array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,207 @@ The result of the projected LSTM operation. The output data has two dimensions
 corresponding to channels and time steps, in that order.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Layer
+  summary: Corresponding layer object layerObject (default) | lstmProjectedLayer object
+  group: Main
+  block_parameter: Layer
+  type: workspace variable
+  values: lstmProjectedLayer object
+  default: '''layerObject'''
+- name: Data format
+  summary: Format of input data CT (default)
+  group: Main
+  block_parameter: DataFormat
+  type: character vector
+  values: '''CT'''
+  default: '''CT'''
+- name: Stateful prediction
+  summary: Whether to use stateful prediction on (default) | off
+  group: Main
+  block_parameter: StatefulPrediction
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Activation approximation method
+  summary: Approximation method for computing activation function output None (default) | CORDIC | Lookup
+  group: Data Types
+  block_parameter: ApproximationMethod
+  type: character vector
+  values: '''None'' | ''CORDIC'' | ''Lookup'''
+  default: '''None'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Data type of output Inherit: Inherit via internal rule (default) | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | <data type expression>'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Input weights
+  summary: 'Data type of input weights Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant
+    value'' | <data type expression>'
+  group: Data Types
+  block_parameter: InputWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Recurrent weights
+  summary: 'Data type of recurrent weights Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant
+    value'' | <data type expression>'
+  group: Data Types
+  block_parameter: RecurrentWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Bias
+  summary: 'Data type of bias Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant value'' |
+    <data type expression>'
+  group: Data Types
+  block_parameter: BiasDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Input projector weights
+  summary: 'Data type of input projector weights Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant
+    value'' | <data type expression>'
+  group: Data Types
+  block_parameter: InputProjectorWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Output projector weights
+  summary: 'Data type of output projector weights Inherit: Inherit via back propagation (default) | Inherit: Inherit from
+    ''Constant value'' | <data type expression>'
+  group: Data Types
+  block_parameter: OutputProjectorWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Initial cell state
+  summary: 'Data type of initial cell state Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant
+    value'' | <data type expression>'
+  group: Data Types
+  block_parameter: TODODataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Cell state
+  summary: 'Data type of cell state Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB |
+    Inherit: Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator | <data type expression>'
+  group: Data Types
+  block_parameter: CellStateDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Initial hidden state
+  summary: 'Data type of initial hidden state Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant
+    value'' | <data type expression>'
+  group: Data Types
+  block_parameter: InitialHiddenStateDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Hidden state
+  summary: 'Data type of hidden state Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match scaling
+    | Inherit: Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: Data Types
+  block_parameter: HiddenStateDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Input weights matrix multiply output
+  summary: 'Data type of input weights matrix multiply output Inherit: Inherit via internal rule (default) | Inherit: Keep
+    MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: Data Types
+  block_parameter: InputWeightsMatrixMulitplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Recurrent weights matrix multiply output
+  summary: 'Data type of recurrent weights matrix multiply output Inherit: Inherit via internal rule (default) | Inherit:
+    Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input | <data type
+    expression>'
+  group: Data Types
+  block_parameter: RecurrentWeightsMatrixMulitplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Input projector weights matrix multiply output
+  summary: 'Data type of input projector weights matrix multiply output Inherit: Inherit via internal rule (default) | Inherit:
+    Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input | <data type
+    expression>'
+  group: Data Types
+  block_parameter: InputProjectorWeightsMatrixMultiplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Output projector weights matrix multiply output
+  summary: 'Data type of output projector weights matrix multiply output Inherit: Inherit via internal rule (default) | Inherit:
+    Keep MSB | Inherit: Match scaling | Inherit: Inherit via back propagation | Inherit: Same as first input | <data type
+    expression>'
+  group: Data Types
+  block_parameter: OutputProjectorWeightsMatrixMultiplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Linear gate accumulator
+  summary: 'Data type of linear gate accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input
+    | <data type expression>'
+  group: Data Types
+  block_parameter: LinearGateAccumDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Same as first input'' | <data type expression>'
+- name: Linear gate add output
+  summary: 'Data type of linear gate sum Inherit: Same as first input (default) | Inherit: Keep MSB | Inherit: Keep LSB |
+    Inherit: Inherit via back propagation | Inherit: Inherit via internal rule | Inherit: Same as accumulator | <data type
+    expression>'
+  group: Data Types
+  block_parameter: LinearGateAddOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Gate activation output
+  summary: 'Data type of gate activation output Inherit: Inherit via internal rule (default) | Inherit: Same as first input
+    | <data type expression>'
+  group: Data Types
+  block_parameter: GateActivationoutDataTypeStr
+  values: 'Inherit: Inherit via internal rule (default) | Inherit: Same as first input | <data type expression>'
+- name: State activation output
+  summary: 'Data type of state activation output ''Inherit: Inherit via internal rule'' (default) | ''Inherit: Same as first
+    input'' | <data type expression>'
+  group: Data Types
+  block_parameter: StateActivationOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Same as first input'' | <data type expression>'
+- name: Cell state product output
+  summary: 'Data type of cell state product Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Inherit
+    via back propagation | Inherit: Same as first input | <data type expression>'
+  group: Data Types
+  block_parameter: CellStateProductOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Inherit via back propagation''
+    | ''Inherit: Same as first input'' | <data type expression>'
+- name: Cell state accumulator
+  summary: 'Data type of cell state accumulator Inherit: Inherit via internal rule (default) | Inherit: Same as first input
+    | <data type expression>'
+  group: Data Types
+  block_parameter: CellStateProductOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Same as first input'' | <data type expression>'
+- name: Sample time
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -702,7 +912,6 @@ programmatically, use the `set_param` (Simulink) function.
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **Values:** `'-1'` (default) | scalar |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Learning Layers / Sequence Layers

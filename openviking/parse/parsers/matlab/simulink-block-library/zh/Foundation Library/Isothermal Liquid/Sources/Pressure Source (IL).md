@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pressure Source (IL)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 压差控制信号，Pa 物理信号
+  direction: input
+- name: A
+  summary: 源入口等温液体
+  direction: input
+- name: B
+  summary: 源出口等温液体
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,16 @@ chinese_source: worker-translation
 ### **B** — 源出口等温液体
 
 等温液体守恒端口。正压差使端口 **B** 处的压力大于端口 **A** 处的压力。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 选择压差是否可以在仿真期间变化 Controlled（默认）| Constant
+  group: ''
+- name: Pressure differential
+  summary: 源两端的恒定压差 0 MPa（默认）| 标量
+  group: ''
+```
 
 ### **Source type** — 选择压差是否可以在仿真期间变化 `Controlled`（默认）| `Constant`
 
@@ -51,7 +71,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当您将 **Source type** 参数设置为 `Constant` 时启用。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Sources

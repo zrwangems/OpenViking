@@ -15,6 +15,137 @@ chinese_source: worker-translation
 # Spacecraft Dynamics
 
 ## 端口
+```yaml
+ports:
+- name: Fb
+  summary: 施加的力 三元向量 | *numSat*×3 数组
+  direction: input
+  data_types: double
+- name: Mb
+  summary: 施加的力矩 三元向量 | *numSat*×3 数组
+  direction: input
+  data_types: double
+- name: A
+  summary: 外部加速度 三元向量 | *m*×3 数组
+  direction: input
+  data_types: double
+- name: φθψ
+  summary: 月球天平动角 三元向量
+  direction: input
+  data_types: double
+- name: αδW
+  summary: 赤经、赤纬和旋转角 三元向量
+  direction: input
+  data_types: double
+- name: m
+  summary: 航天器质量 标量 | 大小为 *numSat* 的一维数组
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: 质量变化率 标量 | 大小为 *numSat* 的一维数组
+  direction: input
+  data_types: double
+- name: I
+  summary: 航天器惯性张量 3×3 数组 | 3×3×*numSat* 数组
+  direction: input
+  data_types: double
+- name: dI/dt
+  summary: 惯性张量矩阵变化率 3×3 数组 | 3×3×*numSat* 数组
+  direction: input
+  data_types: double
+- name: Vre
+  summary: 相对速度 三元向量 | *numSat*×3 数组
+  direction: input
+  data_types: double
+- name: ρ
+  summary: 大气密度 标量
+  direction: input
+  data_types: double
+- name: F107a
+  summary: 81 天平均 Ottawa F10.7 cm 太阳通量 标量
+  direction: input
+  data_types: double
+- name: F107
+  summary: 每日 Ottawa F10.7 cm 太阳通量 标量
+  direction: input
+  data_types: double
+- name: aph
+  summary: 每日磁指数信息 *N*×7 数组
+  direction: input
+  data_types: double
+- name: Flags
+  summary: 变化标志 23 元数组
+  direction: input
+  data_types: double
+- name: Cd
+  summary: 大气阻力系数 标量 | 大小为 *numSat* 的向量
+  direction: input
+  data_types: double
+- name: Ad
+  summary: 大气阻力面积 标量 | 大小为 *numSat* 的向量
+  direction: input
+  data_types: double
+- name: Rcb, 3
+  summary: 一个或多个自定义天体的位置 三元向量 | *numCustom3rdBodies*×3 元向量
+  direction: input
+  data_types: double
+- name: Fraction
+  summary: 太阳圆盘比例，介于 0（全食）和 1（全日照）之间 | 标量 | *numSat*
+  direction: input
+  data_types: double
+- name: RC
+  summary: 反射系数 标量或 *numSat* 个值，范围 1≤*RC*≤2
+  direction: input
+  data_types: double
+- name: Asrp
+  summary: 航天器横截面积 标量 | *numSat*
+  direction: input
+  data_types: double
+- name: X
+  summary: 航天器位置 三元向量 | *numSat*×3 数组
+  direction: output
+  data_types: double
+- name: V
+  summary: 速度 三元向量 | *numSat*×3 数组
+  direction: output
+  data_types: double
+- name: A
+  summary: 总惯性加速度 三元向量 | *numSat*×3 数组
+  direction: output
+  data_types: double
+- name: qbody2icrf
+  summary: 航天器姿态四元数 四元四元数 | *numSat*×4 数组
+  direction: output
+  data_types: double
+- name: DCM
+  summary: 航天器姿态方向余弦矩阵 3×3 数组 | *numSat*×3×3 数组
+  direction: output
+  data_types: double
+- name: R1,R2,R3
+  summary: 航天器姿态欧拉角 三元向量 | *numSat*×3 数组
+  direction: output
+  data_types: double
+- name: ω
+  summary: 航天器角速率 三元向量 | *numSat*×3 数组
+  direction: output
+  data_types: double
+- name: dω/dt
+  summary: 体角加速度 三元数组 | *numSat*×3 数组
+  direction: output
+  data_types: double
+- name: qicrf2ff
+  summary: 坐标系变换 四元数组
+  direction: output
+  data_types: double
+- name: tutc
+  summary: 当前时间步的时间标量 | 6 元素数组
+  direction: output
+  data_types: double
+- name: Fuel Status
+  summary: 燃料状态标量 | *numSat* 元素数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -474,8 +605,783 @@ https://www.ngdc.noaa.gov/stp/space-weather/solar-data/solar-features/solar-radi
 - 将 **Output fuel tank status** 参数设置为 `on`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input body forces
+  summary: 启用外部力的选项 on（默认）| off
+  group: 主要
+  block_parameter: forcesin
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Input body moments
+  summary: 启用外部力矩的选项 on（默认）| off
+  group: 主要
+  block_parameter: momentsIn
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Input external accelerations
+  summary: 输入附加力加速度的选项 off（默认）| on
+  group: 主要
+  block_parameter: accelIn
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: External acceleration coordinate frame
+  summary: 加速度输入端口坐标系 ICRF（默认）| Fixed-frame
+  group: 主要
+  block_parameter: accelFrame
+  type: 字符向量
+  values: '''ICRF'' | ''Fixed-frame'''
+- name: State vector output coordinate frame
+  summary: 位置和速度状态输出端口坐标系 ICRF（默认）| Fixed-frame
+  group: 主要
+  block_parameter: outportFrame
+  type: 字符向量
+  values: '''ICRF'' | ''Fixed-frame'''
+- name: Output total inertial acceleration
+  summary: 启用总加速度端口的选项 off（默认）| on
+  group: 主要
+  block_parameter: AccelOut
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Start date/time (UTC Julian date)
+  summary: 仿真的初始开始时间 juliandate (2020, 1, 1, 12, 0, 0)（默认）| 有效的标量儒略日 | 有效的格里高利日期，包括年、月、日、小时、分钟、秒，作为一维或六元素数组
+  group: 主要
+  block_parameter: startDate
+  type: 字符向量
+  values: '''juliandate(2020, 1, 1, 12, 0, 0)'' | 有效的标量儒略日 | 有效的格里高利日期，包括年、月、日、小时、分钟、秒，作为一维或六元素数组'
+- name: Output current date/time (UTC Julian date)
+  summary: 添加输出端口 tutc 的选项 on（默认）| off
+  group: 主要
+  block_parameter: dateOut
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 Warning（默认）| Error | None
+  group: 主要
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+- name: Mass type
+  summary: 航天器质量类型 Fixed（默认）| Simple Variable | Custom Variable
+  group: 质量
+  block_parameter: massType
+  type: 字符向量
+  values: '''Fixed'' | ''Simple Variable'' | ''Custom Variable'''
+- name: Mass
+  summary: 刚体航天器的初始质量 4.0（默认）| 标量 | 大小为 *numSat* 的向量
+  group: 质量
+  block_parameter: mass
+  type: 字符向量
+  values: 标量 | 大小为 *numSat* 的向量
+- name: Empty mass
+  summary: 航天器空载质量 3.5（默认）| 标量 | 大小为 *numSat* 的向量
+  group: 质量
+  block_parameter: emptyMass
+  type: 字符向量
+  values: 大小为 *numSat* 的一维数组 | 大小为 *numSat* 的一维数组
+- name: Full mass
+  summary: 航天器满载质量 4.0（默认）| 标量 | 大小为 *numSat* 的向量
+  group: 质量
+  block_parameter: fullMass
+  type: 字符向量
+  values: 标量 | 大小为 *numSat* 的向量
+- name: Inertia tensor
+  summary: 惯量张量矩阵 [0.2273, 0, 0; 0 0.2273 0; 0 0 .0040]（默认）| 3×3 数组 | 3×3×*numSat* 数组
+  group: 质量
+  block_parameter: inertia
+  type: 字符向量
+  values: '''[0.2273, 0, 0; 0 0.2273 0; 0 0 .0040]'' | 3×3 数组 | 3×3×*numSat* 数组'
+- name: Empty inertia tensor
+  summary: 空载惯量张量矩阵 [0.1989, 0, 0; 0 0.1989 0; 0 0 .0035]（默认）| 3×3 数组 | 3×3×*numSat* 数组
+  group: 质量
+  block_parameter: emptyInertia
+  type: 字符向量
+  values: 3×3 数组 | 3×3×*numSat* 数组
+- name: Full inertia tensor
+  summary: 满载惯量张量矩阵 [0.2273, 0, 0; 0, 0.2273, 0; 0, 0, .0040]（默认）| 3×3 数组 | 3×3×*numSat* 数组
+  group: 质量
+  block_parameter: fullInertia
+  type: 字符向量
+  values: 3×3 数组 | 3×3×*numSat* 数组
+- name: Include mass flow relative velocity
+  summary: 启用质量流速度的选项 off（默认）| on
+  group: 质量
+  block_parameter: useMassFlowRelativeVelocity
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Limit mass flow when mass is empty or full
+  summary: 限制质量流的选项 on（默认）| off
+  group: 质量
+  block_parameter: limitMassFlow
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Output fuel tank status
+  summary: 启用燃料箱状态的选项 on（默认）| off
+  group: 质量
+  block_parameter: outputFuelStatus
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Initial state format
+  summary: 轨道初始状态的输入方法 Orbital elements（默认）| ICRF state vector | Fixed-frame state vector
+  group: 轨道
+  block_parameter: stateFormatNum，当 propagator 设置为 High precision (numerical) 时
+  type: 字符向量
+  values: '''Orbital elements'' | ''Orbital elements'' | ''ICRF state vector'' | ''Fixed-frame state''，当 propagator 设置为 ''High
+    precision (numerical)'' 时'
+- name: Orbit type
+  summary: 轨道分类 Keplerian（默认）| Elliptical equatorial | Circular | Circular equatorial
+  group: 轨道
+  block_parameter: orbitType
+  type: 字符向量
+  values: '''Keplerian'' | ''Elliptical equatorial'' | ''Circular inclined'' | ''Circular equatorial'''
+- name: Semi-major axis
+  summary: 椭圆长轴的一半 6786000（默认）| 标量 | 大小为 *numSat* 的一维数组
+  group: 轨道
+  block_parameter: semiMajorAxis
+  type: 字符向量
+  values: 标量 | 大小为 *numSat* 的一维数组
+- name: Eccentricity
+  summary: 轨道偏离度 0.01（默认）| 标量 | 0 到 1 之间的值，或对于 Keplerian 轨道类型大于 1 | 大小为 *numSat* 的一维数组
+  group: 轨道
+  block_parameter: eccentricity
+  type: 字符向量
+  values: 0.01 | 标量 | 0 到 1 之间的值，或对于 Keplerian 轨道类型大于 1 | 大小为 *numSat* 的一维数组
+- name: Inclination
+  summary: 轨道平面的倾斜角 50（默认）| 标量 | 大小为 *numSat* 的一维数组 | 0 到 180 度 | 0 到 pi 弧度
+  group: 轨道
+  block_parameter: inclination
+  type: 字符向量
+  values: 50 | 标量 | 大小为 *numSat* 的一维数组 | 0 到 180 度 | 0 到 pi 弧度
+- name: RAAN
+  summary: 赤道面内的角距离 95（默认）| 0 到 360 之间的标量值 | 大小为 *numSat* 的一维数组
+  group: 轨道
+  block_parameter: raan
+  type: 字符向量
+  values: '''95'' | 0 到 360 之间的标量值 | 大小为 *numSat* 的一维数组'
+- name: Argument of periapsis
+  summary: 从航天器升交点到近拱点的角度 93（默认）| 0 到 360 之间的值 | 大小为 *numSat* 的一维数组
+  group: 轨道
+  block_parameter: argPeriapsis
+  type: 字符向量
+  values: 93 | 0 到 360 之间的标量值 | 大小为 *numSat* 的一维数组
+- name: True anomaly
+  summary: 近拱点与航天器初始位置之间的角度 203（默认）| 0 到 360 之间的标量值 | 大小为 *numSat* 的一维数组
+  group: 轨道
+  block_parameter: trueAnomaly
+  type: 字符向量
+  values: '''203'' | 0 到 360 之间的标量值 | 大小为 *numSat* 的一维数组'
+- name: Argument of latitude
+  summary: 升交点与航天器初始位置之间的角度 200（默认）| 标量 | 0 到 360 之间的值 | 大小为 *numSat* 的一维数组
+  group: 轨道
+  block_parameter: argLat
+  type: 字符向量
+  values: '''200'' | 0 到 360 之间的标量值 | 大小为 *numSat* 的一维数组'
+- name: Longitude of periapsis
+  summary: ICRF *x* 轴与偏心率向量之间的角度 100（默认）| 标量 | 0 到 360 之间的值 | 大小为 *numSat* 的一维数组
+  group: 轨道
+  block_parameter: lonPeriapsis
+  type: 字符向量
+  values: 100 | 0 到 360 之间的标量值 | 大小为 *numSat* 的一维数组
+- name: True longitude
+  summary: ICRF *x* 轴与航天器初始位置之间的角度 150（默认）| 标量 | 0 到 360 之间的值 | 大小为 *numSat* 的一维数组 | *numSat*×3 向量
+  group: 轨道
+  block_parameter: trueLon
+  type: 字符向量
+  values: '''150'' | 0 到 360 之间的标量值 | 大小为 *numSat* 的一维数组 | *numSat*×3 向量'
+- name: ICRF position
+  summary: 航天器的笛卡尔位置向量 [3649700.0 3308200.0 -4676600.0]（默认）| 3 元素向量 | | *numSat*×3 数组
+  group: 轨道
+  block_parameter: inertialPosition
+  type: 字符向量
+  values: '[3649700.0 3308200.0 -4676600.0] | 3 元素向量 | *numSat*×3 数组'
+- name: ICRF velocity
+  summary: 航天器的笛卡尔速度向量 [-2750.8 6666.4 2573.4]（默认）| 3 元素向量 | *numSat*×3 数组
+  group: 轨道
+  block_parameter: inertialVelocity
+  type: 字符向量
+  values: '[-2750.8 6666.4 2573.4] | 3 元素向量 | 大小为 *numSat*×3 数组的二维数组'
+- name: Fixed-frame position
+  summary: 航天器的位置向量 [-4142689.0 -2676864.7 -4669861.6]（默认）| 3 元素向量 | *numSat*×3 数组
+  group: 轨道
+  block_parameter: fixedPosition
+  type: 字符向量
+  values: '''[-4142689.0 -2676864.7 -4669861.6]'' | 单个航天器的 3 元素向量 | *numSat*×3 数组'
+- name: Fixed-frame velocity
+  summary: 航天器的速度向量 [1452.7 -6720.7 2568.1]（默认）| 3 元素向量 | *numSat*×3 数组
+  group: 轨道
+  block_parameter: fixedVelocity
+  type: 字符向量
+  values: '''[1452.7 -6720.7 2568.1]'' | 3 元素向量 | *numSat*×3 数组'
+- name: Attitude reference coordinate frame
+  summary: 姿态和角速率坐标系 ICRF（默认）| Fixed-frame | NED | LVLH
+  group: 姿态
+  block_parameter: attitudeFrame
+  type: 字符向量
+  values: '''ICRF'' | ''Fixed-frame'' | ''NED'' | ''LVLH'''
+- name: Attitude representation
+  summary: 方向格式 Quaternion（默认）| DCM | Euler angles
+  group: 姿态
+  block_parameter: attitudeFrame
+  type: 字符向量
+  values: '''Quaternion'' | ''DCM'' | ''Euler angles'''
+- name: Initial body attitude
+  summary: 航天器初始姿态 [1, 0, 0, 0]（默认）| 4 元素向量 | *numSat*×4 数组 | 3×3 数组 | *numSat*×3×3 数组
+  group: 姿态
+  block_parameter: attitude
+  type: 字符向量
+  values: 4 元素向量 | *numSat*×4 数组 | 3×3 数组 | *numSat*×3×3 数组 | 3 元素数组 | *numSat*×3 数组
+- name: Angle rotation order
+  summary: 角度旋转顺序 ZYX（默认）| ZYX | ZYZ | ZXY | ZXZ | YXZ | YXY | YZX | YZY | XYZ | XYX | XZY | XZX
+  group: 姿态
+  block_parameter: rotationOrder
+  type: 字符向量
+  values: '''ZYX'' | ''ZYZ'' |''ZXY'' | ''ZXZ'' | ''YXZ'' | ''YXY'' | ''YZX'' | ''YZY'' | ''XYZ'' | ''XYX'' | ''XZY'' | ''XZX'''
+- name: Initial body angular rates PQR
+  summary: 初始体坐标系角速率 [0, 0, 0]（默认）| 3 元素向量 | *numSat*×3 数组
+  group: 姿态
+  block_parameter: attitudeRate
+  type: 字符向量
+  values: 3 元素向量 | *numSat*×3 数组
+- name: Output total inertial angular acceleration
+  summary: 启用总飞行器加速度输出的选项 off（默认）| on
+  group: 姿态
+  block_parameter: angAccelOut
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Include gravity gradient torque
+  summary: 启用重力梯度力矩的选项 on（默认）| off
+  group: 姿态
+  block_parameter: angAccelOut
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Central body
+  summary: 航天器环绕的天体 Earth（默认）| Moon | Mercury | Venus | Mars | Jupiter | Saturn | Uranus | Neptune | Sun | Custom
+  group: 中心天体
+  block_parameter: centralBody
+  type: 字符向量
+  values: '''Earth'' | ''Moon'' |''Mercury'' | ''Venus'' | ''Mars'' | ''Jupiter'' | ''Saturn'' | ''Uranus'' | ''Neptune''
+    | ''Sun'' | ''Custom'' |'
+- name: Gravitational potential model
+  summary: 中心天体的重力模型 当 Central body 设置为 Earth、Moon、Mars 或 Custom 时为 Spherical harmonics，当 Central body 设置为 Mercury、Venus、Jupiter、Saturn、Uranus
+    或 Neptune 时为 Oblate ellipsoid（默认）| Point-mass | Oblate ellipsoid (J2)
+  group: 中心天体
+  block_parameter: 当 centralBody 设置为 'Earth'、'Moon'、'Mars' 或 'Custom' 时为 gravityModel | 当 centralBody 设置为 Mercury、Venus、Jupiter、Saturn、Uranus
+    或 Neptune 时为 gravityModelnoSH
+  type: 字符向量
+  values: 当 centralBody 设置为 'Earth'、'Moon'、'Mars' 或 'Custom' 时为 'Spherical harmonics' | 'Point-mass' | 'Oblate ellipsoid (J2)'；当
+    centralBody 设置为 Mercury、Venus、Jupiter、Saturn、Uranus 或 Neptune 时为 'Point-mass' | 'Oblate ellipsoid (J2)'
+- name: Spherical harmonic model
+  summary: 球谐模型 当 Central body 设置为 Earth 时为 EGM2008，当 Central body 设置为 Moon 时为 LP-100K，当 Central body 设置为 Mars 时为 GMM2B，（默认）|
+    EGM96 | EIGEN-GL04C | LP-165P
+  group: 中心天体
+  block_parameter: 当 centralBody 设置为 'Earth' 时为 'earthSH' | 当 centralBody 设置为 'Moon' 时为 'moonSH' | 当 centralBody 设置为 'Mars'
+    时为 'marsSH'
+  type: 字符向量
+  values: 当 centralBody 设置为 'earthSH' 时为 'EGM2008' | 'EGM96' | 'EIGEN-GL04C'；当 centralBody 设置为 'moonSH' 时为 'LP-100K' | 'LP-165P'；当
+    centralBody 设置为 'marsSH' 时为 'GMM2B'
+- name: Rotational rate
+  summary: 旋转速率 4.06124975e-3（默认）| 标量
+  group: 中心天体
+  block_parameter: '''customOmega'''
+  type: 字符向量
+  values: '''4.06124975e-3'' | 标量'
+- name: Spherical harmonic coefficient file
+  summary: 谐波系数 MAT 文件 aerogmm2b.mat（默认）| 谐波系数 MAT 文件
+  group: 中心天体
+  block_parameter: shFile
+  type: 字符向量
+  values: '''aerogmm2b.mat'' | 谐波系数 MAT 文件'
+- name: Degree
+  summary: 谐波模型的阶数 120（默认）| 标量 | 最大值 2159
+  group: 中心天体
+  block_parameter: shDegree
+  type: 字符向量
+  values: '''80'' | 标量'
+- name: Use Earth orientation parameters (EOPs)
+  summary: 使用地球定向参数的选项 on（默认）| off
+  group: 中心天体
+  block_parameter: useEOPs
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: IERS EOP data file
+  summary: 地球定向数据 aeroiersdata.mat（默认）| MAT 文件
+  group: 中心天体
+  block_parameter: eopFile
+  type: 字符向量
+  values: '''aeroiersdata.mat'' | MAT-file'
+- name: Input Moon libration angles
+  summary: 月球天平动欧拉角速率 off（默认）| on
+  group: 中心天体
+  block_parameter: useMoonLib
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Output quaternion (ICRF to Fixed-frame)
+  summary: 添加输出变换四元数端口的选项 off（默认）| on
+  group: 中心天体
+  block_parameter: outputTransform
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Central body spin axis source
+  summary: 中心天体自旋轴来源 Port（默认）| Dialog
+  group: 中心天体
+  block_parameter: cbPoleSrc
+  type: 字符向量
+  values: '''Port'' | ''Dialog'''
+- name: Spin axis right ascension (RA) at J2000
+  summary: J2000 时中心天体自旋轴的赤经 317.68143（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: cbRA
+  type: 字符向量
+  values: '''317.68143'' | 双精度标量'
+- name: Spin axis RA rate (deg/century)
+  summary: 中心天体自旋轴的赤经速率 -0.1061（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: cbRARate
+  type: 字符向量
+  values: '''-0.1061'' | 双精度标量'
+- name: Spin axis declination (Dec) at J2000
+  summary: J2000 时中心天体自旋轴的赤纬 52.88650（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: cbDec
+  type: 字符向量
+  values: '''52.88650'' | 双精度标量'
+- name: Spin axis Dec rate (deg/century)
+  summary: 中心天体自旋轴的赤纬速率 -0.0609（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: cbDecRate
+  type: 字符向量
+  values: '''-0.0609'' | 双精度标量'
+- name: Initial rotation angle at J2000
+  summary: 中心天体 *x* 轴的旋转角 176.630（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: cbRotAngle
+  type: 字符向量
+  values: '''176.630'' | 双精度标量'
+- name: Rotation rate (deg/day)
+  summary: 中心天体 *x* 轴的旋转速率 350.89198226（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: cbRotRate
+  type: 字符向量
+  values: '''350.89198226'' | 双精度标量'
+- name: Equatorial radius
+  summary: 赤道半径 3.3962e6（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: customR
+  type: 字符向量
+  values: '''3.3962e6'' | 双精度标量'
+- name: Flattening
+  summary: 行星扁率 0.00589（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: customF
+  type: 字符向量
+  values: '''0.00589'' | 双精度标量'
+- name: Gravitational parameter
+  summary: 引力参数 4.305e13（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: customMu
+  type: 字符向量
+  values: '''4.305e13'' | 双精度标量'
+- name: Second degree zonal harmonic (J2)
+  summary: 最显著或最大的球谐项 1.0826269e-03（默认）| 双精度标量
+  group: 中心天体
+  block_parameter: customJ2
+  type: 字符向量
+  values: '''1.0826269e-03'' | 双精度标量'
+- name: Include atmospheric drag
+  summary: 包含大气阻力的选项 off（默认）| on
+  group: Drag
+  block_parameter: useDrag
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Atmospheric density source
+  summary: 大气密度值的来源 Dialog（默认）| Port
+  group: Drag
+  block_parameter: atmosSrc
+  type: 字符向量
+  values: '''Dialog'' | ''Port'''
+- name: Atmospheric model
+  summary: 大气模型 NRLMSISE-00（默认）
+  group: Drag
+  block_parameter: atmosModel
+  type: 字符向量
+  values: '''NRLMSISE-00'''
+- name: Flux source
+  summary: 空间天气数据的来源 Dialog（默认）| Port
+  group: Drag
+  block_parameter: fluxSrc
+  type: 字符向量
+  values: '''Dialog'' | ''Port'''
+- name: Space weather data file
+  summary: 空间天气数据的 MAT 文件 aeroSpaceWeatherData.mat（默认）| MAT 文件名
+  group: Drag
+  block_parameter: SpaceWeatherDataFile
+  type: 字符向量
+  values: '''aeroSpaceWeatherData.mat'' | MAT 文件名'
+- name: F10.7 extrapolation method
+  summary: f107Average 和 f107Daily 的外推方法 None - clip（默认）| Constant | Least squares fit
+  group: Drag
+  block_parameter: F107ExtrapMethod
+  type: 字符向量
+  values: '''None - clip'' | ''Constant'' | ''Least squares fit'''
+- name: Magnetic index extrapolation method
+  summary: 磁指数信息的外推方法 None - clip（默认）| Constant | IGRF
+  group: Drag
+  block_parameter: MagneticIndexExtrapMethod
+  type: 字符向量
+  values: '''None - clip'' | ''Constant'' | ''IGRF'''
+  default: '''None - clip'''
+- name: Flags source
+  summary: 变化标志源 Dialog（默认）| Port
+  group: Drag
+  block_parameter: fluxFlagsSrc
+  type: 字符向量
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Flags
+  summary: 变化标志 ones(1,23)（默认）
+  group: Drag
+  block_parameter: fluxFlags
+  type: 字符向量
+  values: '''ones(1,23)'''
+  default: '''ones(1,23)'''
+- name: Include anomalous oxygen in density calculation
+  summary: 在密度计算中包含异常氧的选项 off（默认）| on
+  group: Drag
+  block_parameter: useOxygen
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Drag coefficient source
+  summary: 阻力系数来源 Dialog（默认）| Port
+  group: Drag
+  block_parameter: dragCoeffSrc
+  type: 字符向量
+  values: '''Dialog'' | ''Source'''
+  default: '''Dialog'''
+- name: Drag coefficient
+  summary: 航天器阻力系数 2.179（默认）| 标量 | 大小为 *numSat* 的向量
+  group: Drag
+  block_parameter: dragCoeff
+  type: 字符向量
+  values: 标量 | 大小为 *numSat* 的向量
+  default: '''2.179'''
+- name: Drag area source
+  summary: 阻力面积来源 Dialog（默认）| Port
+  group: Drag
+  block_parameter: dragAreaSrc
+  type: 字符向量
+  values: '''Dialog'' | ''Source'''
+  default: '''Dialog'''
+- name: Drag area
+  summary: 用于计算大气阻力加速度的面积 1.0（默认）| 标量 | 大小为 *numSat* 的向量
+  group: Drag
+  block_parameter: dragArea
+  type: 字符向量
+  values: 标量 | 大小为 *numSat* 的向量
+  default: '''1.0'''
+- name: Ephemeris model
+  summary: 星历模型 DE405（默认）| DE421 | DE423 | DE430 | DE432t
+  group: Third Body
+  block_parameter: ephemerisModel
+  type: 字符向量
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Limit ephemerides date range
+  summary: 启用星历数据范围起始和结束的选项 off（默认）| on
+  group: Third Body
+  block_parameter: useDateRange
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Start date (JD)
+  summary: 星历日期范围的起始日期 juliandate(2020, 1, 1)（默认）| 儒略日
+  group: Third Body
+  block_parameter: startDate
+  type: 字符向量
+  values: '''juliandate(2020, 1, 1)'' | 儒略日'
+  default: '''juliandate(2020, 1, 1)'''
+- name: End date (JD)
+  summary: 星历日期范围的结束日期 juliandate(2050, 1, 1)（默认）| 儒略日
+  group: Third Body
+  block_parameter: endDate
+  type: 字符向量
+  values: '''juliandate(2050, 1, 1)'' | 儒略格式日期'
+  default: '''juliandate(2050, 1, 1)'''
+- name: Include third body gravity
+  summary: 第三体引力引起的加速度 off（默认）| on
+  group: Third Body
+  block_parameter: useThirdBodyGravity
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sun
+  summary: 包含太阳引起的引力加速度 on（默认）| off
+  group: Third Body
+  block_parameter: includeSunGravity
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sun gravity model
+  summary: 太阳的第三体引力模型 Point-mass（默认）| Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: sunThirdBodyGravityModel
+  type: 字符向量
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Mercury
+  summary: 包含水星引起的引力加速度 off（默认）| on
+  group: Third Body
+  block_parameter: includeMercuryGravity
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Mercury gravity model
+  summary: 水星引力模型 Point-mass（默认）| Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: mercuryThirdBodyGravityModel
+  type: 字符向量
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Venus
+  summary: 包含金星引起的引力加速度 off（默认）| on
+  group: Third Body
+  block_parameter: includeVenusGravity
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Venus gravity model
+  summary: 金星引力模型 Point-mass（默认）| Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: venusThirdBodyGravityModel
+  type: 字符向量
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Earth
+  summary: 包含地球引起的引力加速度 on（默认）| off
+  group: Third Body
+  block_parameter: includeEarthGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 地球重力模型
+  summary: 地球重力模型 Point-mass（默认）| Oblate ellipsoid (J2) | Spherical harmonics
+  group: Third Body
+  block_parameter: earthThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'' | ''Spherical harmonics'''
+  default: '''Point-mass'''
+- name: Moon
+  summary: Include gravitational acceleration due to Moon on (default) | off
+  group: Third Body
+  block_parameter: includeMoonGravity
+  type: character vector
+  values: '''off'' | ''on'' |'
+  default: '''on'''
+- name: 月球重力模型
+  summary: 月球重力模型 Point-mass（默认）| Oblate ellipsoid (J2) | Spherical harmonics
+  group: Third Body
+  block_parameter: moonThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'' | ''Spherical harmonics'''
+  default: '''Point-mass'''
+- name: Mars
+  summary: Include gravitational acceleration due to Mars off (default) | on
+  group: Third Body
+  block_parameter: includeMarsGravity
+  type: character vector
+  values: '''off'' | ''on'' |'
+  default: '''off'''
+- name: 火星重力模型
+  summary: 火星重力模型 Point-mass（默认）| Oblate ellipsoid (J2) | Spherical harmonics
+  group: Third Body
+  block_parameter: marsThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'' | ''Spherical harmonics'''
+  default: '''Point-mass'''
+- name: Jupiter
+  summary: Include gravitational acceleration due to Jupiter off (default) | on
+  group: Third Body
+  block_parameter: includeJupiterGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 木星重力模型
+  summary: 木星重力模型 Point-mass（默认）| Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: jupiterThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Saturn
+  summary: Include gravitational acceleration due to Saturn off (default) | on
+  group: Third Body
+  block_parameter: includeSaturnGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 土星重力模型
+  summary: 土星重力模型 Point-mass（默认）| Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: saturnThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Uranus
+  summary: Include gravitational acceleration due to Uranus off (default) | on
+  group: Third Body
+  block_parameter: includeUranusGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 天王星重力模型
+  summary: 天王星重力模型 Point-mass（默认）| Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: uranusThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Neptune
+  summary: Include gravitational acceleration due to Neptune off (default) | on
+  group: Third Body
+  block_parameter: includeNeptuneGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 海王星重力模型
+  summary: 海王星重力模型 Point-mass（默认）| Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: neptuneThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Pluto
+  summary: Include gravitational acceleration due to Pluto off (default) | on
+  group: Third Body
+  block_parameter: includePlutoGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 冥王星重力模型
+  summary: 冥王星重力模型 Point-mass（默认）| Oblate ellipsoid (J2)
+  group: Third Body
+  block_parameter: plutoThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: Custom
+  summary: Include gravitational acceleration due to custom planet off (default) | on
+  group: Third Body
+  block_parameter: includeCustomGravity
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 自定义重力模型
+  summary: 自定义重力模型 Point-mass（默认）| Oblate ellipsoid (J2) | Spherical harmonics
+  group: Third Body
+  block_parameter: customThirdBodyGravityModel
+  type: character vector
+  values: '''Point-mass'' | ''Oblate ellipsoid (J2)'''
+  default: '''Point-mass'''
+- name: 引力参数 (m^3/s^2)
+  summary: 自定义引力加速度 42.828314258067e12（默认）| 标量 | 长度为 *numCustom3rdBodies* 的向量
+  group: Third Body
+  block_parameter: customThirdBodyMu
+  type: character vector
+  values: '''42.828314258067e12'' | scalar | vector of length *numCustom3rdBodies*'
+  default: '''42.828314258067e12'''
+- name: Include solar radiation pressure (SRP)
+  summary: Acceleration due to solar radiation pressure off (default) | on
+  group: SRP
+  block_parameter: useSRP
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Eclipse fraction source
+  summary: Source of eclipse fraction Dialog (default) | Port
+  group: SRP
+  block_parameter: useSRP
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: 阴影模型
+  summary: 阴影模型 Dual cone（默认）| Cylindrical
+  group: SRP
+  block_parameter: shadowModel
+  type: character vector
+  values: '''Dual cone'' | ''Cylindrical'''
+  default: '''Dual cone'''
+- name: Include Earth
+  summary: Option to include Earth on (default) | off
+  group: SRP
+  block_parameter: includeEarth
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Include Moon
+  summary: Option to include Moon on (default) | off
+  group: SRP
+  block_parameter: includeMoon
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: 反射率系数来源
+  summary: 航天器反射率系数的来源 'Dialog'（默认）| 'Port'
+  group: SRP
+  block_parameter: reflectivityCoeffSrc
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''on'''
+- name: Reflectivity coefficient
+  summary: Spacecraft coefficient of reflectivity 1.8 (default) | scalar | 2D array of size *numSat* | between [1,2]
+  group: SRP
+  block_parameter: reflectivityCoeff
+  type: character vector
+  values: '''1.8'' | scalar | 2D array of size *numSat* | between [1,2]'
+  default: '''1.8'''
+- name: SRP 面积来源
+  summary: 航天器太阳辐射压力面积的来源 Dialog（默认）| Port
+  group: SRP
+  block_parameter: srpAreaSrc
+  type: 字符向量
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: SRP area
+  summary: 航天器被太阳照射的横截面积 1.0（默认值）| 标量 | 大小为 *numSat* 的二维数组
+  group: SRP
+  block_parameter: srpArea
+  type: 字符向量
+  values: '''1.0'' | 标量 | 大小为 *numSat* 的二维数组'
+  default: '''1.0'''
+- name: Solar flux pressure (W\*s/m^3)
+  summary: 航天器太阳通量压力 4.5344321e-6（默认值）| 标量
+  group: SRP
+  block_parameter: fluxPressure
+  type: 字符向量
+  values: 4.5344321e-6 | 标量
+  default: '''4.5344321e-6'''
+- name: Units
+  summary: 参数和端口单位 Metric (m/s)（默认值）| Metric (km/s) | Metric (km/h) | English (ft/s) | English (kts)
+  group: 单位
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (m/s)'' | ''Metric (km/s)'' | ''Metric (km/h)'' | ''English (ft/s)'' | ''English (kts)'''
+  default: '''Metric (m/s)'''
+- name: Angle units
+  summary: 角度单位 Degrees（默认值）| Radians
+  group: 单位
+  block_parameter: angleUnits
+  type: 字符向量
+  values: '''Degrees'' | ''Radians'''
+  default: '''Degrees'''
+- name: Time format
+  summary: 起始日期和时间输出的时间格式 Julian date（默认值）| Gregorian
+  group: 单位
+  block_parameter: timeFormat
+  type: 字符向量
+  values: '''Julian date'' | ''Gregorian'''
+  default: '''Julian date'''
+```
 
 ### 主要
 
@@ -3006,7 +3912,6 @@ Aerospace Blockset 包含默认的空间天气数据文件 `aeroSpaceWeatherData
 | **类型：** 字符向量 |
 | **值：** `'Julian date'` | `'Gregorian'` |
 | **默认值：** `'Julian date'` |
-
 ## 所属库
 
 Aerospace Blockset / Spacecraft / Spacecraft Dynamics

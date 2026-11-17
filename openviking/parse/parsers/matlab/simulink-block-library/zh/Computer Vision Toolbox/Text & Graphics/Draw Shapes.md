@@ -15,6 +15,42 @@ chinese_source: worker-translation
 # Draw Shapes
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像或视频流 *M*×*N* 的强度值矩阵 | *M*×*N*×*3* 的颜色值数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: R
+  summary: 图像或视频帧的红色通道 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: G
+  summary: 图像或视频帧的绿色通道 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: B
+  summary: 图像或视频帧的蓝色通道 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Pts
+  summary: 形状坐标 *M*×3 矩阵 | *M*×4 矩阵 | *M*×2*L* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: ROI
+  summary: 感兴趣区域 4 元素向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Clr
+  summary: 形状的颜色 3 元素向量 | *M*×*3* 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出图像 *M*×*N* 的强度值矩阵 | *M*×*N*×*3* 的颜色值数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -120,8 +156,46 @@ chinese_source: worker-translation
 输出图像，返回为 *M*×*N* 矩阵或 *M*×*N*×*3* 数组。输出图像与输入图像具有相同的维度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Shape
+  summary: 要绘制的形状 Rectangles（默认） | Lines | Polygons | Circles
+  group: ''
+- name: Fill shapes
+  summary: 用颜色填充形状 off（默认） | on
+  group: ''
+- name: Line width
+  summary: 形状的线宽 1（默认） | 正标量
+  group: ''
+- name: Fill color source
+  summary: 指定填充颜色的输入源 Specify via dialog（默认） | Input port
+  group: ''
+- name: Fill color
+  summary: 填充形状的颜色 Black（默认） | White | User-specified value
+  group: ''
+- name: Border color source
+  summary: 指定边框颜色的输入源 Specify via dialog（默认） | Input port
+  group: ''
+- name: Border color
+  summary: 形状的轮廓颜色 Black（默认） | White | User-specified value
+  group: ''
+- name: Color value(s)
+  summary: 用于绘制边框或填充形状的颜色值 标量 | 3 元素向量
+  group: ''
+- name: Opacity factor (between 0 and 1)
+  summary: 颜色值的不透明度 [0,1] 范围内的值 | *R* 元素向量
+  group: ''
+- name: Use antialiasing
+  summary: 平滑算法 off | on
+  group: ''
+- name: Draw shapes in
+  summary: 绘制形状的区域 Entire image（默认） | Specify region of interest via port
+  group: ''
+- name: Image signal
+  summary: 图像信号的输入端口数量 One multidimensional signal（默认） | Separate color signals
+  group: ''
+```
 
 **主选项卡**
 
@@ -237,7 +311,6 @@ chinese_source: worker-translation
 **数据类型选项卡**
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Text & Graphics

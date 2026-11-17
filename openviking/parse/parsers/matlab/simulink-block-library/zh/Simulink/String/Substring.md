@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Substring
 
 ## 端口
+```yaml
+ports:
+- name: str
+  summary: 输入字符串信号 标量
+  direction: input
+  data_types: string
+- name: idx
+  summary: 要提取的字符串起始位置 标量
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: len
+  summary: 要提取的字符串长度 标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: sub
+  summary: 提取的字符串 标量
+  direction: output
+  data_types: string
+```
 
 ### 输入
 
@@ -42,8 +61,31 @@ chinese_source: worker-translation
 提取的字符串，指定为标量。
 
 **数据类型：** `string`
-
 ## 参数
+```yaml
+parameters:
+- name: Inherit maximum length from input
+  summary: 使用与输入字符串相同的最大长度 on（默认）| off
+  group: ''
+  block_parameter: InheritMaximumLength
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output data type
+  summary: 输出数据类型 string（默认）| <数据类型表达式>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''string'' | *<数据类型表达式>*'
+  default: '''string'''
+- name: Output string from 'idx' to end
+  summary: 从 idx 提取字符串到末尾 off（默认）| on
+  group: ''
+  block_parameter: StringFromIdxToEnd
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Inherit maximum length from input** — 使用与输入字符串相同的最大长度 `on`（默认）| `off`
 
@@ -111,7 +153,6 @@ off
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / String

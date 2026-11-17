@@ -14,6 +14,17 @@ language: en
 # DFEClkFwd
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input baseband signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Estimated channel output scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -32,8 +43,46 @@ specified as a scalar, the output is also scalar. If the input signal is an impu
 response vector signal, the output is also a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: DFE operating mode Fixed (default) | Off | Adapt
+  group: DFE
+- name: Initial tap weights (V)
+  summary: Initial DFE tap weights [0 0 0 0] (default) | row vector
+  group: DFE
+- name: Adaptive gain
+  summary: Controls DFE tap weight update rate 9.6e-5 (default) | positive real scalar
+  group: DFE
+- name: Adaptive step size (V)
+  summary: DFE adaptive step resolution 1e-06 (default) | nonnegative real scalar | nonnegative real-valued row vector
+  group: DFE
+- name: Minimum DFE tap value (V)
+  summary: Minimum value of adapted taps -1 (default) | real scalar | real-valued row vector
+  group: DFE
+- name: Maximum DFE tap value (V)
+  summary: Maximum value of adapted taps 1 (default) | nonnegative real scalar | nonnegative real-valued row vector
+  group: DFE
+- name: 2x tap weights
+  summary: Multiply DFE tap weights by a factor of two on (default) | off
+  group: DFE
+- name: Phase offset (symbol time)
+  summary: Manual clock phase offset 0 (default) | real scalar in the range [−0.5, 0.5]
+  group: CDR
+- name: Reference offset (ppm)
+  summary: Reference clock offset impairment 0 (default) | real scalar in the range [−300, 300]
+  group: CDR
+- name: Early/late count threshold
+  summary: Early or late CDR count threshold to trigger phase update 5 (default) | positive real integer ≥5
+  group: CDR
+- name: Step (symbol time)
+  summary: Clock phase resolution 0.005 (default) | real scalar
+  group: CDR
+- name: Sensitivity (V)
+  summary: Sampling latch metastability voltage 0 (default) | real scalar
+  group: CDR
+```
 
 ### DFE
 
@@ -245,7 +294,6 @@ there is a 50% probability of bit error.
   to a specific value of **Sensitivity (V)**.
 
 **Data Types:** `double`
-
 ## Libraries
 
 SerDes Toolbox / Datapath Blocks

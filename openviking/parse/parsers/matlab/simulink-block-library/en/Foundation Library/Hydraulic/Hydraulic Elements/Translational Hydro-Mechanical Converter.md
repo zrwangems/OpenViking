@@ -14,6 +14,9 @@ language: en
 # Translational Hydro-Mechanical Converter
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -32,8 +35,10 @@ The block has the following ports:
     **p** of the joint. For more information, see Connecting Simscape Networks to Simscape Multibody Joints. To enable this
     port, set the **Interface displacement** parameter to
     `Provide input signal from Multibody joint`.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Piston area**
 :   Effective piston area. The default value is `5e-4` m^2.
@@ -98,7 +103,6 @@ The block has the following ports:
     use in computing the block's initial state at the beginning of a simulation run. It is
     enabled when **Compressibility** is `On`. The
     default value is `0`.
-
 ## Libraries
 
 Not documented in R2025b.

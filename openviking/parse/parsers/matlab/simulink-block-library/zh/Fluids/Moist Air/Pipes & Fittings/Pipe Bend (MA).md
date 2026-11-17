@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Pipe Bend (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口湿空气
+  direction: conserving
+- name: B
+  summary: 液体端口湿空气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,100 @@ chinese_source: worker-translation
 ### **B** — 液体端口湿空气
 
 与液体入口或出口端口关联的湿空气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Pipe diameter
+  summary: 管道直径 0.01 m（默认）| 正标量
+  group: 主要
+- name: Bend radius
+  summary: 弯曲圆半径 0.04 m（默认）| 正标量
+  group: 主要
+- name: Bend angle
+  summary: 弯曲角度 90 deg（默认）| 正标量
+  group: 主要
+- name: Internal surface absolute roughness
+  summary: 管壁粗糙度 15e-6 m（默认）| 正标量
+  group: 主要
+- name: Initial pressure
+  summary: 仿真开始时的湿空气压力 0.101325 MPa（默认）| 正标量
+  group: 效应和初始条件
+- name: Initial pressure priority
+  summary: 压力参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量
+  group: 效应和初始条件
+- name: Initial temperature priority
+  summary: 温度参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial humidity specification
+  summary: 湿度规格 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: 效应和初始条件
+- name: Initial relative humidity
+  summary: 仿真开始时的相对湿度 0.5（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+- name: Initial relative humidity priority
+  summary: 相对湿度参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial specific humidity
+  summary: 仿真开始时的比湿度 0.01（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+- name: Initial specific humidity priority
+  summary: 比湿度参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial water vapor mole fraction
+  summary: 仿真开始时的水蒸气摩尔分数 0.01（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+- name: Initial water vapor mole fraction priority
+  summary: 水蒸气摩尔分数湿度参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial humidity ratio
+  summary: 仿真开始时的湿度比 0.01（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+- name: Initial humidity ratio priority
+  summary: 湿度比参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial wet-bulb temperature
+  summary: 仿真开始时的湿球温度 287 K（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+- name: Initial wet-bulb temperature priority
+  summary: 湿球温度参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial trace gas specification
+  summary: 示踪气体的测量类型 Mass fraction（默认）| Mole fraction
+  group: 效应和初始条件
+- name: Initial trace gas mass fraction
+  summary: 湿空气通道中示踪气体的量 0.001（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+- name: Initial trace gas mass fraction priority
+  summary: 示踪气体质量分数参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial trace gas mole fraction
+  summary: 仿真开始时的示踪气体摩尔分数 0.001（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+- name: Initial trace gas mole fraction priority
+  summary: 示踪气体摩尔分数参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Initial mass ratio of water droplets to moist air
+  summary: 水滴与湿空气之比 0（默认）| 正标量
+  group: 效应和初始条件
+- name: Initial mass ratio of water droplets to moist air priority
+  summary: 水滴与湿空气质量比参数优先级 High（默认）| Low | None
+  group: 效应和初始条件
+- name: Relative humidity at saturation
+  summary: 凝结的相对湿度点 1（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+- name: Water vapor condensation time constant
+  summary: 凝结时间尺度 1e-3 s（默认）| 正标量
+  group: 效应和初始条件
+- name: Water droplets evaporation time constant
+  summary: 蒸发时间尺度 1e-3 s（默认）| 正标量
+  group: 效应和初始条件
+- name: Fraction of condensate entrained as water droplets
+  summary: 水滴中凝结物的比例 1（默认）| [0,1] 范围内的标量
+  group: 效应和初始条件
+```
 
 ### 主要
 
@@ -231,7 +332,6 @@ chinese_source: worker-translation
 ### **Fraction of condensate entrained as water droplets** — 水滴中凝结物的比例 `1`（默认）| [0,1] 范围内的标量
 
 湿空气中作为水滴夹带的凝结物比例。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

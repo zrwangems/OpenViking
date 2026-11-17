@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Counter Input
 
 ## 端口
+```yaml
+ports:
+- name: Counter Data
+  summary: 从输入通道向量读取的计数器数据
+  direction: output
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Missed Ticks
+  summary: 丢失的滴答计数（可选）double
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -33,8 +44,60 @@ chinese_source: worker-translation
 当您选择 **Show “Missed Ticks” port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Install new board
+  summary: 注册板卡 < no board selected >（默认）
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: 删除当前板卡（按钮）
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: 设置板卡（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认） | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 模型可以落后于内核的定时器滴答数 10（默认） | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: 内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Input channels
+  summary: 选择计数器输入通道 1（默认）| 向量
+  group: ''
+  block_parameter: Channels
+- name: Reset after read
+  summary: 计数器复位策略 never（默认）| always | level | rising edge | falling edge | either edge
+  group: ''
+  block_parameter: ResetMode
+- name: Clock input source
+  summary: 使计数器递增的时钟输入 input pin rising edge（默认）| input pin falling edge | internal clock
+  group: ''
+  block_parameter: CounterEdge
+- name: Gate input functionality
+  summary: 计数器门输入引脚 none（默认）| enable when high | enable when low | start on rising edge | start on falling edge | reset on
+    rising edge | reset on falling edge | latch on rising edge | latch on falling edge | latch & reset on rising edge | latch
+    & reset on falling edge | enable when high, latch & reset on edge | enable when low, latch & reset on edge 的动作
+  group: ''
+  block_parameter: CounterGate
+- name: Output data type
+  summary: 模块输出的数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataType
+```
 
 ### **Install new board** — 注册板卡 `< no board selected >`（默认）
 
@@ -264,7 +327,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`DataType` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

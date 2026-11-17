@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # Range Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Resp
+  summary: 距离处理后的响应数据立方体 复值 *P*×1 列向量 | 复值 *M*×*P* 矩阵 | 复值 *M*×*N*×*P* 矩阵
+  direction: input
+  data_types: double
+- name: Range
+  summary: 沿距离维度的距离网格值 实值 *M*×1 列向量
+  direction: input
+  data_types: double
+- name: DetIdx
+  summary: 检测索引 实值 *Nd*×*Q* 矩阵
+  direction: input
+- name: NoisePower
+  summary: 检测位置处的噪声功率 正标量 | 正实值 1×*Q* 行向量
+  direction: input
+- name: Clusters
+  summary: 簇 ID 正实值 1×*Q* 行向量
+  direction: input
+- name: Est
+  summary: 距离估计 实值 *K*×1 列向量
+  direction: output
+- name: Var
+  summary: 距离估计方差 正实值 *K*×1 列向量
+  direction: output
+```
 
 ### 输入
 
@@ -70,8 +96,34 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此输出端口，请选择 **Output variance for parameter estimates** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum number of estimates
+  summary: 要报告的最大估计数 1（默认）| 正整数
+  group: ''
+- name: Enable cluster ID input
+  summary: 启用簇 ID 输入 off（默认）| on
+  group: ''
+- name: Output variance for parameter estimates
+  summary: 启用输出方差端口 off（默认）| on
+  group: ''
+- name: Root-mean-square range resolution
+  summary: 距离分辨率 2（默认）| 正标量
+  group: ''
+- name: Source of noise power
+  summary: 噪声功率值来源 Property（默认）| Input port
+  group: ''
+- name: Noise power
+  summary: 噪声功率值 1.0（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 ### **Maximum number of estimates** — 要报告的最大估计数 `1`（默认）| 正整数
 
@@ -144,7 +196,6 @@ chinese_source: worker-translation
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

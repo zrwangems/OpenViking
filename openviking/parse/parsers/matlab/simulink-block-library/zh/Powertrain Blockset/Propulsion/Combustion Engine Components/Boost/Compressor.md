@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Compressor
 
 ## 端口
+```yaml
+ports:
+- name: Ds
+  summary: 驱动轴转速双向连接端口
+  direction: input
+- name: A
+  summary: 入口压力、温度、焓、质量分数双向连接端口
+  direction: input
+- name: B
+  summary: 出口压力、温度、焓、质量分数双向连接端口
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: Ds
+  summary: 驱动轴扭矩双向连接端口
+  direction: output
+- name: A
+  summary: 入口质量流量、热流率、温度、质量分数双向连接端口
+  direction: output
+- name: B
+  summary: 出口质量流量、热流率、温度、质量分数双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -110,8 +134,53 @@ chinese_source: worker-translation
   - `PmMassFrac` — 颗粒物
   - `AirMassFrac` — 空气
   - `BrndGasMassFrac` — 燃烧气体
-
 ## 参数
+```yaml
+parameters:
+- name: Calibrate Performance Maps
+  summary: 使用测量数据标定表格 selection
+  group: ''
+- name: Corrected mass flow rate table, mdot_corr_tbl
+  summary: 查找表 array
+  group: ''
+  block_parameter: mdot_corr_tbl
+  values: array
+- name: Efficiency table, eta_comp_tbl
+  summary: 查找表 array
+  group: ''
+  block_parameter: eta_comp_tbl
+  values: array
+- name: Corrected speed breakpoints, w_corr_bpts1
+  summary: 断点 vector
+  group: ''
+  block_parameter: w_corr_bpts1
+  values: vector
+- name: 压力比断点，Pr_bpts2
+  summary: 断点 vector
+  group: ''
+  block_parameter: Pr_bpts2
+  values: vector
+- name: 参考温度，T_ref
+  summary: 参考 293.15（默认）| scalar
+  group: ''
+  block_parameter: T_ref
+  values: 293.15（默认）| scalar
+- name: 参考压力，P_ref
+  summary: 参考 101325（默认）| scalar
+  group: ''
+  block_parameter: P_ref
+  values: 101325（默认）| scalar
+- name: 理想气体常数，R
+  summary: 常数 287（默认）| scalar
+  group: ''
+  block_parameter: R
+  values: 287（默认）| scalar
+- name: 定压比热，cp
+  summary: 比热 1005（默认）| scalar
+  group: ''
+  block_parameter: cp
+  values: 1005（默认）| scalar
+```
 
 #### 性能表
 
@@ -259,7 +328,6 @@ chinese_source: worker-translation
 | **参数：** | `cp` |
 | **值：** | `1005`（默认）| `scalar` |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Boost

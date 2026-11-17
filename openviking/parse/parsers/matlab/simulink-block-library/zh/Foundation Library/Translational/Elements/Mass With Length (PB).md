@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Mass With Length (PB)
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基点端口，基于位置的机械平移
+  direction: conserving
+- name: F
+  summary: 从点端口，基于位置的机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **F** — 从点端口，基于位置的机械平移
 
 基于位置的机械平移守恒端口，表示从点连接。对于非零长度，端口 **F** 的位置比端口 **B** 更正。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass
+  summary: 恒定质量 1 kg（默认）| 正标量
+  group: ''
+- name: Length
+  summary: 质量长度 0 m（默认）| 非负标量
+  group: ''
+- name: Log the position of an intermediate point
+  summary: 是否记录中间点的位置 off（默认）| on
+  group: ''
+- name: Intermediate point fractional length from B
+  summary: 记录点距端口 B 的分数长度 0.5（默认）| 0 到 1 之间的无量纲标量
+  group: ''
+```
 
 ### **Mass** — 恒定质量 `1 kg`（默认）| 正标量
 
@@ -47,7 +70,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Log the position of an intermediate point** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Elements

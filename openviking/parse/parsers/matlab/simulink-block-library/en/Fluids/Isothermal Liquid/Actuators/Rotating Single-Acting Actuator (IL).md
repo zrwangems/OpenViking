@@ -14,6 +14,27 @@ language: en
 # Rotating Single-Acting Actuator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid chamber inlet port isothermal liquid
+  direction: conserving
+- name: C
+  summary: Actuator casing mechanical translational
+  direction: conserving
+- name: R
+  summary: Rod velocity mechanical translational
+  direction: conserving
+- name: W
+  summary: Actuator rotational velocity physical signal
+  direction: input
+- name: p
+  summary: Piston position, m physical signal
+  direction: input
+- name: p
+  summary: Piston position, m physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -56,8 +77,84 @@ Piston position in m, returned as a physical signal.
 To expose this port, set **Piston displacement**
 to `Calculate from velocity of port R relative to port
 C`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Piston outer radius
+  summary: Piston outer radius 0.1 m (default) | positive scalar
+  group: Actuator
+- name: Piston inner radius
+  summary: Piston inner radius 0.05 m (default) | positive scalar
+  group: Actuator
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Actuator
+- name: Piston stroke
+  summary: Maximum piston travel distance 0.1 m (default) | positive scalar
+  group: Actuator
+- name: Dead volume
+  summary: Fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Actuator
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Actuator
+- name: Fluid entry radius
+  summary: Fluid channel radius 0.06 m (default) | positive scalar
+  group: Fluid Channel
+- name: Fluid channel cross-sectional area
+  summary: Fluid cross-sectional area 1e-3 m^2 (default) | positive scalar
+  group: Fluid Channel
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Fluid Channel
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Fluid Channel
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+- name: Piston displacement
+  summary: Method for determining piston position Calculate from velocity of port R relative to port C (default) | Provide
+    input signal from Multibody joint
+  group: Initial Conditions
+- name: Initial piston displacement
+  summary: Piston position at start of simulation 0 m (default) | scalar
+  group: Initial Conditions
+- name: Enable dynamic compressibility
+  summary: Whether to model fluid compressibility on (default) | off
+  group: Initial Conditions
+- name: Initial liquid pressure
+  summary: Starting liquid pressure for compressible fluids 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Nominal liquid pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Initial Conditions
+```
 
 ### Actuator
 
@@ -274,7 +371,6 @@ equation when dynamic compressibility is disabled.
 
 To enable this parameter, clear the **Enable dynamic
 compressibility** checkbox.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Actuators

@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # PFC Rectifier Controller (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: VdcRef (V)
+  summary: 输出直流母线电压参考值，V 标量
+  direction: input
+  data_types: single | double
+- name: QRef (pu)
+  summary: 无功功率参考值，pu 标量
+  direction: input
+  data_types: single | double
+- name: VdcSens (V)
+  summary: 直流母线电压，V 标量
+  direction: input
+  data_types: single | double
+- name: VabcSens (pu)
+  summary: 测量的交流相电压，pu 向量
+  direction: input
+  data_types: single | double
+- name: IabcSens (pu)
+  summary: 测量的交流相电流，pu 向量
+  direction: input
+  data_types: single | double
+- name: VabcRef (pu)
+  summary: 参考电压，pu 向量
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: 可视化总线 总线
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -60,8 +91,82 @@ chinese_source: worker-translation
 包含用于可视化的内部信号的总线。有关信号列表，请参阅可视化。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: System frequency (Hz)
+  summary: 系统频率 60（默认）| 正标量
+  group: 常规
+- name: AC filter inductance (H)
+  summary: 交流滤波电感 1e-4（默认）| 正标量
+  group: 常规
+- name: AC side base impedance (Ohm)
+  summary: 交流侧基准阻抗 1.722（默认）| 正标量
+  group: 常规
+- name: PLL proportional gain
+  summary: 比例增益 0.05（默认）| 正标量
+  group: 常规
+- name: PLL integral gain
+  summary: 积分增益 1（默认）| 正标量
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 非负标量或 -1
+  group: 常规
+- name: Proportional gain
+  summary: 比例增益 0.4（默认）| 正标量
+  group: 电压控制器
+- name: Integral gain
+  summary: 积分增益 3（默认）| 正标量
+  group: 电压控制器
+- name: Derivative gain
+  summary: 微分增益 0（默认）| 非负标量
+  group: 电压控制器
+- name: Derivative controller filter coefficient (N)
+  summary: 微分控制器滤波系数 3（默认）| 非负标量
+  group: 电压控制器
+- name: DC bus base voltage (V)
+  summary: 直流母线基准电压 700（默认）| 正标量
+  group: 电压控制器
+- name: Controller output upper limit (pu)
+  summary: 控制器输出上限 1.5（默认）| 非负标量
+  group: 电压控制器
+- name: Controller output lower limit (pu)
+  summary: 控制器输出下限 -1.5（默认）| 非正标量
+  group: 电压控制器
+- name: Id proportional gain
+  summary: Id 比例增益 10（默认）| 正标量
+  group: 电流控制器
+- name: Id integral gain
+  summary: Id 积分增益 350（默认）| 正标量
+  group: 电流控制器
+- name: Id derivative gain
+  summary: Id 微分增益 0（默认）| 非负标量
+  group: 电流控制器
+- name: Id controller output upper limit (pu)
+  summary: Id 控制器输出上限 1.2（默认）| 非负标量
+  group: 电流控制器
+- name: Id controller output lower limit (pu)
+  summary: Id 控制器输出下限 -1.2（默认）| 非正标量
+  group: 电流控制器
+- name: Iq proportional gain
+  summary: Iq 比例增益 10（默认）| 正标量
+  group: 电流控制器
+- name: Iq integral gain
+  summary: Iq 积分增益 350（默认）| 正标量
+  group: 电流控制器
+- name: Iq derivative gain
+  summary: Iq 微分增益 0（默认）| 非负标量
+  group: 电流控制器
+- name: Derivative current controller filter coefficient (N)
+  summary: 微分电流控制器滤波系数 100（默认）| 非负标量
+  group: 电流控制器
+- name: Iq controller output upper limit (pu)
+  summary: Iq 控制器输出上限 1.2（默认）| 非负标量
+  group: 电流控制器
+- name: Iq controller output lower limit (pu)
+  summary: Iq 控制器输出下限 -1.2（默认）| 非正标量
+  group: 电流控制器
+```
 
 要交互式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中，选择**属性检查器**。
 
@@ -175,7 +280,6 @@ chinese_source: worker-translation
 ### **Iq controller output lower limit (pu)** — Iq 控制器输出下限 `-1.2`（默认）| 非正标量
 
 *q* 轴电流控制器标幺值输出的下限。
-
 ## 所属库
 
 Simscape / Electrical / Control / Converter Control

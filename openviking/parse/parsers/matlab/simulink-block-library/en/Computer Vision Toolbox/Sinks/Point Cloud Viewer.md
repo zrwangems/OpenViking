@@ -14,6 +14,21 @@ language: en
 # Point Cloud Viewer
 
 ## Ports
+```yaml
+ports:
+- name: Location
+  summary: Positions of points in 3-D coordinate space matrix | array
+  direction: input
+  data_types: single | double | uint8 | uint16
+- name: Color
+  summary: Color of point cloud [] (default) | matrix | array
+  direction: input
+  data_types: single | double | uint8 | uint16
+- name: Intensity
+  summary: Grayscale intensities [] (default) | vector | matrix | array
+  direction: input
+  data_types: single | double | uint8 | uint16
+```
 
 ### Input
 
@@ -115,8 +130,49 @@ as input to the **Location** port.
 To enable this port, select the **File** >  **Location and Intensity Port** parameter.
 
 **Data Types:** `single` | `double` | `uint8` | `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Open at Start of Simulation
+  summary: Open Point Cloud Viewer window at start of simulation on (default) | off
+  group: File
+- name: Location Port
+  summary: Enable point location as input on (default) | off
+  group: File
+- name: Location and Color Port
+  summary: Enable point location and color as input off (default) | on
+  group: File
+- name: Location and Intensity Port
+  summary: Enable point location and intensity as input off (default) | on
+  group: File
+- name: Display the full path
+  summary: Display full path of source data in title bar off (default) | on
+  group: File > Configuration > Edit > Core
+- name: Bring All Point Cloud Viewer Windows Forward
+  summary: Bring all Point Cloud Viewer windows to front of display off (default) | on
+  group: View
+- name: Simulation Toolbar
+  summary: Show simulation toolbar on (default) | off
+  group: View
+- name: Status Bar
+  summary: Show status bar on (default) | off
+  group: View
+- name: Highlight Simulink Block
+  summary: Highlight Point Cloud Viewer block off (default) | on
+  group: View
+- name: Run
+  summary: View entire point cloud sequence off (default) | on
+  group: Simulation
+- name: Continue
+  summary: Continue viewing the point cloud sequence off (default) | on
+  group: Simulation
+- name: Stop
+  summary: Stop viewing the point cloud sequence off (default) | on
+  group: Simulation
+- name: Drop Frames to Improve Performance
+  summary: Reduce frame rate of input point cloud sequence on (default) | off
+  group: Simulation
+```
 
 ### File
 
@@ -247,7 +303,6 @@ Select this parameter to reduce the frame rate of the input streaming point clou
 sequence to improve the performance of the simulation. If you clear this parameter,
 the block displays every frame in the input point cloud sequence signal during the
 simulation.
-
 ## Libraries
 
 Computer Vision Toolbox / Sinks

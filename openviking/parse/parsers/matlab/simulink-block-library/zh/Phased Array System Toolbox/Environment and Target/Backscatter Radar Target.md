@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Backscatter Radar Target
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 窄带信号 *N*×*1* 复值向量 | *N*×*M* 复值矩阵
+  direction: input
+  data_types: double
+- name: Ang
+  summary: 入射信号方向 2×1 实值列向量 | 2×*M* 实值列矩阵
+  direction: input
+  data_types: double
+- name: Update
+  summary: 切换以更新 RCS false | true
+  direction: input
+- name: Port_1
+  summary: 窄带反射信号 1×*M* 复值向量 | *N*×*M* 复值矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -83,8 +100,34 @@ model** 下拉菜单设置为
 目的地的信号样本。当从源到目的地的传播
 时间超过当前时间帧持续时间时，
 输出不包含当前时间帧输入的所有贡献。
-
 ## 参数
+```yaml
+parameters:
+- name: Azimuth angles (deg)
+  summary: 方位角 [-180:180]（默认）| 1×*P* 实值行向量 | *P*×1 实值列向量
+  group: ''
+- name: Elevation angles (deg)
+  summary: 俯仰角 [-90:90]（默认）| 1×*Q* 实值行向量 | *Q*×1 实值列向量
+  group: ''
+- name: RCS pattern (m^2)
+  summary: 雷达截面积方向图 ones(181,361)（默认）| *Q*×*P* 实值矩阵 | *Q*×*P*×*M* 实值数组 | 1×*P* 实值向量 | *M*×*P* 实值矩阵
+  group: ''
+- name: Fluctuation model
+  summary: 目标起伏模型 Nonfluctuating（默认）| Swerling1 | Swerling2 | Swerling3 | Swerling4
+  group: ''
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: ''
+- name: Operating frequency (Hz)
+  summary: 工作频率 3e8（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 ### **Azimuth angles (deg)** — 方位角 `[-180:180]`（默认）| 1×*P* 实值行向量 | *P*×1 实值列向量
 
@@ -175,7 +218,6 @@ model** 下拉菜单设置为
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Environment and Target

@@ -14,10 +14,123 @@ language: en
 # Linear Circuit Wizard
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Circuit design name
+  summary: Name of circuit displayed on block icon 'Linear Circuit' (default) | character vector | string scalar
+  group: Circuit Definition
+  block_parameter: CircuitDesignName
+  type: character vector
+  values: character string
+  default: '''Linear Circuit'''
+- name: Block name
+  summary: Instance name displayed under block icon 'Linear Circuit' (default) | character vector | string scalar
+  group: Circuit Definition
+  block_parameter: BlockName
+  type: character vector
+  values: character string
+  default: '''Linear Circuit'''
+- name: Netlist file name
+  summary: Name of netlist file that defines circuit character vector | string scalar
+  group: Circuit Definition
+  block_parameter: NetlistFileName
+  type: character vector
+  values: character string
+- name: Configuration name
+  summary: Name of configuration file character vector | string scalar
+  group: Circuit Definition
+  block_parameter: ConfigurationName
+  type: character vector
+  values: character string
+- name: Parse netlist file and start new configuration
+  summary: Parse named netlist file button
+  group: Circuit Definition
+- name: Save configuration
+  summary: Save current configuration to file button
+  group: Circuit Definition
+- name: Load configuration
+  summary: Load existing configuration file button
+  group: Circuit Definition
+- name: Attach configuration to block
+  summary: Attach selected configuration file to Simulink block on (default) | off
+  group: Circuit Definition
+- name: Build Simulink block
+  summary: Create Simulink block or object to model circuit defined by netlist button
+  group: Circuit Definition
+- name: Pole/zero report
+  summary: Add pole -zero report to base workspace on (default) | off
+  group: Linear Analysis
+- name: Transfer function plot
+  summary: Plot transfer functions on (default) | off
+  group: Linear Analysis
+- name: Linear control system
+  summary: Add matrices for control system differential equations to base workspace on (default) | off
+  group: Linear Analysis
+- name: Analyze
+  summary: Analyze linear circuit to produce selected outputs button
+  group: Linear Analysis
+- name: Output port
+  summary: Outport port for primary output value drop-down menu created from port definitions
+  group: Operating Point Analysis
+- name: Steady state output value(s)
+  summary: Desired primary output value(s) 0 (default) | scalar | vector
+  group: Operating Point Analysis
+  block_parameter: OutputValues
+  type: character vector
+  values: scalar | vector
+  default: '0'
+- name: Primary control variable
+  summary: Variable used to regulate output Duty cycle (default) | Frequency
+  group: Operating Point Analysis
+  block_parameter: ControlVariable
+  type: character vector
+  values: Duty cycle | Frequency
+  default: Duty cycle
+- name: Duty cycle value [min,max]
+  summary: Minimum control duty cycle 0 (default) | scalar | 2-element vector
+  group: Operating Point Analysis
+  block_parameter: DutyCycle
+  type: character vector
+  values: scalar | 2-element vector
+  default: '0'
+- name: Frequency [min,max]
+  summary: Minimum control frequency 0 (default) | scalar | 2-element vector
+  group: Operating Point Analysis
+  block_parameter: Frequency
+  type: character vector
+  values: scalar | 2-element vector
+  default: '0'
+- name: Phase offset(s)
+  summary: Phase of rising edge of control signal as fraction of control cycle 0 (default) | scalar | vector
+  group: Operating Point Analysis
+  block_parameter: PhaseOffsets
+  type: character vector
+  values: scalar | vector
+  default: '0'
+- name: Pulse Duration(s)
+  summary: Pulse duration of control signal as function of control cycle 0 (default) | scalar | vector
+  group: Operating Point Analysis
+  block_parameter: PulseDuration
+  type: character vector
+  values: scalar | vector
+  default: '0'
+- name: Samples per waveform
+  summary: Number of samples in single switching cycle output wave 1024 (default) | positive integer scalar
+  group: Operating Point Analysis
+  block_parameter: WaveSamples
+  type: character vector
+  values: scalar
+  default: '1024'
+- name: Analyze operating point
+  summary: Operating point analysis of switched circuit button
+  group: Operating Point Analysis
+```
 
 ### Circuit Definition
 
@@ -244,7 +357,6 @@ as a positive integer scalar.
 
 Click to perform the switched-mode power train operating point analysis of the
 switched circuit.
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

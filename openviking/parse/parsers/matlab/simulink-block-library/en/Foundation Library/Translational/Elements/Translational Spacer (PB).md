@@ -14,6 +14,15 @@ language: en
 # Translational Spacer (PB)
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -27,11 +36,12 @@ connection.
 Position-based mechanical translational conserving port that represents the
 follower connection. For positive length, port **F** has a more
 positive position than port **B**.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

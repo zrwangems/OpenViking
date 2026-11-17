@@ -14,6 +14,21 @@ language: en
 # Positive-Displacement Compressor (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Compressor inlet moist air
+  direction: conserving
+- name: B
+  summary: Compressor outlet moist air
+  direction: conserving
+- name: C
+  summary: Compressor casing mechanical rotational
+  direction: conserving
+- name: R
+  summary: Compressor shaft mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -32,8 +47,110 @@ Mechanical rotational conserving port associated with the compressor case.
 ### **R** — Compressor shaft mechanical rotational
 
 Mechanical rotational conserving port associated with the compressor shaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Displacement specification
+  summary: Option to specify displacement by volume or nominal conditions Volumetric displacement (default) | Nominal mass
+    flow rate and shaft speed
+  group: Displacement
+- name: Displacement volume
+  summary: Displacement volume 130 cm^3/rev (default) | positive scalar
+  group: Displacement
+- name: Nominal mass flow rate
+  summary: Nominal mass flow rate 0.01 kg/s (default) | positive scalar
+  group: Displacement
+- name: Nominal shaft speed
+  summary: Nominal shaft speed 1000 rpm (default) | positive scalar
+  group: Displacement
+- name: Efficiency specification
+  summary: Option to parameterize volumetric efficiency analytically or by using tables Analytical (default) | Tabulated
+  group: Efficiency
+- name: Thermodynamic model
+  summary: Thermodynamic model parameterization option Polytropic (default) | Isentropic
+  group: Efficiency
+- name: Polytropic exponent
+  summary: Polytropic exponent 1.2 (default) | positive scalar
+  group: Efficiency
+- name: Isentropic efficiency
+  summary: Isentropic efficiency 0.65 (default) | positive scalar
+  group: Efficiency
+- name: Isentropic efficiency table, eta_isen(pr,w)
+  summary: Isentropic efficiency table [.95, .9, .85, .8, .75; .925, .875, .825, .775, .725; .875, .825, .775, .725, .675;
+    .75, .7, .65, .6, .55] (default) | matrix
+  group: Efficiency
+- name: Nominal volumetric efficiency
+  summary: Nominal volumetric efficiency 0.95 (default) | positive scalar
+  group: Efficiency
+- name: Pressure ratio vector, pr
+  summary: Pressure ratio vector [2, 4, 6, 8] (default) | vector
+  group: Efficiency
+- name: Shaft speed vector, w
+  summary: Shaft speed vector [800, 1500, 2800, 3300, 4000] rpm (default) | vector
+  group: Efficiency
+- name: Volumetric efficiency table, eta_vol(pr,w)
+  summary: Volumetric efficiency [.95, .9, .85, .8, .75; .925, .875, .825, .775, .725; .875, .825, .775, .725, .675; .75,
+    .7, .65, .6, .55] (default) | matrix
+  group: Efficiency
+- name: Nominal pressure ratio
+  summary: Nominal pressure ratio 5 (default) | positive scalar
+  group: Nominal Conditions
+- name: Nominal inlet pressure
+  summary: Nominal inlet pressure 0.101325 MPa (default) | positive scalar
+  group: Nominal Conditions
+- name: Nominal inlet temperature
+  summary: Nominal inlet temperature 293.15 K (default) | positive scalar
+  group: Nominal Conditions
+- name: Inlet humidity specification
+  summary: Quantity to use to describe inlet humidity level Relative humidity (default) | Specific humidity | Mole fraction
+    | Humidity ratio | Wet-bulb temperature
+  group: Nominal Conditions
+- name: Nominal inlet relative humidity
+  summary: Relative humidity at inlet 0.5 (default) | scalar in the range [0,1]
+  group: Nominal Conditions
+- name: Nominal inlet specific humidity
+  summary: Specific humidity at inlet 0.01 (default) | scalar in the range [0,1]
+  group: Nominal Conditions
+- name: Nominal inlet water vapor mole fraction
+  summary: Mole fraction of water vapor at inlet 0.01 (default) | scalar in the range [0,1]
+  group: Nominal Conditions
+- name: Nominal inlet humidity ratio
+  summary: Humidity ratio at inlet 0.01 (default) | scalar in the range [0,1]
+  group: Nominal Conditions
+- name: Nominal inlet wet-bulb temperature
+  summary: Wet-bulb temperature at inlet 287 K (default) | positive scalar
+  group: Nominal Conditions
+- name: Inlet trace gas specification
+  summary: Quantity to use to describe inlet trace gas level Mass fraction (default) | Mole fraction
+  group: Nominal Conditions
+- name: Nominal inlet trace gas mass fraction
+  summary: Mass fraction of trace gas at inlet 0.001 (default) | scalar in the range [0,1]
+  group: Nominal Conditions
+- name: Nominal inlet trace gas mole fraction
+  summary: Mole fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Nominal Conditions
+- name: Nominal inlet mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Nominal Conditions
+- name: Relative humidity at saturation
+  summary: Relative humidity above which condensation occurs 1 (default) | positive scalar
+  group: Nominal Conditions
+- name: Mechanical efficiency
+  summary: Compressor mechanical efficiency 0.9 (default) | positive scalar
+  group: Parameters
+- name: Model water droplets evaporation
+  summary: Option to model water droplet evaporation off (default) | on
+  group: Parameters
+- name: Relative humidity at saturation
+  summary: Relative humidity above which condensation occurs 1 (default) | positive scalar
+  group: Parameters
+- name: Inlet area at port A
+  summary: Inlet area 0.01 m^2 (default) | positive scalar
+  group: Parameters
+- name: Outlet area at port B
+  summary: Outlet area 0.01 m^2 (default) | positive scalar
+  group: Parameters
+```
 
 ### Displacement
 
@@ -444,7 +561,6 @@ Inlet area associated with port **A**.
 ### **Outlet area at port B** — Outlet area `0.01` `m^2` (default) | positive scalar
 
 Outlet area associated with port **B**.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Turbomachinery

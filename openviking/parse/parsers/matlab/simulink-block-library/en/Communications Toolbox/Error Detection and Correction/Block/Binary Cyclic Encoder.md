@@ -14,10 +14,15 @@ language: en
 # Binary Cyclic Encoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Codeword length N**
 :   The codeword length, which is also the output vector length.
@@ -25,7 +30,6 @@ Not documented in R2025b.
 **Message length K, or generator polynomial**
 :   Either the message length, which is also the input vector length, a polynomial character vector, or a binary vector that represents
     the generator polynomial for the code.
-
 ## Libraries
 
 Not documented in R2025b.

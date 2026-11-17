@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Simulation 3D Joystick
 
 ## 端口
+```yaml
+ports:
+- name: Force
+  summary: 力反馈输入 标量 | 向量
+  direction: input
+  data_types: double
+- name: Axes
+  summary: 沿任意给定轴的操纵杆位置 向量，每个元素在范围 [-1,1] 内
+  direction: output
+  data_types: double
+- name: Buttons
+  summary: 操纵杆按钮的状态 由 0 和 1 组成的向量
+  direction: output
+  data_types: double
+- name: Point of view
+  summary: 操纵杆视角选择器的当前状态 -1（选择器未激活） | 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -49,8 +68,19 @@ chinese_source: worker-translation
 输出信号是视角选择器（或 POV Hat）的角度，以度为单位，从 0 到 360。如果选择器未激活，信号为 -1。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Joystick ID
+  summary: 分配给给定操纵杆设备的 ID 1（默认值）
+  group: ''
+- name: Adjust I/O ports according to joystick capabilities
+  summary: 动态调整端口以对应操纵杆能力的选项 on（默认值） | off
+  group: ''
+- name: Enable force-feedback input
+  summary: 支持具有力反馈的操纵杆的选项 on（默认值） | off
+  group: ''
+```
 
 ### **Joystick ID** — 分配给给定操纵杆设备的 ID `1`（默认值）
 
@@ -67,7 +97,6 @@ chinese_source: worker-translation
 
 如果选择此复选框，Simulink
 3D Animation 软件可以支持力反馈操纵杆、方向盘和触觉（一种能够提供触觉反馈的）设备。
-
 ## 所属库
 
 Simulink 3D Animation / Simulation 3D / Hardware Interface

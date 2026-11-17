@@ -14,6 +14,21 @@ language: en
 # Varying Delay
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double
+- name: Port_2
+  summary: Instantaneous time delay input scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Delayed signal scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -47,8 +62,34 @@ channels as fixed.
 Output signal specified as a scalar or vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal delay
+  summary: Nominal value of delay 1 (default) | positive scalar | vector of positive values
+  group: ''
+- name: Maximum delay
+  summary: Maximum value of time delay input 10 (default) | nonnegative scalar | vector of nonnegative values
+  group: ''
+- name: Minimum delay
+  summary: Minimum value of time delay input 0 (default) | nonnegative scalar | vector of nonnegative values
+  group: ''
+- name: Fixed delays (indices)
+  summary: Signal indices with fixed delays [] (default) | positive scalar | vector of positive values
+  group: ''
+- name: Initial output
+  summary: Initial output 0 (default) | scalar | vector
+  group: ''
+- name: Initial buffer size
+  summary: Initial memory allocation 1024 (default) | scalar
+  group: ''
+- name: Use fixed buffer size
+  summary: Use fixed-size buffer off (default) | on
+  group: ''
+- name: Pade order (for linearization)
+  summary: Order of Pade approximation 0 (default) | positive integer | vector
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -138,7 +179,6 @@ Set the order of the Pade approximation for linearization routines.
 
 Use a vector of positive integers to specify a different order for each input
 channel.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

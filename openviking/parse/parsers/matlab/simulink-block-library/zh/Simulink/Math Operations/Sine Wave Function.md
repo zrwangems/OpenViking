@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Sine Wave Function
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 时间源信号 标量
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: 输出正弦波信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,80 @@ chinese_source: worker-translation
 生成的正弦波的输出信号。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sine type
+  summary: 正弦波类型 Time based（默认）| Sample based
+  group: ''
+  block_parameter: SineType
+  type: character vector
+  values: '''Time based'' | ''Sample based'''
+  default: '''Time based'''
+- name: Time (t)
+  summary: 时间变量来源 Use external signal（默认）| Use simulation time
+  group: ''
+  block_parameter: TimeSource
+  type: character vector
+  values: '''Use simulation time'' | ''Use external signal'''
+  default: '''Use external signal'''
+- name: Amplitude
+  summary: 正弦波幅值 1（默认）| 标量
+  group: ''
+  block_parameter: Amplitude
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Bias
+  summary: 添加到正弦波的常量 0（默认）| 标量
+  group: ''
+  block_parameter: Bias
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Frequency (rad/sec)
+  summary: 正弦波频率 1（默认）| 标量
+  group: ''
+  block_parameter: Frequency
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Phase (rad)
+  summary: 正弦波相移 0（默认）| 标量
+  group: ''
+  block_parameter: Phase
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Samples per period
+  summary: 每周期采样数 0（默认）| integer
+  group: ''
+  block_parameter: Samples
+  type: character vector
+  values: scalar
+  default: '''10'''
+- name: Number of offset samples
+  summary: 时间采样数偏移 0（默认）| integer
+  group: ''
+  block_parameter: Offset
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Sample time
+  summary: 采样周期 0（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Interpret vector parameters as 1-D
+  summary: 单行或单列矩阵的输出维度 off（默认）| on
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Sine type** — 正弦波类型 `Time based`（默认）| `Sample based`
 
@@ -182,7 +265,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Math Operations

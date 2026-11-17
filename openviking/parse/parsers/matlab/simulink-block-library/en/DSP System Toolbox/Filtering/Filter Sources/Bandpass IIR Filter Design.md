@@ -14,6 +14,41 @@ language: en
 # Bandpass IIR Filter Design
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: Filter order even positive integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Fc1
+  summary: First 3-dB cutoff frequency nonnegative scalar ≤ Fc2
+  direction: input
+  data_types: single | double
+- name: Fc2
+  summary: Second 3-dB cutoff frequency Fc1 ≤ positive scalar ≤ 1
+  direction: input
+  data_types: single | double
+- name: Ap
+  summary: Passband ripple in dB nonnegative scalar
+  direction: input
+  data_types: single | double
+- name: Ast
+  summary: Stopband attenuation in dB nonnegative scalar
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: Numerator coefficients *P*-by-3 matrix | *P*-by-5 matrix
+  direction: output
+  data_types: single | double
+- name: Den
+  summary: Denominator coefficients *P*-by-5 matrix
+  direction: output
+  data_types: single | double
+- name: g
+  summary: Scale values for each second-order section vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -261,8 +296,67 @@ To enable this port:
 - Select the **Design has scale values** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Smooth tuned filter parameters
+  summary: Smooth tuned filter parameters off (default) | on
+  group: ''
+- name: Smoothing factor
+  summary: Smoothing factor 0.6 (default) | nonnegative scalar less than 1
+  group: ''
+- name: Design method
+  summary: Filter design method Butterworth (default) | Chebyshev Type I | Chebyshev Type II
+  group: ''
+- name: Specify filter order from input port
+  summary: Flag to specify filter order from input port off (default) | on
+  group: ''
+- name: Filter order (must be even)
+  summary: Filter order 6 (default) | even positive integer
+  group: ''
+- name: Filter maximum order (must be even)
+  summary: Maximum order of filter 10 (default) | even positive integer
+  group: ''
+- name: Design has scale values
+  summary: Specify if filter has scale values for each section off (default) | on
+  group: ''
+- name: Specify first 3-dB cutoff frequency from input port
+  summary: Flag to specify first 3-dB cutoff frequency from input port off (default) | on
+  group: ''
+- name: First 3-dB cutoff frequency
+  summary: First 3-dB cutoff frequency 0.25 (default) | positive scalar
+  group: ''
+- name: Specify second 3-dB cutoff frequency from input port
+  summary: Flag to specify second 3-dB cutoff frequency from input port off (default) | on
+  group: ''
+- name: Second 3-dB cutoff frequency
+  summary: Second 3-dB cutoff frequency 0.75 (default) | positive scalar
+  group: ''
+- name: Specify the passband ripple from input port
+  summary: Flag to specify passband ripple from input port off (default) | on
+  group: ''
+- name: Passband ripple (dB)
+  summary: Passband ripple in dB 1 (default) | positive scalar
+  group: ''
+- name: Specify the stopband attenuation from input port
+  summary: Flag to specify stopband attenuation from input port off (default) | on
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation in dB 60 (default) | positive scalar
+  group: ''
+- name: Sample time
+  summary: Sample time in seconds -1 (default) | positive scalar | Inf
+  group: ''
+- name: Filter cascade sections form
+  summary: Form of filter cascade sections Fourth-order sections (default) | Second-order sections
+  group: ''
+- name: Output data type
+  summary: Data type of filter coefficients double (default) | single
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Smooth tuned filter parameters** — Smooth tuned filter parameters `off` (default) | `on`
 
@@ -470,7 +564,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Sources

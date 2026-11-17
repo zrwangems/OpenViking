@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # Extended EMF Observer
 
 ## 端口
+```yaml
+ports:
+- name: Vα
+  summary: '*α* 轴电压标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vβ
+  summary: '*β* 轴电压标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iα
+  summary: '*α* 轴电流标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iβ
+  summary: '*β* 轴电流标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Rst
+  summary: 复位模块标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: Extended EMF Observer 的计算参数总线
+  direction: input
+  data_types: single | double
+- name: θe
+  summary: PMSM 电位置标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Sin θe
+  summary: PMSM 电位置的正弦标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Cos θe
+  summary: PMSM 电位置的余弦标量
+  direction: output
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: PMSM 机械转速标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -107,8 +150,76 @@ Extended EMF Observer 模块的计算参数。该输入端口接受以下参数�
 转子的估计机械转速。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: 启用输入端口以接受计算参数的选项 off（默认）| on
+  group: ''
+- name: Input units
+  summary: 模块输入的单位 SI unit（默认）| Per-unit
+  group: ''
+- name: Position output
+  summary: 位置输出的类型 Electrical position（默认）| Sine and Cosine electrical position
+  group: ''
+- name: Discrete step size (s)
+  summary: 模块再次执行前的采样时间 50e-6（默认）| 标量
+  group: ''
+- name: Stator resistance (ohm)
+  summary: 电阻 0.36（默认）| 标量
+  group: Motor Parameters
+- name: Stator d-axis inductance (H)
+  summary: '*D* 轴电感 0.2e-3（默认）| 标量'
+  group: Motor Parameters
+- name: Stator d-axis inductance (H)
+  summary: '*Q* 轴电感 0.2e-3（默认）| 标量'
+  group: Motor Parameters
+- name: Maximum application speed (RPM)
+  summary: 支持的最大机械转速 6000（默认）| 标量
+  group: Motor Parameters
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 4（默认）| 标量
+  group: Motor Parameters
+- name: Maximum voltage (V)
+  summary: 对应一标幺值的标称电压 13.8564（默认）| 标量
+  group: Motor Parameters
+- name: Maximum current (A)
+  summary: 对应一标幺值的标称电流 21.4286（默认）| 标量
+  group: Motor Parameters
+- name: EEMF observer gain
+  summary: 扩展 EMF 观测器增益 10（默认）| 标量
+  group: Observer Parameters
+- name: EEMF filter cutoff frequency (Hz)
+  summary: EEMF 滤波器截止频率 7500（默认）| 标量
+  group: Observer Parameters
+- name: Proportional (P)
+  summary: 转速观测器的比例增益 250（默认）| 标量
+  group: Observer Parameters
+- name: Integral (I)
+  summary: 转速观测器的积分增益 200000（默认）| 标量
+  group: Observer Parameters
+- name: 正弦-余弦查找表的数据点数量
+  summary: 用于速度计算的数据点数量 1024（默认）| 标量
+  group: Observer Parameters
+- name: 速度滤波器截止频率 (Hz)
+  summary: 速度滤波器的截止频率 15（默认）| 标量
+  group: Observer Parameters
+- name: 位置单位
+  summary: 位置输出的单位 Degrees（默认）| Radians | Per-unit
+  group: 数据类型
+- name: 位置数据类型
+  summary: 位置输出的数据类型 single（默认）| double | fixed point
+  group: 数据类型
+- name: 速度单位
+  summary: 速度输出的单位 Degrees/sec（默认）| Radians/sec | RPM | Per-unit
+  group: 数据类型
+- name: 速度数据类型
+  summary: 速度输出的数据类型 single（默认）| double | fixed point
+  group: 数据类型
+- name: 表数据类型
+  summary: 表的数据类型 single（默认）| double | fixed point
+  group: 数据类型
+```
 
 ### **Use input port for computed parameters (run-time motor swap)** — 启用输入端口以接受计算参数的选项 `off`（默认）| on
 
@@ -272,7 +383,6 @@ parameters (run-time motor swap)** 参数。
 ### **表数据类型** — 表的数据类型 `single`（默认）| `double` | `fixed point`
 
 表的数据类型。
-
 ## 所属库
 
 Motor Control Blockset / Sensorless Estimators

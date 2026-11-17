@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Data Type Propagation
 
 ## 端口
+```yaml
+ports:
+- name: Ref1
+  summary: 第一参考信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Ref2
+  summary: 第二参考信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Prop
+  summary: 传播的数据类型和定标 数据类型和定标
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -35,8 +50,141 @@ chinese_source: worker-translation
 数据类型和定标信息，反向传播到模型。在模块从参考信号收集数据类型和定标信息后，您可以对数据类型和定标应用第二级调整。为此，请在模块对话框中指定各自的乘法和加法调整。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 1. Propagated data type
+  summary: 指定传播数据类型的模式 Inherit via propagation rule（默认）| Specify via dialog
+  group: Propagated Type
+  block_parameter: PropDataTypeMode
+  type: character vector
+  values: '''Specify via dialog'' | ''Inherit via propagation rule'''
+  default: '''Inherit via propagation rule'''
+- name: 1.1. Propagated data type (e.g. fixdt(1,16), fixdt('single'))
+  summary: 传播的数据类型 fixdt(1,16)（默认）| 数据类型字符串
+  group: Propagated Type
+  block_parameter: PropDataType
+  type: character vector
+  values: '''fixdt(1, 16)'' | data type string in quotes'
+  default: '''fixdt(1, 16)'''
+- name: 1.1 If any reference input is double, output is
+  summary: 当参考输入为 double 时的输出数据类型 double（默认）| single
+  group: Propagated Type
+  block_parameter: IfRefDouble
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: 1.2 If any reference input is single, output is
+  summary: 当参考输入为 single 时的输出数据类型 single（默认）| double
+  group: Propagated Type
+  block_parameter: IfRefSingle
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''single'''
+- name: 1.3 Is-Signed
+  summary: 传播数据类型的符号性 IsSigned1 or IsSigned2（默认）| IsSigned1 | IsSigned2 | TRUE | FALSE
+  group: Propagated Type
+  block_parameter: IsSigned
+  type: character vector
+  values: '''IsSigned1'' | ''IsSigned2'' | ''IsSigned1 or IsSigned2'' | ''TRUE'' | ''FALSE'''
+  default: '''IsSigned1 or IsSigned2'''
+- name: '1.4.1 Number-of-bits: Base'
+  summary: 传播数据类型基数的位数 max([NumBits1 NumBits2])（默认）| NumBits1 | NumBits2 | min([NumBits1 NumBits2]) | NumBits1+NumBits2
+  group: Propagated Type
+  block_parameter: NumBitsBase
+  type: character vector
+  values: '''NumBits1'' | ''NumBits2'' | ''max([NumBits1 NumBits2])'' | ''min([NumBits1 NumBits2])'' | ''NumBits1+NumBits2'''
+  default: '''max([NumBits1 NumBits2])'''
+- name: '1.4.2 Number-of-bits: Multiplicative adjustment'
+  summary: 传播数据类型乘法调整的位数 1（默认）| 正整数
+  group: Propagated Type
+  block_parameter: NumBitsMult
+  type: character vector
+  values: positive integer
+  default: '''1'''
+- name: '1.4.3 Number-of-bits: Additive adjustment'
+  summary: 传播数据类型加法调整的位数 0（默认）| 正整数
+  group: Propagated Type
+  block_parameter: NumBitsAdd
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: '1.4.4 Number-of-bits: Allowable final values'
+  summary: 传播数据类型中允许的位数 '-1'（默认）| 正整数标量或向量
+  group: Propagated Type
+  block_parameter: NumBitsAllowFinal
+  type: character vector
+  values: scalar or vector of positive integers
+  default: '''-1'''
+- name: 2. Propagated scaling
+  summary: 传播定标模式 Inherit via propagation rule（默认）| Specify via dialog | Obtain via best precision
+  group: Propagated Scaling
+  block_parameter: PropScalingMode
+  type: character vector
+  values: '''Inherit via propagation rule'' | ''Specify via dialog'' | ''Obtain via best precision'''
+  default: '''Inherit via propagation rule'''
+- name: 2.1. Propagated scaling (Slope, e.g. 2^-9 or [Slope Bias], e.g. [1.25 3])
+  summary: 斜率或斜率和偏置 2^-10 | 斜率 | 方括号中的斜率和偏置
+  group: Propagated Scaling
+  block_parameter: PropScaling
+  type: character vector
+  values: slope | slope and bias in square brackets
+  default: '''2^-10'''
+- name: 2.1. Values used to determine best precision scaling
+  summary: 用于约束精度的值 [5 -7]（默认）
+  group: Propagated Scaling
+  block_parameter: ValuesUsedBestPrec
+  type: character vector
+  values: vector of values
+  default: '''[5 -7]'''
+- name: '2.1.1. Slope: Base'
+  summary: 传播数据类型基数的斜率 min([Slope1 Slope2])（默认）| Slope1 | Slope2 | min([Slope1 Slope2]) | max([Bias1 Bias2]) | Slope1*Slope2
+    | Slope1/Slope2 | PosRange1 | PosRange2 | max([PosRange1 PosRange2]) | min([PosRange1 PosRange2]) | PosRange1*PosRange2
+    | PosRange1/PosRange2
+  group: Propagated Scaling
+  block_parameter: SlopeBase
+  type: character vector
+  values: '''Slope1'' | ''Slope2'' | ''max([Slope1 Slope2])'' | ''min([Slope1 Slope2])'' | ''Slope1*Slope2'' | ''Slope1/Slope2''
+    | ''PosRange1'' | ''PosRange2'' | ''max([PosRange1 PosRange2])'' | ''min([PosRange1 PosRange2])'' | ''PosRange1*PosRange2''
+    | ''PosRange1/PosRange2'''
+  default: '''min([Slope1 Slope2])'''
+- name: '2.1.2. Slope: Multiplicative adjustment'
+  summary: 传播数据类型乘法调整的斜率 1（默认）| 标量
+  group: Propagated Scaling
+  block_parameter: SlopeMult
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: '2.1.3. Slope: Additive adjustment'
+  summary: 传播数据类型加法调整的斜率 0（默认）| 标量
+  group: Propagated Scaling
+  block_parameter: SlopeAdd
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: '2.2.1. Bias: Base'
+  summary: Prop 的基数偏置 Bias1（默认）| Bias2 | max([Bias1 Bias2]) | min([Bias1 Bias2]) | Bias1*Bias2 | Bias1/Bias2 | Bias1+Bias2
+    | Bias1-Bias2
+  group: Propagated Scaling
+  block_parameter: BiasBase
+  type: character vector
+  values: '''Bias1'' | ''Bias2'' | ''max([Bias1 Bias2])'' | ''min([Bias1 Bias2])'' | ''Bias1*Bias2'' | ''Bias1/Bias2'' | ''Bias1+Bias2''
+    | ''Bias1-Bias2'''
+  default: '''Bias1'''
+- name: '2.2.2. Bias: Multiplicative adjustment'
+  summary: 传播数据类型的乘法偏置 1（默认）| 标量
+  group: Propagated Scaling
+  block_parameter: BiasMult
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: '2.3.2. Bias: Additive adjustment'
+  summary: 传播数据类型 0（默认）| 标量的加性偏置
+  group: Propagated Scaling
+  block_parameter: BiasAdd
+  type: 字符向量
+  values: 标量
+```
 
 ### Propagated Type
 
@@ -387,7 +535,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 标量 |
 | **默认：** `'0'` |
-
 ## 所属库
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

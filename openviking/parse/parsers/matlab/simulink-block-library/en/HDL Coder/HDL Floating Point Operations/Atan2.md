@@ -14,6 +14,29 @@ language: en
 # Atan2
 
 ## Ports
+```yaml
+ports:
+- name: y_dataIn
+  summary: '*y*-coordinate data scalar | vector'
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: x_dataIn
+  summary: '*x*-coordinate data scalar | vector'
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validIn
+  summary: Whether input control signal is valid scalar
+  direction: input
+  data_types: Boolean
+- name: thetaOut
+  summary: Four-quadrant arctangent scalar | vector
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validOut
+  summary: Whether output control signal is valid scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -55,8 +78,38 @@ Output control signal that indicates whether output signal is valid, returned as
 scalar.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of iterations
+  summary: Number of iterations for CORDIC algorithm 11 (default) | positive integer
+  group: ''
+  block_parameter: iter
+  type: character vector
+  values: Integer values
+  default: '''11'''
+- name: Latency strategy
+  summary: Latency strategy Max (default) | Min | Custom | Custom(PerIteration) | Zero
+  group: ''
+  block_parameter: latencyMode
+  type: character vector
+  values: '''Max'' | ''Min'' | ''Custom'' | ''Custom(PerIteration)'' | ''Zero'''
+  default: '''Max'''
+- name: Custom latency
+  summary: Custom latency 0 (default) | positive integer
+  group: ''
+  block_parameter: customLatencyValue
+  type: Integer
+  values: 0 to Max latency
+  default: '0'
+- name: IterationsPerPipeline
+  summary: Iterations per pipeline 1 (default) | positive integer
+  group: ''
+  block_parameter: iterationsPerPipelineValue
+  type: Integer
+  values: Positive integer
+  default: '1'
+```
 
 To edit block parameters interactively, use
 the Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -139,7 +192,6 @@ To enable this parameter, set **Latency strategy** to
 | **Type**: Integer |
 | **Values**: `Positive integer` |
 | **Default**: `1` |
-
 ## Libraries
 
 HDL Coder

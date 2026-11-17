@@ -14,6 +14,15 @@ language: en
 # Exponential Current Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,31 @@ positive voltage
 
 Electrical conserving port associated with the DC current source
 negative voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial value, I1
+  summary: Output current initial value 0 A (default)
+  group: ''
+- name: Pulse value, I2
+  summary: Output current asymptotic value 0 A (default)
+  group: ''
+- name: Rise delay time, TDR
+  summary: Rise delay time 0 s (default)
+  group: ''
+- name: Rise time, TR
+  summary: Rise time 1e-9 s (default) | positive scalar
+  group: ''
+- name: Fall delay time, TDF
+  summary: Fall delay time 0 s (default)
+  group: ''
+- name: Fall time, TF
+  summary: Fall time 1e-9 s (default) | positive scalar
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: Whether to include parallel conductance Yes (default) | No
+  group: ''
+```
 
 ### **Initial value, I1** — Output current initial value `0` `A` (default)
 
@@ -74,7 +106,6 @@ This table shows the possible values of the parallel conductance,
 | *`Yes`* | | *`No`* | | |
 | **Model contains Environment Parameters block** | **Model does not contain Environment Parameters block** | Parallel conductance, *GMIN*, is not included and it does not affect the current source. | | |
 | *GMIN* is equal to the value of the **GMIN** parameter in the Environment Parameters block. | *GMIN* = `1e-12` `Ohm` |
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

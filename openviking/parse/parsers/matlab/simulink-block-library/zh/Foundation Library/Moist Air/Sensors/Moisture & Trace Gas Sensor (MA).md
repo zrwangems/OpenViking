@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Moisture & Trace Gas Sensor (MA)
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 湿度测量，无量纲物理信号
+  direction: output
+- name: Tw
+  summary: 湿球温度测量，K 物理信号
+  direction: output
+- name: G
+  summary: 微量气体水平测量，无量纲物理信号
+  direction: output
+- name: D
+  summary: 水滴与湿空气的质量比，无量纲物理信号
+  direction: output
+- name: A
+  summary: 传感器入口湿空气
+  direction: output
+```
 
 ### 输出
 
@@ -60,8 +78,25 @@ chinese_source: worker-translation
 ### **A** — 传感器入口湿空气
 
 湿空气守恒端口。将此端口连接到湿空气网络中您想要测量湿度和微量气体水平的节点。
-
 ## 参数
+```yaml
+parameters:
+- name: Humidity
+  summary: 控制用于测量湿度的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Measured humidity specification
+  summary: 选择要测量的湿度属性 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: ''
+- name: Trace gas
+  summary: 控制用于测量微量气体的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Measured trace gas specification
+  summary: 选择要测量的微量气体属性 Mass fraction（默认）| Mole fraction
+  group: ''
+- name: Water droplets
+  summary: 控制用于测量水滴的输出端口可见性 Off（默认）| On
+  group: ''
+```
 
 ### **Humidity** — 控制用于测量湿度的输出端口可见性 `On`（默认）| `Off`
 
@@ -91,7 +126,6 @@ chinese_source: worker-translation
 ### **Water droplets** — 控制用于测量水滴的输出端口可见性 `Off`（默认）| `On`
 
 选中此复选框将显示输出端口 **D**，使您能够测量水滴与湿空气的质量比。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Sensors

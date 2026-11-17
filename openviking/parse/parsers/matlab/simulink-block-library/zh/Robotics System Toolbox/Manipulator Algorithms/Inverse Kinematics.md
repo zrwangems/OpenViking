@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Inverse Kinematics
 
 ## 端口
+```yaml
+ports:
+- name: Pose
+  summary: 末端执行器位姿 4×4 齐次变换
+  direction: input
+  data_types: single | double
+- name: Weights
+  summary: 位姿容差的权重 六元素向量
+  direction: input
+  data_types: single | double
+- name: InitialGuess
+  summary: 机器人配置的初始猜测 向量
+  direction: input
+  data_types: single | double
+- name: Config
+  summary: 机器人配置解 向量
+  direction: output
+  data_types: single | double
+- name: Info
+  summary: 求解信息 总线
+  direction: output
+```
 
 ### 输入
 
@@ -51,8 +73,55 @@ chinese_source: worker-translation
 - `PoseErrorNorm` — 解中末端执行器位姿与期望末端执行器位姿之间误差的大小。
 - `ExitFlag` — 提供有关算法执行及导致其返回原因的更多详细信息的代码。有关每种算法类型的退出标志，请参阅 Exit Flags。
 - `Status` — 描述解是在容差范围内（`1`）还是算法所能找到的最佳可能解（`2`）的字符向量。
-
 ## 参数
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: 刚体树模型 twoJointRigidBodyTree（默认）| rigidBodyTree 对象
+  group: 模块参数
+- name: End effector
+  summary: 末端执行器名称 'tool' | Select body
+  group: 模块参数
+- name: Show solution diagnostic outputs
+  summary: 启用 info 端口 on（默认）| off
+  group: 模块参数
+- name: Solver
+  summary: 求解逆运动学的算法 BFGS Gradient Projection（默认）| Levenberg-Marquardt | fminconsqp
+  group: 求解器参数
+- name: Enforce joint limits
+  summary: 强制刚体树关节限位 on（默认）| off
+  group: 求解器参数
+- name: Maximum iterations
+  summary: 最大迭代次数 1500（默认）| 正整数
+  group: 求解器参数
+- name: Maximum time
+  summary: 运行算法的最大秒数 10（默认）| 正标量
+  group: 求解器参数
+- name: Gradient tolerance
+  summary: 代价函数梯度的阈值 1e-7（默认）| 正标量
+  group: 求解器参数
+- name: Solution tolerance
+  summary: 位姿误差的阈值 1e-6（默认）| 正标量
+  group: 求解器参数
+- name: Step tolerance
+  summary: 最小步长 1e-14（默认）| 正标量
+  group: 求解器参数
+- name: Error change tolerance
+  summary: 位姿误差变化的阈值 1e-12（默认）| 正标量
+  group: 求解器参数
+- name: Use error damping
+  summary: 启用误差阻尼 on（默认）| off
+  group: 求解器参数
+- name: Damping bias
+  summary: 代价函数上的阻尼 0.0025（默认）| 正标量
+  group: 求解器参数
+- name: Constraint tolerance
+  summary: 约束违反的阈值 1e-6（默认）| 非负数值标量
+  group: 求解器参数
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 求解器参数
+```
 
 ### 模块参数
 
@@ -142,7 +211,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码将复用于后续仿真。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **Tunable:** No
-
 ## 所属库
 
 Robotics System Toolbox / Manipulator Algorithms

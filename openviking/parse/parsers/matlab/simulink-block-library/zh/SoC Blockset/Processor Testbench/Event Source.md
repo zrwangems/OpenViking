@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Event Source
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 数值向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: event
+  summary: 任务事件信号 标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输入
 
@@ -34,8 +45,19 @@ chinese_source: worker-translation
 此端口发送任务事件信号，触发 Task Manager 模块执行关联的事件驱动任务。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters:
+- name: Input
+  summary: 输入数据源 From dialog（默认）| From input port | From timeseries object
+  group: ''
+- name: Sample time
+  summary: 采样时间间隔 -1（默认）| 非负标量
+  group: ''
+- name: Object name
+  summary: timeseries 对象名称 []（默认）| timeseries 对象
+  group: ''
+```
 
 ### **Input** — 输入数据源 `From dialog`（默认）| `From input port` | `From timeseries object`
 
@@ -60,7 +82,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Input** 参数设置为 `From timeseries object`。
-
 ## 所属库
 
 SoC Blockset / Processor Testbench C2000 Microcontroller Blockset / Scheduling Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

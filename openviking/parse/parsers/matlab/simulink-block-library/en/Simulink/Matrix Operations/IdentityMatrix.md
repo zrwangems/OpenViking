@@ -14,6 +14,17 @@ language: en
 # Identity Matrix
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Identity matrix scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -38,8 +49,58 @@ input port** check box.
 Identity matrix, specified as a scalar, vector, or matrix.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit output port attributes from input port
+  summary: Option for output port to inherit attributes from input port off (default) | on
+  group: ''
+  block_parameter: InheritOutputPortAttributes
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Output dimensions
+  summary: Size of output matrix 5 (default) | scalar | two-element vector
+  group: ''
+  block_parameter: OutputDimensions
+  type: character vector
+  values: scalar | two-element vector
+  default: '''5'''
+- name: Output data type
+  summary: 'Output data type double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 |
+    boolean | fixdt(1,16,0) | Inherit: Inherit via back propagation | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''double'''
+- name: Mode
+  summary: Data type mode Inherit (default) | Built in | Fixed point | Expression
+  group: ''
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default) | Unsigned
+  group: ''
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point
+  group: ''
+- name: Word length
+  summary: Bit size of word that holds quantized integer 16 (default) | integer from 2 to 65,535
+  group: ''
+- name: Fraction length
+  summary: Fraction length for fixed-point data type 0 (default) | integer scalar
+  group: ''
+- name: Data type override
+  summary: Data type override mode Inherit (default) | Off
+  group: ''
+- name: Sample time
+  summary: Output sample period 1 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar or vector
+  default: '''1'''
+```
 
 ### **Inherit output port attributes from input port** — Option for output port to inherit attributes from input port off (default) | on
 
@@ -194,7 +255,6 @@ input port** check box.
 | **Type:** character vector |
 | **Values:** scalar or vector |
 | **Default:** `'1'` |
-
 ## Libraries
 
 Simulink / Matrix Operations

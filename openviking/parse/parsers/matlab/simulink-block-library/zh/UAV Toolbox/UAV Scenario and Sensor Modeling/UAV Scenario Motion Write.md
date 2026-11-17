@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # UAV Scenario Motion Write
 
 ## 端口
+```yaml
+ports:
+- name: Position
+  summary: 位置 1×3 向量
+  direction: input
+- name: Orientation
+  summary: 姿态四元数 1×4 向量
+  direction: input
+- name: Velocity
+  summary: 速度 1×3 向量
+  direction: input
+- name: Acceleration
+  summary: 加速度 1×3 向量
+  direction: input
+- name: AngularVelocity
+  summary: 角速度 1×3 向量
+  direction: input
+```
 
 ### 输入
 
@@ -37,8 +55,16 @@ chinese_source: worker-translation
 ### **AngularVelocity** — 角速度 1×3 向量
 
 将平台在输入坐标系中的输入角速度指定为 1×3 向量。
-
 ## 参数
+```yaml
+parameters:
+- name: Platform name
+  summary: 平台名称 'UAV'（默认）| 字符串
+  group: ''
+- name: Coordinate frame of input motion
+  summary: 输入运动的坐标系 'NED'（默认）| ENU
+  group: ''
+```
 
 ### **Platform name** — 平台名称 `'UAV'`（默认）| 字符串
 
@@ -47,7 +73,6 @@ chinese_source: worker-translation
 ### **Coordinate frame of input motion** — 输入运动的坐标系 `'NED'`（默认）| `ENU`
 
 将输入运动的坐标系指定为 `'NED'`（北-东-下）或 `'ENU'`（东-北-上）。
-
 ## 所属库
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

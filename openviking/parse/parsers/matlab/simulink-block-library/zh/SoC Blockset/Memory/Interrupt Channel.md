@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Interrupt Channel
 
 ## 端口
+```yaml
+ports:
+- name: '*interruptN*'
+  summary: 来自硬件的中断请求 True | False
+  direction: input
+  data_types: rteEvent | Boolean
+- name: '*interruptN*'
+  summary: 发送到处理器的中断请求信号 标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输入
 
@@ -42,8 +53,16 @@ chinese_source: worker-translation
 输出端口数量取决于中断表中的中断数量。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters:
+- name: Interrupts
+  summary: 中断名称、触发类型和优先级表
+  group: ''
+- name: Interrupt processing time
+  summary: 中断访问的处理时间 100e-6（默认）| 正标量
+  group: ''
+```
 
 ### **Interrupts** — 中断名称、触发类型和优先级表
 
@@ -63,7 +82,6 @@ chinese_source: worker-translation
 此采样时间表示中断通道仲裁和执行中断请求所需的时间。它定义为 Interrupt Controller 仲裁、Kernel ISR 执行以及设备驱动额外延迟所需的时间。
 
 通过输入一个数字（以秒为单位）来指定处理时间。
-
 ## 所属库
 
 SoC Blockset / Memory

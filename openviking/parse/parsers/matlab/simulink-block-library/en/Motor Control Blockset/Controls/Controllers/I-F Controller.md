@@ -14,6 +14,53 @@ language: en
 # I-F Controller
 
 ## Ports
+```yaml
+ports:
+- name: Enable
+  summary: Option to enable block algorithm scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: Electrical position of motor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm ref
+  summary: Reference motor mechanical speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ωm
+  summary: Motor mechanical speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Iq
+  summary: '*Q*-axis stator current scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vq
+  summary: '*Q*-axis stator voltage scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: Computed parameters for I-F controller bus
+  direction: input
+  data_types: single | double
+- name: Idref
+  summary: Reference *d*-axis current scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Iqref
+  summary: Reference *q*-axis current scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: θeref
+  summary: Generated reference electrical position of motor scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: Status
+  summary: I-F control status scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -114,8 +161,67 @@ Status of the I-F control algorithm.
 - `0` — Indicates that I-F control is active.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable speed damping
+  summary: Option to enable block to apply speed oscillation damping compensation off (default) | on
+  group: ''
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: Option to enable input port to accept computed parameters off (default) | on
+  group: ''
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 4 (default) | scalar
+  group: ''
+- name: Position unit
+  summary: Unit of electrical position Degrees (default) | Radians | Per-unit
+  group: ''
+- name: Speed unit
+  summary: Unit of the speed inputs Degrees/Sec (default) | Radians/Sec | RPM | Per-unit
+  group: ''
+- name: Per unit speed (RPM)
+  summary: Speed corresponding to one per-unit 6000 (default) | scalar
+  group: ''
+- name: Current unit
+  summary: Unit of motor currents SI unit (default) | Per-unit
+  group: ''
+- name: Base current (A)
+  summary: Nominal current corresponding to one per-unit 21.4286 (default) | scalar
+  group: ''
+- name: Discrete step size (s)
+  summary: Interval between consecutive block executions 50e-6 (default) | scalar
+  group: ''
+- name: Speed to exit I-F controller (RPM), ω1
+  summary: Speed (after motor starts) at which I-F control stops 410.7 (default) | scalar
+  group: Controller Parameters
+- name: Speed to re-enter I-F controller (RPM), ω2
+  summary: Speed required to re-enter I-F control 287.49 (default) | scalar
+  group: Controller Parameters
+- name: Maximum current (A), Imax
+  summary: Maximum motor current during I-F control 6.39 (default) | scalar
+  group: Controller Parameters
+- name: Maximum rate of speed change (RPM/s)
+  summary: Maximum rate of speed change during I-F control 960 (default) | scalar
+  group: Controller Parameters
+- name: Maximum current decay rate (A/s)
+  summary: Maximum rate of current decay during I-F control 111.8250 (default) | scalar
+  group: Controller Parameters
+- name: Idle time (s)
+  summary: Time of constant speed and current 1 (default) | scalar
+  group: Controller Parameters
+- name: Minimum allowed position error for transition (rad)
+  summary: Threshold error for closed-loop transition 0.1745 (default) | scalar
+  group: Controller Parameters
+- name: Voltage unit
+  summary: Unit of stator voltages SI unit (default) | Per-unit
+  group: Advanced Parameters
+- name: Base voltage (V)
+  summary: Nominal voltage corresponding to one per-unit 13.8564 (default) | scalar
+  group: Advanced Parameters
+- name: Damping coefficient, ζ
+  summary: Speed oscillation damping coefficient value 2.6172 (default) | scalar
+  group: Advanced Parameters
+```
 
 ### **Enable speed damping** — Option to enable block to apply speed oscillation damping compensation `off` (default) | on
 
@@ -351,7 +457,6 @@ To enable this parameter:
 - Clear the **Use input port for computed parameters
   (run-time motor swap)** parameter available in the
   **Advanced Options** section.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Controllers

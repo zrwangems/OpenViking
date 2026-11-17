@@ -14,6 +14,17 @@ language: en
 # String Length
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input string scalar
+  direction: input
+  data_types: string
+- name: Port_1
+  summary: Number of characters scalar
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### Input
 
@@ -30,8 +41,22 @@ Number of characters in the input string, specified as a
 scalar.
 
 **Data Types:** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | int8 |
+    uint8 | int16 | uint16 | int32 | uint32 | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | *<data type expression>*'
+  default: '''Inherit: Inherit via internal rule'''
+- name: Mode
+  summary: Category of data type Inherit (default) | Built in | Expression
+  group: ''
+```
 
 ### **Output data type** — Output data type `Inherit: Inherit via internal rule` (default) | `Inherit: Inherit via back propagation` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `<data type expression>`
 
@@ -72,7 +97,6 @@ information on using this parameter, see Specify Data Types Using Data Type Assi
 
 Clicking the **Show data type assistant** button
 enables this parameter.
-
 ## Libraries
 
 Simulink / String

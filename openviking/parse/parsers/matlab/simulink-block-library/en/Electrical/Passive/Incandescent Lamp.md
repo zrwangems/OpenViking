@@ -14,6 +14,15 @@ language: en
 # Incandescent Lamp
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,46 @@ voltage.
 
 Electrical conserving port associated with the lamp negative
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Block parameterization Specify resistance values directly (default) | Specify currents
+  group: Resistance
+- name: Initial resistance at turn-on
+  summary: Initial resistance at turn-on 0.15 Ohm (default)
+  group: Resistance
+- name: Steady-state resistance when on
+  summary: Steady-state resistance when on 1 Ohm (default)
+  group: Resistance
+- name: Inrush current at turn-on
+  summary: Inrush current at turn-on 70 A (default)
+  group: Resistance
+- name: Steady-state current when on
+  summary: Steady-state current when on 10 A (default)
+  group: Resistance
+- name: Rated voltage
+  summary: Lamp rated voltage 12 V (default)
+  group: Resistance
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 0.004 1/K (default)
+  group: Resistance
+- name: Thermal time constant
+  summary: Thermal time constant 25 ms (default)
+  group: Dynamics
+- name: Initial lamp state
+  summary: Initial lamp state Off (default) | On
+  group: Dynamics
+- name: Open circuit fault
+  summary: Option to add open circuit fault Add fault (default)
+  group: Faults
+- name: Open-circuit resistance
+  summary: Open-circuit resistance 1e6 Ohm (default)
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+```
 
 ### Resistance
 
@@ -150,7 +197,6 @@ lets you simulate the fault dynamics when the bulb burns out.
 
 To enable this parameter, set **Trigger Type** to
 `Timed`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

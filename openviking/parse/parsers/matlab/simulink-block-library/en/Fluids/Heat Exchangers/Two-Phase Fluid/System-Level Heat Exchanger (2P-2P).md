@@ -14,6 +14,27 @@ language: en
 # System-Level Heat Exchanger (2P-2P)
 
 ## Ports
+```yaml
+ports:
+- name: Q1
+  summary: Rate of heat transfer to two-phase fluid 1, W physical signal
+  direction: output
+- name: Q2
+  summary: Rate of heat transfer to two-phase fluid 2, W physical signal
+  direction: output
+- name: A1
+  summary: Two-phase fluid port on side 1 two-phase fluid
+  direction: conserving
+- name: B1
+  summary: Two-phase fluid port on side 1 two-phase fluid
+  direction: conserving
+- name: A2
+  summary: Two-phase fluid port on side 2 two-phase fluid
+  direction: conserving
+- name: B2
+  summary: Two-phase fluid port on side 2 two-phase fluid
+  direction: conserving
+```
 
 ### Output
 
@@ -51,8 +72,217 @@ Inlet or outlet port associated with the second two-phase fluid network.
 ### **B2** — Two-phase fluid port on side 2 two-phase fluid
 
 Inlet or outlet port associated with the second two-phase fluid network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement at nominal operating conditions
+  summary: Flow path alignment Counter flow - Two-Phase Fluid 1 flows from A to B, Two-Phase Fluid 2 flows from B to A (default)
+    | Parallel flow - Both fluids flow from A to B | Cross flow - Both fluids flow from A to B
+  group: Configuration
+- name: Enable wall thermal mass
+  summary: Whether to enable effect of thermal mass on heat transfer surface off (default) | on
+  group: Configuration
+- name: Wall mass
+  summary: Mass of heat transfer surface 1 kg (default) | positive scalar
+  group: Configuration
+- name: Wall specific heat
+  summary: Specific heat of heat transfer surface 490 J/(K*kg) (default) | positive scalar
+  group: Configuration
+- name: Initialize wall temperature to nominal operating conditions
+  summary: Option for initializing wall temperature on (default) | off
+  group: Configuration
+- name: Initial wall temperature
+  summary: Initial temperature of wall 293.15 K (default) | positive scalar or two-element vector
+  group: Configuration
+- name: Cross-sectional area at port A1
+  summary: Flow area at port A1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B1
+  summary: Flow area at port B1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port A2
+  summary: Flow area at port A2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B2
+  summary: Area normal to flow at port B2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Nominal operating condition
+  summary: Nominal operating condition Heat transfer from Two-Phase Fluid 1 to Two-Phase Fluid 2 (default) | Heat transfer
+    from Two-Phase Fluid 2 to Two-Phase Fluid 1
+  group: Two-Phase Fluid 1
+- name: Nominal mass flow rate
+  summary: Mass flow rate between two-phase fluid 1 ports during nominal operating condition 0.001 kg/s (default) | positive
+    scalar
+  group: Two-Phase Fluid 1
+- name: Nominal pressure drop
+  summary: Pressure drop between two-phase fluid 1 ports during nominal operating condition 0.01 MPa (default) | positive
+    scalar
+  group: Two-Phase Fluid 1
+- name: Pressure specification
+  summary: Select method of pressure specification Inlet pressure (default) | Saturation pressure at specified condensing
+    temperature | Saturation pressure at specified evaporating temperature
+  group: Two-Phase Fluid 1
+- name: Nominal inlet pressure
+  summary: Pressure at the two-phase fluid 1 inlet 1 MPa (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal saturation temperature
+  summary: Use nominal saturation temperature to specify pressure 313.15 K (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Inlet condition specification
+  summary: Select quantity to describe the inlet condition of the two-phase fluid 1 Specific enthalpy (default) | Temperature
+    | Vapor quality
+  group: Two-Phase Fluid 1
+- name: Nominal inlet specific enthalpy
+  summary: Specific enthalpy at the two-phase fluid 1 inlet 440 kJ/kg (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal inlet temperature
+  summary: Temperature at the two-phase fluid 1 inlet 313.15 K (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal inlet vapor quality
+  summary: Vapor quality at the two-phase fluid 1 inlet 1 (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Heat transfer capacity specification
+  summary: How to specify heat transfer capacity of two-phase fluid 1 Rate of heat transfer (default) | Outlet condition
+  group: Two-Phase Fluid 1
+- name: Nominal rate of heat transfer
+  summary: Rate of heat transfer 0.1 kW (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Outlet condition specification
+  summary: Select quantity for outlet condition specification Specific enthalpy (default) | Subcooling | Superheating | Vapor
+    quality
+  group: Two-Phase Fluid 1
+- name: Nominal outlet specific enthalpy
+  summary: Specific enthalpy at the two-phase fluid 1 outlet 250 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 1
+- name: Nominal subcooling
+  summary: Degree of temperature below the liquid saturation temperature at the two-phase fluid 1 outlet 5 deltaK (default)
+    | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal superheating
+  summary: Degree of temperature above the vapor saturation temperature at the two-phase fluid 1 outlet 5 deltaK (default)
+    | positive scalar
+  group: Two-Phase Fluid 1
+- name: Nominal outlet vapor quality
+  summary: Vapor mass fraction at the two-phase fluid 1 outlet 0 (default) | scalar in the range [0,1]
+  group: Two-Phase Fluid 1
+- name: Two-phase fluid 1 volume
+  summary: Total volume of two-phase fluid 1 0.001 m^3 (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Initialize two-phase fluid 1 to nominal operating conditions
+  summary: Option for initializing two-phase fluid 1 on (default) | off
+  group: Two-Phase Fluid 1
+- name: Initial fluid energy specification
+  summary: Initial state of the two-phase fluid 1 Specific enthalpy (default) | Temperature | Vapor quality | Vapor void fraction
+    | Specific internal energy
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid 1 pressure
+  summary: Fluid 1 pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid 1 specific enthalpy
+  summary: Enthalpy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid 1 temperature
+  summary: Temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid 1 vapor quality
+  summary: Vapor mass fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid 1 vapor void fraction
+  summary: Vapor volume fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Two-Phase Fluid 1
+- name: Initial two-phase fluid 1 specific internal energy
+  summary: Internal energy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 1
+- name: Nominal mass flow rate
+  summary: Mass flow rate between two-phase fluid 2 ports during nominal operating condition 0.001 kg/s (default) | positive
+    scalar
+  group: Two-Phase Fluid 2
+- name: Nominal pressure drop
+  summary: Pressure drop between two-phase fluid 2 ports during nominal operating condition 0.01 MPa (default) | positive
+    scalar
+  group: Two-Phase Fluid 2
+- name: Pressure specification
+  summary: Select method of pressure specification Inlet pressure (default) | Saturation pressure at specified condensing
+    temperature | Saturation pressure at specified evaporating temperature
+  group: Two-Phase Fluid 2
+- name: Nominal inlet pressure
+  summary: Pressure at the two-phase fluid side inlet 1 MPa (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Nominal saturation temperature
+  summary: Use nominal saturation temperature to specify pressure 243.15 K (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Inlet condition specification
+  summary: Select quantity to describe inlet condition of the two-phase fluid 2 Specific enthalpy (default) | Temperature
+    | Vapor quality
+  group: Two-Phase Fluid 2
+- name: Nominal inlet specific enthalpy
+  summary: Specific enthalpy at the two-phase fluid 2 inlet 250 kJ/kg (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Nominal inlet temperature
+  summary: Temperature at the two-phase fluid 2 inlet 237.15 K (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Nominal inlet vapor quality
+  summary: Vapor quality at the two-phase fluid 2 inlet 0.1 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Two-phase fluid 2 volume
+  summary: Total volume of two-phase fluid 2 0.001 m^3 (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Initialize two-phase fluid 2 to nominal operating conditions
+  summary: Option for initializing two-phase fluid 2 on (default) | off
+  group: Two-Phase Fluid 2
+- name: Initial fluid energy specification
+  summary: Initial state of the two-phase fluid 2 Specific enthalpy (default) | Temperature | Vapor quality | Vapor void fraction
+    | Specific internal energy
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 pressure
+  summary: Fluid 2 pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 specific enthalpy
+  summary: Enthalpy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 temperature
+  summary: Temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 vapor quality
+  summary: Vapor mass fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 vapor void fraction
+  summary: Vapor volume fraction at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 specific internal energy
+  summary: Internal energy per unit mass at start of simulation 1500 kJ/kg (default) | positive scalar | two-element vector
+  group: Two-Phase Fluid 2
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid 1 liquid
+  summary: Correlation coefficient for subcooled liquid in two-phase fluid 1 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid 1 mixture
+  summary: Correlation coefficient for liquid-vapor mixture in two-phase fluid 1 0.005 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid 1 vapor
+  summary: Correlation coefficient for superheated vapor in two-phase fluid 1 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for two-phase fluid 1
+  summary: Reynolds number exponent in correlation for two-phase fluid 1 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for two-phase fluid 1
+  summary: Prandtl number exponent in correlation for two-phase fluid 1 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid 2 liquid
+  summary: Correlation coefficient for subcooled liquid in two-phase fluid 2 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid 2 mixture
+  summary: Correlation coefficient for liquid-vapor mixture in two-phase fluid 2 0.005 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for two-phase fluid 2 vapor
+  summary: Correlation coefficient for superheated vapor in two-phase fluid 2 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for two-phase fluid 2
+  summary: Reynolds number exponent in correlation for two-phase fluid 2 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for two-phase fluid 2
+  summary: Prandtl number exponent in correlation for two-phase fluid 2 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+```
 
 ### Configuration
 
@@ -774,7 +1004,6 @@ to subcooled liquid, liquid-vapor mixture, and superheated vapor.
 Prandtl number exponent in the correlation of the Nusselt number as a function of
 the Reynolds number and Prandtl number for two-phase fluid 2. The same value applies
 to subcooled liquid, liquid-vapor mixture, and superheated vapor.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Two-Phase Fluid

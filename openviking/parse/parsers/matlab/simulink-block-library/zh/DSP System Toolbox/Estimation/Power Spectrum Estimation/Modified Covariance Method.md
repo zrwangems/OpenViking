@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Modified Covariance Method
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入列向量 | 未定向向量
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 功率谱密度估计列向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,25 @@ chinese_source: worker-translation
 信号在 *Nfft* 个等间隔频率点处的功率谱密度估计，以列向量形式返回。频率点位于范围 [0,*Fs*) 内，其中 *Fs* 是信号的采样率。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Estimation order
+  summary: AR 模型的阶数 6（默认）| 正整数
+  group: ''
+- name: Inherit FFT length from estimation order
+  summary: 从估计阶数继承 FFT 长度 off（默认）| on
+  group: ''
+- name: FFT length
+  summary: FFT 长度 256（默认）| 大于或等于 2 的正整数
+  group: ''
+- name: Inherit sample time from input
+  summary: 从输入继承采样时间 on（默认）| off
+  group: ''
+- name: Sample time of original time series
+  summary: 原始时域信号的采样时间 1（默认）| 正标量
+  group: ''
+```
 
 ### **Estimation order** — AR 模型的阶数 `6`（默认）| 正整数
 
@@ -65,7 +93,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请清除 **Inherit sample time from input** 参数。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

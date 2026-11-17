@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Bus Assignment
 
 ## 端口
+```yaml
+ports:
+- name: Bus
+  summary: 带有要重新分配元素的输入总线 bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | string
+- name: :=
+  summary: 要分配给总线元素的新值 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | string
+- name: Bus
+  summary: 输出总线 bus
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | string
+```
 
 ### 输入
 
@@ -41,8 +59,20 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `string`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Elements in the bus
+  summary: 输入总线的元素 只读：元素名称列表
+  group: ''
+  block_parameter: InputSignals
+  values: 只读：元胞数组或元胞数组的元胞数组中的元素名称列表
+- name: Elements that are being assigned
+  summary: 要赋予新值的总线元素 元素名称列表
+  group: ''
+  block_parameter: AssignedSignals
+  values: '''signal1''（默认）| 以逗号分隔的带引号的元素名称列表'
+```
 
 要交互式编辑 Bus Assignment 模块参数，请双击该模块。
 
@@ -108,7 +138,6 @@ chinese_source: worker-translation
 | **Data Types:** | `char` | `string` |
 
 **Example:** `set_param(gcb,'AssignedSignals','sine,chirp')`
-
 ## 所属库
 
 Simulink / Signal Routing HDL Coder / Signal Routing

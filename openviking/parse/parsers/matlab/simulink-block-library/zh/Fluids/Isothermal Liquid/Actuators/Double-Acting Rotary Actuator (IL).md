@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Double-Acting Rotary Actuator (IL)
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 轴角度物理信号
+  direction: input
+- name: q
+  summary: 执行器角度物理信号
+  direction: output
+- name: A
+  summary: 腔室 A 入口等温液体
+  direction: output
+- name: B
+  summary: 腔室 B 入口等温液体
+  direction: output
+- name: R
+  summary: 执行器轴机械旋转
+  direction: output
+- name: C
+  summary: 执行器壳体机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -51,8 +72,82 @@ chinese_source: worker-translation
 ### **C** — 执行器壳体机械旋转
 
 与缸体壳体关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Same fluid on both sides
+  summary: 在两个腔室中建模相同流体的选项 on（默认）| off
+  group: 执行器
+- name: Mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 执行器
+- name: Volume displacement in chamber A
+  summary: 体积排量 1e-4 m^3/rad（默认）| 正标量
+  group: 执行器
+- name: Volume displacement in chamber B
+  summary: 体积排量 1e-4 m^3/rad（默认）| 正标量
+  group: 执行器
+- name: Stroke
+  summary: 角度 5.0 rad（默认）| 正标量
+  group: 执行器
+- name: Dead volume in chamber A
+  summary: 流体体积 1e-5 m^3（默认）| 正标量
+  group: 执行器
+- name: Dead volume in chamber B
+  summary: 流体体积 1e-5 m^3（默认）| 正标量
+  group: 执行器
+- name: Environment pressure specification
+  summary: 压力参考源 Atmospheric pressure（默认）| Specified pressure
+  group: 执行器
+- name: Environment pressure
+  summary: 用户定义的压力参考 0.101325 MPa（默认）| 正标量
+  group: 执行器
+- name: Hard stop model
+  summary: 选择硬止挡模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 硬止挡
+- name: Hard stop stiffness coefficient
+  summary: 刚度系数 1e6 N\*m/rad（默认）| 正标量
+  group: 硬止挡
+- name: Hard stop damping coefficient
+  summary: 阻尼系数 150 N\*m(rad/s)（默认）| 正标量
+  group: 硬止挡
+- name: Transition region
+  summary: 过渡区域 0.001 rad（默认）| 正标量
+  group: 硬止挡
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与止挡之间最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 硬止挡
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与止挡之间的阈值相对速度 0.1 rad/s（默认）| 非负标量
+  group: 硬止挡
+- name: Static contact release torque threshold
+  summary: 从接触模式过渡到自由模式所需的阈值扭矩 0.001 N*m（默认）| 正标量
+  group: 硬止挡
+- name: Shaft rotation from chamber A
+  summary: 确定轴角度的方法 Calculate from velocity of port R relative to port C（默认）| Provide input signal from Multibody joint
+  group: 初始条件
+- name: Initial shaft rotation from chamber A
+  summary: 初始旋转 0 rad（默认）| 标量
+  group: 初始条件
+- name: Enable dynamic compressibility
+  summary: 流体可压缩性 On（默认）| Off
+  group: 初始条件
+- name: Initial liquid pressure in chamber A
+  summary: 液体压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: Initial liquid pressure in chamber B
+  summary: 液体压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: Nominal liquid pressure in chamber A
+  summary: 腔室 A 中额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: 初始条件
+- name: Nominal liquid pressure in chamber B
+  summary: 腔室 B 中额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: 初始条件
+```
 
 ### 执行器
 
@@ -210,7 +305,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请清除 **Enable dynamic compressibility** 复选框。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Actuators

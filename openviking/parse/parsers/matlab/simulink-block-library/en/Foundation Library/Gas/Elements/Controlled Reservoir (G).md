@@ -14,6 +14,18 @@ language: en
 # Controlled Reservoir (G)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Pressure control signal, Pa physical signal
+  direction: input
+- name: T
+  summary: Temperature control signal, K physical signal
+  direction: input
+- name: A
+  summary: Reservoir inlet gas
+  direction: conserving
+```
 
 ### Input
 
@@ -31,14 +43,18 @@ control signal.
 ### **A** — Reservoir inlet gas
 
 Gas conserving port associated with the reservoir inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at the reservoir inlet 0.01 m^2 (default)
+  group: ''
+```
 
 ### **Cross-sectional area at port A** — Area normal to flow path at the reservoir inlet `0.01 m^2` (default)
 
 The cross-sectional area of the reservoir inlet, in the direction normal
 to gas flow path.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Elements

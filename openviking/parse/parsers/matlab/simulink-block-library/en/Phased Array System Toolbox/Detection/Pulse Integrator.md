@@ -14,6 +14,17 @@ language: en
 # Pulse Integrator
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Pulse input data matrix
+  direction: input
+  data_types: double
+- name: ∑x
+  summary: Integrated pulse column vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -32,8 +43,19 @@ vector, where *N* is the number of rows in the input
 `x`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Integration method
+  summary: Integration method Coherent (default) | Noncoherent
+  group: ''
+- name: Number of pulses to integrate
+  summary: Number of pulses to integrate 10 (default)
+  group: ''
+- name: Integration overlap (in pulses)
+  summary: Integration overlap 0 (default)
+  group: ''
+```
 
 ### **Integration method** — Integration method `Coherent` (default) | `Noncoherent`
 
@@ -49,7 +71,6 @@ Specify the number of pulses to integrate as an integer.
 Specify the number of overlapped pulses in successive integrations as an
 integer. This number must be less than the value specified in
 **Number of pulses to integrate**.
-
 ## Libraries
 
 Phased Array System Toolbox / Detection

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Variable Thermal Resistance
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 热阻控制信号，K/W 物理信号
+  direction: input
+- name: A
+  summary: 层 A 热
+  direction: input
+- name: B
+  summary: 层 B 热
+  direction: input
+```
 
 ### 输入
 
@@ -30,13 +42,17 @@ chinese_source: worker-translation
 ### **B** — 层 B 热
 
 与层 B 关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum thermal resistance
+  summary: 允许的最小热阻值 0 K/W（默认值）
+  group: ''
+```
 
 ### **Minimum thermal resistance** — 允许的最小热阻值 0 K/W（默认值）
 
 如果输入物理信号低于此值，则热阻保持在此值。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Elements

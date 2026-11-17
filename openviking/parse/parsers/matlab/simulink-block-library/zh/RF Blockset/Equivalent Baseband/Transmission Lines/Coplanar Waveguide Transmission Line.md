@@ -15,10 +15,84 @@ chinese_source: worker-translation
 # Coplanar Waveguide Transmission Line
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Conductor width (m)
+  summary: 导体的物理宽度 0.6e-3（默认）| 标量
+  group: 主
+- name: Slot width (m)
+  summary: 槽的物理宽度 0.2e-3（默认）| 标量
+  group: 主
+- name: Substrate height (m)
+  summary: 导体所在介电质的厚度 0.635e-3（默认）| 标量
+  group: 主
+- name: Strip thickness (m)
+  summary: 导体的物理厚度 0.005e-3（默认）| 标量
+  group: 主
+- name: Relative permittivity constant
+  summary: 介电质的相对介电常数 9.8（默认）| 标量
+  group: 主
+- name: Loss tangent of dielectric
+  summary: 介电质损耗角正切 0（默认）| 标量
+  group: 主
+- name: Conductivity of the conductor (S/m)
+  summary: 导体的电导率，单位为西门子每米 inf（默认）| 标量
+  group: 主
+- name: Transmission line length (m)
+  summary: 传输线的物理长度 0.01（默认）| 标量
+  group: 主
+- name: Stub mode
+  summary: 短截线类型 Not a stub（默认）| Shunt | Series
+  group: 主
+- name: Termination of stub
+  summary: 短截线终端 Open（默认）| Short
+  group: 主
+- name: Source of frequency data
+  summary: 频率数据源 User-specified（默认）
+  group: 可视化
+- name: Frequency data (Hz)
+  summary: 频率数据范围 [1e9:1e6:3e9]（默认）| 向量
+  group: 可视化
+- name: Reference impedance (ohms)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: X parameter
+  summary: 频率图 Freq（默认）
+  group: 可视化
+- name: X format
+  summary: 频率图格式 Hz（默认）| Auto | kHz | MHz | GHz | THz
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主
 
@@ -241,7 +315,6 @@ X 轴刻度，指定为 `Linear` 或 `Log`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘制按钮绘制指定的数据。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Transmission Lines

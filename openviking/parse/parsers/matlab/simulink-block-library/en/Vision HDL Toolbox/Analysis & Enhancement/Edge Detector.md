@@ -14,6 +14,37 @@ language: en
 # Edge Detector
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: Th
+  summary: Threshold value scalar
+  direction: input
+  data_types: single | double | int | uint | fixed point
+- name: Edge
+  summary: Boolean pixel value, indicating whether pixel is an edge scalar | vector
+  direction: output
+  data_types: Boolean
+- name: Gv,Gh
+  summary: Vertical and horizontal gradient scalar | vector
+  direction: output
+  data_types: single | double | int | uint | fixed point
+- name: G45,G135
+  summary: Orthogonal gradient scalar | vector
+  direction: output
+  data_types: single | double | int | uint | fixed point
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -127,8 +158,41 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Edge detection algorithm Sobel (default) | Prewitt | Roberts
+  group: Main
+- name: Output the binary image
+  summary: Enable edge output port on (default) | off
+  group: Main
+- name: Output the gradient components
+  summary: Enable gradient output ports off (default) | on
+  group: Main
+- name: Source of threshold value
+  summary: Source for gradient threshold that indicates an edge Property (default) | Input port
+  group: Main
+- name: Threshold value
+  summary: Gradient threshold value that indicates an edge 20 (default) | scalar
+  group: Main
+- name: Line buffer size
+  summary: Size of the line memory buffer 2048 (default) | integer
+  group: Main
+- name: Padding method
+  summary: Method for padding Symmetric (default) | None
+  group: Main
+- name: Rounding mode
+  summary: Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round
+    | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow action for internal fixed-point calculations off (default) | on
+  group: Data Types
+- name: Gradient Data Type
+  summary: Data type for gradient output ports Inherit via internal rule (default) | data type expression
+  group: Data Types
+```
 
 ### Main
 
@@ -250,7 +314,6 @@ automatically chooses full-precision data types.
 
 To enable this parameter, on the **Main** tab,
 select **Output the gradient components**.
-
 ## Libraries
 
 Vision HDL Toolbox / Analysis & Enhancement

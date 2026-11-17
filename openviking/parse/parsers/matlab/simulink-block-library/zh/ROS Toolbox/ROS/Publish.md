@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Publish
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: ROS 消息非虚拟总线
+  direction: input
+  data_types: bus
+```
 
 ### 输入
 
@@ -23,8 +30,22 @@ chinese_source: worker-translation
 ROS 消息，指定为非虚拟总线。要指定 ROS 消息的类型，请使用 **Message type** 参数。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Topic source
+  summary: 指定主题名称的来源 Select from ROS network | Specify your own
+  group: ''
+- name: Topic
+  summary: 要发布到的主题名称 string
+  group: ''
+- name: Message type
+  summary: ROS 消息类型 string
+  group: ''
+- name: Length of publish queue
+  summary: 消息队列长度 1（默认） | integer
+  group: ''
+```
 
 ### **Topic source** — 指定主题名称的来源 `Select from ROS network` | `Specify your own`
 
@@ -46,7 +67,6 @@ ROS 消息类型，指定为字符串。使用 **Select** 从受支持的 ROS �
 ### **Length of publish queue** — 消息队列长度 `1`（默认） | integer
 
 代码生成中的消息队列长度，指定为整数。在仿真中，消息队列始终为 1，无法调整。为确保处理每条消息，请使用较小的模型步长，或仅在发布新消息时执行模型。
-
 ## 所属库
 
 ROS Toolbox / ROS

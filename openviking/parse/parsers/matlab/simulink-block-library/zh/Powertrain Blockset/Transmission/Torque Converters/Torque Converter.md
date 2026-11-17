@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Torque Converter
 
 ## 端口
+```yaml
+ports:
+- name: ImpTrq
+  summary: 施加的泵轮扭矩 scalar
+  direction: input
+- name: TurbTrq
+  summary: 施加的涡轮扭矩 scalar
+  direction: input
+- name: Clutch Force
+  summary: 施加的离合器力 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: ImpSpd
+  summary: 泵轮转速 scalar
+  direction: output
+- name: TurbSpd
+  summary: 涡轮转速 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -65,8 +86,120 @@ chinese_source: worker-translation
 ### **TurbSpd** — 涡轮转速 `scalar`
 
 涡轮旋转轴转速，ωt，单位为 rad/s。
-
 ## 参数
+```yaml
+parameters:
+- name: Lock-up clutch configuration
+  summary: 选择锁止离合器配置 Lock-up（默认）| No lock-up | External lock-up input
+  group: ''
+  block_parameter: TCType
+  values: Lock-up（默认）| No lock-up | External lock-up input
+- name: Impeller shaft inertia, Ji
+  summary: 惯量 .1（默认）| scalar
+  group: ''
+  block_parameter: Ji
+  values: .1（默认）| scalar
+- name: Impeller shaft viscous damping, bi
+  summary: 粘性阻尼系数 .001（默认）| scalar
+  group: ''
+  block_parameter: bi
+  values: .001（默认）| scalar
+- name: Turbine shaft inertia, Jt
+  summary: 惯量 .1（默认）| scalar
+  group: ''
+  block_parameter: Jt
+  values: .1（默认） | scalar
+- name: 涡轮轴粘性阻尼，bt
+  summary: 粘性阻尼系数 .001（默认） | scalar
+  group: ''
+  block_parameter: bt
+  values: .001（默认） | scalar
+- name: 初始泵轮轴速度，omegai_o
+  summary: 角速度 0（默认） | scalar
+  group: ''
+  block_parameter: omegai_o
+  values: 0（默认） | scalar
+- name: 初始涡轮轴速度，omegat_o
+  summary: 角速度 0（默认） | scalar
+  group: ''
+  block_parameter: omegat_o
+  values: 0（默认） | scalar
+- name: 速度比向量，phi
+  summary: 比值 [ 0 0.50 0.60 0.70 0.80 0.87 0.92 0.94 0.96 0.97]（默认） | vector
+  group: ''
+  block_parameter: phi
+  values: '[ 0 0.50 0.60 0.70 0.80 0.87 0.92 0.94 0.96 0.97]（默认） | vector'
+- name: 容量系数参数化
+  summary: 选择系数比值类型 Input speed / sqrt(input torque)（默认） | Absorbed torque / input speed^2
+  group: ''
+  block_parameter: KType
+  values: Input speed / sqrt(input torque)（默认） | Absorbed torque / input speed^2
+- name: 容量向量，psi
+  summary: 向量 [12.2938 12.8588 13.1452 13.6285 14.6163 16.2675 19.3503 22.1046 29.9986 50.00]（默认） | vector
+  group: ''
+  block_parameter: psi
+  values: '[12.2938 12.8588 13.1452 13.6285 14.6163 16.2675 19.3503 22.1046 29.9986 50.00]（默认） | vector'
+- name: 扭矩比向量，zeta
+  summary: 向量 [2.2320 1.5462 1.4058 1.2746 1.1528 1.0732 1.0192 0.9983 0.9983 0.9983]（默认） | vector
+  group: ''
+  block_parameter: zeta
+  values: '[2.2320 1.5462 1.4058 1.2746 1.1528 1.0732 1.0192 0.9983 0.9983 0.9983]（默认） | vector'
+- name: Fluid torque response time constant (set to 0 to disable), tauTC
+  summary: 时间常数 .02（默认） | scalar
+  group: ''
+  block_parameter: tauTC
+  values: .02（默认） | scalar
+- name: Interpolation method
+  summary: 选择插值方法 Linear（默认） | Flat | Nearest
+  group: ''
+  block_parameter: InterpMethod
+  values: Linear（默认） | Flat | Nearest
+- name: Clutch force equivalent net radius, Reff
+  summary: 有效半径 .3（默认） | scalar
+  group: ''
+  block_parameter: Reff
+  values: .3（默认） | scalar
+- name: Static friction coefficient, mus
+  summary: 系数 1.2（默认） | scalar
+  group: ''
+  block_parameter: mus
+  values: 1.2（默认） | scalar
+- name: Kinetic friction coefficient, muk
+  summary: 系数 1（默认） | scalar
+  group: ''
+  block_parameter: muk
+  values: 1（默认） | scalar
+- name: Start simulation with clutch initially locked
+  summary: 选择以初始锁定离合器 off（默认） | on
+  group: ''
+  block_parameter: Jin
+  values: off（默认） | on
+- name: Lock-up speed ratio threshold, philu
+  summary: 阈值 .85（默认） | scalar
+  group: ''
+  block_parameter: philu
+  values: 0.1（默认） | scalar
+- name: Minimum lock-up engagement speed, omegal
+  summary: 角速度 900*pi/30（默认） | scalar
+  group: ''
+  block_parameter: omegal
+  values: 0.1（默认） | scalar
+- name: Lock-up disengagement speed, omegau
+  summary: 角速度 800*pi/30（默认） | scalar
+  group: ''
+  block_parameter: omegau
+  values: 0.1（默认） | scalar
+- name: Lock-up clutch force gain, K_c
+  summary: 增益 5000（默认） | scalar
+  group: ''
+  block_parameter: K_c
+  values: 0.1（默认） | scalar
+- name: Lock-up clutch time constant, tauC
+  summary: 时间常数 .0500（默认） | scalar
+  group: ''
+  block_parameter: tauC
+  values: 0.1（默认） | scalar
+```
 
 #### 配置
 
@@ -496,7 +629,6 @@ Reff=2(Ro3-Ri3)3(Ro2-Ri2)
 #### 依赖关系
 
 要启用此参数，请为 **Lock-up clutch configuration** 参数选择 `Lock-up`。
-
 ## 所属库
 
 Powertrain Blockset / Transmission / Torque Converters

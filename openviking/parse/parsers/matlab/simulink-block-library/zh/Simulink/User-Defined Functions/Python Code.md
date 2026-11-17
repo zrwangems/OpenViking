@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Python Code
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入端口 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | bus | fixedpoint
+- name: Port_1
+  summary: 输出端口 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | bus | fixedpoint
+```
 
 ### 输入
 
@@ -34,8 +45,44 @@ Python Code 不支持总线数组作为输入。
 Python Code 不支持总线数组作为输出。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `bus` | `fixedpoint`
-
 ## 参数
+```yaml
+parameters:
+- name: 端口和参数符号
+  summary: 符号和符号属性表
+  group: ''
+  block_parameter: SymbolSpec
+  type: SymbolSpec 对象
+  values: SymbolSpec 对象
+  default: 空的 Symbol 对象数组
+- name: 采样时间
+  summary: 采样周期 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符串标量或字符向量
+  default: '"-1"'
+- name: Output
+  summary: 输出代码 无默认值
+  group: ''
+  block_parameter: OutputCode
+  type: 字符向量或字符串标量
+  values: '"" | Python code'
+  default: '""'
+- name: Start
+  summary: 初始化代码 无默认值
+  group: ''
+  block_parameter: StartCode
+  type: 字符向量或字符串标量
+  values: '"" | Python code'
+  default: '""'
+- name: Terminate
+  summary: 终止代码 无默认值
+  group: ''
+  block_parameter: TerminateCode
+  type: 字符向量或字符串标量
+  values: '"" | Python code'
+  default: '""'
+```
 
 ### **端口和参数符号** — 符号和符号属性表
 
@@ -116,7 +163,6 @@ Python 代码中使用的符号和符号属性，以表格形式指定。您必�
 | **类型：** 字符向量或字符串标量 |
 | **值：** `""` | `Python code` |
 | **默认值：** `""` |
-
 ## 所属库
 
 Simulink / User-Defined Functions

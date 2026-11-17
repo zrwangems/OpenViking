@@ -14,6 +14,41 @@ language: en
 # PWM Reference Generator
 
 ## Ports
+```yaml
+ports:
+- name: Vα
+  summary: '*α*-axis stator reference voltage component scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vβ
+  summary: '*β*-axis stator reference voltage component scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Va
+  summary: Phase component scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vb
+  summary: Phase component scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vc
+  summary: Phase component scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vao
+  summary: '*a*-axis stator reference voltage component scalar'
+  direction: output
+  data_types: single | double | fixed point
+- name: Vbo
+  summary: '*b*-axis stator reference voltage component scalar'
+  direction: output
+  data_types: single | double | fixed point
+- name: Vco
+  summary: '*c*-axis stator reference voltage component scalar'
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -98,8 +133,18 @@ Stator reference voltage component along *c*-axis of the
 *abc* reference frame.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input type
+  summary: Block input type Valphabeta (default) | Vabc | Degrees
+  group: ''
+- name: Modulation method
+  summary: 'Pulse-width modulation (PWM) methods SVM: space vector modulation (default) | SPWM: sinusoidal PWM | 60 DPWM:60
+    degree discontinuous PWM | 60 DPWM (+30 degree shift):+30 degree shift from 60 DPWM | 60 DPWM (-30 degree shift):-30 degree
+    shift from 60 DPWM | 30 DPWM: 30 degree discontinuous PWM | 120 DPWM: positive DC component | 120 DPWM: negative DC component'
+  group: ''
+```
 
 ### **Input type** — Block input type `Valphabeta` (default) | `Vabc` | `Degrees`
 
@@ -111,7 +156,6 @@ frame.
 
 Pulse-width modulation (PWM) method that the block uses to modulate the input stator
 phase or reference voltages.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

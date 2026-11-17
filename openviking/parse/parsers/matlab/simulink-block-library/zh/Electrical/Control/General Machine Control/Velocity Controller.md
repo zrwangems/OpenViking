@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Velocity Controller
 
 ## 端口
+```yaml
+ports:
+- name: wRef
+  summary: 期望速度标量
+  direction: input
+  data_types: single | double
+- name: wMechanical
+  summary: 实际速度标量
+  direction: input
+  data_types: single | double
+- name: TqRefSat
+  summary: 饱和参考转矩标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 积分复位标量
+  direction: input
+  data_types: single | double
+- name: TqRefUnsat
+  summary: 未饱和期望转矩标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -48,8 +71,34 @@ chinese_source: worker-translation
 未饱和参考转矩，单位为 N\*m。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Control type
+  summary: 控制模型 PI control（默认）| P control | P-PI control
+  group: ''
+- name: Controller proportional gain
+  summary: 比例增益 1（默认）| 正标量
+  group: ''
+- name: Controller integral gain
+  summary: 积分增益 1（默认）| 正标量
+  group: ''
+- name: P controller proportional gain
+  summary: P 比例增益 1（默认）| 正标量
+  group: ''
+- name: Integral anti-windup gain
+  summary: PI 抗饱和增益 1（默认）| 正标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+- name: Discretization sample time
+  summary: 离散化采样时间 0.001（默认）| 正标量
+  group: ''
+- name: Enable zero cancellation
+  summary: 前馈零点对消 off（默认）| on
+  group: ''
+```
 
 ### **Control type** — 控制模型 `PI control`（默认）| `P control` | `P-PI control`
 
@@ -140,7 +189,6 @@ control` 时可见。
 control` 或 `P-PI control` 时可见。
 
 **Discretization sample time** 参数仅在 **Enable zero cancellation** 已选中时可见。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Machine Control

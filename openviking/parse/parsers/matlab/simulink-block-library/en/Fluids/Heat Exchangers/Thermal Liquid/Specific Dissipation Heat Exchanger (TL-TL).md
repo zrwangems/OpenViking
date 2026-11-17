@@ -14,6 +14,21 @@ language: en
 # Specific Dissipation Heat Exchanger (TL-TL)
 
 ## Ports
+```yaml
+ports:
+- name: A1
+  summary: Thermal liquid 1 port thermal liquid
+  direction: conserving
+- name: B1
+  summary: Thermal liquid 1 port thermal liquid
+  direction: conserving
+- name: A2
+  summary: Thermal liquid 2 port thermal liquid
+  direction: conserving
+- name: B2
+  summary: Thermal liquid 2 port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,81 @@ exchanger.
 
 Opening for thermal liquid 2 to enter and exit its side of the heat
 exchanger.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermal Liquid 1 mass flow rate vector, mdot1
+  summary: Mass flow rate of thermal liquid 1 at each breakpoint in lookup table for specific heat dissipation table numerical
+    array with units of mass over time
+  group: Heat Transfer
+- name: Thermal Liquid 2 mass flow rate vector, mdot2
+  summary: Mass flow rate of thermal liquid 2 at each breakpoint in lookup table for specific heat dissipation table numerical
+    array with units of mass over time
+  group: Heat Transfer
+- name: Specific heat dissipation table, SD(mdot1,mdot2)
+  summary: Specific heat dissipation at each breakpoint in lookup table over mass flow rates of thermal liquid 1 and thermal
+    liquid 2 numerical array with units of power over temperature
+  group: Heat Transfer
+- name: Check if violating maximum specific dissipation
+  summary: Warning condition for specific heat dissipation in excess of minimum heat capacity rate Warning (default) | None
+    | Error
+  group: Heat Transfer
+- name: Mass flow rate vector
+  summary: Mass flow rate at each breakpoint in lookup table for pressure drop numerical array with units of mass per unit
+    time
+  group: Thermal Liquid 1|2 Tab
+- name: Pressure drop vector
+  summary: Pressure drop at each breakpoint in lookup table over mass flow rate numerical array with units of pressure
+  group: Thermal Liquid 1|2 Tab
+- name: Reference inflow temperature
+  summary: Absolute inlet temperature assumed in tabulated data 293.15 K (default) | scalar with units of temperature
+  group: Thermal Liquid 1|2 Tab
+- name: Reference inflow pressure
+  summary: Absolute inlet pressure assumed in tabulated data 0.101325 MPa (default) | scalar with units of pressure
+  group: Thermal Liquid 1|2 Tab
+- name: Threshold mass flow rate for flow reversal
+  summary: Upper bound of numerically smooth region for mass flow rate 1e-3 kg/s (default) | scalar with units of mass/time
+  group: Thermal Liquid 1|2 Tab
+- name: Thermal liquid volume
+  summary: Volume of fluid in the thermal liquid 1 or thermal liquid 2 flow channel 0.01 m^3 (default) | scalar with units
+    of length cubed
+  group: Thermal Liquid 1|2 Tab
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at the inlet and outlet of the flow channel 0.01 m^2 (default) | scalar with units of length squared
+  group: Thermal Liquid 1|2 Tab
+- name: Enable Thermal Liquid 1 dynamic compressibility
+  summary: Setting for liquid compressibility in heat exchanger On (default) | Off | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 1 nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 1 nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 1 initial temperature
+  summary: Temperature in the thermal liquid 1 at the start of simulation 293.15 K (default) | scalar with units of temperature
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 1 initial pressure
+  summary: Pressure in the thermal liquid 1 channel at the start of simulation 0.101325 MPa (default) | scalar with units
+    of pressure
+  group: Effects and Initial Conditions
+- name: Enable Thermal Liquid 2 dynamic compressibility
+  summary: Option to model pressure dynamics in the thermal liquid 2 channel On (default) | Off
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 initial temperature
+  summary: Temperature in the thermal liquid 1 at the start of simulation 293.15 K (default) | scalar with units of temperature
+  group: Effects and Initial Conditions
+- name: Thermal Liquid 2 initial pressure
+  summary: Pressure in the thermal liquid 1 channel at the start of simulation 0.101325 MPa (default) | scalar with units
+    of pressure
+  group: Effects and Initial Conditions
+```
 
 ### Heat Transfer
 
@@ -264,7 +352,6 @@ simulation.
 
 To enable this parameter, select **Enable Thermal Liquid 2
 dynamic compressibility**.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid

@@ -14,6 +14,17 @@ language: en
 # Rescale-Zero-One 3D
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data 4-dimensional array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Normalized output data 4-dimensional array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,85 @@ Normalized output data. The output data has four dimensions corresponding to thr
 spatial dimensions and one channel dimension, in that order.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Layer
+  summary: Corresponding layer object layerObject (default) | image3dInputLayer object
+  group: Main
+  block_parameter: Layer
+  type: workspace variable
+  values: image3dInputLayer object
+  default: '''layerObject'''
+- name: Data format
+  summary: Format of input data SSSC (default)
+  group: Main
+  block_parameter: DataFormat
+  type: character vector
+  values: '''SSSC'''
+  default: '''SSSC'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Data type of output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Keep LSB | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | Inherit: Same as accumulator | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Min
+  summary: 'Data type of minimum value Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant
+    value'' | <data type expression>'
+  group: Data Types
+  block_parameter: MinDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Max
+  summary: 'Data type of maximum value Inherit: Inherit via back propagation (default) | Inherit: Inherit from ''Constant
+    value'' | <data type expression>'
+  group: Data Types
+  block_parameter: MaxDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Divide output
+  summary: 'Data type of division output Inherit: Inherit via internal rule (default) | Inherit: Keep MSB | Inherit: Match
+    scaling | Inherit: Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: Data Types
+  block_parameter: DivideOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Sample time
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -297,7 +385,6 @@ programmatically, use the `set_param` (Simulink) function.
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **Values:** `'-1'` (default) | scalar |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Learning Layers / Input Layer Normalizations

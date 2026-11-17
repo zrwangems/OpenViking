@@ -14,6 +14,15 @@ language: en
 # Radiative Heat Transfer
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Body A thermal
+  direction: conserving
+- name: B
+  summary: Body B thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,16 @@ Thermal conserving port associated with body A.
 ### **B** — Body B thermal
 
 Thermal conserving port associated with body B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Area
+  summary: Area of heat transfer 0.0001 m^2 (default) | positive scalar
+  group: ''
+- name: Radiation coefficient
+  summary: Radiation heat transfer coefficient 4e-8 W/m^2/K^4 (default) | positive scalar
+  group: ''
+```
 
 ### **Area** — Area of heat transfer `0.0001 m^2` (default) | positive scalar
 
@@ -35,7 +52,6 @@ Radiating body area of heat transfer.
 
 Radiation coefficient of the two bodies, based on their geometrical shapes,
 dimensions, and surface emissivity. For more information, see [1].
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Elements

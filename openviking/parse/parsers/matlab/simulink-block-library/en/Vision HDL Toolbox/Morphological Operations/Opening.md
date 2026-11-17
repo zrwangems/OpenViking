@@ -14,6 +14,25 @@ language: en
 # Opening
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Boolean input pixel or multipixel vector scalar | vector
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Boolean output pixel or multipixel vector scalar | vector
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -68,8 +87,19 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Neighborhood
+  summary: Pixel neighborhood [0,1,0; 1,1,1; 0,1,0] (default) | vector or matrix of 1s and 0s
+  group: ''
+- name: Line buffer size
+  summary: Size of line memory buffer 2048 (default) | positive integer
+  group: ''
+- name: Padding method
+  summary: Method for padding Constant (default) | None
+  group: ''
+```
 
 ### **Neighborhood** — Pixel neighborhood `[0,1,0; 1,1,1; 0,1,0]` (default) | vector or matrix of `1`s and `0`s
 
@@ -114,7 +144,6 @@ For more information about these methods, see Edge Padding.
   is the same size as the input frame. However, to avoid using pixels calculated from
   undefined padding values, mask off the *KernelSize*/2 pixels around the
   edge of the frame for downstream operations. For details, see Increase Throughput by Omitting Padding.
-
 ## Libraries
 
 Vision HDL Toolbox / Morphological Operations

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Video Viewer
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像或视频矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | Simulink.ImageType
+- name: R
+  summary: 图像或视频矩阵的红色分量 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: 图像或视频矩阵的绿色分量 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: 图像或视频矩阵的蓝色分量 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -69,8 +88,40 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Separate Color Signals** 参数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Open at Start of Simulation
+  summary: 在仿真开始时打开视频查看器窗口 on（默认）| off
+  group: File
+- name: Separate Color Signals
+  summary: 启用单独的 R、G 和 B 颜色通道作为输入 off（默认）| on
+  group: File
+- name: One Multi-Dimensional Signal
+  summary: 启用一个多维信号作为输入 on（默认）| off
+  group: File
+- name: Display the full path
+  summary: 在标题栏中显示源数据的完整路径 off（默认）| on
+  group: File > Configuration > Edit > Core
+- name: Open new Image Viewer window for each export
+  summary: 为每个导出的视频帧打开新的 Image Viewer 窗口 on（默认）| off
+  group: File > Configuration > Edit > Tools
+- name: Colormap
+  summary: 设置颜色图 gray(256)（默认）| parula(256) | jet(256) | hot(256) | bone(256) | cool(256) | copper(256)
+  group: Tools > Colormap
+- name: Specify range of displayed pixel values [-Inf to Inf]
+  summary: 指定要显示的强度值范围 off（默认）| on
+  group: Tools > Colormap
+- name: Min
+  summary: 最小强度值 0（默认）| 数值标量
+  group: Tools > Colormap
+- name: Max
+  summary: 最大强度值 255（默认）| 数值标量
+  group: Tools > Colormap
+- name: Drop Frames to Improve Performance
+  summary: 降低输入视频信号的帧率 on（默认）| off
+  group: 仿真
+```
 
 ### File
 
@@ -163,7 +214,6 @@ Configuration 对话框中的 **Tools** 选项卡列出了与 Video Viewer 模�
 ### **Drop Frames to Improve Performance** — 降低输入视频信号的帧率 `on`（默认）| `off`
 
 选择此参数可降低输入视频信号的帧率以提高仿真性能。如果取消选择此参数，模块将在仿真期间显示输入视频信号中的所有帧。
-
 ## 所属库
 
 Computer Vision Toolbox / Sinks

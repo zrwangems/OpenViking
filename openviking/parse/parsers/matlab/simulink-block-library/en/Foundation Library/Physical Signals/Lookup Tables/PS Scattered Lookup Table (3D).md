@@ -14,6 +14,21 @@ language: en
 # PS Scattered Lookup Table (3D)
 
 ## Ports
+```yaml
+ports:
+- name: x1
+  summary: Input query point or N-D array of query points along the first direction, untyped physical signal
+  direction: input
+- name: x2
+  summary: Input query point or N-D array of query points along the second direction, untyped physical signal
+  direction: input
+- name: x3
+  summary: Input query point or N-D array of query points along the third direction, untyped physical signal
+  direction: input
+- name: f
+  summary: Output function value, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -41,8 +56,25 @@ Output function value, based on applying the scattered lookup method to the two
 input values. The output signal size matches the input signal size along the first
 direction. The output signal unit is determined by the unit of the **Data
 points function value** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data points coordinate 1
+  summary: Data set of input values along the first direction [1, 2, 3, 4, 5] 1 (default)
+  group: ''
+- name: Data points coordinate 2
+  summary: Data set of input values along the second direction [5, 4, 3, 3, 1] 1 (default)
+  group: ''
+- name: Data points coordinate 3
+  summary: Data set of input values along the third direction [8, 2, 5, 7, 0] 1 (default)
+  group: ''
+- name: Data points function value
+  summary: Data set of function values for the lookup [1, 2, 3, 4, 5] 1 (default)
+  group: ''
+- name: Extrapolation method
+  summary: Select the extrapolation method Linear (default) | Nearest
+  group: ''
+```
 
 ### **Data points coordinate 1** — Data set of input values along the first direction `[1, 2, 3, 4, 5] 1` (default)
 
@@ -97,7 +129,6 @@ value is outside the convex hull of the data set:
   boundary gradients.
 - `Nearest` — Nearest neighbor extrapolation.
   This method evaluates to the value of the nearest neighbor on the boundary.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Lookup Tables

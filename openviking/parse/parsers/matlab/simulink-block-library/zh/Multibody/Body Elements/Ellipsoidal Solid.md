@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Ellipsoidal Solid
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+- name: G
+  summary: 几何 geometry
+  direction: unspecified
+```
 
 ### Frame
 
@@ -30,8 +39,82 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Geometry** 下展开 **Export** 并选择 **Entire Geometry**。
-
 ## 参数
+```yaml
+parameters:
+- name: Radii
+  summary: 沿 *x*、*y* 和 *z* 半主轴方向的椭球半径 [1 1 2] m（默认）| 带长度单位的标量
+  group: Geometry
+- name: Entire Geometry
+  summary: 导出模块的真实几何 off（默认）| on
+  group: Geometry
+- name: Type
+  summary: 要使用的惯性参数化方式 Calculate from Geometry（默认）| Point Mass | Custom
+  group: Inertia
+- name: Based on
+  summary: 惯性计算所基于的参数 Density（默认）| Mass
+  group: Inertia
+- name: Density
+  summary: 单位体积材料质量 1000 kg/m^3（默认）
+  group: Inertia
+- name: Mass
+  summary: 实体元素的总质量 1 kg（默认）| 带质量单位的标量
+  group: Inertia
+- name: 'Custom: Center of Mass'
+  summary: 质心坐标 [0 0 0] m（默认）| 带长度单位的三元素向量
+  group: Inertia
+- name: 'Custom: Moments of Inertia'
+  summary: 惯性张量的对角元素 [1 1 1] kg*m^2（默认）| 带质量\*长度^2 单位的三元素向量
+  group: Inertia
+- name: 'Custom: Products of Inertia'
+  summary: 惯性张量的非对角元素 [0 0 0] kg*m^2（默认）| 单位为质量\*长度^2 的三元素向量
+  group: Inertia
+- name: 'Calculate from Geometry: Derived Values'
+  summary: 显示计算的质体属性值按钮
+  group: Inertia
+- name: Type
+  summary: 用于可视化的图形 From Geometry（默认）| Marker | None
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: Graphic
+- name: Shape
+  summary: 用于表示实体的标记形状 Sphere（默认）| Cube | Frame
+  group: Graphic
+- name: Size
+  summary: 标记的宽度（以像素为单位） 10 pixels（默认）| 标量
+  group: Graphic
+- name: Color
+  summary: 漫反射导致的光颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: Graphic
+- name: 漫反射颜色
+  summary: 漫反射导致的光颜色 [0.5 0.5 0.5]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: 镜面反射颜色
+  summary: 镜面反射导致的光颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: 环境光颜色
+  summary: 环境光的颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: 自发光颜色
+  summary: 自照明颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: Graphic
+- name: 光泽度
+  summary: 高光锐度 75（默认）| 值约束为 0–128 的标量
+  group: Graphic
+- name: 显示端口 R
+  summary: 显示用于连接到其他模块的参考坐标系端口 on（默认）| off
+  group: 坐标系
+- name: New Frame
+  summary: 创建自定义坐标系以连接到其他模块按钮
+  group: 坐标系
+- name: FrameN
+  summary: 编辑或删除现有自定义坐标系坐标系名称
+  group: 坐标系
+```
 
 ### Geometry
 
@@ -262,7 +345,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请点击 **New Frame** 创建一个坐标系。
-
 ## 所属库
 
 Simscape / Multibody / Body Elements

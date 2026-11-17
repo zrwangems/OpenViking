@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Infinite Flow Resistance (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 质量流量和能量流量均为零的湿空气
+  direction: conserving
+- name: B
+  summary: 质量流量和能量流量均为零的湿空气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,11 +34,12 @@ chinese_source: worker-translation
 ### **B** — 质量流量和能量流量均为零的湿空气
 
 湿空气守恒端口，其中质量流量和能量流量均等于零。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Elements

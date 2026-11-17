@@ -14,6 +14,16 @@ language: en
 # Variant Subsystem
 
 ## Ports
+```yaml
+ports:
+- name: In_1
+  summary: Input port corresponding to root-level Inport blocks in variant subsystem same data types accepted by Inport blocks
+  direction: input
+- name: Out_1
+  summary: Output port corresponding to root-level Outport blocks contained in variant subsystem same data types accepted
+    by Outport blocks
+  direction: output
+```
 
 ### Input
 
@@ -44,8 +54,110 @@ Subsystem block output a ground value. To output a value other
 than ground, select the **Specify output when source is
 unconnected** parameter of the Outport block and
 specify a value.
-
 ## Parameters
+```yaml
+parameters:
+- name: Variant control mode
+  summary: Variant control mode expression (default) | label | sim codegen switching
+  group: ''
+  block_parameter: VariantControlMode
+  type: character vector
+  values: '''expression'' | ''label'' | ''sim codegen switching'''
+  default: '''expression'''
+- name: Variant activation time
+  summary: Time when software chooses active variant choice update diagram (default) | update diagram analyze all choices
+    | code compile | startup | runtime | inherit from Simulink.VariantControl
+  group: ''
+  block_parameter: VariantActivationTime
+  type: character vector
+  values: '''update diagram'' | ''update diagram analyze all choices'' | ''code compile'' | ''startup''| ''runtime'''
+  default: '''update diagram'''
+- name: Variant control variable
+  summary: Variable to determine active variant choices Simulink.VariantControl object | scalar variable | Simulink.Parameter
+    object | struct
+  group: ''
+  block_parameter: VariantControlVariable
+  type: character vector
+  values: Simulink.VariantControl object, scalar variable, Simulink.Parameter object, struct
+  default: ''''''
+- name: Variant choices enumeration
+  summary: Enumeration class to add variant choices enumeration class with model or subsystem filenames as its members
+  group: ''
+  block_parameter: VariantChoicesEnumeration
+  type: character vector
+  values: enumeration class defined using classdef or Simulink.defineIntEnumType
+  default: ''''''
+- name: Variant choices specifier
+  summary: MATLAB expression to add variant choices any MATLAB expression that evaluates to a one-dimensional cell array of
+    model or subsystem filenames, or filename patterns that match the model or subsystem filenames or an array of strings
+  group: ''
+  block_parameter: VariantChoicesSpecifier
+  type: character vector
+  values: Any MATLAB expression that evaluates to a one-dimensional cell array of filenames or filename patterns.
+  default: ''''''
+- name: Variant choices
+  summary: Table of variant choices, variant controls, and conditions empty table (default)
+  group: ''
+- name: Name (read-only)
+  summary: 'Variant choice name Read-only: Subsystem and Subsystem1 (default) | name of choices contained in Variant Subsystem'
+  group: ''
+- name: Variant control label
+  summary: Name of choice in label mode true or false (default) | string
+  group: ''
+  block_parameter: VariantControl
+  values: variant control that is associated with the variant choice
+- name: Variant control switch
+  summary: Variant choices for simulation and code generation workflows (sim) | (codegen)
+  group: ''
+  block_parameter: VariantControl
+  values: variant control that is associated with the variant choice
+- name: Variant control expression
+  summary: Condition expression that determines the active choice true or false (default) | boolean condition expression |
+    a Simulink.VariantExpression object representing a boolean condition expression | (default)
+  group: ''
+  block_parameter: VariantControls
+  values: variant controls that are associated with variant choices
+- name: Condition (read-only)
+  summary: 'Condition expression in Simulink.VariantExpression object Read-only: N/A (default)'
+  group: ''
+- name: Label mode active choice
+  summary: Name of active choice in label mode true (Subsystem) (default) | false (Subsystem1)
+  group: ''
+  block_parameter: LabelModeActiveChoice
+  type: character vector
+  values: If no label mode active choice is specified, the value is empty. If a label mode active choice is specified, the
+    value is the variant control label for the active choice.
+  default: ''''''
+- name: Built-in empty choice
+  summary: Output zero if no variant choice is active off (default) | on
+  group: ''
+  block_parameter: EmptyChoice
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Built-in passthrough choice
+  summary: Assign input port values to output ports if no variant choice is active off (default) | on
+  group: ''
+  block_parameter: PassThrough
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Propagate conditions outside of variant subsystem
+  summary: Option to choose if components outside of the variant subsystem must be informed of the active and inactive state
+    of underlying blocks off (default) | on
+  group: ''
+  block_parameter: PropagateVariantConditions
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Allow flexible interface
+  summary: Option to choose to make interface of the variant subsystem flexible on (default) | off
+  group: ''
+  block_parameter: AllowFlexibleInterface
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 To access these parameters, right-click the variant badge on the block icon and select
 **Block Parameters**. For more information, see Variant Badges.
@@ -683,7 +795,6 @@ Specify whether to make the interface of a variant subsystem flexible.
 | **Type:** character vector |
 | **Value:** `'off'` | `'on'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

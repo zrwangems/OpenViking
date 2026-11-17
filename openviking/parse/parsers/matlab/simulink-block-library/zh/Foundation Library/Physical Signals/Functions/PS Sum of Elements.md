@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Sum of Elements
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -31,13 +40,17 @@ chinese_source: worker-translation
 输出物理信号。如果输入信号是向量，则输出信号是标量。如果输入信号是矩阵，则默认情况下模块计算每个维度沿列方向的元素和。例如，如果输入信号是二维矩阵，则默认情况下输出信号是向量。如果您选中**对所有元素求和**复选框，则输出信号是标量。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Sum all elements
+  summary: 指定矩阵的求和方法 Off（默认）| On
+  group: ''
+```
 
 ### **Sum all elements** — 指定矩阵的求和方法 `Off`（默认）| `On`
 
 如果输入信号是矩阵，则默认情况下模块计算每个维度沿列方向的元素和。要对矩阵的所有元素求和，请选中**对所有元素求和**复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Functions

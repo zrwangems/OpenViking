@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Compressor (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 气体入口 gas
+  direction: conserving
+- name: B
+  summary: 气体出口 gas
+  direction: conserving
+- name: C
+  summary: 压缩机机匣机械平移
+  direction: conserving
+- name: R
+  summary: 压缩机轴机械平移
+  direction: conserving
+- name: SM
+  summary: 喘振裕度物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -45,8 +63,94 @@ SM(m˙corr)=pr,surge(m˙corr)pr(m˙corr)−1。
 
 要启用此端口，请将 **Parameterization** 设置为
 `Tabulated`。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 压缩机性能参数化 Analytical（默认）| Tabulated
+  group: 压缩机映射
+- name: Corrected speed at design point
+  summary: 运行修正轴转速 10000 rpm（默认）| 正标量
+  group: 压缩机映射
+- name: Pressure ratio at design point
+  summary: 运行出口-入口压力比 7.5（默认）| 正标量
+  group: 压缩机映射
+- name: Corrected mass flow rate at design point
+  summary: 运行修正质量流量 33 kg/s（默认）| 正标量
+  group: 压缩机映射
+- name: Efficiency specification
+  summary: 等熵效率模型 Analytical（默认）| Constant
+  group: 压缩机映射
+- name: Maximum isentropic efficiency
+  summary: 最大压缩机效率 0.887（默认）| 范围 (0,1] 内的正标量
+  group: 压缩机映射
+- name: Minimum isentropic efficiency
+  summary: 最小压缩机效率 0.5（默认）| 范围 (0,1] 内的正标量
+  group: 压缩机映射
+- name: Corrected mass flow rate at maximum efficiency point
+  summary: 压缩机最大效率点处的修正质量流量 30 kg/s（默认）| 正标量
+  group: 压缩机映射
+- name: Pressure ratio at maximum efficiency point
+  summary: 压缩机最大效率点处的压力比 7（默认）| 正标量
+  group: 压缩机映射
+- name: Constant isentropic efficiency
+  summary: 常数等熵效率值 0.8（默认）| 范围 (0,1] 内的正标量
+  group: 压缩机映射
+- name: Corrected speed index vector, N
+  summary: 修正轴转速向量 [5000, 6000, 7000, 7500, 8000, 8500, 9000, 9500, 10000, 11000] rpm（默认）| 向量
+  group: 压缩机映射
+- name: Beta index vector, beta
+  summary: '修正转速线区间向量 0 : 1 / 6 : 1（默认）| 范围 [0,1] 内元素组成的向量'
+  group: 压缩机映射
+- name: Pressure ratio table, pr(N,beta)
+  summary: 压缩机映射压力比数据 *M*×*N* 矩阵（默认）
+  group: 压缩机映射
+- name: Corrected mass flow rate table, mdot(N,beta)
+  summary: 压缩机映射修正质量流量数据 *M*×*N* 矩阵（默认）
+  group: 压缩机映射
+- name: Isentropic efficiency table, eta(N,beta)
+  summary: 压缩机 map 等熵效率数据 *M*×*N* 矩阵（默认）
+  group: 压缩机映射
+- name: Report when surge margin is negative
+  summary: 当压比超过喘振压比时是否发出通知 None（默认）| Warning | Error
+  group: 压缩机映射
+- name: Spine shape, a
+  summary: 脊线形状指数 1.5（默认）| 正标量
+  group: Map Coefficients
+- name: Speed line spread, b
+  summary: 等转速线间距指数 5（默认）| 正标量
+  group: Map Coefficients
+- name: Speed line roundness, k
+  summary: 等转速线形状系数 0.03（默认）| 正标量
+  group: Map Coefficients
+- name: Efficiency peak flatness orthogonal to spine, c
+  summary: 表征解析等熵效率形状的指数 3（默认）| 正标量
+  group: Map Coefficients
+- name: Efficiency peak flatness along spine, d
+  summary: 表征解析等熵效率形状的指数 4（默认）| 正标量
+  group: Map Coefficients
+- name: Efficiency contour gradient orthogonal to spine, C
+  summary: 表征解析等熵效率形状的系数 15（默认）| 正标量
+  group: Map Coefficients
+- name: Efficiency contour gradient along spine, D
+  summary: 表征解析等熵效率形状的系数 1（默认）| 范围 (0,1] 内的正标量
+  group: Map Coefficients
+- name: Reference pressure for corrected flow
+  summary: 修正压力 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: Reference temperature for corrected flow
+  summary: 修正温度 288.15 K（默认）| 正标量
+  group: 参数
+- name: Mechanical efficiency
+  summary: 转换为扭矩的效率 0.9（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Inlet area at port A
+  summary: 压缩机入口面积 1 m^2（默认）| 正标量
+  group: 参数
+- name: Outlet area at port B
+  summary: 压缩机出口面积 1 m^2（默认）| 正标量
+  group: 参数
+```
 
 ### 压缩机映射
 
@@ -336,7 +440,6 @@ specification** 设置为
 ### **Outlet area at port B** — 压缩机出口面积 `1` `m^2`（默认）| 正标量
 
 压缩机出口横截面积。
-
 ## 所属库
 
 Simscape / Fluids / Gas / Turbomachinery

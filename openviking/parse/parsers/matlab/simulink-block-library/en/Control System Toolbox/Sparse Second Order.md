@@ -14,6 +14,17 @@ language: en
 # Sparse Second Order
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: Output vector scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -33,8 +44,64 @@ the number of rows in the **F**, **G** and
 **D** matrices.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: M (mass)
+  summary: Mass matrix 1 (default) | scalar | Nq-by-Nq sparse matrix
+  group: ''
+  block_parameter: M
+  type: scalar, square sparse matrix
+  default: '1'
+- name: C (damping)
+  summary: Damping matrix 0 (default) | scalar | Nq-by-Nq sparse matrix
+  group: ''
+  block_parameter: C
+  type: scalar, square sparse matrix
+  default: '0'
+- name: K (stiffness)
+  summary: Stiffness matrix 1 (default) | scalar | Nq-by-Nq sparse matrix
+  group: ''
+  block_parameter: K
+  type: scalar, square sparse matrix
+  default: '1'
+- name: B
+  summary: Input-to-state matrix 1 (default) | scalar | Nq-by-Nu sparse matrix
+  group: ''
+  block_parameter: B
+  type: scalar, sparse matrix
+  default: '1'
+- name: F
+  summary: Displacement-to-output matrix 1 (default) | scalar | Ny-by-Nq sparse matrix
+  group: ''
+  block_parameter: F
+  type: scalar, sparse matrix
+  default: '1'
+- name: G
+  summary: Velocity-to-output matrix 0 (default) | scalar | Ny-by-Nq sparse matrix
+  group: ''
+  block_parameter: G
+  type: scalar, sparse matrix
+  default: '0'
+- name: D
+  summary: Input-to-output matrix 0 (default) | scalar | Ny-by-Nu sparse matrix
+  group: ''
+  block_parameter: D
+  type: scalar, sparse matrix
+  default: '0'
+- name: Initial position q(0)
+  summary: Initial values for displacement vector 0 (default) | scalar | vector of doubles
+  group: ''
+  block_parameter: q0
+  type: scalar, vector of doubles
+  default: '0'
+- name: Initial velocity q'(0)
+  summary: Initial values for velocity vector 0 (default) | scalar | vector of doubles
+  group: ''
+  block_parameter: dq0
+  type: scalar, vector of doubles
+  default: '0'
+```
 
 ### **M (mass)** — Mass matrix 1 (default) | scalar | `Nq`-by-`Nq` sparse matrix
 
@@ -170,7 +237,6 @@ object when the `Sparse Second Order` block is present in your Simulink model.
 For more information, see Sparse Model Basics.
 
 For an example, see Linearize Simulink Model to a Sparse Second-Order Model Object.
-
 ## Libraries
 
 Control System Toolbox

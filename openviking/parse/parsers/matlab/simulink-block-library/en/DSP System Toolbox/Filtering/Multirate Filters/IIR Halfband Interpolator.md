@@ -14,6 +14,29 @@ language: en
 # IIR Halfband Interpolator
 
 ## Ports
+```yaml
+ports:
+- name: LP
+  summary: Data input column vector | matrix
+  direction: input
+  data_types: single | double
+- name: HP
+  summary: Second input to the synthesis filter bank column vector | matrix
+  direction: input
+  data_types: single | double
+- name: coeffs1
+  summary: Branch 1 allpass polynomial coefficients *N*-by-1 vector | *N*-by-2 matrix
+  direction: input
+  data_types: single | double
+- name: coeffs2
+  summary: Branch 2 allpass polynomial coefficients *N*-by-1 vector | *N*-by-2 matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Output of interpolator column vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -104,8 +127,70 @@ The number of rows in the interpolator output is twice the number of
 rows in the input signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter specification
+  summary: Filter design parameters Transition width and stopband attenuation (default) | Filter order and stopband attenuation
+    | Filter order and transition width | Coefficients
+  group: ''
+- name: Transition width (Hz)
+  summary: Transition width 4.1e3 (default) | positive scalar
+  group: ''
+- name: Filter order
+  summary: Order of the IIR halfband filter 9 (default) | positive integer
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: Minimum attenuation needed in stopband 80 (default) | positive real scalar
+  group: ''
+- name: Design method
+  summary: Design method Elliptic (default) | Quasi-linear phase
+  group: ''
+- name: Internal allpass structure
+  summary: Filter structure in coefficient mode Minimum multiplier (default) | Wave Digital Filter
+  group: ''
+- name: Make the first branch a pure delay
+  summary: Make the first branch a pure delay off (default) | on
+  group: ''
+- name: Delay length in samples for branch 1
+  summary: Length of the delay 1 (default) | finite positive scalar
+  group: ''
+- name: Specify coefficients from input port
+  summary: Specify coefficients from input port off (default) | on
+  group: ''
+- name: Branch 1 allpass polynomial coefficients
+  summary: Allpass polynomial filter coefficients of first branch [0.1284563; 0.7906755] (default) | *N*-by-1 | *N*-by-2
+  group: ''
+- name: Branch 2 allpass polynomial coefficients
+  summary: Allpass polynomial filter coefficients of second branch [0.4295667] (default) | *N*-by-1 | *N*-by-2
+  group: ''
+- name: Branch 1 Wave Digital coefficients
+  summary: Allpass filter coefficients of first branch in wave digital filter form [0.1284563; 0.7906755] (default) | *N*-by-1
+    | *N*-by-2
+  group: ''
+- name: Branch 2 Wave Digital coefficients
+  summary: Allpass filter coefficients of second branch in wave digital filter form [0.4295667] (default) | *N*-by-1 | *N*-by-2
+  group: ''
+- name: Last section of branch 2 is first order
+  summary: Make the last section of the second branch as first order off (default) | on
+  group: ''
+- name: Input highpass subband
+  summary: Input highpass subband off (default) | on
+  group: ''
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input signal 22050 (default) | positive real scalar
+  group: ''
+- name: View Filter Response
+  summary: View Filter Response button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Filter specification** — Filter design parameters `Transition width and stopband attenuation` (default) | `Filter order and stopband attenuation` | `Filter order and transition width` | `Coefficients`
 
@@ -440,7 +525,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

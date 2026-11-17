@@ -14,6 +14,20 @@ language: en
 # DPD
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input baseband signal column vector
+  direction: input
+  data_types: double
+- name: Coef
+  summary: Memory-polynomial coefficients matrix
+  direction: input
+  data_types: double
+- name: Out
+  summary: Predistorted baseband signal column vector
+  direction: output
+```
 
 ### Input
 
@@ -54,8 +68,22 @@ to `Input port`.
 
 Predistorted baseband signal, returned as a column vector of the same length as
 the input signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Polynomial type
+  summary: Polynomial type Memory polynomial (default) | Cross-term memory polynomial
+  group: ''
+- name: Coefficient source
+  summary: Source of memory-polynomial coefficients Property (default) | Input port
+  group: ''
+- name: Coefficients
+  summary: Memory-polynomial coefficients complex([1 0 0 0 0; 0 0 0 0 0; 0 0 0 0 0]) (default) | matrix
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -121,7 +149,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / RF Impairments Correction

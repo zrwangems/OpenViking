@@ -14,6 +14,25 @@ language: en
 # Sinusoidal Measurement (PLL, Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: abc
+  summary: Input signal vector
+  direction: input
+  data_types: single | double
+- name: freq
+  summary: Frequency, Hz scalar
+  direction: output
+  data_types: single | double
+- name: angle
+  summary: Phase angle, rad scalar
+  direction: output
+  data_types: single | double
+- name: mag
+  summary: Magnitude, unitless scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -42,8 +61,31 @@ rad.
 Magnitude of the input signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable moving average filter on input
+  summary: Option to enable frequency-dependent moving average filter On (default) | Off
+  group: ''
+- name: Enable input normalization
+  summary: Option to enable normalization of input Off (default) | On
+  group: ''
+- name: Loop filter proportional gain
+  summary: LF proportional gain 1 (default) | positive scalar
+  group: ''
+- name: Loop filter integral gain
+  summary: LF integral gain 10 (default) | positive scalar
+  group: ''
+- name: Initial frequency (Hz)
+  summary: Initial estimate of input frequency 60 Hz (default) | scalar
+  group: ''
+- name: Initial phase angle (rad)
+  summary: Initial estimate of phase angle 0 rad (default) | scalar or vector
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Enable moving average filter on input** — Option to enable frequency-dependent moving average filter `On` (default) | `Off`
 
@@ -95,7 +137,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / Measurements

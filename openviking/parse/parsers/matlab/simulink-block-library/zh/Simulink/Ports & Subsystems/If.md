@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # If
 
 ## 端口
+```yaml
+ports:
+- name: 逻辑操作数
+  summary: 用于计算逻辑表达式的值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: 动作
+  summary: If Action Subsystem 模块的动作信号 标量
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +40,52 @@ If 模块不直接支持定点数据类型。但是，您可以使用 Compare To
 ### **动作** — If Action Subsystem 模块的动作信号 标量
 
 来自 `if`、`else` 和 `elseif` 端口的输出是发送到 If Action Subsystem 模块的动作信号。
-
 ## 参数
+```yaml
+parameters:
+- name: 输入数量
+  summary: 指定输入端口数量 1（默认）| 整数
+  group: ''
+  block_parameter: NumInputs
+  type: character vector
+  values: '''1'' | integer in quotes'
+  default: '''1'''
+- name: 显示 else 条件
+  summary: 控制 else 端口的显示 on（默认）| off
+  group: ''
+  block_parameter: ShowElse
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 启用过零检测
+  summary: 控制过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 在生成代码中提供 if-else 语句
+  summary: 在 If 模块生成的代码中仅包含 if-else 语句的选项 off（默认）| on
+  group: ''
+  block_parameter: EnsureIfElseCode
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: if
+  summary: 逻辑表达式 u1 > 0（默认）| 逻辑表达式
+  group: ''
+  block_parameter: IfExpression
+  type: character vector
+  values: '''u1 > 0'' | logical expression in quotes'
+  default: '''u1 > 0'''
+- name: elseif
+  summary: 逻辑表达式 空（默认）| 逻辑表达式列表
+  group: ''
+  block_parameter: ElseIfExpressions
+  type: character vector
+  values: ''''' | list of logical expressions separated by commas placed in quotes'
+  default: ''''''
+```
 
 ### **输入数量** — 指定输入端口数量 `1`（默认）| 整数
 
@@ -164,7 +218,6 @@ off
 | **类型**：character vector |
 | **值**：`''` | list of logical expressions separated by commas placed in quotes |
 | **默认值**：`''` |
-
 ## 所属库
 
 Simulink / Ports & Subsystems

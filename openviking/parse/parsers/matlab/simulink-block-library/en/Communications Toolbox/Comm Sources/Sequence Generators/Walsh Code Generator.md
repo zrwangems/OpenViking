@@ -14,10 +14,15 @@ language: en
 # Walsh Code Generator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Code length**
 :   Integer scalar that is a power of 2 specifying the length of the output
@@ -48,7 +53,6 @@ Not documented in R2025b.
 :   The output type of the block can be specified as an
     `int8` or `double`. By default, the
     block sets this to `double`.
-
 ## Libraries
 
 Not documented in R2025b.

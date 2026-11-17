@@ -14,6 +14,21 @@ language: en
 # Piston
 
 ## Ports
+```yaml
+ports:
+- name: T
+  summary: Normalized engine throttle level, unitless physical signal
+  direction: input
+- name: FC
+  summary: Fuel consumption, kg/s physical signal
+  direction: output
+- name: B
+  summary: Base port associated with piston container mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower port associated with crank torque mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -51,8 +66,79 @@ container.
 
 Rotational mechanical conserving port that connects to the engine
 crankshaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cylinder bore
+  summary: Inside diameter of piston cylinder wall .10 m (default) | positive scalar
+  group: Main
+- name: Piston stroke
+  summary: Length of translational piston travel .06 m (default) | positive scalar
+  group: Main
+- name: Piston rod length
+  summary: Length of piston-to-crankshaft connecting rod .1 m (default) | positive scalar
+  group: Main
+- name: Number of strokes per cycle
+  summary: Number of piston strokes to complete one combustion cycle 4 (default) | positive even scalar
+  group: Main
+- name: Pressure parameterization
+  summary: Method used to determine pressure applied to piston By crank angle (default) | By crank angle and throttle | By
+    crank angle, throttle, and crank velocity
+  group: Main
+- name: Crank angle vector
+  summary: Different piston crank angles [-360, -90, -30, 10, 30, 90, 160, 360] deg (default) | vector
+  group: Main
+- name: Throttle vector
+  summary: Different throttle positions [0, .3, .8, 1] (default) | vector
+  group: Main
+- name: Crank velocity vector
+  summary: Different angular velocities [0, 1000, 6000] rpm (default) | vector
+  group: Main
+- name: Pressure vector (gauge)
+  summary: Crank angle parameterized pressures [0, 3, 20, 50, 20, 10, 8, 0] bar (default) | vector
+  group: Main
+- name: Pressure matrix (gauge)
+  summary: Crank angle and throttle parametrized pressures *M*-by-*N* matrix (default) | matrix
+  group: Main
+- name: Pressure 3D matrix (gauge)
+  summary: Crank angle, throttle, and crank velocity parameterized pressures *M*-by-*N*-by-*O* matrix (default) | 3-D matrix
+  group: Main
+- name: Bearing viscous friction coefficient
+  summary: Tendency of the main and rod bearings to dissipate power .001 N*m/(rad/s) (default) | positive scalar
+  group: Main
+- name: Offset angle
+  summary: Angular deviation between middle of engine cycle and top dead center 0 deg (default) | scalar
+  group: Main
+- name: Initial crank angle
+  summary: Crank angle at simulation start 90 deg (default) | scalar
+  group: Main
+- name: Fuel consumption model
+  summary: Parameterization of fuel consumption No fuel consumption (default) | Constant per revolution | Fuel consumption
+    by speed and torque | Brake specific fuel consumption by speed and torque | Brake specific fuel consumption by speed and
+    brake mean effective pressure
+  group: Fuel Consumption
+- name: Fuel consumption per revolution
+  summary: Fuel consumed during a single crank revolution 25 mg/rev (default) | scalar
+  group: Fuel Consumption
+- name: Speed vector
+  summary: Crankshaft angular velocity [1000, 2000, 3000, 4000, 5000, 6000] rpm (default) | vector
+  group: Fuel Consumption
+- name: Torque vector
+  summary: Torque applied for given speed [0, 80, 160, 200, 240, 320, 360, 400] N*m (default) | vector
+  group: Fuel Consumption
+- name: Fuel consumption table
+  summary: Matrix of fuel consumption rates for given combinations of speed and torque *P*-by-*Q* matrix (default) | matrix
+  group: Fuel Consumption
+- name: Brake mean effective pressure vector
+  summary: Average cylinder pressure required to produce a given torque [0, 250, 500, 625, 750, 1000, 1150, 1250] kPa (default)
+  group: Fuel Consumption
+- name: Brake specific fuel consumption table
+  summary: Fuel efficiency for brake specific fuel consumption rates *P*-by-*Q* matrix (default) | matrix
+  group: Fuel Consumption
+- name: Interpolation method
+  summary: Speed and torque behavior between data points Linear (default) | Smooth
+  group: Fuel Consumption
+```
 
 ### Main
 
@@ -362,7 +448,6 @@ model** to one of these settings:
 - `Brake specific fuel consumption by speed
   and brake mean effective
   pressure`
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors

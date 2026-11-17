@@ -14,6 +14,12 @@ language: en
 # Simulation 3D Probabilistic Radar
 
 ## Ports
+```yaml
+ports:
+- name: Detections
+  summary: Object detections Simulink bus containing MATLAB® structure
+  direction: output
+```
 
 ### Output
 
@@ -136,8 +142,107 @@ contains an object that does not have an assigned ID, that object is assigned an
 | `71` | Barricade |
 | `72` | Motorcycle |
 | `73-255` | *Not used* |
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: Unique sensor identifier 1 (default) | positive integer
+  group: Mounting
+- name: Parent name
+  summary: Name of parent vehicle Scene Origin (default) | vehicle name
+  group: Mounting
+- name: Mounting location
+  summary: Sensor mounting location Origin (default) | Front bumper | Rear bumper | Right mirror | Left mirror | Rearview
+    mirror | Hood center | Roof center | ...
+  group: Mounting
+- name: Specify offset
+  summary: Specify offset from mounting location off (default) | on
+  group: Mounting
+- name: Relative translation [X, Y, Z] (m)
+  summary: Translation offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Relative rotation [Roll, Pitch, Yaw] (deg)
+  summary: Rotational offset relative to mounting location [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Mounting
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Mounting
+- name: Azimuthal resolution of radar (deg)
+  summary: Azimuth resolution of radar 4 (default) | positive real scalar
+  group: Parameters
+- name: Elevation resolution of radar (deg)
+  summary: Elevation resolution of radar 5 (default) | positive real scalar
+  group: Parameters
+- name: Range resolution of radar (m)
+  summary: Range resolution of radar 2.5 (default) | positive real scalar
+  group: Parameters
+- name: Range rate resolution of radar (m/s)
+  summary: Range rate resolution of the radar 0.5 (default) | positive real scalar
+  group: Parameters
+- name: Fractional azimuthal bias component
+  summary: Azimuth bias fraction 0.1 (default) | nonnegative real scalar
+  group: Parameters
+- name: Fractional elevation bias component
+  summary: Elevation bias fraction 0.1 (default) | nonnegative real scalar
+  group: Parameters
+- name: Fractional range bias component
+  summary: Range bias fraction 0.05 (default) | nonnegative real scalar
+  group: Parameters
+- name: Fractional range rate bias component
+  summary: Range rate bias fraction 0.05 (default) | nonnegative real scalar
+  group: Parameters
+- name: Field of view (deg)
+  summary: Field of view [20, 5] (default) | positive real-valued 1-by-2 vector
+  group: Parameters
+- name: Detection ranges (m)
+  summary: Detection range [1, 150] (default) | positive real-valued 1-by-2 vector
+  group: Parameters
+- name: Range rates (m/s)
+  summary: Minimum and maximum detection range rates [-100, 100] (default) | real-valued 1-by-2 vector
+  group: Parameters
+- name: Detection probability
+  summary: Probability that radar detects a target 0.9 (default) | real scalar in the range (0, 1]
+  group: Parameters
+- name: False alarm rate
+  summary: False alarm rate 1e-6 (default) | positive real scalar in range [10–7, 10–3]
+  group: Parameters
+- name: 'Detection probability range (m):'
+  summary: Reference range for given probability of detection 100 (default) | positive real scalar
+  group: Parameters
+- name: Reference radar cross section (dBsm)
+  summary: Reference radar cross section for given probability of detection 0 (default) | real scalar
+  group: Parameters
+- name: Enable elevation angle measurements
+  summary: Enable radar to measure elevation on (default) | off
+  group: Parameters
+- name: Enable range rate measurements
+  summary: Enable radar to measure range rate on (default) | off
+  group: Parameters
+- name: Enable measurement noise
+  summary: Enable adding noise to radar sensor measurements on (default) | off
+  group: Parameters
+- name: Enable false detections
+  summary: Enable reporting false alarm radar detections on (default) | off
+  group: Parameters
+- name: Random number generator method
+  summary: Method to set random number generator seed Repeatable (default) | Specify seed | Not repeatable
+  group: Parameters
+- name: Initial seed
+  summary: Random number generator seed 0 (default) | scalar in range [0, 232)
+  group: Parameters
+- name: Maximum reported
+  summary: Maximum number of reported detections 50 (default) | positive integer
+  group: Parameters
+- name: Coordinate system
+  summary: Coordinate system of reported detections Ego Cartesian (default) | Sensor Cartesian | Sensor spherical
+  group: Parameters
+- name: Specify output bus name
+  summary: Specify name of output bus off (default) | on
+  group: Parameters
+- name: Output bus name
+  summary: Name of output bus BusSimulation3DRadarTruthSensor (default) | valid bus name
+  group: Parameters
+```
 
 ### Mounting
 
@@ -592,7 +697,6 @@ Name of the bus that the block outputs to the base workspace.
 
 To enable this parameter, select the **Specify output bus
 name** parameter.
-
 ## Libraries
 
 Automated Driving Toolbox / Simulation 3D

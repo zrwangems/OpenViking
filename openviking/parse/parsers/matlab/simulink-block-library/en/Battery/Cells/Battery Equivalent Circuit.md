@@ -14,6 +14,21 @@ language: en
 # Battery Equivalent Circuit
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: H
+  summary: Battery thermal mass thermal
+  direction: conserving
+- name: HDist
+  summary: Discretized battery thermal mass thermal array-of-nodes
+  direction: conserving
+```
 
 ### Conserving
 
@@ -68,8 +83,732 @@ To enable this port, in the **Main** section, set
 the **Thermal model** parameter to
 `Height distributed thermal
 mass`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Selected part
+  summary: Predefined parameterization option <click to select> (default)
+  group: ''
+- name: Battery capacity
+  summary: Battery capacity at full charge 27 A*hr (default) | nonnegative scalar
+  group: Main
+- name: Thermal model
+  summary: Option to define battery thermal model Constant temperature (default) | No temperature dependence | Lumped thermal
+    mass | Height distributed thermal mass
+  group: Main
+  block_parameter: ThermalModel
+  values: '"simscape.battery.enum.cells.BatteryThermalModel.ConstantTemperature" (default) | "simscape.battery.enum.cells.BatteryThermalModel.LumpedThermalMass"
+    | "simscape.battery.enum.cells.BatteryThermalModel.TemperatureIndependent" | "simscape.battery.enum.cells.BatteryThermalModel.HeightDistributedMass"'
+- name: Extrapolation method for all tables
+  summary: Method of extrapolation for tables Nearest (default) | Linear | Error
+  group: Main
+  block_parameter: ExtrapolationMethod
+  values: '"simscape.enum.extrapolation.nearest" (default) | "simscape.enum.extrapolation.linear" | "simscape.enum.extrapolation.error"'
+- name: State of charge breakpoints, SOC
+  summary: SOC breakpoints [0, .1, .25, .5, .75, .9, 1] (default) | vector of values in the range [0, 1]
+  group: Open Circuit Voltage
+- name: Temperature breakpoints, T
+  summary: Temperature breakpoints [278, 293, 313] K (default) | vector of positive values
+  group: Open Circuit Voltage
+- name: Open-circuit voltage, OCV(SOC)
+  summary: Lookup data for open-circuit voltages at specified SOC [3.5057, 3.566, 3.6337, 3.7127, 3.9259, 4.0777, 4.1928]
+    V (default) | vector of nonnegative values
+  group: Open Circuit Voltage
+- name: Open-circuit voltage, OCV(SOC,T)
+  summary: Lookup data for open-circuit voltages at specified SOC and temperature [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62,
+    3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07, 4.08, 4.08; 4.19, 4.19, 4.19] V (default) | matrix of nonnegative
+    values
+  group: Open Circuit Voltage
+- name: Terminal voltage operating range, [Min Max]
+  summary: Terminal voltage operating range [0, inf] V (default) | vector of nonnegative values
+  group: Open Circuit Voltage
+- name: Hysteresis model
+  summary: Option to model hysteresis None (default) | One-state model
+  group: Open Circuit Voltage
+  block_parameter: HysteresisModel
+  values: '"simscape.battery.enum.cells.HysteresisModel.none" (default) | "simscape.battery.enum.cells.HysteresisModel.oneStateModel"'
+- name: Maximum dynamic hysteresis voltage, MaximumHysteresisVoltage(SOC)
+  summary: Maximum dynamic hysteresis voltage at specified SOC [0, 0, 0, 0, 0, 0, 0] V (default) | vector of nonnegative values
+  group: Open Circuit Voltage
+- name: Instantaneous hysteresis voltage, InstantaneousHysteresisVoltage(SOC)
+  summary: Instantaneous hysteresis voltage at specified SOC [0, 0, 0, 0, 0, 0, 0] V (default) | vector of nonnegative values
+  group: Open Circuit Voltage
+- name: Hysteresis rate, HysteresisRate(SOC)
+  summary: Hysteresis rate at specified SOC 0.1 (default) | nonnegative scalar | vector of nonnegative values
+  group: Open Circuit Voltage
+- name: Maximum dynamic hysteresis voltage, MaximumHysteresisVoltageThermal(SOC,T)
+  summary: Maximum dynamic hysteresis voltage at specified SOC and temperature [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0,
+    0; 0, 0, 0; 0, 0, 0] V (default) | matrix of nonnegative values
+  group: Open Circuit Voltage
+- name: Instantaneous hysteresis voltage, InstantaneousHysteresisVoltageThermal(SOC,T)
+  summary: Instantaneous hysteresis voltage at specified SOC and temperature [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0;
+    0, 0, 0; 0, 0, 0] V (default) | matrix of nonnegative values
+  group: Open Circuit Voltage
+- name: Hysteresis rate, HysteresisRateThermal(SOC,T)
+  summary: Hysteresis rate at specified SOC and temperature 0.1 (default) | nonnegative scalar | matrix of nonnegative values
+  group: Open Circuit Voltage
+- name: State of charge breakpoints for resistance, SOC
+  summary: SOC breakpoints for resistance parameters [0, .1, .25, .5, .75, .9, 1] (default) | vector of values in the range
+    [0, 1]
+  group: Overpotential
+- name: Temperature breakpoints for resistance, T
+  summary: Temperature breakpoints for resistance parameters [278, 293, 313] K (default) | vector of positive values
+  group: Overpotential
+- name: Current breakpoints for resistance, I
+  summary: Current breakpoints for resistance parameters [-1, 0, 1] A (default) | vector of scalars
+  group: Overpotential
+- name: Current dependence for resistance parameters
+  summary: Option to enable current dependency for resistance parameters Disabled (default) | Lookup tables (current directionality
+    dependent) | Lookup tables (current dependent)
+  group: Overpotential
+  block_parameter: CurrentDependence
+  values: '"simscape.battery.enum.cells.CurrentDependence.Disabled" (default) | "simscape.battery.enum.cells.CurrentDependence.CurrentDirectionalityDependent"
+    | "simscape.battery.enum.cells.CurrentDependence.CurrentDependent"'
+- name: Instantaneous resistance, R0(SOC)
+  summary: Instantaneous resistance of battery at specified SOC [.0085, .0085, .0087, .0082, .0083, .0085, .0085] Ohm (default)
+    | vector of nonnegative values
+  group: Overpotential
+- name: Instantaneous resistance, R0(SOC,T)
+  summary: Instantaneous resistance of battery at specified SOC and temperature [.0117, .0085, .009; .011, .0085, .009; .0114,
+    .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm (default) | matrix
+    of nonnegative values
+  group: Overpotential
+- name: Instantaneous resistance during discharging, R0(SOC)
+  summary: Instantaneous resistance of battery during discharging phase at specified SOC [.0085, .0085, .0087, .0082, .0083,
+    .0085, .0085] Ohm (default) | vector of nonnegative values
+  group: Overpotential
+- name: Instantaneous resistance during charging, R0(SOC)
+  summary: Instantaneous resistance of battery during charging phase at specified SOC [.0085, .0085, .0087, .0082, .0083,
+    .0085, .0085] Ohm (default) | vector of nonnegative values
+  group: Overpotential
+- name: Instantaneous resistance during charging, R0(SOC,T)
+  summary: Instantaneous resistance of battery during charging phase at specified SOC and temperature [.0117, .0085, .009;
+    .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089]
+    Ohm (default) | matrix of nonnegative values
+  group: Overpotential
+- name: Instantaneous resistance during discharging, R0(SOC,T)
+  summary: Instantaneous resistance of battery during discharging phase at specified SOC and temperature [.0117, .0085, .009;
+    .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089]
+    Ohm (default) | matrix of nonnegative values
+  group: Overpotential
+- name: Instantaneous resistance, R0(SOC,I)
+  summary: Instantaneous resistance of battery at specified SOC and current [.0117, .0085, .009; .011, .0085, .009; .0114,
+    .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089] Ohm (default) | matrix
+    of nonnegative values
+  group: Overpotential
+- name: Instantaneous resistance, R0(SOC,T,I)
+  summary: Instantaneous resistance of battery at specified SOC, temperature, and current repmat([.0117, .0085, .009; .011,
+    .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091; .0113, .0085, .0089; .0116, .0085, .0089],
+    1, 1, 3) Ohm (default) | 3-D array of nonnegative values
+  group: Overpotential
+- name: Parallel resistor capacitor pairs
+  summary: Option to model battery charge dynamics No dynamics (default) | One time-constant dynamics | Two time-constant
+    dynamics | Three time-constant dynamics
+  group: Overpotential
+  block_parameter: RCPairs
+  values: '"simscape.battery.enum.cells.RCPairs.noDynamics" (default) | "simscape.battery.enum.cells.RCPairs.rc1" | "simscape.battery.enum.cells.RCPairs.rc2"
+    | "simscape.battery.enum.cells.RCPairs.rc3"'
+- name: First polarization resistance, R1(SOC)
+  summary: First parallel RC resistance at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm (default) |
+    vector of positive values
+  group: Overpotential
+- name: First time constant, Tau1(SOC)
+  summary: First parallel RC time constant at specified SOC [36, 45, 105, 29, 77, 33, 39] s (default) | vector of positive
+    values
+  group: Overpotential
+- name: Second polarization resistance, R2(SOC)
+  summary: Second parallel RC resistance at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm (default)
+    | vector of positive values
+  group: Overpotential
+- name: Second time constant, Tau2(SOC)
+  summary: Second parallel RC time constant at specified SOC [36, 45, 105, 29, 77, 33, 39] s (default) | vector of positive
+    values
+  group: Overpotential
+- name: Third polarization resistance, R3(SOC)
+  summary: Third parallel RC resistance at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018, .0017] Ohm (default) |
+    vector of positive values
+  group: Overpotential
+- name: Third time constant, Tau3(SOC)
+  summary: Third parallel RC time constant at specified SOC [36, 45, 105, 29, 77, 33, 39] s (default) | vector of positive
+    values
+  group: Overpotential
+- name: First polarization resistance during discharging, R1(SOC)
+  summary: First parallel RC resistance during discharging phase at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018,
+    .0017] Ohm (default) | vector of positive values
+  group: Overpotential
+- name: First time constant during discharging, Tau1(SOC)
+  summary: First parallel RC time constant during discharging phase at specified SOC [36, 45, 105, 29, 77, 33, 39] s (default)
+    | vector of positive values
+  group: Overpotential
+- name: First polarization resistance during charging, R1(SOC)
+  summary: First parallel RC resistance during charging phase at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018,
+    .0017] Ohm (default) | vector of positive values
+  group: Overpotential
+- name: First time constant during charging, Tau1(SOC)
+  summary: First parallel RC time constant during charging phase at specified SOC [36, 45, 105, 29, 77, 33, 39] Ohm (default)
+    | vector of positive values
+  group: Overpotential
+- name: Second polarization resistance during discharging, R2(SOC)
+  summary: Second parallel RC resistance during discharging phase at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018,
+    .0017] Ohm (default) | vector of positive values
+  group: Overpotential
+- name: Second time constant during discharging, Tau2(SOC)
+  summary: Second parallel RC time constant during discharging phase at specified SOC [36, 45, 105, 29, 77, 33, 39] s (default)
+    | vector of positive values
+  group: Overpotential
+- name: Second polarization resistance during charging, R2(SOC)
+  summary: Second parallel RC resistance during charging phase at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018,
+    .0017] Ohm (default) | vector of positive values
+  group: Overpotential
+- name: Second time constant during charging, Tau2(SOC)
+  summary: Second parallel RC time constant during charging phase at specified SOC [36, 45, 105, 29, 77, 33, 39] s (default)
+    | vector of positive values
+  group: Overpotential
+- name: Third polarization resistance during discharging, R3(SOC)
+  summary: Third parallel RC resistance during discharging phase at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018,
+    .0017] Ohm (default) | vector of positive values
+  group: Overpotential
+- name: Third time constant during discharging, Tau3(SOC)
+  summary: Third parallel RC time constant during discharging phase at specified SOC [36, 45, 105, 29, 77, 33, 39] s (default)
+    | vector of positive values
+  group: Overpotential
+- name: Third polarization resistance during charging, R3(SOC)
+  summary: Third parallel RC resistance during charging phase at specified SOC [.0029, .0024, .0026, .0016, .0023, .0018,
+    .0017] Ohm (default) | vector of positive values
+  group: Overpotential
+- name: Third time constant during charging, Tau3(SOC)
+  summary: Third parallel RC time constant during charging phase at specified SOC [36, 45, 105, 29, 77, 33, 39] s (default)
+    | vector of positive values
+  group: Overpotential
+- name: First polarization resistance, R1(SOC,T)
+  summary: First parallel RC resistance at specified SOC and temperature [.0109, .0029, .0013; .0069, .0024, .0012; .0047,
+    .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix
+    of positive values
+  group: Overpotential
+- name: First time constant, Tau1(SOC,T)
+  summary: First parallel RC time constant at specified SOC and temperature [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29,
+    26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: Second polarization resistance, R2(SOC,T)
+  summary: Second parallel RC resistance at specified SOC and temperature [.0109, .0029, .0013; .0069, .0024, .0012; .0047,
+    .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix
+    of positive values
+  group: Overpotential
+- name: Second time constant, Tau2(SOC,T)
+  summary: Second parallel RC time constant at specified SOC and temperature [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29,
+    26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: Third polarization resistance, R3(SOC,T)
+  summary: Third parallel RC resistance at the specified SOC and temperature [.0109, .0029, .0013; .0069, .0024, .0012; .0047,
+    .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix
+    of positive values
+  group: Overpotential
+- name: Third time constant, Tau3(SOC,T)
+  summary: Third parallel RC time constant at specified SOC and temperature [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29,
+    26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: First polarization resistance during discharging, R1(SOC,T)
+  summary: First parallel RC resistance during discharging phase at specified SOC and temperature [.0109, .0029, .0013; .0069,
+    .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011]
+    Ohm (default) | matrix of positive values
+  group: Overpotential
+- name: First time constant during discharging, Tau1(SOC,T)
+  summary: First parallel RC time constant during discharging phase at specified SOC and temperature [20, 36, 39; 31, 45,
+    39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: First polarization resistance during charging, R1(SOC,T)
+  summary: First parallel RC resistance during charging phase at specified SOC and temperature [.0109, .0029, .0013; .0069,
+    .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011]
+    Ohm (default) | matrix of positive values
+  group: Overpotential
+- name: First time constant during charging, Tau1(SOC,T)
+  summary: First parallel RC time constant during charging phase at specified SOC and temperature [20, 36, 39; 31, 45, 39;
+    109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: Second polarization resistance during discharging, R2(SOC,T)
+  summary: Second parallel RC resistance during discharging phase at specified SOC and temperature [.0109, .0029, .0013; .0069,
+    .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011]
+    Ohm (default) | matrix of positive values
+  group: Overpotential
+- name: Second time constant during discharging, Tau2(SOC,T)
+  summary: Second parallel RC time constant during discharging phase at specified SOC and temperature [20, 36, 39; 31, 45,
+    39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: Second polarization resistance during charging, R2(SOC,T)
+  summary: Second parallel RC resistance during charging phase at specified SOC and temperature [.0109, .0029, .0013; .0069,
+    .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011]
+    Ohm (default) | matrix of positive values
+  group: Overpotential
+- name: Second time constant during charging, Tau2(SOC,T)
+  summary: Second parallel RC time constant during charging phase at specified SOC and temperature [20, 36, 39; 31, 45, 39;
+    109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: Third polarization resistance during discharging, R3(SOC,T)
+  summary: Third parallel RC resistance during discharging phase at specified SOC and temperature breakpoints [.0109, .0029,
+    .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028,
+    .0017, .0011] Ohm (default) | matrix of positive values
+  group: Overpotential
+- name: Third time constant during discharging, Tau3(SOC,T)
+  summary: Third parallel RC time constant during discharging phase at specified SOC and temperature breakpoints [20, 36,
+    39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: Third polarization resistance during charging, R3(SOC,T)
+  summary: Third parallel RC resistance during charging phase at specified SOC and temperature breakpoints [.0109, .0029,
+    .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028,
+    .0017, .0011] Ohm (default) | matrix of positive values
+  group: Overpotential
+- name: Third time constant during charging, Tau3(SOC,T)
+  summary: Third parallel RC time constant during charging phase at specified SOC and temperature breakpoints [20, 36, 39;
+    31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: First polarization resistance, R1(SOC,I)
+  summary: First parallel RC resistance at specified SOC and current [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026,
+    .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix of positive
+    values
+  group: Overpotential
+- name: First time constant, Tau1(SOC,I)
+  summary: First parallel RC time constant at specified SOC and current [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26;
+    59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: Second polarization resistance, R2(SOC,I)
+  summary: Second parallel RC resistance at specified SOC and current [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026,
+    .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix of positive
+    values
+  group: Overpotential
+- name: Second time constant, Tau2(SOC,I)
+  summary: Second parallel RC time constant at specified SOC and current [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26;
+    59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: Third polarization resistance, R3(SOC,I)
+  summary: Third parallel RC resistance at the specified SOC and current [.0109, .0029, .0013; .0069, .0024, .0012; .0047,
+    .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011] Ohm (default) | matrix
+    of positive values
+  group: Overpotential
+- name: Third time constant, Tau3(SOC,I)
+  summary: Third parallel RC time constant at specified SOC and current [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26;
+    59, 77, 67; 40, 33, 29; 25, 39, 33] s (default) | matrix of positive values
+  group: Overpotential
+- name: First polarization resistance, R1(SOC,T,I)
+  summary: First parallel RC resistance at specified SOC, temperature, and current repmat([.0109, .0029, .0013; .0069, .0024,
+    .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011], 1, 1,
+    3) Ohm (default) | 3-D array of positive values
+  group: Overpotential
+- name: First time constant, Tau1(SOC,T,I)
+  summary: First parallel RC time constant at specified SOC, temperature, and current repmat([20, 36, 39; 31, 45, 39; 109,
+    105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33], 1, 1, 3) s (default) | 3-D array of positive values
+  group: Overpotential
+- name: Second polarization resistance, R2(SOC,T,I)
+  summary: Second parallel RC resistance at specified SOC, temperature, and current repmat([.0109, .0029, .0013; .0069, .0024,
+    .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011], 1, 1,
+    3) Ohm (default) | 3-D array of positive values
+  group: Overpotential
+- name: Second time constant, Tau2(SOC,T,I)
+  summary: Second parallel RC time constant at specified SOC, temperature, and current [repmat([20, 36, 39; 31, 45, 39; 109,
+    105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33], 1, 1, 3) s (default) | 3-D array of positive values
+  group: Overpotential
+- name: Third polarization resistance, R3(SOC,T,I)
+  summary: Third parallel RC resistance at the specified SOC. temperature, and current [repmat([.0109, .0029, .0013; .0069,
+    .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033, .0018, .0011; .0028, .0017, .0011],
+    1, 1, 3) Ohm (default) | 3-D array of positive values
+  group: Overpotential
+- name: Third time constant, Tau3(SOC,T,I)
+  summary: Third parallel RC time constant at specified SOC, temperature, and current repmat([20, 36, 39; 31, 45, 39; 109,
+    105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33], 1, 1, 3) s (default) | matrix of positive values
+  group: Overpotential
+- name: Self discharge
+  summary: Option to model battery self-discharge resistance Disabled (default) | Enabled
+  group: Overpotential
+  block_parameter: SelfDischargeResistor
+  values: '"simscape.battery.enum.cells.BatteryEnable.Disabled" (default) | "simscape.battery.enum.cells.BatteryEnable.Enabled"'
+- name: Self-discharge resistance, SelfDischargeR
+  summary: Self-discharge resistance of battery 7e3 Ohm (default) | positive scalar
+  group: Overpotential
+- name: Self-discharge resistance, SelfDischargeR(T)
+  summary: Self-discharge resistance of battery at specified temperature [8000, 7000, 6000] Ohm (default) | vector of positive
+    values
+  group: Overpotential
+- name: Cycling aging model
+  summary: Option to define fading characteristic Disabled (default) | Equations | Lookup tables (temperature independent)
+    | Lookup tables (constant temperature dependent) | Lookup tables (temperature dependent) | Lookup tables (temperature
+    and current dependent)
+  group: Cycling Aging
+  block_parameter: CyclingAgingMethod
+  values: '"simscape.battery.enum.cells.CyclingAgingMethod.disabled" (default) | "simscape.battery.enum.cells.CyclingAgingMethod.equations"
+    | "simscape.battery.enum.cells.CyclingAgingMethod.tableN" | "simscape.battery.enum.cells.CyclingAgingMethod.tableNandT"
+    | "simscape.battery.enum.cells.CyclingAgingMethod.tableNandVariableT" | "simscape.battery.enum.cells.CyclingAgingMethod.tableNandVariableTandI"'
+- name: Cycle calculation method
+  summary: Option to choose how block calculates number of discharge cycles Equivalent cycles (default) | Equivalent full
+    cycles
+  group: Cycling Aging
+- name: Number of discharge cycles, NumDisCycles
+  summary: Number of cycles for percentage change calculations 100 (default) | scalar in the range [1, inf)
+  group: Cycling Aging
+- name: Change in open-circuit voltage after NumDisCycles discharge cycles (%)
+  summary: Percentage change in open-circuit voltage after *NumDisCycles* cycles 0 (default) | scalar
+  group: Cycling Aging
+- name: Change in terminal resistance after NumDisCycles discharge cycles (%)
+  summary: Percentage change in terminal resistance after *NumDisCycles* cycles 0 (default) | scalar
+  group: Cycling Aging
+- name: Change in cell capacity after NumDisCycles discharge cycles (%)
+  summary: Percentage change in cell capacity after *NumDisCycles* cycles 0 (default) | scalar
+  group: Cycling Aging
+- name: Change in self-discharge resistance after NumDisCycles discharge cycles (%)
+  summary: Percentage change in self-discharge resistance after *NumDisCycles* cycles 0 (default) | scalar
+  group: Cycling Aging
+- name: Change in first polarization resistance after NumDisCycles discharge cycles (%)
+  summary: Percentage change in first RC resistance after *NumDisCycles* cycles 0 (default) | scalar
+  group: Cycling Aging
+- name: Change in second polarization resistance after NumDisCycles discharge cycles (%)
+  summary: Percentage change in second RC resistance after *NumDisCycles* cycles 0 (default) | scalar
+  group: Cycling Aging
+- name: Change in third polarization resistance after NumDisCycles discharge cycles (%)
+  summary: Percentage change in third RC resistance after *NumDisCycles* cycles 0 (default) | scalar
+  group: Cycling Aging
+- name: Number of discharge cycles breakpoints, NumDisCyclesBreakpoints
+  summary: Reference vector or numbers of cycles for percentage change calculations [0, 100, 200, 300] (default) | vector
+    of nonnegative values
+  group: Cycling Aging
+- name: Temperatures breakpoints for cycling aging data, T
+  summary: Temperature breakpoints at which block extracts fading lookup tables [298.15, 323.15] K (default) | vector of entries
+    in the range [1, inf)
+  group: Cycling Aging
+- name: Current breakpoints for cycling aging data, I
+  summary: Current breakpoints at which block extracts fading lookup tables [-.1, -.5, -5] A (default) | vector of negative
+    scalars
+  group: Cycling Aging
+- name: Percentage change in open-circuit voltage, OCVChange(N)
+  summary: Percentage change in open-circuit voltage after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Cycling Aging
+- name: Percentage change in terminal resistance, R0Change(N)
+  summary: Percentage change in terminal resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Cycling Aging
+- name: Percentage change in cell capacity, CapacityChange(N)
+  summary: Percentage change in cell capacity after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Cycling Aging
+- name: Percentage change in self-discharge resistance, SelfDischargeRChange(N)
+  summary: Percentage change in self-discharge resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Cycling Aging
+- name: Percentage change in first polarization resistance, R1Change(N)
+  summary: Percentage change in first parallel RC resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Cycling Aging
+- name: Percentage change in second polarization resistance, R2Change(N)
+  summary: Percentage change in second parallel RC resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Cycling Aging
+- name: Percentage change in third polarization resistance, R3Change(N)
+  summary: Percentage change in third parallel RC resistance after *N* cycles [0, 0, 0, 0] (default) | vector of scalars
+  group: Cycling Aging
+- name: Percentage change in open-circuit voltage, OCVChange(N,T)
+  summary: Percentage change in open-circuit voltage after *N* cycles at specified temperature [0, 0; 0, 0; 0, 0; 0, 0] (default)
+    | matrix of scalars
+  group: Cycling Aging
+- name: Percentage change in terminal resistance, R0Change(N,T)
+  summary: Percentage change in terminal resistance after *N* cycles at specified temperature [0, 0; 0, 0; 0, 0; 0, 0] (default)
+    | matrix of scalars
+  group: Cycling Aging
+- name: Initial target for percentage change in internal resistance due to cycling aging
+  summary: Initial target value for percentage change in internal resistance due to cycling aging 0 (default) | scalar
+  group: Cycling Aging
+- name: Percentage change in cell capacity, CapacityChange(N,T)
+  summary: Percentage change in cell capacity after *N* cycles at specified temperature [0, 0; 0, 0; 0, 0; 0, 0] (default)
+    | matrix of scalars
+  group: Cycling Aging
+- name: Initial target for percentage change in capacity due to cycling aging
+  summary: Initial target value for percentage change in capacity due to cycling aging 0 (default) | scalar
+  group: Cycling Aging
+- name: Percentage change in self-discharge resistance, SelfDischargeRChange(N,T)
+  summary: Percentage change in self-discharge resistance after *N* cycles at specified temperature [0, 0; 0, 0; 0, 0; 0,
+    0] (default) | matrix of scalars
+  group: Cycling Aging
+- name: Initial target for percentage change in self-discharge resistance due to cycling aging
+  summary: Initial target value for percentage change in self-discharge resistance due to cycling aging 0 (default) | scalar
+  group: Cycling Aging
+- name: Percentage change in first polarization resistance, R1Change(N,T)
+  summary: Percentage change in first parallel RC resistance after *N* cycles at specified temperature [0, 0; 0, 0; 0, 0;
+    0, 0] (default) | matrix of scalars
+  group: Cycling Aging
+- name: Initial target for percentage change in first polarization resistance due to cycling aging
+  summary: Initial target value for percentage change in first polarization resistance due to cycling aging 0 (default) |
+    scalar
+  group: Cycling Aging
+- name: Percentage change in second polarization resistance, R2Change(N,T)
+  summary: Percentage change in second parallel RC resistance after *N* cycles at specified temperature [0, 0; 0, 0; 0, 0;
+    0, 0] (default) | matrix of scalars
+  group: Cycling Aging
+- name: Initial target for percentage change in second polarization resistance due to cycling aging
+  summary: Initial target value for percentage change in second polarization resistance due to cycling aging 0 (default) |
+    scalar
+  group: Cycling Aging
+- name: Percentage change in third polarization resistance, R3Change(N,T)
+  summary: Percentage change in third parallel RC resistance after *N* cycles at specified temperature [0, 0; 0, 0; 0, 0;
+    0, 0] (default) | matrix of scalars
+  group: Cycling Aging
+- name: Initial target for percentage change in third polarization resistance due to cycling aging
+  summary: Initial target value for percentage change in third polarization resistance due to cycling aging 0 (default) |
+    scalar
+  group: Cycling Aging
+- name: Percentage change in terminal resistance, R0Change(N,T,I)
+  summary: Percentage change in terminal resistance after *N* cycles at specified temperature and current repmat(0, 4, 2,
+    3) (default) | 3-D array of scalars
+  group: Cycling Aging
+- name: Percentage change in cell capacity, CapacityChange(N,T,I)
+  summary: Percentage change in cell capacity after *N* cycles at specified temperature and current repmat(0, 4, 2, 3) (default)
+    | 3-D array of scalars
+  group: Cycling Aging
+- name: Percentage change in self-discharge resistance, SelfDischargeRChange(N,T,I)
+  summary: Percentage change in self-discharge resistance after *N* cycles at specified temperature and current repmat(0,
+    4, 2, 3) (default) | 3-D array of scalars
+  group: Cycling Aging
+- name: Percentage change in first polarization resistance, R1Change(N,T,I)
+  summary: Percentage change in first polarization resistance after *N* cycles at specified temperature and current repmat(0,
+    4, 2, 3) (default) | 3-D array of scalars
+  group: Cycling Aging
+- name: Percentage change in second polarization resistance, R2Change(N,T,I)
+  summary: Percentage change in second polarization resistance after *N* cycles at specified temperature and current repmat(0,
+    4, 2, 3) (default) | 3-D array of scalars
+  group: Cycling Aging
+- name: Percentage change in third polarization resistance, R2Change(N,T,I)
+  summary: Percentage change in third polarization resistance after *N* cycles at specified temperature and current repmat(0,
+    4, 2, 3) (default) | 3-D array of scalars
+  group: Cycling Aging
+- name: Resistance calendar aging
+  summary: Option to enable calendar aging for resistance Disabled (default) | Enabled
+  group: Calendar Aging
+  block_parameter: CalendarAgeResistance
+  values: '"simscape.battery.enum.cells.BatteryEnable.Disabled" (default) | "simscape.battery.enum.cells.BatteryEnable.Enabled"'
+- name: Capacity calendar aging
+  summary: Option to enable calendar aging for capacity Disabled (default) | Enabled
+  group: Calendar Aging
+  block_parameter: CalendarAgeCapacity
+  values: '"simscape.battery.enum.cells.BatteryEnable.Disabled" (default) | "simscape.battery.enum.cells.BatteryEnable.Enabled"'
+- name: Modeling option
+  summary: 'Modeling option for calendar aging Equation-based (default) | Tabulated: temperature | Tabulated: time and temperature'
+  group: Calendar Aging
+  block_parameter: CalendarAgingMethod
+  values: '"simscape.battery.enum.cells.CalendarAgingMethod.equation" (default) | "simscape.battery.enum.cells.CalendarAgingMethod.tableT"
+    | "simscape.battery.enum.cells.CalendarAgingMethod.tableTandTime"'
+- name: Storage condition
+  summary: Storage condition Specify open-circuit voltage during storage (default) | Specify state-of-charge during storage
+  group: Calendar Aging
+  block_parameter: StorageVariable
+  values: '"simscape.battery.enum.cells.StorageVariable.OCV" (default) | "simscape.battery.enum.cells.StorageVariable.SOC"'
+- name: Normalized open-circuit voltage during storage, V/Vnom
+  summary: Normalized open-circuit voltage during storage 0.9 (default) | scalar
+  group: Calendar Aging
+- name: State of charge during storage
+  summary: Percentage SOC during storage 0.6 (default) | scalar in the range [0, 1]
+  group: Calendar Aging
+- name: Vector of time intervals
+  summary: Time intervals [0] d (default) | vector of scalars
+  group: Calendar Aging
+- name: Vector of storage temperatures
+  summary: Storage temperatures [273] K (default) | vector of nonnegative values
+  group: Calendar Aging
+- name: Terminal resistance linear scaling for voltage, b
+  summary: Voltage linear scaling coefficient of terminal resistance 2.2134e6 (default) | scalar
+  group: Calendar Aging
+- name: Terminal resistance constant offset for voltage, c
+  summary: Voltage constant offset of terminal resistance 1.632e6 (default) | scalar
+  group: Calendar Aging
+- name: Terminal resistance temperature-dependent exponential increase, d
+  summary: Temperature-dependent exponential increase in terminal resistance 0.515833569 V (default) | scalar
+  group: Calendar Aging
+- name: Terminal resistance time exponent, a
+  summary: Time exponent in terminal resistance 0.75 (default) | scalar
+  group: Calendar Aging
+- name: Vector of sampled temperatures for terminal resistance calendar aging, T_ar
+  summary: Sampled temperatures for terminal resistance calendar aging [273.15, 298.15, 323.15] K (default) | vector of positive
+    values
+  group: Calendar Aging
+- name: Vector of sampled storage time intervals for terminal resistance calendar aging, t_ar
+  summary: Sampled storage time intervals for terminal resistance calendar aging [90, 180, 270, 360] d (default) | vector
+    of positive values
+  group: Calendar Aging
+- name: Percentage change in terminal resistance due to calendar aging, dR0(T_ar)
+  summary: Percentage change in terminal resistance due to calendar aging [0,0,0] (default) | vector of scalars
+  group: Calendar Aging
+- name: Time between terminal resistance beginning of life and dR(T_ar) measurement
+  summary: Time between terminal resistance at beginning of life and *dR(Tar)* measurement 100 d (default) | nonnegative scalar
+  group: Calendar Aging
+- name: Percentage change in terminal resistance due to calendar aging, dR0(t_ar,T_ar)
+  summary: Percentage change in terminal resistance due to calendar aging [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0] (default) |
+    matrix of scalars
+  group: Calendar Aging
+- name: Capacity linear scaling for voltage, b
+  summary: Voltage linear scaling of capacity 1.5097e07 (default) | scalar
+  group: Calendar Aging
+- name: Capacity constant offset for voltage, c
+  summary: Voltage constant offset of capacity 8.3625e06 (default) | scalar
+  group: Calendar Aging
+- name: Capacity temperature-dependent exponential decrease, d
+  summary: Temperature-dependent exponential decrease in capacity 0.6011 V (default) | scalar
+  group: Calendar Aging
+- name: Capacity time exponent, a
+  summary: Time exponent in capacity 0.75 (default) | scalar
+  group: Calendar Aging
+- name: Vector of sampled temperatures for capacity calendar aging, T_ac
+  summary: Sampled temperatures for capacity calendar aging [273.15, 298.15, 323.15] K (default) | vector of positive values
+  group: Calendar Aging
+- name: Vector of sampled storage time intervals for capacity calendar aging, t_ac
+  summary: Sampled storage time intervals for capacity calendar aging [90, 180, 270, 360] d (default) | vector of positive
+    values
+  group: Calendar Aging
+- name: Percentage change in capacity due to calendar aging, dAH(T_ac)
+  summary: Percentage change in capacity due to calendar aging [0, 0, 0] (default) | vector of scalars
+  group: Calendar Aging
+- name: Time between capacity beginning of life and dAH(T_ac) measurement
+  summary: Time between capacity at beginning of life and *dAH(Tac)* measurement 100 d (default) | positive scalar
+  group: Calendar Aging
+- name: Percentage change in capacity due to calendar aging, dAH(t_ac,T_ac)
+  summary: Percentage change in capacity due to calendar aging [0, 0, 0; 0, 0, 0; 0, 0, 0; 0, 0, 0] (default) | matrix of
+    scalars
+  group: Calendar Aging
+- name: Simulation temperature
+  summary: Battery temperature 298.15 K (default) | positive scalar
+  group: Thermal
+- name: Battery thermal mass
+  summary: Battery thermal mass associated with thermal port 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Number of thermal models
+  summary: Number of discretized elements in thermal model 6 (default) | positive scalar
+  group: Thermal
+- name: Thermal conductivity in Z dimension
+  summary: Thermal conductivity of cell in *Z* dimension 18 W/(K*m) (default) | positive scalar
+  group: Thermal
+- name: Cross-sectional area in XY dimension
+  summary: Cross-sectional area of cell in *XY* dimension 3.5e-4 m^2 (default) | positive scalar
+  group: Thermal
+- name: Cell height
+  summary: Height of cell 0.07 m (default) | positive scalar
+  group: Thermal
+- name: Reversible heat model
+  summary: Option to model reversible heat Disabled (default) | Entropic coefficient
+  group: Thermal
+  block_parameter: ReversibleHeatModel
+  values: '"simscape.battery.enum.cells.ReversibleHeatModel.Disabled" (default) | "simscape.battery.enum.cells.ReversibleHeatModel.EntropicCoefficient"'
+- name: Entropic coefficient
+  summary: Entropic coefficient of reversible heat [0, 0, 0, 0, 0, 0, 0] mV/K (default) | vector of scalars
+  group: Thermal
+- name: Additional resistance fault
+  summary: Option to fault series-connected resistance Add fault (default)
+  group: Faults
+- name: Exothermic reactions fault
+  summary: Option to model self-heating and thermal runaway events Add fault (default)
+  group: Faults
+- name: Internal short fault
+  summary: Option to fault parallel-connected resistance Add fault (default)
+  group: Faults
+- name: Additional resistance when faulted
+  summary: Additional resistance when block is faulted 1e5 Ohm (default)
+  group: Faults
+- name: Trigger type
+  summary: Type of fault trigger for additional resistance fault Always On (default) | Timed | Additional triggers | Conditional
+    | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state for additional resistance fault 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Trigger Configuration
+  summary: Option to enable additional trigger types for additional resistance fault Open fault properties
+  group: Faults
+- name: Short parallel resistance when faulted
+  summary: Short parallel resistance when block is faulted 1e-6 (default)
+  group: Faults
+- name: Trigger type
+  summary: Type of fault trigger for internal short fault Always On (default) | Timed | Additional triggers | Conditional
+    | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state for internal short fault 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Trigger Configuration
+  summary: Option to enable additional trigger types for internal short fault Open fault properties
+  group: Faults
+- name: Modeling fidelity
+  summary: Fidelity option for modeling exothermic reactions Analytical (default) | Tabulated accelerated rate calorimetry
+    test temperature rate
+  group: Faults
+  block_parameter: ExothermModel
+  values: '"simscape.battery.enum.cells.ExothermModel.analytical" (default) | "simscape.battery.enum.cells.ExothermModel.acceleratedRateCalorimetryTemperature"'
+- name: Tabulate with state of charge
+  summary: Option to tabulate exothermic reactions parameters as functions of SOC off (default) | on
+  group: Faults
+  block_parameter: TabulateWithSOC
+  values: false (default) | true
+- name: Current interruption temperature
+  summary: Temperature over which current stops flowing 420 K (default) | positive scalar
+  group: Faults
+- name: Total heat of reaction
+  summary: Total heat of reaction 23e3 J (default) | positive scalar
+  group: Faults
+- name: Exotherm onset temperature
+  summary: Exotherm onset temperature 350 K (default) | positive scalar
+  group: Faults
+- name: Exotherm onset temperature rate
+  summary: Exothermic onset temperature rate 0.02 K/min (default) | positive scalar
+  group: Faults
+- name: Activation energy
+  summary: Activation energy 160e3 J/mol (default) | positive scalar
+  group: Faults
+- name: Order of reaction
+  summary: Order of exothermic reaction 1 (default) | positive scalar
+  group: Faults
+- name: Percent of thermal mass vented
+  summary: Percentage of thermal mass battery vents to environment 40 (default) | positive scalar
+  group: Faults
+- name: Vector of state of charge values for exothermic parameters, SOC
+  summary: SOC values for lookup data of exothermic parameters [0,.5,1] (default) | vector of nonnegative values
+  group: Faults
+- name: Corresponding current interruption temperature, Tci(SOC)
+  summary: Corresponding current interruption temperature at specified SOC breakpoints [420, 420, 420] (default) | vector
+    of nonnegative values
+  group: Faults
+- name: Corresponding total heat of reaction, heat(SOC)
+  summary: Corresponding total heat of reaction at specified SOC breakpoints [23000, 23000, 23000] (default) | vector of nonnegative
+    values
+  group: Faults
+- name: Corresponding exotherm onset temperature, Tex(SOC)
+  summary: Corresponding exothermic onset temperature at specified SOC breakpoints [350, 350, 350] (default) | vector of nonnegative
+    values
+  group: Faults
+- name: Corresponding activation energy, Ea(SOC)
+  summary: Corresponding activation energy at specified SOC breakpoints [160000, 160000, 160000] (default) | vector of nonnegative
+    values
+  group: Faults
+- name: Corresponding order of reaction, Or(SOC)
+  summary: Corresponding order of reaction at specified SOC breakpoints [1, 1, 1] (default) | vector of nonnegative values
+  group: Faults
+- name: Vector of ARC test temperatures, T
+  summary: ARC test temperatures for lookup data [323, 373, 423, 438, 463, 483, 513, 543, 545, 547, 549, 551, 553, 573, 623,
+    773, 923, 943, 1003, 1063, 1113, 1123, 1133, 1153, 1173] (default) | vector of nonnegative values
+  group: Faults
+- name: Corresponding ARC test temperature rates, dT/dt(T)
+  summary: Corresponding ARC test temperature rates at specified T breakpoints [.0001, .001, .025, .2, .4, .6, 1.1, 1.3, 1.9,
+    3, 5, 11.6, 183.3, 191.6, 200, 208.3, 200, 175, 8.33, 1.33, .33, .2, .13, .0017, .00017] (default) | vector of nonnegative
+    values
+  group: Faults
+- name: Corresponding ARC test temperature rates, dT/dt(T,SOC)
+  summary: Corresponding ARC test temperature rates at specified temperature and SOC breakpoints repmat([.0001, .001, .025,
+    .2, .4, .6, 1.1, 1.3, 1.9, 3, 5, 11.6, 183.3, 191.6, 200, 208.3, 200, 175, 8.33, 1.33, .33, .2, .13, .0017, .00017]',
+    1, 3) (default) | matrix of nonnegative values
+  group: Faults
+- name: Corresponding percent of thermal mass vented, Mvent(SOC)
+  summary: Corresponding vented thermal mass percentage at specified SOC breakpoints [40, 40, 40] (default) | vector of values
+    in the range [0, 100]
+  group: Faults
+- name: Trigger type
+  summary: Type of fault trigger for exothermic reactions fault Always On (default) | Timed | Behavioral | Additional triggers
+    | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state for exothermic reactions fault 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Trigger temperature
+  summary: Temperature to trigger fault 350 K (default) | nonnegative scalar
+  group: Faults
+- name: Trigger Configuration
+  summary: Option to enable additional trigger types for exothermic reactions fault Open fault properties
+  group: Faults
+```
 
 ### **Selected part** — Predefined parameterization option `<click to select>` (default)
 
@@ -3515,7 +4254,6 @@ To enable this parameter:
 - Set **Trigger type** to
   `Additional
   triggers`.
-
 ## Libraries
 
 Simscape / Battery / Cells

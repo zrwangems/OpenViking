@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Systolic Matrix Solve Using QR Decomposition
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 矩阵 *A* 矩阵
+  direction: input
+  data_types: single | double | fixed point
+- name: B
+  summary: 矩阵 *B* 矩阵
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 标量
+  direction: input
+  data_types: Boolean
+- name: readyIn
+  summary: 下游模块是否就绪 标量
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: 是否清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: X
+  summary: 矩阵 *X* 矩阵
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 模块是否就绪 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -133,8 +168,35 @@ type** 参数指定输入数据的复杂性。
 **validIn** 信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of rows in matrices A and B
+  summary: 矩阵 *A* 和 *B* 的行数 2（默认）| 正整数值标量
+  group: ''
+  block_parameter: m
+  values: 2 (default) | positive integer-valued scalar
+- name: Number of columns in matrix A
+  summary: 矩阵 *A* 的列数 2（默认）| 正整数值标量
+  group: ''
+  block_parameter: n
+  values: 2 (default) | positive integer-valued scalar
+- name: Number of columns in matrix B
+  summary: 矩阵 *B* 的列数 1（默认）| 正整数值标量
+  group: ''
+  block_parameter: p
+  values: 1 (default) | positive integer-valued scalar
+- name: Output datatype
+  summary: 输出矩阵 *X* 的数据类型 fixdt(1,18,4)（默认）| double | single | fixdt(1,16,0) | <data type expression>
+  group: ''
+  block_parameter: OutputType
+  values: fixdt(1,18,4) (default) | double | single | fixdt(1,16,0) | <data type expression>
+- name: Signal type
+  summary: 矩阵 *A* 和 *B* 的复杂性 real（默认）| complex
+  group: ''
+  block_parameter: complexity
+  values: real (default) | complex
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -238,7 +300,6 @@ Inspector**。
 | **Parameter:** | `complexity` |
 | **值**：| `real` (default) | `complex` |
 | **Data Types:** | `char` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Linear System Solvers

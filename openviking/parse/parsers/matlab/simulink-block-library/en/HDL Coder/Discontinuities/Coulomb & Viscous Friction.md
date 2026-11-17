@@ -14,6 +14,17 @@ language: en
 # Coulomb and Viscous Friction
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -29,8 +40,24 @@ The input signal to the model of Coulomb and viscous friction.
 The output signal calculated by applying the friction models to the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Coulomb friction value
+  summary: Static friction offset [1320] (default) | real values
+  group: ''
+  block_parameter: offset
+  type: character vector
+  values: real values
+  default: '''[1 3 2 0]'''
+- name: Coefficient of viscous friction
+  summary: Dynamic friction coefficient 1 (default) | real values
+  group: ''
+  block_parameter: gain
+  type: character vector
+  values: real values
+  default: '''1'''
+```
 
 To edit the parameters for the Coulomb and Viscous Friction block,
 double-click the block icon.
@@ -60,7 +87,6 @@ Specify the signal gain for nonzero input values.
 | **Type**: character vector |
 | **Value**: real values |
 | **Default**: `'1'` |
-
 ## Libraries
 
 Simulink / Discontinuities HDL Coder / Discontinuities

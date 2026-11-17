@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Array of Thermal Nodes Connector
 
 ## 端口
+```yaml
+ports:
+- name: inConnk
+  summary: 要串联到 thermal array-of-nodes 的 thermal nodes 数组 *k*
+  direction: conserving
+- name: outConn
+  summary: 串联后的 thermal nodes 数组 thermal array-of-nodes
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,22 @@ chinese_source: worker-translation
 ### **outConn** — 串联后的 thermal nodes 数组 thermal array-of-nodes
 
 串联后的 thermal nodes 数组。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of Input Connections
+  summary: 要串联的 thermal nodes 数组的数量 one（默认）| two | three | four | ...
+  group: ''
+- name: Concatenate dimension
+  summary: 沿其串联输入数组的输出维度 2（默认）| 正标量
+  group: ''
+- name: Size of complementary dimensions
+  summary: 所有输入数组中除串联维度外的维度大小 2（默认）| 正标量
+  group: ''
+- name: Size of concatenate dimension for Node k
+  summary: 连接节点 *k* 中的元素数量 1（默认）
+  group: ''
+```
 
 ### **Number of Input Connections** — 要串联的 thermal nodes 数组的数量 `one`（默认）| `two` | `three` | `four` | ...
 
@@ -55,7 +78,6 @@ chinese_source: worker-translation
 ### **Size of concatenate dimension for Node k** — 连接节点 *k* 中的元素数量 `1`（默认）
 
 连接节点 *k* 中的元素数量，其中 *k* 是范围 [1, **Number of Input Connections**] 内的整数。此类型参数的数量等于 **Number of Input Connections** 参数设置的值。
-
 ## 所属库
 
 Simscape / Battery / Thermal

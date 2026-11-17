@@ -14,6 +14,21 @@ language: en
 # Overwrite Values
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input data scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | bus
+- name: V
+  summary: Overwriting values scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | bus
+- name: B
+  summary: Modified data scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | bus
+```
 
 ### Input
 
@@ -47,8 +62,83 @@ The output has the same size as the original input signal. The
 input(s) and output of this block must have the same data type.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Overwrite
+  summary: Overwrite submatrix or diagonal Submatrix (default) | Diagonal
+  group: ''
+- name: Source of overwriting value(s)
+  summary: Source of overwriting values Specify via dialog (default) | Second input port
+  group: ''
+- name: Overwrite with
+  summary: Overwrite with value(s) 0 (default) | scalar | vector | matrix
+  group: ''
+- name: Row span
+  summary: Span of input rows Range of rows (default) | All rows | One row
+  group: ''
+- name: Row/Starting row
+  summary: Row or starting Row First (default) | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Row index/Starting row index
+  summary: Row index or starting row index 1 (default) | positive integer
+  group: ''
+- name: Row offset/Starting row offset
+  summary: Row offset or starting row offset 1 | nonnegative integer
+  group: ''
+- name: Ending row
+  summary: Ending row Last (default) | Index | Offset from last | Offset from middle | Middle
+  group: ''
+- name: Ending row index
+  summary: Index of last row of submatrix 1 (default) | positive integer
+  group: ''
+- name: Ending row offset
+  summary: Ending row offset 1 | nonnegative integer
+  group: ''
+- name: Column span
+  summary: Span of input columns Range of columns (default) | All columns | One column
+  group: ''
+- name: Column/Starting column
+  summary: Column or starting column First (default) | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Column index/Starting column index
+  summary: Column index or starting column index 1 | positive integer
+  group: ''
+- name: Column offset/Starting column offset
+  summary: Column offset or starting column offset 1 | nonnegative integer
+  group: ''
+- name: Ending column
+  summary: Ending column Last (default) | Index | Offset from last | Offset from middle | Middle
+  group: ''
+- name: Ending column index
+  summary: Ending column index 1 (default) | positive integer
+  group: ''
+- name: Ending column offset
+  summary: Ending column offset 1 | nonnegative integer
+  group: ''
+- name: Diagonal span
+  summary: Span of diagonal elements Range of elements (default) | All elements | One element
+  group: ''
+- name: Element/Starting element
+  summary: Element or starting element Index (default) | First | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Element index/Starting element index
+  summary: Element or starting element index 2 (default) | positive integer
+  group: ''
+- name: Ending element
+  summary: Ending element Index (default) | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Ending element index
+  summary: Ending element index 4 (default) | positive integer
+  group: ''
+- name: Element offset/Starting element offset
+  summary: Element offset or starting element offset 2 | integer (for offset from middle) | nonnegative integer (for offset
+    from last)
+  group: ''
+- name: Ending element offset
+  summary: Ending element offset 4 | nonnegative integer
+  group: ''
+```
 
 ### **Overwrite** — Overwrite submatrix or diagonal `Submatrix` (default) | `Diagonal`
 
@@ -598,7 +688,6 @@ integer.
 To enable this parameter, set **Ending element** to
 `Offset from middle` or `Offset
 from last`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Indexing / Matrix Operations DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

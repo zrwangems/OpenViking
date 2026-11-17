@@ -14,6 +14,13 @@ language: en
 # Chirp Signal
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Chirp signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -23,8 +30,38 @@ Sine wave whose frequency increases at a linear rate with time. The chirp signal
 a scalar, vector, matrix, or N-D array.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial frequency
+  summary: Initial frequency (Hz) 0.1 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: f1
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''0.1'''
+- name: Target time
+  summary: Target time (seconds) 100 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: T
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''100'''
+- name: Frequency at target time
+  summary: Frequency (Hz) 1 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: f2
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''1'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vector parameters as 1-D on (default) | off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Initial frequency** — Initial frequency (Hz) `0.1` (default) | scalar | vector | matrix | N-D array
 
@@ -87,7 +124,6 @@ row or column. For more information, see Determine the Output Dimensions of Sour
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Sources

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Amplifier
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入基带信号 实数标量 | 实数列向量 | 复数标量 | 复数列向量
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: 输出基带信号 实数标量 | 实数列向量 | 复数标量 | 复数列向量
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -30,8 +41,94 @@ chinese_source: worker-translation
 输出基带信号，指定为实数标量、实数列向量、复数标量或复数列向量。输出端口模仿输入端口的属性。例如，如果输入基带信号指定为数据类型为 double 的实数标量，则输出基带信号也指定为数据类型为 double 的实数信号。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Model
+  summary: 放大器非线性模型 cubic（默认）| ampm | modified-rapp | saleh
+  group: 主选项卡
+- name: Linear power gain (dB)
+  summary: 放大器线性增益 0（默认）| 实数标量
+  group: 主选项卡
+- name: Type of Non-Linearity
+  summary: 三阶非线性类型 OIP3（默认）| IIP3 | IP1dB | OP1dB | IPsat | OPsat
+  group: 主选项卡
+- name: IIP3 (dBm)
+  summary: 输入三阶截点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: OIP3 (dBm)
+  summary: 输出三阶截点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: IP1dB (dBm)
+  summary: 输入 1 dB 压缩点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: OP1dB (dBm)
+  summary: 输出 1 dB 压缩点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: IPsat (dBm)
+  summary: 输入饱和点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: OPsat (dBm)
+  summary: 输出饱和点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: 主选项卡
+- name: Plot power characteristics
+  summary: 绘制功率特性按钮（默认）
+  group: 主选项卡
+- name: Lookup table (Pin(dBm), Pout(dBm), deg)
+  summary: 查找表 [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ]（默认）| *M*×3 实数矩阵
+  group: 主选项卡
+- name: Output saturation level (V)
+  summary: 输出饱和电平 1（默认）| 正实数
+  group: 主选项卡
+- name: Magnitude smoothness factor
+  summary: 幅度平滑因子 2（默认）| 正实数
+  group: 主选项卡
+- name: Phase gain (rad)
+  summary: 相位增益 -0.45（默认）| 实数标量
+  group: 主选项卡
+- name: Phase saturation
+  summary: 相位饱和 0.88（默认）| 正实数
+  group: 主选项卡
+- name: Phase smoothness factor
+  summary: 相位平滑因子 [3.43, 3.43]（默认）| 正实数 | 二元组向量
+  group: 主选项卡
+- name: Input scaling (dB)
+  summary: 输入信号电平的缩放因子 0（默认）| 非负实数
+  group: 主选项卡
+- name: AM / AM parameters [alpha beta]
+  summary: AM/AM 转换参数 [ 2.1587, 1.1517 ]（默认）| 二元素向量
+  group: 主选项卡
+- name: AM / PM parameters [alpha beta]
+  summary: AM/PM 转换参数 [ 4.0033, 9.1040 ]（默认）| 二元素向量
+  group: 主选项卡
+- name: Output scaling (dB)
+  summary: 输出信号电平的缩放因子 0（默认）| 非负实数
+  group: 主选项卡
+- name: Include Noise
+  summary: 向系统添加噪声 off（默认）| on
+  group: 噪声选项卡
+- name: Specify noise type
+  summary: 噪声表示方式 NF（默认）| noise-temperature | noise-factor
+  group: 噪声选项卡
+- name: Noise temperature (K)
+  summary: 用于对放大器中的噪声建模的噪声温度 290（默认）| 非负实数
+  group: 噪声选项卡
+- name: Noise figure (dB)
+  summary: 用于对放大器中的噪声建模的噪声系数 10 * log10( 2 )（默认）| 非负实数
+  group: 噪声选项卡
+- name: Noise factor
+  summary: 用于对放大器中的噪声建模的噪声因子 2（默认）| 大于或等于 1 的正整数标量
+  group: 噪声选项卡
+- name: Seed source
+  summary: 初始种子的来源 auto（默认）| user
+  group: 噪声选项卡
+- name: Seed
+  summary: 随机数生成器的种子 67987（默认）| 非负整数
+  group: 噪声选项卡
+```
 
 ### 主选项卡
 
@@ -263,7 +360,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请点击 **Include Noise** 复选框并在 **Seed source** 参数中选择 `user`。
-
 ## 所属库
 
 RF Blockset / Idealized Baseband

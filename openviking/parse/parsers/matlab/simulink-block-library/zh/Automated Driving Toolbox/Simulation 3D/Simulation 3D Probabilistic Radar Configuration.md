@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # Simulation 3D Probabilistic Radar Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Radar targets
+  summary: 与雷达目标对应的标识符 []（默认）| 正整数 | *L* 长度唯一正整数向量
+  group: ''
+- name: Radar cross sections (dBsm)
+  summary: 雷达散射截面 {}（默认）| 实值 *Q*×*P* 矩阵 | *L* 长度元胞数组，包含实值 *Q*1×*P*1、…、*Q*L×*P*L 矩阵
+  group: ''
+- name: Default radar cross section (dBsm)
+  summary: 默认雷达散射截面 -20（默认）| 实标量
+  group: ''
+```
 
 ### **Radar targets** — 与雷达目标对应的标识符 `[]`（默认）| 正整数 | *L* 长度唯一正整数向量
 
@@ -112,7 +126,6 @@ az = linspace(0,360,size(RCS,2));
 默认雷达散射截面，以分贝每平方米为单位，指定为实标量。该模块将此 RCS 值用于未通过 **Radar cross sections (dBsm)** 指定 RCS 的对象。如果模型不包含 Simulation 3D Scene Configuration 模块，则 Unreal Engine 场景中分配给对象的默认 RCS 为 –20 dBsm。
 
 **示例：** `-10`
-
 ## 所属库
 
 Automated Driving Toolbox / Simulation 3D

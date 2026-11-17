@@ -14,6 +14,54 @@ language: en
 # Independent Suspension - Mapped
 
 ## Ports
+```yaml
+ports:
+- name: WhlPz
+  summary: Wheel z-axis displacement array
+  direction: input
+- name: WhlRe
+  summary: Wheel effective radius array
+  direction: input
+- name: WhlVz
+  summary: Wheel z-axis velocity array
+  direction: input
+- name: WhlFx
+  summary: Longitudinal wheel force on vehicle array
+  direction: input
+- name: WhlFy
+  summary: Lateral wheel force on vehicle array
+  direction: input
+- name: WhlM
+  summary: Suspension moment on wheel array
+  direction: input
+- name: VehP
+  summary: Vehicle displacement array
+  direction: input
+- name: VehV
+  summary: Vehicle velocity array
+  direction: input
+- name: StrgAng
+  summary: Steering angle, optional array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: VehF
+  summary: Suspension force on vehicle array
+  direction: output
+- name: VehM
+  summary: Suspension moment on vehicle array
+  direction: output
+- name: WhlF
+  summary: Suspension force on wheel array
+  direction: output
+- name: WhlV
+  summary: Wheel velocity array
+  direction: output
+- name: WhlAng
+  summary: Wheel camber, caster, toe angles array
+  direction: output
+```
 
 ### Input
 
@@ -513,8 +561,75 @@ For example, for a two-axle vehicle with two wheels per axle, the
   | Front right | `WhlF(3,2)` | `1` | `2` |
   | Rear left | `WhlF(3,3)` | `2` | `1` |
   | Rear right | `WhlF(3,4)` | `2` | `2` |
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of axles, NumAxl
+  summary: Number of axles 2 (default) | scalar
+  group: Axles
+  block_parameter: NumAxl
+  values: 2 (default) | scalar
+- name: Number of wheels by axle, NumWhlsByAxl
+  summary: Number of wheels per axle [2 2] (default) | vector
+  group: Axles
+  block_parameter: NumWhlsByAxl
+  values: '[2 2] (default) | vector'
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: Boolean vector to enable axle steering [1 0] (default) | vector
+  group: Axles
+  block_parameter: StrgEnByAxl
+  values: '[1 0] (default) | vector'
+- name: Anti-sway axle enable by axle, AntiSwayEnByAxl
+  summary: Boolean vector to enable axle anti-sway [0 0] (default) | vector
+  group: Axles
+  block_parameter: AntiSwayEnByAxl
+  values: '[0 0] (default) | vector'
+- name: Axle breakpoints, f_susp_axl_bp
+  summary: Breakpoints [1 2] (default) | 1-by-P array
+  group: Suspension
+  block_parameter: f_susp_axl_bp
+  values: '[1 2] (default) | 1-by-P array'
+- name: Vertical axis suspension height breakpoints, f_susp_dz_bp
+  summary: Breakpoints 1-by-M array
+  group: Suspension
+  block_parameter: f_susp_dz_bp
+  values: 1-by-M array
+- name: Vertical axis suspension height velocity breakpoints, f_susp_dzdot_bp
+  summary: Breakpoints 1-by-N array
+  group: Suspension
+  block_parameter: f_susp_dzdot_bp
+  values: 1-by-N array
+- name: Vertical axis suspension force and moment responses, f_susp_fmz
+  summary: Output array zeros(31,31,61,2,4) (default) | M-by-N-by-O-by-P-by-4 array
+  group: Suspension
+  block_parameter: f_susp_fmz
+  values: zeros(31,31,61,2,4) (default) | M-by-N-by-O-by-P-by-4 array
+- name: Suspension geometry responses, f_susp_geom
+  summary: Suspension geometry responses zeros(31,61,2,3) (default) | M-by-O-by-P-by-3 array
+  group: Suspension
+  block_parameter: f_susp_geom
+  values: zeros(31,61,2,3) (default) | M-by-O-by-P-by-3 array
+- name: Steering angle breakpoints, f_susp_strgdelta_bp
+  summary: Steering angle breakpoints 1-by-O array
+  group: Suspension
+  block_parameter: f_susp_strgdelta_bp
+  values: 1-by-O array
+- name: Anti-sway arm radius, AntiSwayR
+  summary: Anti-sway arm radius 0.2 (default) | scalar | vector
+  group: Anti-Sway
+  block_parameter: AntiSwayR
+  values: 0.2 (default) | scalar | vector
+- name: Anti-sway arm neutral angle, AntiSwayNtrlAng
+  summary: Anti-sway arm neutral angle 0.5236 (default) | scalar | vector
+  group: Anti-Sway
+  block_parameter: AntiSwayNtrlAng
+  values: 0.5236 (default) | scalar | vector
+- name: Anti-sway torsion spring constant, AntiSwayTrsK
+  summary: Anti-sway torsion spring constant 5.7296e+03 (default) | scalar | vector
+  group: Anti-Sway
+  block_parameter: AntiSwayTrsK
+  values: 5.7296e+03 (default) | scalar | vector
+```
 
 ### Axles
 
@@ -879,7 +994,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `AntiSwayTrsK` |
 | **Values:** | `5.7296e+03` (default) | `scalar` | `vector` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Suspension

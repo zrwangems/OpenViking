@@ -15,10 +15,53 @@ chinese_source: worker-translation
 # Slider
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的模块参数值 参数值连接选项
+  group: ''
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Scale Type
+  summary: 刻度类型 Linear（默认）| Log
+  group: ''
+  block_parameter: ScaleType
+  type: string or character vector
+  values: '''Linear'' | ''Log'''
+  default: '''Linear'''
+- name: Minimum
+  summary: 最小刻度标记值 0（默认）| 标量
+  group: ''
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Maximum
+  summary: 最大刻度标记值 100（默认）| 标量
+  group: ''
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Tick Interval
+  summary: 主刻度标记之间的间隔 auto（默认）| 标量
+  group: ''
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Label
+  summary: 模块标签位置 Top（默认）| Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — 要连接的模块参数值 参数值连接选项
 
@@ -113,7 +156,6 @@ Dashboard 模块不使用端口连接到模型元素。要将 Dashboard 模块�
 | **类型**：character vector |
 | **值**：`'Top'` | `'Bottom'` | `'Hide'` |
 | **默认值**：`'Top'` |
-
 ## 所属库
 
 Simulink / Dashboard

@@ -14,6 +14,16 @@ language: en
 # ASCII Encode
 
 ## Ports
+```yaml
+ports:
+- name: '1'
+  summary: Numbered ports that receive values to encode numeric
+  direction: input
+  data_types: double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: D
+  summary: Null-terminated character vector character vector
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +39,27 @@ vector.
 
 Generated `uint8` output vector that contains a
 NULL-terminated character vector.
-
 ## Parameters
+```yaml
+parameters:
+- name: Format string
+  summary: Format specifiers for converting values to ASCII %d\r (default) | %c | %i | %o | %u | %x | %e | %f | %g
+  group: ''
+  block_parameter: format
+- name: Number of variables
+  summary: Number of block inputs 1 (default) | integer
+  group: ''
+  block_parameter: nvars
+- name: Max output string length
+  summary: Maximum length of converted character vector, in bytes 128 (default) | integer
+  group: ''
+  block_parameter: maxlength
+- name: Variable types
+  summary: Simulink® data types allowed for input ports {'double'} (default) | {'int8'} | {'uint8'} | {'int16} | {'uint16'}
+    | {'int32'} | {'uint32'}
+  group: ''
+  block_parameter: vartypes
+```
 
 ### **Format string** — Format specifiers for converting values to ASCII `%d\r` (default) | `%c` | `%i` | `%o` | `%u` | `%x` | `%e` | `%f` | `%g`
 
@@ -98,7 +127,6 @@ is a `uint16`, the second input is a
 |  |
 | --- |
 | **Block Parameter:** `vartypes` |
-
 ## Libraries
 
 Simulink Real-Time / RS232

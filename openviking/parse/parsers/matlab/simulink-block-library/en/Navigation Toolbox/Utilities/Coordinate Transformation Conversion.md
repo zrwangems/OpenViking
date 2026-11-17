@@ -14,6 +14,21 @@ language: en
 # Coordinate Transformation Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Input transformation
+  summary: Coordinate transformation column vector | 3-by-3 matrix | 4-by-4 matrix
+  direction: input
+- name: TrVec
+  summary: Translation vector 3-element column vector
+  direction: input
+- name: Output transformation
+  summary: Coordinate transformation column vector | 3-by-3 matrix | 4-by-4 matrix
+  direction: input
+- name: TrVec
+  summary: Translation vector three-element column vector
+  direction: input
+```
 
 ### Input
 
@@ -108,8 +123,33 @@ the input **Representation** parameter to get the
 option to show the additional **TrVec** output port. Enable
 the port by clicking **Show TrVec output
 port**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Representation
+  summary: Input representation Axis-Angle | Euler Angles | Homogeneous Transformation | Quaternion | Rotation Matrix | Translation
+    Vector
+  group: ''
+- name: Axis rotation sequence
+  summary: Order of Euler angle axis rotations ZYX (default) | ZYZ | XYZ
+  group: ''
+- name: Show TrVec input port
+  summary: Toggle TrVec port off (default) | on
+  group: ''
+- name: Representation
+  summary: Output representation Axis-Angle | Euler Angles | Homogeneous Transformation | Quaternion | Rotation Matrix | Translation
+    Vector
+  group: ''
+- name: Axis rotation sequence
+  summary: Order of Euler angle axis rotations ZYX (default) | ZYZ | XYZ
+  group: ''
+- name: Show TrVec output port
+  summary: Toggle TrVec port off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 #### Input
 
@@ -239,7 +279,6 @@ by clicking **Show TrVec output port**.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Utilities Navigation Toolbox / Utilities ROS Toolbox / Utilities UAV Toolbox / Utilities

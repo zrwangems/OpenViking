@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # DVB-S2 Symbol Modulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 数据比特 布尔标量 | 实数标量
+  direction: input
+  data_types: Boolean | fixdt(0,1,0)
+- name: valid
+  summary: 输入数据是否有效的指示 0 | 1
+  direction: input
+  data_types: Boolean
+- name: modIdx
+  summary: 调制索引 0 | 1 | 2 | 3 | 4
+  direction: input
+  data_types: single | double | fixdt(0,3,0)
+- name: codeRateIdx
+  summary: 码率索引 5 | 6 | 7 | 8 | 9 | 10
+  direction: input
+  data_types: single | double | fixdt(0,4,0)
+- name: load
+  summary: 调制和码率控制 0 | 1
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 调制星座数据符号 复标量
+  direction: output
+  data_types: single | double | fixdt(1,wordlength,wordlength-2)
+- name: valid
+  summary: 有效输出数据指示 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -147,8 +178,28 @@ chinese_source: worker-translation
 控制信号，用于指示 **data** 输出端口的数据是否有效。当该值为 `1` 时，模块在 **data** 输出端口返回有效数据。当该值为 `0` 时，**data** 输出端口上的值无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation source
+  summary: 调制类型的来源 Property（默认）| Input port
+  group: 主
+- name: Modulation
+  summary: 调制类型 QPSK（默认）| 8-PSK | 16-APSK | 32-APSK | pi/2-BPSK
+  group: 主
+- name: Code rate
+  summary: 码率 3/4（默认）| 2/3 | 4/5 | 5/6 | 8/9 | 9/10
+  group: 主
+- name: Unit average power
+  summary: 频谱增长降低 off（默认）| on
+  group: 主
+- name: Output data type
+  summary: 输出数据类型 Custom（默认）| double | single
+  group: 数据类型
+- name: Word length
+  summary: 字长 16（默认）| 范围 [3, 32] 内的整数
+  group: 数据类型
+```
 
 ### 主
 
@@ -199,7 +250,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output data type** 参数设置为 `Custom`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

@@ -14,6 +14,18 @@ language: en
 # Temperature Control Valve (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: T
+  summary: Sensing port thermal liquid | thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -43,8 +55,45 @@ port.
 To enable this port, set **Temperature sensing**
 to `Thermal liquid sensing port` or
 `Thermal sensing port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve operation
+  summary: Sign of the change in opening area induced by warming Opens above activation temperature (default) | Closes above
+    activation temperature
+  group: ''
+- name: Temperature sensing
+  summary: Method to control valve temperature sensing Valve inlet temperature (default) | Thermal liquid sensing port | Thermal
+    sensing port
+  group: ''
+- name: Activation temperature
+  summary: Temperature at which the opening mechanism triggers 330 K (default) | positive scalar
+  group: ''
+- name: Temperature regulation range
+  summary: Valve temperature range 8 K (default) | positive scalar
+  group: ''
+- name: Sensor time constant
+  summary: Time for a temperature change to register at the inlet sensor 1.5 s (default) | nonnegative scalar
+  group: ''
+- name: Maximum opening area
+  summary: Opening area in the fully open position due to sealing imperfections 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Opening area in the maximally closed position due to sealing imperfections 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | scalar in the range [0,1]
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Orifice area at conserving ports 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve operation** — Sign of the change in opening area induced by warming `Opens above activation temperature` (default) | `Closes above activation temperature`
 
@@ -136,7 +185,6 @@ flows.
 ### **Critical Reynolds number** — Upper Reynolds number limit for laminar flow `150` (default) | positive scalar
 
 Upper Reynolds number limit for laminar flow through the valve.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Flow Control Valves

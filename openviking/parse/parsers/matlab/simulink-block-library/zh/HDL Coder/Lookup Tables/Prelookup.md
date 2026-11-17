@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Prelookup
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号，u 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+- name: bp
+  summary: 断点数据 实值信号的一维向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+- name: k
+  summary: 包含输入 u 的区间索引 标量 | 向量 | 矩阵
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: f
+  summary: 表示输入 u 在区间 *k* 内归一化位置的小数 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | fixed point
+- name: Port_2
+  summary: 包含索引 *k* 和小数 *f* 的总线 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -60,8 +84,170 @@ Prelookup 模块接受实值信号作为断点数据，数据类型可以是 Sim
 要启用此端口，请将 **Output selection** 设置为 `Index and fraction as bus`。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Specification
+  summary: 选择如何输入断点数据 Explicit values（默认）| Even spacing | Breakpoint object
+  group: 主要
+  block_parameter: BreakpointsSpecification
+  type: character vector
+  values: '''Explicit values'' | ''Even spacing'' | ''Breakpoint object'''
+  default: '''Explicit values'''
+- name: Source
+  summary: 指定断点数据的来源 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: BreakpointsDataSource
+  type: character vector
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: Value
+  summary: 断点数据值 [10:10:110]（默认）| 包含两个或更多元素的严格单调递增向量
+  group: 主要
+  block_parameter: BreakpointsData
+  type: character vector
+  values: vector of strictly monotonically increasing values containing two or more elements
+  default: '''[10:10:110]'''
+- name: First point
+  summary: 均匀间隔断点数据中的第一个点 10（默认）| 实值标量
+  group: 主要
+  block_parameter: BreakpointsFirstPoint
+  type: character vector
+  values: real-valued scalar
+  default: '''10'''
+- name: Spacing
+  summary: 均匀间隔断点之间的间距 10（默认）| 实值正标量
+  group: 主要
+  block_parameter: BreakpointsSpacing
+  type: character vector
+  values: real-valued, positive scalar
+  default: '''10'''
+- name: Number of points
+  summary: 均匀间隔点的数量 11（默认）| 实值正标量
+  group: 主要
+  block_parameter: BreakpointsNumPoints
+  type: character vector
+  values: real-valued, positive scalar
+  default: '''11'''
+- name: Name
+  summary: Simulink.Breakpoint 对象的名称 无默认值 | Simulink.Breakpoint 对象
+  group: 主要
+  block_parameter: BreakpointObject
+  type: character vector
+  values: Simulink.Breakpoint object
+  default: ''''''
+- name: Output selection
+  summary: 指定模块输出的信号 Index and fraction（默认）| Index and fraction as bus | Index only
+  group: 主要
+  block_parameter: OutputSelection
+  type: character vector
+  values: '''Index and fraction'' | ''Index and fraction as bus'' | ''Index only'''
+  default: '''Index and fraction'''
+- name: Index search method
+  summary: 搜索断点数据的方法 Binary search（默认）| Linear search | Evenly spaced points
+  group: 主要
+  block_parameter: IndexSearchMethod
+  type: character vector
+  values: '''Evenly spaced points'' | ''Linear search'' | ''Binary search'''
+  default: '''Binary search'''
+- name: Begin index search using previous index result
+  summary: 使用上一时间步找到的索引开始搜索 off（默认）| on
+  group: 主要
+  block_parameter: BeginIndexSearchUsingPreviousIndexResult
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Extrapolation method
+  summary: 处理超出范围输入值的方法 Clip（默认）| Linear
+  group: 主要
+  block_parameter: ExtrapMethod
+  type: character vector
+  values: '''Clip'' | ''Linear'''
+  default: '''Clip'''
+- name: Use last breakpoint for input at or above upper limit
+  summary: 处理等于或高于上限的输入的方法 off（默认）| on
+  group: 主要
+  block_parameter: UseLastBreakpoint
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Assume input is within range
+  summary: 用于检查超出范围输入值的选项 off（默认）| on
+  group: 主要
+  block_parameter: RemoveProtectionInput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Diagnostic for out-of-range input
+  summary: 输入超出范围时的模块操作 None（默认）| Warning | Error
+  group: 主要
+  block_parameter: DiagnosticForOutOfRangeInput
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Breakpoint
+  summary: '断点数据类型 Inherit: Same as input（默认）| Inherit: Inherit from ''Breakpoint data'' | double | single | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name>
+    | <data type expression>'
+  group: 数据类型
+  block_parameter: BreakpointDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as input'' | ''Inherit: Inherit from ''Breakpoint data'''' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''| ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)''|''<data type expression>'''
+  default: '''Inherit: Same as input'''
+- name: Index
+  summary: 索引数据类型 uint32（默认）| int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | <data type expression>
+  group: 数据类型
+  block_parameter: IndexDataTypeStr
+  type: character vector
+  values: '''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)''
+    | ''<data type expression>'''
+  default: '''uint32'''
+- name: Fraction
+  summary: '小数部分数据类型 Inherit: Inherit via internal rule（默认）| double | single | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: FractionDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output
+  summary: '输出数据类型 Inherit: auto（默认）| bus: <object name>'
+  group: 数据类型
+  block_parameter: OutputBusDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''Bus: <object name>'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Breakpoint Minimum
+  summary: 断点数据可以具有的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: BreakpointMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Breakpoint Maximum
+  summary: 断点数据可以具有的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: BreakpointMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor''（默认） | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+```
 
 ### 主要
 
@@ -664,7 +850,6 @@ myBus.Elements(1).DataType = 'fixdt(''int32'',''DataTypeOverride'',''Off'')'
 | --- | --- |
 | **参数：** | `RndMeth` |
 | **值：** | `'Floor'`（默认） | `'Ceiling'` | `'Convergent'` | `'Nearest'` | `'Round'` | `'Simplest'` | `'Zero'` |
-
 ## 所属库
 
 Simulink / Lookup Tables HDL Coder / Lookup Tables

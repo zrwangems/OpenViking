@@ -15,14 +15,114 @@ chinese_source: worker-translation
 # Thermal Liquid Settings (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 热液体网络连接器 thermal liquid
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 热液体网络连接器 thermal liquid
 
 用于标识所指定流体属性所适用的热液体网络的端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Table dimensions
+  summary: 流体属性表的维度 2D tables based on temperature and pressure (T,p)（默认）| 1D vectors based on temperature (T)
+  group: ''
+- name: Temperature vector
+  summary: '用于指定流体属性的参考温度 [273.1600 : 10 : 373.16]'' K（默认）| 单位为温度的 *M* 元素列向量'
+  group: ''
+- name: Pressure vector
+  summary: '用于指定流体属性的参考压力 [0.01, 0.1, 5 : 5 : 50] MPa（默认）| 单位为压力的 *N* 元素行向量'
+  group: ''
+- name: Atmospheric pressure
+  summary: 热液体网络环境的绝对压力 0.101325 MPa（默认）| 单位为压力的标量
+  group: ''
+- name: Valid pressure-temperature region parameterization
+  summary: 压力-温度有效区域的规定方法 Specified minimum and maximum values（默认）| Validity matrix
+  group: ''
+- name: Minimum valid temperature
+  summary: 模型中允许的最低温度 273.16 K（默认）| 单位为温度的标量
+  group: ''
+- name: Maximum valid temperature
+  summary: 模型中允许的最高温度 373.16 K（默认）| 单位为温度的标量
+  group: ''
+- name: Minimum valid pressure
+  summary: 模型中允许的最低压力 0.01 MPa（默认）| 单位为压力的标量
+  group: ''
+- name: Maximum valid pressure
+  summary: 模型中允许的最高压力 50 MPa（默认）| 单位为压力的标量
+  group: ''
+- name: Pressure-temperature validity matrix
+  summary: 允许和不允许的压力-温度条件矩阵 11×12 的零和一矩阵（默认）| 无量纲 *M*×*N* 矩阵
+  group: ''
+- name: Pressure and temperature outside valid range
+  summary: 当压力或温度超出有效范围时是否发出通知 Error（默认）| Warning | None
+  group: ''
+- name: Density parameterization
+  summary: 流体密度的指定方法 Density, bulk modulus and thermal expansion tables - rho(T,p), beta(T,p), alpha(T,p)（默认）| Density table
+    - rho(T,p) | Reference density | Density vector - rho(T)
+  group: ''
+- name: Density table, rho(T,p)
+  summary: 在指定温度和压力下的流体密度矩阵 11×12 矩阵（默认）| *M*×*N* 矩阵，单位为质量/体积
+  group: ''
+- name: Density vector, rho(T)
+  summary: 在指定温度下的流体密度向量 11 元素列向量（默认）| *M* 元素向量，单位为质量/体积
+  group: ''
+- name: Isothermal bulk modulus table, beta(T,p)
+  summary: 在指定温度和压力下的等温体积模量矩阵 11×12 矩阵（默认）| *M*×*N* 矩阵，单位为压力
+  group: ''
+- name: Isobaric thermal expansion coefficient table, alpha(T,p)
+  summary: 在指定温度和压力下的等压热膨胀系数矩阵 11×12 矩阵（默认）| *M*×*N* 矩阵，单位为 1/温度
+  group: ''
+- name: Reference density
+  summary: 已知工况下的密度 998.21 kg/m^3（默认）| 标量，单位为质量/体积
+  group: ''
+- name: Reference temperature
+  summary: 已知工况下的温度 293.16 K（默认）| 标量，单位为温度
+  group: ''
+- name: Reference pressure
+  summary: 已知工况下的压力 0.101325 MPa（默认）| 标量，单位为压力
+  group: ''
+- name: Constant isothermal bulk modulus
+  summary: 已知工况下的等温体积模量 2.1791 GPa（默认）| 标量，单位为压力
+  group: ''
+- name: Constant isobaric thermal expansion coefficient
+  summary: 已知工作条件下的等压热膨胀系数 2.0691e-4 1/K（默认）| 单位为 1/温度的标量
+  group: ''
+- name: Internal energy parameterization
+  summary: 流体比内能的指定方法 Specific internal energy and specific heat tables - u(T,p), cp(T,p)（默认）| Specific internal energy table
+    - u(T,p) | Specific heat table - cp(T,p)
+  group: ''
+- name: Specific internal energy table, u(T,p)
+  summary: 指定温度和压力下的比内能矩阵 11×12 矩阵（默认）| 单位为 能量/质量 的 *M*×*N* 矩阵
+  group: ''
+- name: Specific internal energy vector, u(T)
+  summary: 指定温度下的比内能向量 11 元素向量（默认）| 单位为 能量/质量 的 *M* 元素向量
+  group: ''
+- name: Specific heat at constant pressure table, cp(T,p)
+  summary: 指定温度和压力下的比热矩阵 11×12 矩阵（默认）| 单位为 能量/(质量\*温度) 的 *M*×*N* 矩阵
+  group: ''
+- name: Specific heat at constant pressure vector, u(T)
+  summary: 指定温度下的比热向量 11 元素向量（默认）| 单位为 能量/(质量\*温度) 的 *M* 元素向量
+  group: ''
+- name: Kinematic viscosity table, nu(T,p)
+  summary: 指定温度和压力下的运动粘度矩阵 11 元素向量（默认）| 单位为 面积/时间 的 *M* 元素向量
+  group: ''
+- name: Thermal conductivity table, K(T,p)
+  summary: 指定温度和压力下的热导率矩阵 11 元素向量（默认）| 单位为 功率/(长度\*温度) 的 *M* 元素向量
+  group: ''
+- name: Kinematic viscosity vector, nu(T)
+  summary: 指定温度下的运动粘度向量 11×12 矩阵（默认）| 单位为 面积/时间 的 *M*×*N* 矩阵
+  group: ''
+- name: Thermal conductivity vector, K(T)
+  summary: 指定温度下的热导率向量 11×12 矩阵（默认）| 单位为 power/(length\*temperature) 的 *M*×*N* 矩阵
+  group: ''
+```
 
 #### 温度和压力
 
@@ -167,7 +267,6 @@ chinese_source: worker-translation
 ### **Thermal conductivity vector, K(T)** — 指定温度下的热导率向量 11×12 矩阵（默认）| 单位为 power/(length\*temperature) 的 *M*×*N* 矩阵
 
 在 **Temperature and Pressure** 部分提供的温度下的热导率表格数据。每一行对应一个不同的温度。热导率对压力的依赖性被忽略。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal Liquid / Utilities

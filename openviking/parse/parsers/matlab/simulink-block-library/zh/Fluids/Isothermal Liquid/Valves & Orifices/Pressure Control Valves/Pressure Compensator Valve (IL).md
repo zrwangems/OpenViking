@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Pressure Compensator Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 等温液体
+  direction: input
+- name: B
+  summary: 液体端口 等温液体
+  direction: input
+- name: X
+  summary: 压力参考 等温液体
+  direction: input
+- name: Y
+  summary: 压力参考 等温液体
+  direction: input
+- name: Ps
+  summary: 受控压差，Pa 物理信号
+  direction: input
+```
 
 ### 守恒
 
@@ -42,8 +60,64 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Set pressure control** 设置为 `Controlled`。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve specification
+  summary: 阀偏置 Normally open (默认) | Normally closed
+  group: 参数
+- name: Set pressure control
+  summary: 恒定或受控的阀工作方式 Constant (默认) | Controlled
+  group: 参数
+- name: Opening parameterization
+  summary: 开启参数化 Linear (默认) | Tabulated
+  group: 参数
+- name: Set pressure differential
+  summary: 超出即触发恒定阀工作的范围 0 MPa (默认) | 标量
+  group: 参数
+- name: 压力调节范围
+  summary: 阀的工作压力范围 0.1 MPa（默认值）| 标量
+  group: 参数
+- name: 最大开口面积
+  summary: 阀全开时的面积 1e-4 m^2（默认值）| 正标量
+  group: 参数
+- name: 泄漏面积
+  summary: 处于全闭位置时的间隙面积 1e-10 m^2（默认值）| 正标量
+  group: 参数
+- name: 压差向量
+  summary: '表格参数化的压差值 [0.2 : 0.2 : 1.2] MPa（默认值）| 1×*n* 向量'
+  group: 参数
+- name: 开口面积向量
+  summary: 用于表格化参数化的阀开口面积 [1e-05, 8e-06, 6e-06, 4e-06, 2e-06, 1e-10] m^2（默认值） | 1×*n* 向量
+  group: 参数
+- name: 端口 A 和 B 处的横截面积
+  summary: 阀入口或出口处的面积 inf m^2（默认值） | 正标量
+  group: 参数
+- name: 流量系数
+  summary: 流量系数 0.64（默认值） | 正标量
+  group: 参数
+- name: 临界雷诺数
+  summary: 层流的雷诺数上限 150（默认值） | 正标量
+  group: 参数
+- name: 压力恢复
+  summary: 考虑压力恢复的选项 Off（默认值） | On
+  group: 参数
+- name: 平滑因子
+  summary: 数值平滑因子 0.01（默认值） | 取值范围为 [0,1] 的正标量
+  group: 参数
+- name: Opening dynamics
+  summary: 用于仿真阀切换时流量响应的选项 off（默认） | on
+  group: 参数
+- name: Opening time constant
+  summary: 阀开启时间常数 0.1 s（默认） | 正标量
+  group: 参数
+- name: Pressure Compensator Valve Area fault
+  summary: 用于对阀口面积故障建模的选项 Add fault
+  group: 故障
+- name: Opening area when faulted
+  summary: 故障状态下的阀位置 Closed（默认） | Open | Maintain last value
+  group: 故障
+```
 
 ### 参数
 
@@ -171,7 +245,6 @@ chinese_source: worker-translation
 #### 依存关系
 
 要启用此参数，请点击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Pressure Control Valves

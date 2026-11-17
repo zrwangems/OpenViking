@@ -14,6 +14,18 @@ language: en
 # Poppet Valve (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port gas
+  direction: conserving
+- name: B
+  summary: Liquid port gas
+  direction: conserving
+- name: L
+  summary: Normalized ball displacement, in the range of [0,1] physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -33,8 +45,65 @@ enters or exits the valve.
 Normalized ball displacement. The ball position is normalized by the maximum opening
 distance. A value of 0 indicates a fully closed valve and a value of 1
 indicates a fully open valve.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve seat specification
+  summary: Definition of valve seat geometry Sharp-edged (default) | Conical
+  group: ''
+- name: Cone angle
+  summary: Angle between the conical seat of the valve and its center lines 120 deg (default) | positive scalar
+  group: ''
+- name: Ball diameter
+  summary: Diameter of the ball used to regulate valve opening 0.01 m (default) | scalar
+  group: ''
+- name: Orifice diameter
+  summary: Diameter of the valve orifice 7e-3 m (default) | scalar
+  group: ''
+- name: Valve parameterization
+  summary: Parameterization used to specify flow characteristics of orifice Orifice area based on geometry (default) | Cv
+    flow coefficient | Kv flow coefficient | Sonic conductance
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar in the range of [0,1]
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: Cv coefficient that corresponds to maximally open component 4 (default) | positive scalar
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: Kv coefficient that corresponds to maximally open component 3.6 (default) | positive scalar
+  group: ''
+- name: Maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open component 12 l/(bar*s) (default) | positive scalar
+  group: ''
+- name: Critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: ''
+- name: Subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at gas ports 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve seat specification** — Definition of valve seat geometry `Sharp-edged` (default) | `Conical`
 
@@ -218,7 +287,6 @@ pressure. Typical values range from `0.995` to
 Area normal to the flow path at each port. The ports are equal in size.
 The value of this parameter should match the inlet area of the components to
 which the resistive element connects.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Valves & Orifices / Flow Control Valves

@@ -14,6 +14,69 @@ language: en
 # ACIM Mechanical Parameter Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Iabc
+  summary: Three-phase current response scalar
+  direction: input
+  data_types: single
+- name: Vdc
+  summary: DC link voltage scalar
+  direction: input
+  data_types: single
+- name: Speed
+  summary: Rotor speed scalar
+  direction: input
+  data_types: single
+- name: Id0
+  summary: Estimated magnetizing current scalar
+  direction: input
+  data_types: single
+- name: Rtotal
+  summary: Sum of stator and inverter-board resistances scalar
+  direction: input
+  data_types: single
+- name: Rr
+  summary: Estimated rotor resistance scalar
+  direction: input
+  data_types: single
+- name: Lm
+  summary: Estimated magnetizing inductance scalar
+  direction: input
+  data_types: single
+- name: Lls
+  summary: Estimated stator leakage inductance scalar
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: Control signal for mechanical parameter estimation logical
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: Bus signal input bus
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*, *b*, and *c*-axis stator reference voltage components scalar'
+  direction: output
+  data_types: single
+- name: J
+  summary: Estimated rotor inertia scalar
+  direction: output
+  data_types: single
+- name: B
+  summary: Estimated viscous damping scalar
+  direction: output
+  data_types: single
+- name: InverterEn
+  summary: Inverter control signal logical
+  direction: output
+  data_types: single
+- name: Log
+  summary: Debug signals bus
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -188,11 +251,12 @@ debug signals.
 | *SlipPU* | | | Slip in speed (in per-units) during closed-loop operation of motor | - |
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Motor Control Blockset / Parameter Estimation / ACIM Parameter Estimation

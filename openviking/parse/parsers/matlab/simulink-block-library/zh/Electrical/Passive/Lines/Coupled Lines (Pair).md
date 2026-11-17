@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Coupled Lines (Pair)
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 线路 1 正极端子电气
+  direction: conserving
+- name: 1-
+  summary: 线路 1 负极端子电气
+  direction: conserving
+- name: 2+
+  summary: 线路 2 正极端子电气
+  direction: conserving
+- name: 2-
+  summary: 线路 2 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,46 @@ chinese_source: worker-translation
 ### **2-** — 线路 2 负极端子电气
 
 与线路 2 负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 线路阻抗参数化 Balanced impedance（默认）| General impedance
+  group: ''
+- name: Line 1 inductance
+  summary: 线路 1 自感 1e-3 H（默认）
+  group: ''
+- name: Line 2 inductance
+  summary: 线路 2 自感 1e-3 H（默认）
+  group: ''
+- name: Line inductance
+  summary: 自感 1e-3 H（默认）
+  group: ''
+- name: Mutual inductance
+  summary: 线路间互感 3e-4 H（默认）
+  group: ''
+- name: Line 1 resistance
+  summary: 线路 1 串联电阻 0.001 Ohm（默认）
+  group: ''
+- name: Line 2 resistance
+  summary: 线路 2 串联电阻 0.001 Ohm（默认）
+  group: ''
+- name: Line resistance
+  summary: 串联电阻 0.001 Ohm（默认）
+  group: ''
+- name: Mutual resistance
+  summary: 线路间互阻 0 Ohm（默认）
+  group: ''
+- name: Line 1 leakage conductance
+  summary: 线路 1 并联泄漏电导 1e-9 1/Ohm（默认）
+  group: ''
+- name: Line 2 leakage conductance
+  summary: 线路 2 并联泄漏电导 1e-9 1/Ohm（默认）
+  group: ''
+- name: Line leakage conductance
+  summary: 并联泄漏电导 1e-9 1/Ohm（默认）
+  group: ''
+```
 
 #### 参数
 
@@ -129,7 +182,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Parameterization** 设置为 `Balanced impedance`。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Lines

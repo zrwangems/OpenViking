@@ -14,6 +14,41 @@ language: en
 # Clock Generator
 
 ## Ports
+```yaml
+ports:
+- name: vctrl
+  summary: Voltage to control output frequency scalar | vector
+  direction: input
+  data_types: double
+- name: ReferenceOffset
+  summary: Reference frequency offset scalar
+  direction: input
+  data_types: double
+- name: PhaseOffset
+  summary: Duty cycle phase offset scalar
+  direction: input
+  data_types: double
+- name: clock0
+  summary: Saturated output clock signal scalar
+  direction: output
+  data_types: double
+- name: clockTime0
+  summary: Simulation time at last clock transition scalar
+  direction: output
+  data_types: double
+- name: Phase
+  summary: Most recent clock phase of fundamental clock scalar
+  direction: output
+  data_types: double
+- name: clockValid
+  summary: Variable-step discrete-sampled clock scalar
+  direction: output
+  data_types: double
+- name: clockTime
+  summary: Absolute clock time of most recent clock change scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -89,8 +124,178 @@ Absolute clock time of the most recent clock change at the
 **clockValid** port.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify using
+  summary: Define control sensitivity of clock generator Voltage sensitivity (default) | Output frequency vs. control voltage
+    | Period offset
+  group: ''
+  block_parameter: SpecifyUsing
+  type: character vector
+  values: Voltage sensitivity | Output frequency vs. control voltage | Period offset
+  default: Voltage sensitivity
+- name: Voltage sensitivity (Hz/V)
+  summary: Measure of change in output frequency 100e6 (default) | positive real scalar
+  group: ''
+  block_parameter: Kvco
+  type: character vector
+  values: positive real scalar
+  default: 100e6
+- name: Free running frequency (Hz)
+  summary: Output frequency without control voltage 10e9 (default) | positive real scalar
+  group: ''
+  block_parameter: Fo
+  type: character vector
+  values: positive real scalar
+  default: 10e9
+- name: Control voltage (V)
+  summary: Control voltage values [-5 0 5] (default) | real valued vector
+  group: ''
+  block_parameter: ControlVoltage
+  type: character vector
+  values: real valued vector
+  default: '[-5 0 5]'
+- name: Output frequency (Hz)
+  summary: Clock generator output frequency values [9.9e9 10e9 10.5e9] (default) | positive real valued vector
+  group: ''
+  block_parameter: OutputFrequency
+  type: character vector
+  values: positive real valued vector
+  default: '[9.9e9 10e9 10.5e9]'
+- name: Output amplitude (V)
+  summary: Maximum amplitude of clock generator output voltage 1 (default) | positive real scalar
+  group: ''
+  block_parameter: Amplitude
+  type: character vector
+  values: positive real scalar
+  default: '1'
+- name: Phase unit
+  summary: Units of output phase and duty cycle Degrees (default) | Fraction of a clock cycle
+  group: ''
+  block_parameter: PhaseUnits
+  type: character vector
+  values: Degrees | Fraction of a clock cycle
+  default: Degrees
+- name: Output phase
+  summary: Phases of output clock signals [0] (default) | nonnegative real scalar | nonnegative real valued vector
+  group: ''
+  block_parameter: OutputPhase
+  type: character vector
+  values: nonnegative real scalar | nonnegative real valued vector
+  default: '[0]'
+- name: Output duty cycle
+  summary: Duty cycle of the output clock signals [180] (default) | positive real scalar | positive real valued vector
+  group: ''
+  block_parameter: OutputDutyCycle
+  type: character vector
+  values: positive real scalar | positive real valued vector
+  default: '[180]'
+- name: PhaseOffsetPort
+  summary: Define duty cycle phase offset through an input port on (default) | off
+  group: ''
+- name: Phase offset (symbol time)
+  summary: Duty cycle phase offset 0 (default) | scalar in the range [-0.5,0.5]
+  group: ''
+  block_parameter: PhaseOffset
+  type: character vector
+  values: scalar
+  default: '0'
+- name: ReferenceOffsetPort
+  summary: Define reference frequency offset through an input port on (default) | off
+  group: ''
+- name: Reference clock frequency offset (ppm)
+  summary: Factor by which nominal output frequency is to be offset 0 (default) | scalar in the range of [-300,300]
+  group: ''
+  block_parameter: ReferenceOffset
+  type: character vector
+  values: scalar in the range of [-300,300]
+  default: '0'
+- name: Simulate using
+  summary: Select simulation mode Code generation (default) | Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: character vector
+  values: Code generation| Interpreted execution
+  default: Code generation
+- name: Add phase noise
+  summary: Add phase noise as a function of frequency on (default) | off
+  group: ''
+- name: Phase noise frequency offset (Hz)
+  summary: Frequency offsets of specified phase noise from carrier frequency [30e3 100e3 1e6 3e6 10e6] (default) | positive
+    real valued vector
+  group: ''
+  block_parameter: Foffset
+  type: character vector
+  values: positive real valued vector
+  default: '[30e3 100e3 1e6 3e6 10e6]'
+- name: Phase noise level (dBc/Hz)
+  summary: Specified phase noise power at phase noise frequency offsets relative to the carrier [-56 -106 -132 -143 -152]
+    (default) | negative real valued vector
+  group: ''
+  block_parameter: PhaseNoise
+  type: character vector
+  values: negative real valued vector
+  default: '[-56 -106 -132 -143 -152]'
+- name: Estimate phase noise parameters
+  summary: Estimate phase noise parameters from measured phase noise data button
+  group: ''
+- name: Period jitter (S)
+  summary: Standard deviation of period jitter 1.7e-15 (default) | positive real scalar
+  group: ''
+  block_parameter: PeriodJitter
+  type: character vector
+  values: positive real scalar
+  default: '1.7e-15'
+- name: Flicker corner frequency (Hz)
+  summary: Corner frequency of flicker noise 0 (default) | scalar
+  group: ''
+  block_parameter: CornerFrequency
+  type: character vector
+  values: scalar
+  default: '0'
+- name: Customize flicker exponent (Advanced feature)
+  summary: Customize flicker noise power spectral distribution off (default) | on
+  group: ''
+- name: Flicker exponent
+  summary: Flicker noise power exponent 1.0 (default) | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5
+  group: ''
+  block_parameter: FlickerExponent
+  type: character vector
+  values: 1.0 | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5
+  default: '1.0'
+- name: Plot fit
+  summary: Plot fitted phase noise profile button
+  group: ''
+- name: Symbol time (s)
+  summary: Time of single symbol duration 100e-12 (default) | real positive scalar
+  group: ''
+  block_parameter: SymbolTime
+  type: character vector
+  values: real positive scalar
+  default: 100e-12
+- name: Sample interval (s)
+  summary: Uniform time step of waveform 6.25e-12 (default) | real positive scalar
+  group: ''
+  block_parameter: SampleInterval
+  type: character vector
+  values: real positive scalar
+  default: '6.25e-12'
+- name: Modulation (2:NRZ, 3:PAM3, 4:PAM4)
+  summary: Modulation scheme 2 (default) | 3 | 4
+  group: ''
+  block_parameter: Modulation
+  type: character vector
+  values: 2.| 3 | 4
+  default: '2'
+- name: Input waveform type
+  summary: Type of input waveform Sample (default) | Impulse
+  group: ''
+  block_parameter: WaveType
+  type: character vector
+  values: Sample.| Impulse
+  default: Sample
+```
 
 #### Main
 
@@ -509,7 +714,6 @@ signal.
 | **Type:** character vector |
 | **Values:** `Sample`.| `Impulse` |
 | **Default:** `Sample` |
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

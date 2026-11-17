@@ -15,14 +15,83 @@ chinese_source: worker-translation
 # Isothermal Liquid Predefined Properties (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 连接端口等温液体
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 连接端口等温液体
 
 等温液体守恒端口，用于将模块连接到网络。将此端口连接到框图中等温液体连接线上的任意点。当您将 Isothermal Liquid Predefined Properties (IL) 模块连接到网络线时，液体属性会传播到回路中的所有模块。
-
 ## 参数
+```yaml
+parameters:
+- name: Isothermal liquid
+  summary: 流体选择 Water（默认）| Seawater (MIT model) | Ethylene glycol and water mixture | Propylene glycol and water mixture |
+    Glycerol and water mixture | Aviation fuel Jet-A | Diesel fuel | SAE 5W-30 | SAE 30 Oil | SAE 50 Oil | 10W Oil | 30W Oil
+    | 50W Oil | Skydrol LD-4 | Skydrol 500B-4 | Skydrol 5 | HyJet-IVA | Fluid MIL-F-83282 | Fluid MIL-F-5606 | Fluid MIL-F-87257
+    | ATF (Dexron III) | ISO VG 22 (ESSO UNIVIS N 22) | ISO VG 32 (ESSO UNIVIS N 32) | ISO VG 46 (ESSO UNIVIS N 46) | ISO
+    VG 68 | Brake fluid DOT 3 | Brake fluid DOT 4 | Brake fluid DOT 5 | Gasoline
+  group: 液体
+- name: Dissolved salt mass fraction (salinity)
+  summary: 盐浓度 3.5e-3（默认）| (0, 0.12] 之间的正标量
+  group: 液体
+- name: Concentration type
+  summary: 按质量或体积计的浓度 Volume fraction（默认）| Mass fraction
+  group: 液体
+- name: Ethylene glycol volume fraction
+  summary: 乙二醇的体积浓度 0.1（默认）| (0, 1.0] 之间的正标量
+  group: 液体
+- name: Ethylene glycol mass fraction
+  summary: 乙二醇的质量浓度 0.1（默认）| (0, 0.6] 之间的正标量
+  group: 液体
+- name: Isothermal bulk modulus at atmospheric pressure (no entrained air)
+  summary: 体积模量 2.1791 GPa（默认）| 正标量
+  group: 液体
+- name: Minimum valid pressure
+  summary: 压力下限 0.01（默认）| 正标量
+  group: 液体
+- name: Propylene glycol volume fraction
+  summary: 丙二醇的体积浓度 0.1（默认）| [0.1, 0.6] 之间的正标量
+  group: 液体
+- name: Propylene glycol mass fraction
+  summary: 丙二醇的质量浓度 0.1（默认）| (0, 0.6] 之间的正标量
+  group: 液体
+- name: Glycerol mass fraction
+  summary: 甘油的质量浓度 0.1（默认）| (0, 0.6] 之间的正标量
+  group: 液体
+- name: System temperature
+  summary: 网络温度 300 K（默认）| 正标量
+  group: 液体
+- name: Viscosity derating factor
+  summary: 粘度修正系数 1（默认）| 正标量
+  group: 液体
+- name: Atmospheric pressure
+  summary: 用户定义的环境压力 0.101325 MPa（默认）| 正标量
+  group: 液体
+- name: Pressure below minimum valid value
+  summary: 压力低于最小有效值时是否通知 Error（默认）| Warning | None
+  group: 液体
+- name: Volumetric fraction of air that is entrained at atmospheric pressure
+  summary: 大气压下的系统空气夹带量 0.005（默认）| 正标量
+  group: 夹带空气
+- name: Air polytropic index
+  summary: 多变过程指数 1.0（默认）| [0, 1] 之间的正标量
+  group: 夹带空气
+- name: Air density at atmospheric condition
+  summary: 空气密度 1.225 kg/m^3（默认）| 正标量
+  group: 夹带空气
+- name: Model air dissolution
+  summary: 是否对空气夹带建模 off（默认）| on
+  group: 夹带空气
+- name: Pressure at which all entrained air is dissolved
+  summary: 空气夹带压力上限 3 MPa（默认）| 正标量
+  group: 夹带空气
+```
 
 ### 液体
 
@@ -211,7 +280,6 @@ dissolved** 参数值之间按亨利定律建模。
 #### 依赖关系
 
 要启用此参数，请选择 **Model air dissolution**。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Utilities

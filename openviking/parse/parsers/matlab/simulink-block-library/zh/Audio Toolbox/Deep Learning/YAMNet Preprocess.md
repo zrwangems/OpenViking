@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # YAMNet Preprocess
 
 ## 端口
+```yaml
+ports:
+- name: audioIn
+  summary: 声音数据列向量
+  direction: input
+  data_types: single | double
+- name: features
+  summary: 可馈送到 YAMNet 预训练网络的梅尔频谱图 96×64 矩阵
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -37,8 +48,16 @@ chinese_source: worker-translation
 每个 96×64 矩阵表示单个梅尔频谱图。有关此模块如何生成梅尔频谱图的更多详细信息，请参阅算法。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（以 Hz 为单位） 16e3（默认）| 正标量
+  group: ''
+- name: Overlap percentage (%)
+  summary: 连续梅尔频谱图之间的重叠百分比 50（默认）| [0 100)
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（以 Hz 为单位） `16e3`（默认）| 正标量
 
@@ -51,7 +70,6 @@ chinese_source: worker-translation
 将连续梅尔频谱图之间的重叠百分比指定为范围 [0 100) 内的标量。
 
 **数据类型：** `single` | `double`
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

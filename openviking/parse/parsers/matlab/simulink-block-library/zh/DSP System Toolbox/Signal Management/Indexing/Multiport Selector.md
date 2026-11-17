@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Multiport Selector
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Output(s)
+  summary: 输入向量 | 矩阵的行或列子集
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### 输入
 
@@ -30,8 +41,19 @@ chinese_source: worker-translation
 输入的行或列子集，传播到每个输出端口。**Indices to output** 数组中的每个元胞确定要传播到相应输出端口的输入行或列的子集。**Indices to output** 数组中元胞的总数确定该模块上输出端口的数量。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Select
+  summary: 选择输入维度 Rows（默认）| Columns
+  group: ''
+- name: Indices to output
+  summary: 输出索引 { 4, [1:2 5], [7; 8], 10:-1:6 }（默认）| 元胞数组
+  group: ''
+- name: Invalid index
+  summary: 对无效索引采取的操作 Clip Index（默认）| Clip and Warn | Generate Error
+  group: ''
+```
 
 ### **Select** — 选择输入维度 `Rows`（默认）| `Columns`
 
@@ -72,7 +94,6 @@ chinese_source: worker-translation
   例如，如果该模块接收 `64`-by-`4` 输入，并且 **Select** 参数设置为 `Rows`，则该模块将索引 `72` 裁剪为 `64`。对于相同的输入，如果 **Select** 参数设置为 `Columns`，则该模块将索引 `72` 裁剪为 `4`。在这两种情况下，该模块都将索引 `-2` 裁剪为 `1`。
 - `Clip and warn` —— 该模块将索引裁剪到最近的有效值，并在 MATLAB® 命令行显示警告消息。
 - `Generate error` —— 该模块显示错误对话框并终止仿真。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Indexing DSP System Toolbox HDL Support / Signal Management

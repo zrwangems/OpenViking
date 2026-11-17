@@ -14,6 +14,15 @@ language: en
 # Prediction (discrete->continuous)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Signal with fixed-step sampling real scalar
+  direction: input
+- name: y
+  summary: Prediction for the variable-step network real scalar
+  direction: output
+```
 
 ### Input
 
@@ -25,13 +34,17 @@ Connect this port to the fixed-step network, Network 2, to capture its output.
 ### **y** — Prediction for the variable-step network real scalar
 
 Connect this port to the input of the variable-step network, Network 1.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port u discrete sample time (s)
+  summary: Specify sample time for the fixed-step network -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Port u discrete sample time (s)** — Specify sample time for the fixed-step network `-1` (default) | positive scalar
 
 Specify sample time for the fixed-step network, Network 2, in seconds.
-
 ## Libraries
 
 Simscape / Utilities / Network Couplers / Fundamental Components

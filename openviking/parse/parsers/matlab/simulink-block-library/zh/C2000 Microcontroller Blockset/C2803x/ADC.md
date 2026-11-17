@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # ADC Type 1-2
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: ADC 数据向量
+  direction: output
+  data_types: uint16
+```
 
 ### 输出
 
@@ -23,8 +30,37 @@ chinese_source: worker-translation
 C281x ADC 的输出是一个 `uint16` 值的向量。由于 C281x ADC 是 12 位转换器，输出值范围为 0 到 4095。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Module
+  summary: 选择要使用的模块 A（默认）| B | A and B
+  group: ADC 控制
+- name: Conversion mode
+  summary: 选择转换类型 Sequential（默认）| Simultaneous
+  group: ADC 控制
+- name: Start of conversion
+  summary: 选择转换启动方式 Software（默认）| ePWMxA | ePWMxB | XINT1_ADCSOC
+  group: ADC 控制
+- name: Sample time
+  summary: 模块读取数据的间隔 0.1（默认）
+  group: ADC 控制
+- name: Data type
+  summary: 选择输出数据类型 uint16（默认）| double | single | int8 | uint8 | int16 | int32 | uint32
+  group: ADC 控制
+- name: Post interrupt at end of conversion
+  summary: 启用以在转换结束时发送异步中断 Off（默认）| on
+  group: ADC 控制
+- name: Use DMA (with C28x3x)
+  summary: 启用以发送异步中断 Off（默认）| on
+  group: ADC 控制
+- name: 'Conversions no. #'
+  summary: 为每个转换编号选择 ADC 通道 ADCINA# and ADCINB#（默认）| ADCINA# | …
+  group: 输入通道
+- name: Use multiple output ports
+  summary: 启用以输出多个端口 on（默认）| off
+  group: 输入通道
+```
 
 ### ADC 控制
 
@@ -94,7 +130,6 @@ C281x ADC 的输出是一个 `uint16` 值的向量。由于 C281x ADC 是 12 位
 ### **Use multiple output ports** — 启用以输出多个端口 `on`（默认）| `off`
 
 如果使用多个 ADC 通道进行转换，您可以为每个输出使用单独的端口，并在模块上显示输出端口。如果使用多个通道但未使用多个输出端口，则数据以单个向量输出。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x

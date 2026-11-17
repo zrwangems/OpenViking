@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Template Matching
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 图像 image
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: T
+  summary: 模板 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double | uint8 | Boolean | fixed point
+- name: ROI
+  summary: 感兴趣区域 四元素向量
+  direction: input
+  data_types: single | double | uint8 | Boolean | fixed point
+- name: Metric
+  summary: 匹配度量值矩阵
+  direction: output
+  data_types: single | double | uint8 | Boolean | fixed point
+- name: Loc
+  summary: 最佳匹配位置 二元素向量
+  direction: output
+  data_types: uint32
+- name: NMetric
+  summary: 最佳匹配邻域内的度量值 *N*×*N* 矩阵
+  direction: output
+  data_types: single | double | uint8 | Boolean | fixed point
+- name: NValid
+  summary: 有效邻域 off | on
+  direction: output
+  data_types: Boolean
+- name: ROIValid
+  summary: 有效感兴趣区域 off | on
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -98,8 +133,31 @@ Template Matching 模块不对输入数据进行填充。因此，它只能计�
 当您启用 **Output flag indicating if ROI is valid** 参数时，此端口出现。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Match metric
+  summary: 匹配度量 Sum of absolute differences（默认）| Sum of squared differences | Maximum absolute difference
+  group: ''
+- name: Output
+  summary: 匹配度量 Match metric（默认）| Best match location
+  group: ''
+- name: Search method
+  summary: 搜索方法 Exhaustive（默认）| Three-step
+  group: ''
+- name: Output NxN matrix of metric values around best match
+  summary: 输出 *N*×*N* 矩阵 on（默认）| off
+  group: ''
+- name: N
+  summary: 输出矩阵大小 3（默认）| 整数
+  group: ''
+- name: Enable ROI processing
+  summary: 启用 ROI 处理 on（默认）| off
+  group: ''
+- name: Output flag indicating if ROI is valid
+  summary: 有效 ROI off（默认）| on
+  group: ''
+```
 
 **Main Tab**
 
@@ -172,7 +230,6 @@ Template Matching 模块不对输入数据进行填充。因此，它只能计�
 **Data Types Tab**
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

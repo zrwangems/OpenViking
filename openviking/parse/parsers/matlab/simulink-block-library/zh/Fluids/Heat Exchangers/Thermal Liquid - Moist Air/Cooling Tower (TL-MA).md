@@ -15,6 +15,60 @@ chinese_source: worker-translation
 # Cooling Tower (TL-MA)
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 质量流量，kg/s 物理信号
+  direction: input
+- name: V
+  summary: 体积流量，m^3/s 物理信号
+  direction: input
+- name: Pwr
+  summary: 风机功率，W 物理信号
+  direction: input
+- name: P
+  summary: 压力，Pa 物理信号
+  direction: input
+- name: T
+  summary: 温度，K 物理信号
+  direction: input
+- name: W
+  summary: 湿度度量，无量纲 物理信号
+  direction: input
+- name: Tw
+  summary: 湿球温度，K 物理信号
+  direction: input
+- name: Vm
+  summary: 体积流量，m^3/s 物理信号
+  direction: input
+- name: Tm
+  summary: 温度，K 物理信号
+  direction: input
+- name: Q
+  summary: 传热量，W 物理信号
+  direction: output
+- name: E
+  summary: 蒸发速率，kg/s 物理信号
+  direction: output
+- name: L
+  summary: 液位，m 物理信号
+  direction: output
+- name: Pwr
+  summary: 风机功率，W 物理信号
+  direction: output
+- name: A1
+  summary: 热液入口 热液
+  direction: output
+- name: B1
+  summary: 热液出口 热液
+  direction: output
+- name: A2
+  summary: 湿空气入口或出口 湿空气
+  direction: output
+- name: B2
+  summary: 湿空气入口或出口 湿空气
+  direction: output
+```
 
 ### 输入
 
@@ -139,8 +193,194 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请将 **Moist air operating conditions** 设置为 `Moist air domain port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement
+  summary: 湿空气和热液的流动布置 Counter flow（默认）| Cross flow
+  group: Thermal Liquid 1
+- name: Nominal capacity specification
+  summary: 指定系统尺寸的方法 Water volumetric flow rate（默认）| Water mass flow rate | Rate of cooling in cooling tower | Rate of cooling
+    in evaporator
+  group: Thermal Liquid 1
+- name: Nominal water mass flow rate
+  summary: 额定工况下的质量流量 42.7 kg/s（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal water volumetric flow rate
+  summary: 额定工况下的体积流量 154 m^3/hr（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal cooling tower heat transfer
+  summary: 额定工况下的传热量 1000 kW（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal evaporator heat transfer
+  summary: 额定工况下的蒸发器传热量 800 kW（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal hot-water inlet temperature
+  summary: 热液入口温度 35 degC（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Nominal cold-water outlet temperature
+  summary: 热液出口温度 29.44 degC（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Model cold-water basin
+  summary: 将热液侧 1 建模为水箱的选项 on（默认）| off
+  group: Thermal Liquid 1
+- name: Basin cross-sectional area
+  summary: 水池面积 8 m^2（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Cross-sectional area at port A1
+  summary: 热液入口流通面积 0.01 m^2（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Cross-sectional area at port B1
+  summary: 热液出口流通面积 0.01 m^2（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Drift rate as fraction of water flow
+  summary: 热液漂移率 0（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Automatically replenish lost water
+  summary: 在热液侧 1 自动补充损失水的选项 on（默认）| off
+  group: Thermal Liquid 1
+- name: Temperature of make-up water
+  summary: 补充水温度 15 degC（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Initialize thermal liquid to nominal operating conditions
+  summary: 初始化热液的选项 on（默认）| off
+  group: Thermal Liquid 1
+- name: Initial basin liquid temperature
+  summary: 仿真开始时的水池温度 29.44 degC（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Initial basin liquid level
+  summary: 仿真开始时的水池液位 0.2 m（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Gravitational acceleration
+  summary: 重力加速度常数 9.81 m/s^2（默认）| 正标量
+  group: Thermal Liquid 1
+- name: Moist air operating conditions
+  summary: 指定湿空气工况的方法 Provided by input signals（默认）| Moist air domain ports
+  group: Moist Air 2
+- name: Flow rate input signal specification
+  summary: 指定实际湿空气流量的方法 Volumetric flow rate（默认）| Mass flow rate | Fan power
+  group: Moist Air 2
+- name: Output fan power
+  summary: 输出风机功率的选项 off（默认）| on
+  group: Moist Air 2
+- name: Nominal fan power
+  summary: 额定运行工况下的风机功率 7.5 kW（默认）| 正标量
+  group: Moist Air 2
+- name: Humidity input signal specification
+  summary: 用于描述塔湿空气入口实际湿度水平的物理量 Wet-bulb temperature（默认）| Specific humidity | Mole fraction | Humidity ratio | Relative humidity
+  group: Moist Air 2
+- name: Input signals outside valid range
+  summary: 处理无效信号值的方法 Warn and limit to valid values（默认）| Limit to valid values | Error
+  group: Moist Air 2
+- name: Specify full moist air nominal condition
+  summary: 指定湿空气额定工况的选项 off（默认）| on
+  group: Moist Air 2
+- name: Nominal flow rate specification
+  summary: 指定湿空气流量的选项 Volumetric flow rate（默认）| Mass flow rate
+  group: Moist Air 2
+- name: Nominal moist air mass flow rate
+  summary: 额定质量流量 36 kg/s（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal moist air volumetric flow rate
+  summary: 额定体积流量 30 m^3/s（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal moist air pressure loss
+  summary: 额定工况下湿空气端口之间的压降 250 Pa（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal inlet pressure
+  summary: 湿空气侧入口处的压力 0.101325 MPa（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal inlet temperature
+  summary: 湿空气侧入口处的温度 34.28 degC（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal humidity specification
+  summary: 用于描述额定工况下湿度水平的量 Wet-bulb temperature（默认）| Specific humidity | Mole fraction | Humidity ratio | Relative humidity
+  group: Moist Air 2
+- name: Nominal inlet relative humidity
+  summary: 入口处的相对湿度 0.5（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+- name: Nominal inlet specific humidity
+  summary: 入口处的比湿度 0.0167（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+- name: Nominal inlet water vapor mole fraction
+  summary: 入口处水蒸气的摩尔分数 0.0266（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+- name: Nominal inlet humidity ratio
+  summary: 入口处的湿度比 0.017（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+- name: Nominal inlet wet-bulb temperature
+  summary: 湿空气入口处的湿球温度 25.56 degC（默认）| 正标量
+  group: Moist Air 2
+- name: Nominal trace gas specification
+  summary: 用于描述额定微量气体水平的量 Mass fraction（默认）| Mole fraction
+  group: Moist Air 2
+- name: Nominal inlet trace gas mass fraction
+  summary: 入口处微量气体的质量分数 6e-4（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+- name: Nominal inlet trace gas mole fraction
+  summary: 入口处微量气体的摩尔分数 4e-4（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+- name: Moist air volume
+  summary: 冷却塔中湿空气的总体积 24 m^3（默认）| 正标量
+  group: Moist Air 2
+- name: Cross-sectional area at port A2
+  summary: 湿空气入口或出口的面积 4 m^2（默认）| 正标量
+  group: Moist Air 2
+- name: Cross-sectional area at port B2
+  summary: 湿空气入口或出口的面积 4 m^2（默认）| 正标量
+  group: Moist Air 2
+- name: Initialize moist air to nominal operating conditions
+  summary: 初始化湿空气的选项 on（默认）| off
+  group: Moist Air 2
+- name: Initial moist air pressure
+  summary: 仿真开始时的湿空气压力 0.101325 MPa（默认）| 正标量
+  group: Moist Air 2
+- name: Initial moist air temperature
+  summary: 仿真开始时的湿空气温度 34.28 degC（默认）| 标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial humidity specification
+  summary: 用于描述初始湿度水平的量 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Moist Air 2
+- name: Initial moist air relative humidity
+  summary: 仿真开始时的相对湿度 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial moist air specific humidity
+  summary: 仿真开始时的比湿度 0.0167（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial moist air water vapor mole fraction
+  summary: 仿真开始时水蒸气的摩尔分数 0.0266（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial moist air humidity ratio
+  summary: 仿真开始时的湿度比 0.017（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Moist Air 2
+- name: Initial moist air wet-bulb temperature
+  summary: 仿真开始时的湿球温度 25.56 degC（默认）| 正标量
+  group: Moist Air 2
+- name: Initial trace gas specification
+  summary: 用于描述初始微量气体水平的量 Mass fraction（默认）| Mole fraction
+  group: Moist Air 2
+- name: Initial moist air trace gas mass fraction
+  summary: 仿真开始时微量气体的质量分数 6e-4（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+- name: Initial moist air trace gas mole fraction
+  summary: 仿真开始时微量气体的摩尔分数 4e-4（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+- name: Initial mass ratio of water droplets to moist air
+  summary: 水滴与湿空气的质量比 0（默认）| 正标量
+  group: Moist Air 2
+- name: Relative humidity at saturation
+  summary: 发生冷凝的相对湿度阈值 1（默认）| 正标量
+  group: Moist Air 2
+- name: Water vapor condensation time constant
+  summary: 冷凝的时间尺度 1e-3 s（默认）| 正标量
+  group: Moist Air 2
+- name: Water droplets evaporation time constant
+  summary: 蒸发的时间尺度 1e-3 s（默认）| 正标量
+  group: Moist Air 2
+- name: Fraction of condensate entrained as water droplets
+  summary: 水滴中冷凝物的比例 1（默认）| [0,1] 范围内的标量
+  group: Moist Air 2
+```
 
 ### Thermal Liquid 1
 
@@ -611,7 +851,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Moist air operating conditions** 设置为 `Moist air domain ports`。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid - Moist Air

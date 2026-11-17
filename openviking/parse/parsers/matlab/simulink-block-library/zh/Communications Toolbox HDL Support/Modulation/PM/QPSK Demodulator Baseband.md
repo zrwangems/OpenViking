@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # QPSK Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入 QPSK 调制信号 标量 | 向量
+  direction: input
+  data_types: double | single | fixed point
+- name: Var
+  summary: 噪声方差估计 正标量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出信号 标量 | 列向量
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -50,8 +65,35 @@ chinese_source: worker-translation
 此端口在模块上未命名。
 
 **数据类型：** `double` | `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output type
+  summary: 整数或比特对输出指示符 Integer（默认）| Bit
+  group: 主要
+- name: Decision type
+  summary: 解调器输出 Hard decision（默认）| Log-likelihood ratio | Approximate log-likelihood ratio
+  group: 主要
+- name: Noise variance source
+  summary: 噪声方差估计的来源 Dialog（默认）| Port
+  group: 主要
+- name: Noise variance
+  summary: 噪声方差估计 1（默认）| 正标量
+  group: 主要
+- name: Constellation ordering
+  summary: 符号映射 Gray（默认）| Binary
+  group: 主要
+- name: Phase offset (rad)
+  summary: 第零点的相位偏移 pi/4（默认）| 标量
+  group: 主要
+- name: Output
+  summary: 输出数据类型 Same as input
+  group: 数据类型
+- name: Output data type
+  summary: 输出数据类型 Inherit via internal rule（默认）| Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | boolean
+  group: 数据类型
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -143,7 +185,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数在将 **Output type** 设置为 `Integer`，或将 **Output type** 设置为 `Bit` 且将 **Decision type** 设置为 `Hard decision` 时适用。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

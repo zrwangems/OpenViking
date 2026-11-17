@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # From
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 来自连接的 Goto 模块的信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输出
 
@@ -23,8 +31,30 @@ chinese_source: worker-translation
 来自连接的 Goto 模块的信号，输出的维度和数据类型与 Goto 模块的输入相同。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: Goto Tag
+  summary: 将信号转发到此模块的 Goto 模块的标签 A（默认）| <More Tags...> | ...
+  group: ''
+  block_parameter: GotoTag
+  type: 字符向量
+  values: '''A'' | ...'
+  default: '''A'''
+- name: Update Tags
+  summary: 更新可见标签列表 按钮
+  group: ''
+- name: Goto Source
+  summary: 指向连接的 Goto 模块的路径 模块路径
+  group: ''
+- name: Icon Display
+  summary: 在模块图标上显示的文本 Tag | Tag and signal name | Signal name
+  group: ''
+  block_parameter: IconDisplay
+  type: 字符向量
+  values: '''Signal name'' | ''Tag'' | ''Tag and signal name'''
+  default: '''Tag'''
+```
 
 ### **Goto Tag** — 将信号转发到此模块的 Goto 模块的标签 `A`（默认）| `<More Tags...>` | ...
 
@@ -75,7 +105,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'Signal name' | 'Tag' | 'Tag and signal name'` |
 | **默认值：** `'Tag'` |
-
 ## 所属库
 
 Simulink / Signal Routing HDL Coder / Signal Routing

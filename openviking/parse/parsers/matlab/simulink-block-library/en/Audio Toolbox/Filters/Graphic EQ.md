@@ -14,6 +14,17 @@ language: en
 # Graphic EQ
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal matrix | 1-D vector
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -41,8 +52,40 @@ size of the input:
   1-D vector input.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: EQ Order
+  summary: Order of individual equalizer bands 2 (default) | positive even integer
+  group: ''
+- name: Bandwidth
+  summary: Filter bandwidth (octaves) 1 octave (default) | 2/3 octave | 1/3 octave
+  group: ''
+- name: Structure
+  summary: Type of implementation Cascade (default) | Parallel
+  group: ''
+- name: Gains
+  summary: Gain of each octave or fractional octave band (dB) 0 | scalar
+  group: ''
+- name: Variable name
+  summary: Variable name of exported filter myFilt (default) | valid variable name
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: Overwrite variable if it already exists on (default) | off
+  group: ''
+- name: Export filter to workspace
+  summary: Export filter to workspace button
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -165,7 +208,6 @@ parameter.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Audio Toolbox / Filters

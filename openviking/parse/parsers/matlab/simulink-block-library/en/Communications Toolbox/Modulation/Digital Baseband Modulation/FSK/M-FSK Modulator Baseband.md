@@ -14,6 +14,17 @@ language: en
 # M-FSK Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | row vector
+  direction: input
+  data_types: double
+- name: Out
+  summary: M-FSK-modulated signal scalar | column vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -41,8 +52,34 @@ type.
 This port is unnamed on the block.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: M-ary number
+  summary: Number of frequencies in modulated signal 8 (default) | positive integer ≥ 2
+  group: ''
+- name: Input type
+  summary: Integer or group of bits input indicator Integer (default) | Bit
+  group: ''
+- name: Symbol set ordering
+  summary: Symbol mapping Binary (default) | Gray
+  group: ''
+- name: Frequency separation (Hz)
+  summary: Frequency separation in Hz 6 (default) | positive scalar
+  group: ''
+- name: Phase continuity
+  summary: Phase continuity Continuous (default) | Discontinuous
+  group: ''
+- name: Samples per symbol
+  summary: Symbol sampling rate 17 (default) | positive integer
+  group: ''
+- name: Rate options
+  summary: Block processing rate Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -127,7 +164,6 @@ Block processing rate, specified as one of these options:
 
 Output data type, specified as `double` or
 `single`.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / FM

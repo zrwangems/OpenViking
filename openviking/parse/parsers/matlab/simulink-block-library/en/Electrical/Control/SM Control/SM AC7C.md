@@ -14,6 +14,53 @@ language: en
 # SM AC7C
 
 ## Ports
+```yaml
+ports:
+- name: V_REF
+  summary: Voltage reference scalar
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: Input from stabilizer scalar
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: Terminal voltage scalar
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: Terminal current scalar
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: Overexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: Underexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: Summation point stator current limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_OELscl
+  summary: Take-over stator current limit for overexcitation limiter scalar
+  direction: input
+  data_types: single | double
+- name: V_UELscl
+  summary: Take-over stator current limit for underexcitation limiter scalar
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: Measured field current scalar
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: Field voltage scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -156,8 +203,143 @@ Per-unit field voltage to apply to the field circuit of the synchronous machine,
 scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: Initial output voltage 1 (default) | real number
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Resistive component of load compensation, R_C (pu)
+  summary: Compensation resistance 0 (default) | positive number
+  group: Pre-Control
+- name: Reactance component of load compensation, X_C (pu)
+  summary: Compensation reactance 0 (default) | positive number
+  group: Pre-Control
+- name: Regulator input filter time constant, T_R (s)
+  summary: Regulator time constant 0 (default) | positive number
+  group: Pre-Control
+- name: Voltage regulator proportional gain, K_PR (pu)
+  summary: Proportional gain of the voltage regulator 40 (default)
+  group: Control
+- name: Voltage regulator integral gain, K_IR (pu/s)
+  summary: Integral gain of the voltage regulator 5.6 (default)
+  group: Control
+- name: Voltage regulator derivative gain, K_DR (pu.s)
+  summary: Derivative gain of the voltage regulator 0 (default)
+  group: Control
+- name: Lag time constant for derivative channel of PID controller, T_DR (s)
+  summary: Lag time constant for PID derivative channel 1 (default) | positive number
+  group: Control
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: Upper limit of the regulator output 3.2 (default) | real number
+  group: Control
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: Lower limit of the regulator output -3.2 (default) | real number
+  group: Control
+- name: Field current regulator proportional gain, K_PA (pu)
+  summary: Proportional gain of the field current regulator 112 (default) | real number
+  group: Control
+- name: Field current regulator integral gain, K_IA (pu/s)
+  summary: Integral gain of the field current regulator 0 (default) | real number
+  group: Control
+- name: Maximum field current regulator output, V_Amax (pu)
+  summary: Maximum field current regulator output 65.2 (default) | real number
+  group: Control
+- name: Minimum field current regulator output, V_Amin (pu)
+  summary: Minimum field current regulator output -54 (default) | real number
+  group: Control
+- name: Generator field voltage feedback gain, K_F1 (pu)
+  summary: Generator field voltage feedback gain 0 (default) | real number
+  group: Control
+- name: Exciter field current feedback gain, K_F2 (pu)
+  summary: Exciter field current feedback gain 0.08 (default) | real number
+  group: Control
+- name: Rate feedback gain, K_F3 (pu)
+  summary: Rate feedback gain 0.01 (default) | real number
+  group: Control
+- name: Rate feedback time constant, T_F (s)
+  summary: Rate feedback time constant 1 (default) | positive number
+  group: Control
+- name: Alternate PSS input locations (V_S)
+  summary: PSS input location Voltage error calculation (default) | After take-over UEL
+  group: Control
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL input location Unused (default) | Summation point at voltage error | Take-over at voltage error | Take-over
+    at voltage regulator output | Take-over at output of inner loop regulator
+  group: Control
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL input location Unused (default) | Summation point at voltage error | Take-over at voltage error | Take-over
+    at voltage regulator output
+  group: Control
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL input location Unused (default) | Summation point at voltage error | Take-over at voltage error | Take-over
+    at voltage regulator output
+  group: Control
+- name: Exciter field proportional constant, K_E (pu)
+  summary: Exciter field gain 1 (default) | positive number
+  group: Exciter
+- name: Exciter field time constant, T_E (s)
+  summary: Exciter field time constant 1.2 (default) | positive number
+  group: Exciter
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: Rectifier loading factor 0.12 (default) | positive number
+  group: Exciter
+- name: Demagnetizing factor, function of exciter alternator reactances, K_D (pu)
+  summary: Demagnetization factor 3.3 (default) | positive number
+  group: Exciter
+- name: Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)
+  summary: First saturation output voltage 13.6 (default) | positive number
+  group: Exciter
+- name: Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)
+  summary: First saturation lookup voltage 3.74 (default) | positive number
+  group: Exciter
+- name: Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)
+  summary: Second saturation output voltage 10.2 (default) | positive number
+  group: Exciter
+- name: Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)
+  summary: Second saturation lookup voltage 0.32 (default) | positive number
+  group: Exciter
+- name: Maximum exciter field current limit reference, V_FEmax (pu)
+  summary: Exciter upper limit 23.2 (default) | real number
+  group: Exciter
+- name: Minimum exciter voltage output, V_Emin (pu)
+  summary: Exciter lower limit 0 (default) | real number
+  group: Exciter
+- name: Potential circuit gain coefficient, K_P (pu)
+  summary: Potential circuit gain coefficient 1 (default) | real number
+  group: Exciter
+- name: Potential circuit phase angle (degrees)
+  summary: Potential circuit phase angle 0 (default) | real number
+  group: Exciter
+- name: Potential circuit (current) gain coefficient, K_I (pu)
+  summary: Potential circuit current gain coefficient 0 (default) | real number
+  group: Exciter
+- name: Reactance associated with potential source, X_L (pu)
+  summary: Reactance associated with potential source 0 (default) | real number
+  group: Exciter
+- name: Gain related to regulator and alternator field power supply, K_R (pu)
+  summary: Gain related to regulator and alternator field power supply 0 (default) | real number
+  group: Exciter
+- name: Gain related to negative exciter field current capability, K_L (pu)
+  summary: Gain related to negative exciter field current capability 0 (default) | real number
+  group: Exciter
+- name: Rectifier loading factor proportional to commutating reactance, K_C1 (pu)
+  summary: Loading factor of rectifier proportional to commutating reactance 0 (default) | real number
+  group: Exciter
+- name: Maximum available exciter field voltage, V_Bmax (pu)
+  summary: Maximum available field voltage of exciter 999 (default) | real number
+  group: Exciter
+- name: Power source selector SW1
+  summary: 'Power source selector Position A: power source derived from terminal voltage (default) | Position B: power source
+    independent of terminal conditions'
+  group: Exciter
+- name: Power source selector SW2
+  summary: 'Power source selector Position A: use variable V_B (default) | Position B: do not use variable V_B'
+  group: Exciter
+```
 
 ### General
 
@@ -457,7 +639,6 @@ To enable this parameter, set **Power source selector SW2** to
 ### **Power source selector SW2** — Power source selector `Position A: use variable V_B` (default) | `Position B: do not use variable V_B`
 
 Position of the power source selector SW2.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

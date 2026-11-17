@@ -14,6 +14,21 @@ language: en
 # Wind Shear Model
 
 ## Ports
+```yaml
+ports:
+- name: h
+  summary: Altitude scalar
+  direction: input
+  data_types: double
+- name: DCM
+  summary: Direction cosine matrix 3-by-3 matrix
+  direction: input
+  data_types: double
+- name: Vwind
+  summary: Mean wind speed three-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -37,8 +52,38 @@ Mean wind speed, returned as a three-element vector in the same body coordinate
 reference as the **DCM** input, in specified units.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Wind shear units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Flight phase
+  summary: Flight phase Category C - Terminal Flight Phase (default) | Other
+  group: ''
+  block_parameter: phase
+  type: character vector
+  values: '''Category C - Terminal Flight Phase'' | ''Other'''
+  default: '''Category C - Terminal Flight Phase'''
+- name: Wind speed at 20 ft altitude (kts)
+  summary: Wind speed 15 (default) | scalar
+  group: ''
+  block_parameter: W_20
+  type: character vector
+  values: scalar
+  default: '''15'''
+- name: Wind direction at 20 ft altitude (degrees clockwise from north)
+  summary: Wind direction 0 (default) | scalar
+  group: ''
+  block_parameter: Wdeg
+  type: character vector
+  values: scalar
+  default: '''0'''
+```
 
 ### **Units** — Wind shear units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -105,7 +150,6 @@ direction from which the wind is coming.
 | **Type**: character vector |
 | **Values**: `scalar` |
 | **Default**: `'0'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Wind

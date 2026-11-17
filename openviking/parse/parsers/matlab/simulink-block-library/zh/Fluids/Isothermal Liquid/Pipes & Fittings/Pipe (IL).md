@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Pipe (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口 等温液体
+  direction: conserving
+- name: EL
+  summary: 高程物理信号
+  direction: input
+- name: G
+  summary: 重力加速度物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -42,8 +57,166 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Gravitational acceleration specification** 设置为 `Variable`。
-
 ## 参数
+```yaml
+parameters:
+- name: Enable dynamic compressibility
+  summary: 是否对流体可压缩性建模 on（默认）| off
+  group: 配置
+- name: Enable fluid inertia
+  summary: 流体加速度 off（默认）| on
+  group: 配置
+- name: Number of segments
+  summary: 管道分段数 1（默认）| 正整数
+  group: 配置
+- name: Pipe length
+  summary: 管道长度 5 m（默认）| 正标量
+  group: 配置
+- name: Cross-sectional geometry
+  summary: 管道几何形状 Circular（默认）| Annular | Rectangular | Elliptical | Isosceles triangular | Custom
+  group: 配置
+- name: Pipe diameter
+  summary: 管道直径 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe inner diameter
+  summary: 管道内径 0.05 m（默认）| 正标量
+  group: 配置
+- name: Pipe outer diameter
+  summary: 管道外径 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe width
+  summary: 矩形管道宽度 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe height
+  summary: 矩形管道高度 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe major axis
+  summary: 椭圆形管道长轴 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe minor axis
+  summary: 椭圆形管道短轴 0.05 m（默认）| 正标量
+  group: 配置
+- name: Pipe side length
+  summary: 三角形管道边长 0.1 m（默认）| 正标量
+  group: 配置
+- name: Pipe vertex angle
+  summary: 三角形管道顶角 30 deg（默认）| 正标量
+  group: 配置
+- name: Hydraulic diameter
+  summary: 水力直径 0.1128 m（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area
+  summary: 管道横截面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Elevation gain specification
+  summary: 管道高程规格 Constant（默认）| Variable
+  group: 配置
+- name: Elevation gain from port A to port B
+  summary: 恒定管道高程差 0 m（默认）| 标量
+  group: 配置
+- name: Gravitational acceleration specification
+  summary: 加速度规格 Constant（默认）| Variable
+  group: 配置
+- name: Gravitational acceleration
+  summary: 重力加速度 9.81 m/s^2（默认）| 标量
+  group: 配置
+- name: Viscous friction parameterization
+  summary: 壁面摩擦压力损失的计算方法 Haaland correlation（默认）| Nominal pressure drop vs. nominal mass flow rate | Tabulated data - Darcy
+    friction factor vs. Reynolds number
+  group: 粘性摩擦
+- name: Local resistances specification
+  summary: 在 Haaland 关联式中量化压力损失的方法 Aggregate equivalent length（默认）| Local loss coefficient
+  group: 粘性摩擦
+- name: Total local loss coefficient
+  summary: 定义管道上的损失系数 0.1（默认）| 正标量
+  group: 粘性摩擦
+- name: Aggregate equivalent length of local resistances
+  summary: 管道几何形状对水力损失的贡献 1 m（默认）| 正标量
+  group: 粘性摩擦
+- name: Surface roughness specification
+  summary: '用于粗糙度规格的管道材料 Commercially smooth brass, lead, copper, or plastic pipe: 1.52 um（默认）| Steel and wrought iron : 46
+    um | Galvanized iron or steel : 152 um | Cast iron : 259 um | Custom'
+  group: 粘性摩擦
+- name: Internal surface absolute roughness
+  summary: 管壁粗糙度 15e-6 m（默认）| 正标量
+  group: 粘性摩擦
+- name: Laminar flow upper Reynolds number limit
+  summary: 层流上限阈值 2000（默认）| 正标量
+  group: 粘性摩擦
+- name: Turbulent flow lower Reynolds number limit
+  summary: 湍流下限阈值 4000（默认）| 正标量
+  group: 粘性摩擦
+- name: Nominal mass flow rate
+  summary: 用于计算损失系数的质量流量 [.1, 1] kg/s（默认）| 正标量 | 1×*n* 向量
+  group: 粘性摩擦
+- name: Nominal pressure drop
+  summary: 用于计算损失系数的压力降 [.001, .01] MPa（默认）| 正标量 | 1×*n* 向量
+  group: 粘性摩擦
+- name: Mass flow rate threshold for flow reversal
+  summary: 质量流量阈值 1e-6 kg/s（默认）| 正标量
+  group: 粘性摩擦
+- name: Reynolds number vector for turbulent Darcy friction factor
+  summary: 用于表格参数化的雷诺数向量 [400, 1000, 1500, 3000, 4000, 6000, 10000, 20000, 40000, 60000, 100000, 100000000]（默认）| 1×*n* 向量
+  group: 粘性摩擦
+- name: Darcy friction factor vector
+  summary: 用于表格参数化的摩擦因子向量 [.264, .112, .071, .0417, .0387, .0268, .025, .0232, .0226, .022, .0214, .0214]（默认）| 1×*n* 向量
+  group: 粘性摩擦
+- name: Laminar friction constant for Darcy friction factor
+  summary: 层流的摩擦常数 64（默认）| 正标量
+  group: 粘性摩擦
+- name: Pipe wall specification
+  summary: 指定壁面柔性 Rigid（默认）| Flexible
+  group: 管壁
+- name: Volumetric expansion specification
+  summary: 线性膨胀关联式 Cross-sectional area vs. pressure（默认）| Cross-sectional area vs. pressure - Tabulated | Hydraulic diameter
+    vs. pressure | Based on material properties
+  group: 管壁
+- name: Static gauge pressure to cross-sectional area gain
+  summary: 面积相关管道变形的系数 1e-6 m^2/MPa（默认）| 正标量
+  group: 管壁
+- name: Static gauge pressure vector
+  summary: 表压向量 [.1,1] MPa（默认）| 向量
+  group: 管壁
+- name: Cross sectional area gain vector
+  summary: 管道横截面积向量 [1e-05, 1.1e-05] m^2（默认）| 向量
+  group: 管壁
+- name: Static gauge pressure to hydraulic diameter gain
+  summary: 直径相关管道变形的系数 1e-6 m/MPa（默认）| 正标量
+  group: 管壁
+- name: Material behavior
+  summary: 用于指定材料行为的方法 Linear Elastic（默认）| Multilinear Elastic
+  group: 管壁
+- name: Pipe wall thickness
+  summary: 管壁宽度 0.05 m（默认）| 正标量
+  group: 管壁
+- name: Young's modulus
+  summary: 管壁材料的杨氏模量 69 GPa（默认）| 正标量
+  group: 管壁
+- name: Poisson's ratio
+  summary: 管壁材料的泊松比 0.33（默认）| 正标量
+  group: 管壁
+- name: Stress vector
+  summary: 管壁材料的应力向量 [276, 310] MPa（默认）| 向量
+  group: 管壁
+- name: Strain vector
+  summary: 管壁材料的应变向量 [.004, .02]（默认）| 向量
+  group: 管壁
+- name: Check if stress exceeds specified allowable level
+  summary: 当应力超过指定最大值时发出通知 None（默认）| Warning | Error
+  group: 管壁
+- name: Maximum allowable stress
+  summary: 管壁上允许的最大应力 400 MPa（默认）| 正标量
+  group: 管壁
+- name: Volumetric expansion time constant
+  summary: 管道变形时间常数 0.01 s（默认）| 正标量
+  group: 管壁
+- name: Initial liquid pressure
+  summary: 管道或管段中的初始压力 0.101325 MPa（默认）| 正标量 | 1×*n* 向量
+  group: 初始条件
+- name: Initial mass flow rate from port A to port B
+  summary: 用于惯性计算的初始质量流量 0 kg/s（默认）| 标量
+  group: 初始条件
+```
 
 ### 配置
 
@@ -443,7 +616,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Enable dynamic compressibility** 和 **Enable fluid inertia**。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

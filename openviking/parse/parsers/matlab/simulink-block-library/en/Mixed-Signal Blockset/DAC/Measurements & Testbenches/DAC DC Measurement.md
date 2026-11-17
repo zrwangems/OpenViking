@@ -14,6 +14,21 @@ language: en
 # DAC DC Measurement
 
 ## Ports
+```yaml
+ports:
+- name: digital
+  summary: Digital input signal from DAC scalar
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: analog
+  summary: Converted analog signal from DAC scalar
+  direction: input
+  data_types: double
+- name: start
+  summary: External clock to start conversion scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +50,81 @@ External clock to start conversion, specified as a scalar. This port determines
 when digital-to-analog conversion process starts.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input polarity
+  summary: Polarity of input signal to DAC Bipolar (default) | Unipolar
+  group: ''
+  block_parameter: Polarity
+  type: character vector
+  values: Bipolar|Unipolar
+  default: Bipolar
+- name: Reference (V)
+  summary: Reference voltage 2 (default) | real scalar
+  group: ''
+  block_parameter: Ref
+  type: character vector
+  values: real scalar
+  default: '2'
+- name: Bias (V)
+  summary: Bias voltage added to output 0 (default) | real scalar
+  group: ''
+  block_parameter: Bias
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Settling time (s)
+  summary: Time required for output to settle 3e-7 (default) | nonnegative real scalar
+  group: ''
+  block_parameter: SettlingTime
+  type: character vector
+  values: real scalar
+  default: 3e-7
+- name: Hold off time (s)
+  summary: Delay before measurement analysis 1e-3 (default) | nonnegative real scalar
+  group: ''
+  block_parameter: HoldOffTime
+  type: character vector
+  values: nonnegative real scalar
+  default: 1e-3
+- name: Number of bits
+  summary: Number of bits in input word 10 (default) | positive real integer
+  group: ''
+  block_parameter: NBits
+  type: character vector
+  values: positive real integer
+  default: '10'
+- name: Start conversion frequency (Hz)
+  summary: Frequency of internal start conversion clock 1e6 (default) | positive real scalar
+  group: ''
+  block_parameter: StartFreq
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Recommended simulation stop time (s)
+  summary: Minimum time simulation must run for meaningful result 0.02148 (default) | positive real scalar
+  group: ''
+- name: Endpoint
+  summary: Measure DNL, INL using endpoint method on (default) | off
+  group: ''
+- name: Best fit
+  summary: Measure DNL, INL using best fit method on (default) | off
+  group: ''
+- name: Output result to base workspace
+  summary: Store detailed test results to base workspace off (default) | on
+  group: ''
+- name: Workspace variable name
+  summary: Name of the variable that stores detailed test results dac_dc_out (default) | character string
+  group: ''
+  block_parameter: VariableName
+  type: character vector
+  values: character string
+  default: dac_dc_out
+- name: Plot
+  summary: Plot measurement results button
+  group: ''
+```
 
 ### **Input polarity** — Polarity of input signal to DAC `Bipolar` (default) | `Unipolar`
 
@@ -219,7 +307,6 @@ workspace** parameter.
 ### **Plot** — Plot measurement results button
 
 Click to plot measurement result for further analysis.
-
 ## Libraries
 
 Mixed-Signal Blockset / DAC / Measurements & Testbenches

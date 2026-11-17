@@ -14,6 +14,18 @@ language: en
 # Pipe (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet or outlet gas
+  direction: conserving
+- name: B
+  summary: Inlet or outlet gas
+  direction: conserving
+- name: H
+  summary: Temperature of pipe wall thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -32,8 +44,67 @@ pipe. This block has no intrinsic directionality.
 Thermal conserving port associated with the temperature of the
 pipe wall. This temperature may differ from the temperature of the
 gas volume.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe length
+  summary: The length of the pipe 5 m (default)
+  group: Geometry
+- name: Cross-sectional area
+  summary: The internal area of the pipe 0.01 m^2 (default)
+  group: Geometry
+- name: Hydraulic diameter
+  summary: Diameter of an equivalent cylindrical pipe with the same cross-sectional area 0.1 m (default)
+  group: Geometry
+- name: Aggregate equivalent length of local resistances
+  summary: The combined length of all local resistances present in the pipe 0.1 m (default)
+  group: Friction and Heat Transfer
+- name: Internal surface absolute roughness
+  summary: Average depth of all surface defects on the internal surface of the pipe 15e-6 m (default)
+  group: Friction and Heat Transfer
+- name: Laminar flow upper Reynolds number limit
+  summary: The Reynolds number above which flow begins to transition from laminar to turbulent 2000 (default)
+  group: Friction and Heat Transfer
+- name: Turbulent flow lower Reynolds number limit
+  summary: The Reynolds number below which flow begins to transition from turbulent to laminar 4000 (default)
+  group: Friction and Heat Transfer
+- name: Shape factor for laminar flow viscous friction
+  summary: Effect of pipe geometry on the viscous friction losses 64 (default)
+  group: Friction and Heat Transfer
+- name: Nusselt number for laminar flow heat transfer
+  summary: Ratio of convective to conductive heat transfer 3.66 (default)
+  group: Friction and Heat Transfer
+- name: Enable dynamic compressibility
+  summary: Select whether to model gas pressure dynamics On (default) | Off
+  group: Effects and Initial Conditions
+- name: Enable fluid inertia
+  summary: Select whether to model gas inertia Off (default) | On
+  group: Effects and Initial Conditions
+- name: Initial pressure
+  summary: Gas pressure at the start of simulation 0.101325 MPa (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial pressure priority
+  summary: Pressure parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Initial temperature
+  summary: Temperature at the start of simulation 293.15 K (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial temperature priority
+  summary: Temperature parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+- name: Nominal pressure
+  summary: Nominal gas pressure 0.101325 MPa (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Nominal temperature
+  summary: Nominal gas temperature 293.15 K (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial mass flow rate from port A to port B
+  summary: Mass flow rate at time zero 0 kg/s (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial mass flow rate priority
+  summary: Mass flow rate parameter priority High (default) | Low | None
+  group: Effects and Initial Conditions
+```
 
 ### Geometry
 
@@ -202,7 +273,6 @@ block.
 
 To enable this parameter, select the **Enable fluid
 inertia** check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Elements

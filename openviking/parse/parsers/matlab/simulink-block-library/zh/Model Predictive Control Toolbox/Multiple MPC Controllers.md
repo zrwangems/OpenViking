@@ -15,6 +15,72 @@ chinese_source: worker-translation
 # Multiple MPC Controllers
 
 ## 端口
+```yaml
+ports:
+- name: ref
+  summary: 模型输出参考值 行向量 | 矩阵
+  direction: input
+- name: switch
+  summary: 控制器选择 整数
+  direction: input
+- name: mo
+  summary: 测量输出 向量
+  direction: input
+- name: x[k|k]
+  summary: 自定义状态估计 向量
+  direction: input
+- name: md
+  summary: 输入行向量 | 矩阵
+  direction: input
+- name: ext.mv
+  summary: 上一控制区间内用于被控对象的控制信号 向量
+  direction: input
+- name: ymin
+  summary: 最小输出变量约束向量 | 矩阵
+  direction: input
+- name: ymax
+  summary: 最大输出变量约束向量 | 矩阵
+  direction: input
+- name: umin
+  summary: 被操纵变量最小值约束向量 | 矩阵
+  direction: input
+- name: umax
+  summary: 被操纵变量最大约束向量 | 矩阵
+  direction: input
+- name: y.wt
+  summary: 输出变量调优权重 行向量 | 矩阵
+  direction: input
+- name: u.wt
+  summary: 操纵变量调优权重 行向量 | 矩阵
+  direction: input
+- name: du.wt
+  summary: 被操纵变量速率调节权重行向量 | 矩阵
+  direction: input
+- name: ecr.wt
+  summary: 松弛变量调节权重标量
+  direction: input
+- name: mv
+  summary: 最优被操纵变量控制作用列向量
+  direction: output
+- name: cost
+  summary: 目标函数代价非负标量
+  direction: output
+- name: qp.status
+  summary: 优化状态整数
+  direction: output
+- name: est.state
+  summary: 估计的控制器状态向量
+  direction: output
+- name: mv.seq
+  summary: 最优操纵变量序列矩阵
+  direction: output
+- name: x.seq
+  summary: 最优预测模型状态序列矩阵
+  direction: output
+- name: y.seq
+  summary: 最优输出变量序列矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -387,8 +453,165 @@ QP 求解器可能由于以下原因而无法找到最优解：
 #### 依赖关系
 
 要启用此端口，请选择 **Optimal output sequence** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Cell Array of MPC Controllers
+  summary: 候选控制器 由 mpc 对象组成的元胞数组 | 字符串元胞数组 | 字符向量元胞数组
+  group: ''
+  block_parameter: mpcobjs
+  type: string、character vector、cell array of strings、cell array of character vectors
+  default: '""'
+- name: Cell Array of Initial Controller States
+  summary: 初始状态 由 mpcstate 对象组成的元胞数组 | 字符串元胞数组 | 字符向量元胞数组
+  group: ''
+  block_parameter: x0s
+  type: string、character vector、cell array of strings、cell array of character vectors
+  default: '""'
+- name: Measured disturbances
+  summary: 添加可测扰动输入端口 on（默认）| off
+  group: ''
+  block_parameter: md_inport_multiple
+  type: string、character vector
+  values: '"off"、"on"'
+  default: '"on"'
+- name: External manipulated variable
+  summary: 添加外部操纵变量输入端口 off（默认）| on
+  group: ''
+  block_parameter: mv_inport_multiple
+  type: string、character vector
+  values: '"off"、"on"'
+  default: '"off"'
+- name: Targets for manipulated variables
+  summary: 添加操纵变量目标输入端口 off（默认）| on
+  group: ''
+  block_parameter: uref_inport_multiple
+  type: string、character vector
+  values: '"off"、"on"'
+  default: '"off"'
+- name: Optimal cost
+  summary: 添加最优代价输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_cost_multiple
+  type: string、character vector
+  values: '"off"、"on"'
+  default: '"off"'
+- name: Optimization status
+  summary: 添加优化状态输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_qpstatus_multiple
+  type: string、character vector
+  values: '"off"、"on"'
+  default: '"off"'
+- name: Estimated controller states
+  summary: 添加估计状态输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_state_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 最优控制序列
+  summary: 添加最优控制序列输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_mvseq_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 最优状态序列
+  summary: 添加最优状态序列输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_xseq_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 最优输出序列
+  summary: 添加最优输出序列输出端口 off（默认）| on
+  group: ''
+  block_parameter: return_ovseq_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 使用自定义状态估计而非使用内置卡尔曼滤波器
+  summary: 使用自定义状态估计输入端口 off（默认）| on
+  group: ''
+  block_parameter: state_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV 下限
+  summary: 添加最小 OV 约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: ymin_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV 上限
+  summary: 添加最大 OV 约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: ymax_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV 下限
+  summary: 添加最小 MV 约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: umin_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV 上限
+  summary: 添加最大 MV 约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: umax_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: 自定义约束
+  summary: 添加自定义约束输入端口 off（默认）| on
+  group: ''
+  block_parameter: cc_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV 权重
+  summary: 添加 OV 整定权重输入端口 off（默认）| on
+  group: ''
+  block_parameter: ywt_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV 权重
+  summary: 添加 MV 整定权重输入端口 off（默认）| on
+  group: ''
+  block_parameter: uwt_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MVRate weights
+  summary: 添加 MV 速率整定权重输入端口 off（默认）| on
+  group: ''
+  block_parameter: duwt_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+- name: Slack variable weight
+  summary: 添加 ECR 整定权重输入端口 off（默认）| on
+  group: ''
+  block_parameter: rhoeps_inport_multiple
+  type: string, character vector
+  values: '"off", "on"'
+- name: Block data type
+  summary: 指定操纵变量的数据类型 double（默认）| single | data type expression
+  group: ''
+  block_parameter: BlockDataType_multiple
+  type: string, character vector
+  values: '"double", "single", data type expression'
+- name: Inherit sample time
+  summary: 从父子系统继承模块采样时间 off（默认）| on
+  group: ''
+  block_parameter: SampleTimeInherited_multiple
+  type: string, character vector
+  values: '"off", "on"'
+```
 
 ### **Cell Array of MPC Controllers** — 候选控制器 由 `mpc` 对象组成的元胞数组 | 字符串元胞数组 | 字符向量元胞数组
 
@@ -722,7 +945,6 @@ QP 求解器可能由于以下原因而无法找到最优解：
 | **类型：** string, character vector |
 | **值：** `"off"`, `"on"` |
 | **默认：** `"off"` |
-
 ## 所属库
 
 Model Predictive Control Toolbox

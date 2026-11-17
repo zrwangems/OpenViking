@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Software Watchdog Timer
 
 ## 端口
+```yaml
+ports:
+- name: Restart
+  summary: 用于重新启动看门狗定时器计数器的脉冲 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Status
+  summary: 看门狗定时器状态 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -37,8 +48,16 @@ chinese_source: worker-translation
   计数器。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum count
+  summary: 看门狗定时器值的最大限值 10 (默认值) | 标量
+  group: ''
+- name: Counter data type
+  summary: Status 输出的数据类型 uint8 (默认值) | uint16 | uint32
+  group: ''
+```
 
 ### **Maximum count** — 看门狗定时器值的最大限值 `10` (默认值) | 标量
 
@@ -48,7 +67,6 @@ chinese_source: worker-translation
 ### **Counter data type** — `Status` 输出的数据类型 `uint8` (默认值) | `uint16` | `uint32`
 
 看门狗定时器状态输出的数据类型。
-
 ## 所属库
 
 Motor Control Blockset / Sensor Decoders

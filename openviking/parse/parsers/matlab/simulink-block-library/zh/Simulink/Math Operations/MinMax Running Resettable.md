@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # MinMax Running Resettable
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: R
+  summary: 复位信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: y
+  summary: 运行最小值或最大值 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -40,8 +57,22 @@ chinese_source: worker-translation
 当该模块接收到非零（`true`）复位信号时，该模块会将输出复位为 **Initial condition** 参数的值。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Function
+  summary: 指定最小值或最大值 min（默认）| max
+  group: ''
+  block_parameter: Function
+  type: 字符向量
+  values: '''min'' | ''max'''
+- name: Initial condition
+  summary: 将输出复位为的值 0.0（默认）| 标量或向量
+  group: ''
+  block_parameter: vinit
+  type: 字符向量
+  values: 标量或向量
+```
 
 ### **Function** — 指定最小值或最大值 `min`（默认）| `max`
 
@@ -68,7 +99,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 标量或向量 |
 | **默认：** `'0.0'` |
-
 ## 所属库
 
 Simulink / Math Operations

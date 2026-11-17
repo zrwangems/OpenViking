@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Bandstop FIR Filter Design
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 滤波器阶数 偶数正整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Fc
+  summary: 滤波器中心频率 正标量 ≤ 1
+  direction: input
+  data_types: single | double
+- name: BW
+  summary: 滤波器带宽 正标量 ≤ 1
+  direction: input
+  data_types: single | double
+- name: r
+  summary: 旁瓣衰减（dB） 正标量
+  direction: input
+  data_types: single | double
+- name: beta
+  summary: Kaiser 窗参数 非负标量
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: 分子系数 行向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -92,8 +119,61 @@ H(z)=b0+b1z−1+b2z−2+...+bNmaxz−Nmax
 此端口的数据类型取决于 **Output data type** 参数的值。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Smooth tuned filter parameters
+  summary: 平滑可调滤波器参数 off（默认）| on
+  group: ''
+- name: Smoothing factor
+  summary: 平滑因子 0.6（默认）| 小于 1 的非负标量
+  group: ''
+- name: Specify filter order from input port
+  summary: 从输入端口指定滤波器阶数的标志 off（默认）| on
+  group: ''
+- name: Filter order (must be even)
+  summary: 滤波器阶数 100（默认）| 偶数正整数
+  group: ''
+- name: Filter maximum order (must be even)
+  summary: 滤波器最大阶数 100（默认）| 偶数正整数
+  group: ''
+- name: Specify center frequency from input port
+  summary: 从输入端口指定中心频率的标志 off（默认）| on
+  group: ''
+- name: Center frequency
+  summary: 中心频率 0.5（默认）| 正标量 ≤ 1
+  group: ''
+- name: Specify bandwidth from input port
+  summary: 从输入端口指定带宽的标志 off（默认）| on
+  group: ''
+- name: Bandwidth
+  summary: 滤波器带宽 0.1（默认）| 正标量 ≤ 1
+  group: ''
+- name: Window function
+  summary: 窗函数 Hann（默认）| Hamming | Blackman | Blackman-Harris | Chebyshev | Kaiser
+  group: ''
+- name: Specify sidelobe attenuation from input port
+  summary: 从输入端口指定旁瓣衰减的标志 off（默认）| on
+  group: ''
+- name: Sidelobe attenuation (dB)
+  summary: 旁瓣衰减（dB） 60（默认）| 正标量
+  group: ''
+- name: Specify kaiser window parameter from input port
+  summary: 从输入端口指定 Kaiser 窗参数的标志 off（默认）| on
+  group: ''
+- name: Kaiser window parameter
+  summary: Kaiser 窗参数 0.5（默认）| 非负标量
+  group: ''
+- name: Sample time (−1 for inherited)
+  summary: 采样时间（秒） -1（默认）| 正标量 | Inf
+  group: ''
+- name: Output data type
+  summary: 滤波器系数的数据类型 double（默认）| single
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Smooth tuned filter parameters** — 平滑可调滤波器参数 `off`（默认）| `on`
 
@@ -242,7 +322,6 @@ H(z)=b0+b1z−1+b2z−2+...+bNmaxz−Nmax
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Sources

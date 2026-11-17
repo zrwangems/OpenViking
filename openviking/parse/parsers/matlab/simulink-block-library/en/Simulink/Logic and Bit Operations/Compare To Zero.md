@@ -14,6 +14,17 @@ language: en
 # Compare To Zero
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal 0 | 1 | scalar | vector | matrix
+  direction: output
+  data_types: uint8 | Boolean
+```
 
 ### Input
 
@@ -47,8 +58,31 @@ The block output is `uint8` or
 **Output data type** parameter.
 
 **Data Types:** `uint8` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operator
+  summary: Logical operator <= (default) | == | ~= | < | >= | >
+  group: ''
+  block_parameter: relop
+  type: character vector
+  values: '''=='' | ''~=''| ''<'' |''<=''| ''>=''| ''>'''
+  default: '''<='''
+- name: Output data type
+  summary: Data type of the output boolean (default) | uint8
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''boolean'' | ''uint8'''
+  default: '''boolean'''
+- name: Enable zero-crossing detection
+  summary: Select to enable zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Operator** — Logical operator <= (default) | == | ~= | < | >= | >
 
@@ -102,7 +136,6 @@ Select to enable zero-crossing detection. For more information, see Zero-Crossin
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

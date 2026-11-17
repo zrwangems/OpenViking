@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # TPC Encoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 待编码的消息 列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: TPC 编码后的消息 列向量
+  direction: output
+```
 
 ### 输入
 
@@ -44,8 +54,43 @@ TPC 编码后的消息，返回为与输入信号具有相同数据类型的列�
   - *N*C 是 Number of columns in code, Nc 的值。
   - *K*C 是 Number of columns in message, Kc 的值。
   - *S*C 是 Number of columns in shortened message, Sc 的值。
-
 ## 参数
+```yaml
+parameters:
+- name: Extended codes
+  summary: TPC 行参数的扩展码指示符 on（默认）| off
+  group: ''
+- name: Number of rows in code, Nr
+  summary: 乘积码矩阵中的行数 16（默认）| 整数
+  group: ''
+- name: Number of rows in message, Kr
+  summary: 消息矩阵中的行数 11（默认）| 整数
+  group: ''
+- name: Specify shortened message length
+  summary: 指定行的缩短消息长度 off（默认）| on
+  group: ''
+- name: Number of rows in shortened message, Sr
+  summary: 缩短消息矩阵中的行数 9（默认）| 整数
+  group: ''
+- name: Extended codes
+  summary: TPC 列参数的扩展码指示符 on（默认）| off
+  group: ''
+- name: Number of columns in code, Nc
+  summary: 乘积码矩阵中的列数 32（默认）| 整数
+  group: ''
+- name: Number of columns in message, Kc
+  summary: 消息矩阵中的列数 26（默认）| 整数
+  group: ''
+- name: Specify shortened message length
+  summary: 指定列的缩短消息长度 off（默认）| on
+  group: ''
+- name: Number of columns in shortened message, Sc
+  summary: 缩短消息矩阵中的列数 22（默认）| 整数
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -119,7 +164,6 @@ TPC 编码后的消息，返回为与输入信号具有相同数据类型的列�
 - `Interpreted execution` — 通过使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

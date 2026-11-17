@@ -14,6 +14,21 @@ language: en
 # String Compare
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First string to compare scalar
+  direction: input
+  data_types: string
+- name: Port_2
+  summary: Second string to compare scalar
+  direction: input
+  data_types: string
+- name: Port_1
+  summary: True or false result scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -38,8 +53,31 @@ True or false result, specified as a scalar:
 - `0` — No match.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Case sensitive
+  summary: Case sensitivity for string comparison on (default) | off
+  group: ''
+  block_parameter: CaseSensitive
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Compare Option
+  summary: Amount of characters to compare Entire string (default) | First N characters
+  group: ''
+  block_parameter: CompareOption
+  type: character vector
+  values: '''Entire string'' | ''First N characters'''
+  default: '''Entire string'''
+- name: Number of characters
+  summary: Number of characters to compare 1 (default) | scalar
+  group: ''
+  block_parameter: CompareOption
+  type: character vector
+  values: scalar
+  default: '''1'''
+```
 
 ### **Case sensitive** — Case sensitivity for string comparison on (default) | off
 
@@ -102,7 +140,6 @@ characters`.
 | **Type:** character vector |
 | **Values:** scalar |
 | **Default:** `'1'` |
-
 ## Libraries
 
 Simulink / String

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Winding
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: N
+  summary: 北端子磁性
+  direction: conserving
+- name: S
+  summary: 南端子磁性
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,76 @@ chinese_source: worker-translation
 ### **S** — 南端子磁性
 
 与模块南端子关联的磁性守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of winding turns
+  summary: 绕组匝数 10（默认）| 正数
+  group: 主
+- name: Winding resistance
+  summary: 串联电阻 1e-3 Ohm（默认）| 正数
+  group: 主
+- name: Leakage reluctance
+  summary: 并联磁阻 1e5 1/H（默认）| 正数
+  group: 主
+- name: Parallel conductance
+  summary: 并联电导 0 1/Ohm（默认）| 正数
+  group: 主
+- name: Thermal port
+  summary: 是否对热端口建模 Omit（默认）| Model
+  group: 热端口
+- name: Measurement temperature
+  summary: 测量温度 25 K（默认）
+  group: 热端口
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 热端口
+- name: Winding Thermal mass
+  summary: 绕组热质量 100 J/K（默认）
+  group: 热端口
+- name: Winding fault
+  summary: 对绕组中的故障建模的选项 Add fault（默认）
+  group: 故障
+- name: Location of fault node (% of total turns from - terminal)
+  summary: 与故障绕组 – 端口接触的子电感中的匝数百分比 50（默认）| (0,100) 范围内的标量
+  group: 故障
+- name: Short-circuit turns
+  summary: 选择故障是否导致其中一个段短路 No（默认）| To negative terminal | To positive terminal
+  group: 故障
+- name: Open-circuit at fault node
+  summary: 选择是否在两个段之间施加开路故障 No（默认）| Yes
+  group: 故障
+- name: Ground fault
+  summary: 选择故障是否导致其中一个段短路 No（默认）| Negative terminal side of fault node | Positive terminal side of fault node
+  group: 故障
+- name: Conductance of faulted ground path
+  summary: 两个子电感之间的互感耦合 0 1/Ohm（默认）| 非负标量
+  group: 故障
+- name: Fault transition time constant
+  summary: 过渡到故障状态的时间常数 1e-3 s（默认）| 正标量
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible voltage
+  summary: 故障过渡的电压阈值 100 V（默认）| 正标量
+  group: 故障
+- name: Number of events to fail when exceeding voltage
+  summary: 电压超过阈值的最大次数 1（默认）| 正标量
+  group: 故障
+- name: Maximum permissible current
+  summary: 故障过渡的电流阈值 1 A（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding current
+  summary: 电流超过阈值的最大持续时间 1 s（默认）| 非负标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 ### 主
 
@@ -215,7 +298,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请点击 **Winding fault** 参数中的 **Add fault** 超链接，并将 **Trigger type** 设置为 `Additional triggers`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

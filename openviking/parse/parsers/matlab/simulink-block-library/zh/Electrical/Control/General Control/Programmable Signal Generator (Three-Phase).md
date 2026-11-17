@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Programmable Signal Generator (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: abc
+  summary: 三相正弦信号向量
+  direction: output
+  data_types: single | double
+- name: m
+  summary: 信号测量值向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输出
 
@@ -29,8 +40,145 @@ chinese_source: worker-translation
 正弦信号三相正弦波的幅值、频率、相位和角度，以向量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time
+  summary: 模块采样时间 1e-5（默认）| 0 | 正标量
+  group: ''
+- name: Variation configuration
+  summary: 幅值变化类型 Constant（默认）| Ramp | Step | Modulation | Table
+  group: 幅值
+- name: Magnitude (value)
+  summary: 生成的三相正弦波幅值 100（默认）| 标量
+  group: 幅值
+- name: Rate of change (value/s)
+  summary: 幅值变化率 100（默认）| 标量
+  group: 幅值
+- name: Step value (value)
+  summary: 幅值阶跃值 100（默认）| 标量
+  group: 幅值
+- name: Modulation magnitude
+  summary: 调制幅值 50（默认）| 标量
+  group: 幅值
+- name: Modulation frequency
+  summary: 调制频率 10（默认）| 标量
+  group: 幅值
+- name: Start time
+  summary: 幅值变化开始时间 0.1（默认）| 标量
+  group: 幅值
+- name: Stop time
+  summary: 幅值变化停止时间 0.6（默认）| 标量
+  group: 幅值
+- name: Table data
+  summary: 幅值表值 [0 30 60 90]（默认）| 向量
+  group: 幅值
+- name: Time values
+  summary: 幅值时间值 [0 0.3 0.6 0.9]（默认）| 向量
+  group: 幅值
+- name: Variation configuration
+  summary: 频率变化类型 Constant（默认）| Ramp | Step | Modulation | Table
+  group: 频率
+- name: Frequency (Hz)
+  summary: 生成的三相正弦波频率 100（默认）| 标量
+  group: 频率
+- name: Rate of change (Hz/s)
+  summary: 频率变化率 100（默认）| 标量
+  group: 频率
+- name: Step value (Hz)
+  summary: 频率阶跃值 100（默认）| 标量
+  group: 频率
+- name: Modulation magnitude
+  summary: 频率调制幅值 50（默认）| 标量
+  group: 频率
+- name: Modulation frequency
+  summary: 频率调制频率 10（默认）| 标量
+  group: 频率
+- name: Start time
+  summary: 频率变化开始时间 0.1（默认）| 标量
+  group: 频率
+- name: Stop time
+  summary: 频率变化停止时间 0.6（默认）| 标量
+  group: 频率
+- name: Table data
+  summary: 频率表值 [0 30 60 90]（默认）| 向量
+  group: 频率
+- name: Time values
+  summary: 频率时间值 [0 0.3 0.6 0.9]（默认）| 向量
+  group: 频率
+- name: Variation configuration
+  summary: 相位变化类型 Constant（默认）| Ramp | Step | Modulation | Table
+  group: 相位
+- name: Phase shift (deg)
+  summary: 生成的三相正弦波相移 100（默认）| 标量
+  group: 相位
+- name: Rate of change (deg/s)
+  summary: 相位变化率 100（默认）| 标量
+  group: 相位
+- name: Step value (deg)
+  summary: 相位阶跃值 100（默认）| 标量
+  group: 相位
+- name: Modulation magnitude
+  summary: 相位调制幅值 50（默认）| 标量
+  group: 相位
+- name: Modulation frequency
+  summary: 相位调制频率 10（默认）| 标量
+  group: 相位
+- name: Start time
+  summary: 相位变化开始时间 0.1（默认）| 标量
+  group: 相位
+- name: Stop time
+  summary: 相位变化停止时间 0.6（默认）| 标量
+  group: 相位
+- name: Table data
+  summary: 相位表值 [0 30 60 90]（默认）| 向量
+  group: 相位
+- name: Time values
+  summary: 相位时间值 [0 0.3 0.6 0.9]（默认）| 向量
+  group: 相位
+- name: Enable harmonic A
+  summary: 谐波 A 叠加 off（默认）| on
+  group: 谐波
+- name: Harmonic sequence
+  summary: 谐波 A 序列类型 Zero Sequence（默认）| Positive Sequence | Negative Sequence
+  group: 谐波
+- name: Harmonic order
+  summary: 谐波 A 次数 3（默认）| 标量
+  group: 谐波
+- name: Harmonic magnitude
+  summary: 谐波 A 幅值 50（默认）| 标量
+  group: 谐波
+- name: Harmonic phase shift
+  summary: 谐波 A 相移 180（默认）| 标量
+  group: 谐波
+- name: Start time
+  summary: 谐波 A 叠加开始时间 0.1（默认）| 标量
+  group: 谐波
+- name: Stop time
+  summary: 谐波 A 叠加停止时间 0.6（默认）| 标量
+  group: 谐波
+- name: Enable harmonic B
+  summary: 谐波 B 叠加 off（默认）| on
+  group: 谐波
+- name: Harmonic sequence
+  summary: 谐波 B 序列类型 Zero Sequence（默认）| Positive Sequence | Negative Sequence
+  group: 谐波
+- name: Harmonic order
+  summary: 谐波 B 次数 3（默认）| 标量
+  group: 谐波
+- name: Harmonic magnitude
+  summary: 谐波 B 幅值 50（默认）| 标量
+  group: 谐波
+- name: Harmonic phase shift
+  summary: 谐波 B 相移 180（默认）| 标量
+  group: 谐波
+- name: Start time
+  summary: 谐波 B 叠加开始时间 0.1（默认）| 标量
+  group: 谐波
+- name: Stop time
+  summary: 谐波 B 叠加停止时间 0.6（默认）| 标量
+  group: 谐波
+```
 
 ### **Sample time** — 模块采样时间 `1e-5`（默认）| 0 | 正标量
 
@@ -461,7 +609,6 @@ B** 复选框。
 
 要启用此参数，请选中 **Enable harmonic
 B** 复选框。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

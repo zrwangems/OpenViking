@@ -14,6 +14,13 @@ language: en
 # Constellation Diagram
 
 ## Ports
+```yaml
+ports:
+- name: In_1, ..., In_N
+  summary: Signals (as separate ports) column vectors | matrices
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -40,8 +47,73 @@ specifies a four-symbol input signal.
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Settings
+  summary: Constellation diagram settings button
+  group: Plot
+- name: Number of input ports
+  summary: Number of input ports on scope block 1 (default) | integer in the range [1, 20]
+  group: Plot
+- name: Samples per symbol
+  summary: Number of samples used to represent each symbol 1 (default) | positive integer
+  group: Plot
+- name: Offset
+  summary: Number of samples to skip before plotting points 0 (default) | nonnegative integer
+  group: Plot
+- name: Symbols to display
+  summary: Maximum number of symbols to display Input frame length (default) | positive integer
+  group: Plot
+- name: AxesLimits
+  summary: '*x* and *y*-axis limits [-1.375 1.375] (default) | two-element row vector'
+  group: Plot
+- name: Reference Constellation
+  summary: Reference constellation configuration button
+  group: Plot
+- name: Show reference constellations
+  summary: Option to display reference constellations on (default) | off
+  group: Plot
+- name: Input
+  summary: Select input port 1 (default) | positive integer
+  group: Plot
+- name: Reference constellation
+  summary: Reference constellation Custom (default) | BPSK | 8-PSK | 16-QAM | 64-QAM | 256-QAM
+  group: Plot
+- name: Custom value
+  summary: Input reference constellation [0.7071+0.7071i -0.7071+0.7071i -0.7071-0.7071i 0.7070-0.7071i] (default) | vector
+  group: Plot
+- name: Constellation normalization
+  summary: Normalization method Average power (default) | Minimum distance | Peak power
+  group: Plot
+- name: Average reference power
+  summary: Average power of reference constellation 1 (default) | positive scalar
+  group: Plot
+- name: Reference phase offset (rad)
+  summary: Phase offset of reference constellation scalar
+  group: Plot
+- name: Legend
+  summary: Option to display legend button
+  group: Plot
+- name: Trajectory
+  summary: Option to display signal trajectory button
+  group: Plot
+- name: Channel
+  summary: Active input channel name of first channel in first port (default) | list of channels
+  group: Measurements
+- name: Measurement Interval
+  summary: Duration of EVM and MER measurement Current display (default) | All displays | positive integer
+  group: Measurements
+- name: EVM Normalization
+  summary: Normalization method Average constellation power (default) | Peak constellation power
+  group: Measurements
+- name: Reference Constellation
+  summary: Reference constellation configuration button
+  group: Measurements
+- name: EVM/MER
+  summary: Option to display signal quality measurements pane button
+  group: Measurements
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -311,7 +383,6 @@ section.
 On the **Measurements** tab, click
 **EVM/MER** to toggle display the signal quality
 measurements pane. For more information, see EVM and MER Measurements.
-
 ## Libraries
 
 Communications Toolbox / Comm Sinks Communications Toolbox HDL Support / Comm Sinks

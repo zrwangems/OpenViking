@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Track-Oriented Multi-Hypothesis Tracker
 
 ## 端口
+```yaml
+ports:
+- name: Detections
+  summary: 包含 MATLAB® 结构的检测列表 Simulink® 总线
+  direction: input
+- name: Prediction Time
+  summary: 航迹更新时间 实数标量
+  direction: input
+- name: Cost Matrix
+  summary: 代价矩阵 实值 *N*×*M* 矩阵
+  direction: input
+- name: Detectable BranchIDs
+  summary: 可检测分支 ID 实值 *M*×1 向量 | 实值 *M*×2 矩阵
+  direction: input
+- name: 状态参数
+  summary: 跟踪状态参数，指定为包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: 确认航迹
+  summary: 确认航迹，返回为包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: 暂定航迹
+  summary: 暂定航迹，返回为包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: 所有航迹
+  summary: 确认航迹和暂定航迹，返回为包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Info
+  summary: 用于分析航迹更新的附加信息 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: All Branches
+  summary: 所有分支 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -181,8 +214,100 @@ chinese_source: worker-translation
 
 要启用此端口，请在 **Port Setting** 选项卡上，选择
 **Enable all branches output**。
-
 ## 参数
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: 唯一跟踪器标识符 0 (default) | nonnegative integer
+  group: ''
+- name: Filter initialization function
+  summary: 滤波器初始化函数 @initcvekf（默认）| 函数名
+  group: ''
+- name: Threshold for assigning detections to tracks
+  summary: 将检测分配给航迹的阈值 30*[0.3 0.7 1 Inf]（默认）| 正标量 | 1×3 正数值向量 | 1×4 正数值向量
+  group: ''
+- name: Maximum number of tracks
+  summary: 最大航迹数 100（默认）| 正整数
+  group: ''
+- name: Maximum number of sensors
+  summary: 最大传感器数 20（默认）| 正整数
+  group: ''
+- name: 乱序测量处理
+  summary: 乱序测量处理 Terminate（默认）| neglect
+  group: ''
+- name: 航迹状态参数
+  summary: 航迹状态参考系结构的参数 | 结构体数组
+  group: ''
+- name: 随时间更新航迹状态参数
+  summary: 随时间更新航迹状态参数 off（默认）| on
+  group: ''
+- name: 航迹输出方法
+  summary: 航迹输出方法 'Tracks'（默认）| 'Hypothesis' | 'Clusters'
+  group: ''
+- name: 仿真方式
+  summary: 要运行的仿真类型 Interpreted Execution（默认）| Code Generation
+  group: ''
+- name: 要维护的最大假设数
+  summary: 要维护的最大假设数 5（默认）| 正整数
+  group: ''
+- name: Maximum number of track branches per track
+  summary: 每条航迹的最大航迹分支数 3（默认值）| 正整数
+  group: ''
+- name: Maximum number of scans maintained in the branch history
+  summary: 分支历史中保留的最大扫描数 4（默认值）| 正整数
+  group: ''
+- name: Minimum probability required to keep a branch
+  summary: 保留分支所需的最小概率 .001（默认值）| 正标量
+  group: ''
+- name: N-scan pruning method
+  summary: N 扫描剪枝方法 'None'（默认值）| 'Hypothesis'
+  group: ''
+- name: Confirmation threshold [positive scalar]
+  summary: 确认航迹所需的最低分数 20（默认值）| 正标量
+  group: ''
+- name: Deletion threshold [negative scalar]
+  summary: 航迹删除的最大分数下降 -7（默认值）| 标量
+  group: ''
+- name: Probability of detection used for track score
+  summary: 用于航迹分数的检测概率 0.9（默认值）| 0 到 1 之间的正标量
+  group: ''
+- name: Rate of false positives used for track score
+  summary: 用于航迹分数的虚警概率 1e-6（默认值）| 标量
+  group: ''
+- name: Volume of the sensor's detection bin
+  summary: 传感器量测单元的体积 1（默认值）| 正标量
+  group: ''
+- name: Rate of new tracks per unit volume
+  summary: 每单位体积的新航迹率 1（默认值）| 正标量
+  group: ''
+- name: Prediction time source
+  summary: 预测时间来源 Auto（默认）| Input port
+  group: ''
+- name: Enable cost matrix input
+  summary: 启用代价矩阵输入端口 关（默认）| 开
+  group: ''
+- name: Enable detectable branch IDs input
+  summary: 启用可检测分支 ID 输入 关（默认）| 开
+  group: ''
+- name: Enable tentative tracks output
+  summary: 启用暂定航迹输出端口 关（默认）| 开
+  group: ''
+- name: Enable all tracks output
+  summary: 启用所有航迹输出端口 关（默认）| 开
+  group: ''
+- name: Enable information output
+  summary: 启用分析信息输出端口 关（默认）| 开
+  group: ''
+- name: Enable all branches output
+  summary: 启用所有分支输出端口 关（默认）| 开
+  group: ''
+- name: Source of output bus name
+  summary: 输出航迹总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Source of output info bus name
+  summary: 输出信息总线名称的来源 Auto（默认）| Property
+  group: ''
+```
 
 #### Tracker Management
 
@@ -490,7 +615,6 @@ N 扫描剪枝方法，指定为 `'None'` 或 `'Hypothesis'`。在 N 扫描剪�
 #### 依赖关系
 
 要启用此参数，请在 **Port Setting** 选项卡上选择 **启用信息输出**。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

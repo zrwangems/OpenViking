@@ -14,6 +14,25 @@ language: en
 # Corner Detection
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix of intensity values
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Loc
+  summary: Corner locations *M*-by-2 matrix
+  direction: output
+  data_types: uint32
+- name: Count
+  summary: Number of detected corners scalar
+  direction: output
+  data_types: uint32
+- name: Metric
+  summary: Corner metric values matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -69,8 +88,44 @@ To enable this port, set the **Output** parameter to one of these:
 - `Metric matrix`
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Corner detection method Harris corner detection (Harris & Stephens) (default) | Minimum eigenvalue (Shi & Tomasi)
+    | Local intensity comparison (Rosten & Drummond)
+  group: Main
+- name: Sensitivity factor (0<k<0.25)
+  summary: Sensitivity factor 0.04 (default) | scalar
+  group: Main
+- name: Coefficients for separable smoothing filter
+  summary: Filter coefficients fspecial('gaussian', [1 5], 1.5) (default) | vector
+  group: Main
+- name: Intensity comparison threshold
+  summary: Intensity threshold 0.1 (default) | scalar
+  group: Main
+- name: Maximum angle to be considered a corner (in degrees)
+  summary: Maximum corner angle 157.5 (default) | scalar
+  group: Main
+- name: Output
+  summary: Block output Corner location (default) | Corner location and metric matrix | Metric matrix
+  group: Main
+- name: Maximum number of corners
+  summary: Maximum number of corners 200 (default) | integer
+  group: Main
+- name: Minimum metric value that indicates a corner
+  summary: Minimum corner metric 0.0005 (default) | scalar
+  group: Main
+- name: Neighborhood size
+  summary: Neighborhood size [11 11] (default) | 2-element vector
+  group: Main
+- name: Output variable size signal
+  summary: Variable size signal on (default) | off
+  group: Main
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Data type override off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -212,7 +267,6 @@ For details on the fixed-point block parameters, see Specify Fixed-Point Attribu
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify in this block. For more information, see Lock the Output Data Type Setting (Fixed-Point Designer).
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

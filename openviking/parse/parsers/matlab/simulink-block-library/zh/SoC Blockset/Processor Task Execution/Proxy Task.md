@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Proxy Task
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 来自 Task Manager 模块的函数调用 标量
+  direction: input
+  data_types: function-call
+```
 
 ### 输入
 
@@ -28,8 +35,16 @@ chinese_source: worker-translation
 `Event-driven`。
 
 **数据类型：** `function-call`
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 任务类型 Timer-driven（默认）| Event-driven
+  group: ''
+- name: Sample Time
+  summary: 采样时间 1（默认）| 正标量
+  group: ''
+```
 
 ### **Type** — 任务类型 `Timer-driven`（默认）| `Event-driven`
 
@@ -51,7 +66,6 @@ chinese_source: worker-translation
 
 要启用此参数，请将 `Type` 属性设置为
 `Timer-driven`。
-
 ## 所属库
 
 SoC Blockset / Processor Task Execution

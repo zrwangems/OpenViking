@@ -14,6 +14,147 @@ language: en
 # 6-DOF Joint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: fx
+  summary: Actuation force physical signal
+  direction: input
+- name: px
+  summary: Motion profile physical signal
+  direction: input
+- name: fy
+  summary: Actuation force physical signal
+  direction: input
+- name: py
+  summary: Motion profile physical signal
+  direction: input
+- name: fz
+  summary: Actuation force physical signal
+  direction: input
+- name: pz
+  summary: Motion profile physical signal
+  direction: input
+- name: tx
+  summary: Actuation torque about x-axis of resolution frame physical signal
+  direction: input
+- name: ty
+  summary: Actuation torque about y-axis of resolution frame physical signal
+  direction: input
+- name: tz
+  summary: Actuation torque about z-axis of resolution frame physical signal
+  direction: input
+- name: t
+  summary: Actuation torque vector physical signal
+  direction: input
+- name: mode
+  summary: Joint mode control physical signal
+  direction: input
+- name: px
+  summary: Position of primitive physical signal
+  direction: output
+- name: vx
+  summary: Velocity of primitive physical signal
+  direction: output
+- name: ax
+  summary: Acceleration of primitive physical signal
+  direction: output
+- name: fx
+  summary: Actuator force acting on joint primitive physical signal
+  direction: output
+- name: fllx
+  summary: Lower-limit force physical signal
+  direction: output
+- name: fulx
+  summary: Upper-limit force physical signal
+  direction: output
+- name: py
+  summary: Position of primitive physical signal
+  direction: output
+- name: vy
+  summary: Velocity of primitive physical signal
+  direction: output
+- name: ay
+  summary: Acceleration of primitive physical signal
+  direction: output
+- name: fy
+  summary: Actuator force acting on joint primitive physical signal
+  direction: output
+- name: flly
+  summary: Lower-limit force physical signal
+  direction: output
+- name: fuly
+  summary: Upper-limit force physical signal
+  direction: output
+- name: pz
+  summary: Position of joint primitive physical signal
+  direction: output
+- name: vz
+  summary: Velocity of joint primitive physical signal
+  direction: output
+- name: az
+  summary: Acceleration of joint primitive physical signal
+  direction: output
+- name: fz
+  summary: Actuator force acting on joint primitive physical signal
+  direction: output
+- name: fllz
+  summary: Lower-limit force acting on joint primitive physical signal
+  direction: output
+- name: fulz
+  summary: Upper-limit force acting on joint primitive physical signal
+  direction: output
+- name: Q
+  summary: Relative orientation in quaternion parameterization physical signal
+  direction: output
+- name: wx
+  summary: '*X*-coordinate of relative angular velocity physical signal'
+  direction: output
+- name: wy
+  summary: '*Y*-coordinate of relative angular velocity physical signal'
+  direction: output
+- name: wz
+  summary: '*Z*-coordinate of relative angular velocity physical signal'
+  direction: output
+- name: w
+  summary: Angular velocity vector physical signal
+  direction: output
+- name: bx
+  summary: '*X*-coordinate of relative angular acceleration physical signal'
+  direction: output
+- name: by
+  summary: '*Y*-coordinate of relative angular acceleration physical signal'
+  direction: output
+- name: bz
+  summary: '*Z*-coordinate of relative angular acceleration physical signal'
+  direction: output
+- name: b
+  summary: Angular acceleration vector physical signal
+  direction: output
+- name: tll
+  summary: Lower-limit torque magnitude physical signal
+  direction: output
+- name: tul
+  summary: Upper-limit torque magnitude physical signal
+  direction: output
+- name: fc
+  summary: Constraint force, N physical signal
+  direction: output
+- name: tc
+  summary: Constraint torque, N\*m physical signal
+  direction: output
+- name: ft
+  summary: Total force, N physical signal
+  direction: output
+- name: tt
+  summary: Total torque, N\*m physical signal
+  direction: output
+```
 
 ### Frame
 
@@ -511,8 +652,359 @@ Force and Torque Sensing.
 
 To enable this port, under **Composite Force/Torque
 Sensing**, select **Total Torque**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: X Prismatic Primitive (Px)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: X Prismatic Primitive (Px)
+- name: Value
+  summary: Position target 0 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Specify Velocity Target
+  summary: Whether to specify linear velocity target off (default) | on
+  group: X Prismatic Primitive (Px)
+- name: Priority
+  summary: Priority level of linear velocity target High (desired) (default) | Low (approximate)
+  group: X Prismatic Primitive (Px)
+- name: Value
+  summary: Velocity target 0 m/s (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Equilibrium Position
+  summary: Position where internal force is zero 0 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N/m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N(m/s) (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: X Prismatic Primitive (Px)
+- name: Bound
+  summary: Lower bound of free region -1 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e6 N/m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 1e3 N/(m/s) (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: X Prismatic Primitive (Px)
+- name: Bound
+  summary: Upper bound of free region 1 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e6 N/m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 1e3 N/(m/s) (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: X Prismatic Primitive (Px)
+- name: Force
+  summary: Option to provide actuator force None (default) | Provided by Input | Automatically Computed
+  group: X Prismatic Primitive (Px)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: X Prismatic Primitive (Px)
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Y Prismatic Primitive (Py)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Y Prismatic Primitive (Py)
+- name: Value
+  summary: Position target 0 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Specify Velocity Target
+  summary: Whether to specify linear velocity target off (default) | on
+  group: Y Prismatic Primitive (Py)
+- name: Priority
+  summary: Priority level of linear velocity target High (desired) (default) | Low (approximate)
+  group: Y Prismatic Primitive (Py)
+- name: Value
+  summary: Velocity target 0 m/s (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Equilibrium Position
+  summary: Position where internal force is zero 0 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N/m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N(m/s) (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Y Prismatic Primitive (Py)
+- name: Bound
+  summary: Lower bound of free region -1 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e6 N/m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 1e3 N/(m/s) (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Y Prismatic Primitive (Py)
+- name: Bound
+  summary: Upper bound of free region 1 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e6 N/m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 1e3 N/(m/s) (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: Y Prismatic Primitive (Py)
+- name: Force
+  summary: Option to provide actuator force None (default) | Provided by Input | Automatically Computed
+  group: Y Prismatic Primitive (Py)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: Y Prismatic Primitive (Py)
+- name: Specify Position Target
+  summary: Whether to specify position target off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Priority
+  summary: Priority level of position target High (desired) (default) | Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: Value
+  summary: Position target 0 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Velocity Target
+  summary: Whether to specify linear velocity target off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Priority
+  summary: Priority level of linear velocity target High (desired) (default) | Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: Value
+  summary: Velocity target 0 m/s (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Equilibrium Position
+  summary: Position where internal force is zero 0 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N/m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N(m/s) (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Bound
+  summary: Lower bound of free region -1 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e6 N/m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 1e3 N/(m/s) (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Z Prismatic Primitive (Pz)
+- name: Bound
+  summary: Upper bound of free region 1 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e6 N/m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 1e3 N/(m/s) (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper forces 1e-4 m (default) | scalar
+  group: Z Prismatic Primitive (Pz)
+- name: Force
+  summary: Option to provide actuator force None (default) | Provided by Input | Automatically Computed
+  group: Z Prismatic Primitive (Pz)
+- name: Motion
+  summary: Option to provide motion Automatically Computed (default) | Provided by Input
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Position Target
+  summary: Whether to specify relative orientation target off (default) | on
+  group: Spherical Primitive (S)
+- name: Priority
+  summary: Priority level of relative orientation target High (desired) (default) | Low (approximate)
+  group: Spherical Primitive (S)
+- name: Value > Method
+  summary: Method to specify relative orientation target None (default) | Aligned Axes | Standard Axis | Arbitrary Axis |
+    Rotation Sequence | Rotation Matrix | Quaternion
+  group: Spherical Primitive (S)
+- name: 'Pair 1: Follower'
+  summary: Follower frame axis used to align with specified base frame axis +X (default) | -X | +Y | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair 1: Base'
+  summary: Base frame axis +Y (default) | +X | -X | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair 2: Follower'
+  summary: Follower frame axis used to align with specified base frame axis +Y | +X | -X | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair2: Base'
+  summary: Base frame axis +Z (default) | +X | -X | +Y | -Y | -Z
+  group: Spherical Primitive (S)
+- name: Axis
+  summary: Standard axis of relative rotation +Z (default) | +X | -X | +Y | -Y | -Z
+  group: Spherical Primitive (S)
+- name: Angle
+  summary: Angle of relative rotation 0.0 deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Axis
+  summary: Axis of relative rotation [0 0 1] (default) | 3-by1 vector
+  group: Spherical Primitive (S)
+- name: Angle
+  summary: Angle of relative rotation 0.0 deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Rotation About
+  summary: Frame whose axes to rotate follower frame about Follower Axes (default) | Base Axes
+  group: Spherical Primitive (S)
+- name: Sequence
+  summary: Sequence of rotation axis X-Y-X (default) | X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z
+    | Z-Y-X | Z-Y-Z
+  group: Spherical Primitive (S)
+- name: Angles
+  summary: Angles for rotation sequence parameterization [0 0 0] deg (default) | 1-by-3 vector
+  group: Spherical Primitive (S)
+- name: Rotation Matrix
+  summary: Relative rotation using rotation matrix [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix
+  group: Spherical Primitive (S)
+- name: Quaternion
+  summary: Relative rotation using quaternion [1 0 0 0] (default) | unit quaternion vector
+  group: Spherical Primitive (S)
+- name: Specify Velocity Target
+  summary: Whether to specify angular velocity target off (default) | on
+  group: Spherical Primitive (S)
+- name: Priority
+  summary: Priority level of angular velocity target High (desired) (default) | Low (approximate)
+  group: Spherical Primitive (S)
+- name: Value
+  summary: Angular velocity target of spherical primitive [0 0 0] deg/s (default) | 1-by-3 vector
+  group: Spherical Primitive (S)
+- name: Resolution Frame
+  summary: Frame used to resolve specified angular velocity target Base (default) | Follower
+  group: Spherical Primitive (S)
+- name: Equilibrium Position > Method
+  summary: Method to specify equilibrium frame None (default) | Aligned Axes | Standard Axis | Arbitrary Axis | Rotation Sequence
+    | Rotation Matrix | Quaternion
+  group: Spherical Primitive (S)
+- name: 'Pair 1: Follower'
+  summary: Equilibrium frame axis used to align with specified base frame axis +X (default) | -X | +Y | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair 1: Base'
+  summary: Base frame axis +Y (default) | +X | -X | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair 2: Follower'
+  summary: Equilibrium frame axis used to align with specified base frame axis +Y | +X | -X | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair2: Base'
+  summary: Base frame axis +Z (default) | +X | -X | +Y | -Y | -Z
+  group: Spherical Primitive (S)
+- name: Axis
+  summary: Standard axis of relative rotation +Z (default) | +X | -X | +Y | -Y | -Z
+  group: Spherical Primitive (S)
+- name: Angle
+  summary: Angle of relative rotation 0.0 deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Axis
+  summary: Axis of relative rotation [0 0 1] (default) | 3-by1 vector
+  group: Spherical Primitive (S)
+- name: Angle
+  summary: Angle of relative rotation 0.0 deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Rotation About
+  summary: Frame whose axes to rotate equilibrium frame about Follower Axes (default) | Base Axes
+  group: Spherical Primitive (S)
+- name: Sequence
+  summary: Sequence of rotation axis X-Y-X (default) | X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z
+    | Z-Y-X | Z-Y-Z
+  group: Spherical Primitive (S)
+- name: Angles
+  summary: Angles for elementary rotations [0 0 0] deg (default) | 1-by-3 vector
+  group: Spherical Primitive (S)
+- name: Matrix
+  summary: Relative rotation using rotation matrix [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix
+  group: Spherical Primitive (S)
+- name: Quaternion
+  summary: Relative rotation using quaternion [1 0 0 0] (default) | unit quaternion vector
+  group: Spherical Primitive (S)
+- name: Spring Stiffness
+  summary: Stiffness of force law 0 N*m/deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Damping Coefficient
+  summary: Damping coefficient of force law 0 N*m/(deg/s) (default) | scalar
+  group: Spherical Primitive (S)
+- name: Specify Lower Limit
+  summary: Whether to specify lower position limit off (default) | on
+  group: Spherical Primitive (S)
+- name: Bound
+  summary: Lower bound of free region 15 deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Spring Stiffness
+  summary: Stiffness of spring at lower bound 1e4 N*m/deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Damping Coefficient
+  summary: Damping coefficient at lower bound 10 N*m/(deg/s) (default) | scalar
+  group: Spherical Primitive (S)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torque 0.1 deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Specify Upper Limit
+  summary: Whether to specify upper position limit off (default) | on
+  group: Spherical Primitive (S)
+- name: Bound
+  summary: Upper bound of free region 45 deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Spring Stiffness
+  summary: Stiffness of spring at upper bound 1e4 N*m/deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Damping Coefficient
+  summary: Damping coefficient at upper bound 10 N*m/(deg/s) (default) | scalar
+  group: Spherical Primitive (S)
+- name: Transition Region Width
+  summary: Region to smooth spring and damper torques 0.1 deg (default) | scalar
+  group: Spherical Primitive (S)
+- name: Torque
+  summary: Option to provide actuation torque None (default) | Provided by Input
+  group: Spherical Primitive (S)
+- name: Resolution Frame
+  summary: Frame used to resolve actuation torque Base (default) | Follower
+  group: Spherical Primitive (S)
+- name: Resolution Frame
+  summary: Frame used to resolve sensing outputs Base (default) | Follower
+  group: Spherical Primitive (S)
+- name: Mode
+  summary: Joint mode Normal (default) | Locked | Disengaged | Provided by Input
+  group: Mode Configuration
+- name: Direction
+  summary: Measurement direction Follower on Base (default) | Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: Frame used to resolve measurements Base (default) | Follower
+  group: Composite Force/Torque Sensing
+```
 
 ### X Prismatic Primitive (Px)
 
@@ -1558,7 +2050,6 @@ Frame used to resolve the measurements, specified as one of these values:
 
 This parameter affects only the output signals under the **Composite Force/Torque
 Sensing** section.
-
 ## Libraries
 
 Simscape / Multibody / Joints

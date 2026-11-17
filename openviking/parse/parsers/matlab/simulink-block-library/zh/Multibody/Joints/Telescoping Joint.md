@@ -15,6 +15,99 @@ chinese_source: worker-translation
 # Telescoping Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座坐标系 坐标系
+  direction: input
+- name: F
+  summary: 从动坐标系 坐标系
+  direction: input
+- name: tx
+  summary: 绕解算坐标系 *x* 轴的作用力矩 物理信号
+  direction: input
+- name: ty
+  summary: 绕解算坐标系 *y* 轴的作用力矩 物理信号
+  direction: input
+- name: tz
+  summary: 绕解算坐标系 *z* 轴的作用力矩 物理信号
+  direction: input
+- name: t
+  summary: 作用力矩向量 物理信号
+  direction: input
+- name: fz
+  summary: 作用力 物理信号
+  direction: input
+- name: pz
+  summary: 运动轮廓 物理信号
+  direction: input
+- name: mode
+  summary: 关节模式控制物理信号
+  direction: input
+- name: Q
+  summary: 四元数参数化下的相对姿态物理信号
+  direction: output
+- name: wx
+  summary: 相对角速度的 x 坐标物理信号
+  direction: output
+- name: wy
+  summary: 相对角速度的 y 坐标物理信号
+  direction: output
+- name: wz
+  summary: 相对角速度的 z 坐标物理信号
+  direction: output
+- name: w
+  summary: 角速度向量物理信号
+  direction: output
+- name: bx
+  summary: 相对角加速度的 x 坐标物理信号
+  direction: output
+- name: by
+  summary: 相对角加速度的 y 坐标物理信号
+  direction: output
+- name: bz
+  summary: 相对角加速度的 z 坐标物理信号
+  direction: output
+- name: b
+  summary: 角加速度矢量物理信号
+  direction: output
+- name: tll
+  summary: 下限力矩幅值物理信号
+  direction: output
+- name: tul
+  summary: 上限力矩幅值物理信号
+  direction: output
+- name: pz
+  summary: 关节基元位置物理信号
+  direction: output
+- name: vz
+  summary: 关节基元速度物理信号
+  direction: output
+- name: az
+  summary: 关节基元加速度物理信号
+  direction: output
+- name: fz
+  summary: 作用在关节基元上的执行器力物理信号
+  direction: output
+- name: fllz
+  summary: 作用在关节基元上的下限力物理信号
+  direction: output
+- name: fulz
+  summary: 作用在关节基元上的上限力物理信号
+  direction: output
+- name: fc
+  summary: 约束力，N 物理信号
+  direction: output
+- name: tc
+  summary: 约束力矩，N\*m 物理信号
+  direction: output
+- name: ft
+  summary: 总力，N 物理信号
+  direction: output
+- name: tt
+  summary: 总力矩，N\*m 物理信号
+  direction: output
+```
 
 ### 坐标系
 
@@ -280,8 +373,229 @@ chinese_source: worker-translation
 #### 依赖项
 
 要启用此端口，请在 **Composite Force/Torque Sensing** 下，选择 **Total Torque**。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify Position Target
+  summary: 是否指定相对方向目标 off（默认）| on
+  group: Spherical Primitive (S)
+- name: Priority
+  summary: 相对方向目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Spherical Primitive (S)
+- name: Value > Method
+  summary: 指定相对方向目标的方法 None（默认）| Aligned Axes | Standard Axis | Arbitrary Axis | Rotation Sequence | Rotation Matrix | Quaternion
+  group: Spherical Primitive (S)
+- name: 'Pair 1: Follower'
+  summary: 用于与指定基座坐标系轴对齐的从动坐标系轴 +X（默认）| -X | +Y | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair 1: Base'
+  summary: 基座坐标系轴 +Y（默认）| +X | -X | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair 2: Follower'
+  summary: 用于与指定基座坐标系轴对齐的从动坐标系轴 +Y | +X | -X | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair2: Base'
+  summary: 基座坐标系轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: Spherical Primitive (S)
+- name: Axis
+  summary: 相对旋转的标准轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: Spherical Primitive (S)
+- name: Angle
+  summary: 相对旋转的角度 0.0 deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Axis
+  summary: 相对旋转的轴 [0 0 1]（默认）| 3×1 向量
+  group: Spherical Primitive (S)
+- name: Angle
+  summary: 相对旋转角度 0.0 deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Rotation About
+  summary: 从动坐标系绕其轴旋转的坐标系 Follower Axes（默认）| Base Axes
+  group: Spherical Primitive (S)
+- name: Sequence
+  summary: 旋转轴序列 X-Y-X（默认）| X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z | Z-Y-X | Z-Y-Z
+  group: Spherical Primitive (S)
+- name: Angles
+  summary: 旋转序列参数化的角度 [0 0 0] deg（默认）| 1×3 向量
+  group: Spherical Primitive (S)
+- name: Rotation Matrix
+  summary: 使用旋转矩阵的相对旋转 [1 0 0; 0 1 0; 0 0 1]（默认）| 3×3 矩阵
+  group: Spherical Primitive (S)
+- name: Quaternion
+  summary: 使用四元数的相对旋转 [1 0 0 0]（默认）| 单位四元数向量
+  group: Spherical Primitive (S)
+- name: Specify Velocity Target
+  summary: 是否指定角速度目标 off（默认）| on
+  group: Spherical Primitive (S)
+- name: Priority
+  summary: 角速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Spherical Primitive (S)
+- name: Value
+  summary: 球面基元的角速度目标 [0 0 0] deg/s（默认）| 1×3 向量
+  group: Spherical Primitive (S)
+- name: Resolution Frame
+  summary: 用于解析指定角速度目标的坐标系 Base（默认）| Follower
+  group: Spherical Primitive (S)
+- name: Equilibrium Position > Method
+  summary: 用于指定平衡坐标系的方法 None（默认）| Aligned Axes | Standard Axis | Arbitrary Axis | Rotation Sequence | Rotation Matrix | Quaternion
+  group: Spherical Primitive (S)
+- name: 'Pair 1: Follower'
+  summary: 用于与指定基座坐标系轴对齐的平衡坐标系轴 +X（默认）| -X | +Y | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair 1: Base'
+  summary: 基座坐标系轴 +Y（默认）| +X | -X | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair 2: Follower'
+  summary: 用于与指定基座坐标系轴对齐的平衡坐标系轴 +Y | +X | -X | -Y | +Z | -Z
+  group: Spherical Primitive (S)
+- name: 'Pair2: Base'
+  summary: 基座坐标系轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: Spherical Primitive (S)
+- name: Axis
+  summary: 相对旋转的标准轴 +Z（默认）| +X | -X | +Y | -Y | -Z
+  group: Spherical Primitive (S)
+- name: Angle
+  summary: 相对旋转的角度 0.0 deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Axis
+  summary: 相对旋转的轴 [0 0 1]（默认）| 3×1 向量
+  group: Spherical Primitive (S)
+- name: Angle
+  summary: 相对旋转角度 0.0 deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Rotation About
+  summary: 平衡坐标系绕其轴旋转的坐标系 Follower Axes（默认）| Base Axes
+  group: Spherical Primitive (S)
+- name: Sequence
+  summary: 旋转轴序列 X-Y-X（默认）| X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z | Z-Y-X | Z-Y-Z
+  group: Spherical Primitive (S)
+- name: Angles
+  summary: 基本旋转的角度 [0 0 0] deg（默认）| 1×3 向量
+  group: Spherical Primitive (S)
+- name: Matrix
+  summary: 使用旋转矩阵的相对旋转 [1 0 0; 0 1 0; 0 0 1]（默认）| 3×3 矩阵
+  group: Spherical Primitive (S)
+- name: Quaternion
+  summary: 使用四元数的相对旋转 [1 0 0 0]（默认）| 单位四元数向量
+  group: Spherical Primitive (S)
+- name: Spring Stiffness
+  summary: 力律的刚度 0 N*m/deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Damping Coefficient
+  summary: 力律的阻尼系数 0 N*m/(deg/s)（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Specify Lower Limit
+  summary: 是否指定下限位置限制 off（默认）| on
+  group: Spherical Primitive (S)
+- name: Bound
+  summary: 自由区域的下界 15 deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Spring Stiffness
+  summary: 下界处弹簧的刚度 1e4 N*m/deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Damping Coefficient
+  summary: 下界处的阻尼系数 10 N*m/(deg/s)（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼器扭矩的区域 0.1 deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Specify Upper Limit
+  summary: 是否指定上位置限位 off（默认）| on
+  group: Spherical Primitive (S)
+- name: Bound
+  summary: 自由区域的上界 45 deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Spring Stiffness
+  summary: 上界处的弹簧刚度 1e4 N*m/deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Damping Coefficient
+  summary: 上界处的阻尼系数 10 N*m/(deg/s)（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼器扭矩的区域 0.1 deg（默认）| 标量
+  group: Spherical Primitive (S)
+- name: Torque
+  summary: 提供驱动力矩的选项 None（默认）| Provided by Input
+  group: Spherical Primitive (S)
+- name: Resolution Frame
+  summary: 用于解析驱动力矩的坐标系 Base（默认）| Follower
+  group: Spherical Primitive (S)
+- name: Resolution Frame
+  summary: 用于解析传感输出的坐标系 Base（默认）| Follower
+  group: Spherical Primitive (S)
+- name: Specify Position Target
+  summary: 是否指定位置目标 off（默认）| on
+  group: Z Prismatic Primitive (Pz)
+- name: Priority
+  summary: 位置目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: Value
+  summary: 位置目标 0 m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Velocity Target
+  summary: 是否指定线速度目标 off（默认）| on
+  group: Z Prismatic Primitive (Pz)
+- name: Priority
+  summary: 线速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Z Prismatic Primitive (Pz)
+- name: Value
+  summary: 速度目标 0 m/s（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Equilibrium Position
+  summary: 内力为零时的位置 0 m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: 力律的刚度 0 N/m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: 力律的阻尼系数 0 N(m/s)（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Lower Limit
+  summary: 是否指定下限位置 off（默认）| on
+  group: Z Prismatic Primitive (Pz)
+- name: Bound
+  summary: 自由区域的下界 -1 m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: 下限处弹簧的刚度 1e6 N/m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: 下限处的阻尼系数 1e3 N/(m/s)（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Transition Region Width
+  summary: 用于平滑弹簧力和阻尼力的区域 1e-4 m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Specify Upper Limit
+  summary: 是否指定位置上限 off（默认）| on
+  group: Z Prismatic Primitive (Pz)
+- name: Bound
+  summary: 自由区域的上界 1 m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Spring Stiffness
+  summary: 上界处弹簧的刚度 1e6 N/m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Damping Coefficient
+  summary: 上界处的阻尼系数 1e3 N/(m/s)（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 1e-4 m（默认）| 标量
+  group: Z Prismatic Primitive (Pz)
+- name: Force
+  summary: 提供驱动力力的选项 None（默认）| Provided by Input | Automatically Computed
+  group: Z Prismatic Primitive (Pz)
+- name: Motion
+  summary: 提供运动的选项 Automatically Computed（默认）| Provided by Input
+  group: Z Prismatic Primitive (Pz)
+- name: Mode
+  summary: 关节模式 Normal（默认）| Locked | Disengaged | Provided by Input
+  group: 模式配置
+- name: Direction
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: Composite Force/Torque Sensing
+- name: Resolution Frame
+  summary: 用于解析测量的坐标系 Base（默认）| Follower
+  group: Composite Force/Torque Sensing
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -852,7 +1166,6 @@ chinese_source: worker-translation
 - `Follower` — 模块在从动坐标系的坐标中解析测量值。
 
 此参数仅影响 **Composite Force/Torque Sensing** 部分下的输出信号。
-
 ## 所属库
 
 Simscape / Multibody / Joints

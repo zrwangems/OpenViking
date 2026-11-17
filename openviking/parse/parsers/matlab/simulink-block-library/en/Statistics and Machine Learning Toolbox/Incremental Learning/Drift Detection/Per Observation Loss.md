@@ -14,6 +14,28 @@ language: en
 # Per Observation Loss
 
 ## Ports
+```yaml
+ports:
+- name: mdl
+  summary: Incremental learning model bus signal
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: x
+  summary: Chunk of predictor data numeric matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: y
+  summary: Chunk of responses (labels) numeric vector | logical vector | enumerated vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: IsWarm
+  summary: Flag indicating whether model tracks performance metrics logical
+  direction: output
+- name: loss
+  summary: Per observation error numeric matrix
+  direction: output
+```
 
 ### Input
 
@@ -88,8 +110,153 @@ if **IsWarm** is `false`.
 
 Specify the loss function to compute the error using **Loss
 function**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Select initial machine learning model
+  summary: Initial incremental learning model initMdl (default)
+  group: ''
+  block_parameter: InitialLearner
+  type: character vector or string
+  values: workspace model object name
+  default: '"initMdl"'
+- name: Loss function
+  summary: Loss function to compute the per observation loss classiferror (default) | binodeviance | exponential | hinge |
+    logit | quadratic | squarederror | epsiloninsensitive
+  group: ''
+  block_parameter: LossFun
+  type: character vector or string
+  values: '"classiferror" | "binodeviance" | "exponential" | "hinge" | "logit" | "quadratic" | "squarederror" | "epsiloninsensitive"'
+  default: '"classiferror" for classification models and "squarederror" for regression models'
+- name: Predictor data observation dimension
+  summary: Observation dimension of predictor data rows (default) | columns
+  group: ''
+  block_parameter: ObservationsIn
+  type: character vector
+  values: '"rows" | "columns"'
+  default: '"rows"'
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: ''
+  block_parameter: SystemSampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Loss data type
+  summary: Data type of loss output double (default) | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>
+  group: Data Types
+  block_parameter: LossDataTypeStr
+  type: character vector or string
+  values: '"double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64" | "uint64"
+    | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"double"'
+- name: Loss data type Minimum
+  summary: Minimum value of loss output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LossOutMin
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Loss data type Maximum
+  summary: Maximum value of loss output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LossOutMax
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Predict response data type
+  summary: 'Data type of predict response Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: PredictResponseDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Predict response data type Minimum
+  summary: Minimum value of predict response for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: PredictResponseOutMin
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Predict response data type Maximum
+  summary: Maximum value of predict response for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: PredictResponseOutMax
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Additional predict data type
+  summary: 'Additional predict data type Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: AdditionalPredictDataTypeStr
+  type: character vector
+  values: '"Inherit: Inherit via internal rule" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32"
+    | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: Inherit via internal rule"'
+- name: Additional predict data type Minimum
+  summary: Minimum value of additional predict for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: AdditionalPredictOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Additional predict data type Maximum
+  summary: Maximum value of additional predict for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: AdditionalPredictOutMax
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Linear sum data type
+  summary: 'Data type of linear sum Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8 |
+    int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: LinearSumDataTypeStr
+  type: character vector or string
+  values: 'Inherit: Inherit via internal rule | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32"
+    | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: 'Inherit: Inherit via internal rule'
+- name: Linear sum data type Minimum
+  summary: Minimum value of linear sum for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LinearSumOutMin
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Linear sum data type Maximum
+  summary: Maximum value of linear sum for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LinearSumOutMax
+  type: string or numeric scalar
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -540,7 +707,6 @@ or clip the actual linear sum. To do so, use the Saturation (Simulink) block ins
 | **Type**: string or numeric scalar |
 | **Values**: `"[]"` | scalar |
 | **Default**: `"[]"` |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Drift Detection

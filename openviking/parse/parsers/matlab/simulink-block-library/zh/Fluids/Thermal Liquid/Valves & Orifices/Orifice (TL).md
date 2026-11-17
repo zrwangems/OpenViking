@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Orifice (TL)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 控制构件位移，m 物理信号
+  direction: input
+- name: A
+  summary: 流动通道热液体
+  direction: input
+- name: B
+  summary: 流动通道热液体
+  direction: input
+```
 
 ### 输入
 
@@ -30,8 +42,96 @@ chinese_source: worker-translation
 ### **B** — 流动通道热液体
 
 与开口关联的热液体守恒端口，流体可通过该开口进入或离开阀。
-
 ## 参数
+```yaml
+parameters:
+- name: Orifice type
+  summary: 孔口类型 Variable（默认）| Constant
+  group: 参数
+- name: Orifice parameterization
+  summary: 恒定孔口参数化 Orifice area（默认）| Tabulated data - Volumetric flow rate vs. pressure drop | Tabulated data - Mass flow
+    rate vs. pressure drop
+  group: 参数
+- name: Orifice parameterization
+  summary: 可变孔口参数化 Linear - Area vs. control member position（默认）| Tabulated data - Area vs. control member position | 表格数据
+    - 体积流量与控制构件位置和 pressure drop | 表格数据 - 质量流量与控制构件位置和压力 drop
+  group: 参数
+- name: Orifice area
+  summary: 孔口开口面积 1e-3 m^2（默认）| 正标量
+  group: 参数
+- name: Pressure drop vector
+  summary: 用于表格参数化的压差值向量 [-4, -3, -2, -1, -.5, 0, .5, 1, 2, 3, 4] MPa（默认）| 1×*n* 向量
+  group: 参数
+- name: Volumetric flow rate vector
+  summary: 体积流量值向量 [-2.44, -2.12, -1.68, -1.22, -.84, 0, .85, 1.21, 1.7, 2.09, 2.41] .* 1e-3 m^3/s（默认）| 1×*n* 向量
+  group: 参数
+- name: Mass flow rate vector
+  summary: 质量流量值向量 [-2.44, -2.12, -1.68, -1.22, -.84, 0, .85, 1.21, 1.7, 2.09, 2.41] kg/s（默认）| 向量 | 1×*n* 向量
+  group: 参数
+- name: Control member position at closed orifice
+  summary: 控制构件偏移 0 m（默认）| 标量
+  group: 参数
+- name: Control member travel between closed and open orifice
+  summary: 节流构件在关闭和打开节流孔之间的最大行程 5e-3 m（默认）| 正标量
+  group: 参数
+- name: Opening orientation
+  summary: 打开节流孔的构件移动方向 Positive control member displacement opens orifice（默认）| Negative control member displacement opens
+    orifice
+  group: 参数
+- name: Maximum orifice area
+  summary: 最大节流孔开口面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Leakage area
+  summary: 完全关闭位置时的节流孔间隙面积 1e-10 m^2（默认）| 正标量
+  group: 参数
+- name: Control member position vector
+  summary: 节流构件位置向量 [0, .002, .004, .007, .017] m（默认）| 1×*n* 向量
+  group: 参数
+- name: Orifice area vector
+  summary: 节流孔开口面积值向量 [1e-09, 2.0352e-07, 4.0736e-05, .00011438, .00034356] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 参数
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Pressure recovery
+  summary: 是否考虑面积扩大处的压力增加 on（默认）| off
+  group: 参数
+- name: Control member position vector, s
+  summary: 开口值向量 [0, .002, .004, .007, .017] m（默认）| 1×*n* 向量
+  group: 参数
+- name: Pressure drop vector, dp
+  summary: 压降值向量 [.3, .5, .7] MPa（默认）| 1×*n* 向量
+  group: 参数
+- name: Volumetric flow rate table, q(s,dp)
+  summary: 体积流量值数组 [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7, .9, 1.06; 1.96, 2.5, 3; 6, 7.7, 9.13] .* 1e-3 m^3/s（默认）|
+    *M*×*N* 矩阵
+  group: 参数
+- name: Mass flow rate table, mdot(s,dp)
+  summary: 质量流量值数组 [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7, .9, 1.06; 1.96, 2.5, 3; 6, 7.7, 9.13] kg/s（默认）| *M*×*N*
+    矩阵
+  group: 参数
+- name: Reference inflow temperature
+  summary: 用于指定表格数据的入口温度 293.15 K（默认）| 以温度单位为单位的正标量
+  group: 参数
+- name: Reference inflow pressure
+  summary: 用于指定表格数据的入口压力 0.101325 MPa（默认）| 以压力单位为单位的正标量
+  group: 参数
+- name: Cross-sectional area at ports A and B
+  summary: 孔口入口或出口处的面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: Orifice Area fault
+  summary: 用于对孔口面积故障建模的选项 Add fault
+  group: 故障
+- name: Opening area when faulted
+  summary: 故障时的孔口特性 Closed（默认）| Open | Maintain at last value
+  group: 故障
+```
 
 ### 参数
 
@@ -474,7 +574,6 @@ drop`。
 #### 依赖关系
 
 要启用此参数，请将 **Orifice type** 设置为 `Variable`，然后点击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices

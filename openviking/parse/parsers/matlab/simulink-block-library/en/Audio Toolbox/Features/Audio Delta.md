@@ -14,6 +14,17 @@ language: en
 # Audio Delta
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Audio features scalar | vector | matrix | 3-D array
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Delta of audio features scalar | vector | matrix | array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -32,8 +43,16 @@ Delta of audio features, returned as an array that is the same size and data typ
 as the input.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Delta window length
+  summary: Window length over which to calculate delta 9 (default) | odd integer greater than 2
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Delta window length** — Window length over which to calculate delta `9` (default) | odd integer greater than 2
 
@@ -51,7 +70,6 @@ than 2.
   simulations, as long as the model does not change. This option requires additional
   startup time, but the speed of the subsequent simulations is comparable to
   `Interpreted execution`.
-
 ## Libraries
 
 Audio Toolbox / Features

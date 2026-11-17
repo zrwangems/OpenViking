@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Bidirectional DC-DC
 
 ## 端口
+```yaml
+ports:
+- name: VoltCmd
+  summary: 指令电压 scalar
+  direction: input
+- name: SrcVolt
+  summary: 输入电压 scalar
+  direction: input
+- name: LdCurr
+  summary: 负载电流 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: LdVolt
+  summary: 负载电压 scalar
+  direction: output
+- name: SrcCurr
+  summary: 源电流 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -58,8 +79,70 @@ DC-to-DC 转换器的负载电压，
 
 DC-to-DC 转换器的源电流消耗，
 *SrcAmp*，单位为 A。
-
 ## 参数
+```yaml
+parameters:
+- name: Converter response time constant, Tc
+  summary: 常量 1/1000（默认）| scalar
+  group: ''
+  block_parameter: Tc
+  values: 1/1000（默认）| scalar
+- name: Converter response initial voltage, Vinit
+  summary: 电压 0（默认）| scalar
+  group: ''
+  block_parameter: Vinit
+  values: 0（默认）| scalar
+- name: Converter power limit, Plimit
+  summary: 功率 100000（默认）| scalar
+  group: ''
+  block_parameter: Plimit
+  values: 100000（默认）| scalar
+- name: Parameterize losses by
+  summary: 损耗计算 Single efficiency measurement（默认）| Tabulated loss data | Tabulated efficiency data
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement（默认）| Tabulated loss data | Tabulated efficiency data
+- name: Overall DC to DC converter efficiency, eff
+  summary: 常量 98（默认）| scalar
+  group: ''
+  block_parameter: eff
+  values: 98（默认）| scalar
+- name: Vector of voltages (v) for tabulated loss, v_loss_bp
+  summary: 断点 [0 200 400 600 800 1000]（默认）| 1-by-M vector
+  group: ''
+  block_parameter: v_loss_bp
+  values: '[0 200 400 600 800 1000]（默认）| 1-by-M vector'
+- name: Vector of currents (i) for tabulated loss, i_loss_bp
+  summary: 断点 [0 25 50 75 100]（默认）| 1-by-N vector
+  group: ''
+  block_parameter: i_loss_bp
+  values: '[0 25 50 75 100]（默认）| 1-by-N vector'
+- name: Corresponding losses, losses_table
+  summary: 二维查找表 N×M 矩阵
+  group: ''
+  block_parameter: losses_table
+  values: N×M 矩阵
+- name: Vector of voltages (v) for tabulated efficiency, v_eff_bp
+  summary: 断点 [200 400 600 800 1000]（默认）| 1×M 向量
+  group: ''
+  block_parameter: v_eff_bp
+  values: '[200 400 600 800 1000]（默认）| 1×M 向量'
+- name: Vector of currents (i) for tabulated efficiency, i_eff_bp
+  summary: 断点 [25 50 75 100]（默认）| 1×N 向量
+  group: ''
+  block_parameter: i_eff_bp
+  values: '[25 50 75 100]（默认）| 1×N 向量'
+- name: Corresponding efficiency, efficiency_table
+  summary: 二维查找表 N×M 矩阵
+  group: ''
+  block_parameter: efficiency_table
+  values: N×M 矩阵
+- name: Calibrate Maps
+  summary: 使用测量数据校准表格 selection
+  group: ''
+  block_parameter: CalLossMapsButton
+  values: selection
+```
 
 #### 电气控制
 
@@ -309,7 +392,6 @@ DC-to-DC 转换器的初始负载电压，
 #### 依赖关系
 
 要启用此参数，请为 **Parameterize losses by** 选择 `Tabulated loss data`。
-
 ## 所属库
 
 Powertrain Blockset / Energy Storage and Auxiliary Drive / DC-DC

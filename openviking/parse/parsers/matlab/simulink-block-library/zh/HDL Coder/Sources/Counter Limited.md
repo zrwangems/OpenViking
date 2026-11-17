@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Counter Limited
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 计数值标量
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输出
 
@@ -23,8 +30,24 @@ chinese_source: worker-translation
 计数值，以 8 位、16 位、32 位、64 位或 ufix128 的无符号整数形式返回。该模块使用表示上限所需的最小位数。
 
 **数据类型：** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Upper limit
+  summary: 上限 7（默认）| 标量
+  group: ''
+  block_parameter: uplimit
+  type: character vector
+  values: scalar
+  default: '''7'''
+- name: Sample time
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: tsamp
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+```
 
 ### **Upper limit** — 上限 `7`（默认）| 标量
 
@@ -53,7 +76,6 @@ initial offset`）。要继承采样时间，请将此参数设置为 `-1`。有
 | **类型**：character vector |
 | **值**：scalar | vector |
 | **默认值**：`'-1'` |
-
 ## 所属库
 
 Simulink / Sources HDL Coder / Sources

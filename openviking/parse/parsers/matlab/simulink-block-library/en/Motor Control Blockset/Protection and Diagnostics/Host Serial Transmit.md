@@ -14,6 +14,13 @@ language: en
 # Host Serial Transmit
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Port to receive data to be transmitted scalar
+  direction: input
+  data_types: single | int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### Input
 
@@ -23,8 +30,22 @@ This port accepts both one-dimensional and matrix data for transmission to the
 target hardware.
 
 **Data Types:** `single` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Serial Connection
+  summary: Serial port used for transmitting data Serial 1 (default) | Serial 2 | Serial 3 | Serial 4
+  group: ''
+- name: Additional package header
+  summary: Package header data 'S' (default) | scalar
+  group: ''
+- name: Additional package terminator
+  summary: Package terminator data 'E' (default) | scalar
+  group: ''
+- name: Enable blocking mode
+  summary: Block simulation while sending data off (default) | on
+  group: ''
+```
 
 ### **Serial Connection** — Serial port used for transmitting data `Serial 1` (default) | `Serial 2` | `Serial 3` | `Serial 4`
 
@@ -56,7 +77,6 @@ the quotes are not transmitted and they are not included in the total byte count
 
 Select this parameter to block the simulation while transmitting data. Clear this
 parameter if you do not want the write operation to block the simulation.
-
 ## Libraries
 
 Motor Control Blockset / Protection and Diagnostics

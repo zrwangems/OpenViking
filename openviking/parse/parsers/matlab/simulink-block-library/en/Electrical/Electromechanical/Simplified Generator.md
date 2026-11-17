@@ -14,6 +14,33 @@ language: en
 # Simplified Generator
 
 ## Ports
+```yaml
+ports:
+- name: Pref
+  summary: Reference power, in pu physical signal
+  direction: input
+- name: R
+  summary: Rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case mechanical rotational
+  direction: conserving
+- name: '~'
+  summary: Three-phase port three-phase electrical
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+```
 
 ### Input
 
@@ -71,8 +98,58 @@ Electrical conserving port associated with the *c*-phase.
 
 To enable this port, set **Electrical connection** to
 `Expanded three-phase ports`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: General
+- name: Rated power
+  summary: Rated power 100e3 W (default) | nonnegative scalar
+  group: General
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz (default) | positive scalar
+  group: General
+- name: Internal source voltage (phase-to-phase RMS)
+  summary: Internal source voltage 1485 V (default) | nonnegative scalar
+  group: General
+- name: Source impedance
+  summary: Source impedance parameterization X/R Ratio (default) | Series RL
+  group: General
+- name: Short circuit power
+  summary: Short circuit power 1e6 A*V (default) | positive scalar
+  group: General
+- name: X/R ratio
+  summary: X/R ratio 15 (default) | positive scalar
+  group: General
+- name: Inductance
+  summary: Inductance 0.01 H (default) | positive scalar
+  group: General
+- name: Resistance
+  summary: Resistance 0.1 Ohm (default) | positive scalar
+  group: General
+- name: Source impedance parasitic parallel conductance
+  summary: Source impedance parasitic parallel conductance 0 1/Ohm (default) | nonnegative scalar
+  group: General
+- name: Percentage mechanical efficiency
+  summary: Percentage mechanical efficiency 95 (default) | positive scalar
+  group: General
+- name: Active power frequency droop
+  summary: Active power frequency droop 0.1 Hz (default) | nonnegative scalar
+  group: General
+- name: Droop filter time constant
+  summary: Droop filter time constant 1e-2 s (default) | scalar
+  group: General
+- name: Rotor inertia
+  summary: Rotor inertia 1 kg*m^2 (default) | positive scalar
+  group: General
+- name: Rotor damping
+  summary: Rotor damping 0 N*m*s/rad (default) | nonnegative scalar
+  group: General
+- name: Electrical power measurement filter time constant
+  summary: Electrical power measurement filter time constant 1e-3 s (default) | nonnegative scalar
+  group: General
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -170,7 +247,6 @@ Rotor damping.
 ### **Electrical power measurement filter time constant** — Electrical power measurement filter time constant `1e-3` `s` (default) | nonnegative scalar
 
 Filter time constant of the electrical power measurement.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical

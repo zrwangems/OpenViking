@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Probability Hypothesis Density (PHD) Tracker
 
 ## 端口
+```yaml
+ports:
+- name: Detections
+  summary: 检测列表 包含 MATLAB® 结构的 Simulink® 总线
+  direction: input
+- name: Prediction Time
+  summary: 航迹更新时间 实数标量
+  direction: input
+- name: Sensor Configurations
+  summary: 跟踪传感器的配置 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: State Parameters
+  summary: 跟踪状态参数，指定为包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Confirmed Tracks
+  summary: 确认航迹，包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Tentative Tracks
+  summary: 暂定航迹，包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: All Tracks
+  summary: 确认和暂定航迹，包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Info
+  summary: 用于分析航迹更新的附加信息 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+```
 
 ### 输入
 
@@ -153,8 +180,82 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Port Setting** 选项卡中，选择 **Enable information output**。
-
 ## 参数
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: 唯一跟踪器标识符 0（默认）| 非负整数
+  group: ''
+- name: Detection partition function
+  summary: 用于将检测划分为检测单元的函数 partitionDetections（默认）| 函数名
+  group: ''
+- name: Assignment threshold
+  summary: 用于选择检测以初始化分量的阈值 25（默认）| 正实数标量
+  group: ''
+- name: Maximum number of sensors
+  summary: 最大传感器数量 20（默认）| 正整数
+  group: ''
+- name: Maximum number of tracks
+  summary: 最大航迹数量 1000（默认）| 正整数
+  group: ''
+- name: Maximum number of components
+  summary: 最大分量数量 1000（默认）| 正整数
+  group: ''
+- name: Sensor configurations
+  summary: 跟踪传感器的配置 struct('SensorIndex',1,'IsValidTime',true)（默认）| 结构体 | 结构体数组
+  group: ''
+- name: Update sensor configurations with time
+  summary: 随时间更新传感器配置 off（默认）| on
+  group: ''
+- name: Track state parameters
+  summary: 航迹状态参考坐标系结构的参数 | 结构体数组
+  group: ''
+- name: Update track state parameters with time
+  summary: 随时间更新航迹状态参数 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted Execution（默认）| Code Generation
+  group: ''
+- name: Birth rate of new targets
+  summary: 新目标的出生率（以密度计） 1e-3（默认）| 正实数标量
+  group: ''
+- name: Death rate of components
+  summary: 分量的消亡率（以密度计） 1e-6（默认）| 正实数标量
+  group: ''
+- name: Threshold for initializing tentative tracks
+  summary: 初始化暂定航迹的阈值 0.5（默认）| 正实数标量
+  group: ''
+- name: Threshold for track confirmation
+  summary: 航迹确认阈值 0.8（默认）| 正实数标量
+  group: ''
+- name: Threshold for track deletion
+  summary: 分量删除阈值 1e-3（默认）| 正实数标量
+  group: ''
+- name: Threshold for components merging
+  summary: 分量合并阈值 25（默认）| 正实数标量
+  group: ''
+- name: Thresholds for label management
+  summary: 标签管理阈值 [1.1 1 0.8]（默认）| 1×3 正数值向量
+  group: ''
+- name: Prediction time source
+  summary: 预测时间来源 Auto（默认）| Input port
+  group: ''
+- name: Enable tentative tracks output
+  summary: 启用暂定航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable all tracks output
+  summary: 启用所有航迹输出端口 off（默认）| on
+  group: ''
+- name: Enable information output
+  summary: 启用分析信息输出端口 off（默认）| on
+  group: ''
+- name: 输出总线名称的来源
+  summary: 输出航迹总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: 输出信息总线名称的来源
+  summary: 输出信息总线名称的来源 Auto（默认）| Property
+  group: ''
+```
 
 #### 跟踪器配置
 
@@ -344,7 +445,6 @@ Ps=(1−Pd)ΔT
 #### 依赖关系
 
 要启用此参数，请在 **Port Setting** 选项卡上选择 **Enable information output**。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

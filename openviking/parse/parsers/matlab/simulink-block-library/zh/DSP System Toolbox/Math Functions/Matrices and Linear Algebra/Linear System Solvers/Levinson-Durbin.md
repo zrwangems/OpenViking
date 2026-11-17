@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Levinson-Durbin
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: A
+  summary: 模型系数向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: K
+  summary: 反射系数向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: P
+  summary: 输出预测误差功率向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -73,8 +92,49 @@ k(n)]`，其中包含 *n* 个反射系数。
 要启用此端口，请选中**输出预测误差功率 (P)**复选框。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 输出
+  summary: 输出 K（默认） | A and K | A
+  group: 主选项卡
+- name: 输出预测误差功率 (P)
+  summary: 输出预测误差功率 off (默认) | on
+  group: 主选项卡
+- name: 如果滞后 0 处的值为零，则 A=[1 zeros], K=[zeros], P=0
+  summary: 如果滞后 0 处的值为零，则 A=[1 zeros], K=[zeros], P=0 on (默认) | off
+  group: 主选项卡
+- name: 舍入模式
+  summary: 舍入模式 Floor (默认) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: 整数溢出时饱和
+  summary: 整数溢出时饱和 off (默认) | on
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出 Inherit: Same as input (默认) | 数值类型'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器 Inherit: Same as input (默认) | Inherit: Same as product output | 数值类型'
+  group: 数据类型选项卡
+- name: 多项式系数 (A)
+  summary: 多项式系数数据类型 fixdt(1,16,0)（默认）| 数值类型
+  group: 数据类型选项卡
+- name: 反射系数 (K)
+  summary: 反射系数数据类型 fixdt(1,16,0)（默认）| 数值类型
+  group: 数据类型选项卡
+- name: 预测误差功率 (P)
+  summary: '预测误差功率数据类型 Inherit: Same as input（默认）| 数值类型'
+  group: 数据类型选项卡
+- name: 最小值
+  summary: 多项式系数、反射系数或预测误差功率的最小值 []（默认值）| 标量
+  group: 数据类型选项卡
+- name: 最大值
+  summary: 多项式系数、反射系数或预测误差功率的最大值 []（默认值）| 标量
+  group: 数据类型选项卡
+- name: 锁定数据类型设置以防止定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认值）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -204,7 +264,6 @@ k(n)]`，其中包含 *n* 个反射系数。
 ### **锁定数据类型设置以防止定点工具更改** — 防止定点工具覆盖数据类型 `off`（默认值）| `on`
 
 选择此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Linear Prediction / Linear System Solvers DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

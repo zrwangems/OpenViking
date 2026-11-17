@@ -14,6 +14,21 @@ language: en
 # Simulation 3D UAV Vehicle
 
 ## Ports
+```yaml
+ports:
+- name: Translation
+  summary: Translated position of UAV vector
+  direction: input
+  data_types: double
+- name: Rotation
+  summary: Rotation of UAV vector | matrix
+  direction: input
+  data_types: double
+- name: GeoOrigin
+  summary: Geospatial coordinates of Unreal Engine world origin vector
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -102,8 +117,38 @@ To enable this port, select the **Use geospatial coordinates for inputs
 and initial values** parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Type of vehicle Quadcopter (default) | Fixed wing | Custom
+  group: Vehicle Parameters
+- name: Path to custom mesh
+  summary: Reference path to the custom UAV mesh asset /MathWorksUAVContent/UAVs/HexaRotorUAV/HexaRotor.HexaRotor (default)
+    | valid asset reference path
+  group: Vehicle Parameters
+- name: Color
+  summary: Color of vehicle Black (default) | Orange | Yellow | Green | Blue | Red | White | Silver
+  group: Vehicle Parameters
+- name: Name
+  summary: Name of vehicle SimulinkVehicle1 (default) | vehicle name
+  group: Vehicle Parameters
+- name: Use geospatial coordinates for inputs and initial values
+  summary: Use geospatial coordinates for port inputs and initial values off (default) | on
+  group: Vehicle Parameters
+- name: Initial Translation (m)
+  summary: Initial vehicle position [0 0 0] (default) | vector
+  group: Initial Values
+- name: Initial Georeference Origin (LLA)
+  summary: Initial georeference origin [0 0 0] (default) | vector
+  group: Initial Values
+- name: Initial Rotation (rad)
+  summary: Initial angles of vehicle rotation [0 0 0] (default) | vector | matrix
+  group: Initial Values
+- name: Sample time
+  summary: Sample time -1 (default) | scalar
+  group: Sample Time
+```
 
 ### Vehicle Parameters
 
@@ -211,7 +256,6 @@ scalar in seconds. The graphics frame rate is the inverse of the sample time.
 
 If you set the sample time to `-1`, the block uses the sample
 time specified in the Simulation 3D Scene Configuration block.
-
 ## Libraries
 
 UAV Toolbox / Simulation 3D

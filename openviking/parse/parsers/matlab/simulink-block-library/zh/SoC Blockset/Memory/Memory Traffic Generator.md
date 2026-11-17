@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Memory Traffic Generator
 
 ## 端口
+```yaml
+ports:
+- name: burstDone
+  summary: 突发结束及存储器访问 标量
+  direction: input
+  data_types: BurstRequest2BusObj
+- name: burstReq
+  summary: 向存储器控制器请求存储器访问 标量
+  direction: output
+  data_types: BurstRequest2BusObj
+```
 
 ### 输入
 
@@ -38,8 +49,46 @@ chinese_source: worker-translation
 当您选中 **Show Memory Controller ports** 参数时，此端口可见。
 
 **数据类型：** `BurstRequest2BusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Show Memory Controller ports
+  summary: 显示输入和输出端口 on（默认）| off
+  group: ''
+- name: Memory selection
+  summary: 在存储器区域之间选择 PS memory（默认）| PL memory
+  group: ''
+- name: Request type
+  summary: 在写请求或读请求之间选择 Writer（默认）| Reader
+  group: ''
+- name: Total burst requests
+  summary: 要生成的突发请求数量 100（默认）| 大于 1 的整数
+  group: ''
+- name: Burst size (bytes)
+  summary: 生成的突发事务的大小 256（默认）| 标量
+  group: ''
+- name: Time between bursts (s)
+  summary: 突发请求之间的仿真时间 1e-6（默认）| 时间，以秒为单位
+  group: ''
+- name: Allow simulation only parameters
+  summary: 仅针对仿真配置附加参数 on（默认）| off
+  group: ''
+- name: First burst time
+  summary: 初始突发请求的仿真时间 10e-6（默认）| 时间，以秒为单位
+  group: ''
+- name: Random time between bursts (s)
+  summary: 重复请求的仿真时间范围 [1e-6 1e-6]（默认）| 形式为 [*min* *max*] 的向量
+  group: ''
+- name: Wait for burst done
+  summary: 在生成下一个请求之前等待突发完成信号 off（默认）| on
+  group: ''
+- name: Enable assertion
+  summary: 启用详细信息 off（默认）| on
+  group: ''
+- name: View performance plots
+  summary: 显示性能指标按钮
+  group: ''
+```
 
 ### **Show Memory Controller ports** — 显示输入和输出端口 `on`（默认）| `off`
 
@@ -134,7 +183,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请清除 **Show Memory Controller ports** 参数。
-
 ## 所属库
 
 SoC Blockset / Memory

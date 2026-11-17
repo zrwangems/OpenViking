@@ -14,6 +14,21 @@ language: en
 # Fractional Clock Divider with DSM
 
 ## Ports
+```yaml
+ports:
+- name: clk in
+  summary: Input clock frequency scalar
+  direction: input
+  data_types: double
+- name: div-by
+  summary: Ratio of output to input clock frequency fractional scalar
+  direction: input
+  data_types: double
+- name: clk out
+  summary: Output clock frequency scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -54,8 +69,19 @@ port of a PFD block. The output at the **clk out**
 port is a square pulse train of 1 V amplitude.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Delta Sigma Modulator order
+  summary: Order of the Delta Sigma Modulator 3rd order (default) | 1st order | 2nd order | 4th order
+  group: ''
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: ''
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 1 (default) | positive integer scalar
+  group: ''
+```
 
 ### **Delta Sigma Modulator order** — Order of the Delta Sigma Modulator `3rd order` (default) | `1st order` | `2nd order` | `4th order`
 
@@ -109,7 +135,6 @@ dialog box.
   current value of **Buffer size**.
 - Use `set_param(gcb,'NBuffer',value)` to set
   **Buffer size** to a specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Building Blocks

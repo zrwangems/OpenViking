@@ -14,6 +14,17 @@ language: en
 # Tanh Layer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input data scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output data scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -30,8 +41,22 @@ The result of performing the hyperbolic tangent operation on the input
 matrix.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Approximation method
+  summary: Approximation method for computing layer output None (default) | CORDIC | Lookup
+  group: Data Types
+  block_parameter: ApproximationMethod
+  type: character vector
+  values: '''none'' | ''CORDIC'' | ''Lookup'''
+  default: '''none'''
+- name: Sample time
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -80,7 +105,6 @@ programmatically, use the `set_param` (Simulink) function.
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **Values:** `'-1'` (default) | scalar |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Learning Layers / Activation Layers

@@ -14,6 +14,19 @@ language: en
 # Function Caller
 
 ## Ports
+```yaml
+ports:
+- name: Input argument
+  summary: Input signal for input argument scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Output argument
+  summary: Output signal or message for output argument scalar | vector | matrix | message
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -50,8 +63,52 @@ port (`y`) on the Function Caller
 block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function prototype
+  summary: Specify function prototype y=f(u) (default) | character vector | string
+  group: ''
+  block_parameter: FunctionPrototype
+  type: character vector
+  values: '''y=f(u)'' | *function prototype*'
+  default: '''y=f(u)'''
+- name: Function name
+  summary: Qualified function name f (default) | character vector | string
+  group: ''
+  block_parameter: ScopedFunctionName
+  type: character vector
+  values: '''f'' | ''Client.f'' | *function name*'
+  default: '''f'''
+- name: Input argument specifications
+  summary: Specify input argument data type, dimensions, and complexity <Enter example> (default) | MATLAB expression
+  group: ''
+  block_parameter: InputArgumentSpecifications
+  type: character vector
+  values: ''''' | *MATLAB expression*'
+  default: ''''''
+- name: Output argument specifications
+  summary: Specify output argument data type, dimensions, and complexity <Enter example> (default) | MATLAB expression
+  group: ''
+  block_parameter: OutputArgumentSpecifications
+  type: character vector
+  values: ''''' | *MATLAB expression*'
+  default: ''''''
+- name: Sample time
+  summary: Time interval between function calls -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: scalar | vector | *sample time*
+  default: '''-1'''
+- name: Execute function call asynchronously
+  summary: Option to execute function calls asynchronously off (default) | on
+  group: ''
+  block_parameter: AsynchronousCaller
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Function prototype** — Specify function prototype `y=f(u)` (default) | character vector | string
 
@@ -205,7 +262,6 @@ asynchronously.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / User-Defined Functions

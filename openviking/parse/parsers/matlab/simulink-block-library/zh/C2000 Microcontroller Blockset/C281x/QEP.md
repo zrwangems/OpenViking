@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C281x QEP
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Module**
 :   指定要使用哪些 QEP 引脚：
@@ -103,7 +108,6 @@ R2025b 中未记录。
 
 **数据类型**
 :   QEP 引脚数据的数据类型。电路将数据读取为 16 位数据，然后将其转换为所选数据类型。有效数据类型为 `auto`、`double`、`single`、`int8`、`uint8`、`int16`、`uint16`、`int32`、`uint32` 或 `boolean`。
-
 ## 所属库
 
 R2025b 中未记录。

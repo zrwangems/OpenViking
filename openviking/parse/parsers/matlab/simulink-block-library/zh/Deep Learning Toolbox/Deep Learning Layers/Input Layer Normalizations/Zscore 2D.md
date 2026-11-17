@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Zscore 2D
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据 三维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 归一化输出数据 三维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,88 @@ chinese_source: worker-translation
 归一化后的输出数据。输出数据具有三个维度，依次对应两个空间维度和一个通道维度。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Layer
+  summary: 对应的层对象 layerObject（默认）| imageInputLayer 对象
+  group: 主要
+  block_parameter: Layer
+  type: workspace variable
+  values: imageInputLayer object
+  default: '''layerObject'''
+- name: Data format
+  summary: 输入数据的格式 SSC（默认）
+  group: 主要
+  block_parameter: DataFormat
+  type: character vector
+  values: '''SSC'''
+  default: '''SSC'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit
+    via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Output integer rounding mode
+  summary: 定点输出转换操作的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Output saturate on integer overflow
+  summary: 输出转换操作的溢出操作方式 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Mean
+  summary: '均值的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: MeanDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Standard deviation
+  summary: '标准差的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: StandardDeviationDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''Inherit: Inherit from ''Constant value'''' | <data type
+    expression>'
+- name: Accumulator
+  summary: '累加器的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: AccumDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Same as first input'' | <data type expression>'
+- name: Internal integer rounding mode
+  summary: 内部定点操作的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: InternalRndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Internal saturate on integer overflow
+  summary: 内部模块操作的溢出操作方式 off（默认）| on
+  group: 数据类型
+  block_parameter: InternalSaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Sample time
+  summary: 指定采样时间的选项 -1（默认）| 标量
+  group: 执行
+  block_parameter: SampleTime
+  values: '''-1'' (default) | scalar'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -281,7 +372,6 @@ chinese_source: worker-translation
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **值**：`'-1'` (default) | scalar |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Input Layer Normalizations

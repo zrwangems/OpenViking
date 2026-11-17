@@ -14,10 +14,15 @@ language: en
 # C281x CAP
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 ### Data Format Pane
 
@@ -390,7 +395,6 @@ pane depends on the EV module you selected:
 ### See Also
 
 C28x Hardware Interrupt
-
 ## Libraries
 
 Not documented in R2025b.

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # SFFM Current Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: unspecified
+- name: '-'
+  summary: 负极端子电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,28 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与 SFFM 电流源负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Current offset, IO
+  summary: 电流偏移 0 A（默认）
+  group: ''
+- name: Current amplitude, IA
+  summary: 电流幅值 0 A（默认）
+  group: ''
+- name: Carrier frequency, FC
+  summary: 载波频率 0 Hz（默认）| 非负标量
+  group: ''
+- name: Modulation index, MI
+  summary: 调制指数 0（默认）| 非负标量
+  group: ''
+- name: Signal frequency, FS
+  summary: 信号频率 0 Hz（默认）| 非负标量
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: 是否包含并联电导 Yes（默认）| No
+  group: ''
+```
 
 ### **Current offset, IO** — 电流偏移 `0` `A`（默认）
 
@@ -61,7 +90,6 @@ chinese_source: worker-translation
 | *`Yes`* | | *`No`* | | |
 | **模型包含 Environment Parameters 模块** | **模型不包含 Environment Parameters 模块** | 不包含并联电导 *GMIN*，且其不影响电流源。 | | |
 | *GMIN* 等于 Environment Parameters 模块中 **GMIN** 参数的值。 | *GMIN* = `1e-12` `Ohm` |
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # MAVLink Serializer
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: MAVLink 数据包非虚拟总线
+  direction: input
+  data_types: bus
+- name: Data
+  summary: MAVLink 数据流向量
+  direction: output
+  data_types: uint8
+- name: Length
+  summary: 序列化数据的长度标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输入
 
@@ -36,8 +51,22 @@ chinese_source: worker-translation
 序列化数据的真实长度，包括头部和载荷。根据序列化期间 MAVLink 载荷中移除了多少尾随零，该长度可能小于 MAVLink 消息的最大可能长度。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: MAVLink dialect source
+  summary: 用于指定 MAVLink 消息定义的来源 Select from standard MAVLink dialects（默认）| Specify your own
+  group: ''
+- name: MAVLink dialect
+  summary: 用于解析 MAVLink 消息的消息定义 common.xml（默认）| 字符串
+  group: ''
+- name: MAVLink version
+  summary: MAVLink 协议版本 2（默认）| 1
+  group: ''
+- name: MAVLink Message type
+  summary: MAVLink 消息 HEARTBEAT（默认）
+  group: ''
+```
 
 ### **MAVLink dialect source** — 用于指定 MAVLink 消息定义的来源 `Select from standard MAVLink dialects`（默认）| `Specify your own`
 
@@ -63,7 +92,6 @@ chinese_source: worker-translation
 MAVLink 消息，指定为字符串。单击 **Select**，可从特定于您为 **MAVLink dialect** 和 **MAVLink version** 参数所选值的可用 MAVLink 消息完整列表中进行选择。
 
 **数据类型：** `string`
-
 ## 所属库
 
 UAV Toolbox / MAVLink

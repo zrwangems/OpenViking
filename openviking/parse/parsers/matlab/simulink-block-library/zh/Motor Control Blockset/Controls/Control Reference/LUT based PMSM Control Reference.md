@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # LUT based PMSM Control Reference
 
 ## 端口
+```yaml
+ports:
+- name: Tref
+  summary: 参考转矩值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: 机械转速标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vdc
+  summary: 直流母线电压标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Idref
+  summary: 参考 *d* 轴电流标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Iqref
+  summary: 参考 *q* 轴电流标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -55,8 +78,162 @@ based)`。
 参考 *q* 轴相电流（单位：安培）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Motor topology
+  summary: PMSM 类型 Interior PMSM（默认）| Surface PMSM
+  group: 电机参数
+- name: Field weakening control method
+  summary: 弱磁控制类型 CVCP（默认）| CCCP | VCLMT | NONE
+  group: 电机参数
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 4（默认）| 标量
+  group: 电机参数
+- name: Stator resistance per phase, Rs (Ohm)
+  summary: 定子相绕组电阻（欧姆） 0.36（默认）| 标量
+  group: 电机参数
+- name: Vdc input method
+  summary: Vdc 的输入方法 Specify via dialog（默认）| Input port - use 3D LUT (voltage slice based) | 输入端口 - 使用 2D LUT（缩放-w based)
+  group: 电机参数
+- name: DC voltage to compute LUTs (V)
+  summary: 用于计算 LUT 的直流母线电压（伏特） 24（默认）| 标量
+  group: 电机参数
+- name: DC bus voltage breakpoint vector, Vdc (V)
+  summary: 直流母线电压查找向量（伏特） [18,30]（默认）| 向量
+  group: 电机参数
+- name: 电机参数输入方法
+  summary: 电机参数类型 Linear model with lumped parameters（默认）| 使用 D、Q 磁链的非线性模型 LUTs | 使用 Ld、Lq 和 FluxPM 的非线性模型 LUTs | 使用 id 和
+    iq 的非线性模型 LUTs
+  group: 电机参数
+- name: Enable percentages for torque breakpoint vector
+  summary: 为转矩断点向量启用百分比值 off（默认）| on
+  group: 电机参数
+- name: Enable custom breakpoint vectors for torque and speed
+  summary: 为转矩和速度使用自定义断点 off（默认）| on
+  group: 电机参数
+- name: Reference percentage torque breakpoint vector, Trefpct (%)
+  summary: 转矩参考查找向量（百分比） [0,50,100]（默认）| 向量
+  group: 电机参数
+- name: Torque envelope for speed breakpoint vector, wrpm (rpm)
+  summary: 转速断点向量 [0.3 0.3 0.15 0.05]（默认）| 向量的转矩包络值
+  group: 电机参数
+- name: Reference torque breakpoint vector, Tref (Nm)
+  summary: 转矩参考查找向量 [0,0.15,0.3]（默认）| 向量
+  group: 电机参数
+- name: Mechanical speed breakpoint vector, wrpm (rpm)
+  summary: 转子转速查找向量 [0,1000,2000,6000]（默认）| 向量
+  group: 电机参数
+- name: Current Limit, I_limit (A)
+  summary: 电机最大相电流限值（安培）7.1（默认）| 标量
+  group: 电机参数
+- name: Viscous damping coefficient, Bv (Nm-s/rad)
+  summary: 粘性阻尼系数 2.636875217824e-6（默认）| 标量
+  group: 电机参数
+- name: D-axis current breakpoint vector, id (A)
+  summary: d 轴电流查找向量 [-40, -20, 0, 20]（默认）| 向量
+  group: 电机参数
+- name: Q-axis current breakpoint vector, iq (A)
+  summary: q 轴电流查找向量 [-40, -20, 0, 20, 40]（默认）| 向量
+  group: 电机参数
+- name: Use measured (instead of computed) torque
+  summary: 使用转矩的测量值（而非计算值）off（默认）| on
+  group: 电机参数
+- name: Measured torque LUT, T(id,iq) (Nm)
+  summary: 测量的查找数据 [-3.4560,-1.7280,0, 1.7280, 3.4560;-2.4960,-1.2480,0, 1.2480, 2.4960;-1.5360,-0.7680,0, 0.7680, 1.5360;-0.5760,-0.2880,0,
+    0.2880, 0.5760]（默认）| 向量
+  group: 电机参数
+- name: Stator d-axis inductance, Ld (H)
+  summary: d 轴定子绕组电感 0.2e-3（默认）| 标量
+  group: 集总参数线性模型
+- name: Stator q-axis inductance, Lq (H)
+  summary: q 轴定子绕组电感 0.4e-3（默认）| 标量
+  group: 集总参数线性模型
+- name: Permanent magnet flux linkage (Wb)
+  summary: 永磁体磁链 6.4e-3（默认）| 标量
+  group: 集总参数线性模型
+- name: D-axis flux linkage LUT, FluxD (id,iq) (Wb)
+  summary: 参考 d 轴磁链查找数据 [-1.6,-1.6,-1.6,-1.6,-1.6;2.4,2.4,2.4,2.4,2.4;6.4,6.4,6.4,6.4,6.4;10.4,10.4,10.4,10.4,10.4]*1e-3（默认）|
+    向量
+  group: 带 D,Q 磁链 LUT 的非线性模型
+- name: Q-axis flux linkage LUT, FluxQ (id,iq) (Wb)
+  summary: 参考 q 轴磁链查找数据 2*[-8,-4,0,4,8;-8,-4,0,4,8;-8,-4,0,4,8;-8,-4,0,4,8]*1e-3（默认）| 向量
+  group: 带 D,Q 磁链 LUT 的非线性模型
+- name: Ld LUT, Ld(id,iq) (H)
+  summary: d 轴电感查找数据 0.2e-3 * ones(4, 5)（默认）| 矩阵
+  group: 带 *Ld*、*Lq* 和 *FluxPM* LUT 的非线性模型
+- name: Lq LUT, Lq(id,iq) (H)
+  summary: q 轴电感查找数据 0.4e-3 * ones(4, 5)（默认）| 矩阵
+  group: 带 *Ld*、*Lq* 和 *FluxPM* LUT 的非线性模型
+- name: PM flux linkage LUT, FluxPM(id,iq) (Wb)
+  summary: 永磁体磁链查找数据 6.4e-3 * ones(4, 5)（默认）| 矩阵
+  group: 带 *Ld*、*Lq* 和 *FluxPM* LUT 的非线性模型
+- name: Reference torque breakpoint vector, Tref (Nm)
+  summary: 转矩参考查找向量 [0 0.15 0.3]（默认）| 向量
+  group: 带 *id* 和 *iq* LUT 的非线性模型
+- name: Mechanical speed breakpoint vector, wrpm (rpm)
+  summary: 转子转速查找向量 [0 1000 2000 6000]（默认）| 向量
+  group: 带 *id* 和 *iq* LUT 的非线性模型
+- name: Reference id LUT, id(Tref,wrpm) (A)
+  summary: 参考 d 轴电流查找表数据 [0,0,0,-7.1;0,0,0,-7.1;0,0,0,-7.1]（默认）| 矩阵
+  group: 带 *id* 和 *iq* LUT 的非线性模型
+- name: Reference id LUT, id(Tref,wrpm,Vdc) (A)
+  summary: 参考 d 轴电流查找表数据 cat(3,[0,0,0,-7.1;-0.4579,-0.4579,-0.4579,-7.1;-1.4457,-1.4457,-1.4457,-7.1],[0,0,0,0;-0.4579,-0.4579,-0.4579,-1.2581;-1.4457,-1.4457,-1.4457,-4.5085])（默认）|
+    矩阵
+  group: 带 *id* 和 *iq* LUT 的非线性模型
+- name: Reference iq LUT, iq(Tref,wrpm) (A)
+  summary: 参考 q 轴电流查找表数据 [0,0,0,0;3.9091,3.9091,3.9091,0;7.1,7.1,7.1,0]（默认）| 矩阵
+  group: 带 *id* 和 *iq* LUT 的非线性模型
+- name: Reference iq LUT, iq(Tref,wrpm,Vdc) (A)
+  summary: 参考 q 轴电流查找表数据 cat(3,[0,0,0,0;3.8539,3.8539,3.8539,0;6.9513,6.9513,6.9513,0],[0,0,0,0;3.8539,3.8539,3.8539,3.7611;6.9513,6.9513,6.9513,5.4848])（默认）|
+    矩阵
+  group: 带 *id* 和 *iq* LUT 的非线性模型
+- name: Input units
+  summary: 模块输入值的测量单位 Per-Unit (PU)（默认）| SI Units
+  group: 输入单位
+- name: Base voltage (V)
+  summary: 标称电压限值 24/sqrt(3)（默认）| 标量
+  group: 输入单位
+- name: Base current (A)
+  summary: 标称电流限值 19.3（默认）| 标量
+  group: 输入单位
+- name: Base speed (rpm)
+  summary: 标称转速限值 4107（默认）| 标量
+  group: 输入单位
+- name: Base torque (Nm)
+  summary: 标称转矩限值 0.74112（默认）
+  group: 输入单位
+- name: Allow scaled-down motor parameters with CodeGen (higher precision with Fixed-Point data type)
+  summary: 按标幺值比例缩小内部参数 on（默认）| off
+  group: 输入单位
+- name: Enable saving the computed LUTs
+  summary: 启用模块保存计算得到的 LUT off（默认）| on
+  group: Plotting Options
+- name: Compute (and plot) id and iq LUTs
+  summary: 计算（并绘制）*id* 和 *iq* 查找数据 按钮
+  group: Plotting Options
+- name: Use default options for plotting
+  summary: 使用默认选项绘制约束曲线 on（默认）| off
+  group: Plotting Options
+- name: Motor speed (RPM)
+  summary: 用于绘制约束曲线的电机转速 3000（默认）| 标量
+  group: Plotting Options
+- name: Motor torque (Nm)
+  summary: 用于绘制约束曲线的电机转矩 0.1（默认）| 标量
+  group: Plotting Options
+- name: Enable plotting the drive characteristics
+  summary: 使能模块绘制驱动特性 off（默认）| on
+  group: Plotting Options
+- name: Include the drive characteristics for an increased motor current
+  summary: 使能模块为增大的电机电流绘制驱动特性 off（默认）| on
+  group: Plotting Options
+- name: Plot constraint curves
+  summary: 绘制电机的约束曲线 按钮
+  group: Plotting Options
+- name: Compute and show
+  summary: 计算并显示特性转矩和转速 按钮
+  group: Plotting Options
+```
 
 ### 电机参数
 
@@ -621,7 +798,6 @@ Q 轴电流参考三维查找表数据（单位：安培）。
 - Maximum speed — 电机的最大转速（单位为 RPM）。
 
 有关更多详细信息，请参阅 Plot Constraint Curves and Drive Characteristics for PMSM and SynRM Directly from Block Parameters Dialog Box。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Constant Radius
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 车辆质心纵向位置 标量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 车辆质心横向位置 标量
+  direction: input
+  data_types: double
+- name: psi
+  summary: 车辆横摆角 标量
+  direction: input
+  data_types: double
+- name: ay
+  summary: 车辆侧向加速度 标量
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: 驾驶员参考数据总线
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: 驾驶员指令数据总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -95,8 +122,70 @@ chinese_source: worker-translation
 Bus Assignment 模块覆盖 Constant Radius 模块的 TransCmd 输出的框图。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: 开始时间 2（默认）| 正标量
+  group: ''
+  block_parameter: tStart
+  values: 2（默认） | 正标量
+- name: 纵向速度设定点，velRef
+  summary: 目标速度 35（默认） | 正标量
+  group: ''
+  block_parameter: velRef
+  values: 35（默认） | 正标量
+- name: 纵向速度设定点单位，velRefUnit []
+  summary: 单位 mph（默认）
+  group: ''
+  block_parameter: velRefUnit
+  values: mph（默认） | 字符向量
+- name: R
+  summary: 要跟踪的半径 100（默认） | 正标量
+  group: ''
+  block_parameter: R
+  values: 100（默认） | 正标量
+- name: 初始纵向位置，X_o [m]
+  summary: 初始纵向起点 0（默认） | 标量
+  group: ''
+  block_parameter: X_o
+  values: 0（默认） | 标量
+- name: 初始横向位置，Y_o [m]
+  summary: 初始横向起点 0（默认） | 标量
+  group: ''
+  block_parameter: Y_o
+  values: 0（默认） | 标量
+- name: 初始偏航角，psi_o [rad]
+  summary: 起始航向角 0（默认） | 标量
+  group: ''
+  block_parameter: psi_o
+  values: 0（默认） | 标量
+- name: 内侧和外侧锥体边界之间的距离，radialConeDist [m]
+  summary: 锥体之间的径向距离 6（默认） | 正标量
+  group: ''
+  block_parameter: radialConeDist
+  values: 6（默认） | 正标量
+- name: 横向加速度绝对阈值，ayMax [g]
+  summary: 仿真停止前允许的最大横向加速度 0.5（默认） | 正标量
+  group: ''
+  block_parameter: ayMax
+  values: 0.5（默认） | 正标量
+- name: Maneuver direction, steerDir
+  summary: 机动方向 Right（默认） | Left
+  group: ''
+  block_parameter: steerDir
+  values: Right（默认） | Left
+- name: Stop simulation at lateral acceleration threshold
+  summary: 在横向加速度阈值处停止仿真的选项 off（默认） | on
+  group: ''
+  block_parameter: ayStop
+  values: off（默认） | on
+- name: Instantiate 3D cones (Simulation 3D Scene Configuration required)
+  summary: 实例化 3D 锥桶的选项 off（默认） | on
+  group: ''
+  block_parameter: use3DCones
+  values: off（默认） | on
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -299,7 +388,6 @@ Bus Assignment 模块覆盖 Constant Radius 模块的 TransCmd 输出的框图�
 | **参数：** | `use3DCones` |
 | **值：** | `off`（默认） | `on` |
 | **数据类型：** | `character vector` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

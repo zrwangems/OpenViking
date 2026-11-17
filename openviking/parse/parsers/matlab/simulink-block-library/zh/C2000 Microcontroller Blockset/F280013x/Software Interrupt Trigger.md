@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # C28x Software Interrupt Trigger
 
 ## 端口
+```yaml
+ports:
+- name: PIEIFRx.INTy
+  summary: 触发软件中断标量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+```
 
 ### 输入
 
@@ -23,8 +30,19 @@ chinese_source: worker-translation
 当输入值大于 **Trigger software interrupt when input value is greater than** 参数中的值时，Software Interrupt Trigger 模块根据 **CUP interrupt number** 和 **PIE interrupt number** 参数触发软件中断。
 
 **数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32` | `single` | `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: CPU interrupt number
+  summary: 硬件中断对应的 CPU 中断号 7（默认）| 标量
+  group: ''
+- name: PIE interrupt number
+  summary: 硬件中断对应的 PIE 中断号 8（默认）| 标量
+  group: ''
+- name: Trigger software interrupt when input value is greater than
+  summary: 设置一个值，当输入值高于该值时模块发出中断 0（默认）| 标量
+  group: ''
+```
 
 ### **CPU interrupt number** — 硬件中断对应的 CPU 中断号 `7`（默认）| 标量
 
@@ -37,7 +55,6 @@ chinese_source: worker-translation
 ### **Trigger software interrupt when input value is greater than** — 设置一个值，当输入值高于该值时模块发出中断 `0`（默认）| 标量
 
 输入用于指示请求例程断言中断的电平值。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C281x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

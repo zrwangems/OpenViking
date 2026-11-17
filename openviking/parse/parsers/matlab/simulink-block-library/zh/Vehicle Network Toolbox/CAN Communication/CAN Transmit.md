@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # CAN Transmit
 
 ## 端口
+```yaml
+ports:
+- name: CAN Msg
+  summary: 要传输的 CAN 消息，即打包的 CAN 消息
+  direction: input
+  data_types: CAN_MESSAGE | bus
+```
 
 ### 输入
 
@@ -23,8 +30,36 @@ chinese_source: worker-translation
 由 CAN Pack 模块打包的 CAN 消息，以 CAN\_MESSAGE 或 Simulink 信号总线的形式输入。
 
 **数据类型：** `CAN_MESSAGE` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: CAN 设备和通道列表选项
+  group: ''
+  block_parameter: Device
+  type: character vector, string
+- name: 'Transmit Options: On data change'
+  summary: 在数据更改时启用基于事件的传输 'off'（默认）| 'on'
+  group: ''
+  block_parameter: EnableEventTransmit
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 'Transmit Options: Periodic'
+  summary: 启用周期性传输 'off'（默认）| 'on'
+  group: ''
+  block_parameter: EnablePerioicTransmit
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 'Transmit Options: Message period'
+  summary: 报文传输周期 1.000（默认）| 正数值标量
+  group: ''
+  block_parameter: MessagePeriod
+  type: character vector, string
+  values: double
+  default: '''1.000'''
+```
 
 ### **Device** — CAN 设备和通道列表选项
 
@@ -81,7 +116,6 @@ chinese_source: worker-translation
 | **类型：** character vector, string |
 | **值：** double |
 | **默认值：** `'1.000'` |
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN Communication

@@ -14,6 +14,17 @@ language: en
 # RF Budget
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Time-dependent input signal real scalar | real column | complex scalar | complex column
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: Time-dependent output signal complex scalar | complex column
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -32,8 +43,31 @@ time-dependent output signal is equal in size to the time-dependent input
 signal.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: RF budget source
+  summary: RF budget source rfbudget object (default) | RF Budget Analyzer App
+  group: Main
+- name: rfbudget object
+  summary: rfbudget object as source rfbudget([],2.1e9,-30,100e6) (default) | rfbudget object
+  group: Main
+- name: Open RF Budget Analyzer App
+  summary: RF Budget Analyzer app as source button
+  group: Main
+- name: Simulate supported blocks using code generation
+  summary: Simulate model using generated C code off (default) | on
+  group: Main
+- name: Edit System
+  summary: Edit or expand RF Budget block button
+  group: Main
+- name: Frequency resolution
+  summary: Frequency resolution for calculating mismatch loss 51 (default) | positive scalar
+  group: Advanced
+- name: Modeling bandwidth (Hz)
+  summary: Modeling bandwidth for calculating mismatch loss 100e6 (default) | positive scalar
+  group: Advanced
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -126,7 +160,6 @@ can
 - Decrease the modeling bandwidth if your input signal bandwidth is narrower.
   In this case, you can decrease the frequency resolution as well to reduce the
   computation time.
-
 ## Libraries
 
 RF Blockset / Idealized Baseband

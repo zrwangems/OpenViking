@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PWM Generator (Five-phase, Two-level)
 
 ## 端口
+```yaml
+ports:
+- name: Vabcde
+  summary: 五相正弦参考信号向量
+  direction: input
+- name: vdc
+  summary: 直流母线电压信号标量
+  direction: input
+- name: g
+  summary: 门极控制向量
+  direction: output
+- name: ModWave
+  summary: 调制波向量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +49,22 @@ chinese_source: worker-translation
 ### **ModWave** — 调制波向量
 
 调制波，以包含五个元素的向量形式返回，每个元素对应一相。
-
 ## 参数
+```yaml
+parameters:
+- name: Continuous PWM
+  summary: '连续脉宽调制方法 SPWM: sinusoidal PWM（默认）| SVM: space vector modulation'
+  group: ''
+- name: Sampling mode
+  summary: 波采样方法 Natural（默认）| Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: 开关频率 1e3（默认）| 正标量
+  group: ''
+- name: Sample time (s)
+  summary: 模块采样时间 5e-5（默认）| 正标量
+  group: ''
+```
 
 ### **Continuous PWM** — 连续脉宽调制方法 `SPWM: sinusoidal PWM`（默认）| `SVM: space vector modulation`
 
@@ -52,7 +81,6 @@ chinese_source: worker-translation
 ### **Sample time (s)** — 模块采样时间 `5e-5`（默认）| 正标量
 
 连续模块执行之间的时间间隔，单位为秒。为确保生成信号具有足够的分辨率，请将此值设置为小于或等于 `1/(50*Fsw)`，其中 *F*sw 为 **Switching frequency (Hz)** 参数的值。
-
 ## 所属库
 
 Simscape / Electrical / Control / Pulse Width Modulation

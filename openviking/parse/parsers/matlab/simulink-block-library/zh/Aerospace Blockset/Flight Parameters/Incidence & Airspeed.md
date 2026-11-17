@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Incidence & Airspeed
 
 ## 端口
+```yaml
+ports:
+- name: U, w
+  summary: 速度二元素向量
+  direction: input
+  data_types: double
+- name: ɑ
+  summary: 迎角标量
+  direction: output
+  data_types: double
+- name: V
+  summary: 空速标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,11 +51,12 @@ chinese_source: worker-translation
 机体的空速，以标量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Flight Parameters

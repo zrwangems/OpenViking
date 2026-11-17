@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Bit Slice
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 经过位切片的输出信号。输出的字长按 `(MSB Position - LSB Position) + 1` 计算，其中 **MSB Position** 和 **LSB Position** 为模块参数。
 
 **数据类型：** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: MSB Position
+  summary: 最高有效位位置 7（默认）
+  group: ''
+  block_parameter: lidk
+  type: 字符串标量 | 字符向量
+  values: 满足前述约束的正整数值
+- name: LSB Position
+  summary: 最低有效位位置 0（默认）
+  group: ''
+  block_parameter: ridk
+  type: 字符串标量 | 字符向量
+  values: 满足前述约束的正整数值
+```
 
 ### **MSB Position** — 最高有效位位置 7（默认）
 
@@ -66,7 +91,6 @@ chinese_source: worker-translation
 | **类型：** 字符串标量 | 字符向量 |
 | **值：** 满足前述约束的正整数值 |
 | **默认：** `'0'` |
-
 ## 所属库
 
 HDL Coder / Logic and Bit Operations

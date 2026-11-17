@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # P-H Diagram (2P)
 
 ## 端口
+```yaml
+ports:
+- name: p
+  summary: 压力，MPa 向量
+  direction: input
+- name: h
+  summary: 比焓，kJ/kg 向量
+  direction: input
+```
 
 ### 输入
 
@@ -25,11 +34,12 @@ chinese_source: worker-translation
 ### **h** — 比焓，kJ/kg 向量
 
 比焓向量。该向量的元素数量必须与端口 **p** 处的压力信号相同。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Utilities

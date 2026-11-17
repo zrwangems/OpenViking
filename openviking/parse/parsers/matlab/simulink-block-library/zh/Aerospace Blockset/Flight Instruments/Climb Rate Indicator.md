@@ -15,10 +15,32 @@ chinese_source: worker-translation
 # Climb Rate Indicator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 连接到信号 信号名称
+  group: ''
+- name: Maximum
+  summary: 最大刻度值 4000（默认）| 有限值 | double | 标量
+  group: ''
+  block_parameter: MaximumRate
+  type: 字符向量
+  values: 标量
+  default: '''4000'''
+- name: Label
+  summary: 模块标签位置 Top（默认）| Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — 连接到信号 信号名称
 
@@ -65,7 +87,6 @@ R2025b 中未记录。
 | **类型**：字符向量 |
 | **值**：`'Top'` | `'Bottom'` | `'Hide'` |
 | **默认值**：`'Top'` |
-
 ## 所属库
 
 Aerospace Blockset / Flight Instruments

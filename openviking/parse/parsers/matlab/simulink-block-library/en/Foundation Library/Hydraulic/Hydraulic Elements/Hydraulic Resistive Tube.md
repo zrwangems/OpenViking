@@ -14,6 +14,9 @@ language: en
 # Hydraulic Resistive Tube
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,8 +25,10 @@ The block has the following ports:
 
 `B`
 :   Hydraulic conserving port associated with the tube outlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Tube cross section type**
 :   The type of tube cross section: `Circular` or
@@ -88,7 +93,6 @@ parameter:
 All other block parameters are available for modification. The actual set of modifiable
 block parameters depends on the value of the **Tube cross section type**
 parameter at the time the model entered Restricted mode.
-
 ## Libraries
 
 Not documented in R2025b.

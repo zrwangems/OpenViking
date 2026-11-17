@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # N-Sample Enable
 
 ## 端口
+```yaml
+ports:
+- name: Rst
+  summary: 复位信号 标量
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: 输出信号 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -38,8 +49,28 @@ chinese_source: worker-translation
 标量输出，在前 *N* 个采样时间内包含非激活值（`0` 或 `1`，即未在 **Active level** 参数中选择的值），其中 *N* 为 **Trigger count** 的值。从输出采样 *N*+1 开始，模块输出激活值（`1` 或 `0`，即您在 **Active level** 参数中选择的值），直到发生复位事件或仿真终止。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Trigger count, N
+  summary: 输出激活值的采样数 8 （默认） | 标量整数
+  group: ''
+- name: Active level
+  summary: 激活电平 Low (0) （默认） | High (1)
+  group: ''
+- name: Reset input
+  summary: 启用复位输入端口 off （默认） | on
+  group: ''
+- name: Trigger type
+  summary: 触发事件的类型 Rising edge （默认） | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Sample time
+  summary: 输出采样周期 1 （默认） | 正标量
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 Logical （默认） | Boolean
+  group: ''
+```
 
 ### **Trigger count, N** — 输出激活值的采样数 `8` （默认） | 标量整数
 
@@ -89,7 +120,6 @@ chinese_source: worker-translation
 ### **Output data type** — 输出数据类型 `Logical` （默认） | `Boolean`
 
 将输出数据类型指定为 `Logical` 或 `Boolean`。
-
 ## 所属库
 
 DSP System Toolbox / Sources DSP System Toolbox / Signal Management / Switches and Counters

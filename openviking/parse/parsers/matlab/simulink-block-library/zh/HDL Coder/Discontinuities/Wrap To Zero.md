@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Wrap To Zero
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -34,8 +45,16 @@ chinese_source: worker-translation
 如果输入数据类型无法表示零，则会发生参数溢出。要检测此溢出，请转到配置参数对话框的**诊断 > 数据有效性**窗格，并将**参数 > 检测溢出**设置为 `warning` 或 `error`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Threshold
+  summary: 输出零的阈值 255（默认）| 标量
+  group: ''
+  block_parameter: Threshold
+  type: 字符向量
+  values: scalar
+```
 
 要编辑 Wrap to Zero 模块的参数，请双击模块图标。
 
@@ -51,7 +70,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`scalar` |
 | **默认**：`'255'` |
-
 ## 所属库
 
 Simulink / Discontinuities HDL Coder / Discontinuities

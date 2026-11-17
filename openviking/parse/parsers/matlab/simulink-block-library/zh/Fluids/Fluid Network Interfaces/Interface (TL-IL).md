@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Interface (TL-IL)
 
 ## 端口
+```yaml
+ports:
+- name: TL
+  summary: 液体端口 热液体
+  direction: unspecified
+- name: IL
+  summary: 液体端口 等温液体
+  direction: unspecified
+- name: H
+  summary: 液体端口 等温液体
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -41,8 +53,22 @@ Isothermal Liquid (IL)`。
 要启用此端口，请将 **Fluids domain
 interface** 设置为 `Thermal Liquid (TL) -
 Hydraulic (H)`。
-
 ## 参数
+```yaml
+parameters:
+- name: Fluids domain interface
+  summary: 连接库类型 Thermal Liquid (TL) - Isothermal Liquid (IL)（默认）| Thermal Liquid (TL) - Hydraulic (H)
+  group: ''
+- name: Temperature specification
+  summary: 等温网络温度 Constant（默认）| Controlled
+  group: ''
+- name: Interface temperature
+  summary: 等温网络温度 293.15 K（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port TL
+  summary: 热液体端口面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Fluids domain interface** — 连接库类型 `Thermal Liquid (TL) - Isothermal Liquid (IL)`（默认）| `Thermal Liquid (TL) - Hydraulic (H)`
 
@@ -68,7 +94,6 @@ specification** 设置为
 ### **Cross-sectional area at port TL** — 热液体端口面积 `0.01 m^2`（默认）| 正标量
 
 热液体端口的横截面积。
-
 ## 所属库
 
 Simscape / Fluids / Fluid Network Interfaces

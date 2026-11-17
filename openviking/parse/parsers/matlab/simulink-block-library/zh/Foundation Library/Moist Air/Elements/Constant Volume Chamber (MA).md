@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Constant Volume Chamber (MA)
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 离开系统的冷凝速率，kg/s 物理信号
+  direction: output
+- name: F
+  summary: 包含压力、温度、湿度和微量气体水平数据的矢量物理信号 物理信号矢量
+  direction: output
+- name: A
+  summary: 腔室入口湿空气
+  direction: output
+- name: B
+  summary: 腔室入口湿空气
+  direction: output
+- name: C
+  summary: 腔室入口湿空气
+  direction: output
+- name: D
+  summary: 腔室入口湿空气
+  direction: output
+- name: H
+  summary: 腔室内部温度 热
+  direction: output
+- name: S
+  summary: 注入或提取湿气和微量气体 湿空气源
+  direction: output
+```
 
 ### 输出
 
@@ -66,8 +93,133 @@ chinese_source: worker-translation
 #### 依赖
 
 仅当将 **Moisture and trace gas source** 参数设置为 `Controlled` 时，此端口才可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Chamber volume
+  summary: 腔室内湿空气的体积 0.001 m^3（默认值）
+  group: 主要
+- name: Number of ports
+  summary: 腔室中的入口端口数量 1（默认值）| 2 | 3 | 4
+  group: 主要
+- name: Cross-sectional area at port A
+  summary: 腔室入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: 主要
+- name: Cross-sectional area at port B
+  summary: 腔室入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: 主要
+- name: Cross-sectional area at port C
+  summary: 腔室入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: 主要
+- name: Cross-sectional area at port D
+  summary: 腔室入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: 主要
+- name: Relative humidity at saturation
+  summary: 发生冷凝时的相对湿度 1（默认）
+  group: 湿气和微量气体
+- name: Water vapor condensation time constant
+  summary: 冷凝时间尺度 1e-3 s（默认）| 正标量
+  group: 湿气和微量气体
+- name: Water droplets evaporation time constant
+  summary: 蒸发时间尺度 1e-3 s（默认）| 正标量
+  group: 湿气和微量气体
+- name: Fraction of condensate entrained as water droplets
+  summary: 水滴中冷凝物的比例 1（默认）| 范围 [0,1] 内的标量
+  group: 湿气和微量气体
+- name: Moisture and trace gas source
+  summary: 对水分和微量气体水平进行建模 None（默认）| Constant | Controlled
+  group: 湿气和微量气体
+- name: Moisture added or removed
+  summary: 选择模块是以水蒸气还是水滴的形式添加或移除水分 Water vapor（默认）| Water droplets
+  group: 湿气和微量气体
+- name: Water vapor evaporated from liquid or condensed to liquid
+  summary: 模块如何添加或移除水蒸气 off（默认）| on
+  group: 湿气和微量气体
+- name: Rate of moisture added
+  summary: 通过模块的恒定质量流量 0 kg/s（默认）
+  group: 湿气和微量气体
+- name: Added moisture temperature specification
+  summary: 选择添加水分的温度指定方法 Atmospheric temperature（默认）| Specified temperature
+  group: 湿气和微量气体
+- name: 加入水分的温度
+  summary: 水分温度 293.15 K（默认）
+  group: 湿气和微量气体
+- name: 加入的示踪气体速率
+  summary: 通过模块的恒定质量流量 0 kg/s（默认）
+  group: 湿气和微量气体
+- name: 加入的示踪气体温度设定
+  summary: 选择加入示踪气体温度的设定方法 Atmospheric temperature（默认） | Specified temperature
+  group: 湿气和微量气体
+- name: 加入的示踪气体温度
+  summary: 示踪气体温度 293.15 K（默认）
+  group: 湿气和微量气体
+- name: 初始压力
+  summary: 仿真开始时的湿空气压力 0.101325 MPa（默认） | 正标量
+  group: 初始条件
+- name: 初始压力优先级
+  summary: 压力参数优先级 High（默认） | Low | None
+  group: 初始条件
+- name: 初始温度
+  summary: 仿真开始时的温度 293.15 K（默认） | 正标量
+  group: 初始条件
+- name: 初始温度优先级
+  summary: 温度参数优先级 High（默认） | Low | None
+  group: 初始条件
+- name: 初始湿度设定
+  summary: 湿度设定 Relative humidity（默认） | Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: 初始条件
+- name: 初始相对湿度
+  summary: 仿真开始时的相对湿度 0.5（默认） | 范围为 [0,1] 的标量
+  group: 初始条件
+- name: 初始相对湿度优先级
+  summary: 相对湿度参数优先级 High（默认）| Low | None
+  group: 初始条件
+- name: 初始比湿度
+  summary: 仿真开始时的比湿度 0.01（默认）| 范围 [0,1] 内的标量
+  group: 初始条件
+- name: 初始比湿度优先级
+  summary: 比湿度参数优先级 High（默认）| Low | None
+  group: 初始条件
+- name: 初始水蒸气摩尔分数
+  summary: 仿真开始时水蒸气的摩尔分数 0.01（默认）| 范围 [0,1] 内的标量
+  group: 初始条件
+- name: 初始水蒸气摩尔分数优先级
+  summary: 水蒸气摩尔分数湿度参数优先级 High（默认）| Low | None
+  group: 初始条件
+- name: 初始含湿量
+  summary: 仿真开始时的含湿量 0.01（默认）| 范围 [0,1] 内的标量
+  group: 初始条件
+- name: 初始含湿量优先级
+  summary: 含湿量参数优先级 High（默认）| Low | None
+  group: 初始条件
+- name: 初始湿球温度
+  summary: 仿真开始时的湿球温度 287 K（默认）| 范围 [0,1] 内的标量
+  group: 初始条件
+- name: 初始湿球温度优先级
+  summary: 湿球温度参数优先级 High（默认）| Low | None
+  group: 初始条件
+- name: 初始示踪气体规格
+  summary: 示踪气体的测量类型 Mass fraction（默认）| Mole fraction
+  group: 初始条件
+- name: 初始示踪气体质量分数
+  summary: 湿空气通道中示踪气体的量 0.001（默认）| [0,1] 范围内的标量
+  group: 初始条件
+- name: 初始示踪气体质量分数优先级
+  summary: 示踪气体质量分数参数优先级 High（默认）| Low | None
+  group: 初始条件
+- name: 初始示踪气体摩尔分数
+  summary: 仿真开始时示踪气体的摩尔分数 0.001（默认）| [0,1] 范围内的标量
+  group: 初始条件
+- name: 初始示踪气体摩尔分数优先级
+  summary: 示踪气体摩尔分数参数优先级 High（默认）| Low | None
+  group: 初始条件
+- name: 水滴与湿空气的初始质量比
+  summary: 水滴与湿空气的比率 0（默认）| 正标量
+  group: 初始条件
+- name: 水滴与湿空气的初始质量比优先级
+  summary: 水滴与湿空气的质量比参数优先级 High（默认）| Low | None
+  group: 初始条件
+```
 
 ### 主要
 
@@ -376,7 +528,6 @@ chinese_source: worker-translation
 求解器在初始化模块时分配给 **Initial mass ratio of water droplets to moist air priority** 参数的优先级。
 
 将此参数设置为 `High` 以定义初始条件。如果此初始条件与另一个模块的初始条件冲突，您可能需要将此参数设置为 `Low` 或 `None`。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Elements

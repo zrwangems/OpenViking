@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Earthing Transformer
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相电压电气
+  direction: unspecified
+- name: n
+  summary: 中性点电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,49 @@ chinese_source: worker-translation
 ### **n** — 中性点电气
 
 电气三相电气守恒端口，与中性点相关联。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是对复合三相端口还是扩展三相端口进行建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Rated apparent power
+  summary: 额定视在功率 100e6 V*A（默认）| 正标量
+  group: ''
+- name: Rated voltage
+  summary: 额定电压 24e3 V（默认）| 正标量
+  group: ''
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz（默认）| 正标量
+  group: ''
+- name: Units
+  summary: 参数化单位制 Per unit（默认）| SI
+  group: ''
+- name: Zero-sequence resistance (pu)
+  summary: 零序电阻 0.01（默认）| 正标量
+  group: ''
+- name: Zero-sequence reactance (pu)
+  summary: 零序电抗 0.3（默认）| 正标量
+  group: ''
+- name: Shunt magnetizing resistance (pu)
+  summary: 并联励磁电阻 500（默认）| 正标量
+  group: ''
+- name: Shunt magnetizing reactance (pu)
+  summary: 并联励磁电抗 500（默认）| 正标量
+  group: ''
+- name: Zero-sequence resistance
+  summary: 零序电阻 0.0576 Ohm（默认）| 正标量
+  group: ''
+- name: Zero-sequence inductance
+  summary: 零序电感 1.728 H（默认）| 正标量
+  group: ''
+- name: Shunt magnetizing resistance
+  summary: 并联励磁电阻 2880 Ohm（默认）| 正标量
+  group: ''
+- name: Shunt magnetizing inductance
+  summary: 并联励磁电感 2880 H（默认）| 正标量
+  group: ''
+```
 
 ### **Modeling option** — 是对复合三相端口还是扩展三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -119,7 +169,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当 **Units** 参数设置为 `SI` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Transformers

@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # DCT Controller
 
 ## 端口
+```yaml
+ports:
+- name: GearReq
+  summary: 要接合的挡位号 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: NomGear
+  summary: 用于换挡的标称挡位 scalar
+  direction: output
+- name: CltchACmd
+  summary: 奇数挡指令 scalar
+  direction: output
+- name: CltchBCmd
+  summary: 偶数挡指令 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -50,8 +68,40 @@ chinese_source: worker-translation
 
 偶数挡的离合器压力指令，介于
 `0` 和 `1` 之间。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial gear, G_o
+  summary: 接合的挡位 0 (default) | scalar
+  group: ''
+  block_parameter: G_o
+  values: 0 (default) | scalar
+- name: Clutch actuation time, tc
+  summary: 时间 .1 (default) | scalar
+  group: ''
+  block_parameter: tc
+  values: .1 (default) | scalar
+- name: Synchronizer time, ts
+  summary: 时间 .01 (default) | scalar
+  group: ''
+  block_parameter: ts
+  values: .01 (default) | scalar
+- name: Sample period, dt
+  summary: 时间 -1 (default) | scalar
+  group: ''
+  block_parameter: dt
+  values: -1 (default) | scalar
+- name: Start simulation with clutch locked
+  summary: 选择以初始锁定离合器 off (default) | on
+  group: ''
+  block_parameter: ClutchLocked
+  values: off (default) | on
+- name: Start simulation with synchronizer locked
+  summary: 选择以初始锁定同步器 off (default) | on
+  group: ''
+  block_parameter: SynchLocked
+  values: off (default) | on
+```
 
 ### **Initial gear, G\_o** — 接合的挡位 `0` (default) | `scalar`
 
@@ -163,7 +213,6 @@ chinese_source: worker-translation
 | **Parameter:** | `SynchLocked` |
 | **值**：| `off` (default) | `on` |
 | **Data Types:** | `character vector` |
-
 ## 所属库
 
 Powertrain Blockset / Transmission / Transmission Controllers

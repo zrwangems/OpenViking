@@ -14,6 +14,13 @@ language: en
 # Publish
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: ROS message nonvirtual bus
+  direction: input
+  data_types: bus
+```
 
 ### Input
 
@@ -22,8 +29,22 @@ language: en
 ROS message, specified as a nonvirtual bus. To specify the type of ROS message, use the **Message type** parameter.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic source
+  summary: Source for specifying topic name Select from ROS network | Specify your own
+  group: ''
+- name: Topic
+  summary: Topic name to publish to string
+  group: ''
+- name: Message type
+  summary: ROS message type string
+  group: ''
+- name: Length of publish queue
+  summary: Message queue length 1 (default) | integer
+  group: ''
+```
 
 ### **Topic source** — Source for specifying topic name `Select from ROS network` | `Specify your own`
 
@@ -48,7 +69,6 @@ Message queue length in code generation, specified as an integer. In
 simulation, the message queue is always 1 and cannot be adjusted. To ensure
 each message is processed, use a smaller model step or only execute the
 model when publishing a new message.
-
 ## Libraries
 
 ROS Toolbox / ROS

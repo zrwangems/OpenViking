@@ -14,6 +14,30 @@ language: en
 # Model Reference Adaptive Control
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Reference signal scalar signal | vector signal
+  direction: input
+- name: state
+  summary: Controlled system state vector signal
+  direction: input
+- name: phi
+  summary: Disturbance model features vector signal | matrix signal
+  direction: input
+- name: u
+  summary: Control input scalar signal | matrix signal
+  direction: output
+- name: u_ad
+  summary: Disturbance and uncertainty estimate scalar signal | matrix signal
+  direction: output
+- name: Ahat
+  summary: Estimator state matrix matrix signal
+  direction: output
+- name: Bhat
+  summary: Estimator control effective matrix vector signal | matrix signal
+  direction: output
+```
 
 ### Input
 
@@ -73,8 +97,293 @@ plant model.
 This output port is used for indirect MRAC. To enable this port, first select
 the **Indirect** algorithm option. Then, select the
 **Output estimated parameters** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: A
+  summary: Nominal model state matrix 0 (default) | square matrix
+  group: System
+  block_parameter: '''A'''
+  type: character vector
+  values: square matrix
+  default: '''0'''
+- name: B
+  summary: Nominal model control effective matrix 1 (default) | vector | matrix
+  group: System
+  block_parameter: '''B'''
+  type: character vector
+  values: vector | matrix
+  default: '''1'''
+- name: Am
+  summary: Reference model state matrix -1 (default) | matrix
+  group: System
+  block_parameter: '''Am'''
+  type: character vector
+  values: square matrix
+  default: '''-1'''
+- name: Bm
+  summary: Reference model control effective matrix 1 (default) | vector | matrix
+  group: System
+  block_parameter: '''Bm'''
+  type: character vector
+  values: vector | matrix
+  default: '''[0;4]'''
+- name: Ahat
+  summary: Estimator plant model state matrix 0 (default) | square matrix
+  group: System
+  block_parameter: '''Ahat'''
+  type: character vector
+  values: square matrix
+  default: '''0'''
+- name: Adapt Ahat
+  summary: Option to adapt estimator plant model state matrix on (default) | off
+  group: System
+  block_parameter: '''ALrEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_a)
+  summary: Learning rate for adapting estimator plant model state matrix 1 (default) | finite positive scalar
+  group: System
+  block_parameter: '''gamma_a'''
+  type: character vector
+  values: finite positive scalar
+  default: '''1'''
+- name: Use learning modification
+  summary: Option to enable learning modification for updating the estimator model state matrix on (default) | off
+  group: System
+  block_parameter: '''ALrEnableMod'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Bhat
+  summary: Estimator plant model control effective matrix 1 (default) | vector | matrix
+  group: System
+  block_parameter: '''Bhat'''
+  type: character vector
+  values: vector | matrix
+  default: '''1'''
+- name: Adapt Bhat
+  summary: Option to adapt estimator plant model control effective matrix on (default) | off
+  group: System
+  block_parameter: '''BLrEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_b)
+  summary: Learning rate for adapting estimator plant model control effective matrix 1 (default) | finite positive scalar
+  group: System
+  block_parameter: '''gamma_a'''
+  type: character vector
+  values: finite positive scalar
+  default: '''1'''
+- name: Use learning modification
+  summary: Option to enable learning modification for updating the estimator model control effective matrix on (default) |
+    off
+  group: System
+  block_parameter: '''BLrEnableMod'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Specify estimator feedback gain
+  summary: Option to enable specification of estimator feedback gain off (default) | on
+  group: System
+  block_parameter: '''externalKTauEnable'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Estimator feedback gain
+  summary: Estimator feedback gain -1 (default) | matrix
+  group: System
+  block_parameter: '''k_tau'''
+  type: character vector
+  values: -1 | matrix
+  default: '''-1'''
+- name: Output estimated parameters
+  summary: Option to output estimator state and control effective matrices off (default) | on
+  group: System
+  block_parameter: '''estParamOutput'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Feedback gains
+  summary: Feedback gains for model matching 0 (default) | finite scalar | matrix of finite values
+  group: Control Gains
+  block_parameter: '''kx'''
+  type: character vector
+  values: finite scalar | matrix of finite values
+  default: '''0'''
+- name: Adapt feedback gains
+  summary: Option to adapt feedback gains on (default) | off
+  group: Control Gains
+  block_parameter: '''FBLrEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_x)
+  summary: Learning rate for adapting feedback gains 1 (default) | finite positive scalar
+  group: Control Gains
+  block_parameter: '''gamma_kx'''
+  type: character vector
+  values: finite positive scalar
+  default: '''1'''
+- name: Use learning modification
+  summary: Option to enable learning modification for updating the feedback gains on (default) | off
+  group: Control Gains
+  block_parameter: '''FBLrEnableMod'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Feedforward gains
+  summary: Feedforward gains for model matching 0 (default) | finite scalar | matrix of finite values
+  group: Control Gains
+  block_parameter: '''kr'''
+  type: character vector
+  values: finite scalar | matrix of finite values
+  default: '''0'''
+- name: Adapt feedforward gains
+  summary: Option to adapt feedforward gains on (default) | off
+  group: Control Gains
+  block_parameter: '''FFLrEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_r)
+  summary: Learning rate for adapting feedforward gains 1 (default) | finite positive scalar
+  group: Control Gains
+  block_parameter: '''gamma_kr'''
+  type: character vector
+  values: finite positive scalar
+  default: '''1'''
+- name: Use learning modification
+  summary: Option to enable learning modification for updating the feedforward gains on (default) | off
+  group: Control Gains
+  block_parameter: '''FFLrEnableMod'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable disturbance adaptation
+  summary: Option to enable adaptation to system disturbances and uncertainties on (default) | off
+  group: Disturbance Model
+  block_parameter: '''AdaptEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Learning rate (gamma_w)
+  summary: Learning rate for adapting disturbance model parameters 1 (default) | finite positive scalar
+  group: Disturbance Model
+  block_parameter: '''gamma'''
+  type: character vector
+  values: finite positive scalar
+  default: '''100'''
+- name: Use learning modification
+  summary: Option to enable learning modification for updating disturbance model parameters on (default) | off
+  group: Disturbance Model
+  block_parameter: '''WLrEnableMod'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Channel learning rate (Q)
+  summary: Channel learning rate used for the Lyapunov solution 1 (default) | finite positive scalar | vector of length *N*
+    containing positive finite values | symmetric positive definite matrix of size *N*-by-*N*
+  group: Disturbance Model
+  block_parameter: '''Q'''
+  type: character vector
+  values: finite positive scalar | vector of positive values | symmetric positive definite matrix
+  default: '''1'''
+- name: Feature type
+  summary: Disturbance model feature type State (default) | Radial Basis Function | Single Hidden Layer Network | Use External
+    Source for Feature
+  group: Disturbance Model
+  block_parameter: '''FeatureTypeOptions'''
+  type: character vector
+  values: '''Radial Basis Function'' | ''State'' | ''Single Hidden Layer Network'' | ''Use External Source for Feature'''
+  default: '''Radial Basis Function'''
+- name: Number of RBF centers
+  summary: Number of radial basis function centers for disturbance model 20 (default) | positive integer
+  group: Disturbance Model
+  block_parameter: '''nCen'''
+  type: character vector
+  values: positive integer
+  default: '''20'''
+- name: Centers min
+  summary: Lower limit for radial basis function centers -1 (default) | finite scalar | vector
+  group: Disturbance Model
+  block_parameter: '''cSpanMin'''
+  type: character vector
+  values: finite scalar | vector
+  default: '''-1'''
+- name: Centers max
+  summary: Upper limit for radial basis function centers 1 (default) | finite scalar | vector
+  group: Disturbance Model
+  block_parameter: '''cSpanMax'''
+  type: character vector
+  values: finite scalar | vector
+  default: '''1'''
+- name: Bandwidth
+  summary: Radial basis function standard deviation 5 (default) | positive scalar | vector
+  group: Disturbance Model
+  block_parameter: '''cSig'''
+  type: character vector
+  values: positive scalar | vector
+  default: '''5'''
+- name: Number of neurons in hidden layer
+  summary: Number of neurons 10 (default) | positive integer
+  group: Disturbance Model
+  block_parameter: '''shlHiddenLayerSize'''
+  type: character vector
+  values: positive scalar | vector
+  default: '''10'''
+- name: Hidden layer learning rate (gamma_v)
+  summary: Learning rate for updating neural network weights 0.1 (default) | positive scalar
+  group: Disturbance Model
+  block_parameter: '''gamma_V'''
+  type: character vector
+  values: positive scalar | vector
+  default: '''0.1'''
+- name: Output disturbance/uncertancy estimate
+  summary: Option to output disturbance and uncertainty estimate on (default) | off
+  group: Disturbance Model
+  block_parameter: '''adaptiveCntrlOutport'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Modification Methods
+  summary: Modification method for updating parameters None (default) | e-Modification | Sigma Modification
+  group: Learning Modification
+  block_parameter: '''modChoice'''
+  type: character vector
+  values: '''Sigma Modification'' | ''e-Modification'' | ''None'''
+  default: '''Sigma Modification'''
+- name: Sigma
+  summary: Momentum weight for parameter updates 0.1 (default) | scalar
+  group: Learning Modification
+  block_parameter: '''sigma_val'''
+  type: character vector
+  values: finite positive scalar
+  default: '''0.1'''
+- name: Use discrete-time integration in adaptation
+  summary: Use discrete-time integration in adaptation off (default) | on
+  group: Learning Modification
+  block_parameter: '''DiscreteEnable'''
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Sample time
+  summary: Sample time 0.05 (default) | finite positive scalar
+  group: Learning Modification
+  block_parameter: '''Ts'''
+  type: character vector
+  values: finite positive scalar
+  default: '''0.05'''
+- name: Integration method
+  summary: Discrete integration method Forward Euler (default) | Backward Euler | Trapezoidal
+  group: Learning Modification
+  block_parameter: '''IntegrationMethods'''
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+```
 
 ### System
 
@@ -892,7 +1201,6 @@ adaptation** parameter.
 | **Type:** character vector |
 | **Values:** `'Forward Euler'` | `'Backward Euler'` | `'Trapezoidal'` |
 | **Default:** `'Forward Euler'` |
-
 ## Libraries
 
 Simulink Control Design / Adaptive Control

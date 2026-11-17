@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Torsional Spring-Damper
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 从动端口机械旋转
+  direction: conserving
+- name: R
+  summary: 基础端口机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,58 @@ chinese_source: worker-translation
 ### **R** — 基础端口机械旋转
 
 与杆相关联的机械旋转端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Spring stiffness
+  summary: 扭转弹簧刚度 1000 N*m/rad（默认）| 非负标量
+  group: 弹簧-阻尼器
+- name: Viscous friction coefficient
+  summary: 扭转粘性摩擦 10 N*m/(rad/s)（默认）| 非负标量
+  group: 弹簧-阻尼器
+- name: Coulomb friction torque
+  summary: 动摩擦力矩 0 N*m（默认）| 非负标量
+  group: 弹簧-阻尼器
+- name: Ratio of static to kinetic friction
+  summary: 静摩擦相对于动摩擦 1.1（默认）| 正标量
+  group: 弹簧-阻尼器
+- name: Velocity tolerance
+  summary: 配合传动轴差速容差 0.001 rad/s（默认）| 正标量
+  group: 弹簧-阻尼器
+- name: Hard stop
+  summary: 模拟边界硬限位 No hard stops - Suitable for HIL simulation（默认）| Compliant hard stops
+  group: 硬限位
+- name: Upper bound
+  summary: 上限硬限位位置 10 deg（默认）| 标量
+  group: 硬限位
+- name: Lower bound
+  summary: 下限硬限位位置 -10 deg（默认）| 标量
+  group: 硬限位
+- name: Contact stiffness
+  summary: 硬限位比例弹簧常数 1e6 N*m/(rad/s)（默认）| 非负标量
+  group: 硬限位
+- name: Contact damping
+  summary: 硬限位比例阻尼 10 (N*m)/(rad/s)（默认）| 正标量
+  group: 硬限位
+- name: Hard stop model
+  summary: 硬限位过渡行为 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| ...
+  group: 硬限位
+- name: Transition region
+  summary: 部分硬限位效应区域 0.001 rad（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与挡块之间最终相对速度与初始相对速度之比 0.7（默认）| 介于 0 和 1 之间的无量纲值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与挡块之间的阈值相对速度 0.1 rad/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release torque threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N*m（默认）
+  group: 硬限位
+- name: Initial deformation
+  summary: 起始变形值 0 deg（默认）| 标量
+  group: 初始条件
+```
 
 ### 弹簧-阻尼器
 
@@ -147,7 +206,6 @@ chinese_source: worker-translation
 ### **Initial deformation** — 起始变形值 `0` `deg`（默认）| 标量
 
 扭转弹簧相对于零力矩参考角的初始变形。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

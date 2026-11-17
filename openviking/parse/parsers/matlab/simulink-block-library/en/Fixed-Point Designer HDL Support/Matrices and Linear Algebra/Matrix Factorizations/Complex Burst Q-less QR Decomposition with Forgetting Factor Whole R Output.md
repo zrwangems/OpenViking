@@ -14,6 +14,33 @@ language: en
 # Complex Burst Q-less QR Decomposition with Forgetting Factor Whole R Output
 
 ## Ports
+```yaml
+ports:
+- name: A(i,:)
+  summary: Rows of complex matrix *A* vector
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: Whether inputs are valid Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: Whether to clear internal states Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: R
+  summary: Economy size QR decomposition matrix *R* vector
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: Whether output data is valid Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Whether block is ready Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -92,8 +119,31 @@ processed, you must wait until `ready` is set to
 `validIn` signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of columns in matrix A
+  summary: Number of columns in input matrix *A* 4 (default) | positive integer-valued scalar
+  group: ''
+  block_parameter: n
+  type: character vector
+  values: positive integer-valued scalar
+  default: '4'
+- name: Forgetting factor
+  summary: Forgetting factor applied after each row of the matrix is factored 0.99 (default) | real positive scalar
+  group: ''
+  block_parameter: forgetting_factor
+  type: character vector
+  values: real positive scalar
+  default: '0'
+- name: Regularization parameter
+  summary: Regularization parameter 0 (default) | real nonnegative scalar
+  group: ''
+  block_parameter: regularizationParameter
+  type: character vector
+  values: real nonnegative scalar
+  default: '0'
+```
 
 ### **Number of columns in matrix A** — Number of columns in input matrix *A* `4` (default) | positive integer-valued scalar
 
@@ -140,7 +190,6 @@ estimates.
 | **Type:** character vector |
 | **Values:** real nonnegative scalar |
 | **Default:** `0` |
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations

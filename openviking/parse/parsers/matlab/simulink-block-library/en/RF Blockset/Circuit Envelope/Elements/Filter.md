@@ -14,10 +14,81 @@ language: en
 # Filter
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Design method
+  summary: Simulation type Butterworth (default) | Chebyshev | Inverse Chebyshev | Ideal
+  group: Main
+- name: Filter type
+  summary: Filter type Lowpass (default) | Highpass | Bandpass | Bandstop
+  group: Main
+- name: Implementation
+  summary: Implementation LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain
+  group: Main
+- name: Passband edge frequency
+  summary: Passband edge frequency 1 GHz (default) | scalar
+  group: Main
+- name: Implement using filter order
+  summary: Implement using filter order off (default) | on
+  group: Main
+- name: Filter order
+  summary: Filter order 3 (default) | scalar
+  group: Main
+- name: Passband frequency
+  summary: Passband frequency for lowpass and highpass filters scalar
+  group: Main
+- name: Passband frequencies
+  summary: Passband frequencies for bandpass filters [2 3] GHz (default) | 2-tuple vector
+  group: Main
+- name: Passband attenuation (dB)
+  summary: Passband attenuation 10*log10(2) (default) | scalar
+  group: Main
+- name: Stopband frequencies
+  summary: Stopband frequencies for bandstop filters [2.1 2.9] GHz (default) | 2-tuple vector
+  group: Main
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation 40 (default) | scalar
+  group: Main
+- name: Source impedance (Ohm)
+  summary: Input source resistance 50 (default) | scalar
+  group: Main
+- name: Load impedance (Ohm)
+  summary: Output load resistance 50 (default) | scalar
+  group: Main
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: Main
+- name: Export
+  summary: Save filter design to a file button
+  group: Main
+- name: Parameter 1
+  summary: Type of plots on y-axis Voltage transfer (default) | Phase delay | Group delay
+  group: Visualization
+- name: Parameter 2
+  summary: Type of plots None (default) | Voltage transfer | Phase delay | Group delay
+  group: Visualization
+- name: Format 1
+  summary: Scaling of y-axis Magnitude (decibels) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary
+  group: Visualization
+- name: Format 2
+  summary: Scaling of y-axis Magnitude (decibels) (default) | Magnitude (linear) | Angle (degrees) | Real | Imaginary
+  group: Visualization
+- name: Frequency points
+  summary: Frequency points to plot on x-axis logspace(0,10,101) Hz (default) | vector
+  group: Visualization
+- name: X-axis scale
+  summary: X-axis scale Linear (default) | Logarithmic
+  group: Visualization
+- name: Y-axis scale
+  summary: Y-axis scale Linear (default) | Logarithmic
+  group: Visualization
+```
 
 ### Main
 
@@ -315,7 +386,6 @@ X-axis scale, specified as `Linear` or
 
 Y-axis scale, specified as `Linear` or
 `Logarithmic`.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

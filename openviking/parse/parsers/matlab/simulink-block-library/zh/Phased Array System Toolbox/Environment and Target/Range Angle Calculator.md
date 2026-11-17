@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Range Angle Calculator
 
 ## 端口
+```yaml
+ports:
+- name: Pos
+  summary: 源点位置 实值 3×1 向量 | 实值 3×*N* 矩阵
+  direction: input
+  data_types: double
+- name: RefPos
+  summary: 参考点位置 [0;0;0]（默认）| 实值 3×1 向量 | 实值 3×*N* 矩阵
+  direction: input
+  data_types: double
+- name: RefAxes
+  summary: 局部坐标系轴 [1 0 0;0 1 0;0 0 1]（默认）| 实值 3×3 向量 | 实值 3×3×*N* 数组
+  direction: input
+  data_types: double
+- name: Ang
+  summary: 方位角和仰角 实值 2×*N* 矩阵 | 实值 2×2*N* 矩阵
+  direction: output
+  data_types: double
+- name: Range
+  summary: 传播距离 实值 1×*N* 向量 | 实值 1×2*N* 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -82,8 +105,35 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output(s)** 下拉菜单设置为 `Range` 或 `Range and Angle`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Propagation model
+  summary: 传播模型 Free space（默认）| Two-ray
+  group: ''
+- name: Reference position source
+  summary: 参考位置源 Property（默认）| Input port
+  group: ''
+- name: Reference position
+  summary: 参考位置 [0;0;0]（默认）
+  group: ''
+- name: Reference axes source
+  summary: 参考坐标轴源 Property（默认）| Input port
+  group: ''
+- name: Reference axes
+  summary: 参考坐标轴 eye(3)
+  group: ''
+- name: Output(s)
+  summary: 输出 Angle（默认）| Range | Range and Angle
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Propagation model** — 传播模型 `Free space`（默认）| `Two-ray`
 
@@ -144,7 +194,6 @@ chinese_source: worker-translation
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Environment and Target

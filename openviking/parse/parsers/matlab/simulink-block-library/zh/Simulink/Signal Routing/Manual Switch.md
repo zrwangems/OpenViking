@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Manual Switch
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 第一个输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_2
+  summary: 第二个输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -36,8 +54,22 @@ Manual Switch 模块的两个输入中的第二个。该模块将选定的输入
 从第一个或第二个输入信号传播的输出信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Allow the two inputs to differ in size (Results in variable-size output signal)
+  summary: 允许不同大小的输入 off（默认）| on
+  group: ''
+  block_parameter: varsize
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+```
 
 要查看模块参数，请右键单击模块并选择 `Block Parameters
 (ManualSwitch)`。
@@ -71,7 +103,6 @@ Manual Switch 模块的两个输入中的第二个。该模块将选定的输入
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **值**：| `"-1"`（默认）| 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Signal Routing

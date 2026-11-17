@@ -14,16 +14,20 @@ language: en
 # Binary Linear Encoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Generator matrix**
 :   A *K*-by-*N* matrix, where
     *K* is the message length and *N* is
     the codeword length.
-
 ## Libraries
 
 Not documented in R2025b.

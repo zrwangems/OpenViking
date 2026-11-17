@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Power Sensor (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 三相端口电气
+  direction: conserving
+- name: ~2
+  summary: 三相端口电气
+  direction: conserving
+- name: P
+  summary: 有功功率物理信号
+  direction: output
+- name: Q
+  summary: 无功功率物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -38,8 +53,25 @@ chinese_source: worker-translation
 
 与无功功率
 测量相关联的物理信号端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Load type
+  summary: 负载类型 Balanced（默认）| Unbalanced
+  group: ''
+- name: Rated frequency
+  summary: 额定频率 60 Hz（默认）| 标量
+  group: ''
+- name: Downstream configuration
+  summary: 下游配置 Without neutral（默认）| With neutral
+  group: ''
+- name: Neutral conductor resistance divided by phase conductor resistance
+  summary: 中性线导体电阻与相线导体电阻之比 1（默认）| 标量
+  group: ''
+```
 
 ### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -76,7 +108,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Downstream configuration** 设置为 `With neutral`。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

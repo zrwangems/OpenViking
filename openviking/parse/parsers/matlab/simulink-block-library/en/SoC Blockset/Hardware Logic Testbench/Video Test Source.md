@@ -14,6 +14,21 @@ language: en
 # Video Test Source
 
 ## Ports
+```yaml
+ports:
+- name: wrCtrlIn
+  summary: Input control bus bus
+  direction: input
+  data_types: StreamVideoS2MBusObj
+- name: wrData
+  summary: Output video stream data vector
+  direction: output
+  data_types: uint8
+- name: wrCtrlOut
+  summary: Output control bus bus
+  direction: output
+  data_types: pixelcontrol
+```
 
 ### Input
 
@@ -49,8 +64,28 @@ these control signals:
   **wrData** output port is valid
 
 **Data Types:** `pixelcontrol`
-
 ## Parameters
+```yaml
+parameters:
+- name: Frame size
+  summary: Frame dimensions 160x120p (default) | ...
+  group: ''
+- name: Video source
+  summary: Select video source type Video file (default) | Color bar | Ramp
+  group: ''
+- name: Input file name
+  summary: Select input video file handshake_left.avi (default) | any supported video file format
+  group: ''
+- name: Color space
+  summary: Color space YCbCr422 (default) | RGB | YOnly
+  group: ''
+- name: Reorder output frame
+  summary: Output frame reordering off (default) | on
+  group: ''
+- name: Frame sample time
+  summary: Frame sample time 1/60 (default) | positive scalar
+  group: ''
+```
 
 ### **Frame size** — Frame dimensions `160x120p` (default) | ...
 
@@ -106,7 +141,6 @@ the next column.
 
 Specify the frame sample time as a positive scalar. The denominator in default value
 `1/60` denotes the number of frames per second.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Testbench

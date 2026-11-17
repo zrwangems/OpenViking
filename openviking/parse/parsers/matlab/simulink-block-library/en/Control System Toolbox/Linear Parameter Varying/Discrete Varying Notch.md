@@ -14,6 +14,24 @@ language: en
 # Discrete Varying Notch
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Filter input scalar
+  direction: input
+- name: freq
+  summary: Notch frequency scalar
+  direction: input
+- name: gmin
+  summary: Gain at notch frequency scalar
+  direction: input
+- name: damp
+  summary: Damping ratio of the filter poles scalar
+  direction: input
+- name: y
+  summary: Filter output scalar
+  direction: output
+```
 
 ### Input
 
@@ -43,8 +61,16 @@ scalar value. The damping ratio controls the notch width; the closer to
 ### **y** — Filter output scalar
 
 Notch filter output signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pre-warping frequency w0 (rad/s)
+  summary: Pre-warping frequency 0 (default) | positive scalar
+  group: ''
+- name: Sample time Ts
+  summary: Sample time 1 (default) | positive scalar
+  group: ''
+```
 
 ### **Pre-warping frequency w0 (rad/s)** — Pre-warping frequency 0 (default) | positive scalar
 
@@ -67,7 +93,6 @@ parameter.
 Block sample time, specified as a positive scalar. This block does not
 support inherited sample time, because it requires a specified sample time
 to compute the discretization of the notch filter.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

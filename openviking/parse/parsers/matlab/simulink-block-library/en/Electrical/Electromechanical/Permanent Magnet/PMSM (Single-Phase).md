@@ -14,6 +14,27 @@ language: en
 # PMSM (Single-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+- name: +
+  summary: Negative electrical
+  direction: conserving
+- name: '-'
+  summary: Positive electrical
+  direction: conserving
+- name: HS
+  summary: Stator thermal port thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -54,8 +75,55 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Number of pole pairs
+  summary: Rotor pole pairs 2 (default) | positive integer
+  group: Main
+- name: Permanent magnet flux linkage parameterization
+  summary: Parameterization method Specify flux linkage (default) | Specify back EMF constant
+  group: Main
+- name: Permanent magnet flux linkage
+  summary: Flux linkage 0.2 Wb (default) | positive scalar
+  group: Main
+- name: Back EMF constant
+  summary: Back-electromotive force constant 0.4 V/(rad/s) (default) | positive scalar
+  group: Main
+- name: Inductance of stator coil
+  summary: Inductance 1.15 H (default) | positive scalar
+  group: Main
+- name: Resistance of stator coil
+  summary: Resistance 150 Ohm (default) | positive scalar
+  group: Main
+- name: Rotor position at standstill due to asymmetric airgap
+  summary: Rotor angular position at standstill 45 deg (default) | positive scalar in the interval [0, 360] deg
+  group: Main
+- name: Rotor inertia
+  summary: Rotor moment of inertia 1e-6 kg*m^2 (default) | positive scalar
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 0 N*m/(rad/s) (default) | positive scalar
+  group: Mechanical
+- name: Measurement temperature
+  summary: Rated temperature 298.15 K (default) | real scalar
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Permanent magnet flux temperature coefficient
+  summary: Permanent magnet flux temperature coefficient -0.001 1/K (default)
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -156,7 +224,6 @@ energy required to raise the temperature by one degree.
 
 Thermal mass of the rotor. The thermal mass is the energy required to
 raise the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

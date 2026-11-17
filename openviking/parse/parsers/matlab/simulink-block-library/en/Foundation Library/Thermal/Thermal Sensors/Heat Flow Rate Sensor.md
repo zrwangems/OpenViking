@@ -14,6 +14,18 @@ language: en
 # Heat Flow Rate Sensor
 
 ## Ports
+```yaml
+ports:
+- name: H
+  summary: Heat flow rate measurement, W physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet thermal
+  direction: conserving
+- name: B
+  summary: Sensor outlet thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -33,11 +45,12 @@ Thermal conserving port. The measurement is positive when the value at port
 Thermal conserving port. The measurement is positive when the value at port
 **A** is greater than the value at port
 **B**.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Sensors

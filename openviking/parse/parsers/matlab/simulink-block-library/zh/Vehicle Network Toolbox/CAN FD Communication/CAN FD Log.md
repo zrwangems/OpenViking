@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # CAN FD Log
 
 ## 端口
+```yaml
+ports:
+- name: CAN Msg
+  summary: 要记录的 CAN FD 消息 CAN_FD_MESSAGE_BUS
+  direction: input
+  data_types: CAN_FD_MESSAGE_BUS
+```
 
 ### 输入
 
@@ -23,8 +30,28 @@ chinese_source: worker-translation
 当 **Log messages from** 参数设置为 `Input port` 时，**CAN Msg** 输入端口可用。从另一个模块提供输入，作为类型为 `CAN_FD_MESSAGE_BUS` 的 Simulink 信号总线。
 
 **数据类型：** `CAN_FD_MESSAGE_BUS`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 日志文件位置和名称 untitled.mat（默认）| 文件名
+  group: ''
+- name: Variable name
+  summary: 日志文件中 CAN FD 消息的变量名 ans（默认）| 变量名
+  group: ''
+- name: Maximum number of messages to log
+  summary: 限制消息数量 10000（默认）| 数值
+  group: ''
+- name: Log messages from
+  summary: 消息来源 CAN FD Bus（默认）| Input port
+  group: ''
+- name: Device
+  summary: CAN 设备和通道列表选项
+  group: ''
+- name: Sample time
+  summary: 仿真中的模块采样时间 0.01（默认）| 数值
+  group: ''
+```
 
 **提示**
 
@@ -55,7 +82,6 @@ chinese_source: worker-translation
 ### **Sample time** — 仿真中的模块采样时间 `0.01`（默认）| 数值
 
 指定仿真期间模块的采样时间。此值定义了 CAN FD Log 模块在仿真期间运行的频率。如果模块位于触发子系统内或要继承采样时间，可以将采样时间指定为 `–1`。也可以为采样时间指定 MATLAB 变量。默认值为 `0.01` 仿真秒。有关详细信息，请参阅 Timing in Hardware Interface Models。
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN FD Communication

@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Rotational Inertia
 
 ## 端口
+```yaml
+ports:
+- name: RTrq
+  summary: 输入扭矩 scalar
+  direction: input
+- name: CTrq
+  summary: 输出扭矩 scalar
+  direction: input
+- name: R
+  summary: 角速度和扭矩双向连接端口
+  direction: input
+- name: Inertia
+  summary: 输入 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: Spd
+  summary: 驱动轴速度 scalar
+  direction: output
+- name: C
+  summary: 角速度和扭矩双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -93,8 +117,38 @@ input**。
 
 要启用此端口，对于 **Port Configuration**，
 选择 `Two-way connection`。
-
 ## 参数
+```yaml
+parameters:
+- name: Port Configuration
+  summary: 指定配置 Simulink（默认）| Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink（默认）| Two-way connection
+- name: Output Info bus
+  summary: 选择 off（默认）| on
+  group: ''
+- name: External inertia input
+  summary: 输入转动惯量 off（默认）| on
+  group: ''
+  block_parameter: externJ
+  values: off（默认）| on
+- name: Rotational inertia, J
+  summary: 惯量 .01（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: J
+  values: .01（默认）| 大于或等于 0 的标量
+- name: Torsional damping, b
+  summary: 阻尼 .001（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: bc
+  values: .001（默认）| 大于或等于 0 的标量
+- name: Initial velocity, omega_o
+  summary: 角速度 0（默认）| 大于或等于 0 的标量
+  group: ''
+  block_parameter: omega_o
+  values: 0（默认）| 大于或等于 0 的标量
+```
 
 #### 模块选项
 
@@ -214,7 +268,6 @@ input**。
 | **参数：** | `omega_o` |
 | **值：** | `0`（默认）| 大于或等于 0 的标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertrain / Drivetrain / Couplings

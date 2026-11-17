@@ -14,6 +14,53 @@ language: en
 # SM ST5C
 
 ## Ports
+```yaml
+ports:
+- name: V_REF
+  summary: Voltage reference scalar
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: Input from stabilizer scalar
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: Terminal voltage scalar
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: Terminal current scalar
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: Overexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: Underexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: Summation point stator current limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: Take-over stator current limit (OEL) scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: Take-over stator current limit (UEL) scalar
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: Measured field current scalar
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: Field voltage scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -157,8 +204,85 @@ Per-unit field voltage to apply to the field circuit of the
 synchronous machine, returned as a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: Initial output voltage 1 (default) | real scalar
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Resistive component of load compensation, R_C (pu)
+  summary: Compensation resistance 0 (default) | positive scalar
+  group: Pre-Control
+- name: Reactance component of load compensation, X_C (pu)
+  summary: Compensation reactance 0 (default) | positive scalar
+  group: Pre-Control
+- name: Regulator input filter time constant, T_R (s)
+  summary: Regulator time constant 0.02 (default) | positive scalar
+  group: Pre-Control
+- name: Regulator gain, K_R (pu)
+  summary: Regulator gain 200 (default) | positive scalar
+  group: Control
+- name: Voltage regulator denominator (lag) time constant (first block), T_B1 (s)
+  summary: Regulator lag time constant 1 6 (default) | positive scalar
+  group: Control
+- name: Voltage regulator numerator (lead) time constant (first block), T_C1 (s)
+  summary: Regulator lead time constant 1 0.8 (default) | positive scalar
+  group: Control
+- name: Voltage regulator denominator (lag) time constant (second block), T_B2 (s)
+  summary: Regulator lag time constant 2 0.01 (default) | positive scalar
+  group: Control
+- name: Voltage regulator numerator (lead) time constant (second block), T_C2 (s)
+  summary: Regulator lead time constant 2 0.08 (default) | positive scalar
+  group: Control
+- name: UEL regulator denominator (lag) time constant (first block), T_UB1 (s)
+  summary: UEL regulator lag time constant 1 10 (default)
+  group: Control
+- name: UEL regulator numerator (lead) time constant (first block), T_UC1 (s)
+  summary: UEL regulator lead time constant 1 2 (default)
+  group: Control
+- name: UEL regulator denominator (lag) time constant (second block), T_UB2 (s)
+  summary: UEL regulator lag time constant 2 0.05 (default)
+  group: Control
+- name: UEL regulator numerator (lead) time constant (second block), T_UC2 (s)
+  summary: UEL regulator lead time constant 2 0.1 (default)
+  group: Control
+- name: OEL regulator denominator (lag) time constant (first block), T_OB1 (s)
+  summary: OEL regulator lag time constant 1 2 (default)
+  group: Control
+- name: OEL regulator numerator (lead) time constant (first block), T_OC1 (s)
+  summary: OEL regulator lead time constant 1 0.1 (default)
+  group: Control
+- name: OEL regulator denominator (lag) time constant (second block), T_OB2 (s)
+  summary: OEL regulator lag time constant 2 0.08 (default)
+  group: Control
+- name: OEL regulator numerator (lead) time constant (second block), T_OC2 (s)
+  summary: OEL regulator lead time constant 2 0.08 (default)
+  group: Control
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: Maximum regulator output 5 (default) | real scalar
+  group: Control
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: Minimum regulator output -4 (default) | real scalar
+  group: Control
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: Rectifier loading factor 0.004 (default) | positive scalar
+  group: Exciter
+- name: Thyristor bridge firing control equivalent time constant, T_1 (s)
+  summary: Time constant for thyristor bridge firing control 0.004 (default) | positive scalar
+  group: Exciter
+```
 
 ### General
 
@@ -329,7 +453,6 @@ reactance.
 
 Equivalent time constant of the firing control for the thyristor
 bridge, in seconds.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

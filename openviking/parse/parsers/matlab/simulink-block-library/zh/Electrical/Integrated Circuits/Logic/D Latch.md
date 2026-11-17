@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # D Latch
 
 ## 端口
+```yaml
+ports:
+- name: D
+  summary: 数据引脚电气端口
+  direction: unspecified
+- name: E
+  summary: 使能引脚电气端口
+  direction: unspecified
+- name: Q
+  summary: 输出引脚电气端口
+  direction: unspecified
+- name: '!Q'
+  summary: 反相输出引脚电气端口
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +48,58 @@ chinese_source: worker-translation
 ### **!Q** — 反相输出引脚电气端口
 
 与反相输出引脚关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Low level input voltage
+  summary: 逻辑为 0 时的输入电压阈值 2 V（默认值）| 非负标量
+  group: 输入
+- name: High level input voltage
+  summary: 逻辑为 1 时的输入电压阈值 3 V（默认值）| 正标量
+  group: 输入
+- name: Average input capacitance
+  summary: MOSFET 栅极的输入电容 5 pF（默认值）| 非负标量
+  group: 输入
+- name: Output current-voltage relationship
+  summary: 输出电流-电压关系的模型 Linear（默认值）| Quadratic
+  group: 输出
+- name: Low level output voltage
+  summary: 逻辑为 0 时的输出电压 0 V（默认值）| 非负标量
+  group: 输出
+- name: High level output voltage
+  summary: 逻辑为 1 时的输出电压 5 V（默认值）| 正标量
+  group: 输出
+- name: Output resistance
+  summary: 输出电阻 25 Ohm（默认值）| 非负标量
+  group: 输出
+- name: Supply voltage
+  summary: 电源电压 5 V（默认值）| 正标量
+  group: 输出
+- name: Measurement voltage
+  summary: 测量电源电压 5 V（默认值）| 正标量
+  group: 输出
+- name: Logic HIGH output resistance at zero current and at I_OH
+  summary: 输出逻辑为 1 时的电阻 [25, 250] Ohm | 正标量的二维向量
+  group: 输出
+- name: Logic HIGH output current I_OH when shorted to ground
+  summary: 逻辑为 1 时短接到地时的输出电流 63 mA（默认值）| 正标量
+  group: 输出
+- name: Logic LOW output resistance at zero current and at I_OL
+  summary: 输出逻辑为 0 时的电阻 [30, 800] Ohm（默认值）| 正标量的二维向量
+  group: 输出
+- name: Logic LOW output current I_OL when shorted to Vcc
+  summary: 逻辑为 0 时短接到 Vcc 时的输出电流 -45 mA（默认值）| 负标量
+  group: 输出
+- name: Propagation delay
+  summary: 输出电压改变状态所需的时间 25 ns（默认值）| 非负标量
+  group: 输出
+- name: Protection diode on resistance
+  summary: 保护二极管导通电阻 5 Ohm（默认值）| 正标量
+  group: 输出
+- name: Protection diode forward voltage
+  summary: 保护二极管正向电压 0.6 V（默认值）| 正标量
+  group: 输出
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中选择**属性检查器**。
 
@@ -153,7 +218,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output current-voltage relationship** 设置为 `Quadratic`。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits / Logic

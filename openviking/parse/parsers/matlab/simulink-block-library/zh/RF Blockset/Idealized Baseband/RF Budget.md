@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # RF Budget
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 时变输入信号 实数标量 | 实数列 | 复数标量 | 复数列
+  direction: input
+  data_types: double | single
+- name: Port_1
+  summary: 时变输出信号 复数标量 | 复数列
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -30,8 +41,31 @@ chinese_source: worker-translation
 时变输出信号，返回为复数标量或复数列。时变输出信号的大小与时变输入信号相等。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: RF budget source
+  summary: RF 预算源 rfbudget object（默认）| RF Budget Analyzer App
+  group: 主要
+- name: rfbudget object
+  summary: 作为源的 rfbudget 对象 rfbudget([],2.1e9,-30,100e6)（默认）| rfbudget 对象
+  group: 主要
+- name: Open RF Budget Analyzer App
+  summary: 作为源的 RF Budget Analyzer 应用 按钮
+  group: 主要
+- name: Simulate supported blocks using code generation
+  summary: 使用生成的 C 代码仿真模型 off（默认）| on
+  group: 主要
+- name: Edit System
+  summary: 编辑或展开 RF Budget 模块 按钮
+  group: 主要
+- name: Frequency resolution
+  summary: 用于计算失配损耗的频率分辨率 51（默认）| 正标量
+  group: 高级
+- name: Modeling bandwidth (Hz)
+  summary: 用于计算失配损耗的建模带宽 100e6（默认）| 正标量
+  group: 高级
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -97,7 +131,6 @@ RF 预算源，指定为 `rfbudget object` 或 `RF Budget Analyzer App`
 - 如果您的输入信号带宽更窄，则减小建模带宽。
   在这种情况下，您还可以降低频率分辨率以减少
   计算时间。
-
 ## 所属库
 
 RF Blockset / Idealized Baseband

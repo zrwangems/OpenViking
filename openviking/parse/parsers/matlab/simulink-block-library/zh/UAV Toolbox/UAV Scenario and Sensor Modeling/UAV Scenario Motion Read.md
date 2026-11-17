@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # UAV Scenario Motion Read
 
 ## 端口
+```yaml
+ports:
+- name: Motion
+  summary: 无人机运动数据总线
+  direction: output
+- name: SampledWind
+  summary: 合成风平移和角速度 1×6 向量
+  direction: output
+- name: SampledWindByComponent
+  summary: 来自每个风模型对象的风平移和角速度 *N*×6 矩阵
+  direction: output
+```
 
 ### 输出
 
@@ -50,8 +62,19 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此端口仅在选中 **Generate wind velocity and angular velocity samples** 时可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Platform or sensor name
+  summary: 平台或传感器名称 'UAV'（默认）| 字符串
+  group: ''
+- name: Coordinate frame of output motion
+  summary: 输出运动的坐标系 'ENU'（默认）| 'NED' | 字符串
+  group: ''
+- name: Generate wind velocity and angular velocity samples
+  summary: 生成风速度和角速度采样 off（默认）| on
+  group: ''
+```
 
 ### **Platform or sensor name** — 平台或传感器名称 `'UAV'`（默认）| 字符串
 
@@ -70,7 +93,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数仅在您选择了平台且 Aerospace Blockset™ 许可证可用时启用。在开启此参数的情况下进行仿真会签出 Aerospace Blockset 许可证。
-
 ## 所属库
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

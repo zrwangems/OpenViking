@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # DAC Testbench
 
 ## 端口
+```yaml
+ports:
+- name: from dac analog
+  summary: 来自 DAC 输出的模拟信号 标量
+  direction: input
+  data_types: double
+- name: to dac digital
+  summary: 用于 DAC 输入的数字激励信号 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: to dac start
+  summary: 用于 DAC 的外部启动转换时钟 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,119 @@ chinese_source: worker-translation
 用于 DAC 的外部启动转换时钟，以标量形式返回。该信号的上升沿启动 DAC 模块中的转换过程。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement
+  summary: 选择测量直流还是交流性能指标 DC（默认）| AC
+  group: ''
+- name: Recommended min. simulation stop time (s)
+  summary: 仿真必须运行以获得有意义结果的最短时间 2.048e-02（默认）| 正实数标量
+  group: ''
+- name: Set as model stop time
+  summary: 自动将推荐的仿真最短停止时间设置为模型停止时间 按钮
+  group: ''
+- name: Endpoint
+  summary: 使用端点法测量 DNL、INL on（默认）| off
+  group: ''
+- name: Best fit
+  summary: 使用最佳拟合法测量 DNL、INL on（默认）| off
+  group: ''
+- name: Plot DC analysis result
+  summary: 绘制 DC 分析结果 按钮
+  group: ''
+- name: Export measurement result
+  summary: 将详细测试结果存储到基础工作区 按钮
+  group: ''
+- name: Digital input frequency (Hz)
+  summary: 数字输入信号频率 1e4（默认）| 正实数标量
+  group: Stimulus
+  block_parameter: InputFrequency
+  type: character vector
+  values: positive real scalar
+  default: 1e3
+- name: Start conversion frequency (Hz)
+  summary: 内部启动转换时钟频率 1e6（默认）| 正实数标量
+  group: Stimulus
+  block_parameter: StartFreq
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Error tolerance (LSB)
+  summary: 数字信号连续采样之间的最大差值 0.1（默认）| 范围 (0, 1] 内的正标量
+  group: Stimulus
+  block_parameter: ErrorTolerance
+  type: character vector
+  values: positive scalar in the range (0, 1]
+  default: '0.1'
+- name: Autofill setup parameters
+  summary: 自动传播 DAC 的设置参数 button
+  group: Setup
+- name: Number of bits
+  summary: 输入字中的位数 10（默认）| 正实数整数
+  group: Setup
+  block_parameter: NBits
+  type: character vector
+  values: positive real integer
+  default: '10'
+- name: Input polarity
+  summary: DAC 输入信号的极性 Bipolar（默认）| Unipolar
+  group: Setup
+  block_parameter: Polarity
+  type: character vector
+  values: Bipolar|Unipolar
+  default: Bipolar
+- name: Reference (V)
+  summary: 参考电压 1（默认）| 实数标量
+  group: Setup
+  block_parameter: Ref
+  type: character vector
+  values: real scalar
+  default: '1'
+- name: Bias (V)
+  summary: 添加到输出的偏置电压 0（默认）| 实数标量
+  group: Setup
+  block_parameter: Bias
+  type: 字符向量
+  values: 实数标量
+  default: '0'
+- name: 建立时间 (s)
+  summary: 输出建立所需的时间 0.25/1e-6（默认）| 非负实数标量
+  group: Setup
+  block_parameter: SettlingTime
+  type: 字符向量
+  values: 实数标量
+  default: 0.25/1e-6
+- name: 建立时间容差 (LSB)
+  summary: 计算建立时间的容差 0.5（默认）| 正实数标量
+  group: Setup
+  block_parameter: SettlingTimeTolerance
+  type: 字符向量
+  values: 正实数标量
+  default: '0.5'
+- name: 保持关断时间 (s)
+  summary: 测量分析前的延迟 0（默认）| 非负实数标量
+  group: Setup
+- name: 在仿真期间显示频谱分析仪
+  summary: 在仿真期间显示频谱分析仪 关（默认）| 开
+  group: Setup
+- name: 自动填充目标指标
+  summary: 从 DAC 自动传播目标指标 按钮
+  group: 目标指标
+- name: 失调误差
+  summary: 将量化步长偏移特定值 0 LSB（默认）| 实数标量
+  group: 目标指标
+  block_parameter: TargetOffsetError
+  type: 字符向量
+  values: 实数标量
+  default: 0 LSB
+- name: 增益误差
+  summary: DAC 转换曲线斜率误差 0 LSB（默认）| 实数标量
+  group: 目标指标
+  block_parameter: TargetGainError
+  type: 字符向量
+  values: 实数标量
+```
 
 ### **Measurement** — 选择测量直流还是交流性能指标 `DC`（默认）| `AC`
 
@@ -379,7 +505,6 @@ LSB 由以下公式计算：LSB = 转换器满量程范围2NBits。
 | **默认：** `0 LSB` |
 
 **数据类型：** `double`
-
 ## 所属库
 
 Mixed-Signal Blockset / DAC / Measurements & Testbenches

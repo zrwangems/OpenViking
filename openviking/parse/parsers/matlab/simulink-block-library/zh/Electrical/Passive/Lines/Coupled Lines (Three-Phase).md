@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Coupled Lines (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 线路正极端口 electrical
+  direction: conserving
+- name: ~2
+  summary: 线路负极端口 electrical
+  direction: conserving
+- name: a1
+  summary: 线路 *a* 正极端口 electrical
+  direction: conserving
+- name: a2
+  summary: 线路 *a* 负极端口 electrical
+  direction: conserving
+- name: b1
+  summary: 线路 *b* 正极端口 electrical
+  direction: conserving
+- name: b2
+  summary: 线路 *b* 负极端口 electrical
+  direction: conserving
+- name: c1
+  summary: 线路 *c* 正极端口 electrical
+  direction: conserving
+- name: c2
+  summary: 线路 *c* 负极端口 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -109,8 +136,128 @@ ports`
 要启用此端口，请将 **Electrical
 connection** 设置为 `Expanded three-phase
 ports`
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 建模为复合三相端口还是扩展三相端口 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主要
+- name: Parameterization
+  summary: 线路阻抗参数化方式 Balanced impedance（默认）| General impedance
+  group: 主要
+- name: Line a inductance
+  summary: 线路 *a* 自感 1e-3 H（默认）| 正标量
+  group: 主要
+- name: Line b inductance
+  summary: 线路 *b* 自感 1e-3 H（默认）| 正标量
+  group: 主要
+- name: Line c inductance
+  summary: 线路 *c* 自感 1e-3 H（默认）| 正标量
+  group: 主要
+- name: Line inductance
+  summary: 自感 1e-3 H（默认）| 正标量
+  group: 主要
+- name: Line a-b mutual inductance
+  summary: '*a*-*b* 之间的互感 3e-4 H（默认）| 正标量'
+  group: 主要
+- name: Line b-c mutual inductance
+  summary: '*b*-*c* 之间的互感 3e-4 H（默认）| 正标量'
+  group: 主要
+- name: Line a-c mutual inductance
+  summary: '*a*-*c* 之间的互感 3e-4 H（默认）| 正标量'
+  group: 主要
+- name: Mutual inductance
+  summary: 互感 3e-4 H（默认）| 正标量
+  group: 主要
+- name: Line a resistance
+  summary: 线路 *a* 串联电阻 0.001 Ohm（默认）| 非负标量
+  group: 电阻
+- name: Line b resistance
+  summary: 线路 *b* 串联电阻 0.001 Ohm（默认）| 非负标量
+  group: 电阻
+- name: Line c resistance
+  summary: 线路 *c* 串联电阻 0.001 Ohm（默认）| 非负标量
+  group: 电阻
+- name: Line a-b mutual resistance
+  summary: '*a*-*b* 之间的互阻 0 Ohm（默认）| 非负标量'
+  group: 电阻
+- name: Line a-c mutual resistance
+  summary: '*a*-*c* 之间的互阻 0 Ohm（默认）| 非负标量'
+  group: 电阻
+- name: Line b-c mutual resistance
+  summary: '*b*-*c* 之间的互阻 0 Ohm（默认）| 非负标量'
+  group: 电阻
+- name: Line resistance
+  summary: 串联电阻 0.001 Ohm（默认）| 非负标量
+  group: 电阻
+- name: Mutual resistance
+  summary: 互阻 0 Ohm（默认）| 非负标量
+  group: 电阻
+- name: Line a leakage conductance
+  summary: 线路 *a* 并联泄漏电导 1e-9 1/Ohm（默认）| 非负标量
+  group: 电阻
+- name: Line b leakage conductance
+  summary: 线路 *b* 并联泄漏电导 1e-9 1/Ohm（默认）| 非负标量
+  group: 电阻
+- name: Line c leakage conductance
+  summary: 线路 *c* 并联泄漏电导 1e-9 1/Ohm（默认）| 非负标量
+  group: 电阻
+- name: Line leakage conductance
+  summary: 并联泄漏电导 1e-9 1/Ohm（默认）| 非负标量
+  group: 电阻
+- name: Port 1 connection fault
+  summary: 向端口 1 添加故障的选项 Add fault
+  group: 故障
+- name: Fault type
+  summary: 故障类型 Single-phase to ground (a-g)（默认）| Single-phase to ground (b-g) | Single-phase to ground (c-g) | Two-phase
+    (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase to ground
+    (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: 故障
+- name: Faulted phase-neutral resistance
+  summary: 故障时相连接与中性点之间的电阻 1e-3 Ohm（默认）| 正标量
+  group: 故障
+- name: Faulted neutral-ground resistance
+  summary: 故障时中性点与电气参考之间的电阻 1e-3 Ohm（默认）| 正标量
+  group: 故障
+- name: Unfaulted phase-neutral conductance
+  summary: 未故障时相连接与中性点之间的电导 1e-6 1/Ohm（默认）| 正标量
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: Port 2 connection fault
+  summary: 向端口 2 添加故障的选项 Add fault
+  group: 故障
+- name: Fault type
+  summary: 故障类型 Single-phase to ground (a-g)（默认）| Single-phase to ground (b-g) | Single-phase to ground (c-g) | Two-phase
+    (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase to ground
+    (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: 故障
+- name: Faulted phase-neutral resistance
+  summary: 故障时相连接与中性点之间的电阻 1e-3 Ohm（默认）| 正标量
+  group: 故障
+- name: Faulted neutral-ground resistance
+  summary: 故障时中性点与电气参考之间的电阻 1e-3 Ohm（默认）| 正标量
+  group: 故障
+- name: 未故障相-中性点电导
+  summary: 故障未激活时相连接与中性点之间的未故障电导 1e-6 1/Ohm（默认）| 正标量
+  group: 故障
+- name: 触发类型
+  summary: 触发类型 始终开启（默认）| 定时 | 附加触发 | 条件 | 手动
+  group: 故障
+- name: 在以下时间触发故障
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: 触发配置
+  summary: 启用附加触发类型的选项 打开故障属性
+  group: 故障
+```
 
 ### 主要
 
@@ -662,7 +809,6 @@ impedance`。
 用于启用模块对话框中不可用的附加触发类型的选项。要将 **触发类型** 参数设置为 `条件` 或 `手动`，请点击 **打开故障属性** 超链接，并在属性检查器中设置 **触发类型**。
 
 要启用此参数，请为 **端口 2 连接故障** 参数点击 **添加故障** 超链接，并将 **触发类型** 设置为 `附加触发`。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Lines

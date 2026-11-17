@@ -14,6 +14,14 @@ language: en
 # To File
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -26,8 +34,45 @@ accepts real or complex signal data of any data type that Simulink® software su
 length greater than 32 bits.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Path or file name untitled.mat (default) | MAT file path or name
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: MAT file path or name
+  default: '''untitled.mat'''
+- name: Variable name
+  summary: Matrix name ans (default) | character vector
+  group: ''
+  block_parameter: MatrixName
+  type: character vector
+  values: character vector
+  default: '''ans'''
+- name: Save format
+  summary: Data format Timeseries (default) | Array
+  group: ''
+  block_parameter: SaveFormat
+  type: character vector
+  values: '''Timeseries'' | ''Array'''
+  default: '''Timeseries'''
+- name: Decimation
+  summary: Decimation factor that determines when data writes 1 (default) | scalar | vector
+  group: ''
+  block_parameter: Decimation
+  type: character vector
+  values: scalar | vector
+  default: '''1'''
+- name: Sample time
+  summary: Sample period and offset -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+```
 
 ### **File name** — Path or file name `untitled.mat` (default) | MAT file path or name
 
@@ -162,7 +207,6 @@ block to inherit the sample time from the driving block. See Specify Sample Time
 | **Type:** character vector |
 | **Values:** scalar | vector |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 Simulink / Sinks HDL Coder / Sinks

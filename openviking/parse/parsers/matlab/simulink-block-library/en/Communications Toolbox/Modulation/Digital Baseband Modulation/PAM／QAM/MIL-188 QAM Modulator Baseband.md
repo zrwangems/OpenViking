@@ -14,6 +14,17 @@ language: en
 # MIL-188 QAM Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: MIL-STD-188 standard-specific QAM modulated signal scalar | vector | matrix
+  direction: output
+  data_types: double | single
+```
 
 ### Input
 
@@ -55,8 +66,28 @@ Use **Output
 data type** to specify the output data type.
 
 **Data Types:** `double` | `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation order
+  summary: Modulation order 16 (default) | 32 | 64 | 256
+  group: ''
+- name: Constellation scaling
+  summary: Constellation scaling As specified in standard (default) | Unit average power
+  group: ''
+- name: Input type
+  summary: Input type Integer (default) | Bit
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single
+  group: ''
+- name: View Constellation
+  summary: Plot reference constellation button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -119,7 +150,6 @@ Type of simulation to run, specified as:
   generation`. In `Interpreted
   execution` mode, you can debug the source code
   of the block.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM Communications Toolbox / Modulation / Digital Baseband Modulation / Standard-Compliant

@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Constant Velocity Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座坐标系 frame
+  direction: input
+- name: F
+  summary: 从动坐标系 frame
+  direction: input
+- name: mode
+  summary: 关节模式控制物理信号
+  direction: input
+- name: qb
+  summary: 弯曲角 标量
+  direction: output
+- name: wb
+  summary: 弯曲角速度 标量
+  direction: output
+- name: bb
+  summary: 弯曲角加速度 标量
+  direction: output
+- name: qa
+  summary: 方位角标量
+  direction: output
+- name: wa
+  summary: 方位角速度标量
+  direction: output
+- name: ba
+  summary: 方位角加速度标量
+  direction: output
+- name: fc
+  summary: 约束力，N 物理信号
+  direction: output
+- name: tc
+  summary: 约束力矩，N\*m 物理信号
+  direction: output
+- name: ft
+  summary: 总力，N 物理信号
+  direction: output
+- name: tt
+  summary: 总力矩，N\*m 物理信号
+  direction: output
+```
 
 ### Frame
 
@@ -136,8 +178,70 @@ CV 关节方位角的加速度，以标量形式返回。该量等于端口 **qa
 #### 依赖关系
 
 要启用此端口，请在 **Composite Force/Torque Sensing** 下，选择 **Total Torque**。
-
 ## 参数
+```yaml
+parameters:
+- name: Internal State
+  summary: 关节 Rotation Sequence (faster simulations)（默认）| Quaternion (allows zero bend angle) 的内部状态参数化
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target
+  summary: 是否指定位置目标 off（默认）| on
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target > Priority
+  summary: 位置目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target > Value
+  summary: 用于指定位置目标的角度 Bend Angle Only（默认）| Bend Angle and Azimuth
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target > Value > Bend Angle
+  summary: 要指定的弯曲角 45 deg（默认）
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Position Target > Value > Azimuth
+  summary: 要指定的方位角 0 deg（默认）
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Velocity Target
+  summary: 是否指定速度目标 off（默认）| on
+  group: Constant Velocity Primitive (CV)
+- name: State Targets > Specify Velocity Target > Priority
+  summary: 速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Constant Velocity Primitive (CV)
+- name: 状态目标 > 指定速度目标 > 值
+  summary: 用于指定速度目标的参数 Bend Angle Only（默认）| Bend Angle and Azimuth
+  group: Constant Velocity Primitive (CV)
+- name: 状态目标 > 指定速度目标 > 值 > 弯曲角度
+  summary: 要指定的弯曲角速度 0 deg/s（默认）
+  group: Constant Velocity Primitive (CV)
+- name: 状态目标 > 指定速度目标 > 值 > 方位角
+  summary: 要指定的方位角速度 0 deg/s（默认）
+  group: Constant Velocity Primitive (CV)
+- name: 传感 > 弯曲角度 > 位置
+  summary: 是否检测弯曲角度 off（默认）| on
+  group: Constant Velocity Primitive (CV)
+- name: 传感 > 弯曲角度 > 速度
+  summary: 是否检测弯曲角度的速度 off（默认）| on
+  group: Constant Velocity Primitive (CV)
+- name: 传感 > 弯曲角度 > 加速度
+  summary: 是否检测弯曲角度的加速度 off（默认）| on
+  group: Constant Velocity Primitive (CV)
+- name: 传感 > 方位角 > 位置
+  summary: 是否检测方位角 off（默认）| on
+  group: Constant Velocity Primitive (CV)
+- name: 传感 > 方位角 > 速度
+  summary: 是否检测方位角的速度 off（默认）| on
+  group: Constant Velocity Primitive (CV)
+- name: 传感 > 方位角 > 加速度
+  summary: 是否检测方位角的加速度 off（默认）| on
+  group: Constant Velocity Primitive (CV)
+- name: 模式
+  summary: 关节模式 Normal（默认）| Locked | Disengaged | Provided by Input
+  group: 模式配置
+- name: 方向
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: 复合力/力矩传感
+- name: Resolution Frame
+  summary: 用于解析测量的坐标系 Base（默认）| Follower
+  group: 复合力/力矩传感
+```
 
 ### Constant Velocity Primitive (CV)
 
@@ -283,7 +387,6 @@ CV 关节方位角的加速度，以标量形式返回。该量等于端口 **qa
 - `Follower` — 该模块在从动坐标系坐标中解析测量值。
 
 此参数仅影响 **Composite Force/Torque Sensing** 部分下的输出信号。
-
 ## 所属库
 
 Simscape / Multibody / Joints

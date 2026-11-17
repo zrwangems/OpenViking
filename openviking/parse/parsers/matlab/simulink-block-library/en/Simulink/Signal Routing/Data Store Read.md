@@ -14,6 +14,18 @@ language: en
 # Data Store Read
 
 ## Ports
+```yaml
+ports:
+- name: IdxN
+  summary: '*N*th index signal scalar | vector'
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16
+- name: Port_1
+  summary: Values from specified data store scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -46,8 +58,94 @@ You can use arrays of buses with a Data Store Read
 block. For details about defining and using an array of buses, see Group Nonvirtual Buses in Arrays of Buses.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Data store name
+  summary: Name of data store from which block reads A (default) | name of data store
+  group: Parameters
+  block_parameter: DataStoreName
+  type: string | character vector
+  values: data store name
+  default: '''A'''
+- name: Data store memory block
+  summary: 'Data Store Memory block name Read-only: block path'
+  group: Parameters
+- name: Corresponding Data Store Write blocks
+  summary: 'List of corresponding Data Store Write blocks Read-only: block path'
+  group: Parameters
+- name: Sample time
+  summary: Sample time -1 (default) | scalar | vector
+  group: Parameters
+  block_parameter: SampleTime
+  type: string | character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: Elements in the array (Signals in the bus)
+  summary: Elements in associated data store character vector
+  group: Element Selection
+  block_parameter: DataStoreElements
+  type: string | character vector
+  values: pound-delimited list of elements (See Specification using the command line.)
+  default: ''''''
+- name: Specify element(s) to select
+  summary: MATLAB expression that defines element to select character vector
+  group: Element Selection
+  block_parameter: DataStoreElements
+  type: string | character vector
+  values: pound-delimited list of elements (See Specification using the command line.)
+  default: ''''''
+- name: Selected element(s)
+  summary: List of selected elements character vector
+  group: Element Selection
+  block_parameter: DataStoreElements
+  type: string | character vector
+  values: pound-delimited list of elements (See Specification using the command line.)
+  default: ''''''
+- name: Enable indexing
+  summary: Enable indexing to specify subelements of data store element to read off (default) | on
+  group: Element Selection
+  block_parameter: EnableIndexing
+  type: string | character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Number of dimensions
+  summary: Number of dimensions of data store element 1 (default) | positive integer
+  group: Element Selection
+  block_parameter: NumberOfDimensions
+  type: string | character vector
+  values: positive integer
+  default: '''1'''
+- name: Index mode
+  summary: Index mode One-based (default) | Zero-based
+  group: Element Selection
+  block_parameter: IndexMode
+  type: string | character vector
+  values: '"Zero-based" | "One-based"'
+  default: '''One-based'''
+- name: Index Option
+  summary: Index method for subelements Index vector (dialog) (default) | Select all | Index vector (port) | Starting index
+    (dialog) | Starting index (port)
+  group: Element Selection
+  block_parameter: IndexOptionArray
+  type: string | character vector
+  values: '"Select all" | "Index vector (dialog)" | "Index vector (port)" | "Starting index (dialog)" | "Starting index (port)"'
+  default: '''Index vector (dialog)'''
+- name: Index
+  summary: Indices or starting index of subelements 1 (default) | integer | vector of integers
+  group: Element Selection
+  block_parameter: IndexParamArray
+  type: character vector
+  values: cell array
+  default: '''{ }'''
+- name: Output Size
+  summary: Size of range of subelements to read 1 (default) | integer
+  group: Element Selection
+  block_parameter: OutputSizeArray
+  type: character vector
+  values: cell array
+  default: '''{ }'''
+```
 
 ### Parameters
 
@@ -376,7 +474,6 @@ for the dimension to `Starting index
 | **Type:** character vector |
 | **Values:** cell array |
 | **Default:** `'{ }'` |
-
 ## Libraries
 
 Simulink / Signal Routing

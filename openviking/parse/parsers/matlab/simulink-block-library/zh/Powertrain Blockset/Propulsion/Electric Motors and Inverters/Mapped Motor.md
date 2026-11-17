@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Mapped Motor
 
 ## 端口
+```yaml
+ports:
+- name: BattVolt
+  summary: 电池电压标量
+  direction: input
+- name: TrqCmd
+  summary: 指令电机转矩标量
+  direction: input
+- name: LdTrq
+  summary: 电机负载转矩标量
+  direction: input
+- name: MtrSpd
+  summary: 电机输出轴转速标量
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: BattCurr
+  summary: 电池电流标量
+  direction: output
+- name: MtrTrq
+  summary: 电机转矩标量
+  direction: output
+- name: MtrSpd
+  summary: 电机轴转速标量
+  direction: output
+```
 
 ### 输入
 
@@ -77,8 +104,186 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请将 **Port configuration** 设置为 `Torque`。
-
 ## 参数
+```yaml
+parameters:
+- name: Port configuration
+  summary: 端口配置 Torque（默认）| Speed
+  group: ''
+  block_parameter: port_config
+  values: Torque（默认）| Speed
+- name: Import Torque Limits Calibration
+  summary: 直接导入转矩限值标定表的方法选择
+  group: ''
+- name: Calibrate Maps
+  summary: 使用测量数据选择来标定损耗表的方法
+  group: ''
+- name: Import Loss Calibration
+  summary: 直接导入损耗标定表选择的方法
+  group: ''
+- name: Import Efficiency Calibration
+  summary: 直接导入效率校准表选择的方法
+  group: ''
+- name: Parameterized by
+  summary: 扭矩包络的参数化方法 Tabulated torque-speed envelope（默认）| Maximum torque and power | Tabulated torque-speed-voltage envelope
+  group: ''
+  block_parameter: param_by
+  values: Tabulated torque-speed envelope（默认）| Maximum torque and power | Tabulated torque-speed-voltage envelope
+- name: Speed breakpoints for maximum torque, w_t
+  summary: 转速 [0 375 750 800]（默认）| 向量
+  group: ''
+  block_parameter: w_t
+  values: '[0 375 750 800]（默认）| 向量'
+- name: Maximum torque values, T_t
+  summary: 扭矩 [0.09 0.08 0.07 0]（默认）| 向量
+  group: ''
+  block_parameter: T_t
+  values: '[0.09 0.08 0.07 0]（默认）| 向量'
+- name: Maximum torque, torque_max
+  summary: 扭矩 0.1（默认）| 标量
+  group: ''
+  block_parameter: torque_max
+  values: 0.1（默认） | 标量
+- name: Maximum power, power_max
+  summary: 功率 30（默认） | 标量
+  group: ''
+  block_parameter: power_max
+  values: 30（默认） | 标量
+- name: Torque control time constant, Tc
+  summary: 时间常数 0.02（默认） | 标量
+  group: ''
+  block_parameter: Tc
+  values: 0.02（默认） | 标量
+- name: Maximum torque as a function of speed and voltage, Tmax_w_V
+  summary: 转矩 [0.09 0.09 0.09;0.08 0.08 0.08;0.07 0.07 0.07;0 0 0]（默认） | 向量
+  group: ''
+  block_parameter: Tmax_w_V
+  values: '[0.09 0.09 0.09;0.08 0.08 0.08;0.07 0.07 0.07;0 0 0]（默认） | 向量'
+- name: Speed breakpoints for maximum torque, w_Tmax_bp
+  summary: 转速 [ 0 375 750 800 ]（默认） | 向量
+  group: ''
+  block_parameter: w_Tmax_bp
+  values: '[ 0 375 750 800 ]（默认） | 向量'
+- name: Voltage breakpoints for maximum torque, V_Tmax_bp
+  summary: 电压 [ 500 750 900 ]（默认） | 向量
+  group: ''
+  block_parameter: V_Tmax_bp
+  values: '[ 500 750 900 ]（默认） | 向量'
+- name: Minimum torque as a function of speed and voltage, Tmin_w_V
+  summary: 转矩 [-0.09 -0.09 -0.09;-0.08 -0.08 -0.08;-0.07 -0.07 -0.07;0 0 0]（默认） | 向量
+  group: ''
+  block_parameter: Tmin_w_V
+  values: '[-0.09 -0.09 -0.09;-0.08 -0.08 -0.08;-0.07 -0.07 -0.07;0 0 0]（默认）| 向量'
+- name: 最小转矩的转速断点，w_Tmin_bp
+  summary: 转速 [ 0 375 750 800 ]（默认）| 向量
+  group: ''
+  block_parameter: w_Tmin_bp
+  values: '[ 0 375 750 800 ]（默认）| 向量'
+- name: 最小转矩的电压断点，V_Tmin_bp
+  summary: 电压 [ 500 750 900 ]（默认）| 向量
+  group: ''
+  block_parameter: V_Tmin_bp
+  values: '[ 500 750 900 ]（默认）| 向量'
+- name: Parameterize losses by
+  summary: 电气损耗的参数化方法 Single efficiency measurement（默认） | Tabulated loss data | Tabulated loss data with temperature | Tabulated
+    loss data with temperature and voltage | Tabulated efficiency data | Tabulated efficiency data with temperature | Tabulated
+    efficiency data with temperature and voltage
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement（默认） | Tabulated loss data | Tabulated loss data with temperature | Tabulated loss
+    data with temperature and voltage | Tabulated efficiency data | Tabulated efficiency data with temperature | Tabulated
+    efficiency data with temperature and voltage
+- name: 电机和驱动器的总效率，eff
+  summary: 电机和电机驱动器的组合效率 *η*0，在效率设定点处测量，以百分比表示 100（默认） | 标量
+  group: ''
+  block_parameter: eff
+  values: 100（默认） | 标量
+- name: 测量效率时的转速，w_eff
+  summary: 转速 375（默认） | 标量
+  group: ''
+  block_parameter: w_eff
+  values: 375（默认） | 标量
+- name: 测量效率时的转矩，T_eff
+  summary: 转矩 0.08（默认） | 标量
+  group: ''
+  block_parameter: T_eff
+  values: 0.08（默认） | 标量
+- name: 铁损耗，Piron
+  summary: 功率 0（默认） | 标量
+  group: ''
+  block_parameter: Piron
+  values: 0（默认） | 标量
+- name: Fixed losses independent of torque and speed, Pbase
+  summary: 功率 0（默认） | 标量
+  group: ''
+  block_parameter: Pbase
+  values: 0（默认） | 标量
+- name: Speed breakpoints for losses, w_eff_bp
+  summary: 断点 [-800 -400 0 400 800]（默认） | 1×M 向量
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[-800 -400 0 400 800]（默认） | 1×M 向量'
+- name: Torque breakpoints for losses, T_eff_bp
+  summary: 断点 [0 0.03 0.06 0.09]（默认） | 1×N 向量
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[0 0.03 0.06 0.09]（默认） | 1×N 向量'
+- name: Temperature breakpoints for losses, Temp_eff_bp
+  summary: 断点 [233.15 293.15 373.15]（默认） | 1×L 向量
+  group: ''
+  block_parameter: Temp_eff_bp
+  values: '[233.15 293.15 373.15]（默认） | 1×L 向量'
+- name: Voltage breakpoints for losses, V_eff_bp
+  summary: 断点 [500 700 900]（默认）| 1×K 向量
+  group: ''
+  block_parameter: V_eff_bp
+  values: '[500 700 900]（默认）| 1×K 向量'
+- name: Loss table, losses_table
+  summary: 二维查找表 M×N 矩阵
+  group: ''
+  block_parameter: losses_table
+  values: M×N 矩阵
+- name: Loss table, losses_table_3d
+  summary: 三维查找表 M×N×L 数组
+  group: ''
+  block_parameter: losses_table_3d
+  values: M×N×L 数组
+- name: Loss table, losses_table_4d
+  summary: 四维查找表 N×M×K×L 数组
+  group: ''
+  block_parameter: losses_table_4d
+  values: N×M×K×L 数组
+- name: Efficiency table, efficiency_table
+  summary: 二维查找表 M×N 矩阵
+  group: ''
+  block_parameter: efficiency_table
+  values: M×N 矩阵
+- name: Efficiency table, efficiency_table_3d
+  summary: 3-D lookup table M×N×L 数组
+  group: ''
+  block_parameter: efficiency_table_3d
+  values: M×N×L 数组
+- name: Efficiency table, efficiency_table_4d
+  summary: 4-D lookup table N×M×K×L 数组
+  group: ''
+  block_parameter: efficiency_table_4d
+  values: N×M×K×L 数组
+- name: Rotor inertia, J
+  summary: 惯性 5e-6（默认）| 标量
+  group: ''
+  block_parameter: J
+  values: 5e-6（默认）| 标量
+- name: Rotor damping, b
+  summary: 阻尼 1e-5（默认）| 标量
+  group: ''
+  block_parameter: b
+  values: 1e-5（默认）| 标量
+- name: Initial rotor speed, omega_o
+  summary: 转速 0（默认）| 标量
+  group: ''
+  block_parameter: omega_o
+  values: 0（默认） | 标量
+```
 
 #### 模块选项
 
@@ -848,7 +1053,6 @@ PIron,0=kwω02
 | **参数：** | `omega_o` |
 | **值：** | `0`（默认） | 标量 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters Vehicle Dynamics Blockset / Powertrain / Propulsion

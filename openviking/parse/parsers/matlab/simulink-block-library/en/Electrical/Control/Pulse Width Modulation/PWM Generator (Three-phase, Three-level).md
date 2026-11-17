@@ -14,6 +14,24 @@ language: en
 # PWM Generator (Three-phase, Three-level)
 
 ## Ports
+```yaml
+ports:
+- name: Vabc
+  summary: Three-phase sinusoidal reference signal vector
+  direction: input
+- name: vdc
+  summary: DC-link voltage signal scalar
+  direction: input
+- name: vneutral
+  summary: DC-link neutral point balance control scalar
+  direction: input
+- name: g
+  summary: Gate control vector
+  direction: output
+- name: ModWave
+  summary: Modulation wave vector
+  direction: output
+```
 
 ### Input
 
@@ -44,8 +62,22 @@ power converter.
 If you are generating code for a platform that has hardware with PWM
 capability, you can deploy the modulation wave to the hardware.
 Otherwise, this data is for reference only.
-
 ## Parameters
+```yaml
+parameters:
+- name: Continuous PWM
+  summary: 'Continuous pulse width modulation method SPWM: sinusoidal PWM (default) | SVM: space vector modulation'
+  group: ''
+- name: Sampling mode
+  summary: Wave-sampling method Natural (default) | Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: Switching rate 1e3 (default) | positive number
+  group: ''
+- name: Sample time (s)
+  summary: Block sample time 5e-5 (default) | positive number
+  group: ''
+```
 
 ### **Continuous PWM** — Continuous pulse width modulation method `SPWM: sinusoidal PWM` (default) | `SVM: space vector modulation`
 
@@ -70,7 +102,6 @@ this value to be less than or equal to
 `1/(10*Fsw)`,
 where *F*sw is the
 **Switching frequency (Hz)**.
-
 ## Libraries
 
 Simscape / Electrical / Control / Pulse Width Modulation

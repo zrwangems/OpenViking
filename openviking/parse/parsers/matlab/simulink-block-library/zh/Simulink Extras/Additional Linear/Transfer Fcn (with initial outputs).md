@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Transfer Fcn
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -35,8 +46,41 @@ chinese_source: worker-translation
 - 对于多输出系统，输入为标量，输出为向量，其中每个元素为系统的一个输出。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Numerator coefficients
+  summary: 分子系数向量或矩阵 [1]（默认）| 向量 | 矩阵
+  group: ''
+  block_parameter: Numerator
+  type: character vector, string
+  values: vector | matrix
+  default: '''[1]'''
+- name: Denominator coefficients
+  summary: 分母系数行向量 [1 1]（默认）| 向量
+  group: ''
+  block_parameter: Denominator
+  type: character vector | string
+  values: vector
+  default: '''[1 1]'''
+- name: Parameter tunability
+  summary: 代码中模块参数的可调表示 Auto（默认）| Optimized | Unconstrained
+  group: ''
+  block_parameter: ParameterTunability
+  type: character vector, string
+  values: '''Auto'' | ''Optimized'' | ''Unconstrained'''
+  default: '''Auto'''
+- name: Absolute tolerance
+  summary: 计算模块状态的绝对容差 auto（默认）| 标量 | 向量
+  group: ''
+  block_parameter: AbsoluteTolerance
+  values: '''auto''（默认）| ''-1'' | 正实标量数值 | 正实标量数值向量'
+- name: State Name (e.g., 'position')
+  summary: 为状态分配唯一名称的选项 ''（默认）| 字符向量 | 字符向量元胞数组 | MATLAB® 变量 | ...
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  values: '''''（默认）| 有效的 MATLAB 变量名称'
+```
 
 ### **Numerator coefficients** — 分子系数向量或矩阵 `[1]`（默认）| 向量 | 矩阵
 
@@ -138,7 +182,6 @@ State-Space",AbsoluteTolerance="-1")`
 
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
-
 ## 所属库
 
 Simulink / Continuous

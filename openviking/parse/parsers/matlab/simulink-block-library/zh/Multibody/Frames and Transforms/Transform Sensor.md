@@ -15,6 +15,141 @@ chinese_source: worker-translation
 # Transform Sensor
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础坐标系 坐标系
+  direction: output
+- name: F
+  summary: 从动坐标系 坐标系
+  direction: output
+- name: q
+  summary: 旋转角度，rad 物理信号
+  direction: output
+- name: axs
+  summary: 旋转轴，无量纲 物理信号
+  direction: output
+- name: Q
+  summary: 四元数，无量纲 物理信号
+  direction: output
+- name: R
+  summary: 旋转矩阵，无量纲 物理信号
+  direction: output
+- name: seq
+  summary: 三次连续旋转的角度，rad 物理信号
+  direction: output
+- name: wx
+  summary: 相对角速度的 *X* 分量，rad/s 物理信号
+  direction: output
+- name: wy
+  summary: 相对角速度的 *Y* 分量，rad/s 物理信号
+  direction: output
+- name: wz
+  summary: 相对角速度的 *Z* 分量，rad/s 物理信号
+  direction: output
+- name: w
+  summary: 相对角速度，rad/s 物理信号
+  direction: output
+- name: Qd
+  summary: 以四元数时间导数表示的相对角速度，无量纲物理信号
+  direction: output
+- name: Rd
+  summary: 以旋转矩阵时间导数表示的相对角速度，无量纲物理信号
+  direction: output
+- name: seqd
+  summary: 以旋转序列角时间导数表示的相对角速度，rad/s 物理信号
+  direction: output
+- name: bx
+  summary: 相对角加速度的 *X* 分量，rad/s^2 物理信号
+  direction: output
+- name: by
+  summary: 相对角加速度的 *Y* 分量，rad/s^2 物理信号
+  direction: output
+- name: bz
+  summary: 相对角加速度的 *Z* 分量，rad/s^2 物理信号
+  direction: output
+- name: b
+  summary: 相对角加速度，rad/s^2 物理信号
+  direction: output
+- name: Qdd
+  summary: 以四元数二阶时间导数表示的相对角加速度，无量纲物理信号
+  direction: output
+- name: Rdd
+  summary: 以旋转矩阵二阶时间导数表示的相对角加速度，无量纲物理信号
+  direction: output
+- name: x
+  summary: 相对平移的 *X* 分量，m 物理信号
+  direction: output
+- name: y
+  summary: 相对平移的 *Y* 分量，m 物理信号
+  direction: output
+- name: z
+  summary: 相对平移的 *Z* 分量，m 物理信号
+  direction: output
+- name: p
+  summary: 相对平移，m 物理信号
+  direction: output
+- name: rad
+  summary: 相对平移的圆柱半径坐标，m 物理信号
+  direction: output
+- name: azm
+  summary: 相对平移的方位角，rad 物理信号
+  direction: output
+- name: dst
+  summary: 相对平移的球半径坐标，m 物理信号
+  direction: output
+- name: inc
+  summary: 相对平移的倾角，rad 物理信号
+  direction: output
+- name: vx
+  summary: 相对线速度的 *X* 坐标，m/s 物理信号
+  direction: output
+- name: vy
+  summary: 相对线速度的 *Y* 坐标，m/s 物理信号
+  direction: output
+- name: vz
+  summary: 相对线速度的 *Z* 坐标，m/s 物理信号
+  direction: output
+- name: v
+  summary: 相对线速度，m/s 物理信号
+  direction: output
+- name: vrad
+  summary: 相对线速度的柱坐标半径坐标，m/s 物理信号
+  direction: output
+- name: vazm
+  summary: 相对线速度的方位角坐标，rad/s 物理信号
+  direction: output
+- name: vdst
+  summary: 相对线速度的球坐标半径坐标，m/s 物理信号
+  direction: output
+- name: vinc
+  summary: 相对线速度的倾角坐标，rad/s 物理信号
+  direction: output
+- name: ax
+  summary: 相对线加速度的 *X* 分量，m/s^2 物理信号
+  direction: output
+- name: ay
+  summary: 相对线加速度的 *Y* 分量，m/s^2 物理信号
+  direction: output
+- name: az
+  summary: 相对线加速度的 *Z* 分量，m/s^2 物理信号
+  direction: output
+- name: a
+  summary: 相对线加速度，m/s^2 物理信号
+  direction: output
+- name: arad
+  summary: 相对线加速度的柱面半径坐标，m/s^2 物理信号
+  direction: output
+- name: aazm
+  summary: 相对线加速度的方位角坐标，rad/s^2 物理信号
+  direction: output
+- name: adst
+  summary: 相对线加速度的球面半径坐标，m/s^2 物理信号
+  direction: output
+- name: ainc
+  summary: 相对线加速度的倾角坐标，rad/s^2 物理信号
+  direction: output
+```
 
 ### 坐标系
 
@@ -387,8 +522,16 @@ chinese_source: worker-translation
 
 要启用此端口，请在 **Acceleration** 下选择
 **Inclination**。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurement Frame
+  summary: 用于表达测量值的坐标系 World（默认）| Base | Follower | Non-Rotating Base | Non-Rotating Follower
+  group: ''
+- name: Sequence for Rotation Sequence
+  summary: 旋转轴序列 X-Y-X（默认）| X-Y-Z | X-Z-X | X-Z-Y | Y-X-Y | Y-X-Z | Y-Z-X | Y-Z-Y | Z-X-Y | Z-X-Z | Z-Y-X | Z-Y-Z
+  group: ''
+```
 
 ### **Measurement Frame** — 用于表达测量值的坐标系 `World`（默认）| `Base` | `Follower` | `Non-Rotating Base` | `Non-Rotating Follower`
 
@@ -414,7 +557,6 @@ chinese_source: worker-translation
 
 要启用此参数，请在 **Rotation** 下选择
 **Rotation Sequence**。
-
 ## 所属库
 
 Simscape / Multibody / Frames and Transforms

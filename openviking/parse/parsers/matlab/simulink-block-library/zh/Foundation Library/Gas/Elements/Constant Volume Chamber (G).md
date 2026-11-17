@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Constant Volume Chamber (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 腔室入口气体
+  direction: conserving
+- name: B
+  summary: 腔室入口气体
+  direction: conserving
+- name: C
+  summary: 腔室入口气体
+  direction: conserving
+- name: D
+  summary: 腔室入口气体
+  direction: conserving
+- name: H
+  summary: 腔室内部温度 热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -49,8 +67,28 @@ chinese_source: worker-translation
 ### **H** — 腔室内部温度 热
 
 与腔室内气体温度关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Chamber volume
+  summary: 腔室内气体体积 0.001 m^3（默认值）
+  group: ''
+- name: Number of ports
+  summary: 腔室入口端口数量 1（默认值）| 2 | 3 | 4
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 腔室入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: ''
+- name: Cross-sectional area at port B
+  summary: 腔室入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: ''
+- name: Cross-sectional area at port C
+  summary: 腔室入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: ''
+- name: Cross-sectional area at port D
+  summary: 腔室入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: ''
+```
 
 ### **Chamber volume** — 腔室内气体体积 0.001 m^3（默认值）
 
@@ -87,7 +125,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当端口 **D** 可见时启用，即当 **Number of ports** 参数设置为 `4` 时。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

@@ -14,6 +14,13 @@ language: en
 # Digital Output (Single Sample)
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Generated digital output data boolean
+  direction: input
+  data_types: Boolean
+```
 
 ### Input
 
@@ -25,8 +32,22 @@ a single value on each port. Multiple ports are named by line names or device
 specified line IDs.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: Device with which you want to generate data
+  group: ''
+- name: Lines
+  summary: Device line selection and configuration options depend on device
+  group: ''
+- name: Number of ports
+  summary: Number of input data ports 1 for all lines | 1 per line
+  group: ''
+- name: Sample time
+  summary: Block execution rate 1 (default)
+  group: ''
+```
 
 ### **Device** — Device with which you want to generate data
 
@@ -71,7 +92,6 @@ is selected, and you did not specify a name in the line table,
 Specifies the sample time of the block during the simulation. This is the rate at
 which the block is executed during simulation. The default value is 1 (simulation
 seconds). For more information, see Timing in Hardware Interface Models and What Is Sample Time? (Simulink).
-
 ## Libraries
 
 Data Acquisition Toolbox

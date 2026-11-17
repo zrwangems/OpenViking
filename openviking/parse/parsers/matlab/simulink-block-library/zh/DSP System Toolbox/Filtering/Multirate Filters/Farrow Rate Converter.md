@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Farrow Rate Converter
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Port_1
+  summary: 速率转换后的信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### 输入
 
@@ -61,8 +72,67 @@ Farrow Rate Converter 模块输出的信号具有与输入信号相同的数据�
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 48e3（默认）| 正标量
+  group: 主选项卡
+- name: Sample rate of output signal (Hz)
+  summary: 输出信号的采样率（Hz） 96e3（默认）| 以 Hz 为单位的正标量
+  group: 主选项卡
+- name: Tolerance for output sample rate
+  summary: 输出采样率的最大容差 0（默认）| 正标量
+  group: 主选项卡
+- name: Filter Specification method
+  summary: 指定滤波器系数的方法 Polynomial order（默认）| Coefficients
+  group: 主选项卡
+- name: Coefficients
+  summary: 滤波器多项式系数 [-1 1; 1 0]（默认）| 实值方阵
+  group: 主选项卡
+- name: Polynomial order
+  summary: Lagrange 插值滤波器多项式的阶数 3（默认）| 小于或等于 4 的正整数
+  group: 主选项卡
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: 允许固定大小输入信号使用任意帧长度 开（默认）| 关
+  group: 主选项卡
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: 主选项卡
+- name: View Info
+  summary: 查看信息 按钮
+  group: 主选项卡
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 整数溢出时的处理方法 关（默认）| 开
+  group: 数据类型选项卡
+- name: Coefficients
+  summary: 滤波器系数的数据类型 fixdt(1,16)（默认）| fixdt(1,16,0)
+  group: 数据类型选项卡
+- name: Fractional Delay
+  summary: 分数延迟的数据类型 fixdt(0,8)（默认）| fixdt(0,16)
+  group: 数据类型选项卡
+- name: Multiplicand
+  summary: 被乘数的数据类型 fixdt(1,16,13)（默认）| fixdt(1,16,0)
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出的数据类型 Inherit: Same word length as input（默认）| Inherit: Same as accumulator | fixdt(1,16) | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 模块可以输出的最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 模块可以输出的最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 关（默认）| 开
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -198,7 +268,6 @@ Farrow Rate Converter 模块输出的信号具有与输入信号相同的数据�
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 关（默认）| 开
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations DSP System Toolbox / Filtering / Multirate Filters

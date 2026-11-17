@@ -14,6 +14,21 @@ language: en
 # Three-axis Gyroscope
 
 ## Ports
+```yaml
+ports:
+- name: ω
+  summary: Angular rates three-element vector
+  direction: input
+  data_types: double
+- name: G's
+  summary: Accelerations three-element vector
+  direction: input
+  data_types: double
+- name: ωmeas
+  summary: Measured angular rates three-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -37,8 +52,87 @@ Measured angular rates from the gyroscope, returned as a three-element
 vector, in radians per second.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Second order dynamics
+  summary: Second-order dynamics on (default) | off
+  group: ''
+  block_parameter: dtype_g
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Natural frequency (rad/sec)
+  summary: Natural frequency 190 (default) | scalar
+  group: ''
+  block_parameter: w_g
+  type: character vector
+  values: double scalar
+  default: '''190'''
+- name: Damping ratio
+  summary: Damping ratio 0.707 (default) | scalar
+  group: ''
+  block_parameter: z_g
+  type: character vector
+  values: double scalar
+  default: '''0.707'''
+- name: Scale factors and cross-coupling
+  summary: Scale factors and cross coupling [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix
+  group: ''
+  block_parameter: g_sf_cc
+  type: character vector
+  values: 3-by-3 matrix
+  default: '''[1 0 0; 0 1 0; 0 0 1]'''
+- name: Measurement bias
+  summary: Measurement bias [0 0 0] (default) | three-element vector
+  group: ''
+  block_parameter: g_bias
+  type: character vector
+  values: 3-by-3 matrix
+  default: '''[0 0 0]'''
+- name: G-sensitive bias
+  summary: Maximum change in rates [0 0 0] (default) | three-element vector
+  group: ''
+  block_parameter: g_sen
+  type: character vector
+  values: three-element vector
+  default: '''[0 0 0]'''
+- name: Update rate (sec)
+  summary: Update rate 0 (default) | scalar
+  group: ''
+  block_parameter: g_Ts
+  type: character vector
+  values: double scalar
+  default: '''0'''
+- name: Noise on
+  summary: White noise on (default) | off
+  group: ''
+  block_parameter: g_rand
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Noise seeds
+  summary: Noise seeds [23093 23094 23095] (default) | three-element vector
+  group: ''
+  block_parameter: g_seeds
+  type: character vector
+  values: three-element vector
+  default: '''[23093 23094 23095]'''
+- name: Noise power
+  summary: Noise power [0.0001 0.0001 0.0001] (default) | three-element vector
+  group: ''
+  block_parameter: g_pow
+  type: character vector
+  values: three-element vector
+  default: '''[0.0001 0.0001 0.0001]'''
+- name: Lower and upper output limits
+  summary: Minimum and maximum values of angular rates [-inf -inf -inf inf inf inf] (default) | six-element vector
+  group: ''
+  block_parameter: g_sat
+  type: character vector
+  values: six-element vector
+  default: '''[-inf -inf -inf inf inf inf]'''
+```
 
 ### **Second order dynamics** — Second-order dynamics `on` (default) | `off`
 
@@ -215,7 +309,6 @@ specified as a six-element vector, in radians per second.
 | **Type**: character vector |
 | **Values**: six-element vector |
 | **Default**: `'[-inf -inf -inf inf inf inf]'` |
-
 ## Libraries
 
 Aerospace Blockset / GNC / Navigation

@@ -14,6 +14,21 @@ language: en
 # Precision Pilot Model
 
 ## Ports
+```yaml
+ports:
+- name: x com
+  summary: Signal command scalar
+  direction: input
+  data_types: double
+- name: x
+  summary: Signal controlled by pilot scalar
+  direction: input
+  data_types: double
+- name: u
+  summary: Aircraft command scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +50,73 @@ Signal that the pilot model controls, specified as a scalar.
 Aircraft command, returned as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of control
+  summary: Aircraft dynamics control Proportional (default) | Rate or velocity | Acceleration | Second order
+  group: ''
+  block_parameter: sw_popup
+  type: character vector
+  values: '''Proportion'' | ''Rate or velocity'' | ''Acceleration'' | ''Second order'''
+  default: '''Proportion'''
+- name: Pilot gain
+  summary: Pilot gain 1 (default) | scalar
+  group: ''
+  block_parameter: Kp
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Pilot time delay(s)
+  summary: Pilot time delay 0.1 (default) | scalar
+  group: ''
+  block_parameter: time_delay
+  type: character vector
+  values: double scalar
+  default: '''0.1'''
+- name: Equalizer lead constant
+  summary: Equalizer lead constant 1 (default) | scalar
+  group: ''
+  block_parameter: TL
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Equalizer lag constant
+  summary: Equalizer lag constant 5 (default) | scalar
+  group: ''
+  block_parameter: TI
+  type: character vector
+  values: double scalar
+  default: '''5'''
+- name: Lag constant for neuromuscular system
+  summary: Lag constant 0.1 (default) | scalar
+  group: ''
+  block_parameter: TN1
+  type: character vector
+  values: double scalar
+  default: '0.1'
+- name: Undamped natural frequency neuromuscular system (rad/s)
+  summary: Undamped natural frequency 20 (default) | scalar
+  group: ''
+  block_parameter: nat_freq
+  type: character vector
+  values: double scalar
+  default: '20'
+- name: Damping neuromuscular system
+  summary: Damping neuromuscular system 0.7 (default) | scalar
+  group: ''
+  block_parameter: damp
+  type: character vector
+  values: double scalar
+  default: '0.7'
+- name: Controlled element undamped natural frequency (rad/s)
+  summary: Controlled element undamped natural frequency 15 (default) | scalar
+  group: ''
+  block_parameter: omega_m
+  type: character vector
+  values: double scalar
+  default: '15'
+```
 
 ### **Type of control** — Aircraft dynamics control `Proportional` (default) | `Rate or velocity` | `Acceleration` | `Second order`
 
@@ -197,7 +277,6 @@ To enable this parameter, set **Type of control** to
 | **Type**: character vector |
 | **Values**: double scalar |
 | **Default**: `15` |
-
 ## Libraries
 
 Aerospace Blockset / Pilot Models

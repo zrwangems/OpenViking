@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Induction Motor HDL
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 模块配置信号向量
+  direction: input
+  data_types: single
+- name: PhaseVolt
+  summary: 定子端电压 1×3 数组
+  direction: input
+  data_types: single
+- name: LdTrq/Spd
+  summary: 电机负载转矩或电机轴转速 标量
+  direction: input
+  data_types: single
+- name: Reset
+  summary: 复位总线信号 标量
+  direction: input
+  data_types: Boolean
+- name: Info
+  summary: 总线信号 总线
+  direction: output
+- name: PhaseCurr
+  summary: '*a*、*b* 和 *c* 相电流 1×3 数组'
+  direction: output
+- name: Torque
+  summary: 电机转矩 标量
+  direction: output
+- name: Speed
+  summary: 电机转速 标量
+  direction: output
+- name: MtrElecAngle
+  summary: 电机电角度 标量
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -87,13 +122,17 @@ Induction Motor HDL 模块的配置信号，包含模块配置参数。
 电机的电位置 *θdq*，单位为 rad。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (s)
+  summary: 模块再次执行前的采样时间 1e-6（默认）| 标量
+  group: ''
+```
 
 ### **Sample time (s)** — 模块再次执行前的采样时间 `1e-6`（默认）| 标量
 
 模块连续执行实例之间的固定时间间隔（以秒为单位）。
-
 ## 所属库
 
 Motor Control Blockset HDL Support / Electrical Systems / Motors

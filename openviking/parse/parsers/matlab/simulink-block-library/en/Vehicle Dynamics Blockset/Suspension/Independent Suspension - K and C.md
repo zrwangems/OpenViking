@@ -14,6 +14,60 @@ language: en
 # Independent Suspension - K and C
 
 ## Ports
+```yaml
+ports:
+- name: WhlPz
+  summary: Wheel z-axis displacement array
+  direction: input
+- name: WhlRe
+  summary: Wheel effective radius array
+  direction: input
+- name: WhlVz
+  summary: Wheel z-axis velocity array
+  direction: input
+- name: WhlFx
+  summary: Longitudinal wheel force on vehicle array
+  direction: input
+- name: WhlFy
+  summary: Lateral wheel force on vehicle array
+  direction: input
+- name: WhlM
+  summary: Suspension moment on wheel array
+  direction: input
+- name: VehP
+  summary: Vehicle displacement array
+  direction: input
+- name: VehV
+  summary: Vehicle velocity array
+  direction: input
+- name: StrgAng
+  summary: Steering angle, optional array
+  direction: input
+- name: Phi
+  summary: Vehicle pitch angle scalar
+  direction: input
+- name: TrckWdth
+  summary: Track width array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: VehF
+  summary: Suspension force on vehicle array
+  direction: output
+- name: VehM
+  summary: Suspension moment on vehicle array
+  direction: output
+- name: WhlF
+  summary: Suspension force on wheel array
+  direction: output
+- name: WhlV
+  summary: Wheel velocity array
+  direction: output
+- name: WhlAng
+  summary: Wheel camber, caster, toe angles array
+  direction: output
+```
 
 ### Input
 
@@ -526,8 +580,242 @@ For example, for a two-axle vehicle with two wheels per axle, the
   | Front right | `WhlF(3,2)` | `1` | `2` |
   | Rear left | `WhlF(3,3)` | `2` | `1` |
   | Rear right | `WhlF(3,4)` | `2` | `2` |
-
 ## Parameters
+```yaml
+parameters:
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: Boolean vector to enable axle steering [1 0] (default) | vector
+  group: ''
+  block_parameter: StrgEnByAxl
+  values: '[1 0] (default) | vector'
+- name: Anti-sway axle enable by axle, AntiSwayEnByAxl
+  summary: Boolean vector to enable axle anti-sway [0 0] (default) | vector
+  group: ''
+  block_parameter: AntiSwayEnByAxl
+  values: '[0 0] (default) | vector'
+- name: Suspension type
+  summary: Type of suspension Independent front and rear (default) | Independent front and twist beam rear
+  group: Suspension Parameters
+  block_parameter: SuspType
+  values: Independent front and rear (default) | Independent front and twist beam rear
+- name: Drivetrain type
+  summary: Type of drivetrain FWD (default) | RWD | AWD
+  group: Suspension Parameters
+  block_parameter: DrivetrainType
+  values: FWD (default) | RWD | AWD
+- name: + Steer angle
+  summary: Positive steer angle Right (default) | Left
+  group: Suspension Parameters
+  block_parameter: StrPlusDirection
+  values: Right (default) | Left
+- name: + Fx used in compliance tests
+  summary: Positive longitudinal force Front (default) | Rear
+  group: Suspension Parameters
+  block_parameter: XPlusDirection
+  values: Front (default) | Rear
+- name: + Fy used in compliance tests
+  summary: Positive lateral force Right (default) | Left
+  group: Suspension Parameters
+  block_parameter: YPlusDirection
+  values: Right (default) | Left
+- name: + Suspension Jounce
+  summary: Positive suspension jounce Up (default) | Down
+  group: Suspension Parameters
+  block_parameter: ZPlusDirection
+  values: Up (default) | Down
+- name: + WhlMz used in compliance tests
+  summary: Positive yaw moment Counter-clockwise (default) | Clockwise
+  group: Suspension Parameters
+  block_parameter: WhlMzDirection
+  values: Counter-clockwise (default) | Clockwise
+- name: Shock type
+  summary: Type of shock force Table-based (default) | Table-based individual | Constant
+  group: Suspension Parameters
+  block_parameter: ShockType
+  values: Table-based (default) | Table-based individual | Constant
+- name: Shock force vs shock compression rate, ShckFrcVsCompRate
+  summary: Table struct('FL',[-100. -5000;0 0;100. 5000],'FR',[-100. -5000;0 0;100. 5000],'RL',[-100. -5000;0 0;100. 5000],'RR',[-100.
+    -5000;0 0;100. 5000]) (default)
+  group: Suspension Parameters
+  block_parameter: ShckFrcVsCompRate
+  values: struct('FL',[-100. -5000;0 0;100. 5000],'FR',[-100. -5000;0 0;100. 5000],'RL',[-100. -5000;0 0;100. 5000],'RR',[-100.
+    -5000;0 0;100. 5000]) (default)
+- name: Motion ratios by axle, MotRatios
+  summary: Table struct('FL',[-0.1 -0.1;0 0;0.1 0.1],'FR',[-0.1 -0.1;0 0;0.1 0.1],'RL',[-0.1 -0.1;0 0;0.1 0.1],'RR',[-0.1
+    -0.1;0 0;0.1 0.1]) (default)
+  group: Suspension Parameters
+  block_parameter: MotRatios
+  values: struct('FL',[-0.1 -0.1;0 0;0.1 0.1],'FR',[-0.1 -0.1;0 0;0.1 0.1],'RL',[-0.1 -0.1;0 0;0.1 0.1],'RR',[-0.1 -0.1;0
+    0;0.1 0.1]) (default)
+- name: Bump steer, BumpSteer
+  summary: Table struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.]) (default)
+  group: Suspension Parameters
+  block_parameter: BumpSteer
+  values: struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.]) (default)
+- name: Bump camber, BumpCamber
+  summary: Table struct('FL',[-0.1 1.7189;0 0;0.1 -1.7189],'FR',[-0.1 1.7189;0 0;0.1 -1.7189],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.]) (default)
+  group: Suspension Parameters
+  block_parameter: BumpCamber
+  values: struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.]) (default)
+- name: Bump caster, BumpCaster
+  summary: Table struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 -11.4592;0 0;0.1
+    11.4592],'RR',[-0.1 -11.4592;0 0;0.1 11.4592]) (default)
+  group: Suspension Parameters
+  block_parameter: BumpCaster
+  values: struct('FL',[-0.1 1.1459;0 0;0.1 -1.1459],'FR',[-0.1 1.1459;0 0;0.1 -1.1459],'RL',[-0.1 -11.4592;0 0;0.1 11.4592],'RR',[-0.1
+    -11.4592;0 0;0.1 11.4592]) (default)
+- name: Lateral wheel center displacement, LatWhlCtrDisp
+  summary: Table struct('FL',[-0.1 0.02;0 0;0.1 -0.02],'FR',[-0.1 0.02;0 0;0.1 -0.02],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.;0 0;0.1 0.]) (default)
+  group: Suspension Parameters
+  block_parameter: LatWhlCtrDisp
+  values: struct('FL',[-0.1 0.02;0 0;0.1 -0.02],'FR',[-0.1 0.02;0 0;0.1 -0.02],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1 0.;0 0;0.1
+    0.]) (default)
+- name: Longitudinal wheel center displacement, LngWhlCtrDisp
+  summary: Table struct('FL',[-0.1 -0.002;0 0;0.1 0.002],'FR',[-0.1 -0.002;0 0;0.1 0.002],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1
+    0.02;0 0;0.1 0.01]) (default)
+  group: Suspension Parameters
+  block_parameter: LngWhlCtrDisp
+  values: struct('FL',[-0.1 -0.002;0 0;0.1 0.002],'FR',[-0.1 -0.002;0 0;0.1 0.002],'RL',[-0.1 0.;0 0;0.1 0.],'RR',[-0.1 0.02;0
+    0;0.1 0.01]) (default)
+- name: Normal wheel rates, NrmlWhlRates
+  summary: Table struct('FL',[-100. -5000;0 0;100. 5000],'FR',[-100. -5000;0 0;100. 5000],'RL',[-100. -5000;0 0;100. 5000],'RR',[-100.
+    -5000;0 0;100. 5000]) (default) | vector
+  group: Suspension Parameters
+  block_parameter: NrmlWhlRates
+  values: struct('FL',[-100. -5000;0 0;100. 5000],'FR',[-100. -5000;0 0;100. 5000],'RL',[-100. -5000;0 0;100. 5000],'RR',[-100.
+    -5000;0 0;100. 5000]) (default) | vector
+- name: Normal wheel force offsets, NrmlWhlFrcOff
+  summary: Force offset [0 0 0 0] (default)
+  group: Suspension Parameters
+  block_parameter: NrmlWhlFrcOff
+  values: '[0 0 0 0] (default)'
+- name: Suspension roll stiffness with anti-roll bar, RollStiffArb
+  summary: Anti-sway bar enabled [800 700] (default) | 1-by-2 vector
+  group: Suspension Parameters
+  block_parameter: RollStiffArb
+  values: '[800 700] (default) | 1-by-2 vector'
+- name: Suspension roll stiffness without anti-roll bar, RollStiffNoArb
+  summary: Anti-sway bar not enabled [0 0] (default) | 1-by-2 vector
+  group: Suspension Parameters
+  block_parameter: RollStiffNoArb
+  values: '[0 0] (default) | 1-by-2 vector'
+- name: Camber vs steer angle, CambVsSteerAng
+  summary: Table struct('FL',[-10. -1.;0 0;10. 1.],'FR',[-10. 1.;0 0;10. -1.],'RL',[-10. -1.;0 0;10. 1.],'RR',[-10. 1.;0 0;10.
+    -1.]) (default)
+  group: Suspension Parameters
+  block_parameter: CambVsSteerAng
+  values: struct('FL',[-10. -1.;0 0;10. 1.],'FR',[-10. 1.;0 0;10. -1.],'RL',[-10. -1.;0 0;10. 1.],'RR',[-10. 1.;0 0;10. -1.])
+    (default)
+- name: Caster vs steer angle, CastVsSteerAng
+  summary: Table struct('FL',[-10. -1.;0 0;10. 1.],'FR',[-10. 1.;0 0;10. -1.],'RL',[-10. -1.;0 0;10. 1.],'RR',[-10. 1.;0 0;10.
+    -1.]) (default)
+  group: Suspension Parameters
+  block_parameter: CastVsSteerAng
+  values: struct('FL',[-10. -1.;0 0;10. 1.],'FR',[-10. 1.;0 0;10. -1.],'RL',[-10. -1.;0 0;10. 1.],'RR',[-10. 1.;0 0;10. -1.])
+    (default)
+- name: Longitudinal steer compliance, LngSteerCompl
+  summary: Table struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2.
+    1.;0 0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.])) (default)
+  group: Suspension Parameters
+  block_parameter: LngSteerCompl
+  values: struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.])) (default)
+- name: Longitudinal camber compliance, LngCambCompl
+  summary: Table struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2.
+    1.;0 0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.])) (default)
+  group: Suspension Parameters
+  block_parameter: LngCambCompl
+  values: struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.])) (default)
+- name: Longitudinal caster compliance, LngCastCompl
+  summary: Table struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2.
+    1.;0 0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.])) (default)
+  group: Suspension Parameters
+  block_parameter: LngCastCompl
+  values: struct('NegFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0
+    0;2. -1.]),'PosFx',struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2.
+    -1.])) (default)
+- name: Longitudinal wheel center compliance, LngWhlCtrCompl
+  summary: Table struct('NegFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]),'PosFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.])) (default)
+  group: Suspension Parameters
+  block_parameter: LngWhlCtrCompl
+  values: struct('NegFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]),'PosFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.])) (default)
+- name: Lateral wheel center compliance, LatWhlCtrComplLng
+  summary: Table struct('NegFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]),'PosFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.])) (default)
+  group: Suspension Parameters
+  block_parameter: LatWhlCtrComplLng
+  values: struct('NegFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.]),'PosFx',struct('FL',[-2. -10.;0 0;2. 10.],'FR',[-2. 10.;0 0;2. -10.],'RL',[-2. -10.;0 0;2. 10.],'RR',[-2.
+    10.;0 0;2. -10.])) (default)
+- name: Lateral steer compliance, LatSteerCompl
+  summary: Table struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2. -1.])
+    (default)
+  group: Suspension Parameters
+  block_parameter: LatSteerCompl
+  values: struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2. -1.]) (default)
+- name: Lateral camber compliance, LatCambCompl
+  summary: Table struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2. -1.])
+    (default)
+  group: Suspension Parameters
+  block_parameter: LatCambCompl
+  values: struct('FL',[-2. -1.;0 0;2. 1.],'FR',[-2. 1.;0 0;2. -1.],'RL',[-2. -1.;0 0;2. 1.],'RR',[-2. 1.;0 0;2. -1.]) (default)
+- name: Lateral wheel center compliance from lateral sources, LatWhlCtrComplLat
+  summary: Table struct('FL',[-2. -5.;0 0;2. 5.],'FR',[-2. 5.;0 0;2. -5.],'RL',[-2. -5.;0 0;2. 5.],'RR',[-2. 5.;0 0;2. -5.])
+    (default)
+  group: Suspension Parameters
+  block_parameter: LatWhlCtrComplLat
+  values: struct('FL',[-2. -5.;0 0;2. 5.],'FR',[-2. 5.;0 0;2. -5.],'RL',[-2. -5.;0 0;2. 5.],'RR',[-2. 5.;0 0;2. -5.]) (default)
+- name: Aligning torque steer compliance, AlgnTrqSteerCompl
+  summary: Table struct('FL',[-0.2 -1.;0 0;0.2 1.],'FR',[-0.2 1.;0 0;0.2 -1.],'RL',[-0.2 -1.;0 0;0.2 1.],'RR',[-0.2 1.;0 0;0.2
+    -1.]) (default)
+  group: Suspension Parameters
+  block_parameter: AlgnTrqSteerCompl
+  values: struct('FL',[-0.2 -1.;0 0;0.2 1.],'FR',[-0.2 1.;0 0;0.2 -1.],'RL',[-0.2 -1.;0 0;0.2 1.],'RR',[-0.2 1.;0 0;0.2 -1.])
+    (default)
+- name: Aligning torque camber compliance, AlgnTrqCambCompl
+  summary: Table struct('FL',[-0.2 -1.;0 0;0.2 1.],'FR',[-0.2 1.;0 0;0.2 -1.],'RL',[-0.2 -1.;0 0;0.2 1.],'RR',[-0.2 1.;0 0;0.2
+    -1.]) (default)
+  group: Suspension Parameters
+  block_parameter: AlgnTrqCambCompl
+  values: struct('FL',[-0.2 -1.;0 0;0.2 1.],'FR',[-0.2 1.;0 0;0.2 -1.],'RL',[-0.2 -1.;0 0;0.2 1.],'RR',[-0.2 1.;0 0;0.2 -1.])
+    (default)
+- name: Toe, StatToe
+  summary: Wheel toe angle [0 0 0 0] (default) | 1-by-4 vector
+  group: Suspension Parameters
+  block_parameter: StatToe
+  values: '[0 0 0 0] (default) | 1-by-4 vector'
+- name: Camber, StatCamber
+  summary: Wheel camber angle [0 0 0 0] (default) | 1-by-4 vector
+  group: Suspension Parameters
+  block_parameter: StatCamber
+  values: '[0 0 0 0] (default) | 1-by-4 vector'
+- name: Caster, StatCaster
+  summary: Wheel caster angle [0 0 0 0] (default) | 1-by-4 vector
+  group: Suspension Parameters
+  block_parameter: StatCaster
+  values: '[0 0 0 0] (default) | 1-by-4 vector'
+- name: Static loaded radius of wheels, StatLdWhlR
+  summary: Wheel radius [0.3 0.3 0.3 0.3] (default) | 1-by-4 vector
+  group: Suspension Parameters
+  block_parameter: StatLdWhlR
+  values: '[0.3 0.3 0.3 0.3] (default) | 1-by-4 vector'
+```
 
 ### **Steered axle enable by axle, StrgEnByAxl** — Boolean vector to enable axle steering `[1 0]` (default) | `vector`
 
@@ -1338,7 +1626,6 @@ value programmatically, use the `get_param` function.
 | **Parameter:** | `StatLdWhlR` |
 | **Values:** | `[0.3 0.3 0.3 0.3]` (default) | `1`-by-`4` vector |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Suspension

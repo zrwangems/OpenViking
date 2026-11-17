@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Variable Selector
 
 ## 端口
+```yaml
+ports:
+- name: InN
+  summary: 第 *N* 个输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Idx
+  summary: 索引向量 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: OutN
+  summary: 第 *N* 个输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### 输入
 
@@ -57,8 +75,34 @@ y = u(:,idx)						% Equivalent MATLAB code
 其中 `idx` 是长度为 *L* 的索引向量。行选择的输出大小为 *L*×*N*，列选择的输出大小为 *M*×*L*。输入行或列可以在输出中出现任意次数，也可以不出现。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input signals
+  summary: 输入数量 1（默认）| 正整数
+  group: ''
+- name: Select
+  summary: 选择维度 Rows（默认）| Columns
+  group: ''
+- name: Selector mode
+  summary: 索引模式 Variable（默认）| Fixed
+  group: ''
+- name: Elements
+  summary: 选定的元素 [1 3]（默认）| 标量 | 向量
+  group: ''
+- name: Index mode
+  summary: 索引模式 Zero-based（默认）| One-based
+  group: ''
+- name: Invalid index
+  summary: 错误处理 Clip Index（默认）| Clip and Warn | Generate Error
+  group: ''
+- name: Fill empty spaces in outputs (for logical indexing)
+  summary: 填充输出中的空白空间 on（默认）| off
+  group: ''
+- name: Fill values
+  summary: 填充值 0（默认）| 标量值 | 整数
+  group: ''
+```
 
 ### **Number of input signals** — 输入数量 `1`（默认）| 正整数
 
@@ -126,7 +170,6 @@ y = u(:,idx)						% Equivalent MATLAB code
 #### 依赖关系
 
 此参数仅在您选择 Fill empty spaces in outputs (for logical indexing) 参数时出现。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Indexing DSP System Toolbox HDL Support / Signal Management

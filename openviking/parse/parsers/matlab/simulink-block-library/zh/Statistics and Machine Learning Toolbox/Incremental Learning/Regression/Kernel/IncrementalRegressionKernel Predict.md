@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # IncrementalRegressionKernel Predict
 
 ## 端口
+```yaml
+ports:
+- name: mdl
+  summary: 增量学习模型总线信号
+  direction: input
+- name: x
+  summary: 预测变量数据块 数值矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yfit
+  summary: 预测响应块 浮点向量
+  direction: output
+  data_types: single | double
+- name: CanPredict
+  summary: 模型状态 0（false）| 1（true）
+  direction: output
+```
 
 ### 输入
 
@@ -54,8 +71,119 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在“模块参数”对话框的**主要**选项卡中选中**为已训练机器学习模型的状态添加输出端口**复选框。
-
 ## 参数
+```yaml
+parameters:
+- name: 选择初始机器学习模型
+  summary: 初始增量核回归模型 kernelMdl（默认）| incrementalRegressionKernel 模型对象
+  group: 主要
+  block_parameter: InitialLearner
+  type: 字符向量或字符串
+  values: incrementalRegressionKernel 对象名称
+- name: 为已训练机器学习模型的状态添加输出端口
+  summary: 为模型状态添加第二个输出端口 off（默认）| on
+  group: 主要
+  block_parameter: ShowOutputCanPredict
+  type: 字符向量
+  values: '"off" | "on"'
+- name: Sample time (–1 for inherited)
+  summary: 用于指定采样时间的选项 –1（默认）| 标量
+  group: 主要
+  block_parameter: SystemSampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 输出数据类型
+  summary: 'yfit 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <数据类型表达式>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<数据类型表达式>"'
+  default: '"Inherit: auto"'
+- name: 输出数据类型最小值
+  summary: 用于范围检查的 yfit 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: 输出数据类型最大值
+  summary: 用于范围检查的 yfit 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Kernel data type
+  summary: '高斯核近似计算的核计算数据类型 Inherit: Inherit via internal rule（默认）| double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: KernelDataTypeStr
+  type: character vector
+  values: '''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''uint64''
+    | ''int64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Kernel data type Minimum
+  summary: 用于范围检查的核计算最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: KernelOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Kernel data type Maximum
+  summary: 用于范围检查的核计算最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: KernelOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: 内积数据类型
+  summary: '内积数据类型 double（默认）| Inherit: Inherit via internal rule | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: InnerProductDataTypeStr
+  type: character vector
+  values: '"Inherit: Inherit via internal rule" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32"
+    | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: Inherit via internal rule"'
+- name: 内积数据类型最小值
+  summary: 用于范围检查的内积项最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: InnerProductOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: 内积数据类型最大值
+  summary: 用于范围检查的内积项最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: InnerProductOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -377,7 +505,6 @@ Simulink 使用最大值执行：
 | **类型**：character vector |
 | **值**：`"[]"` | scalar |
 | **默认值**：`"[]"` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Regression / Kernel

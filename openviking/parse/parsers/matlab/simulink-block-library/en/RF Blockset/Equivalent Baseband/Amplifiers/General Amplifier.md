@@ -14,10 +14,123 @@ language: en
 # General Amplifier
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data source
+  summary: Data source that describes the amplifier behavior Data file (default) | RFDATA object
+  group: Main
+- name: Data file
+  summary: Name of file that contains amplifier data default.s2d (default) | string | character vector
+  group: Main
+- name: RFDATA object
+  summary: RF data object that contains amplifier data read(rfdata.data, 'default.amp') (default) | rfdata.data object
+  group: Main
+- name: Interpolation method
+  summary: Method to interpolate network parameters Linear (default) | Spline | Cubic
+  group: Main
+- name: Noise type
+  summary: Type of noise data Noise figure (default) | Spot noise data | Noise factor | Noise temperature
+  group: Noise Data
+- name: Noise figure (dB)
+  summary: Available signal-to-noise ratio at the input to available signal-to-noise ratio at the output 0 (default) | scalar
+    ratio | vector of ratios
+  group: Noise Data
+- name: Minimum noise figure
+  summary: Minimum ratio of available signal-to-noise ratio at input to available signal-to-noise ratio at output 0 (default)
+    | scalar ratio | vector of ratios
+  group: Noise Data
+- name: Optimal reflection coefficient
+  summary: Optimal source impedance 1+0i (default) | complex scalar | complex vector
+  group: Noise Data
+- name: Equivalent normalized noise resistance
+  summary: Normalized resistance values used to take noise measurement 1 (default) | positive scalar | positive vector
+  group: Noise Data
+- name: Noise factor
+  summary: Ratio of available signal-to-noise power at input to available signal-to-noise power at output 1 (default) | scalar
+    ratio | vector of ratios
+  group: Noise Data
+- name: Noise temperature (K)
+  summary: Equivalent temperature that produces the same amount of noise as amplifier 0 (default) | nonnegative scalar | nonnegative
+    vector
+  group: Noise Data
+- name: Frequency (Hz)
+  summary: Domain of frequencies to express noise data 2.0e9 (default) | nonnegative scalar | nonnegative vector
+  group: Noise Data
+- name: IP3 type
+  summary: Type of third order intercept OIP3 (default) | IIP3
+  group: Nonlinearity Data
+- name: IP3 (dBm)
+  summary: IP3 value inf (default) | scalar | vector
+  group: Nonlinearity Data
+- name: 1dB gain compression power (dBm)
+  summary: Output power value at which gain has decreased by 1 dB inf (default) | scalar | vector
+  group: Nonlinearity Data
+- name: Output saturation power (dBm)
+  summary: Output power value that amplifier produces when fully saturated inf (default) | scalar | vector
+  group: Nonlinearity Data
+- name: Gain compression at saturation (dB)
+  summary: Decrease in gain value 3 (default) | scalar | vector
+  group: Nonlinearity Data
+- name: Frequency (Hz)
+  summary: Frequency points corresponding to third-order intercept or power data 2.0e9 (default) | positive scalar | positive
+    vector
+  group: Nonlinearity Data
+- name: Source of frequency data
+  summary: Frequency data source Extracted from data source (default) | User-specified
+  group: Visualization
+- name: Frequency data (Hz)
+  summary: Frequency data range [1e9:1e8:2.9e9] (default) | vector
+  group: Visualization
+- name: Source of input power
+  summary: Input power source User-specified (default) | Extracted from data source
+  group: Visualization
+- name: Input power data (dBm)
+  summary: Input power data range [0:19] (default) | vector
+  group: Visualization
+- name: Reference impedance (ohms)
+  summary: Reference impedance 50 (default) | nonnegative scalar
+  group: Visualization
+- name: Plot type
+  summary: Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith
+    chart
+  group: Visualization
+- name: Y parameter1
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: Visualization
+- name: Y parameter2
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: Visualization
+- name: Y format1
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization
+- name: Y format2
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization
+- name: X parameter
+  summary: Frequency plot Freq (default) | AM
+  group: Visualization
+- name: X format
+  summary: Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz | ...
+  group: Visualization
+- name: Y scale
+  summary: Y-axis scale Linear (default) | Log
+  group: Visualization
+- name: X scale
+  summary: X-axis scale Linear (default) | Log
+  group: Visualization
+- name: Plot
+  summary: Plot specified data button
+  group: Visualization
+- name: Bias
+  summary: Amplifier bias 1.9 (default) | scalar
+  group: Operating Conditions
+```
 
 ### Main
 
@@ -372,7 +485,6 @@ condition in the General Amplifier block dialog box.
 Amplifier bias, specified as a scalar in volts. This parameter is set
 to `1.9` volts when the **Data file**
 is `default.s2p`.
-
 ## Libraries
 
 RF Blockset / Equivalent Baseband / Amplifiers

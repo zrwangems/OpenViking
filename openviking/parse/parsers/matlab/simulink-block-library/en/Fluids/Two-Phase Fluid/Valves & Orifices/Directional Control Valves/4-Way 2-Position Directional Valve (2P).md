@@ -14,6 +14,24 @@ language: en
 # 4-Way 2-Position Directional Valve (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Entry or exit port two-phase fluid
+  direction: conserving
+- name: B
+  summary: Entry or exit port two-phase fluid
+  direction: conserving
+- name: P
+  summary: Entry or exit port two-phase fluid
+  direction: conserving
+- name: T
+  summary: Entry or exit port two-phase fluid
+  direction: conserving
+- name: S
+  summary: Spool displacement, m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -41,8 +59,410 @@ to the valve.
 ### **S** — Spool displacement, m physical signal
 
 Physical signal associated with the spool displacement, in m.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Modeling option for fluid phase Liquid operating condition (default) | Vapor operating condition
+  group: ''
+- name: Positive spool position open connections
+  summary: Flow paths open when spool is in positive position P-A, B-T (default) | P-A, P-B | P-B, A-T | P-A | P-B | P-A,
+    P-B, A-T, B-T
+  group: Valve Configuration
+- name: Negative spool position open connections
+  summary: Flow paths open when spool moves in negative direction P-B, A-T (default) | P-A, B-T | P-A, P-B | P-A | P-B | P-A,
+    P-B, A-T, B-T
+  group: Valve Configuration
+- name: Area characteristics
+  summary: Flow equations for orifices Identical for all flow paths (default) | Different for each flow path
+  group: Model Parameterization
+- name: Orifice parameterization
+  summary: Variable or constant orifice parameterization Linear - Area vs. spool travel (default) | Linear - Nominal mass
+    flow rate vs. spool travel | Tabulated data - Area vs. spool travel | Cv flow coefficient | Kv flow coefficient | Orifice
+    area
+  group: Model Parameterization
+- name: Spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: Model Parameterization
+- name: Maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Nominal mass flow rate at maximum orifice opening
+  summary: Rated mass flow rate 0.1 kg/s (default) | positive scalar
+  group: Model Parameterization
+- name: Nominal pressure drop at maximum orifice opening
+  summary: Rated pressure drop 0.001 MPa (default) | positive scalar
+  group: Model Parameterization
+- name: Nominal inlet condition specification
+  summary: Method of determining inlet fluid state Temperature (default) | Vapor quality | Vapor void fraction | Specific
+    enthalpy | Specific internal energy
+  group: Model Parameterization
+- name: Nominal inlet pressure
+  summary: Inlet fluid pressure 0.101325 MPa (default) | positive scalar
+  group: Model Parameterization
+- name: Nominal inlet temperature
+  summary: Fluid temperature 293.15 K (default) | positive scalar
+  group: Model Parameterization
+- name: Nominal inlet vapor quality
+  summary: Inlet vapor quality mass fraction 0 (default) | positive scalar in the range [0,1]
+  group: Model Parameterization
+- name: Nominal inlet vapor void fraction
+  summary: Inlet volume fraction 0 (default) | positive scalar in the range [0,1]
+  group: Model Parameterization
+- name: Nominal inlet specific enthalpy
+  summary: Inlet fluid specific enthalpy 400 kJ/kg (default) | positive scalar
+  group: Model Parameterization
+- name: Nominal inlet specific internal energy
+  summary: Inlet specific internal energy 400 kJ/kg (default) | positive scalar
+  group: Model Parameterization
+- name: Opening characteristic
+  summary: Method to convert control signal to measure of flow capacity Linear (default) | Tabulated
+  group: Model Parameterization
+- name: Spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: Model Parameterization
+- name: Orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: Model Parameterization
+- name: Maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: Model Parameterization
+- name: Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: Model Parameterization
+- name: Maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: Model Parameterization
+- name: Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: Model Parameterization
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: Model Parameterization
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Model Parameterization
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: Model Parameterization
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range of [0,1]
+  group: Model Parameterization
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: Model Parameterization
+- name: Laminar flow pressure ratio
+  summary: Laminar-turbulent transition pressure ratio 0.999 (default) | positive scalar
+  group: Model Parameterization
+- name: Inlet phase change time constant
+  summary: Time lag for mixture specific volume 0.1 s (default) | positive scalar
+  group: Model Parameterization
+- name: Cross-sectional area at ports P, T, A and B
+  summary: Area at conserving ports 0.01 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Spool position at maximum P-A orifice area
+  summary: Spool offset for fully open P-A orifice 5e-3 m (default) | positive scalar
+  group: P-A Orifice
+- name: P-A spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: P-A Orifice
+- name: P-A nominal mass flow rate at maximum orifice opening
+  summary: Rated mass flow rate 0.1 kg/s (default) | positive scalar
+  group: P-A Orifice
+- name: P-A nominal pressure drop at maximum orifice opening
+  summary: Rated pressure drop 0.001 MPa (default) | positive scalar
+  group: P-A Orifice
+- name: P-A nominal inlet condition specification
+  summary: Method of determining inlet fluid state Temperature (default) | Vapor quality | Vapor void fraction | Specific
+    enthalpy | Specific internal energy
+  group: P-A Orifice
+- name: P-A nominal inlet pressure
+  summary: Inlet fluid pressure 0.101325 MPa (default) | positive scalar
+  group: P-A Orifice
+- name: P-A nominal inlet temperature
+  summary: Fluid temperature 293.15 K (default) | positive scalar
+  group: P-A Orifice
+- name: P-A nominal inlet vapor quality
+  summary: Inlet vapor quality mass fraction 0 (default) | positive scalar in the range [0,1]
+  group: P-A Orifice
+- name: P-A nominal inlet vapor void fraction
+  summary: Inlet vapor void fraction 0 (default) | positive scalar in the range [0,1]
+  group: P-A Orifice
+- name: P-A nominal inlet specific enthalpy
+  summary: Inlet fluid specific enthalpy 400 kJ/kg (default) | positive scalar
+  group: P-A Orifice
+- name: P-A nominal inlet specific internal energy
+  summary: Inlet specific internal energy 400 kJ/kg (default) | positive scalar
+  group: P-A Orifice
+- name: P-A constant orifice nominal mass flow rate
+  summary: Nominal mass flow rate 0.1 kg/s (default) | positive scalar
+  group: P-A Orifice
+- name: P-A constant orifice nominal pressure drop
+  summary: Nominal pressure drop 0.001 MPa (default) | positive scalar
+  group: P-A Orifice
+- name: P-A constant orifice Cv flow coefficient
+  summary: Flow coefficient 4 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: P-A Orifice
+- name: P-A orifice Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: P-A Orifice
+- name: P-A constant orifice Kv flow coefficient
+  summary: Flow coefficient 3.6 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: P-A Orifice
+- name: P-A orifice Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: P-A Orifice
+- name: P-A orifice spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A constant orifice area
+  summary: Cross-sectional area for constant orifice 1e-4 m^2 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: P-A Orifice
+- name: Spool position at maximum P-B orifice area
+  summary: Spool offset for fully open P-B orifice 5e-3 m (default) | positive scalar
+  group: P-B Orifice
+- name: P-B spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: P-B Orifice
+- name: P-B nominal mass flow rate at maximum orifice opening
+  summary: Rated mass flow rate 0.1 kg/s (default) | positive scalar
+  group: P-B Orifice
+- name: P-B nominal pressure drop at maximum orifice opening
+  summary: Rated pressure drop 0.001 MPa (default) | positive scalar
+  group: P-B Orifice
+- name: P-B nominal inlet condition specification
+  summary: Method of determining inlet fluid state Temperature (default) | Vapor quality | Vapor void fraction | Specific
+    enthalpy | Specific internal energy
+  group: P-B Orifice
+- name: P-B nominal inlet pressure
+  summary: Inlet fluid pressure 0.101325 MPa (default) | positive scalar
+  group: P-B Orifice
+- name: P-B nominal inlet temperature
+  summary: Fluid temperature 293.15 K (default) | positive scalar
+  group: P-B Orifice
+- name: P-B nominal inlet vapor quality
+  summary: Inlet vapor quality mass fraction 0 (default) | positive scalar in the range [0,1]
+  group: P-B Orifice
+- name: P-B nominal inlet vapor void fraction
+  summary: Inlet vapor void fraction 0 (default) | positive scalar in the range [0,1]
+  group: P-B Orifice
+- name: P-B nominal inlet specific enthalpy
+  summary: Inlet fluid specific enthalpy 400 kJ/kg (default) | positive scalar
+  group: P-B Orifice
+- name: P-B nominal inlet specific internal energy
+  summary: Inlet specific internal energy 400 kJ/kg (default) | positive scalar
+  group: P-B Orifice
+- name: P-B constant orifice nominal mass flow rate
+  summary: Nominal mass flow rate 0.1 kg/s (default) | positive scalar
+  group: P-B Orifice
+- name: P-B constant orifice nominal pressure drop
+  summary: Nominal pressure drop 0.001 MPa (default) | positive scalar
+  group: P-B Orifice
+- name: P-B constant orifice Cv flow coefficient
+  summary: Flow coefficient 4 (default) | positive scalar
+  group: P-B Orifice
+- name: P-B orifice maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: P-B Orifice
+- name: P-B orifice Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: P-B Orifice
+- name: P-B constant orifice Kv flow coefficient
+  summary: Flow coefficient 3.6 (default) | positive scalar
+  group: P-B Orifice
+- name: P-B orifice maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: P-B Orifice
+- name: P-B orifice Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: P-B Orifice
+- name: P-B orifice spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: P-B Orifice
+- name: P-B maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: P-B Orifice
+- name: P-B orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: P-B Orifice
+- name: P-B constant orifice area
+  summary: Cross-sectional area for constant orifice 1e-4 m^2 (default) | positive scalar
+  group: P-B Orifice
+- name: P-B orifice xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: P-B Orifice
+- name: Spool position at maximum A-T orifice area
+  summary: Spool offset for fully open A-T orifice 5e-3 m (default) | positive scalar
+  group: A-T Orifice
+- name: A-T spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: A-T Orifice
+- name: A-T nominal mass flow rate at maximum orifice opening
+  summary: Rated mass flow rate 0.1 kg/s (default) | positive scalar
+  group: A-T Orifice
+- name: A-T nominal pressure drop at maximum orifice opening
+  summary: Rated pressure drop 0.001 MPa (default) | positive scalar
+  group: A-T Orifice
+- name: A-T nominal inlet condition specification
+  summary: Method of determining inlet fluid state Temperature (default) | Vapor quality | Vapor void fraction | Specific
+    enthalpy | Specific internal energy
+  group: A-T Orifice
+- name: A-T nominal inlet pressure
+  summary: Inlet fluid pressure 0.101325 MPa (default) | positive scalar
+  group: A-T Orifice
+- name: A-T nominal inlet temperature
+  summary: Fluid temperature 293.15 K (default) | positive scalar
+  group: A-T Orifice
+- name: A-T nominal inlet vapor quality
+  summary: Inlet vapor quality mass fraction 0 (default) | positive scalar in the range [0,1]
+  group: A-T Orifice
+- name: A-T nominal inlet vapor void fraction
+  summary: Inlet vapor void fraction 0 (default) | positive scalar in the range [0,1]
+  group: A-T Orifice
+- name: A-T nominal inlet specific enthalpy
+  summary: Inlet fluid specific enthalpy 400 kJ/kg (default) | positive scalar
+  group: A-T Orifice
+- name: A-T nominal inlet specific internal energy
+  summary: Inlet specific internal energy 400 kJ/kg (default) | positive scalar
+  group: A-T Orifice
+- name: A-T constant orifice nominal mass flow rate
+  summary: Nominal mass flow rate 0.1 kg/s (default) | positive scalar
+  group: A-T Orifice
+- name: A-T constant orifice nominal pressure drop
+  summary: Nominal pressure drop 0.001 MPa (default) | positive scalar
+  group: A-T Orifice
+- name: A-T constant orifice Cv flow coefficient
+  summary: Flow coefficient 4 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: A-T Orifice
+- name: A-T orifice Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: A-T Orifice
+- name: A-T constant orifice Kv flow coefficient
+  summary: Flow coefficient 3.6 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: A-T Orifice
+- name: A-T orifice Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: A-T Orifice
+- name: A-T orifice spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T constant orifice area
+  summary: Cross-sectional area for constant orifice 1e-4 m^2 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: A-T Orifice
+- name: Spool position at maximum B-T orifice area
+  summary: Spool offset for fully open B-T orifice 5e-3 m (default) | positive scalar
+  group: B-T Orifice
+- name: B-T spool travel between closed and open orifice
+  summary: Maximum spool stroke 0.005 m (default) | positive scalar
+  group: B-T Orifice
+- name: B-T nominal mass flow rate at maximum orifice opening
+  summary: Rated mass flow rate 0.1 kg/s (default) | positive scalar
+  group: B-T Orifice
+- name: B-T nominal pressure drop at maximum orifice opening
+  summary: Rated pressure drop 0.001 MPa (default) | positive scalar
+  group: B-T Orifice
+- name: B-T nominal inlet condition specification
+  summary: Method of determining inlet fluid state Temperature (default) | Vapor quality | Vapor void fraction | Specific
+    enthalpy | Specific internal energy
+  group: B-T Orifice
+- name: B-T nominal inlet pressure
+  summary: Inlet fluid pressure 0.101325 MPa (default) | positive scalar
+  group: B-T Orifice
+- name: B-T nominal inlet temperature
+  summary: Fluid temperature 293.15 K (default) | positive scalar
+  group: B-T Orifice
+- name: B-T nominal inlet vapor quality
+  summary: Inlet vapor quality mass fraction 0 (default) | positive scalar in the range [0,1]
+  group: B-T Orifice
+- name: B-T nominal inlet vapor void fraction
+  summary: Inlet vapor void fraction 0 (default) | positive scalar in the range [0,1]
+  group: B-T Orifice
+- name: B-T nominal inlet specific enthalpy
+  summary: Inlet fluid specific enthalpy 400 kJ/kg (default) | positive scalar
+  group: B-T Orifice
+- name: B-T nominal inlet specific internal energy
+  summary: Inlet specific internal energy 400 kJ/kg (default) | positive scalar
+  group: B-T Orifice
+- name: B-T constant orifice nominal mass flow rate
+  summary: Nominal mass flow rate 0.1 kg/s (default) | positive scalar
+  group: B-T Orifice
+- name: B-T constant orifice nominal pressure drop
+  summary: Nominal pressure drop 0.001 MPa (default) | positive scalar
+  group: B-T Orifice
+- name: B-T constant orifice Cv flow coefficient
+  summary: Flow coefficient 4 (default) | positive scalar
+  group: B-T Orifice
+- name: B-T orifice maximum Cv flow coefficient
+  summary: '*Cv* coefficient that corresponds to maximally open component 4 (default) | positive scalar'
+  group: B-T Orifice
+- name: B-T orifice Cv flow coefficient vector
+  summary: '*Cv* coefficients for values in member position vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | 1-by-*n* vector'
+  group: B-T Orifice
+- name: B-T constant orifice Kv flow coefficient
+  summary: Flow coefficient 3.6 (default) | positive scalar
+  group: B-T Orifice
+- name: B-T orifice maximum Kv flow coefficient
+  summary: '*Kv* coefficient that corresponds to maximally open component 3.6 (default) | positive scalar'
+  group: B-T Orifice
+- name: B-T orifice Kv flow coefficient vector
+  summary: '*Kv* coefficients for values in member position vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default) | 1-by-*n*
+    vector'
+  group: B-T Orifice
+- name: B-T orifice spool travel vector
+  summary: Vector of spool opening distances relative to fully closed position [0, .00125, .0025, .00375, .005] m (default)
+    | 1-by-*n* vector
+  group: B-T Orifice
+- name: B-T maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: B-T Orifice
+- name: B-T orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: B-T Orifice
+- name: B-T constant orifice area
+  summary: Cross-sectional area for constant orifice 1e-4 m^2 (default) | positive scalar
+  group: B-T Orifice
+- name: B-T orifice xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: B-T Orifice
+```
 
 ### **Modeling option** — Modeling option for fluid phase `Liquid operating condition` (default) | `Vapor operating condition`
 
@@ -4206,7 +4626,6 @@ To enable this parameter, set:
      connections** to `P-A,
      B-T` or `P-A, P-B, A-T,
      B-T`.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Valves & Orifices / Directional Control Valves

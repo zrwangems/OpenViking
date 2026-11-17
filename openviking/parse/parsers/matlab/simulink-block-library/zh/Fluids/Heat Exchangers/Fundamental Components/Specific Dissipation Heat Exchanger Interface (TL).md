@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Specific Dissipation Heat Exchanger Interface (TL)
 
 ## 端口
+```yaml
+ports:
+- name: CP
+  summary: 热液体的等压比热，kJ/(kg*K) 物理信号
+  direction: output
+- name: M
+  summary: 热液体的质量流量，kg/s 物理信号
+  direction: output
+- name: A
+  summary: 流体开口 热液体
+  direction: output
+- name: B
+  summary: 流体开口 热液体
+  direction: output
+- name: H
+  summary: 流体入口处的热条件 热
+  direction: output
+```
 
 ### 输出
 
@@ -39,8 +57,46 @@ chinese_source: worker-translation
 ### **H** — 流体入口处的热条件 热
 
 用于设置作为热液体入口的热液体端口处热条件的热端口。
-
 ## 参数
+```yaml
+parameters:
+- name: 质量流量向量
+  summary: 用于指定压降数据的质量流量 [.3, .5, 1, 1.5, 2, 2.5] kg/s（默认）| 单位为质量/时间的 *K* 元素数组
+  group: ''
+- name: 压降向量
+  summary: 对应于指定质量流量的压降数据 [3, 5, 10, 25, 35, 50] * 1e-3 MPa（默认）| 单位为压力的 *K* 元素数组
+  group: ''
+- name: 参考流入温度
+  summary: 指定压降数据时的温度 293.15 K（默认）| 单位为温度的标量
+  group: ''
+- name: 参考流入压力
+  summary: 指定压降表格数据时的压力 0.101325 MPa（默认）| 单位为压力的标量
+  group: ''
+- name: 用于流动反转的质量流量阈值
+  summary: 低于此质量流量时对数值数据进行平滑 1e-6 kg/s（默认）| 单位为质量/时间的标量
+  group: ''
+- name: 热液体体积
+  summary: 换热器内热液体的体积 0.01 m^3（默认）| 单位为体积的标量
+  group: ''
+- name: 端口 A1 和 B1 处的横截面积
+  summary: 热液体入口处的流通面积 0.01 m^2（默认）| 单位为面积的标量
+  group: ''
+- name: 启用动态可压缩性
+  summary: 换热器中液体可压缩性的设置 On（默认）| Off | 标量
+  group: 效果和初始条件
+- name: 热液体标称温度
+  summary: 标称工作条件下的温度 293.15 K（默认）| 标量
+  group: 效果和初始条件
+- name: Thermal Liquid nominal pressure
+  summary: 标称工况下的压力 0.101325 MPa（默认）| 标量
+  group: 效果和初始条件
+- name: Thermal Liquid initial temperature
+  summary: 仿真开始时热液体通道中的温度 293.15 K（默认）| 带温度单位的标量
+  group: 效果和初始条件
+- name: Thermal Liquid initial pressure
+  summary: 仿真开始时热液体通道中的压力 0.101325 MPa（默认）| 带压力单位的标量
+  group: 效果和初始条件
+```
 
 #### 压力损失选项卡
 
@@ -105,7 +161,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Enable dynamic compressibility**。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

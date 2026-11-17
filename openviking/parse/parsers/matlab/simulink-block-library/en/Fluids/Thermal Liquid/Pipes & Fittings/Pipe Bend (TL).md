@@ -14,6 +14,15 @@ language: en
 # Pipe Bend (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,43 @@ bend.
 
 Thermal liquid conserving port associated with one end of the pipe
 bend.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe diameter
+  summary: Pipe diameter 0.01 m (default) | positive scalar
+  group: ''
+- name: Bend radius
+  summary: Bend circle radius 0.04 m (default) | positive scalar
+  group: ''
+- name: Bend angle
+  summary: Bend angle 90 deg (default) | positive scalar
+  group: ''
+- name: Elevation gain from port A to port B
+  summary: Pipe elevation change 0 m (default) | scalar
+  group: ''
+- name: Gravitational acceleration
+  summary: Gravitational acceleration 9.81 m/s^2 (default) | scalar
+  group: ''
+- name: Internal surface absolute roughness
+  summary: Pipe wall roughness 15e-6 m (default) | positive scalar
+  group: ''
+- name: Enable dynamic compressibility
+  summary: Whether to model fluid compressibility off (default) | on
+  group: ''
+- name: Initial liquid temperature
+  summary: Liquid temperature at start of simulation 293.15 K (default)
+  group: ''
+- name: Initial liquid pressure
+  summary: Pipe pressure at beginning of simulation 0.101325 MPa (default) | positive scalar
+  group: ''
+- name: Nominal liquid temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: ''
+- name: Nominal liquid pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: ''
+```
 
 ### **Pipe diameter** — Pipe diameter `0.01 m` (default) | positive scalar
 
@@ -99,7 +143,6 @@ equation when dynamic compressibility is disabled.
 
 To enable this parameter, clear the **Enable dynamic
 compressibility** checkbox.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

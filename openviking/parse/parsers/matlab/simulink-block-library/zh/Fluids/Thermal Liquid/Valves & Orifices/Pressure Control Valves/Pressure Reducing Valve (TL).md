@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pressure Reducing Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: Ps
+  summary: 设定压力信号，Pa 物理信号
+  direction: input
+- name: A
+  summary: 液体端口 热液体
+  direction: input
+- name: B
+  summary: 液体端口 热液体
+  direction: input
+```
 
 ### 输入
 
@@ -35,8 +47,98 @@ chinese_source: worker-translation
 ### **B** — 液体端口 热液体
 
 与阀入口 B 关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Opening parameterization
+  summary: 开度参数化 Linear - Area vs. pressure（默认）| Tabulated data - Area vs. pressure | Tabulated data - Volumetric flow rate
+    vs. pressure
+  group: 参数
+- name: Set pressure control
+  summary: 阀操作方法 Constant（默认）| Controlled
+  group: 参数
+- name: Set pressure (gauge)
+  summary: 阀开始关闭时的表压 0.1 MPa（默认）| 正标量
+  group: 参数
+- name: Pressure regulation range
+  summary: 阀压力范围 0.01 MPa（默认）| 正标量
+  group: 参数
+- name: Maximum opening area
+  summary: 全开位置的开度面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Leakage area
+  summary: 全关位置的间隙面积 1e-10 m^2（默认）| 正标量
+  group: 参数
+- name: Pressure at port B (gauge) vector
+  summary: '表格化面积参数化的表压值向量 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Opening area vector
+  summary: 用于表格化面积参数化的阀开口面积 [1e-05, 8e-06, 6e-06, 4e-06, 2e-06, 1e-10] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Reference pressure at port A (gauge)
+  summary: 端口 A 处的参考压力 1.5 MPa（默认）| 正标量
+  group: 参数
+- name: Reference pressure at port B (gauge) vector
+  summary: 端口 B 处的参考压力 [1.2, 1, .8, .6, .4, .2] MPa（默认）| 1×*n* 向量
+  group: 参数
+- name: Reference volumetric flow rate vector
+  summary: 参考体积流量 [1e-09, 1.8e-05, 6.6e-05, .00013, .0002, .00028] m^3/s（默认）| 1×*n* 向量
+  group: 参数
+- name: 端口 A 和 B 处的横截面积
+  summary: 守恒端口处的面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 参数
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Pressure recovery
+  summary: 包含面积扩大期间压力增加的选项 off（默认）| on
+  group: 参数
+- name: Opening dynamics
+  summary: 包含阀门开启流量响应的选项 off（默认）| on
+  group: 参数
+- name: Opening time constant
+  summary: 阀门开启时间常数 0.1 s（默认）| 正标量
+  group: 参数
+- name: Enable check valve
+  summary: 单向阀选项 off（默认）| on
+  group: Check Valve
+- name: Cracking pressure differential
+  summary: 单向阀操作设定压力 0.1 MPa（默认）| 正标量
+  group: Check Valve
+- name: Maximum opening pressure differential
+  summary: 阀门最大压力 0.2 MPa（默认）| 正标量
+  group: Check Valve
+- name: Maximum opening area
+  summary: 最大开启面积 1e-4 m^2（默认）| 正标量
+  group: Check Valve
+- name: Pressure differential vector
+  summary: '单向阀操作的压差 [0.01 : 0.01 : 1] MPa（默认）| 1×*n* 向量'
+  group: Check Valve
+- name: Opening area vector
+  summary: 单向级开启面积 [1e-10, 1e-05, 2e-05, 3e-05, 4e-05, 5e-05, 6e-05, 7.5e-05, 8.5e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: Check Valve
+- name: Volumetric flow rate vector
+  summary: 单向级体积流量 [.000358, .045, .11, .191, .284, .39, .505, .63, .764, .905] .* 1e-3 m^3/s（默认）| 1×*n* 向量
+  group: Check Valve
+- name: Pressure-Reducing Valve Area fault
+  summary: 建模减压阀故障的选项 Add fault
+  group: 故障
+- name: Reducing valve opening when faulted
+  summary: 减压阀故障位置 Closed（默认）| Open | Maintain last value
+  group: 故障
+- name: Check Valve Area fault
+  summary: 止回阀故障建模选项 Add fault
+  group: 故障
+- name: Check valve opening when faulted
+  summary: 故障阀门特性 Closed（默认）| Open | Maintain last value
+  group: 故障
+```
 
 ### 参数
 
@@ -251,7 +353,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Enable check valve**，并通过点击 **Check Valve Area fault** 参数的 **Add fault** 超链接来启用模块的故障。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Pressure Control Valves

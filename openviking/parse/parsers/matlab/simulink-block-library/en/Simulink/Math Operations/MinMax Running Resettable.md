@@ -14,6 +14,23 @@ language: en
 # MinMax Running Resettable
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: R
+  summary: Reset signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: y
+  summary: Running minimum or maximum value scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -54,8 +71,24 @@ signal, the block resets the output to the value of the
 **Initial condition** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: Specify minimum or maximum min (default) | max
+  group: ''
+  block_parameter: Function
+  type: character vector
+  values: '''min'' | ''max'''
+  default: '''min'''
+- name: Initial condition
+  summary: Value to reset output to 0.0 (default) | scalar or vector
+  group: ''
+  block_parameter: vinit
+  type: character vector
+  values: scalar or vector
+  default: '''0.0'''
+```
 
 ### **Function** — Specify minimum or maximum `min` (default) | `max`
 
@@ -85,7 +118,6 @@ output to the value you specify.
 | **Type:** character vector |
 | **Values:** scalar or vector |
 | **Default:** `'0.0'` |
-
 ## Libraries
 
 Simulink / Math Operations

@@ -14,6 +14,25 @@ language: en
 # BCH Decoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Encoded message binary column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Era
+  summary: Erasure vector binary column vector
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: Decoded message binary column vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Err
+  summary: Decoding errors integer vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -65,8 +84,38 @@ errors**.
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
 
 For more information, see Supported Data Types.
-
 ## Parameters
+```yaml
+parameters:
+- name: Codeword length, N
+  summary: Codeword length 15 (default) | integer
+  group: ''
+- name: Message length, K
+  summary: Message length 5 (default) | integer
+  group: ''
+- name: Shortened message length, S
+  summary: Shortened message length 5 (default) | integer
+  group: ''
+- name: Generator polynomial
+  summary: Generator polynomial 'X^10 + X^8 + X^5 + X^4 + X^2 + X + 1' (default) | polynomial character vector | binary row
+    vector | binary Galois row vector
+  group: ''
+- name: Primitive polynomial
+  summary: Primitive polynomial 'X^4 + X + 1' (default) | polynomial character vector | binary row vector
+  group: ''
+- name: Disable generator polynomial checking
+  summary: Option to disable generator polynomial checking on (default) | off
+  group: ''
+- name: Puncture vector
+  summary: Puncture vector [ones(8,1); zeros(2,1)] (default) | column vector
+  group: ''
+- name: Enable erasures input port
+  summary: Option to enable erasures input port off (default) | on
+  group: ''
+- name: Output number of corrected errors
+  summary: Option to enable port to output number of corrected errors off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -188,7 +237,6 @@ correspond to nonerased symbols. For more information, see Puncturing and Erasur
 Selecting this check box enables an additional output port,
 `Err`, which indicates the number of errors the block
 corrected in the input codeword.
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Block

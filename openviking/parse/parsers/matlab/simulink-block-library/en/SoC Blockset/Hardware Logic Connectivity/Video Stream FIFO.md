@@ -14,6 +14,33 @@ language: en
 # Video Stream FIFO
 
 ## Ports
+```yaml
+ports:
+- name: pixelIn
+  summary: Input pixel data scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ctrlIn
+  summary: Control signals accompanying input pixel data pixelcontrol bus
+  direction: input
+  data_types: pixelcontrol
+- name: rdyFromDown
+  summary: Ready signal from downstream interface Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: pixelOut
+  summary: Output pixel data scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: ctrlOut
+  summary: Control signals accompanying output pixel data pixelcontrol bus
+  direction: output
+  data_types: pixelcontrol
+- name: rdyToUp
+  summary: Ready signal to upstream interface Boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -66,8 +93,16 @@ to accept pixel data from the upstream interface. When this value is
 upstream interface.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Depth of FIFO
+  summary: FIFO depth 16 (default) | positive integer
+  group: ''
+- name: Almost full threshold
+  summary: Almost full threshold value 8 (default) | positive integer
+  group: ''
+```
 
 ### **Depth of FIFO** — FIFO depth `16` (default) | positive integer
 
@@ -82,7 +117,6 @@ source.
 To avoid dropping data, set a value allowing the data source enough time to react to
 backpressure. This value must be a positive integer and smaller than the FIFO
 depth.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Connectivity

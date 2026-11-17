@@ -14,6 +14,27 @@ language: en
 # Dog Clutch
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Logical shift linkage, unitless physical signal
+  direction: input
+- name: X
+  summary: Clutch position, m or unitless physical signal
+  direction: output
+- name: H
+  summary: Clutch hub mechanical rotational
+  direction: conserving
+- name: R
+  summary: Clutch ring mechanical rotational
+  direction: conserving
+- name: S
+  summary: Shift linkage mechanical translational
+  direction: conserving
+- name: T
+  summary: Heat flow thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -88,8 +109,120 @@ model** to `Friction clutch approximation
 - Suitable for HIL and linearization`, and set
 **Thermal port** to
 `Model`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Torque transmission model
+  summary: Torque transmission model Two-mode (default) | Friction clutch approximation - Suitable for HIL and linearization
+    | Dynamic with backlash | Dynamic modal
+  group: Clutch
+- name: Engagement speed threshold
+  summary: Engagement speed threshold 5 rpm (default) | positive scalar
+  group: Clutch
+- name: Thermal port
+  summary: Option to enable thermal port Omit (default) | Model
+  group: Clutch
+- name: Clutch teeth mean radius
+  summary: Clutch teeth mean radius 50 mm (default) | positive scalar
+  group: Clutch
+- name: Maximum transmitted torque
+  summary: Maximum transmitted torque 1000 N*m (default) | positive scalar
+  group: Clutch
+- name: Temperature vector
+  summary: Temperature [280, 300, 320] K (default) | vector
+  group: Clutch
+- name: Maximum transmitted torque vector
+  summary: Maximum transmitted torque [1000, 1050, 1000] N*m (default) | vector
+  group: Clutch
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Clutch
+- name: Extrapolation method
+  summary: Extrapolation method Linear (default) | Nearest | Error
+  group: Clutch
+- name: Number of teeth
+  summary: Number of ring or hub teeth 6 (default) | positive nonzero scalar integer
+  group: Clutch
+- name: Rotational backlash
+  summary: Rotational backlash 10 deg (default) | positive scalar
+  group: Clutch
+- name: Torsional stiffness
+  summary: Torsional stiffness 10e6 N*m/rad (default) | positive scalar
+  group: Clutch
+- name: Torsional damping
+  summary: Torsional damping 100 N*m*s/rad (default) | positive scalar
+  group: Clutch
+- name: Abstract shift linkage control
+  summary: Two-mode linkage control option Logic-controlled (default) | Physical signal
+  group: Shift Linkage
+- name: Shift linkage control
+  summary: Shift linkage control port Physical signal (default) | Conserving port
+  group: Shift Linkage
+- name: Tooth height
+  summary: Tooth height 10 mm (default) | positive scalar
+  group: Shift Linkage
+- name: Ring-hub clearance when disengaged
+  summary: Ring-hub clearance when disengaged 3 mm (default) | positive scalar
+  group: Shift Linkage
+- name: Hard stop at back of shift linkage
+  summary: Hard stop backing option on (default) | off
+  group: Shift Linkage
+- name: Ring stop stiffness
+  summary: Ring stop stiffness 10e5 N/m (default) | positive scalar
+  group: Shift Linkage
+- name: Ring stop damping
+  summary: Ring stop damping 1e3 N*s/m (default) | nonegative scalar
+  group: Shift Linkage
+- name: Shift linkage viscous friction coefficient
+  summary: Shift linkage viscous friction coefficient 100 N*s/m (default) | positive scalar
+  group: Shift Linkage
+- name: Tooth-tooth friction coefficient
+  summary: Tooth-tooth contact kinetic friction coefficient 0.05 (default) | positive scalar
+  group: Shift Linkage
+- name: Shift linkage engaged friction coefficient
+  summary: Engaged friction coefficient 100 N*s/m (default) | positive scalar
+  group: Shift Linkage
+- name: Shift linkage disengaged friction coefficient
+  summary: Disengaged friction coefficient 50 N*s/m (default) | positive scalar
+  group: Shift Linkage
+- name: Static contact speed threshold
+  summary: Static contact speed threshold 0.1 m/s (default) | positive scalar
+  group: Shift Linkage
+- name: Static contact release force threshold
+  summary: Release force threshold 0.001 N (default) | positive scalar
+  group: Shift Linkage
+- name: Linkage travel direction
+  summary: Engagement condition travel direction Positive shift linkage displacement engages clutch (default) | Negative shift
+    linkage displacement engages clutch
+  group: Engagement Conditions
+- name: Maximum engagement speed
+  summary: Engagement speed upper velocity threshold inf (default) | positive scalar
+  group: Engagement Conditions
+- name: Tooth overlap to engage
+  summary: Tooth overlap engagement threshold 3 mm (default) | positive scalar
+  group: Engagement Conditions
+- name: Engagement block stiffness
+  summary: Engagement blocking stiffness coefficient 10e6 N/m (default) | positive scalar
+  group: Engagement Conditions
+- name: Engagement block damping
+  summary: Engagement blocking damping coefficient 300 N*s/m (default) | positive scalar
+  group: Engagement Conditions
+- name: Clutch locked
+  summary: Initial clutch state off (default) | on
+  group: Initial Conditions
+- name: Initial shift linkage position
+  summary: Initial shift linkage position 0 mm (default) | scalar
+  group: Initial Conditions
+- name: Initial ring-hub offset angle
+  summary: Initial ring-hub offset angle 0 deg (default) | scalar
+  group: Initial Conditions
+- name: Thermal mass
+  summary: Resistance to temperature change 50 kJ/K (default) | scalar
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 300 K (default) | scalar
+  group: Thermal Port
+```
 
 ### Clutch
 
@@ -676,7 +809,6 @@ model** to `Friction clutch approximation
 - Suitable for HIL and linearization`, and set
 **Thermal port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Driveline / Clutches

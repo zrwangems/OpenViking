@@ -14,6 +14,21 @@ language: en
 # Find Nonzero Elements
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Indices of nonzero elements variable-size signal
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: Values of nonzero elements variable-size signal
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -53,8 +68,67 @@ To enable this port, select **Show output port for nonzero
 input values**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Index output format
+  summary: Format for indices of nonzero elements Linear indices (default) | Subscripts
+  group: Main
+  block_parameter: IndexOutputFormat
+  type: character vector
+  values: '''Linear indices'' | ''Subscripts'''
+  default: '''Linear indices'''
+- name: Number of input dimensions
+  summary: Number of dimensions for the input signal 1 (default) | scalar
+  group: Main
+  block_parameter: NumberOfInputDimensions
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Index mode
+  summary: Specify zero- or one-based indexing Zero-based (default) | One-based
+  group: Main
+  block_parameter: IndexMode
+  type: character vector
+  values: '''Zero-based'' | ''One-based'''
+  default: '''Zero-based'''
+- name: Show output port for nonzero input values
+  summary: Enable output port for nonzero values off (default) | on
+  group: Main
+  block_parameter: ShowOutputPortForNonzeroInputValues
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | fixdt(1,16) | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''
+    | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Mode
+  summary: Select data type mode Inherit (default) | Built in | Fixed Point
+  group: Data Types
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: Data Types
+- name: Signedness
+  summary: Specify signed or unsigned Signed (default) | Unsigned
+  group: Data Types
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: Data Types
+- name: Scaling
+  summary: Method for scaling your fixed-point data Integer (default)
+  group: Data Types
+```
 
 ### Main
 
@@ -275,7 +349,6 @@ for fixed-point data and sets the fraction length to
 
 To enable this parameter, set **Mode** to
 `Fixed point`.
-
 ## Libraries
 
 Simulink / Math Operations

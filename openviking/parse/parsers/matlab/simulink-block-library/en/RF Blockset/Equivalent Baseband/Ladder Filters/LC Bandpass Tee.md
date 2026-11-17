@@ -14,10 +14,61 @@ language: en
 # LC Bandpass Tee
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inductance (H)
+  summary: Inductance of the LC Bandpass Tee [2.7812e-8 3.013e-9 2.7812e-8] (default) | vector
+  group: Main
+- name: Capacitance (F)
+  summary: Capacitance of the LC Bandpass Tee [1.8587e-12 1.7157e-11 1.8587e-12] (default) | vector
+  group: Main
+- name: Source of frequency data
+  summary: Frequency data source User-specified (default)
+  group: Visualization
+- name: Frequency data (Hz)
+  summary: Frequency data range [500e6:4e6:900e6] (default) | vector
+  group: Visualization
+- name: Reference impedance (ohms)
+  summary: Reference impedance 50 (default) | nonnegative scalar
+  group: Visualization
+- name: Plot type
+  summary: Type of data plot X-Y plane (default) | Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith
+    chart
+  group: Visualization
+- name: Y parameter1
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: Visualization
+- name: Y parameter2
+  summary: Type of parameters to plot S11 (default) | S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: Visualization
+- name: Y format1
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization
+- name: Y format2
+  summary: Plot format Magnitude (decibels) (default) | Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: Visualization
+- name: X parameter
+  summary: Frequency plot Freq (default)
+  group: Visualization
+- name: X format
+  summary: Frequency plot format Hz (default) | Auto | kHz | MHz | GHz | THz
+  group: Visualization
+- name: Y scale
+  summary: Y-axis scale Linear (default) | Log
+  group: Visualization
+- name: X scale
+  summary: X-axis scale Linear (default) | Log
+  group: Visualization
+- name: Plot
+  summary: Plot specified data button
+  group: Visualization
+```
 
 ### Main
 
@@ -162,7 +213,6 @@ plane`.
 ### **Plot** — Plot specified data button
 
 Plot the specified data using the plot button.
-
 ## Libraries
 
 RF Blockset / Equivalent Baseband / Ladder Filters

@@ -14,6 +14,21 @@ language: en
 # Data Cube Slicer
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data cube *M*-by-*Q*-by-*N* complex-valued array
+  direction: input
+  data_types: double
+- name: Idx
+  summary: Slice-plane index positive integer
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Output complex-valued matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -53,8 +68,13 @@ Collapsed data cube, returned as a complex-valued matrix.
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Output Slice
+  summary: Output slice Angle-Doppler (default) | Range-Doppler | Range-angle
+  group: ''
+```
 
 ### **Output Slice** — Output slice `Angle-Doppler` (default) | `Range-Doppler` | `Range-angle`
 
@@ -68,7 +88,6 @@ are:
 | `Angle-Doppler` | *Q*-by-*N* |
 | `Range-Doppler` | *M*-by-*N* |
 | `Range-angle` | *M*-by-*Q* |
-
 ## Libraries
 
 Phased Array System Toolbox / Space-Time Adaptive Processing

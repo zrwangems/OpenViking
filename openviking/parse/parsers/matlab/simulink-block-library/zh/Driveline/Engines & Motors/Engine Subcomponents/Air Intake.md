@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Air Intake
 
 ## 端口
+```yaml
+ports:
+- name: Thr
+  summary: 节气门指令输入，无量纲物理信号
+  direction: input
+- name: EngSpd
+  summary: 发动机转速，rad/s 物理信号
+  direction: input
+- name: Pim
+  summary: 进气歧管压力输入，kPa 物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +42,40 @@ chinese_source: worker-translation
 ### **Pim** — 进气歧管压力输入，kPa 物理信号
 
 与进气歧管相关联的物理信号输入，单位为 kPa。
-
 ## 参数
+```yaml
+parameters:
+- name: Dry air specific gas constant
+  summary: 干空气比气体常数 287.058 J/(K*kg)（默认）| 正标量
+  group: ''
+- name: Dry air specific heat ratio
+  summary: 干空气比热比 1.4（默认）| 正标量
+  group: ''
+- name: Ambient pressure
+  summary: 参考空气压力 101.325 kPa（默认）| 正标量
+  group: ''
+- name: Ambient temperature
+  summary: 参考温度 298.15 K（默认）| 正标量
+  group: ''
+- name: Throttle rest angle
+  summary: 释放节气门位置 3 deg（默认）| 正标量
+  group: ''
+- name: Throttle plate diameter
+  summary: 节气门板直径 5 cm（默认）| 正标量
+  group: ''
+- name: Throttle leakage area
+  summary: 节气门泄漏面积 1 cm^2（默认）| 非负标量
+  group: ''
+- name: Intake manifold volume
+  summary: 进气歧管容积 1000 cm^3（默认）| 正标量
+  group: ''
+- name: Engine displacement volume
+  summary: 发动机排量 1500 cm^3（默认）| 正标量
+  group: ''
+- name: Throttle response time constant
+  summary: 节气门响应时间常数 0.1 s（默认）| 正标量
+  group: ''
+```
 
 ### **Dry air specific gas constant** — 干空气比气体常数 `287.058` `J/(K*kg)`（默认）| 正标量
 
@@ -72,7 +116,6 @@ chinese_source: worker-translation
 ### **Throttle response time constant** — 节气门响应时间常数 `0.1` `s`（默认）| 正标量
 
 与发动机对节气门指令响应速率相关联的时间常数。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

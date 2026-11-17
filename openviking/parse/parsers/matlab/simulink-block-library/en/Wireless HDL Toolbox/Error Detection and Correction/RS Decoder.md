@@ -14,6 +14,41 @@ language: en
 # RS Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input codeword data scalar
+  direction: input
+  data_types: double | single | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: erasure
+  summary: Erasure location scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Decoded message data scalar
+  direction: output
+  data_types: double | single | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: err
+  summary: Indication of corruption of received data scalar
+  direction: output
+  data_types: Boolean
+- name: nextFrame
+  summary: Block ready indicator scalar
+  direction: output
+  data_types: Boolean
+- name: numErrors
+  summary: Number of corrected errors nonnegative scalar
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -140,8 +175,34 @@ To enable this port, select the **Output number of corrected symbol
 errors** parameter.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Codeword length (N)
+  summary: Length of codeword 7 (default) | range from 7 to 65,535
+  group: ''
+- name: Message length (K)
+  summary: Length of message 3 (default) | integer in the range from 3 to (Codeword length (N) – 2)
+  group: ''
+- name: Source of primitive polynomial
+  summary: Primitive polynomial source Auto (default) | Property
+  group: ''
+- name: Primitive polynomial
+  summary: Primitive polynomial [1 0 1 1] (default) | binary row vector
+  group: ''
+- name: Source of B, the starting power for roots of the primitive polynomial
+  summary: Source of starting power for roots of primitive polynomial Auto (default) | Property
+  group: ''
+- name: B value
+  summary: Starting power of roots 1 (default) | positive integer
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: Number of corrected symbol errors off (default) | on
+  group: ''
+- name: Enable erasure input port
+  summary: Enable erasure input port off (default) | on
+  group: ''
+```
 
 ### **Codeword length (N)** — Length of codeword `7` (default) | range from 7 to 65,535
 
@@ -212,7 +273,6 @@ port outputs the number of corrected errors.
 *Since R2024b*
 
 Select this parameter to enable the **erasure** input port.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

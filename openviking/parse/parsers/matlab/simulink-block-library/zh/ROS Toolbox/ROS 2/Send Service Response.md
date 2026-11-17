@@ -15,14 +15,31 @@ chinese_source: worker-translation
 # Send Service Response
 
 ## 端口
+```yaml
+ports:
+- name: Resp
+  summary: 要发送给客户端的服务响应消息，非虚拟总线
+  direction: input
+```
 
 ### 输入
 
 ### **Resp** — 要发送给客户端的服务响应消息，非虚拟总线
 
 要发送给服务客户端的服务响应消息，指定为非虚拟总线。响应消息类型基于配对的 Receive Service request 模块中指定的服务类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Name
+  summary: 服务名称 只读：字符向量
+  group: ''
+- name: Type
+  summary: 服务类型 只读：字符向量
+  group: ''
+- name: Paired Receive Request Block
+  summary: 配对的 Receive Service Request 模块的路径 模块路径
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -57,7 +74,6 @@ chinese_source: worker-translation
 #### 提示
 
 - 为正确实现服务服务器，请仅使用 `Click to create paired Receive Request block` 来创建与此 Send Service Response 模块关联的 Receive Service Request。不要从库中添加 Send Service Response 模块。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

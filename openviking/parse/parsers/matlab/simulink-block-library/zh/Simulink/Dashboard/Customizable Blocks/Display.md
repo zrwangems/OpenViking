@@ -15,10 +15,102 @@ chinese_source: worker-translation
 # Display
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的信号及显示信号连接选项
+  group: 参数
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Format
+  summary: 显示信号值的格式 short（默认）| long | shortE | longE | ...
+  group: 参数
+  block_parameter: Format
+  type: 字符数组 | 字符串
+  values: '''short'' | ''long'' | ''shortE'' | ''longE'' | ''shortG'' | ''longG'' | ''shortEng'' | ''longEng'' | ''bank''
+    | ''+'' | ''hex'' | ''rat'' | ''Custom'' | ''Integer'''
+  default: '''short'''
+- name: Format String
+  summary: 用于格式化数据的自定义字符串 '%d'（默认）| 字符串
+  group: 参数
+  block_parameter: FormatString
+  type: 字符数组 | 字符串
+  default: '''%d'''
+- name: Label
+  summary: 显示所连接元素名称的标签位置 Top（默认）| Bottom | Hide
+  group: 参数
+  block_parameter: LabelPosition
+  type: 字符向量
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 参数
+- name: Lock Aspect Ratio
+  summary: 保持模块宽高比的选项 on（默认）| off
+  group: 设计
+- name: Font
+  summary: 字体 Courier Prime | DSEG7-Classic | Noto Sans | Noto Serif | Roboto | Ubuntu
+  group: 设计
+- name: Size
+  summary: 字体大小 标量
+  group: 设计
+- name: Text Color
+  summary: 文本颜色 [r g b] 向量
+  group: 设计
+- name: X Offset
+  summary: 文本中心相对于模块中心的水平偏移 标量
+  group: 设计
+- name: Y Offset
+  summary: 文本中心相对于模块中心的垂直偏移 标量
+  group: 设计
+- name: Width
+  summary: 文本边界框宽度 标量
+  group: 设计
+- name: Height
+  summary: 文本边界框高度 标量
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持文本边界框宽高比的选项 on（默认）| off
+  group: 设计
+- name: Use Background Color
+  summary: 指定纯色模块背景色的选项 off（默认）| on
+  group: 设计
+- name: Color
+  summary: 模块背景颜色 [r g b] 向量
+  group: 设计
+  block_parameter: BackgroundColor
+  type: 字符串 | 字符向量
+  values: '[r g b] 向量'
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| 标量
+  group: 设计
+- name: Corner Radius
+  summary: 模块背景颜色区域的圆角半径 标量
+  group: 设计
+- name: X Offset
+  summary: 前景图像左边缘相对于模块左边缘的水平偏移 标量
+  group: 设计
+- name: Y Offset
+  summary: 前景图像上边缘相对于模块上边缘的垂直偏移 标量
+  group: 设计
+- name: Width
+  summary: 前景图像宽度 标量
+  group: 设计
+- name: Height
+  summary: 前景图像高度 标量
+  group: 设计
+- name: Lock Aspect Ratio
+  summary: 保持前景图像宽高比的选项 on（默认）| off
+  group: 设计
+```
 
 使用属性检查器和模块参数对话框指定模块参数的值。要设置仪表板模块的核心参数，请使用模块参数对话框或属性检查器中的**参数**选项卡。要自定义模块，请使用属性检查器中的**设计**选项卡。要打开模块的模块参数对话框，请双击该模块。要打开属性检查器，请在**建模**选项卡的**设计**下，选择**属性检查器**。
 
@@ -250,7 +342,6 @@ R2025b 中未记录。
 ### **Lock Aspect Ratio** — 保持前景图像宽高比的选项 `on`（默认）| `off`
 
 选择此参数以在使用属性检查器调整图像大小时保持宽高比。
-
 ## 所属库
 
 Simulink / Dashboard / Customizable Blocks

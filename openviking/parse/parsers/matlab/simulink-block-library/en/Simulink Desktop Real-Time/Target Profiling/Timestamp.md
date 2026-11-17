@@ -14,6 +14,15 @@ language: en
 # Timestamp
 
 ## Ports
+```yaml
+ports:
+- name: Signals
+  summary: Signals for which to capture timestamps vector
+  direction: input
+- name: Timestamps
+  summary: Timestamps of signals vector of double
+  direction: output
+```
 
 ### Input
 
@@ -27,11 +36,12 @@ The actual data values are ignored.
 For each signal connected to `Signals`, the block
 returns the signal timestamp measured from the beginning of model
 execution.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Desktop Real-Time / Target Profiling

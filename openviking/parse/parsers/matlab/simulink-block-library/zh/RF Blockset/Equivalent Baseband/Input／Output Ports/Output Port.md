@@ -15,10 +15,57 @@ chinese_source: worker-translation
 # Output Port
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Load impedance(ohms)
+  summary: RF 网络的负载阻抗 50（默认）| 标量
+  group: 主选项卡
+- name: Source of frequency data
+  summary: 频率数据源 Derived from Input Port parameter（默认）| User-specified
+  group: 可视化选项卡
+- name: Frequency data (Hz)
+  summary: 频率数据范围 1e9:1e8:3e9（默认）| 向量
+  group: 可视化选项卡
+- name: Reference impedance (ohms)
+  summary: 参考阻抗 50（默认）| 标量
+  group: 可视化选项卡
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化选项卡
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: 可视化选项卡
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | NF | ...
+  group: 可视化选项卡
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化选项卡
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化选项卡
+- name: X parameter
+  summary: X 参数 Freq（默认）
+  group: 可视化选项卡
+- name: X format
+  summary: 绘图格式 Hz（默认）| Auto | KHz | MHz | GHz | THz
+  group: 可视化选项卡
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认）| Log
+  group: 可视化选项卡
+- name: X scale
+  summary: X 轴刻度 Linear（默认）| Log
+  group: 可视化选项卡
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化选项卡
+```
 
 ### 主选项卡
 
@@ -146,7 +193,6 @@ X 轴刻度，指定为 `Linear` 或 `Log`。
 - 单击 Update Diagram 按钮以初始化一个在 Input Port 模块和 Output Port 模块之间具有两个或更多模块的模型。
 
 有关绘图的信息，请参阅 Create Plots Using Equivalent Baseband Library Blocks。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Input / Output Ports

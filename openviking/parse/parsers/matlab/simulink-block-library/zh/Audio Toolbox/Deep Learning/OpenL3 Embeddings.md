@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # OpenL3 Embeddings
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 声音数据列向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 嵌入行向量
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -30,8 +41,25 @@ chinese_source: worker-translation
 输出嵌入，以行向量形式返回，其长度由 **Embedding length** 参数指定。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: 输入信号的采样率（Hz） 48e3（默认值）| 正标量
+  group: ''
+- name: Overlap percentage (%)
+  summary: 连续频谱图之间的重叠百分比 90（默认值）| [0 100)
+  group: ''
+- name: Spectrum type
+  summary: 频谱类型 Mel (128 bands)（默认值）| Mel (256 bands) | Linear
+  group: ''
+- name: Content type
+  summary: 音频内容类型 Environmental sounds（默认值）| Musical sounds
+  group: ''
+- name: Embedding length
+  summary: 输出嵌入长度 512（默认值）| 6144
+  group: ''
+```
 
 ### **Sample rate of input signal (Hz)** — 输入信号的采样率（Hz） `48e3`（默认值）| 正标量
 
@@ -59,7 +87,6 @@ sounds` 以使用在环境音频数据上预训练的神经网络，将其设置
 ### **Embedding length** — 输出嵌入长度 `512`（默认值）| `6144`
 
 输出嵌入的长度，指定为 `512` 或 `6144`。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

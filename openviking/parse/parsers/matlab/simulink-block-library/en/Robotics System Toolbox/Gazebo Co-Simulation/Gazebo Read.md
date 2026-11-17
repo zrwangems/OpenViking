@@ -14,6 +14,17 @@ language: en
 # Gazebo Read
 
 ## Ports
+```yaml
+ports:
+- name: IsNew
+  summary: Status of messages in the previous time step 0 (default) | 1
+  direction: output
+  data_types: Boolean
+- name: Msg
+  summary: Gazebo message bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -33,8 +44,26 @@ The `Msg` output always outputs the most recent message
 received.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic source
+  summary: Source for specifying topic From Gazebo (default) | Specify your own
+  group: ''
+- name: Topic
+  summary: Topic name of message /my_topic (default) | string
+  group: ''
+- name: Message type
+  summary: Gazebo message type gazebo_msgs/Pose (default) | gazebo_msgs/Image | gazebo_msgs/IMU | gazebo_msgs/LaserScan |
+    gazebo_msgs/JointState | gazebo_msgs/LinkState
+  group: ''
+- name: Sample time
+  summary: Sampling time of input 0.001 (default) | positive scalar
+  group: ''
+- name: Number of Joint Axis
+  summary: Number of joint axis 2 (default) | positive integer in range [1, 100]
+  group: ''
+```
 
 ### **Topic source** — Source for specifying topic `From Gazebo` (default) | `Specify your own`
 
@@ -81,7 +110,6 @@ Then specify the number of joint axis.
 To enable this parameter, set `Message type` to
 `gazebo_msgs/JointState` and select the `Make Joint Axis
 Related Bus Signal to Fixed Dimensions` check box.
-
 ## Libraries
 
 Robotics System Toolbox / Gazebo Co-Simulation

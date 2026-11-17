@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Simple Dual Port RAM
 
 ## 端口
+```yaml
+ports:
+- name: wr_din
+  summary: 写入数据输入 Scalar（默认）
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | fixed point
+- name: wr_addr
+  summary: 写入地址 Scalar（默认）
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wr_en
+  summary: 写入使能 Scalar（默认）
+  direction: input
+  data_types: Boolean
+- name: rd_addr
+  summary: 读取地址 Scalar（默认）
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rd_dout
+  summary: 从读取地址输出的数据 Scalar（默认）
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -52,8 +76,17 @@ chinese_source: worker-translation
 从读取地址 `rd_addr` 输出的数据。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Address port width
+  summary: 地址位宽 8（默认）
+  group: ''
+  block_parameter: ram_size
+  type: string scalar | character vector
+  values: 2 的最小值和 29 的最大值
+  default: '''8'''
+```
 
 ### **Address port width** — 地址位宽 8（默认）
 
@@ -67,7 +100,6 @@ chinese_source: worker-translation
 | **类型**：string scalar | character vector |
 | **值：** `2` 的最小值和 `29` 的最大值 |
 | **默认值**：`'8'` |
-
 ## 所属库
 
 HDL Coder / HDL RAMs

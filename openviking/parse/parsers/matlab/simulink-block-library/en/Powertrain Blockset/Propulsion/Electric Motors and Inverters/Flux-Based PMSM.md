@@ -14,6 +14,30 @@ language: en
 # Flux-Based PMSM
 
 ## Ports
+```yaml
+ports:
+- name: LdTrq
+  summary: Rotor shaft torque scalar
+  direction: input
+- name: Spd
+  summary: Rotor shaft speed scalar
+  direction: input
+- name: PhaseVolt
+  summary: Stator terminal voltages 1-by-3 array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: PhaseCurr
+  summary: Phase a, b, c current 1-by-3 array
+  direction: output
+- name: MtrTrq
+  summary: Motor torque scalar
+  direction: output
+- name: MtrSpd
+  summary: Motor speed scalar
+  direction: output
+```
 
 ### Input
 
@@ -98,8 +122,110 @@ Angular speed of the motor,
 
 To create this port, select `Torque` for
 the **Port configuration** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Simulation type
+  summary: Select simulation type Continuous (default) | Discrete
+  group: ''
+  block_parameter: sim_type
+  values: Continuous (default) | Discrete
+- name: Sample time, Ts
+  summary: Sample time for discrete integration 0.001 (default) | scalar
+  group: ''
+  block_parameter: Ts
+  values: 0.001 (default) | scalar
+- name: Port Configuration
+  summary: Select port configuration Torque (default) | Speed
+  group: ''
+  block_parameter: port_config
+  values: Torque (default) | Speed
+- name: Enable memory optimized 2D LUT
+  summary: Selection off (default) | on
+  group: ''
+  block_parameter: enable_hdl
+  values: off (default) | on
+- name: Vector of d-axis flux, flux_d
+  summary: Flux breakpoints 1-by-M vector
+  group: ''
+  block_parameter: flux_d
+  values: 1-by-M vector
+- name: Resample storage size for flux_d, n1
+  summary: Flux bit size 2 (default) | 4 | 8 | 16 | 32 | 64 | 128 | 256
+  group: ''
+  block_parameter: n1
+  values: 2 (default) | 4 | 8 | 16 | 32 | 64 | 128 | 256
+- name: Vector of q-axis flux, flux_q
+  summary: Flux breakpoints 1-by-N vector
+  group: ''
+  block_parameter: flux_q
+  values: 1-by-N vector
+- name: Resample storage size for flux_q, n2
+  summary: Flux bit size 2 (default) | 4 | 8 | 16 | 32 | 64 | 128 | 256
+  group: ''
+  block_parameter: n2
+  values: 2 (default) | 4 | 8 | 16 | 32 | 64 | 128 | 256
+- name: Corresponding d-axis current, id
+  summary: 2D lookup table M-by-N array
+  group: ''
+  block_parameter: id
+  values: M-by-N array
+- name: Corresponding q-axis current, iq
+  summary: 2D lookup table M-by-N array
+  group: ''
+  block_parameter: iq
+  values: M-by-N array
+- name: flux_d max endpoint, u1max
+  summary: Flux breakpoint 0.22457 (default) | scalar
+  group: ''
+  block_parameter: u1max
+  values: 0.22457 (default) | scalar
+- name: flux_d min endpoint, u1min
+  summary: Flux breakpoint -0.22607 (default) | scalar
+  group: ''
+  block_parameter: u1min
+  values: -0.22607 (default) | scalar
+- name: flux_q max endpoint, u2max
+  summary: Flux breakpoint 0.42959 (default) | scalar
+  group: ''
+  block_parameter: u2max
+  values: 0.42959 (default) | scalar
+- name: flux_q min endpoint, u2min
+  summary: Flux breakpoint -0.4296 (default) | scalar
+  group: ''
+  block_parameter: u2min
+  values: -0.4296 (default) | scalar
+- name: Stator phase resistance, Rs
+  summary: Resistance 0.02 (default) | scalar
+  group: ''
+  block_parameter: Rs
+  values: 0.02 (default) | scalar
+- name: Number of pole pairs, P
+  summary: Pole pairs 4 (default) | scalar
+  group: ''
+  block_parameter: P
+  values: 4 (default) | scalar
+- name: Initial flux, fluxdq0
+  summary: Flux [0 0] (default) | vector
+  group: ''
+  block_parameter: fluxdq0
+  values: '[0 0] (default) | vector'
+- name: Initial mechanical position, theta_init
+  summary: Angle 0 (default) | scalar
+  group: ''
+  block_parameter: theta_init
+  values: 0 (default) | scalar
+- name: Initial mechanical speed, omega_init
+  summary: Speed 0 (default) | scalar
+  group: ''
+  block_parameter: omega_init
+  values: 0 (default) | scalar
+- name: Physical inertia, viscous damping, and static friction, mechanical
+  summary: Inertia, damping, friction [0.0027, 4.924e-4, 0] (default) | vector
+  group: ''
+  block_parameter: mechanical
+  values: '[0.0027, 4.924e-4, 0] (default) | vector'
+```
 
 #### Block Options
 
@@ -602,7 +728,6 @@ function.
 
 To enable this parameter, select the `Torque`
 configuration parameter.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters

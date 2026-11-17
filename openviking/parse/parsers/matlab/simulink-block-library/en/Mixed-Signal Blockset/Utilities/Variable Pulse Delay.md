@@ -14,6 +14,21 @@ language: en
 # Variable Pulse Delay
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input sample data fixed step discrete sample | variable step discrete sample
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | floating point
+- name: delay
+  summary: Introduces delay to input signal nonnegative scalar
+  direction: input
+  data_types: floating point
+- name: out
+  summary: Delayed output sample fixed step discrete sample | variable step discrete sample
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | floating point
+```
 
 ### Input
 
@@ -41,8 +56,16 @@ signal determines the amount of delay introduced at the **out** port.
 The input and output signals must maintain the same order.
 
 **Data Types:** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `floating point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial Input
+  summary: The value at the output port before simulation 0 (default) | scalar
+  group: ''
+- name: Buffer Size
+  summary: Number of samples of the input buffering available during simulation 1 (default) | positive scalar integer
+  group: ''
+```
 
 ### **Initial Input** — The value at the output port before simulation `0` (default) | scalar
 
@@ -73,7 +96,6 @@ positive scalar integer.
   of **Buffer Size**.
 - Use `set_param(gcb,'BufferSize',value)` to set
   **Buffer Size** to a specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

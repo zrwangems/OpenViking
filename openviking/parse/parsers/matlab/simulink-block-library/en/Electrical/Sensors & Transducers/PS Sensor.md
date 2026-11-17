@@ -14,6 +14,18 @@ language: en
 # PS Sensor
 
 ## Ports
+```yaml
+ports:
+- name: U
+  summary: Physical input signal physical signal
+  direction: input
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -31,8 +43,25 @@ voltage.
 
 Electrical conserving port associated with the PS sensor negative
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Output type
+  summary: Sensor output type Variable voltage (default) | Variable current | Variable resistor
+  group: ''
+- name: Sensor gain, A
+  summary: Output sensitivity 1 (default)
+  group: ''
+- name: Sensor offset, B
+  summary: Sensor offset 0 (default)
+  group: ''
+- name: Maximum output, Ymax
+  summary: Maximum output 5 (default)
+  group: ''
+- name: Minimum output, Ymin
+  summary: Minimum output 0.01 (default)
+  group: ''
+```
 
 ### **Output type** — Sensor output type `Variable voltage` (default) | `Variable current` | `Variable resistor`
 
@@ -81,7 +110,6 @@ If you select `Variable resistance` for the
 **Output type** parameter, the minimum resistance
 *Y*min must be greater than
 zero.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

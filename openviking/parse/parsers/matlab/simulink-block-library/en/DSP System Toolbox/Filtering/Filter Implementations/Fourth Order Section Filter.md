@@ -14,6 +14,25 @@ language: en
 # Fourth-Order Section Filter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: Numerator coefficients *P*-by-5 matrix
+  direction: input
+  data_types: single | double
+- name: Den
+  summary: Denominator coefficients *P*-by-5 matrix | *P*-by-4 matrix
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Filtered output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -77,8 +96,30 @@ parameter to `Input ports`.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: Filter coefficient source Dialog parameters (default) | Input ports | Filter object
+  group: ''
+- name: Numerator coefficients of filter
+  summary: Numerator coefficients [0.07795634 0 -0.15591268 0 0.07795634; 0.06188520 0 -0.12377039 0 0.06188520] (default)
+    | *P*-by-5 matrix
+  group: ''
+- name: Denominator coefficients of filter
+  summary: Denominator coefficients [1 0 1.32091343 0 0.63273879; 1 0 1.04859957 0 0.29614035] (default) | *P*-by-5 matrix
+    | *P*-by-4 matrix
+  group: ''
+- name: Filter
+  summary: Filter object dsp.FourthOrderSectionFilter object
+  group: ''
+- name: View Filter Response
+  summary: Visualize frequency response gui button
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Coefficient source** — Filter coefficient source `Dialog parameters` (default) | `Input ports` | `Filter object`
 
@@ -224,7 +265,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Implementations

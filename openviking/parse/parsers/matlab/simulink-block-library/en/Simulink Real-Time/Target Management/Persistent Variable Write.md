@@ -14,6 +14,13 @@ language: en
 # Persistent Variable Write
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Persistent variable input data variable data
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -26,8 +33,14 @@ The block can take a complex number. The complexity of the Persistent
 Variable Write block input port is inherited from its input signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Variable name
+  summary: Name of persistent variable Variable1 (default) | character vector | string
+  group: ''
+  block_parameter: varName
+```
 
 ### **Variable name** — Name of persistent variable `Variable1` (default) | character vector | string
 
@@ -40,7 +53,6 @@ retrieved from the target computer by using the `getPersistentVariables` functio
 |  |
 | --- |
 | **Block Parameter:** `varName` |
-
 ## Libraries
 
 Simulink Real-Time / Target Management

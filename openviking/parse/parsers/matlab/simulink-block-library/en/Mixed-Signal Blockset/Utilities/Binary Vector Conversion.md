@@ -14,6 +14,17 @@ language: en
 # Binary Vector Conversion
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input signal scalar | logical vector
+  direction: input
+  data_types: single | double | uint8 | uint16 | uint32 | Boolean | fixdt(0,16)
+- name: out
+  summary: Output signal scalar | logical vector
+  direction: output
+  data_types: single | double | uint8 | uint16 | uint32 | Boolean | fixdt(0,16)
+```
 
 ### Input
 
@@ -41,8 +52,47 @@ Output signal, specified as a scalar or logical vector.
 - When decoding, the output signal is a scalar.
 
 **Data Types:** `single` | `double` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixdt(0,16)`
-
 ## Parameters
+```yaml
+parameters:
+- name: Convert
+  summary: Type of conversion operation Scalar to binary-coded vector (default) | Binary-coded vector to scalar | Resize binary-coded
+    vector | Reverse binary-coded vector
+  group: ''
+  block_parameter: Convert
+  type: character vector
+  values: Scalar to binary-coded vector| Binary-coded vector to scalar| Resize binary-coded vector| Reverse binary-coded vector
+  default: Scalar to binary-coded vector
+- name: Logical vector encoding
+  summary: Method of encoding logical vector Unipolar (magnitude) (default) | Bipolar (2's complement)
+  group: ''
+  block_parameter: Encoding
+  type: character vector
+  values: Unipolar (magnitude)| Bipolar (2's complement)
+  default: Unipolar (magnitude)
+- name: Input vector length
+  summary: Number of vector elements in input vector 8 (default) | positive real scalar
+  group: ''
+  block_parameter: InputLength
+  type: character vector
+  values: positive real scalar
+  default: '8'
+- name: Output vector length
+  summary: Number of vector elements in output vector 8 (default) | positive real scalar
+  group: ''
+  block_parameter: OutputLength
+  type: character vector
+  values: positive real scalar
+  default: '8'
+- name: Output data type
+  summary: 'Datatype of output scalar double (default) | Inherit: Inherit via back propagation | single | uint8 | uint16 |
+    uint32 | fixdt(0,16)'
+  group: ''
+  block_parameter: DataType
+  type: character vector
+  values: 'Inherit: Inherit via back propagation| double| single| uint8| uint16| uint32| fixdt(0,16)'
+  default: double
+```
 
 ### **Convert** — Type of conversion operation `Scalar to binary-coded vector` (default) | `Binary-coded vector to scalar` | `Resize binary-coded vector` | `Reverse binary-coded vector`
 
@@ -161,7 +211,6 @@ To enable this parameter, set **Convert** to
 | **Type:** character vector |
 | **Values:** `Inherit: Inherit via back propagation`| `double`| `single`| `uint8`| `uint16`| `uint32`| `fixdt(0,16)` |
 | **Default:** `double` |
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

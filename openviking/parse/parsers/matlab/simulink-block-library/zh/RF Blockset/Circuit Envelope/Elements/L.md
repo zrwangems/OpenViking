@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Inductor
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Inductance
+  summary: 电感值 1e-9 H（默认）| 实数
+  group: ''
+```
 
 ### **Inductance** — 电感值 `1e-9 H`（默认）| 实数
 
 电感值，指定为实数。从相应的下拉菜单中指定电容的单位。
 
 如果将此参数设置为 `0` 到 `1e-18` `H` 之间的值，该模块在仿真期间将使用等于 `1e-18` `H` 的值。默认情况下，该值为 `1e-9` `H`。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

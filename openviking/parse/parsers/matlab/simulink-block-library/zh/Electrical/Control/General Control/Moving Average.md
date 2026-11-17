@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Moving Average
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 滑动平均输入 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Mean
+  summary: 滑动平均输出 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 输入信号的滑动平均值。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Fundamental frequency (Hz)
+  summary: 信号基频 60（默认）| 正标量 | 正数值向量
+  group: ''
+- name: Initial value
+  summary: 输入信号初始值 0（默认）| 标量
+  group: ''
+- name: Buffer size
+  summary: 缓冲区大小 8192（默认）| 标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Fundamental frequency (Hz)** — 信号基频 `60`（默认）| 正标量 | 正数值向量
 
@@ -56,7 +81,6 @@ chinese_source: worker-translation
 对于继承的离散时间操作，请将此参数设置为 `-1`。对于离散时间操作，请将此参数设置为正整数。对于连续时间操作，请将此参数设置为 `0`。
 
 如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM ST5C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 接管点定子电流限制（OEL）标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 接管点定子电流限制（UEL）标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -135,8 +182,85 @@ chinese_source: worker-translation
 施加到同步电机励磁绕组的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数标量
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认）| 正标量
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认）| 正标量
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0.02（默认）| 正标量
+  group: 预控制
+- name: Regulator gain, K_R (pu)
+  summary: 调节器增益 200（默认）| 正标量
+  group: 控制
+- name: Voltage regulator denominator (lag) time constant (first block), T_B1 (s)
+  summary: 调节器滞后时间常数 1 6（默认）| 正标量
+  group: 控制
+- name: Voltage regulator numerator (lead) time constant (first block), T_C1 (s)
+  summary: 调节器超前时间常数 1 0.8（默认）| 正标量
+  group: 控制
+- name: Voltage regulator denominator (lag) time constant (second block), T_B2 (s)
+  summary: 调节器滞后时间常数 2 0.01（默认）| 正标量
+  group: 控制
+- name: Voltage regulator numerator (lead) time constant (second block), T_C2 (s)
+  summary: 调节器超前时间常数 2 0.08（默认）| 正标量
+  group: 控制
+- name: UEL regulator denominator (lag) time constant (first block), T_UB1 (s)
+  summary: UEL 调节器滞后时间常数 1 10（默认）
+  group: 控制
+- name: UEL regulator numerator (lead) time constant (first block), T_UC1 (s)
+  summary: UEL 调节器超前时间常数 1 2（默认）
+  group: 控制
+- name: UEL regulator denominator (lag) time constant (second block), T_UB2 (s)
+  summary: UEL 调节器滞后时间常数 2 0.05（默认）
+  group: 控制
+- name: UEL regulator numerator (lead) time constant (second block), T_UC2 (s)
+  summary: UEL 调节器超前时间常数 2 0.1（默认）
+  group: 控制
+- name: OEL regulator denominator (lag) time constant (first block), T_OB1 (s)
+  summary: OEL 调节器滞后时间常数 1 2（默认）
+  group: 控制
+- name: OEL regulator numerator (lead) time constant (first block), T_OC1 (s)
+  summary: OEL 调节器超前时间常数 1 0.1（默认）
+  group: 控制
+- name: OEL regulator denominator (lag) time constant (second block), T_OB2 (s)
+  summary: OEL 调节器滞后时间常数 2 0.08（默认）
+  group: 控制
+- name: OEL regulator numerator (lead) time constant (second block), T_OC2 (s)
+  summary: OEL 调节器超前时间常数 2 0.08（默认）
+  group: 控制
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: 调节器最大输出 5（默认）| 实数标量
+  group: 控制
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: 调节器最小输出 -4（默认）| 实数标量
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Unused（默认）| Summation point | Take-over
+  group: 控制
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: 整流器负载因数 0.004（默认）| 正标量
+  group: 励磁机
+- name: Thyristor bridge firing control equivalent time constant, T_1 (s)
+  summary: 晶闸管桥触发控制时间常数 0.004（默认）| 正标量
+  group: 励磁机
+```
 
 ### 常规
 
@@ -257,7 +381,6 @@ chinese_source: worker-translation
 ### **Thyristor bridge firing control equivalent time constant, T\_1 (s)** — 晶闸管桥触发控制时间常数 `0.004`（默认）| 正标量
 
 晶闸管桥触发控制的等效时间常数，以秒为单位。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

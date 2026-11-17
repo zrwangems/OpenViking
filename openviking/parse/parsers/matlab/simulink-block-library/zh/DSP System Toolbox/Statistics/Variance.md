@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Variance
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Rst
+  summary: 复位端口 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: 沿指定维度的方差 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -63,8 +78,46 @@ chinese_source: worker-translation
 输出的数据类型与输入的数据类型匹配。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Running variance
+  summary: 选择运行方差的选项 关闭（默认） | 打开
+  group: 主选项卡
+- name: Find the variance value over
+  summary: 计算方差的维度 Each column（默认） | Entire input | Each row | Specified dimension
+  group: 主选项卡
+- name: Dimension
+  summary: 自定义维度 1（默认） | 标量
+  group: 主选项卡
+- name: Input processing
+  summary: 在运行模式下处理输入的方法 Columns as channels (frame based)（默认） | Elements as channels (sample based)
+  group: 主选项卡
+- name: Reset port
+  summary: 复位事件 None（默认） | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入操作的方法 Floor（默认） | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 关闭（默认） | 打开
+  group: 数据类型选项卡
+- name: Input-squared product output
+  summary: 输入平方项的数据类型 Same as input（默认） | Binary point scaling
+  group: 数据类型选项卡
+- name: Input-sum-squared product
+  summary: 输入和平方项的数据类型 Same as input-squared product（默认） | Binary point scaling
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: 累加器数据类型 Same as input-squared product（默认） | Same as input | Binary point scaling
+  group: 数据类型选项卡
+- name: Output
+  summary: 输出数据类型 Same as input-squared product（默认） | Same as accumulator | Same as input | Binary point scaling
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 关闭（默认） | 打开
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -196,7 +249,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 关闭（默认） | 打开
 
 选择此参数以防止定点工具覆盖您在模块上指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Statistics

@@ -15,10 +15,181 @@ chinese_source: worker-translation
 # Amplifier
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: 放大器增益来源
+  summary: 放大器增益来源 Available power gain（默认）| Open circuit voltage gain | Data source | Polynomial coefficients | AM/AM-AM/PM
+    table
+  group: 主
+- name: Available power gain
+  summary: 可用功率增益 0 dB（默认）| 标量
+  group: 主
+- name: Open circuit voltage gain
+  summary: 开路电压增益 0 dB（默认）| 标量
+  group: 主
+- name: Data source
+  summary: 数据源 Data File（默认）| Network-parameters | Rational Model
+  group: 主
+- name: Polynomial coefficients
+  summary: 多项式系数 [0 1]（默认）| 向量
+  group: 主
+- name: AM/AM-AM/PM table
+  summary: 查找表 [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ]（默认）| *M*×3 实矩阵
+  group: 主
+- name: Network-parameter object
+  summary: 作为数据源的网络参数对象 off（默认）| on
+  group: 主
+- name: Network parameter type
+  summary: 网络参数类型 S-parameters（默认）| Y-parameters | Z-parameters
+  group: 主
+- name: Input impedance (Ohm)
+  summary: 输入阻抗 50（默认）| 正标量
+  group: 主
+- name: Output impedance (Ohm)
+  summary: 输出阻抗 50（默认）| 正标量
+  group: 主
+- name: Data file
+  summary: 网络参数数据文件的名称 unitygain.s2p（默认）| 字符向量
+  group: 主
+- name: Frequency (dB)
+  summary: 网络参数的频率 1e9 Hz（默认）| 标量 | Hz | kHz | MHz | GHz
+  group: 主
+- name: Reference Impedance(Ohm)
+  summary: 网络参数的参考阻抗 50（默认）| 正标量 | 正标量向量
+  group: 主
+- name: Use rational object
+  summary: 将 rational 对象用作数据源 off（默认）| on
+  group: 主
+- name: Residues
+  summary: 按有理模型顺序排列的留数 0（默认）| 向量
+  group: 主
+- name: Poles
+  summary: 按有理模型顺序排列的极点 0（默认）| 向量
+  group: 主
+- name: Direct feedthrough
+  summary: 直接馈通 {0 0:1 0}（默认）| 向量数组
+  group: 主
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏 RF 电路端子 on（默认）| off
+  group: 主
+- name: Nonlinear polynomial type
+  summary: 非线性类型 Even and odd order（默认）| Odd order
+  group: 非线性
+- name: Intercept points convention
+  summary: 截点约定 Output（默认）| Input
+  group: 非线性
+- name: IP2
+  summary: 二阶截点 infdBm（默认）| 标量 | W | mW | dBW | dBm
+  group: 非线性
+- name: IP3
+  summary: 三阶截点 infdBm（默认）| 标量 | W | mW | dBW | dBm
+  group: 非线性
+- name: 1-dB gain compression power
+  summary: 1-dB 增益压缩功率 inf dBm（默认）| 标量 | W | mW | dBW | dBm
+  group: 非线性
+- name: Output saturation power
+  summary: 输出饱和功率 inf dBm（默认）| 标量 | W | mW | dBW | dBm
+  group: 非线性
+- name: Gain compression at saturation
+  summary: 饱和时的增益压缩 inf dBm（默认）| 标量 | W | mW | dBW | dBm
+  group: 非线性
+- name: Use operation frequency at maximum S21 magnitude
+  summary: 指定工作频率 off（默认）| on
+  group: 非线性
+- name: Operation frequency
+  summary: 工作频率 1 GHz（默认）| 标量 | 有限向量 | Hz | KHz | MHz | GHz
+  group: 非线性
+- name: Use constant S21 and nonlinearity
+  summary: 工作频率 off（默认）| on
+  group: 非线性
+- name: Plot Power Characteristics
+  summary: 放大器非线性功率曲线可视化按钮（默认）
+  group: 非线性
+- name: Simulate noise
+  summary: 模拟热噪声 on（默认）| off
+  group: 噪声
+- name: Noise type
+  summary: 噪声类型 Noise figure（默认）| Spot noise data
+  group: 噪声
+- name: Noise distribution
+  summary: 噪声分布 White（默认）| Piece-wise linear | Colored
+  group: 噪声
+- name: Noise figure (dB)
+  summary: 噪声系数 0（默认）| 标量
+  group: 噪声
+- name: Frequencies
+  summary: 频率数据 0 Hz（默认）| 实数标量 | 有限向量
+  group: 噪声
+- name: Minimum noise figure (dB)
+  summary: 最小噪声系数 0（默认）| 标量 | 有限向量
+  group: 噪声
+- name: Optimal reflection coefficient
+  summary: 最佳反射系数 0（默认）| 标量 | 有限向量
+  group: 噪声
+- name: Equivalent normalized noise resistance
+  summary: 等效归一化噪声电阻 0（默认）| 标量 | 有限向量
+  group: 噪声
+- name: Automatically estimate impulse response duration
+  summary: 自动估计冲激响应持续时间 on（默认）| off
+  group: 噪声
+- name: Impulse response duration
+  summary: 冲激响应持续时间 1e-10s（默认）| 标量
+  group: 噪声
+- name: Modeling options
+  summary: 对 S 参数建模 Time domain（默认）| Frequency domain
+  group: 建模
+- name: 拟合选项
+  summary: Rationalfit 拟合选项 Fit individually（默认）| Share poles by column | Share all poles
+  group: 建模
+- name: 期望相对误差 (dB)
+  summary: 有理拟合可接受的相对误差 -40（默认）| 标量
+  group: 建模
+- name: 自动估计冲激响应持续时间
+  summary: 自动计算冲激响应 on | off
+  group: 建模
+- name: 冲激响应持续时间
+  summary: 冲激响应持续时间 1e-10（默认）| 标量
+  group: 建模
+- name: 仅使用带适当延迟的 S 参数幅值
+  summary: 仅使用带适当延迟的 S 参数幅值 off（默认）| on
+  group: 建模
+- name: 频率数据来源
+  summary: 频率数据源 Extracted from data source（默认）| User-defined
+  group: 可视化
+- name: 频率数据
+  summary: 频率数据范围 [1e9:1e6:3e9]（默认）| 有限向量 | Hz | kHz | MHz | GHz
+  group: 可视化
+- name: 绘图类型
+  summary: 数据绘图类型 X-Y plane（默认）| Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Parameter 1
+  summary: 要绘制的 S 参数类型 S11（默认）| S12 | S21 | S22 | NF
+  group: 可视化
+- name: Parameter 2
+  summary: 要绘制的 S 参数类型 None（默认）| S11 | S12 | S21 | S22 | NF
+  group: 可视化
+- name: Format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Magnitude (linear) | Angle(degrees) | Real | Imaginary
+  group: 可视化
+- name: Format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Magnitude (linear) | Angle(degrees) | Real | Imaginary
+  group: 可视化
+- name: Y-axis scale
+  summary: Y 轴刻度 Linear（默认）| Logarithmic
+  group: 可视化
+- name: X-axis scale
+  summary: X 轴刻度 Linear（默认）| Logarithmic
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主
 
@@ -580,7 +751,6 @@ X 轴刻度，指定为 `Linear` 或 `Logarithmic`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘制按钮绘制指定数据。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

@@ -14,6 +14,25 @@ language: en
 # Levinson-Durbin
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: A
+  summary: Model coefficients vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: K
+  summary: Reflection coefficients vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: P
+  summary: Output prediction error power vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -102,8 +121,49 @@ To enable this port, select the **Output prediction error
 power (P)** check box.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output(s)
+  summary: Output(s) K (default) | A and K | A
+  group: Main Tab
+- name: Output prediction error power (P)
+  summary: Output prediction error power off (default) | on
+  group: Main Tab
+- name: If the value of lag 0 is zero, A=[1 zeros], K=[zeros], P=0
+  summary: If the value of lag 0 is zero, A=[1 zeros], K=[zeros], P=0 on (default) | off
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output Inherit: Same as input (default) | numeric type'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator Inherit: Same as input (default) | Inherit: Same as product output | numeric type'
+  group: Data Types Tab
+- name: Polynomial coefficients (A)
+  summary: Polynomial coefficients data type fixdt(1,16,0) (default) | numeric type
+  group: Data Types Tab
+- name: Reflection coefficients (K)
+  summary: Reflection coefficients data type fixdt(1,16,0) (default) | numeric type
+  group: Data Types Tab
+- name: Prediction error power (P)
+  summary: 'Prediction error power data type Inherit: Same as input (default) | numeric type'
+  group: Data Types Tab
+- name: Minimum
+  summary: Minimum values of polynomial coefficients, reflection coefficients, or prediction error power [] (default) | scalar
+  group: Data Types Tab
+- name: Maximum
+  summary: Maximum values of polynomial coefficients, reflection coefficients, or prediction error power [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -310,7 +370,6 @@ default value is `[]` (unspecified). Simulink uses this value to perform:
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Linear Prediction / Linear System Solvers DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

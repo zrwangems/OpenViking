@@ -15,6 +15,34 @@ chinese_source: worker-translation
 # AXI4 Video Frame Buffer
 
 ## 端口
+```yaml
+ports:
+- name: wrData
+  summary: 写入器数据总线信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: wrCtrlIn
+  summary: 写入器输入控制信号总线
+  direction: input
+  data_types: pixelcontrol
+- name: rdCtrlIn
+  summary: 读取器输入控制信号总线
+  direction: input
+  data_types: StreamVideoFSyncS2MBusObj
+- name: rdData
+  summary: 输出到数据消费者的数据信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    SoCData
+- name: rdCtrlOut
+  summary: 从存储器通道到数据消费者的读取器控制信号 总线
+  direction: output
+  data_types: pixelcontrol
+- name: wrCtrlOut
+  summary: 从存储器通道到数据生产者的写入器控制信号 总线
+  direction: output
+  data_types: StreamVideoS2MBusObj
+```
 
 ### 输入
 
@@ -61,8 +89,64 @@ AXI4 Video Frame Buffer 模块在使用
 要将信号从总线中分离，请使用 SoC Bus Selector 模块。
 
 **数据类型：** `StreamVideoS2MBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Memory simulation
+  summary: 设置仿真时序精度 Burst accurate（默认）| Protocol accurate | Behavioral
+  group: ''
+- name: Memory selection
+  summary: 在存储器区域之间选择 PS memory（默认）| PL memory
+  group: 主要
+- name: Region size (bytes)
+  summary: 所分配存储器区域的大小，以字节为单位 只读：计算得出
+  group: 主要
+- name: Frame size
+  summary: 帧尺寸 1080p HDTV (1920x1080p)（默认）
+  group: 主要
+- name: Number of Frames
+  summary: 区域 3 中的缓冲区数量 3（默认）| 整数
+  group: 主要
+- name: Burst length
+  summary: 内存事务的突发长度 256（默认）| 标量
+  group: 主要
+- name: FIFO depth (number of bursts)
+  summary: 数据 FIFO 的深度 8（默认）| 标量
+  group: 主要
+- name: FIFO almost-full depth (number of bursts)
+  summary: 断言背压时的 FIFO 深度 6（默认）| 标量
+  group: 主要
+- name: Clock frequency (MHz)
+  summary: 管理者数据路径的互连频率 100（默认）
+  group: 主要
+- name: Data width (bits)
+  summary: 管理者数据路径的数据宽度 64（默认）| 标量
+  group: 主要
+- name: Dimensions
+  summary: 视频数据的维度 [1 3]（默认）| 标量 | 向量
+  group: 信号属性
+- name: Data type
+  summary: 视频像素的数据类型 uint8（默认）| uint16 | uint32 | uint64 | fixdt(1,16,0)
+  group: 信号属性
+- name: Sample time
+  summary: 采样时间间隔 1（默认）| 正标量 | 向量
+  group: 信号属性
+- name: Enable sample packing (last signal dimension as channel)
+  summary: 在信号的最后一个维度上打包数据 on（默认）| off
+  group: 信号属性
+- name: Inherit sample time offset
+  summary: 使读取器继承写入器的采样时间 on（默认）| off
+  group: 信号属性
+- name: Use pixel clock sample times
+  summary: 使用像素时钟采样时间 off（默认）| on
+  group: 信号属性
+- name: View performance plots
+  summary: 显示性能指标 按钮
+  group: 性能
+- name: View performance plots
+  summary: 显示性能指标 按钮
+  group: 性能
+```
 
 ### **Memory simulation** — 设置仿真时序精度 `Burst accurate`（默认）| `Protocol accurate` | `Behavioral`
 
@@ -242,7 +326,6 @@ type** 和 **Dimensions** 参数来定义此值。
 #### 依赖关系
 
 要启用此参数，请在 **Memory simulation** 下选择 **Burst accurate**。
-
 ## 所属库
 
 SoC Blockset / Memory

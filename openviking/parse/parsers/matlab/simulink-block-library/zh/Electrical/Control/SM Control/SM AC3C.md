@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM AC3C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 过励限制器接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 欠励限制器接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -135,8 +182,115 @@ chinese_source: worker-translation
 施加到同步电机励磁绕组的标幺值励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认值）| 实数
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认值）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认值）| 正数
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认值）| 正数
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0（默认值）| 正数
+  group: 预控制
+- name: Voltage regulator proportional gain, K_PR (pu)
+  summary: 电压调节器的比例增益 1（默认值）
+  group: 控制
+- name: Voltage regulator integral gain, K_IR (pu/s)
+  summary: 电压调节器的积分增益 0（默认值）
+  group: 控制
+- name: Voltage regulator derivative gain, K_DR (pu.s)
+  summary: 电压调节器的微分增益 0（默认值）
+  group: 控制
+- name: Lag time constant for derivative channel of PID controller, T_DR (s)
+  summary: PID 微分通道的滞后时间常数 1（默认值）| 正数
+  group: 控制
+- name: Maximum PID regulator output, V_PIDmax (pu)
+  summary: PID 调节器的最大输出 3.2（默认值）| 正数
+  group: 控制
+- name: Minimum PID regulator output, V_PIDmin (pu)
+  summary: PID 调节器的最小输出 -3.2（默认值）| 正数
+  group: 控制
+- name: Regulator denominator (lag) time constant, T_B (s)
+  summary: 调节器滞后时间常数 0（默认值）| 正数
+  group: 控制
+- name: Regulator numerator (lead) time constant, T_C (s)
+  summary: 调节器超前时间常数 0（默认值）| 正数
+  group: 控制
+- name: Regulator output gain, K_A (pu)
+  summary: 调节器增益 45.62（默认值）| 正数
+  group: 控制
+- name: Regulator output time constant, T_A (s)
+  summary: 调节器时间常数 0.013（默认值）| 正数
+  group: 控制
+- name: Maximum regulator output, V_Amax (pu)
+  summary: 调节器输出的上限 1（默认值）| 实数
+  group: 控制
+- name: Minimum regulator output, V_Amin (pu)
+  summary: 调节器输出的下限 -0.95（默认值）| 实数
+  group: 控制
+- name: Rate feedback time constant, T_F (s)
+  summary: 速率反馈时间常数 1（默认值）| 正数
+  group: 控制
+- name: Value of EFD at which feedback gain changes, E_FDN (pu)
+  summary: 反馈增益变化时的 EFD 值 2.36（默认值）| 正数
+  group: 控制
+- name: Rate feedback excitation system stabilizer gain, K_F (pu)
+  summary: 速率反馈增益 0.143（默认值）| 正数
+  group: 控制
+- name: Rate feedback excitation system stabilizer gain, K_N (pu)
+  summary: 速率反馈增益 0.05（默认值）| 正数
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Unused（默认值）| Summation point | Take-over
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Unused（默认值）| Summation point | Take-over
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Unused（默认值）| Summation point | Take-over
+  group: 控制
+- name: Exciter field proportional constant, K_E (pu)
+  summary: 励磁机励磁增益 1（默认值）| 正数
+  group: 励磁机
+- name: Exciter field time constant, T_E (s)
+  summary: 励磁机励磁时间常数 0.17（默认值）| 正数
+  group: 励磁机
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: 整流器负载因数 0.104（默认值）| 正数
+  group: 励磁机
+- name: Demagnetizing factor, function of exciter alternator reactances, K_D (pu)
+  summary: 去磁因数 0.499（默认值）| 正数
+  group: 励磁机
+- name: Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)
+  summary: 第一饱和输出电压 6.24（默认值）| 正数
+  group: 励磁机
+- name: Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)
+  summary: 第一饱和查找电压 1.143（默认值）| 正数
+  group: 励磁机
+- name: Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)
+  summary: 第二饱和输出电压 4.68（默认值）| 正数
+  group: 励磁机
+- name: Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)
+  summary: 第二饱和查找电压 0.1（默认值）| 正数
+  group: 励磁机
+- name: Gain associated with regulator and alternator field power supply, K_R (pu)
+  summary: 调节器和交流发电机励磁电源增益 3.77（默认值）| 实数
+  group: 励磁机
+- name: Minimum exciter voltage output, V_Emin (pu)
+  summary: 励磁机下限 0.1（默认值）| 实数
+  group: 励磁机
+- name: Exciter field current limit, V_FEmax (pu)
+  summary: 励磁机上限 16（默认值）| 实数
+  group: 励磁机
+```
 
 ### 常规
 
@@ -296,7 +450,6 @@ PID 调节器的最小允许标幺值输出。
 ### **Exciter field current limit, V\_FEmax (pu)** — 励磁机上限 `16`（默认值）| 实数
 
 励磁机励磁电流的标幺值上限。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

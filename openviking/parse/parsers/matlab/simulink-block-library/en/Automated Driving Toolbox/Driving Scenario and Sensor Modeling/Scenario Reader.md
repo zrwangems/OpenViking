@@ -14,6 +14,24 @@ language: en
 # Scenario Reader
 
 ## Ports
+```yaml
+ports:
+- name: Ego Vehicle
+  summary: Ego vehicle pose Simulink bus containing MATLAB® structure
+  direction: input
+- name: Actors
+  summary: Scenario actor poses Simulink bus containing MATLAB structure
+  direction: output
+- name: Lane Boundaries
+  summary: Scenario lane boundaries Simulink bus containing MATLAB structure
+  direction: output
+- name: Ego Vehicle Pose
+  summary: Ego vehicle pose Simulink bus containing MATLAB structure
+  direction: output
+- name: Ego Vehicle State
+  summary: Ego vehicle state Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -172,8 +190,93 @@ To enable this port, set these parameters in this order:
 2. Set the **Source of ego vehicle** parameter to
    `Scenario`.
 3. Select the **Output ego vehicle state** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of driving scenario
+  summary: Source of driving scenario From file (default) | From workspace
+  group: ''
+- name: Driving Scenario Designer file name
+  summary: Scenario file name EgoVehicleGoesStraight.mat (default) | scenario file on MATLAB search path | path to scenario
+    file
+  group: ''
+- name: MATLAB or model workspace variable name
+  summary: Scenario variable name scenario (default) | drivingScenario object variable name
+  group: ''
+- name: Coordinate system of actors output
+  summary: Coordinate system of actors output Vehicle coordinates (default) | World coordinates
+  group: ''
+- name: Source of ego vehicle
+  summary: Source of ego vehicle Scenario (default) | Input port
+  group: ''
+- name: Ego vehicle ActorID
+  summary: Actor ID of ego vehicle 1 (default) | positive integer
+  group: ''
+- name: Output ego vehicle pose
+  summary: Output pose of ego vehicle off (default) | on
+  group: ''
+- name: Output ego vehicle state
+  summary: Output state of ego vehicle off (default) | on
+  group: ''
+- name: Ego vehicle follows ground
+  summary: Orient ego vehicle to follow road surface off (default) | on
+  group: ''
+- name: Sample time (s)
+  summary: Sample time of simulation 0.1 (default) | positive real scalar
+  group: ''
+- name: Lane boundaries to output
+  summary: Lane boundaries to output None (default) | Ego vehicle lane boundaries | All lane boundaries
+  group: ''
+- name: Distances from ego vehicle for computing boundaries (m)
+  summary: Distances from ego vehicle at which to compute lane boundaries linspace(-150,150,101) (default) | *N*-element real-valued
+    vector
+  group: ''
+- name: Location of boundaries on lane markings
+  summary: Lane boundary location Center of lane markings (default) | Inner edge of lane markings
+  group: ''
+- name: Source of actors bus name
+  summary: Source of name for actor poses bus Auto (default) | Property
+  group: ''
+- name: Actors bus name
+  summary: Name of actor poses bus valid bus name
+  group: ''
+- name: Source of maximum number of actors
+  summary: Source of maximum number of actors Scenario (default) | Property
+  group: ''
+- name: Maximum number of actors
+  summary: Maximum number of actors 100 (default) | positive integer
+  group: ''
+- name: Source of lane boundaries bus name
+  summary: Source of name for lane boundaries bus Auto (default) | Property
+  group: ''
+- name: Lane boundaries bus name
+  summary: Name of lane boundaries bus valid bus name
+  group: ''
+- name: Source of maximum number of lane boundaries
+  summary: Source of maximum number of lane boundaries Scenario (default) | Property
+  group: ''
+- name: Maximum number of lane boundaries
+  summary: Maximum number of lane boundaries 10 (default) | positive integer
+  group: ''
+- name: Source of ego vehicle pose bus name
+  summary: Source of name for ego vehicle pose bus Auto (default) | Property
+  group: ''
+- name: Ego vehicle pose bus name
+  summary: Name of ego vehicle pose bus valid bus name
+  group: ''
+- name: Source of ego vehicle state bus name
+  summary: Source of name for ego vehicle state bus Auto (default) | Property
+  group: ''
+- name: Ego vehicle state bus name
+  summary: Name of ego vehicle state bus valid bus name
+  group: ''
+- name: Show coordinate labels
+  summary: Display coordinate system of inputs and outputs on (default) | off
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 #### Scenario
 
@@ -654,7 +757,6 @@ block diagram.
   code. The first time you run a simulation, Simulink generates C/C++ code for the block. The C code is reused for subsequent
   simulations as long as the model does not change. This option requires additional startup
   time.
-
 ## Libraries
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

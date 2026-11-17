@@ -14,6 +14,15 @@ language: en
 # Elbow (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,22 @@ Liquid entry or exit port to the pipe segment.
 ### **B** — Liquid port isothermal liquid
 
 Liquid entry or exit port to the pipe segment.
-
 ## Parameters
+```yaml
+parameters:
+- name: Elbow type
+  summary: Bend geometry Smoothly curved (default) | Sharp-edged (Miter)
+  group: ''
+- name: Elbow internal diameter
+  summary: Pipe internal diameter 0.01 m (default) | positive scalar
+  group: ''
+- name: Elbow angle
+  summary: Pipe curve angle 90 deg (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+```
 
 ### **Elbow type** — Bend geometry `Smoothly curved` (default) | `Sharp-edged (Miter)`
 
@@ -45,7 +68,6 @@ Angle of the swept pipe curve.
 ### **Critical Reynolds number** — Upper Reynolds number limit for laminar flow `150` (default) | positive scalar
 
 Upper Reynolds number limit for laminar flow through the pipe segment.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

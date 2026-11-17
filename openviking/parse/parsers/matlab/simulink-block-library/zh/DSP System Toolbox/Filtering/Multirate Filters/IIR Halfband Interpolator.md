@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # IIR Halfband Interpolator
 
 ## 端口
+```yaml
+ports:
+- name: LP
+  summary: 数据输入 列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: HP
+  summary: 合成滤波器组的第二个输入 列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: coeffs1
+  summary: 分支 1 全通多项式系数 *N*×1 向量 | *N*×2 矩阵
+  direction: input
+  data_types: single | double
+- name: coeffs2
+  summary: 分支 2 全通多项式系数 *N*×1 向量 | *N*×2 矩阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 插值器的输出 列向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -77,8 +100,68 @@ chinese_source: worker-translation
 插值器的输出，以列向量或矩阵形式返回。插值器输出的行数是输入信号行数的两倍。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Filter specification
+  summary: 滤波器设计参数 Transition width and stopband attenuation（默认）| Filter order and stopband attenuation | Filter order and
+    transition width | Coefficients
+  group: ''
+- name: Transition width (Hz)
+  summary: 过渡带宽 4.1e3（默认）| 正标量
+  group: ''
+- name: Filter order
+  summary: IIR 半带滤波器的阶数 9（默认）| 正整数
+  group: ''
+- name: Stopband attenuation (dB)
+  summary: 阻带中所需的最小衰减 80（默认）| 正实标量
+  group: ''
+- name: Design method
+  summary: 设计方法 Elliptic（默认）| Quasi-linear phase
+  group: ''
+- name: Internal allpass structure
+  summary: 系数模式下的滤波器结构 Minimum multiplier（默认）| Wave Digital Filter
+  group: ''
+- name: Make the first branch a pure delay
+  summary: 使第一个分支为纯延迟 off（默认）| on
+  group: ''
+- name: Delay length in samples for branch 1
+  summary: 延迟长度 1（默认）| 有限正标量
+  group: ''
+- name: Specify coefficients from input port
+  summary: 从输入端口指定系数 off（默认）| on
+  group: ''
+- name: Branch 1 allpass polynomial coefficients
+  summary: 第一个分支的全通多项式滤波器系数 [0.1284563; 0.7906755]（默认）| *N*×1 | *N*×2
+  group: ''
+- name: Branch 2 allpass polynomial coefficients
+  summary: 第二个分支的全通多项式滤波器系数 [0.4295667]（默认）| *N*×1 | *N*×2
+  group: ''
+- name: Branch 1 Wave Digital coefficients
+  summary: 第一个分支的波数字滤波器形式全通滤波器系数 [0.1284563; 0.7906755]（默认）| *N*×1 | *N*×2
+  group: ''
+- name: Branch 2 Wave Digital coefficients
+  summary: 第二个分支的波数字滤波器形式全通滤波器系数 [0.4295667]（默认）| *N*×1 | *N*×2
+  group: ''
+- name: Last section of branch 2 is first order
+  summary: 使第二个分支的最后一个节为一阶 off（默认）| on
+  group: ''
+- name: Input highpass subband
+  summary: 输入高通子带 off（默认）| on
+  group: ''
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入信号的采样率 22050（默认）| 正实标量
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Filter specification** — 滤波器设计参数 `Transition width and stopband attenuation`（默认）| `Filter order and stopband attenuation` | `Filter order and transition width` | `Coefficients`
 
@@ -282,7 +365,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

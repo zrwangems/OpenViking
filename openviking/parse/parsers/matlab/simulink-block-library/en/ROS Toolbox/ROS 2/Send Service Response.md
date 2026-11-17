@@ -14,6 +14,12 @@ language: en
 # Send Service Response
 
 ## Ports
+```yaml
+ports:
+- name: Resp
+  summary: Service response message to send to client non-virtual bus
+  direction: input
+```
 
 ### Input
 
@@ -22,8 +28,19 @@ language: en
 Service response message to send to the service client, specified as a non-virtual
 bus. The response message type is based on the service type specified in the paired
 Receive Service request block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Name
+  summary: 'Service name Read-only: character vector'
+  group: ''
+- name: Type
+  summary: 'Service type Read-only: character vector'
+  group: ''
+- name: Paired Receive Request Block
+  summary: Path to paired Receive Service Request block block path
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -77,7 +94,6 @@ model.
   paired Receive Request block` to create the Receive Service
   Request associated with this Send Service Response block.
   Do not add a Send Service Response block from the library.
-
 ## Libraries
 
 ROS Toolbox / ROS 2

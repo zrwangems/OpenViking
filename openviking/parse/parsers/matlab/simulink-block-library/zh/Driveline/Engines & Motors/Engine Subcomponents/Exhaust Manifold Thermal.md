@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Exhaust Manifold Thermal
 
 ## 端口
+```yaml
+ports:
+- name: Qeng
+  summary: 气体能量流，W 物理信号
+  direction: input
+- name: Texh
+  summary: 排气歧管温度，K 物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,37 @@ chinese_source: worker-translation
 ### **Texh** — 排气歧管温度，K 物理信号
 
 与集总参数排气歧管温度相关联的物理信号输出端口，单位为 K。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of exhaust ports
+  summary: 排气端口数量 1（默认）| 正标量
+  group: ''
+- name: Ambient temperature
+  summary: 参考温度 298.15 K（默认）| 正标量
+  group: ''
+- name: Surface area of exhaust wall
+  summary: 排气壁表面积 pi * ((1.5 / 2) ^ 2) m^2（默认）| 正标量
+  group: ''
+- name: Mass of exhaust wall
+  summary: 排气壁总质量 5 kg（默认）| 正标量
+  group: ''
+- name: Heat capacity of exhaust wall
+  summary: 排气壁热容量 100 J/(K*kg)（默认）| 正标量
+  group: ''
+- name: Time constant of exhaust heat flow
+  summary: 排气热流时间常数 10 s（默认）| 正标量
+  group: ''
+- name: Convective heat transfer coefficient for the outer side of exhaust
+  summary: 排气外侧对流换热系数 100 W/(K*m^2)（默认）| 正标量
+  group: ''
+- name: Radiation constant
+  summary: 排气辐射常数 0.3（默认）| 正标量
+  group: ''
+- name: Stefan-Boltzmann constant
+  summary: 排气 Stefan-Boltzmann 常数 5.7e-8 W/(K^4*m^2)（默认）| 正标量
+  group: ''
+```
 
 ### **Number of exhaust ports** — 排气端口数量 `1`（默认）| 正标量
 
@@ -65,7 +103,6 @@ SI Combustion Cylinder 模块的数量。
 ### **Stefan-Boltzmann constant** — 排气 Stefan-Boltzmann 常数 `5.7e-8` `W/(K^4*m^2)`（默认）| 正标量
 
 整个排气系统的 Stefan-Boltzmann 常数。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

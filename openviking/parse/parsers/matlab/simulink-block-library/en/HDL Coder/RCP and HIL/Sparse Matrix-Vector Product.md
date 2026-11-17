@@ -14,6 +14,17 @@ language: en
 # Sparse Matrix-Vector Product
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | fixed point
+- name: y
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -34,8 +45,55 @@ signal multiplied by the sparse matrix specified by **Matrix
 A**.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Matrix A
+  summary: Sparse matrix 1 (default) | real scalar, vector, or matrix
+  group: Main
+  block_parameter: A
+  values: '"1" | real scalar, vector, or matrix'
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Output data type ''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling''
+    | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input'' | ''double'' | ''single'' | ''half'' |
+    ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule'' (default) | ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+- name: Parameter minimum
+  summary: Minimum value of sparse matrix [] (default) | scalar
+  group: Parameter Attributes
+  block_parameter: ParamMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Parameter maximum
+  summary: Maximum value of sparse matrix [] (default) | scalar
+  group: Parameter Attributes
+  block_parameter: ParamMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Parameter data type
+  summary: 'Specify the data type of the sparse matrix ''Inherit: Inherit via back propagation'' (default) | ''double'' |
+    ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''
+    | '' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''<data type expression>'''
+  group: Parameter Attributes
+  block_parameter: ParamDataTypeStr
+  values: '''Inherit: Inherit via back propagation'' (default) | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''<data type expression>'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -177,7 +235,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `ParamDataTypeStr` |
 | **Values:** | `'Inherit: Inherit via back propagation'` (default) | `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'Enum: <class name>'` | `'<data type expression>'` |
-
 ## Libraries
 
 HDL Coder / RCP and HIL

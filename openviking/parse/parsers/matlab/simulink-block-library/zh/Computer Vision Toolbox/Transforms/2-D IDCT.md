@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # 2-D IDCT
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据矩阵 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 输出数据矩阵 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,16 @@ chinese_source: worker-translation
 包含输入的 2-D IDCT 的输出数据，以矩阵或向量形式返回。输出的大小和数据类型与输入相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Sine and cosine computation
+  summary: 模块如何计算正弦和余弦项 Table lookup（默认）| Trigonometric fcn
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 数据类型覆盖 off（默认）| on
+  group: ''
+```
 
 **主**
 
@@ -49,7 +68,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against change by the fixed-point tools** — 数据类型覆盖 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Transforms

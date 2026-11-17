@@ -14,6 +14,33 @@ language: en
 # Motion Platform
 
 ## Ports
+```yaml
+ports:
+- name: Ref
+  summary: Reference time input scalar
+  direction: input
+  data_types: double
+- name: Vel
+  summary: Platform velocity input real-valued 3-by-*N* matrix
+  direction: input
+  data_types: double
+- name: Acl
+  summary: Platform acceleration input real-valued 3-by-*N* matrix
+  direction: input
+  data_types: double
+- name: Pos
+  summary: Platform position output real-valued 3-by-*N* matrix
+  direction: output
+  data_types: double
+- name: Vel
+  summary: Platform velocity output real-valued 3-by-*N* matrix
+  direction: output
+  data_types: double
+- name: LAxes
+  summary: Platform orientation output real-valued 3-by-3-by-*N* matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -98,8 +125,68 @@ To enable this port, select the **Enable orientation axes output**
 check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Model of object motion
+  summary: Object motion model Velocity (default) | Acceleration | Custom
+  group: ''
+- name: Initial position (m)
+  summary: Initial position of platform [0;0;0] (default)
+  group: ''
+- name: Initial velocity (m/s)
+  summary: Initial velocity of platform [0;0;0] (default)
+  group: ''
+- name: Source of velocity
+  summary: Source of velocity data Property (default) | Input port
+  group: ''
+- name: Velocity (m/s)
+  summary: Current velocity of platform [0;0;0] (default)
+  group: ''
+- name: Source of acceleration
+  summary: Source of acceleration data Property (default) | Input port
+  group: ''
+- name: Acceleration (m/s^2)
+  summary: Acceleration of platform [0;0;0] (default)
+  group: ''
+- name: Custom trajectory waypoints
+  summary: Custom trajectory waypoints [ 0, 0, 0, 0, 0, 0, 0; 1, 0, 0, 0, 0, 0, 0 ] (default)
+  group: ''
+- name: Mechanical scanning mode
+  summary: Mechanical scanning mode None (default) | Circular | Sector
+  group: ''
+- name: Initial scan angle (deg)
+  summary: Initial scan angle of platform 0 (default)
+  group: ''
+- name: Azimuth scan angle span (deg)
+  summary: Azimuth span [-60,60] (default)
+  group: ''
+- name: Azimuth scan rate (deg/s)
+  summary: Azimuth scan rate 10 (default)
+  group: ''
+- name: Initial orientation axes
+  summary: Initial orientation axes of platform eye(3) (default)
+  group: ''
+- name: Enable orientation axes output
+  summary: Output orientation axes off (default) | on
+  group: ''
+- name: Source of elapsed simulation time
+  summary: Source of elapsed simulation time Auto (default) | Derive from reference input port
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Model of object motion** — Object motion model `Velocity` (default) | `Acceleration` | `Custom`
 
@@ -381,7 +468,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

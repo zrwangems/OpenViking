@@ -14,17 +14,21 @@ language: en
 # Ground
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 The Ground block has no parameters.
 
 All models in the RF Blockset documentation contain a Ground block.
 See Model an RF Mixer for
 an introduction to circuit envelope simulation.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

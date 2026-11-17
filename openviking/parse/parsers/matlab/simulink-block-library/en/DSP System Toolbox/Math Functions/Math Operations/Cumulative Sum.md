@@ -14,6 +14,21 @@ language: en
 # Cumulative Sum
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: Out
+  summary: Cumulative sum vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -50,8 +65,40 @@ port` parameter.
 Cumulative sum of input, specified as a vector or a matrix.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sum input along
+  summary: Dimension to sum along Channels (running sum) (default) | Columns | Rows
+  group: Main
+- name: Input processing
+  summary: Method to process the input Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: Main
+- name: Reset port
+  summary: Reset type None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: Main
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Saturate for fixed-point operation off (default) | on
+  group: Data Types
+- name: Accumulator
+  summary: 'Data type of accumulator Inherit: Same as first input (default) | fixdt([],16,0)'
+  group: Data Types
+- name: Output
+  summary: 'Data type of output Inherit: Same as accumulator (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types
+- name: Output Minimum
+  summary: Minimum value the block can output [] (default) | scalar
+  group: Data Types
+- name: Output Maximum
+  summary: Maximum value block can output [] (default) | scalar
+  group: Data Types
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+```
 
 ### Main
 
@@ -193,7 +240,6 @@ Specify the maximum value the block can output. Simulink software uses this maxi
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Math Operations

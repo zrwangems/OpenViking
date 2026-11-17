@@ -14,6 +14,15 @@ language: en
 # Array of Electrical Nodes
 
 ## Ports
+```yaml
+ports:
+- name: inConnk
+  summary: Array of electrical nodes *k* to concatenate electrical array-of-nodes
+  direction: conserving
+- name: outConn
+  summary: Concatenated array of electrical nodes electrical array-of-nodes
+  direction: conserving
+```
 
 ### Conserving
 
@@ -27,8 +36,16 @@ which you set the **Number of Input Connections** parameter.
 ### **outConn** — Concatenated array of electrical nodes electrical array-of-nodes
 
 Concatenated array of electrical nodes.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of Input Connections
+  summary: Number of array of electrical nodes to concatenate one (default) | two | three | four | ...
+  group: ''
+- name: Number of Elements in Node k
+  summary: Number of elements in connection node *k* 1 (default)
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -47,7 +64,6 @@ Number of elements in connection node *k*, where
 *k* is an integer in the range [1, **Number of Input
 Connections**]. The number of parameters of this type is equal to the value
 to which you set the **Number of Input Connections** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Connectors & References

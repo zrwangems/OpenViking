@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Induction Motor
 
 ## 端口
+```yaml
+ports:
+- name: LdTrq
+  summary: 电机负载转矩 标量
+  direction: input
+- name: Spd
+  summary: 转子轴转速 标量
+  direction: input
+- name: PhaseVolt
+  summary: 定子端电压 1×3 数组
+  direction: input
+- name: Info
+  summary: 总线信号 总线
+  direction: output
+- name: PhaseCurr
+  summary: a、b、c 相电流 1×3 数组
+  direction: output
+- name: MtrTrq
+  summary: 电机转矩 标量
+  direction: output
+- name: MtrSpd
+  summary: 电机转速 标量
+  direction: output
+```
 
 ### 输入
 
@@ -94,8 +118,60 @@ N·m。
 
 要创建此端口，请为
 **端口配置** 参数选择 `Torque`。
-
 ## 参数
+```yaml
+parameters:
+- name: Simulation type
+  summary: 选择仿真类型 Continuous（默认）| Discrete
+  group: ''
+  block_parameter: sim_type
+  values: Continuous（默认）| Discrete
+- name: Sample time, Ts
+  summary: 离散积分采样时间 0.001（默认）| 标量
+  group: ''
+  block_parameter: Ts
+  values: 0.001（默认）| 标量
+- name: Port configuration
+  summary: 选择端口配置 Torque（默认）| Speed
+  group: ''
+  block_parameter: port_config
+  values: Torque（默认） | Speed
+- name: 极对数，P
+  summary: 极对数 2（默认） | scalar
+  group: ''
+  block_parameter: P
+  values: 2（默认） | scalar
+- name: 定子电阻和漏电感，Zs
+  summary: 电阻和电感 [1.77 0.0139]（默认） | vector
+  group: ''
+  block_parameter: Zs
+  values: '[1.77 0.0139]（默认） | vector'
+- name: 转子电阻和漏电感，Zr
+  summary: 电阻和电感 [1.34 0.0121]（默认） | vector
+  group: ''
+  block_parameter: Zr
+  values: '[1.34 0.0121]（默认） | vector'
+- name: 励磁电感，Lm
+  summary: 电感 0.3687（默认） | scalar
+  group: ''
+  block_parameter: Lm
+  values: 0.3687（默认） | scalar
+- name: 物理惯量、粘性阻尼、静摩擦、机械
+  summary: 惯量、阻尼、摩擦 [0.001 0 0]（默认） | vector
+  group: ''
+  block_parameter: mechanical
+  values: '[0.001 0 0]（默认） | vector'
+- name: 初始机械位置，theta_init
+  summary: 角位置 0（默认） | scalar
+  group: ''
+  block_parameter: theta_init
+  values: 0（默认） | scalar
+- name: 初始机械转速，omega_init
+  summary: 角速度 0（默认） | scalar
+  group: ''
+  block_parameter: omega_init
+  values: 0（默认） | scalar
+```
 
 #### 模块选项
 
@@ -296,7 +372,6 @@ Ts** 参数。
 #### 依赖关系
 
 要启用此参数，请为 **端口配置** 选择 `Torque`。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters Motor Control Blockset / Electrical Systems / Motors

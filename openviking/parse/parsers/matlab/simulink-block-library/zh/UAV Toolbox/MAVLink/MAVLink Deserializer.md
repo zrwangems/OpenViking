@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # MAVLink Deserializer
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: MAVLink 数据流向量
+  direction: input
+  data_types: uint8
+- name: Length
+  summary: Data 输入端口处有效 MAVLink 数据的长度 标量
+  direction: input
+  data_types: uint16
+- name: IsNew
+  summary: 新消息指示符 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Msg
+  summary: MAVLink 数据包 非虚拟总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -46,8 +65,43 @@ chinese_source: worker-translation
 MAVLink 数据包，以非虚拟总线形式返回。MAVLink 数据包中 Payload 的类型是对应于 MAVLink message type 参数中指定的 MAVLink 消息的 Simulink 总线。模块在接收到您指定的消息名称上的消息之前，输出空白消息。**Msg** 端口输出此新消息。如果没有新消息可用，则输出最后接收到的 MAVLink 消息。如果自仿真开始以来尚未接收到任何消息，**Msg** 端口输出空白 MAVLink 消息。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: MAVLink dialect source
+  summary: 用于指定 MAVLink 消息定义的源 Select from standard MAVLink dialects（默认）| Specify your own
+  group: ''
+- name: MAVLink dialect
+  summary: 要解析的 MAVLink 消息的消息定义 common.xml（默认）| 字符串
+  group: ''
+- name: MAVLink version
+  summary: MAVLink 协议版本 2（默认）| 1
+  group: ''
+- name: MAVLink Message type
+  summary: MAVLink 消息 HEARTBEAT（默认）
+  group: ''
+- name: Input data stream length is available
+  summary: 输入字节流中有效 MAVLink 数据的长度已知 off（默认）| on
+  group: ''
+- name: Filter output MAVLink messages by System ID
+  summary: 按 System ID 过滤接收到的消息 off（默认）| on
+  group: ''
+- name: System ID
+  summary: System ID 值 1（默认）| 范围 [0,255] 中的标量
+  group: ''
+- name: Filter output MAVLink messages by Component ID
+  summary: 按 System ID 和 Component ID 过滤接收到的消息 off（默认）| on
+  group: ''
+- name: Component ID
+  summary: Component ID 值 1（默认）| [0,255]
+  group: ''
+- name: Queue MAVLink messages in output
+  summary: 启用对接收到的 MAVLink 消息的排队 off（默认）| on
+  group: ''
+- name: Number of messages to be queued
+  summary: MAVLink 消息队列大小 50（默认）| 范围 (0,65535] 内的标量
+  group: ''
+```
 
 #### 主要
 
@@ -130,7 +184,6 @@ MAVLink 消息，指定为字符串。点击 **Select** 从可用的 MAVLink 消
 #### 依赖关系
 
 要启用此参数，请选择 **Queue MAVLink messages in output**。
-
 ## 所属库
 
 UAV Toolbox / MAVLink

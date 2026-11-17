@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Edge Detection
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Th
+  summary: 阈值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Edge
+  summary: 边缘检测矩阵
+  direction: output
+  data_types: Boolean
+- name: Gv
+  summary: 对垂直边缘的梯度响应矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Gh
+  summary: 对水平边缘的梯度响应矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: G45
+  summary: 对 45 度边缘的梯度响应矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: G135
+  summary: 对 135 度边缘的梯度响应矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -108,8 +139,40 @@ Canny 方法不支持 8 位、16 位或 32 位有符号定点整数，也不支�
 - **Output type** — `Gradient components` 或 `Binary image and gradient components`
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 边缘检测方法 Sobel（默认）| Prewitt | Roberts | Canny
+  group: ''
+- name: Output Type
+  summary: 输出图像类型 Binary image（默认）| Gradient components | Binary image and gradient components
+  group: ''
+- name: User-defined threshold
+  summary: 用户定义阈值 off（默认）| on
+  group: ''
+- name: Threshold source
+  summary: 阈值来源 Input port（默认）| Specify via dialog
+  group: ''
+- name: Threshold
+  summary: 阈值 20（默认）| 标量
+  group: ''
+- name: Threshold, [Low High]
+  summary: Canny 边缘检测的阈值 [0.25 0.60]（默认）| 向量
+  group: ''
+- name: Threshold scale factor:(used to automatically calculate threshold value)
+  summary: 阈值缩放因子 4（默认）| 标量
+  group: ''
+- name: Edge Thinning
+  summary: 边缘细化 off（默认）| on
+  group: ''
+- name: Approximate percentage of weak edge and nonedge pixels (used to automatically calculate threshold values)
+  summary: 弱边缘和非边缘像素的近似百分比 70（默认）| 标量
+  group: ''
+- name: Standard deviation of Gaussian filter
+  summary: 高斯滤波器的标准差 1（默认）| 标量
+  group: ''
+```
 
 **主**
 
@@ -225,7 +288,6 @@ Canny 方法不支持 8 位、16 位或 32 位有符号定点整数，也不支�
 **数据类型**
 
 有关定点模块参数的信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

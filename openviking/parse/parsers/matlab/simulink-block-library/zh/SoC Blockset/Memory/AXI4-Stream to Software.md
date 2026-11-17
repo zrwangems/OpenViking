@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # AXI4-Stream to Software
 
 ## 端口
+```yaml
+ports:
+- name: wrData
+  summary: 写入器数据总线信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: wrCtrlIn
+  summary: 写入器输入控制信号总线
+  direction: input
+  data_types: StreamM2SBusObj
+- name: done
+  summary: 读取完成通知消息 标量
+  direction: input
+  data_types: Boolean
+- name: event
+  summary: 任务读取事件信号 标量
+  direction: output
+  data_types: rteEvent
+- name: msg
+  summary: 输出到软件的数据信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: SoCData
+- name: wrCtrlOut
+  summary: 写入器到数据生产者的控制信号总线
+  direction: output
+  data_types: StreamS2MBusObj
+```
 
 ### 输入
 
@@ -54,8 +81,62 @@ chinese_source: worker-translation
 此总线表示从存储器通道到数据生产者的协议总线。总线上的信号类型为 `StreamS2MBusObj`。要从总线中分离信号，请使用 SoC Bus Selector 模块。
 
 **数据类型：** `StreamS2MBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Memory simulation
+  summary: 设置仿真时序精度 Burst accurate（默认）| Protocol accurate | Behavioral
+  group: ''
+- name: Memory selection
+  summary: 在存储器区域之间选择 PS memory（默认）| PL memory
+  group: 主要
+- name: Region size (bytes)
+  summary: 已分配存储器区域的大小，以字节为单位 只读：计算得出
+  group: 主要
+- name: Number of buffers
+  summary: 区域中的缓冲区数量 8（默认）| 整数
+  group: 主要
+- name: Burst length
+  summary: 内存事务的突发长度 256（默认）| 标量
+  group: 主要
+- name: FIFO depth (number of bursts)
+  summary: 数据 FIFO 深度 8（默认）| 标量
+  group: 主要
+- name: FIFO almost-full depth (number of bursts)
+  summary: 断言反压时的 FIFO 深度 6（默认）| 标量
+  group: 主要
+- name: Clock frequency (MHz)
+  summary: 管理器数据路径的互连频率 100（默认）
+  group: 主要
+- name: Data width (bits)
+  summary: 管理器数据路径的数据宽度 64（默认）| 标量
+  group: 主要
+- name: Dimensions
+  summary: 输入数据信号的维度 1（默认）| 标量 | 数组
+  group: 信号属性
+- name: Data type
+  summary: 写入方数据的数据类型 uint32（默认）| double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint64 | Boolean | fixed
+    point
+  group: 信号属性
+- name: Sample time
+  summary: 采样时间间隔 1（默认）| 正标量 | 向量
+  group: 信号属性
+- name: Enable sample packing (last signal dimension as channel)
+  summary: 在信号的最后一个维度上打包数据 off（默认）| on
+  group: 信号属性
+- name: Dimensions
+  summary: 软件数据的维度 标量
+  group: 信号属性
+- name: Data type
+  summary: '软件数据的数据类型 Inherit: Same as input（默认）| uint16 | uint32 | uint64 | fixdt(0,128,0)'
+  group: 信号属性
+- name: View performance plots
+  summary: 显示性能指标 按钮
+  group: Performance
+- name: View performance plots
+  summary: 显示性能指标 按钮
+  group: Performance
+```
 
 ### **Memory simulation** — 设置仿真时序精度 `Burst accurate`（默认）| `Protocol accurate` | `Behavioral`
 
@@ -206,7 +287,6 @@ Memory simulation 提供三个级别的时序分辨率。选择以下选项之�
 #### 依赖关系
 
 要启用此参数，请在 **Memory simulation** 下选择 **Burst accurate**。
-
 ## 所属库
 
 SoC Blockset / Memory

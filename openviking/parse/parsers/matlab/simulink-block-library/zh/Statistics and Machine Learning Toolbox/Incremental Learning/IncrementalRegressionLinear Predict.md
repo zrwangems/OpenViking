@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # IncrementalRegressionLinear Predict
 
 ## 端口
+```yaml
+ports:
+- name: mdl
+  summary: 增量学习模型总线信号
+  direction: input
+- name: x
+  summary: 预测变量数据块 数值矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yfit
+  summary: 预测响应块 浮点向量
+  direction: output
+  data_types: single | double
+- name: CanPredict
+  summary: 模型状态 逻辑值
+  direction: output
+```
 
 ### 输入
 
@@ -71,8 +88,105 @@ Predicted response 和 `predict` 对象
 要启用此端口，请在
 模块参数对话框的 **Main** 选项卡上选中 **Add output port for status of trained machine learning
 model** 复选框。
-
 ## 参数
+```yaml
+parameters:
+- name: Select initial machine learning model
+  summary: 初始增量线性回归模型 linearMdl（默认）| incrementalRegressionLinear 模型对象
+  group: 主要参数
+  block_parameter: InitialLearner
+  type: 工作区变量
+  values: incrementalRegressionLinear 模型对象
+  default: '"linearMdl"'
+- name: Add output port for status of trained machine learning model
+  summary: 为模型状态添加第二个输出端口 off（默认）| on
+  group: 主要参数
+  block_parameter: ShowOutputCanPredict
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Predictor data observation dimension
+  summary: 预测变量数据的观测维度 rows（默认）| columns
+  group: 主要参数
+  block_parameter: ObservationsIn
+  type: 字符向量
+  values: '"rows" | "columns"'
+  default: '"rows"'
+- name: Sample time (–1 for inherited)
+  summary: 用于指定采样时间的选项 –1（默认）| 标量
+  group: 主要参数
+  block_parameter: SystemSampleTime
+  type: 字符串标量或字符向量
+  values: 标量
+  default: '"–1"'
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 锁定输出数据类型设置以防止定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 输出数据类型
+  summary: 'yfit 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: 输出数据类型最小值
+  summary: 用于范围检查的 yfit 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: 输出数据类型最大值
+  summary: 用于范围检查的 yfit 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Inner product data type
+  summary: '内积数据类型 double（默认）| Inherit: Inherit via internal rule | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: InnerProductDataTypeStr
+  type: character vector
+  values: '"Inherit: Inherit via internal rule" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32"
+    | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"double"'
+- name: Inner product data type Minimum
+  summary: 用于范围检查的内积项最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: InnerProductOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Inner product data type Maximum
+  summary: 用于范围检查的内积项最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: InnerProductOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 ### 主要参数
 
@@ -342,7 +456,6 @@ Simulink 使用最大值来执行：
 | **类型**：character vector |
 | **值**：`"[]"` | scalar |
 | **默认值**：`"[]"` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Regression / Linear

@@ -14,17 +14,24 @@ language: en
 # Translational Free End
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Zero force mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
 ### **V** — Zero force mechanical translational
 
 Mechanical translational conserving port that moves freely, without force.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Translational Elements

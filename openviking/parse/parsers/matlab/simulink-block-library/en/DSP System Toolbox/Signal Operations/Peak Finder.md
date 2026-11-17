@@ -14,6 +14,29 @@ language: en
 # Peak Finder
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data input column vector of at least three rows | matrix with at least three rows
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Cnt
+  summary: Number of peak values scalar | row vector
+  direction: output
+  data_types: uint32
+- name: Idx
+  summary: Indices of the peak values column vector | matrix
+  direction: output
+  data_types: uint32
+- name: Val
+  summary: Peak values column vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Pol
+  summary: Peak value polarity column vector | matrix
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -92,8 +115,34 @@ and set the **Peak type(s)** parameter to
 `Maxima and Minima`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Peak type(s)
+  summary: Type of peaks to identify Maxima and Minima (default) | Maxima | Minima
+  group: ''
+- name: Index base
+  summary: Index base Zero (default) | One
+  group: ''
+- name: Output peak indices
+  summary: Enable output of peak indices off (default) | on
+  group: ''
+- name: Output peak values
+  summary: Enable output of peak values off (default) | on
+  group: ''
+- name: Maximum number of peaks to find
+  summary: Maximum number of peak values to identify 10 (default) | integer greater than or equal to 1
+  group: ''
+- name: Ignore peaks within threshold of neighboring values
+  summary: Ignore peaks below a threshold off (default) | on
+  group: ''
+- name: Threshold
+  summary: Threshold below which peaks are ignored 0 (default) | positive real scalar | vector
+  group: ''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: ''
+```
 
 ### **Peak type(s)** — Type of peaks to identify `Maxima and Minima` (default) | `Maxima` | `Minima`
 
@@ -192,7 +241,6 @@ mode for fixed-point operations.
 
 To enable this parameter, select the **Ignore peaks within threshold of
 neighboring values** parameter.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

@@ -14,6 +14,21 @@ language: en
 # Inverse Short-Time FFT
 
 ## Ports
+```yaml
+ports:
+- name: X[nL,k]
+  summary: Frequency-domain input signal unoriented vector | column vector | matrix
+  direction: input
+  data_types: single | double
+- name: w[n]
+  summary: Analysis window vector
+  direction: input
+  data_types: single | double
+- name: x[n]
+  summary: Inverse short-time FFT output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -43,8 +58,28 @@ The block outputs the inverse short-time FFT output at the port
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Analysis window length
+  summary: Length of analysis window 512 (default) | positive integer greater than 1
+  group: ''
+- name: Overlap between consecutive STFFT frames (in samples)
+  summary: Overlap length 384 (default) | nonnegative integer
+  group: ''
+- name: Samples per output frame
+  summary: Number of samples per output frame 512 (default) | positive integer
+  group: ''
+- name: Input is conjugate symmetric
+  summary: Input to the block is conjugate symmetric on (default) | off
+  group: ''
+- name: Assert if analysis window does not support perfect signal reconstruction
+  summary: Error if analysis window does not support perfect signal reconstruction off (default) | on
+  group: ''
+- name: Reconstruction error tolerance
+  summary: Reconstruction error tolerance of original signal 1e-4 (default) | real scalar
+  group: ''
+```
 
 ### **Analysis window length** — Length of analysis window `512` (default) | positive integer greater than 1
 
@@ -94,7 +129,6 @@ signal as a real scalar.
 To enable this parameter, select the **Assert if analysis
 window does not support perfect signal reconstruction**
 check box.
-
 ## Libraries
 
 DSP System Toolbox / Transforms / Matrix Operations

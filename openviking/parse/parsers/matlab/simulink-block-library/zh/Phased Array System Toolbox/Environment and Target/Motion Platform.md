@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Motion Platform
 
 ## 端口
+```yaml
+ports:
+- name: Ref
+  summary: 参考时间输入标量
+  direction: input
+  data_types: double
+- name: Vel
+  summary: 平台速度输入实数值 3×*N* 矩阵
+  direction: input
+  data_types: double
+- name: Acl
+  summary: 平台加速度输入实数值 3×*N* 矩阵
+  direction: input
+  data_types: double
+- name: Pos
+  summary: 平台位置输出实数值 3×*N* 矩阵
+  direction: output
+  data_types: double
+- name: Vel
+  summary: 平台速度输出实数值 3×*N* 矩阵
+  direction: output
+  data_types: double
+- name: LAxes
+  summary: 平台方向输出实数值 3×3×*N* 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -70,8 +97,68 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Enable orientation axes output** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Model of object motion
+  summary: 物体运动模型 Velocity（默认）| Acceleration | Custom
+  group: ''
+- name: Initial position (m)
+  summary: 平台初始位置 [0;0;0]（默认）
+  group: ''
+- name: Initial velocity (m/s)
+  summary: 平台初始速度 [0;0;0]（默认）
+  group: ''
+- name: Source of velocity
+  summary: 速度数据源 Property（默认）| Input port
+  group: ''
+- name: Velocity (m/s)
+  summary: 平台的当前速度 [0;0;0]（默认）
+  group: ''
+- name: Source of acceleration
+  summary: 加速度数据源 Property（默认）| Input port
+  group: ''
+- name: Acceleration (m/s^2)
+  summary: 平台的加速度 [0;0;0]（默认）
+  group: ''
+- name: Custom trajectory waypoints
+  summary: 自定义轨迹航点 [ 0, 0, 0, 0, 0, 0, 0; 1, 0, 0, 0, 0, 0, 0 ]（默认）
+  group: ''
+- name: Mechanical scanning mode
+  summary: 机械扫描模式 None（默认）| Circular | Sector
+  group: ''
+- name: Initial scan angle (deg)
+  summary: 平台的初始扫描角 0（默认）
+  group: ''
+- name: Azimuth scan angle span (deg)
+  summary: 方位角跨度 [-60,60]（默认）
+  group: ''
+- name: Azimuth scan rate (deg/s)
+  summary: 方位扫描速率 10（默认）
+  group: ''
+- name: Initial orientation axes
+  summary: 平台的初始朝向轴 eye(3)（默认）
+  group: ''
+- name: Enable orientation axes output
+  summary: 输出朝向轴 off（默认）| on
+  group: ''
+- name: Source of elapsed simulation time
+  summary: 经过仿真时间的来源 Auto（默认）| Derive from reference input port
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认）| 正实值标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Model of object motion** — 物体运动模型 `Velocity`（默认）| `Acceleration` | `Custom`
 
@@ -244,7 +331,6 @@ Generation` 运行模块。长时间仿真使用生成代码比
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Environment and Target

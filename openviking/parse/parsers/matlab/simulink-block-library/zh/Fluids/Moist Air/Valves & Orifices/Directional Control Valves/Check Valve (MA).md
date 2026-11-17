@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Check Valve (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流体入口湿空气
+  direction: conserving
+- name: B
+  summary: 流体出口湿空气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,94 @@ chinese_source: worker-translation
 ### **B** — 流体出口湿空气
 
 与流体出口端口关联的湿空气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: 阀门参数化模型 Cv flow coefficient（默认）| Kv flow coefficient | Sonic conductance | Orifice area
+  group: ''
+- name: Opening characteristic
+  summary: 将控制信号转换为流通能力度量的方法 Linear（默认）| Tabulated
+  group: ''
+- name: Opening pressure specification
+  summary: 控制压力 Pressure differential（默认）| Gauge pressure at port A
+  group: ''
+- name: Cracking pressure (gauge)
+  summary: 开启压力 0.1 MPa（默认）| 正标量
+  group: ''
+- name: Maximum opening pressure (gauge)
+  summary: 使阀门完全打开的压力 0.2 MPa（默认）| 正标量
+  group: ''
+- name: Cracking pressure differential
+  summary: 开启压力 0.01 MPa（默认）| 正标量
+  group: ''
+- name: Maximum opening pressure differential
+  summary: 最大阀门操作压力 0.1 MPa（默认）| 正标量
+  group: ''
+- name: Opening pressure differential vector
+  summary: '压差向量 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: ''
+- name: Opening pressure (gauge) vector
+  summary: '表压向量 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应于组件最大开启状态的 *Cv* 系数 4（默认）| 正标量
+  group: ''
+- name: Cv flow coefficient vector
+  summary: 对应于构件位置向量中各值的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应于组件最大开启状态的 *Kv* 系数 3.6（默认）| 正标量
+  group: ''
+- name: Kv flow coefficient vector
+  summary: 对应于构件位置向量中各值的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 对应于组件最大开启状态的声速导纳 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力之比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态中质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Sonic conductance vector
+  summary: 对应于控制构件位置向量中各值的声速导纳 [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)（默认）| 正值向量
+  group: ''
+- name: Critical pressure ratio vector
+  summary: 对应于控制构件位置向量中各值的临界压力比 0.3 * ones(1,6)（默认）| 正数向量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认）| 正标量
+  group: ''
+- name: Maximum orifice area
+  summary: 最大阀门开口面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Orifice area vector
+  summary: 阀门开口面积值向量 [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 层流-湍流过渡压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 阀门端口面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Valve parameterization** — 阀门参数化模型 `Cv flow coefficient`（默认）| `Kv flow coefficient` | `Sonic conductance` | `Orifice area`
 
@@ -238,7 +333,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at ports A and B** — 阀门端口面积 `0.01` m^2（默认）| 正标量
 
 端口 **A** 和 **B** 的面积。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Directional Control Valves

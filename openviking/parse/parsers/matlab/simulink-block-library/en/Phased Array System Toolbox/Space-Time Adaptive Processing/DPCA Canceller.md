@@ -14,6 +14,37 @@ language: en
 # DPCA Canceller
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input signal *M*-by-*N*-by-*P* complex-valued matrix
+  direction: input
+  data_types: double
+- name: Idx
+  summary: Index of range cells positive integer
+  direction: input
+  data_types: double
+- name: PRF
+  summary: Pulse repetition frequency positive scalar
+  direction: input
+  data_types: double
+- name: Ang
+  summary: Targeting direction 2-by-1 real-valued vector
+  direction: input
+  data_types: double
+- name: Dop
+  summary: Targeting Doppler frequency scalar
+  direction: input
+  data_types: double
+- name: Y
+  summary: Beamformed output *M*-by-1 complex-valued vector
+  direction: output
+  data_types: double
+- name: W
+  summary: Processing weights length *N*\P* complex-valued vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -116,8 +147,128 @@ output** check box.
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | real-valued positive scalar
+  group: ''
+- name: Operating frequency (Hz)
+  summary: System operating frequency 3e8 (default) | positive real scalar
+  group: ''
+- name: Specify PRF as
+  summary: Source of PRF value Property (default) | Input port
+  group: ''
+- name: Pulse repetition frequency (Hz)
+  summary: Pulse repetition frequency 1 (default) | positive scalar
+  group: ''
+- name: Specify direction as
+  summary: Specify source of targeting directions Property (default) | Input port
+  group: ''
+- name: Receiving mainlobe direction (deg)
+  summary: Pointing direction of main lobe of array [0;0] (default) | real-valued 2-by-1 vector
+  group: ''
+- name: Number of bits in phase shifters
+  summary: Number of phase shift quantization bits 0 (default) | nonnegative integer
+  group: ''
+- name: Specify targeting Doppler as
+  summary: Source of targeting Doppler Property (default) | Input port
+  group: ''
+- name: Targeting Doppler (Hz)
+  summary: Targeting Doppler of STAP processor 0 (default) | scalar
+  group: ''
+- name: Enable weights output
+  summary: Option to output beamformer weights off (default) | on
+  group: ''
+- name: Output pre-Doppler result
+  summary: Output results before Doppler filtering on (default) | off
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: Method to specify array Array (no subarrays) (default) | MATLAB expression
+  group: ''
+- name: Expression
+  summary: MATLAB expression used to create an array Phased Array System Toolbox™ array System object
+  group: ''
+- name: Element type
+  summary: Array element types Isotropic Antenna (default) | Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone
+  group: ''
+- name: Operating frequency range (Hz)
+  summary: Operating frequency range of the antenna or microphone element [0,1e20] (default) | real-valued 1-by-2 row vector
+  group: ''
+- name: Operating frequency vector (Hz)
+  summary: Operating frequency range of custom antenna or microphone elements [0,1e20] (default) | real-valued row vector
+  group: ''
+- name: Baffle the back of the element
+  summary: Set back response of an Isotropic Antenna element or an Omni Microphone element to zero off (default) | on
+  group: ''
+- name: Exponent of cosine pattern
+  summary: Exponents of azimuth and elevation cosine patterns [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2
+    matrix of nonnegative values
+  group: ''
+- name: Frequency responses (dB)
+  summary: Antenna and microphone frequency response [0,0] (default) | real-valued row vector
+  group: ''
+- name: Input Pattern Coordinate System
+  summary: Coordinate system of custom antenna pattern az-el (default) | phi-theta
+  group: ''
+- name: Azimuth angles (deg)
+  summary: Azimuth angles of antenna radiation pattern [-180:180] (default) | real-valued row vector
+  group: ''
+- name: Elevation angles (deg)
+  summary: Elevation angles of antenna radiation pattern [-90:90] (default) | real-valued row vector
+  group: ''
+- name: Phi Angles (deg)
+  summary: Phi angle coordinates of custom antenna radiation pattern 0:360 | real-valued 1-by-*P* row vector
+  group: ''
+- name: Theta Angles (deg)
+  summary: Theta angle coordinates of custom antenna radiation pattern 0:180 | real-valued 1-by-*Q* row vector
+  group: ''
+- name: Magnitude pattern (dB)
+  summary: Magnitude of combined antenna radiation pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued
+    *Q*-by-*P*-by-*L* array
+  group: ''
+- name: Phase pattern (deg)
+  summary: Custom antenna radiation phase pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued *Q*-by-*P*-by-*L*
+    array
+  group: ''
+- name: MatchArrayNormal
+  summary: Rotate antenna element to array normal on (default) | off
+  group: ''
+- name: Polar pattern frequencies (Hz)
+  summary: Polar pattern microphone response frequencies 1e3 (default) | real scalar | real-valued 1-by-*L* row vector
+  group: ''
+- name: Polar pattern angles (deg)
+  summary: Polar pattern response angles [-180:180] (default) | real-valued -by-*P* row vector
+  group: ''
+- name: Polar pattern (dB)
+  summary: Custom microphone polar response zeros(1,361) (default) | real-valued *L*-by-*P* matrix
+  group: ''
+- name: Specify sensor array as
+  summary: Type of array Array (no subarrays) (default) | MATLAB expression
+  group: Array Parameters
+- name: Number of elements
+  summary: Number of array elements in U 2 (default) | positive integer greater than or equal to two
+  group: Array Parameters
+- name: Element spacing
+  summary: Distance between ULA elements 0.5 (default) | positive scalar
+  group: Array Parameters
+- name: Array axis
+  summary: Linear axis direction of ULA y (default) | x | z
+  group: Array Parameters
+- name: Taper
+  summary: ULA array taper 1 (default) | complex-valued vector
+  group: Array Parameters
+- name: Expression
+  summary: MATLAB expression used to create an array Phased Array System Toolbox array System object
+  group: Array Parameters
+```
 
 #### Main Tab
 
@@ -659,7 +810,6 @@ MATLAB expression used to create a ULA array, specified as a valid Phased Array 
 
 To enable this parameter, set **Specify sensor array as** to
 `MATLAB expression`.
-
 ## Libraries
 
 Phased Array System Toolbox / Space-Time Adaptive Processing

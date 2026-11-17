@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Disc Friction Clutch
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 压力物理信号
+  direction: input
+- name: B
+  summary: 基础机械旋转
+  direction: input
+- name: F
+  summary: 从动机械旋转
+  direction: input
+- name: H
+  summary: 热流热
+  direction: input
+```
 
 ### 输入
 
@@ -38,8 +53,89 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此端口仅在 **Friction** 设置中 **Friction model** 参数设置为 `Temperature-dependent friction coefficients` 或 `Temperature and velocity-dependent friction coefficients` 时可见。有关详细信息，请参阅 Friction Parameter Dependencies 和 Friction model。
-
 ## 参数
+```yaml
+parameters:
+- name: Geometry model
+  summary: 几何参数化方法 Define effective radius（默认）| Define annular region
+  group: 几何
+- name: Effective torque radius
+  summary: 力臂半径 130 mm（默认）| 正标量
+  group: 几何
+- name: Friction surface outside diameter
+  summary: 摩擦面外径 150 mm（默认）| 正标量
+  group: 几何
+- name: Friction surface inside diameter
+  summary: 摩擦面内径 100 mm（默认）| 非负标量
+  group: 几何
+- name: Number of friction surfaces
+  summary: 摩擦面数量 4（默认）| 正标量整数
+  group: 几何
+- name: Engagement piston area
+  summary: 压力施加面积 0.001 m^2（默认）| 正标量
+  group: 几何
+- name: Directionality
+  summary: 允许的滑移方向 Bidirectional（默认）| Unidirectional
+  group: 几何
+- name: Friction model
+  summary: 摩擦模型 Fixed kinetic friction coefficient（默认）| Velocity-dependent kinetic friction coefficient | Temperature-dependent
+    friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: 摩擦
+- name: Relative velocity vector
+  summary: 相对速度 [0, 100, 1000] rad/s（默认）| 向量
+  group: 摩擦
+- name: Temperature vector
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: 摩擦
+- name: Static friction coefficient
+  summary: 静摩擦系数 0.35（默认）| 正标量
+  group: 摩擦
+- name: Static friction coefficient vector
+  summary: 静摩擦系数 [.4, .38, .36]（默认）| 向量
+  group: 摩擦
+- name: Kinetic friction coefficient
+  summary: 动摩擦系数 0.3（默认）| 正标量
+  group: 摩擦
+- name: Kinetic friction coefficient vector
+  summary: 动摩擦系数 [.3, .22, .19]（默认）| [.3, .28, .25] | 正向量
+  group: 摩擦
+- name: Kinetic friction coefficient matrix
+  summary: 动摩擦系数 [.34, .32, .3; .3, .28, .25; .25, .2, .15]（默认）| 正矩阵
+  group: 摩擦
+- name: Friction coefficient interpolation method
+  summary: 外推方法 Linear（默认）| Smooth
+  group: 摩擦
+- name: Friction coefficient extrapolation method
+  summary: 插值方法 Linear（默认）| Nearest | Error
+  group: 摩擦
+- name: De-rating factor
+  summary: 降额系数 1（默认）| 正标量
+  group: 摩擦
+- name: Clutch velocity tolerance
+  summary: 相对速度锁定阈值 0.001 rad/s（默认）| 非负标量
+  group: 摩擦
+- name: Engagement threshold pressure
+  summary: 法向接触力阈值 100 Pa（默认）| 非负标量
+  group: 摩擦
+- name: Viscous friction coefficient
+  summary: 粘性摩擦 0 N*m/(rad/s)（默认）| 非负标量
+  group: 粘性损耗
+- name: Initial state
+  summary: 初始离合器状态 Unlocked（默认）| Locked
+  group: 初始条件
+- name: Friction fault
+  summary: 用于建模离合器故障的选项 Add fault
+  group: 故障
+- name: Behavior when faulted
+  summary: 离合器故障响应 Cannot transmit power（默认）| Cannot unlock
+  group: 故障
+- name: Thermal mass
+  summary: 热质量 50 kJ/K（默认）| 标量
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 标量
+  group: 热端口
+```
 
 ### 几何
 
@@ -281,7 +377,6 @@ chinese_source: worker-translation
 仅当在 **Friction** 设置中，**Friction model** 参数设置为 `Temperature-dependent
 friction coefficients` 或 `Temperature
 and velocity-dependent friction coefficients` 时，此参数才可见。有关详细信息，请参阅 Friction Parameter Dependencies。
-
 ## 所属库
 
 Simscape / Driveline / Clutches

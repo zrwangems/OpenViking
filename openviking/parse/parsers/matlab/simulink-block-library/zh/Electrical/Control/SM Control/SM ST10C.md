@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM ST10C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 过励限制器接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 欠励限制器接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -158,8 +205,123 @@ chinese_source: worker-translation
 施加到同步电机励磁绕组的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数标量
+  group: 常规
+- name: Initial terminal voltage, Vt0 (pu)
+  summary: 初始机端电压 1（默认）| 实数标量
+  group: 常规
+- name: Initial terminal current, It0 (pu)
+  summary: 初始机端电流 1（默认）| 实数标量
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认）| 正标量
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认）| 正标量
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0.01（默认）| 正标量
+  group: 预控制
+- name: Regulator gain, K_R (pu)
+  summary: 调节器增益 500（默认）| 正标量
+  group: 控制
+- name: Voltage regulator denominator (lag) time constant 1, T_B1 (s)
+  summary: 调节器滞后时间常数 1 12.5（默认）| 正标量
+  group: 控制
+- name: Voltage regulator numerator (lead) time constant 1, T_C1 (s)
+  summary: 调节器超前时间常数 1 1.5（默认）| 正标量
+  group: 控制
+- name: Voltage regulator denominator (lag) time constant 2, T_B2 (s)
+  summary: 调节器滞后时间常数 2 0.1（默认）| 正标量
+  group: 控制
+- name: Voltage regulator numerator (lead) time constant 2, T_C2 (s)
+  summary: 调节器超前时间常数 2 0.1（默认）| 正标量
+  group: 控制
+- name: UEL regulator denominator (lag) time constant 1, T_UB1 (s)
+  summary: UEL 调节器滞后时间常数 1 12.5（默认）
+  group: 控制
+- name: UEL regulator numerator (lead) time constant 1, T_UC1 (s)
+  summary: UEL 调节器超前时间常数 1 1.5（默认）
+  group: 控制
+- name: UEL regulator denominator (lag) time constant 2, T_UB2 (s)
+  summary: UEL 调节器滞后时间常数 2 0.1（默认）
+  group: 控制
+- name: UEL regulator numerator (lead) time constant 2, T_UC2 (s)
+  summary: UEL 调节器超前时间常数 2 0.1（默认）
+  group: 控制
+- name: OEL regulator denominator (lag) time constant 1, T_OB1 (s)
+  summary: OEL 调节器滞后时间常数 1 12.5（默认）
+  group: 控制
+- name: OEL regulator numerator (lead) time constant 1, T_OC1 (s)
+  summary: OEL 调节器超前时间常数 1 1.5（默认）
+  group: 控制
+- name: OEL regulator denominator (lag) time constant 2, T_OB2 (s)
+  summary: OEL 调节器滞后时间常数 2 0.1（默认）
+  group: 控制
+- name: OEL regulator numerator (lead) time constant 2, T_OC2 (s)
+  summary: OEL 调节器超前时间常数 2 0.1（默认）
+  group: 控制
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: 最大调节器输出 10（默认）| 实数标量
+  group: 控制
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: 最小调节器输出 -8.7（默认）| 实数标量
+  group: 控制
+- name: Maximum PSS regulator output, V_RSmax (pu)
+  summary: 最大 PSS 调节器输出 5（默认）| 实数标量
+  group: 控制
+- name: Minimum PSS regulator output, V_RSmin (pu)
+  summary: 最小 PSS 调节器输出 -5（默认）| 实数标量
+  group: 控制
+- name: Alternate PSS input locations (V_S)
+  summary: PSS 输入位置 Summation point at output of AVR（默认）| Summation point at voltage error calculation | Summation point at
+    voltage error or take-over limits
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Summation point at voltage error（默认）| Unused | Take-over at voltage error | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Summation point at voltage error（默认）| Unused | Take-over at voltage error | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Summation point at voltage error（默认）| Unused | Take-over at voltage error | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: 整流器负载系数 0.01（默认）| 正标量
+  group: 励磁机
+- name: Equivalent time constant for rectifier bridge, T_1 (s)
+  summary: 整流器桥时间常数 0.004（默认）| 正标量
+  group: 励磁机
+- name: Potential circuit (voltage) gain coefficient, K_P (pu)
+  summary: 电位电路电压增益系数 1（默认）| 正标量
+  group: 励磁机
+- name: Potential circuit (current) gain coefficient, K_I (pu)
+  summary: 电位电路电流增益系数 0（默认）| 正标量
+  group: 励磁机
+- name: Reactance associated with the potential source, X_L (pu)
+  summary: 电位源电抗 0（默认）| 正标量
+  group: 励磁机
+- name: Potential circuit phase angle (degrees)
+  summary: 电位电路相位角 0（默认）| 正标量
+  group: 励磁机
+- name: Maximum available exciter voltage, V_Bmax (pu)
+  summary: 励磁机电压上限 1.5（默认）| 正标量
+  group: 励磁机
+- name: Power source selector
+  summary: '电源选择器 Position A: power source derived from generator terminal voltage（默认）| Position B: power source independent
+    of generator terminal conditions'
+  group: 励磁机
+```
 
 ### 常规
 
@@ -369,7 +531,6 @@ derived from generator terminal voltage`。
 ### **Power source selector** — 电源选择器 `Position A: power source derived from generator terminal voltage`（默认）| `Position B: power source independent of generator terminal conditions`
 
 电源选择器的位置。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

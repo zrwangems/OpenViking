@@ -14,6 +14,15 @@ language: en
 # Belt-Cable End
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Local reference frame frame
+  direction: unspecified
+- name: E
+  summary: Cord attachment point belt-cable
+  direction: unspecified
+```
 
 ### Frame
 
@@ -26,11 +35,12 @@ remainder of a multibody model.
 ### **E** — Cord attachment point belt-cable
 
 Point at which to terminate the cord of a pulley system.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Multibody / Belts and Cables

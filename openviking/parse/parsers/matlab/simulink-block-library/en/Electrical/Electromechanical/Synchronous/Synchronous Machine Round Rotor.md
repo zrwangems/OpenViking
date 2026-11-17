@@ -14,6 +14,51 @@ language: en
 # Synchronous Machine Round Rotor
 
 ## Ports
+```yaml
+ports:
+- name: pu
+  summary: Machine per-unit measurements physical
+  direction: output
+- name: fd+
+  summary: Field winding positive terminal electrical
+  direction: conserving
+- name: fd-
+  summary: Field winding negative terminal electrical
+  direction: conserving
+- name: R
+  summary: Machine rotor mechanical
+  direction: conserving
+- name: C
+  summary: Machine case mechanical
+  direction: conserving
+- name: '~'
+  summary: Stator windings electrical
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: HA
+  summary: '*a*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HB
+  summary: '*b*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HC
+  summary: '*c*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -154,8 +199,190 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Option to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Rated apparent power
+  summary: Rated apparent power 555e6 V*A (default)
+  group: Main
+- name: Rated voltage
+  summary: RMS rated line-line voltage 24e3 V (default)
+  group: Main
+- name: Rated electrical frequency
+  summary: Nominal electrical frequency 60 Hz (default)
+  group: Main
+- name: Number of pole pairs
+  summary: Number of pole pairs 1 (default)
+  group: Main
+- name: Specify parameterization by
+  summary: Block parameterization Fundamental parameters (default) | Standard parameters
+  group: Main
+- name: Specify field circuit input required to produce rated terminal voltage at no load by
+  summary: Specify field circuit input required to produce rated terminal voltage at no load by Field circuit current (default)
+    | Field circuit voltage
+  group: Main
+- name: Field circuit voltage
+  summary: Field circuit voltage 95.95 V (default)
+  group: Main
+- name: Field circuit current
+  summary: Field circuit current 1300 A (default)
+  group: Main
+- name: Zero sequence
+  summary: Zero-sequence model Include (default) | Exclude
+  group: Main
+- name: Rotor angle definition
+  summary: Reference point for the rotor angle measurement Angle between the a-phase magnetic axis and the d-axis (default)
+    | Angle between the a-phase magnetic axis and the q-axis
+  group: Main
+- name: Stator d-axis mutual inductance (unsaturated), Ladu
+  summary: Stator d-axis mutual inductance (unsaturated) 1.66 (default) | positive scalar
+  group: Impedances
+- name: Stator q-axis mutual inductance (unsaturated), Laqu
+  summary: Stator q-axis mutual inductance (unsaturated) 1.61 (default) | positive scalar
+  group: Impedances
+- name: Stator zero-sequence inductance, L0
+  summary: Stator zero-sequence inductance 0.15 (default) | positive scalar
+  group: Impedances
+- name: Stator leakage inductance, Ll
+  summary: Stator leakage inductance 0.15 (default) | positive scalar
+  group: Impedances
+- name: Stator resistance, Ra
+  summary: Stator resistance 0.003 (default) | positive scalar
+  group: Impedances
+- name: Rotor field circuit inductance, Lfd
+  summary: Rotor field circuit inductance 0.165 (default) | positive scalar
+  group: Impedances
+- name: Rotor field circuit resistance, Rfd
+  summary: Rotor field circuit resistance 0.0006 (default) | positive scalar
+  group: Impedances
+- name: Rotor d-axis damper winding 1 inductance, L1d
+  summary: Rotor d-axis damper winding 1 inductance 0.1713 (default) | positive scalar
+  group: Impedances
+- name: Rotor d-axis damper winding 1 resistance, R1d
+  summary: Rotor d-axis damper winding 1 resistance 0.0284 (default) | positive scalar
+  group: Impedances
+- name: Rotor q-axis damper winding 1 inductance, L1q
+  summary: Rotor q-axis damper winding 1 inductance 0.7252 (default) | positive scalar
+  group: Impedances
+- name: Rotor q-axis damper winding 1 resistance, R1q
+  summary: Rotor q-axis damper winding 1 resistance 0.00619 (default) | positive scalar
+  group: Impedances
+- name: Rotor q-axis damper winding 2 inductance, L2q
+  summary: Rotor q-axis damper winding 2 inductance 0.125 (default) | positive scalar
+  group: Impedances
+- name: Rotor q-axis damper winding 2 resistance, R2q
+  summary: Rotor q-axis damper winding 2 resistance 0.02368 (default) | positive scalar
+  group: Impedances
+- name: Stator leakage reactance, Xl
+  summary: Stator leakage reactance 0.15 (default) | positive scalar
+  group: Impedances
+- name: d-axis synchronous reactance, Xd
+  summary: d-axis synchronous reactance 1.81 (default) | positive scalar
+  group: Impedances
+- name: q-axis synchronous reactance, Xq
+  summary: q-axis synchronous reactance 1.76 (default) | positive scalar
+  group: Impedances
+- name: zero-sequence reactance, X0
+  summary: Zero-sequence reactance 0.15 (default) | positive scalar
+  group: Impedances
+- name: d-axis transient reactance, Xd'
+  summary: d-axis transient reactance 0.3 (default) | positive scalar
+  group: Impedances
+- name: q-axis transient reactance, Xq'
+  summary: q-axis transient reactance 0 (default) | positive scalar
+  group: Impedances
+- name: d-axis subtransient reactance, Xd''
+  summary: d-axis subtransient reactance 0.23 (default) | positive scalar
+  group: Impedances
+- name: q-axis subtransient reactance, Xq''
+  summary: q-axis subtransient reactance 0.25 (default) | positive scalar
+  group: Impedances
+- name: Specify d-axis time constant
+  summary: Specify d-axis time constant Open circuit (default) | Short circuit
+  group: Time Constants
+- name: d-axis transient open-circuit, Td0'
+  summary: d-axis transient open-circuit 8 s (default) | positive scalar
+  group: Time Constants
+- name: d-axis transient short-circuit, Td'
+  summary: d-axis transient short-circuit 1.3260 s (default) | positive scalar
+  group: Time Constants
+- name: d-axis subtransient open-circuit, Td0''
+  summary: d-axis subtransient open-circuit 0.03 s (default) | positive scalar
+  group: Time Constants
+- name: d-axis subtransient short-circuit, Td''
+  summary: d-axis subtransient short-circuit 0.0230 s (default) | positive scalar
+  group: Time Constants
+- name: Specify q-axis time constant
+  summary: Specify q-axis time constant Open circuit (default) | Short circuit
+  group: Time Constants
+- name: q-axis transient open-circuit, Tq0'
+  summary: q-axis transient open-circuit 1 s (default) | positive scalar
+  group: Time Constants
+- name: q-axis transient short-circuit, Tq'
+  summary: q-axis transient short-circuit 0.3693 s (default) | positive scalar
+  group: Time Constants
+- name: q-axis subtransient open-circuit, Tq0''
+  summary: q-axis subtransient open-circuit 0.07 s (default) | positive scalar
+  group: Time Constants
+- name: q-axis subtransient short-circuit, Tq''
+  summary: q-axis subtransient short-circuit 0.0269 s (default) | positive scalar
+  group: Time Constants
+- name: Magnetic saturation representation
+  summary: Magnetic saturation representation None (default) | Open-circuit lookup table (v versus i)
+  group: Saturation
+- name: Per-unit field current saturation data, ifd
+  summary: Per-unit field current saturation data [0, .48, .76, 1.38, 1.79] (default)
+  group: Saturation
+- name: Per-unit air-gap voltage saturation data, Vag
+  summary: Per-unit air-gap voltage saturation data [0, .8, 1.08, 1.31, 1.4] (default)
+  group: Saturation
+- name: Initialization option
+  summary: Option for specifying values at start of simulation Set real power, reactive power, terminal voltage, and terminal
+    phase (default) | Set targets for rotor angle and Park's transform variables | Set targets for load flow variables
+  group: Initial Conditions
+- name: Source type
+  summary: Voltage source model Swing bus (default) | PV bus | PQ bus
+  group: Initial Conditions
+- name: Terminal voltage magnitude
+  summary: Terminal voltage magnitude 24e3 V (default) | positive scalar
+  group: Initial Conditions
+- name: Terminal voltage angle
+  summary: Terminal voltage angle 0 deg (default) | scalar
+  group: Initial Conditions
+- name: Active power generated
+  summary: Generated active power 500e6 V*A (default) | scalar
+  group: Initial Conditions
+- name: Reactive power generated
+  summary: Generated reactive power 0 V*A (default) | scalar
+  group: Initial Conditions
+- name: Minimum terminal voltage magnitude (pu)
+  summary: Minimum terminal voltage magnitude 0.95 (default) | positive scalar
+  group: Initial Conditions
+- name: Phase search range at terminals
+  summary: Phase search range at terminals [-inf, inf] deg (default) | vector of two elements
+  group: Initial Conditions
+- name: Parasitic conductance to electrical reference
+  summary: Parasitic conductance to electrical reference 1e-6 S (default) | positive scalar
+  group: Initial Conditions
+- name: Measurement temperature
+  summary: Rated temperature 298.15 k (default) | real scalar
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal
+```
 
 ### **Modeling option** — Option to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -815,7 +1042,6 @@ energy required to raise the temperature by one degree.
 
 Thermal mass of the rotor. The thermal mass is the energy required to
 raise the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Synchronous

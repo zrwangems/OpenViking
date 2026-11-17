@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Poppet Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 thermal liquid
+  direction: conserving
+- name: B
+  summary: 液体端口 thermal liquid
+  direction: conserving
+- name: S
+  summary: 阀芯位移，m physical signal
+  direction: input
+```
 
 ### 守恒端口
 
@@ -31,8 +43,40 @@ chinese_source: worker-translation
 ### **S** — 阀芯位移，m physical signal
 
 与阀芯位移关联的物理信号端口，单位为 m。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve seat specification
+  summary: 阀座几何形状 Sharp-edged（默认）| Conical
+  group: ''
+- name: Cone angle
+  summary: 阀座开口角度 120 deg（默认）| 正标量
+  group: ''
+- name: Ball diameter
+  summary: 阀芯直径 0.01 m（默认）| 正标量
+  group: ''
+- name: Orifice diameter
+  summary: 阀座孔口直径 7e-3 m（默认）| 正标量
+  group: ''
+- name: Poppet position when in the seat
+  summary: 阀芯偏移量 0 m（默认）| 非负标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 完全关闭位置时的间隙面积 0.01（默认）| 范围 [0,1] 内的标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Valve seat specification** — 阀座几何形状 `Sharp-edged`（默认）| `Conical`
 
@@ -77,7 +121,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过孔口的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Flow Control Valves

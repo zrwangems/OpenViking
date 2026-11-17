@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # In Bus Element
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 从外部端口选择的输入 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### 输出
 
@@ -26,8 +34,107 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Port name
+  summary: 输入端口名称 InBus（默认）| 端口名称
+  group: 模块标签
+  block_parameter: PortName
+  values: '"InBus"（默认）| 带引号的端口名称'
+- name: Element
+  summary: 可选的总线元素指定 signal1（默认）| 元素路径
+  group: 模块标签
+  block_parameter: Element
+  values: '"signal1"（默认）| 带引号的元素路径'
+- name: Port number
+  summary: 端口在父模块上的位置 1（默认）| 实数整数
+  group: 端口选项卡
+  block_parameter: Port
+  values: '"1"（默认）| 带引号的实数整数'
+- name: Data type
+  summary: '数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: 信号选项卡
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto"（默认）| "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32"
+    | "int64" | "uint64" | "boolean" | "fixdt(1,16)" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "string" | "Enum: <class name>"
+    | "Bus: <object name>" | "ValueType: <object name>" | 带引号的数据类型表达式'
+- name: Bus virtuality
+  summary: 虚拟或非虚拟总线 inherit（默认）| virtual | nonvirtual
+  group: 信号选项卡
+  block_parameter: BusVirtuality
+  values: '"inherit"（默认）| "virtual" | "nonvirtual"'
+- name: Data mode
+  summary: 输入元素的数据模式 inherit（默认）| signal | message
+  group: 信号选项卡
+  block_parameter: DataMode
+  values: '"inherit"（默认）| "signal" | "message"'
+- name: Dimensions
+  summary: 信号维度 -1（默认）| 整数 | 1×2 整数向量
+  group: 信号选项卡
+  block_parameter: PortDimensions
+  values: '"-1"（默认）| 带引号的整数 | 带引号的 1×2 整数向量'
+- name: Dimensions mode
+  summary: 仅允许可变大小或固定大小信号的选项 Inherit（默认）| Fixed | Variable
+  group: 信号选项卡
+  block_parameter: VarSizeSig
+  values: '"Inherit"（默认）| "No" | "Yes"'
+- name: Unit
+  summary: 物理单位 inherit（默认）| Simulink 软件支持的单位
+  group: 信号选项卡
+  block_parameter: Unit
+  values: '"inherit"（默认）| 带引号的 Simulink 软件支持的单位'
+- name: Complexity
+  summary: 数值类型 auto（默认）| real | complex
+  group: 信号选项卡
+  block_parameter: SignalType
+  values: '"auto"（默认） | "real" | "complex"'
+- name: Minimum
+  summary: 最小值 []（默认） | 标量
+  group: 信号选项卡
+  block_parameter: OutMin
+  values: '"[]"（默认） | 带引号的标量'
+- name: Maximum
+  summary: 最大值 []（默认） | 标量
+  group: 信号选项卡
+  block_parameter: OutMax
+  values: '"[]"（默认） | 带引号的标量'
+- name: Description
+  summary: 总线、信号或消息的描述 无默认值
+  group: 信号选项卡
+  block_parameter: Description
+  values: '""（默认） | 带引号的描述'
+- name: Sample time
+  summary: 采样时间 -1（默认） | 标量
+  group: 执行选项卡
+  block_parameter: SampleTime
+  values: '"-1"（默认） | 带引号的标量'
+- name: Events
+  summary: 基于数据流入端口的选项来触发模型分区的选项 事件触发对象的元胞数组
+  group: 执行选项卡
+  block_parameter: EventTriggers
+  values: '[]（默认） | 1×1 元胞数组 | 2×1 元胞数组 | 3×1 元胞数组'
+- name: Use default queue attributes
+  summary: 默认或自定义队列规范 on（默认） | off
+  group: 队列属性
+  block_parameter: MessageQueueUseDefaultAttributes
+  values: '"on"（默认） | "off"'
+- name: Queue capacity
+  summary: 消息存储容量 1（默认） | 标量
+  group: 队列属性
+  block_parameter: MessageQueueCapacity
+  values: '"1"（默认） | 带引号的标量'
+- name: Queue type
+  summary: 选择 FIFO 或 LIFO 队列 LIFO（默认） | FIFO
+  group: 队列属性
+  block_parameter: MessageQueueType
+  values: '"LIFO"（默认） | "FIFO"'
+- name: Queue overwriting
+  summary: 队列消息覆盖策略 on（默认） | off
+  group: 队列属性
+  block_parameter: MessageQueueOverwriting
+  values: '"on"（默认） | "off"'
+```
 
 要编辑与 In Bus Element 模块关联的元素，请在 Simulink® 编辑器中编辑模块标签。
 
@@ -551,7 +658,6 @@ In Bus Element 模块必须选择具有一个或多个事件触发器的每个�
 | **值：** | `"on"`（默认） | `"off"` |
 
 **示例：** `set_param("mymodel/InBus.message1",MessageQueueOverwriting="off")`
-
 ## 所属库
 
 Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Ports & Subsystems HDL Coder / Sources

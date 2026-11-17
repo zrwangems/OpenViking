@@ -14,6 +14,14 @@ language: en
 # Inport
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+```
 
 ### Output
 
@@ -25,8 +33,130 @@ You can use an Inport block in a subsystem to supply fixed-point data in
 a structure or in any other format.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Port number
+  summary: Position of port on parent block 1 (default) | real integer
+  group: Main
+  block_parameter: Port
+  values: '"1" (default) | real integer in quotes'
+- name: Icon display
+  summary: Icon display Port number (default) | Signal name | Port number and signal name
+  group: Main
+  block_parameter: IconDisplay
+  type: character vector
+  values: '''Signal name'' | ''Port number'' | ''Port number and signal name'''
+  default: '''Port number'''
+- name: Latch input by delaying outside signal
+  summary: Option to latch signal by delay off (default) | on
+  group: Main
+  block_parameter: LatchByDelayingOutsideSignal
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Latch input for feedback signals of function-call subsystem outputs
+  summary: Latch signal from changing off (default) | on
+  group: Main
+  block_parameter: LatchInputForFeedbackSignals
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Connect Inputs
+  summary: Option to open Root Inport Mapper tool button
+  group: Main
+- name: Output function call
+  summary: Option to produce function-call event off (default) | on
+  group: Signal Attributes
+  block_parameter: OutputFunctionCall
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Minimum
+  summary: Minimum output value [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  type: character vector
+  values: '''[ ]''| scalar'
+  default: '''[ ]'''
+- name: Maximum
+  summary: Maximum output value [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  type: character vector
+  values: '''[ ]''| scalar'
+  default: '''[ ]'''
+- name: Data type
+  summary: 'Output data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string''
+    | ''Enum: <class name>'' | ''Bus: <object name>'' | ''ValueType: <object name>'' | ''<data type expression>'' | Simulink.ImageType(480,640,3)'
+  default: '''Inherit: auto'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output as nonvirtual bus
+  summary: Option to specify virtuality of bus output off (default) | on
+  group: Signal Attributes
+  block_parameter: BusOutputAsStruct
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Unit (e.g., m, m/s^2, N\*m)
+  summary: Physical unit of the input signal to the block inherit (default) | <Enter unit>
+  group: Signal Attributes
+  block_parameter: Unit
+  type: character vector
+  values: '''inherit'' | ''<Enter unit>'''
+  default: '''inherit'''
+- name: Port dimensions (-1 for inherited)
+  summary: Port dimensions -1 (default) | integer | [integer integer]
+  group: Signal Attributes
+  block_parameter: PortDimensions
+  type: character vector
+  values: '''-1'' | integer | [integer integer]'
+  default: '''-1'''
+- name: Variable-size signal
+  summary: Option to allow or disallow variable-size signals Inherit (default) | No | Yes
+  group: Signal Attributes
+  block_parameter: VarSizeSig
+  type: character vector
+  values: '''Inherit'' | ''No'' | ''Yes'''
+  default: '''Inherit'''
+- name: Signal type
+  summary: Output signal type auto (default) | real | complex
+  group: Signal Attributes
+  block_parameter: SignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Sample time (-1 for inherited)
+  summary: Option to specify sample time -1 (default) | scalar
+  group: Execution
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''-1'''
+- name: Interpolate data
+  summary: Option to linearly interpolate output data on (default) | off
+  group: Execution
+  block_parameter: Interpolate
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Events
+  summary: Option to trigger model partition based on flow of data into port cell array of event trigger objects
+  group: Execution
+  block_parameter: EventTriggers
+  values: 1-by-1 cell array | 2-by-1 cell array | 3-by-1 cell array
+  default: '[]'
+```
 
 ### Main
 
@@ -550,7 +680,6 @@ root-level input port in a rate-based model.
 | **Block Parameter:** `EventTriggers` |
 | **Values:** `1`-by-`1` cell array | `2`-by-`1` cell array | `3`-by-`1` cell array |
 | **Default:** `[]` |
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Ports & Subsystems Simulink / Sources HDL Coder / Commonly Used Blocks HDL Coder / Ports & Subsystems HDL Coder / Sources

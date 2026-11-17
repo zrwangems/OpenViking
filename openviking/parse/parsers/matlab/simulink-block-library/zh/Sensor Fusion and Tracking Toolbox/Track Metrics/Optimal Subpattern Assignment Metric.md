@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Optimal Subpattern Assignment Metric
 
 ## 端口
+```yaml
+ports:
+- name: Tracks
+  summary: 航迹列表，包含 MATLAB® 结构的 Simulink® 总线
+  direction: input
+- name: Truths
+  summary: 真值列表，包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Assignments
+  summary: 已知关联 *K*×2 非负整数矩阵
+  direction: input
+- name: OSPA Metric
+  summary: OSPA 度量非负实数标量
+  direction: output
+- name: Localization Error
+  summary: 定位误差分量非负实数标量
+  direction: output
+- name: Cardinality Error
+  summary: 基数误差分量非负实数标量
+  direction: output
+- name: Labeling Error
+  summary: 标签误差分量非负实数标量
+  direction: output
+```
 
 ### 输入
 
@@ -141,8 +165,73 @@ OSPA 度量，返回为非负实数标量。根据 **Metric** 和 **Labeling err
 #### 依赖关系
 
 要启用此端口，请在 **Port Setting** 选项卡上选择 **Labeling error**。
-
 ## 参数
+```yaml
+parameters:
+- name: Metric
+  summary: 度量选项 OPSA（默认）| OSPA(2)
+  group: ''
+- name: Cutoff distance
+  summary: 航迹与真值之间截断距离的阈值 30（默认）| 实正标量
+  group: ''
+- name: Order
+  summary: OSPA 度量的阶数 2（默认）| 正整数
+  group: ''
+- name: Distance type
+  summary: 距离类型 posnees（默认）| velnees | posabserr | velabserr | custom
+  group: ''
+- name: Custom distance function
+  summary: 自定义距离函数函数句柄
+  group: ''
+- name: Motion model
+  summary: 期望的平台运动模型 constvel（默认）| constacc | constturn | singer
+  group: ''
+- name: Labeling error
+  summary: 错误分配的惩罚 0（默认）| 非负标量
+  group: ''
+- name: Window length
+  summary: OSPA(2) 度量的滑动窗口长度 100（默认）| 正整数
+  group: ''
+- name: Window sum order (q)
+  summary: 航迹和真值历史的加权和阶数 2（默认）| 正标量
+  group: ''
+- name: Window weights
+  summary: 窗口权重选项 auto（默认）| custom
+  group: ''
+- name: Window weight exponent (r)
+  summary: 自动权重计算的指数 1（默认）| 非负标量
+  group: ''
+- name: Custom window weights
+  summary: 时间窗中的自定义权重 *N* 元非负值向量
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code Generation
+  group: ''
+- name: Assignments
+  summary: 启用分配输入 off（默认）| on
+  group: ''
+- name: Localization error
+  summary: 启用定位误差分量输出 off（默认）| on
+  group: ''
+- name: Cardinality error
+  summary: 启用基数误差分量输出 off（默认）| on
+  group: ''
+- name: Labeling error
+  summary: 启用标注误差分量输出 off（默认）| on
+  group: ''
+- name: Track bus
+  summary: 航迹总线选择 objectTrack（默认）| custom
+  group: ''
+- name: Truth bus
+  summary: 真值总线选择 Platform（默认）| Actor | custom
+  group: ''
+- name: Track extractor function
+  summary: 航迹提取函数 函数句柄
+  group: ''
+- name: Truth extractor function
+  summary: 真值提取函数 函数句柄
+  group: ''
+```
 
 #### Properties
 
@@ -378,7 +467,6 @@ tracks = trackExtractorFcn(trackInputFromBus)
 #### 依赖关系
 
 要启用此属性，请将 **Truth bus** 参数设置为 `custom`。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Track Metrics

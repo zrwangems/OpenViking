@@ -14,6 +14,21 @@ language: en
 # Machine Mechanical Power
 
 ## Ports
+```yaml
+ports:
+- name: Pm
+  summary: Mechanical power physical | positive
+  direction: input
+- name: pu
+  summary: Per-unit mechanical power physical | positive
+  direction: input
+- name: R
+  summary: Machine rotor mechanical
+  direction: conserving
+- name: C
+  summary: Machine case mechanical
+  direction: conserving
+```
 
 ### Input
 
@@ -49,8 +64,55 @@ rotor.
 
 Mechanical rotational conserving port associated with the machine
 case.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input power sign convention
+  summary: Type specification Generator (default) | Motor
+  group: Main
+- name: Rated apparent power
+  summary: Rated apparent power 555e6 V*A (default)
+  group: Main
+- name: Rated electrical frequency
+  summary: Nominal electrical frequency 60 Hz (default)
+  group: Main
+- name: Number of pole pairs
+  summary: Number of pole pairs 1 (default)
+  group: Main
+- name: PS input unit
+  summary: Physical signal unit system SI (default) | Per unit
+  group: Main
+- name: Peak torque to rated torque ratio
+  summary: Peak torque to rated torque ratio 2 (default)
+  group: Main
+- name: Specify inertia parameterization by
+  summary: Inertia parameterization Inertia constant, H (default) | Actual Inertia, J
+  group: Inertia
+- name: Inertia constant, H
+  summary: Inertia constant 3.525 s*W/VA (default)
+  group: Inertia
+- name: Actual inertia, J
+  summary: Actual inertia 27548 kg*m^2 (default)
+  group: Inertia
+- name: Specify damper parameterization by
+  summary: Damping parameterization Per-unit damping coefficient, pu_D (default) | SI damping coefficient, D
+  group: Inertia
+- name: Per-unit damping coefficient
+  summary: Per-unit damping coefficient 0.01 (default)
+  group: Inertia
+- name: SI damping coefficient
+  summary: Damping coefficient 39.0509 Nm/(rad/s) (default)
+  group: Inertia
+- name: Specify initialization by
+  summary: Frequency initialization Initial electrical frequency (default) | Initial mechanical frequency
+  group: Initial Conditions
+- name: Initial electrical frequency
+  summary: Initial electrical frequency 60 Hz (default)
+  group: Initial Conditions
+- name: Initial mechanical frequency
+  summary: Initial mechanical frequency 60 Hz (default)
+  group: Initial Conditions
+```
 
 ### Main
 
@@ -163,7 +225,6 @@ Initial mechanical frequency.
 This parameter is visible only if you set the **Specify
 initialization by** parameter to `Initial
 mechanical frequency`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechanical

@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Absolute Reference (G)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 压力和温度为零的气体
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **A** — 压力和温度为零的气体
 
 气体守恒端口，其压力和温度均等于零。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

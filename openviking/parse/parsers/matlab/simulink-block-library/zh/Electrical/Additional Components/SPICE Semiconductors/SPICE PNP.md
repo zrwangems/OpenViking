@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # SPICE PNP
 
 ## 端口
+```yaml
+ports:
+- name: bx
+  summary: 基极端子电气
+  direction: unspecified
+- name: cx
+  summary: 集电极端子电气
+  direction: unspecified
+- name: ex
+  summary: 发射极端子电气
+  direction: unspecified
+- name: sx
+  summary: 衬底端子电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -33,8 +48,151 @@ chinese_source: worker-translation
 ### **sx** — 衬底端子电气
 
 与晶体管衬底端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: 器件面积，AREA
+  summary: 器件面积 1.0 m^2（默认）| 正标量
+  group: 主要
+- name: 并联器件数，SCALE
+  summary: 并联器件数 1（默认）| 正标量
+  group: 主要
+- name: 传输饱和电流，IS
+  summary: 饱和电流幅值 1e-16 A/m^2（默认）| 正标量
+  group: 正向增益
+- name: 正向 beta，BF
+  summary: 理想最大正向 beta 100（默认）| 正标量
+  group: 正向增益
+- name: 正向发射系数，NF
+  summary: 正向发射系数 1（默认）| 正标量
+  group: 正向增益
+- name: 正向厄利电压，VAF
+  summary: 正向厄利电压 Inf V（默认）| 非负标量
+  group: 正向增益
+- name: 正向拐点电流，IKF
+  summary: 正向 beta 大电流滚降电流 Inf A/m^2（默认）| 非负标量
+  group: 正向增益
+- name: B-E 泄漏电流，ISE
+  summary: 基极-发射极泄漏电流 0 A/m^2（默认）| 非负标量
+  group: 正向增益
+- name: B-E 发射系数，NE
+  summary: 基极-发射极发射系数 1.5（默认）| 正标量
+  group: 正向增益
+- name: 反向 beta，BR
+  summary: 理想最大反向 beta 1（默认）| 正标量
+  group: 反向增益
+- name: 反向发射系数，NR
+  summary: 反向发射系数 1（默认）| 正标量
+  group: 反向增益
+- name: 反向厄利电压，VAR
+  summary: 反向厄利电压 Inf V（默认）| 非负标量
+  group: 反向增益
+- name: 反向拐点电流，IKR
+  summary: 反向 beta 大电流滚降电流 Inf A/m^2（默认）| 非负标量
+  group: 反向增益
+- name: B-C 泄漏电流，ISC
+  summary: 基极-集电极泄漏电流 0 A/m^2（默认）| 非负标量
+  group: 反向增益
+- name: B-C 发射系数，NC
+  summary: 基极-集电极发射系数 2（默认）| 正标量
+  group: 反向增益
+- name: 零偏置基极电阻，RB
+  summary: 基极电阻 1 m^2*Ohm（默认）| 非负标量
+  group: 电阻
+- name: 半基极电阻电流，IRB
+  summary: 基极电阻半零偏置压降电流 Inf A/m^2（默认）| 非负标量
+  group: 电阻
+- name: 最小基极电阻，RBM
+  summary: 最小基极电阻 0 m^2*Ohm（默认）| 标量 < *RB*
+  group: 电阻
+- name: 发射极电阻，RE
+  summary: 发射极电阻 1e-4 m^2*Ohm（默认）| 非负标量
+  group: 电阻
+- name: 集电极电阻，RC
+  summary: 集电极电阻 0.01 m^2*Ohm（默认）| 非负标量
+  group: 电阻
+- name: 建模结电容
+  summary: 结电容模型 No（默认）| Yes
+  group: 电容
+- name: 电容系数，FC
+  summary: 电容系数 0.5（默认）| 0 ≤ *FC* < 0.95 | 标量
+  group: 电容
+- name: 指定初始条件
+  summary: 初始条件模型 No（默认）| Yes
+  group: 电容
+- name: 初始条件电压 ICVBE
+  summary: 初始基极-发射极电压 0 V（默认）| 标量
+  group: 电容
+- name: 初始条件电压 ICVCE
+  summary: 初始基极-集电极电压 0 V（默认）| 标量
+  group: 电容
+- name: B-E 耗尽电容，CJE
+  summary: 基极-发射极结耗尽电容 0 F/m^2（默认）| 非负标量
+  group: B-E 电容
+- name: B-E 内建电势，VJE
+  summary: 基极-发射极结电势 0.75 V（默认）| 标量 | 0.01 ≤ *VJE*
+  group: B-E 电容
+- name: B-E 指数因子，MJE
+  summary: 基极-发射极结梯度系数 0.33（默认）| 标量 | 0 ≤ *MJC* ≤ 0.9
+  group: B-E 电容
+- name: 正向渡越时间，TF
+  summary: 少数载流子渡越时间 0 s（默认）| 非负标量
+  group: B-E 电容
+- name: TF 系数，XTF
+  summary: 基极-发射极渡越时间偏置依赖系数 0（默认）| 非负标量
+  group: B-E 电容
+- name: TF 的 VBC 依赖性，VTF
+  summary: 基极-集电极渡越时间偏置依赖系数 Inf V（默认）| 非负标量
+  group: B-E 电容
+- name: TF 系数，ITF
+  summary: 集电极电流渡越时间依赖系数 0 A/m^2（默认）| 非负标量
+  group: B-E 电容
+- name: B-C 耗尽电容，CJC
+  summary: 基极-集电极结耗尽电容 0 F/m^2（默认）| 正标量
+  group: B-C 电容
+- name: B-C 内建电势，VJC
+  summary: 基极-集电极结电势 0.75 V（默认）| 标量 | 0.01 ≤ *VJC*
+  group: B-C 电容
+- name: B-C 指数因子，MJC
+  summary: 基极-集电极结梯度系数 0.33（默认）| 0 ≤ *MJC* ≤ 0.9
+  group: B-C 电容
+- name: B-C 电容分数，XCJC
+  summary: 基极-集电极耗尽电容分数 1（默认）| 标量 | 0 ≤ *XCJC* ≤ 1
+  group: B-C 电容
+- name: 反向渡越时间，TR
+  summary: 少数载流子渡越时间 0 s（默认）| 非负标量
+  group: B-C 电容
+- name: C-S 结电容，CJS
+  summary: 集电极-衬底结电容 0 F/m^2（默认）| 非负标量
+  group: C-S 电容
+- name: 衬底内建电势，VJS
+  summary: 衬底电势 0.75 V（默认）| 标量 | 0.01 ≤ *VJS*
+  group: C-S 电容
+- name: 衬底指数因子，MJS
+  summary: 集电极-衬底结梯度系数 0（默认）| 标量 | 0 ≤ *MJS* ≤ 0.9
+  group: C-S 电容
+- name: 使用以下方式建模温度依赖性
+  summary: 温度依赖性模型 Device temperature（默认）| Fixed temperature
+  group: 温度
+- name: Beta 温度指数，XTB
+  summary: 正向和反向 beta 温度指数 0（默认）| 非负标量
+  group: 温度
+- name: 能隙，EG
+  summary: 能隙 1.11 eV（默认）| *EG* ≥ 0.1 | 标量
+  group: 温度
+- name: IS 的温度指数，XTI
+  summary: 饱和电流指数增长阶数 3（默认）| 非负标量
+  group: 温度
+- name: 局部电路温度偏移，TOFFSET
+  summary: 局部电路温度偏移 0 K（默认）| 标量
+  group: 温度
+- name: 固定电路温度，TFIXED
+  summary: 固定电路温度 300.15 K（默认）| 正标量
+  group: 温度
+- name: 参数提取温度，TMEAS
+  summary: 参数提取温度 300.15 K（默认）| 正标量
+  group: 温度
+```
 
 ### 主要
 
@@ -360,7 +518,6 @@ chinese_source: worker-translation
 ### **参数提取温度，TMEAS** — 参数提取温度 `300.15` `K`（默认）| 正标量
 
 测量晶体管参数时的温度。该值必须大于 `0` `K`。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Semiconductors

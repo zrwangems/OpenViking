@@ -14,6 +14,18 @@ language: en
 # Triggered To Workspace
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Data to log to workspace scalar | vector | matrix | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string
+    | fixed point | enumerated | bus | image
+- name: Trigger
+  summary: Trigger signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -38,8 +50,29 @@ Specify the trigger signal that controls the execution of the block as
 a scalar, vector, or a matrix.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trigger type
+  summary: Trigger type Rising edge (default) | Falling edge | Either edge
+  group: ''
+- name: Variable name
+  summary: Workspace variable name yout (default) | character vector | string
+  group: ''
+- name: Decimation
+  summary: Decimation factor 1 (default) | scalar
+  group: ''
+- name: Maximum number of rows
+  summary: Maximum number of rows to be saved 1000 (default) | positive integer
+  group: ''
+- name: Save 2-D signals as
+  summary: Arrangement of 2-D samples values in logged data 2-D array (concatenate along first dimension) (default) | 3-D
+    array (concatenate along third dimension)
+  group: ''
+- name: Log fixed-point data as a fi object
+  summary: Log fixed-point data as a fi object off (default) | on
+  group: ''
+```
 
 ### **Trigger type** — Trigger type `Rising edge` (default) | `Falling edge` | `Either edge`
 
@@ -140,7 +173,6 @@ Fixed-Point Designer
 
 Using the Triggered To Workspace block to log fixed-point
 data requires a license for Fixed-Point Designer.
-
 ## Libraries
 
 DSP System Toolbox / Sinks

@@ -14,6 +14,19 @@ language: en
 # 4-Speed Ravigneaux
 
 ## Ports
+```yaml
+ports:
+- name: Gear
+  summary: Numerical input for the gear scalar
+  direction: input
+  data_types: single | double
+- name: B
+  summary: Base interface mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower interface mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -32,15 +45,19 @@ Conserving port associated with the base shaft.
 ### **F** — Follower interface mechanical rotational
 
 Conserving port associated with the follower shaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial gear
+  summary: Gear state at the beginning of simulation Neutral (default) | 4 | 3 | 2 | 1 | Reverse
+  group: ''
+```
 
 ### **Initial gear** — Gear state at the beginning of simulation `Neutral` (default) | `4` | `3` | `2` | `1` | `Reverse`
 
 Sets the initial engagement or disengagement of the clutches using the
 clutch schedule. When the transmission is in neutral, there is no power flow
 from the base shaft to the follower shaft.
-
 ## Libraries
 
 Simscape / Driveline / Transmissions

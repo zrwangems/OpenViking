@@ -14,6 +14,17 @@ language: en
 # Task Trigger Merge
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input trigger scalar
+  direction: input
+  data_types: rteEvent
+- name: Port_1
+  summary: Output trigger scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Input
 
@@ -34,14 +45,18 @@ This port sends a task signal that triggers the Task Manager
 block to execute the associated task.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input task triggers
+  summary: Number of triggers to merge 2 (default) | positive integer
+  group: ''
+```
 
 ### **Number of input task triggers** — Number of triggers to merge 2 (default) | positive integer
 
 Number of task triggers to merge into one output trigger, specified as a positive
 integer.
-
 ## Libraries
 
 SoC Blockset / Processor Task Execution

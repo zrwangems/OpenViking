@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # SPICE-Imported MOSFET
 
 ## 端口
+```yaml
+ports:
+- name: g
+  summary: 栅极端子电气端口
+  direction: conserving
+- name: d
+  summary: 漏极端子电气端口
+  direction: conserving
+- name: tj
+  summary: 结温电气端口
+  direction: conserving
+- name: tc
+  summary: 壳温电气端口
+  direction: conserving
+- name: s
+  summary: 源极端子电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -45,8 +63,16 @@ chinese_source: worker-translation
 ### **s** — 源极端子电气端口
 
 与所选预参数化 MOSFET 的源极端子相关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Series
+  summary: MOSFET 系列 Infineon OptiMOS6 40V（默认）| Infineon OptiMOS5 80V | Infineon OptiMOS4 60V | Infineon OptiMOST 120V
+  group: ''
+- name: Device
+  summary: 器件名称 IPB015N08N5 | IAUC120N04S6N009 | IAUC120N04S6N010 | IAUC120N04S6N013 | IAUC100N04S6N015 | ...
+  group: ''
+```
 
 ### **Series** — MOSFET 系列 `Infineon OptiMOS6 40V`（默认）| `Infineon OptiMOS5 80V` | `Infineon OptiMOS4 60V` | `Infineon OptiMOST 120V`
 
@@ -55,7 +81,6 @@ chinese_source: worker-translation
 ### **Device** — 器件名称 `IPB015N08N5` | `IAUC120N04S6N009` | `IAUC120N04S6N010` | `IAUC120N04S6N013` | `IAUC100N04S6N015` | ...
 
 器件名称，指定为可用参数化表中列出的选项之一。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

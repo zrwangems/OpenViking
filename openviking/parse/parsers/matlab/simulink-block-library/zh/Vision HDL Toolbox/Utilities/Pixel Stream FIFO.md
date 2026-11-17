@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Pixel Stream FIFO
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量 | 矩阵
+  direction: input
+  data_types: uint | int | fixed point | Boolean | single | double
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 输出像素流 标量 | 向量 | 矩阵
+  direction: output
+  data_types: uint | int | fixed point | Boolean | single | double
+- name: ctrl
+  summary: 伴随像素流的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -48,15 +67,19 @@ chinese_source: worker-translation
 Pixel Stream FIFO 模块返回每一行像素时，**ctrl**.`valid` 信号在 **ctrl**.`hStart` 和 **ctrl**.`hEnd` 之间持续为 `true`。该模块在返回修改后的行之前会缓冲整个输入行。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Line buffer size
+  summary: 行存储器缓冲区大小 2048（默认）| 正整数
+  group: ''
+```
 
 ### **Line buffer size** — 行存储器缓冲区大小 `2048`（默认）| 正整数
 
 指定一个 2 的幂，以容纳单条水平线中有效像素的数量。如果您指定的值不是 2 的幂，该模块将使用下一个最大的 2 的幂。
 
 当您使用多像素输入时，此值必须容纳（**Active pixels per line**）/（**Number of pixels**）+ 2。
-
 ## 所属库
 
 Vision HDL Toolbox / Utilities

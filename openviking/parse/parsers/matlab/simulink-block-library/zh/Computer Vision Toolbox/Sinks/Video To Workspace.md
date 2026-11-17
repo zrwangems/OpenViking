@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Video To Workspace
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入视频矩阵 | 3 维数组 | 4 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: 红色通道 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: 绿色通道 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: 蓝色通道 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -74,8 +93,28 @@ chinese_source: worker-translation
 要启用此端口，请将 **Number of inputs** 参数设置为等于 `3` 的值。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Variable name
+  summary: MATLAB 工作区变量名称 vout（默认）| 有效的 MATLAB 变量名称
+  group: ''
+- name: Number of inputs
+  summary: 输入端口数量 1（默认）| 正整数
+  group: ''
+- name: Limit data points to last
+  summary: 要导出的最大帧数 10（默认）| 正整数
+  group: ''
+- name: Decimation
+  summary: 对视频信号进行下采样 1（默认）| 正整数
+  group: ''
+- name: Log fixed-point data as a fi object
+  summary: 创建定点数值对象 off（默认）| on
+  group: ''
+- name: Input port labels
+  summary: 输入端口名称 R|G|B（默认）
+  group: ''
+```
 
 ### **Variable name** — MATLAB 工作区变量名称 `vout`（默认）| 有效的 MATLAB 变量名称
 
@@ -104,7 +143,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请将 **Number of inputs** 参数设置为大于 `1` 的值。
-
 ## 所属库
 
 Computer Vision Toolbox / Sinks

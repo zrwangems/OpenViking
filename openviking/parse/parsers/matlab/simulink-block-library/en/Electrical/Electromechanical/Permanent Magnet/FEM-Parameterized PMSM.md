@@ -14,6 +14,57 @@ language: en
 # FEM-Parameterized PMSM
 
 ## Ports
+```yaml
+ports:
+- name: a
+  summary: A-phase connection electrical
+  direction: conserving
+- name: b
+  summary: B-phase connection electrical
+  direction: conserving
+- name: c
+  summary: C-phase connection electrical
+  direction: conserving
+- name: a1
+  summary: '*a* positive-end connection electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* positive-end connection electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* positive-end connection electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* negative-end connection electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* negative-end connection electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* negative-end connection electrical'
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: HA
+  summary: Winding A thermal port thermal
+  direction: conserving
+- name: HB
+  summary: Winding B thermal port thermal
+  direction: conserving
+- name: HC
+  summary: Winding C thermal port thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -196,8 +247,310 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Flux and torque parameterization methods 2-D partial derivative data | No thermal port (default) | 2-D partial
+    derivative data | Show thermal port | 3-D partial derivative data | No thermal port | 3-D partial derivative data | Show
+    thermal port | 4-D partial derivative data | No thermal port | 4-D partial derivative data | Show thermal port | 3-D flux
+    linkage data | No thermal port | 3-D flux linkage data | Show thermal port
+  group: ''
+- name: Parameterization
+  summary: Parameterization method Assume constant mutual inductance - tabulate with phase current and rotor angle (default)
+    | Assume sinusoidal back emf - tabulate with d- and q-axis currents
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Winding type
+  summary: Stator windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Current vector, i
+  summary: Vector of currents [-2, 0, 2] A (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Rotor angle vector, theta
+  summary: Vector of rotor angles [0, 20, 40, 60] deg (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Flux linkage partial derivative wrt current, dPhi(i,theta)/di
+  summary: Flux linkage partial derivative with respect to current 0.0002*ones(3,4) Wb/A (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Flux linkage partial derivative wrt angle, dPhi(i,theta)/dtheta
+  summary: Flux linkage partial derivative with respect to angle [0, -0.16, 0.16, 0; 0, -0.16, 0.16, 0; 0, -0.16, 0.16, 0]
+    Wb/rad (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Direct axis current vector, id
+  summary: Direct axis current vector [-200, 0, 200] A (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Quadrature axis current vector, iq
+  summary: Quadrature axis current vector [-200, 0, 200] A (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld matrix 0.0002*ones(3,3) H (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq matrix 0.0002*ones(3,3) H (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Permanent magnet flux linkage, PM(id,iq)
+  summary: Permanent magnet flux linkage 0.1*ones(3,3) Wb (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Number of pole pairs
+  summary: Number of pole pairs 6 (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Calculate torque matrix?
+  summary: Electromagnetic torque data specification Yes (default) | No — specify directly
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Torque matrix, T(i,theta)
+  summary: Torque matrix zeros(3, 3, 3, 4) N*m (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Interpolation method
+  summary: Interpolation method Linear Smooth (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Stator resistance per phase, Rs
+  summary: Stator resistance per phase 0.013 Ohm (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Stator mutual inductance, Ms
+  summary: Stator mutual inductance 0.00002 H (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Stator zero-sequence inductance, L0
+  summary: Stator zero-sequence inductance 0.00016 H (default)
+  group: Electrical (2-D Partial Derivative Data Parameterization)
+- name: Winding type
+  summary: Stator windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: Direct-axis current vector, iD
+  summary: Direct-axis current vector [-200, 0, 200] A (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: Quadrature-axis current vector, iQ
+  summary: Quadrature-axis current vector [-200, 0, 200] A (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: Rotor angle vector, theta
+  summary: Rotor angle vector [0, 20, 40, 60] deg (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iA, dPhiA(id,iq,theta)/diA
+  summary: A-phase flux linkage partial derivative with respect to iA zeros(3, 3, 4) Wb/A (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iB, dPhiA(id,iq,theta)/diB
+  summary: A-phase flux linkage partial derivative with respect to iB zeros(3, 3, 4) Wb/A (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iC, dPhiA(id,iq,theta)/diC
+  summary: A-phase flux linkage partial derivative with respect to iC zeros(3, 3, 4) Wb/A (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt angle, dPhiA(id,iq,theta)/dtheta
+  summary: A-phase flux linkage partial derivative with respect to angle zeros(3, 3, 4) Wb/rad (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: Torque matrix, T(id,iq,theta)
+  summary: Torque matrix zeros(3, 3, 4) N*m (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: Stator resistance per phase, Rs
+  summary: Stator resistance per phase 0.013 Ohm (default)
+  group: Electrical (3-D Partial Derivative Data Parameterization)
+- name: Winding type
+  summary: Stator windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase current vector, iA
+  summary: A-phase current vector [-200, 0, 200] A (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: B-phase current vector, iB
+  summary: B-phase current vector [-200, 0, 200] A (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: C-phase current vector, iC
+  summary: C-phase current vector [-200, 0, 200] A (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Rotor angle vector, theta
+  summary: Rotor angle vector [0, 20, 40, 60] deg (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iA, dPhiA(iA,iB,iC,theta)/diA
+  summary: A-phase flux linkage partial derivative with respect to iA zeros(3, 3, 3, 4) Wb/A (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iB, dPhiA(iA,iB,iC,theta)/diB
+  summary: A-phase flux linkage partial derivative with respect to iB zeros(3, 3, 3, 4) Wb/A (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iC, dPhiA(iA,iB,iC,theta)/diC
+  summary: A-phase flux linkage partial derivative with respect to iC zeros(3, 3, 3, 4) Wb/A (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt angle, dPhiAiA,iB,iC,theta)/dtheta
+  summary: A-phase flux linkage partial derivative with respect to angle zeros(3, 3, 3, 4) Wb/rad (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Torque matrix, T(iA,iB,iC,theta)
+  summary: Torque matrix zeros(3, 3, 3, 4) N*m (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Stator resistance per phase, Rs
+  summary: Stator resistance per phase 0.013 Ohm (default)
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Flux linkage data format
+  summary: Flux linkage data format D and Q axes flux linkages as a function of D-axis current (iD), Q-axis current (iQ),
+    and rotor angle (theta) (default) | D and Q axes flux linkages as a function of peak current magnitude (I), current advance
+    angle (B), and rotor angle (theta) | A-phase flux linkage as a function of D-axis current (iD), Q-axis current (iQ), and
+    rotor angle (theta) | A-phase flux linkage as a function of peak current magnitude (I), current advance angle (B), and
+    rotor angle (theta)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Winding type
+  summary: Stator windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Expose neutral port
+  summary: Neutral port visibility No (default) | Yes
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Number of pole pairs
+  summary: Number of pole pairs 4 (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Park's convention for tabulated data
+  summary: Park's convention for tabulated data Q leads D, rotor angle measured from A-phase to D-axis (default) | Q leads
+    D, rotor angle measured from A-phase to Q-axis | D leads Q, rotor angle measured from A-phase to D-axis | D leads Q, rotor
+    angle measured from A-phase to Q-axis
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Direct-axis current vector, iD
+  summary: Direct-axis current vector [-200, 0, 200] A (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Quadrature-axis current vector, iQ
+  summary: Quadrature-axis current vector [-200, 0, 200] A (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Peak current magnitude vector, I
+  summary: Peak current magnitude vector [0, 100, 200] A (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Current advance angle, B
+  summary: Current advance angle [-180, -90, 0, 90, 180] deg (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Rotor angle vector, theta
+  summary: Rotor angle vector [0, 5, 10, 15, 20, 25, 30] deg (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: D-axis flux linkage, Fd(iD,iQ,theta)
+  summary: D-axis flux linkage zeros(3, 3, 7) Wb (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Q-axis flux linkage, Fq(iD,iQ,theta)
+  summary: Q-axis flux linkage zeros(3, 3, 7) Wb (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: D-axis flux linkage, Fd(I,B,theta)
+  summary: D-axis flux linkage zeros(3, 5, 7) Wb (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Q-axis flux linkage, Fq(I,B,theta)
+  summary: Q-axis flux linkage zeros(3, 5, 7) Wb (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: A-phase flux linkage, F(iD,iQ,theta)
+  summary: A-phase flux linkage zeros(3, 3, 7) Wb (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: A-phase flux linkage, F(I,B,theta)
+  summary: A-phase flux linkage zeros(3, 5, 7) Wb (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Torque matrix, T(iD,iQ,theta)
+  summary: Torque matrix zeros(3, 3, 7) N*m (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Torque matrix, T(I,B,theta)
+  summary: Torque matrix zeros(3, 5, 7) N*m (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Smooth
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Stator resistance per phase, Rs
+  summary: Stator resistance per phase 0.013 Ohm (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Stator zero-sequence inductance, L0
+  summary: Stator zero-sequence inductance 0.00016 H (default)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Model
+  summary: Iron losses modeling option None (default) | Specify open and short circuit loss data (permanent magnet motors
+    only) | Specify tabulated Steinmetz coefficients | Tabulate with current and speed
+  group: Iron Losses
+- name: Open-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: Open-circuit iron losses [0.0, 0.0, 0.0] W (default)
+  group: Iron Losses
+- name: Short-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: Short-circuit iron losses [0.0, 0.0, 0.0] W (default)
+  group: Iron Losses
+- name: Electrical frequency at which losses determined
+  summary: Electrical frequency at which losses determined 60 Hz (default)
+  group: Iron Losses
+- name: Short-circuit RMS current for short-circuit iron losses
+  summary: Short-circuit RMS current for short-circuit iron losses 95 A (default)
+  group: Iron Losses
+- name: Rotor hysteresis loss coefficient, k_hr(id,iq)
+  summary: Rotor hysteresis loss coefficient zeros(3, 3) W/Hz (default)
+  group: Iron Losses
+- name: Rotor eddy current loss coefficient, k_Jr(id,iq)
+  summary: Rotor eddy current loss coefficient zeros(3, 3) W/Hz^2 (default)
+  group: Iron Losses
+- name: Rotor excess current loss coefficient, k_er(id,iq)
+  summary: Rotor excess current loss coefficient zeros(3, 3) W/Hz^1.50000 (default)
+  group: Iron Losses
+- name: Stator hysteresis loss coefficient, k_hs(id,iq)
+  summary: Stator hysteresis loss coefficient zeros(3, 3) W/Hz (default)
+  group: Iron Losses
+- name: Stator eddy current loss coefficient, k_Js(id,iq)
+  summary: Stator eddy current loss coefficient zeros(3, 3) W/Hz^2 (default)
+  group: Iron Losses
+- name: Stator excess current loss coefficient, k_es(id,iq)
+  summary: Stator excess current loss coefficient zeros(3, 3) W/Hz^1.50000 (default)
+  group: Iron Losses
+- name: Rotor hysteresis loss coefficient, k_hr(I,B)
+  summary: Rotor hysteresis loss coefficient zeros(3, 5) W/Hz (default)
+  group: Iron Losses
+- name: Rotor eddy current loss coefficient, k_Jr(I,B)
+  summary: Rotor eddy current loss coefficient zeros(3, 5) W/Hz^2 (default)
+  group: Iron Losses
+- name: Rotor excess current loss coefficient, k_er(I,B)
+  summary: Rotor excess current loss coefficient zeros(3, 5) W/Hz^1.50000 (default)
+  group: Iron Losses
+- name: Stator hysteresis loss coefficient, k_hs(I,B)
+  summary: Stator hysteresis loss coefficient zeros(3, 5) W/Hz (default)
+  group: Iron Losses
+- name: Stator eddy current loss coefficient, k_Js(I,B)
+  summary: Stator eddy current loss coefficient zeros(3, 5) W/Hz^2 (default)
+  group: Iron Losses
+- name: Stator excess current loss coefficient, k_es(I,B)
+  summary: Stator excess current loss coefficient zeros(3, 5) W/Hz^1.50000 (default)
+  group: Iron Losses
+- name: Rotor speed vector, w
+  summary: Rotor speed [1000, 2000] rpm (default)
+  group: Iron Losses
+- name: Rotor iron loss table, Pr(id,iq,w)
+  summary: Rotor iron loss table zeros(3, 3, 2) W (default)
+  group: Iron Losses
+- name: Stator iron loss table, Ps(id,iq,w)
+  summary: Stator iron loss table zeros(3, 3, 2) W (default)
+  group: Iron Losses
+- name: Rotor iron loss table, Pr(I,B,w)
+  summary: Rotor iron loss table zeros(3, 5, 2) W (default)
+  group: Iron Losses
+- name: Stator iron loss table, Ps(I,B,w)
+  summary: Stator iron loss table zeros(3, 5, 2) W (default)
+  group: Iron Losses
+- name: Rotor inertia
+  summary: Rotor inertia 0.01 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 0 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Measurement temperature
+  summary: Measurement temperature 298.15 K (default)
+  group: Temperature Dependence
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Permanent magnet flux temperature coefficient
+  summary: Permanent magnet flux temperature coefficient -0.001 (default)
+  group: Temperature Dependence
+- name: Thermal mass for each stator winding
+  summary: Thermal mass for each stator winding 100 J/K (default)
+  group: Thermal Port
+- name: Initial stator winding temperatures
+  summary: Initial stator winding temperatures [298.15, 298.15, 298.15] K (default)
+  group: Thermal Port
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default)
+  group: Thermal Port
+- name: Rotor initial temperature
+  summary: Rotor initial temperature 298.15 K (default)
+  group: Thermal Port
+- name: Percentage of main flux path iron losses associated with the rotor
+  summary: Percentage of main flux path iron losses associated with the rotor 90 (default)
+  group: Thermal Port
+- name: Percentage of cross-tooth flux path iron losses associated with the rotor
+  summary: Percentage of cross-tooth flux path iron losses associated with the rotor 30 (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Flux and torque parameterization methods `2-D partial derivative data | No thermal port` (default) | `2-D partial derivative data | Show thermal port` | `3-D partial derivative data | No thermal port` | `3-D partial derivative data | Show thermal port` | `4-D partial derivative data | No thermal port` | `4-D partial derivative data | Show thermal port` | `3-D flux linkage data | No thermal port` | `3-D flux linkage data | Show thermal port`
 
@@ -1504,7 +1857,6 @@ iron loss heating is attributed to the rotor thermal port
 **HR**, and how much is attributed to the three
 winding thermal ports **HA**, **HB**,
 and **HC**.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

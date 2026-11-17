@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Stop Simulation
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double | Boolean
+```
 
 ### 输入
 
@@ -23,11 +30,12 @@ chinese_source: worker-translation
 当输入信号非零时停止仿真。此端口接受 `double` 或 `Boolean` 数据类型的实数信号。
 
 **数据类型：** `double` | `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / Sinks HDL Coder / Sinks

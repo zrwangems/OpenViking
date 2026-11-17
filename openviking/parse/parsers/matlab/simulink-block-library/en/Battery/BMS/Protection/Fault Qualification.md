@@ -14,6 +14,15 @@ language: en
 # Fault Qualification
 
 ## Ports
+```yaml
+ports:
+- name: Symptom
+  summary: Symptom flag 0 | 1 | vector of 0 or 1 values
+  direction: input
+- name: Error
+  summary: Error flag 0 | 1 | vector of 0 or 1 values
+  direction: output
+```
 
 ### Input
 
@@ -28,8 +37,19 @@ Indication that the battery has a symptom to qualify. If this input is equal to
 Indication that the battery has an error. If this output is equal to
 `1`, the battery has an error. The size of this
 port is equal to the size of the **Symptom** input port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Qualification time (s)
+  summary: Error qualification time 2 (default) | positive scalar
+  group: ''
+- name: Disqualification time (s)
+  summary: Error disqualification time 4 (default) | nonnegative scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive integer
+  group: ''
+```
 
 ### **Qualification time (s)** — Error qualification time `2` (default) | positive scalar
 
@@ -58,7 +78,6 @@ you to switch between continuous operation and discrete operation, promote
 the sample time parameter. Promoting the sample time parameter ensures
 correct switching between the continuous and discrete implementations of the
 block. For more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Battery / BMS / Protection

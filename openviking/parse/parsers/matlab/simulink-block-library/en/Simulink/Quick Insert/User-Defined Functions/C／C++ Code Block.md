@@ -14,6 +14,19 @@ language: en
 # C Caller
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input port scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | string
+- name: Port_1
+  summary: Output port scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | string
+```
 
 ### Input
 
@@ -49,8 +62,31 @@ rename the label to an input port, the C Caller block changes the name
 of the port.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `string`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function name
+  summary: Name of function character vector | string scalar
+  group: ''
+  block_parameter: FunctionName
+  type: character vector or string scalar
+- name: Port specification
+  summary: Port properties table
+  group: ''
+  type: FunctionPortSpecification object
+  block_parameter: FunctionPortSpecification
+- name: Available Functions
+  summary: List of available functions cell array
+  group: ''
+  block_parameter: AvailableFunctions
+  type: cell array
+- name: Sample time
+  summary: Sample period -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  default: '"-1"'
+```
 
 ### **Function name** — Name of function character vector | string scalar
 
@@ -159,7 +195,6 @@ and Specify Sample Time.
 | **Block Parameter**: `SampleTime` |
 | **Type**: string scalar or character vector |
 | **Default**: `"-1"` |
-
 ## Libraries
 
 Simulink / User-Defined Functions

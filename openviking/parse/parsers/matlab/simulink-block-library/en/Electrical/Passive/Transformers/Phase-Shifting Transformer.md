@@ -14,6 +14,36 @@ language: en
 # Phase-Shifting Transformer
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Primary winding terminal electrical
+  direction: conserving
+- name: ~2
+  summary: First secondary winding terminal electrical
+  direction: conserving
+- name: ~3
+  summary: Second secondary winding terminal electrical
+  direction: conserving
+- name: ~4
+  summary: Third secondary winding terminal electrical
+  direction: conserving
+- name: ~5
+  summary: Fourth secondary winding terminal electrical
+  direction: conserving
+- name: ~6
+  summary: Fifth secondary winding terminal electrical
+  direction: conserving
+- name: ~7
+  summary: Sixth secondary winding terminal electrical
+  direction: conserving
+- name: ~8
+  summary: Seventh secondary winding terminal electrical
+  direction: conserving
+- name: ~9
+  summary: Eighth secondary winding terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -91,8 +121,40 @@ Electrical conserving port associated with the eighth secondary winding.
 
 To enable this port, set **Number of pulses** parameter to
 `48-pulse`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pulses
+  summary: Number of pulses 12-pulse (default) | 18-pulse | 24-pulse | 48-pulse
+  group: ''
+- name: Rated apparent power
+  summary: Apparent power at rated capacity 100e6 A*V (default) | positive scalar
+  group: ''
+- name: Rated electrical frequency
+  summary: Connected network electrical frequency 60 Hz (default) | positive scalar
+  group: ''
+- name: Primary rated voltage
+  summary: RMS line voltage applied to the primary winding 4160 V (default) | positive scalar
+  group: ''
+- name: Primary winding resistance (pu)
+  summary: Power loss in primary winding 0.01 (default) | positive scalar
+  group: ''
+- name: Primary leakage reactance (pu)
+  summary: Magnetic flux loss in primary winding 0.05 (default) | positive scalar
+  group: ''
+- name: Secondary winding resistance (pu)
+  summary: Power loss in secondary windings 0.01 (default) | positive scalar
+  group: ''
+- name: Secondary leakage reactance (pu)
+  summary: Magnetic flux loss in secondary windings 0.05 (default) | positive scalar
+  group: ''
+- name: Magnetizing resistance (pu)
+  summary: Losses in transformer core 500 (default) | positive scalar
+  group: ''
+- name: Magnetizing reactance (pu)
+  summary: Magnetic effects of transformer core 500 (default) | positive scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -153,7 +215,6 @@ Per-unit losses in the transformer core.
 ### **Magnetizing reactance (pu)** — Magnetic effects of transformer core `500` (default) | positive scalar
 
 Per-unit magnetic effects of the transformer core.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

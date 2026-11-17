@@ -14,6 +14,18 @@ language: en
 # 2-Way Directional Valve (G)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Valve control signal, unitless physical signal
+  direction: input
+- name: A
+  summary: Valve opening gas
+  direction: conserving
+- name: B
+  summary: Valve opening gas
+  direction: conserving
+```
 
 ### Input
 
@@ -36,8 +48,85 @@ enters or exits the valve.
 
 Gas conserving port associated with the opening through which the flow
 enters or exits the valve.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: Parameterization used to specify flow characteristics of orifice Cv flow coefficient (default) | Kv flow coefficient
+    | Sonic conductance | Orifice area
+  group: ''
+- name: Opening characteristic
+  summary: Method to calculate the opening characteristics of the valve Linear (default) | Tabulated
+  group: ''
+- name: Opening fraction vector
+  summary: 'Control signal values at which to specify tabulated parameter data 0 : 0.2 : 1 (default) | vector of positive
+    numbers'
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: Cv coefficient that corresponds to maximally open component 4 (default) | positive scalar
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: Ratio of pressure differentials 0.7 (default) | positive scalar
+  group: ''
+- name: Leakage flow fraction
+  summary: Ratio of flow rates 1e-6 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Cv flow coefficient vector
+  summary: Cv coefficients corresponding to values in opening fraction vector [1e-06, .8, 1.6, 2.4, 3.2, 4] (default) | vector
+    of positive numbers
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: Kv coefficient that corresponds to maximally open component 3.6 (default) | positive scalar
+  group: ''
+- name: Kv flow coefficient vector
+  summary: Kv coefficients corresponding to values in opening fraction vector [1e-06, .72, 1.44, 2.16, 2.88, 3.6] (default)
+    | vector of positive numbers
+  group: ''
+- name: Maximum sonic conductance
+  summary: Sonic conductance corresponding to maximally open component 12 l/(bar*s) (default) | positive scalar
+  group: ''
+- name: Critical pressure ratio
+  summary: Ratio of downstream and upstream pressures at which the flow first chokes 0.3 (default) | positive scalar
+  group: ''
+- name: Subsonic index
+  summary: Exponent used to characterize mass flow in subsonic flow regime 0.5 (default) | positive scalar
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 reference temperature 293.15 K (default) | scalar
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 reference density 1.185 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Sonic conductance vector
+  summary: Sonic conductances corresponding to values in opening fraction vector [1e-05, 2.4, 4.8, 7.2, 9.6, 12] l/(bar*s)
+    (default) | vector of positive values
+  group: ''
+- name: Critical pressure ratio vector
+  summary: Critical pressure ratios corresponding to values in opening fraction vector 0.3 * ones(1,6) (default) | vector
+    of positive numbers
+  group: ''
+- name: Maximum orifice area
+  summary: Flow area corresponding to maximally open component 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar in the range of [0,1]
+  group: ''
+- name: Orifice area vector
+  summary: Vector of orifice opening area values [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2 (default) | vector
+  group: ''
+- name: Valve opening fraction offset
+  summary: Opening fraction of the valve at a zero displacement signal 0 (default) | unitless scalar
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at gas ports 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Valve parameterization** — Parameterization used to specify flow characteristics of orifice `Cv flow coefficient` (default) | `Kv flow coefficient` | `Sonic conductance` | `Orifice area`
 
@@ -335,7 +424,6 @@ pressure. Typical values range from `0.995` to
 Area normal to the flow path at each port. The ports are equal in size.
 The value of this parameter should match the inlet area of the components to
 which the resistive element connects.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Valves & Orifices / Directional Control Valves

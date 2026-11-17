@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # To Multimedia File
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像帧矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: 图像矩阵的红色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: 图像矩阵的绿色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: 图像矩阵的蓝色分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Y
+  summary: 图像矩阵的亮度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cb
+  summary: 图像矩阵的蓝色差色度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cr
+  summary: 图像矩阵的红色差色度分量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Audio
+  summary: 输入音频信号向量 | 矩阵
+  direction: input
+  data_types: single | double | int16 | int32 | uint8
+```
 
 ### 输入
 
@@ -193,8 +228,41 @@ chinese_source: worker-translation
   only`。
 
 **数据类型：** `single` | `double` | `int16` | `int32` | `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 多媒体文件名 output.avi（默认）| 字符向量
+  group: ''
+- name: File type
+  summary: 多媒体文件类型 AVI（默认）| WAV | MJ2000 | WMA | WMV | MPEG4 | FLAC | OGG
+  group: ''
+- name: Write
+  summary: 媒体类型 Video only（默认）| Audio only | Video and audio
+  group: ''
+- name: Video compressor
+  summary: 视频压缩算法 None (uncompressed)（默认）| DV Video Encoder | MJPEG Compressor | Lossy | Lossless
+  group: ''
+- name: Compression Factor (>1)
+  summary: 压缩因子 10（默认）| 大于 1 的整数
+  group: ''
+- name: Video Quality (0-100)
+  summary: 视频质量 75（默认）| [0, 100] 范围内的整数
+  group: ''
+- name: File color format
+  summary: 输出视频的颜色格式 RGB（默认）| YCbCr 4:2:2
+  group: ''
+- name: Image signal
+  summary: RGB 视频的输入端口配置 One multidimensional signal（默认）| Separate color signals
+  group: ''
+- name: Audio compressor
+  summary: 音频压缩算法 None (uncompressed)（默认）| CCITT A-Law | CCITT u-Law | GSM 6.10 | IMA ADPCM | Microsoft ADPCM | PCM
+  group: ''
+- name: Audio data type
+  summary: 音频数据类型 Determine from input data type（默认）| 8-bit integer | 16-bit integer | 24-bit integer | 32-bit integer | 32-bit
+    float | 64-bit float
+  group: ''
+```
 
 ### **File name** — 多媒体文件名 `output.avi`（默认）| 字符向量
 
@@ -352,7 +420,6 @@ ADPCM`、`Microsoft ADPCM` 和
   `8-bit integer`、`16-bit
   integer` 和 `24-bit integer` 数据
   类型。
-
 ## 所属库
 
 Computer Vision Toolbox / Sinks

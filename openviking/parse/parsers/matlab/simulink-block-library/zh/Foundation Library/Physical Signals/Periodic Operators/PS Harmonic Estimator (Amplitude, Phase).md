@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # PS Harmonic Estimator (Amplitude, Phase)
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 周期信号，无类型物理信号
+  direction: input
+- name: A
+  summary: 谐波信号的幅值，无类型物理信号
+  direction: output
+- name: Phi
+  summary: 谐波信号的相位，rad 物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -32,8 +44,19 @@ chinese_source: worker-translation
 ### **Phi** — 谐波信号的相位，rad 物理信号
 
 对应于谐波相位的输出物理信号。尽管物理输出端口是无类型的，但信号单位由模块方程决定。当将 PS-Simulink Converter 模块连接到此端口时，将其**输出信号单位**参数设置为 `1`，或设置为与角度单位 commensurate 的其他值。有关详细信息，请参阅角度单位。
-
 ## 参数
+```yaml
+parameters:
+- name: 基频
+  summary: 周期信号频率 60 Hz（默认值）
+  group: ''
+- name: 谐波次数
+  summary: 谐波次数 1（默认值）
+  group: ''
+- name: 相位检测的最小幅值
+  summary: 测量相位的最小信号幅值 0.001 1（默认值）
+  group: ''
+```
 
 ### **基频** — 周期信号频率 `60 Hz`（默认值）
 
@@ -46,7 +69,6 @@ chinese_source: worker-translation
 ### **相位检测的最小幅值** — 测量相位的最小信号幅值 `0.001 1`（默认值）
 
 测量谐波相位所需的最小幅值。参数单位必须与输入信号的单位 commensurate。如果谐波幅值小于此值，则端口 **Phi** 的输出为 0。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Periodic Operators

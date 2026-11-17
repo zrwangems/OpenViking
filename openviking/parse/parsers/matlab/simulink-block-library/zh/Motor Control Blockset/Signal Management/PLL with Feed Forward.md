@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # PLL with Feed Forward
 
 ## 端口
+```yaml
+ports:
+- name: α
+  summary: '*α* 轴信号 标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: β
+  summary: '*β* 轴信号 标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Rst
+  summary: 外部复位脉冲 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ParameterBus
+  summary: PLL with Feed Forward 的计算参数 总线
+  direction: input
+  data_types: single | double
+- name: θ
+  summary: 角位置 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Sin θ
+  summary: 角位置的正弦 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Cos θ
+  summary: 角位置的余弦 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: ω
+  summary: 角频率 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -90,8 +125,55 @@ PLL with Feed Forward 模块的计算参数。该输入端口接受以下参数�
 正交输入信号的角频率（以度/秒、弧度/秒或赫兹表示）。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable input normalization
+  summary: 使能模块对输入进行归一化 on（默认）| off
+  group: ''
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: 启用输入端口以接受计算参数的选项 off（默认）| on
+  group: ''
+- name: Position output
+  summary: 位置输出类型 Angular position（默认）| Sine and Cosine Position
+  group: ''
+- name: Discrete step size (s)
+  summary: 模块再次执行前的采样时间 50e-6（默认）| 标量
+  group: ''
+- name: Frequency ratio
+  summary: 输出信号与输入信号的频率比 1（默认）| 标量
+  group: PLL 参数
+- name: Maximum application frequency (Hz)
+  summary: 最大适用输入频率 7500（默认）| 标量
+  group: PLL 参数
+- name: 输出滤波器的截止频率 (Hz)
+  summary: 低通滤波器的截止频率 15（默认）| 标量
+  group: PLL 参数
+- name: 查找表的数据点数
+  summary: 查找表数组的大小 1024（默认）| 标量
+  group: PLL 参数
+- name: 比例 (P)
+  summary: 比例控制器增益 942.4778（默认）| 标量
+  group: PLL 参数
+- name: 积分 (I)
+  summary: 积分控制器增益 222066.099（默认）| 标量
+  group: PLL 参数
+- name: 位置单位
+  summary: 位置输出的单位 Degrees（默认）| Radians | Per-unit
+  group: 数据类型
+- name: 位置数据类型
+  summary: 位置输出的数据类型 single（默认）| double | fixed point
+  group: 数据类型
+- name: 频率单位
+  summary: 角频率输出的单位 Degrees/sec（默认）| Radians/sec | Hz
+  group: 数据类型
+- name: 频率数据类型
+  summary: 角频率输出的数据类型 single（默认）| double | fixed point
+  group: 数据类型
+- name: 表数据类型
+  summary: 正弦-余弦查找表的数据类型 single（默认）| double | fixed point
+  group: 数据类型
+```
 
 ### **Enable input normalization** — 使能模块对输入进行归一化 `on`（默认）| `off`
 
@@ -181,7 +263,6 @@ PLL with Feed Forward 模块的计算参数。该输入端口接受以下参数�
 #### 依赖关系
 
 要启用此参数，请将 **Position output** 设置为 `Angular position`。
-
 ## 所属库
 
 Motor Control Blockset / Signal Management

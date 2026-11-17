@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Send Action Goal
 
 ## 端口
+```yaml
+ports:
+- name: Goal
+  summary: ROS 2 动作目标消息输入非虚拟总线
+  direction: input
+  data_types: bus
+- name: Enable
+  summary: 用于在没有目标运行时发送动作目标的布尔值 true | false
+  direction: input
+  data_types: Boolean
+- name: UUID
+  summary: 专用于任何目标消息的唯一 ID 非虚拟总线
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: 发送动作目标请求的错误条件 整数
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -53,8 +72,49 @@ ROS 2 动作目标消息输入，指定为非虚拟总线。
 当选中 **Show ErrorCode output port** 时，此输出启用。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Source
+  summary: 用于指定动作名称的源 Select from ROS network | Specify your own
+  group: 主要
+- name: Name
+  summary: ROS 2 动作名称 字符向量
+  group: 主要
+- name: Type
+  summary: ROS 2 动作类型 字符向量
+  group: 主要
+- name: Paired Monitor Action Goal Block
+  summary: 配对 Monitor Action Goal 模块的路径 模块路径
+  group: 主要
+- name: Show ErrorCode output port
+  summary: 启用错误代码输出端口 off (默认) | on
+  group: 主要
+- name: History
+  summary: 队列中目标请求的存储模式 Keep last（默认）| Keep all
+  group: QoS
+- name: Depth
+  summary: 目标请求队列的大小 1（默认）| non-negative scalar integer
+  group: QoS
+- name: Reliability
+  summary: 目标请求的投递保证 Reliable（默认）| Best effort
+  group: QoS
+- name: Durability
+  summary: 动作目标请求的持久性 Volatile（默认）| Transient local
+  group: QoS
+- name: Deadline
+  summary: 接收目标请求与发送目标结果之间允许的最大时间量 Inf（默认）| 正标量
+  group: QoS
+- name: Lifespan
+  summary: 目标请求被视为有效的时间长度 Inf（默认）| 正标量
+  group: QoS
+- name: Liveliness
+  summary: 动作客户端对动作服务器的活跃性检查 automatic（默认）
+  group: QoS
+- name: Lease Duration
+  summary: 动作客户端必须声明活跃性之前的最大时间量 Inf（默认）| 正标量
+  group: QoS
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -132,7 +192,6 @@ Liveliness 设置为 `automatic` 表示在动作服务器向动作客户端发�
 **注意**
 
 服务质量 (QoS) 设置必须在动作服务器和动作客户端之间兼容，才能建立连接。
-
 ## 所属库
 
 ROS Toolbox / ROS 2

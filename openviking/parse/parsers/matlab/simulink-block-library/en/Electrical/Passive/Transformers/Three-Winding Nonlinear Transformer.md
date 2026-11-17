@@ -14,6 +14,27 @@ language: en
 # Three-Winding Nonlinear Transformer
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Line 1 positive terminal electrical
+  direction: conserving
+- name: 1-
+  summary: Line 1 negative terminal electrical
+  direction: conserving
+- name: 2+
+  summary: Line 2 positive terminal electrical
+  direction: conserving
+- name: 2-
+  summary: Line 2 negative terminal electrical
+  direction: conserving
+- name: 3+
+  summary: Line 3 positive terminal electrical
+  direction: conserving
+- name: 3-
+  summary: Line 3 negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,8 +67,126 @@ line 3.
 
 Electrical conserving port associated with the negative terminal of
 line 3.
-
 ## Parameters
+```yaml
+parameters:
+- name: Primary number of turns
+  summary: Winding 1 primary turns number 100 (default) | positive scalar integer
+  group: Main
+- name: First secondary number of turns
+  summary: Winding 2 turns number 200 (default) | positive scalar integer
+  group: Main
+- name: Second secondary number of turns
+  summary: Winding 3 turns number 200 (default) | positive scalar integer
+  group: Main
+- name: Primary winding resistance
+  summary: Winding 1 resistance 0.01 Ohm (default) | nonnegative scalar
+  group: Main
+- name: Primary leakage inductance
+  summary: Winding 1 leakage inductance 0.0001 H (default) | nonnegative scalar
+  group: Main
+- name: First secondary winding resistance
+  summary: Winding 2 resistance 0.01 Ohm (default) | nonnegative scalar
+  group: Main
+- name: First secondary leakage inductance
+  summary: Winding 2 leakage inductance 0.0001 H (default) | nonnegative scalar
+  group: Main
+- name: Second secondary winding resistance
+  summary: Winding 3 resistance 0.01 Ohm (default) | nonnegative scalar
+  group: Main
+- name: Second secondary leakage inductance
+  summary: Winding 3 leakage inductance 0.0001 H (default) | nonnegative scalar
+  group: Main
+- name: Magnetization resistance
+  summary: Magnetization resistance 100 Ohm (default)
+  group: Magnetization
+- name: Magnetization inductance parameterized by
+  summary: Nonlinear magnetization inductance parameterization Single saturation point (default) | Single inductance (linear)
+    | Magnetic flux versus current characteristic | Magnetic flux density versus field strength characteristic | Magnetic
+    flux density versus field strength characteristic with hysteresis
+  group: Magnetization
+- name: Unsaturated inductance
+  summary: Unsaturated inductance 4e-2 H (default)
+  group: Magnetization
+- name: Saturated inductance
+  summary: Saturated inductance 1e-2 H (default)
+  group: Magnetization
+- name: Saturation magnetic flux
+  summary: Saturation magnetic flux 1.6e-04 Wb (default)
+  group: Magnetization
+- name: Current vector, i
+  summary: Current data [0, .4, .8, 1.2, 1.6, 2] A (default)
+  group: Magnetization
+- name: Magnetic flux vector, phi
+  summary: Magnetic flux vector [0, .161, .25, .284, .295, .299] .* 1e-3 Wb (default)
+  group: Magnetization
+- name: Magnetic field strength vector, H
+  summary: Magnetic field strength vector [0, 200, 400, 600, 800, 1000] A/m (default) | vector
+  group: Magnetization
+- name: Magnetic flux density vector, B
+  summary: Magnetic flux density vector [0, .81, 1.25, 1.42, 1.48, 1.49] T (default) | vector
+  group: Magnetization
+- name: Effective length
+  summary: Effective core length 0.2 m (default) | positive finite scalar
+  group: Magnetization
+- name: Effective cross-sectional area
+  summary: Effective core cross-sectional area 2e-4 m^2 (default) | positive finite scalar
+  group: Magnetization
+- name: Anhysteretic B-H gradient when H is zero
+  summary: Gradient of anhysteretic B-H curve around zero field strength 0.005 m*T/A (default) | scalar
+  group: Magnetization
+- name: Flux density point on anhysteretic B-H curve
+  summary: Flux density point on anhysteretic B-H curve 1.49 T (default) | scalar
+  group: Magnetization
+- name: Corresponding field strength
+  summary: Field strength at measurement point 1000 A/m (default) | scalar
+  group: Magnetization
+- name: Coefficient for reversible magnetization, c
+  summary: Coefficient for reversible magnetization 0.1 (default) | scalar in the range [0,1]
+  group: Magnetization
+- name: Bulk coupling coefficient, K
+  summary: Bulk coupling coefficient 200 A/m (default) | finite positive scalar
+  group: Magnetization
+- name: Inter-domain coupling factor, alpha
+  summary: Inter-domain coupling factor 1e-4 (default) | scalar
+  group: Magnetization
+- name: Interpolation option
+  summary: Interpolation option Linear (default) | Smooth
+  group: Magnetization
+- name: Primary leakage inductance initial current
+  summary: Primary leakage inductance initial current 0 A (default)
+  group: Initial Conditions
+- name: First secondary leakage inductance initial current
+  summary: First secondary leakage inductance initial current 0 A (default)
+  group: Initial Conditions
+- name: Second secondary leakage inductance initial current
+  summary: Second secondary leakage inductance initial current 0 A (default)
+  group: Initial Conditions
+- name: Specify magnetization inductance initial state by
+  summary: Initial state specification option Current (default) | Magnetic flux
+  group: Initial Conditions
+- name: Magnetization inductance initial current
+  summary: Magnetization inductance initial current 0 A (default)
+  group: Initial Conditions
+- name: Magnetization inductance initial magnetic flux
+  summary: Magnetization inductance initial magnetic flux 0 Wb (default)
+  group: Initial Conditions
+- name: Magnetization inductance initial magnetic flux density
+  summary: Magnetization inductance initial magnetic flux density 0 T (default)
+  group: Initial Conditions
+- name: Magnetization inductance initial field strength
+  summary: Magnetization inductance initial field strength 0 A/m (default)
+  group: Initial Conditions
+- name: Primary leakage inductance parasitic parallel conductance
+  summary: Winding 1 leakage inductance parasitic parallel conductance 1e-9 1/Ohm (default) | nonneagative scalar
+  group: Parasitics
+- name: First secondary leakage inductance parasitic parallel conductance
+  summary: Winding 2 leakage inductance parasitic parallel conductance 1e-9 1/Ohm (default) | nonneagative scalar
+  group: Parasitics
+- name: Second secondary leakage inductance parasitic parallel conductance
+  summary: Winding 3 leakage inductance parasitic parallel conductance 1e-9 1/Ohm (default) | nonneagative scalar
+  group: Parasitics
+```
 
 ### Main
 
@@ -448,7 +587,6 @@ need a small parallel conductance.
 Small parasitic effects in parallel to the second secondary leakage inductance
 *L3*. To simulate some circuit topologies, you
 need a small parallel conductance.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

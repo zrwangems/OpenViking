@@ -15,10 +15,45 @@ chinese_source: worker-translation
 # Input Port
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Treat input Simulink signal as
+  summary: 用于解释输入 Source voltage 的选项（默认）| Incident power wave | 标量
+  group: ''
+- name: Source impedance (ohms)
+  summary: RF 网络的源阻抗 50（默认）| 标量
+  group: ''
+- name: Finite impulse response filter length
+  summary: 基带等效冲激响应的期望长度 128（默认）| 标量
+  group: ''
+- name: Fractional bandwidth of guard bands
+  summary: 建模带宽的比例 0（默认）| 标量
+  group: ''
+- name: Modeling delay (samples)
+  summary: 延迟基带等效模型冲激响应的时间采样数 0（默认）| 标量
+  group: ''
+- name: Center frequency (Hz)
+  summary: 建模频率的中心 2e9（默认）| 标量
+  group: ''
+- name: Sample time (s)
+  summary: 连续采样之间的时间间隔 1e-7（默认）| 标量
+  group: ''
+- name: Input Processing
+  summary: 指定处理模式的类型 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: ''
+- name: Add noise
+  summary: 向模块添加噪声数据 on（默认）| off
+  group: ''
+- name: Initial seed
+  summary: 随机数生成器模块的初始种子 67987（默认）| 非负整数
+  group: ''
+```
 
 ### **Treat input Simulink signal as** — 用于解释输入 `Source voltage` 的选项（默认）| `Incident power wave` | 标量
 
@@ -106,7 +141,6 @@ Input Port 模块不会自动从其输入信号继承采样时间。
 #### 依赖关系
 
 要启用此参数，请选择 **Add noise** 参数。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Input / Output Ports

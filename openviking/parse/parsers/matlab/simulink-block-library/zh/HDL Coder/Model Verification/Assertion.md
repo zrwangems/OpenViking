@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Assertion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+```
 
 ### 输入
 
@@ -23,8 +31,35 @@ chinese_source: worker-translation
 用于断言检查的输入信号。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable assertion
+  summary: 启用或禁用检查 on（默认）| off
+  group: ''
+  block_parameter: enabled
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Simulation callback when assertion fails
+  summary: 断言失败时要求值的表达式 ""（默认）| MATLAB 表达式
+  group: ''
+  block_parameter: AssertionFailFcn
+  type: 字符串标量或字符向量
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: 检查失败时是否停止仿真 on（默认）| off
+  group: ''
+  block_parameter: stopWhenAssertionFail
+  type: 字符串标量或字符向量
+  values: '"on" | "off"'
+  default: '"on"'
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+```
 
 ### **Enable assertion** — 启用或禁用检查 `on`（默认）| `off`
 
@@ -84,7 +119,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `SampleTime` |
 | **值：** | `"-1"`（默认）| 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Model Verification HDL Coder / Model Verification

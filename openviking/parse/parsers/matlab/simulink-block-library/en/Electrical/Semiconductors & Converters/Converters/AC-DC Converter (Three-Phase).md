@@ -14,6 +14,30 @@ language: en
 # AC-DC Converter (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: Vref
+  summary: DC voltage reference physical
+  direction: input
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -76,8 +100,52 @@ terminal.
 
 Electrical conserving port associated with the negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: ''
+- name: Output DC voltage droop with output current
+  summary: Voltage droop at 1 A 1V/A (default) | nonnegative scalar
+  group: ''
+- name: Voltage dynamics at DC side
+  summary: Dynamics model at DC side No dynamics (default) | Specify voltage regulation time constant
+  group: ''
+- name: Voltage regulation time constant at DC side
+  summary: Voltage dynamics time constant at DC side 0.02 s (default) | positive scalar
+  group: ''
+- name: Initial output voltage at DC side
+  summary: Output voltage at DC side at time zero 100 V (default) | scalar
+  group: ''
+- name: Rated electrical frequency at AC side
+  summary: Rated electrical frequency at AC side 60 Hz (default) | positive scalar
+  group: ''
+- name: Minimum AC side voltage (phase-to-phase RMS)
+  summary: Minimum AC-side voltage 80 V (default) | positive scalar
+  group: ''
+- name: Voltage time constant at AC side
+  summary: Voltage time constant at AC-side 0.01 s (default) | positive scalar
+  group: ''
+- name: Initial voltage at AC side (phase-to-phase RMS)
+  summary: AC-side initial voltage 100 V (default) | positive scalar
+  group: ''
+- name: Initial voltage angle at AC side
+  summary: Initial voltage angle of *a*-phase at AC side 0 deg (default) | scalar
+  group: ''
+- name: Power balance dynamics
+  summary: Option to include power balance dynamics Specify power time constant (default) | No dynamics
+  group: ''
+- name: Power balance time constant
+  summary: Time constant for power balance dynamics 0.01 s (default) | positive scalar
+  group: ''
+- name: Initial active power
+  summary: Initial active power at AC side 1e3 W (default) | scalar
+  group: ''
+- name: Parasitic conductance to electrical reference
+  summary: Parasitic conductance to electrical reference 1e-6 S (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Electrical connection** — Electrical connection `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -179,7 +247,6 @@ constant`.
 ### **Parasitic conductance to electrical reference** — Parasitic conductance to electrical reference `1e-6` `S` (default) | nonnegative scalar
 
 Parasitic conductance to the electrical reference.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

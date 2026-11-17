@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # To String
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: 输出字符串 标量
+  direction: output
+  data_types: string
+```
 
 ### 输入
 
@@ -46,11 +58,12 @@ chinese_source: worker-translation
   所有位数。
 
 **数据类型：** `string`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink / String

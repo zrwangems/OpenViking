@@ -14,6 +14,19 @@ language: en
 # Resettable Synchronous Subsystem
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input Signal to subsystem scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: Output Signal from subsystem scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -37,8 +50,45 @@ For more information, see Data Types Supported by Simulink in the
 Simulink documentation.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show port labels
+  summary: Display options for port labels FromPortIcon (default) | FromPortBlockName | SignalName | none
+  group: ''
+  block_parameter: ShowPortLabels
+  type: character vector
+  values: '''FromPortIcon'' | ''FromPortBlockName'' | ''SignalName'' | ''none'''
+  default: '''FromPortIcon'''
+- name: Read/Write permissions
+  summary: Levels of access to contents of subsystem ReadWrite (default) | ReadOnly | NoReadOrWrite
+  group: ''
+  default: '''ReadWrite'''
+  block_parameter: Permissions
+  type: character vector
+  values: '''ReadWrite'' | ''ReadOnly'' | ''NoReadOrWrite'''
+- name: Name of error callback function
+  summary: Name of function to be called if error occurs '' (default) | function name
+  group: ''
+  block_parameter: ErrorFcn
+  type: character vector
+  values: ''''' | ''<function name>'''
+  default: ''''''
+- name: Permit hierarchical resolution
+  summary: Resolution for workspace variable names All (default) | ExplicitOnly | None
+  group: ''
+  block_parameter: PermitHierarchicalResolution
+  type: character vector
+  values: '''All'' | ''ExplicitOnly'' | ''None'''
+  default: '''All'''
+- name: Function packaging
+  summary: Code format Auto (default) | Inline | Nonreusable function | Reusable function
+  group: ''
+  block_parameter: RTWSystemCode
+  type: character vector
+  values: '''Auto'' | ''Inline'' | ''Nonreusable function'' | ''Reusable function'''
+  default: '''Auto'''
+```
 
 ### **Show port labels** — Display options for port labels `FromPortIcon` (default) | `FromPortBlockName` | `SignalName` | `none`
 
@@ -190,7 +240,6 @@ Select the code format to be generated for an atomic (nonvirtual) subsystem.
 | **Type**: character vector |
 | **Value**: `'Auto'` | `'Inline'` | `'Nonreusable function'` | `'Reusable function'` |
 | **Default**: `'Auto'` |
-
 ## Libraries
 
 HDL Coder / HDL Subsystems

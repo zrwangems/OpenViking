@@ -15,10 +15,81 @@ chinese_source: worker-translation
 # Filter
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Design method
+  summary: 仿真类型 Butterworth（默认）| Chebyshev | Inverse Chebyshev | Ideal
+  group: 主要
+- name: Filter type
+  summary: 滤波器类型 Lowpass（默认）| Highpass | Bandpass | Bandstop
+  group: 主要
+- name: Implementation
+  summary: 实现方式 LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain
+  group: 主要
+- name: Passband edge frequency
+  summary: 通带边缘频率 1 GHz（默认）| 标量
+  group: 主要
+- name: Implement using filter order
+  summary: 使用滤波器阶数实现 off（默认）| on
+  group: 主要
+- name: 滤波器阶数
+  summary: 滤波器阶数 3（默认）| 标量
+  group: 主要
+- name: 通带频率
+  summary: 低通和高通滤波器的通带频率 标量
+  group: 主要
+- name: 通带频率
+  summary: 带通滤波器的通带频率 [2 3] GHz（默认）| 二元组向量
+  group: 主要
+- name: 通带衰减 (dB)
+  summary: 通带衰减 10*log10(2)（默认）| 标量
+  group: 主要
+- name: 阻带频率
+  summary: 带阻滤波器的阻带频率 [2.1 2.9] GHz（默认）| 二元组向量
+  group: 主要
+- name: 阻带衰减 (dB)
+  summary: 阻带衰减 40（默认）| 标量
+  group: 主要
+- name: 源阻抗 (Ohm)
+  summary: 输入源电阻 50（默认）| 标量
+  group: 主要
+- name: 负载阻抗 (Ohm)
+  summary: 输出负载电阻 50（默认）| 标量
+  group: 主要
+- name: 接地并隐藏负端子
+  summary: 将 RF 电路端子接地 on（默认）| off
+  group: 主要
+- name: 导出
+  summary: 将滤波器设计保存到文件 按钮
+  group: 主要
+- name: Parameter 1
+  summary: y 轴上的绘图类型 Voltage transfer（默认）| Phase delay | Group delay
+  group: 可视化
+- name: Parameter 2
+  summary: 绘图类型 None（默认）| Voltage transfer | Phase delay | Group delay
+  group: 可视化
+- name: Format 1
+  summary: y 轴缩放 Magnitude (decibels)（默认）| Magnitude (linear) | Angle (degrees) | Real | Imaginary
+  group: 可视化
+- name: Format 2
+  summary: y 轴缩放 Magnitude (decibels)（默认）| Magnitude (linear) | Angle (degrees) | Real | Imaginary
+  group: 可视化
+- name: Frequency points
+  summary: 要在 x 轴上绘制的频率点 logspace(0,10,101) Hz（默认）| 向量
+  group: 可视化
+- name: X-axis scale
+  summary: x 轴刻度 Linear（默认）| Logarithmic
+  group: 可视化
+- name: Y-axis scale
+  summary: y 轴刻度 Linear（默认）| Logarithmic
+  group: 可视化
+```
 
 ### 主要
 
@@ -250,7 +321,6 @@ x 轴刻度，指定为 `Linear` 或
 
 y 轴刻度，指定为 `Linear` 或
 `Logarithmic`。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

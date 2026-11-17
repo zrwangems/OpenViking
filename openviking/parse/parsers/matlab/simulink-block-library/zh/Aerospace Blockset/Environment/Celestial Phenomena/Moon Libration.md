@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Moon Libration
 
 ## 端口
+```yaml
+ports:
+- name: TJD
+  summary: 儒略日 标量 | 正值 | 介于最小和最大儒略日之间
+  direction: input
+  data_types: double
+- name: T0JD
+  summary: 固定儒略日 标量 | 正值
+  direction: input
+  data_types: double
+- name: ΔTJD
+  summary: 经过的儒略时间 标量 | 正值
+  direction: input
+  data_types: double
+- name: φ θ ψ (rad)
+  summary: 欧拉角 向量
+  direction: output
+  data_types: double
+- name: ω (rad/day)
+  summary: 月球天平动欧拉角速率 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -70,8 +93,38 @@ chinese_source: worker-translation
 月球天平动欧拉角速率 (ω)，单位为 rad/day。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Epoch
+  summary: 历元 Julian date（默认）| T0 and elapsed Julian time
+  group: ''
+  block_parameter: epochflag
+  type: 字符向量
+  values: Julian date | T0 and elapsed Julian time
+  default: '''Julian date'''
+- name: Ephemeris model
+  summary: 星历模型 DE405（默认）| DE421 | DE423 | DE430 | DE432t
+  group: ''
+  block_parameter: ephemerisModel
+  type: 字符向量
+  values: DE405 | DE421 | DE423 | DE430
+  default: '''DE405'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: errorflag
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+- name: Calculate rates
+  summary: 计算月球天平动速率 on（默认）| off
+  group: ''
+  block_parameter: velflag
+  type: 字符向量
+  values: '''off'' | ''on'' |'
+  default: '''on'''
+```
 
 ### **Epoch** — 历元 `Julian date`（默认）| `T0 and elapsed Julian time`
 
@@ -169,7 +222,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'off'` | `'on'` | |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Celestial Phenomena

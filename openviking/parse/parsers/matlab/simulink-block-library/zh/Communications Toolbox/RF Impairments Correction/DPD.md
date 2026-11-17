@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # DPD
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入基带信号列向量
+  direction: input
+  data_types: double
+- name: Coef
+  summary: 记忆多项式系数矩阵
+  direction: input
+  data_types: double
+- name: Out
+  summary: 预失真基带信号列向量
+  direction: output
+```
 
 ### 输入
 
@@ -45,8 +59,22 @@ chinese_source: worker-translation
 ### **Out** — 预失真基带信号列向量
 
 预失真基带信号，返回为与输入信号长度相同的列向量。
-
 ## 参数
+```yaml
+parameters:
+- name: Polynomial type
+  summary: 多项式类型 Memory polynomial（默认）| Cross-term memory polynomial
+  group: ''
+- name: Coefficient source
+  summary: 记忆多项式系数的来源 Property（默认）| Input port
+  group: ''
+- name: Coefficients
+  summary: 记忆多项式系数 complex([1 0 0 0 0; 0 0 0 0 0; 0 0 0 0 0])（默认）| 矩阵
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -87,7 +115,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments Correction

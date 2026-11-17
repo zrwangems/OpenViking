@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Byte Pack
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: '*N* 个输入端口中的第一个 标量 | 向量 | 矩阵'
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: 包含打包数据的向量 向量
+  direction: output
+  data_types: uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -31,8 +42,19 @@ chinese_source: worker-translation
 传输打包数据的向量。
 
 **数据类型：** `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Output port (packed) data type
+  summary: 打包输出信号的数据类型 uint8（默认）| uint16 | uint32
+  group: ''
+- name: Input port data types (cell array)
+  summary: 未打包输入信号的数据类型 {'double'}（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+- name: Byte alignment
+  summary: 打包后输入信号数据类型的对齐方式 1（默认）| 2 | 4 | 8
+  group: ''
+```
 
 ### **Output port (packed) data type** — 打包输出信号的数据类型 `uint8`（默认）| `uint16` | `uint32`
 
@@ -123,7 +145,6 @@ chinese_source: worker-translation
 对于数据类型为 `uint16` 的打包输出向量，输出数据包占用 16 位，该数据包表示的数据值也是 16 位。对于 16 及更大的数据包大小，字节对齐相对于数据值打包成的字节数计算。因此，在这种情况下，不允许 1 字节对齐。
 
 对于数据类型为 `uint16` 且字节对齐值为 2 的打包输出，三个 `int8` 数据值（0423 FD）作为两个字一起打包在前两个内存单元中。第二个内存单元中的第四个字节为空并用零填充。`int16` 数据值（00DA FFF4）被分配接下来的两个内存单元（第三个和第四个）。其余输入信号以类似方式打包。打包所有信号后，Byte Pack 模块计算分配的总数据包数，并输出大小为 2 + 2 + 1 + 2 = 7 的 `uint16` 向量。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Target Communication

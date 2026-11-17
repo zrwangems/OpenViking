@@ -14,10 +14,15 @@ language: en
 # C2000 Arctangent IQN
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Function**
 :   Type of arc tangent to calculate:
@@ -48,7 +53,6 @@ The order of the inputs to the Arctangent IQN block correspond to the Texas Inst
 **Note**
 
 The order of the inputs to the Arctangent IQN block correspond to the Texas Instruments convention, with argument 'A' at the top and 'B' at bottom.
-
 ## Libraries
 
 Not documented in R2025b.

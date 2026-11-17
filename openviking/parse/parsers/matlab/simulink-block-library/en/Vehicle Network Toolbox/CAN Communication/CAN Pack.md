@@ -14,6 +14,18 @@ language: en
 # CAN Pack
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: CAN message signal input single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | boolean
+  direction: input
+- name: CAN Msg ID
+  summary: CAN message identifier single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+  direction: input
+- name: CAN Msg
+  summary: CAN message output CAN_MESSAGE | CAN_MESSAGE_BUS
+  direction: output
+```
 
 ### Input
 
@@ -46,8 +58,85 @@ selected. For more information, see Dynamically Change CAN IDs by CAN Pack Block
 This block has one output port, CAN Msg. The CAN Pack block takes the specified
 input signals and packs them into a CAN message. The output data type is determined by
 the **Output as bus** parameter setting.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data input as
+  summary: Select your data signal raw data (default) | manually specified signals | CANdb specified signals | ARXML specified
+    signals
+  group: ''
+  block_parameter: DataFormat
+  type: string | character vector
+  values: '''raw data'' | ''manually specified signals'' | ''CANdb specified signals'' | ''ARXML specified signals'''
+  default: '''raw data'''
+- name: Database file
+  summary: ARXML or CAN database file character vector
+  group: ''
+  block_parameter: CANdbFile
+  type: string | character vector
+- name: Message list
+  summary: CAN message list array of character vectors
+  group: ''
+  block_parameter: MsgList
+  type: string | character vector
+- name: Name
+  summary: CAN message name CAN Msg (default) | character vector
+  group: ''
+  block_parameter: MsgName
+  type: string | character vector
+- name: Identifier type
+  summary: CAN identifier type Standard (11-bit identifier) (default) | Extended (29-bit identifier)
+  group: ''
+  block_parameter: MsgIDType
+  type: string | character vector
+  values: '''Standard (11-bit identifier)'' | ''Extended (29-bit identifier)'''
+  default: '''Standard (11-bit identifier)'''
+- name: CAN Identifier
+  summary: CAN message ID 0 (default) | 0 to 536870911
+  group: ''
+  block_parameter: MsgIdentifier
+  type: string | character vector
+  values: '''0'' to ''536870911'''
+- name: Specify CAN identifier from input port
+  summary: CAN message ID value off (default) | on
+  group: ''
+  block_parameter: CANIDInput
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Length (bytes)
+  summary: CAN message length 8 (default) | 0 to 8
+  group: ''
+  block_parameter: MsgLength
+  type: string | character vector
+  values: '''0'' to ''8'''
+  default: '''8'''
+- name: Remote frame
+  summary: CAN message as remote frame off (default) | on
+  group: ''
+  block_parameter: Remote
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output as bus
+  summary: CAN message as bus off (default) | on
+  group: ''
+  block_parameter: BusOutput
+  type: string | character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Add signal
+  summary: Add CAN signal
+  group: ''
+- name: Delete signal
+  summary: Remove CAN signal
+  group: ''
+- name: Signals
+  summary: Signals table table
+  group: ''
+  block_parameter: SignalInfo
+  type: string | character vector
+```
 
 ### **Data input as** — Select your data signal `raw data` (default) | `manually specified signals` | `CANdb specified signals` | `ARXML specified signals`
 
@@ -363,7 +452,6 @@ Each signal that you create has these values:
 | --- |
 | **Block Parameter:** `SignalInfo` |
 | **Type:** `string` | `character vector` |
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN Communication C2000 Microcontroller Blockset / Target Communication Embedded Coder / Embedded Targets / Host Communication Simulink Real-Time / CAN / CAN MSG blocks

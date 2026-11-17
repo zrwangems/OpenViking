@@ -14,6 +14,60 @@ language: en
 # SI Combustion Cylinder
 
 ## Ports
+```yaml
+ports:
+- name: IgTrig
+  summary: Ignition trigger input, unitless physical signal
+  direction: input
+- name: InjPw
+  summary: Injector pulse width input, ms physical signal
+  direction: input
+- name: AfrCmd
+  summary: Air-fuel ratio command input, unitless physical signal
+  direction: input
+- name: Pim
+  summary: Intake manifold pressure input, kPa physical signal
+  direction: input
+- name: InVT
+  summary: Intake variable valve timing input, deg physical signal
+  direction: input
+- name: ExVT
+  summary: Exhaust variable valve timing input, deg physical signal
+  direction: input
+- name: Pback
+  summary: Exhaust back pressure input, kPa physical signal
+  direction: input
+- name: CrkPos
+  summary: Crank position, deg physical signal
+  direction: input
+- name: Spd
+  summary: Engine rotational speed, rad/s physical signal
+  direction: input
+- name: CylPwr
+  summary: Cylinder power, W physical signal
+  direction: output
+- name: Weo
+  summary: Engine outlet gas energy flow, W physical signal
+  direction: output
+- name: Vcyl
+  summary: Cylinder volume output, cm^3 physical signal
+  direction: output
+- name: Pcyl
+  summary: Cylinder pressure output, MPa physical signal
+  direction: output
+- name: Tcyl
+  summary: Cylinder temperature output, K physical signal
+  direction: output
+- name: AFR
+  summary: Air-fuel ratio output, unitless physical signal
+  direction: output
+- name: AirMassFlow
+  summary: Cylinder air mass flow output, g/s physical signal
+  direction: output
+- name: FuelMassFlow
+  summary: Cylinder fuel mass flow output, g/s physical signal
+  direction: output
+```
 
 ### Input
 
@@ -163,8 +217,121 @@ Physical signal output associated with the fuel mass flow, in g/s.
 #### Dependencies
 
 To enable this port, select **Fuel mass flow**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of cylinders as a system
+  summary: Total combustion cylinder count in series 1 (default) | positive scalar
+  group: Mechanical
+- name: Cylinder number
+  summary: Cylinder number in series 1 (default) | positive scalar
+  group: Mechanical
+- name: Bore
+  summary: Cylinder diameter 75.0 mm (default) | positive scalar
+  group: Mechanical
+- name: Stroke
+  summary: Piston travel distance 84.7 mm (default) | positive scalar
+  group: Mechanical
+- name: Connecting-rod length
+  summary: Length of connecting rod 141 mm (default) | positive scalar
+  group: Mechanical
+- name: Compression ratio
+  summary: Static compression ratio 11.0 (default) | positive scalar
+  group: Mechanical
+- name: Ambient pressure
+  summary: Reference air pressure 101.325 kPa (default) | positive scalar
+  group: Ambient
+- name: Ambient temperature
+  summary: Reference temperature (273.15 + 25) K (default) | positive scalar
+  group: Ambient
+- name: Ambient air density
+  summary: Reference density 1.225 mg/cm^3 (default) | positive scalar
+  group: Ambient
+- name: Specific gas constant of dry air
+  summary: Specific gas constant of dry air 288.1965 J/(K*kg) (default) | positive scalar
+  group: Ambient
+- name: Discharge coefficient for intake valve
+  summary: Intake valve discharge coefficient 0.5 (default) | positive scalar
+  group: Valves
+- name: Intake valve open before TDC
+  summary: IVO crank position before TDC 15 deg (default) | scalar in the range [-360,360]
+  group: Valves
+- name: Intake valve close after BDC
+  summary: IVC crank position after BDC 50 deg (default) | scalar in the range [-360,360]
+  group: Valves
+- name: Exhaust valve open before BDC
+  summary: EVO crank position before BDC 55 deg (default) | scalar in the range [-360,360]
+  group: Valves
+- name: Exhaust valve close after TDC
+  summary: EVC crank position after TDC 10 deg (default) | scalar in the range [-360,360]
+  group: Valves
+- name: Intake Variable Valve Timing
+  summary: Option to control intake VVT on (default) | off
+  group: Valves
+- name: Exhaust Variable Valve Timing
+  summary: Option to control exhaust VVT on (default) | off
+  group: Valves
+- name: Lower heating value for gasoline
+  summary: Fuel net calorific value 44.3e+6 J/kg (default)
+  group: Combustion
+- name: Input injector pulse width
+  summary: Option to input injector pulse width on (default) | off
+  group: Combustion
+- name: Injector slope
+  summary: Injector slope 6.5 mg/ms (default) | positive scalar
+  group: Combustion
+- name: Combustion duration
+  summary: Combustion duration 50 deg (default) | positive scalar
+  group: Combustion
+- name: Cylinder pressure slow decay time constant
+  summary: Cylinder pressure slow decay rate 60 s (default) | positive scalar
+  group: Combustion
+- name: Cylinder temperature slow decay time constant
+  summary: Cylinder temperature slow decay rate 600 s (default) | positive scalar
+  group: Combustion
+- name: Exhaust gas temperature decay time constant
+  summary: Exhaust temperature decay rate 5 ms (default) | positive scalar
+  group: Exhaust
+- name: Input back pressure
+  summary: Back pressure input option on (default) | off
+  group: Exhaust
+- name: Back-pressure pressure constant
+  summary: Pressure constant for back-pressure 50 kPa (default) | positive scalar
+  group: Exhaust
+- name: Back-pressure speed constant
+  summary: Speed constant for back-pressure 6000 rpm (default) | positive scalar
+  group: Exhaust
+- name: Engine speed simulation limit
+  summary: Maximum engine speed 8500 rpm (default) | positive scalar
+  group: Simulation
+- name: Initial crank position (0-720 deg)
+  summary: Initial crank position 0 deg (default) | scalar in the range [0,720]
+  group: Simulation
+- name: Initial engine speed
+  summary: Initial engine speed 0 rpm (default) | nonnegative scalar
+  group: Simulation
+- name: Engine outlet gas energy flow
+  summary: Option to output engine outlet gas energy flow off (default) | on
+  group: Output
+- name: Cylinder volume
+  summary: Option to output the cylinder volume on (default) | off
+  group: Output
+- name: Cylinder pressure
+  summary: Option to output cylinder pressure on (default) | off
+  group: Output
+- name: Cylinder temperature
+  summary: Option to output cylinder temperature on (default) | off
+  group: Output
+- name: Air/fuel ratio
+  summary: Option to output the air-to-fuel ratio on (default) | off
+  group: Output
+- name: Air mass flow
+  summary: Option to output cylinder air mass flow on (default) | off
+  group: Output
+- name: Fuel mass flow
+  summary: Option to output fuel mass flow on (default) | off
+  group: Output
+```
 
 ### Mechanical
 
@@ -373,7 +540,6 @@ port **AirMassFlow**.
 
 Whether to output the fuel mass flow from physical signal port
 **FuelMassFlow**.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

@@ -14,6 +14,49 @@ language: en
 # RrL Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Iabc
+  summary: Three-phase current response scalar
+  direction: input
+  data_types: single
+- name: Vdc
+  summary: DC link voltage scalar
+  direction: input
+  data_types: single
+- name: StartStop
+  summary: Control signal for *Ld* estimation logical
+  direction: input
+  data_types: Boolean
+- name: Config
+  summary: Bus signal input bus
+  direction: input
+  data_types: single
+- name: Vabc
+  summary: '*a*, *b*, and *c*-axis stator reference voltage components scalar'
+  direction: output
+  data_types: single
+- name: Rr
+  summary: Estimated rotor resistance scalar
+  direction: output
+  data_types: single
+- name: Lm
+  summary: Estimated magnetizing inductance scalar
+  direction: output
+  data_types: single
+- name: Lls
+  summary: Estimated stator leakage inductance scalar
+  direction: output
+  data_types: single
+- name: Llr
+  summary: Estimated rotor leakage inductance scalar
+  direction: output
+  data_types: single
+- name: Log
+  summary: Debug signals bus
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -138,11 +181,12 @@ debug signals.
 | *Vd* | | | *D*-axis voltage | Volts |
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Motor Control Blockset / Parameter Estimation / ACIM Parameter Estimation

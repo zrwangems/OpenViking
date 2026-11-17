@@ -14,6 +14,15 @@ language: en
 # Task Sync
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Call from interrupt block call
+  direction: input
+- name: Output
+  summary: Call to function-call subsystem call
+  direction: input
+```
 
 ### Input
 
@@ -25,8 +34,28 @@ A call from an Async Interrupt block.
 ### **Output** — Call to function-call subsystem call
 
 A call to a function-call subsystem.
-
 ## Parameters
+```yaml
+parameters:
+- name: Task name (10 characters or less)
+  summary: Task function name Task0 (default) | character vector
+  group: ''
+- name: Simulink task priority (0–255)
+  summary: RTOS task priority 50 (default) | integer
+  group: ''
+- name: Stack size (bytes)
+  summary: Maximum size for stack of the task 1024 (default) | integer
+  group: ''
+- name: Synchronize the data transfer of this task with the caller task
+  summary: Select synchronization off (default) | on
+  group: ''
+- name: Timer resolution (seconds)
+  summary: Resolution for timer of the block 1/60 (default)
+  group: ''
+- name: Timer size
+  summary: Number of bits to store clock tick 32bits (default) | 16bits | 8bits | auto
+  group: ''
+```
 
 ### **Task name (10 characters or less)** — Task function name `Task0` (default) | character vector
 
@@ -102,7 +131,6 @@ value that is too large for the code generator to handle as a 32-bit integer of 
 specified resolution, it uses a second 32-bit integer to address overflows.
 
 For more information, see Optimize Memory Usage and Prevent Overflows for Time Counters. See also Timers in Asynchronous Tasks.
-
 ## Libraries
 
 Simulink Coder / Asynchronous / Interrupt Templates

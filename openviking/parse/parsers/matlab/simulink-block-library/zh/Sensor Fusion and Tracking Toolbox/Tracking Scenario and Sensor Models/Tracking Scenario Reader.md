@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Tracking Scenario Reader
 
 ## 端口
+```yaml
+ports:
+- name: Platform Poses
+  summary: 平台位姿信息，包含 MATLAB® 结构的 Simulink® 总线
+  direction: input
+- name: Platforms
+  summary: 场景中平台的信息，以包含 MATLAB 结构的 Simulink 总线形式返回
+  direction: output
+- name: Simulation Time
+  summary: 当前仿真时间，非负标量
+  direction: output
+- name: Coverage Configurations
+  summary: 场景 Simulink 总线中的覆盖配置，包含 MATLAB 结构体
+  direction: output
+- name: Detections
+  summary: 检测列表 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+- name: Sensor Configuratons
+  summary: 场景中传感器配置，以包含 MATLAB 结构的 Simulink 总线形式返回
+  direction: output
+- name: Emissions
+  summary: 场景中包含 MATLAB 结构的 Simulink 总线中的雷达和声呐辐射
+  direction: output
+- name: Emitter Configurations
+  summary: 场景 Simulink 总线中的发射器配置，包含 MATLAB 结构体
+  direction: output
+- name: Point Clouds
+  summary: 点云 Simulink 总线，包含 MATLAB 结构体
+  direction: output
+```
 
 ### 输入
 
@@ -241,8 +271,136 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Output Settings** 选项卡中，选择 **Point clouds** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Source of scenario
+  summary: 跟踪场景的来源 trackingScenario（默认）| Tracking Scenario Designer session file
+  group: Scenario
+- name: Workspace variable name
+  summary: 工作区变量名称 trackingScenario 变量名称
+  group: Scenario
+- name: 会话文件
+  summary: 会话文件 Tracking Scenario Designer 会话文件名
+  group: Scenario
+- name: 平台位姿来源
+  summary: 平台位姿来源 Scenario（默认）| Input port
+  group: Scenario
+- name: 采样时间 (s)
+  summary: 仿真采样时间 0.1（默认）| 正实数标量
+  group: Scenario
+- name: 报告平台位姿的坐标系
+  summary: 报告平台位姿的坐标系 Cartesian（默认）| Geodetic
+  group: Scenario
+- name: 在平台中包含轮廓信息
+  summary: 在平台中包含轮廓信息 off（默认）| on
+  group: 输出设置
+- name: 检测
+  summary: 启用检测输出端口 off（默认）| on
+  group: 输出设置
+- name: 点云
+  summary: 启用点云输出端口 off（默认）| on
+  group: 输出设置
+- name: 辐射
+  summary: 启用辐射输出端口 off（默认）| on
+  group: 输出设置
+- name: 在辐射传播中启用遮挡
+  summary: 在辐射传播中启用遮挡 on（默认）| off
+  group: 输出设置
+- name: Coverage
+  summary: 启用覆盖配置输出端口 off（默认）| on
+  group: 输出设置
+- name: Sensor
+  summary: 启用传感器配置输出端口 off（默认）| on
+  group: 输出设置
+- name: Emitter
+  summary: 启用辐射源配置输出端口 off（默认）| on
+  group: 输出设置
+- name: Random number generation
+  summary: 生成随机数种子的方法 Repeatable（默认）| Not repeatable | Specify seed
+  group: 输出设置
+- name: Initial seed
+  summary: 随机化的初始种子 0（默认）| 非负整数
+  group: 输出设置
+- name: Source of platform bus name
+  summary: 平台位姿总线名称的来源 Auto（默认）| Property
+  group: 总线设置
+- name: Specify platform bus name
+  summary: 指定平台总线名称 BusPlatforms（默认）| 有效总线名称
+  group: 总线设置
+- name: Source of maximum number of platforms
+  summary: 最大平台数量的来源 Auto（默认）| Property
+  group: 总线设置
+- name: Maximum number of platforms
+  summary: 最大平台数量 50（默认）| 正整数
+  group: 总线设置
+- name: Source of detection bus name
+  summary: 检测总线名称的来源 Auto（默认）| Property
+  group: 总线设置
+- name: Specify detection bus name
+  summary: 指定检测总线名称 BusDetection（默认）| 有效总线名称
+  group: 总线设置
+- name: Source of maximum number of detections
+  summary: 最大检测数来源 Auto（默认）| Property
+  group: 总线设置
+- name: Maximum number of detections
+  summary: 最大检测数 50（默认）| 正整数
+  group: 总线设置
+- name: Source of point cloud bus name
+  summary: 点云总线名称来源 Auto（默认）| Property
+  group: 总线设置
+- name: Specify point cloud bus name
+  summary: 指定点云总线名称 BusPointCloud（默认）| 有效总线名称
+  group: 总线设置
+- name: Maximum number of lidar sensors
+  summary: 最大激光雷达传感器数 10（默认）| 正整数
+  group: 总线设置
+- name: Source of maximum number of lidar sensors
+  summary: 最大激光雷达传感器数来源 Auto（默认）| Property
+  group: 总线设置
+- name: Source of emission bus name
+  summary: 辐射总线名称来源 Auto（默认）| Property
+  group: 总线设置
+- name: Specify emission bus name
+  summary: 指定辐射总线名称 BusEmission（默认）| 有效总线名称
+  group: 总线设置
+- name: Source of maximum number of emissions
+  summary: 最大发射数量来源 Auto（默认）| Property
+  group: 总线设置
+- name: Maximum number of emissions
+  summary: 最大发射数量 50（默认）| 正整数
+  group: 总线设置
+- name: Source of coverage configuration bus name
+  summary: 覆盖配置总线名称来源 Auto（默认）| Property
+  group: 总线设置
+- name: Specify coverage configuration bus name
+  summary: 指定覆盖配置总线名称 BusCovConf（默认）| 有效总线名称
+  group: 总线设置
+- name: Source of sensor configuration bus name
+  summary: 传感器配置总线名称来源 Auto（默认）| Property
+  group: 总线设置
+- name: Specify sensor configuration bus name
+  summary: 指定传感器配置总线名称 BusSensorConf（默认）| 有效总线名称
+  group: 总线设置
+- name: Source of emitter configuration bus name
+  summary: 发射器配置总线名称来源 Auto（默认）| Property
+  group: 总线设置
+- name: Specify emitter configuration bus name
+  summary: 指定发射器配置总线名称 BusEmitterConf（默认）| 有效总线名称
+  group: 总线设置
+- name: Source of maximum number of sensors
+  summary: 最大传感器数量来源 Auto（默认）| Property
+  group: 总线设置
+- name: Maximum number of sensors
+  summary: 最大传感器数量 10（默认）| 正整数
+  group: 总线设置
+- name: Source of maximum number of emitters
+  summary: 最大发射器数量来源 Auto（默认）| Property
+  group: 总线设置
+- name: Maximum number of emitters
+  summary: 最大发射器数量 10（默认）| 正整数
+  group: 总线设置
+```
 
 ### Scenario
 
@@ -629,7 +787,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Source of maximum number of emitters** 参数设置为 `Property`。
-
 ## 所属库
 
 Sensor Fusion and Tracking Toolbox / Tracking Scenario and Sensor Models

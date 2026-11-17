@@ -14,6 +14,19 @@ language: en
 # Bus Creator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input element to include in bus scalar | vector | matrix | array | bus
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: Port_1
+  summary: Output virtual or nonvirtual bus scalar | bus
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -56,8 +69,33 @@ For more information about the types of buses, see Composite Interface Guideline
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Number of block inputs 2 (default) | integer
+  group: ''
+  block_parameter: Inputs
+  values: '''2'' (default) | integer in quotes'
+- name: Inputs
+  summary: Block inputs list of element names
+  group: ''
+- name: Output data type
+  summary: 'Data type of output bus Inherit: auto (default) | Bus: <object name>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  values: '"Inherit: auto" (default) | "Bus: <object name>"'
+- name: Element names
+  summary: Source of output bus element names From inputs (default) | From output data type
+  group: ''
+  block_parameter: InheritFromInputs
+  values: '"on" (default) | "off"'
+- name: Output as nonvirtual bus
+  summary: Option to output nonvirtual bus off (default) | on
+  group: ''
+  block_parameter: NonVirtualBus
+  values: '"off" (default) | "on"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -284,7 +322,6 @@ the `set_param` function.
 | **Values:** | `"off"` (default) | `"on"` |
 
 **Example:** `set_param(gcb, NonVirtualBus="on")`
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Signal Routing

@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Multiplier
 
 ## 端口
+```yaml
+ports:
+- name: X1
+  summary: X 输入同相输入端电气
+  direction: conserving
+- name: X2
+  summary: X 输入反相输入端电气
+  direction: conserving
+- name: Y1
+  summary: Y 输入同相输入端电气
+  direction: conserving
+- name: Y2
+  summary: Y 输入反相输入端电气
+  direction: conserving
+- name: Z1
+  summary: Z 输入同相输入端电气
+  direction: conserving
+- name: Z2
+  summary: Z 输入反相输入端电气
+  direction: conserving
+- name: '~'
+  summary: 乘法输出信号电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -45,8 +69,40 @@ chinese_source: worker-translation
 ### **~** — 乘法输出信号电气
 
 与乘法器输出端口关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Scaling factor, K
+  summary: 比例因子 10 V（默认）
+  group: 主要
+- name: Gain, A
+  summary: 增益 3000（默认）
+  group: 主要
+- name: Differential resistance, Rin
+  summary: 差分电阻 10e6 Ohm（默认）
+  group: 输入
+- name: Differential signal voltage range
+  summary: 差分信号电压范围 10 V（默认）
+  group: 输入
+- name: Output resistance, Rout
+  summary: 输出电阻 0.1 Ohm（默认）
+  group: 输出
+- name: Minimum output, Vmin
+  summary: 最小输出 -11 V（默认）
+  group: 输出
+- name: Maximum output, Vmax
+  summary: 最大输出 11 V（默认）
+  group: 输出
+- name: Maximum slew rate, Vdot
+  summary: 最大压摆率 20 V/us（默认）
+  group: 输出
+- name: Bandwidth, f
+  summary: 带宽 1 MHz（默认）
+  group: 输出
+- name: Initial output voltage, V0
+  summary: 初始输出电压 0 V（默认）
+  group: 输出
+```
 
 ### 主要
 
@@ -93,7 +149,6 @@ Band-Limited Op-Amp 模块的带宽。
 ### **Initial output voltage, V0** — 初始输出电压 `0` `V`（默认）
 
 如果在 Solver 模块中未选择 **Start simulation from steady-state** 选项，则为 Multiplier 模块输出的初始值。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

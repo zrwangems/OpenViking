@@ -14,6 +14,17 @@ language: en
 # From Simulink Image
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal Simulink.ImageType
+  direction: input
+  data_types: Simulink.ImageType
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: integer | single | double | Boolean
+```
 
 ### Input
 
@@ -39,8 +50,17 @@ depending on the format of the input.
   image, in pixels. *C* is the number of color channels.
 
 **Data Types:** `integer` | `single` | `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output dimensions
+  summary: Dimensions of block output signal [480 640 3] (default)
+  group: ''
+  block_parameter: ImageSize
+  type: character vector
+  values: character vector
+  default: '[480 640 3]'
+```
 
 ### **Output dimensions** — Dimensions of block output signal `[480 640 3]` (default)
 
@@ -56,7 +76,6 @@ Channels]`.
 | **Type:** character vector |
 | **Value:** character vector |
 | **Default:** `[480 640 3]` |
-
 ## Libraries
 
 Computer Vision Toolbox / Utilities

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Current Limiter
 
 ## 端口
+```yaml
+ports:
+- name: Lim
+  summary: 可变电流限值，A 物理信号
+  direction: input
+- name: +
+  summary: 正极端子 电气
+  direction: input
+- name: '-'
+  summary: 负极端子 电气
+  direction: input
+- name: H
+  summary: 热端口 热
+  direction: input
+```
 
 ### 输入
 
@@ -44,8 +59,31 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Limiter type
+  summary: 限幅器类型 Constant symmetric limits（默认）| Constant asymmetric limits | Variable limit
+  group: 参数
+- name: Current limit
+  summary: 正电流限值 1 A（默认）| 正标量
+  group: 参数
+- name: Reverse direction current limit
+  summary: 负电流限值 1 A（默认）| 正标量
+  group: 参数
+- name: Voltage drop when current starts to limit
+  summary: 电流开始限幅时的电压降 0.1 V（默认）| 正标量
+  group: 参数
+- name: Limit-state conductance
+  summary: 限幅状态电导 1e-3 1/Ohm（默认）| 正标量
+  group: 参数
+- name: Thermal mass
+  summary: 热质量 100 J/K（默认）| 正标量
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -112,7 +150,6 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Modeling option**
 设置为 `Show thermal port`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters

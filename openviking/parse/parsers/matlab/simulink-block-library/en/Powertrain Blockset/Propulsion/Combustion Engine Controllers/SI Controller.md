@@ -14,6 +14,81 @@ language: en
 # SI Controller
 
 ## Ports
+```yaml
+ports:
+- name: TrqCmd
+  summary: Commanded engine torque scalar
+  direction: input
+- name: EngSpd
+  summary: Measured engine speed scalar
+  direction: input
+- name: AmbPrs
+  summary: Measured absolute ambient pressure scalar
+  direction: input
+- name: Map
+  summary: Measured intake manifold absolute pressure scalar
+  direction: input
+- name: Mat
+  summary: Measured intake manifold absolute temperature scalar
+  direction: input
+- name: IntkCamPhase
+  summary: Intake cam phaser angle scalar
+  direction: input
+- name: ExhCamPhase
+  summary: Exhaust cam phaser angle scalar
+  direction: input
+- name: Iat
+  summary: Intake air temperature scalar
+  direction: input
+- name: Ect
+  summary: Engine cooling temperature scalar
+  direction: input
+- name: EgrVlvInTemp
+  summary: EGR valve inlet temperature scalar
+  direction: input
+- name: EgrVlvAreaPct
+  summary: EGR valve area percent scalar
+  direction: input
+- name: EgrVlvDeltaPrs
+  summary: EGR valve delta pressure scalar
+  direction: input
+- name: O2VoltSen
+  summary: Oxygen sensor voltage scalar
+  direction: input
+- name: LambdaCmd
+  summary: Commanded AFR, lambda scalar
+  direction: input
+- name: IgSw
+  summary: Ignition switch Boolean
+  direction: input
+- name: ESSEnable
+  summary: Engine Stop-Start Enable Boolean
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: ThrPosPctCmd
+  summary: Throttle area percent command scalar
+  direction: output
+- name: WgAreaPctCmd
+  summary: Wastegate area percent command scalar
+  direction: output
+- name: InjPw
+  summary: Fuel injector pulse-width scalar
+  direction: output
+- name: SpkAdv
+  summary: Spark advance scalar
+  direction: output
+- name: IntkCamPhaseCmd
+  summary: Intake cam phaser angle command scalar
+  direction: output
+- name: ExhCamPhaseCmd
+  summary: Exhaust cam phaser angle command scalar
+  direction: output
+- name: EgrVlvAreaPctCmd
+  summary: EGR valve area percent command scalar
+  direction: output
+```
 
 ### Input
 
@@ -167,8 +242,546 @@ Exhaust cam phaser angle command, φECPCMD.
 
 EGR valve area percent command,
 *EGRapcmd*, in %.
-
 ## Parameters
+```yaml
+parameters:
+- name: Air mass flow estimation model
+  summary: Select air mass flow estimation model Dual Variable Cam Phasing (default) | Simple Speed-Density
+  group: Configuration
+  block_parameter: AirEstOptionPopup
+  values: Dual Variable Cam Phasing (default) | Simple Speed-Density
+- name: Torque estimation model
+  summary: Select torque estimation model Torque Structure (default) | Simple Torque Lookup
+  group: Configuration
+  block_parameter: TrqEstOptionPopup
+  values: Torque Structure (default) | Simple Torque Lookup
+- name: Engine commanded load table, f_lcmd
+  summary: Lookup table array
+  group: Controls
+  block_parameter: f_lcmd
+  values: array
+- name: Torque command breakpoints, f_lcmd_tq_bpt
+  summary: Breakpoints [15 26.43 37.86 49.29 60.71 72.14 83.57 95 106.4 117.9 129.3 140.7 152.1 163.6 175] (default) | vector
+  group: Controls
+  block_parameter: f_lcmd_tq_bpt
+  values: vector
+- name: Speed breakpoints, f_lcmd_n_bpt
+  summary: Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Controls
+  block_parameter: f_lcmd_n_bpt
+  values: vector
+- name: Throttle area percent, f_tap
+  summary: Lookup table, % array
+  group: Controls
+  block_parameter: f_tap
+  values: array
+- name: Throttle area percent load breakpoints, f_tap_ld_bpt
+  summary: Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+  group: Controls
+  block_parameter: f_tap_ld_bpt
+  values: vector
+- name: Throttle area percent speed breakpoints, f_tap_n_bpt
+  summary: Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Controls
+  block_parameter: f_tap_n_bpt
+  values: vector
+- name: Throttle area percent to position percent table, f_tpp
+  summary: Lookup table [0 100] (default) | vector
+  group: Controls
+  block_parameter: f_tpp
+  values: '[0 100] (default) | vector'
+- name: Throttle area percent to position percent area breakpoints, f_tpp_tap_bpt
+  summary: Breakpoints [0 100] (default) | vector
+  group: Controls
+  block_parameter: f_tpp_tap_bpt
+  values: '[0 100] (default) | vector'
+- name: Wastegate area percent, f_wap
+  summary: Lookup table, % array
+  group: Controls
+  block_parameter: f_wap
+  values: array
+- name: Load breakpoints, f_wap_ld_bpt
+  summary: Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+  group: Controls
+  block_parameter: f_wap_ld_bpt
+  values: vector
+- name: Speed breakpoints, f_wap_n_bpt
+  summary: Breakpoints, rpm [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Controls
+  block_parameter: f_wap_n_bpt
+  values: vector
+- name: Intake cam phaser angle, f_icp
+  summary: Lookup table array
+  group: Controls
+  block_parameter: f_icp
+  values: array
+- name: Exhaust cam phaser angle, f_ecp
+  summary: Lookup table array
+  group: Controls
+  block_parameter: f_ecp
+  values: array
+- name: Load breakpoints, f_cp_ld_bpt
+  summary: Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+  group: Controls
+  block_parameter: f_cp_ld_bpt
+  values: vector
+- name: Speed breakpoints, f_cp_n_bpt
+  summary: Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Controls
+  block_parameter: f_cp_n_bpt
+  values: vector
+- name: Commanded EGR percent, f_egrpct_cmd
+  summary: Lookup table array
+  group: Controls
+  block_parameter: f_egrpct_cmd
+  values: array
+- name: Load breakpoints, f_egrpct_ld_bpt
+  summary: Breakpoints [0 0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+  group: Controls
+  block_parameter: f_egrpct_ld_bpt
+  values: vector
+- name: Speed breakpoints, f_egrpct_n_bpt
+  summary: Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Controls
+  block_parameter: f_egrpct_n_bpt
+  values: vector
+- name: EGR valve area percent, f_egr_areapct_cmd
+  summary: Lookup table array
+  group: Controls
+  block_parameter: f_egr_areapct_cmd
+  values: array
+- name: Open EGR valve standard flow, f_egr_max_stdflow
+  summary: Breakpoints [74.87 74.87 74.74 74.39 73.81 72.98 71.91 70.58 68.97 67.06 64.84 62.25 59.27 55.81 51.79 47.07 36.33
+    24.22 12.11 0] (default) | vector
+  group: Controls
+  block_parameter: f_egr_max_stdflow
+  values: vector
+- name: Normalized EGR valve standard flow breakpoints, f_egr_areapct_nrmlzdflow_bpt
+  summary: Breakpoints [0 0.03448 0.06897 0.1034 0.1379 0.1724 0.2069 0.2414 0.2759 0.3103 0.3448 0.3793 0.4138 0.4483 0.4828
+    0.5172 0.5517 0.5862 0.6207 0.6552 0.6897 0.7241 0.7586 0.7931 0.8276 0.8621 0.8966 0.931 0.9655 1] (default) | vector
+  group: Controls
+  block_parameter: f_egr_areapct_nrmlzdflow_bpt
+  values: vector
+- name: EGR valve pressure ratio breakpoints, f_egr_areapct_pr_bpt
+  summary: Breakpoints vector
+  group: Controls
+  block_parameter: f_egr_areapct_pr_bpt
+  values: vector
+- name: Injector slope, Sinj
+  summary: Slope 6.452 (default) | scalar
+  group: Controls
+  block_parameter: Sinj
+  values: 6.452 (default) | scalar
+- name: Stoichiometric air-fuel ratio, afr_stoich
+  summary: Ratio 14.6 (default) | scalar
+  group: Controls
+  block_parameter: afr_stoich
+  values: 14.6 (default) | scalar
+- name: Relative air-fuel ratio lambda, f_lamcmd
+  summary: Air-fuel-ratio (AFR) lookup table array
+  group: Controls
+  block_parameter: f_lamcmd
+  values: array
+- name: Load breakpoints, f_lamcmd_ld_bpt
+  summary: Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+  group: Controls
+  block_parameter: f_lamcmd_ld_bpt
+  values: vector
+- name: Speed breakpoints, f_lamcmd_n_bpt
+  summary: Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Controls
+  block_parameter: f_lamcmd_n_bpt
+  values: vector
+- name: Engine startup lambda enrichment delta vs coolant temperature, f_startup_lambda_delta
+  summary: Lookup table [0.5 0.3 0.2 0] (default) | vector
+  group: Controls
+  block_parameter: f_startup_lambda_delta
+  values: '[0.5 0.3 0.2 0] (default) | vector'
+- name: Engine startup lambda enrichment delta time constant vs coolant temperature, f_startup_lambda_delta_timecnst
+  summary: Lambda time constant [90 40 12 0] (default) | vector
+  group: Controls
+  block_parameter: f_startup_lambda_delta_timecnst
+  values: '[90 40 12 0] (default) | vector'
+- name: Engine startup coolant temperature breakpoints, f_startup_ect_bpt
+  summary: Breakpoints [-40 0 20 50] (default) | vector
+  group: Controls
+  block_parameter: f_startup_ect_bpt
+  values: '[-40 0 20 50] (default) | vector'
+- name: Closed-loop feedback
+  summary: Minimize commanded AFR error off (default) | on
+  group: Controls
+  block_parameter: ClsdLpFuelEn
+  values: off (default) | on
+- name: Dither
+  summary: Model catalytic conversion efficiency off (default) | on
+  group: Controls
+  block_parameter: OpenLpDitherEn
+  values: off (default) | on
+- name: Closed-loop fuel proportional gain, ClsdLpFuelPGain
+  summary: Proportional gain 0.005 (default) | scalar
+  group: Controls
+  block_parameter: ClsdLpFuelPGain
+  values: 0.005 (default) | scalar
+- name: Closed-loop fuel integral gain, ClsdLpFuelIGain
+  summary: Integral gain 0.05 (default) | scalar
+  group: Controls
+  block_parameter: ClsdLpFuelIGain
+  values: 0.05 (default) | scalar
+- name: Closed-loop fuel integrator limit, ClsdLpFuelIntgLmt
+  summary: Integrator limit 0.2 (default) | scalar
+  group: Controls
+  block_parameter: ClsdLpFuelIntgLmt
+  values: 0.2 (default) | scalar
+- name: Lambda dither amplitude, LambdaDitherAmp
+  summary: Amplitude 0.03 (default) | scalar
+  group: Controls
+  block_parameter: LambdaDitherAmp
+  values: 0.03 (default) | scalar
+- name: Lambda dither frequency, LambdaDitherFrq
+  summary: Frequency 0.75 (default) | scalar
+  group: Controls
+  block_parameter: LambdaDitherFrq
+  values: 0.75 (default) | scalar
+- name: Oxygen sensor stoichiometric reset voltage, O2ResetStoichVoltSen
+  summary: Closed-loop AFR control 2500 (default) | scalar
+  group: Controls
+  block_parameter: O2ResetStoichVoltSen
+  values: 2500 (default) | scalar
+- name: Oxygen sensor minimum voltage reset, O2ResetMinVoltSen
+  summary: Closed-loop AFR control 0 (default) | scalar
+  group: Controls
+  block_parameter: O2ResetMinVoltSen
+  values: 0 (default) | scalar
+- name: Oxygen sensor maximum voltage reset, O2ResetMaxVoltSen
+  summary: Closed-loop AFR control 5000 (default) | scalar
+  group: Controls
+  block_parameter: O2ResetMaxVoltSen
+  values: 5000 (default) | scalar
+- name: Oxygen sensor voltage learn update period, O2LearnUpdatePerSen
+  summary: Closed-loop AFR control 4 (default) | scalar
+  group: Controls
+  block_parameter: O2LearnUpdatePerSen
+  values: 4 (default) | scalar
+- name: Oxygen sensor voltage amplitude minimum, O2AmpMinVoltSen
+  summary: Closed-loop AFR control 250 (default) | scalar
+  group: Controls
+  block_parameter: O2AmpMinVoltSen
+  values: 250 (default) | scalar
+- name: Oxygen sensor ready voltage, O2ReadyVoltSen
+  summary: Closed-loop AFR control 1150 (default) | scalar
+  group: Controls
+  block_parameter: O2ReadyVoltSen
+  values: 1150 (default) | scalar
+- name: Oxygen sensor not ready voltage, O2NotReadyVoltSen
+  summary: Closed-loop AFR control 1950 (default) | scalar
+  group: Controls
+  block_parameter: O2NotReadyVoltSen
+  values: 1950 (default) | scalar
+- name: Spark advance table, f_sa
+  summary: Lookup table array
+  group: Controls
+  block_parameter: f_sa
+  values: array
+- name: Load breakpoints, f_sa_ld_bpt
+  summary: Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+  group: Controls
+  block_parameter: f_sa_ld_bpt
+  values: vector
+- name: Speed breakpoints, f_sa_n_bpt
+  summary: Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Controls
+  block_parameter: f_sa_n_bpt
+  values: vector
+- name: Target idle speed, N_idle
+  summary: Speed 750 (default) | scalar
+  group: Controls
+  block_parameter: N_idle
+  values: 750 (default) | scalar
+- name: Enable torque command limit, Trq_idlecmd_enable
+  summary: Torque 1 (default) | scalar
+  group: Controls
+  block_parameter: Trq_idlecmd_enable
+  values: 1 (default) | scalar
+- name: Maximum torque command, Trq_idlecmd_max
+  summary: Torque 50 (default) | scalar
+  group: Controls
+  block_parameter: Trq_idlecmd_max
+  values: 50 (default) | scalar
+- name: Proportional gain, Kp_idle
+  summary: PI Controller 0.05 (default) | scalar
+  group: Controls
+  block_parameter: Kp_idle
+  values: 0.05 (default) | scalar
+- name: Integral gain, Ki_idle
+  summary: PI Controller 0.2 (default) | scalar
+  group: Controls
+  block_parameter: Ki_idle
+  values: 0.2 (default) | scalar
+- name: Rev-limiter speed threshold, EngRevLim
+  summary: Engine speed limit 6000 (default) | scalar
+  group: Controls
+  block_parameter: EngRevLim
+  values: 6000 (default) | scalar
+- name: Engine cranking speed, CrankSpeed
+  summary: Engine speed 150 (default) | scalar
+  group: Controls
+  block_parameter: CrankSpeed
+  values: 150 (default) | scalar
+- name: Enable Engine Stop-Start
+  summary: Select to enable the engine stop-start logic off (default) | on
+  group: Controls
+  block_parameter: ESSEnable
+  values: off (default) | on
+- name: External Enable Port
+  summary: Create input port off (default) | on
+  group: Controls
+  block_parameter: ESSExternalPortEnable
+  values: off (default) | on
+- name: Engine stop time, EngStopTime
+  summary: Engine stop time 5 (default) | scalar
+  group: Controls
+  block_parameter: EngStopTime
+  values: 5 (default) | scalar
+- name: Catalyst light off time, CatLightOffTime
+  summary: Catalyst light off time 0 (default) | scalar
+  group: Controls
+  block_parameter: CatLightOffTime
+  values: 0 (default) | scalar
+- name: Sample time, Ts
+  summary: Sample time 0.01 (default) | scalar
+  group: Controls
+  block_parameter: Ts
+  values: 0.01 (default) | scalar
+- name: Number of cylinders, NCyl
+  summary: Engine cylinders 4 (default) | scalar
+  group: Estimation
+  block_parameter: NCyl
+  values: 4 (default) | scalar
+- name: Crank revolutions per power stroke, Cps
+  summary: Revolutions per stroke 2 (default) | scalar
+  group: Estimation
+  block_parameter: Cps
+  values: 2 (default) | scalar
+- name: Total displaced volume, Vd
+  summary: Volume 0.0015 (default) | scalar
+  group: Estimation
+  block_parameter: Vd
+  values: 0.0015 (default) | scalar
+- name: Ideal gas constant air, Rair
+  summary: Constant 287 (default) | scalar
+  group: Estimation
+  block_parameter: Rair
+  values: 287 (default) | scalar
+- name: Air standard pressure, Pstd
+  summary: Pressure 101325 (default) | scalar
+  group: Estimation
+  block_parameter: Pstd
+  values: 101325 (default) | scalar
+- name: Air standard temperature, Tstd
+  summary: Temperature 293.15 (default) | scalar
+  group: Estimation
+  block_parameter: Tstd
+  values: 293.15 (default) | scalar
+- name: Speed-density volumetric efficiency, f_nv
+  summary: Lookup table array
+  group: Estimation
+  block_parameter: f_nv
+  values: array
+- name: Speed-density intake manifold pressure breakpoints, f_nv_prs_bpt
+  summary: Breakpoints [31 40.64 50.29 59.93 69.57 79.21 88.86 98.5 108.1 117.8 127.4 137.1 146.7 156.4 166] (default) | vector
+  group: Estimation
+  block_parameter: f_nv_prs_bpt
+  values: vector
+- name: Speed-density engine speed breakpoints, f_nv_n_bpt
+  summary: Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Estimation
+  block_parameter: f_nv_n_bpt
+  values: vector
+- name: Cylinder volume at intake valve close table, f_vivc
+  summary: 2-D lookup table array
+  group: Estimation
+  block_parameter: f_vivc
+  values: array
+- name: Engine speed breakpoints, f_tm_corr_n_bpt
+  summary: Breakpoints [750 973.7 1197 1421 1645 1868 2092 2316 2539 2763 2987 3211 3434 3658 3882 4105 4329 4553 4776 5000]
+    (default) | vector
+  group: Estimation
+  block_parameter: f_tm_corr_n_bpt
+  values: vector
+- name: Cylinder volume intake cam phase breakpoints, f_vivc_icp_bpt
+  summary: Breakpoints [0 2.632 5.263 7.895 10.53 13.16 15.79 18.42 21.05 23.68 26.32 28.95 31.58 34.21 36.84 39.47 42.11
+    44.74 47.37 50] (default) | vector
+  group: Estimation
+  block_parameter: f_vivc_icp_bpt
+  values: vector
+- name: Cylinder trapped mass correction factor, f_tm_corr
+  summary: Lookup table array
+  group: Estimation
+  block_parameter: f_tm_corr
+  values: array
+- name: Normalized density breakpoints, f_tm_corr_nd_bpt
+  summary: Breakpoints [0.3 0.3895 0.4789 0.5684 0.6579 0.7474 0.8368 0.9263 1.016 1.105 1.195 1.284 1.374 1.463 1.553 1.642
+    1.732 1.821 1.911 2] (default) | vector
+  group: Estimation
+  block_parameter: f_tm_corr_nd_bpt
+  values: vector
+- name: Intake mass flow, f_mdot_intk
+  summary: Lookup table array
+  group: Estimation
+  block_parameter: f_mdot_intk
+  values: array
+- name: Exhaust cam phase breakpoints, f_mdot_air_ecp_bpt
+  summary: Breakpoints [0 2.632 5.263 7.895 10.53 13.16 15.79 18.42 21.05 23.68 26.32 28.95 31.58 34.21 36.84 39.47 42.11
+    44.74 47.37 50] (default) | vector
+  group: Estimation
+  block_parameter: f_mdot_air_ecp_bpt
+  values: vector
+- name: Trapped mass flow breakpoints, f_mdot_trpd_bpt
+  summary: Breakpoints [0 5.79 11.58 17.37 23.16 28.95 34.74 40.53 46.32 52.11 57.89 63.68 69.47 75.26 81.05 86.84 92.63 98.42
+    104.2 110] (default) | vector
+  group: Estimation
+  block_parameter: f_mdot_trpd_bpt
+  values: vector
+- name: Air mass flow correction factor, f_mdot_air_corr
+  summary: Lookup table array
+  group: Estimation
+  block_parameter: f_mdot_air_corr
+  values: array
+- name: Engine load breakpoints for air mass flow correction, f_mdot_air_corr_ld_bpt
+  summary: Breakpoints vector
+  group: Estimation
+  block_parameter: f_mdot_air_corr_ld_bpt
+  values: vector
+- name: Engine speed breakpoints for air mass flow correction, f_mdot_air_n_bpt
+  summary: Breakpoints [750 973.7 1197 1421 1645 1868 2092 2316 2539 2763 2987 3211 3434 3658 3882 4105 4329 4553 4776 5000]
+    (default) | vector
+  group: Estimation
+  block_parameter: f_mdot_air_n_bpt
+  values: vector
+- name: EGR flow time constant, tau_egr
+  summary: Constant 0.2 (default) | scalar
+  group: Estimation
+  block_parameter: tau_egr
+  values: 0.2 (default) | scalar
+- name: Intake system pressure ratio table, f_intksys_stdflow_pr
+  summary: Table array
+  group: Estimation
+  block_parameter: f_intksys_stdflow_pr
+  values: array
+- name: Standard mass flow rate breakpoints for intake pressure ratio, f_intksys_stdflow_bpt
+  summary: Breakpoints [0 29.67 59.34 89.01 117.8 144.1 155.7 166 175.2 183.3 190.7 197 202.7 207.7 212.2 216.1 219.4 222.2
+    224.5 226.4] (default) | vector
+  group: Estimation
+  block_parameter: f_intksys_stdflow_bpt
+  values: array
+- name: EGR valve standard mass flow rate, f_egr_stdflow
+  summary: Table vector
+  group: Estimation
+  block_parameter: f_egr_stdflow
+  values: array
+- name: EGR valve standard flow pressure ratio breakpoints, f_egr_stdflow_pr_bpt
+  summary: Breakpoints vector
+  group: Estimation
+  block_parameter: f_egr_stdflow_pr_bpt
+  values: vector
+- name: EGR valve standard flow area percent breakpoints, f_egr_stdflow_egrap_bpt
+  summary: Breakpoints [0;5;10;15;20;25;30;35;40;45;50;55;60;65;70;75;80;85;90;95;100] (default) | vector
+  group: Estimation
+  block_parameter: f_egr_stdflow_egrap_bpt
+  values: vector
+- name: Torque table, f_tq_nl
+  summary: Lookup table [L x N] array
+  group: Estimation
+- name: Torque table load breakpoints, f_tq_nl_l_bpt
+  summary: Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+    | [1 x L] vector
+  group: Estimation
+- name: Torque table speed breakpoints, f_tq_nl_n_bpt
+  summary: Breakpoints [750 1053.57142857143 1357.14285714286 1660.71428571429 1964.28571428571 2267.85714285714 2571.42857142857
+    2875 3178.57142857143 3482.14285714286 3785.71428571429 4089.28571428571 4392.85714285714 4696.42857142857 5000] (default)
+    | vector | [1 x N] vector
+  group: Estimation
+- name: Crank angle pressure and torque
+  summary: Enable Crank angle signals off (default) | on
+  group: Estimation
+- name: Cylinder pressure, f_crk_prs
+  summary: Cylinder pressure table L x M x N array
+  group: Estimation
+- name: Brake torque, f_crk_btq
+  summary: Brake torque table L x M x N array
+  group: Estimation
+- name: Speed breakpoints, f_crk_n_bpt
+  summary: Speed breakpoints [750 5000] (default) | 1 x N vector
+  group: Estimation
+- name: Load breakpoints, f_crk_l_bpt
+  summary: Load breakpoints [0.2 1.4] (default) | 1 x L vector
+  group: Estimation
+- name: Crank angle breakpoints, f_crk_ang_bpt
+  summary: Crank angle breakpoints [60 660] (default) | 1 x M vector
+  group: Estimation
+- name: TDC compression angles by cylinder, f_crk_tdc_ang
+  summary: TDC compression angles by cylinder [0 540 180 360] (default) | vector
+  group: Estimation
+- name: Inner torque table, f_tq_inr
+  summary: Lookup table array
+  group: Estimation
+- name: Friction torque table, f_tq_fric
+  summary: Lookup table array
+  group: Estimation
+- name: Engine temperature modifier on friction torque, f_fric_temp_mod
+  summary: Lookup table [3.96 3.22 2.56 2.26 2.11 2 1.9 1.83 1.76 1.7 1.65 1.6 1.55 1.49 1.44 1.41 1.38 1.35 1.32 1.3 1.27
+    1.25 1.24 1.21 1.2 1.18 1.16 1.15 1.13 1.12 1.11 1.1 1.09 1.08 1.07 1.06 1.05 1.05 1.04 1.03 1.02 1.02 1.01 1.01 1 1 1
+    0.999 0.997 0.995 0.993 0.991 0.989 0.987] (default) | vector | vector
+  group: Estimation
+- name: Engine temperature modifier breakpoints, f_fric_temp_bpt
+  summary: Breakpoints [274 276 278 280 282 284 286 288 290 292 294 296 298 300 302 304 306 308 310 312 314 316 318 320 322
+    324 326 328 330 332 334 336 338 340 342 344 346 348 350 352 354 356 358 360 362 364 366 368 370 372 374 376 378 380] (default)
+    | vector | vector
+  group: Estimation
+- name: Pumping torque table, f_tq_pump
+  summary: Lookup table array
+  group: Estimation
+- name: Optimal spark table, f_sa_opt
+  summary: Lookup table array
+  group: Estimation
+- name: Inner torque load breakpoints, f_tq_inr_l_bpt
+  summary: Breakpoints [0.2 0.28571 0.37143 0.45714 0.54286 0.62857 0.71429 0.8 0.88571 0.97143 1.0571 1.1429 1.2286 1.3143
+    1.4] (default) | vector
+  group: Estimation
+- name: Inner torque speed breakpoints, f_tq_inr_n_bpt
+  summary: Breakpoints [750 1053.5714 1357.1429 1660.7143 1964.2857 2267.8571 2571.4286 2875 3178.5714 3482.1429 3785.7143
+    4089.2857 4392.8571 4696.4286 5000] (default) | vector
+  group: Estimation
+- name: Spark efficiency table, f_m_sa
+  summary: Lookup table array
+  group: Estimation
+- name: Spark retard from optimal, f_del_sa_bpt
+  summary: Breakpoints [0 0.75 1.5 2.25 3 3.75 4.5 5.25 6 6.75 7.5 8.25 9 9.75 10.5 11.25 12 12.75 13.5 14.25 15 15.75 16.5
+    17.25 18 18.75 19.5 20.25 21 21.75 22.5 23.25 24 24.75 25.5 26.25 27 27.75 28.5 29.25 30 30.75 31.5 32.25 33 33.75 34.5
+    35.25 36 36.75 37.5 38.25 39 39.75 40.5 41.25 42 42.75 43.5 44.25 45 45.75 46.5 47.25 48] (default) | vector
+  group: Estimation
+- name: Lambda efficiency, f_m_lam
+  summary: Lookup table array
+  group: Estimation
+- name: Lambda breakpoints, f_m_lam_bpt
+  summary: Breakpoints [0.65 0.7 0.75 0.8 0.85 0.9 0.95 1 1.05 1.1] (default) | vector
+  group: Estimation
+- name: Exhaust temperature table, f_t_exh
+  summary: Lookup table array
+  group: Estimation
+  block_parameter: f_t_exh
+  values: array
+- name: Load breakpoints, f_t_exh_l_bpt
+  summary: Breakpoints [0.2 0.275 0.35 0.425 0.5 0.575 0.65 0.725 0.8 0.875 0.95 1.025 1.1 1.175 1.25] (default) | vector
+  group: Estimation
+  block_parameter: f_t_exh_l_bpt
+  values: vector
+- name: Speed breakpoints, f_t_exh_n_bpt
+  summary: Breakpoints [750 1054 1357 1661 1964 2268 2571 2875 3179 3482 3786 4089 4393 4696 5000] (default) | vector
+  group: Estimation
+  block_parameter: f_t_exh_n_bpt
+  values: vector
+```
 
 ### Configuration
 
@@ -2677,7 +3290,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `f_t_exh_n_bpt` |
 | **Values:** | `vector` |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Combustion Engine Controllers

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # LIN Pack
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 要打包数据的输入数据
+  direction: input
+- name: lin_data
+  summary: 输出 LIN 数据 LIN 数据
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,22 @@ chinese_source: worker-translation
 ### **lin\_data** — 输出 LIN 数据 LIN 数据
 
 发送打包后的 LIN 数据。
-
 ## 参数
+```yaml
+parameters:
+- name: LDF File Name
+  summary: LDF 的文件路径 empty (default) | character vector | string scalar
+  group: ''
+  block_parameter: LDFFileName
+- name: Select Frame
+  summary: LIN 帧 None (default) | character vector | string scalar
+  group: ''
+  block_parameter: selectedFrameName
+- name: Frame ID
+  summary: LIN 帧 ID 1 (default) | uint8
+  group: ''
+  block_parameter: frameId
+```
 
 ### **LDF File Name** — LDF 的文件路径 empty (default) | character vector | string scalar
 
@@ -58,7 +81,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`frameId` |
-
 ## 所属库
 
 Simulink Real-Time / LIN

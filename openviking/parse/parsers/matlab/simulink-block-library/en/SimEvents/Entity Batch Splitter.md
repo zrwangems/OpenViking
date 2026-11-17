@@ -14,6 +14,35 @@ language: en
 # Entity Batch Splitter
 
 ## Ports
+```yaml
+ports:
+- name: port_1
+  summary: Input batch entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_1
+  summary: Output entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: port_a
+  summary: Number of entities arrived scalar
+  direction: output
+  data_types: double
+- name: port_d
+  summary: Number of entities that have departed the block scalar
+  direction: output
+  data_types: double
+- name: port_rem
+  summary: Number of entities remaining in the block scalar
+  direction: output
+  data_types: double
+- name: port_pe
+  summary: Pending entity in block off (default) | on
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -76,8 +105,45 @@ pending entity in the block, and `0` otherwise.
 To enable this port, select the **Statistics** > **Pending entity in block, pe**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Event actions
+  summary: Specify the event action Entry (default) | Unbatch | Exit | Blocked
+  group: ''
+  block_parameter: EntryAction, UnbatchAction, ExitAction, BlockedAction
+  type: character vector
+  values: MATLAB code
+  default: ''''''
+- name: Number of entities arrived, a
+  summary: Outputs the number of entities that have arrived at the block off (default) | on
+  group: ''
+  block_parameter: NumberOfEntitiesArrived
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities departed, d
+  summary: Outputs the number of entities that have departed the block off (default) | on
+  group: ''
+  block_parameter: NumberOfEntitiesDeparted
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities remaining to depart, rem
+  summary: Outputs the number of entities that remain in the block off (default) | on
+  group: ''
+  block_parameter: NumberOfEntitiesWaitingToDepart
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Pending entity in block, pe
+  summary: Pending entities off (default) | on
+  group: ''
+  block_parameter: PendingEntity
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Event actions** — Specify the event action `Entry` (default) | `Unbatch` | `Exit` | `Blocked`
 
@@ -153,7 +219,6 @@ The value is `1` for a pending entity, and
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

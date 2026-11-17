@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # MVDR Spectrum
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据 复值矩阵
+  direction: input
+  data_types: double | single
+- name: Y
+  summary: 二维空间谱 实值矩阵
+  direction: output
+  data_types: double
+- name: Ang
+  summary: 估计的到达方向 两行实值矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -42,8 +57,138 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Enable DOA output** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: 主选项卡
+- name: Operating frequency (Hz)
+  summary: 系统工作频率 3e8（默认）| 正实标量
+  group: 主选项卡
+- name: Number of bits in phase shifters
+  summary: 移相器相位量化位数 0（默认）| 非负整数
+  group: 主选项卡
+- name: Forward-backward averaging
+  summary: 启用前向-后向平均 off（默认）| on
+  group: 主选项卡
+- name: Azimuth scan angles (deg)
+  summary: 方位角扫描角度 -90:90（默认）
+  group: 主选项卡
+- name: Elevation scan angles (deg)
+  summary: 仰角扫描角度 0（默认）
+  group: 主选项卡
+- name: Enable DOA output
+  summary: 通过输出端口输出到达方向 off（默认）| on
+  group: 主选项卡
+- name: Number of signals
+  summary: 预期到达信号数量 1（默认）| 正整数
+  group: 主选项卡
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: 主选项卡
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Expression
+  summary: 用于创建数组的 MATLAB 表达式 Phased Array System Toolbox™ 数组 System object
+  group: 主选项卡
+- name: Specify sensor array as
+  summary: 指定数组的方法 Array (no subarrays)（默认）| MATLAB expression
+  group: Sensor Array Tab
+- name: Element type
+  summary: 阵元类型 Isotropic Antenna（默认）| Cardioid Antenna | Cosine Antenna | Custom Antenna | Gaussian Antenna | Sinc Antenna
+    | Omni Microphone | Custom Microphone
+  group: Sensor Array Tab
+- name: Operating frequency range (Hz)
+  summary: 天线或麦克风阵元的工作频率范围 [0,1e20]（默认）| 实值 1×2 行向量
+  group: Sensor Array Tab
+- name: Baffle the back of the element
+  summary: 将 Isotropic Antenna 阵元或 Omni Microphone 阵元的背面响应设置为零 off（默认）| on
+  group: Sensor Array Tab
+- name: Null axis direction
+  summary: 零轴方向 -x（默认）| +x | +y | -y | +z | -z
+  group: Sensor Array Tab
+- name: Exponent of cosine pattern
+  summary: 方位角和俯仰角余弦方向图的指数 [1.5 1.5]（默认）| 非负标量 | 非负实数值 1×2 矩阵
+  group: Sensor Array Tab
+- name: Operating frequency vector (Hz)
+  summary: 自定义天线或麦克风元件的工作频率范围 [0,1e20]（默认）| 实数值行向量
+  group: Sensor Array Tab
+- name: Frequency responses (dB)
+  summary: 天线和麦克风频率响应 [0,0]（默认）| 实数值行向量
+  group: Sensor Array Tab
+- name: Input Pattern Coordinate System
+  summary: 自定义天线方向图的坐标系 az-el（默认）| phi-theta
+  group: Sensor Array Tab
+- name: Azimuth angles (deg)
+  summary: 天线辐射方向图的方位角 [-180:180]（默认）| 实数值行向量
+  group: Sensor Array Tab
+- name: Elevation angles (deg)
+  summary: 天线辐射方向图的俯仰角 [-90:90]（默认）| 实数值行向量
+  group: Sensor Array Tab
+- name: Phi Angles (deg)
+  summary: 自定义天线辐射方向图的 Phi 角坐标 0:360 | 实值 1×*P* 行向量
+  group: Sensor Array Tab
+- name: Theta Angles (deg)
+  summary: 自定义天线辐射方向图的 Theta 角坐标 0:180 | 实值 1×*Q* 行向量
+  group: Sensor Array Tab
+- name: Magnitude pattern (dB)
+  summary: 组合天线辐射方向图的幅度 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: Sensor Array Tab
+- name: Phase pattern (deg)
+  summary: 自定义天线辐射相位方向图 zeros(181,361)（默认）| 实值 *Q*×*P* 矩阵 | 实值 *Q*×*P*×*L* 数组
+  group: Sensor Array Tab
+- name: Align element normal with array normal
+  summary: 将阵元法线与阵列法线对齐 on（默认）| off
+  group: Sensor Array Tab
+- name: Radiation pattern beamwidth (deg)
+  summary: 辐射方向图波束宽度 [10,10]（默认值）
+  group: Sensor Array Tab
+- name: Polar pattern frequencies (Hz)
+  summary: 极坐标方向图麦克风响应频率 1e3（默认值）| 实标量 | 实值 1×*L* 行向量
+  group: Sensor Array Tab
+- name: Polar pattern angles (deg)
+  summary: 极坐标方向图响应角度 [-180:180]（默认值）| 实值 1×*P* 行向量
+  group: Sensor Array Tab
+- name: Polar pattern (dB)
+  summary: 自定义麦克风极坐标响应 zeros(1,361)（默认值）| 实值 *L*×*P* 矩阵
+  group: Sensor Array Tab
+- name: Geometry
+  summary: 阵列几何结构 ULA（默认值）| URA | UCA | Conformal Array
+  group: Sensor Array Tab
+- name: Number of elements
+  summary: 阵列阵元数量 ULA 阵列为 2，UCA 阵列为 5（默认值）| 大于或等于 2 的整数
+  group: Sensor Array Tab
+- name: Element spacing (m)
+  summary: 阵列阵元之间的间距 ULA 阵列为 0.5，URA 阵列为 [0.5,0.5]（默认值）| ULA 或 URA 阵列为正标量 | URA 阵列为由正值组成的 2 元素向量
+  group: Sensor Array Tab
+- name: Array axis
+  summary: ULA 的线性轴方向 y（默认值）| x | z
+  group: Sensor Array Tab
+- name: Array size
+  summary: URA 阵列的维度 [2,2]（默认）| 正整数 | 1×2 正整数向量
+  group: Sensor Array Tab
+- name: Element lattice
+  summary: URA 元素位置的晶格 Rectangular（默认）| Triangular
+  group: Sensor Array Tab
+- name: Array normal
+  summary: 阵列法线方向 URA 阵列为 x，UCA 阵列为 z（默认）| y
+  group: Sensor Array Tab
+- name: Radius of UCA (m)
+  summary: UCA 阵列半径 0.5（默认）| 正标量
+  group: Sensor Array Tab
+- name: Element positions (m)
+  summary: 共形阵列元素的位置 [0;0;0]（默认）| 3×*N* 实数值矩阵
+  group: Sensor Array Tab
+- name: Element normals (deg)
+  summary: 共形阵列单元法向量方向 [0;0] | 2×1 列向量 | 2×*N* 矩阵
+  group: Sensor Array Tab
+- name: Taper
+  summary: 阵列单元加权 1（默认）| 复标量 | 复值行向量
+  group: Sensor Array Tab
+```
 
 ### 主选项卡
 
@@ -465,7 +610,6 @@ UCA 阵列的半径，指定为正标量。
 如果 **Taper** 为标量，则对每个单元施加相同的权重。如果 **Taper** 为向量，则将向量中的权重施加到对应的传感器单元。权重数量必须与阵列的单元数量匹配。
 
 **数据类型：** `double`
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

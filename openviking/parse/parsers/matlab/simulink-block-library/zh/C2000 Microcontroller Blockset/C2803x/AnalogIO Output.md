@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2802x/C2803x/C2806x/F28M3x AnalogIO Output
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **参数（输出引脚）**
 :   选择模拟输出引脚。如果模块的输入为 True，选择 **Toggle**
@@ -27,7 +32,6 @@ R2025b 中未记录。
 **参数（输出引脚）**
 :   选择模拟输出引脚。如果模块的输入为 True，选择 **Toggle**
     会反转引脚的输出电压电平。
-
 ## 所属库
 
 R2025b 中未记录。

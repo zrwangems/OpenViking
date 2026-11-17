@@ -14,6 +14,21 @@ language: en
 # Mach Number
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Velocity 3-element vector
+  direction: input
+  data_types: double
+- name: a
+  summary: Speed of sound 1-by-1 array
+  direction: input
+  data_types: double
+- name: Mach
+  summary: Mach number scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,11 +50,12 @@ Speed of sound, specified as a 1-by-1 array.
 Mach number, returned as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Flight Parameters

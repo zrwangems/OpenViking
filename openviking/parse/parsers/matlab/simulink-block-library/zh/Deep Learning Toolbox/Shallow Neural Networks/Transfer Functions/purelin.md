@@ -15,13 +15,17 @@ chinese_source: worker-translation
 # purelin
 
 ## 端口
+```yaml
+ports: []
+```
 
 在 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 在 R2025b 中未记录。

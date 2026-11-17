@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Scalar Quantizer Encoder
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 输入数据值 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: B
+  summary: 边界点 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: C
+  summary: 码本值 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: I
+  summary: 索引值 向量 | 矩阵
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Q(U)
+  summary: 量化输出值 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Err
+  summary: 量化误差 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: S
+  summary: 限幅状态 向量 | 矩阵
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -94,8 +125,49 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output clipping status** 复选框。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Source of quantizer parameters
+  summary: 量化器参数来源 Specify via dialog（默认）| Input port
+  group: 主选项卡
+- name: Partitioning
+  summary: 分区方法 Bounded（默认）| Unbounded
+  group: 主选项卡
+- name: Boundary points
+  summary: 边界点 [1:10]（默认）| 向量
+  group: 主选项卡
+- name: Searching method
+  summary: 搜索方法 Linear（默认）| Binary
+  group: 主选项卡
+- name: Tie-breaking rule
+  summary: 输入值与边界点相同时的操作 Choose the lower index（默认）| Choose the higher index
+  group: 主选项卡
+- name: Output codeword
+  summary: 输出码字 off（默认）| on
+  group: 主选项卡
+- name: Output quantization error
+  summary: 输出量化误差 off（默认）| on
+  group: 主选项卡
+- name: Codebook
+  summary: 量化输出值 [1.5:9.5]（默认）| 向量
+  group: 主选项卡
+- name: Output clipping status
+  summary: 输出限幅状态 off（默认）| on
+  group: 主选项卡
+- name: Action for out of range input
+  summary: 超出范围输入的操作 Clip | Clip and warn | Error
+  group: 主选项卡
+- name: Index output data type
+  summary: 索引输出数据类型 int32（默认）| int8 | uint8 | int16 | uint16 | int32 | uint32 | Inherit via back propagation
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -228,7 +300,6 @@ chinese_source: worker-translation
 ### **Saturate on integer overflow** — 整数溢出时饱和 `off`（默认）| `on`
 
 选中此参数时，模块对其定点运算的结果进行饱和处理。清除此参数时，模块对其定点运算的结果进行回绕处理。有关 `saturate` 和 `wrap` 的详细信息，请参阅定点运算的溢出模式。
-
 ## 所属库
 
 DSP System Toolbox / Quantizers

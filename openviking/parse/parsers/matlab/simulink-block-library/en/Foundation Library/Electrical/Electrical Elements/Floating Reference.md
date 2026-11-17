@@ -14,6 +14,12 @@ language: en
 # Floating Reference
 
 ## Ports
+```yaml
+ports:
+- name: n
+  summary: DC current is zero electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,16 @@ language: en
 
 Electrical conserving port where the DC current is zero. Use this port to measure
 the voltage of other nodes in a floating electrical network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Capacitance
+  summary: Capacitance that blocks DC current 1 uF (default) | positive scalar
+  group: ''
+- name: Parasitic parallel conductance
+  summary: Small parasitic effects 0 1/Ohm (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Capacitance** — Capacitance that blocks DC current `1 uF` (default) | positive scalar
 
@@ -33,7 +47,6 @@ ground. This capacitance blocks the DC current.
 
 Represents small parasitic effects. A nonzero value is required for the simulation
 of some circuit topologies.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements Simscape / Electrical / Connectors & References

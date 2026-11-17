@@ -15,10 +15,33 @@ chinese_source: worker-translation
 # Control Function Available Caller
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Client port name
+  summary: AUTOSAR 组件用于调用 FiM 服务接口 ControlFunctionAvailable 的客户端端口名称 ControlFunctionAvailable（默认）| 字符向量
+  group: ''
+  block_parameter: PortName
+  type: 字符向量
+  values: '''ControlFunctionAvailable'' | 唯一名称'
+- name: Operation
+  summary: 指定 FiM 服务接口中定义的操作 ControlFunctionAvailable SetFunctionAvailable（默认）
+  group: ''
+  block_parameter: Operation
+  type: 字符向量
+  values: '''SetFunctionAvailable'''
+- name: Sample time
+  summary: 模块采样时间 -1（默认）| 标量
+  group: ''
+  block_parameter: st
+  type: 标量
+  values: -1 | 标量
+```
 
 ### **Client port name** — AUTOSAR 组件用于调用 FiM 服务接口 `ControlFunctionAvailable` 的客户端端口名称 `ControlFunctionAvailable`（默认）| 字符向量
 
@@ -58,7 +81,6 @@ R2025b 中未记录。
 | **类型：** 标量 |
 | **值：** `-1 |` 标量 |
 | **默认：** `-1` |
-
 ## 所属库
 
 AUTOSAR Blockset / Classic Platform / Basic Software / Function Inhibition Manager (FiM)

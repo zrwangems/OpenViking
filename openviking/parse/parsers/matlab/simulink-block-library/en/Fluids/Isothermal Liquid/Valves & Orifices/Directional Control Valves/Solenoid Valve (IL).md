@@ -14,6 +14,24 @@ language: en
 # Solenoid Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Signal that controls valve, unitless physical signal
+  direction: input
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -56,8 +74,55 @@ Electrical conserving port associated with the negative terminal of the valve co
 
 To enable this port, set **Solenoid control** to
 `Electrical ports`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Solenoid control
+  summary: Select valve control method Physical signal (default) | Electrical ports
+  group: ''
+- name: Valve initial position
+  summary: Initial position for valve Closed (default) | Open
+  group: ''
+- name: Opening switching time
+  summary: Time for flow rate to rise when opening 0.05 s (default) | positive scalar
+  group: ''
+- name: Closing switching time
+  summary: Time for flow rate to fall when closing 0.1 s (default) | positive scalar
+  group: ''
+- name: Maximum opening area
+  summary: Area of fully opened valve 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Valve gap area when in fully closed position 1e-10 m^2 (default)
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area at valve entry or exit inf m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: ''
+- name: Rated voltage
+  summary: Solenoid rated voltage 12 V (default) | positive scalar
+  group: ''
+- name: Nominal current
+  summary: Steady-state current 2e-4 A (default) | positive scalar
+  group: ''
+- name: Solenoid inductance
+  summary: Linear solenoid inductance 1e-6 H (default) | positive scalar
+  group: ''
+- name: Plunger distance of travel
+  summary: Distance plunger travels 1.8e-3 m (default) | positive scalar
+  group: ''
+- name: Initial current
+  summary: Solenoid initial current 0 A (default) | positive scalar
+  group: ''
+```
 
 ### **Solenoid control** — Select valve control method `Physical signal` (default) | `Electrical ports`
 
@@ -172,7 +237,6 @@ Initial current in the solenoid.
 
 To enable this parameter, set **Solenoid control** to
 `Electrical ports`.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

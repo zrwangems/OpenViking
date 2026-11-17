@@ -14,6 +14,17 @@ language: en
 # Transfer Fcn First Order
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Transfer function output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -30,8 +41,37 @@ Output signal that is the discrete-time first order transfer function
 of the input with a unity DC gain.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Pole (in Z plane)
+  summary: Pole 0.95 (default) | scalar
+  group: ''
+  block_parameter: PoleZ
+  type: character vector
+  values: real scalar
+  default: '''0.95'''
+- name: Initial condition for previous output
+  summary: Initial condition for previous output 0.0 (default) | scalar
+  group: ''
+  block_parameter: ICPrevOutput
+  type: character vector
+  values: real scalar
+  default: '''0.0'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Pole (in Z plane)** — Pole `0.95` (default) | scalar
 
@@ -94,7 +134,6 @@ saturation code.
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discrete

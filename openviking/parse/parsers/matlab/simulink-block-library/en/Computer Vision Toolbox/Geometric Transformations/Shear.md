@@ -14,6 +14,21 @@ language: en
 # Shear
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image or video matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: S
+  summary: Shear value vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Output
+  summary: Transformed image or video matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -59,8 +74,31 @@ array. *T* is the number of frames in a video or image sequence, and
 *C* is the number of color channels.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Shear direction
+  summary: Direction of transformation Horizontal (default) | Vertical
+  group: ''
+- name: Output size after shear
+  summary: Transformed image size Full (default) | Same as input image
+  group: ''
+- name: Shear values source
+  summary: Source of shear value offset limits Specify via dialog (default) | Input port
+  group: ''
+- name: Row/column shear values [first last]
+  summary: Shear value offset limits [0 3] (default) | two-element vector
+  group: ''
+- name: Maximum shear value
+  summary: Maximum row or column shear 20 (default) | scalar
+  group: ''
+- name: Background fill value
+  summary: Intensity value of the background in transformed image 0 (default) | scalar | three-element vector
+  group: ''
+- name: Interpolation method
+  summary: Method for interpolating transformed pixel values Bilinear (default) | Nearest neighbor | Bicubic
+  group: ''
+```
 
 ### **Shear direction** — Direction of transformation `Horizontal` (default) | `Vertical`
 
@@ -163,7 +201,6 @@ least accurate while the `Bicubic` interpolation is the least
 computationally efficient and the most accurate. For more information about the
 interpolation methods and kernels, see the More About section and
 the Create and Compare Resizing Interpolation Kernels example.
-
 ## Libraries
 
 Computer Vision Toolbox / Geometric Transformations

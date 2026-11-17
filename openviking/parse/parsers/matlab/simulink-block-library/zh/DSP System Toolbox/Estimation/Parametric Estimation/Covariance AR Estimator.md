@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Covariance AR Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入列向量 | 无向向量
+  direction: input
+  data_types: single | double
+- name: A
+  summary: AR 模型多项式系数的归一化估计 列向量
+  direction: output
+  data_types: single | double
+- name: G
+  summary: 模型增益 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -54,13 +69,17 @@ H(z)=GA(z)=G1+a(2)z−1+…+a(p+1)z−p
 - *A*(*z*) –– AR 模型的多项式系数
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Estimation order
+  summary: AR 模型的阶数 4（默认）| 正整数
+  group: ''
+```
 
 ### **Estimation order** — AR 模型的阶数 `4`（默认）| 正整数
 
 将全极点 AR 模型的估计阶数 *p* 指定为正整数。为保证输出非奇异，必须将 *p* 设置为小于或等于输入向量长度的一半。否则，输出可能奇异。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Parametric Estimation

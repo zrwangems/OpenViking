@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Iterative Learning Control
 
 ## 端口
+```yaml
+ports:
+- name: error
+  summary: 误差信号 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: control/reset
+  summary: ILC 模式信号 标量
+  direction: input
+  data_types: Boolean
+- name: u
+  summary: 更新后的控制信号 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -46,8 +61,71 @@ chinese_source: worker-translation
 并测量期望参考与输出之间的误差。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: ILC 采样时间 0.01（默认）| 正标量
+  group: ''
+  block_parameter: Ts
+  values: '"0.01"（默认）| 带引号的正标量'
+- name: Iteration duration (Tspan)
+  summary: 迭代持续时间 1（默认）| 正标量
+  group: ''
+  block_parameter: Tspan
+  values: '"1"（默认）| 带引号的正标量'
+- name: Data Type
+  summary: 数据类型 double（默认）| single | <data type expression>
+  group: ''
+- name: ILC Algorithm
+  summary: ILC 算法 Model free ILC（默认）| Model based ILC
+  group: ''
+  block_parameter: Algorithm
+  values: '"Model free ILC"（默认）| "Model based ILC"'
+- name: P-gain (gamma_p)
+  summary: 无模型 ILC 中的比例增益 1（默认）| 非负标量
+  group: ''
+  block_parameter: gamma_p
+  values: '"1"（默认）| 带引号的非负标量'
+- name: D-gain (gamma_d)
+  summary: 无模型 ILC 中的微分增益 0（默认）| 非负标量
+  group: ''
+  block_parameter: gamma_d
+  values: '"0"（默认）| 带引号的非负标量'
+- name: State Space Model
+  summary: 模型时域 Continuous time（默认）| Discrete time (Ts)
+  group: ''
+  block_parameter: ModelTimeDomain
+  values: '"Continuous time"（默认）| "Discrete time (Ts)"'
+- name: A、B、C
+  summary: 状态空间模型矩阵 1（默认）| 矩阵
+  group: ''
+- name: ILC methods
+  summary: 基于模型的 ILC 方法 Gradient based（默认）| Inverse-model based
+  group: ''
+  block_parameter: ModelBasedILCType
+  values: '"Gradient based"（默认）| "Inverse-model based"'
+- name: ILC Gain (gamma_gradient)
+  summary: 基于梯度的 ILC 增益 1（默认）| 正标量
+  group: ''
+  block_parameter: gamma_grad
+  values: '"1"（默认）| 带引号的正标量'
+- name: ILC Gain (gamma_inverse)
+  summary: 基于逆模型的 ILC 增益 1（默认）
+  group: ''
+  block_parameter: gamma_inverse
+  values: '"1"（默认）| 带引号的小于 2 的正标量'
+- name: Enable first-order low-pass filter
+  summary: 启用一阶低通滤波器 off（默认）| on
+  group: ''
+  block_parameter: LPFEnable
+  values: '"off"（默认）| "on"'
+- name: 滤波器时间常数 (tau)
+  summary: 滤波器时间常数 1（默认）| 正标量
+  group: ''
+  block_parameter: tau
+  values: '"1"（默认）| 带引号的正标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -273,7 +351,6 @@ x(t+1)=Ax(t)+Bu(t)y(t)=Cx(t)。
 | **值：** | `"1"`（默认）| 带引号的正标量 |
 
 **示例：** `set_param(gcb,"tau","10")`
-
 ## 所属库
 
 Simulink Control Design / Adaptive Control

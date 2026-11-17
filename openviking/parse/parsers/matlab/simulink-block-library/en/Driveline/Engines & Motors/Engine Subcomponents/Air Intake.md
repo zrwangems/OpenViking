@@ -14,6 +14,18 @@ language: en
 # Air Intake
 
 ## Ports
+```yaml
+ports:
+- name: Thr
+  summary: Throttle command input, unitless physical signal
+  direction: input
+- name: EngSpd
+  summary: Rotational engine speed, rad/s physical signal
+  direction: input
+- name: Pim
+  summary: Intake manifold pressure input, kPa physical signal
+  direction: output
+```
 
 ### Input
 
@@ -33,8 +45,40 @@ Physical signal input associated with the rotational speed, in rad/s.
 ### **Pim** — Intake manifold pressure input, kPa physical signal
 
 Physical signal input associated with the intake manifold, in kPa.
-
 ## Parameters
+```yaml
+parameters:
+- name: Dry air specific gas constant
+  summary: Dry air specific gas constant 287.058 J/(K*kg) (default) | positive scalar
+  group: ''
+- name: Dry air specific heat ratio
+  summary: Dry air specific heat ratio 1.4 (default) | positive scalar
+  group: ''
+- name: Ambient pressure
+  summary: Reference air pressure 101.325 kPa (default) | positive scalar
+  group: ''
+- name: Ambient temperature
+  summary: Reference temperature 298.15 K (default) | positive scalar
+  group: ''
+- name: Throttle rest angle
+  summary: Released throttle position 3 deg (default) | positive scalar
+  group: ''
+- name: Throttle plate diameter
+  summary: Throttle plate diameter 5 cm (default) | positive scalar
+  group: ''
+- name: Throttle leakage area
+  summary: Throttle leakage area 1 cm^2 (default) | nonnegative scalar
+  group: ''
+- name: Intake manifold volume
+  summary: Intake manifold volume 1000 cm^3 (default) | positive scalar
+  group: ''
+- name: Engine displacement volume
+  summary: Engine displacement volume 1500 cm^3 (default) | positive scalar
+  group: ''
+- name: Throttle response time constant
+  summary: Throttle response time constant 0.1 s (default) | positive scalar
+  group: ''
+```
 
 ### **Dry air specific gas constant** — Dry air specific gas constant `287.058` `J/(K*kg)` (default) | positive scalar
 
@@ -77,7 +121,6 @@ Combined displacement of all engine pistons.
 
 Time constant associated with the response rate of the engine to the
 throttle command.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

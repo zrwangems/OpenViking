@@ -14,6 +14,19 @@ language: en
 # TCP Receive
 
 ## Ports
+```yaml
+ports:
+- name: Enable
+  summary: Allow data reception integer
+  direction: input
+- name: Data
+  summary: Data that is received from the remote client vector
+  direction: output
+  data_types: uint8
+- name: Length
+  summary: Actual size of data vector double
+  direction: output
+```
 
 ### Input
 
@@ -39,8 +52,22 @@ maximum size of the data vector.
 
 To test whether the number of data items exceeds the width of the data
 output port, use this value.
-
 ## Parameters
+```yaml
+parameters:
+- name: Receive using
+  summary: 'List of IP address and port pairs Read-only: x.x.x.x:y'
+  group: ''
+  block_parameter: socketAddPort
+- name: Receive width
+  summary: Maximum expected length of data vector 1–65504
+  group: ''
+  block_parameter: rcvWidth
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sampleTime
+```
 
 ### **Receive using** — List of IP address and port pairs Read-only: `x.x.x.x:y`
 
@@ -81,7 +108,6 @@ that the sample time is inherited.
 |  |
 | --- |
 | **Block Parameter:** `sampleTime` |
-
 ## Libraries
 
 Simulink Real-Time / IP

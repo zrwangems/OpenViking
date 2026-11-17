@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Expander
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号矩阵 | 1 维向量
+  direction: input
+  data_types: single | double
+- name: R
+  summary: 比率标量
+  direction: input
+  data_types: single | double
+- name: T
+  summary: 阈值 (dB) 标量
+  direction: input
+  data_types: single | double
+- name: K
+  summary: 拐点宽度 (dB) 标量
+  direction: input
+  data_types: single | double
+- name: AT
+  summary: 启动时间 (s) 标量
+  direction: input
+  data_types: single | double
+- name: RT
+  summary: 释放时间 (s) 标量
+  direction: input
+  data_types: single | double
+- name: HT
+  summary: 保持时间 (s) 标量
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+- name: G
+  summary: 应用于每个输入样本的增益矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -94,8 +133,46 @@ Expander 模块输出的信号与输入信号具有相同的数据类型。输�
 要启用此端口，请选择 **Output gain (dB)** 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Ratio
+  summary: 扩展比率 5（默认）| 范围在 1 到 50（含）之间的标量
+  group: ''
+- name: Threshold (dB)
+  summary: 操作阈值 –10（默认）| 范围在 –140 到 0（含）之间的标量
+  group: ''
+- name: Knee width (dB)
+  summary: 压缩特性中的过渡区域 0（默认）| 范围在 0 到 20 之间的标量
+  group: ''
+- name: View static characteristic
+  summary: 打开动态范围扩展器的静态特性图按钮
+  group: ''
+- name: Attack time (s)
+  summary: 应用增益上升的时间 0.05（默认）| 范围在 0 到 4（含）之间的标量
+  group: ''
+- name: Release time (s)
+  summary: 应用增益下降的时间 0.2（默认）| 范围在 0 到 4（含）之间的标量
+  group: ''
+- name: Hold time (s)
+  summary: 应用增益保持稳定的时间 0.05（默认）| 范围在 0 到 4（含）之间的标量
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 on（默认）| off
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入的采样率 44100（默认）| 正标量
+  group: ''
+- name: Output gain (dB)
+  summary: 应用于每个输入样本的增益 off（默认）| on
+  group: ''
+- name: Sidechain
+  summary: 启用侧链输入 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 如果参数被列为可调，则您可以在仿真期间更改其值。
 
@@ -213,7 +290,6 @@ y=x+(1−R)×(x−T−W2)2(2×W)
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 
 **可调：** 否
-
 ## 所属库
 
 Audio Toolbox / Dynamic Range Control

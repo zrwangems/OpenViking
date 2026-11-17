@@ -15,10 +15,93 @@ chinese_source: worker-translation
 # IMT Mixer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: 载波频率 1e9（默认）| 标量
+  group: ''
+- name: Local oscillator frequency (Hz)
+  summary: 本振（LO）频率 0.9e9（默认）| 标量
+  group: ''
+- name: Reference input power (dBm)
+  summary: 参考输入功率 -10（默认）| 标量
+  group: ''
+- name: Nominal output power (dbm)
+  summary: 标称 LO 功率 -20（默认）| 标量
+  group: ''
+- name: Use data file
+  summary: 指定要使用的数据文件 off（默认）| on
+  group: ''
+- name: Data file
+  summary: 数据文件 samplespur1.s2d（默认）
+  group: ''
+- name: Input impedance (Ohm)
+  summary: 混频器的输入阻抗 50（默认）| 实标量 | 正实标量向量
+  group: ''
+- name: Output impedance (Ohm)
+  summary: 混频器的输出阻抗 50（默认）| 实标量 | 正实标量向量
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 将 RF 负端电路端子接地 on（默认）| off
+  group: ''
+- name: IMT table
+  summary: IMT 杂散可视化 [99 99 99; 99 0 99; 99 99 99]（默认）| 方阵
+  group: ''
+- name: Output signal power (dBm)
+  summary: 期望输出音调的信号功率 0（默认）| 标量
+  group: ''
+- name: Mixer type
+  summary: 混频器类型 Upconverter（默认）| Downconverter
+  group: ''
+- name: Plot
+  summary: 使用指定的信号功率和混频器类型按钮可视化 IMT 表值
+  group: ''
+- name: Simulate noise
+  summary: 模拟器件噪声或相位噪声 on（默认）| off
+  group: ''
+- name: Noise type
+  summary: 噪声类型 Noise figure（默认）| Spot noise data
+  group: ''
+- name: Noise distribution
+  summary: 噪声分布 White（默认）| Piece-wise linear | Colored
+  group: ''
+- name: Noise figure (dB)
+  summary: 噪声系数 0（默认）| 标量
+  group: ''
+- name: Frequencies (Hz)
+  summary: 频率数据 0（默认）| 标量 | 向量
+  group: ''
+- name: Minimum noise figure (dB)
+  summary: 最小噪声系数 0（默认）| 标量 | 向量
+  group: ''
+- name: Optimal reflection coefficient
+  summary: 最佳反射系数 0（默认）| 标量 | 向量
+  group: ''
+- name: Equivalent normalized noise resistance
+  summary: 等效归一化噪声电阻 0（默认）| 标量 | 向量
+  group: ''
+- name: Add LO phase noise
+  summary: 添加相位噪声 off（默认）| on
+  group: ''
+- name: Phase noise frequency offset (Hz)
+  summary: 相位噪声频率偏移 1（默认）| 标量 | 向量
+  group: ''
+- name: Phase noise level (dBc/Hz)
+  summary: 相位噪声电平 -Inf（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Automatically estimate impulse response duration
+  summary: 自动估计冲激响应持续时间 on（默认）| off
+  group: ''
+- name: Impulse response duration
+  summary: 冲激响应持续时间 1e-10s（默认）| 标量
+  group: ''
+```
 
 #### 主
 
@@ -258,7 +341,6 @@ noise**。
 #### 依赖关系
 
 要设置此参数，请先清除 **Automatically estimate impulse response duration**。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

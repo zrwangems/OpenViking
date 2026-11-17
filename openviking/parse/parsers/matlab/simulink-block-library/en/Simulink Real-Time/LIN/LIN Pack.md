@@ -14,6 +14,15 @@ language: en
 # LIN Pack
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: input data to pack data
+  direction: input
+- name: lin_data
+  summary: output LIN data LIN data
+  direction: output
+```
 
 ### Input
 
@@ -26,8 +35,22 @@ the selected frame. The port name is assigned to each port.
 ### **lin\_data** — output LIN data LIN data
 
 Sends packed LIN data.
-
 ## Parameters
+```yaml
+parameters:
+- name: LDF File Name
+  summary: File path of LDF empty (default) | character vector | string scalar
+  group: ''
+  block_parameter: LDFFileName
+- name: Select Frame
+  summary: LIN frame None (default) | character vector | string scalar
+  group: ''
+  block_parameter: selectedFrameName
+- name: Frame ID
+  summary: LIN frame ID 1 (default) | uint8
+  group: ''
+  block_parameter: frameId
+```
 
 ### **LDF File Name** — File path of LDF empty (default) | character vector | string scalar
 
@@ -61,7 +84,6 @@ LDF, the block uses `1`.
 |  |
 | --- |
 | **Block Parameter:** `frameId` |
-
 ## Libraries
 
 Simulink Real-Time / LIN

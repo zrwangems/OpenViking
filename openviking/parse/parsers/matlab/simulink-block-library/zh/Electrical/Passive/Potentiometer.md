@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Potentiometer
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 游标位置控制物理信号
+  direction: input
+- name: L
+  summary: 左引脚电气
+  direction: input
+- name: R
+  summary: 右引脚电气
+  direction: input
+- name: W
+  summary: 游标引脚电气
+  direction: input
+```
 
 ### 输入
 
@@ -38,8 +53,46 @@ chinese_source: worker-translation
 ### **W** — 游标引脚电气
 
 与电位器游标引脚关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of visible ports
+  summary: '端口可见性选项 Three: left, right, and wiper（默认）| Two: left and wiper'
+  group: ''
+- name: Total resistance
+  summary: 总电阻 1000 Ohm（默认）
+  group: ''
+- name: Residual resistance
+  summary: 残余电阻 1 Ohm（默认）| 正标量
+  group: ''
+- name: PS input for wiper at L
+  summary: 游标位于 L 时的 PS 输入 0（默认）
+  group: ''
+- name: PS input for wiper at R
+  summary: 游标位于 R 时的 PS 输入 1（默认）
+  group: ''
+- name: Minimum resistance
+  summary: 最小电阻 1 Ohm（默认）
+  group: ''
+- name: Maximum resistance
+  summary: 最大电阻 999 Ohm（默认）
+  group: ''
+- name: PS input for wiper at minimum resistance
+  summary: 游标位于最小电阻时的 PS 输入 0（默认）
+  group: ''
+- name: PS input for wiper at maximum resistance
+  summary: 游标位于最大电阻时的 PS 输入 1（默认）
+  group: ''
+- name: Taper
+  summary: 电阻渐变特性 Linear（默认）| Logarithmic
+  group: ''
+- name: Resistance when centered
+  summary: 居中时的电阻 200 Ohm（默认）
+  group: ''
+- name: Resistance gradient
+  summary: 电阻梯度 Higher at R（默认）| Higher at L
+  group: ''
+```
 
 ### **Number of visible ports** — 端口可见性选项 `Three: left, right, and wiper`（默认）| `Two: left and wiper`
 
@@ -136,7 +189,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Taper** 设置为 `Logarithmic`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

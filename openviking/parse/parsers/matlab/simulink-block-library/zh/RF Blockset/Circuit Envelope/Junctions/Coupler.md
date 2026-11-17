@@ -15,10 +15,40 @@ chinese_source: worker-translation
 # Coupler
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Select component
+  summary: 耦合器类型 Directional coupler（默认）| Coupler symmetrical | Coupler antisymmetrical | Hybrid quadrature (90 deg) | Hybrid
+    rat-race | Magic tee
+  group: ''
+- name: Coupling (dB)
+  summary: 耦合到输出端口的输入信号功率比例 0（默认）| 非负实数标量
+  group: ''
+- name: Directivity (dB)
+  summary: 耦合端口功率与隔离端口功率之比 inf（默认）| 非负实数标量
+  group: ''
+- name: Insertion loss (dB)
+  summary: 输入端口与输出端口之间的信号功率损耗 inf（默认）| 非负实数标量
+  group: ''
+- name: Return loss (dB)
+  summary: 因阻抗失配导致的信号功率损耗 inf（默认）| 非负实数标量
+  group: ''
+- name: Power transmission coefficient
+  summary: 传输信号功率 0（默认）| 实数标量
+  group: ''
+- name: Reference impedances (Ohm)
+  summary: 耦合器的参考阻抗 50（默认）| 正标量 | 正三元组向量
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏负端子 on（默认）| off
+  group: ''
+```
 
 ### **Select component** — 耦合器类型 `Directional coupler`（默认）| `Coupler symmetrical` | `Coupler antisymmetrical` | `Hybrid quadrature (90 deg)` | `Hybrid rat-race` | `Magic tee`
 
@@ -140,7 +170,6 @@ Divider 模块使用 `ispassive` 函数来测试 S 参数矩阵的无源性。
 要暴露负端子，请清除此参数。通过暴露这些端子，您可以将它们连接到模型的其它部分。
 
 默认情况下，此选项被选中。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Junctions

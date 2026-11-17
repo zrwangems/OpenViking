@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Sparse Second Order
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: Output 1
+  summary: 输出向量 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,64 @@ chinese_source: worker-translation
 类型为 `double` 的实值输出向量，其大小等于 **F**、**G** 和 **D** 矩阵的行数。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: M (mass)
+  summary: 质量矩阵 1 （默认） | 标量 | Nq×Nq 稀疏矩阵
+  group: ''
+  block_parameter: M
+  type: 标量、方阵稀疏矩阵
+  default: '1'
+- name: C (damping)
+  summary: 阻尼矩阵 0 （默认） | 标量 | Nq×Nq 稀疏矩阵
+  group: ''
+  block_parameter: C
+  type: 标量、方阵稀疏矩阵
+  default: '0'
+- name: K (stiffness)
+  summary: 刚度矩阵 1 （默认） | 标量 | Nq×Nq 稀疏矩阵
+  group: ''
+  block_parameter: K
+  type: 标量、方阵稀疏矩阵
+  default: '1'
+- name: B
+  summary: 输入到状态矩阵 1 （默认） | 标量 | Nq×Nu 稀疏矩阵
+  group: ''
+  block_parameter: B
+  type: 标量、稀疏矩阵
+  default: '1'
+- name: F
+  summary: 位移到输出矩阵 1 （默认） | 标量 | Ny×Nq 稀疏矩阵
+  group: ''
+  block_parameter: F
+  type: 标量、稀疏矩阵
+  default: '1'
+- name: G
+  summary: 速度到输出矩阵 0 （默认） | 标量 | Ny×Nq 稀疏矩阵
+  group: ''
+  block_parameter: G
+  type: 标量、稀疏矩阵
+  default: '0'
+- name: D
+  summary: 输入到输出矩阵 0 （默认） | 标量 | Ny×Nu 稀疏矩阵
+  group: ''
+  block_parameter: D
+  type: 标量、稀疏矩阵
+  default: '0'
+- name: Initial position q(0)
+  summary: 位移向量的初始值 0 （默认） | 标量 | 双精度值向量
+  group: ''
+  block_parameter: q0
+  type: 标量、双精度值向量
+  default: '0'
+- name: Initial velocity q'(0)
+  summary: 速度向量的初始值 0 （默认） | 标量 | 双精度值向量
+  group: ''
+  block_parameter: dq0
+  type: 标量、双精度值向量
+  default: '0'
+```
 
 ### **M (mass)** — 质量矩阵 1 （默认） | 标量 | `Nq`×`Nq` 稀疏矩阵
 
@@ -148,7 +215,6 @@ chinese_source: worker-translation
 有关详细信息，请参阅 Sparse Model Basics。
 
 有关示例，请参阅 Linearize Simulink Model to a Sparse Second-Order Model Object。
-
 ## 所属库
 
 Control System Toolbox

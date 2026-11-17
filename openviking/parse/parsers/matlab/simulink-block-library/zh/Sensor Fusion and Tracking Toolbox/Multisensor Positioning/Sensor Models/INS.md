@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # INS
 
 ## 端口
+```yaml
+ports:
+- name: Position
+  summary: INS 传感器的位置 *N*×3 实值矩阵
+  direction: input
+  data_types: single | double
+- name: Velocity
+  summary: INS 传感器的速度 *N*×3 实值标量矩阵
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: INS 传感器的姿态 3×3×*N* 实值数组 | *N*×4 实值矩阵 | *N*×3 欧拉角矩阵
+  direction: input
+  data_types: single | double
+- name: Acceleration
+  summary: INS 传感器的加速度 *N*×3 实值矩阵
+  direction: input
+  data_types: single | double
+- name: AngularVelocity
+  summary: INS 传感器的角速度 *N*×3 实值矩阵
+  direction: input
+  data_types: single | double
+- name: HasGNSSFix
+  summary: 启用 GNSS 定位 *N*×1 逻辑向量
+  direction: input
+  data_types: single | double
+- name: Position
+  summary: INS 传感器的位置 *N*×3 实值矩阵
+  direction: output
+  data_types: single | double
+- name: Velocity
+  summary: INS 传感器的速度 *N*×3 实值矩阵
+  direction: output
+  data_types: single | double
+- name: Orientation
+  summary: INS 传感器的姿态 3×3×*N* 实值数组 | *N*×4 实值矩阵
+  direction: output
+  data_types: single | double
+- name: Acceleration
+  summary: INS 传感器的加速度 *N*×3 实值矩阵
+  direction: output
+  data_types: single | double
+- name: AngularVelocity
+  summary: INS 传感器的角速度，*N*×3 实值矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -117,8 +164,49 @@ INS 传感器相对于导航坐标系的角速度，以度/秒为单位，返回
 要启用此输出端口，请选择 **Use acceleration and angular velocity**。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Mounting location (m)
+  summary: 传感器在平台上的位置（m） [0 0 0]（默认）| 形式为 [*x* *y* *z*] 的三元素实值向量
+  group: ''
+- name: Roll (X-axis) accuracy (deg)
+  summary: 横滚测量精度（度） 0.2（默认）| 非负实标量
+  group: ''
+- name: Pitch (Y-axis) accuracy (deg)
+  summary: 俯仰测量精度（度） 0.2（默认）| 非负实标量
+  group: ''
+- name: Yaw (Z-axis) accuracy (deg)
+  summary: 偏航测量精度（度） 1（默认）| 非负实标量
+  group: ''
+- name: Position accuracy (m)
+  summary: 位置测量精度（m） 1（默认）| 非负实标量 | 1×3 非负值向量
+  group: ''
+- name: Velocity accuracy (m/s)
+  summary: 速度测量精度（m/s） 0.05（默认）| 非负实标量
+  group: ''
+- name: Use acceleration and angular velocity
+  summary: 使用加速度和角速度 关（默认）| 开
+  group: ''
+- name: 加速度精度 (m/s2)
+  summary: 加速度测量精度 (m/s2) 0（默认）| 非负实数标量
+  group: ''
+- name: 角速度精度 (deg/s)
+  summary: 角速度测量精度 (deg/s) 0（默认）| 非负实数标量
+  group: ''
+- name: 启用 HasGNSSFix 端口
+  summary: 启用 HasGNSSFix 输入端口 关（默认）| 开
+  group: ''
+- name: 位置误差因子
+  summary: 位置误差因子 (m) [0 0 0]（默认）| 非负标量 | 1×3 实值向量
+  group: ''
+- name: 种子
+  summary: 随机化的初始种子 67（默认）| 非负整数
+  group: ''
+- name: 仿真方式
+  summary: 要运行的仿真类型 代码生成（默认）| 解释执行
+  group: ''
+```
 
 ### **Mounting location (m)** — 传感器在平台上的位置（m） `[0 0 0]`（默认）| 形式为 [*x* *y* *z*] 的三元素实值向量
 
@@ -224,7 +312,6 @@ INS 传感器相对于导航坐标系的角速度，以度/秒为单位，返回
 
 - `解释执行` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。在 `解释执行` 模式下，您可以调试模块的源代码。
 - `代码生成` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为模块生成 C 代码。如果模型未更改，C 代码将复用于后续仿真。此选项需要额外的启动时间。
-
 ## 所属库
 
 Navigation Toolbox / Multisensor Positioning / Sensor Models Automated Driving Toolbox / Driving Scenario and Sensor Modeling Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Sensor Models UAV Toolbox / UAV Scenario and Sensor Modeling

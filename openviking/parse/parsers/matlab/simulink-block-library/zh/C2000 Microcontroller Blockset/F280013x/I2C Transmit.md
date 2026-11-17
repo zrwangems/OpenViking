@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # C28x I2C Transmit
 
 ## 端口
+```yaml
+ports:
+- name: SAR
+  summary: 外设地址寄存器值 标量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: WD
+  summary: 写入 I2C 总线的数据 标量 | 向量
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: status
+  summary: I2C 通信状态 标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输入
 
@@ -44,8 +59,34 @@ chinese_source: worker-translation
 此端口仅在选中 **Output transmitting status** 时出现。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Module
+  summary: 用于通信的模块 I2C_A（默认）| I2C_B
+  group: ''
+- name: Addressing format
+  summary: 通信的地址格式 7–Bit addressing（默认）| 10–Bit addressing | Free data format
+  group: ''
+- name: peripheral address source
+  summary: I2C 外设的外设地址来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Peripheral address register
+  summary: 外设地址寄存器值 80（默认）| 标量
+  group: ''
+- name: Bit count
+  summary: 通信的位数 8（默认）| [1 8] 范围内的整数
+  group: ''
+- name: Enable stop condition
+  summary: 发送停止位以指示数据传输完成 off（默认）| on
+  group: ''
+- name: Enable repeat mode
+  summary: 重复传输数据直到检测到停止或起始条件 off（默认）| on
+  group: ''
+- name: Output transmitting status
+  summary: 指示 I2C 发送模块何时传输消息 off（默认）| on
+  group: ''
+```
 
 ### **Module** — 用于通信的模块 `I2C_A`（默认）| `I2C_B`
 
@@ -96,7 +137,6 @@ I2C 模块接收的数据字节中的位数。
 ### **Output transmitting status** — 指示 I2C 发送模块何时传输消息 `off`（默认）| `on`
 
 启用状态输出端口，该端口指示 I2C 发送模块何时传输消息。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

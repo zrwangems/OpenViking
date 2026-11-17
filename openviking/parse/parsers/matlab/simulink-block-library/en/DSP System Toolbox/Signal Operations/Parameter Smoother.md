@@ -14,6 +14,25 @@ language: en
 # Parameter Smoother
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Input parameter to smooth scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: alpha
+  summary: Smoothing factor scalar in the range [0, 1)
+  direction: input
+  data_types: single | double
+- name: tau
+  summary: Smoothing time nonnegative scalar
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Smoothed parameter scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -79,8 +98,34 @@ is the instantaneous value of the parameter and it changes until the parameter r
 the target value that you specify at the input port **P**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of parameters
+  summary: Number of input parameters 1 (default) | positive integer
+  group: ''
+- name: Smoothing mode
+  summary: Mode to use for smoothing Smoothing factor (default) | Smoothing time
+  group: ''
+- name: Specify smoothing factor from input port
+  summary: Option to specify smoothing factor from input port off (default) | on
+  group: ''
+- name: Smoothing factor (between 0 and 1)
+  summary: Smoothing factor 0.6 (default) | scalar in the range [0, 1)
+  group: ''
+- name: Specify smoothing time from input port
+  summary: Option to specify smoothing time from input port off (default) | on
+  group: ''
+- name: Smoothing time constant (seconds)
+  summary: Smoothing time in seconds 10 (default) | nonnegative scalar
+  group: ''
+- name: Sample time (−1 for inherited)
+  summary: Sample time of input parameters -1 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -196,7 +241,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

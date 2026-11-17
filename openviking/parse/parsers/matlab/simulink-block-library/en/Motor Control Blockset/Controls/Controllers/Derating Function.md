@@ -14,6 +14,21 @@ language: en
 # Derating Function
 
 ## Ports
+```yaml
+ports:
+- name: fmax
+  summary: Maximum reference signal limit scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ffeedback
+  summary: Reference feedback signal scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: y
+  summary: Derating factor scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -39,14 +54,18 @@ values of the reference signal when the signal exceeds the value of the
 **Derating threshold** parameter.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Derating threshold
+  summary: Threshold beyond which derating must occur 0.9 (default) | scalar in the range [0,1)
+  group: ''
+```
 
 ### **Derating threshold** — Threshold beyond which derating must occur `0.9` (default) | scalar in the range [0,1)
 
 The reference signal value beyond which the block generates the derating
 factor.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Controllers Motor Control Blockset HDL Support / Controls / Controllers

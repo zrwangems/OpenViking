@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Data Mapper
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量 | 矩阵
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Out
+  summary: 输出信号 标量 | 列向量 | 矩阵
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -33,8 +44,19 @@ chinese_source: worker-translation
 维度与输入信号的维度一致。
 
 **数据类型：** `double` | `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Mapping mode
+  summary: 映射模式 Binary to Gray（默认）| Gray to Binary | User Defined | Straight through
+  group: ''
+- name: Symbol set size (M)
+  summary: 符号集大小 8（默认）| 正整数
+  group: ''
+- name: Mapping vector
+  summary: 将输入元素映射到输出元素 [0 1 3 2 7 6 4 5]（默认）| 向量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -79,7 +101,6 @@ Gray` 和 `Gray to Binary`
 映射：
 
 0→11→52→03→44→25→3
-
 ## 所属库
 
 Communications Toolbox / Utility Blocks

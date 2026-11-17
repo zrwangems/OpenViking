@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Specific Dissipation Heat Exchanger (G-G)
 
 ## 端口
+```yaml
+ports:
+- name: A1
+  summary: 气体 1 端口 gas
+  direction: conserving
+- name: B1
+  summary: 气体 1 端口 gas
+  direction: conserving
+- name: A2
+  summary: 气体 2 端口 gas
+  direction: conserving
+- name: B2
+  summary: 气体 2 端口 gas
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,73 @@ chinese_source: worker-translation
 ### **B2** — 气体 2 端口 gas
 
 气体 2 进入和离开热交换器其所在侧的开口。
-
 ## 参数
+```yaml
+parameters:
+- name: Gas 1 mass flow rate vector, mdot1
+  summary: 比散热表查找表中每个断点处气体 1 的质量流量，数值数组，单位为质量除以时间
+  group: Heat Transfer
+- name: Gas 2 mass flow rate vector, mdot2
+  summary: 比散热表查找表中每个断点处气体 2 的质量流量，数值数组，单位为质量除以时间
+  group: Heat Transfer
+- name: Specific heat dissipation table, SD(mdot1,mdot2)
+  summary: 查找表中气体 1 和气体 2 质量流量各断点处的比散热，数值数组，单位为功率除以温度
+  group: Heat Transfer
+- name: Check if violating maximum specific dissipation
+  summary: 比散热超过最小热容率时的警告条件 Warning（默认）| None | Error
+  group: Heat Transfer
+- name: Mass flow rate vector
+  summary: 压降查找表中每个断点处的质量流量，数值数组，单位为质量除以单位时间
+  group: Gas 1|2
+- name: Pressure drop vector
+  summary: 质量流量查找表中每个断点处的压降，数值数组，单位为压力
+  group: Gas 1|2
+- name: Reference inflow temperature
+  summary: 制表数据中假设的绝对入口温度 293.15 K（默认）| 标量，单位为温度
+  group: Gas 1|2
+- name: Reference inflow pressure
+  summary: 制表数据中假设的绝对入口压力 0.101325 MPa（默认）| 标量，单位为压力
+  group: Gas 1|2
+- name: Threshold mass flow rate for flow reversal
+  summary: 质量流量数值平滑区域的上界 1e-3 kg/s（默认）| 标量，单位为质量/时间
+  group: Gas 1|2
+- name: Fluid volume
+  summary: 气体 1 或气体 2 流道中的流体体积 0.01 m^3（默认）| 标量，单位为长度的立方
+  group: Gas 1|2
+- name: Cross-sectional area at ports A and B
+  summary: 流道入口和出口处的流通面积 0.01 m^2（默认）| 标量，单位为长度的平方
+  group: Gas 1|2
+- name: Enable Gas 1 dynamic compressibility
+  summary: 对气体通道中压力动态建模的选项 On（默认）| Off
+  group: Effects and Initial Conditions
+- name: Gas 1 nominal temperature
+  summary: 额定工况下的温度 293.15 K（默认）| 标量
+  group: Effects and Initial Conditions
+- name: Gas 1 nominal pressure
+  summary: 额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: Effects and Initial Conditions
+- name: Gas 1 initial temperature
+  summary: 仿真开始时气体通道中的温度 293.15 K（默认）| 标量，单位为温度
+  group: Effects and Initial Conditions
+- name: Gas 1 initial pressure
+  summary: 仿真开始时气体通道中的压力 0.101325 MPa（默认）| 标量，单位为压力
+  group: Effects and Initial Conditions
+- name: Enable Gas 2 dynamic compressibility
+  summary: 对气体通道中压力动态建模的选项 On（默认）| Off
+  group: Effects and Initial Conditions
+- name: Gas 2 nominal temperature
+  summary: 额定工况下的温度 293.15 K（默认）| 标量
+  group: Effects and Initial Conditions
+- name: Gas 2 nominal pressure
+  summary: 额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: Effects and Initial Conditions
+- name: Gas 2 initial temperature
+  summary: 仿真开始时气体 2 通道中的温度 293.15 K（默认）| 标量，单位为温度
+  group: Effects and Initial Conditions
+- name: Gas 2 initial pressure
+  summary: 仿真开始时气体 2 通道中的压力 0.101325 MPa（默认）| 标量，单位为压力
+  group: Effects and Initial Conditions
+```
 
 ### Heat Transfer
 
@@ -161,7 +241,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Enable Gas 2 dynamic compressibility**。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Gas

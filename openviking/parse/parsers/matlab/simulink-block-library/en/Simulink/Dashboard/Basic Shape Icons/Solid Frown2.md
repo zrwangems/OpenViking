@@ -14,10 +14,40 @@ language: en
 # MultiStateImage
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Signal to connect and display signal connection options
+  group: ''
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Scale Mode
+  summary: Specify how to scale image Fill with fixed aspect ratio (default) | Fixed | Fill
+  group: ''
+  block_parameter: ScaleMode
+  type: string or character vector
+  values: '''Fill with fixed aspect ratio'' | ''Fixed'' | ''Fill'''
+  default: '''Fill with fixed aspect ratio'''
+- name: States
+  summary: Match values with images to display scalar and image
+  group: ''
+  block_parameter: DefaultImage
+  type: structure
+- name: Label
+  summary: Block label position Top (default) | Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — Signal to connect and display signal connection options
 
@@ -160,7 +190,6 @@ model, the label is the name of the connected element.
 | **Type:** character vector |
 | **Values:** `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default:** `'Top'` |
-
 ## Libraries
 
 Simulink / Dashboard

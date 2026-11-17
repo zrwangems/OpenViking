@@ -14,6 +14,17 @@ language: en
 # Rate Limiter
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -29,8 +40,45 @@ The input signal to the rate limiter algorithm.
 Output signal from the rate limiter algorithm.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rising slew rate
+  summary: Limit of derivative for increasing input 1 (default) | real number
+  group: ''
+  block_parameter: RisingSlewLimit
+  type: character vector
+  values: real number
+  default: '''1'''
+- name: Falling slew rate
+  summary: Limit of derivative for decreasing input -1 (default) | real number
+  group: ''
+  block_parameter: FallingSlewLimit
+  type: character vector
+  values: real number
+  default: '''-1'''
+- name: Sample time mode
+  summary: Sample time mode inherited (default) | continuous
+  group: ''
+  block_parameter: SampleTimeMode
+  type: character vector
+  values: '''inherited'' | ''continuous'''
+  default: '''inherited'''
+- name: Initial condition
+  summary: Initial output 0 (default) | scalar | vector
+  group: ''
+  block_parameter: InitialCondition
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Treat as gain when linearizing
+  summary: Specify the gain value on (default) | off
+  group: ''
+  block_parameter: LinearizeAsGain
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Rising slew rate** — Limit of derivative for increasing input `1` (default) | real number
 
@@ -102,7 +150,6 @@ to have the commands treat the gain as 0.
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Simulink / Discontinuities

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Double-Pinion Planetary Gear
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 行星齿轮架旋转机械
+  direction: conserving
+- name: R
+  summary: 齿圈旋转机械
+  direction: conserving
+- name: S
+  summary: 太阳轮旋转机械
+  direction: conserving
+- name: H
+  summary: 热流热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -38,8 +53,79 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Friction model** 设置为
 `Temperature-dependent efficiency`。
-
 ## 参数
+```yaml
+parameters:
+- name: Ring (R) to sun (S) teeth ratio (NR/NS)
+  summary: 齿圈与太阳轮旋转比 2（默认）| 正标量
+  group: 主要
+- name: Outer planet (Po) to inner planet (Pi) teeth ratio (NPo/NPi)
+  summary: 外行星轮与内行星轮旋转比 1（默认）| 正标量
+  group: 主要
+- name: Friction model
+  summary: 摩擦模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Temperature-dependent efficiency
+  group: 啮合损耗
+- name: Sun-planet, ring-planet and planet-planet ordinary efficiencies
+  summary: 扭矩传递效率 [.98, .98, .99]（默认）| 向量
+  group: 啮合损耗
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 向量
+  group: 啮合损耗
+- name: Sun-planet efficiency
+  summary: 从太阳轮到内行星齿轮的扭矩传递效率 [.75, .65, .6]（默认）| 向量
+  group: 啮合损耗
+- name: Ring-planet efficiency
+  summary: 从齿圈到外行星齿轮的扭矩传递效率 [.5, .45, .4]（默认）| 向量
+  group: 啮合损耗
+- name: Planet-planet efficiency
+  summary: 从内行星齿轮到外行星齿轮的扭矩传递效率 [.5, .45, .4]（默认）| 向量
+  group: 啮合损耗
+- name: Sun-carrier, ring-carrier, and planet-carrier power thresholds
+  summary: 太阳轮-行星架、齿圈-行星架和行星轮-行星架齿轮联轴器的最小效率功率阈值 [.001, .001, .001] W（默认）| 向量
+  group: 啮合损耗
+- name: Sun-carrier, ring-carrier, and planet-carrier viscous friction coefficients
+  summary: 齿轮粘性摩擦 [0, 0, 0] N*m/(rad/s)（默认）| 向量
+  group: 粘性损耗
+- name: Inertia
+  summary: 惯量选项 off（默认）| on
+  group: 惯量
+- name: Sun gear inertia
+  summary: 太阳轮惯量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Sun gear radius
+  summary: 太阳轮半径 0.01 m（默认）| 正标量
+  group: 惯量
+- name: Ring gear inertia
+  summary: 齿圈惯量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Carrier gear inertia
+  summary: 行星架惯量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Inner planet gear spin inertia
+  summary: 内行星轮自旋惯量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Inner planet gear mass
+  summary: 内行星轮质量 0.001 kg（默认）| 正标量
+  group: 惯量
+- name: Inner planet gear radius
+  summary: 内行星轮半径 0.01 m（默认）| 正标量
+  group: 惯量
+- name: Outer planet gear spin inertia
+  summary: 外行星轮自旋惯量 0.001 kg*m^2（默认）| 正标量
+  group: 惯量
+- name: Outer planet gear mass
+  summary: 内行星轮质量 0.001 kg（默认）| 正标量
+  group: 惯量
+- name: Outer planet gear radius
+  summary: 内行星轮半径 0.02 m（默认）| 正标量
+  group: 惯量
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 标量
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -272,7 +358,6 @@ efficiency`。
 
 要启用此参数，请将 **Friction model** 设置为
 `Temperature-dependent efficiency`。
-
 ## 所属库
 
 Simscape / Driveline / Gears

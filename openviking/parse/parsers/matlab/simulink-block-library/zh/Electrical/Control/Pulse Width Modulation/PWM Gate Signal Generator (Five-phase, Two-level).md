@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # PWM Gate Signal Generator (Five-phase, Two-level)
 
 ## 端口
+```yaml
+ports:
+- name: TgabcdeON
+  summary: 开通门极时间向量
+  direction: input
+- name: TgabcdeOFF
+  summary: 关断门极时间向量
+  direction: input
+- name: g
+  summary: 门极控制向量
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +42,19 @@ chinese_source: worker-translation
 ### **g** — 门极控制向量
 
 十个脉冲波形，用于确定所连接功率变换器中的开关行为，以向量形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Sampling mode
+  summary: 波形采样方法 Natural（默认）| Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: 开关频率 1e3（默认）| 正标量
+  group: ''
+- name: Sample time (s)
+  summary: 模块采样时间 5e-5（默认）| 正标量
+  group: ''
+```
 
 ### **Sampling mode** — 波形采样方法 `Natural`（默认）| `Asymmetric` | `Symmetric`
 
@@ -44,7 +67,6 @@ chinese_source: worker-translation
 ### **Sample time (s)** — 模块采样时间 `5e-5`（默认）| 正标量
 
 连续模块执行之间的时间间隔，以秒为单位。为确保生成信号具有足够的分辨率，请将此值设置为小于或等于 `1/(50*Fsw)`，其中 *F*sw 为 **Switching frequency (Hz)** 参数的值。
-
 ## 所属库
 
 Simscape / Electrical / Control / Pulse Width Modulation

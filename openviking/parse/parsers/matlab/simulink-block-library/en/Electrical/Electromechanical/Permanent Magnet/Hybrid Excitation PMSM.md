@@ -14,6 +14,72 @@ language: en
 # Hybrid Excitation PMSM
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+- name: '~'
+  summary: Three-phase composite electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: ~1
+  summary: Stator positive-end connections electrical
+  direction: conserving
+- name: ~2
+  summary: Stator negative-end connections electrical
+  direction: conserving
+- name: a1
+  summary: '*a* positive-end connection electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* positive-end connection electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* positive-end connection electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* negative-end connection electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* negative-end connection electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* negative-end connection electrical'
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: fd+
+  summary: Field winding positive terminal electrical
+  direction: conserving
+- name: fd-
+  summary: Field winding negative terminal electrical
+  direction: conserving
+- name: HA
+  summary: Winding A thermal port thermal
+  direction: conserving
+- name: HB
+  summary: Winding B thermal port thermal
+  direction: conserving
+- name: HC
+  summary: Winding C thermal port thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -249,8 +315,113 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Winding type
+  summary: Windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Main
+- name: Modeling fidelity
+  summary: Modeling fidelity Constant Ld, Lq, Lmf, Lf and PM (default) | Tabulated Ld, Lq, Lmf, Lf and PM
+  group: Main
+- name: Number of pole pairs
+  summary: Rotor pole pairs 6 (default) | integer
+  group: Main
+- name: Permanent magnet flux linkage
+  summary: Flux linkage 0.09 Wb (default) | positive integer
+  group: Main
+- name: Stator parameterization
+  summary: Parameterization model Specify Ld, Lq and L0 (default) | Specify Ls, Lm, and Ms
+  group: Main
+- name: Stator d-axis inductance, Ld
+  summary: Inductance 0.0031 H (default)
+  group: Main
+- name: Stator q-axis inductance, Lq
+  summary: Inductance 0.0045 H (default)
+  group: Main
+- name: Direct-axis current vector, iD
+  summary: Direct-axis current vector [-200, 0, 200] A (default)
+  group: Main
+- name: Quadrature-axis current vector, iQ
+  summary: Quadrature-axis current vector [-200, 0, 200] A (default)
+  group: Main
+- name: Excitation current vector, iF
+  summary: Excitation current vector [-20, 0, 20] A (default)
+  group: Main
+- name: Ld matrix, Ld(id,iq,if)
+  summary: Ld matrix 0.0031 * ones(3, 3, 3) H (default)
+  group: Main
+- name: Lq matrix, Lq(id,iq,if)
+  summary: Lq matrix 0.0045 * ones(3, 3, 3) H (default)
+  group: Main
+- name: Mutual field armature inductance, Lmf(id,iq,if)
+  summary: Mutual field armature inductance 0.0067 * ones(3, 3, 3) H (default)
+  group: Main
+- name: Permanent magnet flux linkage, PM(id,iq,if)
+  summary: Permanent magnet flux linkage 0.1 * ones(3, 3, 3) Wb (default)
+  group: Main
+- name: Lf vector, Lf(if)
+  summary: Lf vector 0.06 * ones(1, 3) H (default)
+  group: Main
+- name: Stator zero-sequence inductance, L0
+  summary: Inductance 0.0006 H (default)
+  group: Main
+- name: Stator self-inductance per phase, Ls
+  summary: Inductance 0.0027 H (default)
+  group: Main
+- name: Stator inductance fluctuation, Lm
+  summary: Inductance -0.0005 H (default)
+  group: Main
+- name: Stator mutual inductance, Ms
+  summary: Inductance 0.0011 H (default)
+  group: Main
+- name: Field winding inductance, Lf
+  summary: Inductance 0.06 H (default)
+  group: Main
+- name: Mutual field armature inductance, Lmf
+  summary: Inductance 0.0067 H (default)
+  group: Main
+- name: Stator resistance per phase, Rs
+  summary: Resistance 0.7 Ohm (default)
+  group: Main
+- name: Field winding resistance, Rf
+  summary: Resistance 2.85 Ohm (default)
+  group: Main
+- name: Zero sequence
+  summary: Zero-sequence model Include (default) | Exclude
+  group: Main
+- name: Rotor angle definition
+  summary: Angle Angle between the a-phase magnetic axis and the d-axis (default) | Angle between the a-phase magnetic axis
+    and the q-axis
+  group: Main
+- name: Rotor inertia
+  summary: Inertia 0.01 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor Damping
+  summary: Damping 0 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Measurement temperature
+  summary: Measurement temperature 298.15 K (default)
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Thermal
+- name: Permanent magnet flux temperature coefficient
+  summary: Permanent magnet flux temperature coefficient -0.001 (default)
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Thermal mass for each stator winding 100 J/K (default)
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default)
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -607,7 +778,6 @@ is the energy required to raise the temperature by one degree.
 
 The thermal mass of the rotor, that is, the energy required to raise
 the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

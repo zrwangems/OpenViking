@@ -14,6 +14,15 @@ language: en
 # LTI System
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: Input signal scalar | vector
+  direction: input
+- name: Port_1(Out1)
+  summary: Output signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -39,8 +48,19 @@ outputs into scalar signals, use blocks such as:
 - Demux (Simulink)
 - Bus
   Selector (Simulink)
-
 ## Parameters
+```yaml
+parameters:
+- name: LTI system variable
+  summary: Linear system dynamic system model
+  group: ''
+- name: Initial states (state-space only)
+  summary: Initial state values for state-space model [] (default) | vector | scalar
+  group: ''
+- name: Pade order (for linearization)
+  summary: Order of Pade approximation 0 (default) | positive integer | vector
+  group: ''
+```
 
 ### **LTI system variable** — Linear system dynamic system model
 
@@ -91,7 +111,6 @@ Set the order of the Pade approximation for linearization routines.
 
 Use a vector of positive integers to specify a different order for each
 input channel.
-
 ## Libraries
 
 Control System Toolbox

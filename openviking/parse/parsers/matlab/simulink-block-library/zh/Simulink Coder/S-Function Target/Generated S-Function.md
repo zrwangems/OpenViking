@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Generated S-Function
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: S-function 输入可变
+  direction: input
+- name: Output
+  summary: S-function 输出可变
+  direction: input
+```
 
 ### 输入
 
@@ -26,8 +35,16 @@ chinese_source: worker-translation
 ### **Output** — S-function 输出可变
 
 参见要求。
-
 ## 参数
+```yaml
+parameters:
+- name: Generated S-function name (model_sf)
+  summary: S-function 的名称 model_sf（默认）| 字符向量
+  group: ''
+- name: Show module list
+  summary: 选择显示模块列表 off（默认）| on
+  group: ''
+```
 
 ### **Generated S-function name (model\_sf)** — S-function 的名称 `model_sf`（默认）| 字符向量
 
@@ -36,7 +53,6 @@ chinese_source: worker-translation
 ### **Show module list** — 选择显示模块列表 off（默认）| on
 
 如果选中，则显示为 S-function 生成的模块。
-
 ## 所属库
 
 Simulink Coder / S-Function Target

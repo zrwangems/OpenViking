@@ -14,6 +14,51 @@ language: en
 # Simplified Synchronous Machine
 
 ## Ports
+```yaml
+ports:
+- name: E_si
+  summary: Amplitude of internal generated voltage (phase-to-neutral) vector of physical signals
+  direction: input
+- name: E_pu
+  summary: Amplitude of internal generated voltage, in per-unit vector of physical signals
+  direction: input
+- name: o
+  summary: Machine per-unit measurements vector of physical signals
+  direction: output
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+- name: '~'
+  summary: Stator windings electrical
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: HA
+  summary: '*a*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HB
+  summary: '*b*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HC
+  summary: '*c*-phase terminal thermal port thermal'
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -169,8 +214,83 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Option to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Rated apparent power
+  summary: Rated apparent power 555e6 V*A (default) | scalar
+  group: Main
+- name: Rated voltage
+  summary: RMS rated line-to-line voltage 24e3 V (default) | scalar
+  group: Main
+- name: Rated electrical frequency
+  summary: Nominal electrical frequency 60 Hz (default) | scalar
+  group: Main
+- name: Number of pole pairs
+  summary: Number of pole pairs 2 (default) | scalar
+  group: Main
+- name: Parameterization unit
+  summary: Block parameterization SI (default) | Per unit
+  group: Main
+- name: Internal resistance (pu)
+  summary: Internal per-unit resistance 0.05 (default) | scalar
+  group: Main
+- name: Internal inductance (pu)
+  summary: Internal per-unit inductance 0.3 (default) | scalar
+  group: Main
+- name: Internal resistance
+  summary: Internal resistance 0.0519 Ohm (default) | scalar
+  group: Main
+- name: Internal inductance
+  summary: Internal inductance 8.2589e-04 H (default) | scalar
+  group: Main
+- name: Initialization option
+  summary: Initialization option Set real power, reactive power, terminal voltage, and terminal phase (default) | Set targets
+    for rotor angle and Park's transform variables | Set targets for load flow variables
+  group: Initial Conditions
+- name: Source type
+  summary: Voltage source model Swing bus (default) | PV bus | PQ bus
+  group: Initial Conditions
+- name: Terminal voltage magnitude
+  summary: Terminal voltage magnitude 24e3 V (default)
+  group: Initial Conditions
+- name: Terminal voltage angle
+  summary: Terminal voltage angle 0 deg (default)
+  group: Initial Conditions
+- name: Active power generated
+  summary: Active power generated 500e6 V*A (default)
+  group: Initial Conditions
+- name: Reactive power generated
+  summary: Reactive power generated 0 V*A (default)
+  group: Initial Conditions
+- name: Minimum terminal voltage magnitude (pu)
+  summary: Minimum terminal voltage magnitude 0.95 (default)
+  group: Initial Conditions
+- name: Phase search range at terminals
+  summary: Phase search range at terminals [-inf, inf] deg (default)
+  group: Initial Conditions
+- name: Parasitic conductance to electrical reference
+  summary: Parasitic conductance to electrical reference 1e-6 S (default)
+  group: Initial Conditions
+- name: Measurement temperature
+  summary: Rated temperature 298.15 k (default) | real scalar
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal
+```
 
 ### **Modeling option** — Option to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -407,7 +527,6 @@ energy required to raise the temperature by one degree.
 
 Thermal mass of the rotor. The thermal mass is the energy required to
 raise the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Synchronous

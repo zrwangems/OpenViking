@@ -14,10 +14,33 @@ language: en
 # Power Amplifier
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model
+  summary: Model type Memory polynomial (default) | Generalized Hammerstein | Cross-Term Memory | Cross-Term Hammerstein
+  group: ''
+- name: Coefficient Matrix
+  summary: Coefficient matrix 1 (default) | complex matrix | real matrix
+  group: ''
+- name: Measured interval of PA data (s)
+  summary: Sample interval of input-output data 1e-6 (default) | real positive scalar
+  group: ''
+- name: Rin (ohm)
+  summary: Input resistance 50 (default) | real positive scalar
+  group: ''
+- name: Rout (ohm)
+  summary: Output resistance 50 (default) | real positive scalar
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Model** — Model type `Memory polynomial` (default) | `Generalized Hammerstein` | `Cross-Term Memory` | `Cross-Term Hammerstein`
 
@@ -174,7 +197,6 @@ Output resistance, specified as a real positive scalar.
 Select this parameter to ground and hide the negative terminals. Clear the
 parameter to expose the negative terminals. By exposing these terminals, you
 can connect them to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

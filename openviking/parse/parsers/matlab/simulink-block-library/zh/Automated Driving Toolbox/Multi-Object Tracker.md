@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Multi-Object Tracker
 
 ## 端口
+```yaml
+ports:
+- name: Detections
+  summary: 包含 MATLAB® 结构的检测列表 Simulink 总线
+  direction: input
+- name: Prediction Time
+  summary: 航迹更新时间 实数标量
+  direction: input
+- name: Cost Matrix
+  summary: 代价矩阵 实值 *N*t×*N*d 矩阵
+  direction: input
+- name: Detectable Track IDs
+  summary: 可检测航迹 ID 实值 *M*×1 向量 | 实值 *M*×2 矩阵
+  direction: input
+- name: State Parameters
+  summary: 航迹状态参数 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Confirmed Tracks
+  summary: 确认航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Tentative Tracks
+  summary: 暂定航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: All Tracks
+  summary: 所有航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -202,8 +229,64 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Enable all tracks output**。
-
 ## 参数
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: 唯一跟踪器标识符 0（默认）| 非负整数
+  group: 跟踪器管理
+- name: Filter initialization function name
+  summary: 卡尔曼滤波器初始化函数 initcvkf（默认）| 函数名
+  group: 跟踪器管理
+- name: Threshold for assigning detections to tracks
+  summary: 检测分配阈值 30.0（默认）| 正实数标量
+  group: 跟踪器管理
+- name: M and N for the M-out-of-N confirmation
+  summary: 航迹创建的确认参数 [2,3]（默认）| 正整数二元向量
+  group: 跟踪器管理
+- name: P and R for the P-out-of-R deletion
+  summary: 航迹删除阈值 [5 5]（默认）| 实值 1×2 正整数向量
+  group: 跟踪器管理
+- name: Maximum number of tracks
+  summary: 最大航迹数量 200（默认）| 正整数
+  group: 跟踪器管理
+- name: Maximum number of sensors
+  summary: 最大传感器数量 20（默认）| 正整数
+  group: 跟踪器管理
+- name: Out-of-sequence measurements handling
+  summary: 乱序测量处理 Terminate（默认）| neglect
+  group: 跟踪器管理
+- name: Track state parameters
+  summary: 航迹状态参考坐标系结构的参数 | 结构体数组
+  group: 跟踪器管理
+- name: Update track state parameters with time
+  summary: 随时间更新航迹状态参数 off（默认）| on
+  group: 跟踪器管理
+- name: Prediction time source
+  summary: 预测时间来源 Input port（默认）| Auto
+  group: 输入和输出
+- name: Enable cost matrix input
+  summary: 启用代价矩阵输入端口 off（默认）| on
+  group: 输入和输出
+- name: Enable detectable track IDs input
+  summary: 启用可检测航迹 ID 输入 off（默认）| on
+  group: 输入和输出
+- name: Source of output bus name
+  summary: 输出总线名称来源 Auto（默认）| Property
+  group: 输入和输出
+- name: Specify an output bus name
+  summary: 输出总线名称 无默认值
+  group: 输入和输出
+- name: Enable tentative tracks output
+  summary: 启用暂定航迹输出端口 off（默认）| on
+  group: 输入和输出
+- name: Enable all tracks output
+  summary: 启用所有航迹输出端口 off（默认）| on
+  group: 输入和输出
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 输入和输出
+```
 
 ### 跟踪器管理
 
@@ -312,7 +395,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C/C++ 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C/C++ 代码。只要模型不变，C 代码将在后续仿真中复用。此选项需要额外的启动时间。
-
 ## 所属库
 
 Automated Driving Toolbox

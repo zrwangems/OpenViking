@@ -14,6 +14,17 @@ language: en
 # PWM
 
 ## Ports
+```yaml
+ports:
+- name: D
+  summary: Duty Cycle scalar
+  direction: input
+  data_types: double
+- name: Port 1
+  summary: Output pulse scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -29,8 +40,45 @@ Desired duty cycle of the pulse *P*, specified as scalar within the range [0,1].
 PWM signal corresponding to the input duty cycle.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Period (s)
+  summary: Pulse width 1 (default) | real scalar
+  group: ''
+  block_parameter: Period
+  type: string | character vector
+  values: real scalar
+  default: '''1'''
+- name: Initial Delay
+  summary: Initial delay 0 (default) | real scalar
+  group: ''
+  block_parameter: InitialDelay
+  type: string | character vector
+  values: numeric scalar
+  default: '0'
+- name: Disallow zero duty cycle
+  summary: Avoid algebraic loops off | on
+  group: ''
+  block_parameter: DisallowZeroDutyCycle
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Run at fixed time intervals
+  summary: Select for discrete time behavior on (default) | off
+  group: ''
+  block_parameter: RunAtFixedTimeIntervals
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sample Time
+  summary: Set pulse resolution 0.1 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: string | character vector
+  values: numeric scalar
+  default: '0.1'
+```
 
 ### **Period (s)** — Pulse width 1 (default) | real scalar
 
@@ -137,7 +185,6 @@ intervals**.
 | **Type:** string | character vector |
 | **Values:** numeric scalar |
 | **Default:** `0.1` |
-
 ## Libraries
 
 Simulink / Discontinuities

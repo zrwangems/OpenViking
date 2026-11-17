@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Digital Up-Converter
 
 ## 端口
+```yaml
+ports:
+- name: Input 1
+  summary: 输入信号列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Output 1
+  summary: 上变频和上采样后的信号列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### 输入
 
@@ -35,8 +46,85 @@ chinese_source: worker-translation
 当输入数据类型为 `double` 或 `single` 精度时，输出数据类型与输入数据类型相同。当输入数据类型为有符号整数或定点数时，输出数据类型由 **Data Types** 选项卡上的 **Output** 参数定义。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Interpolation factor
+  summary: 插值因子 100（默认）| 大于 1 的正整数 | 正整数向量
+  group: 主选项卡
+- name: Minimum order filter design
+  summary: 设计最小阶数滤波器 on（默认）| off
+  group: 主选项卡
+- name: Order of first filter stage
+  summary: 第一滤波级的阶数 10（默认）| 正偶数
+  group: 主选项卡
+- name: Number of sections of CIC interpolator
+  summary: CIC 插值器的节数 3（默认）| 正整数
+  group: 主选项卡
+- name: Source of stopband frequency
+  summary: 阻带频率的来源 Auto（默认）| Property
+  group: 主选项卡
+- name: Type of oscillator
+  summary: 振荡器类型 Sine wave（默认）| NCO
+  group: 主选项卡
+- name: Center frequency of output signal
+  summary: 输出信号的中心频率 0.9333（默认）| 正标量
+  group: 主选项卡
+- name: Order of CIC compensation filter stage
+  summary: CIC 补偿滤波级的阶数 12（默认）| 正整数
+  group: 主选项卡
+- name: Two sided bandwidth of input signal
+  summary: 输入信号的双边带宽 0.0133（默认）| 正标量
+  group: 主选项卡
+- name: Stopband frequency
+  summary: 阻带频率 0.01（默认）| 正标量
+  group: 主选项卡
+- name: Passband ripple of cascade response (dB)
+  summary: 级联响应的通带纹波 0.1（默认）| 正标量
+  group: 主选项卡
+- name: Stopband attenuation of cascade response (dB)
+  summary: 级联响应的阻带衰减 60（默认）| 正标量
+  group: 主选项卡
+- name: Number of NCO accumulator bits
+  summary: NCO 累加器位数 16（默认）| 正整数
+  group: 主选项卡
+- name: Number of NCO quantized accumulator bits
+  summary: NCO 量化累加器位数 12（默认）| 正整数
+  group: 主选项卡
+- name: Dither control for NCO
+  summary: NCO 抖动控制 on（默认）| off
+  group: 主选项卡
+- name: Number of NCO dither bits
+  summary: NCO 抖动位数 4（默认）| 正整数
+  group: 主选项卡
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: 主选项卡
+- name: Input sample rate (Hz)
+  summary: 输入信号的采样率 300e3（默认）| 正标量
+  group: 主选项卡
+- name: View Filter Response
+  summary: 查看滤波器响应按钮
+  group: 主选项卡
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 主选项卡
+- name: Stage output
+  summary: '级输出 Inherit: Same as input（默认）| fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出 Inherit: Same as input（默认）| fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Minimum
+  summary: 最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Maximum
+  summary: 最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -251,7 +339,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选中此参数可防止定点工具覆盖您在模块对话框中指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

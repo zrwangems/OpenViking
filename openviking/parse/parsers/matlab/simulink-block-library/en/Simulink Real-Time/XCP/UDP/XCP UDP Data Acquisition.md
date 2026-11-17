@@ -14,10 +14,40 @@ language: en
 # XCP UDP Data Acquisition
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Config name
+  summary: Specify XCP UDP session name select from list
+  group: ''
+- name: Event name
+  summary: Select an event select from list
+  group: ''
+- name: All Measurements
+  summary: List all measurements available for event measurements list
+  group: ''
+- name: Selected Measurements
+  summary: List selected measurements measurement names
+  group: ''
+- name: Block Output Settings
+  summary: Set the port output as Compu method conversion values or raw values Raw values as double (no Compu method conversion)
+    (default) | Raw values (no Compu method conversion) | Physical values (apply Compu method conversion)
+  group: ''
+- name: DAQ List Priority
+  summary: Specify a priority value for server device driver priority value
+  group: ''
+- name: Sample time
+  summary: Specify sampling time of block -1 (default)
+  group: ''
+- name: Enable Timestamp
+  summary: Enable reading timestamp from incoming DTO packets off (default) | on
+  group: ''
+```
 
 ### **Config name** — Specify XCP UDP session name select from list
 
@@ -140,7 +170,6 @@ When the Timestamp is enabled, the block reads the timestamp from incoming DTO
 packets and outputs the timestamp to Simulink. The **Enable
 Timestamp** check box appears in the block parameters dialog box when
 the parameter is supported in the A2L file.
-
 ## Libraries
 
 Vehicle Network Toolbox / XCP Communication / UDP Simulink Real-Time / XCP / UDP

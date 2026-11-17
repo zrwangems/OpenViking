@@ -14,6 +14,21 @@ language: en
 # PWM Generator (Five-phase, Two-level)
 
 ## Ports
+```yaml
+ports:
+- name: Vabcde
+  summary: Five-phase sinusoidal reference signal vector
+  direction: input
+- name: vdc
+  summary: DC-link voltage signal scalar
+  direction: input
+- name: g
+  summary: Gate control vector
+  direction: output
+- name: ModWave
+  summary: Modulation wave vector
+  direction: output
+```
 
 ### Input
 
@@ -37,8 +52,22 @@ attached power converter, returned as a vector.
 
 Modulation waves, returned as a vector of five elements, with one
 element for each phase.
-
 ## Parameters
+```yaml
+parameters:
+- name: Continuous PWM
+  summary: 'Continuous pulse width modulation method SPWM: sinusoidal PWM (default) | SVM: space vector modulation'
+  group: ''
+- name: Sampling mode
+  summary: Wave-sampling method Natural (default) | Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: Switching rate 1e3 (default) | positive scalar
+  group: ''
+- name: Sample time (s)
+  summary: Block sample time 5e-5 (default) | positive scalar
+  group: ''
+```
 
 ### **Continuous PWM** — Continuous pulse width modulation method `SPWM: sinusoidal PWM` (default) | `SVM: space vector modulation`
 
@@ -61,7 +90,6 @@ resolution in the generated signal, set this value to be less than or equal
 to `1/(50*Fsw)`,
 where *F*sw is the value of the
 **Switching frequency (Hz)** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Control / Pulse Width Modulation

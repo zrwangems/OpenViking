@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # Sensorless Six-Step Commutation
 
 ## 端口
+```yaml
+ports:
+- name: StartDir
+  summary: 电机旋转方向 +1 | -1
+  direction: input
+  data_types: int16
+- name: VabcMeas
+  summary: 测量的电机端子电压向量
+  direction: input
+  data_types: single | double | fixed point
+- name: VdcMeas
+  summary: 测量的直流母线电压向量
+  direction: input
+  data_types: single | double | fixed point
+- name: DutyRef
+  summary: 参考占空比输入 标量 | [0,1]
+  direction: input
+  data_types: single | double | fixed point
+- name: '[Tf,Td]'
+  summary: 滤波器时间延迟和退磁时间延迟 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: Enable
+  summary: 启用或禁用该模块 标量
+  direction: input
+  data_types: Boolean
+- name: Duty
+  summary: 使用六步换相模式的六个开关的占空比 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: ωm
+  summary: 基于 BEMF（反电动势）过零检测检测到的角速度 标量
+  direction: output
+  data_types: single | double | fixed point
+- name: Info
+  summary: 用于测试或调试的信号信息 总线
+  direction: output
+  data_types: uint16
+- name: ComStatus
+  summary: 指示模块正在从开环切换到受控六步换相逻辑
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -91,8 +134,55 @@ chinese_source: worker-translation
 当反电动势过零检测成功时，指示模块正在从开环切换到受控六步换相（返回 1）。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Alignment
+  summary: 通过检查转子对齐来确定初始转子位置 off（默认）| on
+  group: ''
+- name: Alignment -> Open-loop run
+  summary: 通过以开环方式启动电机来确定转子位置 off（默认）| on
+  group: ''
+- name: Alignment -> Open-loop run -> Controlled commutation
+  summary: 通过以闭环方式运行电机来确定转子位置 on（默认）| of
+  group: ''
+- name: Number of motor pole pairs
+  summary: 电机极对数 4（默认）| 标量
+  group: ''
+- name: Discrete step size (s)
+  summary: 模块再次执行前的采样时间 50e-6（默认）| 标量
+  group: ''
+- name: Alignment duty cycle
+  summary: 要施加在 A 相和 B 相之间的电压占空比 0.3（默认）| 标量
+  group: ''
+- name: Alignment time
+  summary: 在 A 相和 B 相之间施加电压的持续时间 0.5（默认）| 标量
+  group: ''
+- name: 'Open-loop duty cycle (range: [0,1])'
+  summary: 要施加到所有三相的电压占空比 0.4（默认）| 标量
+  group: ''
+- name: Target open-loop speed (RPM)
+  summary: 开环运行期间为生成足够反电动势而要达到的目标转速（RPM） 800（默认）| 标量
+  group: ''
+- name: Ramp up time to reach target open-loop speed (s)
+  summary: 达到 Target open-loop speed 所指定 RPM 值的斜坡上升时间（s） 0.7（默认）| 标量
+  group: ''
+- name: Open-loop speed to initiate transition to controlled commutation (RPM)
+  summary: 在开环阶段算法开始电机相电压采集过程时的转速 500（默认）| 标量
+  group: ''
+- name: Speed samples required to complete transition to controlled commutation
+  summary: 在转换到受控换相阶段之前要考虑的最小转速采样数 10（默认）| 标量
+  group: ''
+- name: Compensation for filter delay (Tf) and demagnetization time (Td)
+  summary: 指定两种方法之一来定义对 Tf 和 Td 的补偿 Specify via dialog（默认）| Input port
+  group: ''
+- name: Time delay due to voltage sense filter, Tf (s)
+  summary: 用于补偿电压测量所用硬件或软件滤波器延迟的时间延迟 450e-6（默认）| 标量
+  group: ''
+- name: Demagnetization time, Td (s)
+  summary: 绕组正在退磁且不应采集电压信号的时间 175e-6（默认）| 标量
+  group: ''
+```
 
 ### **Alignment** — 通过检查转子对齐来确定初始转子位置 `off`（默认）| `on`
 
@@ -170,7 +260,6 @@ chinese_source: worker-translation
 ### **Demagnetization time, Td (s)** — 绕组正在退磁且不应采集电压信号的时间 `175e-6`（默认）| 标量
 
 绕组正在退磁且不应采集电压信号的时间，用于防止虚假的过零点检测。它也被定义为从定子相退磁发生的时间点到反电动势越过过零点线的时间点之间的等待时段。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Controllers

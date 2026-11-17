@@ -14,6 +14,255 @@ language: en
 # Simulation 3D Air Transport Pack
 
 ## Ports
+```yaml
+ports:
+- name: Body_T
+  summary: Body translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine1_T
+  summary: Engine 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine2_T
+  summary: Engine 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine3_T
+  summary: Engine 3 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine4_T
+  summary: Engine 4 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rudder_T
+  summary: Rudder translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Elevator_T
+  summary: Elevator translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Horizontal_Stab_T
+  summary: Horizontal stab translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Aileron_T
+  summary: Left aileron translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Aileron_T
+  summary: Right aileron translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Flaps1_T
+  summary: Flaps set 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Flaps2_T
+  summary: Flaps set 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Spoiler_T
+  summary: Left spoiler translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Spoiler_T
+  summary: Right spoiler translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_T
+  summary: Nose gear translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_T
+  summary: Nose wheel translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door1_T
+  summary: Nose gear door 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door2_T
+  summary: Nose gear door 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_T
+  summary: Left gear translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Wheel_T
+  summary: Left wheel translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Link_T
+  summary: Left gear link translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door1_T
+  summary: Left gear door 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door2_T
+  summary: Left gear door 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door2_2_T
+  summary: Left gear door 2.2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_T
+  summary: Right gear translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Wheel_T
+  summary: Right wheel translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Link_T
+  summary: Right gear link translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door1_T
+  summary: Right gear door 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door2_T
+  summary: Right gear door 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door2_2_T
+  summary: Right gear door 2.2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: Body rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine1_R
+  summary: Engine 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine2_R
+  summary: Engine 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine3_R
+  summary: Engine 3 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Engine4_R
+  summary: Engine 4 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rudder_R
+  summary: Rudder rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Elevator_R
+  summary: Elevator rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Horizontal_Stab_R
+  summary: Horizontal stab rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Aileron_R
+  summary: Left aileron rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Aileron_R
+  summary: Right aileron rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Flaps1_R
+  summary: Flaps set 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Flaps2_R
+  summary: Flaps set 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Spoiler_R
+  summary: Left spoiler rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Spoiler_R
+  summary: Right spoiler rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_R
+  summary: Nose gear rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_R
+  summary: Nose wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door1_R
+  summary: Nose gear door 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Gear_Door2_R
+  summary: Nose gear door 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_R
+  summary: Left gear rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Wheel_R
+  summary: Left wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Link_R
+  summary: Left gear link rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door1_R
+  summary: Left gear door 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door2_R
+  summary: Left gear door 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Gear_Door2_2_R
+  summary: Left gear door 2.2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_R
+  summary: Right gear rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Wheel_R
+  summary: Right wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Link_R
+  summary: Right gear link rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door1_R
+  summary: Right gear door 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door2_R
+  summary: Right gear door 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Gear_Door2_2_R
+  summary: Right gear door 2.2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: Aircraft translation 30-by-3 array
+  direction: output
+- name: Rotation
+  summary: Aircraft rotation 30-by-3 array
+  direction: output
+```
 
 ### Input
 
@@ -702,8 +951,421 @@ The rotation applies to the same bones as listed for the Translation port.
 
 The signal contains the rotation [roll, pitch, yaw], in radians, with one row of
 the array for each bone of the aircraft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Engine 1 translation
+  summary: Option to enable Engine1_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 2 translation
+  summary: Option to enable Engine2_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 3 translation
+  summary: Option to enable Engine3_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine3_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 4 translation
+  summary: Option to enable Engine4_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine4_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 1 rotation
+  summary: Option to enable Engine1_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 2 rotation
+  summary: Option to enable Engine2_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 3 rotation
+  summary: Option to enable Engine3_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine3_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Engine 4 rotation
+  summary: Option to enable Engine4_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Engine4_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rudder translation
+  summary: Option to enable Rudder_T input port off (default) | on
+  group: Controls
+  block_parameter: Rudder_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Elevator translation
+  summary: Option to enable Elevator_T input port off (default) | on
+  group: Controls
+  block_parameter: Elevator_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Horizontal stab translation
+  summary: Option to enable Horizontal_Stab_T input port off (default) | on
+  group: Controls
+  block_parameter: Horizontal_Stab_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left aileron translation
+  summary: Option to enable Left_Aileron_T input port off (default) | on
+  group: Controls
+  block_parameter: Left_Aileron_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right aileron translation
+  summary: Option to enable Right_Aileron_T input port off (default) | on
+  group: Controls
+  block_parameter: Right_Aileron_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps set 1 translation
+  summary: Option to enable Flaps1_T input port off (default) | on
+  group: Controls
+  block_parameter: Flaps1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps set 2 translation
+  summary: Option to enable Flaps2_T input port off (default) | on
+  group: Controls
+  block_parameter: Flaps2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left spoiler translation
+  summary: Option to enable Left_Spoiler_T input port off (default) | on
+  group: Controls
+  block_parameter: Left_Spoiler_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right spoiler translation
+  summary: Option to enable Right_Spoiler_T input port off (default) | on
+  group: Controls
+  block_parameter: Right_Spoiler_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rudder rotation
+  summary: Option to enable Rudder_R input port off (default) | on
+  group: Controls
+  block_parameter: Rudder_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Elevator rotation
+  summary: Option to enable Elevator_R input port off (default) | on
+  group: Controls
+  block_parameter: Elevator_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Horizontal stab rotation
+  summary: Option to enable Horizontal_Stab_R input port off (default) | on
+  group: Controls
+  block_parameter: Horizontal_Stab_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left aileron rotation
+  summary: Option to enable Left_Aileron_R input port off (default) | on
+  group: Controls
+  block_parameter: Left_Aileron_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right aileron rotation
+  summary: Option to enable Right_Aileron_R input port off (default) | on
+  group: Controls
+  block_parameter: Right_Aileron_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps set 1 rotation
+  summary: Option to enable Flaps1_R input port off (default) | on
+  group: Controls
+  block_parameter: Flaps1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps set 2 rotation
+  summary: Option to enable Flaps2_R input port off (default) | on
+  group: Controls
+  block_parameter: Flaps2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left spoiler rotation
+  summary: Option to enable Left_Spoiler_R input port off (default) | on
+  group: Controls
+  block_parameter: Left_Spoiler_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right spoiler rotation
+  summary: Option to enable Right_Spoiler_R input port off (default) | on
+  group: Controls
+  block_parameter: Right_Spoiler_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear translation
+  summary: Option to enable Nose_Gear_T input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel translation
+  summary: Option to enable Nose_Wheel_T input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door 1 translation
+  summary: Option to enable Nose_Gear_Door1_T input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_Door1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door 2 translation
+  summary: Option to enable Nose_Gear_Door2_T input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_Door2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear translation
+  summary: Option to enable Left_Gear_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left wheel translation
+  summary: Option to enable Left_Wheel_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear link translation
+  summary: Option to enable Left_Gear_Link_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Link_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 1 translation
+  summary: Option to enable Left_Gear_Door1_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Door1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 2 translation
+  summary: Option to enable Left_Gear_Door2_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Door2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 2.2 translation
+  summary: Option to enable Left_Gear_Door2_2_T input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Door2_2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear translation
+  summary: Option to enable Right_Gear_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right wheel translation
+  summary: Option to enable Right_Wheel_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Wheel_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear link translation
+  summary: Option to enable Right_Gear_Link_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Link_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 1 translation
+  summary: Option to enable Right_Gear_Door1_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Door1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 2 translation
+  summary: Option to enable Right_Gear_Door2_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Door2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 2.2 translation
+  summary: Option to enable Right_Gear_Door2_2_T input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Door2_2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear rotation
+  summary: Option to enable Nose_Gear_R input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel rotation
+  summary: Option to enable Nose_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door 1 rotation
+  summary: Option to enable Nose_Gear_Door1_R input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_Door1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose gear door 2 rotation
+  summary: Option to enable Nose_Gear_Door2_T input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Gear_Door2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear rotation
+  summary: Option to enable Left_Gear_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left wheel rotation
+  summary: Option to enable Left_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear link rotation
+  summary: Option to enable Left_Gear_Link_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Link_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 1 rotation
+  summary: Option to enable Left_Gear_Door1_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Door1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 2 rotation
+  summary: Option to enable Left_Gear_Door2_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Door2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left gear door 2.2 rotation
+  summary: Option to enable Left_Gear_Door2_2_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Gear_Door2_2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear rotation
+  summary: Option to enable Right_Gear_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right wheel rotation
+  summary: Option to enable Right_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear link rotation
+  summary: Option to enable Right_Gear_Link_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Link_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 1 rotation
+  summary: Option to enable Right_Gear_Door1_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Door1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 2 rotation
+  summary: Option to enable Right_Gear_Door2_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Door2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right gear door 2.2 rotation
+  summary: Option to enable Right_Gear_Door2_2_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Gear_Door2_2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Select input coordinate frame
+  summary: Input coordinate frame NED (default) | Fixed-frame | ICRF
+  group: Input
+  block_parameter: GeoRadioButton
+  values: '''NED'' (default) | ''Fixed-frame'' | ''ICRF'''
+```
 
 ### Propulsion
 
@@ -1511,7 +2173,6 @@ programmatically, use the `get_param` function.
 | --- | --- |
 | **Parameter:** | `GeoRadioButton` |
 | **Values:** | `'NED'` (default) | `'Fixed-frame'` | `'ICRF'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Simulation 3D

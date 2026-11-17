@@ -14,6 +14,25 @@ language: en
 # Find Local Maxima
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Th
+  summary: Threshold for detecting local maxima scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Idx
+  summary: Coordinates of local maxima *P*-by-2 matrix
+  direction: output
+  data_types: single | double | uint8 | uint16 | uint32
+- name: Count
+  summary: Number of local maxima scalar
+  direction: output
+  data_types: single | double | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -58,8 +77,34 @@ To enable this port, clear the check box for the **Output variable size
 signal** parameter.
 
 **Data Types:** `single` | `double` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum number of local maxima
+  summary: Maximum number of local maxima to detect 2 (default) | positive integer
+  group: ''
+- name: Neighborhood size
+  summary: Size of neighborhood region [5 7] (default) | two-element vector
+  group: ''
+- name: Source of threshold value
+  summary: Source to enter the threshold value Specify via dialog (default) | Input port
+  group: ''
+- name: Threshold
+  summary: Threshold for detecting local maxima 10 (default) | scalar
+  group: ''
+- name: Input is Hough matrix spanning full theta range
+  summary: Whether input is a Hough matrix off (default) | on
+  group: ''
+- name: Index output data type
+  summary: Data type for coordinates of local maximums uint32 (default) | double | single | uint8 | uint16
+  group: ''
+- name: Output variable size signal
+  summary: Support input signals of varying length on (default) | off
+  group: ''
+- name: Count output data type
+  summary: Data type for number of local maximums uint32 (default) | double | single | uint8 | uint16
+  group: ''
+```
 
 ### **Maximum number of local maxima** — Maximum number of local maxima to detect 2 (default) | positive integer
 
@@ -118,7 +163,6 @@ Specify the data type for the number of local maximums returned at the output po
 
 To enable this parameter, clear the **Output variable size
 signal** parameter.
-
 ## Libraries
 
 Computer Vision Toolbox / Statistics

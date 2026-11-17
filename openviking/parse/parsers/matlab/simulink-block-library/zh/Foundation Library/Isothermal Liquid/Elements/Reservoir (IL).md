@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Reservoir (IL)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 压力控制信号，Pa 物理信号
+  direction: input
+- name: A
+  summary: 储液器入口等温液体
+  direction: input
+```
 
 ### 输入
 
@@ -31,8 +40,19 @@ chinese_source: worker-translation
 ### **A** — 储液器入口等温液体
 
 与储液器入口关联的等温液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Reservoir type
+  summary: 指定储液器压力是否可以在仿真期间变化 Constant（默认）| Controlled
+  group: ''
+- name: Reservoir pressure specification
+  summary: 储液器压力的指定方法 Atmospheric pressure（默认）| Specified pressure
+  group: ''
+- name: Reservoir pressure
+  summary: 储液器中的压力 0.101325 MPa（默认）| 正标量
+  group: ''
+```
 
 ### **Reservoir type** — 指定储液器压力是否可以在仿真期间变化 `Constant`（默认）| `Controlled`
 
@@ -59,7 +79,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Reservoir pressure specification** 参数设置为 `Specified pressure` 时启用。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

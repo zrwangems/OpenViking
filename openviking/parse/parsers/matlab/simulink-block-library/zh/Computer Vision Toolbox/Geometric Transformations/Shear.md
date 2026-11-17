@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Shear
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像或视频矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: S
+  summary: 剪切值向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Output
+  summary: 变换后的图像或视频矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -43,8 +58,31 @@ chinese_source: worker-translation
 变换后的图像或视频，返回为 *P*×*Q* 矩阵、*P*×*Q*×*T* 数组、*P*×*Q*×*C* 数组或 *P*×*Q*×*C*×*T* 数组。*T* 是视频或图像序列中的帧数，*C* 是颜色通道数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Shear direction
+  summary: 变换方向 Horizontal（默认）| Vertical
+  group: ''
+- name: Output size after shear
+  summary: 变换后的图像大小 Full（默认）| Same as input image
+  group: ''
+- name: Shear values source
+  summary: 剪切值偏移量限制的来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Row/column shear values [first last]
+  summary: 剪切值偏移量限制 [0 3]（默认）| 二元素向量
+  group: ''
+- name: Maximum shear value
+  summary: 最大行或列剪切量 20（默认）| 标量
+  group: ''
+- name: Background fill value
+  summary: 变换后图像中背景的强度值 0（默认）| 标量 | 三元素向量
+  group: ''
+- name: Interpolation method
+  summary: 插值变换后像素值的方法 Bilinear（默认）| Nearest neighbor | Bicubic
+  group: ''
+```
 
 ### **Shear direction** — 变换方向 `Horizontal`（默认）| `Vertical`
 
@@ -102,7 +140,6 @@ chinese_source: worker-translation
 - `Bicubic` — 新像素值是 16 个最近像素值的加权平均值。
 
 模块为插值考虑的像素数会影响计算的复杂度和精度。`Nearest neighbor` 插值使用的像素最少，计算效率最高但精度最低，而 `Bicubic` 插值计算效率最低但精度最高。有关插值方法和核的详细信息，请参阅“详细信息”部分以及 Create and Compare Resizing Interpolation Kernels 示例。
-
 ## 所属库
 
 Computer Vision Toolbox / Geometric Transformations

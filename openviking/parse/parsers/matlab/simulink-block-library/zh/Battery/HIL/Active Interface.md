@@ -15,6 +15,42 @@ chinese_source: worker-translation
 # Active Interface
 
 ## 端口
+```yaml
+ports:
+- name: Vcsc_charge
+  summary: 来自电芯监控电路的充电电压，V 物理信号
+  direction: input
+- name: Icsc_discharge
+  summary: 来自电芯监控电路的放电电流，A 物理信号
+  direction: input
+- name: SOC
+  summary: 电池荷电状态，无量纲物理信号
+  direction: input
+- name: Vbat
+  summary: 电池电压，V 物理信号
+  direction: output
+- name: Icsc
+  summary: 电芯监控电路电流，A 物理信号
+  direction: output
+- name: isCharging
+  summary: 充电状态，无量纲物理信号
+  direction: output
+- name: SOC
+  summary: 电池荷电状态，无量纲物理信号
+  direction: output
+- name: T
+  summary: 温度测量，K 物理信号
+  direction: output
+- name: +
+  summary: 正极端子 电气
+  direction: output
+- name: '-'
+  summary: 负极端子 电气
+  direction: output
+- name: H
+  summary: 热端口 热
+  direction: output
+```
 
 ### 输入
 
@@ -95,8 +131,25 @@ measurement port** 参数设置为
 
 要启用此端口，请将 **Thermal port**
 参数设置为 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Cell supervisory circuit resistance
+  summary: 电芯监控电路电阻 1e-6 Ohm（默认值）
+  group: ''
+- name: Expose SOC input port
+  summary: SOC 输入端口可见性 No（默认值）| Yes
+  group: ''
+- name: Expose SOC output port
+  summary: SOC 输出端口可见性 Yes（默认值）| No
+  group: ''
+- name: Thermal port
+  summary: 热端口可见性 Omit（默认值）| Model
+  group: ''
+- name: Expose temperature measurement port
+  summary: 温度测量端口可见性 Yes（默认值）| No
+  group: ''
+```
 
 ### **Cell supervisory circuit resistance** — 电芯监控电路电阻 `1e-6` `Ohm`（默认值）
 
@@ -130,7 +183,6 @@ port** 设置为 `Yes`。
 
 要启用此参数，请将 **Thermal port** 设置为
 `Model`。
-
 ## 所属库
 
 Simscape / Battery / HIL

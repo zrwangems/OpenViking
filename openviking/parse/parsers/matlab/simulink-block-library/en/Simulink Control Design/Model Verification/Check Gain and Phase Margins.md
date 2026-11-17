@@ -14,6 +14,15 @@ language: en
 # Gain and Phase Margin Plot
 
 ## Ports
+```yaml
+ports:
+- name: Trigger
+  summary: External trigger signal scalar
+  direction: input
+- name: z–1
+  summary: Assertion signal 1 | 0
+  direction: output
+```
 
 ### Input
 
@@ -39,8 +48,185 @@ You can use the assertion signal to design complex assertion logic. For an examp
 #### Dependencies
 
 To enable this port, select the **Output assertion signal** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Plot type
+  summary: Select plot type Bode (default) | Nichols | Nyquist | Tabular
+  group: ''
+  block_parameter: PlotType
+  type: character vector
+  values: '''bode'' | ''nichols'' | ''nyquist'' | ''table'''
+  default: '''bode'''
+- name: Show Plot
+  summary: Open plot button
+  group: ''
+- name: Show plot on block open
+  summary: Open plot when opening block off (default) | on
+  group: ''
+  block_parameter: LaunchViewOnOpen
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Response Optimization
+  summary: Open Response Optimizer button
+  group: ''
+- name: Linearization inputs/outputs
+  summary: Specify portion of model to linearize linear analysis points
+  group: Linearizations
+- name: Enable regular expression
+  summary: Enable signal searching using regular expressions on (default) | off
+  group: Linearizations
+- name: Show filtered results as a flat list
+  summary: Display filtered bus signal hierarchy using flat list off (default) | on
+  group: Linearizations
+- name: Linearize on
+  summary: When to compute linear model Simulation snapshots (default) | External trigger
+  group: Linearizations
+  block_parameter: LinearizeAt
+  type: character vector
+  values: '''SnapshotTimes'' | ''ExternalTrigger'''
+  default: '''SnapshotTimes'''
+- name: Snapshot times
+  summary: Simulation times at which to compute linear model 0 (default) | positive real value | vector of positive real values
+  group: Linearizations
+  block_parameter: SnapshotTimes
+  type: character vector
+  values: '''0'' | positive real value | vector of positive real values'
+  default: '''0'''
+- name: Trigger type
+  summary: Type of external trigger to detect Rising edge (default) | Falling edge
+  group: Linearizations
+  block_parameter: TriggerType
+  type: character vector
+  values: '''rising'' | ''falling'''
+  default: '''rising'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: Linearizations
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Use exact delays
+  summary: Use exact delays in linear model off (default) | on
+  group: Linearizations
+  block_parameter: UseExactDelayModel
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Linear system sample time
+  summary: Sample time of linear system 'auto' (default) | positive finite value | 0
+  group: Linearizations
+  block_parameter: SampleTime
+  type: character vector
+  values: '''auto'' | positive finite value | ''0'''
+  default: '''auto'''
+- name: Sample time rate conversion method
+  summary: Rate conversion method Zero-Order Hold (default) | Tustin (bilinear) | Tustin with Prewarping | ...
+  group: Linearizations
+  block_parameter: RateConversionMethod
+  type: character vector
+  values: '''zoh'' | ''tustin'' | ''prewarp''| ''upsampling_zoh''| ''upsampling_tustin''| ''upsampling_prewarp'''
+  default: '''zoh'''
+- name: Prewarp frequency
+  summary: Prewarp frequency for Tustin rate conversion '10' (default) | positive scalar
+  group: Linearizations
+  block_parameter: PreWarpFreq
+  type: character vector
+  values: positive scalar
+  default: '''10'''
+- name: Use full block names
+  summary: Use full block path in state, input, and output names off (default) | on
+  group: Linearizations
+  block_parameter: UseFullBlockNameLabels
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Use bus signal names
+  summary: Use bus signal names in linear system off (default) | on
+  group: Linearizations
+  block_parameter: UseBusSignalLabels
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Include gain and phase margins in assertion
+  summary: Check whether gain and phase margins violate bounds on | off
+  group: Bounds
+  block_parameter: EnableMargins
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'' for Gain and Phase Margin Plot block, ''on'' for Check Gain and Phase Margins block'
+- name: Gain margin
+  summary: Minimum gain margin bound positive finite value
+  group: Bounds
+  block_parameter: GainMargin
+  type: character vector
+  values: positive finite number
+  default: '''[]'' for Gain and Phase Margin Plot block, ''20'' for Check Bode Characteristics block'
+- name: Phase margin
+  summary: Minimum phase minimum bound positive finite value
+  group: Bounds
+  block_parameter: PhaseMargin
+  type: character vector
+  values: positive finite number
+  default: '''[]'' for Gain and Phase Margin Plot block, ''30'' for Check Bode Characteristics block'
+- name: Feedback sign
+  summary: Feedback sign for computing margins negative feedback (default) | positive feedback
+  group: Bounds
+  block_parameter: FeedbackSign
+  type: character vector
+  values: '''-1'' | ''+1'''
+  default: '''-1'''
+- name: Save data to workspace
+  summary: Save linear systems for further analysis off (default) | on
+  group: Logging
+  block_parameter: SaveToWorkspace
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Variable name
+  summary: Name of data structure for saving linear systems sys (default) | character vector
+  group: Logging
+  block_parameter: SaveName
+  type: character vector
+  default: '''sys'''
+- name: Save operating points for each linearization
+  summary: Save operating points with linearization off (default) | on
+  group: Logging
+  block_parameter: SaveOperatingPoints
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Enable assertion
+  summary: Enable bound checking on (default) | off
+  group: Assertion
+  block_parameter: enabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Simulation callback when assertion fails
+  summary: Expression to evaluate when bounds are violated '' (default) | MATLAB expression
+  group: Assertion
+  block_parameter: callback
+  type: character vector
+  values: MATLAB expression
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: Stop simulation when bounds are violated off (default) | on
+  group: Assertion
+  block_parameter: stopWhenAssertionFail
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output assertion signal
+  summary: Add assertion output port off (default) | on
+  group: Assertion
+  block_parameter: export
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Plot type** — Select plot type `Bode` (default) | `Nichols` | `Nyquist` | `Tabular`
 
@@ -778,7 +964,6 @@ You can use the assertion signal to design complex assertion logic. For an examp
 | **Type:** character vector |
 | **Value:** `'off'` | `'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink Control Design / Linear Analysis Plots Simulink Control Design / Model Verification

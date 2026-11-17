@@ -14,10 +14,42 @@ language: en
 # Sinusoid
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Wave type Ideal voltage (default) | Ideal current
+  group: ''
+- name: Offset in-phase
+  summary: In-phase offset 0 V (default) | 0 A | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA
+  group: ''
+- name: Offset quadrature
+  summary: Quadrature offset 0 V (default) | 0 A | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA
+  group: ''
+- name: Sinusoidal amplitude in-phase
+  summary: In-phase amplitude 0 (default) | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA
+  group: ''
+- name: Sinusoidal amplitude quadrature
+  summary: Quadrature amplitude 0 (default) | vector of real or complex numbers | V | mV | kV | A | mA | uA | kA
+  group: ''
+- name: Sinusoidal modulation frequency
+  summary: Modulation frequency 0 (default) | vector of real or complex numbers | Hz | kHz | MHz | GHz
+  group: ''
+- name: Time delay
+  summary: Time delay of modulation 0 (default) | vector of real | s | ms | us | ns
+  group: ''
+- name: Carrier frequencies
+  summary: Carrier frequencies 0 (default) | vector of real positive numbers | Hz | kHz | MHz | GHz
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Source type** — Wave type `Ideal voltage` (default) | `Ideal current`
 
@@ -82,7 +114,6 @@ To expose the negative terminals, clear the parameter. By exposing
 these terminals, you can connect them to other parts of your model.
 
 By default, this option is selected.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Sources

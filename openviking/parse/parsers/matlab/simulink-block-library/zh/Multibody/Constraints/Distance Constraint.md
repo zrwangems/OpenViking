@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Distance Constraint
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块提供两个坐标系端口：
 
@@ -27,8 +30,10 @@ chinese_source: worker-translation
 - f — 距离约束力向量
 - fm — 距离约束力的
   带符号幅值
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **距离**
 :   基础坐标系与从动坐标系原点之间的约束距离。
@@ -56,7 +61,6 @@ chinese_source: worker-translation
 
 **带符号的力幅值**
 :   计算并输出距离约束力的幅值，包括其符号。
-
 ## 所属库
 
 R2025b 中未提供文档。

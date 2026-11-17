@@ -14,6 +14,29 @@ language: en
 # Line Buffer
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: int | uint | fixed point | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Column of neighborhood column vector | matrix
+  direction: output
+  data_types: int | uint | fixed point | Boolean | double | single
+- name: ctrl
+  summary: Control signals accompanying output column pixelcontrol bus
+  direction: output
+  data_types: bus
+- name: shiftEnable
+  summary: Valid signal for neighborhood column scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -141,8 +164,22 @@ indicating that the column contains valid image pixels or that the
 column was added for edge padding.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Neighborhood size
+  summary: Size of output neighborhood [3 3] (default) | 2-element row vector of integer dimensions
+  group: ''
+- name: Padding method
+  summary: Method for padding the boundary of input image Symmetric (default) | Constant | Replicate | Reflection | None
+  group: ''
+- name: Padding value
+  summary: Value used to pad boundary of input image 0 (default) | integer
+  group: ''
+- name: Line buffer size
+  summary: Size of line memory buffer 2048 (default) | positive integer
+  group: ''
+```
 
 ### **Neighborhood size** — Size of output neighborhood `[3 3]` (default) | 2-element row vector of integer dimensions
 
@@ -192,7 +229,6 @@ line. If you specify a value that is not a power of two, the buffer uses the nex
 of two.
 
 When you use multipixel input, this value must accommodate (**Active pixels per line**)/(**Number of pixels**) + 2.
-
 ## Libraries
 
 Vision HDL Toolbox / Utilities

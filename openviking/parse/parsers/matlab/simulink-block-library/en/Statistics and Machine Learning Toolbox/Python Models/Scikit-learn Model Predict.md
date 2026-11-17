@@ -14,6 +14,17 @@ language: en
 # Scikit-learn Model Predict
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Predictor data numeric matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: yfit
+  summary: Predicted responses numeric vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -33,8 +44,46 @@ Parameters dialog box (see Input).
 Predicted responses, returned as a numeric vector.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Path to scikit-learn model file
+  summary: Name or path of Python scikit-learn model file untitled (default) | character vector
+  group: Specify model file
+  block_parameter: ModelFile
+  type: character vector
+  values: Python file | path to Python file
+  default: '"untitled"'
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: Specify model file
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Input
+  summary: Input port properties table
+  group: Input
+  block_parameter: InputTable
+  type: cell array
+- name: Output
+  summary: Output port properties table
+  group: Output
+  block_parameter: OutputTable
+  type: cell array
+- name: Path to Python file defining preprocess()
+  summary: Name or path of Python preprocessing function file character vector
+  group: Pre/Post-processing
+  block_parameter: PreprocessingFilePath
+  type: character vector
+  values: Python file | path to Python file
+- name: Path to Python file defining postprocess()
+  summary: Name or path of Python postprocessing function file character vector
+  group: Pre/Post-processing
+  block_parameter: PostprocessingFilePath
+  type: character vector
+  values: Python file | path to Python file
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -196,7 +245,6 @@ both defining functions.
 | **Block Parameter:** `PostprocessingFilePath` |
 | **Type:** character vector |
 | **Values:** Python file | path to Python file |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Python Models

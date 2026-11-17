@@ -14,6 +14,24 @@ language: en
 # Generic Linear Actuator
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Plunger mechanical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -45,8 +63,49 @@ Thermal port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Speed values
+  summary: Speed values [-15, -10, -5, 0, 5, 10, 15, 20, 25, 30] m/s (default)
+  group: Electrical Force
+- name: Force values
+  summary: Force values [4, 3.5, 3, 2.5, 2, 1.5, 1, .5, 0, -.5] N (default)
+  group: Electrical Force
+- name: Rated voltage
+  summary: Rated voltage 12 V (default)
+  group: Electrical Force
+- name: Motor efficiency (percent)
+  summary: Motor efficiency 70 (default)
+  group: Electrical Force
+- name: Speed at which efficiency is measured
+  summary: Speed at which efficiency is measured 20 m/s (default)
+  group: Electrical Force
+- name: Force-independent electrical losses
+  summary: Force-independent electrical losses 2 W (default)
+  group: Electrical Force
+- name: Simulation mode
+  summary: Simulation mode PWM (default) | Averaged
+  group: Electrical Force
+- name: Plunger mass
+  summary: Plunger mass 0.1 kg (default)
+  group: Mechanical
+- name: Linear damping
+  summary: Linear damping 1e-5 N/(m/s) (default)
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Temperature Dependence
+- name: Thermal mass
+  summary: Thermal mass 100 J/K (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -137,7 +196,6 @@ To enable this parameter, set **Modeling option** to
 
 The thermal mass is the energy required to raise the temperature by
 one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

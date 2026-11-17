@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # Multiply-Accumulate
 
 ## 端口
+```yaml
+ports:
+- name: a
+  summary: 输入信号 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: b
+  summary: 输入信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: c
+  summary: 偏置信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: startIn
+  summary: 累加开始控制信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: validIn
+  summary: 有效输入控制信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: endIn
+  summary: 累加结束控制信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: dataOut
+  summary: 输出信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: startOut
+  summary: 累加开始输出控制信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: validOut
+  summary: 有效输出控制信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: endOut
+  summary: 累加结束输出控制信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: countOut
+  summary: 计数输出控制信号 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -116,8 +163,71 @@ chinese_source: worker-translation
 要启用此端口，请将 **Operation Mode** 设置为 `Streaming - using Number of Samples`，然后选择 **Count output port**。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation Mode
+  summary: 输入累加模式 'Vector'（默认） | 'Streaming - using Start and End Ports' | 'Streaming - using Number of Samples'
+  group: ''
+  block_parameter: opMode
+  type: 字符向量
+  values: '''Vector'' | ''Streaming - using Start and End Ports'' | ''Streaming - using Number of Samples'''
+  default: '''Vector'''
+- name: Bias
+  summary: 要添加到输入点积的偏移量 {'0.0'}（默认值）
+  group: ''
+  block_parameter: initValue2
+  type: 字符向量
+  values: 大于或等于零的整数
+  default: '''0.0'''
+- name: Number of Samples
+  summary: 有效累积输出信号的样本数 {'2'}（默认值）
+  group: ''
+  block_parameter: num_samples
+  type: 字符向量
+  values: 大于或等于零的整数
+  default: '''2'''
+- name: Output data type
+  summary: '模块输出的数据类型 Inherit: Inherit via back propagation（默认值）'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  default: '{''Inherit: Inherit via internal rule''}'
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认值） | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: 字符向量
+  default: '{''Floor''}'
+- name: Valid output port
+  summary: 控制 validOut 输出端口的生成 off（默认）| on
+  group: ''
+  block_parameter: validOut
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: End input and output ports
+  summary: 控制 endIn 输入端口和 endOut 输出端口的生成 off（默认）| on
+  group: ''
+  block_parameter: endInandOut
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Start output port
+  summary: 控制 startOut 输出端口的生成 off（默认）| on
+  group: ''
+  block_parameter: startOut
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Count output port
+  summary: 控制 countOut 输出端口的生成 off（默认）| on
+  group: ''
+  block_parameter: countOut
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Operation Mode** — 输入累加模式 `'Vector'`（默认） | `'Streaming - using Start and End Ports'` | `'Streaming - using Number of Samples'`
 
@@ -337,7 +447,6 @@ Samples`。
 | **类型：** 字符向量 |
 | **值：** `'off'` | `'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 HDL Coder / HDL Operations

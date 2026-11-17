@@ -14,6 +14,39 @@ language: en
 # Track-Oriented Multi-Hypothesis Tracker
 
 ## Ports
+```yaml
+ports:
+- name: Detections
+  summary: Detection list Simulink® bus containing MATLAB® structure
+  direction: input
+- name: Prediction Time
+  summary: Track update time real scalar
+  direction: input
+- name: Cost Matrix
+  summary: Cost matrix real-valued *N*-by-*M* matrix
+  direction: input
+- name: Detectable BranchIDs
+  summary: Detectable Branch IDs real-valued *M*-by-1 vector | real-valued *M*-by-2 matrix
+  direction: input
+- name: State Parameters
+  summary: Track state parameters Simulink bus containing MATLAB structure
+  direction: input
+- name: Confirmed Tracks
+  summary: Confirmed tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Tentative Tracks
+  summary: Tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: All Tracks
+  summary: Confirmed and tentative tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Info
+  summary: Additional information for analyzing track updates Simulink bus containing MATLAB structure
+  direction: output
+- name: All Branches
+  summary: All branches Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -224,8 +257,101 @@ The fields of the branch structure are the same as the Track Structure.
 
 To enable this port, on the **Port Setting** tab, select
 **Enable all branches output**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tracker identifier
+  summary: Unique tracker identifier 0 (default) | nonnegative integer
+  group: ''
+- name: Filter initialization function
+  summary: Filter initialization function @initcvekf (default) | function name
+  group: ''
+- name: Threshold for assigning detections to tracks
+  summary: Threshold for assigning detections to tracks 30*[0.3 0.7 1 Inf] (default) | positive scalar | 1-by-3 vector of
+    positive values | 1-by-4 vector of positive values
+  group: ''
+- name: Maximum number of tracks
+  summary: Maximum number of tracks 100 (default) | positive integer
+  group: ''
+- name: Maximum number of sensors
+  summary: Maximum number of sensors 20 (default) | positive integer
+  group: ''
+- name: Out-of-sequence measurements handling
+  summary: Out-of-sequence measurements handling Terminate (default) | neglect
+  group: ''
+- name: Track state parameters
+  summary: Parameters of track state reference frame structure | structure array
+  group: ''
+- name: Update track state parameters with time
+  summary: Update track state parameters with time off (default) | on
+  group: ''
+- name: Track output method
+  summary: Track output method 'Tracks' (default) | 'Hypothesis' | 'Clusters'
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted Execution (default) | Code Generation
+  group: ''
+- name: Maximum number of hypotheses to be maintained
+  summary: Maximum number of hypotheses to be maintained 5 (default) | positive integer
+  group: ''
+- name: Maximum number of track branches per track
+  summary: Maximum number of track branches per track 3 (default) | positive integer
+  group: ''
+- name: Maximum number of scans maintained in the branch history
+  summary: Maximum number of scans maintained in the branch history 4 (default) | positive integer
+  group: ''
+- name: Minimum probability required to keep a branch
+  summary: Minimum probability required to keep a branch .001 (default) | positive scalar
+  group: ''
+- name: N-scan pruning method
+  summary: N-scan pruning method 'None' (default) | 'Hypothesis'
+  group: ''
+- name: Confirmation threshold [positive scalar]
+  summary: Minimum score required to confirm track 20 (default) | positive scalar
+  group: ''
+- name: Deletion threshold [negative scalar]
+  summary: Maximum score drop for track deletion -7 (default) | scalar
+  group: ''
+- name: Probability of detection used for track score
+  summary: Probability of detection used for track score 0.9 (default) | positive scalar between 0 and 1
+  group: ''
+- name: Rate of false positives used for track score
+  summary: Probability of false alarm used for track score 1e-6 (default) | scalar
+  group: ''
+- name: Volume of the sensor's detection bin
+  summary: Volume of sensor measurement bin 1 (default) | positive scalar
+  group: ''
+- name: Rate of new tracks per unit volume
+  summary: Rate of new tracks per unit volume 1 (default) | positive scalar
+  group: ''
+- name: Prediction time source
+  summary: Source of prediction time Auto (default) | Input port
+  group: ''
+- name: Enable cost matrix input
+  summary: Enable input port for cost matrix off (default) | on
+  group: ''
+- name: Enable detectable branch IDs input
+  summary: Enable detectable branch IDs input off (default) | on
+  group: ''
+- name: Enable tentative tracks output
+  summary: Enable output port for tentative tracks off (default) | on
+  group: ''
+- name: Enable all tracks output
+  summary: Enable output port for all tracks off (default) | on
+  group: ''
+- name: Enable information output
+  summary: Enable output port for analysis information off (default) | on
+  group: ''
+- name: Enable all branches output
+  summary: Enable output port for all branches off (default) | on
+  group: ''
+- name: Source of output bus name
+  summary: Source of output track bus name Auto (default) | Property
+  group: ''
+- name: Source of output info bus name
+  summary: Source of output information bus name Auto (default) | Property
+  group: ''
+```
 
 #### Tracker Management
 
@@ -627,7 +753,6 @@ Source of the output info bus name, specified as:
 
 To enable this parameter, on the **Port Setting** tab, select
 **Enable information output**.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multi-Object Tracking Algorithms

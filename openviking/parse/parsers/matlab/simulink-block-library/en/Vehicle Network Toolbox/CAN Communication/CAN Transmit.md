@@ -14,6 +14,13 @@ language: en
 # CAN Transmit
 
 ## Ports
+```yaml
+ports:
+- name: CAN Msg
+  summary: CAN message to transmit packed CAN message
+  direction: input
+  data_types: CAN_MESSAGE | bus
+```
 
 ### Input
 
@@ -23,8 +30,36 @@ CAN message as packed by the CAN Pack block, input as a CAN\_MESSAGE or a
 Simulink signal bus.
 
 **Data Types:** `CAN_MESSAGE` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: CAN device and channel list option
+  group: ''
+  block_parameter: Device
+  type: character vector, string
+- name: 'Transmit Options: On data change'
+  summary: Enable event-based transmission when data changes 'off' (default) | 'on'
+  group: ''
+  block_parameter: EnableEventTransmit
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 'Transmit Options: Periodic'
+  summary: Enable periodic transmission 'off' (default) | 'on'
+  group: ''
+  block_parameter: EnablePerioicTransmit
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 'Transmit Options: Message period'
+  summary: Period of message transmission rate 1.000 (default) | positive numeric scalar
+  group: ''
+  block_parameter: MessagePeriod
+  type: character vector, string
+  values: double
+  default: '''1.000'''
+```
 
 ### **Device** — CAN device and channel list option
 
@@ -100,7 +135,6 @@ seconds.
 | **Type:** character vector, string |
 | **Values:** double |
 | **Default:** `'1.000'` |
-
 ## Libraries
 
 Vehicle Network Toolbox / CAN Communication

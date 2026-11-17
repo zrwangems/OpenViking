@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Chirp Signal
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: Chirp 信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,38 @@ chinese_source: worker-translation
 频率随时间线性增加的 sine wave。Chirp 信号可以是标量、向量、矩阵或 N 维数组。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial frequency
+  summary: 初始频率 (Hz) 0.1（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: f1
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''0.1'''
+- name: Target time
+  summary: 目标时间（秒） 100（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: T
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''100'''
+- name: Frequency at target time
+  summary: 频率 (Hz) 1（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: f2
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''1'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量参数视为一维 on（默认）| off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Initial frequency** — 初始频率 (Hz) `0.1`（默认）| 标量 | 向量 | 矩阵 | N 维数组
 
@@ -77,7 +114,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'on' | 'off'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Sources

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # CRMS
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+- name: Port_1
+  summary: CRMS 值 标量
+  direction: output
+```
 
 ### 输入
 
@@ -26,11 +35,12 @@ chinese_source: worker-translation
 ### **Port\_1** — CRMS 值 标量
 
 计算得到的连续时间均方根值，输出为标量信号。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Design Optimization / RMS Blocks

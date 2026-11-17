@@ -14,6 +14,41 @@ language: en
 # SRM Current Controller
 
 ## Ports
+```yaml
+ports:
+- name: IsRef
+  summary: Reference current scalar
+  direction: input
+  data_types: single | double
+- name: Is
+  summary: Measured current scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Integrator reset scalar
+  direction: input
+  data_types: Boolean
+- name: theta
+  summary: Theta-rotor angle scalar
+  direction: input
+  data_types: single | double
+- name: thetaON
+  summary: Switch-on angle scalar
+  direction: input
+  data_types: single | double
+- name: thetaOFF
+  summary: Switch-off angle scalar
+  direction: input
+  data_types: single | double
+- name: abcRef
+  summary: Reference voltage vector
+  direction: output
+  data_types: single | double
+- name: abcOnOff
+  summary: Switch signal vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -67,8 +102,22 @@ Switch signal for the *a*-, *b*-, and
 condition and `0` for switch-off condition
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain
+  summary: Controller proportional gain, *Kp* 1 (default) | positive scalar
+  group: ''
+- name: Integral gain
+  summary: Integral gain, *Ki* 5 (default) | positive scalar
+  group: ''
+- name: Anti-windup gain
+  summary: Anti-windup gain, *Kaw* 1 (default) | positive scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Proportional gain** — Controller proportional gain, *Kp* `1` (default) | positive scalar
 
@@ -94,7 +143,6 @@ If this block is inside a triggered subsystem, inherit the
 sample time by setting this parameter to `-1`. If this block is in a
 continuous variable-step model, specify the sample time explicitly using a positive
 scalar.
-
 ## Libraries
 
 Simscape / Electrical / Control / SRM Control

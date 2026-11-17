@@ -14,6 +14,25 @@ language: en
 # Governor Type 1
 
 ## Ports
+```yaml
+ports:
+- name: speed_pu
+  summary: Turbine speed scalar
+  direction: input
+  data_types: single | double
+- name: Pref
+  summary: Speed reference bias scalar
+  direction: input
+  data_types: single | double
+- name: Pmech(HP)
+  summary: High-pressure mechanical power scalar
+  direction: output
+  data_types: single | double
+- name: Pmech(LP)
+  summary: Low-pressure mechanical power scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -43,8 +62,82 @@ High-pressure mechanical power, returned as a scalar.
 Low-pressure mechanical power, returned as a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Speed reference (pu)
+  summary: Speed reference 1 (default) | scalar
+  group: General
+- name: Initial torque (pu)
+  summary: Initial torque 0.45 (default) | scalar
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Governor gain (1/droop), K (pu)
+  summary: Gain of governor 20 (default) | scalar
+  group: Governor
+- name: Lag time constant, T_1 (s)
+  summary: Governor lag time constant 0.2 (default) | scalar
+  group: Governor
+- name: Lead time constant, T_2 (s)
+  summary: Governor lead time constant 0 (default) | scalar
+  group: Governor
+- name: Valve position time constant, T_3 (s)
+  summary: Time constant of valve position 0.1 (default) | scalar
+  group: Governor
+- name: Maximum valve opening rate, U_o (pu/s)
+  summary: Maximum opening rate of the valve 0.1 (default) | scalar
+  group: Governor
+- name: Maximum valve closing rate, U_c (pu/s)
+  summary: Maximum closing rate of the valve -0.1 (default) | scalar
+  group: Governor
+- name: Maximum valve opening, on MW capability, P_max (pu)
+  summary: Maximum opening of the valve on MW capability 0.98 (default) | scalar
+  group: Governor
+- name: Minimum valve opening, on MW capability, P_min (pu)
+  summary: Minimum opening of the valve, on MW capability 0 (default) | scalar
+  group: Governor
+- name: Time constant for steam inlet, T_4 (s)
+  summary: Time constant of the inlet steam 0.25 (default) | scalar
+  group: Governor
+- name: HP fraction, K_1
+  summary: Fraction of high-pressure shaft power 0.22 (default) | scalar
+  group: Governor
+- name: LP fraction, K2
+  summary: Fraction of low-pressure shaft power 0 (default) | scalar
+  group: Governor
+- name: Time constant for second boiler pass, T_5 (s)
+  summary: Time constant for second boiler pass 4 (default) | scalar
+  group: Governor
+- name: HP fraction, K_3
+  summary: Fraction of high-pressure shaft power 0.22 (default) | scalar
+  group: Governor
+- name: LP fraction, K_4
+  summary: Fraction of low-pressure shaft power 0 (default) | scalar
+  group: Governor
+- name: Time constant for third boiler pass, T_6 (s)
+  summary: Time constant for third boiler pass 4 (default) | scalar
+  group: Governor
+- name: HP fraction, K_5
+  summary: Fraction of high-pressure shaft power 0.3 (default) | scalar
+  group: Governor
+- name: LP fraction, K_6
+  summary: Fraction of low-pressure shaft power 0 (default) | scalar
+  group: Governor
+- name: Time constant for fourth boiler pass, T_7 (s)
+  summary: Time constant for fourth boiler pass 0.4 (default) | scalar
+  group: Governor
+- name: HP fraction, K_7
+  summary: Fraction of high-pressure shaft power 0.26 (default) | scalar
+  group: Governor
+- name: LP fraction, K_8
+  summary: Fraction of low-pressure shaft power 0 (default) | scalar
+  group: Governor
+- name: Deadband
+  summary: Deadband width 0.02 (default) | scalar
+  group: Governor
+```
 
 ### General
 
@@ -172,7 +265,6 @@ pass.
 ### **Deadband** — Deadband width `0.02` (default) | scalar
 
 Intentional deadband width.
-
 ## Libraries
 
 Simscape / Electrical / Control / Turbine-Governors

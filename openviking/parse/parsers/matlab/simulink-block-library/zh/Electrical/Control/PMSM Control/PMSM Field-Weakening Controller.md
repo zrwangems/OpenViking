@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # PMSM Field-Weakening Controller
 
 ## 端口
+```yaml
+ports:
+- name: idqRef
+  summary: 参考电流向量
+  direction: input
+  data_types: single | double
+- name: vdq
+  summary: 电压向量
+  direction: input
+  data_types: single | double
+- name: VphMax
+  summary: 最大相电压标量
+  direction: input
+  data_types: single | double
+- name: idqRefFW
+  summary: 弱磁参考电流向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,22 @@ chinese_source: worker-translation
 弱磁参考直轴和交轴电流，单位为 A。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation index threshold
+  summary: 调制指数阈值 1（默认）| 正数
+  group: ''
+- name: Field-weakening controller integral gain
+  summary: 积分增益 100（默认）| 正数
+  group: ''
+- name: Integral anti-windup gain
+  summary: 抗积分饱和增益 10（默认）| 正数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| -1 或正数
+  group: ''
+```
 
 ### **Modulation index threshold** — 调制指数阈值 `1`（默认）| 正数
 
@@ -60,7 +93,6 @@ chinese_source: worker-translation
 ### **Sample time (-1 for inherited)** — 模块采样时间 `-1`（默认）| `-1` 或正数
 
 模块的采样时间（`-1` 表示继承）。如果在触发子系统内使用此模块，请将采样时间设置为 `-1`。如果在连续变步长模型中使用此模块，请显式设置采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / PMSM Control

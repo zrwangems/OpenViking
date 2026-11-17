@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Range-Angle Position Estimator
 
 ## 端口
+```yaml
+ports:
+- name: RngEst
+  summary: 距离测量值（米）实值 1×*K* 向量 | 实值 *J*×*L* 矩阵
+  direction: input
+  data_types: single | double
+- name: AngEst
+  summary: 到达角估计值（度）实值 1×*L* 行向量 | 实值 2×*L* 矩阵
+  direction: input
+  data_types: single | double
+- name: RngVar
+  summary: 距离方差（米²）[]（默认）| 正实值 *J*×*L* 矩阵 | 正实值长度为 *K* 的行向量
+  direction: input
+  data_types: single | double
+- name: AngVar
+  summary: 角度方差（度²）[] | 实值 1×*L* 行向量 | 实值 2×*L* 矩阵
+  direction: input
+  data_types: single | double
+- name: AnchorPos
+  summary: 锚点位置（米）实值 *Q*×*J* 矩阵
+  direction: input
+  data_types: single | double
+- name: TgtPosEst
+  summary: 目标位置估计（米），实值 *Q*×1 向量
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: 估计的目标位置协方差（米²），实值 *Q*×*Q* 矩阵 | 实值 *Q*×*Q*×*K* 数组
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -91,8 +122,22 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Output covariances of position estimates** 复选框。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable known variance input
+  summary: 启用已知方差输入，on（默认）| off
+  group: ''
+- name: Output covariances of position estimates
+  summary: 输出位置估计的协方差，off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法，Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -137,7 +182,6 @@ chinese_source: worker-translation
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

@@ -14,6 +14,15 @@ language: en
 # Variable Inertia
 
 ## Ports
+```yaml
+ports:
+- name: LConn 1
+  summary: Inertia, kg/m2 physical signal
+  direction: input
+- name: LConn 2
+  summary: Rotational connection mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -26,15 +35,19 @@ kg/m2.
 ### **LConn 2** — Rotational connection mechanical rotational
 
 Mechanical rotational conserving port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum inertia
+  summary: Minimum inertia 0.1 kg*m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Minimum inertia** — Minimum inertia `0.1` `kg*m^2` (default) | positive scalar
 
 Lowest value that the variable inertia can take on during simulation. The
 physical signal input saturates at this value. If the input falls below the
 minimum inertia, it is set equal to the minimum inertia value.
-
 ## Libraries
 
 Simscape / Driveline / Inertias & Loads

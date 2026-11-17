@@ -14,6 +14,25 @@ language: en
 # Video Send
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: RGB or grayscale image signal to stream *M*-by-*N*-by-*3* matrix | *M*-by-*N* matrix
+  direction: input
+  data_types: uint8 | uint16
+- name: R
+  summary: Red channel signal of the RGB image to stream *M*-by-*N* matrix.
+  direction: input
+  data_types: uint8
+- name: G
+  summary: Green channel signal of the RGB image to stream *M*-by-*N* matrix
+  direction: input
+  data_types: uint8
+- name: B
+  summary: Blue channel signal of the RGB image to stream *M*-by-*N* matrix
+  direction: input
+  data_types: uint8
+```
 
 ### Input
 
@@ -65,8 +84,31 @@ The `Image Signal` parameter must be set to
 `Separate color signals`.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Format
+  summary: Input video stream signal format RGB (default) | Grayscale | Grayscale (16-bit)
+  group: ''
+- name: Image signal
+  summary: Nature of the RGB image input signal One multidimensional signal (default) | Separate color signals
+  group: ''
+- name: Compression
+  summary: Compression format for the video stream JPEG (default) | VP8 | VP9
+  group: ''
+- name: Quality
+  summary: Quality of the video stream 85 (default) | 0-100
+  group: ''
+- name: Max frame time (ms)
+  summary: Maximum time per frame 30 (default) | non-negative integer
+  group: ''
+- name: Remote address
+  summary: Remote IP address 127.0.0.1 (default) | character vector
+  group: ''
+- name: Remote port
+  summary: Remote IP port 5004 (default) | 0-65535
+  group: ''
+```
 
 #### Video parameters
 
@@ -160,7 +202,6 @@ the message, as a character vector.
 Specify the IP port of the remote device, to which the block sends the message. When
 streaming the video, this block picks the first available local UDP port, independent of
 the remote port you specify.
-
 ## Libraries
 
 UAV Toolbox / Simulation 3D

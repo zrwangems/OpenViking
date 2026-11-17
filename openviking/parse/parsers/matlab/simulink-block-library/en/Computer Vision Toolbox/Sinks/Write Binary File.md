@@ -14,6 +14,29 @@ language: en
 # Write Binary File
 
 ## Ports
+```yaml
+ports:
+- name: Y'
+  summary: Luminance component of input video stream scalar | vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cb
+  summary: Blue difference component of the input video stream scalar | vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Cr
+  summary: Red difference component of input video stream scalar | vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: A
+  summary: Alpha component of input video stream scalar | vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: T
+  summary: Transparency component of input video stream scalar | vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -79,8 +102,69 @@ character code** parameter to `Y41T` or
 `Y42T`.
 
 **Data Types:** `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Name of the binary file output.bin (default) | file name
+  group: ''
+- name: Video format
+  summary: Format of the video data Four character codes (default) | Custom
+  group: ''
+- name: Four character code
+  summary: Format of binary file I420 (default) | AYUV | CLJR | cyuv | GREY | IF09 | IMC1 | IMC2 | IMC3 | IMC4 | IUYV | IY41
+    | IYU1 | IYU2 | IYUV | NV12 | NV21 | UYNV | UYNY | V210 | Y411 | Y41P | Y41T | Y422 | Y42T | Y8 | Y800 | YUNV | YUY2 |
+    YUYV | YV12 | YV16 | YVU9 | YVYU | ...
+  group: ''
+- name: Line ordering
+  summary: Binary file fill direction Top line first (default) | Bottom line first
+  group: ''
+- name: Bit stream format
+  summary: Data format of binary file Planar (default) | Packed
+  group: ''
+- name: Number of inputs
+  summary: Number of components in input video stream 3 (default) | 1 | 2 | 4
+  group: ''
+- name: Inherit size of components from input data type
+  summary: All components have same number of bits on (default) | off
+  group: ''
+- name: Component1
+  summary: Name of luminance component input port Y' (default) | component name
+  group: ''
+- name: Component2
+  summary: Name of blue difference component Cb (default) | component name
+  group: ''
+- name: Component3
+  summary: Name of red difference component Cr (default) | component name
+  group: ''
+- name: Component4
+  summary: Name of alpha component Alpha (default) | component name
+  group: ''
+- name: Bits1
+  summary: Size of luminance component 8 (default) | 0 | 16 | 24 | 32
+  group: ''
+- name: Bits2
+  summary: Size of blue difference component 8 (default) | 0 | 16 | 24 | 32
+  group: ''
+- name: Bits3
+  summary: Size of red difference component 8 (default) | 0 | 16 | 24 | 32
+  group: ''
+- name: Bits4
+  summary: Size of alpha component 8 (default) | 0 | 16 | 24 | 32
+  group: ''
+- name: Component order in binary file
+  summary: Arrangement of components in binary file [1 2 3] (default) | vector of valid component identifiers
+  group: ''
+- name: Interlaced video
+  summary: Read video data as interlaced off (default) | on
+  group: ''
+- name: Write signed data to output file
+  summary: Write signed data to output binary file off (default) | on
+  group: ''
+- name: Byte order in binary file
+  summary: Byte order in output binary file Little endian (default) | Big endian
+  group: ''
+```
 
 ### **File name** — Name of the binary file `output.bin` (default) | file name
 
@@ -325,7 +409,6 @@ endian.
 
 To enable this parameter, set the **Video format** parameter to
 `Custom`.
-
 ## Libraries
 
 Computer Vision Toolbox / Sinks

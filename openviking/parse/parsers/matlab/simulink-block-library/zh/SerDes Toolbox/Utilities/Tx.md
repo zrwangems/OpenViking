@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Tx
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 修改后的输出数据 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 修改后的输出数据，包含有损印刷电路板传输线模型的影响，依据 [1] 中概述的方法。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 SerDes Toolbox / Utilities

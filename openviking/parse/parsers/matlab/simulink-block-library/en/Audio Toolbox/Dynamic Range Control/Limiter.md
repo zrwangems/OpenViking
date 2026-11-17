@@ -14,6 +14,37 @@ language: en
 # Limiter
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input signal 1-D vector | matrix
+  direction: input
+  data_types: single | double
+- name: T
+  summary: Threshold (dB) scalar
+  direction: input
+  data_types: single | double
+- name: K
+  summary: Knee width (dB) scalar
+  direction: input
+  data_types: single | double
+- name: AT
+  summary: Attack time (s) scalar
+  direction: input
+  data_types: single | double
+- name: RT
+  summary: Release time (s) scalar
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+- name: G
+  summary: Gain applied to each input sample matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -90,8 +121,46 @@ This port is unnamed until you select the **Output gain
 To enable this port, select the **Output gain (dB)** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Threshold (dB)
+  summary: Operation threshold –10 (default) | scalar in the range –50 to 0 inclusive
+  group: ''
+- name: Knee width (dB)
+  summary: Transition area in the limiter characteristic 0 (default) | scalar in the range 0 to 20 inclusive
+  group: ''
+- name: View static characteristic
+  summary: Open static characteristic plot of dynamic range limiter button
+  group: ''
+- name: Attack time (s)
+  summary: Time for applied gain to ramp up 0 (default) | scalar in the range 0 to 4 inclusive
+  group: ''
+- name: Release time (s)
+  summary: Time for applied gain to ramp down 0.2 (default) | scalar in the range 0 to 4 inclusive
+  group: ''
+- name: Make-up gain mode
+  summary: Make-up gain mode Property (default) | Auto
+  group: ''
+- name: Make-up gain (dB)
+  summary: Applied make-up gain 0 (default) | scalar in the range –10 to 24 inclusive
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify source of input sample rate on (default) | off
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Specify input sample rate 44100 (default) | positive scalar
+  group: ''
+- name: Output gain (dB)
+  summary: Gain applied on each input sample off (default) | on
+  group: ''
+- name: Sidechain
+  summary: Enable sidechain input off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during
 simulation.
@@ -251,7 +320,6 @@ of channels of `x` or be equal to one.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Audio Toolbox / Dynamic Range Control

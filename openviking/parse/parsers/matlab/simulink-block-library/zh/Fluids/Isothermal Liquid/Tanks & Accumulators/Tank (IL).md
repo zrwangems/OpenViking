@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Tank (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: C
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: D
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: E
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: F
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: P
+  summary: 储罐压力，MPa 物理信号
+  direction: input
+- name: V
+  summary: 液体体积，m^3 物理信号
+  direction: output
+- name: L
+  summary: 液位，m 物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -90,8 +120,55 @@ chinese_source: worker-translation
 ### **L** — 液位，`m` 物理信号
 
 储罐内的液位，单位为 `m`，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: 入口数量
+  summary: 入口端口数量 1（默认）| 1 到 6 之间的正整数
+  group: ''
+- name: 加压规格
+  summary: 储罐压力指定方法 大气压（默认）| 指定压力 | 可变压力
+  group: ''
+- name: 储罐加压
+  summary: 用户定义的储罐压力 0.101325 MPa（默认）| 正标量
+  group: ''
+- name: 储罐体积参数化
+  summary: 储罐面积特性 恒定横截面积（默认）| 表格数据 - 体积 vs. 液位
+  group: ''
+- name: 储罐横截面积
+  summary: 储罐横截面积 1 m^2（默认）| 正标量
+  group: ''
+- name: 液位向量
+  summary: 储罐液位向量 [0, 3, 5] m（默认）| 1×*n* 向量
+  group: ''
+- name: 液体体积向量
+  summary: 储罐液体体积向量 [0, 4, 6] m^3（默认）| 1×*n* 向量
+  group: ''
+- name: 入口高度
+  summary: 入口端口高度 0.1 m（默认）| 正标量
+  group: ''
+- name: 入口横截面积
+  summary: 端口入口的横截面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: 入口 A 和 B 的高度向量
+  summary: 多个已启用端口的端口高度向量 [.1, .1] m（默认）| 1×*n* 向量
+  group: ''
+- name: 入口 A 和 B 的横截面积向量
+  summary: 两个已启用端口的入口面积向量 [.01, .01] m^2（默认）| 1×*n* 向量
+  group: ''
+- name: 液位低于入口高度
+  summary: 是否通知低储罐液位 错误（默认）| 无 | 警告
+  group: ''
+- name: 液体体积超过最大容量
+  summary: 是否通知高储罐体积 无（默认）| 警告 | 错误
+  group: ''
+- name: 最大储罐容量
+  summary: 储罐的填充限制 10 m^3（默认）| 正标量
+  group: ''
+- name: 重力加速度
+  summary: 重力加速度常数 9.81 m/s^2（默认）| 正标量
+  group: ''
+```
 
 ### **入口数量** — 入口端口数量 `1`（默认）| 1 到 6 之间的正整数
 
@@ -243,7 +320,6 @@ vs. 液位`。
 ### **重力加速度** — 重力加速度常数 `9.81 m/s^2`（默认）| 正标量
 
 重力加速度常数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Tanks & Accumulators

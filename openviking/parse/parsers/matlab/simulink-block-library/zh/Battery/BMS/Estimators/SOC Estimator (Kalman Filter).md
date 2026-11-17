@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # SOC Estimator (Kalman Filter)
 
 ## 端口
+```yaml
+ports:
+- name: Current
+  summary: 电池电流 标量 | 向量
+  direction: input
+- name: CellVoltage
+  summary: 电芯电压 标量 | 向量
+  direction: input
+- name: CellTemperature
+  summary: 电芯温度 标量 | 向量
+  direction: input
+- name: InitialSOC
+  summary: 初始荷电状态 标量 | 向量
+  direction: input
+- name: SOC
+  summary: 荷电状态 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +57,75 @@ chinese_source: worker-translation
 ### **SOC** — 荷电状态 标量 | 向量
 
 电池的荷电状态，返回为标量或向量。此输出端口的尺寸等于 **CellVoltage**、**CellTemperature** 和 **InitialSOC** 输入端口的尺寸。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify Current input as cell current(s)
+  summary: 将电流输入端口指定为向量的选项 on（默认）| off
+  group: 主
+- name: Filter type
+  summary: 卡尔曼滤波器类型 Extended Kalman filter（默认）| Extended Kalman-Bucy filter | Unscented Kalman filter | Unscented Kalman-Bucy
+    filter
+  group: 主
+- name: Alpha
+  summary: Alpha 系数 1（默认）| 范围 [0, 1] 内的标量
+  group: 主
+- name: Beta
+  summary: Beta 系数 2（默认）| 非负标量
+  group: 主
+- name: Kappa
+  summary: Kappa 系数 0（默认）| 范围 [0, 3] 内的标量
+  group: 主
+- name: Covariance of the process noise, Q
+  summary: 过程噪声的协方差 [1e-6 0; 0 1e-6]（默认）| 标量矩阵
+  group: 主
+- name: Covariance of the measurement noise, R
+  summary: 测量噪声的协方差 0.1（默认）| 标量
+  group: 主
+- name: Initial state error covariance, P0
+  summary: 初始状态误差协方差 [1e-5 0; 0 1]（默认）| 标量矩阵
+  group: 主
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 1（默认）| 0 | -1 | 整数
+  group: 主
+- name: Charge dynamics
+  summary: 用于对电池充电动态建模的选项 One time-constant dynamics（默认）| Two time-constant dynamics
+  group: System Model
+- name: Vector of state-of-charge values, SOC (-)
+  summary: SOC 断点 [0, .1, .25, .5, .75, .9, 1]（默认）| 范围 [0, 1] 内的标量向量
+  group: System Model
+- name: Vector of temperatures, T
+  summary: 温度断点 [278, 293, 313]（默认）| 正标量向量
+  group: System Model
+- name: Terminal resistance, R0(SOC,T), (ohm)
+  summary: 带温度断点的 R0 查找表 [.0117, .0085, .009; .011, .0085, .009; .0114, .0087, .0092; .0107, .0082, .0088; .0107, .0083, .0091;
+    .0113, .0085, .0089; .0116, .0085, .0089]（默认）| 正元素矩阵
+  group: System Model
+- name: First polarization resistance, R1(SOC,T), (ohm)
+  summary: 温度断点 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033,
+    .0018, .0011; .0028, .0017, .0011]（默认）处的第一 RC 电阻 | 正元素矩阵
+  group: System Model
+- name: First time constant, tau1(SOC,T), (s)
+  summary: 温度断点 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33]（默认）处的第一 RC 时间常数 | 正元素矩阵
+  group: System Model
+- name: Second polarization resistance, R2(SOC,T), (ohm)
+  summary: 温度断点 [.0109, .0029, .0013; .0069, .0024, .0012; .0047, .0026, .0013; .0034, .0016, .001; .0033, .0023, .0014; .0033,
+    .0018, .0011; .0028, .0017, .0011]（默认）处的第二 RC 电阻 | 正元素矩阵
+  group: System Model
+- name: Second time constant, tau2(SOC,T), (s)
+  summary: 温度断点 [20, 36, 39; 31, 45, 39; 109, 105, 61; 36, 29, 26; 59, 77, 67; 40, 33, 29; 25, 39, 33]（默认）处的第二 RC 时间常数 | 正元素矩阵
+  group: System Model
+- name: No-load voltage, V0(SOC,T), (V)
+  summary: '*V*0 查找表 [3.49, 3.5, 3.51; 3.55, 3.57, 3.56; 3.62, 3.63, 3.64; 3.71, 3.71, 3.72; 3.91, 3.93, 3.94; 4.07, 4.08,
+    4.08; 4.19, 4.19, 4.19]（默认） | 非负元素矩阵'
+  group: System Model
+- name: Cell capacity, AH (A\*Hr)
+  summary: 完全充电时的电池容量 27（默认） | 非负标量
+  group: System Model
+- name: Algorithm data type
+  summary: '用于选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: 信号属性
+```
 
 ### 主
 
@@ -178,7 +263,6 @@ SOC=qbatteryqnom(T,n)  for N=1  and  δAH(n,Tfade)=0,  qnom(T,
 - `<data type expression>` — 模块算法将所有输入和参数转换为您指定的数据类型对象。
 
 点击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Estimators

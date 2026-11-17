@@ -14,6 +14,21 @@ language: en
 # Polynomial Evaluation
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input data vector | matrix
+  direction: input
+  data_types: single | double
+- name: Coeffs
+  summary: Polynomial coefficients vector
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: Output of the polynomial evaluation vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -48,8 +63,16 @@ input data.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Use constant coefficients
+  summary: Use constant coefficients off (default) | on
+  group: ''
+- name: Constant coefficients
+  summary: Constant coefficients [5 4 3 2 1] (default) | vector
+  group: ''
+```
 
 ### **Use constant coefficients** — Use constant coefficients `off` (default) | `on`
 
@@ -80,7 +103,6 @@ To enable this parameter, select the **Use constant
 coefficients** check box.
 
 **Complex Number Support:** Yes
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Polynomial Functions

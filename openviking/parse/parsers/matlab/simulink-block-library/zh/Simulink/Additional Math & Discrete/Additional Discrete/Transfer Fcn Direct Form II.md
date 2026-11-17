@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Transfer Fcn Direct Form II
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,40 @@ chinese_source: worker-translation
 输出信号，指定为标量或向量。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Numerator coefficients
+  summary: 分子系数 [0.2 0.3 0.2]（默认）| 向量
+  group: ''
+  block_parameter: NumCoefVec
+  type: 字符向量
+  values: 向量
+- name: Denominator coefficients excluding lead
+  summary: 分母系数 [-0.9 0.6]（默认）| 向量
+  group: ''
+  block_parameter: DenCoefVec
+  type: 字符向量
+  values: 向量
+- name: Initial condition
+  summary: 初始条件 0.0（默认）| 标量
+  group: ''
+  block_parameter: vinit
+  type: 字符向量
+  values: 标量
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: 溢出操作方法 off（默认）| on
+  group: ''
+  block_parameter: DoSatur
+  type: 字符向量
+  values: '''off'' | ''on'''
+```
 
 ### **Numerator coefficients** — 分子系数 `[0.2 0.3 0.2]`（默认）| 向量
 
@@ -101,7 +144,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
 | **默认：** `'off'` |
-
 ## 所属库
 
 Simulink / Additional Math & Discrete / Additional Discrete

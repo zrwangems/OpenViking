@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Six Step Commutation
 
 ## 端口
+```yaml
+ports:
+- name: Hall
+  summary: 霍尔传感器序列标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Position
+  summary: 转子位置标量
+  direction: input
+  data_types: single | double | fixed point
+- name: TorqueSign
+  summary: 旋转方向标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32
+- name: Ctrl
+  summary: 电机控制开关序列标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -56,8 +75,25 @@ chinese_source: worker-translation
 用于在 BLDC 电机上实现六步换相（或梯形换相）的开关序列信号。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input type
+  summary: 模块输入类型 Hall（默认）| Position
+  group: ''
+- name: Position Unit
+  summary: 位置输入单位 Per-unit（默认）| Degrees | Radians
+  group: ''
+- name: Hall Sequence number
+  summary: 霍尔序列 [5,4,6,2,3,1]（默认）| 向量
+  group: ''
+- name: Enable custom commutation
+  summary: 启用 Commutation switching 参数 off（默认）| on
+  group: ''
+- name: Commutation switching
+  summary: 换相开关序列 [0 0 1 0 0 1;0 1 1 0 0 0;0 1 0 0 1 0;0 0 0 1 1 0;1 0 0 1 0 0;1 0 0 0 0 1]（默认）| 向量
+  group: ''
+```
 
 ### **Input type** — 模块输入类型 `Hall`（默认）| `Position`
 
@@ -96,7 +132,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Input type** 设置为 `Hall` 并选择 **Enable custom commutation** 参数。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Control Reference

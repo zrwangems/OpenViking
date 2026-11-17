@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # LDPC Decoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 对数似然比列向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 译码数据列向量
+  direction: output
+  data_types: double | Boolean
+- name: Iter
+  summary: 已执行的译码迭代次数正整数
+  direction: output
+  data_types: double
+- name: ParChk
+  summary: 最终奇偶校验列向量
+  direction: output
+```
 
 ### 输入
 
@@ -53,8 +71,34 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Output final parity checks** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Parity-check matrix (sparse binary (N-K)-by-N matrix)
+  summary: 奇偶校验矩阵 ldpcDecoderConfig().ParityCheckMatrix（默认）| 稀疏二进制矩阵 | 非稀疏索引矩阵
+  group: ''
+- name: Output format
+  summary: 输出值格式 Information part（默认）| Whole codeword
+  group: ''
+- name: Decision type
+  summary: 判决方法 Hard decision（默认）| Soft decision
+  group: ''
+- name: Output data type
+  summary: 输出值数据类型 double（默认）| boolean
+  group: ''
+- name: Number of iterations
+  summary: 最大译码迭代次数 50（默认）| 正整数
+  group: ''
+- name: Stop iterating when all parity-checks are satisfied
+  summary: 迭代终止条件 off（默认）| on
+  group: ''
+- name: Output number of iterations executed
+  summary: 输出已执行的迭代次数 off（默认）| on
+  group: ''
+- name: Output final parity-checks
+  summary: 输出已执行的迭代次数 off（默认）| on
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -108,7 +152,6 @@ chinese_source: worker-translation
 ### **Output final parity-checks** — 输出已执行的迭代次数 `off`（默认）| `on`
 
 选中此参数以启用 **ParChk** 输出端口。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

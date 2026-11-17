@@ -14,6 +14,15 @@ language: en
 # Simulation 3D Actor
 
 ## Ports
+```yaml
+ports:
+- name: Instance
+  summary: Instance number of actor real integer
+  direction: input
+- name: Valid
+  summary: Validity of specified actor false (default) | true
+  direction: output
+```
 
 ### Input
 
@@ -40,8 +49,44 @@ This input is visible when the operating mode of the block is set to either
 Validity of the specified actor, returned as `false` if the specified
 actor cannot be found in the world or `true` if the
 actor is found.
-
 ## Parameters
+```yaml
+parameters:
+- name: Actor Name
+  summary: Name of actor Sim3dActor1 (default) | string
+  group: Main
+- name: Parent Name
+  summary: Parent of actor Scene Origin (default) | string
+  group: Main
+- name: Operation
+  summary: Operating mode of block Create at setup (default) | Create at step | Reference by name | Reference by instance
+    number
+  group: Main
+- name: Path to source file
+  summary: File from which actors are sourced string
+  group: Main
+- name: Initialization script
+  summary: Code to initialize actor MATLAB script
+  group: Main
+- name: Sample time
+  summary: Sample time -1 (default) | scalar
+  group: Main
+- name: Translation
+  summary: Relative translation [0,0,0] (default) | real 1-by-3 vector
+  group: Transform
+- name: Rotation
+  summary: Relative rotation [0,0,0] (default) | real 1-by-3 vector
+  group: Transform
+- name: Scale
+  summary: Relative scale [1,1,1] (default) | real 1-by-3 vector
+  group: Transform
+- name: Input ports
+  summary: List of user-selected input ports text area
+  group: Inputs
+- name: Output ports
+  summary: List of user-selected output ports text area
+  group: Outputs
+```
 
 ### Main
 
@@ -281,7 +326,6 @@ port.
 
 You can manually modify the ports using the text area, but using the
 port selector app is recommended for choosing the ports.
-
 ## Libraries
 
 Simulink 3D Animation / Simulation 3D / Actors

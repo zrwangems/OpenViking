@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # DC Voltage Controller
 
 ## 端口
+```yaml
+ports:
+- name: vRef
+  summary: 参考直流电压标量
+  direction: input
+  data_types: single | double
+- name: v
+  summary: 测量直流电压标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 外部复位标量
+  direction: input
+  data_types: single | double
+- name: Control
+  summary: 控制信号标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,40 @@ chinese_source: worker-translation
 控制信号 *control*，表示为占空比或电流。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain
+  summary: 比例增益，*Kp* 0.1（默认）| 正标量
+  group: ''
+- name: Integral gain
+  summary: 积分增益，*Ki* 50（默认）| 正标量
+  group: ''
+- name: Anti-windup gain
+  summary: 抗饱和增益，*Kaw* 1（默认）| 正标量
+  group: ''
+- name: Control action upper limit
+  summary: 控制信号上限，*controlmax* 1（默认）| 正标量
+  group: ''
+- name: Control action lower limit
+  summary: 控制信号下限，*controlmin* 0（默认）| 非负标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+- name: Discretization sample time
+  summary: 离散化采样时间 0.001（默认）| 正标量
+  group: ''
+- name: Time constant voltage filter
+  summary: 直流电压滤波器时间常数，*τ* 0.001（默认）| 正标量
+  group: ''
+- name: Enable zero cancellation
+  summary: 前馈零点对消 off（默认）| on
+  group: ''
+- name: Filter DC voltage
+  summary: 直流电压滤波器选项 on（默认）| off
+  group: ''
+```
 
 ### **Proportional gain** — 比例增益，*Kp* `0.1`（默认）| 正标量
 
@@ -98,7 +149,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 **Time constant voltage filter** 参数仅在选中 **Filter DC voltage** 复选框时可见。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Machine Control

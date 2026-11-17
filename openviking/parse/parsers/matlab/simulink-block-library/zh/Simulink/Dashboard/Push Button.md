@@ -15,10 +15,94 @@ chinese_source: worker-translation
 # Push Button
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 用于连接参数值的模块参数值连接选项
+  group: 连接
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Button Text
+  summary: 按钮的文本标签 Button（默认）| 字符串 | 字符向量
+  group: 主要
+  block_parameter: ButtonText
+  type: string or character array
+  default: '''Button'''
+- name: On Value
+  summary: 按下或锁存按钮时分配给已连接参数的值 1（默认）| 标量
+  group: 主要
+  block_parameter: OnValue
+  type: string or character array
+  default: '''1'''
+- name: Button Type
+  summary: 按钮对点击的响应 Momentary（默认）| Latch
+  group: 主要
+  block_parameter: ButtonType
+  type: string or character array
+  values: '''Momentary'' | ''Latch'''
+- name: Label
+  summary: 模块标签位置 Hide（默认）| Bottom | Top
+  group: 主要
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| 标量
+  group: 格式
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+- name: Foreground Color
+  summary: 模块前景色 [r g b] 向量
+  group: 格式
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Background Color
+  summary: 模块背景色 [r g b] 向量
+  group: 格式
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Icon
+  summary: 在按钮上显示的图标 SVG 文件 | PNG 文件 | JPEG 文件
+  group: 图标
+  block_parameter: Icon
+  type: string | character vector
+  default: '''Default'''
+- name: Icon Alignment
+  summary: 图标相对于按钮文本的对齐方式 Left（默认）| Right | Top | Bottom | Center
+  group: 图标
+  block_parameter: IconAlignment
+  type: string | character vector
+  values: '''Left'' | ''Right'' | ''Top'' | ''Bottom'' | ''Center'''
+  default: '''Left'''
+- name: Customize Icon Color
+  summary: 是否使用图标开和关颜色 Off（默认）| On
+  group: 图标
+  block_parameter: IconColor
+  type: string | character vector
+  values: '''On'' | ''Off'''
+  default: '''Off'''
+- name: On Color
+  summary: 按下或锁存模块时的图标颜色 [r g b] 向量
+  group: 图标
+  block_parameter: IconOnColor
+  type: '[r g b] vector'
+- name: Off Color
+  summary: 模块未按下或未锁存时的图标颜色 [r g b] 向量
+  group: 图标
+  block_parameter: IconOffColor
+  type: '[r g b] vector'
+```
 
 ### 连接
 
@@ -338,7 +422,6 @@ R2025b 中未记录。
 | --- |
 | **模块参数**：`IconOffColor` |
 | **类型**：`[r g b]` vector |
-
 ## 所属库
 
 Simulink / Dashboard

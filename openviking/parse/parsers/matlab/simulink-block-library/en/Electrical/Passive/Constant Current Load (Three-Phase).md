@@ -14,6 +14,12 @@ language: en
 # Constant Current Load (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -22,8 +28,35 @@ language: en
 Expandable three-phase
 electrical port associated with the three-phase
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Consumed current (RMS)
+  summary: Root mean square consumed current 1 A (default) | scalar
+  group: Main
+- name: Minimum supply voltage (phase-to-phase RMS)
+  summary: Minimum supply voltage 10 V (default) | scalar
+  group: Main
+- name: Open circuit fault
+  summary: Option to add open circuit fault Add fault (default)
+  group: Faults
+- name: Open-circuit conductance
+  summary: Open-circuit conductance 1e-4 S (default) | scalar
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible power
+  summary: Power threshold to fault transition inf W (default)
+  group: Faults
+- name: Time to fail when exceeding power
+  summary: Maximum length of time the power exceeds the threshold 1 s (default)
+  group: Faults
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -100,7 +133,6 @@ permissible value without triggering the fault.
 
 To enable this parameter, set **Trigger Type** to
 `Behavioral`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

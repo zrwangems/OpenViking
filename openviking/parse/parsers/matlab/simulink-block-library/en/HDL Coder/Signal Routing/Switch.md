@@ -14,6 +14,29 @@ language: en
 # Switch
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First data input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_2
+  summary: Control input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_3
+  summary: Second data input signal scalar | vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -55,8 +78,86 @@ Output signal propagated from either the first or second input signal, based on 
 control signal value.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Criteria for passing first input
+  summary: Selection criteria to pass first data input u2 > Threshold (default) | u2 >= Threshold | u2 ~= 0
+  group: Main
+  block_parameter: Criteria
+  type: character vector
+  values: '''u2 >= Threshold'' | ''u2 > Threshold'' | ''u2 ~= 0'''
+  default: '''u2 > Threshold'''
+- name: Threshold
+  summary: Threshold used in criteria 0 (default) | scalar
+  group: Main
+  block_parameter: Threshold
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: Main
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Require all data port inputs to have the same data type
+  summary: Require data ports to have the same data type off (default) | on
+  group: Signal Attributes
+  block_parameter: InputSameDT
+  type: character vector
+  default: '''off'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | Inherit:
+    Same as first input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16)
+    | fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Enum: <class name> | <data type expression> | Simulink.ImageType(480,640,3)'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''  |
+    ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'', ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | Enum: <class name> | Simulink.ImageType(480,640,3)
+    | ''string'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Allow different data input sizes
+  summary: Allow different data input sizes off (default) | on
+  group: Signal Attributes
+  block_parameter: AllowDiffInputSizes
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -474,7 +575,6 @@ can be equal or different.
 | **Type:** character vector |
 | **Value:** `'on'` | `'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Signal Routing HDL Coder / Commonly Used Blocks HDL Coder / Signal Routing

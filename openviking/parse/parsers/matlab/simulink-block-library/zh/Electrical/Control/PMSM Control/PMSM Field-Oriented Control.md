@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # PMSM Field-Oriented Control
 
 ## 端口
+```yaml
+ports:
+- name: Reference
+  summary: 系统参考值标量
+  direction: input
+  data_types: single | double
+- name: iabcSens
+  summary: 测量的相电流向量
+  direction: input
+  data_types: single | double
+- name: wSens
+  summary: 转子速度标量
+  direction: input
+  data_types: single | double
+- name: thSens
+  summary: 转子角度标量
+  direction: input
+  data_types: single | double
+- name: vdcSens
+  summary: 直流母线电压标量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 门极脉冲向量
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: 可视化信号总线
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -73,8 +104,148 @@ chinese_source: worker-translation
 - `modWave`
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Winding Type
+  summary: 控制参数化 Wye-wound（默认）| Delta-wound
+  group: ''
+- name: Control Mode
+  summary: 控制模式策略 Torque control（默认）| Velocity control
+  group: ''
+- name: Nominal dc-link voltage (V)
+  summary: 额定直流电压 300（默认）| 正数
+  group: ''
+- name: Maximum power (W)
+  summary: 最大功率 35000（默认）| 正数
+  group: ''
+- name: Maximum torque (N\*m)
+  summary: 最大转矩 250（默认）| 正数
+  group: ''
+- name: Number of rotor pole pairs
+  summary: 极对数 8（默认）| 正整数
+  group: ''
+- name: Inverter dc-link voltage threshold (V)
+  summary: 直流母线电压阈值 100（默认）| 正数
+  group: ''
+- name: Fundamental sample time (s)
+  summary: 模块采样时间 5e-6（默认）| 正数
+  group: ''
+- name: Control sample time (s)
+  summary: 控制采样时间 1e-4（默认）| 正数
+  group: ''
+- name: Control Type
+  summary: 控制类型策略 PI control（默认）| P control | P-PI control
+  group: ''
+- name: Controller proportional gain
+  summary: PI 控制器比例增益 1（默认）| 正数
+  group: ''
+- name: Controller integral gain
+  summary: PI 控制器积分增益 1（默认）| 正数
+  group: ''
+- name: P controller proportional gain
+  summary: P 控制器比例增益 1（默认）| 正数
+  group: ''
+- name: Integral anti-windup gain
+  summary: 抗积分饱和增益 1（默认）| 正数
+  group: ''
+- name: Current references
+  summary: 电流参考策略 Zero d-axis control（默认）| Lookup-table based | Automatically generated lookup-table
+  group: ''
+- name: Mechanical speed vector, wMechanical (rpm)
+  summary: 转子速度查找向量 [0, 3000]（默认）| 正单调递增向量
+  group: ''
+- name: Torque reference vector, TqRef (N\*m)
+  summary: 转矩参考查找向量 [-100, 0, 100]（默认）| 正单调递增向量
+  group: ''
+- name: DC-link voltage vector, Vdc (V)
+  summary: 直流母线电压查找向量 [300, 350]（默认）| 正单调递增向量
+  group: ''
+- name: D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)
+  summary: 参考 d 轴电流值 zeros(2,3,2)（默认）| 实数矩阵
+  group: ''
+- name: Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)
+  summary: 参考 q 轴电流值 zeros(2,3,2)（默认）| 实数矩阵
+  group: ''
+- name: Modulation factor
+  summary: 调制系数 1（默认）| 正标量
+  group: ''
+- name: Permanent magnet flux linkage (Wb)
+  summary: 永磁磁链 0.04（默认）| 正标量
+  group: ''
+- name: D-axis inductance (H)
+  summary: d 轴电感 0.00024（默认）| 正标量
+  group: ''
+- name: Q-axis inductance (H)
+  summary: q 轴电感 0.00029（默认）| 正标量
+  group: ''
+- name: Stator resistance (Ohm)
+  summary: 定子电阻 0.01（默认）| 正标量
+  group: ''
+- name: D-axis current proportional gain
+  summary: d 轴比例增益 1（默认）| 正数
+  group: ''
+- name: D-axis current integral gain
+  summary: d 轴积分增益 100（默认）| 正数
+  group: ''
+- name: D-axis current anti-windup gain
+  summary: d 轴抗积分饱和增益 1（默认）| 正数
+  group: ''
+- name: Q-axis current proportional gain
+  summary: q 轴比例增益 1（默认）| 正数
+  group: ''
+- name: Q-axis current integral gain
+  summary: q 轴积分增益 100（默认）| 正数
+  group: ''
+- name: Q-axis current anti-windup gain
+  summary: q 轴抗积分饱和增益 1（默认）| 正数
+  group: ''
+- name: Axis prioritization
+  summary: 电压限制器的轴优先级 q-axis（默认）| d-axis | d-q equivalence
+  group: ''
+- name: Enable zero cancellation
+  summary: 前馈零点对消 off（默认）| on
+  group: ''
+- name: Enable pre-control voltage
+  summary: 预控制电压 on（默认）| off
+  group: ''
+- name: Machine parameters
+  summary: 电机参数化 Constant parameters（默认）| Lookup table based parameters
+  group: ''
+- name: D-axis inductance for feed-forward pre-control (H)
+  summary: 前馈 d 轴电感 0.00024（默认）| 正标量
+  group: ''
+- name: Q-axis inductance for feed-forward pre-control (H)
+  summary: 前馈 q 轴电感 0.00029（默认）| 正标量
+  group: ''
+- name: Permanent magnet flux linkage for feed-forward pre-control (H)
+  summary: 前馈磁链 0.04（默认）| 标量
+  group: ''
+- name: D-axis current vector, id (A)
+  summary: d 轴电流断点向量 [-200,0,200]（默认）| 单调递增向量
+  group: ''
+- name: Q-axis current vector, iq (A)
+  summary: q 轴电流断点向量 [-200,0,200]（默认）| 单调递增向量
+  group: ''
+- name: Ld matrix, Ld(id,iq) (H)
+  summary: d 轴电感查找数据 0.0002 * ones(3, 3)（默认）| 正矩阵
+  group: ''
+- name: Lq matrix, Lq(id,iq) (H)
+  summary: q 轴电感查找数据 0.0002 * ones(3, 3)（默认）| 正矩阵
+  group: ''
+- name: Permanent magnet flux linkage matrix, PM(id,iq) (Wb)
+  summary: 磁链查找数据 0.04 * ones(3, 3)（默认）| 实数矩阵
+  group: ''
+- name: PWM method
+  summary: '脉宽调制方法 SVM: space vector modulation（默认）| SPWM: sinusoidal PWM'
+  group: ''
+- name: Sampling mode
+  summary: 波形采样方法 Natural（默认）| Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: 开关频率 1000（默认）| 正整数
+  group: ''
+```
 
 #### 通用
 
@@ -274,7 +445,6 @@ PI 控制器的抗积分饱和增益。
 ### **Switching frequency (Hz)** — 开关频率 `1000`（默认）| 正整数
 
 指定功率变换器中开关的期望开关速率。
-
 ## 所属库
 
 Simscape / Electrical / Control / PMSM Control

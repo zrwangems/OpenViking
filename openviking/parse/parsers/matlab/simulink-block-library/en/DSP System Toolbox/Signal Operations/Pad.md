@@ -14,6 +14,19 @@ language: en
 # Pad
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Data input scalar | vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: Output 1
+  summary: Padded or truncated output scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+```
 
 ### Input
 
@@ -35,8 +48,55 @@ output matches that of the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `bus`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Pad over
+  summary: Dimension over which to pad or truncate Columns (default) | Rows | Columns and rows | None | Specified dimensions
+  group: ''
+- name: Dimensions to pad
+  summary: Specify dimension over which to pad or truncate 1 (default) | scalar | vector
+  group: ''
+- name: Pad value source
+  summary: Source of pad value Specify via dialog (default) | Input port
+  group: ''
+- name: Pad value
+  summary: Pad value 0 (default) | scalar
+  group: ''
+- name: Output column mode
+  summary: Mode of specifying column length User-specified | Next power of two
+  group: ''
+- name: Column size
+  summary: Column length of output 1 | scalar
+  group: ''
+- name: Output row mode
+  summary: Mode of specifying row length User-specified (default) | Next power of two
+  group: ''
+- name: Row size
+  summary: Row length of output 1 | scalar
+  group: ''
+- name: Specify
+  summary: Specify output size or pad size Output size (default) | Pad size
+  group: ''
+- name: Output size mode
+  summary: Mode of specifying output length User-specified | Next power of two
+  group: ''
+- name: Output size
+  summary: Output length along specified dimension 1 | scalar | vector
+  group: ''
+- name: Pad size at beginning
+  summary: Specify number of values to add to beginning of input signal 0 | scalar | vector
+  group: ''
+- name: Pad size at end
+  summary: Specify number of values to add to end of input signal 0 | scalar | vector
+  group: ''
+- name: Pad signal at
+  summary: Specify where to pad or truncate signal End (default) | Beginning | Beginning and end
+  group: ''
+- name: Action when truncation occurs
+  summary: Action to take when truncation occurs None | Warning | Error
+  group: ''
+```
 
 ### **Pad over** — Dimension over which to pad or truncate `Columns` (default) | `Rows` | `Columns and rows` | `None` | `Specified dimensions`
 
@@ -259,7 +319,6 @@ Specify the action the block takes when it truncates the input.
 This parameter appears only when you set **Pad over**
 to `Columns`, `Rows`,
 and `Columns and rows`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

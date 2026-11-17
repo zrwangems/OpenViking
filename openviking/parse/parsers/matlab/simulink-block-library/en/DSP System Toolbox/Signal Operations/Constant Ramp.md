@@ -14,6 +14,17 @@ language: en
 # Constant Ramp
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -33,8 +44,44 @@ length equals number of** or **Dimension**
 parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Ramp length equals number of
+  summary: Dimension used to determine ramp length Rows (default) | Columns | Elements in specified dimension
+  group: Main
+- name: Dimension
+  summary: Dimension that determines length of output ramp 1 (default) | positive integer
+  group: Main
+- name: Slope
+  summary: Slope of the ramp 1 (default) | scalar
+  group: Main
+- name: Offset
+  summary: '*y*-intercept of the ramp 0 (default) | scalar'
+  group: Main
+- name: Output data type
+  summary: 'Output data type Inherit: Same as input (default) | Inherit: Inherit via back propagation | double | single |
+    int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+- name: Mode
+  summary: Data type mode Inherit (default) | Built in | Fixed point | Expression
+  group: Data Type Assistant Parameters
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default) | Unsigned
+  group: Data Type Assistant Parameters
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 2 to 128
+  group: Data Type Assistant Parameters
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point
+  group: Data Type Assistant Parameters
+- name: Data type override
+  summary: Data type override mode Inherit (default) | Off
+  group: Data Type Assistant Parameters
+- name: Fraction length
+  summary: Fraction length for fixed-point data type 0 (default) | integer scalar
+  group: Data Type Assistant Parameters
+```
 
 ### Main
 
@@ -161,7 +208,6 @@ To enable this parameter, set **Mode** to
 `Fixed point` and
 **Scaling** to `Binary
 point`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

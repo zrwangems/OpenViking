@@ -14,6 +14,96 @@ language: en
 # Adaptive MPC Controller
 
 ## Ports
+```yaml
+ports:
+- name: model
+  summary: Updated plant model and nominal operating point bus signal
+  direction: input
+- name: ref
+  summary: Model output reference values row vector | matrix
+  direction: input
+- name: mo
+  summary: Measured outputs vector
+  direction: input
+- name: x[k|k]
+  summary: Custom state estimate vector
+  direction: input
+- name: md
+  summary: input row vector | matrix
+  direction: input
+- name: ext.mv
+  summary: Control signals used in plant at previous control interval vector
+  direction: input
+- name: switch
+  summary: Enable or disable optimization scalar
+  direction: input
+- name: mv.target
+  summary: Manipulated variable targets vector
+  direction: input
+- name: ymin
+  summary: Minimum output variable constraints vector | matrix
+  direction: input
+- name: ymax
+  summary: Maximum output variable constraints vector | matrix
+  direction: input
+- name: umin
+  summary: Minimum manipulated variable constraints vector | matrix
+  direction: input
+- name: umax
+  summary: Maximum manipulated variable constraints vector | matrix
+  direction: input
+- name: E
+  summary: Manipulated variable constraint matrix matrix
+  direction: input
+- name: F
+  summary: Controlled output constraint matrix matrix
+  direction: input
+- name: G
+  summary: Custom constraint vector row vector
+  direction: input
+- name: S
+  summary: Measured disturbance constraint matrix matrix
+  direction: input
+- name: y.wt
+  summary: Output variable tuning weights row vector | matrix
+  direction: input
+- name: u.wt
+  summary: Manipulated variable tuning weights row vector | matrix
+  direction: input
+- name: du.wt
+  summary: Manipulated variable rate tuning weights row vector | matrix
+  direction: input
+- name: ecr.wt
+  summary: Slack variable tuning weight scalar
+  direction: input
+- name: p
+  summary: Prediction horizon positive integer
+  direction: input
+- name: m
+  summary: Control horizon positive integer | vector
+  direction: input
+- name: mv
+  summary: Optimal manipulated variable control action column vector
+  direction: output
+- name: cost
+  summary: Objective function cost nonnegative scalar
+  direction: output
+- name: qp.status
+  summary: Optimization status integer
+  direction: output
+- name: est.state
+  summary: Estimated controller states vector
+  direction: output
+- name: mv.seq
+  summary: Optimal manipulated variable sequence matrix
+  direction: output
+- name: x.seq
+  summary: Optimal prediction model state sequence matrix
+  direction: output
+- name: y.seq
+  summary: Optimal output variable sequence matrix
+  direction: output
+```
 
 ### Input
 
@@ -814,8 +904,189 @@ identical.
 #### Dependencies
 
 To enable this port, select the **Optimal output sequence** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Adaptive MPC Controller
+  summary: Controller object mpc object name
+  group: ''
+  block_parameter: mpcobj
+  type: string, character vector
+  default: '""'
+- name: Initial Controller State
+  summary: Initial state mpcstate object name
+  group: ''
+  block_parameter: x0
+  type: string, character vector
+  default: '""'
+- name: Measured disturbance
+  summary: Add measured disturbance input port on (default) | off
+  group: ''
+  block_parameter: md_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"on"'
+- name: External manipulated variable
+  summary: Add external manipulated variable input port off (default) | on
+  group: ''
+  block_parameter: mv_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Targets for manipulated variables
+  summary: Add manipulated variable target input port off (default) | on
+  group: ''
+  block_parameter: uref_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal cost
+  summary: Add optimal cost output port off (default) | on
+  group: ''
+  block_parameter: return_cost
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimization status
+  summary: Add optimization status output port off (default) | on
+  group: ''
+  block_parameter: return_qpstatus
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Estimated controller states
+  summary: Add estimated states output port off (default) | on
+  group: ''
+  block_parameter: return_state
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal control sequence
+  summary: Add optimal control sequence output port off (default) | on
+  group: ''
+  block_parameter: return_mvseq
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal state sequence
+  summary: Add optimal state sequence output port off (default) | on
+  group: ''
+  block_parameter: return_xseq
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Optimal output sequence
+  summary: Add optimal output sequence output port off (default) | on
+  group: ''
+  block_parameter: return_ovseq
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Use custom state estimation instead of using the built-in Kalman filter
+  summary: Use custom state estimate input port off (default) | on
+  group: ''
+  block_parameter: state_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Linear Time-Varying (LTV) plants
+  summary: Use custom state estimate input port off (default) | on
+  group: ''
+  block_parameter: isltv_plant
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower OV limits
+  summary: Add minimum OV constraint input port off (default) | on
+  group: ''
+  block_parameter: ymin_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper OV limits
+  summary: Add maximum OV constraint input port off (default) | on
+  group: ''
+  block_parameter: ymax_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Lower MV limits
+  summary: Add minimum MV constraint input port off (default) | on
+  group: ''
+  block_parameter: umin_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Upper MV limits
+  summary: Add maximum MV constraint input port off (default) | on
+  group: ''
+  block_parameter: umax_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Custom constraints
+  summary: Add input ports for mixed input/output linear constraints matrices off (default) | on
+  group: ''
+  block_parameter: cc_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: OV weights
+  summary: Add OV tuning weights input port off (default) | on
+  group: ''
+  block_parameter: ywt_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MV weights
+  summary: Add MV tuning weights input port off (default) | on
+  group: ''
+  block_parameter: uwt_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: MVRate weights
+  summary: Add MV rate tuning weights input port off (default) | on
+  group: ''
+  block_parameter: duwt_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Slack variable weight
+  summary: Add ECR tuning weight input port off (default) | on
+  group: ''
+  block_parameter: rhoeps_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Adjust prediction horizon and control horizon at run time
+  summary: Add horizon input ports off (default) | on
+  group: ''
+  block_parameter: pm_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Maximum prediction horizon
+  summary: Add horizon input ports 10 (default) | positive integer
+  group: ''
+  block_parameter: MaximumP
+  type: string, character vector
+  default: '"10"'
+- name: Inherit sample time
+  summary: Inherit block sample time from parent subsystem off (default) | on
+  group: ''
+  block_parameter: SampleTimeInherited
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Use external signal to enable or disable optimization
+  summary: Add switch input port off (default) | on
+  group: ''
+  block_parameter: switch_inport
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+```
 
 ### **Adaptive MPC Controller** — Controller object `mpc` object name
 
@@ -1226,7 +1497,6 @@ Select this parameter to add the **switch** input port to the block.
 | **Type:** string, character vector |
 | **Values:** `"off"`, `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Model Predictive Control Toolbox

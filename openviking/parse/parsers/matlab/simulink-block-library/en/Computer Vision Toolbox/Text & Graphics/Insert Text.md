@@ -14,6 +14,61 @@ language: en
 # Insert Text
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: Red color component of input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: Green color component of input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: Blue color component of input image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Select
+  summary: Select the display text positive integer
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Color
+  summary: Text color value scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Location
+  summary: Location index vector | matrix
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Opacity
+  summary: Opacity factor scalar | vector
+  direction: input
+  data_types: single | double
+- name: Variables
+  summary: Text variable values scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: Red color component of output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: Green color component of output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: Blue color component of output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -260,8 +315,47 @@ To enable this port, set the **Image signal** parameter to
 `Separate color signals`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Text
+  summary: Text to insert 'Text' (default) | character vector | cell array of character vectors
+  group: Main
+- name: Color value source
+  summary: Source of text color Specify via dialog (default) | Input port
+  group: Main
+- name: Color value
+  summary: Text color value [0 0 0] (default) | scalar | vector | matrix
+  group: Main
+- name: Location source
+  summary: Source of location indices Specify via dialog (default) | Input port
+  group: Main
+- name: Location [x y]
+  summary: Text location index [1,1] (default) | vector | matrix
+  group: Main
+- name: Opacity source
+  summary: Source of opacity factor Specify via dialog (default) | Input port
+  group: Main
+- name: Opacity
+  summary: Opacity factor 1 (default) | scalar | vector
+  group: Main
+- name: Image signal
+  summary: Input and output signal format One multidimensional signal (default) | Separate color signals
+  group: Main
+- name: Input image is transposed (data order is row major)
+  summary: Mirror text and text location off (default) | on
+  group: Main
+- name: Font face
+  summary: Font of text LucidaSansRegular (default) | Agency FB | Agency FB Bold | Algerian | Ariel | Arial Black | Arial
+    Bold | Arial Bold Italic | ...
+  group: Font
+- name: Font size (points)
+  summary: Font size 12 (default) | positive scalar
+  group: Font
+- name: Anti-aliased
+  summary: Smooth text edges on (default) | off
+  group: Font
+```
 
 ### Main
 
@@ -411,7 +505,6 @@ Specify the font size of the inserted text.
 
 Enable this parameter to smooth the edges of the inserted text. The smoothing
 process is computationally expensive.
-
 ## Libraries
 
 Computer Vision Toolbox / Text & Graphics

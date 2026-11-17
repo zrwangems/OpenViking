@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Fixed-Displacement Pump (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: R
+  summary: 机械端口，机械旋转
+  direction: conserving
+- name: C
+  summary: 机械端口，机械旋转
+  direction: conserving
+- name: EV
+  summary: 容积效率，物理信号
+  direction: input
+- name: EM
+  summary: 机械效率，物理信号
+  direction: input
+- name: LV
+  summary: 泄漏流量，m^3/s 物理信号
+  direction: input
+- name: LM
+  summary: 摩擦力矩，N*m 物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -66,8 +93,103 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Leakage and friction parameterization** 设置为 `Input signal - volumetric and mechanical losses`。
-
 ## 参数
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: 泄漏流量和摩擦力矩的计算方法 Analytical（默认）| Tabulated data - volumetric and mechanical efficiencies | Tabulated data - volumetric
+    and mechanical losses | Input signal - volumetric and mechanical efficiencies | Input signal - volumetric and mechanical
+    losses
+  group: 参数
+- name: Displacement
+  summary: 固定容积流体排量 30 cm^3/rev（默认）| 标量
+  group: 参数
+- name: Nominal shaft angular velocity
+  summary: 轴角速度 1800 rpm（默认）| 标量
+  group: 参数
+- name: Nominal pressure gain
+  summary: 流体入口和出口之间的压力增益 10 MPa（默认）| 标量
+  group: 参数
+- name: Volumetric efficiency at nominal conditions
+  summary: 实际流量与理想流量之比 0.92（默认）| 正标量
+  group: 参数
+- name: No-load torque
+  summary: 基线扭矩 0 N*m（默认）| 标量
+  group: 参数
+- name: Mechanical efficiency at nominal conditions
+  summary: 实际扭矩与产生的理想扭矩之比 0.88（默认）| 正标量
+  group: 参数
+- name: Pressure gain vector, dp
+  summary: 用于表格数据参数化的压力数据向量 [.1, 1, 2] MPa（默认）| 1×*n* 向量
+  group: 参数
+- name: Shaft angular velocity vector, w
+  summary: 用于表格数据参数化的角速度数据向量 [250, 500, 1000, 2000, 3000, 4000] rpm（默认）| 1×*n* 向量
+  group: 参数
+- name: Volumetric efficiency table, e_v(dp,w)
+  summary: 用于表格数据参数化的容积效率 [.816, .908, .954, .977, .981, .984; .325, .663, .831, .916, .925, .946; .137, .568, .78, .892,
+    .893, .91]（默认）| *M*×*N*×*P* 矩阵
+  group: 参数
+- name: Mechanical efficiency table, e_m(dp,w)
+  summary: 用于表格数据参数化的机械效率 [.996, .996, .996, .996, .996, .996; .988, .989, .989, .989, .989, .99; .981, .981, .982, .982,
+    .983, .984]（默认）| *M*×*N*×*P* 矩阵
+  group: 参数
+- name: Volumetric loss table, q_loss(dp,w)
+  summary: 用于表格数据参数化的容积损失 [.023, .023, .023, .023, .0285, .032; .0844, .0842, .0845, .084, .1125, .108; .1079, .108, .11,
+    .108, .1605, .18] * 1e-3 m^3/s（默认）| *M*×*N*×*P* 矩阵
+  group: 参数
+- name: Mechanical loss table, torque_loss(dp,w)
+  summary: 用于表格数据参数化的机械损失 [.002, .002, .002, .002, .002, .002; .0607, .0556, .0556, .0556, .0556, .0505; .1937, .1937, .1833,
+    .1833, .1729, .1626] N*m（默认）| *M*×*N*×*P* 矩阵
+  group: 参数
+- name: Minimum volumetric efficiency
+  summary: 容积效率的最小值 1e-3（默认）| (0,1] 范围内的正标量
+  group: 参数
+- name: Maximum volumetric efficiency
+  summary: 容积效率的最大值 1（默认）| 正标量
+  group: 参数
+- name: Minimum mechanical efficiency
+  summary: 机械效率的最小值 1e-3（默认）| (0,1] 范围内的正标量
+  group: 参数
+- name: Maximum mechanical efficiency
+  summary: 机械效率的最大值 1（默认）| (0,1] 范围内的正标量
+  group: 参数
+- name: Pressure gain threshold for pump-motor transition
+  summary: 模式转换的压力阈值 1e-3 MPa（默认）| 正标量
+  group: 参数
+- name: Angular velocity threshold for pump-motor transition
+  summary: 模式转换的角速度阈值 100 rpm（默认）| 正标量
+  group: 参数
+- name: Check if operating beyond the range of supplied tabulated data
+  summary: 是否在超出所提供表格数据范围时发出通知 None（默认）| Warning | Error
+  group: 参数
+- name: Check if operating outside of pump mode
+  summary: 是否在模块运行于泵模式功能之外时发出通知 None（默认）| Warning | Error
+  group: 参数
+- name: Check if pressures are less than pump minimum pressure
+  summary: 是否在流体出口压力过低时发出通知 None（默认）| Warning | Error
+  group: 参数
+- name: Pump minimum pressure
+  summary: 泵出口可接受压力的下限阈值 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: Displacement fault
+  summary: 用于对排量故障建模的选项 Add fault
+  group: 故障
+- name: Faulted displacement factor
+  summary: 用于缩放故障排量的因子 0.5（默认）| 正标量
+  group: 故障
+- name: Leakage fault
+  summary: 用于对泄漏故障建模的选项 Add fault
+  group: 故障
+- name: Faulted leakage factor
+  summary: 用于缩放泄漏故障的因子 2.0（默认）| 正标量
+  group: 故障
+- name: Shaft friction torque fault
+  summary: 用于对轴摩擦力矩故障建模的选项 Add fault
+  group: 故障
+- name: Faulted shaft friction torque factor
+  summary: 用于缩放轴摩擦力矩故障的因子 2.0（默认）| 正标量
+  group: 故障
+```
 
 ### 参数
 
@@ -320,7 +442,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请为 **Shaft friction torque fault** 参数点击 **Add fault** 超链接。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors

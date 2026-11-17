@@ -14,6 +14,22 @@ language: en
 # ecompass
 
 ## Ports
+```yaml
+ports:
+- name: Accel
+  summary: Accelerometer readings *N*-by-3 matrix of real scalar
+  direction: input
+  data_types: single | double
+- name: Mag
+  summary: Magnetometer readings *N*-by-3 matrix of real scalar
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: Orientation that rotates quantities from global coordinate system to sensor body coordinate system *N*-by-4 matrix
+    of quaternions (default) | 3-by-3-by-*N* array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -54,8 +70,19 @@ from the local navigation coordinate system to the body coordinate system.
   as an 3-by-3-by-*N* array of rotation matrices.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reference frame
+  summary: Navigation reference frame NED (default) | ENU
+  group: ''
+- name: Orientation format
+  summary: Format used to describe orientation quaternion (default) | Rotation matrix
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -82,7 +109,6 @@ Format used to describe orientation, specified as `'quaternion'` or
   C code. The first time that you run a simulation, Simulink generates C code for the block. The C code is reused for subsequent
   simulations if the model does not change. This option requires additional startup
   time.
-
 ## Libraries
 
 Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Navigation Filters Navigation Toolbox / Multisensor Positioning / Navigation Filters

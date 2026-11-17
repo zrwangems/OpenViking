@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Warp
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像 矩阵 | 三维数值数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: TForm
+  summary: 变换矩阵 3×2 矩阵 | 3×3 矩阵
+  direction: input
+  data_types: double | single
+- name: ROI
+  summary: 感兴趣区域 四元素向量
+  direction: input
+- name: Image
+  summary: 变换后的图像 矩阵 | 三维数值数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Err_roi
+  summary: 变换后的 ROI 是否在图像区域外的指示符 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -83,8 +105,37 @@ width height]** 参数设置的值。
 `0` 或 `1`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Transformation matrix for source
+  summary: 传递变换矩阵的来源 Input port（默认）| Custom
+  group: ''
+- name: Transformation matrix
+  summary: 变换矩阵的值 3×2 矩阵 | 3×3 矩阵
+  group: ''
+- name: Interpolation method
+  summary: 插值变换后像素值的方法 Bilinear（默认）| Nearest neighbor | Bicubic
+  group: ''
+- name: Background fill value
+  summary: 变换后图像中背景像素的强度值 0（默认）| 标量 | 三元素向量
+  group: ''
+- name: Output image position source
+  summary: 传递输出图像大小的来源 Same as input image（默认）| Custom
+  group: ''
+- name: Output image position vector [x y width height]
+  summary: 输出图像的大小 [1 1 512 512]（默认）| 四元素向量
+  group: ''
+- name: Enable ROI input port
+  summary: 输入 ROI 关闭（默认）| 打开
+  group: ''
+- name: Enable output port indicating if any part of ROI is outside input image
+  summary: 变换后的 ROI 是否在指定图像大小之外的输出 关闭（默认）| 打开
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+```
 
 ### **Transformation matrix for source** — 传递变换矩阵的来源 `Input port`（默认）| `Custom`
 
@@ -167,7 +218,6 @@ source** 参数值设置为 `Custom`。
 
 模块仿真方法，指定为 `Interpreted Execution` 或
 `Code Generation`。如果希望模块使用 MATLAB® 解释器，请选择 `Interpreted Execution`。如果希望模块作为编译代码运行，请选择 `Code Generation`。有关详细信息，请参阅 Choosing a Simulation Mode (Simulink)。
-
 ## 所属库
 
 Computer Vision Toolbox / Geometric Transformations

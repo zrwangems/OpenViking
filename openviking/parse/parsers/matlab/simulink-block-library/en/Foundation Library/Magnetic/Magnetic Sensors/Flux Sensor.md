@@ -14,6 +14,9 @@ language: en
 # Flux Sensor
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -25,11 +28,12 @@ The block has the following ports:
 
 The block also has a physical signal output port, which outputs
 the value of the flux.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

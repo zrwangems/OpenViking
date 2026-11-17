@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Path Manager
 
 ## 端口
+```yaml
+ports:
+- name: Pose
+  summary: 当前无人机位姿四元素列向量
+  direction: input
+  data_types: single | double
+- name: MissionData
+  summary: 无人机任务数据 UAVPathManagerBus 总线
+  direction: input
+  data_types: bus
+- name: IsModeDone
+  summary: 判断任务点是否已执行 0（默认） | 1
+  direction: input
+  data_types: Boolean
+- name: MissionCmd
+  summary: 更改任务的命令 uint8(0)（默认）| 0 到 3 之间的 8 位无符号整数
+  direction: input
+  data_types: uint8
+- name: Home
+  summary: 无人机 home 位置 三元素列向量
+  direction: input
+  data_types: single | double
+- name: MissionParams
+  summary: 无人机任务参数 UAVPathManagerBus 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -132,8 +159,22 @@ chinese_source: worker-translation
 | 第二个总线元素：上一个 | 上一个任务点的 `mode` | 上一个任务点的 `position` | 上一个任务点的 `params` |
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: UAV type
+  summary: 无人机类型 multirotor（默认）| fixed-wing
+  group: ''
+- name: Loiter radius
+  summary: 固定翼无人机的盘旋半径 25（默认）| 正数值标量
+  group: ''
+- name: Data type
+  summary: 输入任务总线的数据类型 double（默认）| single
+  group: ''
+- name: Mission bus name
+  summary: 输入任务总线的名称 'UAVPathManagerBus'（默认）
+  group: ''
+```
 
 ### **UAV type** — 无人机类型 `multirotor`（默认）| `fixed-wing`
 
@@ -160,7 +201,6 @@ chinese_source: worker-translation
 输入任务总线的名称，指定为 `'UAVPathManagerBus'`。
 
 **可调：** 否
-
 ## 所属库
 
 UAV Toolbox / Algorithms

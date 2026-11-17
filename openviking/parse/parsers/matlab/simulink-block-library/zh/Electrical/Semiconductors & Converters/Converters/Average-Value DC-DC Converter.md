@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Average-Value DC-DC Converter
 
 ## 端口
+```yaml
+ports:
+- name: DutyCycle
+  summary: 占空比物理信号 | 标量
+  direction: conserving
+  data_types: double
+- name: Iref
+  summary: 电流参考物理信号
+  direction: conserving
+  data_types: double
+- name: Vref
+  summary: 电压参考物理信号
+  direction: conserving
+  data_types: double
+- name: 1+
+  summary: 正直流电压 1 电气端口 | 标量
+  direction: conserving
+  data_types: double
+- name: 1-
+  summary: 负直流电压 1 电气端口 | 标量
+  direction: conserving
+  data_types: double
+- name: 2+
+  summary: 正直流电压 2 电气端口 | 标量
+  direction: conserving
+  data_types: double
+- name: 2-
+  summary: 负直流电压 2 电气端口 | 标量
+  direction: conserving
+  data_types: double
+```
 
 ### 守恒端口
 
@@ -74,8 +105,43 @@ reference`。
 与第二个直流电压负极端子关联的电气守恒端口。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Implementation mode
+  summary: 变换器实现模式 Behavioral（默认）| Average value
+  group: ''
+- name: Converter type
+  summary: 变换器类型 Buck converter（默认）| Buck-boost converter | Boost converter
+  group: ''
+- name: Control input
+  summary: 控制输入 Duty cycle（默认）| Current reference | Voltage reference
+  group: ''
+- name: Converter efficiency
+  summary: 变换器效率参数化 Constant（默认）| Tabulated
+  group: ''
+- name: Efficiency (%)
+  summary: 变换器效率 100（默认）| 正标量
+  group: ''
+- name: Output current vector
+  summary: 输出电流向量 [0, 2, 5] A（默认）| 至少包含两个元素的行向量
+  group: ''
+- name: Efficiency vector (%)
+  summary: 效率向量 [90, 95, 98]（默认）| 至少包含两个元素的行向量
+  group: ''
+- name: Inductance
+  summary: 电感 1e-6 H（默认）| 正标量
+  group: ''
+- name: Inductor series resistance
+  summary: 电感串联电阻 0 Ohm（默认）| 非负标量
+  group: ''
+- name: Capacitance
+  summary: 电容 1e-7 F（默认）| 正标量
+  group: ''
+- name: Capacitor effective series resistance
+  summary: 电容串联电阻 1e-6 Ohm（默认）| 非负标量
+  group: ''
+```
 
 ### **Implementation mode** — 变换器实现模式 `Behavioral`（默认）| `Average value`
 
@@ -196,7 +262,6 @@ efficiency** 设置为
 
 要启用此参数，请将 **Implementation mode**
 设置为 `Average value`。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

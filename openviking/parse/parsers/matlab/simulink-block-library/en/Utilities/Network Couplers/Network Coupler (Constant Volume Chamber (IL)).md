@@ -14,6 +14,16 @@ language: en
 # Network Coupler (Constant Volume Chamber (IL))
 
 ## Ports
+```yaml
+ports:
+- name: '1'
+  summary: Connect this port to the variable-step network, or to the fixed-step network with the smaller sample time isothermal
+    liquid
+  direction: conserving
+- name: '2'
+  summary: Connect this port to the fixed-step network with the larger sample time isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +41,54 @@ If one of the coupled networks is running variable step, connect port
 **2** of the Network Coupler (Constant Volume Chamber
 (IL)) block to the fixed-step network. If both networks are running fixed
 step, connect this port to the network with the larger sample time.
-
 ## Parameters
+```yaml
+parameters:
+- name: Volume (m^3)
+  summary: Specify total volume of the chamber 0.001 (default) | positive scalar
+  group: Main
+- name: Sampling type
+  summary: Select sampling types scenario for coupled networks Variable step at ports 1 and 2 (default) | Variable step at
+    port 1 and fixed step at port 2 | Fixed step both ports with common sample time | Fixed step both ports with faster sampling
+    at port 1
+  group: Main
+- name: Port 1 network discrete sample time (s)
+  summary: Specify sample time for Network 1 0.02 (default) | positive scalar
+  group: Main
+- name: Port 2 network discrete sample time (s)
+  summary: Specify sample time for Network 2 0.1 (default) | positive scalar
+  group: Main
+- name: Use prediction when connecting fixed step to variable step
+  summary: Lets you enable the prediction (discrete->continuous) algorithm off (default) | on
+  group: Main
+- name: Use smoothing when connecting variable step to fixed step
+  summary: Lets you enable the smoothing (continuous->discrete) algorithm off (default) | on
+  group: Main
+- name: Smoothing time constant (s)
+  summary: Specify time constant for the first-order filter 0.01 (default) | positive scalar
+  group: Main
+- name: Use prediction when connecting slow to fast sample times
+  summary: Lets you enable the prediction (slow->fast) algorithm off (default) | on
+  group: Main
+- name: Use smoothing when connecting fast to slow sample times
+  summary: Lets you enable the smoothing (fast->slow) algorithm off (default) | on
+  group: Main
+- name: Number of samples over which to smooth
+  summary: Specify number of samples for averaging 1 (default) | positive scalar
+  group: Main
+- name: Approximate connected network flow conductance (kg/s/Pa)
+  summary: Specify approximate connected network flow conductance 1e-6 (default) | positive scalar
+  group: Analysis
+- name: Approximate fluid density (kg/m^3)
+  summary: Specify approximate fluid density in the connected network 1000 (default) | positive scalar
+  group: Analysis
+- name: Approximate fluid bulk modulus (Pa)
+  summary: Specify approximate fluid bulk modulus in the connected network 2e9 (default) | positive scalar
+  group: Analysis
+- name: Initial pressure (MPa)
+  summary: Specify initial pressure 0.101325 (default) | positive scalar
+  group: Initial Conditions
+```
 
 ### Main
 
@@ -184,7 +240,6 @@ For information on how to use the **Derived values** section, see Using the Deri
 ### **Initial pressure (MPa)** — Specify initial pressure `0.101325` (default) | positive scalar
 
 Specify initial condition for the pressure in the chamber, in MPa.
-
 ## Libraries
 
 Simscape / Utilities / Network Couplers

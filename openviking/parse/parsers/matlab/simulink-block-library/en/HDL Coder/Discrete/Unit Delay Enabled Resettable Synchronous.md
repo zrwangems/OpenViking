@@ -14,6 +14,25 @@ language: en
 # Unit Delay Enabled Resettable Synchronous
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal Scalar | Vector | Matrix | Array | Bus
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: E
+  summary: Enable signal Scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: Reset signal Scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: y
+  summary: Output signal Scalar | Vector | Matrix | Array | Bus
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -47,8 +66,24 @@ Data Types Supported by Simulink.
 Output data type matches input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition
+  summary: Initial output of simulation 0.0 (default) | Scalar | Vector | Matrix | Array | Bus
+  group: ''
+  block_parameter: InitialCondition
+  type: character vector
+  values: '''0'' | ''[n]'' | ''[m n]'''
+  default: '''0'''
+- name: Sample time
+  summary: Time interval between samples -1 (default) | Scalar | Vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: '''-1'' | ''[n]'' | ''[m n]'''
+  default: '''-1'''
+```
 
 ### **Initial condition** — Initial output of simulation 0.0 (default) | `Scalar` | `Vector` | `Matrix` | `Array` | `Bus`
 
@@ -81,7 +116,6 @@ with offset less than the period.
 | **Type:** character vector |
 | **Value:** `'-1'` | `'[n]'` | `'[m n]'` |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 HDL Coder / Discrete

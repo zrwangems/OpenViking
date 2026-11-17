@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # LRT Detector
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据 实值 *N*×*1* 向量 | 复值 *N*×*1* 向量 | 实值 *N*×*M* 矩阵 | 复值 *N*×*M* 矩阵
+  direction: input
+  data_types: single | double
+- name: XK
+  summary: 已知信号 实值 *N*×1 向量 | 复值 *N*×1 向量
+  direction: input
+  data_types: single | double
+- name: NCov
+  summary: 噪声功率 正标量
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: 检测结果 1×*M* 逻辑值向量 | 1×*L* 整数值向量
+  direction: output
+  data_types: single | double | Boolean
+- name: Stat
+  summary: 检测统计量 *D*×*M*（默认）| 矩阵 | 1×*L* 向量
+  direction: output
+  data_types: single | double
+- name: Th
+  summary: 检测阈值 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -76,8 +103,34 @@ LRT 检测器假设 `X` 的每一列具有相同的信号模型。无噪声信�
 要启用此端口，请选中 **Output detection statistics and threshold** 复选框。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Probability of false alarm
+  summary: 虚警概率 0.1（默认）| 非负标量
+  group: ''
+  block_parameter: ProbabilityFalseAlarm
+  type: double, single
+  values: scalar |
+- name: Output format
+  summary: 输出数据的格式 Detection result（默认）| Detection index
+  group: ''
+  block_parameter: OutputFormat
+  type: char, string
+  values: Detection result | Detection index
+- name: Output detection statistics and threshold
+  summary: 输出检测统计量和检测门限 false（默认）| true
+  group: ''
+  block_parameter: ThresholdOutputPort
+  type: check box
+  values: 0 | 1
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+```
 
 ### **Probability of false alarm** — 虚警概率 `0.1`（默认）| 非负标量
 
@@ -153,7 +206,6 @@ LRT 检测器假设 `X` 的每一列具有相同的信号模型。无噪声信�
 | **类型：** enum |
 | **值：** `Interpreted Execution`, `Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

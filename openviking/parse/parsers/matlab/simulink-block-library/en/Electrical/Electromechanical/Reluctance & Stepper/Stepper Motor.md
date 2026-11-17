@@ -14,6 +14,36 @@ language: en
 # Stepper Motor
 
 ## Ports
+```yaml
+ports:
+- name: A+
+  summary: A-phase positive terminal electrical
+  direction: conserving
+- name: A-
+  summary: A-phase negative terminal electrical
+  direction: conserving
+- name: B+
+  summary: B-phase positive terminal electrical
+  direction: conserving
+- name: B-
+  summary: B-phase negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+- name: HA
+  summary: Winding A thermal mass thermal
+  direction: conserving
+- name: HB
+  summary: Winding B thermal mass thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal mass thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -73,8 +103,85 @@ rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Selected part
+  summary: Predefined parameterization option <click to select> (default)
+  group: ''
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Simulation mode
+  summary: Simulation mode Stepping (default) | Averaged
+  group: Electrical Torque
+- name: Vector of rotational speeds
+  summary: Rotor speeds [0, 1000, 3000] rpm (default) | positive vector
+  group: Electrical Torque
+- name: Vector of maximum torque values
+  summary: Maximum torques [2, 2, 1] N*m (default) | positive vector
+  group: Electrical Torque
+- name: Action on slipping
+  summary: Slip response none (default) | warn | error
+  group: Electrical Torque
+- name: Approximate total load inertia
+  summary: Total load inertia 1e-4 kg*m^2 (default) | positive number
+  group: Electrical Torque
+- name: Maximum step rate command
+  summary: Maximum command frequency 10 Hz (default) | positive number
+  group: Electrical Torque
+- name: Phase winding resistance
+  summary: Phase resistance 0.55 Ohm (default) | positive number
+  group: Electrical Torque
+- name: Phase winding inductance
+  summary: Phase inductance 1.5e-3 Ohm (default) | positive number
+  group: Electrical Torque
+- name: Motor torque constant
+  summary: Torque constant 0.19 N*m/A (default) | positive number
+  group: Electrical Torque
+- name: Detent torque
+  summary: Torque variation amplitude 0 N*m (default) | positive number
+  group: Electrical Torque
+- name: Magnetizing resistance
+  summary: Phase magnetizing resistance inf (default) | strictly positive number
+  group: Electrical Torque
+- name: Full step size
+  summary: Step size 1.8 deg (default) | positive number
+  group: Electrical Torque
+- name: Rotor inertia
+  summary: Rotational inertia 4.5e-5 kg*m^2 (default) | zero or positive number
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotational damping 8.0e-4 N*m/(rad/s) (default) | zero or positive number
+  group: Mechanical
+- name: Initial rotor speed
+  summary: Initial speed 0 rpm (default) | real number
+  group: Mechanical
+- name: Initial rotor angle
+  summary: Initial angle 0 rad (default) | real number
+  group: Mechanical
+- name: Resistance temperature coefficients, [alpha_A alpha_B]
+  summary: Temperature coefficients [.00393, .00393] 1/K (default) | positive vector
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Reference temperature 25 degC (default) | real number
+  group: Temperature Dependence
+- name: Winding thermal masses, [M_A M_B]
+  summary: Winding thermal masses [100, 100] J/K (default) | positive vector
+  group: Thermal Port
+- name: Winding initial temperatures, [T_A T_B]
+  summary: Initial winding temperatures [25, 25] degC (default) | real number
+  group: Thermal Port
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 50 J/K (default) | positive number
+  group: Thermal Port
+- name: Rotor initial temperature
+  summary: Initial rotor temperature 25 degC (default) | real number
+  group: Thermal Port
+- name: Percentage of magnetizing resistance associated with the rotor
+  summary: Magnetizing resistance rotor percentage 90 (default) | positive number between 0 and 100
+  group: Thermal Port
+```
 
 ### **Selected part** — Predefined parameterization option `<click to select>` (default)
 
@@ -292,7 +399,6 @@ path through the rotor. It determines how much of the iron loss heating
 is attributed to the rotor thermal port, **HR**, and
 winding thermal ports, **HA** and
 **HB**.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

@@ -14,6 +14,21 @@ language: en
 # Varying Transfer Function
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Transfer function input scalar
+  direction: input
+- name: b0, b1, ...
+  summary: Numerator coefficients scalar
+  direction: input
+- name: a1, a2, ...
+  summary: Denominator coefficients scalar
+  direction: input
+- name: y
+  summary: Transfer function output scalar
+  direction: output
+```
 
 ### Input
 
@@ -48,8 +63,16 @@ information, see Varying Transfer Function block formula changed.*
 ### **y** — Transfer function output scalar
 
 Transfer function output signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Transfer function order
+  summary: Number of poles N 1 (default) | positive integer
+  group: ''
+- name: Enable feedthrough
+  summary: Add input port for feedthrough term on (default) | off
+  group: ''
+```
 
 ### **Transfer function order** — Number of poles N 1 (default) | positive integer
 
@@ -65,7 +88,6 @@ Enable the **b0** input port for a transfer function with
 direct feedthrough. For a zero-feedthrough transfer function, clear this
 checkbox. Disabling the port for zero-feedthrough models is numerically more
 reliable than feeding a zero-constant into the port.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

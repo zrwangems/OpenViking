@@ -14,6 +14,21 @@ language: en
 # RST Controller
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Plant reference scalar
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Plant output scalar
+  direction: input
+  data_types: single | double
+- name: u
+  summary: Controller output scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -35,8 +50,40 @@ Plant system output signal.
 Control system output signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Controller parameterization
+  summary: Parameterization method Controller polynomials (default) | Generate polynomials
+  group: ''
+- name: R polynomial
+  summary: '*R* polynomial values 1 (default) | positive, scalar or vector'
+  group: ''
+- name: S polynomial
+  summary: '*S* polynomial values 1 (default) | positive, scalar or vector'
+  group: ''
+- name: T polynomial
+  summary: '*T* polynomial values 1 (default) | positive, scalar or vector'
+  group: ''
+- name: Model discrete transfer function numerator
+  summary: Transfer function numerator 1 (default) | scalar or vector
+  group: ''
+- name: Model discrete transfer function denominator
+  summary: Transfer function denominator [1 0.5] (default) | vector
+  group: ''
+- name: Control horizon (samples)
+  summary: Number of control-horizon samples 5 (default) | positive integer
+  group: ''
+- name: Control weighting factor
+  summary: Weighting factor 0.5 (default) | positive number
+  group: ''
+- name: System dead time (samples)
+  summary: Number of dead-time samples 2 (default) | 0 or a positive integer
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Sampling interval -1 (default) | default value or a positive number
+  group: ''
+```
 
 ### **Controller parameterization** — Parameterization method `Controller polynomials` (default) | `Generate polynomials`
 
@@ -139,7 +186,6 @@ parameter to `-1`. If this block is in a continuous
 variable-step model, specify the sample time explicitly. For more
 information, see What Is Sample Time? and
 Specify Sample Time.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

@@ -15,6 +15,42 @@ chinese_source: worker-translation
 # Tank (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 热液体
+  direction: conserving
+- name: B
+  summary: 液体端口 热液体
+  direction: conserving
+- name: C
+  summary: 液体端口 热液体
+  direction: conserving
+- name: D
+  summary: 液体端口 热液体
+  direction: conserving
+- name: E
+  summary: 液体端口 热液体
+  direction: conserving
+- name: F
+  summary: 液体端口 热液体
+  direction: conserving
+- name: H
+  summary: 流体温度 热液体
+  direction: conserving
+- name: P
+  summary: 储罐压力，MPa 物理信号
+  direction: input
+- name: V
+  summary: 液体体积，m^3 物理信号
+  direction: output
+- name: L
+  summary: 液位，m 物理信号
+  direction: output
+- name: T
+  summary: 流体温度，K 物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -100,8 +136,55 @@ pressure`。
 ### **T** — 流体温度，`K` 物理信号
 
 储罐流体温度，单位为 `K`，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inlets
+  summary: 入口端口数量 1（默认）| 2 | 3 | 4 | 5 | 6
+  group: ''
+- name: Pressurization specification
+  summary: 储罐压力指定方法 Atmospheric pressure（默认）| Specified pressure | Variable pressure
+  group: ''
+- name: Tank pressurization
+  summary: 用户定义的储罐压力 0.101325 MPa（默认）| 正标量
+  group: ''
+- name: Tank volume parameterization
+  summary: 储罐面积特性 Constant cross-section area（默认）| Tabulated data - volume vs. level
+  group: ''
+- name: Tank cross-sectional area
+  summary: 储罐横截面积 1 m^2（默认）| 正标量
+  group: ''
+- name: Liquid level vector
+  summary: 储罐流体液位向量 [0, 3, 5] m（默认）| 1×*n* 向量
+  group: ''
+- name: Liquid volume vector
+  summary: 储罐流体液位向量 [0, 4, 6] m^3（默认）| 1×*n* 向量
+  group: ''
+- name: Inlet height
+  summary: 入口端口高度 0.1 m（默认）| 正标量
+  group: ''
+- name: Inlet cross-sectional area
+  summary: 端口入口的横截面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Height vector for inlets A and B
+  summary: 多个已启用端口的端口高度向量 [.1, .1] m（默认）| 1×*n* 向量
+  group: ''
+- name: Cross-sectional area vector for inlets A and B
+  summary: 两个已启用端口的入口面积向量 [.01, .01] m^2（默认）| 1×*n* 向量
+  group: ''
+- name: Liquid level below inlet height
+  summary: 是否通知低储罐液位 Error（默认）| Warning | None
+  group: ''
+- name: Liquid volume above max capacity
+  summary: 是否通知高储罐体积 None（默认）| Warning | Error
+  group: ''
+- name: Maximum tank capacity
+  summary: 储罐的填充限制 10 m^3（默认）| 正标量
+  group: ''
+- name: Gravitational acceleration
+  summary: 重力加速度常数 9.81 m/s^2（默认）| 正标量
+  group: ''
+```
 
 ### **Number of inlets** — 入口端口数量 `1`（默认）| `2` | `3` | `4` | `5` | `6`
 
@@ -254,7 +337,6 @@ capacity** 设置为以下之一：
 ### **Gravitational acceleration** — 重力加速度常数 `9.81` m/s^2（默认）| 正标量
 
 重力加速度常数。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Tanks & Accumulators

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # DSBSC AM Demodulator Passband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 解调输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -34,8 +45,31 @@ chinese_source: worker-translation
 该端口在模块上未命名。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Carrier frequency (Hz)
+  summary: 载波频率，单位为 Hz 300（默认）| 正标量
+  group: ''
+- name: Initial phase (rad)
+  summary: 初始相位偏移，单位为弧度 0（默认）| 标量
+  group: ''
+- name: Lowpass filter design method
+  summary: 低通滤波器的设计方法 Butterworth（默认）| Chebyshev type I | Chebyshev type II | Elliptic
+  group: ''
+- name: Filter order
+  summary: 低通滤波器的阶数 4（默认）| 正标量
+  group: ''
+- name: Cutoff frequency
+  summary: 截止频率，单位为 Hz 300（默认）| 正标量
+  group: ''
+- name: Passband ripple (dB)
+  summary: 通带峰间纹波，单位为 dB 0.1（默认）| 正标量
+  group: ''
+- name: Stopband ripple (dB)
+  summary: 阻带峰间纹波，单位为 dB 0.1（默认）| 正标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -76,7 +110,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Lowpass filter design method** 设置为 `Chebyshev type II` 或 `Elliptic`。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Analog Passband Modulation

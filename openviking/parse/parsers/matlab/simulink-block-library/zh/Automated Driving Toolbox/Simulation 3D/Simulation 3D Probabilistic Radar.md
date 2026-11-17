@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # Simulation 3D Probabilistic Radar
 
 ## 端口
+```yaml
+ports:
+- name: Detections
+  summary: 目标检测结果，以包含 MATLAB® 结构的 Simulink 总线形式返回
+  direction: output
+```
 
 ### 输出
 
@@ -136,8 +142,107 @@ Configuration 模块选择的默认场景中使用的目标 ID。如果您使用
 | `71` | 路障 |
 | `72` | 摩托车 |
 | `73-255` | *未使用* |
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: 唯一传感器标识符 1（默认）| 正整数
+  group: 安装
+- name: Parent name
+  summary: 父级车辆名称 Scene Origin（默认）| 车辆名称
+  group: 安装
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）| Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof
+    center | ...
+  group: 安装
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移 off（默认）| on
+  group: 安装
+- name: Relative translation [X, Y, Z] (m)
+  summary: 相对于安装位置的平移偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Relative rotation [Roll, Pitch, Yaw] (deg)
+  summary: 相对于安装位置的旋转偏移 [0, 0, 0]（默认）| 实值 1×3 向量
+  group: 安装
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 安装
+- name: Azimuthal resolution of radar (deg)
+  summary: 雷达方位角分辨率 4（默认）| 正实标量
+  group: 参数
+- name: Elevation resolution of radar (deg)
+  summary: 雷达仰角分辨率 5（默认）| 正实标量
+  group: 参数
+- name: Range resolution of radar (m)
+  summary: 雷达距离分辨率 2.5（默认）| 正实标量
+  group: 参数
+- name: Range rate resolution of radar (m/s)
+  summary: 雷达距离变化率分辨率 0.5（默认）| 正实标量
+  group: 参数
+- name: Fractional azimuthal bias component
+  summary: 方位偏差比例 0.1（默认）| 非负实数标量
+  group: 参数
+- name: Fractional elevation bias component
+  summary: 俯仰偏差比例 0.1（默认）| 非负实数标量
+  group: 参数
+- name: Fractional range bias component
+  summary: 距离偏差比例 0.05（默认）| 非负实数标量
+  group: 参数
+- name: Fractional range rate bias component
+  summary: 距离变化率偏差比例 0.05（默认）| 非负实数标量
+  group: 参数
+- name: Field of view (deg)
+  summary: 视场 [20, 5]（默认）| 正实值 1×2 向量
+  group: 参数
+- name: Detection ranges (m)
+  summary: 检测距离 [1, 150]（默认）| 正实值 1×2 向量
+  group: 参数
+- name: Range rates (m/s)
+  summary: 最小和最大检测距离变化率 [-100, 100]（默认）| 实值 1×2 向量
+  group: 参数
+- name: Detection probability
+  summary: 雷达检测到目标的概率 0.9（默认）| 范围 (0, 1] 内的实数标量
+  group: 参数
+- name: False alarm rate
+  summary: 虚警率 1e-6（默认）| 范围 [10–7, 10–3] 内的正实数标量
+  group: 参数
+- name: 'Detection probability range (m):'
+  summary: 给定检测概率的参考距离 100（默认）| 正实数标量
+  group: 参数
+- name: Reference radar cross section (dBsm)
+  summary: 给定检测概率的参考雷达截面 0（默认）| 实数标量
+  group: 参数
+- name: Enable elevation angle measurements
+  summary: 启用雷达测量俯仰角 on（默认）| off
+  group: 参数
+- name: Enable range rate measurements
+  summary: 启用雷达测量距离变化率 on（默认）| off
+  group: 参数
+- name: Enable measurement noise
+  summary: 启用向雷达传感器测量添加噪声 on（默认）| off
+  group: 参数
+- name: Enable false detections
+  summary: 启用报告虚警雷达检测 on（默认）| off
+  group: 参数
+- name: Random number generator method
+  summary: 设置随机数生成器种子的方法 Repeatable（默认）| Specify seed | Not repeatable
+  group: 参数
+- name: Initial seed
+  summary: 随机数生成器种子 0（默认）| 范围 [0, 232) 内的标量
+  group: 参数
+- name: Maximum reported
+  summary: 最大报告检测数 50（默认）| 正整数
+  group: 参数
+- name: Coordinate system
+  summary: 报告检测的坐标系 Ego Cartesian（默认）| Sensor Cartesian | Sensor spherical
+  group: 参数
+- name: Specify output bus name
+  summary: 指定输出总线的名称 off（默认）| on
+  group: 参数
+- name: Output bus name
+  summary: 输出总线的名称 BusSimulation3DRadarTruthSensor（默认）| 有效总线名称
+  group: 参数
+```
 
 ### 安装
 
@@ -517,7 +622,6 @@ measurements**。
 #### 依赖关系
 
 要启用此参数，请选择 **Specify output bus name** 参数。
-
 ## 所属库
 
 Automated Driving Toolbox / Simulation 3D

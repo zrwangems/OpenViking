@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Fuzzy Logic Controller
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入信号 标量 | 向量
+  direction: input
+- name: out
+  summary: 去模糊化输出信号 标量 | 向量
+  direction: output
+- name: fi
+  summary: 模糊化输入值 矩阵
+  direction: output
+- name: rfs
+  summary: 规则触发强度 列向量
+  direction: output
+- name: ro
+  summary: 规则输出 矩阵
+  direction: output
+- name: ao
+  summary: 聚合输出矩阵 | 行向量
+  direction: output
+```
 
 ### 输入
 
@@ -96,8 +117,78 @@ chinese_source: worker-translation
 
 - 要启用此端口，请选择 **Aggregated outputs (ao)** 参数。
 - 要指定 *NS*，请使用 **Number of samples for output discretization** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: FIS name
+  summary: 要评估的模糊推理系统 mamfis 对象 | sugfis 对象 | mamfistype2 对象 | sugfistype2 对象 | 带引号的 FIS 文件名 | 带引号的 MAT 文件名
+  group: 常规
+  block_parameter: FIS
+  values: '''"tipper.fis"''（默认）| 带引号的变量名 | 带引号的文件名'
+- name: Design
+  summary: 打开模糊逻辑设计器按钮
+  group: 常规
+- name: Number of samples for output discretization
+  summary: 输出模糊集的点数 101（默认）| 大于 1 的整数
+  group: 常规
+  block_parameter: OutputSampleNumber
+  values: '"101"（默认）| 带引号的大于 1 的整数'
+- name: Data type
+  summary: 信号数据类型 double（默认）| single | fixed-point | expression
+  group: 常规
+  block_parameter: DataType
+  values: '"double"（默认）| "single" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)"'
+- name: Implement FIS as lookup table
+  summary: 将 FIS 转换为查找表 off（默认）| on
+  group: 常规
+  block_parameter: UseLookupTable
+  values: '"off"（默认）| "on"'
+- name: Number of input breakpoints (samples)
+  summary: 查找表断点数量 10（默认）| 正整数
+  group: 常规
+  block_parameter: NumBreakpoints
+  values: '"10"（默认）| 带引号的正整数'
+- name: Fuzzified inputs (fi)
+  summary: 启用 fi 输出端口 off（默认）| on
+  group: 常规
+  block_parameter: FuzzifiedInputs
+  values: '"off"（默认）| "on"'
+- name: Rule firing strengths (rfs)
+  summary: 启用 rfs 输出端口 off（默认）| on
+  group: 常规
+  block_parameter: RuleFiringStrengths
+  values: '"off"（默认）| "on"'
+- name: Rule outputs (ro)
+  summary: 启用 ro 输出端口 off（默认）| on
+  group: 常规
+  block_parameter: RuleOutputs
+  values: '"off"（默认）| "on"'
+- name: Aggregated outputs (ao)
+  summary: 启用 ao 输出端口 off（默认）| on
+  group: 常规
+  block_parameter: AggregatedOutputs
+  values: '"off"（默认）| "on"'
+- name: Simulate using
+  summary: 仿真模式 Interpreted execution（默认）| Code generation
+  group: 常规
+  block_parameter: SimulateUsing
+  values: '"Interpreted execution"（默认）| "Code generation"'
+- name: Out of range input value
+  summary: 输入超出范围时的诊断消息行为 warning（默认）| error | none
+  group: 诊断
+  block_parameter: OutOfRangeInputValueMessage
+  values: '"warning"（默认）| "error" | "none"'
+- name: No rule fired
+  summary: 没有规则触发时的诊断消息行为 warning（默认）| error | none
+  group: 诊断
+  block_parameter: NoRuleFiredMessage
+  values: '"warning"（默认） | "error" | "none"'
+- name: Empty output fuzzy set
+  summary: 输出模糊集为空时的诊断消息行为 warning（默认） | error | none
+  group: 诊断
+  block_parameter: EmptyOutputFuzzySetMessage
+  values: '"warning"（默认） | "error" | "none"'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -364,7 +455,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `EmptyOutputFuzzySetMessage` |
 | **值：** | `"warning"`（默认） | `"error"` | `"none"` |
-
 ## 所属库
 
 Fuzzy Logic Toolbox

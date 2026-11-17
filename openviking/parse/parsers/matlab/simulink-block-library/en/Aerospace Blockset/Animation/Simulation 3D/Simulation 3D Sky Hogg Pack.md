@@ -14,6 +14,63 @@ language: en
 # Simulation 3D Sky Hogg Pack
 
 ## Ports
+```yaml
+ports:
+- name: Body_T
+  summary: Body translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: Body rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Propeller_R
+  summary: Propeller rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rudder_R
+  summary: Rudder rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Elevator_R
+  summary: Elevator rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Aileron_R
+  summary: Left aileron rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Aileron_R
+  summary: Right aileron rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Flaps_R
+  summary: Flaps rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_Strut_R
+  summary: Nose wheel strut rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_R
+  summary: Nose wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Left_Wheel_R
+  summary: Left wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Right_Wheel_R
+  summary: Right wheel rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: Aircraft translation 11-by-3 array
+  direction: output
+- name: Rotation
+  summary: Aircraft rotation 11-by-3 array
+  direction: output
+```
 
 ### Input
 
@@ -165,8 +222,85 @@ The rotation applies to the same bones as listed for the Translation port.
 
 The signal contains the rotation [roll, pitch, yaw], in radians, with one row of
 the array for each bone of the aircraft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Propeller rotation
+  summary: Option to enable Propeller_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Propeller_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rudder rotation
+  summary: Option to enable Rudder_R input port off (default) | on
+  group: Controls
+  block_parameter: Rudder_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Elevator rotation
+  summary: Option to enable Elevator_R input port off (default) | on
+  group: Controls
+  block_parameter: Elevator_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left aileron rotation
+  summary: Option to enable Left_Aileron_R input port off (default) | on
+  group: Controls
+  block_parameter: Left_Aileron_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right aileron rotation
+  summary: Option to enable Right_Aileron_R input port off (default) | on
+  group: Controls
+  block_parameter: Right_Aileron_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps rotation
+  summary: Option to enable Flaps_R input port off (default) | on
+  group: Controls
+  block_parameter: Flaps_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel strut rotation
+  summary: Option to enable Nose_Wheel_Strut_R input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Wheel_Strut_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel rotation
+  summary: Option to enable Nose_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Nose_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left wheel rotation
+  summary: Option to enable Left_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Left_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right wheel rotation
+  summary: Option to enable Right_Wheel_R input port off (default) | on
+  group: Gear
+  block_parameter: Right_Wheel_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Select input coordinate frame
+  summary: Input coordinate frame NED (default) | Fixed-frame | ICRF
+  group: Input
+  block_parameter: GeoRadioButton
+  values: '''NED'' (default) | ''Fixed-frame'' | ''ICRF'''
+```
 
 ### Propulsion
 
@@ -331,7 +465,6 @@ programmatically, use the `get_param` function.
 | --- | --- |
 | **Parameter:** | `GeoRadioButton` |
 | **Values:** | `'NED'` (default) | `'Fixed-frame'` | `'ICRF'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Simulation 3D

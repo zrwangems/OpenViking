@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Local Resistance (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,33 @@ chinese_source: worker-translation
 ### **B** — 液体端口，等温液体
 
 管段的液体入口或出口端口。从端口 **A** 到端口 **B** 的流动为正方向。
-
 ## 参数
+```yaml
+parameters:
+- name: 局部损失参数化
+  summary: 损失系数计算方法 Constant（默认）| Tabulated data - loss coefficient vs. Reynolds number
+  group: ''
+- name: 正向流动损失系数（从 A 到 B）
+  summary: 从 A 到 B 流动的损失系数 1（默认）| 正标量
+  group: ''
+- name: 反向流动损失系数（从 B 到 A）
+  summary: 从 B 到 A 流动的损失系数 1（默认）| 正标量
+  group: ''
+- name: 雷诺数向量
+  summary: 用于表格参数化的雷诺数向量 [-500, -200, -100, -50, -40, -30, -20, -10, 10, 20, 30, 40, 50, 100, 200, 500, 1000, 2000]（默认）| 1×*n*
+    向量
+  group: ''
+- name: 损失系数向量
+  summary: 用于表格参数化的损失系数向量 [.65, .75, .9, 1.15, 1.35, 1.65, 2.3, 3.1, 4, 2.7, 1.8, 1.46, 1.3, .9, .65, .42, .3, .2]（默认）| 1×*n*
+    向量
+  group: ''
+- name: 流通面积
+  summary: 管段横截面积 1e-3 m^2（默认）| 正标量
+  group: ''
+- name: 临界雷诺数
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **局部损失参数化** — 损失系数计算方法 `Constant`（默认）| `Tabulated data - loss coefficient vs. Reynolds number`
 
@@ -71,7 +105,6 @@ chinese_source: worker-translation
 ### **临界雷诺数** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过阀门的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Analog Channel
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 修改后的输出数据 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,84 @@ chinese_source: worker-translation
 修改后的输出数据，根据 [1] 中概述的方法，包含有损印刷电路板传输线模型的影响。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Channel model
+  summary: 信道模型来源 Loss model（默认）| Impulse response
+  group: Channel Model
+- name: Target frequency (Hz)
+  summary: 期望信道损耗对应的频率 20e9（默认）| 正实数标量
+  group: Channel Model
+- name: Loss (dB)
+  summary: 目标频率处的信道损耗 8（默认）| 标量
+  group: Channel Model
+- name: Impedance (Ohms)
+  summary: 信道特征阻抗 正实数标量
+  group: Channel Model
+- name: Impulse response
+  summary: 用户提供的冲激响应 [zeros(1,63),1/SampleInterval,zeros(1,192)]（默认）| 矩阵
+  group: Channel Model
+- name: Impulse sample interval
+  summary: 用户提供的冲激响应的采样间隔 6.25e-12（默认）| 正实数标量
+  group: Channel Model
+- name: Tx R (Ohms)
+  summary: 发送器模拟模型的单端阻抗 50（默认）| 非负实数标量
+  group: Channel Model
+- name: Tx C (F)
+  summary: 发送器模拟模型的电容 100e-15（默认）| 非负实数标量
+  group: Channel Model
+- name: Rx R (Ohms)
+  summary: 接收器模拟模型的单端阻抗 50（默认）| 非负实数标量
+  group: Channel Model
+- name: Rx C (F)
+  summary: 接收器模拟模型的电容 200e-15（默认）| 非负实数标量
+  group: Channel Model
+- name: Rise time (s)
+  summary: 激励输入的 20%−80% 上升时间 10e-12（默认）| 正实数标量
+  group: Channel Model
+- name: Voltage (V)
+  summary: 发送器模拟模型输入的峰峰值电压 1（默认）| 正实数标量
+  group: Channel Model
+- name: Include crosstalk
+  summary: 在仿真中包含串扰 off（默认）| on
+  group: 串扰
+- name: Specification
+  summary: 指定近端和远端干扰源的幅度 100GBASE-CR4（默认）| CEI-25G-LR | CEI-28G-SR | CEI-28G-VSR | Custom
+  group: 串扰
+- name: Far end crosstalk ICN (V)
+  summary: 远端干扰源的期望积分噪声水平 15e-3（默认）| 非负实数标量
+  group: 串扰
+- name: Near end crosstalk ICN (V)
+  summary: 近端干扰源期望的集成噪声水平 10e-3（默认）| 非负实数标量
+  group: 串扰
+- name: Symbol Time (s)
+  summary: 远端串扰激励的符号时间 100e-12（默认）| 正实数标量
+  group: 串扰
+- name: Delay (s)
+  summary: 远端串扰激励的延迟偏移 0（默认）| 非负实数标量
+  group: 串扰
+- name: Modulation
+  summary: 远端串扰激励的调制电平 NRZ（默认）| PAM3 | PAM4 | PAM5 | PAM6 | PAM7 | PAM8 | PAM9 | PAM10 | PAM11 | PAM12 | PAM13 | PAM14 | PAM15
+    | PAM16
+  group: 串扰
+- name: PRBS Order
+  summary: 远端串扰激励的 PRBS 阶数 7（默认）| 9 | 11 | 13 | 15 | 20 | 23 | 31 | 47
+  group: 串扰
+- name: Symbol Time (s)
+  summary: 近端串扰激励的符号时间 100e-12（默认）| 正实数标量
+  group: 串扰
+- name: Delay (s)
+  summary: 近端串扰激励的延迟偏移 0（默认）| 非负实数标量
+  group: 串扰
+- name: Modulation
+  summary: 近端串扰激励的调制电平 NRZ（默认）| PAM3 | PAM4 | PAM5 | PAM6 | PAM7 | PAM8 | PAM9 | PAM10 | PAM11 | PAM12 | PAM13 | PAM14 | PAM15
+    | PAM16
+  group: 串扰
+- name: PRBS Order
+  summary: 近端串扰激励的 PRBS 阶数 9（默认）| 7 | 11 | 13 | 15 | 20 | 23 | 31 | 47
+  group: 串扰
+```
 
 ### Channel Model
 
@@ -320,7 +407,6 @@ chinese_source: worker-translation
 - 使用 `set_param(gcb,'OrderFEXT',value)` 将 FEXT 激励中的 **PRBS Order** 设置为特定值。
 
 **数据类型：** `double`
-
 ## 所属库
 
 SerDes Toolbox / Utilities

@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # M-FSK Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 解调输出信号 标量 | 列向量
+  direction: output
+```
 
 ### 输入
 
@@ -32,8 +42,31 @@ chinese_source: worker-translation
 解调输出信号，以标量或列向量形式返回。有关详细信息，请参阅单速率处理和多速率处理。**Output type** 参数指定模块输出整数还是比特组。
 
 此端口在模块上未命名。
-
 ## 参数
+```yaml
+parameters:
+- name: M-ary number
+  summary: 已调信号中的频率数量 8（默认）| 正整数 ≥ 2
+  group: ''
+- name: Output type
+  summary: 整数或比特组输出指示符 Integer（默认）| Bit
+  group: ''
+- name: Symbol set ordering
+  summary: 符号映射 Binary（默认）| Gray
+  group: ''
+- name: Frequency separation (Hz)
+  summary: 频率间隔（Hz） 6（默认）| 正标量
+  group: ''
+- name: Samples per symbol
+  summary: 符号采样率 17（默认）| 正整数
+  group: ''
+- name: Rate options
+  summary: 模块处理速率 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| boolean | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -76,7 +109,6 @@ chinese_source: worker-translation
 ### **Output data type** — 输出数据类型 `double`（默认）| `boolean` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
 
 输出数据类型，指定为 `double`、`boolean`、`int8`、`uint8`、`int16`、`uint16`、`int32` 或 `uint32`。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / FM

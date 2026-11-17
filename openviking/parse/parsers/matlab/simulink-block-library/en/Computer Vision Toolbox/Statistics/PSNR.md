@@ -14,6 +14,21 @@ language: en
 # PSNR
 
 ## Ports
+```yaml
+ports:
+- name: I1
+  summary: Input image scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: I2
+  summary: Input image scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Output
+  summary: Output scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -41,11 +56,12 @@ double-precision floating point. Otherwise, the block input and output are the s
 data type.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Computer Vision Toolbox / Statistics

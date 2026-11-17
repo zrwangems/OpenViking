@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # Impedance
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Impedance type
+  summary: 频率相关性 Frequency independent（默认）| Frequency dependent
+  group: ''
+- name: Complex impedance (Ohm)
+  summary: 阻抗值 50（默认）| 标量复数 | 复数向量
+  group: ''
+- name: Frequency
+  summary: 频率相关阻抗的频率值 1e9（默认）| 非负标量数值 | 非负向量数值
+  group: ''
+```
 
 ### **Impedance type** — 频率相关性 `Frequency independent`（默认）| `Frequency dependent`
 
@@ -43,7 +57,6 @@ R2025b 中未记录。
 当 **Impedance type** 设置为 `Frequency dependent` 时，您可以指定非负频率向量 [*f*1, *f*2, *f*3, …]。数据对 *f*i、*Z*i 定义分段线性函数 *Z*(*f*)，该函数对仿真频率进行线性插值。对于范围之外的值，采用常数外推。
 
 **数据类型：** `double`
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

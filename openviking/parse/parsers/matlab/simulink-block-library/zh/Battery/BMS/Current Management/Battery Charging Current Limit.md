@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Battery Charging Current Limit
 
 ## 端口
+```yaml
+ports:
+- name: CellVoltage
+  summary: 电芯电压，V 标量 | 向量
+  direction: input
+- name: CellTemperature
+  summary: 电芯温度，K 标量 | 向量
+  direction: input
+- name: CurrentLimit
+  summary: 电池包充电电流限值 标量
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +46,31 @@ chinese_source: worker-translation
 ### **CurrentLimit** — 电池包充电电流限值 标量
 
 电池包的充电电流限值，以标量形式返回。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify inputs as [Min,Max]
+  summary: 将输入指定为最小值和最大值的选项 off（默认）| on
+  group: ''
+- name: Cell overvoltage limit (V)
+  summary: 电芯过压限值 4.5（默认）| 正标量
+  group: ''
+- name: Terminal resistance (ohm)
+  summary: 端子电阻 0.0025（默认）| 正标量
+  group: ''
+- name: Vector of temperatures, T
+  summary: 电芯温度 [243.15, 258.15, 273.15, 288.15, 303.15, 318.15, 333.15]（默认）| 标量向量
+  group: ''
+- name: Current limit for coolest cell, iCool(T), (A)
+  summary: 最冷电芯的电流限值 [ 0, 0, 0, 0, 100, 100, 100]（默认）| 正标量向量
+  group: ''
+- name: Current limit for hottest cell, iHot(T), (A)
+  summary: 最热电芯的电流限值 [100, 100, 100, 100, 0, 0, 0]（默认）| 正标量向量
+  group: ''
+- name: Algorithm data type
+  summary: '选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: ''
+```
 
 ### **Specify inputs as [Min,Max]** — 将输入指定为最小值和最大值的选项 `off`（默认）| `on`
 
@@ -75,7 +110,6 @@ chinese_source: worker-translation
 - `<data type expression>` — 模块算法将所有输入和参数转换为指定的数据类型对象。
 
 单击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Current Management

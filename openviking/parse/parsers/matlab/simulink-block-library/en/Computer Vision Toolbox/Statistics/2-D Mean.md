@@ -14,6 +14,37 @@ language: en
 # 2-D Mean
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input array vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rst
+  summary: Reset running mean scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: ROI
+  summary: Region of interest vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Label
+  summary: Label matrix matrix
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Label Numbers
+  summary: Label values of ROIs vector
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Out
+  summary: Mean value of input scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Flag
+  summary: Validation of ROI scalar | vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -194,8 +225,44 @@ parameter. For Label matrix, select the **Output flag indicating if input
 label numbers are valid** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Running mean
+  summary: Running mean values off (default) | on
+  group: ''
+- name: Reset port
+  summary: Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Find the mean value over
+  summary: Dimension along which mean is computed Entire input (default) | Each row | Each column | Specified dimension
+  group: ''
+- name: Dimension
+  summary: Custom dimension 1 (default) | positive scalar
+  group: ''
+- name: Enable ROI processing
+  summary: Compute mean value within ROI off (default) | on
+  group: ''
+- name: ROI type
+  summary: Type of ROI Rectangles (default) | Lines | Label matrix | Binary mask
+  group: ''
+- name: ROI portion to process
+  summary: Portion of ROI for which to compute mean Entire ROI (default) | ROI perimeter
+  group: ''
+- name: Output
+  summary: Compute individual or universal mean for ROIs Individual statistics for each ROI (default) | Single statistic for
+    all ROIs
+  group: ''
+- name: Output flag indicating if ROI is within image bounds
+  summary: Enable flag output port off (default) | on
+  group: ''
+- name: Output flag indicating if input label numbers are valid
+  summary: Enable flag output port off (default) | on
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+```
 
 **Main**
 
@@ -376,7 +443,6 @@ types you specify in this block. For more information, see Lock the Output Data 
 Floating-point inheritance takes precedence over the data type settings defined on this
 pane. When inputs are floating point, the block ignores these settings, and all internal
 data types are floating point.
-
 ## Libraries
 
 Computer Vision Toolbox / Statistics

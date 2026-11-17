@@ -14,6 +14,21 @@ language: en
 # Pressure-Reducing 3-Way Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: P
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: T
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: Ps
+  summary: Controlled pressure differential physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -38,8 +53,81 @@ Varying-signal set pressure for controlled valve operation.
 
 To enable this port, set **Set pressure control**
 to `Controlled`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Set pressure control
+  summary: Valve operation method Constant (default) | Controlled
+  group: Parameters
+- name: Opening parameterization
+  summary: Type of opening parameterization Linear (default) | Tabulated
+  group: Parameters
+- name: Set pressure differential for reducing valve
+  summary: Set pressure for valve closing at port P 0.6 MPa (default) | scalar
+  group: Parameters
+- name: Pressure regulation range
+  summary: Valve operational pressure range 3e-2 MPa (default) | scalar
+  group: Parameters
+- name: Pressure transition range
+  summary: Pressure range of valve with ports P and T closed 2e-2 MPa (default) | scalar
+  group: Parameters
+- name: Maximum opening area
+  summary: Maximum opening area of ports 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Parameters
+- name: Pressure differential vector for reducing valve
+  summary: 'Differential pressure values for tabular parameterization of reducing valve 0.6 : 0.02 : 0.7 MPa (default) | 1-by-*n*
+    vector'
+  group: Parameters
+- name: Opening area vector reducing valve
+  summary: Vector of valve opening areas for tabular parameterization of reducing valve [1e-05, 8e-06, 6e-06, 4e-06, 2e-06,
+    1e-10]m^2 (default) | 1-by-*n* vector
+  group: Parameters
+- name: Pressure differential vector for relief valve
+  summary: 'Differential pressure values for tabular parameterization of relief valve 0.68 : 0.02 : 0.78 MPa (default) | 1-by-*n*
+    vector'
+  group: Parameters
+- name: Opening area vector for relief valve
+  summary: Valve opening areas for tabular parameterization of relief valve [1e-10, 2e-06, 4e-06, 6e-06, 8e-06, 1e-05]m^2
+    (default) | 1-by-*n* vector
+  group: Parameters
+- name: Cross-sectional area at ports A, P & T.
+  summary: Orifice area at conserving ports inf m^2 (default) | positive scalar
+  group: Parameters
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Parameters
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Parameters
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range of [0,1]
+  group: Parameters
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: Parameters
+- name: Opening dynamics
+  summary: Whether to introduce flow lag due to orifice opening off (default) | on
+  group: Parameters
+- name: Reducing valve initial opening area
+  summary: Open area at port P at the start of the simulation 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Relief valve initial opening area
+  summary: Open area at port T at the start of the simulation 1e-10 m^2 (default) | positive scalar
+  group: Parameters
+- name: Opening time constant
+  summary: Valve opening time constant 0.1 s (default) | positive scalar
+  group: Parameters
+- name: Pressure-Reducing 3-Way Valve Area fault
+  summary: Option to model valve area fault Add fault
+  group: Faults
+- name: Valve areas when faulted
+  summary: Faulted valve characteristics Reducing valve closed and relief valve open (default) | Reducing valve open and relief
+    valve closed | Maintain last value
+  group: Faults
+```
 
 ### Parameters
 
@@ -312,7 +400,6 @@ triggered.
 #### Dependencies
 
 To enable this parameter, click the **Add fault** hyperlink.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Pressure Control Valves

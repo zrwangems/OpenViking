@@ -14,6 +14,33 @@ language: en
 # Discrete Transfer Fcn
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Num
+  summary: Numerator coefficients scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Den
+  summary: Denominator coefficients scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: External reset
+  summary: External reset signal scalar
+  direction: input
+  data_types: single | double | Boolean | int8 | int16 | int32 | fixed point
+- name: x0
+  summary: Initial states scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -128,8 +155,225 @@ When you set **Sample time** to
 sample time of the input signal **u**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Numerator Source
+  summary: Source of numerator coefficients Dialog (default) | Input port
+  group: Main
+  block_parameter: NumeratorSource
+  type: character vector
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: Numerator Value
+  summary: Numerator coefficients [1] (default) | scalar | vector | matrix
+  group: Main
+  values: scalar | vector | matrix
+  block_parameter: Numerator
+  type: character vector
+  default: '''[1]'''
+- name: Denominator Source
+  summary: Source of denominator coefficients Dialog (default) | Input port
+  group: Main
+  block_parameter: DenominatorSource
+  type: character vector
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: Denominator Value
+  summary: Denominator coefficients [1 0.5] (default) | scalar | vector | matrix
+  group: Main
+  values: scalar | vector | matrix
+  block_parameter: Denominator
+  type: character vector
+  default: '''[1 0.5]'''
+- name: Initial states Source
+  summary: Source of initial states Dialog (default) | Input port
+  group: Main
+  block_parameter: InitialStatesSource
+  type: character vector
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: Initial states Value
+  summary: Initial filter states 0 (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: InitialStates
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''0'''
+- name: External reset
+  summary: External state reset None (default) | Rising | Falling | Either | Level | Level hold
+  group: Main
+  block_parameter: ExternalReset
+  type: character vector
+  values: '''None'' | ''Rising'' | ''Falling'' | ''Either'' | ''Level'' | ''Level hold'''
+  default: '''None'''
+- name: Input processing
+  summary: Sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame based)
+  group: Main
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Elements as channels (sample based)'' | ''Columns as channels (frame based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Optimize by skipping divide by leading denominator coefficient (a0)
+  summary: Skip divide by a0 off (default) | on
+  group: Main
+  block_parameter: a0EqualsOne
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: View Filter Response
+  summary: View filter response button
+  group: Main
+- name: State
+  summary: 'State data type Inherit: Same as input (default) | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: StateDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as input'' | ''int8'' | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Same as input'''
+- name: Numerator coefficients
+  summary: 'Numerator coefficient data type Inherit: Inherit via internal rule (default) | int8 | int16 | int32 | int64 |
+    fixdt(1,16) | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: NumCoefDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''int8'' | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Numerator coefficient minimum
+  summary: Minimum value of numerator coefficients [] (default) | scalar
+  group: Data Types
+  block_parameter: NumCoefMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Numerator coefficient maximum
+  summary: Maximum value of numerator coefficients [] (default) | scalar
+  group: Data Types
+  block_parameter: NumCoefMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Numerator product output
+  summary: 'Numerator product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8
+    | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: NumProductDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''int8'' | ''int16'' | ''int32'' | ''int64''
+    | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Numerator accumulator
+  summary: 'Numerator accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit:
+    Same as product output | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: NumAccumDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''Inherit: Same as product output'' | ''int8''
+    | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Denominator coefficients
+  summary: 'Denominator coefficient data type Inherit: Inherit via internal rule (default) | int8 | int16 | int32 | int64
+    | fixdt(1,16) | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: DenCoefDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''int8'' | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Denominator coefficient minimum
+  summary: Minimum value of denominator coefficients [] (default) | scalar
+  group: Data Types
+  block_parameter: DenCoefMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Denominator coefficient maximum
+  summary: Maximum value of denominator coefficients [] (default) | scalar
+  group: Data Types
+  block_parameter: DenCoefMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Denominator product output
+  summary: 'Denominator product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8
+    | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: DenProductDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''int8'' | ''int16'' | ''int32'' | ''int64''
+    | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Denominator accumulator
+  summary: 'Denominator accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit:
+    Same as product output | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: DenAccumDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''Inherit: Same as product output'' | ''int8''
+    | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | int16 | int32
+    | int64 | fixdt(1,16) | fixdt(1,16,0) | <data type expression>'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''int8'' | ''int16'' | ''int32'' | ''int64''
+    | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output minimum
+  summary: Minimum value of output [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Output maximum
+  summary: Maximum value of output [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: State name
+  summary: Unique name for block state '' (default) | alphanumeric string
+  group: State Attributes
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: Require state name resolve to a signal object off (default) | on
+  group: State Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -795,7 +1039,6 @@ To enable this parameter, specify a value for **State name**. This parameter app
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations

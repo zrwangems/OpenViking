@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Variable Bandwidth IIR Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Fp
+  summary: 滤波器通带频率 正标量
+  direction: input
+  data_types: single | double
+- name: Fc
+  summary: 滤波器中心频率 正标量
+  direction: input
+  data_types: single | double
+- name: BW
+  summary: 滤波器带宽 正标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 滤波后的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -70,8 +93,52 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter type
+  summary: 滤波器类型 Lowpass（默认）| Highpass | Bandpass | Bandstop
+  group: ''
+- name: IIR filter order
+  summary: IIR 滤波器阶数 8（默认）| 正整数
+  group: ''
+- name: Specify passband frequency from input port
+  summary: 从输入端口指定通带频率 off（默认）| on
+  group: ''
+- name: Filter passband frequency
+  summary: 滤波器通带频率 512（默认）| 正标量
+  group: ''
+- name: Specify center frequency from input port
+  summary: 从输入端口指定中心频率 off（默认）| on
+  group: ''
+- name: Filter center frequency
+  summary: 滤波器中心频率 44100/4（默认）| 正标量
+  group: ''
+- name: Specify bandwidth from input port
+  summary: 从输入端口指定带宽 off（默认）| on
+  group: ''
+- name: Filter bandwidth
+  summary: 滤波器带宽 7680（默认）| 正标量
+  group: ''
+- name: Filter passband ripple (dB)
+  summary: 滤波器通带波纹 1（默认）| 正标量
+  group: ''
+- name: Filter Stopband attenuation (dB)
+  summary: 滤波器阻带衰减 60（默认）| 正标量
+  group: ''
+- name: Sample rate mode
+  summary: 指定输入采样率的模式 Use normalized frequency (0 to 1)（默认）| Specify on dialog | Inherit from input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 正标量
+  group: ''
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Filter type** — 滤波器类型 `Lowpass`（默认）| `Highpass` | `Bandpass` | `Bandstop`
 
@@ -216,7 +283,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs

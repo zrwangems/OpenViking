@@ -14,6 +14,49 @@ language: en
 # Create 3x3 Matrix
 
 ## Ports
+```yaml
+ports:
+- name: A11
+  summary: First row, first column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A12
+  summary: First row, second column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A13
+  summary: First row, third column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A21
+  summary: Second row, first column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A22
+  summary: Second row, second column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A23
+  summary: Second row, third column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A31
+  summary: Third row, first column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A32
+  summary: Third row, second column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A33
+  summary: Third row, third column of matrix matrix element
+  direction: input
+  data_types: double
+- name: A
+  summary: Matrix 3-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -104,11 +147,12 @@ element.
 Matrix, output as a 3-by-3 matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

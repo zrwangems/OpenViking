@@ -14,6 +14,25 @@ language: en
 # String to Double
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input string scalar
+  direction: input
+  data_types: string
+- name: d
+  summary: Output data whose format matches %d format scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: f
+  summary: Output data whose format matches %f format scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: Port_N
+  summary: Output data whose format matches N format scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -49,8 +68,17 @@ Output data whose format matches *`N`* format,
 specified as a scalar. Total maximum number of outputs is 128.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Format
+  summary: Format operator for input "%lf" (default) | format string | character vector
+  group: ''
+  block_parameter: Format
+  type: character vector
+  values: '''<filename>'''
+  default: '''"%lf"'' if the block is String to Double, ''"%f"'' if the block is String to Single'
+```
 
 ### **Format** — Format operator for input `"%lf"` (default) | format string | character vector
 
@@ -77,7 +105,6 @@ section.
 | **Type:** character vector |
 | **Values:** `'<filename>'` |
 | **Default:** `'"%lf"'` if the block is String to Double, `'"%f"'` if the block is String to Single |
-
 ## Libraries
 
 Simulink / String

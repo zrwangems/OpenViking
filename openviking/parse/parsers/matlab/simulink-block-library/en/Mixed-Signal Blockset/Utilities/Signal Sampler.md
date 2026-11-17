@@ -14,6 +14,28 @@ language: en
 # Signal Sampler
 
 ## Ports
+```yaml
+ports:
+- name: signal
+  summary: Fixed step discrete input signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: clock
+  summary: Saturated but sampled clock waveform scalar
+  direction: input
+  data_types: double
+- name: clock_time
+  summary: Exact time of clock transition scalar
+  direction: input
+- name: DecisionThreshold
+  summary: Voltage at which latched output switches polarity scalar
+  direction: input
+  data_types: double
+- name: sample
+  summary: Sample output value at clock edge scalar | -1 | -1
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -59,8 +81,81 @@ The output has two modes:
   `-1` or `1`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Clock edge
+  summary: Determine when input signal is sampled Rising (default) | Falling
+  group: ''
+  block_parameter: ClockEdge
+  type: character vector
+  values: Rising| Falling
+  default: Rising
+- name: Output mode
+  summary: Determine output sample mode Continuous (default) | Latched
+  group: ''
+  block_parameter: OutputMode
+  type: character vector
+  values: Continuous| Latched
+  default: Continuous
+- name: Simulate using
+  summary: Select simulation mode Code generation (default) | Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: character vector
+  values: Code generation| Interpreted execution
+  default: Code generation
+- name: DecisionThresholdPort
+  summary: Turn on decision threshold port on (default) | off
+  group: ''
+  block_parameter: DecisionThresholdPort
+  type: character vector
+  values: on| off
+  default: 'on'
+- name: Latch decision threshold
+  summary: Voltage at which latched output switches polarity 0 (default) | scalar
+  group: ''
+  block_parameter: DecisionThreshold
+  type: character vector
+  values: scalar
+  default: '0'
+- name: Latch sensitivity
+  summary: Voltage above or below decision threshold needed to assure that latched output switches to correct polarity 0 (default)
+    | scalar
+  group: ''
+  block_parameter: Sensitivity
+  type: character vector
+  values: scalar
+  default: '0'
+- name: Symbol time (s)
+  summary: Time of single symbol duration 100e-12 (default) | real positive scalar
+  group: ''
+  block_parameter: SymbolTime
+  type: character vector
+  values: real positive scalar
+  default: 100e-12
+- name: Sample interval (s)
+  summary: Uniform time step of waveform 6.25e-12 (default) | real positive scalar
+  group: ''
+  block_parameter: SampleInterval
+  type: character vector
+  values: real positive scalar
+  default: '6.25e-12'
+- name: Modulation (2:NRZ, 3:PAM3, 4:PAM4)
+  summary: Modulation scheme 2 (default) | 3 | 4
+  group: ''
+  block_parameter: Modulation
+  type: character vector
+  values: 2.| 3 | 4
+  default: '2'
+- name: Input waveform type
+  summary: Type of input waveform Sample (default) | Impulse
+  group: ''
+  block_parameter: WaveType
+  type: character vector
+  values: Sample.| Impulse
+  default: Sample
+```
 
 #### Main
 
@@ -247,7 +342,6 @@ signal.
 | **Type:** character vector |
 | **Values:** `Sample`.| `Impulse` |
 | **Default:** `Sample` |
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

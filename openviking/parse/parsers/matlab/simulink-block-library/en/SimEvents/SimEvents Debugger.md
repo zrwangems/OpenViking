@@ -14,15 +14,22 @@ language: en
 # SimEvents Debugger
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable debugger
+  summary: Enable the debugger on (default) | off
+  group: ''
+```
 
 ### **Enable debugger** — Enable the debugger `on` (default) | `off`
 
 Select this check box to enable the debugger for your model.
-
 ## Libraries
 
 SimEvents

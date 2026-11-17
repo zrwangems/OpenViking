@@ -14,10 +14,15 @@ language: en
 # Quantizing Decoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Quantization codebook**
 :   A real vector that prescribes the output value corresponding to each
@@ -25,7 +30,6 @@ Not documented in R2025b.
 
 **Quantized output data type**
 :   Select the output data type.
-
 ## Libraries
 
 Not documented in R2025b.

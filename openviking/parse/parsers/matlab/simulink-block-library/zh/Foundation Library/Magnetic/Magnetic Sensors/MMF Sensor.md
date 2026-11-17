@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # MMF Sensor
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有以下端口：
 
@@ -25,11 +28,12 @@ chinese_source: worker-translation
 :   与传感器南端子相关联的磁守恒端口。
 
 该模块还具有一个物理信号输出端口，用于输出磁动势的值。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 R2025b 中未记录。

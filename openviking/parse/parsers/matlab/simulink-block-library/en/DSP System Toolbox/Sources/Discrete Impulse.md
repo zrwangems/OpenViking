@@ -14,6 +14,13 @@ language: en
 # Discrete Impulse
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Discrete impulse signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Output
 
@@ -25,8 +32,41 @@ vector specified by the **Delay** parameter. For more
 information, see Description.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Delay (samples)
+  summary: Number of zero-valued output samples 0 (default) | scalar | vector
+  group: Main
+- name: Sample time
+  summary: Output sample period 1 (default) | positive scalar
+  group: Main
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: Main
+- name: Output data type
+  summary: 'Output data type double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 |
+    boolean | fixdt(1,16) | fixdt(1,16,0) | Inherit: Inherit via back propagation | <data type expression>'
+  group: Data Types
+- name: Mode
+  summary: Data type mode Inherit (default) | Built in | Fixed point | Expression
+  group: Data Type Assistant
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default) | Unsigned
+  group: Data Type Assistant
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point
+  group: Data Type Assistant
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 2 to 128
+  group: Data Type Assistant
+- name: Fraction length
+  summary: Fraction length for fixed-point data type 0 (default) | integer scalar
+  group: Data Type Assistant
+- name: Data type override
+  summary: Data type override mode Inherit (default) | Off
+  group: Data Type Assistant
+```
 
 ### Main
 
@@ -148,7 +188,6 @@ Select the data type override mode for this signal. You can select:
 To enable this parameter, set **Mode** to `Built
 in` or `Fixed point`. For more
 information, see Specify Data Types Using Data Type Assistant (Simulink).
-
 ## Libraries
 
 DSP System Toolbox / Sources

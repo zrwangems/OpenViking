@@ -14,6 +14,17 @@ language: en
 # Second-Order Low-Pass Filter (Discrete or Continuous)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Filter input scalar or vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Filtered output scalar or vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -29,8 +40,25 @@ Filter input.
 Filtered output. The output has the same number of elements as the input.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient of s, A1
+  summary: '*A1* coefficient 0.1 (default) | positive scalar'
+  group: ''
+- name: Coefficient of s^2, A2
+  summary: '*A2* coefficient 0.2 (default) | positive scalar'
+  group: ''
+- name: Initialization
+  summary: Initial state specification Inherited from block input (default) | Specify as parameter
+  group: ''
+- name: Initial state
+  summary: Initial state 0 (default) | real number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Coefficient of s, A1** — *A1* coefficient `0.1` (default) | positive scalar
 
@@ -70,7 +98,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

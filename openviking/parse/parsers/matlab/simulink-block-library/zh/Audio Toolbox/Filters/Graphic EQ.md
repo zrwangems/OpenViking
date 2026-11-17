@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Graphic EQ
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号矩阵 | 一维向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -34,8 +45,40 @@ Graphic EQ 模块输出的信号与输入信号具有相同的数据类型。输
 - 一维向量输入 —— 模块输出一个 *N*×1 矩阵（列向量），其中 *N* 是一维向量输入中的元素个数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: EQ Order
+  summary: 各均衡器频段的阶数 2（默认）| 正偶数
+  group: ''
+- name: Bandwidth
+  summary: 滤波器带宽（倍频程） 1 octave（默认）| 2/3 octave | 1/3 octave
+  group: ''
+- name: Structure
+  summary: 实现类型 Cascade（默认）| Parallel
+  group: ''
+- name: Gains
+  summary: 各倍频程或分数倍频程频段的增益（dB） 0 | 标量
+  group: ''
+- name: Variable name
+  summary: 导出滤波器的变量名 myFilt（默认）| 有效变量名
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: 如果变量已存在则覆盖 on（默认）| off
+  group: ''
+- name: Export filter to workspace
+  summary: 将滤波器导出到工作区按钮
+  group: ''
+- name: Inherit sample rate from input
+  summary: 指定输入采样率的来源 off（默认）| on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 如果某个参数被列为可调，则可以在仿真期间更改其值。
 
@@ -125,7 +168,6 @@ ANSI S1.11-2004 标准定义了均衡器的中心频率和边缘频率。ISO 266
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 为模块生成 C 代码。只要模型不变，后续仿真将重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度快于 `Interpreted execution`。
 
 **可调：** 否
-
 ## 所属库
 
 Audio Toolbox / Filters

@@ -14,6 +14,53 @@ language: en
 # Draw Markers
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Input Image matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: Red color component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: Green color component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: Blue color component of image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Pts
+  summary: Marker coordinates vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Clr
+  summary: Marker color scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: ROI
+  summary: Region of interest vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Output image matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: Red color component of output image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: Green color component of output image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: Blue color component of output image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -190,8 +237,46 @@ To enable this port, set the **Image signal** parameter to
 `Separate color signals`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Marker shape
+  summary: Shape of marker Circle (default) | X-mark | Plus | Star | Square
+  group: ''
+- name: Marker size
+  summary: Size of marker 3 (default) | positive integer
+  group: ''
+- name: Filled
+  summary: Filled marker off (default) | on
+  group: ''
+- name: Border color source
+  summary: Color source of marker border Specify via dialog (default) | Input port
+  group: ''
+- name: Border color
+  summary: Color value of marker Black (default) | White | User-specified value
+  group: ''
+- name: Fill color source
+  summary: Color source of filled marker Specify via dialog (default) | Input port
+  group: ''
+- name: Fill color
+  summary: Color value of filled marker Black (default) | White | User-specified value
+  group: ''
+- name: Opacity factor (between 0 and 1)
+  summary: Opacity factor 0.6 (default) | scalar in range [0, 1] | *K*-element vector
+  group: ''
+- name: Color value(s)
+  summary: User-specified color values [200 255 100] (default) | scalar | *P*-element vector | *K*-by-*P* matrix
+  group: ''
+- name: Draw Markers in
+  summary: Area for markers Entire image (default) | Specify region of interest via port
+  group: ''
+- name: Use antialiasing
+  summary: Smoothing algorithm off (default) | on
+  group: ''
+- name: Image signal
+  summary: Port configuration for RGB image One multidimensional signal (default) | Separate color signals
+  group: ''
+```
 
 ### **Main**
 
@@ -357,7 +442,6 @@ Specify how to input and output an RGB color image.
 ### **Data Types**
 
 For details on the fixed-point block parameters, see Specify Fixed-Point Attributes for Blocks (DSP System Toolbox).
-
 ## Libraries
 
 Computer Vision Toolbox / Text & Graphics

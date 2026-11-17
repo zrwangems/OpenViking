@@ -14,6 +14,21 @@ language: en
 # Sample and Hold
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Signal port scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Trigger
+  summary: Trigger port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Sample and hold value scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -46,8 +61,19 @@ event at the trigger port. The block then holds the acquired data until
 the next triggering event occurs.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trigger type
+  summary: Type of trigger Rising edge (default) | Falling edge | Either edge
+  group: ''
+- name: Initial condition
+  summary: Block output prior to first trigger event 0 (default) | scalar | vector | matrix
+  group: ''
+- name: Latch (buffer) input
+  summary: Latch buffer input off (default) | on
+  group: ''
+```
 
 ### **Trigger type** — Type of trigger `Rising edge` (default) | `Falling edge` | `Either edge`
 
@@ -80,7 +106,6 @@ If you select the **Latch (buffer) input** check box, the
 block outputs the value of the input from the previous time step until the
 next triggering event occurs. To use this block in a loop, select this check
 box.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations DSP System Toolbox HDL Support / Signal Operations

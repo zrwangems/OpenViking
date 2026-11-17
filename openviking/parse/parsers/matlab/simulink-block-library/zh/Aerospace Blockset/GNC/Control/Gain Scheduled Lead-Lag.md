@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Gain Scheduled Lead-Lag
 
 ## 端口
+```yaml
+ports:
+- name: e
+  summary: 滤波器输入 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: a
+  summary: 分子系数 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: b
+  summary: 分母系数 正标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: u
+  summary: 滤波器输出 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -42,8 +61,16 @@ chinese_source: worker-translation
 滤波器输出，指定为标量。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: 初始状态，x_initial
+  summary: 初始内部状态 0（默认）| 向量
+  group: ''
+  block_parameter: initial state, x_initial
+  type: 字符向量
+  values: 向量
+```
 
 ### **初始状态，x\_initial** — 初始内部状态 `0`（默认）| 向量
 
@@ -61,7 +88,6 @@ u|t=0=x\_initial+aeb
 | **类型**：字符向量 |
 | **值**：向量 |
 | **默认**：`'0'` |
-
 ## 所属库
 
 Aerospace Blockset / GNC / Control

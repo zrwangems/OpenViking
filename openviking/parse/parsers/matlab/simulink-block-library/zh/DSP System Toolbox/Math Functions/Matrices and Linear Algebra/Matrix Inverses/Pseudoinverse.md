@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Pseudoinverse
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: X
+  summary: 伪逆输出向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: E
+  summary: 错误状态 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -43,8 +58,16 @@ chinese_source: worker-translation
 如果伪逆计算无法收敛，端口 **X** 处的输出为具有正确大小的未定义矩阵。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Show error status port (E)
+  summary: 显示错误状态端口 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Show error status port (E)** — 显示错误状态端口 `off`（默认）| `on`
 
@@ -56,7 +79,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。对于此模块，此模式下的仿真速度快于 `Code generation`。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码就会在后续仿真中重复使用。此选项需要额外的启动时间，但仿真速度会随着后续仿真而提高。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Inverses

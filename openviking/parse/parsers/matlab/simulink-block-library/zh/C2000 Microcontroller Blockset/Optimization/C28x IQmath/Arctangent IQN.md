@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2000 Arctangent IQN
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Function**
 :   要计算的反正切类型：
@@ -39,7 +44,6 @@ Arctangent IQN 模块的输入顺序对应 Texas Instruments 约定，参数 'A'
 **注意**
 
 Arctangent IQN 模块的输入顺序对应 Texas Instruments 约定，参数 'A' 在上方，'B' 在下方。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Translational Hard Stop
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 滑块机械平移
+  direction: conserving
+- name: C
+  summary: 壳体机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,45 @@ chinese_source: worker-translation
 ### **C** — 壳体机械平移
 
 与壳体关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Upper bound
+  summary: 滑块与上限之间的间隙 0.1 m（默认）| 标量
+  group: ''
+- name: Lower bound
+  summary: 滑块与下限之间的间隙 -0.1 m（默认）| 标量
+  group: ''
+- name: Hard stop model
+  summary: 选择硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: ''
+- name: Contact stiffness at upper bound
+  summary: 上限处碰撞的弹性 1e6 N/m（默认）| 正标量
+  group: ''
+- name: Contact stiffness at lower bound
+  summary: 下界处的碰撞弹性 1e6 N/m（默认）| 正标量
+  group: ''
+- name: Contact damping at upper bound
+  summary: 上界处的耗散属性 150 N/(m/s)（默认）| 正标量
+  group: ''
+- name: Contact damping at lower bound
+  summary: 下界处的耗散属性 150 N/(m/s)（默认）| 正标量
+  group: ''
+- name: Transition region
+  summary: 力逐渐增大的区域 0.1 mm（默认）| 正标量
+  group: ''
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与挡块之间最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无量纲值
+  group: ''
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与挡块之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: ''
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N（默认）| 正标量
+  group: ''
+```
 
 ### **Upper bound** — 滑块与上限之间的间隙 `0.1 m`（默认）| 标量
 
@@ -156,7 +202,6 @@ restitution`。
 要启用此参数，请将 **Hard stop model** 设置为
 `Based on coefficient of
 restitution`。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Translational Elements

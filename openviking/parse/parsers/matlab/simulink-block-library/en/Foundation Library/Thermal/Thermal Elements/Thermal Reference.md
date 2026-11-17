@@ -14,17 +14,24 @@ language: en
 # Thermal Reference
 
 ## Ports
+```yaml
+ports:
+- name: H
+  summary: Temperature is zero thermal
+  direction: conserving
+```
 
 ### Conserving
 
 ### **H** — Temperature is zero thermal
 
 Thermal conserving port where temperature is equal to absolute zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Elements

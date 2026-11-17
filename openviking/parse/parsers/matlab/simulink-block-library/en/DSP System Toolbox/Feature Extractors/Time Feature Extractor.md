@@ -14,6 +14,17 @@ language: en
 # Time feature extractor
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Extracted features vector | 3-D array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -59,8 +70,58 @@ information on block sample times, see Sample- and Frame-Based Concepts.
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Window length
+  summary: Number of samples per frame 64 (default) | positive integer
+  group: ''
+- name: Specify
+  summary: Buffering method Overlap length (default) | Hop size
+  group: ''
+- name: Overlap length
+  summary: Number of overlapping samples between consecutive frames 0 (default) | positive integer
+  group: ''
+- name: Hop size
+  summary: Number of samples between the start of frames 64 (default) | positive integer
+  group: ''
+- name: Mean
+  summary: Option to extract mean on (default) | off
+  group: ''
+- name: RMS
+  summary: Option to extract root mean square off (default) | on
+  group: ''
+- name: Standard deviation
+  summary: Option to extract standard deviation off (default) | on
+  group: ''
+- name: Shape factor
+  summary: Option to extract shape factor off (default) | on
+  group: ''
+- name: SNR
+  summary: Option to extract signal-to-noise ratio off (default) | on
+  group: ''
+- name: THD
+  summary: Option to extract total harmonic distortion off (default) | on
+  group: ''
+- name: SINAD
+  summary: Option to extract signal to noise and distortion ratio off (default) | on
+  group: ''
+- name: Peak value
+  summary: Option to extract peak value off (default) | on
+  group: ''
+- name: Crest factor
+  summary: Option to extract crest factor off (default) | on
+  group: ''
+- name: Clearance factor
+  summary: Option to extract clearance factor off (default) | on
+  group: ''
+- name: Impulse factor
+  summary: Option to extract impulse factor off (default) | on
+  group: ''
+- name: Feature to output mapping
+  summary: Display column indices of features in output section
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -248,7 +309,6 @@ feature extracted from the input signal appears in a separate column of the outp
 each feature listed in the **Feature** section of the table, the
 corresponding entry in the **Column index in output** section displays
 the column index where the feature appears in the output signal.
-
 ## Libraries
 
 DSP System Toolbox / Feature Extractors

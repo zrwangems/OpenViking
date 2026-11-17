@@ -14,6 +14,25 @@ language: en
 # Clock Jitter Measurement
 
 ## Ports
+```yaml
+ports:
+- name: clock
+  summary: Input clock signal scalar
+  direction: input
+  data_types: double
+- name: Period Jitter
+  summary: Running RMS value of period jitter scalar
+  direction: output
+  data_types: double
+- name: C2C
+  summary: Running RMS value of cycle-to-cycle jitter scalar
+  direction: output
+  data_types: double
+- name: DCD
+  summary: Difference between real duty cycle and 50% value scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -57,8 +76,36 @@ To enable this port, select **Duty Cycle Distortion
 (DCD)**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Clock Frequency
+  summary: Frequency of input clock signal 1e6 (default) | positive real scalar
+  group: ''
+  block_parameter: Frequency
+  type: character vector
+  values: positive real scalar
+  default: 1e6
+- name: Threshold
+  summary: Threshold signal level 0 (default) | real scalar
+  group: ''
+  block_parameter: Threshold
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Period Jitter
+  summary: RMS period jitter on (default) | off
+  group: ''
+- name: Cycle-2-Cycle (C2C) Jitter
+  summary: RMS cycle-to-cycle jitter off (default) | on
+  group: ''
+- name: Duty Cycle Distortion (DCD)
+  summary: Duty cycle distortion for each cycle off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Select simulation mode Code generation (default) | Interpreted execution
+  group: ''
+```
 
 ### **Clock Frequency** — Frequency of input clock signal `1e6` (default) | positive real scalar
 
@@ -122,7 +169,6 @@ requires additional startup time, but the subsequent simulations run faster. Sim
 the model using the `Interpreted execution` method may reduce
 the startup time, but the subsequent simulations run slower. For more information, see
 Interpreted Execution vs. Code Generation.
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

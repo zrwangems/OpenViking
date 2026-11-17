@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Detector
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 指定为 boolean 的输入信号 boolean
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: 返回为 boolean 的输出信号 boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,25 @@ Detector 模块的输入为 boolean 类型。
 Detector 模块的输出为 boolean 类型。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: External reset
+  summary: 模块是否可以被复位 off（默认）| on
+  group: ''
+- name: Output type
+  summary: 为输出指定固定的 true 持续时间长度 Delayed fixed duration（默认）| Synchronized
+  group: ''
+- name: Time steps for input detection
+  summary: 输入检测的 true 持续时间长度 2（默认）| boolean
+  group: ''
+- name: Time steps for delay
+  summary: 指定延迟持续时间的长度 1（默认）| boolean
+  group: ''
+- name: Time steps for output durations
+  summary: 指定输出 true 持续时间的长度 3（默认）| boolean
+  group: ''
+```
 
 ### **External reset** — 模块是否可以被复位 off（默认）| on
 
@@ -53,7 +81,6 @@ Detector 模块的输出为 boolean 类型。
 ### **Time steps for output durations** — 指定输出 true 持续时间的长度 `3`（默认）| boolean
 
 对于 `Delayed Fixed Duration`，指定输出 true 持续时间的长度（最小为 `1`）。
-
 ## 所属库
 
 Simulink Design Verifier / Temporal Operators

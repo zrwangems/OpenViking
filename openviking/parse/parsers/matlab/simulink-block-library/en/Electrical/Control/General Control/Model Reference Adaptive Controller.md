@@ -14,6 +14,25 @@ language: en
 # Model Reference Adaptive Controller
 
 ## Ports
+```yaml
+ports:
+- name: r
+  summary: Plant reference, *r* scalar
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Plant output, *y* scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Integrator reset scalar
+  direction: input
+  data_types: Boolean
+- name: u
+  summary: Controller adjusted output, *u* scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -41,8 +60,58 @@ External reset signal (rising edge) for the integrator.
 Adjusted control signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain
+  summary: Controller proportional gain, *Kp* 1 (default) | positive scalar
+  group: Controller Parameters
+- name: Integral gain
+  summary: Controller integral gain, *Ki* 1 (default) | positive scalar
+  group: Controller Parameters
+- name: Derivative gain
+  summary: Controller derivative gain, *Kd* 0 (default)
+  group: Controller Parameters
+- name: Anti-windup gain
+  summary: Controller anti-windup gain 1 (default) | positive scalar
+  group: Controller Parameters
+- name: Use filtered derivative
+  summary: Filter option on (default) | off
+  group: Controller Parameters
+- name: Filter coefficient
+  summary: Reference signal filter coefficient 100 (default)
+  group: Controller Parameters
+- name: Control action upper limit
+  summary: Control signal upper limit, *upid_max* 5 (default)
+  group: Controller Parameters
+- name: Control action lower limit
+  summary: Control signal lower limit, *upid_min* -5 (default)
+  group: Controller Parameters
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: Controller Parameters
+- name: Model parameterization
+  summary: Discrete or continuous model option Discrete-time (default) | Continuous-time
+  group: Reference Model
+- name: Discrete-time numerator
+  summary: Discrete-time transfer function numerator [0.01 -0.0099] (default)
+  group: Reference Model
+- name: Discrete-time denominator
+  summary: Discrete-time transfer function denominator [1 -1.9801 0.9802] (default) | vector
+  group: Reference Model
+- name: Discretization sample time
+  summary: Sample time for discretization 0.01 (default) | -1 or positive number
+  group: Reference Model
+- name: Continuous-time numerator
+  summary: Continuous-time transfer function numerator [1 1] (default) | vector
+  group: Reference Model
+- name: Continuous-time denominator
+  summary: Continuous-time transfer function denominator [1 2 1] (default) | vector
+  group: Reference Model
+- name: Learning rate
+  summary: '*γ* 0.5 (default)'
+  group: Adjustment Mechanism
+```
 
 ### Controller Parameters
 
@@ -197,7 +266,6 @@ visible.
 ### **Learning rate** — *γ* `0.5` (default)
 
 Rate of adjustment to plant changes.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

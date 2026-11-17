@@ -14,6 +14,18 @@ language: en
 # Moisture Source (MA)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mass flow rate control signal, kg/s physical signal
+  direction: input
+- name: T
+  summary: Temperature of added moisture, K physical signal
+  direction: input
+- name: S
+  summary: Inject or extract humidity or water droplets moist air source
+  direction: conserving
+```
 
 ### Input
 
@@ -45,8 +57,30 @@ parameter to `Controlled`.
 Connect this port to port **S** of a block with
 finite moist air volume to add or remove humidity or water droplets
 through that block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Select whether moisture mass flow rate and temperature can change during simulation Controlled (default) | Constant
+  group: ''
+- name: Moisture added or removed
+  summary: Select whether the block adds or removes moisture as water vapor or water droplets Water vapor (default) | Water
+    droplets
+  group: ''
+- name: Water vapor evaporated from liquid or condensed to liquid
+  summary: How the block adds or removes water vapor off (default) | on
+  group: ''
+- name: Rate of moisture added
+  summary: Constant mass flow rate through the block 0 kg/s (default)
+  group: ''
+- name: Added moisture temperature specification
+  summary: Select specification method for the temperature of added moisture Atmospheric temperature (default) | Specified
+    temperature
+  group: ''
+- name: Temperature of added moisture
+  summary: Moisture temperature 293.15 K (default)
+  group: ''
+```
 
 ### **Source type** — Select whether moisture mass flow rate and temperature can change during simulation `Controlled` (default) | `Constant`
 
@@ -126,7 +160,6 @@ To enable this parameter, set **Source type** to
 `Constant` and **Added moisture
 temperature specification** to `Specified
 temperature`.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Sources / Moisture & Trace Gas Sources

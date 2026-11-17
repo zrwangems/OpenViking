@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Gold Sequence Generator
 
 ## 端口
+```yaml
+ports:
+- name: oSiz
+  summary: 当前输出大小 标量 | 二元素行向量
+  direction: input
+  data_types: double
+- name: Ref
+  summary: 参考输入信号 标量 | 列向量
+  direction: input
+  data_types: double
+- name: Rst
+  summary: 复位信号 标量 | 列向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出信号 二进制列向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -61,8 +80,49 @@ chinese_source: worker-translation
 输出信号，以二进制列向量形式返回。**Initial states (1)** 或 **Initial states (2)** 向量中至少有一个元素必须为非零，模块才能生成非零序列。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Preferred polynomial (1)
+  summary: 第一序列多项式 'z^6 + z + 1'（默认）| 多项式字符向量 | 二进制行向量 | 整数行向量
+  group: ''
+- name: Initial states (1)
+  summary: 第一序列多项式的初始状态 [0 0 0 0 0 1]（默认）| 二进制向量
+  group: ''
+- name: Preferred polynomial (2)
+  summary: 第二序列多项式 'z^6 + z^5 + z^2 + z + 1'（默认）| 多项式字符向量 | 二进制行向量 | 整数行向量
+  group: ''
+- name: Initial states (2)
+  summary: 第二序列多项式的初始状态 [0 0 0 0 0 1]（默认）| 二进制向量
+  group: ''
+- name: Sequence index
+  summary: 序列索引 0（默认）| 范围 [–2, 2*n*–2] 内的整数标量
+  group: ''
+- name: Shift
+  summary: Gold 序列的偏移量 0（默认）| 整数标量
+  group: ''
+- name: Output variable-size signals
+  summary: 输出可变长度信号的选项 off（默认）| on
+  group: ''
+- name: Maximum output size source
+  summary: 最大输出大小来源 Dialog parameter（默认）| Inherit from reference port
+  group: ''
+- name: Maximum output size
+  summary: 最大输出大小 [10 1]（默认）| 形式为 [*n* 1] 的向量
+  group: ''
+- name: Sample time
+  summary: 输出采样时间 1（默认）
+  group: ''
+- name: Samples per frame
+  summary: 每帧采样数 1（默认）| 正整数
+  group: ''
+- name: Reset on nonzero input
+  summary: 复位输出信号 off（默认）| on
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| boolean | Smallest unsigned integer
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -164,7 +224,6 @@ Gold 序列相对于初始时间的偏移量，指定为整数标量。
 输出数据类型，指定为 `boolean`、`double` 或 `Smallest unsigned integer`。
 
 当设置为 `Smallest unsigned integer` 时，输出数据类型根据模型的 Configuration Parameters 对话框的 Hardware Implementation Pane (Simulink) 中使用的设置进行选择。如果在 Hardware Implementation 窗格中选择了 ASIC/FPGA，则输出数据类型为理想的最小一位大小（ufix(1)）。对于所有其他选择，它是可用字长最小且足够容纳一位的无符号整数，通常对应于 char 的大小（uint8）。
-
 ## 所属库
 
 Communications Toolbox / Comm Sources / Sequence Generators

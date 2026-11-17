@@ -14,6 +14,13 @@ language: en
 # Enumerated Constant
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Enumerated constant scalar | vector | matrix
+  direction: output
+  data_types: enumerated
+```
 
 ### Output
 
@@ -22,8 +29,34 @@ language: en
 Enumerated constant value, specified as a scalar, vector, or matrix.
 
 **Data Types:** `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output data type
+  summary: 'Output data type Enum: SlDemoSign (default) | Enum:<ClassName>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Enum:<ClassName>'''
+  default: '''Enum: SlDemoSign'''
+- name: Mode
+  summary: Category of data to specify Enumerated (default)
+  group: ''
+- name: Value
+  summary: Enumerated value SlDemoSign.Positive (default) | Enum:<ClassName.Value>
+  group: ''
+  block_parameter: Value
+  type: character vector
+  values: '''SlDemoSign.Positive'' | ''SlDemoSign.Zero'' | ''SlDemoSign.Negative'' | ''Enum:<ClassName.Value>'''
+  default: '''SlDemoSign.Positive'''
+- name: Sample time
+  summary: Sample time inf (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''inf'''
+```
 
 ### **Output data type** — Output data type `Enum: SlDemoSign` (default) | `Enum:<ClassName>`
 
@@ -98,7 +131,6 @@ the block output. For more information, see Specify Sample Time.
 | **Type**: character vector |
 | **Values**: scalar | vector |
 | **Default**: `'inf'` |
-
 ## Libraries
 
 Simulink / Sources HDL Coder / Sources

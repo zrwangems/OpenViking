@@ -14,6 +14,18 @@ language: en
 # Byte Unpack
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal to convert vector
+  direction: input
+  data_types: uint8
+- name: Port_1
+  summary: Converted signal data signal of type double (default) | array of signal data
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -29,8 +41,19 @@ Input vector of `uint8`.
 Array of input signals of one or more data types.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output port dimensions (cell array)
+  summary: Dimensions of block output signals {[1]} (default) | cell array of data dimension specifications
+  group: ''
+- name: Output port data types (cell array)
+  summary: Data types of block output signals {'double'} (default) | cell array of Simulink data types
+  group: ''
+- name: Byte Alignment
+  summary: Byte boundary for data type alignment 1 (default) | 2 | 4 | 8
+  group: ''
+```
 
 ### **Output port dimensions (cell array)** — Dimensions of block output signals {[1]} (default) | cell array of data dimension specifications
 
@@ -80,7 +103,6 @@ that matches the value specified for the corresponding Byte Pack (Embedded Coder
 
 For example, if the corresponding Byte Pack block sets the byte alignment to 2,
 set this parameter to 2.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management C2000 Microcontroller Blockset / Target Communication

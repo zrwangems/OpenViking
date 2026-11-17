@@ -14,6 +14,19 @@ language: en
 # C Function
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input port scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean | enumerated
+    | bus | fixedpoint
+- name: Port_1
+  summary: Output port scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean | enumerated
+    | bus | fixedpoint
+```
 
 ### Input
 
@@ -41,8 +54,202 @@ unless you change it by editing the **Label** field in the
 **Symbols** table of the block dialog box.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `enumerated` | `bus` | `fixedpoint`
-
 ## Parameters
+```yaml
+parameters:
+- name: Configure custom code settings
+  summary: Option to specify custom code location button
+  group: ''
+  block_parameter: CustomCodeSettingLocation
+  type: character vector
+  values: '''BlockSettings'' | ''ModelConfigurationParameters'''
+  default: '''BlockSettings'''
+- name: Port and Parameter Symbols
+  summary: Symbols and symbol properties table
+  group: ''
+  type: SymbolSpec object
+  block_parameter: SymbolSpec
+  values: SymbolSpec object
+  default: Empty array of Symbol objects
+- name: Sample time
+  summary: Sample period -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  default: '"-1"'
+- name: Block specified custom code supports multiple instances
+  summary: Option to specify the same custom code locally in multiple C Function blocks off (default) | on
+  group: ''
+  block_parameter: CustomCodeIsMultiInstantiable
+  type: string scalar or character vector
+  default: '''off'''
+- name: Output
+  summary: Output code no default
+  group: Simulation
+  block_parameter: OutputCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Start
+  summary: Initialization code no default
+  group: Simulation
+  block_parameter: StartCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Initialize Conditions
+  summary: Reinitialization code no default
+  group: Simulation
+  block_parameter: InitializeConditionsCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Terminate
+  summary: Termination code no default
+  group: Simulation
+  block_parameter: TerminateCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Headers
+  summary: Locally specify header files for custom code no default
+  group: Simulation
+  block_parameter: SimCustomHeaderFile
+  type: character vector or string scalar
+  values: 'header file names or #include statements'
+  default: '""'
+- name: Sources
+  summary: Locally specify source files for the custom code no default
+  group: Simulation
+  block_parameter: SimCustomSourceFile
+  type: character vector or string scalar
+  values: any file name
+  default: '""'
+- name: Libraries
+  summary: Locally specify a list of static or shared libraries no default
+  group: Simulation
+  block_parameter: SimCustomLibraries
+  type: character vector or string scalar
+  values: any library file name
+  default: '""'
+- name: Search Directories
+  summary: Locally specify directories containing header and source files for custom code no default
+  group: Simulation
+  block_parameter: SimCustomSearchDirectory
+  type: character vector or string scalar
+  values: any folder path
+  default: '""'
+- name: Defines
+  summary: Locally specify preprocessor macro definition to be added to the compiler command line no default
+  group: Simulation
+  block_parameter: SimCustomDefines
+  type: character vector
+  values: preprocessor macro definition
+  default: ''''''
+- name: Compiler Flags
+  summary: Locally specify additional flags to be added to the compiler command line no default
+  group: Simulation
+  block_parameter: SimCustomCompilerFlags
+  type: character vector
+  values: compiler flags
+  default: ''''''
+- name: Linker Flags
+  summary: Locally specify additional flags to be added to the linker command line no default
+  group: Simulation
+  block_parameter: SimCustomLinkerFlags
+  type: character vector
+  values: linker flags
+  default: ''''''
+- name: Use same code as simulation
+  summary: Option to use same or different codes for simulation and code generation on (default) | off
+  group: Code generation
+  block_parameter: CodegenUsesSimCustomCode
+  type: string scalar or character vector
+  default: '''on'''
+- name: Generate code as - is (optimizations off)
+  summary: Option to allow parsing for code generation code on (default) | off
+  group: Code generation
+  block_parameter: GenerateCodeAsIs
+  type: string scalar or character vector
+  default: '''on'''
+- name: Output
+  summary: Output code no value
+  group: Code generation
+  block_parameter: CodegenOutputCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Start
+  summary: Initialization code no default
+  group: Code generation
+  block_parameter: CodegenStartCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Initialize Conditions
+  summary: Reinitialization code no default
+  group: Code generation
+  block_parameter: CodegenInitializeConditionsCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Terminate
+  summary: Termination code no default
+  group: Code generation
+  block_parameter: CodegenTerminateCode
+  type: character vector or string scalar
+  values: '"" | C/C++ code'
+  default: '""'
+- name: Headers
+  summary: Locally specify header files for custom code no default
+  group: Code generation
+  block_parameter: CustomHeaderFile
+  type: character vector or string scalar
+  values: 'header file names or #include statements'
+  default: '""'
+- name: Sources
+  summary: Locally specify source files for the custom code no default
+  group: Code generation
+  block_parameter: CustomSourceFile
+  type: character vector or string scalar
+  values: any file name
+  default: '""'
+- name: Libraries
+  summary: Locally specify a list of static or shared libraries no default
+  group: Code generation
+  block_parameter: CustomLibraries
+  type: character vector or string scalar
+  values: any library file name
+  default: '""'
+- name: Search Directories
+  summary: Locally specify Directories that contain header and source files for custom code no default
+  group: Code generation
+  block_parameter: CustomSearchDirectory
+  type: character vector or string scalar
+  values: any folder path
+  default: '""'
+- name: Defines
+  summary: Locally specify preprocessor macro definition to be added the compiler command line no default
+  group: Code generation
+  block_parameter: CustomDefines
+  type: character vector
+  values: preprocessor macro definition
+  default: ''''''
+- name: Compiler Flags
+  summary: Add Additional flags to compiler command line no default
+  group: Code generation
+  block_parameter: CustomCompilerFlags
+  type: character vector
+  values: compiler flags
+  default: ''''''
+- name: Linker Flags
+  summary: Add additional flags to linker command line no default
+  group: Code generation
+  block_parameter: CustomLinkerFlags
+  type: character vector
+  values: linker flags
+  default: ''''''
+```
 
 Parameters common to both **Simulation** and **Code
 Generation** tabs.
@@ -681,7 +888,6 @@ Code`.
 | **Type:** character vector |
 | **Value:** linker flags |
 | **Default:** `''` |
-
 ## Libraries
 
 Simulink / User-Defined Functions

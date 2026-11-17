@@ -14,6 +14,12 @@ language: en
 # Thermal Liquid Properties (TL)
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Thermal liquid network for which to define the working fluid thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -25,8 +31,56 @@ the entire network. No other Thermal Liquid Properties
 (TL) or Thermal Liquid Settings
 (TL) block may be connected to the same
 network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermal liquid fluid list
+  summary: Available working fluids Water (default) | Seawater (MIT model) | Ethylene glycol and water mixture | Propylene
+    glycol and water mixture | Glycerol and water mixture | Diesel Fuel | Aviation fuel Jet-A | SAE 5W-30
+  group: ''
+- name: Dissolved salt mass fraction (salinity)
+  summary: Mass of salt divided by the total mass of the saline mixture 3.5e-3 (default) | positive unitless scalar valued
+    between 0 and 1
+  group: ''
+- name: Concentration type
+  summary: Quantity in terms of which the mixture concentration is defined Volume fraction (default) | Mass fraction
+  group: ''
+- name: Ethylene glycol volume fraction
+  summary: Volume of ethylene glycol divided by that of the aqueous mixture 0.1 (default) | positive unitless scalar valued
+    between 0 and 1
+  group: ''
+- name: Ethylene glycol mass fraction
+  summary: Mass of ethylene glycol divided by that of the aqueous mixture 0.1 (default) | positive unitless scalar valued
+    between 0 and 1
+  group: ''
+- name: Propylene glycol volume fraction
+  summary: Mass of propylene glycol divided by that of the aqueous mixture 0.1 (default) | positive unitless scalar valued
+    between 0 and 1
+  group: ''
+- name: Propylene glycol mass fraction
+  summary: Mass of propylene glycol divided by that of the aqueous mixture 0.1 (default) | positive unitless scalar valued
+    between 0 and 1
+  group: ''
+- name: Isothermal bulk modulus
+  summary: Measure of fluid compressibility specified at constant temperature 2.1791 GPa (default) | positive scalar with
+    units of pressure
+  group: ''
+- name: Minimum valid pressure
+  summary: Lower bound of the allowed pressure range for the thermal liquid network 0.01 MPa (default) | positive scalar with
+    units of pressure
+  group: ''
+- name: Maximum valid pressure
+  summary: Upper bound of the allowed pressure range for the thermal liquid network 50 MPa (default) | positive scalar with
+    units of pressure
+  group: ''
+- name: Atmospheric pressure
+  summary: Absolute pressure in the environment of the thermal liquid network 0.101325 MPa (default) | positive scalar with
+    units of pressure
+  group: ''
+- name: Pressure and temperature outside valid range
+  summary: Whether to notify when pressure or temperature are outside valid range Error (default) | Warning | None
+  group: ''
+```
 
 ### **Thermal liquid fluid list** — Available working fluids `Water` (default) | `Seawater (MIT model)` | `Ethylene glycol and water mixture` | `Propylene glycol and water mixture` | `Glycerol and water mixture` | `Diesel Fuel` | `Aviation fuel Jet-A` | `SAE 5W-30`
 
@@ -155,7 +209,6 @@ valid range during simulation:
   but continues the simulation.
 - `Error` ― The block returns an error and
   stops the simulation.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Utilities

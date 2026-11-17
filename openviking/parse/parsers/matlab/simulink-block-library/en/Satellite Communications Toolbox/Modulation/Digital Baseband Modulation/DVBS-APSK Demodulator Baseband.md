@@ -14,6 +14,20 @@ language: en
 # DVBS-APSK Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: DVB-S2/S2X/SH standard-specific APSK modulated signal scalar | vector | matrix
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: Noise variance positive scalar | vector of positive values
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Demodulated signal scalar | vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -58,8 +72,43 @@ block.
 
 Use **Output data type** to specify the output data
 type.
-
 ## Parameters
+```yaml
+parameters:
+- name: DVB standard suffix
+  summary: Standard suffix S2 | S2X | SH
+  group: ''
+- name: Frame length
+  summary: Frame length Normal (default) | Short
+  group: ''
+- name: Modulation order
+  summary: Modulation order 16 (default) | integer
+  group: ''
+- name: Code identifier
+  summary: Code identifier 2/3 | character vector
+  group: ''
+- name: Constellation scaling
+  summary: Constellation scaling Outer radius as 1 (default) | Unit average power
+  group: ''
+- name: Output type
+  summary: Output type Integer (default) | Bit
+  group: ''
+- name: Decision type
+  summary: Demodulation decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio
+  group: ''
+- name: Noise variance source
+  summary: Noise variance source Property (default) | Input port
+  group: ''
+- name: Noise variance
+  summary: Noise variance 1 (default) | positive scalar | vector of positive values
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | ...
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -234,7 +283,6 @@ execution`.
   but the speed of subsequent simulations is slower than with the
   `Code generation` option. In this
   mode, you can debug the source code of the block.
-
 ## Libraries
 
 Satellite Communications Toolbox / Modulation / Digital Baseband Modulation

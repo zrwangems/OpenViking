@@ -14,6 +14,29 @@ language: en
 # ADC Interface
 
 ## Ports
+```yaml
+ports:
+- name: start
+  summary: Start analog to digital conversion start an analog to digital conversion event
+  direction: input
+  data_types: rteEvent
+- name: analog
+  summary: Analog voltage signal scalar
+  direction: input
+  data_types: double | single
+- name: digital
+  summary: SoC message data scalar
+  direction: output
+  data_types: SoCData
+- name: wd event
+  summary: Analog watchdog task event signal scalar
+  direction: output
+  data_types: rteEvent
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+```
 
 ### Input
 
@@ -65,8 +88,49 @@ To enable this port, enable the  **Enable interrupt**
 parameter.
 
 **Data Types:** `rteEvent`
-
 ## Parameters
+```yaml
+parameters:
+- name: Resolution (bits)
+  summary: Resolution of digital measurement 12 (default) | 16
+  group: Single Channel
+- name: Voltage reference (V)
+  summary: Reference voltage in ADC 3 (default) | 3.3
+  group: Single Channel
+- name: Acquisition time (s)
+  summary: Time required for ADC to capture input voltage 320e-9 (default) | positive scalar
+  group: Single Channel
+- name: Conversion time (s)
+  summary: Time to convert physical voltage sample to digital value 240e-9 (default) | positive scalar
+  group: Single Channel
+- name: Charge/dischard time constant (s)
+  summary: Charge or discharge time constant of the ADC acquisition circuit 0 (default) | nonnegative scalar
+  group: Single Channel
+- name: Number of channel
+  summary: Number of channels used in multichannel sampling 1 (default) | integer in the range 1 to 16
+  group: Multichannel
+- name: Conversion type
+  summary: Type multichannel conversion Sequential (default) | Simultaneous | Oversampling
+  group: Multichannel
+- name: Enable interrupt
+  summary: Option to enable interrupt event generation enable (default) | disable
+  group: Event
+- name: Condition
+  summary: Condition on when to trigger interrupt Acquisition time (default) | Acquisition + Conversion time
+  group: Event
+- name: Enable analog watchdog
+  summary: Option to enable analog watchdog interrupt event generation off (default) | on
+  group: Event
+- name: Lower threshold
+  summary: Lower threshold watchdog trigger 0.1 (default) | real-valued scalar
+  group: Event
+- name: Upper threshold
+  summary: Upper threshold watchdog trigger 2.9 (default) | real-valued scalar
+  group: Event
+- name: Interrupt latency (s)
+  summary: Interrupt generation latency 0 (default) | positive scalar
+  group: Event
+```
 
 ### Single Channel
 
@@ -190,7 +254,6 @@ Specify the time required by the ADC hardware module from the completion of the
 conversion to the generation of the interrupt in software.
 
 **Example:** `0.00001`
-
 ## Libraries
 
 SoC Blockset / Peripherals C2000 Microcontroller Blockset / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC3x Microcontrollers / Test Bench Blocks Embedded Coder Support Package for Infineon AURIX TC4x Microcontrollers / Test Bench Blocks

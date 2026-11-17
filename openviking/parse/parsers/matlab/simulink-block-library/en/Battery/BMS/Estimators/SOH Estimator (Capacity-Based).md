@@ -14,6 +14,15 @@ language: en
 # SOH Estimator (Capacity-Based)
 
 ## Ports
+```yaml
+ports:
+- name: AH
+  summary: Cell capacity, A\*Hr scalar | vector
+  direction: input
+- name: SOH
+  summary: State of health of battery scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -28,8 +37,19 @@ or a vector for multiple cells.
 State of health of the battery, returned as a scalar or vector with
 entries in the range [0, 1]. The size of this output port is equal to
 the size of the **AH** input port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cell capacity when battery is new, AH_new, (A\*Hr)
+  summary: Cell capacity when battery is new 27 (default) | nonnegative scalar
+  group: ''
+- name: Cell capacity at end of life, AH_eol, (A\*Hr)
+  summary: Cell capacity at end of life 21.6 (default) | nonnegative scalar
+  group: ''
+- name: Algorithm data type
+  summary: 'Option to choose data type for block algorithm Inherit: auto (default) | double | single | <data type expression>'
+  group: ''
+```
 
 ### **Cell capacity when battery is new, AH\_new, (A\*Hr)** — Cell capacity when battery is new `27` (default) | nonnegative scalar
 
@@ -59,7 +79,6 @@ Option to choose the data type for the block algorithm, specified as one of thes
   specify.
 
 Click the **Show data type assistant** button  to display the **Data Type Assistant**, which helps you set the data type attributes. For more information, see Specify Data Types Using Data Type Assistant and Control Data Types of Signals.
-
 ## Libraries
 
 Simscape / Battery / BMS / Estimators

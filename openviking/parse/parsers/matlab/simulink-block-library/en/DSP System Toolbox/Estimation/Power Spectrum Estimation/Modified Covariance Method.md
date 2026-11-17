@@ -14,6 +14,17 @@ language: en
 # Modified Covariance Method
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input column vector | unoriented vector
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Power spectral density estimate column vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -36,8 +47,25 @@ in the range [0,*Fs*), where
 rate of the signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Estimation order
+  summary: Order of AR model 6 (default) | positive integer
+  group: ''
+- name: Inherit FFT length from estimation order
+  summary: Inherit FFT length from estimation order off (default) | on
+  group: ''
+- name: FFT length
+  summary: FFT length 256 (default) | positive integer greater than or equal to 2
+  group: ''
+- name: Inherit sample time from input
+  summary: Inherit sample time from input on (default) | off
+  group: ''
+- name: Sample time of original time series
+  summary: Sample time of original time-domain signal 1 (default) | positive scalar
+  group: ''
+```
 
 ### **Estimation order** — Order of AR model `6` (default) | positive integer
 
@@ -100,7 +128,6 @@ scalar.
 
 To enable this parameter, clear the **Inherit sample time from
 input** parameter.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

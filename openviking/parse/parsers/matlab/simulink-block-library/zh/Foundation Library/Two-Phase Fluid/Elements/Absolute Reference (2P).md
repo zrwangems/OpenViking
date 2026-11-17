@@ -15,13 +15,17 @@ chinese_source: worker-translation
 # Absolute Reference (2P)
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块具有一个两相流体守恒端口。该端口标识设置为零压力和比内能的两相流体节点。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 R2025b 中未记录。

@@ -14,6 +14,24 @@ language: en
 # LDPC Decoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Log-likelihood ratios column vector
+  direction: input
+  data_types: double
+- name: Out
+  summary: Decoded data column vector
+  direction: output
+  data_types: double | Boolean
+- name: Iter
+  summary: Number of executed decoding iterations positive integer
+  direction: output
+  data_types: double
+- name: ParChk
+  summary: Final parity checks column vector
+  direction: output
+```
 
 ### Input
 
@@ -69,8 +87,34 @@ message.
 
 To enable this port, select the **Output final parity
 checks** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parity-check matrix (sparse binary (N-K)-by-N matrix)
+  summary: Parity-check matrix ldpcDecoderConfig().ParityCheckMatrix (default) | sparse binary matrix | nonsparse index matrix
+  group: ''
+- name: Output format
+  summary: Output value format Information part (default) | Whole codeword
+  group: ''
+- name: Decision type
+  summary: Decision method Hard decision (default) | Soft decision
+  group: ''
+- name: Output data type
+  summary: Output value data type double (default) | boolean
+  group: ''
+- name: Number of iterations
+  summary: Maximum number of decoding iterations 50 (default) | positive integer
+  group: ''
+- name: Stop iterating when all parity-checks are satisfied
+  summary: Condition for iteration termination off (default) | on
+  group: ''
+- name: Output number of iterations executed
+  summary: Output number of iterations executed off (default) | on
+  group: ''
+- name: Output final parity-checks
+  summary: Output number of iterations executed off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -162,7 +206,6 @@ port.
 
 Select this parameter to enable the **ParChk** output
 port.
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Block

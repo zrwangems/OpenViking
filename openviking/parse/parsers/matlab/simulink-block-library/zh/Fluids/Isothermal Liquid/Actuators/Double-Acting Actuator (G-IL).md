@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Double-Acting Actuator (G-IL)
 
 ## 端口
+```yaml
+ports:
+- name: p
+  summary: 活塞位置，m 物理信号
+  direction: output
+- name: A
+  summary: 腔室 A 的入口，等温液体
+  direction: output
+- name: B
+  summary: 腔室 B 的入口，气体
+  direction: output
+- name: C
+  summary: 执行器壳体，机械平移
+  direction: output
+- name: R
+  summary: 执行器活塞杆，机械平移
+  direction: output
+- name: H
+  summary: 热流，热
+  direction: output
+```
 
 ### 输出
 
@@ -42,8 +63,85 @@ chinese_source: worker-translation
 ### **H** — 热流，热
 
 与气体腔室的热传递关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 配置
+- name: Piston stroke
+  summary: 最大活塞行程距离 0.1 m（默认）| 正标量
+  group: 配置
+- name: Initial piston displacement from chamber A cap
+  summary: 仿真开始时的活塞位置 0 m（默认）| 标量
+  group: 配置
+- name: Hard stop model
+  summary: 选择硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 配置
+- name: Hard-stop stiffness coefficient
+  summary: 刚度系数 1e10 N/m（默认）| 正标量
+  group: 配置
+- name: Hard-stop damping coefficient
+  summary: 阻尼系数 150 N*s/m（默认）| 正标量
+  group: 配置
+- name: Transition region
+  summary: 硬限位力模型的应用范围 0.1 mm（默认）| 正标量
+  group: 配置
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位之间的最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 配置
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 配置
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N（默认）| 正标量
+  group: 配置
+- name: Piston cross-sectional area in chamber A
+  summary: 活塞杆的横截面积 0.01 m^2（默认）| 正标量
+  group: 等温液体侧
+- name: Dead volume in chamber A
+  summary: 活塞完全缩回时的腔室体积 1e-5 m^3（默认）| 正标量
+  group: 等温液体侧
+- name: Enable dynamic compressibility
+  summary: 是否对流体可压缩性进行建模 On（默认）| Off
+  group: 等温液体侧
+- name: Initial liquid pressure in chamber A
+  summary: 可压缩流体的初始液体压力 0.101325 MPa（默认）| 正标量
+  group: 等温液体侧
+- name: Nominal liquid pressure in chamber A
+  summary: 腔室 A 中额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: 等温液体侧
+- name: Environment pressure specification
+  summary: 参考环境压力 Atmospheric pressure（默认）| Specified pressure
+  group: 等温液体侧
+- name: Environment pressure
+  summary: 用户定义的环境压力 0.101325 MPa（默认）| 正标量
+  group: 等温液体侧
+- name: Piston cross-sectional area in chamber B
+  summary: 活塞杆的横截面积 0.01 m^2（默认）| 正标量
+  group: 气体侧
+- name: Cross-sectional area at port B
+  summary: 端口横截面积 1e-3 m^2（默认）| 正标量
+  group: 气体侧
+- name: Dead volume in chamber B
+  summary: 活塞完全缩回时的腔室体积 1e-5 m^3（默认）| 正标量
+  group: 气体侧
+- name: Initial gas pressure in chamber B
+  summary: 气体腔室起始压力 0.101325 MPa（默认）| 正标量
+  group: 气体侧
+- name: Initial gas temperature in chamber B
+  summary: 气体腔室起始温度 293.15 K（默认）| 正标量
+  group: 气体侧
+- name: Environment pressure specification
+  summary: 参考环境压力 Atmospheric pressure（默认）| Specified pressure
+  group: 气体侧
+- name: Environment pressure
+  summary: 用户定义的环境压力 0.101325 MPa（默认）| 正标量
+  group: 气体侧
+```
 
 ### 配置
 
@@ -194,7 +292,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Environment pressure specification** 设置为 `Specified pressure`。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Actuators

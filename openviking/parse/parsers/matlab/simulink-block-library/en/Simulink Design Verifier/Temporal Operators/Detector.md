@@ -14,6 +14,17 @@ language: en
 # Detector
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal specified as boolean boolean
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: Output signal returns as boolean boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -31,8 +42,25 @@ The outputs of the Detector block are of boolean
 type.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: External reset
+  summary: whether the block can be reset off (default) | on
+  group: ''
+- name: Output type
+  summary: specify a fixed true duration length for the output Delayed fixed duration (default) | Synchronized
+  group: ''
+- name: Time steps for input detection
+  summary: Length of the true duration for input detection 2 (default) | boolean
+  group: ''
+- name: Time steps for delay
+  summary: specify the length of the delay duration 1 (default) | boolean
+  group: ''
+- name: Time steps for output durations
+  summary: specify the length of the output true duration 3 (default) | boolean
+  group: ''
+```
 
 ### **External reset** — whether the block can be reset off (default) | on
 
@@ -62,7 +90,6 @@ true.
 For `Delayed Fixed Duration`, specify the length
 of the output true duration (minimum is
 `1`).
-
 ## Libraries
 
 Simulink Design Verifier / Temporal Operators

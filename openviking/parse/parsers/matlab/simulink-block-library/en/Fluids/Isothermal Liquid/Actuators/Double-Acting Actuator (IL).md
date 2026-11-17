@@ -14,6 +14,27 @@ language: en
 # Double-Acting Actuator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Piston position input, m physical signal
+  direction: input
+- name: p
+  summary: Piston position output, m physical signal
+  direction: output
+- name: A
+  summary: Inlet to chamber A isothermal liquid
+  direction: conserving
+- name: B
+  summary: Inlet to chamber B isothermal liquid
+  direction: conserving
+- name: C
+  summary: Actuator casing mechanical translational
+  direction: conserving
+- name: R
+  summary: Actuator piston mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -59,8 +80,174 @@ Mechanical translational conserving port associated with the case.
 
 Mechanical translational conserving port associated with the
 piston.
-
 ## Parameters
+```yaml
+parameters:
+- name: Same fluid on both sides
+  summary: Option to model same fluid in both chambers on (default) | off
+  group: Actuator
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Actuator
+- name: Piston cross-sectional area in chamber A
+  summary: Chamber A piston area 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston cross-sectional area in chamber B
+  summary: Chamber B piston area 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston stroke
+  summary: Maximum piston travel distance 0.1 m (default) | positive scalar
+  group: Actuator
+- name: Dead volume in chamber A
+  summary: Chamber A fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Dead volume in chamber B
+  summary: Chamber B fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Actuator
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Actuator
+- name: Breakaway to Coulomb friction force ratio
+  summary: Ratio of breakaway force to Coulomb friction force 1.2 (default) | positive scalar
+  group: Actuator
+- name: Breakaway friction velocity
+  summary: Threshold for motion 0.1 m/s (default) | positive scalar
+  group: Actuator
+- name: Hard stop model
+  summary: Select the hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default)
+    | Full stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped
+    rebound | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Threshold force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+- name: Cylinder A end cushioning
+  summary: Whether to model piston slow-down at maximum extension off (default) | on
+  group: Converter Cushion A
+- name: Cushion plunger cross-sectional area
+  summary: Cylinder cushion plunger area 1e-4 m^2 (default) | positive scalar
+  group: Converter Cushion A
+- name: Cushion plunger length
+  summary: Length of cushion plunger 1e-3 m (default) | positive scalar
+  group: Converter Cushion A
+- name: Cushion orifice area
+  summary: Area of orifice between cushion chambers 1e-6 m^2 (default) | positive scalar
+  group: Converter Cushion A
+- name: Leakage area between plunger and cushion sleeve
+  summary: Gap between cushion plunger and sleeve 1e-7 m^2 (default) | positive scalar
+  group: Converter Cushion A
+- name: Check valve cracking pressure differential
+  summary: Cushion threshold pressure 0.01 MPa (default) | positive scalar
+  group: Converter Cushion A
+- name: Check valve maximum pressure differential
+  summary: Maximum cushion differential pressure 0.1 MPa (default) | positive scalar
+  group: Converter Cushion A
+- name: Check valve maximum area
+  summary: Area of fully opened cushion valve 1e-4 m^2 (default) | positive scalar
+  group: Converter Cushion A
+- name: Check valve leakage area
+  summary: Cushion valve gap area in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Converter Cushion A
+- name: Cylinder B end cushioning
+  summary: Whether to model piston slow-down at maximum extension off (default) | on
+  group: Converter Cushion B
+- name: Cushion plunger cross-sectional area
+  summary: Cylinder cushion plunger area 1e-4 m^2 (default) | positive scalar
+  group: Converter Cushion B
+- name: Cushion plunger length
+  summary: Length of cushion plunger 1e-3 m (default) | positive scalar
+  group: Converter Cushion B
+- name: Cushion orifice area
+  summary: Area of orifice between cushion chambers 1e-6 m^2 (default) | positive scalar
+  group: Converter Cushion B
+- name: Leakage area between plunger and cushion sleeve
+  summary: Gap between cushion plunger and sleeve 1e-7 m^2 (default) | positive scalar
+  group: Converter Cushion B
+- name: Check valve cracking pressure differential
+  summary: Cushion threshold pressure 0.01 MPa (default) | positive scalar
+  group: Converter Cushion B
+- name: Check valve maximum pressure differential
+  summary: Maximum cushion differential pressure 0.1 MPa (default) | positive scalar
+  group: Converter Cushion B
+- name: Check valve maximum area
+  summary: Area of fully opened cushion valve 1e-4 m^2 (default) | positive scalar
+  group: Converter Cushion B
+- name: Check valve leakage area
+  summary: Cushion valve gap area in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Converter Cushion B
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar
+  group: Converter Cushion B
+- name: Cylinder friction effect
+  summary: Whether to model friction against piston motion off (default) | on
+  group: Friction
+- name: Breakaway to Coulomb friction force ratio
+  summary: Ratio of breakaway force to Coulomb friction force 1.2 (default) | positive scalar
+  group: Friction
+- name: Breakaway friction velocity
+  summary: Threshold for motion 0.1 m/s (default) | positive scalar
+  group: Friction
+- name: Preload force
+  summary: Initial force on cylinder 20 N (default) | scalar
+  group: Friction
+- name: Coulomb friction force coefficient
+  summary: Coulomb friction force coefficient 1e-6 N/Pa (default) | positive scalar
+  group: Friction
+- name: Viscous friction coefficient
+  summary: Viscous friction coefficient 100 N/(m/s) (default) | positive scalar
+  group: Friction
+- name: Internal leakage
+  summary: Whether to model annular leakage off (default) | on
+  group: Leakage
+- name: Piston-cylinder clearance
+  summary: Radial clearance 1e-4 m (default) | positive scalar
+  group: Leakage
+- name: Piston head length
+  summary: Annular length of piston mounting 0.01 m (default) | positive scalar
+  group: Leakage
+- name: Piston displacement from chamber A cap
+  summary: Method for determining piston position Calculate from velocity of port R relative to port C (default) | Provide
+    input signal from Multibody joint
+  group: Initial Conditions
+- name: Initial piston displacement from chamber A cap
+  summary: Piston position measured from chamber A cap at start of simulation 0 m (default) | scalar
+  group: Initial Conditions
+- name: Enable dynamic compressibility
+  summary: Whether to model fluid compressibility on (default) | off
+  group: Initial Conditions
+- name: Initial liquid pressure in chamber A
+  summary: Starting liquid pressure in chamber A 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Initial liquid pressure in chamber B
+  summary: Starting liquid pressure in chamber B 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Nominal liquid pressure in chamber A
+  summary: Pressure at nominal operating conditions in chamber A 0.101325 MPa (default) | scalar
+  group: Initial Conditions
+- name: Nominal liquid pressure in chamber B
+  summary: Pressure at nominal operating conditions in chamber B 0.101325 MPa (default) | scalar
+  group: Initial Conditions
+```
 
 ### Actuator
 
@@ -583,7 +770,6 @@ disabled.
 
 To enable this parameter, clear the **Enable dynamic
 compressibility** checkbox.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Actuators

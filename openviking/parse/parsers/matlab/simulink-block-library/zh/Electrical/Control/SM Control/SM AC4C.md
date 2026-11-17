@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM AC4C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_OELscl
+  summary: 过励限制器的接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: V_UELscl
+  summary: 欠励限制器的接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 磁场电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -144,8 +191,61 @@ chinese_source: worker-translation
 要施加到同步电机磁场电路的标幺磁场电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: 初始磁场电压，Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数
+  group: 常规
+- name: 采样时间（-1 表示继承）
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: 负载补偿的电阻分量，R_C (pu)
+  summary: 补偿电阻 0（默认）| 正数
+  group: 预控制
+- name: 负载补偿的电抗分量，X_C (pu)
+  summary: 补偿电抗 0（默认）| 正数
+  group: 预控制
+- name: 调节器输入滤波器时间常数，T_R (s)
+  summary: 调节器时间常数 0（默认）| 正数
+  group: 预控制
+- name: 调节器输出增益，K_A (pu)
+  summary: 调节器增益 300（默认）| 正数
+  group: 控制
+- name: 调节器输出时间常数，T_A (s)
+  summary: 调节器时间常数 0.015（默认）| 正数
+  group: 控制
+- name: 调节器分母（滞后）时间常数，T_B (s)
+  summary: 调节器滞后时间常数 10（默认）| 正数
+  group: 控制
+- name: 调节器分子（超前）时间常数，T_C (s)
+  summary: 调节器超前时间常数 1（默认）| 正数
+  group: 控制
+- name: 调节器最大输出，V_Rmax (pu)
+  summary: 调节器输出的上限 5.64（默认）| 实数
+  group: 控制
+- name: 调节器最小输出，V_Rmin (pu)
+  summary: 调节器输出的下限 -4.53（默认）| 实数
+  group: 控制
+- name: 电压调节器输入（电压误差）最大限值，V_Imax (pu)
+  summary: 电压误差的最大限值 10（默认）| 实数
+  group: 控制
+- name: 电压调节器输入（电压误差）最小限值，V_Imin (pu)
+  summary: 电压误差的最小限值 -10（默认）| 实数
+  group: 控制
+- name: 备用 OEL 输入位置 (V_OEL)
+  summary: OEL 输入位置 Unused（默认）| 求和点 | 接管
+  group: 控制
+- name: 备用 UEL 输入位置 (V_UEL)
+  summary: UEL 输入位置 Unused（默认）| 求和点 | 接管
+  group: 控制
+- name: 备用 SCL 输入位置 (V_SCL)
+  summary: SCL 输入位置 Unused（默认）| 求和点 | 接管
+  group: 控制
+- name: 与换相电抗成正比的整流器负载系数，K_C (pu)
+  summary: 整流器负载系数 0（默认）| 正数
+  group: 励磁机
+```
 
 ### 常规
 
@@ -235,7 +335,6 @@ chinese_source: worker-translation
 ### **与换相电抗成正比的整流器负载系数，K\_C (pu)** — 整流器负载系数 `0`（默认）| 正数
 
 与换相电抗成正比的整流器负载系数。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

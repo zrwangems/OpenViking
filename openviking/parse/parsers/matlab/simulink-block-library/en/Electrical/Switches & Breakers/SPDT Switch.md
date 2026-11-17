@@ -14,6 +14,27 @@ language: en
 # SPDT Switch
 
 ## Ports
+```yaml
+ports:
+- name: vT
+  summary: Switch control port physical signal
+  direction: input
+- name: p
+  summary: Electrical port electrical
+  direction: conserving
+- name: n1
+  summary: Electrical port electrical
+  direction: conserving
+- name: n2
+  summary: Electrical port electrical
+  direction: conserving
+- name: +
+  summary: Electrical port electrical
+  direction: conserving
+- name: '-'
+  summary: Electrical port electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -64,8 +85,37 @@ switch.
 To enable this port, set **Modeling
 option** to `Electrical
 control port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to specify physical or electrical control port PS control port (default) | Electrical control port
+  group: ''
+- name: Closed resistance
+  summary: Closed resistance 0.01 Ohm (default) | positive scalar
+  group: Main
+- name: Open conductance
+  summary: Open conductance 1e-6 S (default) | positive scalar
+  group: Main
+- name: Threshold
+  summary: Threshold voltage 0.5 V (default)
+  group: Main
+- name: Threshold width
+  summary: Threshold width 0 V (default)
+  group: Main
+- name: Model dynamics
+  summary: Model dynamics No dynamics (default) | Model turn-on and turn-off times
+  group: Dynamics
+- name: Turn-on delay
+  summary: Turn-on delay 1e-3 (default) | positive scalar
+  group: Dynamics
+- name: Turn-off delay
+  summary: Turn-off delay 1e-3 (default) | positive scalar
+  group: Dynamics
+- name: Initial input value, vT
+  summary: Initial input value, vT 0 (default)
+  group: Dynamics
+```
 
 ### **Modeling option** — Whether to specify physical or electrical control port `PS control port` (default) | `Electrical control port`
 
@@ -154,7 +204,6 @@ This parameter is visible only when you
 select `Model turn-on and turn-off
 times` for the **Model
 dynamics** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers

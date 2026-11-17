@@ -14,6 +14,15 @@ language: en
 # FIS Tree
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input signal scalar | vector
+  direction: input
+- name: out
+  summary: Defuzzified output signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -32,8 +41,45 @@ tree, combine the inputs into a vector signal using blocks such as:
 For a single-output FIS tree, the output is a scalar signal. For a multi-output
 FIS tree, the output is a vector signal. To split system outputs into scalar signals,
 use the Demux (Simulink) block.
-
 ## Parameters
+```yaml
+parameters:
+- name: FIS tree name
+  summary: FIS tree to evaluate fistree object | MAT file name in quotes
+  group: General
+  block_parameter: FIS
+  values: '''"weightedTipper"'' (default) | variable name in quotes | file name in quotes'
+- name: Number of samples for output discretization
+  summary: Number of points in output fuzzy sets 101 (default) | integer greater than 1
+  group: General
+  block_parameter: OutputSampleNumber
+  values: '"101" (default) | integer greater than 1 in quotes'
+- name: Data type
+  summary: Signal data type double (default) | single | fixed-point | expression
+  group: General
+  block_parameter: DataType
+  values: '"double" (default) | "single" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)"'
+- name: Simulate using
+  summary: Simulation mode Interpreted execution (default) | Code generation
+  group: General
+  block_parameter: SimulateUsing
+  values: '"Interpreted execution" (default) | "Code generation"'
+- name: Out of range input value
+  summary: Diagnostic message behavior when an input is out of range warning (default) | error | none
+  group: Diagnostics
+  block_parameter: OutOfRangeInputValueMessage
+  values: '"warning" (default) | "error" | "none"'
+- name: No rule fired
+  summary: Diagnostic message behavior when no rules fire warning (default) | error | none
+  group: Diagnostics
+  block_parameter: NoRuleFiredMessage
+  values: '"warning" (default) | "error" | "none"'
+- name: Empty output fuzzy set
+  summary: Diagnostic message behavior when an output fuzzy set is empty warning (default) | error | none
+  group: Diagnostics
+  block_parameter: EmptyOutputFuzzySetMessage
+  values: '"warning" (default) | "error" | "none"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -203,7 +249,6 @@ the `set_param` (Simulink) function.
 | --- | --- |
 | **Parameter:** | `EmptyOutputFuzzySetMessage` |
 | **Values:** | `"warning"` (default) | `"error"` | `"none"` |
-
 ## Libraries
 
 Fuzzy Logic Toolbox

@@ -14,10 +14,15 @@ language: en
 # General Block Interleaver
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Permutation vector source**
 :   A selection that specifies the source of the permutation vector. The
@@ -30,7 +35,6 @@ Not documented in R2025b.
     came from the input vector. This parameter is available only when
     **Permutation vector source** is set to
     `Dialog`.
-
 ## Libraries
 
 Not documented in R2025b.

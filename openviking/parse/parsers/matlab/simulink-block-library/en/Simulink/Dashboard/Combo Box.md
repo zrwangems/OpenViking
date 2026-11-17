@@ -14,10 +14,59 @@ language: en
 # Combo Box
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Block parameter value to connect parameter value connection options
+  group: Connection
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Enumerated Data Type
+  summary: Specify state values and labels using an enumerated data type off (default) | on
+  group: Main
+  block_parameter: EnumeratedDataType
+  type: string or character array
+  values: '''on'' | ''off'''
+  default: ''''''
+- name: Label
+  summary: Block label position Hide (default) | Bottom | Top
+  group: Main
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: States
+  summary: Set of states to select for connected parameter scalar and character vector
+  group: Main
+  block_parameter: States
+  type: structure
+  default: 3x1 structure array
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Format
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+- name: Foreground Color
+  summary: Block foreground color [r g b] vector
+  group: Format
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Background Color
+  summary: Block background color [r g b] vector
+  group: Format
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+```
 
 ### Connection
 
@@ -205,7 +254,6 @@ character vector that defines a `1`-by-`3`
 | **Block Parameter:** `BackgroundColor` |
 | **Type:** character vector | string |
 | **Values:** `[r g b]` vector |
-
 ## Libraries
 
 Simulink / Dashboard

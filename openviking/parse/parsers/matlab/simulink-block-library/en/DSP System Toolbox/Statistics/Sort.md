@@ -14,6 +14,21 @@ language: en
 # Sort
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Val
+  summary: Sorted data vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Idx
+  summary: Index of the sorted data vector | matrix
+  direction: output
+  data_types: uint32
+```
 
 ### Input
 
@@ -55,8 +70,34 @@ to `Value and index` or
 `Index`.
 
 **Data Types:** `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Specify whether block returns values, indices, or both Value and Index (default) | Value | Index
+  group: Main Tab
+- name: Sort order
+  summary: Order of sorting Ascending (default) | Descending
+  group: Main Tab
+- name: Sort algorithm
+  summary: Sort method Quick sort (default) | Insertion sort
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Same as product output (default) | Inherit: Same as input | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -179,7 +220,6 @@ For more information on the data type assistant, see Specify Data Types Using Da
 
 Select this parameter to prevent the fixed-point tools from overriding
 the data types you specify on the block.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

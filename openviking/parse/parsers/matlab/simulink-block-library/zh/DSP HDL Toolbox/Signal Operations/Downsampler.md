@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Downsampler
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 标量 | 列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: 有效输入数据指示 0 | 1
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态的选项 0 | 1
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 降采样数据 标量 | 列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: 有效输出数据指示 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -58,8 +81,19 @@ chinese_source: worker-translation
 控制信号，指示 **data** 输出端口的数据是否有效。当该值为 `1` 时，模块在 **data** 输出端口上返回有效数据。当该值为 `0` 时，**data** 输出端口上的值无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Downsample factor (K)
+  summary: 降采样因子 2（默认）| 范围 [1, 2.^16] 内的整数
+  group: 主
+- name: Sample offset (0 to K-1)
+  summary: 采样偏移 0（默认）| 范围 [0, 2.^16 – 1] 内的整数
+  group: 主
+- name: Enable reset input port
+  summary: 启用复位输入端口的选项 off（默认）| on
+  group: 控制端口
+```
 
 ### 主
 
@@ -78,7 +112,6 @@ chinese_source: worker-translation
 选择此参数以启用 **reset** 输入端口。复位信号对数据路径寄存器实现本地同步复位。
 
 有关更多复位注意事项，请参阅提示。
-
 ## 所属库
 
 DSP HDL Toolbox / Signal Operations

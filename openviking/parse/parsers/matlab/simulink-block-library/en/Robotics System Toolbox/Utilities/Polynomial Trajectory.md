@@ -14,6 +14,37 @@ language: en
 # Polynomial Trajectory
 
 ## Ports
+```yaml
+ports:
+- name: Time
+  summary: Time point along trajectory scalar | vector
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: Waypoint positions along trajectory *n*-by-*p* matrix
+  direction: input
+- name: TimePoints
+  summary: Time points for waypoints of trajectory *p*-element vector
+  direction: input
+- name: VelBC
+  summary: Velocity boundary conditions for waypoints *n*-by-*p* matrix
+  direction: input
+- name: AccelBC
+  summary: Acceleration boundary conditions for trajectory *n*-by-*p* matrix
+  direction: input
+- name: q
+  summary: Position of trajectory scalar | vector | matrix
+  direction: output
+  data_types: single | double
+- name: qd
+  summary: Velocity of trajectory scalar | vector | matrix
+  direction: output
+  data_types: single | double
+- name: qdd
+  summary: Acceleration of trajectory scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -111,8 +142,34 @@ elements for the **Time** input, the output is an
 *n*-by-*m* matrix.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Waypoint source
+  summary: Source for waypoints Internal (default) | External
+  group: ''
+- name: Waypoints
+  summary: Waypoint positions along trajectory *n*-by-*p* matrix
+  group: ''
+- name: Time points
+  summary: Time points for waypoints of trajectory *p*-element vector
+  group: ''
+- name: Method
+  summary: Method for trajectory generation Cubic Polynomial (default) | Quintic Polynomial | B-Spline
+  group: ''
+- name: Parameter source
+  summary: Source for waypoints Internal (default) | External
+  group: ''
+- name: Velocity boundary conditions
+  summary: Velocity boundary conditions for waypoints zeroes(2,5) (default) | *n*-by-*p* matrix
+  group: ''
+- name: Acceleration boundary conditions
+  summary: Acceleration boundary conditions for trajectory *n*-by-*p* matrix
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Waypoint source** — Source for waypoints `Internal` (default) | `External`
 
@@ -191,7 +248,6 @@ Polynomial`.
   simulations, as long as the model does not change. This option requires additional
   startup time, but the speed of the subsequent simulations is comparable to
   `Interpreted execution`.
-
 ## Libraries
 
 Robotics System Toolbox / Utilities

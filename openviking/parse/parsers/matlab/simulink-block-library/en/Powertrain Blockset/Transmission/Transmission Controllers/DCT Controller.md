@@ -14,6 +14,24 @@ language: en
 # DCT Controller
 
 ## Ports
+```yaml
+ports:
+- name: GearReq
+  summary: Gear number to engage scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: NomGear
+  summary: Nominal gear for shifting scalar
+  direction: output
+- name: CltchACmd
+  summary: Command for odd-numbered gears scalar
+  direction: output
+- name: CltchBCmd
+  summary: Command for even-numbered gears scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -49,8 +67,40 @@ Clutch pressure command for odd-numbered gears, between
 
 Clutch pressure command for even-numbered gears, between
 `0` and `1`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial gear, G_o
+  summary: Engaged gear 0 (default) | scalar
+  group: ''
+  block_parameter: G_o
+  values: 0 (default) | scalar
+- name: Clutch actuation time, tc
+  summary: Time .1 (default) | scalar
+  group: ''
+  block_parameter: tc
+  values: .1 (default) | scalar
+- name: Synchronizer time, ts
+  summary: Time .01 (default) | scalar
+  group: ''
+  block_parameter: ts
+  values: .01 (default) | scalar
+- name: Sample period, dt
+  summary: Time -1 (default) | scalar
+  group: ''
+  block_parameter: dt
+  values: -1 (default) | scalar
+- name: Start simulation with clutch locked
+  summary: Select to initially lock clutch off (default) | on
+  group: ''
+  block_parameter: ClutchLocked
+  values: off (default) | on
+- name: Start simulation with synchronizer locked
+  summary: Select to initially lock synchronizer off (default) | on
+  group: ''
+  block_parameter: SynchLocked
+  values: off (default) | on
+```
 
 ### **Initial gear, G\_o** — Engaged gear `0` (default) | `scalar`
 
@@ -162,7 +212,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `SynchLocked` |
 | **Values:** | `off` (default) | `on` |
 | **Data Types:** | `character vector` |
-
 ## Libraries
 
 Powertrain Blockset / Transmission / Transmission Controllers

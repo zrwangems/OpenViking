@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Cross-Junction (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: B
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: C
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: D
+  summary: 液体端口（热液体）
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,79 @@ chinese_source: worker-translation
 ### **D** — 液体端口（热液体）
 
 与液体端口关联的热液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Main line area (A,C)
+  summary: 主管路面积 0.01 m^2（默认）| 正标量
+  group: 接头属性
+- name: Branch line area (B,D)
+  summary: 支管路面积 0.01 m^2（默认）| 正标量
+  group: 接头属性
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 接头属性
+- name: Zero-flow threshold Reynolds number
+  summary: 对应滞止流的雷诺数 10（默认）| 正标量
+  group: 接头属性
+- name: Loss coefficient configuration change time constant
+  summary: 平滑函数的时间尺度 0.0001 s（默认）| 正标量
+  group: 接头属性
+- name: Minimum valid flow ratio for coefficient calculation
+  summary: 系数计算的流量比限值 0.2（默认）| 正标量
+  group: 接头属性
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 0 到 1 之间的标量
+  group: 接头属性
+- name: Fluid inertia
+  summary: 用于对流体惯性建模的选项 off（默认）| on
+  group: 接头属性
+- name: Loss coefficient model
+  summary: 损失系数类型 Idel'chik correlation（默认）| Custom
+  group: 接头属性
+- name: Report when flow configuration is invalid
+  summary: 无效流动配置的仿真警告模式 None（默认）| Warning | Error
+  group: 接头属性
+- name: Diverging flow loss coefficients
+  summary: 用于指定分流损失系数的选项 on（默认）| off
+  group: 接头属性
+- name: Converging flow loss coefficients
+  summary: 用于指定汇流损失系数的选项 on（默认）| off
+  group: 接头属性
+- name: Perpendicular flow loss coefficients
+  summary: 用于指定垂直流动损失系数的选项 off（默认）| on
+  group: 接头属性
+- name: Colliding flow loss coefficients
+  summary: 用于指定碰撞流动损失系数的选项 off（默认）| on
+  group: 接头属性
+- name: Diverging flow straight loss coefficient
+  summary: 分流直通损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 分流系数
+- name: Diverging flow turning loss coefficient
+  summary: 分流转向损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 分流系数
+- name: Converging flow straight loss coefficient
+  summary: 汇流直通损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 汇流系数
+- name: Converging flow turning loss coefficient
+  summary: 汇流转向损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 汇流系数
+- name: 垂直流直通损失系数
+  summary: 垂直流直通损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 垂直流动系数
+- name: 垂直流转向流入损失系数
+  summary: 垂直流转向流入损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 垂直流动系数
+- name: 垂直流转向流出损失系数
+  summary: 垂直流转向流出损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 垂直流动系数
+- name: 碰撞流直通损失系数
+  summary: 碰撞流直通损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 碰撞流系数
+- name: 碰撞流转向损失系数
+  summary: 碰撞流转向损失系数 [1.12, 1.12]（默认）| 正标量或向量
+  group: 碰撞流系数
+```
 
 ### 接头属性
 
@@ -238,7 +324,6 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **损失系数模型** 设置为 `Custom` 并选择
 **碰撞流损失系数**。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Pipes & Fittings

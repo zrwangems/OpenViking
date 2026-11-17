@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Swept Sine
 
 ## 端口
+```yaml
+ports:
+- name: xdot
+  summary: 车辆纵向速度标量
+  direction: input
+  data_types: single | double
+- name: DrvRef
+  summary: 驾驶员参考数据总线
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: 驾驶员指令数据总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -73,8 +88,45 @@ chinese_source: worker-translation
 Bus Assignment 模块覆盖 Swept Sine 模块的 TransModeCmd 输出的框图。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: 开始时间 2（默认）| 正标量
+  group: 机动参数
+  block_parameter: tStart
+  values: 2（默认）| 正标量
+- name: Longitudinal velocity setpoint, velRef
+  summary: 目标速度 30（默认）| 正标量
+  group: 机动参数
+  block_parameter: velRef
+  values: 30（默认）| 正标量
+- name: 纵向速度设定点单位，velRefUnit []
+  summary: 单位 mph（默认）
+  group: 机动参数
+  block_parameter: velRefUnit
+  values: mph（默认） | 字符向量
+- name: 转向幅值，steerAmp [deg]
+  summary: 方向盘转向幅值 90（默认） | 正标量
+  group: 机动参数
+  block_parameter: steerAmp
+  values: 90（默认） | 正标量
+- name: 最终频率，steerFinalFreq [Hz]
+  summary: 达到最大转向幅值后的保持时间 0.7（默认） | 正标量
+  group: 机动参数
+  block_parameter: steerFreq
+  values: 0.7（默认） | 正标量
+- name: 扫描时间，tSweep [s]
+  summary: 扫描过程的持续时间 30（默认） | 正标量
+  group: 机动参数
+  block_parameter: tSweep
+  values: 30（默认） | 正标量
+- name: 初始转向方向
+  summary: 初始转向方向 Right（默认） | Left
+  group: 机动参数
+  block_parameter: steerDir
+  values: Right（默认） | Left
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -191,7 +243,6 @@ Bus Assignment 模块覆盖 Swept Sine 模块的 TransModeCmd 输出的框图。
 | **参数：** | `steerDir` |
 | **值：** | `Right`（默认） | `Left` |
 | **数据类型：** | `character vector` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

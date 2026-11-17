@@ -15,14 +15,18 @@ chinese_source: worker-translation
 # Gyrator
 
 ## 端口
+```yaml
+ports: []
+```
 
 该模块有四个电学守恒端口。极性由 + 和 – 符号表示。标记为 1+ 和 1– 的端口连接到初级绕组。标记为 2+ 和 2– 的端口连接到次级绕组。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Gyration conductance**
 :   回转电导常数 *G*。默认值为 `1`。
-
 ## 所属库
 
 R2025b 中未记录。

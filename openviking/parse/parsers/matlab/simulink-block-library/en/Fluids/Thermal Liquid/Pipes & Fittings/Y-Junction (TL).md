@@ -14,6 +14,18 @@ language: en
 # Y-Junction (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: C
+  summary: Liquid port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,55 @@ exit of the junction.
 
 Thermal liquid conserving port associated with the liquid entrance or
 exit of the junction.
-
 ## Parameters
+```yaml
+parameters:
+- name: Main branch area (A-B)
+  summary: Cross-sectional area between ports A and B 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Side branch area (C)
+  summary: Cross-sectional area of the side branch 0.004 m^2 (default) | positive scalar
+  group: ''
+- name: Loss coefficient model
+  summary: Loss coefficient type Idel'chik correlation (default) | Custom
+  group: ''
+- name: Loss coefficient configuration change time constant
+  summary: Time scale of smoothing function 0.0001 s (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Zero-flow threshold Reynolds number
+  summary: Reynolds number that corresponds to stagnant flow 10 (default) | positive scalar
+  group: ''
+- name: Junction angle between (A-C)
+  summary: Offset angle of side branch 45 deg (default) | scalar between 15 and 60
+  group: ''
+- name: Minimum valid flow ratio for coefficient calculation
+  summary: Limit on flow ratios for coefficient calculations 0.2 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | scalar between 0 and 1
+  group: ''
+- name: Fluid inertia
+  summary: Option to model fluid inertia off (default) | on
+  group: ''
+- name: Report when flow configuration is invalid
+  summary: Simulation warning mode for invalid flow configurations None (default) | Warning | Error
+  group: ''
+- name: Main branch converging loss coefficient
+  summary: Converging flow loss coefficient between A and B 1.12 (default) | positive scalar
+  group: ''
+- name: Main branch diverging loss coefficient
+  summary: Diverging flow loss coefficient between A and B 1.12 (default) | positive scalar
+  group: ''
+- name: Side branch converging loss coefficient
+  summary: Converging flow loss coefficient between C and main 1.12 (default) | positive scalar
+  group: ''
+- name: Side branch diverging loss coefficient
+  summary: Diverging flow loss coefficient between C and main 1.12 (default) | positive scalar
+  group: ''
+```
 
 ### **Main branch area (A-B)** — Cross-sectional area between ports A and B `0.01 m^2` (default) | positive scalar
 
@@ -178,7 +237,6 @@ the main line for diverging flow.
 
 To enable this parameter, set **Loss coefficient
 model** to `Custom`.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Pipes & Fittings

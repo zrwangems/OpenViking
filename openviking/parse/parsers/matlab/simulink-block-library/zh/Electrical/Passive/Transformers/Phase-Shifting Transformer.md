@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Phase-Shifting Transformer
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 一次绕组端子 electrical
+  direction: unspecified
+- name: ~2
+  summary: 第一次级绕组端子 electrical
+  direction: unspecified
+- name: ~3
+  summary: 第二次级绕组端子 electrical
+  direction: unspecified
+- name: ~4
+  summary: 第三次级绕组端子 electrical
+  direction: unspecified
+- name: ~5
+  summary: 第四次级绕组端子 electrical
+  direction: unspecified
+- name: ~6
+  summary: 第五次级绕组端子 electrical
+  direction: unspecified
+- name: ~7
+  summary: 第六次级绕组端子 electrical
+  direction: unspecified
+- name: ~8
+  summary: 第七次级绕组端子 electrical
+  direction: unspecified
+- name: ~9
+  summary: 第八次级绕组端子 electrical
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -92,8 +122,40 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Number of pulses** 参数设置为
 `48-pulse`。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of pulses
+  summary: 脉冲数 12-pulse（默认）| 18-pulse | 24-pulse | 48-pulse
+  group: ''
+- name: Rated apparent power
+  summary: 额定容量下的视在功率 100e6 A*V（默认）| 正标量
+  group: ''
+- name: Rated electrical frequency
+  summary: 所连接网络的电气频率 60 Hz（默认）| 正标量
+  group: ''
+- name: Primary rated voltage
+  summary: 施加到一次绕组的 RMS 线电压 4160 V（默认）| 正标量
+  group: ''
+- name: Primary winding resistance (pu)
+  summary: 一次绕组中的功率损耗 0.01（默认）| 正标量
+  group: ''
+- name: Primary leakage reactance (pu)
+  summary: 一次绕组中的磁通损耗 0.05（默认）| 正标量
+  group: ''
+- name: Secondary winding resistance (pu)
+  summary: 次级绕组中的功率损耗 0.01（默认）| 正标量
+  group: ''
+- name: Secondary leakage reactance (pu)
+  summary: 次级绕组中的磁通损耗 0.05（默认）| 正标量
+  group: ''
+- name: Magnetizing resistance (pu)
+  summary: 变压器铁芯中的损耗 500（默认）| 正标量
+  group: ''
+- name: Magnetizing reactance (pu)
+  summary: 变压器铁芯的磁效应 500（默认）| 正标量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用
 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在
@@ -150,7 +212,6 @@ Inspector**。
 ### **Magnetizing reactance (pu)** — 变压器铁芯的磁效应 `500`（默认）| 正标量
 
 变压器铁芯的标幺磁效应。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Transformers

@@ -15,10 +15,201 @@ chinese_source: worker-translation
 # IQ Modulator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: 转换增益来源
+  summary: 转换增益的来源参数 可用功率增益（默认）| 开路电压增益 | 多项式系数
+  group: 主
+- name: 可用功率增益
+  summary: 输出 SSB 功率与 I 输入功率之比 0 dB（默认）| 以 dB 为单位的标量或无单位比值
+  group: 主
+- name: 开路电压增益
+  summary: 开路电压增益 0 dB（默认）| 以 dB 为单位的标量或无单位比值
+  group: 主
+- name: 多项式系数
+  summary: 指定电压增益的多项式系数 [0 1]（默认）| 向量
+  group: 主
+- name: 本振频率
+  summary: 本振（LO）频率 0 Hz（默认）| 标量
+  group: 主
+- name: 输入阻抗 (Ohm)
+  summary: IQ 调制器的输入阻抗 50（默认）| 标量
+  group: 主
+- name: 输出阻抗 (Ohm)
+  summary: IQ 调制器的输出阻抗 50（默认）| 标量
+  group: 主
+- name: 添加镜像抑制滤波器
+  summary: 镜像抑制（IR）滤波器参数 off（默认）| on
+  group: 主
+- name: 添加通道选择滤波器
+  summary: 通道选择（CS）滤波器参数 off（默认）| on
+  group: 主
+- name: 接地并隐藏负端子
+  summary: 接地并隐藏端子 on（默认）| off
+  group: 主
+- name: Edit System
+  summary: 断开 IQ 调制器模块链接并用适当值替换内部变量按钮
+  group: 主
+- name: I/Q gain mismatch
+  summary: I 和 Q 支路之间的增益差 0 dB（默认）| 标量
+  group: 损伤
+- name: I/Q phase mismatch
+  summary: I 和 Q 支路之间的相位差 0 degrees（默认）| 以度或弧度为单位的标量
+  group: 损伤
+- name: LO to RF isolation
+  summary: LO 电压与泄漏 RF 电压之间的幅度比 inf dB（默认）| 标量
+  group: 损伤
+- name: Noise floor (dBm/Hz)
+  summary: 单边噪声功率谱分布 -inf（默认）| 以 dBm/Hz 为单位的标量
+  group: 损伤
+- name: Add phase noise
+  summary: 添加相位噪声 off（默认）| on
+  group: 损伤
+- name: Phase noise frequency offset (Hz)
+  summary: 相位噪声频率偏移 1（默认）| 标量 | 向量 | 矩阵
+  group: 损伤
+- name: Phase noise level (dBc/Hz)
+  summary: 相位噪声电平 -Inf（默认）| 标量 | 向量 | 矩阵
+  group: 损伤
+- name: Automatically estimate impulse response duration
+  summary: 自动估算冲激响应持续时间 on（默认）| off
+  group: 损伤
+- name: Impulse response duration
+  summary: 冲激响应持续时间 1e-10s（默认）| 标量
+  group: 损伤
+- name: Plot phase noise characteristics
+  summary: 相位噪声幅度响应按钮
+  group: 损伤
+- name: Nonlinear polynomial type
+  summary: 多项式非线性 Even and odd order（默认）| Odd order
+  group: 非线性
+- name: Intercept points convention
+  summary: 截点约定 Output（默认）| Input
+  group: 非线性
+- name: IP2
+  summary: 二阶截点 inf dBm（默认）| 标量
+  group: 非线性
+- name: IP3
+  summary: 三阶截点 inf dBm（默认）| 标量
+  group: 非线性
+- name: 1-dB gain compression power
+  summary: 1-dB 增益压缩功率 infdBm（默认）| 标量
+  group: 非线性
+- name: Output saturation power
+  summary: 输出饱和功率 infdBm（默认）| 标量
+  group: 非线性
+- name: Gain compression at saturation
+  summary: 饱和时的增益压缩 infdBm（默认）| 标量
+  group: 非线性
+- name: Design method
+  summary: 仿真类型 Ideal（默认）| Butterworth | Chebyshev
+  group: IR 滤波器
+- name: Filter type
+  summary: 滤波器类型 Lowpass（默认）| Highpass | Bandpass | Bandstop
+  group: IR 滤波器
+- name: Implementation
+  summary: 实现方式 LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain
+  group: IR 滤波器
+- name: Passband edge frequency
+  summary: 通带边缘频率 2 GHz（默认）| 标量
+  group: IR 滤波器
+- name: Implement using filter order
+  summary: 使用滤波器阶数实现 on（默认）| off
+  group: IR 滤波器
+- name: Filter order
+  summary: 滤波器阶数 3（默认）| 标量
+  group: IR 滤波器
+- name: Passband frequency
+  summary: 低通和高通滤波器的通带频率 标量
+  group: IR 滤波器
+- name: 通带频率
+  summary: 带通滤波器的通带频率 [2 3] GHz（默认）| 二元向量
+  group: IR 滤波器
+- name: 通带衰减 (dB)
+  summary: 通带衰减 10*log10(2)（默认）| 标量
+  group: IR 滤波器
+- name: 阻带频率
+  summary: 带阻滤波器的阻带频率 [2.1 2.9] GHz（默认）| 二元向量
+  group: IR 滤波器
+- name: 阻带边缘频率
+  summary: 理想带阻滤波器的阻带边缘频率 [2.1 2.9] GHz（默认）| 二元向量
+  group: IR 滤波器
+- name: 阻带衰减 (dB)
+  summary: 阻带衰减 40（默认）| 标量
+  group: IR 滤波器
+- name: 源阻抗 (Ohm)
+  summary: 输入源电阻 50（默认）| 标量
+  group: IR 滤波器
+- name: 负载阻抗 (Ohm)
+  summary: 输出负载电阻 50（默认）| 标量
+  group: IR 滤波器
+- name: 自动估计冲激响应持续时间
+  summary: 自动估计冲激响应持续时间 on（默认）| off
+  group: IR 滤波器
+- name: 冲激响应持续时间
+  summary: 冲激响应持续时间 1e-10 s（默认）| 标量
+  group: IR 滤波器
+- name: 导出
+  summary: 将滤波器设计保存到文件 按钮
+  group: IR 滤波器
+- name: Design method
+  summary: 仿真类型 Ideal（默认）| Butterworth | Chebyshev
+  group: CS Filter
+- name: Filter type
+  summary: 滤波器类型 Lowpass（默认）| Highpass | Bandpass | Bandstop
+  group: CS Filter
+- name: Implementation
+  summary: 实现方式 LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain
+  group: CS Filter
+- name: Passband edge frequency
+  summary: 通带边缘频率 2 GHz（默认）| 标量
+  group: CS Filter
+- name: Implement using filter order
+  summary: 使用滤波器阶数实现 on（默认）| off
+  group: CS Filter
+- name: Filter order
+  summary: 滤波器阶数 3（默认）| 标量
+  group: CS Filter
+- name: Passband frequency
+  summary: 低通和高通滤波器的通带频率 标量
+  group: CS Filter
+- name: Passband frequencies
+  summary: 带通滤波器的通带频率 [2 3] GHz（默认）| 二元组向量
+  group: CS Filter
+- name: Passband attenuation (dB)
+  summary: 通带衰减 10*log10(2)（默认）| 标量
+  group: CS Filter
+- name: Stopband frequencies
+  summary: 带阻滤波器的阻带频率 [2.1 2.9] GHz（默认）| 二元向量
+  group: CS Filter
+- name: Stopband edge frequencies
+  summary: 理想带阻滤波器的阻带边缘频率 [2.1 2.9] GHz（默认）| 二元向量
+  group: CS Filter
+- name: Stopband attenuation (dB)
+  summary: 阻带衰减 40（默认）| 标量
+  group: CS Filter
+- name: Source impedance (Ohm)
+  summary: 输入源电阻 50（默认）| 标量
+  group: CS Filter
+- name: Load impedance (Ohm)
+  summary: 输出负载电阻 50（默认）| 标量
+  group: CS Filter
+- name: Automatically estimate impulse response duration
+  summary: 自动估计冲激响应持续时间 on（默认）| off
+  group: CS Filter
+- name: Impulse response duration
+  summary: 冲激响应持续时间 1e-10 s（默认）| 标量
+  group: CS Filter
+- name: Export
+  summary: 将滤波器设计保存到文件 按钮
+  group: CS Filter
+```
 
 ### 主
 
@@ -569,7 +760,6 @@ Rratio = 1+ε2+ε1+ε2−ε
 #### 依赖关系
 
 要启用此参数，请将 **Design method** 设置为 `Butterworth` 或 `Chebyshev`。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Systems

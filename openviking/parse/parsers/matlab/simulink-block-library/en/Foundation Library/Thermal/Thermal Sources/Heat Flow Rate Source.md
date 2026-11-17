@@ -14,6 +14,15 @@ language: en
 # Heat Flow Rate Source
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Source inlet thermal
+  direction: conserving
+- name: B
+  summary: Source outlet thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,14 +33,18 @@ Thermal conserving port associated with the source inlet.
 ### **B** — Source outlet thermal
 
 Thermal conserving port associated with the source outlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Heat flow rate
+  summary: Heat flow rate through the source 0 W (default)
+  group: ''
+```
 
 ### **Heat flow rate** — Heat flow rate through the source 0 W (default)
 
 Constant Heat flow rate through the source. Positive heat flow rate flows
 from port A to port B.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Sources

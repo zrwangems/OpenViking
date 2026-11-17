@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Analog Output (Single Sample)
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要生成的模拟输出 double
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -25,8 +32,22 @@ chinese_source: worker-translation
 如果为每个通道使用一个端口，请为每个端口提供一个 double 值。多个端口按通道名称或设备指定的通道 ID 命名。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: 要通过其输出数据的设备 选择可用设备
+  group: ''
+- name: Channels
+  summary: 设备通道选择和配置 选项取决于设备
+  group: ''
+- name: Number of ports
+  summary: 输入数据端口数 1 for all channels | 1 per channel
+  group: ''
+- name: Sample time
+  summary: 模块采样时间 数值
+  group: ''
+```
 
 ### **Device** — 要通过其输出数据的设备 选择可用设备
 
@@ -57,7 +78,6 @@ chinese_source: worker-translation
 ### **Sample time** — 模块采样时间 数值
 
 模块采样时间，指定仿真期间模块的采样时间。这是仿真期间执行模块的速率。默认值为 1（仿真秒）。有关详细信息，请参阅 Timing in Hardware Interface Models 和 What Is Sample Time? (Simulink)。
-
 ## 所属库
 
 Data Acquisition Toolbox

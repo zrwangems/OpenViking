@@ -14,6 +14,15 @@ language: en
 # Nonlinear Translational Damper
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Shaft mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,37 @@ shaft.
 
 Mechanical translational conserving port associated with the
 case.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Option to parameterize damping By polynomial (default) | By table lookup
+  group: ''
+- name: Symmetry
+  summary: Option to parameterize damping symmetry Symmetric (default) | Two-sided
+  group: ''
+- name: Vector of damping coefficients
+  summary: Polynomial damping coefficients [10, 0, 1, 0, .1] N*s/m (default) | vector of length 5
+  group: ''
+- name: Vector of extension damping coefficients
+  summary: Polynomial extension damping coefficients [10, 0, 1, 0, .1] N*s/m (default) | vector of length 5
+  group: ''
+- name: Vector of contraction damping coefficients
+  summary: Polynomial contraction damping coefficients [100, -1, 10, 0, 0] N*s/m (default) | vector of length 5
+  group: ''
+- name: Velocity vector
+  summary: Velocity [-1, -.5, -.3, -.1, .1, .3, .5, 1] m/s (default) | vector
+  group: ''
+- name: Force vector
+  summary: Damping force [-100, -40, -20, -5, 5, 20, 40, 100] N (default) | vector
+  group: ''
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Linear (default) | Smooth
+  group: ''
+- name: Extrapolation method
+  summary: Method of handling input values that fall outside range of breakpoint data set Linear (default) | Nearest | Error
+  group: ''
+```
 
 ### **Parameterization** — Option to parameterize damping `By polynomial` (default) | `By table lookup`
 
@@ -151,7 +189,6 @@ array data to map input values to output values:
 
 To enable this parameter, set **Parameterization** to
 `By table lookup`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

@@ -15,10 +15,49 @@ chinese_source: worker-translation
 # Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Symbol time (s)
+  summary: 单个符号持续时间的时间 100e-12（默认）| 实正标量
+  group: ''
+- name: Samples per symbol
+  summary: 每个符号的数据点 16（默认）| 8 | 32 | 64 | 128
+  group: ''
+- name: Sample interval (s)
+  summary: 波形的均匀时间步长 6.25e-12（默认）| 实正标量
+  group: ''
+- name: Target BER
+  summary: 目标误码率 1e-6（默认）| 实正标量
+  group: ''
+- name: Modulation
+  summary: 调制方案 NRZ（默认）| PAM3 | PAM4 | PAM5 | PAM6 | PAM7 | PAM8 | PAM9 | PAM10 | PAM11 | PAM12 | PAM13 | PAM14 | PAM15 |
+    PAM16
+  group: ''
+- name: Signaling
+  summary: 信号如何通过导线传输 'Differential'（默认）| 'Single-ended'
+  group: ''
+- name: Plot statistical analysis after simulation
+  summary: 仿真后绘制统计分析 on（默认）| off
+  group: ''
+- name: Plot time domain analysis after simulation
+  summary: 仿真后绘制时域分析 on（默认）| off
+  group: ''
+- name: Eye Diagram Clock
+  summary: 用于在仿真后结果中形成眼图的触发 Clocked（默认）| Ideal
+  group: ''
+- name: Open SerDes IBIS-AMI Manager
+  summary: 打开 SerDes IBIS-AMI Manager 按钮
+  group: ''
+- name: Open Signal Integrity Link
+  summary: 打开 Signal Integrity Link to Signal Integrity Toolbox™ 按钮
+  group: ''
+```
 
 ### **Symbol time (s)** — 单个符号持续时间的时间 `100e-12`（默认）| 实正标量
 
@@ -137,7 +176,6 @@ SerDes IBIS-AMI Manager 对话框的 **IBIS** 选项卡包含 IBS 文件内容�
 - 使用来自 Simulink 工作区的新数据更新 Serial Link Designer 或 Parallel Link Designer。
 
 如果链接的 Serial Link Designer 或 Parallel Link Designer 项目与 SerDes Simulink 模型文件位于不同的目录中，您需要保存完整路径以便定位它。有关详细信息，请参阅 Signal Integrity Link。
-
 ## 所属库
 
 SerDes Toolbox / Utilities

@@ -14,6 +14,17 @@ language: en
 # C28x SCI Transmit
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data written to serial bus scalar | vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single
+- name: Status
+  summary: Data transmitted at given time step scalar
+  direction: output
+  data_types: uint8 | uint16
+```
 
 ### Input
 
@@ -41,8 +52,28 @@ To enable this port, select the **Output
 status** parameter.
 
 **Data Types:** `uint8` | `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: SCI module
+  summary: SCI module for communication A (default) | B | C | D
+  group: ''
+- name: Additional package header
+  summary: Indicates start of data 'S' (default) | string | char | number from 0 to 255
+  group: ''
+- name: Additional package terminator
+  summary: Indicates end of data 'E' (default) | string | char | number from 0 to 255
+  group: ''
+- name: Frame size
+  summary: Specify length of data to be received 600 (default) | any positive integer
+  group: ''
+- name: Wait until previous data transmitted
+  summary: Wait until data received in previous time step is sent on (default) | off
+  group: ''
+- name: Output status
+  summary: Option to display the transmit status during data transmission off (default) | on
+  group: ''
+```
 
 ### **SCI module** — SCI module for communication `A` (default) | `B` | `C` | `D`
 
@@ -128,7 +159,6 @@ When you select the Output status parameter, the block configures an
 output port. The port on the block is labeled as Status, indicating that the
 block outputs the status of the transmit operation at the output
 port.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C281x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

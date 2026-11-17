@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Variable Translational Damper
 
 ## 端口
+```yaml
+ports: []
+```
 
 `B`
 :   表示可变平动阻尼系数的物理信号输入端口。
@@ -24,13 +27,14 @@ chinese_source: worker-translation
 
 `R`
 :   平动守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Minimum damping coefficient**
 :   可变阻尼系数允许的最小值。物理信号输入在低于指定值时饱和。该参数必须大于或等于零。默认值为 `0`
     `N/(m/s)`。
-
 ## 所属库
 
 R2025b 中未记录。

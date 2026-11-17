@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Check Valve (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流体入口 两相流体
+  direction: conserving
+- name: B
+  summary: 流体出口 两相流体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,116 @@ chinese_source: worker-translation
 ### **B** — 流体出口 两相流体
 
 与流体出口端口关联的两相流体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 流体相的建模选项 Liquid operating condition（默认）| Vapor operating condition
+  group: ''
+- name: Valve parameterization
+  summary: 阀门参数化模型 Linear - Area vs. pressure（默认）| Linear - Nominal mass flow rate vs. pressure | Tabulated data - Area vs.
+    pressure | Cv flow coefficient | Kv flow coefficient | Orifice area
+  group: 参数
+- name: Opening pressure specification
+  summary: 控制压力 Pressure differential（默认）| Gauge pressure at port A
+  group: 参数
+- name: Cracking pressure (gauge)
+  summary: 开启压力 0.1 MPa（默认）| 正标量
+  group: 参数
+- name: Maximum opening pressure (gauge)
+  summary: 阀门完全打开时的压力 0.2 MPa（默认）| 正标量
+  group: 参数
+- name: Cracking pressure differential
+  summary: 开启压力 0.01 MPa（默认）| 正标量
+  group: 参数
+- name: Maximum opening pressure differential
+  summary: 最大阀门运行压力 0.1 MPa（默认）| 正标量
+  group: 参数
+- name: Nominal mass flow rate at maximum valve opening
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: 参数
+- name: Nominal pressure drop at maximum valve opening
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: 参数
+- name: Nominal inlet condition specification
+  summary: 确定入口流体状态的方法 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: 参数
+- name: Nominal inlet pressure
+  summary: 入口流体压力 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: Nominal inlet temperature
+  summary: 流体温度 293.15 K（默认）| 正标量
+  group: 参数
+- name: Nominal inlet vapor quality
+  summary: 入口蒸汽质量分数 0（默认）| [0,1] 范围内的正标量
+  group: 参数
+- name: Nominal inlet vapor void fraction
+  summary: 入口体积分数 0（默认）| [0,1] 范围内的正标量
+  group: 参数
+- name: Nominal inlet specific enthalpy
+  summary: 入口流体比焓 400 kJ/kg（默认）| 正标量
+  group: 参数
+- name: Nominal inlet specific internal energy
+  summary: 入口比内能 400 kJ/kg（默认）| 正标量
+  group: 参数
+- name: Maximum valve area
+  summary: 最大阀门开口面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Opening pressure differential vector
+  summary: '压差向量 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Opening pressure (gauge) vector
+  summary: '表压向量 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Valve area vector
+  summary: 阀门开口面积值向量 [1e-10, 2e-06, 4e-06, 6e-06, 8e-06, 1e-05] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: Pressure recovery
+  summary: 是否考虑面积扩大处的压力升高 off（默认）| on
+  group: 参数
+- name: Opening characteristic
+  summary: 流量能力度量的参数化方法 Linear（默认）| Tabulated
+  group: 参数
+- name: Maximum Cv flow coefficient
+  summary: 对应组件最大开启状态的 *Cv* 系数 4（默认）| 正标量
+  group: 参数
+- name: Cv flow coefficient vector
+  summary: 对应成员位置向量中各值的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: 参数
+- name: Maximum Kv flow coefficient
+  summary: 对应组件最大开启状态的 *Kv* 系数 3.6（默认）| 正标量
+  group: 参数
+- name: Kv flow coefficient vector
+  summary: 对应成员位置向量中各值的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量
+  group: 参数
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认）| 正标量
+  group: 参数
+- name: Maximum orifice area
+  summary: 最大阀门开度面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Orifice area vector
+  summary: 阀门开度面积值向量 [1e-10, 2e-05, 4e-05, 6e-05, 8e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: 参数
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Inlet phase change time constant
+  summary: 液体比容滞后 0.1 s（默认）| 正标量
+  group: 参数
+- name: Laminar flow pressure ratio
+  summary: 层流-湍流过渡压力比 0.999（默认）| 正标量
+  group: 参数
+- name: Cross-sectional area at ports A and B
+  summary: 阀门端口面积 0.01 m^2（默认）| 正标量
+  group: 参数
+```
 
 ### **Modeling option** — 流体相的建模选项 `Liquid operating condition`（默认）| `Vapor operating condition`
 
@@ -331,7 +448,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at ports A and B** — 阀门端口面积 `0.01` m^2（默认）| 正标量
 
 端口 **A** 和 **B** 的面积。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Valves & Orifices / Directional Control Valves

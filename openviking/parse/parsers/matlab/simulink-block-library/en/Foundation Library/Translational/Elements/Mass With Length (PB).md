@@ -14,6 +14,15 @@ language: en
 # Mass With Length (PB)
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -27,8 +36,22 @@ connection.
 Position-based mechanical translational conserving port that represents the
 follower connection. For nonzero length, port **F** has a more
 positive position than port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass
+  summary: Constant mass 1 kg (default) | positive scalar
+  group: ''
+- name: Length
+  summary: Length of mass 0 m (default) | nonnegative scalar
+  group: ''
+- name: Log the position of an intermediate point
+  summary: Whether to log position of intermediate point off (default) | on
+  group: ''
+- name: Intermediate point fractional length from B
+  summary: Fractional length of logged point from port B 0.5 (default) | unitless scalar between 0 and 1
+  group: ''
+```
 
 ### **Mass** — Constant mass `1 kg` (default) | positive scalar
 
@@ -54,7 +77,6 @@ being logged.
 
 To enable this parameter, select the **Log the position of an
 intermediate point** check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

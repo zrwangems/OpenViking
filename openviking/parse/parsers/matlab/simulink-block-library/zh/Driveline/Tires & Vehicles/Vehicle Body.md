@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Vehicle Body
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 逆风速度，m/s 物理信号
+  direction: input
+- name: beta
+  summary: 道路倾角，rad 物理信号
+  direction: input
+- name: CG
+  summary: 重心，m 物理信号
+  direction: input
+- name: M
+  summary: 质量，kg 物理信号
+  direction: input
+- name: J
+  summary: 外部转动惯量，kg\*m^2 物理信号
+  direction: input
+- name: CD
+  summary: 阻力系数，无量纲 物理信号
+  direction: input
+- name: V
+  summary: 纵向速度，m/s 物理信号
+  direction: output
+- name: NF
+  summary: 前轴法向力，N 物理信号
+  direction: output
+- name: NR
+  summary: 后轴法向力，N 物理信号
+  direction: output
+- name: H
+  summary: 水平运动机械平移
+  direction: output
+```
 
 ### 输入
 
@@ -84,8 +117,130 @@ coefficient**。
 ### **H** — 水平运动机械平移
 
 与车身水平运动相关的机械平移守恒端口。将轮胎牵引运动连接到此端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass
+  summary: 车辆质量 1200 kg（默认）| 正标量
+  group: 主要
+- name: Number of wheels per axle
+  summary: 车轮数量 2（默认）| 正整数或二元素向量
+  group: 主要
+- name: Horizontal distance from CG to front axle
+  summary: 重心到前轴的距离 1.4 m（默认）| 正标量
+  group: 主要
+- name: Horizontal distance from CG to rear axle
+  summary: 重心到后轴的距离 1.6 m（默认）| 正标量
+  group: 主要
+- name: CG height above ground
+  summary: 重心到地面的距离 0.5 m（默认）| 正标量
+  group: 主要
+- name: Gravitational acceleration
+  summary: 重力加速度 9.81 m/s^2（默认）| 非负标量
+  group: 主要
+- name: Externally-defined additional mass
+  summary: 可变质量选项 off（默认）| on
+  group: 主要
+- name: Negative normal force warning
+  summary: 法向力警告 off（默认）| on
+  group: 主要
+- name: Frontal area
+  summary: 有效横截面积 3 m^2（默认）| 正标量
+  group: 阻力
+- name: Variable drag coefficient
+  summary: 可变阻力选项 off（默认）| on
+  group: 阻力
+- name: Drag coefficient
+  summary: 空气阻力系数 0.4（默认）| 非负标量
+  group: 阻力
+- name: Air density
+  summary: 环境空气密度 1.18 kg/m^3（默认）| 非负标量
+  group: 阻力
+- name: Pitch dynamics
+  summary: 俯仰动力学选项 off（默认）| on
+  group: 俯仰
+- name: Pitch moment of inertia
+  summary: 俯仰转动惯量 4000 kg/m^2（默认）| 正标量
+  group: 俯仰
+- name: Suspension model
+  summary: 悬架参数化方法 Linear（默认）| By table lookup
+  group: 俯仰
+- name: Front suspension stiffness
+  summary: 前悬架刚度 1e4 N/m（默认）| 正标量
+  group: 俯仰
+- name: Front suspension damping
+  summary: 前悬架阻尼 1e4N/(m/s)（默认）| 正标量
+  group: 俯仰
+- name: Rear suspension stiffness
+  summary: 后悬架刚度 1e4 N/m（默认）| 正标量
+  group: 俯仰
+- name: Rear suspension damping
+  summary: 后悬架阻尼 1e4 N/(m/s)（默认）| 正标量
+  group: 俯仰
+- name: Front suspension stiffness force vector
+  summary: 前悬架刚力 [-2000, -1000, 0, 1000, 2000] N（默认）| 递增向量
+  group: 俯仰
+- name: Front suspension deformation vector
+  summary: 前悬架变形 [-.4, -.2, 0, .2, .4] m（默认）| 递增向量
+  group: 俯仰
+- name: Front suspension damping force vector
+  summary: 前悬架阻尼力 [-200, -100, 0, 100, 200] N（默认）| 递增向量
+  group: 俯仰
+- name: Front suspension velocity vector
+  summary: 前悬架速度 [-4, -2, 0, 2, 4] m/s（默认）| 递增向量
+  group: 俯仰
+- name: Rear suspension stiffness force vector
+  summary: 后悬架刚力 [-2000, -1000, 0, 1000, 2000] N（默认）| 递增向量
+  group: 俯仰
+- name: Rear suspension deformation vector
+  summary: 后悬架变形 [-.4, -.2, 0, .2, .4] m（默认）| 递增向量
+  group: 俯仰
+- name: Rear suspension damping force vector
+  summary: 后悬架阻尼力 [-200, -100, 0, 100, 200] N（默认）| 递增向量
+  group: 俯仰
+- name: Rear suspension velocity vector
+  summary: 后悬架速度 [-4, -2, 0, 2, 4] m/s（默认）| 递增向量
+  group: 俯仰
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 俯仰
+- name: Extrapolation method
+  summary: 外推方法 Linear（默认）| Nearest | Error
+  group: 俯仰
+- name: Hard stop
+  summary: 硬限位建模选项 off（默认）| on
+  group: 俯仰
+- name: Front upper bound
+  summary: 硬限位前悬架上界 .25（默认）| 正标量
+  group: 俯仰
+- name: Front lower bound
+  summary: 车辆前部下界 -.25（默认）| 负标量
+  group: 俯仰
+- name: Front contact stiffness
+  summary: 车辆前部接触刚度 1e6（默认）| 正标量
+  group: 俯仰
+- name: Front contact damping
+  summary: 车辆前部接触阻尼 150（默认）| 正标量
+  group: 俯仰
+- name: Rear upper bound
+  summary: 车辆后部上界 .25（默认）| 正标量
+  group: 俯仰
+- name: Rear lower bound
+  summary: 车辆后部下界 -.25（默认）| 负标量
+  group: 俯仰
+- name: Rear contact stiffness
+  summary: 车辆后部接触刚度 1e6（默认）| 正标量
+  group: 俯仰
+- name: Rear contact damping
+  summary: 车辆后部接触阻尼 150（默认）| 正标量
+  group: 俯仰
+- name: Initial pitch
+  summary: 仿真开始时的俯仰角 0 rad（默认）| 非负标量
+  group: 俯仰
+- name: Initial pitch rate
+  summary: 仿真开始时的俯仰角速率 0 rad/s（默认）| 非负标量
+  group: 俯仰
+```
 
 ### 主要
 
@@ -455,7 +610,6 @@ dynamics**。
 
 要启用此参数，请选择 **Pitch
 dynamics**。
-
 ## 所属库
 
 Simscape / Driveline / Tires & Vehicles

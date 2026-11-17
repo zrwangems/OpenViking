@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Thermal Resistance
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 层 A 热
+  direction: unspecified
+- name: B
+  summary: 层 B 热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **B** — 层 B 热
 
 与层 B 关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermal resistance
+  summary: 热阻值 1 K/W（默认）
+  group: ''
+```
 
 ### **Thermal resistance** — 热阻值 1 K/W（默认）
 
 热阻值。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Elements

@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Mechanical Translational Reference
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 速度为零的机械平移
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **V** — 速度为零的机械平移
 
 速度等于零的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Translational Elements

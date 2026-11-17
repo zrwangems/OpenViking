@@ -14,6 +14,21 @@ language: en
 # Policy
 
 ## Ports
+```yaml
+ports:
+- name: observation
+  summary: Environment observations scalar | vector | nonvirtual bus
+  direction: input
+- name: update parameters
+  summary: Enable update of policy parameters scalar
+  direction: input
+- name: parameters
+  summary: Input bus
+  direction: input
+- name: action
+  summary: Policy action scalar | vector | nonvirtual bus
+  direction: output
+```
 
 ### Input
 
@@ -67,8 +82,32 @@ Policy blocks generated from a continuous action-space `rlStochasticActorPolicy`
 or `rlPPOAgent`
 object do not enforce the constraints set by the action specification. For these
 blocks you must enforce action-space constraints within the environment.
-
 ## Parameters
+```yaml
+parameters:
+- name: Policy block data MAT file
+  summary: Policy block data MAT file blockAgentData.mat (default) | file name
+  group: ''
+  block_parameter: MATFile
+  type: string, character vector
+  default: '"blockAgentData.mat"'
+- name: Policy parameter inputs
+  summary: Add policy parameters input ports and create bus object and parameter structure off (default) | on
+  group: ''
+  block_parameter: PolicyParamsAsInput
+  type: string, character vector
+  values: '"off", "on"'
+  default: '"off"'
+- name: Policy parameter bus name
+  summary: Name of policy parameters bus object policy_param_bus (default) | file name
+  group: ''
+  block_parameter: PolicyParamsBusName
+  type: string, character vector
+  default: '"policy_param_bus"'
+- name: Generate IC blocks
+  summary: Generate blocks containing initial conditions for the policy parameters button
+  group: ''
+```
 
 ### **Policy block data MAT file** — Policy block data MAT file `blockAgentData.mat` (default) | file name
 
@@ -143,7 +182,6 @@ parameters** port returns as output a `false` logical value.
 The block connected to the **parameters** port returns as output the
 structure containing the policy parameters created in the workspace when you click the
 **Apply** button.
-
 ## Libraries
 
 Reinforcement Learning Toolbox

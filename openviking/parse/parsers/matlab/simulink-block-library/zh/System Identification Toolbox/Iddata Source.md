@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Iddata Source
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 存储在 iddata 对象中的输入数据 标量 | 向量
+  direction: output
+  data_types: double
+- name: Output
+  summary: 存储在 iddata 对象中的输出数据 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -29,8 +40,16 @@ chinese_source: worker-translation
 存储在 `iddata` 对象中的输出数据，对于单输出数据返回为标量，对于具有 *Ny* 个输出的多通道数据返回为长度为 *Ny* 的向量。如果 `z` 是 `iddata` 对象，则此端口在仿真时间 *t* 处的输出为时间 *t* 处的 `z.OutputData`。如果 *t* 大于 `z.SamplingInstants(end)`（即 `z` 中的最大时间），则每个输出通道的输出数据返回为 `0`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: IDDATA object
+  summary: 要导入的时域数据 iddata(1,1)（默认）| iddata 对象
+  group: ''
+- name: Start time
+  summary: iddata 对象中信号的起始时间 -1（默认）| 非负实数标量
+  group: ''
+```
 
 ### **IDDATA object** — 要导入的时域数据 `iddata(1,1)`（默认）| `iddata` 对象
 
@@ -39,7 +58,6 @@ chinese_source: worker-translation
 ### **Start time** — `iddata` 对象中信号的起始时间 `-1`（默认）| 非负实数标量
 
 `iddata` 对象中信号的起始时间，指定为 `-1` 或非负实数标量。默认值 `-1` 表示此起始时间与 Simulink 模型的起始时间一致。要将信号的起始时间指定为与 `iddata` 对象的起始时间相同，请将 **Start time** 设置为 `data.Tstart`，其中 `data` 是 `iddata` 对象。
-
 ## 所属库
 
 System Identification Toolbox

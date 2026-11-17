@@ -14,6 +14,66 @@ language: en
 # BLDC
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: ~1
+  summary: Stator positive-end connections electrical
+  direction: conserving
+- name: ~2
+  summary: Stator negative-end connections electrical
+  direction: conserving
+- name: a1
+  summary: '*a* positive-end connection electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* positive-end connection electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* positive-end connection electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* negative-end connection electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* negative-end connection electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* negative-end connection electrical'
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: HA
+  summary: Winding A thermal port thermal
+  direction: conserving
+- name: HB
+  summary: Winding B thermal port thermal
+  direction: conserving
+- name: HC
+  summary: Winding C thermal port thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -239,8 +299,139 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Selected part
+  summary: Predefined parameterization option <click to select> (default)
+  group: ''
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Rotor
+- name: Back EMF profile
+  summary: Back EMF profile Perfect trapezoid - specify maximum flux linkage (default) | Perfect trapezoid - specify maximum
+    rotor-induced back emf | Tabulated - specify flux partial derivative with respect to rotor angle | Tabulated - specify
+    rotor-induced back emf as a function of rotor angle
+  group: Rotor
+- name: Maximum permanent magnet flux linkage
+  summary: Maximum permanent magnet flux linkage 0.03 Wb (default)
+  group: Rotor
+- name: Rotor angle over which back emf is constant
+  summary: Rotor angle over which back EMF is constant pi / 12 rad (default)
+  group: Rotor
+- name: Maximum rotor-induced back emf
+  summary: Maximum rotor-induced back EMF 9.6 V (default)
+  group: Rotor
+- name: Rotor-induced back emf
+  summary: Rotor-induced back EMF [0, -9.6, -9.6, 9.6, 9.6, 0] V (default)
+  group: Rotor
+- name: Flux linkage partial derivative with respect to rotor angle
+  summary: Flux linkage partial derivative with respect to rotor angle [0, -.1528, -.1528, .1528, .1528, 0] Wb/rad (default)
+  group: Rotor
+- name: Corresponding rotor angles
+  summary: Corresponding rotor angles [0, 7.5, 22.5, 37.5, 52.5, 60] deg (default)
+  group: Rotor
+- name: Rotor speed used for back emf measurement
+  summary: Rotor speed used for back EMF measurement 600 rpm (default)
+  group: Rotor
+- name: Number of pole pairs
+  summary: Number of pole pairs 6 (default)
+  group: Rotor
+- name: Rotor angle definition
+  summary: Reference point for the rotor angle measurement Angle between the a-phase magnetic axis and the d-axis (default)
+    | Angle between the a-phase magnetic axis and the q-axis
+  group: Rotor
+- name: Winding type
+  summary: Windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Stator
+- name: Modeling fidelity
+  summary: Modeling fidelity Constant Ld and Lq (default) | Tabulated Ld and Lq
+  group: Stator
+- name: Stator parameterization
+  summary: Stator parameterization Specify Ld, Lq, and L0 (default) | Specify Ls, Lm, and Ms
+  group: Stator
+- name: Stator d-axis inductance, Ld
+  summary: Stator d-axis inductance 0.00022 H (default)
+  group: Stator
+- name: Stator q-axis inductance, Lq
+  summary: Stator q-axis inductance 0.00022 H (default)
+  group: Stator
+- name: Direct-axis current vector, iD
+  summary: Direct-axis current vector [-200, 0, 200] A (default)
+  group: Stator
+- name: Quadrature-axis current vector, iQ
+  summary: Quadrature-axis current vector [-200, 0, 200] A (default)
+  group: Stator
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld matrix 0.00022 * ones(3, 3) H (default)
+  group: Stator
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq matrix 0.00022 * ones(3, 3) H (default)
+  group: Stator
+- name: Stator zero-sequence inductance, L0
+  summary: Stator zero-sequence inductance 0.00016 H (default)
+  group: Stator
+- name: Stator self-inductance per phase, Ls
+  summary: Stator self-inductance per phase 0.0002 H (default)
+  group: Stator
+- name: Stator inductance fluctuation, Lm
+  summary: Stator inductance fluctuation 0 H (default)
+  group: Stator
+- name: Stator mutual inductance, Ms
+  summary: Stator mutual inductance 0.00002 H (default)
+  group: Stator
+- name: Stator resistance per phase, Rs
+  summary: Stator resistance per phase 0.013 Ohm (default)
+  group: Stator
+- name: Zero sequence
+  summary: Zero sequence option Include (default) | Exclude
+  group: Stator
+- name: Model
+  summary: Enable Iron losses computation None (default) | Empirical
+  group: Iron Losses
+- name: Open-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: Open-circuit iron losses [0, 0, 0] W (default)
+  group: Iron Losses
+- name: Short-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: Short-circuit iron losses [0, 0, 0] W (default)
+  group: Iron Losses
+- name: Electrical frequency at which losses determined
+  summary: Electrical frequency at which losses determined 60 Hz (default)
+  group: Iron Losses
+- name: Short-circuit RMS current for short-circuit iron losses
+  summary: Short-circuit RMS current for short-circuit iron losses 95 A (default)
+  group: Iron Losses
+- name: Rotor inertia
+  summary: Rotor inertia 0.01 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 0 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Measurement temperature
+  summary: Measurement temperature 298.15 K (default)
+  group: Temperature Dependence
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Permanent magnet flux temperature coefficient
+  summary: Permanent magnet flux temperature coefficient -0.001 1/K (default)
+  group: Temperature Dependence
+- name: Thermal mass for each stator winding
+  summary: Thermal mass for each stator winding 100 J/K (default)
+  group: Thermal Port
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default)
+  group: Thermal Port
+- name: Percentage of main flux path iron losses associated with the rotor
+  summary: Percentage of main flux path iron losses associated with the rotor 90 (default)
+  group: Thermal Port
+- name: Percentage of cross-tooth flux path iron losses associated with the rotor
+  summary: Percentage of cross-tooth flux path iron losses associated with the rotor 30 (default)
+  group: Thermal Port
+```
 
 ### **Selected part** — Predefined parameterization option `<click to select>` (default)
 
@@ -702,7 +893,6 @@ and **HC**.
 
 To enable this parameter, set **Model** to
 `Empirical`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

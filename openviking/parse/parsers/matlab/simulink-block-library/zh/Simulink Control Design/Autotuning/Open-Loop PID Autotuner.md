@@ -15,6 +15,61 @@ chinese_source: worker-translation
 # Open-Loop PID Autotuner
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 来自控制器的信号 标量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 被控对象输出 标量
+  direction: input
+  data_types: single | double
+- name: start/stop
+  summary: 启动和停止自整定实验 标量
+  direction: input
+  data_types: single | double
+- name: bandwidth
+  summary: 用于整定的目标带宽 标量
+  direction: input
+  data_types: single | double
+- name: target PM
+  summary: 用于整定的目标相位裕度 标量
+  direction: input
+  data_types: single | double
+- name: sine Amp
+  summary: 注入正弦信号的幅值 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: step Amp
+  summary: 注入阶跃信号的幅值 标量
+  direction: input
+  data_types: single | double
+- name: u+Δu
+  summary: 被控对象输入标量信号
+  direction: output
+  data_types: single | double
+- name: '% conv'
+  summary: 实验期间 FRD 估计的收敛度标量
+  direction: output
+  data_types: single | double
+- name: pid gains
+  summary: 整定后的 PID 系数总线
+  direction: output
+  data_types: single | double
+- name: estimated PM
+  summary: 使用整定后控制器的估计相位裕度标量
+  direction: output
+- name: frd
+  summary: 估计的频率响应向量
+  direction: output
+- name: dcgain
+  summary: 被控对象标量的估计直流增益
+  direction: output
+- name: nominal
+  summary: 标称工作点处的被控对象输入和输出向量
+  direction: output
+```
 
 ### 输入
 
@@ -181,8 +236,113 @@ frequency responses near bandwidth**。
 #### 依赖关系
 
 要启用此端口，请在 Experiment 选项卡中选择 **Plant nominal input and output**。
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: PID 控制器作用 PI（默认）| PID | PIDF | ...
+  group: ''
+  block_parameter: PIDType
+  type: 字符向量
+  values: '''P'' | ''I'' | ''PI'' | ''PD'' | ''PDF'' | ''PID'' | ''PIDF'''
+- name: Form
+  summary: PID 控制器形式 Parallel（默认）| Ideal
+  group: ''
+  block_parameter: PIDForm
+  type: 字符向量
+  values: '''Parallel'' | ''Ideal'''
+- name: Time Domain
+  summary: PID 控制器时域 discrete-time（默认）| continuous-time
+  group: ''
+  block_parameter: TimeDomain
+  type: 字符向量
+  values: '''discrete-time'' | ''continuous-time'''
+- name: Controller sample time (sec)
+  summary: PID 控制器的采样时间 0.1（默认）| 正标量 | –1
+  group: ''
+  block_parameter: DiscreteTs
+  type: 标量
+  values: 正标量 | –1
+- name: Experiment sample time (sec)
+  summary: 实验的采样时间 0.02（默认）| 正标量
+  group: ''
+  block_parameter: ContinuousTs
+  type: 正标量
+- name: Integrator method
+  summary: 积分项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: IntegratorFormula
+  type: 字符向量
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+- name: Filter method
+  summary: 导数滤波器项的离散积分公式 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: FilterFormula
+  type: character vector
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Target bandwidth (rad/sec)
+  summary: 整定响应的目标穿越频率 1（默认）| 正标量
+  group: ''
+  block_parameter: Bandwidth
+  type: positive scalar
+  default: '1'
+- name: Target phase margin (degrees)
+  summary: 开环响应的目标最小相位裕度 60（默认）| 0–90 范围内的标量
+  group: ''
+  block_parameter: TargetPM
+  type: scalar
+  values: 0–90
+  default: '60'
+- name: Sine Amplitudes
+  summary: 正弦扰动幅度 1（默认）| 标量 | 长度为 4 的向量
+  group: ''
+  block_parameter: AmpSine
+  type: scalar, vector of length 4
+  default: '1'
+- name: Estimate DC gain with step signal
+  summary: 向被控对象注入阶跃信号 on（默认）| off
+  group: ''
+  block_parameter: EstimateDCGain
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Step Amplitude
+  summary: 阶跃扰动幅度 1（默认）| 标量
+  group: ''
+  block_parameter: AmpStep
+  type: scalar
+  default: '1'
+- name: 减少内存并避免任务超限（仅外部模式）
+  summary: 仅部署整定算法 off（默认）| on
+  group: ''
+  block_parameter: DeployTuningModule
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 为 PLC Coder 配置模块
+  summary: 为使用 Simulink PLC Coder 进行代码生成配置模块 off（默认）| on
+  group: ''
+- name: 数据类型
+  summary: 浮点精度 double（默认）| single
+  group: ''
+  block_parameter: BlockDataType
+  type: character vector
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: 点击“Update PID Block”将整定后的增益写入连接到“u”端口的 PID 模块
+  summary: 自动检测用于写入整定后 PID 系数的目标 on（默认）| off
+  group: ''
+- name: 指定 PID 模块路径
+  summary: 用于写入整定后系数的目标 PID 控制器模块 []（默认）| 模块路径
+  group: ''
+- name: Update PID Block
+  summary: 将整定后的 PID 增益写入目标控制器模块 按钮
+  group: ''
+- name: Export to MATLAB
+  summary: 将实验和整定结果发送到 MATLAB 工作区按钮
+  group: ''
+```
 
 #### Tuning 选项卡
 
@@ -572,7 +732,6 @@ PID 增益计算比频率响应估计需要更大的计算负载。对于快速�
 - `PlantDCGain` — 系统的估计直流增益（以绝对单位表示），前提是在整定期间选择了 **Estimate DC gain with step signal**。
 
 您可以在仿真运行期间导出到 MATLAB 工作区，包括在外部模式下运行时。
-
 ## 所属库
 
 Simulink Control Design / Autotuning

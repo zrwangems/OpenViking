@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Depuncturer
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入样本标量
+  direction: input
+  data_types: int8 | int16 | uint8 | uint16 | Boolean | fixdt(0,1,0) | fixdt(S,WL,0) | single | double
+- name: puncVector
+  summary: 打孔向量 二进制值列向量
+  direction: input
+  data_types: Boolean
+- name: syncPunc
+  summary: 打孔同步信号 标量
+  direction: input
+  data_types: Boolean
+- name: valid
+  summary: 输入样本的有效性 标量
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 输出样本 2×1 列向量
+  direction: output
+  data_types: int8 | int16 | uint8 | uint16 | Boolean | fixdt(0,1,0) | fixdt(S,WL,0) | single | double
+- name: valid
+  summary: 输出数据样本的有效性 标量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: erasure
+  summary: 中性符号位置 2×1 列向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -114,8 +153,19 @@ chinese_source: worker-translation
 中性符号位置，以与输出样本对应的 2×1 列向量形式返回。当 **erasure** 为 `1`（`true`）时，对应的输出 **data** 元素为解打孔后的中性值。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Operation mode
+  summary: 帧结束行为 Continuous（默认） | Frame
+  group: ''
+- name: Puncture vector source
+  summary: 打孔向量来源 Input port（默认） | Property
+  group: ''
+- name: Puncture vector
+  summary: 插入中性值的位置 [1;1;0;1;1;0]（默认） | 二进制值列向量
+  group: ''
+```
 
 ### **Operation mode** — 帧结束行为 `Continuous`（默认） | `Frame`
 
@@ -144,7 +194,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Puncture vector source** 设置为 `Property`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

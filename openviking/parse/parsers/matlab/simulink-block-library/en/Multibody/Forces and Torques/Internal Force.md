@@ -14,16 +14,20 @@ language: en
 # Internal Force
 
 ## Ports
+```yaml
+ports: []
+```
 
 This block contains frame ports **B** and **F**,
 representing base and follower port frames, respectively. A physical
 signal port, **fm**, provides the means to specify
 the internal force acting between the two port frames.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

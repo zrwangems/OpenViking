@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # TCP Send
 
 ## 端口
+```yaml
+ports:
+- name: Enable
+  summary: 允许数据传输 integer
+  direction: input
+- name: Data
+  summary: 要通过 TCP 网络传输的数据 vector
+  direction: input
+  data_types: uint8
+- name: Length
+  summary: 数据向量长度 double
+  direction: input
+- name: Status
+  summary: 已发送字节数 double
+  direction: output
+```
 
 ### 输入
 
@@ -38,8 +54,18 @@ chinese_source: worker-translation
 ### **Status** — 已发送字节数 double
 
 返回传输到客户端设备的 `uint8` 值的数量。
-
 ## 参数
+```yaml
+parameters:
+- name: Send using
+  summary: IP 地址和端口对列表 只读：x.x.x.x:y
+  group: ''
+  block_parameter: socketAddPort
+- name: Sample time
+  summary: 模块采样时间 -1（默认）| 数值
+  group: ''
+  block_parameter: sampleTime
+```
 
 ### **Send using** — IP 地址和端口对列表 只读：`x.x.x.x:y`
 
@@ -64,7 +90,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `sampleTime` |
-
 ## 所属库
 
 Simulink Real-Time / IP

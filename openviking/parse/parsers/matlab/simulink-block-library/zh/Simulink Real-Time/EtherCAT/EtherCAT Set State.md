@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # EtherCAT Set State
 
 ## 端口
+```yaml
+ports:
+- name: New State
+  summary: 传输到 EtherCAT 网络的状态 1 | 2 | 4 | 8
+  direction: input
+- name: Prev State
+  summary: 网络的前一状态 1 | 2 | 4 | 8
+  direction: output
+- name: Error
+  summary: 报告 EtherCAT 状态错误 0 | 整数
+  direction: output
+```
 
 ### 输入
 
@@ -35,8 +47,22 @@ chinese_source: worker-translation
 ### **Error** — 报告 EtherCAT 状态错误 `0` | 整数
 
 如果未发生错误，此端口返回 `0`。否则，返回非零值。
-
 ## 参数
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT 网络标识符 0（默认）| 0-11
+  group: ''
+  block_parameter: device_id
+- name: Timeout
+  summary: 等待网络改变状态的时间 整数
+  group: ''
+  block_parameter: timeout
+- name: Sample time
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT 网络标识符 `0`（默认）| `0-11`
 
@@ -69,7 +95,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`sample_time` |
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

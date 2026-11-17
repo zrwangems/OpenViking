@@ -14,6 +14,17 @@ language: en
 # RMS Measurement
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar
+  direction: input
+  data_types: single | double
+- name: RMS
+  summary: Root-mean-square scalar or vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -32,8 +43,22 @@ corresponding to a specified harmonic. Otherwise, the output is a scalar
 representing the total RMS.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Base frequency (Hz)
+  summary: Fundamental frequency 60 Hz (default) | scalar
+  group: ''
+- name: Specify harmonics
+  summary: RMS output mode off (default) | on
+  group: ''
+- name: Harmonic numbers
+  summary: Harmonics specification [0 1 2] (default) | vector
+  group: ''
+- name: Sample time
+  summary: Block sample time 0 (default) | positive number
+  group: ''
+```
 
 ### **Base frequency (Hz)** — Fundamental frequency `60 Hz` (default) | scalar
 
@@ -68,7 +93,6 @@ If this block is in a masked subsystem, or other variant subsystem that allows e
 continuous and discrete operation, promote the sample time parameter. Promoting the
 sample time parameter ensures correct switching between the continuous and discrete
 implementations of the block. For more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / Measurements

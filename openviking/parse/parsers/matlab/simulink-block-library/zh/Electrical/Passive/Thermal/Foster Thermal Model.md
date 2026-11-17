@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Foster Thermal Model
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 左侧节点热
+  direction: unspecified
+- name: B
+  summary: 右侧节点热
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,19 @@ chinese_source: worker-translation
 ### **B** — 右侧节点热
 
 与右侧节点关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermal resistance data
+  summary: 热阻值 [ 0.0016 0.0043 0.0013 0.0014 ] K/W（默认）
+  group: ''
+- name: Thermal time constant data
+  summary: 热时间常数数据 [ 0.0068 0.064 0.32 2 ] s（默认）
+  group: ''
+- name: Start from steady state
+  summary: 热时间常数数据 On（默认）| Off
+  group: ''
+```
 
 ### **Thermal resistance data** — 热阻值 `[ 0.0016 0.0043 0.0013 0.0014 ]` `K/W`（默认）
 
@@ -39,7 +59,6 @@ chinese_source: worker-translation
 ### **Start from steady state** — 热时间常数数据 `On`（默认）| `Off`
 
 是否将模块初始化为稳态。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Thermal

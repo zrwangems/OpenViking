@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # TSOA Position Estimator
 
 ## 端口
+```yaml
+ports:
+- name: TSOAEst
+  summary: 到达时间和的估计值（秒） 实值 *J*×*L*×*K* 数组
+  direction: input
+  data_types: single | double
+- name: TSOAVar
+  summary: TSOA 估计方差（秒的平方） 实值 *J*×*L* 矩阵 | 实值 *J*×*L*×*K* 数组
+  direction: input
+  data_types: single | double
+- name: TxPos
+  summary: 发射锚点位置（米） 实值 *Q*×*J* 矩阵
+  direction: input
+  data_types: single | double
+- name: RxPos
+  summary: 接收锚点位置（米） 实值 *Q*×*L* 矩阵
+  direction: input
+  data_types: single | double
+- name: TgtPosEst
+  summary: 目标位置估计 实值 *Q*×1 向量
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: 目标位置协方差矩阵 实值半正定 *Q*×*Q* 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -62,8 +89,23 @@ TSOA 估计方差，输入为实值 *J*×*L* 矩阵或实值 *J*×*L*×*K* 数�
 要启用此输出端口，请选中 **Output covariance of TSOA position estimate** 复选框。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst("LightSpeed")（默认）| 正实数标量
+  group: ''
+- name: Output covariances of TSOA position estimates (meters-squared)
+  summary: 输出 TSOA 位置估计的协方差 false (0)（默认）| true (1)
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -110,7 +152,6 @@ TSOA 估计方差，输入为实值 *J*×*L* 矩阵或实值 *J*×*L*×*K* 数�
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

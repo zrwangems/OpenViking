@@ -14,6 +14,15 @@ language: en
 # Reservoir (IL)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Pressure control signal, Pa physical signal
+  direction: input
+- name: A
+  summary: Reservoir inlet isothermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -33,8 +42,19 @@ parameter to `Controlled`.
 ### **A** — Reservoir inlet isothermal liquid
 
 Isothermal liquid conserving port associated with the reservoir inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Reservoir type
+  summary: Specify whether reservoir pressure can change during simulation Constant (default) | Controlled
+  group: ''
+- name: Reservoir pressure specification
+  summary: Specification method for reservoir pressure Atmospheric pressure (default) | Specified pressure
+  group: ''
+- name: Reservoir pressure
+  summary: Pressure in reservoir 0.101325 MPa (default) | positive scalar
+  group: ''
+```
 
 ### **Reservoir type** — Specify whether reservoir pressure can change during simulation `Constant` (default) | `Controlled`
 
@@ -72,7 +92,6 @@ the circuit.
 
 Enabled when the **Reservoir pressure specification** parameter
 is set to `Specified pressure`.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

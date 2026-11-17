@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # CAN FD Replay
 
 ## 端口
+```yaml
+ports:
+- name: CAN Msg
+  summary: 回放的 CAN FD 消息 CAN_FD_MESSAGE_BUS
+  direction: output
+  data_types: CAN_FD_MESSAGE_BUS
+- name: f()
+  summary: 函数调用事件输出 函数调用事件
+  direction: output
+  data_types: function-call event
+```
 
 ### 输出
 
@@ -29,8 +40,28 @@ chinese_source: worker-translation
 当模块接收到新消息时，此端口向函数调用子系统提供触发信号。您可以将其连接到函数调用子系统 (Simulink)，以解包并处理消息。
 
 **数据类型：** `function-call event`
-
 ## 参数
+```yaml
+parameters:
+- name: File name
+  summary: 包含消息的 MAT 文件的路径和名称 untitled.mat（默认）| 文件名
+  group: ''
+- name: Variable name
+  summary: MAT 文件中保存消息的变量 ans（默认）| 变量
+  group: ''
+- name: Number of times to replay messages
+  summary: 重复次数 Inf（默认）| 整数
+  group: ''
+- name: Replay messages to
+  summary: 指定输出位置 CAN FD Bus（默认）| Output port
+  group: ''
+- name: Device
+  summary: CAN FD 设备和通道 设备列表选项
+  group: ''
+- name: Sample time
+  summary: 模块执行速率 0.01（默认）| 数值
+  group: ''
+```
 
 **提示**
 
@@ -59,7 +90,6 @@ chinese_source: worker-translation
 ### **Sample time** — 模块执行速率 `0.01`（默认）| 数值
 
 指定仿真期间模块的采样时间。此值定义了 CAN FD Replay 模块在仿真期间的运行频率。如果模块位于触发子系统内或要继承采样时间，可以将采样时间指定为 `–1`。您也可以为采样时间指定 MATLAB 变量。默认值为 `0.01` 仿真秒。有关详细信息，请参阅 Timing in Hardware Interface Models。
-
 ## 所属库
 
 Vehicle Network Toolbox / CAN FD Communication

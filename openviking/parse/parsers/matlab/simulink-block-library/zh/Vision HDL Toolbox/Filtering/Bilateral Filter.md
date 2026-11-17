@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Bilateral Filter
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 输出像素流 标量 | 向量
+  direction: output
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -58,8 +77,40 @@ chinese_source: worker-translation
 由于该向量只有一个 `valid` 信号，向量中的像素必须全部有效或全部无效。`hStart` 和 `vStart` 信号适用于向量中索引最低的像素。`hEnd` 和 `vEnd` 信号适用于向量中索引最高的像素。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Neighborhood size
+  summary: 用于求平均的图像区域大小 3×3（默认）| 5×5 | 7×7 | 9×9 | 11×11 | 13×13 | 15×15
+  group: 主
+- name: Spatial standard deviation
+  summary: 空间标准差目标 0.5（默认）| 正实数
+  group: 主
+- name: Intensity standard deviation
+  summary: 强度标准差目标 0.5（默认）| 正实数
+  group: 主
+- name: Padding method
+  summary: 填充输入图像边界的方法 Constant（默认）| Replicate | Symmetric | Reflection | None
+  group: 主
+- name: Padding value
+  summary: 用于填充输入图像边界的值 0（默认）| 整数
+  group: 主
+- name: Line buffer size
+  summary: 行内存缓冲区大小 2048（默认）| 正整数
+  group: 主
+- name: Rounding mode
+  summary: 内部定点计算的舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 内部定点计算的溢出模式 on（默认）| off
+  group: 数据类型
+- name: Coefficients
+  summary: '确定滤波器系数数据类型的方法 Inherit: Same as first input（默认）| fixdt(1,16,0) | 数据类型表达式'
+  group: 数据类型
+- name: Output
+  summary: '确定输出像素数据类型的方法 Inherit: Same as first input（默认）| fixdt(1,16,0) | 数据类型表达式'
+  group: 数据类型
+```
 
 ### 主
 
@@ -126,7 +177,6 @@ deviation** 的值来计算系数。较大的邻域会使高斯函数分布更�
 ### **Output** — 确定输出像素数据类型的方法 `Inherit: Same as first input`（默认）| `fixdt(1,16,0)` | 数据类型表达式
 
 滤波后的像素值会被转换为该数据类型。
-
 ## 所属库
 
 Vision HDL Toolbox / Filtering

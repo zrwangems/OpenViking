@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Active Disturbance Rejection Control
 
 ## 端口
+```yaml
+ports:
+- name: r
+  summary: 参考信号标量
+  direction: input
+- name: y
+  summary: 被控对象输出标量
+  direction: input
+- name: u
+  summary: 控制输入标量
+  direction: output
+- name: xhat
+  summary: 估计的扩张状态向量
+  direction: output
+```
 
 ### 输入
 
@@ -43,8 +58,80 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此输出端口，请选择 **Estimated extended states** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Time domain
+  summary: 控制器时域 discrete-time（默认）| continuous-time
+  group: 参数选项卡
+  block_parameter: '''time_domain'''
+  type: 字符向量
+  values: '''discrete-time'' | ''continuous-time'''
+- name: Sample time
+  summary: 控制器采样时间 0.01（默认）| 有限正标量
+  group: 参数选项卡
+  block_parameter: '''Ts'''
+  type: 字符向量
+  values: 有限正标量
+- name: Model type
+  summary: 被控对象阶次类型 first-order（默认）| second-order
+  group: 参数选项卡
+  block_parameter: '''model_type'''
+  type: 字符向量
+  values: '''first-order'' | ''second-order'''
+- name: Critical gain
+  summary: 临界增益 1（默认）| 有限非零标量
+  group: 参数选项卡
+  block_parameter: '''b0'''
+  type: 字符向量
+  values: 有限非零标量
+- name: Controller bandwidth (rad/sec)
+  summary: 控制器带宽 1（默认）| 有限正标量
+  group: 参数选项卡
+  block_parameter: '''wc'''
+  type: 字符向量
+  values: 有限正标量
+- name: Observer bandwidth (rad/sec)
+  summary: 观测器带宽 10（默认）| 有限正标量
+  group: 参数选项卡
+  block_parameter: '''wo'''
+  type: 字符向量
+  values: 有限正标量
+- name: Initial conditions
+  summary: 扩张状态观测器的初始状态值 0（默认）| 标量 | 向量
+  group: 模块选项卡
+  block_parameter: '''x0'''
+  type: 字符向量
+  values: 有限标量 | 向量
+- name: Limit output (u)
+  summary: 将模块输出限制在指定的饱和限值 off（默认）| on
+  group: 模块选项卡
+  block_parameter: '''ulim_checkbox'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Upper limit
+  summary: 模块输出的饱和上限 inf（默认）| 标量
+  group: 模块选项卡
+  block_parameter: '''umax'''
+  type: character vector
+  values: scalar
+  default: '''inf'''
+- name: Lower limit
+  summary: 模块输出的饱和下限 –inf（默认）| 标量
+  group: 模块选项卡
+  block_parameter: '''umin'''
+  type: character vector
+  values: scalar
+  default: '''–inf'''
+- name: Estimated extended states (xhat)
+  summary: 从观测器输出估计状态 off（默认）| on
+  group: 模块选项卡
+  block_parameter: '''xhat_checkbox'''
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 参数选项卡
 
@@ -215,7 +302,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink Control Design / Adaptive Control

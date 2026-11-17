@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Capacitor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气端口
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气端口
+  direction: conserving
+- name: H
+  summary: 电容器热质量热端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -31,8 +43,104 @@ chinese_source: worker-translation
 *自 R2024a 起*
 
 与电容器热质量相关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Capacitance model
+  summary: 电容器类型 Constant（默认）| Lookup table | Dielectric relaxation (Debye)
+  group: 主要
+- name: Capacitance
+  summary: 标称电容 1e-6 F（默认）
+  group: 主要
+- name: Capacitance values
+  summary: 电容值向量 [1e-05, 1e-06] F（默认）| 正向量
+  group: 主要
+- name: Corresponding voltage values
+  summary: 电压值输入向量 [0, 10] V（默认）
+  group: 主要
+- name: Symmetric C-V table
+  summary: 表数据 Yes - use voltage magnitude when computing C（默认）| No - use C-V data as-is
+  group: 主要
+- name: Frequencies for specifying dissipation factors [f1 f2]
+  summary: 用于计算耗散因数的频率 [1, 10] kHz（默认）
+  group: 主要
+- name: Dissipation factors (%) at f1 and f2 [DF1 DF2]
+  summary: f1 和 f2 处的耗散因数 [.8, 1.2]（默认）
+  group: 主要
+- name: Capacitance tolerance (%)
+  summary: 电容器容差 5（默认）
+  group: 主要
+- name: Tolerance application
+  summary: 容差应用方式 None — use nominal value（默认）| Random tolerance | Apply maximum tolerance value | Apply minimum tolerance
+    value
+  group: 主要
+- name: Tolerance distribution
+  summary: 容差分布类型 Uniform（默认）| Gaussian
+  group: 主要
+- name: Number of standard deviations for quoted tolerance
+  summary: 标称容差的标准差数 4（默认）
+  group: 主要
+- name: Series resistance
+  summary: 串联电阻 1e-6 Ohm（默认）
+  group: 主要
+- name: Parallel conductance
+  summary: 并联泄漏路径 0 1/Ohm（默认）
+  group: 主要
+- name: Averaging period for power logging
+  summary: 功率记录的平均周期 0 s（默认）
+  group: 主要
+- name: Enable operating limits
+  summary: 启用工作限值 No（默认）| Yes
+  group: 工作限值
+- name: Reporting if operating limits exceeded
+  summary: 报告行为 Warn（默认）| Error
+  group: 工作限值
+- name: Working voltage range
+  summary: 工作电压范围 [-25, 25] V（默认）
+  group: 工作限值
+- name: Power rating
+  summary: 最大瞬时功率耗散 1 W（默认）
+  group: 工作限值
+- name: Temperature
+  summary: 最高允许温度 85 degC（默认）
+  group: 工作限值
+- name: Model thermal port
+  summary: 建模热端口的选项 off（默认）| on
+  group: 热
+- name: Thermal mass
+  summary: 与热端口相关联的热质量 1 J/K（默认）
+  group: 热
+- name: Capacitor fault
+  summary: 在电容器中建模故障的选项 Add fault（默认）
+  group: 故障
+- name: Faulted capacitance as % of unfaulted
+  summary: 故障电容占未故障电容的百分比 100（默认）| 正标量
+  group: 故障
+- name: Faulted series resistance
+  summary: 故障串联电阻 1e-3 Ohm（默认）| 有限正标量
+  group: 故障
+- name: Faulted parallel conductance
+  summary: 故障并联电导 0 1/Ohm（默认）| 有限非负标量
+  group: 故障
+- name: Fault transition time constant
+  summary: 故障过渡时间常数 1e-3 s（默认）| 正标量
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible temperature
+  summary: 最高允许温度 85 degC（默认）| 非负标量
+  group: 故障
+- name: Time to fail when exceeding maximum temperature
+  summary: 超过最高温度时的失效时间 1 s（默认）| 非负标量
+  group: 故障
+- name: Permissible voltage range
+  summary: 最小和最大允许电压 [-100, 100] V（默认）| 长度为 2 的向量
+  group: 故障
+- name: Time to fail when exceeding voltage range
+  summary: 超过电压范围时的失效时间 1 s（默认）| 非负标量
+  group: 故障
+```
 
 ### 主要
 
@@ -287,7 +395,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Behavioral`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

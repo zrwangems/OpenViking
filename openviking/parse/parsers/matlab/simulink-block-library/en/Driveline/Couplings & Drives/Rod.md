@@ -14,6 +14,15 @@ language: en
 # Rod
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base translational mechanical
+  direction: conserving
+- name: F
+  summary: Follower translational mechanical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,52 @@ input.
 
 Translational conserving port associated with rod follower or
 output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Parameterization method By stiffness and inertia (default) | By material and geometry
+  group: Rod
+- name: Stiffness
+  summary: Material stiffness 5e8 N/m (default) | non-negative scalar
+  group: Rod
+- name: Mass
+  summary: Rod mass 20 kg (default) | positive scalar
+  group: Rod
+- name: Geometry
+  summary: Rod cross-section Solid (default) | Annular
+  group: Rod
+- name: Length
+  summary: Rod length 1 m (default) | positive scalar
+  group: Rod
+- name: Outer diameter
+  summary: Rod outer diameter 0.075 m (default) | positive scalar
+  group: Rod
+- name: Inner diameter
+  summary: Rod inner diameter 0.050 m (default) | positive scalar
+  group: Rod
+- name: Density
+  summary: Material density 7.8e3 kg/m^3 (default) | positive scalar
+  group: Rod
+- name: Young's modulus
+  summary: Young's modulus 200e9 Pa (default) | positive scalar
+  group: Rod
+- name: Damping ratio
+  summary: Material damping ratio 0.01 (default) | non-negative scalar
+  group: Rod
+- name: Number of flexible elements
+  summary: '*N* 1 (default) | positive integer scalar'
+  group: Rod
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: Viscous friction coefficients [0, 0] N/(m/s) (default) | non-negative vector
+  group: Viscous Losses
+- name: Initial deflection
+  summary: Initial deflection 0 m (default) | non-negative scalar
+  group: Initial Conditions
+- name: Initial velocity
+  summary: Initial velocity 0 m/s (default) | non-negative scalar
+  group: Initial Conditions
+```
 
 ### Rod
 
@@ -180,7 +233,6 @@ base, **B**, end of the rod relative to the follower,
 Longitudinal velocity of the base, **B**, end of the
 rod relative to the follower, **F**, end of the rod at
 the start of simulation.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

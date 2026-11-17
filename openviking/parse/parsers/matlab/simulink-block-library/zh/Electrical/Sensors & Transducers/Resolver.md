@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Resolver
 
 ## 端口
+```yaml
+ports:
+- name: p1
+  summary: 初级绕组正极端子电气
+  direction: conserving
+- name: p2
+  summary: 初级绕组负极端子电气
+  direction: conserving
+- name: R
+  summary: 旋转变压器转子机械旋转
+  direction: conserving
+- name: C
+  summary: 旋转变压器壳体机械旋转
+  direction: conserving
+- name: x1
+  summary: 次级绕组 *x* 正极端子电气
+  direction: conserving
+- name: x2
+  summary: 次级绕组 *x* 负极端子电气
+  direction: conserving
+- name: y1
+  summary: 次级绕组 *y* 正极端子电气
+  direction: conserving
+- name: y2
+  summary: 次级绕组 *y* 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -49,8 +76,44 @@ chinese_source: worker-translation
 ### **y2** — 次级绕组 *y* 负极端子电气
 
 与次级绕组 *y* 负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 旋转变压器参数化 Specify transformation ratio and omit dynamics（默认）| Specify transformation ratio and measured impedances
+    | Specify equation parameters directly
+  group: ''
+- name: Transformation ratio
+  summary: 峰值输出电压与输入电压之比 0.5（默认）| 正数
+  group: ''
+- name: Rotor resistance
+  summary: 初级电阻 70 Ohm（默认）| 正数
+  group: ''
+- name: Stator resistance
+  summary: 次级电阻 180 Ohm（默认）| 正数
+  group: ''
+- name: Rotor reactance
+  summary: 初级电抗 100 Ohm（默认）| 正数
+  group: ''
+- name: Stator reactance
+  summary: 次级电抗 300 Ohm（默认）| 正数
+  group: ''
+- name: Frequency at which reactances and transformation ratio are specified
+  summary: 正弦源频率 10 kHz（默认）| 正数
+  group: ''
+- name: Rotor inductance
+  summary: 初级电抗 0.0016 H（默认）| 正数
+  group: ''
+- name: Stator inductance
+  summary: 次级电抗 0.0048 H（默认）| 正数
+  group: ''
+- name: Peak coefficient of coupling
+  summary: 最大耦合系数 0.35（默认）| 介于零和一之间（不含端点）的数
+  group: ''
+- name: Number of pole pairs
+  summary: 转子极对数 1（默认）| 正数
+  group: ''
+```
 
 ### **Parameterization** — 旋转变压器参数化 `Specify transformation ratio and omit dynamics`（默认）| `Specify transformation ratio and measured impedances` | `Specify equation parameters directly`
 
@@ -135,7 +198,6 @@ chinese_source: worker-translation
 ### **Number of pole pairs** — 转子极对数 `1`（默认）| 正数
 
 转子上的极对数。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

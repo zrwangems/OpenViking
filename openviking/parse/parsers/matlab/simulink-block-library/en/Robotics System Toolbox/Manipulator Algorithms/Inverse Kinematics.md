@@ -14,6 +14,28 @@ language: en
 # Inverse Kinematics
 
 ## Ports
+```yaml
+ports:
+- name: Pose
+  summary: End-effector pose 4-by-4 homogeneous transform
+  direction: input
+  data_types: single | double
+- name: Weights
+  summary: Weights for pose tolerances six-element vector
+  direction: input
+  data_types: single | double
+- name: InitialGuess
+  summary: Initial guess of robot configuration vector
+  direction: input
+  data_types: single | double
+- name: Config
+  summary: Robot configuration solution vector
+  direction: output
+  data_types: single | double
+- name: Info
+  summary: Solution information bus
+  direction: output
+```
 
 ### Input
 
@@ -70,8 +92,55 @@ these elements:
 - `Status` — Character vector describing whether the
   solution is within the tolerance (`1`) or is the best possible
   solution the algorithm could find (`2`).
-
 ## Parameters
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: Rigid body tree model twoJointRigidBodyTree (default) | rigidBodyTree object
+  group: Block Parameters
+- name: End effector
+  summary: End-effector name 'tool' | Select body
+  group: Block Parameters
+- name: Show solution diagnostic outputs
+  summary: Enable info port on (default) | off
+  group: Block Parameters
+- name: Solver
+  summary: Algorithm for solving inverse kinematics BFGS Gradient Projection (default) | Levenberg-Marquardt | fminconsqp
+  group: Solver Parameters
+- name: Enforce joint limits
+  summary: Enforce rigid body tree joint limits on (default) | off
+  group: Solver Parameters
+- name: Maximum iterations
+  summary: Maximum number of iterations 1500 (default) | positive integer
+  group: Solver Parameters
+- name: Maximum time
+  summary: Maximum number of seconds 10 (default) | positive scalar
+  group: Solver Parameters
+- name: Gradient tolerance
+  summary: Threshold on gradient of cost function 1e-7 (default) | positive scalar
+  group: Solver Parameters
+- name: Solution tolerance
+  summary: Threshold on pose error 1e-6 (default) | positive scalar
+  group: Solver Parameters
+- name: Step tolerance
+  summary: Minimum step size 1e-14 (default) | positive scalar
+  group: Solver Parameters
+- name: Error change tolerance
+  summary: Threshold on change in pose error 1e-12 (default) | positive scalar
+  group: Solver Parameters
+- name: Use error damping
+  summary: Enable error damping on (default) | off
+  group: Solver Parameters
+- name: Damping bias
+  summary: Damping on cost function 0.0025 (default) | positive scalar
+  group: Solver Parameters
+- name: Constraint tolerance
+  summary: Threshold of the constraint violations 1e-6 (default) | nonnegative numeric scalar
+  group: Solver Parameters
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Solver Parameters
+```
 
 ### Block Parameters
 
@@ -196,7 +265,6 @@ To enable this parameter, set the **Solver** parameter to
   `Interpreted execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Manipulator Algorithms

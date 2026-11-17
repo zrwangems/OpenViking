@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Harmonic Drive
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基座轴机械旋转
+  direction: conserving
+- name: F
+  summary: 从动轴机械旋转
+  direction: conserving
+- name: C
+  summary: 圆形花键机械旋转
+  direction: conserving
+- name: H
+  summary: 传热热端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -47,8 +62,98 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Friction model** 设置为 `Temperature-dependent efficiency` 或 `Temperature and load-dependent efficiency`。
-
 ## 参数
+```yaml
+parameters:
+- name: Ring gear rotation
+  summary: 模拟齿圈运动的选项 off（默认）| on
+  group: 主要
+- name: Number of teeth on elliptical gear
+  summary: 椭圆齿轮齿数 100（默认）| 正标量
+  group: 主要
+- name: Number of teeth on circular gear
+  summary: 圆形齿轮齿数 102（默认）| 正标量
+  group: 主要
+- name: Friction model
+  summary: 齿轮摩擦模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Load-dependent efficiency | Temperature-dependent
+    efficiency | Temperature and load-dependent efficiency
+  group: 啮合损耗
+- name: Efficiency
+  summary: 扭矩传递效率 0.95（默认）| (0, 1] 范围内的正标量
+  group: 啮合损耗
+- name: Follower power threshold
+  summary: 应用完整效率因子的功率阈值 0.001 W（默认）| 正标量
+  group: 啮合损耗
+- name: Input shaft torque at no load
+  summary: 空载时输入轴上的净扭矩 0.1 N*m（默认）| 正标量
+  group: 啮合损耗
+- name: Nominal output torque
+  summary: 效率归一化时的扭矩值 5 N*m（默认）| 正标量
+  group: 啮合损耗
+- name: Efficiency at nominal output torque
+  summary: 传递效率 0.95（默认）| (0,1] 范围内的正标量
+  group: 啮合损耗
+- name: Follower angular velocity threshold
+  summary: 应用完整效率因子的角速度阈值 0.01 rad/s（默认）| 正标量
+  group: 啮合损耗
+- name: Temperature
+  summary: 用于效率表格参数化的温度数组 [280 300 320] K（默认）| 向量
+  group: 啮合损耗
+- name: Efficiency
+  summary: 齿轮效率数组 [0.95 0.9 0.85]（默认）| 向量
+  group: 啮合损耗
+- name: Follower power threshold
+  summary: 应用数值平滑的功率阈值 0.001 W（默认）| 正标量
+  group: 啮合损耗
+- name: Load at elliptical gear
+  summary: 用于效率表格参数化的椭圆齿轮负载 [1 5 10] N*m（默认）| 数值数组
+  group: 啮合损耗
+- name: Efficiency matrix
+  summary: 用于效率表格参数化的效率数组 [ 0.85 0.8 0.75; 0.95 0.9 0.85; 0.85 0.8 0.7 ]（默认）| 数值数组
+  group: 啮合损耗
+- name: Follower angular velocity threshold
+  summary: 应用数值平滑的角速度阈值 0.01 rad/s（默认）| 正标量
+  group: 啮合损耗
+- name: Friction model
+  summary: 摩擦模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Temperature-dependent efficiency
+  group: 啮合损耗
+- name: Sun-planet and ring-planet ordinary efficiencies
+  summary: 扭矩传递效率向量 [.96, .98]（默认）| 向量
+  group: 啮合损耗
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 向量
+  group: 啮合损耗
+- name: Sun-planet efficiency
+  summary: 太阳轮到行星轮的扭矩传递效率 [.95, .9, .85]（默认）| 向量
+  group: 啮合损耗
+- name: Ring-planet efficiency
+  summary: 齿圈到行星轮的扭矩传递效率 [.95, .9, .85]（默认）| 向量
+  group: 啮合损耗
+- name: Sun-carrier and planet-carrier power thresholds
+  summary: 太阳轮-行星架和行星轮-行星架齿轮耦合的最小效率功率阈值 [.001, .001] W（默认）| 向量
+  group: 啮合损耗
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: 流体动力摩擦系数 [0 0] N*m/(rad/s)（默认）| 正二元素向量
+  group: 粘性损耗
+- name: Inertia
+  summary: 包含惯性的选项 off（默认）| on
+  group: 惯性
+- name: Wave generator gear inertia
+  summary: 波发生器齿轮的惯性 0.001 kg*m^2（默认）| 正标量
+  group: 惯性
+- name: Flexspline gear inertia
+  summary: 柔性花键齿轮的惯性 0.0005 kg*m^2（默认）| 正标量
+  group: 惯性
+- name: Ring gear inertia
+  summary: 齿圈惯性 0.001 kg*m^2（默认）| 正标量
+  group: 惯性
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 正标量
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 正标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -295,7 +400,6 @@ chinese_source: worker-translation
 ### **Initial temperature** — 初始温度 `300` `K`（默认）| 正标量
 
 仿真开始时组件的温度。初始温度根据您指定的效率向量改变组件效率，影响起始啮合或摩擦损耗。
-
 ## 所属库
 
 Simscape / Driveline / Gears

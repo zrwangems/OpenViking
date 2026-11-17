@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Testbench Task
 
 ## 端口
+```yaml
+ports:
+- name: Timer Task Function Call
+  summary: 来自定时器驱动任务的函数调用输入端口 scalar
+  direction: input
+```
 
 ### 输入
 
 ### **Timer Task Function Call** — 来自定时器驱动任务的函数调用输入端口 scalar
 
 此端口接受来自 Task Manager 模块的定时器驱动任务事件端口的函数调用事件信号。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 SoC Blockset / Processor Testbench

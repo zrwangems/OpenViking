@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Ejector (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 一次入口湿空气
+  direction: conserving
+- name: B
+  summary: 出口湿空气
+  direction: conserving
+- name: S
+  summary: 二次入口湿空气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,46 @@ chinese_source: worker-translation
 ### **S** — 二次入口湿空气
 
 与二次入口关联的湿空气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Primary nozzle throat area
+  summary: 一次喷嘴喉部面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Area ratio of nozzle exit to throat
+  summary: 喷嘴出口与喉部面积比 3（默认）| 正标量
+  group: ''
+- name: Area ratio of mixing chamber to throat
+  summary: 混合室与喉部面积比 8（默认）| 正标量
+  group: ''
+- name: Minimum area ratio of secondary throat to primary throat
+  summary: 二次喉部与一次喉部气动面积比的下限 0.1（默认）| 正标量
+  group: ''
+- name: Report when secondary throat area falls below minimum
+  summary: 二次喉部面积低于最小值时的通知方式 Warning（默认）| None | Error
+  group: ''
+- name: Efficiency for primary flow through nozzle
+  summary: 一次流通过喷嘴的效率因子 0.95（默认）| 正标量
+  group: ''
+- name: Efficiency for secondary suction flow
+  summary: 二次引射流的效率因子 0.85（默认）| 正标量
+  group: ''
+- name: Efficiency for primary flow expansion
+  summary: 一次流膨胀的效率因子 0.88（默认）| 正标量
+  group: ''
+- name: Efficiency for mixing
+  summary: 混合导致的混合流速度效率因子 0.84（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 端口 A 的横截面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port B
+  summary: 端口 B 的横截面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port S
+  summary: 端口 S 的横截面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Primary nozzle throat area** — 一次喷嘴喉部面积 `1e-4` `m^2`（默认）| 正标量
 
@@ -79,7 +129,6 @@ chinese_source: worker-translation
 ### **Cross-sectional area at port S** — 端口 S 的横截面积 `0.01` `m^2`（默认）| 正标量
 
 端口 **S** 的横截面积。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Turbomachinery

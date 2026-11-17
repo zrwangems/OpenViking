@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # External Force Source (PB)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 控制信号，N 物理信号
+  direction: input
+- name: R
+  summary: 向基于位置的机械平移网络施加外力的端口
+  direction: input
+```
 
 ### 输入
 
@@ -27,11 +36,12 @@ chinese_source: worker-translation
 ### **R** — 向基于位置的机械平移网络施加外力的端口
 
 基于位置的机械平移守恒端口，将模块连接到电路，并向物理网络施加外力。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Sources

@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Inverse Decoupled Transform (Six-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: dqz1z2o1o2
+  summary: 直轴、交轴、*z1*、*z2*、*o1* 和 *o2* 分量向量
+  direction: input
+  data_types: single | double
+- name: θelec
+  summary: 旋转角度标量
+  direction: input
+  data_types: single | double
+- name: abc
+  summary: '*a* 相、*b* 相和 *c* 相分量向量'
+  direction: output
+  data_types: single | double
+- name: xyz
+  summary: '*x* 相、*y* 相和 *z* 相分量向量'
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,13 +61,17 @@ chinese_source: worker-translation
 *xyz* 参考坐标系中三相系统的分量，以向量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase-a axis alignment
+  summary: '*dqz1z2o1o2* 参考坐标系对齐方式 Q-axis（默认）| D-axis'
+  group: ''
+```
 
 ### **Phase-a axis alignment** — *dqz1z2o1o2* 参考坐标系对齐方式 `Q-axis`（默认）| `D-axis`
 
 是否将 *abc* 参考坐标系的 *a* 相向量与旋转参考坐标系的 *d* 轴或 *q* 轴对齐。
-
 ## 所属库
 
 Simscape / Electrical / Control / Mathematical Transforms

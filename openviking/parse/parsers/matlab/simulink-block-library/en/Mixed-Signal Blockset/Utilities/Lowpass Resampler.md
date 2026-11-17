@@ -14,6 +14,17 @@ language: en
 # Lowpass Resampler
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Discrete time input signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: out
+  summary: Continuous time output signal scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -31,8 +42,51 @@ Continuous time output signal, returned as a fixed-step or variable-step
 scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit output rise/fall time
+  summary: Inherit output rise/fall time from fixed-step input sample time on (default) | off
+  group: ''
+- name: Output rise/fall time
+  summary: 20%−80% output rise/fall time 1e-10 (default) | positive real scalar
+  group: ''
+  block_parameter: OutputRiseFall
+  type: character vector
+  values: positive real scalar
+  default: 1e-10
+- name: Number of samples of delay
+  summary: Number of samples of propagation delay for fixed-step operation 1 (default) | positive real scalar
+  group: ''
+  block_parameter: NDelay
+  type: character vector
+  values: positive real scalar
+  default: '1'
+- name: Output sample time
+  summary: Type of output sample time Inherited (default) | Fixed step discrete | Variable step discrete
+  group: ''
+  block_parameter: OutputTsType
+  type: character vector
+  values: Fixed step discrete | Variable step discrete
+  default: Inherited
+- name: Samples out per rise/fall time
+  summary: Number of output samples in single output rise/fall time 5 (default) | positive real scalar
+  group: ''
+  block_parameter: OutputTsRatio
+  type: character vector
+  values: positive real scalar
+  default: '5'
+- name: Enable large buffer
+  summary: Enable extra buffer samples on (default) | off
+  group: ''
+- name: Number of extra buffer samples
+  summary: Number of extra buffer samples to support sample delays 10 (default) | positive real scalar
+  group: ''
+  block_parameter: NBuffer
+  type: character vector
+  values: positive real scalar
+  default: '10'
+```
 
 ### **Inherit output rise/fall time** — Inherit output rise/fall time from fixed-step input sample time on (default) | off
 
@@ -152,7 +206,6 @@ specified as a positive real scalar.
 | **Type:** character vector |
 | **Values:** positive real scalar |
 | **Default:** `10` |
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

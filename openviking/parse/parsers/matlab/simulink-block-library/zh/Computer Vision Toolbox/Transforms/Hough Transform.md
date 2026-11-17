@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Hough Transform
 
 ## 端口
+```yaml
+ports:
+- name: BW
+  summary: 二值图像矩阵
+  direction: input
+  data_types: Boolean
+- name: Hough
+  summary: 参数空间矩阵
+  direction: output
+  data_types: single | double | fixed point
+- name: Theta
+  summary: Theta 值向量
+  direction: output
+  data_types: single | double | fixed point
+- name: Rho
+  summary: Rho 值向量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -50,8 +69,25 @@ Rho 值，以数值向量形式返回。每个元素表示对应直线距图像�
 要启用此端口，必须选择 **Output theta and rho values** 参数。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Theta resolution (radians)
+  summary: Theta 分辨率 pi/180（默认）| 正标量
+  group: 主
+- name: Rho resolution (pixels)
+  summary: Rho 分辨率 1（默认）| 正标量
+  group: 主
+- name: Output theta and rho values
+  summary: 启用 Theta 和 Rho 输出端口 off（默认）| on
+  group: 主
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single | Specify via Fixed-point tab
+  group: 主
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主
 
@@ -78,7 +114,6 @@ Rho 值，以数值向量形式返回。每个元素表示对应直线距图像�
 ### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数以防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Transforms

@@ -14,6 +14,21 @@ language: en
 # Receive Service Request
 
 ## Ports
+```yaml
+ports:
+- name: IsNew
+  summary: New service request indicator 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Req
+  summary: Service request message non-virtual bus
+  direction: output
+  data_types: bus
+- name: DefaultResp
+  summary: Default response message non-virtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -45,8 +60,51 @@ default response message type.
   output port** parameter.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Name
+  summary: Service name character vector
+  group: ''
+- name: Type
+  summary: Service type character vector
+  group: ''
+- name: Paired Send Response Block
+  summary: Path to paired Send Service Response block block path
+  group: ''
+- name: Sample time
+  summary: Interval between outputs –1 (default) | scalar
+  group: ''
+- name: Show Default Response output port
+  summary: Enable default response output port on (default) | off
+  group: ''
+- name: History
+  summary: Mode of storing requests in the queue Keep last (default) | Keep all
+  group: ''
+- name: Depth
+  summary: Size of the request queue 1 (default) | non-negative scalar integer
+  group: ''
+- name: Reliability
+  summary: Delivery guarantee of requests Reliable (default) | Best effort
+  group: ''
+- name: Durability
+  summary: Persistence of requests Volatile (default) | Transient local
+  group: ''
+- name: Deadline
+  summary: Maximum amount of time allowed between receiving a service request and sending response Inf (default) | positive
+    scalar
+  group: ''
+- name: Lifespan
+  summary: Length of time a service request is considered valid Inf (default) | positive scalar
+  group: ''
+- name: Liveliness
+  summary: Level of liveliness reporting provided by the block and expected from service clients automatic (default)
+  group: ''
+- name: Lease Duration
+  summary: Maximum amount of time before which a connected service client has to assert liveliness Inf (default) | positive
+    scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -205,7 +263,6 @@ connected to the server can assert liveliness for infinite period of time.
 
 The quality of service settings must be compatible between service servers and clients for
 a connection to be made.
-
 ## Libraries
 
 ROS Toolbox / ROS 2

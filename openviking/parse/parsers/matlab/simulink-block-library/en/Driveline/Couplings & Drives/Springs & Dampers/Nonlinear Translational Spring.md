@@ -14,6 +14,15 @@ language: en
 # Nonlinear Translational Spring
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Follower port mechanical rotational
+  direction: conserving
+- name: R
+  summary: Base port mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,37 @@ end.
 
 Mechanical rotational conserving port associated with the base
 end.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Method to characterize spring behavior By polynomial (default) | By table lookup
+  group: ''
+- name: Symmetry
+  summary: Spring behavior versus zero deformation position Symmetric (default) | Two-sided
+  group: ''
+- name: Vector of spring coefficients
+  summary: Symmetric deformation polynomial coefficients [100, 0, 10, 0, 1] N/m (default) | vector
+  group: ''
+- name: Vector of spring tension coefficients
+  summary: Positive two-sided deformation polynomial coefficients [100, 0, 10, 0, 1] N/m (default)
+  group: ''
+- name: Vector of spring compression coefficients
+  summary: Negative two-sided deformation polynomial coefficients [1000, -10, 100, 0, 0] N/m (default)
+  group: ''
+- name: Deformation vector
+  summary: Deformation due to force table lookup entry [-1, -.5, -.3, -.1, .1, .3, .5, 1] (default)
+  group: ''
+- name: Force vector
+  summary: Applied force table lookup entry [-1000, -400, -200, -50, 50, 200, 400, 1000] (default)
+  group: ''
+- name: Interpolation method
+  summary: Method of interpolation between breakpoint values Smooth (default) | Linear
+  group: ''
+- name: Extrapolation method
+  summary: Method of handling input values that fall outside range of breakpoint data set Linear (default) | Nearest | Error
+  group: ''
+```
 
 ### **Parameterization** — Method to characterize spring behavior `By polynomial` (default) | `By table lookup`
 
@@ -133,7 +171,6 @@ nonlinearity by using vector data to map input values to output values:
   the simulation stops and generates an error.
 
 For more information, see `tablelookup`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

@@ -14,6 +14,41 @@ language: en
 # LDPC Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input LLR values scalar | column vector
+  direction: input
+  data_types: int8 | int16 | fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: iter
+  summary: Number of iterations scalar
+  direction: input
+  data_types: uint8
+- name: data
+  summary: Decoded data bits scalar | column vector
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: actIter
+  summary: Actual number of iterations scalar
+  direction: output
+  data_types: uint8
+- name: parityCheck
+  summary: Parity check status indicator scalar
+  direction: output
+  data_types: Boolean
+- name: nextFrame
+  summary: Ready for new inputs scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -122,8 +157,40 @@ frame in progress and begins processing the new data.
 For more information, see Using the nextFrame Output Signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Parity-check matrix
+  summary: QC-LDPC matrix [5 14 12 1 2 37 45 26 24 0 3 -1 34 7 46 10 -1 -1 -1 -1; 0 35 1 26 0 10 16 16 34 4 2 23 0 51 -1 49
+    20 -1 -1 -1; 12 28 22 46 3 16 51 2 25 29 19 18 52 -1 37 -1 34 39 -1 -1; 0 51 16 31 13 39 27 33 8 27 53 13 -1 52 33 -1
+    -1 38 7 -1; 36 6 3 51 4 19 4 45 48 9 -1 11 22 23 43 -1 -1 -1 14 1] (default) | any QC-LDPC matrix with circulant weight
+    1
+  group: ''
+- name: Block size
+  summary: Size of block 56 (default) | integer in the range [2, 512]
+  group: ''
+- name: Algorithm
+  summary: Type of algorithm Min-sum (default) | Normalized min-sum
+  group: ''
+- name: Scaling factor
+  summary: Scaling factor 0.75 (default) | values in the range from 0.5 to 1, incremented by 0.0625
+  group: ''
+- name: Decoding termination criteria
+  summary: Termination criteria Max (default) | Early
+  group: ''
+- name: Source for number of iterations
+  summary: Source selection for number of iterations Property (default) | Input port
+  group: ''
+- name: Number of iterations
+  summary: Number of iterations 8 (default) | integer in the range [1, 63]
+  group: ''
+- name: Maximum number of iterations
+  summary: Maximum number of iterations 8 (default) | integer in the range [1, 63]
+  group: ''
+- name: Enable parity check output port
+  summary: Parity check status off (default) | on
+  group: ''
+```
 
 ### **Parity-check matrix** — QC-LDPC matrix `[5 14 12 1 2 37 45 26 24 0 3 -1 34 7 46 10 -1 -1 -1 -1; 0 35 1 26 0 10 16 16 34 4 2 23 0 51 -1 49 20 -1 -1 -1; 12 28 22 46 3 16 51 2 25 29 19 18 52 -1 37 -1 34 39 -1 -1; 0 51 16 31 13 39 27 33 8 27 53 13 -1 52 33 -1 -1 38 7 -1; 36 6 3 51 4 19 4 45 48 9 -1 11 22 23 43 -1 -1 -1 14 1]` (default) | any QC-LDPC matrix with circulant weight 1
 
@@ -214,7 +281,6 @@ criteria** parameter to `Early` and the
 
 Select this parameter to enable the **parityCheck** output port to
 view the status of the parity check.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

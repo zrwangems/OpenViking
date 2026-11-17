@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Bias
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,22 @@ chinese_source: worker-translation
 将偏置添加到输入信号后得到的输出信号。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Bias
+  summary: 要添加到输入信号的偏移量 0.0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: Bias
+  type: 字符向量
+  values: 实数、有限值
+  default: '''0.0'''
+- name: Saturate on integer overflow
+  summary: 溢出操作方式 off（默认）| on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+```
 
 ### **Bias** — 要添加到输入信号的偏移量 `0.0`（默认）| 标量 | 向量
 
@@ -73,7 +98,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `SaturateOnIntegerOverflow` |
 | **值：** | `'off'`（默认）| `'on'` |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

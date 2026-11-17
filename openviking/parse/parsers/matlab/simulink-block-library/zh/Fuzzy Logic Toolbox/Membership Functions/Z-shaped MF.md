@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Z-shaped MF
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入值 标量 | 向量
+  direction: input
+- name: Z MF
+  summary: 隶属度值 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,20 @@ chinese_source: worker-translation
 ### **Z MF** — 隶属度值 标量 | 向量
 
 隶属度值，以标量或向量形式返回。**Z MF** 的维度与 **x** 的维度一致。**Z MF** 的每个元素是为 **x** 中对应元素计算得到的隶属度值。
-
 ## 参数
+```yaml
+parameters:
+- name: Left point a
+  summary: 过渡区域最左点 -3（默认）| 标量
+  group: ''
+  block_parameter: a
+  type: string、字符向量
+- name: Right point b
+  summary: 过渡区域最右点 3（默认）| 标量
+  group: ''
+  block_parameter: b
+  type: string、字符向量
+```
 
 ### **Left point a** — 过渡区域最左点 `-3`（默认）| 标量
 
@@ -53,7 +74,6 @@ chinese_source: worker-translation
 | **模块参数：** `b` |
 | **类型：** string、字符向量 |
 | **默认：** `"3"` |
-
 ## 所属库
 
 Fuzzy Logic Toolbox / Membership Functions

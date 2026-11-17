@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Vector Quantizer Encoder
 
 ## 端口
+```yaml
+ports:
+- name: U
+  summary: 输入数据值 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: C
+  summary: 码本值 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: W
+  summary: 加权因子 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: I
+  summary: 索引值 标量 | 行向量
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Q(U)
+  summary: 输出码字 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: D
+  summary: 量化误差 标量 | 行向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -78,8 +105,61 @@ chinese_source: worker-translation
 该模块根据输入数据的数据类型来分配量化误差的数据类型。如果量化误差是定点数，它必须仅为有符号值。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 码本来源
+  summary: 码本来源 Specify via dialog（默认）| Input port
+  group: 主选项卡
+- name: 码本
+  summary: 码本值 [1.5 13.3 136.4 6.8 ; 2.5 14.3 137.4 7.8; 3.5 15.3 138.4 8.8]（默认）
+  group: 主选项卡
+- name: 失真度量
+  summary: 失真度量 Squared error（默认）| Weighted squared error
+  group: 主选项卡
+- name: 加权因子来源
+  summary: 加权因子来源 Specify via dialog（默认）| Input port
+  group: 主选项卡
+- name: 加权因子
+  summary: 加权因子 [1 1 1]（默认）| 向量
+  group: 主选项卡
+- name: 平局决胜规则
+  summary: 平局决胜规则 Choose the lower index（默认）| Choose the higher index
+  group: 主选项卡
+- name: 输出码字
+  summary: 输出码字 off（默认）| on
+  group: 主选项卡
+- name: 输出量化误差
+  summary: 输出量化误差 off（默认）| on
+  group: 主选项卡
+- name: 索引输出数据类型
+  summary: 索引输出数据类型 int32（默认）| int8 | uint8 | int16 | uint16 | uint32 | Inherit via back propagation
+  group: 主选项卡
+- name: 舍入模式
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: 整数溢出时饱和
+  summary: 整数溢出时饱和 off（默认）| on
+  group: 数据类型选项卡
+- name: 乘积输出
+  summary: 乘积输出数据类型 Same as input（默认）| Binary point scaling
+  group: 数据类型选项卡
+- name: 字长
+  summary: 乘积输出字长 16（默认）| 范围 [2,128] 内的正整数
+  group: 数据类型选项卡
+- name: 小数长度
+  summary: 乘积输出小数长度 15（默认）| 整数
+  group: 数据类型选项卡
+- name: 累加器
+  summary: 累加器数据类型 Same as product output（默认）| Same as input | Binary point scaling
+  group: 数据类型选项卡
+- name: 字长
+  summary: 累加器字长 16（默认）| 范围 [2,128] 内的正整数
+  group: 数据类型选项卡
+- name: 小数长度
+  summary: 累加器小数长度 15（默认）| 整数
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -221,7 +301,6 @@ D=∑j=1kwj(aji−ujp)2
 #### 依赖关系
 
 要启用此参数，请将**累加器**参数设置为 `Binary point scaling`。
-
 ## 所属库
 
 DSP System Toolbox / Quantizers

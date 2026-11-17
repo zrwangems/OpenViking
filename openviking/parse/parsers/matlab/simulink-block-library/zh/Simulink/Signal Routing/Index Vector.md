@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Index Vector
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 控制信号标量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: 0 或 1
+  summary: 第一个数据输入标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | bus | enumerated | string
+- name: Port_1
+  summary: 基于控制信号值选择的数据输入标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -44,8 +61,79 @@ chinese_source: worker-translation
 模块根据控制信号值从输入数据向量中输出所选值。输出为标量。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Data port order
+  summary: 数据输入端口的排序类型 Zero-based contiguous（默认）| One-based contiguous | Specify indices
+  group: 主要
+  block_parameter: DataPortOrder
+  type: 字符向量
+  values: '''Zero-based contiguous'' | ''One-based contiguous'' | ''Specify indices'''
+  default: '''Zero-based contiguous'''
+- name: Number of data ports
+  summary: 数据输入端口数量 1（默认）| 1 到 65536 之间的整数
+  group: 主要
+  block_parameter: Inputs
+  type: 字符向量
+  values: 1 到 65536 之间的整数
+  default: '''1'''
+- name: Require all data port inputs to have the same data type
+  summary: 要求所有输入具有相同的数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: InputSameDT
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '指定输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Inherit via back propagation | Inherit: Same as first
+    data input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) |
+    fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Simulink.ImageType(480,640,3) | <data type expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string'' | Simulink.ImageType(480,640,3)
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 指定定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 信号属性
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Allow different data input sizes (Results in variable-size output signal)
+  summary: 允许不同大小的输入信号 off（默认）| on
+  group: 信号属性
+  block_parameter: AllowDiffInputSizes
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -280,7 +368,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Signal Routing HDL Coder / Signal Routing

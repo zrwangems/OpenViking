@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Video Test Sink
 
 ## 端口
+```yaml
+ports:
+- name: rdData
+  summary: 输入视频流数据向量
+  direction: input
+  data_types: uint8
+- name: rdCtrlIn
+  summary: 输入控制总线 总线
+  direction: input
+  data_types: pixelcontrol
+- name: rdCtrlOut
+  summary: 输出控制总线 总线
+  direction: output
+  data_types: StreamVideoS2MBusObj
+```
 
 ### 输入
 
@@ -42,8 +57,28 @@ chinese_source: worker-translation
 输出到数据源的控制总线，用于指示该模块已准备好接收视频流数据。此控制总线包含一个 ready 信号。
 
 **数据类型：** `StreamVideoS2MBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Frame size
+  summary: 帧尺寸 160x120p（默认）| ...
+  group: ''
+- name: Color space
+  summary: 颜色空间 YCbCr422（默认）| RGB | YOnly
+  group: ''
+- name: Reorder input frame
+  summary: 输入帧重排序 off（默认）| on
+  group: ''
+- name: Save data in workspace
+  summary: 将数据保存到工作区 off（默认）| on
+  group: ''
+- name: Variable name
+  summary: 工作区变量名称 simOut（默认）| 任何 MATLAB 支持的变量名称
+  group: ''
+- name: View input
+  summary: 在 MATLAB 中显示输入 off（默认）| on
+  group: ''
+```
 
 ### **Frame size** — 帧尺寸 `160x120p`（默认）| ...
 
@@ -91,7 +126,6 @@ chinese_source: worker-translation
 ### **View input** — 在 MATLAB 中显示输入 `off`（默认）| `on`
 
 选择此参数可在 MATLAB 查看器中查看输入视频流数据。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Testbench

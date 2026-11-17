@@ -14,6 +14,17 @@ language: en
 # Farrow Rate Converter
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Port_1
+  summary: Rate converted signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### Input
 
@@ -90,8 +101,68 @@ parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample rate of input signal (Hz)
+  summary: Sample rate of input signal in Hz 48e3 (default) | positive scalar
+  group: Main Tab
+- name: Sample rate of output signal (Hz)
+  summary: Sample rate of output signal in Hz 96e3 (default) | positive scalar in Hz
+  group: Main Tab
+- name: Tolerance for output sample rate
+  summary: Maximum tolerance for output sample rate 0 (default) | positive scalar
+  group: Main Tab
+- name: Filter Specification method
+  summary: Method for specifying filter coefficients Polynomial order (default) | Coefficients
+  group: Main Tab
+- name: Coefficients
+  summary: Filter polynomial coefficients [-1 1; 1 0] (default) | real-valued square matrix
+  group: Main Tab
+- name: Polynomial order
+  summary: Order of Lagrange-interpolation-filter polynomial 3 (default) | positive integer less than or equal to 4
+  group: Main Tab
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals on (default) | off
+  group: Main Tab
+- name: View Filter Response
+  summary: View filter response button
+  group: Main Tab
+- name: View Info
+  summary: View info button
+  group: Main Tab
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Coefficients
+  summary: Data type of filter coefficients fixdt(1,16) (default) | fixdt(1,16,0)
+  group: Data Types Tab
+- name: Fractional Delay
+  summary: Data type of fractional delay fixdt(0,8) (default) | fixdt(0,16)
+  group: Data Types Tab
+- name: Multiplicand
+  summary: Data type of multiplicand fixdt(1,16,13) (default) | fixdt(1,16,0)
+  group: Data Types Tab
+- name: Output
+  summary: 'Data type of output Inherit: Same word length as input (default) | Inherit: Same as accumulator | fixdt(1,16)
+    | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum value that the block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum value that the block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -304,7 +375,6 @@ Specify the maximum value that the block can output. Simulink software uses this
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations DSP System Toolbox / Filtering / Multirate Filters

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Wideband LOS Channel
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 辐射信号 复值 *M*×1 向量 | 复值 *M*×*N* 矩阵
+  direction: input
+  data_types: double
+- name: Pos1
+  summary: 信号源位置 3×1 实值列向量 | 3×*N* 实值矩阵
+  direction: input
+  data_types: double
+- name: Pos2
+  summary: 信号目的地 3×1 实值列向量 | 3×*N* 实值矩阵
+  direction: input
+  data_types: double
+- name: Vel1
+  summary: 源速度 3×1 实值列向量 | 3×*N* 实值矩阵 | *N*×3 实值矩阵
+  direction: input
+  data_types: double
+- name: Vel2
+  summary: 目的地速度 3×1 实值列向量 | 3×*N* 实值矩阵 | *N*×3 实值矩阵
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 传播信号 复值 *M*×1 向量 | 复值 *M*×*N* 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -80,8 +107,56 @@ chinese_source: worker-translation
 传播信号，返回为复值 *M*×1 向量或复值 *M*×*N* 矩阵。**Port\_1** 的大小与输入端口 **X** 相同。*M* 是信号的长度，*N* 是信号的数量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 正标量
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: 信号载波频率 3e8（默认）| 正标量
+  group: ''
+- name: Number of subbands
+  summary: 处理子带数量 64（默认）| 正整数
+  group: ''
+- name: Specify atmospheric parameters
+  summary: 启用大气衰减模型 关（默认）| 开
+  group: ''
+- name: Temperature (degrees Celsius)
+  summary: 环境温度 15 | 实值标量
+  group: ''
+- name: Dry air pressure (Pa)
+  summary: 大气干空气压强 101325 | 正实值标量
+  group: ''
+- name: Water vapour density (g/m^3)
+  summary: 大气水蒸气密度 7.5 | 正实值标量
+  group: ''
+- name: Liquid water density (g/m^3)
+  summary: 液态水密度 0 | 非负实值标量
+  group: ''
+- name: Rain rate (mm/hr)
+  summary: 降雨率 0 | 非负实值标量
+  group: ''
+- name: Perform two-way propagation
+  summary: 启用双向传播 关（默认）| 开
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 开（默认）| 关
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认）| 正实值标量
+  group: ''
+- name: Maximum one-way propagation distance (m)
+  summary: 最大单向传播距离 10e3（默认）| 正实值标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Propagation speed (m/s)** — 信号传播速度 `physconst('LightSpeed')`（默认）| 正标量
 
@@ -210,7 +285,6 @@ Generation` 运行模块。长时间仿真使用生成代码比在
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Environment and Target

@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Vehicle Path Planner System
 
 ## 端口
+```yaml
+ports:
+- name: Pose
+  summary: 初始车辆位姿三元行向量
+  direction: input
+- name: Target Pose
+  summary: 目标车辆位姿三元行向量
+  direction: input
+- name: Enable
+  summary: 启用规划逻辑标量
+  direction: input
+- name: Obstacles
+  summary: 障碍物列表五列矩阵
+  direction: input
+- name: Velocity range
+  summary: 速度范围二元向量
+  direction: input
+- name: Steering angle range
+  summary: 前轮转向角范围二元向量
+  direction: input
+- name: Path
+  summary: 规划车辆路径三列矩阵
+  direction: output
+- name: Exitflag
+  summary: 优化状态整数
+  direction: output
+```
 
 ### 输入
 
@@ -124,8 +151,101 @@ source** 参数。
 
 要启用此端口，请选择 **Optimization status**
 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Length
+  summary: 车辆长度 4.7（默认）| 非负标量
+  group: ''
+  block_parameter: egoLength
+  type: string, character vector
+- name: Width
+  summary: 车辆宽度 1.8（默认）| 非负标量
+  group: ''
+  block_parameter: egoWidth
+  type: string, character vector
+  default: '"1.8"'
+- name: Wheelbase
+  summary: 前后轴之间的距离 2.8（默认）| 非负标量
+  group: ''
+  block_parameter: wheelbase
+  type: string, character vector
+  default: '"2.8"'
+- name: Center to rear axle
+  summary: 从车辆中心到后轴的距离 1.4（默认）| 非负标量
+  group: ''
+  block_parameter: dist2Center
+  type: string, character vector
+  default: '"1.4"'
+- name: Number of obstacles
+  summary: 环境中的障碍物数量 0（默认）| 非负整数
+  group: ''
+  block_parameter: numObs
+  type: string, character vector
+  default: '"0"'
+- name: Obstacle list
+  summary: 环境中的障碍物 zeros(1,5)（默认）| 五列矩阵
+  group: ''
+  block_parameter: obs_ext
+  type: string, character vector
+  default: '"off"'
+  values: '"off" | "on"'
+- name: Minimum distance from ego vehicle to obstacles
+  summary: 车辆与任何障碍物之间的最小安全距离 0.1（默认）| 正标量
+  group: ''
+  block_parameter: minDist
+  type: string, character vector
+  default: '"0.1"'
+- name: Sample time
+  summary: 控制器采样时间 1（默认）| 正标量
+  group: ''
+  block_parameter: Ts
+  type: string, character vector
+  default: '"1"'
+- name: Prediction horizon
+  summary: 预测时域 20（默认）| 正整数
+  group: ''
+  block_parameter: pPlanning
+  type: string, character vector
+  default: '"20"'
+- name: Velocity range
+  summary: 速度范围 [-6.5 6.5]（默认）| 二元素行向量
+  group: ''
+  block_parameter: v_ext
+  type: string, character vector
+  default: '"off"'
+  values: '"off" | "on"'
+- name: Steering angle range
+  summary: 前轮转向角范围 [-pi/4 pi/4] | 二元素行向量
+  group: ''
+  block_parameter: steer_ext
+  type: string, character vector
+  default: '"off"'
+  values: '"off" | "on"'
+- name: Use suboptimal solution
+  summary: 在指定迭代次数后应用次优解 off（默认）| on
+  group: ''
+  block_parameter: suboptimal
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Maximum iteration number
+  summary: 最大优化迭代次数 200（默认）| 正整数
+  group: ''
+  block_parameter: maxIter
+  type: string, character vector
+  default: '"200"'
+- name: Optimization status
+  summary: 添加优化状态输出端口 off（默认）| on
+  group: ''
+  block_parameter: output_exitflag
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Create VPP subsystem
+  summary: 创建自定义规划器 按钮
+  group: ''
+```
 
 #### 参数选项卡
 
@@ -386,7 +506,6 @@ external source** 向模块添加
 ### **Create VPP subsystem** — 创建自定义规划器 按钮
 
 生成自定义 VPP 子系统，您可以针对自己的应用进行修改。自定义控制器的配置数据将作为结构体导出到 MATLAB® 工作区。
-
 ## 所属库
 
 Model Predictive Control Toolbox

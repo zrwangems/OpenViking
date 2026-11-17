@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Extended Kalman Filter
 
 ## 端口
+```yaml
+ports:
+- name: y1,y2,y3,y4,y5
+  summary: 测量系统输出向量
+  direction: input
+  data_types: single | double
+- name: StateTransitionFcnInputs
+  summary: 状态转移函数的附加可选输入参数 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: MeasurementFcn1Inputs,MeasurementFcn2Inputs,MeasurementFcn3Inputs,MeasurementFcn4Inputs,MeasurementFcn5Inputs
+  summary: 每个测量函数的附加可选输入参数 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Q
+  summary: 时变过程噪声协方差 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: R1,R2,R3,R4,R5
+  summary: 时变测量噪声协方差矩阵
+  direction: input
+  data_types: single | double
+- name: Enable1,Enable2,Enable3,Enable4,Enable5
+  summary: 当测量数据可用时启用估计状态的校正 标量
+  direction: input
+  data_types: single | double | Boolean
+- name: xhat
+  summary: 估计状态 向量
+  direction: output
+  data_types: single | double
+- name: P
+  summary: 状态估计误差协方差矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -137,8 +172,139 @@ f(x(k),w(k),StateTransitionFcnInputs)`
 如果您在 **System Model** 选项卡中选择 **Output state estimation error covariance**，并点击 **Apply**，则会生成此端口。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Function
+  summary: 状态转移函数名称 myStateTransitionFcn（默认）| 函数名称
+  group: System Model 选项卡
+  block_parameter: StateTransitionFcn
+  type: character vector, string
+  default: '''myStateTransitionFcn'''
+- name: Jacobian
+  summary: 状态转移函数的雅可比矩阵 off（默认）| on
+  group: System Model 选项卡
+  block_parameter: StateTransitionJacobianFcn
+  type: character vector, string
+  values: '''off'',''on'''
+  default: ''''''
+- name: Process noise
+  summary: 过程噪声特性 Additive（默认）| Nonadditive
+  group: System Model 选项卡
+  block_parameter: HasAdditiveProcessNoise
+  type: character vector
+  values: '''Additive'', ''Nonadditive'''
+  default: '''Additive'''
+- name: Covariance
+  summary: 时不变过程噪声协方差 1（默认）| 标量 | 向量 | 矩阵
+  group: System Model 选项卡
+  block_parameter: ProcessNoise
+  type: character vector, string
+  default: '''1'''
+- name: Time-varying
+  summary: 时变过程噪声协方差 'off'（默认）| 'on'
+  group: System Model 选项卡
+  block_parameter: HasTimeVaryingProcessNoise
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Initial state
+  summary: 初始状态估计 0（默认）| 向量
+  group: System Model 选项卡
+  block_parameter: InitialState
+  type: character vector, string
+  default: '''0'''
+- name: Initial covariance
+  summary: 状态估计误差协方差 1（默认）| 标量 | 向量 | 矩阵
+  group: System Model 选项卡
+  block_parameter: InitialStateCovariance
+  type: character vector, string
+  default: '''1'''
+- name: Function
+  summary: 测量函数名称 myMeasurementFcn（默认）| 函数名称
+  group: System Model 选项卡
+  block_parameter: MeasurementFcn1, MeasurementFcn2, MeasurementFcn3, MeasurementFcn4, MeasurementFcn5
+  type: character vector, string
+  default: '''myMeasurementFcn'''
+- name: Jacobian
+  summary: 测量函数的 Jacobian off（默认）| on
+  group: System Model 选项卡
+  block_parameter: MeasurementJacobianFcn1, MeasurementJacobianFcn2, MeasurementJacobianFcn3, MeasurementJacobianFcn4, MeasurementJacobianFcn5
+  type: character vector
+  values: '''off'',''on'''
+  default: ''''''
+- name: Measurement noise
+  summary: 测量噪声特性 Additive（默认）| Nonadditive
+  group: System Model 选项卡
+  block_parameter: HasAdditiveMeasurementNoise1, HasAdditiveMeasurementNoise2, HasAdditiveMeasurementNoise3, HasAdditiveMeasurementNoise4,
+    HasAdditiveMeasurementNoise5
+  type: character vector
+  values: '''Additive'', ''Nonadditive'''
+  default: '''Additive'''
+- name: Enable measurement wrapping
+  summary: 启用测量环绕 off（默认）| on
+  group: System Model 选项卡
+  block_parameter: EnableMeasurementWrapping1, EnableMeasurementWrapping2, EnableMeasurementWrapping3, EnableMeasurementWrapping4,
+    EnableMeasurementWrapping5
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Covariance
+  summary: 时不变过程噪声协方差 1（默认）| 标量 | 向量 | 矩阵
+  group: System Model 选项卡
+  block_parameter: ProcessNoise
+  type: character vector, string
+  default: '''1'''
+- name: Time-varying
+  summary: 时变测量噪声协方差 off（默认）| on
+  group: System Model 选项卡
+  block_parameter: HasTimeVaryingMeasurementNoise1, HasTimeVaryingMeasurementNoise2, HasTimeVaryingMeasurementNoise3, HasTimeVaryingMeasurementNoise4,
+    HasTimeVaryingMeasurementNoise5
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Add Enable Port
+  summary: 仅在测量数据可用时启用估计状态校正 off（默认）| on
+  group: System Model 选项卡
+  block_parameter: HasMeasurementEnablePort1、HasMeasurementEnablePort2、HasMeasurementEnablePort3、HasMeasurementEnablePort4、HasMeasurementEnablePort5
+  type: 字符向量
+  values: '''off''、''on'''
+- name: Use the current measurements to improve state estimates
+  summary: 在校正状态估计或预测状态估计之间选择 on（默认）| off
+  group: System Model 选项卡
+  block_parameter: UseCurrentEstimator
+  type: 字符向量
+  values: '''off''、''on'''
+- name: Output state estimation error covariance
+  summary: 输出状态估计误差协方差 off（默认）| on
+  group: System Model 选项卡
+  block_parameter: OutputStateCovariance
+  type: 字符向量
+  values: '''off''、''on'''
+- name: Data type
+  summary: 模块参数的数据类型 double（默认）| single
+  group: System Model 选项卡
+  block_parameter: DataType
+  type: 字符向量
+  values: '''single''、''double'''
+- name: Sample time
+  summary: 模块采样时间 1（默认）| 正标量
+  group: System Model 选项卡
+  block_parameter: SampleTime
+  type: 字符向量、字符串
+- name: Enable multirate operation
+  summary: 启用为状态转移函数和测量函数指定不同的采样时间 off（默认）| on
+  group: Multirate Tab
+  block_parameter: EnableMultirate
+  type: 字符向量
+  values: '''off''、''on'''
+- name: 采样时间
+  summary: 状态转移和测量函数采样时间，正标量
+  group: Multirate Tab
+  block_parameter: StateTransitionFcnSampleTime、MeasurementFcn1SampleTime1、MeasurementFcn1SampleTime2、MeasurementFcn1SampleTime3、MeasurementFcn1SampleTime4、MeasurementFcn1SampleTime5
+  type: 字符向量、字符串
+  default: '''1'''
+```
 
 ### System Model 选项卡
 
@@ -539,7 +705,6 @@ f(x(k),w(k),StateTransitionFcnInputs)`
 | **模块参数：**`StateTransitionFcnSampleTime`、`MeasurementFcn1SampleTime1`、`MeasurementFcn1SampleTime2`、`MeasurementFcn1SampleTime3`、`MeasurementFcn1SampleTime4`、`MeasurementFcn1SampleTime5` |
 | **类型：** 字符向量、字符串 |
 | **默认值：** `'1'` |
-
 ## 所属库
 
 Control System Toolbox / State Estimation System Identification Toolbox / Estimators

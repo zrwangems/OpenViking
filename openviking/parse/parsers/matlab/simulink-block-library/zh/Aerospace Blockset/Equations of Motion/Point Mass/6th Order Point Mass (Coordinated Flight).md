@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # 6th Order Point Mass (Coordinated Flight)
 
 ## 端口
+```yaml
+ports:
+- name: Fx(N)
+  summary: '*x* 轴方向的力 标量 | 数组'
+  direction: input
+  data_types: double
+- name: Fy(N)
+  summary: '*y* 轴方向的力 标量 | 数组'
+  direction: input
+  data_types: double
+- name: Fz(N)
+  summary: '*z* 轴方向的力 标量 | 数组'
+  direction: input
+  data_types: double
+- name: ɣ
+  summary: 航迹角 标量 | 数组
+  direction: output
+  data_types: double
+- name: X
+  summary: 航向角 标量 | 数组
+  direction: output
+  data_types: double
+- name: V
+  summary: 空速 标量 | 数组
+  direction: output
+  data_types: double
+- name: XEast
+  summary: 下航程或向东飞行距离 标量 | 数组
+  direction: output
+  data_types: double
+- name: XNorth
+  summary: 横航程或向北飞行距离 标量 | 数组
+  direction: output
+  data_types: double
+- name: XUp
+  summary: 高度或向上飞行距离 标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -72,8 +111,66 @@ chinese_source: worker-translation
 高度或向上飞行距离，以标量或向量形式返回，采用所选单位。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Initial flight path angle
+  summary: 初始航迹角 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: gamma0
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+- name: Initial heading angle
+  summary: 初始航向角 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: chi0
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+- name: Initial airspeed
+  summary: 初始空速 100（默认）| 标量 | 向量
+  group: ''
+  block_parameter: V0
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''100'''
+- name: Initial downrange [East]
+  summary: 初始下航程 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: x0
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+- name: Initial crossrange [North]
+  summary: 初始横航程 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: y0
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+- name: Initial altitude [Up]
+  summary: 初始高度 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: h0
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+- name: Initial mass
+  summary: 质点质量 1.0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: mass0
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''1.0'''
+```
 
 ### **Units** — 单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -184,7 +281,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 | 向量 |
 | **默认值**：`'1.0'` |
-
 ## 所属库
 
 Aerospace Blockset / Equations of Motion / Point Mass

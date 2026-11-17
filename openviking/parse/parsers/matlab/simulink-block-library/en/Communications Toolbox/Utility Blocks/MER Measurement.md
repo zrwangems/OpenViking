@@ -14,6 +14,33 @@ language: en
 # MER Measurement
 
 ## Ports
+```yaml
+ports:
+- name: Ref
+  summary: Reference signal scalar | vector | matrix | 3-D array
+  direction: input
+  data_types: single | double | fixed point
+- name: Rcv
+  summary: Received signal scalar | vector | matrix | 3-D array
+  direction: input
+  data_types: single | double | fixed point
+- name: MS
+  summary: Percentage MER of received signal scalar
+  direction: output
+  data_types: double
+- name: min
+  summary: Minimum percentage MER scalar
+  direction: output
+  data_types: double
+- name: X%
+  summary: Value below which *X*% of MER measurements fall scalar
+  direction: output
+  data_types: double
+- name: nSym
+  summary: Number of symbols positive integer
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -90,8 +117,40 @@ MER** and **Output the number of symbols
 processed** parameters.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reference signal
+  summary: Reference signal source Input port | Estimated from reference constellation
+  group: ''
+- name: Reference constellation
+  summary: Reference constellation constellation(pskmod((0:3)',4,pi/4,"bin")) (default) | vector
+  group: ''
+- name: Measurement interval
+  summary: Measurement interval source Input length (default) | Entire history | Custom | Custom with periodic reset
+  group: ''
+- name: Custom measurement interval
+  summary: Custom measurement interval 100 (default) | positive integer
+  group: ''
+- name: Averaging dimensions
+  summary: Averaging dimensions 1 (default) | vector of integers in the range [1, 3]
+  group: ''
+- name: Output minimum MER
+  summary: Option to add min port to output minimum MER measurements Off (default) | On
+  group: ''
+- name: Output X-percentile MER
+  summary: Option to add X% port to output *X*-percentile MER measurements Off (default) | On
+  group: ''
+- name: X-Percentile value (%)
+  summary: Value below which *X*% of MER measurements fall 95 (default) | scalar in the range [0, 100]
+  group: ''
+- name: Output the number of symbols processed
+  summary: Option to add nSym port to output number of symbols Off (default) | On
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -211,7 +270,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Utility Blocks

@@ -14,6 +14,25 @@ language: en
 # Simulation 3D Joystick
 
 ## Ports
+```yaml
+ports:
+- name: Force
+  summary: Force feedback input scalar | vector
+  direction: input
+  data_types: double
+- name: Axes
+  summary: Joystick position along any given axis vector with each element in the range [-1,1]
+  direction: output
+  data_types: double
+- name: Buttons
+  summary: Status of joystick buttons vector of 0 and 1
+  direction: output
+  data_types: double
+- name: Point of view
+  summary: Current status of joystick point-of-view selector -1 (selector inactive) | scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -58,8 +77,19 @@ Hat, in degrees from 0 to 360. If the selector is inactive, the signal
 is -1.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Joystick ID
+  summary: ID assigned to given joystick device 1 (default)
+  group: ''
+- name: Adjust I/O ports according to joystick capabilities
+  summary: Option to dynamically adjust ports to correspond to joystick capabilities on (default) | off
+  group: ''
+- name: Enable force-feedback input
+  summary: Option to support joysticks with force-feedback on (default) | off
+  group: ''
+```
 
 ### **Joystick ID** — ID assigned to given joystick device `1` (default)
 
@@ -83,7 +113,6 @@ The block ports do not have the full widths provided by the Windows® Game Contr
 If you select this check box, the Simulink
 3D Animation software can support force-feedback joystick, steering wheel,
 and haptic (one that enables tactile feedback) devices.
-
 ## Libraries
 
 Simulink 3D Animation / Simulation 3D / Hardware Interface

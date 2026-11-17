@@ -14,6 +14,15 @@ language: en
 # Get Jacobian
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Robot configuration vector
+  direction: input
+- name: Jacobian
+  summary: Geometric Jacobian of end effector 6-by-*n* matrix
+  direction: output
+```
 
 ### Input
 
@@ -41,8 +50,19 @@ Equation for calculating linear velocities of the end effector using the Jacobia
 
 *ω* is the angular velocity, *υ* is
 the linear velocity, and  is the joint-space velocity.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: Robot model twoJointRigidBodyTree (default) | RigidBodyTree object
+  group: ''
+- name: End effector
+  summary: End effector for Jacobian body name
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — Robot model `twoJointRigidBodyTree` (default) | `RigidBodyTree` object
 
@@ -75,7 +95,6 @@ names from the robot model, click **Select body**.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Manipulator Algorithms

@@ -14,14 +14,34 @@ language: en
 # Reservoir (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Reservoir inlet gas
+  direction: conserving
+```
 
 ### Conserving
 
 ### **A** — Reservoir inlet gas
 
 Gas conserving port associated with the reservoir inlet.
-
 ## Parameters
+```yaml
+parameters:
+- name: Reservoir pressure specification
+  summary: Select specification method for reservoir pressure Atmospheric pressure (default) | Specified pressure
+  group: ''
+- name: Reservoir pressure
+  summary: Pressure in the reservoir 0.101325 MPa (default)
+  group: ''
+- name: Reservoir temperature
+  summary: Temperature in the reservoir 293.15 K (default)
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at the reservoir inlet 0.01 m^2 (default)
+  group: ''
+```
 
 ### **Reservoir pressure specification** — Select specification method for reservoir pressure `Atmospheric pressure` (default) | `Specified pressure`
 
@@ -52,7 +72,6 @@ remains constant during simulation.
 
 The cross-sectional area of the reservoir inlet, in the direction
 normal to gas flow path.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Elements

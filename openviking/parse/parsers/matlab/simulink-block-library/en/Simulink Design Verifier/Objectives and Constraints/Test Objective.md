@@ -14,6 +14,14 @@ language: en
 # Test Objective
 
 ## Ports
+```yaml
+ports:
+- name: Values
+  summary: Input signal scalar | cell array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -26,8 +34,23 @@ the Simulink software, see Data Types Supported by Simulink. The block does not
 support complex input signals.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Enable
+  summary: Specify whether the block is enabled on (default) | off
+  group: ''
+- name: Values
+  summary: Specify the test objective scalar | cell array
+  group: ''
+- name: Display values
+  summary: Display the contents of values parameter on (default) | off
+  group: ''
+  values: parameter in the Simulink Editor.
+- name: Pass through style
+  summary: Specify whether the block displays an output port in the Simulink Editor on (default) | off
+  group: ''
+```
 
 ### **Enable** — Specify whether the block is enabled `on` (default) | `off`
 
@@ -161,7 +184,6 @@ each case.
 **Pass through style (show Outport): Selected**
 
 **Pass through style (show Outport): Deselected**
-
 ## Libraries
 
 Simulink Design Verifier / Objectives and Constraints

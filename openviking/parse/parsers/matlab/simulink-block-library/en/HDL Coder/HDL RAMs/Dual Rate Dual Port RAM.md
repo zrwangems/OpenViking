@@ -14,6 +14,43 @@ language: en
 # Dual Rate Dual Port RAM
 
 ## Ports
+```yaml
+ports:
+- name: din_A
+  summary: Port A write data input Scalar (default)
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: addr_A
+  summary: Port A write address Scalar (default)
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+- name: we_A
+  summary: Port A write enable Scalar (default)
+  direction: input
+  data_types: Boolean
+- name: din_B
+  summary: Port B write data Scalar (default)
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | fixed point
+- name: addr_B
+  summary: Port B write address Scalar (default)
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | fixed point
+- name: we_B
+  summary: Port B write enable Scalar (default)
+  direction: input
+  data_types: Boolean
+- name: dout_A
+  summary: Port A output data Scalar (default)
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: dout_B
+  summary: Port B output data Scalar (default)
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -87,8 +124,17 @@ Output data from RAM port A address, `addr_A`.
 Output data from RAM port B address, `addr_B`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Address port width
+  summary: Address bit width 8 (default)
+  group: ''
+  block_parameter: ram_size
+  type: string scalar | character vector
+  values: A minimum value of 2 and maximum value of 28
+  default: '''8'''
+```
 
 ### **Address port width** — Address bit width 8 (default)
 
@@ -102,7 +148,6 @@ Minimum bit width is 2, and maximum bit width is 28.
 | **Type:** string scalar | character vector |
 | **Value:** A minimum value of `2` and maximum value of `28` |
 | **Default:** `'8'` |
-
 ## Libraries
 
 HDL Coder / HDL RAMs

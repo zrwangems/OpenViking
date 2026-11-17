@@ -15,10 +15,33 @@ chinese_source: worker-translation
 # UAV Scenario Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: MATLAB or model workspace variable name
+  summary: MATLAB 或模型工作区变量名称 'singleUAVScenario'（默认）| 字符串
+  group: 主
+- name: Sample time
+  summary: 采样时间 0.1（默认）| 正双精度值
+  group: 主
+- name: Sensor motion bus name
+  summary: 传感器运动总线名称 'SensorMotionBus'（默认）| 字符串
+  group: 场景总线和信号名称
+- name: Platform motion bus name
+  summary: 平台运动总线名称 'PlatformMotionBus'（默认）| 字符串
+  group: 场景总线和信号名称
+- name: Scenario motion bus name
+  summary: 场景运动总线名称 'SensorMotionBus'（默认）| 字符串
+  group: 场景总线和信号名称
+- name: Scenario motion signal name
+  summary: 场景运动信号名称 'ScenarioMotions'（默认）| 字符串
+  group: 场景总线和信号名称
+```
 
 ### 主
 
@@ -57,7 +80,6 @@ Write 读取和写入的平台运动将使用具有指定名称的总线对象�
 
 以字符串形式指定场景运动总线信号的名称。这是
 用于存储 UAV 场景数据的 Data Store Read 模块所使用的名称。
-
 ## 所属库
 
 UAV Toolbox / UAV Scenario and Sensor Modeling

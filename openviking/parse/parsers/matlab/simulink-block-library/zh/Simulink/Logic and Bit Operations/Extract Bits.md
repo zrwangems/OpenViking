@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Extract Bits
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 提取的位 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -40,8 +51,40 @@ chinese_source: worker-translation
 传递。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Bits to extract
+  summary: 提取位的方法 Upper half（默认） | Lower half | Range starting with most significant bit | Range ending with least significant
+    big | Range of bits
+  group: ''
+  block_parameter: bitsToExtract
+  type: character vector
+  values: '''Upper half'' | ''Lower half'' | ''Range starting with most significant bit'' | ''Range ending with least significant
+    bit'' | ''Range of bits'''
+  default: '''Upper half'''
+- name: Number of bits
+  summary: 要输出的位数 8（默认） | 标量正整数
+  group: ''
+  block_parameter: numBits
+  type: character vector
+  values: scalar positive integer
+  default: '''8'''
+- name: Bit indices
+  summary: 要输出的连续位范围 [0 7]（默认） | 二元素向量 | 标量正整数
+  group: ''
+  block_parameter: bitIdxRange
+  type: character vector
+  values: two-element vector | scalar positive integer
+  default: '''[0 7]'''
+- name: Output scaling mode
+  summary: 输出定标模式 Preserve fixed-point scaling（默认） | Treat bit field as an integer
+  group: ''
+  block_parameter: outScalingMode
+  type: character vector
+  values: '''Preserve fixed-point scaling'' | ''Treat bit field as an integer'''
+  default: '''Preserve fixed-point scaling'''
+```
 
 ### **Bits to extract** — 提取位的方法 `Upper half`（默认） | `Lower half` | `Range starting with most significant bit` | `Range ending with least significant big` | `Range of bits`
 
@@ -138,7 +181,6 @@ end]` 格式指定范围。
 | **类型**：character vector |
 | **值**：`'Preserve fixed-point scaling' | 'Treat bit field as an integer'` |
 | **默认值**：`'Preserve fixed-point scaling'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations HDL Coder / Logic and Bit Operations

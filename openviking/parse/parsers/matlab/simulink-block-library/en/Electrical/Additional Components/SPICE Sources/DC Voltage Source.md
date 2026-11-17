@@ -14,6 +14,15 @@ language: en
 # DC Voltage Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,13 +35,17 @@ positive voltage
 
 Electrical conserving port associated with the DC current source
 negative voltage
-
 ## Parameters
+```yaml
+parameters:
+- name: Constant value, DC
+  summary: DC output voltage 0 V (default)
+  group: ''
+```
 
 ### **Constant value, DC** — DC output voltage `0` `V` (default)
 
 Value of the DC output voltage, in V.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

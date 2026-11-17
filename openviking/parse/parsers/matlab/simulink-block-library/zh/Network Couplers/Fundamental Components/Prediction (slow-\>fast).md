@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Prediction (slow->fast)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 采样较慢的信号 实数标量
+  direction: input
+- name: y
+  summary: 较快网络的预测 实数标量
+  direction: output
+```
 
 ### 输入
 
@@ -26,8 +35,16 @@ chinese_source: worker-translation
 ### **y** — 较快网络的预测 实数标量
 
 将此端口连接到较快网络，即网络 1 的输入。
-
 ## 参数
+```yaml
+parameters:
+- name: 端口 u 离散采样时间 (s)
+  summary: 指定较慢网络的采样时间 -1（默认）| 正标量
+  group: ''
+- name: 端口 y 离散采样时间 (s)
+  summary: 指定较快网络的采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 ### **端口 u 离散采样时间 (s)** — 指定较慢网络的采样时间 `-1`（默认）| 正标量
 
@@ -36,7 +53,6 @@ chinese_source: worker-translation
 ### **端口 y 离散采样时间 (s)** — 指定较快网络的采样时间 `-1`（默认）| 正标量
 
 以秒为单位指定较快网络，即网络 1 的采样时间。
-
 ## 所属库
 
 Simscape / Utilities / Network Couplers / Fundamental Components

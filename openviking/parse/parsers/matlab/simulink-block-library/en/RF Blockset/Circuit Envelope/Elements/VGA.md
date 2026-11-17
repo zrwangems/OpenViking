@@ -14,6 +14,21 @@ language: en
 # VGA
 
 ## Ports
+```yaml
+ports:
+- name: Gain
+  summary: Power gain signal scalar
+  direction: input
+  data_types: double
+- name: IP2
+  summary: Second-order intercept point signal scalar
+  direction: input
+  data_types: double
+- name: IP3
+  summary: Third-order intercept point signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -37,8 +52,22 @@ Third-order intercept point signal, specified as a scalar in dBm. The
 third-order intercept point signal is a Simulink signal.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input impedance (Ohm)
+  summary: Input impedance of VGA 50 (default) | scalar
+  group: ''
+- name: Output impedance (Ohm)
+  summary: Output impedance of VGA 50 (default) | positive scalar
+  group: ''
+- name: Intercept points convention
+  summary: Input-referred or output-referred convention Output (default) | Input
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground and hide negative terminals on (default) | off
+  group: ''
+```
 
 ### **Input impedance (Ohm)** — Input impedance of VGA `50` (default) | scalar
 
@@ -63,7 +92,6 @@ Ground and hide negative terminals, specified as `on` or
 hide the negative terminals. Clear the option to expose the negative
 terminals. By exposing these terminals, you can connect them to other parts
 of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

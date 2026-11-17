@@ -14,6 +14,25 @@ language: en
 # Sqrt
 
 ## Ports
+```yaml
+ports:
+- name: dataIn
+  summary: Input data signal scalar | vector
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validIn
+  summary: Whether input control signal is valid scalar
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: Output data signal scalar | vector
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validOut
+  summary: Whether output control signal is valid scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -44,8 +63,55 @@ Output control signal that indicates whether output signal is valid, returned as
 scalar.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Latency strategy
+  summary: Latency strategy Max (default) | Min | Custom | Custom(PerIteration) | Zero
+  group: ''
+  block_parameter: latencyMode
+  type: character vector
+  values: '''Max'' | ''Min'' | ''Custom'' | ''Custom(PerIteration)'' | ''Zero'''
+  default: '''Max'''
+- name: Custom latency
+  summary: Custom latency 0 (default) | positive integer
+  group: ''
+  block_parameter: customLatencyValue
+  type: Integer
+  values: 0 to Max latency
+  default: '0'
+- name: IterationsPerPipeline
+  summary: Iterations per pipeline 1 (default) | positive integer
+  group: ''
+  block_parameter: iterationsPerPipelineValue
+  type: Integer
+  values: Positive integer
+  default: '1'
+- name: Output data type
+  summary: 'Output data type Inherit: Same as first input (default) | Inherit: Inherit via internal rule | Inherit: Inherit
+    via back propagation | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''
+    | ''int8'' | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | ''<data
+    type expression>'''
+  default: '''Inherit: Same as first input'''
+- name: Saturate on integer overflow
+  summary: Option to choose behavior when integer overflow occurs off (default) | on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Zero (default) | Ceiling | Floor | Nearest | Simplest
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Zero'' | ''Ceiling'' | ''Floor'' | ''Nearest'' | ''Simplest'''
+  default: '''Zero'''
+```
 
 ### **Latency strategy** — Latency strategy `Max` (default) | `Min` | `Custom` | `Custom(PerIteration)` | `Zero`
 
@@ -154,7 +220,6 @@ see Rounding Modes.
 | **Type:** character vector |
 | **Values:** `'Zero' | 'Ceiling' | 'Floor' | 'Nearest' | 'Simplest'` |
 | **Default:** `'Zero'` |
-
 ## Libraries
 
 HDL Coder

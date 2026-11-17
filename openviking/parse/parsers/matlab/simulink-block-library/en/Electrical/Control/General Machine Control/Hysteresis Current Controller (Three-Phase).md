@@ -14,6 +14,21 @@ language: en
 # Hysteresis Current Controller (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: iabc\*
+  summary: Current vector
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: Current vector
+  direction: input
+  data_types: single | double
+- name: S
+  summary: Controller output vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -35,8 +50,16 @@ Measured three-phase currents.
 Six-pulse vector for power converter control.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Current hysteresis band (A)
+  summary: Hysteresis band 1 (default) | positive number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Current hysteresis band (A)** — Hysteresis band `1` (default) | positive number
 
@@ -54,7 +77,6 @@ If this block is inside a triggered subsystem, inherit the
 sample time by setting this parameter to `-1`. If this block is in a
 continuous variable-step model, specify the sample time explicitly using a positive
 scalar.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Machine Control

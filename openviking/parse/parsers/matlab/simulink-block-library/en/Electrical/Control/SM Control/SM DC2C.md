@@ -14,6 +14,49 @@ language: en
 # SM DC2C
 
 ## Ports
+```yaml
+ports:
+- name: V_REF
+  summary: Voltage reference scalar
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: Input from stabilizer scalar
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: Terminal voltage scalar
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: Terminal current scalar
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: Overexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: Underexcitation limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: Summation point stator current limit signal scalar
+  direction: input
+  data_types: single | double
+- name: V_OELscl
+  summary: Take-over stator current limit (OEL) scalar
+  direction: input
+  data_types: single | double
+- name: V_UELscl
+  summary: Take-over stator current limit (UEL) scalar
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: Field voltage scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -150,8 +193,79 @@ Per-unit field voltage to be applied to the field circuit of the synchronous mac
 returned as a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: Initial output voltage 1 (default) | real number
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Resistive component of load compensation, R_C (pu)
+  summary: Compensation resistance 0 (default) | positive number
+  group: Pre-Control
+- name: Reactance component of load compensation, X_C (pu)
+  summary: Compensation reactance 0 (default) | positive number
+  group: Pre-Control
+- name: Regulator input filter time constant, T_R (s)
+  summary: Regulator time constant 0 (default) | positive number
+  group: Pre-Control
+- name: Regulator output gain, K_A (pu)
+  summary: Regulator gain 300 (default) | positive number
+  group: Control
+- name: Regulator time constant, T_A (s)
+  summary: Regulator time constant 0.01 (default) | positive number
+  group: Control
+- name: Regulator denominator (lag) time constant, T_B (s)
+  summary: Regulator lag time constant 0 (default) | positive number
+  group: Control
+- name: Regulator numerator (lead) time constant, T_C (s)
+  summary: Regulator lead time constant 0 (default) | positive number
+  group: Control
+- name: Rate feedback gain, K_F (pu)
+  summary: Rate feedback gain 0.02 (default) | positive number
+  group: Control
+- name: Rate feedback time constant, T_F (s)
+  summary: Rate feedback time constant 0.675 (default) | positive number
+  group: Control
+- name: Maximum controller output, V_Rmax (pu)
+  summary: Controller output upper limit 4.95 (default) | real number
+  group: Control
+- name: Minimum controller output, V_Rmin (pu)
+  summary: Controller output lower limit -4.90 (default) | real number
+  group: Control
+- name: Alternate OEL input locations (V_OEL)
+  summary: Overexcitation limiter input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Alternate UEL input locations (V_UEL)
+  summary: Underexcitation limiter input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Alternate SCL input locations (V_SCL)
+  summary: Stator current limiter input location Unused (default) | Summation point | Take-over
+  group: Control
+- name: Exciter field proportional constant, K_E (pu)
+  summary: Exciter field gain 1 (default) | positive number
+  group: Exciter
+- name: Exciter field time constant, T_E (s)
+  summary: Exciter field time constant 1.33 (default) | positive number
+  group: Exciter
+- name: Lower limit, E_FDmin (pu)
+  summary: Field voltage lower limit -99 (default) | positive number
+  group: Exciter
+- name: Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)
+  summary: First saturation output voltage 3.05 (default) | positive number
+  group: Exciter
+- name: Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)
+  summary: First saturation lookup voltage 0.279 (default) | positive number
+  group: Exciter
+- name: Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)
+  summary: Second saturation output voltage 2.29 (default) | positive number
+  group: Exciter
+- name: Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)
+  summary: Second saturation lookup voltage 0.117 (default) | positive number
+  group: Exciter
+```
 
 ### General
 
@@ -280,7 +394,6 @@ Exciter output voltage for second saturation factor.
 ### **Exciter saturation factor at exciter output voltage E\_2, S\_E(E\_2) (1)** — Second saturation lookup voltage `0.117` (default) | positive number
 
 Second exciter saturation factor.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

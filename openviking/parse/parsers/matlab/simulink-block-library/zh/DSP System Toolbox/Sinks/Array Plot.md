@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Array Plot
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 要可视化的信号或信号组 标量 | 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### 输入
 
@@ -34,11 +42,12 @@ Array Plot 模块支持具有不同帧长度的输入。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 DSP System Toolbox / Sinks

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # ASCII to String
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: ASCII 信号向量
+  direction: input
+  data_types: uint8
+- name: Port_1
+  summary: 转换后的字符串信号标量
+  direction: output
+  data_types: string
+```
 
 ### 输入
 
@@ -34,11 +45,12 @@ ASCII 信号，指定为向量。
 从输入 ASCII 信号转换而来的字符串信号，指定为标量。该模块将向量中的每个 ASCII 元素转换为其字母数字等效字符，并将所有元素拼接为一个字符串输出。
 
 **数据类型：** `string`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 未在 R2025b 中记录。
-
 ## 所属库
 
 Simulink / String

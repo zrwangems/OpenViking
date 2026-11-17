@@ -14,6 +14,21 @@ language: en
 # Moving RMS
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double
+- name: lambda
+  summary: Forgetting factor non-negative real scalar in the range [0,1]
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Moving RMS output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -78,8 +93,34 @@ second dimension remains constant. For an example that shows this behavior, see 
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Moving RMS method Sliding window (default) | Exponential weighting
+  group: ''
+- name: Specify window length
+  summary: Flag to specify window length on (default) | off
+  group: ''
+- name: Window length
+  summary: Length of sliding window 4 (default) | positive scalar integer
+  group: ''
+- name: Overlap length
+  summary: Overlap length between windows 3 (default) | nonnegative integer
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: ''
+- name: Specify forgetting factor from input port
+  summary: Flag to specify forgetting factor off (default) | on
+  group: ''
+- name: Forgetting factor
+  summary: Exponential weighting factor 0.9 (default) | non-negative real scalar in the range [0,1]
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 If a parameter is listed as tunable, then you can change its value during simulation.
 
@@ -197,7 +238,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

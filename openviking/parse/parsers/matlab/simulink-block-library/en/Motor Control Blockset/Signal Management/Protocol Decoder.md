@@ -14,6 +14,37 @@ language: en
 # Protocol Decoder
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: uint8 byte stream packet vector
+  direction: input
+  data_types: uint8
+- name: Length
+  summary: Length of data stream packet at Data input port numeric scalar
+  direction: input
+  data_types: uint16
+- name: Field1
+  summary: First field decoded by the block scalar
+  direction: output
+  data_types: string
+- name: IsNew
+  summary: New data indicator 0 | 1
+  direction: output
+  data_types: Boolean
+- name: IsValid
+  summary: Checksum validation indicator 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Variable field length
+  summary: Actual data length of the last field that is variable-size numeric scalar
+  direction: output
+  data_types: double
+- name: Variable field lengths
+  summary: Actual data lengths of comma separated variables array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -141,8 +172,50 @@ This output port appears only if you select the **Parse comma separated
 variables** parameter. For more details, see Decode Comma-separated Variable (C2000 Microcontroller Blockset).
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Parse comma separated variables
+  summary: Parse input data that contains comma separated variables array
+  group: ''
+- name: Header
+  summary: Header of the packet character array | array of numeric values less than 255
+  group: ''
+- name: Field name
+  summary: Name of the field in the packet structure Field1 (default) | string
+  group: ''
+- name: Output field length
+  summary: Length of the field in the packet structure as per the data type 1 (default) | numeric scalar
+  group: ''
+- name: Output field data type
+  summary: Data type of the field uint8 (default) | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | single | double
+  group: ''
+- name: Byte order
+  summary: Endianess of the field in the packet Little endian (default) | Big endian
+  group: ''
+- name: Specify maximum length if last field has variable size
+  summary: Enable last field to output variable-size data and specify maximum length of the field numeric scalar
+  group: ''
+- name: Specify logic for checksum validation
+  summary: Enable the logic for checksum validation and select the logic XOR of bytes | 2's complement of sum of bytes | Custom
+    algorithm
+  group: ''
+- name: Checksum size
+  summary: Number of bytes of checksum data numeric scalar
+  group: ''
+- name: File path
+  summary: Path of the function (.m) used for custom checksum logic MATLAB® path
+  group: ''
+- name: Terminator
+  summary: Terminator of the packet <none> (default) | CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+- name: Custom terminator
+  summary: Custom terminator of the packet character array
+  group: ''
+- name: Is input data stream length available
+  summary: Enable additional input for data stream length off (default) | on
+  group: ''
+```
 
 ### **Parse comma separated variables** — Parse input data that contains comma separated variables array
 
@@ -301,7 +374,6 @@ Few examples of custom terminator values are: ‘END’, '#’
 ### **Is input data stream length available** — Enable additional input for data stream length `off` (default) | `on`
 
 Enable optional input port to include the exact length of valid data stream.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management C2000 Microcontroller Blockset / Target Communication

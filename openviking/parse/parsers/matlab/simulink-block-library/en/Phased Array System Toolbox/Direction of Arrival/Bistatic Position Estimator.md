@@ -14,6 +14,42 @@ language: en
 # Bistatic Position Estimator
 
 ## Ports
+```yaml
+ports:
+- name: RngEst
+  summary: Range measurement (meters) real-valued 1-by-*K* vector | real-valued *J*-by-*L* matrix
+  direction: input
+  data_types: single | double
+- name: AngEst
+  summary: Angle-of-arrival estimate (degrees) real-valued 1-by-*L* row vector | real-valued 2-by-*L* matrix
+  direction: input
+  data_types: single | double
+- name: RngVar
+  summary: Range variance (meters-squared) positive real-valued *J*-by-*L* matrix | positive real-valued length-*K* row vector
+  direction: input
+  data_types: single | double
+- name: AngVar
+  summary: Angle variance (degrees-squared) real-valued 1-by-*L* row vector | real-valued 2-by-*L* matrix
+  direction: input
+  data_types: single | double
+- name: TxPos
+  summary: Transmitting anchor positions (meters) real-valued *Q*-by-*J* matrix
+  direction: input
+  data_types: single | double
+- name: RxPos
+  summary: Receiving anchor positions (meters) real-valued *Q*-by-*L* matrix
+  direction: input
+  data_types: single | double
+- name: TgtPosEst
+  summary: Target position estimate (meters) real-valued *Q*-by-1 vector
+  direction: output
+  data_types: single | double
+- name: TgtPosCov
+  summary: Estimated target position covariance (meters-squared) real-valued *Q*-by-*Q* matrix | real-valued *Q*-by-*Q*-by-*K*
+    array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -161,8 +197,19 @@ To enable this port, select the **Output covariances of position
 estimates** check box.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Range Measurement
+  summary: Range measurement type Bistatic range (default) | Range sum
+  group: ''
+- name: Enable known variance input
+  summary: Enable known variance inputs on (default) | off
+  group: ''
+- name: Output covariances of position estimates
+  summary: Output covariances of position estimates off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -188,7 +235,6 @@ Select this check box to output position covariance estimates from the
 **TgtPosCov** port.
 
 **Data Types:** `single` | `double`
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

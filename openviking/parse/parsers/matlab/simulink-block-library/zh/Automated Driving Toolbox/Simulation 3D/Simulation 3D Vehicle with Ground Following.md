@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Simulation 3D Vehicle with Ground Following
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 车辆的纵向位置 标量
+  direction: input
+- name: Y
+  summary: 车辆的横向位置 标量
+  direction: input
+- name: Yaw
+  summary: 车辆的偏航方向角 标量
+  direction: input
+- name: Light controls
+  summary: 车辆灯光控制 1×6 向量
+  direction: input
+  data_types: Boolean
+- name: Location
+  summary: 车辆的位置 实数值 1×3 向量
+  direction: output
+  data_types: double
+- name: Orientation
+  summary: 车辆的方向 实数值 1×3 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -81,8 +105,82 @@ chinese_source: worker-translation
 若要启用此端口，请在 **Ground Truth** 选项卡上选择 **Output location (m) and orientation (rad)**。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 车辆类型 Muscle car（默认）| Sedan | Sport utility vehicle | Small pickup truck | Hatchback | Box truck | Custom
+  group: 车辆参数
+- name: Path to custom mesh
+  summary: 自定义网格的路径 /MathWorksSimulation/Vehicles/Muscle/Meshes/SK_MuscleCar.SK_MuscleCar（默认）| 有效路径
+  group: 车辆参数
+- name: Track width in custom mesh (m)
+  summary: 轮距 1.9（默认）| 标量
+  group: 车辆参数
+- name: Wheel base in custom mesh (m)
+  summary: 轴距 3（默认）| 标量
+  group: 车辆参数
+- name: Wheel radius in custom mesh (m)
+  summary: 车轮半径 0.35（默认）| 标量
+  group: 车辆参数
+- name: Color
+  summary: 车辆颜色 Red（默认）| Orange | Yellow | Green | Blue | Black | White | Silver
+  group: 车辆参数
+- name: Initial position [X, Y, Z] (m)
+  summary: 车辆初始位置 [0, 0, 0]（默认）| 实数值 1×3 向量
+  group: 车辆参数
+- name: Initial rotation [Roll, Pitch, Yaw] (deg)
+  summary: 车辆初始旋转角度 [0, 0, 0]（默认）| 实数值 1×3 向量
+  group: 车辆参数
+- name: Name
+  summary: 车辆名称 SimulinkVehicle1（默认）| 车辆名称
+  group: 车辆参数
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 车辆参数
+- name: Enable light controls
+  summary: 控制车辆灯光 off（默认）| on
+  group: 灯光控制
+- name: Headlight color [R,G,B]
+  summary: 前照灯颜色 [1,1,1]（默认）| 1×3 RGB 三元组值数组
+  group: 灯光控制
+- name: High beam intensity (cd)
+  summary: 远光灯强度 100000（默认）| 正标量
+  group: 灯光控制
+- name: Low beam intensity (cd)
+  summary: 近光灯强度 60000（默认）| 正标量
+  group: 灯光控制
+- name: High beam cone half angle (deg)
+  summary: 远光灯锥半角 70（默认）| 小于或等于 90 的正标量
+  group: 灯光控制
+- name: Low beam cone half angle (deg)
+  summary: 近光灯锥半角 70（默认）| 小于或等于 90 的正标量
+  group: 灯光控制
+- name: Left headlight beam orientation [Pitch, Yaw] (deg)
+  summary: 左前照灯光束方向 [Pitch, Yaw] (deg) [0,0]（默认）| 值介于 -180 和 180 之间的 1×2 数组
+  group: 灯光控制
+- name: Right headlight beam orientation [Pitch, Yaw] (deg)
+  summary: 右前照灯光束方向 [0,0]（默认）| 值介于 -180 和 180 之间的 1×2 数组
+  group: 灯光控制
+- name: Brake light intensity (cd/m^2)
+  summary: 强度 500（默认）| 正标量
+  group: 灯光控制
+- name: Reverse light intensity (cd/m^2)
+  summary: 强度 500（默认）| 正标量
+  group: 灯光控制
+- name: Turn signal light intensity (cd/m^2)
+  summary: 强度 500（默认）| 正标量
+  group: 灯光控制
+- name: Period (s)
+  summary: 转向信号灯周期 1（默认）| 正标量
+  group: 灯光控制
+- name: Pulse width (% of period)
+  summary: 脉冲宽度 50（默认）| 小于 100 的正标量
+  group: 灯光控制
+- name: Output location (m) and orientation (rad)
+  summary: 输出车辆的位置和方向 off（默认）| on
+  group: 地面真值
+```
 
 ### 车辆参数
 
@@ -316,7 +414,6 @@ chinese_source: worker-translation
 ### **Output location (m) and orientation (rad)** — 输出车辆的位置和方向 `off`（默认）| `on`
 
 选择此参数可分别在 **Location** 和 **Orientation** 端口输出车辆的位置和方向。
-
 ## 所属库
 
 Automated Driving Toolbox / Simulation 3D Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Vehicle / Components Simulink 3D Animation / Simulation 3D / Actors

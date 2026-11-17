@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Quadrature Decoder
 
 ## 端口
+```yaml
+ports:
+- name: Cnt
+  summary: 正交编码器计数器值 标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Idx
+  summary: 上次索引脉冲时的正交编码器计数器值 标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: CountsPerRev
+  summary: 每转生成的计数数 标量
+  direction: input
+  data_types: uint8 | uint16 | uint32 | single | double | fixed point
+- name: 1/CountsPerRev
+  summary: 每转生成的计数数的倒数 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θm
+  summary: 正交编码器的角位置 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -66,8 +89,34 @@ chinese_source: worker-translation
 该模块基于 `Cnt` 和 `Idx` 输入计算得到的角位置。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Use input port for computed parameters (run-time motor swap)
+  summary: 启用 CountsPerRev 和 1/CountsPerRev 输入端口 off（默认） | on
+  group: ''
+- name: Data type for 1/CountsPerRev input
+  summary: 1/CountsPerRev 输入的数据类型 single（默认） | double | fixed point
+  group: ''
+- name: Encoder slits
+  summary: 每相狭缝数 1000（默认） | 标量
+  group: ''
+- name: Encoder counts per slit
+  summary: 每个狭缝生成的计数数 4（默认） | 1 | 2
+  group: ''
+- name: Counter size
+  summary: 正交编码器计数器的位数 16 bits（默认）| 8 bits | 32 bits
+  group: ''
+- name: External index count
+  summary: 启用 Idx 输入端口 on（默认）| off
+  group: ''
+- name: Position unit
+  summary: 角位置输出的单位 Radians（默认）| Degrees | Per unit
+  group: ''
+- name: Position data type
+  summary: 角位置输出的数据类型 single（默认）| double | fixed point
+  group: ''
+```
 
 ### **Use input port for computed parameters (run-time motor swap)** — 启用 `CountsPerRev` 和 `1/CountsPerRev` 输入端口 `off`（默认） | `on`
 
@@ -118,7 +167,6 @@ chinese_source: worker-translation
 **注意**
 
 Quadrature Decoder 模块在需要时可以显示警告消息 `'Wrap on overflow detected'`。
-
 ## 所属库
 
 Motor Control Blockset / Sensor Decoders Motor Control Blockset HDL Support / Sensor Decoders

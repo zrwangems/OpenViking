@@ -14,6 +14,27 @@ language: en
 # Universal Motor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: Hf
+  summary: Field winding thermal port thermal
+  direction: conserving
+- name: Ha
+  summary: Armature winding thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -50,8 +71,74 @@ Armature winding thermal port.
 
 To enable this port, set **Modeling option** to `Show
 thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Model parameterization
+  summary: Block parameterization By DC rated power, rated speed & maximum torque (default) | By equivalent circuit parameters
+    | By DC rated power, rated speed & electrical power | By AC rated power, rated speed, current & electrical power
+  group: Electrical Torque
+- name: Total armature and field winding resistance
+  summary: Total resistance of the armature and field winding 132.8 Ohm (default)
+  group: Electrical Torque
+- name: Back-emf constant
+  summary: Back-emf constant 0.1722 s*V/rad/A (default)
+  group: Electrical Torque
+- name: Total armature and field winding inductance
+  summary: Total armature and field winding inductance 0.525 H (default)
+  group: Electrical Torque
+- name: Rated speed (at rated load)
+  summary: Rated speed 6500 rpm (default)
+  group: Electrical Torque
+- name: Rated load (mechanical power)
+  summary: Rated load 75 W (default)
+  group: Electrical Torque
+- name: Rated DC supply voltage
+  summary: Rated DC supply voltage 200 V (default)
+  group: Electrical Torque
+- name: Maximum (starting) torque
+  summary: Maximum torque 0.39 N*m (default)
+  group: Electrical Torque
+- name: Electrical power in at rated load
+  summary: Electrical power at the rated mechanical power 160 W (default)
+  group: Electrical Torque
+- name: RMS rated voltage
+  summary: RMS rated voltage 240 V (default)
+  group: Electrical Torque
+- name: RMS current at rated load
+  summary: RMS current at rated load 0.8 A (default)
+  group: Electrical Torque
+- name: AC frequency
+  summary: AC frequency 50 Hz (default)
+  group: Electrical Torque
+- name: Rotor inertia
+  summary: Rotor inertia 2e-4 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor dissipated energy 1e-6 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Initial rotor speed
+  summary: Initial rotor speed 0 rpm (default)
+  group: Mechanical
+- name: Field to armature resistance ratio, Rf/Ra
+  summary: Stator and rotor resistance temperature coefficients 1 (default)
+  group: Temperature Dependence
+- name: Resistance temperature coefficients, [alpha_f alpha_a]
+  summary: Stator and rotor resistance temperature coefficients [.00393, .00393] 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 C (default)
+  group: Temperature Dependence
+- name: Thermal masses, [Mf Ma]
+  summary: Thermal masses [100, 100] J/K (default)
+  group: Thermal Port
+- name: Initial temperatures
+  summary: Initial temperatures [25, 25] C (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -249,7 +336,6 @@ The thermal mass is the energy required to raise the temperature by one degree.
 
 A 1 by 2 row vector that defines the temperature of the field and armature thermal ports
 at the start of simulation.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Brushed Motors

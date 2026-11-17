@@ -15,6 +15,23 @@ chinese_source: worker-translation
 # Simulation 3D SmallSat Pack
 
 ## 端口
+```yaml
+ports:
+- name: Body_T
+  summary: 本体平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: 本体旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: 航天器平移 20×3 数组
+  direction: output
+- name: Rotation
+  summary: 航天器旋转 20×3 数组
+  direction: output
+```
 
 ### 输入
 
@@ -67,8 +84,205 @@ SmallSat 的航天器旋转，以 20×3 数组形式返回。
 该旋转适用于 Translation 端口所列出的相同骨骼。
 
 该信号包含旋转 [roll、pitch、yaw]，单位为弧度，数组的每一行对应航天器的一个骨骼。
-
 ## 参数
+```yaml
+parameters:
+- name: Antenna 1 translation
+  summary: 启用 Antenna1_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Antenna1_T
+  values: '''off''（默认）| ''on'''
+- name: Antenna 1 rotation
+  summary: 启用 Antenna1_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Antenna1_R
+  values: '''off''（默认）| ''on'''
+- name: Antenna 2 translation
+  summary: 启用 Antenna2_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Antenna2_T
+  values: '''off''（默认）| ''on'''
+- name: Antenna 2 rotation
+  summary: 启用 Antenna2_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Antenna2_R
+  values: '''off''（默认）| ''on'''
+- name: Antenna 3 translation
+  summary: 启用 Antenna3_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Antenna3_T
+  values: '''off''（默认）| ''on'''
+- name: Antenna 3 rotation
+  summary: 启用 Antenna3_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Antenna3_R
+  values: '''off''（默认）| ''on'''
+- name: Antenna 4 translation
+  summary: 启用 Antenna4_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Antenna4_T
+  values: '''off''（默认）| ''on'''
+- name: Antenna 4 rotation
+  summary: 启用 Antenna4_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Antenna4_R
+  values: '''off''（默认）| ''on'''
+- name: Sensor 1 translation
+  summary: 启用 Sensor1_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor1_T
+  values: '''off''（默认）| ''on'''
+- name: Sensor 1 rotation
+  summary: 启用 Sensor1_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor1_R
+  values: '''off''（默认）| ''on'''
+- name: Sensor 2 translation
+  summary: 启用 Sensor2_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor2_T
+  values: '''off''（默认）| ''on'''
+- name: Sensor 2 rotation
+  summary: 启用 Sensor2_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor2_R
+  values: '''off''（默认）| ''on'''
+- name: Sensor 3 translation
+  summary: 启用 Sensor3_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor3_T
+  values: '''off''（默认）| ''on'''
+- name: Sensor 3 rotation
+  summary: 启用 Sensor3_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor3_R
+  values: '''off''（默认）| ''on'''
+- name: Sensor 4 translation
+  summary: 启用 Sensor4_T 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor4_T
+  values: '''off''（默认）| ''on'''
+- name: Sensor 4 rotation
+  summary: 启用 Sensor4_R 输入端口的选项 off（默认）| on
+  group: 传感器
+  block_parameter: Sensor4_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1 translation
+  summary: 启用 SolarArray1_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1 rotation
+  summary: 启用 SolarArray1_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1.1 translation
+  summary: 启用 SolarArray1_1_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_1_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1.1 rotation
+  summary: 启用 SolarArray1_1_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_1_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1.1.1 translation
+  summary: 启用 SolarArray1_1_1_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_1_1_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1.1.1 rotation
+  summary: 启用 SolarArray1_1_1_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_1_1_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1.1.1.1 translation
+  summary: 启用 SolarArray1_1_1_1_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_1_1_1_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1.1.1.1 rotation
+  summary: 启用 SolarArray1_1_1_1_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_1_1_1_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1.1.1.1.1 translation
+  summary: 启用 SolarArray1_1_1_1_1_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_1_1_1_1_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 1.1.1.1.1 rotation
+  summary: 启用 SolarArray1_1_1_1_1_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray1_1_1_1_1_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2 translation
+  summary: 启用 SolarArray2_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2 rotation
+  summary: 启用 SolarArray2_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2.2 translation
+  summary: 启用 SolarArray2_2_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_2_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2.2 rotation
+  summary: 启用 SolarArray2_2_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_2_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2.2.2 translation
+  summary: 启用 SolarArray2_2_2_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_2_2_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2.2.2 rotation
+  summary: 用于启用 SolarArray2_2_2_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_2_2_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2.2.2.2 translation
+  summary: 用于启用 SolarArray2_2_2_2_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_2_2_2_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2.2.2.2 rotation
+  summary: 用于启用 SolarArray2_2_2_2_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_2_2_2_R
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2.2.2.2.2 translation
+  summary: 用于启用 SolarArray2_2_2_2_2_T 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_2_2_2_2_T
+  values: '''off''（默认）| ''on'''
+- name: Solar array 2.2.2.2.2 rotation
+  summary: 用于启用 SolarArray2_2_2_2_2_R 输入端口的选项 off（默认）| on
+  group: 太阳能电池阵列
+  block_parameter: SolarArray2_2_2_2_2_R
+  values: '''off''（默认）| ''on'''
+- name: Thruster translation
+  summary: 用于启用 Thruster_T 输入端口的选项 off（默认）| on
+  group: Thrusters
+  block_parameter: Thruster_T
+  values: '''off''（默认）| ''on'''
+- name: Thruster rotation
+  summary: 用于启用 Thruster_R 输入端口的选项 off（默认）| on
+  group: Thrusters
+  block_parameter: Thruster_R
+  values: '''off''（默认）| ''on'''
+- name: Select input coordinate frame
+  summary: 输入坐标系 NED（默认）| Fixed-frame | ICRF
+  group: 输入
+  block_parameter: GeoRadioButton
+  values: '''NED''（默认）| ''Fixed-frame'' | ''ICRF'''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -666,7 +880,6 @@ SmallSat 的航天器旋转，以 20×3 数组形式返回。
 | --- | --- |
 | **Parameter:** | `GeoRadioButton` |
 | **值**：| `'NED'`（默认）| `'Fixed-frame'` | `'ICRF'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Simulation 3D

@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Three-Winding Transformer (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: ~1
+  summary: 一次绕组电压电气端口
+  direction: conserving
+- name: n1
+  summary: 一次绕组中性点电气端口
+  direction: conserving
+- name: ~2
+  summary: 第一次级绕组电压电气端口
+  direction: conserving
+- name: n2
+  summary: 第一次级绕组中性点电气端口
+  direction: conserving
+- name: ~3
+  summary: 第二次级绕组电压电气端口
+  direction: conserving
+- name: n3
+  summary: 第二次级绕组中性点电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -62,8 +83,88 @@ chinese_source: worker-translation
 
 仅当 **Main** 参数 **Winding 3 connection type** 设置为
 `Wye with neutral port` 时，此端口才可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或扩展三相端口建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Rated apparent power
+  summary: 额定容量下的视在功率 100e6 V*A（默认）| 正标量
+  group: 主要参数
+- name: Rated electrical frequency
+  summary: 所连接网络的电气频率 60 Hz（默认）| 正标量
+  group: 主要参数
+- name: Primary winding connection type
+  summary: 一次绕组配置 Wye with floating neutral（默认）| Wye with neutral port | Wye with grounded neutral | Delta 1 o'clock | Delta
+    11 o'clock
+  group: 主要参数
+- name: Primary rated voltage
+  summary: 施加到一次绕组的 RMS 线电压 4160 V（默认）| 正标量
+  group: 主要参数
+- name: First secondary connection type
+  summary: 第一次级绕组配置 Wye with floating neutral（默认）| Wye with neutral port | Wye with grounded neutral | Delta 1 o'clock | Delta
+    11 o'clock
+  group: 主要参数
+- name: First secondary rated voltage
+  summary: 施加到第一次级绕组的 RMS 线电压 24e3 V（默认）| 正标量
+  group: 主要参数
+- name: Second secondary connection type
+  summary: 第二次级绕组配置 Wye with floating neutral（默认）| Wye with neutral port | Wye with grounded neutral | Delta 1 o'clock | Delta
+    11 o'clock
+  group: 主要参数
+- name: Second secondary rated voltage
+  summary: 施加到第二次级绕组的 RMS 线电压 24e3（默认）| 正标量
+  group: 主要参数
+- name: Core type
+  summary: 铁芯柱数量 Three-phase three-limb（默认）| Three-phase five-limb
+  group: 主要参数
+- name: Primary winding resistance (pu)
+  summary: 一次绕组功率损耗 0.01（默认）| 正标量
+  group: Impedances
+- name: First secondary winding resistance (pu)
+  summary: 第一次级绕组功率损耗 0.01（默认）| 正标量
+  group: Impedances
+- name: Second secondary winding resistance (pu)
+  summary: 第二次级绕组功率损耗 0.01（默认）| 正标量
+  group: Impedances
+- name: Leakage reactance
+  summary: 漏电抗建模 Exclude（默认）| Include
+  group: Impedances
+- name: Primary leakage reactance (pu)
+  summary: 一次绕组磁通损耗 0.001（默认）| 正标量
+  group: Impedances
+- name: First secondary leakage reactance (pu)
+  summary: 第一次级绕组磁通损耗 0.001（默认）| 正标量
+  group: Impedances
+- name: Second secondary leakage reactance (pu)
+  summary: 第二次级绕组磁通损耗 0.001（默认）| 正标量
+  group: Impedances
+- name: Magnetizing resistance
+  summary: 励磁电阻建模 Exclude（默认）| Include
+  group: Impedances
+- name: Shunt magnetizing resistance (pu)
+  summary: 变压器铁芯损耗 500（默认）| 正标量
+  group: Impedances
+- name: Magnetizing reactance
+  summary: 励磁电抗建模 Exclude（默认）| Include
+  group: Impedances
+- name: Magnetic saturation representation
+  summary: 磁饱和的表示方式 None（默认）| Lookup table (phi versus i)
+  group: Impedances
+- name: Current vector (pu), i
+  summary: 电流的标幺向量 [0, .002, 1, 2]（默认）
+  group: Impedances
+- name: Magnetic flux vector (pu), phi
+  summary: 磁通的标幺向量 [0, 1.2, 1.5, 1.51]（默认）
+  group: Impedances
+- name: Shunt magnetizing reactance (pu)
+  summary: 变压器铁芯磁效应 500（默认）| 正标量
+  group: Impedances
+- name: Zero sequence reactance (pu)
+  summary: 零序电抗 0.5（默认）| 正标量
+  group: Impedances
+```
 
 ### **Modeling option** — 是否对复合或扩展三相端口建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -212,7 +313,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Core type**（一个 **Main** 参数）设置为 `Three-phase three-limb`。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Transformers

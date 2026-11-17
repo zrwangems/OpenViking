@@ -14,6 +14,13 @@ language: en
 # Sine Wave
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Sine wave output signal scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -23,8 +30,80 @@ Output sine wave signal created based on the block parameter
 values.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sine type
+  summary: Type of sine wave Time based (default) | Sample based
+  group: ''
+  block_parameter: SineType
+  type: character vector
+  values: '''Time based'' | ''Sample based'''
+  default: '''Time based'''
+- name: Time (t)
+  summary: Source of time variable Use simulation time (default) | Use external signal
+  group: ''
+  block_parameter: TimeSource
+  type: character vector
+  values: '''Use simulation time'' | ''Use external signal'''
+  default: '''Use simulation time'''
+- name: Amplitude
+  summary: Amplitude of the sine wave 1 (default) | scalar | vector
+  group: ''
+  block_parameter: Amplitude
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Bias
+  summary: Constant added to sine wave 0 (default) | scalar | vector
+  group: ''
+  block_parameter: Bias
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Frequency (rad/sec)
+  summary: Frequency of sine wave 1 (default) | scalar | vector
+  group: ''
+  block_parameter: Frequency
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Phase (rad)
+  summary: Phase shift of sine wave 0 (default) | scalar | vector
+  group: ''
+  block_parameter: Phase
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Samples per period
+  summary: Samples per period 0 (default) | integer scalar | integer vector
+  group: ''
+  block_parameter: Samples
+  type: character vector
+  values: scalar
+  default: '''10'''
+- name: Number of offset samples
+  summary: Offset in number of sample times 0 (default) | integer scalar | integer vector
+  group: ''
+  block_parameter: Offset
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Sample time
+  summary: Sample period 0 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Interpret vector parameters as 1-D
+  summary: Output dimensions for one-row or one-column matrices off (default) | on
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Sine type** — Type of sine wave `Time based` (default) | `Sample based`
 
@@ -202,7 +281,6 @@ case, if numeric parameters are column or row matrix values, the output is a
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Simulink / Sources

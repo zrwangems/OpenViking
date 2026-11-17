@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Varying Observer Form
 
 ## 端口
+```yaml
+ports:
+- name: y
+  summary: 测量信号 标量 | 向量
+  direction: input
+- name: A
+  summary: 被控对象状态矩阵 矩阵
+  direction: input
+- name: B
+  summary: 被控对象输入矩阵 矩阵
+  direction: input
+- name: C
+  summary: 被控对象输出矩阵 矩阵
+  direction: input
+- name: D
+  summary: 被控对象前馈矩阵 矩阵
+  direction: input
+- name: K
+  summary: 状态反馈矩阵 矩阵
+  direction: input
+- name: L
+  summary: 状态观测器矩阵 矩阵
+  direction: input
+- name: u
+  summary: 控制信号 标量 | 向量
+  direction: output
+- name: xe
+  summary: 估计的被控对象状态向量 向量
+  direction: output
+- name: dxe
+  summary: 估计的状态导数 向量
+  direction: output
+```
 
 ### 输入
 
@@ -66,8 +99,22 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请选择 **Output state updates** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial conditions
+  summary: 系统初始条件 0 （默认） | 标量 | 向量
+  group: ''
+- name: State names (e.g., 'position')
+  summary: 被控对象状态名称 '' （默认） | 字符向量 | 元胞数组
+  group: ''
+- name: Output states
+  summary: 提供状态输出 on （默认） | off
+  group: ''
+- name: Output state derivatives
+  summary: 提供状态导数 on （默认） | off
+  group: ''
+```
 
 ### **Initial conditions** — 系统初始条件 0 （默认） | 标量 | 向量
 
@@ -87,7 +134,6 @@ chinese_source: worker-translation
 ### **Output state derivatives** — 提供状态导数 on （默认） | off
 
 选择以启用估计状态导数输出端口 **dxe**。
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

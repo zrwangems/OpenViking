@@ -14,6 +14,13 @@ language: en
 # Induction Motor Configuration
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Block configuration signal vector
+  direction: output
+  data_types: single
+```
 
 ### Output
 
@@ -36,8 +43,43 @@ parameters that you configure using this block.
 | Port configuration (Torque or Speed) | | | - |
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Port configuration
+  summary: Select port configuration Torque (default) | Speed
+  group: Block Options
+- name: Sample Time (Ts)
+  summary: Sample time after which block executes again 1e-6 (default) | scalar
+  group: Block Options
+- name: Number of pole pairs
+  summary: Pole pairs 2 (default) | scalar
+  group: Parameters
+- name: Stator resistance (Ohm)
+  summary: Stator resistance 1.77 (default) | scalar
+  group: Parameters
+- name: Leakage inductance (H)
+  summary: Stator leakage inductance 0.0139 (default) | scalar
+  group: Parameters
+- name: Rotor resistance (Ohm)
+  summary: Rotor resistance 1.34 (default) | scalar
+  group: Parameters
+- name: Leakage inductance (H)
+  summary: Rotor leakage inductance 0.0121 (default) | scalar
+  group: Parameters
+- name: Magnetizing inductance (H)
+  summary: Inductance 0.3876 (default) | scalar
+  group: Parameters
+- name: Physical Inertia (kg\*m^2)
+  summary: Physical inertia 0.001 (default) | scalar
+  group: Parameters
+- name: Viscous damping (N\*m/rad/s)
+  summary: Viscous damping 0 (default) | scalar
+  group: Parameters
+- name: Static friction (N\*m)
+  summary: Static friction 0 (default) | scalar
+  group: Parameters
+```
 
 ### Block Options
 
@@ -96,7 +138,6 @@ Viscous damping of the motor, *F*, in N·m/(rad/s).
 
 Static friction in the motor, *Tf*, in
 N·m.
-
 ## Libraries
 
 Motor Control Blockset HDL Support / Electrical Systems / Motors

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # EtherCAT Sync SDO Upload
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 从从站设备接收的数据 numeric
+  direction: output
+- name: Error
+  summary: 报告 EtherCAT 网络错误 0 | integer
+  direction: output
+```
 
 ### 输出
 
@@ -27,8 +36,42 @@ chinese_source: worker-translation
 如果未发生错误，此端口输出
 `0`。否则，输出非零值。有关错误代码列表，
 请参阅 EtherCAT Error Codes。
-
 ## 参数
+```yaml
+parameters:
+- name: Index
+  summary: CANopen 寄存器的索引 integer
+  group: ''
+  block_parameter: index
+- name: Subindex
+  summary: CANopen 寄存器的子索引 integer
+  group: ''
+  block_parameter: subIndex
+- name: Data Type
+  summary: CANopen 寄存器的数据类型 double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+  block_parameter: sig_type
+- name: Dimension
+  summary: CANopen 寄存器的维度 1 (default)
+  group: ''
+  block_parameter: sig_dim
+- name: Network Device Index
+  summary: EtherCAT 网络标识符 0 (default) | 0-11
+  group: ''
+  block_parameter: device_id
+- name: SubDevice Name
+  summary: 包含 CANopen 寄存器的设备名称 character vector
+  group: ''
+  block_parameter: subdevice_name
+- name: Sample time
+  summary: 模块的采样时间 -1 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+- name: Timeout
+  summary: 等待从站设备响应的时间 numeric
+  group: ''
+  block_parameter: timeout
+```
 
 ### **Index** — CANopen 寄存器的索引 integer
 
@@ -126,7 +169,6 @@ Device Index** 中。
 |  |
 | --- |
 | **模块参数**：`timeout` |
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

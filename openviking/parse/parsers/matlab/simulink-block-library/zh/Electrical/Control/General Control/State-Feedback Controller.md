@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # State-Feedback Controller
 
 ## 端口
+```yaml
+ports:
+- name: r
+  summary: 被控对象参考 scalar
+  direction: input
+  data_types: single | double
+- name: x
+  summary: 状态向量 vector
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 积分器复位 scalar
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: 被控对象输出 scalar
+  direction: input
+  data_types: single | double
+- name: u
+  summary: 控制器输出 scalar
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -48,8 +71,58 @@ chinese_source: worker-translation
 控制系统输出信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: State-feedback design
+  summary: 控制器生成 State-feedback gain（默认）| Desired eigenvalues
+  group: ''
+- name: State-feedback parameterization
+  summary: 状态反馈参数化 Discrete-time（默认）| Continuous-time
+  group: ''
+- name: Controller matrix
+  summary: 控制器矩阵 [1 1]（默认）| matrix
+  group: ''
+- name: Discrete-time A matrix
+  summary: 离散时间 A 矩阵 1（默认）| real scalar or matrix
+  group: ''
+- name: Discrete-time B matrix
+  summary: 离散时间 B 矩阵 1（默认）| real scalar or matrix
+  group: ''
+- name: Discrete-time C matrix
+  summary: 离散时间 C 矩阵 1（默认）| real scalar or matrix
+  group: ''
+- name: Discrete-time D matrix
+  summary: 离散时间 D 矩阵 1（默认）| real scalar or matrix
+  group: ''
+- name: Continuous-time A matrix
+  summary: 连续时间 A 矩阵 1（默认）| real scalar or matrix
+  group: ''
+- name: Continuous-time B matrix
+  summary: 连续时间 B 矩阵 1（默认）| real scalar or matrix
+  group: ''
+- name: Continuous-time C matrix
+  summary: 连续时间 C 矩阵 1（默认）| real scalar or matrix
+  group: ''
+- name: Continuous-time D matrix
+  summary: 连续时间 D 矩阵 1（默认）| real scalar or matrix
+  group: ''
+- name: Discretization sample time
+  summary: 离散化采样时间 0.1（默认）| positive real number
+  group: ''
+- name: Desired eigenvalues (discrete)
+  summary: 观测器特征值 0（默认）| real vector
+  group: ''
+- name: Control action upper limit
+  summary: '*umax* 5（默认）| scalar greater than the value of the Control action lower limit parameter'
+  group: ''
+- name: Control action lower limit
+  summary: '*umin* 0（默认）| scalar'
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 采样间隔 -1（默认）| default value or a positive number
+  group: ''
+```
 
 ### **State-feedback design** — 控制器生成 `State-feedback gain`（默认）| `Desired eigenvalues`
 
@@ -161,7 +234,6 @@ chinese_source: worker-translation
 ### **Sample time (-1 for inherited)** — 采样间隔 `-1`（默认）| default value or a positive number
 
 采样之间的时间间隔。如果该模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果该模块位于连续变步长模型中，请显式指定采样时间。有关详细信息，请参阅 What Is Sample Time? 和 Specify Sample Time。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

@@ -14,6 +14,9 @@ language: en
 # Variable Area Hydraulic Orifice
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -25,8 +28,10 @@ The block has the following ports:
 
 `AR`
 :   Physical signal port that provides the value of the orifice area.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Flow discharge coefficient**
 :   Semi-empirical parameter for orifice capacity characterization. Its value
@@ -67,7 +72,6 @@ The block has the following ports:
     material with sharp edges. This parameter is visible only if the
     **Laminar transition specification** parameter is set
     to `Reynolds number`.
-
 ## Libraries
 
 Not documented in R2025b.

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Backlash
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -30,8 +41,38 @@ chinese_source: worker-translation
 将 backlash 算法应用于输入信号后的输出信号。当输入位于死区内时，输出保持不变。如果输入与输出啮合，则输出变化量与输入相同。
 
 **数据类型：** `double` | `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Deadband width
+  summary: 指定死区宽度 1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: BacklashWidth
+  type: 字符向量
+  values: 实数标量或向量
+  default: '''1'''
+- name: Initial output
+  summary: 指定初始输出值 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: InitialOutput
+  type: 字符向量
+  values: 实数标量或向量
+  default: '''0'''
+- name: Input processing
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: ''
+  block_parameter: InputProcessing
+  type: 字符向量
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Enable zero-crossing detection
+  summary: 启用零交叉检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量 | 字符串
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### **Deadband width** — 指定死区宽度 `1`（默认）| 标量 | 向量
 
@@ -97,7 +138,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 | 字符串 |
 | **值**：`'off'` | `'on'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Simulink / Discontinuities HDL Coder / Discontinuities

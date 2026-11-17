@@ -14,6 +14,33 @@ language: en
 # Discrete-Time Integrator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: External reset
+  summary: External reset signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: IC
+  summary: Initial conditions of the states scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Discrete-time integration or accumulation of input scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: Saturation output scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8
+- name: Port_3
+  summary: State output scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -105,8 +132,181 @@ To enable this port, select the **Show state
 port** check box.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Integrator method
+  summary: 'Accumulation method Integration: Forward Euler (default) | Integration: Backward Euler | Integration: Trapezoidal
+    | Accumulation: Forward Euler | Accumulation: Backward Euler | Accumulation: Trapezoidal'
+  group: Main
+  block_parameter: IntegratorMethod
+  type: character vector
+  values: '''Integration: Forward Euler'' | ''Integration: Backward Euler'' | ''Integration: Trapezoidal'' | ''Accumulation:
+    Forward Euler'' | ''Accumulation: Backward Euler'' | ''Accumulation: Trapezoidal'''
+  default: '''Integration: Forward Euler'''
+- name: Gain value
+  summary: Value to multiply with integrator input 1.0 (default) | scalar | vector
+  group: Main
+  block_parameter: gainval
+  type: character vector
+  values: scalar | vector
+  default: '''1.0'''
+- name: External reset
+  summary: Select when to reset states to initial conditions none (default) | rising | falling | either | level | sampled
+    level
+  group: Main
+  block_parameter: ExternalReset
+  type: character vector
+  values: '''none'' | ''rising'' | ''falling'' | ''either'' | ''level'' | ''sampled level'''
+  default: '''none'''
+- name: Initial condition source
+  summary: Option to set initial condition using external signal internal (default) | external
+  group: Main
+  block_parameter: InitialConditionSource
+  type: character vector, string
+  values: '''internal'' | ''external'''
+  default: '''internal'''
+- name: Initial condition
+  summary: Initial condition of states 0 (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: InitialCondition
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''0'''
+- name: Initial condition setting
+  summary: Select where to apply the initial condition Auto (default) | Output | Compatibility
+  group: Main
+  block_parameter: InitialConditionSetting
+  type: character vector
+  values: '''Auto'' | ''Output'' | ''Compatibility'''
+  default: '''Auto'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: Limit output
+  summary: Limit block output values to specified range off (default) | on
+  group: Main
+  block_parameter: LimitOutput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Upper saturation limit
+  summary: Upper limit for the integral inf (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: UpperSaturationLimit
+  type: character vector, string
+  values: scalar | vector | matrix
+  default: '''inf'''
+- name: Lower saturation limit
+  summary: Lower limit for the integral -inf (default) | scalar | vector | matrix
+  group: Main
+  block_parameter: LowerSaturationLimit
+  type: character vector , string
+  values: scalar | vector | matrix
+  default: '''-inf'''
+- name: Show saturation port
+  summary: Enable saturation output port off (default) | on
+  group: Main
+  block_parameter: ShowSaturationPort
+  type: character vector , string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Show state port
+  summary: Enable state output port off (default) | on
+  group: Main
+  block_parameter: ShowStatePort
+  type: character vector , string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Ignore limit and reset when linearizing
+  summary: Treat block as not resettable off (default) | on
+  group: Main
+  block_parameter: IgnoreLimit
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | double
+    | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0)
+    | <data type expression>'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Mode
+  summary: Select data type mode Inherit (default) | Built in | Fixed Point
+  group: Signal Attributes
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: Signal Attributes
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default) | Unsigned
+  group: Signal Attributes
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: Signal Attributes
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias
+  group: Signal Attributes
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: Signal Attributes
+- name: Slope
+  summary: Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar
+  group: Signal Attributes
+- name: Bias
+  summary: Specify bias for the fixed-point data type 0 (default) | real-valued scalar
+  group: Signal Attributes
+- name: State name
+  summary: Unique name for block state '' (default) | alphanumeric string
+  group: State Attributes
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: Option to require that state names resolve to signal object off (default) | on
+  group: State Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -828,7 +1028,6 @@ a value other than `None`.
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations

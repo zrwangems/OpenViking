@@ -14,6 +14,12 @@ language: en
 # Random Integer Generator
 
 ## Ports
+```yaml
+ports:
+- name: Out
+  summary: Random integer output scalar | vector | matrix
+  direction: output
+```
 
 ### Output
 
@@ -27,8 +33,31 @@ Samples per frame parameter and corresponds to the number of samples
 in one frame. The number of columns in the output data equals the number
 of elements in the Set size
 parameter and corresponds to the number of channels.
-
 ## Parameters
+```yaml
+parameters:
+- name: Set size
+  summary: Set size 8 (default) | positive integer | row vector of positive integers
+  group: ''
+- name: Source of initial seed
+  summary: Source of initial seed Auto (default) | Parameter
+  group: ''
+- name: Initial seed
+  summary: Initial seed value 0 (default) | nonnegative integer
+  group: ''
+- name: Sample time
+  summary: Sample time 1 (default) | -1 | positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | single | uint8 | uint16 | uint32 | boolean
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -120,7 +149,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Comm Sources / Random Data Sources

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # C28x SCI Receive
 
 ## 端口
+```yaml
+ports:
+- name: Length
+  summary: 从输入端口接收的数据长度 标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Data
+  summary: 从串行总线接收的数据 标量 | 向量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single
+- name: status
+  summary: 串行通信状态 标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输入
 
@@ -68,8 +83,55 @@ chinese_source: worker-translation
 此端口仅在您选择 **Output receiving status** 时出现。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: SCI module
+  summary: 用于通信的 SCI 模块 A（默认） | B | C | D
+  group: ''
+- name: Additional package header
+  summary: 指示数据起始 'S'（默认） | 字符串 | 字符 | 0 到 255 的数字
+  group: ''
+- name: Additional package terminator
+  summary: 指示数据结束 'E'（默认） | 字符串 | 字符 | 0 到 255 的数字
+  group: ''
+- name: Number of retries for header receive check
+  summary: 包头接收检查的自定义重试次数 16（默认） | 正整数，有限 | 标量
+  group: ''
+- name: Data type
+  summary: 输出数据的数据类型 uint8（默认） | single | int8 | int16 | uint16 | int32 | uint32
+  group: ''
+- name: Data length option
+  summary: 模块接收的数据长度 Length via dialog（默认） | Length via input port | Variable length
+  group: ''
+- name: Data length
+  summary: 模块接收的数据类型数量 1（默认） | 正整数，有限 | 标量
+  group: ''
+- name: Max data length
+  summary: 模块接收的最大数据类型数量 1（默认） | 正整数，有限 | 正整数，有限
+  group: ''
+- name: Initial output
+  summary: 模块的默认输出值 0（默认） | 标量 | 向量
+  group: ''
+- name: Action taken when connection times out
+  summary: 连接超时时选择输出类型 Output the last received value（默认） | Output custom value
+  group: ''
+- name: Output value when connection times out
+  summary: 连接超时时模块的自定义输出值 0（默认） | 标量 | 向量
+  group: ''
+- name: Sample time
+  summary: 从 SCI 设备读取数据的频率 0.1（默认） | -1 | 标量
+  group: ''
+- name: Wait until data received
+  summary: 等待直到请求的数据可用 off（默认） | on
+  group: ''
+- name: Timeout
+  summary: 模块等待接收数据的时间量（秒） inf（默认） | 大于 0 的正值
+  group: ''
+- name: Output receiving status
+  summary: 串行通信状态 off（默认） | on
+  group: ''
+```
 
 ### **SCI module** — 用于通信的 SCI 模块 `A`（默认） | `B` | `C` | `D`
 
@@ -227,7 +289,6 @@ SCI Receive 模块的默认输出值。例如，当 **Action taken when connecti
 ### **Output receiving status** — 串行通信状态 `off`（默认） | `on`
 
 创建 **Status** 模块输出，提供串行通信的状态。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / C280x C2000 Microcontroller Blockset / C281x C2000 Microcontroller Blockset / C2833x C2000 Microcontroller Blockset / C2834x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

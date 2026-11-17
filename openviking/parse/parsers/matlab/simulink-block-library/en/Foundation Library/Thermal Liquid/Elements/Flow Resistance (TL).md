@@ -14,6 +14,15 @@ language: en
 # Flow Resistance (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Flow resistance port thermal liquid
+  direction: conserving
+- name: B
+  summary: Flow resistance port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,22 @@ resistance.
 
 Port through which the thermal liquid enters or exits the flow
 resistance.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nominal pressure drop
+  summary: Pressure drop at a known operating condition 0.001 MPa (default)
+  group: ''
+- name: Nominal mass flow rate
+  summary: Mass flow rate at a known operating condition 0.1 kg/s (default)
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at the ports of the flow resistance 0.01 m^2 (default)
+  group: ''
+- name: Fraction of nominal mass flow rate for laminar flow
+  summary: Ratio of threshold to nominal mass flow rates 1e-3 (default)
+  group: ''
+```
 
 ### **Nominal pressure drop** — Pressure drop at a known operating condition 0.001 MPa (default)
 
@@ -51,7 +74,6 @@ identical in size.
 Ratio of the threshold mass flow rate to the nominal mass flow rate. The
 block uses this parameter to calculate the threshold mass flow rate—and
 ultimately to set the limits of linearization for the pressure drop.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Elements

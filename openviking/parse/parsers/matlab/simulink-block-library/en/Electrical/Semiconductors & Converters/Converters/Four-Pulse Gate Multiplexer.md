@@ -14,6 +14,46 @@ language: en
 # Four-Pulse Gate Multiplexer
 
 ## Ports
+```yaml
+ports:
+- name: G1
+  summary: Gate-control voltage signal 1 physical signal
+  direction: input
+  data_types: double
+- name: G2
+  summary: Gate-control voltage signal 2 physical signal
+  direction: input
+  data_types: double
+- name: G3
+  summary: Gate-control voltage signal 3 physical signal
+  direction: input
+  data_types: double
+- name: G4
+  summary: Gate-control voltage signal 4 physical signal
+  direction: input
+  data_types: double
+- name: G1
+  summary: Gate-control voltage signal 1 electrical
+  direction: conserving
+- name: a
+  summary: '*A*-phase AC reference point electrical'
+  direction: conserving
+- name: G2
+  summary: Gate-control voltage signal 2 electrical
+  direction: conserving
+- name: b
+  summary: '*B*-phase AC reference point electrical'
+  direction: conserving
+- name: G3
+  summary: Gate-control voltage signal 3 electrical
+  direction: conserving
+- name: G4
+  summary: Gate-control voltage signal 4 electrical
+  direction: conserving
+- name: L
+  summary: DC reference point electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -135,13 +175,17 @@ for the low-side switching device.
 
 To enable this port, set **Gate-control port** to
 `Electrical`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gate-control port
+  summary: Gate control port PS (default) | Electrical
+  group: ''
+```
 
 ### **Gate-control port** — Gate control port `PS` (default) | `Electrical`
 
 Whether to expose PS or electrical control ports.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

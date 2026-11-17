@@ -14,6 +14,27 @@ language: en
 # OFDM Equalizer
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input signal 3-D array | 2-D array
+  direction: input
+  data_types: double | single
+- name: hEst
+  summary: Channel estimate 3-D array
+  direction: input
+  data_types: double | single
+- name: noiseVar
+  summary: Noise variance 0 (default) | nonnegative scalar
+  direction: input
+  data_types: double | single
+- name: out
+  summary: Equalized symbols 3-D array | 2-D array
+  direction: output
+- name: csi
+  summary: Soft channel state information matrix
+  direction: output
+```
 
 ### Input
 
@@ -133,8 +154,28 @@ of transmit antennas.
 
 To enable this output port, select the **Output soft
 channel state information** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data format
+  summary: Format of signals 3-D (default) | 2-D
+  group: ''
+- name: Algorithm
+  summary: Equalization algorithm Minimum mean squared error (default) | Zero-forcing
+  group: ''
+- name: Noise variance source
+  summary: Source of noise variance Input port (default) | Property
+  group: ''
+- name: Noise variance
+  summary: Noise variance 0 (default) | nonnegative scalar
+  group: ''
+- name: Output soft channel state information
+  summary: Enable soft channel state information output off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -237,7 +278,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Equalizers

@@ -15,6 +15,57 @@ chinese_source: worker-translation
 # FEM-Parameterized PMSM
 
 ## 端口
+```yaml
+ports:
+- name: a
+  summary: A 相连接 electrical
+  direction: conserving
+- name: b
+  summary: B 相连接 electrical
+  direction: conserving
+- name: c
+  summary: C 相连接 electrical
+  direction: conserving
+- name: a1
+  summary: '*a* 正端连接 electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* 正端连接 electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* 正端连接 electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* 负端连接 electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* 负端连接 electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* 负端连接 electrical'
+  direction: conserving
+- name: n
+  summary: 中性相 electrical
+  direction: conserving
+- name: C
+  summary: 电机外壳 mechanical
+  direction: conserving
+- name: R
+  summary: 电机转子 mechanical
+  direction: conserving
+- name: HA
+  summary: 绕组 A 热端口 thermal
+  direction: conserving
+- name: HB
+  summary: 绕组 B 热端口 thermal
+  direction: conserving
+- name: HC
+  summary: 绕组 C 热端口 thermal
+  direction: conserving
+- name: HR
+  summary: 转子热端口 thermal
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -186,8 +237,307 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Modeling option** 设置为
 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 磁链和转矩参数化方法 2-D partial derivative data | No thermal port（默认）| 2-D partial derivative data | Show thermal port |
+    3-D partial derivative data | No thermal port | 3-D partial derivative data | Show thermal port | 4-D partial derivative
+    data | No thermal port | 4-D partial derivative data | Show thermal port | 3-D flux linkage data | No thermal port | 3-D
+    flux linkage data | Show thermal port
+  group: ''
+- name: Parameterization
+  summary: 参数化方法 Assume constant mutual inductance - tabulate 含相电流和转子角（默认）| 假设正弦反电动势 - 用 d 轴和 q-axis currents
+  group: 电气（2-D 偏导数数据参数化）
+- name: Winding type
+  summary: 定子绕组配置 Wye-wound（默认）| Delta-wound | Open-end
+  group: 电气（2-D 偏导数数据参数化）
+- name: Current vector, i
+  summary: 电流向量 [-2, 0, 2] A（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Rotor angle vector, theta
+  summary: 转子角度向量 [0, 20, 40, 60] deg（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Flux linkage partial derivative wrt current, dPhi(i,theta)/di
+  summary: 磁链对电流的偏导数 0.0002*ones(3,4) Wb/A（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Flux linkage partial derivative wrt angle, dPhi(i,theta)/dtheta
+  summary: 磁链对角度的偏导数 [0, -0.16, 0.16, 0; 0, -0.16, 0.16, 0; 0, -0.16, 0.16, 0] Wb/rad（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Direct axis current vector, id
+  summary: 直轴电流向量 [-200, 0, 200] A（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Quadrature axis current vector, iq
+  summary: 交轴电流向量 [-200, 0, 200] A（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld 矩阵 0.0002*ones(3,3) H（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq 矩阵 0.0002*ones(3,3) H（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Permanent magnet flux linkage, PM(id,iq)
+  summary: 永磁磁链 0.1*ones(3,3) Wb（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Number of pole pairs
+  summary: 极对数 6（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Calculate torque matrix?
+  summary: 电磁转矩数据指定方式 Yes（默认）| No — specify directly
+  group: 电气（2-D 偏导数数据参数化）
+- name: Torque matrix, T(i,theta)
+  summary: 转矩矩阵 zeros(3, 3, 3, 4) N*m（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Interpolation method
+  summary: 插值方法 Linear Smooth（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Stator resistance per phase, Rs
+  summary: 每相定子电阻 0.013 Ohm（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Stator mutual inductance, Ms
+  summary: 定子互感 0.00002 H（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Stator zero-sequence inductance, L0
+  summary: 定子零序电感 0.00016 H（默认）
+  group: 电气（2-D 偏导数数据参数化）
+- name: Winding type
+  summary: 定子绕组配置 Wye-wound（默认）| Delta-wound | Open-end
+  group: 电气（3-D 偏导数数据参数化）
+- name: Direct-axis current vector, iD
+  summary: 直轴电流向量 [-200, 0, 200] A（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: Quadrature-axis current vector, iQ
+  summary: 交轴电流向量 [-200, 0, 200] A（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: Rotor angle vector, theta
+  summary: 转子角度向量 [0, 20, 40, 60] deg（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: A-phase flux linkage partial derivative wrt iA, dPhiA(id,iq,theta)/diA
+  summary: A 相磁链对 iA 的偏导数 zeros(3, 3, 4) Wb/A（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: A-phase flux linkage partial derivative wrt iB, dPhiA(id,iq,theta)/diB
+  summary: A 相磁链对 iB 的偏导数 zeros(3, 3, 4) Wb/A（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: A-phase flux linkage partial derivative wrt iC, dPhiA(id,iq,theta)/diC
+  summary: A 相磁链对 iC 的偏导数 zeros(3, 3, 4) Wb/A（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: A-phase flux linkage partial derivative wrt angle, dPhiA(id,iq,theta)/dtheta
+  summary: A 相磁链对角度的偏导数 zeros(3, 3, 4) Wb/rad（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: Torque matrix, T(id,iq,theta)
+  summary: 转矩矩阵 zeros(3, 3, 4) N*m（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 电气（3-D 偏导数数据参数化）
+- name: Stator resistance per phase, Rs
+  summary: 每相定子电阻 0.013 Ohm（默认）
+  group: 电气（3-D 偏导数数据参数化）
+- name: Winding type
+  summary: 定子绕组配置 Wye-wound（默认）| Delta-wound | Open-end
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase current vector, iA
+  summary: A 相电流向量 [-200, 0, 200] A（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: B-phase current vector, iB
+  summary: B 相电流向量 [-200, 0, 200] A（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: C-phase current vector, iC
+  summary: C 相电流向量 [-200, 0, 200] A（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Rotor angle vector, theta
+  summary: 转子角度向量 [0, 20, 40, 60] deg（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iA, dPhiA(iA,iB,iC,theta)/diA
+  summary: A 相磁链对 iA 的偏导数 zeros(3, 3, 3, 4) Wb/A（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iB, dPhiA(iA,iB,iC,theta)/diB
+  summary: A 相磁链对 iB 的偏导数 zeros(3, 3, 3, 4) Wb/A（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt iC, dPhiA(iA,iB,iC,theta)/diC
+  summary: A 相磁链对 iC 的偏导数 zeros(3, 3, 3, 4) Wb/A（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: A-phase flux linkage partial derivative wrt angle, dPhiAiA,iB,iC,theta)/dtheta
+  summary: A 相磁链对角度的偏导数 zeros(3, 3, 3, 4) Wb/rad（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Torque matrix, T(iA,iB,iC,theta)
+  summary: 转矩矩阵 zeros(3, 3, 3, 4) N*m（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Stator resistance per phase, Rs
+  summary: 每相定子电阻 0.013 Ohm（默认）
+  group: Electrical (4-D Partial Derivative Data Parameterization)
+- name: Flux linkage data format
+  summary: 磁链数据格式 D and Q axes flux linkages as a function of D-axis current (iD), Q-axis current (iQ), and rotor angle (theta)（默认）|
+    D and Q axes flux linkages as a function of peak current magnitude (I), current advance angle (B), and rotor angle (theta)
+    | A-phase flux linkage as a function of D-axis current (iD), Q-axis current (iQ), and rotor angle (theta) | A-phase flux
+    linkage as a function of peak current magnitude (I), current advance angle (B), and rotor angle (theta)
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Winding type
+  summary: 定子绕组配置 Wye-wound（默认）| Delta-wound | Open-end
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Expose neutral port
+  summary: 中性点端口可见性 No（默认）| Yes
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Number of pole pairs
+  summary: 极对数 4（默认）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Park's convention for tabulated data
+  summary: 制表数据的 Park 约定 Q leads D, rotor angle measured from A-phase to D-axis（默认）| Q leads D, rotor angle measured from
+    A-phase to Q-axis | D leads Q, rotor angle measured from A-phase to D-axis | D leads Q, rotor angle measured from A-phase
+    to Q-axis
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Direct-axis current vector, iD
+  summary: 直轴电流向量 [-200, 0, 200] A（默认）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Quadrature-axis current vector, iQ
+  summary: 交轴电流向量 [-200, 0, 200] A（默认）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Peak current magnitude vector, I
+  summary: 峰值电流幅值向量 [0, 100, 200] A（默认）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Current advance angle, B
+  summary: 电流超前角 [-180, -90, 0, 90, 180] deg（默认）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Rotor angle vector, theta
+  summary: 转子角度向量 [0, 5, 10, 15, 20, 25, 30] deg（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: D-axis flux linkage, Fd(iD,iQ,theta)
+  summary: D 轴磁链 zeros(3, 3, 7) Wb（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Q-axis flux linkage, Fq(iD,iQ,theta)
+  summary: Q 轴磁链 zeros(3, 3, 7) Wb（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: D-axis flux linkage, Fd(I,B,theta)
+  summary: D 轴磁链 zeros(3, 5, 7) Wb（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Q-axis flux linkage, Fq(I,B,theta)
+  summary: Q 轴磁链 zeros(3, 5, 7) Wb（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: A-phase flux linkage, F(iD,iQ,theta)
+  summary: A 相磁链 zeros(3, 3, 7) Wb（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: A-phase flux linkage, F(I,B,theta)
+  summary: A 相磁链 zeros(3, 5, 7) Wb（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Torque matrix, T(iD,iQ,theta)
+  summary: 转矩矩阵 zeros(3, 3, 7) N*m（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Torque matrix, T(I,B,theta)
+  summary: 转矩矩阵 zeros(3, 5, 7) N*m（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Interpolation method
+  summary: 插值方法 Linear（默认值）| Smooth
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Stator resistance per phase, Rs
+  summary: 每相定子电阻 0.013 Ohm（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Stator zero-sequence inductance, L0
+  summary: 定子零序电感 0.00016 H（默认值）
+  group: Electrical (3-D Flux Linkage Data Parameterization)
+- name: Model
+  summary: 铁耗建模选项 None（默认值）| Specify open and short circuit loss data (permanent magnet motors only) | Specify tabulated Steinmetz
+    coefficients | Tabulate with current and speed
+  group: 铁耗
+- name: Open-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: 开路铁耗 [0.0, 0.0, 0.0] W（默认值）
+  group: 铁耗
+- name: Short-circuit iron losses, [P_hysteresis P_eddy P_excess]
+  summary: 短路铁耗 [0.0, 0.0, 0.0] W（默认值）
+  group: 铁耗
+- name: Electrical frequency at which losses determined
+  summary: 确定损耗时的电气频率 60 Hz（默认值）
+  group: 铁耗
+- name: Short-circuit RMS current for short-circuit iron losses
+  summary: 短路铁耗对应的短路 RMS 电流 95 A（默认值）
+  group: 铁耗
+- name: Rotor hysteresis loss coefficient, k_hr(id,iq)
+  summary: 转子磁滞损耗系数 zeros(3, 3) W/Hz（默认值）
+  group: 铁耗
+- name: Rotor eddy current loss coefficient, k_Jr(id,iq)
+  summary: 转子涡流损耗系数 zeros(3, 3) W/Hz^2（默认值）
+  group: 铁耗
+- name: Rotor excess current loss coefficient, k_er(id,iq)
+  summary: 转子附加电流损耗系数 zeros(3, 3) W/Hz^1.50000（默认值）
+  group: 铁耗
+- name: Stator hysteresis loss coefficient, k_hs(id,iq)
+  summary: 定子磁滞损耗系数 zeros(3, 3) W/Hz（默认值）
+  group: 铁耗
+- name: Stator eddy current loss coefficient, k_Js(id,iq)
+  summary: 定子涡流损耗系数 zeros(3, 3) W/Hz^2（默认值）
+  group: 铁耗
+- name: Stator excess current loss coefficient, k_es(id,iq)
+  summary: 定子附加电流损耗系数 zeros(3, 3) W/Hz^1.50000（默认值）
+  group: 铁耗
+- name: Rotor hysteresis loss coefficient, k_hr(I,B)
+  summary: 转子磁滞损耗系数 zeros(3, 5) W/Hz（默认值）
+  group: 铁耗
+- name: Rotor eddy current loss coefficient, k_Jr(I,B)
+  summary: 转子涡流损耗系数 zeros(3, 5) W/Hz^2（默认值）
+  group: 铁耗
+- name: Rotor excess current loss coefficient, k_er(I,B)
+  summary: 转子附加电流损耗系数 zeros(3, 5) W/Hz^1.50000（默认值）
+  group: 铁耗
+- name: Stator hysteresis loss coefficient, k_hs(I,B)
+  summary: 定子磁滞损耗系数 zeros(3, 5) W/Hz（默认值）
+  group: 铁耗
+- name: Stator eddy current loss coefficient, k_Js(I,B)
+  summary: 定子涡流损耗系数 zeros(3, 5) W/Hz^2（默认值）
+  group: 铁耗
+- name: Stator excess current loss coefficient, k_es(I,B)
+  summary: 定子过剩电流损耗系数 zeros(3, 5) W/Hz^1.50000（默认值）
+  group: 铁耗
+- name: Rotor speed vector, w
+  summary: 转子速度 [1000, 2000] rpm（默认值）
+  group: 铁耗
+- name: Rotor iron loss table, Pr(id,iq,w)
+  summary: 转子铁损表 zeros(3, 3, 2) W（默认值）
+  group: 铁耗
+- name: Stator iron loss table, Ps(id,iq,w)
+  summary: 定子铁损表 zeros(3, 3, 2) W（默认值）
+  group: 铁耗
+- name: Rotor iron loss table, Pr(I,B,w)
+  summary: 转子铁损表 zeros(3, 5, 2) W（默认值）
+  group: 铁耗
+- name: Stator iron loss table, Ps(I,B,w)
+  summary: 定子铁损表 zeros(3, 5, 2) W（默认值）
+  group: 铁耗
+- name: Rotor inertia
+  summary: 转子惯量 0.01 kg*m^2（默认值）
+  group: 机械
+- name: Rotor damping
+  summary: 转子阻尼 0 N*m/(rad/s)（默认值）
+  group: 机械
+- name: Measurement temperature
+  summary: 测量温度 298.15 K（默认值）
+  group: 温度依赖性
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认值）
+  group: 温度依赖性
+- name: Permanent magnet flux temperature coefficient
+  summary: 永磁磁通温度系数 -0.001（默认值）
+  group: 温度依赖性
+- name: Thermal mass for each stator winding
+  summary: 每个定子绕组的熱质量 100 J/K（默认值）
+  group: 热端口
+- name: Initial stator winding temperatures
+  summary: 定子绕组初始温度 [298.15, 298.15, 298.15] K（默认值）
+  group: 热端口
+- name: Rotor thermal mass
+  summary: 转子熱质量 200 J/K（默认值）
+  group: 热端口
+- name: Rotor initial temperature
+  summary: 转子初始温度 298.15 K（默认值）
+  group: 热端口
+- name: Percentage of main flux path iron losses associated with the rotor
+  summary: 与转子相关的主磁通路径铁损百分比 90（默认值）
+  group: 热端口
+- name: Percentage of cross-tooth flux path iron losses associated with the rotor
+  summary: 与转子相关的跨齿磁通路径铁损百分比 30（默认值）
+  group: 热端口
+```
 
 ### **Modeling option** — 磁链和转矩参数化方法 `2-D partial derivative data | No thermal port`（默认）| `2-D partial derivative data | Show thermal port` | `3-D partial derivative data | No thermal port` | `3-D partial derivative data | Show thermal port` | `4-D partial derivative data | No thermal port` | `4-D partial derivative data | Show thermal port` | `3-D flux linkage data | No thermal port` | `3-D flux linkage data | Show thermal port`
 
@@ -1178,7 +1528,6 @@ A、B 和 C 相绕组的熱质量值。熱质量是将温度升高一度所需�
 ### **Percentage of cross-tooth flux path iron losses associated with the rotor** — 与转子相关的跨齿磁通路径铁损百分比 `30`（默认值）
 
 与通过转子的磁路相关的跨齿磁通路径铁损百分比。它决定了有多少铁损热量归属于转子热端口 **HR**，以及有多少归属于三个绕组热端口 **HA**、**HB** 和 **HC**。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Permanent Magnet

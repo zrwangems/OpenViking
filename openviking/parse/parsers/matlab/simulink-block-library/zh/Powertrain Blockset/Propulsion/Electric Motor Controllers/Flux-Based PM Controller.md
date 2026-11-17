@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Flux-Based PM Controller
 
 ## 端口
+```yaml
+ports:
+- name: SpdReq
+  summary: 转子速度指令 scalar
+  direction: input
+- name: TrqCmd
+  summary: 转矩指令 scalar
+  direction: input
+- name: BusVolt
+  summary: 直流母线电压 scalar
+  direction: input
+- name: PhaseCurrA
+  summary: 电流 scalar
+  direction: input
+- name: PhaseCurrB
+  summary: 电流 scalar
+  direction: input
+- name: SpdFdbk
+  summary: 转子速度 scalar
+  direction: input
+- name: PosFdbk
+  summary: 转子电角度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: BusCurr
+  summary: 母线电流 scalar
+  direction: output
+- name: PhaseVolt
+  summary: 定子端电压 array
+  direction: output
+```
 
 ### 输入
 
@@ -74,8 +107,156 @@ chinese_source: worker-translation
 ### **PhaseVolt** — 定子端电压 `array`
 
 定子端电压，*Va*、*Vb* 和 *Vc*，单位为 V。
-
 ## 参数
+```yaml
+parameters:
+- name: Control Type
+  summary: 选择控制方式 Torque Control（默认）| Speed Control
+  group: ''
+  block_parameter: control_type
+  values: Torque Control（默认）| Speed Control
+- name: Number of pole pairs, PolePairs
+  summary: 极对数 4（默认）| scalar
+  group: ''
+  block_parameter: PolePairs
+  values: 4（默认）| scalar
+- name: Vector of d-axis current breakpoints, id_index
+  summary: 电流 vector
+  group: ''
+  block_parameter: id_index
+  values: vector
+- name: Vector of q-axis current breakpoints, iq_index
+  summary: 电流 vector
+  group: ''
+  block_parameter: iq_index
+  values: vector
+- name: Corresponding d-axis flux, lambda_d
+  summary: 磁链 vector
+  group: ''
+  block_parameter: lambda_d
+  values: vector
+- name: Corresponding q-axis flux, lambda_q
+  summary: 磁链 vector
+  group: ''
+  block_parameter: lambda_q
+  values: vector
+- name: 转矩控制的采样时间，Tst
+  summary: 时间 1e-4（默认）| scalar
+  group: ''
+  block_parameter: Tst
+  values: 1e-4（默认）| scalar
+- name: D 轴比例增益，Kp_d
+  summary: 增益 2.4056（默认）| scalar
+  group: ''
+  block_parameter: Kp_d
+  values: 2.4056（默认）| scalar
+- name: Q 轴比例增益，Kp_q
+  summary: 增益 2.4056（默认）| scalar
+  group: ''
+  block_parameter: Kp_q
+  values: 2.4056（默认）| scalar
+- name: D 轴积分增益，Ki_d
+  summary: 增益 192.45（默认）| scalar
+  group: ''
+  block_parameter: Ki_d
+  values: 192.45（默认）| scalar
+- name: Q 轴积分增益，Ki_q
+  summary: 增益 192.45（默认）| scalar
+  group: ''
+  block_parameter: Ki_q
+  values: 192.45（默认）| scalar
+- name: 转速断点向量，wbp
+  summary: 断点 vector
+  group: ''
+  block_parameter: wbp
+  values: vector
+- name: 转矩断点向量，tbp
+  summary: 断点 vector
+  group: ''
+  block_parameter: tbp
+  values: vector
+- name: 对应的 d 轴电流参考值，id_ref
+  summary: 电流 vector
+  group: ''
+  block_parameter: id_ref
+  values: vector
+- name: 对应的 q 轴电流参考值，iq_ref
+  summary: 电流 vector
+  group: ''
+  block_parameter: iq_ref
+  values: vector
+- name: 速度调节时间常数，Ksf
+  summary: 时间 .1（默认）| scalar
+  group: ''
+  block_parameter: Ksf
+  values: .1（默认）| scalar
+- name: 比例增益，Kp_w
+  summary: 增益 0.40475（默认）| scalar
+  group: ''
+  block_parameter: Kp_w
+  values: 0.40475（默认）| scalar
+- name: 积分增益，Ki_w
+  summary: 增益 10.1615（默认）| scalar
+  group: ''
+  block_parameter: Ki_w
+  values: 10.1615（默认）| scalar
+- name: 惯量补偿，Jcomp
+  summary: 惯量 0.0027（默认）| scalar
+  group: ''
+  block_parameter: Jcomp
+  values: 0.0027（默认）| scalar
+- name: 静摩擦，Fs
+  summary: 摩擦 0（默认）| scalar
+  group: ''
+  block_parameter: Fs
+  values: 0（默认）| scalar
+- name: 粘性阻尼补偿，Fv
+  summary: Dampint 0.0004924（默认）| scalar
+  group: ''
+  block_parameter: Fv
+  values: 0.0004924（默认）| scalar
+- name: Parameterize losses by
+  summary: 选择类型 Single efficiency measurement（默认）| Tabulated loss data | Tabulated efficiency data
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement（默认）| Tabulated loss data | Tabulated efficiency data
+- name: Overall inverter efficiency, eff
+  summary: 常量 98（默认）| scalar
+  group: ''
+  block_parameter: eff
+  values: 98（默认）| scalar
+- name: Vector of speeds (w) for tabulated loss, w_loss_bp
+  summary: 断点 [0 200 400 600 800 1000]（默认）| 1×M 向量
+  group: ''
+  block_parameter: w_loss_bp
+  values: '[0 200 400 600 800 1000]（默认）| 1×M 向量'
+- name: Vector of torques (T) for tabulated loss, T_loss_bp
+  summary: 断点 [0 25 50 75 100]（默认）| 1×N 向量
+  group: ''
+  block_parameter: T_loss_bp
+  values: '[0 25 50 75 100]（默认）| 1×N 向量'
+- name: Corresponding losses, losses_table
+  summary: 表 [100 100 100 100 100;100 150 200 250 300;100 200 300 400 500;100 250 400 550 700;100 300 500 700 900;100 350
+    600 850 1100]（默认）| M×N 数组
+  group: ''
+  block_parameter: losses_table
+  values: M×N 数组
+- name: Vector of speeds (w) for tabulated efficiency, w_eff_bp
+  summary: 断点 [200 400 600 800 1000]（默认）| 1×M 向量
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[200 400 600 800 1000]（默认）| 1×M 向量'
+- name: Vector of torques (T) for tabulated efficiency, T_eff_bp
+  summary: 断点 [25 50 75 100]（默认）| 1×N 向量
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[25 50 75 100]（默认）| 1×N 向量'
+- name: Corresponding efficiency, efficiency_table
+  summary: 表 [96.2 98.1 98.7 99;98.1 99 99.4 99.5;98.7 99.4 99.6 99.7;99 99.5 99.7 99.8;99.2 99.6 99.7 99.8]（默认）| M×N 数组
+  group: ''
+  block_parameter: efficiency_table
+  values: M×N 数组
+```
 
 #### 模块选项
 
@@ -633,7 +814,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请为 **Parameterize losses by** 选择 `Tabulated efficiency data`。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Electric Motor Controllers

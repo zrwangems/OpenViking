@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Extended State Observer
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 已知输入 标量 | 向量
+  direction: input
+- name: y
+  summary: 测量输出 标量 | 向量
+  direction: input
+- name: A
+  summary: 状态矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: Bu
+  summary: 输入矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: Cm
+  summary: 输出矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: Bd
+  summary: 扰动矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: S0
+  summary: 初始条件 标量 | 向量
+  direction: input
+- name: L
+  summary: 观测器矩阵 标量 | 向量 | 矩阵
+  direction: input
+- name: dhat
+  summary: 估计扰动 向量
+  direction: output
+- name: xhat
+  summary: 估计状态 向量
+  direction: output
+```
 
 ### 输入
 
@@ -87,8 +120,61 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选择 **Output estimated model states xhat**。
-
 ## 参数
+```yaml
+parameters:
+- name: Time domain
+  summary: 控制器时域 discrete-time（默认）| continuous-time
+  group: 参数选项卡
+- name: LTI state-space variable
+  summary: 已知被控对象动态 ss 对象 | idss 对象
+  group: 参数选项卡
+- name: Use external source for model matrices (A,Bu,Cm)
+  summary: 在模块输入端口指定模型矩阵 off（默认）| on
+  group: 参数选项卡
+- name: Number of states
+  summary: 模型中的状态数量 1（默认）| 正整数
+  group: 参数选项卡
+- name: Number of inputs
+  summary: 模型中的输入数量 1（默认）| 正整数
+  group: 参数选项卡
+- name: Number of outputs
+  summary: 模型中的输出数量 1（默认）| 正整数
+  group: 参数选项卡
+- name: Specify gain k (such that Bd = k\*Bu)
+  summary: 用于计算扰动输入矩阵的增益值 1（默认）| 非零标量
+  group: 参数选项卡
+- name: Use external source for matrix Bd
+  summary: 在模块输入端口指定扰动矩阵 off（默认）| on
+  group: 参数选项卡
+- name: Number of disturbances
+  summary: 模型中的扰动数量 1（默认）| 正整数
+  group: 参数选项卡
+- name: Initial conditions
+  summary: 扩展状态的初始条件 0（默认）| 标量 | 向量
+  group: 参数选项卡
+- name: Use external source for initial conditions S0 (x0,d0)
+  summary: 在模块输入端口指定初始条件 off（默认）| on
+  group: 参数选项卡
+- name: Bandwidth (rad/s)
+  summary: 观测器带宽 1（默认）| 正标量
+  group: 整定选项卡
+- name: Spacing (rad/s)
+  summary: 观测器带宽间距 0.01（默认）| 正标量
+  group: 整定选项卡
+- name: Use external source for matrix L
+  summary: 在模块输入端口指定观测器矩阵 off（默认）| on
+  group: 整定选项卡
+- name: Data type
+  summary: 浮点精度 double（默认）| single
+  group: 模块选项卡
+- name: Time delay
+  summary: 指定时间延迟 1（默认）| 正标量 | 向量
+  group: 模块选项卡
+- name: Output estimated model states xhat
+  summary: 在模块输出端口输出估计状态 on（默认）| off
+  group: 模块选项卡
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -199,7 +285,6 @@ chinese_source: worker-translation
 ### **Output estimated model states xhat** — 在模块输出端口输出估计状态 `on`（默认）| `off`
 
 选择此选项以在模块输出 **xhat** 处输出估计的模型状态。
-
 ## 所属库
 
 Simulink Control Design / Disturbance Observer

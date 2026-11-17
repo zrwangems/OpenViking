@@ -14,6 +14,21 @@ language: en
 # Cuboid To 3D Simulation
 
 ## Ports
+```yaml
+ports:
+- name: Actor
+  summary: Cuboid actor pose in world coordinates Simulink® bus containing MATLAB® structure
+  direction: input
+- name: X
+  summary: Longitudinal position of actor in 3D simulation coordinates numeric scalar
+  direction: output
+- name: Y
+  summary: Lateral position of actor in 3D simulation coordinates numeric scalar
+  direction: output
+- name: Yaw
+  summary: Yaw orientation angle of actor in 3D simulation coordinates numeric scalar
+  direction: output
+```
 
 ### Input
 
@@ -114,8 +129,19 @@ because you are viewing the scene along the negative *Z*-axis.
 To specify the yaw orientation angle of a vehicle in the 3D simulation
 environment, connect this port to the **Yaw** input port of a Simulation 3D
 Vehicle with Ground Following block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify Actor ID
+  summary: Enable ID specification of cuboid actor off (default) | on
+  group: ''
+- name: ActorID used for conversion
+  summary: ActorID value of cuboid actor 1 (default) | positive integer
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Specify Actor ID** — Enable ID specification of cuboid actor `off` (default) | `on`
 
@@ -145,7 +171,6 @@ To enable this parameter, select **Specify Actor ID**.
   code. The first time you run a simulation, Simulink generates C/C++ code for the block. The C code is reused for subsequent
   simulations as long as the model does not change. This option requires additional startup
   time.
-
 ## Libraries
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

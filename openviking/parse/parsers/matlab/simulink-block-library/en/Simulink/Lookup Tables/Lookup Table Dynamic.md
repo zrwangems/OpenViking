@@ -14,6 +14,28 @@ language: en
 # Lookup Table Dynamic
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: input vector scalar | vector | 2-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: xdat
+  summary: breakpoint data 1-by-n vector of strictly monotonically increasing values
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: ydat
+  summary: table data 1-by-n vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    bus
+- name: y
+  summary: Approximation of y = f(x) using dynamic table data 1-by-n vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -96,8 +118,47 @@ The `ydat` table data and the
 bias, and fractional slope.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Lookup Method
+  summary: Specify the lookup method Interpolation-Use End Values (default) | Interpolation-Extrapolation | Use Input Nearest
+    | Use Input Below | Use Input Above
+  group: Main Tab
+  block_parameter: LookUpMeth
+  type: character vector
+  values: '''Interpolation-Extrapolation'' | ''Interpolation-Use End Values'' | ''Use Input Nearest'' | ''Use Input Below''
+    | ''Use Input Above'''
+  default: '''Interpolation-Use End Values'''
+- name: Output data type
+  summary: 'Output data type double (default) | ''Inherit: Inherit via back propagation'' | single | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Signal Attributes Tab
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16''
+    | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | <data type
+    expression>'
+  default: '''double'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Signal Attributes Tab
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Signal Attributes Tab
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate to max or min when overflows occur
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes Tab
+  block_parameter: DoSatur
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main Tab
 
@@ -193,7 +254,6 @@ saturation code.
 | **Type:** character vector |
 | **Values:** `'off' | 'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink / Lookup Tables

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Encoder
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 用于复位编码器读数的外部信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Tick
+  summary: 旋转电机的增量位置 标量
+  direction: output
+  data_types: int32
+```
 
 ### 输入
 
@@ -36,8 +47,19 @@ chinese_source: worker-translation
 模块以计数为单位输出旋转电机位置的相对变化。
 
 **数据类型：** `int32`
-
 ## 参数
+```yaml
+parameters:
+- name: EV3 brick output port
+  summary: EV3 砖的输出端口号 A（默认）| B | C | D
+  group: ''
+- name: Reset mode
+  summary: 复位模块输出 Reset at external signal（默认）| Reset at each sample time | No reset
+  group: ''
+- name: Sample time
+  summary: 模块从编码器读取数据的时间间隔 0.1（默认）| 正整数
+  group: ''
+```
 
 ### **EV3 brick output port** — EV3 砖的输出端口号 `A`（默认）| `B` | `C` | `D`
 
@@ -76,7 +98,6 @@ LegoEV3 reset mode image
 指定模块从编码器读取数据的频率。较短的采样时间（例如 `0.01`）可能会产生不可靠的测量结果。
 
 较小的采样时间要求处理器在更短的时间内完成相同数量的指令，这可能导致任务超限。
-
 ## 所属库
 
 Simulink Support Package for LEGO MINDSTORMS EV3 Hardware

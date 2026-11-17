@@ -14,6 +14,25 @@ language: en
 # Birds-Eye View
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar
+  direction: input
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream scalar
+  direction: output
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -54,8 +73,26 @@ The signals describe the validity of the pixel and its location in the frame. Fo
 information, see Pixel Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Homography matrix
+  summary: Transfer function derived from camera parameters [0.000100990123328 0 0;0.000412396945637 0.001302203393162 1.293171994e-06;-0.103019798961327
+    -0.255811259450009 -0.000222053779501] (default) | 3-by-3 matrix
+  group: ''
+- name: Maximum buffer size, in pixels
+  summary: Number of input pixels to buffer 40000 (default) | integer
+  group: ''
+- name: Number of input lines to buffer
+  summary: Number of lines to transform 54 (default) | integer
+  group: ''
+- name: Output active pixels
+  summary: Horizontal size of output frame 640 (default) | integer
+  group: ''
+- name: Output active lines
+  summary: Vertical size of output frame 700 (default) | integer
+  group: ''
+```
 
 ### **Homography matrix** — Transfer function derived from camera parameters `[0.000100990123328 0 0;0.000412396945637 0.001302203393162 1.293171994e-06;-0.103019798961327 -0.255811259450009 -0.000222053779501]` (default) | 3-by-3 matrix
 
@@ -112,7 +149,6 @@ is the number of active pixels in each output line.
 
 Vertical size of output frame, specified as an integer. This parameter is
 the number of active lines in each output frame.
-
 ## Libraries
 
 Vision HDL Toolbox / Geometric Transforms

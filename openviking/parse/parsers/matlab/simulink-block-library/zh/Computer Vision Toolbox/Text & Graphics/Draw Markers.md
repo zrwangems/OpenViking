@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # Draw Markers
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 输入图像 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: 图像的红色分量 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: 图像的绿色分量 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: 图像的蓝色分量 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Pts
+  summary: 标记坐标 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Clr
+  summary: 标记颜色 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: ROI
+  summary: 感兴趣区域 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 输出图像 矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: R
+  summary: 输出图像的红色分量 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: G
+  summary: 输出图像的绿色分量 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: B
+  summary: 输出图像的蓝色分量 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -139,8 +186,46 @@ chinese_source: worker-translation
 要启用此端口，请将 **Image signal** 参数设置为 `Separate color signals`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Marker shape
+  summary: 标记的形状 Circle（默认）| X-mark | Plus | Star | Square
+  group: ''
+- name: Marker size
+  summary: 标记的大小 3（默认）| 正整数
+  group: ''
+- name: Filled
+  summary: 填充标记 off（默认）| on
+  group: ''
+- name: Border color source
+  summary: 标记边框的颜色来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Border color
+  summary: 标记的颜色值 Black（默认）| White | User-specified value
+  group: ''
+- name: Fill color source
+  summary: 填充标记的颜色来源 Specify via dialog（默认）| Input port
+  group: ''
+- name: Fill color
+  summary: 填充标记的颜色值 Black（默认）| White | User-specified value
+  group: ''
+- name: Opacity factor (between 0 and 1)
+  summary: 不透明度因子 0.6（默认）| 范围 [0，1] 内的标量 | *K* 元素向量
+  group: ''
+- name: Color value(s)
+  summary: 用户指定的颜色值 [200 255 100]（默认）| 标量 | *P* 元素向量 | *K*×*P* 矩阵
+  group: ''
+- name: Draw Markers in
+  summary: 标记的绘制区域 Entire image（默认）| Specify region of interest via port
+  group: ''
+- name: Use antialiasing
+  summary: 平滑算法 off（默认）| on
+  group: ''
+- name: Image signal
+  summary: RGB 图像的端口配置 One multidimensional signal（默认）| Separate color signals
+  group: ''
+```
 
 ### **Main**
 
@@ -247,7 +332,6 @@ chinese_source: worker-translation
 ### **Data Types**
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Text & Graphics

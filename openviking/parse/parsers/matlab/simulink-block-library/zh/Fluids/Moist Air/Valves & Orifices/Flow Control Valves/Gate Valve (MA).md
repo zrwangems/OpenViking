@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Gate Valve (MA)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 闸门位移，m 物理信号
+  direction: input
+- name: A
+  summary: 阀门入口或出口湿空气
+  direction: input
+- name: B
+  summary: 阀门入口或出口湿空气
+  direction: input
+```
 
 ### 输入
 
@@ -33,8 +45,58 @@ m。正信号使闸门回缩并打开阀门。
 
 与流体进入或离开阀门的开口相关联的湿空气守恒端口。流动方向取决于阀门两端建立的
 压差。该模块允许正向和反向两个方向。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve orifice diameter
+  summary: 阀门孔径 0.01 m（默认）| 正标量
+  group: ''
+- name: Gate position when fully covering orifice
+  summary: 闸门偏移 0 m（默认）| 正标量
+  group: ''
+- name: Valve parameterization
+  summary: 用于指定节流孔流动特性的参数化方法 Orifice area based on geometry（默认）| Cv flow coefficient | Kv flow coefficient | Sonic conductance
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Maximum Cv flow coefficient
+  summary: 对应于组件最大开启状态的 Cv 系数 4（默认）| 正标量
+  group: ''
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: ''
+- name: Maximum Kv flow coefficient
+  summary: 对应于组件最大开启状态的 Kv 系数 3.6（默认）| 正标量
+  group: ''
+- name: Maximum sonic conductance
+  summary: 对应于组件最大开启状态的声速导 12 l/(bar*s)（默认）| 正标量
+  group: ''
+- name: Critical pressure ratio
+  summary: 流动首次阻塞时的下游与上游压力比 0.3（默认）| 正标量
+  group: ''
+- name: Subsonic index
+  summary: 用于表征亚声速流态质量流量的指数 0.5（默认）| 正标量
+  group: ''
+- name: ISO reference temperature
+  summary: ISO 8778 参考温度 293.15 K（默认）| 标量
+  group: ''
+- name: ISO reference density
+  summary: ISO 8778 参考密度 1.185 kg/m^3（默认）| 正标量
+  group: ''
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: 流动在层流和湍流流态之间转换时的压力比 0.999（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 湿空气端口处的流通面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Valve orifice diameter** — 阀门孔径 `0.01 m`（默认）| 正标量
 
@@ -190,7 +252,6 @@ conductance`。
 
 每个端口处垂直于流动路径的面积。端口尺寸相等。此参数的值
 应与阻性元件所连接的组件的入口面积相匹配。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Valves & Orifices / Flow Control Valves

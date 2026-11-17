@@ -14,6 +14,15 @@ language: en
 # Thread Trigger
 
 ## Ports
+```yaml
+ports:
+- name: T
+  summary: Trigger input tested for selected transition boolean
+  direction: input
+- name: F
+  summary: Function call output for task function call
+  direction: output
+```
 
 ### Input
 
@@ -30,8 +39,18 @@ Edge** parameter as 1 for detected and 0 for not detected..
 
 Outputs the call to the downstream function and provides the thread scheduling
 priority for the task
-
 ## Parameters
+```yaml
+parameters:
+- name: Trigger Edge
+  summary: Selects trigger edge type Rising Edge (default) | Falling Edge | Both Edges
+  group: ''
+  block_parameter: edge
+- name: ISR Task Priority
+  summary: Selects the ISR task priority for function 245 (high priority) (default) | 235 (medium priority) | 225 (low priority)
+  group: ''
+  block_parameter: taskpri
+```
 
 ### **Trigger Edge** — Selects trigger edge type `Rising Edge` (default) | `Falling Edge` | `Both Edges`
 
@@ -58,7 +77,6 @@ model executes as a different execution thread. For more information, see About 
 |  |
 | --- |
 | **Block Parameter:** `taskpri` |
-
 ## Libraries
 
 Simulink Real-Time / Async

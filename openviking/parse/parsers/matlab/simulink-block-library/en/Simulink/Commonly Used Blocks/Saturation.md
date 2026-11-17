@@ -14,6 +14,17 @@ language: en
 # Saturation
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -30,8 +41,76 @@ Output signal that is the value of the input signal, upper saturation
 limit, or lower saturation limit.
 
 **Data Types:** `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Upper limit
+  summary: Upper saturation boundary for the input signal 0.5 (default) | scalar | vector
+  group: Main
+  block_parameter: UpperLimit
+  type: character vector
+  values: real scalar or vector
+  default: '''0.5'''
+- name: Lower limit
+  summary: Lower saturation boundary for the input signal -0.5 (default) | scalar | vector
+  group: Main
+  block_parameter: LowerLimit
+  type: character vector
+  values: real scalar or vector
+  default: '''-0.5'''
+- name: Treat as gain when linearizing
+  summary: Specify the gain value on (default) | off
+  group: Main
+  block_parameter: LinearizeAsGain
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: Main
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Specify the output data type Inherit: Same as input (default) | Inherit: Inherit via back propagation | double
+    | single | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as input'' | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8'' | ''uint8''
+    | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | fixdt(1,16,2^0,0) | fixdt(1,16,2^0,0)
+    | ''<data type expression>'''
+  default: '''Inherit: Same as input'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+```
 
 ### Main
 
@@ -278,7 +357,6 @@ Choose one of these rounding modes.
 #### See Also
 
 For more information, see Rounding Modes (Fixed-Point Designer).
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Discontinuities HDL Coder / Discontinuities

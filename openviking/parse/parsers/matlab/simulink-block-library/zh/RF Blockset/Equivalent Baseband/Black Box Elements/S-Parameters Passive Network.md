@@ -15,10 +15,66 @@ chinese_source: worker-translation
 # S-Parameters Passive Network
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: S-Parameters
+  summary: 双端口无源网络的 S 参数 [0,0;1,0]（默认）| 2×2×*M* 数组
+  group: 主
+- name: Frequency (Hz)
+  summary: S 参数的频率 2.0e9（默认）| *M* 元素向量
+  group: 主
+- name: Reference Impedance (ohms)
+  summary: 网络的参考阻抗 50（默认）| 非负标量 | 长度为 *M* 的向量
+  group: 主
+- name: Interpolation method
+  summary: 插值网络参数的方法 Linear（默认）| Spline | Cubic
+  group: 主
+- name: Source of frequency data
+  summary: 频率数据源 Same as the S-Parameters（默认）| User-specified
+  group: 可视化
+- name: Frequency data (Hz)
+  summary: 频率数据范围 [1.9e9:1.0e6:2.2e9]（默认）| 向量
+  group: 可视化
+- name: Reference impedance (ohms)
+  summary: 参考阻抗 50（默认）| 非负标量
+  group: 可视化
+- name: Plot type
+  summary: 数据绘图类型 X-Y plane（默认）| Composite data | Polar plane | Z Smith chart | Y Smith chart | ZY Smith chart
+  group: 可视化
+- name: Y parameter1
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y parameter2
+  summary: 要绘制的参数类型 S11（默认）| S12 | S21 | S22 | GroupDelay | OIP3 | IIP3 | NF | ...
+  group: 可视化
+- name: Y format1
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: Y format2
+  summary: 绘图格式 Magnitude (decibels)（默认）| Mag | Magnitude (linear) | Angle | Real | Imaginary | ...
+  group: 可视化
+- name: X parameter
+  summary: 频率绘图 Freq（默认）
+  group: 可视化
+- name: X format
+  summary: 频率绘图格式 Hz（默认）| Auto | kHz | MHz | GHz | THz
+  group: 可视化
+- name: Y scale
+  summary: Y 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: X scale
+  summary: X 轴刻度 Linear（默认）| Log
+  group: 可视化
+- name: Plot
+  summary: 绘制指定数据按钮
+  group: 可视化
+```
 
 ### 主
 
@@ -177,7 +233,6 @@ plane`。
 ### **Plot** — 绘制指定数据按钮
 
 使用绘图按钮绘制指定数据。
-
 ## 所属库
 
 RF Blockset / Equivalent Baseband / Black Box Elements

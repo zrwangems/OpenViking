@@ -14,6 +14,17 @@ language: en
 # Deinterlacing
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Interlaced input numeric matrix | 3-D numeric array | image | video
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Deinterlaced output numeric matrix | 3-D numeric array | image | video
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -35,8 +46,32 @@ Deinterlaced output, returned as a numeric matrix, 3-D numeric array, image, or
 video. The output is of same size and datatype as that of the input.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Deinterlacing method Line repetition (default) | Linear interpolation | Vertical temporal median filtering
+  group: ''
+- name: Input image is transposed (data order is row major)
+  summary: Specify data order off (default) | on
+  group: ''
+- name: Rounding mode
+  summary: Rounding mode for calculating fixed-point value Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest
+    | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: Specify overflow mode on (default) | off
+  group: ''
+- name: Accumulator
+  summary: Accumulator data type Binary point scaling (default) | Same as input
+  group: ''
+- name: Output
+  summary: Data type for output Same as input (default) | Binary point scaling
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: Data type override off (default) | on
+  group: ''
+```
 
 **Main Tab**
 
@@ -126,7 +161,6 @@ Use this parameter to specify the data type and scaling of the output data.
 
 Select this parameter to prevent the fixed-point tools from overriding the data
 types you specify on the block mask. For more information, see `fxptdlg` (Fixed-Point Designer), a reference page on the Fixed-Point Tool.
-
 ## Libraries
 
 Computer Vision Toolbox / Analysis & Enhancement

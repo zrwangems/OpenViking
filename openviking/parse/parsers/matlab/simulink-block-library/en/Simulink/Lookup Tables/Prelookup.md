@@ -14,6 +14,30 @@ language: en
 # Prelookup
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal, u scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+- name: bp
+  summary: Breakpoint data 1-D vector of real-valued signals
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+- name: k
+  summary: Index of the interval containing the input, u scalar | vector | matrix
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: f
+  summary: Fraction representing the normalized position of the input, u, within the interval, *k* scalar | vector | matrix
+  direction: output
+  data_types: single | double | fixed point
+- name: Port_2
+  summary: Bus containing index, *k*, and fraction, *f* bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -72,8 +96,174 @@ To enable this port, set the **Output selection**
 to `Index and fraction as bus`.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Specification
+  summary: Choose how to enter breakpoint data Explicit values (default) | Even spacing | Breakpoint object
+  group: Main
+  block_parameter: BreakpointsSpecification
+  type: character vector
+  values: '''Explicit values'' | ''Even spacing'' | ''Breakpoint object'''
+  default: '''Explicit values'''
+- name: Source
+  summary: Specify source of breakpoint data Dialog (default) | Input port
+  group: Main
+  block_parameter: BreakpointsDataSource
+  type: character vector
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: Value
+  summary: Breakpoint data values [10:10:110] (default) | vector of strictly monotonically increasing values containing two
+    or more elements
+  group: Main
+  block_parameter: BreakpointsData
+  type: character vector
+  values: vector of strictly monotonically increasing values containing two or more elements
+  default: '''[10:10:110]'''
+- name: First point
+  summary: First point in evenly spaced breakpoint data 10 (default) | real-valued scalar
+  group: Main
+  block_parameter: BreakpointsFirstPoint
+  type: character vector
+  values: real-valued scalar
+  default: '''10'''
+- name: Spacing
+  summary: Spacing between evenly spaced breakpoints 10 (default) | real-valued, positive scalar
+  group: Main
+  block_parameter: BreakpointsSpacing
+  type: character vector
+  values: real-valued, positive scalar
+  default: '''10'''
+- name: Number of points
+  summary: Number of evenly spaced points 11 (default) | real-valued, positive scalar
+  group: Main
+  block_parameter: BreakpointsNumPoints
+  type: character vector
+  values: real-valued, positive scalar
+  default: '''11'''
+- name: Name
+  summary: Name of a Simulink.Breakpoint object no default | Simulink.Breakpoint object
+  group: Main
+  block_parameter: BreakpointObject
+  type: character vector
+  values: Simulink.Breakpoint object
+  default: ''''''
+- name: Output selection
+  summary: Specify the signals the block outputs Index and fraction (default) | Index and fraction as bus | Index only
+  group: Main
+  block_parameter: OutputSelection
+  type: character vector
+  values: '''Index and fraction'' | ''Index and fraction as bus'' | ''Index only'''
+  default: '''Index and fraction'''
+- name: Index search method
+  summary: Method for searching breakpoint data Binary search (default) | Linear search | Evenly spaced points
+  group: Main
+  block_parameter: IndexSearchMethod
+  type: character vector
+  values: '''Evenly spaced points'' | ''Linear search'' | ''Binary search'''
+  default: '''Binary search'''
+- name: Begin index search using previous index result
+  summary: Start search using the index found at the previous time step off (default) | on
+  group: Main
+  block_parameter: BeginIndexSearchUsingPreviousIndexResult
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Extrapolation method
+  summary: Method for handling out-of-range input values Clip (default) | Linear
+  group: Main
+  block_parameter: ExtrapMethod
+  type: character vector
+  values: '''Clip'' | ''Linear'''
+  default: '''Clip'''
+- name: Use last breakpoint for input at or above upper limit
+  summary: Method of handling inputs at or above upper limit off (default) | on
+  group: Main
+  block_parameter: UseLastBreakpoint
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Assume input is within range
+  summary: Option to check for out-of-range input values off (default) | on
+  group: Main
+  block_parameter: RemoveProtectionInput
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Diagnostic for out-of-range input
+  summary: Block action when input is out of range None (default) | Warning | Error
+  group: Main
+  block_parameter: DiagnosticForOutOfRangeInput
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Breakpoint
+  summary: 'Breakpoint data type Inherit: Same as input (default) | Inherit: Inherit from ''Breakpoint data'' | double | single
+    | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) |
+    Enum: <class name> | <data type expression>'
+  group: Data Types
+  block_parameter: BreakpointDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as input'' | ''Inherit: Inherit from ''Breakpoint data'''' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''| ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)''|''<data type expression>'''
+  default: '''Inherit: Same as input'''
+- name: Index
+  summary: Index data type uint32 (default) | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16)
+    | <data type expression>
+  group: Data Types
+  block_parameter: IndexDataTypeStr
+  type: character vector
+  values: '''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)''
+    | ''<data type expression>'''
+  default: '''uint32'''
+- name: Fraction
+  summary: 'Fraction data type Inherit: Inherit via internal rule (default) | double | single | fixdt(1,16,0) | <data type
+    expression>'
+  group: Data Types
+  block_parameter: FractionDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''double'' | ''single'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output
+  summary: 'Output data type Inherit: auto (default) | bus: <object name>'
+  group: Data Types
+  block_parameter: OutputBusDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''Bus: <object name>'' | ''<data type expression>'''
+  default: '''Inherit: auto'''
+- name: Breakpoint Minimum
+  summary: Minimum value breakpoint data can have [] (default) | scalar
+  group: Data Types
+  block_parameter: BreakpointMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Breakpoint Maximum
+  summary: Maximum value breakpoint data can have [] (default) | scalar
+  group: Data Types
+  block_parameter: BreakpointMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  values: '''Floor'' (default) | ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+```
 
 ### Main
 
@@ -916,7 +1106,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `RndMeth` |
 | **Values:** | `'Floor'` (default) | `'Ceiling'` | `'Convergent'` | `'Nearest'` | `'Round'` | `'Simplest'` | `'Zero'` |
-
 ## Libraries
 
 Simulink / Lookup Tables HDL Coder / Lookup Tables

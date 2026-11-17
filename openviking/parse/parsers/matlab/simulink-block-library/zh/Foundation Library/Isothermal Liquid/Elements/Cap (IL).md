@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Cap (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 质量流量为零的等温液体
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **A** — 质量流量为零的等温液体
 
 等温液体守恒端口，其质量流量等于零。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

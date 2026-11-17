@@ -14,10 +14,31 @@ language: en
 # Revolutions Per Minute (RPM) Indicator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Connect to signal signal name
+  group: ''
+- name: Scale Colors
+  summary: Ranges of color bands 0 (default) | double | scalar
+  group: ''
+  block_parameter: ScaleColors
+  type: '*n*-by-1 struct array'
+  values: struct array with elements Min, Max, and Color
+- name: Label
+  summary: Block label location Top (default) | Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — Connect to signal signal name
 
@@ -73,7 +94,6 @@ hidden.
 | **Type**: character vector |
 | **Values**: `'Top'` | `'Bottom'` | `'Hide'` |
 | **Default**: `'Top'` |
-
 ## Libraries
 
 Aerospace Blockset / Flight Instruments

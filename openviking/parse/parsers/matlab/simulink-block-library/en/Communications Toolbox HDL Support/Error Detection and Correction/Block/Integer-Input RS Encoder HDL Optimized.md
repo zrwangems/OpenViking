@@ -14,6 +14,41 @@ language: en
 # Integer-Input RS Encoder HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: dataIn
+  summary: Input data scalar
+  direction: input
+  data_types: double | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: startIn
+  summary: Start of input frame indicator scalar
+  direction: input
+  data_types: Boolean
+- name: endIn
+  summary: End of input frame indicator scalar
+  direction: input
+  data_types: Boolean
+- name: validIn
+  summary: Valid input data indicator scalar
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: Output data scalar
+  direction: output
+  data_types: double | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: startOut
+  summary: Start of output frame indicator scalar
+  direction: output
+  data_types: Boolean
+- name: endOut
+  summary: End of output frame indicator scalar
+  direction: output
+  data_types: Boolean
+- name: validOut
+  summary: Valid output data indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -75,8 +110,34 @@ Valid output data indicator, returned as a Boolean scalar.
 This is a control signal that indicates if the data on the **dataOut** port is valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Codeword length
+  summary: Length of codeword 7 (default) | range from 7 to 65, 535
+  group: ''
+- name: Message length
+  summary: Length of message 3 (default) | positive integer
+  group: ''
+- name: Source of primitive polynomial
+  summary: Primitive polynomial source Auto (default) | Property
+  group: ''
+- name: Primitive polynomial
+  summary: Primitive polynomial provider [ 1 0 1 1 ] (default) | binary row vector
+  group: ''
+- name: Source of puncture pattern
+  summary: Puncture pattern source None (default) | Property
+  group: ''
+- name: Puncture pattern vector
+  summary: Puncture vector [ones(2,1); zeros(2,1)] (default) | binary column vector
+  group: ''
+- name: Source of B, the starting power for roots of the primitive polynomial
+  summary: Starting power for roots of primitive polynomial Auto (default) | Property
+  group: ''
+- name: B value
+  summary: Starting exponent of roots 1 (default) | positive integer
+  group: ''
+```
 
 ### **Codeword length** — Length of codeword `7` (default) | range from 7 to 65, 535
 
@@ -159,7 +220,6 @@ The starting exponent of the roots.
 To enable this parameter, set the **Source of B, the starting power for
 roots of the primitive polynomial** parameter to
 `Property`.
-
 ## Libraries
 
 Communications Toolbox HDL Support / Error Detection and Correction / Block

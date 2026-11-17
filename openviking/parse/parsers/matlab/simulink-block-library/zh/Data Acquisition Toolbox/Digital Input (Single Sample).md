@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Digital Input (Single Sample)
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 采集的数字输入布尔值
+  direction: output
+  data_types: Boolean
+- name: Timestamp
+  summary: 扫描时间戳 double
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -29,8 +40,25 @@ chinese_source: worker-translation
 扫描的时间戳，以 double 形式返回。当您选中输出时间戳参数时，此端口可用。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: 要从中采集数据的设备
+  group: ''
+- name: Lines
+  summary: 设备线路选择和配置选项取决于设备
+  group: ''
+- name: Number of ports
+  summary: 输出数据端口数量 1 for all lines | 1 per line
+  group: ''
+- name: Sample time
+  summary: 模块执行速率 1（默认值）
+  group: ''
+- name: Output timestamp
+  summary: 添加时间戳输出端口
+  group: ''
+```
 
 ### **Device** — 要从中采集数据的设备
 
@@ -59,7 +87,6 @@ chinese_source: worker-translation
 ### **Output timestamp** — 添加时间戳输出端口
 
 选择此选项以输出扫描的绝对时间戳。此选项为模块添加一个新的输出端口。此端口的数据类型为 double（datenum），对应于序列日期编号。您可以使用 `datetime` 函数将 datenum 转换为 datetime 值。
-
 ## 所属库
 
 Data Acquisition Toolbox

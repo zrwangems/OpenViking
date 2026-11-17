@@ -14,6 +14,15 @@ language: en
 # Pipe Bend (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port gas
+  direction: conserving
+- name: B
+  summary: Liquid port gas
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,43 @@ Gas conserving port associated with the liquid entry or exit port
 ### **B** — Liquid port gas
 
 Gas conserving port associated with the liquid entry or exit port
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe diameter
+  summary: Pipe diameter 0.01 m (default) | positive scalar
+  group: ''
+- name: Bend radius
+  summary: Bend circle radius 0.04 m (default) | positive scalar
+  group: ''
+- name: Bend angle
+  summary: Bend angle 90 deg (default) | positive scalar
+  group: ''
+- name: Internal surface absolute roughness
+  summary: Pipe wall roughness 15e-6 m (default) | positive scalar
+  group: ''
+- name: Enable dynamic compressibility
+  summary: Option to model pressure dynamics in the gas channel On (default) | Off
+  group: ''
+- name: Nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: ''
+- name: Nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: ''
+- name: Initial pressure
+  summary: Pressure at the start of simulation 0.101325 MPa (default) | scalar
+  group: ''
+- name: Initial pressure priority
+  summary: Pressure parameter priority High (default) | Low | None
+  group: ''
+- name: Initial temperature
+  summary: Temperature at the start of simulation 293.15 K (default) | scalar
+  group: ''
+- name: Initial temperature priority
+  summary: Temperature parameter priority High (default) | Low | None
+  group: ''
+```
 
 ### **Pipe diameter** — Pipe diameter `0.01 m` (default) | positive scalar
 
@@ -109,7 +153,6 @@ Set this parameter to `High` to define your initial
 conditions. You may need to set this parameter to `Low` or
 `None` if this initial condition conflicts with the initial
 conditions of another block.
-
 ## Libraries
 
 Simscape / Fluids / Gas / Pipes & Fittings

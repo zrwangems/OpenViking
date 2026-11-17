@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Simple Gear with Variable Efficiency
 
 ## 端口
+```yaml
+ports:
+- name: E
+  summary: 啮合效率物理信号
+  direction: input
+- name: B
+  summary: 基座旋转机械
+  direction: input
+- name: F
+  summary: 从动旋转机械
+  direction: input
+- name: H
+  summary: 热流热
+  direction: input
+```
 
 ### 输入
 
@@ -39,8 +54,34 @@ chinese_source: worker-translation
 
 要启用此端口，请将 **Thermal port** 设置为
 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Follower (F) to base (B) teeth ratio (NF/NB)
+  summary: 齿轮比 2（默认）| 正标量
+  group: 主要
+- name: Output shaft rotates
+  summary: 轴旋转方向 In opposite direction to input shaft（默认）| In same direction as input shaft
+  group: 主要
+- name: Minimum efficiency
+  summary: 最小效率 0.01（默认）| 范围在 (0,1] 内的正标量
+  group: 啮合损失
+- name: Follower power threshold
+  summary: 低于此功率时应用数值平滑 0.001 W（默认）| 正标量
+  group: 啮合损失
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: 流体动力摩擦系数 [0 0] N*m/(rad/s)（默认）| 正二元素向量
+  group: 粘性损失
+- name: Thermal port
+  summary: 是否对热效应建模 Omit（默认）| Model
+  group: 热端口
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 正标量
+  group: 热端口
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 正标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -93,7 +134,6 @@ chinese_source: worker-translation
 要启用此参数，请将
 **Thermal port** 设置为
 `Model`。
-
 ## 所属库
 
 Simscape / Driveline / Gears

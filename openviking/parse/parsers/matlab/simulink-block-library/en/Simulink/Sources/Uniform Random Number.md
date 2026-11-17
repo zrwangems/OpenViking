@@ -14,6 +14,13 @@ language: en
 # Uniform Random Number
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Random number output signal scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -23,8 +30,45 @@ Output signal of generated uniformly distributed random numbers over
 the interval you specify.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum
+  summary: Minimum interval 0 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: Minimum
+  type: character vector
+  values: scalar
+  default: '''-1'''
+- name: Maximum
+  summary: Maximum interval 0 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: Maximum
+  type: character vector
+  values: scalar
+  default: '''1'''
+- name: Seed
+  summary: Random number seed 0 (default) | scalar | vector | matrix | N-D array
+  group: ''
+  block_parameter: Seed
+  type: character vector
+  values: scalar
+  default: '''0'''
+- name: Sample time
+  summary: Sample time 0.1 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''0.1'''
+- name: Interpret vector parameters as 1-D
+  summary: Treat vectors as 1-D on (default) | off
+  group: ''
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Minimum** — Minimum interval `0` (default) | scalar | vector | matrix | N-D array
 
@@ -105,7 +149,6 @@ Select this check box to output a vector of length `N` if the
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Sources

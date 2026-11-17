@@ -15,14 +15,91 @@ chinese_source: worker-translation
 # FMU
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 占位端口 none | | string size limited to 255
+  direction: output
+```
 
 ### 输出
 
 ### **Port\_1** — 占位端口 none | | string size limited to 255
 
 占位端口，按原样不产生输出。当实际 FMU 导入到模块中时，输入和输出端口会被配置。输入和输出端口均支持数值和字符串数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: FMU name
+  summary: FMU 名称 字符向量
+  group: ''
+  block_parameter: FMUName
+  type: 字符向量
+  values: FMU 的名称，带或不带文件扩展名
+  default: ''' '''
+- name: Enable FMU tolerance
+  summary: 启用 FMU 容差 off（默认）| on
+  group: 仿真
+  block_parameter: FMUIsToleranceUsed
+  type: 字符向量
+  values: on | off
+  default: '''off'''
+- name: Relative tolerance
+  summary: FMU 相对容差 1E-3（默认）| 标量
+  group: 仿真
+  block_parameter: FMUToleranceValue
+  type: 字符向量
+  values: 1E-3 | 标量
+  default: '''1E-3'''
+- name: Simulate FMU using
+  summary: 选择用于仿真的二进制文件 x86_64-windows（默认）| x86-windows | x86_64-linux
+  group: 仿真
+  block_parameter: FMUSelectedBinary
+  type: 字符向量
+  values: x86_64-windows | x86-windows | linux64
+  default: '''win64'''
+- name: Enable event mode
+  summary: FMU 事件模式 on（默认）| off
+  group: 仿真
+  block_parameter: CSEventModeEnabled
+  type: 字符向量
+  values: on | off
+  default: '''on'''
+- name: 通信步长
+  summary: 协同仿真时间点之间的步长 -1（默认）| 正标量
+  group: 仿真
+  block_parameter: FMUSampleTime
+  type: 字符向量
+  values: 标量
+  default: '''-1'''
+- name: 启用 FMU 调试日志记录
+  summary: 启用 FMU 日志显示以用于调试目的 off（默认）| on
+  group: 仿真
+  block_parameter: FMUDebugLogging
+  type: 1xN 字符向量元胞数组
+  values: on | off
+  default: '''off'''
+- name: 按返回状态筛选日志
+  summary: 筛选调试日志 OK | Warning | Discard | Error | Fatal | Pending
+  group: 仿真
+  block_parameter: FMUDebugLoggingFilter
+  type: 字符向量
+  values: OK | Warning | Discard | Error | Fatal | Pending
+  default: '''OK'' | ''Warning'' | ''Discard'' | ''Error'' | ''Fatal'' | ''Pending'''
+- name: 将调试日志重定向到
+  summary: 直接流式输出调试日志 File（默认）| Display
+  group: 仿真
+  block_parameter: FMUDebugLoggingRedirect
+  type: 字符向量
+  values: File| Display
+  default: '''File'''
+- name: 调用 FMU 函数使用
+  summary: 为生成的代码指定 FMI API 的来源 auto | source code | shared library
+  group: 代码生成
+  block_parameter: FMUCGType
+  type: 字符向量
+  values: source code | shared library | auto
+```
 
 ### **FMU name** — FMU 名称 字符向量
 
@@ -285,7 +362,6 @@ FMU 相对容差值（%），指定为标量。
 | **模块参数：** `FMUCGType` |
 | **类型：** 字符向量 |
 | **值：** `source code` | `shared library` | `auto` |
-
 ## 所属库
 
 Simulink Extras / FMU Import

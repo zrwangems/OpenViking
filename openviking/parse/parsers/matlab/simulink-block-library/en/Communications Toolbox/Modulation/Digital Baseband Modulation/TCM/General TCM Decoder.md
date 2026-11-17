@@ -14,10 +14,15 @@ language: en
 # General TCM Decoder
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Trellis structure**
 :   MATLAB structure that contains the trellis description of the
@@ -48,7 +53,6 @@ Not documented in R2025b.
 :   Select the data type for the block output signal as
     `boolean` or `single`.
     By default, the block sets this to `double`.
-
 ## Libraries
 
 Not documented in R2025b.

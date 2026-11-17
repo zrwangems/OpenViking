@@ -14,6 +14,17 @@ language: en
 # VCO
 
 ## Ports
+```yaml
+ports:
+- name: vctrl
+  summary: Voltage used to control VCO output frequency scalar | vector
+  direction: input
+  data_types: double
+- name: vco out
+  summary: Output square wave signal determined by vctrl port scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -35,8 +46,81 @@ PLL. It is also fed back to the PFD block through a clock divider to complete th
 loop.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Specify using
+  summary: Define how VCO output frequency is specified Voltage sensitivity (default) | Output frequency vs. control voltage
+  group: Parameters
+  block_parameter: SpecifyUsing
+  type: character vector
+  values: Voltage sensitivity | Output frequency vs. control voltage
+  default: Voltage sensitivity
+- name: Voltage sensitivity (Hz/V)
+  summary: Measure of change in output frequency of VCO 100e6 (default) | positive real scalar
+  group: Parameters
+  block_parameter: Kvco
+  type: character vector
+  values: positive real scalar
+  default: 100e6
+- name: Free running frequency (Hz)
+  summary: VCO output frequency without control voltage 2.5e9 (default) | positive real scalar
+  group: Parameters
+  block_parameter: Fo
+  type: character vector
+  values: positive real scalar
+  default: 2.5e9
+- name: Control voltage (V)
+  summary: Control voltage values [-5 0 5] (default) | real valued vector
+  group: Parameters
+  block_parameter: ControlVoltage
+  type: character vector
+  values: real valued vector
+  default: '[-5 0 5]'
+- name: Output frequency (Hz)
+  summary: VCO output frequency values [2e9 2.5e9 3e9] (default) | positive real valued vector
+  group: Parameters
+  block_parameter: OutputFrequency
+  type: character vector
+  values: positive real valued vector
+  default: '[2e9 2.5e9 3e9]'
+- name: Output amplitude (V)
+  summary: Maximum amplitude of the VCO output voltage 1 (default) | positive real scalar
+  group: Parameters
+  block_parameter: Amplitude
+  type: character vector
+  values: positive real scalar
+  default: '1'
+- name: Enable increased buffer size
+  summary: Enable increased buffer size off (default) | on
+  group: Parameters
+- name: Buffer size
+  summary: Number of samples of the input buffering available during simulation 10 (default) | positive integer scalar
+  group: Parameters
+  block_parameter: NBuffer
+  type: character vector
+  values: positive integer scalar
+  default: '10'
+- name: Add phase noise
+  summary: Add phase noise as a function of frequency on (default) | off
+  group: Impairments
+- name: Phase noise frequency offset (Hz)
+  summary: Frequency offsets of phase noise from carrier frequency [10e3 100e3 1e6 3e6 10e6] (default) | positive real valued
+    vector
+  group: Impairments
+  block_parameter: Foffset
+  type: character vector
+  values: positive real valued vector
+  default: '[10e3 100e3 1e6 3e6 10e6]'
+- name: Phase noise level (dBc/Hz)
+  summary: Phase noise power at specified frequency offsets relative to the carrier [-77 -108 -134 -145 -154] (default) |
+    negative real valued vector
+  group: Impairments
+  block_parameter: PhaseNoise
+  type: character vector
+  values: negative real valued vector
+  default: '[-77 -108 -134 -145 -154]'
+```
 
 ### Parameters
 
@@ -261,7 +345,6 @@ tab.
 | **Default:** `[-77 -108 -134 -145 -154]` |
 
 **Data Types:** `double`
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Building Blocks

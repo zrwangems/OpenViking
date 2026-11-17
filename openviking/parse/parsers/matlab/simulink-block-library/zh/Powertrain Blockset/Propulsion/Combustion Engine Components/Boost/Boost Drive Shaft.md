@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Boost Drive Shaft
 
 ## 端口
+```yaml
+ports:
+- name: Cmprs
+  summary: 压气机扭矩双向连接端口
+  direction: input
+- name: Turb
+  summary: 涡轮扭矩双向连接端口
+  direction: input
+- name: ExtTrq
+  summary: 外部施加扭矩 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: Cmprs
+  summary: 压气机转速双向连接端口
+  direction: output
+- name: Turb
+  summary: 涡轮转速双向连接端口
+  direction: output
+```
 
 ### 输入
 
@@ -74,8 +95,45 @@ chinese_source: worker-translation
 #### 依赖
 
 要创建此端口，请将 **Configuration** 参数设置为 `Turbocharger` 或 `Turbine only`。
-
 ## 参数
+```yaml
+parameters:
+- name: Configuration
+  summary: 指定配置 Turbocharger（默认）| Turbine only | Compressor only
+  group: ''
+  block_parameter: ShaftConfigPopup
+  values: Turbocharger（默认）| Turbine only | Compressor only
+- name: Additional torque input
+  summary: 指定外部扭矩输入 External torque input（默认）| No external torque
+  group: ''
+  block_parameter: AddTrqTypePopup
+  values: External torque input（默认）| No external torque
+- name: Shaft inertia, J_shaft
+  summary: 惯量 1.55e-5（默认）| scalar
+  group: ''
+  block_parameter: J_shaft
+  values: 1.55e-5（默认）| scalar
+- name: Initial shaft speed, w_0
+  summary: 转速 1000（默认）| scalar
+  group: ''
+  block_parameter: w_0
+  values: 1000（默认）| scalar
+- name: Min shaft speed, w_min
+  summary: 转速 100（默认）| scalar
+  group: ''
+  block_parameter: w_min
+  values: 100（默认）| scalar
+- name: Max shaft speed, w_max
+  summary: 转速 20000（默认）| scalar
+  group: ''
+  block_parameter: w_max
+  values: 20000（默认）| scalar
+- name: Turbine mechanical efficiency, eta_mech
+  summary: 效率 0.95（默认）| scalar
+  group: ''
+  block_parameter: eta_mech
+  values: 0.95（默认）| scalar
+```
 
 #### 模块选项
 
@@ -211,7 +269,6 @@ chinese_source: worker-translation
 要启用此参数，请选择
 `Turbocharger` 或 `Turbine
 only` 配置。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Boost

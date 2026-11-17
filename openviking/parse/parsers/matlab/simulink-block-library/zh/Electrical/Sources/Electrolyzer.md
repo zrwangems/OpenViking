@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Electrolyzer
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: purge
+  summary: 吹扫逻辑输入，无量纲物理信号
+  direction: input
+- name: vol
+  summary: 水体积，m^3 物理信号
+  direction: input
+- name: T
+  summary: 水温，K 物理信号
+  direction: input
+- name: volPurging
+  summary: 吹扫水体积，m^3 物理信号
+  direction: output
+- name: pH
+  summary: 水 pH，无量纲物理信号
+  direction: output
+- name: mdotH2
+  summary: 氢气质量流量，g/s 物理信号
+  direction: output
+- name: mdotH2O
+  summary: 消耗水质量流量，g/s 物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -57,8 +87,43 @@ chinese_source: worker-translation
 ### **mdotH2O** — 消耗水质量流量，g/s 物理信号
 
 消耗水的质量流量，以 g/s 为单位，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Assumption pH
+  summary: 恒定或动态 pH Constant（默认）| Dynamic
+  group: ''
+- name: Resistance
+  summary: 外部电阻 10 Ohm（默认）| 非负标量
+  group: ''
+- name: Cross-sectional transport area
+  summary: 横截面积传输区域 0.04 m^2（默认）| 正标量
+  group: ''
+- name: Distance anode-cathode
+  summary: 阳极与阴极之间的距离 0.01 m（默认）| 正标量
+  group: ''
+- name: Number of cells
+  summary: 电池数量 50（默认）| 正标量
+  group: ''
+- name: Initial pH
+  summary: 初始 pH 0（默认）| 标量
+  group: ''
+- name: Constant pH
+  summary: 恒定 pH 6（默认）| 标量
+  group: ''
+- name: pH vector, pH_vec
+  summary: pH 向量 [5, 5.5, 6, 6.5, 7]（默认）| 正标量行向量
+  group: ''
+- name: Electrical resistivity vector, rho_vec
+  summary: 电阻率向量 [.2, .75, 2.5, 8, 18.2] MOhm*cm（默认）| 标量向量
+  group: ''
+- name: Temperature vector for efficiency, T_vec
+  summary: 效率温度向量 [273, 298, 323, 348, 373] K（默认）| 标量向量
+  group: ''
+- name: Electrolysis efficiency vector, efficiency(T)
+  summary: 电解效率向量 ones(5, 1)（默认）| 标量向量
+  group: ''
+```
 
 ### **Assumption pH** — 恒定或动态 pH `Constant`（默认）| `Dynamic`
 
@@ -115,7 +180,6 @@ pH 值向量。此参数必须与 **Electrical resistivity vector, rho\_vec** �
 ### **Electrolysis efficiency vector, efficiency(T)** — 电解效率向量 `ones(5, 1)`（默认）| 标量向量
 
 电解效率值向量。此参数必须与 **Temperature vector for efficiency, T\_vec** 参数具有相同数量的元素。
-
 ## 所属库
 
 Simscape / Electrical / Sources

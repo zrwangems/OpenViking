@@ -15,6 +15,61 @@ chinese_source: worker-translation
 # SoC Bus Selector
 
 ## 端口
+```yaml
+ports:
+- name: ctrlBus
+  summary: 输入控制总线 bus
+  direction: input
+  data_types: StreamM2SBusObj | StreamS2MBusObj | pixelcontrol | StreamVideoS2MBusObj | ReadControlS2MBusObj | WriteControlS2MBusObj
+- name: valid
+  summary: 有效控制信号 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: tlast
+  summary: 数据包结束指示 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 就绪控制信号 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: hStart
+  summary: 帧水平行中的第一个像素 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: hEnd
+  summary: 帧水平行中的最后一个像素 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: vStart
+  summary: 帧第一（顶部）行中的第一个像素 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: vEnd
+  summary: 帧最后（底部）行中的最后一个像素 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: rd_aready
+  summary: 接受读请求 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: rd_dvalid
+  summary: 读请求有效 boolean scalar
+  direction: output
+  data_types: Boolean
+- name: wr_ready
+  summary: 写就绪信号布尔标量
+  direction: output
+  data_types: Boolean
+- name: wr_bvalid
+  summary: 写有效信号布尔标量
+  direction: output
+  data_types: Boolean
+- name: wr_complete
+  summary: 写事务完成布尔标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -167,8 +222,16 @@ chinese_source: worker-translation
 `Random access write`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Control protocol
+  summary: 协议接口选择 Data stream（默认）| Pixel stream | Random access read | Random access write
+  group: ''
+- name: Control type
+  summary: 控制类型选择 Valid（默认）| Ready
+  group: ''
+```
 
 ### **Control protocol** — 协议接口选择 `Data stream`（默认）| `Pixel stream` | `Random access read` | `Random access write`
 
@@ -194,7 +257,6 @@ protocol** 和 **Control type** 类型而异。有关更多
 模块的输出端口因所选的 **Control
 protocol** 和 **Control type** 类型而异。有关更多
 详细信息，请参阅描述。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Connectivity

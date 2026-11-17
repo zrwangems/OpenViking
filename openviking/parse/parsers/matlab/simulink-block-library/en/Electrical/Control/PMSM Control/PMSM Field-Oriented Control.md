@@ -14,6 +14,37 @@ language: en
 # PMSM Field-Oriented Control
 
 ## Ports
+```yaml
+ports:
+- name: Reference
+  summary: System reference scalar
+  direction: input
+  data_types: single | double
+- name: iabcSens
+  summary: Measured phase currents vector
+  direction: input
+  data_types: single | double
+- name: wSens
+  summary: Rotor speed scalar
+  direction: input
+  data_types: single | double
+- name: thSens
+  summary: Rotor angle scalar
+  direction: input
+  data_types: single | double
+- name: vdcSens
+  summary: DC-link voltage scalar
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Gate pulses vector
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: Visualization signals bus
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -74,8 +105,148 @@ Bus containing signals for visualization, including:
 - `modWave`
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Winding Type
+  summary: Control parameterization Wye-wound (default) | Delta-wound
+  group: ''
+- name: Control Mode
+  summary: Control mode strategy Torque control (default) | Velocity control
+  group: ''
+- name: Nominal dc-link voltage (V)
+  summary: Rated DC voltage 300 (default) | positive number
+  group: ''
+- name: Maximum power (W)
+  summary: Maximum power 35000 (default) | positive number
+  group: ''
+- name: Maximum torque (N\*m)
+  summary: Maximum torque 250 (default) | positive number
+  group: ''
+- name: Number of rotor pole pairs
+  summary: Pole pairs 8 (default) | positive integer
+  group: ''
+- name: Inverter dc-link voltage threshold (V)
+  summary: DC-link voltage threshold 100 (default) | positive number
+  group: ''
+- name: Fundamental sample time (s)
+  summary: Block sample time 5e-6 (default) | positive number
+  group: ''
+- name: Control sample time (s)
+  summary: Control sample time 1e-4 (default) | positive number
+  group: ''
+- name: Control Type
+  summary: Control type strategy PI control (default) | P control | P-PI control
+  group: ''
+- name: Controller proportional gain
+  summary: Proportional gain of PI controller 1 (default) | positive number
+  group: ''
+- name: Controller integral gain
+  summary: Integral gain of PI controller 1 (default) | positive number
+  group: ''
+- name: P controller proportional gain
+  summary: Proportional gain of P controller 1 (default) | positive number
+  group: ''
+- name: Integral anti-windup gain
+  summary: Anti-windup gain 1 (default) | positive number
+  group: ''
+- name: Current references
+  summary: Current reference strategy Zero d-axis control (default) | Lookup-table based | Automatically generated lookup-table
+  group: ''
+- name: Mechanical speed vector, wMechanical (rpm)
+  summary: Rotor speed lookup vector [0, 3000] (default) | positive monotonically increasing vector
+  group: ''
+- name: Torque reference vector, TqRef (N\*m)
+  summary: Torque reference lookup vector [-100, 0, 100] (default) | positive monotonically increasing vector
+  group: ''
+- name: DC-link voltage vector, Vdc (V)
+  summary: DC-link voltage lookup vector [300, 350] (default) | positive monotonically increasing vector
+  group: ''
+- name: D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)
+  summary: Reference d-axis current values zeros(2,3,2) (default) | real matrix
+  group: ''
+- name: Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)
+  summary: Reference q-axis current values zeros(2,3,2) (default) | real matrix
+  group: ''
+- name: Modulation factor
+  summary: Modulation factor 1 (default) | positive scalar
+  group: ''
+- name: Permanent magnet flux linkage (Wb)
+  summary: PM Flux Linkage 0.04 (default) | positive scalar
+  group: ''
+- name: D-axis inductance (H)
+  summary: Inductance of d-axis 0.00024 (default) | positive scalar
+  group: ''
+- name: Q-axis inductance (H)
+  summary: Inductance of q-axis 0.00029 (default) | positive scalar
+  group: ''
+- name: Stator resistance (Ohm)
+  summary: Resistance of stator 0.01 (default) | positive scalar
+  group: ''
+- name: D-axis current proportional gain
+  summary: D-axis proportional gain 1 (default) | positive number
+  group: ''
+- name: D-axis current integral gain
+  summary: D-axis integral gain 100 (default) | positive number
+  group: ''
+- name: D-axis current anti-windup gain
+  summary: D-axis anti-windup gain 1 (default) | positive number
+  group: ''
+- name: Q-axis current proportional gain
+  summary: Q-axis proportional gain 1 (default) | positive number
+  group: ''
+- name: Q-axis current integral gain
+  summary: Q-axis integral gain 100 (default) | positive number
+  group: ''
+- name: Q-axis current anti-windup gain
+  summary: Q-axis anti-windup gain 1 (default) | positive number
+  group: ''
+- name: Axis prioritization
+  summary: Axis prioritization for voltage limiter q-axis (default) | d-axis | d-q equivalence
+  group: ''
+- name: Enable zero cancellation
+  summary: Feedforward zero cancellation off (default) | on
+  group: ''
+- name: Enable pre-control voltage
+  summary: Precontrol voltage on (default) | off
+  group: ''
+- name: Machine parameters
+  summary: Machine parameterization Constant parameters (default) | Lookup table based parameters
+  group: ''
+- name: D-axis inductance for feed-forward pre-control (H)
+  summary: Feedforward d-axis inductance 0.00024 (default) | positive scalar
+  group: ''
+- name: Q-axis inductance for feed-forward pre-control (H)
+  summary: Feedforward q-axis inductance 0.00029 (default) | positive scalar
+  group: ''
+- name: Permanent magnet flux linkage for feed-forward pre-control (H)
+  summary: Feedforward flux linkage 0.04 (default) | scalar
+  group: ''
+- name: D-axis current vector, id (A)
+  summary: D-axis current breakpoint vector [-200,0,200] (default) | monotonically increasing vector
+  group: ''
+- name: Q-axis current vector, iq (A)
+  summary: Q-axis current breakpoint vector [-200,0,200] (default) | monotonically increasing vector
+  group: ''
+- name: Ld matrix, Ld(id,iq) (H)
+  summary: D-axis inductance lookup data 0.0002 * ones(3, 3) (default) | positive matrix
+  group: ''
+- name: Lq matrix, Lq(id,iq) (H)
+  summary: Q-axis inductance lookup data 0.0002 * ones(3, 3) (default) | positive matrix
+  group: ''
+- name: Permanent magnet flux linkage matrix, PM(id,iq) (Wb)
+  summary: Flux linkage lookup data 0.04 * ones(3, 3) (default) | real matrix
+  group: ''
+- name: PWM method
+  summary: 'Pulse width modulation method SVM: space vector modulation (default) | SPWM: sinusoidal PWM'
+  group: ''
+- name: Sampling mode
+  summary: Wave-sampling method Natural (default) | Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: Switching rate 1000 (default) | positive integer
+  group: ''
+```
 
 #### General
 
@@ -321,7 +492,6 @@ conditions.
 
 Specify the rate at which you want the switches in the power converter to
 switch.
-
 ## Libraries
 
 Simscape / Electrical / Control / PMSM Control

@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Submatrix
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: 选定的子矩阵 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### 输入
 
@@ -34,8 +47,70 @@ chinese_source: worker-translation
 此模块支持 Simulink 虚拟总线。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Row span
+  summary: 行范围 All rows（默认） | One row | Range of rows
+  group: ''
+- name: Row
+  summary: 输出的第一行 First（默认） | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Starting row
+  summary: 输出的第一行 First（默认） | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Row index
+  summary: 第一行的索引 1（默认） | 正整数
+  group: ''
+- name: Starting row index
+  summary: 第一行的索引 1（默认） | 正整数
+  group: ''
+- name: Row offset
+  summary: 第一行的偏移量 1（默认） | 正整数
+  group: ''
+- name: Starting row offset
+  summary: 第一行的偏移量 1（默认） | 正整数
+  group: ''
+- name: Ending row
+  summary: 最后一行 Last（默认） | Index | Offset from last | Offset from middle | Middle
+  group: ''
+- name: Ending row index
+  summary: 最后一行的索引 1（默认） | 正整数
+  group: ''
+- name: Ending row offset
+  summary: 最后一行的偏移量 1（默认） | 正整数
+  group: ''
+- name: Column span
+  summary: 输入列范围 All columns（默认） | One column | Range of columns
+  group: ''
+- name: Column
+  summary: 第一列 First（默认） | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Starting column
+  summary: 第一列 First（默认） | Index | Offset from last | Last | Offset from middle | Middle
+  group: ''
+- name: Starting column index
+  summary: 第一列的索引 1（默认） | 正整数
+  group: ''
+- name: Column index
+  summary: 第一列的索引 1（默认） | 正整数
+  group: ''
+- name: Column offset
+  summary: 第一列的偏移量 1（默认） | 正整数
+  group: ''
+- name: Starting column offset
+  summary: 第一列的偏移量 1（默认） | 正整数
+  group: ''
+- name: Ending column
+  summary: 最后一列 Last（默认） | Index | Offset from last | Offset from middle | Middle
+  group: ''
+- name: Ending column index
+  summary: 最后一列的索引 1（默认） | 正整数
+  group: ''
+- name: Ending column offset
+  summary: 最后一列的偏移量 1（默认） | 正整数
+  group: ''
+```
 
 有关选择元素子集以构成子矩阵的详细信息，请参阅范围指定选项。
 
@@ -190,7 +265,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Ending column** 设置为 `Offset from middle` 或 `Offset from last`。
-
 ## 所属库
 
 Simulink / Matrix Operations

@@ -14,6 +14,15 @@ language: en
 # Mass
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Port that connects mass to the circuit mechanical translational
+  direction: conserving
+- name: N
+  summary: Second graphical port mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -33,8 +42,17 @@ two-port block representations is purely graphical.
 
 To enable this port, set the **Number of graphical ports**
 parameter to `2`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass
+  summary: Constant mass 1 kg (default) | positive scalar
+  group: ''
+- name: Number of graphical ports
+  summary: Select whether the block is graphically connected to the side of a circuit or in series with other elements 1 (default)
+    | 2
+  group: ''
+```
 
 ### **Mass** — Constant mass `1 kg` (default) | positive scalar
 
@@ -51,7 +69,6 @@ Select how to connect the block to the rest of the circuit:
   port, which lets you connect the block in series with other blocks in the circuit.
   The two ports are rigidly connected and have the same velocity, therefore the block
   functions exactly the same as if it had one port.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Translational Elements

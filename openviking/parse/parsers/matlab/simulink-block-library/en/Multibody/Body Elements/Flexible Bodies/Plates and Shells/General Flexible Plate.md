@@ -14,6 +14,15 @@ language: en
 # General Flexible Plate
 
 ## Ports
+```yaml
+ports:
+- name: FN
+  summary: Custom frame frame
+  direction: unspecified
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -37,8 +46,97 @@ attached to the flexible body.
 
 The **R** port must not be rigidly connected to any
 blocks that exert forces and torques or possess inertia.
-
 ## Parameters
+```yaml
+parameters:
+- name: Midsurface
+  summary: Coordinates of plate midsurface [1 1; -1 1; -1 -1; 1 -1] m | *N*-by-2 matrix | *M*-by-1 or 1-by-*M* cell array
+    of *N*-by-2 matrices
+  group: Geometry
+- name: Thickness
+  summary: Plate thickness 0.1 m (default) | positive scalar
+  group: Geometry
+- name: Density
+  summary: Mass per unit volume of material 2700 kg/m^3 (default) | positive scalar
+  group: Stiffness and Inertia
+- name: Specify
+  summary: Elastic properties used to parameterize plate Young's Modulus and Poisson's Ratio (default) | Young's and Shear
+    Modulus
+  group: Stiffness and Inertia
+- name: Young's Modulus
+  summary: Ratio of axial stress to axial strain 70 GPa (default) | positive scalar
+  group: Stiffness and Inertia
+- name: Poisson's Ratio
+  summary: Ratio of transverse to normal strains 0.33 (default) | scalar in the range [0, 0.5)
+  group: Stiffness and Inertia
+- name: Shear Modulus
+  summary: Ratio of shear stress to engineering shear strain 26 GPa (default) | positive scalar
+  group: Stiffness and Inertia
+- name: Type
+  summary: Type of damping method Proportional (default) | Uniform Modal | None
+  group: Damping
+- name: Mass Coefficient
+  summary: Coefficient of mass matrix 0 1/s (default) | nonnegative scalar
+  group: Damping
+- name: Stiffness Coefficient
+  summary: Coefficient of stiffness matrix 0.001 s (default) | nonnegative scalar
+  group: Damping
+- name: Damping Ratio
+  summary: Damping ratio for uniform modal damping method 0.01 (default) | unitless nonnegative scalar
+  group: Damping
+- name: Type
+  summary: Type of reference conditions Linearized Mean Axes (default) | Body-Fixed
+  group: Reference Conditions
+- name: Frame
+  summary: Connection frame used for body-fixed reference conditions frame name
+  group: Reference Conditions
+- name: Show Port R
+  summary: Show reference frame port off (default) | on
+  group: Reference Conditions
+- name: Reduction
+  summary: Method to model flexible bodies None (default) | Modally Reduced
+  group: Fidelity
+- name: Number of Retained Modes
+  summary: Retained modes 1 (default) | nonnegative integer
+  group: Fidelity
+- name: Type
+  summary: Graphic to use in the visualization of plate From Geometry (default) | None
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Graphic
+- name: Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Diffuse Color
+  summary: Graphic Color [0.5 0.5 0.5] (default) | three-element vector | three-element vector
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Highlight sharpness 75 (default) | scalar with value constrained to 0–128
+  group: Graphic
+- name: New Frame
+  summary: Create custom frame for connection to other blocks button
+  group: Frames
+- name: FrameN
+  summary: Edit or delete existing custom frame frame name
+  group: Frames
+```
 
 ### Geometry
 
@@ -440,7 +538,6 @@ not specify the name of the custom frame, the block names the frame
 
 To enable this parameter, create a frame by clicking **New
 Frame**.
-
 ## Libraries
 
 Simscape / Multibody / Body Elements / Flexible Bodies / Plates and Shells

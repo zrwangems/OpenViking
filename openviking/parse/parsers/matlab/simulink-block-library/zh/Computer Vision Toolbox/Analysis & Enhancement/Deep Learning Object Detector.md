@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Deep Learning Object Detector
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 图像数据数组
+  direction: input
+- name: Bboxes
+  summary: 检测到的目标位置矩阵
+  direction: output
+- name: Labels
+  summary: 边界框标签向量
+  direction: output
+- name: Scores
+  summary: 检测分数向量
+  direction: output
+```
 
 ### 输入
 
@@ -44,8 +59,73 @@ chinese_source: worker-translation
 ### **Scores** — 检测分数向量
 
 每个标签的检测置信度分数，以 *M*×1 向量形式返回。*M* 是图像中检测到的边界框数量。分数越高表示检测置信度越高。
-
 ## 参数
+```yaml
+parameters:
+- name: Detector
+  summary: 训练好的检测器对象来源 Detector from MAT file（默认）| Detector from MATLAB function
+  group: ''
+  block_parameter: Detector
+  type: character vector, string
+  values: Detector from MAT file' | 'Detector from MATLAB function'
+  default: Detector from MAT file'
+- name: File path
+  summary: 包含检测器对象的 MAT 文件 untitled.mat（默认）| MAT 文件名
+  group: ''
+  block_parameter: DetectorFilePath
+  type: character vector, string
+  values: MAT file path or name
+  default: '''untitled.mat'''
+- name: MATLAB function
+  summary: MATLAB 函数名称 untitled（默认）| MATLAB 函数名称
+  group: ''
+  block_parameter: DetectorFunction
+  type: 字符向量、字符串
+  values: MATLAB 函数名称
+  default: '''untitled'''
+- name: Region of interest
+  summary: 搜索感兴趣区域向量，形式为 [*x* *y* *width* *height*]
+  group: ''
+  block_parameter: ROI
+  type: 字符向量、字符串
+  values: 指定为 '[x y width height]' 的字符向量
+  default: '''[1 1 100 100]'''
+- name: Detection threshold
+  summary: 检测阈值，范围为 [0, 1] 的标量
+  group: ''
+  block_parameter: Threshold
+  type: 字符向量、字符串
+  values: 标量
+  default: '''0.5'''
+- name: Number of Strongest Regions
+  summary: 最强区域提议的最大数量 2000（默认）| 正整数
+  group: ''
+  block_parameter: NumStrongestRegions
+  type: 字符向量、字符串
+  values: 整数
+  default: '''2000'''
+- name: Maximum Region Size
+  summary: 最大区域大小向量，形式为 [*height* *width*]
+  group: ''
+  block_parameter: MaxSize
+  type: 字符向量、字符串
+  values: 指定为 '[height width]' 的字符向量
+  default: '''[50 50]'''
+- name: Minimum Region Size
+  summary: 最小区域大小向量，形式为 [*height* *width*]
+  group: ''
+  block_parameter: MinSize
+  type: 字符向量、字符串
+  values: 指定为 '[height width]' 的字符向量
+  default: '''[1 1]'''
+- name: 最大检测数量
+  summary: 最大检测数量 500（默认）| 正整数
+  group: ''
+  block_parameter: MaxDetections
+  type: 字符向量、字符串
+  values: 整数
+  default: '''500'''
+```
 
 ### **Detector** — 训练好的检测器对象来源 `Detector from MAT file`（默认）| `Detector from MATLAB function`
 
@@ -212,7 +292,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量、字符串 |
 | **值：** 整数 |
 | **默认值：** `'500'` |
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

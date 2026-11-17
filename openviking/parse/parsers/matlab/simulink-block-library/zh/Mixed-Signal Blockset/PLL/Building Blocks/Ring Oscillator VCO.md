@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Ring Oscillator VCO
 
 ## 端口
+```yaml
+ports:
+- name: vctrl
+  summary: 用于控制 VCO 输出频率的电压 标量 | 向量
+  direction: input
+  data_types: double
+- name: vco out
+  summary: 由 vctrl 端口决定的输出信号 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,105 @@ chinese_source: worker-translation
 环形振荡器 VCO 的输出信号。在 PLL 系统中，**vco out** 是 PLL 生成的输出时钟。它 also 通过时钟分频器反馈到 PFD 模块，以完成控制环路。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Specify using
+  summary: 定义 VCO 输出频率的指定方式 Voltage sensitivity（默认）| Output frequency vs. control voltage
+  group: 参数
+  block_parameter: SpecifyUsing
+  type: 字符向量
+  values: Voltage sensitivity | Output frequency vs. control voltage
+  default: Voltage sensitivity
+- name: Voltage sensitivity (Hz/V)
+  summary: VCO 输出频率的变化量度 100e6（默认）| 正实数标量
+  group: 参数
+  block_parameter: Kvco
+  type: 字符向量
+  values: 正实数标量
+  default: 100e6
+- name: Free running frequency (Hz)
+  summary: 无控制电压时的 VCO 输出频率 2.5e9（默认）| 正实数标量
+  group: 参数
+  block_parameter: Fo
+  type: 字符向量
+  values: 正实数标量
+  default: 2.5e9
+- name: Control voltage (V)
+  summary: 控制电压值 [-5 0 5]（默认）| 实值向量
+  group: 参数
+  block_parameter: ControlVoltage
+  type: 字符向量
+  values: 实值向量
+  default: '[-5 0 5]'
+- name: Output frequency (Hz)
+  summary: VCO 输出频率值 [2e9 2.5e9 3e9]（默认）| 正实值向量
+  group: 参数
+  block_parameter: OutputFrequency
+  type: 字符向量
+  values: 正实值向量
+  default: '[2e9 2.5e9 3e9]'
+- name: Output amplitude (V)
+  summary: VCO 输出电压的最大幅度 1（默认）| 正实数标量
+  group: 参数
+  block_parameter: Amplitude
+  type: 字符向量
+  values: 正实数标量
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: 参数
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 10（默认）| 正整数标量
+  group: 参数
+  block_parameter: NBuffer
+  type: 字符向量
+  values: 正整数标量
+- name: Add phase noise
+  summary: 添加随频率变化的相位噪声 on（默认）| off
+  group: 损伤
+- name: Model double sided phase noise instead of single sided
+  summary: 对双边相位噪声而非单边相位噪声建模 off（默认）| on
+  group: 损伤
+- name: Phase noise frequency offset (Hz)
+  summary: 指定相位噪声相对于载波的频率偏移 [30e3 100e3 1e6 3e6 10e6]（默认）| 正实数值向量
+  group: 损伤
+  block_parameter: Foffset
+  type: 字符向量
+  values: 正实数值向量
+- name: Phase noise level (dBc/Hz)
+  summary: 在相对于载波的相位噪声频率偏移处指定的相位噪声功率 [-56 -106 -132 -143 -152]（默认）| 负实数值向量
+  group: 损伤
+  block_parameter: PhaseNoise
+  type: 字符向量
+  values: 负实数值向量
+- name: Estimate phase noise parameters
+  summary: 设置旨在匹配指定噪声频谱的噪声参数 按钮
+  group: 损伤
+- name: Period jitter (S)
+  summary: 周期抖动的标准差 1.7e-15（默认）| 正实数标量
+  group: 损伤
+  block_parameter: PeriodJitter
+  type: 字符向量
+  values: 正实数标量
+- name: Flicker corner frequency (Hz)
+  summary: 闪烁噪声的拐角频率 5e5（默认）| 标量
+  group: 损伤
+  block_parameter: CornerFrequency
+  type: 字符向量
+  values: 标量
+- name: Customize flicker exponent (Advanced feature)
+  summary: 自定义闪烁噪声功率谱分布 关（默认）| 开
+  group: 损伤
+- name: Flicker exponent
+  summary: 闪烁噪声功率指数 1.0（默认）| 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5
+  group: 损伤
+  block_parameter: FlickerExponent
+  type: 字符向量
+  values: 1.0 | 0.8 | 0.9 | 1.1 | 1.2 | 1.3 | 1.4 | 1.5
+- name: Plot fit
+  summary: 绘制指定和期望的输出相位噪声密度 按钮
+  group: 损伤
+```
 
 ### 参数
 
@@ -265,7 +373,6 @@ VCO 输出电压的最大幅度，指定为正实数标量。
 ### **Plot fit** — 绘制指定和期望的输出相位噪声密度 按钮
 
 点击以绘制指定的相位噪声密度和可实现的期望输出相位噪声密度。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Building Blocks

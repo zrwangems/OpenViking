@@ -14,6 +14,24 @@ language: en
 # Horizontal Wind Model 14
 
 ## Ports
+```yaml
+ports:
+- name: First
+  summary: geodetic latitude (μ), longitude (l), and geopotential altitude (h) three-element vector of doubles
+  direction: input
+- name: Second
+  summary: day of year scalar double
+  direction: input
+- name: Third
+  summary: elapsed seconds scalar double
+  direction: input
+- name: Fourth (Optional)
+  summary: Ap index scalar double
+  direction: input
+- name: First
+  summary: wind velocity vector 1-by-2 vector of doubles
+  direction: output
+```
 
 ### Input
 
@@ -54,8 +72,31 @@ during model evaluation.
 
 The wind velocity vector contains the meridional and zonal wind
 components in that order.
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Model
+  summary: horizontal wind model Quiet (default) | Total | Disturbance
+  group: ''
+  block_parameter: model
+  type: character vector
+  values: '''Quiet'' | ''Total'' | ''Disturbance'''
+  default: '''Quiet'''
+- name: Action for out-of-range input
+  summary: block behavior Error (default) | Warning | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+```
 
 ### **Units** — input and output units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -123,7 +164,6 @@ range.
 | **Type**: character vector |
 | **Values**: `'None'` | `'Warning'` | `'Error'` |
 | **Default**: `'Error'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Wind

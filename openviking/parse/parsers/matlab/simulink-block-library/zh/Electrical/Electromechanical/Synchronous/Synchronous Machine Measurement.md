@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Synchronous Machine Measurement
 
 ## 端口
+```yaml
+ports:
+- name: pu
+  summary: 来自所连接同步电机物理量的标幺值测量
+  direction: input
+- name: o
+  summary: 标幺值测量输出端口物理量
+  direction: output
+```
 
 ### 输入
 
@@ -37,13 +46,20 @@ chinese_source: worker-translation
 ### **o** — 标幺值测量输出端口物理量
 
 与标幺值测量相关联的物理信号输出端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 来自同步电机的标幺值测量 Field voltage (field circuit base, Efd)（默认）| Field current (field circuit base, Ifd) | Electrical
+    torque | Rotor velocity | Stator d-axis voltage | Stator q-axis voltage | Stator zero-sequence voltage | Stator d-axis
+    current | Stator q-axis current | Stator zero-sequence current | Apparent power | Real power | Reactive power | Terminal
+    voltage | Terminal current | Power factor angle | Power factor | Load angle | Rotor electrical angle
+  group: ''
+```
 
 ### **Output** — 来自同步电机的标幺值测量 `Field voltage (field circuit base, Efd)`（默认）| `Field current (field circuit base, Ifd)` | `Electrical torque` | `Rotor velocity` | `Stator d-axis voltage` | `Stator q-axis voltage` | `Stator zero-sequence voltage` | `Stator d-axis current` | `Stator q-axis current` | `Stator zero-sequence current` | `Apparent power` | `Real power` | `Reactive power` | `Terminal voltage` | `Terminal current` | `Power factor angle` | `Power factor` | `Load angle` | `Rotor electrical angle`
 
 来自同步电机的标幺值测量。默认值为 `Field voltage (field circuit base, Efd)`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Synchronous

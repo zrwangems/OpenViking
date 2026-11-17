@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Mach Number
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 速度 三元向量
+  direction: input
+  data_types: double
+- name: a
+  summary: 声速 1×1 数组
+  direction: input
+  data_types: double
+- name: Mach
+  summary: 马赫数 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,11 +51,12 @@ chinese_source: worker-translation
 马赫数，返回为标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Flight Parameters

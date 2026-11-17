@@ -14,10 +14,21 @@ language: en
 # Model Header
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Top of Model Header
+  summary: Code to add near top of generated header file no default
+  group: ''
+- name: Bottom of Model Header
+  summary: Code to add at bottom of generated header file no default
+  group: ''
+```
 
 ### **Top of Model Header** — Code to add near top of generated header file no default
 
@@ -30,7 +41,6 @@ code (top of header file)`.
 Specify code that you want the code generator to add at the bottom of the header
 file for the model. The code generator places the code in the section labeled
 `user code (bottom of header file)`.
-
 ## Libraries
 
 Simulink Coder / Custom Code

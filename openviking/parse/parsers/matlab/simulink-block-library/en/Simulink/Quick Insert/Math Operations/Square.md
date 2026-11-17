@@ -14,6 +14,17 @@ language: en
 # Matrix Square
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input matrix *M*-by-1 matrix | 1-by-*N* matrix | *M*-by-*N* matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output matrix *M*-by-*M* matrix | *N*-by-*N* matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -31,8 +42,74 @@ Output matrix, returned as an *N*-by-*N* or
 *M*-by-*M* matrix.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMin
+  type: character vector
+  values: '''[ ]''| scalar'
+  default: '''[ ]'''
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMax
+  type: character vector
+  values: '''[ ]''| scalar'
+  default: '''[ ]'''
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation | Inherit:
+    Same as input | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | fixdt(1,16,0) | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Same as input'' | ''Inherit: Inherit via internal rule''| ''Inherit: Inherit via back propagation''
+    | ''double'' | ''single'' | ''int8'' | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''
+    | fixdt(1,16,0) | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Output data type locking off (default) | on
+  group: ''
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Behavior when integer overflow occurs off (default) | on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Mode
+  summary: Category of data to specify Inherit (default) | Built in | Fixed point | Expression
+  group: ''
+- name: Signedness
+  summary: Specify signed or unsigned Signed (default) | Unsigned
+  group: ''
+- name: Scaling
+  summary: Method for scaling fixed-point data Binary point (default)
+  group: ''
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: ''
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: ''
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: ''
+```
 
 ### **Output minimum** — Minimum output value for range checking `[]` (default) | scalar
 
@@ -236,7 +313,6 @@ To enable this parameter, set:
   point`
 - **Scaling** to `Binary
   point`
-
 ## Libraries
 
 Simulink / Matrix Operations

@@ -14,6 +14,25 @@ language: en
 # Slowly Increasing Steer
 
 ## Ports
+```yaml
+ports:
+- name: xdot
+  summary: Vehicle longitudinal velocity scalar
+  direction: input
+  data_types: single | double
+- name: ay
+  summary: Vehicle lateral acceleration threshold scalar
+  direction: input
+  data_types: single | double
+- name: DrvRef
+  summary: Driver reference data bus
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: Driver command data bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -87,8 +106,55 @@ Bus Assignment block to override the
 Block diagram where the Bus Assignment block overrides the TransModeCmd output from the Slowly Increasing Steer block.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: Start time 2 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: tStart
+  values: 2 (default) | positive scalar
+- name: Longitudinal velocity setpoint, velRef
+  summary: Target velocity 50 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: velRef
+  values: 50 (default) | positive scalar
+- name: Longitudinal velocity setpoint units, velRefUnit []
+  summary: Units mph (default)
+  group: Maneuver Parameters
+  block_parameter: velRefUnit
+  values: mph (default) | character vector
+- name: Steer and countersteer speed, steerRate [deg/s]
+  summary: Steer and countersteer rate 13.5 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: steerRate
+  values: 13.5 (default) | positive scalar
+- name: Steer amplitude, steerAmp [deg]
+  summary: Handwheel steer amplitude 270 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: steerAmp
+  values: 270 (default) | positive scalar
+- name: Steering hold time after max angle reached, tStop [s]
+  summary: Steering hold time 2 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: tStop
+  values: 2 (default) | positive scalar
+- name: Lateral acceleration absolute threshold, ay_max [g]
+  summary: Lateral acceleration threshold 0.5 (default) | positive scalar
+  group: Maneuver Parameters
+  block_parameter: ay_max
+  values: 0.5 (default) | positive scalar
+- name: Initial steer direction
+  summary: Initial steer direction Right (default) | Left
+  group: Maneuver Parameters
+  block_parameter: steerDir
+  values: Right (default) | Left
+- name: Stop simulation at lateral acceleration threshold
+  summary: Option to stop simulation at lateral acceleration threshold off (default) | on
+  group: Maneuver Parameters
+  block_parameter: ayStop
+  values: off (default) | on
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -265,7 +331,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `ayStop` |
 | **Values:** | `off` (default) | `on` |
 | **Data Types:** | `character vector` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

@@ -14,6 +14,17 @@ language: en
 # Unit Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -29,8 +40,17 @@ Input signal, specified as a scalar, vector, matrix, or N-D array.
 Output signal with converted units with the same dimensions as the input signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output data type
+  summary: 'Output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation'
+  group: ''
+  block_parameter: OutputType
+  type: character vector
+  values: '''Inherit via internal rule'' | ''Inherit via back propagation'''
+  default: '''Inherit via internal rule'''
+```
 
 ### **Output data type** — Output data type `Inherit: Inherit via internal rule` (default) | `Inherit: Inherit via back propagation`
 
@@ -55,7 +75,6 @@ Specify the output data type.
 | **Type:** character vector |
 | **Values:** `'Inherit via internal rule' | 'Inherit via back propagation'` |
 | **Default:** `'Inherit via internal rule'` |
-
 ## Libraries
 
 Simulink / Signal Attributes

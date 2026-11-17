@@ -14,6 +14,18 @@ language: en
 # PS Harmonic Estimator (Amplitude, Phase)
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Periodic signal, untyped physical signal
+  direction: input
+- name: A
+  summary: Amplitude of the harmonic signal, untyped physical signal
+  direction: output
+- name: Phi
+  summary: Phase of the harmonic signal, rad physical signal
+  direction: output
+```
 
 ### Input
 
@@ -37,8 +49,19 @@ output port is untyped, the signal unit is determined by the block equations. Wh
 connecting a PS-Simulink Converter block to this port,
 set its **Output signal unit** parameter to `1`, or
 to another value commensurate with angular units. For more information, see Angular Units.
-
 ## Parameters
+```yaml
+parameters:
+- name: Base frequency
+  summary: Periodic signal frequency 60 Hz (default)
+  group: ''
+- name: Harmonic number
+  summary: Number of harmonic 1 (default)
+  group: ''
+- name: Minimum amplitude for phase detection
+  summary: Minimum signal amplitude for measuring phase 0.001 1 (default)
+  group: ''
+```
 
 ### **Base frequency** — Periodic signal frequency `60 Hz` (default)
 
@@ -54,7 +77,6 @@ integer.
 The minimum amplitude necessary for measuring the harmonic phase. The parameter unit
 must be commensurate with the unit of the input signal. If the harmonic amplitude is
 less than this value, the output at port **Phi** is 0.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Periodic Operators

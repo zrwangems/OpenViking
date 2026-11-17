@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # LIN Unpack
 
 ## 端口
+```yaml
+ports:
+- name: message_updated
+  summary: 指示报文更新 0（逻辑 false）| 1（逻辑 true）
+  direction: input
+- name: Lin_data_8_bytes
+  summary: 用于解包的输入 LIN 数据 LIN 数据
+  direction: input
+- name: out
+  summary: 输出数据 数据
+  direction: output
+```
 
 ### 输入
 
@@ -30,8 +42,22 @@ chinese_source: worker-translation
 ### **out** — 输出数据 数据
 
 发送解包后的数据。输出端口数量根据所选帧中的信号数量进行分配。选择帧后，端口名称将分配给每个端口。
-
 ## 参数
+```yaml
+parameters:
+- name: LDF File Name
+  summary: LDF 的文件路径 空（默认）| 字符向量 | 字符串标量
+  group: ''
+  block_parameter: LDFFileName
+- name: Select Frame
+  summary: LIN 帧 None（默认）| 字符向量 | 字符串标量
+  group: ''
+  block_parameter: selectedFrameName
+- name: Frame ID
+  summary: LIN 帧 ID 1（默认）| uint8
+  group: ''
+  block_parameter: frameId
+```
 
 ### **LDF File Name** — LDF 的文件路径 空（默认）| 字符向量 | 字符串标量
 
@@ -62,7 +88,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`frameId` |
-
 ## 所属库
 
 Simulink Real-Time / LIN

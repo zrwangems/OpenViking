@@ -14,6 +14,21 @@ language: en
 # Logic Decision
 
 ## Ports
+```yaml
+ports:
+- name: wave
+  summary: Input signal fixed step sampling | variable step sampling | scalar
+  direction: input
+  data_types: double | Boolean
+- name: vth
+  summary: Decision threshold value scalar
+  direction: input
+  data_types: floating point
+- name: events
+  summary: Output signal 0 | 1
+  direction: output
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -40,8 +55,22 @@ Output signal, returned as either `0` or
 `1`.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Source of sample time Inherited (default) | Fixed
+  group: ''
+- name: Sample time value
+  summary: Actual value of sample time 20e-12 (default) | real scalar excluding zero
+  group: ''
+- name: Minimum delay value
+  summary: Minimum propagation delay value 1e-15 (default) | positive scalar
+  group: ''
+- name: Buffer size
+  summary: Number of threshold crossings to buffer 1 (default) | positive integer scalar
+  group: ''
+```
 
 ### **Sample time** — Source of sample time `Inherited` (default) | `Fixed`
 
@@ -99,7 +128,6 @@ positive integer scalar.
   **Buffer size**.
 - Use `set_param(gcb,'BufferSizeIn',value)` to set
   **Buffer size** to a specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / Utilities

@@ -14,6 +14,25 @@ language: en
 # Mechanical to Electrical Position
 
 ## Ports
+```yaml
+ports:
+- name: θm
+  summary: Mechanical position of rotor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Npp
+  summary: Number of pole pairs available in motor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Offset
+  summary: Mechanical position offset scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: Electrical position of rotor scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -61,8 +80,28 @@ mechanical position input. Data type of the electrical position is identical to 
 of the input.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Pole pairs input
+  summary: Method to specify number of pole pairs available in motor Specify via dialog (default) | Input port
+  group: ''
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 4 (default) | scalar
+  group: ''
+- name: Input mechanical angle unit
+  summary: Unit of mechanical position of rotor Per unit (default) | Radians | Degrees
+  group: ''
+- name: Offset input type
+  summary: Method to specify offset Input port (default) | Specify via dialog
+  group: ''
+- name: Mechanical offset
+  summary: Value of mechanical position offset 0 (default) | scalar
+  group: ''
+- name: Input data type
+  summary: Data type of input ports single (default) | double | fixed point
+  group: ''
+```
 
 ### **Pole pairs input** — Method to specify number of pole pairs available in motor `Specify via dialog` (default) | `Input port`
 
@@ -112,7 +151,6 @@ The data type that you want to use for the input ports.
 
 If you select fixed point input data type and provide fixed point values to the
 input ports, the block runs faster when deployed on hardware.
-
 ## Libraries
 
 Motor Control Blockset / Sensor Decoders Motor Control Blockset HDL Support / Sensor Decoders

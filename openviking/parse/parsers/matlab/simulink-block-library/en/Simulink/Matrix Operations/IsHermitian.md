@@ -14,6 +14,17 @@ language: en
 # IsHermitian
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input matrix matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Hermitian or skew-Hermitian matrix real scalar Boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -29,8 +40,17 @@ Input matrix, specified as a matrix.
 A Hermitian or skew-Hermitian matrix, returned as a real scalar Boolean.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Whether matrix is Hermitian or skew-Hermitian Hermitian (default) | Skew-Hermitian
+  group: ''
+  block_parameter: Mode
+  type: character vector
+  values: '''Hermitian'' | ''Skew-Hermitian'''
+  default: '''Hermitian'''
+```
 
 ### **Mode** — Whether matrix is Hermitian or skew-Hermitian `Hermitian` (default) | `Skew-Hermitian`
 
@@ -45,7 +65,6 @@ Identify the matrix as `Hermitian` or
 | **Type:** character vector |
 | **Values:** `'Hermitian'` | `'Skew-Hermitian'` |
 | **Default:** `'Hermitian'` |
-
 ## Libraries
 
 Simulink / Matrix Operations

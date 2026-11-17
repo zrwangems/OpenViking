@@ -14,6 +14,29 @@ language: en
 # 3-Phase Sine Voltage Generator
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Reference voltage amplitude scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: Reference voltage position scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Va
+  summary: '*a*-axis component of balanced, three-phase voltage scalar'
+  direction: output
+  data_types: single | double | fixed point
+- name: Vb
+  summary: '*b*-axis component of balanced, three-phase voltage scalar'
+  direction: output
+  data_types: single | double | fixed point
+- name: Vc
+  summary: '*c*-axis component of balanced, three-phase voltage scalar'
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -50,8 +73,16 @@ Balanced, three-phase voltage signal component along the *c*-axis
 of the *abc* reference frame.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Theta units
+  summary: Unit of θe Per-unit (default) | Radians | Degrees
+  group: ''
+- name: Number of data points for lookup table
+  summary: Size of lookup table 1024 (default) | scalar
+  group: ''
+```
 
 ### **Theta units** — Unit of `θe` `Per-unit` (default) | `Radians` | `Degrees`
 
@@ -60,7 +91,6 @@ Unit of the reference voltage position that you provide as input.
 ### **Number of data points for lookup table** — Size of lookup table `1024` (default) | scalar
 
 Size of the lookup table.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Math Transforms

@@ -14,6 +14,21 @@ language: en
 # Flow Rate Sensor (IL)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mass flow rate, kg/s physical signal
+  direction: output
+- name: V
+  summary: Volumetric flow rate, m^3/s physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Sensor outlet isothermal liquid
+  direction: conserving
+```
 
 ### Output
 
@@ -47,8 +62,14 @@ Isothermal liquid conserving port. Flow rate is positive if fluid flows from por
 
 Isothermal liquid conserving port. Flow rate is positive if fluid flows from port
 **A** to port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensor Measurements
+  summary: Select whether the sensor measures mass flow rate, volumetric flow rate, or both Mass flow rate (default) | Volumetric
+    flow rate | Mass and volumetric flow rate
+  group: ''
+```
 
 ### **Sensor Measurements** — Select whether the sensor measures mass flow rate, volumetric flow rate, or both `Mass flow rate` (default) | `Volumetric flow rate` | `Mass and volumetric flow rate`
 
@@ -63,7 +84,6 @@ Select the type of measurements:
 - `Mass and volumetric flow rate` — The sensors
   measures both the mass flow rate and the volumetric flow rate. Selecting this option
   exposes the output ports **M** and **V**.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Sensors

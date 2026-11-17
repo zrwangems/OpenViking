@@ -14,6 +14,15 @@ language: en
 # Line Voltage Sensor (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Three-elements vector physical signal
+  direction: output
+- name: ~1
+  summary: Three-phase port electrical
+  direction: conserving
+```
 
 ### Output
 
@@ -27,8 +36,14 @@ voltages between the phases
 
 Expandable three-phase
 port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -40,7 +55,6 @@ correspond to single-line diagrams of three-phase electrical systems.
 
 Expanded three-phase ports represent the individual phases of a three-phase system
 using three separate electrical conserving ports.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

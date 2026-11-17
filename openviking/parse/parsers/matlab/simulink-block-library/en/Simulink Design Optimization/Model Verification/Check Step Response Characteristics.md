@@ -14,6 +14,18 @@ language: en
 # Check Step Response Characteristics
 
 ## Ports
+```yaml
+ports:
+- name: Port_1 (u)
+  summary: Signal to check against specified bounds scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+- name: Port_1 (out)
+  summary: Output assertion signal 1 | 0
+  direction: output
+  data_types: Boolean | double
+```
 
 ### Input
 
@@ -48,8 +60,128 @@ select the **Output assertion signal**
 parameter.
 
 **Data Types:** `Boolean` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Show Plot
+  summary: Open plot window button
+  group: ''
+- name: Show plot on block open
+  summary: Double-click block to open plot off (default) | on
+  group: ''
+  block_parameter: LaunchViewOnOpen
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Response Optimization
+  summary: Open Response Optimizer button
+  group: ''
+- name: Include step response bound in assertion
+  summary: Check that signal satisfies step response bounds on (default) | off
+  group: Bounds Tab
+  block_parameter: EnableStepResponseBound
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Step time
+  summary: Time when step response bounds start 0 (default) | nonnegative scalar
+  group: Bounds Tab
+  block_parameter: StepTime
+  type: character vector
+  values: nonnegative scalar
+  default: '0'
+- name: Initial value
+  summary: Signal value before step 0 (default) | scalar
+  group: Bounds Tab
+  block_parameter: InitialValue
+  type: character vector
+  values: scalar
+  default: '0'
+- name: Final value
+  summary: Signal value after step 1 (default) | scalar
+  group: Bounds Tab
+  block_parameter: FinalValue
+  type: character vector
+  values: scalar
+  default: '1'
+- name: Rise time
+  summary: Time taken to reach specified percentage of step range 5 (default) | positive scalar
+  group: Bounds Tab
+  block_parameter: RiseTime
+  type: character vector
+  values: positive scalar
+  default: '5'
+- name: '% Rise'
+  summary: Percentage of step range value for rise time 80 (default) | scalar in range 0–100
+  group: Bounds Tab
+  block_parameter: PercentRise
+  type: character vector
+  values: scalar in range 0–100
+  default: '80'
+- name: Settling time (seconds)
+  summary: Time taken to reach settling range 7 (default) | positive scalar
+  group: Bounds Tab
+  block_parameter: SettlingTime
+  type: character vector
+  values: positive scalar
+  default: '7'
+- name: '% Settling'
+  summary: Settling range around final value 1 (default) | scalar in range 0–100
+  group: Bounds Tab
+  block_parameter: PercentSettling
+  type: character vector
+  values: scalar in range 0–100
+  default: '1'
+- name: '% Overshoot'
+  summary: Amount by which signal can exceed final value 10 (default) | scalar in range 0–100
+  group: Bounds Tab
+  block_parameter: PercentOvershoot
+  type: character vector
+  values: scalar in range 0–100
+  default: '10'
+- name: '% Undershoot'
+  summary: Amount by which signal can undershoot initial value 1 (default) | scalar in range 0–100
+  group: Bounds Tab
+  block_parameter: PercentUndershoot
+  type: character vector
+  values: scalar in range 0–100
+  default: '1'
+- name: Enable zero-crossing detection
+  summary: Evaluate model at bound edges on (default) | off
+  group: Bounds Tab
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable assertion
+  summary: Enable or disable check on (default) | off
+  group: Assertion Tab
+  block_parameter: enabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Simulation callback when assertion fails (optional)
+  summary: Expression to evaluate when assertion fails '' (default) | MATLAB expression
+  group: Assertion Tab
+  block_parameter: callback
+  type: character vector
+  values: MATLAB expression
+  default: ''''''
+- name: Stop simulation when assertion fails
+  summary: Halt simulation when assertion fails off (default) | on
+  group: Assertion Tab
+  block_parameter: stopWhenAssertionFail
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Output assertion signal
+  summary: Create output signal off (default) | on
+  group: Assertion Tab
+  block_parameter: export
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Show Plot** — Open plot window `button`
 
@@ -541,7 +673,6 @@ see Verify Model Using Simulink Control Design and Simulink Verification Blocks 
 | **Type:** character vector |
 | **Value:** `'on'` | `'off'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink Design Optimization / Model Verification Simulink Design Optimization / Signal Constraints

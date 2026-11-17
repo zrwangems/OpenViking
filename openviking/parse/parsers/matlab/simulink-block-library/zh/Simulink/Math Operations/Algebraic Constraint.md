@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Algebraic Constraint
 
 ## 端口
+```yaml
+ports:
+- name: f(z)
+  summary: 输入信号 实数标量或向量
+  direction: input
+  data_types: double
+- name: z
+  summary: 输出状态 实数标量或向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,34 @@ chinese_source: worker-translation
 当输入信号 **f(z)** 受到约束 *f(z) = 0* 或 *f(z) = z* 时，代数环的解。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Constraint
+  summary: 对输入信号的约束 f(z) = 0（默认）| f(z) = z
+  group: ''
+  block_parameter: Constraint
+  type: 字符向量
+  values: '''f(z) = 0'' | ''f(z) = z'''
+- name: Solver
+  summary: 代数环求解器 auto（默认）| Trust region | Line search
+  group: ''
+  block_parameter: Solver
+  type: 字符向量
+  values: '''auto'' | ''Trust region'' | ''Line search'''
+- name: Tolerance
+  summary: 求解器容差 auto（默认）| 正标量
+  group: ''
+  block_parameter: Tolerance
+  type: 字符向量
+  values: '''auto'' | 正标量'
+- name: Initial Guess
+  summary: 解的初始猜测值 0（默认）| 标量
+  group: ''
+  block_parameter: InitialGuess
+  type: 字符向量
+  values: 标量
+```
 
 ### **Constraint** — 对输入信号的约束 `f(z) = 0`（默认）| `f(z) = z`
 
@@ -84,7 +121,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 标量 |
 | **默认：** `'0'` |
-
 ## 所属库
 
 Simulink / Math Operations

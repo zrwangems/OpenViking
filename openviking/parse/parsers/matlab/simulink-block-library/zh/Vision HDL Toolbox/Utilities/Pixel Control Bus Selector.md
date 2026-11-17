@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Pixel Control Bus Selector
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 伴随像素流 pixelcontrol 总线的控制信号
+  direction: input
+  data_types: bus
+- name: Port_1
+  summary: 帧水平行中的第一个像素 标量
+  direction: output
+  data_types: Boolean
+- name: Port_2
+  summary: 帧水平行中的最后一个像素 标量
+  direction: output
+  data_types: Boolean
+- name: Port_3
+  summary: 帧第一（顶部）行中的第一个像素 标量
+  direction: output
+  data_types: Boolean
+- name: Port_4
+  summary: 帧最后（底部）行中的最后一个像素 标量
+  direction: output
+  data_types: Boolean
+- name: Port_5
+  summary: 有效像素指示 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -55,11 +82,12 @@ chinese_source: worker-translation
 有效像素指示，以 `Boolean` 标量形式返回。此端口从输入总线返回 `valid` 信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Vision HDL Toolbox / Utilities

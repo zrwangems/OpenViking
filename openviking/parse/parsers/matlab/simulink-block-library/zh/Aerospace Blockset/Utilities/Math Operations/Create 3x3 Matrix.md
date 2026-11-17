@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # Create 3x3 Matrix
 
 ## 端口
+```yaml
+ports:
+- name: A11
+  summary: 矩阵第一行第一列 矩阵元素
+  direction: input
+  data_types: double
+- name: A12
+  summary: 矩阵第一行第二列 矩阵元素
+  direction: input
+  data_types: double
+- name: A13
+  summary: 矩阵第一行第三列 矩阵元素
+  direction: input
+  data_types: double
+- name: A21
+  summary: 矩阵第二行第一列 矩阵元素
+  direction: input
+  data_types: double
+- name: A22
+  summary: 矩阵第二行第二列 矩阵元素
+  direction: input
+  data_types: double
+- name: A23
+  summary: 矩阵第二行第三列 矩阵元素
+  direction: input
+  data_types: double
+- name: A31
+  summary: 矩阵第三行第一列 矩阵元素
+  direction: input
+  data_types: double
+- name: A32
+  summary: 矩阵第三行第二列 矩阵元素
+  direction: input
+  data_types: double
+- name: A33
+  summary: 矩阵第三行第三列 矩阵元素
+  direction: input
+  data_types: double
+- name: A
+  summary: 矩阵 3×3 矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -96,11 +139,12 @@ chinese_source: worker-translation
 矩阵，输出为 3×3 矩阵。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

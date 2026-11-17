@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Line Buffer
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流 标量 | 向量
+  direction: input
+  data_types: int | uint | fixed point | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 邻域列 列向量 | 矩阵
+  direction: output
+  data_types: int | uint | fixed point | Boolean | double | single
+- name: ctrl
+  summary: 伴随输出列的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+- name: shiftEnable
+  summary: 邻域列的有效信号 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -79,8 +102,22 @@ chinese_source: worker-translation
 邻域列的有效信号，以 `Boolean` 标量形式返回。使用此信号控制由输出列组成邻域的移位寄存器。对于任何邻域列，此信号为 `true` (1)，表示该列包含有效图像像素，或者该列是为边缘填充而添加的。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Neighborhood size
+  summary: 输出邻域的大小 [3 3]（默认）| 由整数维度组成的 2 元素行向量
+  group: ''
+- name: Padding method
+  summary: 填充输入图像边界的方法 Symmetric（默认）| Constant | Replicate | Reflection | None
+  group: ''
+- name: Padding value
+  summary: 用于填充输入图像边界的值 0（默认）| 整数
+  group: ''
+- name: Line buffer size
+  summary: 行内存缓冲区的大小 2048（默认）| 正整数
+  group: ''
+```
 
 ### **Neighborhood size** — 输出邻域的大小 `[3 3]`（默认）| 由整数维度组成的 2 元素行向量
 
@@ -109,7 +146,6 @@ chinese_source: worker-translation
 行内存缓冲区的大小，指定为正整数。选择一个能够容纳水平行中有效像素数量的 2 的幂。如果指定的值不是 2 的幂，则缓冲区使用下一个最大的 2 的幂。
 
 当使用多像素输入时，此值必须容纳（**Active pixels per line**）/（**Number of pixels**）+ 2。
-
 ## 所属库
 
 Vision HDL Toolbox / Utilities

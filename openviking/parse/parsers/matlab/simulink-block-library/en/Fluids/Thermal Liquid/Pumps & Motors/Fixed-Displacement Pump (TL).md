@@ -14,6 +14,33 @@ language: en
 # Fixed-Displacement Pump (TL)
 
 ## Ports
+```yaml
+ports:
+- name: EV
+  summary: Volumetric efficiency, unitless physical signal
+  direction: input
+- name: EM
+  summary: Mechanical efficiency, unitless physical signal
+  direction: input
+- name: LV
+  summary: Volumetric loss, m^3/s physical signal
+  direction: input
+- name: LM
+  summary: Mechanical loss, N\*m physical signal
+  direction: input
+- name: A
+  summary: Pump inlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Pump outlet thermal liquid
+  direction: conserving
+- name: C
+  summary: Pump case mechanical rotational
+  direction: conserving
+- name: R
+  summary: Pump shaft mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -85,8 +112,110 @@ case.
 
 Mechanical rotational conserving port associated with the rotational
 pump shaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Leakage and friction parameterization
+  summary: Parameterization of leakage flow rate and friction torque Analytical (default) | Tabulated data - volumetric and
+    mechanical efficiencies | Tabulated data - volumetric and mechanical losses | Input signal - volumetric and mechanical
+    efficiencies | Input signal - volumetric and mechanical losses
+  group: Parameters
+- name: Displacement
+  summary: Fluid volume displaced per shaft rotation 30 cm^3/rev (default) | positive scalar
+  group: Parameters
+- name: Nominal shaft angular velocity
+  summary: Shaft angular velocity for given volumetric efficiency 1800 rpm (default) | scalar
+  group: Parameters
+- name: Nominal pressure gain
+  summary: Pressure gain for corresponding volumetric efficiency 10 MPa (default) | scalar
+  group: Parameters
+- name: Nominal dynamic viscosity
+  summary: Dynamic viscosity at which to specify the volumetric efficiency 0.9 cP (default) | scalar
+  group: Parameters
+- name: Volumetric efficiency at nominal conditions
+  summary: Volumetric efficiency at specified nominal conditions 0.92 (default) | positive scalar
+  group: Parameters
+- name: Mechanical efficiency at nominal conditions
+  summary: Ratio of ideal-to-actual mechanical power 0.88 (default) | positive scalar
+  group: Parameters
+- name: No-load torque
+  summary: Minimum torque required to induce shaft rotation 0 N*m (default) | scalar
+  group: Parameters
+- name: Pressure gain vector, dp
+  summary: Pressure gains for given volumetric and mechanical efficiencies or losses [.1, 1, 2] MPa (default) | vector
+  group: Parameters
+- name: Shaft angular velocity vector, w
+  summary: Angular velocities at which to specify volumetric and mechanical efficiencies or losses [250, 500, 1000, 2000,
+    3000, 4000] rpm (default) | vector
+  group: Parameters
+- name: Volumetric efficiency table, e_v(dp,w)
+  summary: Volumetric efficiencies for given pressure gains and angular velocities [.816, .908, .954, .977, .981, .984; .325,
+    .663, .831, .916, .925, .946; .137, .568, .78, .892, .893, .91] (default) | matrix
+  group: Parameters
+- name: Mechanical efficiency table, e_m(dp,w)
+  summary: Mechanical efficiencies for given pressure gains and angular velocities [.996, .996, .996, .996, .996, .996; .988,
+    .989, .989, .989, .989, .99; .981, .981, .982, .982, .983, .984] (default) | matrix
+  group: Parameters
+- name: Volumetric loss table, q_loss(dp,w)
+  summary: Internal leakage flow rates for corresponding pressure gains and angular velocities [.023, .023, .023, .023, .0285,
+    .032; .0844, .0842, .0845, .084, .1125, .108; .1079, .108, .11, .108, .1605, .18] * 1e-3 m^3/s (default) | matrix
+  group: Parameters
+- name: Mechanical loss table, torque_loss(dp,w)
+  summary: Friction torques for corresponding pressure gains and angular velocities [.002, .002, .002, .002, .002, .002; .0607,
+    .0556, .0556, .0556, .0556, .0505; .1937, .1937, .1833, .1833, .1729, .1626] N*m (default) | matrix
+  group: Parameters
+- name: Minimum volumetric efficiency
+  summary: Lower saturation bound on volumetric efficiency input signal 1e-3 (default) | scalar in the range (0,1)
+  group: Parameters
+- name: Maximum volumetric efficiency
+  summary: Upper saturation bound on volumetric efficiency input signal 1 (default) | positive scalar
+  group: Parameters
+- name: Minimum mechanical efficiency
+  summary: Lower saturation bound on volumetric efficiency input signal 1e-3 (default) | scalar in the range (0,1)
+  group: Parameters
+- name: Maximum mechanical efficiency
+  summary: Upper saturation bound on volumetric efficiency input signal 1 (default) | scalar in the range (0,1)
+  group: Parameters
+- name: Pressure gain threshold for motor-pump transition
+  summary: Pressure gain at which to initiate smooth transition between motor and pump modes 1e-3 MPa (default) | scalar
+  group: Parameters
+- name: Angular velocity threshold for motor-pump transition
+  summary: Angular velocity at which to initiate smooth transition between pump and motor modes 100 rpm (default) | scalar
+  group: Parameters
+- name: Cross-sectional area at ports A and B
+  summary: Flow area at component inlet and outlet 0.01 m^2 (default) | positive scalar
+  group: Parameters
+- name: Check if operating beyond the range of supplied tabulated data
+  summary: Simulation warning mode for operating conditions outside range of tabulated data None (default) | Warning | Error
+  group: Parameters
+- name: Check if operating outside of pump mode
+  summary: Simulation warning mode for operating conditions outside pump mode None (default) | Warning | Error
+  group: Parameters
+- name: Check if pressures are less than pump minimum pressure
+  summary: Whether to notify if fluid exit pressure is low None (default) | Warning | Error
+  group: Parameters
+- name: Pump minimum pressure
+  summary: Lower threshold to acceptable pressure at the pump outlet 0.101325 MPa (default) | positive scalar
+  group: Parameters
+- name: Displacement fault
+  summary: Option to model displacement fault Add fault
+  group: Faults
+- name: Faulted displacement factor
+  summary: Factor by which to scale faulted displacement 0.5 (default) | positive scalar
+  group: Faults
+- name: Leakage fault
+  summary: Option to model leakage fault Add fault
+  group: Faults
+- name: Faulted leakage factor
+  summary: Factor by which to scale leakage fault 2.0 (default) | positive scalar
+  group: Faults
+- name: Shaft friction torque fault
+  summary: Option to model shaft friction torque fault Add fault
+  group: Faults
+- name: Faulted shaft friction torque factor
+  summary: Factor by which to scale shaft friction torque fault 2.0 (default) | positive scalar
+  group: Faults
+```
 
 ### Parameters
 
@@ -534,7 +663,6 @@ a fault occurs.
 To enable this parameter, click the **Add fault**
 hyperlink for the **Shaft friction torque fault**
 parameter.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Pumps & Motors

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # ADC Type 3-5
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: ADC 数据向量
+  direction: output
+  data_types: uint16
+```
 
 ### 输出
 
@@ -23,8 +30,52 @@ chinese_source: worker-translation
 ADC 的输出是一个 `uint16` 值向量。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: ADC Module
+  summary: 选择要使用的模块 A（默认）| B | A and B
+  group: SOC 触发
+- name: ADC Resolution
+  summary: 选择 12 位或 16 位分辨率 12-bit (Single-ended input)（默认）| 16-bit (Differential inputs)
+  group: SOC 触发
+- name: ADC mode
+  summary: 选择 ADC 模式 Single-ended input（默认）| Differential inputs
+  group: SOC 触发
+- name: Sampling mode
+  summary: 选择采样类型 Single（默认）| Simultaneous
+  group: SOC 触发
+- name: SOC trigger number
+  summary: 转换启动编号 SOC0（默认）| SOC1 | SOC2 | …
+  group: SOC 触发
+- name: SOCx acquisition window
+  summary: 采集周期的长度 7（默认）| 8 | ...
+  group: SOC 触发
+- name: SOCx trigger source
+  summary: 触发转换启动的源 Software（默认）| EVA | External pin
+  group: SOC 触发
+- name: ADCINT will trigger SOCx
+  summary: 使用 ADC 中断触发 SOC No ADCINT（默认）| ADCINT1 | ADCINT2
+  group: SOC 触发
+- name: Sample time
+  summary: 模块读取数据的间隔 0.1（默认）
+  group: SOC 触发
+- name: Data type
+  summary: 选择输出数据类型 uint16（默认）| double | single | int8 | uint8 | int16 | int32 | uint32
+  group: SOC 触发
+- name: Post interrupt at EOC trigger
+  summary: 在 ADC 触发时发送中断 Off（默认）| on
+  group: SOC 触发
+- name: Interrupt selection
+  summary: ADC 中断选择 ADCINT1（默认）| ADCINT2
+  group: SOC 触发
+- name: ADC# continuous mode
+  summary: 生成 ADC 中断 ADCINT1（默认）| ADCINT2
+  group: SOC 触发
+- name: Conversions channel
+  summary: 选择此 ADC 转换所应用的 ADC 通道 ADCINA0（默认）| ADCINA1 | ADCINA2 | …
+  group: 输入通道
+```
 
 ### SOC 触发
 
@@ -129,7 +180,6 @@ SOCx 触发源输入 **ePWMx SOCA and SOCB** 的范围将根据所选处理器�
 ### **Conversions channel** — 选择此 ADC 转换所应用的 ADC 通道 `ADCINA0`（默认）| `ADCINA1` | `ADCINA2` | `…`
 
 选择此 ADC 转换所应用的输入通道。对于 Type 4 ADC，如果您选择 16 位（差分输入）模式，则两个通道之间的差分电压被转换。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / C2802x C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / F280013x C2000 Microcontroller Blockset / F280015x C2000 Microcontroller Blockset / F28002x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28M35x / C28x C2000 Microcontroller Blockset / F28M36x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x C2000 Microcontroller Blockset / F29H85x

@@ -14,6 +14,15 @@ language: en
 # Translational Inerter
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,14 +35,19 @@ moving body.
 
 Mechanical translational conserving port associated with the case, that is, the
 stationary body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inertance
+  summary: Proportionality coefficient between force and rate of change of relative velocity across ports 1 kg (default) |
+    scalar
+  group: ''
+```
 
 ### **Inertance** — Proportionality coefficient between force and rate of change of relative velocity across ports `1 kg` (default) | scalar
 
 Proportionality coefficient between the force and the rate of change of the relative
 velocity across the ports.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Translational Elements

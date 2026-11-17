@@ -14,6 +14,31 @@ language: en
 # Radar Data Generator
 
 ## Ports
+```yaml
+ports:
+- name: Targets (Body Frame)
+  summary: Target poses Simulink® bus containing MATLAB® structure
+  direction: input
+- name: INS
+  summary: Radar pose from INS Simulink bus containing MATLAB structure
+  direction: input
+- name: Time
+  summary: Current simulation time nonnegative scalar
+  direction: input
+  data_types: double
+- name: Clustered detections
+  summary: Clustered object detections Simulink bus containing MATLAB structure
+  direction: output
+- name: Tracks
+  summary: Object tracks Simulink bus containing MATLAB structure
+  direction: output
+- name: Detections
+  summary: Unclustered object detections Simulink bus containing MATLAB structure
+  direction: output
+- name: Configuration
+  summary: Current sensor configuration Simulink bus containing MATLAB structure
+  direction: output
+```
 
 ### Input
 
@@ -317,8 +342,160 @@ The configuration structure hast these fields:
 
 To enable this port, select the **Enable radar configuration
 output** check box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: Unique sensor identifier 0 (default) | positive integer
+  group: Parameters
+- name: Update rate (Hz)
+  summary: Sensor update rate 10 (default) | positive real scalar
+  group: Parameters
+- name: Translation [ X, Y, Z ] relative to ego origin (m)
+  summary: Mounting location of radar on platform [3.4,0,0.2] (default) | 1-by-3 real-valued vector of form [x,y,z]
+  group: Parameters
+- name: Rotation [Yaw,Pitch,Roll] relative to ego's frame (deg)
+  summary: Mounting rotation angles of radar [0 0 0] (default) | 1-by-3 real-valued vector of form [*z*yaw *y*pitch *x*roll]
+  group: Parameters
+- name: Enable elevation angle measurements
+  summary: Enable radar to measure target elevation angles off (default) | on
+  group: Parameters
+- name: Enable range rate measurements
+  summary: Enable radar to measure target range rates on (default) | off
+  group: Parameters
+- name: Add noise to measurements
+  summary: Enable addition of noise to radar sensor measurements on (default) | off
+  group: Parameters
+- name: Enable false reports
+  summary: Enable creating false alarm radar detections on (default) | off
+  group: Parameters
+- name: Enable occlusion
+  summary: Enable line-of-sight occlusion on (default) | off
+  group: Parameters
+- name: Enable ghosts
+  summary: Enable ghost targets off (default) | on
+  group: Parameters
+- name: Maximum number of target reports
+  summary: Maximum number of detections or tracks 50 (default) | positive integer
+  group: Parameters
+- name: Target reporting format
+  summary: Format of generated target reports Clustered detections (default) | Tracks | Detections
+  group: Parameters
+- name: Coordinate system
+  summary: Coordinate system of reported detections Body (default) | Sensor rectangular | Sensor spherical | Scenario
+  group: Parameters
+- name: Source of target truth time
+  summary: Source of target truth time Auto (default) | Input port
+  group: Parameters
+- name: Enable INS
+  summary: Enable INS input port off (default) | on
+  group: Parameters
+- name: Source of output target report bus name
+  summary: Source of output target report bus name Auto (default) | Property
+  group: Parameters
+- name: Specify an output target report bus name
+  summary: Name of target report output bus BusRadarDataGenerator (default) | valid bus name
+  group: Parameters
+- name: Enable radar configuration output
+  summary: Enable radar configuration output off (default) | on
+  group: Parameters
+- name: Source of output config bus name
+  summary: Source of output config bus name Auto (default) | Property
+  group: Parameters
+- name: Specify an output config bus name
+  summary: Name of target report output bus BusRadarDataGeneratorConfig (default) | valid bus name
+  group: Parameters
+- name: Azimuth resolution (deg)
+  summary: Azimuth resolution of radar 4 (default) | positive real scalar
+  group: Measurements
+- name: Elevation resolution (deg)
+  summary: Elevation resolution of radar 5 (default) | positive real scalar
+  group: Measurements
+- name: Range resolution (m)
+  summary: Range resolution of radar 2.5 (default) | positive real scalar
+  group: Measurements
+- name: Range rate resolution (m/s)
+  summary: Range rate resolution of radar 0.5 (default) | positive real scalar
+  group: Measurements
+- name: Azimuth bias fraction
+  summary: Azimuth bias fraction of radar 0.1 (default) | nonnegative scalar
+  group: Measurements
+- name: Elevation bias fraction
+  summary: Elevation bias fraction of radar 0.1 (default) | nonnegative scalar
+  group: Measurements
+- name: Range bias fraction
+  summary: Range bias fraction 0.05 (default) | nonnegative scalar
+  group: Measurements
+- name: Range rate bias fraction
+  summary: Range rate bias fraction 0.05 (default) | nonnegative scalar
+  group: Measurements
+- name: Total angular field of view [AZ, EL] (deg)
+  summary: Angular field of view of radar [20 5] (default) | 1-by-2 positive real-valued vector of form [azfov,elfov]
+  group: Measurements
+- name: Range limits [MIN, MAX] (m)
+  summary: Minimum and maximum range of radar [0 150] (default) | 1-by-2 nonnegative real-valued vector of form [min max]
+  group: Measurements
+- name: Range rate limits [MIN, MAX] (m/s)
+  summary: Minimum and maximum range rate of radar (m/s) [-100 100] (default) | 1-by-2 real-valued vector of form [min max]
+  group: Measurements
+- name: Detection probability
+  summary: Probability of detecting a target 0.9 (default) | scalar in range (0, 1]
+  group: Measurements
+- name: False alarm rate
+  summary: False alarm report rate 1e-06 (default) | positive real scalar in range [10–7, 10–3]
+  group: Measurements
+- name: Reference target range (m)
+  summary: Reference range for given probability of detection 100 (default) | positive real scalar
+  group: Measurements
+- name: Reference target RCS (dBsm)
+  summary: Reference radar cross-section for given probability of detection 0 (default) | real scalar
+  group: Measurements
+- name: Center frequency (Hz)
+  summary: Center frequency of radar band 77e9 (default) | positive real scalar
+  group: Measurements
+- name: Filter initialization function name
+  summary: Kalman filter initialization function initcvekf (default) | function handle
+  group: Measurements
+- name: M and N for the M-out-of-N confirmation
+  summary: Threshold for track confirmation [2 3] (default) | 1-by-2 vector of positive integers
+  group: Measurements
+- name: P and R for the P-out-of-R deletion
+  summary: Threshold for track deletion [5 5] (default) | 1-by-2 vector of positive integers
+  group: Measurements
+- name: Random number generation
+  summary: Method to specify random number generator seed Repeatable (default) | Specify seed | Not repeatable
+  group: Measurements
+- name: Initial seed
+  summary: Random number generator seed 0 (default) | nonnegative integer less than 232
+  group: Measurements
+- name: Target profiles definition
+  summary: Method to specify target profiles From Scenario Reader block (default) | MATLAB expression | Parameters
+  group: Target Profiles
+- name: MATLAB expression for target profiles
+  summary: MATLAB expression for target profiles MATLAB structure | MATLAB structure array | valid MATLAB expression
+  group: Target Profiles
+- name: Unique target identifiers
+  summary: Scenario-defined target identifier [] (default) | positive integer | length-*L* vector of unique positive integers
+  group: Target Profiles
+- name: Target classification identifiers
+  summary: User-defined classification identifier 0 (default) | integer | length-*L* vector of integers
+  group: Target Profiles
+- name: Length of target cuboids (m)
+  summary: Length of target cuboids 4.7 (default) | positive real scalar | length-*L* vector of positive values
+  group: Target Profiles
+- name: Width of target cuboids (m)
+  summary: Width of target cuboids 1.8 (default) | positive real scalar | length-*L* vector of positive values
+  group: Target Profiles
+- name: Height of heights cuboids (m)
+  summary: Height of actor cuboids 1.4 (default) | positive real scalar | length-*L* vector of positive values
+  group: Target Profiles
+- name: Rotational center of target cuboids (m)
+  summary: Rotational center of target cuboids {[-1.35, 0, 0]} (default) | length-*L* cell array of real-valued 1-by-3 vectors
+  group: Target Profiles
+- name: Target signatures
+  summary: Target signatures cell array
+  group: Target Profiles
+```
 
 ### Parameters
 
@@ -947,7 +1124,6 @@ objects, which specify the RCS signature of the target.
 
 To enable this parameter, set the **Target profiles
 definition** parameter to `Parameters`.
-
 ## Libraries
 
 Radar Toolbox

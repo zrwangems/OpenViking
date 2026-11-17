@@ -15,6 +15,57 @@ chinese_source: worker-translation
 # Digital DATCOM Forces and Moments
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 迎角标量
+  direction: input
+  data_types: double
+- name: Port_2
+  summary: 侧滑角标量
+  direction: input
+  data_types: double
+- name: Port_3
+  summary: 马赫数标量
+  direction: input
+  data_types: double
+- name: Port_4
+  summary: 高度标量
+  direction: input
+  data_types: double
+- name: Port_5
+  summary: 动压标量
+  direction: input
+  data_types: double
+- name: Port_6
+  summary: 速度三元向量
+  direction: input
+  data_types: double
+- name: Port_7
+  summary: 迎角变化率标量
+  direction: input
+  data_types: double
+- name: Port_8
+  summary: 机体角速率三元向量
+  direction: input
+  data_types: double
+- name: Port_9
+  summary: 地面高度标量
+  direction: input
+  data_types: double
+- name: Port_10
+  summary: 操纵面偏转标量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 重心处的气动力三元向量
+  direction: output
+  data_types: double
+- name: Port_2
+  summary: 重心处的气动力矩三元向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -106,8 +157,59 @@ chinese_source: worker-translation
 重心处的气动力矩，返回为三元向量，使用机体坐标系（*M*x、*M*y 和 *M*z）。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Digital DATCOM structure
+  summary: Digital DATCOM 数据结构 factstruct{1}（默认）| 结构体
+  group: ''
+  block_parameter: dcase
+  type: 字符向量
+  values: factstruct{1} | 结构体
+  default: factstruct{1}
+- name: Force axes
+  summary: 气动力坐标系 Body（默认）| Wind
+  group: ''
+  block_parameter: fmode
+  type: 字符向量
+  values: '''Body'' | ''Wind'''
+  default: '''Body'''
+- name: Interpolation method
+  summary: 插值方法 None - flat（默认）| Linear
+  group: ''
+  block_parameter: imethod
+  type: 字符向量
+  values: '''None (flat)'' | ''Linear'''
+  default: '''None (flat)'''
+- name: Extrapolation method
+  summary: 外推方法 None - clip（默认）| Linear
+  group: ''
+  block_parameter: emethod
+  type: 字符向量
+  values: '''None (flat)'' | ''Linear'''
+  default: '''None (flat)'''
+- name: Process out-of-range input
+  summary: 处理超出范围的输入 Clip to Range（默认）| Linear Extrapolation
+  group: ''
+  block_parameter: rmethod
+  type: 字符向量
+  values: '''Clip to Range'' | ''Linear Extrapolation'''
+  default: '''Clip to Range'''
+- name: Action for out-of-range input
+  summary: 超出范围输入的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Units** — 单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -213,7 +315,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**： `'None'` | `'Warning'` | `'Error'` |
 | **默认值**： `'Warning'` |
-
 ## 所属库
 
 Aerospace Blockset / Aerodynamics

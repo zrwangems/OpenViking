@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # CCSDS LDPC Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: LLR 值 标量 | 列向量
+  direction: input
+  data_types: int8 | int16 | signed fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: codeRateIdx
+  summary: 码率索引 0 | 1 | 2
+  direction: input
+  data_types: fixdt(0,2,0)
+- name: blkLenIdx
+  summary: 块长度索引 0 | 1 | 2
+  direction: input
+  data_types: fixdt(0,2,0)
+- name: iter
+  summary: 迭代次数 [1, 63] 范围内的整数
+  direction: input
+  data_types: uint8
+- name: data
+  summary: 解码比特 标量 | 列向量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 模块就绪指示 0 | 1
+  direction: output
+  data_types: Boolean
+- name: actIter
+  summary: 实际迭代次数 正标量
+  direction: output
+  data_types: uint8
+- name: parityCheck
+  summary: 奇偶校验状态指示 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -133,8 +176,28 @@ LLR 值，指定为标量或八元素列向量。
 要启用此端口，请选中 **Enable parity check output port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Configuration type
+  summary: 配置类型 (8160,7136) LDPC（默认）| AR4JA LDPC
+  group: ''
+- name: Decoding termination criteria
+  summary: 终止条件 Max（默认）| Early
+  group: ''
+- name: Source for number of iterations
+  summary: 迭代次数的来源选择 Property（默认）| Input port
+  group: ''
+- name: Number of iterations
+  summary: 解码迭代次数 8（默认）| [1, 63] 范围内的整数
+  group: ''
+- name: Maximum number of iterations
+  summary: 最大解码迭代次数 8（默认）| [1, 63] 范围内的整数
+  group: ''
+- name: Enable parity check output port
+  summary: 奇偶校验状态 off（默认）| on
+  group: ''
+```
 
 ### **Configuration type** — 配置类型 `(8160,7136) LDPC`（默认）| `AR4JA LDPC`
 
@@ -175,7 +238,6 @@ LLR 值，指定为标量或八元素列向量。
 ### **Enable parity check output port** — 奇偶校验状态 `off`（默认）| `on`
 
 选中此参数以启用 **parityCheck** 输出端口。使用此输出端口查看奇偶校验的状态。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

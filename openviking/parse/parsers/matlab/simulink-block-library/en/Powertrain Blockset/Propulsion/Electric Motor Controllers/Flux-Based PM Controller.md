@@ -14,6 +14,39 @@ language: en
 # Flux-Based PM Controller
 
 ## Ports
+```yaml
+ports:
+- name: SpdReq
+  summary: Rotor speed command scalar
+  direction: input
+- name: TrqCmd
+  summary: Torque command scalar
+  direction: input
+- name: BusVolt
+  summary: DC bus voltage scalar
+  direction: input
+- name: PhaseCurrA
+  summary: Current scalar
+  direction: input
+- name: PhaseCurrB
+  summary: Current scalar
+  direction: input
+- name: SpdFdbk
+  summary: Rotor speed scalar
+  direction: input
+- name: PosFdbk
+  summary: Rotor electrical angle scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: BusCurr
+  summary: Bus current scalar
+  direction: output
+- name: PhaseVolt
+  summary: Stator terminal voltages array
+  direction: output
+```
 
 ### Input
 
@@ -86,8 +119,157 @@ Stator terminal voltages,
 *Va*,
 *Vb*, and
 *Vc*, in V.
-
 ## Parameters
+```yaml
+parameters:
+- name: Control Type
+  summary: Select control Torque Control (default) | Speed Control
+  group: ''
+  block_parameter: control_type
+  values: Torque Control (default) | Speed Control
+- name: Number of pole pairs, PolePairs
+  summary: Poles 4 (default) | scalar
+  group: ''
+  block_parameter: PolePairs
+  values: 4 (default) | scalar
+- name: Vector of d-axis current breakpoints, id_index
+  summary: Current vector
+  group: ''
+  block_parameter: id_index
+  values: vector
+- name: Vector of q-axis current breakpoints, iq_index
+  summary: current vector
+  group: ''
+  block_parameter: iq_index
+  values: vector
+- name: Corresponding d-axis flux, lambda_d
+  summary: Flux vector
+  group: ''
+  block_parameter: lambda_d
+  values: vector
+- name: Corresponding q-axis flux, lambda_q
+  summary: Flux vector
+  group: ''
+  block_parameter: lambda_q
+  values: vector
+- name: Sample time for the torque control, Tst
+  summary: Time 1e-4 (default) | scalar
+  group: ''
+  block_parameter: Tst
+  values: 1e-4 (default) | scalar
+- name: D-axis proportional gain, Kp_d
+  summary: Gain 2.4056 (default) | scalar
+  group: ''
+  block_parameter: Kp_d
+  values: 2.4056 (default) | scalar
+- name: Q-axis proportional gain, Kp_q
+  summary: Gain 2.4056 (default) | scalar
+  group: ''
+  block_parameter: Kp_q
+  values: 2.4056 (default) | scalar
+- name: D-axis integral gain, Ki_d
+  summary: Gain 192.45 (default) | scalar
+  group: ''
+  block_parameter: Ki_d
+  values: 192.45 (default) | scalar
+- name: Q-axis integral gain, Ki_q
+  summary: Gain 192.45 (default) | scalar
+  group: ''
+  block_parameter: Ki_q
+  values: 192.45 (default) | scalar
+- name: Vector of speed breakpoints, wbp
+  summary: Breakpoints vector
+  group: ''
+  block_parameter: wbp
+  values: vector
+- name: Vector of torque breakpoints, tbp
+  summary: Breakpoints vector
+  group: ''
+  block_parameter: tbp
+  values: vector
+- name: Corresponding d-axis current reference, id_ref
+  summary: Current vector
+  group: ''
+  block_parameter: id_ref
+  values: vector
+- name: Corresponding q-axis current reference, iq_ref
+  summary: Current vector
+  group: ''
+  block_parameter: iq_ref
+  values: vector
+- name: Speed regulation time constant, Ksf
+  summary: Time .1 (default) | scalar
+  group: ''
+  block_parameter: Ksf
+  values: .1 (default) | scalar
+- name: Proportional gain, Kp_w
+  summary: Gain 0.40475 (default) | scalar
+  group: ''
+  block_parameter: Kp_w
+  values: 0.40475 (default) | scalar
+- name: Integral gain, Ki_w
+  summary: Gain 10.1615 (default) | scalar
+  group: ''
+  block_parameter: Ki_w
+  values: 10.1615 (default) | scalar
+- name: Inertia compensation, Jcomp
+  summary: Inertia 0.0027 (default) | scalar
+  group: ''
+  block_parameter: Jcomp
+  values: 0.0027 (default) | scalar
+- name: Static friction, Fs
+  summary: Friction 0 (default) | scalar
+  group: ''
+  block_parameter: Fs
+  values: 0 (default) | scalar
+- name: Viscous damping compensation, Fv
+  summary: Dampint 0.0004924 (default) | scalar
+  group: ''
+  block_parameter: Fv
+  values: 0.0004924 (default) | scalar
+- name: Parameterize losses by
+  summary: Select type Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data
+- name: Overall inverter efficiency, eff
+  summary: Constant 98 (default) | scalar
+  group: ''
+  block_parameter: eff
+  values: 98 (default) | scalar
+- name: Vector of speeds (w) for tabulated loss, w_loss_bp
+  summary: Breakpoints [0 200 400 600 800 1000] (default) | 1-by-M vector
+  group: ''
+  block_parameter: w_loss_bp
+  values: '[0 200 400 600 800 1000] (default) | 1-by-M vector'
+- name: Vector of torques (T) for tabulated loss, T_loss_bp
+  summary: Breakpoints [0 25 50 75 100] (default) | 1-by-N vector
+  group: ''
+  block_parameter: T_loss_bp
+  values: '[0 25 50 75 100] (default) | 1-by-N vector'
+- name: Corresponding losses, losses_table
+  summary: Table [100 100 100 100 100;100 150 200 250 300;100 200 300 400 500;100 250 400 550 700;100 300 500 700 900;100
+    350 600 850 1100] (default) | M-by-N array
+  group: ''
+  block_parameter: losses_table
+  values: M-by-N array
+- name: Vector of speeds (w) for tabulated efficiency, w_eff_bp
+  summary: Breakpoints [200 400 600 800 1000] (default) | 1-by-M vector
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[200 400 600 800 1000] (default) | 1-by-M vector'
+- name: Vector of torques (T) for tabulated efficiency, T_eff_bp
+  summary: Breakpoints [25 50 75 100] (default) | 1-by-N vector
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[25 50 75 100] (default) | 1-by-N vector'
+- name: Corresponding efficiency, efficiency_table
+  summary: Table [96.2 98.1 98.7 99;98.1 99 99.4 99.5;98.7 99.4 99.6 99.7;99 99.5 99.7 99.8;99.2 99.6 99.7 99.8] (default)
+    | M-by-N array
+  group: ''
+  block_parameter: efficiency_table
+  values: M-by-N array
+```
 
 #### Block Options
 
@@ -772,7 +954,6 @@ programmatically, use the `get_param` function.
 
 To enable this parameter, for **Parameterize losses by**, select
 `Tabulated efficiency data`.
-
 ## Libraries
 
 Powertrain Blockset / Propulsion / Electric Motor Controllers

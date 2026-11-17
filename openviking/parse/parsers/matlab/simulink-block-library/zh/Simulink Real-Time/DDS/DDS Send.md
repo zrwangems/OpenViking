@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # DDS Send
 
 ## 端口
+```yaml
+ports:
+- name: DDS Msg
+  summary: DDS 消息，Bus 类型的 Simulink 消息
+  direction: input
+```
 
 ### 输入
 
@@ -23,8 +29,30 @@ chinese_source: worker-translation
 输入要发送到目标的 DDS 消息。
 
 **示例：** `message`
-
 ## 参数
+```yaml
+parameters:
+- name: Data Dictionary
+  summary: 关联数据字典 string | char
+  group: ''
+  block_parameter: datadict
+- name: Topic
+  summary: 选择主题名称 string scalar | char vector
+  group: ''
+  block_parameter: topic
+- name: Writer XML Path
+  summary: 数据写入器 XML 路径 string (default)
+  group: ''
+  block_parameter: xmlPath
+- name: Writer QoS
+  summary: 服务质量 string (default)
+  group: ''
+  block_parameter: qos
+- name: Sample time
+  summary: 采样时间 -1 (default) | numeric
+  group: ''
+  block_parameter: sampletime
+```
 
 ### **Data Dictionary** — 关联数据字典 string | char
 
@@ -76,7 +104,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`sampletime` |
-
 ## 所属库
 
 Simulink Real-Time / DDS

@@ -14,6 +14,18 @@ language: en
 # PTC Thermistor
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Thermal mass thermal
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -30,8 +42,61 @@ terminal.
 
 Electrical conserving port associated with the negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Thermistor parameterization type
+  summary: Thermistor type Switching Thermistor (default) | RTD (Callendar - Van Dusen coefficients)
+  group: Electrical
+- name: Nominal resistance R0 at T0
+  summary: Resistance at nominal temperature 1000 Ohm (default) | positive scalar
+  group: Electrical
+- name: Temperature coefficient alpha0 at T0
+  summary: Temperature coefficient at nominal temperature -0.01 1/K (default) | negative scalar
+  group: Electrical
+- name: Nominal temperature T0
+  summary: Nominal temperature 298.15 K (default) | positive scalar
+  group: Electrical
+- name: Reference resistance R1 at T1
+  summary: Resistance at reference temperature 10000 Ohm (default) | positive scalar
+  group: Electrical
+- name: Temperature coefficient alpha1 at T1
+  summary: Temperature coefficient at reference temperature 1 1/K (default) | positive scalar
+  group: Electrical
+- name: Reference temperature T1
+  summary: Reference temperature 398.15 K (default) | scalar
+  group: Electrical
+- name: Nominal resistance R0 at 0 degC
+  summary: Resistance at nominal temperature 100 Ohm (default) | positive scalar
+  group: Electrical
+- name: A Coefficient [degC^-1]
+  summary: A coefficient 3.9083e-3 (default) | positive scalar
+  group: Electrical
+- name: B Coefficient [degC^-2]
+  summary: B coefficient -5.775e-7 (default) | scalar
+  group: Electrical
+- name: C Coefficient [degC^-4]
+  summary: C coefficient -4.183e-12 (default) | scalar
+  group: Electrical
+- name: Enable temperature operating limits
+  summary: Option to specify temperature operating limits No (default) | Yes
+  group: Temperature Operating Limits
+- name: Reporting if operating limits exceeded
+  summary: Reporting if temperature falls outside operating range Warn (default) | Error
+  group: Temperature Operating Limits
+- name: Minimum operating temperature
+  summary: Lower limit of operating temperature range 223.15 K (default) | scalar
+  group: Temperature Operating Limits
+- name: Maximum operating temperature
+  summary: Upper limit of operating temperature range 428.15 K (default) | scalar
+  group: Temperature Operating Limits
+- name: Thermal time constant
+  summary: Thermal time constant 5.0 s (default) | positive scalar
+  group: Thermal
+- name: Dissipation factor
+  summary: Dissipation factor 0.75e-3 W/K (default) | positive scalar
+  group: Thermal
+```
 
 ### Electrical
 
@@ -248,7 +313,6 @@ temperature.
 
 Thermal power needed to raise the thermistor temperature by 1
 K.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

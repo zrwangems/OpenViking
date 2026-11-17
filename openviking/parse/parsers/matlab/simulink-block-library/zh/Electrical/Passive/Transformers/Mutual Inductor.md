@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Mutual Inductor
 
 ## 端口
+```yaml
+ports:
+- name: 1+
+  summary: 一次绕组正极端子电气
+  direction: conserving
+- name: 1-
+  summary: 一次绕组负极端子电气
+  direction: conserving
+- name: 2+
+  summary: 二次绕组正极端子电气
+  direction: conserving
+- name: 2-
+  summary: 二次绕组负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,99 @@ chinese_source: worker-translation
 ### **2-** — 二次绕组负极端子电气
 
 与二次绕组负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Inductance L1
+  summary: 一次绕组中的标称电感值 10 H（默认）| 正标量
+  group: 主
+- name: Inductance L2
+  summary: 二次绕组中的标称电感值 0.1 H（默认）| 正标量
+  group: 主
+- name: Coefficient of coupling
+  summary: 绕组之间的互感耦合 0.9（默认）| 范围 [-1,1] 内的标量
+  group: 主
+- name: Tolerance (%)
+  summary: 电感容差，以百分比表示 20（默认）
+  group: 主
+- name: L1 tolerance application
+  summary: 选择如何对一次绕组应用容差 None — use nominal value（默认）| Random tolerance | Apply maximum tolerance value | Apply minimum tolerance
+    value
+  group: 主
+- name: L1 tolerance distribution
+  summary: 选择一次绕组的分布类型 Uniform（默认）| Gaussian
+  group: 主
+- name: L1 number of standard deviations for quoted tolerance
+  summary: 用于计算一次绕组的高斯随机数 4（默认）
+  group: 主
+- name: L2 tolerance application
+  summary: 选择如何对二次绕组应用容差 None — use nominal value（默认）| Random tolerance | Apply maximum tolerance value | Apply minimum tolerance
+    value
+  group: 主
+- name: L2 tolerance distribution
+  summary: 选择二次绕组的分布类型 Uniform（默认）| Gaussian
+  group: 主
+- name: L2 number of standard deviations for quoted tolerance
+  summary: 用于计算二次绕组的高斯随机数 4（默认）
+  group: 主
+- name: Series resistance, [R_primary R_secondary]
+  summary: 一次绕组和二次绕组的等效串联电阻 [0.001, 0.001] Ohm（默认）
+  group: 电阻
+- name: Parallel conductance, [G_primary G_secondary]
+  summary: 与一次绕组和二次绕组关联的并联泄漏路径 [1e-9,1e-9] 1/Ohm（默认）
+  group: 电阻
+- name: Enable operating limits
+  summary: 选择 Yes 以在超出工作限制时启用报告 No（默认）| Yes
+  group: 工作限制
+- name: Reporting when operating limits exceeded
+  summary: 选择报告方法 Warn（默认）| Error
+  group: 工作限制
+- name: Saturation current
+  summary: 电感饱和电流 1 A（默认）
+  group: 工作限制
+- name: Power rating
+  summary: 电感中的最大功率耗散 1 A（默认）
+  group: 工作限制
+- name: Mutual inductor fault
+  summary: 对互感电感中的故障进行建模的选项 Add fault（默认）
+  group: 故障
+- name: Faulted winding
+  summary: 选择用于故障建模的绕组 Primary（默认）| Secondary
+  group: 故障
+- name: Location of fault node (% of total turns from - terminal)
+  summary: 与故障绕组的 – 端口接触的子电感中的匝数百分比 50（默认）| 范围 (0,100) 内的标量
+  group: 故障
+- name: Short-circuit turns
+  summary: 选择故障是否导致其中一个段短路 No（默认）| To negative terminal | To positive terminal
+  group: 故障
+- name: Open-circuit at fault node
+  summary: 选择是否在段之间应用开路故障 No（默认）| Yes
+  group: 故障
+- name: Ground fault
+  summary: 选择故障是否导致其中一个段短路 No（默认）| Negative terminal side of fault node | Positive terminal side of fault node
+  group: 故障
+- name: Conductance of faulted ground path
+  summary: 两个子电感之间的互感耦合 0 1/Ohm（默认）| 非负标量
+  group: 故障
+- name: Fault transition time constant
+  summary: 过渡到故障状态的时间常数 1e-3 s（默认）| 正标量
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible voltage
+  summary: 故障过渡的电压阈值 100 V（默认）| 正标量
+  group: 故障
+- name: Number of events to fail when exceeding voltage
+  summary: 电压超过阈值时可失败的最大次数 1（默认）| 正标量
+  group: 故障
+- name: Maximum permissible current
+  summary: 故障转换的电流阈值 1 A（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding current
+  summary: 电流超过阈值的最长时间 1 s（默认）| 非负标量
+  group: 故障
+```
 
 ### 主
 
@@ -337,7 +443,6 @@ fault** 超链接出现。有关如何包含故障的示例，请参阅 Analyze 
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Behavioral`。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Transformers

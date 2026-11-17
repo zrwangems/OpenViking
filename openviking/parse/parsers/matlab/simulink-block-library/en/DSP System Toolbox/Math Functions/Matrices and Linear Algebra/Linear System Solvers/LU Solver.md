@@ -14,6 +14,21 @@ language: en
 # LU Solver
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input *A* matrix *M*-by-*M* matrix
+  direction: input
+  data_types: single | double
+- name: B
+  summary: '*B* matrix *M*-by-*N* matrix | *M*-by-1 vector'
+  direction: input
+  data_types: single | double
+- name: X
+  summary: Solution to system of equations *M*-by-*N* matrix | *M*-by-1 matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -52,11 +67,12 @@ matrix is same as the size of the *B* matrix.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Linear System Solvers

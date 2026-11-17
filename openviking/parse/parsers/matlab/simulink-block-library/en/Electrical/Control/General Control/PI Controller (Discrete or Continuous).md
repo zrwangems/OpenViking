@@ -14,6 +14,25 @@ language: en
 # PI Controller (Discrete or Continuous)
 
 ## Ports
+```yaml
+ports:
+- name: e
+  summary: Error signal scalar
+  direction: input
+  data_types: single | double
+- name: du
+  summary: Control signal saturation scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Integrator gain reset scalar
+  direction: input
+  data_types: single | double
+- name: u
+  summary: Control signal scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -48,8 +67,25 @@ External reset (rising edge) signal for the integrator.
 Control signal, *u(k)*.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain
+  summary: '*Kp* 1 (default) | positive scalar'
+  group: ''
+- name: Integral gain
+  summary: '*Ki* 1 (default) | positive scalar'
+  group: ''
+- name: Anti-windup gain
+  summary: '*Kaw* 1 (default) | positive scalar'
+  group: ''
+- name: Integrator initial condition
+  summary: Initial integrator value 0 (default) | scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Proportional gain** — *Kp* `1` (default) | positive scalar
 
@@ -84,7 +120,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

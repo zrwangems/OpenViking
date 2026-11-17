@@ -14,6 +14,21 @@ language: en
 # Digital Down-Converter
 
 ## Ports
+```yaml
+ports:
+- name: Input 1
+  summary: Data input column vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Osc
+  summary: Oscillator signal column vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+- name: Output 1
+  summary: Downconverted and downsampled signal column vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | fixed point
+```
 
 ### Input
 
@@ -70,8 +85,86 @@ Types** tab.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Decimation factor
+  summary: Decimation factor 100 (default) | positive integer ≥ 2 | vector of positive integers
+  group: Main Tab
+- name: Minimum order filter design
+  summary: Design minimum-order filter on (default) | off
+  group: Main Tab
+- name: Number of sections of CIC decimator
+  summary: Number of sections in CIC decimator 3 (default) | positive integer
+  group: Main Tab
+- name: Order of third filter stage
+  summary: Order of third filter stage 10 (default) | even positive integer
+  group: Main Tab
+- name: Source of stopband frequency
+  summary: Source of stopband frequency Auto (default) | Property
+  group: Main Tab
+- name: Type of oscillator
+  summary: Type of oscillator Sine wave (default) | NCO | Input port | None
+  group: Main Tab
+- name: Center frequency of output signal
+  summary: Center frequency of output signal 0.9333 (default) | positive scalar
+  group: Main Tab
+- name: Order of CIC compensation filter stage
+  summary: Order of CIC compensation filter stage 12 (default) | positive integer
+  group: Main Tab
+- name: Two-sided bandwidth of input signal
+  summary: Two-sided bandwidth of input signal 0.0133 (default) | positive scalar
+  group: Main Tab
+- name: Stopband frequency
+  summary: Stopband frequency 0.01 (default) | positive scalar
+  group: Main Tab
+- name: Passband ripple of cascade response (dB)
+  summary: Passband ripple of cascade response 0.1 (default) | positive scalar
+  group: Main Tab
+- name: Stopband attenuation of cascade response (dB)
+  summary: Stopband attenuation of cascade response 60 (default) | positive scalar
+  group: Main Tab
+- name: Number of NCO accumulator bits
+  summary: Number of NCO accumulator bits 16 (default) | positive integer
+  group: Main Tab
+- name: Number of NCO quantized accumulator bits
+  summary: Number of NCO quantized accumulator bits 12 (default) | positive integer in the range [1 128]
+  group: Main Tab
+- name: Dither control for NCO
+  summary: Dither control for NCO on (default) | off
+  group: Main Tab
+- name: Number of NCO dither bits
+  summary: Number of NCO dither bits 4 (default) | positive integer
+  group: Main Tab
+- name: Sample rate mode
+  summary: Mode to specify the input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit
+    from input port
+  group: Main Tab
+- name: Input sample rate (Hz)
+  summary: Sample rate of input signal 30e6 (default) | positive scalar
+  group: Main Tab
+- name: View Filter Response
+  summary: View Filter Response button
+  group: Main Tab
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: Stage input
+  summary: 'Stage input Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Minimum
+  summary: Minimum [] (default) | scalar
+  group: Data Types Tab
+- name: Maximum
+  summary: Maximum [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -496,7 +589,6 @@ Maximum value of the block output. The default value is
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

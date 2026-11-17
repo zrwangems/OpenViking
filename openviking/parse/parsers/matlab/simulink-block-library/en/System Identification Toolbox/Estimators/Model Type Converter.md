@@ -14,13 +14,18 @@ language: en
 # Model Type Converter
 
 ## Ports
+```yaml
+ports: []
+```
 
 | Port | Port Type  (In/Out) | Description |
 | --- | --- | --- |
 | u | In | Estimated A, B, C, D and F polynomial coefficients, specified as a bus with elements: A, B, C, D and F. |
 | y | Out | State-space model, returned as a bus with elements that correspond to the A, B, C, and D matrices. |
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 ### Input model type
 
@@ -31,7 +36,6 @@ model matrices. Specify one of the following model types:
 - `ARMAX`
 - `OE`
 - `BJ`
-
 ## Libraries
 
 Not documented in R2025b.

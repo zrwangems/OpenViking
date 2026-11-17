@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Probabilistic Rule Agg
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 输入值行向量
+  direction: input
+- name: In2
+  summary: 输入值行向量
+  direction: input
+- name: Out1
+  summary: 概率 OR 值行向量
+  direction: output
+```
 
 ### 输入
 
@@ -37,11 +49,12 @@ chinese_source: worker-translation
 ```
 y(i) = A(i) + B(i) - A(i)*B(i);
 ```
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Fuzzy Logic Toolbox / Membership Functions

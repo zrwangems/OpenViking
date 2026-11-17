@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Infinite Flow Resistance (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 流量为零的等温液体
+  direction: unspecified
+- name: B
+  summary: 流量为零的等温液体
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,11 +34,12 @@ chinese_source: worker-translation
 ### **B** — 流量为零的等温液体
 
 无流体流动的等温液体守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

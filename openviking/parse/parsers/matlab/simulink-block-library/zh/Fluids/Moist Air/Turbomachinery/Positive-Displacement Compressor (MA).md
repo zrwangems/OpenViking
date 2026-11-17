@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Positive-Displacement Compressor (MA)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 压缩机入口湿空气
+  direction: conserving
+- name: B
+  summary: 压缩机出口湿空气
+  direction: conserving
+- name: C
+  summary: 压缩机壳体机械旋转
+  direction: conserving
+- name: R
+  summary: 压缩机轴机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +48,108 @@ chinese_source: worker-translation
 ### **R** — 压缩机轴机械旋转
 
 与压缩机轴关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Displacement specification
+  summary: 按体积或标称条件指定排量的选项 Volumetric displacement（默认）| Nominal mass flow rate and shaft speed
+  group: 排量
+- name: Displacement volume
+  summary: 排量体积 130 cm^3/rev（默认）| 正标量
+  group: 排量
+- name: Nominal mass flow rate
+  summary: 标称质量流量 0.01 kg/s（默认）| 正标量
+  group: 排量
+- name: Nominal shaft speed
+  summary: 标称轴转速 1000 rpm（默认）| 正标量
+  group: 排量
+- name: Efficiency specification
+  summary: 通过解析方法或使用表格参数化容积效率的选项 Analytical（默认）| Tabulated
+  group: 效率
+- name: Thermodynamic model
+  summary: 热力学模型参数化选项 Polytropic（默认）| Isentropic
+  group: 效率
+- name: Polytropic exponent
+  summary: 多变指数 1.2（默认）| 正标量
+  group: 效率
+- name: Isentropic efficiency
+  summary: 等熵效率 0.65（默认）| 正标量
+  group: 效率
+- name: Isentropic efficiency table, eta_isen(pr,w)
+  summary: 等熵效率表 [.95, .9, .85, .8, .75; .925, .875, .825, .775, .725; .875, .825, .775, .725, .675; .75, .7, .65, .6, .55]（默认）|
+    矩阵
+  group: 效率
+- name: Nominal volumetric efficiency
+  summary: 标称容积效率 0.95（默认）| 正标量
+  group: 效率
+- name: Pressure ratio vector, pr
+  summary: 压力比向量 [2, 4, 6, 8]（默认）| 向量
+  group: 效率
+- name: Shaft speed vector, w
+  summary: 轴转速向量 [800, 1500, 2800, 3300, 4000] rpm（默认）| 向量
+  group: 效率
+- name: Volumetric efficiency table, eta_vol(pr,w)
+  summary: 容积效率 [.95, .9, .85, .8, .75; .925, .875, .825, .775, .725; .875, .825, .775, .725, .675; .75, .7, .65, .6, .55]（默认）|
+    矩阵
+  group: 效率
+- name: Nominal pressure ratio
+  summary: 标称压力比 5（默认）| 正标量
+  group: 标称条件
+- name: Nominal inlet pressure
+  summary: 标称入口压力 0.101325 MPa（默认）| 正标量
+  group: 标称条件
+- name: Nominal inlet temperature
+  summary: 标称入口温度 293.15 K（默认）| 正标量
+  group: 标称条件
+- name: Inlet humidity specification
+  summary: 用于描述入口湿度水平的量 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: 标称条件
+- name: Nominal inlet relative humidity
+  summary: 入口相对湿度 0.5（默认）| [0,1] 范围内的标量
+  group: 标称条件
+- name: Nominal inlet specific humidity
+  summary: 入口比湿度 0.01（默认）| [0,1] 范围内的标量
+  group: 标称条件
+- name: Nominal inlet water vapor mole fraction
+  summary: 入口水蒸气摩尔分数 0.01（默认）| [0,1] 范围内的标量
+  group: 标称条件
+- name: Nominal inlet humidity ratio
+  summary: 入口湿度比 0.01（默认）| [0,1] 范围内的标量
+  group: 标称条件
+- name: Nominal inlet wet-bulb temperature
+  summary: 入口湿球温度 287 K（默认）| 正标量
+  group: 标称条件
+- name: Inlet trace gas specification
+  summary: 用于描述入口微量气体水平的量 Mass fraction（默认）| Mole fraction
+  group: 标称条件
+- name: Nominal inlet trace gas mass fraction
+  summary: 入口微量气体质量分数 0.001（默认）| [0,1] 范围内的标量
+  group: 标称条件
+- name: Nominal inlet trace gas mole fraction
+  summary: 仿真开始时微量气体摩尔分数 0.001（默认）| [0,1] 范围内的标量
+  group: 标称条件
+- name: Nominal inlet mass ratio of water droplets to moist air
+  summary: 水滴与湿空气之比 0（默认）| 正标量
+  group: 标称条件
+- name: Relative humidity at saturation
+  summary: 发生冷凝的相对湿度阈值 1（默认）| 正标量
+  group: 标称条件
+- name: Mechanical efficiency
+  summary: 压缩机机械效率 0.9（默认）| 正标量
+  group: 参数
+- name: Model water droplets evaporation
+  summary: 模拟水滴蒸发的选项 off（默认）| on
+  group: 参数
+- name: Relative humidity at saturation
+  summary: 发生冷凝的相对湿度阈值 1（默认）| 正标量
+  group: 参数
+- name: Inlet area at port A
+  summary: 入口面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: 端口 B 的出口面积
+  summary: 出口面积 0.01 m^2（默认）| 正标量
+  group: 参数
+```
 
 ### 排量
 
@@ -317,7 +432,6 @@ chinese_source: worker-translation
 ### **端口 B 的出口面积** — 出口面积 `0.01` `m^2`（默认）| 正标量
 
 与端口 **B** 关联的出口面积。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Turbomachinery

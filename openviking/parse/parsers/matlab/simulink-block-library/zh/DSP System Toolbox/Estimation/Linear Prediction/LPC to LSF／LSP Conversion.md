@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # LPC to LSF/LSP Conversion
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 线性预测系数 列向量 | 无向向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: LSP
+  summary: 线谱对 列向量 | 无向向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: LSFn
+  summary: 归一化在 (0 0.5) 范围内的线谱频率 列向量 | 无向向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: LSFr
+  summary: 在 (0 π) 范围内的线谱频率 列向量 | 无向向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: Status
+  summary: 输出的有效性状态 标量 | 行向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -57,8 +80,34 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Show output validity status** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 转换输出 LSP in range (-1 1)（默认）| LSF normalized in range (0 0.5) | LSF in range (0 pi)
+  group: ''
+- name: Root finding coarse grid points
+  summary: 搜索步数 64（默认）| 大于 1 的正整数
+  group: ''
+- name: Root finding bisection refinement
+  summary: 二分次数 4（默认）| 非负整数
+  group: ''
+- name: Show output validity status
+  summary: 显示输出有效性状态 off（默认）| on
+  group: ''
+- name: If current output is invalid, overwrite with previous output
+  summary: 用前一个输出覆盖无效输出 off（默认）| on
+  group: ''
+- name: When first output is invalid, overwrite with user-defined values
+  summary: 用用户定义的值覆盖无效的第一个输出 off（默认）| on
+  group: ''
+- name: User-defined LSP/LSF values for overwriting invalid first output
+  summary: 用于覆盖无效第一个输出的用户定义 LSP/LSF 值 向量（默认）| 矩阵
+  group: ''
+- name: If first input value is not 1
+  summary: 第一个输入值不为 1 时采取的操作 Ignore（默认）| Normalize | Normalize and warn | Error
+  group: ''
+```
 
 ### **Output** — 转换输出 `LSP in range (-1 1)`（默认）| `LSF normalized in range (0 0.5)` | `LSF in range (0 pi)`
 
@@ -122,7 +171,6 @@ chinese_source: worker-translation
 - `Error` –– 模块停止仿真并在 MATLAB® 命令行显示错误消息。
 
 有关详细信息，请参阅 Parameters for Handling Invalid Inputs and Outputs。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Linear Prediction

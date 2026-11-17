@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Extremum Seeking Control
 
 ## 端口
+```yaml
+ports:
+- name: J
+  summary: 目标函数标量
+  direction: input
+- name: theta
+  summary: 扰动参数标量 | 向量
+  direction: output
+- name: theta_hat
+  summary: 估计参数标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +51,113 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此输出端口，请选择 **Output estimated parameters**。
-
 ## 参数
+```yaml
+parameters:
+- name: Time Domain
+  summary: 滤波器和积分器时域 Continuous time（默认）| Discrete time
+  group: ''
+  block_parameter: '''timeDomainStatus'''
+  type: 字符向量
+  values: '''Continuous Time'' | ''Discrete Time'''
+  default: '''Continuous Time'''
+- name: Sample time
+  summary: 离散时间滤波器和积分器采样时间 0.1（默认）| 有限正标量
+  group: ''
+  block_parameter: '''SampleTime'''
+  type: 字符向量
+  values: 有限正标量
+  default: '''0.1'''
+- name: Integrator method
+  summary: 离散时间积分方法 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: ''
+  block_parameter: '''IntegratorMethods'''
+  type: 字符向量
+  values: '''Forward Euler'' | ''Backward Euler'' | ''Trapezoidal'''
+  default: '''Forward Euler'''
+- name: Number of parameters
+  summary: 参数数量 1（默认）| 小于或等于 5 的正整数
+  group: ''
+  block_parameter: '''paramCount'''
+  type: 字符向量
+  values: 小于 5 的正整数
+  default: '''1'''
+- name: Initial condition x0
+  summary: 初始参数值 0（默认）| 有限标量 | 向量
+  group: ''
+  block_parameter: '''initialVal'''
+  type: 字符向量
+  values: 有限标量 | 向量
+- name: Forcing frequency omega (rad/s)
+  summary: 强迫频率 1（默认）| 正有限标量 | 向量
+  group: ''
+  block_parameter: '''omega'''
+  type: 字符向量
+  values: 正有限标量 | 向量
+- name: Learning rate k
+  summary: 参数更新速率 1（默认）| 正有限标量 | 向量
+  group: ''
+  block_parameter: '''gain'''
+  type: 字符向量
+  values: 正有限标量 | 向量
+- name: Demodulation amplitude a
+  summary: 解调信号幅值 1（默认）| 正有限标量 | 向量
+  group: ''
+  block_parameter: '''demodAmp'''
+  type: 字符向量
+- name: 解调相位 phi_1 (rad)
+  summary: 解调信号相位 0（默认）| 正有限标量 | 向量
+  group: ''
+  block_parameter: '''demodPhase'''
+  type: 字符向量
+  values: 正有限标量 | 向量
+- name: 调制幅值 b
+  summary: 调制信号幅值 0.1（默认）| 正有限标量 | 向量
+  group: ''
+  block_parameter: '''modAmp'''
+  type: 字符向量
+  values: 正有限标量 | 向量
+- name: 调制相位 phi_2 (rad)
+  summary: 调制信号相位 0（默认）| 正有限标量 | 向量
+  group: ''
+  block_parameter: '''modPhase'''
+  type: 字符向量
+  values: 正有限标量 | 向量
+- name: 启用 HPF
+  summary: 启用目标函数信号的高通滤波 off（默认）| on
+  group: ''
+  block_parameter: '''highPassEnable'''
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: HPF frequency omega_h (rad/s)
+  summary: 高通滤波器截止频率 1（默认）| 正有限标量 | 向量
+  group: ''
+  block_parameter: '''highPassCutoff'''
+  type: 字符向量
+  values: 正有限标量 | 向量
+  default: '''1'''
+- name: Enable LPF
+  summary: 启用解调信号的低通滤波 off（默认）| on
+  group: ''
+  block_parameter: '''lowPassEnable'''
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: LPF frequency omega_l (rad/s)
+  summary: 低通滤波器截止频率 *ωl* 1（默认）| 正有限标量 | 向量
+  group: ''
+  block_parameter: '''lowPassCutoff'''
+  type: 字符向量
+  values: 正有限标量 | 向量
+  default: '''1'''
+- name: Output estimated parameters
+  summary: 添加估计参数输出端口 off（默认）| on
+  group: ''
+  block_parameter: estimatedVarOn
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Time Domain** — 滤波器和积分器时域 **Continuous time**（默认）| **Discrete time**
 
@@ -330,7 +447,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off'` | `'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink Control Design / Adaptive Control

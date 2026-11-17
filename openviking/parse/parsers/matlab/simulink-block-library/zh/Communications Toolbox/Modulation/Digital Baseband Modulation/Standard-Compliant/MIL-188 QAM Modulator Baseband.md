@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # MIL-188 QAM Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: MIL-STD-188 标准特定 QAM 调制信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -41,8 +52,28 @@ MIL-STD-188 标准特定 QAM 调制信号，返回为复标量、向量或矩阵
 使用**输出数据类型**指定输出数据类型。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation order
+  summary: 调制阶数 16（默认）| 32 | 64 | 256
+  group: ''
+- name: Constellation scaling
+  summary: 星座图缩放 As specified in standard（默认）| Unit average power
+  group: ''
+- name: Input type
+  summary: 输入类型 Integer（默认）| Bit
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single
+  group: ''
+- name: View Constellation
+  summary: 绘制参考星座图 button
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -75,7 +106,6 @@ MIL-STD-188 标准特定 QAM 调制信号，返回为复标量、向量或矩阵
 
 - `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 为模块生成 C 代码。只要模型不更改，C 代码将复用于后续仿真。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间，仿真速度与 `Code generation` 相当。在 `Interpreted execution` 模式下，可以调试模块的源代码。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM Communications Toolbox / Modulation / Digital Baseband Modulation / Standard-Compliant

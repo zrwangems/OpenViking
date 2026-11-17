@@ -14,10 +14,116 @@ language: en
 # Toggle Switch
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Block parameter value to connect parameter value connection options
+  group: Parameters
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Label
+  summary: Position of label displaying name of connected element Hide (default) | Bottom | Top
+  group: Parameters
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Parameters
+- name: States
+  summary: Pairings of value with label scalar and character vector
+  group: Parameters
+  block_parameter: States
+  type: two element array of structures
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Design
+- name: Select State
+  summary: Management and configuration of states scalar and character vector
+  group: Design
+  block_parameter: States
+  type: two element array of structures
+- name: Value
+  summary: State value scalar
+  group: Design
+- name: Text
+  summary: State label text string | character array
+  group: Design
+- name: Color
+  summary: Label font color [r g b] vector
+  group: Design
+- name: Label X Offset
+  summary: Horizontal offset of text center from left edge of block scalar
+  group: Design
+- name: Label Y Offset
+  summary: Vertical offset of text center from top edge of block scalar
+  group: Design
+- name: Image X Offset
+  summary: Horizontal offset of left edge of image from left edge of block scalar
+  group: Design
+- name: Image Y Offset
+  summary: Vertical offset of top edge of image from top edge of block scalar
+  group: Design
+- name: Image Width
+  summary: Image width scalar
+  group: Design
+- name: Image Height
+  summary: Image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain image aspect ratio on (default) | off
+  group: Design
+- name: Click Area X Offset
+  summary: Horizontal offset of left edge of click area from left edge of block scalar
+  group: Design
+- name: Click Area Y Offset
+  summary: Vertical offset of top edge of click area from top edge of block scalar
+  group: Design
+- name: Click Area Width
+  summary: Click area width scalar
+  group: Design
+- name: Click Area Height
+  summary: Click area height scalar
+  group: Design
+- name: Use Background Color
+  summary: Option to specify solid block background color off (default) | on
+  group: Design
+- name: Color
+  summary: Block background color [r g b] vector
+  group: Design
+  block_parameter: BackgroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Design
+- name: Corner Radius
+  summary: Corner radius of area with block background color scalar
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of left edge of foreground image from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of foreground image from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Foreground image width scalar
+  group: Design
+- name: Height
+  summary: Foreground image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain foreground image aspect ratio on (default) | off
+  group: Design
+```
 
 Use the Property Inspector and the Block Parameters dialog box
 to specify the values of the block parameters. To set the core parameters of the dashboard
@@ -463,7 +569,6 @@ Specify the height of the foreground image as a ratio of the block height.
 
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
-
 ## Libraries
 
 Simulink / Dashboard / Customizable Blocks

@@ -14,6 +14,37 @@ language: en
 # Three-axis Inertial Measurement Unit
 
 ## Ports
+```yaml
+ports:
+- name: A_b
+  summary: Actual accelerations three-element vector
+  direction: input
+  data_types: double
+- name: w
+  summary: Angular rates three-element vector
+  direction: input
+  data_types: double
+- name: w_dot
+  summary: Angular accelerations three-element vector
+  direction: input
+  data_types: double
+- name: CG
+  summary: Location of center of gravity three-element vector
+  direction: input
+  data_types: double
+- name: g
+  summary: Gravity three-element vector
+  direction: input
+  data_types: double
+- name: A_meas
+  summary: Measured accelerations three-element vector
+  direction: output
+  data_types: double
+- name: w_meas
+  summary: Measured angular rates three-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -66,8 +97,143 @@ Measured angular rates from the gyroscope, specified as a three-element vector, 
 radians per second.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Units Metric (MKS) (default) | English
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: IMU location
+  summary: IMU location [0 0 0] (default) | three-element vector
+  group: ''
+  block_parameter: imu
+  type: character vector
+  values: three-element vector
+  default: '''[0 0 0]'''
+- name: Update rate
+  summary: Update rate 0 (default) | real, double scalar
+  group: ''
+  block_parameter: a_Ts
+  type: character vector
+  values: real, double scalar
+  default: '''0'''
+- name: Second order dynamics for accelerometer
+  summary: Second-order dynamics on (default) | off
+  group: ''
+  block_parameter: dtype_a
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Accelerometer natural frequency (rad/sec)
+  summary: Accelerometer natural frequency 190 (default) | real, double scalar
+  group: ''
+  block_parameter: w_a
+  type: character vector
+  values: real, double scalar
+  default: '''190'''
+- name: Accelerometer damping ratio
+  summary: Accelerometer damping ratio 0.707 (default) | real, double scalar
+  group: ''
+  block_parameter: z_a
+  type: character vector
+  values: real, double scalar
+  default: '''0.707'''
+- name: Accelerometer scale factor and cross-coupling
+  summary: Scale factor and cross coupling [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix
+  group: ''
+  block_parameter: a_sf_cc
+  type: character vector
+  values: 3-by-3 matrix
+  default: '''[1 0 0; 0 1 0; 0 0 1]'''
+- name: Accelerometer measurement bias
+  summary: Accelerometer measurement bias [0 0 0] (default) | three-element vector
+  group: ''
+  block_parameter: a_bias
+  type: character vector
+  values: three-element vector
+  default: '''[0 0 0]'''
+- name: Accelerometer upper and lower limits
+  summary: Minimum and maximum values of acceleration [-inf -inf -inf inf inf inf] (default) | six-element vector
+  group: ''
+  block_parameter: a_sat
+  type: character vector
+  values: six-element vector
+  default: '''[-inf -inf -inf inf inf inf]'''
+- name: Second-order dynamics for gyro
+  summary: Gyroscope second-order dynamics on (default) | off
+  group: ''
+  block_parameter: dtype_g
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Gyro natural frequency (rad/sec)
+  summary: Gyroscope natural frequency 190 (default) | real, double scalar
+  group: ''
+  block_parameter: w_g
+  type: character vector
+  values: real, double scalar
+  default: '''190'''
+- name: Gyro damping ratio
+  summary: Gyroscope damping ratio 0.707 (default) | real, double scalar
+  group: ''
+  block_parameter: z_g
+  type: character vector
+  values: real, double scalar
+  default: '''0.707'''
+- name: Gyro scale factors and cross-coupling
+  summary: Gyroscope scale factors and cross-coupling [1 0 0; 0 1 0; 0 0 1] (default) | 3-by-3 matrix
+  group: ''
+  block_parameter: g_sf_cc
+  type: character vector
+  values: 3-by-3 matrix
+  default: '''[1 0 0; 0 1 0; 0 0 1]'''
+- name: Gyro measurement bias
+  summary: Gyroscope measurement bias [0 0 0] (default) | three-element vector
+  group: ''
+  block_parameter: g_bias
+  type: character vector
+  values: three-element vector
+  default: '''[0 0 0]'''
+- name: G-sensitive bias
+  summary: Maximum change in rates [0 0 0] (default) | three-element vector
+  group: ''
+  block_parameter: g_sens
+  type: character vector
+  values: three-element vector
+  default: '''[0 0 0]'''
+- name: Gyro upper and lower limits
+  summary: Minimum and maximum values of angular rates [-inf -inf -inf inf inf inf] (default) | six-element vector
+  group: ''
+  block_parameter: g_sat
+  type: character vector
+  values: six-element vector
+  default: '''[-inf -inf -inf inf inf inf]'''
+- name: Noise on
+  summary: White noise on (default) | off
+  group: ''
+  block_parameter: a_rand
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Noise seeds
+  summary: Noise seeds [23093 23094 23095 23096 23097 23098] (default) | six-element vector
+  group: ''
+  block_parameter: a_seeds
+  type: character vector
+  values: six-element vector
+  default: '''[23093 23094 23095 23096 23097 23098]'''
+- name: Noise power
+  summary: Noise power [0.001 0.001 0.001 0.0001 0.0001 0.0001] (default) | six-element vector
+  group: ''
+  block_parameter: a_pow
+  type: character vector
+  values: six-element vector
+  default: '''[0.001 0.001 0.001 0.0001 0.0001 0.0001]'''
+```
 
 #### Main
 
@@ -391,7 +557,6 @@ accelerometer and gyroscope, specified as a six-element vector, in:
 #### Dependencies
 
 To enable this parameter, select **Noise on**.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Sensors

@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # Frequency-Domain Adaptive Filter
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 数据输入列向量
+  direction: input
+  data_types: single | double
+- name: Desired
+  summary: 期望信号列向量
+  direction: input
+  data_types: single | double
+- name: Mu
+  summary: 步长输入，范围为 (0,1] 的实标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Leak
+  summary: 泄漏因子输入，范围为 (0,1] 的实标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Avrg
+  summary: 平均因子输入，范围为 (0,1] 的实标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Offset
+  summary: 归一化项的偏移量，非负实标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Adapt
+  summary: 启用滤波器系数更新，非负实标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Reset
+  summary: 启用滤波器状态重置，非负实标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Output
+  summary: 滤波后的输出列向量
+  direction: output
+  data_types: single | double
+- name: Error
+  summary: 输出与期望信号之间的差，列向量
+  direction: output
+  data_types: single | double
+- name: FFTCoeffs
+  summary: 滤波器的当前 FFT 系数，行向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -123,8 +170,62 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 计算滤波器系数的方法 Constrained FDAF（默认）| Partitioned constrained FDAF | Unconstrained FDAF | Partitioned unconstrained
+    FDAF
+  group: ''
+- name: Filter length
+  summary: 滤波器系数向量的长度 32（默认）| 正整数值标量
+  group: ''
+- name: Block length
+  summary: 系数更新的块长度 32（默认）| 正整数值标量
+  group: ''
+- name: Specify step size from port
+  summary: 指定步长的标志 off（默认）| on
+  group: ''
+- name: Step size
+  summary: 自适应步长 1（默认）| 范围为 (0,1] 的实标量
+  group: ''
+- name: Specify leakage factor from port
+  summary: 指定泄漏因子的标志 off（默认）| on
+  group: ''
+- name: LeakageFactor
+  summary: 自适应泄漏因子 1（默认）| 范围为 (0,1] 的实标量
+  group: ''
+- name: Specify averaging factor from port
+  summary: 指定平均因子的标志 off（默认）| on
+  group: ''
+- name: Averaging factor
+  summary: 信号功率的平均因子 0.9（默认）| 范围为 (0,1] 的实标量
+  group: ''
+- name: Specify offset from port
+  summary: 指定偏移量的标志 off（默认）| on
+  group: ''
+- name: Offset
+  summary: 归一化项的偏移量 0（默认）| 非负实标量
+  group: ''
+- name: Initial FFT input signal power
+  summary: 初始 FFT 输入信号功率 1（默认）| 正数值标量
+  group: ''
+- name: Initial time-domain coefficients
+  summary: 滤波器的初始时域系数 0（默认）| 标量 | 向量
+  group: ''
+- name: Enable adapt port
+  summary: 启用系数更新的标志 off（默认）| on
+  group: ''
+- name: Enable reset port
+  summary: 重置内部状态的标志 off（默认）| on
+  group: ''
+- name: Output filter FFT coefficients
+  summary: 输出滤波器系数的 DFT 的标志 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Method** — 计算滤波器系数的方法 `Constrained FDAF`（默认）| `Partitioned constrained FDAF` | `Unconstrained FDAF` | `Partitioned unconstrained FDAF`
 
@@ -247,7 +348,6 @@ FIR 滤波器系数向量的长度，指定为正整数值标量。
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Adaptive Filters

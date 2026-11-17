@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Sort
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Val
+  summary: 排序后的数据 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Idx
+  summary: 排序后数据的索引 向量 | 矩阵
+  direction: output
+  data_types: uint32
+```
 
 ### 输入
 
@@ -47,8 +62,34 @@ chinese_source: worker-translation
 要启用此端口，请将 **Mode** 参数设置为 `Value and index` 或 `Index`。
 
 **数据类型：** `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 指定模块返回数值、索引还是两者 Value and Index（默认）| Value | Index
+  group: 主选项卡
+- name: Sort order
+  summary: 排序顺序 Ascending（默认）| Descending
+  group: 主选项卡
+- name: Sort algorithm
+  summary: 排序方法 Quick sort（默认）| Insertion sort
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入运算的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 关（默认）| 开
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Same as input（默认）| fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Same as product output（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 关（默认）| 开
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -114,7 +155,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 关（默认）| 开
 
 选中此参数可防止定点工具覆盖您在模块上指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Statistics

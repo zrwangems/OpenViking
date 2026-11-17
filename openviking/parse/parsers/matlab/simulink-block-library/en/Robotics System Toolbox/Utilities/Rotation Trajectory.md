@@ -14,6 +14,42 @@ language: en
 # Rotation Trajectory
 
 ## Ports
+```yaml
+ports:
+- name: Time
+  summary: Time point along trajectory scalar | vector
+  direction: input
+  data_types: single | double
+- name: R0
+  summary: Initial orientation four-element quaternion vector | 3-by-3 rotation matrix
+  direction: input
+  data_types: single | double
+- name: RF
+  summary: Final orientation four-element vector | 3-by-3 rotation matrix
+  direction: input
+  data_types: single | double
+- name: TimeInterval
+  summary: Start and end times for trajectory two-element vector
+  direction: input
+  data_types: single | double
+- name: TSTime
+  summary: Time scaling time points scalar | *p*-element vector
+  direction: input
+  data_types: single | double
+- name: TimeScaling
+  summary: Time scaling vector and first two derivatives three-element vector | 3-by-*p* matrix
+  direction: input
+  data_types: single | double
+- name: R
+  summary: Orientation vectors 4-by-*m* quaternion array | 3-by-3-by-*m* rotation matrix array
+  direction: output
+- name: omega
+  summary: Orientation angular velocity 3-by-*m* matrix
+  direction: output
+- name: alpha
+  summary: Orientation angular acceleration 3-by-*m* matrix
+  direction: output
+```
 
 ### Input
 
@@ -163,8 +199,41 @@ where *m* is the number of points in the input to
 Orientation angular acceleration, returned as a 3-by-*m* matrix,
 where *m* is the number of points in the input to
 **Time**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rotation format
+  summary: Format for orientations Quaternion (default) | Rotation Matrix
+  group: ''
+- name: Waypoint source
+  summary: Source for waypoints Internal (default) | External
+  group: ''
+- name: Initial rotation
+  summary: Initial orientation [1 0 0 0]' (default) | four-element quaternion vector | 3-by-3 rotation matrix
+  group: ''
+- name: Final rotation
+  summary: Final orientation [0 0 1 0]' (default) | four-element vector | 3-by-3 rotation matrix
+  group: ''
+- name: Time interval
+  summary: Start and end times for trajectory [0 10] (default) | two-element vector
+  group: ''
+- name: Use custom time scaling
+  summary: Enable custom time scaling off (default) | on
+  group: ''
+- name: Parameter source
+  summary: Source for waypoints Internal (default) | External
+  group: ''
+- name: Time scaling time
+  summary: Time scaling time points 2:0.1:3 (default) | scalar | *p*-element vector
+  group: ''
+- name: Time scaling values
+  summary: Time scaling vector and first two derivatives [0:0.1:1; ones(1,11); zeros(1,11)] (default) | three-element vector
+    | 3-by-*m* matrix
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Rotation format** — Format for orientations `Quaternion` (default) | `Rotation Matrix`
 
@@ -298,7 +367,6 @@ To specify a three-element vector, the **Time** and
   `Interpreted execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Utilities

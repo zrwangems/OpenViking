@@ -14,6 +14,32 @@ language: en
 # IncrementalClassificationNaiveBayes Predict
 
 ## Ports
+```yaml
+ports:
+- name: mdl
+  summary: Incremental learning model bus signal
+  direction: input
+- name: x
+  summary: Chunk of predictor data numeric matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: label
+  summary: Chunk of predicted class labels column vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: score
+  summary: Predicted class scores or posterior probabilities matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: cost
+  summary: Expected misclassification costs matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: CanPredict
+  summary: Model status 0 (false) | 1(true)
+  direction: output
+```
 
 ### Input
 
@@ -103,8 +129,208 @@ response and the model status is `0`
 
 To enable this port, select the check box for **Add output port for status of trained machine learning model** on the
 **Main** tab of the Block Parameters dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: Select initial machine learning model
+  summary: Initial incremental naive Bayes classification model nbMdl (default) | incrementalClassificationNaiveBayes model
+    object
+  group: Main
+  block_parameter: InitialLearner
+  type: character vector or string
+  values: incrementalClassificationNaiveBayes object name
+  default: '"nbMdl"'
+- name: Add output port for predicted class scores
+  summary: Add output port for predicted class scores off (default) | on
+  group: Main
+  block_parameter: ShowOutputScore
+  type: character vector or string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Add output port for expected classification cost
+  summary: Add optional output port for expected classification cost off (default) | on
+  group: Main
+  block_parameter: ShowOutputCost
+  type: character vector or string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Add output port for status of trained machine learning model
+  summary: Add second output port for model status off (default) | on
+  group: Main
+  block_parameter: ShowOutputCanPredict
+  type: character vector or string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: Main
+  block_parameter: SystemSampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Label data type
+  summary: 'Data type of label output Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8
+    | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class
+    name> | <data type expression>'
+  group: Data Types
+  block_parameter: LabelDataTypeStr
+  type: character vector or string
+  values: '"Inherit: Inherit via back propagation" | "Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16"
+    | "uint16" | "int32" | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "Enum: <class
+    name>" | "<data type expression>"'
+  default: '"Inherit: Inherit via back propagation" (for numeric and logical labels) | "Inherit: auto" (for nonnumeric labels)'
+- name: Label data type Minimum
+  summary: Minimum value of label output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LabelOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Label data type Maximum
+  summary: Maximum value of label output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LabelOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Score data type
+  summary: 'Data type of score output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: ScoreDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Score data type Minimum
+  summary: Minimum value of score output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: ScoreOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Score data type Maximum
+  summary: Maximum value of score output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: ScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Raw score data type
+  summary: 'Untransformed score data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: RawScoreDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Raw score data type Minimum
+  summary: Minimum untransformed score for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: RawScoreOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Raw score data type Maximum
+  summary: Maximum untransformed score for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: RawScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Estimated cost data type
+  summary: 'Data type of cost output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: CostDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Estimated cost data type Minimum
+  summary: Minimum value of cost output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: CostOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Estimated cost data type Maximum
+  summary: Maximum value of cost output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: CostOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Likelihood data type
+  summary: 'Data type of likelihood output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: LikelihoodDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Likelihood data type Minimum
+  summary: Minimum value of likelihood output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LikelihoodOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Likelihood data type Maximum
+  summary: Maximum value of likelihood output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LikelihoodOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Posterior data type
+  summary: 'Data type of posterior probability output Inherit: auto (default) | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: PosteriorDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Posterior data type Minimum
+  summary: Minimum value of posterior probability output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: PosteriorOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Posterior data type Maximum
+  summary: Maximum value of posterior probability output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: PosteriorOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -702,7 +928,6 @@ clip the actual posterior probabilities. To do so, use the Saturation (Simulink)
 | **Type**: character vector |
 | **Values**: `"[]"` | scalar |
 | **Default**: `"[]"` |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Incremental Learning / Classification / NaiveBayes

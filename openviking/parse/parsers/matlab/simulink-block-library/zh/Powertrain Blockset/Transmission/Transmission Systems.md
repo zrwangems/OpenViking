@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Automated Manual Transmission
 
 ## 端口
+```yaml
+ports:
+- name: Gear
+  summary: 要接合的挡位编号 scalar
+  direction: input
+- name: CltchCmd
+  summary: 离合器命令 scalar
+  direction: input
+- name: EngTrq
+  summary: 施加的输入扭矩 scalar
+  direction: input
+- name: DiffTrq
+  summary: 施加的负载扭矩 scalar
+  direction: input
+- name: Temp
+  summary: 油温 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: EngSpd
+  summary: 角速度 scalar
+  direction: output
+- name: DiffSpd
+  summary: 角速度 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -82,8 +109,135 @@ chinese_source: worker-translation
 ### **DiffSpd** — 角速度 `scalar`
 
 驱动轴角速度输出，*ωd*，单位为 rad/s。
-
 ## 参数
+```yaml
+parameters:
+- name: Control type
+  summary: 指定控制类型 Ideal integrated controller (default) | External control
+  group: ''
+  block_parameter: cntrlType
+  values: Ideal integrated controller (default) | External control
+- name: Efficiency factors
+  summary: 指定效率计算 Gear only (default) | Gear, input torque, input speed, and temperature
+  group: ''
+  block_parameter: TransEffModelPopup
+  values: Gear only（默认） | Gear, input torque, input speed, and temperature
+- name: Input shaft inertia, Jin
+  summary: 惯性 .01（默认） | scalar
+  group: ''
+  block_parameter: Jin
+  values: .01（默认） | scalar
+- name: Input shaft damping, bin
+  summary: 阻尼 .001（默认） | scalar
+  group: ''
+  block_parameter: bin
+  values: .001（默认） | scalar
+- name: Initial input velocity, omegain_o
+  summary: 角速度 0（默认） | scalar
+  group: ''
+  block_parameter: omegain_o
+  values: 0（默认） | scalar
+- name: Gear number vector, G
+  summary: 指定变速器挡位数 [-1, 0, 1, 2, 3, 4, 5]（默认） | vector
+  group: ''
+  block_parameter: G
+  values: '[-1, 0, 1, 2, 3, 4, 5]（默认） | vector'
+- name: Efficiency torque breakpoints, Trq_bpts
+  summary: 断点 [25, 50, 75, 100, 150, 200, 250]（默认） | vector
+  group: ''
+  block_parameter: Trq_bpts
+  values: '[25, 50, 75, 100, 150, 200, 250]（默认） | vector'
+- name: Efficiency speed breakpoints, omega_bpts
+  summary: 断点 [52.4 78.5 105 131 157 183 209 262 314 419 524]（默认） | vector
+  group: ''
+  block_parameter: omega_bpts
+  values: '[52.4 78.5 105 131 157 183 209 262 314 419 524]（默认）| vector'
+- name: Efficiency temperature breakpoints, Temp_bpts
+  summary: 断点 [313 358]（默认）| vector
+  group: ''
+  block_parameter: Temp_bpts
+  values: '[313 358]（默认）| vector'
+- name: Gear ratio vector, N
+  summary: 输入速度与输出速度之比 [-4.47, 1, 4.47, 2.47, 1.47, 1, 0.8]（默认）| vector
+  group: ''
+  block_parameter: N
+  values: '[-4.47, 1, 4.47, 2.47, 1.47, 1, 0.8]（默认）| vector'
+- name: Transmission inertia vector, Jout
+  summary: 齿轮转动惯量 [0.128 0.01 0.128 0.1 0.062 0.028 0.01]（默认）| vector
+  group: ''
+  block_parameter: Jout
+  values: '[0.128 0.01 0.128 0.1 0.062 0.028 0.01]（默认）| vector'
+- name: Transmission damping vector, bout
+  summary: 齿轮粘性阻尼系数 [.003 .001 .003 .0025 .002 .001 .001]（默认）| vector
+  group: ''
+  block_parameter: bout
+  values: '[.003 .001 .003 .0025 .002 .001 .001]（默认）| vector'
+- name: Efficiency vector, eta
+  summary: 齿轮效率 [0.9, 0.9, 0.9, 0.9, 0.9, 0.95, 0.95]（默认）| vector
+  group: ''
+  block_parameter: eta
+  values: '[0.9, 0.9, 0.9, 0.9, 0.9, 0.95, 0.95]（默认）| vector'
+- name: Efficiency lookup table, eta_tbl
+  summary: 齿轮效率 array
+  group: ''
+  block_parameter: eta_tbl
+  values: array
+- name: Initial output velocity, omegaout_o
+  summary: 变速器 0（默认）| scalar
+  group: ''
+  block_parameter: omegaout_o
+  values: 0（默认）| scalar
+- name: Initial gear, G_o
+  summary: 接合挡位 0（默认）| scalar
+  group: ''
+  block_parameter: G_o
+  values: 0（默认）| scalar
+- name: Clutch pressure time constant, tauc
+  summary: Time .02 (default) | scalar
+  group: ''
+  block_parameter: tauc
+  values: .02 (default) | scalar
+- name: Synchronization time, ts
+  summary: Time .25 (default) | scalar
+  group: ''
+  block_parameter: ts
+  values: .25 (default) | scalar
+- name: Clutch time, tc
+  summary: Time .5 (default) | scalar
+  group: ''
+  block_parameter: tc
+  values: .5 (default) | scalar
+- name: Effective clutch radius, R
+  summary: Radius .2 (default) | scalar
+  group: ''
+  block_parameter: R
+  values: .2 (default) | scalar
+- name: Clutch force gain, K_c
+  summary: Force 5e3 (default) | scalar
+  group: ''
+  block_parameter: K_c
+  values: 5e3 (default) | scalar
+- name: Clutch static friction coefficient, mus
+  summary: Coefficient 0.6 (default) | scalar
+  group: ''
+  block_parameter: mus
+  values: 0.6 (default) | scalar
+- name: Clutch kinematic friction coefficient, muk
+  summary: Coefficient 0.4 (default) | scalar
+  group: ''
+  block_parameter: muk
+  values: 0.4 (default) | scalar
+- name: 以离合器锁止状态开始仿真
+  summary: 选择以初始锁止离合器 off（默认）| on
+  group: ''
+  block_parameter: locked
+  values: off (default) | on
+- name: Start simulation with synchronizer locked
+  summary: 选择以初始锁定同步器 off（默认）| on
+  group: ''
+  block_parameter: ClutchLocked
+  values: off（默认）| on
+```
 
 ### **Control type** — 指定控制类型 `Ideal integrated controller` (default) | `External control`
 
@@ -605,7 +759,6 @@ Reff=2(Ro3-Ri3)3(Ro2-Ri2)
 | **参数：** | `ClutchLocked` |
 | **值：** | `off`（默认）| `on` |
 | **数据类型：** | `character vector` |
-
 ## 所属库
 
 Powertrain Blockset / Transmission / Transmission Systems

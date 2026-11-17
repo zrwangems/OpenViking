@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # Recursive Polynomial Model Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Inputs
+  summary: 输入信号向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 测量输出信号 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Enable
+  summary: 启用估计更新 true（默认）| false
+  direction: input
+  data_types: single | double | Boolean | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32
+- name: Reset
+  summary: 重置触发器 标量
+  direction: input
+  data_types: single | double | Boolean | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: InitialParameters
+  summary: 初始参数估计 bus 对象
+  direction: input
+  data_types: single | double
+- name: InitialCovariance
+  summary: 参数的初始协方差 正标量（默认）| 正标量向量 | 对称正定矩阵
+  direction: input
+  data_types: single | double
+- name: InitialInputs
+  summary: 输入矩阵的初始值
+  direction: input
+  data_types: single | double
+- name: InitialOutputs
+  summary: 测量输出缓冲区向量的初始值
+  direction: input
+  data_types: single | double
+- name: Parameters
+  summary: 估计参数 bus 对象
+  direction: output
+  data_types: single | double
+- name: Error
+  summary: 估计误差 标量 | 向量
+  direction: output
+  data_types: single | double
+- name: Covariance
+  summary: 参数估计误差协方差 P 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -178,8 +225,186 @@ chinese_source: worker-translation
 - 如果 **历史** 为 `Infinite`，将 **估计方法** 设置为 `Forgetting Factor` 或 `Kalman Filter`。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: 初始估计
+  summary: 初始参数估计的来源 None（默认）| Internal | External
+  group: 模型参数
+  block_parameter: InitialEstimateSource
+  type: 字符向量、字符串
+  values: '''None''、''Internal''、''External'''
+- name: A(q) 中的参数数量 (na)
+  summary: '*A*(*q*) 多项式中估计参数的数量 1（默认）| 非负整数'
+  group: 模型参数
+  block_parameter: A0
+  type: 非负整数
+- name: Number of Parameters in B(q) (nb)
+  summary: '*B*(*q*) 多项式中估计参数的数量 1（默认）| 正整数向量'
+  group: 模型参数
+  block_parameter: B0
+  type: 正整数
+  default: '1'
+- name: Number of Parameters in C(q) (nc)
+  summary: '*C*(*q*) 多项式中估计参数的数量 1（默认）| 正整数'
+  group: 模型参数
+  block_parameter: C0
+  type: 正整数
+  default: '1'
+- name: Number of Parameters in D(q) (nd)
+  summary: '*D*(*q*) 多项式中估计参数的数量 1（默认）| 正整数'
+  group: 模型参数
+  block_parameter: D0
+  type: 正整数
+  default: '1'
+- name: Number of Parameters in F(q) (nf)
+  summary: '*F*(*q*) 多项式中估计参数的数量 1（默认）| 正整数'
+  group: 模型参数
+  block_parameter: F0
+  type: 正整数
+  default: '1'
+- name: Input Delay (nk)
+  summary: 输入延迟 1（默认）| 非负整数向量
+  group: 模型参数
+  block_parameter: nk
+  type: 非负整数向量
+  default: '1'
+- name: Parameter Covariance Matrix
+  summary: 初始参数协方差 1e4（默认）| 标量 | 向量 | 矩阵
+  group: 模型参数
+  block_parameter: P0
+  type: 标量、向量或矩阵
+  default: 1e4
+- name: Initial A(q)
+  summary: '*A*(*q*) 多项式系数的初始值 [1 eps]（默认）| 向量'
+  group: 模型参数
+  block_parameter: A0
+  type: 实向量
+  default: '[1 eps]'
+- name: Initial B(q)
+  summary: '*B*(*q*) 多项式系数的初始值 [0 eps]（默认）| 向量 | 矩阵'
+  group: 模型参数
+  block_parameter: B0
+  type: 实数向量或矩阵
+  default: '[0 eps]'
+- name: Initial C(q)
+  summary: '*C*(*q*) 多项式系数的初始值 [1 eps]（默认）| 向量'
+  group: 模型参数
+  block_parameter: C0
+  type: 实数向量
+  default: '[1 eps]'
+- name: Initial D(q)
+  summary: '*D*(*q*) 多项式系数的初始值 [1 eps]（默认）| 向量'
+  group: 模型参数
+  block_parameter: D0
+  type: 实数向量
+  default: '[1 eps]'
+- name: Initial F(q)
+  summary: '*F*(*q*) 多项式系数的初始值 [1 eps]（默认）| 向量'
+  group: 模型参数
+  block_parameter: F0
+  type: 实数向量
+  default: '[1 eps]'
+- name: Initial Inputs
+  summary: 输入缓冲区的初始值 0（默认）| 矩阵
+  group: 模型参数
+  block_parameter: InitialInputs
+  type: 实数矩阵
+  default: '0'
+- name: Initial Outputs
+  summary: 测量输出缓冲区的初始值 0（默认）| 向量
+  group: 模型参数
+  block_parameter: InitialOutputs
+  type: 实数向量
+  default: '0'
+- name: Input Processing
+  summary: 选择基于采样或基于帧的处理 Sample-based（默认）| Frame-based
+  group: 输入处理和采样时间
+  block_parameter: InputProcessing
+  type: 字符向量、字符串
+  values: '''Sample-based''、''Frame-based'''
+  default: '''Sample-based'''
+- name: Sample Time
+  summary: 模块采样时间 –1（默认）| 正标量
+  group: 输入处理和采样时间
+  block_parameter: Ts
+  type: 实标量
+  values: –1、正标量
+  default: –1
+- name: History
+  summary: 选择无限或有限数据历史 Infinite（默认）| Finite
+  group: 算法和模块选项
+  block_parameter: History
+  type: 字符向量、字符串
+  values: '''Infinite''、''Finite'''
+  default: '''Infinite'''
+- name: Window Length
+  summary: 有限滑动窗口估计的窗口大小 200（默认）| 正整数
+  group: 算法和模块选项
+  block_parameter: WindowLength
+  type: 正整数
+  default: '200'
+- name: Estimation Method
+  summary: 递归估计算法 Forgetting Factor（默认）| Kalman Filter | Normalized Gradient | Gradient
+  group: 算法和模块选项
+  block_parameter: EstimationMethod
+  type: character vector, string
+  values: '''Forgetting Factor'',''Kalman Filter'',''Normalized Gradient'',''Gradient'''
+  default: '''Forgetting Factor'''
+- name: Forgetting Factor
+  summary: 使用遗忘因子对旧数据进行折扣 1（默认）| (0 1] 范围内的正标量
+  group: 算法和模块选项
+  block_parameter: AdaptationParameter
+  type: scalar
+  values: (0 1] range
+  default: '1'
+- name: Process Noise Covariance
+  summary: 卡尔曼滤波估计方法的过程噪声协方差 1（默认）| 非负标量 | 非负标量向量 | 对称半正定矩阵
+  group: 算法和模块选项
+  block_parameter: AdaptationParameter
+  type: scalar, vector, matrix
+  default: '1'
+- name: Adaptation Gain
+  summary: 梯度估计方法的自适应增益指定 1（默认）| 正标量
+  group: 算法和模块选项
+  block_parameter: AdaptationParameter
+  type: scalar
+  default: '1'
+- name: Normalization Bias
+  summary: 归一化梯度估计方法的自适应增益缩放偏置 eps（默认）| 非负标量
+  group: 算法和模块选项
+  block_parameter: NormalizationBias
+  type: scalar
+  default: eps
+- name: Output estimation error
+  summary: 向模块添加 Error 输出端口 off（默认）| on
+  group: 算法和模块选项
+  block_parameter: OutputError
+  type: character vector, string
+  values: '''off'',''on'','
+  default: '''off'''
+- name: Output parameter covariance matrix
+  summary: 向模块添加 covariance 输出端口 off（默认）| on
+  group: 算法和模块选项
+  block_parameter: OutputP
+  type: 字符向量、字符串
+  values: '''off''、''on'''
+  default: '''off'''
+- name: Add enable port
+  summary: 向模块添加使能输入端口 off（默认）| on
+  group: 算法和模块选项
+  block_parameter: AddEnablePort
+  type: 字符向量、字符串
+  values: '''off''、''on'''
+  default: '''off'''
+- name: External reset
+  summary: 指定外部复位的触发条件 None（默认）| Rising | Falling | Either | Level | Level hold
+  group: 算法和模块选项
+  block_parameter: ExternalReset
+  type: 字符向量、字符串
+  values: '''None''、''Rising''、''Falling''、''Either''、''Level''、''Level hold'''
+  default: '''None'''
+```
 
 ### 模型结构
 
@@ -864,7 +1089,6 @@ e(t)=y(t)−yest(t)，
 | **类型：** 字符向量、字符串 |
 | **值：**`'None'`、`'Rising'`、`'Falling'`、`'Either'`、`'Level'`、`'Level hold'` |
 | **默认值：** `'None'` |
-
 ## 所属库
 
 System Identification Toolbox / Estimators

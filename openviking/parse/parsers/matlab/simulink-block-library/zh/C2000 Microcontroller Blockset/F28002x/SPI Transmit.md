@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # SPI Transmit
 
 ## 端口
+```yaml
+ports:
+- name: Tx
+  summary: SPI 发送数据向量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Status
+  summary: SPI 发送状态 0 | 1 | 2
+  direction: output
+  data_types: uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -39,8 +50,40 @@ SPI 数据传输的状态。错误状态值表示：
 output** 参数。
 
 **数据类型：** `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: SPI module
+  summary: 要写入数据的 SPI 模块 SPI1（默认）| SPI2 | SPI3 | SPI4 | SPI5 | SPI6
+  group: 主要
+- name: Clock polarity
+  summary: SPI 时钟极性 Low（默认）| High
+  group: 主要
+- name: Clock phase
+  summary: SPI 时钟相位 1 Edge（默认）| 2 Edge
+  group: 主要
+- name: Enable status output
+  summary: 启用 SPI 状态模式 off（默认）| on
+  group: 主要
+- name: Enable blocking mode
+  summary: 启用 SPI 阻塞模式 off（默认）| on
+  group: 主要
+- name: Data bits
+  summary: SPI 传输中的位数 8（默认）| 5 到 32
+  group: 高级
+- name: Chip select calling method
+  summary: 选择 SPI 外设设备的方法 Provided by the SPI peripheral（默认）| Explicit GPIO calls
+  group: 高级
+- name: Chip select pin polarity
+  summary: SPI 片选引脚极性 Active low（默认）| Active high
+  group: 高级
+- name: Chip select port name
+  summary: SPI 片选端口名称 GPIOA（默认）| GPIOB | GPIOC
+  group: 高级
+- name: Chip select pin
+  summary: SPI 外设选择引脚 0（默认）| 正整数标量
+  group: 高级
+```
 
 ### 主要
 
@@ -133,7 +176,6 @@ calls` 时出现。
 此选项仅在 **Chip select calling
 method** 设置为 `Explicit GPIO
 calls` 时出现。
-
 ## 所属库
 
 Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F1xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F2xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F3xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F7xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32G0xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32G4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32H7xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32L4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32L5xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32U5xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32WBxx Based Boards

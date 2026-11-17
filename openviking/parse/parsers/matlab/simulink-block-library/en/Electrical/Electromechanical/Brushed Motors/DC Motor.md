@@ -14,6 +14,30 @@ language: en
 # DC Motor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Motor case mechanical
+  direction: conserving
+- name: R
+  summary: Motor rotor mechanical
+  direction: conserving
+- name: F+
+  summary: Positive field electrical
+  direction: conserving
+- name: F-
+  summary: Negative field electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -65,8 +89,140 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Selected part
+  summary: Predefined parameterization option <click to select> (default)
+  group: ''
+- name: Field type
+  summary: Type of field Permanent Magnet (default) | Wound
+  group: Electrical Torque
+- name: Model parameterization
+  summary: Block parameterization By equivalent circuit parameters (default) | By stall torque & no-load speed | By rated
+    load and speed
+  group: Electrical Torque
+- name: Field resistance
+  summary: Field resistance 100 Ohm (default)
+  group: Electrical Torque
+- name: Field inductance
+  summary: Field inductance 1 H (default)
+  group: Electrical Torque
+- name: Field-armature mutual inductance
+  summary: Field-armature mutual inductance 0.15 H (default)
+  group: Electrical Torque
+- name: Initial field current
+  summary: Initial field current 0 A (default)
+  group: Electrical Torque
+- name: Armature resistance
+  summary: Armature resistance 3.9 Ohm (default)
+  group: Electrical Torque
+- name: Armature inductance
+  summary: Armature inductance 12e-6 H (default)
+  group: Electrical Torque
+- name: Define back-emf or torque constant
+  summary: Constants specification Specify back-emf constant (default) | Specify torque constant
+  group: Electrical Torque
+- name: Back-emf constant
+  summary: Back-emf constant 0.072e-3 (default) | V/rpm
+  group: Electrical Torque
+- name: Torque constant
+  summary: Torque constant 6.876e-4 N*m/A (default)
+  group: Electrical Torque
+- name: Stall torque
+  summary: Stall torque 0.24e-3 N*m. (default)
+  group: Electrical Torque
+- name: No-load speed
+  summary: No-load speed 19100 rpm (default)
+  group: Electrical Torque
+- name: Rated speed (at rated load)
+  summary: Rated speed 15000 rpm (default)
+  group: Electrical Torque
+- name: Rated load (mechanical power)
+  summary: Rated load 0.08 W (default)
+  group: Electrical Torque
+- name: Rated DC supply voltage
+  summary: Rated DC supply voltage 1.5 V (default)
+  group: Electrical Torque
+- name: Rotor damping parameterization
+  summary: Rotor damping parameterization By damping value (default) | By no-load current
+  group: Electrical Torque
+- name: No-load current
+  summary: No-load current 0 A (default)
+  group: Electrical Torque
+- name: DC supply voltage when measuring no-load current
+  summary: DC supply voltage when measuring no-load current 1.5 V (default)
+  group: Electrical Torque
+- name: Rotor inertia
+  summary: Rotor inertia 0.01 g*cm^2 (default)
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor dissipated energy 0 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Initial rotor speed
+  summary: Initial rotor speed 0 rpm (default)
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Temperature Dependence
+- name: Thermal mass
+  summary: Thermal mass 100 J/K (default)
+  group: Thermal Port
+- name: Initial temperature
+  summary: Initial temperature 25 degC (default)
+  group: Thermal Port
+- name: Armature winding fault
+  summary: Option to add armature winding fault Add fault (default)
+  group: Faults
+- name: Fraction of revolution during which armature is open-circuit
+  summary: Fraction of revolution during which armature is open-circuit 1/3 (default)
+  group: Faults
+- name: Faulted armature winding open-circuit conductance
+  summary: Open-circuit conductance of faulted armature winding 1e-5 S (default)
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible armature winding current
+  summary: Maximum permissible armature winding current inf A (default)
+  group: Faults
+- name: Time to fail when exceeding armature winding current
+  summary: Time to fail when exceeding armature winding current 1 s (default)
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+- name: Field winding fault
+  summary: Option to add field winding fault Add fault (default)
+  group: Faults
+- name: Faulted field winding open-circuit conductance
+  summary: Open-circuit conductance of faulted field winding 1e-5 S (default)
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible field winding current
+  summary: Maximum permissible field winding current inf A (default)
+  group: Faults
+- name: Time to fail when exceeding field winding current
+  summary: Time to fail when exceeding field winding current 1 s (default)
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -612,7 +768,6 @@ To enable this parameter:
 - Set **Trigger type** to
   `Additional
   triggers`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Brushed Motors

@@ -14,6 +14,33 @@ language: en
 # Cartesian to Spherical
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: '*x* Cartesian coordinate input scalar'
+  direction: input
+  data_types: single | double
+- name: Port_2
+  summary: '*y* Cartesian coordinate input scalar'
+  direction: input
+  data_types: single | double
+- name: Port_3
+  summary: '*z* Cartesian coordinate input scalar'
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: '*r* spherical coordinate output scalar'
+  direction: output
+  data_types: single | double
+- name: Port_2
+  summary: '*theta* spherical coordinate output scalar'
+  direction: output
+  data_types: single | double
+- name: Port_3
+  summary: '*phi* spherical coordinate output scalar'
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -62,11 +89,12 @@ Output signal specifying the *phi* coordinate of the spherical
 coordinates *(r,theta,phi)*.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink Extras / Transformations

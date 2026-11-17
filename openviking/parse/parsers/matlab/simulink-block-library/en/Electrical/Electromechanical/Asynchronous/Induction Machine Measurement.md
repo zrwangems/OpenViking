@@ -14,6 +14,15 @@ language: en
 # Induction Machine Measurement
 
 ## Ports
+```yaml
+ports:
+- name: pu
+  summary: Input port physical
+  direction: input
+- name: o
+  summary: Per-unit measurement output physical
+  direction: output
+```
 
 ### Input
 
@@ -36,8 +45,15 @@ connected induction machine. The vector elements are:
 
 Physical signal associated with the per-unit measurement
 output.
-
 ## Parameters
+```yaml
+parameters:
+- name: Output
+  summary: Per-unit measurement Electrical torque (default) | Rotor velocity | Stator d-axis voltage | Stator q-axis voltage
+    | Stator zero-sequence voltage | Stator d-axis current | Stator q-axis current | Stator zero-sequence current | Slip |
+    Apparent power | Real power | Reactive power | Terminal voltage | Power factor angle | Power factor angle
+  group: ''
+```
 
 ### **Output** — Per-unit measurement `Electrical torque` (default) | `Rotor velocity` | `Stator d-axis voltage` | `Stator q-axis voltage` | `Stator zero-sequence voltage` | `Stator d-axis current` | `Stator q-axis current` | `Stator zero-sequence current` | `Slip` | `Apparent power` | `Real power` | `Reactive power` | `Terminal voltage` | `Power factor angle` | `Power factor angle`
 
@@ -58,7 +74,6 @@ Per-unit measurement from induction machine. Options are:
 - `Terminal voltage`
 - `Power factor angle`
 - `Power factor angle`
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Asynchronous

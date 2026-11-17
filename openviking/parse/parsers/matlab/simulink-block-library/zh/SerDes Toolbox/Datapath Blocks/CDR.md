@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # CDR
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入基带信号 标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,76 @@ chinese_source: worker-translation
 输入基带信号。CDR 的输入必须一次一个采样地施加，而不是以向量形式。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: CDR Mode
+  summary: 确定 CDR 阶数 1st order（默认）| 2nd order
+  group: ''
+  block_parameter: CDRMode
+  type: 字符向量
+  values: 1st order | 2nd order
+- name: Phase Detector
+  summary: 时钟相位检测器选项 BangBang（默认）| BaudRateTypeA
+  group: ''
+  block_parameter: PhaseDetector
+  type: 字符向量
+  values: BangBang | BaudRateTypeA
+- name: Phase Offset (symbol time)
+  summary: 时钟相位偏移 0（默认）| 范围 [-0.5,0.5] 内的实标量
+  group: ''
+  block_parameter: PhaseOffset
+  type: 字符向量
+  values: 范围 [-0.5,0.5] 内的实标量
+- name: Reference offset (ppm)
+  summary: 参考时钟偏移损伤 0（默认）| 范围 [0, 300] 内的实标量
+  group: ''
+  block_parameter: ReferenceOffset
+  type: 字符向量
+  values: 范围 [0, 300] 内的实标量
+- name: Early/late count threshold
+  summary: 触发相位更新的早/晚 CDR 计数阈值 16（默认）| ≥5 的实正整数
+  group: ''
+  block_parameter: Count
+  type: 字符向量
+  values: ≥5 的实正整数
+- name: Step (symbol time)
+  summary: 时钟相位分辨率 0.0078（默认）| 实标量
+  group: ''
+  block_parameter: Step
+  type: 字符向量
+  values: 实标量
+- name: Frequency tracking gain
+  summary: 频率跟踪的内部增益 0.00048828125（默认）| 非负实标量
+  group: ''
+  block_parameter: FrequencyStep
+  type: 字符向量
+  values: 非负实标量
+- name: Frequency tracking update
+  summary: 频率跟踪更新 16（默认）| 非负整数标量
+  group: ''
+  block_parameter: FrequencyCount
+  type: 字符向量
+  values: 非负实数标量
+- name: Frequency step ramp
+  summary: 初始内部频率跟踪增益达到指定值所需的符号时间数 3000（默认）| 非负整数标量
+  group: ''
+  block_parameter: FrequencyStepRamp
+  type: 字符向量
+  values: 非负实数标量
+- name: Sensitivity (V)
+  summary: 采样锁存器亚稳态电压 0（默认）| 实数标量
+  group: ''
+  block_parameter: Sensitivity
+  type: 字符向量
+  values: 实数标量
+- name: Phase Offset
+  summary: 在 IBIS-AMI 模型中包含 Phase Offset 参数 开（默认）| 关
+  group: ''
+- name: Reference offset
+  summary: 在 IBIS-AMI 模型中包含 Reference offset 参数 开（默认）| 关
+  group: ''
+```
 
 ### **CDR Mode** — 确定 CDR 阶数 `1st order`（默认）| `2nd order`
 
@@ -198,7 +273,6 @@ chinese_source: worker-translation
 ### **Reference offset** — 在 IBIS-AMI 模型中包含 Reference offset 参数 开（默认）| 关
 
 选择以将 **Reference offset** 作为参数包含在 IBIS-AMI 文件中。如果取消选择 **Reference offset**，它将从 AMI 文件中移除，实际上将 **Reference offset** 硬编码为其当前值。
-
 ## 所属库
 
 SerDes Toolbox / Datapath Blocks

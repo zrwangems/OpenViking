@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Bipolar to Unipolar Converter
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Out
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -36,8 +46,20 @@ chinese_source: worker-translation
 **注意**
 
 对于超出集合 {–*M*+1, –*M*+3, –*M*+5,..., *M* – 1} 的输入信号值，输出可能无效。
-
 ## 参数
+```yaml
+parameters:
+- name: M-ary number
+  summary: 符号数量 4（默认）| 正整数
+  group: ''
+- name: Polarity
+  summary: 符号的相对顺序 Positive（默认）| Negative
+  group: ''
+- name: Output data type
+  summary: 单极性信号的输出数据类型 Inherit via internal rule（默认）| Same as input | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+    | boolean
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -76,7 +98,6 @@ chinese_source: worker-translation
 **注意**
 
 硬件实现窗格（Simulink）中约束字长的选择不会影响此模块确定输出数据类型的方式。
-
 ## 所属库
 
 Communications Toolbox / Utility Blocks

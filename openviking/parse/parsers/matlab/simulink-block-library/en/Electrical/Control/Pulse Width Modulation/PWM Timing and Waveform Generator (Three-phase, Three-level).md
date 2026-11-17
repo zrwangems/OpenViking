@@ -14,6 +14,30 @@ language: en
 # PWM Timing and Waveform Generator (Three-phase, Three-level)
 
 ## Ports
+```yaml
+ports:
+- name: Vabc
+  summary: Three-phase sinusoidal reference signal vector
+  direction: input
+- name: vdc
+  summary: DC-link voltage signal scalar
+  direction: input
+- name: vneutral
+  summary: DC-link neutral point balance control scalar
+  direction: input
+- name: TgabcON
+  summary: Switch-on gating time vector
+  direction: output
+- name: TgabcOFF
+  summary: Switch-off gating time vector
+  direction: output
+- name: SmallHexNum
+  summary: Small hexagon number scalar
+  direction: output
+- name: ModWave
+  summary: Modulation waves vector
+  direction: output
+```
 
 ### Input
 
@@ -57,8 +81,19 @@ block.
 
 Modulation waves, returned as a vector of three elements, with one
 element for each phase.
-
 ## Parameters
+```yaml
+parameters:
+- name: Continuous PWM
+  summary: 'Continuous pulse width modulation method SPWM: sinusoidal PWM (default) | SVM: space vector modulation'
+  group: ''
+- name: Sampling mode
+  summary: Wave-sampling method Natural (default) | Asymmetric | Symmetric
+  group: ''
+- name: Switching frequency (Hz)
+  summary: Switching rate 1e3 (default) | positive scalar
+  group: ''
+```
 
 ### **Continuous PWM** — Continuous pulse width modulation method `SPWM: sinusoidal PWM` (default) | `SVM: space vector modulation`
 
@@ -73,7 +108,6 @@ one or both of its boundary conditions.
 ### **Switching frequency (Hz)** — Switching rate `1e3` (default) | positive scalar
 
 Rate at which the switches in the power converter switch.
-
 ## Libraries
 
 Simscape / Electrical / Control / Pulse Width Modulation

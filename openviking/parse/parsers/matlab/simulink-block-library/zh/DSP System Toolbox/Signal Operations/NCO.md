@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # NCO
 
 ## 端口
+```yaml
+ports:
+- name: inc
+  summary: 相位增量 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: offset
+  summary: 相位偏移 标量 | 向量 | 矩阵
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: sin
+  summary: 正弦输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | fixed point
+- name: cos
+  summary: 余弦输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | fixed point
+- name: exp
+  summary: 复指数 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | fixed point
+- name: Qerr
+  summary: 相位量化误差 标量 | 向量 | 矩阵
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -82,8 +109,76 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Show phase quantization error port** 复选框。
 
 **数据类型：** `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Phase increment source
+  summary: 相位增量值的来源 Specify via dialog | Input port
+  group: 主要
+- name: Phase increment
+  summary: 相位增量值 100（默认）| 标量 | 向量
+  group: 主要
+- name: Phase offset source
+  summary: 相位偏移的来源 Specify via dialog（默认）| Input port
+  group: 主要
+- name: Phase offset
+  summary: 相位偏移值 0（默认）| 标量 | 向量
+  group: 主要
+- name: Add internal dither
+  summary: 添加内部抖动 on（默认）| off
+  group: 主要
+- name: Number of dither bits
+  summary: 抖动位数 4（默认）| 正整数
+  group: 主要
+- name: Quantize phase
+  summary: 启用累积相位量化 on（默认）| off
+  group: 主要
+- name: Number of quantized accumulator bits
+  summary: 量化累加器位数 12（默认）| 整数标量
+  group: 主要
+- name: Show phase quantization error port
+  summary: 输出量化误差 off（默认）| on
+  group: 主要
+- name: Output signal
+  summary: 输出信号 Sine（默认）| Cosine | Complex exponential | Sine and cosine
+  group: 主要
+- name: Sample time
+  summary: 输出采样周期 1（默认）| 正标量
+  group: 主要
+- name: Samples per frame
+  summary: 每帧采样数 1（默认）| 正整数
+  group: 主要
+- name: Rounding mode
+  summary: 舍入方法 只读：Floor（默认）
+  group: 数据类型
+- name: Overflow mode
+  summary: 溢出方法 只读：Wrap（默认）
+  group: 数据类型
+- name: Accumulator Word Length
+  summary: 累加器字长 16（默认）| 2 到 128 的整数
+  group: 数据类型
+- name: Output Data Type
+  summary: 输出数据类型 double（默认）| single | Binary point scaling
+  group: 数据类型
+- name: Output Word Length
+  summary: 输出字长 16（默认）| 2 到 128 的整数
+  group: 数据类型
+- name: Output Fraction Length
+  summary: 输出小数长度 14（默认）| 整数
+  group: 数据类型
+- name: Number of data points for lookup table
+  summary: 查找表中的点数 无默认值
+  group: NCO 特性
+- name: Quarter wave sine lookup table size
+  summary: 四分之一波正弦查找表大小 无默认值
+  group: NCO 特性
+- name: Theoretical spurious free dynamic range
+  summary: 无杂散动态范围 无默认值
+  group: NCO 特性
+- name: Frequency resolution
+  summary: 频率分辨率 无默认值
+  group: NCO 特性
+```
 
 ### 主要
 
@@ -268,7 +363,6 @@ SFDR=(6P) dB           无抖动SFDR=(6P+12) dB    有抖动
 #### 依赖关系
 
 频率分辨率仅在您将 **Phase increment source** 和 **Phase offset source** 设置为 `Specify via dialog` 时出现。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations DSP System Toolbox / Sources

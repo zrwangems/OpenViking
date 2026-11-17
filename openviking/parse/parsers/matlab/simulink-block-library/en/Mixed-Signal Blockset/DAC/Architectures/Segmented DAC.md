@@ -14,6 +14,21 @@ language: en
 # Segmented DAC
 
 ## Ports
+```yaml
+ports:
+- name: digital
+  summary: Digital input signal integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: start
+  summary: External clock to start conversion scalar
+  direction: input
+  data_types: double
+- name: analog
+  summary: Converted analog output signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -51,8 +66,91 @@ clock**.
 Converted analog output signal, returned as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input polarity
+  summary: Define DAC input data polarity Unipolar (default) | Bipolar
+  group: ''
+  block_parameter: Polarity
+  type: character vector
+  values: Unipolar | Bipolar
+  default: Unipolar
+- name: Use external start clock
+  summary: Connect to external start conversion clock on (default) | off
+  group: ''
+- name: Conversion start frequency (Hz)
+  summary: Frequency of internal start conversion clock 1e6 (default) | real scalar
+  group: ''
+  block_parameter: StartFreq
+  type: character vector
+  values: real scalar
+  default: 1e6
+- name: Reference (V)
+  summary: DAC output reference magnitude 0.5 (default) | real scalar
+  group: ''
+  block_parameter: Ref
+  type: character vector
+  values: real scalar
+  default: '0.5'
+- name: Bias (V)
+  summary: Difference between analog output for code zero and analog zero 0 (default) | real scalar
+  group: ''
+  block_parameter: Bias
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Settling time (s)
+  summary: Time required for output to settle 2e-7 (default) | nonnegative real scalar
+  group: ''
+  block_parameter: SettlingTime
+  type: character vector
+  values: real scalar
+  default: 2e-7
+- name: Settling time tolerance (LSB)
+  summary: Tolerance for calculating settling time 0.5 (default) | positive real scalar
+  group: ''
+  block_parameter: SettlingTimeTolerance
+  type: character vector
+  values: positive real scalar
+  default: '0.5'
+- name: Bit width
+  summary: Number of physical input bits for DAC segment integer scalar greater than or equal to 2
+  group: ''
+- name: Bits
+  summary: Bit ranges of each segment vector
+  group: ''
+- name: Topology
+  summary: Topology of base DAC segment Binary Weighted (default)
+  group: ''
+- name: Offset error
+  summary: Shift quantization steps 0 (default) | real scalar
+  group: ''
+- name: Offset error unit
+  summary: Unit of offset error LSB (default) | FS | %FS
+  group: ''
+- name: Gain error
+  summary: Error in slope of DAC transfer curve 0 (default) | real scalar
+  group: ''
+- name: Gain error unit
+  summary: Unit of gain error LSB (default) | FS | %FS
+  group: ''
+- name: Move selected segment up
+  summary: Move selected segment up one row button
+  group: ''
+- name: Move selected segment down
+  summary: Move selected segment down one row button
+  group: ''
+- name: New Segment
+  summary: Add new DAC segment button
+  group: ''
+- name: Duplicate Selected
+  summary: Duplicate selected segment button
+  group: ''
+- name: Delete Selected
+  summary: Delete selected segment button
+  group: ''
+```
 
 ### **Input polarity** — Define DAC input data polarity `Unipolar` (default) | `Bipolar`
 
@@ -245,7 +343,6 @@ add up to five segments to the Segmented DAC block.
 
 Click to delete the selected DAC segment from the Segmented DAC
 block.
-
 ## Libraries
 
 Mixed-Signal Blockset / DAC / Architectures

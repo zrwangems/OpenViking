@@ -14,6 +14,42 @@ language: en
 # Crankshaft
 
 ## Ports
+```yaml
+ports:
+- name: CylPwr
+  summary: Cylinder power array physical signal
+  direction: input
+- name: CylPwr1
+  summary: Cylinder 1 power physical signal
+  direction: input
+- name: CylPwr2
+  summary: Cylinder 2 power physical signal
+  direction: input
+- name: CylPwr3
+  summary: Cylinder 3 power physical signal
+  direction: input
+- name: CylPwr4
+  summary: Cylinder 4 power physical signal
+  direction: input
+- name: CrkPos
+  summary: Crank position, deg physical signal
+  direction: output
+- name: Spd
+  summary: Engine rotational speed, rad/s physical signal
+  direction: output
+- name: AvrSpd
+  summary: Cycle-average crank speed, rad/s physical signal
+  direction: output
+- name: AvrTrq
+  summary: Cycle-average net-indicated crank torque, N\*m physical signal
+  direction: output
+- name: Trq
+  summary: Instantaneous net-indicated crank torque, N\*m physical signal
+  direction: output
+- name: F
+  summary: Crankshaft mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -98,8 +134,37 @@ Nm.
 
 Mechanical rotational conserving port associated with the crankshaft
 follower.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial crank position, ca0 (0-720 CAdeg)
+  summary: Crank position when simulation begins 0 deg (default) | nonnegative scalar in the range [0,720)
+  group: Mechanical
+- name: Number of cylinders
+  summary: Total cylinder count Single Cylinder (default) | Two Cylinders | Three Cylinders | Four Cylinders
+  group: Mechanical
+- name: Input power separately
+  summary: Option to input power on (default) | off
+  group: Mechanical
+- name: Spark angle difference
+  summary: Two cylinder engine spark angle phase 270 deg (default) | positive scalar
+  group: Mechanical
+- name: Firing order
+  summary: Ignition order for four cylinder engines 1-3-4-2 (default) | 1-3-2-4
+  group: Mechanical
+- name: Threshold to avoid divide-by-zero
+  summary: Threshold engine speed 0.1 rad/s (default)
+  group: Simulation
+- name: Cycle-average speed
+  summary: Option to output cycle-average speed on (default) | off
+  group: Output
+- name: Cycle-average net indicated torque
+  summary: Option to output cycle-average net indicated torque on (default) | off
+  group: Output
+- name: Instantaneous net indicated torque
+  summary: Option to output instantaneous net indicated torque on (default) | off
+  group: Output
+```
 
 ### Mechanical
 
@@ -159,7 +224,6 @@ Whether to output the cycle-average net indicated torque.
 ### **Instantaneous net indicated torque** — Option to output instantaneous net indicated torque `on` (default) | `off`
 
 Whether to output the instantaneous net indicated torque.
-
 ## Libraries
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

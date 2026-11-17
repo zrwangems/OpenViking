@@ -14,6 +14,37 @@ language: en
 # Sliding Mode Observer
 
 ## Ports
+```yaml
+ports:
+- name: Vα
+  summary: '*α*-axis voltage scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vβ
+  summary: '*β*-axis voltage scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iα
+  summary: '*α*-axis current scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Iβ
+  summary: '*β*-axis current scalar'
+  direction: input
+  data_types: single | double | fixed point
+- name: Rst
+  summary: Reset the block scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: Electrical position of PMSM scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: Mechanical speed of PMSM scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -64,8 +95,55 @@ The estimated electrical position of the rotor.
 The estimated mechanical speed of the rotor.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input units
+  summary: Unit of block inputs SI unit (default) | Per-unit
+  group: ''
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: ''
+- name: Stator resistance (ohm)
+  summary: Resistance 0.36 (default) | scalar
+  group: Motor parameters
+- name: Stator inductance (H)
+  summary: Inductance 0.2e-3 (default) | scalar
+  group: Motor parameters
+- name: Maximum application speed (RPM)
+  summary: Maximum supported mechanical speed 6000 (default) | scalar
+  group: Motor parameters
+- name: Number of pole pairs
+  summary: Number of pole pairs available in motor 4 (default) | scalar
+  group: Motor parameters
+- name: Base voltage (V)
+  summary: Nominal voltage corresponding to one per unit 13.8564 (default) | scalar
+  group: Motor parameters
+- name: Base current (A)
+  summary: Nominal current corresponding to one per unit 21.4286 (default) | scalar
+  group: Motor parameters
+- name: Back-emf observer gain
+  summary: Sliding mode observer gain for back-emf 0.9 (default) | scalar
+  group: Observer Parameters
+- name: Current observer gain
+  summary: Sliding mode observer gain for current 0.50881 (default) | scalar
+  group: Observer Parameters
+- name: Filter cut-off frequency (Hz)
+  summary: Cut-off frequency of internal filter 1200 (default) | scalar
+  group: Observer Parameters
+- name: Position unit
+  summary: Unit of position output Radians (default) | Degrees | Per unit
+  group: Datatypes
+- name: Position data type
+  summary: Data type of position output single (default) | double | fixed point
+  group: Datatypes
+- name: Speed unit
+  summary: Unit of speed output RPM (default) | Degrees/sec | Radians/sec | Per unit
+  group: Datatypes
+- name: Speed data type
+  summary: Data type of speed output single (default) | double | fixed point
+  group: Datatypes
+```
 
 ### **Input units** — Unit of block inputs `SI unit` (default) | `Per-unit`
 
@@ -152,7 +230,6 @@ Unit of the speed output.
 ### **Speed data type** — Data type of speed output `single` (default) | `double` | `fixed point`
 
 Data type of the speed output.
-
 ## Libraries
 
 Motor Control Blockset / Sensorless Estimators

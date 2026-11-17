@@ -14,6 +14,15 @@ language: en
 # Predict
 
 ## Ports
+```yaml
+ports:
+- name: input
+  summary: Image, feature, sequence, or time series data numeric array
+  direction: input
+- name: output
+  summary: Predicted scores, responses, or activations numeric array
+  direction: output
+```
 
 ### Input
 
@@ -81,8 +90,61 @@ For a single time-step containing 2-D image data, activations is a
 array, where *n* is the number of sequences, *h*,
 *w*, and *c* are the height, width, and the number
 of channels of the images, respectively.
-
 ## Parameters
+```yaml
+parameters:
+- name: Network
+  summary: Source for trained network Network from MAT file (default) | Network from MATLAB function
+  group: ''
+  block_parameter: Network
+  type: character vector, string
+  values: '''Network from MAT file'' | ''Network from MATLAB function'''
+  default: '''Network from MAT file'''
+- name: File path
+  summary: MAT file containing trained network untitled.mat (default) | MAT file path or name
+  group: ''
+  block_parameter: NetworkFilePath
+  type: character vector, string
+  values: MAT file path or name
+  default: '''untitled.mat'''
+- name: MATLAB function
+  summary: MATLAB function name squeezenet (default) | MATLAB function name
+  group: ''
+  block_parameter: NetworkFunction
+  type: character vector, string
+  values: MATLAB function name
+  default: '''squeezenet'''
+- name: Mini-batch size
+  summary: Size of mini-batches 128 (default) | positive integer
+  group: ''
+  block_parameter: MiniBatchSize
+  type: character vector, string
+  values: positive integer
+  default: '''128'''
+- name: Predictions
+  summary: Output predicted scores or responses on (default) | off
+  group: ''
+  block_parameter: Predictions
+  type: character vector, string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Input data formats
+  summary: Input data format of dlnetwork character vector | string
+  group: ''
+  block_parameter: InputDataFormats
+  type: character vector, string
+  values: 'For a network with one or more inputs, specify text in the form of: "{''inputlayerName1'', ''SSC''; ''inputlayerName2'',
+    ''SSCB''; ...}". For a network with no input layer and multiple input ports, specify text in the form of: "{''inputportName1/inport1,
+    ''SSC''; ''inputportName2/inport2, ''SSCB''; ...}".'
+  default: Data format that the network expects. For more information, see Deep Learning Data Formats.
+- name: Activations
+  summary: Output network activations for a specific layer layers of the network
+  group: ''
+  block_parameter: Activations
+  type: character vector, string
+  values: character vector in the form of '{'layerName1',layerName2',...}'
+  default: ''''''
+```
 
 ### **Network** — Source for trained network `Network from MAT file` (default) | `Network from MATLAB function`
 
@@ -247,7 +309,6 @@ output port of the Predict block.
 | **Type:** character vector, string |
 | **Values:** character vector in the form of `'{'layerName1',layerName2',...}'` |
 | **Default:** `''` |
-
 ## Libraries
 
 Deep Learning Toolbox / Deep Neural Networks

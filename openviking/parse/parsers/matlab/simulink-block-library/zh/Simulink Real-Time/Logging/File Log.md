@@ -15,14 +15,28 @@ chinese_source: worker-translation
 # File Log
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 文件日志的信号数据 标量 | 向量 | 矩阵 | 数组 | 总线 | 非虚拟总线
+  direction: input
+```
 
 ### 输入
 
 ### **S** — 文件日志的信号数据 标量 | 向量 | 矩阵 | 数组 | 总线 | 非虚拟总线
 
 为文件日志提供信号数据输入。
-
 ## 参数
+```yaml
+parameters:
+- name: Decimation
+  summary: 对文件日志数据应用抽取 1（默认）| 整数
+  group: ''
+- name: Input Processing
+  summary: 选择文件日志数据的处理模式 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: ''
+```
 
 ### **Decimation** — 对文件日志数据应用抽取 `1`（默认）| 整数
 
@@ -51,7 +65,6 @@ decimation
 ```
 inputProcessing
 ```
-
 ## 所属库
 
 Simulink Real-Time / Logging

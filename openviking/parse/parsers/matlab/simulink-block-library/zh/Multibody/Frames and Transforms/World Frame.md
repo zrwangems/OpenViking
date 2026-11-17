@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # World Frame
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 世界坐标系坐标系
+  direction: unspecified
+```
 
 ### Frame
 
 ### **W** — 世界坐标系坐标系
 
 由该模块表示的世界坐标系。连接到另一个坐标系以将该坐标系的位置和方向固定到世界坐标系。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 在 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Multibody / Frames and Transforms

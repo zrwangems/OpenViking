@@ -15,15 +15,22 @@ chinese_source: worker-translation
 # Within Implies
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: External reset
+  summary: 指定模块是否可以被复位 off（默认）| on
+  group: ''
+```
 
 ### **External reset** — 指定模块是否可以被复位 off（默认）| on
 
 指定 `Obs` 的模块观测是否可以通过外部布尔复位信号进行复位。
-
 ## 所属库
 
 Simulink Design Verifier / Temporal Operators

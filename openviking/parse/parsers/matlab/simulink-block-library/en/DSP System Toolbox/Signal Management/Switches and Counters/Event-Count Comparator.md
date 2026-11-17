@@ -14,6 +14,21 @@ language: en
 # Event-Count Comparator
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data input scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Int
+  summary: Interval enable signal scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Out
+  summary: Detect required number of nonzero inputs true or 1 | false or 0
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -48,8 +63,13 @@ nonzero inputs over time equals or exceeds the value you specify in the
 **Event threshold** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Event threshold
+  summary: Event threshold 10 (default) | nonnegative integer
+  group: ''
+```
 
 ### **Event threshold** — Event threshold `10` (default) | nonnegative integer
 
@@ -59,7 +79,6 @@ equals or exceeds the value you specify in this parameter, the block returns
 a logical `1`.
 
 **Tunable:** Yes
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Switches and Counters

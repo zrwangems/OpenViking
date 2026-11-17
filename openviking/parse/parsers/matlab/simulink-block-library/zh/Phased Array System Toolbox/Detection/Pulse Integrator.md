@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Pulse Integrator
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 脉冲输入数据矩阵
+  direction: input
+  data_types: double
+- name: ∑x
+  summary: 积分脉冲列向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,19 @@ chinese_source: worker-translation
 积分脉冲，返回为 *N*×1 列向量，其中 *N* 是输入 `x` 的行数。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Integration method
+  summary: 积分方法 Coherent（默认）| Noncoherent
+  group: ''
+- name: Number of pulses to integrate
+  summary: 要积分的脉冲数 10（默认）
+  group: ''
+- name: Integration overlap (in pulses)
+  summary: 积分重叠 0（默认）
+  group: ''
+```
 
 ### **Integration method** — 积分方法 `Coherent`（默认）| `Noncoherent`
 
@@ -44,7 +66,6 @@ chinese_source: worker-translation
 ### **Integration overlap (in pulses)** — 积分重叠 `0`（默认）
 
 将连续积分中重叠脉冲的数量指定为整数。此数值必须小于 **Number of pulses to integrate** 中指定的值。
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

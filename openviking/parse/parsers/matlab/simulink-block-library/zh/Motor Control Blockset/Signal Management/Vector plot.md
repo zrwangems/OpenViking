@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Vector plot
 
 ## 端口
+```yaml
+ports:
+- name: Vabc
+  summary: 三相电压矢量
+  direction: input
+  data_types: single | double
+- name: Iabc
+  summary: 三相电流矢量
+  direction: input
+  data_types: single | double
+- name: Theta
+  summary: 变换角度标量
+  direction: input
+  data_types: single | double
+- name: Vdq
+  summary: '*dq* 参考坐标系中的电压矢量'
+  direction: input
+  data_types: single | double
+- name: Idq
+  summary: '*dq* 参考坐标系中的电流矢量'
+  direction: input
+  data_types: single | double
+- name: Magnitude
+  summary: 矢量幅值矢量
+  direction: input
+  data_types: single | double
+- name: Angle
+  summary: 矢量角度矢量
+  direction: input
+  data_types: single | double
+```
 
 ### 输入
 
@@ -106,8 +137,28 @@ chinese_source: worker-translation
 要启用此端口，请将 **Select input types** 设置为 `Mag Angle`。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Select input types
+  summary: 输入端口类型 Vabc Iabc Theta（默认）| Vdq Idq | Mag Angle
+  group: ''
+- name: Select reference frame
+  summary: 矢量参考坐标系 Rotating Reference Frame（默认）| Stationary Reference Frame
+  group: ''
+- name: Alpha (phase-a) axis alignment
+  summary: '*dq* 参考坐标系对齐 D-axis（默认）| Q-axis'
+  group: ''
+- name: Theta units
+  summary: Theta 输入的单位 Radians（默认）| Degrees | Per-unit
+  group: ''
+- name: Angle units
+  summary: Angle 输入的单位 Radians（默认）| Degrees | Per-unit
+  group: ''
+- name: Open plot at simulation start
+  summary: 在仿真开始时打开矢量图 on（默认）| off
+  group: ''
+```
 
 ### **Select input types** — 输入端口类型 `Vabc Iabc Theta`（默认）| `Vdq Idq` | `Mag Angle`
 
@@ -183,7 +234,6 @@ frame** 设置为 `Rotating Reference Frame`。
 - （清除数据历史记录）— 点击以清除矢量追踪历史记录。
 - （插入图例）— 点击以插入或移除描述矢量的图例。您可以手动更改默认图例描述。
 - （自动缩放）— 点击以打开或关闭自动缩放功能。
-
 ## 所属库
 
 Motor Control Blockset / Signal Management

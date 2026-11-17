@@ -14,6 +14,15 @@ language: en
 # Cauer Thermal Model
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: First surface of the semiconductor individual layer thermal
+  direction: conserving
+- name: B
+  summary: Second surface of the semiconductor last layer thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,25 @@ individual layer of the semiconductor.
 
 Thermal conserving port associated with the second surface of the last
 layer of the semiconductor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterize Cauer model using Foster coefficient data
+  summary: Parameterize Cauer model using Foster coefficient data Off (default) | On
+  group: ''
+- name: Thermal resistance data
+  summary: Thermal resistances 1e-3 * [2.6468, 3.8701, 1.2007, .8824] K/W (default)
+  group: ''
+- name: Thermal time constant data
+  summary: Thermal time constants [.0086, .054, .3624, 1.651] s (default)
+  group: ''
+- name: Thermal resistance data (Foster)
+  summary: Thermal resistances parameterized from Foster data [.0016, .0043, .0013, .0014] K/W (default)
+  group: ''
+- name: Thermal time constant data (Foster)
+  summary: Thermal time constants parameterized from Foster data [.0068, .064, .32, 2] s (default)
+  group: ''
+```
 
 ### **Parameterize Cauer model using Foster coefficient data** — Parameterize Cauer model using Foster coefficient data `Off` (default) | `On`
 
@@ -71,7 +97,6 @@ model.
 
 To enable this parameter, select the **Parameterize Cauer
 model using Foster coefficient data** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Thermal

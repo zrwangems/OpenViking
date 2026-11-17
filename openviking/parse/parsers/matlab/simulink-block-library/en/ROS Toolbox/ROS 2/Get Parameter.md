@@ -14,6 +14,16 @@ language: en
 # Get Parameter
 
 ## Ports
+```yaml
+ports:
+- name: Value
+  summary: Parameter value scalar | array
+  direction: output
+  data_types: double | int64 | Boolean | uint8[]
+- name: Length
+  summary: Length of array parameter scalar
+  direction: output
+```
 
 ### Output
 
@@ -41,8 +51,25 @@ returns an error due to its incompatible character type.
 To enable this port, set the **Data type** parameter to
 `uint8[]`, `double[]` ,
 `int64[]` or `boolean[]`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Name
+  summary: Parameter name mynamespace.param (default) | string
+  group: ''
+- name: Data type
+  summary: Data type of parameter double (default) | int64 | boolean | uint8[] | double[] | int64[] | boolean[]
+  group: ''
+- name: Maximum length
+  summary: Maximum length of array 16 (default) | numeric scalar
+  group: ''
+- name: Initial value
+  summary: Default parameter value output 0.0 (default) | numeric scalar | vector
+  group: ''
+- name: Sample time
+  summary: Interval between outputs -1 (default) | numeric scalar
+  group: ''
+```
 
 ### **Name** — Parameter name `mynamespace.param` (default) | string
 
@@ -92,7 +119,6 @@ the model. Otherwise, the block outputs a new blank message at each interval of
 `Sample time`.
 
 For more information, see Specify Sample Time (Simulink).
-
 ## Libraries
 
 ROS Toolbox / ROS 2

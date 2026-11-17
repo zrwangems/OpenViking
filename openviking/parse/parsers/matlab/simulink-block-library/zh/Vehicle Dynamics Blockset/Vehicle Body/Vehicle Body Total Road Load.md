@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Vehicle Body Total Road Load
 
 ## 端口
+```yaml
+ports:
+- name: xdot
+  summary: 车辆纵向速度 scalar
+  direction: input
+- name: xddot
+  summary: 车辆纵向加速度 scalar
+  direction: input
+- name: PwrTot
+  summary: 牵引输入功率 scalar
+  direction: input
+- name: ForceTot
+  summary: 牵引输入力 scalar
+  direction: input
+- name: Grade
+  summary: 道路坡度角 scalar
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: xdot
+  summary: 车辆纵向速度 scalar
+  direction: output
+- name: ForceTot
+  summary: 牵引输入力 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -120,8 +147,34 @@ chinese_source: worker-translation
 
 要启用此端口，对于 **Input Mode**
 参数，选择 `Kinematic`。
-
 ## 参数
+```yaml
+parameters:
+- name: Input Mode
+  summary: 指定输入模式 Kinematic（默认）| Force | Power
+  group: ''
+- name: Mass
+  summary: 车身质量 1200（默认）| scalar
+  group: ''
+- name: Rolling resistance coefficient, a
+  summary: 滚动 196（默认）| scalar
+  group: ''
+- name: Rolling and driveline resistance coefficient, b
+  summary: 滚动和传动系 2.232（默认）| scalar
+  group: ''
+- name: Aerodynamic drag coefficient, c
+  summary: 阻力 0.389（默认）| scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: 重力 9.81（默认）| scalar
+  group: ''
+- name: Initial position, x_o
+  summary: 位置 0（默认）| scalar
+  group: ''
+- name: Initial velocity, xdot_o
+  summary: 速度 0（默认）| scalar
+  group: ''
+```
 
 ### **Input Mode** — 指定输入模式 `Kinematic`（默认）| `Force` | `Power`
 
@@ -183,7 +236,6 @@ N。
 
 车辆相对于地面的纵向初始速度，单位为
 m/s。
-
 ## 所属库
 
 Powertrain Blockset / Vehicle Dynamics Vehicle Dynamics Blockset / Vehicle Body

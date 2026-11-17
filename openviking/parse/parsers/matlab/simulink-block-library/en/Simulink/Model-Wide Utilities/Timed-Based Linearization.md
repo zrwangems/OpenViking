@@ -14,10 +14,29 @@ language: en
 # Timed-Based Linearization
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Linearization time
+  summary: Time at which to generate a linear model 1 (default) | scalar | vector
+  group: ''
+  block_parameter: LinearizationTime
+  type: character vector
+  values: scalar | vector
+  default: '''1'''
+- name: Sample time (of linearized model)
+  summary: Sample time 0 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+```
 
 ### **Linearization time** — Time at which to generate a linear model `1` (default) | scalar | vector
 
@@ -50,7 +69,6 @@ positive sample time.
 | **Type:** character vector |
 | **Values:** scalar | vector |
 | **Default:** `'0'` |
-
 ## Libraries
 
 Simulink / Model-Wide Utilities

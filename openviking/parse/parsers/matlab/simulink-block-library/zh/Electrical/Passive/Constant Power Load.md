@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Constant Power Load
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,55 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与恒功率负载负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Load type
+  summary: 负载类型 DC（默认）| AC
+  group: 主
+- name: Power consumed
+  summary: 消耗功率 100 W（默认）| 标量
+  group: 主
+- name: Minimum supply voltage
+  summary: 最小直流电源电压 20 V（默认）| 标量
+  group: 主
+- name: Reverse conductance
+  summary: 反向电导 1e-6 S（默认）| 标量
+  group: 主
+- name: Transition voltage width
+  summary: 过渡电压宽度 1e-3 V（默认）| 标量
+  group: 主
+- name: Active power consumed
+  summary: 消耗有功功率 500 W（默认）| 标量
+  group: 主
+- name: Reactive power consumed
+  summary: 消耗无功功率 0 V*A（默认）| 标量
+  group: 主
+- name: Rated frequency
+  summary: 额定频率 60 Hz（默认）| 标量
+  group: 主
+- name: Minimum supply voltage (RMS)
+  summary: 最小交流电源电压 200 V（默认）| 标量
+  group: 主
+- name: Voltage time constant
+  summary: 电压动态时间常数 0.01 s（默认）| 正标量
+  group: 主
+- name: Initial supply voltage (RMS)
+  summary: 初始端子电压 300 V（默认）| 正标量
+  group: 主
+- name: Initial supply voltage angle
+  summary: 初始端子电压角度 0 deg（默认）| 标量
+  group: 主
+- name: Open circuit fault
+  summary: 添加开路故障的选项 Add fault（默认）
+  group: 故障
+- name: Open-circuit conductance
+  summary: 开路电导 1e-4 S（默认）| 标量
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+```
 
 ### 主
 
@@ -153,7 +209,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Trigger Type** 设置为 `Timed`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

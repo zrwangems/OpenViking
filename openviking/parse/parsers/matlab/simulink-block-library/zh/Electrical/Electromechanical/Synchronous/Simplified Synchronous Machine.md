@@ -15,6 +15,51 @@ chinese_source: worker-translation
 # Simplified Synchronous Machine
 
 ## 端口
+```yaml
+ports:
+- name: E_si
+  summary: 内部生成电压（相电压）幅值，物理信号向量
+  direction: input
+- name: E_pu
+  summary: 内部生成电压幅值，标幺值，物理信号向量
+  direction: input
+- name: o
+  summary: 电机标幺值测量值，物理信号向量
+  direction: output
+- name: R
+  summary: 电机转子机械旋转
+  direction: output
+- name: C
+  summary: 电机机壳机械旋转
+  direction: output
+- name: '~'
+  summary: 定子绕组电气
+  direction: output
+- name: n
+  summary: 中性相电气
+  direction: output
+- name: a
+  summary: '*a* 相电气'
+  direction: output
+- name: b
+  summary: '*b* 相电气'
+  direction: output
+- name: c
+  summary: '*c* 相电气'
+  direction: output
+- name: HA
+  summary: '*a* 相端子热端口，热'
+  direction: output
+- name: HB
+  summary: '*b* 相端子热端口，热'
+  direction: output
+- name: HC
+  summary: '*c* 相端子热端口，热'
+  direction: output
+- name: HR
+  summary: 转子热端口，热
+  direction: output
+```
 
 ### 输入
 
@@ -130,8 +175,83 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 启用热端口的选项 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: 电气连接 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主要
+- name: Rated apparent power
+  summary: 额定视在功率 555e6 V*A（默认）| 标量
+  group: 主要
+- name: Rated voltage
+  summary: 额定线电压均方根值 24e3 V（默认）| 标量
+  group: 主要
+- name: Rated electrical frequency
+  summary: 标称电气频率 60 Hz（默认）| 标量
+  group: 主要
+- name: Number of pole pairs
+  summary: 极对数 2（默认）| 标量
+  group: 主要
+- name: Parameterization unit
+  summary: 模块参数化 SI（默认）| Per unit
+  group: 主要
+- name: Internal resistance (pu)
+  summary: 内部标幺值电阻 0.05（默认）| 标量
+  group: 主要
+- name: Internal inductance (pu)
+  summary: 内部标幺值电感 0.3（默认）| 标量
+  group: 主要
+- name: Internal resistance
+  summary: 内部电阻 0.0519 Ohm（默认）| 标量
+  group: 主要
+- name: Internal inductance
+  summary: 内部电感 8.2589e-04 H（默认）| 标量
+  group: 主要
+- name: Initialization option
+  summary: 初始化选项 Set real power, reactive power, terminal voltage, and terminal phase（默认）| Set targets for rotor angle and
+    Park's transform variables | Set targets for load flow variables
+  group: 初始条件
+- name: Source type
+  summary: 电压源模型 Swing bus（默认）| PV bus | PQ bus
+  group: 初始条件
+- name: Terminal voltage magnitude
+  summary: 端子电压幅值 24e3 V（默认）
+  group: 初始条件
+- name: Terminal voltage angle
+  summary: 端子电压角度 0 deg（默认）
+  group: 初始条件
+- name: Active power generated
+  summary: 生成的有功功率 500e6 V*A（默认）
+  group: 初始条件
+- name: Reactive power generated
+  summary: 生成的无功功率 0 V*A（默认）
+  group: 初始条件
+- name: Minimum terminal voltage magnitude (pu)
+  summary: 最小端子电压幅值 0.95（默认）
+  group: 初始条件
+- name: Phase search range at terminals
+  summary: 端子处的相位搜索范围 [-inf, inf] deg（默认）
+  group: 初始条件
+- name: Parasitic conductance to electrical reference
+  summary: 到电气参考的寄生电导 1e-6 S（默认）
+  group: 初始条件
+- name: Measurement temperature
+  summary: 额定温度 298.15 k（默认）| 实数标量
+  group: 热
+- name: Resistance temperature coefficient
+  summary: 温度系数 3.93e-3 1/K（默认）| 正标量
+  group: 热
+- name: Thermal mass for each stator winding
+  summary: 绕组热质量 100 J/K（默认）| 正标量
+  group: 热
+- name: Rotor thermal mass
+  summary: 转子热质量 200 J/K（默认）| 正标量
+  group: 热
+```
 
 ### **Modeling option** — 启用热端口的选项 `No thermal port`（默认）| `Show thermal port`
 
@@ -301,7 +421,6 @@ chinese_source: worker-translation
 ### **Rotor thermal mass** — 转子热质量 `200` `J/K`（默认）| 正标量
 
 转子的热质量。热质量是将转子温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Synchronous

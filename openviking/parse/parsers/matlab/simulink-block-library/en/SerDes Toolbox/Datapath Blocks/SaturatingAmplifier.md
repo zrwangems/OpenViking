@@ -14,6 +14,17 @@ language: en
 # SaturatingAmplifier
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input baseband signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Clipped output voltage scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -33,8 +44,37 @@ output is also scalar. If the input signal is an impulse response vector signal,
 output is also a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Amplifier operating mode On (default) | Off
+  group: ''
+- name: Specification
+  summary: Input specification for limiting amplifier output 'Limit and Linear Gain' (default) | 'VinVout'
+  group: ''
+- name: Limit
+  summary: Clipping voltage for the limiting amplifier 1.2 (default) | real positive scalar
+  group: ''
+- name: LinearGain
+  summary: Amplifier gain in the linear region 1 (default) | real positive scalar
+  group: ''
+- name: VinVout
+  summary: Input and corresponding output voltage responses *N*×2 matrix | *N*×2×*M* matrix
+  group: ''
+- name: Slice select
+  summary: Select which corner of 3D GPZ matrix to use 0 (default) | nonegative scalar integer
+  group: ''
+- name: Visualize Response
+  summary: Plot input vs output voltage response button
+  group: ''
+- name: Mode
+  summary: Include Mode parameter in IBIS-AMI model on (default) | off
+  group: ''
+- name: Slice select
+  summary: Include Slice select parameter in IBIS-AMI model on (default) | off
+  group: ''
+```
 
 ### **Mode** — Amplifier operating mode `On` (default) | `Off`
 
@@ -176,7 +216,6 @@ Select to include **Slice select** as a parameter in the IBIS-AMI
 file. If you deselect **Slice select**, it is removed from the AMI
 files, effectively hard-coding **Slice select** to its current
 value.
-
 ## Libraries
 
 SerDes Toolbox / Datapath Blocks

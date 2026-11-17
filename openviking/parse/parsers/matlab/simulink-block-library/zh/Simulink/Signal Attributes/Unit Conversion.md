@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Unit Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,17 @@ chinese_source: worker-translation
 具有转换后单位的输出信号，其维度与输入信号相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Inherit via back propagation'
+  group: ''
+  block_parameter: OutputType
+  type: 字符向量
+  values: '''Inherit via internal rule'' | ''Inherit via back propagation'''
+  default: '''Inherit via internal rule'''
+```
 
 ### **Output data type** — 输出数据类型 `Inherit: Inherit via internal rule`（默认）| `Inherit: Inherit via back propagation`
 
@@ -50,7 +70,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'Inherit via internal rule' | 'Inherit via back propagation'` |
 | **默认值：** `'Inherit via internal rule'` |
-
 ## 所属库
 
 Simulink / Signal Attributes

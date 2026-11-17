@@ -14,6 +14,40 @@ language: en
 # Induction Machine Direct Torque Control with Space Vector Modulator
 
 ## Ports
+```yaml
+ports:
+- name: FluxRef
+  summary: Flux scalar
+  direction: input
+  data_types: single | double
+- name: TqRef
+  summary: Torque scalar
+  direction: input
+  data_types: single | double
+- name: vabc
+  summary: Voltage vector
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: Current vector
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: DC-link voltage signal scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Controller reset scalar
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Gate pulses vector | 0 or 1
+  direction: output
+  data_types: single | double
+- name: ModWave
+  summary: Modulation wave vector
+  direction: output
+```
 
 ### Input
 
@@ -66,8 +100,49 @@ time.
 Modulation wave you deploy to the hardware if you are generating code for a platform
 with PWM-capable hardware. Otherwise, this data is only for your
 reference.
-
 ## Parameters
+```yaml
+parameters:
+- name: Stator resistance (Ohm)
+  summary: Resistance 0.25 (default) | positive scalar
+  group: General
+- name: Number of pole pairs
+  summary: Pole number 1 (default) | positive integer
+  group: General
+- name: Inverter dc-link voltage threshold (V)
+  summary: Voltage 300 (default) | positive scalar
+  group: General
+- name: Fundamental sample time (s)
+  summary: SVM sample time 5e-6 (default) | positive scalar less than the control sample time
+  group: General
+- name: Control sample time (s)
+  summary: PI sample time 5e-5 (default) | positive scalar greater than the fundamental sample time
+  group: General
+- name: Switching frequency (Hz)
+  summary: Switching rate 1000 (default) | positive scalar
+  group: General
+- name: Flux controller proportional gain
+  summary: Flux PI proportional gain 150 (default) | positive scalar
+  group: Control Parameters
+- name: Flux controller integral gain
+  summary: Flux PI integral gain 3000 (default) | positive scalar
+  group: Control Parameters
+- name: Flux controller anti-windup gain
+  summary: Flux PI anti-windup gain 1 (default) | positive scalar
+  group: Control Parameters
+- name: Torque controller proportional gain
+  summary: Torque PI proportional gain 1 (default) | positive scalar
+  group: Control Parameters
+- name: Torque controller integral gain
+  summary: Torque PI integral gain 50 (default) | positive scalar
+  group: Control Parameters
+- name: Torque controller anti-windup gain
+  summary: Torque PI anti-windup gain 1 (default) | positive scalar
+  group: Control Parameters
+- name: Axis prioritization
+  summary: Axis prioritization for voltage limiter Q-axis (default) | D-axis | D-Q equivalence
+  group: Control Parameters
+```
 
 ### General
 
@@ -128,7 +203,6 @@ Anti-windup gain for the torque controller.
 
 Prioritize or maintain ratio between *d*- and
 *q*-axes when the block limits voltage.
-
 ## Libraries
 
 Simscape / Electrical / Control / Induction Machine Control

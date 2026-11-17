@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Aerodynamic Forces and Moments
 
 ## 端口
+```yaml
+ports:
+- name: Coef
+  summary: 气动系数 六元素向量
+  direction: input
+  data_types: double
+- name: qbar
+  summary: 动压 标量 | 三元素向量
+  direction: input
+  data_types: double
+- name: CG
+  summary: 重心 三元素向量
+  direction: input
+  data_types: double
+- name: CP
+  summary: 压心 三元素向量
+  direction: input
+  data_types: double
+- name: Vb
+  summary: 体轴系中的速度 三元素向量
+  direction: input
+  data_types: double
+- name: F
+  summary: 气动力 三元素向量
+  direction: output
+  data_types: double
+- name: M
+  summary: 气动力矩 三元素向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -70,8 +101,52 @@ chinese_source: worker-translation
 气动力矩（在所选输出轴系中），以三元素向量形式返回，作用于重心处，沿 *x*、*y* 和 *z* 轴。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input axes
+  summary: 输入系数的坐标系 Body（默认）| Stability | Wind
+  group: ''
+  block_parameter: inputAxes
+  type: 字符向量
+  values: '''Body'' | ''Stability'' | ''Wind'''
+  default: '''Body'''
+- name: Force axes
+  summary: 气动力的坐标系 Body（默认）| Stability | Wind
+  group: ''
+  block_parameter: outputForcesAxes
+  type: 字符向量
+  values: '''Body'' | ''Stability'' | ''Wind'''
+  default: '''Body'''
+- name: Moment axes
+  summary: 气动力矩的坐标系 Body（默认）| Stability | Wind
+  group: ''
+  block_parameter: outputMomentAxes
+  type: 字符向量
+  values: '''Body'' | ''Stability'' | ''Wind'''
+  default: '''Body'''
+- name: Reference area
+  summary: 参考面积 1（默认）| 任意双精度值
+  group: ''
+  block_parameter: S
+  type: 字符向量
+  values: 任意双精度值
+  default: '''1'''
+- name: Reference span
+  summary: 参考展长 1（默认）| 任意双精度值
+  group: ''
+  block_parameter: b
+  type: 字符向量
+  values: 任意双精度值
+  default: '''1'''
+- name: Reference length
+  summary: 参考长度 1（默认）| 任意双精度值
+  group: ''
+  block_parameter: cbar
+  type: 字符向量
+  values: 任意双精度值
+  default: '''1'''
+```
 
 ### **Input axes** — 输入系数的坐标系 `Body`（默认）| `Stability` | `Wind`
 
@@ -162,7 +237,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：任意双精度值 |
 | **默认值**：`'1'` |
-
 ## 所属库
 
 Aerospace Blockset / Aerodynamics

@@ -14,6 +14,45 @@ language: en
 # Symbol Demodulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Data symbols real-valued scalar | complex-valued scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: Valid input data indication scalar
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: modSel
+  summary: Modulation selection 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+  direction: input
+  data_types: single | double | fixdt(0,3,0)
+- name: nVar
+  summary: Noise variance real-valued positive scalar
+  direction: input
+  data_types: single | double | uint8 | uint16 | unsigned fixed point
+- name: data
+  summary: Demodulated LLR values or data bits scalar | real-valued column vector
+  direction: output
+  data_types: single | double | Boolean | signed fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: valid
+  summary: Valid output data indication scalar
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Indicates block is ready scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -229,8 +268,45 @@ To enable this port, set the **Output type** parameter to
 `Scalar`.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation source
+  summary: Source for modulation type Property (default) | Input port
+  group: ''
+- name: Modulation
+  summary: Modulation type BPSK (default) | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM | 256-QAM
+  group: ''
+- name: Maximum modulation
+  summary: Maximum modulation type 256-QAM (default) | BPSK | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM
+  group: ''
+- name: Constellation ordering
+  summary: Constellation ordering Default (default) | User-defined
+  group: ''
+- name: Constellation mapping
+  summary: Constellation mapping [2, 3, 1, 0, 6, 7, 5, 4, 14, 15, 13, 12, 10, 11, 9, 8] (default) | unique integer-valued
+    gray-coded row vector
+  group: ''
+- name: Decision type
+  summary: Type of demapping Approximate log-likelihood ratio (default) | Hard
+  group: ''
+- name: Phase offset
+  summary: Phase offset for constellation points pi/2 (default) | pi/4 | pi/8 | pi/16 | pi/32 | 0 | -pi/32 | -pi/16 | -pi/8
+    | -pi/4 | -pi/2
+  group: ''
+- name: Output type
+  summary: Type of output Vector (default) | Scalar
+  group: ''
+- name: Normalization method
+  summary: Scale signal constellation Unit average power (default) | Custom
+  group: ''
+- name: Minimum distance between symbols
+  summary: Minimum distance between symbols 2 (default) | values in the range from 1/32 to 2
+  group: ''
+- name: Enable noise variance input port
+  summary: Option to enable noise variance port off (default) | on
+  group: ''
+```
 
 ### **Modulation source** — Source for modulation type `Property` (default) | `Input port`
 
@@ -402,7 +478,6 @@ parameter to `Custom`.
 ### **Enable noise variance input port** — Option to enable noise variance port `off` (default) | `on`
 
 Select this parameter to enable the noise variance input port.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

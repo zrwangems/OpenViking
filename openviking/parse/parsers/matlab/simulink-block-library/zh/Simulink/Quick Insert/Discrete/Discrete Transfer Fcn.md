@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Discrete Transfer Fcn
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Num
+  summary: 分子系数 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Den
+  summary: 分母系数 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: External reset
+  summary: 外部复位信号 标量
+  direction: input
+  data_types: single | double | Boolean | int8 | int16 | int32 | fixed point
+- name: x0
+  summary: 初始状态 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### 输入
 
@@ -88,8 +115,210 @@ chinese_source: worker-translation
 当您将 **Sample time** 设置为 `-1` 时，输出信号的采样时间与输入信号 **u** 的采样时间相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Numerator Source
+  summary: 分子系数来源 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: NumeratorSource
+  type: 字符向量
+  values: '''Dialog'' | ''Input port'''
+- name: Numerator Value
+  summary: 分子系数 [1]（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: Numerator
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵
+- name: Denominator Source
+  summary: 分母系数来源 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: DenominatorSource
+  type: 字符向量
+  values: '''Dialog'' | ''Input port'''
+- name: Denominator Value
+  summary: 分母系数 [1 0.5]（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: Denominator
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵
+- name: Initial states Source
+  summary: 初始状态来源 Dialog（默认）| Input port
+  group: 主要
+  block_parameter: InitialStatesSource
+  type: 字符向量
+  values: '''Dialog'' | ''Input port'''
+- name: Initial states Value
+  summary: 初始滤波器状态 0（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: InitialStates
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵
+- name: External reset
+  summary: 外部状态复位 None（默认）| Rising | Falling | Either | Level | Level hold
+  group: 主要
+  block_parameter: ExternalReset
+  type: 字符向量
+  values: '''None'' | ''Rising'' | ''Falling'' | ''Either'' | ''Level'' | ''Level hold'''
+- name: Input processing
+  summary: 基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: 主要
+  block_parameter: InputProcessing
+  type: 字符向量
+  values: '''Elements as channels (sample based)'' | ''Columns as channels (frame based)'''
+- name: Optimize by skipping divide by leading denominator coefficient (a0)
+  summary: 跳过除以 a0 off（默认）| on
+  group: 主要
+  block_parameter: a0EqualsOne
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮
+  group: 主要
+- name: State
+  summary: '状态数据类型 Inherit: Same as input（默认）| int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: StateDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Same as input'' | ''int8'' | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+- name: Numerator coefficients
+  summary: '分子系数数据类型 Inherit: Inherit via internal rule（默认）| int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) |
+    <data type expression>'
+  group: 数据类型
+  block_parameter: NumCoefDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''int8'' | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''<data type expression>'''
+- name: Numerator coefficient minimum
+  summary: 分子系数的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: NumCoefMin
+  type: 字符向量
+  values: 标量
+- name: Numerator coefficient maximum
+  summary: 分子系数的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: NumCoefMax
+  type: 字符向量
+  values: 标量
+- name: Numerator product output
+  summary: '分子乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16,0)
+    | <data type expression>'
+  group: 数据类型
+  block_parameter: NumProductDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''int8'' | ''int16'' | ''int32'' | ''int64''
+    | ''fixdt(1,16,0)'' | ''<data type expression>'''
+- name: Numerator accumulator
+  summary: 'Numerator accumulator 数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product
+    output | int8 | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: NumAccumDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''Inherit: Same as product output'' | ''int8''
+    | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Denominator coefficients
+  summary: '分母系数数据类型 Inherit: Inherit via internal rule（默认）| int8 | int16 | int32 | int64 | fixdt(1,16) | fixdt(1,16,0) |
+    <data type expression>'
+  group: 数据类型
+  block_parameter: DenCoefDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''int8'' | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Denominator coefficient minimum
+  summary: 分母系数的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: DenCoefMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Denominator coefficient maximum
+  summary: 分母系数的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: DenCoefMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Denominator product output
+  summary: '分母乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16,0)
+    | <data type expression>'
+  group: 数据类型
+  block_parameter: DenProductDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''int8'' | ''int16'' | ''int32'' | ''int64''
+    | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Denominator accumulator
+  summary: '分母累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | int8
+    | int16 | int32 | int64 | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: DenAccumDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''Inherit: Same as product output'' | ''int8''
+    | ''int16'' | ''int32'' | ''int64'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | int8 | int16 | int32 | int64 | fixdt(1,16)
+    | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Same as input'' | ''int8'' | ''int16'' | ''int32'' | ''int64''
+    | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output minimum
+  summary: 输出的最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Output maximum
+  summary: 输出的最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: State name
+  summary: 模块状态的唯一名称 ''（默认）| 字母数字字符串
+  group: State Attributes
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: 要求状态名称解析为信号对象 off（默认）| on
+  group: State Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -627,7 +856,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Discrete HDL Coder / Discrete HDL Coder / HDL Floating Point Operations

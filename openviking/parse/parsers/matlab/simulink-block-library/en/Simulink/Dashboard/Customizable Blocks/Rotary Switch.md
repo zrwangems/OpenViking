@@ -14,10 +14,111 @@ language: en
 # Rotary Switch
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Block parameter value to connect parameter value connection options
+  group: Parameters
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Label
+  summary: Position of label displaying name of connected element Hide (default) | Bottom | Top
+  group: Parameters
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Parameters
+- name: Enumerated Data Type
+  summary: Specify state values and labels using enumerated data type off (default) | on
+  group: Parameters
+  block_parameter: EnumeratedDataType
+  type: string or character array
+  values: '''on'' | ''off'''
+  default: ''''''
+- name: States
+  summary: Pairings of value with label scalar and character vector
+  group: Parameters
+  block_parameter: States
+  type: two element array of structures
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Design
+- name: Arc
+  summary: Arc length spanned by state labels 300 (default) | scalar
+  group: Design
+- name: Start Angle
+  summary: Angular location of State 1 120 (default) | scalar
+  group: Design
+- name: Label Radius
+  summary: Distance of labels from block center scalar
+  group: Design
+- name: Select State
+  summary: Management and configuration of states scalar and character vector
+  group: Design
+  block_parameter: States
+  type: two element array of structures
+- name: Value
+  summary: State value scalar
+  group: Design
+- name: Text
+  summary: State label text string | character array
+  group: Design
+- name: Width
+  summary: Handle image width scalar
+  group: Design
+- name: Height
+  summary: Handle image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain image aspect ratio on (default) | off
+  group: Design
+- name: Rotate Image
+  summary: Rotation of handle image 0 (default) | scalar
+  group: Design
+- name: Offset from Center
+  summary: Offset of handle image center from block center 0 (default) | scalar
+  group: Design
+- name: Use Background Color
+  summary: Option to specify solid block background color off (default) | on
+  group: Design
+- name: Color
+  summary: Block background color [r g b] vector
+  group: Design
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Design
+- name: Corner Radius
+  summary: Offset of outer edge of area with block background color from label radius scalar
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of left edge of foreground image from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of foreground image from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Foreground image width scalar
+  group: Design
+- name: Height
+  summary: Foreground image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain foreground image aspect ratio on (default) | off
+  group: Design
+```
 
 Use the Property Inspector and the Block Parameters dialog box
 to specify the values of the block parameters. To set the core parameters of the dashboard
@@ -502,7 +603,6 @@ Specify the height of the foreground image as a ratio of the block height.
 
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
-
 ## Libraries
 
 Simulink / Dashboard / Customizable Blocks

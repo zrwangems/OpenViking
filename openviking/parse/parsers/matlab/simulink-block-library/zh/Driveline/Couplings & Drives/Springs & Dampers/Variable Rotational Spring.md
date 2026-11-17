@@ -15,6 +15,9 @@ chinese_source: worker-translation
 # Variable Rotational Spring
 
 ## 端口
+```yaml
+ports: []
+```
 
 `K`
 :   表示可变弹簧刚度的物理信号输入端口。
@@ -24,12 +27,13 @@ chinese_source: worker-translation
 
 `R`
 :   旋转守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Minimum spring rate**
 :   弹簧刚度（刚度）允许的最小值。物理信号输入在低于指定值时饱和。该参数必须大于零。默认值为 `0.01`。默认单位为 `(N*m/rad)`。
-
 ## 所属库
 
 R2025b 中未记录。

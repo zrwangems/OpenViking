@@ -14,6 +14,18 @@ language: en
 # Jet Pump (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: S
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -30,8 +42,34 @@ port.
 ### **B** — Liquid port thermal liquid
 
 Thermal liquid conserving port associated with the mixed fluid outlet port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Nozzle exit area
+  summary: Nozzle exit area 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Nozzle exit to throat area ratio
+  summary: Nozzle outlet to throat area 0.25 (default) | positive scalar
+  group: ''
+- name: Diffuser inlet to outlet area ratio
+  summary: Diffuser geometry ratio 0.25 (default) | positive scalar
+  group: ''
+- name: Primary flow nozzle loss coefficient
+  summary: Primary flow friction loss coefficient 0.05 (default) | positive scalar
+  group: ''
+- name: Secondary flow entry loss coefficient
+  summary: Secondary flow friction loss coefficient 0.005 (default) | positive scalar
+  group: ''
+- name: Throat loss coefficient
+  summary: Throat friction loss coefficient 0.1 (default) | positive scalar
+  group: ''
+- name: Diffuser loss coefficient
+  summary: Diffuser friction loss coefficient 0.1 (default) | positive scalar
+  group: ''
+- name: Minimum allowable nozzle pressure
+  summary: Minimum pressure at nozzle outlet 1 Pa (default) | positive scalar
+  group: ''
+```
 
 ### **Nozzle exit area** — Nozzle exit area `1e-4` `m^2` (default) | positive scalar
 
@@ -70,7 +108,6 @@ to friction in the diffuser.
 Minimum allowed pressure in the jet pump. If the pressures at the nozzle exit fall
 below this value, the block simulates the effects of cavitation by restricting the fluid
 velocity to the velocity at the minimum nozzle pressure.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Pumps & Motors

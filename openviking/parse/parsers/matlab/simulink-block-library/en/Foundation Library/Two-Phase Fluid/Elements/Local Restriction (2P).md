@@ -14,6 +14,18 @@ language: en
 # Local Restriction (2P)
 
 ## Ports
+```yaml
+ports:
+- name: AR
+  summary: Restriction area control signal, m^2 physical signal
+  direction: input
+- name: A
+  summary: Inlet or outlet two-phase fluid
+  direction: conserving
+- name: B
+  summary: Inlet or outlet two-phase fluid
+  direction: conserving
+```
 
 ### Input
 
@@ -39,8 +51,36 @@ restriction. The block has no intrinsic directionality.
 
 Two-phase fluid conserving port associated with the inlet or outlet of the local
 restriction. The block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Restriction type
+  summary: Whether restriction area can change during simulation Variable (default) | Fixed
+  group: ''
+- name: Minimum restriction area
+  summary: Lower bound for restriction cross-sectional area 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Maximum restriction area
+  summary: Upper bound for restriction cross-sectional area 0.005 m^2 (default) | positive scalar
+  group: ''
+- name: Restriction area
+  summary: Area normal to flow path at restriction 1e-3 m^2 (default) | positive scalar
+  group: ''
+- name: Pressure loss model
+  summary: Whether to assume uniform fluid density for momentum balance calculation Bernoulli (default) | Control volume
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area normal to flow path at ports 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Ratio of actual mass flow rate to theoretical mass flow rate through restriction 0.64 (default) | unitless scalar
+    between 0 and 1
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio for switching between laminar and turbulent regimes 0.999 (default) | unitless scalar between 0
+    and 1
+  group: ''
+```
 
 ### **Restriction type** — Whether restriction area can change during simulation `Variable` (default) | `Fixed`
 
@@ -117,7 +157,6 @@ to switch from laminar to turbulent. The prevailing flow regime determines the e
 used in simulation. If the flow is laminar, the pressure drop across the restriction is
 linear with respect to the mass flow rate. If the flow is turbulent, the pressure drop
 across the restriction is quadratic with respect to the mass flow rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Charger
 
 ## 端口
+```yaml
+ports:
+- name: t
+  summary: 触发，无单位物理信号
+  direction: input
+- name: +
+  summary: 正极端子电气
+  direction: input
+- name: '-'
+  summary: 负极端子电气
+  direction: input
+```
 
 ### 输入
 
@@ -31,8 +43,22 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与充电器负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Constant charging current
+  summary: 恒定充电电流 5 A（默认）| 正标量
+  group: ''
+- name: Voltage threshold
+  summary: 恒定电流充电的电压阈值 12 V（默认）| 正标量
+  group: ''
+- name: Constant charging voltage
+  summary: 恒定充电电压 12 V（默认）| 正标量
+  group: ''
+- name: Current threshold
+  summary: 恒定电压充电的电流阈值 0.5 A（默认）| 正标量
+  group: ''
+```
 
 ### **Constant charging current** — 恒定充电电流 `5` `A`（默认）| 正标量
 
@@ -49,7 +75,6 @@ chinese_source: worker-translation
 ### **Current threshold** — 恒定电压充电的电流阈值 `0.5` `A`（默认）| 正标量
 
 模块停止对电池执行恒定电压充电的阈值。
-
 ## 所属库
 
 Simscape / Battery / Cyclers

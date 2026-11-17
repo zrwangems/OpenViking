@@ -14,6 +14,21 @@ language: en
 # OSTBC Combiner
 
 ## Ports
+```yaml
+ports:
+- name: Rx
+  summary: Received signal column vector | matrix | 3-D array
+  direction: input
+  data_types: single | double | fixed point
+- name: cEst
+  summary: Channel estimate matrix | 3-D array | 4-D array
+  direction: input
+  data_types: single | double | fixed point
+- name: Out
+  summary: Output data matrix | 3-D array
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -47,8 +62,46 @@ parameter.
 This port is unnamed on the block icon.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of transmit antennas
+  summary: Number of transmit antennas 2 (default) | 3 | 4
+  group: ''
+- name: Rate
+  summary: Symbol rate 3/4 (default) | 1/2
+  group: ''
+- name: Number of receive antennas
+  summary: Number of receive antennas 1 (default) | integer in range [1,8]
+  group: ''
+- name: Rounding mode
+  summary: Rounding mode for fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest
+    | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: Option to saturate on integer overflow off (default) | on
+  group: ''
+- name: Product Output
+  summary: 'Complex product in numerator for diversity combining Inherit: Inherit via internal rule (default) | Inherit: Same
+    as product output | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Accumulator
+  summary: 'Summation in numerator for diversity combining Inherit: Inherit via internal rule (default) | Inherit: Same as
+    product output | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Energy product output
+  summary: 'Complex product in denominator Inherit: Inherit via internal rule (default) | Inherit: Same as product output
+    | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Energy accumulator
+  summary: 'Summation in denominator for calculating total energy in MIMO channel Inherit: Inherit via internal rule (default)
+    | Inherit: Same as accumulator | Inherit: Same as energy product output | fixdt(1,16,0) | <data type expression>'
+  group: ''
+- name: Division output
+  summary: 'Normalized diversity combining by total energy in MIMO channel Inherit: Same as accumulator | fixdt(1,16,0) |
+    <data type expression>'
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -170,7 +223,6 @@ Normalized diversity combining by total energy in the MIMO channel,
 specified as `Inherit: Same as accumulator`,
 `fixdt(1,16,0)`, or a custom
 `<data type expression>`.
-
 ## Libraries
 
 Communications Toolbox / MIMO

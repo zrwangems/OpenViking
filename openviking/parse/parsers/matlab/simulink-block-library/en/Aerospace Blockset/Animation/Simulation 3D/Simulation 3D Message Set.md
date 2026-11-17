@@ -14,6 +14,12 @@ language: en
 # Simulation 3D Message Set
 
 ## Ports
+```yaml
+ports:
+- name: WriteMsg
+  summary: Data sent to scene scalar | array
+  direction: input
+```
 
 ### Input
 
@@ -21,8 +27,16 @@ language: en
 
 Data sent to the 3D visualization environment scene. In the Unreal Engine environment, you can configure the `Sim3DGet` class to
 receive the data from the Simulink model.
-
 ## Parameters
+```yaml
+parameters:
+- name: Signal name, SigName
+  summary: Message signal name mySignal (default)
+  group: ''
+- name: Sample time
+  summary: Sample time 0.02 (default) | -1 | scalar
+  group: ''
+```
 
 ### **Signal name, SigName** — Message signal name `mySignal` (default)
 
@@ -40,7 +54,6 @@ set to TrafficLight1.
 Sample time, in s. The graphics frame rate is the inverse of the sample time. If you
 set the sample time to `-1`, the block uses the sample time specified
 in the Simulation 3D Scene Configuration block.
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blockset / Animation / Simulation 3D Simulink 3D Animation / Simulation 3D / Utilities

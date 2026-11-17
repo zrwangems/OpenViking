@@ -14,6 +14,17 @@ language: en
 # Check Signal Attributes
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+- name: Output
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated
+```
 
 ### Input
 
@@ -31,8 +42,44 @@ Output signal, returned as a scalar, vector, matrix, or N-D array,
 with the same values as the input signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Error when input
+  summary: Generate error when input Does not match attributes exactly (default) | Matches attributes exactly
+  group: ''
+- name: Complexity
+  summary: Specify complexity Ignore (default) | Real | Complex
+  group: ''
+- name: Dimensionality
+  summary: Dimensionality check Ignore (default) | Is... | Is not...
+  group: ''
+- name: Dimensions
+  summary: Specify dimensions 1-D (default) | 2-D | Scalar (1-D or 2-D) | Vector (1-D or 2-D) | Vector (1-D or 2-D) or scalar
+    | Row vector (2-D) | Row vector (2-D) or scalar | Column vector (2-D) | Column vector (2-D) or scalar | Full matrix (2-D)
+    | Square matrix (2-D)
+  group: ''
+- name: Data type
+  summary: Data type check Ignore (default) | Is... | Is not...
+  group: ''
+- name: General data type
+  summary: General data type check Boolean (default) | Enumerated | Floating-point | Floating-point or boolean | Fixed-point
+    | Integer
+  group: ''
+- name: Specific floating-point
+  summary: Specific floating-point check Any floating-point (default) | Double precision | Single precision
+  group: ''
+- name: Specific fixed-point
+  summary: Specific fixed-point check Any fixed-point (default) | Signed fixed-point | Unsigned fixed-point
+  group: ''
+- name: Specific integer
+  summary: Specific integer check Any integer (default) | Signed integer | Unsigned integer | int8 | int16 | int32 | uint8
+    | uint16 | uint32
+  group: ''
+- name: Sample time
+  summary: Sample time check Ignore (default) | Discrete | Continuous
+  group: ''
+```
 
 ### **Error when input** — Generate error when input `Does not match attributes exactly` (default) | `Matches attributes exactly`
 
@@ -210,7 +257,6 @@ To]` for frame-based signals. `Ts` and
 respectively. `To` is the offset, such that 0 ≤ *`offset`* <
 *`period`*. Frame-based signals are almost always discrete
 time.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Signal Attributes

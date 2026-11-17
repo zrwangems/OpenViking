@@ -14,6 +14,17 @@ language: en
 # MQTT Client Subscribe
 
 ## Ports
+```yaml
+ports:
+- name: Topic_*x*
+  summary: Current messages from subscribed topics vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string
+- name: IsNew
+  summary: Flag indicating if read message is new 0 | 1 | vector of logicals
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -45,8 +56,26 @@ To enable this port, specify one or more topics in the **Topics to
 subscribe** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Client
+  summary: Select MQTT client drop-down list
+  group: ''
+  block_parameter: ClientList
+  values: MQTT client name
+- name: Topics to subscribe
+  summary: List of MQTT topics table
+  group: ''
+  type: to Fixed-step andSolver to discrete.
+  block_parameter: TopicsTable
+  values: MQTT topic name and information
+- name: Block sample time
+  summary: Sample time for read operation -1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: SampleTime
+  values: -1 (default) | nonnegative scalar
+```
 
 ### **Client** — Select MQTT client drop-down list
 
@@ -156,7 +185,6 @@ programmatically, use the `get_param` (Simulink) function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | -1 (default) | nonnegative scalar |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Industrial Communication Toolbox / MQTT

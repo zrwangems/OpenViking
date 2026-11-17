@@ -14,6 +14,24 @@ language: en
 # Ideal Translational Motion Sensor
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Acceleration, m/s^2 physical signal
+  direction: output
+- name: V
+  summary: Velocity, m/s physical signal
+  direction: output
+- name: P
+  summary: Position, m physical signal
+  direction: output
+- name: R
+  summary: Rod (positive probe) mechanical translational
+  direction: conserving
+- name: C
+  summary: Case (reference probe) mechanical translational
+  direction: conserving
+```
 
 ### Output
 
@@ -60,8 +78,25 @@ negative (reference) probe.
 To enable this port, set the **Measurement
 reference** parameter to
 `Difference`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measurement reference
+  summary: Select whether to perform absolute or relative measurements Difference (default) | Absolute
+  group: ''
+- name: Acceleration
+  summary: Control output port visibility to measure acceleration off (default) | on
+  group: ''
+- name: Velocity
+  summary: Control output port visibility to measure velocity on (default) | off
+  group: ''
+- name: Position
+  summary: Control output port visibility to measure position on (default) | off
+  group: ''
+- name: Initial position
+  summary: Sensor initial offset 0 m (default)
+  group: ''
+```
 
 ### **Measurement reference** — Select whether to perform absolute or relative measurements `Difference` (default) | `Absolute`
 
@@ -100,7 +135,6 @@ Sensor initial position (offset).
 
 To enable this parameter, select the **Position**
 check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanical Sensors

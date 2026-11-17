@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # String to Single
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入字符串标量
+  direction: input
+  data_types: string
+- name: d
+  summary: 格式与 %d 格式匹配的输出数据标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: f
+  summary: 格式与 %f 格式匹配的输出数据标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+- name: Port_N
+  summary: 格式与 N 格式匹配的输出数据标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point | enumerated | bus
+```
 
 ### 输入
 
@@ -44,8 +63,17 @@ chinese_source: worker-translation
 格式与 *`N`* 格式匹配的输出数据，指定为标量。输出的最大总数为 128。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Format
+  summary: 输入的格式运算符 "%f"（默认）| 格式字符串 | 字符向量
+  group: ''
+  block_parameter: Format
+  type: 字符向量
+  values: '''<filename>'''
+  default: '''"%f"'''
+```
 
 ### **Format** — 输入的格式运算符 "%f"（默认）| 格式字符串 | 字符向量
 
@@ -64,7 +92,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'<filename>'` |
 | **默认值：** `'"%f"'` |
-
 ## 所属库
 
 Simulink / String

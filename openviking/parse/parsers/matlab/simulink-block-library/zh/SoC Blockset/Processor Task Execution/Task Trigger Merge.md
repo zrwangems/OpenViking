@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Task Trigger Merge
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入触发标量
+  direction: input
+  data_types: rteEvent
+- name: Port_1
+  summary: 输出触发标量
+  direction: output
+  data_types: rteEvent
+```
 
 ### 输入
 
@@ -32,13 +43,17 @@ chinese_source: worker-translation
 此端口发送一个任务信号，触发 Task Manager 模块执行关联的任务。
 
 **数据类型：** `rteEvent`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input task triggers
+  summary: 要合并的触发数量 2（默认）| 正整数
+  group: ''
+```
 
 ### **Number of input task triggers** — 要合并的触发数量 2（默认）| 正整数
 
 要合并为一个输出触发的任务触发数量，指定为正整数。
-
 ## 所属库
 
 SoC Blockset / Processor Task Execution

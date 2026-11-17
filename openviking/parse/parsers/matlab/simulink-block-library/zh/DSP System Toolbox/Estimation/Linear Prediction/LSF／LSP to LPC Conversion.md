@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # LSF/LSP to LPC Conversion
 
 ## 端口
+```yaml
+ports:
+- name: LSP
+  summary: 线谱对向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: LSFn
+  summary: 归一化在 (0 0.5) 范围内的线谱频率向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: LSFr
+  summary: 在 (0 π) 范围内的线谱频率向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: A
+  summary: 线性预测系数向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,13 @@ chinese_source: worker-translation
 线性预测系数，以向量或矩阵形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Input
+  summary: 线谱对或线谱频率 LSP in range (-1 1)（默认）| LSF normalized in range (0 0.5) | LSF in range (0 pi)
+  group: ''
+```
 
 ### **Input** — 线谱对或线谱频率 `LSP in range (-1 1)`（默认）| `LSF normalized in range (0 0.5)` | `LSF in range (0 pi)`
 
@@ -52,7 +76,6 @@ chinese_source: worker-translation
 - `LSP in range (-1 1)` –– 该模块将 (−1 1) 范围内的线谱对转换为线性预测系数。
 - `LSF in range (0 pi)` –– 该模块将 (0 π) 范围内的线谱频率转换为线性预测系数。
 - `LSF normalized in range (0 0.5)` –– 该模块将归一化在 (0 0.5) 范围内的线谱频率转换为线性预测系数。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Linear Prediction

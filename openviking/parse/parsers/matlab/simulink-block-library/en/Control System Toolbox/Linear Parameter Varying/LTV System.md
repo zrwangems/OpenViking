@@ -14,6 +14,30 @@ language: en
 # LTV System
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar | vector
+  direction: input
+- name: IC
+  summary: Initial condition vector
+  direction: input
+- name: y
+  summary: Model output scalar | vector
+  direction: output
+- name: x
+  summary: State values scalar | vector
+  direction: output
+- name: dx
+  summary: State derivative values scalar | vector
+  direction: output
+- name: ss
+  summary: Local state-space model bus
+  direction: output
+- name: offset
+  summary: LPV model offsets bus
+  direction: output
+```
 
 ### Input
 
@@ -91,8 +115,98 @@ with these elements.
 
 To enable this port, select **Output interpolated offsets** on
 the **Outputs** tab of the block parameters.
-
 ## Parameters
+```yaml
+parameters:
+- name: State-space array
+  summary: Array of state-space models ss or idss model array
+  group: LTV Model Tab
+  block_parameter: sys
+  values: ss or idss model array name in quotes
+- name: Initial condition source
+  summary: Option to set initial condition using external signal internal (default) | external
+  group: LTV Model Tab
+  block_parameter: InitialConditionSource
+  values: internal (default) | external
+- name: Initial condition
+  summary: Initial conditions 0 (default) | vector
+  group: LTV Model Tab
+  block_parameter: InitialCondition
+  values: '"0" (default) | initial state values in quotes'
+- name: Operating Point Offsets
+  summary: Offset specification format Specify Offsets as double arrays (default) | Specify offsets as struct array | Use
+    offsets in state-space array
+  group: LTV Model Tab
+  block_parameter: opSpecOption
+  values: '"Specify Offsets as double arrays" (default) | "Specify offsets as struct array" | "Use offsets in state-space
+    array"'
+- name: Input offset
+  summary: Input offset 0 (default) | array
+  group: LTV Model Tab
+  block_parameter: uOffset
+  values: '"0" (default) | array name in quotes'
+- name: Output offset
+  summary: Output offset 0 (default) | array
+  group: LTV Model Tab
+  block_parameter: yOffset
+  values: '"0" (default) | array name in quotes'
+- name: State offset
+  summary: State offset 0 (default) | array
+  group: LTV Model Tab
+  block_parameter: xOffset
+  values: '"0" (default) | array name in quotes'
+- name: State derivative/update offset
+  summary: State derivative or update offset array
+  group: LTV Model Tab
+  block_parameter: dxOffset
+  values: '"0" (default) | array name in quotes'
+- name: Struct array
+  summary: Offsets structure array struct (default) | structure array name
+  group: LTV Model Tab
+  block_parameter: Offset
+  values: '"struct" (default) | structure array name in quotes'
+- name: Coefficients To Fix
+  summary: Fixed coefficients of state-space matrices false or 0 (default) | true or 1 | logical matrix
+  group: Fixed Entries Tab
+- name: Read values from
+  summary: Source for values of fixed coefficients First model in state-space array (default) | Custom state-space model
+  group: Fixed Entries Tab
+- name: Interpolation method
+  summary: Interpolation method Linear (default) | Nearest | Flat
+  group: Scheduling Tab
+  block_parameter: IMethod
+  values: '"Linear" (default) | "Nearest" | "Flat"'
+- name: Extrapolation method
+  summary: Extrapolation method Clip (default) | Linear
+  group: Scheduling Tab
+  block_parameter: EMethod
+  values: '"Clip" (default) | "Linear"'
+- name: Index search method
+  summary: Prelookup algorithm Binary search (default) | Linear search
+  group: Scheduling Tab
+  block_parameter: IndexSearch
+  values: '"Binary Search" (default) | "Linear Search"'
+- name: Begin index search using previous index result
+  summary: Begin search at previous time step on (default) | off
+  group: Scheduling Tab
+  block_parameter: IndexBegin
+  values: '"on" (default) | "off"'
+- name: Block data type (discrete-time case only)
+  summary: Block data type double (default) | single
+  group: Code Generation Tab
+  block_parameter: DataType
+  values: '"double" (default) | "single"'
+- name: Initial buffer size for delays
+  summary: Initial buffer size 1024 (default) | positive integer greater than 5
+  group: Code Generation Tab
+  block_parameter: InitBufferSize
+  values: '"1024" (default) | positive integer greater than 5 in quotes'
+- name: Use fixed buffer size
+  summary: Use fixed buffer size off (default) | on
+  group: Code Generation Tab
+  block_parameter: FixedBuffer
+  values: '"off" (default) | "on"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -650,7 +764,6 @@ the `set_param` (Simulink) function.
 | **Values:** | `"off"` (default) | `"on"` |
 
 **Example:** `set_param(gcb,"FixedBuffer","on")`
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

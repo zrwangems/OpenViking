@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Bearing
 
 ## 端口
+```yaml
+ports:
+- name: Load
+  summary: 可变载荷输入，N 物理信号
+  direction: input
+- name: B
+  summary: 基座机械旋转
+  direction: input
+- name: F
+  summary: 从动机械旋转
+  direction: input
+- name: C
+  summary: 壳体机械旋转
+  direction: input
+```
 
 ### 输入
 
@@ -46,8 +61,85 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此端口，请选中 **Enable case port**。
-
 ## 参数
+```yaml
+parameters:
+- name: Bearing type
+  summary: 轴承选项 Ball or Roller（默认）| Journal
+  group: 机械特性
+- name: Enable follower port
+  summary: 从动端口选项 off（默认）| on
+  group: 机械特性
+- name: Enable case port
+  summary: 壳体端口选项 off（默认）| on
+  group: 机械特性
+- name: Radius
+  summary: 轴承界面半径 30 mm（默认）| 正标量
+  group: 机械特性
+- name: Length
+  summary: 轴承界面长度 100 mm（默认）| 正标量
+  group: 机械特性
+- name: Radial load specification
+  summary: 控制径向载荷的选项 Constant（默认）| Variable
+  group: 机械特性
+- name: Load on bearing
+  summary: 恒定轴承载荷 10 N（默认）| 正标量
+  group: 机械特性
+- name: Force threshold
+  summary: 载荷阈值 0.001 N（默认）
+  group: 机械特性
+- name: Angular velocity threshold
+  summary: 角速度阈值 0.001 rev/s（默认）
+  group: 机械特性
+- name: Coefficient of friction specification
+  summary: 指定摩擦系数的选项 Constant（默认）| Variable
+  group: 机械特性
+- name: Coefficient of friction
+  summary: 摩擦系数 0.002（默认）| 正标量
+  group: 机械特性
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Linear（默认）| Smooth
+  group: 机械特性
+- name: Extrapolation method
+  summary: 处理超出断点数据集范围的输入值的方法 Linear（默认）| Nearest | Error
+  group: 机械特性
+- name: Bearing angular speed vector, ω
+  summary: 轴承角速度 [10, 2500, 5000, 10000, 25000] rpm（默认）| 长度为 *N* 的向量
+  group: 机械特性
+- name: Coefficient of friction, f(ω)
+  summary: 摩擦系数 [.004, .001, .0005, .00025, .000125]（默认）| 长度为 *N* 的向量
+  group: 机械特性
+- name: Customize friction curve
+  summary: 用于自定义轴承摩擦曲线的选项 off（默认）| on
+  group: Fluid Properties
+- name: Dynamic viscosity
+  summary: 润滑剂动力粘度 0.29 Pa*s（默认）| 正标量
+  group: Fluid Properties
+- name: Minimum coefficient of friction
+  summary: 最小摩擦系数 0.002（默认）| 正标量
+  group: Fluid Properties
+- name: Bearing Modulus
+  summary: 滑动轴承模数 7.2519e-08 rev（默认）| 正标量
+  group: Fluid Properties
+- name: Normalized Hersey number vector
+  summary: 归一化 Hersey 数 [.4306, .6124, .6651, .7512, .866, 1, 1.1962, 1.4354, 3.8517]（默认）| 长度为 *M* 的向量
+  group: Fluid Properties
+- name: Normalized viscous coefficient vector
+  summary: 归一化粘性摩擦系数 [3.6621, 1.672, 1.3397, 1.1811, 1.0743, 1, 1.0358, 1.1173, 2.2792]（默认）| 长度为 *M* 的向量
+  group: Fluid Properties
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Linear（默认）| Smooth
+  group: Fluid Properties
+- name: Extrapolation method
+  summary: 处理超出断点数据集范围的输入值的方法 Linear（默认）| Nearest | Error
+  group: Fluid Properties
+- name: Damping fault
+  summary: 用于对轴承故障建模的选项 Add fault
+  group: 故障
+- name: Faulted damping coefficient multiplier
+  summary: 阻尼乘数 5（默认）| 正标量
+  group: 故障
+```
 
 ### 机械特性
 
@@ -232,7 +324,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请通过点击 **Add fault** 超链接为该模块启用故障。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

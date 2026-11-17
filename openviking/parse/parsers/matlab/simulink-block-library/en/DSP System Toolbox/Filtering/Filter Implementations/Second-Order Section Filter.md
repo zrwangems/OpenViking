@@ -14,6 +14,29 @@ language: en
 # Second-Order Section Filter
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: Numerator coefficients *P*-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Den
+  summary: Denominator coefficients *P*-by-3 matrix | *P*-by-2 matrix
+  direction: input
+  data_types: single | double
+- name: g
+  summary: Scale values for each second-order section scalar | vector
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: Filtered output vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -110,8 +133,34 @@ parameter to `Input ports`.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter structure
+  summary: Filter structure Direct form II transposed (default) | Direct form I | Direct form I transposed | Direct form II
+  group: ''
+- name: Coefficient source
+  summary: Filter coefficient source Dialog parameters (default) | Input ports
+  group: ''
+- name: Numerator
+  summary: Numerator coefficients of filter [0.0975 0.195 0.0975] (default) | *P*-by-3 matrix
+  group: ''
+- name: Denominator
+  summary: Denominator coefficients of filter [1 -0.9428 0.3333] (default) | *P*-by-3 matrix | *P*-by-2 matrix
+  group: ''
+- name: Specify scale values
+  summary: Specify if filter has scale values for each section off (default) | on
+  group: ''
+- name: Scale Values
+  summary: Scale values for each second-order section [1 1] (default) | scalar | vector
+  group: ''
+- name: Input processing
+  summary: Method to process input Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: View Filter Response
+  summary: View filter response button
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -256,7 +305,6 @@ Open the Filter Visualization tool and display the magnitude response of the SOS
 filter. The response is based on the parameters you select in the block dialog box. To
 update the magnitude response, modify the parameters in the dialog box and click
 **Apply**.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Implementations

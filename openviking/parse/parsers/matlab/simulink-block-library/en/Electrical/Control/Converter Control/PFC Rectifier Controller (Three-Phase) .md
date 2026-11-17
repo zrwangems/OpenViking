@@ -14,6 +14,37 @@ language: en
 # PFC Rectifier Controller (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: VdcRef (V)
+  summary: Output DC-link voltage reference, V scalar
+  direction: input
+  data_types: single | double
+- name: QRef (pu)
+  summary: Reactive power reference, pu scalar
+  direction: input
+  data_types: single | double
+- name: VdcSens (V)
+  summary: DC-link voltage, V scalar
+  direction: input
+  data_types: single | double
+- name: VabcSens (pu)
+  summary: Measured AC phase voltage, pu vector
+  direction: input
+  data_types: single | double
+- name: IabcSens (pu)
+  summary: Measured AC phase current, pu vector
+  direction: input
+  data_types: single | double
+- name: VabcRef (pu)
+  summary: Reference voltage, pu vector
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: Visualization bus bus
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -60,8 +91,82 @@ Bus containing internal signals for visualization. For a list of signals, see
 Visualization.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: System frequency (Hz)
+  summary: System frequency 60 (default) | positive scalar
+  group: General
+- name: AC filter inductance (H)
+  summary: AC filter inductance 1e-4 (default) | positive scalar
+  group: General
+- name: AC side base impedance (Ohm)
+  summary: AC-side base impedance 1.722 (default) | positive scalar
+  group: General
+- name: PLL proportional gain
+  summary: Proportional gain 0.05 (default) | positive scalar
+  group: General
+- name: PLL integral gain
+  summary: Integral gain 1 (default) | positive scalar
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | nonnegative scalar or -1
+  group: General
+- name: Proportional gain
+  summary: Proportional gain 0.4 (default) | positive scalar
+  group: Voltage Controller
+- name: Integral gain
+  summary: Integral gain 3 (default) | positive scalar
+  group: Voltage Controller
+- name: Derivative gain
+  summary: Derivative gain 0 (default) | nonnegative scalar
+  group: Voltage Controller
+- name: Derivative controller filter coefficient (N)
+  summary: Derivative controller filter coefficient 3 (default) | nonnegative scalar
+  group: Voltage Controller
+- name: DC bus base voltage (V)
+  summary: DC bus base voltage 700 (default) | positive scalar
+  group: Voltage Controller
+- name: Controller output upper limit (pu)
+  summary: Controller output upper limit 1.5 (default) | nonnegative scalar
+  group: Voltage Controller
+- name: Controller output lower limit (pu)
+  summary: Controller output lower limit -1.5 (default) | nonpositive scalar
+  group: Voltage Controller
+- name: Id proportional gain
+  summary: Id proportional gain 10 (default) | positive scalar
+  group: Current Controller
+- name: Id integral gain
+  summary: Id integral gain 350 (default) | positive scalar
+  group: Current Controller
+- name: Id derivative gain
+  summary: Id derivative gain 0 (default) | nonnegative scalar
+  group: Current Controller
+- name: Id controller output upper limit (pu)
+  summary: Id controller output upper limit 1.2 (default) | nonnegative scalar
+  group: Current Controller
+- name: Id controller output lower limit (pu)
+  summary: Id controller output lower limit -1.2 (default) | nonpositive scalar
+  group: Current Controller
+- name: Iq proportional gain
+  summary: Iq proportional gain 10 (default) | positive scalar
+  group: Current Controller
+- name: Iq integral gain
+  summary: Iq integral gain 350 (default) | positive scalar
+  group: Current Controller
+- name: Iq derivative gain
+  summary: Iq derivative gain 0 (default) | nonnegative scalar
+  group: Current Controller
+- name: Derivative current controller filter coefficient (N)
+  summary: Derivative current controller filter coefficient 100 (default) | nonnegative scalar
+  group: Current Controller
+- name: Iq controller output upper limit (pu)
+  summary: Iq controller output upper limit 1.2 (default) | nonnegative scalar
+  group: Current Controller
+- name: Iq controller output lower limit (pu)
+  summary: Iq controller output lower limit -1.2 (default) | nonpositive scalar
+  group: Current Controller
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -186,7 +291,6 @@ controller.
 
 Lower limit on the per-unit output of the *q*-axis current
 controller.
-
 ## Libraries
 
 Simscape / Electrical / Control / Converter Control

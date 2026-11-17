@@ -14,6 +14,17 @@ language: en
 # Bias
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -30,8 +41,22 @@ Output signal resulting from adding the bias to the input
 signal.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Bias
+  summary: Offset to add to the input signal 0.0 (default) | scalar | vector
+  group: ''
+  block_parameter: Bias
+  type: character vector
+  values: real, finite
+  default: '''0.0'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+```
 
 ### **Bias** — Offset to add to the input signal `0.0` (default) | scalar | vector
 
@@ -94,7 +119,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'off'` (default) | `'on'` |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

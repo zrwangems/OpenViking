@@ -14,6 +14,18 @@ language: en
 # Poppet Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Stem displacement, m physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -29,8 +41,49 @@ Liquid entry or exit port to the valve.
 ### **S** — Stem displacement, m physical signal
 
 Displacement of the valve control member in m, specified as a physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Poppet geometry
+  summary: Type of poppet Cylindrical stem (default) | Round ball
+  group: ''
+- name: Valve seat specification
+  summary: Geometry of valve seat Sharp-edged (default) | Conical
+  group: ''
+- name: Ball diameter
+  summary: Diameter of ball control member 0.01 m (default) | positive scalar
+  group: ''
+- name: Seat orifice diameter
+  summary: Seat orifice diameter 7e-3 m (default) | positive scalar
+  group: ''
+- name: Stem diameter
+  summary: Diameter of cylindrical stem 0.01 m (default) | positive scalar
+  group: ''
+- name: Seat cone angle
+  summary: Angle of seat opening 120 deg (default) | positive scalar
+  group: ''
+- name: Poppet position when in the seat
+  summary: Control member offset 0 m (default) | positive scalar
+  group: ''
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area at conserving ports inf m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: ''
+```
 
 ### **Poppet geometry** — Type of poppet `Cylindrical stem` (default) | `Round ball`
 
@@ -130,7 +183,6 @@ these regimes.
 Whether to account for pressure increase when fluid flows from a region of
 smaller cross-sectional area to a region of larger cross-sectional
 area.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

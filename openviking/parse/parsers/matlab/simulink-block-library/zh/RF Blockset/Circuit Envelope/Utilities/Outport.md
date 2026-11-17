@@ -15,10 +15,39 @@ chinese_source: worker-translation
 # Outport
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor type
+  summary: 传感器测量的信号类型 Ideal voltage（默认）| Ideal current | Power
+  group: ''
+- name: Load impedance (Ohm)
+  summary: RF 电路的负载阻抗 inf（默认）| 以欧姆为单位的正整数向量
+  group: ''
+- name: Output
+  summary: 输出信号的格式 Complex Baseband（默认）| In-phase and Quadrature Baseband | Magnitude and Angle Baseband | Real Passband
+  group: ''
+- name: Automatically compute output step size
+  summary: 确定用于解析所列最高载波频率的最优时间步长 on（默认）| off
+  group: ''
+- name: Step size
+  summary: 时间步长 1e-6 s（默认）| 以秒为单位的正整数
+  group: ''
+- name: Interpolation Filter Half Polyphase Length
+  summary: 滤波器的半多相长度 12（默认）| 非负整数
+  group: ''
+- name: Carrier frequencies
+  summary: 载波频率 0 Hz（默认）| 以 Hz 为单位的正整数向量
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 接地 RF 电路端子 on（默认）| off
+  group: ''
+```
 
 ### **Sensor type** — 传感器测量的信号类型 `Ideal voltage`（默认）| `Ideal current` | `Power`
 
@@ -82,7 +111,6 @@ R2025b 中未记录。
 接地 RF 电路端子，指定为 `on` 或 `off`。选择此参数以接地并隐藏负端子。清除此参数以暴露负端子。通过暴露这些端子，您可以将它们连接到模型的其他部分。
 
 默认情况下，此选项处于选中状态。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Utilities

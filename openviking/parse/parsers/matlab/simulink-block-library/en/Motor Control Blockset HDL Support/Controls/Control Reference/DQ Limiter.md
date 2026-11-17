@@ -14,6 +14,37 @@ language: en
 # DQ Limiter
 
 ## Ports
+```yaml
+ports:
+- name: dref
+  summary: Reference *d*-axis voltage (or current) scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: qref
+  summary: Reference *q*-axis voltage (or current) scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: satMethod
+  summary: Saturation technique scalar
+  direction: input
+  data_types: uint16
+- name: satLim
+  summary: Saturation limit scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: dsat
+  summary: Saturated *d*-axis voltage (or current) scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: qsat
+  summary: Saturated *q*-axis voltage (or current) scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: magref
+  summary: Unsaturated peak value of block inputs scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -79,8 +110,22 @@ rotating *dq* reference frame.
 Unsaturated peak value of the input voltages (or current).
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Saturation method
+  summary: Saturation method selection technique Specify via dialog (default) | Input port
+  group: ''
+- name: Saturation method selected
+  summary: Saturation method used by block D-Q equivalence (default) | Prioritize D axis | Prioritize Q axis
+  group: ''
+- name: Saturation limit
+  summary: Saturation limit selection technique Specify via dialog (default) | Input port
+  group: ''
+- name: Saturation limit value
+  summary: Phase voltage (or current) peak limit 1 (default) | scalar
+  group: ''
+```
 
 ### **Saturation method** — Saturation method selection technique `Specify via dialog` (default) | `Input port`
 
@@ -150,7 +195,6 @@ To enable this parameter, set **Saturation limit** to
 ```
 Vmax
 ```
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

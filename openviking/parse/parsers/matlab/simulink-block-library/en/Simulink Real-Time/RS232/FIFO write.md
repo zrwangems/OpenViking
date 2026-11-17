@@ -14,6 +14,19 @@ language: en
 # FIFO Write
 
 ## Ports
+```yaml
+ports:
+- name: D
+  summary: Data to write to FIFO vector
+  direction: input
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: F
+  summary: FIFO vector serialfifoptr
+  direction: output
+- name: DP
+  summary: True if new data is present in the FIFO true | false
+  direction: output
+```
 
 ### Input
 
@@ -43,8 +56,30 @@ If data is present in the FIFO, returns
 To make this port visible, set parameters **Max and Min
 read size ports** and **Enable
 passthrough**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Size
+  summary: Size of FIFO, in bytes 1024 (default) | integer
+  group: ''
+  block_parameter: size
+- name: Input vector type
+  summary: Specify input data type 8 bit uint null terminated (default) | count+32 bit int | count+32 bit uint | count+16
+    bit int | count+16 bit uint | 8 bit int null terminated
+  group: ''
+  block_parameter: inputtype
+- name: Data present output
+  summary: Enables output DP off (default) | on
+  group: ''
+  block_parameter: present
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+- name: ID
+  summary: Identifier for overflow messages character vector
+  group: ''
+  block_parameter: id
+```
 
 ### **Size** — Size of FIFO, in bytes `1024` (default) | integer
 
@@ -113,7 +148,6 @@ Enter a user-defined identifier for FIFO overflow messages.
 |  |
 | --- |
 | **Block Parameter:** `id` |
-
 ## Libraries
 
 Simulink Real-Time / RS232

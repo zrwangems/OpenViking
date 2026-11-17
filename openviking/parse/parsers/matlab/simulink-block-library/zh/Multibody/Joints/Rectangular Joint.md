@@ -15,6 +15,78 @@ chinese_source: worker-translation
 # Rectangular Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础坐标系 坐标系
+  direction: input
+- name: F
+  summary: 从动坐标系 坐标系
+  direction: input
+- name: fx
+  summary: 驱动力物理信号
+  direction: input
+- name: px
+  summary: 运动轮廓物理信号
+  direction: input
+- name: fy
+  summary: 驱动力物理信号
+  direction: input
+- name: py
+  summary: 运动轮廓物理信号
+  direction: input
+- name: mode
+  summary: 关节模式控制物理信号
+  direction: input
+- name: px
+  summary: 基元物理信号的位置
+  direction: output
+- name: vx
+  summary: 基元物理信号的速度
+  direction: output
+- name: ax
+  summary: 基元物理信号的加速度
+  direction: output
+- name: fx
+  summary: 作用在关节基元上的致动器力物理信号
+  direction: output
+- name: fllx
+  summary: 下限力物理信号
+  direction: output
+- name: fulx
+  summary: 上限力物理信号
+  direction: output
+- name: py
+  summary: 原始位置物理信号
+  direction: output
+- name: vy
+  summary: 原始速度物理信号
+  direction: output
+- name: ay
+  summary: 原始加速度物理信号
+  direction: output
+- name: fy
+  summary: 作用在关节原始上的执行器力物理信号
+  direction: output
+- name: flly
+  summary: 下限力物理信号
+  direction: output
+- name: fuly
+  summary: 上限力物理信号
+  direction: output
+- name: fc
+  summary: 约束力，N 物理信号
+  direction: output
+- name: tc
+  summary: 约束扭矩，N\*m 物理信号
+  direction: output
+- name: ft
+  summary: 总力，N 物理信号
+  direction: output
+- name: tt
+  summary: 总扭矩，N\*m 物理信号
+  direction: output
+```
 
 ### 坐标系
 
@@ -224,8 +296,145 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Composite Force/Torque Sensing** 下选择 **Total Torque**。
-
 ## 参数
+```yaml
+parameters:
+- name: Specify Position Target
+  summary: 是否指定位置目标 off（默认）| on
+  group: X Prismatic Primitive (Px)
+- name: Priority
+  summary: 位置目标的优先级 High (desired)（默认）| Low (approximate)
+  group: X Prismatic Primitive (Px)
+- name: Value
+  summary: 位置目标 0 m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Specify Velocity Target
+  summary: 是否指定线速度目标 off（默认）| on
+  group: X Prismatic Primitive (Px)
+- name: Priority
+  summary: 线速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: X Prismatic Primitive (Px)
+- name: Value
+  summary: 速度目标 0 m/s（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Equilibrium Position
+  summary: 内力为零时的位置 0 m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: 力律的刚度 0 N/m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: 力律的阻尼系数 0 N(m/s)（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Specify Lower Limit
+  summary: 是否指定下限位置 off（默认）| on
+  group: X Prismatic Primitive (Px)
+- name: Bound
+  summary: 自由区域的下界 -1 m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: 下界处弹簧的刚度 1e6 N/m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: 下界处的阻尼系数 1e3 N/(m/s)（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 1e-4 m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Specify Upper Limit
+  summary: 是否指定上限位置 off（默认）| on
+  group: X Prismatic Primitive (Px)
+- name: Bound
+  summary: 自由区域的上界 1 m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Spring Stiffness
+  summary: 上界处弹簧的刚度 1e6 N/m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Damping Coefficient
+  summary: 上界处的阻尼系数 1e3 N/(m/s)（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 1e-4 m（默认）| 标量
+  group: X Prismatic Primitive (Px)
+- name: Force
+  summary: 提供执行器力的选项 None（默认）| Provided by Input | Automatically Computed
+  group: X Prismatic Primitive (Px)
+- name: Motion
+  summary: 提供运动的选项 Automatically Computed（默认）| Provided by Input
+  group: X Prismatic Primitive (Px)
+- name: Specify Position Target
+  summary: 是否指定位置目标 off（默认）| on
+  group: Y 移动副基元 (Py)
+- name: Priority
+  summary: 位置目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Y 移动副基元 (Py)
+- name: Value
+  summary: 位置目标 0 m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Specify Velocity Target
+  summary: 是否指定线速度目标 off（默认）| on
+  group: Y 移动副基元 (Py)
+- name: Priority
+  summary: 线速度目标的优先级 High (desired)（默认）| Low (approximate)
+  group: Y 移动副基元 (Py)
+- name: Value
+  summary: 速度目标 0 m/s（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Equilibrium Position
+  summary: 内部力为零的位置 0 m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Spring Stiffness
+  summary: 力律的刚度 0 N/m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Damping Coefficient
+  summary: 力律的阻尼系数 0 N(m/s)（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Specify Lower Limit
+  summary: 是否指定下限位置 off（默认）| on
+  group: Y 移动副基元 (Py)
+- name: Bound
+  summary: 自由区域的下界 -1 m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Spring Stiffness
+  summary: 下界处的弹簧刚度 1e6 N/m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Damping Coefficient
+  summary: 下界处的阻尼系数 1e3 N/(m/s)（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 1e-4 m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Specify Upper Limit
+  summary: 是否指定上位置界限 off（默认）| on
+  group: Y 移动副基元 (Py)
+- name: Bound
+  summary: 自由区域的上界 1 m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Spring Stiffness
+  summary: 上界处的弹簧刚度 1e6 N/m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Damping Coefficient
+  summary: 上界处的阻尼系数 1e3 N/(m/s)（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Transition Region Width
+  summary: 用于平滑弹簧和阻尼力的区域 1e-4 m（默认）| 标量
+  group: Y 移动副基元 (Py)
+- name: Force
+  summary: 提供致动力的选项 None（默认）| Provided by Input | Automatically Computed
+  group: Y 移动副基元 (Py)
+- name: Motion
+  summary: 提供运动的选项 Automatically Computed（默认）| Provided by Input
+  group: Y 移动副基元 (Py)
+- name: Mode
+  summary: 关节模式 Normal（默认）| Locked | Disengaged | Provided by Input
+  group: 模式配置
+- name: Direction
+  summary: 测量方向 Follower on Base（默认）| Base on Follower
+  group: 复合力/力矩感测
+- name: Resolution Frame
+  summary: 用于解析测量值的坐标系 Base（默认）| Follower
+  group: 复合力/力矩感测
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -575,7 +784,6 @@ chinese_source: worker-translation
 - `Follower` — 模块在从动坐标系的坐标中解析测量值。
 
 此参数仅影响 **Composite Force/Torque Sensing** 部分下的输出信号。
-
 ## 所属库
 
 Simscape / Multibody / Joints

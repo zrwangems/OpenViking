@@ -14,6 +14,24 @@ language: en
 # Specific Dissipation Heat Exchanger Interface (TL)
 
 ## Ports
+```yaml
+ports:
+- name: CP
+  summary: Isobaric specific heat of the thermal liquid, kJ/(kg*K) physical signal
+  direction: output
+- name: M
+  summary: Mass flow rate of the thermal liquid, kg/s physical signal
+  direction: output
+- name: A
+  summary: Fluid opening thermal liquid
+  direction: conserving
+- name: B
+  summary: Fluid opening thermal liquid
+  direction: conserving
+- name: H
+  summary: Thermal condition at the fluid entrance thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -44,8 +62,50 @@ interface.
 
 Thermal port used to set the thermal condition at the thermal liquid
 port serving as the thermal liquid entrance.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass flow rate vector
+  summary: Mass flow rates at which to specify pressure-drop data [.3, .5, 1, 1.5, 2, 2.5] kg/s (default) | *K*-element array
+    with units of mass/time
+  group: ''
+- name: Pressure drop vector
+  summary: Pressure-drop data corresponding to specified mass flow rates [3, 5, 10, 25, 35, 50] * 1e-3 MPa (default) | *K*-element
+    array with units of pressure
+  group: ''
+- name: Reference inflow temperature
+  summary: Temperature at which pressure-drop data is specified 293.15 K (default) | scalar with units of temperature
+  group: ''
+- name: Reference inflow pressure
+  summary: Pressure at which pressure-drop tabulated data is specified 0.101325 MPa (default) | scalar with units of pressure
+  group: ''
+- name: Mass flow rate threshold for flow reversal
+  summary: Mass flow rate below which to smooth numerical data 1e-6 kg/s (default) | scalar with units of mass/time
+  group: ''
+- name: Thermal Liquid volume
+  summary: Volume of thermal liquid inside the heat exchanger 0.01 m^3 (default) | scalar with units of volume
+  group: ''
+- name: Cross-sectional area at ports A1 and B1
+  summary: Flow area at the thermal liquid inlets 0.01 m^2 (default) | scalar with units of area
+  group: ''
+- name: Enable dynamic compressibility
+  summary: Setting for liquid compressibility in heat exchanger On (default) | Off | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid nominal temperature
+  summary: Temperature at nominal operating conditions 293.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid nominal pressure
+  summary: Pressure at nominal operating conditions 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Thermal Liquid initial temperature
+  summary: Temperature in the thermal liquid channel at the start of simulation 293.15 K (default) | scalar with units of
+    temperature
+  group: Effects and Initial Conditions
+- name: Thermal Liquid initial pressure
+  summary: Pressure in the thermal liquid channel at the start of simulation 0.101325 MPa (default) | scalar with units of
+    pressure
+  group: Effects and Initial Conditions
+```
 
 #### Pressure Loss Tab
 
@@ -136,7 +196,6 @@ simulation.
 
 To enable this parameter, select **Enable dynamic
 compressibility**.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Fundamental Components

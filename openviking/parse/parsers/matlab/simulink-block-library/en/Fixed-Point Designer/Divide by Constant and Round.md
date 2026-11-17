@@ -14,6 +14,17 @@ language: en
 # Divide by Constant and Round
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Dividend scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Y
+  summary: Result of division and round operation scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -35,8 +46,24 @@ Result of division and round operation, returned as a scalar, vector, matrix, or
 N-D array.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Denominator
+  summary: Divisor 10 (default) | scalar
+  group: ''
+  block_parameter: Denominator
+  type: character vector
+  values: MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value
+  default: '''10'''
+- name: Rounding Method
+  summary: Rounding method to use Floor (default) | Ceiling | Nearest | Zero | Convergent
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Floor'' | ''Ceiling'' | ''Nearest'' | ''Zero'' | ''Convergent'''
+  default: '''Floor'''
+```
 
 ### **Denominator** — Divisor 10 (default) | scalar
 
@@ -75,7 +102,6 @@ Rounding method to use, specified as one of these values:
 | **Type:** character vector |
 | **Values:** `'Floor'` | `'Ceiling'` | `'Nearest'` | `'Zero'` | `'Convergent'` |
 | **Default:** `'Floor'` |
-
 ## Libraries
 
 Fixed-Point Designer

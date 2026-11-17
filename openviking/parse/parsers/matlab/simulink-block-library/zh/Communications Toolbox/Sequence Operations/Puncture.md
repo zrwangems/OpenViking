@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Puncture
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号列向量
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: 输出信号列向量
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +39,13 @@ chinese_source: worker-translation
 ### **Out** — 输出信号列向量
 
 输出信号，以列向量形式返回。输出向量的长度是 **Puncture vector** 参数中 1 的数量的整数倍。输出信号仅包含输入信号中与 **Puncture vector** 中 1 的元素位置的整数倍对齐的元素。
-
 ## 参数
+```yaml
+parameters:
+- name: Puncture vector
+  summary: 删余模式 [1 1 0 1 0 1]'（默认）| 二值列向量
+  group: ''
+```
 
 ### **Puncture vector** — 删余模式 `[1 1 0 1 0 1]'`（默认）| 二值列向量
 
@@ -38,7 +53,6 @@ chinese_source: worker-translation
 
 - **Puncture vector** 中 0 的元素位置表示从输入信号中移除哪些元素以构造输出信号。
 - **Puncture vector** 中 1 的元素位置表示从输入信号中保留哪些元素以构造输出信号。
-
 ## 所属库
 
 Communications Toolbox / Sequence Operations

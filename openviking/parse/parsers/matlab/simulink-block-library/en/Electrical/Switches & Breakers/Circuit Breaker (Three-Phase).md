@@ -14,6 +14,24 @@ language: en
 # Circuit Breaker (Three Phase)
 
 ## Ports
+```yaml
+ports:
+- name: vT
+  summary: Scalar control port physical signal
+  direction: input
+- name: ~1
+  summary: Expandable three-phase port electrical
+  direction: conserving
+- name: ~2
+  summary: Expandable three-phase port electrical
+  direction: conserving
+- name: +
+  summary: Positive port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative port electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -58,8 +76,28 @@ To enable this port, set **Modeling option** to
 `Expanded three-phase ports| Electrical control
 port` or `Composite three-phase ports|
 Electrical control port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Connection and gate control ports Composite three-phase ports | PS control port (default) | Composite three-phase
+    ports| Electrical control port | Expanded three-phase ports | PS control port | Expanded three-phase ports| Electrical
+    control port
+  group: ''
+- name: Closed resistance
+  summary: Closed resistance 0.001 Ohm (default)
+  group: ''
+- name: Open conductance
+  summary: Open conductance 1e-6 1/Ohm (default)
+  group: ''
+- name: Threshold
+  summary: Threshold voltage 0.5 V (default)
+  group: ''
+- name: Breaker Behavior
+  summary: Breaker Behavior when *vT* rises above threshold Open when current crosses zero after vT >= Threshold (default)
+    | Open when vT >= Threshold
+  group: ''
+```
 
 ### **Modeling option** — Connection and gate control ports `Composite three-phase ports | PS control port` (default) | `Composite three-phase ports| Electrical control port` | `Expanded three-phase ports | PS control port` | `Expanded three-phase ports| Electrical control port`
 
@@ -96,7 +134,6 @@ Breaker Behavior when the value at the control port
 **Threshold** parameter. The breaker can open either as
 soon as the voltage rises above the threshold, or when its current also
 crosses zero.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers

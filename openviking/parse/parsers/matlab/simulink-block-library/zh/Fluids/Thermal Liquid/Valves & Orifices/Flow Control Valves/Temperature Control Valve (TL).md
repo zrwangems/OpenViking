@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Temperature Control Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口 热液体
+  direction: conserving
+- name: B
+  summary: 液体端口 热液体
+  direction: conserving
+- name: T
+  summary: 传感端口 热液体 | 热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +45,43 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Temperature sensing** 设置为 `Thermal liquid sensing port` 或 `Thermal sensing port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve operation
+  summary: 由升温引起的开口面积变化的符号 Opens above activation temperature（默认）| Closes above activation temperature
+  group: ''
+- name: Temperature sensing
+  summary: 控制阀门温度传感的方法 Valve inlet temperature（默认）| Thermal liquid sensing port | Thermal sensing port
+  group: ''
+- name: Activation temperature
+  summary: 开启机构触发的温度 330 K（默认）| 正标量
+  group: ''
+- name: Temperature regulation range
+  summary: 阀门温度范围 8 K（默认）| 正标量
+  group: ''
+- name: Sensor time constant
+  summary: 温度变化在入口传感器处记录所需的时间 1.5 s（默认）| 非负标量
+  group: ''
+- name: Maximum opening area
+  summary: 由于密封缺陷导致的完全打开位置处的开口面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 由于密封缺陷导致的最大关闭位置处的开口面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的孔口面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Valve operation** — 由升温引起的开口面积变化的符号 `Opens above activation temperature`（默认）| `Closes above activation temperature`
 
@@ -85,7 +132,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过阀门的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Flow Control Valves

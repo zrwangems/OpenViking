@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # String to ASCII
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入字符串信号 标量
+  direction: input
+  data_types: string
+- name: Port_1
+  summary: 转换后的 uint8 向量信号 向量 | 由 *N* 个元素组成的一维向量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -30,8 +41,17 @@ chinese_source: worker-translation
 从输入字符串信号转换而来的 ASCII 字符 `uint8` 向量信号，指定为向量。该模块将字符串中的每个元素转换为其对应的 ASCII 字符，并将 ASCII 等效值作为向量输出。如果字符数少于最大长度，该模块在仿真时用零填充剩余空间。在代码生成时，该模块用空字符填充剩余空间。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Output vector size
+  summary: 输出向量的大小 31 （默认） | 标量
+  group: ''
+  block_parameter: OutputVectorSize
+  type: character vector
+  values: scalar
+  default: '''31'''
+```
 
 ### **Output vector size** — 输出向量的大小 31 （默认） | 标量
 
@@ -45,7 +65,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：scalar |
 | **默认值**：`'31'` |
-
 ## 所属库
 
 Simulink / String

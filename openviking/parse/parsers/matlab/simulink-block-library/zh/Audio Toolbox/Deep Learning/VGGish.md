@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # VGGish
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 梅尔频谱图 96×64 矩阵 | 96×64×1×*N* 数组
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 嵌入 *N*×128 矩阵
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -36,13 +47,17 @@ chinese_source: worker-translation
 VGGish 特征嵌入，以 *N*×128 矩阵形式返回，其中 *N* 是输入中梅尔频谱图的数量。特征嵌入是音频数据的紧凑表示。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Mini-batch size
+  summary: 小批量的大小 128（默认）| 正整数
+  group: ''
+```
 
 ### **Mini-batch size** — 小批量的大小 `128`（默认）| 正整数
 
 用于预测的小批量的大小，指定为正整数。较大的小批量大小需要更多内存，但可以加快预测速度。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

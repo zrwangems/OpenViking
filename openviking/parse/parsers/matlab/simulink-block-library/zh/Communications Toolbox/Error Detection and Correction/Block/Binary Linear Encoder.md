@@ -15,16 +15,20 @@ chinese_source: worker-translation
 # Binary Linear Encoder
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Generator matrix**
 :   一个 *K*×*N* 矩阵，其中
     *K* 是消息长度，*N* 是
     码字长度。
-
 ## 所属库
 
 R2025b 中未记录。

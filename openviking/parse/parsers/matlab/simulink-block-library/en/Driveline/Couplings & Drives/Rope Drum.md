@@ -14,6 +14,18 @@ language: en
 # Rope Drum
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Drum shaft mechanical rotational
+  direction: conserving
+- name: A
+  summary: Rope end A mechanical translational
+  direction: conserving
+- name: B
+  summary: Rope end B mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,32 @@ A.
 
 Mechanical translational conserving port associated with rope end
 B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Drum radius
+  summary: Size of drum 0.10 m (default) | positive scalar
+  group: Rope Winding
+- name: Rope windup type
+  summary: Direction of B rope end with respect to A rope end Ends move in same direction (default) | Ends move in opposite
+    direction
+  group: Rope Winding
+- name: Tension warning
+  summary: Optional lost tension warning Do not check tension (default) | Warn if either end loses tension
+  group: Rope Winding
+- name: Bearing viscous friction coefficient
+  summary: Viscous friction for drum rotation 0.001 N*m/(rad/s) (default) | nonnegative scalar
+  group: Drum Dynamics
+- name: Inertia
+  summary: Resistance to angular acceleration No inertia (default) | Specify inertia and initial velocity
+  group: Drum Dynamics
+- name: Drum inertia
+  summary: Drum tendency to remain in motion 0.01 kg*m^2 (default) | positive scalar
+  group: Drum Dynamics
+- name: Drum initial velocity
+  summary: Initial drum state 0 rad/s (default) | scalar
+  group: Drum Dynamics
+```
 
 ### Rope Winding
 
@@ -95,7 +131,6 @@ Angular velocity of the drum at the start of the simulation.
 
 To enable this parameter, set **Inertia** to `Specify
 inertia and initial velocity`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

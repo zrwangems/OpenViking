@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # TCP/IP Send
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要发送的数据值 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### 输入
 
@@ -23,8 +30,53 @@ chinese_source: worker-translation
 从模块发送到远程主机的数据值，指定为向量、矩阵或数组。此数据的数组大小在仿真期间不得更改。在发送数据之前设置此模块的参数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## 参数
+```yaml
+parameters:
+- name: Remote address
+  summary: 远程主机名或地址 远程主机名或 IP 地址
+  group: ''
+  block_parameter: Host
+  type: character vector, string
+- name: Port
+  summary: 远程主机端口 80（默认）| 远程主机端口
+  group: ''
+  block_parameter: Port
+  type: character vector, string
+  values: 1 to 65,535
+  default: '''80'''
+- name: Verify address and port connectivity
+  summary: 远程机器连接验证按钮
+  group: ''
+- name: Byte order
+  summary: 字节的顺序 big-endian（默认）| little-endian
+  group: ''
+  block_parameter: ByteOrder
+  type: character vector, string
+  values: '''little-endian'' | ''big-endian'''
+  default: '''big-endian'''
+- name: Enable blocking mode
+  summary: 仿真在发送数据时等待 on（默认）| off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Timeout
+  summary: 完成操作所允许的时间 10（默认）| 正标量
+  group: ''
+  block_parameter: Timeout
+  type: character vector, string
+  values: positive scalar
+  default: '''10'''
+- name: Transfer Delay
+  summary: 启用延迟确认 on（默认）| off
+  group: ''
+  block_parameter: TransferDelay
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Remote address** — 远程主机名或地址 远程主机名或 IP 地址
 
@@ -117,7 +169,6 @@ chinese_source: worker-translation
 | **类型**：character vector, string |
 | **值**：`'on'` | `'off'` |
 | **默认值**：`'on'` |
-
 ## 所属库
 
 Instrument Control Toolbox

@@ -14,6 +14,39 @@ language: en
 # Multiport Switch
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Control signal scalar
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | image
+- name: '1'
+  summary: First data input scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | string | image
+- name: '2'
+  summary: Second data input scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | string | image
+- name: N
+  summary: Nth data input scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | string | image
+- name: \*
+  summary: Data port for out-of-range inputs scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: Selected data input, based on control signal value scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | string | image
+```
 
 ### Input
 
@@ -143,8 +176,130 @@ different data input sizes** check box, the output of the
 block is a variable size signal.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `string` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Data port order
+  summary: Type of ordering for data input ports One-based contiguous | Zero-based contiguous | Specify indices
+  group: Main
+  block_parameter: DataPortOrder
+  type: character vector
+  values: '''Zero-based contiguous'' | ''One-based contiguous'' | ''Specify indices'''
+  default: '''One-based contiguous'' (Multiport Switch) | ''Zero-based contiguous'' (Index Vector)'
+- name: Number of data ports
+  summary: Number of data input ports 1 | 3 | integer between 1 and 65535
+  group: Main
+  block_parameter: Inputs
+  type: character vector
+  values: integer between 1 and 65536
+  default: '''3'' (Multiport Switch) | ''1'' (Index Vector)'
+- name: Data port indices
+  summary: Array of indices for data ports {1,2,3} (default) | array of indices
+  group: Main
+  block_parameter: DataPortIndices
+  type: character vector
+  values: array of indices
+  default: '''{1,2,3}'''
+- name: Data port for default case
+  summary: Port to use for out-of-range inputs Last data port (default) | Additional data port
+  group: Main
+  block_parameter: DataPortForDefault
+  type: character vector
+  values: '''Last data port'' | ''Additional data port'''
+  default: '''Last data port'''
+- name: Diagnostic for default case
+  summary: Diagnostic action when control port value does not match data port indices Error (default) | Warning | None
+  group: Main
+  block_parameter: DiagnosticForDefault
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Require all data port inputs to have the same data type
+  summary: Require all inputs to have the same data type off (default) | on
+  group: Signal Attributes
+  block_parameter: InputSameDT
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Specify the output data type Inherit: Inherit via internal rule (default) | Inherit: Inherit via back propagation
+    | Inherit: Same as first data input | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Simulink.ImageType(480,640,3) | <data type expression>'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string'' | Simulink.ImageType(480,640,3)
+    | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Specify the rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round |
+    Simplest | Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Signal Attributes
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off'' (default) | ''on'''
+- name: Allow different data input sizes (Results in variable-size output signal)
+  summary: Allow input signals with different sizes off (default) | on
+  group: Signal Attributes
+  block_parameter: AllowDiffInputSizes
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Mode
+  summary: Select data type mode Inherit (default) | Built in | Fixed Point
+  group: Signal Attributes
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: Signal Attributes
+- name: Signedness
+  summary: Specify signed or unsigned Signed (default) | Unsigned
+  group: Signal Attributes
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias
+  group: Signal Attributes
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: Signal Attributes
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: Signal Attributes
+- name: Slope
+  summary: Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar
+  group: Signal Attributes
+- name: Bias
+  summary: Specify bias for the fixed-point data type 0 (default) | real-valued scalar
+  group: Signal Attributes
+```
 
 ### Main
 
@@ -735,7 +890,6 @@ information, see Specifying a Fixed-Point Data Type.
 
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
-
 ## Libraries
 
 Simulink / Signal Routing HDL Coder / Signal Routing

@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2803x LIN Receive
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **数据类型**
 :   选择 LIN 模块输出到模型的数据类型。可用选项为
@@ -297,7 +302,6 @@ R2025b 中未记录。
     `Ts`。
 
     默认值为 `0.1` 秒。
-
 ## 所属库
 
 R2025b 中未记录。

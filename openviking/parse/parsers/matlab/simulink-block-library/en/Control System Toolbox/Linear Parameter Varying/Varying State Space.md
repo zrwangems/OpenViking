@@ -14,6 +14,48 @@ language: en
 # Varying State Space
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: System input scalar | vector
+  direction: input
+- name: A
+  summary: State matrix matrix
+  direction: input
+- name: B
+  summary: Input matrix matrix
+  direction: input
+- name: C
+  summary: Output matrix matrix
+  direction: input
+- name: D
+  summary: Feedforward matrix matrix
+  direction: input
+- name: dx0
+  summary: State derivative offsets matrix
+  direction: input
+- name: x0
+  summary: State offsets matrix
+  direction: input
+- name: u0
+  summary: Input offsets matrix
+  direction: input
+- name: y0
+  summary: Output offsets matrix
+  direction: input
+- name: IC
+  summary: Initial condition vector
+  direction: input
+- name: y
+  summary: System output scalar | vector
+  direction: output
+- name: x
+  summary: Current state vector vector
+  direction: output
+- name: dx
+  summary: State derivatives vector
+  direction: output
+```
 
 ### Input
 
@@ -129,8 +171,52 @@ Current derivatives of the corresponding states in
 
 To enable this port, select the **Output state
 derivatives** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition source
+  summary: Option to set initial condition using external signal internal (default) | external
+  group: Main Tab
+  block_parameter: InitialConditionSource
+  values: internal (default) | external
+- name: Initial conditions
+  summary: System initial conditions 0 (default) | scalar | vector
+  group: Main Tab
+  block_parameter: InitialCondition
+  values: '"0" (default) | initial state values in quotes'
+- name: State names
+  summary: System state names '' (default) | character vector | cell array
+  group: Main Tab
+- name: Output states
+  summary: Provide state output on (default) | off
+  group: Main Tab
+- name: Output state derivatives
+  summary: Provide state derivatives on (default) | off
+  group: Main Tab
+- name: Enable feedthrough
+  summary: Add input port for feedthrough matrix on (default) | off
+  group: Main Tab
+- name: Enable state offsets x0
+  summary: Add input port for state offsets off (default) | on
+  group: Offsets Tab
+  block_parameter: InputX0
+  values: '"off" (default) | "on"'
+- name: Enable state derivative offsets dx0
+  summary: Add input port for state derivative offsets off (default) | on
+  group: Offsets Tab
+  block_parameter: InputDX0
+  values: '"off" (default) | "on"'
+- name: Enable input offsets u0
+  summary: Add input port for input offsets off (default) | on
+  group: Offsets Tab
+  block_parameter: InputU0
+  values: '"off" (default) | "on"'
+- name: Enable output offsets y0
+  summary: Add input port for output offsets off (default) | on
+  group: Offsets Tab
+  block_parameter: InputY0
+  values: '"off" (default) | "on"'
+```
 
 ### Main Tab
 
@@ -268,7 +354,6 @@ the `set_param` (Simulink) function.
 | --- | --- |
 | **Parameter:** | `InputY0` |
 | **Values:** | `"off"` (default) | `"on"` |
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

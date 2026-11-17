@@ -14,6 +14,18 @@ language: en
 # Band Brake
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: Belt tensioning force physical signal
+  direction: input
+- name: S
+  summary: Drum shaft rotation rotational mechanical
+  direction: conserving
+- name: H
+  summary: Heat flow, in W thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -40,8 +52,43 @@ Port** parameter is set to
 `Model`.
 
 Exposing this port makes related settings visible.
-
 ## Parameters
+```yaml
+parameters:
+- name: Drum radius
+  summary: Contact surface radius 150 mm (default) | positive scalar
+  group: Geometry
+- name: Wrap angle
+  summary: Contact angle 270 deg (default) | positive scalar
+  group: Geometry
+- name: Viscous friction coefficient
+  summary: Viscous friction .01 n*m/(rad/s) (default) | nonegative scalar
+  group: Friction
+- name: Thermal port
+  summary: Thermal model Omit (default) | Model
+  group: Friction
+- name: Temperature
+  summary: Temperature [280, 300, 320] K (default) | increasing vector
+  group: Friction
+- name: Contact friction coefficient
+  summary: Coulomb friction 0.3 (default) | positive scalar
+  group: Friction
+- name: Contact friction coefficient vector
+  summary: Coulomb friction [.1, .05, .03] (default) | increasing vector of positive values
+  group: Friction
+- name: Angular velocity threshold
+  summary: Rotational velocity required for near steady-state contact friction 0.01 rad/s (default) | positive scalar
+  group: Friction
+- name: Belt tension fault
+  summary: Option to model a belt tension failure Add fault
+  group: Faults
+- name: Belt tension when faulted
+  summary: Faulted belt tension 0 N (default) | positive scalar
+  group: Faults
+- name: Thermal mass
+  summary: Resistance to temperature change 50 kJ/K (default) | scalar
+  group: Thermal Port
+```
 
 ### Geometry
 
@@ -160,7 +207,6 @@ component is to temperature change.
 
 To enable this parameter, set **Thermal Port** to
 `Model`.
-
 ## Libraries
 
 Simscape / Driveline / Brakes & Detents / Rotational

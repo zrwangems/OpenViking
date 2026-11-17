@@ -14,6 +14,17 @@ language: en
 # Nonlinear ARX Model
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: Simulation input data scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1(Out1)
+  summary: Simulated output scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -42,8 +53,25 @@ single-output model and an *Ny*-element vector for a
 model with *Ny* outputs.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Model
+  summary: Nonlinear ARX model to be simulated idnlarx object
+  group: ''
+- name: Initial conditions
+  summary: Initial condition specification for simulation Input and output values (default) | State values
+  group: ''
+- name: Input level
+  summary: Steady-state input signal level 0 (default) | scalar
+  group: ''
+- name: Output level
+  summary: Steady-state output signal level 0 (default) | scalar
+  group: ''
+- name: Specify initial states as a vector
+  summary: Initial state values 0 (default) | vector
+  group: ''
+```
 
 ### **Model** — Nonlinear ARX model to be simulated `idnlarx` object
 
@@ -146,7 +174,6 @@ follows:
 To enable this parameter, specify `Initial
 conditions` as `State
 values`.
-
 ## Libraries
 
 System Identification Toolbox / Models

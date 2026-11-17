@@ -14,6 +14,13 @@ language: en
 # Phase Noise Measurement
 
 ## Ports
+```yaml
+ports:
+- name: sig
+  summary: Input signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -23,8 +30,39 @@ Input time domain signal to the Phase Noise Measurement block,
 specified as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Resolution bandwidth (Hz)
+  summary: Smallest positive frequency that can be resolved 30e3 (default) | real positive scalar
+  group: ''
+- name: No. of spectral averages
+  summary: Number of spectral averages 4 (default) | positive integer scalar
+  group: ''
+- name: Hold off time (s)
+  summary: Delays measurement analysis to avoid transients 0 (default) | real nonnegative scalar
+  group: ''
+- name: Frequency offset vector (Hz)
+  summary: Frequency points relative to fundamental frequency where phase noise is calculated [30e3 100e3 1e6 3e6 10e6] (default)
+    | real valued vector
+  group: ''
+- name: Specify target
+  summary: Specify target phase noise vector off (default) | on
+  group: ''
+- name: Phase noise vector (dBc/Hz)
+  summary: Target phase noise profile for given frequency offset vector [-300 -300 -300 -300 -300] (default) | real valued
+    vector
+  group: ''
+- name: Set stop time
+  summary: Set recommended minimum simulation stop time as model stop time button
+  group: ''
+- name: Plot phase noise
+  summary: Plot phase noise profile of input signal button
+  group: ''
+- name: Export measurement results
+  summary: Export measurement results after simulation button
+  group: ''
+```
 
 ### **Resolution bandwidth (Hz)** — Smallest positive frequency that can be resolved `30e3` (default) | real positive scalar
 
@@ -120,7 +158,6 @@ selected. You can plot the phase noise profile any time during simulation.
 
 Click to export measurement results to an excel spreadsheet (XLS) or as
 comma-separated values (CSV) after the simulation is complete.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

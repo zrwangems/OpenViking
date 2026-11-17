@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # TOA Position Estimator
 
 ## 端口
+```yaml
+ports:
+- name: TOAest
+  summary: 估计到达时间 1×*L* 实值向量
+  direction: input
+  data_types: single | double
+- name: TOAVar
+  summary: 估计到达时间的方差 1×*L* 实值向量
+  direction: input
+  data_types: single | double
+- name: AnchorPos
+  summary: 锚点位置 2×*L* 实值矩阵 | 3×*L* 实值矩阵
+  direction: input
+  data_types: single | double
+- name: TgtPosEst
+  summary: 估计目标位置 实值 *Q*×1 向量
+  direction: output
+- name: TgtPosCov
+  summary: 目标位置协方差矩阵 实值半正定 *Q*×*Q* 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -52,8 +74,22 @@ chinese_source: worker-translation
 要启用此输出端口，请选中 **Output covariance of TOA position estimate** 复选框。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst("LightSpeed")（默认）| 正实标量
+  group: ''
+- name: Output covariance of TOA position estimate
+  summary: 输出 TDOA 位置估计的协方差 false (0)（默认）| true (1)
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® Toolstrip 中，在 **Simulation** 选项卡的 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -112,7 +148,6 @@ Generation` 运行模块。长时间仿真使用生成代码比在
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Direction of Arrival

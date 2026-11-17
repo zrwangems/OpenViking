@@ -14,6 +14,21 @@ language: en
 # Zoom FFT
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input data vector | matrix
+  direction: input
+  data_types: single | double
+- name: Fc
+  summary: Center frequency input real scalar
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Zoom FFT output vector | matrix
+  direction: input
+  data_types: single | double
+```
 
 ### Input
 
@@ -118,8 +133,38 @@ input.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Decimation factor
+  summary: Decimation factor 2 (default) | positive integer
+  group: ''
+- name: Specify center frequency from input port
+  summary: Flag to specify center frequency from input port 'off' (default) | 'on'
+  group: ''
+- name: Center frequency
+  summary: Center frequency 0 (default) | real scalar
+  group: ''
+- name: Inherit FFT Length from input dimensions
+  summary: Flag to inherit FFT length from input dimensions 'on' (default) | 'off'
+  group: ''
+- name: FFT length
+  summary: FFT length 64 (default) | positive scalar
+  group: ''
+- name: Sample rate mode
+  summary: Mode to specify input sample rate Use normalized frequency (0 to 1) (default) | Specify on dialog | Inherit from
+    input port
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Input sample rate 44100 (default) | positive real scalar
+  group: ''
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Decimation factor** — Decimation factor `2` (default) | positive integer
 
@@ -265,7 +310,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Transforms

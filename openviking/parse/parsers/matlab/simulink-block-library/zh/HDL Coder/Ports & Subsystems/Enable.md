@@ -15,6 +15,14 @@ chinese_source: worker-translation
 # Enable
 
 ## 端口
+```yaml
+ports:
+- name: 使能信号
+  summary: 子系统或模型的外部使能信号 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    expression
+```
 
 ### 输出
 
@@ -24,8 +32,75 @@ chinese_source: worker-translation
 当您选中 **显示输出端口** 参数时，使能端口会添加一个使能信号端口。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `expression`
-
 ## 参数
+```yaml
+parameters:
+- name: 使能时的状态
+  summary: 选择子系统或模型禁用时的模块状态 held（默认）| reset
+  group: ''
+  block_parameter: StatesWhenEnabling
+  type: 字符向量
+  values: '''held'' | ''reset'''
+- name: 传播可变大小信号的尺寸
+  summary: 选择何时传播可变大小信号 仅在使能时（默认）| 执行期间
+  group: ''
+  block_parameter: PropagateVarSize
+  type: 字符向量
+  values: '''Only when enabling'' | ''During execution'''
+- name: 显示输出端口
+  summary: 控制使能信号输出端口的显示 off（默认）| on
+  group: ''
+  block_parameter: ShowOutputPort
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: 使能过零检测
+  summary: 控制过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: 端口维度
+  summary: 指定使能信号的维度 1（默认）| [n] | [m n]
+  group: ''
+  block_parameter: PortDimensions
+  type: 字符向量
+  values: '''1'' | ''[n]'' | ''[m n]'''
+- name: 采样时间
+  summary: 指定时间间隔 -1（默认）| Ts | [Ts, To]
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: '''-1'' | ''Ts'' | ''[Ts, To]'''
+- name: 最小值
+  summary: 指定使能信号的最小输出值 []（默认）| 实数标量
+  group: ''
+  block_parameter: OutMin
+  type: 字符向量
+  values: '''[]'' | 带引号的实数标量'
+- name: 最大值
+  summary: 指定使能信号的最大输出值 []（默认）| 实数标量
+  group: ''
+  block_parameter: OutMax
+  type: 字符向量
+  values: '''[]'' | 带引号的实数标量'
+- name: 数据类型
+  summary: 指定使能信号的输出数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean |
+    fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^,0) | <data type expression>
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' |
+    ''uint64'' | ''boolean'' | ''<fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+- name: 模式
+  summary: 选择数据类型类别 Built in（默认）| Fixed point | Expression
+  group: ''
+- name: 插值数据
+  summary: 指定缺失工作区数据的值 on（默认）| off
+  group: ''
+  block_parameter: Interpolate
+  type: 字符向量
+  values: '''on'' | ''off'''
+```
 
 ### **使能时的状态** — 选择子系统或模型禁用时的模块状态 `held`（默认）| `reset`
 
@@ -294,7 +369,6 @@ off
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认：** `'on'` |
-
 ## 所属库
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

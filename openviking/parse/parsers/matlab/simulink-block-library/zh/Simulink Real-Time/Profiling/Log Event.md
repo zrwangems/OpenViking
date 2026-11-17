@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # Log Event
 
 ## 端口
+```yaml
+ports:
+- name: T
+  summary: 日志事件触发 1..0
+  direction: input
+```
 
 ### 输入
 
@@ -25,8 +31,22 @@ chinese_source: worker-translation
 **Value** 所定义的用户自定义简单事件插入到执行性能分析事件流中。
 
 **示例：**  1
-
 ## 参数
+```yaml
+parameters:
+- name: Channel
+  summary: 事件通道 ID 0（默认）| int
+  group: ''
+- name: Code
+  summary: 事件代码编号 0（默认）| uint32
+  group: ''
+- name: Value
+  summary: 事件值编号 0（默认）| uint32
+  group: ''
+- name: Trigger type
+  summary: 选择触发信号边沿 Rising（默认）| Falling | Either
+  group: ''
+```
 
 ### **Channel** — 事件通道 ID `0`（默认）| int
 
@@ -71,7 +91,6 @@ value
 ```
 trigger
 ```
-
 ## 所属库
 
 Simulink Real-Time / Profiling

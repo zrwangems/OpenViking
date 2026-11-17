@@ -14,6 +14,18 @@ language: en
 # Y-Junction (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Moist air port moist air
+  direction: conserving
+- name: B
+  summary: Moist air port moist air
+  direction: conserving
+- name: C
+  summary: Moist air port moist air
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,58 @@ junction.
 
 Moist air conserving port associated with the liquid entrance or exit of the
 junction.
-
 ## Parameters
+```yaml
+parameters:
+- name: Main branch area (A-B)
+  summary: Cross-sectional area between ports A and B 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Side branch area (C)
+  summary: Cross-sectional area of the side branch 0.004 m^2 (default) | positive scalar
+  group: ''
+- name: Loss coefficient model
+  summary: Loss coefficient type Idel'chik correlation (default) | Custom
+  group: ''
+- name: Loss coefficient configuration change time constant
+  summary: Time scale of smoothing function 0.0001 s (default) | positive scalar
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Pressure ratio at which flow transitions between laminar and turbulent regimes 0.999 (default) | positive scalar
+  group: ''
+- name: Zero-flow threshold pressure ratio
+  summary: Pressure ratio that corresponds to stagnant flow 0.999999 (default) | positive scalar
+  group: ''
+- name: Junction angle between (A-C)
+  summary: Offset angle of side branch 45 deg (default) | positive scalar between 15 and 60
+  group: ''
+- name: Minimum valid flow ratio for coefficient calculation
+  summary: Limit on flow ratios for coefficient calculations 0.2 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | scalar between 0 and 1
+  group: ''
+- name: Fluid inertia
+  summary: Option to model fluid inertia off (default) | on
+  group: ''
+- name: Report when flow configuration is invalid
+  summary: Simulation warning mode for invalid flow configurations None (default) | Warning | Error
+  group: ''
+- name: Main branch converging loss coefficient
+  summary: Converging flow loss coefficient between A and B 1.12 (default) | positive scalar
+  group: ''
+- name: Main branch diverging loss coefficient
+  summary: Diverging flow loss coefficient between A and B 1.12 (default) | positive scalar
+  group: ''
+- name: Side branch converging loss coefficient
+  summary: Converging flow loss coefficient between C and main 1.12 (default) | positive scalar
+  group: ''
+- name: Side branch diverging loss coefficient
+  summary: Diverging flow loss coefficient between C and main 1.12 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+```
 
 ### **Main branch area (A-B)** — Cross-sectional area between ports A and B `0.01 m^2` (default) | positive scalar
 
@@ -170,7 +232,6 @@ To enable this parameter, set **Loss coefficient model** to
 ### **Critical Reynolds number** — Upper Reynolds number limit for laminar flow `150` (default) | positive scalar
 
 Upper Reynolds number limit for laminar flow through the junction.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Pipes & Fittings

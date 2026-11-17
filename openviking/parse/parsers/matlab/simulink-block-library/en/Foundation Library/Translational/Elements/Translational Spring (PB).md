@@ -14,6 +14,15 @@ language: en
 # Translational Spring (PB)
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base port position-based mechanical translational
+  direction: conserving
+- name: F
+  summary: Follower port position-based mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -27,13 +36,17 @@ connection.
 Position-based mechanical translational conserving port that represents the
 follower connection. For positive length, port **F** has a more
 positive position than port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Spring stiffness
+  summary: Spring rate 1e5 N/m (default) | scalar
+  group: ''
+```
 
 ### **Spring stiffness** — Spring rate `1e5 N/m` (default) | scalar
 
 Spring rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Translational / Elements

@@ -14,6 +14,28 @@ language: en
 # Assignment
 
 ## Ports
+```yaml
+ports:
+- name: Y0
+  summary: Initial value of output signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | Boolean |
+    enumerated | bus
+- name: U
+  summary: Input data port scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | Boolean |
+    enumerated | bus
+- name: IndxN
+  summary: '*N*th index signal scalar | vector'
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Y
+  summary: Output signal with assigned values scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+```
 
 ### Input
 
@@ -63,8 +85,75 @@ The output signal with assigned values for the specified
 elements.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of output dimensions
+  summary: Number of dimensions of the output signal 1 (default) | integer
+  group: ''
+  block_parameter: NumberOfDimensions
+  type: character vector
+  values: integer
+  default: '''1'''
+- name: Index mode
+  summary: Index mode One-based (default) | Zero-based
+  group: ''
+  block_parameter: IndexMode
+  type: character vector
+  values: '''Zero-based'' | ''One-based'''
+  default: '''One-based'''
+- name: Index Option
+  summary: Index method for elements Index vector (dialog) (default) | Assign all | Index vector (port) | Starting index (dialog)
+    | Starting index (port)
+  group: ''
+  block_parameter: IndexOptionArray
+  type: cell array of character vectors
+  values: '{''Assign all''} | {''Index vector (dialog)''} | {''Index vector (port)''} | {''Starting index (dialog)''} | {''Starting
+    index (port)''}'
+  default: '{''Index vector (dialog)''}'
+- name: Index
+  summary: Index of elements 1 (default) | integer
+  group: ''
+  block_parameter: IndexParamArray
+  type: cell array of character vectors
+  values: integers
+  default: '{''1''}'
+- name: Output Size
+  summary: Width of block output signal 1 (default) | integer
+  group: ''
+  block_parameter: OutputSizeArray
+  type: cell array of character vectors
+  values: integers
+  default: '{''1''}'
+- name: Initialize output (Y)
+  summary: How to initialize output signal Initialize using input port <Y0> (default) | Specify size for each dimension in
+    the table
+  group: ''
+  block_parameter: OutputInitialize
+  type: character vector
+  values: '''Initialize using input port <Y0>'' | ''Specify size for each dimension in table'''
+  default: '''Initialize using input port <Y0>'''
+- name: Action if any output element is not assigned
+  summary: Option to produce warning or error Warning (default) | Error | None
+  group: ''
+  block_parameter: DiagnosticForDimensions
+  type: character vector
+  values: '''Error'' | ''Warning'' | ''None'''
+  default: '''Warning'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Check for out-of-range index in accelerated simulation
+  summary: Option to check for out-of-range index values in accelerator and rapid accelerator simulation modes off (default)
+    | on
+  group: ''
+  block_parameter: RuntimeRangeChecks
+  type: character vector
+  values: '''Off'' | ''On'''
+  default: '''Off'''
+```
 
 ### **Number of output dimensions** — Number of dimensions of the output signal `1` (default) | integer
 
@@ -283,7 +372,6 @@ of whether you select this check box.
 | **Type:** character vector |
 | **Values:** `'Off'` | `'On'` |
 | **Default:** `'Off'` |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / Math Operations

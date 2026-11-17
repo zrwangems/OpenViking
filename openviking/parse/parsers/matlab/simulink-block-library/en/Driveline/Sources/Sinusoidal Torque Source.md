@@ -14,6 +14,15 @@ language: en
 # Sinusoidal Torque Source
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base interface mechanical rotational
+  direction: conserving
+- name: F
+  summary: Follower interface mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,22 @@ interface.
 
 Mechanical rotational conserving port associated with the follower
 interface.
-
 ## Parameters
+```yaml
+parameters:
+- name: Offset
+  summary: Output average value 0 N*m (default)
+  group: ''
+- name: Sinusoid peak amplitude
+  summary: Output peak amplitude 1 N*m (default)
+  group: ''
+- name: Phase shift
+  summary: Output phase shift 0 deg (default)
+  group: ''
+- name: Frequency
+  summary: Output frequency 1 Hz (default)
+  group: ''
+```
 
 ### **Offset** — Output average value `0` `N*m` (default)
 
@@ -45,7 +68,6 @@ Peak amplitude of the sinusoidal output torque.
 
 Frequency of the sinusoidal output torque. The frequency must be greater
 than or equal to 0.
-
 ## Libraries
 
 Simscape / Driveline / Sources

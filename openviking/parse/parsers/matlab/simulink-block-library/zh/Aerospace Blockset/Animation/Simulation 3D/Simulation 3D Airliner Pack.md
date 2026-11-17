@@ -15,6 +15,67 @@ chinese_source: worker-translation
 # Simulation 3D Airliner Pack
 
 ## 端口
+```yaml
+ports:
+- name: Body_T
+  summary: 机体平移 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: 机体旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Engine_R
+  summary: 左发动机旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Engine_R
+  summary: 右发动机旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Rudder_R
+  summary: 方向舵旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Elevator_R
+  summary: 升降舵旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Aileron_R
+  summary: 左副翼旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Aileron_R
+  summary: 右副翼旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Flaps_R
+  summary: 襟翼旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_Strut_R
+  summary: 前轮支柱旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Nose_Wheel_R
+  summary: 前轮旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Left_Wheel_R
+  summary: 左轮旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Right_Wheel_R
+  summary: 右轮旋转 1×3 矩阵
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: 飞行器平移 12×3 数组
+  direction: output
+- name: Rotation
+  summary: 飞行器和机轮旋转 12×3 数组
+  direction: output
+```
 
 ### 输入
 
@@ -169,8 +230,92 @@ chinese_source: worker-translation
 该旋转适用于 Translation 端口所列出的相同骨骼。
 
 该信号包含旋转 [roll，pitch，yaw]，单位为弧度，数组的每一行对应飞行器的一个骨骼。
-
 ## 参数
+```yaml
+parameters:
+- name: Left engine rotation
+  summary: 启用 Left_Engine_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Left_Engine_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right engine rotation
+  summary: 启用 Right_Engine_R 输入端口的选项 off（默认）| on
+  group: 推进
+  block_parameter: Right_Engine_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rudder rotation
+  summary: 启用 Rudder_R 输入端口的选项 off（默认）| on
+  group: 控制
+  block_parameter: Rudder_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Elevator rotation
+  summary: 启用 Elevator_R 输入端口的选项 off（默认）| on
+  group: 控制
+  block_parameter: Elevator_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left aileron rotation
+  summary: 启用 Left_Aileron_R 输入端口的选项 off（默认）| on
+  group: 控制
+  block_parameter: Left_Aileron_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right aileron rotation
+  summary: 启用 Right_Aileron_R 输入端口的选项 off（默认）| on
+  group: 控制
+  block_parameter: Right_Aileron_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Flaps rotation
+  summary: 启用 Flaps_R 输入端口的选项 off（默认）| on
+  group: 控制
+  block_parameter: Flaps_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel strut rotation
+  summary: 启用 Nose_Wheel_Strut_R 输入端口的选项 off（默认）| on
+  group: 起落架
+  block_parameter: Nose_Wheel_Strut_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Nose wheel rotation
+  summary: 启用 Nose_Wheel_R 输入端口的选项 off（默认）| on
+  group: 起落架
+  block_parameter: Nose_Wheel_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Left wheel rotation
+  summary: 启用 Left_Wheel_R 输入端口的选项 off（默认）| on
+  group: 起落架
+  block_parameter: Left_Wheel_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Right wheel rotation
+  summary: 启用 Right_Wheel_R 输入端口的选项 off（默认）| on
+  group: 起落架
+  block_parameter: Right_Wheel_R
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Select input coordinate frame
+  summary: 输入坐标系 NED（默认）| Fixed-frame | ICRF
+  group: 输入
+  block_parameter: GeoRadioButton
+  values: '''NED''（默认）| ''Fixed-frame'' | ''ICRF'''
+```
 
 ### 推进
 
@@ -339,7 +484,6 @@ chinese_source: worker-translation
 | --- | --- |
 | **参数：** | `GeoRadioButton` |
 | **值：** | `'NED'`（默认）| `'Fixed-frame'` | `'ICRF'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Simulation 3D

@@ -14,6 +14,77 @@ language: en
 # Scattering MIMO Channel
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Transmitted narrowband signal *M*-by-*Nt* complex-valued matrix
+  direction: input
+  data_types: double
+- name: XH
+  summary: Transmitted narrowband H-polarization signal *M*-by-*Nt* complex-valued matrix
+  direction: input
+  data_types: double
+- name: XV
+  summary: Transmitted narrowband V-polarization signal *M*-by-*Nt* complex-valued matrix
+  direction: input
+  data_types: double
+- name: TxPos
+  summary: Position of transmitting antenna array 3-by-1 real-valued column vector
+  direction: input
+  data_types: double
+- name: TxVel
+  summary: Velocity of transmitting antenna array 3-by-1 real-valued column vector
+  direction: input
+  data_types: double
+- name: TxAxes
+  summary: Axes orientation of transmitting antenna array 3-by-3 real orthonormal matrix
+  direction: input
+  data_types: double
+- name: RxPos
+  summary: Position of receiving antenna array 3-by-1 real-valued column vector
+  direction: input
+  data_types: double
+- name: RxVel
+  summary: Velocity of receiving antenna array 3-by-1 real-valued column vector
+  direction: input
+  data_types: double
+- name: RxAxes
+  summary: Axes orientation of receiving antenna array 3-by-3 real orthonormal matrix
+  direction: input
+  data_types: double
+- name: ScatPos
+  summary: Positions of scatterers 3-by-*Ns* real-valued matrix
+  direction: input
+  data_types: double
+- name: ScatVel
+  summary: Velocities of scatterers 3-by-*Ns* real-valued matrix
+  direction: input
+  data_types: double
+- name: ScatCoef
+  summary: Scattering coefficients 1-by-*Ns* complex-valued row vector
+  direction: input
+  data_types: double
+- name: Y
+  summary: Received narrowband signal *M*-by-*Nr* complex-valued matrix
+  direction: output
+  data_types: double
+- name: YH
+  summary: Received narrowband H-polarization signal complex-valued *M*-by-*Nr* matrix
+  direction: output
+  data_types: double
+- name: YV
+  summary: Received narrowband V-polarization signal complex-valued *M*-by-*Nr* matrix
+  direction: output
+  data_types: double
+- name: CS
+  summary: Channel response *Nt*-by-*Nr*-by-*Ns* complex-valued MATLAB® array
+  direction: output
+  data_types: double
+- name: Tau
+  summary: Path delays 1-by-*Ns* real-valued vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -296,8 +367,187 @@ receiving array phase center.
 To enable this port, select the **Output channel response** checkbox.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: Signal carrier frequency 3e8 (default) | positive scalar
+  group: ''
+- name: Polarization configuration
+  summary: Polarization configuration None (default) | Combined | Dual
+  group: ''
+- name: Specify atmospheric parameters
+  summary: Enable atmospheric attenuation model off (default) | on
+  group: ''
+- name: Temperature (degrees Celsius)
+  summary: Ambient temperature 15 (default) | real-valued scalar
+  group: ''
+- name: Dry air pressure (Pa)
+  summary: Atmospheric dry air pressure 101.325e3 (default) | positive real-valued scalar
+  group: ''
+- name: Water vapour density (g/m^3)
+  summary: Atmospheric water vapor density 7.5 (default) | positive real-valued scalar
+  group: ''
+- name: Liquid water density (g/m^3)
+  summary: Liquid water density 0.0 (default) | nonnegative real-valued scalar
+  group: ''
+- name: Rain rate (mm/hr)
+  summary: Rainfall rate 0.0 (default) | non-negative real-valued scalar
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Simulate direct path propagation
+  summary: Enable propagation along direct path off (default) | on
+  group: ''
+- name: Maximum delay (s)
+  summary: Maximum signal delay 10e-6 (default) | positive scalar
+  group: ''
+- name: Output channel response
+  summary: Enable output of channel response off (default) | on
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+- name: Specify sensor array as
+  summary: Method to specify array Array (no subarrays) (default) | MATLAB expression
+  group: ''
+- name: Expression
+  summary: MATLAB expression used to create an array Phased Array System Toolbox™ array System object
+  group: ''
+- name: Element type
+  summary: Array element types Isotropic Antenna (default) | Cosine Antenna | Custom Antenna | Omni Microphone | Custom Microphone
+  group: ''
+- name: Operating frequency range (Hz)
+  summary: Operating frequency range of the antenna or microphone element [0,1e20] (default) | real-valued 1-by-2 row vector
+  group: ''
+- name: Operating frequency vector (Hz)
+  summary: Operating frequency range of custom antenna or microphone elements [0,1e20] (default) | real-valued row vector
+  group: ''
+- name: Baffle the back of the element
+  summary: Set back response of an Isotropic Antenna element or an Omni Microphone element to zero off (default) | on
+  group: ''
+- name: Exponent of cosine pattern
+  summary: Exponents of azimuth and elevation cosine patterns [1.5 1.5] (default) | nonnegative scalar | real-valued 1-by-2
+    matrix of nonnegative values
+  group: ''
+- name: Frequency responses (dB)
+  summary: Antenna and microphone frequency response [0,0] (default) | real-valued row vector
+  group: ''
+- name: Input Pattern Coordinate System
+  summary: Coordinate system of custom antenna pattern az-el (default) | phi-theta
+  group: ''
+- name: Azimuth angles (deg)
+  summary: Azimuth angles of antenna radiation pattern [-180:180] (default) | real-valued row vector
+  group: ''
+- name: Elevation angles (deg)
+  summary: Elevation angles of antenna radiation pattern [-90:90] (default) | real-valued row vector
+  group: ''
+- name: Phi Angles (deg)
+  summary: Phi angle coordinates of custom antenna radiation pattern 0:360 | real-valued 1-by-*P* row vector
+  group: ''
+- name: Theta Angles (deg)
+  summary: Theta angle coordinates of custom antenna radiation pattern 0:180 | real-valued 1-by-*Q* row vector
+  group: ''
+- name: Magnitude pattern (dB)
+  summary: Magnitude of combined antenna radiation pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued
+    *Q*-by-*P*-by-*L* array
+  group: ''
+- name: Phase pattern (deg)
+  summary: Custom antenna radiation phase pattern zeros(181,361) (default) | real-valued *Q*-by-*P* matrix | real-valued *Q*-by-*P*-by-*L*
+    array
+  group: ''
+- name: MatchArrayNormal
+  summary: Rotate antenna element to array normal on (default) | off
+  group: ''
+- name: Polar pattern frequencies (Hz)
+  summary: Polar pattern microphone response frequencies 1e3 (default) | real scalar | real-valued 1-by-*L* row vector
+  group: ''
+- name: Polar pattern angles (deg)
+  summary: Polar pattern response angles [-180:180] (default) | real-valued -by-*P* row vector
+  group: ''
+- name: Polar pattern (dB)
+  summary: Custom microphone polar response zeros(1,361) (default) | real-valued *L*-by-*P* matrix
+  group: ''
+- name: Geometry
+  summary: Array geometry ULA (default) | URA | UCA | Conformal Array
+  group: ''
+- name: Number of elements
+  summary: Number of array elements 2 for ULA arrays and 5 for UCA arrays (default) | integer greater than or equal to 2
+  group: ''
+- name: Element spacing (m)
+  summary: Spacing between array elements 0.5 for ULA arrays and [0.5,0.5] for URA arrays (default) | positive scalar for
+    ULA or URA arrays | 2-element vector of positive values for URA arrays
+  group: ''
+- name: Array axis
+  summary: Linear axis direction of ULA y (default) | x | z
+  group: ''
+- name: Array size
+  summary: Dimensions of URA array [2,2] (default) | positive integer | 1-by-2 vector of positive integers
+  group: ''
+- name: Element lattice
+  summary: Lattice of URA element positions Rectangular (default) | Triangular
+  group: ''
+- name: Array normal
+  summary: Array normal direction x for URA arrays or z for UCA arrays (default) | y
+  group: ''
+- name: Radius of UCA (m)
+  summary: UCA array radius 0.5 (default) | positive scalar
+  group: ''
+- name: Element positions (m)
+  summary: Positions of conformal array elements [0;0;0] (default) | 3-by-*N*matrix of real values
+  group: ''
+- name: Element normals (deg)
+  summary: Direction of conformal array element normal vectors [0;0] | 2-by-1 column vector | 2-by-*N* matrix
+  group: ''
+- name: Taper
+  summary: Array element tapers 1 (default) | complex scalar | complex-valued row vector
+  group: ''
+- name: Source of transmit array motion
+  summary: Specify the source of the transmitting array motion parameters Property (default) | Input port
+  group: ''
+- name: Position of the transmit array (m)
+  summary: Position of transmitting array [0;0;0] (default) | real-valued 3-by-1 vector
+  group: ''
+- name: Orientation of the transmit array
+  summary: Set the orientation of transmitting array axes eye(3,3) (default) | real-valued 3-by-3 orthonormal matrix
+  group: ''
+- name: Source of receive array motion
+  summary: Specify the source of the receiving array motion parameters Property (default) | Input port
+  group: ''
+- name: Position of the receive array (m)
+  summary: Position of receiving array [physconst('LightSpeed' )/1e5; 0;0] (default) | real-valued 3-by-1 vector
+  group: ''
+- name: Orientation of the receive array
+  summary: Set the orientation of receiving array axes eye(3,3) (default) | real-valued 3-by-3 orthonormal matrix
+  group: ''
+- name: Scatterer specification
+  summary: Specify source of scatterer parameters Auto (default) | Property | Input port
+  group: ''
+- name: Number of scatterers
+  summary: Number of scatterers 1 (default) | nonnegative integer
+  group: ''
+- name: Boundary of scatterer positions
+  summary: Constrain scatterer positions within a boundary [0,1000] (default) | 1-by-2 real-valued vector | 3-by-2 real-valued
+    matrix
+  group: ''
+- name: Positions of scatterers (m)
+  summary: Positions of scatterers [physconst('LightSpeed' )*5e-6;0;0] (default) | real-valued 3-by-*Ns* matrix
+  group: ''
+- name: ScattererCoefficient
+  summary: Scattering coefficients 1 (default) | complex-valued 1-by-*Ns* matrix
+  group: ''
+```
 
 #### Main Tab
 
@@ -1148,7 +1398,6 @@ to `Property`.
 
 **Data Types:** `double`
 **Complex Number Support:** Yes
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

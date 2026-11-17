@@ -14,6 +14,14 @@ language: en
 # Signal Editor
 
 ## Ports
+```yaml
+ports:
+- name: Signal1
+  summary: Signals in scenario scalar | vector | matrix | array
+  direction: unspecified
+  data_types: single | double | half | int | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### Output Arguments
 
@@ -32,8 +40,108 @@ types when the **Interpolate data** parameter is
 selected. For more information, see Array of buses support.
 
 **Data Types:** `single` | `double` | `half` | `int` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: To create and edit scenarios, open Signal Editor user interface
+  summary: Option to open Signal Editor tool button
+  group: ''
+- name: File name
+  summary: Data set file untitled.mat (default) | character vector
+  group: ''
+  block_parameter: Filename
+  type: character vector
+  values: character vector
+  default: '''untitled.mat'''
+- name: Active scenario
+  summary: Active scenario Scenario (default) | character vector
+  group: ''
+  block_parameter: ActiveScenario
+  type: character vector | numeric
+  values: character vector | index value
+  default: '''Scenario'''
+- name: Use properties from
+  summary: Signal property source Dialog parameters (default) | Signal data in MAT file
+  group: ''
+  block_parameter: '''SignalPropertySource'''
+  type: character vector
+  values: Dialog parameters | Signal data in MAT file
+  default: '''SignalPropertySource'''
+- name: Active signal
+  summary: Signal to configure Signal 1 (default) | character vector
+  group: ''
+  block_parameter: ActiveSignal
+  type: character vector | numeric
+  values: character vector | index vector
+  default: '''Signal 1'''
+- name: Apply signal properties to all scenarios
+  summary: Option to apply specified signal properties to active signal on (default) | off
+  group: ''
+  block_parameter: ApplySigPropsToAllScenarios
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Apply signal properties to all signals
+  summary: Option to apply signal properties to all signals off (default) | on
+  group: ''
+  block_parameter: ApplySigPropsToAllSignals
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output a bus signal
+  summary: Configure signal as bus off (default) | on
+  group: ''
+  block_parameter: IsBus
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Select bus object
+  summary: 'Bus object Bus: BusObject (default) | bus object name'
+  group: ''
+  block_parameter: OutputBusObjectStr
+  type: character vector
+  values: bus object name
+  default: '''Bus: BusObject'''
+- name: Mode
+  summary: Bus object mode Bus object (default) | bus object data type
+  group: ''
+- name: Unit
+  summary: Physical unit inherit (default) | supported physical unit
+  group: ''
+  block_parameter: Unit
+  type: character vector
+  values: '''inherit'' | supported physical unit'
+  default: '''inherit'''
+- name: Sample time
+  summary: Time interval between samples 0 (default) | -1 | sample time in seconds
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: -1 | sample time in seconds
+  default: '''0'''
+- name: Interpolate data
+  summary: Linearly interpolate data on (default) | off
+  group: ''
+  block_parameter: Interpolate
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: Detect zero-crossings off (default) | on
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Form output after final data value by
+  summary: Block output after the last time hit for which data is available Setting to zero (default) | Extrapolation | Holding
+    final value
+  group: ''
+  block_parameter: OutputAfterFinalValue
+  type: character vector
+  values: '''Setting to zero'' | ''Extrapolation'' | ''Holding final value'''
+  default: '''Setting to zero'''
+```
 
 ### **To create and edit scenarios, open Signal Editor user interface** — Option to open Signal Editor tool button
 
@@ -469,7 +577,6 @@ exists.
 | **Type**: character vector |
 | **Values**: `'Setting to zero' | 'Extrapolation' | 'Holding final value'` |
 | **Default**: `'Setting to zero'` |
-
 ## Libraries
 
 Simulink / Sources

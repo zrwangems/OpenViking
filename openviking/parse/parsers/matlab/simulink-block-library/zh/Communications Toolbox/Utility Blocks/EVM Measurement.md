@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # EVM Measurement
 
 ## 端口
+```yaml
+ports:
+- name: Ref
+  summary: 参考信号数组
+  direction: input
+  data_types: single | double | fixed point
+- name: Rcv
+  summary: 接收信号数组
+  direction: input
+  data_types: single | double | fixed point
+- name: RMS
+  summary: 百分比 RMS EVM 标量
+  direction: output
+  data_types: double
+- name: max
+  summary: 最大百分比 EVM 标量
+  direction: output
+  data_types: double
+- name: X%
+  summary: '*X*% 的 EVM 测量值低于此值的标量，范围为 [0, 100]'
+  direction: output
+  data_types: double
+- name: nSym
+  summary: 符号数量正整数
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -74,8 +101,49 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output X-percentile EVM** 和 **Output the number of symbols processed** 参数设置为 `On`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Normalize RMS error vector by
+  summary: 归一化方法 Average reference signal power（默认）| Average constellation power | Peak constellation power
+  group: ''
+- name: Average constellation power
+  summary: 平均星座功率 1（默认）| 正标量
+  group: ''
+- name: Peak constellation power
+  summary: 峰值星座功率 1（默认）| 正标量
+  group: ''
+- name: Reference signal
+  summary: 参考信号源 Input port | Estimated from reference constellation
+  group: ''
+- name: Reference constellation
+  summary: 参考星座 constellation(pskmod((0:3)',4,pi/4,"bin"))（默认）| 向量
+  group: ''
+- name: Measurement interval
+  summary: 测量区间源 Input length（默认）| Entire history | Custom | Custom with periodic reset
+  group: ''
+- name: Custom measurement interval
+  summary: 自定义测量区间 100（默认）| 正整数
+  group: ''
+- name: Averaging dimensions
+  summary: 平均维度 1（默认）| [1, 3] 范围内的整数向量
+  group: ''
+- name: Output maximum EVM
+  summary: 添加 max 端口以输出最大 EVM 测量的选项 Off（默认）| On
+  group: ''
+- name: Output X-percentile EVM
+  summary: 添加 X% 端口以输出 *X* 百分位 EVM 测量的选项 Off（默认）| On
+  group: ''
+- name: X-percentile value (%)
+  summary: '*X*% 的 EVM 测量值低于此值 95（默认）| [0, 100] 范围内的标量'
+  group: ''
+- name: Output the number of symbols processed
+  summary: 添加 nSym 端口以输出符号数量的选项 Off（默认）| On
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -166,7 +234,6 @@ chinese_source: worker-translation
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Utility Blocks

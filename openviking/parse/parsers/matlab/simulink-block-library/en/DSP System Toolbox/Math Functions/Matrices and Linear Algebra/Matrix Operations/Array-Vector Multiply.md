@@ -14,6 +14,21 @@ language: en
 # Array-Vector Multiply
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Array input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: V
+  summary: Vector input vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: Multiplied output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### Input
 
@@ -47,8 +62,56 @@ a matrix.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Multiply along dimension
+  summary: Dimension along which to multiply input array 2 (default) | positive integer
+  group: Main Tab
+- name: Vector (V) source
+  summary: Source of vector Input port (default) | Dialog parameter
+  group: Main Tab
+- name: Vector (V)
+  summary: Vector parameter [0.5 0.25] (default) | vector
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Vector (V)
+  summary: 'Word and fraction lengths for elements of vector Inherit: Same word length as input (default) | fixdt(1,16,0)
+    | <data type expression>'
+  group: Data Types Tab
+- name: Vector (V) Minimum
+  summary: Minimum value for elements of vector [] (unspecified) (default) | scalar
+  group: Data Types Tab
+- name: Vector (V) Maximum
+  summary: Maximum value for elements of vector [] (unspecified) (default) | scalar
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as first input | fixdt([],16,0)
+    | <data type expression>'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as first input | Inherit: Same
+    as product output | fixdt([],16,0) | <data type expression>'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as product output (default) | Inherit: Same as first input | Inherit: Same as first
+    input | fixdt([],16,0) | <data type expression>'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum value of block output [] (unspecified) (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum value of block output [] (unspecified) (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -264,7 +327,6 @@ Specify the maximum value that the block should output. The default value is
 
 Select this parameter to prevent the fixed-point tools from overriding the data types
 you specify in the block dialog box.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Operations

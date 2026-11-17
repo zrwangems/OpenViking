@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Voltage Sensor
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 电压，V 物理信号
+  direction: output
+- name: +
+  summary: 正极端子 电气
+  direction: output
+- name: '-'
+  summary: 负极端子 电气
+  direction: output
+```
 
 ### 输出
 
@@ -30,11 +42,12 @@ chinese_source: worker-translation
 ### **-** — 负极端子 电气
 
 与传感器负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Sensors Simscape / Electrical / Sensors & Transducers

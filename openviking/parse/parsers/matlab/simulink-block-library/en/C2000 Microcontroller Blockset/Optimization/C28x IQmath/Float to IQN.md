@@ -14,17 +14,21 @@ language: en
 # C2000 Float to IQN
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Q value**
 :   Q value from 1 to 30 that specifies the precision of the output
 
 **Q value**
 :   Q value from 1 to 30 that specifies the precision of the output
-
 ## Libraries
 
 Not documented in R2025b.

@@ -14,6 +14,15 @@ language: en
 # Generalized Bell MF
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Input value scalar | vector
+  direction: input
+- name: MF
+  summary: Membership value scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +38,28 @@ Membership value, returned as a scalar or a vector. The dimensions of
 **MF** match the dimensions of **x**. Each element
 of **MF** is the membership value computed for the corresponding
 element of **x**.
-
 ## Parameters
+```yaml
+parameters:
+- name: a
+  summary: Function shape parameter 5 (default) | scalar
+  group: ''
+  block_parameter: a
+  type: string, character vector
+  default: '"5"'
+- name: b
+  summary: Function shape parameter 4 (default) | positive scalar
+  group: ''
+  block_parameter: b
+  type: string, character vector
+  default: '"4"'
+- name: c
+  summary: Center point 0 (default) | scalar
+  group: ''
+  block_parameter: c
+  type: string, character vector
+  default: '"0"'
+```
 
 ### **a** — Function shape parameter `5` (default) | scalar
 
@@ -69,7 +98,6 @@ Function center point.
 | **Block Parameter:** `c` |
 | **Type:** string, character vector |
 | **Default:** `"0"` |
-
 ## Libraries
 
 Fuzzy Logic Toolbox / Membership Functions

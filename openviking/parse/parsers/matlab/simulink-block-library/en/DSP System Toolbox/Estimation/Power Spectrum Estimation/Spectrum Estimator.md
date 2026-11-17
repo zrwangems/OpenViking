@@ -14,6 +14,33 @@ language: en
 # Spectrum Estimator
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: P
+  summary: Power spectrum or power-density spectrum vector | matrix
+  direction: output
+  data_types: single | double
+- name: P_max
+  summary: Max-hold spectrum vector | matrix
+  direction: output
+  data_types: single | double
+- name: P_min
+  summary: Min-hold spectrum vector | matrix
+  direction: output
+  data_types: single | double
+- name: F
+  summary: Output frequencies column vector
+  direction: output
+  data_types: single | double
+- name: RBW
+  summary: Effective resolution bandwidth scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -64,8 +91,94 @@ Output frequencies, returned as a column vector.
 Effective resolution bandwidth, returned as a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Method
+  summary: Welch or filter bank Filter bank (default) | Welch
+  group: Main Tab
+- name: Number of taps per band
+  summary: Number of filter taps per frequency band 12 (default) | positive integer
+  group: Main Tab
+- name: Spectrum type
+  summary: Type of spectrum Power (default) | Power density
+  group: Main Tab
+- name: Frequency resolution method
+  summary: Frequency resolution method Auto (default) | RBW | Number of frequency bands
+  group: Main Tab
+- name: RBW (Hz)
+  summary: Resolution bandwidth 5 (default) | positive scalar
+  group: Main Tab
+- name: Window length source
+  summary: Source of window length Same as input frame length (default) | Specify on dialog
+  group: Main Tab
+- name: Window length
+  summary: Window length 1024 (default) | positive integer
+  group: Main Tab
+- name: Number of bands source
+  summary: Source of number of frequency bands Same as input frame size (default) | Specify on dialog
+  group: Main Tab
+- name: Number of bands
+  summary: Number of frequency bands 1024 (default) | positive scalar
+  group: Main Tab
+- name: FFT length source
+  summary: Source of FFT length value Auto (default) | Property
+  group: Main Tab
+- name: FFT length
+  summary: FFT length 1024 (default) | positive integer
+  group: Main Tab
+- name: Inherit sample rate from input
+  summary: Inherit sample rate from input on (default) | off
+  group: Main Tab
+- name: Sample rate (Hz)
+  summary: Sample rate of input 44100 (default) | scalar
+  group: Main Tab
+- name: Window function
+  summary: Window function Hann (default) | Chebyshev | Flat Top | Hamming | Kaiser | Rectangular
+  group: Main Tab
+- name: Sidelobe attenuation of window (dB)
+  summary: Sidelobe attenuation of window 60 (default) | positive scalar
+  group: Main Tab
+- name: Averaging method
+  summary: Averaging method Exponential (default) | Running
+  group: Main Tab
+- name: Number of spectral averages
+  summary: Number of spectral averages 1 (default) | positive integer
+  group: Main Tab
+- name: Specify forgetting factor from input port
+  summary: Specify forgetting factor from input port off (default) | on
+  group: Main Tab
+- name: Forgetting factor
+  summary: Forgetting factor 0.9 (default) | scalar in the range (0,1]
+  group: Main Tab
+- name: Window overlap (%)
+  summary: Percentage of overlap between windows 0 (default)
+  group: Advanced Tab
+- name: Reference load (ohms)
+  summary: Reference load 1 (default) | positive scalar
+  group: Advanced Tab
+- name: Frequency range
+  summary: Frequency range of spectrum estimator Centered (default) | One-sided | Two-sided
+  group: Advanced Tab
+- name: Power units
+  summary: Power units dBm (default) | Watts | dBW
+  group: Advanced Tab
+- name: Output max-hold spectrum
+  summary: Output max-hold spectrum off (default) | on
+  group: Advanced Tab
+- name: Output min-hold spectrum
+  summary: Output min-hold spectrum off (default) | on
+  group: Advanced Tab
+- name: Output frequency vector
+  summary: Output frequency vector off (default) | on
+  group: Advanced Tab
+- name: Output effective RBW
+  summary: Output effective RBW off (default) | on
+  group: Advanced Tab
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: Advanced Tab
+```
 
 ### Main Tab
 
@@ -493,7 +606,6 @@ Specify the type of simulation to run as one of these:
   reused for subsequent simulations, as long as the model does
   not change. This option requires additional startup time but
   provides faster subsequent simulations.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

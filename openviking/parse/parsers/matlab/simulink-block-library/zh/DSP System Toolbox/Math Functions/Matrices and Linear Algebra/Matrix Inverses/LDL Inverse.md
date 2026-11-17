@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # LDL Inverse
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入矩阵 方阵
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: 矩阵逆 方阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +47,13 @@ S−1=(LDL\*)−1
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Non-positive definite input
+  summary: 非正定输入 Warning（默认）| Ignore | Error
+  group: ''
+```
 
 ### **Non-positive definite input** — 非正定输入 `Warning`（默认）| `Ignore` | `Error`
 
@@ -52,7 +68,6 @@ S−1=(LDL\*)−1
 **注意**
 
 **Non-positive definite input** 参数是一个诊断参数。与 Configuration Parameters 对话框上的所有诊断参数一样，在 Simulink® Coder™ 代码生成软件为此模块生成的代码中，它被设置为 `Ignore`。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Inverses

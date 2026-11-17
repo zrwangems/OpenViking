@@ -14,6 +14,69 @@ language: en
 # Simple Variable Mass 3DOF (Wind Axes)
 
 ## Ports
+```yaml
+ports:
+- name: Fx
+  summary: Applied force along wind *x*-axis scalar
+  direction: input
+  data_types: double
+- name: Fz
+  summary: Applied force along wind *z*-axis scalar
+  direction: input
+  data_types: double
+- name: M
+  summary: Applied pitching moment scalar
+  direction: input
+  data_types: double
+- name: dm/dt
+  summary: Rate of change of mass scalar
+  direction: input
+  data_types: double
+- name: g
+  summary: Gravity scalar
+  direction: input
+  data_types: double
+- name: Vre
+  summary: Relative velocity two-element vector
+  direction: input
+  data_types: double
+- name: γ
+  summary: Flight path angle scalar
+  direction: output
+  data_types: double
+- name: q
+  summary: Pitch angular rate scalar
+  direction: output
+  data_types: double
+- name: dq/dt
+  summary: Pitch angular acceleration scalar
+  direction: output
+  data_types: double
+- name: XeZe
+  summary: Location of body two-element vector
+  direction: output
+  data_types: double
+- name: Vw
+  summary: Velocity in wind-fixed frame two-element vector
+  direction: output
+  data_types: double
+- name: AxbAzb
+  summary: Acceleration of body two-element vector
+  direction: output
+  data_types: double
+- name: α
+  summary: Angle of attack scalar
+  direction: output
+  data_types: double
+- name: Fuel
+  summary: Fuel tank status scalar
+  direction: output
+  data_types: double
+- name: AxeAze
+  summary: Acceleration of body two-element vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -145,8 +208,178 @@ To enable this port, select the **Include inertial
 acceleration** check box.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Input and output units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: Main
+  block_parameter: units
+  type: character vector
+  values: Metric (MKS) | English (Velocity in ft/s) | English (Velocity in kts)
+  default: Metric (MKS)
+- name: Axes
+  summary: Body or wind axes Wind (default) | Body
+  group: Main
+  block_parameter: axes
+  type: character vector
+  values: Wind | Body
+  default: Wind
+- name: Mass type
+  summary: Mass type Simple Variable (default) | Fixed | Custom Variable
+  group: Main
+  block_parameter: mtype
+  type: character vector
+  values: Fixed | Simple Variable | Custom Variable
+  default: '''Simple Variable'''
+- name: Initial airspeed
+  summary: Initial speed 100 (default) | scalar
+  group: Main
+  block_parameter: V_ini
+  type: character vector
+  values: '''100'' | scalar'
+  default: '''100'''
+- name: Initial flight path angle
+  summary: Initial flight path angle 0 (default) | scalar
+  group: Main
+  block_parameter: gamma_ini
+  type: character vector
+  values: '''0'' | scalar'
+  default: '''0'''
+- name: Initial body rotation rate
+  summary: Initial pitch rotation rate 0 (default) | scalar
+  group: Main
+  block_parameter: q_ini
+  type: character vector
+  values: '''0'' | scalar'
+  default: '''0'''
+- name: Initial incidence
+  summary: Initial angle 0 (default) | scalar
+  group: Main
+  block_parameter: alpha_ini
+  type: character vector
+  values: '''0'' | scalar'
+  default: '''0'''
+- name: Initial position (x,z)
+  summary: Initial location [0 0] (default) | two-element vector
+  group: Main
+  block_parameter: pos_ini
+  type: character vector
+  values: '''[0 0]'' | two-element vector'
+  default: '''[0 0]'''
+- name: Initial mass
+  summary: Initial mass 1.0 (default) | scalar
+  group: Main
+  block_parameter: mass
+  type: character vector
+  values: '''1.0'' | scalar'
+  default: '''1.0'''
+- name: Empty mass
+  summary: Mass of body when fuel tank is empty 0.5 (default) | scalar
+  group: Main
+  block_parameter: mass_e
+  type: character vector
+  values: '''0.5'' | scalar'
+  default: '''0.5'''
+- name: Full mass
+  summary: Mass of body when fuel tank is full 3.0 (default) | scalar
+  group: Main
+  block_parameter: mass_f
+  type: character vector
+  values: '''3.0'' | scalar'
+  default: '''3.0'''
+- name: Empty inertia body axes
+  summary: Inertia of body when fuel tank is empty 0.5 (default) | scalar
+  group: Main
+  block_parameter: Iyy_e
+  type: character vector
+  values: '''1.0'' | scalar'
+  default: '''1.0'''
+- name: Full inertia body axes
+  summary: Body inertia when fuel tank is full 3.0 (default) | scalar
+  group: Main
+  block_parameter: Iyy_f
+  type: character vector
+  values: '''3.0'' | scalar'
+  default: '''3.0'''
+- name: Gravity Source
+  summary: Gravity source Internal (default) | External
+  group: Main
+  block_parameter: g_in
+  type: character vector
+  values: '''Internal'' | ''External'''
+  default: '''Internal'''
+- name: Acceleration due to gravity
+  summary: Gravity source 9.81 (default) | scalar
+  group: Main
+  block_parameter: g
+  type: character vector
+  values: '''9.81'' | scalar'
+  default: '''9.81'''
+- name: Include mass flow relative velocity
+  summary: Mass flow relative velocity port off (default) | on
+  group: Main
+  block_parameter: vre_flag
+  type: character vector
+  values: off | on
+  default: '''off'''
+- name: Limit mass flow when mass is empty or full
+  summary: Limit mass flow on (default) | off
+  group: Main
+  block_parameter: mdot_flag
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Include inertial acceleration
+  summary: Include inertial acceleration port off (default) | on
+  group: Main
+  block_parameter: abi_flag
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 'Velocity: e.g., ''V'''
+  summary: Velocity state name '' (default) | character vector
+  group: State Attributes
+  block_parameter: V_statename
+  type: character vector | string
+  values: ''''' | scalar'
+  default: ''''''
+- name: 'Position: e.g., {''Xe'', ''Ze''}'
+  summary: Position state name '' (default) | comma-separated list surrounded by braces
+  group: State Attributes
+  block_parameter: pos_statename
+  type: character vector
+  values: ''''' | comma-separated list surrounded by braces'
+  default: ''''''
+- name: 'Body rotation rate: e.g., ''q'''
+  summary: Body rotation state name '' (default) | scalar
+  group: State Attributes
+  block_parameter: q_statename
+  type: character vector | string
+  values: ''''' | scalar'
+  default: ''''''
+- name: 'Flight path angle: e.g., ''gamma'''
+  summary: Flight path angle state name '' (default)
+  group: State Attributes
+  block_parameter: gamma_statename
+  type: character vector | string
+  values: ''''' | scalar'
+  default: ''''''
+- name: Incidence angle e.g., 'alpha'
+  summary: Incidence angle state name '' (default) | scalar
+  group: State Attributes
+  block_parameter: alpha_statename
+  type: character vector | string
+  values: ''''' | scalar'
+  default: ''''''
+- name: 'Mass: e.g., ''mass'''
+  summary: Mass state name '' (default) | scalar
+  group: State Attributes
+  block_parameter: mass_statename
+  type: character vector | string
+  values: ''''' | scalar'
+  default: ''''''
+```
 
 ### Main
 
@@ -546,7 +779,6 @@ Mass state name, specified as a character vector or string.
 | **Type:** character vector | string |
 | **Values:** `''` | scalar |
 | **Default:** `''` |
-
 ## Libraries
 
 Aerospace Blockset / Equations of Motion / 3DOF

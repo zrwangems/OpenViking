@@ -15,10 +15,82 @@ chinese_source: worker-translation
 # Gauge
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的信号及显示信号连接选项
+  group: Signal
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Minimum
+  summary: 最小刻度值 0（默认）| 标量
+  group: 主要参数
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Maximum
+  summary: 最大刻度值 100（默认）| 标量
+  group: 主要参数
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Tick Interval
+  summary: 主刻度线之间的间隔 auto（默认）| 标量
+  group: 主要参数
+  block_parameter: Limits
+  type: 1x3 vector
+  default: '[0 -1 100]'
+- name: Scale Colors
+  summary: 仪表刻度上刻度范围的颜色指示
+  group: 主要参数
+  block_parameter: ScaleColors
+  type: structure array
+  default: 0x1 struct array
+- name: Label
+  summary: 模块标签位置 Top（默认）| Bottom | Hide
+  group: 主要参数
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+- name: Scale Direction
+  summary: 仪表刻度方向 Clockwise（默认）| Counterclockwise
+  group: 主要参数
+  block_parameter: ScaleDirection
+  type: character vector
+  values: '''Clockwise'' | ''Counterclockwise'''
+  default: '''Clockwise'''
+- name: Opacity
+  summary: 模块背景不透明度 1（默认）| 标量
+  group: Format
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+- name: Foreground Color
+  summary: 模块前景色 [r g b] 向量
+  group: Format
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Background Color
+  summary: 模块背景色 [r g b] 向量
+  group: Format
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Font Color
+  summary: 模块字体颜色 [r g b] 向量
+  group: Format
+  block_parameter: FontColor
+  type: '[r g b] vector'
+```
 
 ### Signal
 
@@ -200,7 +272,6 @@ scaleRanges = [range1 range2];
 | --- |
 | **模块参数**：`FontColor` |
 | **类型**：`[r g b]` vector |
-
 ## 所属库
 
 Simulink / Dashboard

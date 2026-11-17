@@ -14,6 +14,13 @@ language: en
 # Current Time
 
 ## Ports
+```yaml
+ports:
+- name: Time
+  summary: ROS time bus | scalar
+  direction: output
+  data_types: bus | double
+```
 
 ### Output
 
@@ -22,8 +29,16 @@ language: en
 ROS time, returned as a bus signal or a scalar. The bus represents a `rosgraph_msgs/Clock` ROS message with `Sec` and `NSec` elements. The scalar is the ROS time in seconds. If no time has been received on the `/clock` topic, the block outputs `0`.
 
 **Data Types:** `bus` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output format
+  summary: Format of ROS time bus (default) | double
+  group: ''
+- name: Sample time
+  summary: Interval between outputs -1 (default) | numeric scalar
+  group: ''
+```
 
 ### **Output format** — Format of ROS time `bus` (default) | `double`
 
@@ -34,7 +49,6 @@ Format of ROS `Time` output, specified as either `bus` or `double`.
 Interval between outputs, specified as a numeric scalar.
 
 For more information, see Specify Sample Time (Simulink).
-
 ## Libraries
 
 ROS Toolbox / ROS

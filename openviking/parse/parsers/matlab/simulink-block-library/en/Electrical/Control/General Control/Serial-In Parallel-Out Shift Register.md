@@ -14,6 +14,17 @@ language: en
 # Serial-In Parallel-Out Shift Register
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Serial input scalar | vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Parallel output vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -29,8 +40,19 @@ Serial input signal.
 Parallel output signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of samples
+  summary: Number of input samples 4 (default) | positive integer
+  group: ''
+- name: Initial condition
+  summary: Initial value of the input sample 0 (default) | real number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Number of samples** — Number of input samples `4` (default) | positive integer
 
@@ -50,7 +72,6 @@ For more information, see What Is Sample Time? and Specify Sample Time.
 
 For inherited discrete-time, specify `-1`. For discrete-time, specify
 a positive integer. For continuous-time, specify `0`.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

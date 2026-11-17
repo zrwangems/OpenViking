@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Controlled Voltage Source (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 控制物理信号 | 向量
+  direction: input
+- name: Vt
+  summary: 相间 RMS 电压物理信号
+  direction: input
+- name: ph
+  summary: 相移物理信号
+  direction: input
+- name: n
+  summary: 中性线电气
+  direction: input
+- name: '~'
+  summary: 三相电压电气
+  direction: input
+- name: a
+  summary: '*a* 相电压电气'
+  direction: input
+- name: b
+  summary: '*b* 相电压电气'
+  direction: input
+- name: c
+  summary: '*c* 相电压电气'
+  direction: input
+```
 
 ### 输入
 
@@ -90,8 +117,19 @@ shift`。
 
 要启用此端口，请将 **Modeling option** 设置为
 `Expanded three-phase ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是对复合三相端口还是扩展三相端口进行建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Input type
+  summary: 输入类型 Instantaneous（默认）| Sinusoidal magnitude and phase shift
+  group: ''
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz | 标量
+  group: ''
+```
 
 ### **Modeling option** — 是对复合三相端口还是扩展三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -122,7 +160,6 @@ shift`。
 要启用此参数，请将 **Input type** 设置为
 `Sinusoidal magnitude and phase
 shift`。
-
 ## 所属库
 
 Simscape / Electrical / Sources

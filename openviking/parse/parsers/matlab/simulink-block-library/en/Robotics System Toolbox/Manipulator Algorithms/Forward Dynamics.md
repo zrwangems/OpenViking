@@ -14,6 +14,24 @@ language: en
 # Forward Dynamics
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Robot configuration vector
+  direction: input
+- name: JointVel
+  summary: Joint velocities vector
+  direction: input
+- name: JointTorq
+  summary: Joint torques vector
+  direction: input
+- name: FExt
+  summary: External force matrix 6-by-*n* matrix
+  direction: input
+- name: JointAccel
+  summary: Joint accelerations vector
+  direction: output
+```
 
 ### Input
 
@@ -55,8 +73,16 @@ MATLAB Function block.
 
 Joint accelerations, returned as a vector. The number of joint
 accelerations is equal to the degrees of freedom of the robot.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: Robot model twoJointRigidBodyTree (default) | RigidBodyTree object
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — Robot model `twoJointRigidBodyTree` (default) | `RigidBodyTree` object
 
@@ -83,7 +109,6 @@ robot with revolute joints and two degrees of freedom.
   execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Manipulator Algorithms

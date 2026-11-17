@@ -14,6 +14,17 @@ language: en
 # OpenL3
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Spectrograms matrix | 4-D array
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Embeddings matrix
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -47,8 +58,22 @@ matrix, where *K* is the number of input spectrograms, and
 parameter.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Spectrum type
+  summary: Type of spectrum Mel (128 bands) (default) | Mel (256 bands) | Linear
+  group: ''
+- name: Content type
+  summary: Type of audio content Environmental sounds (default) | Musical sounds
+  group: ''
+- name: Embedding length
+  summary: Output embedding length 512 (default) | 6144
+  group: ''
+- name: Mini-batch size
+  summary: Size of mini-batches 128 (default) | positive integer
+  group: ''
+```
 
 ### **Spectrum type** — Type of spectrum `Mel (128 bands)` (default) | `Mel (256 bands)` | `Linear`
 
@@ -75,7 +100,6 @@ Length of output embedding, specified as `512` or
 
 Size of mini-batches to use for prediction, specified as a positive integer. Larger
 mini-batch sizes require more memory but can lead to faster predictions.
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

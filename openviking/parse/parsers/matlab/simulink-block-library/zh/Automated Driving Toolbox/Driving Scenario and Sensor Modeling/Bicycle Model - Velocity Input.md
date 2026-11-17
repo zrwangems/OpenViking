@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Bicycle Model
 
 ## 端口
+```yaml
+ports:
+- name: WhlAngF
+  summary: 车轮转角 scalar
+  direction: input
+- name: FxF
+  summary: 力输入：前轴总纵向力 scalar
+  direction: input
+- name: FxR
+  summary: 力输入：后轴总纵向力 scalar
+  direction: input
+- name: xdotin
+  summary: 速度输入：纵向速度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: xdot
+  summary: 车身纵向速度 scalar
+  direction: output
+- name: ydot
+  summary: 车身侧向速度 scalar
+  direction: output
+- name: psi
+  summary: 横摆 scalar
+  direction: output
+- name: r
+  summary: 横摆角速度 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -209,8 +239,103 @@ m/s。
 ### **r** — 横摆角速度 `scalar`
 
 车辆绕车辆固定 `z` 轴的角速度 `r`（横摆角速度），单位为 rad/s。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of wheels on front axle, NF
+  summary: 前轮数量 2 (default) | scalar
+  group: ''
+- name: Number of wheels on rear axle, NR
+  summary: 后轮数量 2 (default) | scalar
+  group: ''
+- name: Vehicle mass, m
+  summary: 车辆质量 2000 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to front axle, a
+  summary: 前轴距离 1.4 (default) | scalar
+  group: ''
+- name: Longitudinal distance from center of mass to rear axle, b
+  summary: 后轴距离 1.6 (default) | scalar
+  group: ''
+- name: Vertical distance from center of mass to axle plane, h
+  summary: 高度 0.35 (default) | scalar
+  group: ''
+- name: Initial inertial frame longitudinal position, X_o
+  summary: 位置 0 (default) | scalar
+  group: ''
+- name: Initial longitudinal velocity, xdot_o
+  summary: 速度 0 (default) | scalar
+  group: ''
+- name: Front tire corner stiffness, Cy_f
+  summary: 刚度 12e3 (default) | scalar
+  group: ''
+- name: Rear tire corner stiffness, Cy_r
+  summary: 刚度 11e3 (default) | scalar
+  group: ''
+- name: Initial inertial frame lateral displacement, Y_o
+  summary: 位置 0 (default) | scalar
+  group: ''
+- name: Initial lateral velocity, ydot_o
+  summary: 速度 0 (default) | scalar
+  group: ''
+- name: Yaw polar inertia, Izz
+  summary: 惯量 4000 (default) | scalar
+  group: ''
+- name: Initial yaw angle, psi_o
+  summary: Psi 旋转 0 (default) | scalar
+  group: ''
+- name: Initial yaw rate, r_o
+  summary: 横摆角速度 0（默认）| scalar
+  group: ''
+- name: Longitudinal drag area, Af
+  summary: 有效车辆迎风面积 2（默认）| scalar
+  group: ''
+- name: Longitudinal drag coefficient, Cd
+  summary: 空气阻力系数 .3（默认）| scalar
+  group: ''
+- name: Longitudinal lift coefficient, Cl
+  summary: 空气升力系数 .1（默认）| scalar
+  group: ''
+- name: Longitudinal drag pitch moment, Cpm
+  summary: 俯仰阻力 .1（默认）| scalar
+  group: ''
+- name: Relative wind angle vector, beta_w
+  summary: 风角 [0:0.01:0.3]（默认）| vector
+  group: ''
+- name: Side force coefficient vector, Cs
+  summary: 侧向力系数 [0:0.03:0.9]（默认）| vector
+  group: ''
+- name: Yaw moment coefficient vector, Cym
+  summary: 横摆力矩阻力 [0:0.01:0.3]（默认）| vector
+  group: ''
+- name: Absolute pressure, Pabs
+  summary: 压力 101325（默认）| scalar | scalar
+  group: ''
+- name: Air temperature, Tair
+  summary: 温度 273（默认）| scalar
+  group: ''
+- name: Gravitational acceleration, g
+  summary: 重力 9.81（默认）| scalar
+  group: ''
+- name: Nominal friction scaling factor, mu
+  summary: 摩擦比例因子 1（默认）| scalar
+  group: ''
+- name: Longitudinal velocity tolerance, xdot_tol
+  summary: 容差 .01（默认）| scalar
+  group: ''
+- name: Nominal normal force, Fznom
+  summary: 法向力 5000（默认）| scalar
+  group: ''
+- name: Geometric longitudinal offset from axle plane, longOff
+  summary: 纵向偏移 0（默认）| scalar
+  group: ''
+- name: Geometric lateral offset from center plane, latOff
+  summary: 侧向偏移 0（默认）| scalar
+  group: ''
+- name: Geometric vertical offset from axle plane, vertOff
+  summary: 垂直偏移 0（默认）| scalar
+  group: ''
+```
 
 #### 纵向
 
@@ -358,7 +483,6 @@ m/s。
 ### **Geometric vertical offset from axle plane, vertOff** — 垂直偏移 `0`（默认）| `scalar`
 
 车辆底盘沿车身固定 *z* 轴距车轴平面的偏移，单位为 m。使用 3D 可视化引擎时，可考虑使用该偏移将底盘定位为独立于车辆 CG。
-
 ## 所属库
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling Vehicle Dynamics Blockset / Vehicle Body

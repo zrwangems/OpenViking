@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Gaussian MF
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入值 标量 | 向量
+  direction: input
+- name: MF
+  summary: 隶属度值 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,20 @@ chinese_source: worker-translation
 ### **MF** — 隶属度值 标量 | 向量
 
 隶属度值，以标量或向量形式返回。**MF** 的维度与 **x** 的维度一致。**MF** 的每个元素是为 **x** 中对应元素计算得到的隶属度值。
-
 ## 参数
+```yaml
+parameters:
+- name: Standard deviation sigma
+  summary: 标准差 1（默认）| 标量
+  group: ''
+  block_parameter: sigma
+  type: string、字符向量
+- name: Mean c
+  summary: 均值 0（默认）| 标量
+  group: ''
+  block_parameter: mu
+  type: string、字符向量
+```
 
 ### **Standard deviation sigma** — 标准差 `1`（默认）| 标量
 
@@ -53,7 +74,6 @@ chinese_source: worker-translation
 | **模块参数：** `mu` |
 | **类型：** string、字符向量 |
 | **默认：** `"0"` |
-
 ## 所属库
 
 Fuzzy Logic Toolbox / Membership Functions

@@ -14,6 +14,21 @@ language: en
 # Operational Transconductance Amplifier
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Non-inverting input electrical
+  direction: conserving
+- name: '-'
+  summary: Negative voltage electrical
+  direction: conserving
+- name: C
+  summary: Control current electrical
+  direction: conserving
+- name: OUT
+  summary: Output current electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -37,8 +52,46 @@ current.
 Electrical conserving port associated with the op-amp output. The port
 name is hidden on the block icon, but you can see it in simulation data
 logs.
-
 ## Parameters
+```yaml
+parameters:
+- name: Transconductance
+  summary: Transconductance 9600 uS (default)
+  group: Nominal Measurements
+- name: Input resistance
+  summary: Input resistance 25 kOhm (default)
+  group: Nominal Measurements
+- name: Output resistance
+  summary: Output resistance 3 MOhm (default)
+  group: Nominal Measurements
+- name: Reference control current
+  summary: Reference control current 500 uA (default)
+  group: Nominal Measurements
+- name: Dynamics
+  summary: Dynamics No lag (default) | Finite bandwidth with slew rate limiting
+  group: Dynamics
+- name: Bandwidth
+  summary: Bandwidth of the first-order lag 2 MHz (default)
+  group: Dynamics
+- name: Maximum current slew rate
+  summary: Maximum rate-of-charge of transconductance current 2 A/us (default)
+  group: Dynamics
+- name: Initial current
+  summary: Initial transconductance current 0 A (default)
+  group: Dynamics
+- name: Minimum output voltage
+  summary: Minimum output voltage -15 V (default)
+  group: Limits
+- name: Maximum output voltage
+  summary: Maximum output voltage 15 V (default)
+  group: Limits
+- name: Additional output resistance at voltage swing limits
+  summary: Additional output resistance at voltage swing limits 1 Ohm (default)
+  group: Limits
+- name: Minimum control current for simulation
+  summary: Minimum control current for simulation 0.001 uA (default)
+  group: Limits
+```
 
 ### Nominal Measurements
 
@@ -166,7 +219,6 @@ The control current measured at the control current pin
 parameter. This prevents a potential divide-by-zero when calculating
 input and output resistance values based on the value of the control
 current.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

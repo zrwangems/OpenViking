@@ -14,6 +14,13 @@ language: en
 # Binary File Writer
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Data to write column vector | row vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### Input
 
@@ -35,8 +42,19 @@ remain constant. *(since R2025a)*
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: Name of the file 'Untitled.bin' (default) | character vector
+  group: ''
+- name: File header
+  summary: Size of the header struct([]) (default) | structure
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **File name** — Name of the file `'Untitled.bin'` (default) | character vector
 
@@ -64,7 +82,6 @@ Specify the type of simulation to run. You can set this parameter to:
   subsequent simulations as long as the model does not change. This option
   requires additional startup time but provides faster subsequent
   simulations.
-
 ## Libraries
 
 DSP System Toolbox / Sinks

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # TCP Receive
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 输出数据向量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: Status
+  summary: 在给定时间步是否接收到请求的数据 0 | 1
+  direction: output
+  data_types: uint16
+```
 
 ### 输出
 
@@ -31,8 +42,37 @@ chinese_source: worker-translation
 有关详细信息，请参阅 Receive TCP Data。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Connection mode
+  summary: 将模块设置为服务器或客户端 Server（默认）| Client
+  group: ''
+- name: Local IP Port
+  summary: 接收主机的 IP 端口，数据从该端口接收 25001（默认）| [1 到 65,535]
+  group: ''
+- name: Remote IP Address
+  summary: 要从中接收数据的服务器的远程 IP 地址 192.168.1.2（默认）| 任何有效的 IP 地址
+  group: ''
+- name: Remote IP Port
+  summary: 要从中接收数据的服务器的远程 IP 端口 25000（默认）| [1 到 65,535]
+  group: ''
+- name: Data type
+  summary: 接收数据的数据类型 uint8（默认）| double | single | int8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+- name: Data size (N)
+  summary: 接收数据中的字节数 1（默认）| 任何正整数
+  group: ''
+- name: Sample time
+  summary: 模块从发送主机读取数据的时间间隔 0.1（默认）| 任何非负值
+  group: ''
+- name: Wait until data received
+  summary: 等待直到请求的数据可用 on（默认）| off
+  group: ''
+- name: Timeout in seconds
+  summary: 等待接收数据的时间 0.1（默认）| Inf | 任何非负值
+  group: ''
+```
 
 #### 主
 
@@ -129,7 +169,6 @@ chinese_source: worker-translation
 | 非阻塞 | |  | `1` |
 | 接收到的数据长度 > Data size (N) | 阻塞 | |  | `0` |
 | 非阻塞 | |
-
 ## 所属库
 
 Simulink Coder Support Package for NXP FRDM-K64F Board

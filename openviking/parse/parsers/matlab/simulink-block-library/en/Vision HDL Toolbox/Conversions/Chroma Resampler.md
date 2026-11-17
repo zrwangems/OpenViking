@@ -14,6 +14,25 @@ language: en
 # Chroma Resampler
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream in Y'CbCr color space vector | matrix
+  direction: input
+  data_types: uint8 | uint16 | fi(0,N,0) , where N = 8,9,...,16 | single | double
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream in Y'CbCr color space vector | matrix
+  direction: output
+  data_types: single | double | uint8 | uint16 | fixed point
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -76,8 +95,32 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Resampling
+  summary: Type of resampling 4:4:4 to 4:2:2 (default) | 4:2:2 to 4:4:4
+  group: Main
+- name: Antialiasing filter
+  summary: Lowpass filter to follow downsample operation Auto (default) | Property | None
+  group: Main
+- name: Horizontal filter coefficients
+  summary: Coefficients for the antialiasing filter [0.2 0.6 0.2] (default) | vector
+  group: Main
+- name: Interpolation
+  summary: Interpolation method for an upsample operation Linear (default) | Pixel replication
+  group: Main
+- name: Rounding mode
+  summary: Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round
+    | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow action for internal fixed-point calculations off (default) | on
+  group: Data Types
+- name: Filter coefficients
+  summary: Data type for antialiasing filter coefficients fixdt(1,16,15) (default) | data type expression
+  group: Data Types
+```
 
 ### Main
 
@@ -149,7 +192,6 @@ parameter, the value saturates at the maximum representable value.
 This parameter applies when you set **Antialiasing
 filter** to `Auto` or
 `Property`.
-
 ## Libraries
 
 Vision HDL Toolbox / Conversions

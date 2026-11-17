@@ -14,6 +14,9 @@ language: en
 # Linear Hydraulic Resistance
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,13 +25,14 @@ The block has the following ports:
 
 `B`
 :   Hydraulic conserving port associated with the resistance outlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Resistance**
 :   The linear resistance coefficient. The default value is `10e9`
     Pa/(m^3/s).
-
 ## Libraries
 
 Not documented in R2025b.

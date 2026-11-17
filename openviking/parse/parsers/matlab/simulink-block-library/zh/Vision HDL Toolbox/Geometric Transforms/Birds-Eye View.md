@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Birds-Eye View
 
 ## 端口
+```yaml
+ports:
+- name: pixel
+  summary: 输入像素流标量
+  direction: input
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: 输出像素流标量
+  direction: output
+  data_types: uint | int | fixed point | Boolean | double | single
+- name: ctrl
+  summary: 与像素流关联的控制信号 pixelcontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -47,8 +66,26 @@ chinese_source: worker-translation
 `pixelcontrol` 总线包含五个信号。这些信号描述像素的有效性及其在帧中的位置。有关详细信息，请参阅 Pixel Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Homography matrix
+  summary: 从相机参数推导的传递函数 [0.000100990123328 0 0;0.000412396945637 0.001302203393162 1.293171994e-06;-0.103019798961327 -0.255811259450009
+    -0.000222053779501]（默认）| 3×3 矩阵
+  group: ''
+- name: Maximum buffer size, in pixels
+  summary: 要缓冲的输入像素数 40000（默认）| 整数
+  group: ''
+- name: Number of input lines to buffer
+  summary: 要变换的行数 54（默认）| 整数
+  group: ''
+- name: Output active pixels
+  summary: 输出帧的水平尺寸 640（默认）| 整数
+  group: ''
+- name: Output active lines
+  summary: 输出帧的垂直尺寸 700（默认）| 整数
+  group: ''
+```
 
 ### **Homography matrix** — 从相机参数推导的传递函数 `[0.000100990123328 0 0;0.000412396945637 0.001302203393162 1.293171994e-06;-0.103019798961327 -0.255811259450009 -0.000222053779501]`（默认）| 3×3 矩阵
 
@@ -77,7 +114,6 @@ chinese_source: worker-translation
 ### **Output active lines** — 输出帧的垂直尺寸 `700`（默认）| 整数
 
 输出帧的垂直尺寸，指定为整数。此参数是每帧输出中有效行的数量。
-
 ## 所属库
 
 Vision HDL Toolbox / Geometric Transforms

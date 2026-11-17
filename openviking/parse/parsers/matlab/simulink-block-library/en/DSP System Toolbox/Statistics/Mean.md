@@ -14,6 +14,21 @@ language: en
 # Mean
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Data input vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: Mean value along the specified dimension scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -142,8 +157,48 @@ processing** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Running mean
+  summary: Option to select running mean off (default) | on
+  group: Main Tab
+- name: Find the mean value over
+  summary: Dimension over which the block computes the mean value Each column (default) | Entire input | Each row | Specified
+    dimension
+  group: Main Tab
+- name: Dimension
+  summary: Custom dimension 1 (default) | scalar
+  group: Main Tab
+- name: Input processing
+  summary: Method to process the input in running mode Columns as channels (frame based) (default) | Elements as channels
+    (sample based)
+  group: Main Tab
+- name: Reset port
+  summary: Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: Main Tab
+- name: Rounding mode
+  summary: Method of rounding operation Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Same as input (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as accumulator (default) | fixdt([],16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum value the block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum value the block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -398,7 +453,6 @@ is `[]` (unspecified). Simulink uses this value to perform:
 
 Select this parameter to prevent the fixed-point tools from overriding
 the data types you specify on the block.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

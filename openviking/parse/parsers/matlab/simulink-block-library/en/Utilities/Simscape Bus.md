@@ -14,6 +14,12 @@ language: en
 # Simscape Bus
 
 ## Ports
+```yaml
+ports:
+- name: Bus
+  summary: Simscape Bus port bus
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +34,20 @@ connection lines to that side of the block, or by using the block dialog box. El
 coming into the block on the children side can be either conserving connection lines
 or Simscape Bus lines. Every time you add a port on the children side, the
 corresponding connection is added to the connections list inside the block.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection type
+  summary: 'Specify or remove rigid interface Inherit: auto (default) | Bus: <object name> | CompositeConnection: <domain
+    name> | list of ConnectionBus objects'
+  group: ''
+- name: Mode
+  summary: Specify connection mode Inherit (default) | Connection Bus object | Composite domain
+  group: ''
+- name: Hierarchy Strings
+  summary: List of connection names empty (default) | connection names
+  group: ''
+```
 
 ### **Connection type** — Specify or remove rigid interface `Inherit: auto` (default) | `Bus: <object name>` | `CompositeConnection: <domain name>` | list of `ConnectionBus` objects
 
@@ -91,7 +109,6 @@ connections.
 
 You can also add and remove connections directly on the model canvas, as described
 in Working with the Block on Model Canvas.
-
 ## Libraries
 
 Simscape / Utilities

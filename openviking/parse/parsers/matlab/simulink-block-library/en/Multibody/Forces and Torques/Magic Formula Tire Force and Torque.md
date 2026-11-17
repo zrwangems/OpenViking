@@ -14,6 +14,105 @@ language: en
 # Magic Formula Tire Force and Torque
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base geometry geometry
+  direction: input
+- name: F
+  summary: Follower frame frame
+  direction: input
+- name: lmux
+  summary: Scaling factor of longitudinal friction coefficient, unitless physical signal
+  direction: input
+- name: lmuy
+  summary: Scaling factor of lateral friction coefficient, unitless physical signal
+  direction: input
+- name: con
+  summary: Contact signal, unitless physical signal
+  direction: output
+- name: ft
+  summary: Tire force, *N* physical signal
+  direction: output
+- name: tt
+  summary: Tire torque, *N\*m* physical signal
+  direction: output
+- name: t
+  summary: Pneumatic trail, *m* physical signal
+  direction: output
+- name: kappa
+  summary: Longitudinal slip, unitless physical signal
+  direction: output
+- name: kappas
+  summary: Saturated longitudinal slip, unitless physical signal
+  direction: output
+- name: alpha
+  summary: Slip angle, *rad* physical signal
+  direction: output
+- name: alphas
+  summary: Saturated slip angle, *rad* physical signal
+  direction: output
+- name: phit
+  summary: Turn slip, *rad/m* physical signal
+  direction: output
+- name: vx
+  summary: Relative longitudinal velocity, *m/s* physical signal
+  direction: output
+- name: vy
+  summary: Relative lateral velocity, *m/s* physical signal
+  direction: output
+- name: vsx
+  summary: Longitudinal slip velocity, *m/s* physical signal
+  direction: output
+- name: vsy
+  summary: Lateral slip velocity, *m/s* physical signal
+  direction: output
+- name: psid
+  summary: Yaw velocity, *rad/s* physical signal
+  direction: output
+- name: gamma
+  summary: Camber angle, *rad* physical signal
+  direction: output
+- name: gammas
+  summary: Saturated camber angle, *rad* physical signal
+  direction: output
+- name: gammad
+  summary: Camber velocity, *rad/s* physical signal
+  direction: output
+- name: omega
+  summary: Spin velocity, *rad* physical signal
+  direction: output
+- name: romega
+  summary: Free radius, *m* physical signal
+  direction: output
+- name: rl
+  summary: Loaded radius, *m* physical signal
+  direction: output
+- name: re
+  summary: Effective rolling radius, *m* physical signal
+  direction: output
+- name: rho
+  summary: Radial deflection, *m* physical signal
+  direction: output
+- name: mux
+  summary: Longitudinal friction coefficient, unitless physical signal
+  direction: output
+- name: muy
+  summary: Lateral friction coefficient, unitless physical signal
+  direction: output
+- name: Rb
+  summary: Base rotation, unitless physical signal
+  direction: output
+- name: pb
+  summary: Base translation, *m* physical signal
+  direction: output
+- name: Rf
+  summary: Follower rotation, unitless physical signal
+  direction: output
+- name: pf
+  summary: Follower translation, *m* physical signal
+  direction: output
+```
 
 ### Geometry
 
@@ -430,8 +529,31 @@ geometry.
 
 To enable this port, in the **Sensing > Contact Frame**
 section, select **Follower Translation**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Tire Side
+  summary: Tire position during modeling Left (default) | Right
+  group: ''
+- name: Tire Parameters
+  summary: Parameters of tire [] (default) | scalar structure array
+  group: ''
+- name: Slip Mode
+  summary: Slip mode Combined (default) | Combined + Turn
+  group: ''
+- name: Contact Frame Method
+  summary: Method to use to compute location and orientation of contact frame Closest Point (default) | Weighted Penetration
+  group: ''
+- name: LMUX
+  summary: Scaling factor of longitudinal friction coefficient From Tire Parameters (default) | Provided by Input
+  group: Scaling Coefficients
+- name: LMUY
+  summary: Scaling factor of lateral friction coefficient From Tire Parameters (default) | Provided by Input
+  group: Scaling Coefficients
+- name: Resolution Frame
+  summary: Frame to resolve measurements Contact (default) | Follower
+  group: Sensing
+```
 
 ### **Tire Side** — Tire position during modeling `Left` (default) | `Right`
 
@@ -531,7 +653,6 @@ to use input signals as scaling factors.
 Frame used to resolve the calculated tire force and torque, specified
 as either `Contact` or
 `Follower`.
-
 ## Libraries
 
 Simscape / Multibody / Forces and Torques

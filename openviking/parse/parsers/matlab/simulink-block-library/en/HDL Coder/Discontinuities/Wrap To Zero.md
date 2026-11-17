@@ -14,6 +14,17 @@ language: en
 # Wrap To Zero
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -41,8 +52,17 @@ overflow** to `warning` or
 `error`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Threshold
+  summary: Threshold for outputting zero 255 (default) | scalar
+  group: ''
+  block_parameter: Threshold
+  type: character vector
+  values: scalar
+  default: '''255'''
+```
 
 To edit the parameters for the Wrap to Zero block, double-click the
 block icon.
@@ -59,7 +79,6 @@ Threshold value for setting the output value to zero.
 | **Type**: character vector |
 | **Values**: `scalar` |
 | **Default**: `'255'` |
-
 ## Libraries
 
 Simulink / Discontinuities HDL Coder / Discontinuities

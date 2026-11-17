@@ -14,6 +14,66 @@ language: en
 # Kalman Filter
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Known inputs scalar | vector
+  direction: input
+- name: y
+  summary: Measured outputs scalar | vector
+  direction: input
+- name: A
+  summary: State matrix real matrix
+  direction: input
+- name: B
+  summary: Input matrix real matrix
+  direction: input
+- name: C
+  summary: Output matrix real matrix
+  direction: input
+- name: D
+  summary: Feedthrough matrix real matrix
+  direction: input
+- name: G
+  summary: Measured outputs real matrix
+  direction: input
+- name: H
+  summary: Measured outputs real matrix
+  direction: input
+- name: Q
+  summary: Process noise covariance matrix scalar | vector | matrix
+  direction: input
+- name: R
+  summary: Measurement noise covariance matrix scalar | vector | matrix
+  direction: input
+- name: N
+  summary: Process and measurement noise cross-covariance matrix scalar | vector | matrix
+  direction: input
+- name: P0
+  summary: Initial state estimation error covariance scalar | vector | matrix
+  direction: input
+- name: X0
+  summary: Initial state estimates scalar | vector
+  direction: input
+- name: Enable
+  summary: Control signal to enable measurement updates scalar
+  direction: input
+- name: Reset
+  summary: Control signal to reset state estimates scalar
+  direction: input
+- name: xhat
+  summary: Estimated states scalar | vector
+  direction: output
+- name: yhat
+  summary: Estimated outputs scalar | vector
+  direction: output
+- name: Z
+  summary: State estimation error covariance matrix
+  direction: output
+- name: P
+  summary: State estimation error covariance matrix
+  direction: output
+```
 
 ### Input
 
@@ -241,8 +301,244 @@ parameter.
   `int16`, `uint16`,
   `int32`, `uint32`, and boolean
   data types.
-
 ## Parameters
+```yaml
+parameters:
+- name: Time domain
+  summary: Specify whether to estimate continuous-time or discrete-time states Discrete-Time (default) | Continuous-Time
+  group: Filter Settings
+  block_parameter: TimeDomain
+  type: string, character vector
+  values: '"Discrete-Time" | "Continuous-Time"'
+  default: '"Discrete-Time"'
+- name: Use the current measurement y[n] to improve xhat[n]
+  summary: Update output state estimates using the measure outputs on (default) | off
+  group: Filter Settings
+  block_parameter: UseCurrentEstimator
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Sample Time
+  summary: Block sample time -1 (default) | non-negative scalar
+  group: Filter Settings
+  block_parameter: Ts
+  type: string, character vector
+  values: '"-1" | scalar'
+  default: '"-1"'
+- name: Model source
+  summary: Specify how the A, B, C, D matrices are provided to the block LTI State-Space Variable (default) | Individual A,
+    B, C, D matrices | Input port
+  group: Model Parameters
+  block_parameter: ModelSource
+  type: string, character vector
+  values: '"LTI State-Space Variable" | "Individual A, B, C, D matrices" | "Input port"'
+  default: '"LTI State-Space Variable"'
+- name: A
+  summary: State Matrix 0.95 (default)
+  group: Model Parameters
+  block_parameter: A
+  type: string, character vector
+  values: '"real matrix"'
+  default: '"0.95"'
+- name: B
+  summary: Input Matrix 1 (default)
+  group: Model Parameters
+  block_parameter: B
+  type: string, character vector
+  values: '"real matrix"'
+  default: '"1"'
+- name: C
+  summary: Output Matrix 1 (default)
+  group: Model Parameters
+  block_parameter: C
+  type: string, character vector
+  values: '"real matrix"'
+  default: '"1"'
+- name: D
+  summary: Feedthrough Matrix 0 (default)
+  group: Model Parameters
+  block_parameter: D
+  type: string, character vector
+  values: '"real matrix"'
+  default: '"0"'
+- name: Number of states
+  summary: Number of states to be estimated 1 (default) | non-negative scalar
+  group: Model Parameters
+  block_parameter: NumberOfStates
+  type: string, character vector
+  values: '"1" | scalar'
+  default: '"1"'
+- name: Number of inputs
+  summary: Number of known inputs 1 (default) | non-negative scalar
+  group: Model Parameters
+  block_parameter: NumberOfInputs
+  type: string, character vector
+  values: '"1" | scalar'
+  default: '"1"'
+- name: Number of outputs
+  summary: Number of measured output 1 (default) | non-negative scalar
+  group: Model Parameters
+  block_parameter: NumberOfOutputs
+  type: string, character vector
+  values: '"1" | scalar'
+  default: '"1"'
+- name: Source
+  summary: Specify how to enter the initial state estimates and initial state estimation error covariance Dialog (default)
+    | Input port
+  group: Model Parameters
+  block_parameter: InitialEstimateSource
+  type: string, character vector
+  values: '"Dialog" | "Input port"'
+  default: '"Dialog"'
+- name: Initial states x[0]
+  summary: Specify the initial state estimate 0 (default) | scalar | vector
+  group: Model Parameters
+  block_parameter: X0
+  type: string, character vector
+  values: '"0" | scalar | vector'
+  default: '"0"'
+- name: State estimation error covariance P[0]
+  summary: Specify the initial state estimation error covariance 10 (default) | scalar | vector | matrix
+  group: Model Parameters
+  block_parameter: P0
+  type: string, character vector
+  values: '"10" | scalar | vector | matrix'
+  default: '"10"'
+- name: Use the Kalman Gain K from the model variable
+  summary: Specify whether to use pre-identified Kalman Gain contained in state-space plant model off (default) | on
+  group: Model Parameters
+  block_parameter: UseK
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Use G and H matrices (default G=I and H=0)
+  summary: Specify whether to use non-default values for G and H matrices off (default) | on
+  group: Model Parameters
+  block_parameter: UseGH
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: G
+  summary: Specify the G matrix 1 (default) | non-negative scalar | vector | matrix
+  group: Model Parameters
+  block_parameter: G
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"1"'
+- name: Time-invariant G
+  summary: Specify the G matrix is time invariant on (default) | off
+  group: Model Parameters
+  block_parameter: TimeInvariantG
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: H
+  summary: Specify the H matrix 0 (default) | non-negative scalar | vector | matrix
+  group: Model Parameters
+  block_parameter: H
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"0"'
+- name: Time-invariant H
+  summary: Specify the H matrix is time invariant on (default) | off
+  group: Model Parameters
+  block_parameter: TimeInvariantH
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Number of process noise inputs
+  summary: Process noise inputs 1 (default) | non-negative scalar
+  group: Model Parameters
+  block_parameter: NumberOfProcessNoiseInputs
+  type: string, character vector
+  values: scalar
+  default: '"1"'
+- name: Q
+  summary: Process noise covariance matrix 0.05 (default) | non-negative scalar | vector | matrix
+  group: Model Parameters
+  block_parameter: Q
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"0.05"'
+- name: Time-invariant Q
+  summary: Specify if Q matrix is time invariant on (default) | off
+  group: Model Parameters
+  block_parameter: TimeInvariantQ
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: R
+  summary: Measurement noise covariance matrix 1 (default) | non-negative scalar | vector | matrix
+  group: Model Parameters
+  block_parameter: R
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"1"'
+- name: Time-invariant R
+  summary: Specify if R matrix is time invariant on (default) | off
+  group: Model Parameters
+  block_parameter: TimeInvariantR
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: N
+  summary: Process and measurement noise cross-covariance matrix 0 (default) | non-negative scalar | vector | matrix
+  group: Model Parameters
+  block_parameter: N
+  type: string, character vector
+  values: scalar | vector | matrix
+  default: '"0"'
+- name: Time-invariant N
+  summary: Specify if N matrix is time invariant on (default) | off
+  group: Model Parameters
+  block_parameter: TimeInvariantN
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Add input port u
+  summary: Specify if model contains known inputs on (default) | off
+  group: Options
+  block_parameter: AddInputPort
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Add input port Enable to control measurement updates
+  summary: Control the measurement updates off (default) | on
+  group: Options
+  block_parameter: AddEnablePort
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: External Reset
+  summary: Option to reset estimated states and parameter covariance matrix using specified initial values None (default)
+    | Rising | Falling | Either | Level | Level hold
+  group: Options
+  block_parameter: ExternalReset
+  type: string, character vector
+  values: '"None" | "Rising" | "Falling" | "Either" | "Level" | "Level hold"'
+  default: '"None"'
+- name: Output estimated model output y
+  summary: Include estimated model outputs off (default) | on
+  group: Options
+  block_parameter: OutputEstimatedY
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Output state estimation error covariance Z
+  summary: Add Z output port to the block off (default) | on
+  group: Options
+  block_parameter: OutputZ
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Output state estimation error covariance P
+  summary: Add P output port to the block off (default) | on
+  group: Options
+  block_parameter: OutputP
+  type: string, character vector
+  values: '"off" | "on"'
+  default: '"off"'
+```
 
 ### Filter Settings
 
@@ -992,7 +1288,6 @@ parameter.
 | **Type:** string, character vector |
 | **Values:** `"off"` | `"on"` |
 | **Default:** `"off"` |
-
 ## Libraries
 
 Control System Toolbox / State Estimation System Identification Toolbox / Estimators

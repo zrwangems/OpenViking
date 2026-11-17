@@ -15,14 +15,28 @@ chinese_source: worker-translation
 # Simulation 3D Message Set
 
 ## 端口
+```yaml
+ports:
+- name: WriteMsg
+  summary: 发送到场景的数据 scalar | array
+  direction: input
+```
 
 ### 输入
 
 ### **WriteMsg** — 发送到场景的数据 `scalar` | `array`
 
 发送到 3D 可视化环境场景的数据。在 Unreal Engine 环境中，您可以配置 `Sim3DGet` 类来接收来自 Simulink 模型的数据。
-
 ## 参数
+```yaml
+parameters:
+- name: Signal name, SigName
+  summary: 消息信号名称 mySignal（默认）
+  group: ''
+- name: Sample time
+  summary: 采样时间 0.02（默认）| -1 | scalar
+  group: ''
+```
 
 ### **Signal name, SigName** — 消息信号名称 `mySignal`（默认）
 
@@ -33,7 +47,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样时间 `0.02`（默认）| `-1` | `scalar`
 
 采样时间，单位为秒。图形帧率是采样时间的倒数。如果将采样时间设置为 `-1`，该模块将使用 Simulation 3D Scene Configuration 模块中指定的采样时间。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blockset / Animation / Simulation 3D Simulink 3D Animation / Simulation 3D / Utilities

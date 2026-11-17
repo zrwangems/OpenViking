@@ -14,6 +14,15 @@ language: en
 # Unidirectional Clutch
 
 ## Ports
+```yaml
+ports:
+- name: H
+  summary: Hub velocity mechanical rotational
+  direction: conserving
+- name: R
+  summary: Ring velocity mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,16 @@ Velocity of the hub driveshaft axis.
 ### **R** — Ring velocity mechanical rotational
 
 Velocity of the ring driveshaft axis.
-
 ## Parameters
+```yaml
+parameters:
+- name: Transmission direction
+  summary: Relative rotation direction From hub to ring for positive rotation (default) | From hub to ring for negative rotation
+  group: ''
+- name: Initial state
+  summary: Clutch initial state Unlocked (default) | Locked
+  group: ''
+```
 
 ### **Transmission direction** — Relative rotation direction `From hub to ring for positive rotation` (default) | `From hub to ring for negative rotation`
 
@@ -39,7 +56,6 @@ states, locked and unlocked. A locked clutch constrains the base and
 follower shafts to spin at the same velocity, that is, as a single unit. An
 unlocked clutch allows the two shafts to spin at different velocities,
 resulting in slip between the clutch plates.
-
 ## Libraries
 
 Simscape / Driveline / Clutches

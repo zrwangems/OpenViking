@@ -14,6 +14,13 @@ language: en
 # Bernoulli Binary Generator
 
 ## Ports
+```yaml
+ports:
+- name: Out
+  summary: Output data signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -22,8 +29,32 @@ language: en
 Output data signal, returned as a scalar, vector, or matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Probability of zero
+  summary: Probability of generating zero at output 0.5 (default) | scalar in the range [0, 1] | vector of scalars in the
+    range [0, 1]
+  group: ''
+- name: Source of initial seed
+  summary: Source of initial seed for random number generator Auto (default) | Parameter
+  group: ''
+- name: Initial seed
+  summary: Initial seed for random number generator nonnegative integer
+  group: ''
+- name: Sample time
+  summary: Sample time of output signal 1 (default) | -1 | positive scalar
+  group: ''
+- name: Samples per frame
+  summary: Samples per frame of output signal 1 (default) | positive scalar
+  group: ''
+- name: Output data type
+  summary: Data type of output signal double (default) | single | uint8 | uint16 | uint32 | boolean
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Code generation (default) | Interpreted execution
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -102,7 +133,6 @@ Type of simulation to run, specified as `Code generation` or
   code of the block.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Comm Sources / Random Data Sources

@@ -14,6 +14,15 @@ language: en
 # Interface (2P-TL)
 
 ## Ports
+```yaml
+ports:
+- name: 2P
+  summary: Two-phase port two-phase fluid
+  direction: conserving
+- name: TL
+  summary: Fluid port thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,16 @@ interface.
 
 Thermal liquid conserving port associated with the thermal liquid at the
 interface.
-
 ## Parameters
+```yaml
+parameters:
+- name: Cross-sectional area at ports 2P and TL
+  summary: Port area 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Two-phase fluid subcooled liquid check
+  summary: Two-phase fluid subcooled conditions check None (default) | Warning | Error
+  group: ''
+```
 
 ### **Cross-sectional area at ports 2P and TL** — Port area `0.01` `m^2` (default) | positive scalar
 
@@ -37,7 +54,6 @@ Cross-sectional area of the thermal liquid and two-phase fluid ports.
 
 Action to perform when the fluid at port **2P** does not
 meet subcooled conditions.
-
 ## Libraries
 
 Simscape / Fluids / Fluid Network Interfaces

@@ -14,6 +14,27 @@ language: en
 # Interface (2P-MA)
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Humidity, unitless physical signal
+  direction: input
+- name: Tw
+  summary: Temperature, K physical signal
+  direction: input
+- name: TG
+  summary: Trace gas, unitless physical signal
+  direction: input
+- name: D
+  summary: Water droplet mass ratio, unitless physical signal
+  direction: input
+- name: 2P
+  summary: Two-phase port two-phase fluid
+  direction: conserving
+- name: MA
+  summary: Moist air port moist air
+  direction: conserving
+```
 
 ### Input
 
@@ -73,8 +94,63 @@ interface.
 ### **MA** — Moist air port moist air
 
 Moist air conserving port associated with the moist air at the interface.
-
 ## Parameters
+```yaml
+parameters:
+- name: Provide input signal for interface humidity
+  summary: Interface humidity control option off (default) | on
+  group: ''
+- name: Interface humidity specification
+  summary: Humidity parameterization option Relative humidity (default) | Specific humidity | Mole fraction | Humidity ratio
+    | Wet-bulb temperature
+  group: ''
+- name: Interface relative humidity
+  summary: Relative humidity at interface 0.5 (default) | positive scalar
+  group: ''
+- name: Interface specific humidity
+  summary: Specific humidity at interface 0.01 (default) | positive scalar
+  group: ''
+- name: Interface water vapor mole fraction
+  summary: Water vapor mole fraction at interface 0.01 (default) | positive scalar
+  group: ''
+- name: Interface humidity ratio
+  summary: Humidity ratio at interface 0.01 (default) | positive scalar
+  group: ''
+- name: Interface wet-bulb temperature
+  summary: Wet-bulb temperature at interface 287 K (default) | positive scalar
+  group: ''
+- name: Provide input signal for interface trace gas
+  summary: Interface trace gas control option off (default) | on
+  group: ''
+- name: Interface trace gas specification
+  summary: Trace gas parameterization Mass fraction (default) | Mole fraction
+  group: ''
+- name: Interface trace gas mass fraction
+  summary: Trace gas mass fraction at interface 0.001 (default) | positive scalar
+  group: ''
+- name: Interface trace gas mole fraction
+  summary: Trace gas mole fraction at interface 0.001 (default) | positive scalar
+  group: ''
+- name: Provide input signal for interface water droplets
+  summary: Interface water droplet control option off (default) | on
+  group: ''
+- name: Interface mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air at interface 0 (default) | positive scalar
+  group: ''
+- name: Relative humidity at saturation
+  summary: Saturation point relative humidity 1 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports 2P and MA
+  summary: Port area 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Two-phase fluid superheated vapor check
+  summary: Two-phase fluid superheated conditions check None (default) | Warning | Error
+  group: ''
+- name: Inputs outside valid range
+  summary: Option to monitor or control invalid inputs Limit to valid values (default) | Warn and limit to valid values |
+    Error
+  group: ''
+```
 
 ### **Provide input signal for interface humidity** — Interface humidity control option `off` (default) | `on`
 
@@ -219,7 +295,6 @@ inputs by selecting `Warn and limit to valid
 values`, or you can stop the simulation when the block
 receives invalid inputs by selecting
 `Error`.
-
 ## Libraries
 
 Simscape / Fluids / Fluid Network Interfaces

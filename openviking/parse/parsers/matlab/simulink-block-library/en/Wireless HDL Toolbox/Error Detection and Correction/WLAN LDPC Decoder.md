@@ -14,6 +14,49 @@ language: en
 # WLAN LDPC Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: LLR values scalar | column vector
+  direction: input
+  data_types: int8 | int16 | signed fixed point
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: blkLenIdx
+  summary: Block length index 0 | 1 | 2
+  direction: input
+  data_types: fixdt(0,2,0)
+- name: codeRateIdx
+  summary: Code rate index 0 | 1 | 2 | 3
+  direction: input
+  data_types: fixdt(0,2,0)
+- name: iter
+  summary: Number of iterations scalar
+  direction: input
+  data_types: uint8
+- name: data
+  summary: Decoded bits scalar | column vector
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: Block ready indicator Boolean scalar
+  direction: output
+  data_types: Boolean
+- name: actIter
+  summary: Actual number of iterations scalar
+  direction: output
+  data_types: uint8
+- name: parityCheck
+  summary: Parity check status indicator scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -180,8 +223,35 @@ To enable this port, select the **Enable parity check output
 port** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Standard
+  summary: Type of standard IEEE 802.11 n/ac/ax (default) | IEEE 802.11 ad
+  group: ''
+- name: Algorithm
+  summary: LDPC decoding algorithm Min-sum (default) | Normalized min-sum
+  group: ''
+- name: Scaling factor
+  summary: Scaling factor for normalized min-sum decoding 0.75 (default) | scalar in the range from 0.5 to 1, incremented
+    by 0.0625
+  group: ''
+- name: Decoding termination criteria
+  summary: Termination criteria Max (default) | Early
+  group: ''
+- name: Source for number of iterations
+  summary: Source selection for number of iterations Property (default) | Input port
+  group: ''
+- name: Number of iterations
+  summary: Number of decoding iterations 8 (default) | integer in the range from 1 to 63
+  group: ''
+- name: Maximum number of iterations
+  summary: Maximum number of decoding iterations 8 (default) | integer in the range from 1 to 63
+  group: ''
+- name: Enable parity check output port
+  summary: Parity check status off (default) | on
+  group: ''
+```
 
 ### **Standard** — Type of standard `IEEE 802.11 n/ac/ax` (default) | `IEEE 802.11 ad`
 
@@ -264,7 +334,6 @@ criteria** parameter to `Early`.
 
 Select this parameter to enable the **parityCheck** output port to
 view the status of the parity check.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

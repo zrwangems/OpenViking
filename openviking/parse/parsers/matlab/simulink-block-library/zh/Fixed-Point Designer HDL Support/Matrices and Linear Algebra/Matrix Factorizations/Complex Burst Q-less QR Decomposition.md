@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Complex Burst Q-less QR Decomposition
 
 ## 端口
+```yaml
+ports:
+- name: A(i,:)
+  summary: 复矩阵 *A* 的行 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: 是否清除内部状态 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: R(i,:)
+  summary: 上三角矩阵 *R* 的行 标量 | 向量
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 模块是否就绪 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -90,8 +117,28 @@ chinese_source: worker-translation
 `validIn` 信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of rows in matrix A
+  summary: 矩阵 *A* 的行数 4（默认）| 正整数值标量
+  group: ''
+  block_parameter: m
+  type: 字符向量
+  values: 正整数值标量
+- name: Number of columns in matrix A
+  summary: 矩阵 *A* 的列数 4（默认）| 正整数值标量
+  group: ''
+  block_parameter: n
+  type: 字符向量
+  values: 正整数值标量
+- name: Regularization parameter
+  summary: 正则化参数 0（默认）| 实非负标量
+  group: ''
+  block_parameter: regularizationParameter
+  type: 字符向量
+  values: 实非负标量
+```
 
 ### **Number of rows in matrix A** — 矩阵 *A* 的行数 `4`（默认）| 正整数值标量
 
@@ -136,7 +183,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 实非负标量 |
 | **默认：** `0` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Matrix Factorizations

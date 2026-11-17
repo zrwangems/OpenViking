@@ -15,10 +15,34 @@ chinese_source: worker-translation
 # XCP UDP Data Stimulation
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 指定 XCP UDP 会话名称 从列表中选择
+  group: ''
+- name: Event name
+  summary: 选择事件 从列表中选择
+  group: ''
+- name: All Measurements
+  summary: 列出事件可用的所有测量量 测量量列表
+  group: ''
+- name: Selected Measurements
+  summary: 列出已选测量量 测量量名称
+  group: ''
+- name: 模块输入设置
+  summary: 将端口输入设置为 Compu 方法转换值或原始值 Raw values as double (no Compu method conversion)（默认）| Raw values (no Compu method conversion)
+    | Physical values (apply Compu method conversion)
+  group: ''
+- name: 启用时间戳
+  summary: 启用通过 STIM DTO 数据包发送 Simulink 时间戳 off（默认）| on
+  group: ''
+```
 
 ### **Config name** — 指定 XCP UDP 会话名称 从列表中选择
 
@@ -97,7 +121,6 @@ MATLAB 和 Simulink 中变为非连续。
 
 当启用时间戳时，模块从 Simulink 输入时间戳，并通过 STIM DTO 数据包发送该时间戳。当 A2L 文件中支持该参数时，**启用
 时间戳**复选框会显示在模块参数对话框中。
-
 ## 所属库
 
 Vehicle Network Toolbox / XCP Communication / UDP Simulink Real-Time / XCP / UDP

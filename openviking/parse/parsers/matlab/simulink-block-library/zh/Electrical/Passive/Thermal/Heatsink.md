@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Heatsink
 
 ## 端口
+```yaml
+ports:
+- name: v
+  summary: 流速物理信号
+  direction: input
+- name: A
+  summary: 环境温度热端口
+  direction: input
+- name: C
+  summary: 壳体热端口
+  direction: input
+```
 
 ### 输入
 
@@ -35,8 +47,81 @@ chinese_source: worker-translation
 ### **C** — 壳体热端口
 
 与壳体关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 参数化类型 Assume rectangular parallel fins（默认）| Datasheet | Tabulated convection and fin efficiency
+  group: 稳态
+- name: Convection
+  summary: 对流类型 Natural（默认）| Forced - specify flow speed
+  group: 稳态
+- name: Fin height
+  summary: 翅片高度 38.1e-3 m（默认）| 正标量
+  group: 稳态
+- name: Fin thickness
+  summary: 翅片厚度 6.5e-4 m（默认）| 正标量
+  group: 稳态
+- name: Fin depth
+  summary: 翅片深度 139.7e-3 m（默认）| 正标量
+  group: 稳态
+- name: Gap between fins
+  summary: 翅片间隙 9.4e-3 m（默认）| 正标量
+  group: 稳态
+- name: Number of fins
+  summary: 翅片数量 11（默认）| 正标量
+  group: 稳态
+- name: Fin thermal conductivity
+  summary: 翅片热导率 237 W/(m*K)（默认）| 正标量
+  group: 稳态
+- name: Vector of temperature rises above ambient, T
+  summary: 高于环境温度的温升向量 [10, 30, 50, 70, 90] K（默认）| 正标量向量
+  group: 稳态
+- name: Vector of fluid flow speed, v
+  summary: 流体流速向量 [0, 1, 2, 3] m/s（默认）| 正标量向量
+  group: 稳态
+- name: Corresponding heat dissipated to ambient, Q_TLU1(T)
+  summary: 与环境温度对应的散热热量 [6.1, 23.6, 44.5, 67.5, 92.3] W（默认）| 正标量向量
+  group: 稳态
+- name: Corresponding heat dissipated to ambient, Q_TLU2(T, v)
+  summary: 与温度和流速对应的散热热量 [6.1, 18.8, 22.8, 25.7; 23.6, 61.1, 73, 81.5; 44.5, 106.4, 125.9, 140.1; 67.5, 153.5, 180.7, 200.3;
+    92.3, 202.1, 236.9, 262] W（默认）| 正标量向量
+  group: 稳态
+- name: Corresponding convective heat transfer coefficient, h_TLU1(T)
+  summary: 与温度对应的对流换热系数 [5.4, 7.02, 7.98, 8.68, 9.26] W/(m^2*K)（默认）| 正标量向量
+  group: 稳态
+- name: Corresponding convective heat transfer coefficient, h_TLU2(T, v)
+  summary: 与温度和流速对应的对流换热系数 [5.4, 17.86, 22.17, 25.41; 7.02, 19.49, 23.8, 27.03; 7.97, 20.44, 24.75, 27.99; 8.68, 21.15, 25.46,
+    28.69; 9.26, 21.73, 26.04, 29.27]（默认）| W/(m^2*K) | 正标量向量
+  group: 稳态
+- name: Vector of convective heat transfer coefficients, h
+  summary: 对流换热系数向量 [5, 10, 15, 20, 25, 30] W/(m^2*K)（默认）| 正标量向量
+  group: 稳态
+- name: Corresponding fin efficiency (percent), eff_TLU(h)
+  summary: 与换热系数对应的翅片效率 [96.97, 94.16, 91.53, 89.08, 86.78, 84.62]（默认）| 正标量向量
+  group: 稳态
+- name: Total heat exchange surface area
+  summary: 总换热表面积 0.1171 m^2（默认）| 正标量
+  group: 稳态
+- name: Fluid kinematic viscosity
+  summary: 流体运动黏度 1.51e-5 m^2/s（默认）| 正标量
+  group: 流体属性
+- name: Fluid thermal diffusivity
+  summary: 流体热扩散率 2.07e-5 m^2/s（默认）| 正标量
+  group: 流体属性
+- name: Fluid thermal conductivity
+  summary: 流体热导率 25e-3 W/(m*K)（默认）| 正标量
+  group: 流体属性
+- name: Fluid coefficient of volume thermal expansion
+  summary: 流体体积热膨胀系数 3.3e-3 1/K（默认）| 正标量
+  group: 流体属性
+- name: Heatsink mass
+  summary: 散热器质量 0.35 kg（默认）| 正标量
+  group: 动态特性
+- name: Heatsink specific heat
+  summary: 散热器比热容 437 J/(K*kg)（默认）| 正标量
+  group: 动态特性
+```
 
 ### 稳态
 
@@ -262,7 +347,6 @@ rectangular parallel fins`。
 ### **Heatsink specific heat** — 散热器比热容 `437` `J/(K*kg)`（默认）| 正标量
 
 散热器的比热容。
-
 ## 所属库
 
 Simscape / Electrical / Passive / Thermal

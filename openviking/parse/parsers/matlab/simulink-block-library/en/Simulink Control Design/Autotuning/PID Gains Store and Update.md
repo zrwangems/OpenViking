@@ -14,6 +14,24 @@ language: en
 # PID Gains Store and Update
 
 ## Ports
+```yaml
+ports:
+- name: tuned Gains
+  summary: Tuned PID gains bus
+  direction: input
+- name: scheduling Variable
+  summary: Scheduling variable scalar
+  direction: input
+- name: Breakpoints
+  summary: Breakpoint data vector
+  direction: input
+- name: Update Trigger
+  summary: Trigger control signal scalar
+  direction: input
+- name: PID Gains Out
+  summary: PID gain array bus
+  direction: output
+```
 
 ### Input
 
@@ -76,8 +94,142 @@ array.
 
 To enable this port, set **Method of storing gains** to
 `Output from block`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Controller type
+  summary: PID controller type P (default) | I | PI | PD | PDN | PID | PIDN
+  group: ''
+  block_parameter: ControllerType
+  type: string
+  values: '"P" | "I" | "PI" | "PD" | "PDN" | "PID" | "PIDN"'
+  default: '"PID"'
+- name: Use for gain scheduling
+  summary: Enable block for gain scheduling on (default) | off
+  group: ''
+  block_parameter: UseGainScheduling
+  type: string
+  values: '"off" | "on"'
+  default: '"on"'
+- name: Save breakpoints in gain array
+  summary: Save breakpoints along with PID gains off (default) | on
+  group: ''
+  block_parameter: SaveBreakpoints
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Breakpoints
+  summary: Gain scheduling breakpoints [1 2 3] (default) | vector
+  group: ''
+  block_parameter: NumBreakpoints
+  type: vector
+  values: vector of at least two elements
+  default: '"[1 2 3]"'
+- name: Number of breakpoints
+  summary: Number of breakpoints 3 (default) | positive scalar
+  group: ''
+  block_parameter: NumBreakpoints
+  type: scalar
+  values: positive scalar
+  default: '3'
+- name: Use external signal
+  summary: Specify breakpoints from input port off (default) | on
+  group: ''
+  block_parameter: UseExternalBreakpoints
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Gain index tolerance
+  summary: Gain index tolerance 1e-3 (default) | nonegative scalar
+  group: ''
+  block_parameter: GainIndexTolerance
+  type: scalar
+  values: nonnegative scalar
+  default: 1e-3
+- name: Method of storing gains
+  summary: Method of storing gains Data store memory (default) | Goto/from | Output from block
+  group: ''
+  block_parameter: TriggerUpdateMethod
+  type: string
+  values: '"Data store memory" | "Goto/from" | "Output from block"'
+  default: '"Data store memory"'
+- name: P Gain Parameter Name
+  summary: Proportional gain data name PGain (default) | string
+  group: ''
+  block_parameter: StoreGainsPParamName
+  type: string
+  default: '"PGain"'
+- name: P Gain initial conditions
+  summary: Proportional gain initial value 0 (default) | scalar | vector
+  group: ''
+  block_parameter: PGainInitialConditions
+  type: scalar | vector
+  default: '0'
+- name: I Gain Parameter Name
+  summary: Integral gain data name IGain (default) | string
+  group: ''
+  block_parameter: StoreGainsIParamName
+  type: string
+  default: '"IGain"'
+- name: I Gain initial conditions
+  summary: Integral gain initial value 0 (default) | scalar | vector
+  group: ''
+  block_parameter: IGainInitialConditions
+  type: scalar | vector
+  default: '0'
+- name: D Gain Parameter Name
+  summary: Derivative gain data name DGain (default) | string
+  group: ''
+  block_parameter: StoreGainsDParamName
+  type: string
+  default: '"DGain"'
+- name: D Gain initial conditions
+  summary: Derivative gain initial value 0 (default) | scalar | vector
+  group: ''
+  block_parameter: DGainInitialConditions
+  type: scalar | vector
+  default: '0'
+- name: N Gain Parameter Name
+  summary: Filter gain data name NGain (default) | string
+  group: ''
+  block_parameter: StoreGainsNParamName
+  type: string
+  default: '"NGain"'
+- name: N Gain initial conditions
+  summary: Filter gain initial value 100 (default) | scalar | vector
+  group: ''
+  block_parameter: NGainInitialConditions
+  type: scalar | vector
+  default: '100'
+- name: Method to trigger gain update
+  summary: Update trigger method Detect change in PID gains (default) | External trigger
+  group: ''
+  block_parameter: TriggerUpdateMethod
+  type: string
+  values: '"Detect change in PID gains" | "External trigger"'
+  default: '"Detect change in PID gains"'
+- name: Number of samples to delay update
+  summary: Number of samples to delay update 1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: NumUpdateDelays
+  type: scalar
+  values: nonnegative scalar
+  default: '1'
+- name: Sample time (-1 for inherited)
+  summary: Sample time -1 (default) | positive scalar
+  group: ''
+  block_parameter: SampleTime
+  type: scalar
+  values: positive scalar | –1
+  default: –1
+- name: Data Type
+  summary: Floating point precision Double (default) | Single
+  group: ''
+  block_parameter: BlockDataType
+  type: string
+  values: '"Double" | "Single"'
+  default: '"Double"'
+```
 
 ### **Controller type** — PID controller type `P` (default) | `I` | `PI` | `PD` | `PDN` | `PID` | `PIDN`
 
@@ -515,7 +667,6 @@ hardware requirements.
 | **Type:** string |
 | **Values:** `"Double"` | `"Single"` |
 | **Default:** `"Double"` |
-
 ## Libraries
 
 Simulink Control Design / Autotuning

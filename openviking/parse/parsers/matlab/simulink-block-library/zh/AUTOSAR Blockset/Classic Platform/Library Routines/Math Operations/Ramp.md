@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Ramp
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 标量
+  direction: input
+  data_types: single
+- name: R
+  summary: 复位端口 标量
+  direction: input
+  data_types: Boolean
+- name: rs
+  summary: 上升斜率 标量
+  direction: input
+  data_types: single
+- name: fs
+  summary: 下降斜率 标量
+  direction: input
+  data_types: single
+- name: Port_1
+  summary: 输出信号 标量
+  direction: output
+  data_types: single
+```
 
 ### 输入
 
@@ -60,8 +83,45 @@ chinese_source: worker-translation
 输出信号，以标量形式返回。
 
 **数据类型：** `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Rise slope
+  summary: 输出的增加值 Dialog | Input port
+  group: ''
+  block_parameter: RiseSlopeSource
+  type: 字符向量
+  values: '''Dialog'' | ''Input port'''
+  default: '''Dialog'''
+- name: Fall slope
+  summary: 输出的减小值 标量
+  group: ''
+  block_parameter: FallSlopeSource
+  type: 字符向量
+  values: '''Dialog'' | ''Input Port'''
+  default: '''Dialog'''
+- name: Show reset port
+  summary: 添加 R 输入端口的选项 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowResetPort
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Initial condition
+  summary: 输出信号的初始值 0（默认）| double
+  group: ''
+  block_parameter: InitialCondition
+  type: 字符向量
+  values: 实数有限值
+  default: '''0'''
+- name: Sample time
+  summary: 采样周期 -1（默认）| [-1, 0] | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 实数有限值
+  default: '''-1'''
+```
 
 ### **Rise slope** — 输出的增加值 `Dialog` | `Input port`
 
@@ -155,7 +215,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 实数有限值 |
 | **默认值：** `'-1'` |
-
 ## 所属库
 
 AUTOSAR Blockset / Classic Platform / Library Routines / Math Operations

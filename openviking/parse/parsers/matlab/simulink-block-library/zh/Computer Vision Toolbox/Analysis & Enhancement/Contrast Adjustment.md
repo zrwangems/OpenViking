@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Contrast Adjustment
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入图像矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+- name: Port_1
+  summary: 输出图像矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | uint8 | uint16 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,34 @@ chinese_source: worker-translation
 输出图像，返回为 *M*×*N* 矩阵或 *M*×*N*×*C* 数组，其中 *C* 是颜色通道数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `uint8` | `uint16` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Adjust pixel values from
+  summary: 输入像素值范围定义 Full input data range [min max]（默认）| User-defined range | Range determined by saturating outlier pixels
+  group: 主
+- name: Range [low high]
+  summary: 输入像素值范围 [0 255]（默认）| 非负数的二元素向量
+  group: 主
+- name: Percentage of pixels to saturate [low high]
+  summary: 要饱和的像素最大百分比 [1 1]（默认）| 非负数的二元素向量
+  group: 主
+- name: Specify number of histogram bins (used to calculate the range when outliers are eliminated)
+  summary: 自定义直方图箱数 on（默认）| off
+  group: 主
+- name: Number of histogram bins
+  summary: 直方图箱数 256（默认）| 正整数
+  group: 主
+- name: Adjust pixel values to
+  summary: 输出像素值范围定义 Full data type range（默认）| User-defined range
+  group: 主
+- name: Range [low high]
+  summary: 输出像素值范围 [0 255]（默认）| 非负数的二元素向量
+  group: 主
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 数据类型覆盖 off（默认）| on
+  group: 数据类型
+```
 
 ### 主
 
@@ -97,7 +134,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against change by the fixed-point tools** — 数据类型覆盖 `off`（默认）| `on`
 
 选择此参数以防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

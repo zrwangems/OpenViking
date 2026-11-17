@@ -14,6 +14,26 @@ language: en
 # Simulation 3D Pedestrian
 
 ## Ports
+```yaml
+ports:
+- name: Y
+  summary: Lateral position of pedestrian scalar
+  direction: input
+- name: X
+  summary: Longitudinal position of pedestrian scalar
+  direction: input
+- name: Yaw
+  summary: Yaw orientation angle of pedestrian scalar
+  direction: input
+- name: Location
+  summary: Location of pedestrian real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+- name: Orientation
+  summary: Orientation of pedestrian real-valued 1-by-3 vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -90,8 +110,34 @@ To enable this port, on the **Ground Truth** tab, select
 orientation**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Type of pedestrian Male 1 (default) | Male 2 | Male 3 | Female 1 | Female 2 | Female 3 | Child
+  group: Pedestrian Parameters
+- name: Scale
+  summary: Scale factor for pedestrian [1, 1, 1] (default) | real-valued 1-by-3 vector
+  group: Pedestrian Parameters
+- name: Coordinate system
+  summary: Coordinate system for actor transformation ISO8855 (default) | Default | MATLAB | AERO | VRML | SAE
+  group: Pedestrian Parameters
+- name: Initial position [X, Y, Z]
+  summary: Initial pedestrian position [0, 0, 0] (default) | real-valued 1-by-3 vector
+  group: Pedestrian Parameters
+- name: Initial yaw
+  summary: Initial angle of pedestrian rotation 0 (default) | real-valued scalar
+  group: Pedestrian Parameters
+- name: Name
+  summary: Name of pedestrian SimulinkPedestrian1 (default) | pedestrian name
+  group: Pedestrian Parameters
+- name: Sample time
+  summary: Sample time -1 (default) | positive scalar
+  group: Pedestrian Parameters
+- name: Output location and orientation
+  summary: Output location and orientation of pedestrian off (default) | on
+  group: Ground Truth
+```
 
 ### Pedestrian Parameters
 
@@ -174,7 +220,6 @@ time specified in the Simulation 3D Scene Configuration block.
 Select this parameter to output the location and orientation of the pedestrian at
 the **Location** and **Orientation** ports,
 respectively.
-
 ## Libraries
 
 Automated Driving Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Actors

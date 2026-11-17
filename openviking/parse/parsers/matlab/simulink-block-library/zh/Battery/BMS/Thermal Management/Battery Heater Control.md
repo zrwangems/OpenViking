@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Battery Heater Control
 
 ## 端口
+```yaml
+ports:
+- name: AmbientTemperature
+  summary: 环境温度标量
+  direction: input
+- name: CoolantTemperature
+  summary: 冷却液温度标量
+  direction: input
+- name: Command
+  summary: 加热器命令标量
+  direction: output
+```
 
 ### 输入
 
@@ -32,8 +44,22 @@ chinese_source: worker-translation
 加热器命令，以标量形式返回。如果该值等于 `0`，
 则加热器关闭。如果该值等于 `1`，
 则加热器开启。
-
 ## 参数
+```yaml
+parameters:
+- name: Ambient temperature threshold for heater
+  summary: 加热器的环境温度阈值 278.15（默认）| 正标量
+  group: ''
+- name: Switch-on coolant temperature
+  summary: 开启冷却液温度 278.15（默认）| 正标量
+  group: ''
+- name: Switch-off coolant temperature
+  summary: 关闭冷却液温度 290.15（默认）| 正标量
+  group: ''
+- name: Algorithm data type
+  summary: '用于选择模块算法数据类型的选项 Inherit: auto（默认）| double | single | <data type expression>'
+  group: ''
+```
 
 ### **Ambient temperature threshold for heater** — 加热器的环境温度阈值 `278.15`（默认）| 正标量
 
@@ -67,7 +93,6 @@ temperature** 参数的值。
   算法将所有输入和参数转换为您指定的数据类型对象。
 
 点击 **Show data type assistant** 按钮以显示 **Data Type Assistant**，它可帮助您设置数据类型属性。有关详细信息，请参阅 Specify Data Types Using Data Type Assistant 和 Control Data Types of Signals。
-
 ## 所属库
 
 Simscape / Battery / BMS / Thermal Management

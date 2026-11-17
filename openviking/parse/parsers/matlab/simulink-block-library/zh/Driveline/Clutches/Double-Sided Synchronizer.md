@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Double-Sided Synchronizer
 
 ## 端口
+```yaml
+ports:
+- name: X1
+  summary: 犬牙式离合器位移物理信号
+  direction: output
+- name: X2
+  summary: 锥形离合器位移物理信号
+  direction: output
+- name: HA
+  summary: 离合器轮毂 *A* 机械旋转
+  direction: output
+- name: HB
+  summary: 离合器轮毂 *B* 机械旋转
+  direction: output
+- name: R
+  summary: 离合器齿圈机械旋转
+  direction: output
+- name: S
+  summary: 换挡连杆机械旋转
+  direction: output
+- name: T
+  summary: 热流热
+  direction: output
+```
 
 ### 输出
 
@@ -50,8 +74,178 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请在**摩擦**部分中，将**摩擦模型**设置为 `Temperature-dependent friction coefficients` 或 `Temperature and velocity-dependent friction coefficients`。
-
 ## 参数
+```yaml
+parameters:
+- name: 接触面最大直径
+  summary: 外径 150 mm（默认）| 正标量
+  group: 锥形离合器
+- name: 接触面最小直径
+  summary: 内径 100 mm（默认）| 正标量
+  group: 锥形离合器
+- name: 锥半角
+  summary: 锥半角 12 deg（默认）| 正标量
+  group: 锥形离合器
+- name: 摩擦模型
+  summary: 摩擦模型 Fixed kinetic friction coefficient（默认）| Velocity-dependent kinetic friction coefficient | Temperature-dependent
+    friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: 锥形离合器
+- name: 相对速度向量
+  summary: 相对速度 [0, 100, 1000] rad/s（默认）| 向量
+  group: 锥形离合器
+- name: 温度向量
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: 锥形离合器
+- name: 静摩擦系数
+  summary: 静摩擦系数 0.35（默认）| 标量
+  group: 锥形离合器
+- name: 静摩擦系数向量
+  summary: 静摩擦系数 [.4, .38, .36]（默认）| 向量
+  group: 锥形离合器
+- name: 动摩擦系数
+  summary: 动摩擦系数 0.3（默认）| 正标量
+  group: 锥形离合器
+- name: 动摩擦系数向量
+  summary: 动摩擦系数 [.3, .22, .19]（默认）| [.3, .28, .25] | 向量
+  group: 锥形离合器
+- name: 动摩擦系数矩阵
+  summary: 动摩擦系数 [.34, .32, .3; .3, .28, .25; .25, .2, .15]（默认）| 矩阵
+  group: 锥形离合器
+- name: 摩擦系数插值方法
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 锥形离合器
+- name: 摩擦系数外推方法
+  summary: 外推方法 Linear（默认）| Nearest | Error
+  group: 锥形离合器
+- name: 速度容差
+  summary: 相对速度锁定阈值 0.001 rad/s（默认）| 标量
+  group: 锥形离合器
+- name: 阈值力
+  summary: 法向接触力阈值 1 N（默认）| 标量
+  group: 锥形离合器
+- name: 扭矩传递模型
+  summary: 扭矩传递模型 Friction clutch approximation — Suitable for HIL and linearization（默认）| Dynamic with backlash | Dynamic
+    modal
+  group: 犬牙式离合器
+- name: 温度向量
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: 犬牙式离合器
+- name: 最大传递扭矩
+  summary: 最大传递扭矩 1000 N*m（默认）| 正标量
+  group: 犬牙式离合器
+- name: 最大传递扭矩向量
+  summary: 最大传递扭矩 [1000, 1050, 1000] N*m（默认）| 向量
+  group: 犬牙式离合器
+- name: 插值方法
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 犬牙式离合器
+- name: 外推方法
+  summary: 外推方法 Linear（默认）| Nearest | Error
+  group: 犬牙式离合器
+- name: 离合器齿平均半径
+  summary: 离合器齿平均半径 50 mm（默认）| 正标量
+  group: 犬牙式离合器
+- name: 齿数
+  summary: 齿圈或轮毂齿数 6（默认）| 正非零标量整数
+  group: 犬牙式离合器
+- name: 旋转齿隙
+  summary: 旋转齿隙 10 deg（默认）| 正标量
+  group: 犬牙式离合器
+- name: Torsional stiffness
+  summary: 扭转刚度 10e6 N*m/rad（默认）| 正标量
+  group: 犬牙式离合器
+- name: Torsional damping
+  summary: 扭转阻尼 100 N*m/(rad/s)（默认）| 正标量
+  group: 犬牙式离合器
+- name: Peak force
+  summary: 峰值剪切力 500 N（默认）| 非负标量
+  group: Detent
+- name: Notch width
+  summary: 凹口宽度 3 mm（默认）| 非负标量
+  group: Detent
+- name: Viscous friction coefficient
+  summary: 粘性摩擦系数 0.1 N/(m/s)（默认）| 非负标量
+  group: Detent
+- name: Friction to peak force ratio
+  summary: 摩擦力与峰值力之比 0.01（默认）| 非负标量
+  group: Detent
+- name: Friction velocity threshold
+  summary: 动摩擦速度阈值 0.05 m/s（默认）
+  group: Detent
+- name: Maximum engagement speed
+  summary: 接合速度上限阈值 inf（默认）| 正标量
+  group: Shift Linkage
+- name: Tooth overlap to engage
+  summary: 齿重叠接合阈值 3 mm（默认）| 正标量
+  group: Shift Linkage
+- name: Tooth height
+  summary: 齿高 10 mm（默认）| 正标量
+  group: Shift Linkage
+- name: Ring-hub clearance when disengaged
+  summary: 分离时齿圈-轮毂间隙 3 mm（默认）| 正标量
+  group: Shift Linkage
+- name: Hard stop at back of shift linkage
+  summary: 硬限位模型 On（默认）| Off
+  group: Shift Linkage
+- name: Dog clutch ring stop stiffness
+  summary: 犬牙离合器齿圈限位刚度 10e5 N/m（默认）| 正标量
+  group: Shift Linkage
+- name: Cone clutch ring stop stiffness
+  summary: 锥形离合器齿圈限位刚度 10e5 N/m（默认）| 正标量
+  group: Shift Linkage
+- name: Dog clutch ring stop damping
+  summary: 犬牙离合器齿圈限位阻尼 1e3 N/(m/s)（默认）| 非负标量
+  group: Shift Linkage
+- name: Cone clutch ring stop damping
+  summary: 锥形离合器齿圈限位阻尼 1e3 N/(m/s)（默认）| 非负标量
+  group: Shift Linkage
+- name: Shift linkage viscous friction coefficient
+  summary: 换挡连杆粘性摩擦系数 100 N/(m/s)（默认）| 正标量
+  group: Shift Linkage
+- name: Engagement block stiffness
+  summary: 接合阻塞刚度系数 10e6 N/m（默认）| 正标量
+  group: Shift Linkage
+- name: Engagement block damping
+  summary: 接合阻塞阻尼系数 300 N*s/m（默认）| 正标量
+  group: Shift Linkage
+- name: Shift linkage engaged friction coefficient
+  summary: 接合摩擦系数 100 N*s/m（默认）| 正标量
+  group: Shift Linkage
+- name: Shift linkage disengaged friction coefficient
+  summary: 分离摩擦系数 50 N*s/m（默认）| 正标量
+  group: Shift Linkage
+- name: Static contact speed threshold
+  summary: 静态接触速度阈值 0.1 m/s（默认）| 正标量
+  group: Shift Linkage
+- name: Static contact release force threshold
+  summary: 释放力阈值 0.001 N（默认）| 正标量
+  group: Shift Linkage
+- name: Tooth-tooth friction coefficient
+  summary: 齿间接触动摩擦系数 0.05（默认）| 正标量
+  group: Shift Linkage
+- name: Initial state
+  summary: 初始离合器状态 All clutches unlocked（默认）| Cone clutch A and dog clutch A locked | Cone clutch A locked | Cone clutch B
+    locked | Cone clutch B and dog clutch B locked
+  group: 初始条件
+- name: Dog clutch initial shift linkage position
+  summary: 犬牙离合器初始换挡连杆位置 0 mm（默认）| 标量
+  group: 初始条件
+- name: Cone clutch initial shift linkage position
+  summary: 锥形离合器初始换挡连杆位置 0 mm（默认）| 标量
+  group: 初始条件
+- name: Initial dog clutch A ring-hub offset angle
+  summary: 初始犬牙离合器 *B* 齿圈-轮毂偏移角 0 deg（默认）| 标量
+  group: 初始条件
+- name: Initial dog clutch B ring-hub offset angle
+  summary: 初始犬牙离合器 *A* 齿圈-轮毂偏移角 0 deg（默认）| 标量
+  group: 初始条件
+- name: Thermal mass
+  summary: 热质量 50 kJ/K（默认）| 标量
+  group: Thermal Port
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 标量
+  group: Thermal Port
+```
 
 下表显示了在**锥形离合器**和**犬牙式离合器**设置中指定的参数选项如何影响以下内容的可见性：
 
@@ -502,7 +696,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数仅在 **Cone Clutch** 设置中将 **Friction model** 参数设置为 `Temperature-dependent friction coefficients` 或 `Temperature and velocity-dependent friction coefficients` 时可见。
-
 ## 所属库
 
 Simscape / Driveline / Clutches

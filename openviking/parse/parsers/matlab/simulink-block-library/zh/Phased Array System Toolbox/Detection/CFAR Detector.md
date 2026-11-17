@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # CFAR Detector
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 单元矩阵，实值 *M*×1 列向量 | 实值 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double
+- name: Idx
+  summary: 被测单元索引，实值长度为 *D* 的向量
+  direction: input
+  data_types: double
+- name: K
+  summary: 阈值因子，正标量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 检测结果 *D*×1 向量 | *D*×*N* 矩阵 | *1*×*L* | 2×*L* 矩阵
+  direction: output
+  data_types: double
+- name: Th
+  summary: 检测阈值，标量
+  direction: output
+  data_types: double
+- name: N
+  summary: 估计的噪声功率正标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -77,8 +104,53 @@ chinese_source: worker-translation
 要启用此端口，请选中 **输出估计的噪声功率** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: CFAR algorithm
+  summary: CFAR 算法 CA（默认）| GOCA | SOCA | OS
+  group: ''
+- name: Number of guard cells
+  summary: 保护单元数量 2（默认）
+  group: ''
+- name: Number of training cells
+  summary: 训练单元数量 2（默认）
+  group: ''
+- name: Rank of order statistic
+  summary: 有序统计的秩 1（默认）
+  group: ''
+- name: Threshold factor method
+  summary: 获取阈值因子的方法 Auto（默认）| Input port | Custom
+  group: ''
+- name: Probability of false alarm
+  summary: 期望虚警概率 0.1（默认）
+  group: ''
+- name: Custom threshold factor
+  summary: 自定义阈值因子 1（默认）
+  group: ''
+- name: Output format
+  summary: 检测结果的格式 CUT result（默认）| Detection index
+  group: ''
+- name: Output detection threshold
+  summary: 输出检测阈值 off（默认）| on
+  group: ''
+- name: Output estimated noise power
+  summary: 输出估计噪声功率 off（默认）| on
+  group: ''
+- name: Source of the number of detections
+  summary: 检测数量的来源 Auto（默认）| Property
+  group: ''
+- name: Maximum number of detections
+  summary: 要报告的最大检测数量 1（默认）
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **CFAR algorithm** — CFAR 算法 `CA`（默认）| `GOCA` | `SOCA` | `OS`
 
@@ -194,7 +266,6 @@ chinese_source: worker-translation
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

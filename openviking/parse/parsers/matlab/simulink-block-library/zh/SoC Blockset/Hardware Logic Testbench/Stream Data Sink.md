@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Stream Data Sink
 
 ## 端口
+```yaml
+ports:
+- name: rdData
+  summary: 输入流数据 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rdCtrlIn
+  summary: 输入控制总线 总线
+  direction: input
+  data_types: StreamM2SBusObj
+- name: rdCtrlOut
+  summary: 输出控制总线 总线
+  direction: output
+  data_types: StreamS2MBusObj
+```
 
 ### 输入
 
@@ -39,8 +54,16 @@ chinese_source: worker-translation
 发送至数据源的输出控制总线，指示该模块已准备好接受流数据。该控制总线包含一个 ready 信号。
 
 **数据类型：** `StreamS2MBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Save data in workspace
+  summary: 将数据保存到工作区 off（默认）| on
+  group: ''
+- name: Variable name
+  summary: 工作区变量名称 simOut（默认）| 任何 MATLAB 支持的变量名称
+  group: ''
+```
 
 ### **Save data in workspace** — 将数据保存到工作区 `off`（默认）| `on`
 
@@ -53,7 +76,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Save data in workspace** 参数。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Testbench

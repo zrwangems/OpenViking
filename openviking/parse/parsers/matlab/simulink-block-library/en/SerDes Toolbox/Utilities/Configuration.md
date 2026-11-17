@@ -14,10 +14,49 @@ language: en
 # Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Symbol time (s)
+  summary: Time of single symbol duration 100e-12 (default) | real positive scalar
+  group: ''
+- name: Samples per symbol
+  summary: Data points per symbol 16 (default) | 8 | 32 | 64 | 128
+  group: ''
+- name: Sample interval (s)
+  summary: Uniform time step of waveform 6.25e-12 (default) | real positive scalar
+  group: ''
+- name: Target BER
+  summary: Target bit error rate 1e-6 (default) | real positive scalar
+  group: ''
+- name: Modulation
+  summary: Modulation scheme NRZ (default) | PAM3 | PAM4 | PAM5 | PAM6 | PAM7 | PAM8 | PAM9 | PAM10 | PAM11 | PAM12 | PAM13
+    | PAM14 | PAM15 | PAM16
+  group: ''
+- name: Signaling
+  summary: How signal is transmitted through wires 'Differential' (default) | 'Single-ended'
+  group: ''
+- name: Plot statistical analysis after simulation
+  summary: Plot statistical analysis after simulation on (default) | off
+  group: ''
+- name: Plot time domain analysis after simulation
+  summary: Plot time analysis after simulation on (default) | off
+  group: ''
+- name: Eye Diagram Clock
+  summary: Trigger used to form eye diagrams in post-simulation results Clocked (default) | Ideal
+  group: ''
+- name: Open SerDes IBIS-AMI Manager
+  summary: Open SerDes IBIS-AMI Manager button
+  group: ''
+- name: Open Signal Integrity Link
+  summary: Open Signal Integrity Link to Signal Integrity Toolbox™ button
+  group: ''
+```
 
 ### **Symbol time (s)** — Time of single symbol duration `100e-12` (default) | real positive scalar
 
@@ -191,7 +230,6 @@ Using the Signal Integrity Link, you can:
 f the linked Serial Link Designer or Parallel Link Designer
 project resides in a different directory from the SerDes Simulink model file, you need to save the full path to locate it. For more
 information, see Signal Integrity Link.
-
 ## Libraries
 
 SerDes Toolbox / Utilities

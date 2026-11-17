@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Float Typecast
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(u)
+  summary: 输入信号 scalar | vector
+  direction: input
+  data_types: singledouble | uint32 | fixed point
+- name: Port_1(y)
+  summary: 输出信号 scalar | vector
+  direction: output
+  data_types: single | double | uint32 | fixed point
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 用于从模块获取计算输出的端口。
 
 **数据类型：** `single` | `double` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 HDL Coder / HDL Floating Point Operations

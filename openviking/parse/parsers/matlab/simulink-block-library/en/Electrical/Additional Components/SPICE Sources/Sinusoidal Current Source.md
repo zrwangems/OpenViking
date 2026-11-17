@@ -14,6 +14,15 @@ language: en
 # Sinusoidal Current Source
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,28 @@ terminal.
 
 Electrical conserving port associated with the sinusoidal current source negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Current offset, IO
+  summary: Current offset 0 A (default)
+  group: ''
+- name: Sinusoidal amplitude, IA
+  summary: Sinusoidal amplitude 0 A (default)
+  group: ''
+- name: Sinusoidal frequency, FREQ
+  summary: Sinusoidal frequency 1e6 Hz (default)
+  group: ''
+- name: Time delay, TD
+  summary: Time delay 0 s (default)
+  group: ''
+- name: Damping factor, DF
+  summary: Damping factor 0 1/s (default) | nonnegative scalar
+  group: ''
+- name: Include parallel conductance, GMIN
+  summary: Whether to include parallel conductance Yes (default) | No
+  group: ''
+```
 
 ### **Current offset, IO** — Current offset `0` `A` (default)
 
@@ -68,7 +97,6 @@ This table shows the possible values of the parallel conductance,
 | *`Yes`* | | *`No`* | | |
 | **Model contains Environment Parameters block** | **Model does not contain Environment Parameters block** | Parallel conductance, *GMIN*, is not included and it does not affect the current source. | | |
 | *GMIN* is equal to the value of the **GMIN** parameter in the Environment Parameters block. | *GMIN* = `1e-12` `Ohm` |
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

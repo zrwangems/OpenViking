@@ -15,14 +15,33 @@ chinese_source: worker-translation
 # Legacy Serial Write
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 用于串口写入串行数据的数据
+  direction: input
+```
 
 ### 输入
 
 ### **Input** — 用于串口写入串行数据的数据
 
 Input 端口包含要写入串口的数据。
-
 ## 参数
+```yaml
+parameters:
+- name: Serial port
+  summary: 正在访问的端口 Legacy Serial Port 1（默认）| .. | Legacy Serial Port 8 | USB Serial Port 1 | .. | USB Serial Port 8
+  group: ''
+  block_parameter: port
+- name: Output Datatype
+  summary: 选择输出数据类型 8 bit uint null terminated（默认）| 8 bit int null terminated | count+16 bit uint | count+16 bit int | count+32
+    bit uint | count+32 bit int
+  group: ''
+- name: SampleTime
+  summary: 以秒为单位选择采样时间 .01（默认）| double
+  group: ''
+```
 
 ### **Serial port** — 正在访问的端口 `Legacy Serial Port 1`（默认）| .. | `Legacy Serial Port 8` | `USB Serial Port 1` | .. | `USB Serial Port 8`
 
@@ -57,7 +76,6 @@ dtype
 ```
 sampletime
 ```
-
 ## 所属库
 
 Simulink Real-Time / RS232 / Mainboard

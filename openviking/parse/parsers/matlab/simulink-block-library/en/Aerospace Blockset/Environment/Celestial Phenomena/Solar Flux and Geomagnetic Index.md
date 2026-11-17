@@ -14,6 +14,37 @@ language: en
 # Solar Flux and Geomagnetic Index
 
 ## Ports
+```yaml
+ports:
+- name: Year
+  summary: Year scalar
+  direction: input
+  data_types: double
+- name: DOY
+  summary: Day of year scalar
+  direction: input
+  data_types: double
+- name: UTC (sec)
+  summary: Coordinated Universal Time (UCT) scalar
+  direction: input
+  data_types: double
+- name: TJD
+  summary: Coordinated Universal Time (UTC) scalar
+  direction: input
+  data_types: double
+- name: F107A
+  summary: 81-day average of F10.7 flux scalar
+  direction: output
+  data_types: double
+- name: F107
+  summary: Daily F10.7 flux for previous day scalar
+  direction: output
+  data_types: double
+- name: aph
+  summary: Magnetic index information 1-by-7 array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -99,8 +130,52 @@ consists of:
   For more information, see Limitations.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Space weather data file
+  summary: MAT file of space weather data aeroSpaceWeatherData.mat (default) | MAT file name
+  group: ''
+  block_parameter: SpaceWeatherDataFile
+  type: character vector
+  values: '''aeroSpaceWeatherData.mat'' | MAT file name'
+  default: '''aeroSpaceWeatherData.mat'''
+- name: Input time specification
+  summary: Input time format Year, day, sec (default) | Julian date
+  group: ''
+  block_parameter: InputSpec
+  type: character vector
+  values: '''Year, day, sec.'' | ''Julian date'''
+  default: '''Year, day, sec.'''
+- name: F10.7 extrapolation method
+  summary: Extrapolation method for f107Average and f107Daily None - clip (default) | Constant | Least squares fit
+  group: ''
+  block_parameter: F107ExtrapMethod
+  type: character vector
+  values: '''None - clip'' | ''Constant'' | ''Least squares fit'''
+  default: '''None - clip'''
+- name: F10.7 extrapolation value
+  summary: Extrapolation value to assign to f107Average and to calculate f107Daily 150.0 (default) | scalar
+  group: ''
+  block_parameter: F107ExtrapValue
+  type: character vector
+  values: '''150.0'' | scalar'
+  default: '''150.0'''
+- name: Magnetic index extrapolation method
+  summary: Extrapolation method for magnetic index information None - clip (default) | Constant | IGRF
+  group: ''
+  block_parameter: MagneticIndexExtrapMethod
+  type: character vector
+  values: '''None - clip'' | ''Constant'' | ''IGRF'''
+  default: '''None - clip'''
+- name: Magnetic index extrapolation value
+  summary: Extrapolation value used to calculate magnetic index elements 4.0 (default) | scalar
+  group: ''
+  block_parameter: MagneticIndexExtrapValue
+  type: character vector
+  values: '''4.0'' | scalar'
+  default: '''4.0'''
+```
 
 ### **Space weather data file** — MAT file of space weather data `aeroSpaceWeatherData.mat` (default) | MAT file name
 
@@ -321,7 +396,6 @@ To enable this parameter:
 | **Type**: character vector |
 | **Values**: `'4.0'` | scalar |
 | **Default**: `'4.0'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Celestial Phenomena

@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # M-APSK Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: APSK 调制信号 标量 | 向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +49,37 @@ APSK 调制信号，返回为复标量、向量或矩阵。输出信号维度取
 | `Bit` | 输出信号的行数等于输入信号的行数除以 log2(*M*)，其中 *M* 是 M-APSK 的调制阶数。 |
 
 使用输出数据类型指定输出数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Constellation points per circle
+  summary: 每个 PSK 环的星座点 [4,12]（默认）| 向量
+  group: ''
+- name: Radius of each circle
+  summary: 每个 PSK 环的半径 [0.5,1]（默认）| 向量
+  group: ''
+- name: Phase offset of each circle (rad)
+  summary: 每个 PSK 环的相位偏移 [pi/4,pi/12]（默认）| 标量 | 向量
+  group: ''
+- name: Symbol mapping
+  summary: 符号映射 Auto（默认）| Contourwise-gray | Gray | User-defined
+  group: ''
+- name: Custom symbol mapping
+  summary: 自定义符号映射 [0,4,12,8,1,3,2,6,7,5,13,15,14,10,11,9]（默认）| 整数向量
+  group: ''
+- name: Input type
+  summary: 输入类型 Integer（默认）| Bit
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single
+  group: ''
+- name: View Constellation
+  summary: 绘制参考星座 button
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡上，在**准备**库中，选择**属性检查器**。
 
@@ -109,7 +148,6 @@ APSK 调制信号，返回为复标量、向量或矩阵。输出信号维度取
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参见 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / APM

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Dechirp Mixer
 
 ## 端口
+```yaml
+ports:
+- name: RefX
+  summary: 参考信号，复数值 *M*×1 向量
+  direction: input
+  data_types: single | double
+- name: X
+  summary: 输入信号，复数值 *M*×*N* 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 去斜输出信号，*M*×*N* 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -40,11 +55,12 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

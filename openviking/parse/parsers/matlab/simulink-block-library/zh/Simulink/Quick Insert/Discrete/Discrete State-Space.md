@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Discrete State-Space
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 输出向量 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -34,8 +45,66 @@ chinese_source: worker-translation
 输出向量，其宽度等于 **C** 和 **D** 矩阵的行数。有关详细信息，请参阅描述。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: A
+  summary: 矩阵系数 A 1（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: A
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵
+  default: '''1'''
+- name: B
+  summary: 矩阵系数 B 1（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: B
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵
+  default: '''1'''
+- name: C
+  summary: 矩阵系数 C 1（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: C
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵
+  default: '''1'''
+- name: D
+  summary: 矩阵系数 D 1（默认）| 标量 | 向量 | 矩阵
+  group: 主要
+  block_parameter: D
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵
+  default: '''1'''
+- name: Initial conditions
+  summary: 初始状态向量 0（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: InitialCondition
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''0'''
+- name: Sample time (–1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''-1'''
+- name: State name
+  summary: 模块状态的唯一名称 ''（默认）| 字母数字字符串
+  group: 状态属性
+  block_parameter: StateName
+  type: 字符向量
+  values: 唯一名称
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: 要求状态名称解析为信号对象 off（默认）| on
+  group: 状态属性
+  block_parameter: StateMustResolveToSignalObject
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -155,7 +224,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Discrete Simulink / Quick Insert / Discrete HDL Coder / RCP and HIL

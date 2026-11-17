@@ -14,6 +14,17 @@ language: en
 # Unwrap
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal input scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Signal output scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -33,8 +44,19 @@ The block preserves the input size and dimension, and the output port
 rate equals the input port rate.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Tolerance (radians)
+  summary: Jump size pi (default) | scalar value
+  group: ''
+- name: Input processing
+  summary: Method to process the input Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: Reset initial phase to zero for each input frame
+  summary: Checking successive frames off (default) | on
+  group: ''
+```
 
 ### **Tolerance (radians)** — Jump size `pi` (default) | scalar value
 
@@ -84,7 +106,6 @@ processing** parameter to `Columns as channels
 (frame based)`. In sample-based processing mode, the
 block does not reset the initial phase value to zero for each new input.
 See Sample-Based Processing for more information.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

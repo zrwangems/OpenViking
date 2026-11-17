@@ -14,6 +14,29 @@ language: en
 # Channel Synthesizer
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input data real-valued row vector | complex-valued row vector
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: Indicates valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clears internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Synthesized output data complex-valued column vector
+  direction: output
+  data_types: fixed point | single | double
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -86,8 +109,38 @@ the output **data** port. When **valid** is
 **data** port are not valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter coefficients
+  summary: Polyphase filter coefficients [-0.0329 0.1218 0.3183 0.4829 0.5469 0.4829 0.5469 0.4829 0.3183 0.1218 -0.0329]
+    (default) | complex-valued vector
+  group: Main
+- name: Filter structure
+  summary: HDL filter architecture Direct form transposed (default) | Direct form systolic
+  group: Main
+- name: Complex multiplication
+  summary: HDL implementation of complex multipliers Use 4 multipliers and 2 adders (default) | Use 3 multipliers and 5 adders
+  group: Main
+- name: Divide butterfly outputs by two
+  summary: IFFT scaling on (default) | off
+  group: Main
+- name: Rounding mode
+  summary: Rounding mode for typecasting output Floor (default) | Ceiling | Convergent | Nearest | Round | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow handling for typecasting output off (default) | on
+  group: Data Types
+- name: Coefficients
+  summary: 'Data type of the coefficients Inherit: Same word length as input (default) | <data type expression>'
+  group: Data Types
+- name: Output
+  summary: 'Data type of block output Inherit: via internal rule (default) | Inherit: Same as input | <data type expression>'
+  group: Data Types
+- name: Enable reset input port
+  summary: Option to enable reset input port off (default) | on
+  group: Control Ports
+```
 
 ### Main
 
@@ -163,7 +216,6 @@ data type, using the rounding and overflow settings you specify.
 
 Select this parameter to enable the **reset** input port. The
 reset signal implements a local synchronous reset of the data path registers.
-
 ## Libraries
 
 DSP HDL Toolbox / Filtering

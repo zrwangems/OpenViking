@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Universal Joint
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基轴机械旋转
+  direction: input
+- name: F
+  summary: 从动轴机械旋转
+  direction: input
+- name: A
+  summary: 交叉角物理信号
+  direction: input
+```
 
 ### 守恒
 
@@ -30,8 +42,28 @@ chinese_source: worker-translation
 ### **A** — 交叉角物理信号
 
 交叉角的物理信号输入端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum joint angle
+  summary: 最大关节交叉角，*A* pi/4 rad（默认）| 0 ≤ *A* < pi/2 | 标量
+  group: ''
+- name: Joint compliance
+  summary: 柔顺性模型 off（默认）| on
+  group: ''
+- name: Joint stiffness
+  summary: 刚度系数，k 1e6 N*m/rad（默认）| 标量
+  group: ''
+- name: Joint damping
+  summary: 阻尼系数，b 1e3 N*m/(rad/s)（默认）| 标量
+  group: ''
+- name: Initial base shaft angle
+  summary: 基轴初始角度 0 rad（默认）| 标量
+  group: ''
+- name: Initial torque from base to follower shaft
+  summary: 初始扭矩 0 N*m（默认）| 标量
+  group: ''
+```
 
 j
 
@@ -73,7 +105,6 @@ j
 #### 依赖关系
 
 要启用此参数，请选中 **Joint compliance**。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

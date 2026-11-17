@@ -15,10 +15,42 @@ chinese_source: worker-translation
 # Inport
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: Inport 模块对 Simulink 信号的解释 Ideal voltage（默认）| Ideal current | Power
+  group: ''
+- name: Source impedance (Ohm)
+  summary: 用于可用功率匹配的源阻抗 50（默认）| 正整数向量
+  group: ''
+- name: Carrier frequencies
+  summary: 载波频率 0 Hz（默认）| 向量 | 标量
+  group: ''
+- name: Use Square Wave
+  summary: 使用方波载波 off（默认）| on
+  group: ''
+- name: View
+  summary: 绘制方波按钮
+  group: ''
+- name: Number of Fourier Coefficients
+  summary: 傅里叶系数数量 10（默认）| 大于或等于 1 的整数
+  group: ''
+- name: DC Bias
+  summary: 直流偏置 0（默认）| 实数
+  group: ''
+- name: Duty Cycle (%)
+  summary: 方波载波的占空比 50（默认）| 0 到 100 之间的正整数
+  group: ''
+- name: Ground and hide negative terminals
+  summary: 将 RF 电路端子接地 on（默认）| off
+  group: ''
+```
 
 ### **Source type** — Inport 模块对 Simulink 信号的解释 `Ideal voltage`（默认）| `Ideal current` | `Power`
 
@@ -97,7 +129,6 @@ Inport 模块对 Simulink 信号的解释，指定为：
 ### **Ground and hide negative terminals** — 将 RF 电路端子接地 `on`（默认）| `off`
 
 选择此参数可将负极端子接地并隐藏。清除该参数可暴露负极端子。通过暴露这些端子，您可以将它们连接到模型的其它部分。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Utilities

@@ -14,6 +14,23 @@ language: en
 # Receive
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input message scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_S
+  summary: Show whether a message was received scalar
+  direction: output
+  data_types: double
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+```
 
 ### Input
 
@@ -41,8 +58,73 @@ receive status**.
 Output port for the signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Use internal queue
+  summary: Select to use an internal queue on (default for SimEvents®) | off (default for Simulink®)
+  group: ''
+  block_parameter: UseInternalQueue
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Overwrite the oldest element if queue is full
+  summary: Specify queue overwriting policy on (default for Simulink) | off (default for SimEvents)
+  group: ''
+  block_parameter: QueueOverwriting
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'' (for Simulink) and ''off'' (for SimEvents)'
+- name: Queue length
+  summary: Specify the length of the message queue 16 (default) | scalar
+  group: ''
+  block_parameter: QueueLength
+  type: character vector
+  values: '''16'' | scalar'
+  default: '''16'''
+- name: Queue type
+  summary: Specify message queue sorting policy FIFO (default) | LIFO | Priority
+  group: ''
+  block_parameter: QueueType
+  type: character vector
+  values: '''FIFO'' | ''LIFO'' | ''Priority'''
+  default: '''FIFO'''
+- name: Priority order
+  summary: Specify message queue priority Ascending (default) | Descending
+  group: ''
+  block_parameter: PriorityOrder
+  type: character vector
+  values: '''Ascending'' | ''Descending'''
+  default: '''Ascending'''
+- name: Show receive status
+  summary: Show whether a message was received off (default) | on
+  group: ''
+  block_parameter: ShowQueueStatus
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Initial value
+  summary: Set initial data value [](unspecified) (default) | scalar | vector | matrix
+  group: ''
+  block_parameter: InitialValue
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Value source when queue is empty
+  summary: Value source for empty queue Hold last value (default) | Use initial value
+  group: ''
+  block_parameter: ValueSourceWhenQueueIsEmpty
+  type: character vector
+  values: '''Hold last value'' | ''Use initial value'''
+  default: '''Hold last value'''
+- name: Sample time (-1 for inherited)
+  summary: Specify the time interval between samples -1 (default) | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: '''-1'' | scalar'
+  default: '''-1'''
+```
 
 ### **Use internal queue** — Select to use an internal queue on (default for SimEvents®) | off (default for Simulink®)
 
@@ -231,7 +313,6 @@ more information.
 | **Type**: character vector |
 | **Values**: `'-1'` | scalar |
 | **Default**: `'-1'` |
-
 ## Libraries
 
 Simulink / Messages & Events SimEvents

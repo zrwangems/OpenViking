@@ -14,10 +14,32 @@ language: en
 # Unit System Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Disallowed unit systems
+  summary: Disallowed unit systems SI | English | SI (extended) | CGS
+  group: ''
+- name: Allowed unit systems
+  summary: Allowed unit systems SI | English | SI (extended) | CGS
+  group: ''
+  block_parameter: UnitSystems
+  type: cell array of character vectors
+  values: 'cell array of the following character vectors: ''SI'' | ''English'' | ''SI (extended)'' | ''CGS'''
+  default: '{''SI'', ''English'', ''SI (extended)'', ''CGS''}'
+- name: Allow all unit systems
+  summary: Allow all unit systems on (default) | off
+  group: ''
+  block_parameter: AllowAllUnitSystems
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Disallowed unit systems** — Disallowed unit systems `SI` | `English` | `SI (extended)` | `CGS`
 
@@ -80,7 +102,6 @@ disables the **Disallowed unit systems** and
 | **Type:** character vector |
 | **Values:** `'on' | 'off'` |
 | **Default:** `'on'` |
-
 ## Libraries
 
 Simulink / Ports & Subsystems

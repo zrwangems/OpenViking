@@ -14,6 +14,39 @@ language: en
 # Motorcycle Chain
 
 ## Ports
+```yaml
+ports:
+- name: MDshft
+  summary: Drive shaft moment on front sprocket scalar
+  direction: input
+- name: FCpR
+  summary: Longitudinal and vertical forces at rear wheel contact patch vector
+  direction: input
+- name: ThetaFrm
+  summary: Main frame pitch angle scalar
+  direction: input
+- name: ThetaArmR
+  summary: Rear arm pitch angle scalar
+  direction: input
+- name: MBrkR
+  summary: Brake moment at rear wheel scalar
+  direction: input
+- name: AngAWhlR
+  summary: Rear wheel angular acceleration scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: MDrvSprtR
+  summary: Wheel damper moment at rear sprocket scalar
+  direction: output
+- name: MDrvArmR
+  summary: Drive chain moment at rear arm scalar
+  direction: output
+- name: MDrvFrm
+  summary: Drive chain moment at frame scalar
+  direction: output
+```
 
 ### Input
 
@@ -66,8 +99,49 @@ Drive chain moment at rear arm *OArmRr*, about *jArmRr*, in N·m.
 ### **MDrvFrm** — Drive chain moment at frame `scalar`
 
 Drive chain moment at the frame *OFrm*, about *jFrm*, in N·m.
-
 ## Parameters
+```yaml
+parameters:
+- name: Coordinates, SprktFrPxz
+  summary: Front sprocket position [0.05 -0.05] (default) | vector
+  group: ''
+- name: Mass moment of inertia, SprktFrIyy
+  summary: Front sprocket inertia 0.005 (default) | scalar
+  group: ''
+- name: Radius, SprktFrR
+  summary: Front sprocket radius 0.04 (default) | scalar
+  group: ''
+- name: Mass moment of inertia, SprktRrIyy
+  summary: Rear sprocket inertia 0.01 (default) | scalar
+  group: ''
+- name: Radius, SprktRrR
+  summary: Rear sprocket radius 0.12 (default) | scalar
+  group: ''
+- name: Mass moment of inertia, WhlRrIyy
+  summary: Rear wheel inertia 0.66 (default) | scalar
+  group: ''
+- name: Radius, WhlRrR
+  summary: Rear wheel radius 0.33 (default) | scalar
+  group: ''
+- name: Arm length, ArmRrLen
+  summary: Swing arm length 0.535 (default) | scalar
+  group: ''
+- name: Stiffness, WhlDmpK
+  summary: Wheel damper stiffness 1e4 (default) | scalar
+  group: ''
+- name: Damping, WhlDmpC
+  summary: Wheel damping 1e2 (default) | scalar
+  group: ''
+- name: Equilibrium angle
+  summary: Wheel damper equilibrium angle -15e-3 (default) | scalar
+  group: ''
+- name: Rear sprocket angular velocity, SprktRrAngV0
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+- name: Rear wheel angular velocity, WhlRrAngV0
+  summary: Angular velocity 0 (default) | scalar
+  group: ''
+```
 
 This figure shows how the chain relates geometrically to the motorcycle frame, rear
 arm, and rear wheel.
@@ -144,7 +218,6 @@ rad/s.
 
 Rear wheel angular velocity, *WhlRrAngV0*, in
 rad/s.
-
 ## Libraries
 
 Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertrain / Drivetrain / Couplings

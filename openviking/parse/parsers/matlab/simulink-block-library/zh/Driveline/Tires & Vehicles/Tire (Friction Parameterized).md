@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Tire (Friction Parameterized)
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 法向力，N 物理信号
+  direction: input
+- name: M
+  summary: 摩擦系数，无量纲物理信号 | 二元素向量
+  direction: input
+- name: S
+  summary: 滑移，无量纲或 rad/s 物理信号
+  direction: output
+- name: A
+  summary: 车轴机械旋转
+  direction: output
+- name: H
+  summary: 轮毂机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -46,8 +64,95 @@ chinese_source: worker-translation
 ### **H** — 轮毂机械旋转
 
 与轮毂相关联的机械旋转端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Rolling radius
+  summary: 空载轮胎-车轮半径 0.3 m（默认）| 正标量
+  group: 主要
+- name: Slip output type
+  summary: 相对或绝对切换选项 Relative（默认）| Absolute
+  group: 主要
+- name: Friction model
+  summary: 摩擦模型 Fixed kinetic friction coefficient（默认）| Table lookup kinetic friction coefficient | Physical signal friction
+    coefficients
+  group: 主要
+- name: Static friction coefficient
+  summary: 静摩擦系数 0.90（默认）| 正标量
+  group: 主要
+- name: Kinetic friction coefficient
+  summary: 动摩擦系数 0.70（默认）| 正标量
+  group: 主要
+- name: Tire slip vector
+  summary: 轮胎滑移 [0, .02, .06, .15, .6, 1] rad/s（默认）| 向量
+  group: 主要
+- name: Kinetic friction coefficient vector
+  summary: 动摩擦系数 [.89, .88, .8, .75, .7, .7]（默认）| 向量
+  group: 主要
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 主要
+- name: Extrapolation method
+  summary: 外插方法 Linear（默认）| Nearest | Error
+  group: 主要
+- name: Compliance
+  summary: 动力学柔量模型 No compliance - Suitable for HIL simulation（默认）| Specify stiffness and damping
+  group: 动力学
+- name: Longitudinal stiffness
+  summary: 纵向刚度 1e6 N/m（默认）| 正标量
+  group: 动力学
+- name: Longitudinal damping
+  summary: 纵向阻尼 1000 N/(m/s)（默认）| 正标量
+  group: 动力学
+- name: Inertia
+  summary: 惯量选项 No inertia（默认）| Specify inertia and initial velocity
+  group: 动力学
+- name: Tire inertia
+  summary: 轮胎转动惯量 1 kg*m^2（默认）| 正标量
+  group: 动力学
+- name: Initial velocity
+  summary: 初始转动速度 0 rad/s（默认）| 标量
+  group: 动力学
+- name: Rolling resistance
+  summary: 滚动阻力选项 off（默认）| on
+  group: 滚动阻力
+- name: Resistance model
+  summary: 滚动阻力选项 Constant coefficient（默认）| Pressure and velocity dependent
+  group: 滚动阻力
+- name: Constant coefficient
+  summary: 比例常数 0.015（默认）| 正标量
+  group: 滚动阻力
+- name: Tire pressure
+  summary: 轮胎压力 250e3 Pa（默认）| 正标量
+  group: 滚动阻力
+- name: Alpha
+  summary: 轮胎压力方程指数 -0.003（默认）| 标量
+  group: 滚动阻力
+- name: Beta
+  summary: 法向力方程指数 0.97（默认）| 标量
+  group: 滚动阻力
+- name: Coefficient A
+  summary: 速度无关力分量 *A* 84e-4（默认）| 正标量
+  group: 滚动阻力
+- name: Coefficient B
+  summary: 速度相关力分量 *B* 6.2e-4 s/m（默认）| 正标量
+  group: 滚动阻力
+- name: Coefficient C
+  summary: 速度相关力分量 *C* 1.6e-4 s^2/m^2（默认）| 正标量
+  group: 滚动阻力
+- name: Velocity threshold
+  summary: 数学滑移模型的轮毂速度阈值 0.001 m/s（默认）| 正标量
+  group: 滚动阻力
+- name: Traction velocity tolerance
+  summary: 牵引速度容差 0.01 m/s（默认）| 正标量
+  group: 高级
+- name: Engagement threshold force
+  summary: 接合阈值力 10 N（默认）| 正标量
+  group: 高级
+- name: Initial traction state
+  summary: 初始牵引状态 Tire is initially slipping（默认）| Tire is initially in traction
+  group: 高级
+```
 
 ### 主要
 
@@ -265,7 +370,6 @@ chinese_source: worker-translation
 ### **Initial traction state** — 初始牵引状态 `Tire is initially slipping`（默认）| `Tire is initially in traction`
 
 在仿真开始时使轮胎处于牵引或滑移状态的选项。
-
 ## 所属库
 
 Simscape / Driveline / Tires & Vehicles

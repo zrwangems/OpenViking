@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Horizontal Wind Model 14
 
 ## 端口
+```yaml
+ports:
+- name: First
+  summary: 大地纬度 (μ)、经度 (l) 和位势高度 (h) 的三元素双精度向量
+  direction: input
+- name: Second
+  summary: 年积日标量双精度值
+  direction: input
+- name: Third
+  summary: 经过秒数标量双精度值
+  direction: input
+- name: Fourth (Optional)
+  summary: Ap 指数标量双精度值
+  direction: input
+- name: First
+  summary: 风速向量 1×2 双精度向量
+  direction: output
+```
 
 ### 输入
 
@@ -52,8 +70,31 @@ chinese_source: worker-translation
 
 风速向量按顺序包含经向和纬向风
 分量。
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入和输出单位 Metric (MKS)（默认）| English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English (Velocity in ft/s)'' | ''English (Velocity in kts)'''
+  default: '''Metric (MKS)'''
+- name: Model
+  summary: 水平风模型 Quiet（默认）| Total | Disturbance
+  group: ''
+  block_parameter: model
+  type: character vector
+  values: '''Quiet'' | ''Total'' | ''Disturbance'''
+  default: '''Quiet'''
+- name: Action for out-of-range input
+  summary: 模块行为 Error（默认）| Warning | None
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Error'''
+```
 
 ### **Units** — 输入和输出单位 `Metric (MKS)`（默认）| `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -118,7 +159,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'Error'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Wind

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # QPSK Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Out
+  summary: QPSK 调制基带信号 标量 | 向量
+  direction: output
+  data_types: double | single | fixed point
+```
 
 ### 输入
 
@@ -37,8 +48,25 @@ QPSK 调制基带信号，返回为复值标量或向量。输出是 QPSK 调制
 此端口在模块上未命名。
 
 **数据类型：** `double` | `single` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input type
+  summary: 整数或位对输入指示符 Integer（默认）| Bit
+  group: 主要
+- name: Constellation ordering
+  summary: 符号映射 Gray（默认）| Binary
+  group: 主要
+- name: Phase offset (rad)
+  summary: 零点相位偏移 pi/4（默认）| 标量
+  group: 主要
+- name: View constellation
+  summary: 绘制参考星座图的选项 按钮
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single | fixdt(1,16) | fixdt(1,16,0) | Inherit via back propagation | <data type expression>
+  group: 数据类型
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -75,7 +103,6 @@ QPSK 调制基带信号，返回为复值标量或向量。输出是 QPSK 调制
 - `Inherit via back propagation` 将输出数据类型和定标设置为与下一个模块匹配。
 
 有关指定数据类型的信息，请参阅 Data Type Assistant。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

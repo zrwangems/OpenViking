@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # SM AC10C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 过励限制器的接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 欠励限制器的接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: Ifd_pu
+  summary: 测量的励磁电流标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -155,8 +202,187 @@ chinese_source: worker-translation
 施加到同步电机励磁绕组的标幺励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数标量
+  group: 常规
+- name: Initial terminal voltage, Vt0 (pu)
+  summary: 初始机端电压 1（默认）| 实数标量
+  group: 常规
+- name: Initial terminal current, It0 (pu)
+  summary: 初始机端电流 1（默认）| 实数标量
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认）| 正标量
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认）| 正标量
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0.01（默认）| 正标量
+  group: 预控制
+- name: Regulator gain, K_R (pu)
+  summary: 调节器增益 600（默认）| 正标量
+  group: 控制
+- name: Voltage regulator denominator (lag) time constant 1, T_B1 (s)
+  summary: 调节器滞后时间常数 1 22.5（默认）| 正标量
+  group: 控制
+- name: Voltage regulator numerator (lead) time constant 1, T_C1 (s)
+  summary: 调节器超前时间常数 1 3（默认）| 正标量
+  group: 控制
+- name: Voltage regulator denominator (lag) time constant 2, T_B2 (s)
+  summary: 调节器滞后时间常数 2 0.13（默认）| 正标量
+  group: 控制
+- name: Voltage regulator numerator (lead) time constant 2, T_C2 (s)
+  summary: 调节器超前时间常数 2 0.9（默认）| 正标量
+  group: 控制
+- name: UEL regulator denominator (lag) time constant 1, T_UB1 (s)
+  summary: UEL 调节器滞后时间常数 1 22.5（默认）
+  group: 控制
+- name: UEL regulator numerator (lead) time constant 1, T_UC1 (s)
+  summary: UEL 调节器超前时间常数 1 3（默认）
+  group: 控制
+- name: UEL regulator denominator (lag) time constant 2, T_UB2 (s)
+  summary: UEL 调节器滞后时间常数 2 0.13（默认）
+  group: 控制
+- name: UEL regulator numerator (lead) time constant 2, T_UC2 (s)
+  summary: UEL 调节器超前时间常数 2 0.9（默认）
+  group: 控制
+- name: OEL regulator denominator (lag) time constant 1, T_OB1 (s)
+  summary: OEL 调节器滞后时间常数 1 18（默认）
+  group: 控制
+- name: OEL regulator numerator (lead) time constant 1, T_OC1 (s)
+  summary: OEL 调节器超前时间常数 1 0.9（默认）
+  group: 控制
+- name: OEL regulator denominator (lag) time constant 2, T_OB2 (s)
+  summary: OEL 调节器滞后时间常数 2 0.1（默认）
+  group: 控制
+- name: OEL regulator numerator (lead) time constant 2, T_OC2 (s)
+  summary: OEL 调节器超前时间常数 2 0.1（默认）
+  group: 控制
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: 最大调节器输出 40（默认）| 实数标量
+  group: 控制
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: 最小调节器输出 -35（默认）| 实数标量
+  group: 控制
+- name: Maximum PSS regulator output, V_RSmax (pu)
+  summary: 最大 PSS 调节器输出 20（默认）| 实数标量
+  group: 控制
+- name: Minimum PSS regulator output, V_RSmin (pu)
+  summary: 最小 PSS 调节器输出 -20（默认）| 实数标量
+  group: 控制
+- name: Exciter field current regulator measurement time constant, T_EXC (s)
+  summary: 励磁机励磁电流调节器测量时间常数 0（默认）| 正标量
+  group: 控制
+- name: Exciter field current regulator feedback gain, K_EXC (pu)
+  summary: 励磁机励磁电流调节器反馈增益 1（默认）| 正标量
+  group: 控制
+- name: Exciter field current regulator proportional gain, K_CR (pu)
+  summary: 励磁机励磁电流调节器比例增益 0（默认）| 正标量
+  group: 控制
+- name: Exciter field current regulator feedback selector SW_EXC
+  summary: '励磁机励磁电流调节器反馈选择器 Position A: feedback from generator field voltage (E_FD)（默认）| Position B: feedback from exciter
+    field current (V_FE)'
+  group: 控制
+- name: Exciter field current regulator numerator (lead) time constant, T_F1 (s)
+  summary: 励磁机励磁电流调节器中的超前时间常数 0.1（默认）| 正标量
+  group: 控制
+- name: Exciter field current regulator denominator (lag) time constant, T_F2 (s)
+  summary: 励磁机励磁电流调节器中的滞后时间常数 0.1（默认）| 正标量
+  group: 控制
+- name: Exciter field current limiter feedback gain, K_VFE (pu)
+  summary: 励磁机励磁电流限制器增益 1（默认）| 正标量
+  group: 控制
+- name: Exciter field current limiter proportional gain, K_LIM (pu)
+  summary: 励磁机励磁电流比例增益 0（默认）| 正标量
+  group: 控制
+- name: Exciter field current limiter reference, V_FELIM (pu)
+  summary: 励磁系统励磁电流限制器参考值 20（默认）| 实数标量
+  group: 控制
+- name: Alternate PSS input locations (V_S)
+  summary: PSS 输入位置 Voltage error or after take-over limits（默认）| Voltage error calculation | Output of AVR (after take-over
+    limits)
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Take-over at voltage error（默认）| Summation point at voltage error | Unused | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Take-over at voltage error（默认）| Summation point at voltage error | Unused | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Take-over at voltage error（默认）| Summation point at voltage error | Unused | Take-over at voltage regulator
+    output
+  group: 控制
+- name: Exciter field proportional constant, K_E (pu)
+  summary: 励磁机磁场增益 1（默认）| 正标量
+  group: Exciter
+- name: Exciter field time constant, T_E (s)
+  summary: 励磁机磁场时间常数 1.3（默认）| 正标量
+  group: Exciter
+- name: Rectifier loading factor proportional to commutating reactance, K_C (pu)
+  summary: 整流器负载因子 0.13（默认）| 正标量
+  group: Exciter
+- name: Demagnetizing factor, function of exciter alternator reactances, K_D (pu)
+  summary: 去磁因子 1.15（默认）| 正标量
+  group: Exciter
+- name: Exciter output voltage for saturation factor S_E(E_1), E_1 (pu)
+  summary: 第一饱和输出电压 10（默认）| 正标量
+  group: Exciter
+- name: Exciter saturation factor at exciter output voltage E_1, S_E(E_1) (1)
+  summary: 第一饱和查找电压 0.214（默认）| 正标量
+  group: Exciter
+- name: Exciter output voltage for saturation factor S_E(E_2), E_2 (pu)
+  summary: 第二饱和输出电压 7.5（默认）| 正标量
+  group: Exciter
+- name: Exciter saturation factor at exciter output voltage E_2, S_E(E_2) (1)
+  summary: 第二饱和查找电压 0.044（默认）| 正标量
+  group: Exciter
+- name: Maximum exciter field current, V_FEmax (pu)
+  summary: 励磁机上限 44（默认）| 实标量
+  group: Exciter
+- name: Minimum exciter voltage output limit, V_Emin (pu)
+  summary: 励磁机下限 0（默认）| 实标量
+  group: Exciter
+- name: Potential circuit gain coefficient, K_P (pu)
+  summary: 电位电路增益系数 1（默认）| 实标量
+  group: Exciter
+- name: Potential circuit phase angle (degrees)
+  summary: 电位电路相位角 0（默认）| 实标量
+  group: Exciter
+- name: Potential circuit (current) gain coefficient, K_I (pu)
+  summary: 电位电路电流增益系数 0（默认）| 实标量
+  group: Exciter
+- name: Reactance associated with potential source, X_L (pu)
+  summary: 与电位源相关的reactance 0（默认）| 实标量
+  group: Exciter
+- name: Rectifier loading factor proportional to commutating reactance, K_C1 (pu)
+  summary: 与换相电抗成正比的整流器负载因子 0（默认）| 实标量
+  group: Exciter
+- name: Power source selector SW1
+  summary: '电源选择器 Position B: power source independent of the terminal conditions（默认）| Position A: power source derived from
+    terminal voltage'
+  group: Exciter
+- name: Maximum available exciter voltage, V_B1max (pu)
+  summary: 最大可用励磁机磁场电压 1.5（默认）| 实标量
+  group: Exciter
+- name: Rectifier loading factor proportional to commutating reactance, K_C2 (pu)
+  summary: 与换相电抗成正比的整流器负载因子 0（默认）| 实标量
+  group: Exciter
+- name: Additive potential circuit (current) gain coefficient, K_I2 (pu)
+  summary: 附加电路电流增益系数 0（默认）| 实标量
+  group: Exciter
+- name: Maximum available exciter voltage, V_B2max (pu)
+  summary: 最大可用励磁机电压 0（默认）| 实标量
+  group: Exciter
+```
 
 ### 常规
 
@@ -505,7 +731,6 @@ from terminal voltage`。
 ### **Maximum available exciter voltage, V\_B2max (pu)** — 最大可用励磁机电压 `0`（默认）| 实标量
 
 励磁机的最大标幺可用磁场电压，通过单独的串联二极管桥从发电机端子电流导出。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

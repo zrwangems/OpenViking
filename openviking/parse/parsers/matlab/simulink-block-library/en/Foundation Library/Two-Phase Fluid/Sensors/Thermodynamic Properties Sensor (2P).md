@@ -14,6 +14,27 @@ language: en
 # Thermodynamic Properties Sensor (2P)
 
 ## Ports
+```yaml
+ports:
+- name: T
+  summary: Temperature measurement, K physical signal
+  direction: output
+- name: h
+  summary: Specific enthalpy measurement, kJ/kg physical signal
+  direction: output
+- name: ρ
+  summary: Density measurement, kg/m^3 physical signal
+  direction: output
+- name: v
+  summary: Specific volume measurement, m^3/kg physical signal
+  direction: output
+- name: s
+  summary: Specific entropy measurement, kJ/(kg\*K) physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet two-phase fluid
+  direction: conserving
+```
 
 ### Output
 
@@ -66,8 +87,25 @@ To enable this port, select the **Entropy** check box.
 Two-phase fluid conserving port. Connect this port to the node in the two-phase
 fluid network where you want to measure the thermodynamic properties. All measurements
 are taken with respect to absolute zero.
-
 ## Parameters
+```yaml
+parameters:
+- name: Temperature
+  summary: Control output port visibility for measuring temperature Off (default) | On
+  group: ''
+- name: Enthalpy
+  summary: Control output port visibility for measuring specific enthalpy Off (default) | On
+  group: ''
+- name: Density
+  summary: Control output port visibility for measuring density On (default) | Off
+  group: ''
+- name: Specific volume
+  summary: Control output port visibility for measuring specific volume Off (default) | On
+  group: ''
+- name: Entropy
+  summary: Control output port visibility for measuring specific entropy Off (default) | On
+  group: ''
+```
 
 ### **Temperature** — Control output port visibility for measuring temperature `Off` (default) | `On`
 
@@ -93,7 +131,6 @@ you measure the specific volume of two-phase fluid.
 
 Selecting this check box exposes the output port **s**, which lets
 you measure the specific entropy of two-phase fluid.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Sensors

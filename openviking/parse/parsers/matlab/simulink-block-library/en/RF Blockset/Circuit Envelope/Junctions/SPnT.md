@@ -14,6 +14,13 @@ language: en
 # SPnT
 
 ## Ports
+```yaml
+ports:
+- name: Ctl
+  summary: Simulink control signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -22,8 +29,28 @@ language: en
 Simulink control signal, specified as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Insertion loss (dB)
+  summary: Insertion loss of switch 1 (default) | scalar
+  group: ''
+- name: Isolation (dB)
+  summary: Isolation value of switch 70 (default) | scalar
+  group: ''
+- name: Loading type
+  summary: Switch type Absorptive (default) | Reflective
+  group: ''
+- name: Number of outputs
+  summary: Number of outputs for switch 2 (default) | scalar
+  group: ''
+- name: Port terminations (Ohm)
+  summary: Port terminations 50 (default) | scalar
+  group: ''
+- name: Ground and hide reference terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 #### Main
 
@@ -63,7 +90,6 @@ seen at all disconnected output ports is the value specified in
 Select this parameter to internally ground and hide the reference
 terminals. To expose the reference terminals, clear this parameter. By
 exposing this terminal, you can connect it to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Junctions

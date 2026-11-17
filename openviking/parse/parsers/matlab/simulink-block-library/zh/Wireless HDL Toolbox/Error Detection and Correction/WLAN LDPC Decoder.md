@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # WLAN LDPC Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: LLR 值 标量 | 列向量
+  direction: input
+  data_types: int8 | int16 | signed fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: blkLenIdx
+  summary: 块长度索引 0 | 1 | 2
+  direction: input
+  data_types: fixdt(0,2,0)
+- name: codeRateIdx
+  summary: 码率索引 0 | 1 | 2 | 3
+  direction: input
+  data_types: fixdt(0,2,0)
+- name: iter
+  summary: 迭代次数 标量
+  direction: input
+  data_types: uint8
+- name: data
+  summary: 解码比特 标量 | 列向量
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 模块就绪指示符 布尔标量
+  direction: output
+  data_types: Boolean
+- name: actIter
+  summary: 实际迭代次数 标量
+  direction: output
+  data_types: uint8
+- name: parityCheck
+  summary: 奇偶校验状态指示符 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -172,8 +215,34 @@ iterations** 参数设置为 `Input port`。
 要启用此端口，请选择 **Enable parity check output port** 参数。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Standard
+  summary: 标准类型 IEEE 802.11 n/ac/ax（默认）| IEEE 802.11 ad
+  group: ''
+- name: Algorithm
+  summary: LDPC 解码算法 Min-sum（默认）| Normalized min-sum
+  group: ''
+- name: Scaling factor
+  summary: 归一化最小和解码的缩放因子 0.75（默认）| 范围从 0.5 到 1、以 0.0625 递增的标量
+  group: ''
+- name: Decoding termination criteria
+  summary: 终止条件 Max（默认）| Early
+  group: ''
+- name: Source for number of iterations
+  summary: 迭代次数来源选择 Property（默认）| Input port
+  group: ''
+- name: Number of iterations
+  summary: 解码迭代次数 8（默认）| 范围从 1 到 63 的整数
+  group: ''
+- name: Maximum number of iterations
+  summary: 最大解码迭代次数 8（默认）| 范围从 1 到 63 的整数
+  group: ''
+- name: Enable parity check output port
+  summary: 奇偶校验状态 off（默认）| on
+  group: ''
+```
 
 ### **Standard** — 标准类型 `IEEE 802.11 n/ac/ax`（默认）| `IEEE 802.11 ad`
 
@@ -235,7 +304,6 @@ iterations** 参数设置为 `Input port`。
 ### **Enable parity check output port** — 奇偶校验状态 `off`（默认）| `on`
 
 选择此参数以启用 **parityCheck** 输出端口，用于查看奇偶校验的状态。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

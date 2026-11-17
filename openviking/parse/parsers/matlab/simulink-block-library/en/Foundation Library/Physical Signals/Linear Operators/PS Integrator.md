@@ -14,6 +14,27 @@ language: en
 # PS Integrator
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input physical signal, *u*, untyped physical signal
+  direction: input
+- name: R
+  summary: Reset physical signal, *R*, untyped physical signal
+  direction: input
+- name: X0
+  summary: Initial condition physical signal, *XO*, untyped physical signal
+  direction: input
+- name: U
+  summary: Upper saturation bound physical signal, *U*, untyped physical signal
+  direction: input
+- name: L
+  summary: Lower saturation bound physical signal, *L*, untyped physical signal
+  direction: input
+- name: O
+  summary: Output physical signal, *y*, untyped physical signal
+  direction: output
+```
 
 ### Input
 
@@ -83,8 +104,31 @@ Output physical signal.
 The port name is not visible in the block icon, but you can see this name in the
 underlying source file by clicking the **Source code** link in the
 **Description** tab of the block dialog box.
-
 ## Parameters
+```yaml
+parameters:
+- name: External reset
+  summary: Whether block resets to initial condition based on external reset signal None (default) | Rising | Falling | Either
+  group: ''
+- name: Initial condition source
+  summary: Whether to specify initial condition as block parameter or additional input signal Internal (default) | External
+  group: ''
+- name: Limit output
+  summary: Whether to limit integrator output None (default) | Upper | Lower | Both
+  group: ''
+- name: Limit output source
+  summary: Whether to specify saturation bounds as block parameters or input signals Internal (default) | External
+  group: ''
+- name: Initial condition
+  summary: Initial state for the integration 0 s (default) | scalar
+  group: ''
+- name: Upper limit
+  summary: Upper saturation limit for block output inf s (default) | scalar
+  group: ''
+- name: Lower limit
+  summary: Lower saturation limit for block output -inf s (default) | scalar
+  group: ''
+```
 
 ### **External reset** — Whether block resets to initial condition based on external reset signal `None` (default) | `Rising` | `Falling` | `Either`
 
@@ -176,7 +220,6 @@ To enable this parameter, set the **Limit output** parameter to
 `Lower` or `Both` and the
 **Limit output source** parameter to
 `Internal`.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Linear Operators

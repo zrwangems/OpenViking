@@ -14,6 +14,25 @@ language: en
 # LTE Convolutional Encoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input sample scalar
+  direction: input
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Encoded sample 3-by-1 column vector
+  direction: output
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -68,8 +87,13 @@ and the validity of the samples.
 For more details, see Sample Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Maximum message length
+  summary: Maximum input frame size 1024 (default) | positive integer
+  group: ''
+```
 
 ### **Maximum message length** — Maximum input frame size 1024 (default) | positive integer
 
@@ -80,7 +104,6 @@ the next largest power of two.
 
 If an input frame is larger than the specified maximum message length, the
 block returns a warning.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

@@ -14,6 +14,30 @@ language: en
 # Range Angle Calculator
 
 ## Ports
+```yaml
+ports:
+- name: Pos
+  summary: Source point position real-valued 3-by-1 vector | real-valued 3-by-*N* matrix
+  direction: input
+  data_types: double
+- name: RefPos
+  summary: Reference point position [0;0;0] (default) | real-valued 3-by-1 vector | real-valued 3-by-*N* matrix
+  direction: input
+  data_types: double
+- name: RefAxes
+  summary: Local coordinate system axes [1 0 0;0 1 0;0 0 1] (default) | real-valued 3-by-3 vector | real-valued 3-by-3-by-*N*
+    array
+  direction: input
+  data_types: double
+- name: Ang
+  summary: Azimuth and elevation angles real-valued 2-by-*N* matrix | real-valued 2-by-2*N* matrix
+  direction: output
+  data_types: double
+- name: Range
+  summary: Propagation range real-valued 1-by-*N* vector | real-valued 1-by-2*N* vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -128,8 +152,35 @@ To enable this port, set the **Output(s)** drop down menu to
 Angle`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Propagation model
+  summary: Propagation model Free space (default) | Two-ray
+  group: ''
+- name: Reference position source
+  summary: Reference position source Property (default) | Input port
+  group: ''
+- name: Reference position
+  summary: Reference position [0;0;0] (default)
+  group: ''
+- name: Reference axes source
+  summary: Reference axes source Property (default) | Input port
+  group: ''
+- name: Reference axes
+  summary: Reference axes eye(3)
+  group: ''
+- name: Output(s)
+  summary: Output(s) Angle (default) | Range | Range and Angle
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Propagation model** — Propagation model `Free space` (default) | `Two-ray`
 
@@ -229,7 +280,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

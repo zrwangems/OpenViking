@@ -14,6 +14,13 @@ language: en
 # EtherCAT Init
 
 ## Ports
+```yaml
+ports:
+- name: Status
+  summary: Status information about the EtherCAT network vector
+  direction: output
+  data_types: int32
+```
 
 ### Output
 
@@ -83,8 +90,34 @@ The `Status` vector contains these values:
   `0`.
 
 **Data Types:** `int32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Config file (ENI)
+  summary: ENI file from the EtherCAT configurator character vector
+  group: ''
+  block_parameter: config_file
+- name: Network Device Index
+  summary: EtherCAT network identifier 0-15
+  group: ''
+  block_parameter: device_id
+- name: Ethernet Port Number
+  summary: Port number in target computer int
+  group: ''
+  block_parameter: portnum
+- name: Initialization End State
+  summary: End state after creating master Op (default) | PreOp | SafeOp
+  group: ''
+  block_parameter: initstate
+- name: DC Tuning
+  summary: Distributed clock initialization parameter Large model (default) | Medium model | Small model
+  group: ''
+  block_parameter: dctuning
+- name: Enable EtherCAT Log for Debugging
+  summary: Access to debugging and logging block parameters Off (default) | Warning | Info | Verbose | All
+  group: ''
+  block_parameter: enaDebug
+```
 
 ### **Config file (ENI)** — ENI file from the EtherCAT configurator character vector
 
@@ -218,7 +251,6 @@ The target log file name is `E_Mdevice%d`, where
 |  |
 | --- |
 | **Block Parameter:** `enaDebug` |
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

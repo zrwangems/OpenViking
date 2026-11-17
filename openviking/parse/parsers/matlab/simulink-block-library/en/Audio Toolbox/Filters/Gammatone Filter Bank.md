@@ -14,6 +14,17 @@ language: en
 # Gammatone Filter Bank
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Audio input to filter bank scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Audio output from filter bank scalar | vector | matrix | 3-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -38,8 +49,40 @@ filters-by-*N* array. If *N* is
 `1`, then output is a matrix.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Frequency range (Hz)
+  summary: Frequency range of filter bank [50 8000] (default) | two-element row vector of monotonically increasing values
+  group: ''
+- name: Number of filters
+  summary: Number of filters 32 (default) | positive integer
+  group: ''
+- name: Inherit sample rate from input
+  summary: Specify sample rate from input port off (default) | on
+  group: ''
+- name: Input sample rate (Hz)
+  summary: Input sample rate 16000 (default) | positive integer
+  group: ''
+- name: Bands as separate output port
+  summary: Separate ports for each filter output off (default) | on
+  group: ''
+- name: View Filter Response
+  summary: Visualize filter bank responses button
+  group: ''
+- name: Variable name
+  summary: Variable name of exported filter bank myFilt (default) | valid variable name
+  group: ''
+- name: Overwrite variable if it already exists
+  summary: Overwrite variable if it already exists on (default) | off
+  group: ''
+- name: Export filter to workspace
+  summary: Export filter bank to workspace button
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Frequency range (Hz)** — Frequency range of filter bank `[50 8000]` (default) | two-element row vector of monotonically increasing values
 
@@ -119,7 +162,6 @@ Type of simulation to run, specified as one of the following:
   `Interpreted execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Audio Toolbox / Filters

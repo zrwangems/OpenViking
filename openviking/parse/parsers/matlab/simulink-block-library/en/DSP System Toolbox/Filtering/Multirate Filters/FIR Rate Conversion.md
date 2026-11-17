@@ -14,6 +14,17 @@ language: en
 # FIR Rate Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1(Out1)
+  summary: Rate converted signal vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -71,8 +82,69 @@ When you set the **Rate options** parameter to:
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: Mode of operation Auto (default) | Dialog parameters | Filter object
+  group: ''
+- name: Interpolation factor
+  summary: Interpolation factor 3 (default) | positive integer
+  group: Main Tab
+- name: FIR filter coefficients
+  summary: FIR filter coefficients designMultirateFIR(3,2) (default) | vector
+  group: Main Tab
+- name: Decimation factor
+  summary: Decimation factor 2 (default) | positive integer
+  group: Main Tab
+- name: Rate options
+  summary: Enforce single-rate or allow multirate processing Enforce single-rate processing (default) | Allow multirate processing
+  group: Main Tab
+- name: Filter object
+  summary: Filter object FRC (default) | dsp.FIRRateConverter System object
+  group: Main Tab
+- name: Allow arbitrary frame length for fixed-size input signals
+  summary: Allow arbitrary frame length for fixed-size input signals off (default) | on
+  group: Main Tab
+- name: View Filter Response
+  summary: Visualize filter response button
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding method Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Overflow handling method off (default) | on
+  group: Data Types Tab
+- name: Coefficients
+  summary: 'Coefficients data type Inherit: Same word length as input (default) | fixdt(1,16) | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Coefficients Minimum
+  summary: Minimum value of filter coefficients [] (default) | scalar
+  group: Data Types Tab
+- name: Coefficients Maximum
+  summary: Maximum value of filter coefficients [] (default) | scalar
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as
+    product output | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as accumulator (default) | Inherit: Same as input | Inherit: Same as product output
+    | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Minimum value the block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Maximum value block can output [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+```
 
 ### **Coefficient source** — Mode of operation **Auto** (default) | **Dialog parameters** | **Filter object**
 
@@ -492,7 +564,6 @@ the data types you specify on the block dialog box.
 This parameter appears only when **Coefficient
 source** is set to either **Dialog
 parameters** or **Auto**.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Multirate Filters

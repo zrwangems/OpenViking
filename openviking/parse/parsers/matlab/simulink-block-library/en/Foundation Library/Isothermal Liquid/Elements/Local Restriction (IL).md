@@ -14,6 +14,18 @@ language: en
 # Local Restriction (IL)
 
 ## Ports
+```yaml
+ports:
+- name: AR
+  summary: Restriction area control signal, m^2 physical signal
+  direction: input
+- name: A
+  summary: Inlet or outlet isothermal liquid
+  direction: conserving
+- name: B
+  summary: Inlet or outlet isothermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -38,8 +50,34 @@ restriction. This block has no intrinsic directionality.
 
 Isothermal liquid conserving port associated with the inlet or outlet of the local
 restriction. This block has no intrinsic directionality.
-
 ## Parameters
+```yaml
+parameters:
+- name: Restriction type
+  summary: Specify whether restriction area can change during simulation Variable (default) | Fixed
+  group: ''
+- name: Minimum restriction area
+  summary: Lower bound for the restriction cross-sectional area 1e-10 m^2 (default) | positive scalar
+  group: ''
+- name: Maximum restriction area
+  summary: Upper bound for the restriction cross-sectional area 0.005 m^2 (default) | positive scalar
+  group: ''
+- name: Restriction area
+  summary: Area normal to flow path at the restriction 1e-3 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Area normal to flow path at the ports inf m^2 (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Ratio of actual mass flow rate to theoretical mass flow rate through restriction 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Reynolds number for transition between laminar and turbulent regimes 150 (default) | positive scalar
+  group: ''
+- name: Pressure recovery
+  summary: Specify whether to account for pressure recovery Off (default) | On
+  group: ''
+```
 
 ### **Restriction type** — Specify whether restriction area can change during simulation `Variable` (default) | `Fixed`
 
@@ -108,7 +146,6 @@ The Reynolds number for the transition between laminar and turbulent regimes.
 
 Select the check box to account for pressure recovery at the local restriction
 outlet.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

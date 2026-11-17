@@ -14,6 +14,29 @@ language: en
 # LTE Gold Sequence Generator
 
 ## Ports
+```yaml
+ports:
+- name: load
+  summary: Load initial shift register value scalar
+  direction: input
+  data_types: Boolean
+- name: init
+  summary: Initial shift register value scalar | vector
+  direction: input
+  data_types: ufix31
+- name: enable
+  summary: Enable sequence generation scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Generated Gold sequence scalar | vector
+  direction: output
+  data_types: Boolean
+- name: valid
+  summary: Indicates valid output data scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -60,11 +83,12 @@ Control signal that indicates when the **data**
 output port is valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Wireless HDL Toolbox / Utilities

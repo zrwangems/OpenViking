@@ -14,6 +14,18 @@ language: en
 # Gyro
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Translational port mechanical
+  direction: conserving
+- name: +
+  summary: Positive port electrical
+  direction: conserving
+- name: '-'
+  summary: Negative port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,28 @@ terminal.
 
 Electrical conserving port associated with the gyro negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sensitivity
+  summary: Sensitivity 12.5 s*mV/deg (default)
+  group: ''
+- name: Output voltage for zero rotation
+  summary: Output voltage for zero rotation 2.5 V (default)
+  group: ''
+- name: Maximum output voltage
+  summary: Maximum output voltage 4 V (default)
+  group: ''
+- name: Minimum output voltage
+  summary: Minimum output voltage 1 V (default)
+  group: ''
+- name: Dynamics
+  summary: Dynamics modeling option No dynamics — Suitable for HIL (default) | Model sensor bandwidth
+  group: ''
+- name: Bandwidth
+  summary: Bandwidth 3 kHz (default)
+  group: ''
+```
 
 ### **Sensitivity** — Sensitivity `12.5` `s*mV/deg` (default)
 
@@ -79,7 +111,6 @@ first-order time constant.
 This parameter is visible only when you select `Model
 sensor bandwidth` for the **Dynamics**
 parameter.
-
 ## Libraries
 
 Simscape / Electrical / Sensors & Transducers

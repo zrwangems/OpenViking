@@ -14,6 +14,15 @@ language: en
 # Infinite Flow Resistance (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Flow rate is zero thermal liquid
+  direction: conserving
+- name: B
+  summary: Flow rate is zero thermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,11 +33,12 @@ Thermal liquid conserving port with no fluid or heat flow.
 ### **B** — Flow rate is zero thermal liquid
 
 Thermal liquid conserving port with no fluid or heat flow.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Elements

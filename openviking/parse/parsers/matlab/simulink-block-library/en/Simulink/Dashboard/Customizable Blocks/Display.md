@@ -14,10 +14,102 @@ language: en
 # Display
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Signal to connect and display signal connection options
+  group: Parameters
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Format
+  summary: Format for displaying signal values short (default) | long | shortE | longE | ...
+  group: Parameters
+  block_parameter: Format
+  type: character array | string
+  values: '''short'' | ''long'' | ''shortE'' | ''longE'' | ''shortG'' | ''longG'' | ''shortEng'' | ''longEng'' | ''bank''
+    | ''+'' | ''hex'' | ''rat'' | ''Custom'' | ''Integer'''
+  default: '''short'''
+- name: Format String
+  summary: Custom string to format data '%d' (default) | string
+  group: Parameters
+  block_parameter: FormatString
+  type: character array | string
+  default: '''%d'''
+- name: Label
+  summary: Position of label displaying name of connected element Top (default) | Bottom | Hide
+  group: Parameters
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Parameters
+- name: Lock Aspect Ratio
+  summary: Option to maintain block aspect ratio on (default) | off
+  group: Design
+- name: Font
+  summary: Font Courier Prime | DSEG7-Classic | Noto Sans | Noto Serif | Roboto | Ubuntu
+  group: Design
+- name: Size
+  summary: Font size scalar
+  group: Design
+- name: Text Color
+  summary: Text color [r g b] vector
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of center of text from center of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of center of text from center of block scalar
+  group: Design
+- name: Width
+  summary: Width of text bounding box scalar
+  group: Design
+- name: Height
+  summary: Height of text bounding box scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain text bounding box aspect ratio on (default) | off
+  group: Design
+- name: Use Background Color
+  summary: Option to specify solid block background color off (default) | on
+  group: Design
+- name: Color
+  summary: Block background color [r g b] vector
+  group: Design
+  block_parameter: BackgroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Design
+- name: Corner Radius
+  summary: Corner radius of area with block background color scalar
+  group: Design
+- name: X Offset
+  summary: Horizontal offset of left edge of foreground image from left edge of block scalar
+  group: Design
+- name: Y Offset
+  summary: Vertical offset of top edge of foreground image from top edge of block scalar
+  group: Design
+- name: Width
+  summary: Foreground image width scalar
+  group: Design
+- name: Height
+  summary: Foreground image height scalar
+  group: Design
+- name: Lock Aspect Ratio
+  summary: Option to maintain foreground image aspect ratio on (default) | off
+  group: Design
+```
 
 Use the Property Inspector and the Block Parameters dialog box
 to specify the values of the block parameters. To set the core parameters of the dashboard
@@ -327,7 +419,6 @@ Specify the height of the foreground image as a ratio of the block height.
 
 Select this parameter to maintain the aspect ratio when resizing the image using the
 Property Inspector.
-
 ## Libraries
 
 Simulink / Dashboard / Customizable Blocks

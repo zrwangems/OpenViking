@@ -14,10 +14,94 @@ language: en
 # Push Button
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Block parameter value to connect parameter value connection options
+  group: Connection
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: Button Text
+  summary: Text label for button Button (default) | string | character vector
+  group: Main
+  block_parameter: ButtonText
+  type: string or character array
+  default: '''Button'''
+- name: On Value
+  summary: Value assigned to connected parameter when button is pressed or latched 1 (default) | scalar
+  group: Main
+  block_parameter: OnValue
+  type: string or character array
+  default: '''1'''
+- name: Button Type
+  summary: Button response to click Momentary (default) | Latch
+  group: Main
+  block_parameter: ButtonType
+  type: string or character array
+  values: '''Momentary'' | ''Latch'''
+- name: Label
+  summary: Block label position Hide (default) | Bottom | Top
+  group: Main
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Format
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+- name: Foreground Color
+  summary: Block foreground color [r g b] vector
+  group: Format
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Background Color
+  summary: Block background color [r g b] vector
+  group: Format
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Icon
+  summary: Icon to display on button SVG file | PNG file | JPEG file
+  group: Icon
+  block_parameter: Icon
+  type: string | character vector
+  default: '''Default'''
+- name: Icon Alignment
+  summary: Icon alignment relative to button text Left (default) | Right | Top | Bottom | Center
+  group: Icon
+  block_parameter: IconAlignment
+  type: string | character vector
+  values: '''Left'' | ''Right'' | ''Top'' | ''Bottom'' | ''Center'''
+  default: '''Left'''
+- name: Customize Icon Color
+  summary: Whether to use icon on and off colors Off (default) | On
+  group: Icon
+  block_parameter: IconColor
+  type: string | character vector
+  values: '''On'' | ''Off'''
+  default: '''Off'''
+- name: On Color
+  summary: Icon color when block is pressed or latched [r g b] vector
+  group: Icon
+  block_parameter: IconOnColor
+  type: '[r g b] vector'
+- name: Off Color
+  summary: Icon color when block is not pressed or latched [r g b] vector
+  group: Icon
+  block_parameter: IconOffColor
+  type: '[r g b] vector'
+```
 
 ### Connection
 
@@ -422,7 +506,6 @@ block as a `1`-by-`3`
 | --- |
 | **Block Parameter:** `IconOffColor` |
 | **Type:** `[r g b]` vector |
-
 ## Libraries
 
 Simulink / Dashboard

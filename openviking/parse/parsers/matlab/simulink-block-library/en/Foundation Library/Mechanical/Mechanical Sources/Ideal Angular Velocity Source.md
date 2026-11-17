@@ -14,6 +14,18 @@ language: en
 # Ideal Angular Velocity Source
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Control signal, rad/s physical signal
+  direction: input
+- name: R
+  summary: Rod mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -32,11 +44,12 @@ moving part (rod).
 
 Mechanical rotational conserving port associated with the source
 reference point (case).
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Mechanical Sources

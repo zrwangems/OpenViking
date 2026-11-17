@@ -15,14 +15,67 @@ chinese_source: worker-translation
 # Inertia
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
 ### **R** — 参考坐标系 frame
 
 惯性单元的局部参考坐标系。连接到 frame 线或 frame 端口以定义惯性的相对位置和方向。
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 要使用的惯性参数化方式 Point Mass（默认）| Custom
+  group: Inertia
+- name: Mass
+  summary: 实体单元的总质量 1 kg（默认）| 带质量单位的标量
+  group: Inertia
+- name: 'Custom: Center of Mass'
+  summary: 质心坐标 [0 0 0] m（默认）| 带长度单位的三元素向量
+  group: Inertia
+- name: 'Custom: Moments of Inertia'
+  summary: 惯性张量的对角元素 [1 1 1] kg*m^2（默认）| 带质量\*长度^2 单位的三元素向量
+  group: Inertia
+- name: 'Custom: Products of Inertia'
+  summary: 惯性张量的非对角元素 [0 0 0] kg*m^2（默认）| 带质量\*长度^2 单位的三元素向量
+  group: Inertia
+- name: Type
+  summary: 用于惯性可视化显示的图形 Marker（默认）| None
+  group: Graphic
+- name: Shape
+  summary: 用于表示惯性的标记形状 Inertia Icon（默认）| Sphere | Cube | Frame
+  group: Graphic
+- name: Size
+  summary: 标记的宽度（以像素为单位）20 pixels（默认）| 标量
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化方式 Simple（默认）| Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: 漫反射产生的光颜色 [0.5 0.5 0.5]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 取值范围为 0 到 1 的标量
+  group: Graphic
+- name: Specular Color
+  summary: 镜面反射产生的光颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: Graphic
+- name: Shininess
+  summary: 标记的光泽度 75（默认）| 取值范围为 1 到 128 的标量
+  group: Graphic
+```
 
 ### Inertia
 
@@ -175,7 +228,6 @@ Color** 和 **Shininess**。
 
 1. **Type** 为 `Marker`
 2. **Visual Properties** 为 `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Body Elements

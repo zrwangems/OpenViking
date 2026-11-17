@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Convert 1-D to 2-D
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,19 @@ chinese_source: worker-translation
 输出信号，以 2-D 矩阵形式返回。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of output rows
+  summary: 输出矩阵中的行数 1（默认）| 正整数
+  group: ''
+- name: Number of output columns
+  summary: 输出矩阵中的列数 1（默认）| 正整数
+  group: ''
+- name: Frame-based output
+  summary: 启用基于帧的输出的选项 off（默认）| on
+  group: ''
+```
 
 ### **Number of output rows** — 输出矩阵中的行数 `1`（默认）| 正整数
 
@@ -44,7 +66,6 @@ chinese_source: worker-translation
 ### **Frame-based output** — 启用基于帧的输出的选项 `off`（默认）| `on`
 
 选择此参数以创建基于帧的输出。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Signal Attributes DSP System Toolbox HDL Support / Signal Management

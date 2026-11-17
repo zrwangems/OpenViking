@@ -14,6 +14,21 @@ language: en
 # RMS
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix | *N*-D array
+  direction: input
+  data_types: single | double
+- name: Rst
+  summary: Reset port scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: RMS value along the specified dimension scalar | vector | matrix | *N*-D array
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -139,8 +154,27 @@ processing** parameter.
   frame, up to and including the current input sample.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Running RMS
+  summary: Option to select running RMS off (default) | on
+  group: Main Tab
+- name: Find the RMS value over
+  summary: Dimension over which the block computes the RMS value Each column (default) | Entire input | Each row | Specified
+    dimension
+  group: Main Tab
+- name: Dimension
+  summary: Custom dimension 1 (default) | scalar
+  group: Main Tab
+- name: Input processing
+  summary: Method to process the input in running mode Columns as channels (frame based) (default) | Elements as channels
+    (sample based)
+  group: Main Tab
+- name: Reset port
+  summary: Reset event None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: Main Tab
+```
 
 ### Main Tab
 
@@ -299,7 +333,6 @@ reset. For more information on latency and the Simulink tasking modes, see Exces
 
 To enable this parameter, select the **Running
 RMS** parameter.
-
 ## Libraries
 
 DSP System Toolbox / Statistics

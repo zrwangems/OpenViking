@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Assignment
 
 ## 端口
+```yaml
+ports:
+- name: Y0
+  summary: 输出信号的初始值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | Boolean |
+    enumerated | bus
+- name: U
+  summary: 输入数据端口 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | Boolean |
+    enumerated | bus
+- name: IndxN
+  summary: 第 *N* 个索引信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Y
+  summary: 具有已赋值元素的输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+```
 
 ### 输入
 
@@ -48,8 +70,73 @@ chinese_source: worker-translation
 具有指定元素已赋值的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of output dimensions
+  summary: 输出信号的维度数 1（默认）| 整数
+  group: ''
+  block_parameter: NumberOfDimensions
+  type: character vector
+  values: integer
+  default: '''1'''
+- name: Index mode
+  summary: 索引模式 One-based（默认）| Zero-based
+  group: ''
+  block_parameter: IndexMode
+  type: character vector
+  values: '''Zero-based'' | ''One-based'''
+  default: '''One-based'''
+- name: Index Option
+  summary: 元素的索引方法 Index vector (dialog)（默认）| Assign all | Index vector (port) | Starting index (dialog) | Starting index
+    (port)
+  group: ''
+  block_parameter: IndexOptionArray
+  type: cell array of character vectors
+  values: '{''Assign all''} | {''Index vector (dialog)''} | {''Index vector (port)''} | {''Starting index (dialog)''} | {''Starting
+    index (port)''}'
+  default: '{''Index vector (dialog)''}'
+- name: Index
+  summary: 元素的索引 1（默认）| 整数
+  group: ''
+  block_parameter: IndexParamArray
+  type: cell array of character vectors
+  values: integers
+  default: '{''1''}'
+- name: Output Size
+  summary: 模块输出信号的宽度 1（默认）| 整数
+  group: ''
+  block_parameter: OutputSizeArray
+  type: cell array of character vectors
+  values: integers
+  default: '{''1''}'
+- name: Initialize output (Y)
+  summary: 如何初始化输出信号 Initialize using input port <Y0>（默认）| Specify size for each dimension in the table
+  group: ''
+  block_parameter: OutputInitialize
+  type: character vector
+  values: '''Initialize using input port <Y0>'' | ''Specify size for each dimension in table'''
+  default: '''Initialize using input port <Y0>'''
+- name: Action if any output element is not assigned
+  summary: 产生警告或错误的选项 Warning（默认）| Error | None
+  group: ''
+  block_parameter: DiagnosticForDimensions
+  type: character vector
+  values: '''Error'' | ''Warning'' | ''None'''
+  default: '''Warning'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Check for out-of-range index in accelerated simulation
+  summary: 在加速器和快速加速器仿真模式下检查超出范围的索引值的选项 off（默认）| on
+  group: ''
+  block_parameter: RuntimeRangeChecks
+  type: character vector
+  values: '''Off'' | ''On'''
+  default: '''Off'''
+```
 
 ### **Number of output dimensions** — 输出信号的维度数 `1`（默认）| 整数
 
@@ -221,7 +308,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Off'` | `'On'` |
 | **默认值**：`'Off'` |
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / Math Operations

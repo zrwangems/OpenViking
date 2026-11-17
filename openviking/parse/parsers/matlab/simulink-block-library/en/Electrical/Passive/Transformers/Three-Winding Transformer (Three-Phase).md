@@ -14,6 +14,27 @@ language: en
 # Three-Winding Transformer (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: ~1
+  summary: Primary winding voltage electrical
+  direction: conserving
+- name: n1
+  summary: Primary winding neutral point electrical
+  direction: conserving
+- name: ~2
+  summary: First secondary winding voltage electrical
+  direction: conserving
+- name: n2
+  summary: First secondary winding neutral point electrical
+  direction: conserving
+- name: ~3
+  summary: Second secondary winding voltage electrical
+  direction: conserving
+- name: n3
+  summary: Second secondary winding neutral point electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -70,8 +91,89 @@ winding neutral point.
 This port is only visible when the **Main**
 parameter **Winding 3 connection type** is set to
 `Wye with neutral port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Rated apparent power
+  summary: Apparent power at rated capacity 100e6 V*A (default) | positive scalar
+  group: Main
+- name: Rated electrical frequency
+  summary: Connected network electrical frequency 60 Hz (default) | positive scalar
+  group: Main
+- name: Primary winding connection type
+  summary: Primary winding configuration Wye with floating neutral (default) | Wye with neutral port | Wye with grounded neutral
+    | Delta 1 o'clock | Delta 11 o'clock
+  group: Main
+- name: Primary rated voltage
+  summary: RMS line voltage applied to the primary winding 4160 V (default) | positive scalar
+  group: Main
+- name: First secondary connection type
+  summary: First secondary winding configuration Wye with floating neutral (default) | Wye with neutral port | Wye with grounded
+    neutral | Delta 1 o'clock | Delta 11 o'clock
+  group: Main
+- name: First secondary rated voltage
+  summary: RMS line voltage applied to the first secondary winding 24e3 V (default) | positive scalar
+  group: Main
+- name: Second secondary connection type
+  summary: Second secondary winding configuration Wye with floating neutral (default) | Wye with neutral port | Wye with grounded
+    neutral | Delta 1 o'clock | Delta 11 o'clock
+  group: Main
+- name: Second secondary rated voltage
+  summary: RMS line voltage applied to the second secondary winding 24e3 (default) | positive scalar
+  group: Main
+- name: Core type
+  summary: Number of limbs Three-phase three-limb (default) | Three-phase five-limb
+  group: Main
+- name: Primary winding resistance (pu)
+  summary: Primary winding power loss 0.01 (default) | positive scalar
+  group: Impedances
+- name: First secondary winding resistance (pu)
+  summary: First secondary winding power loss 0.01 (default) | positive scalar
+  group: Impedances
+- name: Second secondary winding resistance (pu)
+  summary: Second secondary winding power loss 0.01 (default) | positive scalar
+  group: Impedances
+- name: Leakage reactance
+  summary: Leakage reactance modeling Exclude (default) | Include
+  group: Impedances
+- name: Primary leakage reactance (pu)
+  summary: Primary winding magnetic flux loss 0.001 (default) | positive scalar
+  group: Impedances
+- name: First secondary leakage reactance (pu)
+  summary: First secondary winding magnetic flux loss 0.001 (default) | positive scalar
+  group: Impedances
+- name: Second secondary leakage reactance (pu)
+  summary: Second secondary winding magnetic flux loss 0.001 (default) | positive scalar
+  group: Impedances
+- name: Magnetizing resistance
+  summary: Magnetizing resistance modeling Exclude (default) | Include
+  group: Impedances
+- name: Shunt magnetizing resistance (pu)
+  summary: Transformer core losses 500 (default) | positive scalar
+  group: Impedances
+- name: Magnetizing reactance
+  summary: Magnetizing reactance modeling Exclude (default) | Include
+  group: Impedances
+- name: Magnetic saturation representation
+  summary: Representation of the magnetic saturation None (default) | Lookup table (phi versus i)
+  group: Impedances
+- name: Current vector (pu), i
+  summary: Per unit vector of currents [0, .002, 1, 2] (default)
+  group: Impedances
+- name: Magnetic flux vector (pu), phi
+  summary: Per unit vector of magnetic flux [0, 1.2, 1.5, 1.51] (default)
+  group: Impedances
+- name: Shunt magnetizing reactance (pu)
+  summary: Transformer core magnetic effects 500 (default) | positive scalar
+  group: Impedances
+- name: Zero sequence reactance (pu)
+  summary: Zero sequence reactance 0.5 (default) | positive scalar
+  group: Impedances
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -265,7 +367,6 @@ winding magnetic flux loss.
 To enable this parameter, set **Core type**, a
 **Main** parameter, to `Three-phase
 three-limb`.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Transformers

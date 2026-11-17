@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Fishhook
 
 ## 端口
+```yaml
+ports:
+- name: xdot
+  summary: 车辆纵向速度标量
+  direction: input
+  data_types: double
+- name: p
+  summary: 车辆侧倾角速度标量
+  direction: input
+  data_types: double
+- name: DrvRef
+  summary: 驾驶员参考数据总线
+  direction: output
+  data_types: bus
+- name: DrvCmd
+  summary: 驾驶员指令数据总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -83,8 +102,65 @@ chinese_source: worker-translation
 Bus Assignment 模块覆盖 Fishhook 模块的 TransModeCmd 输出的框图。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Maneuver start time, tStart [s]
+  summary: 开始时间 2（默认）| 正标量
+  group: ''
+  block_parameter: tStart
+  values: 2 (default) | positive scalar
+- name: Longitudinal velocity setpoint, velRef
+  summary: 目标速度 30（默认）| 正标量
+  group: ''
+  block_parameter: velRef
+  values: 30（默认） | 正标量
+- name: 纵向速度设定点单位，velRefUnit []
+  summary: 单位 mph（默认）
+  group: ''
+  block_parameter: velRefUnit
+  values: mph（默认） | 字符向量
+- name: 转向和反向转向速度，steerRate [deg/s]
+  summary: 转向和反向转向速率 720（默认） | 正标量
+  group: ''
+  block_parameter: steerRate
+  values: 720（默认） | 正标量
+- name: 转向幅值，steerAmp [deg]
+  summary: 方向盘转向幅值 540（默认） | 正标量
+  group: ''
+  block_parameter: steerAmp
+  values: 540（默认） | 正标量
+- name: 使用侧倾速率确定初始转向驻留时间
+  summary: 使用侧倾速率确定初始转向驻留时间的选项 off（默认） | on
+  group: ''
+  block_parameter: pFdbk
+  values: off（默认） | on
+- name: 初始驻留时间，tDwellSteer [s]
+  summary: 初始驻留时间 0.5（默认） | 正标量
+  group: ''
+  block_parameter: tDwellSteer
+  values: 0.5（默认） | 正标量
+- name: 反向转向驻留时间，tDwellCntrSteer [s]
+  summary: 反向转向驻留时间 3（默认） | 正标量
+  group: ''
+  block_parameter: tDwellCntrSteer
+  values: 3（默认） | 正标量
+- name: 回正时间，tZero [s]
+  summary: 将反向转向幅值恢复至零转向的时间 2（默认） | 正标量
+  group: ''
+  block_parameter: tZero
+  values: 2（默认） | 正标量
+- name: 横摆角速度反向转向起始零交叉阈值，pZero [deg/s]
+  summary: 横摆角速度容差 1.5（默认）| 正标量
+  group: ''
+  block_parameter: pZero
+  values: 1.5（默认）| 正标量
+- name: 初始转向方向
+  summary: 初始转向方向 Right（默认）| Left
+  group: ''
+  block_parameter: steerDir
+  values: Right（默认）| Left
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -285,7 +361,6 @@ s。
 | **参数：** | `steerDir` |
 | **值：** | `Right`（默认）| `Left` |
 | **数据类型：** | `character vector` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Drive Cycle and Maneuvers

@@ -14,6 +14,37 @@ language: en
 # Measure Timing
 
 ## Ports
+```yaml
+ports:
+- name: ctrlIn
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: activePixels
+  summary: Number of pixels in each line of active video frame scalar
+  direction: output
+  data_types: double
+- name: activeLines
+  summary: Number of lines in active video frame scalar
+  direction: output
+  data_types: double
+- name: totalPixels
+  summary: Number of pixels in each line, including the horizontal blanking interval scalar
+  direction: output
+  data_types: double
+- name: totalLines
+  summary: Number of lines in the frame, including the vertical blanking interval scalar
+  direction: output
+  data_types: double
+- name: horizBlank
+  summary: Number of inactive pixels between lines of a frame scalar
+  direction: output
+  data_types: double
+- name: vertBlank
+  summary: Number of inactive lines between frames scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -78,11 +109,12 @@ dividing by `totalPixels`. See marker `6` in the
 diagram.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Vision HDL Toolbox / Utilities

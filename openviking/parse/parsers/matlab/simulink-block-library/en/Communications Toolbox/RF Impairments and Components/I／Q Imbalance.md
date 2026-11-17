@@ -14,6 +14,16 @@ language: en
 # I/Q Imbalance
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Complex signal scalar | vector
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: Output signal scalar | vector
+  direction: output
+```
 
 ### Input
 
@@ -29,8 +39,22 @@ Complex signal, specified as a scalar or vector.
 
 Output signal, returned as a scalar or vector. This output is the same dimension and
 data type as the input signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: I/Q amplitude imbalance (dB)
+  summary: I/Q amplitude imbalance 0 (default) | scalar
+  group: ''
+- name: I/Q phase imbalance (deg)
+  summary: I/Q phase imbalance 0 (default) | scalar
+  group: ''
+- name: I dc offset
+  summary: In-phase component DC offset 0 (default) | scalar
+  group: ''
+- name: Q dc offset
+  summary: Quadrature component DC offset 0 (default) | scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -53,7 +77,6 @@ In-phase component DC offset, specified as a scalar.
 ### **Q dc offset** — Quadrature component DC offset `0` (default) | scalar
 
 Quadrature component DC offset, specified as a scalar.
-
 ## Libraries
 
 Communications Toolbox / RF Impairments and Components

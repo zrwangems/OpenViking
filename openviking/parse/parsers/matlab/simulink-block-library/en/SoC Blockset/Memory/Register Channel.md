@@ -14,6 +14,15 @@ language: en
 # Register Channel
 
 ## Ports
+```yaml
+ports:
+- name: '*regN*'
+  summary: Register input scalar
+  direction: input
+- name: '*regN*'
+  summary: Register output scalar
+  direction: output
+```
 
 ### Input
 
@@ -49,8 +58,16 @@ clicking **Edit** in the
 
 The number of output ports depends on the number of registers in
 the register table.
-
 ## Parameters
+```yaml
+parameters:
+- name: Registers
+  summary: Edit register name, direction, data type, dimension, and initial value table
+  group: ''
+- name: Register write sample time
+  summary: Sample time for register access -1 (default) | two element vector
+  group: ''
+```
 
 ### **Registers** — Edit register name, direction, data type, dimension, and initial value table
 
@@ -109,7 +126,6 @@ When the **Direction** of a register is set to
 hardware is the reader, but **Register write sample
 time** determines the sample time of the signal on the
 hardware side.
-
 ## Libraries
 
 SoC Blockset / Memory

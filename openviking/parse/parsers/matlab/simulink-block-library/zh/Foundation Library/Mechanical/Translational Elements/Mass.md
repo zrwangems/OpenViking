@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Mass
 
 ## 端口
+```yaml
+ports:
+- name: M
+  summary: 将质量连接到电路机械平移网络的端口
+  direction: unspecified
+- name: N
+  summary: 第二个图形端口 机械平移
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -29,8 +38,16 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Number of graphical ports** 参数设置为 `2`。
-
 ## 参数
+```yaml
+parameters:
+- name: Mass
+  summary: 恒定质量 1 kg（默认）| 正标量
+  group: ''
+- name: Number of graphical ports
+  summary: 选择模块是以图形方式连接到电路的一侧还是与其他元件串联 1（默认）| 2
+  group: ''
+```
 
 ### **Mass** — 恒定质量 `1 kg`（默认）| 正标量
 
@@ -42,7 +59,6 @@ chinese_source: worker-translation
 
 - `1` — 模块有一个守恒端口，将其连接到机械平移电路。当模块有一个端口时，将其连接到其他两个模块之间的连接线上。
 - `2` — 选择此选项会显示第二个端口，允许您将模块与电路中的其他模块串联连接。两个端口刚性连接并具有相同的速度，因此模块的功能与只有一个端口时完全相同。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Translational Elements

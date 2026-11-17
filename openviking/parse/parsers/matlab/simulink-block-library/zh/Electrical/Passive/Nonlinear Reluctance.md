@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Nonlinear Reluctance
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 北端磁端口
+  direction: conserving
+- name: S
+  summary: 南端磁端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,59 @@ chinese_source: worker-translation
 ### **S** — 南端磁端口
 
 与南端关联的磁守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Effective length
+  summary: 有效磁芯长度 0.032 m（默认值）| 正有限标量
+  group: 主要
+- name: Effective cross-sectional area
+  summary: 有效磁芯横截面积 1.6e-5 m^2（默认值）| 正有限标量
+  group: 主要
+- name: Averaging period for power logging
+  summary: 用于平均的激励周期 0 s（默认值）| 标量
+  group: 主要
+- name: Parameterized by
+  summary: 参数化方法 Reluctance (B-H curve)（默认值）| Linear reluctance | Reluctance with single saturation point | Nonlinear reluctance
+    with hysteresis (JA model)
+  group: B-H 曲线
+- name: Relative magnetic permeability
+  summary: 相对磁导率 5000（默认值）| 正有限标量
+  group: B-H 曲线
+- name: Unsaturated relative magnetic permeability
+  summary: 相对磁导率 5000（默认值）| 标量
+  group: B-H 曲线
+- name: Magnetic flux density at saturation
+  summary: 饱和时的磁通密度 1.5 T（默认值）| 正有限标量
+  group: B-H 曲线
+- name: Magnetic field strength vector, H
+  summary: 磁场强度 [0, 200, 400, 600, 800, 1000] A/m（默认值）| 向量
+  group: B-H 曲线
+- name: Magnetic flux density vector, B
+  summary: 磁通密度 [0, 1.25, 1.35, 1.44, 1.48, 1.49] T（默认值）| 向量
+  group: B-H 曲线
+- name: Interpolation method
+  summary: 插值方法 Linear（默认值）| Smooth
+  group: B-H 曲线
+- name: Anhysteretic B-H gradient when H is zero
+  summary: 零场强附近无磁滞 B-H 曲线的梯度 0.0063 m*T/A（默认值）| 标量
+  group: B-H 曲线
+- name: Flux density point on anhysteretic B-H curve
+  summary: 用于场强测量的点的磁通密度 1.49 T（默认值）| 标量
+  group: B-H 曲线
+- name: Corresponding field strength
+  summary: 测量点处的场强 1000 A/m（默认值）| 标量
+  group: B-H 曲线
+- name: Coefficient for reversible magnetization, c
+  summary: 可逆磁化系数 0.1（默认值）| 范围 [0,1] 内的标量
+  group: B-H 曲线
+- name: Bulk coupling coefficient, K
+  summary: Jiles-Atherton 方程参数 200 A/m（默认值）| 有限正标量
+  group: B-H 曲线
+- name: Inter-domain coupling factor, alpha
+  summary: Jiles-Atherton 方程参数 0.0001（默认值）| 标量
+  group: B-H 曲线
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的**仿真**选项卡中，在**准备**库中选择**属性检查器**。
 
@@ -161,7 +221,6 @@ Jiles-Atherton 方程中的域间耦合因子 *α*。此参数主要影响 *B*-*
 #### 依赖关系
 
 要启用此参数，请将 **Parameterized by** 设置为 `Nonlinear reluctance with hysteresis (JA model)`。
-
 ## 所属库
 
 Simscape / Electrical / Passive

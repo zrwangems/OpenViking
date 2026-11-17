@@ -14,6 +14,22 @@ language: en
 # Block Processing
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input signal matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: P
+  summary: Additional input to supply subsystem parameters scalar | vector | matrix | array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    string
+- name: Port_1
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -54,8 +70,28 @@ subsystem determine the data type of the output data.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of inputs
+  summary: Number of inputs 1 (default) | positive scalar
+  group: ''
+- name: Add port to supply subsystem parameters
+  summary: Subsystem parameter input port off (default) | on
+  group: ''
+- name: Number of outputs
+  summary: Number of outputs 1 (default) | positive scalar
+  group: ''
+- name: Block size
+  summary: Block size {[8 8]} (default) | cell array
+  group: ''
+- name: Overlap
+  summary: Block overlap {[0 0]} (default) | cell array
+  group: ''
+- name: Traverse order
+  summary: Order of block extraction Row-wise (default) | Column-wise
+  group: ''
+```
 
 ### **Number of inputs** — Number of inputs `1` (default) | positive scalar
 
@@ -104,7 +140,6 @@ To configure the subsystem of the Block Processing block.
   subsystem.
 - Drag blocks into this subsystem to define the processing operations the block
   performs on the submatrices.
-
 ## Libraries
 
 Computer Vision Toolbox / Utilities

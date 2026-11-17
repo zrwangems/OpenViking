@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Discrete Zero-Pole
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 离散系统模型 标量 | 向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,52 @@ chinese_source: worker-translation
 由离散传递函数的零点、极点和增益定义的系统模型。输出的宽度等于 **Zeros** 矩阵的列数，如果 **Zeros** 是向量则为 1。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Zeros
+  summary: 零点矩阵 [1]（默认）| 向量 | 矩阵
+  group: 主要
+  block_parameter: Zeros
+  type: character vector
+  values: vector
+  default: '''[1]'''
+- name: Poles
+  summary: 极点向量 [0 0.5]（默认）| 向量
+  group: 主要
+  block_parameter: Poles
+  type: character vector
+  values: vector
+  default: '''[0 0.5]'''
+- name: Gain
+  summary: 增益值 1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: Gain
+  type: character vector
+  values: scalar | vector
+  default: '''1'''
+- name: Sample time (-1 for inherited)
+  summary: 采样间隔 -1 | 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar | vector
+  default: '''-1'''
+- name: State name
+  summary: 模块状态的唯一名称 ''（默认）| 字母数字字符串
+  group: 状态属性
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: 要求状态名称解析为信号对象 off（默认）| on
+  group: 状态属性
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -134,7 +189,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Simulink / Discrete

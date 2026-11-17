@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Hadamard Code Generator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Code length**
 :   一个为 2 的幂的正整数，用于指定 Hadamard 码的长度。
@@ -60,7 +65,6 @@ R2025b 中未记录。
     :   在不生成代码的情况下对模型进行仿真。此选项会带来
         更快的启动时间，但可能会减慢后续仿真
         性能。
-
 ## 所属库
 
 R2025b 中未记录。

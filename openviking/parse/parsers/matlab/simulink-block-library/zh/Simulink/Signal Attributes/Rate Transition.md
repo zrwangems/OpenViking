@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Rate Transition
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,52 @@ chinese_source: worker-translation
 转换为您指定的采样率的输入信号。默认配置确保安全且确定性的数据传输。要了解使您能够以数据完整性和确定性传输换取更快响应或更低内存要求的模块参数，请参阅转换处理行为。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Ensure data integrity during data transfer
+  summary: 确保数据完整性 on（默认）| off
+  group: ''
+  block_parameter: Integrity
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Ensure deterministic data transfer (maximum delay)
+  summary: 确保确定性数据传输 on（默认）| off
+  group: ''
+  block_parameter: Deterministic
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Initial conditions
+  summary: 初始条件 0（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: InitialCondition
+  type: 字符向量
+  values: 有限标量
+  default: '''0'''
+- name: Output port sample time options
+  summary: 指定输出端口采样时间的模式 Specify（默认）| Inherit | Multiple of input port sample time
+  group: ''
+  block_parameter: OutPortSampleTimeOpt
+  type: 字符向量
+  values: '''Specify'' | ''Inherit'' | ''Multiple of input port sample time'''
+  default: '''Specify'''
+- name: Output port sample time
+  summary: 输出速率 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: OutPortSampleTime
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''-1'''
+- name: Sample time multiple (>0)
+  summary: 采样时间倍数 1（默认）| 正标量
+  group: ''
+  block_parameter: OutPortSampleTimeMultiple
+  type: 字符向量
+  values: 标量
+  default: '''1'''
+```
 
 ### **Ensure data integrity during data transfer** — 确保数据完整性 `on`（默认）| `off`
 
@@ -126,7 +183,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 标量 |
 | **默认值：** `'1'` |
-
 ## 所属库
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

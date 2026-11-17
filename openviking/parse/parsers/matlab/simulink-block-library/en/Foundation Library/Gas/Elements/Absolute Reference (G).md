@@ -14,6 +14,12 @@ language: en
 # Absolute Reference (G)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Pressure and temperature are zero gas
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,11 +27,12 @@ language: en
 
 Gas conserving port where the pressure and temperature are both equal
 to zero.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Gas / Elements

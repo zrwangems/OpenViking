@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Memoryless Nonlinearity
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 输入 RF 基带信号 标量 | 列向量
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: 输出 RF 基带信号 标量 | 列向量
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +39,76 @@ chinese_source: worker-translation
 ### **Out1** — 输出 RF 基带信号 标量 | 列向量
 
 输出 RF 基带信号，以标量或列向量形式返回。输出的数据类型与输入相同。
-
 ## 参数
+```yaml
+parameters:
+- name: Model
+  summary: 放大器非线性模型 cubic（默认）| ampm | modified-rapp | saleh
+  group: 主选项卡
+- name: Linear power gain (dB)
+  summary: 放大器的线性增益 0（默认）| 实数标量
+  group: 主选项卡
+- name: Type of Non-linearity
+  summary: 非线性类型 OIP3（默认）| IIP3 | IP1dB | OP1dB | IPsat | OPsat
+  group: 主选项卡
+- name: IIP3 (dBm)
+  summary: 输入三阶截点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: OIP3 (dBm)
+  summary: 输出三阶截点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: IP1dB (dBm)
+  summary: 输入 1 dB 压缩点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: OP1dB (dBm)
+  summary: 输出 1 dB 压缩点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: IPsat (dBm)
+  summary: 输入饱和点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: OPsat (dBm)
+  summary: 输出饱和点 Inf（默认）| 正实数
+  group: 主选项卡
+- name: Lookup table (Pin(dBm), Pout(dBm), deg)
+  summary: 查找表 [ -25, 5, -1; -10, 20, -2; 0, 27, 5; 5, 28, 12 ]（默认）| *M*×3 实数矩阵
+  group: 主选项卡
+- name: Output saturation level (V)
+  summary: 输出饱和电平 1（默认）| 正实数
+  group: 主选项卡
+- name: Magnitude smoothness factor
+  summary: 幅度平滑因子 2（默认）| 正实数
+  group: 主选项卡
+- name: Phase gain (rad)
+  summary: 相位增益 -0.45（默认）| 实数标量
+  group: 主选项卡
+- name: Phase saturation
+  summary: 相位饱和 0.88（默认）| 正实数
+  group: 主选项卡
+- name: Phase smoothness factor
+  summary: 相位平滑因子 3.43（默认）| 正标量 | 正二元素向量
+  group: 主选项卡
+- name: Input scaling (dB)
+  summary: 输入信号电平的缩放因子 0（默认）| 非负实数
+  group: 主选项卡
+- name: AM / AM parameters [alpha beta]
+  summary: AM/AM 转换参数 [ 2.1587, 1.1517 ]（默认）| 二元素向量
+  group: 主选项卡
+- name: AM / PM parameters [alpha beta]
+  summary: AM/PM 转换参数 [ 4.0033, 9.1040 ]（默认）| 二元素向量
+  group: 主选项卡
+- name: Output scaling (dB)
+  summary: 输出信号电平的缩放因子 0（默认）| 非负实数
+  group: 主选项卡
+- name: Reference load (ohm)
+  summary: 参考负载 1（默认）| 正标量
+  group: 主选项卡
+- name: Plot power characteristics
+  summary: 绘制功率特性 按钮
+  group: 主选项卡
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: 主选项卡
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -218,7 +296,6 @@ Saleh 模型方法的输出信号电平缩放因子，以 dB 为单位指定为�
 - `Interpreted execution` — 通过使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但后续仿真的速度比使用 `Code generation` 选项更慢。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / RF Impairments and Components

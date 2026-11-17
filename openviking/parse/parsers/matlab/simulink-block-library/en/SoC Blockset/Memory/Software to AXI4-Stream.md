@@ -14,6 +14,33 @@ language: en
 # Software to AXI4-Stream
 
 ## Ports
+```yaml
+ports:
+- name: msg
+  summary: Input data signal from software scalar | vector | matrix
+  direction: input
+  data_types: SoCData
+- name: rdCtrlIn
+  summary: Reader input control signal bus
+  direction: input
+  data_types: StreamS2MBusObj
+- name: rdData
+  summary: Output data signal to data consumer scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: rdCtrlOut
+  summary: Reader control signal to data consumer bus
+  direction: output
+  data_types: StreamM2SBusObj
+- name: event
+  summary: Task write event signal scalar
+  direction: output
+  data_types: rteEvent
+- name: done
+  summary: Notification of freed buffer in memory scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -61,8 +88,62 @@ block. This notification indicates that a read transaction completed, and that a
 buffer in memory is available for writing.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Memory simulation
+  summary: Set simulation timing accuracy Burst accurate (default) | Protocol accurate | Behavioral
+  group: ''
+- name: Memory selection
+  summary: Choose between memory regions PS memory (default) | PL memory
+  group: Main
+- name: Region size (bytes)
+  summary: 'Size of the allocated memory region, in bytes Read-only: calculated'
+  group: Main
+- name: Number of buffers
+  summary: Number of buffers in region 8 (default) | integer
+  group: Main
+- name: Burst length
+  summary: Burst length for memory transactions 256 (default) | scalar
+  group: Main
+- name: FIFO depth (number of bursts)
+  summary: Depth of FIFO for data 8 (default) | scalar
+  group: Main
+- name: FIFO almost full depth (number of bursts)
+  summary: Depth of FIFO when backpressure is asserted 6 (default) | scalar
+  group: Main
+- name: Clock frequency (MHz)
+  summary: Interconnect frequency of manager datapath 100 (default)
+  group: Main
+- name: Data width (bits)
+  summary: Data width of manager datapath 64 (default) | scalar
+  group: Main
+- name: Dimensions
+  summary: Dimensions of software data 1024 (default) | scalar
+  group: Signal Attributes
+- name: Data type
+  summary: Data type of software data uint32 (default) | uint16 | uint64 | fixdt(1,16,0)
+  group: Signal Attributes
+- name: Dimensions
+  summary: Dimensions of output data signal 1 (default) | scalar | array
+  group: Signal Attributes
+- name: Data type
+  summary: 'Data type of reader data Inherit: Same as input (default) | double | single | int8 | int16 | int32 | int64 | uint8
+    | uint16 | uint32 | uint64 | Boolean | fixed point'
+  group: Signal Attributes
+- name: Sample time
+  summary: Time interval of sampling 1 (default) | positive scalar | vector
+  group: Signal Attributes
+- name: Enable sample packing (last signal dimension as channel)
+  summary: Pack data on last dimension of signal off (default) | on
+  group: Signal Attributes
+- name: View performance plots
+  summary: Display performance metrics button
+  group: Performance
+- name: View performance plots
+  summary: Display performance metrics button
+  group: Performance
+```
 
 ### **Memory simulation** — Set simulation timing accuracy `Burst accurate` (default) | `Protocol accurate` | `Behavioral`
 
@@ -281,7 +362,6 @@ latencies. For more information about performance graphs, see Memory Controller 
 
 To enable this parameter, select **Burst accurate** under
 **Memory simulation**.
-
 ## Libraries
 
 SoC Blockset / Memory

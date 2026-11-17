@@ -15,6 +15,221 @@ chinese_source: worker-translation
 # Unpack net_ctrl Packet from FlightGear
 
 ## 端口
+```yaml
+ports:
+- name: net_ctrl
+  summary: 要解包的 FlightGear 数据包 数组
+  direction: input
+  data_types: uint8
+- name: wind_speed_kt
+  summary: 风速 标量
+  direction: output
+  data_types: double
+- name: wind_dir_deg
+  summary: 风向 标量
+  direction: output
+  data_types: double
+- name: turbulence_norm
+  summary: 湍流范数 标量
+  direction: output
+  data_types: double
+- name: temp_c
+  summary: 环境温度 标量
+  direction: output
+  data_types: double
+- name: press_inhg
+  summary: 环境压力 标量
+  direction: output
+  data_types: double
+- name: hground
+  summary: 地面标高 标量
+  direction: output
+  data_types: double
+- name: magvar
+  summary: 当地磁差 标量
+  direction: output
+  data_types: double
+- name: icing
+  summary: 结冰状态 标量
+  direction: output
+  data_types: uint32
+- name: aileron
+  summary: 归一化副翼位置 1 | 标量
+  direction: output
+  data_types: double
+- name: elevator
+  summary: 归一化升降舵位置 1 | 标量
+  direction: output
+  data_types: double
+- name: rudder
+  summary: 归一化方向舵位置 1 | 标量
+  direction: output
+  data_types: double
+- name: aileron_trim
+  summary: 归一化副翼配平位置 标量
+  direction: output
+  data_types: double
+- name: elevator_trim
+  summary: 归一化升降舵配平位置 1 | 标量
+  direction: output
+  data_types: double
+- name: rudder_trim
+  summary: 归一化方向舵配平位置 1 | 标量
+  direction: output
+  data_types: double
+- name: flaps
+  summary: 归一化襟翼位置 1 | 标量
+  direction: output
+  data_types: double
+- name: spoilers
+  summary: 归一化扰流板位置 1 | 标量
+  direction: output
+  data_types: single
+- name: speedbrake
+  summary: 归一化减速板位置 1 | 标量
+  direction: output
+  data_types: single
+- name: flaps_power
+  summary: 襟翼电源 1 | 标量
+  direction: output
+  data_types: uint32
+- name: flap_motor_ok
+  summary: 襟翼电机供电 标量
+  direction: output
+  data_types: uint32
+- name: num_engines
+  summary: 有效发动机数量 标量
+  direction: output
+  data_types: uint32
+- name: master_bat
+  summary: 主电池开关 向量
+  direction: output
+  data_types: uint32
+- name: master_alt
+  summary: 主交流发电机开关 向量
+  direction: output
+  data_types: uint32
+- name: magnetos
+  summary: 磁电机开关 标量
+  direction: output
+  data_types: uint32
+- name: starter_power
+  summary: 启动电机电源 1 | 向量
+  direction: output
+  data_types: uint32
+- name: throttle
+  summary: 归一化油门位置 1 | 向量
+  direction: output
+  data_types: double
+- name: mixture
+  summary: 归一化混合比杆位置 1 | 向量
+  direction: output
+  data_types: double
+- name: condition
+  summary: 归一化状态 1 | 向量
+  direction: output
+  data_types: uint32
+- name: fuel_pump_power
+  summary: 归一化减速板位置 1 | 标量
+  direction: output
+  data_types: uint32
+- name: prop_advance
+  summary: 螺旋桨前进比 1 | 向量
+  direction: output
+  data_types: double
+- name: feed_tank_to
+  summary: 供油油箱切换 向量
+  direction: output
+  data_types: uint32
+- name: reverse
+  summary: 反推开关 向量
+  direction: output
+  data_types: uint32
+- name: engine_ok
+  summary: 发动机状态指示 向量
+  direction: output
+  data_types: uint32
+- name: mag_left_ok
+  summary: 左磁电机状态指示 向量
+  direction: output
+  data_types: uint32
+- name: mag_right_ok
+  summary: 右磁电机状态指示 向量
+  direction: output
+  data_types: uint32
+- name: spark_plugs_ok
+  summary: 归一化减速板位置 向量
+  direction: output
+  data_types: uint32
+- name: oil_press_status
+  summary: 油压状态指示 0 | 1 | 2 | 标量
+  direction: output
+  data_types: uint32
+- name: fuel_pump_ok
+  summary: 燃油管理状态指示 向量
+  direction: output
+  data_types: uint32
+- name: num_tanks
+  summary: 有效油箱数量 标量
+  direction: output
+  data_types: uint32
+- name: fuel_selector
+  summary: 燃油选择器 标量
+  direction: output
+  data_types: single
+- name: xfer_pump
+  summary: 指定传输 向量
+  direction: output
+  data_types: uint32
+- name: cross_feed
+  summary: 交输阀 标量
+  direction: output
+  data_types: single
+- name: brake_left
+  summary: 左刹车踏板位置 飞行员 标量
+  direction: output
+  data_types: double
+- name: brake_right
+  summary: 右刹车踏板位置 飞行员 标量
+  direction: output
+  data_types: double
+- name: copilot_brake_left
+  summary: 左刹车踏板位置 飞行员 标量
+  direction: output
+  data_types: double
+- name: copilot_brake_right
+  summary: 右刹车踏板位置 飞行员 标量
+  direction: output
+  data_types: double
+- name: brake_parking
+  summary: 刹车停留位置 标量
+  direction: output
+  data_types: double
+- name: gear_handle
+  summary: 起落架手柄位置 标量
+  direction: output
+  data_types: uint32
+- name: master_avionics
+  summary: 主航电开关 标量
+  direction: output
+  data_types: uint32
+- name: comm_1
+  summary: Comm 1 频率 标量
+  direction: output
+  data_types: double
+- name: comm_2
+  summary: Comm 2 频率 标量
+  direction: output
+  data_types: double
+- name: nav_1
+  summary: Nav 1 频率 标量
+  direction: output
+  data_types: double
+- name: nav_2
+  summary: Nav 2 频率 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -627,8 +842,51 @@ Nav 2 频率，指定为标量，单位为 Hz。
 outputs** 复选框。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Show control surface position outputs
+  summary: 操纵面位置输出 off (默认) | on
+  group: ''
+  block_parameter: ShowControlSurfacePositionOutputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Show engine/fuel outputs
+  summary: 发动机/燃油输出 off (默认) | on
+  group: ''
+  block_parameter: ShowEngineFuelOutputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 显示起落架输出
+  summary: 起落架输出 off（默认）| on
+  group: ''
+  block_parameter: ShowLandingGearOutputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 显示航电输出
+  summary: 航电输出 off（默认）| on
+  group: ''
+  block_parameter: ShowAvionicOutputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 显示环境输出
+  summary: 环境输出 on（默认）| off
+  group: ''
+  block_parameter: ShowEnvironmentOutputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: 采样时间
+  summary: 采样时间 1/30（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''1/30'''
+```
 
 ### **Show control surface position outputs** — 操纵面位置输出 `off` (默认) | `on`
 
@@ -806,7 +1064,6 @@ FlightGear `net_ctrl` 数据包的发动机和燃油输出。
 | **类型**： 字符向量 |
 | **值**： 标量 |
 | **默认值**： `'1/30'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

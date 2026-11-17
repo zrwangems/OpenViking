@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Neutral Port (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: conserving
+- name: n
+  summary: 中性点电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -27,8 +36,16 @@ chinese_source: worker-translation
 ### **n** — 中性点电气
 
 与中性点相关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否对复合或展开的三相端口进行建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Parasitic ground conductance
+  summary: 寄生对地电导 1e-12 1/Ohm（默认）
+  group: ''
+```
 
 ### **Modeling option** — 是否对复合或展开的三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -41,7 +58,6 @@ chinese_source: worker-translation
 ### **Parasitic ground conductance** — 寄生对地电导 `1e-12` `1/Ohm`（默认）
 
 寄生对地电导。对于某些电路拓扑的仿真，需要非零值。
-
 ## 所属库
 
 Simscape / Electrical / Connectors & References

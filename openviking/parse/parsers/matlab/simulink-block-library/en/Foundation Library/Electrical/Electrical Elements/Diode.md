@@ -14,6 +14,15 @@ language: en
 # Diode
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -24,8 +33,19 @@ Electrical conserving port associated with the diode positive terminal.
 ### **-** — Negative terminal electrical
 
 Electrical conserving port associated with the diode negative terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Forward voltage
+  summary: Minimum voltage for forward-biased diode 0.6 V (default) | positive scalar
+  group: ''
+- name: On resistance
+  summary: Resistance of forward-biased diode 0.3 Ohm (default) | positive scalar
+  group: ''
+- name: Off conductance
+  summary: Conductance of reverse-biased diode 1e-8 1/Ohm (default) | positive scalar
+  group: ''
+```
 
 ### **Forward voltage** — Minimum voltage for forward-biased diode `0.6 V` (default) | positive scalar
 
@@ -38,7 +58,6 @@ The resistance of the forward-biased diode.
 ### **Off conductance** — Conductance of reverse-biased diode `1e-8 1/Ohm` (default) | positive scalar
 
 The conductance of the reverse-biased diode.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements

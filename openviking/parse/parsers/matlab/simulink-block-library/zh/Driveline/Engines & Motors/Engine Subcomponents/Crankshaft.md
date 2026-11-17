@@ -15,6 +15,42 @@ chinese_source: worker-translation
 # Crankshaft
 
 ## 端口
+```yaml
+ports:
+- name: CylPwr
+  summary: 气缸功率数组物理信号
+  direction: input
+- name: CylPwr1
+  summary: 气缸 1 功率物理信号
+  direction: input
+- name: CylPwr2
+  summary: 气缸 2 功率物理信号
+  direction: input
+- name: CylPwr3
+  summary: 气缸 3 功率物理信号
+  direction: input
+- name: CylPwr4
+  summary: 气缸 4 功率物理信号
+  direction: input
+- name: CrkPos
+  summary: 曲柄位置，deg 物理信号
+  direction: output
+- name: Spd
+  summary: 发动机转速，rad/s 物理信号
+  direction: output
+- name: AvrSpd
+  summary: 循环平均曲柄转速，rad/s 物理信号
+  direction: output
+- name: AvrTrq
+  summary: 循环平均净指示曲柄扭矩，N\*m 物理信号
+  direction: output
+- name: Trq
+  summary: 瞬时净指示曲柄扭矩，N\*m 物理信号
+  direction: output
+- name: F
+  summary: 曲轴机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -94,8 +130,37 @@ Nm 为单位。
 ### **F** — 曲轴机械旋转
 
 与曲轴从动端相关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Initial crank position, ca0 (0-720 CAdeg)
+  summary: 仿真开始时的曲柄位置 0 deg（默认）| 范围 [0,720) 内的非负标量
+  group: 机械
+- name: Number of cylinders
+  summary: 气缸总数 Single Cylinder（默认）| Two Cylinders | Three Cylinders | Four Cylinders
+  group: 机械
+- name: Input power separately
+  summary: 功率输入选项 on（默认）| off
+  group: 机械
+- name: Spark angle difference
+  summary: 双缸发动机火花角相位 270 deg（默认）| 正标量
+  group: 机械
+- name: Firing order
+  summary: 四缸发动机的点火顺序 1-3-4-2（默认）| 1-3-2-4
+  group: 机械
+- name: Threshold to avoid divide-by-zero
+  summary: 发动机转速阈值 0.1 rad/s（默认）
+  group: 仿真
+- name: Cycle-average speed
+  summary: 输出循环平均转速的选项 on（默认）| off
+  group: 输出
+- name: Cycle-average net indicated torque
+  summary: 输出循环平均净指示扭矩的选项 on（默认）| off
+  group: 输出
+- name: Instantaneous net indicated torque
+  summary: 输出瞬时净指示扭矩的选项 on（默认）| off
+  group: 输出
+```
 
 ### 机械
 
@@ -150,7 +215,6 @@ Cylinders`。
 ### **Instantaneous net indicated torque** — 输出瞬时净指示扭矩的选项 `on`（默认）| `off`
 
 是否输出瞬时净指示扭矩。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors / Engine Subcomponents

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Discrete Transfer Function Estimator
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 系统输入信号 向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: y
+  summary: 系统输出信号 向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Output
+  summary: 传递函数估计 向量 | 矩阵
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -40,8 +55,52 @@ chinese_source: worker-translation
 传递函数估计，以向量或矩阵形式返回。有关该模块如何计算传递函数估计的更多详细信息，请参阅算法。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Window length source
+  summary: 窗长来源 Same as input frame length（默认）| Specify on dialog
+  group: ''
+- name: Window length
+  summary: 窗长 1024（默认）| 正整数 ≥ 2
+  group: ''
+- name: Window overlap (%)
+  summary: 窗之间的重叠百分比 0（默认）| 非负标量
+  group: ''
+- name: Averaging method
+  summary: 平均方法 Running（默认）| Exponential
+  group: ''
+- name: Specify forgetting factor from input port
+  summary: 从输入端口指定遗忘因子 off（默认）| on
+  group: ''
+- name: Forgetting factor
+  summary: 遗忘因子 0.9（默认）| 正标量 ≤ 1
+  group: ''
+- name: Number of spectral averages
+  summary: 频谱平均次数 1（默认）| 正整数
+  group: ''
+- name: FFT length source
+  summary: FFT 长度值的来源 Auto（默认）| Property
+  group: ''
+- name: FFT length
+  summary: FFT 长度 128（默认）| 正整数
+  group: ''
+- name: Window function
+  summary: 窗函数 Hann（默认）| Chebyshev | Flat Top | Hamming | Kaiser | Rectangular
+  group: ''
+- name: Sidelobe attenuation of window (dB)
+  summary: 窗的旁瓣衰减 60（默认）| 正标量
+  group: ''
+- name: Frequency range
+  summary: 传递函数估计的频率范围 Centered（默认）| One-sided | Two-sided
+  group: ''
+- name: Output magnitude squared coherence estimate
+  summary: 幅度平方相干估计 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Window length source** — 窗长来源 `Same as input frame length`（默认）| `Specify on dialog`
 
@@ -137,7 +196,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不更改，C 代码将复用于后续仿真。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

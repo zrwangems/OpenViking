@@ -14,6 +14,32 @@ language: en
 # Video Stream Connector
 
 ## Ports
+```yaml
+ports:
+- name: wrData
+  summary: Input video data scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wrCtrlIn
+  summary: Input control signals accompanying pixel stream pixelControl bus
+  direction: input
+  data_types: pixelcontrol
+- name: rdCtrlIn
+  summary: Ready signal from downstream interface boolean scalar
+  direction: input
+- name: rdData
+  summary: Output video data scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rdCtrlOut
+  summary: Output control signals accompanying output pixel stream pixelcontrol bus
+  direction: output
+  data_types: pixelcontrol
+- name: wrCtrlOut
+  summary: Ready signal to the upstream interface boolean scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -59,11 +85,12 @@ Control signal that indicates that the block can receive stream data from upstre
 interface.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 SoC Blockset / Hardware Logic Connectivity

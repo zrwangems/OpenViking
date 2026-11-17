@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # GRU Projected Layer
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据向量 | 二维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输出数据二维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,134 @@ chinese_source: worker-translation
 将 GRU 投影操作应用于输入数据的结果。输出数据具有两个维度，分别对应通道和时间步，按此顺序排列。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Layer
+  summary: 对应的层对象 layerObject（默认）| gruProjectedLayer 对象
+  group: 主要
+  block_parameter: Layer
+  type: 工作区变量
+  values: gruProjectedLayer 对象
+- name: Data format
+  summary: 输入数据的格式 CT（默认）
+  group: 主要
+  block_parameter: DataFormat
+  type: 字符向量
+  values: '''CT'''
+- name: Stateful prediction
+  summary: 是否使用有状态预测 on（默认）| off
+  group: 主要
+  block_parameter: StatefulPrediction
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Activation approximation method
+  summary: 计算激活函数输出的近似方法 None（默认）| CORDIC | Lookup
+  group: 数据类型
+  block_parameter: ApproximationMethod
+  type: 字符向量
+  values: '''None'' | ''CORDIC'' | ''Lookup'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '输出的数据类型 Inherit: Inherit via internal rule（默认）| <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| <data type expression>'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  values: '''Floor''（默认）| ''Ceiling'' | ''Convergent'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Input weights
+  summary: '输入权重的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: InputWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Recurrent weights
+  summary: '循环权重的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: RecurrentWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Bias
+  summary: '偏置的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: BiasDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Input projector weights
+  summary: '输入投影权重的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: InputProjectorWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Output projector weights
+  summary: '输出投影权重的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: OutputProjectorWeightsDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Initial hidden state
+  summary: '初始隐藏状态的数据类型 Inherit: Inherit via back propagation（默认）| Inherit: Inherit from ''Constant value'' | <data type expression>'
+  group: 数据类型
+  block_parameter: InitialHiddenStateDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''Inherit: Inherit from ''Constant value'''' | <data type expression>'
+- name: Hidden state
+  summary: '隐藏状态的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit: Inherit
+    via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: HiddenStateDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Keep LSB'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''Inherit: Same as accumulator'' | <data type expression>'
+- name: Input weights matrix multiply output
+  summary: '输入权重矩阵乘法输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: InputWeightsMatrixMulitplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Recurrent weights matrix multiply output
+  summary: '循环权重矩阵乘法输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: RecurrentWeightsMatrixMulitplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Input projector weights matrix multiply output
+  summary: '输入投影器权重矩阵乘法输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: InputProjectorWeightsMatrixMultiplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Output projector weights matrix multiply output
+  summary: '输出投影器权重矩阵乘法输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Keep MSB | Inherit: Match scaling | Inherit:
+    Inherit via back propagation | Inherit: Same as first input | <data type expression>'
+  group: 数据类型
+  block_parameter: OutputProjectorWeightsMatrixMultiplyOutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | <data type expression>'
+- name: Sample time
+  summary: 用于指定采样时间的选项 -1（默认）| 标量
+  group: Execution
+  block_parameter: SampleTime
+  values: '''-1''（默认）| 标量'
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -463,7 +600,6 @@ Simulink 会选择一种数据类型，以在数值精度、性能和生成代�
 | **Parameter:** `SampleTime` |
 | **Data Types:** `char` |
 | **值**：`'-1'`（默认）| 标量 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Learning Layers / Sequence Layers

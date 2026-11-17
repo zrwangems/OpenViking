@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # PS Concatenate
 
 ## 端口
+```yaml
+ports:
+- name: I1
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: I2
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -36,13 +48,17 @@ chinese_source: worker-translation
 输出物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Concatenate horizontally
+  summary: 指定矩阵的连接方法 Off（默认）| On
+  group: ''
+```
 
 ### **Concatenate horizontally** — 指定矩阵的连接方法 `Off`（默认）| `On`
 
 如果输入信号是矩阵，则默认情况下模块垂直连接它们。要水平连接矩阵，请选中 **Concatenate horizontally** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Functions

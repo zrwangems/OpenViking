@@ -14,6 +14,21 @@ language: en
 # String Contains, String Starts With, String Ends With
 
 ## Ports
+```yaml
+ports:
+- name: str
+  summary: String to search scalar
+  direction: input
+  data_types: string
+- name: sub
+  summary: String pattern to search for scalar
+  direction: input
+  data_types: string
+- name: T/F
+  summary: String pattern detected 1 | 0
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -36,8 +51,25 @@ Whether the string pattern was detected, returned as detected
 (`1`) or not detected (`0`).
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Case sensitive
+  summary: Case sensitivity on (default) | off
+  group: ''
+  block_parameter: CaseSensitive
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Function
+  summary: Pattern search function Contains | Starts with | Ends with
+  group: ''
+  block_parameter: Function
+  type: character vector
+  values: '''Contains'' | ''Starts with'' | ''Ends with'''
+  default: '''Contains'' for String Contains block, ''Starts with'' for String Starts With block, ''Ends with'' for String
+    Ends With block'
+```
 
 ### **Case sensitive** — Case sensitivity on (default) | off
 
@@ -83,7 +115,6 @@ Pattern search function, specified as:
 | **Type**: character vector |
 | **Values:** `'Contains'` | `'Starts with'` | `'Ends with'` |
 | **Default**: `'Contains'` for String Contains block, `'Starts with'` for String Starts With block, `'Ends with'` for String Ends With block |
-
 ## Libraries
 
 Simulink / String

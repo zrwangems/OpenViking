@@ -14,6 +14,17 @@ language: en
 # Invert 3x3 Matrix
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input matrix 3-by-3 matrix
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Matrix inverse 3-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -29,11 +40,12 @@ Input matrix to be inverted, specified as a 3-by-3 matrix.
 Matrix inverse of input matrix, returned as a 3-by-3 matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

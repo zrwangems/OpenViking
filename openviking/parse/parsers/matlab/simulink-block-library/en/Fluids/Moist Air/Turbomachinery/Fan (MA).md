@@ -14,6 +14,21 @@ language: en
 # Fan (MA)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Fluid entry moist air
+  direction: conserving
+- name: B
+  summary: Fluid exit moist air
+  direction: conserving
+- name: R
+  summary: Shaft mechanical rotational
+  direction: conserving
+- name: C
+  summary: Casing mechanical rotational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -33,8 +48,104 @@ Mechanical rotational conserving port associated with the shaft.
 
 Mechanical rotational conserving port associated with the
 casing.
-
 ## Parameters
+```yaml
+parameters:
+- name: Fan parameterization
+  summary: Fan performance model Static pressure and flow rate at reference shaft speed (default) | 1D tabulated data - static
+    pressure vs. flow rate at reference shaft speed | 2D tabulated data - static pressure vs. shaft speed and flow rate |
+    2D tabulated data - flow rate vs. shaft speed and static pressure
+  group: ''
+- name: Shaft power specification
+  summary: Power definition Fan efficiency (default) | Brake power
+  group: ''
+- name: Nominal volumetric flow rate
+  summary: Flow rate at reference shaft speed 0.12 m^3/s (default) | positive scalar
+  group: ''
+- name: Nominal static pressure gain
+  summary: Pressure gain at reference shaft speed 5400 Pa (default) | positive scalar
+  group: ''
+- name: Nominal efficiency
+  summary: Efficiency at reference shaft speed 0.40 (default) | positive scalar
+  group: ''
+- name: Nominal mechanical power
+  summary: Power at nominal efficiency 1620 W (default) | positive scalar
+  group: ''
+- name: Maximum static pressure gain at zero flow
+  summary: Maximum pressure at reference shaft speed 6400 Pa (default) | positive scalar
+  group: ''
+- name: Maximum volumetric flow rate at zero pressure
+  summary: Maximum flow rate at reference shaft speed 0.24 m^3/s (default) | positive scalar
+  group: ''
+- name: Reference shaft speed
+  summary: Fan curve reference speed 3000 rpm (default) | positive scalar
+  group: ''
+- name: Minimum shaft speed threshold as fraction of reference
+  summary: Threshold for minimum shaft speed 1e-2 (default) | positive scalar
+  group: ''
+- name: Volumetric flow rate vector
+  summary: Fan curve flow rate vector [.0278, .0556, .0833, .111, .139, .167] m^3/s (default) | vector
+  group: ''
+- name: Static pressure gain vector
+  summary: Pressure gain for given volumetric flow rate [6410, 6375, 6018, 5366, 4501, 3609] Pa (default) | vector
+  group: ''
+- name: Efficiency vector
+  summary: Efficiency for given volumetric flow rate [.257, .394, .453, .47, .459, .415] (default) | vector
+  group: ''
+- name: Mechanical power vector
+  summary: Power for parameterization of torque [693, 900, 1107, 1267, 1363, 1452] W (default) | 1-by-*n* vector
+  group: ''
+- name: Reference density
+  summary: Density associated with fan curve data 1.2 kg/m^3 (default) | positive scalar
+  group: ''
+- name: Shaft speed vector, w
+  summary: Shaft angular velocity for given [2400; 3000; 3600] rpm (default) | vector
+  group: ''
+- name: Volumetric flow rate vector, q
+  summary: Flow rate for parameterization of pressure gain [.0278, .0556, .0833, .111, .139, .167] m^3/s (default) | 1-by-*n*
+    vector
+  group: ''
+- name: Static pressure gain table, dp(w,q)
+  summary: Pressure for parameterization of pressure [4111, 4010, 3551, 2881, 2167, 1453; 6410, 6375, 6018, 5366, 4501, 3609;
+    9217, 9285, 9022, 8428, 7552, 6482] Pa (default) | *M*-by-*N* matrix
+  group: ''
+- name: Efficiency table, eta(w,q)
+  summary: Efficiency for parameterization of torque [.3, .434, .468, .459, .4, .3; .257, .394, .453, .47, .459, .415; .225,
+    .359, .434, .461, .47, .459] 1 (default) | *M*-by-*N* matrix
+  group: ''
+- name: Mechanical power table, W(w,q)
+  summary: Mechanical power for parameterization of torque [381, 514, 632, 697, 753, 809; 693, 900, 1107, 1267, 1363, 1452;
+    1139, 1438, 1732, 2029, 2233, 2358] W (default) | *M*-by-*N* matrix
+  group: ''
+- name: Static pressure gain vector, dp
+  summary: Pressure for parameterization of flow rate [31, 62, 93, 124] Pa (default) | 1-by-*N* vector
+  group: ''
+- name: Volumetric flow rate table, q(w,dp)
+  summary: Flow rate for parameterization of flow rate [.802, .759, .703, .611; .936, .902, .862, .81; 1.056, 1.027, .994,
+    .956] m^3/s (default) | *M*-by-*N* matrix
+  group: ''
+- name: Efficiency table, eta(w,dp)
+  summary: Efficiency for parameterization of torque [.088, .162, .22, .261; .068, .128, .18, .222; .055, .105, .148, .188]
+    (default) | *M*-by-*N* matrix
+  group: ''
+- name: Mechanical power table, W(w,dp)
+  summary: Mechanical power for parameterization of torque [283, 290, 297, 290; 427, 437, 445, 452; 595, 606, 625, 631] W
+    (default) | *M*-by-*N* matrix
+  group: ''
+- name: Fan diameter scale factor
+  summary: Model-to-reference scale factor 1 (default) | positive scalar
+  group: ''
+- name: Mechanical orientation
+  summary: Rotational orientation Positive angular velocity of port R relative to port C corresponds to normal fan operation
+    (default) | Negative angular velocity of port R relative to port C corresponds to normal fan operation
+  group: ''
+- name: Inlet flow area (port A)
+  summary: Port A area 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Outlet flow area (port B)
+  summary: Port B area 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Fan parameterization** — Fan performance model `Static pressure and flow rate at reference shaft speed` (default) | `1D tabulated data - static pressure vs. flow rate at reference shaft speed` | `2D tabulated data - static pressure vs. shaft speed and flow rate` | `2D tabulated data - flow rate vs. shaft speed and static pressure`
 
@@ -543,7 +654,6 @@ Cross-sectional area of the moist air flow at the fan inlet.
 ### **Outlet flow area (port B)** — Port B area `0.01` `m^2` (default) | positive scalar
 
 Cross-sectional area of the moist air flow at the fan outlet.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Turbomachinery

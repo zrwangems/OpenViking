@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # Connection Label
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 连接端口 无类型电路包络端口
+  direction: input
+```
 
 ### 输入
 
@@ -23,15 +29,19 @@ chinese_source: worker-translation
 电路包络连接端口。默认情况下，此端口为无类型。
 
 通过将此端口连接到子系统内另一个模块的电路包络端口来定义端口类型。建立连接后，同一子系统内具有相同标签的其他 Connection Label 模块只能连接到相同类型的端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Label
+  summary: 连接标签的名称 Label1（默认）| 字符向量 | 字符串
+  group: ''
+```
 
 ### **Label** — 连接标签的名称 `Label1`（默认）| 字符向量 | 字符串
 
 标签名称，用于建立虚拟连接。如果模型同一子系统中的两个或多个 Connection Label 模块具有相同的标签，则连接到它们的模块的电路包络端口的行为就如同它们物理连接一样。
 
 此参数的值在模型画布上显示为模块图标旁边的标签。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Utilities Simscape / Utilities

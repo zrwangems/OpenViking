@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Starter
 
 ## 端口
+```yaml
+ports:
+- name: MtrSpd
+  summary: 角速度 scalar
+  direction: input
+- name: StartVolt
+  summary: 电枢和励磁电压 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: LdCurr
+  summary: 起动机负载电流 scalar
+  direction: output
+- name: MtrTrq
+  summary: 起动机轴转矩 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -54,8 +72,85 @@ chinese_source: worker-translation
 ### **MtrTrq** — 起动机轴转矩 `scalar`
 
 起动机轴转矩，单位为 N·m。
-
 ## 参数
+```yaml
+parameters:
+- name: Motor Type
+  summary: 选择电机类型 Separately Excited DC Motor（默认）| Permanent Magnet Excited DC Motor | Series Connection DC Motor
+  group: ''
+  block_parameter: machine_type
+  values: Separately Excited DC Motor（默认）| Permanent Magnet Excited DC Motor | Series Connection DC Motor
+- name: Armature winding resistance, Ra
+  summary: 电阻 1（默认）| scalar
+  group: ''
+  block_parameter: Ra
+  values: 1（默认）| scalar
+- name: Armature winding inductance, La
+  summary: 电感 .1（默认）| scalar
+  group: ''
+  block_parameter: La
+  values: .1（默认）| scalar
+- name: Field winding resistance, Rf
+  summary: 电阻 .3（默认）| scalar
+  group: ''
+  block_parameter: Rf
+  values: .3（默认）| scalar
+- name: Field winding inductance, Lf
+  summary: 电感 .2（默认）| scalar
+  group: ''
+  block_parameter: Lf
+  values: .2（默认）| scalar
+- name: Mutual inductance, Laf
+  summary: 电感 .3（默认）| scalar
+  group: ''
+  block_parameter: Laf
+  values: .3（默认）| scalar
+- name: Initial armature current and field current, Iaf
+  summary: 电流 [0 0]（默认）| vector
+  group: ''
+  block_parameter: Iaf
+  values: '[0 0]（默认）| vector'
+- name: Armature winding resistance, Rapm
+  summary: 电阻 .5（默认）| scalar
+  group: ''
+  block_parameter: Rapm
+  values: .5（默认）| scalar
+- name: Armature winding inductance, Lapm
+  summary: 电感 .1（默认）| scalar
+  group: ''
+  block_parameter: Lapm
+  values: .1（默认）| scalar
+- name: Torque constant, Kt
+  summary: 电机转矩常数 .1（默认）| scalar
+  group: ''
+  block_parameter: Kt
+  values: .1（默认）| scalar
+- name: Initial armature current, Ia
+  summary: 电流 .1（默认）| scalar
+  group: ''
+  block_parameter: Ia
+  values: .1（默认）| scalar
+- name: 总电阻，Rser
+  summary: 电阻 .1（默认）| scalar
+  group: ''
+  block_parameter: Rser
+  values: .1（默认）| scalar
+- name: 总电感，Lser
+  summary: 电感 .1（默认）| scalar
+  group: ''
+  block_parameter: Lser
+  values: .1（默认）| scalar
+- name: 初始电流，Iafser
+  summary: 电流 0（默认）| scalar
+  group: ''
+  block_parameter: Iafser
+  values: 0（默认）| scalar
+- name: 互感，Lafser
+  summary: 电感 .3（默认）| scalar
+  group: ''
+  block_parameter: Lafser
+  values: .3（默认）| scalar
+```
 
 #### 配置
 
@@ -415,7 +510,6 @@ DC Motor`。
 #### 依赖关系
 
 要启用此参数，请为 **Motor Type** 参数选择 `Series Excited DC Motor`。
-
 ## 所属库
 
 Powertrain Blockset / Energy Storage and Auxiliary Drive / Starter

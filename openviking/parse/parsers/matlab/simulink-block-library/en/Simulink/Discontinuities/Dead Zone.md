@@ -14,6 +14,17 @@ language: en
 # Dead Zone
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -30,8 +41,48 @@ Output signal after the dead-zone algorithm is applied to the input
 signal.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Start of dead zone
+  summary: Specify the lower bound of the dead zone '-0.5' (default) | scalar | vector
+  group: ''
+  block_parameter: LowerValue
+  type: character vector
+  values: scalar or vector less than or equal to UpperValue.
+  default: '''-0.5'''
+- name: End of dead zone
+  summary: Specify the upper limit of the dead zone '0.5' (default) | scalar | vector
+  group: ''
+  block_parameter: UpperValue
+  type: character vector
+  values: scalar or vector greater than or equal to LowerValue.
+  default: '''0.5'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action on (default) | off
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''on'' (default) | ''off'''
+- name: Treat as gain when linearizing
+  summary: Specify the gain value on (default) | off
+  group: ''
+  block_parameter: LinearizeAsGain
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: ''
+  block_parameter: ZeroCross
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Start of dead zone** — Specify the lower bound of the dead zone `'-0.5'` (default) | scalar | vector
 
@@ -159,7 +210,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Discontinuities HDL Coder / Discontinuities

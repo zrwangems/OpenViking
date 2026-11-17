@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Relay
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,84 @@ chinese_source: worker-translation
 输出信号在由参数 **Output when on** 和 **Output when off** 确定的两个值之间切换。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Switch on point
+  summary: 打开继电器的输入值 'eps'（默认）| 标量
+  group: ''
+  block_parameter: OnSwitchValue
+  type: 字符向量
+  values: 标量
+  default: '''eps'''
+- name: Switch off point
+  summary: 关闭继电器的输入值 'eps'（默认）| 标量
+  group: ''
+  block_parameter: OffSwitchValue
+  type: 字符向量
+  values: 标量
+  default: '''eps'''
+- name: Output when on
+  summary: 继电器打开时的输出值 1（默认）| 标量
+  group: ''
+  block_parameter: OnOutputValue
+  type: 字符向量
+  values: 标量
+  default: '''1'''
+- name: Output when off
+  summary: 继电器关闭时的输出值 0（默认）| 标量
+  group: ''
+  block_parameter: OffOutputValue
+  type: 字符向量
+  values: 标量
+  default: '''0'''
+- name: Input processing
+  summary: 指定基于采样或基于帧的处理 Elements as channels (sample based)（默认）| Columns as channels (frame based)
+  group: ''
+  block_parameter: InputProcessing
+  type: 字符向量
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: ''
+  block_parameter: ZeroCross
+  type: 字符向量 | 字符串
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: ''
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: ''
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '输出信号的数据类型 Inherit: All ports same datatype（默认）| Inherit: Inherit via back propagation | double | single | int8
+    | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type expression> | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: All ports same datatype'' | ''Inherit: Inherit via back propagation'' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | fixdt(1,16) | fixdt(1,16,0)
+    | fixdt(1,16,2^0,0) | ''Enum: <class name>'' | ''<data type expression>'''
+  default: '''Inherit: All ports same datatype'''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: ''
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Switch on point** — 打开继电器的输入值 `'eps'`（默认）| 标量
 
@@ -223,7 +310,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Discontinuities HDL Coder / Discontinuities

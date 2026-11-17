@@ -14,6 +14,21 @@ language: en
 # N-Channel LDMOS FET
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate terminal electrical
+  direction: conserving
+- name: D
+  summary: Drain terminal electrical
+  direction: conserving
+- name: S
+  summary: Source terminal electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -40,8 +55,110 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Gain, [channel drift_region]
+  summary: Gain [11.6, .01] A/V (default) | positive vector
+  group: Main
+- name: Flatband voltage, [channel drift_region]
+  summary: Flatband voltage [-1.05, -.1] V (default)
+  group: Main
+- name: Body factor, [channel drift_region]
+  summary: Body factor [3.4, 2.5] V1/2 (default)
+  group: Main
+- name: Surface potential at strong inversion, [channel drift_region]
+  summary: Surface potential at strong inversion [.95, .95] V (default)
+  group: Main
+- name: Velocity saturation factor, [channel drift_region]
+  summary: Velocity saturation factor [0, .1] 1/V (default)
+  group: Main
+- name: Drift region surface scattering factor
+  summary: Drift region surface scattering factor 0 V (default)
+  group: Main
+- name: Channel-length modulation factor
+  summary: Channel-length modulation factor 0 (default)
+  group: Main
+- name: Channel-length modulation voltage
+  summary: Channel-length modulation voltage 5e-2 V (default)
+  group: Main
+- name: Linear-to-saturation transition coefficient
+  summary: Linear-to-saturation transition coefficient 8 (default)
+  group: Main
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Main
+- name: Source ohmic resistance
+  summary: Source ohmic resistance 1e-4 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Drain ohmic resistance
+  summary: Drain ohmic resistance 0.07 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Gate ohmic resistance
+  summary: Gate ohmic resistance 8.4 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Drift region low-bias resistance for gated region
+  summary: Drift region low-bias resistance for gated region 0.1 Ohm (default) | nonnegative scalar
+  group: Ohmic Resistance
+- name: Drift region depletion layer thickness factor
+  summary: Drift region depletion layer thickness factor 0.2 (default)
+  group: Ohmic Resistance
+- name: Oxide capacitance, [channel drift_region]
+  summary: Oxide capacitance [1600, 1000] pF (default)
+  group: Capacitances
+- name: Gate-source overlap capacitance
+  summary: Gate-source overlap capacitance 15 pF (default)
+  group: Capacitances
+- name: Gate-drain overlap capacitance
+  summary: Gate-drain overlap capacitance 15 pF (default)
+  group: Capacitances
+- name: Reverse saturation current
+  summary: Reverse saturation current 1e-13 A (default)
+  group: Body Diode
+- name: Built-in voltage
+  summary: Built-in voltage 0.6 V (default)
+  group: Body Diode
+- name: Ideality factor
+  summary: Ideality factor 1 (default)
+  group: Body Diode
+- name: Zero-bias junction capacitance
+  summary: Zero-bias junction capacitance 1800 pF (default)
+  group: Body Diode
+- name: Transit time
+  summary: Transit time 50e-9 s (default)
+  group: Body Diode
+- name: Parameterization
+  summary: Temperature dependence parameterization None — Simulate at parameter measurement temperature (default) | Model
+    temperature dependence
+  group: Temperature Dependence
+- name: Device simulation temperature
+  summary: Device simulation temperature 25 degC (default)
+  group: Temperature Dependence
+- name: Gain temperature exponent, [channel drift_region]
+  summary: Gain temperature exponent [1.3, 1.3] (default)
+  group: Temperature Dependence
+- name: Flatband voltage temperature coefficient, [channel drift_region]
+  summary: Flatband voltage temperature coefficient [.0005, .0005] V/K (default)
+  group: Temperature Dependence
+- name: Surface potential at strong inversion temperature coefficient
+  summary: Surface potential -8.5e-4 V/K (default)
+  group: Temperature Dependence
+- name: Velocity saturation temperature exponent, [channel drift_region]
+  summary: Velocity saturation temperature exponent [1.04, 1.04] (default)
+  group: Temperature Dependence
+- name: Ohmic resistance temperature exponent
+  summary: Ohmic resistance temperature exponent 0.95 (default)
+  group: Temperature Dependence
+- name: Drift region low-bias resistance temperature exponent for gated portion
+  summary: Drift region low-bias resistance temperature exponent for gated portion 0.95 (default)
+  group: Temperature Dependence
+- name: Body diode reverse saturation current temperature exponent
+  summary: Body diode reverse saturation current temperature exponent 3 (default)
+  group: Temperature Dependence
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -403,7 +520,6 @@ roughly proportional to
 the effect of neglecting the temperature-dependence of the bandgap by a
 pragmatic choice of
 *ηIs*.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

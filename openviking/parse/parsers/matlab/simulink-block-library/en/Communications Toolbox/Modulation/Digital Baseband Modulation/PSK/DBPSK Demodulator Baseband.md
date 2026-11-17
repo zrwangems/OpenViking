@@ -14,6 +14,21 @@ language: en
 # DBPSK Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: DBPSK-modulated baseband signal scalar | column vector
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: Noise variance positive scalar | vector of positive values
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output signal scalar | column vector
+  direction: output
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -48,8 +63,26 @@ values of `0` or `1`.
 This port is unnamed on the block.
 
 **Data Types:** `double` | `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase rotation (rad)
+  summary: Additional phase shift 0 (default) | scalar
+  group: Main
+- name: Decision type
+  summary: Decision method for demodulation Hard decision (default) | Approximate log-likelihood ratio
+  group: Main
+- name: Noise variance source
+  summary: Source of noise variance Property (default) | Input port
+  group: Main
+- name: Noise variance
+  summary: Variance of noise 1 (default) | nonnegative scalar
+  group: Main
+- name: Output data type
+  summary: Output data type Inherit via internal (default) | Smallest unsigned integer | double | single | int8 | uint8 |
+    int16 | uint16 | int32 | uint32 | boolean
+  group: Main
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -124,7 +157,6 @@ type matches the input data type. The input data type must be either
 double or single.
 
 For more information, see Supported Data Types.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK

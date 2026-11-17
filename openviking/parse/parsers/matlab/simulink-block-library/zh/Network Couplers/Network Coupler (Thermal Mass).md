@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Network Coupler (Thermal Mass)
 
 ## 端口
+```yaml
+ports:
+- name: '1'
+  summary: 将此端口连接到变步长网络，或连接到具有较小采样时间的定步长网络 thermal | thermal node array
+  direction: conserving
+- name: '2'
+  summary: 将此端口连接到具有较大采样时间的定步长网络 thermal | thermal node array
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -26,8 +35,50 @@ chinese_source: worker-translation
 ### **2** — 将此端口连接到具有较大采样时间的定步长网络 thermal | thermal node array
 
 如果耦合网络之一以变步长运行，请将 Network Coupler (Thermal Mass) 模块的端口 **2** 连接到定步长网络。如果两个网络均以定步长运行，请将此端口连接到具有较大采样时间的网络。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermal node array size
+  summary: 指定热节点数量 1（默认）| 正整数
+  group: 主要
+- name: Thermal mass (J/K)
+  summary: 指定热质量值 100（默认）| 正标量
+  group: 主要
+- name: Sampling type
+  summary: 为耦合网络选择采样类型场景 Variable step at ports 1 and 2（默认）| 端口 1 使用可变步长，端口 2 使用固定步长 2 | Fixed step both ports with common
+    sample time | 两个端口均使用固定步长，且端口 2 的采样更快 1
+  group: 主要
+- name: Port 1 network discrete sample time (s)
+  summary: 指定网络 1 的采样时间 0.02（默认）| 正标量
+  group: 主要
+- name: Port 2 network discrete sample time (s)
+  summary: 指定网络 2 的采样时间 0.1（默认）| 正标量
+  group: 主要
+- name: Use prediction when connecting fixed step to variable step
+  summary: 允许您启用或关闭预测（离散->连续）算法 关闭（默认）| 开启
+  group: 主要
+- name: Use smoothing when connecting variable step to fixed step
+  summary: 允许您启用或关闭平滑（连续->离散）算法 关闭（默认）| 开启
+  group: 主要
+- name: Smoothing time constant (s)
+  summary: 指定一阶滤波器的时间常数 0.01（默认）| 正标量
+  group: 主要
+- name: Use prediction when connecting slow to fast sample times
+  summary: 允许您启用或关闭预测（慢->快）算法 关闭（默认）| 开启
+  group: 主要
+- name: Use smoothing when connecting fast to slow sample times
+  summary: 允许您启用或关闭平滑（快->慢）算法 关闭（默认）| 开启
+  group: 主要
+- name: Number of samples over which to smooth
+  summary: 指定用于求平均的样本数 1（默认）| 正标量
+  group: 主要
+- name: Approximate connected network thermal conductance (W/K)
+  summary: 指定连接网络的近似热导 1（默认）| 正标量
+  group: 分析
+- name: Initial temperature (K)
+  summary: 指定热质量的初始温度 300（默认）| 正标量
+  group: 初始条件
+```
 
 ### 主要
 
@@ -151,7 +202,6 @@ fast to slow sample times** 复选框。
 ### **Initial temperature (K)** — 指定热质量的初始温度 `300`（默认）| 正标量
 
 指定热质量温度的初始条件，以 K 为单位。
-
 ## 所属库
 
 Simscape / Utilities / Network Couplers

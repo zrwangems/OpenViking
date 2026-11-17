@@ -15,10 +15,31 @@ chinese_source: worker-translation
 # Revolutions Per Minute (RPM) Indicator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 连接到信号 信号名称
+  group: ''
+- name: Scale Colors
+  summary: 色带范围 0（默认）| double | 标量
+  group: ''
+  block_parameter: ScaleColors
+  type: '*n*-by-1 struct array'
+  values: struct array with elements Min、Max 和 Color
+- name: Label
+  summary: 模块标签位置 Top（默认）| Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — 连接到信号 信号名称
 
@@ -64,7 +85,6 @@ R2025b 中未记录。
 | **类型**：character vector |
 | **值**：`'Top'` | `'Bottom'` | `'Hide'` |
 | **默认值**：`'Top'` |
-
 ## 所属库
 
 Aerospace Blockset / Flight Instruments

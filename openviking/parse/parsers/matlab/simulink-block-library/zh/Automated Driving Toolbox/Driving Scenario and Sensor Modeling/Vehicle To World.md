@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Vehicle To World
 
 ## 端口
+```yaml
+ports:
+- name: Actors
+  summary: 车辆坐标系中的参与者位姿 包含 MATLAB 结构的 Simulink® 总线
+  direction: input
+- name: Ego Vehicle
+  summary: 自车位姿 包含 MATLAB 结构的 Simulink 总线
+  direction: input
+- name: Actors
+  summary: 世界坐标系中的参与者位姿 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -85,8 +97,19 @@ chinese_source: worker-translation
 | `Pitch` | 参与者的俯仰角，指定为实值标量。单位为度。 |
 | `Yaw` | 参与者的偏航角，指定为实值标量。单位为度。 |
 | `AngularVelocity` | 参与者在 *x*、*y* 和 *z* 方向上的角速度 (*ω*)，指定为 [*ω**x* *ω**y* *ω**z*] 形式的实值向量。单位为度每秒。 |
-
 ## 参数
+```yaml
+parameters:
+- name: Source of actors bus name
+  summary: 参与者位姿总线名称的来源 Auto（默认） | Property
+  group: ''
+- name: Actors bus name
+  summary: 参与者位姿总线名称 有效总线名称
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认） | Code generation
+  group: ''
+```
 
 ### **Source of actors bus name** — 参与者位姿总线名称的来源 `Auto`（默认） | `Property`
 
@@ -107,7 +130,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，可以调试模块的源代码。
 - `Code generation` — 使用生成的 C/C++ 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C/C++ 代码。只要模型不发生变化，C 代码将在后续仿真中重用。此选项需要额外的启动时间。
-
 ## 所属库
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

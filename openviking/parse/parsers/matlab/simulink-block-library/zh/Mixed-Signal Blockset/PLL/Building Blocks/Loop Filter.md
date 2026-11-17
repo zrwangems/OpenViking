@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Loop Filter
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入电流标量
+  direction: input
+  data_types: double
+- name: out
+  summary: 输出电压标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,46 @@ chinese_source: worker-translation
 输出电压，指定为标量。在 PLL 系统中，**out** 端口连接到 VCO 模块的输入端口，并向 VCO 提供控制电压。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Loop filter type
+  summary: 环路滤波器的阶数 3rd Order passive（默认）| 2nd Order passive | 4th Order passive
+  group: 配置
+- name: C1 (F)
+  summary: 电容 1 14.5661e-15（默认）| 正实数标量
+  group: 配置
+- name: C2 (F)
+  summary: 电容 2 160.276e-15（默认）| 正实数标量
+  group: 配置
+- name: C3 (F)
+  summary: 电容 3 1.0452e-15（默认）| 正实数标量
+  group: 配置
+- name: C4 (F)
+  summary: 电容 4 1e-12（默认）| 正实数标量
+  group: 配置
+- name: R2 (ohms)
+  summary: 电阻 2 3.9955e6（默认）| 正实数标量
+  group: 配置
+- name: R3 (ohms)
+  summary: 电阻 3 51.0435e6（默认）| 正实数标量
+  group: 配置
+- name: R4 (ohms)
+  summary: 电阻 4 12e3（默认）| 正实数标量
+  group: 配置
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: 配置
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 1000（默认）| 正整数标量
+  group: 配置
+- name: Enable impairments
+  summary: 向仿真中添加电路损伤 off（默认）| on
+  group: Impairments
+- name: Operating temperature (℃)
+  summary: 用于确定热噪声水平的温度 30（默认）| 标量
+  group: Impairments
+```
 
 ### 配置
 
@@ -178,7 +227,6 @@ chinese_source: worker-translation
 - 使用 `set_param(gcb,'Temperature',value)` 将 **Operating temperature (℃)** 设置为特定值。
 
 **Data Types:** `double`
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Building Blocks

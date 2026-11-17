@@ -14,6 +14,13 @@ language: en
 # Switch
 
 ## Ports
+```yaml
+ports:
+- name: Vctl
+  summary: Simulink control signal scalar
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -22,8 +29,19 @@ language: en
 Simulink control signal, specified as a scalar.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: On resistance
+  summary: On resistance 10 (default) | positive scalar
+  group: ''
+- name: Off resistance
+  summary: Off resistance 1e-6 (default) | positive scalar
+  group: ''
+- name: Threshold voltage
+  summary: Threshold voltage 0 (default) | scalar
+  group: ''
+```
 
 ### **On resistance** — On resistance `10` (default) | positive scalar
 
@@ -38,7 +56,6 @@ ohms.
 ### **Threshold voltage** — Threshold voltage `0` (default) | scalar
 
 Threshold voltage of the switch, specified as a scalar in volts.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Junctions

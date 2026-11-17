@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Integrator (Discrete or Continuous)
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 积分器输入向量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 恢复到初始状态标量
+  direction: input
+  data_types: single | double
+- name: x0
+  summary: 初始状态向量
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 积分器输出向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -43,8 +62,29 @@ chinese_source: worker-translation
 积分器输出。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Integrator method
+  summary: '用于指定积分或累加方法的选项 Integration: Forward Euler（默认）| Integration: Backward Euler | Integration: Trapezoidal | Accumulation:
+    Forward Euler | Accumulation: Backward Euler | Accumulation: Trapezoidal'
+  group: ''
+- name: External reset
+  summary: 复位策略 level（默认）| rising | falling | either
+  group: ''
+- name: Limit type
+  summary: 饱和策略 Anti-windup（默认）| Windup
+  group: ''
+- name: Upper saturation limit
+  summary: 状态上限 inf（默认）| 实数
+  group: ''
+- name: Lower saturation limit
+  summary: 状态下限 -inf（默认）| 实数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Integrator method** — 用于指定积分或累加方法的选项 `Integration: Forward Euler`（默认）| `Integration: Backward Euler` | `Integration: Trapezoidal` | `Accumulation: Forward Euler` | `Accumulation: Backward Euler` | `Accumulation: Trapezoidal`
 
@@ -89,7 +129,6 @@ chinese_source: worker-translation
 对于离散时间操作，请将此参数设置为正整数。对于连续时间操作，请将此参数设置为 `0`。
 
 如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

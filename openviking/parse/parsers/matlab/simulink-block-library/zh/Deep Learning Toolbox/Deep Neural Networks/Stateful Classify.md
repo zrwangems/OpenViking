@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Stateful Classify
 
 ## 端口
+```yaml
+ports:
+- name: input
+  summary: 序列或时间序列数据 数值数组
+  direction: input
+- name: ypred
+  summary: 预测的类别标签 枚举
+  direction: output
+- name: scores
+  summary: 预测的类别分数 矩阵
+  direction: output
+- name: labels
+  summary: 预测分数对应的类别标签 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -39,8 +54,67 @@ chinese_source: worker-translation
 ### **labels** — 预测分数对应的类别标签 矩阵
 
 与预测分数关联的标签，以 *N*×*K* 矩阵返回，其中 *N* 是观测数，*K* 是类别数。
-
 ## 参数
+```yaml
+parameters:
+- name: Network
+  summary: 训练好的循环神经网络的来源 Network from MAT file（默认）| Network from MATLAB function
+  group: ''
+  block_parameter: Network
+  type: 字符向量、字符串
+  values: '''Network from MAT file'' | ''Network from MATLAB function'''
+  default: '''Network from MAT file'''
+- name: File path
+  summary: 包含训练好的循环神经网络的 MAT 文件 untitled.mat（默认）| MAT 文件名
+  group: ''
+  block_parameter: NetworkFilePath
+  type: 字符向量、字符串
+  values: MAT 文件路径或名称
+  default: '''untitled.mat'''
+- name: MATLAB function
+  summary: MATLAB 函数名称 untitled（默认）| MATLAB 函数名称
+  group: ''
+  block_parameter: NetworkFunction
+  type: 字符向量、字符串
+  values: MATLAB 函数名称
+  default: '''untitled'''
+- name: Sample time
+  summary: 输出采样周期和可选时间偏移 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''-1'''
+- name: Classification
+  summary: 输出具有最高分数的预测标签 on（默认）| off
+  group: ''
+  block_parameter: Classification
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Predictions
+  summary: 输出所有分数和关联标签 off（默认）| on
+  group: ''
+  block_parameter: Predictions
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Input data formats
+  summary: dlnetwork 的输入数据格式 字符向量 | 字符串
+  group: ''
+  block_parameter: InputDataFormats
+  type: 字符向量、字符串
+  values: 对于具有一个或多个输入的网络，使用以下形式的字符向量：{'inputlayerName1', 'SSC'; 'inputlayerName2', 'SSCB'; ...}'。对于没有输入层且具有多个输入端口的网络，使用以下形式的字符向量：'{'inputportName1/inport1,
+    'SSC'; 'inputportName2/inport2, 'SSCB'; ...}'。
+  default: 网络所期望的数据格式。有关详细信息，请参阅 Deep Learning Data Formats。
+- name: Class names workspace variable
+  summary: 包含网络输出的类别名称的工作区变量 classNames（默认）| 分类向量变量 | 字符串数组变量 | 字符向量元胞数组变量名称
+  group: ''
+  block_parameter: classNames
+  type: 分类向量、字符串数组或字符向量元胞数组的变量名称。
+  values: 包含类别名称的变量名称，指定为分类向量、字符串数组或字符向量元胞数组。
+  default: 工作区变量 classNames。
+```
 
 ### **Network** — 训练好的循环神经网络的来源 `Network from MAT file`（默认）| `Network from MATLAB function`
 
@@ -189,7 +263,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **默认值：** 工作区变量 `classNames`。 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Neural Networks

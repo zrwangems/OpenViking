@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Polynomial Trajectory
 
 ## 端口
+```yaml
+ports:
+- name: Time
+  summary: 沿轨迹的时间点 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: 沿轨迹的航点位置 *n*×*p* 矩阵
+  direction: input
+- name: TimePoints
+  summary: 轨迹航点的时间点 *p* 元素向量
+  direction: input
+- name: VelBC
+  summary: 航点的速度边界条件 *n*×*p* 矩阵
+  direction: input
+- name: AccelBC
+  summary: 轨迹的加速度边界条件 *n*×*p* 矩阵
+  direction: input
+- name: q
+  summary: 轨迹的位置 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: qd
+  summary: 轨迹的速度 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: qdd
+  summary: 轨迹的加速度 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -75,8 +106,34 @@ chinese_source: worker-translation
 轨迹的加速度，指定为标量、向量或矩阵。如果为 **Time** 输入指定标量且轨迹为 *n* 维，则输出为具有 *n* 个元素的向量。如果为 **Time** 输入指定 *m* 个元素的向量，则输出为 *n*×*m* 矩阵。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Waypoint source
+  summary: 航点的来源 Internal（默认） | External
+  group: ''
+- name: Waypoints
+  summary: 沿轨迹的航点位置，*n*×*p* 矩阵
+  group: ''
+- name: Time points
+  summary: 轨迹航点的时间点，*p* 元向量
+  group: ''
+- name: Method
+  summary: 轨迹生成方法 Cubic Polynomial（默认）| Quintic Polynomial | B-Spline
+  group: ''
+- name: Parameter source
+  summary: 航点来源 Internal（默认）| External
+  group: ''
+- name: Velocity boundary conditions
+  summary: 航点的速度边界条件 zeroes(2,5)（默认）| *n*×*p* 矩阵
+  group: ''
+- name: Acceleration boundary conditions
+  summary: 轨迹的加速度边界条件，*n*×*p* 矩阵
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Waypoint source** — 航点的来源 `Internal`（默认） | `External`
 
@@ -126,7 +183,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，后续仿真会复用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Robotics System Toolbox / Utilities

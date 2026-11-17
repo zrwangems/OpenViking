@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Pressure Compensator Valve (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: B
+  summary: 液体端口（热液体）
+  direction: conserving
+- name: X
+  summary: 压力参考（热液体）
+  direction: conserving
+- name: Y
+  summary: 压力参考（热液体）
+  direction: conserving
+- name: Ps
+  summary: 受控压差，Pa（物理信号）
+  direction: input
+```
 
 ### 守恒端口
 
@@ -43,8 +61,64 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Set pressure control** 设置为 `Controlled`。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve specification
+  summary: 阀偏置 Normally open（默认）| Normally closed
+  group: 参数
+- name: Set pressure control
+  summary: 恒定或受控阀操作 Constant（默认）| Controlled
+  group: 参数
+- name: Opening parameterization
+  summary: 开度参数化 Linear（默认）| Tabulated
+  group: 参数
+- name: Set pressure differential
+  summary: 触发压力补偿的压差 0 MPa（默认）| 标量
+  group: 参数
+- name: Pressure regulation range
+  summary: 阀工作压力范围 0.1 MPa（默认）| 标量
+  group: 参数
+- name: Maximum opening area
+  summary: 阀全开时的面积 1e-4 m^2（默认）| 正标量
+  group: 参数
+- name: Leakage area
+  summary: 全关位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: 参数
+- name: Pressure differential vector
+  summary: '表格化参数化的压差值 [0.2 : 0.2 : 1.2] MPa（默认）| 1×*n* 向量'
+  group: 参数
+- name: Opening area vector
+  summary: 表格化参数化的阀开度面积 [1e-05, 8e-06, 6e-06, 4e-06, 2e-06, 1e-10] m^2（默认）| 1×*n* 向量
+  group: 参数
+- name: Cross-sectional area at ports A and B
+  summary: 阀入口或出口处的面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 参数
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: 参数
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: 参数
+- name: Pressure recovery
+  summary: 包含压力恢复的选项 off（默认）| on
+  group: 参数
+- name: Opening dynamics
+  summary: 模拟阀过渡流量响应的选项 off（默认）| on
+  group: 参数
+- name: Opening time constant
+  summary: 阀打开时间常数 0.1 s（默认）| 正标量
+  group: 参数
+- name: Pressure Compensator Valve Area fault
+  summary: 模拟阀面积故障的选项 Add fault
+  group: 故障
+- name: Opening area when faulted
+  summary: 故障时的阀位置 Closed（默认）| Open | Maintain last value
+  group: 故障
+```
 
 ### 参数
 
@@ -162,7 +236,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请通过单击 **Add fault** 超链接为模块启用故障。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Pressure Control Valves

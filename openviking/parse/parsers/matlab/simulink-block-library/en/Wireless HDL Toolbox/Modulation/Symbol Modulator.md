@@ -14,6 +14,37 @@ language: en
 # Symbol Modulator
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Data bits scalar | column vector
+  direction: input
+  data_types: Boolean | unsigned fixed point
+- name: valid
+  summary: Indicate valid input data scalar
+  direction: input
+  data_types: Boolean
+- name: modArrIdx
+  summary: Modulation array index integer
+  direction: input
+  data_types: double | single | fixdt(0,4,0)
+- name: load
+  summary: Modulation control scalar
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: Clear internal states scalar
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: Modulated complex data symbols complex scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: valid
+  summary: Valid output data indication scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -155,8 +186,55 @@ data on the **data** output port. When this value is
 port are not valid.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Modulation source
+  summary: Source for modulation type Property (default) | Input port
+  group: Main
+- name: Modulation
+  summary: Modulation type BPSK (default) | QPSK | 8-PSK | 16-PSK | 16-QAM | 32-PSK | 64-QAM | 256-QAM | 1024-QAM | 4096-QAM
+  group: Main
+- name: Modulation array
+  summary: Modulation array {"BPSK", "QPSK"} (default) | all the supported modulation types
+  group: Main
+- name: Constellation ordering type
+  summary: Type of constellation ordering Default (default) | User-defined
+  group: Main
+- name: Constellation mapping
+  summary: Constellation mapping [0 1] (default) | row vector
+  group: Main
+- name: Constellation mapping array
+  summary: Constellation mapping array {[0 1],[0 1 3 2]} (default) | row vector in a cell array
+  group: Main
+- name: Phase offset (rad)
+  summary: Phase offset 0 (default) | pi | pi/2 | pi/4 | pi/8 | pi/16 | pi/32 | -pi/32 | -pi/16 | -pi/8 | -pi/4 | -pi/2
+  group: Main
+- name: Phase offset type
+  summary: Type of phase offset Default (default) | User-defined
+  group: Main
+- name: Phase offset array (rad)
+  summary: Phase offset array [0 pi/4] (default) | scalar | row vector of supported phase offset values
+  group: Main
+- name: Normalization method
+  summary: Scale signal constellation Minimum distance between symbols (default) | Average power
+  group: Main
+- name: Minimum distance
+  summary: Minimum distance between symbols 0.125 (default) | positive scalar in the range from 1/32 to 1/8
+  group: Main
+- name: Average power, referenced to 1 ohm (watts)
+  summary: Average power of the symbols in the constellation 1 (default) | positive scalar in the range 1/32 to 10
+  group: Main
+- name: Enable reset input port
+  summary: Reset input port off (default) | on
+  group: Main
+- name: Output data type
+  summary: Output data type selection Custom (default) | double | single
+  group: Data Types
+- name: Word length
+  summary: Output word length 16 (default) | integer in the range from 3 to 32
+  group: Data Types
+```
 
 ### Main
 
@@ -375,7 +453,6 @@ to 32.
 
 To enable this parameter, set the **Output data type**
 parameter to `Custom`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Modulation

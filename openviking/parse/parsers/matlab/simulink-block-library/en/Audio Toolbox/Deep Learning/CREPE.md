@@ -14,6 +14,17 @@ language: en
 # CREPE
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Preprocessed audio input vector | 4-D array
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Network activations matrix
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -41,8 +52,16 @@ Postprocess block converts these network activations to
 pitch estimates in Hz.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Model capacity
+  summary: Size of trained neural network Full (default) | Large | Medium | Small | Tiny
+  group: ''
+- name: Mini-batch size
+  summary: Size of mini-batches 128 (default) | positive integer
+  group: ''
+```
 
 ### **Model capacity** — Size of trained neural network `Full` (default) | `Large` | `Medium` | `Small` | `Tiny`
 
@@ -57,7 +76,6 @@ faster computation but lower accuracy.
 Size of mini-batches to use for prediction, specified as a positive
 integer. Larger mini-batch sizes require more memory but can lead to faster
 predictions.
-
 ## Libraries
 
 Audio Toolbox / Deep Learning

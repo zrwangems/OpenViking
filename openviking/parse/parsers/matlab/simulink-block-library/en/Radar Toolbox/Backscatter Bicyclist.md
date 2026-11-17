@@ -14,6 +14,45 @@ language: en
 # Backscatter Bicyclist
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Incident radar signals complex-valued *M*-by-*N* matrix
+  direction: input
+  data_types: double
+- name: AngH
+  summary: Bicyclist heading 0.0 | scalar
+  direction: input
+  data_types: double
+- name: Ang
+  summary: Directions of incident signals real-valued 2-by-*N* vector
+  direction: input
+  data_types: double
+- name: Speed
+  summary: Bicyclist speed nonnegative scalar
+  direction: input
+  data_types: double
+- name: Coast
+  summary: Bicyclist coasting state false (default) | true
+  direction: input
+  data_types: Boolean
+- name: Y
+  summary: Combined reflected radar signals complex-valued *M*-by-1 column vector
+  direction: output
+  data_types: double
+- name: Pos
+  summary: Positions of scatterers real-valued 3-by-*N* matrix
+  direction: output
+  data_types: double
+- name: Vel
+  summary: Velocity scatterers real-valued 3-by-*N* matrix
+  direction: output
+  data_types: double
+- name: Ax
+  summary: Orientation of scatterers real-valued 3-by-3 matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -113,8 +152,47 @@ representing the velocity of each scatterer.
 Orientation axes of scatterers, returned as a real-valued 3-by-3 matrix.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of wheel spokes
+  summary: Number of spokes per wheel 20 (default) | positive integer
+  group: ''
+- name: Gear transmission ratio
+  summary: Ratio of wheel rotations to pedal rotations 1.5 (default) | positive scalar
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: Carrier frequency 77e9 (default) | positive scalar
+  group: ''
+- name: Initial position (m)
+  summary: Initial position of bicyclist [0;0;0] (default) | 3-by-1 real-valued vector
+  group: ''
+- name: Initial heading direction (deg)
+  summary: Initial heading of bicyclist 0 (default) | scalar
+  group: ''
+- name: Initial bicyclist speed (m/s)
+  summary: Initial speed of bicyclist 4 (default) | nonnegative scalar
+  group: ''
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: RCS pattern
+  summary: Source of RCS pattern Auto (default) | Property
+  group: ''
+- name: Azimuth angles (deg)
+  summary: Azimuth angles [-180:180] (default) | 1-by-*P* real-valued row vector | *P*-by-1 real-valued column vector
+  group: ''
+- name: Elevation angles (deg)
+  summary: Elevation angles [-90:90] (default) | 1-by-*Q* real-valued row vector | *Q*-by-1 real-valued column vector
+  group: ''
+- name: Radar cross section pattern (square meters)
+  summary: Radar cross-section pattern 1-by-361 real-valued matrix (default) | *Q*-by-*P* real-valued matrix | 1-by-*P* real-valued
+    vector
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+```
 
 ### **Number of wheel spokes** — Number of spokes per wheel `20` (default) | positive integer
 
@@ -266,7 +344,6 @@ using **Simulate using** overrides the simulation mode.
 | `Code Generation` | The block is compiled. | All blocks in the model are compiled. |
 
 For more information, see Choosing a Simulation Mode (Simulink).
-
 ## Libraries
 
 Radar Toolbox

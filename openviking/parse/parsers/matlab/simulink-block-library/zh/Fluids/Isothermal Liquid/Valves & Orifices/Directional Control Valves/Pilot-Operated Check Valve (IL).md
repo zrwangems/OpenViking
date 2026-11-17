@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Pilot-Operated Check Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 等温液体液体端口
+  direction: conserving
+- name: B
+  summary: 等温液体液体端口
+  direction: conserving
+- name: X
+  summary: 等温液体压力端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,71 @@ chinese_source: worker-translation
 ### **X** — 等温液体压力端口
 
 与压力端口关联的等温液体守恒端口，该压力端口对通过阀的流量控制有贡献。该端口没有质量流量。
-
 ## 参数
+```yaml
+parameters:
+- name: Pilot pressure direction
+  summary: 先导压力是辅助阀打开还是辅助阀关闭 Pilot-to-open（默认）| Pilot-to-close
+  group: ''
+- name: Spool configuration
+  summary: 阀几何结构 Rigidly connected pilot spool and poppet（默认）| Disconnected pilot spool and poppet
+  group: ''
+- name: Opening pilot pressure specification
+  summary: 用于阀控制的参考压差 Pressure difference of port X relative to port A（默认）| Gauge pressure at port X
+  group: ''
+- name: Opening parameterization
+  summary: 计算阀开度的方法 Linear - Area vs. pressure（默认）| Tabulated data - Area vs. pressure | Tabulated data - Volumetric flow
+    rate vs. pressure
+  group: ''
+- name: Cracking pressure differential
+  summary: 压力阈值 0.01 MPa（默认）| 正标量
+  group: ''
+- name: Maximum opening pressure differential
+  summary: 阀打开时的最大压差 0.02 MPa（默认）| 正标量
+  group: ''
+- name: Pilot ratio
+  summary: 先导端口面积比 1（默认）| 范围 (0,1] 内的正标量
+  group: ''
+- name: Maximum opening area
+  summary: 最大阀面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Control pressure vector
+  summary: '表格参数化的控制压力值 [0.01 : 0.01 : 0.1] MPa（默认）| 1×*n* 向量'
+  group: ''
+- name: Opening area vector
+  summary: 表格参数化的阀开口面积 [1e-10, 1e-05, 2e-05, 3e-05, 4e-05, 5e-05, 6e-05, 7.5e-05, 8.5e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: ''
+- name: Reference pressure differential vector
+  summary: '表格体积流量参数化的压差向量 [0.01 : 0.01 : 0.1] MPa（默认）| 1×*n* 向量'
+  group: ''
+- name: Reference volumetric flow rate vector
+  summary: 表格数据参数化的体积流量向量 [.000358, .045, .11, .191, .284, .39, .505, .63, .764, .905] .* 1e-3 m^3/s（默认）| 1×*n* 向量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的面积 inf m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 off（默认）| on
+  group: ''
+- name: Opening dynamics
+  summary: 是否引入阀打开导致的流量滞后 off（默认）| on
+  group: ''
+- name: Opening time constant
+  summary: 阀打开时间常数 0.1 s（默认）| 正标量
+  group: ''
+```
 
 ### **Pilot pressure direction** — 先导压力是辅助阀打开还是辅助阀关闭 `Pilot-to-open`（默认）| `Pilot-to-close`
 
@@ -175,7 +250,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Opening dynamics**。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

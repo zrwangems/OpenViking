@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Singular Value Decomposition
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 输入矩阵 matrix
+  direction: input
+  data_types: single | double
+- name: U
+  summary: '*U* 分量 matrix'
+  direction: output
+  data_types: single | double
+- name: S
+  summary: '*S* 分量 column vector'
+  direction: output
+  data_types: single | double
+- name: V
+  summary: '*V* 分量 matrix'
+  direction: output
+  data_types: single | double
+- name: E
+  summary: 错误端口 scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -86,8 +109,19 @@ chinese_source: worker-translation
 要启用此端口，请选中 **Show error status port (E)** 复选框。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Show ports with U and V matrices
+  summary: 显示带有 *U* 和 *V* 矩阵的端口 on（默认）| off
+  group: ''
+- name: Show error status port (E)
+  summary: 显示错误状态端口 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Show ports with U and V matrices** — 显示带有 *U* 和 *V* 矩阵的端口 on（默认）| off
 
@@ -103,7 +137,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不发生变化，C 代码将在后续仿真中重复使用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Matrices and Linear Algebra / Matrix Factorizations

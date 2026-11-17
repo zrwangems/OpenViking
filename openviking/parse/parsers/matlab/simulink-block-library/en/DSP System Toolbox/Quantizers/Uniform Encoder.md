@@ -14,6 +14,17 @@ language: en
 # Uniform Encoder
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Encoder output vector | matrix
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### Input
 
@@ -39,8 +50,19 @@ the block computes the output, see Algorithms.
 
 **Data Types:** `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Peak
+  summary: Largest input amplitude to encode 1 (default) | nonnegative scalar
+  group: ''
+- name: Bits
+  summary: Number of bits 8 (default) | integer in the range [2, 32]
+  group: ''
+- name: Output type
+  summary: Data type of block output Unsigned integer (default) | Signed integer
+  group: ''
+```
 
 ### **Peak** — Largest input amplitude to encode `1` (default) | nonnegative scalar
 
@@ -102,7 +124,6 @@ This table shows the output data types that the block uses.
 | `2` to `8` | `uint8` | `int8` |
 | `9` to `16` | `uint16` | `int16` |
 | `17` to `32` | `uint32` | `int32` |
-
 ## Libraries
 
 DSP System Toolbox / Quantizers

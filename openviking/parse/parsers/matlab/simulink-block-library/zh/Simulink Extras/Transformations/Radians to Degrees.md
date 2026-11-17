@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Radians to Degrees
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 以弧度表示的输入角度 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 以度表示的输出角度 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -30,11 +41,12 @@ chinese_source: worker-translation
 指定转换为度的角度的输出信号。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simulink Extras / Transformations

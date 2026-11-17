@@ -15,14 +15,41 @@ chinese_source: worker-translation
 # XCP CAN Data Stimulation
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 由 A2L 文件定义的数据激励输入样本
+  direction: input
+```
 
 ### 输入
 
 ### **Data** — 由 A2L 文件定义的数据激励输入样本
 
 输入数据激励样本，其名称和类型由 A2L 文件定义。Selected Measurements 参数中的每个条目定义一个输入端口。在仿真的每一步，每个端口都会写入一个样本。
-
 ## 参数
+```yaml
+parameters:
+- name: Config name
+  summary: 指定 XCP CAN 会话名称，从列表中选择
+  group: ''
+- name: Event name
+  summary: 选择一个事件，从列表中选择
+  group: ''
+- name: All Measurements
+  summary: 列出该事件可用的所有测量量，测量量列表
+  group: ''
+- name: Selected Measurements
+  summary: 列出已选测量量，测量量名称
+  group: ''
+- name: Block Input Settings
+  summary: 将端口输入设置为 Compu 方法转换值或原始值 Raw values as double (no Compu method conversion)（默认）| Raw values (no Compu method conversion)
+    | Physical values (apply Compu method conversion)
+  group: ''
+- name: Enable Timestamp
+  summary: 启用发送 Simulink 时间戳到 STIM DTO 数据包 off（默认）| on
+  group: ''
+```
 
 ### **Config name** — 指定 XCP CAN 会话名称，从列表中选择
 
@@ -105,7 +132,6 @@ MATLAB 和 Simulink 中变为非连续。
 并在 STIM DTO 数据包中发送该时间戳。当 A2L 文件中支持该参数时，**Enable
 Timestamp** 复选框会出现在模块参数对话框
 中。
-
 ## 所属库
 
 Vehicle Network Toolbox / XCP Communication / CAN Simulink Real-Time / XCP / CAN

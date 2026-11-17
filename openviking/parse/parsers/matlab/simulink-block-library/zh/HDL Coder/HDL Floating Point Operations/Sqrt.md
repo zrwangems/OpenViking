@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Sqrt
 
 ## 端口
+```yaml
+ports:
+- name: dataIn
+  summary: 输入数据信号 标量 | 向量
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validIn
+  summary: 输入控制信号是否有效 标量
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: 输出数据信号 标量 | 向量
+  direction: output
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | bus
+- name: validOut
+  summary: 输出控制信号是否有效 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -42,8 +61,55 @@ chinese_source: worker-translation
 指示输出信号是否有效的输出控制信号，以标量形式返回。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Latency strategy
+  summary: 延迟策略 Max（默认）| Min | Custom | Custom(PerIteration) | Zero
+  group: ''
+  block_parameter: latencyMode
+  type: 字符向量
+  values: '''Max'' | ''Min'' | ''Custom'' | ''Custom(PerIteration)'' | ''Zero'''
+  default: '''Max'''
+- name: Custom latency
+  summary: 自定义延迟 0（默认）| 正整数
+  group: ''
+  block_parameter: customLatencyValue
+  type: 整数
+  values: 0 到最大延迟
+  default: '0'
+- name: IterationsPerPipeline
+  summary: 每个流水线的迭代次数 1（默认）| 正整数
+  group: ''
+  block_parameter: iterationsPerPipelineValue
+  type: 整数
+  values: 正整数
+  default: '1'
+- name: Output data type
+  summary: '输出数据类型 Inherit: Same as first input（默认）| Inherit: Inherit via internal rule | Inherit: Inherit via back propagation
+    | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0) | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''
+    | ''int8'' | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | fixdt(1,16,0) | ''<data
+    type expression>'''
+  default: '''Inherit: Same as first input'''
+- name: Saturate on integer overflow
+  summary: 选择整数溢出时行为的选项 off（默认）| on
+  group: ''
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Zero（默认）| Ceiling | Floor | Nearest | Simplest
+  group: ''
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Zero'' | ''Ceiling'' | ''Floor'' | ''Nearest'' | ''Simplest'''
+  default: '''Zero'''
+```
 
 ### **Latency strategy** — 延迟策略 `Max`（默认）| `Min` | `Custom` | `Custom(PerIteration)` | `Zero`
 
@@ -140,7 +206,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Zero' | 'Ceiling' | 'Floor' | 'Nearest' | 'Simplest'` |
 | **默认值**：`'Zero'` |
-
 ## 所属库
 
 HDL Coder

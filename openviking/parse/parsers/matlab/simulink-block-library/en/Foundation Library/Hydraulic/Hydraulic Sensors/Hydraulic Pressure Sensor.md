@@ -14,6 +14,9 @@ language: en
 # Hydraulic Pressure Sensor
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -25,11 +28,12 @@ The block has the following ports:
 
 `P`
 :   Physical signal port that outputs the pressure value.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Not documented in R2025b.

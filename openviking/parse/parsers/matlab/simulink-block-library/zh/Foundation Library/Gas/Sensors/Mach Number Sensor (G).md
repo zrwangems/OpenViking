@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Mach Number Sensor (G)
 
 ## 端口
+```yaml
+ports:
+- name: Mach
+  summary: 马赫数测量，无量纲物理信号
+  direction: output
+- name: A
+  summary: 传感器入口气体
+  direction: output
+- name: B
+  summary: 传感器出口气体
+  direction: output
+```
 
 ### 输出
 
@@ -30,13 +42,17 @@ chinese_source: worker-translation
 ### **B** — 传感器出口气体
 
 与传感器出口关联的气体守恒端口。正流向为从端口 **A** 到端口 **B**。
-
 ## 参数
+```yaml
+parameters:
+- name: Area of flow path
+  summary: 流路面积 0.01 m^2（默认）| 正标量
+  group: ''
+```
 
 ### **Area of flow path** — 流路面积 `0.01 m^2`（默认）| 正标量
 
 流路的横截面积。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Sensors

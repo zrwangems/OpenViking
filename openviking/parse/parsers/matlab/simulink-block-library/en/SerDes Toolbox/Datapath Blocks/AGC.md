@@ -14,6 +14,17 @@ language: en
 # AGC
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input baseband signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Estimated channel output scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -32,8 +43,28 @@ specified as a scalar, the output is also scalar. If the input signal is an impu
 response vector signal, the output is also a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: AGC operating mode On (default) | Off
+  group: ''
+- name: Target RMS voltage (V)
+  summary: Desired RMS voltage of output waveform 0.3 (default) | real scalar in the range [0.003, 10]
+  group: ''
+- name: Maximum gain
+  summary: Maximum allowed AGC gain 10 (default) | positive real scalar
+  group: ''
+- name: Averaging length
+  summary: Averaging length for RMS calculation 100 (default) | positive real scalar
+  group: ''
+- name: Mode
+  summary: Include Mode parameter in IBIS-AMI model on (default) | off
+  group: ''
+- name: Target RMS voltage
+  summary: Include Target RMS voltage parameter in IBIS-AMI model on (default) | off
+  group: ''
+```
 
 ### **Mode** — AGC operating mode `On` (default) | `Off`
 
@@ -108,7 +139,6 @@ Select to include **Target RMS voltage** as a parameter in the
 IBIS-AMI file. If you deselect **Target RMS voltage**, it is removed
 from the AMI files, effectively hard-coding **Target RMS voltage** to
 its current value.
-
 ## Libraries
 
 SerDes Toolbox / Datapath Blocks

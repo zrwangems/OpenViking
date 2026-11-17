@@ -14,6 +14,25 @@ language: en
 # Sample Control Bus Creator
 
 ## Ports
+```yaml
+ports:
+- name: start
+  summary: Start of frame scalar
+  direction: input
+  data_types: Boolean
+- name: end
+  summary: End of frame scalar
+  direction: input
+  data_types: Boolean
+- name: valid
+  summary: Validity of samples scalar
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -58,11 +77,12 @@ and the validity of the samples.
 For more details, see Sample Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Wireless HDL Toolbox / Utilities

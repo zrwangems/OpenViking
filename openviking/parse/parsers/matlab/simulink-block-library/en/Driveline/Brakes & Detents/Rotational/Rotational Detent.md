@@ -14,11 +14,16 @@ language: en
 # Rotational Detent
 
 ## Ports
+```yaml
+ports: []
+```
 
 **R** and **C** are rotational conserving ports
 associated with the rod and case, respectively.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 ### Detent Characteristics
 
@@ -169,7 +174,6 @@ associated with the rod and case, respectively.
 
     From the drop-down list, choose units. The default is
     revolutions/minute (`rpm`).
-
 ## Libraries
 
 Not documented in R2025b.

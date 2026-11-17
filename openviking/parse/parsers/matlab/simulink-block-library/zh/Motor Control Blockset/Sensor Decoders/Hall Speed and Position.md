@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Hall Speed and Position
 
 ## 端口
+```yaml
+ports:
+- name: HallVal
+  summary: 当前霍尔传感器输出状态标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Cnt
+  summary: 外部计数器值标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: SpdCnt
+  summary: 霍尔状态变化时的计数值标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Dir
+  summary: 当前霍尔状态期间的转子旋转方向标量
+  direction: input
+  data_types: int8 | int16 | int32
+- name: SpdVal
+  summary: 当前和前一霍尔状态及速度计算的有效性标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: HallChng
+  summary: 霍尔状态变化标志的值标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: θe
+  summary: 转子电角度位置标量
+  direction: output
+  data_types: single | double | fixed point
+- name: ⍵m
+  summary: 转子机械速度标量
+  direction: output
+  data_types: single | double | fixed point
+- name: HallChngRst
+  summary: 将霍尔状态变化标志重置为零标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -91,8 +130,52 @@ chinese_source: worker-translation
 该端口输出零值（将霍尔状态变化标志设置为零），表示模块已成功完成对上一次霍尔状态变化的速度和位置计算。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Block output
+  summary: 选择输出端口 Speed and position（默认）| Speed | Position
+  group: 常规
+- name: Counter size
+  summary: 外部计数器寄存器的大小 32 bits（默认）| 8 bits | 16 bits
+  group: 常规
+- name: Counter clock frequency (Hz)
+  summary: 外部计数器的时钟频率 90e6（默认）| 标量
+  group: 常规
+- name: Discrete step size (s)
+  summary: 模块再次执行的采样时间 50e-6（默认）| 标量
+  group: 常规
+- name: Number of pole pairs
+  summary: 电机中可用的极对数 8（默认）| 标量
+  group: 常规
+- name: Minimum detectable speed (RPM)
+  summary: 模块能够检测的最小速度 20（默认值）| 标量
+  group: 常规
+- name: Speed measurement interval
+  summary: 模块测量速度的间隔 Every 180 Degrees（默认值）| Every 60 Degrees
+  group: 常规
+- name: Speed unit
+  summary: 转子角速度输出的单位 Radians/sec（默认值）| Degrees/sec | RPM | Per unit
+  group: 常规
+- name: Speed datatype
+  summary: 转子角速度输出的数据类型 single（默认值）| double | fixed point
+  group: 常规
+- name: Expected hall sequence in positive direction
+  summary: 表示正方向的序列 ABC（默认值）| CBA | Custom sequence
+  group: Position
+- name: Sequence
+  summary: 表示正方向的自定义序列 [5,4,6,2,3,1]（默认值）| 标量
+  group: Position
+- name: Order of extrapolation of position
+  summary: 表示位置计算的精度 1st Order（默认值）| 2nd Order
+  group: Position
+- name: Position unit
+  summary: 角位置输出的单位 Radians（默认值）| Degrees | Per unit
+  group: Position
+- name: Position datatype
+  summary: 角位置输出的数据类型 single（默认值）| double | fixed point
+  group: Position
+```
 
 ### 常规
 
@@ -206,7 +289,6 @@ t = 在扇区中花费的时间。
 #### 依赖关系
 
 要启用此参数，请将 **Block output** 设置为 `Position` 或 `Speed and position`。
-
 ## 所属库
 
 Motor Control Blockset / Sensor Decoders

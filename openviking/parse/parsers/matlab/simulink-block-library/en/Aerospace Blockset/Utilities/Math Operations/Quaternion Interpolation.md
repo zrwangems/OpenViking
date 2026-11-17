@@ -14,6 +14,25 @@ language: en
 # Quaternion Interpolation
 
 ## Ports
+```yaml
+ports:
+- name: q0
+  summary: First normalized quaternion 4-by-1 vector | 1-by-4 vector
+  direction: input
+  data_types: double
+- name: q1
+  summary: Second normalized quaternion 4-by-1 vector | 1-by-4 vector
+  direction: input
+  data_types: double
+- name: f
+  summary: Interval fraction scalar
+  direction: input
+  data_types: double
+- name: qf
+  summary: Natural logarithm vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -53,8 +72,24 @@ on interval fractions, see [1].
 Natural logarithm of quaternion, returned as a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Methods
+  summary: Quaternion interpolation method SLERP (default) | LERP | NLERP
+  group: ''
+  block_parameter: method
+  type: character vector
+  values: '''SLERP'' | ''LERP'' | ''NLERP'''
+  default: '''SLERP'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Methods** — Quaternion interpolation method `SLERP` (default) | `LERP` | `NLERP`
 
@@ -105,7 +140,6 @@ Out-of-range block behavior, specified as:
 | **Type**: character vector |
 | **Values**: `'None'` | `'Warning'` | `'Error'` |
 | **Default**: `'Warning'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

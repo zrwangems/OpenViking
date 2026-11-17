@@ -15,10 +15,184 @@ chinese_source: worker-translation
 # Simulation 3D Scene Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: 场景源
+  summary: 场景来源 Default Scenes（默认）| RoadRunner | Unreal Executable | Unreal Editor
+  group: 场景
+- name: 场景名称
+  summary: 预构建 3D 场景的名称 Airport（默认）
+  group: 场景
+- name: 项目名称
+  summary: Unreal Engine 可执行文件的名称 VehicleSimulation.exe（默认）| 有效的可执行文件名
+  group: 场景
+- name: 场景
+  summary: 可执行文件中的场景名称 /Game/Maps/HwStrght（默认）| 有效场景名称的路径
+  group: 场景
+- name: 项目
+  summary: Unreal Engine 项目文件或 RoadRunner 文件的名称 有效的项目文件名
+  group: 场景
+- name: 场景视图
+  summary: 显示场景的虚拟相机的位置 Scene Origin（默认）| Custom | 车辆名称 | sim3d actor 名称 | 视点名称
+  group: 场景
+- name: 名称
+  summary: 自定义视点的名称 custom（默认）| 字符数组 | 字符串标量
+  group: 场景
+- name: 平移
+  summary: 视点平移 [0 0 0]（默认）| 实数 1×3 向量
+  group: 场景
+- name: 旋转
+  summary: 视点旋转 [0 0 0]（默认）| 实数 1×3 向量
+  group: 场景
+- name: 观察者相对平移 [X, Y, Z] (m)
+  summary: 相对于 actor 的视点平移 [0 0 0]（默认）| 实数 1×3 向量
+  group: 场景
+- name: 观察者相对旋转 [Roll, Pitch, Yaw] (deg)
+  summary: 相对于 actor 的视点旋转 [0 0 0]（默认）| 实数 1×3 向量
+  group: 场景
+- name: 采样时间
+  summary: 可视化引擎的采样时间 .02（默认）| 实数正标量
+  group: 场景
+- name: 显示 3D 仿真窗口
+  summary: Unreal Engine 可视化 on（默认）| off
+  group: 场景
+- name: Override scene weather
+  summary: 控制场景天气和太阳位置的选项 off（默认）| on
+  group: 天气
+- name: Sun azimuth
+  summary: 从南方到太阳光线水平投影的方位角 90（默认）| 0 到 360 之间的任意值
+  group: 天气
+- name: Sun altitude
+  summary: 太阳与地平线之间的高度角 40（默认）| -90 到 90 之间的任意值
+  group: 天气
+- name: Enable geospatial sun
+  summary: 启用地理空间太阳的选项 off（默认）| on
+  group: 天气
+- name: Latitude
+  summary: 地球上地理位置点的纬度 0（默认）| 标量
+  group: 天气
+- name: Longitude
+  summary: 地球上地理位置点的经度 0（默认）| 标量
+  group: 天气
+- name: Date (YYYY-MM-DD)
+  summary: 日期 2023-01-01（默认）| 整数
+  group: 天气
+- name: Time (HH:MM:SS)
+  summary: 时间 10:30:00（默认）| 整数
+  group: 天气
+- name: Time zone
+  summary: 时区 -5.0（默认）| -12.0 到 12.0 之间的任意值
+  group: 天气
+- name: Daylight saving time
+  summary: 启用夏令时的选项 off（默认）| on
+  group: 天气
+- name: Cloud speed
+  summary: Unreal Editor Cloud Speed 全局 actor 目标值 1（默认）| -100 到 100 之间的任意值
+  group: 天气
+- name: Cloud opacity
+  summary: Unreal Editor Cloud Opacity 全局 actor 目标值 10（默认）| 0 到 100 之间的任意值
+  group: 天气
+- name: Enable volumetric clouds
+  summary: 启用体积云的选项 off（默认）| on
+  group: 天气
+- name: Cloud coverage
+  summary: Unreal Editor Cloud Density 全局目标值 1.0（默认）| 0 到 100 之间的任意值
+  group: 天气
+- name: Cloud layer altitude
+  summary: Unreal Editor Layer Bottom Altitude 全局 actor 目标值 6（默认）| 5 到 20 之间的任意值
+  group: 天气
+- name: Fog density
+  summary: Unreal Editor Set Fog Density 和 Set Start Distance 目标值 0（默认）| 0 到 100 之间的任意值
+  group: 天气
+- name: Rain density
+  summary: Unreal Editor 控制雨密度、湿度、雨坑和涟漪的局部 actor 0（默认）| 0 到 100 之间的任意值
+  group: 天气
+- name: Enable raindrops on camera lens
+  summary: 在相机镜头上启用雨滴的选项 off（默认）| on
+  group: 天气
+- name: Snow density
+  summary: Unreal Editor 控制雪密度的全局 actor 0（默认）| 0 到 100 之间的任意值
+  group: 天气
+- name: Enable geospatial configuration
+  summary: 启用地理空间参数和变体子系统的选项 off（默认）| on
+  group: Geospatial
+- name: Access token ID
+  summary: 存储的令牌字符串的 ID，表示存储的令牌的 ID
+  group: Geospatial
+- name: Use Earth center as origin (ECEF)
+  summary: 使用地球中心作为原点（ECEF）off（默认）| on
+  group: Geospatial
+- name: Origin height (m)
+  summary: 地球上地理参考点处的高度 实数标量
+  group: Geospatial
+- name: Origin latitude
+  summary: 纬度 实数标量
+  group: Geospatial
+- name: Origin longitude
+  summary: 经度 实数标量
+  group: Geospatial
+- name: Map style
+  summary: 栅格叠加类型 Aerial（默认）| Aerial with labels | Road
+  group: Geospatial
+- name: Additional asset IDs
+  summary: 本地数据集 ID []（默认）| 数组 | 向量
+  group: Geospatial
+- name: Use advanced Sun sky
+  summary: 地理参考、位置精确的 Sun Sky actor off（默认）| on
+  group: Geospatial
+- name: Solar time
+  summary: 当前太阳时 11（默认）| 标量实数
+  group: Geospatial
+- name: Time zone
+  summary: 时区 11（默认）| 标量实数
+  group: Geospatial
+- name: Day
+  summary: 日 21（默认）| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 |
+    23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+  group: Geospatial
+- name: Month
+  summary: 月 9（默认）| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+  group: Geospatial
+- name: Year
+  summary: 年 2022（默认）| 标量实数
+  group: Geospatial
+- name: Use daylight saving time (DST)
+  summary: 夏令时 off（默认）| on
+  group: Geospatial
+- name: DST start day
+  summary: 夏令时开始日 10（默认）| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 |
+    22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+  group: Geospatial
+- name: DST start month
+  summary: 夏令时开始月 3（默认）| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+  group: Geospatial
+- name: DST end day
+  summary: 夏令时最后一天 3（默认）| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 |
+    22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31
+  group: Geospatial
+- name: DST end month
+  summary: 夏令时最后一个月 11（默认）| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+  group: Geospatial
+- name: DST switch hour
+  summary: 夏令时切换的小时 2（默认）| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 |
+    22 | 23 | 24
+  group: Geospatial
+- name: Authentication manager
+  summary: 访问令牌的管理 按钮
+  group: Geospatial
+- name: TilesetSource
+  summary: 瓦片集源 'Earth Terrain'（默认）| 'Moon Terrain' | 'URL' | 'None'
+  group: Geospatial
+- name: TilesetUrl
+  summary: 本地存储的 3D 瓦片集数据的文件路径 字符串
+  group: Geospatial
+```
 
 ### 场景
 
@@ -712,7 +886,6 @@ Unreal Editor 中的云高度设置
 要启用此参数，请选中 **Enable geospatial configuration** 复选框，并将 **TilesetSource** 参数设置为 `URL`。
 
 **数据类型：** `string`
-
 ## 所属库
 
 Offroad Autonomy Library / Simulation 3D Aerospace Blockset / Animation / Simulation 3D Automated Driving Toolbox / Simulation 3D Robotics System Toolbox / Simulation 3D Simulink 3D Animation / Simulation 3D / Environment UAV Toolbox / Simulation 3D Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core

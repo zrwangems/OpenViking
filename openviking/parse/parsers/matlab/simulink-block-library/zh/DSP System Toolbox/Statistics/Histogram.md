@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Histogram
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Rst
+  summary: 复位端口 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Port_1
+  summary: 直方图输出 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | uint32
+```
 
 ### 输入
 
@@ -57,8 +72,46 @@ chinese_source: worker-translation
 当输入的数据类型不是 `single` 或 `double` 时，输出数据类型为 `uint32`。`uint32` 能表示的最大数为 `232-1`。如果任何输入的范围超过此值，模块会将该值回绕为 `0`。
 
 **数据类型：** `single` | `double` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Lower limit of histogram
+  summary: 最低值 bin 的下边界 标量
+  group: 主选项卡
+- name: Upper limit of histogram
+  summary: 最高值 bin 的上边界 标量
+  group: 主选项卡
+- name: Number of bins
+  summary: 直方图 bin 的数量 正整数
+  group: 主选项卡
+- name: Find the histogram over
+  summary: 计算每一列或整个输入的直方图 Each column（默认）| Entire input
+  group: 主选项卡
+- name: Normalized
+  summary: 归一化输出 关（默认）| 开
+  group: 主选项卡
+- name: Running histogram
+  summary: 跟踪一段时间内的频率分布 关（默认）| 开
+  group: 主选项卡
+- name: Reset port
+  summary: 复位事件 Non-zero sample（默认）| None | Rising edge | Falling edge | Either edge
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入操作的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 关（默认）| 开
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Same as input（默认）| fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Same as input（默认）| Inherit: Same as product output | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 关（默认）| 开
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -166,7 +219,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against changes by the fixed-point tools** — 防止定点工具覆盖数据类型 关（默认）| 开
 
 选中此参数可防止定点工具覆盖您在模块上指定的数据类型。
-
 ## 所属库
 
 DSP System Toolbox / Statistics

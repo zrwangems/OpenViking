@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Stream FIFO
 
 ## 端口
+```yaml
+ports:
+- name: dataIn
+  summary: 输入流数据 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: dValidIn
+  summary: 有效输入流数据指示 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: rdyFromDown
+  summary: 来自下游接口的准备好信号 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: 输出流数据 标量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: dValidOut
+  summary: 有效输出流数据指示 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: rdyToUp
+  summary: 发送到上游接口的准备好信号 Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -54,8 +81,16 @@ chinese_source: worker-translation
 控制信号，指示模块是否已准备好从上游接口接收流数据。当此值为 `1`（true）时，模块已准备好接受来自上游接口的流数据。当此值为 `0`（false）时，模块未准备好接受来自上游接口的流数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Depth of FIFO
+  summary: FIFO 深度 16（默认）| 大于或等于四的整数
+  group: ''
+- name: Almost full threshold
+  summary: 几乎满阈值 8（默认）| 正整数
+  group: ''
+```
 
 ### **Depth of FIFO** — FIFO 深度 `16`（默认）| 大于或等于四的整数
 
@@ -66,7 +101,6 @@ chinese_source: worker-translation
 指定一个值，用于从模块向数据源发出反压信号。
 
 为避免丢弃数据，请设置一个允许数据源有足够时间对反压做出反应的值。此值必须为正整数，且小于 FIFO 深度。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Connectivity

@@ -14,6 +14,27 @@ language: en
 # Rectifier (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -70,8 +91,50 @@ terminal.
 
 Electrical conserving port associated with the negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Forward voltage
+  summary: Forward voltage 0.8 V (default)
+  group: Main
+- name: On resistance
+  summary: On resistance 0.001 Ohm (default)
+  group: Main
+- name: Off conductance
+  summary: Off conductance 1e-5 1/Ohm (default)
+  group: Main
+- name: Model dynamics
+  summary: Diode charge dynamics No dynamics (default) | Model charge dynamics
+  group: Charge Dynamics
+- name: Junction capacitance
+  summary: Junction capacitance 50e-9 F (default)
+  group: Charge Dynamics
+- name: Peak reverse current, iRM
+  summary: Peak reverse current -235 A (default) | negative scalar
+  group: Charge Dynamics
+- name: Initial forward current when measuring iRM
+  summary: Initial forward current when measuring iRM 300 A (default) | positive scalar
+  group: Charge Dynamics
+- name: Rate of change of current when measuring iRM
+  summary: Rate of change of current when measuring iRM -50A/μs (default) | negative scalar
+  group: Charge Dynamics
+- name: Reverse recovery time parameterization
+  summary: Reverse recovery time parameterization Specify stretch factor (default) | Specify reverse recovery time directly
+    | Specify reverse recovery charge
+  group: Charge Dynamics
+- name: Reverse recovery time, trr
+  summary: Reverse recovery time 15 μs (default)
+  group: Charge Dynamics
+- name: Reverse recovery time stretch factor
+  summary: Reverse recovery time stretch factor 3 (default)
+  group: Charge Dynamics
+- name: Reverse recovery charge, Qrr
+  summary: Reverse recovery charge 1500 μAs (default)
+  group: Charge Dynamics
+```
 
 ### Main
 
@@ -198,7 +261,6 @@ recovery time parameterization** parameter is set to
 `Specify reverse recovery charge`.
 
 For more information on these parameters, see Diode.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

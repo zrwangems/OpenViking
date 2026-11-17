@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # ClassificationKernel Predict
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 预测变量数据 行向量 | 列向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: label
+  summary: 预测的类别标签 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: score
+  summary: 预测的类别分数或后验概率 1×2 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -46,8 +62,139 @@ chinese_source: worker-translation
 要启用此端口，请在“模块参数”对话框的 **Main** 选项卡上选中 **Add output port for predicted class scores** 复选框。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Select trained machine learning model
+  summary: 核分类模型 kernelMdl（默认）| ClassificationKernel 对象
+  group: 主要参数
+  block_parameter: TrainedLearner
+  type: character vector or string
+  values: ClassificationKernel object name
+  default: '"kernelMdl"'
+- name: Add output port for predicted class scores
+  summary: 为预测的类别分数添加第二个输出端口 off（默认）| on
+  group: 主要参数
+  block_parameter: ShowOutputScore
+  type: character vector or string
+  values: '"off"|"on"'
+  default: '"off"'
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型
+  block_parameter: SaturateOnIntegerOverflow
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: LockScale
+  type: 字符向量
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Label data type
+  summary: '标签输出的数据类型 Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8 | uint8 | int16
+    | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data
+    type expression>'
+  group: 数据类型
+  block_parameter: LabelDataTypeStr
+  type: character vector or string
+  values: '"Inherit: Inherit via back propagation" | "Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16"
+    | "uint16" | "int32" | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "Enum: <class
+    name>" | "<data type expression>"'
+  default: '"Inherit: Inherit via back propagation" (for numeric and logical labels) | "Inherit: auto" (for nonnumeric labels)'
+- name: Label data type Minimum
+  summary: 用于范围检查的标签输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LabelOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Label data type Maximum
+  summary: 用于范围检查的 label 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: LabelOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Score data type
+  summary: 'score 输出的数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: ScoreDataTypeStr
+  type: 字符向量或字符串
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Score data type Minimum
+  summary: 用于范围检查的 score 输出最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: ScoreOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Score data type Maximum
+  summary: 用于范围检查的 score 输出最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: ScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Raw score data type
+  summary: '未变换的 score 数据类型 Inherit: auto（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64
+    | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: RawScoreDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Raw score data type Minimum
+  summary: 用于范围检查的未变换分数最小值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: RawScoreOutMin
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Raw score data type Maximum
+  summary: 用于范围检查的未变换分数最大值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: RawScoreOutMax
+  type: 字符向量
+  values: '"[]" | 标量'
+  default: '"[]"'
+- name: Kernel data type
+  summary: '核计算数据类型 Inherit: Inherit via internal rule（默认）| double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: KernelDataTypeStr
+  type: 字符向量
+  values: '''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''uint64''
+    | ''int64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Kernel data type Minimum
+  summary: 用于范围检查的最小核计算值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: KernelOutMin
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+- name: Kernel data type Maximum
+  summary: 用于范围检查的最大核计算值 []（默认）| 标量
+  group: 数据类型
+  block_parameter: KernelOutMax
+  type: 字符向量
+  values: '''[]'' | 标量'
+  default: '''[]'''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -410,7 +557,6 @@ Simulink 使用最大值执行：
 | **类型**：字符向量 |
 | **值**：`'[]'` | 标量 |
 | **默认值**：`'[]'` |
-
 ## 所属库
 
 Statistics and Machine Learning Toolbox / Classification

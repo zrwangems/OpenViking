@@ -14,6 +14,25 @@ language: en
 # Turbo Encoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input message binary column vector
+  direction: input
+  data_types: double | int8 | fi(data,0,1)
+- name: IntrInd
+  summary: Interleaver indices column vector of integers
+  direction: input
+  data_types: double
+- name: OutInd
+  summary: Output indices column vector of integers
+  direction: input
+  data_types: double
+- name: Out
+  summary: Parallel concatenated codeword binary column vector
+  direction: output
+  data_types: double | int8 | fi(data,0,1)
+```
 
 ### Input
 
@@ -68,8 +87,43 @@ bits in the parallel concatenated codeword. This output inherits its
 data type from the `In` input.
 
 **Data Types:** `double` | `int8` | `fi(data,0,1)`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trellis structure
+  summary: Trellis description of constituent convolutional code poly2trellis(4,[13 15],13) (default) | structure
+  group: ''
+- name: numInputSymbols
+  summary: Number of symbols input to encoder 2*K*
+  group: ''
+- name: numOutputSymbols
+  summary: Number of symbols output from encoder 2*N*
+  group: ''
+- name: numStates
+  summary: Number of states in encoder power of 2
+  group: ''
+- name: nextStates
+  summary: Next states matrix of integers
+  group: ''
+- name: outputs
+  summary: Outputs matrix of octal numbers
+  group: ''
+- name: Source of interleaver indices
+  summary: Source of interleaver indices Property (default) | Input port
+  group: ''
+- name: Interleaver indices
+  summary: Interleaver indices (64:-1:1).' (default) | column vector of integers
+  group: ''
+- name: Source of output indices
+  summary: Source of output indices Auto | Property | Input port
+  group: ''
+- name: Output indices
+  summary: Output indices getTurboIOIndices(64,2,3) (default) | column vector of integers
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -207,7 +261,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Convolutional

@@ -14,6 +14,33 @@ language: en
 # Double-Acting Actuator (MA)
 
 ## Ports
+```yaml
+ports:
+- name: p
+  summary: Piston position input, m physical signal
+  direction: input
+- name: p
+  summary: Piston position, m physical signal
+  direction: output
+- name: A
+  summary: Liquid port moist air
+  direction: conserving
+- name: B
+  summary: Liquid port moist air
+  direction: conserving
+- name: R
+  summary: Actuator piston mechanical translational
+  direction: conserving
+- name: C
+  summary: Actuator casing mechanical translational
+  direction: conserving
+- name: HA
+  summary: Heat transfer thermal
+  direction: conserving
+- name: HB
+  summary: Heat transfer thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -69,8 +96,173 @@ Thermal conserving port associated with chamber A.
 ### **HB** — Heat transfer thermal
 
 Thermal conserving port associated with chamber B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Same fluid on both sides
+  summary: Option to model same fluid in both chambers on (default) | off
+  group: Actuator
+- name: Mechanical orientation
+  summary: Piston displacement direction Pressure at A causes positive displacement of R relative to C (default) | Pressure
+    at A causes negative displacement of R relative to C
+  group: Actuator
+- name: Piston cross-sectional area in chamber A
+  summary: Chamber A piston area 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston cross-sectional area in chamber B
+  summary: Chamber B piston area 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Piston stroke
+  summary: Maximum piston travel distance 0.1 m (default) | positive scalar
+  group: Actuator
+- name: Dead volume in chamber A
+  summary: Chamber A fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Dead volume in chamber B
+  summary: Chamber B fluid volume at full piston retraction 1e-5 m^3 (default) | positive scalar
+  group: Actuator
+- name: Cross-sectional area at port A
+  summary: Area at port A 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Cross-sectional area at port B
+  summary: Area at port B 0.01 m^2 (default) | positive scalar
+  group: Actuator
+- name: Environment pressure specification
+  summary: Reference environment pressure Atmospheric pressure (default) | Specified pressure
+  group: Actuator
+- name: Environment pressure
+  summary: User-defined environmental pressure 0.101325 MPa (default) | positive scalar
+  group: Actuator
+- name: Hard stop model
+  summary: Hard stop model Stiffness and damping applied smoothly through transition region, damped rebound (default) | Full
+    stiffness and damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound
+    | Based on coefficient of restitution
+  group: Hard Stop
+- name: Hard-stop stiffness coefficient
+  summary: Stiffness coefficient 1e10 N/m (default) | positive scalar
+  group: Hard Stop
+- name: Hard-stop damping coefficient
+  summary: Damping coefficient 150 N*s/m (default) | positive scalar
+  group: Hard Stop
+- name: Transition region
+  summary: Application range of hard stop force model 0.1 mm (default) | positive scalar
+  group: Hard Stop
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stop
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stop
+- name: Static contact release force threshold
+  summary: Force needed to transition from contact mode to free mode 0.001 N (default) | positive scalar
+  group: Hard Stop
+- name: Piston displacement from chamber A cap
+  summary: Method for determining piston position Calculate from velocity of port R relative to port C (default) | Provide
+    input signal from Multibody joint
+  group: Initial Conditions for Chamber A
+- name: Initial piston displacement from chamber A cap
+  summary: Piston displacement at start of simulation 0 m (default) | scalar
+  group: Initial Conditions for Chamber A
+- name: Initial moist air pressure in chamber A
+  summary: Moist air pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions for Chamber A
+- name: Initial moist air temperature in chamber A
+  summary: Moist air temperature at start of simulation 293.15 K (default) | scalar
+  group: Initial Conditions for Chamber A
+- name: Initial humidity specification in chamber A
+  summary: Quantity to use to describe initial humidity level Relative humidity (default) | Specific humidity | Mole fraction
+    | Humidity ratio | Wet-bulb temperature
+  group: Initial Conditions for Chamber A
+- name: Initial moist air relative humidity in chamber A
+  summary: Relative humidity at start of simulation 0.5 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber A
+- name: Initial moist air specific humidity in chamber A
+  summary: Specific humidity at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber A
+- name: Initial moist air water vapor mole fraction in chamber A
+  summary: Mole fraction of water vapor at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber A
+- name: Initial moist air humidity ratio in chamber A
+  summary: Humidity ratio at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber A
+- name: Initial moist air wet-bulb temperature in chamber A
+  summary: Wet-bulb temperature at start of simulation 287 K (default) | positive scalar
+  group: Initial Conditions for Chamber A
+- name: Initial trace gas specification in chamber A
+  summary: Quantity to use to describe initial trace gas level Mass fraction (default) | Mole fraction
+  group: Initial Conditions for Chamber A
+- name: Initial trace gas mass fraction in chamber A
+  summary: Mass fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber A
+- name: Initial trace gas mole fraction in chamber A
+  summary: Mole fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber A
+- name: Initial mass ratio of water droplets to moist air in chamber A
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Initial Conditions for Chamber A
+- name: Relative humidity at saturation in chamber A
+  summary: Relative humidity above which condensation occurs 1 (default) | positive scalar
+  group: Initial Conditions for Chamber A
+- name: Water vapor condensation time constant in chamber A
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Initial Conditions for Chamber A
+- name: Water droplets evaporation time constant in chamber A
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Initial Conditions for Chamber A
+- name: Fraction of condensate entrained as water droplets in chamber A
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber A
+- name: Initial moist air pressure in chamber B
+  summary: Moist air pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions for Chamber B
+- name: Initial moist air temperature in chamber B
+  summary: Moist air temperature at start of simulation 293.15 K (default) | scalar
+  group: Initial Conditions for Chamber B
+- name: Initial humidity specification in chamber B
+  summary: Quantity to use to describe initial humidity level Relative humidity (default) | Specific humidity | Mole fraction
+    | Humidity ratio | Wet-bulb temperature
+  group: Initial Conditions for Chamber B
+- name: Initial moist air relative humidity in chamber B
+  summary: Relative humidity at start of simulation 0.5 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber B
+- name: Initial moist air specific humidity in chamber B
+  summary: Specific humidity at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber B
+- name: Initial moist air water vapor mole fraction in chamber B
+  summary: Mole fraction of water vapor at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber B
+- name: Initial moist air humidity ratio in chamber B
+  summary: Humidity ratio at start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber B
+- name: Initial moist air wet-bulb temperature in chamber B
+  summary: Wet-bulb temperature at start of simulation 287 K (default) | positive scalar
+  group: Initial Conditions for Chamber B
+- name: Initial trace gas specification in chamber B
+  summary: Quantity to use to describe initial trace gas level Mass fraction (default) | Mole fraction
+  group: Initial Conditions for Chamber B
+- name: Initial trace gas mass fraction in chamber B
+  summary: Mass fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber B
+- name: Initial trace gas mole fraction in chamber B
+  summary: Mole fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber B
+- name: Initial mass ratio of water droplets to moist air in chamber B
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Initial Conditions for Chamber B
+- name: Relative humidity at saturation in chamber B
+  summary: Relative humidity above which condensation occurs 1 (default) | positive scalar
+  group: Initial Conditions for Chamber B
+- name: Water vapor condensation time constant in chamber B
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Initial Conditions for Chamber B
+- name: Water droplets evaporation time constant in chamber B
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Initial Conditions for Chamber B
+- name: Fraction of condensate entrained as water droplets in chamber B
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Initial Conditions for Chamber B
+```
 
 ### Actuator
 
@@ -497,7 +689,6 @@ vapor.
 
 Fraction of the condensate in the moist air that is entrained as water
 droplets.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Actuators

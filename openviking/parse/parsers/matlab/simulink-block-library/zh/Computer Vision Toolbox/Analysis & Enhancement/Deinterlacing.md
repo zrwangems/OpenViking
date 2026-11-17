@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Deinterlacing
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 隔行扫描输入 数值矩阵 | 三维数值数组 | 图像 | 视频
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 去隔行扫描输出 数值矩阵 | 三维数值数组 | 图像 | 视频
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,31 @@ chinese_source: worker-translation
 去隔行扫描输出，返回为数值矩阵、三维数值数组、图像或视频。输出的尺寸和数据类型与输入相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 去隔行扫描方法 Line repetition（默认）| Linear interpolation | Vertical temporal median filtering
+  group: ''
+- name: Input image is transposed (data order is row major)
+  summary: 指定数据顺序 off（默认）| on
+  group: ''
+- name: Rounding mode
+  summary: 计算定点值时的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: ''
+- name: Saturate on integer overflow
+  summary: 指定溢出模式 on（默认）| off
+  group: ''
+- name: Accumulator
+  summary: 累加器数据类型 Binary point scaling（默认）| Same as input
+  group: ''
+- name: Output
+  summary: 输出的数据类型 Same as input（默认）| Binary point scaling
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 数据类型覆盖 off（默认）| on
+  group: ''
+```
 
 **主选项卡**
 
@@ -96,7 +130,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against change by the fixed-point tools** — 数据类型覆盖 off（默认）| on
 
 选择此参数可防止定点工具覆盖您在模块掩码上指定的数据类型。有关详细信息，请参阅 `fxptdlg`（Fixed-Point Designer），即 Fixed-Point Tool 的参考页。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

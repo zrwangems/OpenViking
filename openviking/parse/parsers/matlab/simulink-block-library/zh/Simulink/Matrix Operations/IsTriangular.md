@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # IsTriangular
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入矩阵 矩阵
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: 上三角矩阵或下三角矩阵 实数标量布尔值
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -30,8 +41,16 @@ chinese_source: worker-translation
 上三角矩阵或下三角矩阵，指定为标量，以实数标量布尔值形式返回。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: 矩阵是上三角矩阵还是下三角矩阵 Upper（默认）| Lower
+  group: ''
+  block_parameter: Mode
+  type: 字符向量
+  values: '''Upper'' | ''Lower'''
+```
 
 ### **Mode** — 矩阵是上三角矩阵还是下三角矩阵 `Upper`（默认）| `Lower`
 
@@ -46,7 +65,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'Upper'` | `'Lower'` |
 | **默认：** `'Upper'` |
-
 ## 所属库
 
 Simulink / Matrix Operations

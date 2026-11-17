@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # DPST Switch
 
 ## 端口
+```yaml
+ports:
+- name: vT
+  summary: 开关控制端口物理信号
+  direction: input
+- name: p1
+  summary: 电气端口 electrical
+  direction: input
+- name: p2
+  summary: 电气端口 electrical
+  direction: input
+- name: n1
+  summary: 电气端口 electrical
+  direction: input
+- name: n2
+  summary: 电气端口 electrical
+  direction: input
+```
 
 ### 输入
 
@@ -38,8 +56,34 @@ chinese_source: worker-translation
 ### **n2** — 电气端口 electrical
 
 电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Closed resistance
+  summary: 闭合电阻 0.01 Ohm（默认）
+  group: 主要
+- name: Open conductance
+  summary: 断开电导 1e-6 S（默认）
+  group: 主要
+- name: Threshold
+  summary: 阈值电压 0.5 V（默认）
+  group: 主要
+- name: Threshold width
+  summary: 阈值宽度 0 V（默认）
+  group: 主要
+- name: Model dynamics
+  summary: 模型动态特性 No dynamics（默认） | Model turn-on and turn-off times
+  group: 动态特性
+- name: Turn-on delay
+  summary: 导通延迟 1e-3（默认） | 正标量
+  group: 动态特性
+- name: Turn-off delay
+  summary: 关断延迟 1e-3（默认） | 正标量
+  group: 动态特性
+- name: Initial input value, vT
+  summary: 初始输入值，*vT* 0（默认）
+  group: 动态特性
+```
 
 ### 主要
 
@@ -96,7 +140,6 @@ times` 时可见。
 
 此参数仅在 **Model dynamics** 参数选择 `Model turn-on and turn-off
 times` 时可见。
-
 ## 所属库
 
 Simscape / Electrical / Switches & Breakers

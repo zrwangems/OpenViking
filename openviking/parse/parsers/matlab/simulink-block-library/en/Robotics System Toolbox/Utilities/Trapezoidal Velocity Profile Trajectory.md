@@ -14,6 +14,45 @@ language: en
 # Trapezoidal Velocity Profile Trajectory
 
 ## Ports
+```yaml
+ports:
+- name: Time
+  summary: Time point along trajectory scalar | vector
+  direction: input
+  data_types: single | double
+- name: Waypoints
+  summary: Waypoint positions along trajectory *n*-by-*p* matrix
+  direction: input
+- name: PeakVel
+  summary: Peak velocity of the velocity profile [1;2] (default) | scalar | *n*-element vector | *n*-by-(*p* – 1) matrix
+  direction: input
+  data_types: single | double
+- name: Accel
+  summary: Acceleration of the velocity profile [2;2] (default) | scalar | *n*-element vector | *n*-by-(*p* – 1) matrix
+  direction: input
+  data_types: single | double
+- name: EndTime
+  summary: Duration of trajectory segment [1;2] (default) | scalar | *n*-element vector | *n*-by-(*p* – 1) matrix
+  direction: input
+  data_types: single | double
+- name: AccelTime
+  summary: Duration of acceleration phase of velocity profile [1;1] (default) | scalar | *n*-element vector | *n*-by-(*p*
+    – 1) matrix
+  direction: input
+  data_types: single | double
+- name: q
+  summary: Position of trajectory scalar | vector | matrix
+  direction: output
+  data_types: single | double
+- name: qd
+  summary: Velocity of trajectory scalar | vector | matrix
+  direction: output
+  data_types: single | double
+- name: qdd
+  summary: Acceleration of trajectory scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -150,8 +189,44 @@ elements for the `Time` input, the output is an
 *n*-by-*m* matrix.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Waypoint source
+  summary: Source for waypoints Internal (default) | External
+  group: ''
+- name: Waypoints
+  summary: Waypoint positions along trajectory *n*-by-*p* matrix
+  group: ''
+- name: Number of parameters
+  summary: Number of velocity profile parameters 0 (default) | 1 | 2
+  group: ''
+- name: Parameter 1
+  summary: Velocity profile parameter Peak Velocity | Acceleration | End Time | Acceleration Time
+  group: ''
+- name: Parameter 2
+  summary: Velocity profile parameter Peak Velocity | Acceleration | End Time | Acceleration Time
+  group: ''
+- name: Parameter source
+  summary: Source for waypoints Internal (default) | External
+  group: ''
+- name: Peak velocity
+  summary: Peak velocity of the velocity profile [1;2] (default) | scalar | *n*-element vector | *n*-by-(*p* – 1) matrix
+  group: ''
+- name: Acceleration
+  summary: Acceleration of the velocity profile [2;2] (default) | scalar | *n*-element vector | *n*-by-(*p* – 1) matrix
+  group: ''
+- name: End time
+  summary: Duration of trajectory segment [1;2] (default) | scalar | *n*-element vector | *n*-by-(*p* – 1) matrix
+  group: ''
+- name: Acceleration time
+  summary: Duration of acceleration phase of velocity profile [1;1] (default) | scalar | *n*-element vector | *n*-by-(*p*
+    – 1) matrix
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Waypoint source** — Source for waypoints `Internal` (default) | `External`
 
@@ -308,7 +383,6 @@ Time`.
   `Interpreted execution`.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Utilities

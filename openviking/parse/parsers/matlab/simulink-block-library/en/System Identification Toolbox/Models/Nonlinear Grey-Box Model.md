@@ -14,10 +14,15 @@ language: en
 # Nonlinear Grey-Box Model
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **IDNLGREY model**
 :   Name of `idnlgrey` variable in the MATLAB® workspace.
@@ -33,7 +38,6 @@ Not documented in R2025b.
     - An initial state structure array. For information
       about creating this structure, type `help idnlgrey/sim` in
       the MATLAB Command Window.
-
 ## Libraries
 
 Not documented in R2025b.

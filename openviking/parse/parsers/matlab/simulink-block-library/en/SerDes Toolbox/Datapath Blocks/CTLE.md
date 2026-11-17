@@ -14,6 +14,17 @@ language: en
 # CTLE
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input baseband signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Estimated channel output scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -32,8 +43,53 @@ specified as a scalar, then the output is also scalar. If the input signal is an
 impulse response vector signal, then the output is also a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: CTLE operating mode Adapt (default) | Off | Fixed
+  group: ''
+- name: Slice select
+  summary: Select which corner of 3D GPZ matrix to use 0 (default) | nonegative scalar integer
+  group: ''
+- name: Configuration select
+  summary: Select which member of transfer function to apply in fixed mode 0 (default) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+  group: ''
+- name: Specification
+  summary: Input specification for CTLE response 'DC Gain and Peaking Gain' (default) | 'DC Gain and AC Gain' | 'AC Gain and
+    Peaking Gain' | 'GPZ Matrix'
+  group: ''
+- name: DC gain (dB)
+  summary: Gain at zero frequency [0:-1:-8] (default) | scalar | vector
+  group: ''
+- name: Peaking gain (dB)
+  summary: Difference between AC and DC gain [0:8] (default) | scalar | vector
+  group: ''
+- name: AC gain (dB)
+  summary: Gain at peaking frequency 0 (default) | scalar | vector
+  group: ''
+- name: Peaking frequency (Hz)
+  summary: Approximate frequency at which CTLE transfer function peaks 5e9 (default) | scalar | vector
+  group: ''
+- name: Gain pole zero matrix
+  summary: Gain pole zero matrix
+  group: ''
+- name: Visualize Response
+  summary: Plot CTLE response button
+  group: ''
+- name: Launch CTLE Fitter App
+  summary: Launch CTLE Fitter app button
+  group: ''
+- name: Mode
+  summary: Include Mode parameter in IBIS-AMI model on (default) | off
+  group: ''
+- name: Slice select
+  summary: Include Slice select parameter in IBIS-AMI model on (default) | off
+  group: ''
+- name: Configuration select
+  summary: Include Configuration select parameter in IBIS-AMI model on (default) | off
+  group: ''
+```
 
 ### **Mode** — CTLE operating mode `Adapt` (default) | `Off` | `Fixed`
 
@@ -314,7 +370,6 @@ Select to include **Configuration select** as a parameter in the
 IBIS-AMI file. If you deselect **Configuration select**, it is removed
 from the AMI files, effectively hard-coding **Configuration select** to
 its current value.
-
 ## Libraries
 
 SerDes Toolbox / Datapath Blocks

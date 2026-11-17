@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PSNR
 
 ## 端口
+```yaml
+ports:
+- name: I1
+  summary: 输入图像 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: I2
+  summary: 输入图像 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Output
+  summary: 输出 标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -40,11 +55,12 @@ chinese_source: worker-translation
 如果输入为定点或整数数据类型，则模块输出为双精度浮点数。否则，模块输入和输出为相同的数据类型。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

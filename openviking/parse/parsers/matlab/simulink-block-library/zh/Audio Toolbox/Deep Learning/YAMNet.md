@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # YAMNet
 
 ## 端口
+```yaml
+ports:
+- name: features
+  summary: 梅尔频谱图 96×64 矩阵 | 96×64×1×*N* 数组
+  direction: input
+  data_types: single | double
+- name: sound
+  summary: 预测的声音标签 枚举标量
+  direction: output
+  data_types: enumerated
+- name: scores
+  summary: 预测的激活值或分数 向量
+  direction: output
+  data_types: single
+- name: labels
+  summary: 预测分数的类别标签 向量
+  direction: output
+  data_types: enumerated
+```
 
 ### 输入
 
@@ -48,8 +67,19 @@ chinese_source: worker-translation
 预测分数的类别标签，以 1×521 向量形式返回。
 
 **数据类型：** `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Mini-batch size
+  summary: 小批量大小 128（默认）| 正整数
+  group: ''
+- name: Classification
+  summary: 选择输出声音分类 on（默认）| off
+  group: ''
+- name: Predictions
+  summary: 输出所有分数和相关标签 off（默认）| on
+  group: ''
+```
 
 ### **Mini-batch size** — 小批量大小 `128`（默认）| 正整数
 
@@ -64,7 +94,6 @@ chinese_source: worker-translation
 ### **Predictions** — 输出所有分数和相关标签 `off`（默认）| `on`
 
 启用输出端口 **scores** 和 **labels**，这些端口输出所有预测分数和相关类别标签。
-
 ## 所属库
 
 Audio Toolbox / Deep Learning

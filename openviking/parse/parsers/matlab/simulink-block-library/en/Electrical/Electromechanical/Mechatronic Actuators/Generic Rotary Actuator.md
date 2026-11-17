@@ -14,6 +14,24 @@ language: en
 # Generic Rotary Actuator
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Rotor mechanical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -45,8 +63,49 @@ Thermal port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: Speed values
+  summary: Vector of speeds [-1500, -1000, -500, 0, 500, 1000, 1500, 2000, 2500, 3000] rpm (default)
+  group: Electrical Torque
+- name: Torque values
+  summary: Vector of torques [.04, .035, .03, .025, .02, .015, .01, .005, 0, -.005] Nm (default)
+  group: Electrical Torque
+- name: Rated voltage
+  summary: Rated voltage 12 V (default)
+  group: Electrical Torque
+- name: Motor efficiency (percent)
+  summary: Motor efficiency 80 (default)
+  group: Electrical Torque
+- name: Speed at which efficiency is measured
+  summary: Speed at which efficiency is measured 2000 rpm (default)
+  group: Electrical Torque
+- name: Torque-independent electrical losses
+  summary: Fixed electrical loss 0.1 W (default)
+  group: Electrical Torque
+- name: Simulation mode
+  summary: Simulation mode PWM (default) | Averaged
+  group: Electrical Torque
+- name: Rotor inertia
+  summary: Rotor inertia 0.0001 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 1e-8 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Temperature Dependence
+- name: Thermal mass
+  summary: Thermal mass 100 J/K (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -138,7 +197,6 @@ To enable this parameter, set **Modeling option** to
 
 The thermal mass is the energy required to raise the temperature by
 one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

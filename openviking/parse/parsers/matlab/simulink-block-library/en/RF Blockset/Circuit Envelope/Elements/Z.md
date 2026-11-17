@@ -14,10 +14,25 @@ language: en
 # Impedance
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Impedance type
+  summary: Frequency dependency Frequency independent (default) | Frequency dependent
+  group: ''
+- name: Complex impedance (Ohm)
+  summary: Impedance value 50 (default) | scalar complex number | vector of complex numbers
+  group: ''
+- name: Frequency
+  summary: Frequency values for frequency dependent impedance 1e9 (default) | nonnegative scalar number | nonnegative vector
+    numbers
+  group: ''
+```
 
 ### **Impedance type** — Frequency dependency `Frequency independent` (default) | `Frequency dependent`
 
@@ -64,7 +79,6 @@ frequencies. For values outside the range, there is constant
 extrapolation.
 
 **Data Types:** `double`
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

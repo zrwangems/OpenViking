@@ -14,6 +14,41 @@ language: en
 # Ideal Airspeed Correction
 
 ## Ports
+```yaml
+ports:
+- name: TAS
+  summary: True input airspeed scalar
+  direction: input
+  data_types: double
+- name: EAS
+  summary: Equivalent input airspeed scalar
+  direction: input
+  data_types: double
+- name: CAS
+  summary: Calibrated input airspeed scalar
+  direction: input
+  data_types: double
+- name: a
+  summary: Speed of sound scalar
+  direction: input
+  data_types: double
+- name: P0
+  summary: Static pressure scalar
+  direction: input
+  data_types: double
+- name: EAS
+  summary: Equivalent output airspeed scalar
+  direction: output
+  data_types: double
+- name: CAS
+  summary: Calibrated output airspeed scalar
+  direction: output
+  data_types: double
+- name: TAS
+  summary: True output airspeed scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -109,8 +144,53 @@ and **Airspeed output** to
 `TAS`.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Units
+  summary: Units Metric (MKS) (default) | English (Velocity in ft/s) | English (Velocity in kts)
+  group: ''
+  block_parameter: units
+  type: character vector
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Airspeed input
+  summary: Airspeed input type TAS (default) | EAS | CAS
+  group: ''
+  block_parameter: vel_in
+  type: character vector
+  values: '''TAS'' | ''EAS'' | ''CAS'''
+  default: '''TAS'''
+- name: Airspeed output
+  summary: Airspeed output type EAS (default) | CAS | TAS
+  group: ''
+  block_parameter: vel_out_tas, vel_out_cas, vel_out_eas, depending on the input velocity type, vel_in. For more information,
+    see the airspeed output type table.
+  type: character vector
+  values: '''EAS'' | ''CAS''''TAS'''
+  default: '''EAS'''
+- name: Method
+  summary: Method for computing conversion factor Table Lookup (default) | Equation
+  group: ''
+  block_parameter: method
+  type: character vector
+  values: '''Table Lookup'' | ''Equation'''
+  default: '''Table Lookup'''
+- name: Subsonic airspeeds only
+  summary: Use with subsonic airspeed off (default) | on
+  group: ''
+  block_parameter: SubOnly
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+```
 
 ### **Units** — Units `Metric (MKS)` (default) | `English (Velocity in ft/s)` | `English (Velocity in kts)`
 
@@ -256,7 +336,6 @@ only** check box is selected.
 | **Type**: character vector |
 | **Values**: `'None'` | `'Warning'` | `'Error'` |
 | **Default**: `'None'` |
-
 ## Libraries
 
 Aerospace Blockset / Flight Parameters

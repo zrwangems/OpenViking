@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Translational Detent
 
 ## 端口
+```yaml
+ports:
+- name: C
+  summary: 壳体机械平移
+  direction: conserving
+- name: R
+  summary: 杆机械平移
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,61 @@ chinese_source: worker-translation
 ### **R** — 杆机械平移
 
 与滑块或杆关联的机械平移守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 定位器特性参数 By peak force and notch width（默认）| By table lookup | By geometry
+  group: 定位器特性
+- name: Peak force
+  summary: 最大定位器剪切力 10 N（默认）| 正标量
+  group: 定位器特性
+- name: Notch width
+  summary: 剪切力区域 30 mm（默认）| 正标量
+  group: 定位器特性
+- name: Relative displacement vector
+  summary: 位移查找向量 [-15 -12.3 -7.6 -1.1 1.1 7.6 12.3 15] mm | 向量
+  group: 定位器特性
+- name: Force vector
+  summary: 力查找向量 [0, 0, -8.365, -5.87, 5.87, 8.365, 0, 0] N（默认）| 向量
+  group: 定位器特性
+- name: Interpolation method
+  summary: 查表断点值之间的插值方法 Smooth（默认）| Linear
+  group: 定位器特性
+- name: Ball diameter
+  summary: 球-凹口几何结构的球直径测量值 12 mm（默认）| 正标量
+  group: 定位器特性
+- name: Notch angle
+  summary: 球-凹口几何结构的凹口角度测量值 120 deg（默认）| 正标量
+  group: 定位器特性
+- name: Notch depth
+  summary: 球-凹口几何结构的凹口深度测量值 4.5 mm（默认）| 非负标量
+  group: 定位器特性
+- name: Preload force
+  summary: 球-凹口几何结构的弹簧预紧力测量值 15 N（默认）| 非负标量
+  group: 定位器特性
+- name: Spring stiffness
+  summary: 球-凹口几何结构的弹簧刚度测量值 3000 N/m（默认）| 非负标量
+  group: 定位器特性
+- name: Shear reversal region
+  summary: 球-凹口几何结构的剪切反向区域长度测量值 0.1 mm（默认）| 非负标量
+  group: 定位器特性
+- name: Initial relative position
+  summary: 起始位置 0 mm（默认）| 标量
+  group: 定位器特性
+- name: Viscous friction coefficient
+  summary: 比例粘性摩擦 0.1 N/(m/s)（默认）| 非负标量
+  group: 摩擦
+- name: Friction to peak force ratio
+  summary: 动摩擦比 0.01（默认）| 正标量
+  group: 摩擦
+- name: Kinetic friction coefficient
+  summary: 比例动摩擦 0.1（默认）| 正标量
+  group: 摩擦
+- name: Friction velocity threshold
+  summary: 与峰值动摩擦相关的速度 0.05 m/s（默认）| 正标量
+  group: 摩擦
+```
 
 ### 定位器特性
 
@@ -160,7 +222,6 @@ chinese_source: worker-translation
 ### **Friction velocity threshold** — 与峰值动摩擦相关的速度 `0.05` `m/s`（默认）| 正标量
 
 定位器中达到峰值动摩擦所需的相对速度。
-
 ## 所属库
 
 Simscape / Driveline / Brakes & Detents / Translational

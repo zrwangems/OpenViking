@@ -14,6 +14,18 @@ language: en
 # Pressure Source (MA)
 
 ## Ports
+```yaml
+ports:
+- name: P
+  summary: Pressure differential control signal, Pa physical signal
+  direction: input
+- name: A
+  summary: Source inlet moist air
+  direction: conserving
+- name: B
+  summary: Source outlet moist air
+  direction: conserving
+```
 
 ### Input
 
@@ -39,8 +51,25 @@ at port **A**.
 Moist air conserving port. A positive pressure differential causes the
 pressure at port **B** to be greater than the pressure
 at port **A**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source type
+  summary: Select whether pressure differential can change during simulation Controlled (default) | Constant
+  group: ''
+- name: Pressure differential
+  summary: Constant pressure differential across the source 0 MPa (default) | scalar
+  group: ''
+- name: Power added
+  summary: Select whether the source performs work Isentropic (default) | None
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at port A 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port B
+  summary: Area normal to flow path at port B 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Source type** — Select whether pressure differential can change during simulation `Controlled` (default) | `Constant`
 
@@ -88,7 +117,6 @@ Area normal to flow path at port **A**.
 ### **Cross-sectional area at port B** — Area normal to flow path at port B `0.01 m^2` (default) | positive scalar
 
 Area normal to flow path at port **B**.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Sources

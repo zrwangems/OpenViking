@@ -14,6 +14,21 @@ language: en
 # Sample-Rate Match
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: First input signal column vector | matrix
+  direction: input
+  data_types: single | double
+- name: In2
+  summary: Second input signal column vector | matrix
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: Output signal matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -50,8 +65,22 @@ frame` parameter value.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Input sample rate (Hz)
+  summary: Sample rate of each input signal [1 2]\*1e6 (default) | 2-element vector
+  group: ''
+- name: Output samples per frame
+  summary: Number of samples output per frame 1000 (default) | positive integer
+  group: ''
+- name: Output sample rate options
+  summary: Options for output sample rate Auto (default) | Specify via property
+  group: ''
+- name: Output sample rate (Hz)
+  summary: Output signal sample rate 2e6 (default) | positive scalar
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -89,7 +118,6 @@ greater than or equal to the `Input sample rate
 
 To enable this parameter, set the `Output sample rate
 options` parameter to `Specify via property`.
-
 ## Libraries
 
 Communications Toolbox / RF Impairments and Components

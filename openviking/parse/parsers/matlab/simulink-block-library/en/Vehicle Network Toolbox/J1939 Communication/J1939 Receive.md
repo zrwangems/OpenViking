@@ -14,6 +14,15 @@ language: en
 # J1939 Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data output double
+  direction: output
+- name: Msg Status
+  summary: Message received status 0 | 1
+  direction: output
+```
 
 ### Output
 
@@ -29,8 +38,35 @@ When you select the **Output New Message Received status**
 check box in the parameters dialog, this port outputs `1` when a new
 message is received from the CAN bus. Otherwise, this port outputs
 `0`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Config name
+  summary: Name of the J1939 network configuration to associate ConfigX (default) | character vector
+  group: ''
+- name: Node name
+  summary: Name of the J1939 node NodeX (default) | character vector
+  group: ''
+- name: Parameter Group
+  summary: Parameter group number (PGN) and name from database character vector
+  group: ''
+- name: Signals
+  summary: Signals defined in the parameter group array of character vectors
+  group: ''
+- name: Source Address Filter
+  summary: Filter messages based on source address Allow all (default) | Allow only
+  group: ''
+- name: Destination Address Filter
+  summary: Filter out message based on destination address global and node specific (default) | global only | node specific
+    only
+  group: ''
+- name: Sample time
+  summary: Simulation refresh rate 0.01 (default) | double
+  group: ''
+- name: Output New Message Received status
+  summary: Create a Msg Status output 0 (default) | 1
+  group: ''
+```
 
 ### **Config name** — Name of the J1939 network configuration to associate `ConfigX` (default) | character vector
 
@@ -93,7 +129,6 @@ simulation seconds. For information about simulation sample timing, see Timing i
 Select this check box to create a **Msg Status** output port. Its
 output signal indicates a new incoming message, showing 1 for a new message received, or
 0 when there is no new message.
-
 ## Libraries
 
 Simulink Real-Time / J1939 Communication Vehicle Network Toolbox / J1939 Communication

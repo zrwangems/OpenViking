@@ -14,6 +14,19 @@ language: en
 # Signal Specification
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix | N-D array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: Output signal scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Input
 
@@ -34,8 +47,105 @@ specified in the dialog box. If the attributes do not match, the block
 generates an error.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum
+  summary: Minimum value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[ ]'''
+- name: Maximum
+  summary: Maximum value for range checking [] (default) | scalar
+  group: ''
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[ ]'''
+- name: Data type
+  summary: 'Output data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | ...'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string'' | ''Enum:
+    <class name>'' | ''Bus: <object name>'' | ''ValueType: <object name>'' | <data type expression> | Simulink.ImageType(480,640,3)'
+  default: '''Inherit: auto'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding data types off (default) | on
+  group: ''
+  block_parameter: LockScale
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Require nonvirtual bus
+  summary: Accept only nonvirtual bus signals off (default) | on
+  group: ''
+  block_parameter: BusOutputAsStruct
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Unit (e.g., m, m/s^2, N\*m)
+  summary: Physical unit of the input signal to the block inherit (default) | <Enter unit>
+  group: ''
+  block_parameter: Unit
+  type: character vector
+  values: '''inherit'' | ''<Enter unit>'''
+  default: '''inherit'''
+- name: Dimensions (-1 for inherited)
+  summary: Dimensions of input and output signals -1 (default) | n | [m n]
+  group: ''
+  block_parameter: Dimensions
+  type: character vector
+  values: '''-1'' | n | [m n]'
+  default: '''-1'''
+- name: Variable-size signal
+  summary: Allow signal to be variable-size, fixed-size, or both Inherit (default) | No | Yes
+  group: ''
+  block_parameter: VarSizeSig
+  type: character vector
+  values: '''Inherit'' | ''No'' | ''Yes'''
+  default: '''Inherit'''
+- name: Sample time (-1 for inherited)
+  summary: Time interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: Any valid sample time
+  default: '''-1'''
+- name: Signal type
+  summary: Complexity of signal auto (default) | real | complex
+  group: ''
+  block_parameter: SignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Mode
+  summary: Data type mode Inherit (default) | Built in | Fixed point | Enumerated | Bus object | Value type | Expression
+  group: ''
+- name: Signedness
+  summary: Signed or unsigned Signed
+  group: ''
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: ''
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: ''
+- name: Scaling
+  summary: Method for scaling fixed-point data Best precision (default) | Binary point | Slope and bias
+  group: ''
+- name: Fraction length
+  summary: Specify fraction length for fixed-point data type 0 (default) | scalar integer
+  group: ''
+- name: Slope
+  summary: Specify slope for the fixed-point data type 2^0 (default) | positive, real-valued scalar
+  group: ''
+- name: Bias
+  summary: Specify bias for the fixed-point data type 0 (default) | real-valued scalar
+  group: ''
+```
 
 ### **Minimum** — Minimum value for range checking `[]` (default) | scalar
 
@@ -484,7 +594,6 @@ information, see Specifying a Fixed-Point Data Type.
 
 To enable this parameter, set **Scaling** to
 `Slope and bias`.
-
 ## Libraries
 
 Simulink / Signal Attributes HDL Coder / Signal Attributes

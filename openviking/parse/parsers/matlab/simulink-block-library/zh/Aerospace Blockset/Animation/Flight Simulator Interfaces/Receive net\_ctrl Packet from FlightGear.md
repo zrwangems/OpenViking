@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Receive net_ctrl Packet from FlightGear
 
 ## 端口
+```yaml
+ports:
+- name: net_ctrl
+  summary: 来自 FlightGear 的控制信息 744×1 向量
+  direction: output
+  data_types: uint8
+- name: Rx bytes
+  summary: 接收到的 FlightGear 数据包大小 0 | 744
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -36,8 +47,38 @@ chinese_source: worker-translation
 此端口由 **Enable received flag port** 复选框启用。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Origin IP address
+  summary: 源 IP 地址 127.0.0.1（默认）| 标量
+  group: ''
+  block_parameter: ReceiveAddress
+  type: 字符向量
+  values: 标量
+  default: '''127.0.0.1'''
+- name: Origin port
+  summary: 源端口 5505（默认）
+  group: ''
+  block_parameter: ReceivePort
+  type: 字符向量
+  values: 标量
+  default: '''5505'''
+- name: Sample time
+  summary: 采样时间 1/30（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+  default: '''1/30'''
+- name: Enable received flag port
+  summary: 启用接收标志输出端口 off（默认）| on
+  group: ''
+  block_parameter: packetFlag
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### **Origin IP address** — 源 IP 地址 `127.0.0.1`（默认）| 标量
 
@@ -135,7 +176,6 @@ netstat -a -p UDP
 | **类型**：字符向量 |
 | **值：**`'off' | 'on'` |
 | **默认值**：`'off'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

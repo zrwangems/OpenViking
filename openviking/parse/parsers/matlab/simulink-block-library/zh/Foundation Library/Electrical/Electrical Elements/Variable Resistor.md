@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Variable Resistor
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 电阻控制信号，Ohm 物理信号
+  direction: input
+- name: +
+  summary: 正极端子 电气
+  direction: input
+- name: '-'
+  summary: 负极端子 电气
+  direction: input
+- name: H
+  summary: 热端口 热
+  direction: input
+```
 
 ### 输入
 
@@ -38,8 +53,19 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Add thermal port** 复选框。
-
 ## 参数
+```yaml
+parameters:
+- name: Minimum resistance R>=0
+  summary: 最小可接受电阻 0 Ohm（默认）| 非负标量
+  group: ''
+- name: Add thermal port
+  summary: 控制热端口可见性 Off（默认）| On
+  group: ''
+- name: Thermal mass
+  summary: 电阻的热质量 1 J/K（默认）| 非负标量
+  group: ''
+```
 
 ### **Minimum resistance R>=0** — 最小可接受电阻 `0 Ohm`（默认）| 非负标量
 
@@ -56,7 +82,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Add thermal port** 复选框。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

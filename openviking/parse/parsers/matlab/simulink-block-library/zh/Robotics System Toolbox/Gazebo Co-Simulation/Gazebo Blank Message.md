@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Gazebo Blank Message
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: 空消息总线
+  direction: output
+  data_types: bus
+```
 
 ### 输出
 
@@ -100,8 +107,17 @@ chinese_source: worker-translation
 - 如果 `duration` 为 `1.005` 秒，则作为总线表示为 `1` 秒和 `5000000` 纳秒。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Message type
+  summary: 消息类型 ApplyLinkWrench（默认）| ApplyJointTorque | SetLinkWorldPose | SetLinkLinearVelocity | SetLinkAngularVelocity
+    | SetJointPosition | SetJointVelocity
+  group: ''
+- name: Sample time
+  summary: 输入的采样时间 0.001（默认）| 正值
+  group: ''
+```
 
 ### **Message type** — 消息类型 `ApplyLinkWrench`（默认）| `ApplyJointTorque` | `SetLinkWorldPose` | `SetLinkLinearVelocity` | `SetLinkAngularVelocity` | `SetJointPosition` | `SetJointVelocity`
 
@@ -110,7 +126,6 @@ chinese_source: worker-translation
 ### **Sample time** — 输入的采样时间 `0.001`（默认）| 正值
 
 采样时间指示模块在仿真期间何时生成输出，以及在适当时何时更新其内部状态。
-
 ## 所属库
 
 Robotics System Toolbox / Gazebo Co-Simulation

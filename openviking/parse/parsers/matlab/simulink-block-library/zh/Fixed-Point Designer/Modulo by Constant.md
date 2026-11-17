@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Modulo by Constant
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 被除数 实数值标量 | 向量 | 矩阵 | 多维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+- name: Y
+  summary: 取模运算的结果 标量 | 向量 | 矩阵 | 多维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -32,8 +43,17 @@ chinese_source: worker-translation
 取模运算的结果，以标量、向量、矩阵或多维数组形式返回。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Denominator for Modulo Problem
+  summary: 除数 10 （默认） | 实数值标量 | 向量 | 矩阵 | 多维数组
+  group: ''
+  block_parameter: Denominator
+  type: character vector
+  values: MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value
+  default: '''10'''
+```
 
 ### **Denominator for Modulo Problem** — 除数 10 （默认） | 实数值标量 | 向量 | 矩阵 | 多维数组
 
@@ -48,7 +68,6 @@ chinese_source: worker-translation
 | **值**：MATLAB® expression that evaluates to a positive, real-valued, finite fixed point or numeric value |
 | **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` |
 | **默认值**：`'10'` |
-
 ## 所属库
 
 Fixed-Point Designer

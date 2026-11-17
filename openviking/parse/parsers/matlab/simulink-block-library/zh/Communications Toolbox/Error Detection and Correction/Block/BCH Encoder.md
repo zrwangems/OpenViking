@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # BCH Encoder
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 待编码的消息 二进制列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: 编码后的消息 二进制列向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -32,8 +43,31 @@ chinese_source: worker-translation
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
 
 有关详细信息，请参阅支持的数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Codeword length, N
+  summary: 码字长度 15（默认）| 整数
+  group: ''
+- name: Message length, K
+  summary: 消息长度 5（默认）| 整数
+  group: ''
+- name: Shortened message length, S
+  summary: 缩短的消息长度 5（默认）| 整数
+  group: ''
+- name: Generator polynomial
+  summary: 生成多项式 'X^10 + X^8 + X^5 + X^4 + X^2 + X + 1'（默认）| 多项式字符向量 | 二进制行向量 | 二进制伽罗瓦行向量
+  group: ''
+- name: Primitive polynomial
+  summary: 本原多项式 'X^4 + X + 1'（默认）| 多项式字符向量 | 二进制行向量
+  group: ''
+- name: Disable generator polynomial checking
+  summary: 禁用生成多项式检查的选项 开（默认）| 关
+  group: ''
+- name: Puncture vector
+  summary: 删余向量 [ones(8,1); zeros(2,1)]（默认）| 二进制列向量
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -105,7 +139,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Puncture code**。
-
 ## 所属库
 
 Communications Toolbox / Error Detection and Correction / Block

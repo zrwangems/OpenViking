@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Inertia
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 将惯量连接到回路机械旋转网络的端口
+  direction: conserving
+- name: J
+  summary: 第二个图形端口 机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +38,16 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Number of graphical ports** 参数设置为 `2`。
-
 ## 参数
+```yaml
+parameters:
+- name: Inertia
+  summary: 恒定惯量 0.01 kg*m^2（默认）| 正标量
+  group: ''
+- name: Number of graphical ports
+  summary: 选择模块是以图形方式连接到回路的一侧还是与其他元件串联 1（默认）| 2
+  group: ''
+```
 
 ### **Inertia** — 恒定惯量 `0.01 kg*m^2`（默认）| 正标量
 
@@ -42,7 +59,6 @@ chinese_source: worker-translation
 
 - `1` — 模块有一个守恒端口，将其连接到机械旋转回路。当模块有一个端口时，将其连接到其他两个模块之间的连接线上。
 - `2` — 选择此选项会显示第二个端口，允许您将模块与回路中的其他模块串联连接。两个端口刚性连接并具有相同的角速度，因此模块的功能与只有一个端口时完全相同。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Rotational Elements

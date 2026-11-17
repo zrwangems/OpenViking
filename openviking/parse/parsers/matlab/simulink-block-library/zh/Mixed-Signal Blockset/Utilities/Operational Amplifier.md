@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Operational Amplifier
 
 ## 端口
+```yaml
+ports:
+- name: InP
+  summary: 正输入端 标量
+  direction: input
+  data_types: single | double
+- name: InN
+  summary: 负输入端 标量
+  direction: input
+  data_types: single | double
+- name: OutP
+  summary: 正输出端 标量
+  direction: output
+  data_types: single | double
+- name: OutN
+  summary: 负输出端 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -42,8 +61,117 @@ chinese_source: worker-translation
 运算放大器的负输出端。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Operational Amplifier Circuit
+  summary: 运算放大器电路类型 Double-pole Circuit（默认）| Multipole Circuit
+  group: ''
+  block_parameter: OpampType
+  type: character vector
+  values: Double-pole Circuit| Multipole Circuit
+  default: Double-pole Circuit
+- name: Inherit sample interval from input
+  summary: 从输入继承采样间隔 off（默认）| on
+  group: ''
+- name: Sample interval (s)
+  summary: MATLAB 分析中使用的采样间隔值 1e-8（默认）| 标量
+  group: ''
+  block_parameter: SampleInterval
+  type: character vector
+  values: scalar
+  default: 1e-8
+- name: Simulate using
+  summary: 选择仿真模式 Code generation（默认）| Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: character vector
+  values: Code generation| Interpreted execution
+  default: Code generation
+- name: Supply rail high (V)
+  summary: 最大电源电压 5（默认）| 实数标量
+  group: 信号参数
+  block_parameter: VoltageSupplyPlus
+  type: character vector
+  values: real scalar
+  default: '5'
+- name: Supply rail low (V)
+  summary: 最小电源电压 -5（默认）| 实数标量
+  group: 信号参数
+  block_parameter: VoltageSupplyMinus
+  type: character vector
+  values: real scalar
+  default: '-5'
+- name: Input offset voltage (V)
+  summary: 输入端的偏移电压 0（默认）| 标量
+  group: 信号参数
+  block_parameter: InputOffsetVoltage
+  type: character vector
+  values: scalar
+  default: '0'
+- name: 开环增益 (V/V)
+  summary: 无反馈时的运算放大器增益 3e3（默认）| 正实数标量
+  group: 高级参数
+  block_parameter: Gain
+  type: 字符向量
+  values: 正实数标量
+  default: 3e3
+- name: 单位增益带宽 (Hz)
+  summary: 运算放大器增益等于 1 时的频率 10e6（默认）| 正实数标量
+  group: 高级参数
+  block_parameter: FrequencyUnityGain
+  type: 字符向量
+  values: 正实数标量
+  default: 10e6
+- name: 最大尾电流 (A)
+  summary: 运算放大器电路中流过尾 MOSFET 的最大电流 100e-6（默认）| 正实数标量
+  group: 高级参数
+  block_parameter: InputCurrentMax
+  type: 字符向量
+  values: 正实数标量
+  default: 100e-6
+- name: 压摆率 (V/s)
+  summary: 运算放大器输出电压的变化率 10e6（默认）| 正实数标量
+  group: 高级参数
+  block_parameter: SlewRate
+  type: 字符向量
+  values: 正实数标量
+  default: 10e6
+- name: 输出电阻 (Ohms)
+  summary: 输出端子处的电阻 10e3（默认）| 正实数标量
+  group: 高级参数
+  block_parameter: OutputResistance
+  type: 字符向量
+  values: 正实数标量
+  default: 10e3
+- name: 输出电容 (F)
+  summary: 输出端子处的电容 50e-12（默认）| 正实数标量
+  group: 高级参数
+  block_parameter: OutputCapacitance
+  type: 字符向量
+  values: 正实数标量
+  default: 50e-12
+- name: 传递函数极点
+  summary: 拉普拉斯域中传递函数的极点 [-2.09e+04 -8.62e+07]（默认）| 列向量
+  group: 高级参数
+  block_parameter: Poles
+  type: 字符向量
+  values: 列向量
+  default: '[-2.09e+04 -8.62e+07]'
+- name: Transfer function zeroes
+  summary: 拉普拉斯域中传递函数的零点 [-9.14e+07]（默认）| 列向量
+  group: 高级参数
+  block_parameter: Zeros
+  type: character vector
+  values: column vector
+  default: '[-9.14e+07]'
+- name: Include Z-domain approximation
+  summary: 在绘制开环响应时包含 *z* 域近似 off（默认）| on
+  group: Analysis
+- name: Plot open loop response
+  summary: 绘制运放开环响应 button
+  group: Analysis
+```
 
 ### **Operational Amplifier Circuit** — 运算放大器电路类型 `Double-pole Circuit`（默认）| `Multipole Circuit`
 
@@ -281,7 +409,6 @@ chinese_source: worker-translation
 ### **Plot open loop response** — 绘制运放开环响应 button
 
 绘制运算放大器开环响应的 *s* 域传递函数。该图还报告单位增益带宽和相位裕度。您可以选择包含 *z* 域近似。
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

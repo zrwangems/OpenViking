@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Controlled Reservoir (G)
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 压力控制信号，Pa 物理信号
+  direction: input
+- name: T
+  summary: 温度控制信号，K 物理信号
+  direction: input
+- name: A
+  summary: 储层入口气体
+  direction: input
+```
 
 ### 输入
 
@@ -30,13 +42,17 @@ chinese_source: worker-translation
 ### **A** — 储层入口气体
 
 与储层入口关联的气体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Cross-sectional area at port A
+  summary: 储层入口处垂直于流动路径的面积 0.01 m^2（默认值）
+  group: ''
+```
 
 ### **Cross-sectional area at port A** — 储层入口处垂直于流动路径的面积 `0.01 m^2`（默认值）
 
 储层入口处沿垂直于气体流动路径方向的横截面积。
-
 ## 所属库
 
 Simscape / Foundation Library / Gas / Elements

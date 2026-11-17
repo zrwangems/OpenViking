@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Hydraulic Cap
 
 ## 端口
+```yaml
+ports:
+- name: P
+  summary: 零流量液压
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **P** — 零流量液压
 
 零流量的液压守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Hydraulic / Hydraulic Elements

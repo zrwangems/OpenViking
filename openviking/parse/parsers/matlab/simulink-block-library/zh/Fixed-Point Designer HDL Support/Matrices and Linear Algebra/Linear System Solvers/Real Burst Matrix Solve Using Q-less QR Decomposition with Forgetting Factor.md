@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Real Burst Matrix Solve Using Q-less QR Decomposition with Forgetting Factor
 
 ## 端口
+```yaml
+ports:
+- name: A(i,:)
+  summary: 实矩阵 *A* 的行 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: B
+  summary: 实矩阵 *B* 的行 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: validInA
+  summary: A(i,:) 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: validInB
+  summary: B 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: 是否清除内部状态 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: X
+  summary: 矩阵 *X* 矩阵 | 向量
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: readyA
+  summary: 模块是否已准备好接受输入 A(i,:) Boolean 标量
+  direction: output
+  data_types: Boolean
+- name: readyB
+  summary: 模块是否已准备好接受输入 B Boolean 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -141,8 +180,45 @@ chinese_source: worker-translation
 `validInB` 信号。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of columns in matrix A and rows in matrix B
+  summary: 矩阵 *A* 的列数和矩阵 *B* 的行数 4（默认值）| 正整数值标量
+  group: ''
+  block_parameter: n
+  type: character vector
+  values: positive integer-valued scalar
+  default: '4'
+- name: Number of columns in matrix B
+  summary: 矩阵 *B* 的列数 1（默认值）| 正整数值标量
+  group: ''
+  block_parameter: p
+  type: character vector
+  values: positive integer-valued scalar
+  default: '1'
+- name: Forgetting factor
+  summary: 对矩阵的每一行进行分解后应用的遗忘因子 0.99（默认值）| 实正标量
+  group: ''
+  block_parameter: forgetting_factor
+  type: character vector
+  values: real positive scalar
+  default: '0'
+- name: Regularization parameter
+  summary: 正则化参数 0（默认值）| 实非负标量
+  group: ''
+  block_parameter: regularizationParameter
+  type: character vector
+  values: real nonnegative scalar
+  default: '0'
+- name: Output datatype
+  summary: 输出矩阵 *X* 的数据类型 fixdt(1,18,14)（默认值）| double | single | fixdt(1,16,0) | <data type expression>
+  group: ''
+  block_parameter: OutputType
+  type: character vector
+  values: '''fixdt(1,18,14)'' | ''double'' | ''single'' | ''fixdt(1,16,0)'' | ''<data type expression>'''
+  default: '''fixdt(1,18,14)'''
+```
 
 ### **Number of columns in matrix A and rows in matrix B** — 矩阵 *A* 的列数和矩阵 *B* 的行数 `4`（默认值）| 正整数值标量
 
@@ -218,7 +294,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'fixdt(1,18,14)'` | `'double'` | `'single'` | `'fixdt(1,16,0)'` | `'<data type expression>'` |
 | **默认值**：`'fixdt(1,18,14)'` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Matrices and Linear Algebra / Linear System Solvers

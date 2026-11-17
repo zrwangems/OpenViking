@@ -14,6 +14,15 @@ language: en
 # Push-Pull Output
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input port physical signal
+  direction: input
+- name: J
+  summary: Output port electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -27,8 +36,58 @@ Physical port associated with the Push-Pull Output input.
 Electrical conserving port associated with the block output. The port
 name is hidden on the block icon, but you can see it in simulation data
 logs.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input signal scaling, k
+  summary: Input signal scaling 1 V (default)
+  group: Input Scaling
+- name: Input signal offset, c
+  summary: Input signal offset 0 (default)
+  group: Input Scaling
+- name: Output current-voltage relationship
+  summary: Output model Linear (default) | Quadratic
+  group: Output Characteristics
+- name: Output resistance
+  summary: Output resistance 25 Ohm (default)
+  group: Output Characteristics
+- name: Power rail voltages, [V- V+], used for measurements
+  summary: Power rail voltages used for measurements [0, 5] V (default)
+  group: Output Characteristics
+- name: Output resistance values at zero output current and at I_OH when Vg=V-
+  summary: Output resistance values at zero output current and at I_OH when Vg=V- [25, 250] Ohm (default)
+  group: Output Characteristics
+- name: Output current I_OH when output is shorted to V- and Vg=V-
+  summary: Output current I_OH when output is shorted to V- and Vg=V- 63 mA (default)
+  group: Output Characteristics
+- name: Output resistance values at zero output current and at I_OL when Vg=V+
+  summary: Output resistance values at zero output current and at I_OL when Vg=V+ [30, 800] Ohm (default)
+  group: Output Characteristics
+- name: Output current I_OL when output is shorted to V+ and Vg=V+
+  summary: Output current I_OL when output is shorted to V+ and Vg=V+ -45 mA (default)
+  group: Output Characteristics
+- name: Propagation delay
+  summary: Propagation delay 25 ns (default)
+  group: Output Characteristics
+- name: Protection diode on resistance
+  summary: Protection diode on resistance 5 Ohm (default)
+  group: Output Characteristics
+- name: Protection diode forward voltage
+  summary: Protection diode forward voltage 0.6 V (default)
+  group: Output Characteristics
+- name: Negative power rail voltage, V-
+  summary: Negative power rail voltage 0 V (default)
+  group: Supply Voltage
+- name: Positive power rail voltage, V+
+  summary: Positive power rail voltage 5 V (default)
+  group: Supply Voltage
+- name: Initial output voltage
+  summary: Initial output voltage 0 V (default)
+  group: Initial Conditions
+- name: Initial input signal
+  summary: Initial input signal 0 V (default)
+  group: Initial Conditions
+```
 
 ### Input Scaling
 
@@ -187,7 +246,6 @@ This parameter is visible only when the **Output
 current-voltage relationship** parameter is set to
 `Quadratic` on the **Output
 Characteristics** tab.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

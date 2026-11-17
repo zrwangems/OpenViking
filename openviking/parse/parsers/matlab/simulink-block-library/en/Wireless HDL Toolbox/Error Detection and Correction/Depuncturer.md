@@ -14,6 +14,45 @@ language: en
 # Depuncturer
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input sample scalar
+  direction: input
+  data_types: int8 | int16 | uint8 | uint16 | Boolean | fixdt(0,1,0) | fixdt(S,WL,0) | single | double
+- name: puncVector
+  summary: Puncture vector column vector of binary values
+  direction: input
+  data_types: Boolean
+- name: syncPunc
+  summary: Puncture synchronization signal scalar
+  direction: input
+  data_types: Boolean
+- name: valid
+  summary: Validity of input samples scalar
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: data
+  summary: Output sample 2-by-1 column vector
+  direction: output
+  data_types: int8 | int16 | uint8 | uint16 | Boolean | fixdt(0,1,0) | fixdt(S,WL,0) | single | double
+- name: valid
+  summary: Validity of output data samples scalar
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: erasure
+  summary: Neutral symbol locations 2-by-1 column vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -187,8 +226,19 @@ output **data** element is a depunctured neutral
 value.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Operation mode
+  summary: End of frame behavior Continuous (default) | Frame
+  group: ''
+- name: Puncture vector source
+  summary: Source of puncture vector Input port (default) | Property
+  group: ''
+- name: Puncture vector
+  summary: Locations to insert neutral values [1;1;0;1;1;0] (default) | column vector of binary values
+  group: ''
+```
 
 ### **Operation mode** — End of frame behavior `Continuous` (default) | `Frame`
 
@@ -235,7 +285,6 @@ The puncture vector cannot contain any [1:0] subvector matching
 
 To enable this port, set **Puncture vector source**
 to `Property`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

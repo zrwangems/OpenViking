@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # BPSK Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: BPSK 调制基带信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: double | single | fixed point
+- name: Var
+  summary: 噪声方差 正标量 | 正值向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 解调信号 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### 输入
 
@@ -41,8 +56,28 @@ BPSK 调制基带信号，指定为标量、向量或矩阵。当此输入为矩
 解调信号，以标量或向量形式返回。如果输出为标量，则该值为整数。如果输出为向量，则其为整数值或二值向量。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: 判决类型
+  summary: 判决类型 硬判决（默认）| 对数似然比 | 近似对数似然比
+  group: 主要
+- name: 噪声方差来源
+  summary: 噪声方差来源 对话框（默认）| 端口
+  group: 主要
+- name: 噪声方差
+  summary: 噪声方差 1（默认）| 正标量 | 正值向量
+  group: 主要
+- name: 相位偏移 (rad)
+  summary: 零点相位 0（默认）| 实值标量
+  group: 主要
+- name: 输出数据类型
+  summary: 输出数据类型 通过内部规则继承（默认）| 最小无符号整数 | double | single | ...
+  group: 数据类型
+- name: 去旋转因子
+  summary: 去旋转因子 与输入相同的字长（默认）| 指定字长
+  group: 数据类型
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **仿真** 选项卡中，在 **准备** 库中选择 **属性检查器**。
 
@@ -114,7 +149,6 @@ BPSK 调制基带信号，指定为标量、向量或矩阵。当此输入为矩
 #### 依赖关系
 
 此参数仅在输入为定点且 **相位偏移 (rad)** 参数不是 π/2 的倍数时适用。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

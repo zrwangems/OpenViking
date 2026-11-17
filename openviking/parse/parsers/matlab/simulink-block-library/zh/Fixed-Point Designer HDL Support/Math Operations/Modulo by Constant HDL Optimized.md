@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Modulo by Constant HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 被除数 实数值标量 | 向量 | 矩阵 | 多维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+- name: validIn
+  summary: 输入是否有效 布尔标量
+  direction: input
+  data_types: Boolean
+- name: Y
+  summary: 取模运算的结果 标量 | 向量 | 矩阵 | 多维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+- name: validOut
+  summary: 输出数据是否有效 布尔标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -44,8 +63,17 @@ chinese_source: worker-translation
 输出数据是否有效，以布尔标量形式返回。当此控制信号的值为 `1`（`true`）时，模块已成功计算输出 **Y**。当此值为 `0`（`false`）时，输出数据无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Denominator
+  summary: 除数 10（默认）| 实数值标量 | 向量 | 矩阵 | 多维数组
+  group: ''
+  block_parameter: Denominator
+  type: 字符向量
+  values: 求值为正的实数值有限定点或数值的 MATLAB® 表达式
+  default: '''10'''
+```
 
 ### **Denominator** — 除数 10（默认）| 实数值标量 | 向量 | 矩阵 | 多维数组
 
@@ -60,7 +88,6 @@ chinese_source: worker-translation
 | **值：** 求值为正的实数值有限定点或数值的 MATLAB® 表达式 |
 | **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` |
 | **默认值：** `'10'` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Math Operations

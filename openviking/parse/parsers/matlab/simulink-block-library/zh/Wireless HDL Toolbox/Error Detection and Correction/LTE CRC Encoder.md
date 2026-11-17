@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # LTE CRC Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入样本 二值标量 | 无符号整数标量 | 二值向量
+  direction: input
+  data_types: single | double | Boolean | ufix1 | uint8 | uint16 | uint32 | ufixN
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 输出样本 二值标量 | 整数标量 | 二值向量
+  direction: output
+  data_types: single | double | Boolean | ufix1 | uint8 | uint16 | uint32 | ufixN
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -59,8 +78,16 @@ chinese_source: worker-translation
 有关更多详细信息，请参阅 Sample Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: CRC Type
+  summary: 编码多项式 CRC16（默认）| CRC8 | CRC24A | CRC24B
+  group: ''
+- name: CRC Mask
+  summary: 应用于校验和的掩码 0（默认）| 从 0 到 2*CRCLength* – 1 的整数
+  group: ''
+```
 
 ### **CRC Type** — 编码多项式 `CRC16`（默认）| `CRC8` | `CRC24A` | `CRC24B`
 
@@ -69,7 +96,6 @@ chinese_source: worker-translation
 ### **CRC Mask** — 应用于校验和的掩码 `0`（默认）| 从 0 到 2*CRCLength* – 1 的整数
 
 应用于校验和的掩码，指定为表示从 0 到 2*CRCLength* – 1 的二值字的整数。该掩码通常为无线网络临时标识符（RNTI）。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

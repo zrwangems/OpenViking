@@ -14,6 +14,16 @@ language: en
 # UDP Multicast Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data received vector
+  direction: output
+  data_types: uint8
+- name: Length
+  summary: Number of bytes received double
+  direction: output
+```
 
 ### Output
 
@@ -33,8 +43,34 @@ Number of bytes in the new packet received, otherwise
 `0`. If more bytes are received than can be output
 through the receive port with width defined by **Receive
 width**, the excess bytes are discarded.
-
 ## Parameters
+```yaml
+parameters:
+- name: Bind address
+  summary: Bind IP address for receiving multicast data 0.0.0.0 (default)
+  group: General Parameters
+  block_parameter: bindAddress
+- name: Local port
+  summary: Destination UDP port to receive data 1–65535
+  group: General Parameters
+  block_parameter: localPort
+- name: Receive width
+  summary: Width of Data output vector 16 (default) | 1–65504
+  group: General Parameters
+  block_parameter: rcvWidth
+- name: Group address
+  summary: Multicast group to join {} (default) | {'x.x.x.x'} | dotted decimal character vector
+  group: General Parameters
+  block_parameter: multicastAddress
+- name: Group interface
+  summary: Local IP interface from which to receive data {} (default) | {'x.x.x.x'} | dotted decimal character vector
+  group: General Parameters
+  block_parameter: multicastInterface
+- name: Sample time (-1 for inherited)
+  summary: Sample time of block -1 (default) | numeric
+  group: General Parameters
+  block_parameter: sampleTime
+```
 
 ### General Parameters
 
@@ -150,7 +186,6 @@ time.
 |  |
 | --- |
 | **Block Parameter:** `sampleTime` |
-
 ## Libraries
 
 Simulink Real-Time / IP

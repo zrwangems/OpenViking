@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Hough Lines
 
 ## 端口
+```yaml
+ports:
+- name: Theta
+  summary: Theta 值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Rho
+  summary: Rho 值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Ref I
+  summary: 参考图像 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Pts
+  summary: 交点 矩阵
+  direction: output
+  data_types: int32
+```
 
 ### 输入
 
@@ -69,8 +88,16 @@ y21 x22
 y22`] 处与边界相交。
 
 **数据类型：** `int32`
-
 ## 参数
+```yaml
+parameters:
+- name: 正弦值计算方法
+  summary: 正弦值计算方法 Table lookup (默认) | Trigonometric function
+  group: ''
+- name: Theta 分辨率 (radians)
+  summary: Theta 分辨率 pi/180 (默认) | 正标量
+  group: ''
+```
 
 ### **正弦值计算方法** — 正弦值计算方法 `Table lookup` (默认) | `Trigonometric function`
 
@@ -89,7 +116,6 @@ y22`] 处与边界相交。
 #### 依存关系
 
 要启用此参数，请将 **正弦值计算方法** 参数设置为 `Table lookup`。
-
 ## 所属库
 
 Computer Vision Toolbox / Transforms

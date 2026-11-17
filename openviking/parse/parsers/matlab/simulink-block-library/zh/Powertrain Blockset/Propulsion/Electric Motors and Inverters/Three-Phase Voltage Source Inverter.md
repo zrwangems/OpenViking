@@ -15,6 +15,39 @@ chinese_source: worker-translation
 # Three-Phase Voltage Source Inverter
 
 ## 端口
+```yaml
+ports:
+- name: PhaseVoltCmd
+  summary: a、b、c 相线对中性点电压指令 1×3 数组
+  direction: input
+- name: SwitchCmd
+  summary: 开关指令 1×3 数组
+  direction: input
+- name: BusVolt
+  summary: 电源母线电压 bus
+  direction: input
+- name: PhaseCurr
+  summary: a、b、c 相电流 1×3 数组
+  direction: input
+- name: MtrTrq
+  summary: 电机转矩 scalar
+  direction: input
+- name: MtrSpd
+  summary: 电机转速 scalar
+  direction: input
+- name: InvrtrTemp
+  summary: 逆变器工作温度 scalar
+  direction: input
+- name: Info
+  summary: 总线信号 bus
+  direction: output
+- name: PhaseVolt
+  summary: a、b、c 相线对中性点电压 1×3 数组
+  direction: output
+- name: BusCurr
+  summary: 电源母线电流 scalar
+  direction: output
+```
 
 ### 输入
 
@@ -101,8 +134,84 @@ a、b、c 相线对中性点电压，
 
 电源母线电流，
 *ibus*，单位为 A。
-
 ## 参数
+```yaml
+parameters:
+- name: Input inverter temperature
+  summary: 创建输入端口 off（默认）| on
+  group: ''
+  block_parameter: InvrtrTmpInpEnbl
+  values: off（默认）| on
+- name: Enable memory optimized 2D LUT
+  summary: 选择 off（默认）| on
+  group: ''
+  block_parameter: enable_hdl
+  values: off（默认）| on
+- name: Calibrate Maps
+  summary: 使用测量数据校准表 selection
+  group: ''
+- name: Switching voltage function
+  summary: Selection Commanded phase voltage (default) | Switch inputs
+  group: ''
+  block_parameter: model_type
+  values: Commanded phase voltage (default) | Switch inputs
+- name: 速度断点 (w)，w_eff_bp
+  summary: 速度断点 [-1000 -500 0 500 1000]（默认）| 1×M 向量
+  group: ''
+  block_parameter: w_eff_bp
+  values: '[-1000 -500 0 500 1000]（默认）| 1×M 向量'
+- name: w_eff_bp 的重采样存储大小，n1
+  summary: 速度位大小 128（默认）| 2 | 4 | 8 | 16 | 32 | 64 | 256
+  group: ''
+  block_parameter: n1
+  values: 128（默认）| 2 | 4 | 8 | 16 | 32 | 64 | 256
+- name: 负载输入 (T) 的断点，T_eff_bp
+  summary: 转矩断点 [-200 -100 0 100 200]（默认）| 1×N 向量
+  group: ''
+  block_parameter: T_eff_bp
+  values: '[-200 -100 0 100 200]（默认）| 1×N 向量'
+- name: T_eff_bp 的重采样存储大小，n2
+  summary: 转矩位大小 128（默认）| 2 | 4 | 8 | 16 | 32 | 64 | 256
+  group: ''
+  block_parameter: n2
+  values: 128（默认）| 2 | 4 | 8 | 16 | 32 | 64 | 256
+- name: 温度输入的断点，Temp_eff_bp
+  summary: 温度断点 [213.15 293.15 373.15]（默认）| 1×L 向量
+  group: ''
+  block_parameter: Temp_eff_bp
+  values: '[213.15 293.15 373.15]（默认）| 1×L 向量'
+- name: 对应功率损耗，ploss_table
+  summary: 2D 查找表 [1 0.999 0.989 0.997 0.996;0.995 0.994 0.993 0.992 0.991;0.990 0.989 0.988 0.987 0.986;0.985 0.984 0.983
+    0.982 0.981;0.980 0.979 0.978 0.977 0.976]（默认）| M×N 数组
+  group: ''
+  block_parameter: ploss_table
+  values: M×N 数组
+- name: Corresponding power loss, ploss_table_3d
+  summary: 3D 查找表 M×N×L 数组
+  group: ''
+  block_parameter: ploss_table_3d
+  values: M×N×L 数组
+- name: w_eff_bp max endpoint, u1max
+  summary: 转速断点 1000（默认）| scalar
+  group: ''
+  block_parameter: u1max
+  values: 1000（默认）| scalar
+- name: w_eff_bp min endpoint, u1min
+  summary: 转速断点 -1000（默认）| scalar
+  group: ''
+  block_parameter: u1min
+  values: -1000（默认）| scalar
+- name: T_eff_bp max endpoint, u2max
+  summary: 转矩断点 200（默认）| scalar
+  group: ''
+  block_parameter: u2max
+  values: 200（默认）| scalar
+- name: T_eff_bp min endpoint, u2min
+  summary: 转矩断点 -200（默认）| scalar
+  group: ''
+  block_parameter: u2min
+  values: -200（默认）| scalar
+```
 
 #### 模块选项
 
@@ -423,7 +532,6 @@ a、b、c 相线对中性点电压，
 #### 依赖关系
 
 要创建此参数，请选择 **Enable memory optimized 2D LUT** 和 **Specify Extrapolation**。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Electric Motors and Inverters

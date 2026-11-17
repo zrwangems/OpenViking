@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Double-Shoe Brake
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 致动力物理信号
+  direction: input
+- name: S
+  summary: 制动鼓轴旋转旋转机械
+  direction: input
+- name: H
+  summary: 热流热
+  direction: input
+```
 
 ### 输入
 
@@ -36,8 +48,52 @@ chinese_source: worker-translation
 仅当在**摩擦**设置中将**热端口**参数设置为 `Model` 时，此端口才可见。
 
 暴露此端口会使相关设置可见。
-
 ## 参数
+```yaml
+parameters:
+- name: Drum radius
+  summary: 接触面半径 150 mm（默认）| 正标量
+  group: 几何
+- name: Actuator location radius
+  summary: 制动鼓与力作用线之间的中心距 100mm（默认）| 正标量
+  group: 几何
+- name: Pin location radius
+  summary: 铰链销与制动鼓之间的中心距 125mm（默认）| 正标量
+  group: 几何
+- name: Pin location angle
+  summary: 从铰链销到制动器对称轴的角距离 15deg（默认）| 非负标量
+  group: 几何
+- name: Shoe beginning angle
+  summary: 铰链销与摩擦材料之间的角度 5deg（默认）| 正标量
+  group: 几何
+- name: Shoe span angle
+  summary: 摩擦材料角度 120deg（默认）| 正标量
+  group: 几何
+- name: Viscous friction coefficient
+  summary: 粘性摩擦 .01 n*m/(rad/s)（默认）| 非负标量
+  group: 摩擦
+- name: Thermal port
+  summary: 热模型 Omit（默认）| Model
+  group: 摩擦
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: 摩擦
+- name: Contact friction coefficient
+  summary: 库仑摩擦 0.3（默认）| [0.1, 0.05, 0.03]（热模型默认值）| 正标量或向量
+  group: 摩擦
+- name: Angular velocity threshold
+  summary: 接近稳态接触摩擦所需的旋转速度 0.01 rad/s（默认）| 正标量
+  group: 摩擦
+- name: Belt tension fault
+  summary: 用于对制动带张力故障建模的选项 Add fault
+  group: 故障
+- name: Belt force when faulted
+  summary: 故障时的制动带力 0 N（默认）| 非负标量
+  group: 故障
+- name: Thermal mass
+  summary: 对温度变化的阻力 50 kJ/K（默认）| 标量
+  group: 热端口
+```
 
 ### 几何
 
@@ -134,7 +190,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将**热端口**设置为 `Model`。
-
 ## 所属库
 
 Simscape / Driveline / Brakes & Detents / Rotational

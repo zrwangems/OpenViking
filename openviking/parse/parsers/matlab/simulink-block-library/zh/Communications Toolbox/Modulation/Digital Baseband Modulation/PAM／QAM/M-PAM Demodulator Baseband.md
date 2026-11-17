@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # M-PAM Demodulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: '*M*-PAM 调制信号 标量 | 列向量'
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Out
+  summary: 解调信号 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -29,8 +39,50 @@ chinese_source: worker-translation
 ### **Out** — 解调信号 标量 | 向量
 
 解调信号，返回为标量或向量。解调信号的维度取决于您为 **Output data type** 参数指定的值。该端口在模块中未命名。
-
 ## 参数
+```yaml
+parameters:
+- name: M-ary number
+  summary: 调制阶数 4（默认）| 正偶整数
+  group: 主要
+- name: Output type
+  summary: 输出类型 Integer（默认）| Bit
+  group: 主要
+- name: Constellation ordering
+  summary: 符号的映射顺序 Binary（默认）| Gray
+  group: 主要
+- name: Normalization method
+  summary: 星座图的缩放方法 Min. distance between symbols（默认）| Average Power | Peak Power
+  group: 主要
+- name: Minimum distance
+  summary: 两个最近星座点之间的距离 2（默认）| 正标量
+  group: 主要
+- name: Average power, referenced to 1 ohm (watts)
+  summary: 平均功率 1（默认）| 正标量
+  group: 主要
+- name: Peak power, referenced to 1 ohm (watts)
+  summary: 最大功率 1（默认）| 正标量
+  group: 主要
+- name: Output data type
+  summary: 输出数据类型 Inherit via internal rule（默认）| Smallest unsigned integer | double | single | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | boolean
+  group: 数据类型
+- name: Denormalization factor
+  summary: '反归一化因子数据类型 Inherit: Same word length as input（默认）| fixdt(1,16) | <data type expression>'
+  group: 数据类型
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| fixdt(1,16) | <data type expression>'
+  group: 数据类型
+- name: Rounding mode
+  summary: 定点运算的舍入模式 Wrap（默认）| Saturate
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 整数溢出时饱和选项 off（默认）| on
+  group: 数据类型
+- name: Sum
+  summary: '和数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as product output | fixdt(1,16) | <data type expression>'
+  group: 数据类型
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，从 **Prepare** 库中选择 **Property Inspector**。
 
@@ -143,7 +195,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 此参数仅在输入为定点信号时适用。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / AM

@@ -14,6 +14,17 @@ language: en
 # Low-Pass Filter (Discrete or Continuous)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Filter input vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: Filter output vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -30,8 +41,31 @@ to determine the state initial value.
 Low-pass filter output.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Gain
+  summary: Filter gain 1 (default) | positive number
+  group: ''
+- name: Time constant
+  summary: Filter time constant 1 (default) | positive number
+  group: ''
+- name: Upper saturation limit
+  summary: State upper limit inf (default) | real number
+  group: ''
+- name: Lower saturation limit
+  summary: State lower limit -inf (default) | real number
+  group: ''
+- name: Initialization
+  summary: Initial state specification Inherited from block input (default) | Specify as parameter
+  group: ''
+- name: Initial state
+  summary: Initial state 0 (default) | real number
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **Gain** — Filter gain `1` (default) | positive number
 
@@ -83,7 +117,6 @@ If this block is in a masked subsystem or a variant subsystem that supports swit
 between continuous operation and discrete operation, promote this parameter to ensure
 correct switching between the continuous and discrete implementations of the block. For
 more information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

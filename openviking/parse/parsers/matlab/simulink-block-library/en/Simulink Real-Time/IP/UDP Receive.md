@@ -14,6 +14,16 @@ language: en
 # UDP Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data received vector
+  direction: output
+  data_types: uint8 | UDP_Packet
+- name: Length
+  summary: Number of bytes received double
+  direction: output
+```
 
 ### Output
 
@@ -46,8 +56,46 @@ the new packet received, otherwise `0`. If more bytes
 are received than can be output through the **Data**
 port with width defined by **Receive width**, the
 excess bytes are discarded.
-
 ## Parameters
+```yaml
+parameters:
+- name: Use host-target connection
+  summary: Use Ethernet connection between development and target computers 'off' (default) | 'on'
+  group: General Parameters
+  block_parameter: useHostTargetConn
+- name: Local IP address
+  summary: Destination IP address for receiving data Use host-target connection (default)
+  group: General Parameters
+  block_parameter: ipAddress
+- name: Local port
+  summary: Destination UDP port to receive data 1–65535
+  group: General Parameters
+  block_parameter: localPort
+- name: Receive width
+  summary: Width of Data output vector 1–65504
+  group: General Parameters
+  block_parameter: rcvWidth
+- name: Receive from any source
+  summary: Causes receiver to accept data from any IP address on (default) | off
+  group: General Parameters
+  block_parameter: rcvFmAny
+- name: From IP address
+  summary: Source from which to receive data x.x.x.x
+  group: General Parameters
+  block_parameter: fmAddress
+- name: Sample time (-1 for inherited)
+  summary: Sample time of block -1 (default) | numeric
+  group: General Parameters
+  block_parameter: sampleTime
+- name: Enable Simulink messages
+  summary: Data as messages off (default) | on
+  group: General Parameters
+  block_parameter: MessageOut
+- name: Maximum messages per timestep
+  summary: Limits messages 1 (default) | int
+  group: General Parameters
+  block_parameter: maxPacket
+```
 
 ### General Parameters
 
@@ -176,7 +224,6 @@ an error is generated..
 |  |
 | --- |
 | **Block Parameter:** `maxPacket` |
-
 ## Libraries
 
 Simulink Real-Time / IP

@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # OQPSK Modulator Baseband
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入数据 整数列向量 | 位列向量
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: 输出基带波形 列向量
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +41,46 @@ chinese_source: worker-translation
 
 输出基带波形，返回为复数数据的列向量。
 **Output data type** 参数指定输出信号的数据类型。
-
 ## 参数
+```yaml
+parameters:
+- name: Input type
+  summary: 输入类型 Integer（默认）| Bit
+  group: 调制
+- name: Symbol mapping
+  summary: 信号星座图比特映射 Gray（默认）| Binary | 自定义的 4 元素整数数值向量，取值范围为 0 到 3
+  group: 调制
+- name: Phase offset (rad)
+  summary: 信号星座图零点相位 0（默认）| 标量
+  group: 调制
+- name: View Constellation
+  summary: 绘制参考星座图的选项 按钮
+  group: 调制
+- name: Pulse shape
+  summary: 滤波脉冲形状 Half sine（默认）| Normal raised cosine | Root raised cosine | Custom
+  group: 滤波
+- name: Rolloff factor
+  summary: 升余弦滤波器滚降因子 0.2（默认）| 标量
+  group: 滤波
+- name: Filter span (in symbols)
+  summary: 滤波器长度 10（默认）| 标量
+  group: 滤波
+- name: Filter numerator
+  summary: 滤波器分子 [0.7071 0.7071]（默认）| 行向量
+  group: 滤波
+- name: Filter Denominator
+  summary: 滤波器分母 1（默认）| 行向量
+  group: 滤波
+- name: Samples per symbol
+  summary: 每个符号的采样数 4（默认）| 正偶整数
+  group: 滤波
+- name: Rate options
+  summary: 处理速率选项 Enforce single-rate processing（默认）| Allow multirate processing
+  group: 其他参数
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single
+  group: 其他参数
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -129,7 +177,6 @@ FIR 滤波器分母，指定为行向量。
 ### **Output data type** — 输出数据类型 `double`（默认）| `single`
 
 选择输出数据类型：`double` 或 `single`。
-
 ## 所属库
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK

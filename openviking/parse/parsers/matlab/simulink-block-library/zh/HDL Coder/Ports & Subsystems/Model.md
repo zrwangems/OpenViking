@@ -15,6 +15,45 @@ chinese_source: worker-translation
 # Model
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 与被引用模型的根级模块对应的输入 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | image
+- name: Port_1
+  summary: 与被引用模型的根级模块对应的输出 标量 | 向量 | 矩阵 | 数组 | 总线
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus | image
+- name: Enable
+  summary: 启用被引用模型的控制信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Trigger
+  summary: 触发被引用模型的控制信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Function Call
+  summary: 函数调用事件的控制信号 标量
+  direction: output
+- name: initialize
+  summary: 模型初始化事件的控制信号 标量
+  direction: output
+- name: reset
+  summary: 模型重置事件的控制信号 标量
+  direction: output
+- name: reinit
+  summary: 模型重新初始化事件的控制信号 标量
+  direction: output
+- name: terminate
+  summary: 模型终止事件的控制信号 标量
+  direction: output
+- name: D
+  summary: 调度周期性事件的控制信号 标量
+  direction: output
+```
 
 ### 输入
 
@@ -138,8 +177,84 @@ Model 模块具有标记为 D1[0.01] 和 D2[0.1] 的端口。
 #### 依赖关系
 
 要启用此类端口，请将 **Schedule rates with** 设置为 `Ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Model name
+  summary: 被引用模型的文件名 无默认值
+  group: 主要
+  block_parameter: ModelNameDialog
+  values: '''''（默认） | 带引号的文件名'
+- name: Simulation mode
+  summary: 模型引用的仿真模式 Normal（默认） | Accelerator | Software-in-the-loop (SIL) | Processor-in-the-loop (PIL)
+  group: 主要
+  block_parameter: SimulationMode
+  values: '"Normal"（默认） | "Accelerator" | "Software-in-the-loop (SIL)" | "Processor-in-the-loop (PIL)"'
+- name: Code interface
+  summary: 从顶层模型或被引用模型生成代码的选项 Model reference（默认） | Top model
+  group: 主要
+  block_parameter: CodeInterface
+  values: '"Model reference"（默认） | "Top model"'
+- name: Show model initialize port
+  summary: 显示初始化事件端口的选项 off（默认） | on
+  group: 模型事件仿真
+  block_parameter: ShowModelInitializePort
+  values: '"off"（默认） | "on"'
+- name: Show model reinitialize ports
+  summary: 显示重新初始化事件端口的选项 off（默认） | on
+  group: 模型事件仿真
+  block_parameter: ShowModelReinitializePorts
+  values: '"off"（默认） | "on"'
+- name: Show model reset ports
+  summary: 显示重置事件端口的选项 off（默认） | on
+  group: 模型事件仿真
+  block_parameter: ShowModelResetPorts
+  values: '"off"（默认） | "on"'
+- name: Show model terminate port
+  summary: 显示终止事件端口的选项 off（默认） | on
+  group: 模型事件仿真
+  block_parameter: ShowModelTerminatePort
+  values: '"off"（默认） | "on"'
+- name: Schedule rates
+  summary: 调度周期性事件的选项 off（默认） | on
+  group: 模型事件仿真
+  block_parameter: ScheduleRates
+  values: '"off"（默认） | "on"'
+- name: Schedule rates with
+  summary: 用于创建分区或周期事件端口的选项 Ports（默认） | Schedule Editor
+  group: 模型事件仿真
+  block_parameter: ScheduleRatesWith
+  values: '"Ports"（默认） | "Schedule Editor"'
+- name: Instance parameters
+  summary: 显示实例参数并为被引用模型指定值 数值 | 工作区变量 | 数学表达式 | 结构体或结构体字段
+  group: 实例参数
+  block_parameter: InstanceParameters
+  values: 包含 Name、Value、Path 和 Argument 字段的结构体
+- name: Use local solver
+  summary: 使用局部求解器求解被引用模型的选项 链接到被引用模型配置参数
+  group: 求解器
+- name: Solver
+  summary: 选择局部求解器的选项 链接到被引用模型配置参数
+  group: 求解器
+- name: Fixed step
+  summary: 为固定步长局部求解器指定步长的选项 链接到被引用模型配置参数
+  group: 求解器
+- name: Communication step size
+  summary: 局部求解器与父求解器之间通信的离散间隔 正标量双精度值
+  group: 求解器
+  block_parameter: CommunicationStepSize
+  values: -1（默认） | 正标量双精度值
+- name: Input signal handling
+  summary: 局部求解器输入的外推方法 Auto（默认） | Zero-order hold
+  group: 求解器
+  block_parameter: InputSignalHandling
+  values: '"Auto"（默认） | "Zero-order hold"'
+- name: 输出信号处理
+  summary: 局部求解器输出的插值方法 Auto（默认）| Use solver interpolant | Zero-order hold
+  group: 求解器
+  block_parameter: OutputSignalHandling
+  values: '"Auto"（默认）| "Use solver interpolant" | "Zero-order Hold"'
+```
 
 要以交互方式修改 Model 模块参数，请选择 Model 模块。然后，在 Simulink 工具条的 **Model Block** 选项卡上，点击 **Block Parameters**。
 
@@ -583,7 +698,6 @@ model")`
 
 **示例：** `set_param(gcb,OutputSignalHandling="Zero-order
 Hold")`
-
 ## 所属库
 
 Simulink / Ports & Subsystems HDL Coder / Ports & Subsystems

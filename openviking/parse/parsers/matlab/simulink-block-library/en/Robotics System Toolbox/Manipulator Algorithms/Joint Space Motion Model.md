@@ -14,6 +14,30 @@ language: en
 # Joint Space Motion Model
 
 ## Ports
+```yaml
+ports:
+- name: qRef
+  summary: Joint positions *n*-element vector
+  direction: input
+- name: qRefDot
+  summary: Joint velocities *n*-element vector
+  direction: input
+- name: qRefDDot
+  summary: Joint accelerations *n*-element vector
+  direction: input
+- name: FExt
+  summary: External forces acting on system 6-by-*m* matrix
+  direction: input
+- name: q
+  summary: Joint positions *n*-element vector
+  direction: output
+- name: qd
+  summary: Joint velocities *n*-element vector
+  direction: output
+- name: qdd
+  summary: Joint accelerations *n*-element vector
+  direction: output
+```
 
 ### Input
 
@@ -88,8 +112,50 @@ Joint accelerations output as an *n*-element vector in radians
 per second squared or meters per second squared, where *n* is the
 number of nonfixed joints in the `rigidBodyTree` object of the `Rigid body
 tree` parameter
-
 ## Parameters
+```yaml
+parameters:
+- name: Rigid body tree
+  summary: Robot model twoJointRigidBodyTree (default) | RigidBodyTree object
+  group: ''
+- name: Motion Type
+  summary: Type of motion computed by motion model Computed Torque Control (default) | Independent Joint Motion | PD Control
+    | Open Loop Dynamics
+  group: ''
+- name: Specification format
+  summary: Inputs to control robot Damping Ratio / Natural Frequency (default) | Step Response
+  group: ''
+- name: Damping ratio
+  summary: Damping ratio of system 1 (default) | numeric scalar
+  group: ''
+- name: Natural frequency
+  summary: Natural frequency of system 10 (default) | numeric scalar
+  group: ''
+- name: Settling time
+  summary: Settling time of system 0.59 (default) | numeric scalar
+  group: ''
+- name: Overshoot
+  summary: System overshoot 0.0 (default) | numeric scalar
+  group: ''
+- name: Proportional gain
+  summary: Proportional gain for PD Control 100 (default) | *n*-by-*n* matrix | scalar
+  group: ''
+- name: Derivative gain
+  summary: Derivative gain for PD control 10 (default) | *n*-by-*n* matrix | scalar
+  group: ''
+- name: Show external force input
+  summary: Display FExt port off (default) | on
+  group: ''
+- name: Initial joint configuration
+  summary: Initial joint positions 0 (default) | *n*-element vector | scalar
+  group: ''
+- name: Initial joint velocities
+  summary: Initial joint velocities 0 (default) | *n*-element vector | scalar
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 ### **Rigid body tree** — Robot model `twoJointRigidBodyTree` (default) | `RigidBodyTree` object
 
@@ -237,7 +303,6 @@ tree` parameter.
   simulations, as long as the model does not change.
 
 **Tunable:** No
-
 ## Libraries
 
 Robotics System Toolbox / Manipulator Algorithms

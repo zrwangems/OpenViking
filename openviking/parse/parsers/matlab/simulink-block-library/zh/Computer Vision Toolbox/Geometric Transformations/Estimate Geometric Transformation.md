@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Estimate Geometric Transformation
 
 ## 端口
+```yaml
+ports:
+- name: Pts1
+  summary: 点坐标 *M*×2 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Pts2
+  summary: 点坐标 *M*×2 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Num
+  summary: 有效点数量 标量
+  direction: input
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: TForm
+  summary: 变换 3×2 矩阵 | 3×3 矩阵
+  direction: output
+  data_types: single | double
+- name: Inlier
+  summary: 使用的点 *M*×1 向量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -61,8 +84,52 @@ chinese_source: worker-translation
 - 当您启用 **Output Boolean signal indicating which point pairs are inliers** 参数时，**Inlier** 端口出现。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Transformation type
+  summary: 变换类型 Affine（默认）| Nonreflective similarity | Projective
+  group: ''
+- name: Find and exclude outliers
+  summary: 查找并排除离群值 on（默认）| off
+  group: ''
+- name: Method
+  summary: 查找离群值的方法 RANdom SAmple Consensus (RANSAC)（默认）| Least Median of Squares
+  group: ''
+- name: Algebraic distance threshold for determining inliers
+  summary: 用于确定内点的代数距离阈值 1.5（默认）| 标量
+  group: ''
+- name: Distance threshold for determining inliers (in pixels)
+  summary: 用于确定内点的距离阈值（以像素为单位）1.5（默认）| 标量
+  group: ''
+- name: Determine number of random samplings using
+  summary: 确定随机采样次数的方式 Specified value（默认）| Desired confidence
+  group: ''
+- name: Number of random samplings
+  summary: 随机采样次数 500（默认）| 标量
+  group: ''
+- name: Desired confidence (in %)
+  summary: 期望置信度（以 % 为单位）99（默认）| 标量
+  group: ''
+- name: Maximum number of random samplings
+  summary: 最大随机采样次数 1000（默认）| 整数
+  group: ''
+- name: Stop sampling earlier when a specified percentage of point pairs are determined to be inlier
+  summary: 提前停止采样 off（默认）| on
+  group: ''
+- name: Perform additional iterative refinement of the transformation matrix
+  summary: 执行变换矩阵的额外迭代细化 off（默认）| on
+  group: ''
+- name: Output Boolean signal indicating which point pairs are inliers
+  summary: 输出布尔信号 off（默认）| on
+  group: ''
+- name: When Pts1 and Pts2 are built-in integers, set transformation matrix date type to
+  summary: 设置变换矩阵数据类型 Single（默认）| Double
+  group: ''
+- name: Allow variable-sized signal input
+  summary: 允许可变大小信号输入 on（默认）| off
+  group: ''
+```
 
 ### **Transformation type** — 变换类型 `Affine`（默认）| `Nonreflective similarity` | `Projective`
 
@@ -173,7 +240,6 @@ chinese_source: worker-translation
 启用此参数以允许可变大小信号输入。
 
 #### 依赖关系
-
 ## 所属库
 
 Computer Vision Toolbox / Geometric Transformations

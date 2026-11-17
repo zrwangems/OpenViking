@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Delta-Connected Load
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相端口电气
+  direction: conserving
+- name: a
+  summary: '*a* 相电气'
+  direction: conserving
+- name: b
+  summary: '*b* 相电气'
+  direction: conserving
+- name: c
+  summary: '*c* 相电气'
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -51,8 +66,76 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Electrical connection** 设置为 `Expanded three-phase ports`。
-
 ## 参数
+```yaml
+parameters:
+- name: Electrical connection
+  summary: 是对复合三相端口还是扩展三相端口进行建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: 主要
+- name: Parameterization
+  summary: 参数化 Specify by rated power and voltage（默认）| Specify component values directly
+  group: 主要
+- name: Component structure
+  summary: 所需的组件组合 R（默认）| L | C | Series RL | Series RC | Series LC | Series RLC | Parallel RL | Parallel RC | Parallel LC
+    | Parallel RLC
+  group: 主要
+- name: Rated voltage
+  summary: 额定电压 24e3 V（默认）| 非负标量
+  group: 主要
+- name: Real power
+  summary: 总有功耗散功率 1e3 W（默认）| 正标量
+  group: 主要
+- name: Rated electrical frequency
+  summary: 额定电气频率 60 Hz（默认）| 正标量
+  group: 主要
+- name: Inductive reactive power
+  summary: 感性无功功率 1e2 A*V（默认）| 正标量
+  group: 主要
+- name: Capacitive reactive power
+  summary: 总容性无功功率 -1e2 A*V（默认）| 负标量
+  group: 主要
+- name: Resistance
+  summary: 电阻 1 Ohm（默认）| 正标量
+  group: 主要
+- name: Inductance
+  summary: 电感 0.001 H（默认）| 正标量
+  group: 主要
+- name: Capacitance
+  summary: 电容 1e-6 F（默认）| 正标量
+  group: 主要
+- name: Parasitic series resistance
+  summary: 寄生串联电阻 0 Ohm（默认）| 非负标量
+  group: 寄生参数
+- name: Parasitic parallel conductance
+  summary: 寄生并联电导 0 1/Ohm（默认）| 非负标量
+  group: 寄生参数
+- name: Terminal voltage magnitude
+  summary: 端子电压幅值 24e3 V（默认）| 非负标量
+  group: 初始条件
+- name: Terminal voltage angle
+  summary: 端子电压角度 0 deg（默认）| 标量
+  group: 初始条件
+- name: Frequency
+  summary: 频率 60 Hz（默认）| 正标量
+  group: 初始条件
+- name: Connection fault
+  summary: 向连接端口添加故障的选项 Add fault
+  group: 故障
+- name: Fault type
+  summary: 故障类型 Single-phase to ground (a-g)（默认）| Single-phase to ground (b-g) | Single-phase to ground (c-g) | Two-phase
+    (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase to ground
+    (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: 故障
+- name: Faulted phase-neutral resistance
+  summary: 故障时相连接与中性点之间的电阻 1e-3 Ohm（默认）| 正标量
+  group: 故障
+- name: Faulted neutral-ground resistance
+  summary: 故障时中性点与电气参考之间的电阻 1e-3 Ohm（默认）| 正标量
+  group: 故障
+- name: Unfaulted phase-neutral conductance
+  summary: 未故障时相连接与中性点之间的电导 1e-6 1/Ohm（默认）| 正标量
+  group: 故障
+```
 
 ### 主要
 
@@ -276,7 +359,6 @@ chinese_source: worker-translation
 - `Two-phase to ground (c-a-g)`
 - `Three-phase (a-b-c)`
 - `Three-phase to ground (a-b-c-g)`
-
 ## 所属库
 
 Simscape / Electrical / Passive / RLC Assemblies

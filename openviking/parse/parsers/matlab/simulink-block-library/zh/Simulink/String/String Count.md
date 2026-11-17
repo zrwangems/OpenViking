@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # String Count
 
 ## 端口
+```yaml
+ports:
+- name: str
+  summary: 要搜索的字符串 标量
+  direction: input
+  data_types: string
+- name: sub
+  summary: 要搜索的字符串模式 标量
+  direction: input
+  data_types: string
+- name: n
+  summary: 在字符串中找到模式的次数 标量
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### 输入
 
@@ -36,8 +51,29 @@ chinese_source: worker-translation
 在字符串 `str` 中找到字符串模式的次数，以标量形式返回。
 
 **数据类型：** `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Case sensitive
+  summary: 区分大小写 开启（默认） | 关闭
+  group: ''
+  block_parameter: CaseSensitive
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Output data type
+  summary: '输出数据类型 Inherit: Inherit via internal rule（默认） | Inherit: Inherit via back propagation | int8 | uint8 | int16 |
+    uint16 | int32 | uint32 | <data type expression>'
+  group: ''
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | *<data type expression>*'
+  default: '''Inherit: Inherit via internal rule'''
+- name: Mode
+  summary: 数据类型类别 Inherit（默认） | Built in | Expression
+  group: ''
+```
 
 ### **Case sensitive** — 区分大小写 开启（默认） | 关闭
 
@@ -85,7 +121,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 单击 **Show data type assistant** 按钮可启用此参数。
-
 ## 所属库
 
 Simulink / String

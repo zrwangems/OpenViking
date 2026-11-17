@@ -14,6 +14,24 @@ language: en
 # Flow Rate Sensor (TL)
 
 ## Ports
+```yaml
+ports:
+- name: M
+  summary: Mass flow rate measurement, kg/s physical signal
+  direction: output
+- name: V
+  summary: Volumetric flow rate, m^3/s physical signal
+  direction: output
+- name: φ
+  summary: Energy flow rate measurement, W physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Sensor outlet thermal liquid
+  direction: conserving
+```
 
 ### Output
 
@@ -54,8 +72,19 @@ Thermal liquid conserving port. Flow rates are positive if fluid flows from port
 
 Thermal liquid conserving port. Flow rates are positive if fluid flows from port
 **A** to port **B**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mass flow rate
+  summary: Control output port visibility for measuring mass flow rate On (default) | Off
+  group: ''
+- name: Volumetric flow rate
+  summary: Control output port visibility for measuring volumetric flow rate Off (default) | On
+  group: ''
+- name: Energy flow rate
+  summary: Control output port visibility for measuring energy flow rate On (default) | Off
+  group: ''
+```
 
 ### **Mass flow rate** — Control output port visibility for measuring mass flow rate `On` (default) | `Off`
 
@@ -71,7 +100,6 @@ you measure volumetric flow rate.
 
 Selecting this check box exposes the output port **φ**, which lets
 you measure energy flow rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Sensors

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Sudden Area Change (TL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 截面入口热液体
+  direction: conserving
+- name: B
+  summary: 截面入口热液体
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,37 @@ chinese_source: worker-translation
 ### **B** — 截面入口热液体
 
 面积变化截面的流体入口或出口点。
-
 ## 参数
+```yaml
+parameters:
+- name: 局部损失参数化
+  summary: 流量损失计算方法 Semi-empirical（默认）| Tabulated data - loss coefficient vs. Reynolds number
+  group: ''
+- name: 端口 A 处的横截面积
+  summary: A 处的入口面积 0.02 m^2（默认）| 正标量
+  group: ''
+- name: 端口 B 处的横截面积
+  summary: B 处的入口面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: 临界雷诺数
+  summary: 与截面中最小面积相关的过渡雷诺数 150（默认）| 正标量
+  group: ''
+- name: 收缩修正因子
+  summary: 损失系数缩放因子 1（默认）| 正标量
+  group: ''
+- name: 膨胀修正因子
+  summary: 损失系数缩放因子 1（默认）| 正标量
+  group: ''
+- name: 雷诺数向量
+  summary: 用于表格参数化的雷诺数向量 [10, 20, 30, 40, 50, 100, 200, 500, 1000, 2000]（默认）| 向量
+  group: ''
+- name: 收缩损失系数向量
+  summary: 用于表格参数化的损失系数向量 [4, 2.7, 1.8, 1.46, 1.3, .9, .65, .42, .3, .2]（默认）| 1×*n* 向量
+  group: ''
+- name: 膨胀损失系数向量
+  summary: 用于表格参数化的损失系数向量 [4, 2.3, 1.65, 1.35, 1.15, .9, .75, .65, .9, .65]（默认）| 1×*n* 向量
+  group: ''
+```
 
 ### **局部损失参数化** — 流量损失计算方法 `Semi-empirical`（默认）| `Tabulated data - loss coefficient vs. Reynolds number`
 
@@ -69,7 +107,6 @@ chinese_source: worker-translation
 面积变化膨胀部分的损失系数向量。在 **雷诺数向量** 参数中的雷诺数处指定损失系数。该模块使用雷诺数向量和损失系数向量构建一维查找表。
 
 仅当 **损失系数设定** 参数设置为 `Tabulated data — Loss coefficient vs. Reynolds number` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Fluids / Thermal Liquid / Pipes & Fittings

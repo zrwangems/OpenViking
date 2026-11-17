@@ -15,6 +15,32 @@ chinese_source: worker-translation
 # Wideband Two-Ray Channel
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 宽带输入信号 *M*×*N* 复值矩阵 | *M*×*2N* 复值矩阵
+  direction: input
+  data_types: double
+- name: Pos1
+  summary: 信号源位置 3×1 实值列向量 | 3×*N* 实值矩阵
+  direction: input
+  data_types: double
+- name: Pos2
+  summary: 信号目的地位置 3×1 实值列向量 | 3×*N* 实值矩阵
+  direction: input
+  data_types: double
+- name: Vel1
+  summary: 信号源速度 3×1 实值列向量 | 3×*N* 实值矩阵
+  direction: input
+  data_types: double
+- name: Vel2
+  summary: 信号目的地速度 3×1 实值列向量 | 3×*N* 实值矩阵
+  direction: input
+  data_types: double
+- name: Out
+  summary: 传播信号 *M*×*N* 复值矩阵 | *M*×*2N* 复值矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -122,8 +148,55 @@ chinese_source: worker-translation
 - *M*×*2N* 复值矩阵。要返回此格式，请将 `CombinedRaysOutput` 属性设置为 `false`。矩阵的交替列包含来自视距路径和反射路径的信号。
 
 输出 **Out** 包含在当前输入时间帧内到达信号目的地的信号采样。当信号从起点传播到目的地所需时间超过当前时间帧时，输出可能不包含当前时间帧输入的所有贡献。剩余输出将出现在模块的下一次执行中。
-
 ## 参数
+```yaml
+parameters:
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: 信号载波频率 300e6（默认）| 正实值标量
+  group: ''
+- name: Number of subbands
+  summary: 处理子带数量 64（默认）| 正整数
+  group: ''
+- name: Specify atmospheric parameters
+  summary: 启用大气衰减模型 off（默认）| on
+  group: ''
+- name: Temperature (degrees Celsius)
+  summary: 环境温度 15（默认）| 实值标量
+  group: ''
+- name: Dry air pressure (Pa)
+  summary: 大气干空气压力 101.325e3（默认）| 正实值标量
+  group: ''
+- name: Water vapour density (g/m^3)
+  summary: 大气水蒸气密度 7.5（默认）| 正实值标量
+  group: ''
+- name: Liquid water density (g/m^3)
+  summary: 液态水密度 0.0（默认）| 非负实值标量
+  group: ''
+- name: Rain rate (mm/hr)
+  summary: 降雨率 0.0（默认）| 非负实值标量
+  group: ''
+- name: Inherit sample rate
+  summary: 从上游模块继承采样率 on（默认）| off
+  group: ''
+- name: Sample rate (Hz)
+  summary: 信号采样率 1e6（默认）| 正实值标量
+  group: ''
+- name: Ground reflection coefficient
+  summary: 地面反射系数 -1（默认）| 复值标量 | 复值 1×*N* 行向量
+  group: ''
+- name: Combine two rays at output
+  summary: 在输出端合并两条射线的选项 on（默认）| off
+  group: ''
+- name: Maximum one-way propagation distance (m)
+  summary: 最大单向传播距离 10.0e3（默认）| 正实值标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+```
 
 ### **Signal propagation speed (m/s)** — 信号传播速度 `physconst('LightSpeed')`（默认）| 实值正标量
 
@@ -255,7 +328,6 @@ chinese_source: worker-translation
 | `Code Generation` | 模块被编译。 | 模型中的所有模块都被编译。 |
 
 有关更多信息，请参阅 Choosing a Simulation Mode (Simulink)。
-
 ## 所属库
 
 Radar Toolbox

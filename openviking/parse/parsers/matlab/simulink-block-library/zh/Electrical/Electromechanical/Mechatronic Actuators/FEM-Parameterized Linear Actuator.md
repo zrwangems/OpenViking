@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # FEM-Parameterized Linear Actuator
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 壳体机械
+  direction: conserving
+- name: R
+  summary: 柱塞机械
+  direction: conserving
+- name: H
+  summary: 热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +59,89 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical model
+  summary: 电气模型参数化 Define in terms of dPhi(i,x)/dx and dPhi(i,x)/di（默认）| Define in terms of Phi(i,x)
+  group: 磁力
+- name: Current vector, i
+  summary: 电流向量 [0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1] A（默认）
+  group: 磁力
+- name: Displacement vector, x
+  summary: 位移向量 [0, .05, .1, .15, .2] mm（默认）
+  group: 磁力
+- name: Flux partial derivative wrt current, dPhi(i,x)/di
+  summary: 磁通量对电流的偏导数 [.104, .098, .091, .085, .078; .095, .089, .084, .079, .073; .085, .081, .077, .073, .069; .076, .073,
+    .07, .067, .064; .067, .065, .063, .061, .06; .057, .057, .056, .056, .055; .048, .049, .049, .05, .05; .038, .04, .042,
+    .044, .046; .029, .032, .035, .038, .041; .02, .024, .028, .033, .037; .01, .016, .021, .027, .032] Wb/A（默认）
+  group: 磁力
+- name: Flux partial derivative wrt displacement, dPhi(i,x)/dx
+  summary: 磁通量对位移的偏导数 [0, 0, 0, 0, 0; -11.94, -10.57, -9.19, -7.81, -6.43; -21.17, -19.92, -18.67, -17.42, -16.16; -27.99,
+    -26.87, -25.75, -24.62, -23.5; -32.42, -31.43, -30.43, -29.43, -28.44; -34.46, -33.59, -32.72, -31.85, -30.98; -34.09,
+    -33.35, -32.61, -31.87, -31.12; -31.33, -30.72, -30.1, -29.49, -28.87; -26.17, -25.68, -25.2, -24.71, -24.22; -18.62,
+    -18.26, -17.9, -17.54, -17.18; -8.66, -8.43, -8.2, -7.97, -7.73] Wb/m（默认）
+  group: 磁力
+- name: Flux linkage matrix, Phi(i,x)
+  summary: 磁链矩阵 [0, 0, 0, 0, 0; .0085, .0079, .0075, .0071, .0067; .0171, .016, .0151, .0143, .0137; .0254, .0239, .0226,
+    .0215, .0206; .033, .0312, .0297, .0283, .0271; .0396, .0377, .036, .0345, .0331; .0452, .0433, .0415, .0399, .0384; .0495,
+    .0478, .0461, .0446, .0431; .0526, .0512, .0498, .0485, .0472; .0545, .0537, .0528, .0519, .0508; .0554, .0553, .0551,
+    .0548, .0542] Wb（默认）
+  group: 磁力
+- name: Calculate force matrix?
+  summary: 电磁力数据指定方式 No（默认）| Yes
+  group: 磁力
+- name: Force matrix, F(i,x)
+  summary: 力矩阵 [0, 0, 0, 0, 0; -.6, -.5, -.4, -.3, -.3; -2.3, -2, -1.7, -1.4, -1.2; -4.9, -4.3, -3.7, -3.2, -2.7; -8.3, -7.3,
+    -6.4, -5.5, -4.7; -12.2, -10.7, -9.4, -8.2, -7.2; -16.2, -14.4, -12.7, -11.3, -10; -20, -17.9, -15.9, -14.3, -12.9; -23.3,
+    -20.9, -18.8, -17.1, -15.7; -25.7, -23.1, -21.1, -19.4, -18.2; -26.5, -24.1, -22.2, -20.9, -20.1] N（默认）
+  group: 磁力
+- name: Flux dependence on displacement
+  summary: 磁通模式 Unique（默认）| Cyclic
+  group: 磁力
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Smooth
+  group: 磁力
+- name: Extrapolation method
+  summary: 外插方法 Linear（默认）| Nearest | Error
+  group: 磁力
+- name: Winding resistance
+  summary: 电气绕组总电阻 14 Ohm（默认）
+  group: 磁力
+- name: Magnetizing resistance
+  summary: 铁损的励磁电阻 inf Ohm（默认）
+  group: 磁力
+- name: Damping
+  summary: 阻尼 1 N/(m/s)（默认）
+  group: 机械
+- name: Plunger mass
+  summary: 运动部件的质量 0.05 kg（默认）
+  group: 机械
+- name: Minimum stroke
+  summary: 最小行程 0 mm（默认）
+  group: 机械
+- name: Maximum stroke
+  summary: 最大行程 0.2 mm（默认）
+  group: 机械
+- name: Contact stiffness
+  summary: 接触刚度 1e8 N/m（默认）
+  group: 机械
+- name: Contact damping
+  summary: 接触阻尼 1e4 N/(m/s)（默认）
+  group: 机械
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）
+  group: 温度依赖性
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）
+  group: 温度依赖性
+- name: Thermal mass
+  summary: 热质量 100 J/K（默认）
+  group: 热端口
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -239,7 +338,6 @@ chinese_source: worker-translation
 ### **Thermal mass** — 热质量 `100` `J/K`（默认）
 
 热质量是使温度升高一度所需的能量。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Mechatronic Actuators

@@ -14,6 +14,13 @@ language: en
 # BLDC Configuration
 
 ## Ports
+```yaml
+ports:
+- name: Config
+  summary: Block configuration signal vector
+  direction: output
+  data_types: single
+```
 
 ### Output
 
@@ -35,8 +42,40 @@ parameters that you configure using this block.
 | Mechanical input configuration (Torque or Speed) | | | - |
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical input configuration
+  summary: Select port configuration Torque (default) | Speed
+  group: Block Options
+- name: Sample Time (Ts)
+  summary: Sample time after which block executes again 1e-6 (default) | scalar
+  group: Block Options
+- name: Number of pole pairs
+  summary: Pole pairs 4 (default) | scalar
+  group: Parameters
+- name: Stator resistance per phase (Ohm)
+  summary: Resistance of stator 0.02 (default) | scalar
+  group: Parameters
+- name: Stator d-axis inductance (H)
+  summary: '*d*-axis inductance 1.7e-3 (default) | scalar'
+  group: Parameters
+- name: Stator q-axis inductance (H)
+  summary: '*q*-axis inductance 3.2e-3 (default) | scalar'
+  group: Parameters
+- name: Permanent flux linkage constant (Wb)
+  summary: Flux linkage constant 0.2205 (default) | scalar
+  group: Parameters
+- name: Inertia (kgm^2)
+  summary: Physical inertia 0.0027 (default) | scalar
+  group: Parameters
+- name: Viscous damping (Nm/rad/s)
+  summary: Viscous damping 4.924e-4 (default) | scalar
+  group: Parameters
+- name: Static friction (Nm)
+  summary: Static friction 0 (default) | scalar
+  group: Parameters
+```
 
 ### Block Options
 
@@ -89,7 +128,6 @@ Viscous damping of the motor, *F*, in Nm/(rad/s).
 ### **Static friction (Nm)** — Static friction `0` (default) | scalar
 
 Static friction in the motor, *Tf*, in Nm.
-
 ## Libraries
 
 Motor Control Blockset HDL Support / Electrical Systems / Motors

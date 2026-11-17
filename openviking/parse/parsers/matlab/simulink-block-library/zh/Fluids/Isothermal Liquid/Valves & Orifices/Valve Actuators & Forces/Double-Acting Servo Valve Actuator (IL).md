@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Double-Acting Servo Valve Actuator (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 腔 A 的液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 腔 B 的液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 阀芯位置，m，物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -30,8 +42,63 @@ chinese_source: worker-translation
 ### **S** — 阀芯位置，m，物理信号
 
 与阀芯位置关联的物理信号，单位为 m。位置为零表示阀芯处于行程中间的中位。
-
 ## 参数
+```yaml
+parameters:
+- name: Spool cross-sectional area
+  summary: 面积测量 1e-4 m^2（默认）| 正标量
+  group: 执行器
+- name: Spool stroke
+  summary: 距离 5e-3 m（默认）| 正标量
+  group: 执行器
+- name: Spring stiffness
+  summary: 弹簧的力变化率 1e3 N/m（默认）| 标量
+  group: 执行器
+- name: Damping coefficient
+  summary: 阻尼系数 150 N/(m/s)（默认）| 正标量
+  group: 执行器
+- name: Hard stop model
+  summary: 选择硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 硬限位
+- name: Hard-stop stiffness coefficient
+  summary: 刚度系数 1e10 N/m（默认）| 正标量
+  group: 硬限位
+- name: Hard-stop damping coefficient
+  summary: 阻尼系数 150 N*s/m（默认）| 正标量
+  group: 硬限位
+- name: Transition region
+  summary: 硬限位力模型的应用范围 0.1 mm（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位之间的最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的阈值力 0.001 N（默认）| 正标量
+  group: 硬限位
+- name: Spool initial displacement
+  summary: 阀芯的初始位置 0 m（默认）| 标量
+  group: 效应和初始条件
+- name: Enable dynamic compressibility
+  summary: 流体可压缩性 On（默认）| Off
+  group: 效应和初始条件
+- name: Nominal liquid pressure in chamber A
+  summary: 腔 A 中额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: 效应和初始条件
+- name: Nominal liquid pressure in chamber B
+  summary: 腔 B 中额定工况下的压力 0.101325 MPa（默认）| 标量
+  group: 效应和初始条件
+- name: Initial liquid pressure in chamber A
+  summary: 液体压力 0.101325 MPa（默认）| 正标量
+  group: 效应和初始条件
+- name: Initial liquid pressure in chamber B
+  summary: 液体压力 0.101325 MPa（默认）| 正标量
+  group: 效应和初始条件
+```
 
 ### 执行器
 
@@ -162,7 +229,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Enable dynamic compressibility**。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces

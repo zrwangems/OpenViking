@@ -15,10 +15,40 @@ chinese_source: worker-translation
 # MultiStateImage
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的信号并显示信号连接选项
+  group: ''
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Scale Mode
+  summary: 指定如何缩放图像 Fill with fixed aspect ratio（默认）| Fixed | Fill
+  group: ''
+  block_parameter: ScaleMode
+  type: string or character vector
+  values: '''Fill with fixed aspect ratio'' | ''Fixed'' | ''Fill'''
+  default: '''Fill with fixed aspect ratio'''
+- name: States
+  summary: 将值与图像匹配以显示标量和图像
+  group: ''
+  block_parameter: DefaultImage
+  type: structure
+- name: Label
+  summary: 模块标签位置 Top（默认）| Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — 要连接的信号并显示信号连接选项
 
@@ -121,7 +151,6 @@ msiStates = [state1 state2];
 | **类型**：character vector |
 | **值**：`'Top'` | `'Bottom'` | `'Hide'` |
 | **默认值**：`'Top'` |
-
 ## 所属库
 
 Simulink / Dashboard

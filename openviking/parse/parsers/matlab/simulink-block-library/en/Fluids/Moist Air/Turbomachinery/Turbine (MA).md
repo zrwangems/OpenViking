@@ -14,6 +14,27 @@ language: en
 # Turbine (MA)
 
 ## Ports
+```yaml
+ports:
+- name: VN
+  summary: Nozzle opening fraction, unitless physical signal
+  direction: input
+- name: W
+  summary: Moist air condensation rate, kg/s physical signal
+  direction: output
+- name: A
+  summary: Moist air inlet moist air
+  direction: conserving
+- name: B
+  summary: Moist air outlet moist air
+  direction: conserving
+- name: C
+  summary: Turbine case mechanical translational
+  direction: conserving
+- name: R
+  summary: Turbine shaft mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -59,8 +80,91 @@ Port associated with the turbine casing.
 
 Port associated with the turbine shaft torque and angular
 velocity.
-
 ## Parameters
+```yaml
+parameters:
+- name: Turbine map parameterization
+  summary: Performance parameterization Analytical - Nominal pressure ratio and corrected mass flow rate (default) | Tabulated
+    data - Flow rate and efficiency vs. pressure ratio | Tabulated data - Flow rate and efficiency vs. corrected speed and
+    pressure ratio
+  group: Turbine Map
+- name: Model variable nozzle
+  summary: Whether to enable the variable nozzle input port Off (default) | On
+  group: Turbine Map
+- name: Minimum nozzle opening fraction
+  summary: Minimum opening fraction 1e-3 (default) | positive scalar in the range (0,1]
+  group: Turbine Map
+- name: Maximum nozzle opening fraction
+  summary: Maximum opening fraction 1 (default) | positive scalar in the range (0,1]
+  group: Turbine Map
+- name: Corrected speed index vector, N
+  summary: Tabulated data shaft speed indices 100 .* [50, 60, 70, 80, 90, 100, 110] rpm (default) | vector of positive scalars
+  group: Turbine Map
+- name: Nominal pressure ratio
+  summary: Pressure ratio value 2 (default) | positive scalar
+  group: Flow Rate Data
+- name: Nominal corrected mass flow rate
+  summary: Corrected mass flow rate value 48 kg/s (default) | positive scalar
+  group: Flow Rate Data
+- name: Pressure ratio vector, pr
+  summary: Vector of pressure ratios [1.251, 1.345, 1.442, 1.521, 1.596, 1.692, 1.849, 1.972, 2.1, 2.173, 2.259, 2.3424] (default)
+    | vector of positive scalars
+  group: Flow Rate Data
+- name: Corrected mass flow rate vector, mdot(pr)
+  summary: Vector of corrected mass flow rate values [39.439, 43.01, 45.556, 46.801, 47.792, 48.388, 48.634, 48.67, 48.689,
+    48.747, 48.825, 48.912] kg/s (default) | vector of positive scalars
+  group: Flow Rate Data
+- name: Pressure ratio table, pr(N,beta)
+  summary: Turbine map pressure ratio data *M*-by-*N* matrix (default)
+  group: Flow Rate Data
+- name: Corrected mass flow rate table, mdot(N,beta)
+  summary: Turbine map corrected mass flow rate data *M*-by-*N* matrix (default)
+  group: Flow Rate Data
+- name: Constant isentropic efficiency
+  summary: Isentropic efficiency value 0.8 (default) | positive scalar
+  group: Efficiency Data
+- name: Pressure ratio vector, pr
+  summary: Vector of pressure ratios [1.252, 1.328, 1.425, 1.544, 1.642, 1.757, 1.873, 2.005, 2.1, 2.204, 2.248, 2.28] (default)
+    | vector of positive scalars
+  group: Efficiency Data
+- name: Isentropic efficiency vector, eta(pr)
+  summary: Vector of isentropic efficiencies [.559, .61, .673, .741, .788, .835, .869, .895, .908, .899, .854, .751] (default)
+    | vector of elements in the range (0,1]
+  group: Efficiency Data
+- name: Pressure ratio table, pr(N,beta)
+  summary: Turbine map pressure ratio data *M*-by-*N* matrix (default)
+  group: Efficiency Data
+- name: Isentropic efficiency table, eta(N,beta)
+  summary: Turbine map isentropic efficiency data *M*-by-*N* matrix (default)
+  group: Efficiency Data
+- name: Reference pressure for corrected flow
+  summary: Correcting pressure 0.101325 MPa (default) | positive scalar
+  group: Parameters
+- name: Reference temperature for corrected flow
+  summary: Correcting temperature 288.15 K (default) | positive scalar
+  group: Parameters
+- name: Reference relative humidity for corrected flow
+  summary: Correcting relative humidity 0 (default) | scalar in the range [0,1]
+  group: Parameters
+- name: Mechanical efficiency
+  summary: Efficiency of conversion to torque 0.9 (default) | positive scalar in the range [0,1]
+  group: Parameters
+- name: Model water vapor condensation
+  summary: Option to model water vapor condensation off (default) | on
+  group: Parameters
+- name: Relative humidity at saturation
+  summary: Relative humidity above which condensation occurs 1 (default) | positive scalar
+  group: Parameters
+- name: Fraction of condensate entrained as water droplets
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Parameters
+- name: Inlet area at port A
+  summary: Turbine inlet area 1 m^2 (default) | positive scalar
+  group: Parameters
+- name: Outlet area at port B
+  summary: Turbine outlet area 1 m^2 (default) | positive scalar
+  group: Parameters
+```
 
 ### Turbine Map
 
@@ -414,7 +518,6 @@ Turbine inlet cross-sectional area.
 ### **Outlet area at port B** — Turbine outlet area `1` m^2 (default) | positive scalar
 
 Turbine outlet cross-sectional area.
-
 ## Libraries
 
 Simscape / Fluids / Moist Air / Turbomachinery

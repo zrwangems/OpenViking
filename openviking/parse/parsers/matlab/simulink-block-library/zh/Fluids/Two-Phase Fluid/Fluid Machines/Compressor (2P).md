@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Compressor (2P)
 
 ## 端口
+```yaml
+ports:
+- name: SM
+  summary: 喘振裕度物理信号
+  direction: output
+- name: A
+  summary: 压缩机入口两相流体
+  direction: output
+- name: B
+  summary: 压缩机出口两相流体
+  direction: output
+- name: C
+  summary: 压缩机壳体机械旋转
+  direction: output
+- name: R
+  summary: 压缩机轴机械旋转
+  direction: output
+```
 
 ### 输出
 
@@ -45,8 +63,97 @@ SM(m˙corr)=pr,surge(m˙corr)pr(m˙corr)−1。
 ### **R** — 压缩机轴机械旋转
 
 与压缩机轴相关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 压缩机性能参数化 Analytical（默认）| Tabulated
+  group: 压缩机映射
+- name: Corrected speed at design point
+  summary: 运行修正轴转速 25000 rpm（默认）| 正标量
+  group: 压缩机映射
+- name: Pressure ratio at design point
+  summary: 运行出口-入口压力比 2.2（默认）| 正标量
+  group: 压缩机映射
+- name: Corrected mass flow rate at design point
+  summary: 运行修正质量流量 0.20 kg/s（默认）| 正标量
+  group: 压缩机映射
+- name: Efficiency specification
+  summary: 等熵效率选项 Constant（默认）| Analytical
+  group: 压缩机映射
+- name: Maximum isentropic efficiency
+  summary: 最大压缩机效率 0.887（默认）| 范围 (0,1] 内的正标量
+  group: 压缩机映射
+- name: Minimum isentropic efficiency
+  summary: 最小压缩机效率 0.5（默认）| 范围 (0,1] 内的正标量
+  group: 压缩机映射
+- name: Corrected mass flow rate at maximum efficiency point
+  summary: 压缩机最大效率点处的修正质量流量 0.19 kg/s（默认）| 正标量
+  group: 压缩机映射
+- name: Pressure ratio at maximum efficiency point
+  summary: 压缩机最大效率点处的压力比 2.1（默认）| 正标量
+  group: 压缩机映射
+- name: Constant isentropic efficiency
+  summary: 常数等熵效率值 0.8（默认）| 正标量
+  group: 压缩机映射
+- name: Corrected speed index vector, N
+  summary: 修正轴转速向量 [12500, 17750, 21750, 25000] rpm（默认）| 向量
+  group: 压缩机映射
+- name: Beta index vector, beta
+  summary: '修正转速线间隔向量 0 : 1 / 5 : 1（默认）| 范围 [0,1] 内元素组成的向量'
+  group: 压缩机映射
+- name: Pressure ratio table, pr(N, beta)
+  summary: 压缩机映射压力比数据 *M*×*N* 矩阵（默认）
+  group: 压缩机映射
+- name: Corrected mass flow rate table, mdot(N,beta)
+  summary: 压缩机映射修正质量流量数据 *M*×*N* 矩阵（默认）
+  group: 压缩机映射
+- name: Isentropic efficiency table, eta(N,beta)
+  summary: 压缩机映射等熵效率数据 *M*×*N* 矩阵（默认）
+  group: 压缩机映射
+- name: Report when surge margin is negative
+  summary: 负喘振裕度通知 None（默认）| Warning | Error
+  group: 压缩机映射
+- name: Spine shape, a
+  summary: 脊线形状指数 1.5（默认）| 正标量
+  group: Map Coefficients
+- name: Speed line spread, b
+  summary: 等转速线间距指数 5（默认）| 正标量
+  group: Map Coefficients
+- name: Speed line roundness, k
+  summary: 等转速线形状系数 0.03（默认）| 正标量
+  group: Map Coefficients
+- name: Efficiency peak flatness orthogonal to spine, c
+  summary: 垂直于脊线的平坦度指数 3（默认）| 正标量
+  group: Map Coefficients
+- name: Efficiency peak flatness along spine, d
+  summary: 沿脊线的平坦度指数 4（默认）| 正标量
+  group: Map Coefficients
+- name: Efficiency contour gradient orthogonal to spine, C
+  summary: 正交梯度系数 15（默认）| 正标量
+  group: Map Coefficients
+- name: Efficiency contour gradient along spine, D
+  summary: 沿脊线梯度系数 1（默认）| 正标量
+  group: Map Coefficients
+- name: Reference pressure for corrected flow
+  summary: 修正压力 0.101325 MPa（默认）| 正标量
+  group: 参数
+- name: Reference temperature for corrected flow
+  summary: 修正温度 373.15 K（默认）| 正标量
+  group: 参数
+- name: Mechanical efficiency
+  summary: 转换为扭矩的效率 0.9（默认）| 范围 [0,1] 内的正标量
+  group: 参数
+- name: Inlet area at port A
+  summary: 压气机入口面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: Outlet area at port B
+  summary: 压气机出口面积 0.01 m^2（默认）| 正标量
+  group: 参数
+- name: Report when fluid at inlet is not fully vapor
+  summary: 流体未完全汽化通知 None（默认）| Warning | Error
+  group: 参数
+```
 
 ### 压缩机映射
 
@@ -328,7 +435,6 @@ specification** 设置为
 ### **Report when fluid at inlet is not fully vapor** — 流体未完全汽化通知 `None`（默认）| `Warning` | `Error`
 
 当模块检测到流体未完全汽化时，是执行无操作、生成警告还是生成错误。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Fluid Machines

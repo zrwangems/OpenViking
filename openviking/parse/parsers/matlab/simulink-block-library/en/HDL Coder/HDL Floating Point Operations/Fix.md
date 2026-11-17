@@ -14,6 +14,21 @@ language: en
 # Math Function
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Result of the operation of the function on the input or inputs scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -72,8 +87,95 @@ output data type depends on the input data type:
 | `fi` (*value*, 1, *word\_length*, *fraction\_length*) | `fi` (*value*, 1, *word\_length*, *word\_length*–*fraction\_length*–2) |
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: Math function exp (default) | log | 2^u | 10^u | log10 | magnitude^2 | square | pow | conj | reciprocal | hypot
+    | rem | mod | transpose | hermitian
+  group: Main
+  block_parameter: Operator
+  type: character vector
+  values: '''exp'' | ''log'' | ''2^u'' | ''10^u'' | ''log10'' | ''magnitude^2'' | ''square'' | ''pow'' | ''conj'' | ''reciprocal''
+    | ''hypot'' | ''rem'' | ''mod'' | ''transpose'' | ''hermitian'''
+  default: '''exp'''
+- name: Algorithm method
+  summary: Algorithm method for reciprocal function Exact (default) | Newton-Raphson
+  group: Main
+  block_parameter: AlgorithmType
+  type: character vector
+  values: '''Exact'' | ''Newton-Raphson'''
+  default: '''Exact'''
+- name: Signed power
+  summary: Power signedness on (default) | off
+  group: Main
+  block_parameter: SignedPower
+  type: character vector
+  values: '''on'' | ''off'' |'
+  default: '''on'''
+- name: Output signal type
+  summary: Complexity of output signal auto (default) | real | complex
+  group: Main
+  block_parameter: OutputSignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Number of iterations
+  summary: Number of Newton-Raphson iterations 3 (default) | scalar
+  group: Main
+  block_parameter: Iterations
+  type: character vector
+  values: '''3'' | scalar'
+  default: '''3'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Output minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  values: '''[]'' (default) | scalar in quotes'
+- name: Output data type
+  summary: 'Specify the output data type Inherit: Same as first input (default) | Inherit: Inherit via internal rule | Inherit:
+    Inherit via back propagation | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64
+    | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Same as first input'' | ''Inherit: Inherit via back propagation''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Same as first input'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Signal Attributes
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: Choose the behavior when integer overflow occurs on (default) | boolean
+  group: Signal Attributes
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+```
 
 ### Main
 
@@ -396,7 +498,6 @@ To enable this parameter, set the **Function** to
 | **Type**: character vector |
 | **Value**: `'off'` | `'on'` |
 | **Default**: `'on'` |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / Math Operations

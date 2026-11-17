@@ -14,6 +14,33 @@ language: en
 # Sliding Mode Controller (Reaching Law)
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: System states vector
+  direction: input
+  data_types: single | double
+- name: f(x)
+  summary: System dynamics function vector
+  direction: input
+  data_types: single | double
+- name: g(x)
+  summary: Input function vector
+  direction: input
+  data_types: single | double
+- name: x.ref
+  summary: State reference trajectories vector
+  direction: input
+- name: x.ref.dot
+  summary: Derivative of state reference trajectories vector
+  direction: input
+- name: u
+  summary: Control action vector
+  direction: output
+- name: s(x)
+  summary: Sliding variable value vector
+  direction: output
+```
 
 ### Input
 
@@ -101,8 +128,67 @@ of inputs.
 
 To enable this port, enable the **Output Switching
 Function** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Task Mode
+  summary: Block operation mode Regulation Mode (default) | Tracking Mode
+  group: Sliding Surface Tab
+  block_parameter: TaskMode
+  values: '"Regulation Mode" (default) | "Tracking Mode"'
+- name: Sliding Coefficient Matrix (C)
+  summary: Sliding coefficient matrix 1 (default) | scalar | column vector | matrix
+  group: Sliding Surface Tab
+  block_parameter: SlidingMatrix
+  values: 1 (default) | scalar in quotes | column vector in quotes | matrix in quotes
+- name: Use externally sourced derivative
+  summary: Specify derivative of state reference externally off (default) | on
+  group: Sliding Surface Tab
+  block_parameter: EnableTrackingDerivative
+  values: '"off" (default) | "on"'
+- name: Output Switching Function
+  summary: Output switching function off (default) | on
+  group: Sliding Surface Tab
+  block_parameter: EnableSwitchingFunction
+  values: '"off" (default) | "on"'
+- name: Reaching Law
+  summary: Reaching law Constant Rate (default) | Exponential | Power Rate
+  group: Reaching Law Tab
+  block_parameter: ReachingLaw
+  values: '"Constant Rate" (default) | "Exponential" | "Power Rate"'
+- name: Reaching Rate (Eta)
+  summary: Reaching rate 0.01 (default) | positive scalar | column vector
+  group: Reaching Law Tab
+  block_parameter: ReachingRate
+  values: '"0.01" (default) | positive scalar in quotes | column vector in quotes'
+- name: Control Gain (K)
+  summary: Control gain 0.01 (default) | positive scalar | column vector
+  group: Reaching Law Tab
+  block_parameter: ControlGain
+  values: '"0.01" (default) | positive scalar in quotes | column vector in quotes'
+- name: Power Rate Exponent (Alpha)
+  summary: Power rate exponent 0.01 (default) | positive scalar between 0 and 1 | column vector of positive values between
+    0 and 1
+  group: Reaching Law Tab
+  block_parameter: PowerRate
+  values: '"0.01" (default) | positive scalar between 0 and 1 in quotes | column vector of positive values between 0 and 1
+    in quotes'
+- name: Select Boundary Layer
+  summary: Boundary layer function Sign (default) | Relay | Hyperbolic Tangent | Saturation
+  group: Reaching Law Tab
+  block_parameter: BoundaryLayer
+  values: '"Sign" (default) | "Relay" | "Hyperbolic Tangent" | "Saturation"'
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection off (default) | on
+  group: Reaching Law Tab
+  block_parameter: ZeroCross
+  values: '"off" (default) | "on"'
+- name: Phi
+  summary: Boundary layer thickness 0.01 (default) | positive scalar | column vector
+  group: Reaching Law Tab
+  block_parameter: Phi
+  values: '"0.01" (default) | positive scalar in quotes | column vector in quotes'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -403,7 +489,6 @@ the `set_param` function.
 | **Values:** | `"0.01"` (default) | positive scalar in quotes | column vector in quotes |
 
 **Example:** `set_param(gcb,"Phi","0.05")`
-
 ## Libraries
 
 Simulink Control Design / Sliding Mode

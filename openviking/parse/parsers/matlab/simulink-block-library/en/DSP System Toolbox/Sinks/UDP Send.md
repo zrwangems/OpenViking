@@ -14,6 +14,13 @@ language: en
 # UDP Send
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input data vector vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -23,8 +30,25 @@ Specify the input data vector that the block transmits as a UDP packet.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Remote IP address ('255.255.255.255' for broadcast)
+  summary: IP address from which to accept UDP packets '127.0.0.1' (default) | IP address | string
+  group: ''
+- name: Remote IP port
+  summary: Number of remote IP port 25000 (default) | scalar in the range [1, 65535]
+  group: ''
+- name: Local IP port source
+  summary: Source of local IP port Automatically determine (default) | Specify via dialog
+  group: ''
+- name: Local IP port
+  summary: Number of local IP port -1 (default) | scalar in the range [1, 65535]
+  group: ''
+- name: Send buffer size (bytes)
+  summary: Size of buffer that sends UDP packets 8192 (default) | scalar in the range [1, 67108864]
+  group: ''
+```
 
 ### **Remote IP address ('255.255.255.255' for broadcast)** — IP address from which to accept UDP packets `'127.0.0.1'` (default) | IP address | string
 
@@ -63,7 +87,6 @@ To enable this parameter, set **Local IP port source**  to
 
 Specify the size of the buffer, in bytes, that sends the UDP packets. Make the
 buffer large enough to avoid data loss caused by buffer overflows.
-
 ## Libraries
 
 DSP System Toolbox / Sinks

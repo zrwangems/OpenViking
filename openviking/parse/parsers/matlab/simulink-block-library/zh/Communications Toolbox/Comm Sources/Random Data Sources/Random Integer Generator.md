@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # Random Integer Generator
 
 ## 端口
+```yaml
+ports:
+- name: Out
+  summary: 随机整数输出 标量 | 向量 | 矩阵
+  direction: output
+```
 
 ### 输出
 
@@ -23,8 +29,31 @@ chinese_source: worker-translation
 随机整数输出，以标量、向量或矩阵形式返回。该端口在模块上未命名。数据类型通过 Output data type 参数设置。
 
 输出数据中的行数等于 Samples per frame 参数的值，对应一帧中的样本数。输出数据中的列数等于 Set size 参数中的元素个数，对应通道数。
-
 ## 参数
+```yaml
+parameters:
+- name: Set size
+  summary: 集合大小 8（默认）| 正整数 | 正整数的行向量
+  group: ''
+- name: Source of initial seed
+  summary: 初始种子来源 Auto（默认）| Parameter
+  group: ''
+- name: Initial seed
+  summary: 初始种子值 0（默认）| 非负整数
+  group: ''
+- name: Sample time
+  summary: 采样时间 1（默认）| -1 | 正标量
+  group: ''
+- name: Samples per frame
+  summary: 每帧样本数 1（默认）| 正整数
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 double（默认）| single | uint8 | uint16 | uint32 | boolean
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -74,7 +103,6 @@ chinese_source: worker-translation
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。除非模型发生变化，否则模型会在后续仿真中重用该 C 代码。此选项需要额外的启动时间，但后续仿真的速度比 `Interpreted execution` 选项快。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Comm Sources / Random Data Sources

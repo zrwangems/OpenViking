@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # DFECDR
 
 ## 端口
+```yaml
+ports:
+- name: WaveIn
+  summary: 输入基带信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: 估计的信道输出 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,109 @@ chinese_source: worker-translation
 估计的信道输出。如果输入信号是逐样本指定的标量信号，则输出也是标量。如果输入信号是冲激响应向量信号，则输出也是向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Mode
+  summary: DFE 工作模式 Adapt（默认）| Off | Fixed
+  group: DFE
+- name: Initial tap weights (V)
+  summary: 初始 DFE 抽头权重 [0 0 0 0]（默认）| 行向量
+  group: DFE
+- name: Adaptive gain
+  summary: 控制 DFE 抽头权重更新速率 9.6e-5（默认）| 正实数标量
+  group: DFE
+- name: Adaptive step size (V)
+  summary: DFE 自适应步长分辨率 1e-06（默认）| 非负实数标量 | 非负实值行向量
+  group: DFE
+- name: Minimum DFE tap value (V)
+  summary: 自适应抽头的最小值 -1（默认）| 实数标量 | 实值行向量
+  group: DFE
+- name: Maximum DFE tap value (V)
+  summary: 自适应抽头的最大值 1（默认）| 非负实数标量 | 非负实值行向量
+  group: DFE
+- name: 2x tap weights
+  summary: 将 DFE 抽头权重乘以二 关（默认）| 开
+  group: DFE
+- name: CDR Mode
+  summary: 确定 CDR 阶数 1st order（默认）| 2nd order
+  group: CDR
+  block_parameter: CDRMode
+  type: 字符向量
+  values: 1st order | 2nd order
+- name: Phase Detector
+  summary: 时钟相位检测器选项 BangBang（默认）| BaudRateTypeA
+  group: CDR
+  block_parameter: PhaseDetector
+  type: 字符向量
+  values: BangBang | BaudRateTypeA
+- name: Phase Offset (symbol time)
+  summary: 时钟相位偏移 0（默认）| 范围 [-0.5,0.5] 内的实数标量
+  group: CDR
+  block_parameter: PhaseOffset
+  type: 字符向量
+  values: 范围 [-0.5,0.5] 内的实数标量
+- name: Reference offset (ppm)
+  summary: 参考时钟偏移损伤 0（默认）| 范围 [0, 300] 内的实数标量
+  group: CDR
+  block_parameter: ReferenceOffset
+  type: 字符向量
+  values: 范围 [0, 300] 内的实数标量
+- name: Early/late count threshold
+  summary: 触发相位更新的早/晚 CDR 计数阈值 16（默认）| 实数正整数 ≥5
+  group: CDR
+  block_parameter: Count
+  type: character vector
+  values: real positive integer ≥5
+  default: '16'
+- name: Step (symbol time)
+  summary: 时钟相位分辨率 0.0078（默认）| 实数标量
+  group: CDR
+  block_parameter: Step
+  type: character vector
+  values: real scalar
+  default: '0.0078'
+- name: Frequency tracking gain
+  summary: 频率跟踪的内部增益 0.00048828125（默认）| 非负实数标量
+  group: CDR
+  block_parameter: FrequencyStep
+  type: character vector
+  values: nonnegative real scalar
+  default: '0.00048828125'
+- name: Frequency tracking update
+  summary: 频率跟踪更新 16（默认）| 非负整数标量
+  group: CDR
+  block_parameter: FrequencyCount
+  type: character vector
+  values: nonnegative real scalar
+  default: '16'
+- name: Frequency step ramp
+  summary: 初始内部频率跟踪增益达到指定值所需的符号时间数 3000（默认）| 非负整数标量
+  group: CDR
+  block_parameter: FrequencyStepRamp
+  type: character vector
+  values: nonnegative real scalar
+  default: '3000'
+- name: Sensitivity (V)
+  summary: 采样锁存器亚稳态电压 0（默认）| 实数标量
+  group: CDR
+  block_parameter: Sensitivity
+  type: character vector
+  values: real scalar
+  default: '0'
+- name: Mode
+  summary: 在 IBIS-AMI 模型中包含 Mode 参数 on（默认）| off
+  group: CDR
+- name: Tap weights
+  summary: 在 IBIS-AMI 模型中包含 Tap weights 参数 on（默认）| off
+  group: CDR
+- name: Phase Offset
+  summary: 在 IBIS-AMI 模型中包含 Phase Offset 参数 on（默认）| off
+  group: CDR
+- name: Reference offset
+  summary: 在 IBIS-AMI 模型中包含 Reference offset 参数 on（默认）| off
+  group: CDR
+```
 
 ### DFE
 
@@ -297,7 +409,6 @@ SerDes Toolbox™ 中 DFECDR 模块的限幅器输出为 [-0.5 0.5]。但某些�
 ### **Reference offset** — 在 IBIS-AMI 模型中包含 Reference offset 参数 on（默认）| off
 
 选择以在 IBIS-AMI 文件中将 **Reference offset** 作为参数包含。如果取消选择 **Reference offset**，则会将其从 AMI 文件中移除，实际上会将 **Reference offset** 硬编码为其当前值。
-
 ## 所属库
 
 SerDes Toolbox / Datapath Blocks

@@ -14,6 +14,37 @@ language: en
 # TDOA Estimator
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Input data *N*-by-*M*-by-*L*complex-valued array
+  direction: input
+  data_types: single | double
+- name: DelayOffset
+  summary: Delay offset (sec) scalar | 1-by-*L* real-valued vector
+  direction: input
+  data_types: single | double
+- name: Npow
+  summary: Input noise power (W) positive scalar | 1-by-*L* vector of positive values
+  direction: input
+  data_types: single | double
+- name: Y
+  summary: TDOA estimates (sec) *K*-by-(*L*-1) real-valued matrix
+  direction: output
+  data_types: single | double
+- name: Var
+  summary: Estimated TDOA variance 1-by-(*L*-1) positive-value vector
+  direction: output
+  data_types: single | double
+- name: TDOAResp
+  summary: TDOA response *P*-by-*M*-by-(*L*-1) MATLAB® array
+  direction: output
+  data_types: single | double
+- name: TDOAGrid
+  summary: TDOA grid real-valued *P*-by-(*L*-1) matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -138,8 +169,41 @@ To enable this port, select the **Output TDOA response and TDOA
 grid** check box.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Signal sample rate (Hz)
+  summary: Signal sampling rate 1000000 (default) | real-valued positive scalar
+  group: ''
+- name: Maximum number of TDOA estimates
+  summary: Maximum number of TDOA estimates 1 (default) | positive integer
+  group: ''
+- name: Enable known delay offset input
+  summary: Enable known delay offset input false (0) (default) | true (1)
+  group: ''
+- name: Output variance of TDOA Estimates
+  summary: Output variance of TDOA estimates false (0) (default) | true (1)
+  group: ''
+- name: Output TDOA response and TDOA grid
+  summary: Output TDOA response and TDOA grid false (0) (default) | true (1)
+  group: ''
+- name: Source of noise power
+  summary: Source of noise power Property (default) | Input port
+  group: ''
+- name: Noise power (W)
+  summary: Noise power 1 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -252,7 +316,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Direction of Arrival

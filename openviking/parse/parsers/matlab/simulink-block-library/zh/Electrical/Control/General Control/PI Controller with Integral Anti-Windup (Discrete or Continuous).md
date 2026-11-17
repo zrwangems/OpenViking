@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PI Controller with Integral Anti-Windup (Discrete or Continuous)
 
 ## 端口
+```yaml
+ports:
+- name: e
+  summary: 误差信号 标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 积分器增益复位 标量
+  direction: input
+  data_types: single | double
+- name: u
+  summary: 控制信号 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -36,8 +51,28 @@ chinese_source: worker-translation
 控制信号，*u(k)*。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain
+  summary: '*Kp* 1（默认）| 正标量'
+  group: ''
+- name: Integral gain
+  summary: '*Ki* 1（默认）| 正标量'
+  group: ''
+- name: Upper saturation limit
+  summary: '*B* 5（默认）| 大于 Lower saturation limit 参数值的标量'
+  group: ''
+- name: Lower saturation limit
+  summary: '*A* -5（默认）| 标量'
+  group: ''
+- name: Integrator initial condition
+  summary: 积分器初始值 0（默认）| 标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: ''
+```
 
 ### **Proportional gain** — *Kp* `1`（默认）| 正标量
 
@@ -66,7 +101,6 @@ PI 控制器输出的下限，*A*。
 对于继承的离散时间操作，将此参数设置为 `-1`。对于离散时间操作，将此参数设置为正整数。对于连续时间操作，将此参数设置为 `0`。
 
 如果此模块位于支持在连续操作和离散操作之间切换的掩码子系统或变体子系统中，请提升此参数以确保在模块的连续实现和离散实现之间正确切换。有关详细信息，请参阅 Promote Block Parameters on a Mask。
-
 ## 所属库
 
 Simscape / Electrical / Control / General Control

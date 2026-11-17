@@ -15,6 +15,105 @@ chinese_source: worker-translation
 # Magic Formula Tire Force and Torque
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基础几何 geometry
+  direction: input
+- name: F
+  summary: 从动坐标系 frame
+  direction: input
+- name: lmux
+  summary: 纵向摩擦系数缩放因子，无量纲物理信号
+  direction: input
+- name: lmuy
+  summary: 横向摩擦系数缩放因子，无量纲物理信号
+  direction: input
+- name: con
+  summary: 接触信号，无量纲物理信号
+  direction: output
+- name: ft
+  summary: 轮胎力，*N* 物理信号
+  direction: output
+- name: tt
+  summary: 轮胎力矩，*N\*m* 物理信号
+  direction: output
+- name: t
+  summary: 气胎拖距，*m* 物理信号
+  direction: output
+- name: kappa
+  summary: 纵向滑移，无量纲物理信号
+  direction: output
+- name: kappas
+  summary: 饱和纵向滑移，无量纲物理信号
+  direction: output
+- name: alpha
+  summary: 侧偏角，*rad* 物理信号
+  direction: output
+- name: alphas
+  summary: 饱和侧偏角，*rad* 物理信号
+  direction: output
+- name: phit
+  summary: 转向滑移，*rad/m* 物理信号
+  direction: output
+- name: vx
+  summary: 相对纵向速度，*m/s* 物理信号
+  direction: output
+- name: vy
+  summary: 相对侧向速度，*m/s* 物理信号
+  direction: output
+- name: vsx
+  summary: 纵向滑移速度，*m/s* 物理信号
+  direction: output
+- name: vsy
+  summary: 侧向滑移速度，*m/s* 物理信号
+  direction: output
+- name: psid
+  summary: 横摆角速度，*rad/s* 物理信号
+  direction: output
+- name: gamma
+  summary: 外倾角，*rad* 物理信号
+  direction: output
+- name: gammas
+  summary: 饱和外倾角，*rad* 物理信号
+  direction: output
+- name: gammad
+  summary: 外倾角速度，*rad/s* 物理信号
+  direction: output
+- name: omega
+  summary: 自旋速度，*rad* 物理信号
+  direction: output
+- name: romega
+  summary: 自由半径，*m* 物理信号
+  direction: output
+- name: rl
+  summary: 加载半径，*m* 物理信号
+  direction: output
+- name: re
+  summary: 有效滚动半径，*m* 物理信号
+  direction: output
+- name: rho
+  summary: 径向变形，*m* 物理信号
+  direction: output
+- name: mux
+  summary: 纵向摩擦系数，无量纲物理信号
+  direction: output
+- name: muy
+  summary: 侧向摩擦系数，无量纲物理信号
+  direction: output
+- name: Rb
+  summary: 基座旋转，无量纲物理信号
+  direction: output
+- name: pb
+  summary: 基座平移，*m* 物理信号
+  direction: output
+- name: Rf
+  summary: 从动旋转，无量纲物理信号
+  direction: output
+- name: pf
+  summary: 从动平移，*m* 物理信号
+  direction: output
+```
 
 ### 几何
 
@@ -306,8 +405,31 @@ chinese_source: worker-translation
 #### 依赖项
 
 要启用此端口，请在 **Sensing > Contact Frame** 部分中选择 **Follower Translation**。
-
 ## 参数
+```yaml
+parameters:
+- name: Tire Side
+  summary: 建模时的轮胎位置 Left（默认）| Right
+  group: ''
+- name: Tire Parameters
+  summary: 轮胎参数 []（默认）| 标量结构体数组
+  group: ''
+- name: Slip Mode
+  summary: 滑移模式 Combined（默认）| Combined + Turn
+  group: ''
+- name: Contact Frame Method
+  summary: 用于计算接触坐标系位置和方向的方法 Closest Point（默认）| Weighted Penetration
+  group: ''
+- name: LMUX
+  summary: 纵向摩擦系数缩放因子 From Tire Parameters（默认）| Provided by Input
+  group: Scaling Coefficients
+- name: LMUY
+  summary: 横向摩擦系数缩放因子 From Tire Parameters（默认）| Provided by Input
+  group: Scaling Coefficients
+- name: Resolution Frame
+  summary: 用于解析测量值的坐标系 Contact（默认）| Follower
+  group: Sensing
+```
 
 ### **Tire Side** — 建模时的轮胎位置 `Left`（默认）| `Right`
 
@@ -375,7 +497,6 @@ chinese_source: worker-translation
 ### **Resolution Frame** — 用于解析测量值的坐标系 `Contact`（默认）| `Follower`
 
 用于解析计算得到的轮胎力和力矩的坐标系，指定为 `Contact` 或 `Follower`。
-
 ## 所属库
 
 Simscape / Multibody / Forces and Torques

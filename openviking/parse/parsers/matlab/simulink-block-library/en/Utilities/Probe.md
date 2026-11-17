@@ -14,6 +14,13 @@ language: en
 # Probe
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Value of selected variable during simulation scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### Output
 
@@ -27,11 +34,12 @@ If you select more than one variable, the block acquires additional output
 ports.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Utilities

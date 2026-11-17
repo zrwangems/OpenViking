@@ -14,6 +14,17 @@ language: en
 # Filter Visualizer
 
 ## Ports
+```yaml
+ports:
+- name: Num
+  summary: Numerator coefficients column vector | row vector | *L*-by-3 matrix | *L*-by-5 matrix
+  direction: input
+  data_types: single | double
+- name: Den
+  summary: Denominator coefficients column vector | row vector | *L*-by-3 matrix | *L*-by-5 matrix
+  direction: input
+  data_types: single | double
+```
 
 ### Input
 
@@ -50,8 +61,186 @@ To enable this port, set **Filter Type** to
 `IIR`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Num Filters
+  summary: Number of filters to display 1 (default) | positive integer in the range [1 20]
+  group: Scope Tab
+  block_parameter: NumFilters
+  type: character vector or string scalar
+  values: scalar in the range [1 20]
+- name: Filter Type
+  summary: Type of filter response FIR (default) | IIR
+  group: Scope Tab
+  block_parameter: FilterType
+  type: character vector or string scalar
+  values: '''FIR'', ''IIR'''
+- name: Legend
+  summary: Display signal legend off (default) | on
+  group: Scope Tab
+  block_parameter: ShowLegend
+  type: boolean
+- name: Magnitude Phase
+  summary: Plot magnitude and phase response of filter button
+  group: Scope Tab
+  block_parameter: PlotAsMagnitudePhase
+  type: boolean
+- name: FFT Length
+  summary: FFT length 2048 (default) | positive integer
+  group: Scope Tab
+  block_parameter: FFTLength
+  type: character vector or string scalar
+  values: scalar
+- name: Normalized Frequency
+  summary: Display the frequency response in normalized units on (default) | off
+  group: Scope Tab
+  block_parameter: NormalizedFrequency
+  type: boolean
+- name: Sample Rate (Hz)
+  summary: Sample rate in Hz 44100 (default) | positive scalar
+  group: Scope Tab
+  block_parameter: SampleRate
+  type: character vector or string scalar
+  values: scalar
+- name: Range
+  summary: Frequency range [0,1] (default) | two-element numeric vector
+  group: Scope Tab
+  block_parameter: FrequencyRange
+  type: character vector or string
+  values: two-element numeric vector
+- name: Display Unit
+  summary: Magnitude units Magnitude (dB) (default) | Magnitude | Magnitude squared
+  group: Scope Tab
+  block_parameter: MagnitudeDisplay
+  type: character vector or string scalar
+  values: '''Magnitude (dB)'', ''Magnitude'', ''Magnitude squared'''
+- name: Display Precision
+  summary: Precision of data in scope display 4 (default) | positive integer ≤ 15
+  group: Scope Tab
+- name: Title
+  summary: Display title character vector | string
+  group: Scope Tab
+  block_parameter: Title
+  type: character vector or string
+- name: X-Scale
+  summary: Scale of frequency axis Linear (default) | Log
+  group: Scope Tab
+  block_parameter: XScale
+  type: character vector or string
+  values: '''Linear'', ''Log'''
+- name: Y-Limits
+  summary: '*y*-axis limits [−25 25] | [ymin ymax]'
+  group: Scope Tab
+  block_parameter: YLimits
+  type: character vector or string
+  values: two-element numeric vector
+- name: Show Grid
+  summary: Show internal grid lines on (default) | off
+  group: Scope Tab
+  block_parameter: ShowGrid
+  type: logical
+- name: Plot Type
+  summary: Type of plot Line (default) | Stairs | Stem
+  group: Scope Tab
+  block_parameter: PlotType
+  type: character vector or string scalar
+  values: '''Stem'', ''Line'', ''Stairs'''
+- name: Font Size
+  summary: Font size of labels 8.5 (default) | scalar in the range [1,100]
+  group: Scope Tab
+  block_parameter: '-'
+  type: double
+- name: Background
+  summary: Window background black (default) | color picker
+  group: Scope Tab
+- name: Axes
+  summary: Axes background color black (default) | color picker
+  group: Scope Tab
+- name: Labels
+  summary: Color of labels gray (default) | color picker
+  group: Scope Tab
+- name: Line
+  summary: Filter for line property settings filter names
+  group: Scope Tab
+- name: Visible
+  summary: Filter visibility on (default) | off
+  group: Scope Tab
+  block_parameter: Visible
+  type: logical
+- name: Style
+  summary: 'Line style - (default) | : | -. | -- | None'
+  group: Scope Tab
+- name: Width
+  summary: Line width 1.5 (default) | 0.5 | 1 | 2 | ...
+  group: Scope Tab
+- name: Marker
+  summary: Data point markers None (default) | + | x | ...
+  group: Scope Tab
+- name: Color
+  summary: Line color yellow (default) | color picker
+  group: Scope Tab
+- name: Copy to Clipboard
+  summary: Send display to clipboard button
+  group: Scope Tab
+- name: Preserve Colors
+  summary: Preserve colors when copying to clipboard off (default) | on
+  group: Scope Tab
+- name: Print
+  summary: Print display button
+  group: Scope Tab
+- name: Channel
+  summary: Filter for which to obtain measurements Filter (default) | filter name
+  group: Measurements Tab
+- name: Data Cursors
+  summary: Enable cursor measurements button
+  group: Measurements Tab
+- name: Snap to data
+  summary: Snap cursors to data off (default) | on
+  group: Measurements Tab
+- name: Lock cursor spacing
+  summary: Lock cursor spacing off (default) | on
+  group: Measurements Tab
+- name: Peak Finder
+  summary: Enable peak finder measurements button
+  group: Measurements Tab
+- name: Num Peaks
+  summary: Maximum number of peaks to show 3 (default) | positive integer less than 100
+  group: Measurements Tab
+- name: Min Height
+  summary: Level above which scope detects peaks -Inf (default) | real scalar value
+  group: Measurements Tab
+- name: Min Distance
+  summary: Minimum number of samples between adjacent peaks 1 (default) | positive integer
+  group: Measurements Tab
+- name: Threshold
+  summary: Minimum difference in height of peak and its neighboring samples 0 (default) | nonnegative scalar
+  group: Measurements Tab
+- name: Label Peaks
+  summary: Label peaks button
+  group: Measurements Tab
+- name: Filter Names
+  summary: Input filter names [] (default) | character vector | string | array of strings or character vectors.
+  group: Property Inspector Only
+  block_parameter: FilterNames
+  type: cell array of character vectors or string array
+- name: Maximize Axes
+  summary: Maximize size of plots Auto (default) | Off | On
+  group: Property Inspector Only
+  block_parameter: MaximizeAxes
+  type: character vector or string scalar
+- name: Axes Scaling
+  summary: Y-axis scaling mode Auto (default) | Manual | Updates | OnceAtStop
+  group: Property Inspector Only
+  block_parameter: AxesScaling
+  type: character vector or string scalar
+- name: Number of Updates
+  summary: Number of updates before scaling 100 (default) | integer
+  group: Property Inspector Only
+  block_parameter: AxesScalingNumUpdates
+  type: character vector or string scalar
+  values: scalar
+```
 
 ### Scope Tab
 
@@ -614,7 +803,6 @@ To enable this property, set **Axes Scaling** to
 | **Block Parameter:** `AxesScalingNumUpdates` |
 | **Type:** character vector or string scalar |
 | **Values:** scalar |
-
 ## Libraries
 
 DSP System Toolbox / Sinks

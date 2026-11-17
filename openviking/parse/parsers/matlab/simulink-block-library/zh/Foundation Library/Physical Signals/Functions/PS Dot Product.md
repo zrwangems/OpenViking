@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # PS Dot Product
 
 ## 端口
+```yaml
+ports:
+- name: I1
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: I2
+  summary: 输入物理信号，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -37,11 +49,12 @@ chinese_source: worker-translation
 输出物理信号，标量。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Functions

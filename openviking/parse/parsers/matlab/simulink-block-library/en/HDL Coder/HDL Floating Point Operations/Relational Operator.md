@@ -14,6 +14,21 @@ language: en
 # Relational Operator
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: Second input signal scalar | vector | matrix
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -46,8 +61,68 @@ as the input. You control the output data type with the **Output
 data type** parameter.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Relational operator
+  summary: Relational operator <= (default) | ~= | == | < | >= | > | isInf | isNaN | isFinite
+  group: Main
+  block_parameter: Operator
+  type: character vector
+  values: '''=='' | ''~='' | ''<'' | ''<='' | ''>='' | ''>'' | ''isInf'' | ''isNaN'' | ''isFinite'''
+  default: '''<='''
+- name: Enable zero-crossing detection
+  summary: Enable zero-crossing detection on (default) | off
+  group: Main
+  block_parameter: ZeroCross
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Require all inputs to have the same data type
+  summary: Require all inputs to have same data type off (default) | on
+  group: Data Type
+  block_parameter: InputSameDT
+  type: character vector
+  values: '''off'' | ''on'
+  default: '''off'''
+- name: Output data type
+  summary: 'Output data type boolean (default) | Inherit: Logical (see Configuration Parameters: Optimization) | Inherit:
+    Inherit via back propagation | fixdt(1,16) | <data type expression>'
+  group: Data Type
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Logical (see Configuration Parameters: Optimization)'' | ''boolean'' | ''fixdt(1,16)'' | ''<data type
+    expression>'''
+  default: '''boolean'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Simplest (default) | Convergent | Floor | Nearest | Round | Ceiling |
+    Zero
+  group: Data Type
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Simplest'''
+- name: Mode
+  summary: Category of data to specify Built in (default) | Inherit | Fixed point | Expression
+  group: Data Type
+- name: Data type override
+  summary: Specify data type override mode for this signal Inherit | Off
+  group: Data Type
+- name: Signedness
+  summary: Signedness of fixed-point data Signed (default) | Unsigned
+  group: Data Type
+- name: Word length
+  summary: Bit size of the word that holds the quantized integer 16 (default) | integer from 0 to 32
+  group: Data Type
+- name: Scaling
+  summary: Method of scaling Integer (default)
+  group: Data Type
+```
 
 ### Main
 
@@ -327,7 +402,6 @@ result as specifying a binary point location and setting the fraction length to
 To enable this parameter, click the **Show data type
 assistant** button and set **Mode** to
 `Fixed point`.
-
 ## Libraries
 
 Simulink / Commonly Used Blocks Simulink / Logic and Bit Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Logic and Bit Operations

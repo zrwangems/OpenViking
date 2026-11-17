@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Voice Activity Detector
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号矩阵 | 一维向量
+  direction: input
+  data_types: single | double
+- name: SilenceToSpeech
+  summary: 范围 [0, 1] 内的阈值（dB）标量
+  direction: input
+  data_types: single | double
+- name: SpeechToSilence
+  summary: 范围 [0, 1] 内的阈值（dB）标量
+  direction: input
+  data_types: single | double
+- name: P
+  summary: 语音存在的概率 标量 | 行向量
+  direction: output
+  data_types: single | double
+- name: N
+  summary: 每个频率 bin 的噪声方差估计 列向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -61,8 +84,37 @@ chinese_source: worker-translation
 要启用此端口，请选择**输出噪声方差**参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Domain of the input
+  summary: 输入的域 Time（默认）| Frequency
+  group: ''
+- name: Window
+  summary: 在 FFT 之前应用的窗函数 Hann（默认）| Chebyshev | Flat Top | Hamming | Kaiser | Rectangular
+  group: ''
+- name: Sidelobe attenuation of the window (dB)
+  summary: 窗的旁瓣衰减（dB） 60（默认）| 正有限标量
+  group: ''
+- name: Inherit FFT length from input dimensions
+  summary: 将 FFT 长度设置为输入样本数 开（默认）| 关
+  group: ''
+- name: FFT length
+  summary: 频域中的 bin 数 1024（默认）| 正整数
+  group: ''
+- name: Probability of transition from a silence frame to a speech frame
+  summary: 语音帧跟在静音帧之后的概率 0.2（默认）| 范围 [0,1] 内的标量
+  group: ''
+- name: Probability of transition from a speech frame to a silence frame
+  summary: 静音帧跟在语音帧之后的概率 0.1（默认）| 范围 [0,1] 内的标量
+  group: ''
+- name: Output noise variance
+  summary: 每个频率 bin 的噪声方差输出估计 off（默认）| on
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 如果参数被列为可调，则您可以在仿真期间更改其值。
 
@@ -136,7 +188,6 @@ chinese_source: worker-translation
 - `Interpreted execution` —— 使用 MATLAB® 解释器仿真模型。此选项可减少启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
 
 **可调：** 否
-
 ## 所属库
 
 Audio Toolbox / Measurements

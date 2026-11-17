@@ -14,6 +14,18 @@ language: en
 # Orifice (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Control member displacement physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -29,8 +41,83 @@ Liquid entry or exit point to the orifice.
 ### **S** — Control member displacement physical signal
 
 Control member displacement that sets orifice opening.
-
 ## Parameters
+```yaml
+parameters:
+- name: Orifice type
+  summary: Type of orifice Variable (default) | Constant
+  group: Parameters
+- name: Orifice parameterization
+  summary: Method of calculating orifice area Orifice Area (default) | Tabulated data - volumetric flow rate vs. pressure
+    drop | Linear - area vs. control member position | Tabulated data - Area vs. control member position | Tabulated data
+    - Volumetric flow rate vs. control member position and pressure drop
+  group: Parameters
+- name: Orifice area
+  summary: Area of orifice opening 1e-3 m^2 (default) | positive scalar
+  group: Parameters
+- name: Pressure drop vector
+  summary: Vector of differential pressure values for tabulated parameterization [-4, -3, -2, -1, -.5, 0, .5, 1, 2, 3, 4]
+    MPa (default) | 1-by-*n* vector
+  group: Parameters
+- name: Volumetric flow rate vector
+  summary: Vector of volumetric flow rate values [-2.44, -2.12, -1.68, -1.22, -.84, 0, .85, 1.21, 1.7, 2.09, 2.41] .* 1e-3
+    m^3/s (default) | 1-by-*n* vector
+  group: Parameters
+- name: Control member position at closed orifice
+  summary: Control member offset 0 m (default) | scalar
+  group: Parameters
+- name: Control member travel between closed and open orifice
+  summary: Control member maximum stroke 5e-3 m (default) | positive scalar
+  group: Parameters
+- name: Maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Leakage area
+  summary: Orifice gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Parameters
+- name: Control member position vector
+  summary: Vector of control member positions [0, .002, .004, .007, .017] m (default) | 1-by-*n* vector
+  group: Parameters
+- name: Orifice area vector
+  summary: Vector of orifice opening area values [1e-09, 2.0352e-07, 4.0736e-05, .00011438, .00034356] m^2 (default) | 1-by-*n*
+    vector
+  group: Parameters
+- name: Cross-sectional area at ports A and B
+  summary: Area at orifice entry or exit inf m^2 (default) | positive scalar
+  group: Parameters
+- name: Opening orientation
+  summary: Direction of member movement that opens the orifice Positive control member displacement opens orifice (default)
+    | Negative control member displacement opens orifice
+  group: Parameters
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar in the range of [0,1]
+  group: Parameters
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Parameters
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: Parameters
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions on (default) | off
+  group: Parameters
+- name: Control member position vector, s
+  summary: Vector of opening values [0, .002, .004, .007, .017] m (default) | 1-by-*n* vector
+  group: Parameters
+- name: Pressure drop vector, dp
+  summary: Vector of pressure drop values [.3, .5, .7] MPa (default) | 1-by-*n* vector
+  group: Parameters
+- name: Volumetric flow rate table, q(s,dp)
+  summary: Array of volumetric flow rate values [1.7e-05, 2e-05, 2.6e-05; .0035, .0045, .0053; .7, .9, 1.06; 1.96, 2.5, 3;
+    6, 7.7, 9.13] .* 1e-3 m^3/s (default) | *M*-by-*N* matrix
+  group: Parameters
+- name: Orifice Area fault
+  summary: Option to model orifice area fault Add fault
+  group: Faults
+- name: Opening area when faulted
+  summary: Faulted orifice characteristics Closed (default) | Open | Maintain at last value
+  group: Faults
+```
 
 ### Parameters
 
@@ -409,7 +496,6 @@ triggers.
 To enable this parameter, set **Orifice type** to
 `Variable` and click the **Add
 fault** hyperlink.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Orifices

@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # LDPC Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 数据位 标量 | 列向量 *(自 R2025a 起)*
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 编码数据位 标量 | 列向量 *(自 R2025a 起)*
+  direction: output
+  data_types: Boolean
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 准备好接收新输入 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -69,8 +92,18 @@ chinese_source: worker-translation
 有关更多信息，请参阅 Using the nextFrame Output Signal。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Parity-check matrix
+  summary: QC-LDPC 矩阵 [5 14 12 1 2 37 45 26 24 0 3 -1 34 7 46 10 -1 -1 -1 -1; 0 35 1 26 0 10 16 16 34 4 2 23 0 51 -1 49 20
+    -1 -1 -1; 12 28 22 46 3 16 51 2 25 29 19 18 52 -1 37 -1 34 39 -1 -1; 0 51 16 31 13 39 27 33 8 27 53 13 -1 52 33 -1 -1
+    38 7 -1; 36 6 3 51 4 19 4 45 48 9 -1 11 22 23 43 -1 -1 -1 14 1]（默认）| 任何循环权重为 1 的 QC-LDPC 矩阵
+  group: ''
+- name: Block size
+  summary: 块大小 56（默认）| 范围 [2, 512] 内的整数
+  group: ''
+```
 
 ### **Parity-check matrix** — QC-LDPC 矩阵 `[5 14 12 1 2 37 45 26 24 0 3 -1 34 7 46 10 -1 -1 -1 -1; 0 35 1 26 0 10 16 16 34 4 2 23 0 51 -1 49 20 -1 -1 -1; 12 28 22 46 3 16 51 2 25 29 19 18 52 -1 37 -1 34 39 -1 -1; 0 51 16 31 13 39 27 33 8 27 53 13 -1 52 33 -1 -1 38 7 -1; 36 6 3 51 4 19 4 45 48 9 -1 11 22 23 43 -1 -1 -1 14 1]`（默认）| 任何循环权重为 1 的 QC-LDPC 矩阵
 
@@ -81,7 +114,6 @@ chinese_source: worker-translation
 ### **Block size** — 块大小 `56`（默认）| 范围 [2, 512] 内的整数
 
 指定块大小。块大小必须是范围 [2, 512] 内的整数。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

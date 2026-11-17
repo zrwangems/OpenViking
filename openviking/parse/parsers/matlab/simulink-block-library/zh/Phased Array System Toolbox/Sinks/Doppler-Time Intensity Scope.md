@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Doppler-Time Intensity Scope
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入数据，实值长度-*M* 向量
+  direction: input
+  data_types: double | single
+```
 
 ### 输入
 
@@ -23,8 +30,82 @@ chinese_source: worker-translation
 输入数据，指定为多普勒响应的实值长度-*M* 向量。每个向量对应一行数据。该模块接受单精度数据类型输入，但会将数据转换为双精度以进行显示。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Doppler Output
+  summary: 多普勒输出域 'Frequency'（默认）| 'Speed'
+  group: ''
+  block_parameter: DopplerOutput
+  type: 字符向量
+  values: '''Frequency'' | ''Speed'''
+- name: Propagation Speed (m/s)
+  summary: 信号传播速度 physconst("LightSpeed")（默认）| 正标量
+  group: ''
+  block_parameter: PropagationSpeed
+  type: double
+  values: 正标量
+- name: Doppler Offset (Hz)
+  summary: 多普勒轴偏移 0.0（默认）| 标量
+  group: ''
+  block_parameter: DopplerOffset
+  type: double
+  values: 标量
+- name: Time Span (s)
+  summary: 显示的时间跨度 0.100（默认）| 正标量
+  group: ''
+  block_parameter: TimeSpan
+  type: double
+  values: 标量
+- name: Operating Frequency (Hz)
+  summary: 工作频率 300e6（默认）| 正标量
+  group: ''
+  block_parameter: OperatingFrequency
+  type: double
+  values: 标量
+- name: Doppler Resolution (Hz)
+  summary: 采样之间的多普勒间隔 1.0（默认）| 正标量
+  group: ''
+  block_parameter: DopplerResolution
+  type: double
+  values: 正标量
+- name: Time Resolution (s)
+  summary: 行之间的时间差 0.001（默认）| 正标量
+  group: ''
+  block_parameter: TimeResolution
+  type: double
+  values: 正标量
+- name: Show Grid
+  summary: 显示笛卡尔网格 开（默认）| 关
+  group: ''
+  block_parameter: ShowGrid
+  type: logical
+  values: 1 | 0
+- name: Show Ticks
+  summary: 显示刻度值标签 开（默认）| 关
+  group: ''
+  block_parameter: ShowTicks
+  type: logical
+  values: 1 | 0
+- name: Time Label
+  summary: 时间轴标签 'Time (s)'（默认）| 字符串
+  group: ''
+  block_parameter: TimeLabel
+  type: string
+  values: string
+- name: Colorbar Label
+  summary: 颜色条标签 'dB'（默认）| 字符串
+  group: ''
+  block_parameter: ColorBarLabel
+  type: string
+  values: string
+- name: Title
+  summary: 窗口标题 'Doppler vs. Time'（默认）| 字符串
+  group: ''
+  block_parameter: Title
+  type: string
+  values: string
+```
 
 ### **Doppler Output** — 多普勒输出域 `'Frequency'`（默认）| `'Speed'`
 
@@ -211,7 +292,6 @@ chinese_source: worker-translation
 | **默认：**`'Doppler vs. Time'` |
 
 **数据类型：** `char`
-
 ## 所属库
 
 Phased Array System Toolbox / Sinks

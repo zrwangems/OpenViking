@@ -15,6 +15,49 @@ chinese_source: worker-translation
 # SM ST7C
 
 ## 端口
+```yaml
+ports:
+- name: V_REF
+  summary: 电压参考标量
+  direction: input
+  data_types: single | double
+- name: V_S
+  summary: 来自稳定器的输入标量
+  direction: input
+  data_types: single | double
+- name: V_T
+  summary: 机端电压标量
+  direction: input
+  data_types: single | double
+- name: I_T
+  summary: 机端电流标量
+  direction: input
+  data_types: single | double
+- name: V_OEL
+  summary: 过励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_UEL
+  summary: 欠励限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLsum
+  summary: 求和点定子电流限制信号标量
+  direction: input
+  data_types: single | double
+- name: V_SCLoel
+  summary: 用于过励限制器的接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: V_SCLuel
+  summary: 用于欠励限制器的接管定子电流限制标量
+  direction: input
+  data_types: single | double
+- name: Efd_pu
+  summary: 励磁电压标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -152,8 +195,79 @@ chinese_source: worker-translation
 要施加到同步电机励磁绕组的标幺值励磁电压，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Initial field voltage, Efd0 (pu)
+  summary: 初始输出电压 1（默认）| 实数标量
+  group: 常规
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 0 | 正标量
+  group: 常规
+- name: Resistive component of load compensation, R_C (pu)
+  summary: 补偿电阻 0（默认）| 正标量
+  group: 预控制
+- name: Reactance component of load compensation, X_C (pu)
+  summary: 补偿电抗 0（默认）| 正标量
+  group: 预控制
+- name: Regulator input filter time constant, T_R (s)
+  summary: 调节器时间常数 0（默认）| 正标量
+  group: 预控制
+- name: Regulator input filter time constant, T_G (s)
+  summary: 电压滤波时间常数 1（默认）| 正标量
+  group: 控制
+- name: Voltage regulator denominator (lag) time constant, T_F (s)
+  summary: 电压调节器的滞后时间常数 1（默认）| 正标量
+  group: 控制
+- name: Maximum voltage reference, V_max (pu)
+  summary: 最大电压参考 1.1（默认）| 实数标量
+  group: 控制
+- name: Minimum voltage reference, V_min (pu)
+  summary: 最小电压参考 0.9（默认）| 实数标量
+  group: 控制
+- name: Voltage regulator gain, K_PA (pu)
+  summary: 电压调节器增益 40（默认）| 正标量
+  group: 控制
+- name: Voltage regulator denominator (lag) time constant, T_B (s)
+  summary: 电压调节器滞后时间常数 1（默认）| 正标量
+  group: 控制
+- name: Voltage regulator numerator (lead) time constant, T_C (s)
+  summary: 电压调节器超前时间常数 1（默认）| 正标量
+  group: 控制
+- name: Thyristor bridge firing control equivalent time constant, T_A (s)
+  summary: 第一个超前-滞后环节的调节器滞后时间常数 0（默认）| 正标量
+  group: 控制
+- name: Maximum regulator output, V_Rmax (pu)
+  summary: 最大调节器输出 5（默认）| 实数标量
+  group: 控制
+- name: Minimum regulator output, V_Rmin (pu)
+  summary: 最小调节器输出 -4.5（默认）| 实数标量
+  group: 控制
+- name: Alternate OEL input locations (V_OEL)
+  summary: OEL 输入位置 Unused（默认）| Summation point at voltage reference | Take-over at voltage reference | Take-over at voltage
+    regulator output
+  group: 控制
+- name: Alternate UEL input locations (V_UEL)
+  summary: UEL 输入位置 Unused（默认）| Summation point at voltage reference | Take-over at voltage reference | Take-over at voltage
+    regulator output
+  group: 控制
+- name: Alternate SCL input locations (V_SCL)
+  summary: SCL 输入位置 Unused（默认）| Summation point at voltage reference | Take-over at voltage reference | Take-over at voltage
+    regulator output
+  group: 控制
+- name: Minimum excitation limit gain, K_L (pu)
+  summary: 最小励磁限制增益 1（默认）| 实数标量
+  group: 励磁机
+- name: Maximum excitation limit gain, K_H (pu)
+  summary: 最大励磁限制增益 1（默认）| 实数标量
+  group: 励磁机
+- name: PI regulator feedback gain, K_IA (pu)
+  summary: PI 调节器反馈增益 1（默认）| 实数标量
+  group: 励磁机
+- name: PI regulator feedback time constant, T_IA (s)
+  summary: PI 调节器反馈时间常数 3（默认）| 正标量
+  group: 励磁机
+```
 
 ### 常规
 
@@ -293,7 +407,6 @@ PI 调节器的标幺值反馈增益。
 ### **PI regulator feedback time constant, T\_IA (s)** — PI 调节器反馈时间常数 `3`（默认）| 正标量
 
 PI 调节器的反馈时间常数，以秒为单位。
-
 ## 所属库
 
 Simscape / Electrical / Control / SM Control

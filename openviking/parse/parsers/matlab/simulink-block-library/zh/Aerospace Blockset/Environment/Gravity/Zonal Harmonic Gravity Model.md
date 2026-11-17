@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Zonal Harmonic Gravity Model
 
 ## 端口
+```yaml
+ports:
+- name: Xecef
+  summary: 行星中心行星固连坐标 m×3 矩阵
+  direction: input
+  data_types: double
+- name: gecef
+  summary: 重力值 m×3 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,60 @@ chinese_source: worker-translation
 重力值，返回为 *m*×3 数组，分别沿行星中心行星固连坐标系的 *x* 轴、*y* 轴和 *z* 轴方向，单位为所选长度单位每秒平方。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 输入单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Degree
+  summary: 谐波模型的阶数 4（默认）| 2 | 3
+  group: ''
+  block_parameter: degree
+  type: 字符向量
+  values: '''2'' | ''3'' | ''4'''
+  default: '''4'''
+- name: Action for out-of-range input
+  summary: 超出范围输入的行为 Warning（默认）| ErrorNone
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Planet model
+  summary: 行星模型 Mercury（默认）| Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Custom
+  group: ''
+  block_parameter: ptype
+  type: 字符向量
+  values: '''Mercury'' | ''Venus'' | ''Earth'' | ''Moon'' | ''Mars'' | ''Jupiter'' | ''Saturn'' | ''Uranus'' | ''Neptune''
+    | ''Custom'''
+  default: '''Earth'''
+- name: Equatorial radius
+  summary: 行星赤道半径 6378136.3（默认）| 标量
+  group: ''
+  block_parameter: R
+  type: 字符向量
+  values: 标量
+  default: '''6378136.3'''
+- name: Gravitational parameter
+  summary: 行星引力参数 398600441500000（默认）| 标量
+  group: ''
+  block_parameter: GM
+  type: 字符向量
+  values: 标量
+  default: '''398600441500000'''
+- name: J values
+  summary: 带谐系数 [1.0826269e-03 -2.5323000e-06 -1.6204000e-06]（默认）| 3 元素数组
+  group: ''
+  block_parameter: jvalue
+  type: 字符向量
+  values: 标量
+  default: '''[1.0826269e-03 -2.5323000e-06 -1.6204000e-06]'''
+```
 
 ### **Units** — 输入单位 `Metric (MKS)`（默认）| `English`
 
@@ -159,7 +222,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 |
 | **默认值**：`'[1.0826269e-03 -2.5323000e-06 -1.6204000e-06]'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Gravity

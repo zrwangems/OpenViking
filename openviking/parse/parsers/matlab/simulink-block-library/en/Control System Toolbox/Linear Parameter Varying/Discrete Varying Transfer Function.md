@@ -14,6 +14,21 @@ language: en
 # Discrete Varying Transfer Function
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Transfer function input scalar
+  direction: input
+- name: b0, b1, ...
+  summary: Numerator coefficients scalar
+  direction: input
+- name: a1, a2, ...
+  summary: Denominator coefficients scalar
+  direction: input
+- name: y
+  summary: Transfer function output scalar
+  direction: output
+```
 
 ### Input
 
@@ -42,8 +57,19 @@ parameter.
 ### **y** — Transfer function output scalar
 
 Transfer function output signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Transfer function order
+  summary: Number of poles 1 (default) | positive integer
+  group: ''
+- name: Enable feedthrough
+  summary: Add input port for feedthrough term on (default) | off
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time –1 (default) | positive scalar
+  group: ''
+```
 
 ### **Transfer function order** — Number of poles 1 (default) | positive integer
 
@@ -64,7 +90,6 @@ reliable than feeding a zero-constant into the port.
 
 Block sample time, specified as either –1 (inherited sample time) or a
 positive scalar value.
-
 ## Libraries
 
 Control System Toolbox / Linear Parameter Varying

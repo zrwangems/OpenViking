@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Geoid Height
 
 ## 端口
+```yaml
+ports:
+- name: μ (deg)
+  summary: 大地纬度标量
+  direction: input
+  data_types: double | single
+- name: l (deg)
+  summary: 经度标量
+  direction: input
+  data_types: double | single
+- name: N
+  summary: 大地水准面高度标量
+  direction: output
+  data_types: double | single
+```
 
 ### 输入
 
@@ -36,8 +51,45 @@ chinese_source: worker-translation
 大地水准面高度，以所选长度单位返回为标量。数据类型与第一个输入中的纬度相同。
 
 **数据类型：** `double` | `single`
-
 ## 参数
+```yaml
+parameters:
+- name: Units
+  summary: 参数和输出单位 Metric (MKS)（默认）| English
+  group: ''
+  block_parameter: units
+  type: 字符向量
+  values: '''Metric (MKS)'' | ''English'''
+  default: '''Metric (MKS)'''
+- name: Geopotential model
+  summary: 重力位模型 EGM96（默认）| EGM2008 | Custom
+  group: ''
+  block_parameter: gtype
+  type: 字符向量
+  values: '''EGM96'' | ''EGM2008'' | ''Custom'''
+  default: '''Earth'''
+- name: Geopotential mat-file
+  summary: 重力位 MAT 文件 'geoidegm96grid'（默认）| MAT 文件
+  group: ''
+  block_parameter: datafile
+  type: 字符向量
+  values: '''geoidegm96grid'' | MAT 文件'
+  default: '''geoidegm96grid'''
+- name: Data type
+  summary: 输入和输出信号的数据类型 double（默认）| single
+  group: ''
+  block_parameter: dtype
+  type: 字符向量
+  values: '''double'' | ''single'''
+  default: '''double'''
+- name: Action for out-of-range input
+  summary: 超出范围输入的行为 Warning（默认）| Error | None
+  group: ''
+  block_parameter: action
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+```
 
 ### **Units** — 参数和输出单位 `Metric (MKS)`（默认）| `English`
 
@@ -124,7 +176,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：`'None'` | `'Warning'` | `'Error'` |
 | **默认值**：`'Warning'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Gravity

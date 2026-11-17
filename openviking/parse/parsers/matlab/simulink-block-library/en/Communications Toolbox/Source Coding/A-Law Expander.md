@@ -14,10 +14,15 @@ language: en
 # A-Law Expander
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **A value**
 :   The A-law parameter of the compressor.
@@ -28,7 +33,6 @@ Not documented in R2025b.
 
 Match these parameters to the ones in the corresponding A-Law
 Compressor block.
-
 ## Libraries
 
 Not documented in R2025b.

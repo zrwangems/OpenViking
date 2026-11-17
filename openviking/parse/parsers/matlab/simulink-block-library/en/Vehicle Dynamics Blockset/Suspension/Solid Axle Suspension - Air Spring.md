@@ -14,6 +14,57 @@ language: en
 # Solid Axle Suspension - Air Spring
 
 ## Ports
+```yaml
+ports:
+- name: WhlPz
+  summary: Wheel z-axis displacement array
+  direction: input
+- name: WhlRe
+  summary: Wheel effective radius array
+  direction: input
+- name: WhlVz
+  summary: Wheel z-axis velocity array
+  direction: input
+- name: WhlFx
+  summary: Longitudinal wheel force on vehicle array
+  direction: input
+- name: WhlFy
+  summary: Lateral wheel force on vehicle array
+  direction: input
+- name: WhlM
+  summary: Suspension moment on wheel array
+  direction: input
+- name: VehP
+  summary: Vehicle displacement array
+  direction: input
+- name: VehV
+  summary: Vehicle velocity array
+  direction: input
+- name: StrgAng
+  summary: Steering angle, optional array
+  direction: input
+- name: Pressure
+  summary: Pressure in air spring array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: VehF
+  summary: Suspension force on vehicle array
+  direction: output
+- name: VehM
+  summary: Suspension moment on vehicle array
+  direction: output
+- name: WhlF
+  summary: Suspension force on wheel array
+  direction: output
+- name: WhlV
+  summary: Wheel velocity array
+  direction: output
+- name: WhlAng
+  summary: Wheel camber, caster, toe angles array
+  direction: output
+```
 
 ### Input
 
@@ -519,8 +570,190 @@ For example, for a two-axle vehicle with two wheels per axle, the
   | Front right | `WhlF(3,2)` | `1` | `2` |
   | Rear left | `WhlF(3,3)` | `2` | `1` |
   | Rear right | `WhlF(3,4)` | `2` | `2` |
-
 ## Parameters
+```yaml
+parameters:
+- name: Model type
+  summary: Air suspension model type Physical (default) | Mapped
+  group: ''
+  block_parameter: SuspModelType
+  values: Physical (default) | Mapped
+- name: Number of axles, NumAxl
+  summary: Number of axles 2 (default) | scalar
+  group: ''
+  block_parameter: NumAxl
+  values: 2 (default) | scalar
+- name: Number of wheels by axle, NumWhlsByAxl
+  summary: Number of wheels per axle [2 2] (default) | vector
+  group: ''
+  block_parameter: NumWhlsByAxl
+  values: '[2 2] (default) | vector'
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: Boolean vector to enable axle steering [1 0] (default) | vector
+  group: ''
+  block_parameter: StrgEnByAxl
+  values: '[1 0] (default) | vector'
+- name: Axle and wheels lumped principal moment of inertia about longitudinal axis, AxlIxx
+  summary: Principal moment of inertia about longitudinal axis 200 (default) | vector
+  group: ''
+  block_parameter: AxlIxx
+  values: 200 (default) | vector
+- name: Axle and wheels lumped mass, AxlM
+  summary: Axle and wheels lumped mass 300 (default) | vector
+  group: ''
+  block_parameter: AxlM
+  values: 300 (default) | vector
+- name: Track hardpoint coordinates relative to axle center, TrackCoords
+  summary: Track hardpoint coordinates [0 0 0 0;-1 1 -1 1;0 0 0 0] (default)
+  group: ''
+  block_parameter: TrackCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0] (default)'
+- name: Suspension hardpoint coordinates relative to axle center, SuspCoords
+  summary: Suspension hardpoint coordinates [0 0 0 0;-1 1 -1 1;0 0 0 0] (default)
+  group: ''
+  block_parameter: SuspCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0] (default)'
+- name: Wheel and axle interface compliance constant, KzWhlAxl
+  summary: Wheel and axle interface compliance constant 6437000 (default)
+  group: ''
+  block_parameter: KzWhlAxl
+  values: 6437000 (default)
+- name: Wheel and axle interface compliance preload, F0zWhlAxl
+  summary: Wheel and axle interface compliance preload 9810 (default)
+  group: ''
+  block_parameter: F0zWhlAxl
+  values: 9810 (default)
+- name: Wheel and axle interface damping constant, CzWhlAxl [Ns/m]
+  summary: Wheel and axle interface damping constant 10000 (default)
+  group: ''
+  block_parameter: CzWhlAxl
+  values: 10000 (default)
+- name: Air suspension spring preload, F0z
+  summary: Air suspension spring preload 9810 (default) | scalar
+  group: ''
+  block_parameter: F0z
+  values: 9810 (default) | scalar
+- name: Air suspension shock damping constant, Cz
+  summary: Air suspension shock damping constant 10000 (default) | scalar
+  group: ''
+  block_parameter: Cz
+  values: 10000 (default) | scalar
+- name: Air spring effective area, EffctArea
+  summary: Air spring effective area 0.21993 (default) | scalar
+  group: ''
+  block_parameter: EffctArea
+  values: 0.21993 (default) | scalar
+- name: Air spring volume in design position, VolDgnPos
+  summary: Air spring volume in design position 0.08 (default) | scalar
+  group: ''
+  block_parameter: VolDgnPos
+  values: 0.08 (default) | scalar
+- name: Air spring isentropic exponent, IstpExp
+  summary: Air spring isentropic exponent 1.4 (default) | scalar
+  group: ''
+  block_parameter: IstpExp
+  values: 1.4 (default) | scalar
+- name: Air spring outer diameter, OuterDiam
+  summary: Air spring outer diameter 0.6199 (default) | scalar
+  group: ''
+  block_parameter: OuterDiam
+  values: 0.6199 (default) | scalar
+- name: Air spring piston diameter, PistDiam
+  summary: Air spring piston diameter 0.236 (default) | scalar
+  group: ''
+  block_parameter: PistDiam
+  values: 0.236 (default) | scalar
+- name: Air suspension maximum height, Hmax
+  summary: Air suspension maximum height 0.5 (default) | scalar
+  group: ''
+  block_parameter: Hmax
+  values: 0.5 (default) | scalar
+- name: Toe angle at steering center, Toe
+  summary: Toe angle 0.0349 (default) | scalar
+  group: ''
+  block_parameter: Toe
+  values: 0.0349 (default) | scalar
+- name: Roll steer vs suspension height slope, RollStrgSlp
+  summary: Steer angle suspension slope -0.2269 (default) | scalar | vector
+  group: ''
+  block_parameter: RollStrgSlp
+  values: -0.2269 (default) | scalar | vector
+- name: Toe angle vs steering angle slope, ToeStrgSlp
+  summary: Toe angle steering slope 0.01 (default) | scalar | vector
+  group: ''
+  block_parameter: ToeStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Caster angle at steering center, Caster
+  summary: Caster angle at steering center 0.0698 (default) | scalar
+  group: ''
+  block_parameter: Caster
+  values: 0.0698 (default) | scalar
+- name: Caster angle vs suspension height slope, CasterHslp
+  summary: Caster angle versus suspension height slope -0.2269 (default) | scalar | vector
+  group: ''
+  block_parameter: CasterHslp
+  values: -0.2269 (default) | scalar | vector
+- name: Caster angle vs steering angle slope, CasterStrgSlp
+  summary: Caster angle versus steering angle slope 0.01 (default) | scalar | vector
+  group: ''
+  block_parameter: CasterStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Camber angle at steering center, Camber
+  summary: Camber angle at steering center 0.0698 (default) | scalar
+  group: ''
+  block_parameter: Camber
+  values: 0.0698 (default) | scalar
+- name: Camber angle vs suspension height slope, CamberHslp
+  summary: Camber angle versus suspension height slope -0.2269 (default) | scalar | vector
+  group: ''
+  block_parameter: CamberHslp
+  values: -0.2269 (default) | scalar | vector
+- name: Camber angle vs steering angle slope, CamberStrgSlp
+  summary: Camber angle versus steering angle slope 0.01 (default) | scalar | vector
+  group: ''
+  block_parameter: CamberStrgSlp
+  values: 0.01 (default) | scalar | vector
+- name: Suspension height vs steering angle slope, StrgHgtSlp
+  summary: Suspension height versus steering angle slope 0.1432 (default) | scalar | vector
+  group: ''
+  block_parameter: StrgHgtSlp
+  values: 0.1432 (default) | scalar | vector
+- name: Axle breakpoints, f_susp_axl_bp
+  summary: Breakpoints [1 2] (default) | 1-by-P array
+  group: ''
+  block_parameter: f_susp_axl_bp
+  values: '[1 2] (default) | 1-by-P array'
+- name: Vertical axis suspension height breakpoints, f_susp_dz_bp
+  summary: Breakpoints 1-by-M array
+  group: ''
+  block_parameter: f_susp_dz_bp
+  values: 1-by-M array
+- name: Vertical axis air suspension pressure breakpoints, f_susp_press_bp
+  summary: Vertical axis air suspension pressure breakpoints [0.50 7] (default) | 1-by-M array
+  group: ''
+  block_parameter: f_susp_press_bp
+  values: '[0.50 7] (default) | 1-by-M array'
+- name: Vertical air axis suspension force and moment responses, f_susp_fmz
+  summary: Output array zeros(31,31,61,2,4) (default) | M-by-N-by-O-by-P-by-4 array
+  group: ''
+  block_parameter: f_susp_fmz
+  values: zeros(31,31,61,2,4) (default) | M-by-N-by-O-by-P-by-4 array
+- name: Air suspension shock damping constant, c_airSusp
+  summary: Air suspension shock damping constant 6e6 (default) | scalar
+  group: ''
+  block_parameter: c_airSusp
+  values: 6e6 (default) | scalar
+- name: Suspension geometry responses, f_susp_geom
+  summary: Suspension geometry responses zeros(31,61,2,3) (default) | M-by-O-by-P-by-3 array
+  group: ''
+  block_parameter: f_susp_geom
+  values: zeros(31,61,2,3) (default) | M-by-O-by-P-by-3 array
+- name: Steering angle breakpoints, f_susp_strgdelta_bp
+  summary: Steering angle breakpoints 1-by-O array
+  group: ''
+  block_parameter: f_susp_strgdelta_bp
+  values: 1-by-O array
+```
 
 ### **Model type** — Air suspension model type `Physical` (default) | `Mapped`
 
@@ -1464,7 +1697,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `f_susp_strgdelta_bp` |
 | **Values:** | `1`-by-`O` array |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Vehicle Dynamics Blockset / Suspension

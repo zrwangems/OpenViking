@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Variable Spherical Solid
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+- name: r
+  summary: 球体半径 physical signal
+  direction: unspecified
+- name: m
+  summary: 球体质量 physical signal
+  direction: unspecified
+- name: r
+  summary: 球体半径 physical signal
+  direction: unspecified
+- name: m
+  summary: 球体质量 physical signal
+  direction: unspecified
+- name: com
+  summary: 球体质心坐标 physical signal
+  direction: unspecified
+- name: I
+  summary: 球体惯性矩阵 physical signal
+  direction: unspecified
+```
 
 ### 坐标系
 
@@ -47,8 +71,64 @@ chinese_source: worker-translation
 ### **I** — 球体惯性矩阵 physical signal
 
 球体惯性矩阵的输出端口，以九元素矩阵形式报告，在实体的惯性解析坐标系中解析——惯性解析坐标系是参考坐标系的虚拟副本，其原点已移至质心。惯性解析坐标系的坐标轴与参考坐标系的坐标轴平行。矩阵的对角元素为惯性矩，非对角元素为惯性积。
-
 ## 参数
+```yaml
+parameters:
+- name: Radius
+  summary: 半径参数化方式 Calculate from Mass（默认）| Constant | Provided by Input
+  group: ''
+- name: 'Radius: Value'
+  summary: 半径值 1 m（默认）| 带长度单位的标量
+  group: ''
+- name: Mass
+  summary: 质量参数化方式 Provided by Input（默认）| Calculate from Geometry
+  group: ''
+- name: 'Mass: Density'
+  summary: 材料单位体积质量 1000 kg/m^3（默认）| 以质量每单位体积为单位的标量
+  group: ''
+- name: Radius
+  summary: 半径的传感选择 未选中（默认）| 已选中
+  group: ''
+- name: Mass
+  summary: 总质量传感选择 清除（默认）| 选中
+  group: ''
+- name: Center of Mass
+  summary: 质心坐标传感选择 清除（默认）| 选中
+  group: ''
+- name: Inertia Matrix
+  summary: 惯性矩阵传感选项 清除（默认）| 选中
+  group: ''
+- name: Type
+  summary: 用于可视化的图形 From Geometry（默认）| Marker | None
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: Graphic
+- name: Shape
+  summary: 用于表示固体的标记形状 Sphere（默认）| Cube | Frame
+  group: Graphic
+- name: Size
+  summary: 标记的宽度（以像素为单位） 10 pixels（默认）| 标量
+  group: Graphic
+- name: Diffuse Color
+  summary: 漫反射光的颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: Graphic
+- name: Specular Color
+  summary: 镜面反射产生的光线颜色 [0.5 0.5 0.5 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: Graphic
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值范围约束为 0–128 的标量
+  group: Graphic
+```
 
 #### 几何与惯性
 
@@ -205,7 +285,6 @@ chinese_source: worker-translation
    `Marker`
 2. **Visual Properties** 为
    `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Body Elements / Variable Mass

@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # A-Law Expander
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **A value**
 :   压缩器的 A-law 参数。
@@ -27,7 +32,6 @@ R2025b 中未记录。
 :   输入信号的峰值。这也是输出信号的峰值。
 
 将这些参数与对应的 A-Law Compressor 模块中的参数相匹配。
-
 ## 所属库
 
 R2025b 中未记录。

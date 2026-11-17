@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Sinusoidal Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电气
+  direction: unspecified
+- name: '-'
+  summary: 负电压电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,25 @@ chinese_source: worker-translation
 ### **-** — 负电压电气
 
 与正弦电压源负电压相关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Voltage offset, VO
+  summary: 电压偏移 0 V（默认）
+  group: ''
+- name: Sinusoidal amplitude, VA
+  summary: 正弦幅值 0 V（默认）
+  group: ''
+- name: Sinusoidal frequency, FREQ
+  summary: 正弦频率 1e6 Hz（默认）
+  group: ''
+- name: Time delay, TD
+  summary: 时间延迟 0 s（默认）
+  group: ''
+- name: Damping factor, DF
+  summary: 阻尼因子 0 1/s（默认）| 非负标量
+  group: ''
+```
 
 ### **Voltage offset, VO** — 电压偏移 `0` `V`（默认）
 
@@ -47,7 +73,6 @@ chinese_source: worker-translation
 ### **Damping factor, DF** — 阻尼因子 `0` `1/s`（默认）| 非负标量
 
 用于产生输出电压的正弦波的指数阻尼因子。如果 *DF* 大于或等于 `0`，则当时间大于 *TD* 时，方程的指数部分始终为阻尼。该值必须大于或等于 `0`。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # DC Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正电压电气端口
+  direction: conserving
+- name: '-'
+  summary: 负电压电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **-** — 负电压电气端口
 
 与直流电流源负电压相关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Constant value, DC
+  summary: 直流输出电压 0 V（默认值）
+  group: ''
+```
 
 ### **Constant value, DC** — 直流输出电压 `0` `V`（默认值）
 
 直流输出电压的值，单位为 V。
-
 ## 所属库
 
 Simscape / Electrical / Additional Components / SPICE Sources

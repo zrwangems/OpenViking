@@ -14,6 +14,33 @@ language: en
 # Constant Volume Chamber (MA)
 
 ## Ports
+```yaml
+ports:
+- name: W
+  summary: Rate of condensation leaving system, kg/s physical signal
+  direction: output
+- name: F
+  summary: Vector physical signal containing pressure, temperature, humidity, and trace gas levels data physical signal vector
+  direction: output
+- name: A
+  summary: Chamber inlet moist air
+  direction: conserving
+- name: B
+  summary: Chamber inlet moist air
+  direction: conserving
+- name: C
+  summary: Chamber inlet moist air
+  direction: conserving
+- name: D
+  summary: Chamber inlet moist air
+  direction: conserving
+- name: H
+  summary: Temperature inside chamber thermal
+  direction: conserving
+- name: S
+  summary: Inject or extract moisture and trace gas moist air source
+  direction: conserving
+```
 
 ### Output
 
@@ -87,8 +114,137 @@ trace gas. For more information, see Using Moisture and Trace Gas Sources.
 This port is visible only if you set the **Moisture and
 trace gas source** parameter to
 `Controlled`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Chamber volume
+  summary: Volume of moist air in the chamber 0.001 m^3 (default)
+  group: Main
+- name: Number of ports
+  summary: Number of inlet ports in the chamber 1 (default) | 2 | 3 | 4
+  group: Main
+- name: Cross-sectional area at port A
+  summary: Area normal to flow path at the chamber inlet 0.01 m^2 (default)
+  group: Main
+- name: Cross-sectional area at port B
+  summary: Area normal to flow path at the chamber inlet 0.01 m^2 (default)
+  group: Main
+- name: Cross-sectional area at port C
+  summary: Area normal to flow path at the chamber inlet 0.01 m^2 (default)
+  group: Main
+- name: Cross-sectional area at port D
+  summary: Area normal to flow path at the chamber inlet 0.01 m^2 (default)
+  group: Main
+- name: Relative humidity at saturation
+  summary: Relative humidity above which condensation occurs 1 (default)
+  group: Moisture and Trace Gas
+- name: Water vapor condensation time constant
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Moisture and Trace Gas
+- name: Water droplets evaporation time constant
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Moisture and Trace Gas
+- name: Fraction of condensate entrained as water droplets
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Moisture and Trace Gas
+- name: Moisture and trace gas source
+  summary: Model moisture and trace gas levels None (default) | Constant | Controlled
+  group: Moisture and Trace Gas
+- name: Moisture added or removed
+  summary: Select whether the block adds or removes moisture as water vapor or water droplets Water vapor (default) | Water
+    droplets
+  group: Moisture and Trace Gas
+- name: Water vapor evaporated from liquid or condensed to liquid
+  summary: How the block adds or removes water vapor off (default) | on
+  group: Moisture and Trace Gas
+- name: Rate of moisture added
+  summary: Constant mass flow rate through the block 0 kg/s (default)
+  group: Moisture and Trace Gas
+- name: Added moisture temperature specification
+  summary: Select specification method for the temperature of added moisture Atmospheric temperature (default) | Specified
+    temperature
+  group: Moisture and Trace Gas
+- name: Temperature of added moisture
+  summary: Moisture temperature 293.15 K (default)
+  group: Moisture and Trace Gas
+- name: Rate of trace gas added
+  summary: Constant mass flow rate through the block 0 kg/s (default)
+  group: Moisture and Trace Gas
+- name: Added trace gas temperature specification
+  summary: Select specification method for the temperature of added trace gas Atmospheric temperature (default) | Specified
+    temperature
+  group: Moisture and Trace Gas
+- name: Temperature of added trace gas
+  summary: Trace gas temperature 293.15 K (default)
+  group: Moisture and Trace Gas
+- name: Initial pressure
+  summary: Moist air pressure at the start of simulation 0.101325 MPa (default) | positive scalar
+  group: Initial Conditions
+- name: Initial pressure priority
+  summary: Pressure parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial temperature
+  summary: Temperature at the start of simulation 293.15 K (default) | positive scalar
+  group: Initial Conditions
+- name: Initial temperature priority
+  summary: Temperature parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial humidity specification
+  summary: Humidity specification Relative humidity (default) | Specific humidity | Mole fraction | Humidity ratio | Wet-bulb
+    temperature
+  group: Initial Conditions
+- name: Initial relative humidity
+  summary: Relative humidity at the start of simulation 0.5 (default) | scalar in the range of [0,1]
+  group: Initial Conditions
+- name: Initial relative humidity priority
+  summary: Relative humidity parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial specific humidity
+  summary: Specific humidity at the start of simulation 0.01 (default) | scalar in the range of [0,1]
+  group: Initial Conditions
+- name: Initial specific humidity priority
+  summary: Specific humidity parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial water vapor mole fraction
+  summary: Mole fraction of water vapor at the start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial water vapor mole fraction priority
+  summary: Water vapor mole fraction humidity parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial humidity ratio
+  summary: Humidity ratio at the start of simulation 0.01 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial humidity ratio priority
+  summary: Humidity ratio parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial wet-bulb temperature
+  summary: Wet-bulb temperature at the start of simulation 287 K (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial wet-bulb temperature priority
+  summary: Wet-bulb temperature parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial trace gas specification
+  summary: Measurement type of trace gas Mass fraction (default) | Mole fraction
+  group: Initial Conditions
+- name: Initial trace gas mass fraction
+  summary: Amount of trace gas in the moist air channel 0.001 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial trace gas mass fraction priority
+  summary: Trace gas mass fraction parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial trace gas mole fraction
+  summary: Mole fraction of trace gas at the start of simulation 0.001 (default) | scalar in the range [0,1]
+  group: Initial Conditions
+- name: Initial trace gas mole fraction priority
+  summary: Trace gas mole fraction parameter priority High (default) | Low | None
+  group: Initial Conditions
+- name: Initial mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Initial Conditions
+- name: Initial mass ratio of water droplets to moist air priority
+  summary: Mass ratio of water droplets to moist air parameter priority High (default) | Low | None
+  group: Initial Conditions
+```
 
 ### Main
 
@@ -575,7 +731,6 @@ initial conditions. You may need to set this parameter to
 `Low` or `None` if
 this initial condition conflicts with the initial conditions of another
 block.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Elements

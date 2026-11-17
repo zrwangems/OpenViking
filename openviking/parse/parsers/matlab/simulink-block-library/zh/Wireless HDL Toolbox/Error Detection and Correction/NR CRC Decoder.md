@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # NR CRC Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: CRC 编码数据 二进制标量 | 二进制向量 | 无符号整数标量
+  direction: input
+  data_types: double | single | ufix1 | uint8 | uint16 | Boolean | ufixN
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: CRCMask
+  summary: CRC 校验和掩码 非负整数
+  direction: input
+  data_types: ufix24
+- name: data
+  summary: CRC 解码数据 标量 | 向量
+  direction: output
+  data_types: double | single | ufix1 | uint8 | uint16 | Boolean | ufixN
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: err
+  summary: 接收数据损坏指示 二进制或整数标量
+  direction: output
+  data_types: Boolean | ufix24
+```
 
 ### 输入
 
@@ -87,8 +114,19 @@ CRC 解码数据，以标量或向量形式返回。输出数据类型和大小�
 如果您选中 **Full checksum mismatch** 参数，此端口返回校验和不匹配的整数异或结果。此值是输入中包含的 CRC 校验和与跨输入数据部分重新计算的 CRC 校验和之间的逻辑 CRC 差值结果。如果您指定了 CRC 掩码，该模块将校验和与指定的 CRC 掩码进行异或运算。
 
 **数据类型：** `Boolean` | `ufix24`
-
 ## 参数
+```yaml
+parameters:
+- name: CRC type
+  summary: CRC 类型 CRC16（默认）| CRC6 | CRC11 | CRC24A | CRC24B | CRC24C
+  group: ''
+- name: Full checksum mismatch
+  summary: 启用完整校验和 off（默认）| on
+  group: ''
+- name: Enable CRC mask input port
+  summary: 启用 CRC 校验和掩码输入端口 off（默认）| on
+  group: ''
+```
 
 ### **CRC type** — CRC 类型 `CRC16`（默认）| `CRC6` | `CRC11` | `CRC24A` | `CRC24B` | `CRC24C`
 
@@ -118,7 +156,6 @@ CRC 解码数据，以标量或向量形式返回。输出数据类型和大小�
 #### 依赖关系
 
 要启用此参数，请将 **CRC type** 参数设置为 `CRC24C`。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

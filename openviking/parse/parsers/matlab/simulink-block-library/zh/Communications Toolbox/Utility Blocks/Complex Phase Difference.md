@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Complex Phase Difference
 
 ## 端口
+```yaml
+ports:
+- name: In1
+  summary: 第一个输入信号 标量 | 列向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: In2
+  summary: 第二个输入信号 标量 | 列向量 | 矩阵
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: 相位差 标量 | 列向量 | 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -51,11 +65,12 @@ chinese_source: worker-translation
 信号的维度与非标量输入信号的维度匹配。
 输出是第二个输入信号与第一个输入信号之间的相位差。输出信号的元素介于 -π
 和 π 之间，并且与输入信号具有相同的数据类型。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Communications Toolbox / Utility Blocks

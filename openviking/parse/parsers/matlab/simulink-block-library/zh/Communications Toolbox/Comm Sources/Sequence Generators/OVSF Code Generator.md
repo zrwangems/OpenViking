@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # OVSF Code Generator
 
 ## 端口
+```yaml
+ports:
+- name: Out
+  summary: 输出数据列向量
+  direction: output
+  data_types: double | int8
+```
 
 ### 输出
 
@@ -23,8 +30,28 @@ chinese_source: worker-translation
 输出数据，返回为包含由一组正交码生成的 OVSF 码的二进制值列向量。
 
 **数据类型：** `double` | `int8`
-
 ## 参数
+```yaml
+parameters:
+- name: Code length
+  summary: 码长度 64（默认）| 正整数
+  group: ''
+- name: Code index
+  summary: OVSF 码矩阵的行索引 60（默认）| 整数
+  group: ''
+- name: Sample time
+  summary: 采样时间，以秒为单位 1（默认）| 正标量
+  group: ''
+- name: Samples per frame
+  summary: 输出的 OVSF 码片数量 1（默认）| 正整数
+  group: ''
+- name: Output data type
+  summary: 输出类型 double（默认）| int8
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -60,7 +87,6 @@ OVSF 码矩阵的行索引，指定为范围 [0, (*N* – 1)] 内的整数，其
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项缩短了启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Comm Sources / Sequence Generators

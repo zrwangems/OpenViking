@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # DC Voltage Source
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,13 +34,17 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气
 
 与电源负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Constant voltage
+  summary: 输出电压 1 V（默认）| 标量
+  group: ''
+```
 
 ### **Constant voltage** — 输出电压 `1 V`（默认）| 标量
 
 电源两端的电压。您可以指定正值或负值。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Sources

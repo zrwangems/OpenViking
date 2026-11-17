@@ -14,6 +14,45 @@ language: en
 # SM Field-Oriented Control
 
 ## Ports
+```yaml
+ports:
+- name: Reference
+  summary: System reference scalar
+  direction: input
+  data_types: single | double
+- name: iabcSens
+  summary: Measured phase currents vector
+  direction: input
+  data_types: single | double
+- name: ifSens
+  summary: Measured field current scalar
+  direction: input
+  data_types: single | double
+- name: wSens
+  summary: Rotor speed scalar
+  direction: input
+  data_types: single | double
+- name: thSens
+  summary: Rotor angle scalar
+  direction: input
+  data_types: single | double
+- name: vdcSens
+  summary: DC-link voltage scalar
+  direction: input
+  data_types: single | double
+- name: G
+  summary: Stator converter gate pulses vector
+  direction: output
+  data_types: single | double
+- name: Gr
+  summary: Excitation chopper gate pulses vector
+  direction: output
+  data_types: single | double
+- name: Visualization
+  summary: Visualization signals bus
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -95,8 +134,154 @@ Bus containing signals for visualization, including:
 - `DCexcit`
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Control mode
+  summary: Control mode strategy Velocity control (default) | Torque control
+  group: General
+- name: Nominal dc-link voltage (V)
+  summary: Rated DC voltage 300 V (default) | positive number
+  group: General
+- name: Maximum power (W)
+  summary: Maximum power 60000 W (default) | positive number
+  group: General
+- name: Maximum torque (N\*m)
+  summary: Maximum torque 250 N*m (default) | positive number
+  group: General
+- name: Maximum field current (A)
+  summary: Maximum field current 25 A (default) | positive number
+  group: General
+- name: Inverter dc-link voltage threshold (V)
+  summary: DC-link voltage threshold 100 V (default) | positive number
+  group: General
+- name: Number of rotor pole pairs
+  summary: Pole pairs 4 (default) | positive integer
+  group: General
+- name: Fundamental sample time (s)
+  summary: Block sample time 5e-6 (default) | positive number
+  group: General
+- name: Control Type
+  summary: Control type strategy PI control (default) | P control | P-PI control
+  group: Outer Loop
+- name: Controller proportional gain
+  summary: Proportional gain of PI controller 1 (default) | positive number
+  group: Outer Loop
+- name: Controller integral gain
+  summary: Integral gain of PI controller 1 (default) | positive number
+  group: Outer Loop
+- name: P controller proportional gain
+  summary: Proportional gain of P controller 1 (default) | positive number
+  group: Outer Loop
+- name: Integral anti-windup gain
+  summary: Anti-windup gain 1 (default) | positive number
+  group: Outer Loop
+- name: Current references
+  summary: Current reference strategy Zero d-axis control (default) | Lookup-table based
+  group: Outer Loop
+- name: Mechanical speed vector, wMechanical (rpm)
+  summary: Rotor speed lookup vector [0, 3000] rpm (default) | positive monotonically increasing vector
+  group: Outer Loop
+- name: Torque reference vector, TqRef (N\*m)
+  summary: Torque reference lookup vector [-100, 0, 100] N*m (default) | positive monotonically increasing vector
+  group: Outer Loop
+- name: DC-link voltage vector, Vdc (V)
+  summary: DC-link voltage lookup vector [300, 350] V (default) | positive monotonically increasing vector
+  group: Outer Loop
+- name: D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)
+  summary: Reference d-axis current values zeros(2,3,2) A (default) | real matrix
+  group: Outer Loop
+- name: Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)
+  summary: Reference q-axis current values zeros(2,3,2) A (default) | real matrix
+  group: Outer Loop
+- name: Field current reference matrix, if(wMechanical,TqRef,Vdc), (A)
+  summary: Reference field current values zeros(2,3,2) A (default) | real matrix
+  group: Outer Loop
+- name: Torque constant
+  summary: Motor torque constant 0.04 N*m/A (default) | positive scalar
+  group: Outer Loop
+- name: D-axis current proportional gain
+  summary: D-axis proportional gain 1 (default) | positive number
+  group: Inner Loop
+- name: D-axis current integral gain
+  summary: D-axis integral gain 100 (default) | positive number
+  group: Inner Loop
+- name: D-axis current anti-windup gain
+  summary: D-axis anti-windup gain 1 (default) | positive number
+  group: Inner Loop
+- name: Q-axis current proportional gain
+  summary: Q-axis proportional gain 1 (default) | positive number
+  group: Inner Loop
+- name: Q-axis current integral gain
+  summary: Q-axis integral gain 100 (default) | positive number
+  group: Inner Loop
+- name: Q-axis current anti-windup gain
+  summary: Q-axis anti-windup gain 1 (default) | positive number
+  group: Inner Loop
+- name: Field current proportional gain
+  summary: Field winding proportional gain 10 (default) | positive number
+  group: Inner Loop
+- name: Field current integral gain
+  summary: Field winding integral gain 1000 (default) | positive number
+  group: Inner Loop
+- name: Field current anti-windup gain
+  summary: Field winding anti-windup gain 1 (default) | positive number
+  group: Inner Loop
+- name: Axis prioritization
+  summary: Axis prioritization for voltage limiter q-axis (default) | d-axis | d-q equivalence
+  group: Inner Loop
+- name: Enable zero cancellation
+  summary: Feedforward zero cancellation off (default) | on
+  group: Inner Loop
+- name: Enable pre-control voltage
+  summary: pre-control voltage on (default) | off
+  group: Inner Loop
+- name: Machine parameters
+  summary: Machine parameterization Constant parameters (default) | Lookup table based parameters
+  group: Inner Loop
+- name: D-axis inductance (H)
+  summary: Feedforward d-axis inductance 0.00024 (default) | positive scalar
+  group: Inner Loop
+- name: Q-axis inductance (H)
+  summary: Feedforward q-axis inductance 0.00029 (default) | positive scalar
+  group: Inner Loop
+- name: Mutual field armature inductance (H)
+  summary: Mutual inductance between field and armature 0.007 (default)
+  group: Inner Loop
+- name: D-axis current vector, id (A)
+  summary: D-axis current breakpoint vector [-200,0,200] A (default) | monotonically increasing vector
+  group: Inner Loop
+- name: Q-axis current vector, iq (A)
+  summary: Q-axis current breakpoint vector [-200,0,200] A (default) | monotonically increasing vector
+  group: Inner Loop
+- name: Field current vector, if (A)
+  summary: Field winding current vector [0,20] A (default) | monotonically increasing vector
+  group: Inner Loop
+- name: Ld matrix, Ld(id,iq) (H)
+  summary: D-axis inductance lookup data 0.0002 * ones(3, 3) H (default) | positive matrix
+  group: Inner Loop
+- name: Lq matrix, Lq(id,iq) (H)
+  summary: Q-axis inductance lookup data 0.0002 * ones(3, 3) H (default) | positive matrix
+  group: Inner Loop
+- name: Lmf matrix, Lmf(id,iq,if), (H)
+  summary: Field-armature mutual inductance lookup 0.007 * ones(2,2,2) H (default) | positive matrix
+  group: Inner Loop
+- name: PWM method
+  summary: 'Pulse width modulation method SVM: space vector modulation (default) | SPWM: sinusoidal PWM'
+  group: PWM
+- name: Sampling mode
+  summary: Wave-sampling method Natural (default) | Asymmetric | Symmetric
+  group: PWM
+- name: Switching frequency (Hz)
+  summary: Switching rate 1000 Hz (default) | positive integer
+  group: PWM
+- name: Chopper type
+  summary: DC-DC chopper type First and fourth quadrant chopper (default) | Four-quadrant chopper
+  group: PWM
+- name: Switching frequency excitation (Hz)
+  summary: Excitation system switching frequency 1000 Hz (default) | positive integer
+  group: PWM
+```
 
 ### General
 
@@ -380,7 +565,6 @@ Specify DC-DC chopper type.
 ### **Switching frequency excitation (Hz)** — Excitation system switching frequency `1000` `Hz` (default) | positive integer
 
 Specify PWM switching frequency for excitation system.
-
 ## Libraries
 
 Simscape / Electrical / Control / SM Control

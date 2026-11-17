@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Compound Motor
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 正极端子电气
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气
+  direction: conserving
+- name: C
+  summary: 电机外壳机械
+  direction: conserving
+- name: R
+  summary: 电机转子机械
+  direction: conserving
+- name: Hs
+  summary: 串励磁场绕组热端口热
+  direction: conserving
+- name: Hp
+  summary: 并励磁场绕组热端口热
+  direction: conserving
+- name: Ha
+  summary: 电枢热端口热
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -57,8 +81,151 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Modeling option** 设置为 `Show thermal port`。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是否启用热端口 No thermal port（默认）| Show thermal port
+  group: ''
+- name: Electrical circuit topology
+  summary: 电路拓扑 Long-shunt（默认）| Short-shunt
+  group: 配置
+- name: Shunt winding polarity
+  summary: 并励绕组极性 Cumulative（默认）| Differential
+  group: 配置
+- name: Steady-state parameterization
+  summary: 模块参数化 By equivalent circuit parameters（默认）| By rated, stall, and no-load datasheet parameters
+  group: 稳态
+- name: Armature resistance, Ra
+  summary: 电枢电阻 1.68 Ohm（默认）| 正标量
+  group: 稳态
+- name: Series field winding resistance, Rs
+  summary: 串励磁场绕组电阻 1.68 Ohm（默认）| 正标量
+  group: 稳态
+- name: Shunt field winding resistance, Rp
+  summary: 并励磁场绕组电阻 303 Ohm（默认）| 正标量
+  group: 稳态
+- name: Series field winding to armature back EMF constant, Lsa
+  summary: 串励磁场绕组对电枢反电动势常数 0.69 H（默认）| 正标量
+  group: 稳态
+- name: Shunt field winding to armature back EMF constant, Lpa
+  summary: 并励磁场绕组对电枢反电动势常数 0.64 H（默认）| 正标量
+  group: 稳态
+- name: Rated voltage
+  summary: 额定电压 100 V（默认）| 正标量
+  group: 稳态
+- name: Rated speed
+  summary: 额定转速 1000 rpm（默认）| 正标量
+  group: 稳态
+- name: Rated electrical power
+  summary: 额定电功率 136 W（默认）| 正标量
+  group: 稳态
+- name: Rated efficiency (percent)
+  summary: 额定效率 85（默认）| 正标量
+  group: 稳态
+- name: Stall current
+  summary: 零速电流 30 A（默认）| 正标量
+  group: 稳态
+- name: No-load speed
+  summary: 空载转速 4500 rpm（默认）| 正标量
+  group: 稳态
+- name: No-load current
+  summary: 空载电流 0.33 A（默认）| 正标量
+  group: 稳态
+- name: Ratio of shunt field winding resistance divided by series field winding resistance
+  summary: 并励磁场绕组电阻除以串励磁场绕组电阻的比值 190（默认）| 非负标量
+  group: 稳态
+- name: Ratio of armature resistance divided by series field winding resistance
+  summary: 电枢电阻除以串励磁场绕组电阻的比值 1.0（默认）| 非负标量
+  group: 稳态
+- name: Rotor inertia
+  summary: 转子惯量 1e-4 kg*m^2（默认）| 标量
+  group: 机械
+- name: Rotor damping
+  summary: 转子耗散能量 1e-6 N*m/(rad/s)（默认）| 标量
+  group: 机械
+- name: Series field winding inductance, Ls
+  summary: 串励磁场绕组电感 0.9 H（默认）| 正标量
+  group: 电气动态
+- name: Shunt field winding inductance, Lp
+  summary: 并励磁场绕组电感 0.85 H（默认）| 正标量
+  group: 电气动态
+- name: Coefficient of mutual inductance between shunt-series windings, k_sp
+  summary: 并励-串励绕组之间的互感系数 0.8（默认）| 0 到 1 之间的非负标量
+  group: 电气动态
+- name: Resistance temperature coefficient
+  summary: 电阻温度系数 3.93e-3 1/K（默认）| 标量
+  group: 热
+- name: Measurement temperature
+  summary: 测量温度 25 degC（默认）| 标量
+  group: 热
+- name: Thermal masses, [Ms Mp Ma]
+  summary: 热质量 [100, 100, 100] J/K（默认）| 向量
+  group: 热
+- name: Armature winding fault
+  summary: 添加电枢绕组故障的选项 Add fault（默认）
+  group: 故障
+- name: Fraction of revolution during which armature is open-circuit
+  summary: 电枢开路期间的旋转比例 1/3（默认）| 标量
+  group: 故障
+- name: Faulted armature winding open-circuit conductance
+  summary: 故障电枢绕组的开路电导 1e-5 S（默认）| 标量
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible armature winding current
+  summary: 最大允许电枢绕组电流 inf A（默认）
+  group: 故障
+- name: Time to fail when exceeding armature winding current
+  summary: 超过电枢绕组电流时的故障时间 1 s（默认）| 标量
+  group: 故障
+- name: Series field winding fault
+  summary: 添加串励磁场绕组故障的选项 Add fault（默认）
+  group: 故障
+- name: Faulted series field winding open-circuit conductance
+  summary: 故障磁场绕组的开路电导 1e-5 S（默认）| 标量
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible series field winding current
+  summary: 最大允许串励绕组电流 inf A（默认值）
+  group: 故障
+- name: Time to fail when exceeding series field winding current
+  summary: 超过串励绕组电流时的失效时间 1 s（默认值）| 标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: Shunt field winding fault
+  summary: 添加并励绕组故障的选项 Add fault（默认值）
+  group: 故障
+- name: Faulted shunt field winding open-circuit conductance
+  summary: 故障并励绕组的开路电导 1e-5 S（默认值）| 标量
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认值）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认值）| 非负标量
+  group: 故障
+- name: Maximum permissible shunt field winding current
+  summary: 最大允许并励绕组电流 inf A（默认值）
+  group: 故障
+- name: Time to fail when exceeding shunt field winding current
+  summary: 超过并励绕组电流时的失效时间 1 s（默认值）| 标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 ### **Modeling option** — 是否启用热端口 `No thermal port`（默认）| `Show thermal port`
 
@@ -436,7 +603,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请为 **Shunt field winding fault** 参数点击 **Add fault** 超链接，并将 **Trigger type** 设置为 `Additional triggers`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Brushed Motors

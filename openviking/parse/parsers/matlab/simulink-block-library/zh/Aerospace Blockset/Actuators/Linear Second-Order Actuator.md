@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Linear Second-Order Actuator
 
 ## 端口
+```yaml
+ports:
+- name: Ademand
+  summary: 需求执行器位置 标量 | 数组
+  direction: input
+  data_types: double
+- name: Aactual
+  summary: 实际执行器位置 标量 | 数组
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,34 @@ chinese_source: worker-translation
 实际执行器位置，以标量或数组形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Natural frequency
+  summary: 固有频率 1（默认）| 标量
+  group: ''
+  block_parameter: wn_fin
+  type: 字符向量
+  values: 标量 | 双精度
+- name: Damping ratio
+  summary: 阻尼比 0.3（默认）| 标量
+  group: ''
+  block_parameter: z_fin
+  type: 字符向量
+  values: 标量 | 双精度
+- name: Initial position
+  summary: 初始位置 0（默认）| 标量
+  group: ''
+  block_parameter: fin_act_0
+  type: 字符向量
+  values: 标量 | 双精度
+- name: Initial velocity
+  summary: 初始速度 0（默认）| 标量
+  group: ''
+  block_parameter: fin_act_vel
+  type: 字符向量
+  values: 标量 | 双精度
+```
 
 ### **Natural frequency** — 固有频率 `1`（默认）| 标量
 
@@ -86,7 +123,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 | 双精度 |
 | **默认**：`'0'` |
-
 ## 所属库
 
 Aerospace Blockset / Actuators

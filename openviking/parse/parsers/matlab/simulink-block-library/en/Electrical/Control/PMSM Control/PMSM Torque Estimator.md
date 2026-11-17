@@ -14,6 +14,17 @@ language: en
 # PMSM Torque Estimator
 
 ## Ports
+```yaml
+ports:
+- name: idq
+  summary: Stator currents vector
+  direction: input
+  data_types: single | double
+- name: TqEst
+  summary: Torque estimate scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -29,8 +40,43 @@ Stator direct and quadrature currents of the PMSM, in A.
 Estimated mechanical torque value of the PMSM, in N\*m.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Machine parameters
+  summary: Parameter selection strategy Constant parameters (default) | Lookup table based parameters
+  group: ''
+- name: Number of pole pairs
+  summary: Pole pairs 8 (default) | positive integer
+  group: ''
+- name: D-axis current vector, id (A)
+  summary: D-axis current breakpoint vector [-200,0,200]A (default) | monotonically increasing vector
+  group: ''
+- name: Q-axis current vector, iq (A)
+  summary: Q-axis current breakpoint vector [-200,0,200]A (default) | monotonically increasing vector
+  group: ''
+- name: Ld matrix, Ld(id,iq) (H)
+  summary: D-axis inductance lookup data 0.0002 * ones(3, 3)H (default) | positive matrix
+  group: ''
+- name: Lq matrix, Lq(id,iq) (H)
+  summary: Q-axis inductance lookup data 0.0002 * ones(3, 3)H (default) | positive matrix
+  group: ''
+- name: Permanent magnet flux linkage matrix, PM(id,iq) (Wb)
+  summary: Flux linkage lookup data 0.04 * ones(3, 3)Wb (default) | real matrix
+  group: ''
+- name: D-axis inductance (H)
+  summary: Inductance of d-axis 0.0002 (default) | positive scalar
+  group: ''
+- name: Q-axis inductance (H)
+  summary: Inductance of q-axis 0.0002 (default) | positive scalar
+  group: ''
+- name: Permanent magnet flux linkage (Wb)
+  summary: PM Flux Linkage 0.04Wb (default) | positive scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | -1 or positive number
+  group: ''
+```
 
 ### **Machine parameters** — Parameter selection strategy `Constant parameters` (default) | `Lookup table based parameters`
 
@@ -83,7 +129,6 @@ Sample time for the block (-1 for inherited). If you use this block inside
 a triggered subsystem, set the sample time to `-1`. If you
 use this block in a continuous variable-step model, set the sample time
 explicitly.
-
 ## Libraries
 
 Simscape / Electrical / Control / PMSM Control

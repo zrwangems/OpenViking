@@ -14,6 +14,13 @@ language: en
 # Multiphase Clock
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Vector of clock signals vector
+  direction: output
+  data_types: single | double | Boolean
+```
 
 ### Output
 
@@ -24,8 +31,28 @@ language: en
 parameter. For more information, see Description.
 
 **Data Types:** `single` | `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Clock frequency (Hz)
+  summary: Frequency of all clock signals 1 (default) | positive scalar
+  group: ''
+- name: Number of phases, N
+  summary: Number of phases in output vector 4 (default) | positive integer
+  group: ''
+- name: Starting phase (1 to N)
+  summary: Vector index for starting phase 1 (default) | integer from 1 to *N*
+  group: ''
+- name: Number of phase intervals over which clock is active (1 to N-1)
+  summary: Duration of active level for each output 3 (default) | integer from 1 to *N*-1
+  group: ''
+- name: Active level (polarity)
+  summary: Active level High (1) (default) | Low (0)
+  group: ''
+- name: Output data type
+  summary: Output data type Logical (default) | Boolean
+  group: ''
+```
 
 ### **Clock frequency (Hz)** — Frequency of all clock signals `1` (default) | positive scalar
 
@@ -59,7 +86,6 @@ The active level of the output, specified as `High
 
 The output data type, specified as `Logical` or
 `Boolean`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Switches and Counters DSP System Toolbox / Sources

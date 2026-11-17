@@ -14,6 +14,21 @@ language: en
 # Governor Type 3
 
 ## Ports
+```yaml
+ports:
+- name: speed_pu
+  summary: Turbine speed scalar
+  direction: input
+  data_types: single | double
+- name: Pref
+  summary: Speed reference bias scalar
+  direction: input
+  data_types: single | double
+- name: Pmech
+  summary: Mechanical power scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -37,8 +52,61 @@ controller block, such as the Controller LCFB1 block.
 Mechanical power, returned as a scalar.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Speed reference (pu)
+  summary: Speed reference 1 (default) | scalar
+  group: General
+- name: Initial torque (pu)
+  summary: Initial torque 0.45 (default) | scalar
+  group: General
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | 0 | positive scalar
+  group: General
+- name: Gate servomotor time constant, T_g (s)
+  summary: Time constant for gate servomotor 0.52 (default) | scalar
+  group: Governor
+- name: Pilot value time constant, T_p (s)
+  summary: Time constant for pilot value 0.07 (default) | scalar
+  group: Governor
+- name: Opening gate rate limit, U_o (pu/s)
+  summary: Limit of opening gate rate 0.15 (default) | scalar
+  group: Governor
+- name: Closing gate rate limit, U_c (pu/s)
+  summary: Limit of closing gate rate -0.15 (default) | scalar
+  group: Governor
+- name: Maximum gate position, on MVA capability, P_max (pu)
+  summary: Maximum position of gate 0.75 (default) | scalar
+  group: Governor
+- name: Minimum gate position, on MVA capability, P_min (pu)
+  summary: Minimum position of gate 0 (default) | scalar
+  group: Governor
+- name: Permanent speed droop coefficient, R_perm (pu)
+  summary: Permanent speed droop coefficient 0.05 (default) | scalar
+  group: Governor
+- name: Transient speed droop coefficient, R_temp (pu)
+  summary: Transient speed droop coefficient 0.6 (default) | scalar
+  group: Governor
+- name: Governor time constant, T_r (s)
+  summary: Time constant of governor 25 (default) | scalar
+  group: Governor
+- name: Water starting time constant, T_w (s)
+  summary: Water starting time constant 5 (default) | scalar
+  group: Governor
+- name: Penstock coefficient, a_11
+  summary: Penstock dynamics coefficient 0.75 (default) | scalar
+  group: Governor
+- name: Penstock coefficient, a_13
+  summary: Penstock dynamics coefficient 0.75 (default) | scalar
+  group: Governor
+- name: Penstock coefficient, a_21
+  summary: Penstock dynamics coefficient 0.75 (default) | scalar
+  group: Governor
+- name: Penstock coefficient, a_23
+  summary: Penstock dynamics coefficient 0.75 (default) | scalar
+  group: Governor
+```
 
 ### General
 
@@ -132,7 +200,6 @@ labeled "Lead-Lag" in the diagram.
 
 Coefficient for the penstock dynamics. This parameter is associated with the block
 labeled "Lead-Lag" in the diagram.
-
 ## Libraries
 
 Simscape / Electrical / Control / Turbine-Governors

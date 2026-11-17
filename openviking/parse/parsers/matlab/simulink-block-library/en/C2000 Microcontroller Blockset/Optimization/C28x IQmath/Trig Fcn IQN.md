@@ -14,10 +14,15 @@ language: en
 # C2000 Trig Fcn IQN
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Function**
 :   Type of trigonometric function to calculate:
@@ -42,7 +47,6 @@ Not documented in R2025b.
       `(cos(A))`, where A is in radians.
     - `_IQcosPU` — Compute the cosine per unit
       `(cos(2*pi*A))`, where A is in per-unit radians.
-
 ## Libraries
 
 Not documented in R2025b.

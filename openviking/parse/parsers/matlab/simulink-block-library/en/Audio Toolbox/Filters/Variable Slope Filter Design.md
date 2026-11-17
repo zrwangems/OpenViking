@@ -14,6 +14,29 @@ language: en
 # Variable Slope Filter Design
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Filter slope scalar in range [0,48]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Fc
+  summary: Normalized cutoff frequency scalar in range [0,1]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: T
+  summary: Filter type 0 (lowpass) | 1 (highpass)
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated
+- name: Num
+  summary: Numerator filter coefficients *N*-by-3 matrix
+  direction: output
+  data_types: single | double
+- name: Den
+  summary: Denominator filter coefficients *N*-by-3 matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -89,8 +112,46 @@ block sets the unused sections to pass-through sections.
   slope** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Smooth tuned filter parameters
+  summary: Smooth filter parameters when tuning off (default) | on
+  group: ''
+- name: Smoothing factor
+  summary: Smoothing factor for tuned parameters 0.6 (default) | scalar in range [0,1)
+  group: ''
+- name: Maximum filter slope
+  summary: Maximum filter slope (dB/octave) 12 (default) | scalar in range [0,48]
+  group: ''
+- name: Specify slope from input port
+  summary: Use additional input port to specify slope off (default) | on
+  group: ''
+- name: Filter slope
+  summary: Filter slope (dB/octave) 12 (default) | scalar in range [0,48]
+  group: ''
+- name: Specify normalized cutoff frequency from input port
+  summary: Use additional input port to specify normalized cutoff frequency off (default) | on
+  group: ''
+- name: Normalized cutoff frequency
+  summary: Normalized cutoff frequency 0.1 (default) | scalar in range [0,1]
+  group: ''
+- name: Specify filter type from input port
+  summary: Use additional input port to specify filter type off (default) | on
+  group: ''
+- name: Filter type
+  summary: Type of filter lowpass (default) | highpass
+  group: ''
+- name: Output data type
+  summary: Data type of output coefficients double (default) | single
+  group: ''
+- name: Sample time
+  summary: Sample time of block -1 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -194,7 +255,6 @@ block.
   simulations, as long as the model does not change. This option requires additional
   startup time, but the speed of the subsequent simulations is comparable to
   `Interpreted execution`.
-
 ## Libraries
 
 Audio Toolbox / Filters

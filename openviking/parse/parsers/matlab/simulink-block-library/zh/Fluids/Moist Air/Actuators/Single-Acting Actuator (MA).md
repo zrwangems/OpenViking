@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Single-Acting Actuator (MA)
 
 ## 端口
+```yaml
+ports:
+- name: p
+  summary: 多体活塞位置输入，m 物理信号
+  direction: input
+- name: p
+  summary: 活塞位置，m 物理信号
+  direction: output
+- name: A
+  summary: 液体端口湿空气
+  direction: output
+- name: C
+  summary: 执行器壳体平移机械
+  direction: output
+- name: R
+  summary: 执行器活塞平移机械
+  direction: output
+- name: H
+  summary: 传热热
+  direction: output
+```
 
 ### 输入
 
@@ -59,8 +80,109 @@ C`。
 ### **H** — 传热热
 
 与湿空气体积的热质量相关联的热守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: 执行器
+- name: Piston cross-sectional area
+  summary: 活塞杆横截面积 0.01 m^2（默认）| 正标量
+  group: 执行器
+- name: Piston stroke
+  summary: 最大活塞行程距离 0.1 m（默认）| 正标量
+  group: 执行器
+- name: Dead volume
+  summary: 活塞完全缩回时的流体体积 1e-5 m^3（默认）| 正标量
+  group: 执行器
+- name: Cross-sectional area at port A
+  summary: 端口 A 处的面积 0.01 m^2（默认）| 正标量
+  group: 执行器
+- name: Environment pressure specification
+  summary: 参考环境压力 Atmospheric pressure（默认）| Specified pressure
+  group: 执行器
+- name: Environment pressure
+  summary: 用户定义的环境压力 0.101325 MPa（默认）| 正标量
+  group: 执行器
+- name: Hard stop model
+  summary: 硬限位模型 Stiffness and damping applied smoothly through transition region, damped rebound（默认）| Full stiffness and
+    damping applied at bounds, undamped rebound | Full stiffness and damping applied at bounds, damped rebound | Based on
+    coefficient of restitution
+  group: 硬限位
+- name: Hard-stop stiffness coefficient
+  summary: 刚度系数 1e10 N/m（默认）| 正标量
+  group: 硬限位
+- name: Hard-stop damping coefficient
+  summary: 阻尼系数 150 N*s/m（默认）| 正标量
+  group: 硬限位
+- name: Transition region
+  summary: 硬限位力模型的应用范围 0.1 mm（默认）| 正标量
+  group: 硬限位
+- name: Coefficient of restitution
+  summary: 碰撞后滑块与限位器之间最终相对速度与初始相对速度之比 0.7（默认）| 0 到 1 之间的无单位值
+  group: 硬限位
+- name: Static contact speed threshold
+  summary: 碰撞前滑块与限位器之间的阈值相对速度 0.001 m/s（默认）| 非负标量
+  group: 硬限位
+- name: Static contact release force threshold
+  summary: 从接触模式过渡到自由模式所需的力 0.001 N（默认）| 正标量
+  group: 硬限位
+- name: Piston displacement
+  summary: 确定活塞位置的方法 Calculate from velocity of port R relative to port C（默认）| Provide input signal from Multibody joint
+  group: 初始条件
+- name: Initial piston displacement
+  summary: 仿真开始时的活塞位置 0 m（默认）| 标量
+  group: 初始条件
+- name: Initial moist air pressure
+  summary: 仿真开始时的湿空气压力 0.101325 MPa（默认）| 正标量
+  group: 初始条件
+- name: Initial moist air temperature
+  summary: 仿真开始时的湿空气温度 293.15 K（默认）| 标量
+  group: 初始条件
+- name: Initial humidity specification
+  summary: 用于描述初始湿度水平的量 Relative humidity（默认）| Specific humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: 初始条件
+- name: Initial moist air relative humidity
+  summary: 仿真开始时的相对湿度 0.5（默认）| [0,1] 范围内的标量
+  group: 初始条件
+- name: Initial moist air specific humidity
+  summary: 仿真开始时的比湿度 0.01（默认）| [0,1] 范围内的标量
+  group: 初始条件
+- name: Initial moist air water vapor mole fraction
+  summary: 仿真开始时的水蒸气摩尔分数 0.01（默认）| [0,1] 范围内的标量
+  group: 初始条件
+- name: Initial moist air humidity ratio
+  summary: 仿真开始时的湿度比 0.01（默认）| [0,1] 范围内的标量
+  group: 初始条件
+- name: Initial moist air wet-bulb temperature
+  summary: 仿真开始时的湿球温度 287 K（默认）| 正标量
+  group: 初始条件
+- name: Initial trace gas specification
+  summary: 用于描述初始痕量气体水平的量 Mass fraction（默认）| Mole fraction
+  group: 初始条件
+- name: Initial trace gas mass fraction
+  summary: 仿真开始时痕量气体的质量分数 0.001（默认）| [0,1] 范围内的标量
+  group: 初始条件
+- name: Initial trace gas mole fraction
+  summary: 仿真开始时痕量气体的摩尔分数 0.001（默认）| [0,1] 范围内的标量
+  group: 初始条件
+- name: Initial mass ratio of water droplets to moist air
+  summary: 水滴与湿空气之比 0（默认）| 正标量
+  group: 初始条件
+- name: Relative humidity at saturation
+  summary: 发生冷凝时的相对湿度阈值 1（默认）| 正标量
+  group: 初始条件
+- name: Water vapor condensation time constant
+  summary: 冷凝时间尺度 1e-3 s（默认）| 正标量
+  group: 初始条件
+- name: Water droplets evaporation time constant
+  summary: 蒸发时间尺度 1e-3 s（默认）| 正标量
+  group: 初始条件
+- name: Fraction of condensate entrained as water droplets
+  summary: 水滴中冷凝物的分数 1（默认）| [0,1] 范围内的标量
+  group: 初始条件
+```
 
 ### 执行器
 
@@ -341,7 +463,6 @@ fraction`。
 
 湿空气中作为水滴夹带的冷凝物
 分数。
-
 ## 所属库
 
 Simscape / Fluids / Moist Air / Actuators

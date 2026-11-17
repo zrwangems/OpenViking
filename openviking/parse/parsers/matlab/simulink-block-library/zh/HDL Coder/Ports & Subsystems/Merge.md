@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Merge
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 第一个输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_n
+  summary: 第 *n* 个输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+- name: Port_1
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### 输入
 
@@ -36,8 +54,38 @@ chinese_source: worker-translation
 由输入信号合并而成的输出信号。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## 参数
+```yaml
+parameters:
+- name: 输入数量
+  summary: 要合并的输入信号数量 2（默认）| 整数
+  group: ''
+  block_parameter: Inputs
+  type: 字符向量
+  values: 整数
+  default: '''2'''
+- name: 初始输出
+  summary: 初始输出值 [ ]（默认）| 标量 | 向量
+  group: ''
+  block_parameter: InitialOutput
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''[ ]'''
+- name: 允许不相等的端口宽度
+  summary: 允许维度不相等的输入 off（默认）| on
+  group: ''
+  block_parameter: AllowUnequalInputPortWidths
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: 输入端口偏移量
+  summary: 输入信号的偏移量 [ ]（默认）| 向量
+  group: ''
+  block_parameter: InputPortOffsets
+  type: 字符向量
+  values: 标量 | 向量
+  default: '''[ ]'''
+```
 
 ### **输入数量** — 要合并的输入信号数量 `2`（默认）| `整数`
 
@@ -108,7 +156,6 @@ max(w1+o1, w2+o2, ... wn+on)
 | **类型：** 字符向量 |
 | **值：** 标量 | 向量 |
 | **默认值：** `'[ ]'` |
-
 ## 所属库
 
 Simulink / Signal Routing HDL Coder / Ports & Subsystems

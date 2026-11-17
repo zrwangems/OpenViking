@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Check Step Response Characteristics
 
 ## 端口
+```yaml
+ports:
+- name: Port_1 (u)
+  summary: 要对照指定边界检查的信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | enumerated
+    | bus
+- name: Port_1 (out)
+  summary: 输出断言信号 1 | 0
+  direction: output
+  data_types: Boolean | double
+```
 
 ### 输入
 
@@ -39,8 +51,124 @@ chinese_source: worker-translation
 要启用此端口，请在 **Assertion** 选项卡上选择 **Output assertion signal** 参数。
 
 **数据类型：** `Boolean` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Show Plot
+  summary: 打开绘图窗口 button
+  group: ''
+- name: Show plot on block open
+  summary: 双击模块以打开绘图 off (默认) | on
+  group: ''
+  block_parameter: LaunchViewOnOpen
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Response Optimization
+  summary: 打开 Response Optimizer button
+  group: ''
+- name: Include step response bound in assertion
+  summary: 检查信号是否满足阶跃响应边界 on（默认）| off
+  group: Bounds 选项卡
+  block_parameter: EnableStepResponseBound
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Step time
+  summary: 阶跃响应边界开始的时间 0（默认）| 非负标量
+  group: Bounds 选项卡
+  block_parameter: StepTime
+  type: character vector
+  values: 非负标量
+  default: '0'
+- name: Initial value
+  summary: 阶跃前的信号值 0（默认）| 标量
+  group: Bounds 选项卡
+  block_parameter: InitialValue
+  type: character vector
+  values: 标量
+  default: '0'
+- name: Final value
+  summary: 阶跃后的信号值 1（默认）| 标量
+  group: Bounds 选项卡
+  block_parameter: FinalValue
+  type: character vector
+  values: 标量
+  default: '1'
+- name: Rise time
+  summary: 达到阶跃范围指定百分比所需的时间 5（默认）| 正标量
+  group: Bounds 选项卡
+  block_parameter: RiseTime
+  type: character vector
+  values: positive scalar
+  default: '5'
+- name: '% Rise'
+  summary: 上升时间的阶跃范围值百分比 80（默认）| 0–100 范围内的标量
+  group: Bounds 选项卡
+  block_parameter: PercentRise
+  type: character vector
+  values: scalar in range 0–100
+  default: '80'
+- name: Settling time (seconds)
+  summary: 达到稳定范围所需的时间 7（默认）| 正标量
+  group: Bounds 选项卡
+  block_parameter: SettlingTime
+  type: character vector
+  values: positive scalar
+  default: '7'
+- name: '% Settling'
+  summary: 最终值周围的稳定范围 1（默认）| 0–100 范围内的标量
+  group: Bounds 选项卡
+  block_parameter: PercentSettling
+  type: character vector
+  values: scalar in range 0–100
+  default: '1'
+- name: '% Overshoot'
+  summary: 信号可以超出最终值的量 10（默认）| 范围 0–100 的标量
+  group: Bounds 选项卡
+  block_parameter: PercentOvershoot
+  type: character vector
+  values: scalar in range 0–100
+  default: '10'
+- name: '% Undershoot'
+  summary: 信号可以低于初始值的量 1（默认）| 范围 0–100 的标量
+  group: Bounds 选项卡
+  block_parameter: PercentUndershoot
+  type: character vector
+  values: scalar in range 0–100
+  default: '1'
+- name: Enable zero-crossing detection
+  summary: 在边界边缘处评估模型 on（默认）| off
+  group: Bounds 选项卡
+  block_parameter: ZeroCross
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Enable assertion
+  summary: 启用或禁用检查 on（默认）| off
+  group: Assertion Tab
+  block_parameter: enabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Simulation callback when assertion fails (optional)
+  summary: 断言失败时要计算的表达式 ''（默认）| MATLAB 表达式
+  group: Assertion Tab
+  block_parameter: callback
+  type: 字符向量
+  values: MATLAB 表达式
+- name: Stop simulation when assertion fails
+  summary: 断言失败时停止仿真 off（默认）| on
+  group: Assertion Tab
+  block_parameter: stopWhenAssertionFail
+  type: 字符向量
+  values: '''on'' | ''off'''
+- name: Output assertion signal
+  summary: 创建输出信号 off（默认）| on
+  group: Assertion Tab
+  block_parameter: export
+  type: 字符向量
+  values: '''on'' | ''off'''
+```
 
 ### **Show Plot** — 打开绘图窗口 `button`
 
@@ -381,7 +509,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认：** `'off'` |
-
 ## 所属库
 
 Simulink Design Optimization / Model Verification Simulink Design Optimization / Signal Constraints

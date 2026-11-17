@@ -14,6 +14,24 @@ language: en
 # Constant Volume Chamber (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Chamber inlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Chamber inlet thermal liquid
+  direction: conserving
+- name: C
+  summary: Chamber inlet thermal liquid
+  direction: conserving
+- name: D
+  summary: Chamber inlet thermal liquid
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -61,8 +79,28 @@ ports** parameter to
 
 Thermal conserving port through which the fluid in the chamber
 exchanges heat with a thermal network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Chamber volume
+  summary: Volume of fluid inside the chamber 0.001 m^3 (default)
+  group: ''
+- name: Number of ports
+  summary: Number of inlet ports in the chamber 1 (default) | 2 | 3 | 4
+  group: ''
+- name: Cross-sectional area at port A
+  summary: Inlet area normal to the direction of flow 0.01 m^2 (default)
+  group: ''
+- name: Cross-sectional area at port B
+  summary: Inlet area normal to the direction of flow 0.01 m^2 (default)
+  group: ''
+- name: Cross-sectional area at port C
+  summary: Inlet area normal to the direction of flow 0.01 m^2 (default)
+  group: ''
+- name: Cross-sectional area at port D
+  summary: Inlet area normal to the direction of flow 0.01 m^2 (default)
+  group: ''
+```
 
 ### **Chamber volume** — Volume of fluid inside the chamber `0.001 m^3` (default)
 
@@ -110,7 +148,6 @@ Inlet area normal to the direction of flow.
 Enabled when port **D** is visible, that is, when the
 **Number of ports** parameter is set to
 `4`.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Elements

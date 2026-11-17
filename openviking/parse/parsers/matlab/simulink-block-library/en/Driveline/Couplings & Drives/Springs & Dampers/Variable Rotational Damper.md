@@ -14,6 +14,18 @@ language: en
 # Variable Rotational Damper
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Variable damping coefficient physical signal
+  direction: input
+- name: C
+  summary: Base port rotational mechanical
+  direction: conserving
+- name: R
+  summary: Follower port rotational mechanical
+  direction: conserving
+```
 
 ### Input
 
@@ -29,14 +41,18 @@ Rotational mechanical conserving port associated with the base.
 ### **R** — Follower port rotational mechanical
 
 Rotational mechanical conserving port associated with the follower.
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum damping coefficient
+  summary: Damping limit value 0 N*m/(rad/s) (default) | nonnegative scalar
+  group: ''
+```
 
 ### **Minimum damping coefficient** — Damping limit value `0` `N*m/(rad/s)` (default) | nonnegative scalar
 
 Minimum value allowed for the damping coefficient. The physical signal
 input saturates below this level.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

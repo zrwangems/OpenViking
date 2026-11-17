@@ -14,6 +14,32 @@ language: en
 # Simulation 3D Aircraft
 
 ## Ports
+```yaml
+ports:
+- name: Translation
+  summary: Aircraft translation 11-by-3 array | 12-by-3 array | 15-by-3 array | 30-by-3 array | 57-by-3 array
+  direction: input
+  data_types: single | double
+- name: Rotation
+  summary: Aircraft and wheel rotation 11-by-3 array | 12-by-3 array | 15-by-3 array | 30-by-3 array | 57-by-3 array
+  direction: input
+  data_types: single | double
+- name: LightStates
+  summary: Aircraft light control 1-by-7 vector of double values
+  direction: input
+  data_types: single | double
+- name: Scale
+  summary: Mesh scale [1 1 1] (default) | 1-by-3 array
+  direction: input
+- name: Altitude
+  summary: Aircraft attitude 1-by-4 vector
+  direction: output
+  data_types: double
+- name: WoW
+  summary: Weight on wheels 1 | 0
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -273,8 +299,309 @@ To enable this port, select the **Enable altitude and Wow
 sensors** check box.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time
+  summary: Sample time -1 (default) | real scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: real scalar
+  default: '''-1'''
+- name: Type
+  summary: Aircraft type Sky Hogg (default) | Airliner | General Aviation | Air Transport | Custom
+  group: Aircraft
+  block_parameter: Mesh
+  type: character vector
+  values: '''Sky Hogg'' | ''Airliner'' | ''General Aviation'' | ''Air Transport'' | ''Custom'''
+  default: '''Sky Hogg'''
+- name: Path to general aviation mesh
+  summary: Path to general aviation mesh /MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation'
+    (default) | character vector
+  group: Aircraft
+  block_parameter: MeshPathGA
+  type: character vector
+  values: '''/MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Aircraft/GeneralAviation/Mesh/SK_GeneralAviation.SK_GeneralAviation'''
+- name: Path to air transport mesh
+  summary: Path to air transport mesh /MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport
+    (default) | character vector
+  group: Aircraft
+  block_parameter: MeshPathAT
+  type: character vector
+  values: '''/MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Aircraft/AirTransport/Mesh/SK_AirTransport.SK_AirTransport'''
+- name: Path to custom mesh
+  summary: Path to custom mesh /MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20 (default) | /MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_Aircraft.SK_Aircraft
+    | character vector
+  group: Aircraft
+  block_parameter: MeshPath
+  type: character vector
+  values: '''/MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20'' | ''/MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_Aircraft.SK_Aircraft'''
+  default: '''/MathWorksAerospaceContent/Vehicles/Aircraft/Custom/Mesh/SK_HL20.SK_HL20'''
+- name: Color
+  summary: Aircraft color Red (default) | Orange | Yellow | Green | Cyan | Blue | Black | White | Silver | Metal
+  group: Aircraft
+  block_parameter: AircraftColor
+  type: character vector
+  values: '''Red'' | ''Orange'' | ''Yellow'' | ''Green'' | ''Cyan'' | ''Blue'' | ''Black'' | ''White'' | ''Silver'' | ''Metal'''
+  default: '''Red'''
+- name: Name
+  summary: Aircraft name SimulinkVehicle1 (default) | character vector
+  group: Aircraft
+  block_parameter: ActorName
+  type: character vector
+  values: scalar
+  default: '''SimulinkVehicle1'''
+- name: Initial translation (m)
+  summary: Initial translation of aircraft zeros(11,3) (default) | 11-by-3 array | 12-by-3 array | 15-by-3 array | 30-by-3
+    array | 57-by-3 array
+  group: Aircraft
+  type: character vector
+  block_parameter: Translation
+  values: 11-by-3 array | 12-by-3 array | 15-by-3 array | 30-by-3 array | 57-by-3 array
+  default: '''zeros(11,3)'''
+- name: Initial rotation (rad)
+  summary: Aircraft rotation zeros(11,3) (default) | 11-by-3 array | 12-by-3 array | 15-by-3 array | 30-by-3 array | 57-by-3
+    array
+  group: Aircraft
+  block_parameter: Rotation
+  type: character vector
+  values: 11-by-3 array | 12-by-3 array | 15-by-3 array | 30-by-3 array | 57-by-3 array
+  default: '''zeros(11,3)'''
+- name: Scale source
+  summary: Scale source Dialog (default) | Port
+  group: Aircraft
+  block_parameter: ScaleInputPort
+  type: character vector
+  values: '''Dialog'' | ''Port'''
+  default: '''Dialog'''
+- name: Initial scale
+  summary: Initial mesh scale [1 1 1] (default) | 1-by-3 array
+  group: Aircraft
+  block_parameter: InitialScale
+  type: character vector
+  values: 1-by-3 array
+  default: '''[1 1 1]'''
+- name: Scale
+  summary: Mesh scale [1 1 1] (default) | 1-by-3 array
+  group: Aircraft
+  block_parameter: Scale
+  type: character vector
+  values: 1-by-3 array
+  default: '''[1 1 1]'''
+- name: Enable altitude and WoW sensors
+  summary: Altitude and WoW sensors on (default) | off
+  group: Altitude Sensor
+  block_parameter: IsGHSensorEnabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show sensor rays in viewer
+  summary: Option to show sensor rays off (default) | on
+  group: Altitude Sensor
+  block_parameter: AreGHRaysVisible
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Interpret vector outputs as 1-D
+  summary: Control reshaping on sensor output ports off (default) | on
+  group: Altitude Sensor
+  block_parameter: IsOutputReshapeEnabled
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Length of rays (m)
+  summary: Length of rays 1524 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHRayLength
+  type: character vector
+  values: real scalar
+  default: '''1524'''
+- name: Body Z offset (m)
+  summary: Aircraft body *Z* offset 0.90 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHBodyOffset
+  type: character vector
+  values: real scalar
+  default: '''0.90'''
+- name: Front tire radius (m)
+  summary: Front gear tire radius 0.21 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHFrontTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.21'''
+- name: Left tire radius (m)
+  summary: Left gear tire radius 0.21 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHLeftTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.21'''
+- name: Right tire radius (m)
+  summary: Right gear tire radius 0.21 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: GHRightTireRadius
+  type: character vector
+  values: real scalar
+  default: '''0.21'''
+- name: WoW sensor tolerance (m)
+  summary: Wow sensor tolerance 0.05 (default) | real scalar
+  group: Altitude Sensor
+  block_parameter: WoWSensorTolerance
+  type: character vector
+  values: real scalar
+  default: '''0.05'''
+- name: Light configuration
+  summary: Light configurations options Automatic lights (default) | Configurable lights | Lights off
+  group: Light Configuration
+  block_parameter: LightsConfig
+  type: character vector
+  values: '''Automatic lights'' | ''Configurable lights'' | ''Lights off'''
+  default: '''Automatic lights'''
+- name: Landing lights intensity (cd)
+  summary: Landing lights intensity 30000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: LandingLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''30000'''
+- name: Landing lights cone half angle (deg)
+  summary: Landing lights cone half angle 15 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: LandingLightConeAngle
+  type: character vector
+  values: positive scalar
+  default: '''15'''
+- name: Left landing light location
+  summary: Left landing light location [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomLeftLandingLightLocation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Left landing light orientation (deg)
+  summary: Left landing light orientation [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomLeftLandingLightOrientation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Right landing light location
+  summary: Right landing light location [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomRightLandingLightLocation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Right landing light orientation (deg)
+  summary: Right landing light orientation [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomRightLandingLightOrientation
+  type: character vector
+  values: 3-element vector
+  default: '''[0 0 0]'''
+- name: Taxi lights intensity (cd)
+  summary: Taxi lights intensity 150000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: TaxiLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''150000'''
+- name: Taxi lights cone half angle (deg)
+  summary: Taxi lights cone half angle 36 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: TaxiLightConeAngle
+  type: character vector
+  values: positive scalar
+  default: '''36'''
+- name: Taxi lights location
+  summary: Taxi lights location [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomTaxiLightLocation
+  type: character vector
+  values: positive scalar
+  default: '''[0 0 0]'''
+- name: Taxi lights orientation (deg)
+  summary: Taxi lights orientation [0 0 0] (default) | 3-element vector
+  group: Light Configuration
+  block_parameter: CustomTaxiLightOrientation
+  type: character vector
+  values: positive scalar
+  default: '''[0 0 0]'''
+- name: Navigation lights intensity
+  summary: Navigation lights intensity 500 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: NavLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''500'''
+- name: Position light intensity
+  summary: Position light intensity 500 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: PositionLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''500'''
+- name: Strobe lights intensity
+  summary: Strobe lights intensity 5000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: StrobeLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''5000'''
+- name: Wingtip strobe period (s)
+  summary: Wingtip strobe period 1.5 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: WingtipStrobePeriod
+  type: character vector
+  values: positive scalar
+  default: '''1.5'''
+- name: Wingtip strobe pulse width (% of period)
+  summary: Wingtip strobe pulse width 6 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: WingtipStrobePulseWidth
+  type: character vector
+  values: positive scalar
+  default: '''6'''
+- name: Tail strobe period (s)
+  summary: Tail strobe period 1.5 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: TailStrobePeriod
+  type: character vector
+  values: positive scalar
+  default: '''1.5'''
+- name: Tail strobe pulse width (% of period)
+  summary: Tail strobe pulse width 6 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: TailStrobePulseWidth
+  type: character vector
+  values: positive scalar
+  default: '''6'''
+- name: Beacon lights intensity
+  summary: Beacon lights intensity 4000 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconLightIntensity
+  type: character vector
+  values: positive scalar
+  default: '''4000'''
+- name: Beacon period (s)
+  summary: Beacon period 1.5 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconPeriod
+  type: character vector
+  values: positive scalar
+  default: '''1.5'''
+- name: Beacon pulse width (% of period)
+  summary: Beacon pulse width 10 (default) | positive scalar
+  group: Light Configuration
+  block_parameter: BeaconPulseWidth
+  type: character vector
+  values: positive scalar
+  default: '''10'''
+```
 
 ### **Sample time** — Sample time `-1` (default) | real scalar
 
@@ -1122,7 +1449,6 @@ To enable this parameter, set **Light configuration** to
 | **Type**: character vector |
 | **Values**: positive scalar |
 | **Default**: `'10'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Simulation 3D

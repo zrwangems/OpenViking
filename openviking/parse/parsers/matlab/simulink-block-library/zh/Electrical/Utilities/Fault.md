@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Fault
 
 ## 端口
+```yaml
+ports:
+- name: F
+  summary: 外部故障触发信号 physical
+  direction: input
+- name: X
+  summary: 故障状态 physical
+  direction: output
+- name: +
+  summary: 正极端子 electrical
+  direction: output
+- name: '-'
+  summary: 负极端子 electrical
+  direction: output
+```
 
 ### 输入
 
@@ -36,8 +51,55 @@ chinese_source: worker-translation
 ### **-** — 负极端子 electrical
 
 与故障负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Unfaulted resistance
+  summary: 无故障时的电阻 inf Ohm（默认值）
+  group: 主要
+- name: Faulted resistance
+  summary: 故障时的电阻 1e-3 Ohm（默认值）
+  group: 主要
+- name: Reporting when a fault occurs
+  summary: 故障发生报告 None（默认值）| Warn | Error
+  group: 主要
+- name: Enable temporal fault trigger
+  summary: 时间故障触发选项 No（默认值）| Yes
+  group: 时间触发器
+- name: Simulation time for fault event
+  summary: 故障事件的仿真时间 1 s（默认值）
+  group: 时间触发器
+- name: Fault duration
+  summary: 故障持续时间 inf s（默认值）
+  group: 时间触发器
+- name: Enable behavioral fault trigger
+  summary: 行为故障触发选项 No（默认值）| Yes
+  group: 行为触发器
+- name: Permissible voltage range
+  summary: 允许电压范围 [-100, 100] V（默认值）
+  group: 行为触发器
+- name: Time to fail when exceeding voltage range
+  summary: 超出电压范围时的失效时间 1 s（默认值）
+  group: 行为触发器
+- name: Permissible current range
+  summary: 允许电流范围 [-1, 1] A（默认值）
+  group: 行为触发器
+- name: Time to fail when exceeding current range
+  summary: 超出电流范围时的失效时间 1 s（默认值）
+  group: 行为触发器
+- name: Enable external fault trigger
+  summary: 外部故障触发选项 No（默认值）| Yes
+  group: 外部触发器
+- name: External fault trigger
+  summary: 外部故障触发条件 Faulted if F >= Fault threshold（默认值）| Faulted if F <= Fault threshold
+  group: 外部触发器
+- name: Fault threshold
+  summary: 故障阈值 0.5（默认值）
+  group: 外部触发器
+- name: Fault resets when fault trigger reverts
+  summary: 故障触发恢复时故障复位 No（默认值）| Yes
+  group: 外部触发器
+```
 
 ### 主要
 
@@ -168,7 +230,6 @@ chinese_source: worker-translation
 
 仅当您将 **Enable external fault trigger** 参数设置为
 `Yes` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Utilities

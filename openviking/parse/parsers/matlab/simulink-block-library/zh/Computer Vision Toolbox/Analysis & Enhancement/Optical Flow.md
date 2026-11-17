@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Optical Flow
 
 ## 端口
+```yaml
+ports:
+- name: I/I1
+  summary: 图像或视频帧 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: I2
+  summary: 图像 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: '|V|^2'
+  summary: 速度幅值 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: V
+  summary: 复数形式的速度分量 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -46,8 +65,53 @@ chinese_source: worker-translation
 要启用此端口，请将 **Velocity output** 参数设置为 `Horizontal and vertical components in complex form`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: 光流计算方法 Horn-Schunck（默认）| Lucas-Kanade
+  group: ''
+- name: Compute optical flow between
+  summary: 计算光流 Current frame and N-th frame back（默认）| Two images
+  group: ''
+- name: N
+  summary: 帧数 1（默认）| 标量
+  group: ''
+- name: Smoothness factor
+  summary: 平滑因子 1（默认）| 正标量
+  group: ''
+- name: Stop iterative solution
+  summary: 停止迭代求解 When maximum number of iterations is reached（默认）| When velocity difference falls below threshold | Whichever
+    comes first
+  group: ''
+- name: Maximum number of iterations
+  summary: 最大迭代次数 10（默认）| 标量
+  group: ''
+- name: Velocity output
+  summary: 光流输出 Magnitude-squared（默认）| Horizontal and vertical components in complex form
+  group: ''
+- name: Temporal gradient filter
+  summary: 用于时间梯度的滤波器 Difference filter [-1 1]（默认）| Derivative of Gaussian
+  group: ''
+- name: Number of input frames to buffer
+  summary: 用于平滑的输入帧缓冲数量 3（默认）| 标量
+  group: ''
+- name: Standard deviation for image smoothing filter
+  summary: 图像平滑滤波器的标准差 1.5（默认）| 标量
+  group: ''
+- name: Standard deviation for gradient smoothing filter
+  summary: 梯度平滑滤波器的标准差 1（默认）| 标量
+  group: ''
+- name: Discard normal flow estimates when constraint equation is ill-conditioned
+  summary: 当约束方程病态时丢弃法向流估计 off（默认）| on
+  group: ''
+- name: Output image corresponding to motion vectors (accounts for block delay)
+  summary: 输出与运动向量对应的图像 off（默认）| on
+  group: ''
+- name: Threshold for noise reduction
+  summary: 降噪阈值 0.0039（默认）| 标量
+  group: ''
+```
 
 **主选项卡**
 
@@ -161,7 +225,6 @@ chinese_source: worker-translation
 **数据类型选项卡**
 
 有关定点模块参数的详细信息，请参阅 Specify Fixed-Point Attributes for Blocks (DSP System Toolbox)。
-
 ## 所属库
 
 Computer Vision Toolbox / Analysis & Enhancement

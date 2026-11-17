@@ -15,10 +15,33 @@ chinese_source: worker-translation
 # Host Serial Setup
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Port name
+  summary: 要配置的端口 'Please_select_a_port'（默认）| 'COM3'
+  group: ''
+- name: Baud rate
+  summary: 串行通信的波特率 115200（默认）| 标量
+  group: ''
+- name: Number of stop bits
+  summary: 停止位的数量 1（默认）| 2
+  group: ''
+- name: Parity mode
+  summary: 用于校验奇偶校验位的方法 none（默认）| odd | even
+  group: ''
+- name: Timeout
+  summary: 单向通信超时前的时间间隔 1.0（默认）| 标量
+  group: ''
+- name: Byte order
+  summary: 串行通信的字节顺序 LittleEndian（默认）| BigEndian
+  group: ''
+```
 
 ### **Port name** — 要配置的端口 `'Please_select_a_port'`（默认）| `'COM3'`
 
@@ -49,7 +72,6 @@ R2025b 中未记录。
 ### **Byte order** — 串行通信的字节顺序 `LittleEndian`（默认）| `BigEndian`
 
 将字节顺序指定为 `LittleEndian` 或 `BigEndian`。如果字节顺序为 `LittleEndian`，则模型将第一个字节存储在第一内存地址中。如果字节顺序为 `BigEndian`，则模型将最后一个字节存储在第一内存地址中。在执行读取或写入操作之前，应将字节顺序配置为适当的值。
-
 ## 所属库
 
 Motor Control Blockset / Protection and Diagnostics

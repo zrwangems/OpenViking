@@ -14,6 +14,21 @@ language: en
 # Thermostatic Expansion Valve (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Fluid inlet two-phase fluid
+  direction: conserving
+- name: B
+  summary: Fluid outlet two-phase fluid
+  direction: conserving
+- name: S
+  summary: Sensing bulb temperature measurement two-phase fluid
+  direction: conserving
+- name: E
+  summary: Equalization line pressure measurement two-phase fluid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -50,8 +65,117 @@ There is no mass or energy flow rate through port
 To enable this port, set **Pressure
 equalization** to `External pressure
 equalization`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve parameterization
+  summary: Parameterization method Nominal capacity, superheat, and operating conditions (default) | Tabulated data - quadrant
+    diagram
+  group: ''
+- name: Capacity specification
+  summary: Capacity specification method Evaporator heat transfer (default) | Mass flow rate
+  group: ''
+- name: Nominal evaporator heat transfer
+  summary: Evaporator heat transfer rate in nominal conditions 15 kW (default) | positive scalar
+  group: ''
+- name: Maximum evaporator heat transfer
+  summary: Maximum evaporator heat transfer rate 20 kW (default) | positive scalar
+  group: ''
+- name: Nominal mass flow rate
+  summary: Mass flow rate in nominal conditions 0.005 kg/s (default) | positive scalar
+  group: ''
+- name: Maximum mass flow rate
+  summary: Maximum evaporator heat transfer rate 0.008 kg/s (default) | positive scalar
+  group: ''
+- name: Nominal pressure specification
+  summary: Method to specify nominal pressure Specified pressure (default) | Pressure at specified saturation temperature
+  group: ''
+- name: Nominal condenser outlet pressure
+  summary: Condenser outlet pressure in nominal conditions 1.5 MPa (default) | positive scalar
+  group: ''
+- name: Nominal evaporator outlet pressure
+  summary: Evaporator outlet pressure in nominal conditions 0.3 MPa (default) | positive scalar
+  group: ''
+- name: Nominal condensing (saturation) temperature
+  summary: Refrigerant saturation temperature in the condenser 313.15 K (default) | positive scalar
+  group: ''
+- name: Nominal evaporating (saturation) temperature
+  summary: Evaporator saturation temperature in nominal conditions 273.15 K (default) | positive scalar
+  group: ''
+- name: Nominal condenser subcooling
+  summary: Operational condenser outlet temperature differential 5 deltaK (default) | positive scalar
+  group: ''
+- name: Nominal (static + opening) evaporator superheat
+  summary: Operational evaporator outlet temperature differential 10 deltaK (default) | positive scalar
+  group: ''
+- name: Static (minimum) evaporator superheat
+  summary: Minimum allowable temperature differential at evaporator outlet 5 deltaK (default) | positive scalar
+  group: ''
+- name: MOP limit
+  summary: Whether to enable pressure or temperature limits Off (default) | On - Specify maximum operating pressure | On -
+    Specify maximum operating temperature
+  group: ''
+- name: Maximum evaporator outlet pressure
+  summary: Maximum pressure 0.5 MPa (default) | positive scalar
+  group: ''
+- name: Maximum evaporating (saturation) temperature
+  summary: Maximum temperature 288.15 K (default) | positive scalar
+  group: ''
+- name: Closed valve leakage as a fraction of nominal flow
+  summary: Minimum flow through valve at all times 1e-6 (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Quadrant 1 – Evaporator outlet temperature vector
+  summary: 'Vector of temperature values at evaporator outlet 0 : 10 : 40 degC (default) | vector'
+  group: ''
+- name: Quadrant 1 – Bulb pressure vector
+  summary: 'Vector of pressure values of fluid inside sensing bulb 0.3 : 0.1 : 0.7 MPa (default) | vector'
+  group: ''
+- name: Quadrant 2 – Valve lift vector
+  summary: 'Vector of valve lift values 0 : 0.15 : 0.6 mm (default) | vector'
+  group: ''
+- name: Quadrant 2 – Evaporator outlet pressure vector
+  summary: 'Vector of values of evaporator outlet pressure 0.3 : -0.05 : 0.1 MPa (default) | vector'
+  group: ''
+- name: Quadrant 3 – Valve lift vector
+  summary: 'Vector of valve lift values 0 : 0.15 : 0.6 mm (default) | vector'
+  group: ''
+- name: Quadrant 3 – Mass flow rate vector
+  summary: 'Vector of values of mass flow rate through the valve [1e-7,0.015 : 0.015 : 0.06] kg/s (default) | vector'
+  group: ''
+- name: Reference condenser outlet pressure
+  summary: Reference pressure of condenser outlet 2 MPa (default) | scalar
+  group: ''
+- name: Reference evaporator outlet pressure
+  summary: Reference pressure of evaporator outlet 0.3 MPa (default) | scalar
+  group: ''
+- name: Reference evaporator outlet temperature
+  summary: Reference temperature of evaporator outlet 0 degC (default) | scalar
+  group: ''
+- name: Reference condenser subcooling
+  summary: Reference condenser outlet temperature differential 5 deltaK (default) | scalar
+  group: ''
+- name: Pressure equalization
+  summary: Pressure measurement location Internal pressure equalization (default) | External pressure equalization
+  group: ''
+- name: Bulb temperature dynamics
+  summary: Whether to model thermal lag off (default) | on
+  group: ''
+- name: Bulb thermal time constant
+  summary: Thermal lag time constant 20 s (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: Port area 0.01 m^2 (default) | positive scalar
+  group: ''
+- name: Laminar flow pressure ratio
+  summary: Ratio of evaporator pressures at flow regime transition 0.999 (default) | positive scalar
+  group: ''
+- name: Inlet phase change time constant
+  summary: Lag for mixture specific volume 0.1 s (default) | positive scalar
+  group: ''
+```
 
 ### **Valve parameterization** — Parameterization method `Nominal capacity, superheat, and operating conditions` (default) | `Tabulated data - quadrant diagram`
 
@@ -515,7 +639,6 @@ and quadratically in turbulent flows.
 Time lag for liquid-vapor mixtures in computing the fluid specific volume.
 This parameter does not influence the specific volume when the inlet fluid
 is a fully supercooled liquid.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Valves & Orifices / Flow Control Valves

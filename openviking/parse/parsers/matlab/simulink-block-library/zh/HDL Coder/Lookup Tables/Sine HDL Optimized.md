@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Sine HDL Optimized and Cosine HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 用于实现正弦或余弦波的输入信号 实值信号
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point | enumerated | bus
+- name: sin(2\*pi\*u)
+  summary: 定点正弦波 实值定点信号
+  direction: output
+  data_types: fixed point
+- name: cos(2\*pi\*u)
+  summary: 定点余弦波 实值定点信号
+  direction: output
+  data_types: fixed point
+- name: exp(j\*2\*pi\*u)
+  summary: 复指数 复值定点信号
+  direction: output
+  data_types: fixed point
+```
 
 ### 输入
 
@@ -59,8 +78,25 @@ cos(2*pi*u)` 时，此端口启用。
 `exp(j*2*pi*u)` 时，此端口启用。
 
 **数据类型：** `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output formula
+  summary: 选择要输出的信号 cos(2*pi*u) | sin(2*pi*u) | exp(j*2*pi*u) | sin(2*pi*u) and cos(2*pi*u)
+  group: ''
+- name: Number of data points
+  summary: 指定要从查找表中检索的数据点数量 64（默认）| integer, greater than or equal to 2
+  group: ''
+- name: Table data type
+  summary: 指定表数据类型 fixdt(0,16,15)（默认）| fixed point expression
+  group: ''
+- name: Data type assistant
+  summary: 选择数据类型指定模式 Fixed point（默认）| Expression
+  group: ''
+- name: Simulate RAM Delay
+  summary: 插入单位延迟 off（默认）| on
+  group: ''
+```
 
 ### **Output formula** — 选择要输出的信号 `cos(2*pi*u)` | `sin(2*pi*u)` | `exp(j*2*pi*u)` | `sin(2*pi*u) and cos(2*pi*u)`
 
@@ -97,7 +133,6 @@ Assistant**，它可帮助您设置表数据类型。
 Simulink® 建模环境中仿真此延迟。当您生成 HDL 代码时，会在该模块之后插入一个
 无复位寄存器。查找表与无复位寄存器的
 组合映射到目标硬件上的 RAM。
-
 ## 所属库
 
 HDL Coder / Lookup Tables

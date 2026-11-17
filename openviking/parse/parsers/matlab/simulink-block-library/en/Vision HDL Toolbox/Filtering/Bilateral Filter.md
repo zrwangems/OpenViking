@@ -14,6 +14,25 @@ language: en
 # Bilateral Filter
 
 ## Ports
+```yaml
+ports:
+- name: pixel
+  summary: Input pixel stream scalar | vector
+  direction: input
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: input
+  data_types: bus
+- name: pixel
+  summary: Output pixel stream scalar | vector
+  direction: output
+  data_types: uint | int | fixed point | double | single
+- name: ctrl
+  summary: Control signals associated with pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -78,8 +97,43 @@ vector. The `hEnd` and `vEnd` signals apply to the
 pixel with the highest index in the vector.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Neighborhood size
+  summary: Size of image region to average 3×3 (default) | 5×5 | 7×7 | 9×9 | 11×11 | 13×13 | 15×15
+  group: Main
+- name: Spatial standard deviation
+  summary: Spatial standard deviation target 0.5 (default) | positive real number
+  group: Main
+- name: Intensity standard deviation
+  summary: Intensity standard deviation target 0.5 (default) | positive real number
+  group: Main
+- name: Padding method
+  summary: Method for padding boundary of input image Constant (default) | Replicate | Symmetric | Reflection | None
+  group: Main
+- name: Padding value
+  summary: Value used to pad boundary of input image 0 (default) | integer
+  group: Main
+- name: Line buffer size
+  summary: Size of line memory buffer 2048 (default) | positive integer
+  group: Main
+- name: Rounding mode
+  summary: Rounding method for internal fixed-point calculations Floor (default) | Ceiling | Convergent | Nearest | Round
+    | Zero
+  group: Data Types
+- name: Saturate on integer overflow
+  summary: Overflow mode for internal fixed-point calculations on (default) | off
+  group: Data Types
+- name: Coefficients
+  summary: 'Method to determine data type of filter coefficients Inherit: Same as first input (default) | fixdt(1,16,0) |
+    data type expression'
+  group: Data Types
+- name: Output
+  summary: 'Method to determine data type of output pixels Inherit: Same as first input (default) | fixdt(1,16,0) | data type
+    expression'
+  group: Data Types
+```
 
 ### Main
 
@@ -195,7 +249,6 @@ standard deviation targets.
 ### **Output** — Method to determine data type of output pixels `Inherit: Same as first input` (default) | `fixdt(1,16,0)` | data type expression
 
 The filtered pixel values are cast to this data type.
-
 ## Libraries
 
 Vision HDL Toolbox / Filtering

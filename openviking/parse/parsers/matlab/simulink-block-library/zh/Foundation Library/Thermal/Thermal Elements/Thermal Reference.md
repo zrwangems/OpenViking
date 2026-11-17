@@ -15,17 +15,24 @@ chinese_source: worker-translation
 # Thermal Reference
 
 ## 端口
+```yaml
+ports:
+- name: H
+  summary: 温度为零热
+  direction: unspecified
+```
 
 ### 守恒
 
 ### **H** — 温度为零热
 
 温度等于绝对零度的热守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Elements

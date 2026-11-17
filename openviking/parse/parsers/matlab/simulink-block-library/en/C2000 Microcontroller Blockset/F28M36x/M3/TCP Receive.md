@@ -14,6 +14,17 @@ language: en
 # TCP Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Output data vector
+  direction: output
+  data_types: int8 | uint8 | int16 | uint16 | int32 | uint32 | single | double | Boolean
+- name: Status
+  summary: Requested data received at given time step 0 | 1
+  direction: output
+  data_types: uint16
+```
 
 ### Output
 
@@ -36,8 +47,37 @@ received.
 For more information, see Receive TCP Data.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection mode
+  summary: Set block as server or client Server (default) | Client
+  group: ''
+- name: Local IP Port
+  summary: IP port of receiving host from which data is received 25001 (default) | [1 to 65,535]
+  group: ''
+- name: Remote IP Address
+  summary: Remote IP address of server from which data is received 192.168.1.2 (default) | any valid IP address
+  group: ''
+- name: Remote IP Port
+  summary: Remote IP port of server from which data is received 25000 (default) | [1 to 65,535]
+  group: ''
+- name: Data type
+  summary: Data type of received data uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+- name: Data size (N)
+  summary: Number of bytes in received data 1 (default) | any positive integer
+  group: ''
+- name: Sample time
+  summary: Interval at which block reads data from sending host 0.1 (default) | any nonnegative value
+  group: ''
+- name: Wait until data received
+  summary: Wait until requested data is available on (default) | off
+  group: ''
+- name: Timeout in seconds
+  summary: Time to wait until data is received 0.1 (default) | Inf | any nonnegative value
+  group: ''
+```
 
 #### Main
 
@@ -201,7 +241,6 @@ received is less than, greater than, or equal to the length of requested data.
 | Non-blocking | |  | `1` |
 | Length of data received > Data size (N) | Blocking | |  | `0` |
 | Non-blocking | |
-
 ## Libraries
 
 Simulink Coder Support Package for NXP FRDM-K64F Board

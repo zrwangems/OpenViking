@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Unidirectional Clutch
 
 ## 端口
+```yaml
+ports:
+- name: H
+  summary: 轮毂速度 机械旋转
+  direction: conserving
+- name: R
+  summary: 齿圈速度 机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,16 @@ chinese_source: worker-translation
 ### **R** — 齿圈速度 机械旋转
 
 齿圈驱动轴轴线的速度。
-
 ## 参数
+```yaml
+parameters:
+- name: Transmission direction
+  summary: 相对旋转方向 From hub to ring for positive rotation（默认）| From hub to ring for negative rotation
+  group: ''
+- name: Initial state
+  summary: 离合器初始状态 Unlocked（默认）| Locked
+  group: ''
+```
 
 ### **Transmission direction** — 相对旋转方向 `From hub to ring for positive rotation`（默认）| `From hub to ring for negative rotation`
 
@@ -35,7 +52,6 @@ chinese_source: worker-translation
 ### **Initial state** — 离合器初始状态 `Unlocked`（默认）| `Locked`
 
 仿真开始时离合器的状态。离合器可以处于两种状态之一：锁止和解锁。锁止的离合器约束基轴和从动轴以相同速度旋转，即作为一个整体旋转。解锁的离合器允许两根轴以不同速度旋转，从而导致离合器片之间打滑。
-
 ## 所属库
 
 Simscape / Driveline / Clutches

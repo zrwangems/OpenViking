@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Diff. Sigmoidal MF
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入值 标量 | 向量
+  direction: input
+- name: MF
+  summary: 隶属度值 标量 | 向量
+  direction: output
+```
 
 ### 输入
 
@@ -27,8 +36,34 @@ chinese_source: worker-translation
 ### **MF** — 隶属度值 标量 | 向量
 
 隶属度值，以标量或向量形式返回。**MF** 的维度与 **x** 的维度一致。**MF** 的每个元素是对 **x** 中对应元素计算得到的隶属度值。
-
 ## 参数
+```yaml
+parameters:
+- name: Left curve a1
+  summary: 左曲线的过渡区域形状参数 3（默认）| 标量
+  group: ''
+  block_parameter: a1
+  type: string, character vector
+  default: '"3"'
+- name: Left curve c1
+  summary: 左曲线的过渡区域中心 -5（默认）| 标量
+  group: ''
+  block_parameter: c1
+  type: string, character vector
+  default: '"-5"'
+- name: Right curve a2
+  summary: 右曲线的过渡区域形状参数 1（默认）| 标量
+  group: ''
+  block_parameter: a2
+  type: string, character vector
+  default: '"1"'
+- name: Right curve c2
+  summary: 右曲线的过渡区域中心 5（默认）| 标量
+  group: ''
+  block_parameter: c2
+  type: string, character vector
+  default: '"5"'
+```
 
 ### **Left curve a1** — 左曲线的过渡区域形状参数 `3`（默认）| 标量
 
@@ -81,7 +116,6 @@ chinese_source: worker-translation
 | **模块参数**：`c2` |
 | **类型**：string, character vector |
 | **默认值**：`"5"` |
-
 ## 所属库
 
 Fuzzy Logic Toolbox / Membership Functions

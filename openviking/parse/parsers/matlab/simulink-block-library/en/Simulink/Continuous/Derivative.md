@@ -14,6 +14,17 @@ language: en
 # Derivative
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal for which to approximate continuous derivative scalar | vector
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Approximation of continuous derivative for input signal with respect to time scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -36,8 +47,16 @@ complexity match the dimensions and complexity of the input signal,
 which must be real.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient c in the transfer function approximation s/(c\*s + 1) used for linearization
+  summary: Time constant of pole in transfer function that approximates linearization for block inf (default) | finite positive
+    scalar number
+  group: ''
+  block_parameter: CoefficientInTFapproximation
+  values: inf (default) | finite positive scalar number
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -81,7 +100,6 @@ configures the Derivative block named
 approximate linearization of the block. This coefficient value
 results in a cutoff frequency of `1000` radians per
 second.
-
 ## Libraries
 
 Simulink / Continuous

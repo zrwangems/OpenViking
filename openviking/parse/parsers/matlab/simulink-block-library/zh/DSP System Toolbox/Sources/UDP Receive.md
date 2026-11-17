@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # UDP Receive
 
 ## 端口
+```yaml
+ports:
+- name: Message
+  summary: 接收到的数据向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Length
+  summary: 数据包长度 标量
+  direction: output
+  data_types: uint16
+```
 
 ### 输出
 
@@ -38,8 +49,34 @@ chinese_source: worker-translation
 此端口仅在清除 **Output variable-size signal** 参数时出现。
 
 **数据类型：** `uint16`
-
 ## 参数
+```yaml
+parameters:
+- name: Local IP port
+  summary: IP 端口号 25000（默认）| 范围 [1, 65535] 内的标量
+  group: ''
+- name: Remote IP address ('0.0.0.0' to accept all)
+  summary: 接受数据包的来源 IP 地址 '0.0.0.0'（默认）| IP 地址
+  group: ''
+- name: Receive buffer size (bytes)
+  summary: 接收 UDP 数据包的缓冲区大小 8192（默认）| 范围 [1, 67108864] 内的标量
+  group: ''
+- name: Maximum length for Message
+  summary: 输出数据的最大长度 255（默认）| 标量
+  group: ''
+- name: Data type for Message
+  summary: 消息的数据类型 uint8（默认）| single | double | int8 | int16 | int32 | uint16 | uint32 | boolean
+  group: ''
+- name: Message is complex
+  summary: 消息数据复数性 off（默认）| on
+  group: ''
+- name: Output variable-size signal
+  summary: 长度可变的消息输出 on（默认）| off
+  group: ''
+- name: Sample time (seconds)
+  summary: 调用模块的频率 1（默认）| 标量
+  group: ''
+```
 
 ### **Local IP port** — IP 端口号 25000（默认）| 范围 [1, 65535] 内的标量
 
@@ -88,7 +125,6 @@ chinese_source: worker-translation
 ### **Sample time (seconds)** — 调用模块的频率 `1`（默认）| 标量
 
 指定调度器调用 UDP Receive 模块的频率（以秒为单位）。输入大于零的值。在实时操作中，将此参数设置为较小的值可降低 UDP 消息丢失的可能性。
-
 ## 所属库
 
 DSP System Toolbox / Sources

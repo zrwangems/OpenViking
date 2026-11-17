@@ -14,6 +14,41 @@ language: en
 # To Multimedia File
 
 ## Ports
+```yaml
+ports:
+- name: Image
+  summary: Color image or video frame array
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: R
+  summary: Red color component of image or video frame matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: G
+  summary: Green color component of image or video frame matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: B
+  summary: Blue color component of image or video frame matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Y
+  summary: Luma component of image or video frame matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cb
+  summary: Blue-difference chrominance component of image or video frame matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Cr
+  summary: Red-difference chrominance component of image or video frame matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Audio
+  summary: Audio signal vector | matrix
+  direction: input
+  data_types: single | double | int16 | int32 | uint8
+```
 
 ### Input
 
@@ -213,8 +248,47 @@ only` or `Video and
 audio`.
 
 **Data Types:** `single` | `double` | `int16` | `int32` | `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: File name
+  summary: File name output.wav (default) | character vector
+  group: ''
+- name: File type
+  summary: File type of multimedia file WAV (default) | AVIMJ2000 | WMA | WMV | MPEG4 | FLAC | MP3 | OGG | OPUS
+  group: ''
+- name: Write
+  summary: Type of multimedia Audio only (default) | Video and audio | Video only
+  group: ''
+- name: Audio Quality (0-100)
+  summary: Quality of audio file 75 (default) | integer in range [0 100]
+  group: ''
+- name: Audio Bit Rate (kb/s)
+  summary: Audio compressor 128 (default) | 64 | 96 | 160 | 192 | 256 | 320
+  group: ''
+- name: Audio compressor
+  summary: Audio compressor None (uncompressed) (default) | character vector
+  group: ''
+- name: Audio data type
+  summary: Audio data type 16-bit integer (default) | Determine from input data type | 8-bit integer | 24-bit integer | 32-bit
+    integer | 32-bit float | 64-bit float
+  group: ''
+- name: Video compressor
+  summary: Video compressor None (uncompressed) (default) | character vector
+  group: ''
+- name: Compression Factor (>1)
+  summary: Compression factor greater than 1) 10 (default) | integer > 1
+  group: ''
+- name: File color format
+  summary: File color format RGB (default) | YCbCr 4:2:2
+  group: ''
+- name: Image signal
+  summary: Image signal Separate color signals (default) | One multidimensional signal
+  group: ''
+- name: Video Quality (0-100)
+  summary: Quality of video 75 (default) | integer in range [0 100]
+  group: ''
+```
 
 ### **File name** — File name `output.wav` (default) | character vector
 
@@ -386,7 +460,6 @@ The default value of this parameter is `75`.
 To enable this parameter, set **File type** to
 `MPEG4` and **Write** to
 `Video only`.
-
 ## Libraries
 
 Audio System Toolbox / Sinks DSP System Toolbox / Sinks

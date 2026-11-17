@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # State-Space
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: 输出向量 标量 | 向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,69 @@ chinese_source: worker-translation
 数据类型为 `double` 的实值输出向量，其宽度等于 **C** 和 **D** 矩阵的行数。有关详细信息，请参阅描述。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: A
+  summary: 矩阵系数 A 1（默认）| 标量 | 向量 | 矩阵 | 稀疏矩阵
+  group: ''
+  block_parameter: A
+  type: character vector, string
+  values: scalar | vector | matrix | sparse matrix
+  default: '''1'''
+- name: B
+  summary: 矩阵系数 B 1（默认）| 标量 | 向量 | 矩阵 | 稀疏矩阵
+  group: ''
+  block_parameter: B
+  type: character vector, string
+  values: scalar | vector | matrix | sparse matrix
+  default: '''1'''
+- name: C
+  summary: 矩阵系数 C 1（默认）| 标量 | 向量 | 矩阵 | 稀疏矩阵
+  group: ''
+  block_parameter: C
+  type: character vector, string
+  values: scalar | vector | matrix | sparse matrix
+  default: '''1'''
+- name: D
+  summary: 矩阵系数 D 1（默认）| 标量 | 向量 | 矩阵 | 稀疏矩阵
+  group: ''
+  block_parameter: D
+  type: character vector, string
+  values: scalar | vector | matrix | sparse matrix
+  default: '''1'''
+- name: Initial conditions
+  summary: 初始状态向量 0（默认）| 标量 | 向量
+  group: ''
+  block_parameter: InitialCondition
+  type: character vector, string
+  values: scalar | vector
+  default: '''0'''
+- name: Parameter tunability
+  summary: 选择模块参数的可调表示 Auto（默认）| Optimized | Unconstrained
+  group: ''
+  block_parameter: ParameterTunability
+  type: character vector | string
+  values: '''Auto'' | ''Optimized'' | ''Unconstrained'''
+  default: '''Auto'''
+- name: Allow non-zero values for D matrix initially specified as zero
+  summary: 当 D = 0 时允许 D 矩阵可调 off（默认）| on
+  group: ''
+  block_parameter: AllowTunableDMatrix
+  type: character vector | string
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Absolute tolerance
+  summary: 计算模块状态的绝对容差 auto（默认）| 标量 | 向量
+  group: ''
+  block_parameter: AbsoluteTolerance
+  values: '''auto'' (default) | ''-1'' | positive real scalar number | vector of positive real scalar numbers'
+- name: State Name (e.g., 'position')
+  summary: 为状态分配唯一名称的选项 ''（默认）| 字符向量 | 字符向量元胞数组 | MATLAB® 变量 | ...
+  group: ''
+  block_parameter: ContinuousStateAttributes
+  values: ''''' (default) | valid MATLAB variable name'
+```
 
 ### **A** — 矩阵系数 A `1`（默认）| 标量 | 向量 | 矩阵 | 稀疏矩阵
 
@@ -193,7 +265,6 @@ State-Space",AbsoluteTolerance="-1")`
 
 **Example:** `set_param("MyModel/Descriptor
 State-Space",ContinuousStateAttributes={'position','velocity'})`
-
 ## 所属库
 
 Simulink / Continuous

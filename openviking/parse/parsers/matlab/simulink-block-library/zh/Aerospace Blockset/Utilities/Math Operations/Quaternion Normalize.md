@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Quaternion Normalize
 
 ## 端口
+```yaml
+ports:
+- name: q
+  summary: 四元数 四元数 | 四元数向量
+  direction: input
+  data_types: double
+- name: normal(q)
+  summary: 归一化四元数 归一化四元数 | 归一化四元数向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -38,11 +49,12 @@ chinese_source: worker-translation
 归一化四元数或归一化四元数向量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Aerospace Blockset / Utilities / Math Operations

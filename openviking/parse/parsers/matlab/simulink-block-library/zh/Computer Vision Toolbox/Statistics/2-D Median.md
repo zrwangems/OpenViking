@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # 2-D Median
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数组 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: double | single | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 输出中值 标量 | 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -44,8 +55,22 @@ chinese_source: worker-translation
   - `Specified dimension` — 输出取决于 **Dimension**。如果 **Dimension** 设置为 `1`，则输出与选择 `Each column` 时相同。如果 **Dimension** 设置为 `2`，则输出与选择 `Each row` 时相同。如果 **Dimension** 设置为 `3`，则输出维度为 *M*×*N* 矩阵，其中包含输入第三维上每个向量的中值
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Sort algorithm
+  summary: 对输入数组进行排序的算法 Quick sort（默认）| Insertion sort
+  group: ''
+- name: Find the median value over
+  summary: 计算中值所沿的维度 Entire input（默认）| Each row | Each column | Specified dimension
+  group: ''
+- name: Dimension
+  summary: 自定义维度 1（默认）| 正标量
+  group: ''
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型的选项 off（默认）| on
+  group: ''
+```
 
 **主**
 
@@ -89,7 +114,6 @@ chinese_source: worker-translation
 **注意**
 
 浮点继承优先于此窗格上定义的数据类型设置。当输入为浮点时，模块会忽略这些设置，所有内部数据类型均为浮点。
-
 ## 所属库
 
 Computer Vision Toolbox / Statistics

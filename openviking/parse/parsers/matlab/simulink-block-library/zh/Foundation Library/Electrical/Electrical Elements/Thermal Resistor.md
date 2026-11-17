@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Thermal Resistor
 
 ## 端口
+```yaml
+ports:
+- name: H
+  summary: 热端口 thermal
+  direction: conserving
+- name: +
+  summary: 正极端子 electrical
+  direction: conserving
+- name: '-'
+  summary: 负极端子 electrical
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,25 @@ chinese_source: worker-translation
 ### **-** — 负极端子 electrical
 
 与电阻负极端子关联的电守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal resistance
+  summary: 参考温度下的电阻 1 Ohm（默认）| 正标量
+  group: ''
+- name: Reference temperature
+  summary: 对应于标称电阻的温度 298.15 K（默认）| 正标量
+  group: ''
+- name: Temperature coefficient
+  summary: 电阻温度依赖系数 5e-05 1/K（默认）| 正标量
+  group: ''
+- name: Thermal time constant
+  summary: 热方程的时间常数 10 s（默认）| 正标量
+  group: ''
+- name: Dissipation factor
+  summary: 热方程的耗散系数 0.001 W/K（默认）| 正标量
+  group: ''
+```
 
 ### **Nominal resistance** — 参考温度下的电阻 `1 Ohm`（默认）| 正标量
 
@@ -51,7 +80,6 @@ chinese_source: worker-translation
 ### **Dissipation factor** — 热方程的耗散系数 `0.001 W/K`（默认）| 正标量
 
 使热敏电阻温度升高一 K 所需的热功率。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Elements

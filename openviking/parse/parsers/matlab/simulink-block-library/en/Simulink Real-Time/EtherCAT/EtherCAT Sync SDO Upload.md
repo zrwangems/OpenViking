@@ -14,6 +14,15 @@ language: en
 # EtherCAT Sync SDO Upload
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data received from subordinate device numeric
+  direction: output
+- name: Error
+  summary: Report an EtherCAT network error 0 | integer
+  direction: output
+```
 
 ### Output
 
@@ -26,8 +35,42 @@ Returns data received from the EtherCAT subordinate device.
 If no error occurs, this port transmits
 `0`. Otherwise, it transmits a nonzero value. For a list of error codes,
 see EtherCAT Error Codes.
-
 ## Parameters
+```yaml
+parameters:
+- name: Index
+  summary: Index of CANopen register integer
+  group: ''
+  block_parameter: index
+- name: Subindex
+  summary: Subindex of CANopen register integer
+  group: ''
+  block_parameter: subIndex
+- name: Data Type
+  summary: Data type of CANopen register double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+  block_parameter: sig_type
+- name: Dimension
+  summary: Dimension of CANopen register 1 (default)
+  group: ''
+  block_parameter: sig_dim
+- name: Network Device Index
+  summary: EtherCAT network identifier 0 (default) | 0-11
+  group: ''
+  block_parameter: device_id
+- name: SubDevice Name
+  summary: Name of device that contains CANopen register character vector
+  group: ''
+  block_parameter: subdevice_name
+- name: Sample time
+  summary: Sample time of block -1 (default) | numeric
+  group: ''
+  block_parameter: sample_time
+- name: Timeout
+  summary: Time to wait for response from subordinate device numeric
+  group: ''
+  block_parameter: timeout
+```
 
 ### **Index** — Index of CANopen register integer
 
@@ -128,7 +171,6 @@ error.
 |  |
 | --- |
 | **Block Parameter:** `timeout` |
-
 ## Libraries
 
 Simulink Real-Time / EtherCAT

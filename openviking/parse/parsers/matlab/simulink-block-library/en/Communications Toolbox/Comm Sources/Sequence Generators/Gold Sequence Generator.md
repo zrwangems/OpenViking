@@ -14,6 +14,25 @@ language: en
 # Gold Sequence Generator
 
 ## Ports
+```yaml
+ports:
+- name: oSiz
+  summary: Current output size scalar | two-element row vector
+  direction: input
+  data_types: double
+- name: Ref
+  summary: Reference input signal scalar | column vector
+  direction: input
+  data_types: double
+- name: Rst
+  summary: Reset signal scalar | column vector
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output signal binary column vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -78,8 +97,51 @@ element of the **Initial states (1)** or
 order for the block to generate a nonzero sequence.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Preferred polynomial (1)
+  summary: First sequence polynomial 'z^6 + z + 1' (default) | polynomial character vector | binary row vector | integer row
+    vector
+  group: ''
+- name: Initial states (1)
+  summary: Initial states for first sequence polynomial [0 0 0 0 0 1] (default) | binary vector
+  group: ''
+- name: Preferred polynomial (2)
+  summary: Second sequence polynomial 'z^6 + z^5 + z^2 + z + 1' (default) | polynomial character vector | binary row vector
+    | integer row vector
+  group: ''
+- name: Initial states (2)
+  summary: Initial states for second sequence polynomial [0 0 0 0 0 1] (default) | binary vector
+  group: ''
+- name: Sequence index
+  summary: Sequence index 0 (default) | integer scalar in the range [–2, 2*n*–2]
+  group: ''
+- name: Shift
+  summary: Offset of Gold sequence 0 (default) | integer scalar
+  group: ''
+- name: Output variable-size signals
+  summary: Option to output variable-length signals off (default) | on
+  group: ''
+- name: Maximum output size source
+  summary: Maximum output size source Dialog parameter (default) | Inherit from reference port
+  group: ''
+- name: Maximum output size
+  summary: Maximum output size [10 1] (default) | vector of the form [*n* 1]
+  group: ''
+- name: Sample time
+  summary: Output sample time 1 (default)
+  group: ''
+- name: Samples per frame
+  summary: Samples per frame 1 (default) | positive integer
+  group: ''
+- name: Reset on nonzero input
+  summary: Reset output signal off (default) | on
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | boolean | Smallest unsigned integer
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -274,7 +336,6 @@ selected in the Hardware Implementation pane, the output data type is the
 ideal minimum one-bit size (ufix(1)). For all other selections, it is an
 unsigned integer with the smallest available word length large enough to fit
 one bit, usually corresponding to the size of a char (uint8).
-
 ## Libraries
 
 Communications Toolbox / Comm Sources / Sequence Generators

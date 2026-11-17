@@ -14,6 +14,16 @@ language: en
 # Subscribe
 
 ## Ports
+```yaml
+ports:
+- name: IsNew
+  summary: New message indicator 0 | 1
+  direction: output
+- name: Msg
+  summary: ROS message nonvirtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -26,8 +36,25 @@ New message indicator, returned as a logical. If the output is `1`, then a new m
 ROS message, returned as a nonvirtual bus. The type of ROS message is specified in the **Message type** parameter. The Subscribe block outputs blank messages until it receives a message on the topic name you specify. These blank messages allow you to create and test full models before the rest of the network has been setup.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic source
+  summary: Source for specifying topic name Select from ROS network | Specify your own
+  group: ''
+- name: Topic
+  summary: Topic name to subscribe to string
+  group: ''
+- name: Message type
+  summary: ROS message type string
+  group: ''
+- name: Sample time
+  summary: Interval between outputs –1 (default) | scalar
+  group: ''
+- name: Length of subscribe callback queue
+  summary: Message queue length 1 (default) | integer
+  group: ''
+```
 
 ### **Topic source** — Source for specifying topic name `Select from ROS network` | `Specify your own`
 
@@ -57,7 +84,6 @@ For more information about the inherited sample time type, see Specify Sample Ti
 ### **Length of subscribe callback queue** — Message queue length `1` (default) | integer
 
 Message queue length in code generation, specified as an integer. In simulation, the message queue is always 1 and cannot be adjusted. To ensure each message is caught, use a smaller model step or only execute the model if `IsNew` returns `1`.
-
 ## Libraries
 
 ROS Toolbox / ROS

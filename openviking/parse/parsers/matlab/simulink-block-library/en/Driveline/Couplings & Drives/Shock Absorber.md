@@ -14,6 +14,15 @@ language: en
 # Shock Absorber
 
 ## Ports
+```yaml
+ports:
+- name: C
+  summary: Case mechanical translational
+  direction: conserving
+- name: R
+  summary: Rod mechanical translational
+  direction: conserving
+```
 
 ### Conserving
 
@@ -28,8 +37,57 @@ to port **C**.
 Mechanical translational conserving port associated with one end of
 the shock absorber. Positive force acts from port **R**
 to port **C**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Spring stiffness
+  summary: Stiffness of spring 1e4 N/m (default) | nonnegative scalar
+  group: Spring-Damper
+- name: Viscous friction coefficient
+  summary: Viscous friction coefficient 1e2 N*s/m (default) | nonnegative scalar
+  group: Spring-Damper
+- name: Coulomb friction force
+  summary: Coulomb friction force 0 N (default) | nonnegative scalar
+  group: Spring-Damper
+- name: Ratio of static to kinetic friction
+  summary: Static-to-kinetic friction ratio 1.1 (default) | scalar greater than or equal to 1
+  group: Spring-Damper
+- name: Velocity tolerance
+  summary: Slip velocity threshold 0.001 m/s (default) | positive scalar
+  group: Spring-Damper
+- name: Hard stop
+  summary: Hard stop option No hard stops - Suitable for HIL simulation (default) | Compliant hard stops
+  group: Hard Stops
+- name: Upper bound
+  summary: Gap between slider and upper bound 0.1 m (default) | scalar
+  group: Hard Stops
+- name: Lower bound
+  summary: Gap between slider and lower bound -0.1 m (default) | scalar
+  group: Hard Stops
+- name: Contact stiffness
+  summary: Contact stiffness constant 1e6 N/m (default) | nonnegative scalar
+  group: Hard Stops
+- name: Contact damping
+  summary: Contact damping constant 1e4 N*s/m (default) | positive scalar
+  group: Hard Stops
+- name: Hard stop model
+  summary: Hard stop transition behavior Stiffness and damping applied smoothly through transition region, damped rebound
+    (default) | ...
+  group: Hard Stops
+- name: Transition region
+  summary: Hard-stop transition distance 0.1 mm (default) | positive scalar
+  group: Hard Stops
+- name: Coefficient of restitution
+  summary: Ratio of final-to-initial relative speed between slider and stop after collision 0.7 (default) | unitless value
+    between 0 and 1
+  group: Hard Stops
+- name: Static contact speed threshold
+  summary: Threshold relative speed between slider and stop before collision 0.001 m/s (default) | nonnegative scalar
+  group: Hard Stops
+- name: Static contact release force threshold
+  summary: Threshold torque needed to transition from contact mode to free mode 0.001 N (default)
+  group: Hard Stops
+```
 
 ### Spring-Damper
 
@@ -185,7 +243,6 @@ To enable this parameter, set **Hard stop**  to
 `Compliant hard stops` and
 **Hard stop model** to `Based on
 coefficient of restitution`.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives

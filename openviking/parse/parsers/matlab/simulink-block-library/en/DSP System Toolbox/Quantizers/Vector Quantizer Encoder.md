@@ -14,6 +14,33 @@ language: en
 # Vector Quantizer Encoder
 
 ## Ports
+```yaml
+ports:
+- name: U
+  summary: Input data values vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: C
+  summary: Codebook values vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: W
+  summary: Weighting factor vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: I
+  summary: Index values scalar | row vector
+  direction: output
+  data_types: int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Q(U)
+  summary: Output codeword vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: D
+  summary: Quantization error scalar | row vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -99,8 +126,61 @@ input data. If the quantization error is fixed-point, it must be signed
 values only.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of codebook
+  summary: Source of codebook Specify via dialog (default) | Input port
+  group: Main Tab
+- name: Codebook
+  summary: Codebook values [1.5 13.3 136.4 6.8 ; 2.5 14.3 137.4 7.8; 3.5 15.3 138.4 8.8] (default)
+  group: Main Tab
+- name: Distortion measure
+  summary: Measure of distortion Squared error (default) | Weighted squared error
+  group: Main Tab
+- name: Source of weighting factor
+  summary: Source of weighting factor Specify via dialog (default) | Input port
+  group: Main Tab
+- name: Weighting factor
+  summary: Weighting factor [1 1 1] (default) | vector
+  group: Main Tab
+- name: Tie-breaking rule
+  summary: Tie-breaking rule Choose the lower index (default) | Choose the higher index
+  group: Main Tab
+- name: Output codeword
+  summary: Output codeword off (default) | on
+  group: Main Tab
+- name: Output quantization error
+  summary: Output quantization error off (default) | on
+  group: Main Tab
+- name: Index output data type
+  summary: Index output data type int32 (default) | int8 | uint8 | int16 | uint16 | uint32 | Inherit via back propagation
+  group: Main Tab
+- name: Rounding mode
+  summary: Rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+- name: Product output
+  summary: Product output data type Same as input (default) | Binary point scaling
+  group: Data Types Tab
+- name: Word length
+  summary: Product output word length 16 (default) | positive integer in range [2,128]
+  group: Data Types Tab
+- name: Fraction length
+  summary: Product output fraction length 15 (default) | integer
+  group: Data Types Tab
+- name: Accumulator
+  summary: Accumulator data type Same as product output (default) | Same as input | Binary point scaling
+  group: Data Types Tab
+- name: Word length
+  summary: Accumulator word length 16 (default) | positive integer in range [2,128]
+  group: Data Types Tab
+- name: Fraction length
+  summary: Accumulator fraction length 15 (default) | integer
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -321,7 +401,6 @@ Specify the accumulator fraction length as an integer.
 
 To enable this parameter, set the **Accumulator**
 parameter to `Binary point scaling`.
-
 ## Libraries
 
 DSP System Toolbox / Quantizers

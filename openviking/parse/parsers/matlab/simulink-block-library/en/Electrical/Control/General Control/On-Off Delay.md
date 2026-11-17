@@ -14,6 +14,17 @@ language: en
 # On-Off Delay
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal 0 | 1
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: Output signal 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -29,8 +40,22 @@ Input Boolean signal.
 Output signal with delays.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: ON delay time (s)
+  summary: Input ON delay time 0.01 (default) | 0 | positive scalar
+  group: ''
+- name: OFF delay time (s)
+  summary: Input OFF delay time 0 (default) | positive scalar
+  group: ''
+- name: Initial state
+  summary: Signal initial state 0 (default) | 1
+  group: ''
+- name: Sample time
+  summary: Block sample time 0.001 (default) | 0 | positive scalar
+  group: ''
+```
 
 ### **ON delay time (s)** — Input ON delay time `0.01` (default) | `0` | positive scalar
 
@@ -60,7 +85,6 @@ allows either continuous and discrete operation, promote the sample time
 parameter. Promoting the sample time parameter ensures correct switching
 between the continuous and discrete implementations of the block. For more
 information, see Promote Block Parameters on a Mask.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Control

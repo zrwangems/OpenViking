@@ -14,6 +14,13 @@ language: en
 # Stop Simulation
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: double | Boolean
+```
 
 ### Input
 
@@ -24,11 +31,12 @@ signals of `double` or `Boolean` data
 types.
 
 **Data Types:** `double` | `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / Sinks HDL Coder / Sinks

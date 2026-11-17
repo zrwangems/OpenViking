@@ -14,6 +14,21 @@ language: en
 # Rotational Multibody Interface
 
 ## Ports
+```yaml
+ports:
+- name: w
+  summary: Relative angular velocity, rad/s physical signal
+  direction: input
+- name: t
+  summary: Torque, N\*m physical signal
+  direction: output
+- name: R
+  summary: Rod mechanical rotational
+  direction: conserving
+- name: C
+  summary: Case mechanical rotational
+  direction: conserving
+```
 
 ### Input
 
@@ -44,11 +59,12 @@ other blocks in the mechanical rotational network.
 Mechanical rotational conserving port with the same torque and relative angular
 velocity as the joint primitive. Connect this port to ports **C** of
 other blocks in the mechanical rotational network.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Mechanical / Multibody Interfaces

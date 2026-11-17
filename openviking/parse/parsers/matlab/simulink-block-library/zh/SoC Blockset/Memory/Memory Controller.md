@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Memory Controller
 
 ## 端口
+```yaml
+ports:
+- name: burstReq*N*
+  summary: 内存访问请求 标量
+  direction: input
+  data_types: BurstRequest2BusObj
+- name: burstDone*N*
+  summary: 发往主设备的信号 标量
+  direction: output
+  data_types: BurstRequest2BusObj
+```
 
 ### 输入
 
@@ -35,8 +46,43 @@ chinese_source: worker-translation
 **burstDone***`N`* 输出端口的数量由 **Number of masters** 参数定义。**burstDone***`N`* 表示第 *`N`* 个输入端口
 
 **数据类型：** `BurstRequest2BusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Hardware board
+  summary: 查看或修改当前硬件设置 只读：当前硬件板的名称
+  group: ''
+- name: Memory selection
+  summary: 在内存区域之间选择 PS memory（默认）| PL memory
+  group: 主要
+- name: Number of masters
+  summary: 连接到此控制器的主设备数量 2（默认）| 从 1 到 12 的正整数
+  group: 主要
+- name: Interconnect arbitration
+  summary: 仲裁策略 Round robin（默认）| Fixed port priority
+  group: 主要
+- name: Use hardware board settings
+  summary: 使用配置参数中的硬件实现设置 off（默认）| on
+  group: 主要
+- name: Bandwidth
+  summary: 发往外部内存的事务带宽 只读：标量
+  group: 主要
+- name: Frequency (MHz)
+  summary: 控制器时钟频率，单位为 MHz 200（默认）| 标量
+  group: 主要
+- name: Data width (bits)
+  summary: 数据路径的位宽 64（默认）| 正整数
+  group: 主要
+- name: Bandwidth derating (%)
+  summary: 内存事务低效 0-100
+  group: 主要
+- name: Request to first transfer (in clocks)
+  summary: 请求与传输开始之间的时钟周期数 非负整数
+  group: 主要
+- name: Last transfer to transaction complete (in clocks)
+  summary: 传输结束与事务完成之间的时钟周期数 非负整数
+  group: 主要
+```
 
 ### **Hardware board** — 查看或修改当前硬件设置 只读：当前硬件板的名称
 
@@ -128,7 +174,6 @@ chinese_source: worker-translation
 ### 性能
 
 点击 **Launch performance app** 以打开 Performance Metrics 窗口。有关更多信息，请参阅 Simulation Performance Plots。
-
 ## 所属库
 
 SoC Blockset / Memory

@@ -14,6 +14,15 @@ language: en
 # Reduced Order Flexible Solid
 
 ## Ports
+```yaml
+ports:
+- name: F1, F2, ..., F*n*
+  summary: Frames frame
+  direction: unspecified
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -34,8 +43,115 @@ attached to the flexible body.
 
 The **R** port must not be rigidly connected to any
 blocks that exert forces and torques or possess inertia.
-
 ## Parameters
+```yaml
+parameters:
+- name: Unit System
+  summary: Standard or custom units for length, mass, and time SI (m, kg, s) (default) | CGS (cm, g, s) | English (ft, slug,
+    s) | Custom
+  group: Unit System
+- name: Length Unit
+  summary: Unit of measure for length m (default) | cm | mm | km | in | ft | yd | mi
+  group: Unit System
+- name: Mass Unit
+  summary: Unit of measure for mass kg (default) | g | t | lbm | slug
+  group: Unit System
+- name: Time Unit
+  summary: Unit of measure for time s (default) | ms | min | hr
+  group: Unit System
+- name: Number of Frames
+  summary: Number of frame ports 1 (default) | positive integer
+  group: Interface Frames
+- name: Origins
+  summary: Cartesian coordinates of interface frame origins [0 0 0] (default) | *n*-by-*3* matrix
+  group: Interface Frames
+- name: Orientations
+  summary: Orientations of interface frames [1 0 0 0] (default) | *n*-by-*4* matrix of unit quaternions
+  group: Interface Frames
+- name: Stiffness Matrix
+  summary: Stiffness matrix from reduced-order model [] (default) | *r*-by-*r* matrix
+  group: Reduced Order Matrices
+- name: Mass Matrix
+  summary: Mass matrix from reduced-order model [] (default) | *r*-by-*r* matrix
+  group: Reduced Order Matrices
+- name: Type
+  summary: Type of damping method Proportional (default) | Uniform Modal | Damping Matrix | None
+  group: Damping
+- name: Mass Coefficient
+  summary: Coefficient of mass matrix 0 1/s (default) | nonnegative scalar
+  group: Damping
+- name: Stiffness Coefficient
+  summary: Coefficient of stiffness matrix 0.001 s (default) | nonnegative scalar
+  group: Damping
+- name: Damping Ratio
+  summary: Damping ratio for uniform modal damping method 0.01 (default) | unitless nonnegative scalar
+  group: Damping
+- name: Damping Matrix
+  summary: Reduced-order damping matrix [] (default) | *r*-by-*r* matrix
+  group: Damping
+- name: Type
+  summary: Type of reference conditions Linearized Mean Axes (default) | Body-Fixed
+  group: Reference Conditions
+- name: Frame
+  summary: Connection frame used for body-fixed reference conditions frame name
+  group: Reference Conditions
+- name: Show Port R
+  summary: Show reference frame port off (default) | on
+  group: Reference Conditions
+- name: Type
+  summary: Method to model flexible bodies None (default) | Modally Reduced
+  group: Fidelity
+- name: Number of Retained Modes
+  summary: Retained normal modes 1 (default) | nonnegative integer
+  group: Fidelity
+- name: Type
+  summary: Visual representation of flexible body None (default) | Partitioned Geometry | Deformed Geometry
+  group: Graphic
+- name: File Name
+  summary: CAD file name or path to CAD file character vector
+  group: Graphic
+- name: Unit Type
+  summary: Source of length unit for geometry From File (default) | From Unit System
+  group: Graphic
+- name: Vertex Coordinates
+  summary: Coordinates of vertices on triangulation representation [] (default) | *nv*-by-*3* matrix
+  group: Graphic
+- name: Facet Vertex Indices
+  summary: Indices of vertices that define facets of triangulation representation [] (default) | *nf*-by-*3* matrix
+  group: Graphic
+- name: Reconstruction Matrix
+  summary: Recovery data to visualize deformed body [] (default) | *3nv*-by-*r* matrix
+  group: Graphic
+- name: Visual Properties
+  summary: Parameterizations for color and opacity From File (default) | Advanced | Simple
+  group: Graphic
+- name: Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Graphic
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Graphic
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Graphic
+- name: Shininess
+  summary: Shininess of rendered solid 75 (default) | scalar in the range of 1 to 128
+  group: Graphic
+```
 
 ### Unit System
 
@@ -567,7 +683,6 @@ To enable this parameter, set:
    Geometry`.
 2. **Visual Properties** to
    `Advanced`.
-
 ## Libraries
 
 Simscape / Multibody / Body Elements / Flexible Bodies

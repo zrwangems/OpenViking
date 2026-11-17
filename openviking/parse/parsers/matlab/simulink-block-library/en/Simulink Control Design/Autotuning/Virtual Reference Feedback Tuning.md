@@ -14,6 +14,21 @@ language: en
 # Virtual Reference Feedback Tuning
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Plant input signal scalar signal
+  direction: input
+- name: y
+  summary: Plant output signal scalar signal
+  direction: input
+- name: start/stop
+  summary: Tuning interval signal scalar signal
+  direction: input
+- name: θ
+  summary: Tuned controller parameters vector
+  direction: output
+```
 
 ### Input
 
@@ -52,8 +67,56 @@ values converge.
 Tuned controller parameters, returned as an *n*-by-1 vector signal,
 where *n* is the number of controller
 parameters.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: Sample time 0.1 (default) | positive scalar
+  group: ''
+  block_parameter: DiscreteTs
+  values: '"0.1" (default) | positive scalar in quotes'
+- name: Reference Model
+  summary: Reference model tf(1,[3 1]) (default) | tf model object | ss model object | zpk model object
+  group: ''
+  block_parameter: MrefS
+  values: '"tf(1,[3 1])" (default) | tf, ss, or zpk model object in quotes'
+- name: Weighting Function
+  summary: Weighting function 1 (default) | tf model object | ss model object | zpk model object
+  group: ''
+  block_parameter: WeightS
+  values: '"1" (default) | tf, ss, or zpk model object in quotes'
+- name: Controller Structure
+  summary: Controller structure PID (default) | FIR Filter | Generic Form
+  group: ''
+  block_parameter: ControlType
+  values: '"PID" (default) | "FIR Filter" | "Generic Form"'
+- name: Type
+  summary: PID controller type PI (default) | P | I | PD | PID
+  group: ''
+  block_parameter: PIDControlType
+  values: '"PI" (default) | "P" | "I" | "PD" | "PID"'
+- name: Integrator Method
+  summary: Discrete integration method Forward Euler (default) | Backward Euler | Trapezoidal
+  group: ''
+  type: to a controller type with integral
+  block_parameter: PIDIntegratorMethod
+  values: '"Forward Euler" (default) | "Backward Euler" | "Trapezoidal"'
+- name: FIR Filter Order
+  summary: FIR filter order 2 (default) | positive integer between 2 and 10
+  group: ''
+  block_parameter: FIRFilterOrder
+  values: '"2" (default) | positive integer between 2 and 10 in quotes'
+- name: SISO Linear Systems Ci(z)
+  summary: Array of SISO linear systems {tf([1],[1],0.1);0.1*tf([1],[1 -1],0.1)} (default) | cell array | LTI model array
+  group: ''
+  block_parameter: LTIInputObj
+  values: '"{tf([1],[1],0.1);0.1*tf([1],[1 -1],0.1)}" (default) | cell array in quotes | LTI model array in quotes'
+- name: Show θ values while tuning
+  summary: Output tuned parameter values on (default) | off
+  group: ''
+  block_parameter: ShowThetaWhileTuning
+  values: '"on" (default) | "off"'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -302,7 +365,6 @@ the `set_param` function.
 | **Values:** | `"on"` (default) | `"off"` |
 
 **Example:** `set_param(gcb,"ShowThetaWhileTuning","off")`
-
 ## Libraries
 
 Simulink Control Design / Autotuning

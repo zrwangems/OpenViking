@@ -14,6 +14,29 @@ language: en
 # Thyristor Rectifier Voltage Controller (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: VdcRef
+  summary: Reference DC voltage, V scalar
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: DC-link voltage, V scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: External reset scalar
+  direction: input
+  data_types: single | double
+- name: Vabc
+  summary: Three-phase voltage, V vector
+  direction: input
+  data_types: single | double
+- name: P
+  summary: Pulses vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -49,8 +72,37 @@ Three-phase voltage specified as a vector of that contains the
 Pulse control signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Loop filter proportional gain
+  summary: Loop filter *Kp* 2 (default) | positive scalar
+  group: ''
+- name: Loop filter integral gain
+  summary: Loop filter *Ki* 20 (default) | positive scalar
+  group: ''
+- name: Proportional gain
+  summary: Controller *Kp* 1 (default) | positive scalar
+  group: ''
+- name: Integral gain
+  summary: Controller *Ki* 1 (default) | positive scalar
+  group: ''
+- name: Thyristor pulse width (rad)
+  summary: Pulse width 5*pi/6 (default) | positive scalar
+  group: ''
+- name: Pulse ordering
+  summary: Pulse ordering rule Sequential device order (default) | Natural order of commutation
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+- name: Time constant voltage filter
+  summary: DC voltage filter *τ* 0.001 (default) | positive scalar
+  group: ''
+- name: Filter DC voltage
+  summary: DC voltage filter option on (default) | off
+  group: ''
+```
 
 ### **Loop filter proportional gain** — Loop filter *Kp* `2` (default) | positive scalar
 
@@ -110,7 +162,6 @@ When the check box is:
 
 The **Time constant voltage filter** parameter is only visible when the
 **Filter DC voltage** check box is selected.
-
 ## Libraries
 
 Simscape / Electrical / Control / Converter Control

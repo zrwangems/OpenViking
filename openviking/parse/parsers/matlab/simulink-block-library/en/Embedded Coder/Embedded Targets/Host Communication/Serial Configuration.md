@@ -14,10 +14,69 @@ language: en
 # Serial Configuration
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port
+  summary: Serial communication port available communication ports
+  group: ''
+  block_parameter: Port
+  type: character vector, string
+- name: Baud rate
+  summary: Communication speed 9600 (default) | positive integer
+  group: ''
+  block_parameter: BaudRate
+  type: character vector, string
+  values: positive integer
+  default: '''9600'''
+- name: Data bits
+  summary: Number of bits to represent one character of data 8 (default) | 5 | 6 | 7
+  group: ''
+  block_parameter: DataBits
+  type: character vector, string
+  values: '''5'' | ''6'' | ''7'' | ''8'''
+  default: '''8'''
+- name: Parity
+  summary: Parity bit type none (default) | even | odd
+  group: ''
+  block_parameter: Parity
+  type: character vector, string
+  values: '''none'' | ''even'' | ''odd'''
+  default: '''none'''
+- name: Stop bits
+  summary: Pattern of bits that indicates the end of a character 1 (default) | positive scalar
+  group: ''
+  block_parameter: StopBits
+  type: character vector, string
+  values: positive scalar
+  default: '''1'''
+- name: Byte order
+  summary: Sequential order of bytes little-endian (default) | big-endian
+  group: ''
+  block_parameter: ByteOrder
+  type: character vector, string
+  values: '''little-endian'' | ''big-endian'''
+  default: '''little-endian'''
+- name: Flow control
+  summary: Mode for managing data transmission rate none (default) | hardware
+  group: ''
+  block_parameter: FlowControl
+  type: character vector, string
+  values: '''none'' | ''hardware'''
+  default: none
+- name: Timeout
+  summary: Allowed time to complete operations 10 (default) | positive scalar
+  group: ''
+  block_parameter: Timeout
+  type: character vector, string
+  values: positive scalar
+  default: '''10'''
+```
 
 ### **Port** — Serial communication port available communication ports
 
@@ -168,7 +227,6 @@ step.
 | **Type:** character vector, string |
 | **Values:** positive scalar |
 | **Default:** `'10'` |
-
 ## Libraries
 
 Instrument Control Toolbox Motor Control Blockset / Protection and Diagnostics

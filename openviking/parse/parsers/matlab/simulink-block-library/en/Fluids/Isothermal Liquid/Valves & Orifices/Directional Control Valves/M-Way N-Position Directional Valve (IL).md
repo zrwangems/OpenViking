@@ -14,6 +14,18 @@ language: en
 # M-Way N-Position Directional Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Spool displacement, m physical signal
+  direction: input
+- name: '1'
+  summary: Port 1 isothermal liquid
+  direction: conserving
+- name: 2,...,10
+  summary: Ports with parameter dependencies isothermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +49,93 @@ parameter.
 
 To enable ports 2 through 10, set **Number of ports** to the number of
 ports you want.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of ports
+  summary: Number of valve ports 2 (default) | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+  group: Valve Configuration
+- name: Number of spool positions
+  summary: Number of spool positions 2 (default) | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+  group: Valve Configuration
+- name: Spool travel at each spool position index
+  summary: Spool travel [-2, 0, 2, 4] mm (default) | vector of length *N*
+  group: Valve Configuration
+- name: Number of orifices
+  summary: Number of orifices 1 (default) | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
+    | 20
+  group: Valve Configuration
+- name: Area characteristics
+  summary: Area characteristic parameterization option Identical for all flow paths (default) | Different for each flow path
+  group: Valve Configuration
+- name: Orifice parameterization
+  summary: Orifice parameterization Linear – Area vs. spool travel (default) | Tabulated data – Volumetric flow rate vs. pressure
+    drop (linear with spool travel) | Tabulated data – Area vs. spool travel
+  group: Valve Configuration
+- name: Inter-position spool travel fraction for which orifices remain fully open
+  summary: Fully open flow between spool positions 0.5 (default) | scalar in the range [0,1)
+  group: Valve Configuration
+- name: Inter-position spool travel fraction for which orifices transition between open-closed
+  summary: Spool travel from open to closed 0.1 (default) | nonnegative scalar
+  group: Valve Configuration
+- name: Maximum orifice area
+  summary: Maximum orifice area 1e-4 m^2 (default) | positive scalar
+  group: Valve Configuration
+- name: Leakage area fraction
+  summary: Leakage area fraction 0.01 (default) | positive scalar
+  group: Valve Configuration
+- name: Cross-sectional area at ports
+  summary: Cross-sectional area for all ports inf m^2 (default) | positive scalar
+  group: Valve Configuration
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Valve Configuration
+- name: Critical Reynolds number
+  summary: Critical Reynolds number 150 (default) | positive scalar
+  group: Valve Configuration
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar
+  group: Valve Configuration
+- name: Pressure recovery
+  summary: Option to account for pressure increases in area expansions Off (default) | On
+  group: Valve Configuration
+- name: Pressure drop vector
+  summary: Tabulated pressure drop [-.1, .3, .5, .7] MPa (default) | vector of length *X*
+  group: Valve Configuration
+- name: Fully open volumetric flow rate vector
+  summary: Tabulated volumetric flow rate [-.0009, .0016, .002, .0024] m^3/s (default) | vector of length *X*
+  group: Valve Configuration
+- name: Leakage flow rate fraction
+  summary: Leakage flow rate fraction 0.01 (default) | positive scalar
+  group: Valve Configuration
+- name: Ports connected by orifice 1
+  summary: Ports connected by orifice 1 [3, 2] (default) | vector of length 2
+  group: Orifice 1
+- name: Spool position indices where orifice 1 is open
+  summary: Orifice 1 open positions [1, 4] (default) | vector of length 1 to *N*
+  group: Orifice 1
+- name: Spool travel for which orifice 1 remains fully open
+  summary: Fully open spool travel 1 mm (default) | nonnegative scalar
+  group: Orifice 1
+- name: Spool travel for which orifice 1 transitions between open-closed
+  summary: Threshold spool travel 0.2 mm (default) | positive scalar
+  group: Orifice 1
+- name: Maximum area of orifice 1
+  summary: Orifice area when fully open 1e-4 m^2 (default) | positive scalar
+  group: Orifice 1
+- name: Pressure drop vector of orifice 1
+  summary: Orifice 1 pressure drop [-.1, .3, .5, .7] MPa (default) | vector of length *X*
+  group: Orifice 1
+- name: Fully open volumetric flow rate vector of orifice 1
+  summary: Orifice 1 fully open volumetric flow rate [-.0009, .0016, .002, .0024] m^3/s (default) | vector of length *X*
+  group: Orifice 1
+- name: Vector of spool travel relative to discrete spool position for orifice 1
+  summary: Vector of spool travels [-.7, -.4, -.35, -.3, -.25, 0] mm (default) | vector
+  group: Orifice 1
+- name: Area vector for orifice 1
+  summary: Vector of orifice opening areas [1e-10, 1e-05, 4e-05, 8e-05, .0001, .0001] m^2 (default) | vector
+  group: Orifice 1
+```
 
 ### Valve Configuration
 
@@ -451,7 +548,6 @@ characteristics** to `Different for each
 flow path` and **Orifice
 parameterization** to `Tabulated data –
 Area vs. spool travel`.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Directional Control Valves

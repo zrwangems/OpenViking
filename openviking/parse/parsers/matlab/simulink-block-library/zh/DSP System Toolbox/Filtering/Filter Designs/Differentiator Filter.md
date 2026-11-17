@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Differentiator Filter
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 数据输入 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Output
+  summary: 微分器滤波器输出 向量 | 矩阵
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -36,8 +47,34 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Design minimum order filter
+  summary: 设计最小阶数滤波器 on（默认）| off
+  group: 主选项卡
+- name: Filter order
+  summary: 微分器滤波器的阶数 31（默认）| 奇正整数
+  group: 主选项卡
+- name: Maximum passband ripple (dB)
+  summary: 最大通带纹波 0.1（默认）| 正标量
+  group: 主选项卡
+- name: Scale filter coefficients
+  summary: 缩放滤波器系数 off（默认）| on
+  group: 主选项卡
+- name: View Filter Response
+  summary: 查看滤波器响应 按钮（默认）
+  group: 主选项卡
+- name: Simulate using
+  summary: 仿真方式 Interpreted execution（默认）| Code generation
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Coefficients
+  summary: 系数 fixdt(1,16)（默认）| fixdt(1,16,0) | <data type expression>
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -98,7 +135,6 @@ chinese_source: worker-translation
 有关详细信息，请参阅 Specify Data Types Using Data Type Assistant (Simulink)。
 
 输出的字长与输入的字长相同。输出的小数长度经过计算，使得输出的整个动态范围可以在不溢出的情况下表示。有关模块如何计算小数长度的详细信息，请参阅 Fixed-Point Precision Rules for Avoiding Overflow in FIR Filters。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Designs

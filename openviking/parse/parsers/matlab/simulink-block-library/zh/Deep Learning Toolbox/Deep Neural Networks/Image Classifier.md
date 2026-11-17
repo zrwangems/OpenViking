@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Image Classifier
 
 ## 端口
+```yaml
+ports:
+- name: image
+  summary: 图像或特征数据 数值数组
+  direction: input
+- name: ypred
+  summary: 预测的类别标签 枚举
+  direction: output
+- name: scores
+  summary: 预测的类别分数 矩阵
+  direction: output
+- name: labels
+  summary: 预测分数的类别标签 矩阵
+  direction: output
+```
 
 ### 输入
 
@@ -50,8 +65,58 @@ chinese_source: worker-translation
 与预测分数相关联的标签，以
 *N*×*K* 矩阵形式返回，其中 *N* 是
 观测值的数量，*K* 是类别数。
-
 ## 参数
+```yaml
+parameters:
+- name: Network
+  summary: 训练网络的来源 Network from MAT file（默认）| Network from MATLAB function
+  group: ''
+  block_parameter: Network
+  type: 字符向量、字符串
+  values: '''Network from MAT file'' | ''Network from MATLAB function'''
+- name: File path
+  summary: 包含训练网络的 MAT 文件 untitled.mat（默认）| MAT 文件路径或名称
+  group: ''
+  block_parameter: NetworkFilePath
+  type: 字符向量、字符串
+  values: MAT 文件路径或名称
+- name: MATLAB function
+  summary: MATLAB 函数名称 squeezenet（默认）| MATLAB 函数名称
+  group: ''
+  block_parameter: NetworkFunction
+  type: 字符向量、字符串
+  values: MATLAB 函数名称
+- name: Mini-batch size
+  summary: 小批量的大小 128（默认）| 正整数
+  group: ''
+  block_parameter: MiniBatchSize
+  type: 字符向量、字符串
+  values: 正整数
+- name: Resize input
+  summary: 调整输入维度 on（默认）| off
+  group: ''
+  block_parameter: ResizeInput
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+- name: Classification
+  summary: 输出具有最高分数的预测标签 on（默认）| off
+  group: ''
+  block_parameter: Classification
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+- name: Predictions
+  summary: 输出所有分数和相关标签 off（默认）| on
+  group: ''
+  block_parameter: Predictions
+  type: 字符向量、字符串
+  values: '''off'' | ''on'''
+- name: Class names workspace variable
+  summary: 包含网络输出类别名称的工作区变量 classNames（默认）| 分类向量变量 | 字符串数组变量 | 字符向量元胞数组变量名称
+  group: ''
+  block_parameter: classNames
+  type: 分类向量、字符串数组或字符向量元胞数组的变量名称。
+  values: 包含类别名称的变量名称，指定为分类向量、字符串数组或字符向量元胞数组。
+```
 
 ### **Network** — 训练网络的来源 `Network from MAT file`（默认）| `Network from MATLAB function`
 
@@ -202,7 +267,6 @@ end
 |  |
 | --- |
 | **默认：** 工作区变量 `classNames`。 |
-
 ## 所属库
 
 Deep Learning Toolbox / Deep Neural Networks

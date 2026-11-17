@@ -14,6 +14,13 @@ language: en
 # MAVLink Blank Message
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: MAVLink packet nonvirtual bus
+  direction: output
+  data_types: bus
+```
 
 ### Output
 
@@ -28,8 +35,32 @@ ID are initialized to the corresponding **System ID** and
 **Component ID** parameters.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: MAVLink dialect source
+  summary: Source for specifying the MAVLink message definition Select from standard MAVLink dialects (default) | Specify
+    your own
+  group: ''
+- name: MAVLink dialect
+  summary: Message definition to parse for MAVLink messages common.xml (default) | string
+  group: ''
+- name: MAVLink version
+  summary: MAVLink protocol version 2 (default) | 1
+  group: ''
+- name: MAVLink Message type
+  summary: MAVLink message HEARTBEAT (default)
+  group: ''
+- name: System ID
+  summary: System ID of the sender 1 (default)
+  group: ''
+- name: Component ID
+  summary: Component ID of the sender 1 (default)
+  group: ''
+- name: Sample time
+  summary: Interval between outputs inf (default) | scalar
+  group: ''
+```
 
 ### **MAVLink dialect source** — Source for specifying the MAVLink message definition `Select from standard MAVLink dialects` (default) | `Specify your own`
 
@@ -95,7 +126,6 @@ a new blank message at each interval of Sample time.
 For more information, see Specify Sample Time (Simulink) (Simulink).
 
 **Data Types:** `uint8`
-
 ## Libraries
 
 UAV Toolbox / MAVLink

@@ -14,10 +14,32 @@ language: en
 # MATLAB Discrete-Event System
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: System object name
+  summary: Specify the full name of the System object™ character vector
+  group: ''
+  block_parameter: System
+  type: character vector
+  values: '''<Enter System Class Name>'' | character vector'
+  default: '''<Enter System Class Name>'''
+- name: New
+  summary: Create a SimEvents System object from a template SimEvents System object
+  group: ''
+- name: Simulate using
+  summary: Specify the simulation mode Code generation (default) | Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: character vector
+  values: '''Code generation'' | Interpreted execution'
+  default: '''Code generation'''
+```
 
 ### **System object name** — Specify the full name of the System object™ character vector
 
@@ -97,7 +119,6 @@ or `Interpreted execution`.
 | **Type**: character vector |
 | **Values**: `'Code generation'` | `Interpreted execution` |
 | **Default**: `'Code generation'` |
-
 ## Libraries
 
 SimEvents

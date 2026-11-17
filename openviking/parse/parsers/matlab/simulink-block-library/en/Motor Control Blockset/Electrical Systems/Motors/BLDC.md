@@ -14,6 +14,30 @@ language: en
 # BLDC
 
 ## Ports
+```yaml
+ports:
+- name: LdTrq
+  summary: Load torque on motor scalar
+  direction: input
+- name: Spd
+  summary: Motor shaft speed scalar
+  direction: input
+- name: PhaseVolt
+  summary: Stator terminal voltages 1-by-3 array
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: PhaseCurr
+  summary: Phase a, b, c current 1-by-3 array
+  direction: output
+- name: MtrTrq
+  summary: Motor torque scalar
+  direction: output
+- name: MtrSpd
+  summary: Motor speed scalar
+  direction: output
+```
 
 ### Input
 
@@ -87,8 +111,57 @@ rad/s.
 
 To enable this port, set the **Mechanical input configuration**
 parameter to `Torque`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Mechanical input configuration
+  summary: Select port configuration Torque (default) | Speed
+  group: Block Options
+  block_parameter: port_config
+  values: Torque (default) | Speed
+- name: Simulation type
+  summary: Select simulation type Continuous (default) | Discrete
+  group: Block Options
+- name: Sample time (s)
+  summary: Sample time for discrete integration 25e-6 (default) | scalar
+  group: Block Options
+- name: Number of pole pairs
+  summary: Pole pairs of motor 4 (default) | scalar
+  group: Parameters
+- name: Stator resistance per phase (Ohm)
+  summary: Stator resistance in each phase 0.36 (default) | scalar
+  group: Parameters
+- name: Stator d-axis inductance (H)
+  summary: Stator inductance across d-axis 2e-4 (default) | scalar
+  group: Parameters
+- name: Stator q-axis inductance (H)
+  summary: Stator inductance across q-axis 2e-4 (default) | scalar
+  group: Parameters
+- name: Permanent flux linkage constant (Wb)
+  summary: Flux-linkage constant 0.0064 (default) | scalar
+  group: Parameters
+- name: Inertia (kgm^2)
+  summary: Rotor inertia 7.0616e-06 (default) | scalar
+  group: Parameters
+- name: Viscous damping (Nm/rad/s)
+  summary: Viscous damping 2.6369e-06 (default) | scalar
+  group: Parameters
+- name: Static friction (Nm)
+  summary: Static friction 0 (default) | scalar
+  group: Parameters
+- name: Initial d-axis current (A)
+  summary: Initial current across *d'*-axis 0 (default) | scalar
+  group: Initial Values
+- name: Initial q-axis current (A)
+  summary: Initial current across *q'*-axis 0 (default) | scalar
+  group: Initial Values
+- name: Initial rotor mechanical position (rad)
+  summary: Initial mechanical position of rotor 0 (default) | scalar
+  group: Initial Values
+- name: Initial rotor mechanical speed (rad/s)
+  summary: Initial mechanical speed of rotor 0 (default) | scalar
+  group: Initial Values
+```
 
 ### Block Options
 
@@ -195,7 +268,6 @@ Initial angular velocity of the motor,
 
 To enable this parameter, set **Mechanical input
 configuration** to `Torque`.
-
 ## Libraries
 
 Motor Control Blockset / Electrical Systems / Motors

@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Variable Inductor
 
 ## 端口
+```yaml
+ports:
+- name: L
+  summary: Simulink 控制信号标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,11 +30,12 @@ chinese_source: worker-translation
 Simulink 控制信号，指定为标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters: []
+```
 
 Variable Inductor 模块没有参数。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Elements

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Unwrap
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 信号输入 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 信号输出 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -32,8 +43,19 @@ chinese_source: worker-translation
 该模块保持输入的大小和维度，输出端口速率等于输入端口速率。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Tolerance (radians)
+  summary: 跳变大小 pi（默认）| 标量值
+  group: ''
+- name: Input processing
+  summary: 处理输入的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: Reset initial phase to zero for each input frame
+  summary: 检查连续帧 off（默认）| on
+  group: ''
+```
 
 ### **Tolerance (radians)** — 跳变大小 `pi`（默认）| 标量值
 
@@ -65,7 +87,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Input processing** 参数设置为 `Columns as channels (frame based)`。在基于采样的处理模式下，模块不会为每个新输入将初始相位值重置为零。有关详细信息，请参阅基于采样的处理。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations

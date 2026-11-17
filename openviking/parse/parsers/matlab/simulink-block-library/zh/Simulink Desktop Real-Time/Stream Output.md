@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # Stream Output
 
 ## 端口
+```yaml
+ports:
+- name: Input Data
+  summary: 要写入通信通道的数据 数值向量 | 字符串
+  direction: input
+- name: Data Ready
+  summary: 数据就绪端口（可选） 1 | 0
+  direction: output
+- name: Data Error
+  summary: 数据错误端口（可选） 1 | 0
+  direction: output
+- name: Missed Ticks
+  summary: 错过的节拍计数（可选） double
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -56,8 +72,62 @@ ticks** 时，软件报告错误并停止仿真。
 port** 时，此端口可见。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Install new board
+  summary: 注册板卡 < no board selected >（默认）
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: 删除当前板卡（按钮）
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: 设置板卡（按钮）
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: 模块的采样时间 0.1（默认） | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: 您的模型可以落后于内核的定时器节拍数 10（默认） | 整数
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: 将错过的节拍数发送到端口 Missed Ticks 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: 在内核等待硬件时让出 CPU 'off'（默认）| 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Input port sizes
+  summary: 指定端口的数量和宽度 1（默认）| 向量
+  group: ''
+  block_parameter: PortSizes
+- name: Format string
+  summary: 写入流的数据项的格式 '%g'（默认）| 字符向量
+  group: ''
+  block_parameter: FormatString
+- name: Show “Data Ready” port
+  summary: 添加端口 Data Ready，当模块可以接受新数据时发出信号 1 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowReady
+- name: Show “Data Error” port
+  summary: 添加端口 Data Error，如果发生错误则发出信号 1 'off'（默认）| 'on'
+  group: ''
+  block_parameter: ShowError
+- name: Initial string
+  summary: 仿真开始时发送的数据 字符向量
+  group: ''
+  block_parameter: InitialValue
+- name: Final string
+  summary: 仿真结束时发送的数据 字符向量
+  group: ''
+  block_parameter: FinalValue
+```
 
 ### **Install new board** — 注册板卡 `< no board selected >`（默认）
 
@@ -254,7 +324,6 @@ step size** 配置参数中输入的值或该值的整数倍。
 |  |
 | --- |
 | **模块参数**：`FinalValue` |
-
 ## 所属库
 
 Simulink Desktop Real-Time

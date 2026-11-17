@@ -15,6 +15,48 @@ chinese_source: worker-translation
 # Simulation 3D Robot
 
 ## 端口
+```yaml
+ports:
+- name: Config
+  summary: 机器人输入关节配置向量
+  direction: input
+- name: Translation
+  summary: 机器人基座平移向量
+  direction: input
+- name: Rotation
+  summary: 机器人基座旋转向量
+  direction: input
+- name: TargetActor
+  summary: 要抓取的目标 actor 名称 固定大小字符串标量 | 可变大小 uint8 数组
+  direction: input
+- name: ActivateTargetGrasp
+  summary: 抓取目标 actor 布尔值
+  direction: input
+- name: GraspRegionTranslation
+  summary: 自动抓取目标 actor 所需的平移距离向量
+  direction: input
+- name: GraspRegionRotation
+  summary: 自动抓取目标 actor 所需的旋转距离向量
+  direction: input
+- name: TargetEETranslation
+  summary: 末端执行器与目标 actor 之间的平移差向量
+  direction: input
+- name: TargetEERotation
+  summary: 末端执行器与目标 actor 之间的旋转差向量
+  direction: input
+- name: GroundTruthConfiguration
+  summary: 机器人构型向量的真值
+  direction: output
+- name: IsTargetGrasped
+  summary: 目标演员抓取状态布尔值
+  direction: output
+- name: GroundTruthTranslation
+  summary: 机器人输入关节构型向量
+  direction: output
+- name: GroundTruthRotation
+  summary: 机器人输入关节构型向量
+  direction: output
+```
 
 ### 输入
 
@@ -133,8 +175,88 @@ truth translation and rotation output signal** 参数。
 
 要启用此端口，请选择 **Enable ground
 truth translation and rotation output signal** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Input type
+  summary: 机器人模型源 RigidBodyTree Object（默认）| Robot Library
+  group: 参数
+- name: Rigid body tree
+  summary: 机器人刚体树模型 twoJointRigidBodyTree（默认）| rigidBodyTree 对象 | Robot Library 中的机器人名称
+  group: 参数
+- name: Actor name
+  summary: 在 Unreal Engine 场景中表示机器人的演员名称 SimulinkRobot1（默认）| 字符串标量
+  group: 参数
+- name: Use existing Simulink 3D actor specified in the actor name prompt
+  summary: 使用 Unreal Engine 场景中的现有演员来表示机器人 off（默认）| on
+  group: 参数
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: 参数
+- name: Initial base translation
+  summary: 机器人基座的初始平移 [0 0 0]（默认）
+  group: Initial Values
+- name: Initial base rotation
+  summary: 机器人基座的初始旋转 [0 0 0]（默认）
+  group: Initial Values
+- name: Initial joint configuration
+  summary: 初始关节配置 [0 0]（默认）| *N* 元素行向量
+  group: Initial Values
+- name: End effector
+  summary: 末端执行器刚体名称 tool（默认）
+  group: Grasp Settings
+- name: End effector to target actor offset as an input signal
+  summary: off（默认）| on
+  group: Grasp Settings
+- name: End effector to target actor translation
+  summary: '[0 0 0]（默认）|'
+  group: Grasp Settings
+- name: End effector to target actor rotation
+  summary: '[0 0 0]（默认）|'
+  group: Grasp Settings
+- name: Enable region-based target actor grasp approach
+  summary: 当目标 actor 位于末端执行器的指定范围内时自动抓取目标 actor off（默认）| on
+  group: Grasp Settings
+- name: Enable target actor grasp region as an input signal
+  summary: 在输入端口指定抓取目标 actor 的区域 off（默认）| on
+  group: Grasp Settings
+- name: 末端执行器到目标对象抓取区域平移差
+  summary: 抓取区域的平移差 [0.2 0.2 0.2]（默认）
+  group: Grasp Settings
+- name: 末端执行器到目标对象抓取区域旋转差
+  summary: 抓取区域的旋转差 [0 0 0]（默认）
+  group: Grasp Settings
+- name: 在 3D 场景中启用视觉几何体可视化
+  summary: 在 3D 可视化环境中添加刚体树视觉几何体 on（默认）| off
+  group: rigidBodyTree 几何体设置
+- name: 在 3D 场景中启用碰撞几何体可视化
+  summary: 在 3D 可视化环境中可视化刚体树碰撞几何体 off（默认）| on
+  group: rigidBodyTree 几何体设置
+- name: 碰撞几何体颜色
+  summary: 刚体树碰撞几何体的颜色 [0 1 0]（默认）| 向量
+  group: rigidBodyTree 几何体设置
+- name: 碰撞几何体透明度
+  summary: 刚体树碰撞几何体的透明度 0.1（默认）| 标量
+  group: rigidBodyTree 几何体设置
+- name: 启用 config 输入信号
+  summary: 在输入端口指定期望的机器人配置 on（默认）| off
+  group: 输入
+- name: 启用抓取设置输入信号
+  summary: off（默认）| on
+  group: 输入
+- name: 启用平移和旋转输入信号
+  summary: 在输入端口指定机器人基座的平移和旋转 off（默认）| on
+  group: 输入
+- name: 启用真值 config 输出信号
+  summary: 输出真值配置 off（默认）| on
+  group: 输出
+- name: 启用目标抓取状态输出信号
+  summary: 输出抓取状态 off（默认）| on
+  group: 输出
+- name: Enable ground truth translation and rotation output signal
+  summary: 输出机器人基座的真值位姿 off（默认）| on
+  group: 输出
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink 工具条的 **Simulation** 选项卡上，在
 **Prepare** 库中，选择 **Property
@@ -315,7 +437,6 @@ Object` 或 `Robot Library`：
 ### **Enable ground truth translation and rotation output signal** — 输出机器人基座的真值位姿 `off`（默认）| `on`
 
 选择此参数可在 **GroundTruthTranslation** 和 **GroundTruthRotation** 输出端口输出机器人基座的真值位姿。
-
 ## 所属库
 
 Robotics System Toolbox / Simulation 3D

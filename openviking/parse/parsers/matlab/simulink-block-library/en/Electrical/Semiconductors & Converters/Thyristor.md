@@ -14,6 +14,21 @@ language: en
 # Thyristor
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Gate port electrical
+  direction: conserving
+- name: A
+  summary: Anode port electrical
+  direction: conserving
+- name: K
+  summary: Cathode port electrical
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -37,8 +52,96 @@ Thermal conserving port.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal port No thermal port (default) | Show thermal port
+  group: ''
+- name: I-V characteristics defined by
+  summary: Thyristor representation Fundamental nonlinear equations (default) | Lookup table
+  group: Main
+- name: On-state voltage, V_T
+  summary: On-state Anode-Cathode static voltage 1.2 V (default)
+  group: Main
+- name: On-state current, I_T
+  summary: On-state static load current 1 A (default)
+  group: Main
+- name: Vector of on-state voltages, V_T
+  summary: Vector of on-state voltages [.75, 1, 1.25, 1.5, 1.75, 2, 2.25] V (default)
+  group: Main
+- name: Vector of corresponding currents, I_T
+  summary: Vector of corresponding currents [.015, .22, .75, 1.4, 2, 2.75, 3.45] A (default)
+  group: Main
+- name: Off-state current, I_DRM
+  summary: Off-state anode current 0.01 mA (default)
+  group: Main
+- name: Corresponding off-state voltage, V_DRM
+  summary: Off-state anode-cathode voltage 400 V (default)
+  group: Main
+- name: Holding current
+  summary: Holding current 1 mA (default)
+  group: Main
+- name: Measurement temperature
+  summary: Device simulation temperature 25 degC (default)
+  group: Main
+- name: Gate trigger current, I_GT
+  summary: Critical gate current 3 uA (default)
+  group: Gate Triggering
+- name: Corresponding gate voltage, V_GT
+  summary: Gate-cathode voltage 0.6 V (default)
+  group: Gate Triggering
+- name: Test voltage, V_D
+  summary: Test supply voltage 12 V (default)
+  group: Gate Triggering
+- name: Test load resistor
+  summary: Test load resistor 120 Ohm (default)
+  group: Gate Triggering
+- name: Critical rate of rise of off-state voltage, dV/dt
+  summary: Critical rate of rise of off-state voltage 150 V/us (default)
+  group: dV/dt Triggering
+- name: Test gate-cathode resistor, R_GK
+  summary: Test gate-cathode resistor 1000 Ohm (default)
+  group: dV/dt Triggering
+- name: NPN device forward transit time parameterization
+  summary: NPN device forward transit time parameterization Derive approximate value from gate-controlled turn-on time (default)
+    | Specify directly
+  group: Time Constants
+- name: Gate-controlled turn-on time
+  summary: Gate-controlled turn-on time 2 us (default)
+  group: Time Constants
+- name: Corresponding gate current
+  summary: Test gate current 10 mA (default)
+  group: Time Constants
+- name: NPN device forward transit time
+  summary: Mean forward transit time 0.3 us (default)
+  group: Time Constants
+- name: PNP device forward transit time parameterization
+  summary: PNP device forward transit time parameterization Set equal to NPN device forward transit time (default) | Specify
+    directly
+  group: Time Constants
+- name: PNP device forward transit time
+  summary: Mean forward transit time 0.3 us (default)
+  group: Time Constants
+- name: Turn-on delay time
+  summary: Time delay 0 s (default)
+  group: Time Constants
+- name: Gate current for turn-on delay time
+  summary: Gate current for turn-on delay time 1 mA (default)
+  group: Time Constants
+- name: Turn-on rise time
+  summary: Turn-on rise time 0 s (default)
+  group: Time Constants
+- name: Internal shunt resistor, Rs
+  summary: Gate-Cathode shunt resistance 87 kOhm (default)
+  group: Advanced
+- name: Internal series gate resistor, Rg
+  summary: Resistance associated with gate connection 10 Ohm (default)
+  group: Advanced
+- name: Product of NPN and PNP forward current gains
+  summary: Product of NPN and PNP forward current gains 10 (default)
+  group: Advanced
+```
 
 ### **Modeling option** — Whether to enable thermal port `No thermal port` (default) | `Show thermal port`
 
@@ -381,7 +484,6 @@ small effect.
 This parameter is visible only when you select
 `Fundamental nonlinear equations` for
 the **I-V characteristics defined by**.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

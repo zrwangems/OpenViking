@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Complex to Magnitude-Angle
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 复数输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: valid
+  summary: 指示输入数据是否有效 标量
+  direction: input
+  data_types: Boolean
+- name: Magnitude
+  summary: 输入信号的幅值 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: Angle
+  summary: 输入信号的相角 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixdt([],N,0)
+- name: valid
+  summary: 指示输出数据是否有效 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -62,8 +85,28 @@ chinese_source: worker-translation
 **valid** 为 `0`（`false`）时，来自 **Magnitude** 和/或 **Angle** 端口的值无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of iterations source
+  summary: 迭代次数的来源 Auto（默认） | Property
+  group: ''
+- name: Number of iterations
+  summary: CORDIC 迭代次数 正整数
+  group: ''
+- name: Output format
+  summary: 输出信号格式 Magnitude and Angle（默认） | Magnitude | Angle
+  group: ''
+- name: Angle format
+  summary: 输出角度格式 Normalized (默认) | Radians
+  group: ''
+- name: Scale output
+  summary: 缩放输出 on (默认) | off
+  group: ''
+- name: Scaling method
+  summary: CORDIC 增益缩放的实现方式 Shift-Add (默认) | Multipliers
+  group: ''
+```
 
 ### **Number of iterations source** — 迭代次数的来源 `Auto`（默认） | `Property`
 
@@ -118,7 +161,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选中 **Scale output** 参数。
-
 ## 所属库
 
 DSP HDL Toolbox / Math Functions

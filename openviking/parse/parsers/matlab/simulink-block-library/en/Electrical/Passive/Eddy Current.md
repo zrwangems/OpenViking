@@ -14,6 +14,18 @@ language: en
 # Eddy Current
 
 ## Ports
+```yaml
+ports:
+- name: N
+  summary: North terminal magnetic
+  direction: conserving
+- name: S
+  summary: South terminal magnetic
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +48,25 @@ block.
 
 To enable this port, select the **Show thermal
 port** parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Conductance of eddy current loop
+  summary: Eddy current conductance 1 1/Ohm (default) | positive number
+  group: ''
+- name: Parasitic series reluctance
+  summary: Series reluctance 1e-3 1/H (default) | nonnegative number
+  group: ''
+- name: Parasitic parallel permeance
+  summary: Parallel leakage permeance 1e-6 H (default) | nonnegative number
+  group: ''
+- name: Show thermal port
+  summary: Thermal port visibility Off (default) | On
+  group: ''
+- name: Thermal mass
+  summary: Thermal mass 0.1 J/K (default) | positive number
+  group: ''
+```
 
 ### **Conductance of eddy current loop** — Eddy current conductance `1` `1/Ohm` (default) | positive number
 
@@ -69,7 +98,6 @@ thermal energy.
 
 To enable this parameter, select the **Show thermal
 port** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive

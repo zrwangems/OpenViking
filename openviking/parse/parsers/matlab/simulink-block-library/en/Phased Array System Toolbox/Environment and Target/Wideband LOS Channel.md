@@ -14,6 +14,33 @@ language: en
 # Wideband LOS Channel
 
 ## Ports
+```yaml
+ports:
+- name: X
+  summary: Radiated signal complex-valued *M*-by-1 vector | complex-valued *M*-by-*N* matrix
+  direction: input
+  data_types: double
+- name: Pos1
+  summary: Position of signal origin 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Pos2
+  summary: Signal destination 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix
+  direction: input
+  data_types: double
+- name: Vel1
+  summary: Source velocity 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix | *N*-by-3 real-valued matrix
+  direction: input
+  data_types: double
+- name: Vel2
+  summary: Destination velocity 3-by-1 real-valued column vector | 3-by-*N* real-valued matrix | *N*-by-3 real-valued matrix
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Propagated signal complex-valued *M*-by-1 vector | complex-valued *M*-by-*N* matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -104,8 +131,56 @@ complex-valued *M*-by-*N* matrix.
 *N* is the number of signals.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Propagation speed (m/s)
+  summary: Signal propagation speed physconst('LightSpeed') (default) | positive scalar
+  group: ''
+- name: Signal carrier frequency (Hz)
+  summary: Signal carrier frequency 3e8 (default) | positive scalar
+  group: ''
+- name: Number of subbands
+  summary: Number of processing subbands 64 (default) | positive integer
+  group: ''
+- name: Specify atmospheric parameters
+  summary: Enable atmospheric attenuation model off (default) | on
+  group: ''
+- name: Temperature (degrees Celsius)
+  summary: Ambient temperature 15 | real-valued scalar
+  group: ''
+- name: Dry air pressure (Pa)
+  summary: Atmospheric dry air pressure 101325 | positive real-valued scalar
+  group: ''
+- name: Water vapour density (g/m^3)
+  summary: Atmospheric water vapor density 7.5 | positive real-valued scalar
+  group: ''
+- name: Liquid water density (g/m^3)
+  summary: Liquid water density 0 | non-negative real-valued scalar
+  group: ''
+- name: Rain rate (mm/hr)
+  summary: Rainfall rate 0 | non-negative real-valued scalar
+  group: ''
+- name: Perform two-way propagation
+  summary: Enable two-way propagation off (default) | on
+  group: ''
+- name: Inherit sample rate
+  summary: Inherit sample rate from upstream blocks on (default) | off
+  group: ''
+- name: Sample rate (Hz)
+  summary: Sampling rate of signal 1e6 (default) | positive real-valued scalar
+  group: ''
+- name: Maximum one-way propagation distance (m)
+  summary: Maximum one-way propagation distance 10e3 (default) | positive real-valued scalar
+  group: ''
+- name: Simulate using
+  summary: Block simulation method Interpreted Execution (default) | Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Propagation speed (m/s)** — Signal propagation speed `physconst('LightSpeed')` (default) | positive scalar
 
@@ -255,7 +330,6 @@ For more information, see Choosing a Simulation Mode (Simulink).
 | **Type:** enum |
 | **Values:** `Interpreted Execution`, `Code Generation` |
 | **Default:** `Interpreted Execution` |
-
 ## Libraries
 
 Phased Array System Toolbox / Environment and Target

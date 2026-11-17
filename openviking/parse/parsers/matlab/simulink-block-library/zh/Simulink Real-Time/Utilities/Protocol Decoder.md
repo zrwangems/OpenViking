@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Protocol Decoder
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: uint8 字节流数据包向量
+  direction: input
+  data_types: uint8
+- name: Length
+  summary: Data 输入端口处数据流数据包的长度 数值标量
+  direction: input
+  data_types: uint16
+- name: Field1
+  summary: 模块解码的第一个字段 标量
+  direction: output
+  data_types: string
+- name: IsNew
+  summary: 新数据指示符 0 | 1
+  direction: output
+  data_types: Boolean
+- name: IsValid
+  summary: 校验和验证指示符 0 | 1
+  direction: output
+  data_types: Boolean
+- name: Variable field length
+  summary: 最后一个可变大小字段的实际数据长度 数值标量
+  direction: output
+  data_types: double
+- name: Variable field lengths
+  summary: 逗号分隔变量数组的实际数据长度
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -93,8 +124,62 @@ chinese_source: worker-translation
 此输出端口仅在选中 **Parse comma separated variables** 参数时出现。
 
 **Data Types:** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Parse comma separated variables
+  summary: 解析包含逗号分隔变量数组的输入数据
+  group: ''
+  block_parameter: IsParseCSV
+- name: Header
+  summary: 数据包字符数组的包头 | 小于 255 的数值数组
+  group: ''
+  block_parameter: Header
+- name: Field name
+  summary: 数据包结构中的字段名称 Field1（默认）| 字符串
+  group: ''
+  block_parameter: FieldNames
+- name: Output field length
+  summary: 数据包结构中字段的长度（根据数据类型） 1（默认）| 数值标量
+  group: ''
+  block_parameter: FixedSizeFieldLength
+- name: Output field data type
+  summary: 字段的数据类型 uint8（默认）| int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | single | double
+  group: ''
+  block_parameter: FixedFieldDataTypes
+- name: Byte order
+  summary: 数据包中字段的字节序 Little endian（默认）| Big endian
+  group: ''
+  block_parameter: IsLittleEndian
+- name: Specify maximum length if last field has variable size
+  summary: 使最后一个字段能够输出可变大小的数据并指定字段的最大长度 数值标量
+  group: ''
+  block_parameter: MaxVariableSizeFieldLength
+- name: Specify logic for checksum validation
+  summary: 启用校验和验证逻辑并选择逻辑 XOR of bytes | 2's complement of sum of bytes | Custom algorithm
+  group: ''
+  block_parameter: ChecksumAlgorithm
+- name: Checksum size
+  summary: 校验和数据的字节数 数值标量
+  group: ''
+  block_parameter: ChecksumSize
+- name: File path
+  summary: 用于自定义校验和逻辑的函数 (.m) 的路径 MATLAB 路径
+  group: ''
+  block_parameter: ChecksumFilepath
+- name: Terminator
+  summary: 数据包终止符 <none>（默认）| CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+  block_parameter: TerminatorOption
+- name: Custom terminator
+  summary: 数据包的自定义终止符 字符数组
+  group: ''
+  block_parameter: CustomTerminatorVal
+- name: Is input data stream length available
+  summary: 为数据流长度启用额外输入 off（默认）| on
+  group: ''
+  block_parameter: IsInputLengthAvailable
+```
 
 ### **Parse comma separated variables** — 解析包含逗号分隔变量数组的输入数据
 
@@ -279,7 +364,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数：** `IsInputLengthAvailable` |
-
 ## 所属库
 
 Simulink Real-Time / Utilities

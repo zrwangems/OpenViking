@@ -14,6 +14,24 @@ language: en
 # PRBS Signal Generator
 
 ## Ports
+```yaml
+ports:
+- name: start/stop
+  summary: Start and stop the estimation experiment scalar
+  direction: input
+  data_types: single | double
+- name: w
+  summary: Frequencies for estimation experiment vector
+  direction: input
+  data_types: single | double
+- name: amp
+  summary: Perturbation amplitudes scalar | vector
+  direction: input
+  data_types: single | double
+- name: prbs
+  summary: PRBS perturbation signal scalar
+  direction: output
+```
 
 ### Input
 
@@ -89,8 +107,37 @@ To enable this port, in **Excitation Signal Source**, select
 ### **prbs** — PRBS perturbation signal scalar
 
 The block generates the PRBS perturbation signal at this port.
-
 ## Parameters
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: Sample time 0.1 (default) | positive scalar | –1
+  group: ''
+- name: Data Type
+  summary: Floating point precision double (default) | single
+  group: ''
+- name: Excitation signal source
+  summary: Excitation signal source Block parameters (default) | External ports
+  group: ''
+- name: Frequencies
+  summary: Frequencies for estimation [0.5 1 2] (default) | vector
+  group: ''
+- name: Amplitudes
+  summary: Amplitudes of injected perturbations 1 (default) | scalar | vector
+  group: ''
+- name: Number of frequencies
+  summary: Number of externally supplied frequencies 3 (default) | positive integer
+  group: ''
+- name: Number of periods
+  summary: Number of periods in PRBS signal 1 (default) | positive integer
+  group: ''
+- name: Signal order
+  summary: PRBS signal order 12 (default) | positive integer ≤ 24
+  group: ''
+- name: Use Auto-Generated Value
+  summary: Set PRBS signal parameters automatically off (default) | on
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -242,7 +289,6 @@ specified frequencies and sample time. Enable this option to use the automatical
 generated values for either one or both of the PRBS signal parameters. This is useful
 when you are running multiple experiments with changing frequency range or sample
 time.
-
 ## Libraries
 
 Simulink Control Design / Signal Generation

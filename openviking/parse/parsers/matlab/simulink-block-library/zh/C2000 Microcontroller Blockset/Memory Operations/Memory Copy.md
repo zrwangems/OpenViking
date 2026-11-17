@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Memory Copy
 
 ## 端口
+```yaml
+ports:
+- name: src
+  summary: 复制操作的输入数据 标量 | 向量
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: '&src'
+  summary: 复制操作的输入数据地址 标量 | 向量
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: src ofs
+  summary: 复制操作期间读取数据的偏移量 标量 | 向量
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: '&dst'
+  summary: 复制操作的输出数据地址 标量 | 向量
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: dst ofs
+  summary: 复制操作期间写入数据的偏移量 标量 | 向量
+  direction: input
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: dst
+  summary: 复制操作的输出数据 标量 | 向量
+  direction: output
+  data_types: single | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+```
 
 ### 输入
 
@@ -78,8 +105,108 @@ chinese_source: worker-translation
 要将此端口用作内存复制操作的目标，请将参数 **Copy to** 设置为 `Output port`。
 
 **数据类型：** `single` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64`
-
 ## 参数
+```yaml
+parameters:
+- name: Copy from
+  summary: 复制操作的输入源 Input port（默认）| Specified address | Specified source code symbol
+  group: 源
+- name: Specify address source
+  summary: 输入数据的内存地址来源 Specify via dialog（默认）| Input port
+  group: 源
+- name: Address
+  summary: 源数据的内存地址 hex2dec('00001000')（默认）| 十进制形式或带十进制转换的十六进制形式的内存地址
+  group: 源
+- name: Source code symbol
+  summary: 源代码符号表中的符号 myVariableSrc（默认）| 字符串 | 字符向量
+  group: 源
+- name: Data type
+  summary: 所复制数据的数据类型 uint8（默认）| double | single | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | Inherit
+    from input port
+  group: 源
+- name: Data length
+  summary: 要复制的数据元素数量 1（默认）| 正整数
+  group: 源
+- name: Use offset when reading
+  summary: 读取输入时使用偏移量 off（默认）| on
+  group: 源
+- name: Specify offset source
+  summary: 输入偏移量的来源 Specify via dialog（默认）| Input port
+  group: 源
+- name: Offset
+  summary: 在将第一个值复制到目标之前要跳过的值数量 0（默认）| 正整数
+  group: 源
+- name: Stride
+  summary: 读取输入的间距 1（默认）| 正整数
+  group: 源
+- name: Copy to
+  summary: 复制操作的输出目标类型 Output port（默认）| Specified address | Specified destination code symbol
+  group: 目标
+- name: Specify address source
+  summary: 输出目标的内存地址来源 Specify via dialog（默认）| Input port |
+  group: 目标
+- name: Address
+  summary: 目标变量的内存地址 hex2dec('00002000')（默认）| 十进制形式或带十进制转换的十六进制形式的内存地址
+  group: 目标
+- name: Source code symbol
+  summary: 源代码符号表中的符号 myVariableDst（默认）| 字符串 | 字符向量
+  group: 目标
+- name: Data type
+  summary: 变量的数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | uint32 | int64 | uint64 | boolean | Inherit
+    from source
+  group: 目标
+- name: Use offset when writing
+  summary: 写入输出时使用偏移量 off（默认）| on
+  group: 目标
+- name: Specify offset source
+  summary: 输出目标偏移量的来源 Specify constant value（默认）| Specify source code symbol
+  group: 目标
+- name: Offset
+  summary: 在将第一个值写入目标之前要跳过的值数量 0（默认）| 正整数
+  group: 目标
+- name: Stride
+  summary: 写入输出的间距 1（默认）| 正整数
+  group: 目标
+- name: Sample time
+  summary: 内存复制速率 inf（默认）| 标量
+  group: 目标
+- name: Set memory value at initialization
+  summary: 在初始化期间设置内存地址 off（默认）| on
+  group: 选项
+- name: Specify initialization value source
+  summary: 初始化值的来源 指定常量值（默认） | 指定源代码符号
+  group: 选项
+- name: Initialization value (constant)
+  summary: 常量初始化值 1（默认） | 标量
+  group: 选项
+- name: Initialization value (source code symbol)
+  summary: 源代码符号表中的符号 myInitValueVariable（默认） | 字符串 | 字符向量
+  group: 选项
+- name: Apply initialization value as mask
+  summary: 将初始化值作为掩码应用 off（默认） | on
+  group: 选项
+- name: Bitwise operator
+  summary: 按位运算的类型 bitwise AND（默认） | bitwise OR | bitwise exclusive OR | left shift | right shift
+  group: 选项
+- name: Set memory value at termination
+  summary: 在程序终止时复制内存 off（默认） | on
+  group: 选项
+- name: Termination value
+  summary: 终止值 1（默认） | 标量 | 向量 | 矩阵
+  group: 选项
+- name: Set memory value only at initialization/termination
+  summary: 仅在程序初始化和终止期间复制内存值 off（默认） | on
+  group: 选项
+- name: Insert custom code before memory write
+  summary: 在内存写入之前插入自定义代码 off（默认） | on
+  group: 选项
+- name: Insert custom code after memory write
+  summary: 内存写入后的自定义代码标志 off（默认） | on
+  group: 选项
+- name: Custom code
+  summary: /\* Custom Code Before Write\*/ 或 /\* Custom Code After Write\*/（默认） | 字符串 | 字符向量
+  group: 选项
+```
 
 ### 源
 
@@ -412,7 +539,6 @@ write** 在访问寄存器之前和之后锁定和解锁寄存器。例如，某
 要启用此参数，请选择 **Insert custom code before memory
 write** 或 **Insert custom code after memory
 write**。
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Memory Operations

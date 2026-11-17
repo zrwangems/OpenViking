@@ -14,6 +14,9 @@ language: en
 # Constant Area Hydraulic Orifice
 
 ## Ports
+```yaml
+ports: []
+```
 
 The block has the following ports:
 
@@ -22,8 +25,10 @@ The block has the following ports:
 
 `B`
 :   Hydraulic conserving port associated with the orifice outlet.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Orifice area**
 :   Orifice passage area. The default value is `1e-4`
@@ -62,7 +67,6 @@ The block has the following ports:
     material with sharp edges. This parameter is visible only if the
     **Laminar transition specification** parameter is set
     to `Reynolds number`.
-
 ## Libraries
 
 Not documented in R2025b.

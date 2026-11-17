@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Particle Filter
 
 ## 端口
+```yaml
+ports:
+- name: y1,y2,y3,y4,y5
+  summary: 测量的系统输出向量
+  direction: input
+- name: StateTransitionFcnInputs
+  summary: 状态转移函数的可选输入参数 标量 | 向量 | 矩阵
+  direction: input
+- name: MeasurementLikelihoodFcn1Inputs,...,MeasurementLikelihoodFcn5Inputs
+  summary: 每个测量似然函数的可选输入参数 标量 | 向量 | 矩阵
+  direction: input
+- name: Enable1,Enable2,Enable3,Enable4,Enable5
+  summary: 当测量数据可用时启用估计状态的校正 标量
+  direction: input
+- name: xhat
+  summary: 估计状态 向量
+  direction: output
+- name: P
+  summary: 状态估计误差协方差 矩阵
+  direction: output
+- name: Particles
+  summary: 用于状态估计的粒子值 数组
+  direction: output
+- name: Weights
+  summary: 用于状态估计的粒子权重 向量
+  direction: output
+```
 
 ### 输入
 
@@ -108,8 +135,186 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要生成此端口，请在 **Block outputs, Multirate** 选项卡中选择 **Output weights**，并单击 **Apply**。
-
 ## 参数
+```yaml
+parameters:
+- name: Function
+  summary: 状态转移函数名称 'vdpParticleFilterStateFcn'（默认）| 函数名称
+  group: 系统模型选项卡
+  block_parameter: StateTransitionFcn
+  type: character vector, string
+  default: '''vdpParticleFilterStateFcn'''
+- name: Number of Particles
+  summary: 滤波器中使用的粒子数 1000（默认）| 正标量整数
+  group: 系统模型选项卡
+  block_parameter: NumberOfParticles
+  type: positive scalar integer
+  default: '1000'
+- name: Distribution
+  summary: 粒子的初始分布 'Gaussian'（默认）| 'Uniform' | 'Custom'
+  group: 系统模型选项卡
+  block_parameter: InitialDistribution
+  type: character vector
+  values: '''Gaussian'', ''Uniform'', ''Custom'''
+  default: '''Gaussian'''
+- name: Mean
+  summary: 粒子的初始均值 [0;0]（默认）| 向量
+  group: 系统模型选项卡
+  block_parameter: InitialMean
+  type: array
+  default: '[0,0]'
+- name: Covariance
+  summary: 粒子的初始协方差 1（默认）| 标量 | 向量 | 矩阵
+  group: 系统模型选项卡
+  block_parameter: InitialCovariance
+  type: 标量、向量或矩阵
+  default: '1'
+- name: Circular Variables
+  summary: 用于状态估计的循环变量 0（默认）| 标量 | 向量
+  group: 系统模型选项卡
+  block_parameter: CircularVariables
+  type: 标量、向量
+  default: '0'
+- name: State Orientation
+  summary: 输入系统状态的方向 'column'（默认）| 'row'
+  group: 系统模型选项卡
+  block_parameter: StateOrientation
+  type: 字符向量
+  values: '''column''、''row'''
+  default: '''column'''
+- name: State bounds
+  summary: 系统状态的初始边界 [-3 3;-3 3]（默认）| 数组
+  group: 系统模型选项卡
+  block_parameter: InitialStateBounds
+  type: 数组
+  default: '[-3 3;-3 3]'
+- name: Particles
+  summary: 用于状态估计的自定义粒子分布 []（默认）| 数组
+  group: 系统模型选项卡
+  block_parameter: InitialParticles
+  type: 数组
+  default: '[]'
+- name: Weights
+  summary: 用于状态估计的自定义粒子权重值 [] （默认）| 正值向量
+  group: 系统模型选项卡
+  block_parameter: InitialWeights
+  type: 正值向量
+- name: Function
+  summary: 测量似然函数名称 'vdpMeasurementLikelihoodFcn' （默认）| 函数名称
+  group: 系统模型选项卡
+  block_parameter: MeasurementLikelihoodFcn1、MeasurementLikelihoodFcn2、MeasurementLikelihoodFcn3、MeasurementLikelihoodFcn4、MeasurementLikelihoodFcn5
+  type: 字符向量、字符串
+- name: Add Enable Port
+  summary: 仅在测量数据可用时启用估计状态的校正 off（默认）| on
+  group: 系统模型选项卡
+  block_parameter: HasMeasurementEnablePort1, HasMeasurementEnablePort2, HasMeasurementEnablePort3, HasMeasurementEnablePort4,
+    HasMeasurementEnablePort5
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Resampling method
+  summary: 用于粒子重采样的方法 'Multinomial'（默认）| 'Systemic' | 'Stratified'
+  group: 系统模型选项卡
+  block_parameter: ResamplingMethod
+  type: character vector
+  values: '''Multinomial'', ''Systemic'', ''Stratified'''
+  default: '''Multinomial'''
+- name: Trigger method
+  summary: 确定何时发生重采样的方法 'Ratio'（默认）| 'Interval'
+  group: 系统模型选项卡
+  block_parameter: TriggerMethod
+  type: character vector
+  values: '''Ratio'', ''Interval'''
+  default: '''Ratio'''
+- name: Minimum effective particle ratio
+  summary: 有效粒子数与总粒子数的最小期望比率 0.5（默认）| 正标量
+  group: 系统模型选项卡
+  block_parameter: MinEffectiveParticleRatio
+  type: scalar
+  values: Range [0,1]
+  default: '0.5'
+- name: Sampling Interval
+  summary: 重采样之间的固定间隔 1（默认）| 正标量整数
+  group: 系统模型选项卡
+  block_parameter: SamplingInterval
+  type: 正标量整数
+  default: '1'
+- name: Randomness
+  summary: 随机数是否可重复 'Repeatable'（默认）| 'Not repeatable'
+  group: 系统模型选项卡
+  block_parameter: Randomness
+  type: 字符向量
+  values: '''Repeatable''、''Not repeatable'''
+  default: '''Repeatable'''
+- name: Seed
+  summary: 可重复随机数的种子值 0（默认）| 标量
+  group: 系统模型选项卡
+  block_parameter: Seed
+  type: 标量
+  default: '0'
+- name: Data type
+  summary: 模块参数的数据类型 double（默认）| single
+  group: 系统模型选项卡
+  block_parameter: DataType
+  type: 字符向量
+  values: '''single''、''double'''
+  default: '''double'''
+- name: Sample time
+  summary: 模块采样时间 1（默认）| 正标量
+  group: 系统模型选项卡
+  block_parameter: SampleTime
+  type: 字符向量、字符串
+  default: '''1'''
+- name: State Estimation Method
+  summary: 用于从粒子中提取状态估计的方法 'Mean'（默认）| 'MaxWeight' | 'None'
+  group: 模块输出，多速率选项卡
+  block_parameter: StateEstimationMethod
+  type: 字符向量、字符串
+  values: '''Mean''、''MaxWeight''、''None'''
+  default: '''Mean'''
+- name: Output all particles
+  summary: 输出所有粒子 'off'（默认）| 'on'
+  group: 模块输出，多速率选项卡
+  block_parameter: OutputParticles
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Output weights
+  summary: 输出粒子权重 'off'（默认）| 'on'
+  group: 模块输出，多速率选项卡
+  block_parameter: OutputWeights
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Output state estimation error covariance
+  summary: 输出状态估计误差协方差 'off'（默认）| 'on'
+  group: 模块输出，多速率选项卡
+  block_parameter: OutputStateCovariance
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Use the current measurements to improve state estimates
+  summary: 使用当前测量值改进状态估计的选项 'on'（默认）| 'off'
+  group: 模块输出，多速率选项卡
+  block_parameter: UseCurrentEstimator
+  type: character vector
+  values: '''on'', ''off'''
+  default: '''on'''
+- name: Enable multirate operation
+  summary: 启用为状态转移和测量似然函数指定不同采样时间 'off'（默认）| 'on'
+  group: 模块输出，多速率选项卡
+  block_parameter: EnableMultirate
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: 采样时间
+  summary: 状态转移和测量似然函数的采样时间，正标量
+  group: 模块输出，多速率选项卡
+  block_parameter: StateTransitionFcnSampleTime, MeasurementLikelihoodFcn1SampleTime1, MeasurementLikelihoodFcn1SampleTime2,
+    MeasurementLikelihoodFcn1SampleTime3, MeasurementLikelihoodFcn1SampleTime4, MeasurementLikelihoodFcn1SampleTime5
+  type: 字符向量，字符串
+  default: '''1'''
+```
 
 ### 系统模型选项卡
 
@@ -629,7 +834,6 @@ likelihood = h(particles, measurement, param1, param2, ...)
 | **模块参数：**`StateTransitionFcnSampleTime`, `MeasurementLikelihoodFcn1SampleTime1`, `MeasurementLikelihoodFcn1SampleTime2`, `MeasurementLikelihoodFcn1SampleTime3`, `MeasurementLikelihoodFcn1SampleTime4`, `MeasurementLikelihoodFcn1SampleTime5` |
 | **类型：** 字符向量，字符串 |
 | **默认值：**`'1'` |
-
 ## 所属库
 
 Control System Toolbox / State Estimation System Identification Toolbox / Estimators

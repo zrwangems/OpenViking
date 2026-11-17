@@ -14,6 +14,41 @@ language: en
 # RLS Filter
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input signal scalar | column vector
+  direction: input
+  data_types: single | double
+- name: Desired
+  summary: Desired signal scalar | column vector
+  direction: input
+  data_types: single | double
+- name: Lambda
+  summary: Forgetting factor scalar in the range [0,1]
+  direction: input
+  data_types: single | double
+- name: Adapt
+  summary: Option to update filter weights scalar | column vector
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: Reset signal scalar
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Filtered signal scalar | column vector
+  direction: output
+  data_types: single | double
+- name: Error
+  summary: Difference between output and desired signal scalar | column vector
+  direction: output
+  data_types: single | double
+- name: Wts
+  summary: Adaptive filter weights scalar | column vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -172,8 +207,34 @@ parameter.
 
 **Data Types:** `single` | `double`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter length
+  summary: Length of FIR filter coefficients vector 32 (default) | positive integer
+  group: ''
+- name: Specify forgetting factor via
+  summary: Specify forgetting factor Dialog (default) | Input port
+  group: ''
+- name: Forgetting factor (0 to 1)
+  summary: RLS forgetting factor 1.0 (default) | scalar in the range [0,1]
+  group: ''
+- name: Initial value of filter weights
+  summary: Initial value of FIR filter weights 0 (default) | vector
+  group: ''
+- name: Initial input variance estimate
+  summary: Initial input covariance estimate 0.1 (default) | scalar | square matrix
+  group: ''
+- name: Adapt port
+  summary: Enable Adapt port off (default) | on
+  group: ''
+- name: Reset port
+  summary: Enable Reset port None (default) | Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Output filter weights
+  summary: Output filter weights on (default) | off
+  group: ''
+```
 
 ### **Filter length** — Length of FIR filter coefficients vector `32` (default) | positive integer
 
@@ -248,7 +309,6 @@ information on each of the reset options, see the description for the
 
 Select this parameter to export the filter weights from the **Wts**
 port.
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Adaptive Filters

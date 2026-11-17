@@ -14,10 +14,155 @@ language: en
 # Data Store Memory
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Data store name
+  summary: Name for data store A (default) | character vector | string
+  group: Main
+  block_parameter: DataStoreName
+  type: character vector
+  values: '''A'' | ...'
+  default: '''A'''
+- name: Rename All
+  summary: Option to rename data store throughout model button
+  group: Main
+- name: Data store reference
+  summary: To access the memory defined in higher-level model off (default) | on
+  group: Main
+  block_parameter: DataStoreReference
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Corresponding Data Store Read/Write blocks
+  summary: Path to connected Data Store Read/Write blocks block path
+  group: Main
+- name: Initial value
+  summary: Initial value of data store 0 (default) | scalar | vector | matrix | N-D array
+  group: Signal Attributes
+  block_parameter: InitialValue
+  type: character vector
+  values: scalar | vector | matrix | N-D array
+  default: '''0'''
+- name: Minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[ ]'''
+- name: Maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Signal Attributes
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[ ]'''
+- name: Data type
+  summary: 'Output data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | string | Enum: <class name> | Simulink.ImageType(480,640,3)'
+  group: Signal Attributes
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: auto'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32''
+    | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''string'' | ''Enum:
+    <class name>'' | ''Simulink.ImageType(480,640,3)'''
+  default: '''Inherit: auto'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Option to prevent fixed-point tools from overriding Output data type off (default) | on
+  group: Signal Attributes
+  block_parameter: LockScale
+  values: '''off'' (default) | ''on'''
+- name: Dimensions (-1 to infer from Initial value)
+  summary: Dimensions of data store -1 (default) | scalar | vector | matrix
+  group: Signal Attributes
+  block_parameter: Dimensions
+  type: character vector
+  values: scalar | vector | matrix
+  default: '''-1'''
+- name: Interpret vector parameters as 1-D
+  summary: Option to interpret vectors as 1-D on (default) | off
+  group: Signal Attributes
+  block_parameter: VectorParams1D
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: Signal type
+  summary: Complexity of data store values auto (default) | real | complex
+  group: Signal Attributes
+  block_parameter: SignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Share across model instances
+  summary: Option to allow Model blocks to read from the same data store off (default) | on
+  group: Signal Attributes
+  block_parameter: ShareAcrossModelInstances
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Data store name must resolve to Simulink signal object
+  summary: Option to resolve data store name to Simulink signal object off (default) | on
+  group: Signal Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Detect Read Before Write
+  summary: Action when model attempts to read data before writing in current time step warning (default) | none | error
+  group: Diagnostics
+  block_parameter: ReadBeforeWriteMsg
+  type: character vector
+  values: '''none'' | ''warning'' | ''error'''
+  default: '''warning'''
+- name: Detect Write After Read
+  summary: Action when block attempts to write after reading in same time step warning (default) | none | error
+  group: Diagnostics
+  block_parameter: WriteAfterReadMsg
+  type: character vector
+  values: '''none'' | ''warning'' | ''error'''
+  default: '''warning'''
+- name: Detect Write After Write
+  summary: Action when model writes twice in same time step warning (default) | none | error
+  group: Diagnostics
+  block_parameter: WriteAfterWriteMsg
+  type: character vector
+  values: '''none'' | ''warning'' | ''error'''
+  default: '''warning'''
+- name: Log data store data
+  summary: Option to log data store data off (default) | on
+  group: Logging
+  block_parameter: DataLogging
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Logging name
+  summary: Name associated with logged signal data Use data store name (default) | Custom
+  group: Logging
+  block_parameter: DataLoggingName
+  type: character vector
+  values: character vector
+  default: ''''''
+- name: Limit data points to last
+  summary: Option to discard all but last *N* data points 5000 | non-zero integer
+  group: Logging
+  block_parameter: DataLoggingMaxPoints
+  type: character vector
+  values: nonzero integer
+  default: '''5000'''
+- name: Decimation
+  summary: Option to log every *N*th data point 2 (default) | integer
+  group: Logging
+  block_parameter: DataLoggingDecimation
+  type: character vector
+  values: non-zero integer
+  default: '''2'''
+```
 
 ### Main
 
@@ -529,7 +674,6 @@ the software records data points for this signal at times
 | **Type:** character vector |
 | **Values:** non-zero integer |
 | **Default:** `'2'` |
-
 ## Libraries
 
 Simulink / Signal Routing

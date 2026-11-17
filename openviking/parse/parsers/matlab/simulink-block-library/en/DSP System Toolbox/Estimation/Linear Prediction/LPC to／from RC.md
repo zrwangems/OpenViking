@@ -14,6 +14,33 @@ language: en
 # LPC to/from RC
 
 ## Ports
+```yaml
+ports:
+- name: K
+  summary: RC coefficients vector | matrix
+  direction: input
+  data_types: single | double
+- name: A
+  summary: LPC coefficients vector | matrix
+  direction: input
+  data_types: single | double
+- name: K
+  summary: RC coefficients vector | matrix
+  direction: output
+  data_types: single | double
+- name: A
+  summary: LPC coefficients vector | matrix
+  direction: output
+  data_types: single | double
+- name: P
+  summary: Normalized prediction error power vector
+  direction: output
+  data_types: single | double
+- name: S
+  summary: Filter stability output vector
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -102,8 +129,22 @@ To enable this port, select the **Output LPC filter
 stability** check box.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Type of conversion
+  summary: Type of conversion RC to LPC (default) | LPC to RC
+  group: ''
+- name: Output normalized prediction error power
+  summary: Output normalized prediction error power on (default) | off
+  group: ''
+- name: Output LPC filter stability
+  summary: Output LPC filter stability off (default) | on
+  group: ''
+- name: If first input value is not 1
+  summary: Action to take if first input value is not 1 Replace it with 1 (default) | Normalize | Normalize and warn | Error
+  group: ''
+```
 
 ### **Type of conversion** — Type of conversion `RC to LPC` (default) | `LPC to RC`
 
@@ -152,7 +193,6 @@ vector in any channel is not a 1. You can set this parameter to one of the follo
 
 To enable this parameter, set **Type of conversion**
 to `LPC to RC`.
-
 ## Libraries
 
 DSP System Toolbox / Estimation / Linear Prediction

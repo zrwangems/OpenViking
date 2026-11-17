@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # IO Data Source
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 数值向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: length
+  summary: 输入数据长度 非负标量
+  direction: input
+  data_types: uint32
+- name: valid
+  summary: 有效数据信号 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: done
+  summary: 内存中缓冲区已释放的通知 False（默认）| True
+  direction: input
+  data_types: Boolean
+- name: event
+  summary: 任务事件信号 标量
+  direction: output
+  data_types: rteEvent
+- name: msg
+  summary: SoC 消息数据 数值向量
+  direction: output
+  data_types: SoCData
+```
 
 ### 输入
 
@@ -78,8 +105,44 @@ chinese_source: worker-translation
 要启用此端口，请将 **Show port** 参数设置为 `Data` 或 `Data and Event`。
 
 **数据类型：** `SoCData`
-
 ## 参数
+```yaml
+parameters:
+- name: Input
+  summary: 输入数据源 From file（默认）| From dialog | From input port | From timeseries object
+  group: ''
+- name: Value
+  summary: 源数据的值 uint32(1:1024)（默认）| 用于生成输入数据的函数
+  group: ''
+- name: Data type
+  summary: 输入数据的数据类型 uint32（默认）| double | single | int8 | uint8 | int16 | uint16 | int32 | int64 | uint64 | boolean | fixed
+    point
+  group: ''
+- name: Device type
+  summary: 输入数据源的设备类型 UDP（默认）| TCP | Register | Stream
+  group: ''
+- name: Sample time
+  summary: 采样时间间隔 -1（默认）| 非负标量
+  group: ''
+- name: Dimensions
+  summary: 每帧采样数 1024（默认）| 非负标量
+  group: ''
+- name: Dataset name
+  summary: 录制文件的名称 无默认值 | 文件路径
+  group: ''
+- name: Source name
+  summary: 数据集名称 无默认值
+  group: ''
+- name: Number of buffers
+  summary: 数据缓冲区数量 1024（默认）| 非负标量
+  group: ''
+- name: Show port
+  summary: 启用输出端口 Data（默认）| Event | Data and event
+  group: ''
+- name: Object name
+  summary: timeseries 对象的名称 []（默认）| timeseries 对象
+  group: ''
+```
 
 ### **Input** — 输入数据源 `From file`（默认）| `From dialog` | `From input port` | `From timeseries object`
 
@@ -174,7 +237,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Input** 参数设置为 `From timeseries object`。
-
 ## 所属库
 
 SoC Blockset / I/O Data Source and Sink

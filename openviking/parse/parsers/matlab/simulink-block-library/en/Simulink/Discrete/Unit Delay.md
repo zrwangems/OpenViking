@@ -14,6 +14,19 @@ language: en
 # Unit Delay
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus | image
+```
 
 ### Input
 
@@ -29,8 +42,46 @@ Input signal that the block delays by one sample period.
 Output signal that is the input delayed by one sample period.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial condition
+  summary: First sample period output 0 (default) | scalar | vector
+  group: Main
+  block_parameter: InitialCondition
+  type: character vector
+  values: scalar | vector
+  default: '''0'''
+- name: Input processing
+  summary: Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame
+    based)
+  group: Main
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Sample time (-1 for inherited)
+  summary: Discrete interval between sample time hits -1 (default) | 1-by-2 vector
+  group: Main
+  block_parameter: SampleTime
+  type: character vector
+  values: real scalar | 1-by-2 vector
+  default: '''-1'''
+- name: State name
+  summary: Unique name for block state '' (default) | alphanumeric string
+  group: State Attributes
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: Option to require that state names resolve to signal object off (default) | on
+  group: State Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### Main
 
@@ -139,7 +190,6 @@ a value other than `None`.
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 Simulink / Discrete HDL Coder / Discrete

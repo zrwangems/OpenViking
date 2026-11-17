@@ -15,6 +15,34 @@ chinese_source: worker-translation
 # Earth Orientation Parameters
 
 ## 端口
+```yaml
+ports:
+- name: UTCMJD
+  summary: UTC 标量
+  direction: input
+  data_types: double
+- name: ΔUT1
+  summary: UT1 与 UTC 之差标量
+  direction: output
+  data_types: double
+- name: '[xp,yp]'
+  summary: 地球极移向量
+  direction: output
+  data_types: double
+- name: '[dX,dY]'
+  summary: 天球中间极（CIP）位置调整向量
+  direction: output
+  data_types: double
+- name: ΔUT1err
+  summary: 返回 IERS 数据中测量值和预测值的误差向量
+  direction: output
+- name: '[xp,yp]err'
+  summary: 返回 IERS 数据中测量值和预测值的误差向量
+  direction: output
+- name: '[dX,dY]err'
+  summary: 返回 IERS 数据中测量值和预测值的误差向量
+  direction: output
+```
 
 ### 输入
 
@@ -66,8 +94,45 @@ UT1 与 UTC 之差，指定为标量，单位为秒。
 #### 依赖关系
 
 当选中 **Output parameter error** 时，此端口启用。
-
 ## 参数
+```yaml
+parameters:
+- name: IERS data file
+  summary: 地球定向数据 aeroiersdata.mat（默认）| MAT 文件
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: scalar
+  default: '''aeroiersdata.mat'''
+- name: Output parameter error
+  summary: 启用输出端口以返回误差 off（默认）| on
+  group: ''
+  block_parameter: OutputError
+  type: character vector
+  values: scalar
+  default: '''off'''
+- name: Action for out-of-range input
+  summary: 超出范围时的模块行为 None（默认）| Warning | Error
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: IERS data URL
+  summary: 网站或地球定向数据文件 http://maia.usno.navy.mil/ser7/finals2000A.data（默认）| 网站地址 | 文件名
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: scalar
+  default: '''aeroiersdata.mat'''
+- name: Destination folder
+  summary: IERS 数据文件的文件夹 当前文件夹（默认）
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: scalar
+  default: '''aeroiersdata.mat'''
+```
 
 ### **IERS data file** — 地球定向数据 `aeroiersdata.mat`（默认）| MAT 文件
 
@@ -160,7 +225,6 @@ IERS 数据文件的文件夹，指定为字符数组或字符串。在运行此
 | **类型**：character vector |
 | **值**：scalar |
 | **默认值**：`'aeroiersdata.mat'` |
-
 ## 所属库
 
 Aerospace Blockset / Environment / Celestial Phenomena

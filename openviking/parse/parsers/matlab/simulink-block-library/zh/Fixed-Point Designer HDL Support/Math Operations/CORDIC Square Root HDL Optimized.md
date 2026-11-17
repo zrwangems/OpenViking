@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # CORDIC Square Root HDL Optimized
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 待求平方根的值 非负实值标量
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: 输入是否有效 Boolean 标量
+  direction: input
+  data_types: Boolean
+- name: restart
+  summary: 是否清除内部寄存器 Boolean
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: 基于 CORDIC 的输入平方根近似值 实值标量
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: 输出数据是否有效 Boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -50,8 +73,25 @@ chinese_source: worker-translation
 输出数据是否有效，返回为布尔标量。此控制信号指示输出端口 **y** 处的数据何时有效。当此值为 `1`（`true`）时，输出数据有效。当此值为 `0`（`false`）时，输出数据无效。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Automatically select CORDIC maximum shift value based on input word length
+  summary: 基于输入字长自动选择 CORDIC 最大移位值 on（默认）| off
+  group: ''
+  block_parameter: autoMaximumShiftVal
+  values: on（默认）| off
+- name: CORDIC maximum shift value
+  summary: 双曲向量化 CORDIC 的最大移位值 10（默认）| 正整数值标量
+  group: ''
+  block_parameter: maximumShiftValue
+  values: 10（默认）| 正整数值标量
+- name: Number of iterations per pipeline register
+  summary: 每个流水线寄存器中执行的 CORDIC 迭代次数 1（默认）| 正整数值标量
+  group: ''
+  block_parameter: nIterPerReg
+  values: 1（默认）| 正整数值标量
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -110,7 +150,6 @@ chinese_source: worker-translation
 | **参数：** | `nIterPerReg` |
 | **值：** | `1`（默认）| 正整数值标量 |
 | **数据类型：** | `char` | `string` |
-
 ## 所属库
 
 Fixed-Point Designer HDL Support / Math Operations

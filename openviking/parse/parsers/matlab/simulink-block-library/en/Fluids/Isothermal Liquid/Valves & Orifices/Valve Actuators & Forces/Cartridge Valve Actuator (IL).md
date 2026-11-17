@@ -14,6 +14,24 @@ language: en
 # Cartridge Valve Actuator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Pressure port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Pressure port isothermal liquid
+  direction: conserving
+- name: X
+  summary: Pressure port isothermal liquid
+  direction: conserving
+- name: Y
+  summary: Pressure port isothermal liquid
+  direction: conserving
+- name: S
+  summary: Poppet position, m physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -38,8 +56,43 @@ pressure ports** to `4`.
 ### **S** — Poppet position, m physical signal
 
 Poppet position in m, specified as a physical signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of pressure ports
+  summary: Number of pilot pressure ports 3 (default) | 4
+  group: ''
+- name: Port A poppet area
+  summary: Cross-sectional area of port A 1e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Port A poppet to port X pilot area ratio
+  summary: Ratio of inlet to pilot port area 0.5 (default) | positive scalar
+  group: ''
+- name: Port Y pilot area
+  summary: Cross-sectional area of port Y 1.5e-4 m^2 (default) | positive scalar
+  group: ''
+- name: Spring preload force
+  summary: Initial spring force 25 N (default) | positive scalar
+  group: ''
+- name: Spring stiffness
+  summary: Stiffness constant 15e3 N/m (default) | positive scalar
+  group: ''
+- name: Poppet stroke
+  summary: Maximum poppet extension 5e-3 m (default) | positive scalar
+  group: ''
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Connected valve opening orientation
+  summary: Direction of poppet displacement Positive displacement opens valve (default) | Negative displacement opens valve
+  group: ''
+- name: Actuator dynamics
+  summary: Whether to account for transients during actuation Off (default) | On
+  group: ''
+- name: Actuator time constant
+  summary: Piston displacement time constant 0.1 s (default) | positive scalar
+  group: ''
+```
 
 ### **Number of pressure ports** — Number of pilot pressure ports `3` (default) | `4`
 
@@ -116,7 +169,6 @@ impacts the modeled actuator dynamics.
 
 To enable this parameter, set **Actuator dynamics**
 to `On`.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces

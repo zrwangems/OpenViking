@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Relational Operator
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 第一个输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: 第二个输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 输出信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -46,8 +61,67 @@ chinese_source: worker-translation
 data type** 参数控制输出数据类型。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Relational operator
+  summary: 关系运算符 <=（默认）| ~= | == | < | >= | > | isInf | isNaN | isFinite
+  group: 主要
+  block_parameter: Operator
+  type: 字符向量
+  values: '''=='' | ''~='' | ''<'' | ''<='' | ''>='' | ''>'' | ''isInf'' | ''isNaN'' | ''isFinite'''
+  default: '''<='''
+- name: Enable zero-crossing detection
+  summary: 启用过零检测 on（默认）| off
+  group: 主要
+  block_parameter: ZeroCross
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Require all inputs to have the same data type
+  summary: 要求所有输入具有相同的数据类型 off（默认）| on
+  group: 数据类型
+  block_parameter: InputSameDT
+  type: 字符向量
+  values: '''off'' | ''on'
+  default: '''off'''
+- name: Output data type
+  summary: '输出数据类型 boolean（默认）| Inherit: Logical (see Configuration Parameters: Optimization) | Inherit: Inherit via back
+    propagation | fixdt(1,16) | <data type expression>'
+  group: 数据类型
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Logical (see Configuration Parameters: Optimization)'' | ''boolean'' | ''fixdt(1,16)'' | ''<data type
+    expression>'''
+  default: '''boolean'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Simplest（默认）| Convergent | Floor | Nearest | Round | Ceiling | Zero
+  group: 数据类型
+  block_parameter: RndMeth
+  type: 字符向量
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Simplest'''
+- name: Mode
+  summary: 要指定的数据类别 Built in（默认）| Inherit | Fixed point | Expression
+  group: 数据类型
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 数据类型
+- name: Signedness
+  summary: 定点数据的有符号性 Signed（默认）| Unsigned
+  group: 数据类型
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认）| 0 到 32 的整数
+  group: 数据类型
+- name: Scaling
+  summary: 定标方法 Integer（默认）
+  group: 数据类型
+```
 
 ### 主要
 
@@ -251,7 +325,6 @@ in` 或 `Fixed point`。
 
 要启用此参数，请单击 **Show data type
 assistant** 按钮并将 **Mode** 设置为 `Fixed point`。
-
 ## 所属库
 
 Simulink / Commonly Used Blocks Simulink / Logic and Bit Operations HDL Coder / Commonly Used Blocks HDL Coder / HDL Floating Point Operations HDL Coder / Logic and Bit Operations

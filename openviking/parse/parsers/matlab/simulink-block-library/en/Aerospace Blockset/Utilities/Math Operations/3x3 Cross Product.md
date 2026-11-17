@@ -14,6 +14,21 @@ language: en
 # 3x3 Cross Product
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: First cross product input 3-by-1 vector
+  direction: input
+  data_types: double
+- name: B
+  summary: Second cross product input 3-by-1 vector
+  direction: input
+  data_types: double
+- name: C
+  summary: Cross product 3-by-1 vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -39,11 +54,12 @@ Second cross product input, specified as a vector.
 Cross product, output as a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Math Operations

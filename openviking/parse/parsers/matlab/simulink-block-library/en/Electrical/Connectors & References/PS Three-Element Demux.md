@@ -14,6 +14,21 @@ language: en
 # PS Three-Element Demux
 
 ## Ports
+```yaml
+ports:
+- name: abc
+  summary: Three-element physical signal, unitless physical signal
+  direction: input
+- name: a
+  summary: Scalar physical signal, unitless physical signal
+  direction: output
+- name: b
+  summary: Scalar physical signal, unitless physical signal
+  direction: output
+- name: c
+  summary: Scalar physical signal, unitless physical signal
+  direction: output
+```
 
 ### Input
 
@@ -34,11 +49,12 @@ Scalar physical signal output port.
 ### **c** — Scalar physical signal, unitless physical signal
 
 Scalar physical signal output port.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Physical Signals / Nonlinear Operators

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Precision Pilot Model
 
 ## 端口
+```yaml
+ports:
+- name: x com
+  summary: 信号指令标量
+  direction: input
+  data_types: double
+- name: x
+  summary: 飞行员控制的信号标量
+  direction: input
+  data_types: double
+- name: u
+  summary: 飞机指令标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -36,8 +51,73 @@ chinese_source: worker-translation
 飞机指令，以标量形式返回。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Type of control
+  summary: 飞机动力学控制 Proportional（默认）| Rate or velocity | Acceleration | Second order
+  group: ''
+  block_parameter: sw_popup
+  type: character vector
+  values: '''Proportion'' | ''Rate or velocity'' | ''Acceleration'' | ''Second order'''
+  default: '''Proportion'''
+- name: Pilot gain
+  summary: 飞行员增益 1（默认）| 标量
+  group: ''
+  block_parameter: Kp
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Pilot time delay(s)
+  summary: 飞行员时间延迟 0.1（默认）| 标量
+  group: ''
+  block_parameter: time_delay
+  type: character vector
+  values: double scalar
+  default: '''0.1'''
+- name: Equalizer lead constant
+  summary: 均衡器超前常数 1（默认）| 标量
+  group: ''
+  block_parameter: TL
+  type: character vector
+  values: double scalar
+  default: '''1'''
+- name: Equalizer lag constant
+  summary: 均衡器滞后常数 5（默认）| 标量
+  group: ''
+  block_parameter: TI
+  type: character vector
+  values: double scalar
+  default: '''5'''
+- name: Lag constant for neuromuscular system
+  summary: 滞后常数 0.1（默认）| 标量
+  group: ''
+  block_parameter: TN1
+  type: character vector
+  values: double scalar
+  default: '0.1'
+- name: Undamped natural frequency neuromuscular system (rad/s)
+  summary: 无阻尼自然频率 20（默认）| 标量
+  group: ''
+  block_parameter: nat_freq
+  type: character vector
+  values: double scalar
+  default: '20'
+- name: Damping neuromuscular system
+  summary: 神经肌肉系统阻尼 0.7（默认）| 标量
+  group: ''
+  block_parameter: damp
+  type: character vector
+  values: double scalar
+  default: '0.7'
+- name: Controlled element undamped natural frequency (rad/s)
+  summary: 受控对象无阻尼自然频率 15（默认）| 标量
+  group: ''
+  block_parameter: omega_m
+  type: character vector
+  values: double scalar
+  default: '15'
+```
 
 ### **Type of control** — 飞机动力学控制 `Proportional`（默认）| `Rate or velocity` | `Acceleration` | `Second order`
 
@@ -184,7 +264,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：double scalar |
 | **默认值**：`15` |
-
 ## 所属库
 
 Aerospace Blockset / Pilot Models

@@ -14,6 +14,48 @@ language: en
 # Unipolar Stepper Motor
 
 ## Ports
+```yaml
+ports:
+- name: A+
+  summary: Top A-phase electrical connection electrical
+  direction: conserving
+- name: A0
+  summary: A-phase center tap connection electrical
+  direction: conserving
+- name: A-
+  summary: Lower A-phase electrical connection electrical
+  direction: conserving
+- name: B+
+  summary: Top B-phase electrical connection electrical
+  direction: conserving
+- name: B0
+  summary: B-phase center tap connection electrical
+  direction: conserving
+- name: B-
+  summary: Lower B-phase electrical connection electrical
+  direction: conserving
+- name: C
+  summary: Case mechanical
+  direction: conserving
+- name: R
+  summary: Rotor mechanical
+  direction: conserving
+- name: HA+
+  summary: Thermal port for winding between A+ and A0 thermal
+  direction: conserving
+- name: HA-
+  summary: Thermal port for winding between A- and A0 thermal
+  direction: conserving
+- name: HB+
+  summary: Thermal port for winding between B+ and B0 thermal
+  direction: conserving
+- name: HB-
+  summary: Thermal port for winding between B- and B0 thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -99,8 +141,94 @@ Thermal port for rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Simulation mode
+  summary: Simulation mode Stepping (default) | Averaged
+  group: Electrical Torque
+- name: Vector of rotational speeds
+  summary: Vector of rotational speeds [0, 1000, 3000] rpm (default)
+  group: Electrical Torque
+- name: Vector of maximum torque values
+  summary: Vector of maximum torque values [2, 2, 1] N*m (default)
+  group: Electrical Torque
+- name: Action on slipping
+  summary: Action upon detecting slip none (default) | warn | error
+  group: Electrical Torque
+- name: Approximate total load inertia
+  summary: Approximate total load inertia 1e-4 kg*m^2 (default)
+  group: Electrical Torque
+- name: Maximum step rate command
+  summary: Maximum step rate command 10 Hz (default)
+  group: Electrical Torque
+- name: Half-winding resistance
+  summary: Half-winding resistance 0.55 Ohm (default)
+  group: Electrical Torque
+- name: Half-winding inductance
+  summary: Half-winding inductance 1.5e-3 H (default)
+  group: Electrical Torque
+- name: Motor torque constant
+  summary: Motor torque constant 0.19 N*m/A (default)
+  group: Electrical Torque
+- name: Detent torque
+  summary: Detent torque 0 N*m (default)
+  group: Electrical Torque
+- name: Magnetizing resistance
+  summary: Magnetizing resistance inf Ohm (default) | positive scalar
+  group: Electrical Torque
+- name: Full step size
+  summary: Full step size 1.8 deg (default)
+  group: Electrical Torque
+- name: Coefficient of coupling
+  summary: Coefficient of coupling for mutual inductance 0 (default)
+  group: Electrical Torque
+- name: Rotor inertia
+  summary: Rotor inertia 4.5e-5 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 8.0e-4 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Initial rotor speed
+  summary: Initial rotor speed 0 rpm (default)
+  group: Mechanical
+- name: Initial rotor angle
+  summary: Initial rotor angle 0 deg (default)
+  group: Mechanical
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Temperature Dependence
+- name: Measurement temperature
+  summary: Measurement temperature 25 degC (default)
+  group: Temperature Dependence
+- name: Vector of maximum torque values at second measurement temperature
+  summary: Vector of maximum torque values at second measurement temperature [1.7, 1.7, .85] N*m (default)
+  group: Temperature Dependence
+- name: Second measurement temperature
+  summary: Second measurement temperature 125 degC (default)
+  group: Temperature Dependence
+- name: Stepping mode
+  summary: Stepping mode Full stepping (default) | Half stepping
+  group: Temperature Dependence
+- name: Half-winding thermal mass
+  summary: Half-winding thermal mass 100 J/K (default)
+  group: Thermal Port
+- name: Half-winding initial temperatures, [T_A+ T_A- T_B+ T_B-]
+  summary: Half-winding initial temperatures [25, 25, 25, 25] degC (default)
+  group: Thermal Port
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 50 J/K (default)
+  group: Thermal Port
+- name: Rotor initial temperature
+  summary: Rotor initial temperature 25 degC (default)
+  group: Thermal Port
+- name: Percentage of magnetizing resistance associated with the rotor
+  summary: Percentage of magnetizing resistance associated with the rotor 90 (default)
+  group: Thermal Port
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -374,7 +502,6 @@ The percentage of the magnetizing resistance associated with the
 magnetic path through the rotor. It determines how much of the iron loss
 heating is attributed to the rotor thermal port HR, and how much is
 attributed to the four winding thermal ports.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Loaded-Contact Translational Friction
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 法向力物理信号
+  direction: input
+- name: B
+  summary: 基座机械平移
+  direction: input
+- name: F
+  summary: 从动机械平移
+  direction: input
+- name: H
+  summary: 热流热
+  direction: input
+```
 
 ### 输入
 
@@ -39,8 +54,65 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent friction coefficients` 或 `Temperature and velocity-dependent friction coefficients`。
-
 ## 参数
+```yaml
+parameters:
+- name: Friction model
+  summary: 摩擦模型 Fixed kinetic friction coefficient（默认） | Velocity-dependent kinetic friction coefficient | Temperature-dependent
+    friction coefficients | Temperature and velocity-dependent friction coefficients
+  group: 摩擦
+- name: Relative velocity vector
+  summary: 相对速度 [0, .1, 1] m/s（默认）| 向量
+  group: 摩擦
+- name: Temperature vector
+  summary: 温度 [280, 300, 320] K（默认）| 递增向量
+  group: 摩擦
+- name: Static friction coefficient
+  summary: 静摩擦系数 0.35（默认）| 标量
+  group: 摩擦
+- name: Static friction coefficient vector
+  summary: 静摩擦系数 [.4, .38, .36]（默认）| 向量
+  group: 摩擦
+- name: Kinetic friction coefficient
+  summary: 动摩擦系数 0.3（默认）| 正标量
+  group: 摩擦
+- name: Kinetic friction coefficient vector
+  summary: 动摩擦系数 [.3, .22, .19]（默认）| [.3, .28, .25] | 向量
+  group: 摩擦
+- name: Kinetic friction coefficient matrix
+  summary: 动摩擦系数 [.34, .32, .3; .3, .28, .25; .25, .2, .15]（默认）| 矩阵
+  group: 摩擦
+- name: Friction coefficient interpolation method
+  summary: 外推方法 Linear（默认）| Smooth
+  group: 摩擦
+- name: Friction coefficient extrapolation method
+  summary: 插值方法 Linear（默认）| Nearest | Error
+  group: 摩擦
+- name: Velocity tolerance
+  summary: 相对速度锁定阈值 0.001 m/s（默认）| 标量
+  group: 摩擦
+- name: Threshold force
+  summary: 法向接触力阈值 1 N（默认）| 标量
+  group: 摩擦
+- name: Viscous drag torque coefficient
+  summary: 粘性阻力矩 0 N/(m/s)（默认）| 非负标量
+  group: Viscous Losses
+- name: Initial state
+  summary: 初始离合器状态 Unlocked（默认）| Locked
+  group: 初始条件
+- name: Friction fault
+  summary: 用于对摩擦故障建模的选项 Add fault
+  group: 故障
+- name: Behavior when faulted
+  summary: 对故障触发的响应 Cannot transmit power（默认）| Cannot unlock
+  group: 故障
+- name: Thermal mass
+  summary: 热质量 50 kJ/K（默认）| 标量
+  group: Thermal Port
+- name: Initial temperature
+  summary: 初始温度 300 K（默认）| 标量
+  group: Thermal Port
+```
 
 ### 摩擦
 
@@ -267,7 +339,6 @@ friction coefficients`。
 coefficients` 或
 `Temperature and velocity-dependent
 friction coefficients`。
-
 ## 所属库
 
 Simscape / Driveline / Brakes & Detents / Translational

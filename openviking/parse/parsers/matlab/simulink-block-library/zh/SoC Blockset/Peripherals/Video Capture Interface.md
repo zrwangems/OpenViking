@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Video Capture Interface
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 图像数据 3*MN* 长度向量
+  direction: input
+  data_types: uint8
+- name: event
+  summary: 任务事件信号 标量
+  direction: output
+  data_types: rteEvent
+- name: msg
+  summary: SoC 消息数据 标量
+  direction: output
+  data_types: SoCData
+```
 
 ### 输入
 
@@ -44,8 +59,25 @@ chinese_source: worker-translation
 此端口将包含图像数据的消息输出到连接的 Video Capture 模块。
 
 **数据类型：** `SoCData`
-
 ## 参数
+```yaml
+parameters:
+- name: Input
+  summary: 仿真视频数据的来源 From dialog（默认）| From input port | From timeseries object
+  group: ''
+- name: Value
+  summary: 要导入的图像 uint8(floor(rand(1,3*160*120)*255))（默认）| 3*MN* 元素向量
+  group: ''
+- name: Object name
+  summary: Timeseries 对象名称 []（默认）| MATLAB 工作区变量
+  group: ''
+- name: Sample time
+  summary: 采样时间（秒） -1（默认）| 正标量
+  group: ''
+- name: Show event port
+  summary: 启用任务事件端口的选项 off（默认）| on
+  group: ''
+```
 
 ### **Input** — 仿真视频数据的来源 `From dialog`（默认）| `From input port` | `From timeseries object`
 
@@ -66,7 +98,6 @@ chinese_source: worker-translation
 ### **Show event port** — 启用任务事件端口的选项 `off`（默认）| `on`
 
 选择此参数以启用事件端口，当连接到 Task Manager 模块时，可以执行事件驱动任务。
-
 ## 所属库
 
 SoC Blockset / Peripherals

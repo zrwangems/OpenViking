@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Counter
 
 ## 端口
+```yaml
+ports:
+- name: Inc/Dec
+  summary: 触发计数事件的输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Rst
+  summary: 复位信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Max
+  summary: 最大计数器大小 标量
+  direction: input
+  data_types: uint8 | uint16 | uint32
+- name: Cnt
+  summary: 计数器的当前值 标量 | 向量
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Hit
+  summary: 命中状态 标量 | 向量
+  direction: output
+  data_types: Boolean | Logical
+```
 
 ### 输入
 
@@ -76,8 +99,46 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output** 参数设置为 `Hit` 或 `Count and Hit`。
 
 **数据类型：** `Boolean` | `Logical`
-
 ## 参数
+```yaml
+parameters:
+- name: Count direction
+  summary: 向上或向下计数 Up（默认）| Down
+  group: ''
+- name: Count event
+  summary: 触发事件的类型 Rising edge（默认）| Falling edge | Either edge | Non-zero sample | Free running
+  group: ''
+- name: Counter size
+  summary: 计数的整数值范围 8 bits（默认）| 16 bits | 32 bits | User defined | Specify via input port
+  group: ''
+- name: Maximum count
+  summary: 计数器的最大值 255（默认）| 正整数
+  group: ''
+- name: Initial count
+  summary: 计数器的初始值 0（默认）| 整数 ≥ 0
+  group: ''
+- name: Output
+  summary: 输出计数值、命中值或两者 Count（默认）| Hit | Count and Hit
+  group: ''
+- name: Hit values
+  summary: 要标记的计数值 32（默认）| 标量 | 向量
+  group: ''
+- name: Reset input
+  summary: 启用 Rst 输入端口 on（默认）| off
+  group: ''
+- name: Samples per output frame
+  summary: 每个输出向量中的采样数 1（默认）| 正整数
+  group: ''
+- name: Sample time
+  summary: Free Running 模式下的采样时间 1（默认）| -1 | 标量 ≥ 0
+  group: ''
+- name: Count data type
+  summary: Cnt 端口的数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+- name: Hit data type
+  summary: Hit 端口的数据类型 Logical（默认）| Boolean
+  group: ''
+```
 
 ### **Count direction** — 向上或向下计数 `Up`（默认）| `Down`
 
@@ -189,7 +250,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output** 参数设置为 `Hit`，或将其设置为 `Count and Hit` 且 **Count data type** 参数设置为 `Double`。
-
 ## 所属库
 
 DSP System Toolbox / Signal Management / Switches and Counters

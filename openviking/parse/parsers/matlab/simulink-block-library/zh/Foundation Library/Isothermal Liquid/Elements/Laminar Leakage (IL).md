@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Laminar Leakage (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口或出口等温液体
+  direction: unspecified
+- name: B
+  summary: 入口或出口等温液体
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,43 @@ chinese_source: worker-translation
 ### **B** — 入口或出口等温液体
 
 与层流泄漏的入口或出口相关联的等温液体守恒端口。该模块没有固有的方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: Cross-sectional geometry
+  summary: 选择泄漏横截面的形状 Circular（默认）| Annular | Rectangular | Elliptical | Equilateral triangular | Custom
+  group: ''
+- name: Diameter
+  summary: 圆形横截面的直径 1e-3 m（默认）| 正标量
+  group: ''
+- name: Inner diameter
+  summary: 环形横截面的内径 5e-4 m（默认）| 正标量
+  group: ''
+- name: Outer diameter
+  summary: 环形横截面的外径 1e-3 m（默认）| 正标量
+  group: ''
+- name: Width
+  summary: 矩形横截面的宽度 1e-3 m（默认）| 正标量
+  group: ''
+- name: Height
+  summary: 矩形横截面的高度 0.1 m（默认）| 正标量
+  group: ''
+- name: Major axis
+  summary: 椭圆形横截面的长轴 1e-3 m（默认）| 正标量
+  group: ''
+- name: Minor axis
+  summary: 椭圆形横截面的短轴 5e-4 m（默认）| 正标量
+  group: ''
+- name: Side length
+  summary: 等边三角形横截面的边长 1e-3 m（默认）| 正标量
+  group: ''
+- name: Longitudinal length
+  summary: 流动通道的长度 5 m（默认）| 正标量
+  group: ''
+- name: Linear pressure-flow resistance
+  summary: 压力损失与质量流量的比值 1e3 s\*MPa/m^3（默认）| 正标量
+  group: ''
+```
 
 ### **Cross-sectional geometry** — 选择泄漏横截面的形状 `Circular`（默认）| `Annular` | `Rectangular` | `Elliptical` | `Equilateral triangular` | `Custom`
 
@@ -107,7 +151,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 当 **Cross-sectional geometry** 参数设置为 `Custom` 时启用。
-
 ## 所属库
 
 Simscape / Foundation Library / Isothermal Liquid / Elements

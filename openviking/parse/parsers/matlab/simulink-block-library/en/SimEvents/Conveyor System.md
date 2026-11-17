@@ -14,6 +14,39 @@ language: en
 # Conveyor System
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Incoming entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: S
+  summary: Incoming anonymous entity scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Port_1
+  summary: Exiting entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_d
+  summary: Number of entities departed off (default) | on
+  direction: output
+  data_types: double
+- name: Port_n
+  summary: Number of entities in block off (default) | on
+  direction: output
+  data_types: double
+- name: Port_pe
+  summary: Pending entity in block off (default) | on
+  direction: output
+  data_types: double
+- name: Port_s
+  summary: Conveyor speed off (default) | on
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -84,8 +117,108 @@ Selecting this check box outputs the conveyor speed.
 To enable this port, select the **Statistics** > **Conveyor speed, s**.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Conveyor length
+  summary: Length of surface 100 (default) | numeric
+  group: ''
+  block_parameter: mConveyorLength
+  type: character vector
+  values: '''100'' | scalar'
+  default: '''100'''
+- name: Conveyor speed
+  summary: Speed of the conveyor surface 1000 (default) | numeric
+  group: ''
+  block_parameter: mConveyorSpeed
+  type: character vector
+  values: '''1000'' | scalar'
+  default: '''1000'''
+- name: Minimum distance between entities
+  summary: Minimum physical separation 0 (default) | numeric
+  group: ''
+  block_parameter: mMinDisBetEntity
+  type: character vector
+  values: '''0'' | scalar'
+  default: '''0'''
+- name: Entity length source
+  summary: Entity length source Dialog (default) | Attribute
+  group: ''
+  block_parameter: mEntityLengthSource
+  type: character vector
+  values: '''Dialog'' | ''Attribute'''
+  default: '''Dialog'''
+- name: Entity length value
+  summary: Length of entities 1 (default) | numeric
+  group: ''
+  block_parameter: mEntityLength
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Entity length attribute name
+  summary: Name of entity length attribute Length (default) | character vector
+  group: ''
+  block_parameter: mEntityLengthAttrName
+  type: character vector
+  values: '''Length'' | character vector'
+  default: '''Length'''
+- name: Blocked output behavior
+  summary: Behavior when the output is blocked Accumulate (default) | Pause | Error
+  group: ''
+  block_parameter: mOutputBlockedOpt
+  type: character vector
+  values: '''Accumulate'' | ''Pause'' | ''Error'''
+  default: '''Accumulate'''
+- name: Error if conveyor full
+  summary: Conveyor behavior when the maximum number of entities is reached on (default) | off
+  group: ''
+  block_parameter: mErrorUponFullOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Variable conveyor speed
+  summary: Constant or variable conveyor speed off (default) | on
+  group: ''
+  block_parameter: mIsVariableSpeed
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Number of entities departed, d
+  summary: Number of entities departed off (default) | on
+  group: ''
+  block_parameter: mNumEntitiesDepOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities in block, n
+  summary: Number of existing entities off (default) | on
+  group: ''
+  block_parameter: mNumEntitiesInBlockOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Pending entity in block, pe
+  summary: Pending entities off (default) | on
+  group: ''
+  block_parameter: mEntityPendingOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Number of entities extracted, ex
+  summary: Number of entities extracted from this block off (default) | on
+  group: ''
+  block_parameter: mNumExtractedFromBlockOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Conveyor speed, s
+  summary: Speed of the conveyor for the duration of the simulation off (default) | on
+  group: ''
+  block_parameter: mConveyorSpeedOpt
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Conveyor length** — Length of surface 100 (default) | numeric
 
@@ -332,7 +465,6 @@ simulation.
 | **Type**: character vector |
 | **Values**: `'on'` | `'off'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 SimEvents

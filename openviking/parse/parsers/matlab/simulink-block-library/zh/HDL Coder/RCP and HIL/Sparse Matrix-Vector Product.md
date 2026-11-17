@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Sparse Matrix-Vector Product
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号 标量 | 向量
+  direction: input
+  data_types: single | double | fixed point
+- name: y
+  summary: 输出信号 标量 | 向量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -30,8 +41,55 @@ chinese_source: worker-translation
 输出信号，以标量或向量形式返回。输出信号是输入信号乘以 **Matrix A** 指定的稀疏矩阵的结果。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Matrix A
+  summary: 稀疏矩阵 1（默认）| 实数标量、向量或矩阵
+  group: 主要
+  block_parameter: A
+  values: '"1" | 实数标量、向量或矩阵'
+- name: Output minimum
+  summary: 用于范围检查的输出最小值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的输出最大值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '输出数据类型 ''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit:
+    Inherit via back propagation'' | ''Inherit: Same as first input'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  values: '''Inherit: Inherit via internal rule''（默认）| ''Inherit: Keep MSB'' | ''Inherit: Match scaling'' | ''Inherit: Inherit
+    via back propagation'' | ''Inherit: Same as first input'' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''<data type expression>'''
+- name: Parameter minimum
+  summary: 稀疏矩阵的最小值 []（默认）| 标量
+  group: 参数属性
+  block_parameter: ParamMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Parameter maximum
+  summary: 稀疏矩阵的最大值 []（默认）| 标量
+  group: 参数属性
+  block_parameter: ParamMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Parameter data type
+  summary: '指定稀疏矩阵的数据类型 ''Inherit: Inherit via back propagation''（默认）| ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8''
+    | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | '' | ''fixdt(1,16)'' | ''fixdt(1,16,0)''
+    | ''fixdt(1,16,2^0,0)'' | ''Enum: <class name>'' | ''<data type expression>'''
+  group: 参数属性
+  block_parameter: ParamDataTypeStr
+  values: '''Inherit: Inherit via back propagation''（默认）| ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''
+    | ''Enum: <class name>'' | ''<data type expression>'''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -159,7 +217,6 @@ maximum** 参数。这些设置会告知软件您在仿真期间所需的值的�
 | --- | --- |
 | **Parameter:** | `ParamDataTypeStr` |
 | **值**：| `'Inherit: Inherit via back propagation'`（默认）| `'double'` | `'single'` | `'half'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'` | `'int64'` | `'uint64'` | `'boolean'` | `'fixdt(1,16)'` | `'fixdt(1,16,0)'` | `'fixdt(1,16,2^0,0)'` | `'Enum: <class name>'` | `'<data type expression>'` |
-
 ## 所属库
 
 HDL Coder / RCP and HIL

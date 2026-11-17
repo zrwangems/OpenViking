@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Gate Valve (IL)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 闸门位移，m 物理信号
+  direction: input
+- name: A
+  summary: 液体端口 等温液体
+  direction: input
+- name: B
+  summary: 液体端口 等温液体
+  direction: input
+```
 
 ### 输入
 
@@ -32,8 +44,34 @@ m。正信号使闸门回缩并打开阀门。
 
 与阀门入口
 B 相关联的等温液体守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Valve orifice diameter
+  summary: 孔口直径 5e-3 m^2（默认）| 正标量
+  group: ''
+- name: Gate position when fully covering orifice
+  summary: 闸门偏移 0 m（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的孔口面积 inf m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 范围 [0,1] 内的正标量
+  group: ''
+- name: Pressure recovery
+  summary: 是否考虑面积扩大中的压力增加 off（默认）| on
+  group: ''
+```
 
 ### **Valve orifice diameter** — 孔口直径 `5e-3` `m^2`（默认）| 正标量
 
@@ -69,7 +107,6 @@ B 相关联的等温液体守恒端口。
 ### **Pressure recovery** — 是否考虑面积扩大中的压力增加 `off`（默认）| `on`
 
 是否考虑当流体从较小横截面积区域流向较大横截面积区域时的压力增加。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Flow Control Valves

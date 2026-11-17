@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # System-Level Heat Exchanger (TL-TL)
 
 ## 端口
+```yaml
+ports:
+- name: Q1
+  summary: 传递到热液体 1 的热传递速率，W 物理信号
+  direction: output
+- name: Q2
+  summary: 传递到热液体 2 的热传递速率，W 物理信号
+  direction: output
+- name: A1
+  summary: 侧 1 的热液体端口 热液体
+  direction: output
+- name: B1
+  summary: 侧 1 的热液体端口 热液体
+  direction: output
+- name: A2
+  summary: 侧 2 的热液体端口 热液体
+  direction: output
+- name: B2
+  summary: 侧 2 的热液体端口 热液体
+  direction: output
+```
 
 ### 输出
 
@@ -42,8 +63,120 @@ chinese_source: worker-translation
 ### **B2** — 侧 2 的热液体端口 热液体
 
 与第二个热液体网络相关联的入口或出口端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement at nominal operating conditions
+  summary: 流路对齐方式 Counter flow - Thermal Liquid 1 flows from A to B, Thermal Liquid 2 flows from B to A（默认）| Parallel flow
+    - Both fluids flow from A to B | Cross flow - Both fluids flow from A to B
+  group: 配置
+- name: Enable wall thermal mass
+  summary: 是否启用热质量对传热表面的影响 off（默认）| on
+  group: 配置
+- name: Wall mass
+  summary: 传热表面的质量 1 kg（默认）| 正标量
+  group: 配置
+- name: Wall specific heat
+  summary: 传热表面的比热 490 J/(K*kg)（默认）| 正标量
+  group: 配置
+- name: Initialize wall temperature to nominal operating conditions
+  summary: 初始化壁面温度的选项 on（默认）| off
+  group: 配置
+- name: Initial wall temperature
+  summary: 壁面的初始温度 293.15 K（默认）| 正标量或二元素向量
+  group: 配置
+- name: Cross-sectional area at port A1
+  summary: 端口 A1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B1
+  summary: 端口 B1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A2
+  summary: 端口 A2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B2
+  summary: 端口 B2 处垂直于流动方向的面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Nominal operating condition
+  summary: 标称工况 Heat transfer from Thermal Liquid 1 to Thermal Liquid 2（默认）| Heat transfer from Thermal Liquid 2 to Thermal
+    Liquid 1
+  group: 热液体 1
+- name: Nominal mass flow rate
+  summary: 标称工况下热液体 1 端口之间的质量流量 0.1 kg/s（默认）| 正标量
+  group: 热液体 1
+- name: Nominal pressure drop
+  summary: 标称工况下热液体 1 端口之间的压降 0.01 MPa（默认）| 正标量
+  group: 热液体 1
+- name: Nominal inlet pressure
+  summary: 热液体 1 入口处的压力 0.101325 MPa（默认）| 正标量
+  group: 热液体 1
+- name: Nominal inlet temperature
+  summary: 热液体 1 入口处的温度 333.15 K（默认）| 正标量
+  group: 热液体 1
+- name: Heat transfer capacity specification
+  summary: 如何指定热液体 1 的热传递能力 Rate of heat transfer（默认）| Outlet condition
+  group: 热液体 1
+- name: Nominal rate of heat transfer
+  summary: 热传递速率 1 kW（默认）| 正标量
+  group: 热液体 1
+- name: Nominal outlet temperature
+  summary: 出口温度 323.15 K（默认）| 正标量
+  group: 热液体 1
+- name: Thermal liquid 1 volume
+  summary: 热液体 1 的总体积 0.001 m^3（默认）| 正标量
+  group: 热液体 1
+- name: Initialize thermal liquid 1 to nominal operating conditions
+  summary: 初始化热液体 1 的选项 on（默认）| off
+  group: 热液体 1
+- name: Initial thermal liquid 1 pressure
+  summary: 仿真开始时热液体 1 的压力 0.101325 MPa（默认）| 正标量
+  group: 热液体 1
+- name: Initial thermal liquid 1 temperature
+  summary: 仿真开始时热液体 1 的温度 293.15 K（默认）| 正标量
+  group: 热液体 1
+- name: Nominal mass flow rate
+  summary: 标称工况下热液体 2 端口之间的质量流量 0.1 kg/s（默认）| 正标量
+  group: 热液体 2
+- name: Nominal pressure drop
+  summary: 标称工况下热液体 2 端口之间的压降 0.01 MPa（默认）| 正标量
+  group: 热液体 2
+- name: Nominal inlet pressure
+  summary: 热液体 2 入口处的压力 0.101325 MPa（默认）| 正标量
+  group: 热液体 2
+- name: Nominal inlet temperature
+  summary: 热液体 2 入口处的温度 293.15 K（默认）| 正标量
+  group: 热液体 2
+- name: Thermal liquid 2 volume
+  summary: 换热器中热液体 2 的总体积 0.001 m^3（默认）| 正标量
+  group: 热液体 2
+- name: Initialize thermal liquid 2 to nominal operating conditions
+  summary: 初始化热液体 2 的选项 on（默认）| off
+  group: 热液体 2
+- name: Initial thermal liquid 2 pressure
+  summary: 仿真开始时热液体 2 的压力 0.101325 MPa（默认）| 正标量
+  group: 热液体 2
+- name: Initial thermal liquid 2 temperature
+  summary: 仿真开始时热液体 2 的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: 热液体 2
+- name: a in Nu = a\*Re^b\*Pr^c for thermal liquid 1
+  summary: 热液体 1 的关联式系数 0.023（默认）| 正标量
+  group: 关联式系数
+- name: b in Nu = a\*Re^b\*Pr^c for thermal liquid 1
+  summary: 热液体 1 关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: 关联式系数
+- name: c in Nu = a\*Re^b\*Pr^c for thermal liquid 1
+  summary: 热液体 1 关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: 关联式系数
+- name: a in Nu = a\*Re^b\*Pr^c for thermal liquid 2
+  summary: 热液体 2 的关联式系数 0.023（默认）| 正标量
+  group: 关联式系数
+- name: b in Nu = a\*Re^b\*Pr^c for thermal liquid 2
+  summary: 热液体 2 关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: 关联式系数
+- name: c in Nu = a\*Re^b\*Pr^c for thermal liquid 2
+  summary: 热液体 2 关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: 关联式系数
+```
 
 ### 配置
 
@@ -266,7 +399,6 @@ condition`。
 ### **c in Nu = a\*Re^b\*Pr^c for thermal liquid 2** — 热液体 2 关联式中的普朗特数指数 `0.33`（默认）| 正标量
 
 热液体 2 的努塞尔数作为雷诺数和普朗特数函数的关联式中的普朗特数指数。默认值基于 Colburn 方程。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid

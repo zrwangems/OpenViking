@@ -14,6 +14,24 @@ language: en
 # Variable Selector
 
 ## Ports
+```yaml
+ports:
+- name: InN
+  summary: '*N*th input signal scalar | vector | matrix'
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Idx
+  summary: Index vector scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: OutN
+  summary: '*N*th Output signal scalar | vector | matrix'
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### Input
 
@@ -73,8 +91,34 @@ Input rows or columns can appear any number of times in the output, or
 not at all.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input signals
+  summary: Number of inputs 1 (default) | positive integer
+  group: ''
+- name: Select
+  summary: Select dimension Rows (default) | Columns
+  group: ''
+- name: Selector mode
+  summary: Indexing mode Variable (default) | Fixed
+  group: ''
+- name: Elements
+  summary: Selected elements [1 3] (default) | scalar | vector
+  group: ''
+- name: Index mode
+  summary: Index mode Zero-based (default) | One-based
+  group: ''
+- name: Invalid index
+  summary: Error handling Clip Index (default) | Clip and Warn | Generate Error
+  group: ''
+- name: Fill empty spaces in outputs (for logical indexing)
+  summary: Fill in empty spaces in outputs on (default) | off
+  group: ''
+- name: Fill values
+  summary: Fill values 0 (default) | scalar value | integer
+  group: ''
+```
 
 ### **Number of input signals** — Number of inputs `1` (default) | positive integer
 
@@ -188,7 +232,6 @@ Specify the fill values when the block performs logical indexing.
 
 This parameter appears only when you select the Fill empty spaces in outputs (for logical indexing)
 parameter.
-
 ## Libraries
 
 DSP System Toolbox / Signal Management / Indexing DSP System Toolbox HDL Support / Signal Management

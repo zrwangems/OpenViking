@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Chain Drive
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 链轮 A 机械旋转
+  direction: unspecified
+- name: B
+  summary: 链轮 B 机械旋转
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -25,8 +34,40 @@ chinese_source: worker-translation
 ### **B** — 链轮 B 机械旋转
 
 与链轮 B 关联的守恒旋转端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Chain model
+  summary: 链条柔性和间隙模型 Ideal - no chain compliance or backlash（默认）| 模型链合规性与 backlash
+  group: 几何
+- name: Sprocket A pitch radius
+  summary: 链轮 *A* 节圆半径 80 mm（默认）| 标量
+  group: 几何
+- name: Sprocket B pitch radius
+  summary: 链轮 *B* 节圆半径 40 mm（默认）| 标量
+  group: 几何
+- name: Chain slack length
+  summary: 最大松弛长度 50 mm（默认）| 标量
+  group: 几何
+- name: Chain stiffness
+  summary: 线性弹簧常数 1e5 N/m（默认）| 标量
+  group: 动力学
+- name: Chain damping
+  summary: 线性阻尼系数 5 N/(m/s)（默认）| 标量
+  group: 动力学
+- name: Viscous friction coefficient of sprocket A
+  summary: 链轮 *A* 摩擦 0.001 N*m/(rad/s)（默认）
+  group: 动力学
+- name: Viscous friction coefficient of sprocket B
+  summary: 链轮 *B* 摩擦 0.001 N*m/(rad/s)（默认）
+  group: 动力学
+- name: Maximum tension
+  summary: 张力限制模型 No maximum tension（默认）| Specify maximum tension
+  group: 最大张力
+- name: Chain maximum tension
+  summary: 张力上限 1e6 N（默认）
+  group: 最大张力
+```
 
 ### 几何
 
@@ -137,7 +178,6 @@ backlash` 时，此参数启用。
   设置中，**Maximum tension**
   参数设置为 `Specify maximum
   tension`。
-
 ## 所属库
 
 Simscape / Driveline / Couplings & Drives

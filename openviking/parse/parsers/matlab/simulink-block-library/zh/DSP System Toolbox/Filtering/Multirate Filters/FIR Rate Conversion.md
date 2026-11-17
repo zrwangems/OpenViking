@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # FIR Rate Conversion
 
 ## 端口
+```yaml
+ports:
+- name: Port_1(In1)
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1(Out1)
+  summary: 速率转换后的信号 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -61,8 +72,67 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Coefficient source
+  summary: 操作模式 Auto（默认）| Dialog parameters | Filter object
+  group: ''
+- name: Interpolation factor
+  summary: 插值因子 3（默认）| 正整数
+  group: 主选项卡
+- name: FIR filter coefficients
+  summary: FIR 滤波器系数 designMultirateFIR(3,2)（默认）| 向量
+  group: 主选项卡
+- name: Decimation factor
+  summary: 抽取因子 2（默认）| 正整数
+  group: 主选项卡
+- name: Rate options
+  summary: 强制单速率或允许多速率处理 Enforce single-rate processing（默认）| Allow multirate processing
+  group: 主选项卡
+- name: Filter object
+  summary: 滤波器对象 FRC（默认）| dsp.FIRRateConverter System object
+  group: 主选项卡
+- name: Allow 固定大小输入的任意帧长度 signals
+  summary: 允许固定大小输入信号的任意帧长度 off（默认）| on
+  group: 主选项卡
+- name: View Filter Response
+  summary: 可视化滤波器响应 按钮
+  group: 主选项卡
+- name: Rounding mode
+  summary: 舍入方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: Saturate on integer overflow
+  summary: 溢出处理方法 off（默认）| on
+  group: 数据类型选项卡
+- name: Coefficients
+  summary: '系数数据类型 Inherit: Same word length as input（默认）| fixdt(1,16) | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Coefficients Minimum
+  summary: 滤波器系数的最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Coefficients Maximum
+  summary: 滤波器系数的最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Product output
+  summary: '乘积输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Accumulator
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output
+  summary: '输出数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | Inherit: Same as product output | fixdt(1,16,0)'
+  group: 数据类型选项卡
+- name: Output Minimum
+  summary: 模块可以输出的最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Output Maximum
+  summary: 模块可以输出的最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### **Coefficient source** — 操作模式 **Auto**（默认）| **Dialog parameters** | **Filter object**
 
@@ -429,7 +499,6 @@ parameters** 或 **Auto** 时，此参数才可编辑。
 #### 依赖关系
 
 此参数仅在 **Coefficient source** 设置为 **Dialog parameters** 或 **Auto** 时出现。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Multirate Filters

@@ -14,6 +14,29 @@ language: en
 # CORDIC Sigmoid HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input data real-valued scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: validIn
+  summary: Whether input is valid Boolean scalar
+  direction: input
+  data_types: Boolean
+- name: y
+  summary: Sigmoid activation of u scalar
+  direction: output
+  data_types: single | double | fixed point
+- name: validOut
+  summary: Whether output data is valid Boolean
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: Whether block is ready Boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -72,11 +95,12 @@ When this value is 0 (`false`), the block ignores input data in the
 next clock cycle.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Fixed-Point Designer HDL Support / Math Operations

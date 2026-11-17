@@ -14,6 +14,45 @@ language: en
 # NR Polar Decoder
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Input sample scalar
+  direction: input
+  data_types: fixed point | int8 | int16 | double | single
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: input
+  data_types: bus
+- name: K
+  summary: Length of information block in bits positive integer
+  direction: input
+  data_types: fixdt(0,10,0)
+- name: E
+  summary: Rate-matched output length in bits scalar positive integer
+  direction: input
+  data_types: fixdt(0,14,0)
+- name: RNTI
+  summary: Target RNTI 16-bit unsigned integer
+  direction: input
+  data_types: uint16
+- name: data
+  summary: Decoded data bit scalar
+  direction: output
+  data_types: fixdt(0,1,0) | Boolean | double | single
+- name: ctrl
+  summary: Control signals accompanying sample stream samplecontrol bus
+  direction: output
+  data_types: bus
+- name: err
+  summary: CRC result scalar
+  direction: output
+  data_types: Boolean | ufix11 | ufix24
+- name: nextFrame
+  summary: Ready for new inputs scalar
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -137,8 +176,31 @@ frame in progress and begins processing the new data.
 For more information, see Using the nextFrame Output Signal.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Link direction
+  summary: Direction of 5G NR link Downlink (default) | Uplink
+  group: ''
+- name: List length
+  summary: Number of decoding paths 2 (default) | 4 | 8
+  group: ''
+- name: Configuration source
+  summary: Source for K and E Property (default) | Input port
+  group: ''
+- name: Message length (K)
+  summary: Length of information block in bits 56 (default) | positive integer
+  group: ''
+- name: Rate-matched length (E)
+  summary: Rate-matched output length in bits 864 (default) | positive integer
+  group: ''
+- name: Full checksum mismatch
+  summary: Return checksum from final decoding stage off (default) | on
+  group: ''
+- name: Enable target RNTI port
+  summary: Optional port to specify target RNTI value off (default) | on
+  group: ''
+```
 
 ### **Link direction** — Direction of 5G NR link `Downlink` (default) | `Uplink`
 
@@ -226,7 +288,6 @@ CRC checksum against a value of 0.
 
 To enable this parameter, set the **Link direction** parameter to
 `Downlink`.
-
 ## Libraries
 
 Wireless HDL Toolbox / Error Detection and Correction

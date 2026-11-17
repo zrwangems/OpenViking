@@ -14,6 +14,33 @@ language: en
 # Offset
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: First input data scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: O1
+  summary: First offset value integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: In2
+  summary: Second input data scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: O2
+  summary: Second offset value integer
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Out1
+  summary: First truncated data scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Out2
+  summary: Second truncated data scalar | vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -119,8 +146,26 @@ the output is fixed-point, it is signed only.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Specify which values to discard and which values to keep Remove beginning samples (default) | Remove ending samples
+    | Keep beginning samples | Keep ending samples
+  group: ''
+- name: Number of input data-offset pairs
+  summary: Number of input data-offset pairs 2 (default) | positive integer
+  group: ''
+- name: Output port length
+  summary: Mode to specify output port length Same as input (default) | User-defined
+  group: ''
+- name: Output length
+  summary: Desired length of output vectors 9 (default) | positive integer
+  group: ''
+- name: Action for out of range offset value
+  summary: Action for out of range offset value Clip (default) | Clip and warn | Error
+  group: ''
+```
 
 ### **Mode** — Specify which values to discard and which values to keep `Remove beginning samples` (default) | `Remove ending samples` | `Keep beginning samples` | `Keep ending samples`
 
@@ -184,7 +229,6 @@ is not in the range such that 0 ≤ offset value ≤ *N*, where *N* is the input
 - `Error` –– Simulation stops and the
   block displays an error when the offset values or out of
   range.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations

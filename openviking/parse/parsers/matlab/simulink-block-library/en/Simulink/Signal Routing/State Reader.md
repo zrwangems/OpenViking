@@ -14,6 +14,13 @@ language: en
 # State Reader
 
 ## Ports
+```yaml
+ports:
+- name: Out
+  summary: State value scalar | vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Output
 
@@ -29,8 +36,17 @@ State Reader block returns a state vector of length
 `[1xN]`.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: State owner block
+  summary: Name of state owner block none (default)
+  group: ''
+  block_parameter: StateOwnerBlock
+  type: character vector
+  values: ''''' | ''<model path/block name>'''
+  default: ''''''
+```
 
 ### **State owner block** — Name of state owner block none (default)
 
@@ -55,7 +71,6 @@ model hierarchy.
 | **Type:** character vector |
 | **Value:** `''` | `'<model path/block name>'` |
 | **Default:** `''` |
-
 ## Libraries
 
 Simulink / Signal Routing

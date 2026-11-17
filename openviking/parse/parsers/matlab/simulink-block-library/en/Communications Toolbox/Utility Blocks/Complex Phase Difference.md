@@ -14,6 +14,20 @@ language: en
 # Complex Phase Difference
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: First input signal scalar | column vector | matrix
+  direction: input
+  data_types: double | single
+- name: In2
+  summary: Second input signal scalar | column vector | matrix
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: Phase shift difference scalar | column vector | matrix
+  direction: output
+```
 
 ### Input
 
@@ -55,11 +69,12 @@ signal dimension matches the dimension of the nonscalar input signal.
 The output is the phase difference between the second input signal and
 the first input signal. The elements of the output signal are between -π
 and π and are the same data type as the input signals.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Communications Toolbox / Utility Blocks

@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Fcn
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: Fcn 模块的输入 标量 | 向量
+  direction: input
+  data_types: single | double
+- name: Out
+  summary: Fcn 模块的输出 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -34,8 +45,20 @@ Fcn 模块接受并输出类型为 `single` 或 `double` 的信号。
 有关详细信息，请参阅 Simulink 文档中的 Simulink 支持的数据类型。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Expression
+  summary: 指定数学表达式 数学表达式
+  group: ''
+  block_parameter: Expr
+  type: character vector
+  values: mathematical expression
+  default: '''sin(u(1)*exp(2.3*(-u(2))))'''
+- name: Sample time
+  summary: 指定模块中的采样时间 标量
+  group: ''
+```
 
 ### **Expression** — 指定数学表达式 数学表达式
 
@@ -55,7 +78,6 @@ Fcn 模块接受并输出类型为 `single` 或 `double` 的信号。
 **注意**
 
 除非将此参数显式设置为 `-1` 以外的值，否则该参数不会显示在模块对话框中。要了解更多信息，请参阅不建议设置采样时间的模块。
-
 ## 所属库
 
 Simulink / User-Defined Functions

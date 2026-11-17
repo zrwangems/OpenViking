@@ -14,6 +14,27 @@ language: en
 # PVCVS2
 
 ## Ports
+```yaml
+ports:
+- name: 1+
+  summary: Positive input voltage of the first controlling input electrical
+  direction: conserving
+- name: 1-
+  summary: Negative input voltage of the first controlling input electrical
+  direction: conserving
+- name: 2+
+  summary: Positive input voltage of the second controlling input electrical
+  direction: conserving
+- name: 2-
+  summary: Negative input voltage of the second controlling input electrical
+  direction: conserving
+- name: +
+  summary: Positive output voltage electrical
+  direction: conserving
+- name: '-'
+  summary: Negative output voltage electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -46,14 +67,18 @@ voltage.
 
 Electrical conserving port associated with the PVCVS2 negative output
 voltage.
-
 ## Parameters
+```yaml
+parameters:
+- name: Polynomial coefficients
+  summary: Polynomial coefficients [ 0 1 1 ] (default)
+  group: ''
+```
 
 ### **Polynomial coefficients** — Polynomial coefficients `[ 0 1 1 ]` (default)
 
 The polynomial coefficients that relate the input voltage to the output
 voltage, as described in the preceding section.
-
 ## Libraries
 
 Simscape / Electrical / Additional Components / SPICE Sources

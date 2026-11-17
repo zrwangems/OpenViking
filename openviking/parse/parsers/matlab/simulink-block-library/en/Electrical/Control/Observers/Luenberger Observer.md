@@ -14,6 +14,21 @@ language: en
 # Luenberger Observer
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Control input vector
+  direction: input
+  data_types: single | double
+- name: y
+  summary: System output vector
+  direction: input
+  data_types: single | double
+- name: xhat
+  summary: State estimate vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -37,8 +52,55 @@ specified as a vector.
 Estimate of the state of the system, specified as a vector.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: State-space parameterization
+  summary: State-space parameterization Discrete-time (default) | Continuous-time
+  group: ''
+- name: Discrete A matrix
+  summary: A matrix in discrete time 1 (default) | real scalar or matrix
+  group: ''
+- name: Discrete B matrix
+  summary: B matrix in discrete time 1 (default) | real scalar or matrix
+  group: ''
+- name: Discrete C matrix
+  summary: C matrix in discrete time 1 (default) | real scalar or matrix
+  group: ''
+- name: Discrete D matrix
+  summary: D matrix in discrete time 1 (default) | real scalar or matrix
+  group: ''
+- name: Continuous A matrix
+  summary: A matrix in continuous time 1 (default) | real scalar or matrix
+  group: ''
+- name: Continuous B matrix
+  summary: B matrix in continuous time 1 (default) | real scalar or matrix
+  group: ''
+- name: Continuous C matrix
+  summary: C matrix in continuous time 1 (default) | real scalar or matrix
+  group: ''
+- name: Continuous D matrix
+  summary: D matrix in continuous time 1 (default) | real scalar or matrix
+  group: ''
+- name: Observer design
+  summary: State-space parameterization Desired eigenvalues (default) | Observer gain
+  group: ''
+- name: Observer gain
+  summary: Observer gain 1 (default) | real scalar or matrix
+  group: ''
+- name: Desired eigenvalues
+  summary: Observer eigenvalues 0 (default) | real vector
+  group: ''
+- name: Initial conditions
+  summary: Initial conditions 0 (default) | real vector with length equal to system order
+  group: ''
+- name: Discretization sample time
+  summary: Discretization sample time 0.1 (default) | positive real number
+  group: ''
+- name: Sample time
+  summary: Sample time 0.1 (default) | -1 or positive real number
+  group: ''
+```
 
 ### **State-space parameterization** — State-space parameterization `Discrete-time` (default) | `Continuous-time`
 
@@ -208,7 +270,6 @@ Value used to simulate the dynamics of the model. Choose the same value as
 **Discretization sample time**, unless the block is
 placed within a triggered subsystem, in which case you must set it to
 -1.
-
 ## Libraries
 
 Simscape / Electrical / Control / Observers

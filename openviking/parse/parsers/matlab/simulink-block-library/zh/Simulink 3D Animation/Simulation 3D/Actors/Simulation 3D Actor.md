@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Simulation 3D Actor
 
 ## 端口
+```yaml
+ports:
+- name: Instance
+  summary: 角色的实例编号，实数整数
+  direction: input
+- name: Valid
+  summary: 指定角色的有效性 false（默认）| true
+  direction: output
+```
 
 ### 输入
 
@@ -34,8 +43,43 @@ chinese_source: worker-translation
 ### **Valid** — 指定角色的有效性 `false`（默认）| `true`
 
 指定角色的有效性，如果无法在世界中找到指定的角色，则返回 `false`；如果找到该角色，则返回 `true`。
-
 ## 参数
+```yaml
+parameters:
+- name: Actor Name
+  summary: 角色的名称 Sim3dActor1（默认）| 字符串
+  group: 主要
+- name: Parent Name
+  summary: 角色的父级 Scene Origin（默认）| 字符串
+  group: 主要
+- name: Operation
+  summary: 模块的运行模式 Create at setup（默认）| Create at step | Reference by name | Reference by instance number
+  group: 主要
+- name: Path to source file
+  summary: 获取 actor 的源文件 字符串
+  group: 主要
+- name: Initialization script
+  summary: 用于初始化 actor 的 MATLAB 脚本代码
+  group: 主要
+- name: Sample time
+  summary: 采样时间 -1（默认）| scalar
+  group: 主要
+- name: Translation
+  summary: 相对平移 [0,0,0]（默认）| 实数 1×3 向量
+  group: Transform
+- name: Rotation
+  summary: 相对旋转 [0,0,0]（默认）| 实数 1×3 向量
+  group: Transform
+- name: Scale
+  summary: 相对缩放 [1,1,1]（默认）| 实数 1×3 向量
+  group: Transform
+- name: 输入端口
+  summary: 用户选择的输入端口列表 文本区域
+  group: 输入
+- name: 输出端口
+  summary: 用户选择的输出端口列表 文本区域
+  group: 输出
+```
 
 ### 主要
 
@@ -195,7 +239,6 @@ actor 对象相对于其父 actor 的旋转（roll、pitch、yaw），指定为�
 此文本区域列出模块的用户选择输出端口，并提供一个按钮用于打开端口选择器应用，您可以使用该应用修改输出端口。文本区域中的每一行代表一个模块端口。
 
 您可以使用文本区域手动修改端口，但建议使用端口选择器应用来选择端口。
-
 ## 所属库
 
 Simulink 3D Animation / Simulation 3D / Actors

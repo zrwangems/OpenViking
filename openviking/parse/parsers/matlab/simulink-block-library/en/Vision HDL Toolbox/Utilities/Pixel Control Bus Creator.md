@@ -14,6 +14,33 @@ language: en
 # Pixel Control Bus Creator
 
 ## Ports
+```yaml
+ports:
+- name: hStart
+  summary: First pixel in a horizontal line of a frame scalar
+  direction: input
+  data_types: Boolean
+- name: hEnd
+  summary: Last pixel in a horizontal line of a frame scalar
+  direction: input
+  data_types: Boolean
+- name: vStart
+  summary: First pixel in the first (top) line of a frame scalar
+  direction: input
+  data_types: Boolean
+- name: vEnd
+  summary: Last pixel in the last (bottom) line of a frame scalar
+  direction: input
+  data_types: Boolean
+- name: valid
+  summary: Valid pixel indicator scalar
+  direction: input
+  data_types: Boolean
+- name: ctrl
+  summary: Control signals accompanying pixel stream pixelcontrol bus
+  direction: output
+  data_types: bus
+```
 
 ### Input
 
@@ -60,11 +87,12 @@ The signals describe the validity of the pixel and its location in the frame. Fo
 information, see Pixel Control Bus.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Vision HDL Toolbox / Utilities

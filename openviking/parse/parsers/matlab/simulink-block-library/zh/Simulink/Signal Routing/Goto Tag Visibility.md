@@ -15,10 +15,21 @@ chinese_source: worker-translation
 # Goto Tag Visibility
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Goto tag
+  summary: 其可见性由该模块位置定义的 Goto 模块标签 A（默认）| ...
+  group: ''
+  block_parameter: GotoTag
+  type: 字符向量
+  values: '''A'' | ...'
+```
 
 ### **Goto tag** — 其可见性由该模块位置定义的 Goto 模块标签 `A`（默认）| ...
 
@@ -36,7 +47,6 @@ R2025b 中未记录。
 | **类型：** 字符向量 |
 | **值：** `'A'` | `...` |
 | **默认：** `'A'` |
-
 ## 所属库
 
 Simulink / Signal Routing

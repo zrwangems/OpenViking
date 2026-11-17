@@ -14,6 +14,17 @@ language: en
 # BCH Encoder
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Message to encode binary column vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: Encoded message binary column vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+```
 
 ### Input
 
@@ -37,8 +48,32 @@ code with message length *K* and codeword length
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean`
 
 For more information, see Supported Data Types.
-
 ## Parameters
+```yaml
+parameters:
+- name: Codeword length, N
+  summary: Codeword length 15 (default) | integer
+  group: ''
+- name: Message length, K
+  summary: Message length 5 (default) | integer
+  group: ''
+- name: Shortened message length, S
+  summary: Shortened message length 5 (default) | integer
+  group: ''
+- name: Generator polynomial
+  summary: Generator polynomial 'X^10 + X^8 + X^5 + X^4 + X^2 + X + 1' (default) | polynomial character vector | binary row
+    vector | binary Galois row vector
+  group: ''
+- name: Primitive polynomial
+  summary: Primitive polynomial 'X^4 + X + 1' (default) | polynomial character vector | binary row vector
+  group: ''
+- name: Disable generator polynomial checking
+  summary: Option to disable generator polynomial checking on (default) | off
+  group: ''
+- name: Puncture vector
+  summary: Puncture vector [ones(8,1); zeros(2,1)] (default) | binary column vector
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -143,7 +178,6 @@ unaltered. This convention applies to both the encoder and the decoder.
 #### Dependencies
 
 To enable this parameter, select **Puncture code**.
-
 ## Libraries
 
 Communications Toolbox / Error Detection and Correction / Block

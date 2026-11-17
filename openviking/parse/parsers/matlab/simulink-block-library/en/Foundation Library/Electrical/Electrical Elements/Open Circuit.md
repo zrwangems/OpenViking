@@ -14,17 +14,24 @@ language: en
 # Open Circuit
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Zero current electrical
+  direction: conserving
+```
 
 ### Conserving
 
 ### **V** — Zero current electrical
 
 Electrical conserving port that draws no current.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simscape / Foundation Library / Electrical / Electrical Elements Simscape / Electrical / Connectors & References

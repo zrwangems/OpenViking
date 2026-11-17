@@ -14,6 +14,27 @@ language: en
 # Bidirectional DC-DC
 
 ## Ports
+```yaml
+ports:
+- name: VoltCmd
+  summary: Commanded voltage scalar
+  direction: input
+- name: SrcVolt
+  summary: Input voltage scalar
+  direction: input
+- name: LdCurr
+  summary: Load current scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: LdVolt
+  summary: Load voltage scalar
+  direction: output
+- name: SrcCurr
+  summary: Source current scalar
+  direction: output
+```
 
 ### Inputs
 
@@ -57,8 +78,70 @@ Load voltage of DC-to-DC converter,
 
 Source current draw from DC-to-DC converter,
 *SrcAmp*, in A.
-
 ## Parameters
+```yaml
+parameters:
+- name: Converter response time constant, Tc
+  summary: Constant 1/1000 (default) | scalar
+  group: ''
+  block_parameter: Tc
+  values: 1/1000 (default) | scalar
+- name: Converter response initial voltage, Vinit
+  summary: Voltage 0 (default) | scalar
+  group: ''
+  block_parameter: Vinit
+  values: 0 (default) | scalar
+- name: Converter power limit, Plimit
+  summary: Power 100000 (default) | scalar
+  group: ''
+  block_parameter: Plimit
+  values: 100000 (default) | scalar
+- name: Parameterize losses by
+  summary: Loss calculation Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data
+  group: ''
+  block_parameter: param_loss
+  values: Single efficiency measurement (default) | Tabulated loss data | Tabulated efficiency data
+- name: Overall DC to DC converter efficiency, eff
+  summary: Constant 98 (default) | scalar
+  group: ''
+  block_parameter: eff
+  values: 98 (default) | scalar
+- name: Vector of voltages (v) for tabulated loss, v_loss_bp
+  summary: Breakpoints [0 200 400 600 800 1000] (default) | 1-by-M vector
+  group: ''
+  block_parameter: v_loss_bp
+  values: '[0 200 400 600 800 1000] (default) | 1-by-M vector'
+- name: Vector of currents (i) for tabulated loss, i_loss_bp
+  summary: Breakpoints [0 25 50 75 100] (default) | 1-by-N vector
+  group: ''
+  block_parameter: i_loss_bp
+  values: '[0 25 50 75 100] (default) | 1-by-N vector'
+- name: Corresponding losses, losses_table
+  summary: 2-D lookup table N-by-M matrix
+  group: ''
+  block_parameter: losses_table
+  values: N-by-M matrix
+- name: Vector of voltages (v) for tabulated efficiency, v_eff_bp
+  summary: Breakpoints [200 400 600 800 1000] (default) | 1-by-M vector
+  group: ''
+  block_parameter: v_eff_bp
+  values: '[200 400 600 800 1000] (default) | 1-by-M vector'
+- name: Vector of currents (i) for tabulated efficiency, i_eff_bp
+  summary: Breakpoints [25 50 75 100] (default) | 1-by-N vector
+  group: ''
+  block_parameter: i_eff_bp
+  values: '[25 50 75 100] (default) | 1-by-N vector'
+- name: Corresponding efficiency, efficiency_table
+  summary: 2-D lookup table N-by-M matrix
+  group: ''
+  block_parameter: efficiency_table
+  values: N-by-M matrix
+- name: Calibrate Maps
+  summary: Calibrate tables with measured data selection
+  group: ''
+  block_parameter: CalLossMapsButton
+  values: selection
+```
 
 #### Electrical Control
 
@@ -342,7 +425,6 @@ programmatically, use the `get_param` function.
 
 To enable this parameter, for **Parameterize losses by**, select
 `Tabulated loss data`.
-
 ## Libraries
 
 Powertrain Blockset / Energy Storage and Auxiliary Drive / DC-DC

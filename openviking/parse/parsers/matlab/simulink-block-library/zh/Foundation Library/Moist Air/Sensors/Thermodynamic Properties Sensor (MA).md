@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Thermodynamic Properties Sensor (MA)
 
 ## 端口
+```yaml
+ports:
+- name: h
+  summary: 比焓测量，J/kg 物理信号
+  direction: output
+- name: ρ
+  summary: 密度测量，kg/m^3 物理信号
+  direction: output
+- name: cp
+  summary: 定压比热测量，J/(kg\*K) 物理信号
+  direction: output
+- name: s
+  summary: 比熵测量，J/(kg\*K) 物理信号
+  direction: output
+- name: A
+  summary: 传感器入口湿空气
+  direction: output
+```
 
 ### 输出
 
@@ -54,8 +72,29 @@ chinese_source: worker-translation
 ### **A** — 传感器入口湿空气
 
 湿空气守恒端口。将此端口连接到湿空气网络中您想要测量热力学属性的节点。
-
 ## 参数
+```yaml
+parameters:
+- name: Measurements based on
+  summary: 选择传感器输出的测量约定 Unit mass of moist air mixture（默认）| Unit mass of dry air and trace gas
+  group: ''
+- name: Enthalpy
+  summary: 控制用于测量比焓的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Enthalpy reference state
+  summary: 选择比焓输出的参考状态 As provided in Moist Air Properties (MA) block（默认）| 0 degC with water as vapor | 0 degC with water
+    as liquid
+  group: ''
+- name: Density
+  summary: 控制用于测量密度的输出端口可见性 On（默认）| Off
+  group: ''
+- name: Specific heat
+  summary: 控制用于测量比热的输出端口可见性 Off（默认）| On
+  group: ''
+- name: Entropy
+  summary: 控制用于测量比熵的输出端口可见性 Off（默认）| On
+  group: ''
+```
 
 ### **Measurements based on** — 选择传感器输出的测量约定 `Unit mass of moist air mixture`（默认）| `Unit mass of dry air and trace gas`
 
@@ -100,7 +139,6 @@ chinese_source: worker-translation
 ### **Entropy** — 控制用于测量比熵的输出端口可见性 `Off`（默认）| `On`
 
 选中此复选框将显示输出端口 **s**，可用于测量空气混合物的比熵。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Sensors

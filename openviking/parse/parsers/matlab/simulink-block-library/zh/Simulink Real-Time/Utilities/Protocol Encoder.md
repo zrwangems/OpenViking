@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Protocol Encoder
 
 ## 端口
+```yaml
+ports:
+- name: Field1
+  summary: 模块要编码的第一个字段 标量
+  direction: input
+- name: Packet
+  summary: uint8 字节流数据包向量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -31,8 +41,50 @@ chinese_source: worker-translation
 包含来自多个信号的编码数据的 uint8 字节流数据包，如数据包结构中所指定。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Header
+  summary: 数据包的头部 字符数组 | 小于 255 的数值数组
+  group: ''
+  block_parameter: Header
+- name: Field name
+  summary: 数据包结构中字段的名称 Field1（默认）| 字符串
+  group: ''
+  block_parameter: FieldNames
+- name: Input field length
+  summary: 根据数据类型确定的输入字段长度 1（默认）| 数值标量
+  group: ''
+  block_parameter: FixedSizeFieldLength
+- name: Input field data type
+  summary: 字段的数据类型 uint8（默认）| int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | single | double
+  group: ''
+  block_parameter: FixedFieldDataTypes
+- name: Byte order
+  summary: 数据包中字段的字节序 Little endian（默认）| Big endian
+  group: ''
+  block_parameter: IsLittleEndian
+- name: Specify logic to generate checksum for validation
+  summary: 启用校验和验证逻辑，并选择逻辑 XOR of bytes | 2's complement of sum of bytes | Custom algorithm
+  group: ''
+  block_parameter: ChecksumAlgorithm
+- name: Checksum size
+  summary: 自定义算法所用函数中指定的校验和字节大小 numeric scalar
+  group: ''
+  block_parameter: ChecksumSize
+- name: File path
+  summary: 用于自定义校验和逻辑的函数 (.m) 路径 MATLAB path
+  group: ''
+  block_parameter: ChecksumFilepath
+- name: Terminator
+  summary: 数据包的终止符 <none> (default) | CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+  block_parameter: TerminatorOption
+- name: Custom terminator
+  summary: 数据包的自定义终止符 character array | array of numeric values less than 255
+  group: ''
+  block_parameter: CustomTerminatorVal
+```
 
 ### **Header** — 数据包的头部 字符数组 | 小于 255 的数值数组
 
@@ -169,7 +221,6 @@ chinese_source: worker-translation
 |  |
 | --- |
 | **模块参数**：`CustomTerminatorVal` |
-
 ## 所属库
 
 Simulink Real-Time / Utilities

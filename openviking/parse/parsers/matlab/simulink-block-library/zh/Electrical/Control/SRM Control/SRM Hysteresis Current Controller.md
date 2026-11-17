@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # SRM Hysteresis Current Controller
 
 ## 端口
+```yaml
+ports:
+- name: IsRef
+  summary: 参考电流标量
+  direction: input
+  data_types: single | double
+- name: iabc
+  summary: 测量电流向量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 积分器复位标量
+  direction: input
+  data_types: Boolean
+- name: theta
+  summary: Theta 转子角度标量
+  direction: input
+  data_types: single | double
+- name: thetaON
+  summary: 开通角标量
+  direction: input
+  data_types: single | double
+- name: thetaOFF
+  summary: 关断角标量
+  direction: input
+  data_types: single | double
+- name: Sabc
+  summary: 电压开关信号向量 | 0 or 1
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -60,8 +91,19 @@ chinese_source: worker-translation
 用于接通和关断三相电压的信号。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Torque capability angle (rad)
+  summary: 转矩能力角 pi/2（默认）| [0, 2\*pi/转子极数]
+  group: ''
+- name: Hysteresis band (A)
+  summary: 滞环带宽 5（默认）
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+```
 
 ### **Torque capability angle (rad)** — 转矩能力角 pi/2（默认）| [0, 2\*pi/转子极数]
 
@@ -79,7 +121,6 @@ chinese_source: worker-translation
 
 如果此模块位于触发子系统内，请将此参数设置为 `-1` 以继承采样时间。如果此模块位于
 连续变步长模型中，请使用正标量显式指定采样时间。
-
 ## 所属库
 
 Simscape / Electrical / Control / SRM Control

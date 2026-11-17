@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Current and Voltage Sensor (Three-Phase)
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 电压物理信号
+  direction: output
+- name: I
+  summary: 电流物理信号
+  direction: output
+- name: ~1
+  summary: 三相电压和电流电气
+  direction: output
+- name: ~2
+  summary: 三相电压和电流电气
+  direction: output
+```
 
 ### 输出
 
@@ -35,8 +50,25 @@ chinese_source: worker-translation
 ### **~2** — 三相电压和电流电气
 
 可扩展三相电气守恒端口 2，与三相电压和电流相关联。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 是对复合三相端口还是扩展三相端口进行建模 Composite three-phase ports（默认）| Expanded three-phase ports
+  group: ''
+- name: Voltage measurement type
+  summary: 电压测量类型 phase-to-phase voltage（默认）| phase-to-ground voltage
+  group: ''
+- name: Measurement output unit
+  summary: 测量系统 Per unit（默认）| SI
+  group: ''
+- name: Nominal power
+  summary: 标称功率 100e6 V*A（默认）
+  group: ''
+- name: Nominal voltage (phase-to-phase RMS)
+  summary: 标称电压 24e3 V（默认）
+  group: ''
+```
 
 ### **Modeling option** — 是对复合三相端口还是扩展三相端口进行建模 `Composite three-phase ports`（默认）| `Expanded three-phase ports`
 
@@ -69,7 +101,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Measurement output unit** 设置为 `Per unit`。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

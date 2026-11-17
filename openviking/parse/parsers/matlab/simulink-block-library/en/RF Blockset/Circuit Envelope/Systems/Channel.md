@@ -14,10 +14,100 @@ language: en
 # Channel
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of channel model
+  summary: Channel source Isotropic free-space (default) | Ray-tracing
+  group: Main
+- name: Antenna gain
+  summary: Gain of transmitter antenna 0 dBi (default) | real scalar or vector | positive scalar or vector
+  group: Main
+- name: Impedance (Ohm)
+  summary: Input impedance of transmitter antenna 50 (default) | complex scalar or vector
+  group: Main
+- name: Antenna gain
+  summary: Gain of receiver antenna 0 dBi (default) | real scalar or vector | positive scalar or vector
+  group: Main
+- name: Impedance (Ohm)
+  summary: Input impedance of receiver antenna 50 (default) | complex scalar or vector
+  group: Main
+- name: Path loss
+  summary: Free-space path loss 10 dB (default) | real scalar or vector | positive scalar or vector
+  group: Main
+- name: Path delay
+  summary: Free-space path delay 0 s (default) | nonnegative scalar
+  group: Main
+- name: Map
+  summary: Map for visualization or surface data "none" (default) | siteviewer object | triangulation object | string scalar
+    | character vector
+  group: Main
+- name: Propagation model
+  summary: Propagation model 'raytracing' (default) | RayTracing object
+  group: Main
+- name: Tx site
+  summary: Transmitter site txsite object | array of txsite objects
+  group: Main
+- name: Rx site
+  summary: Receiver site rxsite object
+  group: Main
+- name: View Site
+  summary: Display RF propagation scenarios button
+  group: Main
+- name: Carrier frequencies
+  summary: Carrier frequencies of channel 2.1 GHz (default) | nonnegative scalar or row vector
+  group: Main
+- name: Simulate noise
+  summary: Simulate thermal noise 'on' (default) | 'off'
+  group: Main
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals 'on' (default) | 'off'
+  group: Main
+- name: Edit System
+  summary: Edit or expand channel block button
+  group: Main
+- name: Modeling options
+  summary: Technique to model frequency-dependent channel parameters Time domain (default) | Frequency domain
+  group: TX Modeling
+- name: Relative error desired (dB)
+  summary: Relative error for the rational fit -40 (default) | scalar
+  group: TX Modeling
+- name: Automatically estimate impulse response duration
+  summary: Automatically calculate impulse response duration 'on' (default) | 'off'
+  group: TX Modeling
+- name: Impulse response duration
+  summary: Impulse response duration 0s (default) | scalar
+  group: TX Modeling
+- name: Modeling options
+  summary: Technique to model frequency-dependent channel parameters Frequency domain (default) | Time domain
+  group: Medium Modeling
+- name: Relative error desired (dB)
+  summary: Relative error for rational fit -40 (default) | scalar
+  group: Medium Modeling
+- name: Automatically estimate impulse response duration
+  summary: Automatically calculate impulse response duration 'off' (default) | 'on'
+  group: Medium Modeling
+- name: Impulse response duration
+  summary: Impulse response duration 0s (default) | scalar
+  group: Medium Modeling
+- name: Modeling options
+  summary: Technique to model frequency-dependent channel parameters Time domain (default) | Frequency domain
+  group: RX Modeling
+- name: Relative error desired (dB)
+  summary: Relative error for the rational fit -40 (default) | scalar
+  group: RX Modeling
+- name: Automatically estimate impulse response duration
+  summary: Automatically calculate impulse response duration 'on' | 'off'
+  group: RX Modeling
+- name: Impulse response duration
+  summary: Impulse response duration 0s (default) | scalar
+  group: RX Modeling
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -468,7 +558,6 @@ effective length.
 To set this parameter, set **Modeling options** to
 `Frequency domain` and clear **Automatically
 estimate impulse response duration**.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Systems

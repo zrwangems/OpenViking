@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Protocol Encoder
 
 ## 端口
+```yaml
+ports:
+- name: Field1
+  summary: 模块要编码的第一个字段 标量
+  direction: input
+- name: Packet
+  summary: uint8 字节流数据包向量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -31,8 +41,40 @@ chinese_source: worker-translation
 包含来自多个信号的编码数据的 uint8 字节流数据包，如数据包结构中所指定。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Header
+  summary: 数据包的头部 字符数组 | 小于 255 的数值数组
+  group: ''
+- name: Field name
+  summary: 数据包结构中的字段名称 Field1（默认）| 字符串
+  group: ''
+- name: Input field length
+  summary: 根据数据类型的输入字段长度 1（默认）| 数值标量
+  group: ''
+- name: Input field data type
+  summary: 字段的数据类型 uint8（默认）| int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | single | double
+  group: ''
+- name: Byte order
+  summary: 数据包中字段的字节序 Little endian（默认）| Big endian
+  group: ''
+- name: Specify logic to generate checksum for validation
+  summary: 启用校验和验证逻辑并选择逻辑 XOR of bytes | 2's complement of sum of bytes | Custom algorithm
+  group: ''
+- name: Checksum size
+  summary: 用于自定义算法的函数中指定的校验和字节大小 数值标量
+  group: ''
+- name: File path
+  summary: 用于自定义校验和逻辑的函数 (.m) 的路径 MATLAB 路径
+  group: ''
+- name: Terminator
+  summary: 数据包的终止符 <none>（默认）| CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+- name: Custom terminator
+  summary: 数据包的自定义终止符 字符数组 | 小于 255 的数值数组
+  group: ''
+```
 
 ### **Header** — 数据包的头部 字符数组 | 小于 255 的数值数组
 
@@ -115,7 +157,6 @@ chinese_source: worker-translation
 自定义终止符值的几个示例包括：‘END’、‘#’。
 
 **数据类型：** `uint8`
-
 ## 所属库
 
 C2000 Microcontroller Blockset / Target Communication Simulink Support Package for Raspberry Pi Hardware / Utilities Simulink Support Package for Arduino Hardware / Common

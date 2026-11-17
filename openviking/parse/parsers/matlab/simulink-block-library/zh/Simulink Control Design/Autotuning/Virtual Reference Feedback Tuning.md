@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Virtual Reference Feedback Tuning
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 被控对象输入信号 标量信号
+  direction: input
+- name: y
+  summary: 被控对象输出信号 标量信号
+  direction: input
+- name: start/stop
+  summary: 整定区间信号 标量信号
+  direction: input
+- name: θ
+  summary: 整定后的控制器参数 向量
+  direction: output
+```
 
 ### 输入
 
@@ -42,8 +57,56 @@ chinese_source: worker-translation
 ### **θ** — 整定后的控制器参数 向量
 
 整定后的控制器参数，以 *n*×1 向量信号形式返回，其中 *n* 是控制器参数的数量。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample time (Ts)
+  summary: 采样时间 0.1（默认）| 正标量
+  group: ''
+  block_parameter: DiscreteTs
+  values: '"0.1"（默认）| 带引号的正标量'
+- name: Reference Model
+  summary: 参考模型 tf(1,[3 1])（默认）| tf 模型对象 | ss 模型对象 | zpk 模型对象
+  group: ''
+  block_parameter: MrefS
+  values: '"tf(1,[3 1])"（默认）| 带引号的 tf、ss 或 zpk 模型对象'
+- name: Weighting Function
+  summary: 加权函数 1（默认）| tf 模型对象 | ss 模型对象 | zpk 模型对象
+  group: ''
+  block_parameter: WeightS
+  values: '"1"（默认）| 带引号的 tf、ss 或 zpk 模型对象'
+- name: Controller Structure
+  summary: 控制器结构 PID（默认）| FIR Filter | Generic Form
+  group: ''
+  block_parameter: ControlType
+  values: '"PID"（默认）| "FIR Filter" | "Generic Form"'
+- name: Type
+  summary: PID 控制器类型 PI（默认）| P | I | PD | PID
+  group: ''
+  block_parameter: PIDControlType
+  values: '"PI"（默认）| "P" | "I" | "PD" | "PID"'
+- name: Integrator Method
+  summary: 离散积分方法 Forward Euler（默认）| Backward Euler | Trapezoidal
+  group: ''
+  type: 设置为具有积分作用的控制器类型。
+  block_parameter: PIDIntegratorMethod
+  values: '"Forward Euler"（默认）| "Backward Euler" | "Trapezoidal"'
+- name: FIR Filter Order
+  summary: FIR 滤波器阶数 2（默认）| 介于 2 和 10 之间的正整数
+  group: ''
+  block_parameter: FIRFilterOrder
+  values: '"2"（默认）| 带引号的介于 2 和 10 之间的正整数'
+- name: SISO Linear Systems Ci(z)
+  summary: SISO 线性系统数组 {tf([1],[1],0.1);0.1*tf([1],[1 -1],0.1)}（默认）| 元胞数组 | LTI 模型数组
+  group: ''
+  block_parameter: LTIInputObj
+  values: '"{tf([1],[1],0.1);0.1*tf([1],[1 -1],0.1)}"（默认） | 带引号的元胞数组 | 带引号的 LTI 模型数组'
+- name: 整定时显示 θ 值
+  summary: 输出整定后的参数值 on（默认） | off
+  group: ''
+  block_parameter: ShowThetaWhileTuning
+  values: '"on"（默认） | "off"'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -255,7 +318,6 @@ C(z,θ)=θ1C1(z)+θ2C2(z)+…+θnCn(z)
 | **值：** | `"on"`（默认） | `"off"` |
 
 **示例：** `set_param(gcb,"ShowThetaWhileTuning","off")`
-
 ## 所属库
 
 Simulink Control Design / Autotuning

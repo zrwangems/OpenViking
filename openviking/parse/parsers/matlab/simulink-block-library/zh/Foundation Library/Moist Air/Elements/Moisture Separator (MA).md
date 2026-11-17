@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Moisture Separator (MA)
 
 ## 端口
+```yaml
+ports:
+- name: W
+  summary: 去除的水蒸气速率，kg/s 物理信号
+  direction: output
+- name: D
+  summary: 去除的水滴速率，kg/s 物理信号
+  direction: output
+- name: A
+  summary: 入口或出口湿空气
+  direction: output
+- name: B
+  summary: 入口或出口湿空气
+  direction: output
+```
 
 ### 输出
 
@@ -34,8 +49,34 @@ chinese_source: worker-translation
 ### **B** — 入口或出口湿空气
 
 与水分分离器入口或出口相关联的湿空气守恒端口。该模块没有固有方向性。
-
 ## 参数
+```yaml
+parameters:
+- name: Fraction of water vapor removed
+  summary: 水蒸气去除比例 0.5（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Removed water vapor condensed to liquid
+  summary: 是否将去除的水蒸气冷凝为液体 off（默认）| on
+  group: ''
+- name: Fraction of water droplets removed
+  summary: 水滴去除比例 0.5（默认）| [0,1] 范围内的标量
+  group: ''
+- name: Nominal pressure drop
+  summary: 额定工况下的压降 0.001 MPa（默认）| 标量
+  group: ''
+- name: Nominal mass flow rate
+  summary: 额定工况下的质量流量 0.1 kg/s（默认）| 正标量
+  group: ''
+- name: Nominal density
+  summary: 额定工况下的密度 0 kg/m^3（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 端口处的流通面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Fraction of nominal mixture mass flow rate for laminar flow transition
+  summary: 阈值与额定质量流量之比 1e-3（默认）| 正标量
+  group: ''
+```
 
 ### **Fraction of water vapor removed** — 水蒸气去除比例 `0.5`（默认）| [0,1] 范围内的标量
 
@@ -68,7 +109,6 @@ chinese_source: worker-translation
 ### **Fraction of nominal mixture mass flow rate for laminar flow transition** — 阈值与额定质量流量之比 `1e-3`（默认）| 正标量
 
 空气混合物阈值质量流量与额定质量流量之比。模块使用此参数来设置压降线性化的阈值。
-
 ## 所属库
 
 Simscape / Foundation Library / Moist Air / Elements

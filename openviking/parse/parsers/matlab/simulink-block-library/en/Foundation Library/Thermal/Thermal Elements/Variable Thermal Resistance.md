@@ -14,6 +14,18 @@ language: en
 # Variable Thermal Resistance
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Thermal resistance control signal, K/W physical signal
+  direction: input
+- name: A
+  summary: Layer A thermal
+  direction: conserving
+- name: B
+  summary: Layer B thermal
+  direction: conserving
+```
 
 ### Input
 
@@ -30,14 +42,18 @@ Thermal conserving port associated with layer A.
 ### **B** — Layer B thermal
 
 Thermal conserving port associated with layer B.
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum thermal resistance
+  summary: Minimum thermal resistance value allowed 0 K/W (default)
+  group: ''
+```
 
 ### **Minimum thermal resistance** — Minimum thermal resistance value allowed 0 K/W (default)
 
 If the input physical signal falls below this value, the resistance
 remains at this value.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal / Thermal Elements

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Transmission
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 挡位选择物理信号
+  direction: input
+- name: B
+  summary: 基座接口机械旋转
+  direction: input
+- name: F
+  summary: 从动接口机械旋转
+  direction: input
+- name: H
+  summary: 热流热
+  direction: input
+```
 
 ### 输入
 
@@ -39,8 +54,70 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Thermal port** 设置为 `Model`。
-
 ## 参数
+```yaml
+parameters:
+- name: Forward gear ratios
+  summary: 变速器前进挡传动比 [2.3, 1.6, 1.2, 1, .8, .6]（默认）| 正数向量
+  group: 齿轮
+- name: Reverse gear ratio
+  summary: 变速器倒挡传动比 -3（默认）| 负标量
+  group: 齿轮
+- name: Friction model
+  summary: 摩擦模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Gear-dependent efficiency
+  group: 齿轮
+- name: Efficiency
+  summary: 齿轮效率 0.95（默认）| 正标量
+  group: 齿轮
+- name: Efficiency vector
+  summary: 前进挡效率向量 [.95, .95, .95, .95, .95, .95]（默认）| 正元素向量
+  group: 齿轮
+- name: Reverse efficiency
+  summary: 倒挡效率 0.90（默认）| 正标量
+  group: 齿轮
+- name: Follower power threshold
+  summary: 模块施加全效率损失的功率点 0.001 W（默认）| 正标量
+  group: 齿轮
+- name: Stiffness at base (B)
+  summary: 基座弹簧刚度系数 3e5 N*m/rad（默认）| 正标量
+  group: 齿轮
+- name: Damping at base (B)
+  summary: 基座阻尼系数 3e4 N*m*s/rad（默认）| 正标量
+  group: 齿轮
+- name: Initial input torque at base (B)
+  summary: 基座处起始扭矩 0 N*m（默认）| 标量
+  group: 齿轮
+- name: Viscous friction coefficients at base (B) and follower (F)
+  summary: 基座和从动端粘性摩擦向量 [0, 0] N*m/(rad/s)（默认）| 非负元素向量
+  group: 齿轮
+- name: Kinetic friction torque
+  summary: 动摩擦力矩阈值 1000 N*m（默认）| 非负标量
+  group: 离合器
+- name: Static friction torque
+  summary: 静摩擦力矩阈值 2000 N*m（默认）| 正标量
+  group: 离合器
+- name: Shift model
+  summary: 包含有限换挡时间的选项 Instantaneous（默认）| Finite shift time
+  group: 离合器
+- name: Shift time
+  summary: 传动比之间处于空挡的时间 100 ms（默认）| 正标量
+  group: 离合器
+- name: Clutch velocity tolerance
+  summary: 运动边界条件 0.001 rad/s（默认）| 非负标量
+  group: 离合器
+- name: Initial State
+  summary: 仿真开始时的离合器状态 Unlocked（默认）| Locked
+  group: 离合器
+- name: Thermal port
+  summary: 暴露热端口的选项 Omit（默认）| Model
+  group: 热端口
+- name: Thermal mass
+  summary: 热质量 100 kJ/K（默认）| 正标量
+  group: 热端口
+- name: Initial temperature
+  summary: 仿真开始时的温度 300 K（默认）| 正标量
+  group: 热端口
+```
 
 ### 齿轮
 
@@ -162,7 +239,6 @@ chinese_source: worker-translation
 
 要启用此参数，请将 **Thermal port** 设置为
 `Model`。
-
 ## 所属库
 
 Simscape / Driveline / Gears

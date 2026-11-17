@@ -14,6 +14,15 @@ language: en
 # Rack and Pinion Constraint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: unspecified
+- name: F
+  summary: Follower frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -24,15 +33,19 @@ Connection frame on the pinion body.
 ### **F** — Follower frame frame
 
 Connection frame on the rack body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pinion Radius
+  summary: Radius of the pitch circle of the pinion body 10 cm (default) | positive scalar in units of length
+  group: ''
+```
 
 ### **Pinion Radius** — Radius of the pitch circle of the pinion body `10` `cm` (default) | positive scalar in units of length
 
 Radius of the pitch circle of the pinion body. The pitch circle is an
 imaginary circle concentric with the pinion body and tangent to the tooth
 contact point.
-
 ## Libraries
 
 Simscape / Multibody / Gears and Couplings / Gears

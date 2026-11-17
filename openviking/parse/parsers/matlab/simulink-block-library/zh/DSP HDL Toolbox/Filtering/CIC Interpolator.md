@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # CIC Interpolator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 标量 | 列向量
+  direction: input
+  data_types: int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: R
+  summary: 可变插值率 标量
+  direction: input
+  data_types: fixdt(0,12,0)
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: CIC 插值输出数据 标量 | 列向量
+  direction: output
+  data_types: int8 | int16 | int32 | signed fixed point
+- name: valid
+  summary: 指示有效输出数据 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已准备好接收新的输入数据 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -105,8 +136,43 @@ Types** 选项卡上设置 **Output data type** 参数来定义此输出的数�
 （`false`）时，模块在下个时间步忽略任何输入数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Interpolation factor source
+  summary: 插值因子的来源 Property（默认） | Input port
+  group: 主要参数
+- name: Interpolation factor (R)
+  summary: 插值因子 2（默认） | 从 1 到 2048 的整数
+  group: 主要参数
+- name: Interpolation factor (Rmax)
+  summary: 可变插值因子的上界 2（默认） | 从 1 到 2048 的整数
+  group: 主要参数
+- name: Differential delay (M)
+  summary: 差分延迟 1（默认） | 2
+  group: 主要参数
+- name: Number of sections (N)
+  summary: 积分器和梳状部分的数量 2（默认） | 1 | 3 | 4 | 5 | 6
+  group: 主要参数
+- name: Minimum number of cycles between valid input samples
+  summary: 有效输入样本之间的最小周期数 1（默认） | *R* 的因子或倍数
+  group: 主要参数
+- name: Gain correction
+  summary: 输出增益补偿 off（默认） | on
+  group: 主要参数
+- name: Output data type
+  summary: 输出的数据类型 Full precision（默认） | Same word length as input | Minimum section word lengths
+  group: 数据类型
+- name: Output word length
+  summary: 输出的字长 16（默认） | 从 2 到 104 的整数
+  group: 数据类型
+- name: Enable reset input port
+  summary: 启用复位输入端口的选项 off（默认） | on
+  group: Control Ports
+- name: Use HDL global reset
+  summary: 将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off（默认） | on
+  group: Control Ports
+```
 
 ### 主要参数
 
@@ -235,7 +301,6 @@ source** 参数设置为 `Property`。
 异步的，具体取决于模型配置参数中的 **HDL Code Generation** > **Global Settings** > **Reset type** 参数。
 
 有关更多复位注意事项，请参阅提示。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

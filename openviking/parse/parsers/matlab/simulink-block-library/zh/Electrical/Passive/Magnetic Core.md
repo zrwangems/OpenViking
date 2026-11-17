@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Magnetic Core
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 北端磁端口
+  direction: conserving
+- name: S
+  summary: 南端磁端口
+  direction: conserving
+- name: H
+  summary: 热质量热端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -33,8 +45,73 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请选中 **Model thermal effects** 参数。
-
 ## 参数
+```yaml
+parameters:
+- name: Effective length
+  summary: 有效磁芯长度 0.032 m（默认）| 正有限标量
+  group: 主要
+- name: Effective cross-sectional area
+  summary: 有效磁芯横截面积 1.6e-5 m^2（默认）| 正有限标量
+  group: 主要
+- name: Parameterization option
+  summary: 参数化方法 Magnetic Characteristics（默认）| Jiles-Atherton Model | Saturated BH Curve
+  group: 主要
+- name: Magnetic remanence of saturation cycle
+  summary: 剩磁 0.68 T（默认）| 正标量
+  group: 主要
+- name: Magnetic coercivity of saturation cycle
+  summary: 使磁芯退磁的磁场强度幅值 151 A/m（默认）| 正标量
+  group: 主要
+- name: Magnetic flux density at saturation point
+  summary: 最大磁通密度幅值 1.25 T（默认）| 正标量
+  group: 主要
+- name: Magnetic field intensity at saturation point
+  summary: 饱和点处的场强 3000 A/m（默认）| 正标量
+  group: 主要
+- name: Saturation magnetization, Ms
+  summary: 饱和磁化强度，Ms 1e6 A/m（默认）| 正有限标量
+  group: 主要
+- name: Anhysteretic magnetization coefficient, a
+  summary: 无磁滞磁化系数，a 82 A/m（默认）| 有限正标量
+  group: 主要
+- name: Inter-domain coupling factor, alpha
+  summary: 域间耦合因子，alpha 0.0001（默认）| 标量
+  group: 主要
+- name: Coefficient for reversible magnetization, c
+  summary: 可逆磁化系数 0.1（默认）| [0,1] 范围内的标量
+  group: 主要
+- name: Bulk coupling coefficient, k
+  summary: 体耦合系数 200 A/m（默认）| 有限正标量
+  group: 主要
+- name: Magnetic flux density, B(H)
+  summary: 磁通密度向量 [-1.25,-0.68,0,0.885,1.124,1.25] T（默认）| 向量
+  group: 主要
+- name: Magnetic field intensity, H
+  summary: 磁场强度向量 [-3000,0,151,500,1000,3000] A/m（默认）| 向量
+  group: 主要
+- name: Averaging period for hysteresis losses
+  summary: 磁滞损耗计算的平均周期 1e-3 s（默认）| 正标量
+  group: 损耗
+- name: Model eddy losses
+  summary: 对涡流损耗建模的选项 Off（默认）| On
+  group: 损耗
+- name: Geometrical coefficient
+  summary: 几何系数 6（默认）| 正标量
+  group: 损耗
+- name: Thickness of laminations
+  summary: 特征横截面尺寸 1 mm（默认）| 正标量
+  group: 损耗
+- name: Electrical resistivity
+  summary: 磁芯电阻率 1.03e-7 Ohm*m（默认）| 正标量
+  group: 损耗
+- name: Model thermal effects
+  summary: 对热效应建模的选项 Off（默认）| On
+  group: 热
+- name: Thermal mass
+  summary: 与 H 端口关联的热质量 2 J/K（默认）| 正标量
+  group: 热
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡中，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -183,7 +260,6 @@ Jiles-Atherton 方程中的体耦合系数 *k*。此参数主要控制 *B*-*H* �
 #### 依赖关系
 
 要启用此参数，请选中 **Model thermal effects** 参数。
-
 ## 所属库
 
 Simscape / Electrical / Passive

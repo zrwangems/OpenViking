@@ -14,6 +14,30 @@ language: en
 # System-Level Heat Exchanger (TL-MA)
 
 ## Ports
+```yaml
+ports:
+- name: Q1
+  summary: Rate of heat transfer to thermal liquid, W physical signal
+  direction: output
+- name: Q2
+  summary: Rate of heat transfer to moist air, W physical signal
+  direction: output
+- name: W
+  summary: Moist air condensation rate, kg/s physical signal
+  direction: output
+- name: A1
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+- name: B1
+  summary: Thermal liquid port thermal liquid
+  direction: conserving
+- name: A2
+  summary: Moist air port moist air
+  direction: conserving
+- name: B2
+  summary: Moist air port moist air
+  direction: conserving
+```
 
 ### Output
 
@@ -56,8 +80,191 @@ Inlet or outlet port associated with the moist air.
 ### **B2** — Moist air port moist air
 
 Inlet or outlet port associated with the moist air.
-
 ## Parameters
+```yaml
+parameters:
+- name: Flow arrangement at nominal operating conditions
+  summary: Flow path alignment Counter flow - Thermal Liquid 1 flows from A to B, Moist Air 2 flows from B to A (default)
+    | Parallel flow - Both fluids flow from A to B | Cross flow - Both fluids flow from A to B
+  group: Configuration
+- name: Enable wall thermal mass
+  summary: Whether to enable effect of thermal mass on heat transfer surface off (default) | on
+  group: Configuration
+- name: Wall mass
+  summary: Mass of heat transfer surface 1 kg (default) | positive scalar
+  group: Configuration
+- name: Wall specific heat
+  summary: Specific heat of heat transfer surface 490 J/(K*kg) (default) | positive scalar
+  group: Configuration
+- name: Initialize wall temperature to nominal operating conditions
+  summary: Option for initializing wall temperature on (default) | off
+  group: Configuration
+- name: Initial wall temperature
+  summary: Initial temperature of wall 293.15 K (default) | positive scalar or two-element vector
+  group: Configuration
+- name: Cross-sectional area at port A1
+  summary: Flow area at port A1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B1
+  summary: Flow area at port B1 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port A2
+  summary: Flow area at port A2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Cross-sectional area at port B2
+  summary: Area normal to flow at port B2 0.01 m^2 (default) | positive scalar
+  group: Configuration
+- name: Nominal operating condition
+  summary: Nominal operating condition Heat transfer from Thermal Liquid 1 to Moist Air 2 (default) | Heat transfer from Moist
+    Air 2 to Thermal Liquid 1
+  group: Thermal Liquid 1
+- name: Nominal mass flow rate
+  summary: Mass flow rate between thermal liquid ports during nominal operating condition 0.1 kg/s (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal pressure drop
+  summary: Pressure drop between thermal liquid ports during nominal operating condition 0.01 MPa (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal inlet pressure
+  summary: Pressure at the thermal liquid inlet 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal inlet temperature
+  summary: Temperature at the thermal liquid inlet 333.15 K (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Heat transfer capacity specification
+  summary: How to specify heat transfer capacity of the thermal liquid Rate of heat transfer (default) | Outlet condition
+  group: Thermal Liquid 1
+- name: Nominal rate of heat transfer
+  summary: Rate of heat transfer 1 kW (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal outlet temperature
+  summary: Outlet temperature 323.15 K (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Thermal liquid volume
+  summary: Total volume of thermal liquid 0.001 m^3 (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initialize thermal liquid to nominal operating conditions
+  summary: Option for initializing thermal liquid on (default) | off
+  group: Thermal Liquid 1
+- name: Initial thermal liquid pressure
+  summary: Thermal liquid pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Initial thermal liquid temperature
+  summary: Thermal liquid temperature at start of simulation 293.15 K (default) | positive scalar
+  group: Thermal Liquid 1
+- name: Nominal mass flow rate
+  summary: Mass flow rate between moist air ports during nominal operating condition 0.1 kg/s (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal pressure drop
+  summary: Pressure drop between moist air ports during nominal operating condition 0.001 MPa (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal inlet pressure
+  summary: Pressure at the moist air side inlet 0.101325 MPa (default) | positive scalar
+  group: Moist Air 2
+- name: Nominal inlet temperature
+  summary: Temperature at the moist air side inlet 293.15 K (default) | positive scalar
+  group: Moist Air 2
+- name: Inlet humidity specification
+  summary: Quantity used to describe the humidity level at the moist air side inlet Relative humidity (default) | Specific
+    humidity | Mole fraction | Humidity ratio | Wet-bulb temperature
+  group: Moist Air 2
+- name: Nominal inlet relative humidity
+  summary: Relative humidity at the inlet 0.5 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet specific humidity
+  summary: Specific humidity at the inlet 0.01 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet water vapor mole fraction
+  summary: Mole fraction of water vapor at the inlet 0.01 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet humidity ratio
+  summary: Humidity ratio at the inlet 0.01 (default) | positive scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet wet-bulb temperature
+  summary: Wet-bulb temperature at the start of simulation 287 K (default) | positive scalar in the range [0,1]
+  group: Moist Air 2
+- name: Inlet trace gas specification
+  summary: Quantity used to describe trace gas level at the inlet Mass fraction (default) | Mole fraction
+  group: Moist Air 2
+- name: Nominal inlet trace gas mass fraction
+  summary: Mass fraction of trace gas at the inlet 0.001 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Nominal inlet trace gas mole fraction
+  summary: Mole fraction of trace gas at the inlet 0.001 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: Moist air volume
+  summary: Total volume of moist air in the heat exchanger 0.1 m^3 (default) | positive scalar
+  group: Moist Air 2
+- name: Initialize moist air to nominal operating conditions
+  summary: Option for initializing moist air on (default) | off
+  group: Moist Air 2
+- name: Initial moist air pressure
+  summary: Moist air pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Moist Air 2
+- name: Initial moist air temperature
+  summary: Moist air temperature at start of simulation 293.15 K (default) | positive scalar | two-element vector
+  group: Moist Air 2
+- name: Initial humidity specification
+  summary: Quantity used to describe the initial humidity level Relative humidity (default) | Specific humidity | Mole fraction
+    | Humidity ratio | Wet-bulb temperature
+  group: Moist Air 2
+- name: Initial moist air relative humidity
+  summary: Relative humidity at start of simulation 0.5 (default) | scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial moist air specific humidity
+  summary: Specific humidity at start of simulation 0.01 (default) | scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial moist air water vapor mole fraction
+  summary: Mole fraction of water vapor at start of simulation 0.01 (default) | scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial moist air humidity ratio
+  summary: Humidity ratio at start of simulation 0.01 (default) | positive scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial moist air wet-bulb temperature
+  summary: Wet-bulb temperature at the start of simulation 287 K (default) | positive scalar in the range [0,1]
+  group: Moist Air 2
+- name: Initial trace gas specification
+  summary: Quantity used to describe initial trace gas level Mass fraction (default) | Mole fraction
+  group: Moist Air 2
+- name: Initial moist air trace gas mass fraction
+  summary: Mass fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial moist air trace gas mole fraction
+  summary: Mole fraction of trace gas at start of simulation 0.001 (default) | scalar in the range [0,1] | two-element vector
+  group: Moist Air 2
+- name: Initial mass ratio of water droplets to moist air
+  summary: Ratio of water droplets to moist air 0 (default) | positive scalar
+  group: Moist Air 2
+- name: Relative humidity at saturation
+  summary: Relative humidity point of condensation 1 (default) | nonnegative scalar
+  group: Moist Air 2
+- name: Water vapor condensation time constant
+  summary: Time scale for condensation 1e-3 s (default) | positive scalar
+  group: Moist Air 2
+- name: Water droplets evaporation time constant
+  summary: Time scale for evaporation 1e-3 s (default) | positive scalar
+  group: Moist Air 2
+- name: Fraction of condensate entrained as water droplets
+  summary: Fraction of condensate in water droplets 1 (default) | scalar in the range [0,1]
+  group: Moist Air 2
+- name: a in Nu = a\*Re^b\*Pr^c for thermal liquid
+  summary: Correlation coefficient for thermal liquid 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for thermal liquid
+  summary: Reynolds number exponent in correlation for thermal liquid 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for thermal liquid
+  summary: Prandtl number exponent in correlation for thermal liquid 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+- name: a in Nu = a\*Re^b\*Pr^c for moist air
+  summary: Correlation coefficient for moist air 0.023 (default) | positive scalar
+  group: Correlation Coefficients
+- name: b in Nu = a\*Re^b\*Pr^c for moist air
+  summary: Reynolds number exponent in correlation for moist air 0.8 (default) | positive scalar
+  group: Correlation Coefficients
+- name: c in Nu = a\*Re^b\*Pr^c for moist air
+  summary: Prandtl number exponent in correlation for moist air 0.33 (default) | positive scalar
+  group: Correlation Coefficients
+```
 
 ### Configuration
 
@@ -612,7 +819,6 @@ the Colburn equation.
 Prandtl number exponent in the correlation of the Nusselt number as a function of
 the Reynolds number and Prandtl number for moist air. The default value is based on
 the Colburn equation.
-
 ## Libraries
 
 Simscape / Fluids / Heat Exchangers / Thermal Liquid - Moist Air

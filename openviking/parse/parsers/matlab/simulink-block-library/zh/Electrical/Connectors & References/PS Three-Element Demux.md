@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # PS Three-Element Demux
 
 ## 端口
+```yaml
+ports:
+- name: abc
+  summary: 三元素物理信号，无量纲物理信号
+  direction: input
+- name: a
+  summary: 标量物理信号，无量纲物理信号
+  direction: output
+- name: b
+  summary: 标量物理信号，无量纲物理信号
+  direction: output
+- name: c
+  summary: 标量物理信号，无量纲物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -35,11 +50,12 @@ chinese_source: worker-translation
 ### **c** — 标量物理信号，无量纲物理信号
 
 标量物理信号输出端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Nonlinear Operators

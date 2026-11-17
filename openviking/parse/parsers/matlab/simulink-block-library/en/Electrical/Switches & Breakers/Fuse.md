@@ -14,6 +14,18 @@ language: en
 # Fuse
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+- name: x
+  summary: Fuse state physical signal
+  direction: output
+```
 
 ### Conserving
 
@@ -36,8 +48,41 @@ Outputs the fuse state as a unitless physical signal. The port outputs
 
 Exposed when the **PS output for fuse state**
 parameter is set to `Visible`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterization
+  summary: Model dependence of opening time on current Opening time is independent of current (default) | Opening time depends
+    on I^2*t | Opening time is tabulated
+  group: ''
+- name: Rated current, I_rated
+  summary: Nominal operating current 1 A (default)
+  group: ''
+- name: Ratio of minimum melting current to rated current, I_melt/I_rated
+  summary: Defined threshold current for melting 1 (default)
+  group: ''
+- name: Time to fuse
+  summary: Time needed for the fuse to blow 0 s (default)
+  group: ''
+- name: Nominal melting, I^2\*t
+  summary: Dissipated energy needed for the fuse to blow 1 s\*A^2 (default)
+  group: ''
+- name: Tabulated currents
+  summary: Currents data from the time-current curves [1.9, 2, 2.5, 30] A (default)
+  group: ''
+- name: Tabulated opening times
+  summary: Times data from the time-current curves [10000, 1, 0.3, 0.001] s (default)
+  group: ''
+- name: Fuse resistance R
+  summary: Resistance of the fuse 0.01 Ω (default)
+  group: ''
+- name: Open-circuit conductance G
+  summary: Open-circuit fuse conductance 1e-8 1/Ω (default)
+  group: ''
+- name: PS output for fuse state
+  summary: Controls the visibility of the output port for fuse state Hidden (default) | Visible
+  group: ''
+```
 
 ### **Parameterization** — Model dependence of opening time on current `Opening time is independent of current` (default) | `Opening time depends on I^2*t` | `Opening time is tabulated`
 
@@ -147,7 +192,6 @@ blown. The parameter value must be greater than 0.
 When set to `Visible`, a PS output port
 **x** appears on the block icon. The port outputs 0 if
 the fuse is intact, and 1 if the fuse is blown.
-
 ## Libraries
 
 Simscape / Electrical / Switches & Breakers

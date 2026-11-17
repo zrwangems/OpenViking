@@ -14,6 +14,17 @@ language: en
 # Rounding Function
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -33,8 +44,22 @@ selected rounding function to the corresponding element of the input
 signal.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: Rounding function floor (default) | ceil | round | fix
+  group: ''
+  block_parameter: Operator
+  type: character vector
+  values: '''floor'' | ''ceil'' | ''round'' | ''fix'''
+  default: '''floor'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+```
 
 ### **Function** — Rounding function `floor` (default) | `ceil` | `round` | `fix`
 
@@ -75,7 +100,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SampleTime` |
 | **Values:** | `"-1"` (default) | scalar or vector in quotes |
-
 ## Libraries
 
 Simulink / Math Operations

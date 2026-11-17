@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Rotating Cylinder Force (IL)
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 液体密度端口，等温液体
+  direction: conserving
+- name: C
+  summary: 缸体机械平动
+  direction: conserving
+- name: R
+  summary: 活塞机械平动
+  direction: conserving
+- name: W
+  summary: 角速度，rad/s，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -34,8 +49,23 @@ chinese_source: worker-translation
 ### **W** — 角速度，rad/s，物理信号
 
 角速度，单位为 rad/s，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Piston outer radius
+  summary: 活塞外半径 0.1 m（默认）| 正标量
+  group: ''
+- name: Piston inner radius
+  summary: 活塞内半径 0.05 m（默认）| 正标量
+  group: ''
+- name: Fluid entry radius
+  summary: 流体通道半径 0.06 m（默认）| 正标量
+  group: ''
+- name: Actuator mechanical orientation
+  summary: 活塞位移方向 Pressure at A causes positive displacement of R relative to C（默认）| Pressure at A causes negative displacement
+    of R relative to C
+  group: ''
+```
 
 ### **Piston outer radius** — 活塞外半径 `0.1` m（默认）| 正标量
 
@@ -52,7 +82,6 @@ chinese_source: worker-translation
 ### **Actuator mechanical orientation** — 活塞位移方向 `Pressure at A causes positive displacement of R relative to C`（默认）| `Pressure at A causes negative displacement of R relative to C`
 
 所连接执行器模块的活塞位移方向。`Pressure at A causes positive displacement of R relative to C` 对应于当 **R** – **C** 为正时的正位移，即执行器轴伸出。`Pressure at A causes negative displacement of R relative to C` 对应于当 **R** – **C** 为正时的负位移，即执行器轴缩回。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Actuators / Auxiliary Components

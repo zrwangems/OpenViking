@@ -14,10 +14,195 @@ language: en
 # Demodulator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source of conversion gain
+  summary: Source parameter of conversion gain Available power gain (default) | Open circuit voltage gain | Polynomial coefficients
+  group: Main
+- name: Available power gain
+  summary: Ratio of power of SSB at the output to input power 0 dB (default) | scalar in dB or a unitless ratio
+  group: Main
+- name: Open circuit voltage gain
+  summary: Open circuit voltage gain 0 dB (default) | scalar
+  group: Main
+- name: Polynomial coefficients
+  summary: Coefficients of polynomial specifying voltage gain [0 1] (default) | vector
+  group: Main
+- name: Local oscillator frequency
+  summary: Local oscillator (LO) frequency 0 Hz (default) | scalar
+  group: Main
+- name: Input impedance (Ohm)
+  summary: Input impedance of demodulator 50 (default) | scalar
+  group: Main
+- name: Output impedance (Ohm)
+  summary: Output impedance of demodulator 50 (default) | scalar
+  group: Main
+- name: Add Image Reject filter
+  summary: Image reject (IR) filter parameters off (default) | on
+  group: Main
+- name: Add Channel Select filters
+  summary: Channel select (CS) filter parameters off (default) | on
+  group: Main
+- name: Ground and hide negative terminals
+  summary: Ground and hide negative circuit terminals on (default) | off
+  group: Main
+- name: Edit System
+  summary: Break demodulator block links and replace internal variables by appropriate values button
+  group: Main
+- name: LO to In isolation
+  summary: Ratio of magnitude between LO voltage to leaked voltage at input port (RF) inf dB (default) | scalar
+  group: Impairments
+- name: Noise figure (dB)
+  summary: Signal-to-noise ratio (SNR) between outputs and input 0 (default) | scalar
+  group: Impairments
+- name: Add phase noise
+  summary: Add phase noise off (default) | on
+  group: Impairments
+- name: Phase noise frequency offset (Hz)
+  summary: Phase noise frequency offset 1 (default) | scalar | vector | matrix
+  group: Impairments
+- name: Phase noise level (dBc/Hz)
+  summary: Phase noise level -Inf (default) | scalar | vector | matrix
+  group: Impairments
+- name: Automatically estimate impulse response duration
+  summary: Automatically estimate impulse response duration on (default) | off
+  group: Impairments
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10s (default) | scalar
+  group: Impairments
+- name: Plot phase noise characteristics
+  summary: Phase noise magnitude response button
+  group: Impairments
+- name: Nonlinear polynomial type
+  summary: Polynomial nonlinearity Even and odd order (default) | Odd order
+  group: Nonlinearity
+- name: Intercept points convention
+  summary: Intercept points convention Input (default) | Output
+  group: Nonlinearity
+- name: IP2
+  summary: Second-order intercept point inf dBm (default) | scalar
+  group: Nonlinearity
+- name: IP3
+  summary: Third-order intercept point inf dBm (default) | scalar
+  group: Nonlinearity
+- name: 1-dB gain compression power
+  summary: 1-dB gain compression power inf dBM (default) | scalar
+  group: Nonlinearity
+- name: 1-dB gain compression power
+  summary: 1-dB gain compression power inf dBM (default) | scalar
+  group: Nonlinearity
+- name: Gain compression at saturation
+  summary: Gain compression at saturation inf dBm (default) | scalar
+  group: Nonlinearity
+- name: Design method
+  summary: Simulation type Ideal (default) | Butterworth | Chebyshev
+  group: IR Filter
+- name: Filter type
+  summary: Filter type Lowpass (default) | Highpass | Bandpass | Bandstop
+  group: IR Filter
+- name: Implementation
+  summary: Implementation LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain
+  group: IR Filter
+- name: Passband edge frequency
+  summary: Passband edge frequency 2 GHz (default) | scalar
+  group: IR Filter
+- name: Implement using filter order
+  summary: Implement using filter order on (default) | off
+  group: IR Filter
+- name: Filter order
+  summary: Filter order 3 (default) | scalar
+  group: IR Filter
+- name: Passband frequency
+  summary: Passband frequency for lowpass and highpass filters scalar
+  group: IR Filter
+- name: Passband frequencies
+  summary: Passband frequencies for bandpass filters [2 3] GHz (default) | 2-tuple vector
+  group: IR Filter
+- name: Passband attenuation (dB)
+  summary: Passband attenuation 10*log10(2) (default) | scalar
+  group: IR Filter
+- name: Stopband frequencies
+  summary: Stopband frequencies for bandstop filters [2.1 2.9]GHz (default) | 2-tuple vector
+  group: IR Filter
+- name: Stopband edge frequencies
+  summary: Stopband edge frequencies for ideal bandstop filters [2.1 2.9] GHz (default) | 2-tuple vector
+  group: IR Filter
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation 40 (default) | scalar
+  group: IR Filter
+- name: Source impedance (Ohm)
+  summary: Input source resistance 50 (default) | scalar
+  group: IR Filter
+- name: Load impedance (Ohm)
+  summary: Output load resistance 50 (default) | scalar
+  group: IR Filter
+- name: Automatically estimate impulse response duration
+  summary: Automatically estimate impulse response duration on (default) | off
+  group: IR Filter
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10s (default) | scalar
+  group: IR Filter
+- name: Export
+  summary: Save filter design to a file button
+  group: IR Filter
+- name: Design method
+  summary: Simulation type Ideal (default) | Butterworth | Chebyshev
+  group: CS Filter
+- name: Filter type
+  summary: Filter type Lowpass (default) | Highpass | Bandpass | Bandstop
+  group: CS Filter
+- name: Implementation
+  summary: Implementation LC Tee | LC Pi | Transfer function | Constant per carrier | Frequency Domain
+  group: CS Filter
+- name: Passband edge frequency
+  summary: Passband edge frequency 2 GHz (default) | scalar
+  group: CS Filter
+- name: Implement using filter order
+  summary: Implement using filter order on (default) | off
+  group: CS Filter
+- name: Filter order
+  summary: Filter order 3 (default) | scalar
+  group: CS Filter
+- name: Passband frequency
+  summary: Passband frequency for lowpass and highpass filters scalar
+  group: CS Filter
+- name: Passband frequencies
+  summary: Passband frequencies for bandpass filters [2 3] GHz (default) | 2-tuple vector
+  group: CS Filter
+- name: Passband attenuation (dB)
+  summary: Passband attenuation 10*log10(2) (default) | scalar
+  group: CS Filter
+- name: Stopband frequencies
+  summary: Stopband frequencies for bandstop filters [2.1 2.9] GHz (default) | 2-tuple vector
+  group: CS Filter
+- name: Stopband edge frequencies
+  summary: Stopband edge frequencies for ideal bandstop filters [2.1 2.9] GHz (default) | 2-tuple vector
+  group: CS Filter
+- name: Stopband attenuation (dB)
+  summary: Stopband attenuation 40 (default) | scalar
+  group: CS Filter
+- name: Source impedance (Ohm)
+  summary: Input source resistance 50 (default) | scalar
+  group: CS Filter
+- name: Load impedance (Ohm)
+  summary: Output load resistance 50 (default) | scalar
+  group: CS Filter
+- name: Automatically estimate impulse response duration
+  summary: Automatically estimate impulse response duration on (default) | off
+  group: CS Filter
+- name: Impulse response duration
+  summary: Impulse response duration 1e-10s (default) | scalar
+  group: CS Filter
+- name: Export
+  summary: Save filter design to a file button
+  group: CS Filter
+```
 
 ### Main
 
@@ -815,7 +1000,6 @@ Use this button to save filter design to a file. Valid file types are
 To enable this parameter, set **Design method**
 to `Butterworth` or
 `Chebyshev`.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Systems

@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Guidance Model
 
 ## 端口
+```yaml
+ports:
+- name: Control
+  summary: 控制指令总线
+  direction: input
+- name: Environment
+  summary: 环境输入总线
+  direction: input
+  data_types: bus
+- name: State
+  summary: 仿真的 UAV 状态总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -79,8 +93,28 @@ chinese_source: worker-translation
 - **RollAngleRate** - 沿机体 *x* 轴的旋转角速度，单位为弧度每秒。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: ModelType
+  summary: UAV 制导模型类型 MultirotorGuidance（默认）| FixedWingGuidance
+  group: ''
+- name: DataType
+  summary: 输入和输出数值数据类型 double（默认）| single
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+- name: Initial State
+  summary: 初始 UAV 状态选项卡 多个表项
+  group: ''
+- name: Configuration
+  summary: UAV 控制器配置选项卡 多个表项
+  group: ''
+- name: Input/Output Bus Names
+  summary: Simulink 总线信号名称选项卡 多个字符向量条目
+  group: ''
+```
 
 ### **ModelType** — UAV 制导模型类型 `MultirotorGuidance`（默认）| `FixedWingGuidance`
 
@@ -151,7 +185,6 @@ UAV 控制器配置选项卡，指定为多个表项。此选项卡允许您配�
 ### **Input/Output Bus Names** — Simulink 总线信号名称选项卡 多个字符向量条目
 
 Simulink 总线信号名称选项卡，指定为多个字符向量条目。这些总线具有基于 UAV 模型和输入类型的默认名称。要在同一 Simulink 模型中使用多个制导模型，请指定互不相同的总线名称。此选项卡上的所有条目均不可调。
-
 ## 所属库
 
 UAV Toolbox / Algorithms

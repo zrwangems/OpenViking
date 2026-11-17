@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Load Flow Source
 
 ## 端口
+```yaml
+ports:
+- name: '~'
+  summary: 三相电压电气端口
+  direction: conserving
+- name: n
+  summary: 星形中性点电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,61 @@ chinese_source: worker-translation
 ### **n** — 星形中性点电气端口
 
 与星形中性点关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Source type
+  summary: 电压源模型 Swing bus（默认）| Voltage source with series impedance | PV bus | PQ bus
+  group: 主设置
+- name: Source voltage (pu)
+  summary: 源电压 1（默认）| 标量
+  group: 主设置
+- name: Terminal voltage (pu)
+  summary: 端子电压 1（默认）| 标量
+  group: 主设置
+- name: Active power generated
+  summary: 产生的有功功率 0 W（默认）| 标量
+  group: 主设置
+- name: Active power consumed
+  summary: 消耗的有功功率 0 W（默认）
+  group: 主设置
+- name: Reactive power consumed
+  summary: 消耗的无功功率 0 V*A（默认）
+  group: 主设置
+- name: Rated voltage (phase-to-phase RMS)
+  summary: 额定相间 RMS 电压 sqrt(3) * 100 / sqrt(2) V（默认）| 标量
+  group: 主设置
+- name: Rated frequency
+  summary: 额定频率 60 Hz（默认）| 标量
+  group: 主设置
+- name: Source phase
+  summary: 源相位 0 deg（默认）| 标量
+  group: 主设置
+- name: Source impedance
+  summary: 源阻抗方法 None（默认）| X/R Ratio | Series R | Series L | Series RL
+  group: 阻抗
+- name: Short-circuit power level
+  summary: 短路功率水平 1e6 V*A（默认）| 标量
+  group: 阻抗
+- name: Source X/R ratio
+  summary: 电抗与电阻之比 15（默认）| 标量
+  group: 阻抗
+- name: Source impedance parasitic parallel conductance
+  summary: 源阻抗寄生并联电导 0 1/Ohm（默认）| 标量
+  group: 阻抗
+- name: Source resistance
+  summary: 源电阻 0.01 Ohm（默认）| 标量
+  group: 阻抗
+- name: Source inductance
+  summary: 源电感 3.97e-4 H（默认）| 标量
+  group: 阻抗
+- name: Minimum voltage (pu)
+  summary: 最小电压 0.95（默认）| 标量
+  group: 预期范围
+- name: Internal source phase search range
+  summary: 相位搜索范围 [-inf, inf] deg（默认）| 向量
+  group: 预期范围
+```
 
 ### 主设置
 
@@ -167,7 +229,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 仅当您在 **Main** 设置中将 **Source type** 参数设置为 `PV bus` 或 `PQ bus` 时，此参数才可见。
-
 ## 所属库
 
 Simscape / Electrical / Sources

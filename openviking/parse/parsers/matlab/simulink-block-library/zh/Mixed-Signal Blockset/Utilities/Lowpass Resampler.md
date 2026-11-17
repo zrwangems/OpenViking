@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Lowpass Resampler
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 离散时间输入信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: out
+  summary: 连续时间输出信号 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,8 +41,46 @@ chinese_source: worker-translation
 连续时间输出信号，返回为固定步长或可变步长标量。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Inherit output rise/fall time
+  summary: 从固定步长输入采样时间继承输出上升/下降时间 on（默认）| off
+  group: ''
+- name: Output rise/fall time
+  summary: 20%−80% 输出上升/下降时间 1e-10（默认）| 正实数标量
+  group: ''
+  block_parameter: OutputRiseFall
+  type: 字符向量
+  values: 正实数标量
+- name: Number of samples of delay
+  summary: 固定步长操作的传播延迟采样数 1（默认）| 正实数标量
+  group: ''
+  block_parameter: NDelay
+  type: 字符向量
+  values: 正实数标量
+- name: Output sample time
+  summary: 输出采样时间的类型 Inherited（默认）| Fixed step discrete | Variable step discrete
+  group: ''
+  block_parameter: OutputTsType
+  type: 字符向量
+  values: Fixed step discrete | Variable step discrete
+- name: Samples out per rise/fall time
+  summary: 单个输出上升/下降时间内的输出采样数 5（默认）| 正实数标量
+  group: ''
+  block_parameter: OutputTsRatio
+  type: 字符向量
+  values: 正实数标量
+- name: Enable large buffer
+  summary: 启用额外缓冲区采样 on（默认）| off
+  group: ''
+- name: 额外缓冲区采样数
+  summary: 用于支持采样延迟的额外缓冲区采样数 10（默认）| 正实数标量
+  group: ''
+  block_parameter: NBuffer
+  type: 字符向量
+  values: 正实数标量
+```
 
 ### **Inherit output rise/fall time** — 从固定步长输入采样时间继承输出上升/下降时间 on（默认）| off
 
@@ -131,7 +180,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** 正实数标量 |
 | **默认：** `10` |
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

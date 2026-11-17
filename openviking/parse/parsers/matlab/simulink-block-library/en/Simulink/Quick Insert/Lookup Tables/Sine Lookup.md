@@ -14,6 +14,25 @@ language: en
 # Sine
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal to implement as fixed-point sine or cosine wave real-valued signal
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: sin(2\*pi\*u)
+  summary: Fixed-point sine wave real-valued fixed-point signal
+  direction: output
+  data_types: fixed point
+- name: cos(2\*pi\*u)
+  summary: Fixed-point cosine wave real-valued fixed-point signal
+  direction: output
+  data_types: fixed point
+- name: exp(j\*2\*pi\*u)
+  summary: exp(j\*2\*pi\*u) complex-valued fixed-point signal
+  direction: output
+  data_types: fixed point
+```
 
 ### Input
 
@@ -67,8 +86,36 @@ This port is enabled when the **Output formula**
 is set to `exp(j*2*pi*u)`.
 
 **Data Types:** `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output formula
+  summary: Select the signals to output cos(2*pi*u) | sin(2*pi*u) | exp(j*2*pi*u) | sin(2*pi*u) and cos(2*pi*u)
+  group: ''
+  block_parameter: Formula
+  values: '''sin(2*pi*u)'' | ''cos(2*pi*u)'' | ''exp(j*2*pi*u)'' | ''sin(2*pi*u) and cos(2*pi*u)'''
+- name: Number of data points for lookup table
+  summary: Specify the number of data points to retrieve from the lookup table (2^5)+1 (default) | integer greater than or
+    equal to 2
+  group: ''
+  block_parameter: NumDataPoints
+  type: scalar
+  values: integer greater than or equal to 2
+  default: '''(2^5)+1'''
+- name: Output word length
+  summary: Specify the word length for the fixed-point data type of the output signal 16 (default) | integer from 2 to 53
+  group: ''
+  block_parameter: OutputWordLength
+  type: scalar
+  values: integer from 2 to 53
+  default: '''16'''
+- name: Internal rule priority for lookup table
+  summary: Specify the internal rule for intermediate calculations Speed (default) | Precision
+  group: ''
+  block_parameter: InternalRulePriority
+  values: '''Speed'' | ''Precision'''
+  default: '''Speed'''
+```
 
 ### **Output formula** — Select the signals to output `cos(2*pi*u)` | `sin(2*pi*u)` | `exp(j*2*pi*u)` | `sin(2*pi*u) and cos(2*pi*u)`
 
@@ -142,7 +189,6 @@ do, a loss of accuracy might occur, usually up to 2 bits.
 | **Block Parameter:** `InternalRulePriority` |
 | **Values:** `'Speed' | 'Precision'` |
 | **Default:** `'Speed'` |
-
 ## Libraries
 
 Simulink / Lookup Tables

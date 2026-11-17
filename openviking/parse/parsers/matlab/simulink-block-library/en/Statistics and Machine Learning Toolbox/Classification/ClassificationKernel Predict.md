@@ -14,6 +14,22 @@ language: en
 # ClassificationKernel Predict
 
 ## Ports
+```yaml
+ports:
+- name: x
+  summary: Predictor data row vector | column vector
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: label
+  summary: Predicted class label scalar
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated
+- name: score
+  summary: Predicted class scores or posterior probabilities 1-by-2 vector
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### Input
 
@@ -66,8 +82,140 @@ class scores** on the **Main** tab of the Block
 Parameters dialog box.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Select trained machine learning model
+  summary: Kernel classification model kernelMdl (default) | ClassificationKernel object
+  group: Main
+  block_parameter: TrainedLearner
+  type: character vector or string
+  values: ClassificationKernel object name
+  default: '"kernelMdl"'
+- name: Add output port for predicted class scores
+  summary: Add second output port for predicted class scores off (default) | on
+  group: Main
+  block_parameter: ShowOutputScore
+  type: character vector or string
+  values: '"off"|"on"'
+  default: '"off"'
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '"Ceiling" | "Convergent" | "Floor" | "Nearest" | "Round" | "Simplest" | "Zero"'
+  default: '"Floor"'
+- name: Saturate on integer overflow
+  summary: Method of overflow action off (default) | on
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevention of fixed-point tools from overriding data type off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Label data type
+  summary: 'Data type of label output Inherit: Inherit via back propagation | Inherit: auto | double | single | half | int8
+    | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class
+    name> | <data type expression>'
+  group: Data Types
+  block_parameter: LabelDataTypeStr
+  type: character vector or string
+  values: '"Inherit: Inherit via back propagation" | "Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16"
+    | "uint16" | "int32" | "uint32" | "int64" | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "Enum: <class
+    name>" | "<data type expression>"'
+  default: '"Inherit: Inherit via back propagation" (for numeric and logical labels) | "Inherit: auto" (for nonnumeric labels)'
+- name: Label data type Minimum
+  summary: Minimum value of label output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LabelOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Label data type Maximum
+  summary: Maximum value of label output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: LabelOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Score data type
+  summary: 'Data type of score output Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: ScoreDataTypeStr
+  type: character vector or string
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Score data type Minimum
+  summary: Minimum value of score output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: ScoreOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Score data type Maximum
+  summary: Maximum value of score output for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: ScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Raw score data type
+  summary: 'Untransformed score data type Inherit: auto (default) | double | single | half | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: RawScoreDataTypeStr
+  type: character vector
+  values: '"Inherit: auto" | "double" | "single" | "half" | "int8" | "uint8" | "int16" | "uint16" | "int32" | "uint32" | "int64"
+    | "uint64" | "boolean" | "fixdt(1,16,0)" | "fixdt(1,16,2^0,0)" | "<data type expression>"'
+  default: '"Inherit: auto"'
+- name: Raw score data type Minimum
+  summary: Minimum untransformed score for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: RawScoreOutMin
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Raw score data type Maximum
+  summary: Maximum untransformed score for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: RawScoreOutMax
+  type: character vector
+  values: '"[]" | scalar'
+  default: '"[]"'
+- name: Kernel data type
+  summary: 'Kernel computation data type Inherit: Inherit via internal rule (default) | double | single | half | int8 | uint8
+    | int16 | uint16 | int32 | int64 | uint64 | uint32 | boolean | fixdt(1,16,0) | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: KernelDataTypeStr
+  type: character vector
+  values: '''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''uint64''
+    | ''int64'' | ''boolean'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Kernel data type Minimum
+  summary: Minimum kernel computation value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: KernelOutMin
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+- name: Kernel data type Maximum
+  summary: Maximum kernel computation value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: KernelOutMax
+  type: character vector
+  values: '''[]'' | scalar'
+  default: '''[]'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -533,7 +681,6 @@ or clip the actual kernel computation value.
 | **Type**: character vector |
 | **Values**: `'[]'` | scalar |
 | **Default**: `'[]'` |
-
 ## Libraries
 
 Statistics and Machine Learning Toolbox / Classification

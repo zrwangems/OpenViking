@@ -14,6 +14,30 @@ language: en
 # AHRS
 
 ## Ports
+```yaml
+ports:
+- name: Accel
+  summary: Accelerometer readings in sensor body coordinate system (m/s2) *N*-by-3 matrix of real scalar
+  direction: input
+  data_types: single | double
+- name: Gyro
+  summary: Gyroscope readings in sensor body coordinate system (rad/s) *N*-by-3 matrix of real scalar
+  direction: input
+  data_types: single | double
+- name: Mag
+  summary: Magnetometer readings in sensor body coordinate system (µT) *N*-by-3 matrix of real scalar
+  direction: input
+  data_types: single | double
+- name: Orientation
+  summary: Orientation of sensor body frame relative to navigation frame *M*-by-4 array of scalar | 3-by-3-by-*M*-element
+    rotation matrix
+  direction: output
+  data_types: single | double
+- name: Angular Velocity
+  summary: Angular velocity in sensor body coordinate system (rad/s) *M*-by-3 array of real scalar (default)
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -70,8 +94,52 @@ of input samples, *N*, and the **Decimation Factor**
 parameter determine the output size *M*.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Reference frame
+  summary: Navigation reference frame NED (default) | ENU
+  group: ''
+- name: Decimation factor
+  summary: Decimation factor 1 (default) | positive integer
+  group: ''
+- name: Initial process noise
+  summary: Initial process noise ahrsfilter.defaultProcessNoise (default) | 12-by-12 matrix of real scalar
+  group: ''
+- name: Orientation format
+  summary: Orientation output format 'quaternion' (default) | 'Rotation matrix'
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted Execution (default) | Code Generation
+  group: ''
+- name: Accelerometer noise ((m/s2)2)
+  summary: Variance of accelerometer signal noise ((m/s2)2) 0.0001924722 (default) | positive real scalar
+  group: ''
+- name: Gyroscope noise ((rad/s)2)
+  summary: Variance of gyroscope signal noise ((rad/s)2) 9.1385e-5 (default) | positive real scalar
+  group: ''
+- name: Magnetometer noise (μT2)
+  summary: Variance of magnetometer signal noise (μT2) 0.1 (default) | positive real scalar
+  group: ''
+- name: Gyroscope drift noise (rad/s)
+  summary: Variance of gyroscope offset drift ((rad/s)2) 3.0462e-13 (default) | positive real scalar
+  group: ''
+- name: Linear acceleration noise ((m/s2)2)
+  summary: Variance of linear acceleration noise (m/s2)2 0.0096236100000000012 (default) | positive real scalar
+  group: ''
+- name: Magnetic disturbance noise (μT2)
+  summary: Variance of magnetic disturbance noise ((μT)2) 0.5 (default) | real finite positive scalar
+  group: ''
+- name: Linear acceleration decay factor
+  summary: Decay factor for linear acceleration drift 0.5 (default) | scalar in the range [0,1)
+  group: ''
+- name: Magnetic disturbance decay factor
+  summary: Decay factor for magnetic disturbance 0.5 (default) | positive scalar in the range [0,1]
+  group: ''
+- name: Magnetic field strength (μT)
+  summary: Magnetic field strength (μT) 50 (default) | real positive scalar
+  group: ''
+```
 
 #### Main
 
@@ -230,7 +298,6 @@ field strength is an estimate of the magnetic field strength of the Earth at the
 location.
 
 **Data Types:** `single` | `double`
-
 ## Libraries
 
 Navigation Toolbox / Multisensor Positioning / Navigation Filters Sensor Fusion and Tracking Toolbox / Multisensor Positioning / Navigation Filters

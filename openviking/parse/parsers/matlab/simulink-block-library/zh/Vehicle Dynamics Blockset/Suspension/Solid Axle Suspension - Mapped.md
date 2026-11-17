@@ -15,6 +15,54 @@ chinese_source: worker-translation
 # Solid Axle Suspension - Mapped
 
 ## 端口
+```yaml
+ports:
+- name: WhlPz
+  summary: 车轮 z 轴位移数组
+  direction: input
+- name: WhlRe
+  summary: 车轮有效半径数组
+  direction: input
+- name: WhlVz
+  summary: 车轮 z 轴速度数组
+  direction: input
+- name: WhlFx
+  summary: 作用于车辆的纵向车轮力数组
+  direction: input
+- name: WhlFy
+  summary: 作用于车辆的侧向车轮力数组
+  direction: input
+- name: WhlM
+  summary: 车轮阵列上的悬架力矩
+  direction: input
+- name: VehP
+  summary: 车辆位移阵列
+  direction: input
+- name: VehV
+  summary: 车辆速度数组
+  direction: input
+- name: StrgAng
+  summary: 转向角，可选数组
+  direction: input
+- name: Info
+  summary: 总线信号总线
+  direction: output
+- name: VehF
+  summary: 施加到车辆的悬架力 array
+  direction: output
+- name: VehM
+  summary: 车辆上的悬架力矩 array
+  direction: output
+- name: WhlF
+  summary: 车轮上的悬架力 array
+  direction: output
+- name: WhlV
+  summary: 车轮速度 array
+  direction: output
+- name: WhlAng
+  summary: 车轮外倾角、主销后倾角、前束角 array
+  direction: output
+```
 
 ### 输入
 
@@ -416,8 +464,90 @@ enable by axle, StrgEnByAxl** 向量的一个元素设置为 `1`。
   | 右前 | `WhlF(3,2)` | `1` | `2` |
   | 左后 | `WhlF(3,3)` | `2` | `1` |
   | 右后 | `WhlF(3,4)` | `2` | `2` |
-
 ## 参数
+```yaml
+parameters:
+- name: Number of axles, NumAxl
+  summary: 车轴数量 2（默认）| scalar
+  group: 车轴
+  block_parameter: NumAxl
+  values: 2（默认）| scalar
+- name: Number of wheels by axle, NumWhlsByAxl
+  summary: 每轴车轮数量 [2 2]（默认）| vector
+  group: 车轴
+  block_parameter: NumWhlsByAxl
+  values: '[2 2]（默认）| vector'
+- name: Steered axle enable by axle, StrgEnByAxl
+  summary: 用于启用车轴转向的布尔向量 [1 0]（默认）| vector
+  group: 车轴
+  block_parameter: StrgEnByAxl
+  values: '[1 0]（默认）| vector'
+- name: Axle and wheels lumped principal moments of inertia about longitudinal axis, AxlIxx
+  summary: 惯量 200（默认）| vector
+  group: 车轴
+  block_parameter: AxlIxx
+  values: 200（默认）| vector
+- name: Axle and wheels lumped mass, AxlM
+  summary: 质量 300（默认）| vector
+  group: 车轴
+  block_parameter: AxlM
+  values: 300（默认）| vector
+- name: Track hardpoint coordinates relative to axle center, TrackCoords
+  summary: 点 [0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）| array
+  group: 车轴
+  block_parameter: TrackCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）| array'
+- name: Suspension hardpoint coordinates relative to axle center, SuspCoords
+  summary: 点 [0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）| array
+  group: 车轴
+  block_parameter: SuspCoords
+  values: '[0 0 0 0;-1 1 -1 1;0 0 0 0]（默认）| array'
+- name: Wheel and axle interface compliance constant, KzWhlAxl
+  summary: 弹簧刚度 6437000（默认）| scalar
+  group: 车轴
+  block_parameter: KzWhlAxl
+  values: 6437000（默认）| scalar
+- name: Wheel and axle interface compliance preload, F0zWhlAxl
+  summary: 弹簧刚度 9810（默认）| scalar
+  group: 车轴
+  block_parameter: F0zWhlAxl
+  values: 9810（默认）| scalar
+- name: Wheel and axle interface damping constant, CzWhlAxl
+  summary: 阻尼 10000（默认）| scalar
+  group: 车轴
+  block_parameter: CzWhlAxl
+  values: 10000（默认） | scalar
+- name: Axle breakpoints, f_susp_axl_bp
+  summary: 断点 [1 2]（默认） | 1-by-P 数组
+  group: Suspension
+  block_parameter: f_susp_axl_bp
+  values: '[1 2]（默认） | 1-by-P 数组'
+- name: Vertical axis suspension height breakpoints, f_susp_dz_bp
+  summary: 断点 1-by-M 数组
+  group: Suspension
+  block_parameter: f_susp_dz_bp
+  values: 1-by-M 数组
+- name: Vertical axis suspension height velocity breakpoints, f_susp_dzdot_bp
+  summary: 断点 1-by-N 数组
+  group: Suspension
+  block_parameter: f_susp_dzdot_bp
+  values: 1-by-N 数组
+- name: Vertical axis suspension force and moment responses, f_susp_fmz
+  summary: 输出数组 zeros(31,31,61,2,4)（默认） | M-by-N-by-O-by-P-by-4 数组
+  group: Suspension
+  block_parameter: f_susp_fmz
+  values: zeros(31,31,61,2,4)（默认） | M-by-N-by-O-by-P-by-4 数组
+- name: Suspension geometry responses, f_susp_geom
+  summary: 悬架几何响应 zeros(31,61,2,3)（默认） | M-by-O-by-P-by-3 数组
+  group: Suspension
+  block_parameter: f_susp_geom
+  values: zeros(31,61,2,3)（默认） | M-by-O-by-P-by-3 数组
+- name: Steering angle breakpoints, f_susp_strgdelta_bp
+  summary: 转向角断点 1-by-O 数组
+  group: Suspension
+  block_parameter: f_susp_strgdelta_bp
+  values: 1-by-O 数组
+```
 
 ### 车轴
 
@@ -822,7 +952,6 @@ Wheel and axle interface damping constant，
 | **参数：** | `f_susp_strgdelta_bp` |
 | **值：** | `1`-by-`O` 数组 |
 | **数据类型：** | `double` |
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Suspension

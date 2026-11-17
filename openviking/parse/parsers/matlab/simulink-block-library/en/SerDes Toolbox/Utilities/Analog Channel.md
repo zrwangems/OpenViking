@@ -14,6 +14,17 @@ language: en
 # Analog Channel
 
 ## Ports
+```yaml
+ports:
+- name: WaveIn
+  summary: Input signal scalar | vector
+  direction: input
+  data_types: double
+- name: WaveOut
+  summary: Modified output data scalar | vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -30,8 +41,85 @@ Modified output data that includes the effect of a lossy printed circuit board
 transmission line model according to the method outlined in [1].
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Channel model
+  summary: Source of channel model Loss model (default) | Impulse response
+  group: Channel Model
+- name: Target frequency (Hz)
+  summary: Frequency for desired channel loss 20e9 (default) | positive real scalar
+  group: Channel Model
+- name: Loss (dB)
+  summary: Channel loss at target frequency 8 (default) | scalar
+  group: Channel Model
+- name: Impedance (Ohms)
+  summary: Channel characteristic impedance positive real scalar
+  group: Channel Model
+- name: Impulse response
+  summary: User provided impulse response [zeros(1,63),1/SampleInterval,zeros(1,192)] (default) | matrix
+  group: Channel Model
+- name: Impulse sample interval
+  summary: Sample interval of user provided impulse response 6.25e-12 (default) | positive real scalar
+  group: Channel Model
+- name: Tx R (Ohms)
+  summary: Single-ended impedance of transmitter analog model 50 (default) | nonnegative real scalar
+  group: Channel Model
+- name: Tx C (F)
+  summary: Capacitance of transmitter analog model 100e-15 (default) | nonnegative real scalar
+  group: Channel Model
+- name: Rx R (Ohms)
+  summary: Single-ended impedance of receiver analog model 50 (default) | nonnegative real scalar
+  group: Channel Model
+- name: Rx C (F)
+  summary: Capacitance of receiver analog model 200e-15 (default) | nonnegative real scalar
+  group: Channel Model
+- name: Rise time (s)
+  summary: 20%−80% rise time of stimulus input 10e-12 (default) | positive real scalar
+  group: Channel Model
+- name: Voltage (V)
+  summary: Peak-to-peak voltage at input of transmitter analog model 1 (default) | positive real scalar
+  group: Channel Model
+- name: Include crosstalk
+  summary: Include crosstalk in simulation off (default) | on
+  group: Crosstalk
+- name: Specification
+  summary: Specify magnitude of near and far end aggressors 100GBASE-CR4 (default) | CEI-25G-LR | CEI-28G-SR | CEI-28G-VSR
+    | Custom
+  group: Crosstalk
+- name: Far end crosstalk ICN (V)
+  summary: Desired integrated noise level of far end aggressor 15e-3 (default) | nonnegative real scalar
+  group: Crosstalk
+- name: Near end crosstalk ICN (V)
+  summary: Desired integrated noise level of near end aggressor 10e-3 (default) | nonnegative real scalar
+  group: Crosstalk
+- name: Symbol Time (s)
+  summary: Symbol time of far end crosstalk stimulus 100e-12 (default) | positive real scalar
+  group: Crosstalk
+- name: Delay (s)
+  summary: Delay offset of far end crosstalk stimulus 0 (default) | nonnegative real scalar
+  group: Crosstalk
+- name: Modulation
+  summary: Modulation levels of far end crosstalk stimulus NRZ (default) | PAM3 | PAM4 | PAM5 | PAM6 | PAM7 | PAM8 | PAM9
+    | PAM10 | PAM11 | PAM12 | PAM13 | PAM14 | PAM15 | PAM16
+  group: Crosstalk
+- name: PRBS Order
+  summary: PRBS order of far end crosstalk stimulus 7 (default) | 9 | 11 | 13 | 15 | 20 | 23 | 31 | 47
+  group: Crosstalk
+- name: Symbol Time (s)
+  summary: Symbol time of near end crosstalk stimulus 100e-12 (default) | positive real scalar
+  group: Crosstalk
+- name: Delay (s)
+  summary: Delay offset of near end crosstalk stimulus 0 (default) | nonnegative real scalar
+  group: Crosstalk
+- name: Modulation
+  summary: Modulation levels of near end crosstalk stimulus NRZ (default) | PAM3 | PAM4 | PAM5 | PAM6 | PAM7 | PAM8 | PAM9
+    | PAM10 | PAM11 | PAM12 | PAM13 | PAM14 | PAM15 | PAM16
+  group: Crosstalk
+- name: PRBS Order
+  summary: PRBS order of near end crosstalk stimulus 9 (default) | 7 | 11 | 13 | 15 | 20 | 23 | 31 | 47
+  group: Crosstalk
+```
 
 ### Channel Model
 
@@ -416,7 +504,6 @@ stimulus.
   **PRBS Order** in FEXT stimulus to a specific value.
 
 **Data Types:** `double`
-
 ## Libraries
 
 SerDes Toolbox / Utilities

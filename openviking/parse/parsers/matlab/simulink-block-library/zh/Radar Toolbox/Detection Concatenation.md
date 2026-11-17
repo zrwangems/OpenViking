@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Detection Concatenation
 
 ## 端口
+```yaml
+ports:
+- name: In1, In2, ..., InN
+  summary: 要合并的传感器检测结果，包含 MATLAB® 结构的 Simulink® 总线
+  direction: input
+- name: Out
+  summary: 合并后的传感器检测结果，包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -69,8 +78,22 @@ chinese_source: worker-translation
 | `ObjectAttributes` | 传递给跟踪器的附加信息 | Simulink Bus |
 
 **Maximum number of reported detections** 输出是所有输入端口 **Maximum number of reported detections** 之和。实际检测数量是每个输入端口中实际检测数量之和。检测结构中的 `ObjectAttributes` 字段是每个输入端口中 `ObjectAttributes` 字段的并集。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of input sensors to combine
+  summary: 输入传感器端口数量 2（默认）| 正整数
+  group: ''
+- name: Source of output bus name
+  summary: 输出总线名称的来源 Auto（默认）| Property
+  group: ''
+- name: Specify an output bus name
+  summary: 输出总线名称 无默认值
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Number of input sensors to combine** — 输入传感器端口数量 2（默认）| 正整数
 
@@ -95,7 +118,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。在 `Interpreted execution` 模式下，您可以调试模块的源代码。
 - `Code generation` — 使用生成的 C/C++ 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C/C++ 代码。只要模型不变，后续仿真将复用该 C 代码。此选项需要额外的启动时间。
-
 ## 所属库
 
 Automated Driving Toolbox Sensor Fusion and Tracking Toolbox / Utilities

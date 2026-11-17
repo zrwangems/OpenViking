@@ -15,10 +15,29 @@ chinese_source: worker-translation
 # Sequence Viewer
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Time Precision for Variable Step
+  summary: 时间增量精度的位数 3（默认）| 标量
+  group: ''
+  block_parameter: VariableStepTimePrecision
+  type: string scalar or character vector
+  values: '"3" | scalar'
+  default: '"3"'
+- name: History
+  summary: 要显示的先前事件的最大数量 5000（默认）| 标量
+  group: ''
+  block_parameter: History
+  type: string scalar or character vector
+  values: '"1000" | scalar'
+  default: '"1000"'
+```
 
 ### **Time Precision for Variable Step** — 时间增量精度的位数 `3`（默认）| 标量
 
@@ -51,7 +70,6 @@ R2025b 中未记录。
 | **类型**：string scalar or character vector |
 | **值**：`"1000"` | scalar |
 | **默认值**：`"1000"` |
-
 ## 所属库
 
 Simulink / Messages & Events Simulink Test SimEvents Stateflow

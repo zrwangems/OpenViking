@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Fully Differential Op-Amp
 
 ## 端口
+```yaml
+ports:
+- name: +
+  summary: 同相输入电气端口
+  direction: conserving
+- name: '-'
+  summary: 反相输入电气端口
+  direction: conserving
+- name: cm
+  summary: 共模端口电气端口
+  direction: conserving
+- name: Vout+
+  summary: 同相输出电气端口
+  direction: conserving
+- name: Vout-
+  summary: 反相输出电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -37,8 +55,52 @@ chinese_source: worker-translation
 ### **Vout-** — 反相输出电气端口
 
 与运算放大器反相输出端关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Differential gain
+  summary: 差分增益 1e3（默认值）
+  group: 增益
+- name: Bandwidth
+  summary: 带宽 1.5 GHz（默认值）
+  group: 增益
+- name: Differential input resistance
+  summary: 差分输入电阻 1.3 MOhm（默认值）
+  group: 输入阻抗
+- name: Differential input capacitance
+  summary: 差分输入电容 1.8 pF（默认值）
+  group: 输入阻抗
+- name: Common-mode input resistance
+  summary: 共模输入电阻 1.0 MOhm（默认值）
+  group: 输入阻抗
+- name: Common-mode input capacitance
+  summary: 共模输入电容 2.3 pF（默认值）
+  group: 输入阻抗
+- name: Output resistance
+  summary: 输出电阻 1 Ohm（默认值）
+  group: 输出限幅
+- name: Minimum output voltage low
+  summary: 最低输出电压低 -1.4 V（默认值）
+  group: 输出限幅
+- name: Maximum output voltage low
+  summary: 最高输出电压低 1.4 V（默认值）
+  group: 输出限幅
+- name: Differential maximum slew rate
+  summary: 差分最大压摆率 5000 V/us（默认值）
+  group: 输出限幅
+- name: Common-mode port input resistance
+  summary: 共模端口输入电阻 23.0 kOhm（默认值）
+  group: 输出偏置
+- name: Negative supply voltage
+  summary: 负电源电压 -5 V（默认值）
+  group: 输出偏置
+- name: Positive supply voltage
+  summary: 正电源电压 5 V（默认值）
+  group: 输出偏置
+- name: Initial differential output voltage
+  summary: 初始差分输出电压 0 V（默认值）
+  group: 初始条件
+```
 
 ### 增益
 
@@ -105,7 +167,6 @@ chinese_source: worker-translation
 ### **Initial differential output voltage** — 初始差分输出电压 `0` `V`（默认值）
 
 当输出电流为零时，两个输出端之间的初始差分电压。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

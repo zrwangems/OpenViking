@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Rotate
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 要旋转的图像 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Angle
+  summary: 旋转角度 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Output
+  summary: 旋转后的图像 矩阵 | 数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -44,8 +59,40 @@ chinese_source: worker-translation
 旋转后的图像，如果输入图像为灰度图像则返回二维数值矩阵，如果输入图像为彩色图像则返回三维数值数组。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output size
+  summary: 旋转后图像的大小 Expanded to fit rotated input image（默认）| Same as input image
+  group: 主要
+- name: Rotation angle source
+  summary: 旋转角度来源 Specify via dialog（默认）| Input port
+  group: 主要
+- name: Angle (radians)
+  summary: 旋转角度 pi/6（默认）| 数值标量
+  group: 主要
+- name: Maximum angle (enter pi radians to accommodate all positive and negative angles)
+  summary: 最大旋转角度 pi（默认）| 小于或等于 pi 的非负标量
+  group: 主要
+- name: Display rotated image in
+  summary: 输出图像中的位置 Top-left corner（默认）| Center
+  group: 主要
+- name: Sine value computation method
+  summary: 正弦值计算方法 Table lookup（默认）| Trigonometric function
+  group: 主要
+- name: Background fill value
+  summary: 背景填充值 数值标量 | 三元素数值向量
+  group: 主要
+- name: Interpolation method
+  summary: 插值方法 Bilinear（默认）| Nearest neighbor | Bicubic
+  group: 主要
+- name: Angle values
+  summary: 角度值的定点参数 Same word length as input（默认）| Specify word length | Binary point scaling
+  group: 数据类型
+- name: Lock data type settings against change by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型
+```
 
 ### 主要
 
@@ -131,7 +178,6 @@ chinese_source: worker-translation
 ### **Lock data type settings against change by the fixed-point tools** — 防止定点工具覆盖数据类型 `off`（默认）| `on`
 
 选择此参数可防止定点工具覆盖您在此模块中指定的数据类型。有关详细信息，请参阅 Lock the Output Data Type Setting (Fixed-Point Designer)。
-
 ## 所属库
 
 Computer Vision Toolbox / Geometric Transformations

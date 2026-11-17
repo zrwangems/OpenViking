@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # 4-Way 2-Position Directional Valve (2P)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 两相流体的入口或出口
+  direction: conserving
+- name: B
+  summary: 两相流体的入口或出口
+  direction: conserving
+- name: P
+  summary: 两相流体的入口或出口
+  direction: conserving
+- name: T
+  summary: 两相流体的入口或出口
+  direction: conserving
+- name: S
+  summary: 阀芯位移，m 物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -39,8 +57,392 @@ chinese_source: worker-translation
 ### **S** — 阀芯位移，m 物理信号
 
 与阀芯位移关联的物理信号，单位为 m。
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 流体相的建模选项 Liquid operating condition（默认）| Vapor operating condition
+  group: ''
+- name: Positive spool position open connections
+  summary: 阀芯处于正位置时打开的流路 P-A, B-T（默认）| P-A, P-B | P-B, A-T | P-A | P-B | P-A, P-B, A-T, B-T
+  group: 阀配置
+- name: Negative spool position open connections
+  summary: 阀芯沿负方向运动时打开的流路 P-B, A-T（默认）| P-A, B-T | P-A, P-B | P-A | P-B | P-A, P-B, A-T, B-T
+  group: 阀配置
+- name: Area characteristics
+  summary: 节流口的流量方程 Identical for all flow paths（默认）| 每条流不同 path
+  group: 模型参数化
+- name: Orifice parameterization
+  summary: 可变或恒定节流口参数化 Linear - Area vs. spool travel（默认）| Linear - Nominal mass flow rate vs. spool travel | Tabulated data
+    - Area vs. spool travel | Cv flow coefficient | Kv flow coefficient | Orifice area
+  group: 模型参数化
+- name: Spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: 模型参数化
+- name: Maximum orifice area
+  summary: 最大节流口开口面积 1e-4 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Nominal mass flow rate at maximum orifice opening
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: 模型参数化
+- name: Nominal pressure drop at maximum orifice opening
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: 模型参数化
+- name: Nominal inlet condition specification
+  summary: 确定入口流体状态的方法 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: 模型参数化
+- name: Nominal inlet pressure
+  summary: 入口流体压力 0.101325 MPa（默认）| 正标量
+  group: 模型参数化
+- name: Nominal inlet temperature
+  summary: 流体温度 293.15 K（默认）| 正标量
+  group: 模型参数化
+- name: Nominal inlet vapor quality
+  summary: 入口蒸汽质量分数 0（默认）| [0,1] 范围内的正标量
+  group: 模型参数化
+- name: Nominal inlet vapor void fraction
+  summary: 入口体积分数 0（默认）| [0,1] 范围内的正标量
+  group: 模型参数化
+- name: Nominal inlet specific enthalpy
+  summary: 入口流体比焓 400 kJ/kg（默认）| 正标量
+  group: 模型参数化
+- name: Nominal inlet specific internal energy
+  summary: 入口比内能 400 kJ/kg（默认）| 正标量
+  group: 模型参数化
+- name: Opening characteristic
+  summary: 将控制信号转换为流量能力度量的方法 Linear（默认）| Tabulated
+  group: 模型参数化
+- name: Spool travel vector
+  summary: 相对于全关位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: Orifice area vector
+  summary: 阀开口面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: Maximum Cv flow coefficient
+  summary: 对应最大开度的 *Cv* 系数 4（默认）| 正标量
+  group: 模型参数化
+- name: Cv flow coefficient vector
+  summary: 构件位置向量中各值对应的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: Maximum Kv flow coefficient
+  summary: 对应最大开度的 *Kv* 系数 3.6（默认）| 正标量
+  group: 模型参数化
+- name: Kv flow coefficient vector
+  summary: 构件位置向量中各值对应的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量
+  group: 模型参数化
+- name: xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认）| 正标量
+  group: 模型参数化
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: 模型参数化
+- name: Leakage flow fraction
+  summary: 流量比 1e-6（默认）| 正标量
+  group: 模型参数化
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: 模型参数化
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力升高 off（默认）| on
+  group: 模型参数化
+- name: Laminar flow pressure ratio
+  summary: 层流-湍流过渡压力比 0.999（默认）| 正标量
+  group: 模型参数化
+- name: Inlet phase change time constant
+  summary: 混合物比容的时间滞后 0.1 s（默认）| 正标量
+  group: 模型参数化
+- name: Cross-sectional area at ports P, T, A and B
+  summary: 守恒端口处的面积 0.01 m^2（默认）| 正标量
+  group: 模型参数化
+- name: Spool position at maximum P-A orifice area
+  summary: P-A 节流口完全开启时的阀芯偏移 5e-3 m（默认）| 正标量
+  group: P-A Orifice
+- name: P-A spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: P-A Orifice
+- name: P-A nominal mass flow rate at maximum orifice opening
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: P-A Orifice
+- name: P-A nominal pressure drop at maximum orifice opening
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: P-A Orifice
+- name: P-A nominal inlet condition specification
+  summary: 确定入口流体状态的方法 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: P-A Orifice
+- name: P-A nominal inlet pressure
+  summary: 入口流体压力 0.101325 MPa（默认）| 正标量
+  group: P-A Orifice
+- name: P-A nominal inlet temperature
+  summary: 流体温度 293.15 K（默认）| 正标量
+  group: P-A Orifice
+- name: P-A nominal inlet vapor quality
+  summary: 入口蒸汽干度质量分数 0（默认）| [0,1] 范围内的正标量
+  group: P-A Orifice
+- name: P-A nominal inlet vapor void fraction
+  summary: 入口蒸汽空泡率 0（默认）| [0,1] 范围内的正标量
+  group: P-A Orifice
+- name: P-A nominal inlet specific enthalpy
+  summary: 入口流体比焓 400 kJ/kg（默认）| 正标量
+  group: P-A Orifice
+- name: P-A nominal inlet specific internal energy
+  summary: 入口比内能 400 kJ/kg（默认）| 正标量
+  group: P-A Orifice
+- name: P-A constant orifice nominal mass flow rate
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: P-A Orifice
+- name: P-A constant orifice nominal pressure drop
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: P-A Orifice
+- name: P-A constant orifice Cv flow coefficient
+  summary: 流量系数 4（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice maximum Cv flow coefficient
+  summary: 对应组件最大开启状态的 *Cv* 系数 4（默认）| 正标量
+  group: P-A Orifice
+- name: P-A orifice Cv flow coefficient vector
+  summary: 成员位置向量 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）中值的 *Cv* 系数 | 1×*n* 向量
+  group: P-A Orifice
+- name: P-A constant orifice Kv flow coefficient
+  summary: 流量系数 3.6（默认） | 正标量
+  group: P-A Orifice
+- name: P-A orifice maximum Kv flow coefficient
+  summary: 对应最大开启组件的 *Kv* 系数 3.6（默认） | 正标量
+  group: P-A Orifice
+- name: P-A orifice Kv flow coefficient vector
+  summary: 成员位置向量 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）中值的 *Kv* 系数 | 1×*n* 向量
+  group: P-A Orifice
+- name: P-A orifice spool travel vector
+  summary: 相对于完全关闭位置的阀芯开启距离向量 [0, .00125, .0025, .00375, .005] m（默认） | 1×*n* 向量
+  group: P-A Orifice
+- name: P-A maximum orifice area
+  summary: 最大节流孔开启面积 1e-4 m^2（默认） | 正标量
+  group: P-A Orifice
+- name: P-A orifice area vector
+  summary: 阀开启面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认） | 1×*n* 向量
+  group: P-A Orifice
+- name: P-A constant orifice area
+  summary: 恒定节流孔的横截面积 1e-4 m^2（默认） | 正标量
+  group: P-A Orifice
+- name: P-A orifice xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认） | 正标量
+  group: P-A Orifice
+- name: Spool position at maximum P-B orifice area
+  summary: P-B 节流孔完全打开时的阀芯偏移 5e-3 m（默认） | 正标量
+  group: P-B Orifice
+- name: P-B spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认） | 正标量
+  group: P-B Orifice
+- name: P-B nominal mass flow rate at maximum orifice opening
+  summary: 额定质量流量 0.1 kg/s（默认） | 正标量
+  group: P-B Orifice
+- name: P-B nominal pressure drop at maximum orifice opening
+  summary: 额定压降 0.001 MPa（默认） | 正标量
+  group: P-B Orifice
+- name: P-B nominal inlet condition specification
+  summary: 确定入口流体状态的方法 Temperature（默认） | Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: P-B Orifice
+- name: P-B nominal inlet pressure
+  summary: 入口流体压力 0.101325 MPa（默认） | 正标量
+  group: P-B Orifice
+- name: P-B nominal inlet temperature
+  summary: 流体温度 293.15 K（默认） | 正标量
+  group: P-B Orifice
+- name: P-B nominal inlet vapor quality
+  summary: 入口蒸汽干度质量分数 0（默认） | [0,1] 范围内的正标量
+  group: P-B Orifice
+- name: P-B 额定入口蒸汽空泡份额
+  summary: 入口蒸汽空泡份额 0（默认）| [0,1] 范围内的正标量
+  group: P-B Orifice
+- name: P-B 额定入口比焓
+  summary: 入口流体比焓 400 kJ/kg（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 额定入口比内能
+  summary: 入口比内能 400 kJ/kg（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 恒定节流孔额定质量流量
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 恒定节流孔额定压降
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 恒定节流孔 Cv 流量系数
+  summary: 流量系数 4（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 节流孔最大 Cv 流量系数
+  summary: 对应于组件最大开度的 *Cv* 系数 4（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 节流孔 Cv 流量系数向量
+  summary: 对应于构件位置向量中各值的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B 恒定节流孔 Kv 流量系数
+  summary: 流量系数 3.6（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 节流孔最大 Kv 流量系数
+  summary: 对应于组件最大开度的 *Kv* 系数 3.6（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 节流孔 Kv 流量系数向量
+  summary: 对应于构件位置向量中各值的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B 节流孔阀芯行程向量
+  summary: 相对于全关位置的阀芯开度距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B 最大节流孔面积
+  summary: 最大节流孔开度面积 1e-4 m^2（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 节流孔面积向量
+  summary: 阀开度面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: P-B Orifice
+- name: P-B 恒定节流孔面积
+  summary: 恒定节流孔横截面积 1e-4 m^2（默认）| 正标量
+  group: P-B Orifice
+- name: P-B 节流孔 xT 阻塞流压差比系数
+  summary: 压差比 0.7（默认）| 正标量
+  group: P-B Orifice
+- name: Spool position at maximum A-T orifice area
+  summary: 完全打开 A-T 节流口时的阀芯偏移 5e-3 m（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T nominal mass flow rate at maximum orifice opening
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T nominal pressure drop at maximum orifice opening
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T nominal inlet condition specification
+  summary: 确定入口流体状态的方法 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: A-T 节流孔
+- name: A-T nominal inlet pressure
+  summary: 入口流体压力 0.101325 MPa（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T nominal inlet temperature
+  summary: 流体温度 293.15 K（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T nominal inlet vapor quality
+  summary: 入口蒸汽干度质量分数 0（默认）| 范围 [0,1] 内的正标量
+  group: A-T 节流孔
+- name: A-T nominal inlet vapor void fraction
+  summary: 入口蒸汽空泡率 0（默认）| 范围 [0,1] 内的正标量
+  group: A-T 节流孔
+- name: A-T nominal inlet specific enthalpy
+  summary: 入口流体比焓 400 kJ/kg（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T nominal inlet specific internal energy
+  summary: 入口比内能 400 kJ/kg（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T constant orifice nominal mass flow rate
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T constant orifice nominal pressure drop
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T constant orifice Cv flow coefficient
+  summary: 流量系数 4（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T orifice maximum Cv flow coefficient
+  summary: 对应组件最大开度的 *Cv* 系数 4（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T orifice Cv flow coefficient vector
+  summary: 成员位置向量中各值对应的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: A-T 节流孔
+- name: A-T constant orifice Kv flow coefficient
+  summary: 流量系数 3.6（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T orifice maximum Kv flow coefficient
+  summary: 对应组件最大开度的 *Kv* 系数 3.6（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T orifice Kv flow coefficient vector
+  summary: 成员位置向量 [1e-06, .72, 1.44, 2.16, 2.88, 3.6] 中值的 *Kv* 系数（默认）| 1×*n* 向量
+  group: A-T 节流孔
+- name: A-T orifice spool travel vector
+  summary: 相对于全关闭位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: A-T 节流孔
+- name: A-T maximum orifice area
+  summary: 最大节流口开口面积 1e-4 m^2（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T orifice area vector
+  summary: 阀开口面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: A-T 节流孔
+- name: A-T constant orifice area
+  summary: 恒定节流口横截面积 1e-4 m^2（默认）| 正标量
+  group: A-T 节流孔
+- name: A-T orifice xT pressure differential ratio factor at choked flow
+  summary: 压差比 0.7（默认）| 正标量
+  group: A-T 节流孔
+- name: Spool position at maximum B-T orifice area
+  summary: 全开 B-T 节流口的阀芯偏移 5e-3 m（默认）| 正标量
+  group: B-T Orifice
+- name: B-T spool travel between closed and open orifice
+  summary: 最大阀芯行程 0.005 m（默认）| 正标量
+  group: B-T Orifice
+- name: B-T nominal mass flow rate at maximum orifice opening
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: B-T Orifice
+- name: B-T nominal pressure drop at maximum orifice opening
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: B-T Orifice
+- name: B-T nominal inlet condition specification
+  summary: 确定入口流体状态的方法 Temperature（默认）| Vapor quality | Vapor void fraction | Specific enthalpy | Specific internal energy
+  group: B-T Orifice
+- name: B-T nominal inlet pressure
+  summary: 入口流体压力 0.101325 MPa（默认）| 正标量
+  group: B-T Orifice
+- name: B-T nominal inlet temperature
+  summary: 流体温度 293.15 K（默认）| 正标量
+  group: B-T Orifice
+- name: B-T nominal inlet vapor quality
+  summary: 入口蒸汽干度质量分数 0（默认）| [0,1] 范围内的正标量
+  group: B-T Orifice
+- name: B-T nominal inlet vapor void fraction
+  summary: 入口蒸汽空泡率 0（默认）| [0,1] 范围内的正标量
+  group: B-T Orifice
+- name: B-T nominal inlet specific enthalpy
+  summary: 入口流体比焓 400 kJ/kg（默认）| 正标量
+  group: B-T Orifice
+- name: B-T nominal inlet specific internal energy
+  summary: 入口比内能 400 kJ/kg（默认）| 正标量
+  group: B-T Orifice
+- name: B-T constant orifice nominal mass flow rate
+  summary: 额定质量流量 0.1 kg/s（默认）| 正标量
+  group: B-T Orifice
+- name: B-T constant orifice nominal pressure drop
+  summary: 额定压降 0.001 MPa（默认）| 正标量
+  group: B-T Orifice
+- name: B-T constant orifice Cv flow coefficient
+  summary: 流量系数 4（默认）| 正标量
+  group: B-T Orifice
+- name: B-T orifice maximum Cv flow coefficient
+  summary: 对应最大开度的 *Cv* 系数 4（默认）| 正标量
+  group: B-T Orifice
+- name: B-T orifice Cv flow coefficient vector
+  summary: 对应构件位置向量中各值的 *Cv* 系数 [1e-06, .8, 1.6, 2.4, 3.2, 4]（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T constant orifice Kv flow coefficient
+  summary: 流量系数 3.6（默认）| 正标量
+  group: B-T Orifice
+- name: B-T orifice maximum Kv flow coefficient
+  summary: 对应最大开度的 *Kv* 系数 3.6（默认）| 正标量
+  group: B-T Orifice
+- name: B-T orifice Kv flow coefficient vector
+  summary: 对应构件位置向量中各值的 *Kv* 系数 [1e-06, .72, 1.44, 2.16, 2.88, 3.6]（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T orifice spool travel vector
+  summary: 相对于全关位置的阀芯开口距离向量 [0, .00125, .0025, .00375, .005] m（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T maximum orifice area
+  summary: 最大节流口开口面积 1e-4 m^2（默认）| 正标量
+  group: B-T Orifice
+- name: B-T orifice area vector
+  summary: 阀口开口面积向量 [1e-10, 1e-05, 4e-05, 6e-05, .0001] m^2（默认）| 1×*n* 向量
+  group: B-T Orifice
+- name: B-T constant orifice area
+  summary: 恒定节流口横截面积 1e-4 m^2（默认）| 正标量
+  group: B-T Orifice
+- name: B-T orifice xT pressure differential ratio factor at choked flow
+  summary: 压差比系数 0.7（默认）| 正标量
+  group: B-T Orifice
+```
 
 ### **Modeling option** — 流体相的建模选项 `Liquid operating condition`（默认）| `Vapor operating condition`
 
@@ -2900,7 +3302,6 @@ B-T 节流口首次发生阻塞流时的入口压力 *pin* 与出口压力 *pout
      connections** 为 `P-A,
      B-T` 或 `P-A, P-B, A-T,
      B-T`。
-
 ## 所属库
 
 Simscape / Fluids / Two-Phase Fluid / Valves & Orifices / Directional Control Valves

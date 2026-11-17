@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # 6-Phase VSD Transform
 
 ## 端口
+```yaml
+ports:
+- name: a1b1c1
+  summary: 第一组三相输入 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: a2b2c2
+  summary: 第二组三相输入 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: αβxyz+z-
+  summary: 三个不同子空间中的六轴分量 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -40,8 +55,16 @@ chinese_source: worker-translation
 - 零序子空间（包含 *z+* 和 *z-* 分量）
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Power invariant
+  summary: 启用功率不变变换的选项 off（默认）| on
+  group: ''
+- name: Motor type
+  summary: 六相 PMSM 的类型 Asymmetric (30 degree offset)（默认）| Symmetric (60 degree offset)
+  group: ''
+```
 
 ### **Power invariant** — 启用功率不变变换的选项 `off`（默认）| on
 
@@ -50,7 +73,6 @@ chinese_source: worker-translation
 ### **Motor type** — 六相 PMSM 的类型 `Asymmetric (30 degree offset)`（默认）| `Symmetric (60 degree offset)`
 
 选择要为其计算 VSD 变换的六相 PMSM 类型。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

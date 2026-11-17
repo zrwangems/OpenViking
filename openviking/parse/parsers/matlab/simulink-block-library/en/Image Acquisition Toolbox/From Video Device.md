@@ -14,6 +14,21 @@ language: en
 # From Video Device
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Video output signal *m*-by-*n*-by-3 matrix
+  direction: output
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: R, G, B
+  summary: RGB video output signal *m*-by-*n* matrix
+  direction: output
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Y, Cb, Cr
+  summary: YCbCr video output signal *m*-by-*n* matrix
+  direction: output
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+```
 
 ### Output
 
@@ -68,8 +83,49 @@ dimensions.
   **Data type**.
 
 **Data Types:** `single` | `double` | `int8` | `uint8` | `int16` | `uint16` | `int32` | `uint32`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: Image acquisition device available devices
+  group: ''
+- name: Video format
+  summary: Video formats supported by device available video formats
+  group: ''
+- name: Video source
+  summary: Video input sources supported by device available video input sources
+  group: ''
+- name: Edit properties...
+  summary: Video source properties button
+  group: ''
+- name: Enable hardware triggering
+  summary: Hardware-triggered acquisition off (default) | on
+  group: ''
+- name: ROI position
+  summary: Region of interest in video image [0, 0, maximum height, maximum width] (default) | [row, column, height, width]
+  group: ''
+- name: Output color space
+  summary: Video output color space rgb (default) | grayscale | YCbCr | bayer
+  group: ''
+- name: Preview...
+  summary: Preview of live video data button
+  group: ''
+- name: Block sample time
+  summary: Block sampling rate 1/30 (default) | numeric
+  group: ''
+- name: Ports mode
+  summary: Type of video output signal One multidimensional signal | Separate color signals
+  group: ''
+- name: Data type
+  summary: Video output data type single (default) | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+- name: Read All Frames
+  summary: All available image frames captured off (default) | on
+  group: ''
+- name: Metadata Output Ports
+  summary: Kinect® for Windows® output ports
+  group: ''
+```
 
 The following fields appear in the Block Parameters dialog box. If your selected device
 does not support a feature, it will not appear in the dialog box.
@@ -236,7 +292,6 @@ You can see in the example above that three metadata items have been put in the
 metadata, as shown here. The first port is the depth frame.
 
 For descriptions and information on these metadata fields and using Kinect for Windows with the Image Acquisition Toolbox, see Acquire Image and Body Data Using Kinect V2.
-
 ## Libraries
 
 Image Acquisition Toolbox

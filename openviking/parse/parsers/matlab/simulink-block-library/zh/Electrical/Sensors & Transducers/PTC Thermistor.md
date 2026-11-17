@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # PTC Thermistor
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 热质量热端口
+  direction: conserving
+- name: +
+  summary: 正极端子电气端口
+  direction: conserving
+- name: '-'
+  summary: 负极端子电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -29,8 +41,61 @@ chinese_source: worker-translation
 ### **-** — 负极端子电气端口
 
 与负极端子关联的电气守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Thermistor parameterization type
+  summary: 热敏电阻类型 Switching Thermistor（默认）| RTD (Callendar - Van Dusen coefficients)
+  group: 电气
+- name: Nominal resistance R0 at T0
+  summary: 标称温度下的电阻 1000 Ohm（默认）| 正标量
+  group: 电气
+- name: Temperature coefficient alpha0 at T0
+  summary: 标称温度下的温度系数 -0.01 1/K（默认）| 负标量
+  group: 电气
+- name: Nominal temperature T0
+  summary: 标称温度 298.15 K（默认）| 正标量
+  group: 电气
+- name: Reference resistance R1 at T1
+  summary: 参考温度下的电阻 10000 Ohm（默认）| 正标量
+  group: 电气
+- name: Temperature coefficient alpha1 at T1
+  summary: 参考温度下的温度系数 1 1/K（默认）| 正标量
+  group: 电气
+- name: Reference temperature T1
+  summary: 参考温度 398.15 K（默认）| 标量
+  group: 电气
+- name: Nominal resistance R0 at 0 degC
+  summary: 标称温度下的电阻 100 Ohm（默认）| 正标量
+  group: 电气
+- name: A Coefficient [degC^-1]
+  summary: A 系数 3.9083e-3（默认）| 正标量
+  group: 电气
+- name: B Coefficient [degC^-2]
+  summary: B 系数 -5.775e-7（默认）| 标量
+  group: 电气
+- name: C Coefficient [degC^-4]
+  summary: C 系数 -4.183e-12（默认）| 标量
+  group: 电气
+- name: Enable temperature operating limits
+  summary: 用于指定温度工作限值的选项 No（默认）| Yes
+  group: 温度工作限值
+- name: Reporting if operating limits exceeded
+  summary: 温度超出工作范围时的报告方式 Warn（默认）| Error
+  group: 温度工作限值
+- name: Minimum operating temperature
+  summary: 工作温度范围下限 223.15 K（默认）| 标量
+  group: 温度工作限值
+- name: Maximum operating temperature
+  summary: 工作温度范围上限 428.15 K（默认）| 标量
+  group: 温度工作限值
+- name: Thermal time constant
+  summary: 热时间常数 5.0 s（默认）| 正标量
+  group: 热
+- name: Dissipation factor
+  summary: 耗散系数 0.75e-3 W/K（默认）| 正标量
+  group: 热
+```
 
 ### 电气
 
@@ -190,7 +255,6 @@ Callendar–Van Dusen 方程中的 `C` 系数。默认值适用于铂 RTD。
 ### **Dissipation factor** — 耗散系数 `0.75e-3` `W/K`（默认）| 正标量
 
 使热敏电阻温度升高 1 K 所需的热功率。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

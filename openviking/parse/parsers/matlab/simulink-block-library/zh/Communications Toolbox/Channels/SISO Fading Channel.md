@@ -15,6 +15,22 @@ chinese_source: worker-translation
 # SISO Fading Channel
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入数据信号向量
+  direction: input
+  data_types: double | single
+- name: Out1
+  summary: 衰落信道的输出数据信号向量
+  direction: output
+- name: Gain
+  summary: 离散路径增益矩阵
+  direction: output
+- name: Delay
+  summary: 信道滤波器延迟标量
+  direction: output
+```
 
 ### 输入
 
@@ -49,8 +65,65 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Main** 选项卡上选择 **Output channel filter delay**。
-
 ## 参数
+```yaml
+parameters:
+- name: Inherit sample rate from input
+  summary: 从输入继承采样率的选项 on（默认）| off
+  group: Main 选项卡
+- name: Sample rate (Hz)
+  summary: 输入信号采样率 1（默认）| 正标量
+  group: Main 选项卡
+- name: Discrete path delays (s)
+  summary: 每条离散路径的延迟 0（默认）| 非负标量 | 行向量
+  group: Main 选项卡
+- name: Average path gains (dB)
+  summary: 每条离散路径的平均增益 0（默认）| 标量 | 行向量
+  group: Main 选项卡
+- name: Normalize average path gains to 0 dB
+  summary: 将平均路径增益归一化到 0 dB 的选项 on（默认）| off
+  group: Main 选项卡
+- name: Fading distribution
+  summary: 信道的衰落分布 Rayleigh（默认）| Rician
+  group: Main 选项卡
+- name: K-factors
+  summary: Rician 衰落信道的 K 因子 3（默认）| 正标量 | 非负值行向量
+  group: Main 选项卡
+- name: LOS path Doppler shifts (Hz)
+  summary: 视距分量的多普勒频移 0（默认）| 标量 | 行向量
+  group: Main 选项卡
+- name: LOS path initial phases (rad)
+  summary: 视距分量的初始相位 0（默认）| 标量 | 行向量
+  group: Main 选项卡
+- name: Maximum Doppler shift (Hz)
+  summary: 所有信道路径的最大多普勒频移 0.001（默认）| 非负标量
+  group: Main 选项卡
+- name: Doppler spectrum
+  summary: 所有信道路径的多普勒频谱形状 doppler('Jakes')（默认）| doppler('Flat') | doppler('Rounded', ...) | doppler('Bell', ...) | doppler('Asymmetric
+    Jakes', ...) | doppler('Restricted Jakes', ...) | doppler('Gaussian', ...) | doppler('BiGaussian', ...)
+  group: Main 选项卡
+- name: Initial seed
+  summary: 随机数生成器初始种子 73（默认）| 非负整数
+  group: Main 选项卡
+- name: Output channel path gains
+  summary: 输出信道路径增益的选项 off（默认）| on
+  group: Main 选项卡
+- name: Output channel filter delay
+  summary: 输出信道滤波器延迟的选项 off（默认）| on
+  group: Main 选项卡
+- name: Simulate using
+  summary: 编译类型 Interpreted execution（默认）| Code generation
+  group: Main 选项卡
+- name: Channel visualization
+  summary: 选择信道可视化 Off（默认）| Impulse response | Frequency response | Doppler spectrum | Impulse and frequency responses
+  group: Visualization 选项卡
+- name: Percentage of samples to display
+  summary: 要显示的样本百分比 25%（默认）| 10% | 50% | 100%
+  group: Visualization 选项卡
+- name: Path for Doppler spectrum display
+  summary: 显示多普勒频谱的路径 1（默认）| 正整数
+  group: Visualization 选项卡
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -183,7 +256,6 @@ Rician 衰落信道视距分量的初始相位，以弧度为单位，指定为�
 #### 依赖关系
 
 当您将 **Channel visualization** 设置为 `Doppler spectrum` 时，此参数出现。
-
 ## 所属库
 
 Communications Toolbox / Channels

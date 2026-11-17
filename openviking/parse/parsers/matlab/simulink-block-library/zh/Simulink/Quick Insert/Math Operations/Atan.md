@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Trigonometric Function
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: atan2 的函数参数的 *x* 轴或实部 标量 | 向量 | 矩阵
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: 输入的指定三角函数 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: sin
+  summary: 输入信号的正弦 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: cos
+  summary: 输入信号的余弦 标量 | 向量 | 矩阵
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -104,8 +127,98 @@ CORDIC 近似的定点类型传播：
 要启用此端口，请将 **Function** 设置为 `sincos`。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Function
+  summary: 三角函数 sin（默认） | cos | tan | asin | acos | atan | atan2 | sinh | cosh | tanh | asinh | acosh | atanh | sincos | cos
+    + jsin
+  group: 算法
+  block_parameter: Operator
+  type: 字符向量
+  values: '''sin'' | ''cos'' | ''tan'' | ''asin'' | ''acos'' | ''atan'' | ''atan2'' | ''sinh'' | ''cosh'' | ''tanh'' | ''asinh''
+    | ''acosh'' | ''atanh'' | ''sincos'' | ''cos + jsin'''
+  default: '''sin'''
+- name: Approximation method
+  summary: CORDIC、Lookup 或无 None（默认） | CORDIC | Lookup
+  group: 算法
+  block_parameter: ApproximationMethod
+  type: 字符向量
+  values: '''None'' | ''CORDIC'' | ''Lookup'''
+  default: '''None'''
+- name: Interpolation method
+  summary: 断点值之间的插值方法 Linear point-slope（默认） | Flat
+  group: 算法
+  block_parameter: InterpMethod
+  type: 字符向量
+  values: '''Linear point-slope'' | ''Flat'''
+  default: '''Linear point-slope'''
+- name: Number of iterations
+  summary: CORDIC 算法的迭代次数 11（默认） | 小于或等于定点输入字长的正整数
+  group: 算法
+  block_parameter: NumberOfIterations
+  type: 字符向量
+  values: 小于或等于定点输入字长的正整数
+  default: '''11'''
+- name: Angle unit
+  summary: 角度单位 radian（默认） | revolution
+  group: 算法
+  block_parameter: AngleUnit
+  type: 字符向量
+  values: '''radian'' | ''revolution'''
+  default: '''radian'''
+- name: Number of data points
+  summary: 查找表的数据点数 16（默认） | 标量
+  group: 算法
+  block_parameter: NumberOfDataPoints
+  type: 字符向量
+  values: 标量
+  default: '''16'''
+- name: Output signal type
+  summary: 输出信号的复/实性 auto（默认） | real | complex
+  group: 算法
+  block_parameter: OutputSignalType
+  type: 字符向量
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Remove protection against out-of-range input
+  summary: 移除对超出范围输入的保护 off（默认） | on
+  group: 算法
+  block_parameter: RemoveProtectionAgainstOutOfRangeInput
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认） | 标量 | 向量
+  group: 算法
+  block_parameter: SampleTime
+  values: '"-1"（默认） | 带引号的标量或向量'
+- name: Table data type
+  summary: '表的数据类型 Inherit: Inherit via input（默认） | double | single | fixdt(1,16,0) | <data type expression>'
+  group: 数据类型
+  block_parameter: TableDataTypeStr
+  type: 字符串标量或字符向量
+  values: 'Inherit: Inherit via input | single | double | fixdt(1,16,0) | 数据类型表达式'
+  default: 'Inherit: Inherit via input'
+- name: Mode
+  summary: 要指定的数据类别 Inherit（默认） | Built in | Fixed point | Expression
+  group: 数据类型
+- name: Signedness
+  summary: 指定有符号或无符号 Signed（默认） | Unsigned
+  group: 数据类型
+- name: Scaling
+  summary: 定点数据的定标方法 Binary point（默认）
+  group: 数据类型
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 数据类型
+- name: Word length
+  summary: 保存量化整数的字的位大小 16（默认） | 从 0 到 32 的整数
+  group: 数据类型
+- name: Fraction length
+  summary: 指定定点数据类型的小数长度 0（默认） | 标量整数
+  group: 数据类型
+```
 
 ### 算法
 
@@ -382,7 +495,6 @@ CORDIC 近似的定点类型传播：
 
 - **Mode** 为 `Fixed point`
 - **Scaling** 为 `Binary point`
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / Math Operations HDL Coder / HDL Floating Point Operations

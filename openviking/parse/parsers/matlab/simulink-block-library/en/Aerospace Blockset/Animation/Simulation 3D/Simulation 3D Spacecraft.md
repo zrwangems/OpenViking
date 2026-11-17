@@ -14,6 +14,20 @@ language: en
 # Simulation 3D Spacecraft
 
 ## Ports
+```yaml
+ports:
+- name: Translation
+  summary: Spacecraft translation 10-by-3 array | 20-by-3 array
+  direction: input
+  data_types: single | double
+- name: Rotation
+  summary: Spacecraft rotation 10-by-3 array | 20-by-3 array
+  direction: input
+  data_types: single | double
+- name: Scale
+  summary: Mesh scale [1 1 1] (default) | 1-by-3 array
+  direction: input
+```
 
 ### Input
 
@@ -97,8 +111,64 @@ Mesh scale, specified as a 1-by-3 array.
 #### Dependencies
 
 To enable this port, set the **Scale source** parameter to `Port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Spacecraft type CubeSat (default) | SmallSat
+  group: ''
+  block_parameter: Mesh
+  values: CubeSat (default) | SmallSat
+- name: Path to CubeSat mesh
+  summary: Path to CubeSat mesh /MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat (default)
+    | character vector
+  group: ''
+  block_parameter: MeshPath
+  values: /MathWorksAerospaceContent/Vehicles/Spacecraft/CubeSat/Mesh/SK_CubeSat.SK_CubeSat | character vector
+- name: Path to SmallSat mesh
+  summary: Path to SmallSat mesh /MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat (default)
+    | character vector
+  group: ''
+  block_parameter: MeshPathSmall
+  values: /MathWorksAerospaceContent/Vehicles/Spacecraft/SmallSat/Mesh/SK_SmallSat.SK_SmallSat | character vector
+- name: Name
+  summary: Spacecraft name SimulinkVehicle1 (default) | character vector
+  group: ''
+  block_parameter: ActorName
+  values: SimulinkVehicle1 (default) | character vector
+- name: Initial translation (m)
+  summary: Initial translation of spacecraft zeros(10,3) (default) | 10-by-3 array | 20-by-3 array
+  group: ''
+  type: . Failure to appropriately set these array sizes causes an
+  block_parameter: Translation
+  values: zeros(10,3) (default) | 10-by-3 array | 20-by-3 array
+- name: Initial rotation (rad)
+  summary: Initial rotation of spacecraft zeros(10,3) (default) | 10-by-3 array | 20-by-3 array
+  group: ''
+  type: . Failure to appropriately set these array sizes causes an
+  block_parameter: Rotation
+  values: zeros(10,3) (default) | 10-by-3 array | 20-by-3 array
+- name: Scale source
+  summary: Scale source Dialog (default) | Port
+  group: ''
+  block_parameter: ScaleInputPort
+  values: Dialog (default) | Port
+- name: Initial scale
+  summary: Initial mesh scale [1 1 1] (default) | 1-by-3 array
+  group: ''
+  block_parameter: InitialScale
+  values: '[1 1 1] (default) | 1-by-3 array'
+- name: Scale
+  summary: Mesh scale [1 1 1] (default) | 1-by-3 array
+  group: ''
+  block_parameter: Scale
+  values: '[1 1 1] (default) | 1-by-3 array'
+- name: Sample time
+  summary: Sample time 0.02 (default) | real scalar
+  group: ''
+  block_parameter: SampleTime
+  values: '''-1'' (default) | real scalar'
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -346,7 +416,6 @@ programmatically, use the `get_param` function.
 | **Values:** | `'-1'` (default) | real scalar |
 
 **Example:** `'-1'`
-
 ## Libraries
 
 Aerospace Blockset / Animation / Simulation 3D

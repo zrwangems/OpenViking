@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Phase Noise Measurement
 
 ## 端口
+```yaml
+ports:
+- name: sig
+  summary: 输入信号 标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -23,8 +30,37 @@ chinese_source: worker-translation
 输入到 Phase Noise Measurement 模块的输入时域信号，指定为标量。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Resolution bandwidth (Hz)
+  summary: 可分辨的最小正频率 30e3（默认）| 实正标量
+  group: ''
+- name: No. of spectral averages
+  summary: 频谱平均次数 4（默认）| 正整型标量
+  group: ''
+- name: Hold off time (s)
+  summary: 延迟测量分析以避免瞬态 0（默认）| 实非负标量
+  group: ''
+- name: Frequency offset vector (Hz)
+  summary: 相对于基频计算相位噪声的频率点 [30e3 100e3 1e6 3e6 10e6]（默认）| 实值向量
+  group: ''
+- name: Specify target
+  summary: 指定目标相位噪声向量 off（默认）| on
+  group: ''
+- name: Phase noise vector (dBc/Hz)
+  summary: 给定频率偏移向量的目标相位噪声曲线 [-300 -300 -300 -300 -300]（默认）| 实值向量
+  group: ''
+- name: Set stop time
+  summary: 将推荐的最小仿真停止时间设置为模型停止时间 按钮
+  group: ''
+- name: 绘制相位噪声
+  summary: 绘制输入信号相位噪声曲线按钮
+  group: ''
+- name: 导出测量结果
+  summary: 仿真后导出测量结果按钮
+  group: ''
+```
 
 ### **Resolution bandwidth (Hz)** — 可分辨的最小正频率 `30e3`（默认）| 实正标量
 
@@ -92,7 +128,6 @@ chinese_source: worker-translation
 ### **导出测量结果** — 仿真后导出测量结果按钮
 
 仿真完成后，点击可将测量结果导出为 Excel 电子表格 (XLS) 或逗号分隔值 (CSV) 文件。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

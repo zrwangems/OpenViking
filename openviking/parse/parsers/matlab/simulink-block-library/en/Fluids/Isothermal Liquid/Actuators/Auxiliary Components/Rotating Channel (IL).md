@@ -14,6 +14,18 @@ language: en
 # Rotating Channel (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: W
+  summary: Angular velocity, rad/s physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -30,8 +42,22 @@ Liquid entry or exit port.
 
 Rotating shaft angular velocity in rad/s, specified as a physical
 signal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Channel area
+  summary: Shaft channel cross-sectional area 1e-3 m^2 (default) | positive scalar
+  group: ''
+- name: Port B radius of rotation
+  summary: Rotation radius 0.01 m (default) | positive scalar
+  group: ''
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: ''
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: ''
+```
 
 ### **Channel area** — Shaft channel cross-sectional area `1e-3` m^2 (default) | positive scalar
 
@@ -50,7 +76,6 @@ flows.
 ### **Critical Reynolds number** — Upper Reynolds number limit for laminar flow `150` (default) | positive scalar
 
 Upper Reynolds number limit for laminar flow through the orifice.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

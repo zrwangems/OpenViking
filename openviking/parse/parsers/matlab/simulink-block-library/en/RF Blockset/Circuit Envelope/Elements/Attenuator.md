@@ -14,10 +14,30 @@ language: en
 # Attenuator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Attenuation (dB)
+  summary: Level of insertion loss or attenuation 3 (default) | scalar
+  group: ''
+- name: Input impedance (Ohm)
+  summary: Input impedance 50 (default) | scalar
+  group: ''
+- name: Output impedance (Ohm)
+  summary: Output impedance 50 (default) | scalar
+  group: ''
+- name: Simulate noise
+  summary: Simulate thermal noise on (default) | off
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Attenuation (dB)** — Level of insertion loss or attenuation `3` (default) | scalar
 
@@ -53,7 +73,6 @@ A2/Hz, where:
 Select this parameter to ground and hide the negative terminals.
 To expose the negative terminals, clear this parameter. By exposing
 these terminals, you can connect them to other parts of your model.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Elements

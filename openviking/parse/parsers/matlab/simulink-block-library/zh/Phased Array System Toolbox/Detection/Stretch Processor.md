@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Stretch Processor
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 输入信号 *M*×*P* 复值矩阵
+  direction: input
+  data_types: double
+- name: PRF
+  summary: 脉冲重复频率 正标量
+  direction: input
+  data_types: double
+- name: Y
+  summary: 拉伸处理后的信号 *M*×*P* 复值矩阵
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -54,8 +69,41 @@ chinese_source: worker-translation
 
 **数据类型：** `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Pulse width (s)
+  summary: 脉冲的时间持续时间 50e-6（默认）| 正标量
+  group: ''
+- name: Specify PRF as
+  summary: PRF 值的来源 Property（默认）| Auto | Input port
+  group: ''
+- name: Pulse repetition frequency (Hz)
+  summary: 脉冲重复频率 1e4（默认）| 正标量
+  group: ''
+- name: FM sweep slope (Hz/s)
+  summary: 线性 FM 扫频的斜率 2e9（默认）| 标量
+  group: ''
+- name: FM sweep interval
+  summary: FM 扫频的方向 Positive（默认）| Symmetric
+  group: ''
+- name: Signal propagation speed (m/s)
+  summary: 信号传播速度 physconst('LightSpeed')（默认）| 实值正标量
+  group: ''
+- name: Reference range (m)
+  summary: 感兴趣距离范围的中心 5000（默认）| 正标量
+  group: ''
+- name: Reference span (m)
+  summary: 感兴趣距离范围的跨度 500（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution, Code Generation
+  default: Interpreted Execution
+```
 
 ### **Pulse width (s)** — 脉冲的时间持续时间 `50e-6`（默认）| 正标量
 
@@ -176,7 +224,6 @@ Generation` 运行模块。长时间仿真使用生成代码比
 | **类型**：enum |
 | **值**：`Interpreted Execution`, `Code Generation` |
 | **默认值**：`Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Detection

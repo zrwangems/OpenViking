@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Force Actuator (PB)
 
 ## 端口
+```yaml
+ports:
+- name: S
+  summary: 控制信号，N 物理信号
+  direction: input
+- name: B
+  summary: 基座端口 基于位置的机械平移
+  direction: input
+- name: F
+  summary: 从动端口 基于位置的机械平移
+  direction: input
+```
 
 ### 输入
 
@@ -31,11 +43,12 @@ chinese_source: worker-translation
 ### **F** — 从动端口 基于位置的机械平移
 
 基于位置的机械平移守恒端口，表示从动连接。对于正长度，端口 **F** 的位置比端口 **B** 更正。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Translational / Sources

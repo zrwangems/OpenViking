@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Spectrum Estimator
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: P
+  summary: 功率谱或功率密度谱 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: P_max
+  summary: 最大保持谱 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: P_min
+  summary: 最小保持谱 向量 | 矩阵
+  direction: output
+  data_types: single | double
+- name: F
+  summary: 输出频率 列向量
+  direction: output
+  data_types: single | double
+- name: RBW
+  summary: 有效分辨率带宽 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -55,8 +82,94 @@ chinese_source: worker-translation
 有效分辨率带宽，以标量形式返回。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Method
+  summary: Welch 或滤波器组 Filter bank（默认）| Welch
+  group: 主选项卡
+- name: Number of taps per band
+  summary: 每个频带的滤波器抽头数 12（默认）| 正整数
+  group: 主选项卡
+- name: Spectrum type
+  summary: 频谱类型 Power（默认）| Power density
+  group: 主选项卡
+- name: Frequency resolution method
+  summary: 频率分辨率方法 Auto（默认）| RBW | Number of frequency bands
+  group: 主选项卡
+- name: RBW (Hz)
+  summary: 分辨率带宽 5（默认）| 正标量
+  group: 主选项卡
+- name: Window length source
+  summary: 窗长度来源 Same as input frame length（默认）| Specify on dialog
+  group: 主选项卡
+- name: Window length
+  summary: 窗长度 1024（默认）| 正整数
+  group: 主选项卡
+- name: Number of bands source
+  summary: 频带数来源 Same as input frame size（默认）| Specify on dialog
+  group: 主选项卡
+- name: Number of bands
+  summary: 频带数 1024（默认）| 正标量
+  group: 主选项卡
+- name: FFT length source
+  summary: FFT 长度值来源 Auto（默认）| Property
+  group: 主选项卡
+- name: FFT length
+  summary: FFT 长度 1024（默认）| 正整数
+  group: 主选项卡
+- name: Inherit sample rate from input
+  summary: 从输入继承采样率 on（默认）| off
+  group: 主选项卡
+- name: Sample rate (Hz)
+  summary: 输入采样率 44100（默认）| 标量
+  group: 主选项卡
+- name: Window function
+  summary: 窗函数 Hann（默认）| Chebyshev | Flat Top | Hamming | Kaiser | Rectangular
+  group: 主选项卡
+- name: Sidelobe attenuation of window (dB)
+  summary: 窗的旁瓣衰减 60（默认）| 正标量
+  group: 主选项卡
+- name: Averaging method
+  summary: 平均方法 Exponential（默认）| Running
+  group: 主选项卡
+- name: Number of spectral averages
+  summary: 频谱平均次数 1（默认）| 正整数
+  group: 主选项卡
+- name: Specify forgetting factor from input port
+  summary: 从输入端口指定遗忘因子 off（默认）| on
+  group: 主选项卡
+- name: Forgetting factor
+  summary: 遗忘因子 0.9（默认）| 范围 (0,1] 内的标量
+  group: 主选项卡
+- name: Window overlap (%)
+  summary: 窗之间的重叠百分比 0（默认）
+  group: 高级选项卡
+- name: Reference load (ohms)
+  summary: 参考负载 1（默认）| 正标量
+  group: 高级选项卡
+- name: Frequency range
+  summary: 频谱估计器的频率范围 Centered（默认）| One-sided | Two-sided
+  group: 高级选项卡
+- name: Power units
+  summary: 功率单位 dBm（默认）| Watts | dBW
+  group: 高级选项卡
+- name: Output max-hold spectrum
+  summary: 输出最大保持谱 off（默认）| on
+  group: 高级选项卡
+- name: Output min-hold spectrum
+  summary: 输出最小保持谱 off（默认）| on
+  group: 高级选项卡
+- name: Output frequency vector
+  summary: 输出频率向量 off（默认）| on
+  group: 高级选项卡
+- name: Output effective RBW
+  summary: 输出有效 RBW off（默认）| on
+  group: 高级选项卡
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: 高级选项卡
+```
 
 ### 主选项卡
 
@@ -299,7 +412,6 @@ chinese_source: worker-translation
 
 - `Interpreted execution` — 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` — 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink® 会为该模块生成 C 代码。只要模型不变，C 代码将在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Estimation / Power Spectrum Estimation

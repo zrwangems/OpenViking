@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # General Flexible Plate
 
 ## 端口
+```yaml
+ports:
+- name: FN
+  summary: 自定义坐标系坐标系
+  direction: unspecified
+- name: R
+  summary: 参考坐标系坐标系
+  direction: unspecified
+```
 
 ### 坐标系
 
@@ -31,8 +40,91 @@ chinese_source: worker-translation
 虚拟未变形体的参考坐标系，表示柔性体的整体刚体运动。**R** 坐标系在物理上并不附着于柔性体。
 
 **R** 端口不得与任何施加力和力矩或具有惯性的模块刚性连接。
-
 ## 参数
+```yaml
+parameters:
+- name: Midsurface
+  summary: 板中面的坐标 [1 1; -1 1; -1 -1; 1 -1] m | *N*×2 矩阵 | *M*×1 或 1×*M* 元胞数组，包含 *N*×2 矩阵
+  group: 几何
+- name: Thickness
+  summary: 板厚度 0.1 m（默认）| 正标量
+  group: 几何
+- name: Density
+  summary: 材料单位体积质量 2700 kg/m^3（默认）| 正标量
+  group: 刚度和惯性
+- name: Specify
+  summary: 用于参数化板的弹性属性 Young's Modulus and Poisson's Ratio（默认）| Young's and Shear Modulus
+  group: 刚度和惯性
+- name: Young's Modulus
+  summary: 轴向应力与轴向应变之比 70 GPa（默认）| 正标量
+  group: 刚度和惯性
+- name: Poisson's Ratio
+  summary: 横向应变与法向应变之比 0.33（默认）| 范围 [0, 0.5) 内的标量
+  group: 刚度和惯性
+- name: Shear Modulus
+  summary: 剪应力与工程剪应变之比 26 GPa（默认）| 正标量
+  group: 刚度和惯性
+- name: Type
+  summary: 阻尼方法的类型 Proportional（默认）| Uniform Modal | None
+  group: 阻尼
+- name: Mass Coefficient
+  summary: 质量矩阵的系数 0 1/s（默认）| 非负标量
+  group: 阻尼
+- name: Stiffness Coefficient
+  summary: 刚度矩阵的系数 0.001 s（默认）| 非负标量
+  group: 阻尼
+- name: Damping Ratio
+  summary: 均匀模态阻尼方法的阻尼比 0.01（默认）| 无量纲非负标量
+  group: 阻尼
+- name: Type
+  summary: 参考条件的类型 Linearized Mean Axes（默认）| Body-Fixed
+  group: 参考条件
+- name: Frame
+  summary: 用于体固定参考条件的连接坐标系 坐标系名称
+  group: 参考条件
+- name: Show Port R
+  summary: 显示参考坐标系端口 off（默认）| on
+  group: 参考条件
+- name: Reduction
+  summary: 用于对柔性体建模的方法 None（默认）| Modally Reduced
+  group: 保真度
+- name: Number of Retained Modes
+  summary: 保留模态 1（默认）| 非负整数
+  group: 保真度
+- name: Type
+  summary: 用于平板可视化显示的图形 From Geometry（默认）| None
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化 Simple（默认）| Advanced
+  group: Graphic
+- name: Color
+  summary: 漫反射产生的光颜色 [0.5 0.5 0.5]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 1.0（默认）| 0 到 1 范围内的标量
+  group: Graphic
+- name: Diffuse Color
+  summary: 图形颜色 [0.5 0.5 0.5]（默认）| 三元素向量 | 三元素向量
+  group: Graphic
+- name: Specular Color
+  summary: 镜面反射产生的光颜色 [0.5 0.5 0.5 1.0]（默认）| 值在 0 到 1 范围内的 3×1 或 1×3 向量 | 值在 0 到 1 范围内的 4×1 或 1×4 向量
+  group: Graphic
+- name: Ambient Color
+  summary: 环境光颜色 [0.15 0.15 0.15 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量 | 取值范围为 0 到 1 的 4×1 或 1×4 向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 取值范围为 0 到 1 的 3×1 或 1×3 向量
+  group: Graphic
+- name: Shininess
+  summary: 高光锐度 75（默认）| 取值约束为 0–128 的标量
+  group: Graphic
+- name: New Frame
+  summary: 创建自定义坐标系以连接到其他模块按钮
+  group: Frames
+- name: FrameN
+  summary: 编辑或删除现有自定义坐标系坐标系名称
+  group: Frames
+```
 
 ### 几何
 
@@ -327,7 +419,6 @@ Geometry`。
 #### 依赖关系
 
 要启用此参数，请单击 **New Frame** 创建一个坐标系。
-
 ## 所属库
 
 Simscape / Multibody / Body Elements / Flexible Bodies / Plates and Shells

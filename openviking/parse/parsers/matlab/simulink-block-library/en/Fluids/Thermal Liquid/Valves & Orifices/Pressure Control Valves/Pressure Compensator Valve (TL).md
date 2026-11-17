@@ -14,6 +14,24 @@ language: en
 # Pressure Compensator Valve (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: X
+  summary: Pressure reference thermal liquid
+  direction: conserving
+- name: Y
+  summary: Pressure reference thermal liquid
+  direction: conserving
+- name: Ps
+  summary: Controlled pressure differential, Pa physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -44,8 +62,65 @@ Pressure differential for controlled valve operation, in Pa.
 
 To enable this port, set **Set pressure control** to
 `Controlled`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Valve specification
+  summary: Valve bias Normally open (default) | Normally closed
+  group: Parameters
+- name: Set pressure control
+  summary: Constant or controlled valve operation Constant (default) | Controlled
+  group: Parameters
+- name: Opening parameterization
+  summary: Opening parameterization Linear (default) | Tabulated
+  group: Parameters
+- name: Set pressure differential
+  summary: Pressure differential that triggers pressure compensation 0 MPa (default) | scalar
+  group: Parameters
+- name: Pressure regulation range
+  summary: Valve operational pressure range 0.1 MPa (default) | scalar
+  group: Parameters
+- name: Maximum opening area
+  summary: Area of fully open valve 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Parameters
+- name: Pressure differential vector
+  summary: 'Differential pressure values for tabulated parameterization [0.2 : 0.2 : 1.2] MPa (default) | 1-by-*n* vector'
+  group: Parameters
+- name: Opening area vector
+  summary: Valve opening areas for tabulated parameterization [1e-05, 8e-06, 6e-06, 4e-06, 2e-06, 1e-10] m^2 (default) | 1-by-*n*
+    vector
+  group: Parameters
+- name: Cross-sectional area at ports A and B
+  summary: Area at valve entry or exit 0.01 m^2 (default) | positive scalar
+  group: Parameters
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Parameters
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Parameters
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range of [0,1]
+  group: Parameters
+- name: Pressure recovery
+  summary: Option to include pressure recovery off (default) | on
+  group: Parameters
+- name: Opening dynamics
+  summary: Option to simulate flow response to valve transitions off (default) | on
+  group: Parameters
+- name: Opening time constant
+  summary: Valve opening time constant 0.1 s (default) | positive scalar
+  group: Parameters
+- name: Pressure Compensator Valve Area fault
+  summary: Option to model valve area fault Add fault
+  group: Faults
+- name: Opening area when faulted
+  summary: Faulted valve position Closed (default) | Open | Maintain last value
+  group: Faults
+```
 
 ### Parameters
 
@@ -205,7 +280,6 @@ opened, closed, or at the area after a fault.
 
 To enable this parameter, enable faults for the block by clicking the
 **Add fault** hyperlink.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Pressure Control Valves

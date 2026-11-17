@@ -14,10 +14,40 @@ language: en
 # Coupler
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Select component
+  summary: Coupler type Directional coupler (default) | Coupler symmetrical | Coupler antisymmetrical | Hybrid quadrature
+    (90 deg) | Hybrid rat-race | Magic tee
+  group: ''
+- name: Coupling (dB)
+  summary: Fraction of input signal power coupled to output port 0 (default) | nonnegative and real scalar
+  group: ''
+- name: Directivity (dB)
+  summary: Ratio of power at coupled port to power at isolated port inf (default) | nonnegative and real scalar
+  group: ''
+- name: Insertion loss (dB)
+  summary: Loss of signal power between input and output ports inf (default) | nonnegative and real scalar
+  group: ''
+- name: Return loss (dB)
+  summary: Loss of signal power due to impedance mismatch inf (default) | nonnegative and real scalar
+  group: ''
+- name: Power transmission coefficient
+  summary: Transmitted signal power 0 (default) | real scalar
+  group: ''
+- name: Reference impedances (Ohm)
+  summary: Reference impedance of coupler 50 (default) | positive scalar | positive three-tuple vector
+  group: ''
+- name: Ground and hide negative terminals
+  summary: Ground RF circuit terminals on (default) | off
+  group: ''
+```
 
 ### **Select component** — Coupler type `Directional coupler` (default) | `Coupler symmetrical` | `Coupler antisymmetrical` | `Hybrid quadrature (90 deg)` | `Hybrid rat-race` | `Magic tee`
 
@@ -167,7 +197,6 @@ To expose the negative terminals, clear this parameter. By exposing
 these terminals, you can connect them to other parts of your model.
 
 By default, this option is selected.
-
 ## Libraries
 
 RF Blockset / Circuit Envelope / Junctions

@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Valve Plate Orifice (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: G
+  summary: 缸体旋转角度，rad，物理信号
+  direction: input
+```
 
 ### 守恒端口
 
@@ -30,8 +42,34 @@ chinese_source: worker-translation
 ### **G** — 缸体旋转角度，rad，物理信号
 
 缸体旋转角度，以弧度为单位，指定为物理信号。
-
 ## 参数
+```yaml
+parameters:
+- name: Cylinder block pitch radius
+  summary: 缸体节圆半径 0.05 m（默认）| 正标量
+  group: ''
+- name: Cylinder orifice diameter
+  summary: 缸体槽直径 2.5e-3 m（默认）| 正标量
+  group: ''
+- name: Pressure carryover angle
+  summary: 压力过渡距离 0.06 rad（默认）| 标量
+  group: ''
+- name: Phase angle
+  summary: 初始配流盘偏移角 0 rad（默认）| 标量
+  group: ''
+- name: Leakage area
+  summary: 完全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| [0,1] 范围内的正标量
+  group: ''
+```
 
 ### **Cylinder block pitch radius** — 缸体节圆半径 `0.05 m`（默认）| 正标量
 
@@ -64,7 +102,6 @@ chinese_source: worker-translation
 ### **Smoothing factor** — 数值平滑因子 `0.01`（默认）| [0,1] 范围内的正标量
 
 连续平滑因子，当阀门处于接近打开或接近关闭位置时，为流量响应引入一层渐变变化。将此值设置为小于 1 的非零值可提高这些工况下仿真的稳定性。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pumps & Motors / Auxiliary Components

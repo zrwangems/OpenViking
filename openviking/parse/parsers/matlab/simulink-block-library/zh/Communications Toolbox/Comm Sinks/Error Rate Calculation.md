@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Error Rate Calculation
 
 ## 端口
+```yaml
+ports:
+- name: Tx
+  summary: 发送数据 标量 | 列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Rx
+  summary: 接收数据 标量 | 列向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Sel
+  summary: 样本索引 正整数 | 正整数的列向量
+  direction: input
+  data_types: double
+- name: Rst
+  summary: 复位错误计数 标量
+  direction: input
+  data_types: double | Boolean
+- name: Out
+  summary: 发送数据与接收数据之间的差值 列向量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -67,8 +90,40 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output data** 参数设置为 `Port`。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Receive delay
+  summary: 接收信号延迟 0（默认）| 非负整数
+  group: ''
+- name: Computation delay
+  summary: 计算延迟 0（默认）| 非负标量
+  group: ''
+- name: Computation mode
+  summary: 要考虑的样本 Entire frame（默认）| Select samples from mask | Select samples from port
+  group: ''
+- name: Selected samples from frame
+  summary: 样本索引 []（默认）| 正整数 | 正整数的列向量
+  group: ''
+- name: Output data
+  summary: 输出数据位置 Workspace（默认）| Port
+  group: ''
+- name: Variable name
+  summary: 输出数据变量名 ErrorVec（默认）| 字符向量 | 字符串标量
+  group: ''
+- name: Reset port
+  summary: 添加 Rst 输入端口的选项 off（默认）| on
+  group: ''
+- name: Stop simulation
+  summary: 在指定错误数或比较次数后停止仿真的选项 off（默认）| on
+  group: ''
+- name: Target number of errors
+  summary: 在指定错误数后停止仿真的选项 100（默认）| 正整数
+  group: ''
+- name: Maximum number of symbols
+  summary: 在比较指定数量的符号后停止仿真的选项 1e6（默认）| 正整数
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -138,7 +193,6 @@ MATLAB® 工作区中的输出数据变量名。
 #### 依赖关系
 
 要启用此参数，请将 **Stop simulation** 参数设置为 `on`。
-
 ## 所属库
 
 Communications Toolbox / Comm Sinks Communications Toolbox HDL Support / Comm Sinks

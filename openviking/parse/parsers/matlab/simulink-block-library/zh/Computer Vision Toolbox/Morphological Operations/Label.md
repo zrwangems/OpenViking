@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Label
 
 ## 端口
+```yaml
+ports:
+- name: BW
+  summary: 输入二值图像 向量 | 矩阵
+  direction: input
+  data_types: Boolean
+- name: Label
+  summary: 标记对象 向量 | 矩阵
+  direction: output
+  data_types: uint8 | uint16 | uint32
+- name: Count
+  summary: 标记对象数量 标量
+  direction: output
+  data_types: uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -44,8 +59,22 @@ chinese_source: worker-translation
 要启用此端口，请将 **Output** 参数设置为 `Number of labels` 或 `Label matrix and number of labels`。
 
 **数据类型：** `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Connectivity
+  summary: 像素连通性类型 8（默认）| 4
+  group: ''
+- name: Output
+  summary: 模块输出 Label matrix and number of labels（默认）| Label matrix | Number of labels
+  group: ''
+- name: Output data type
+  summary: 输出数据类型 Automatic（默认）| uint8 | uint16 | uint32
+  group: ''
+- name: If label exceeds data type size, mark remaining regions using
+  summary: 输出标签的溢出模式 maximum value of the output data type（默认）| zero
+  group: ''
+```
 
 ### **Connectivity** — 像素连通性类型 `8`（默认）| `4`
 
@@ -78,7 +107,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Output data type** 参数设置为 `uint8` 或 `uint16`。
-
 ## 所属库
 
 Computer Vision Toolbox / Morphological Operations

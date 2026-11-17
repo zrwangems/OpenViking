@@ -14,6 +14,33 @@ language: en
 # Disc Clutch
 
 ## Ports
+```yaml
+ports:
+- name: Press
+  summary: Applied clutch pressure scalar
+  direction: input
+- name: BTrq
+  summary: Applied input torque scalar
+  direction: input
+- name: FTrq
+  summary: Applied load torque scalar
+  direction: input
+- name: B
+  summary: Applied drive shaft angular speed and torque two-way connector port
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: BSpd
+  summary: Angular speed scalar
+  direction: output
+- name: FSpd
+  summary: Angular speed scalar
+  direction: output
+- name: F
+  summary: Output velocity and torque two-way connector port
+  direction: output
+```
 
 ### Input
 
@@ -106,8 +133,85 @@ in N·m.
 
 To create this port, for **Port Configuration**,
 select `Two-way connection`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port Configuration
+  summary: Specify configuration Simulink (default) | Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink (default) | Two-way connection
+- name: Clutch force equivalent net radius, Reff
+  summary: Radius 1 (default) | positive scalar
+  group: ''
+  block_parameter: Reff
+  values: 1 (default) | positive scalar
+- name: Number of disks, Ndisk
+  summary: Ratio 1 (default) | positive scalar
+  group: ''
+  block_parameter: Ndisk
+  values: 1 (default) | positive scalar
+- name: Effective applied pressure area, Aeff
+  summary: Pressure area .01 (default) | positive scalar
+  group: ''
+  block_parameter: Aeff
+  values: .01 (default) | positive scalar
+- name: Engagement pressure threshold, Peng
+  summary: Pressure threshold 0 (default) | scalar
+  group: ''
+  block_parameter: Peng
+  values: 0 (default) | scalar
+- name: Input shaft inertia, Jin
+  summary: Inertia .1 (default) | positive scalar
+  group: ''
+  block_parameter: Jin
+  values: .1 (default) | positive scalar
+- name: Output shaft inertia, Jout
+  summary: Inertia .1 (default) | positive scalar
+  group: ''
+  block_parameter: Jout
+  values: .1 (default) | positive scalar
+- name: Kinetic friction coefficient, muk
+  summary: Coefficient .3 (default) | positive scalar
+  group: ''
+  block_parameter: muk
+  values: .3 (default) | positive scalar
+- name: Static friction coefficient, mus
+  summary: Coefficient .5 (default) | positive scalar
+  group: ''
+  block_parameter: mus
+  values: .5 (default) | positive scalar
+- name: Input shaft viscous damping, bin
+  summary: Damping .001 (default) | positive scalar
+  group: ''
+  block_parameter: bin
+  values: .001 (default) | positive scalar
+- name: Output shaft viscous damping, bout
+  summary: Damping .001 (default) | positive scalar
+  group: ''
+  block_parameter: bout
+  values: .001 (default) | positive scalar
+- name: Initial input shaft velocity, win_o
+  summary: Initial velocity 0 (default) | scalar
+  group: ''
+  block_parameter: win_o
+  values: 0 (default) | scalar
+- name: Initial output shaft velocity, wout_o
+  summary: Initial velocity 0 (default) | scalar
+  group: ''
+  block_parameter: wout_o
+  values: 0 (default) | scalar
+- name: Clutch actuation time constant, tauC
+  summary: Constant .01 (default) | scalar
+  group: ''
+  block_parameter: tauC
+  values: .01 (default) | scalar
+- name: Start simulation with clutch locked
+  summary: Select to initially lock clutch off (default) | on
+  group: ''
+  block_parameter: InitiallyLocked
+  values: off (default) | on
+```
 
 #### Block Options
 
@@ -394,7 +498,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `InitiallyLocked` |
 | **Values:** | `off` (default) | `on` |
 | **Data Types:** | `character vector` |
-
 ## Libraries
 
 Powertrain Blockset / Drivetrain / Couplings

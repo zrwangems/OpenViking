@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Read Image
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: ROS sensor_msgs/Image 或 sensor_msgs/CompressedImage 消息非虚拟总线
+  direction: input
+  data_types: bus
+- name: Image
+  summary: 提取的图像信号 *M*×*N*×3 矩阵 | *M*×*N* 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16
+- name: AlphaChannel
+  summary: 图像的 Alpha 通道 *M*×*N* 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16
+- name: ErrorCode
+  summary: 图像转换的错误代码 标量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -55,8 +74,25 @@ port`，Alpha 通道将返回全零。
 - `4` — 图像解压缩失败。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum Image Size
+  summary: 最大图像尺寸 [2000 2000]（默认）| 二元素向量
+  group: ''
+- name: Image Encoding
+  summary: 图像编码 rgb8（默认）| rgba8 | ...
+  group: ''
+- name: Show Alpha output port
+  summary: 切换 AlphaChannel 端口 关闭（默认）| 开启
+  group: ''
+- name: Show ErrorCode output port
+  summary: 切换 ErrorCode 端口 开启（默认）| 关闭
+  group: ''
+- name: Output variable-size signals
+  summary: 切换可变大小信号输出 关闭（默认）| 开启
+  group: ''
+```
 
 ### **Maximum Image Size** — 最大图像尺寸 `[2000 2000]`（默认）| 二元素向量
 
@@ -84,7 +120,6 @@ port`，Alpha 通道将返回全零。
 ### **Output variable-size signals** — 切换可变大小信号输出 关闭（默认）| 开启
 
 切换可变大小信号输出。仅当预期图像大小随时间变化时才应使用可变大小信号。有关可变大小信号的更多信息，请参阅 Variable-Size Signal Basics (Simulink)。
-
 ## 所属库
 
 ROS Toolbox / ROS

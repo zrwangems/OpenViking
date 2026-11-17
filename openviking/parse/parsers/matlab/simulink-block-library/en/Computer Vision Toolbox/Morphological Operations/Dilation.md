@@ -14,6 +14,21 @@ language: en
 # Dilation
 
 ## Ports
+```yaml
+ports:
+- name: I
+  summary: Input image matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: Nhood
+  summary: Neighborhood values vector | matrix
+  direction: input
+  data_types: Boolean
+- name: Port_1
+  summary: Dilated image matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -44,8 +59,16 @@ The block returns the dilated image as a matrix of intensity values. The size an
 data type of the output image are the same as those of the input image.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Neighborhood or structuring element source
+  summary: Source of neighborhood or structuring element Specify via dialog (default) | Input port
+  group: ''
+- name: Neighborhood or structuring element
+  summary: Neighborhood or structuring element [1 1; 1 1] (default) | vector | matrix
+  group: ''
+```
 
 ### **Neighborhood or structuring element source** — Source of neighborhood or structuring element `Specify via dialog` (default) | `Input port`
 
@@ -72,7 +95,6 @@ more efficient algorithm that can execute more quickly.
 To enable this parameter, set the **Neighborhood or structuring element
 source** parameter, to `Specify via
 dialog`.
-
 ## Libraries
 
 Computer Vision Toolbox / Morphological Operations

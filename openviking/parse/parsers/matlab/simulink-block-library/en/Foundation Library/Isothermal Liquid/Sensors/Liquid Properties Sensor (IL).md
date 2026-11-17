@@ -14,6 +14,21 @@ language: en
 # Liquid Properties Sensor (IL)
 
 ## Ports
+```yaml
+ports:
+- name: rho
+  summary: Density measurement, kg/m^3 physical signal
+  direction: output
+- name: beta
+  summary: Isothermal bulk modulus measurement, Pa physical signal
+  direction: output
+- name: theta
+  summary: Fraction of entrained air measurement, unitless physical signal
+  direction: output
+- name: A
+  summary: Sensor inlet isothermal liquid
+  direction: conserving
+```
 
 ### Output
 
@@ -54,8 +69,19 @@ entrained** check box.
 Isothermal liquid conserving port. Connect this port to the node in the isothermal
 liquid network where you want to measure the liquid properties. All measurements are
 taken with respect to absolute zero.
-
 ## Parameters
+```yaml
+parameters:
+- name: Density
+  summary: Control output port visibility to measure density On (default) | Off
+  group: ''
+- name: Isothermal bulk modulus
+  summary: Control output port visibility to measure bulk modulus Off (default) | On
+  group: ''
+- name: Fraction of air that is entrained
+  summary: Control output port visibility to measure fraction of air that is entrained Off (default) | On
+  group: ''
+```
 
 ### **Density** — Control output port visibility to measure density `On` (default) | `Off`
 
@@ -71,7 +97,6 @@ you measure bulk modulus.
 
 Select this check box to expose output port **theta**, which lets
 you measure the fraction of undissolved air.
-
 ## Libraries
 
 Simscape / Foundation Library / Isothermal Liquid / Sensors

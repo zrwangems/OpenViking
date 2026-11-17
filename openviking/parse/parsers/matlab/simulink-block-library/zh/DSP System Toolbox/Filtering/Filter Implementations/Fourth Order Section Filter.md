@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Fourth-Order Section Filter
 
 ## 端口
+```yaml
+ports:
+- name: x
+  summary: 输入信号 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Num
+  summary: 分子系数 *P*×5 矩阵
+  direction: input
+  data_types: single | double
+- name: Den
+  summary: 分母系数 *P*×5 矩阵 | *P*×4 矩阵
+  direction: input
+  data_types: single | double
+- name: y
+  summary: 滤波后的输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -62,8 +81,28 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Coefficient source
+  summary: 滤波器系数来源 Dialog parameters（默认）| Input ports | Filter object
+  group: ''
+- name: Numerator coefficients of filter
+  summary: 分子系数 [0.07795634 0 -0.15591268 0 0.07795634; 0.06188520 0 -0.12377039 0 0.06188520]（默认）| *P*×5 矩阵
+  group: ''
+- name: Denominator coefficients of filter
+  summary: 分母系数 [1 0 1.32091343 0 0.63273879; 1 0 1.04859957 0 0.29614035]（默认）| *P*×5 矩阵 | *P*×4 矩阵
+  group: ''
+- name: Filter
+  summary: 滤波器对象 dsp.FourthOrderSectionFilter 对象
+  group: ''
+- name: View Filter Response
+  summary: 可视化频率响应 gui button
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 ### **Coefficient source** — 滤波器系数来源 `Dialog parameters`（默认）| `Input ports` | `Filter object`
 
@@ -159,7 +198,6 @@ H(z)=∏k=1PHk(z)=∏k=1Pb0k+b1kz−1+b2kz−2+b3kz−3+b4kz−4a0k+a1kz−1+a2k
 
 - `Interpreted execution` —— 使用 MATLAB 解释器仿真模型。此选项可缩短启动时间。
 - `Code generation` —— 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为模块生成 C 代码。只要模型不更改，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但可提供更快的后续仿真。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Filter Implementations

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Cycloidal Drive
 
 ## 端口
+```yaml
+ports:
+- name: B
+  summary: 基轴机械旋转
+  direction: conserving
+- name: F
+  summary: 从动轴机械旋转
+  direction: conserving
+- name: R
+  summary: 齿圈机械旋转
+  direction: conserving
+- name: H
+  summary: 热流热端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +56,37 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要显示此端口，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
-
 ## 参数
+```yaml
+parameters:
+- name: Ring gear rotation
+  summary: 模拟齿圈运动的选项 off（默认）| on
+  group: 主要
+- name: Number of teeth on cycloid disc
+  summary: 摆线盘齿数 20（默认）| 正标量整数
+  group: 主要
+- name: Number of teeth on ring gear
+  summary: 齿圈齿数 24（默认）| 正标量整数
+  group: 主要
+- name: Friction model
+  summary: 啮合损失模型 No meshing losses - Suitable for HIL simulation（默认）| Constant efficiency | Temperature-dependent efficiency
+  group: 啮合损失
+- name: Temperature
+  summary: 温度 [280, 300, 320] K（默认）| 向量
+  group: 啮合损失
+- name: Efficiency from base shaft to follower shaft
+  summary: 基轴到从动轴效率 0.90 或 [0.95, 0.85, 0.80]（默认）| 区间 (0,1] 内的标量或元素向量
+  group: 啮合损失
+- name: Efficiency from follower shaft to base shaft
+  summary: 从动轴到基轴效率 0.05 或 [0.10, 0.05, 0.03]（默认）| 区间 (0,1] 内的标量或元素向量
+  group: 啮合损失
+- name: Power threshold
+  summary: 最小效率功率阈值 0.001 W（默认）| 标量
+  group: 啮合损失
+- name: Thermal mass
+  summary: 热质量 50 J/K（默认）| 标量
+  group: 热端口
+```
 
 ### 主要
 
@@ -124,7 +168,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Friction model** 设置为 `Temperature-dependent efficiency`。
-
 ## 所属库
 
 Simscape / Driveline / Gears

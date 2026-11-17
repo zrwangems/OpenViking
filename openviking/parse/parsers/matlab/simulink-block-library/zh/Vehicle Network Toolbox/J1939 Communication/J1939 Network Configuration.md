@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # J1939 Network Configuration
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Configuration name
+  summary: 为此 J1939 网络配置定义名称 ConfigX（默认）| 字符向量
+  group: ''
+- name: Database File
+  summary: 指定相对于当前文件夹的 J1939 数据库文件名 未设置（默认）| 字符向量
+  group: ''
+- name: Enable address claiming
+  summary: 启用标准地址声明过程 on（默认）| off
+  group: ''
+```
 
 ### **Configuration name** — 为此 J1939 网络配置定义名称 `ConfigX`（默认）| 字符向量
 
@@ -33,7 +47,6 @@ R2025b 中未记录。
 ### **Enable address claiming** — 启用标准地址声明过程 on（默认）| off
 
 选中（勾选开启）时，此参数允许 J1939 Node Configuration 模块使用标准地址声明过程来动态分配总线上节点的地址。
-
 ## 所属库
 
 Simulink Real-Time / J1939 Communication Vehicle Network Toolbox / J1939 Communication

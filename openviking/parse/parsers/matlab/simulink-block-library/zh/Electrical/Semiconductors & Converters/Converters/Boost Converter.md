@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Boost Converter
 
 ## 端口
+```yaml
+ports:
+- name: G
+  summary: 开关器件门极控制物理信号 | 标量
+  direction: input
+  data_types: double
+- name: G
+  summary: 开关器件门极控制电气 | 向量
+  direction: input
+  data_types: double
+- name: G+
+  summary: 开关器件门极控制正极端子电气 | 标量
+  direction: input
+  data_types: double
+- name: G-
+  summary: 开关器件门极控制负极端子电气 | 标量
+  direction: input
+  data_types: double
+- name: 1+
+  summary: 正直流电压 1 电气 | 标量
+  direction: input
+  data_types: double
+- name: 1-
+  summary: 负直流电压 1 电气 | 标量
+  direction: input
+  data_types: double
+- name: 2+
+  summary: 正直流电压 2 电气 | 标量
+  direction: input
+  data_types: double
+- name: 2-
+  summary: 负直流电压 2 电气 | 标量
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -92,8 +127,103 @@ chinese_source: worker-translation
 与第二个直流电压负极端子关联的电气守恒端口。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Modeling option
+  summary: 建模为非同步还是同步变换器 Nonsynchronous converter（默认）| Synchronous converter
+  group: ''
+- name: Gate-control port
+  summary: 为开关门极指定物理控制端口还是电气控制端口 PS（默认）| Electrical
+  group: 开关器件
+- name: Switching device
+  summary: 开关类型 Ideal Semiconductor Switch（默认）| GTO | IGBT | MOSFET | Thyristor | Averaged Switch
+  group: 开关器件
+- name: Forward voltage
+  summary: 电压 0.8 V（默认）| 标量
+  group: 开关器件
+- name: On-state resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: 开关器件
+- name: Drain-source on resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: 开关器件
+- name: Off-state conductance
+  summary: 电导 1e-5 1/Ohm（默认）| 标量
+  group: 开关器件
+- name: Threshold voltage
+  summary: 电压阈值 6 V（默认）| 标量
+  group: 开关器件
+- name: Gate trigger voltage, Vgt
+  summary: 电压阈值 1 V（默认）| 标量
+  group: 开关器件
+- name: Gate turn-off voltage, Vgt_off
+  summary: 电压阈值 -1 V（默认）| 标量
+  group: 开关器件
+- name: Holding current
+  summary: 电流阈值 1 A（默认）| 标量
+  group: 开关器件
+- name: Integer for piecewise constant approximation of gate input (0 for disabled)
+  summary: 用于 FPGA 部署的整数模式 0（默认）| 非负标量
+  group: 开关器件
+- name: Model dynamics
+  summary: 二极管模型 Diode with no dynamics（默认）| Diode with charge dynamics | None
+  group: 二极管
+- name: Forward voltage
+  summary: 电压 0.8 V（默认）| 标量
+  group: 二极管
+- name: On resistance
+  summary: 电阻 0.001 Ohm（默认）| 标量
+  group: 二极管
+- name: Off conductance
+  summary: 电导 1e-5 1/Ohm（默认）| 标量
+  group: 二极管
+- name: Junction capacitance
+  summary: 电容 50 nF（默认）| 标量
+  group: 二极管
+- name: Peak reverse current, iRM
+  summary: 电流 -235 A（默认）| 小于 0 的标量
+  group: 二极管
+- name: Initial forward current when measuring iRM
+  summary: 电流 300 A（默认）| 大于 0 的标量
+  group: 二极管
+- name: Rate of change of current when measuring iRM
+  summary: 电流变化率 -50 A/us（默认）| 标量
+  group: 二极管
+- name: Reverse recovery time parameterization
+  summary: 恢复时间模型 Specify stretch factor（默认）| Specify reverse recovery time directly | Specify reverse recovery charge
+  group: 二极管
+- name: Reverse recovery time stretch factor
+  summary: 拉伸因子 3（默认）| 大于 1 的标量
+  group: 二极管
+- name: Reverse recovery time, trr
+  summary: 时间 15 us（默认）| 标量
+  group: 二极管
+- name: Reverse recovery charge, Qrr
+  summary: 电荷 1500 s*uA（默认）| 标量
+  group: 二极管
+- name: Inductance
+  summary: 电感 1e-6 H（默认）| 正标量
+  group: LC 参数
+- name: Inductor series resistance
+  summary: 电感串联电阻 0 Ohm（默认）| 零或正标量
+  group: LC 参数
+- name: Capacitance
+  summary: 电容 1e-7 F（默认）| 正标量
+  group: LC 参数
+- name: Capacitor effective series resistance
+  summary: 电容电阻 1e-6 Ohm（默认）| 零或正标量
+  group: LC 参数
+- name: Snubber
+  summary: 缓冲器模型 None（默认）| RC snubber
+  group: 缓冲器
+- name: Snubber resistance
+  summary: 电阻 0.1（默认）| Ohm | 标量
+  group: 缓冲器
+- name: Snubber capacitance
+  summary: 电容 1e-7（默认）| F | 标量
+  group: 缓冲器
+```
 
 ### **Modeling option** — 建模为非同步还是同步变换器 `Nonsynchronous converter`（默认）| `Synchronous converter`
 
@@ -435,7 +565,6 @@ Switch`，则 **Snubbers** 参数选项卡不可见。
 #### 依赖关系
 
 请参阅缓冲器参数依赖关系表。
-
 ## 所属库
 
 Simscape / Electrical / Semiconductors & Converters / Converters

@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # HDL FIFO
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 数据输入信号 scalar
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Push
+  summary: 写控制信号 scalar
+  direction: input
+  data_types: Boolean
+- name: Pop
+  summary: 读控制信号 scalar
+  direction: input
+  data_types: Boolean
+- name: rst
+  summary: 复位控制信号 scalar
+  direction: input
+  data_types: Boolean
+- name: Out
+  summary: 数据输出信号 scalar
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Empty
+  summary: 数据输出信号 scalar
+  direction: output
+  data_types: Boolean
+- name: Full
+  summary: 数据输出信号 scalar
+  direction: output
+  data_types: Boolean
+- name: Num
+  summary: 条目数量 scalar
+  direction: output
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -88,8 +123,73 @@ FIFO 模块的数据输出信号。当您从 FIFO 读取数据时，您最先写
 要启用此端口，必须选择 **Show number of entries register port (Num)**。
 
 **数据类型：** `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Register size
+  summary: 条目数量 10（默认值）
+  group: ''
+  block_parameter: fifo_size
+  type: 字符向量
+  values: 大于或等于四的整数
+  default: '''10'''
+- name: Mode
+  summary: 操作模式 'Classic'（默认值） | 'FWFT'
+  group: ''
+  block_parameter: mode
+  type: 字符向量
+  values: '''Classic'' | ''FWFT'' |'
+  default: '''Classic'''
+- name: 输出采样时间与输入采样时间之比
+  summary: 采样率比 1（默认值）
+  group: ''
+  block_parameter: ratio
+  type: 字符向量
+  values: 大于或等于 1 的整数
+  default: '''1'''
+- name: 写入满寄存器
+  summary: 溢出条件 'Warning'（默认值） | 'Ignore' | 'Error'
+  group: ''
+  block_parameter: push_msg
+  type: 字符向量
+  values: '''Warning'' | ''Ignore'' | ''Error'''
+  default: '''Warning'''
+- name: 从空寄存器弹出
+  summary: 下溢条件 'Warning'（默认值） | 'Ignore' | 'Error'
+  group: ''
+  block_parameter: pop_msg
+  type: 字符向量
+  values: '''Warning'' | ''Ignore'' | ''Error'''
+  default: '''Warning'''
+- name: 显示空寄存器指示端口 (Empty)
+  summary: 可选空端口 开启（默认值） | 关闭
+  group: ''
+  block_parameter: show_empty
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 显示满寄存器指示端口 (Full)
+  summary: 可选满端口 开启（默认值） | 关闭
+  group: ''
+  block_parameter: show_full
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 显示寄存器条目数端口 (Num)
+  summary: 可选数量端口 开启（默认值） | 关闭
+  group: ''
+  block_parameter: show_num
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: 本地复位端口
+  summary: 可选复位端口 关闭（默认值） | 开启
+  group: ''
+  block_parameter: rst_port
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''off'''
+```
 
 ### **Register size** — 条目数量 `10`（默认值）
 
@@ -214,7 +314,6 @@ FIFO 模块的数据输出信号。当您从 FIFO 读取数据时，您最先写
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 HDL Coder / HDL RAMs

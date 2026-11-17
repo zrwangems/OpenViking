@@ -14,6 +14,18 @@ language: en
 # Variable Translational Spring
 
 ## Ports
+```yaml
+ports:
+- name: K
+  summary: Variable spring coefficient, N/m physical signal
+  direction: input
+- name: C
+  summary: Base port mechanical translational
+  direction: conserving
+- name: R
+  summary: Follower port mechanical translational
+  direction: conserving
+```
 
 ### Input
 
@@ -34,14 +46,18 @@ positive direction is from port **R** to port
 Mechanical translational conserving port associated with the positive spring end. The
 positive direction is from port **R** to port
 **C**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Minimum spring rate
+  summary: Spring rate limit value 1 N/m (default) | positive scalar
+  group: ''
+```
 
 ### **Minimum spring rate** — Spring rate limit value `1` `N/m` (default) | positive scalar
 
 Minimum value allowed for the spring rate. The physical signal input
 saturates below the specified value.
-
 ## Libraries
 
 Simscape / Driveline / Couplings & Drives / Springs & Dampers

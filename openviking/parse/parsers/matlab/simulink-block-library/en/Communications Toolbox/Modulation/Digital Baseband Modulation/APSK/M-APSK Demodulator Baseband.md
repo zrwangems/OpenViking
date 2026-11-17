@@ -14,6 +14,21 @@ language: en
 # M-APSK Demodulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: APSK modulated signal scalar | vector | matrix
+  direction: input
+  data_types: double | single
+- name: Var
+  summary: Noise variance positive scalar | vector of positive values
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Demodulated signal scalar | vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -62,8 +77,43 @@ Use **Output
 data type** to specify the output data type.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Constellation points per circle
+  summary: Constellation points per PSK ring [4,12] (default) | vector
+  group: ''
+- name: Radius of each circle
+  summary: Radius per PSK ring [0.5,1] (default) | vector
+  group: ''
+- name: Phase offset of each circle (rad)
+  summary: Phase offset per PSK ring [pi/4,pi/12] (default) | scalar | vector
+  group: ''
+- name: Symbol mapping
+  summary: Symbol mapping Auto (default) | Contourwise-gray | Gray | User-defined
+  group: ''
+- name: Custom symbol mapping
+  summary: Custom symbol mapping [0,4,12,8,1,3,2,6,7,5,13,15,14,10,11,9] (default) | integer vector
+  group: ''
+- name: Output type
+  summary: Output type Integer (default) | Bit
+  group: ''
+- name: Decision type
+  summary: Demodulation decision type Hard decision (default) | Log-likelihood ratio | Approximate log-likelihood ratio
+  group: ''
+- name: Noise variance source
+  summary: Noise variance source Property (default) | Input port
+  group: ''
+- name: Noise variance
+  summary: Noise variance 1 (default) | positive scalar | vector of positive values
+  group: ''
+- name: Output data type
+  summary: Output data type double (default) | ...
+  group: ''
+- name: Simulate using
+  summary: Type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -252,7 +302,6 @@ execution` or `Code generation`.
   option.
 
 For more information, see Interpreted Execution vs. Code Generation (Simulink).
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / APM

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Inverse Short-Time FFT
 
 ## 端口
+```yaml
+ports:
+- name: X[nL,k]
+  summary: 频域输入信号 无向向量 | 列向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: w[n]
+  summary: 分析窗 向量
+  direction: input
+  data_types: single | double
+- name: x[n]
+  summary: 逆短时 FFT 输出 向量 | 矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -39,8 +54,28 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Analysis window length
+  summary: 分析窗长度 512（默认）| 大于 1 的正整数
+  group: ''
+- name: Overlap between consecutive STFFT frames (in samples)
+  summary: 重叠长度 384（默认）| 非负整数
+  group: ''
+- name: Samples per output frame
+  summary: 每个输出帧的样本数 512（默认）| 正整数
+  group: ''
+- name: Input is conjugate symmetric
+  summary: 模块输入为共轭对称 on（默认）| off
+  group: ''
+- name: Assert if analysis window does not support perfect signal reconstruction
+  summary: 分析窗不支持完美信号重建时出错 off（默认）| on
+  group: ''
+- name: Reconstruction error tolerance
+  summary: 原始信号的重建误差容限 1e-4（默认）| 实标量
+  group: ''
+```
 
 ### **Analysis window length** — 分析窗长度 `512`（默认）| 大于 1 的正整数
 
@@ -73,7 +108,6 @@ chinese_source: worker-translation
 #### 依赖
 
 要启用此参数，请选中 **Assert if analysis window does not support perfect signal reconstruction** 复选框。
-
 ## 所属库
 
 DSP System Toolbox / Transforms / Matrix Operations

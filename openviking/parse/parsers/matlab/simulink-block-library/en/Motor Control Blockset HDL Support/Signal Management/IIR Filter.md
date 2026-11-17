@@ -14,6 +14,29 @@ language: en
 # IIR Filter
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Sampled input signal scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: a
+  summary: Filter coefficient scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: x0
+  summary: Initial state signal scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Reset
+  summary: External reset signal scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: y
+  summary: Filtered output signal scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -65,8 +88,37 @@ to `active high resets to initial condition`.
 Filtered output signal returned by the IIR Filter block in the time domain.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Filter type
+  summary: IIR filter type Low-pass (default) | High-pass
+  group: ''
+- name: Filter coefficient
+  summary: Filter coefficient input method Specify via dialog (default) | Input port
+  group: ''
+- name: Filter coefficient value
+  summary: Filter coefficient of IIR filter 0.01 (default) | scalar in the range (0,1]
+  group: ''
+- name: Initial state
+  summary: Specify how to provide initial state value Specify via dialog (default) | Input port
+  group: ''
+- name: Initial state value
+  summary: Initial value of state 0 (default) | scalar
+  group: ''
+- name: External reset
+  summary: Specify whether to provide external reset signal none (default) | active high resets to initial condition
+  group: ''
+- name: Display cutoff frequency
+  summary: Display the cutoff frequency parameters off (default) | on
+  group: ''
+- name: Discrete step size (s)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: ''
+- name: Theoretical cutoff frequency (Hz)
+  summary: Theoretical cutoff frequency of IIR filter 32.1525 | scalar
+  group: ''
+```
 
 ### **Filter type** — IIR filter type `Low-pass` (default) | `High-pass`
 
@@ -166,7 +218,6 @@ To display this parameter:
 - Set the **Filter coefficient** parameter to
   `Specify via dialog`.
 - Select the **Display cutoff frequency** parameter.
-
 ## Libraries
 
 Motor Control Blockset / Signal Management Motor Control Blockset HDL Support / Signal Management

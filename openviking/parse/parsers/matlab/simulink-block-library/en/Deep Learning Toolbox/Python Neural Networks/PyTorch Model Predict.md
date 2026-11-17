@@ -14,6 +14,17 @@ language: en
 # PyTorch Model Predict
 
 ## Ports
+```yaml
+ports:
+- name: In1
+  summary: Input data numeric array
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Out1
+  summary: Predicted responses numeric array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -44,8 +55,66 @@ Model File** button on the **Specify model
 file** tab.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Load command
+  summary: Load command for Python model torch.load() (default) | torch.jit.load() | load_state_dict()
+  group: Specify model file
+  block_parameter: LoadCommandPopup
+  type: character vector
+  values: '"torch.load()" | "torch.jit.load()" | "load_state_dict()"'
+  default: '"torch.load()"'
+- name: Path to model file or state_dict file
+  summary: Name or path of Python PyTorch model file or state_dict file untitled (default) | character vector
+  group: Specify model file
+  block_parameter: ModelFile
+  type: character vector
+  values: path to PyTorch model file | path to state_dict file
+  default: '"untitled"'
+- name: Model class name and optional arguments (if using load_state_dict)
+  summary: Model class name and optional arguments character vector
+  group: Specify model file
+  block_parameter: ModelClassName
+  type: character vector
+  values: PyTorch model class name | function call to PyTorch model class
+- name: Execution device
+  summary: Execution device for Python model cpu (default) | cuda | device name
+  group: Specify model file
+  block_parameter: DeviceComboBox
+  type: unquoted text
+  values: cpu |cuda | device name
+  default: cpu
+- name: Sample time (–1 for inherited)
+  summary: Option to specify sample time –1 (default) | scalar
+  group: Specify model file
+  block_parameter: SampleTime
+  type: string scalar or character vector
+  values: scalar
+  default: '"–1"'
+- name: Inputs
+  summary: Input port properties table
+  group: Inputs
+  block_parameter: InputTable
+  type: cell array
+- name: Outputs
+  summary: Output port properties table
+  group: Outputs
+  block_parameter: OutputTable
+  type: cell array
+- name: Path to Python file defining preprocess()
+  summary: Name or path of Python preprocessing function file character vector
+  group: Pre/Post-processing
+  block_parameter: PreprocessingFilePath
+  type: character vector
+  values: Python file | path to Python file
+- name: Path to Python file defining postprocess()
+  summary: Name or path of Python postprocessing function file character vector
+  group: Pre/Post-processing
+  block_parameter: PostprocessingFilePath
+  type: character vector
+  values: Python file | path to Python file
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -309,7 +378,6 @@ defining functions.
 | **Block Parameter:** `PostprocessingFilePath` |
 | **Type:** character vector |
 | **Values:** Python file | path to Python file |
-
 ## Libraries
 
 Deep Learning Toolbox / Python Neural Networks

@@ -14,6 +14,49 @@ language: en
 # Integer-Output RS Decoder HDL Optimized
 
 ## Ports
+```yaml
+ports:
+- name: dataIn
+  summary: Input data scalar
+  direction: input
+  data_types: double | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: startIn
+  summary: Start of input frame indicator scalar
+  direction: input
+  data_types: Boolean
+- name: endIn
+  summary: End of input frame indicator scalar
+  direction: input
+  data_types: Boolean
+- name: validIn
+  summary: Valid input data indicator scalar
+  direction: input
+  data_types: Boolean
+- name: dataOut
+  summary: Decoded message data scalar
+  direction: output
+  data_types: double | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: startOut
+  summary: Start of output frame indicator scalar
+  direction: output
+  data_types: Boolean
+- name: endOut
+  summary: End of output frame indicator scalar
+  direction: output
+  data_types: Boolean
+- name: validOut
+  summary: Valid output data indicator scalar
+  direction: output
+  data_types: Boolean
+- name: errOut
+  summary: Indications of corruption of received data scalar
+  direction: output
+  data_types: Boolean
+- name: numErrors
+  summary: Number of corrected errors nonnegative scalar
+  direction: output
+  data_types: uint8
+```
 
 ### Input
 
@@ -108,8 +151,31 @@ To enable this port, select the **Output number of corrected symbol
 errors** parameter.
 
 **Data Types:** `uint8`
-
 ## Parameters
+```yaml
+parameters:
+- name: Codeword length
+  summary: Length of codeword 7 (default) | range from 7 to 65, 535
+  group: ''
+- name: Message length
+  summary: Length of message 3 (default) | positive integer
+  group: ''
+- name: Source of primitive polynomial
+  summary: Primitive polynomial source Auto (default) | Property
+  group: ''
+- name: Primitive polynomial
+  summary: Primitive polynomial [ 1 0 1 1 ] (default) | binary row vector
+  group: ''
+- name: Source of B, the starting power for roots of the primitive polynomial
+  summary: Source of starting power for roots of primitive polynomial Auto (default) | Property
+  group: ''
+- name: B value
+  summary: Starting exponent of roots 1 (default) | positive integer
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: Number of corrected symbol errors off (default) | on
+  group: ''
+```
 
 ### **Codeword length** — Length of codeword `7` (default) | range from 7 to 65, 535
 
@@ -174,7 +240,6 @@ roots of the primitive polynomial** parameter to
 
 Select this parameter to enable the **numErrors** output port. This
 port outputs the number of corrected errors.
-
 ## Libraries
 
 Communications Toolbox HDL Support / Error Detection and Correction / Block

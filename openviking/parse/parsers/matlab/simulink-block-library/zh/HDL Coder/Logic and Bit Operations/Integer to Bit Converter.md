@@ -15,6 +15,16 @@ chinese_source: worker-translation
 # Integer to Bit Converter
 
 ## 端口
+```yaml
+ports:
+- name: In
+  summary: 输入信号 整数 | 整数列向量
+  direction: input
+  data_types: double
+- name: Out
+  summary: 输出信号 位标量 | 位列向量
+  direction: output
+```
 
 ### 输入
 
@@ -35,8 +45,40 @@ chinese_source: worker-translation
 ### **Out** — 输出信号 位标量 | 位列向量
 
 输出信号，返回为标量或长度为 *M·N* 的位列向量。
-
 ## 参数
+```yaml
+parameters:
+- name: Number of bits per integer(M)
+  summary: 每个整数的位数 3（默认）| 范围 [1, 32] 内的整数
+  group: ''
+  block_parameter: nbits
+  type: character vector
+  values: integer in the range [1, 32]
+  default: '''3'''
+- name: Treat input values as
+  summary: 将输入值视为 Unsigned（默认）| Signed
+  group: ''
+  block_parameter: signedInputValues
+  type: character vector
+  values: '''Unsigned'' | ''Signed'''
+  default: '''Unsigned'''
+- name: Output bit order
+  summary: 输出位顺序 MSB first（默认）| LSB first
+  group: ''
+  block_parameter: bitOrder
+  type: character vector
+  values: '''MSB first'' | ''LSB first'''
+  default: '''MSB first'''
+- name: Output data type
+  summary: 输出数据类型 Inherit via internal rule（默认）| Smallest unsigned integer | Same as input | double | single | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | boolean
+  group: ''
+  block_parameter: outDtype
+  type: character vector
+  values: '''Inherit via internal rule'' | ''Smallest unsigned integer'' | ''Same as input'' | ''double'' | ''single'' | ''int8''
+    | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32''| ''boolean'''
+  default: '''Inherit via internal rule'''
+```
 
 ### **Number of bits per integer(M)** — 每个整数的位数 `3`（默认）| 范围 [1, 32] 内的整数
 
@@ -104,7 +146,6 @@ chinese_source: worker-translation
 | **类型**：character vector |
 | **值**：`'Inherit via internal rule'` | `'Smallest unsigned integer'` | `'Same as input'` | `'double'` | `'single'` | `'int8'` | `'uint8'` | `'int16'` | `'uint16'` | `'int32'` | `'uint32'`| `'boolean'` |
 | **默认值**：`'Inherit via internal rule'` |
-
 ## 所属库
 
 Simulink / Logic and Bit Operations Communications Toolbox / Utility Blocks HDL Coder / Logic and Bit Operations

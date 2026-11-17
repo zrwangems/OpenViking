@@ -14,6 +14,17 @@ language: en
 # Byte Packing
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: First of *N* input ports scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+- name: Port_1
+  summary: Output port containing packed data vector
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean
+```
 
 ### Input
 
@@ -34,8 +45,24 @@ data. You determine the data type of the packed data by setting
 **Output port (packed) data type**.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Output port (packed) data type
+  summary: Data type for the packed output signal uint8 (default) | double | single | int8 | int16 | uint16 | int32 | uint32
+    | boolean
+  group: ''
+  block_parameter: MaskPackedDataType
+- name: Input port (unpacked) data types (cell array)
+  summary: Data types for the unpacked input signals {'uint8'} (default) | double | single | int8 | int16 | uint16 | int32
+    | uint32 | boolean
+  group: ''
+  block_parameter: MaskUnpackedDataTypes
+- name: Byte Alignment
+  summary: Alignment of the input signal data types after packing 1 (default) | 2 | 4 | 8
+  group: ''
+  block_parameter: MaskAlignment
+```
 
 ### **Output port (packed) data type** — Data type for the packed output signal `uint8` (default) | `double` | `single` | `int8` | `int16` | `uint16` | `int32` | `uint32` | `boolean`
 
@@ -87,7 +114,6 @@ space as possible.
 |  |
 | --- |
 | **Block Parameter:** `MaskAlignment` |
-
 ## Libraries
 
 Simulink Real-Time / Utilities

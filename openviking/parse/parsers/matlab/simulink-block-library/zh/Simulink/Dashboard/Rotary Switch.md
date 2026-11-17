@@ -15,10 +15,40 @@ chinese_source: worker-translation
 # Rotary Switch
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 用于连接参数值的模块参数值连接选项
+  group: ''
+  block_parameter: Binding
+  type: Simulink.HMI.ParamSourceInfo
+  default: '[]'
+- name: States
+  summary: 位置标签和值 标量和字符向量
+  group: ''
+  block_parameter: States
+  type: structure array
+- name: Enumerated Data Type
+  summary: 使用枚举数据类型指定状态值和标签 off（默认）| on
+  group: ''
+  block_parameter: EnumeratedDataType
+  type: string or character array
+  values: '''on'' | ''off'''
+  default: ''''''
+- name: Label
+  summary: 模块标签位置 Top（默认）| Bottom | Hide
+  group: ''
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Top'' | ''Bottom'' | ''Hide'''
+  default: '''Top'''
+```
 
 ### **Connection** — 用于连接参数值的模块参数值连接选项
 
@@ -121,7 +151,6 @@ states = [state1 state2];
 | **类型**：character vector |
 | **值**：`'Top'` | `'Bottom'` | `'Hide'` |
 | **默认值**：`'Top'` |
-
 ## 所属库
 
 Simulink / Dashboard

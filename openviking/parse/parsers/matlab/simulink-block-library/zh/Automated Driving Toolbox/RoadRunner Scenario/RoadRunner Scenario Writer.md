@@ -15,14 +15,34 @@ chinese_source: worker-translation
 # RoadRunner Scenario Writer
 
 ## 端口
+```yaml
+ports:
+- name: Message
+  summary: 状态信息 Simulink 消息
+  direction: input
+```
 
 ### 输入
 
 ### **Message** — 状态信息 Simulink 消息
 
 要写入场景的状态信息，指定为 Simulink 消息。要在模型中从输入信号构造 Simulink 消息，请使用 Send (Simulink) 模块。然后，将 Send 模块的输出连接到 RoadRunner Scenario Writer 模块。
-
 ## 参数
+```yaml
+parameters:
+- name: Topic Category
+  summary: 主题类别 Actor（默认）| Event | Diagnostics
+  group: ''
+- name: Actor Type
+  summary: 场景中的 actor 类型 All Types（默认）| Vehicle
+  group: ''
+- name: Topic
+  summary: Actor 或车辆数据 Actor Pose | Actor Pose (Driving Scenario compatible) | Vehicle Pose
+  group: ''
+- name: Event Type
+  summary: 事件类型 Action Complete（默认）| User-Defined
+  group: ''
+```
 
 ### **Topic Category** — 主题类别 `Actor`（默认）| `Event` | `Diagnostics`
 
@@ -75,7 +95,6 @@ Actor 数据或车辆数据。**Topic** 参数可根据 **Actor Type** 参数的
 #### 依赖关系
 
 要启用此参数，请将 **Topic Category** 设置为 `Event`。
-
 ## 所属库
 
 Automated Driving Toolbox / RoadRunner Scenario

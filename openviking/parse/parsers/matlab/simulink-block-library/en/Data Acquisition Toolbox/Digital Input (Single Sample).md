@@ -14,6 +14,17 @@ language: en
 # Digital Input (Single Sample)
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Acquired digital input boolean
+  direction: output
+  data_types: Boolean
+- name: Timestamp
+  summary: Timestamp of scan double
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -33,8 +44,25 @@ Output timestamp
 parameter.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Device
+  summary: Device from which you want to acquire data
+  group: ''
+- name: Lines
+  summary: Device line selection and configuration options depend on device
+  group: ''
+- name: Number of ports
+  summary: Number of output data ports 1 for all lines | 1 per line
+  group: ''
+- name: Sample time
+  summary: Block execution rate 1 (default)
+  group: ''
+- name: Output timestamp
+  summary: Add timestamp output port
+  group: ''
+```
 
 ### **Device** — Device from which you want to acquire data
 
@@ -86,7 +114,6 @@ Select this option to output the absolute timestamp of the scan. This option add
 new output port to the block. The data type of this port is double (datenum), which
 corresponds to a serial date number. You can convert the datenum into a datetime value
 with the `datetime` function.
-
 ## Libraries
 
 Data Acquisition Toolbox

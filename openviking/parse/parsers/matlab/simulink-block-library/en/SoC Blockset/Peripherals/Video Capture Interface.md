@@ -14,6 +14,21 @@ language: en
 # Video Capture Interface
 
 ## Ports
+```yaml
+ports:
+- name: data
+  summary: Image data 3*MN*-length vector
+  direction: input
+  data_types: uint8
+- name: event
+  summary: Task event signal scalar
+  direction: output
+  data_types: rteEvent
+- name: msg
+  summary: SoC message data scalar
+  direction: output
+  data_types: SoCData
+```
 
 ### Input
 
@@ -50,8 +65,25 @@ This port outputs data messages containing image data to a connected Video Captu
 block.
 
 **Data Types:** `SoCData`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input
+  summary: Source of simulated video data From dialog (default) | From input port | From timeseries object
+  group: ''
+- name: Value
+  summary: Image to be imported uint8(floor(rand(1,3*160*120)*255)) (default) | 3*MN*-element vector
+  group: ''
+- name: Object name
+  summary: Timeseries object name [] (default) | MATLAB workspace variable
+  group: ''
+- name: Sample time
+  summary: Sample time in seconds -1 (default) | positive scalar
+  group: ''
+- name: Show event port
+  summary: Option to enable task event ports off (default) | on
+  group: ''
+```
 
 ### **Input** — Source of simulated video data `From dialog` (default) | `From input port` | `From timeseries object`
 
@@ -76,7 +108,6 @@ video data.
 
 Select this parameter to enable an event port that, when connected to the Task Manager
 block, can execute event-driven tasks.
-
 ## Libraries
 
 SoC Blockset / Peripherals

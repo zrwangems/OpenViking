@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # PMSM Current Reference Generator
 
 ## 端口
+```yaml
+ports:
+- name: TqRef
+  summary: 参考转矩，N\*m 标量
+  direction: input
+  data_types: single | double
+- name: wMechanical
+  summary: 转子机械转速，rad/s 标量
+  direction: input
+  data_types: single | double
+- name: Vdc
+  summary: 直流母线电压，V 标量
+  direction: input
+  data_types: single | double
+- name: idqRef
+  summary: 参考电流，A 向量
+  direction: output
+  data_types: single | double
+- name: TqRefSat
+  summary: 参考转矩，N\*m 标量
+  direction: output
+  data_types: single | double
+- name: TqLim
+  summary: 转矩限值，N\*m 标量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -54,8 +81,61 @@ PMSM 产生的期望机械转矩，单位为 N\*m。
 由系统电气和机械约束共同施加的转矩限值，单位为 N\*m。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Nominal dc-link voltage (V)
+  summary: 额定直流电压 300V（默认）| 正数
+  group: ''
+- name: Maximum power (W)
+  summary: 额定功率 30000W（默认）| 正数
+  group: ''
+- name: Maximum torque (N\*m)
+  summary: 额定转矩 250N*m（默认）| 正数
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| -1 或正数
+  group: ''
+- name: Current references
+  summary: 电流参考策略 Zero d-axis control（默认）| Lookup-table based | Automatically generated lookup-table
+  group: ''
+- name: Mechanical speed vector, wMechanical (rpm)
+  summary: 转子转速查找向量 [0, 3000]rpm（默认）| 正单调递增向量
+  group: ''
+- name: Torque reference vector, TqRef (N\*m)
+  summary: 转矩参考查找向量 [-100, 0, 100]N*m（默认）| 正单调递增向量
+  group: ''
+- name: DC-link voltage vector, Vdc (V)
+  summary: 直流母线电压查找向量 [300, 350]V（默认）| 正单调递增向量
+  group: ''
+- name: D-axis current reference matrix, id(wMechanical,TqRef,Vdc) (A)
+  summary: 参考 d 轴电流值 zeros(2,3,2)A（默认）| 实数矩阵
+  group: ''
+- name: Q-axis current reference matrix, iq(wMechanical,TqRef,Vdc) (A)
+  summary: 参考 q 轴电流值 zeros(2,3,2)A（默认）| 实数矩阵
+  group: ''
+- name: PWM method
+  summary: '脉宽调制方法 SVM: space vector modulation（默认）| SPWM: sinusoidal PWM'
+  group: ''
+- name: Modulation factor
+  summary: 调制系数 1（默认）| 正标量
+  group: ''
+- name: Number of pole pairs
+  summary: 极对数 8（默认）| 正整数
+  group: ''
+- name: Permanent magnet flux linkage (Wb)
+  summary: 永磁磁链 0.04Wb（默认）| 正标量
+  group: ''
+- name: D-axis inductance (H)
+  summary: d 轴电感 0.00024（默认）| 正标量
+  group: ''
+- name: Q-axis inductance (H)
+  summary: q 轴电感 0.00029（默认）| 正标量
+  group: ''
+- name: Stator resistance (Ohm)
+  summary: 定子电阻 0.01（默认）| 正标量
+  group: ''
+```
 
 #### 通用参数
 
@@ -136,7 +216,6 @@ PMSM 的最大允许转矩。
 ### **Stator resistance (Ohm)** — 定子电阻 `0.01`（默认）| 正标量
 
 每相定子电阻。
-
 ## 所属库
 
 Simscape / Electrical / Control / PMSM Control

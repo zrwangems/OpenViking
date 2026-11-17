@@ -14,6 +14,66 @@ language: en
 # Synchronous Reluctance Machine
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+- name: '~'
+  summary: Three-phase composite electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: ~1
+  summary: Stator positive-end connections electrical
+  direction: conserving
+- name: ~2
+  summary: Stator negative-end connections electrical
+  direction: conserving
+- name: a1
+  summary: '*a* positive-end connection electrical'
+  direction: conserving
+- name: b1
+  summary: '*b* positive-end connection electrical'
+  direction: conserving
+- name: c1
+  summary: '*c* positive-end connection electrical'
+  direction: conserving
+- name: a2
+  summary: '*a* negative-end connection electrical'
+  direction: conserving
+- name: b2
+  summary: '*b* negative-end connection electrical'
+  direction: conserving
+- name: c2
+  summary: '*c* negative-end connection electrical'
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+- name: HA
+  summary: Winding A thermal port thermal
+  direction: conserving
+- name: HB
+  summary: Winding B thermal port thermal
+  direction: conserving
+- name: HC
+  summary: Winding C thermal port thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -239,8 +299,123 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Electrical connection
+  summary: Electrical connection Composite three-phase ports (default) | Expanded three-phase ports
+  group: Main
+- name: Winding type
+  summary: Windings configuration Wye-wound (default) | Delta-wound | Open-end
+  group: Main
+- name: Number of pole pairs
+  summary: Rotor pole pairs 6 (default) | integer
+  group: Main
+- name: Stator parameterization
+  summary: Parameterization model Specify Ld, Lq and L0 (default) | Specify Ls, Lm, and Ms
+  group: Main
+- name: Modeling fidelity
+  summary: Modeling fidelity Constant Ld and Lq (default) | Tabulated Ld and Lq
+  group: Main
+- name: Stator d-axis inductance, Ld
+  summary: Inductance 0.0031 H (default)
+  group: Main
+- name: Stator q-axis inductance, Lq
+  summary: Inductance 0.004 H (default)
+  group: Main
+- name: Direct-axis current vector, iD
+  summary: Direct-axis current vector [-200, 0, 200] A (default)
+  group: Main
+- name: Quadrature-axis current vector, iQ
+  summary: Quadrature-axis current vector [-200, 0, 200] A (default)
+  group: Main
+- name: Ld matrix, Ld(id,iq)
+  summary: Ld matrix 0.0031 * ones(3, 3) H (default)
+  group: Main
+- name: Lq matrix, Lq(id,iq)
+  summary: Lq matrix 0.004 * ones(3, 3) H (default)
+  group: Main
+- name: Stator zero-sequence inductance, L0
+  summary: Inductance 0.0005 H (default)
+  group: Main
+- name: Stator self-inductance per phase, Ls
+  summary: Inductance 0.0025 H (default)
+  group: Main
+- name: Stator inductance fluctuation, Lm
+  summary: Inductance -0.0003 H (default)
+  group: Main
+- name: Stator mutual inductance, Ms
+  summary: Inductance 0.0010 H (default)
+  group: Main
+- name: Stator resistance per phase, Rs
+  summary: Resistance 0.7 Ohm (default)
+  group: Main
+- name: Zero sequence
+  summary: Zero-sequence model Include (default) | Exclude
+  group: Main
+- name: Model
+  summary: Iron losses modeling option Specify magnetizing resistance (default) | Specify tabulated Steinmetz coefficients
+    | Tabulate with current and speed
+  group: Iron Losses
+- name: Magnetizing resistance
+  summary: Magnetizing resistance for iron losses inf Ohm (default)
+  group: Iron Losses
+- name: Rotor hysteresis loss coefficient, k_hr(id,iq)
+  summary: Rotor hysteresis loss coefficient zeros(3, 3) W/Hz (default)
+  group: Iron Losses
+- name: Rotor eddy current loss coefficient, k_Jr(id,iq)
+  summary: Rotor eddy current loss coefficient zeros(3, 3) W/Hz^2 (default)
+  group: Iron Losses
+- name: Rotor excess current loss coefficient, k_er(id,iq)
+  summary: Rotor excess current loss coefficient zeros(3, 3) W/Hz^1.50000 (default)
+  group: Iron Losses
+- name: Stator hysteresis loss coefficient, k_hs(id,iq)
+  summary: Stator hysteresis loss coefficient zeros(3, 3) W/Hz (default)
+  group: Iron Losses
+- name: Stator eddy current loss coefficient, k_Js(id,iq)
+  summary: Stator eddy current loss coefficient zeros(3, 3) W/Hz^2 (default)
+  group: Iron Losses
+- name: Stator excess current loss coefficient, k_es(id,iq)
+  summary: Stator excess current loss coefficient zeros(3, 3) W/Hz^1.50000 (default)
+  group: Iron Losses
+- name: Rotor speed vector, w
+  summary: Rotor speed [1000, 2000] rpm (default)
+  group: Iron Losses
+- name: Rotor iron loss table, Pr(id,iq,w)
+  summary: Rotor iron loss table zeros(3, 3, 2) W (default)
+  group: Iron Losses
+- name: Stator iron loss table, Ps(id,iq,w)
+  summary: Stator iron loss table zeros(3, 3, 2) W (default)
+  group: Iron Losses
+- name: Rotor inertia
+  summary: Inertia 0.01 kg*m^2 (default)
+  group: Mechanical
+- name: Rotor Damping
+  summary: Damping 0 N*m/(rad/s) (default)
+  group: Mechanical
+- name: Rotor angle definition
+  summary: Angle Angle between the a-phase magnetic axis and the d-axis (default) | Angle between the a-phase magnetic axis
+    and the q-axis
+  group: Mechanical
+- name: Measurement temperature
+  summary: Measurement temperature 298.15 K (default)
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 3.93e-3 1/K (default)
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Thermal mass for each stator winding 100 J/K (default)
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default)
+  group: Thermal
+- name: Percentage of total iron losses associated with the rotor
+  summary: Percentage of total iron losses 50 (default)
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -633,7 +808,6 @@ To enable this parameter, either set **Modeling
 fidelity** to `Costant Ld and
 Lq` or **Stator parameterization**
 to `Specify Ls, Lm, and Ms`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

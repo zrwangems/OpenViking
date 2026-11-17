@@ -14,10 +14,87 @@ language: en
 # Display
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Connection
+  summary: Signal to connect and display signal connection options
+  group: Connection
+  block_parameter: Binding
+  type: Simulink.HMI.SignalSpecification
+  default: '[]'
+- name: Format
+  summary: Format for displaying signal values short (default) | long | shortE | longE | ...
+  group: Main
+  block_parameter: Format
+  type: character array | string
+  values: '''short'' | ''long'' | ''shortE'' | ''longE'' | ''shortG'' | ''longG'' | ''shortEng'' | ''longEng'' | ''bank''
+    | ''+'' | ''hex'' | ''rat'' | ''Custom'' | ''Integer'''
+  default: '''short'''
+- name: Format String
+  summary: Custom string to format data '%d' (default) | string
+  group: Main
+  block_parameter: FormatString
+  type: character array | string
+  default: '''%d'''
+- name: Alignment
+  summary: Text alignment in block Center (default) | Left | Right
+  group: Main
+  block_parameter: Alignment
+  type: character array
+  values: '''Left'' | ''Center'' | ''Right'''
+  default: '''Center'''
+- name: Label
+  summary: Block label position Hide (default) | Bottom | Top
+  group: Main
+  block_parameter: LabelPosition
+  type: character vector
+  values: '''Hide'' | ''Bottom'' | ''Top'''
+  default: '''Hide'''
+- name: Layout
+  summary: How to arrange elements of non-scalar data Preserve dimensions (default) | Fill available space
+  group: Main
+  block_parameter: Layout
+  type: character array | string
+  values: '''Preserve dimensions'' | ''Fill available space'''
+  default: '''Preserve dimensions'''
+- name: Show grid for non-scalar signals
+  summary: Whether to show grid on (default) | off
+  group: Format
+  block_parameter: ShowGrid
+  type: character array | string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Opacity
+  summary: Block background opacity 1 (default) | scalar
+  group: Format
+  block_parameter: Opacity
+  type: scalar
+  default: '1'
+- name: Foreground Color
+  summary: Block foreground color [r g b] vector
+  group: Format
+  block_parameter: ForegroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Background Color
+  summary: Block background color [r g b] vector
+  group: Format
+  block_parameter: BackgroundColor
+  type: character vector | string
+  values: '[r g b] vector'
+- name: Grid Color
+  summary: Block grid color [r g b] vector
+  group: Format
+  block_parameter: GridColor
+  type: '[r g b] vector'
+  default: '[0.502 0.502 0.502]'
+```
 
 ### Connection
 
@@ -247,7 +324,6 @@ as a `1`-by-`3`
 | **Block Parameter:** `GridColor` |
 | **Type:** `[r g b]` vector |
 | **Default:** `[0.502 0.502 0.502]` |
-
 ## Libraries
 
 Simulink / Dashboard

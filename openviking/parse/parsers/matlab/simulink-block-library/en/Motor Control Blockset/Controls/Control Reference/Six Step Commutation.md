@@ -14,6 +14,25 @@ language: en
 # Six Step Commutation
 
 ## Ports
+```yaml
+ports:
+- name: Hall
+  summary: Hall sensor sequence scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Position
+  summary: Rotor position scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: TorqueSign
+  summary: Direction of rotation scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32
+- name: Ctrl
+  summary: Motor control switching sequence scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -72,8 +91,26 @@ Switching sequence signals to implement six-step commutation (or trapezoidal
 commutation) on the BLDC motor.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input type
+  summary: Block input type Hall (default) | Position
+  group: ''
+- name: Position Unit
+  summary: Unit of position input Per-unit (default) | Degrees | Radians
+  group: ''
+- name: Hall Sequence number
+  summary: Hall sequence [5,4,6,2,3,1] (default) | vector
+  group: ''
+- name: Enable custom commutation
+  summary: Enable Commutation switching parameter off (default) | on
+  group: ''
+- name: Commutation switching
+  summary: Commutation switching sequence [0 0 1 0 0 1;0 1 1 0 0 0;0 1 0 0 1 0;0 0 0 1 1 0;1 0 0 1 0 0;1 0 0 0 0 1] (default)
+    | vector
+  group: ''
+```
 
 ### **Input type** — Block input type `Hall` (default) | `Position`
 
@@ -120,7 +157,6 @@ Customized switching sequence for commutation of the BLDC motor.
 To enable this parameter, set **Input type** to
 `Hall` and select **Enable custom
 commutation** parameter.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference

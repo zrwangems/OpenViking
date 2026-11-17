@@ -15,10 +15,99 @@ chinese_source: worker-translation
 # Channel
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Source of channel model
+  summary: 信道源 Isotropic free-space（默认）| Ray-tracing
+  group: 主要参数
+- name: Antenna gain
+  summary: 发射天线增益 0 dBi（默认）| 实数标量或向量 | 正标量或向量
+  group: 主要参数
+- name: Impedance (Ohm)
+  summary: 发射天线输入阻抗 50（默认）| 复数标量或向量
+  group: 主要参数
+- name: Antenna gain
+  summary: 接收天线增益 0 dBi（默认）| 实数标量或向量 | 正标量或向量
+  group: 主要参数
+- name: Impedance (Ohm)
+  summary: 接收天线输入阻抗 50（默认）| 复数标量或向量
+  group: 主要参数
+- name: Path loss
+  summary: 自由空间路径损耗 10 dB（默认）| 实数标量或向量 | 正标量或向量
+  group: 主要参数
+- name: Path delay
+  summary: 自由空间路径延迟 0 s（默认）| 非负标量
+  group: 主要参数
+- name: Map
+  summary: 用于可视化或表面数据的地图 "none"（默认）| siteviewer 对象 | triangulation 对象 | 字符串标量 | 字符向量
+  group: 主要参数
+- name: Propagation model
+  summary: 传播模型 'raytracing'（默认）| RayTracing 对象
+  group: 主要参数
+- name: Tx site
+  summary: 发射端站点 txsite 对象 | txsite 对象数组
+  group: 主要参数
+- name: Rx site
+  summary: 接收端站点 rxsite 对象
+  group: 主要参数
+- name: View Site
+  summary: 显示射频传播场景按钮
+  group: 主要参数
+- name: Carrier frequencies
+  summary: 信道载波频率 2.1 GHz（默认）| 非负标量或行向量
+  group: 主要参数
+- name: Simulate noise
+  summary: 仿真热噪声 'on'（默认）| 'off'
+  group: 主要参数
+- name: Ground and hide negative terminals
+  summary: 接地并隐藏射频电路端子 'on'（默认）| 'off'
+  group: 主要参数
+- name: Edit System
+  summary: 编辑或展开信道模块按钮
+  group: 主要参数
+- name: Modeling options
+  summary: 对频率相关信道参数建模的技术 Time domain（默认）| Frequency domain
+  group: TX 建模
+- name: Relative error desired (dB)
+  summary: 有理拟合的相对误差 -40（默认）| 标量
+  group: TX 建模
+- name: Automatically estimate impulse response duration
+  summary: 自动计算冲激响应持续时间 'on'（默认）| 'off'
+  group: TX 建模
+- name: Impulse response duration
+  summary: 冲激响应持续时间 0s（默认）| 标量
+  group: TX 建模
+- name: Modeling options
+  summary: 对频率相关信道参数进行建模的技术 Frequency domain（默认）| Time domain
+  group: 介质建模
+- name: Relative error desired (dB)
+  summary: 有理拟合的相对误差 -40（默认）| 标量
+  group: 介质建模
+- name: Automatically estimate impulse response duration
+  summary: 自动计算冲激响应持续时间 'off'（默认）| 'on'
+  group: 介质建模
+- name: Impulse response duration
+  summary: 冲激响应持续时间 0s（默认）| 标量
+  group: 介质建模
+- name: Modeling options
+  summary: 对频率相关信道参数进行建模的技术 Time domain（默认）| Frequency domain
+  group: RX 建模
+- name: Relative error desired (dB)
+  summary: 有理拟合的相对误差 -40（默认）| 标量
+  group: RX 建模
+- name: Automatically estimate impulse response duration
+  summary: 自动计算冲激响应持续时间 'on' | 'off'
+  group: RX 建模
+- name: Impulse response duration
+  summary: 冲激响应持续时间 0s（默认）| 标量
+  group: RX 建模
+```
 
 要以交互方式编辑模块参数，请使用属性检查器。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -329,7 +418,6 @@ R2025b 中未记录。
 #### 依赖关系
 
 要设置此参数，请将 **Modeling options** 设置为 `Frequency domain`，并清除 **Automatically estimate impulse response duration**。
-
 ## 所属库
 
 RF Blockset / Circuit Envelope / Systems

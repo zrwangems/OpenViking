@@ -14,6 +14,12 @@ language: en
 # Graphic
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Reference frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -22,8 +28,41 @@ language: en
 Local reference frame of the graphic marker. Connect to a frame line
 or frame port to define the relative position and orientation of the
 marker.
-
 ## Parameters
+```yaml
+parameters:
+- name: Shape
+  summary: Shape of the marker to show during visualization Sphere (default) | Cube | Frame
+  group: ''
+- name: Size
+  summary: Width of the marker in pixels 10 pixels (default) | scalar
+  group: ''
+- name: Visual Properties
+  summary: Parameterizations for color and opacity Simple (default) | Advanced
+  group: Visual Properties
+- name: Diffuse Color
+  summary: Color of light due to diffuse reflection [0.5 0.5 0.5] (default) | 3-by-1 or 1-by-3 vector with values in the range
+    of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Visual Properties
+- name: Opacity
+  summary: Graphic opacity 1.0 (default) | scalar in the range of 0 to 1
+  group: Visual Properties
+- name: Specular Color
+  summary: Color of light due to specular reflection [0.5 0.5 0.5 1.0] (default) | 3-by-1 or 1-by-3 vector with values in
+    the range of 0 to 1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Visual Properties
+- name: Ambient Color
+  summary: Color of ambient light [0.15 0.15 0.15 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1 | 4-by-1 or 1-by-4 vector with values in the range of 0 to 1
+  group: Visual Properties
+- name: Emissive Color
+  summary: Self-illumination color [0.0 0.0 0.0 1.0] (default) | 3-by-1 or 1-by-3 vector with values in the range of 0 to
+    1
+  group: Visual Properties
+- name: Shininess
+  summary: Shininess of marker 75 (default) | scalar in the range of 1 to 128
+  group: Visual Properties
+```
 
 ### **Shape** — Shape of the marker to show during visualization `Sphere` (default) | `Cube` | `Frame`
 
@@ -136,7 +175,6 @@ appearance.
 To enable this parameter, set **Visual
 Properties** to
 `Advanced`.
-
 ## Libraries
 
 Simscape / Multibody / Body Elements

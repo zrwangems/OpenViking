@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Wind Turbine
 
 ## 端口
+```yaml
+ports:
+- name: V
+  summary: 入射风速，m/s，物理信号
+  direction: input
+- name: β
+  summary: 桨距角，deg，物理信号
+  direction: input
+- name: T
+  summary: 推力，N，物理信号
+  direction: output
+- name: R
+  summary: 涡轮轴机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -40,8 +55,73 @@ m/s。
 ### **R** — 涡轮轴机械旋转
 
 与风力涡轮轴关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 风力涡轮参数化选项 功率和推力的表格数据 coefficients（默认）| 翼型升力和阻力的表格数据 coefficients
+  group: Wind Turbine
+- name: Turbine radius
+  summary: 叶尖半径 80 m（默认）| 正标量
+  group: Wind Turbine
+- name: Pitch angle vector, β
+  summary: 参考桨距角 [0, 3, 5, 10, 20, 90] deg（默认）| 长度为 *M* 的向量
+  group: Wind Turbine
+- name: Tip speed ratio vector, λ
+  summary: 参考叶尖速比 [0, 2, 4, 6, 8, 10, 12, 14, 15]（默认）| 长度为 *N* 的向量
+  group: Wind Turbine
+- name: Power coefficient table, Cp(β,λ)
+  summary: 功率系数表 *M*×*N* 矩阵
+  group: Wind Turbine
+- name: Thrust coefficient table, Ct(β,λ)
+  summary: 推力系数表 *M*×*N* 矩阵
+  group: Wind Turbine
+- name: Number of blades
+  summary: 叶片数量 3（默认）| 正整数
+  group: Wind Turbine
+- name: Nondimensional radial location vector, r
+  summary: 径向位置 [.1, .17, .23, .36, .5, .63, 1]（默认）| 向量
+  group: Wind Turbine
+- name: Blade twist vector, θ_tw(r)
+  summary: 叶片单元扭转 [13.31, 13.31, 11.48, 9.01, 6.54, 4.19, .11] deg（默认）| 向量
+  group: Wind Turbine
+- name: Normalized chord length vector, c(r)/R
+  summary: 叶片单元弦长 [.068, .074, .076, .069, .061, .053, .023]（默认）| 向量
+  group: Wind Turbine
+- name: Airfoil angle of attack vector, α
+  summary: '攻角 [-180 : 10 : 180] deg（默认）| 长度为 *M* 的向量'
+  group: Wind Turbine
+- name: Airfoil lift coefficient table, Cl(α,r)
+  summary: Airfoil lift coefficients *M* x *N* matrix
+  group: Wind Turbine
+- name: Airfoil drag coefficient table, Cd(α,r)
+  summary: Airfoil drag coefficients *M* x *N* matrix
+  group: Wind Turbine
+- name: Number of blade elements
+  summary: Number of blade elements 20 (default) | positive integer
+  group: Wind Turbine
+- name: Output thrust
+  summary: 用于对涡轮推力输出建模的选项 off（默认）| on
+  group: Environment and Dynamics
+- name: Model inertia
+  summary: 惯性选项 off（默认）| on
+  group: Environment and Dynamics
+- name: Rotor inertia
+  summary: Windmill rotor inertia 3.5e7 kg*m^2 (default)
+  group: Environment and Dynamics
+- name: Initial rotor rotational velocity
+  summary: Rotor initial angular velocity 0 rad/s (default)
+  group: Environment and Dynamics
+- name: Air density
+  summary: Air density 1.225 kg/m^3 (default) | positive scalar
+  group: Environment and Dynamics
+- name: Wind velocity threshold
+  summary: Wind velocity smoothing threshold 0.01 m/s (default) | positive scalar
+  group: 高级
+- name: Rotational velocity threshold
+  summary: Angular velocity smoothing threshold 0.01 rad/s (default) | positive scalar
+  group: 高级
+```
 
 ### Wind Turbine
 
@@ -311,7 +391,6 @@ coefficients`。
 ### **Rotational velocity threshold** — Angular velocity smoothing threshold `0.01` `rad/s` (default) | positive scalar
 
 该模块施加平滑处理的旋转速度。当转速接近或越过 0 时，此参数会对转矩和功率进行平滑处理。随着此参数值的增大，该模块会在更大的速度范围内施加更多平滑处理。
-
 ## 所属库
 
 Simscape / Driveline / Engines & Motors

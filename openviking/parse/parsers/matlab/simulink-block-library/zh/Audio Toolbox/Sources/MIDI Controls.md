@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # MIDI Controls
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输出信号矩阵
+  direction: output
+  data_types: double | uint8
+```
 
 ### 输出
 
@@ -30,8 +37,31 @@ MIDI Controls 模块的输出大小由 **MIDI controls** 和 **MIDI control numb
 | `uint8` | `RAW MIDI (0-127)` |
 
 **数据类型：** `double` | `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: MIDI device
+  summary: 模块监听的 MIDI 控制表面 Default（默认）| Specify other
+  group: ''
+- name: MIDI device name
+  summary: 模块监听的 MIDI 控制表面的设备名称 字符向量
+  group: ''
+- name: MIDI controls
+  summary: 指定模块是响应 MIDI 表面上的所有控制器还是特定控制器 Respond to any control（默认）| Respond to specified controls
+  group: ''
+- name: MIDI control numbers
+  summary: 与模块响应的 MIDI 表面控制器关联的控件编号 0（默认）| 整数 | 整数数组
+  group: ''
+- name: Initial values
+  summary: 与模块响应的 MIDI 表面控制器关联的控件编号 0（默认）| 标量 | 数组
+  group: ''
+- name: Send initial values to device at start
+  summary: 使用初始值指定的值同步 MIDI 表面 off（默认）| on
+  group: ''
+- name: Output Mode
+  summary: MIDI 控制值的输出模式 Normalized (0-1)（默认）| RAW MIDI (0-127)
+  group: ''
+```
 
 ### **MIDI device** — 模块监听的 MIDI 控制表面 `Default`（默认）| `Specify other`
 
@@ -70,7 +100,6 @@ MIDI 设备名称由设备制造商或主机操作系统分配，并指定为字
 ### **Output Mode** — MIDI 控制值的输出模式 `Normalized (0-1)`（默认）| `RAW MIDI (0-127)`
 
 MIDI 控制值的输出模式，指定为 `Normalized (0-1)` 或 `RAW MIDI (0-127)`。
-
 ## 所属库
 
 Audio Toolbox / Sources DSP System Toolbox / Sources

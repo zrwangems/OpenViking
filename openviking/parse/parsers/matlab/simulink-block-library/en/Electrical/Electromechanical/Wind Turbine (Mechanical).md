@@ -14,6 +14,18 @@ language: en
 # Wind Turbine (Mechanical)
 
 ## Ports
+```yaml
+ports:
+- name: V
+  summary: Incident wind velocity, m/s physical signal
+  direction: input
+- name: β
+  summary: Pitch angle, deg physical signal
+  direction: input
+- name: R
+  summary: Turbine shaft mechanical rotational
+  direction: conserving
+```
 
 ### Inputs
 
@@ -32,8 +44,40 @@ blades, in deg.
 
 Mechanical rotational conserving port associated with the wind turbine
 shaft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Turbine radius
+  summary: Blade tip radius 80 m (default) | positive scalar
+  group: Main
+- name: Pitch angle vector, β
+  summary: Reference pitch angle [0, 3, 5, 10, 20, 90] deg (default) | vector of length *M*
+  group: Main
+- name: Tip speed ratio vector, TSR
+  summary: Reference tip speed ratio [0, 2, 4, 6, 8, 10, 12, 14, 15] (default) | vector of length *N*
+  group: Main
+- name: Power coefficient table, Cp(β,TSR)
+  summary: Power coefficient table *M*-by-*N* (default)
+  group: Main
+- name: Wind speed threshold
+  summary: Velocity smoothing threshold 0.01 m/s (default) | positive scalar
+  group: Main
+- name: Rotational velocity threshold
+  summary: Velocity smoothing threshold 0.01 rad/s (default) | positive scalar
+  group: Main
+- name: Air density
+  summary: Air density 1.225 kg/m^3 (default) | positive scalar
+  group: Main
+- name: Include inertia
+  summary: Whether to model rotor inertia Off (default) | On
+  group: Mechanical
+- name: Rotor Inertia
+  summary: Rotor moment of inertia 0.1 kg*m^2 (default) | positive scalar
+  group: Mechanical
+- name: Rotor damping
+  summary: Damping of rotor 0 N*m*s/rad (default) | positive scalar
+  group: Mechanical
+```
 
 ### Main
 
@@ -108,7 +152,6 @@ inertia** parameter.
 ### **Rotor damping** — Damping of rotor `0` `N*m*s/rad` (default) | positive scalar
 
 Damping of the rotor.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical

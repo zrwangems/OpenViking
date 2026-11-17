@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # APP Decoder
 
 ## 端口
+```yaml
+ports:
+- name: LLRc
+  summary: 编码 LLR 值 实值列向量
+  direction: input
+  data_types: single | double | int8 | int16 | signed fixed point
+- name: LLRu
+  summary: 未编码 LLR 值 实值标量
+  direction: input
+  data_types: single | double | int8 | int16 | signed fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: LLRu
+  summary: 未编码 LLR 值 实值标量
+  direction: output
+  data_types: single | double | int8 | int16 | fixed point
+- name: LLRc
+  summary: 编码 LLR 值 实值列向量
+  direction: output
+  data_types: single | double | int8 | int16 | fixed point
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: nextFrame
+  summary: 块就绪指示符 布尔标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -90,8 +121,28 @@ chinese_source: worker-translation
 当块准备好接受下一帧的开始信号时，该块将此信号设置为 `1`（`true`）。如果块在 **nextFrame** 为 `0`（`false`）时接收到输入 **ctrl.start** 信号，则该块丢弃正在进行的帧并开始处理新数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Code generator
+  summary: 码生成器多项式 [171,133]（默认）| 2 到 7 个元素的行向量
+  group: ''
+- name: Feedback connection
+  summary: 码生成器多项式 171（默认）| 八进制值
+  group: ''
+- name: Termination method
+  summary: 帧结束行为 Truncated（默认）| Terminated
+  group: ''
+- name: Algorithm
+  summary: 解码算法类型 Max Log MAP (max)（默认）| Log MAP (max*)
+  group: ''
+- name: Window length
+  summary: 执行 MAP 算法的窗口 64（默认）| 3 到 128 范围内的整数
+  group: ''
+- name: Disable LLRc output port
+  summary: 禁用 LLRc 输出端口的选项 off（默认）| on
+  group: ''
+```
 
 ### **Code generator** — 码生成器多项式 `[171,133]`（默认）| 2 到 7 个元素的行向量
 
@@ -133,7 +184,6 @@ chinese_source: worker-translation
 ### **Disable LLRc output port** — 禁用 LLRc 输出端口的选项 `off`（默认）| `on`
 
 选择此参数可禁用该模块的输出端口 **LLRc**。清除此参数可启用该模块上的输出端口 **LLRc**。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

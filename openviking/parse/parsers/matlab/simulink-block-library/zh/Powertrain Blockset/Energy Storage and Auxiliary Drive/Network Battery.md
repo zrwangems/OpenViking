@@ -15,6 +15,24 @@ chinese_source: worker-translation
 # Datasheet Battery
 
 ## 端口
+```yaml
+ports:
+- name: CapInit
+  summary: 电池容量 标量
+  direction: input
+- name: BattCurr
+  summary: 电池负载电流 标量
+  direction: input
+- name: BattTemp
+  summary: 电池温度 标量
+  direction: input
+- name: Info
+  summary: 总线信号 总线
+  direction: output
+- name: BattVolt
+  summary: 电池输出电压 标量
+  direction: output
+```
 
 ### 输入
 
@@ -58,8 +76,75 @@ Input`。
 
 电池网络的合并电压，
 *Vout*，单位为 V。
-
 ## 参数
+```yaml
+parameters:
+- name: 初始电池容量
+  summary: 输入或参数 Parameter（默认）| External Input
+  group: ''
+  block_parameter: CapacityCtrl
+  values: Parameter（默认）| External Input
+- name: 输出电压
+  summary: 未滤波或滤波 Unfiltered（默认）| Filtered
+  group: ''
+  block_parameter: OutputVlt
+  values: Unfiltered（默认）| Filtered
+- name: 标称温度下的额定容量, BattChargeMax
+  summary: 常量 100（默认）| 标量
+  group: ''
+  block_parameter: BattChargeMax
+  values: 100（默认）| 标量
+- name: 开路电压表数据, Em
+  summary: 一维查找表 1×P 矩阵
+  group: ''
+  block_parameter: Em
+  values: 1×P 矩阵
+- name: 开路电压的荷电状态断点，SOCEmBp
+  summary: 断点 1×P 矩阵
+  group: ''
+  block_parameter: SOCEmBp
+  values: 1×P 矩阵
+- name: 内阻表数据，RInt
+  summary: 二维查找表 N×M 矩阵
+  group: ''
+  block_parameter: RInt
+  values: N×M 矩阵
+- name: 电池温度断点，BattTempBp
+  summary: 断点 [243.1 253.1 263.1 273.1 283.1 298.1 313.1]（默认）| 1×N 矩阵
+  group: ''
+  block_parameter: BattTempBp
+  values: '[243.1 253.1 263.1 273.1 283.1 298.1 313.1]（默认）| 1×N 矩阵'
+- name: 内阻的荷电状态断点，SOCRintBp
+  summary: 断点 [0 0.2 0.4 0.6 0.8 1]（默认）| 1×M 矩阵
+  group: ''
+  block_parameter: SOCRintBp
+  values: '[0 0.2 0.4 0.6 0.8 1]（默认）| 1×M 矩阵'
+- name: 串联电池数，Ns
+  summary: 整数 1（默认）| scalar
+  group: ''
+  block_parameter: Ns
+  values: 1（默认）| scalar
+- name: 并联电池数，Np
+  summary: 整数 1（默认）| scalar
+  group: ''
+  block_parameter: Np
+  values: 1（默认）| scalar
+- name: 初始电池容量，BattCapInit
+  summary: 容量 100（默认）| scalar
+  group: ''
+  block_parameter: BattCapInit
+  values: 100（默认）| scalar
+- name: 输出电压时间常数 Tc
+  summary: 滤波时间常数 1/1000（默认）| scalar
+  group: ''
+  block_parameter: Tc
+  values: -1（默认）| scalar
+- name: 输出电压初始值 Vinit
+  summary: 滤波初始电压 4.221（默认）| scalar
+  group: ''
+  block_parameter: Vinit
+  values: -1（默认）| scalar
+```
 
 #### 模块选项
 
@@ -330,7 +415,6 @@ Input`。
 
 - **输出电压时间常数 Tc**
 - **输出电压初始值 Vinit**
-
 ## 所属库
 
 Powertrain Blockset / Energy Storage and Auxiliary Drive / Datasheet Battery

@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # G711 Codec
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Mode**
 :   - 当您选择 `Encode PCM to A-law` 时，该模块实现 A-law 编码器。
@@ -36,7 +41,6 @@ R2025b 中未记录。
     - 选择 `Error` 以显示错误对话框并终止仿真。
 
     仅当 **Mode** 参数选择 `Encode PCM to A-law` 或 `Encode PCM to mu-law` 时，此参数才可见。
-
 ## 所属库
 
 R2025b 中未记录。

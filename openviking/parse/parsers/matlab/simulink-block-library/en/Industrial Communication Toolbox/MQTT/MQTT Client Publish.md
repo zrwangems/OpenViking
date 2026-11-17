@@ -14,6 +14,13 @@ language: en
 # MQTT Client Publish
 
 ## Ports
+```yaml
+ports:
+- name: Topic_*x*
+  summary: Messages to publish to MQTT topics double
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string
+```
 
 ### Input
 
@@ -30,8 +37,30 @@ To enable this port, specify one or more topics in the **Topics to
 publish** parameter.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string`
-
 ## Parameters
+```yaml
+parameters:
+- name: Client
+  summary: Select MQTT client drop-down list
+  group: ''
+  block_parameter: ClientList
+  values: MQTT client name
+- name: Topics to publish
+  summary: List of MQTT topics table
+  group: ''
+  block_parameter: TopicsTable
+  values: MQTT topic name and information
+- name: Publish only on input data change
+  summary: Determines when to publish messages on (default) | off
+  group: ''
+  block_parameter: PublishOnDataChange
+  values: on (default) | off
+- name: Block sample time
+  summary: Sample time for read operation -1 (default) | nonnegative scalar
+  group: ''
+  block_parameter: SampleTime
+  values: -1 (default) | nonnegative scalar
+```
 
 ### **Client** — Select MQTT client drop-down list
 
@@ -149,7 +178,6 @@ programmatically, use the `get_param` (Simulink) function.
 | **Parameter:** | `SampleTime` |
 | **Values:** | -1 (default) | nonnegative scalar |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Industrial Communication Toolbox / MQTT

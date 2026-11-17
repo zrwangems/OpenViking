@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # Block LMS Filter
 
 ## 端口
+```yaml
+ports:
+- name: Input
+  summary: 输入信号 标量 | 列向量
+  direction: input
+  data_types: single | double
+- name: Desired
+  summary: 期望信号 标量 | 列向量
+  direction: input
+  data_types: single | double
+- name: Step size
+  summary: 自适应步长 非负标量
+  direction: input
+  data_types: single | double
+- name: Adapt
+  summary: 更新滤波器权重的选项 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Reset
+  summary: 复位信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Output
+  summary: 滤波后的信号 标量 | 列向量
+  direction: output
+  data_types: single | double
+- name: Error
+  summary: 输出与期望信号之间的差值 标量 | 列向量
+  direction: output
+  data_types: single | double
+- name: Wts
+  summary: 自适应滤波器权重 标量 | 列向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -113,8 +148,37 @@ LMS 滤波器的权重，以列向量形式返回，其长度等于 **Filter len
 
 **数据类型：** `single` | `double`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Filter length
+  summary: FIR 滤波器系数向量的长度 32（默认）| 正整数
+  group: ''
+- name: Block size
+  summary: 权重自适应前获取的采样数 32（默认）| 正整数
+  group: ''
+- name: Specify step size via
+  summary: 自适应步长的来源 Dialog（默认）| Input port
+  group: ''
+- name: Step size (mu)
+  summary: 自适应步长 0.1（默认）| 非负整数
+  group: ''
+- name: Leakage factor (0 to 1)
+  summary: 泄漏 LMS 算法中使用的泄漏因子 1.0（默认）| [0, 1] 范围内的标量
+  group: ''
+- name: Initial value of filter weights
+  summary: 滤波器权重的初始值 0（默认）| 标量 | 向量
+  group: ''
+- name: Adapt port
+  summary: 启用 Adapt 端口 off（默认）| on
+  group: ''
+- name: Reset port
+  summary: 启用 Reset 端口 None（默认）| Rising edge | Falling edge | Either edge | Non-zero sample
+  group: ''
+- name: Output filter weights
+  summary: 输出滤波器权重 on（默认）| off
+  group: ''
+```
 
 ### **Filter length** — FIR 滤波器系数向量的长度 `32`（默认）| 正整数
 
@@ -168,7 +232,6 @@ w(k)=(1−μα)w(k−1)+f(u(n),e(n),μ)
 ### **Output filter weights** — 输出滤波器权重 `on`（默认）| `off`
 
 选中此参数以从 **Wts** 端口导出滤波器权重。
-
 ## 所属库
 
 DSP System Toolbox / Filtering / Adaptive Filters

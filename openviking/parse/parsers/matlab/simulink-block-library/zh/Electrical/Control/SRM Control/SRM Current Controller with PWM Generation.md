@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # SRM Current Controller with PWM Generation
 
 ## 端口
+```yaml
+ports:
+- name: IsRef
+  summary: 参考电流标量
+  direction: input
+  data_types: single | double
+- name: Is
+  summary: 测量电流标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 积分器复位标量
+  direction: input
+  data_types: Boolean
+- name: theta
+  summary: Theta 转子角度标量
+  direction: input
+  data_types: single | double
+- name: thetaON
+  summary: 开通角标量
+  direction: input
+  data_types: single | double
+- name: thetaOFF
+  summary: 关断角标量
+  direction: input
+  data_types: single | double
+- name: G
+  summary: 门极控制向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -60,8 +91,31 @@ chinese_source: worker-translation
 决定开关行为的脉冲波形。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain
+  summary: 控制器比例增益，*Kp* 1（默认）| 正标量
+  group: 控制参数
+- name: Integral gain
+  summary: 积分增益，*Ki* 5（默认）| 正标量
+  group: 控制参数
+- name: Anti-windup gain
+  summary: 抗积分饱和增益，*Kaw* 1（默认）| 正标量
+  group: 控制参数
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: 控制参数
+- name: Carrier counter
+  summary: 载波计数器模型 Up（默认）| Down | Up-Down
+  group: PWM 生成器
+- name: Timer period (s)
+  summary: PWM 定时器周期 0.001（默认）| 正标量
+  group: PWM 生成器
+- name: Fundamental sample time (s)
+  summary: PWM 生成的采样时间 0.0001（默认）| 正标量
+  group: PWM 生成器
+```
 
 ### 控制参数
 
@@ -106,7 +160,6 @@ chinese_source: worker-translation
 
 - *Ts\_pwm* 是 **Fundamental sample time (s)**。
 - *Tper* 是 **Timer period (s)**。
-
 ## 所属库
 
 Simscape / Electrical / Control / SRM Control

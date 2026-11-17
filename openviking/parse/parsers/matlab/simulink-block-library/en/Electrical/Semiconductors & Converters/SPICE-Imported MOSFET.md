@@ -14,6 +14,24 @@ language: en
 # SPICE-Imported MOSFET
 
 ## Ports
+```yaml
+ports:
+- name: g
+  summary: Gate terminal electrical
+  direction: conserving
+- name: d
+  summary: Drain terminal electrical
+  direction: conserving
+- name: tj
+  summary: Junction temperature electrical
+  direction: conserving
+- name: tc
+  summary: Case temperature electrical
+  direction: conserving
+- name: s
+  summary: Source terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -56,8 +74,17 @@ represented by electrical resistors and capacitors.
 
 Electrical conserving port associated with the source of the chosen
 pre-parameterized MOSFET.
-
 ## Parameters
+```yaml
+parameters:
+- name: Series
+  summary: MOSFET series Infineon OptiMOS6 40V (default) | Infineon OptiMOS5 80V | Infineon OptiMOS4 60V | Infineon OptiMOST
+    120V
+  group: ''
+- name: Device
+  summary: Device name IPB015N08N5 | IAUC120N04S6N009 | IAUC120N04S6N010 | IAUC120N04S6N013 | IAUC100N04S6N015 | ...
+  group: ''
+```
 
 ### **Series** — MOSFET series `Infineon OptiMOS6 40V` (default) | `Infineon OptiMOS5 80V` | `Infineon OptiMOS4 60V` | `Infineon OptiMOST 120V`
 
@@ -71,7 +98,6 @@ OptiMOS5 80V`, `Infineon OptiMOS4
 
 Name of the device, specified as one of the options listed in the Available Parameterizations
 table.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters

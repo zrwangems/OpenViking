@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Test Condition
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号，指定为标量或元胞数组 标量 | 元胞数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Port_1
+  summary: 输出信号，以标量或元胞数组形式返回 标量 | 元胞数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### 输入
 
@@ -30,8 +43,27 @@ Test Condition 模块接受 Simulink 软件支持的所有内置数据类型的�
 Test Condition 模块返回 Simulink 软件支持的所有内置数据类型的信号。有关支持的数据类型的详细信息，请参阅 Simulink 支持的数据类型。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Enable
+  summary: 模块是否启用 on（默认）| off
+  group: ''
+- name: Type
+  summary: 模块表现为 Test Condition 还是 Proof Assumption 模块 Test Condition（默认）| Assumption
+  group: ''
+- name: Values
+  summary: 测试条件 标量 | 元胞数组
+  group: ''
+  values: 参数
+- name: Display values
+  summary: 是否显示 values 参数的内容 on（默认）| off
+  group: ''
+  values: 参数的内容。
+- name: Pass through style (show Outport)
+  summary: 模块是否在 Simulink Editor 中显示输出端口 on（默认）| off
+  group: ''
+```
 
 ### **Enable** — 模块是否启用 `on`（默认）| `off`
 
@@ -106,7 +138,6 @@ Sldv.Interval([-5 -5],[5 2],'()')
 **Pass through style：选中**
 
 **Pass through style：清除**
-
 ## 所属库
 
 Simulink Design Verifier / Objectives and Constraints

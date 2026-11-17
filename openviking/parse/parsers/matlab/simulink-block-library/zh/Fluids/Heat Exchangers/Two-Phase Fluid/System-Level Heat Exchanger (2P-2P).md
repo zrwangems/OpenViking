@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # System-Level Heat Exchanger (2P-2P)
 
 ## 端口
+```yaml
+ports:
+- name: Q1
+  summary: 传递给两相流体 1 的传热速率，W 物理信号
+  direction: output
+- name: Q2
+  summary: 传递给两相流体 2 的传热速率，W 物理信号
+  direction: output
+- name: A1
+  summary: 侧 1 的两相流体端口 两相流体
+  direction: conserving
+- name: B1
+  summary: 侧 1 的两相流体端口 两相流体
+  direction: conserving
+- name: A2
+  summary: 侧 2 的两相流体端口 两相流体
+  direction: conserving
+- name: B2
+  summary: 侧 2 的两相流体端口 两相流体
+  direction: conserving
+```
 
 ### 输出
 
@@ -42,8 +63,206 @@ chinese_source: worker-translation
 ### **B2** — 侧 2 的两相流体端口 两相流体
 
 与第二个两相流体网络关联的入口或出口端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Flow arrangement at nominal operating conditions
+  summary: 额定工况下的流路对齐方式 Counter flow - Two-Phase Fluid 1 flows from A to B, Two-Phase Fluid 2 flows from B to A（默认）| Parallel
+    flow - Both fluids flow from A to B | Cross flow - Both fluids flow from A to B
+  group: 配置
+- name: Enable wall thermal mass
+  summary: 是否启用热质量对传热表面的影响 off（默认）| on
+  group: 配置
+- name: Wall mass
+  summary: 传热表面的质量 1 kg（默认）| 正标量
+  group: 配置
+- name: Wall specific heat
+  summary: 传热表面的比热 490 J/(K*kg)（默认）| 正标量
+  group: 配置
+- name: Initialize wall temperature to nominal operating conditions
+  summary: 壁面温度初始化选项 on（默认）| off
+  group: 配置
+- name: Initial wall temperature
+  summary: 壁面的初始温度 293.15 K（默认）| 正标量或二元素向量
+  group: 配置
+- name: Cross-sectional area at port A1
+  summary: 端口 A1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B1
+  summary: 端口 B1 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port A2
+  summary: 端口 A2 处的流通面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Cross-sectional area at port B2
+  summary: 端口 B2 处垂直于流动方向的面积 0.01 m^2（默认）| 正标量
+  group: 配置
+- name: Nominal operating condition
+  summary: 额定工况 Heat transfer from Two-Phase Fluid 1 to Two-Phase Fluid 2（默认）| Heat transfer from Two-Phase Fluid 2 to Two-Phase
+    Fluid 1
+  group: 两相流体 1
+- name: Nominal mass flow rate
+  summary: 额定工况下两相流体 1 端口之间的质量流量 0.001 kg/s（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal pressure drop
+  summary: 额定工况下两相流体 1 端口之间的压降 0.01 MPa（默认）| 正标量
+  group: 两相流体 1
+- name: Pressure specification
+  summary: 选择压力指定方法 Inlet pressure（默认）| Saturation pressure at specified condensing temperature | Saturation pressure at specified
+    evaporating temperature
+  group: 两相流体 1
+- name: Nominal inlet pressure
+  summary: 两相流体 1 入口处的压力 1 MPa（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal saturation temperature
+  summary: 使用额定饱和温度指定压力 313.15 K（默认）| 正标量
+  group: 两相流体 1
+- name: Inlet condition specification
+  summary: 选择描述两相流体 1 入口条件的量 Specific enthalpy（默认）| Temperature | Vapor quality
+  group: 两相流体 1
+- name: Nominal inlet specific enthalpy
+  summary: 两相流体 1 入口处的比焓 440 kJ/kg（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal inlet temperature
+  summary: 两相流体 1 入口处的温度 313.15 K（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal inlet vapor quality
+  summary: 两相流体 1 入口处的蒸汽干度 1（默认）| 正标量
+  group: 两相流体 1
+- name: Heat transfer capacity specification
+  summary: 如何指定两相流体 1 的传热能力 Rate of heat transfer（默认）| Outlet condition
+  group: 两相流体 1
+- name: Nominal rate of heat transfer
+  summary: 传热速率 0.1 kW（默认）| 正标量
+  group: 两相流体 1
+- name: Outlet condition specification
+  summary: 选择出口条件指定的量 Specific enthalpy（默认）| Subcooling | Superheating | Vapor quality
+  group: 两相流体 1
+- name: Nominal outlet specific enthalpy
+  summary: 两相流体 1 出口处的比焓 250 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Nominal subcooling
+  summary: 两相流体 1 出口处低于液体饱和温度的温度差 5 deltaK（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal superheating
+  summary: 两相流体 1 出口处高于蒸汽饱和温度的温度差 5 deltaK（默认）| 正标量
+  group: 两相流体 1
+- name: Nominal outlet vapor quality
+  summary: 两相流体 1 出口处的蒸汽质量分数 0（默认）| [0,1] 范围内的标量
+  group: 两相流体 1
+- name: Two-phase fluid 1 volume
+  summary: 两相流体 1 的总体积 0.001 m^3（默认）| 正标量
+  group: 两相流体 1
+- name: Initialize two-phase fluid 1 to nominal operating conditions
+  summary: 两相流体 1 初始化选项 on（默认）| off
+  group: 两相流体 1
+- name: Initial fluid energy specification
+  summary: 两相流体 1 的初始状态 Specific enthalpy（默认）| Temperature | Vapor quality | Vapor void fraction | Specific internal energy
+  group: 两相流体 1
+- name: Initial two-phase fluid 1 pressure
+  summary: 仿真开始时的流体 1 压力 0.101325 MPa（默认）| 正标量
+  group: 两相流体 1
+- name: Initial two-phase fluid 1 specific enthalpy
+  summary: 仿真开始时的单位质量焓 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid 1 temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid 1 vapor quality
+  summary: 仿真开始时的蒸汽质量分数 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid 1 vapor void fraction
+  summary: 仿真开始时的蒸汽体积分数 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: 两相流体 1
+- name: Initial two-phase fluid 1 specific internal energy
+  summary: 仿真开始时的单位质量内能 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: 两相流体 1
+- name: Nominal mass flow rate
+  summary: 标称工况下两相流体 2 端口之间的质量流量 0.001 kg/s（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Nominal pressure drop
+  summary: 标称工况下两相流体 2 端口之间的压降 0.01 MPa（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Pressure specification
+  summary: 选择压力指定方法 Inlet pressure（默认）| Saturation pressure at specified condensing temperature | Saturation pressure at specified
+    evaporating temperature
+  group: Two-Phase Fluid 2
+- name: Nominal inlet pressure
+  summary: 两相流体侧入口处的压力 1 MPa（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Nominal saturation temperature
+  summary: 使用标称饱和温度指定压力 243.15 K（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Inlet condition specification
+  summary: 选择用于描述两相流体 2 入口条件的量 Specific enthalpy（默认）| Temperature | Vapor quality
+  group: Two-Phase Fluid 2
+- name: Nominal inlet specific enthalpy
+  summary: 两相流体 2 入口处的比焓 250 kJ/kg（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Nominal inlet temperature
+  summary: 两相流体 2 入口处的温度 237.15 K（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Nominal inlet vapor quality
+  summary: 两相流体 2 入口处的蒸汽干度 0.1（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Two-phase fluid 2 volume
+  summary: 两相流体 2 的总体积 0.001 m^3（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Initialize two-phase fluid 2 to nominal operating conditions
+  summary: 用于初始化两相流体 2 的选项 on（默认）| off
+  group: Two-Phase Fluid 2
+- name: Initial fluid energy specification
+  summary: 两相流体 2 的初始状态 Specific enthalpy（默认）| Temperature | Vapor quality | Vapor void fraction | Specific internal energy
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 pressure
+  summary: 仿真开始时的流体 2 压力 0.101325 MPa（默认）| 正标量
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 specific enthalpy
+  summary: 仿真开始时的单位质量焓 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 temperature
+  summary: 仿真开始时的温度 293.15 K（默认）| 正标量 | 二元素向量
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 vapor quality
+  summary: 仿真开始时的蒸汽质量分数 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 vapor void fraction
+  summary: 仿真开始时的蒸汽体积分数 0.5（默认）| [0,1] 范围内的标量 | 二元素向量
+  group: Two-Phase Fluid 2
+- name: Initial two-phase fluid 2 specific internal energy
+  summary: 仿真开始时的单位质量内能 1500 kJ/kg（默认）| 正标量 | 二元素向量
+  group: Two-Phase Fluid 2
+- name: 两相流体 1 液体中 Nu = a\*Re^b\*Pr^c 的 a
+  summary: 两相流体 1 中过冷液体的关联式系数 0.023（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 1 混合物中 Nu = a\*Re^b\*Pr^c 的 a
+  summary: 两相流体 1 中液-汽混合物的关联式系数 0.005（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 1 蒸汽中 Nu = a\*Re^b\*Pr^c 的 a
+  summary: 两相流体 1 中过热蒸汽的关联式系数 0.023（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 1 中 Nu = a\*Re^b\*Pr^c 的 b
+  summary: 两相流体 1 关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 1 中 Nu = a\*Re^b\*Pr^c 的 c
+  summary: 两相流体 1 关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 2 液体中 Nu = a\*Re^b\*Pr^c 的 a
+  summary: 两相流体 2 中过冷液体的关联式系数 0.023（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 2 混合物中 Nu = a\*Re^b\*Pr^c 的 a
+  summary: 两相流体 2 中液-汽混合物的关联式系数 0.005（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 2 蒸汽中 Nu = a\*Re^b\*Pr^c 的 a
+  summary: 两相流体 2 中过热蒸汽的关联式系数 0.023（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 2 中 Nu = a\*Re^b\*Pr^c 的 b
+  summary: 两相流体 2 关联式中的雷诺数指数 0.8（默认）| 正标量
+  group: Correlation Coefficients
+- name: 两相流体 2 中 Nu = a\*Re^b\*Pr^c 的 c
+  summary: 两相流体 2 关联式中的普朗特数指数 0.33（默认）| 正标量
+  group: Correlation Coefficients
+```
 
 ### 配置
 
@@ -513,7 +732,6 @@ chinese_source: worker-translation
 ### **两相流体 2 中 Nu = a\*Re^b\*Pr^c 的 c** — 两相流体 2 关联式中的普朗特数指数 `0.33`（默认）| 正标量
 
 两相流体 2 的努塞尔数作为雷诺数和普朗特数函数的关联式中的普朗特数指数。相同的值适用于过冷液体、液-汽混合物和过热蒸汽。
-
 ## 所属库
 
 Simscape / Fluids / Heat Exchangers / Two-Phase Fluid

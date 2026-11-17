@@ -14,6 +14,33 @@ language: en
 # Shelving Equalizer Design
 
 ## Ports
+```yaml
+ports:
+- name: G
+  summary: Peak gain (dB) real scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: S
+  summary: Slope coefficient positive scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Fc
+  summary: Normalized cutoff frequency scalar in range [0,1]
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: T
+  summary: Filter type 0 (low-shelf) | 1 (high-shelf)
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated
+- name: Num
+  summary: Numerator filter coefficients three-element row vector
+  direction: output
+  data_types: single | double
+- name: Den
+  summary: Denominator filter coefficients three-element row vector
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -90,8 +117,49 @@ The data type of the output depends on the **Output data
 type** parameter.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Smooth tuned filter parameters
+  summary: Smooth filter parameters when tuning off (default) | on
+  group: ''
+- name: Smoothing factor
+  summary: Smoothing factor for tuned parameters 0.6 (default) | scalar in range [0,1)
+  group: ''
+- name: Specify peak gain from input port
+  summary: Use additional input port to specify gain off (default) | on
+  group: ''
+- name: Peak gain (dB)
+  summary: Peak gain (dB) 0 (default) | real scalar
+  group: ''
+- name: Specify slope coefficient from input port
+  summary: Use additional input port to specify slope coefficient off (default) | on
+  group: ''
+- name: Slope coefficient
+  summary: Slope coefficient 1.5 (default) | positive scalar
+  group: ''
+- name: Specify normalized cutoff frequency from input port
+  summary: Use additional input port to specify normalized cutoff frequency off (default) | on
+  group: ''
+- name: Normalized cutoff frequency
+  summary: Normalized cutoff frequency 0.1 (default) | scalar in range [0,1]
+  group: ''
+- name: Specify filter type from input port
+  summary: Use additional input port to specify filter type off (default) | on
+  group: ''
+- name: Filter type
+  summary: Type of shelving equalizer low (default) | high
+  group: ''
+- name: Output data type
+  summary: Data type of output coefficients double (default) | single
+  group: ''
+- name: Sample time
+  summary: Sample time of block -1 (default) | positive scalar
+  group: ''
+- name: Simulate using
+  summary: Specify type of simulation to run Interpreted execution (default) | Code generation
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -213,7 +281,6 @@ block.
   simulations, as long as the model does not change. This option requires additional
   startup time, but the speed of the subsequent simulations is comparable to
   `Interpreted execution`.
-
 ## Libraries
 
 Audio Toolbox / Filters

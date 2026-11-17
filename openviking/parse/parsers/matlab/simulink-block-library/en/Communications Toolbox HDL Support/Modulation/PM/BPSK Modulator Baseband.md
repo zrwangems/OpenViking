@@ -14,6 +14,17 @@ language: en
 # BPSK Modulator Baseband
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input data scalar | vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean
+- name: Out
+  summary: BPSK-modulated baseband signal scalar | vector
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -33,8 +44,20 @@ BPSK-modulated baseband signal, returned as a complex-valued scalar or
 vector.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Phase offset (rad)
+  summary: Phase offset of zeroth point 0 (default) | scalar
+  group: Main
+- name: View constellation
+  summary: Option to plot reference constellation button
+  group: Main
+- name: Output data type
+  summary: Output data type double (default) | single | fixdt(1,16) | fixdt(1,16,0) | Inherit via back propagation | <data
+    type expression>
+  group: Data Types
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -79,7 +102,6 @@ Setting this parameter to
   block.
 
 For information about specifying data types, see Data Type Assistant.
-
 ## Libraries
 
 Communications Toolbox / Modulation / Digital Baseband Modulation / PSK Communications Toolbox HDL Support / Modulation / PM

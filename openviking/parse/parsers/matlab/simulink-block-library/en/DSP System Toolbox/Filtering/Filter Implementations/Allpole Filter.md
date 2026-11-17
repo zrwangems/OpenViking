@@ -14,6 +14,21 @@ language: en
 # Allpole Filter
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Data input vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Den
+  summary: Filter denominator coefficients scalar | row vector
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | fixed point
+- name: Out
+  summary: Filtered output vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | fixed point
+```
 
 ### Input
 
@@ -61,8 +76,66 @@ source** to `Input port`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Coefficient source
+  summary: Coefficient source Dialog parameters (default) | Input port
+  group: Main Tab
+- name: Filter structure
+  summary: Specify filter structure Direct form (default) | Direct form transposed | Lattice AR
+  group: Main Tab
+- name: Coefficients
+  summary: Filter denominator coefficients [1 0.1] (default) | scalar | row vector
+  group: Main Tab
+- name: Input processing
+  summary: Input processing Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: Main Tab
+- name: Initial states
+  summary: Initial conditions of filter states 0 (default) | scalar | vector | matrix
+  group: Main Tab
+- name: Coefficients
+  summary: 'Coefficient data type Inherit: Same word length as input (default) | int8 | uint8 | int16 | uint16 | int32 | uint32
+    | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Coefficients Minimum
+  summary: Minimum value of filter coefficients [] (default) | scalar
+  group: Data Types Tab
+- name: Coefficients Maximum
+  summary: Maximum value of filter coefficients [] (default) | scalar
+  group: Data Types Tab
+- name: Product output
+  summary: 'Product output data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | int8 | uint8
+    | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Accumulator
+  summary: 'Accumulator data type Inherit: Inherit via internal rule (default) | Inherit: Same as input | Inherit: Same as
+    product output | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: State
+  summary: 'State data type Inherit: Same as accumulator (default) | Inherit: Same as input | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output
+  summary: 'Output data type Inherit: Same as input (default) | Inherit: Same as accumulator | int8 | uint8 | int16 | uint16
+    | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0)'
+  group: Data Types Tab
+- name: Output Minimum
+  summary: Output minimum [] (default) | scalar
+  group: Data Types Tab
+- name: Output Maximum
+  summary: Output maximum [] (default) | scalar
+  group: Data Types Tab
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types Tab
+- name: Integer rounding mode
+  summary: Integer rounding mode Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: Data Types Tab
+- name: Saturate on integer overflow
+  summary: Saturate on integer overflow off (default) | on
+  group: Data Types Tab
+```
 
 ### Main Tab
 
@@ -299,7 +372,6 @@ this case, the code generator does not produce saturation code.
 | --- | --- | --- | --- |
 | Select this check box. | Your model has possible overflow and you want explicit saturation protection in the generated code. | Overflows saturate to either the minimum or maximum value that the data type can represent. | An overflow associated with a signed 8-bit integer can saturate to -128 or 127. |
 | Do not select this check box. | You want to optimize efficiency of your generated code.  You want to avoid overspecifying how a block handles out-of-range signals. For more information, see Troubleshoot Signal Range Errors (Simulink). | Overflows wrap to the appropriate value that is representable by the data type. | The number 130 does not fit in a signed 8-bit integer and wraps to -126. |
-
 ## Libraries
 
 DSP System Toolbox / Filtering / Filter Implementations

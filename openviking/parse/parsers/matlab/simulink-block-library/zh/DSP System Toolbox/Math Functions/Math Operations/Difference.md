@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Difference
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 向量 | 矩阵 | *N* 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: Port_1
+  summary: 输出信号 向量 | 矩阵 | *N* 维数组
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+```
 
 ### 输入
 
@@ -36,8 +47,40 @@ chinese_source: worker-translation
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: 运行差分
+  summary: 运行差分 No（默认）| Yes
+  group: 主选项卡
+- name: 沿参数方向的差分
+  summary: 差分维度 Columns（默认）| Rows | Specified dimension
+  group: 主选项卡
+- name: 维度
+  summary: 基于一的维度 1（默认）| 2 | 3
+  group: 主选项卡
+- name: 舍入模式
+  summary: 舍入运算的方法 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 数据类型选项卡
+- name: 整数溢出时饱和
+  summary: 溢出操作的方法 off（默认）| on
+  group: 数据类型选项卡
+- name: 累加器
+  summary: '累加器数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: 输出
+  summary: '输出数据类型 Inherit: Same as accumulator（默认）| Inherit: Same as input | fixdt([],16,0)'
+  group: 数据类型选项卡
+- name: 输出最小值
+  summary: 模块可以输出的最小值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: 输出最大值
+  summary: 模块可以输出的最大值 []（默认）| 标量
+  group: 数据类型选项卡
+- name: 锁定数据类型设置以防止定点工具更改
+  summary: 防止定点工具覆盖数据类型 off（默认）| on
+  group: 数据类型选项卡
+```
 
 ### 主选项卡
 
@@ -159,7 +202,6 @@ chinese_source: worker-translation
 **注意**
 
 浮点继承优先于此窗格上定义的数据类型设置。当输入为浮点时，模块忽略这些设置，所有内部数据类型均为浮点。
-
 ## 所属库
 
 DSP System Toolbox / Math Functions / Math Operations

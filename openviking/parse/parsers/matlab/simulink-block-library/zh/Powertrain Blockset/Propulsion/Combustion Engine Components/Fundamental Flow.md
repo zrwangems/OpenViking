@@ -15,6 +15,30 @@ chinese_source: worker-translation
 # Flow Restriction
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 入口孔口压力、温度、焓、质量分数双向连接端口
+  direction: input
+- name: B
+  summary: 出口孔口压力、温度、焓、质量分数双向连接端口
+  direction: input
+- name: Area
+  summary: 孔口面积 scalar
+  direction: input
+- name: ThrPct
+  summary: 节气门体开度百分比 scalar
+  direction: input
+- name: A
+  summary: 入口质量流量、热流量、温度双向连接端口
+  direction: output
+- name: B
+  summary: 出口质量流量、热流量、温度双向连接端口
+  direction: output
+- name: Info
+  summary: 总线信号总线
+  direction: output
+```
 
 ### 输入
 
@@ -170,8 +194,65 @@ chinese_source: worker-translation
 | `Area` | `FlwArea` | | | 横截流通面积 | m^2 |
 | `EffctArea` | | | 有效孔口横截面积 | m^2 |
 | `ThrAng` | | | 节气门面积（如适用） | deg |
-
 ## 参数
+```yaml
+parameters:
+- name: 孔口面积模型
+  summary: 选择模型 Constant（默认）| External input | Throttle body geometry
+  group: ''
+  block_parameter: AreaPopup
+  values: Constant（默认）| External input | Throttle body geometry
+- name: 图像类型
+  summary: 图标颜色 Cold（默认）| Hot
+  group: ''
+  block_parameter: ImageTypePopup
+  values: Cold（默认）| Hot
+- name: 比热比，gamma
+  summary: 比值 1.3998（默认）| scalar
+  group: ''
+  block_parameter: gamma
+  values: 1.3998（默认）| scalar
+- name: 理想气体常数，R
+  summary: 常数 287.05（默认）| scalar
+  group: ''
+  block_parameter: R
+  values: 287.05（默认）| scalar
+- name: 压力比线性化限值，Plim
+  summary: 限值 0.95（默认）| scalar
+  group: ''
+  block_parameter: Plim
+  values: 0.95（默认）| scalar
+- name: Constant area value, Aorf_cnst
+  summary: 面积 .1（默认）| scalar
+  group: ''
+  block_parameter: Aorf_cnst
+  values: .1（默认）| scalar
+- name: Discharge coefficient, Cd_cnst
+  summary: 系数 1（默认）| scalar
+  group: ''
+  block_parameter: Cd_cnst
+  values: 1（默认）| scalar
+- name: Discharge coefficient, Cd_ext
+  summary: 系数 1（默认）| scalar
+  group: ''
+  block_parameter: Cd_ext
+  values: 1（默认）| scalar
+- name: Throttle diameter, Dthr
+  summary: 直径 50（默认）| scalar
+  group: ''
+  block_parameter: Dthr
+  values: 50（默认）| scalar
+- name: Discharge coefficient table, ThrCd
+  summary: 系数 [0.001; 0.735]（默认）| vector
+  group: ''
+  block_parameter: ThrCd
+  values: '[0.001; 0.735]（默认）| vector'
+- name: Angle breakpoints, ThrAngBpts
+  summary: 角度 [0; 90]（默认）| vector
+  group: ''
+  block_parameter: ThrAngBpts
+  values: '[0; 90]（默认）| vector'
+```
 
 #### 模块选项
 
@@ -385,7 +466,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请为 **Orifice area model** 参数选择 `Throttle body geometry`。
-
 ## 所属库
 
 Powertrain Blockset / Propulsion / Combustion Engine Components / Fundamental Flow

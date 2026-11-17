@@ -14,6 +14,17 @@ language: en
 # IsTriangular
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input matrix matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_2
+  summary: Upper triangular or lower triangular matrix real scalar boolean
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -30,8 +41,17 @@ Upper triangular or lower triangular matrix, specified scalar, returned as a rea
 scalar boolean.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Mode
+  summary: Whether matrix is upper triangular or lower triangular Upper (default) | Lower
+  group: ''
+  block_parameter: Mode
+  type: character vector
+  values: '''Upper'' | ''Lower'''
+  default: '''Upper'''
+```
 
 ### **Mode** — Whether matrix is upper triangular or lower triangular `Upper` (default) | `Lower`
 
@@ -46,7 +66,6 @@ Identify the matrix as `Upper` or
 | **Type:** character vector |
 | **Values:** `'Upper'` | `'Lower'` |
 | **Default:** `'Upper'` |
-
 ## Libraries
 
 Simulink / Matrix Operations

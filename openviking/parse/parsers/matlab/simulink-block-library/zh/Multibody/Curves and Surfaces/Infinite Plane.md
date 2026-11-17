@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Infinite Plane
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 参考坐标系 frame
+  direction: unspecified
+- name: G
+  summary: 几何坐标系 frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -26,8 +35,40 @@ chinese_source: worker-translation
 ### **G** — 几何坐标系 frame
 
 表示此模块所定义平面的几何体。将此端口连接到 Spatial Contact Force 模块，以对与受支持几何体的接触进行建模。
-
 ## 参数
+```yaml
+parameters:
+- name: Type
+  summary: 平面的视觉表示 Rectangle（默认）| None
+  group: Graphic
+- name: Width (X)
+  summary: 平面视觉表示的宽度 1 m（默认）| 正整数
+  group: Graphic
+- name: Height (Y)
+  summary: 平面视觉表示的高度 1 m（默认）| 正整数
+  group: Graphic
+- name: Visual Properties
+  summary: 颜色和不透明度的参数化方式 Simple（默认）| Advanced
+  group: Graphic
+- name: Diffuse Color
+  summary: 图形颜色 [0.5 0.5 0.5]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Opacity
+  summary: 图形不透明度 0.25（默认）| 0 到 1 范围内的标量
+  group: Graphic
+- name: Specular Color
+  summary: 高光颜色 [0.5 0.5 0.5 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Ambient Color
+  summary: 阴影颜色 [0.15 0.15 0.15 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Emissive Color
+  summary: 自发光颜色 [0.0 0.0 0.0 1.0]（默认）| 三元素向量 | 四元素向量
+  group: Graphic
+- name: Shininess
+  summary: 高光锐度 75（默认）| 1 到 128 范围内的标量
+  group: Graphic
+```
 
 ### Graphic
 
@@ -125,7 +166,6 @@ chinese_source: worker-translation
 1. **Type** 为 `Rectangle`
 2. **Visual Properties** 为
    `Advanced`
-
 ## 所属库
 
 Simscape / Multibody / Curves and Surfaces

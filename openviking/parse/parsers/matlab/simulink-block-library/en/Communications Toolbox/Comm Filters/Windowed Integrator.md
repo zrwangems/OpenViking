@@ -14,10 +14,15 @@ language: en
 # Windowed Integrator
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Integration period**
 :   The length of the interval of integration, measured in samples.
@@ -146,7 +151,6 @@ Not documented in R2025b.
 :   Select this parameter to prevent any fixed-point scaling you specify in
     this block mask from being overridden by the autoscaling tool in the
     Fixed-Point Tool.
-
 ## Libraries
 
 Not documented in R2025b.

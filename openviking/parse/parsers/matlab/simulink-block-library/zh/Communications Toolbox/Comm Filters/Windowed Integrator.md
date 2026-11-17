@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # Windowed Integrator
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Integration period**
 :   积分区间的长度，以采样点为单位。
@@ -90,7 +95,6 @@ R2025b 中未记录。
 
 **Lock scaling against changes by the autoscaling tool**
 :   选择此参数以防止在此模块封装中指定的任何定点定标被 Fixed-Point Tool 中的自动定标工具覆盖。
-
 ## 所属库
 
 R2025b 中未记录。

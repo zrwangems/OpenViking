@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Band-Limited White Noise
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 正态分布随机数 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: double
+```
 
 ### 输出
 
@@ -23,8 +30,38 @@ chinese_source: worker-translation
 指定为正态分布的随机数，以标量、向量、矩阵或 N 维数组形式表示。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Noise power
+  summary: 白噪声的 PSD 高度 [0.1]（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: Cov
+  type: 字符向量
+  values: scalar | vector | matrix | N-D array
+  default: '''[0.1]'''
+- name: Sample time
+  summary: 噪声的相关时间 0.1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: Ts
+  type: 字符向量
+  values: scalar | vector
+  default: '''0.1'''
+- name: Seed
+  summary: 起始种子 [23341]（默认）| 标量 | 向量 | 矩阵 | N 维数组
+  group: ''
+  block_parameter: seed
+  type: 字符向量
+  values: scalar | vector | matrix | N-D array
+  default: '''[23341]'''
+- name: Interpret vector parameters as 1-D
+  summary: 将向量参数视为一维 on（默认）| off
+  group: ''
+  block_parameter: VectorParams1D
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Noise power** — 白噪声的 PSD 高度 `[0.1]`（默认）| 标量 | 向量 | 矩阵 | N 维数组
 
@@ -77,7 +114,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on' | 'off'` |
 | **默认值：** `'on'` |
-
 ## 所属库
 
 Simulink / Sources

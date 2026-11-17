@@ -14,6 +14,17 @@ language: en
 # Least Squares Polynomial Fit
 
 ## Ports
+```yaml
+ports:
+- name: Input
+  summary: Input data vector | matrix
+  direction: input
+  data_types: single | double
+- name: Output
+  summary: Polynomial coefficients column vector | matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -48,8 +59,16 @@ For more information on how this block computes the polynomial
 coefficients, see Algorithms.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Control points (X)
+  summary: Control points (0:31)/31 (default) | vector
+  group: ''
+- name: Polynomial order (N)
+  summary: Polynomial order 3 (default) | positive integer
+  group: ''
+```
 
 ### **Control points (X)** — Control points `(0:31)/31` (default) | vector
 
@@ -63,7 +82,6 @@ input, this parameter must be a length-*M* vector.
 
 Specify the order *n* of the polynomial that the block uses to construct
 the best fit. The number of coefficients is *n*+1.
-
 ## Libraries
 
 DSP System Toolbox / Math Functions / Polynomial Functions

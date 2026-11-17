@@ -15,6 +15,237 @@ chinese_source: worker-translation
 # Pack net_fdm Packet for FlightGear
 
 ## 端口
+```yaml
+ports:
+- name: l
+  summary: 经度标量
+  direction: input
+  data_types: double
+- name: μ
+  summary: 纬度标量
+  direction: input
+  data_types: double
+- name: h
+  summary: 高度标量
+  direction: input
+  data_types: double
+- name: ϕ
+  summary: 滚转角标量
+  direction: input
+  data_types: single
+- name: θ
+  summary: 俯仰角标量
+  direction: input
+  data_types: single
+- name: ψ
+  summary: 偏航角标量
+  direction: input
+  data_types: single
+- name: α
+  summary: 迎角标量
+  direction: input
+  data_types: single
+- name: β
+  summary: 侧滑角标量
+  direction: input
+  data_types: single
+- name: dφ/dt
+  summary: 滚转角速率标量
+  direction: input
+  data_types: single
+- name: dθ/dt
+  summary: 俯仰角速率标量
+  direction: input
+  data_types: single
+- name: dψ/dt
+  summary: 偏航角速率标量
+  direction: input
+  data_types: single
+- name: Vcas
+  summary: 校准空速标量
+  direction: input
+  data_types: single
+- name: climb_rate
+  summary: 爬升率标量
+  direction: input
+  data_types: single
+- name: vnorth
+  summary: 机体坐标系北向速度标量
+  direction: input
+  data_types: single
+- name: veast
+  summary: 机体坐标系东向速度标量
+  direction: input
+  data_types: single
+- name: vdown
+  summary: 向下速度标量
+  direction: input
+  data_types: single
+- name: vwind body north
+  summary: 相对于当地气团的机体坐标系北向速度标量
+  direction: input
+  data_types: single
+- name: vwind body east
+  summary: 相对于当地气团的机体坐标系东向速度标量
+  direction: input
+  data_types: single
+- name: vwind body down
+  summary: 相对于气团的机体坐标系向下速度标量
+  direction: input
+  data_types: single
+- name: AX pilot
+  summary: 机体坐标系 *X* 加速度标量
+  direction: input
+  data_types: single
+- name: AY pilot
+  summary: 机体坐标系 *Y* 加速度标量
+  direction: input
+  data_types: single
+- name: AZ pilot
+  summary: 机体坐标系 *Z* 加速度标量
+  direction: input
+  data_types: single
+- name: stall_warning
+  summary: 失速量标量
+  direction: input
+  data_types: single
+- name: slip_degree
+  summary: 侧滑球偏转标量
+  direction: input
+  data_types: single
+- name: elevator
+  summary: 归一化升降舵位置标量
+  direction: input
+  data_types: single
+- name: elevator_trim_tab
+  summary: 归一化升降舵配平片位置标量
+  direction: input
+  data_types: single
+- name: left_flap
+  summary: 归一化左襟翼位置标量
+  direction: input
+  data_types: single
+- name: right_flap
+  summary: 归一化右襟翼位置标量
+  direction: input
+  data_types: single
+- name: left_aileron
+  summary: 归一化左副翼位置标量
+  direction: input
+  data_types: single
+- name: right_aileron
+  summary: 归一化右副翼位置标量
+  direction: input
+  data_types: single
+- name: rudder
+  summary: 归一化方向舵位置标量
+  direction: input
+  data_types: single
+- name: nose_wheel
+  summary: 归一化前轮位置标量
+  direction: input
+  data_types: single
+- name: speedbrake
+  summary: 归一化减速板位置标量
+  direction: input
+  data_types: single
+- name: spoilers
+  summary: 归一化扰流板位置标量
+  direction: input
+  data_types: single
+- name: num_engines
+  summary: 发动机数量标量
+  direction: input
+  data_types: uint32
+- name: eng_state
+  summary: 发动机状态向量
+  direction: input
+  data_types: uint32
+- name: rpm
+  summary: 发动机转速向量
+  direction: input
+  data_types: single
+- name: fuel_flow
+  summary: 燃油流量向量
+  direction: input
+  data_types: single
+- name: fuel_px
+  summary: 燃油压力向量
+  direction: input
+  data_types: single
+- name: egt
+  summary: 排气温度向量
+  direction: input
+  data_types: single
+- name: cht
+  summary: 气缸盖温度标量
+  direction: input
+  data_types: single
+- name: mp_osi
+  summary: 进气歧管压力向量
+  direction: input
+  data_types: single
+- name: tit
+  summary: 涡轮进口温度向量
+  direction: input
+  data_types: single
+- name: oil_temp
+  summary: 滑油温度向量
+  direction: input
+  data_types: single
+- name: oil_px
+  summary: 滑油压力向量
+  direction: input
+  data_types: single
+- name: num_tanks
+  summary: 燃油箱数量标量
+  direction: input
+  data_types: uin32
+- name: fuel_quantity
+  summary: 每个燃油箱的燃油量向量
+  direction: input
+  data_types: single
+- name: num_wheels
+  summary: 机轮数量标量
+  direction: input
+  data_types: uint32
+- name: wow
+  summary: 轮载开关向量
+  direction: input
+  data_types: uint32
+- name: gear_pos
+  summary: 起落架归一化位置向量
+  direction: input
+  data_types: single
+- name: gear_steer
+  summary: 起落架归一化转向向量
+  direction: input
+  data_types: single
+- name: gear_compression
+  summary: 起落架归一化压缩量向量
+  direction: input
+  data_types: single
+- name: agl
+  summary: 离地高度标量
+  direction: input
+  data_types: single
+- name: cur_time
+  summary: 当前 UNIX® 时间标量
+  direction: input
+  data_types: uint32
+- name: warp
+  summary: 相对于 UNIX 时间的偏移秒数标量
+  direction: input
+  data_types: int32
+- name: visibility
+  summary: 能见度标量
+  direction: input
+  data_types: single
+- name: net_fdm
+  summary: 为 FlightGear 生成的数据包数组
+  direction: output
+  data_types: single | double | uint32
+```
 
 ### 输入
 
@@ -596,8 +827,52 @@ chinese_source: worker-translation
 为 FlightGear 生成的数据包，指定为数组。
 
 **数据类型：** `single` | `double` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Show position/altitude inputs
+  summary: 位置和高度输入 on（默认）| off
+  group: ''
+  block_parameter: ShowPositionAttitudeInputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Show velocity/acceleration inputs
+  summary: 速度和加速度输入 off（默认）| on
+  group: ''
+  block_parameter: ShowVelocityAccelerationInputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Show control surface position inputs
+  summary: 控制面位置输入 off（默认）| on
+  group: ''
+  block_parameter: ShowControlSurfacePositionInputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Show engine/fuel inputs
+  summary: 发动机/燃油输入 off（默认）| on
+  group: ''
+  block_parameter: ShowEngineFuelInputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Show landing gear inputs
+  summary: 起落架输入 off（默认）| on
+  group: ''
+  block_parameter: ShowLandingGearInputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Show environment inputs
+  summary: 环境输入 off（默认）| on
+  group: ''
+  block_parameter: ShowEnvironmentInputs
+  type: 字符向量
+  values: '''off'' | ''on'''
+- name: Sample time
+  summary: 采样时间 1/30（默认）| 标量
+  group: ''
+  block_parameter: SampleTime
+  type: 字符向量
+  values: 标量
+```
 
 ### **Show position/altitude inputs** — 位置和高度输入 `on`（默认）| `off`
 
@@ -799,7 +1074,6 @@ chinese_source: worker-translation
 | **类型**：字符向量 |
 | **值**：标量 |
 | **默认**：`'1/30'` |
-
 ## 所属库
 
 Aerospace Blockset / Animation / Flight Simulator Interfaces

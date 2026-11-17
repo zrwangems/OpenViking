@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Width
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: Port_1
+  summary: 输入信号的宽度 标量
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -30,8 +42,31 @@ chinese_source: worker-translation
 输出为输入信号的宽度，指定为标量。
 
 **数据类型：** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: 输出数据类型模式
+  summary: 输出数据类型模式 Choose intrinsic data type（默认）| Inherit via back propagation | All ports same datatype
+  group: ''
+  block_parameter: OutputDataTypeScalingMode
+  type: 字符向量
+  values: '''Choose intrinsic data type'' | ''Inherit via back propagation'' | ''All ports same datatype'''
+  default: '''Choose intrinsic data type'''
+- name: 输出数据类型
+  summary: 输出数据类型 double（默认）| single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataType
+  type: 字符向量
+  values: '''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'''
+  default: '''double'''
+- name: 始终使用常量采样时间
+  summary: 始终使用常量采样时间 off（默认）| on
+  group: ''
+  block_parameter: AlwaysUseConstantSampleTime
+  type: 字符向量
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **输出数据类型模式** — 输出数据类型模式 `Choose intrinsic data type`（默认）| `Inherit via back propagation` | `All ports same datatype`
 
@@ -71,7 +106,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'on'` | `'off'` |
 | **默认值：** `'on'` |
-
 ## 所属库
 
 Simulink / Signal Attributes

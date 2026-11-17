@@ -14,6 +14,17 @@ language: en
 # ASCII to String
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: ASCII signal vector
+  direction: input
+  data_types: uint8
+- name: Port_1
+  summary: Converted string signal scalar
+  direction: output
+  data_types: string
+```
 
 ### Input
 
@@ -44,11 +55,12 @@ alphanumeric equivalent and outputs all elements concatenated into one
 string.
 
 **Data Types:** `string`
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 Not documented in R2025b.
-
 ## Libraries
 
 Simulink / String

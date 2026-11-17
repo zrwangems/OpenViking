@@ -14,6 +14,15 @@ language: en
 # Current Source (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: n
+  summary: Wye center electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -27,8 +36,23 @@ port associated with the three phases, *a*,
 
 Electrical conserving port associated with the center of the
 wye.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Current (phase RMS)
+  summary: RMS phase current 100 / sqrt(2) A (default)
+  group: ''
+- name: Phase shift
+  summary: Phase shift 0 deg (default)
+  group: ''
+- name: Frequency
+  summary: Current frequency 60 Hz (default)
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -55,7 +79,6 @@ Current frequency, specified in Hz or units directly convertible to Hz
 (where Hz is defined as 1/s). For example, `kHz` and
 `MHz` are valid units, but `rad/s` is
 not.
-
 ## Libraries
 
 Simscape / Electrical / Sources

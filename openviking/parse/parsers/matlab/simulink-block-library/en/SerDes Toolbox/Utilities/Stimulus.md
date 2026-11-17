@@ -14,6 +14,13 @@ language: en
 # Stimulus
 
 ## Ports
+```yaml
+ports:
+- name: WaveOut
+  summary: Output signal with specific PRBS pattern vector
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -22,8 +29,207 @@ language: en
 Output pattern with a specific PRBS pattern, specified as a vector.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of symbols
+  summary: Length of stimulus pattern used for simulation 20000 (default) | positive real integer
+  group: Stimulus
+  block_parameter: NumberOfSymbols
+  type: character vector
+  values: positive real integer
+  default: '20000'
+- name: Use recommended simulation stop time
+  summary: Set recommended simulation stop time as simulation stop time on (default) | off
+  group: Stimulus
+- name: Waveform creation method
+  summary: Define how stimulus waveform is created Random Symbols (default) | Serial PRBS | Symbol Pattern | Binary Pattern
+    | Symbol Voltage Pattern | Sampled Voltage | Parallel PRBS
+  group: Stimulus
+  block_parameter: CreationMethod
+  type: character vector
+  values: Random Symbols | Serial PRBS | Symbol Pattern | Binary Pattern | Symbol Voltage Pattern | Sampled Voltage | Parallel
+    PRBS
+  default: Random Symbols
+- name: Random symbols seed
+  summary: Seed for generating random symbol waveform 1431655765 (default) | positive real scalar
+  group: Stimulus
+  block_parameter: soPAMnSeed
+  type: character vector
+  values: positive real scalar
+  default: '1431655765'
+- name: PRBS order
+  summary: Order of pseudorandom binary sequence 11 (default) | 7 | 9 | 13 | 15 | 20 | 23 | 31 | 47
+  group: Stimulus
+  block_parameter: PRBS
+  type: character vector
+  values: 7 | 9 | 11 | 13 | 15 | 20 | 23 | 31 | 47
+  default: '11'
+- name: PRBS seed
+  summary: Seed of pseudorandom binary sequence 1 (default) | integer in the range [1, 2Order-1]
+  group: Stimulus
+  block_parameter: PRBSSeed
+  type: character vector
+  values: integer in the range [1, 2Order-1]
+  default: '1'
+- name: Reverse PRBS in time
+  summary: Reverse PRBS in time by reversing tap positions of characteristic polynomial off (default) | on
+  group: Stimulus
+- name: Invert PRBS in voltage
+  summary: Invert PRBS in voltage by flipping the values of 0 and 1 off (default) | on
+  group: Stimulus
+- name: Symbol pattern
+  summary: Vector of symbol integers spaced at symbol time interval [0 0 1 0 0 1 1 0 1 0 1 1 1 1 0] (default) | vector with
+    element values in the range [0, (Number of modulation levels-1)]
+  group: Stimulus
+  block_parameter: SymbolPattern
+  type: character vector
+  values: vector with element values in the range [0, (Number of modulation levels-1)]
+  default: '[0 0 1 0 0 1 1 0 1 0 1 1 1 1 0]'
+- name: Binary pattern
+  summary: Vector of 1s and 0s spaced at sample time interval [0 0 0 1 0 0 1 0 1 1 0 0 1 1 1 1 1 0 0 0 1 1 0 1 1 1 0 1 0 1
+    0] (default) | vector with binary elements
+  group: Stimulus
+  block_parameter: BinaryPattern
+  type: character vector
+  values: vector with binary elements
+  default: '[0 0 0 1 0 0 1 0 1 1 0 0 1 1 1 1 1 0 0 0 1 1 0 1 1 1 0 1 0 1 0]'
+- name: Symbol voltage pattern
+  summary: Vector of symbol voltages spaced at symbol time interval 1/2*[1 1 1 1 -1 -1 -1 -1] (default) | vector with decimal
+    values
+  group: Stimulus
+  block_parameter: SymbolVoltageDataPattern
+  type: character vector
+  values: vector with decimal values
+  default: 1/2*[1 1 1 1 -1 -1 -1 -1]
+- name: Sampled voltage pattern
+  summary: Vector of voltages spaced at sample interval [zeros(1,(SymbolTime/SampleInterval)),ones(1,(SymbolTime/SampleInterval))]-0.5
+    (default) | real valued vector
+  group: Stimulus
+  block_parameter: CustomStimulus
+  type: character vector
+  values: real valued vector
+  default: '[zeros(1,(SymbolTime/SampleInterval)),ones(1,(SymbolTime/SampleInterval))]-0.5'
+- name: Sub symbol time delay (s)
+  summary: Delay stimulus waveform by modulo symbol time 0 (default) | nonnegative real scalar
+  group: Stimulus
+  block_parameter: soDelay
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Change in IBIS-AMI Manager
+  summary: Modify Rx_Use_Clock_Input reserved AMI parameter button
+  group: Clock Forwarding
+- name: Generate Clock or Strobe Waveform
+  summary: Generate clock or strobe waveform from waveform parameters off (default) | on
+  group: Clock Forwarding
+- name: Use External Waveform or Clock Times Array
+  summary: Use external waveform to forward on (default) | off
+  group: Clock Forwarding
+- name: Include Analog Channel Model in clock waveform
+  summary: Include analog channel model in clock waveform on (default) | off
+  group: Clock Forwarding
+- name: Clock Pattern
+  summary: Forwarding clock pattern off (default) | on
+  group: Clock Forwarding
+- name: Strobe Pattern
+  summary: Forwarding strobe pattern on (default) | off
+  group: Clock Forwarding
+- name: Delay (s)
+  summary: Delay forwarding clock 0 (default) | nonnegative real scalar
+  group: Clock Forwarding
+  block_parameter: CF_Delay
+  type: character vector
+  values: nonnegative real scalar
+  default: '0'
+- name: Burst Length
+  summary: Number of symbols between strobe burst pattern 16 (default) | nonnegative scalar integer
+  group: Clock Forwarding
+  block_parameter: CF_BurstLen
+  type: character vector
+  values: nonnegative scalar integer
+  default: '0'
+- name: Idle Length
+  summary: Number of symbol between bursts 8 (default) | nonnegative scalar integer
+  group: Clock Forwarding
+  block_parameter: CF_IdleLen
+  type: character vector
+  values: nonnegative scalar integer
+  default: '0'
+- name: Preamble
+  summary: Number of additional clock cycles added to beginning of each burst 2 (default) | nonnegative scalar integer
+  group: Clock Forwarding
+  block_parameter: CF_Preamble
+  type: character vector
+  values: nonnegative scalar integer
+  default: '2'
+- name: Postamble
+  summary: Number of additional clock cycles added to end of each burst 0 (default) | nonnegative scalar integer
+  group: Clock Forwarding
+  block_parameter: CF_Postamble
+  type: character vector
+  values: nonnegative scalar integer
+  default: '0'
+- name: Include Transmitter Jitter
+  summary: Include transmitter jitter in forwarded clock on (default) | off
+  group: Clock Forwarding
+- name: Tx_Dj (UI)
+  summary: Transmitter deterministic jitter 0 (default) | scalar in the range [0 1]
+  group: Clock Forwarding
+  block_parameter: CF_TxDj
+  type: character vector
+  values: scalar in the range [0 1]
+  default: '0'
+- name: Tx_Rj (UI)
+  summary: Transmitter random jitter 0 (default) | scalar in the range [0 1]
+  group: Clock Forwarding
+  block_parameter: CF_TxRj
+  type: character vector
+  values: scalar in the range [0 1]
+  default: '0'
+- name: Tx_DCD (UI)
+  summary: Transmitter duty cycle distortion 0 (default) | scalar in the range [0 1]
+  group: Clock Forwarding
+  block_parameter: CF_TxDCD
+  type: character vector
+  values: scalar in the range [0 1]
+  default: '0'
+- name: Tx_Sj (UI)
+  summary: Transmitter sinusoidal jitter 0 (default) | scalar in the range [0 1]
+  group: Clock Forwarding
+  block_parameter: CF_Sj
+  type: character vector
+  values: scalar in the range [0 1]
+  default: '0'
+- name: Tx_Sj_Frequency (Hz)
+  summary: Transmitter sinusoidal jitter frequency 0 (default) | scalar in the range [0 100e9]
+  group: Clock Forwarding
+  block_parameter: CF_TxSjFreq
+  type: character vector
+  values: scalar in the range [0 100e9]
+  default: '0'
+- name: Waveform Name
+  summary: Name of waveform parameter in workspace defaultClockWave (default) | character string
+  group: Clock Forwarding
+  block_parameter: CF_WaveformName
+  type: character vector
+  values: character string
+  default: '0'
+- name: Waveform Delay (s)
+  summary: Delay forwarding clock 0 (default) | nonnegative scalar integer
+  group: Clock Forwarding
+  block_parameter: CF_WaveDelay
+  type: character vector
+  values: nonnegative scalar integer
+  default: '0'
+- name: Clock Times Name
+  summary: Name of clock times parameter in workspace defaultClockTimes (default) | character string
+  group: Clock Forwarding
+  block_parameter: CF_ClockTimesName
+  type: character vector
+  values: character string
+  default: '0'
+```
 
 ### Stimulus
 
@@ -582,7 +788,6 @@ To enable this parameter, select **Current value** of
 | **Type:** character vector |
 | **Values:** character string |
 | **Default:** `0` |
-
 ## Libraries
 
 SerDes Toolbox / Utilities

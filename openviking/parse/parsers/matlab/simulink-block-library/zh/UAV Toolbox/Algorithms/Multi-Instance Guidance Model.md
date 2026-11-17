@@ -15,6 +15,20 @@ chinese_source: worker-translation
 # Multi-Instance Guidance Model
 
 ## 端口
+```yaml
+ports:
+- name: Control
+  summary: 控制输入总线
+  direction: input
+- name: Environment
+  summary: 环境输入总线
+  direction: input
+  data_types: bus
+- name: State
+  summary: 仿真的无人机状态总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -81,8 +95,31 @@ UAV 的控制输入，指定为总线。将总线的每个元素指定为 1×*N*
 使用 **State Bus Name** 属性指定状态输出总线的名称。
 
 **Data Types:** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Model Type
+  summary: 无人机制导模型类型 MultirotorGuidance（默认）| FixedWingGuidance
+  group: ''
+- name: Number of Instances
+  summary: 要仿真的无人机数量 5（默认）| 正整数
+  group: ''
+- name: Data Type
+  summary: 输入和输出数值数据类型 double（默认）| single
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+- name: Initial State
+  summary: 初始 UAV 状态选项卡多个表条目
+  group: ''
+- name: Configuration
+  summary: UAV 控制器配置选项卡多个表项
+  group: ''
+- name: Input/Output Bus Names
+  summary: Simulink 总线信号名称选项卡总线名称
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -162,7 +199,6 @@ UAV 控制器配置选项卡，指定为多个表项。在所有控制器配置�
 | `MultirotorGuidance` | `MultirotorGuidanceStateBus` | `MultirotorGuidanceControlBus` | `MultirotorGuidanceEnvironmentBus` |
 
 要在同一个 Simulink 模型中使用多个制导模型，请为每个 Multi-Instance Guidance Model 模块指定彼此不相交的总线名称。
-
 ## 所属库
 
 UAV Toolbox / Algorithms

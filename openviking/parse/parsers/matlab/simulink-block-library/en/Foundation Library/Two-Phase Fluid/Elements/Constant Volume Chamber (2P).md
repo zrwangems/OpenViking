@@ -14,6 +14,24 @@ language: en
 # Constant Volume Chamber (2P)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Chamber inlet two-phase fluid
+  direction: conserving
+- name: B
+  summary: Chamber inlet two-phase fluid
+  direction: conserving
+- name: C
+  summary: Chamber inlet two-phase fluid
+  direction: conserving
+- name: D
+  summary: Chamber inlet two-phase fluid
+  direction: conserving
+- name: H
+  summary: Thermal port thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -55,8 +73,53 @@ To enable this port, set the **Number of ports** parameter to
 
 Thermal conserving port through which the fluid in the chamber exchanges heat with
 a thermal network.
-
 ## Parameters
+```yaml
+parameters:
+- name: Chamber volume
+  summary: Volume of fluid inside chamber 0.001 m^3 (default) | positive scalar
+  group: Main
+- name: Number of ports
+  summary: Number of inlet ports in chamber 1 (default) | 2 | 3 | 4
+  group: Main
+- name: Cross-sectional area at port A
+  summary: Inlet area normal to direction of flow 0.01 m^2 (default) | positive scalar
+  group: Main
+- name: Cross-sectional area at port B
+  summary: Inlet area normal to direction of flow 0.01 m^2 (default) | positive scalar
+  group: Main
+- name: Cross-sectional area at port C
+  summary: Inlet area normal to direction of flow 0.01 m^2 (default) | positive scalar
+  group: Main
+- name: Cross-sectional area at port D
+  summary: Inlet area normal to direction of flow 0.01 m^2 (default) | positive scalar
+  group: Main
+- name: Initial fluid energy specification
+  summary: Thermodynamic variable to use in defining initial conditions Temperature (default) | Vapor quality | Vapor void
+    fraction | Specific enthalpy | Specific internal energy
+  group: Effects and Initial Conditions
+- name: Initial pressure
+  summary: Absolute pressure at start of simulation 0.101325 MPa (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial temperature
+  summary: Absolute temperature at start of simulation 293.15 K (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial vapor quality
+  summary: Mass fraction of vapor at start of simulation 0.5 (default) | unitless scalar between 0 and 1
+  group: Effects and Initial Conditions
+- name: Initial vapor void fraction
+  summary: Volume fraction of vapor at start of simulation 0.5 (default) | unitless scalar between 0 and 1
+  group: Effects and Initial Conditions
+- name: Initial specific enthalpy
+  summary: Specific enthalpy at start of simulation 1500 kJ/kg (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial specific internal energy
+  summary: Specific internal energy at start of simulation 1500 kJ/kg (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Phase change time constant
+  summary: Characteristic duration of a phase-change event 0.1 s (default) | positive scalar
+  group: Effects and Initial Conditions
+```
 
 ### Main
 
@@ -191,7 +254,6 @@ energy`.
 Characteristic time to equilibrium of a phase-change event taking place in the
 chamber. Increase this parameter to slow the rate of phase change or decrease it to
 speed the rate.
-
 ## Libraries
 
 Simscape / Foundation Library / Two-Phase Fluid / Elements

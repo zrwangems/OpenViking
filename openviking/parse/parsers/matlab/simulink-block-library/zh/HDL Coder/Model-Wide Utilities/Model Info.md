@@ -15,10 +15,24 @@ chinese_source: worker-translation
 # Model Info
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Enter text and tokens to display on Model Info block
+  summary: 要在 Model Info 模块上显示的文本内容和格式 Model Info（默认）| text
+  group: ''
+- name: Horizontal text alignment
+  summary: 模块封装上的水平文本对齐方式 Center（默认）| Left | Right
+  group: ''
+- name: Show block frame
+  summary: 模块封装的边框 on（默认）| off
+  group: ''
+```
 
 ### **Enter text and tokens to display on Model Info block** — 要在 Model Info 模块上显示的文本内容和格式 `Model Info`（默认）| text
 
@@ -44,7 +58,6 @@ R2025b 中未记录。
 ### **Show block frame** — 模块封装的边框 `on`（默认）| `off`
 
 指定是否显示模块边框，即模块封装周围的边框。
-
 ## 所属库
 
 Simulink / Model-Wide Utilities HDL Coder / Model-Wide Utilities

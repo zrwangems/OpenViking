@@ -14,6 +14,15 @@ language: en
 # Nonlinear Inductor
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Positive terminal electrical
+  direction: conserving
+- name: '-'
+  summary: Negative terminal electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -26,8 +35,87 @@ terminal.
 
 Electrical conserving port associated with the negative
 terminal.
-
 ## Parameters
+```yaml
+parameters:
+- name: Parameterized by
+  summary: Block parameterization Single saturation point (default) | Single inductance (linear) | Magnetic flux versus current
+    characteristic | Magnetic flux density versus magnetic field strength characteristic | Magnetic flux density versus magnetic
+    field strength characteristic with hysteresis
+  group: Main
+- name: Number of turns
+  summary: Total number of turns 10 (default)
+  group: Main
+- name: Unsaturated inductance
+  summary: Unsaturated inductance 2e-4 H (default)
+  group: Main
+- name: Saturated inductance
+  summary: Saturated inductance 1e-4 H (default)
+  group: Main
+- name: Saturation magnetic flux
+  summary: Saturation magnetic flux 1.3e-05 Wb (default)
+  group: Main
+- name: Current vector, i
+  summary: Current data vector [0, .64, 1.28, 1.92, 2.56, 3.2] A (default)
+  group: Main
+- name: Magnetic flux vector, phi
+  summary: Magnetic flux data [0, 1.29, 2, 2.27, 2.36, 2.39] .* 1e-5 Wb (default)
+  group: Main
+- name: Magnetic field strength vector, H
+  summary: Magnetic field strength vector [0, 200, 400, 600, 800, 1000] A/m (default) | vector
+  group: Main
+- name: Magnetic flux density vector, B
+  summary: Magnetic flux density data [0, .81, 1.25, 1.42, 1.48, 1.49] T (default) | vector
+  group: Main
+- name: Effective length
+  summary: Effective core length 0.032 m (default) | positive finite scalar
+  group: Main
+- name: Effective cross-sectional area
+  summary: Effective core cross-sectional area 1.6e-5 m^2 (default) | positive finite scalar
+  group: Main
+- name: Anhysteretic B-H gradient when H is zero
+  summary: Gradient of anhysteretic B-H curve around zero field strength 0.005 m*T/A (default) | scalar
+  group: Main
+- name: Flux density point on anhysteretic B-H curve
+  summary: Flux density point on anhysteretic B-H curve 1.49 T (default) | scalar
+  group: Main
+- name: Corresponding field strength
+  summary: Corresponding field strength 1000 A/m (default) | scalar
+  group: Main
+- name: Coefficient for reversible magnetization, c
+  summary: Coefficient for reversible magnetization 0.1 (default) | scalar in the range [0,1]
+  group: Main
+- name: Bulk coupling coefficient, K
+  summary: Bulk coupling coefficient 200 A/m (default) | finite positive scalar
+  group: Main
+- name: Inter-domain coupling factor, alpha
+  summary: Inter-domain coupling factor 1e-4 (default) | scalar
+  group: Main
+- name: Averaging period for power logging
+  summary: Averaging period for power logging 0 s (default) | scalar
+  group: Main
+- name: Parasitic parallel conductance
+  summary: Parasitic parallel conductance 1e-9 1/Ohm (default)
+  group: Main
+- name: Interpolation option
+  summary: Interpolation option Linear (default) | Smooth
+  group: Main
+- name: Specify initial state by
+  summary: Initial state specification option Current (default) | Magnetic flux
+  group: Initial Conditions
+- name: Initial current
+  summary: Initial current 0 A (default)
+  group: Initial Conditions
+- name: Initial magnetic flux
+  summary: Initial magnetic flux 0 Wb (default)
+  group: Initial Conditions
+- name: Initial magnetic flux density
+  summary: Initial magnetic flux density 0 T (default)
+  group: Initial Conditions
+- name: Initial field strength
+  summary: Initial field strength 0 A/m (default)
+  group: Initial Conditions
+```
 
 ### Main
 
@@ -391,7 +479,6 @@ To enable this parameter, in the **Main**
 settings, set the **Parameterized by** parameter to
 `Magnetic flux density versus magnetic field
 strength characteristic with hysteresis`.
-
 ## Libraries
 
 Simscape / Electrical / Passive

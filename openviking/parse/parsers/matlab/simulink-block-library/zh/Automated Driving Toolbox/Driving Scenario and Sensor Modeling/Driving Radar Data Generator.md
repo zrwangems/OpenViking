@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Driving Radar Data Generator
 
 ## 端口
+```yaml
+ports:
+- name: Actors
+  summary: 场景参与者位姿 包含 MATLAB® 结构的 Simulink 总线
+  direction: input
+- name: Clustered detections
+  summary: 聚类目标检测 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Tracks
+  summary: 目标航迹 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+- name: Detections
+  summary: 未聚类目标检测 包含 MATLAB 结构的 Simulink 总线
+  direction: output
+```
 
 ### 输入
 
@@ -209,8 +224,148 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在 **Parameters** 选项卡上，将 **Target reporting format** 参数设置为 `Detections`。
-
 ## 参数
+```yaml
+parameters:
+- name: Unique identifier of sensor
+  summary: 唯一传感器标识符 0（默认）| 正整数
+  group: 参数
+- name: Update rate (Hz)
+  summary: 传感器更新率 10（默认）| 正实值标量
+  group: 参数
+- name: Translation [ X, Y, Z ] relative to ego origin (m)
+  summary: 自车上的传感器位置 (m) [3.4, 0, 0.2]（默认）| 形式为 [*x* *y* *z*] 的 1×3 实值向量
+  group: 参数
+- name: Rotation [Yaw, Pitch, Roll] relative to ego's frame (deg)
+  summary: 雷达的安装旋转角度 [0 0 0]（默认）| 形式为 [*z*yaw *y*pitch *x*roll] 的 1×3 实值向量
+  group: 参数
+- name: Enable elevation angle measurements
+  summary: 使雷达能够测量目标仰角 off（默认）| on
+  group: 参数
+- name: Enable range rate measurements
+  summary: 使雷达能够测量目标距离变化率 on（默认）| off
+  group: 参数
+- name: Add noise to measurements
+  summary: 启用向雷达传感器测量值添加噪声 on（默认）| off
+  group: 参数
+- name: Enable false reports
+  summary: 启用生成虚警雷达检测 on（默认）| off
+  group: 参数
+- name: Enable occlusion
+  summary: 启用视线遮挡 on（默认）| off
+  group: 参数
+- name: Maximum number of target reports
+  summary: 检测或航迹的最大数量 50（默认）| 正整数
+  group: 参数
+- name: Target reporting format
+  summary: 生成目标报告的格式 Clustered detections（默认）| Tracks | Detections
+  group: 参数
+- name: Coordinate system
+  summary: 所报告检测的坐标系 Body（默认）| Sensor rectangular | Sensor spherical
+  group: 参数
+- name: Source of output bus name
+  summary: 输出总线名称的来源 Auto（默认）| Property
+  group: 参数
+- name: Specify an output bus name
+  summary: 输出总线的名称 BusDrivingRadarDataGenerator（默认）| 有效总线名称
+  group: 参数
+- name: Azimuth resolution (deg)
+  summary: 雷达的方位分辨率 4（默认）| 正实数标量
+  group: Measurements
+- name: Elevation resolution (deg)
+  summary: 雷达的仰角分辨率 5（默认）| 正实数标量
+  group: Measurements
+- name: Range resolution (m)
+  summary: 雷达的距离分辨率 2.5（默认）| 正实数标量
+  group: Measurements
+- name: Range rate resolution (m/s)
+  summary: 雷达的距离变化率分辨率 0.5（默认）| 正实数标量
+  group: Measurements
+- name: Azimuth bias fraction
+  summary: 雷达的方位偏差分数 0.1（默认）| 非负标量
+  group: Measurements
+- name: Elevation bias fraction
+  summary: 雷达的仰角偏差分数 0.1（默认）| 非负标量
+  group: Measurements
+- name: Range bias fraction
+  summary: 距离偏差分数 0.05（默认）| 非负标量
+  group: Measurements
+- name: Range rate bias fraction
+  summary: 距离变化率偏差分数 0.05（默认）| 非负标量
+  group: Measurements
+- name: Total angular field of view [AZ, EL] (deg)
+  summary: 雷达的角视场 [20 5]（默认）| 形式为 [azfov, elfov] 的 1×2 正实值向量
+  group: Measurements
+- name: Range limits [MIN, MAX] (m)
+  summary: 雷达的最小和最大距离 [0 150]（默认）| 形式为 [min max] 的 1×2 非负实值向量
+  group: Measurements
+- name: Range rate limits [MIN, MAX] (m/s)
+  summary: 雷达的最小和最大距离变化率（m/s） [-100 100]（默认）| 形式为 [min max] 的 1×2 实值向量
+  group: Measurements
+- name: Detection probability
+  summary: 检测到目标的概率 0.9（默认）| 范围 (0, 1] 内的标量
+  group: Measurements
+- name: False alarm rate
+  summary: 虚警报告率 1e-06（默认）| 范围 [10–7, 10–3] 内的正实数标量
+  group: Measurements
+- name: Reference target range (m)
+  summary: 给定检测概率的参考距离 100（默认）| 正实数标量
+  group: Measurements
+- name: Reference target RCS (dBsm)
+  summary: 给定检测概率的参考雷达截面积 0（默认）| 实标量
+  group: Measurements
+- name: Center frequency (Hz)
+  summary: 雷达频带的中心频率 77e9（默认）| 正实数标量
+  group: Measurements
+- name: Filter initialization function name
+  summary: 卡尔曼滤波器初始化函数 initcvekf（默认）| 函数名
+  group: Measurements
+- name: M and N for the M-out-of-N confirmation
+  summary: 航迹确认阈值 [2 3]（默认）| 1×2 正整数向量
+  group: Measurements
+- name: P and R for the P-out-of-R deletion
+  summary: 航迹删除阈值 [5 5]（默认）| 1×2 正整数向量
+  group: Measurements
+- name: Random number generation
+  summary: 指定随机数生成器种子的方法 Repeatable（默认）| Specify seed | Not repeatable
+  group: Measurements
+- name: Initial seed
+  summary: 随机数生成器种子 0（默认）| 小于 232 的非负整数
+  group: Measurements
+- name: 目标配置文件定义
+  summary: 指定目标配置文件的方法 From Scenario Reader block（默认）| MATLAB expression | Parameters
+  group: Target Profiles
+- name: 目标配置文件的 MATLAB 表达式
+  summary: 目标配置文件的 MATLAB 表达式 MATLAB 结构体 | MATLAB 结构体数组 | 有效的 MATLAB 表达式
+  group: Target Profiles
+- name: 参与者的唯一标识符
+  summary: 场景定义的参与者标识符 []（默认）| 正整数 | 长度为 *L* 的唯一正整数向量
+  group: Target Profiles
+- name: 用于对参与者分类的用户定义整数
+  summary: 用户定义的分类标识符 0（默认）| 整数 | 长度为 *L* 的整数向量
+  group: Target Profiles
+- name: 参与者长方体长度 (m)
+  summary: 参与者长方体的长度 4.7（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: Target Profiles
+- name: 参与者长方体宽度 (m)
+  summary: 参与者长方体的宽度 1.8（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: Target Profiles
+- name: 参与者长方体高度 (m)
+  summary: 参与者长方体的高度 1.4（默认）| 正实数标量 | 长度为 *L* 的正值向量
+  group: Target Profiles
+- name: 参与者从底部中心起的旋转中心 (m)
+  summary: 参与者的旋转中心 {[-1.35, 0, 0]}（默认）| 长度为 *L* 的实值 1×3 向量元胞数组
+  group: Target Profiles
+- name: 雷达截面积方向图 (dBsm)
+  summary: 雷达截面积 {[10, 10; 10, 10]}（默认）| 实值 *Q*×*P* 矩阵 | 长度为 *L* 的实值 *Q*×*P* 矩阵元胞数组
+  group: Target Profiles
+- name: 定义 RCSPattern 的方位角 (deg)
+  summary: 雷达截面积方向图的方位角 {[-180 180]}（默认）| 长度为 *L* 的实值 *P* 长度向量元胞数组
+  group: Target Profiles
+- name: 定义 RCSPattern 的仰角 (deg)
+  summary: 雷达截面积方向图的仰角 {[-90 90]}（默认）| 长度为 *L* 的实值 *Q* 长度向量元胞数组
+  group: Target Profiles
+```
 
 ### 参数
 
@@ -598,7 +753,6 @@ struct('ClassID',0,'Length',4.7,'Width',1.8,'Height',1.4, ...
 #### 依赖关系
 
 要启用此参数，请将 **Target profiles definition** 参数设置为 `Parameters`。
-
 ## 所属库
 
 Automated Driving Toolbox / Driving Scenario and Sensor Modeling

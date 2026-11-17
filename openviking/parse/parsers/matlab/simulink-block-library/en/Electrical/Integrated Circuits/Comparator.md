@@ -14,6 +14,18 @@ language: en
 # Comparator
 
 ## Ports
+```yaml
+ports:
+- name: +
+  summary: Non-inverting input electrical
+  direction: conserving
+- name: '-'
+  summary: Inverting input electrical
+  direction: conserving
+- name: OUT
+  summary: Output port electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +43,28 @@ input.
 
 Electrical conserving port associated with the comparator
 output
-
 ## Parameters
+```yaml
+parameters:
+- name: Input offset voltage
+  summary: Input offset voltage 5 mV (default)
+  group: Input
+- name: Average input capacitance
+  summary: Average input capacitance 0 pF (default)
+  group: Input
+- name: Low level output voltage
+  summary: Low level output voltage 0 V (default)
+  group: Output
+- name: High level output voltage
+  summary: High level output voltage 5 V (default)
+  group: Output
+- name: Output resistance
+  summary: Output resistance 50 Ohm (default)
+  group: Output
+- name: Propagation delay
+  summary: Propagation delay 0 s (default)
+  group: Output
+```
 
 ### Input
 
@@ -71,7 +103,6 @@ current is IOH1.
 
 Set this value based on the high-to-low and low-to-high propagation
 delays.
-
 ## Libraries
 
 Simscape / Electrical / Integrated Circuits

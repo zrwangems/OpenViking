@@ -14,6 +14,27 @@ language: en
 # Measurement Selector (MA)
 
 ## Ports
+```yaml
+ports:
+- name: F
+  summary: Vector physical signal containing pressure, temperature, humidity, and trace gas levels data physical signal vector
+  direction: input
+- name: P
+  summary: Pressure measurement, Pa physical signal
+  direction: output
+- name: T
+  summary: Temperature measurement, K physical signal
+  direction: output
+- name: W
+  summary: Humidity level measurement, unitless physical signal
+  direction: output
+- name: G
+  summary: Trace gas level measurement, unitless physical signal
+  direction: output
+- name: D
+  summary: Mass ratio of water droplets to moist air, unitless physical signal
+  direction: output
+```
 
 ### Input
 
@@ -53,8 +74,17 @@ specification** parameter.
 
 Physical signal output port for the mass ratio of water droplets to
 moist air.
-
 ## Parameters
+```yaml
+parameters:
+- name: Measured humidity specification
+  summary: Select the humidity property to measure Relative humidity (default) | Specific humidity | Mole fraction | Humidity
+    ratio
+  group: ''
+- name: Measured trace gas specification
+  summary: Select the trace gas property to measure Mass fraction (default) | Mole fraction
+  group: ''
+```
 
 ### **Measured humidity specification** — Select the humidity property to measure `Relative humidity` (default) | `Specific humidity` | `Mole fraction` | `Humidity ratio`
 
@@ -80,7 +110,6 @@ Select the property to measure:
 - `Mole fraction` ― Physical signal port
   **G** reports the trace gas mole
   fraction.
-
 ## Libraries
 
 Simscape / Foundation Library / Moist Air / Sensors

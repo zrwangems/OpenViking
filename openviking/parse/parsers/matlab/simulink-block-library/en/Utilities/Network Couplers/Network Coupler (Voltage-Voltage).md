@@ -14,6 +14,17 @@ language: en
 # Network Coupler (Voltage-Voltage)
 
 ## Ports
+```yaml
+ports:
+- name: '1'
+  summary: Connect this port to the variable-step network, or to the fixed-step network with the smaller sample time electrical
+    | three-phase electrical | electrical node array
+  direction: conserving
+- name: '2'
+  summary: Connect this port to the fixed-step network with the larger sample time electrical | three-phase electrical | electrical
+    node array
+  direction: conserving
+```
 
 ### Conserving
 
@@ -31,8 +42,69 @@ If one of the coupled networks is running variable step, connect port
 **2** of the Network Coupler (Voltage-Voltage) block
 to the fixed-step network. If both networks are running fixed step, connect this port
 to the network with the larger sample time.
-
 ## Parameters
+```yaml
+parameters:
+- name: Use three-phase electrical connections
+  summary: Break connections between three-phase electrical ports off (default) | on
+  group: Main
+- name: Electrical node array size
+  summary: Specify number of electrical nodes 1 (default) | positive integer
+  group: Main
+- name: Port 1 voltage source resistance (ohms)
+  summary: Specify voltage source resistance for port connected to Network 1 0.1 (default) | positive scalar
+  group: Main
+- name: Port 2 voltage source resistance (ohms)
+  summary: Specify voltage source resistance for port connected to Network 2 0.1 (default) | positive scalar
+  group: Main
+- name: Sampling type
+  summary: Select sampling types scenario for coupled networks Variable step at ports 1 and 2 (default) | Variable step at
+    port 1 and fixed step at port 2 | Fixed step both ports with common sample time | Fixed step both ports with faster sampling
+    at port 1
+  group: Main
+- name: Port 1 network discrete sample time (s)
+  summary: Specify sample time for Network 1 0.0002 (default) | positive scalar
+  group: Main
+- name: Port 2 network discrete sample time (s)
+  summary: Specify sample time for Network 2 0.001 (default) | positive scalar
+  group: Main
+- name: Use prediction when connecting fixed step to variable step
+  summary: Lets you enable the prediction (discrete->continuous) algorithm off (default) | on
+  group: Main
+- name: Use smoothing when connecting variable step to fixed step
+  summary: Lets you enable the smoothing (continuous->discrete) algorithm off (default) | on
+  group: Main
+- name: Smoothing time constant (s)
+  summary: Specify time constant for the first-order filter 0.01 (default) | positive scalar
+  group: Main
+- name: Use prediction when connecting slow to fast sample times
+  summary: Lets you enable the prediction (slow->fast) algorithm off (default) | on
+  group: Main
+- name: Use smoothing when connecting fast to slow sample times
+  summary: Lets you enable the smoothing (fast->slow) algorithm off (default) | on
+  group: Main
+- name: Number of samples over which to smooth
+  summary: Specify number of samples for averaging 1 (default) | positive scalar
+  group: Main
+- name: Approximate series resistance at port 1 (ohms)
+  summary: Specify approximate series resistance at port 1 0.1 (default) | positive scalar
+  group: Analysis
+- name: Approximate series inductance at port 1 (H)
+  summary: Specify approximate series inductance at port 1 1e-3 (default) | positive scalar
+  group: Analysis
+- name: Approximate series resistance at port 2 (ohms)
+  summary: Specify approximate series resistance at port 2 0.1 (default) | positive scalar
+  group: Analysis
+- name: Approximate series inductance at port 2 (H)
+  summary: Specify approximate series inductance at port 2 1e-3 (default) | positive scalar
+  group: Analysis
+- name: Initial voltage at port 1 (V)
+  summary: Specify initial voltage 0 (default) | positive scalar
+  group: Initial Conditions
+- name: Initial current into port 1 (A)
+  summary: Specify initial current 0 (default) | positive scalar
+  group: Initial Conditions
+```
 
 ### Main
 
@@ -199,7 +271,6 @@ V.
 
 Specify initial condition for the current flowing into port
 **1**, in A.
-
 ## Libraries
 
 Simscape / Utilities / Network Couplers

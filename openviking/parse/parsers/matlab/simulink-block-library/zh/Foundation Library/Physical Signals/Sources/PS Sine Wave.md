@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # PS Sine Wave
 
 ## 端口
+```yaml
+ports:
+- name: O
+  summary: 输出物理信号，其类型由模块参数值和单位决定 physical signal
+  direction: output
+```
 
 ### 输出
 
@@ -23,8 +29,28 @@ chinese_source: worker-translation
 输出物理信号。信号大小与 **Amplitude** 和 **Bias** 参数值的大小一致。信号单位由 **Amplitude** 和 **Bias** 参数的单位决定。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框 **Description** 选项卡中的 **Source code** 链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Amplitude
+  summary: 正弦波幅值 1 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Bias
+  summary: 添加到正弦波的常量 0 1（默认）| 标量 | 向量 | 矩阵
+  group: ''
+- name: Frequency specification
+  summary: 选择以 SI 单位还是角度单位指定频率 Frequency (SI)（默认）| Angular
+  group: ''
+- name: Frequency (SI)
+  summary: 正弦波频率 1 Hz（默认）| 标量
+  group: ''
+- name: Angular frequency
+  summary: 正弦波角频率 1 rad/s（默认）| 标量
+  group: ''
+- name: Phase
+  summary: 正弦波相移 0 rad（默认）| 标量
+  group: ''
+```
 
 ### **Amplitude** — 正弦波幅值 `1 1`（默认）| 标量 | 向量 | 矩阵
 
@@ -61,7 +87,6 @@ chinese_source: worker-translation
 ### **Phase** — 正弦波相移 `0 rad`（默认）| 标量
 
 正弦波的相移。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Sources

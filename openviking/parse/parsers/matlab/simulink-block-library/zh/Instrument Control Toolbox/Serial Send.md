@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Serial Send
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要发送的数据值 向量 | 矩阵 | 数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+```
 
 ### 输入
 
@@ -23,8 +30,40 @@ chinese_source: worker-translation
 从模块通过串行端口发送的数据值，指定为向量、矩阵或数组。在发送数据之前，请设置此模块的参数。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: Port
+  summary: 串行通信端口 可用的通信端口
+  group: ''
+  block_parameter: Port
+  type: 字符向量、字符串
+- name: Header
+  summary: 标头 数值数组 | 从 0 到 255（含）的整数
+  group: ''
+  block_parameter: Header
+  type: 字符向量、字符串
+  values: 整数数组
+- name: Terminator
+  summary: 终止符 <none>（默认）| CR ('\r') | LF ('\n') | CR/LF ('\r\n') | NULL ('\0') | Custom Terminator
+  group: ''
+  block_parameter: Terminator
+  type: 字符向量、字符串
+  values: '''<none>'' | ''CR (''\r'')'' | ''LF (''\n'')'' | ''CR/LF (''\r\n'')'' | ''NULL (''\0'')'' | ''Custom Terminator'''
+- name: Custom terminator
+  summary: 自定义终止符 数值数组 | 从 0 到 255（含）的整数
+  group: ''
+  block_parameter: CustomTerminator
+  type: 字符向量、字符串
+  values: 整数数组
+- name: Enable blocking mode
+  summary: 发送数据时仿真等待 on（默认）| off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: 字符向量、字符串
+  values: '''on'' | ''off'''
+  default: '''on'''
+```
 
 ### **Port** — 串行通信端口 可用的通信端口
 
@@ -114,7 +153,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量、字符串 |
 | **值：** `'on'` | `'off'` |
 | **默认值：** `'on'` |
-
 ## 所属库
 
 Instrument Control Toolbox Motor Control Blockset / Protection and Diagnostics

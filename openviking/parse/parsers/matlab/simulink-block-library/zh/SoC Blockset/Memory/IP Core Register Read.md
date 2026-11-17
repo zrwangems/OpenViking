@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # IP Core Register Read
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 数据输出向量
+  direction: output
+  data_types: single | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输出
 
@@ -23,8 +30,22 @@ chinese_source: worker-translation
 此端口输出从处理器接收的数据向量，起始地址为 IP 核基地址加上偏移地址。在 Hardware Mapping 工具中设置偏移地址。
 
 **数据类型：** `single` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Register name
+  summary: 寄存器名称 RegA（默认）| 字符向量
+  group: ''
+- name: Output data type
+  summary: 输出数据的数据类型 uint16（默认）| single | int8 | uint8 | int16 | int32 | uint32 | boolean | fixed point data type
+  group: ''
+- name: Output vector size
+  summary: 输出数据的向量大小 1（默认）| 正整数
+  group: ''
+- name: Sample time
+  summary: 采样的仿真间隔 -1（默认）| 非负标量
+  group: ''
+```
 
 ### **Register name** — 寄存器名称 `RegA`（默认）| 字符向量
 
@@ -43,7 +64,6 @@ chinese_source: worker-translation
 ### **Sample time** — 采样的仿真间隔 `-1`（默认）| 非负标量
 
 指定模块输出数据的离散时间间隔，以秒为单位。如果此值为 `-1`（默认），则采样时间继承自模型。
-
 ## 所属库
 
 SoC Blockset / Memory

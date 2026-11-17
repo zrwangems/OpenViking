@@ -14,6 +14,33 @@ language: en
 # Controlled Voltage Source (Three-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Control physical signal | vector
+  direction: input
+- name: Vt
+  summary: Phase-to-phase RMS voltage physical signal
+  direction: input
+- name: ph
+  summary: Phase shift physical signal
+  direction: input
+- name: n
+  summary: Neutral electrical
+  direction: conserving
+- name: '~'
+  summary: Three-phase voltage electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase voltage electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase voltage electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase voltage electrical'
+  direction: conserving
+```
 
 ### Input
 
@@ -96,8 +123,20 @@ Electrical conserving port associated with the
 
 To enable this port, set **Modeling option** to
 `Expanded three-phase ports`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: ''
+- name: Input type
+  summary: Type of input Instantaneous (default) | Sinusoidal magnitude and phase shift
+  group: ''
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz | scalar
+  group: ''
+```
 
 ### **Modeling option** — Whether to model composite or expanded three-phase ports `Composite three-phase ports` (default) | `Expanded three-phase ports`
 
@@ -136,7 +175,6 @@ your model, if present.
 To enable this parameter, set **Input type** to
 `Sinusoidal magnitude and phase
 shift`.
-
 ## Libraries
 
 Simscape / Electrical / Sources

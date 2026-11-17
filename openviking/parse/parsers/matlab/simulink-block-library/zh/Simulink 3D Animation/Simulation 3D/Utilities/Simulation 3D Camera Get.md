@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Simulation 3D Camera Get
 
 ## 端口
+```yaml
+ports:
+- name: Image
+  summary: 3D 输出相机图像，*m*×*n*×3 的 RGB 三元组值数组
+  direction: output
+  data_types: int8 | uint8
+```
 
 ### 输出
 
@@ -23,8 +30,44 @@ chinese_source: worker-translation
 3D 输出相机图像，以 *m*×*n*×3 的 RGB 三元组值数组形式返回。*m* 是图像的垂直分辨率，*n* 是图像的水平分辨率。
 
 **数据类型：** `int8` | `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Sensor identifier
+  summary: 用于标识唯一传感器的编号 0（默认）| 正整数
+  group: ''
+- name: Parent name
+  summary: 父级名称 Scene Origin（默认）| 字符向量
+  group: ''
+- name: Coordinate system
+  summary: 用于 actor 变换的坐标系 Default（默认）| MATLAB | ISO8855 | AERO | VRML | SAE
+  group: ''
+- name: Mounting location
+  summary: 传感器安装位置 Origin（默认）| Front bumper | Rear bumper | Right mirror | Left mirror | Rearview mirror | Hood center | Roof
+    center
+  group: ''
+- name: Specify offset
+  summary: 指定相对于安装位置的偏移量 off（默认）| on
+  group: ''
+- name: Relative translation [X, Y, Z]
+  summary: 相对于安装位置的平移偏移量 [0,0,0]（默认）| 实值 1×3 向量
+  group: ''
+- name: Relative rotation [Roll, Pitch, Yaw]
+  summary: 相对于安装位置的旋转偏移量 [0,0,0]（默认）| 实值 1×3 向量
+  group: ''
+- name: Sample time
+  summary: 采样时间 -1（默认）| 正标量
+  group: ''
+- name: Horizontal resolution
+  summary: 像素 uint32(1280)（默认）| scalar
+  group: ''
+- name: Vertical resolution
+  summary: 像素 uint32(720)（默认）| scalar
+  group: ''
+- name: Horizontal field of view
+  summary: 视场角 single(60)（默认）| scalar
+  group: ''
+```
 
 #### 安装
 
@@ -206,7 +249,6 @@ Ground Following 模块的 **Type** 参数。
 ### **Horizontal field of view** — 视场角 `single(60)`（默认）| `scalar`
 
 水平视场角（FOV），以度为单位。
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blockset / Animation / Simulation 3D Simulink 3D Animation / Simulation 3D / Utilities

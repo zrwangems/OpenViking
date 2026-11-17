@@ -14,6 +14,18 @@ language: en
 # Pressure Relief Valve (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: B
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: Ps
+  summary: Set pressure signal physical signal
+  direction: input
+```
 
 ### Conserving
 
@@ -35,8 +47,76 @@ Varying-signal set pressure for controlled valve operation.
 To enable this
 port, set **Set pressure control** to
 `Controlled`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Set pressure control
+  summary: Valve operation method Constant (default) | Controlled
+  group: Parameters
+- name: Opening parameterization
+  summary: Method of modeling constant valve opening or closing Linear - Area vs. pressure (default) | Tabulated data - Area
+    vs. pressure | Tabulated data - Volumetric flow rate vs. pressure
+  group: Parameters
+- name: Opening pressure specification
+  summary: Pressure differential used for valve control Pressure differential (default) | Pressure at port A
+  group: Parameters
+- name: Set pressure (gauge)
+  summary: Threshold pressure 0.1 MPa (default) | positive scalar
+  group: Parameters
+- name: Set pressure differential
+  summary: Threshold pressure 0 MPa (default) | positive scalar
+  group: Parameters
+- name: Pressure regulation range
+  summary: Valve operational pressure range 0.1 MPa (default) | positive scalar
+  group: Parameters
+- name: Maximum opening area
+  summary: Area of fully opened valve 1e-4 m^2 (default) | positive scalar
+  group: Parameters
+- name: Leakage area
+  summary: Valve gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Parameters
+- name: Opening pressure (gauge) vector
+  summary: 'Differential pressure values for tabular parameterization [0.2 : 0.2 : 1.2] MPa (default) | 1-by-*n* vector'
+  group: Parameters
+- name: Pressure differential vector
+  summary: 'Differential pressure values for tabular parameterization [0.2 : 0.2 : 1.2] MPa (default) | 1-by-*n* vector'
+  group: Parameters
+- name: Volumetric flow rate vector
+  summary: Vector of volumetric flow rate for tabulated data parameterization [1e-09, 3.6e-05, 8.9e-05, .00015, .00023, .00031]
+    (default) | 1-by-*n* vector
+  group: Parameters
+- name: Opening area vector
+  summary: Valve opening areas for tabular parameterization [1e-10, 2e-06, 4e-06, 6e-06, 8e-06, 1e-05]m^2 (default) | 1-by-*n*
+    vector
+  group: Parameters
+- name: Cross-sectional area at ports A and B
+  summary: Area at valve entry or exit inf m^2 (default) | positive scalar
+  group: Parameters
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Parameters
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Parameters
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar
+  group: Parameters
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions off (default) | on
+  group: Parameters
+- name: Opening dynamics
+  summary: Whether to account for flow response to valve opening off (default) | on
+  group: Parameters
+- name: Opening time constant
+  summary: Valve opening time constant 0.1 s (default) | positive scalar
+  group: Parameters
+- name: Pressure Relief Valve Area fault
+  summary: Option to model opening area fault Add fault
+  group: Faults
+- name: Opening area when faulted
+  summary: Faulted valve characteristics Closed (default) | Open | Maintain last value
+  group: Faults
+```
 
 ### Parameters
 
@@ -312,7 +392,6 @@ valve is opened, closed, or at the area when the fault triggers.
 #### Dependencies
 
 To enable this parameter, click the **Add fault** hyperlink.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Pressure Control Valves

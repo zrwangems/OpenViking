@@ -14,6 +14,35 @@ language: en
 # Dual Port RAM
 
 ## Ports
+```yaml
+ports:
+- name: wr_din
+  summary: Write data input Scalar (default)
+  direction: input
+  data_types: int8 | int16 | int32 | int64 | Boolean | fixed point
+- name: wr_addr
+  summary: Write address Scalar (default)
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wr_en
+  summary: Write enable Scalar (default)
+  direction: input
+  data_types: Boolean
+- name: rd_addr
+  summary: Read address Scalar (default)
+  direction: input
+  data_types: uint8 | uint16 | uint32 | uint64 | fixed point
+- name: wr_dout
+  summary: Output data from write address Scalar (default)
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: rd_dout
+  summary: Output data from read address Scalar (default)
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -64,8 +93,17 @@ Output data from write address, `wr_addr`.
 Output data from read address, `rd_addr`.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Address port width
+  summary: Address bit width 8 (default)
+  group: ''
+  block_parameter: ram_size
+  type: string scalar | character vector
+  values: A minimum value of 2 and maximum value of 29
+  default: '''8'''
+```
 
 ### **Address port width** — Address bit width 8 (default)
 
@@ -79,7 +117,6 @@ Minimum bit width is 2, and maximum bit width is 29.
 | **Type:** string scalar | character vector |
 | **Value:** A minimum value of `2` and maximum value of `29` |
 | **Default:** `'8'` |
-
 ## Libraries
 
 HDL Coder / HDL RAMs

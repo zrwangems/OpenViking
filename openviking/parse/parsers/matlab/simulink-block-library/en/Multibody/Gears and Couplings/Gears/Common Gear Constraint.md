@@ -14,6 +14,15 @@ language: en
 # Common Gear Constraint
 
 ## Ports
+```yaml
+ports:
+- name: B
+  summary: Base frame frame
+  direction: unspecified
+- name: F
+  summary: Follower frame frame
+  direction: unspecified
+```
 
 ### Frame
 
@@ -24,8 +33,25 @@ Connection frame on the base gear body.
 ### **F** — Follower frame frame
 
 Connection frame on the follower gear body.
-
 ## Parameters
+```yaml
+parameters:
+- name: Type
+  summary: Type of meshing between the base and follower gear bodies External (default) | Internal
+  group: ''
+- name: Center Distance
+  summary: Distance between the base and follower gear centers 20 cm (default) | positive scalar in units of length
+  group: ''
+- name: Gear Ratio (Nf/Nb)
+  summary: Ratio of follower gear teeth to base gear teeth 1.0 (default) | unitless positive scalar
+  group: ''
+- name: Base Gear Radius
+  summary: Radius of the pitch circle of the base gear body 10 cm (default) | positive scalar in units of length
+  group: ''
+- name: Follower Gear Radius
+  summary: Radius of the pitch circle of the follower gear body 10 cm (default) | positive scalar in units of length
+  group: ''
+```
 
 ### **Type** — Type of meshing between the base and follower gear bodies `External` (default) | `Internal`
 
@@ -81,7 +107,6 @@ contact point.
 This parameter is enabled when the **Specification
 Method** parameter is set to `Pitch Circle
 Radii`.
-
 ## Libraries
 
 Simscape / Multibody / Gears and Couplings / Gears

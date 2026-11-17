@@ -14,6 +14,18 @@ language: en
 # Cable and Connectors
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input connector terminal electrical | electrical array-of-nodes
+  direction: conserving
+- name: Out
+  summary: Output connector terminal electrical | electrical array-of-nodes
+  direction: conserving
+- name: H
+  summary: Thermal mass thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -51,8 +63,169 @@ Thermal conserving port associated with the thermal mass.
 
 To enable this port, select the **Model thermal effects**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model multiple conductors in cable
+  summary: Option to model multiple conductors Off (default) | On
+  group: Main
+- name: Number of independent conductors in cable
+  summary: Number of independent conductors in cable 3 (default) | finite positive scalar
+  group: Main
+- name: Model input connector
+  summary: Option to model input connector On (default) | Off
+  group: Main
+- name: Model output connector
+  summary: Option to model output connector On (default) | Off
+  group: Main
+- name: Conductor material
+  summary: Conductor material Copper (default) | Annealed copper | Aluminum | Silver | Gold | Custom
+  group: Cable
+- name: Electrical conductivity of material
+  summary: Electrical conductivity of material 5.96e7 S/m (default) | nonnegative scalar
+  group: Cable
+- name: Length of conductor
+  summary: Length of conductor 1 m (default) | positive scalar
+  group: Cable
+- name: Gauge of each conductor
+  summary: Gauge of conductor in AWG system Custom (default) | AWG1 | AWG2 | ...
+  group: Cable
+- name: Conductor diameter
+  summary: Gauge of each conductor in length units 0.5 mm (default) | positive scalar
+  group: Cable
+- name: Model cable inductance
+  summary: Option to model cable inductance Off (default) | On
+  group: Cable
+- name: Model skin effect
+  summary: Option to model skin effect Off (default) | On
+  group: Cable
+- name: Rated frequency
+  summary: Rated frequency 50 Hz (default) | nonnegative scalar
+  group: Cable
+- name: Relative magnetic permeability of material
+  summary: Relative magnetic permeability of material 1 (default) | positive scalar
+  group: Cable
+- name: Contact resistance between pins and sockets
+  summary: Contact resistance between pins and sockets 1 Ohm (default) | positive scalar
+  group: Connectors
+- name: Conductance between pins
+  summary: Conductance between pins 1e-12 S (default) | positive scalar
+  group: Connectors
+- name: Model thermal effects
+  summary: Option to model thermal effects Off (default) | On
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Resistance temperature coefficient 1e-6 1/K (default) | nonnegative scalar
+  group: Thermal
+- name: Measurement temperature
+  summary: Measurement temperature 298.15 K (default) | scalar
+  group: Thermal
+- name: Thermal mass of each conductor
+  summary: Thermal mass of each conductor 0.1 J/K (default) | positive scalar
+  group: Thermal
+- name: Thermal mass of each connector pin
+  summary: Thermal mass of each connector pin 0.1 J/K (default) | positive scalar
+  group: Thermal
+- name: Inter-pin short circuit in input connector fault
+  summary: Option to add inter-pin short circuit in input connector fault Add fault
+  group: Faults
+- name: Short-circuit conductance of faulted input connector
+  summary: Short-circuit conductance of faulted input connector 1e9 S (default) | nonnegative scalar
+  group: Faults
+- name: Faultable pin pairs
+  summary: Faultable pin pairs Make all pin pairs faultable (default) | Specify faultable pin pairs
+  group: Faults
+- name: Matrix of faultable pin pairs
+  summary: Faultable pin pairs [1,2;1,3] (default) | matrix
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible temperature
+  summary: Upper temperature threshold for fault transition inf degC (default) | scalar
+  group: Faults
+- name: Time to fail when exceeding temperature
+  summary: Time to fail when exceeding temperature 1 s (default) | positive scalar
+  group: Faults
+- name: Maximum permissible voltage
+  summary: Voltage threshold for fault transition inf V (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding voltage
+  summary: Time to fail when exceeding voltage 1 s (default) | positive scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+- name: Inter-pin short circuit in output connector fault
+  summary: Option to add inter-pin short circuit in output connector fault Add fault
+  group: Faults
+- name: Short-circuit conductance of faulted output connector
+  summary: Short-circuit conductance of faulted output connector 1e9 S (default) | nonnegative scalar
+  group: Faults
+- name: Faultable pin pairs
+  summary: Faultable pin pairs Make all pin pairs faultable (default) | Specify faultable pin pairs
+  group: Faults
+- name: Matrix of faultable pin pairs
+  summary: Faultable pin pairs [1,2;1,3] (default) | matrix
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible temperature
+  summary: Upper temperature threshold for fault transition inf degC (default) | scalar
+  group: Faults
+- name: Time to fail when exceeding temperature
+  summary: Time to fail when exceeding temperature 1 s (default) | positive scalar
+  group: Faults
+- name: Maximum permissible voltage
+  summary: Voltage threshold for fault transition inf V (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding voltage
+  summary: Time to fail when exceeding voltage 1 s (default) | positive scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+- name: Open-circuit fault
+  summary: Option to add open-circuit fault Add fault
+  group: Faults
+- name: Open-circuit conductance
+  summary: Open circuit conductance 1e-5 S (default) | positive scalar
+  group: Faults
+- name: Faultable conductors
+  summary: Faultable conductors Make all conductors faultable (default) | Specify faultable conductors
+  group: Faults
+- name: Indices of faultable conductors
+  summary: Indices of faultable conductors [1,2] (default) | vector
+  group: Faults
+- name: Trigger type
+  summary: Trigger type Always on (default) | Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: Faults
+- name: Trigger fault at time
+  summary: Time before entering faulted state 0 s (default) | nonnegative scalar
+  group: Faults
+- name: Maximum permissible current
+  summary: Current threshold for fault transition inf A (default) | positive scalar
+  group: Faults
+- name: Maximum permissible temperature
+  summary: Upper temperature threshold for fault transition inf degC (default) | scalar
+  group: Faults
+- name: Time to fail when exceeding current
+  summary: Time to fail when exceeding current 1 s (default) | positive scalar
+  group: Faults
+- name: Time to fail when exceeding temperature
+  summary: Time to fail when exceeding temperature 1 s (default) | positive scalar
+  group: Faults
+- name: Trigger configuration
+  summary: Option to enable additional trigger types Open fault properties
+  group: Faults
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -823,7 +996,6 @@ hyperlink and set the **Trigger type** in the Property Inspector.
 
 To enable this parameter, click the **Add fault** hyperlink for
 the **Open-circuit fault** parameter and set **Trigger type** to `Additional triggers`.
-
 ## Libraries
 
 Simscape / Electrical / Connectors & References

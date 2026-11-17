@@ -14,6 +14,16 @@ language: en
 # Multiband Combiner
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Input signals *N*samp-by-*N*chan matrix
+  direction: input
+  data_types: double | single
+- name: Out
+  summary: Output signal *N*out-by-1 vector
+  direction: output
+```
 
 ### Input
 
@@ -37,8 +47,28 @@ vector of the same data type as input signal `In`.
 **Rate
 options** parameter specifies single-rate or multirate mode. For more
 information, see Algorithms.
-
 ## Parameters
+```yaml
+parameters:
+- name: Input sample rate (Hz)
+  summary: Input signal sample rate 1e6 (default) | positive scalar
+  group: ''
+- name: Frequency offsets (Hz)
+  summary: Frequency offsets [0 1e6] (default) | scalar | 1-by-*N*chan vector
+  group: ''
+- name: Rate options
+  summary: Options for processing rate Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Output sample rate options
+  summary: Options for output sample rate Auto (default) | Specify via property
+  group: ''
+- name: Output sample rate (Hz)
+  summary: Output signal sample rate 3e6 (default) | positive scalar
+  group: ''
+- name: Output delay (samples)
+  summary: 'Output delay Read-only: 36 (default) | positive scalar'
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -107,7 +137,6 @@ options** parameter to `Specify via property`.
 This parameter is read-only.
 
 Output delay in samples, specified as a positive scalar.
-
 ## Libraries
 
 Communications Toolbox / RF Impairments and Components

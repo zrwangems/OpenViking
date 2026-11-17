@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # SPST Relay
 
 ## 端口
+```yaml
+ports:
+- name: PS
+  summary: 物理信号控制物理信号
+  direction: input
+- name: x
+  summary: 继电器状态物理信号
+  direction: output
+- name: S
+  summary: 常闭触点电气
+  direction: output
+- name: C
+  summary: 公共触点电气
+  direction: output
+- name: +
+  summary: 绕组正极端子电气
+  direction: output
+- name: '-'
+  summary: 绕组负极端子电气
+  direction: output
+```
 
 ### 输入
 
@@ -68,8 +89,103 @@ chinese_source: worker-translation
 
 要启用此端口，请在**Main**设置中将**Control port**设置为
 `Electrical`。
-
 ## 参数
+```yaml
+parameters:
+- name: Control port
+  summary: 输入端口选择 PS（默认）| Electrical
+  group: 主要参数
+- name: Closed resistance
+  summary: 连接触点电阻 0.01 Ohm（默认）| 正标量
+  group: 主要参数
+- name: Open conductance
+  summary: 开路电导 1e-8 1/Ohm（默认）| 正标量
+  group: 主要参数
+- name: Threshold
+  summary: 继电器阈值 0（默认）| 非负标量
+  group: 主要参数
+- name: State port
+  summary: 继电器状态输出端口可见性 Hidden（默认）| Visible
+  group: 主要参数
+- name: Rated voltage
+  summary: 额定电压 5 V（默认）| 正标量
+  group: Winding
+- name: Percent rated voltage to energize
+  summary: 使继电器通电的额定电压百分比 75（默认）| 正标量
+  group: Winding
+- name: Percent rated voltage to de-energize
+  summary: 使继电器断电的额定电压百分比 25（默认）| 正标量
+  group: Winding
+- name: Winding inductance
+  summary: 绕组电感 0.08 H（默认）| 正标量
+  group: Winding
+- name: Winding series resistance
+  summary: 绕组串联电阻 12.5 Ohm（默认）| 正标量
+  group: Winding
+- name: Winding parallel conductance
+  summary: 绕组并联电导 1e-9 1/Ohm（默认）| 正标量
+  group: Winding
+- name: Time-to-break C-S connection
+  summary: 断开 C-S 连接的延迟时间 0 s（默认）| 非负标量
+  group: Mechanical
+- name: Time-to-make C-S connection
+  summary: 建立 C-S 连接的延迟时间 0 s（默认）| 非负标量
+  group: Mechanical
+- name: Switch fault
+  summary: 添加开关故障的选项 Add fault
+  group: 故障
+- name: Switch fault
+  summary: 开关故障模型 C-S stuck closed（默认）| C open circuit (no path to S) | Degraded contact resistance
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum load permissible current
+  summary: 故障转换的负载电流阈值 inf A（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding current
+  summary: 超过电流时发生故障的时间 1 s（默认）| 正标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+- name: Degraded contact resistance
+  summary: 退化触点电阻 1e-9 Ohm（默认）| 正标量
+  group: 故障
+- name: Time constant for degraded contact resistance
+  summary: 退化触点电阻的时间常数 1e-3（默认）| 正标量
+  group: 故障
+- name: Winding fault
+  summary: 添加绕组故障的选项 Add fault
+  group: 故障
+- name: Time constant for winding open circuit transition
+  summary: 绕组失效的时间常数 1e-3 s（默认）| 正标量
+  group: 故障
+- name: Trigger type
+  summary: 触发类型 Always on（默认）| Timed | Behavioral | Additional triggers | Conditional | Manual
+  group: 故障
+- name: Trigger fault at time
+  summary: 进入故障状态之前的时间 0 s（默认）| 非负标量
+  group: 故障
+- name: Maximum permissible winding voltage
+  summary: 最大允许绕组电压 inf V（默认）| 正标量
+  group: 故障
+- name: Number of events to fail when exceeding voltage
+  summary: 超过电压时失效的事件数 1（默认）| 正标量整数
+  group: 故障
+- name: Maximum permissible winding current
+  summary: 最大允许绕组电流 inf A（默认）| 正标量
+  group: 故障
+- name: Time to fail when exceeding winding current
+  summary: 超过绕组电流时失效的时间 1 s（默认）| 正标量
+  group: 故障
+- name: Trigger configuration
+  summary: 启用附加触发类型的选项 Open fault properties
+  group: 故障
+```
 
 ### 主要参数
 
@@ -385,7 +501,6 @@ fail when exceeding current** 参数的值，则模块进入故障状态。
 - 将 **Control port** 设置为 `Electrical`。
 - 点击 **Winding fault** 参数的 **Add fault** 超链接。
 - 将 **Trigger type** 设置为 `Additional triggers`。
-
 ## 所属库
 
 Simscape / Electrical / Switches & Breakers / Relays

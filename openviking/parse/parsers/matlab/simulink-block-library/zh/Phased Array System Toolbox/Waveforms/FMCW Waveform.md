@@ -15,6 +15,12 @@ chinese_source: worker-translation
 # FMCW Waveform
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: FMCW 波形复值列向量
+  direction: output
+```
 
 ### 输出
 
@@ -24,8 +30,47 @@ FMCW 波形，以包含波形样本的复值列向量形式返回。
 
 - 如果 **Output signal format** 参数设置为 `Samples`，则该端口的输出包含由 **Number of samples in output** 参数设置的样本数。
 - 如果 **Output signal format** 参数设置为 `Sweeps`，则该端口的输出包含由 **Number of sweeps in output** 参数设置的扫频数。此外，如果 **Sweep direction** 参数设置为 `Triangle`，则每个扫频的持续时间为半个周期。
-
 ## 参数
+```yaml
+parameters:
+- name: Sample rate (Hz)
+  summary: 输出波形的采样率 1e6（默认）| 正标量
+  group: ''
+  block_parameter: SampleRate
+  type: double
+  values: positive scalar
+  default: 1e6
+- name: Sweep time (s)
+  summary: 每个线性调频扫频的持续时间 1e-4（默认）
+  group: ''
+- name: Sweep bandwidth (Hz)
+  summary: 调频扫频带宽 1e5（默认）
+  group: ''
+- name: Sweep direction
+  summary: 调频扫频方向 Up（默认）| Down | Triangle
+  group: ''
+- name: Sweep interval
+  summary: 调频扫频区间的位置 Positive（默认）| Symmetric
+  group: ''
+- name: Output signal format
+  summary: 输出信号格式 Sweeps（默认）| Samples
+  group: ''
+- name: Number of samples in output
+  summary: 输出中的采样数 100（默认）| 正整数
+  group: ''
+  block_parameter: NumSamples
+  type: double
+  values: positive scalar
+- name: Number of sweeps in output
+  summary: 输出中的扫频数 1（默认）
+  group: ''
+- name: Simulate using
+  summary: 模块仿真方法 Interpreted Execution（默认）| Code Generation
+  group: ''
+  block_parameter: SimulateUsing
+  type: enum
+  values: Interpreted Execution、Code Generation
+```
 
 ### **Sample rate (Hz)** — 输出波形的采样率 `1e6`（默认）| 正标量
 
@@ -130,7 +175,6 @@ FMCW 波形，以包含波形样本的复值列向量形式返回。
 | **类型：** enum |
 | **值：** `Interpreted Execution`、`Code Generation` |
 | **默认：** `Interpreted Execution` |
-
 ## 所属库
 
 Phased Array System Toolbox / Waveforms

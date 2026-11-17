@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Timer
 
 ## 端口
+```yaml
+ports:
+- name: THRES
+  summary: 阈值引脚电气端口
+  direction: conserving
+- name: TRIG
+  summary: 触发引脚电气端口
+  direction: conserving
+- name: CONT
+  summary: 控制引脚电气端口
+  direction: conserving
+- name: RESET
+  summary: 复位引脚电气端口
+  direction: conserving
+- name: OUT
+  summary: 输出引脚电气端口
+  direction: conserving
+- name: DISCH
+  summary: 放电引脚电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -41,8 +62,34 @@ chinese_source: worker-translation
 ### **DISCH** — 放电引脚电气端口
 
 与定时器放电引脚关联的电气守恒端口
-
 ## 参数
+```yaml
+parameters:
+- name: Power supply voltage
+  summary: 电源电压 15 V（默认值）
+  group: 电源
+- name: Low level output voltage
+  summary: 低电平输出电压 0 V（默认值）
+  group: 输出
+- name: High level output voltage
+  summary: 高电平输出电压 14.1 V（默认值）
+  group: 输出
+- name: Output resistance
+  summary: 输出电阻 8 Ohm（默认值）
+  group: 输出
+- name: Propagation delay
+  summary: 传播延迟 100e-9 s（默认值）
+  group: 输出
+- name: Discharge switch on-resistance
+  summary: 放电开关导通电阻 12 Ohm（默认值）
+  group: 放电
+- name: Discharge switch off-resistance
+  summary: 放电开关关断电阻 500e6 Ohm（默认值）
+  group: 放电
+- name: Potential divider component resistance
+  summary: 分压器组件电阻 5 kOhm（默认值）
+  group: 分压器
+```
 
 ### 电源
 
@@ -83,7 +130,6 @@ chinese_source: worker-translation
 ### **Potential divider component resistance** — 分压器组件电阻 `5` `kOhm`（默认值）
 
 555 型定时器的典型值为 5 kΩ。当芯片未连接到电路时，可以直接在正电源引脚和控制引脚之间测量该值。
-
 ## 所属库
 
 Simscape / Electrical / Integrated Circuits

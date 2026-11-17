@@ -14,6 +14,14 @@ language: en
 # From
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Signal from connected Goto block scalar | vector | matrix | N-D array
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+    | enumerated | bus | image
+```
 
 ### Output
 
@@ -24,8 +32,30 @@ dimensions and data type as the input to the Goto
 block.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus` | `image`
-
 ## Parameters
+```yaml
+parameters:
+- name: Goto Tag
+  summary: Tag of the Goto block that forwards its signal to this block A (default) | <More Tags...> | ...
+  group: ''
+  block_parameter: GotoTag
+  type: character vector
+  values: '''A'' | ...'
+  default: '''A'''
+- name: Update Tags
+  summary: Update list of visible tags button
+  group: ''
+- name: Goto Source
+  summary: Path to connected Goto block block path
+  group: ''
+- name: Icon Display
+  summary: Text to display on block icon Tag | Tag and signal name | Signal name
+  group: ''
+  block_parameter: IconDisplay
+  type: character vector
+  values: '''Signal name'' | ''Tag'' | ''Tag and signal name'''
+  default: '''Tag'''
+```
 
 ### **Goto Tag** — Tag of the Goto block that forwards its signal to this block `A` (default) | `<More Tags...>` | ...
 
@@ -117,7 +147,6 @@ or both the tag and the signal name.
 | **Type:** character vector |
 | **Values:** `'Signal name' | 'Tag' | 'Tag and signal name'` |
 | **Default:** `'Tag'` |
-
 ## Libraries
 
 Simulink / Signal Routing HDL Coder / Signal Routing

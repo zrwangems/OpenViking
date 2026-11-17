@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # BLDC Current Controller
 
 ## 端口
+```yaml
+ports:
+- name: IsRef
+  summary: 参考电流标量
+  direction: input
+  data_types: single | double
+- name: Is
+  summary: 测量电流标量
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: 外部复位标量
+  direction: input
+  data_types: single | double
+- name: Hall
+  summary: 霍尔传感器向量
+  direction: input
+  data_types: single | double
+- name: Direction
+  summary: 电机方向标量
+  direction: input
+  data_types: single | double
+- name: vabcRef
+  summary: 参考电压向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -54,8 +81,28 @@ chinese_source: worker-translation
 *a* 相、*b* 相和 *c* 相的参考电压。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Proportional gain
+  summary: 控制器比例增益，*Kp* 1（默认）| 正标量
+  group: ''
+- name: Integral gain
+  summary: 积分增益，*Ki* 5（默认）| 正标量
+  group: ''
+- name: Anti-windup gain
+  summary: 抗饱和增益，*Kaw* 1（默认）| 正标量
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: 模块采样时间 -1（默认）| 正标量
+  group: ''
+- name: Discretization sample time
+  summary: 离散化采样时间 0.001（默认）| 正标量
+  group: ''
+- name: Enable zero cancellation
+  summary: 前馈零抵消 off（默认）| on
+  group: ''
+```
 
 ### **Proportional gain** — 控制器比例增益，*Kp* `1`（默认）| 正标量
 
@@ -97,7 +144,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 如果选择 **Enable zero cancellation** 选项并将 **Sample time (-1 for inherited)** 设置为 `-1`，则 **Discretization sample time** 参数将变为可见。
-
 ## 所属库
 
 Simscape / Electrical / Control / BLDC Control

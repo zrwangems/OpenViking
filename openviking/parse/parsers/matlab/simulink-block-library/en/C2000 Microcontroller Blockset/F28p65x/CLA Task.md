@@ -14,6 +14,12 @@ language: en
 # C28x CLA Task
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Function-call signal to a function-call subsystem or function-call model scalar
+  direction: output
+```
 
 ### Output
 
@@ -21,8 +27,22 @@ language: en
 
 The output triggers the CLA task that executes a downstream function-call
 subsystem on the CLA core.
-
 ## Parameters
+```yaml
+parameters:
+- name: CLA task number
+  summary: CLA task number executed on CLA core 1 (default) | integer in [1, 8]
+  group: ''
+- name: CLA task trigger source
+  summary: Source of CLA task trigger Software (default) | peripheral interrupt
+  group: ''
+- name: Wait until completion of task
+  summary: Block C28x execution until CLA task is completed off (default) | on
+  group: ''
+- name: Sample time
+  summary: Frequency at which function-call subsystem is triggered 0.2 (default) | -1 | scalar
+  group: ''
+```
 
 ### **CLA task number** — CLA task number executed on CLA core `1` (default) | integer in [1, 8]
 
@@ -56,7 +76,6 @@ asynchronously, set this parameter to `-1`.
 
 To enable this parameter, select the `Software`
 option in the **CLA task trigger source**.
-
 ## Libraries
 
 C2000 Microcontroller Blockset / C2803x C2000 Microcontroller Blockset / C2805x C2000 Microcontroller Blockset / C2806x C2000 Microcontroller Blockset / F28003x C2000 Microcontroller Blockset / F28004x C2000 Microcontroller Blockset / F2807x C2000 Microcontroller Blockset / F2837xD C2000 Microcontroller Blockset / F2837xS C2000 Microcontroller Blockset / F2838x / C28x C2000 Microcontroller Blockset / F28p65x C2000 Microcontroller Blockset / F28p55x

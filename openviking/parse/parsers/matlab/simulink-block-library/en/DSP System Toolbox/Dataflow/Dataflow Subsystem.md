@@ -14,6 +14,19 @@ language: en
 # Dataflow Subsystem
 
 ## Ports
+```yaml
+ports:
+- name: In
+  summary: Signal input to dataflow subsystem scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+- name: Out
+  summary: Signal output from dataflow subsystem scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated | bus
+```
 
 ### Input
 
@@ -33,8 +46,24 @@ the block. The port label on the subsystem block is the name of the
 Outport block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Latency
+  summary: Latency of dataflow subsystem 0 (default) | scalar integer
+  group: ''
+  block_parameter: Latency
+  type: character vector
+  values: scalar integer
+  default: '''0'''
+- name: Automatic frame size calculation
+  summary: Automatically calculate frame sizes and insert buffers 0 (default) | 1
+  group: ''
+  block_parameter: AutoFrameSizeCalculation
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+```
 
 The Dataflow Subsystem block uses the same parameters as the
 Subsystem block. For parameter descriptions and programmatic use information,
@@ -79,7 +108,6 @@ information, see Automatic Frame Size Calculation.
 | **Values**: `'off'`|`'on'` |
 |  |
 | **Default**: `'off'` |
-
 ## Libraries
 
 DSP System Toolbox / Dataflow

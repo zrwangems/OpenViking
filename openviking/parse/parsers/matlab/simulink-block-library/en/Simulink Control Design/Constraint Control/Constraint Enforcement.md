@@ -14,6 +14,33 @@ language: en
 # Constraint Enforcement
 
 ## Ports
+```yaml
+ports:
+- name: u0
+  summary: Control actions scalar | vector
+  direction: input
+- name: fx
+  summary: Constraint function offset coefficient scalar | vector
+  direction: input
+- name: gx
+  summary: Constraint function linear coefficient scalar | vector | matrix
+  direction: input
+- name: c
+  summary: Constraint bounds scalar | vector
+  direction: input
+- name: umax
+  summary: Action signal upper bounds scalar | vector
+  direction: input
+- name: umin
+  summary: Action signal lower bounds scalar | vector
+  direction: input
+- name: u\*
+  summary: Modified control action scalar | vector
+  direction: output
+- name: exitflag
+  summary: Optimization status 1 | 2 | 3 | 4 | 0 | negative integer
+  direction: output
+```
 
 ### Input
 
@@ -142,8 +169,88 @@ status values.
 
 To enable this output port, select the **Optimization status**
 parameter.
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of constraints
+  summary: Number of constraints 1 (default) | positive integer
+  group: ''
+  block_parameter: nc
+  type: character vector
+  default: '''1'''
+- name: Number of actions
+  summary: Number of actions 1 (default) | positive integer
+  group: ''
+  block_parameter: nu
+  type: character vector
+  default: '''1'''
+- name: Constraint bound
+  summary: Constraint bounds 0 (default) | finite scalar | vector
+  group: ''
+  block_parameter: c
+  type: character vector
+  default: '''0'''
+- name: Use external source
+  summary: Add external constraint bound input port off (default) | on
+  group: ''
+  block_parameter: external_c
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Use external source for upper bound
+  summary: Add upper action bound input port off (default) | on
+  group: ''
+  block_parameter: external_umax
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Use external source for lower bound
+  summary: Add lower action bound input port off (default) | on
+  group: ''
+  block_parameter: external_umin
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Sample time
+  summary: Optimization sample time 0.1 (default) | positive scalar
+  group: ''
+  block_parameter: Ts
+  type: character vector
+  default: '''0.1'''
+- name: Maximum iterations
+  summary: Maximum optimization iterations 200 (default) | positive integer
+  group: ''
+  block_parameter: maxiter
+  type: character vector
+  default: '''200'''
+- name: Constraint tolerance
+  summary: Tolerance for constraint violations 1e-6 (default) | nonnegative scalar
+  group: ''
+  block_parameter: tol
+  type: character vector
+  default: '''1e-6'''
+- name: Optimization status
+  summary: Add exit flag output port off (default) | on
+  group: ''
+  block_parameter: exitflag
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Ignore constraints when QP is infeasible
+  summary: Disable constraints when optimization is infeasible off (default) | on
+  group: ''
+  block_parameter: relax_c
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+- name: Ignore action bounds when QP is infeasible
+  summary: Disable action bounds when optimization is infeasible off (default) | on
+  group: ''
+  block_parameter: relax_u
+  type: character vector
+  values: '''off''|''on'''
+  default: '''off'''
+```
 
 #### Parameters Tab
 
@@ -327,7 +434,6 @@ unmodified action signal.
 | **Type:** character vector |
 | **Values:** `'off'`|`'on'` |
 | **Default:** `'off'` |
-
 ## Libraries
 
 Simulink Control Design / Constraint Control

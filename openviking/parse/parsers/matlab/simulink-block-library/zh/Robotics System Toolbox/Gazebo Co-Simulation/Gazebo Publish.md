@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Gazebo Publish
 
 ## 端口
+```yaml
+ports:
+- name: Msg
+  summary: Gazebo 自定义消息总线
+  direction: input
+  data_types: bus
+```
 
 ### 输入
 
@@ -23,8 +30,22 @@ chinese_source: worker-translation
 Gazebo 自定义消息，指定为总线信号，其元素与特定的 `Topic` 和 `Message type` 相关。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Topic source
+  summary: 用于指定话题的来源 From Gazebo（默认）| Specify your own
+  group: ''
+- name: Topic
+  summary: 自定义消息的话题名称 /my_topic（默认）| 字符串
+  group: ''
+- name: Message type
+  summary: Gazebo 自定义消息类型 gazebo_msgs/TestPose（默认）| 字符串
+  group: ''
+- name: Sample time
+  summary: 输入的采样时间 0.001（默认）| 正数
+  group: ''
+```
 
 ### **Topic source** — 用于指定话题的来源 `From Gazebo`（默认）| `Specify your own`
 
@@ -47,7 +68,6 @@ Gazebo 自定义消息，指定为总线信号，其元素与特定的 `Topic` �
 ### **Sample time** — 输入的采样时间 `0.001`（默认）| 正数
 
 采样时间表示向 Gazebo 仿真器发送消息的时间间隔。
-
 ## 所属库
 
 Robotics System Toolbox / Gazebo Co-Simulation

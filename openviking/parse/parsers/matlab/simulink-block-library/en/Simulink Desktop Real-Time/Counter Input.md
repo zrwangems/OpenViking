@@ -14,6 +14,17 @@ language: en
 # Counter Input
 
 ## Ports
+```yaml
+ports:
+- name: Counter Data
+  summary: Counter data read from input channels vector
+  direction: output
+  data_types: single | double | int8 | uint8 | int16 | uint16 | int32 | uint32
+- name: Missed Ticks
+  summary: Missed tick count (optional) double
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -36,8 +47,61 @@ When you select **Show “Missed Ticks”
 port**, this port is visible.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Install new board
+  summary: Register a board < no board selected > (default)
+  group: ''
+  block_parameter: DrvName
+- name: Delete current board
+  summary: Delete the current board (button)
+  group: ''
+  block_parameter: DrvName
+- name: Board setup
+  summary: Set up the board (button)
+  group: ''
+  block_parameter: DrvOptions
+- name: Sample time
+  summary: Sample time of block 0.1 (default) | double
+  group: ''
+  block_parameter: SampleTime
+- name: Maximum missed ticks
+  summary: Number of timer ticks by which your model can trail the kernel 10 (default) | integer
+  group: ''
+  block_parameter: MaxMissedTicks
+- name: Show “Missed Ticks” port
+  summary: Send number of missed ticks to port Missed Ticks 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowMissedTicks
+- name: Yield CPU when waiting
+  summary: Yield CPU while kernel waits for hardware 'off' (default) | 'on'
+  group: ''
+  block_parameter: YieldWhenWaiting
+- name: Input channels
+  summary: Select counter-input channels 1 (default) | vector
+  group: ''
+  block_parameter: Channels
+- name: Reset after read
+  summary: Counter-reset policy never (default) | always | level | rising edge | falling edge | either edge
+  group: ''
+  block_parameter: ResetMode
+- name: Clock input source
+  summary: Clock input that increments counter input pin rising edge (default) | input pin falling edge | internal clock
+  group: ''
+  block_parameter: CounterEdge
+- name: Gate input functionality
+  summary: Action of counter-gate input pin none (default) | enable when high | enable when low | start on rising edge | start
+    on falling edge | reset on rising edge | reset on falling edge | latch on rising edge | latch on falling edge | latch
+    & reset on rising edge | latch & reset on falling edge | enable when high, latch & reset on edge | enable when low, latch
+    & reset on edge
+  group: ''
+  block_parameter: CounterGate
+- name: Output data type
+  summary: Data type of block output double (default) | single | int8 | uint8 | int16 | uint16 | int32 | uint32
+  group: ''
+  block_parameter: DataType
+```
 
 ### **Install new board** — Register a board `< no board selected >` (default)
 
@@ -331,7 +395,6 @@ depend on the capabilities of the board.
 |  |
 | --- |
 | **Block Parameter:** `DataType` |
-
 ## Libraries
 
 Simulink Desktop Real-Time

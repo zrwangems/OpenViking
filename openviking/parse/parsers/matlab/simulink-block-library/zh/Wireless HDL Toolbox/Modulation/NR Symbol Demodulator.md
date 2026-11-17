@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # NR Symbol Demodulator
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据符号 复标量
+  direction: input
+  data_types: single | double | signed fixed point
+- name: valid
+  summary: 指示有效输入数据 标量
+  direction: input
+  data_types: Boolean
+- name: modSel
+  summary: 调制选择 从 0 到 5 的整数
+  direction: input
+  data_types: single | double | signed fixed point
+- name: data
+  summary: 解调数据位或 LLR 值 标量
+  direction: output
+  data_types: single | double | signed fixed point | Boolean
+- name: valid
+  summary: 有效输出数据指示 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已就绪的标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -104,8 +131,22 @@ point`，且该模块支持的最大输入字长为 32 位。
 **ready** 信号保持为 `0`（false），直到模块输出对应输入数据符号的数据。**ready** 信号保持为 `0`（false）的时钟周期数取决于所选的调制类型。如果所选调制类型为 16-QAM，则 **ready** 信号保持为 `0`（false）3 个时钟周期，计算方式为 *NBPS* – 1，然后变为 `1`（true），表示模块已准备好在下个时间步接受数据。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation source
+  summary: 调制类型的来源 Property（默认）| Input port
+  group: ''
+- name: Modulation
+  summary: 调制类型 BPSK（默认）| QPSK | 16-QAM | 64-QAM | 256-QAM | pi/2-BPSK
+  group: ''
+- name: Decision type
+  summary: 解映射类型 Soft（默认）| Hard
+  group: ''
+- name: Rounding Method
+  summary: 内部定点计算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: ''
+```
 
 ### **Modulation source** — 调制类型的来源 `Property`（默认）| `Input port`
 
@@ -129,7 +170,6 @@ point`，且该模块支持的最大输入字长为 32 位。
 ### **Rounding Method** — 内部定点计算的舍入模式 `Floor`（默认）| `Ceiling` | `Convergent` | `Nearest` | `Round` | `Zero`
 
 此参数指定内部定点计算的舍入模式类型。有关舍入模式的详细信息，请参阅舍入模式。当输入数据类型为 `double` 或 `single` 时，此参数不适用。
-
 ## 所属库
 
 Wireless HDL Toolbox / Modulation

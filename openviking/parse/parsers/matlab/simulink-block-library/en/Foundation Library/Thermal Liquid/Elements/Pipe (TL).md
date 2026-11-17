@@ -14,6 +14,18 @@ language: en
 # Pipe (TL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Inlet or outlet thermal liquid
+  direction: conserving
+- name: B
+  summary: Inlet or outlet thermal liquid
+  direction: conserving
+- name: H
+  summary: Temperature of pipe wall thermal
+  direction: conserving
+```
 
 ### Conserving
 
@@ -32,8 +44,58 @@ This block has no intrinsic directionality.
 Thermal conserving port associated with the temperature of the pipe wall. This
 temperature may differ from the temperature of the thermal liquid inside the
 pipe.
-
 ## Parameters
+```yaml
+parameters:
+- name: Pipe length
+  summary: The length of the pipe 5 m (default)
+  group: Geometry
+- name: Cross-sectional area
+  summary: The internal area of the pipe 0.01 m^2 (default)
+  group: Geometry
+- name: Hydraulic diameter
+  summary: Diameter of an equivalent cylindrical pipe with the same cross-sectional area 0.1128 m (default)
+  group: Geometry
+- name: Aggregate equivalent length of local resistances
+  summary: The combined length of all local resistances present in the pipe 1 m (default)
+  group: Friction and Heat Transfer
+- name: Internal surface absolute roughness
+  summary: Average depth of all surface defects on the internal surface of the pipe 15e-6 m (default)
+  group: Friction and Heat Transfer
+- name: Laminar flow upper Reynolds number limit
+  summary: The Reynolds number above which flow begins to transition from laminar to turbulent 2000 (default)
+  group: Friction and Heat Transfer
+- name: Turbulent flow lower Reynolds number limit
+  summary: The Reynolds number below which flow begins to transition from turbulent to laminar 4000 (default)
+  group: Friction and Heat Transfer
+- name: Shape factor for laminar flow viscous friction
+  summary: Effect of pipe geometry on the viscous friction losses 64 (default)
+  group: Friction and Heat Transfer
+- name: Nusselt number for laminar flow heat transfer
+  summary: Ratio of convective to conductive heat transfer 3.66 (default)
+  group: Friction and Heat Transfer
+- name: Enable dynamic compressibility
+  summary: Select whether to model fluid dynamic compressibility On (default) | Off
+  group: Effects and Initial Conditions
+- name: Enable fluid inertia
+  summary: Select whether to model fluid inertia Off (default) | On
+  group: Effects and Initial Conditions
+- name: Initial liquid pressure
+  summary: Liquid pressure at time zero 0.101325 MPa (default)
+  group: Effects and Initial Conditions
+- name: Initial liquid temperature
+  summary: Liquid temperature at time zero 293.15 K (default)
+  group: Effects and Initial Conditions
+- name: Nominal liquid pressure
+  summary: Liquid pressure at nominal operating conditions 0.101325 MPa (default)
+  group: Effects and Initial Conditions
+- name: Nominal liquid temperature
+  summary: Liquid temperature at nominal operating conditions 293.15 K (default)
+  group: Effects and Initial Conditions
+- name: Initial mass flow rate from port A to port B
+  summary: Mass flow rate at time zero 0 kg/s (default)
+  group: Effects and Initial Conditions
+```
 
 ### Geometry
 
@@ -153,7 +215,6 @@ time zero.
 
 To enable this parameter, select the **Enable fluid inertia**
 check box.
-
 ## Libraries
 
 Simscape / Foundation Library / Thermal Liquid / Elements

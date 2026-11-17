@@ -14,10 +14,15 @@ language: en
 # MSK Modulator Baseband
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters: []
+```
 
 **Input type**
 :   Indicates whether the input consists of bipolar or binary values.
@@ -51,7 +56,6 @@ Not documented in R2025b.
 :   Specify the block output data type as `double` and
     `single`. By default, the block sets this to
     `double`.
-
 ## Libraries
 
 Not documented in R2025b.

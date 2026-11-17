@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # Area Change (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口（等温液体）
+  direction: conserving
+- name: B
+  summary: 液体端口（等温液体）
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -25,8 +34,41 @@ chinese_source: worker-translation
 ### **B** — 液体端口（等温液体）
 
 液体出口端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Cone angle
+  summary: 渐扩面积变化角度 30（默认）| 正标量
+  group: ''
+- name: Local loss parameterization
+  summary: 水力损失模型 Semi-empirical correlation - sudden area change（默认）| Semi-empirical correlation - gradual area change |
+    Tabulated data - loss coefficient vs. Reynolds number
+  group: ''
+- name: Cross-sectional area at port A
+  summary: 端口 A 处的面积 0.02 m^2（默认）| 正标量
+  group: ''
+- name: Cross-sectional area at port B
+  summary: 端口 B 处的面积 0.01 m^2（默认）| 正标量
+  group: ''
+- name: Reynolds number vector
+  summary: 表格参数化的雷诺数向量 [10, 20, 30, 40, 50, 100, 200, 500, 1000, 2000]（默认）| 1-by-n vector
+  group: ''
+- name: Contraction loss coefficient vector
+  summary: 面积收缩的损失系数向量 [5, 2.7, 1.8, 1.46, 1.3, .9, .65, .42, .3, .2]（默认）| 1-by-*n* vector
+  group: ''
+- name: Expansion loss coefficient vector
+  summary: 面积扩张的损失系数向量 [3.1, 2.3, 1.65, 1.35, 1.15, .9, .75, .65, .9, .65]（默认）| 1-by-n vector
+  group: ''
+- name: Expansion correction factor
+  summary: 半经验损失因子方程中的系数 1（默认）| 正标量
+  group: ''
+- name: Contraction correction factor
+  summary: 半经验损失因子方程中的系数 1（默认）| 正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+```
 
 ### **Cone angle** — 渐扩面积变化角度 `30`（默认）| 正标量
 
@@ -97,7 +139,6 @@ chinese_source: worker-translation
 ### **Critical Reynolds number** — 层流的上限雷诺数 `150`（默认）| 正标量
 
 通过孔口的层流的上限雷诺数。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Pipes & Fittings

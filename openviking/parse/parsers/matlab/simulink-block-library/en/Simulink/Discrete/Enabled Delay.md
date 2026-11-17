@@ -14,6 +14,35 @@ language: en
 # Enabled Delay
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Data input signal scalar | vector
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+- name: d
+  summary: Delay length scalar
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | fixed point
+- name: Enable
+  summary: External enable signal scalar
+  direction: input
+  data_types: Boolean
+- name: External reset
+  summary: External reset signal scalar
+  direction: input
+  data_types: Boolean
+- name: x0
+  summary: Initial condition scalar | vector
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point | bus
+- name: Port_1
+  summary: Output signal scalar | vector
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | string | Boolean
+    | fixed point | enumerated | bus
+```
 
 ### Input
 
@@ -61,8 +90,95 @@ the parameter **Delay length**. The initial value of the output
 signal depends on several conditions. See Delay.
 
 **Data Types:** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `string` | `Boolean` | `fixed point` | `enumerated` | `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Delay length
+  summary: Delay length Dialog (default) | Input port
+  group: Main
+  block_parameter: DelayLengthUpperLimit
+  type: character vector
+  values: scalar
+  default: '''100'''
+- name: Initial condition
+  summary: Initial condition Dialog (default) | Input port
+  group: Main
+  values: scalar
+  block_parameter: InitialCondition
+  type: character vector
+  default: '''0.0'''
+- name: Input processing
+  summary: Specify sample- or frame-based processing Elements as channels (sample based) (default) | Columns as channels (frame
+    based)
+  group: Main
+  block_parameter: InputProcessing
+  type: character vector
+  values: '''Columns as channels (frame based)'' | ''Elements as channels (sample based)'''
+  default: '''Elements as channels (sample based)'''
+- name: Use circular buffer for state
+  summary: Circular buffer for storing state off (default) | on
+  group: Main
+  block_parameter: UseCircularBuffer
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Prevent direct feedthrough
+  summary: Prevent direct feedthrough off (default) | on
+  group: Main
+  block_parameter: PreventDirectFeedthrough
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Remove delay length check in generated code
+  summary: Remove delay length out-of-range check off (default) | on
+  group: Main
+  block_parameter: RemoveDelayLengthCheckInGeneratedCode
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Diagnostic for delay length
+  summary: Diagnostic checks for delay length None (default) | Warning | Error
+  group: Main
+  block_parameter: DiagnosticForDelayLength
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''None'''
+- name: Show enable port
+  summary: Create enable port on (default) | off
+  group: Main
+  block_parameter: ShowEnablePort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''on'''
+- name: External reset
+  summary: External state reset None (default) | Rising | Falling | Either | Level | Level hold
+  group: Main
+  block_parameter: ExternalReset
+  type: character vector
+  values: '''None'' | ''Rising'' | ''Falling'' | ''Either'' | ''Level'' | ''Level hold'''
+  default: '''None'''
+- name: Sample time (-1 for inherited)
+  summary: Discrete interval between sample time hits -1 (default) | scalar
+  group: Main
+  block_parameter: SampleTime
+  type: character vector
+  values: real scalar
+  default: '''-1'''
+- name: State name
+  summary: Unique name for block state '' (default) | alphanumeric string
+  group: State Attributes
+  block_parameter: StateName
+  type: character vector
+  values: unique name
+  default: ''''''
+- name: State name must resolve to Simulink signal object
+  summary: Option to require that state names resolve to signal object off (default) | on
+  group: State Attributes
+  block_parameter: StateMustResolveToSignalObject
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -382,7 +498,6 @@ parameter to a value other than `None`.
 | **Type**: character vector |
 | **Values**: `'off'` | `'on'` |
 | **Default**: `'off'` |
-
 ## Libraries
 
 HDL Coder / Discrete Simulink / Discrete

@@ -14,6 +14,21 @@ language: en
 # Read UAV Trajectory
 
 ## Ports
+```yaml
+ports:
+- name: Time
+  summary: Time point to sample along trajectory scalar
+  direction: input
+  data_types: double
+- name: Translation
+  summary: Position of UAV vector
+  direction: output
+  data_types: double
+- name: Rotation
+  summary: Euler angle of UAV vector
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -60,8 +75,26 @@ the trajectory source.
 **Example:** `[1 0 0]`
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Trajectory source
+  summary: Source for trajectory From trajectory object in workspace (default) | From UAV Scenario in workspace
+  group: ''
+- name: UAV scenario object
+  summary: UAV scenario object singleUAVScenario (default) | uavScenario object
+  group: ''
+- name: UAV platform name
+  summary: Name of UAV platform UAV (default) | name of UAV platform
+  group: ''
+- name: Trajectory object
+  summary: Trajectory object waypointTrajectory() (default) | multirotorFlightTrajectory object | fixedwingFlightTrajectory
+    object | polynomialTrajectory object | waypointTrajectory object
+  group: ''
+- name: Convert to ENU reference frame and Front-Left-Up body frame
+  summary: Translation and rotation coordinate frame on (default) | off
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -117,7 +150,6 @@ parameter if you want to use the outputs of this block as
 **Translation** and **Rotation** inputs for the
 Simulation 3D UAV
 Vehicle block.
-
 ## Libraries
 
 UAV Toolbox / Utilities

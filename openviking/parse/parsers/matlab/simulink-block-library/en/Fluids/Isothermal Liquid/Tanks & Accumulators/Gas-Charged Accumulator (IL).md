@@ -14,6 +14,12 @@ language: en
 # Gas-Charged Accumulator (IL)
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Liquid port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,28 @@ language: en
 
 Isothermal liquid port associated with the accumulator inlet. The flow
 rate is positive if liquid flows into the accumulator.
-
 ## Parameters
+```yaml
+parameters:
+- name: Total accumulator volume
+  summary: Accumulator volume 8e-3 m^3 (default) | positive scalar
+  group: ''
+- name: Minimum gas volume
+  summary: Gas chamber dead volume 4e-5 m^3 (default) | positive scalar
+  group: ''
+- name: Precharge pressure
+  summary: Gas chamber pressure 1.101325 MPa (default) | positive scalar
+  group: ''
+- name: Specific heat ratio
+  summary: Specific heat ratio 1.4 (default) | positive scalar
+  group: ''
+- name: Hard stop stiffness coefficient
+  summary: Proportionality constant 1e4 MPa/m^3 (default) | positive scalar
+  group: ''
+- name: Enable dynamic compressibility
+  summary: Fluid compressibility on (default) | off
+  group: ''
+```
 
 ### **Total accumulator volume** — Accumulator volume `8e-3` `m^3` (default) | positive scalar
 
@@ -61,7 +87,6 @@ When you select **Enable dynamic compressibility**, changes
 due to the mass flow rate into the block are calculated in addition to
 density changes due to changes in pressure. In the Isothermal Liquid
 Library, all blocks calculate density as a function of pressure.
-
 ## Libraries
 
 Simscape / Fluids / Isothermal Liquid / Tanks & Accumulators

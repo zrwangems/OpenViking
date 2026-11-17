@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # CCSDS RS Decoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入码字数据，范围为 0 到 255 的整数
+  direction: input
+  data_types: double | single | uint8 | fixdt(0,8,0)
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 解码后的消息数据，范围为 0 到 255 的整数
+  direction: output
+  data_types: double | single | uint8 | fixdt(0,8,0)
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+- name: err
+  summary: 输出数据损坏指示，布尔标量
+  direction: output
+  data_types: Boolean
+- name: nextFrame
+  summary: 模块就绪指示符 布尔标量
+  direction: output
+  data_types: Boolean
+- name: numCorrErr
+  summary: 已纠正错误数 非负标量
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -102,8 +133,19 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Output number of corrected symbol errors** 参数。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Message length (k)
+  summary: 消息长度 223（默认）| 239
+  group: ''
+- name: Interleaving depth (I)
+  summary: 交织深度 1（默认）| 2 | 3 | 4 | 5 | 8
+  group: ''
+- name: Output number of corrected symbol errors
+  summary: 已纠正符号错误数 off（默认）| on
+  group: ''
+```
 
 ### **Message length (k)** — 消息长度 `223`（默认）| `239`
 
@@ -116,7 +158,6 @@ chinese_source: worker-translation
 ### **Output number of corrected symbol errors** — 已纠正符号错误数 `off`（默认）| `on`
 
 选择此参数以启用 **numCorrErr** 输出端口。该端口输出已纠正错误的数量。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

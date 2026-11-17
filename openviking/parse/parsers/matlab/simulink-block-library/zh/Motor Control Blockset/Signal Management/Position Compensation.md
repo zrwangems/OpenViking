@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Position Compensation
 
 ## 端口
+```yaml
+ports:
+- name: θin
+  summary: 位置输入值 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ϕ
+  summary: 位置偏移 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: ω
+  summary: 角速度 标量
+  direction: input
+  data_types: single | double | fixed point
+- name: θout
+  summary: 位置输出值 标量
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -58,8 +77,34 @@ chinese_source: worker-translation
 经过偏移校正的位置输出值。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Nature of offset
+  summary: 偏移类型 Sample delay（默认）| Constant delay | External delay | High-pass filter delay | Low-pass filter delay
+  group: ''
+- name: Offset value
+  summary: 位置偏移值 0.1（默认）| 标量
+  group: ''
+- name: Number of sample delay
+  summary: 模块执行时间采样数 1（默认）| 标量
+  group: ''
+- name: Discrete step size (s)
+  summary: 模块再次执行的采样时间 50e-6（默认）| 标量
+  group: ''
+- name: Cut-off frequency (Hz)
+  summary: 滤波器截止频率 9.578（默认）| 标量
+  group: ''
+- name: Position unit
+  summary: 位置输入的单位 Radians（默认）| Degrees | Per unit
+  group: ''
+- name: Speed unit
+  summary: 角速度输入的单位 RPM（默认）| Degrees/Sec | Radians/Sec | Per unit
+  group: ''
+- name: Maximum application speed (RPM)
+  summary: 角速度上限 4000（默认）| 标量
+  group: ''
+```
 
 ### **Nature of offset** — 偏移类型 `Sample delay`（默认）| `Constant delay` | `External delay` | `High-pass filter delay` | `Low-pass filter delay`
 
@@ -122,7 +167,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Nature of offset** 设置为 `Sample delay`、`High-pass filter delay` 或 `Low-pass filter delay`。
-
 ## 所属库
 
 Motor Control Blockset / Signal Management

@@ -15,6 +15,53 @@ chinese_source: worker-translation
 # Discrete FIR Filter
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入数据 标量 | 列向量 | 行向量
+  direction: input
+  data_types: fixed point | single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: valid
+  summary: 指示输入数据有效 标量
+  direction: input
+  data_types: Boolean
+- name: coeff
+  summary: 滤波器系数（并行接口） 实数或复数行向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: coeff
+  summary: 滤波器系数（存储器接口） 实数或复数标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: caddr
+  summary: 滤波器系数地址（存储器接口） 标量
+  direction: input
+  data_types: fixdt(0,N,0)
+- name: cwren
+  summary: 滤波器系数写使能（存储器接口） 标量
+  direction: input
+  data_types: Boolean
+- name: cdone
+  summary: 滤波器系数写入完成（存储器接口） 标量
+  direction: input
+  data_types: Boolean
+- name: reset
+  summary: 清除内部状态 标量
+  direction: input
+  data_types: Boolean
+- name: data
+  summary: 滤波后的输出数据 标量 | 列向量 | 行向量
+  direction: output
+  data_types: fixed point | single | double
+- name: valid
+  summary: 指示输出数据有效 标量
+  direction: output
+  data_types: Boolean
+- name: ready
+  summary: 指示模块已准备好接收新的输入数据 标量
+  direction: output
+  data_types: Boolean
+```
 
 ### 输入
 
@@ -161,8 +208,58 @@ chinese_source: worker-translation
 要启用此端口，请将 **Filter structure** 设置为 `Partly serial systolic`。
 
 **数据类型：** `Boolean`
-
 ## 参数
+```yaml
+parameters:
+- name: Coefficient source
+  summary: 滤波器系数的来源 Property（默认） | Input port (Parallel interface) | Input port (Memory interface)
+  group: 主要
+- name: Coefficients
+  summary: 离散 FIR 滤波器系数 [0.5, 0.5]（默认） | 行向量 | 多通道矩阵
+  group: 主要
+- name: Coefficients prototype
+  summary: 原型滤波器系数 []（默认） | 实数或复数向量
+  group: 主要
+- name: Filter structure
+  summary: HDL 滤波器架构 Direct form systolic（默认）| Direct form transposed | Partly serial systolic
+  group: 主要
+- name: Specify serialization factor as
+  summary: 定义串行实现的规则 Minimum number of cycles between valid input samples（默认）| Maximum number of multipliers
+  group: 主要
+- name: Number of cycles
+  summary: 输入时序的序列化要求 2（默认）| 正整数
+  group: 主要
+- name: Number of multipliers
+  summary: 资源使用的序列化要求 2（默认）| 正整数
+  group: 主要
+- name: Optimize symmetric coefficients
+  summary: 在基于帧的输入下为对称系数共享乘法器 on（默认）| off
+  group: 主要
+- name: Rounding mode
+  summary: 用于对输出进行类型转换的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Zero
+  group: 数据类型
+- name: Saturate on integer overflow
+  summary: 用于对输出进行类型转换的溢出处理 off（默认）| on
+  group: 数据类型
+- name: Coefficients
+  summary: '离散 FIR 滤波器系数的数据类型 Inherit: Same word length as input（默认）| <data type expression>'
+  group: 数据类型
+- name: Output
+  summary: '滤波器输出的数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Same word length as input | <data type expression>'
+  group: 数据类型
+- name: Enable reset input port
+  summary: 启用 reset 输入端口的选项 off（默认）| on
+  group: 控制端口
+- name: Use HDL global reset
+  summary: 将数据路径寄存器连接到生成的 HDL 全局复位信号的选项 off（默认）| on
+  group: 控制端口
+- name: Coefficient multiplication
+  summary: 硬件中的系数乘法器实现 Multiplier（默认）| CSD/Factored-CSD
+  group: 实现
+- name: Use multiplier for +/- 1 and power of 2 coefficients
+  summary: 硬件中特殊值系数乘法器的实现 on（默认）| off
+  group: 实现
+```
 
 ### 主要
 
@@ -615,7 +712,6 @@ systolic`。
 
 多通道或可编程滤波器不支持
 CSD 实现。
-
 ## 所属库
 
 DSP HDL Toolbox / Filtering

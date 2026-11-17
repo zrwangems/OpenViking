@@ -15,6 +15,27 @@ chinese_source: worker-translation
 # Incremental Shaft Encoder
 
 ## 端口
+```yaml
+ports:
+- name: R
+  summary: 旋转速度 机械旋转
+  direction: unspecified
+- name: C
+  summary: 旋转速度 机械旋转
+  direction: unspecified
+- name: A
+  summary: 电压 电气
+  direction: unspecified
+- name: B
+  summary: 电压 电气
+  direction: unspecified
+- name: Z
+  summary: 索引或同步 电气
+  direction: unspecified
+- name: Ref
+  summary: 电压 电气
+  direction: unspecified
+```
 
 ### 守恒
 
@@ -41,8 +62,19 @@ chinese_source: worker-translation
 ### **Ref** — 电压 电气
 
 浮零伏参考。
-
 ## 参数
+```yaml
+parameters:
+- name: Pulses per revolution
+  summary: 脉冲计数 2（默认）
+  group: ''
+- name: Output voltage amplitude
+  summary: 电压 5 V（默认）
+  group: ''
+- name: Index pulse offset relative to shaft initial angle
+  summary: 位置 0 deg（默认）
+  group: ''
+```
 
 ### **Pulses per revolution** — 脉冲计数 `2`（默认）
 
@@ -55,7 +87,6 @@ chinese_source: worker-translation
 ### **Index pulse offset relative to shaft initial angle** — 位置 `0` `deg`（默认）
 
 索引脉冲 *Z* 相对于仿真开始时轴角度的偏移量。此参数用于设置索引脉冲的初始位置。
-
 ## 所属库
 
 Simscape / Electrical / Sensors & Transducers

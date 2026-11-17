@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Spool Orifice (IL)
 
 ## 端口
+```yaml
+ports:
+- name: A
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: B
+  summary: 液体端口，等温液体
+  direction: conserving
+- name: S
+  summary: 控制构件位移，m，物理信号
+  direction: input
+- name: F
+  summary: 液动力，N，物理信号
+  direction: output
+```
 
 ### 守恒端口
 
@@ -35,8 +50,55 @@ chinese_source: worker-translation
 ### **F** — 液动力，N，物理信号
 
 轴向液动力，单位为 N。
-
 ## 参数
+```yaml
+parameters:
+- name: Orifice parameterization
+  summary: 节流口类型 Round holes（默认）| Rectangular slot
+  group: ''
+- name: Diameter of round holes
+  summary: 圆孔直径 5e-3 m（默认）| 正标量
+  group: ''
+- name: Number of round holes
+  summary: 圆孔数量 6（默认）| 正整数
+  group: ''
+- name: Orifice width
+  summary: 矩形槽宽度 0.01 m（默认）| 正标量
+  group: ''
+- name: Spool travel between closed and open orifice
+  summary: 控制构件最大行程 5e-3 m（默认）| 正标量
+  group: ''
+- name: Flow force output
+  summary: 是否对阀芯上的轴向液压力建模 off（默认）| on
+  group: ''
+- name: Radial clearance
+  summary: 阀芯-套筒间隙 1e-5 m（默认）| 正标量
+  group: ''
+- name: Leakage area
+  summary: 阀处于全关闭位置时的间隙面积 1e-10 m^2（默认）| 正标量
+  group: ''
+- name: Spool position at closed orifice
+  summary: 阀芯偏移 0（默认）| 标量
+  group: ''
+- name: Cross-sectional area at ports A and B
+  summary: 守恒端口处的节流口面积 inf m^2（默认）| 正标量
+  group: ''
+- name: Opening orientation
+  summary: 节流口面积变化方向 Positive spool displacement opens the orifice（默认）| Negative spool displacement opens the orifice
+  group: ''
+- name: Discharge coefficient
+  summary: 流量系数 0.64（默认）| [0,1] 范围内的正标量
+  group: ''
+- name: Critical Reynolds number
+  summary: 层流的上限雷诺数 150（默认）| 正标量
+  group: ''
+- name: Smoothing factor
+  summary: 数值平滑因子 0.01（默认）| 正标量
+  group: ''
+- name: Pressure recovery
+  summary: 是否考虑面积扩大时的压力增加 off（默认）| on
+  group: ''
+```
 
 ### **Orifice parameterization** — 节流口类型 `Round holes`（默认）| `Rectangular slot`
 
@@ -126,7 +188,6 @@ slot`。
 ### **Pressure recovery** — 是否考虑面积扩大时的压力增加 `off`（默认）| `on`
 
 是否考虑流体从较小横截面积区域流向较大横截面积区域时的压力增加。
-
 ## 所属库
 
 Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Orifices

@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Change Operating Points
 
 ## 端口
+```yaml
+ports:
+- name: systeminputs_in
+  summary: 系统输入数组
+  direction: input
+- name: enable/disable
+  summary: 启用和禁用更改工作点 标量
+  direction: input
+- name: autotuning times
+  summary: 启动自整定的时间向量 向量
+  direction: input
+- name: next OP
+  summary: 下一个工作点 标量
+  direction: input
+- name: y
+  summary: 被控对象输出 标量 | 向量
+  direction: input
+- name: enable autotuning
+  summary: 启用或禁用自整定 标量
+  direction: input
+- name: snapshot trigger
+  summary: 快照触发器 向量
+  direction: input
+- name: systeminputs_out
+  summary: 工作点输出总线
+  direction: output
+- name: start_stop
+  summary: 启动和停止自整定的信号 标量
+  direction: output
+```
 
 ### 输入
 
@@ -101,8 +131,202 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Operating mode** 设置为 `Import operating points` 并选中 **Use block for autotuning**。
-
 ## 参数
+```yaml
+parameters:
+- name: Operating mode
+  summary: 用于获取工作点数据的模式 Import operating points（默认）| Snapshot operating points
+  group: Import operating point 选项卡
+  block_parameter: OperatingMode
+  type: string
+  values: '"Import operating points" | "Snapshot operating points"'
+  default: '"Import operating points"'
+- name: Input method
+  summary: 工作点数据的输入方法 Manually edit table（默认）| Automatically fill Table
+  group: Import operating point 选项卡
+  block_parameter: InputMethod
+  type: string
+  values: '"Manually edit table" | "Automatically fill table"'
+  default: '"Manually Edit Table"'
+- name: Number of inputs
+  summary: 模型输入的数量 3（默认）| 正标量
+  group: Import operating point 选项卡
+  block_parameter: NumSystemInputs
+  type: string
+  values: 带引号的正标量
+  default: '"3"'
+- name: Workspace
+  summary: 用于导入工作点数据的工作区 Base workspace（默认）| Model workspace | Data dictionary
+  group: Import operating point 选项卡
+  block_parameter: ImportWorkspace
+  type: string
+  values: '"Data dictionary" | "Base workspace" | "Model workspace"'
+  default: '"Data dictionary"'
+- name: Data dictionary name
+  summary: 数据字典名称 myDataDictionary.sldd（默认）| 字符串
+  group: Import operating point 选项卡
+  block_parameter: DataDictionaryName
+  type: string
+  default: '"myDataDictionary.sldd"'
+- name: Operating point variable
+  summary: 工作点变量名称 myOperatingPoint（默认）| 字符串
+  group: Import operating point 选项卡
+  block_parameter: OperatingPointVariable
+  type: 字符串
+  default: '"myOperatingPoint"'
+- name: Snapshot mode
+  summary: 工作点快照模式 Time-based（默认）| Event-based
+  group: Import operating point 选项卡
+  block_parameter: SnapshotMode
+  type: 字符串
+  values: '"Time-based" | "Event-based"'
+  default: '"Time-based"'
+- name: Snapshot times (sec)
+  summary: 仿真快照时间 [0 1 2]（默认）| 标量 | 向量
+  group: Import operating point 选项卡
+  block_parameter: SnapshotTimes
+  type: 字符串
+  values: 带引号的标量或向量
+  default: '"[1 2 3]"'
+- name: Use external source
+  summary: 使用输入端口获取快照时间 off（默认）| on
+  group: Import operating point 选项卡
+  block_parameter: SnapshotTimesExternalSource
+  type: 字符串
+  values: '"off" | "on"'
+  default: '"off"'
+- name: Sample time (-1 for inherited)
+  summary: 采样时间 -1（默认）| 正标量
+  group: Import operating point 选项卡
+  block_parameter: SampleTime
+  type: 字符串
+  values: 带引号的正标量 | "–1"
+  default: '"–1"'
+- name: Operating point definitions
+  summary: 工作点数据 多个表条目
+  group: Import operating point 选项卡
+  block_parameter: OperatingPointTable
+  type: 字符串
+  values: 带引号的元胞数组
+  default: '"{''Indicies'',''[1 2 3]'';''Times (sec)'',''[0 1 2]'';''SystemInput_1'',''[1 1 1]'';''SystemInput_2'',''[2 2
+    2]'';''SystemInput_3'',''[3 3 3]''}"'
+- name: Bus name
+  summary: 总线对象名称 scdPlantOPsBusObject（默认）| 字符串
+  group: Import operating point 选项卡
+  block_parameter: BusName
+  type: 字符串
+  values: 字符串
+  default: '"scdPlantOPsBusObject"'
+- name: Specify bus name
+  summary: 指定总线名称 off（默认）| on
+  group: Import operating point 选项卡
+  block_parameter: SpecifyBusName
+  type: string
+  values: '"off" | "on"'
+  default: '"off"'
+- name: 数据类型
+  summary: 浮点精度 Double（默认）| Single
+  group: Import operating point 选项卡
+  block_parameter: BlockDataType
+  type: string
+  values: '"Double" | "Single"'
+  default: '"Double"'
+- name: 使用模块进行自动调优
+  summary: 使用模块进行 PID 自动调优工作流 on（默认）| off
+  group: 更改工作点设置选项卡
+  block_parameter: UseAutotuning
+  type: string
+  values: '"off" | "on"'
+  default: '"on"'
+- name: 启动自动调优的方法
+  summary: 启动自动调优的方法 External time vector（默认）| Time after reaching steady-state
+  group: 更改工作点设置选项卡
+  block_parameter: AutotuningTriggerMethod
+  type: string
+  values: '"External time vector" | "Time after reaching steady-state"'
+  default: '"External time vector"'
+- name: 为自动调优添加使能/禁用端口
+  summary: 为自动调优添加使能/禁用端口 off（默认）| on
+  group: 更改工作点设置选项卡
+  block_parameter: AddEnableDisableAutotuning
+  type: string
+  values: '"off" | "on"'
+  default: '"on"'
+- name: 自动调优时间跨度（秒）
+  summary: 自动调优实验持续时间 10（默认）| 正标量 | 向量
+  group: 更改工作点设置选项卡
+  block_parameter: AutotuningExperimentLength
+  type: string
+  values: 带引号的正标量或向量
+  default: '"10"'
+- name: 达到稳态后开始自整定的采样数
+  summary: 延迟开始自整定 2（默认）| 正标量
+  group: 更改工作点设置选项卡
+  block_parameter: NumAutotuningDelaySamples
+  type: string
+  values: 带引号的正标量
+  default: '"2"'
+- name: Transition method
+  summary: 工作点过渡方法 Internal time vector (from operating point table)（默认）| Time after reaching steady-state | Time after completing
+    autotuning | External trigger
+  group: 更改工作点设置选项卡
+  block_parameter: TransitionMethod
+  type: string
+  values: '"Internal time vector (from operating point table)" | "Time after reaching steady-state" | "Time after completing
+    autotuning" | "External trigger"'
+  default: '"Internal time vector (from operating point table)"'
+- name: Change operating point algorithm
+  summary: 工作点过渡算法 Step（默认）| Ramp
+  group: 更改工作点设置选项卡
+  block_parameter: ChangeOPAlgorithm
+  type: string
+  values: '"Step" | "Ramp"'
+  default: '"Step"'
+- name: Rising slew rate (/sec)
+  summary: 输入增加时的导数限值 1（默认）| 标量 | 向量
+  group: 更改工作点设置选项卡
+  block_parameter: RampSlewUpRate
+  type: string
+  values: 带引号的标量或向量
+  default: '"1"'
+- name: Falling slew rate (/sec)
+  summary: 输入减少时的导数限值 -1（默认）| 标量 | 向量
+  group: 更改工作点设置选项卡
+  block_parameter: RampSlewLoRate
+  type: string
+  values: 带引号的标量或向量
+  default: '"–1"'
+- name: 达到稳态后过渡的采样数
+  summary: 过渡到工作点的延迟 2（默认）| 非负标量
+  group: 更改工作点设置选项卡
+  block_parameter: NumTransitionDelaySamples
+  type: string
+  values: 带引号的非负标量
+- name: 完成自动调优后过渡的采样数
+  summary: 过渡到工作点的延迟 2（默认）| 非负标量
+  group: 更改工作点设置选项卡
+  block_parameter: NumSamplesAutotuningTranstion
+  type: string
+  values: 带引号的非负标量
+- name: 调节时间上界
+  summary: 调节时间的上界 [1.1 2.1 3.1]（默认）| 向量
+  group: 更改工作点设置选项卡
+  block_parameter: SettlingTimeUpper
+  type: string
+  values: 带引号的标量或向量
+- name: 调节时间下界
+  summary: 调节时间的下界 [0.9 1.9 2.9]（默认）| 向量
+  group: 更改工作点设置选项卡
+  block_parameter: SettlingTimeLower
+  type: string
+  values: 带引号的标量或向量
+- name: 调节时间间隔
+  summary: 调节时间间隔 5（默认）| 标量 | 向量
+  group: 更改工作点设置选项卡
+  block_parameter: SettlingTimeInterval
+  type: string
+  values: 带引号的标量或向量
+```
 
 ### Import operating point 选项卡
 
@@ -630,7 +854,6 @@ chinese_source: worker-translation
 | **类型：** string |
 | **值：** 带引号的标量或向量 |
 | **默认：** `"5"` |
-
 ## 所属库
 
 Simulink Control Design / Autotuning

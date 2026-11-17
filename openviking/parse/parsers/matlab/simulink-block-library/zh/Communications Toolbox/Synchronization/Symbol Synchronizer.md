@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Symbol Synchronizer
 
 ## 端口
+```yaml
+ports:
+- name: Samp
+  summary: 输入采样 标量（默认）| 列向量
+  direction: input
+  data_types: double | single
+- name: Sym
+  summary: 输出信号符号 标量 | 列向量
+  direction: output
+- name: Err
+  summary: 估计的定时误差 标量 | 列向量
+  direction: output
+```
 
 ### 输入
 
@@ -41,8 +54,35 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用该端口，请选择 **Normalized timing error output port**。
-
 ## 参数
+```yaml
+parameters:
+- name: Modulation type
+  summary: 调制类型 PAM/PSK/QAM（默认）| OQPSK
+  group: ''
+- name: Timing error detector
+  summary: 定时误差检测器类型 Zero-Crossing (decision-directed)（默认）| Gardner (non-data-aided) | Early-Late (non-data-aided) | Mueller-Muller
+    (decision-directed)
+  group: ''
+- name: Samples per symbol
+  summary: 每符号采样数 2（默认）| 大于 1 的正整数
+  group: ''
+- name: Damping factor
+  summary: 环路滤波器的阻尼因子 1（默认）| 正标量
+  group: ''
+- name: Normalized loop bandwidth
+  summary: 环路滤波器的归一化带宽 0.01（默认）| 小于 1 的正标量
+  group: ''
+- name: Detector gain
+  summary: 相位检测器增益 2.7（默认）| 正标量
+  group: ''
+- name: Normalized timing error output port
+  summary: 启用归一化定时误差输出端口 on（默认）| off
+  group: ''
+- name: Simulate using
+  summary: 要运行的仿真类型 Code generation（默认）| Interpreted execution
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -94,7 +134,6 @@ chinese_source: worker-translation
 - `Interpreted execution` — 通过使用 MATLAB® 解释器仿真模型。该选项缩短了启动时间，但后续仿真的速度慢于 `Code generation` 选项。在此模式下，您可以调试模块的源代码。
 
 有关详细信息，请参阅 Interpreted Execution vs. Code Generation (Simulink)。
-
 ## 所属库
 
 Communications Toolbox / Synchronization

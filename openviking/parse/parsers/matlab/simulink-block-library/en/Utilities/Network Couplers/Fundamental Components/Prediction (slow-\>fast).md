@@ -14,6 +14,15 @@ language: en
 # Prediction (slow->fast)
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Signal with slower sampling real scalar
+  direction: input
+- name: y
+  summary: Prediction for the faster network real scalar
+  direction: output
+```
 
 ### Input
 
@@ -25,8 +34,16 @@ Connect this port to the slower network, Network 2, to capture its output.
 ### **y** — Prediction for the faster network real scalar
 
 Connect this port to the input of the faster network, Network 1.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port u discrete sample time (s)
+  summary: Specify sample time for the slower network -1 (default) | positive scalar
+  group: ''
+- name: Port y discrete sample time (s)
+  summary: Specify sample time for the faster network -1 (default) | positive scalar
+  group: ''
+```
 
 ### **Port u discrete sample time (s)** — Specify sample time for the slower network `-1` (default) | positive scalar
 
@@ -35,7 +52,6 @@ Specify sample time for the slower network, Network 2, in seconds.
 ### **Port y discrete sample time (s)** — Specify sample time for the faster network `-1` (default) | positive scalar
 
 Specify sample time for the faster network, Network 1, in seconds.
-
 ## Libraries
 
 Simscape / Utilities / Network Couplers / Fundamental Components

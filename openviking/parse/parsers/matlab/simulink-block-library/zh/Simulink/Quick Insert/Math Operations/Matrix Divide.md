@@ -15,6 +15,37 @@ chinese_source: worker-translation
 # Divide
 
 ## 端口
+```yaml
+ports:
+- name: X
+  summary: 要相乘的输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: ÷
+  summary: 要相除或求逆的输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 要相乘或相除的第一个输入 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_N
+  summary: 要相乘或相除的第 N 个输入 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: \*
+  summary: 要相乘的输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Inv
+  summary: 要相除或求逆的输入信号 标量 | 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: Port_1
+  summary: 通过对输入进行乘法、除法或求逆运算计算得到的输出 标量 | 向量 | 矩阵 | N 维数组
+  direction: output
+  data_types: half | single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -76,8 +107,112 @@ chinese_source: worker-translation
 通过对输入进行乘法、除法或求逆运算计算得到的输出。
 
 **数据类型：** `half` | `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of inputs
+  summary: 控制输入数量和运算类型 */（默认）| 正整数标量 | 每个输入端口对应 * 或 /
+  group: 主要
+  block_parameter: Inputs
+  type: 字符向量
+  values: '''2'' | ''*'' | '''' | ''*/'' | ''*/*'' | ...'
+  default: '''*/'''
+- name: Multiplication
+  summary: 逐元素 (.\*) 或矩阵 (\*) 乘法 Element-wise(.*)（默认）| Matrix(*)
+  group: 主要
+  block_parameter: Multiplication
+  type: 字符向量
+  values: '''Element-wise(.*)'' | ''Matrix(*)'''
+  default: '''Element-wise(.*)'''
+- name: Apply over
+  summary: 如何沿指定维度应用函数 All dimensions（默认）| Specified dimension
+  group: 主要
+  block_parameter: CollapseMode
+  type: 字符向量
+  values: '''All dimensions'' | ''Specified dimension'''
+  default: '''All dimensions'''
+- name: Dimension
+  summary: 沿其进行乘法的维度 1（默认）| 正整数
+  group: 主要
+  block_parameter: CollapseDim
+  type: 字符向量
+  values: '''1'' | ''2'' | ...'
+  default: '''1'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的时间间隔 -1（默认）| 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+- name: Require all inputs to have the same data type
+  summary: 要求所有输入具有相同的数据类型 off（默认）| on
+  group: 信号属性
+  block_parameter: InputSameDT
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Output minimum
+  summary: 用于范围检查的最小输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMin
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output maximum
+  summary: 用于范围检查的最大输出值 []（默认）| 标量
+  group: 信号属性
+  block_parameter: OutMax
+  values: '''[]''（默认）| 带引号的标量'
+- name: Output data type
+  summary: '指定输出数据类型 Inherit: Inherit via internal rule（默认）| Inherit: Inherit via back propagation | Inherit: Same as first
+    input | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16) | fixdt(1,16,0)
+    | fixdt(1,16,2^0,0) | <data type expression>'
+  group: 信号属性
+  block_parameter: OutDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit via internal rule | ''Inherit: Same as first input'' | ''Inherit: Inherit via back propagation''
+    | ''double'' | ''single'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64''
+    | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)'' | ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: 防止定点工具覆盖 Output data type 的选项 off（默认）| on
+  group: 信号属性
+  block_parameter: LockScale
+  values: '''off''（默认）| ''on'''
+- name: Integer rounding mode
+  summary: 定点运算的舍入模式 Floor（默认）| Ceiling | Convergent | Nearest | Round | Simplest | Zero
+  group: 信号属性
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Saturate on integer overflow
+  summary: 溢出操作的方法 off（默认）| on
+  group: 信号属性
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''off''（默认）| ''on'''
+- name: Mode
+  summary: 选择数据类型模式 Inherit（默认）| Built in | Fixed Point
+  group: 信号属性
+- name: Data type override
+  summary: 为此信号指定数据类型覆盖模式 Inherit | Off
+  group: 信号属性
+- name: Signedness
+  summary: 指定有符号或无符号 Signed（默认）| Unsigned
+  group: 信号属性
+- name: Word length
+  summary: 保存量化整数的字长位数 16（默认）| 0 到 32 的整数
+  group: 信号属性
+- name: Fraction length
+  summary: 指定定点数据类型的小数长度 0（默认）| 标量整数
+  group: 信号属性
+- name: Scaling
+  summary: 定点数据的定标方法 Best precision（默认）| Binary point | Slope and bias
+  group: 信号属性
+- name: Slope
+  summary: 指定定点数据类型的斜率 2^0（默认）| 正实值标量
+  group: 信号属性
+- name: Bias
+  summary: 指定定点数据类型的偏置 0（默认）| 实值标量
+  group: 信号属性
+```
 
 ### 主要
 
@@ -513,7 +648,6 @@ point`。
 
 要启用此参数，请将 **Scaling** 设置为
 `Slope and bias`。
-
 ## 所属库
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

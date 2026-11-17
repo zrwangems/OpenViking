@@ -14,6 +14,17 @@ language: en
 # Memory Controller
 
 ## Ports
+```yaml
+ports:
+- name: burstReq*N*
+  summary: Request for memory access scalar
+  direction: input
+  data_types: BurstRequest2BusObj
+- name: burstDone*N*
+  summary: Signal toward master scalar
+  direction: output
+  data_types: BurstRequest2BusObj
+```
 
 ### Input
 
@@ -53,8 +64,43 @@ of masters** parameter.
 represents the *`N`*th input port
 
 **Data Types:** `BurstRequest2BusObj`
-
 ## Parameters
+```yaml
+parameters:
+- name: Hardware board
+  summary: 'View or modify current hardware settings Read-only: name of current hardware board'
+  group: ''
+- name: Memory selection
+  summary: Choose between memory regions PS memory (default) | PL memory
+  group: Main
+- name: Number of masters
+  summary: Number of masters connected to this controller 2 (default) | positive integer from 1 to 12
+  group: Main
+- name: Interconnect arbitration
+  summary: Arbitration policy Round robin (default) | Fixed port priority
+  group: Main
+- name: Use hardware board settings
+  summary: Use hardware implementation settings from the configuration parameters off (default) | on
+  group: Main
+- name: Bandwidth
+  summary: 'Bandwidth for transactions towards external memory Read-only: scalar'
+  group: Main
+- name: Frequency (MHz)
+  summary: Controller clock frequency, in MHz 200 (default) | scalar
+  group: Main
+- name: Data width (bits)
+  summary: Bit width of datapath 64 (default) | positive integer
+  group: Main
+- name: Bandwidth derating (%)
+  summary: Memory transaction inefficiencies 0-100
+  group: Main
+- name: Request to first transfer (in clocks)
+  summary: Number of clock cycles between request and start of transfer nonnegative integer
+  group: Main
+- name: Last transfer to transaction complete (in clocks)
+  summary: Number of clock cycles between the end of transfer and completion of transaction nonnegative integer
+  group: Main
+```
 
 ### **Hardware board** — View or modify current hardware settings Read-only: name of current hardware board
 
@@ -201,7 +247,6 @@ settings** parameter.
 
 Click **Launch performance app** to open the Performance
 Metrics window. For additional information, see Simulation Performance Plots.
-
 ## Libraries
 
 SoC Blockset / Memory

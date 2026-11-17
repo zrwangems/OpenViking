@@ -15,6 +15,36 @@ chinese_source: worker-translation
 # Stepper Motor Driver
 
 ## 端口
+```yaml
+ports:
+- name: A+
+  summary: '*A* 相正极端子电气端口'
+  direction: conserving
+- name: A-
+  summary: '*A* 相负极端子电气端口'
+  direction: conserving
+- name: B+
+  summary: '*B* 相正极端子电气端口'
+  direction: conserving
+- name: B-
+  summary: '*B* 相负极端子电气端口'
+  direction: conserving
+- name: ENA
+  summary: 触发输入阶跃电压电气端口
+  direction: conserving
+- name: REF
+  summary: 输入浮置参考电压电气端口
+  direction: conserving
+- name: REV
+  summary: 控制电机方向的输入电压电气端口
+  direction: conserving
+- name: VM
+  summary: 电源电压电气端口
+  direction: conserving
+- name: GND
+  summary: 电源接地参考电气端口
+  direction: conserving
+```
 
 ### 守恒端口
 
@@ -63,8 +93,40 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请将 **Power supply** 设置为 `External`。
-
 ## 参数
+```yaml
+parameters:
+- name: Simulation mode
+  summary: 仿真模式 Stepping（默认）| Averaged
+  group: ''
+- name: Step rate sensitivity
+  summary: 步进速率需求灵敏度 10 Hz/V（默认）| 正数
+  group: ''
+- name: Enable threshold voltage
+  summary: 阶跃电压阈值 2.5 V（默认）| 正数
+  group: ''
+- name: Reverse threshold voltage
+  summary: 反向电压阈值 2.5 V（默认）| 正数
+  group: ''
+- name: Output voltage amplitude
+  summary: 脉冲输出幅值 10 V（默认）| 正数
+  group: ''
+- name: Supply voltage
+  summary: 电源电压 10 V（默认）| 正数
+  group: ''
+- name: Stepping mode (averaged)
+  summary: 平均仿真的步长 Full stepping（默认）| Half stepping
+  group: ''
+- name: Stepping mode
+  summary: 步进仿真的步长 Full stepping（默认）| Half stepping | Microstepping
+  group: ''
+- name: Number of microsteps per step
+  summary: 每步的微步数 4（默认）| 正数
+  group: ''
+- name: Maximum continuous current per phase
+  summary: 每相最大连续电流 1.2 A（默认）
+  group: ''
+```
 
 ### **Simulation mode** — 仿真模式 `Stepping`（默认）| `Averaged`
 
@@ -140,7 +202,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Stepping mode** 设置为 `Microstepping`。
-
 ## 所属库
 
 Simscape / Electrical / Electromechanical / Reluctance & Stepper

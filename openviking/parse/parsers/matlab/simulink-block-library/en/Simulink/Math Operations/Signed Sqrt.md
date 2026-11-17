@@ -14,6 +14,17 @@ language: en
 # Sqrt
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_1
+  summary: Output signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | half | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### Input
 
@@ -54,8 +65,98 @@ reciprocal of square root of the input signal. When the input is an
 integer or fixed-point type, the output must be floating point.
 
 **Data Types:** `single` | `double` | `half` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: Function the block performs sqrt | signedSqrt | rSqrt
+  group: Main
+  block_parameter: Operator
+  type: character vector
+  values: '''sqrt'' | ''signedSqrt'' | ''rSqrt'''
+- name: Output signal type
+  summary: Output signal type auto (default) | real | complex
+  group: Main
+  block_parameter: OutputSignalType
+  type: character vector
+  values: '''auto'' | ''real'' | ''complex'''
+  default: '''auto'''
+- name: Sample time (-1 for inherited)
+  summary: Interval between samples -1 (default) | scalar | vector
+  group: Main
+  block_parameter: SampleTime
+  values: '"-1" (default) | scalar or vector in quotes'
+- name: Method
+  summary: Method to compute reciprocal of square root Exact (default) | Newton-Raphson
+  group: Algorithm
+  block_parameter: AlgorithmType
+  type: character vector
+  values: '''Exact'' | ''Newton-Raphson'''
+  default: '''Exact'''
+- name: Number of iterations
+  summary: Number of iterations used for Newton Raphson algorithm 3 (default) | integer
+  group: Algorithm
+  block_parameter: Iterations
+  type: character vector
+  values: integer
+  default: '''3'''
+- name: Intermediate results data type
+  summary: 'Data type of intermediate results Inherit: Inherit via internal rule (default) | Inherit: Inherit from input |
+    Inherit: Inherit from output | double | single | int8 | uint8 | int16 | uint16 | int32 | uint32 | int64 | uint64 | fixdt(1,16,,0)
+    | fixdt(1,16,2^0,0) | <data type expression>'
+  group: Data Types
+  block_parameter: IntermediateResultsDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit from input'' | ''Inherit: Inherit from output'' | ''double''
+    | ''single'', ''int8'', ''uint8'', int16, ''uint16'', ''int32'', ''uint32'', ''int64'', ''uint64'', fixdt(1,16,0), fixdt(1,16,2^0,0).
+    ''<data type expression>'''
+  default: '''Inherit: Inherit via internal rule'''
+- name: Output
+  summary: 'Output data type Inherit: Same as first input (default) | Inherit: Inherit via internal rule | Inherit: Inherit
+    via back propagation | double | single | half | int8 | int32 | uint32 | int64 | uint64 | fixdt(1,16,2^0,0) | <data type
+    expression> | ...'
+  group: Data Types
+  block_parameter: OutDataTypeStr
+  type: character vector
+  values: '''Inherit: Inherit via internal rule'' | ''Inherit: Inherit via back propagation'' | ''Inherit: Same as first input''
+    | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | int16 | ''uint16'' | ''int32'' | ''uint32'' | ''int64''
+    | ''uint64'' | fixdt(1,16,0) | fixdt(1,16,2^0,0) | fixdt(1,16,2^0,0) | ''<data type expression>'''
+  default: '''Inherit: Same as first input'''
+- name: Minimum
+  summary: Minimum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMin
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Maximum
+  summary: Maximum output value for range checking [] (default) | scalar
+  group: Data Types
+  block_parameter: OutMax
+  type: character vector
+  values: scalar
+  default: '''[]'''
+- name: Integer rounding mode
+  summary: Rounding mode for fixed-point operations Floor (default) | Ceiling | Convergent | Nearest | Round | Simplest |
+    Zero
+  group: Data Types
+  block_parameter: RndMeth
+  type: character vector
+  values: '''Ceiling'' | ''Convergent'' | ''Floor'' | ''Nearest'' | ''Round'' | ''Simplest'' | ''Zero'''
+  default: '''Floor'''
+- name: Lock output data type setting against changes by the fixed-point tools
+  summary: Prevent fixed-point tools from overriding data types off (default) | on
+  group: Data Types
+  block_parameter: LockScale
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Saturate on integer overflow
+  summary: Method of overflow action on (default) | off
+  group: Data Types
+  block_parameter: SaturateOnIntegerOverflow
+  values: '''on'' (default) | ''off'''
+```
 
 ### Main
 
@@ -430,7 +531,6 @@ the `set_param` function.
 | --- | --- |
 | **Parameter:** | `SaturateOnIntegerOverflow` |
 | **Values:** | `'on'` (default) | `'off'` |
-
 ## Libraries
 
 Simulink / Math Operations HDL Coder / HDL Floating Point Operations HDL Coder / Math Operations

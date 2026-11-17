@@ -14,6 +14,17 @@ language: en
 # Delta UT1
 
 ## Ports
+```yaml
+ports:
+- name: UTC
+  summary: UT1 for UTC modified Julian date
+  direction: input
+  data_types: double
+- name: ΔUT1
+  summary: Difference between UT1 and UTC double
+  direction: input
+  data_types: double
+```
 
 ### Input
 
@@ -30,8 +41,39 @@ convert the UTC date to a modified Julian date.
 Difference between UT1 and UTC.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: IERS data file
+  summary: Earth orientation data aeroiersdata.mat (default) | MAT-file
+  group: ''
+  block_parameter: FileName
+  type: character vector
+  values: '''aeroiersdata.mat'' | MAT-file'
+  default: '''aeroiersdata.mat'''
+- name: Action for out-of-range input
+  summary: Out-of-range block behavior None (default) | Warning | Error
+  group: ''
+  block_parameter: action
+  type: character vector
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: IERS data URL
+  summary: Web site or Earth orientation data file https://maia.usno.navy.mil/ser7/finals2000A.data (default) | web site address
+    | file name
+  group: ''
+  block_parameter: iersurl
+  type: character vector
+  values: '''https://maia.usno.navy.mil/ser7/finals2000A.data'' | web site address | file name'
+  default: '''https://maia.usno.navy.mil/ser7/finals2000A.data'''
+- name: Destination folder
+  summary: Folder for IERS data file Current Folder (default)
+  group: ''
+  block_parameter: folder
+  type: character vector
+  values: '''Current Folder'' | folder name'
+  default: '''Current Folder'''
+```
 
 ### **IERS data file** — Earth orientation data `aeroiersdata.mat` (default) | MAT-file
 
@@ -105,7 +147,6 @@ To create the IERS data file in the destination folder, click the
 | **Type**: character vector |
 | **Values**: `'Current Folder'` | folder name |
 | **Default**: `'Current Folder'` |
-
 ## Libraries
 
 Aerospace Blockset / Environment / Celestial Phenomena Aerospace Blockset / Utilities / Axes Transformations

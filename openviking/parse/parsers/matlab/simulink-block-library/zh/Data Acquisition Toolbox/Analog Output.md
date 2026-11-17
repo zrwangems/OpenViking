@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # Analog Output
 
 ## 端口
+```yaml
+ports:
+- name: Data
+  summary: 要生成的模拟输出 double
+  direction: input
+  data_types: double
+```
 
 ### 输入
 
@@ -25,8 +32,22 @@ chinese_source: worker-translation
 如果为每个通道使用一个端口，请在每个端口上为每个通道指定一列数据。多个端口按通道名称或设备指定的通道 ID 命名。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Device
+  summary: 要通过其输出数据的设备 选择可用设备
+  group: ''
+- name: Channels
+  summary: 设备通道选择和配置 选项取决于设备
+  group: ''
+- name: Number of ports
+  summary: 输入数据端口数 1 for all channels | 1 per channel
+  group: ''
+- name: Output sample rate
+  summary: 设备采样率 数值
+  group: ''
+```
 
 ### **Device** — 要通过其输出数据的设备 选择可用设备
 
@@ -57,7 +78,6 @@ chinese_source: worker-translation
 ### **Output sample rate** — 设备采样率 数值
 
 采样从 Simulink 输出到设备的速率，以每秒采样数为单位。这是硬件的采样率。默认值在选定设备时定义。采样率必须是所选硬件允许范围内的正实数。
-
 ## 所属库
 
 Data Acquisition Toolbox

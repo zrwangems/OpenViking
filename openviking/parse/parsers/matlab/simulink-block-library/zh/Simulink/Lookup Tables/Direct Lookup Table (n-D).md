@@ -15,6 +15,29 @@ chinese_source: worker-translation
 # Direct Lookup Table (n-D)
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 索引 i1 输入值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_N
+  summary: 索引 N 输入值 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: T
+  summary: 表数据 向量 | 矩阵 | N 维数组
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+- name: Port_1
+  summary: 输出元素、向量或二维矩阵 标量 | 向量 | 二维矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point |
+    enumerated
+```
 
 ### 输入
 
@@ -46,8 +69,89 @@ chinese_source: worker-translation
 输出切片，以标量、向量或二维矩阵形式提供。模块输出的大小由 **Inputs select this object from table** 参数的设置决定。输出数据类型与表数据类型相同。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point` | `enumerated`
-
 ## 参数
+```yaml
+parameters:
+- name: Number of table dimensions
+  summary: 表数据的维度数 2（默认） | 1 | 3 | 4 | ...
+  group: 主要
+  block_parameter: NumberOfTableDimensions
+  type: 字符向量
+  values: '''1'' | ''2'' | ''3'' | ''4'' | ... |''30'''
+  default: '''2'''
+- name: Make table an input
+  summary: 将表数据作为模块输入提供 off（默认） | on
+  group: 主要
+  block_parameter: TableIsInput
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Table data
+  summary: 输出值表 [4 5 6; 16 19 20; 10 18 23]（默认） | 标量 | 向量 | 矩阵 | N 维数组
+  group: 主要
+  block_parameter: Table
+  type: 字符向量
+  values: 标量 | 向量 | 矩阵 | N 维数组
+  default: '''[4 5 6;16 19 20;10 18 23]'''
+- name: Inputs select this object from table
+  summary: 指定输出是元素、向量还是二维矩阵 Element（默认） | Vector | 2-D Matrix
+  group: 主要
+  block_parameter: InputsSelectThisObjectFromTable
+  type: 字符向量
+  values: '''Element'' | ''Vector'' | ''2-D Matrix'''
+  default: '''Element'''
+- name: Diagnostic for out-of-range input
+  summary: 输入超出范围时的模块操作 Warning（默认） | None | Error
+  group: 主要
+  block_parameter: DiagnosticForOutOfRangeInput
+  type: 字符向量
+  values: '''None'' | ''Warning'' | ''Error'''
+  default: '''Warning'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认） | 标量 | 向量
+  group: 主要
+  block_parameter: SampleTime
+  values: '"-1"（默认） | 带引号的标量或向量'
+- name: Remove protection against out-of-range input in generated code
+  summary: 移除检查超出范围输入值的代码 off（默认） | on
+  group: 代码生成
+  block_parameter: RemoveProtectionInput
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Table minimum
+  summary: 表数据可以具有的最小值 []（默认） | 有限、实数、双精度、标量
+  group: 表属性
+  block_parameter: TableMin
+  type: 字符向量
+  values: 标量
+  default: '''[]'''
+- name: Table maximum
+  summary: 表数据可以具有的最大值 []（默认） | 有限、实数、双精度、标量
+  group: 表属性
+  block_parameter: TableMax
+  type: 字符向量
+  values: 标量
+  default: '''[]'''
+- name: Table data type
+  summary: '表数据的数据类型 Inherit: Inherit from ''Table data''（默认） | double | single | half | int8 | uint8 | int16 | uint16 | int32
+    | uint32 | int64 | uint64 | boolean | fixdt(1,16) | fixdt(1,16,0) | fixdt(1,16,2^0,0) | Enum: <class name> | <data type
+    expression>'
+  group: 表属性
+  block_parameter: TableDataTypeStr
+  type: 字符向量
+  values: '''Inherit: Inherit from ''Table data'''' | ''double'' | ''single'' | ''half'' | ''int8'' | ''uint8'' | ''int16''
+    | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' | ''uint64'' | ''boolean'' | ''fixdt(1,16)'' | ''fixdt(1,16,0)'' | ''fixdt(1,16,2^0,0)''|''Enum:
+    <class name>''|''<data type expression>'''
+  default: '''Inherit: Inherit from ''Table data'''''
+- name: Lock data type settings against changes by the fixed-point tools
+  summary: 防止定点工具覆盖数据类型 off（默认） | on
+  group: 表属性
+  block_parameter: LockScale
+  type: 字符向量
+  values: '''off'' | ''on'''
+  default: '''off'''
+```
 
 ### 主要
 
@@ -294,7 +398,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `'off' | 'on'` |
 | **默认值：** `'off'` |
-
 ## 所属库
 
 Simulink / Lookup Tables HDL Coder / Lookup Tables

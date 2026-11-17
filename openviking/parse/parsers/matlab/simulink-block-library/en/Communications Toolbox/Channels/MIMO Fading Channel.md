@@ -14,6 +14,31 @@ language: en
 # MIMO Fading Channel
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input data signal vector
+  direction: input
+  data_types: double | single
+- name: Tx Sel
+  summary: Select active transmit antennas binary vector
+  direction: input
+  data_types: double
+- name: Rx Sel
+  summary: Select active receive antennas binary vector
+  direction: input
+  data_types: double
+- name: Init Time
+  summary: Initial time offset nonnegative scalar
+  direction: input
+  data_types: double
+- name: Out
+  summary: Output data signal for fading channel vector
+  direction: output
+- name: Gain
+  summary: Discrete path gains 4-D array
+  direction: output
+```
 
 ### Input
 
@@ -120,8 +145,103 @@ Entries for nonselected paths are filled with `NaN`.
 
 To enable this port, on the **Main** tab, select **Output channel path
 gains**.
-
 ## Parameters
+```yaml
+parameters:
+- name: Inherit sample rate from input
+  summary: Option to inherit the sample rate from input on (default) | off
+  group: Main Tab
+- name: Sample rate (Hz)
+  summary: Input signal sample rate 1 (default) | positive scalar
+  group: Main Tab
+- name: Discrete path delays (s)
+  summary: Delays for each discrete path 0 (default) | nonnegative scalar | row vector
+  group: Main Tab
+- name: Average path gains (dB)
+  summary: Average gain for each discrete path 0 (default) | scalar | row vector
+  group: Main Tab
+- name: Normalize average path gains to 0 dB
+  summary: Option to normalize average path gains to 0 dB on (default) | off
+  group: Main Tab
+- name: Fading distribution
+  summary: Fading distribution of channel Rayleigh (default) | Rician
+  group: Main Tab
+- name: K-factors
+  summary: K-factor of Rician fading channel 3 (default) | positive scalar | row vector of nonnegative values
+  group: Main Tab
+- name: LOS path Doppler shifts (Hz)
+  summary: Doppler shifts for line-of-sight components 0 (default) | scalar | row vector
+  group: Main Tab
+- name: LOS path initial phases (rad)
+  summary: Initial phases for line-of-sight components 0 (default) | scalar | row vector
+  group: Main Tab
+- name: Maximum Doppler shift (Hz)
+  summary: Maximum Doppler shift for all channel paths 0.001 (default) | nonnegative scalar
+  group: Main Tab
+- name: Doppler spectrum
+  summary: Doppler spectrum shape for all channel paths doppler('Jakes') (default) | doppler('Flat') | doppler('Rounded',
+    ...) | doppler('Bell', ...) | doppler('Asymmetric Jakes', ...) | doppler('Restricted Jakes', ...) | doppler('Gaussian',
+    ...) | doppler('BiGaussian', ...)
+  group: Main Tab
+- name: Specify spatial correlation
+  summary: Spatial correlation mode None (default) | Separate Tx Rx | Combined
+  group: Main Tab
+- name: Number of transmit antennas
+  summary: Number of transmit antennas 2 (default) | positive integer
+  group: Main Tab
+- name: Number of receive antennas
+  summary: Number of receive antennas 2 (default) | positive integer
+  group: Main Tab
+- name: Transmit spatial correlation
+  summary: Spatial correlation of transmitter [1 0; 0 1] (default) | matrix | 3-D array
+  group: Main Tab
+- name: Receive spatial correlation
+  summary: Spatial correlation of receiver [1 0; 0 1] (default) | matrix | 3-D array
+  group: Main Tab
+- name: Combined spatial correlation
+  summary: Combined spatial correlation matrix [1 0 0 0; 0 1 0 0; 0 0 1 0; 0 0 0 1] (default) | matrix | 3-D array
+  group: Main Tab
+- name: Normalize outputs by number of receive antennas
+  summary: Normalize channel output on (default) | off
+  group: Main Tab
+- name: Simulate using
+  summary: Compilation type Interpreted execution (default) | Code generation
+  group: Main Tab
+- name: Antenna selection scheme
+  summary: Antenna selection scheme Off (default) | Tx | Rx | Tx and Rx
+  group: Main Tab
+- name: Technique for generating fading samples
+  summary: Channel modeling technique Filtered Gaussian noise (default) | Sum of sinusoids
+  group: Realization Tab
+- name: Number of sinusoids
+  summary: Number of sinusoids used 48 (default) | positive integer
+  group: Realization Tab
+- name: Initial time source
+  summary: Source of initial time offset Property (default) | Input port
+  group: Realization Tab
+- name: Initial time (s)
+  summary: Initial time offset 0 (default) | nonnegative scalar
+  group: Realization Tab
+- name: Initial seed
+  summary: Random number generator initial seed 73 (default) | nonnegative integer
+  group: Realization Tab
+- name: Output channel path gains
+  summary: Option to output channel path gains off (default) | on
+  group: Realization Tab
+- name: Channel visualization
+  summary: Select the channel visualization Off (default) | Impulse response | Frequency response | Doppler spectrum | Impulse
+    and frequency responses
+  group: Visualization Tab
+- name: Antenna pair to display
+  summary: Transmit-receive antenna pair to display [1,1] (default) | vector
+  group: Visualization Tab
+- name: Percentage of samples to display
+  summary: Percentage of samples to display 25% (default) | 10% | 50% | 100%
+  group: Visualization Tab
+- name: Path for Doppler spectrum display
+  summary: Path for which Doppler spectrum is displayed 1 (default) | positive integer
+  group: Visualization Tab
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink Toolstrip, on the **Simulation** tab, in the
@@ -538,7 +658,6 @@ to *N*P, where
 
 This parameter appears when you set **Channel
 visualization** to `Doppler spectrum`.
-
 ## Libraries
 
 Communications Toolbox / Channels Communications Toolbox / MIMO

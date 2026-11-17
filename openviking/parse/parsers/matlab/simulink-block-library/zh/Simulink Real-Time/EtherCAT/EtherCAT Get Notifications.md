@@ -15,6 +15,13 @@ chinese_source: worker-translation
 # EtherCAT Get Notifications
 
 ## 端口
+```yaml
+ports:
+- name: Values
+  summary: 自描述 21 元素向量，包含 EtherCAT 通知代码 [Length 20 * Notification]
+  direction: output
+  data_types: int32
+```
 
 ### 输出
 
@@ -57,8 +64,18 @@ chinese_source: worker-translation
 `slrealtime.EtherCAT.filterNotifications`。
 
 **数据类型：** `int32`
-
 ## 参数
+```yaml
+parameters:
+- name: Network Device Index
+  summary: EtherCAT 网络标识符 0（默认）| 0-11
+  group: ''
+  block_parameter: device_id
+- name: Sample time
+  summary: 模块的采样时间 -1（默认）| 数值
+  group: ''
+  block_parameter: sample_time
+```
 
 ### **Network Device Index** — EtherCAT 网络标识符 `0`（默认）| `0-11`
 
@@ -80,7 +97,6 @@ Device Index** 中。
 |  |
 | --- |
 | **模块参数**：`sample_time` |
-
 ## 所属库
 
 Simulink Real-Time / EtherCAT

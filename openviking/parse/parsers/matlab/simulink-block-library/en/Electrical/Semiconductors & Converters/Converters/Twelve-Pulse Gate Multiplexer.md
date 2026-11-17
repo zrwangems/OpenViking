@@ -14,6 +14,39 @@ language: en
 # Twelve-Pulse Gate Multiplexer
 
 ## Ports
+```yaml
+ports:
+- name: Ga(1),Ga(2),Ga(3),Ga(4)
+  summary: Ga(1),Ga(2),Ga(3),Ga(4) physical signal
+  direction: input
+- name: Gb(1),Gb(2),Gb(3),Gb(4)
+  summary: Gb(1),Gb(2),Gb(3),Gb(4) physical signal
+  direction: input
+- name: Gc(1),Gc(2),Gc(3),Gc(4)
+  summary: Gc(1),Gc(2),Gc(3),Gc(4) physical signal
+  direction: input
+- name: Ga(1),Ga(2),Ga(3),Ga(4)
+  summary: Ga(1),Ga(2),Ga(3),Ga(4) electrical
+  direction: conserving
+- name: Gb(1),Gb(2),Gb(3),Gb(4)
+  summary: Gb(1),Gb(2),Gb(3),Gb(4) electrical
+  direction: conserving
+- name: Gc(1),Gc(2),Gc(3),Gc(4)
+  summary: Gc(1),Gc(2),Gc(3),Gc(4) electrical
+  direction: conserving
+- name: G
+  summary: G electrical
+  direction: conserving
+- name: Ka(1),Ka(2),Ka(3),Ka(4)
+  summary: Ka(1),Ka(2),Ka(3),Ka(4) electrical
+  direction: conserving
+- name: Kb(1),Kb(2),Kb(3),Kb(4)
+  summary: Kb(1),Kb(2),Kb(3),Kb(4) electrical
+  direction: conserving
+- name: Kc(1),Kc(2),Kc(3),Kc(4)
+  summary: Kc(1),Kc(2),Kc(3),Kc(4) electrical
+  direction: conserving
+```
 
 ### Input
 
@@ -131,13 +164,17 @@ switching devices.
 
 To enable this port, set **Gate-control port** to
 `Electrical`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Gate-control port
+  summary: Gate control port PS (default) | Electrical
+  group: ''
+```
 
 ### **Gate-control port** — Gate control port `PS` (default) | `Electrical`
 
 Whether to expose PS or electrical control ports.
-
 ## Libraries
 
 Simscape / Electrical / Semiconductors & Converters / Converters

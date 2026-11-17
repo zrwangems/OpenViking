@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # Parametric Equalizer Design
 
 ## 端口
+```yaml
+ports:
+- name: N
+  summary: 滤波器阶数 正偶整数
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: G
+  summary: 增益 (dB) 实数标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Fc
+  summary: 归一化中心频率 范围为 [0,1] 的标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: BW
+  summary: 归一化带宽 范围为 [0,1] 的标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Num
+  summary: 分子滤波器系数矩阵
+  direction: output
+  data_types: single | double
+- name: Den
+  summary: 分母滤波器系数矩阵
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -90,8 +117,55 @@ chinese_source: worker-translation
 - 输出维度取决于 **Maximum filter order** 和 **Filter cascade sections form** 参数。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Smooth tuned filter parameters
+  summary: 调谐时平滑滤波器参数 off（默认）| on
+  group: ''
+- name: Smoothing factor
+  summary: 调谐参数的平滑因子 0.6（默认）| 范围为 [0,1) 的标量
+  group: ''
+- name: Maximum filter order
+  summary: 最大滤波器阶数 2（默认）| 正偶整数
+  group: ''
+- name: Specify filter order from input port
+  summary: 使用附加输入端口指定滤波器阶数 off（默认）| on
+  group: ''
+- name: Filter order
+  summary: 滤波器阶数 2（默认）| 正偶整数
+  group: ''
+- name: Specify gain from input port
+  summary: 使用附加输入端口指定增益 off（默认）| on
+  group: ''
+- name: Gain (dB)
+  summary: 增益 (dB) 0（默认）| 实数标量
+  group: ''
+- name: Specify normalized center frequency from input port
+  summary: 使用附加输入端口指定归一化中心频率 off（默认）| on
+  group: ''
+- name: Normalized center frequency
+  summary: 归一化中心频率 0.2（默认）| 范围为 [0,1] 的标量
+  group: ''
+- name: Specify normalized bandwidth from input port
+  summary: 使用附加输入端口指定归一化带宽 off（默认）| on
+  group: ''
+- name: Normalized bandwidth
+  summary: 归一化带宽 0.1（默认）| 范围为 [0,1] 的标量
+  group: ''
+- name: Filter cascade sections form
+  summary: 级联滤波器节的形式 Second-order sections（默认）| Fourth-order sections
+  group: ''
+- name: Output data type
+  summary: 输出系数的数据类型 double（默认）| single
+  group: ''
+- name: Sample time
+  summary: 模块的采样时间 -1（默认）| 正标量
+  group: ''
+- name: Simulate using
+  summary: 指定要运行的仿真类型 Interpreted execution（默认）| Code generation
+  group: ''
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink® 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中选择 **Property Inspector**。
 
@@ -198,7 +272,6 @@ bandwidth=centerFreqQ .
 
 - `Interpreted execution` –– 使用 MATLAB® 解释器仿真模型。此选项可缩短启动时间，但仿真速度比 `Code generation` 慢。在此模式下，您可以调试模块的源代码。
 - `Code generation` –– 使用生成的 C 代码仿真模型。首次运行仿真时，Simulink 会为该模块生成 C 代码。只要模型不变，C 代码就会在后续仿真中重用。此选项需要额外的启动时间，但后续仿真的速度与 `Interpreted execution` 相当。
-
 ## 所属库
 
 Audio Toolbox / Filters

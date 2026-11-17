@@ -14,6 +14,17 @@ language: en
 # Acceleration Conversion
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Acceleration scalar | array
+  direction: input
+  data_types: double
+- name: Port_1
+  summary: Acceleration scalar | array
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -39,8 +50,24 @@ The output port label depends on the **Final
 unit** setting.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Initial unit
+  summary: Input units ft/ss (default) | m/s2 | km/s2 | in/s2 | km/h-s | mph/s | G's
+  group: ''
+  block_parameter: IU
+  type: character vector
+  values: '''ft/s^s | ''m/s^2'' | ''km/s^2'' | ''in/s^2'' | ''km/h-s'' | ''mph/s'' | ''G''s'''
+  default: '''ft/s2'''
+- name: Final unit
+  summary: Output units ft/s^2' (default) | m/s^2 | km/s^2 | in/s^2 | km/h-s | mph/s | G's
+  group: ''
+  block_parameter: OU
+  type: character vector
+  values: '''ft/s^2'' | ''m/s^2'' | ''km/s^2'' | ''in/s^2'' | ''km/h-s'' | ''mph/s'' | ''G''s'''
+  default: '''ft/s2'''
+```
 
 ### **Initial unit** — Input units `ft/ss` (default) | `m/s2` | `km/s2` | `in/s2` | `km/h-s` | `mph/s` | `G's`
 
@@ -97,7 +124,6 @@ setting.
 | **Type**: character vector |
 | **Values**: `'ft/s^2'` | `'m/s^2'` | `'km/s^2'` | `'in/s^2'` | `'km/h-s'` | `'mph/s'` | `'G's'` |
 | **Default**: `'ft/s2'` |
-
 ## Libraries
 
 Aerospace Blockset / Utilities / Unit Conversions

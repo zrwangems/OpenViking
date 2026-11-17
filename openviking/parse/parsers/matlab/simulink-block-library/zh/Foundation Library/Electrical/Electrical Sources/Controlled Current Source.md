@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Controlled Current Source
 
 ## 端口
+```yaml
+ports:
+- name: iT
+  summary: 电流控制信号，A physical signal
+  direction: input
+- name: +
+  summary: 正极端口 electrical
+  direction: input
+- name: '-'
+  summary: 负极端口 electrical
+  direction: input
+```
 
 ### 输入
 
@@ -32,11 +44,12 @@ chinese_source: worker-translation
 ### **-** — 负极端口 electrical
 
 与源负极端子相关联的电学守恒端口。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Electrical / Electrical Sources

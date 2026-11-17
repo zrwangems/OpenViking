@@ -14,6 +14,16 @@ language: en
 # PS-Simulink Converter
 
 ## Ports
+```yaml
+ports:
+- name: PS
+  summary: Input physical signal physical signal
+  direction: input
+- name: Port_1
+  summary: Output Simulink signal scalar | vector | matrix
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -31,8 +41,20 @@ conversion** check box let you apply scaling and linear offset to the input
 signal value to calculate the correct value of the output signal.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Vector format
+  summary: Specify how to output vector physical signals inherit (default) | 1-D array
+  group: ''
+- name: Output signal unit
+  summary: Specify scaling factor for signal value conversion inherit (default) | 1 | V | A | m^3/s | Pa | N | m | m/s | N*m
+    | rad/s | rad | K | kg/s | J/s | kg | Wb | <unit expression>
+  group: ''
+- name: Apply affine conversion
+  summary: Select conversion method for affine temperature units off (default) | on
+  group: ''
+```
 
 ### **Vector format** — Specify how to output vector physical signals `inherit` (default) | `1-D array`
 
@@ -63,7 +85,6 @@ This check box is applicable only for units that can be converted either with or
 without an affine offset, such as `degC` or `degF`.
 Select this check box if the output signal represents absolute temperature in degrees
 Celsius or degrees Fahrenheit. For more information, see Thermal Unit Conversions.
-
 ## Libraries
 
 Simscape / Utilities

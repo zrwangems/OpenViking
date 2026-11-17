@@ -15,6 +15,33 @@ chinese_source: worker-translation
 # LPV System
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 输入信号 标量 | 向量
+  direction: input
+- name: par
+  summary: 参数值 标量 | 向量
+  direction: input
+- name: IC
+  summary: 初始条件 向量
+  direction: input
+- name: y
+  summary: 模型输出 标量 | 向量
+  direction: output
+- name: x
+  summary: 状态值 标量 | 向量
+  direction: output
+- name: dx
+  summary: 状态导数值 标量 | 向量
+  direction: output
+- name: ss
+  summary: 局部状态空间模型 总线
+  direction: output
+- name: offset
+  summary: LPV 模型偏移量 总线
+  direction: output
+```
 
 ### 输入
 
@@ -92,8 +119,96 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此端口，请在模块参数的 **Outputs** 选项卡上选择 **Output interpolated offsets**。
-
 ## 参数
+```yaml
+parameters:
+- name: State-space array
+  summary: ss 或 idss 模型数组的 State-space 模型数组
+  group: LPV Model 选项卡
+  block_parameter: sys
+  values: 带引号的 ss 或 idss 模型数组名称
+- name: Initial condition source
+  summary: 使用外部信号设置初始条件的选项 internal（默认）| external
+  group: LPV Model 选项卡
+  block_parameter: InitialConditionSource
+  values: internal（默认）| external
+- name: Initial condition
+  summary: 初始条件 0（默认）| 向量
+  group: LPV Model 选项卡
+  block_parameter: InitialCondition
+  values: '"0"（默认）| 带引号的初始状态值'
+- name: Operating Point Offsets
+  summary: 偏移量指定格式 Specify Offsets as double arrays（默认）| Specify offsets as struct array | Use offsets in state-space array
+  group: LPV Model 选项卡
+  block_parameter: opSpecOption
+  values: '"Specify Offsets as double arrays"（默认）| "Specify offsets as struct array" | "Use offsets in state-space array"'
+- name: Input offset
+  summary: 输入偏移 0（默认）| 数组
+  group: LPV Model 选项卡
+  block_parameter: uOffset
+  values: '"0"（默认）| 带引号的数组名称'
+- name: Output offset
+  summary: 输出偏移 0（默认）| 数组
+  group: LPV Model 选项卡
+  block_parameter: yOffset
+  values: '"0"（默认）| 带引号的数组名称'
+- name: State offset
+  summary: 状态偏移 0（默认）| 数组
+  group: LPV Model 选项卡
+  block_parameter: xOffset
+  values: '"0"（默认）| 带引号的数组名称'
+- name: State derivative/update offset
+  summary: 状态导数/更新偏移数组
+  group: LPV Model 选项卡
+  block_parameter: dxOffset
+  values: '"0"（默认）| 带引号的数组名称'
+- name: Struct array
+  summary: 偏移结构体数组 struct（默认）| 结构体数组名称
+  group: LPV Model 选项卡
+  block_parameter: Offset
+  values: '"struct"（默认）| 带引号的结构体数组名称'
+- name: Coefficients To Fix
+  summary: 状态空间矩阵的固定系数 false 或 0（默认）| true 或 1 | 逻辑矩阵
+  group: 固定条目选项卡
+- name: Read values from
+  summary: 固定系数值的来源 First model in state-space array（默认）| Custom state-space model
+  group: 固定条目选项卡
+- name: Interpolation method
+  summary: 插值方法 Linear（默认）| Nearest | Flat
+  group: 调度选项卡
+  block_parameter: IMethod
+  values: '"Linear" (default) | "Nearest" | "Flat"'
+- name: Extrapolation method
+  summary: 外插方法 Clip（默认）| Linear
+  group: 调度选项卡
+  block_parameter: EMethod
+  values: '"Clip" (default) | "Linear"'
+- name: Index search method
+  summary: 预查找算法 Binary search（默认）| Linear search
+  group: 调度选项卡
+  block_parameter: IndexSearch
+  values: '"Binary Search" (default) | "Linear Search"'
+- name: Begin index search using previous index result
+  summary: 从上一时间步开始搜索 on（默认）| off
+  group: 调度选项卡
+  block_parameter: IndexBegin
+  values: '"on"（默认） | "off"'
+- name: 模块数据类型（仅离散时间情况）
+  summary: 模块数据类型 double（默认） | single
+  group: 代码生成选项卡
+  block_parameter: DataType
+  values: '"double"（默认） | "single"'
+- name: 延迟的初始缓冲区大小
+  summary: 初始缓冲区大小 1024（默认） | 大于 5 的正整数
+  group: 代码生成选项卡
+  block_parameter: InitBufferSize
+  values: '"1024"（默认） | 带引号的大于 5 的正整数'
+- name: 使用固定缓冲区大小
+  summary: 使用固定缓冲区大小 off（默认） | on
+  group: 代码生成选项卡
+  block_parameter: FixedBuffer
+  values: '"off"（默认） | "on"'
+```
 
 要以交互方式编辑模块参数，请使用 Property Inspector。在 Simulink 工具条的 **Simulation** 选项卡上，在 **Prepare** 库中，选择 **Property Inspector**。
 
@@ -513,7 +628,6 @@ Search")`
 | **值：** | `"off"`（默认） | `"on"` |
 
 **示例：** `set_param(gcb,"FixedBuffer","on")`
-
 ## 所属库
 
 Control System Toolbox / Linear Parameter Varying

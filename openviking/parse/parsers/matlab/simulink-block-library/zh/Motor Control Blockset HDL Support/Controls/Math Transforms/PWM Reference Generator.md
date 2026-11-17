@@ -15,6 +15,41 @@ chinese_source: worker-translation
 # PWM Reference Generator
 
 ## 端口
+```yaml
+ports:
+- name: Vα
+  summary: '*α* 轴定子参考电压分量标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Vβ
+  summary: '*β* 轴定子参考电压分量标量'
+  direction: input
+  data_types: single | double | fixed point
+- name: Va
+  summary: 相分量标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vb
+  summary: 相分量标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vc
+  summary: 相分量标量
+  direction: input
+  data_types: single | double | fixed point
+- name: Vao
+  summary: '*a* 轴定子参考电压分量标量'
+  direction: output
+  data_types: single | double | fixed point
+- name: Vbo
+  summary: '*b* 轴定子参考电压分量标量'
+  direction: output
+  data_types: single | double | fixed point
+- name: Vco
+  summary: '*c* 轴定子参考电压分量标量'
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### 输入
 
@@ -91,8 +126,18 @@ chinese_source: worker-translation
 *abc* 参考坐标系中沿 *c* 轴的定子参考电压分量。
 
 **数据类型：** `single` | `double` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Input type
+  summary: 模块输入类型 Valphabeta（默认）| Vabc | Degrees
+  group: ''
+- name: Modulation method
+  summary: '脉宽调制 (PWM) 方法 SVM: space vector modulation（默认）| SPWM: sinusoidal PWM | 60 DPWM:60 degree discontinuous PWM | 60
+    DPWM (+30 degree shift):+30 degree shift from 60 DPWM | 60 DPWM (-30 degree shift):-30 degree shift from 60 DPWM | 30
+    DPWM: 30 degree discontinuous PWM | 120 DPWM: positive DC component | 120 DPWM: negative DC component'
+  group: ''
+```
 
 ### **Input type** — 模块输入类型 `Valphabeta`（默认）| `Vabc` | `Degrees`
 
@@ -102,7 +147,6 @@ chinese_source: worker-translation
 ### **Modulation method** — 脉宽调制 (PWM) 方法 `SVM: space vector modulation`（默认）| `SPWM: sinusoidal PWM` | `60 DPWM:60 degree discontinuous PWM` | `60 DPWM (+30 degree shift):+30 degree shift from 60 DPWM` | `60 DPWM (-30 degree shift):-30 degree shift from 60 DPWM` | `30 DPWM: 30 degree discontinuous PWM` | `120 DPWM: positive DC component` | `120 DPWM: negative DC component`
 
 模块用于调制输入定子相电压或参考电压的脉宽调制 (PWM) 方法。
-
 ## 所属库
 
 Motor Control Blockset / Controls / Math Transforms Motor Control Blockset HDL Support / Controls / Math Transforms

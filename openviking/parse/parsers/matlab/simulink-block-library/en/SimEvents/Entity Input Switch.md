@@ -14,6 +14,28 @@ language: en
 # Entity Input Switch
 
 ## Ports
+```yaml
+ports:
+- name: Port_1
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: Port_2
+  summary: Input entity scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+- name: control
+  summary: Incoming control entity scalar
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Port_1
+  summary: Output entity scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | enumerated | bus
+    | fixed point
+```
 
 ### Input
 
@@ -42,8 +64,45 @@ input port for the entities arriving at the block.
 Output entity port for entities exiting the block.
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `enumerated` | `bus` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Number of input ports
+  summary: Specify the number of input ports 2 (default) | scalar
+  group: ''
+  block_parameter: NumberInputPorts
+  type: character vector
+  values: '''2'' | scalar'
+  default: '''2'''
+- name: Active port selection
+  summary: Specify the active input port All (default) | Switch
+  group: ''
+  block_parameter: ActivePortSelection
+  type: character vector
+  values: '''All'' | ''Switch'''
+  default: '''All'''
+- name: Switching criterion
+  summary: Specify input port switch criterion Round robin (default) | From control port | Equiprobable
+  group: ''
+  block_parameter: SwitchingCriterion
+  type: character vector
+  values: '''Round robin'' | ''From control port'' | ''Equiprobable'''
+  default: '''Round robin'''
+- name: Initial port selection
+  summary: Specify the initial input port for entity entry 1 (default) | scalar
+  group: ''
+  block_parameter: InitialPortSelection
+  type: character vector
+  values: '''1'' | scalar'
+  default: '''1'''
+- name: Seed
+  summary: Specify the seed for the random number generator to determine the input port 23453 (default) | scalar
+  group: ''
+  block_parameter: Seed
+  type: character vector
+  values: '''23453'' | scalar'
+  default: '''23453'''
+```
 
 ### **Number of input ports** — Specify the number of input ports `2` (default) | scalar
 
@@ -133,7 +192,6 @@ criterion** is set to
 | **Type**: character vector |
 | **Values**: `'23453'` | scalar |
 | **Default**: `'23453'` |
-
 ## Libraries
 
 SimEvents

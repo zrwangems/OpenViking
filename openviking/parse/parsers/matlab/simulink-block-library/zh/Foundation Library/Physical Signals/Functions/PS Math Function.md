@@ -15,6 +15,15 @@ chinese_source: worker-translation
 # PS Math Function
 
 ## 端口
+```yaml
+ports:
+- name: I
+  summary: 输入物理信号，*u*，无类型物理信号
+  direction: input
+- name: O
+  summary: 输出物理信号，无类型物理信号
+  direction: output
+```
 
 ### 输入
 
@@ -31,8 +40,16 @@ chinese_source: worker-translation
 输出物理信号。
 
 端口名称在模块图标中不可见，但您可以通过点击模块对话框的**描述**选项卡中的**源代码**链接，在底层源文件中看到此名称。
-
 ## 参数
+```yaml
+parameters:
+- name: Function choice
+  summary: 对操作数信号执行的函数 sin(u)（默认）| cos(u) | exp(u) | log(u) | 10.^u | log10(u) | u.^2 | sqrt(u) | 1./u | tanh(u) | u.^v
+  group: ''
+- name: v
+  summary: 幂 1（默认）| 标量、向量或矩阵
+  group: ''
+```
 
 ### **Function choice** — 对操作数信号执行的函数 `sin(u)`（默认）| `cos(u)` | `exp(u)` | `log(u)` | `10.^u` | `log10(u)` | `u.^2` | `sqrt(u)` | `1./u` | `tanh(u)` | `u.^v`
 
@@ -47,7 +64,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Function choice** 设置为 `u.^v`。
-
 ## 所属库
 
 Simscape / Foundation Library / Physical Signals / Functions

@@ -14,6 +14,18 @@ language: en
 # Interface (TL-IL)
 
 ## Ports
+```yaml
+ports:
+- name: TL
+  summary: Liquid port thermal liquid
+  direction: conserving
+- name: IL
+  summary: Liquid port isothermal liquid
+  direction: conserving
+- name: H
+  summary: Liquid port isothermal liquid
+  direction: conserving
+```
 
 ### Conserving
 
@@ -41,8 +53,23 @@ network.
 To enable this port, set **Fluids domain
 interface** to `Thermal Liquid (TL) -
 Hydraulic (H)`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Fluids domain interface
+  summary: Connecting library types Thermal Liquid (TL) - Isothermal Liquid (IL) (default) | Thermal Liquid (TL) - Hydraulic
+    (H)
+  group: ''
+- name: Temperature specification
+  summary: Isothermal network temperature Constant (default) | Controlled
+  group: ''
+- name: Interface temperature
+  summary: Isothermal network temperature 293.15 K (default) | positive scalar
+  group: ''
+- name: Cross-sectional area at port TL
+  summary: Thermal liquid port area 0.01 m^2 (default) | positive scalar
+  group: ''
+```
 
 ### **Fluids domain interface** — Connecting library types `Thermal Liquid (TL) - Isothermal Liquid (IL)` (default) | `Thermal Liquid (TL) - Hydraulic (H)`
 
@@ -71,7 +98,6 @@ specification** to
 ### **Cross-sectional area at port TL** — Thermal liquid port area `0.01 m^2` (default) | positive scalar
 
 Cross-sectional area of the thermal liquid port.
-
 ## Libraries
 
 Simscape / Fluids / Fluid Network Interfaces

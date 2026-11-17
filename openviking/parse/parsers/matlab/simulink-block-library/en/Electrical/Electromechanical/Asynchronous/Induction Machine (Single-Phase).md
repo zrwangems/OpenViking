@@ -14,6 +14,39 @@ language: en
 # Induction Machine (Single-Phase)
 
 ## Ports
+```yaml
+ports:
+- name: pu
+  summary: Machine per-unit measurements physical signal | vector
+  direction: output
+- name: a1
+  summary: Main winding positive terminal electrical | scalar
+  direction: conserving
+- name: a2
+  summary: Main winding negative terminal electrical | scalar
+  direction: conserving
+- name: b1
+  summary: Auxiliary winding positive terminal electrical | scalar
+  direction: conserving
+- name: b2
+  summary: Auxiliary winding negative terminal electrical | scalar
+  direction: conserving
+- name: R
+  summary: Machine rotor mechanical rotational
+  direction: conserving
+- name: C
+  summary: Machine case mechanical rotational
+  direction: conserving
+- name: HA
+  summary: Main winding thermal port thermal
+  direction: conserving
+- name: HB
+  summary: Auxiliary winding thermal port thermal
+  direction: conserving
+- name: HR
+  summary: Rotor thermal port thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -99,8 +132,128 @@ Thermal conserving port associated with the rotor.
 
 To enable this port, set **Modeling option** to
 `Show thermal port`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Modeling option
+  summary: Whether to enable thermal ports No thermal port (default) | Show thermal port
+  group: ''
+- name: Type
+  summary: Induction machine type Split-phase (default) | Capacitor-start | Capacitor-start-capacitor-run | Main and auxiliary
+    windings
+  group: Main
+- name: Rated apparent power
+  summary: Rated apparent power 180 V*A (default) | positive scalar
+  group: Main
+- name: Rated voltage
+  summary: Rated voltage 220 V (default) | positive scalar
+  group: Main
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz (default) | positive scalar
+  group: Main
+- name: Number of pole pairs
+  summary: Number of pole pairs 2 (default) | positive integer
+  group: Main
+- name: Parameterization unit
+  summary: SI or per-unit parameterization option SI (default) | Per unit
+  group: Main
+- name: Main winding stator resistance, Ras
+  summary: Main winding stator resistance 1.8180 Ohm (default) | positive scalar
+  group: Electrical
+- name: Main winding stator leakage inductance, Llas
+  summary: Main winding stator leakage inductance 0.0067 H (default) | positive scalar
+  group: Electrical
+- name: Main winding rotor resistance, Rar'
+  summary: Main winding rotor resistance 3.7080 Ohm (default) | positive scalar
+  group: Electrical
+- name: Main winding rotor leakage inductance, Llar'
+  summary: Main winding rotor leakage inductance 0.0050 H (default) | positive scalar
+  group: Electrical
+- name: Main winding mutual inductance, Lms
+  summary: Main winding mutual inductance 0.1595 H (default) | positive scalar
+  group: Electrical
+- name: Auxiliary winding stator resistance, Rbs
+  summary: Auxiliary winding stator resistance 6.4260 Ohm (default) | positive scalar
+  group: Electrical
+- name: Auxiliary winding stator leakage inductance, Llbs
+  summary: Auxiliary winding stator leakage inductance 0.0077 H (default) | positive scalar
+  group: Electrical
+- name: Auxiliary/main windings turn ratio
+  summary: Turn ratio 1.1 (default) | positive scalar
+  group: Electrical
+- name: Main winding stator resistance, Ras (pu)
+  summary: Main winding stator resistance 0.0135 (default) | positive scalar
+  group: Electrical
+- name: Main winding stator leakage inductance, Llas (pu)
+  summary: Main winding stator leakage inductance 0.0188 (default) | positive scalar
+  group: Electrical
+- name: Main winding rotor resistance, Rar' (pu)
+  summary: Main winding rotor resistance 0.0276 (default) | positive scalar
+  group: Electrical
+- name: Main winding rotor leakage inductance, Llar' (pu)
+  summary: Main winding rotor leakage inductance 0.0140 (default) | positive scalar
+  group: Electrical
+- name: Main winding mutual inductance, Lms (pu)
+  summary: Main winding mutual inductance 0.4472 (default) | positive scalar
+  group: Electrical
+- name: Auxiliary winding stator resistance, Rbs (pu)
+  summary: Auxiliary winding stator resistance 0.0478 (default) | positive scalar
+  group: Electrical
+- name: Auxiliary winding stator leakage inductance, Llbs (pu)
+  summary: Auxiliary winding stator leakage inductance 0.0216 (default) | positive scalar
+  group: Electrical
+- name: Auxiliary/main windings turn ratio
+  summary: Turn ratio 1.1 (default) | positive scalar
+  group: Electrical
+- name: Capacitor-start resistance, Rs
+  summary: Capacitor-start resistance 3 Ohm (default) | positive scalar
+  group: Electrical
+- name: Capacitor-start capacitance, Cs
+  summary: Capacitor-start capacitance 0.00018 F (default) | positive scalar
+  group: Electrical
+- name: Capacitor-run resistance, Rr
+  summary: Capacitor-run resistance 9 Ohm (default) | positive scalar
+  group: Electrical
+- name: Capacitor-run capacitance, Cr
+  summary: Capacitor-run capacitance 0.000015 F (default) | positive scalar
+  group: Electrical
+- name: Capacitor-start resistance, Rs (pu)
+  summary: Capacitor-start resistance 0.0223 (default) | positive scalar
+  group: Electrical
+- name: Capacitor-start capacitance, Cs (pu)
+  summary: Capacitor-start capacitance 9.1232 (default) | positive scalar
+  group: Electrical
+- name: Capacitor-run resistance, Rr (pu)
+  summary: Capacitor-run resistance 0.0669 (default) | positive scalar
+  group: Electrical
+- name: Capacitor-run resistance, Cr (pu)
+  summary: Capacitor-run capacitance 0.000015 (default) | positive scalar
+  group: Electrical
+- name: Disconnection speed (% of rated speed)
+  summary: Disconnection speed 80 (default) | scalar in range [0,100]
+  group: Electrical
+- name: Rotor inertia
+  summary: Rotor inertia 0.01 kg*m^2 (default) | positive scalar
+  group: Mechanical
+- name: Rotor damping
+  summary: Rotor damping 0 N*m/(rad/s) (default) | scalar
+  group: Mechanical
+- name: Measurement temperature
+  summary: Rated temperature 298.15 K (default) | real scalar
+  group: Thermal
+- name: Resistance temperature coefficient
+  summary: Temperature coefficient 3.93e-3 1/K (default) | positive scalar
+  group: Thermal
+- name: Cage resistance temperature coefficient
+  summary: Rotor temperature coefficient 4.4e-3 (default) | 1/K | scalar
+  group: Thermal
+- name: Thermal mass for each stator winding
+  summary: Winding thermal mass 100 J/K (default) | positive scalar
+  group: Thermal
+- name: Rotor thermal mass
+  summary: Rotor thermal mass 200 J/K (default) | positive scalar
+  group: Thermal
+```
 
 ### **Modeling option** — Whether to enable thermal ports `No thermal port` (default) | `Show thermal port`
 
@@ -454,7 +607,6 @@ energy required to raise the temperature by one degree.
 
 Thermal mass of the rotor. The thermal mass is the energy required to
 raise the temperature of the rotor by one degree.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Asynchronous

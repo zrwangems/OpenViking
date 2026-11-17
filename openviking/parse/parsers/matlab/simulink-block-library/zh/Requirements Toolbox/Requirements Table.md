@@ -15,6 +15,19 @@ chinese_source: worker-translation
 # Requirements Table
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入数据 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumerated | bus
+- name: Port_1
+  summary: 输出数据 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | string | fixed
+    point | enumerated | bus
+```
 
 ### 输入
 
@@ -38,8 +51,28 @@ chinese_source: worker-translation
 要创建输出端口，请打开该模块并在 **Symbols** 窗格中创建输出数据。请参阅 Define Data in Requirements Table Blocks。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `string` | `fixed point` | `enumerated` | `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Update method
+  summary: 用于激活模块的方法 Inherited（默认） | Discrete
+  group: ''
+- name: Sample time
+  summary: 模块在仿真期间激活的时间间隔 -1（默认） | 标量 | 向量
+  group: ''
+- name: Saturate on interger overflow
+  summary: 数据是否在整数溢出时饱和 on（默认） | off
+  group: ''
+- name: 支持可变大小数组
+  summary: 模块是否支持可变大小数据 on（默认）| off
+  group: ''
+- name: 在前置条件中启用输出
+  summary: 模块是否在前置条件中支持输出数据 off（默认）| on
+  group: ''
+- name: Requirements Table fimath
+  summary: 默认 fimath 对象属性 Same as MATLAB（默认）| Specify Other
+  group: 定点属性
+```
 
 要以交互方式编辑模块参数：
 
@@ -109,7 +142,6 @@ Requirements Table 模块还具有 Subsystem (Simulink) 模块参数，您可以
 
   - 如果在构造 `fi` 对象时没有 `fimath` 对象与其关联，则 `fi` 构造函数将使用默认 `fimath` 对象设置，而不考虑 **Requirements Table fimath** 中的属性。如果您在 `fi` 对象构造后对其执行操作，则该对象将采用 **Requirements Table fimath** 中的属性。
   - 如果您在 `fi` 构造函数中指定了 `fimath` 对象，则 `fi` 构造函数在量化值时会遵循该 `fimath` 对象。未在 `fi` 构造函数中指定的 `fimath` 设置将使用 **Requirements Table fimath** 中指定的属性。
-
 ## 所属库
 
 Requirements Toolbox

@@ -15,10 +15,15 @@ chinese_source: worker-translation
 # C2000 Saturate IQN
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 **Upper Limit**
 :   要饱和到的最大实世界值
@@ -31,7 +36,6 @@ R2025b 中未记录。
 
 **Lower Limit**
 :   要饱和到的最小实世界值
-
 ## 所属库
 
 R2025b 中未记录。

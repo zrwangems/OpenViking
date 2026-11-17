@@ -14,6 +14,17 @@ language: en
 # PLL Testbench
 
 ## Ports
+```yaml
+ports:
+- name: from pll
+  summary: Input clock signal scalar
+  direction: input
+  data_types: double
+- name: to pll
+  summary: Output clock signal scalar
+  direction: output
+  data_types: double
+```
 
 ### Input
 
@@ -33,8 +44,100 @@ Output clock signal, returned as a sine or square wave as specified in the
 pll** port provides the stimulus to a PLL system.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Set stop time
+  summary: Set recommended minimum simulation stop time as model stop time button
+  group: ''
+- name: Plot phase noise profile
+  summary: Plot phase noise profile of the PLL DUT button
+  group: ''
+- name: Export measurement results
+  summary: Export measurement results after simulation button
+  group: ''
+- name: Amplitude (V)
+  summary: Maximum value of stimulus signal at PLL input 1 (default) | real positive scalar
+  group: Stimulus
+- name: Frequency (Hz)
+  summary: Frequency of stimulus signal at PLL input 30e6 (default) | real positive scalar
+  group: Stimulus
+- name: Add phase noise
+  summary: Add phase noise as function of frequency off (default) | on
+  group: Stimulus
+- name: Phase noise frequency offset (Hz)
+  summary: Frequency offsets of phase noise from carrier frequency [500 1e3 10e3 100e3] (default) | real valued vector
+  group: Stimulus
+  block_parameter: Foffset
+  type: character vector
+  values: real valued vector
+  default: '[500 1e3 10e3 100e3]'
+- name: Phase noise level (dBc/Hz)
+  summary: Phase noise power at specified frequency offsets relative to the carrier [-115 -122 -142 -161] (default) | real
+    valued vector
+  group: Stimulus
+  block_parameter: PhaseNoise
+  type: character vector
+  values: real valued vector
+  default: '[-115 -122 -142 -161]'
+- name: Estimate phase noise parameters
+  summary: Automatically estimate phase noise parameters on (default) | off
+  group: Stimulus
+- name: Period jitter (S)
+  summary: Standard deviation of period jitter 4.8666e-15 (default) | positive real scalar
+  group: Stimulus
+  block_parameter: PeriodJitter
+  type: character vector
+  values: positive real scalar
+  default: '4.8666e-15'
+- name: Flicker corner frequency (Hz)
+  summary: Corner frequency of flicker noise 517103.8168 (default) | scalar
+  group: Stimulus
+  block_parameter: CornerFrequency
+  type: character vector
+  values: scalar
+  default: '517103.8168'
+- name: Plot fit
+  summary: Plot specified and expected output phase noise density button
+  group: Stimulus
+- name: Frequency of operation
+  summary: Measure operating frequency of PLL DUT on (default) | off
+  group: Setup
+- name: Lock time
+  summary: Measure locking time of PLL DUT off (default) | on
+  group: Setup
+- name: Target frequency of operation (Hz)
+  summary: Target operating frequency of PLL DUT to calculate lock time 2.1e9 (default) | real positive scalar
+  group: Setup
+- name: Error tolerance (Hz)
+  summary: Error tolerance for lock time measurement 1e6 (default) | real positive scalar
+  group: Setup
+- name: Phase noise
+  summary: Measure phase noise level of PLL DUT off (default) | on
+  group: Setup
+- name: Resolution bandwidth (Hz)
+  summary: Smallest positive frequency that can be resolved 200e3 (default) | real positive scalar
+  group: Setup
+- name: No. of spectral averages
+  summary: Number of spectral averages 4 (default) | positive integer scalar
+  group: Setup
+- name: Hold off time (s)
+  summary: Delays measurement analysis to avoid transients 0 (default) | real nonnegative scalar
+  group: Setup
+- name: Frequency offset vector (Hz)
+  summary: Frequency points relative to fundamental frequency where phase noise is calculated [300e3 1e6 3e6 10e6] (default)
+    | real valued vector
+  group: Setup
+- name: Frequency of operation
+  summary: Target operating frequency at which PLL needs to lock 2.1e9 (default) | real positive scalar
+  group: Target Metrics
+- name: Lock time (s)
+  summary: Maximum time in which PLL DUT needs to get locked 3e-6 (default) | real nonnegative scalar
+  group: Target Metrics
+- name: Phase noise (dBc/Hz)
+  summary: Target noise power corresponding to frequency offset vector [-85,-125,-150,-180] (default) | real valued vector
+  group: Target Metrics
+```
 
 ### **Set stop time** — Set recommended minimum simulation stop time as model stop time button
 
@@ -384,7 +487,6 @@ measurement option in the **Setup** tab.
   current value of **Phase noise**.
 - Use `set_param(gcb,'TargetPhaseNoiseVector',value)` to
   set **Phase noise** to a specific value.
-
 ## Libraries
 
 Mixed-Signal Blockset / PLL / Measurements & Testbenches

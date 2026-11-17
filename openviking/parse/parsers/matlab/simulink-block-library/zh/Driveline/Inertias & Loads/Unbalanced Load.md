@@ -15,14 +15,49 @@ chinese_source: worker-translation
 # Unbalanced Load
 
 ## 端口
+```yaml
+ports:
+- name: LConn 1
+  summary: 轴连接机械旋转
+  direction: conserving
+```
 
 ### 守恒端口
 
 ### **LConn 1** — 轴连接机械旋转
 
 与不平衡负载的轴连接相关联的机械旋转守恒端口。
-
 ## 参数
+```yaml
+parameters:
+- name: Parameterization
+  summary: 用于对转动惯量建模的选项 Circular rotation（默认）| Elliptical rotation | By table lookup
+  group: ''
+- name: Moment of inertia about own axis
+  summary: 转动惯量 1 kg*m^2（默认）| 正标量
+  group: ''
+- name: Mass
+  summary: 负载质量 1 kg（默认）| 正标量
+  group: ''
+- name: Distance from axis to center of rotation
+  summary: 偏移半径 .01 m（默认）| 正标量
+  group: ''
+- name: Radius of rotation
+  summary: 旋转半径 .01 m（默认）| 正标量
+  group: ''
+- name: Radius of rotation inline with distance from axis
+  summary: 半长轴半径 .01 m（默认）| 正标量
+  group: ''
+- name: Radius of rotation perpendicular to distance from axis
+  summary: 半短轴半径 .005 m（默认）| 正标量
+  group: ''
+- name: Angle vector
+  summary: 角度 [0, pi, 3 * pi / 2] rad（默认）| 向量
+  group: ''
+- name: Inertia vector
+  summary: 惯量 [1, 10, 1] kg*m^2（默认）| 向量
+  group: ''
+```
 
 ### **Parameterization** — 用于对转动惯量建模的选项 `Circular rotation`（默认）| `Elliptical rotation` | `By table lookup`
 
@@ -91,7 +126,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Parameterization** 设置为 `By table lookup`。
-
 ## 所属库
 
 Simscape / Driveline / Inertias & Loads

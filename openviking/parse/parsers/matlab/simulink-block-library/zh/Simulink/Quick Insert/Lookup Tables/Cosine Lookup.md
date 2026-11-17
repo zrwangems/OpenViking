@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # Sine
 
 ## 端口
+```yaml
+ports:
+- name: u
+  summary: 作为定点正弦或余弦波实现的输入信号 实值信号
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+- name: sin(2\*pi\*u)
+  summary: 定点正弦波 实值定点信号
+  direction: output
+  data_types: fixed point
+- name: cos(2\*pi\*u)
+  summary: 定点余弦波 实值定点信号
+  direction: output
+  data_types: fixed point
+- name: exp(j\*2\*pi\*u)
+  summary: exp(j\*2\*pi\*u) 复值定点信号
+  direction: output
+  data_types: fixed point
+```
 
 ### 输入
 
@@ -56,8 +75,35 @@ chinese_source: worker-translation
 当 **Output formula** 设置为 `exp(j*2*pi*u)` 时，启用此端口。
 
 **数据类型：** `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output formula
+  summary: 选择要输出的信号 cos(2*pi*u) | sin(2*pi*u) | exp(j*2*pi*u) | sin(2*pi*u) and cos(2*pi*u)
+  group: ''
+  block_parameter: Formula
+  values: '''sin(2*pi*u)'' | ''cos(2*pi*u)'' | ''exp(j*2*pi*u)'' | ''sin(2*pi*u) and cos(2*pi*u)'''
+- name: Number of data points for lookup table
+  summary: 指定要从查找表中检索的数据点数量 (2^5)+1（默认值） | 大于或等于 2 的整数
+  group: ''
+  block_parameter: NumDataPoints
+  type: 标量
+  values: 大于或等于 2 的整数
+  default: '''(2^5)+1'''
+- name: Output word length
+  summary: 指定输出信号定点数据类型的字长 16（默认值） | 从 2 到 53 的整数
+  group: ''
+  block_parameter: OutputWordLength
+  type: 标量
+  values: 从 2 到 53 的整数
+  default: '''16'''
+- name: Internal rule priority for lookup table
+  summary: 指定中间计算的内部规则 Speed（默认值） | Precision
+  group: ''
+  block_parameter: InternalRulePriority
+  values: '''Speed'' | ''Precision'''
+  default: '''Speed'''
+```
 
 ### **Output formula** — 选择要输出的信号 `cos(2*pi*u)` | `sin(2*pi*u)` | `exp(j*2*pi*u)` | `sin(2*pi*u) and cos(2*pi*u)`
 
@@ -115,7 +161,6 @@ chinese_source: worker-translation
 | **模块参数：** `InternalRulePriority` |
 | **值：** `'Speed' | 'Precision'` |
 | **默认值：** `'Speed'` |
-
 ## 所属库
 
 Simulink / Lookup Tables

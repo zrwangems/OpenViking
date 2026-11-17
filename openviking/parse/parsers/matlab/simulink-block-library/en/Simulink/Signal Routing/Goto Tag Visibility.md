@@ -14,10 +14,22 @@ language: en
 # Goto Tag Visibility
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: Goto tag
+  summary: Goto block tag whose visibility is defined by the location of this block A (default) | ...
+  group: ''
+  block_parameter: GotoTag
+  type: character vector
+  values: '''A'' | ...'
+  default: '''A'''
+```
 
 ### **Goto tag** — Goto block tag whose visibility is defined by the location of this block `A` (default) | ...
 
@@ -49,7 +61,6 @@ Goto Tag Visibility blocks by pressing
 | **Type:** character vector |
 | **Values:** `'A'` | `...` |
 | **Default:** `'A'` |
-
 ## Libraries
 
 Simulink / Signal Routing

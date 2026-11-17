@@ -14,6 +14,27 @@ language: en
 # Receiver Accumulator (2P)
 
 ## Ports
+```yaml
+ports:
+- name: L
+  summary: Liquid level physical signal
+  direction: output
+- name: AV
+  summary: Tank opening two-phase fluid
+  direction: conserving
+- name: BV
+  summary: Tank opening two-phase fluid
+  direction: conserving
+- name: AL
+  summary: Tank opening two-phase fluid
+  direction: conserving
+- name: BL
+  summary: Tank opening two-phase fluid
+  direction: conserving
+- name: H
+  summary: Tank wall thermal
+  direction: conserving
+```
 
 ### Output
 
@@ -57,8 +78,93 @@ Thermal boundary between the fluid volume and the tank wall. Use this
 port to capture heat exchanges of various kinds—for example, conductive,
 convective, or radiative—between the fluid and the environment external
 to the tank.
-
 ## Parameters
+```yaml
+parameters:
+- name: Total tank volume
+  summary: Aggregate volume of liquid and vapor phases in the tank 1 m^3 (default) | positive scalar
+  group: Main
+- name: Tank cross-sectional area
+  summary: Tank cross-sectional area 0.5 m^2 (default) | positive scalar
+  group: Main
+- name: Cross-sectional area at port AV
+  summary: Area normal to the direction of flow at port AV 0.01 m^2 (default) | positive scalar
+  group: Main
+- name: Cross-sectional area at port BV
+  summary: Area normal to the direction of flow at port BV 0.01 m^2 (default) | positive scalar
+  group: Main
+- name: Cross-sectional area at port AL
+  summary: Area normal to the direction of flow at port AL 0.01 m^2 (default) | positive scalar
+  group: Main
+- name: Cross-sectional area at port BL
+  summary: Area normal to the direction of flow at port BL 0.01 m^2 (default) | positive scalar
+  group: Main
+- name: Liquid volume fraction out of range
+  summary: What happens when volume fractions are out of range No error (default) | Error | Warning
+  group: Main
+- name: Minimum liquid volume fraction
+  summary: Value below which to trigger warning or error 0.05 (default) | positive scalar between 0 and 1
+  group: Main
+- name: Maximum liquid volume fraction
+  summary: Value above which to trigger warning or error 0.95 (default) | positive scalar between 0 and 1
+  group: Main
+- name: Volume fraction threshold for transition to pure liquid or pure vapor
+  summary: Volume fraction of a phase below which to transition to a single-phase tank 0.05 (default) | positive scalar between
+    0 and 1
+  group: Main
+- name: Vapor heat transfer coefficient
+  summary: Coefficient for heat exchange between vapor and the tank wall 20 W/(m^2*K) (default) | positive scalar
+  group: Heat Transfer
+- name: Liquid heat transfer coefficient
+  summary: Coefficient for heat exchange between liquid and the tank wall 100 W/(m^2*K) (default) | positive scalar
+  group: Heat Transfer
+- name: Initial pressure
+  summary: Absolute pressure at start of simulation 0.101325 MPa (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial liquid fraction specification
+  summary: Type of initial liquid fraction Liquid mass fraction (default) | Liquid volume fraction
+  group: Effects and Initial Conditions
+- name: Initial liquid mass fraction
+  summary: Initial mass fraction of liquid in tank 0.5 (default) | unitless scalar between 0 and 1
+  group: Effects and Initial Conditions
+- name: Initial liquid volume fraction
+  summary: Initial volume fraction of liquid in tank 0.5 (default) | unitless scalar between 0 and 1
+  group: Effects and Initial Conditions
+- name: Initial liquid and vapor volumes fully saturated
+  summary: Option to specify liquid and vapor as fully saturated on (default) | off
+  group: Effects and Initial Conditions
+- name: Initial fluid energy specification
+  summary: Thermodynamic variable to use to define initial fluid energy Degree of subcooling and superheating (default) |
+    Temperature | Specific enthalpy | Specific internal energy
+  group: Effects and Initial Conditions
+- name: Initial liquid subcooling
+  summary: Liquid subcooling at start of simulation 5 deltaK (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial vapor superheating
+  summary: Vapor superheating at start of simulation 5 deltaK (default) | positive scalar
+  group: Effects and Initial Conditions
+- name: Initial liquid temperature
+  summary: Liquid temperature at start of simulation 368.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial vapor temperature
+  summary: Vapor temperature at start of simulation 378.15 K (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial liquid specific enthalpy
+  summary: Liquid specific enthalpy at start of simulation 400 kJ/kg (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial vapor specific enthalpy
+  summary: Vapor specific enthalpy at start of simulation 2700 kJ/kg (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial liquid specific internal energy
+  summary: Liquid specific internal energy at start of simulation 400 kJ/kg (default) | scalar
+  group: Effects and Initial Conditions
+- name: Initial vapor specific internal energy
+  summary: Vapor specific internal energy at start of simulation 2700 kJ/kg (default) | scalar
+  group: Effects and Initial Conditions
+- name: Vaporization and condensation time constant
+  summary: Characteristic duration of phase-change event 0.1 s (default) | positive scalar
+  group: Effects and Initial Conditions
+```
 
 ### Main
 
@@ -314,7 +420,6 @@ vapor volumes fully saturated** check box and set
 Characteristic time to equilibrium for a phase-change event that takes
 place in the tank. Increase this parameter to slow the rate of phase
 change or decrease it to speed up the rate.
-
 ## Libraries
 
 Simscape / Fluids / Two-Phase Fluid / Tanks & Accumulators

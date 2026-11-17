@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # AXI4 Master Sink
 
 ## 端口
+```yaml
+ports:
+- name: rdData
+  summary: 输入数据 标量 | 向量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: rdCtrlIn
+  summary: 输入控制总线 总线
+  direction: input
+  data_types: ReadControlS2MBusObj
+- name: rdCtrlOut
+  summary: 输出控制总线 总线
+  direction: output
+  data_types: ReadControlM2SBusObj
+```
 
 ### 输入
 
@@ -46,8 +61,37 @@ chinese_source: worker-translation
 - `rd_dready` — 指示模块何时可以读取数据的控制信号
 
 **数据类型：** `ReadControlM2SBusObj`
-
 ## 参数
+```yaml
+parameters:
+- name: Data type
+  summary: 输入数据类型 uint8（默认）| double | single | int8 | int16 | int32 | int64 | uint16 | uint32 | uint64 | fixed point
+  group: ''
+- name: Dimensions
+  summary: 输入数据维度 1（默认）| 正整数 | 数组
+  group: ''
+- name: Enable sample packing (last signal dimension as channel)
+  summary: 在信号的最后一个维度上打包数据 off（默认）| on
+  group: ''
+- name: Number of transfers
+  summary: 要发送的读请求数量 1（默认）| 正整数
+  group: ''
+- name: Initial address
+  summary: 起始地址 0（默认）| 非负标量整数
+  group: ''
+- name: Initial delay
+  summary: 初始延迟 0（默认）| 非负标量
+  group: ''
+- name: Sample time
+  summary: 采样时间间隔 1（默认）| 正标量 | 向量
+  group: ''
+- name: Save data in workspace
+  summary: 保存到工作区 off（默认）| on
+  group: ''
+- name: Variable name
+  summary: 工作区变量名称 simOut（默认）| 任何 MATLAB 支持的变量名称
+  group: ''
+```
 
 ### **Data type** — 输入数据类型 `uint8`（默认）| `double` | `single` | `int8` | `int16` | `int32` | `int64` | `uint16` | `uint32` | `uint64` | `fixed point`
 
@@ -106,7 +150,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请选择 **Save data in workspace** 参数。
-
 ## 所属库
 
 SoC Blockset / Hardware Logic Testbench

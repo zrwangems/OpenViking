@@ -14,6 +14,103 @@ language: en
 # Simulation 3D Multirotor Pack
 
 ## Ports
+```yaml
+ports:
+- name: Body_T
+  summary: Body translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor1_T
+  summary: Rotor 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor2_T
+  summary: Rotor 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor3_T
+  summary: Rotor 3 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor4_T
+  summary: Rotor 4 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor5_T
+  summary: Rotor 5 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor6_T
+  summary: Rotor 6 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor7_T
+  summary: Rotor 7 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor8_T
+  summary: Rotor 8 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Sensor1_T
+  summary: Sensor 1 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Sensor2_T
+  summary: Sensor 2 translation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Body_R
+  summary: Body rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor1_R
+  summary: Rotor 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor2_R
+  summary: Rotor 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor3_R
+  summary: Rotor 3 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor4_R
+  summary: Rotor 4 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor5_R
+  summary: Rotor 5 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor6_R
+  summary: Rotor 6 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor7_R
+  summary: Rotor 7 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Rotor8_R
+  summary: Rotor 8 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Sensor1_R
+  summary: Sensor 1 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Sensor2_R
+  summary: Sensor 2 rotation 1-by-3 matrix
+  direction: input
+  data_types: single | double
+- name: Translation
+  summary: Multirotor translation 11-by-3 array
+  direction: output
+- name: Rotation
+  summary: Rotorcraft rotation 11-by-3 array
+  direction: output
+```
 
 ### Input
 
@@ -266,8 +363,155 @@ The rotation applies to the same bones as listed for the Translation port.
 
 The signal contains the rotation [roll, pitch, yaw], in radians, with one row of
 the array for each bone of the rotorcraft.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rotor 1 translation
+  summary: Option to enable Rotor1_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 2 translation
+  summary: Option to enable Rotor2_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 3 translation
+  summary: Option to enable Rotor3_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor3_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 4 translation
+  summary: Option to enable Rotor4_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor4_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 5 translation
+  summary: Option to enable Rotor5_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor5_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 6 translation
+  summary: Option to enable Rotor6_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor6_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 7 translation
+  summary: Option to enable Rotor7_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor7_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 8 translation
+  summary: Option to enable Rotor8_T input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor8_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 1 rotation
+  summary: Option to enable Rotor1_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 2 rotation
+  summary: Option to enable Rotor2_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 3 rotation
+  summary: Option to enable Rotor3_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor3_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 4 rotation
+  summary: Option to enable Rotor4_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor4_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 5 rotation
+  summary: Option to enable Rotor5_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor5_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 6 rotation
+  summary: Option to enable Rotor6_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor6_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 7 rotation
+  summary: Option to enable Rotor7_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor7_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Rotor 8 rotation
+  summary: Option to enable Rotor8_R input port off (default) | on
+  group: Propulsion
+  block_parameter: Rotor8_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sensor 1 translation
+  summary: Option to enable Sensor1_T input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor1_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sensor 2 translation
+  summary: Option to enable Sensor2_T input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor2_T
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sensor 1 rotation
+  summary: Option to enable Sensor1_R input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor1_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Sensor 2 rotation
+  summary: Option to enable Sensor2_R input port off (default) | on
+  group: Sensors
+  block_parameter: Sensor2_R
+  type: character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Select input coordinate frame
+  summary: Input coordinate frame NED (default) | Fixed-frame | ICRF
+  group: Input
+  block_parameter: GeoRadioButton
+  values: '''NED'' (default) | ''Fixed-frame'' | ''ICRF'''
+```
 
 ### Propulsion
 
@@ -559,7 +803,6 @@ programmatically, use the `get_param` function.
 | --- | --- |
 | **Parameter:** | `GeoRadioButton` |
 | **Values:** | `'NED'` (default) | `'Fixed-frame'` | `'ICRF'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Simulation 3D

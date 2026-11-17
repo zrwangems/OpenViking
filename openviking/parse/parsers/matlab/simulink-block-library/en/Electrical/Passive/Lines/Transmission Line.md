@@ -14,6 +14,21 @@ language: en
 # Transmission Line
 
 ## Ports
+```yaml
+ports:
+- name: p1
+  summary: Inner conductor 1 electrical
+  direction: conserving
+- name: n1
+  summary: External shielding conductor 1 electrical
+  direction: conserving
+- name: p2
+  summary: Inner conductor 2 electrical
+  direction: conserving
+- name: n2
+  summary: External shielding conductor 2 electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -36,8 +51,44 @@ line inner conductor.
 
 Electrical conserving port associated with one end of the transmission
 line external shielding conductor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Model Type
+  summary: Transmission line models Delay-based and lossless (default) | Delay-based and lossy | Lumped parameter L-section
+    | Lumped parameter pi-section | Distributed parameter line
+  group: ''
+- name: Transmission delay
+  summary: Total transmission delay 5 ns (default) | positive scalar
+  group: ''
+- name: Parameterization
+  summary: Model parameterization By characteristic impedance and capacitance (default) | By inductance and capacitance
+  group: ''
+- name: Characteristic impedance
+  summary: Characteristic impedance 50 Ohm (default) | positive scalar
+  group: ''
+- name: Frequency used for rlcg specification
+  summary: Frequency used for rlcg specification 60 Hz (default) | positive scalar
+  group: ''
+- name: Inductance per unit length
+  summary: Inductance per unit length 220 μH/m (default) | positive scalar
+  group: ''
+- name: Capacitance per unit length
+  summary: Capacitance per unit length 90 pF/m (default)
+  group: ''
+- name: Resistance per unit length
+  summary: Resistance per unit length 0.3 Ohm/m (default)
+  group: ''
+- name: Insulation conductance per unit length
+  summary: Insulation conductance per unit length 5e-6 S/m (default) | nonnegative scalar
+  group: ''
+- name: Line length
+  summary: Total transmission line length 1 m (default) | positive scalar
+  group: ''
+- name: Number of segments
+  summary: Number of model segments 1 (default)
+  group: ''
+```
 
 ### **Model Type** — Transmission line models `Delay-based and lossless` (default) | `Delay-based and lossy` | `Lumped parameter L-section` | `Lumped parameter pi-section` | `Distributed parameter line`
 
@@ -211,7 +262,6 @@ This parameter is visible only when you select
 `Lumped parameter L-section` or
 `Lumped parameter pi-section` for the
 **Model type** parameter.
-
 ## Libraries
 
 Simscape / Electrical / Passive / Lines

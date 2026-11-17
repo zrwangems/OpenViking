@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Symmetrical-Components Transform
 
 ## 端口
+```yaml
+ports:
+- name: abc
+  summary: '*a*、*b* 和 *c* 相量向量'
+  direction: input
+  data_types: single | double
+- name: +-0
+  summary: 平衡的 *a* 相量分量向量
+  direction: output
+  data_types: single | double
+```
 
 ### 输入
 
@@ -30,13 +41,17 @@ chinese_source: worker-translation
 正序、负序和零序 *a* 相量，以复信号形式输出。使用方程部分给出的旋转来计算 *b* 和 *c* 相量组。
 
 **数据类型：** `single` | `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Power invariant
+  summary: 变换类型 off（默认）| on
+  group: ''
+```
 
 ### **Power invariant** — 变换类型 `off`（默认）| `on`
 
 功率不变切换。选择此参数以使用原始 Fortescue 变换的功率不变替代版本。
-
 ## 所属库
 
 Simscape / Electrical / Control / Mathematical Transforms

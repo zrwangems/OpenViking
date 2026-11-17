@@ -14,6 +14,25 @@ language: en
 # DC Voltage Controller
 
 ## Ports
+```yaml
+ports:
+- name: vRef
+  summary: Reference DC voltage scalar
+  direction: input
+  data_types: single | double
+- name: v
+  summary: Measured DC voltage scalar
+  direction: input
+  data_types: single | double
+- name: Reset
+  summary: External reset scalar
+  direction: input
+  data_types: single | double
+- name: Control
+  summary: Control signal scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -42,8 +61,40 @@ Control signal, *control*, expressed as a duty cycle or a
 current.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Proportional gain
+  summary: Proportional gain, *Kp* 0.1 (default) | positive scalar
+  group: ''
+- name: Integral gain
+  summary: Integral gain, *Ki* 50 (default) | positive scalar
+  group: ''
+- name: Anti-windup gain
+  summary: Anti-windup gain, *Kaw* 1 (default) | positive scalar
+  group: ''
+- name: Control action upper limit
+  summary: Upper limit for the control signal, *controlmax* 1 (default) | positive scalar
+  group: ''
+- name: Control action lower limit
+  summary: Lower limit for the control signal, *controlmin* 0 (default) | non-negative scalar
+  group: ''
+- name: Sample time (-1 for inherited)
+  summary: Block sample time -1 (default) | positive scalar
+  group: ''
+- name: Discretization sample time
+  summary: Sample time for discretization 0.001 (default) | positive scalar
+  group: ''
+- name: Time constant voltage filter
+  summary: DC voltage filter time constant, *τ* 0.001 (default) | positive scalar
+  group: ''
+- name: Enable zero cancellation
+  summary: Feedforward zero cancellation off (default) | on
+  group: ''
+- name: Filter DC voltage
+  summary: DC voltage filter option on (default) | off
+  group: ''
+```
 
 ### **Proportional gain** — Proportional gain, *Kp* `0.1` (default) | positive scalar
 
@@ -113,7 +164,6 @@ filter, clear the check box.
 
 The **Time constant voltage filter** parameter is only visible
 when the **Filter DC voltage** check box is selected.
-
 ## Libraries
 
 Simscape / Electrical / Control / General Machine Control

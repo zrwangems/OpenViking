@@ -14,6 +14,15 @@ language: en
 # Set Parameter
 
 ## Ports
+```yaml
+ports:
+- name: Value
+  summary: Parameter value scalar | logical | uint8 array
+  direction: input
+- name: Length
+  summary: Length of string parameter integer
+  direction: input
+```
 
 ### Input
 
@@ -32,8 +41,19 @@ When casting your string parameters to `uint8`, ASCII values 0–31 (control cha
 #### Dependencies
 
 To enable this port, set the **Data type** to `uint8[] (string)`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Source
+  summary: Source for specifying the parameter name Select from ROS network | Specify your own
+  group: ''
+- name: Name
+  summary: Parameter name string
+  group: ''
+- name: Data type
+  summary: Data type of your parameter double | int32 | boolean | uint8[] (string)
+  group: ''
+```
 
 ### **Source** — Source for specifying the parameter name `Select from ROS network` | `Specify your own`
 
@@ -62,7 +82,6 @@ Data type of your parameter, specified as a string.
 The `uint8[] (string)` data type is an array of ASCII values corresponding to the characters in a string. When getting string parameters, you can create a MATLAB Function (Simulink) block to compare the string to a desired parameter value. For more information, see ROS Parameters in Simulink.
 
 **Data Types:** `double` | `int32` | `Boolean` | `uint8`
-
 ## Libraries
 
 ROS Toolbox / ROS

@@ -15,6 +15,28 @@ chinese_source: worker-translation
 # Signal Sampler
 
 ## 端口
+```yaml
+ports:
+- name: signal
+  summary: 固定步长离散输入信号 标量
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | fixed point
+- name: clock
+  summary: 饱和但已采样的时钟波形 标量
+  direction: input
+  data_types: double
+- name: clock_time
+  summary: 时钟跳变的精确时间 标量
+  direction: input
+- name: DecisionThreshold
+  summary: 锁存输出切换极性时的电压 标量
+  direction: input
+  data_types: double
+- name: sample
+  summary: 时钟边沿处的采样输出值 标量 | -1 | -1
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -51,8 +73,70 @@ chinese_source: worker-translation
 - **Latched** — 输出为二进制，值为 `-1` 或 `1`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `Boolean` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Clock edge
+  summary: 确定何时对输入信号进行采样 Rising（默认）| Falling
+  group: ''
+  block_parameter: ClockEdge
+  type: 字符向量
+  values: Rising| Falling
+- name: Output mode
+  summary: 确定输出采样模式 Continuous（默认）| Latched
+  group: ''
+  block_parameter: OutputMode
+  type: 字符向量
+  values: Continuous| Latched
+- name: Simulate using
+  summary: 选择仿真模式 Code generation（默认）| Interpreted execution
+  group: ''
+  block_parameter: SimulateUsing
+  type: 字符向量
+  values: Code generation| Interpreted execution
+- name: DecisionThresholdPort
+  summary: 打开判决阈值端口 on（默认）| off
+  group: ''
+  block_parameter: DecisionThresholdPort
+  type: 字符向量
+  values: on| off
+- name: Latch decision threshold
+  summary: 锁存输出切换极性时的电压 0（默认）| 标量
+  group: ''
+  block_parameter: DecisionThreshold
+  type: 字符向量
+  values: 标量
+- name: Latch sensitivity
+  summary: 确保锁存输出切换到正确极性所需的高于或低于判决阈值的电压 0（默认）| 标量
+  group: ''
+  block_parameter: Sensitivity
+  type: 字符向量
+  values: 标量
+- name: Symbol time (s)
+  summary: 单个符号持续时间的时间 100e-12（默认）| 实正标量
+  group: ''
+  block_parameter: SymbolTime
+  type: 字符向量
+  values: 实正标量
+- name: Sample interval (s)
+  summary: 波形的均匀时间步长 6.25e-12（默认）| 实正标量
+  group: ''
+  block_parameter: SampleInterval
+  type: 字符向量
+  values: 实正标量
+- name: Modulation (2:NRZ, 3:PAM3, 4:PAM4)
+  summary: 调制方案 2（默认）| 3 | 4
+  group: ''
+  block_parameter: Modulation
+  type: 字符向量
+  values: 2 | 3 | 4
+- name: Input waveform type
+  summary: 输入波形类型 Sample（默认）| Impulse
+  group: ''
+  block_parameter: WaveType
+  type: 字符向量
+  values: Sample | Impulse
+```
 
 #### 主要
 
@@ -215,7 +299,6 @@ chinese_source: worker-translation
 | **类型：** 字符向量 |
 | **值：** `Sample` | `Impulse` |
 | **默认：** `Sample` |
-
 ## 所属库
 
 Mixed-Signal Blockset / Utilities

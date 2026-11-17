@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Simulation 3D Actor Transform Set
 
 ## 端口
+```yaml
+ports:
+- name: Translation
+  summary: Actor 平移 array
+  direction: input
+- name: Rotation
+  summary: Actor 旋转 array
+  direction: input
+- name: Scale
+  summary: 角色缩放 array
+  direction: input
+```
 
 ### 输入
 
@@ -121,8 +133,31 @@ Actor 旋转，单位为 rad。数组维度为每个 actor 的部件数乘以 `3
   | 右后轮，*XRRscale* | `Scale(5,1)` |
   | 右后轮，*YRRscale* | `Scale(5,2)` |
   | 右后轮，*ZRRscale* | `Scale(5,3)` |
-
 ## 参数
+```yaml
+parameters:
+- name: Tag for actor in 3D scene, ActorTag
+  summary: 名称 SimulinkActor1（默认）| 字符向量
+  group: ''
+- name: Number of parts per actor to set, NumberOfParts
+  summary: 名称 1（默认）| scalar
+  group: ''
+- name: Coordinate system
+  summary: 用于角色变换的坐标系 Default（默认）| MATLAB | ISO8855 | AERO | VRML | SAE
+  group: ''
+- name: Initial array values to translate actor per part, Translation
+  summary: 每个部件的 actor 初始平移 [0 0 0]（默认）| array
+  group: ''
+- name: Initial array values to rotate actor per part, Rotation
+  summary: 每个部件的 actor 初始旋转 [0 0 0]（默认）| array
+  group: ''
+- name: 用于按部件缩放角色的初始数组值，Scale
+  summary: 角色初始缩放 [1 1 1]（默认）| array
+  group: ''
+- name: Sample time
+  summary: Sample time -1 (default) | scalar
+  group: ''
+```
 
 #### 角色设置
 
@@ -287,7 +322,6 @@ Array dimensions are number of parts per actor-by-`3`.
 
 Sample time, *Ts*. The graphics frame rate
 is the inverse of the sample time.
-
 ## 所属库
 
 Vehicle Dynamics Blockset / Vehicle Scenarios / Sim3D / Sim3D Core Aerospace Blockset / Animation / Simulation 3D Simulink 3D Animation / Simulation 3D / Utilities

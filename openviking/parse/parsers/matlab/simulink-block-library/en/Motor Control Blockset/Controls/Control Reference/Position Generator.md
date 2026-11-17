@@ -14,6 +14,25 @@ language: en
 # Position Generator
 
 ## Ports
+```yaml
+ports:
+- name: ∆θ
+  summary: Position increment value scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θ0
+  summary: Initial position signal scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Reset
+  summary: External reset signal scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: θe
+  summary: Reference voltage position scalar
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -66,8 +85,22 @@ Position or phase value of the reference voltage signal (in either per unit,
 radians, or degrees).
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Theta Units
+  summary: Unit of *θ* Per-unit (default) | Radians | Degrees
+  group: ''
+- name: Initial state
+  summary: Specify how to provide initial value of *θ* Specify via dialog (default) | Input port
+  group: ''
+- name: Initial theta value
+  summary: Initial value of θe 0 (default) | scalar
+  group: ''
+- name: External reset
+  summary: Output value on reset none (default) | active high resets to zero | active high resets to initial condition
+  group: ''
+```
 
 ### **Theta Units** — Unit of *θ* `Per-unit` (default) | `Radians` | `Degrees`
 
@@ -102,7 +135,6 @@ Output position ramp value (in either per unit, radians, or degrees) at the time
 when the block receives an active high external reset pulse. You can reset the output to
 either zero or to equal the value of the **Initial theta output**
 parameter.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Control Reference Motor Control Blockset HDL Support / Controls / Control Reference

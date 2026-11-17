@@ -14,6 +14,21 @@ language: en
 # MAVLink Serializer
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: MAVLink packet nonvirtual bus
+  direction: input
+  data_types: bus
+- name: Data
+  summary: MAVLink data stream vector
+  direction: output
+  data_types: uint8
+- name: Length
+  summary: Length of the serialized data scalar
+  direction: output
+  data_types: uint16
+```
 
 ### Input
 
@@ -45,8 +60,23 @@ be less than the maximum possible length for a MAVLink message depending on how 
 trailing zeros are removed in the MAVLink payload during serialization.
 
 **Data Types:** `uint16`
-
 ## Parameters
+```yaml
+parameters:
+- name: MAVLink dialect source
+  summary: Source for specifying the MAVLink message definition Select from standard MAVLink dialects (default) | Specify
+    your own
+  group: ''
+- name: MAVLink dialect
+  summary: Message definition to parse for MAVLink messages common.xml (default) | string
+  group: ''
+- name: MAVLink version
+  summary: MAVLink protocol version 2 (default) | 1
+  group: ''
+- name: MAVLink Message type
+  summary: MAVLink message HEARTBEAT (default)
+  group: ''
+```
 
 ### **MAVLink dialect source** — Source for specifying the MAVLink message definition `Select from standard MAVLink dialects` (default) | `Specify your own`
 
@@ -87,7 +117,6 @@ selected for **MAVLink dialect** and **MAVLink
 version** parameters.
 
 **Data Types:** `string`
-
 ## Libraries
 
 UAV Toolbox / MAVLink

@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Call Service
 
 ## 端口
+```yaml
+ports:
+- name: Req
+  summary: 请求消息 非虚拟总线
+  direction: input
+  data_types: bus
+- name: Resp
+  summary: 响应消息 非虚拟总线
+  direction: output
+  data_types: bus
+- name: ErrorCode
+  summary: 服务调用的错误条件 整数
+  direction: output
+  data_types: uint8
+```
 
 ### 输入
 
@@ -47,8 +62,28 @@ chinese_source: worker-translation
 当 **Show ErrorCode output port** 复选框为 `on` 时，此输出启用。
 
 **数据类型：** `uint8`
-
 ## 参数
+```yaml
+parameters:
+- name: Source
+  summary: 用于指定服务名称的源 Select from ROS network | Specify your own
+  group: ''
+- name: Name
+  summary: 服务名称 字符向量
+  group: ''
+- name: Type
+  summary: 服务类型 字符向量
+  group: ''
+- name: Connection timeout
+  summary: 服务服务器连接超时 5（默认）| 正数值标量
+  group: ''
+- name: Keep persistent connection
+  summary: 保持与服务服务器的连接 off（默认）| on
+  group: ''
+- name: Show ErrorCode output port
+  summary: 启用错误代码输出端口 on（默认）| off
+  group: ''
+```
 
 ### **Source** — 用于指定服务名称的源 `Select from ROS network` | `Specify your own`
 
@@ -78,7 +113,6 @@ chinese_source: worker-translation
 ### **Show ErrorCode output port** — 启用错误代码输出端口 `on`（默认）| `off`
 
 选中此复选框以输出 **ErrorCode** 输出。如果发生错误条件，**Resp** 将输出最后一条响应消息，如果之前未收到响应，则输出空消息。
-
 ## 所属库
 
 ROS Toolbox / ROS

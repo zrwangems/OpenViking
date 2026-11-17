@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # Dual Modulus Prescaler
 
 ## 端口
+```yaml
+ports:
+- name: clk in
+  summary: 输入时钟频率标量
+  direction: input
+  data_types: double
+- name: clk out
+  summary: 输出时钟频率标量
+  direction: output
+  data_types: double
+```
 
 ### 输入
 
@@ -30,8 +41,25 @@ chinese_source: worker-translation
 输出时钟频率，指定为标量。在 PLL 系统中，**clk out** 端口连接到 PFD 模块的反馈输入端口。**clk out** 端口的输出是幅度为 1 V 的方波脉冲序列。
 
 **数据类型：** `double`
-
 ## 参数
+```yaml
+parameters:
+- name: Program counter value, P
+  summary: 程序计数器的最大值 12（默认）| 标量整数
+  group: ''
+- name: Prescaler divider value, N
+  summary: 预分频器分频值 4（默认）| 标量整数
+  group: ''
+- name: Swallow counter value, S
+  summary: 吞脉冲计数器的最大值 2（默认）| 标量整数
+  group: ''
+- name: Enable increased buffer size
+  summary: 启用增大的缓冲区大小 off（默认）| on
+  group: ''
+- name: Buffer size
+  summary: 仿真期间可用的输入缓冲采样数 1（默认）| 正整数标量
+  group: ''
+```
 
 ### **Program counter value, P** — 程序计数器的最大值 `12`（默认）| 标量整数
 
@@ -78,7 +106,6 @@ chinese_source: worker-translation
 
 - 使用 `get_param(gcb,'NBuffer')` 查看 **Buffer size** 的当前值。
 - 使用 `set_param(gcb,'NBuffer',value)` 将 **Buffer size** 设置为特定值。
-
 ## 所属库
 
 Mixed-Signal Blockset / PLL / Building Blocks

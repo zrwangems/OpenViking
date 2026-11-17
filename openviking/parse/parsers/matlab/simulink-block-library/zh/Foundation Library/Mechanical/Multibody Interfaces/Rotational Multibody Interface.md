@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Rotational Multibody Interface
 
 ## 端口
+```yaml
+ports:
+- name: w
+  summary: 相对角速度，rad/s 物理信号
+  direction: input
+- name: t
+  summary: 扭矩，N\*m 物理信号
+  direction: output
+- name: R
+  summary: 杆机械旋转
+  direction: output
+- name: C
+  summary: 壳体机械旋转
+  direction: output
+```
 
 ### 输入
 
@@ -37,11 +52,12 @@ chinese_source: worker-translation
 ### **C** — 壳体机械旋转
 
 机械旋转守恒端口，具有与关节原语相同的扭矩和相对角速度。将此端口连接到机械旋转网络中其他模块的端口 **C**。
-
 ## 参数
+```yaml
+parameters: []
+```
 
 R2025b 中未记录。
-
 ## 所属库
 
 Simscape / Foundation Library / Mechanical / Multibody Interfaces

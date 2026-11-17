@@ -15,10 +15,139 @@ chinese_source: worker-translation
 # Dashboard Scope
 
 ## 端口
+```yaml
+ports: []
+```
 
 R2025b 中未记录。
-
 ## 参数
+```yaml
+parameters:
+- name: Connection
+  summary: 要连接的信号及显示信号连接选项
+  group: Connection Table
+  block_parameter: Binding
+  type: cell array of Simulink.HMI.SignalSpecification objects
+  default: '[]'
+- name: Line Style
+  summary: 已连接信号的线型和颜色 线型和颜色选项
+  group: Connection Table
+  block_parameter: Colors
+  type: array of structures
+- name: Time Span
+  summary: 时间轴跨度 auto (default) | scalar
+  group: 主要参数
+  block_parameter: TimeSpan
+  type: string | character array
+  values: '''auto'' or numeric value'
+  default: '''auto'''
+- name: Update Mode
+  summary: 显示更新行为 Wrap (default) | Scroll
+  group: 主要参数
+  block_parameter: UpdateMode
+  type: string | character array
+  values: '''Wrap'' | ''Scroll'''
+  default: '''Wrap'''
+- name: Min
+  summary: 垂直轴最小值 -3 (default) | scalar
+  group: 主要参数
+  block_parameter: YLimits
+  type: 1x2 vector
+  default: '[-3 3]'
+- name: Max
+  summary: 垂直轴最大值 3 (default) | scalar
+  group: 主要参数
+  block_parameter: YLimits
+  type: 1x2 vector
+  default: '[-3 3]'
+- name: Normalize y-axis limits
+  summary: 归一化 *y* 轴的选项 off (default) | on
+  group: 主要参数
+  block_parameter: NormalizeYAxis
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Scale axes limits at stop
+  summary: 仿真停止时执行适配视图的选项 on (default) | off
+  group: 主要参数
+  block_parameter: ScaleAtStop
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Show "Double-click to connect" message
+  summary: 连接说明的可见性 on (default) | off
+  group: 主要参数
+  block_parameter: ShowInitialText
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Ticks
+  summary: 轴刻度位置 Outside (default) | Inside | None
+  group: Display
+  block_parameter: TicksPosition
+  type: string | character vector
+  values: '''Outside'' | ''Inside'' | ''None'''
+  default: '''Outside'''
+- name: Tick Labels
+  summary: 刻度标签可见性 All (default) | T-Axis | Y-Axis | None
+  group: Display
+  block_parameter: TickLabels
+  type: string | character vector
+  values: '''All'' | ''T-Axis'' | ''Y-Axis'' | ''None'''
+  default: '''All'''
+- name: Legend
+  summary: 图例位置 Top (default) | Right | Inside top | Inside right | Hide
+  group: Display
+  block_parameter: LegendPosition
+  type: string | character vector
+  values: '''Top'' | ''Right'' | ''InsideTop'' | ''InsideRight | ''Hide'''
+  default: '''Top'''
+- name: Horizontal
+  summary: 水平网格线可见性 on (default) | off
+  group: Display
+  block_parameter: Grid
+  type: string | character vector
+  values: '''All'' | ''Horizontal'' | ''Vertical'' | ''None'''
+  default: '''All'''
+- name: Vertical
+  summary: 垂直网格线可见性 on (default) | off
+  group: Display
+  block_parameter: Grid
+  type: string | character vector
+  values: '''All'' | ''Horizontal'' | ''Vertical'' | ''None'''
+  default: '''All'''
+- name: Border
+  summary: 绘图边框可见性 on (default) | off
+  group: Display
+  block_parameter: Border
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Markers
+  summary: 显示信号数据标记的选项 off (default) | on
+  group: Display
+  block_parameter: Markers
+  type: string | character vector
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Foreground Color
+  summary: 网格线颜色 [r g b] vector
+  group: Style
+  block_parameter: ForegroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Background Color
+  summary: 绘图区域颜色 [r g b] vector
+  group: Style
+  block_parameter: BackgroundColor
+  type: string | character vector
+  values: '[r g b] vector'
+- name: Font Color
+  summary: 刻度和刻度标签颜色 [r g b] vector
+  group: Style
+  block_parameter: FontColor
+  type: '[r g b] vector'
+```
 
 ### Connection Table
 
@@ -346,7 +475,6 @@ set_param(blockPath,'Colors',sigColors);
 | --- |
 | **模块参数**：`FontColor` |
 | **类型**：`[r g b]` vector |
-
 ## 所属库
 
 Simulink / Dashboard

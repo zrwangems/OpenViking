@@ -14,6 +14,41 @@ language: en
 # Unscented Kalman Filter
 
 ## Ports
+```yaml
+ports:
+- name: y1,y2,y3,y4,y5
+  summary: Measured system outputs vector
+  direction: input
+  data_types: single | double
+- name: StateTransitionFcnInputs
+  summary: Additional optional input argument to state transition function scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: MeasurementFcn1Inputs,MeasurementFcn2Inputs,MeasurementFcn3Inputs,MeasurementFcn4Inputs,MeasurementFcn5Inputs
+  summary: Additional optional input argument to each measurement function scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: Q
+  summary: Time-varying process noise covariance scalar | vector | matrix
+  direction: input
+  data_types: single | double
+- name: R1,R2,R3,R4,R5
+  summary: Time-varying measurement noise covariance matrix
+  direction: input
+  data_types: single | double
+- name: Enable1,Enable2,Enable3,Enable4,Enable5
+  summary: Enable correction of estimated states when measured data is available scalar
+  direction: input
+  data_types: single | double | Boolean
+- name: xhat
+  summary: Estimated states vector
+  direction: output
+  data_types: single | double
+- name: P
+  summary: State estimation error covariance matrix
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -247,8 +282,151 @@ covariance** in the **System Model** tab, and click
 **Apply**.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Function
+  summary: State transition function name myStateTransitionFcn (default) | function name
+  group: System Model Tab
+  block_parameter: StateTransitionFcn
+  type: character vector, string
+  default: '''myStateTransitionFcn'''
+- name: Process noise
+  summary: Process noise characteristics Additive (default) | Nonadditive
+  group: System Model Tab
+  block_parameter: HasAdditiveProcessNoise
+  type: character vector
+  values: '''Additive'', ''Nonadditive'''
+  default: '''Additive'''
+- name: Covariance
+  summary: Time-invariant process noise covariance 1 (default) | scalar | vector | matrix
+  group: System Model Tab
+  block_parameter: ProcessNoise
+  type: character vector, string
+  default: '''1'''
+- name: Time-varying
+  summary: Time-varying process noise covariance 'off' (default) | 'on'
+  group: System Model Tab
+  block_parameter: HasTimeVaryingProcessNoise
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Initial state
+  summary: Initial state estimate 0 (default) | vector
+  group: System Model Tab
+  block_parameter: InitialState
+  type: character vector, string
+  default: '''0'''
+- name: Initial covariance
+  summary: State estimation error covariance 1 (default) | scalar | vector | matrix
+  group: System Model Tab
+  block_parameter: InitialStateCovariance
+  type: character vector, string
+  default: '''1'''
+- name: Alpha
+  summary: Spread of sigma points 1e-3 (default) | scalar value between 0 and 1
+  group: System Model Tab
+  block_parameter: Alpha
+  type: character vector, string
+  default: '''1e-3'''
+- name: Beta
+  summary: Characterization of state distribution 2 (default) | scalar value greater than or equal to 0
+  group: System Model Tab
+  block_parameter: Beta
+  type: character vector, string
+  default: '''2'''
+- name: Kappa
+  summary: Spread of sigma points 0 (default) | scalar value between 0 and 3
+  group: System Model Tab
+  block_parameter: Kappa
+  type: character vector, string
+  default: '''0'''
+- name: Function
+  summary: Measurement function name myMeasurementFcn (default) | function name
+  group: System Model Tab
+  block_parameter: MeasurementFcn1, MeasurementFcn2, MeasurementFcn3, MeasurementFcn4, MeasurementFcn5
+  type: character vector, string
+  default: '''myMeasurementFcn'''
+- name: Measurement noise
+  summary: Measurement noise characteristics Additive (default) | Nonadditive
+  group: System Model Tab
+  block_parameter: HasAdditiveMeasurementNoise1, HasAdditiveMeasurementNoise2, HasAdditiveMeasurementNoise3, HasAdditiveMeasurementNoise4,
+    HasAdditiveMeasurementNoise5
+  type: character vector
+  values: '''Additive'', ''Nonadditive'''
+  default: '''Additive'''
+- name: Enable measurement wrapping
+  summary: Enable measurement wrapping off (default) | on
+  group: System Model Tab
+  block_parameter: EnableMeasurementWrapping1, EnableMeasurementWrapping2, EnableMeasurementWrapping3, EnableMeasurementWrapping4,
+    EnableMeasurementWrapping5
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Covariance
+  summary: Time-invariant measurement noise covariance 1 (default) | matrix
+  group: System Model Tab
+  block_parameter: MeasurementNoise1, MeasurementNoise2, MeasurementNoise3, MeasurementNoise4, MeasurementNoise5
+  type: character vector, string
+  default: '''1'''
+- name: Time-varying
+  summary: Time-varying measurement noise covariance off (default) | on
+  group: System Model Tab
+  block_parameter: HasTimeVaryingMeasurementNoise1, HasTimeVaryingMeasurementNoise2, HasTimeVaryingMeasurementNoise3, HasTimeVaryingMeasurementNoise4,
+    HasTimeVaryingMeasurementNoise5
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Add Enable Port
+  summary: Enable correction of estimated states only when measured data is available off (default) | on
+  group: System Model Tab
+  block_parameter: HasMeasurementEnablePort1, HasMeasurementEnablePort2, HasMeasurementEnablePort3, HasMeasurementEnablePort4,
+    HasMeasurementEnablePort5
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Use the current measurements to improve state estimates
+  summary: Choose between corrected or predicted state estimate on (default) | off
+  group: System Model Tab
+  block_parameter: UseCurrentEstimator
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''on'''
+- name: Output state estimation error covariance
+  summary: Output state estimation error covariance off (default) | on
+  group: System Model Tab
+  block_parameter: OutputStateCovariance
+  type: character vector
+  values: '''off'',''on'''
+  default: '''off'''
+- name: Data type
+  summary: Data type for block parameters double (default) | single
+  group: System Model Tab
+  block_parameter: DataType
+  type: character vector
+  values: '''single'', ''double'''
+  default: '''double'''
+- name: Sample time
+  summary: Block sample time 1 (default) | positive scalar
+  group: System Model Tab
+  block_parameter: SampleTime
+  type: character vector, string
+  default: '''1'''
+- name: Enable multirate operation
+  summary: Enable specification of different sample times for state transition and measurement functions off (default) | on
+  group: Multirate Tab
+  block_parameter: EnableMultirate
+  type: character vector
+  values: '''off'', ''on'''
+  default: '''off'''
+- name: Sample times
+  summary: State transition and measurement function sample times positive scalar
+  group: Multirate Tab
+  block_parameter: StateTransitionFcnSampleTime, MeasurementFcn1SampleTime1, MeasurementFcn1SampleTime2, MeasurementFcn1SampleTime3,
+    MeasurementFcn1SampleTime4, MeasurementFcn1SampleTime5
+  type: character vector, string
+  default: '''1'''
+```
 
 ### System Model Tab
 
@@ -884,7 +1062,6 @@ This parameter is available if in the **Multirate** tab, the
 | **Block Parameter:**`StateTransitionFcnSampleTime`, `MeasurementFcn1SampleTime1`, `MeasurementFcn1SampleTime2`, `MeasurementFcn1SampleTime3`, `MeasurementFcn1SampleTime4`, `MeasurementFcn1SampleTime5` |
 | **Type:** character vector, string |
 | **Default:** `'1'` |
-
 ## Libraries
 
 Control System Toolbox / State Estimation System Identification Toolbox / Estimators

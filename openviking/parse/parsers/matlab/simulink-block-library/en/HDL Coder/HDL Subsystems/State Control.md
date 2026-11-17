@@ -14,16 +14,23 @@ language: en
 # State Control
 
 ## Ports
+```yaml
+ports: []
+```
 
 Not documented in R2025b.
-
 ## Parameters
+```yaml
+parameters:
+- name: State control
+  summary: Select the state control type Synchronous (default) | Classic
+  group: ''
+```
 
 ### **State control** — Select the state control type `Synchronous` (default) | `Classic`
 
 Specify whether to use synchronous or classic semantics. The default is
 `Synchronous`.
-
 ## Libraries
 
 HDL Coder / HDL Subsystems

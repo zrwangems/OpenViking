@@ -14,6 +14,21 @@ language: en
 # Pilot Joystick All
 
 ## Ports
+```yaml
+ports:
+- name: analog
+  summary: Analog output range [-1, 1] | range [ 0, 1]
+  direction: output
+  data_types: double
+- name: buttons
+  summary: Button flagword with 32 button states
+  direction: output
+  data_types: uint32
+- name: POV
+  summary: Point-of-view hat
+  direction: output
+  data_types: double
+```
 
 ### Output
 
@@ -45,8 +60,33 @@ Point-of-view, returned as a hat value in degrees on the POV channel. Zero degre
 straight ahead, 90 degrees is to the left, and so forth.
 
 **Data Types:** `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Joystick ID
+  summary: Joystick ID Joystick1 (default) | Joystick2 | Joystick3 | Joystick4 | Joystick5 | Joystick6 | Joystick7 | Joystick8
+    | Joystick9 | Joystick10 | Joystick11 | Joystick12 | Joystick13 | Joystick14 | Joystick15 | Joystick16 | None
+  group: ''
+  block_parameter: JoystickID
+  type: character vector
+  values: Joystick1 | Joystick2 | Joystick3 | Joystick4 | Joystick5 | Joystick6 | Joystick7 | Joystick8 | Joystick9 | Joystick10
+    | Joystick11 | Joystick12 | Joystick13 | Joystick14 | Joystick15 | Joystick16 | None
+  default: '''Joystick1'''
+- name: Output configuration
+  summary: Joystick output configuration AllOutputs (default) | FourAxis
+  group: ''
+  block_parameter: OutputConfiguration
+  type: character vector
+  values: FourAxis | AllOutputs
+  default: '''FourAxis'''
+- name: Sample time
+  summary: Sample time 1/30 (default) | -1 | scalar
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: scalar
+  default: '''1/30'''
+```
 
 ### **Joystick ID** — Joystick ID `Joystick1` (default) | `Joystick2` | `Joystick3` | `Joystick4` | `Joystick5` | `Joystick6` | `Joystick7` | `Joystick8` | `Joystick9` | `Joystick10` | `Joystick11` | `Joystick12` | `Joystick13` | `Joystick14` | `Joystick15` | `Joystick16` | `None`
 
@@ -107,7 +147,6 @@ Specify the sample time (-1 for inherited), specified as a scalar.
 | **Type**: character vector |
 | **Values**: scalar |
 | **Default**: `'1/30'` |
-
 ## Libraries
 
 Aerospace Blockset / Animation / Animation Support Utilities

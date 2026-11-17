@@ -14,6 +14,18 @@ language: en
 # Multiposition Valve Actuator
 
 ## Ports
+```yaml
+ports:
+- name: A
+  summary: Input signal physical signal
+  direction: input
+- name: B
+  summary: Input signal physical signal
+  direction: input
+- name: S
+  summary: Actuator position, m physical signal
+  direction: output
+```
 
 ### Input
 
@@ -47,8 +59,31 @@ Actuator position, in m, specified as a physical signal.
 
 If you use the Multiposition Valve Actuator block with a valve from the Gas Library, the
 gas block converts the actuator signal units of m to units of 1.
-
 ## Parameters
+```yaml
+parameters:
+- name: Actuator positions
+  summary: Number of valve position signals 2 (default) | 3
+  group: ''
+- name: Push-pin stroke
+  summary: Maximum push-pin extension 0.01 m (default) | positive scalar
+  group: ''
+- name: Switching-on time
+  summary: Signal transition time period 0.1 s (default) | positive scalar
+  group: ''
+- name: Switching-off time
+  summary: Signal transition time period 0.1 s (default) | positive scalar
+  group: ''
+- name: Nominal signal value
+  summary: Nominal signal for fully extended actuator 24 (default) | positive scalar
+  group: ''
+- name: Initial position
+  summary: Actuator starting position Retracted (default) | Extended | Neutral
+  group: ''
+- name: Actuator travel direction
+  summary: Direction of actuator motion Positive (default) | Negative
+  group: ''
+```
 
 ### **Actuator positions** — Number of valve position signals `2` (default) | `3`
 
@@ -106,7 +141,6 @@ extension.
 
 To enable this parameter, set **Actuator positions**
 to `2`.
-
 ## Libraries
 
 Simscape / Fluids / Valve Actuators Simscape / Fluids / Isothermal Liquid / Valves & Orifices / Valve Actuators & Forces / Valve Actuators

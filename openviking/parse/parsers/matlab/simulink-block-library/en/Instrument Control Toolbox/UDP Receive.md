@@ -14,6 +14,17 @@ language: en
 # UDP Receive
 
 ## Ports
+```yaml
+ports:
+- name: Data
+  summary: Data received vector | matrix | array
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64
+- name: Status
+  summary: New data available 0 (default) | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Output
 
@@ -35,8 +46,115 @@ this port returns `1`, new data is available to be read.
 To enable this port, unselect the **Enable blocking mode** parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Local address
+  summary: Local host name or IP address 0.0.0.0 (default) | local host name or IP address
+  group: ''
+  block_parameter: LocalAddress
+  type: character vector, string
+- name: Local port
+  summary: Port of local host for binding -1 (default) | local host port
+  group: ''
+  block_parameter: LocalPort
+  type: character vector, string
+- name: Enable local port sharing
+  summary: Allow other UDP sockets to bind to same local port off (default) | on
+  group: ''
+  block_parameter: EnablePortSharing
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Remote address
+  summary: Remote host name or address localhost (default) | remote host name or IP address
+  group: ''
+  block_parameter: Host
+  type: character vector, string
+- name: Remote port
+  summary: Remote host port 9090 (default) | remote host port
+  group: ''
+  block_parameter: Port
+  type: character vector, string
+  values: 1 to 65,535
+  default: '''9090'''
+- name: Verify address and port connectivity
+  summary: Remote machine connection verification button
+  group: ''
+- name: Output latest data
+  summary: Receive latest data off (default) | on
+  group: ''
+  block_parameter: GetLatestData
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''off'''
+- name: Data size
+  summary: Number of values read [1, 1] (default) | numeric array
+  group: ''
+  block_parameter: DataSize
+  type: character vector, string
+  values: vector
+  default: '''[ 1, 1 ]'''
+- name: Source Data type
+  summary: Output data type uint8 (default) | single | double | int8 | int16 | uint16 | int32 | uint32 | int64 | uint64 |
+    ASCII
+  group: ''
+  block_parameter: DataType
+  type: character vector, string
+  values: '''single'' | ''double'' | ''int8'' | ''uint8'' | ''int16'' | ''uint16'' | ''int32'' | ''uint32'' | ''int64'' |
+    ''uint64'' | ''ASCII'''
+  default: '''uint8'''
+- name: ASCII format string
+  summary: Format of string data %f (default) | numeric conversion specifiers
+  group: ''
+  block_parameter: ASCIIFormatting
+  type: character vector, string
+  values: '''%d'' | ''%i'' | ''%ld'' | ''%li'' | ''%u'' | %o'' | ''%x'' | ''%lu'' | ''%lo'' | ''%lx'' | ''%f'' | ''%e'' |
+    ''%g'''
+  default: '''%f'''
+- name: Terminator
+  summary: Terminator LF (default) | CR | CR/LF | LF/CR | Custom terminator
+  group: ''
+  block_parameter: Terminator
+  type: character vector, string
+  values: '''CR'' | ''LF'' | ''CR/LF'' | ''LF/CR'' | ''Custom terminator'''
+  default: '''LF'''
+- name: Custom Terminator
+  summary: Custom terminator numeric array | integer from 0 to 255
+  group: ''
+  block_parameter: CustomTerminator
+  type: character vector, string
+  values: integer array
+  default: '''10'''
+- name: Byte order
+  summary: Sequential order of bytes big-endian (default) | little-endian
+  group: ''
+  block_parameter: ByteOrder
+  type: character vector, string
+  values: '''little-endian'' | ''big-endian'''
+  default: '''big-endian'''
+- name: Enable blocking mode
+  summary: Simulation waits while receiving data on (default) | off
+  group: ''
+  block_parameter: EnableBlockingMode
+  type: character vector, string
+  values: '''on'' | ''off'''
+  default: '''on'''
+- name: Timeout
+  summary: Allowed time to complete operations 10 (default) | positive scalar
+  group: ''
+  block_parameter: Timeout
+  type: character vector, string
+  values: positive scalar
+  default: '''10'''
+- name: Block sample time
+  summary: Sampling time 0.01 (default) | positive numeric
+  group: ''
+  block_parameter: SampleTime
+  type: character vector, string
+  values: positive numeric
+  default: '''0.01'''
+```
 
 ### **Local address** — Local host name or IP address 0.0.0.0 (default) | local host name or IP address
 
@@ -354,7 +472,6 @@ variable.
 | **Type:** character vector, string |
 | **Values:** positive numeric |
 | **Default:** `'0.01'` |
-
 ## Libraries
 
 Instrument Control Toolbox

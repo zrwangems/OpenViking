@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Complex to Magnitude-Angle
 
 ## 端口
+```yaml
+ports:
+- name: Port_1
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double
+- name: Port_1
+  summary: 幅值 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+- name: Port_2
+  summary: 弧度相位角 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | int64 | uint8 | uint16 | uint32 | uint64 | fixed point
+```
 
 ### 输入
 
@@ -44,8 +59,36 @@ chinese_source: worker-translation
 - 要启用此端口，请将**输出**设置为 `Magnitude and angle` 或 `Angle`。
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `int64` | `uint8` | `uint16` | `uint32` | `uint64` | `fixed point`
-
 ## 参数
+```yaml
+parameters:
+- name: Output
+  summary: 幅值和/或相位角输出设定 Magnitude and angle（默认）| Magnitude | Angle
+  group: ''
+  block_parameter: Output
+  type: 字符向量
+  values: '''Magnitude and angle'' | ''Magnitude'' | ''Angle'''
+  default: '''Magnitude and angle'''
+- name: Approximation method
+  summary: 近似方法 None（默认）| CORDIC
+  group: ''
+  block_parameter: ApproximationMethod
+  type: 字符向量
+  values: '''None'' | ''CORDIC'''
+  default: '''None'''
+- name: Number of iterations
+  summary: CORDIC 算法的迭代次数 11（默认）| 小于或等于定点输入字长的正整数
+  group: ''
+  block_parameter: NumberOfIterations
+  type: 字符向量
+  values: 小于或等于定点输入字长的正整数
+  default: '''11'''
+- name: Sample time (-1 for inherited)
+  summary: 采样之间的间隔 -1（默认）| 标量 | 向量
+  group: ''
+  block_parameter: SampleTime
+  values: '"-1"（默认）| 带引号的标量或向量'
+```
 
 ### **Output** — 幅值和/或相位角输出设定 `Magnitude and angle`（默认）| `Magnitude` | `Angle`
 
@@ -124,7 +167,6 @@ CORDIC 算法执行的迭代次数，指定为正整数值标量。增加迭代�
 | --- | --- |
 | **参数：** | `SampleTime` |
 | **值：** | `"-1"`（默认）| 带引号的标量或向量 |
-
 ## 所属库
 
 Simulink / Math Operations

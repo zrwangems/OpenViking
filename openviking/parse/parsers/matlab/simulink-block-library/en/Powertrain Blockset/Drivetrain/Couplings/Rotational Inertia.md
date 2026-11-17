@@ -14,6 +14,30 @@ language: en
 # Rotational Inertia
 
 ## Ports
+```yaml
+ports:
+- name: RTrq
+  summary: Input torque scalar
+  direction: input
+- name: CTrq
+  summary: Output torque scalar
+  direction: input
+- name: R
+  summary: Angular velocity and torque two-way connector port
+  direction: input
+- name: Inertia
+  summary: Input scalar
+  direction: input
+- name: Info
+  summary: Bus signal bus
+  direction: output
+- name: Spd
+  summary: Driveshaft speed scalar
+  direction: output
+- name: C
+  summary: Angular velocity and torque two-way connector port
+  direction: output
+```
 
 ### Input
 
@@ -92,8 +116,38 @@ Angular velocity in rad/s. Torque is in N·m.
 
 To enable this port, for **Port Configuration**,
 select `Two-way connection`.
-
 ## Parameters
+```yaml
+parameters:
+- name: Port Configuration
+  summary: Specify configuration Simulink (default) | Two-way connection
+  group: ''
+  block_parameter: port_config
+  values: Simulink (default) | Two-way connection
+- name: Output Info bus
+  summary: Selection off (default) | on
+  group: ''
+- name: External inertia input
+  summary: Input rotational inertia off (default) | on
+  group: ''
+  block_parameter: externJ
+  values: off (default) | on
+- name: Rotational inertia, J
+  summary: Inertia .01 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: J
+  values: .01 (default) | scalar greater than or equal to 0
+- name: Torsional damping, b
+  summary: Damping .001 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: bc
+  values: .001 (default) | scalar greater than or equal to 0
+- name: Initial velocity, omega_o
+  summary: Angular 0 (default) | scalar greater than or equal to 0
+  group: ''
+  block_parameter: omega_o
+  values: 0 (default) | scalar greater than or equal to 0
+```
 
 #### Block Options
 
@@ -217,7 +271,6 @@ programmatically, use the `get_param` function.
 | **Parameter:** | `omega_o` |
 | **Values:** | `0` (default) | scalar greater than or equal to 0 |
 | **Data Types:** | `double` |
-
 ## Libraries
 
 Powertrain Blockset / Drivetrain / Couplings Vehicle Dynamics Blockset / Powertrain / Drivetrain / Couplings

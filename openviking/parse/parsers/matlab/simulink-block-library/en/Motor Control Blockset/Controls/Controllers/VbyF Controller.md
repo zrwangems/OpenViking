@@ -14,6 +14,41 @@ language: en
 # VbyF Controller
 
 ## Ports
+```yaml
+ports:
+- name: ωmref
+  summary: Reference speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: ωmrated
+  summary: Motor rated speed scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Npp
+  summary: Number of motor pole pairs scalar
+  direction: input
+  data_types: single | double | fixed point | uint | int
+- name: Vrated
+  summary: Rated phase voltage amplitude of motor scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vmin
+  summary: Minimum output voltage scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: NRamp
+  summary: Steps for initial ramp up scalar
+  direction: input
+  data_types: single | double | fixed point | uint | int
+- name: Enable
+  summary: Enable block outputs scalar
+  direction: input
+  data_types: single | double | fixed point
+- name: Vabc
+  summary: Motor phase voltages vector
+  direction: output
+  data_types: single | double | fixed point
+```
 
 ### Input
 
@@ -72,8 +107,19 @@ Stator phase *a*, *b*, and
 *c* voltages that drive the motor.
 
 **Data Types:** `single` | `double` | `fixed point`
-
 ## Parameters
+```yaml
+parameters:
+- name: Input speed unit
+  summary: Unit of the speed inputs Radians/Sec (default) | RPM | Degrees/Sec | Per unit based on dialog
+  group: ''
+- name: Per unit speed (RPM)
+  summary: Base speed of the motor (RPM) 1200 (default) | scalar
+  group: ''
+- name: Discrete step size (s) (-1 for inherit)
+  summary: Sample time after which block executes again 50e-6 (default) | scalar
+  group: ''
+```
 
 ### **Input speed unit** — Unit of the speed inputs `Radians/Sec` (default) | `RPM` | `Degrees/Sec` | `Per unit based on dialog`
 
@@ -100,7 +146,6 @@ To enable this parameter, set **Input speed unit** to
 
 The fixed time interval (in seconds) between two consecutive instances of block
 execution.
-
 ## Libraries
 
 Motor Control Blockset / Controls / Controllers

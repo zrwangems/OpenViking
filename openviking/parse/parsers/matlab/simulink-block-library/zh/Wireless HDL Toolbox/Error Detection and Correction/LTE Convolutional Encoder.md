@@ -15,6 +15,25 @@ chinese_source: worker-translation
 # LTE Convolutional Encoder
 
 ## 端口
+```yaml
+ports:
+- name: data
+  summary: 输入样本标量
+  direction: input
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: input
+  data_types: bus
+- name: data
+  summary: 编码样本 3×1 列向量
+  direction: output
+  data_types: single | double | Boolean | ufix1
+- name: ctrl
+  summary: 伴随样本流的控制信号 samplecontrol 总线
+  direction: output
+  data_types: bus
+```
 
 ### 输入
 
@@ -56,15 +75,19 @@ chinese_source: worker-translation
 有关更多详细信息，请参阅 Sample Control Bus。
 
 **数据类型：** `bus`
-
 ## 参数
+```yaml
+parameters:
+- name: Maximum message length
+  summary: 最大输入帧大小 1024（默认）| 正整数
+  group: ''
+```
 
 ### **Maximum message length** — 最大输入帧大小 1024（默认）| 正整数
 
 最大输入帧大小，指定为 6 到 216 之间的正整数。此参数定义所需的帧存储器大小。如果未指定为 2 的幂，该模块将使用下一个最大的 2 的幂。
 
 如果输入帧大于指定的最大消息长度，该模块将返回警告。
-
 ## 所属库
 
 Wireless HDL Toolbox / Error Detection and Correction

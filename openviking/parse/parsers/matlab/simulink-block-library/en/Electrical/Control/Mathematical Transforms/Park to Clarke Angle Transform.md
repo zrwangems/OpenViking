@@ -14,6 +14,45 @@ language: en
 # Park to Clarke Angle Transform
 
 ## Ports
+```yaml
+ports:
+- name: dq0
+  summary: '*d*-*q* axis and zero components vector'
+  direction: input
+  data_types: single | double
+- name: d
+  summary: Direct-axis component scalar
+  direction: input
+  data_types: single | double
+- name: q
+  summary: Quadrature-axis component scalar
+  direction: input
+  data_types: single | double
+- name: θe
+  summary: Rotational angle scalar | in radians
+  direction: input
+  data_types: single | double
+- name: sinθe
+  summary: Sine value of rotational angle scalar
+  direction: input
+  data_types: single | double
+- name: cosθe
+  summary: Cosine value of rotational angle scalar
+  direction: input
+  data_types: single | double
+- name: αβ0
+  summary: '*α*-*β* axis and zero components vector'
+  direction: output
+  data_types: single | double
+- name: α
+  summary: Alpha-axis component scalar
+  direction: output
+  data_types: single | double
+- name: β
+  summary: Beta-axis component scalar
+  direction: output
+  data_types: single | double
+```
 
 ### Input
 
@@ -175,8 +214,28 @@ parameter and set **Number of inputs** to
 `Two inputs`.
 
 **Data Types:** `single` | `double`
-
 ## Parameters
+```yaml
+parameters:
+- name: Alpha-axis alignment
+  summary: '*dq0* reference frame alignment Q-axis (default) | D-axis'
+  group: ''
+- name: Use block for embedded implementation (requires Motor Control Blockset™)
+  summary: Option to use block for embedded implementation off (default) | on
+  group: ''
+- name: Number of inputs
+  summary: Number of block inputs Two inputs (default) | Three inputs
+  group: ''
+- name: Theta input
+  summary: Type of position input Sine and Cosine electrical position (default) | Electrical position
+  group: ''
+- name: Theta units
+  summary: Unit of electrical position input Per-unit (default) | Radians | Degrees
+  group: ''
+- name: Number of data points for lookup table
+  summary: Size of lookup table array 1024 (default) | scalar
+  group: ''
+```
 
 ### **Alpha-axis alignment** — *dq0* reference frame alignment `Q-axis` (default) | `D-axis`
 
@@ -269,7 +328,6 @@ To enable this parameter, select the **Use block for embedded
 implementation (requires Motor Control Blockset™)**
 parameter and set **Theta input** to
 `Electrical position`.
-
 ## Libraries
 
 Simscape / Electrical / Control / Mathematical Transforms

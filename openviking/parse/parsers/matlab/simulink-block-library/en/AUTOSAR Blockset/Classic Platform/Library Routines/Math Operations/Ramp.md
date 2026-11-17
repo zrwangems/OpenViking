@@ -14,6 +14,29 @@ language: en
 # Ramp
 
 ## Ports
+```yaml
+ports:
+- name: u
+  summary: Input signal scalar
+  direction: input
+  data_types: single
+- name: R
+  summary: Reset port scalar
+  direction: input
+  data_types: Boolean
+- name: rs
+  summary: Rise slope scalar
+  direction: input
+  data_types: single
+- name: fs
+  summary: Fall slope scalar
+  direction: input
+  data_types: single
+- name: Port_1
+  summary: Output signal scalar
+  direction: output
+  data_types: single
+```
 
 ### Input
 
@@ -64,8 +87,45 @@ Slope** parameter to `Input port`.
 Output signal, returned as a scalar.
 
 **Data Types:** `single`
-
 ## Parameters
+```yaml
+parameters:
+- name: Rise slope
+  summary: Increase value of output Dialog | Input port
+  group: ''
+  values: '''Dialog'' | ''Input port'''
+  block_parameter: RiseSlopeSource
+  type: character vector
+  default: '''Dialog'''
+- name: Fall slope
+  summary: Decrease value of output scalar
+  group: ''
+  values: '''Dialog'' | ''Input Port'''
+  block_parameter: FallSlopeSource
+  type: character vector
+  default: '''Dialog'''
+- name: Show reset port
+  summary: Option to add R input port 'off' (default) | 'on'
+  group: ''
+  block_parameter: ShowResetPort
+  type: character vector
+  values: '''off'' | ''on'''
+  default: '''off'''
+- name: Initial condition
+  summary: Initial value of output signal 0 (default) | double
+  group: ''
+  block_parameter: InitialCondition
+  type: character vector
+  values: real finite values
+  default: '''0'''
+- name: Sample time
+  summary: Sample period -1 (default) | [-1, 0] | vector
+  group: ''
+  block_parameter: SampleTime
+  type: character vector
+  values: real finite values
+  default: '''-1'''
+```
 
 ### **Rise slope** — Increase value of output `Dialog` | `Input port`
 
@@ -167,7 +227,6 @@ For more information specifying discrete sample times, see Specify Sample Time.
 | **Type:** character vector |
 | **Values:** real finite values |
 | **Default:** `'-1'` |
-
 ## Libraries
 
 AUTOSAR Blockset / Classic Platform / Library Routines / Math Operations

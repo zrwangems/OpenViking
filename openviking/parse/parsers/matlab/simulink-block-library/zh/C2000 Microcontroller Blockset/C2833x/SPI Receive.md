@@ -15,6 +15,17 @@ chinese_source: worker-translation
 # SPI Receive
 
 ## 端口
+```yaml
+ports:
+- name: Rx
+  summary: SPI 接收数据向量
+  direction: output
+  data_types: uint8 | uint16 | uint32
+- name: Status
+  summary: SPI 接收状态 0 | 1 | 2
+  direction: output
+  data_types: uint8 | uint16 | uint32
+```
 
 ### 输出
 
@@ -37,8 +48,46 @@ chinese_source: worker-translation
 要启用此端口，请选择 **Enable status output** 参数。
 
 **数据类型：** `uint8` | `uint16` | `uint32`
-
 ## 参数
+```yaml
+parameters:
+- name: SPI module
+  summary: 用于读取数据的 SPI 模块 SPI1（默认）| SPI2 | SPI3 | SPI4 | SPI5 | SPI6
+  group: 主要
+- name: Clock polarity
+  summary: SPI 时钟极性 Low（默认）| High
+  group: 主要
+- name: Clock phase
+  summary: SPI 时钟相位 1 Edge（默认）| 2 Edge
+  group: 主要
+- name: Output data length
+  summary: SPI 输出数据长度 1（默认）| 正整数
+  group: 主要
+- name: Enable status output
+  summary: 启用 SPI 状态模式 off（默认）| on
+  group: 主要
+- name: Enable blocking mode
+  summary: 启用 SPI 阻塞模式 off（默认）| on
+  group: 主要
+- name: Sample time
+  summary: SPI 采样时间选择 –1（默认）| 0.1 | 标量
+  group: 主要
+- name: Data bits
+  summary: SPI 传输中的位数 4（默认）| 5 到 32
+  group: 高级
+- name: Chip select calling method
+  summary: 选择 SPI 外设设备的方法 Provided by the SPI peripheral（默认）| Explicit GPIO calls
+  group: 高级
+- name: Chip select pin polarity
+  summary: SPI 芯片选择引脚极性 Active low（默认）| Active high
+  group: 高级
+- name: Chip select port name
+  summary: SPI 芯片选择端口名称 GPIOA（默认）| GPIOB | GPIOC
+  group: 高级
+- name: Chip select pin
+  summary: SPI 芯片选择引脚 0（默认）| 正整数标量
+  group: 高级
+```
 
 ### 主要
 
@@ -109,7 +158,6 @@ SPI 控制器使用以下方法来选择 SPI 外设设备：
 #### 依赖关系
 
 此选项仅在 **Chip select calling method** 设置为 `Explicit GPIO calls` 时出现。
-
 ## 所属库
 
 Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F1xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F2xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F3xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32F7xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32G0xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32G4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32H7xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32L4xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32L5xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32U5xx Based Boards Embedded Coder Support Package for STMicroelectronics STM32 Processors / STM32WBxx Based Boards

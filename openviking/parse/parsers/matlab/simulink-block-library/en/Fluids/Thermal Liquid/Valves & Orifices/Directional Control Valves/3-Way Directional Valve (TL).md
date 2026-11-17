@@ -14,6 +14,21 @@ language: en
 # 3-Way Directional Valve (TL)
 
 ## Ports
+```yaml
+ports:
+- name: S
+  summary: Control member displacement physical signal
+  direction: input
+- name: P
+  summary: Flow passage thermal liquid
+  direction: conserving
+- name: T
+  summary: Flow passage thermal liquid
+  direction: conserving
+- name: A
+  summary: Flow passage thermal liquid
+  direction: conserving
+```
 
 ### Input
 
@@ -37,8 +52,175 @@ is typically connected to a fluid return line.
 
 Opening through which the flow can enter or exit the valve. This port
 is typically connected to an actuation line.
-
 ## Parameters
+```yaml
+parameters:
+- name: Positive spool position open connections
+  summary: Flow paths open when the spool is in a positive position P-A (default) | All closed | P-A, A-T, P-T | P-T | A-T
+  group: Model Parameterization
+- name: Negative spool position open connections
+  summary: Flow paths open when the spool moves in the negative direction A-T (default) | All closed | P-A, A-T, P-T | P-A
+    | P-T
+  group: Model Parameterization
+- name: Area characteristics
+  summary: Flow equations for orifices Identical for all flow paths (default) | Different for each flow path
+  group: Model Parameterization
+- name: Orifice parameterization
+  summary: Method of calculating opening area Linear area vs. spool travel (default) | Tabulated data - Area vs. spool travel
+    | Tabulated data - Volumetric flow rate vs. spool travel and pressure dropTabulated data - Mass flow rate vs. spool travel
+    and pressure drop
+  group: Model Parameterization
+- name: Spool travel between closed and open orifice
+  summary: Maximum spool stroke 5e-3 m (default) | positive scalar
+  group: Model Parameterization
+- name: Maximum orifice area
+  summary: Maximum orifice opening area 1e-4 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Spool travel vector
+  summary: Vector of valve opening distance [0, .00125, .0025, .00375, .005]m (default) | 1-by*n* vector
+  group: Model Parameterization
+- name: Orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 8e-05, .0001]m^2 (default) | 1-by*n* vector
+  group: Model Parameterization
+- name: Leakage area
+  summary: Gap area when in fully closed position 1e-10 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Smoothing factor
+  summary: Numerical smoothing factor 0.01 (default) | positive scalar in the range [0,1]
+  group: Model Parameterization
+- name: Spool travel vector, ds
+  summary: Vector of valve opening distances [0, .00125, .0025, .00375, .005] m (default) | 1-by-*n* vector
+  group: Model Parameterization
+- name: Pressure drop vector, dp
+  summary: Vector of valve pressure drop values [-.1, .3, .5, .7] MPa (default) | 1-by-*n* vector
+  group: Model Parameterization
+- name: Volumetric flow rate table, q(ds,dp)
+  summary: Array of volumetric flow rates [-9.05e-10, 1.57e-09, 2.02e-09, 2.39e-09; -9.05e-05, .000157, .000202, .000239;
+    -.000362, .000627, .00081, .000958; -.000724, .00125, .00162, .00192; -.000905, .00156, .002, .00239] m^3/s (default)
+    | *M*-by-*N* matrix
+  group: Model Parameterization
+- name: Reference inflow temperature
+  summary: Temperature at which pressure-drop data is specified 293.15 K (default) | positive scalar
+  group: Model Parameterization
+- name: Reference inflow pressure
+  summary: Pressure at which pressure-drop tabulated data is specified 0.101325 MPa (default) | positive scalar
+  group: Model Parameterization
+- name: Mass flow rate table, mdot(ds,dp)
+  summary: Mass flow rate 1e3 * [-9.05e-10, 1.57e-09, 2.02e-09, 2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362,
+    .000627, .00081, .000958; -.000724, .00125, .00162, .00192; -.000905, .00156, .002, .00239] kg/s (default) | M-by-N matrix
+  group: Model Parameterization
+- name: Discharge coefficient
+  summary: Discharge coefficient 0.64 (default) | positive scalar
+  group: Model Parameterization
+- name: Critical Reynolds number
+  summary: Upper Reynolds number limit for laminar flow 150 (default) | positive scalar
+  group: Model Parameterization
+- name: Pressure recovery
+  summary: Whether to account for pressure increase in area expansions on (default) | off
+  group: Model Parameterization
+- name: Cross-sectional area at ports A, P and T
+  summary: Area at valve entry or exit 0.01 m^2 (default) | positive scalar
+  group: Model Parameterization
+- name: Spool position at maximum P-A orifice area
+  summary: Spool offset at maximum area between ports P and A 4.5e-3 m (default) | scalar
+  group: P-A Orifice
+- name: P-A spool travel between closed and open orifice
+  summary: Maximum stroke for the spool between ports P and A 0.005 m (default) | positive scalar
+  group: P-A Orifice
+- name: P-A maximum orifice area
+  summary: Maximum area between ports P and A 1e-4 m^2 (default) | positive scalar
+  group: P-A Orifice
+- name: P-A orifice spool travel vector
+  summary: Vector of valve opening distance [0, .00125, .0025, .00375, .005] m (default) | 1-by*n* vector
+  group: P-A Orifice
+- name: P-A orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 8e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A orifice spool travel vector, ds
+  summary: Vector of valve opening distances [0, .00125, .0025, .00375, .005] m (default) | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A orifice pressure drop vector, dp
+  summary: Vector of pressure drop values over the valve [-.1, .3, .5, .7] MPa (default) | 1-by-*n* vector
+  group: P-A Orifice
+- name: P-A orifice (ds,dp)
+  summary: Vector of valve volumetric flow rates [-9.05e-10, 1.57e-09, 2.02e-09, 2.39e-09; -9.05e-05, .000157, .000202, .000239;
+    -.000362, .000627, .00081, .000958; -.000724, .00125, .00162, .00192; -.000905, .00156, .002, .00239] m^3/s (default)
+    | *M*-by-*N* matrix
+  group: P-A Orifice
+- name: P-A orifice mass flow rate table, mdot(ds,dp)
+  summary: Vector of valve mass flow rates 1e3 * [-9.05e-10, 1.57e-09, 2.02e-09, 2.39e-09; -9.05e-05, .000157, .000202, .000239;
+    -.000362, .000627, .00081, .000958; -.000724, .00125, .00162, .00192; -.000905, .00156, .002, .00239] kg/s (default) |
+    *M*-by-*N* matrix
+  group: P-A Orifice
+- name: Spool position at maximum A-T orifice area
+  summary: Spool offset at maximum area between ports A and T -4.5e-3 m (default) | scalar
+  group: A-T Orifice
+- name: A-T spool travel between closed and open orifice
+  summary: Maximum stroke for the spool between ports A and T 0.005 m (default) | positive scalar
+  group: A-T Orifice
+- name: A-T maximum orifice area
+  summary: Maximum area between ports A and T 1e-4 m^2 (default) | positive scalar
+  group: A-T Orifice
+- name: A-T orifice spool travel vector
+  summary: Vector of valve opening distances [0, .00125, .0025, .00375, .005] m (default) | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 8e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T orifice spool travel vector, ds
+  summary: Vector of valve opening distances [0, .00125, .0025, .00375, .005] m (default) | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T orifice pressure drop vector, dp
+  summary: Vector of pressure drop values over the valve [-.1, .3, .5, .7] MPa (default) | 1-by-*n* vector
+  group: A-T Orifice
+- name: A-T orifice volumetric flow rate table, q(ds,dp)
+  summary: Vector of volumetric flow rate for tabular parameterization - different flow paths [-9.05e-10, 1.57e-09, 2.02e-09,
+    2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362, .000627, .00081, .000958; -.000724, .00125, .00162, .00192;
+    -.000905, .00156, .002, .00239] m^3/s (default) | *M*-by-*N* matrix
+  group: A-T Orifice
+- name: A-T orifice mass flow rate table, mdot(ds,dp)
+  summary: Vector of mass flow rate for tabular parameterization - different flow paths 1e3 * [-9.05e-10, 1.57e-09, 2.02e-09,
+    2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362, .000627, .00081, .000958; -.000724, .00125, .00162, .00192;
+    -.000905, .00156, .002, .00239] kg/s (default) | *M*-by-*N* matrix
+  group: A-T Orifice
+- name: Spool position at maximum P-T orifice area
+  summary: Spool offset at maximum area between ports P and T 4.5e-3 m (default) | scalar
+  group: P-T Orifice
+- name: P-T spool travel between closed and open orifice
+  summary: Maximum stroke for the spool between ports P and T 0.005 m (default) | positive scalar
+  group: P-T Orifice
+- name: P-T maximum orifice area
+  summary: Maximum area between ports P and T 1e-4 m^2 (default) | positive scalar
+  group: P-T Orifice
+- name: P-T orifice spool travel vector
+  summary: Vector of valve opening distances [0, .00125, .0025, .00375, .005] m (default) | 1-by-*n* vector
+  group: P-T Orifice
+- name: P-T orifice area vector
+  summary: Vector of valve opening areas [1e-10, 1e-05, 4e-05, 8e-05, .0001] m^2 (default) | 1-by-*n* vector
+  group: P-T Orifice
+- name: P-T orifice spool travel vector, ds
+  summary: Vector of valve opening distances [0, .00125, .0025, .00375, .005] m (default) | 1-by-*n* vector
+  group: P-T Orifice
+- name: P-T orifice pressure drop vector, dp
+  summary: Vector of pressure drop values over the valve [-.1, .3, .5, .7] MPa (default) | 1-by-*n* vector
+  group: P-T Orifice
+- name: P-T orifice volumetric flow rate table, q(ds,dp)
+  summary: Vector of volumetric flow rate for tabular parameterization - different flow paths [-9.05e-10, 1.57e-09, 2.02e-09,
+    2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362, .000627, .00081, .000958; -.000724, .00125, .00162, .00192;
+    -.000905, .00156, .002, .00239] m^3/s (default) | *M*-by-*N* matrix
+  group: P-T Orifice
+- name: P-T orifice mass flow rate table, mdot(ds,dp)
+  summary: Vector of mass flow rate for tabular parameterization - different flow paths 1e3 * [-9.05e-10, 1.57e-09, 2.02e-09,
+    2.39e-09; -9.05e-05, .000157, .000202, .000239; -.000362, .000627, .00081, .000958; -.000724, .00125, .00162, .00192;
+    -.000905, .00156, .002, .00239] kg/s (default)
+  group: P-T Orifice
+- name: 3-Way Directional Valve Area fault
+  summary: Option to model valve area fault Add fault
+  group: Faults
+- name: Spool position when faulted
+  summary: Faulted valve characteristics Positive (default) | Negative | Maintain last value
+  group: Faults
+```
 
 ### Model Parameterization
 
@@ -831,7 +1013,6 @@ position when the fault triggers.
 
 To enable this parameter, click the **Add
 fault** hyperlink.
-
 ## Libraries
 
 Simscape / Fluids / Thermal Liquid / Valves & Orifices / Directional Control Valves

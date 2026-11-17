@@ -15,6 +15,21 @@ chinese_source: worker-translation
 # Upsample
 
 ## 端口
+```yaml
+ports:
+- name: in
+  summary: 输入信号 标量 | 向量 | 矩阵
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: L
+  summary: 上采样因子 正整数 ≤ *Lmax*
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: 上采样后的信号 标量 | 向量 | 矩阵
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### 输入
 
@@ -60,8 +75,31 @@ Upsample 模块输出的信号与输入信号具有相同的数据类型和复�
 
 **数据类型：** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **复数支持：** 是
-
 ## 参数
+```yaml
+parameters:
+- name: Upsample factor source
+  summary: 指定上采样因子的模式 Dialog parameter（默认）| Input port
+  group: ''
+- name: Upsample factor, L
+  summary: 上采样因子 3（默认）| 正整数
+  group: ''
+- name: Sample offset (0 to L−1)
+  summary: 采样偏移 0（默认）| 范围 [0, *L*−1] 内的整数
+  group: ''
+- name: Maximum upsample factor, Lmax
+  summary: 最大上采样因子 16（默认）| 正整数 ≥ 1
+  group: ''
+- name: Input processing
+  summary: 处理输入信号的方法 Columns as channels (frame based)（默认）| Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: 对输入进行上采样的方法 Enforce single-rate processing（默认）| Allow multirate processing
+  group: ''
+- name: Initial conditions
+  summary: 初始条件 0（默认）| 标量 | 向量 | 矩阵
+  group: ''
+```
 
 ### **Upsample factor source** — 指定上采样因子的模式 `Dialog parameter`（默认）| `Input port`
 
@@ -135,7 +173,6 @@ Upsample 模块输出的信号与输入信号具有相同的数据类型和复�
 #### 依赖关系
 
 要启用此参数，请将 **Rate options** 设置为 `Allow multirate processing`。
-
 ## 所属库
 
 DSP System Toolbox / Signal Operations DSP System Toolbox HDL Support / Signal Operations

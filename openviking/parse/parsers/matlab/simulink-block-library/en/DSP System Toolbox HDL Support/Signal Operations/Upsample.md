@@ -14,6 +14,21 @@ language: en
 # Upsample
 
 ## Ports
+```yaml
+ports:
+- name: in
+  summary: Input signal scalar | vector | matrix
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+- name: L
+  summary: Upsample factor positive integer ≤ *Lmax*
+  direction: input
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32
+- name: Port_1
+  summary: Upsampled signal scalar | vector | matrix
+  direction: output
+  data_types: single | double | int8 | int16 | int32 | uint8 | uint16 | uint32 | Boolean | fixed point
+```
 
 ### Input
 
@@ -91,8 +106,31 @@ conditions are met:
 
 **Data Types:** `single` | `double` | `int8` | `int16` | `int32` | `uint8` | `uint16` | `uint32` | `Boolean` | `fixed point`
 **Complex Number Support:** Yes
-
 ## Parameters
+```yaml
+parameters:
+- name: Upsample factor source
+  summary: Mode of specifying upsample factor Dialog parameter (default) | Input port
+  group: ''
+- name: Upsample factor, L
+  summary: Upsample factor 3 (default) | positive integer
+  group: ''
+- name: Sample offset (0 to L−1)
+  summary: Sample offset 0 (default) | integer in the range [0, *L*−1]
+  group: ''
+- name: Maximum upsample factor, Lmax
+  summary: Maximum upsample factor 16 (default) | positive integer ≥ 1
+  group: ''
+- name: Input processing
+  summary: Method to process input signals Columns as channels (frame based) (default) | Elements as channels (sample based)
+  group: ''
+- name: Rate options
+  summary: Method to upsample input Enforce single-rate processing (default) | Allow multirate processing
+  group: ''
+- name: Initial conditions
+  summary: Initial conditions 0 (default) | scalar | vector | matrix
+  group: ''
+```
 
 ### **Upsample factor source** — Mode of specifying upsample factor `Dialog parameter` (default) | `Input port`
 
@@ -221,7 +259,6 @@ perform multirate processing.
 
 To enable this parameter, set **Rate options** to `Allow
 multirate processing`.
-
 ## Libraries
 
 DSP System Toolbox / Signal Operations DSP System Toolbox HDL Support / Signal Operations

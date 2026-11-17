@@ -14,6 +14,12 @@ language: en
 # Machine Inertia
 
 ## Ports
+```yaml
+ports:
+- name: R
+  summary: Machine rotor mechanical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -21,8 +27,46 @@ language: en
 
 Mechanical rotational conserving port associated with the machine
 rotor.
-
 ## Parameters
+```yaml
+parameters:
+- name: Rated apparent power
+  summary: Rated apparent power 555e6 V*A (default)
+  group: Main
+- name: Rated electrical frequency
+  summary: Nominal electrical frequency 60 Hz (default)
+  group: Main
+- name: Number of pole pairs
+  summary: Number of pole pairs 1 (default)
+  group: Main
+- name: Specify inertia parameterization by
+  summary: Inertia parameterization Inertia constant, H (default) | Actual Inertia, J
+  group: Inertia
+- name: Inertia constant, H
+  summary: Inertia constant 3.525 s*W/VA (default)
+  group: Inertia
+- name: Actual inertia, J
+  summary: Actual inertia 27548 kg*m^2 (default)
+  group: Inertia
+- name: Specify damper parameterization by
+  summary: Damping parameterization Per-unit damping coefficient, pu_D (default) | SI damping coefficient, D
+  group: Inertia
+- name: Per-unit damping coefficient
+  summary: Per-unit damping coefficient 0.01 (default)
+  group: Inertia
+- name: SI damping coefficient
+  summary: Damping coefficient 39.0509 Nm/(rad/s) (default)
+  group: Inertia
+- name: Specify initialization by
+  summary: Frequency initialization Initial electrical frequency (default) | Initial mechanical frequency
+  group: Initial Conditions
+- name: Initial electrical frequency
+  summary: Initial electrical frequency 60 Hz (default)
+  group: Initial Conditions
+- name: Initial mechanical frequency
+  summary: Initial mechanical frequency 60 Hz (default)
+  group: Initial Conditions
+```
 
 ### Main
 
@@ -125,7 +169,6 @@ For more information about the unit of this parameter, see Units for Angular Vel
 To enable this parameter, set **Specify initialization
 by** to `Initial mechanical
 frequency`.
-
 ## Libraries
 
 Simscape / Electrical / Electromechanical / Mechanical

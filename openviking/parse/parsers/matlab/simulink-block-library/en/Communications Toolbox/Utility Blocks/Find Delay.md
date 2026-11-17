@@ -14,6 +14,25 @@ language: en
 # Find Delay
 
 ## Ports
+```yaml
+ports:
+- name: sRef
+  summary: Reference signal vector | matrix
+  direction: input
+  data_types: double
+- name: sDel
+  summary: Delayed signal vector | matrix
+  direction: input
+  data_types: double
+- name: delay
+  summary: Delay output scalar | vector
+  direction: output
+  data_types: double
+- name: chg
+  summary: Delay flag 0 | 1
+  direction: output
+  data_types: Boolean
+```
 
 ### Input
 
@@ -58,8 +77,22 @@ To enable this port, select the **Include "change signal" output port**
 parameter.
 
 **Data Types:** `Boolean`
-
 ## Parameters
+```yaml
+parameters:
+- name: Correlation window length (samples)
+  summary: Number of samples 200 (default) | positive integer
+  group: ''
+- name: Include "change signal" output port
+  summary: Add chg port to block off (default) | on
+  group: ''
+- name: Disable recurring updates
+  summary: Select to set stop criteria for delay computation off (default) | on
+  group: ''
+- name: Number of constant delay outputs to disable updates
+  summary: Disable updates after this number of unchanging delay value computations 3 (default) | positive integer
+  group: ''
+```
 
 To edit block parameters interactively, use the
 Property Inspector. From the Simulink® Toolstrip, on the **Simulation** tab, in the
@@ -97,7 +130,6 @@ updates.
 #### Dependencies
 
 To enable this parameter, select the **Disable recurring updates** parameter.
-
 ## Libraries
 
 Communications Toolbox / Utility Blocks

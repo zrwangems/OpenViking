@@ -15,6 +15,18 @@ chinese_source: worker-translation
 # Conductive Heat Transfer
 
 ## 端口
+```yaml
+ports:
+- name: K
+  summary: 热导率控制信号，W/(K\*m) 物理信号
+  direction: input
+- name: A
+  summary: 层 A 热
+  direction: input
+- name: B
+  summary: 层 B 热
+  direction: input
+```
 
 ### 输入
 
@@ -34,8 +46,43 @@ chinese_source: worker-translation
 ### **B** — 层 B 热
 
 与层 B 关联的热守恒端口。对于圆柱壁几何形状，层 B 是内层。
-
 ## 参数
+```yaml
+parameters:
+- name: Conductivity type
+  summary: 如何指定热导率 Constant（默认）| Variable input | Tabulated data
+  group: ''
+- name: Wall geometry
+  summary: 热传导的壁形状 Planar（默认）| Cylindrical
+  group: ''
+- name: Area
+  summary: 传热面积 1e-4 m^2（默认）| 正标量
+  group: ''
+- name: Thickness
+  summary: 材料厚度 0.1 m（默认）| 正标量
+  group: ''
+- name: Inner diameter
+  summary: 管道内径 0.05 m（默认）| 正标量
+  group: ''
+- name: Outer diameter
+  summary: 管道外径 0.1 m（默认）| 正标量
+  group: ''
+- name: Length
+  summary: 管道长度 1 m（默认）| 正标量
+  group: ''
+- name: Thermal conductivity
+  summary: 材料的热导率 401 W/(K*m)（默认）| 正标量
+  group: ''
+- name: Minimum thermal conductivity
+  summary: 热导率的下界 10 W/(K*m)（默认）| 正标量
+  group: ''
+- name: Thermal conductivity vector
+  summary: 用于表查找的热导率值向量 [413, 401, 392, 383, 371, 357, 342] W/(K*m)（默认）| 正值向量
+  group: ''
+- name: Temperature vector
+  summary: 用于表查找的温度值向量 [200, 273, 400, 600, 800, 1000, 1200] K（默认）| 严格递增向量
+  group: ''
+```
 
 ### **Conductivity type** — 如何指定热导率 `Constant`（默认）| `Variable input` | `Tabulated data`
 
@@ -123,7 +170,6 @@ chinese_source: worker-translation
 #### 依赖关系
 
 要启用此参数，请将 **Conductivity type** 设置为 `Tabulated data`。
-
 ## 所属库
 
 Simscape / Foundation Library / Thermal / Thermal Elements

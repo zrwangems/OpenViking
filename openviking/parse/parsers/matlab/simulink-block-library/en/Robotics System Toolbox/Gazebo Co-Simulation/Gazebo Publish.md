@@ -14,6 +14,13 @@ language: en
 # Gazebo Publish
 
 ## Ports
+```yaml
+ports:
+- name: Msg
+  summary: Gazebo custom message bus
+  direction: input
+  data_types: bus
+```
 
 ### Input
 
@@ -23,8 +30,22 @@ Gazebo custom message, specified as a bus signal, with elements relevant to the
 specific `Topic` and `Message type`.
 
 **Data Types:** `bus`
-
 ## Parameters
+```yaml
+parameters:
+- name: Topic source
+  summary: Source for specifying topic From Gazebo (default) | Specify your own
+  group: ''
+- name: Topic
+  summary: Topic name of custom message /my_topic (default) | string
+  group: ''
+- name: Message type
+  summary: Gazebo custom message type gazebo_msgs/TestPose (default) | string
+  group: ''
+- name: Sample time
+  summary: Sampling time of input 0.001 (default) | positive
+  group: ''
+```
 
 ### **Topic source** — Source for specifying topic `From Gazebo` (default) | `Specify your own`
 
@@ -59,7 +80,6 @@ this parameter is set automatically.
 
 Sample time indicates the interval at which messages are sent to the Gazebo
 simulator.
-
 ## Libraries
 
 Robotics System Toolbox / Gazebo Co-Simulation

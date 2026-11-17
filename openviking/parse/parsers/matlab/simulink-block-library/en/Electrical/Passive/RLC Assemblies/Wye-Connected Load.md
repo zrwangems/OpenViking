@@ -14,6 +14,24 @@ language: en
 # Wye-Connected Load
 
 ## Ports
+```yaml
+ports:
+- name: '~'
+  summary: Three-phase port electrical
+  direction: conserving
+- name: a
+  summary: '*a*-phase electrical'
+  direction: conserving
+- name: b
+  summary: '*b*-phase electrical'
+  direction: conserving
+- name: c
+  summary: '*c*-phase electrical'
+  direction: conserving
+- name: n
+  summary: Neutral phase electrical
+  direction: conserving
+```
 
 ### Conserving
 
@@ -66,8 +84,77 @@ ports`.
 ### **n** — Neutral phase electrical
 
 Electrical conserving port associated with the neutral phase.
-
 ## Parameters
+```yaml
+parameters:
+- name: Electrical connection
+  summary: Whether to model composite or expanded three-phase ports Composite three-phase ports (default) | Expanded three-phase
+    ports
+  group: Main
+- name: Parameterization
+  summary: Parameterization Specify by rated power and voltage (default) | Specify component values directly
+  group: Main
+- name: Component structure
+  summary: Desired component combination R (default) | L | C | Series RL | Series RC | Series LC | Series RLC | Parallel RL
+    | Parallel RC | Parallel LC | Parallel RLC
+  group: Main
+- name: Rated voltage
+  summary: Rated voltage 24e3 V (default) | nonnegative scalar
+  group: Main
+- name: Real power
+  summary: Total real dissipated power 1e3 W (default) | positive scalar
+  group: Main
+- name: Rated electrical frequency
+  summary: Rated electrical frequency 60 Hz (default) | positive scalar
+  group: Main
+- name: Inductive reactive power
+  summary: Inductive reactive power 1e2 A*V (default) | positive scalar
+  group: Main
+- name: Capacitive reactive power
+  summary: Total capacitive reactive power -1e2 A*V (default) | negative scalar
+  group: Main
+- name: Resistance
+  summary: Resistance 1 Ohm (default) | positive scalar
+  group: Main
+- name: Inductance
+  summary: Inductance 0.001 H (default) | positive scalar
+  group: Main
+- name: Capacitance
+  summary: Capacitance 1e-6 F (default) | positive scalar
+  group: Main
+- name: Parasitic series resistance
+  summary: Parasitic series resistance 0 Ohm (default) | nonnegative scalar
+  group: Parasitics
+- name: Parasitic parallel conductance
+  summary: Parasitic parallel conductance 0 1/Ohm (default) | nonnegative scalar
+  group: Parasitics
+- name: Terminal voltage magnitude
+  summary: Magnitude of terminal voltage 24e3 V (default) | nonnegative scalar
+  group: Initial Conditions
+- name: Terminal voltage angle
+  summary: Angle of terminal voltage 0 deg (default) | scalar
+  group: Initial Conditions
+- name: Frequency
+  summary: Frequency 60 Hz (default) | positive scalar
+  group: Initial Conditions
+- name: Connection fault
+  summary: Option to add fault to connection port Add fault
+  group: Faults
+- name: Fault type
+  summary: Type of fault Single-phase to ground (a-g) (default) | Single-phase to ground (b-g) | Single-phase to ground (c-g)
+    | Two-phase (a-b) | Two-phase (b-c) | Two-phase (c-a) | Two-phase to ground (a-b-g) | Two-phase to ground (b-c-g) | Two-phase
+    to ground (c-a-g) | Three-phase (a-b-c) | Three-phase to ground (a-b-c-g)
+  group: Faults
+- name: Faulted phase-neutral resistance
+  summary: Faulted resistance between phase connection and neutral point 1e-3 Ohm (default) | positive scalar
+  group: Faults
+- name: Faulted neutral-ground resistance
+  summary: Faulted resistance between neutral point and electrical reference 1e-3 Ohm (default) | positive scalar
+  group: Faults
+- name: Unfaulted phase-neutral conductance
+  summary: Unfaulted conductance between phase connection and neutral point 1e-6 1/Ohm (default) | positive scalar
+  group: Faults
+```
 
 ### Main
 
@@ -426,7 +513,6 @@ To enable this parameter, add a fault to the block by clicking the
 - `Three-phase (a-b-c)`
 - `Three-phase to ground
   (a-b-c-g)`
-
 ## Libraries
 
 Simscape / Electrical / Passive / RLC Assemblies

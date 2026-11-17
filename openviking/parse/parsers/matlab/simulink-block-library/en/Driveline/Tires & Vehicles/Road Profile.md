@@ -14,6 +14,21 @@ language: en
 # Road Profile
 
 ## Ports
+```yaml
+ports:
+- name: H
+  summary: Horizontal motion mechanical translational
+  direction: conserving
+- name: MF
+  summary: Front axle friction coefficients vector
+  direction: output
+- name: MR
+  summary: Rear axle friction coefficients vector
+  direction: output
+- name: beta
+  summary: Vehicle angle scalar
+  direction: output
+```
 
 ### Conserving
 
@@ -68,8 +83,43 @@ these values:
 ### **beta** — Vehicle angle scalar
 
 Physical signal output port for the vehicle angle.
-
 ## Parameters
+```yaml
+parameters:
+- name: Horizontal distance from CG to front axle
+  summary: Distance between CG and front axle 1.4 m (default) | positive scalar
+  group: Main
+- name: Horizontal distance from CG to rear axle
+  summary: Distance between CG and rear axle 1.6 m (default) | positive scalar
+  group: Main
+- name: Horizontal distance for vertical profile
+  summary: Vertical profile horizontal distance [-10, 0, 10] m (default) | vector
+  group: Main
+- name: Vertical profile
+  summary: Vertical profile [0, 0, .25] m (default) | vector
+  group: Main
+- name: Friction output
+  summary: Friction coefficient output type None (default) | Physical signal Magic Formula coefficientsPhysical signal friction
+    coefficients
+  group: Friction
+- name: Horizontal distance for friction profile
+  summary: Horizontal distance for friction profile [-10, 2, 2.1, 6, 6.1, 10] m (default) | vector
+  group: Friction
+- name: Magic Formula coefficients for front axle
+  summary: Front axle Magic Formula coefficients [10, 2, 1, 1; 10, 2, 1, 1; 8, 3, 1, 1; 8, 3, 1, 1; 9, 4, 1, 1; 9, 4, 1, 1]
+    (default) | matrix
+  group: Friction
+- name: Magic Formula coefficients for rear axle
+  summary: Rear axle Magic Formula coefficients [10, 2, 1, 1; 10, 2, 1, 1; 8, 3, 1, 1; 8, 3, 1, 1; 9, 4, 1, 1; 9, 4, 1, 1]
+    (default) | matrix
+  group: Friction
+- name: Static and kinetic friction coefficients for front axle
+  summary: Front axle friction coefficients [.9, .7; .9, .7; .7, .5; .7, .5; .8, .6; .8, .6] (default) | matrix
+  group: Friction
+- name: Static and kinetic friction coefficients for rear axle
+  summary: Rear axle friction coefficients [.9, .7; .9, .7; .7, .5; .7, .5; .8, .6; .8, .6] (default) | matrix
+  group: Friction
+```
 
 ### Main
 
@@ -193,7 +243,6 @@ This parameter is visible only when the
 **Friction** parameter **Friction
 output** is set to **Physical signal friction
 coefficients**.
-
 ## Libraries
 
 Simscape / Driveline / Tires & Vehicles
